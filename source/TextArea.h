@@ -37,7 +37,7 @@ class TextArea : public Panel
 {
 public:
 	TextArea();
-	TextArea(const Rectangle &r);
+	explicit TextArea(const Rectangle &r);
 	virtual ~TextArea();
 	void SetText(const std::string &s);
 

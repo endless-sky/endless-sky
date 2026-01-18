@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "Files.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
@@ -64,6 +64,7 @@ namespace {
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
 	const string CAMERA_ACCELERATION = "Camera acceleration";
+	const string LARGE_GRAPHICS_REDUCTION = "Reduce large graphics";
 	const string CLOAK_OUTLINE = "Cloaked ship outlines";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
 	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
@@ -75,7 +76,6 @@ namespace {
 	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
-	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
 	const string TOOLTIP_ACTIVATION = "Tooltip activation time";
@@ -91,6 +91,7 @@ namespace {
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
+	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
 	const string WINDOW_ROUNDING = "Window rounding";
@@ -98,7 +99,11 @@ namespace {
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
+#ifdef _WIN32
+	const int SETTINGS_PAGE_COUNT = 3;
+#else
 	const int SETTINGS_PAGE_COUNT = 2;
+#endif
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -119,7 +124,7 @@ namespace {
 
 
 PreferencesPanel::PreferencesPanel(PlayerInfo &player)
-	: player(player), editing(-1), selected(0), hover(-1),
+	: player(player),
 	tooltip(270, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
@@ -137,7 +142,7 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 
-	pluginListHeight = 0;
+	int pluginListHeight = 0;
 	for(const auto &plugin : Plugins::Get())
 		if(plugin.second.IsValid())
 			pluginListHeight += 20;
@@ -251,7 +256,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		hoverItem.clear();
 		selected = 0;
 
-		// Reset the render buffers in case the UI scale has changed.
+		// Make sure the render buffers are initialized and are aware of the current UI scale.
 		Resize();
 	}
 	else if(key == 'o' && page == 'p')
@@ -313,7 +318,7 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 		if(zones[index].Contains(point))
 		{
 			if(zones[index].Value().Has(Command::MENU))
-				GetUI()->Push(new Dialog([this, index]()
+				GetUI().Push(new DialogPanel([this, index]()
 					{
 						this->editing = this->selected = index;
 					},
@@ -463,7 +468,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			else
 				steps = min(120, steps + 20);
 			Preferences::SetTooltipActivation(steps);
-			for(auto &panel : GetUI()->Stack())
+			for(auto &panel : GetUI().Stack())
 				panel->UpdateTooltipActivation();
 		}
 		return true;
@@ -522,7 +527,7 @@ void PreferencesPanel::Resize()
 	{
 		const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 		Rectangle pluginListBox = pluginUi->GetBox("plugin list");
-		pluginListClip = std::make_unique<RenderBuffer>(pluginListBox.Dimensions());
+		pluginListClip = make_unique<RenderBuffer>(pluginListBox.Dimensions());
 		RenderPluginDescription(selectedPlugin);
 	}
 }
@@ -626,7 +631,8 @@ void PreferencesPanel::DrawControls()
 		Command::FASTFORWARD,
 		Command::PAUSE,
 		Command::HELP,
-		Command::MESSAGE_LOG
+		Command::MESSAGE_LOG,
+		Command::PERFORMANCE_DISPLAY
 	};
 
 	int page = 0;
@@ -705,19 +711,6 @@ void PreferencesPanel::DrawControls()
 			table.Draw(command.KeyName(), isEditing ? bright : medium);
 		}
 	}
-
-	Table infoTable;
-	infoTable.AddColumn(125, {150, Alignment::RIGHT});
-	infoTable.SetUnderline(0, 130);
-	infoTable.DrawAt(Point(-400, 32));
-
-	infoTable.DrawUnderline(medium);
-	infoTable.Draw("Additional info", bright);
-	infoTable.DrawGap(5);
-	infoTable.Draw("Press '_x' over controls", medium);
-	infoTable.Draw("to unbind them.", medium);
-	infoTable.Draw("Controls can share", medium);
-	infoTable.Draw("the same keybind.", medium);
 }
 
 
@@ -754,13 +747,12 @@ void PreferencesPanel::DrawSettings()
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
+		BLOCK_SCREEN_SAVER,
 		VSYNC_SETTING,
-		CAMERA_ACCELERATION,
 		"",
-		"Performance",
-		"Show CPU / GPU load",
+		"Graphics",
+		CAMERA_ACCELERATION,
 		"Render motion blur",
-		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
 		"Fixed starfield zoom",
@@ -768,10 +760,30 @@ void PreferencesPanel::DrawSettings()
 		"Animate main menu background",
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
-		SHIP_OUTLINES,
-		HUD_SHIP_OUTLINES,
 		CLOAK_OUTLINE,
 		"\t",
+		"Performance",
+		"Show CPU / GPU load",
+		LARGE_GRAPHICS_REDUCTION,
+		SHIP_OUTLINES,
+		HUD_SHIP_OUTLINES,
+		"",
+		"Gameplay",
+		"Control ship with mouse",
+		"Aim turrets with mouse",
+		AUTO_AIM_SETTING,
+		AUTO_FIRE_SETTING,
+		TURRET_TRACKING,
+		TARGET_ASTEROIDS_BASED_ON,
+		BOARDING_PRIORITY,
+		EXPEND_AMMO,
+		FLOTSAM_SETTING,
+		FIGHTER_REPAIR,
+		"Fighters transfer cargo",
+		"Rehire extra crew when lost",
+		"Automatically unpark flagship",
+		FLAGSHIP_SPACE_PRIORITY,
+		"\n",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
 		STATUS_OVERLAYS_FLAGSHIP,
@@ -788,22 +800,6 @@ void PreferencesPanel::DrawSettings()
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
-		"\n",
-		"Gameplay",
-		"Control ship with mouse",
-		"Aim turrets with mouse",
-		AUTO_AIM_SETTING,
-		AUTO_FIRE_SETTING,
-		TURRET_TRACKING,
-		TARGET_ASTEROIDS_BASED_ON,
-		BOARDING_PRIORITY,
-		EXPEND_AMMO,
-		FLOTSAM_SETTING,
-		FIGHTER_REPAIR,
-		"Fighters transfer cargo",
-		"Rehire extra crew when lost",
-		"Automatically unpark flagship",
-		FLAGSHIP_SPACE_PRIORITY,
 		"\t",
 		"Map",
 		"Deadline blink by distance",
@@ -821,9 +817,10 @@ void PreferencesPanel::DrawSettings()
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
 		"Show parenthesis",
-		NOTIFY_ON_DEST
+		NOTIFY_ON_DEST,
+		"Save message log",
 #ifdef _WIN32
-		, "",
+		"\n",
 		"Windows Options",
 		TITLE_BAR_THEME,
 		WINDOW_ROUNDING
@@ -906,6 +903,11 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == CAMERA_ACCELERATION)
 		{
 			text = Preferences::CameraAccelerationSetting();
+			isOn = text != "off";
+		}
+		else if(setting == LARGE_GRAPHICS_REDUCTION)
+		{
+			text = Preferences::LargeGraphicsReductionSetting();
 			isOn = text != "off";
 		}
 		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
@@ -1223,7 +1225,7 @@ void PreferencesPanel::DrawPlugins()
 
 
 // Render the named plugin description into the pluginDescriptionBuffer.
-void PreferencesPanel::RenderPluginDescription(const std::string &pluginName)
+void PreferencesPanel::RenderPluginDescription(const string &pluginName)
 {
 	const Plugin *plugin = Plugins::Get().Find(pluginName);
 	if(plugin)
@@ -1263,7 +1265,7 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	if(descriptionHeight < box.Height())
 		descriptionHeight = box.Height();
 	pluginDescriptionScroll.SetMaxValue(descriptionHeight);
-	pluginDescriptionBuffer = std::make_unique<RenderBuffer>(Point(box.Width(), descriptionHeight));
+	pluginDescriptionBuffer = make_unique<RenderBuffer>(Point(box.Width(), descriptionHeight));
 	// Redirect all drawing commands into the offscreen buffer.
 	auto target = pluginDescriptionBuffer->SetTarget();
 
@@ -1304,16 +1306,16 @@ void PreferencesPanel::Exit()
 {
 	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
 	{
-		GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
+		GetUI().Push(new DialogPanel("Menu keybind is not bound or has conflicts."));
 		return;
 	}
 
 	Command::SaveSettings(Files::Config() / "keys.txt");
 
 	if(recacheDeadlines)
-		player.CalculateRemainingDeadlines();
+		player.CacheMissionInformation(true);
 
-	GetUI()->Pop(this);
+	GetUI().Pop(this);
 }
 
 
@@ -1332,7 +1334,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			// Only show this if it's not possible to zoom the view at all, as
 			// otherwise the dialog will show every time, which is annoying.
 			if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
-				GetUI()->Push(new Dialog(
+				GetUI().Push(new DialogPanel(
 					"Your screen resolution is too low to support a zoom level above 100%."));
 			Screen::SetZoom(ZOOM_FACTOR_MIN);
 		}
@@ -1359,11 +1361,13 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	else if(str == VSYNC_SETTING)
 	{
 		if(!Preferences::ToggleVSync())
-			GetUI()->Push(new Dialog(
+			GetUI().Push(new DialogPanel(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
 	else if(str == CAMERA_ACCELERATION)
 		Preferences::ToggleCameraAcceleration();
+	else if(str == LARGE_GRAPHICS_REDUCTION)
+		Preferences::ToggleLargeGraphicsReduction();
 	else if(str == STATUS_OVERLAYS_ALL)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
 	else if(str == STATUS_OVERLAYS_FLAGSHIP)
@@ -1405,7 +1409,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		if(steps > 120)
 			steps = 0;
 		Preferences::SetTooltipActivation(steps);
-		for(auto &panel : GetUI()->Stack())
+		for(auto &panel : GetUI().Stack())
 			panel->UpdateTooltipActivation();
 	}
 	else if(str == FLAGSHIP_SPACE_PRIORITY)
@@ -1418,6 +1422,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleAlert();
 	else if(str == MINIMAP_DISPLAY)
 		Preferences::ToggleMinimapDisplay();
+	else if(str == BLOCK_SCREEN_SAVER)
+		Preferences::ToggleBlockScreenSaver();
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
 		Preferences::ToggleTitleBarTheme();

@@ -121,16 +121,16 @@ mission "Successors: Buskers"
 			`	It is not clear whether or not this represents the entire lyric content of the performance or simply if the translation device is unable to parse the more tonal phrases. The submerged singer displays a variety of colors and textures on their skin, changing with each successive phrase; green and rough on a splittingly high note, pink and smooth-looking on a strangely growl-like low section. Several in the crowd emulate this in their own skin patterning; the group pulses in color and pattern in time with the melody of the music.`
 			choice
 				`	(Continue listening.)`
-				`	(Return to your ship.)`
+				`	(Return to my ship.)`
 					goto unappreciative
 			`	The music eventually crescendos with a long, droning wail of instrumentation accompanied by a rapid, high-pitched vocal performance that sees the water in the pool sloshing from side to side as the trio within move rapturously, circling around each other faster and faster before suddenly stopping. The performance comes to a close with a gentler and more playful section that sees the performers blowing bubbles to the surface of the pool and producing short, semi-random notes on their bizarre instruments.`
 			`	The Successors around you produce a dull, low hum after the piece's conclusion.`
 			choice
 				`	(Applaud.)`
 					goto applaud
-				`	(Try to hum yourself.)`
+				`	(Try to hum myself.)`
 					goto hum
-				`	(Return to your ship.)`
+				`	(Return to my ship.)`
 					decline
 			label applaud
 			`	The Successors around you seem a little surprised or perhaps confused by your display, but do not express any offense at it, as far as you can tell. The trio of performers eventually emerge from the pool, gently tucking their instruments into various equally oddly-shaped cases before chatting with some of the few remaining members of the crowd and then departing.`
@@ -234,7 +234,7 @@ mission "Successors: Stage Play"
 			choice
 				`	(Pay attention.)`
 					goto attentive
-				`	(Let your mind wander.)`
+				`	(Let my mind wander.)`
 					goto bored
 				`	(Leave early.)`
 			`	You stay until the first intermission - still an uncomfortably long wait, and as far as you can tell, the story is nowhere near complete at that point. The performance was distinctly alien, with masks, acrobatics, and a stunning moment midway through the first act where one of the characters conjured up a storm to afflict another. Huge globs of water, suspended in clear spheres, were lifted behind the stage by some sort of repulsor mechanism.`

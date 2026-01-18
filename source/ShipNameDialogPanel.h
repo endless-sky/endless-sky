@@ -1,4 +1,4 @@
-/* ShipNameDialog.h
+/* ShipNameDialogPanel.h
 Copyright (c) 2024 by Endless Sky contributors
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,9 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Dialog.h"
-
-#include "Point.h"
+#include "DialogPanel.h"
 
 #include <string>
 
@@ -27,28 +25,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Contains a text entry field and an additional button, "Random",
 // which populates the text entry field with a randomly selected name
 // from the "civilian" phrase.
-class ShipNameDialog : public Dialog {
+class ShipNameDialogPanel : public DialogPanel {
 public:
 	template<class T>
-	ShipNameDialog(T *panel, void (T::*fun)(const std::string &),
-		const std::string &message, std::string initialValue = "");
-
-	virtual void Draw() override;
-
-
-protected:
-	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
+	ShipNameDialogPanel(T *panel, DialogPanel::FunctionButton buttonOne, const std::string &message,
+		std::string initialValue = "");
 
 
 private:
-	Point randomPos;
+	bool RandomName(const std::string &);
 };
 
 
 
 template<class T>
-ShipNameDialog::ShipNameDialog(T *panel, void (T::*fun)(const std::string &),
-		const std::string &message, std::string initialValue)
-	: Dialog(panel, fun, message, initialValue)
+ShipNameDialogPanel::ShipNameDialogPanel(T *panel, DialogPanel::FunctionButton buttonOne, const std::string &message,
+	std::string initialValue)
+	: DialogPanel(panel, message, initialValue, buttonOne,
+		DialogPanel::FunctionButton(this, "Random", 'r', &ShipNameDialogPanel::RandomName),
+		[](const std::string &) { return true; })
 {
 }
