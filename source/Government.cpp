@@ -769,8 +769,8 @@ std::string GetTributeUnready() const
 
 std::string GetTributeSurrendered() const
 {
-	return tributeSurrendered ? tributeSurrendered->Get() : "We surrender. We will pay you
-		<credits> per day to leave us alone.";
+	return tributeSurrendered ? tributeSurrendered->Get() : "We surrender. We will pay you"
+		"<credits> per day to leave us alone.";
 }
 
 
