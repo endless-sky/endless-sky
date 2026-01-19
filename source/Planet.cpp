@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Wormhole.h"
 
 #include <algorithm>
+#include <regex>
 
 using namespace std;
 
@@ -806,7 +807,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 
 	player.SetTribute(this, tribute);
 	string surrenderedMessage = government->GetTributeSurrendered();
-	surrenderedMessage = surrenderedMessage.replace("<credits>", Format::CreditString(tribute))
+	surrenderedMessage = regex_replace(surrenderedMessage, regex("<credits>"), Format::CreditString(tribute))
 	return surrenderedMessage;
 }
 
