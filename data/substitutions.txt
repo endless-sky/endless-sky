@@ -12,23 +12,8 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 substitutions
-	# Substitutions for homeworlds. Defaults to New Boston.
-	"<home planet>" "New Boston"
-	"<home planet>" "Midgard"
-		has "start: deep"
-	"<home planet>" "Mainsail"
-		has "start: paradise"
-	"<home planet>" "Earth"
-		has "start: syndicate"
-	"<home planet>" "Greenwater"
-		has "start: hai"
-	# Substitutions for home systems. Defaults to Rutilicus.
-	"<home system>" "Rutilicus"
-	"<home system>" "Aludra"
-		has "start: deep"
-	"<home system>" "Alhena"
-		has "start: paradise"
-	"<home system>" "Sol"
-		has "start: syndicate"
-	"<home system>" "Fah Soom"
-		has "start: hai"
+	# Substitution for home planet defaults to your start planet.
+	"<home planet>" "<start planet>"
+
+	# Substitution for home system defaults to your start system.
+	"<home system>" "<start system>"
