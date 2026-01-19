@@ -497,17 +497,17 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				bool removeTributePhrase = grand.Token(0) == "remove";
 				const string &grandKey = grand.Token(remove);
 				if(grandKey == "already paying")
-					tributeAlreadyPaying = remove ? nullptr : GameData::Phrases().Get(grand.Token(1));
+					tributeAlreadyPaying = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "undefined")
-					tributeUndefined = remove ? nullptr : GameData::Phrases().Get(grand.Token(1));
+					tributeUndefined = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "unworthy")
-					tributeUnworthy = remove ? nullptr : GameData::Phrases().Get(grand.Token(1));
+					tributeUnworthy = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "fleet launching")
-					tributeFleetLaunching = remove ? nullptr : GameData::Phrases().Get(grand.Token(1));
+					tributeFleetLaunching = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "fleet undefeated")
-					tributeFleetUndefeated = remove ? nullptr : GameData::Phrases().Get(grand.Token(1));
+					tributeFleetUndefeated = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "surrendered")
-					tributeSurrendered = remove ? nullptr : GameData::Phrases().Get(grand.Token(1));
+					tributeSurrendered = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
