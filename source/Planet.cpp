@@ -137,6 +137,15 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				defenseFleets.clear();
 				ResetDefense();
 			}
+			else if(key == "tribute hails")
+			{
+				tributeAlreadyPaying = nullptr;
+				tributeUndefined = nullptr;
+				tributeUnworthy = nullptr;
+				tributeFleetUndefeated = nullptr;
+				tributeFleetLaunching = nullptr;
+				tributeSurrendered = nullptr;
+			}
 			else if(key == "wormhole")
 				wormhole = nullptr;
 			else if(key == "to")
