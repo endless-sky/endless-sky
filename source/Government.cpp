@@ -748,14 +748,14 @@ string Government::GetPlanetBribeRejectionHail() const
 
 string Government::GetTributeAlreadyPaying() const
 {
-	return tributeOverpriced ? tributeOverpriced->Get() : "We are already paying you as much as we can afford.";
+	return tributeAlreadyPaying ? tributeAlreadyPaying->Get() : "We are already paying you as much as we can afford.";
 }
 
 
 
 string Government::GetTributeUndefined() const
 {
-	return tributeNotDefined ? tributeNotDefined->Get() : "Please don't joke about that sort of thing.";
+	return tributeUndefined ? tributeUndefined->Get() : "Please don't joke about that sort of thing.";
 }
 
 
@@ -769,14 +769,14 @@ string Government::GetTributeUnworthy() const
 
 string Government::GetTributeFleetLaunching() const
 {
-	return tributeAccepted ? tributeAccepted->Get() : "Our defense fleet will make short work of you.";
+	return tributeFleetLaunching ? tributeFleetLaunching->Get() : "Our defense fleet will make short work of you.";
 }
 
 
 
 string Government::GetTributeFleetUndefeated() const
 {
-	return tributeUnready ? tributeUnready->Get() : "We're not ready to surrender yet.";
+	return tributeFleetUndefeated ? tributeFleetUndefeated->Get() : "We're not ready to surrender yet.";
 }
 
 
