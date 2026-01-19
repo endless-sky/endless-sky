@@ -101,7 +101,7 @@ void MainPanel::Step()
 		isActive = false;
 	}
 
-	// Offer the next available entering mission.
+	// Offer the next available in-flight mission.
 	if(isActive && player.HasAvailableInflightMissions() && player.Flagship())
 	{
 		Mission *mission = player.TransitionMission();
