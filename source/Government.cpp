@@ -494,36 +494,20 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 					grand.PrintTrace("Skipping unrecognized attribute:");
 					continue;
 				}
-				const string &grandKey = grand.Token(0);
+				bool removeTributePhrase = grand.Token(0) == "remove";
+				const string &grandKey = grand.Token(remove);
 				if(grandKey == "already paying")
-					tributeAlreadyPaying = GameData::Phrases().Get(grand.Token(1));
+					tributeAlreadyPaying = remove ? nullptr : GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "undefined")
-					tributeUndefined = GameData::Phrases().Get(grand.Token(1));
+					tributeUndefined = remove ? nullptr : GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "unworthy")
-					tributeUnworthy = GameData::Phrases().Get(grand.Token(1));
+					tributeUnworthy = remove ? nullptr : GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "fleet launching")
-					tributeFleetLaunching = GameData::Phrases().Get(grand.Token(1));
+					tributeFleetLaunching = remove ? nullptr : GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "fleet undefeated")
-					tributeFleetUndefeated = GameData::Phrases().Get(grand.Token(1));
+					tributeFleetUndefeated = remove ? nullptr : GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "surrendered")
-					tributeSurrendered = GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "remove")
-				{
-					if(grand.Token(1) == "already paying")
-						tributeAlreadyPaying = nullptr;
-					if(grand.Token(1) == "undefined")
-						tributeUndefined = nullptr;
-					if(grand.Token(1) == "unworthy")
-						tributeUnworthy = nullptr;
-					if(grand.Token(1) == "fleet launching")
-						tributeFleetLaunching = nullptr;
-					if(grand.Token(1) == "fleet undefeated")
-						tributeFleetUndefeated = nullptr;
-					if(grand.Token(1) == "surrendered")
-						tributeSurrendered = nullptr;
-					else
-						grand.PrintTrace("Invalid remove, key does not exist as a valid tribute hail:");
-				}
+					tributeSurrendered = remove ? nullptr : GameData::Phrases().Get(grand.Token(1));
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
