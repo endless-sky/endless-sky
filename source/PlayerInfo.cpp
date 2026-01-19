@@ -2723,6 +2723,19 @@ void PlayerInfo::AddPlayerSubstitutions(map<string, string> &subs) const
 	subs["<system>"] = GetSystem()->DisplayName();
 	subs["<date>"] = GetDate().ToString();
 	subs["<day>"] = GetDate().LongString();
+
+	// Information about how the player started the game.
+	subs["<start planet>"] = startData.GetPlanet().DisplayName();
+	subs["<start system>"] = startData.GetSystem().DisplayName();
+
+	const Date &date = startData.GetDate();
+	subs["<start date>"] = date.ToString();
+	subs["<start long date>"] = date.LongString();
+
+	const Account &account = startData.GetAccounts();
+	subs["<start credits>"] = to_string(account.Credits());
+	subs["<start credit score>"] = to_string(account.CreditScore());
+	subs["<start debt>"] = to_string(account.TotalDebt(""));
 }
 
 
