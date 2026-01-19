@@ -732,42 +732,42 @@ string Government::GetPlanetBribeRejectionHail() const
 
 
 
-std::string GetTributeOverpriced() const
+string Government::GetTributeOverpriced() const
 {
 	return tributeOverpriced ? tributeOverpriced->Get() : "We are already paying you as much as we can afford.";
 }
 
 
 
-std::string GetTributeNotDefined() const
+string Government::GetTributeNotDefined() const
 {
 	return tributeNotDefined ? tributeNotDefined->Get() : "Please don't joke about that sort of thing.";
 }
 
 
 
-std::string GetTributeUnworthy() const
+string Government::GetTributeUnworthy() const
 {
 	return tributeUnworthy ? tributeUnworthy->Get() : "You're not worthy of our time.";
 }
 
 
 
-std::string GetTributeAccepted() const
+string Government::GetTributeAccepted() const
 {
 	return tributeAccepted ? tributeAccepted->Get() : "Our defense fleet will make short work of you.";
 }
 
 
 
-std::string GetTributeUnready() const
+string Government::GetTributeUnready() const
 {
 	return tributeUnready ? tributeUnready->Get() : "We're not ready to surrender yet.";
 }
 
 
 
-std::string GetTributeSurrendered() const
+string Government::GetTributeSurrendered() const
 {
 	return tributeSurrendered ? tributeSurrendered->Get() : "We surrender. We will pay you"
 		"<credits> per day to leave us alone.";
