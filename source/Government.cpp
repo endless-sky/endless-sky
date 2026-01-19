@@ -766,7 +766,7 @@ string Government::GetTributeUnready() const
 
 string Government::GetTributeSurrendered() const
 {
-	return tributeSurrendered ? tributeSurrendered->Get() : "We surrender. We will pay you"
+	return tributeSurrendered ? tributeSurrendered->Get() : "We surrender. We will pay you "
 		"<credits> per day to leave us alone.";
 }
 
