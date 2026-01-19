@@ -845,7 +845,6 @@ void PlayerInfo::AdvanceDate(int amount)
 		}
 		DoAccounting();
 	}
-	CreateTransitionMissions();
 	// Reset the reload counters for all your ships.
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->GetArmament().ReloadAll();
@@ -2084,7 +2083,7 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 bool PlayerInfo::HasAvailableInflightMissions() const
 {
-	return !availableEnteringMissions.empty() && !availableTransitionMissions.empty();
+	return !availableEnteringMissions.empty() || !availableTransitionMissions.empty();
 }
 
 
