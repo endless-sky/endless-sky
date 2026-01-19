@@ -2510,6 +2510,7 @@ Mission *PlayerInfo::TransitionMission()
 			availableTransitionMissions.splice(availableTransitionMissions.begin(), availableTransitionMissions, it);
 			return &availableTransitionMissions.front();
 		}
+	return nullptr;
 }
 
 
