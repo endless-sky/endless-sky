@@ -218,6 +218,15 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				planetBribeAcceptanceHail = nullptr;
 			else if(key == "planet bribe rejection hail")
 				planetBribeRejectionHail = nullptr;
+			else if(key == "tribute hails")
+			{
+				tributeOverpriced = nullptr;
+				tributeNotDefined = nullptr;
+				tributeUnworthy = nullptr;
+				tributeAccepted = nullptr;
+				tributeUnready = nullptr;
+				tributeSurrendered = nullptr;
+			}
 			else if(key == "language")
 				language.clear();
 			else if(key == "send untranslated hails")
@@ -476,6 +485,35 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			planetBribeAcceptanceHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "planet bribe rejection hail")
 			planetBribeRejectionHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "tribute hails")
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() != 2)
+				{
+					grand.PrintTrace("Skipping unrecognized attribute:");
+					continue;
+				}
+				const string &grandKey = grand.Token(0);
+				if(grandKey == "overpriced")
+					tributeOverpriced = grand.Token(1);
+				else if(grandKey == "not defined")
+					tributeNotDefined = grand.Token(1);
+				else if(grandKey == "unworthy")
+					tributeUnworthy = grand.Token(1);
+				else if(grandKey == "accepted")
+					tributeAccepted = grand.Token(1);
+				else if(grandKey == "unready")
+					tributeUnready = grand.Token(1);
+				else if(grandKey == "surrendered")
+					tributeSurrendered = grand.Token(1);
+				else
+				{
+					grand.PrintTrace("Skipping unrecognized attribute:");
+					continue;
+				}
+			}
+		}
 		else if(key == "language")
 			language = child.Token(valueIndex);
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
@@ -690,6 +728,48 @@ string Government::GetPlanetBribeAcceptanceHail() const
 string Government::GetPlanetBribeRejectionHail() const
 {
 	return planetBribeRejectionHail ? planetBribeRejectionHail->Get() : "I do not want your money.";
+}
+
+
+
+std::string GetTributeOverpriced() const
+{
+	return tributeOverpriced ? tributeOverpriced->Get() : "We are already paying you as much as we can afford.";
+}
+
+
+
+std::string GetTributeNotDefined() const
+{
+	return tributeNotDefined ? tributeNotDefined->Get() : "Please don't joke about that sort of thing.";
+}
+
+
+
+std::string GetTributeUnworthy() const
+{
+	return tributeUnworthy ? tributeUnworthy->Get() : "You're not worthy of our time.";
+}
+
+
+
+std::string GetTributeAccepted() const
+{
+	return tributeAccepted ? tributeAccepted->Get() : "Our defense fleet will make short work of you.";
+}
+
+
+
+std::string GetTributeUnready() const
+{
+	return tributeUnready ? tributeUnready->Get() : "We're not ready to surrender yet.";
+}
+
+
+
+std::string GetTributeSurrendered() const
+{
+	return tributeSurrendered ? tributeSurrendered->Get() : "We surrender. We will pay you <credits> per day to leave us alone.";
 }
 
 

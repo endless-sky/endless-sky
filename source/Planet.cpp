@@ -763,13 +763,16 @@ void Planet::Bribe(bool fullAccess) const
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {
+	const Government *gov = planet ? planet->GetGovernment() : nullptr;
+	if (!gov)
+		return true;
 	const auto &playerTribute = player.GetTribute();
 	if(playerTribute.find(this) != playerTribute.end())
-		return "We are already paying you as much as we can afford.";
+		return gov->GetTributeOverpriced();
 	if(!tribute || defenseFleets.empty())
-		return "Please don't joke about that sort of thing.";
+		return gov->GetTributeNotDefined();
 	if(player.Conditions().Get("combat rating") < defenseThreshold)
-		return "You're not worthy of our time.";
+		return gov->GetTributeUnworthy();
 
 	// The player is scary enough for this planet to take notice. Check whether
 	// this is the first demand for tribute, or not.
@@ -787,7 +790,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		// expose syntax for controlling its impact on the targeted government
 		// and those that know it.
 		GetGovernment()->Offend(ShipEvent::ATROCITY);
-		return "Our defense fleet will make short work of you.";
+		return gov->GetTributeAccepted();
 	}
 
 	// The player has already demanded tribute. Have they defeated the entire defense fleet?
@@ -800,10 +803,10 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		}
 
 	if(!isDefeated)
-		return "We're not ready to surrender yet.";
+		return gov->GetTributeUnready();
 
 	player.SetTribute(this, tribute);
-	return "We surrender. We will pay you " + Format::CreditString(tribute) + " per day to leave us alone.";
+	return gov->GetTributeSurrendered()::replace("<credits>", Format::CreditString(tribute));
 }
 
 
