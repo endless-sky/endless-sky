@@ -485,7 +485,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			planetBribeAcceptanceHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "planet bribe rejection hail")
 			planetBribeRejectionHail = GameData::Phrases().Get(child.Token(valueIndex));
-		else if(key == "tribute hails")
+		else if(key == "tribute hails" && child.HasChildren())
 		{
 			for(const DataNode &grand : child)
 			{
@@ -508,10 +508,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				else if(grandKey == "surrendered")
 					tributeSurrendered = GameData::Phrases().Get(grand.Token(1));
 				else
-				{
 					grand.PrintTrace("Skipping unrecognized attribute:");
-					continue;
-				}
 			}
 		}
 		else if(key == "language")
