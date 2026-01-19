@@ -22,6 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RenderBuffer.h"
 #include "ScrollBar.h"
 
+using namespace std;
+
 
 
 TextArea::TextArea()
@@ -36,7 +38,8 @@ TextArea::TextArea()
 
 
 
-TextArea::TextArea(const Rectangle &r): TextArea()
+TextArea::TextArea(const Rectangle &r)
+	: TextArea()
 {
 	SetRect(r);
 }
@@ -50,7 +53,7 @@ TextArea::~TextArea()
 
 
 
-void TextArea::SetText(const std::string &s)
+void TextArea::SetText(const string &s)
 {
 	text = s;
 	Invalidate();
@@ -127,7 +130,7 @@ int TextArea::GetLongestLineWidth()
 void TextArea::Draw()
 {
 	if(!buffer)
-		buffer = std::make_unique<RenderBuffer>(size);
+		buffer = make_unique<RenderBuffer>(size);
 
 	Validate(scrollHeightIncludesTrailingBreak);
 	if(!bufferIsValid || !scroll.IsAnimationDone())

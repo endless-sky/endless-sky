@@ -48,6 +48,30 @@ class System;
 // bribe than others.
 class Government {
 public:
+	struct Atrocity {
+		// False if a global atrocity is ignored by this government.
+		bool isAtrocity = true;
+		const Conversation *customDeathSentence = nullptr;
+	};
+
+	enum class SpecialPenalty : int {
+		NONE = 0,
+		PROVOKE,
+		ATROCITY
+	};
+
+	class PenaltyEffect {
+	public:
+		PenaltyEffect(double reputationChange = 0., SpecialPenalty specialPenalty = SpecialPenalty::NONE)
+			: reputationChange(reputationChange), specialPenalty(specialPenalty)
+		{}
+
+		double reputationChange;
+		SpecialPenalty specialPenalty;
+	};
+
+
+public:
 	// Default constructor.
 	Government();
 
@@ -56,10 +80,10 @@ public:
 		const std::set<const Planet *> *visitedPlanets);
 
 	// Get the display name of this government.
-	const std::string &GetName() const;
-	// Set / Get the name used for this government in the data files.
-	void SetName(const std::string &trueName);
-	const std::string &GetTrueName() const;
+	const std::string &DisplayName() const;
+	// Set / Get the true name used for this government in the data files.
+	void SetTrueName(const std::string &trueName);
+	const std::string &TrueName() const;
 	// Get the color swizzle to use for ships of this government.
 	const Swizzle *GetSwizzle() const;
 	// Get the color to use for displaying this government on the map.
@@ -72,10 +96,14 @@ public:
 	// Get the amount that your reputation changes for the given offense against the given government.
 	// The given value should be a combination of one or more ShipEvent values.
 	// Returns 0 if the Government is null.
-	double PenaltyFor(int eventType, const Government *other) const;
+	PenaltyEffect PenaltyFor(int eventType, const Government *other) const;
 	// In order to successfully bribe this government you must pay them this
 	// fraction of your fleet's value. (Zero means they cannot be bribed.)
 	double GetBribeFraction() const;
+	// This government will never accept a bribe if the player's reputation
+	// with them is below this value, if it is negative. If the value is 0,
+	// bribes are accepted regardless of reputation.
+	double GetBribeThreshold() const;
 	// This government will fine you the given fraction of the maximum fine for
 	// carrying illegal cargo or outfits. Zero means they will not fine you.
 	double GetFineFraction() const;
@@ -91,6 +119,12 @@ public:
 	// Get a hail message (which depends on whether this is an enemy government
 	// and if the ship is disabled).
 	std::string GetHail(bool isDisabled) const;
+	// Get a hail message that the government responds with when accepting or rejecting a bribe.
+	std::string GetShipBribeAcceptanceHail() const;
+	std::string GetShipBribeRejectionHail() const;
+	std::string GetPlanetBribeAcceptanceHail() const;
+	std::string GetPlanetBribeRejectionHail() const;
+
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
 	// Find out if this government should send custom hails even if the player does not know its language.
@@ -120,13 +154,16 @@ public:
 	void Bribe() const;
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
-	std::string Fine(PlayerInfo &player, int scan = 0, const Ship *target = nullptr, double security = 1.) const;
+	std::pair<const Conversation *, std::string> Fine(PlayerInfo &player, int scan = 0,
+		const Ship *target = nullptr, double security = 1.) const;
 	// Check to see if the items are condemnable (atrocities) or warrant a fine.
-	bool Condemns(const Outfit *outfit) const;
-	bool Condemns(const Ship *ship) const;
+	Atrocity Condemns(const Outfit *outfit) const;
+	Atrocity Condemns(const Ship *ship) const;
+	bool IgnoresUniversalAtrocities() const;
 	// Returns the fine for given item for this government.
 	int Fines(const Outfit *outfit) const;
 	int Fines(const Ship *ship) const;
+	bool IgnoresUniversalIllegals() const;
 	// Check if given ship has illegal outfits or cargo.
 	bool FinesContents(const Ship *ship) const;
 
@@ -150,7 +187,7 @@ public:
 
 private:
 	unsigned id;
-	std::string name;
+	std::string trueName;
 	std::string displayName;
 	const Swizzle *swizzle = Swizzle::None();
 	ExclusiveItem<Color> color;
@@ -158,16 +195,19 @@ private:
 	std::vector<double> attitudeToward;
 	double defaultAttitude = 0.;
 	std::set<const Government *> trusted;
-	std::map<unsigned, std::map<int, double>> customPenalties;
+	std::map<unsigned, std::map<int, PenaltyEffect>> customPenalties;
 	double initialPlayerReputation = 0.;
 	double reputationMax = std::numeric_limits<double>::max();
 	double reputationMin = std::numeric_limits<double>::lowest();
-	std::map<int, double> penaltyFor;
-	std::map<const Outfit*, int> illegalOutfits;
+	std::map<int, PenaltyEffect> penaltyFor;
+	std::map<const Outfit *, int> illegalOutfits;
 	std::map<std::string, int> illegalShips;
-	std::map<const Outfit*, bool> atrocityOutfits;
-	std::map<std::string, bool> atrocityShips;
+	bool ignoreUniversalIllegals = false;
+	std::map<const Outfit *, Atrocity> atrocityOutfits;
+	std::map<std::string, Atrocity> atrocityShips;
+	bool ignoreUniversalAtrocities = false;
 	double bribe = 0.;
+	double bribeThreshold = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;
 	LocationFilter travelRestrictions;
@@ -176,6 +216,10 @@ private:
 	const Phrase *friendlyDisabledHail = nullptr;
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
+	const Phrase *shipBribeAcceptanceHail = nullptr;
+	const Phrase *shipBribeRejectionHail = nullptr;
+	const Phrase *planetBribeAcceptanceHail = nullptr;
+	const Phrase *planetBribeRejectionHail = nullptr;
 	std::string language;
 	bool sendUntranslatedHails = false;
 	std::vector<RaidFleet> raidFleets;

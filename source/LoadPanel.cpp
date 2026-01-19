@@ -20,12 +20,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "Files.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -49,44 +50,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Return a pair containing settings to use for time formatting.
-	pair<const char*, const char*> TimestampFormatString(Preferences::DateFormat format)
-	{
-		// pair<string, string>: Linux (1st) and Windows (2nd) format strings.
-		switch(format)
-		{
-			case Preferences::DateFormat::YMD:
-				return make_pair("%F %T", "%F %T");
-			case Preferences::DateFormat::MDY:
-				return make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y");
-			case Preferences::DateFormat::DMY:
-			default:
-				return make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y");
-		}
-	}
-
-	// Convert a file_time_type to a human-readable time and date.
-	string TimestampString(filesystem::file_time_type time)
-	{
-		// TODO: Replace with chrono formatting when it is properly supported.
-		auto sctp = time_point_cast<chrono::system_clock::duration>(time - filesystem::file_time_type::clock::now()
-				+ chrono::system_clock::now());
-		time_t timestamp = chrono::system_clock::to_time_t(sctp);
-
-		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
-		static const size_t BUF_SIZE = 25;
-		char str[BUF_SIZE];
-
-#ifdef _WIN32
-		tm date;
-		localtime_s(&date, &timestamp);
-		return string(str, std::strftime(str, BUF_SIZE, format.second, &date));
-#else
-		const tm *date = localtime(&timestamp);
-		return string(str, std::strftime(str, BUF_SIZE, format.first, date));
-#endif
-	}
-
 	// Extract the date from this pilot's most recent save.
 	string FileDate(const filesystem::path &filename)
 	{
@@ -243,7 +206,7 @@ void LoadPanel::Draw()
 				tooltip.IncrementCount();
 				if(tooltip.ShouldDraw())
 				{
-					tooltip.SetText(TimestampString(it.second), true);
+					tooltip.SetText(Format::TimestampString(it.second), true);
 					tooltip.SetZone(zone);
 				}
 			}
@@ -270,6 +233,13 @@ void LoadPanel::Draw()
 
 
 
+void LoadPanel::UpdateTooltipActivation()
+{
+	tooltip.UpdateActivationCount();
+}
+
+
+
 bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	UI::UISound sound = UI::UISound::NORMAL;
@@ -279,12 +249,12 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		// Request that the player chooses a start scenario.
 		// StartConditionsPanel also handles the case where there's no scenarios.
-		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), this));
+		GetUI().Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), this));
 	}
 	else if(key == 'd' && !selectedPilot.empty())
 	{
 		sound = UI::UISound::NONE;
-		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
+		GetUI().Push(new DialogPanel(this, &LoadPanel::DeletePilot,
 			"Are you sure you want to delete the selected pilot, \"" + loadedInfo.Name()
 				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
 				+ "Confirm the name of the pilot you want to delete.",
@@ -299,7 +269,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		sound = UI::UISound::NONE;
 		nameToConfirm.clear();
 		filesystem::path lastSave = Files::Saves() / it->second.front().first;
-		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
+		GetUI().Push(new DialogPanel(this, &LoadPanel::SnapshotCallback,
 			"Enter a name for this snapshot, or use the most recent save's date:",
 			FileDate(lastSave)));
 	}
@@ -308,7 +278,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		sound = UI::UISound::NONE;
 		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
 		if(!(fileName == selectedPilot + ".txt"))
-			GetUI()->Push(new Dialog(this, &LoadPanel::DeleteSave,
+			GetUI().Push(new DialogPanel(this, &LoadPanel::DeleteSave,
 				"Are you sure you want to delete the selected saved game file, \""
 					+ selectedFile + "\"?"));
 	}
@@ -321,7 +291,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		else
 		{
 			sound = UI::UISound::NONE;
-			GetUI()->Push(new Dialog(this, &LoadPanel::LoadCallback,
+			GetUI().Push(new DialogPanel(this, &LoadPanel::LoadCallback,
 				"If you load this snapshot, it will overwrite your current game. "
 				"Any progress will be lost, unless you have saved other snapshots. "
 				"Are you sure you want to do that?"));
@@ -330,7 +300,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'o')
 		Files::OpenUserSavesFolder();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !files.empty())
 	{
 		auto pit = files.find(selectedPilot);
@@ -583,7 +553,7 @@ void LoadPanel::SnapshotCallback(const string &name)
 	if(Files::Exists(to) && suffix != nameToConfirm)
 	{
 		nameToConfirm = suffix;
-		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback, "Warning: \"" + suffix
+		GetUI().Push(new DialogPanel(this, &LoadPanel::SnapshotCallback, "Warning: \"" + suffix
 			+ "\" is being used for an existing snapshot.\nOverwrite it?", suffix));
 	}
 	else
@@ -603,7 +573,7 @@ void LoadPanel::WriteSnapshot(const filesystem::path &sourceFile, const filesyst
 		loadedInfo.Load(Files::Saves() / selectedFile);
 	}
 	else
-		GetUI()->Push(new Dialog("Error: unable to create the file \"" + snapshotName.string() + "\"."));
+		GetUI().Push(new DialogPanel("Error: unable to create the file \"" + snapshotName.string() + "\"."));
 }
 
 
@@ -621,7 +591,7 @@ void LoadPanel::LoadCallback()
 	// Scale any new masks that might have been added by the newly loaded save file.
 	GameData::GetMaskManager().ScaleMasks();
 
-	GetUI()->PopThrough(GetUI()->Root().get());
+	GetUI().PopThrough(GetUI().Root().get());
 	gamePanels.Push(new MainPanel(player));
 	// It takes one step to figure out the planet panel should be created, and
 	// another step to actually place it. So, take two steps to avoid a flicker.
@@ -648,7 +618,7 @@ void LoadPanel::DeletePilot(const string &)
 		failed |= Files::Exists(path);
 	}
 	if(failed)
-		GetUI()->Push(new Dialog("Deleting pilot files failed."));
+		GetUI().Push(new DialogPanel("Deleting pilot files failed."));
 
 	sideHasFocus = true;
 	selectedPilot.clear();
@@ -665,7 +635,7 @@ void LoadPanel::DeleteSave()
 	filesystem::path path = Files::Saves() / selectedFile;
 	Files::Delete(path);
 	if(Files::Exists(path))
-		GetUI()->Push(new Dialog("Deleting snapshot file failed."));
+		GetUI().Push(new DialogPanel("Deleting snapshot file failed."));
 
 	sideHasFocus = true;
 	selectedPilot.clear();

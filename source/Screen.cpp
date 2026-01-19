@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Screen.h"
 
+#include "CustomEvents.h"
+
 #include <algorithm>
 
 using namespace std;
@@ -26,7 +28,6 @@ namespace {
 	int HEIGHT = 0;
 	int USER_ZOOM = 100;
 	int EFFECTIVE_ZOOM = 100;
-	bool HIGH_DPI = false;
 }
 
 
@@ -59,11 +60,11 @@ void Screen::ScreenDimensionsGuard::Deactivate()
 
 
 
-void Screen::SetRaw(int width, int height)
+void Screen::SetRaw(int width, int height, bool noResizeEvent)
 {
 	RAW_WIDTH = width;
 	RAW_HEIGHT = height;
-	SetZoom(USER_ZOOM);
+	SetZoom(USER_ZOOM, noResizeEvent);
 }
 
 
@@ -82,8 +83,11 @@ int Screen::Zoom()
 
 
 
-void Screen::SetZoom(int percent)
+void Screen::SetZoom(int percent, bool noEvent)
 {
+	if(!noEvent)
+		CustomEvents::SendResize();
+
 	USER_ZOOM = max(100, min(200, percent));
 
 	// Make sure the zoom factor is not set too high for the full UI to fit.
@@ -100,22 +104,6 @@ void Screen::SetZoom(int percent)
 
 	WIDTH = RAW_WIDTH * 100 / EFFECTIVE_ZOOM;
 	HEIGHT = RAW_HEIGHT * 100 / EFFECTIVE_ZOOM;
-}
-
-
-
-// Specify that this is a high-DPI window.
-void Screen::SetHighDPI(bool isHighDPI)
-{
-	HIGH_DPI = isHighDPI;
-}
-
-
-
-// This is true if the screen is high DPI, or if the zoom is above 100%.
-bool Screen::IsHighResolution()
-{
-	return HIGH_DPI || (EFFECTIVE_ZOOM > 100);
 }
 
 

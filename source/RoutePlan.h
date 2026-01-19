@@ -30,8 +30,12 @@ class System;
 // and keeps only the route to that system.
 class RoutePlan {
 public:
-	explicit RoutePlan(const System &center, const System &destination, const PlayerInfo *player = nullptr);
-	explicit RoutePlan(const Ship &ship, const System &destination, const PlayerInfo *player = nullptr);
+	RoutePlan() = default;
+	RoutePlan(const System &center, const System &destination, const PlayerInfo *player = nullptr);
+	RoutePlan(const Ship &ship, const System &destination, const PlayerInfo *player = nullptr);
+
+	// Copy constructor, used with caching.
+	RoutePlan(const RoutePlan &other);
 
 	// Find out if the destination is reachable.
 	bool HasRoute() const;
@@ -49,6 +53,7 @@ public:
 
 
 private:
+	// Initializer for new RoutePlans.
 	void Init(const DistanceMap &distance);
 
 

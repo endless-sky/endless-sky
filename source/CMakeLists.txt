@@ -70,6 +70,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ConversationPanel.h
 	CoreStartData.cpp
 	CoreStartData.h
+	CustomEvents.cpp
+	CustomEvents.h
 	DamageDealt.h
 	DamageProfile.cpp
 	DamageProfile.h
@@ -83,8 +85,10 @@ target_sources(EndlessSkyLib PRIVATE
 	Date.h
 	Depreciation.cpp
 	Depreciation.h
-	Dialog.cpp
-	Dialog.h
+	DialogPanel.cpp
+	DialogPanel.h
+	DialogSettings.cpp
+	DialogSettings.h
 	Dictionary.cpp
 	Dictionary.h
 	DistanceCalculationSettings.h
@@ -93,6 +97,8 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	Distribution.cpp
 	Distribution.h
+	Endpoint.cpp
+	Endpoint.h
 	Effect.cpp
 	Effect.h
 	Engine.cpp
@@ -131,6 +137,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameLoadingPanel.h
 	Gamerules.cpp
 	Gamerules.h
+	GameVersion.cpp
+	GameVersion.h
 	GameWindow.cpp
 	GameWindow.h
 	Government.cpp
@@ -174,10 +182,14 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
+	BookEntry.cpp
+	BookEntry.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
 	MenuPanel.h
+	Message.cpp
+	Message.h
 	MessageLogPanel.cpp
 	MessageLogPanel.h
 	Messages.cpp
@@ -191,6 +203,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Mission.h
 	MissionAction.cpp
 	MissionAction.h
+	MissionTimer.cpp
+	MissionTimer.h
 	MissionPanel.cpp
 	MissionPanel.h
 	Mortgage.cpp
@@ -281,8 +295,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipJumpNavigation.h
 	ShipManager.cpp
 	ShipManager.h
-	ShipNameDialog.cpp
-	ShipNameDialog.h
+	ShipNameDialogPanel.cpp
+	ShipNameDialogPanel.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp
@@ -442,5 +456,11 @@ if(WIN32)
 	target_sources(EndlessSkyLib PRIVATE
 		windows/TimerResolutionGuard.cpp
 		windows/TimerResolutionGuard.h
+		windows/WinConsole.cpp
+		windows/WinConsole.h
+		windows/WinVersion.cpp
+		windows/WinVersion.h
+		windows/WinWindow.cpp
+		windows/WinWindow.h
 	)
 endif()

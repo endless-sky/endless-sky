@@ -32,27 +32,18 @@ mission "Disabled Ka'het"
 	destination "Earth"
 	on offer
 		conversation
-
 			branch "boarded aberrant"
 				has "Disabled Aberrant: offered"
-
 			action
 				log `Successfully boarded a Ka'het. It appears to be a single, ship-sized organism that can travel in space using a special exoskeleton.`
-
 			`Your ship slowly approaches the <origin>, now floating lifeless near you. As you move closer, you spot a massive hole in the hull of the ship, revealing what appears to be a large, slug-like being. While most of the ship's machinery doesn't seem to have received heavy damage, weapons fire must have hit the slug's vital organs, killing it, after which point the ship seems to have stopped working.`
 			`	You have no troubles docking with what seems to be its "exoskeleton," trying to decide what to do next. While the Ka'het is too different from a normal ship for you to command it, it's safe to say that you can now loot its outfits.`
-				goto end
-
+				decline
 			label "boarded aberrant"
 			action
 				log "Successfully boarded a Ka'het. Like the Aberrant, it appears to be a single, ship-sized organism that can travel in space using a special exoskeleton, but does not seem to induce the same ominous feeling."
-
 			`Your ship slowly approaches the <origin>, now floating lifelessly near you. As you move closer, you spot a massive hole in the hull of the ship, revealing what appears to be a large, slug-like being, very similar to what you found inside the Aberrant. While most of the ship's machinery doesn't seem to have received heavy damage, weapons fire must have hit the slug's vital organs, killing it, after which point the ship seems to have stopped working. Unlike with the Aberrant, you feel no strange presence or ominous feelings as you approach - it is merely a dead animal.`
 			`	You have no troubles docking with its "exoskeleton," trying to decide what to do next. While the Ka'het is too different from a normal ship for you to command it, it's safe to say that you can now loot its outfits.`
-
-			label end
-
-				decline
 
 conversation "ka'het: remnant"
 	`Do you want to ask the Remnant about the section of space south of the Ember Wastes, the Graveyard, and its inhabitants?`
@@ -883,7 +874,7 @@ mission "Ka'het: Patir Mystery 7"
 			choice
 				`	"Did you do that?"`
 				`	"What happened?"`
-			`	"I am not sure. Wait." Moving to the opposite side of the airlock, he uses a crowbar to open another hidden control station, which slides out of the wall to reveal a rather large screen scrolling through some alien writing. After reading through it with some difficulty, Dusk breathes a sigh of relief and pulls it back to its original location. "I think it is nothing," he adds, "at least I hope so. From what I could gather, the lights being switched on were a normal, timed event in the commanded startup sequence - why they they did not turn on last time is beyond me, but nothing seems to be out of the ordinary. Perhaps they were just broken."`
+			`	"I am not sure. Wait." Moving to the opposite side of the airlock, he uses a crowbar to open another hidden control station, which slides out of the wall to reveal a rather large screen scrolling through some alien writing. After reading through it with some difficulty, Dusk breathes a sigh of relief and pulls it back to its original location. "I think it is nothing," he adds, "at least I hope so. From what I could gather, the lights being switched on were a normal, timed event in the commanded startup sequence - why they did not turn on last time is beyond me, but nothing seems to be out of the ordinary. Perhaps they were just broken."`
 			`	A few minutes later, pressurization finishes, and the interior door opens. You follow Dusk out of the airlock and find yourself in front of a large area, likely the same place the encounter with the Fetri'sei took place. "The moment of truth," exclaims Dusk, placing down a heavy scanner, similar to a short telescope. "This is a low-power laser system, capable of measuring the density of the atmosphere anywhere within 10 kilometers. If a Fetri'sei was alerted when we crossed the airlock, by now the large airlock will be filling up with oxygen and argon to allow it to pass through, and this sensor here will register it. Let's see." A tense silence ensues as the machine boots up.`
 			choice
 				`	"What does it say?"`
@@ -1268,7 +1259,7 @@ event "Patir moves"
 	system Patir
 		pos 10059.5 10.5
 		remove haze
-		set "ka'het: beyond Patir"
+	set "ka'het: beyond Patir"
 
 event "Patir spaceport"
 	planet "Builder Settlement"
@@ -1459,7 +1450,7 @@ mission "Ka'het: Patir Mystery 12.1A"
 					goto thing
 				`	(Wait and see what happens.)`
 					goto thing
-				`	(Raise your blaster.)`
+				`	(Raise my blaster.)`
 			`	Noticing your reaction, Dusk gestures you to stop. "Calm down, Captain," he signs, "a handgun would be of little use in this situation." Keeping an eye on the data the other scientists are gathering, he continues. "We seem to have entered the station from one of the fuel tanks. That sphere over there is made of some kind of propellant, though our instruments have some difficulties determining its exact composition.`
 				goto continue
 
@@ -1484,7 +1475,7 @@ mission "Ka'het: Patir Mystery 12.1A"
 			`	Moving in the zero gravity station is quick and relatively easy; despite its length, it only takes you a few minutes to reach the end of the right tunnel. All you can find, however, is a closed hatch. A few tries at forcing it open only serve to confirm that it is locked shut, and you decide to go back and try the other tunnel. This time, your search turns up results, and you end up in a dark, somewhat cramped room.`
 			`	The room is lavish and dazzling, the walls covered with intricate carvings. It's a striking difference from the gray and slightly coarse material everywhere else in the station, pushing you to gather a few samples to analyze later. To an extent, it reminds you of the Art Deco paintings of ancient humanity. Around the room, alien plants of varying height and shape paint every corner with a reddish hue.`
 			choice
-				`	(Quickly take a sample and move on with your mission.)`
+				`	(Quickly take a sample and move on with my mission.)`
 					goto moving
 				`	(Leave them alone.)`
 					goto moving
@@ -1997,7 +1988,7 @@ event "Patir returns"
 	system Patir
 		pos -38 553
 		haze _menu/haze-red
-		clear "ka'het: beyond Patir"
+	clear "ka'het: beyond Patir"
 
 
 conversation "end of Patir 2 - on enter"
@@ -2349,7 +2340,7 @@ mission "Ka'het: Voice From The Past 6"
 			`	Before you have even reached the bottom of your ship's stairway, a group of locals has gathered below your ship with anticipation. You attempt to salute them, but they seem to be more interested in your ship: a few of them pry open a panel near your cargo bay, trying to connect with the payload controls.`
 			`	You try to ask for explanations, but they direct you toward the pad manager. Finally, after spending what feels like an hour trying to make your way through the crowd, you find her handling the loading operations at the back of a Merganser.`
 			choice
-				`	(Ask her about your mission.)`
+				`	(Ask her about my mission.)`
 				`	"What are they doing with my ship?"`
 			`	"It seems there must have been some miscommunications along the way," she signs in reply to your queries. "Sorry, but we have not had anything close to this amount of traffic for at least the past thirty years. We cannot afford to waste even a single minute right now.`
 			`	"Ever since someone brought us that satellite a few days ago," she continues, seemingly oblivious about who you are, "there have been a constant stream of captains wanting to take a look at it and do all kinds of analysis. We are not staffed for this kind of traffic, not even close."`
@@ -2363,12 +2354,12 @@ mission "Ka'het: Voice From The Past 6"
 		fleet "Small Remnant"
 	on stopover
 		conversation
-			`Unlike many of the moons you have visited in the Ember Waste, nothing about Alix stands out as particularly unique. It is a small, rocky moon orbiting close above the Pathera gas giant, nearly atmosphereless and showing an appropriately low gravity. Its surface is punctuated by millions of small meteoroid impacts, certainly attracted by Pathera's deep gravity well. Even <starting planet> had a couple of gas giants with moons in every way similar to this one.`
+			`Unlike many of the moons you have visited in the Ember Waste, nothing about Alix stands out as particularly unique. It is a small, rocky moon orbiting close above the Pathera gas giant, nearly atmosphereless and showing an appropriately low gravity. Its surface is punctuated by millions of small meteoroid impacts, certainly attracted by Pathera's deep gravity well. Even <home planet> had a couple of gas giants with moons in every way similar to this one.`
 			`	The Builders seem to have found some interesting uses for it, however. Among the destroyed settlements all around Alix, vast mining facilities not only survived the attacks, but still see a constant stream of Ka'mar vehicles coming to gather their mineral cargo and deliver it to the imposing Ka'het station orbiting the same star.`
 			`	Strangely enough, this moon does not show any sign of strip mining, or in fact any digging at all. After operating mining facilities for a hundred thousand years, the surface should show clearly visible signs of such an intensive operation, but there seem to be none.`
 			choice
 				`	(Fly closer to the mining outposts to investigate.)`
-				`	(Move to the target location the Remnant gave you.)`
+				`	(Move to the target location the Remnant gave me.)`
 					goto quarantine
 			`	You pitch down your ship and steer toward the nearest outpost: a long series of short buildings with angled roofs, reminiscent of a solar field in your ship's screen. After coming closer, however, you realize your initial guess was wrong - these are not akin to roofs, but to sails, composed of a pale white textile. A thin layer of dust covers their surface, mostly gathered toward the bottom.`
 			`	You try to come closer, but the compass on your ship suddenly starts spinning randomly! Alarmed, you swiftly reverse course to move away from the facility, and the instrumentation soon returns to normal again after a reboot. The automated outpost is clearly emitting a strong magnetic field, but the connection among all this isn't immediately obvious.`

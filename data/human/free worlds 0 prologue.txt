@@ -278,6 +278,7 @@ mission "Pact Questioning"
 
 mission "FW Recon 0"
 	minor
+	repeat
 	name "Transport Militia Officer"
 	description "Transport a Free Worlds militia officer to <destination>."
 	source
@@ -290,6 +291,12 @@ mission "FW Recon 0"
 		or
 			random < 35 + 5 * "assisted free worlds" * "assisted free worlds"
 			has "flagship planet: Deep"
+		or
+			not "FW Recon 0: offered"
+			and
+				has "FW Katya 7C: done"
+				not "FW Recon 0: active"
+				not "FW Recon 0: done"
 	to fail
 		has "chosen sides"
 	
@@ -321,12 +328,18 @@ mission "FW Recon 0"
 
 mission "FW Recon 1"
 	name "Free Worlds Reconnaissance"
-	description "Perform an outfit scan on the Cruiser <npc>, then report to a Free Worlds officer on <destination>."
+	description "Perform an outfit scan on the Cruiser <npc>, which is currently patrolling <system>, then report to a Free Worlds officer on <planet>."
 	source "Glaze"
 	to offer
 		has "FW Recon 0: done"
 	to fail
 		has "chosen sides"
+	on abort
+		log "Bailed on some reconnaissance work from the Free Worlds."
+		dialog phrase "free worlds failed"
+	on decline
+		log "Turned down reconnaissance work from the Free Worlds."
+		dialog phrase "free worlds declined"
 	
 	on offer
 		conversation
@@ -346,9 +359,6 @@ mission "FW Recon 1"
 					accept
 				`	"If shady jobs like this are what constitute 'helping the Free Worlds,' then count me out."`
 					decline
-	
-	on accept
-		log "Volunteered to do some recon work for the Free Worlds."
 	
 	npc "scan outfits"
 		government "Republic"
@@ -379,6 +389,7 @@ mission "FW Recon 1"
 	on visit
 		dialog `You land on <planet>, but you haven't yet scanned the Navy Cruiser patrolling the system. Depart and scan the Cruiser's outfits before returning.`
 	on complete
+		log "Scanned a Republic Cruiser as part of some reconnaissance work for the Free Worlds."
 		payment 10000
 		dialog `Soon after you land, the militia captain comes to your ship and pays you <payment> in exchange for your sensor logs regarding the <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
 
@@ -393,6 +404,12 @@ mission "FW Recon 2"
 		has "FW Recon 1: done"
 	to fail
 		has "chosen sides"
+	on abort
+		log "Turned down any further reconnaissance work from the Free Worlds."
+		dialog phrase "free worlds failed"
+	on decline
+		log "Turned down any further reconnaissance work from the Free Worlds."
+		dialog phrase "free worlds declined"
 	
 	on offer
 		conversation
@@ -434,6 +451,12 @@ mission "FW Recon 3"
 		has "FW Recon 2: done"
 	to fail
 		has "chosen sides"
+	on abort
+		log "Turned down any further reconnaissance work from the Free Worlds."
+		dialog phrase "free worlds failed"
+	on decline
+		log "Turned down any further reconnaissance work from the Free Worlds."
+		dialog phrase "free worlds declined"
 	
 	on offer
 		conversation
@@ -462,6 +485,9 @@ mission "FW Recon 3B"
 		has "FW Recon 3: done"
 	to fail
 		has "chosen sides"
+	on abort
+		log "Turned down any further reconnaissance work from the Free Worlds."
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -577,6 +603,8 @@ mission "FW Escort 0"
 			has "flagship planet: Glaze"
 	to fail
 		has "chosen sides"
+	on decline
+		log "Declined an offer for escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
 	
 	on offer
 		conversation
@@ -729,8 +757,10 @@ mission "FW Escort 1"
 		fleet "Large Southern Pirates" 2
 	
 	on abort
+		log "Aborted some escort work from the Free Worlds."
 		fail "FW Escort: Escorts"
 	on fail
+		log "Failed to protect a convoy of Free Worlds freighters. Their commanding officer won't be happy about this."
 		set "fw intro escort failed"
 		fail "FW Escort: Escorts"
 	on visit
@@ -788,8 +818,10 @@ mission "FW Escort 1B"
 		fleet "Large Southern Pirates" 2
 	
 	on abort
+		log "Aborted some escort work from the Free Worlds."
 		fail "FW Escort: Escorts"
 	on fail
+		log "Failed to protect a convoy of Free Worlds freighters. Their commanding officer won't be happy about this."
 		set "fw intro escort failed"
 		fail "FW Escort: Escorts"
 	on visit
@@ -825,6 +857,7 @@ mission "FW Escort 2"
 				accept
 	
 	on decline
+		log "Declined an offer for more escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
 		fail "FW Escort: Escorts"
 	
 	npc accompany save
@@ -853,8 +886,10 @@ mission "FW Escort 2"
 		fleet "Large Southern Pirates" 3
 	
 	on abort
+		log "Aborted some escort work from the Free Worlds."
 		fail "FW Escort: Escorts"
 	on fail
+		log "Failed to protect a convoy of Free Worlds freighters. Their commanding officer won't be happy about this."
 		set "fw intro escort failed"
 		fail "FW Escort: Escorts"
 	on visit
@@ -910,8 +945,10 @@ mission "FW Escort 2B"
 		fleet "Small Southern Pirates" 2
 	
 	on abort
+		log "Aborted some escort work from the Free Worlds."
 		fail "FW Escort: Escorts"
 	on fail
+		log "Failed to protect a convoy of Free Worlds freighters. Their commanding officer won't be happy about this."
 		set "fw intro escort failed"
 		fail "FW Escort: Escorts"
 	on visit
@@ -954,9 +991,12 @@ mission "FW Escort 3"
 		system "Lesath"
 		ship "Freighter" "F.S. Shackleton"
 	
+	on decline
+		log "Declined an offer for more escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
 	on abort
-		# The mission was aborted, not failed; take no action.
+		log "Aborted some escort work from the Free Worlds."
 	on fail
+		log "Failed a mission to save a Free Worlds freighter. Tomek won't be happy about this."
 		set "fw intro escort failed"
 	on visit
 		dialog `You've returned to <planet>, but the <npc> is not with you. If you have not repaired it yet, travel to <waypoints> to do so, or take off wait for it to arrive in this system if you already have.`
@@ -1005,6 +1045,11 @@ mission "FW Escort Second Chance"
 			
 			`	"I'm sure," he says, "but I'm not the one you need to say that to. Right now Tomek is refusing to let us offer you a job, but if you speak with him in person, he might change his mind. Or he might not. But if you really want to work for us, you should visit him on <planet>, take full responsibility for what happened, and apologize. Just a suggestion." He walks off.`
 				accept
+
+	on decline
+		log "Refused an offer to talk with Tomek Voigt about my failed escort mission."
+	on abort
+		log "Refused an offer to talk with Tomek Voigt about my failed escort mission."
 	
 	on complete
 		conversation
@@ -1020,6 +1065,7 @@ mission "FW Escort Second Chance"
 				`	"Yes, I know that I failed, and I'm very sorry for their loss."`
 					goto responsible
 			action
+				log "Met with Tomek about my failure to protect a Free Worlds freighter. Tried to point out that there wasn't anything I could have done, but he was not happy about it."
 				set "fw escort: mistrusted"
 			`	"That is not an appropriate response," he says. "If we offer you a mission, we have to be able to trust that you will complete it, with no excuses. I'm sorry, but I have no interest in working with you in the future. Goodbye, Captain." He walks away.`
 				decline
@@ -1031,6 +1077,7 @@ mission "FW Escort Second Chance"
 				`	"I'll try my best."`
 			`	He shakes your hand and leaves, without ordering anything to drink. You get the feeling that he still does not think very highly of you.`
 			action
+				log "Apologized to Tomek about my failed escort mission. He appears to have forgiven me."
 				"assisted free worlds" ++
 
 
@@ -1045,6 +1092,11 @@ mission "FW Bounty 1"
 		"combat rating" > 200
 		not "chosen sides"
 		random < 20 + 5 * "assisted free worlds" * "assisted free worlds"
+	on decline
+		log "Told a militia officer that I wouldn't do any bounty hunting for the Free Worlds."
+		dialog phrase "free worlds declined"
+	on fail
+		clear "FW Bounty 1: offered"
 	
 	on offer
 		conversation
@@ -1063,21 +1115,18 @@ mission "FW Bounty 1"
 				`	"Just a group of interceptors? That should be no problem for me to destroy."`
 					goto accept
 				`	"If you can't take them out then I don't know how I will. You're on your own."`
-					decline
+					defer
 			
 			label payment
 			`	"Since these pirates have been particularly troublesome, we've placed a bounty of <payment> on their heads. Take them out for us and those credits are all yours."`
 			choice
 				`	"That sounds reasonable enough. Okay, I'll destroy them for you."`
 				`	"Only <payment>? You're going to need to find someone else for the job."`
-					decline
+					defer
 			
 			label accept
 			`	"Excellent," she says. "They call themselves the 'Rat Pack,' and you'll recognize them because most of their ships are named after various vermin, although for some unknown reason their flagship is just named 'Cluny.' They were last seen in the Seginus system, just northeast of Free space, so they'll probably be within a jump or two of there. Thank you in advance for your help."`
 				accept
-	
-	on accept
-		log "Hunting down a fleet of pirates called the Rat Pack, who have been giving the Free Worlds trouble lately."
 	
 	npc kill
 		government "Bounty"
@@ -1095,6 +1144,7 @@ mission "FW Bounty 1"
 	on visit
 		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
+		log "Hunted down a fleet of pirates called the Rat Pack who had been giving the Free Worlds trouble."
 		payment 200000
 		dialog `The militia officer who asked you to hunt down the "Rat Pack" arrives at your ship soon after you land and thanks you profusely. "Now we won't have to worry about them bothering ships in this sector anymore." She pays you the bounty of <payment> and says she'll tell other militia leaders how helpful you were.`
 
@@ -1128,6 +1178,7 @@ ship "Mammoth" "Mammoth (Moonless)"
 
 
 mission "FW Bounty 2"
+	minor
 	name "Free Worlds Bounty Hunting"
 	description `A Free Worlds militia officer from <destination> asked you to hunt down the <npc>, a pirate ship last seen in the Delta Sagittarii system. The militia officer suggested trying to attack the ship from a distance.`
 	source
@@ -1136,6 +1187,8 @@ mission "FW Bounty 2"
 		has "FW Bounty 1: done"
 		not "chosen sides"
 		random < 25 + 5 * "assisted free worlds" * "assisted free worlds"
+	on fail
+		clear "FW Bounty 2: offered"
 	
 	on offer
 		conversation
@@ -1151,7 +1204,7 @@ mission "FW Bounty 2"
 			choice
 				`	"Sounds like this shouldn't be too difficult. I'm in."`
 				`	"I could handle a group of interceptors, but this sounds like too much for me. You'll have to find someone else."`
-					decline
+					defer
 			
 			`	He grins. "Glad to hear you're on board. Good luck, Captain."`
 				accept
@@ -1171,6 +1224,7 @@ mission "FW Bounty 2"
 	on visit
 		dialog phrase "generic bounty hunting on visit"
 	on complete
+		log `Hunted down the Moonless Night, a retrofitted heavy freighter that had been terrorizing Free Worlds supply routes.`
 		payment 300000
 		dialog `The militia officer who asked you to hunt down the <npc> meets you in the spaceport and pays you <payment>. "Once again, thank you for assisting us," he says.`
 
@@ -1185,6 +1239,11 @@ mission "FW Bounty 3"
 		has "FW Bounty 2: done"
 		not "chosen sides"
 		random < 30 + 5 * "assisted free worlds" * "assisted free worlds"
+	on decline
+		log "Told a militia officer that I wouldn't do any more bounty hunting for the Free Worlds."
+		dialog phrase "free worlds declined"
+	on fail
+		clear "FW Bounty 3: offered"
 	
 	on offer
 		conversation
@@ -1200,7 +1259,7 @@ mission "FW Bounty 3"
 			choice
 				`	"Well you came to the right person. I'll take it out for you."`
 				`	"Sorry, but that sounds like a job for someone else."`
-					decline
+					defer
 			
 			label accept
 			`	"Great," he says. "Your target is named the <npc>. After we nearly destroyed it, we think it went to the Shaula system to hide out, which means that you'll probably have to deal with other pirates at the same time. Good luck, Captain."`
@@ -1218,8 +1277,40 @@ mission "FW Bounty 3"
 	on complete
 		payment 500000
 		"assisted free worlds" ++
-		log "Earned a good reputation with the Free Worlds militia by taking on missions to hunt down some dangerous pirates."
+		log "Defeated the Silverhawk, an Osprey armed with alien technology, and earned a good reputation with the Free Worlds militia by hunting down other dangerous pirates."
 		dialog `The militia officer who asked you to hunt down the <npc> contacts you soon after you land. "You've done us a great service," he says. "I'll be telling the Council how helpful you were." He hands you a payment of <payment>.`
+
+
+
+# Because these missions can also be failed by having "chosen sides", this mission handles the failure messages for FW Katya.
+mission "FW Katya Failed"
+	non-blocking
+	landing
+	invisible
+	to offer
+		not "chosen sides"
+		or
+			"FW Katya 1: failed"
+			"FW Katya 1B: failed"
+			"FW Katya Alt 2: failed"
+			"FW Katya 2: failed"
+			"FW Katya 2B: failed"
+			"FW Katya 2C: failed"
+			"FW Katya 3: failed"
+			"FW Katya 4: failed"
+			"FW Katya 5: failed"
+			"FW Katya 5B: failed"
+			"FW Katya 5C: failed"
+			"FW Katya 6: failed"
+			"FW Katya 6B: failed"
+			"FW Katya 6C: failed"
+			"FW Katya 7: failed"
+			"FW Katya 7B: failed"
+			"FW Katya 7C: failed"
+	on accept
+		log "Failed to complete a mission given to me by Katya, a Free Worlds officer."
+		dialog phrase "free worlds failed"
+		fail
 
 
 
@@ -1461,6 +1552,9 @@ mission "FW Katya Alt 2"
 			has "flagship planet: Zug"
 	to fail
 		has "chosen sides"
+	on decline
+		log "Turned down a mission from the Free Worlds officer who threatened me. If they want someone to help them, they can look somewhere else."
+		dialog phrase "free worlds declined"
 	
 	on offer
 		conversation
@@ -1618,6 +1712,9 @@ mission "FW Katya 3"
 		has "FW Katya 2C: done"
 	to fail
 		has "chosen sides"
+	on decline
+		log "Rejected an ill-conceived mission from Katya and Eyes to plunder Republic property."
+		dialog phrase "free worlds declined"
 	
 	on offer
 		conversation
@@ -1686,7 +1783,7 @@ mission "FW Katya 4"
 	substitutions
 		"<dirt belt origin>" ""
 		"<dirt belt origin>" " like yourself,"
-			has "human space start"
+			has "start: default"
 	to offer
 		has "FW Katya 3: done"
 	to fail
@@ -1711,6 +1808,26 @@ mission "FW Katya 4"
 			
 			`	"Our fight isn't with the Navy," says Katya. "Most of them are good people. I'm sure they don't want war any more than we do. They're like police officers who are suddenly being asked to fight against the very people they swore to protect and serve."`
 			`	"I was a child on Vinci while this was happening," says Eyes. "A Paradise World. I would listen to the news and could never understand why all the adults around me were so very, very angry that the Navy had gone off to rescue two million people from freezing to death. But they told me that we lived in one little island of safety in a dangerous galaxy, and that without the Navy protecting us the pirates or even maybe aliens would sweep in and destroy our homes and take our money. That it was us against the whole galaxy."`
+			branch paradise
+				not "start: paradise"
+			
+			`	You talk to Eyes about your own upbringing on Mainsail, how you always dreamed of taking to the stars instead of your family's business, and how your father bought you a pilot's license for your eighteenth birthday.`
+			`	"It sounds like you've come a long way from the Paradise Worlds too," says Eyes. "If you don't mind me asking, what do you think your father would think about you helping the Free Worlds?"`
+			choice
+				`	"I'm sure he'd be happy with the path I've chosen."`
+					goto quiet
+				`	"I don't think he would like it."`
+				`	"I'm not sure myself, to be honest."`
+				`	"I'd rather not say."`
+					goto quiet
+			`	Eyes raises an eyebrow, but keeps his mouth sealed as he nods.`
+				goto paradise
+
+			label quiet
+			`	Eyes looks at you and nods.`
+				goto paradise
+			
+			label paradise
 			`	"I'd hate to be rich," says Katya. "So much to fear."`
 			`	You finish your meal (Katya pays the tab), and agree to take off for <planet> first thing in the morning.`
 				accept
@@ -1730,6 +1847,9 @@ mission "FW Katya 5"
 		has "FW Katya 4: done"
 	to fail
 		has "chosen sides"
+	on decline
+		log "Gave up on searching for evidence of nuclear testing to clear the Free Worlds' name."
+		dialog phrase "free worlds declined"
 	
 	on offer
 		conversation
@@ -1876,6 +1996,9 @@ mission "FW Katya 6"
 		has "FW Katya 5C: done"
 	to fail
 		has "chosen sides"
+	on decline
+		log "Gave up on searching for evidence of nuclear testing to clear the Free Worlds' name."
+		dialog phrase "free worlds declined"
 	
 	on offer
 		conversation
@@ -1959,6 +2082,9 @@ mission "FW Katya 7"
 		has "FW Katya 6C: done"
 	to fail
 		has "chosen sides"
+	on decline
+		log "Gave up on searching for evidence of nuclear testing to clear the Free Worlds' name."
+		dialog phrase "free worlds declined"
 	
 	on offer
 		conversation
@@ -1999,6 +2125,9 @@ mission "FW Katya 7B"
 		has "FW Katya 7: done"
 	to fail
 		has "chosen sides"
+	on decline
+		log "Gave up on searching for evidence of nuclear testing to clear the Free Worlds' name."
+		dialog phrase "free worlds declined"
 	
 	on offer
 		conversation
@@ -2096,6 +2225,11 @@ mission "FW Commitment"
 		has "chosen sides"
 	to complete
 		never
+	on fail
+		# Do nothing.
+	on abort
+		log "Declined an offer to join the Free Worlds."
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Got invited to join the Free Worlds. It's a valuable opportunity, but it would also be a fast way to become an enemy of the Republic."
@@ -2126,7 +2260,7 @@ mission "Rescue Katya 1"
 		has "FW Commitment: offered"
 		not "chosen sides"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -2187,7 +2321,7 @@ mission "Rescue Katya 2"
 	to offer
 		has "Rescue Katya 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -2239,7 +2373,7 @@ mission "Defend Sabik"
 	to offer
 		has "Rescue Katya 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		set "license: Militia"

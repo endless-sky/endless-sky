@@ -340,7 +340,7 @@ mission "Returning Home"
 	on offer
 		conversation
 			branch insider
-				has "hai space start"
+				has "start: hai"
 			`You are stopped by a human in the <origin> marketplace. He takes off his hat and asks, "You're from the outside, aren't you?"`
 			choice
 				`	"Yes, I am."`
@@ -918,7 +918,6 @@ mission "Expanding Business: shipyard complete"
 		has "event: shipyard on greenwater"
 	on offer
 		"salary: Turner Incorporated" = 4000
-		dialog "On receipt of a new and unexpected deposit, you realize that the shipyard on Greenwater must now be operational."
 		fail
 
 
@@ -1963,7 +1962,7 @@ mission "Station Exploration 2"
 			`Your passengers' journey mainly consisted of trying to scare each other by telling ghost stories and jumping out of dimly-lit corners of your ship. Despite these annoyances, you land at the station with no issues. Your passengers practically jump off your ship after hastily paying you <payment>.`
 			`	After passing the time in your ship for a few hours, you are startled by a loudspeaker sternly pronouncing something in Hai. You then notice your passengers rushing towards your ship with a panicked look in their eyes. You imagine that they want to take advantage of that return trip you promised as soon as possible; however, disassociating yourself from them may save you some trouble with law enforcement.`
 			choice
-				`	(Wait for your passengers.)`
+				`	(Wait for my passengers.)`
 					goto wait
 				`	(Bail.)`
 			`	You take off just before your passengers are able to reach your ship. Their wailing is quickly drowned out by the sound of your engines as you maneuver out of the station.`
@@ -1987,7 +1986,7 @@ mission "Station Exploration 2"
 			`	You look up, lying in the spot you just stood. Above you is the same officer which asked you to follow him, waving off another officer with a Pulse Rifle. Apparently you were not out for long.`
 			label normal
 			`	"We just want to let you know what happened," the officer says. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries, and sits you down at a table nearby.`
-			`	"I think you can tell by now that your passengers weren't exactly 'sanctioned visitors' to Darkrest. However, they didn't break anything - that announcement you heard was just a warning to refrain from touching a computer system without proper training, but it apparently spooked your passengers enough that they made a run for it. They're not in trouble, as there's no law against just wandering around a station as long as you're not destructive, but typically people who do so get permission first." He give a wry smile. "Saves us from having to deal with false alarms like this."`
+			`	"I think you can tell by now that your passengers weren't exactly 'sanctioned visitors' to Darkrest. However, they didn't break anything - that announcement you heard was just a warning to refrain from touching a computer system without proper training, but it apparently spooked your passengers enough that they made a run for it. They're not in trouble, as there's no law against just wandering around a station as long as you're not destructive, but typically people who do so get permission first." He gives a wry smile. "Saves us from having to deal with false alarms like this."`
 			choice
 				`	"So, am I in trouble or not?"`
 					goto trouble
@@ -2157,29 +2156,45 @@ mission "Acorn Delights: Part 1"
 			choice
 				`	"Three tons of cookies!?"`
 					goto tons
+					to display
+						not "acorn delights: three tons"
 				`	"She's gone?"`
 					goto gone
+					to display
+						not "acorn delights: gone"
 				`	"Why don't you ask the authorities for help?"`
 					goto authorities
+					to display
+						not "acorn delights: authorities"
 				`	"Can't your friends help you find her?"`
 					goto friends
+					to display
+						not "acorn delights: friends"
 				`	"Let's go find her!"`
 					goto accept
 				`	"I have other places to be."`
 					decline
 			label tons
+			action
+				set "acorn delights: three tons"
 			`	"Well, I... I don't know... I cook when I'm worried, and Anoo has been missing for three months! I've sealed all three tons of cookies. They should last a year or two. Maybe she'll share them with her friends? She has many friends! Tons of friends! They all miss her, but none are willing to help...`
 				goto questions
 			label gone
+			action
+				set "acorn delights: gone"
 			`	"Anoo passed medical school on the Frostmark four months ago, near the top of her class! A famous hospital on the Hai-home needed a new trauma surgeon and said she would be perfect for the job. She accepted the position and said she would be on vacation for a few weeks.`
 			`	"A month later, she told them she won't be coming, and nobody has heard from her since.`
 				goto questions
 			label authorities
+			action
+				set "acorn delights: authorities"
 			`	"I talked to the Central Medical Bureau, and they told me she got approval for practicing medicine anywhere in Hai space or beyond. They've heard nothing from her since she got approval. She has to register new medicines with the Bureau, so they should have heard from her.`
 			`	"The police told me that several other people have reported Anoo missing, but they refused to tell me anything else. They said I had to talk to military, but they won't tell me anything.`
 			`	"Maybe she's involved in something secret? Or illegal? No, she'd never do that. Where is she?`
 				goto questions
 			label friends
+			action
+				set "acorn delights: friends"
 			`	"I have few friends, and none of them are interested in finding a missing Hai who could be anywhere. None of my customers want to help either, and her family is all dead.`
 				goto questions
 			label accept

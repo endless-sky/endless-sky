@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "shader/FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -27,6 +27,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "shader/SpriteShader.h"
 #include "UI.h"
+
+#include <cassert>
 
 using namespace std;
 
@@ -142,6 +144,12 @@ bool Panel::AllowsFastForward() const noexcept
 
 
 
+void Panel::UpdateTooltipActivation()
+{
+}
+
+
+
 void Panel::AddOrRemove()
 {
 	for(auto &panel : childrenToAdd)
@@ -211,6 +219,12 @@ bool Panel::Release(int x, int y, MouseButton button)
 
 
 
+void Panel::Resize()
+{
+}
+
+
+
 bool Panel::DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	return EventVisit(&Panel::KeyDown, key, mod, command, isNewPress);
@@ -262,6 +276,15 @@ void Panel::DoDraw()
 
 
 
+void Panel::DoResize()
+{
+	Resize();
+	for(auto &child : children)
+		child->DoResize();
+}
+
+
+
 void Panel::SetIsFullScreen(bool set)
 {
 	isFullScreen = set;
@@ -286,7 +309,7 @@ void Panel::SetInterruptible(bool set)
 // Dim the background of this panel.
 void Panel::DrawBackdrop() const
 {
-	if(!GetUI()->IsTop(this))
+	if(!GetUI().IsTop(this))
 		return;
 
 	// Darken everything but the dialog.
@@ -296,9 +319,10 @@ void Panel::DrawBackdrop() const
 
 
 
-UI *Panel::GetUI() const noexcept
+UI &Panel::GetUI() const noexcept
 {
-	return ui;
+	assert(ui && "Panel::GetUI cannot be called until after the Panel has been pushed onto the UI stack.");
+	return *ui;
 }
 
 
@@ -346,7 +370,7 @@ bool Panel::DoHelp(const string &name, bool force) const
 		return false;
 
 	Preferences::Set(preference);
-	ui->Push(new Dialog(Format::Capitalize(name) + ":\n\n" + message));
+	ui->Push(new DialogPanel(Format::Capitalize(name) + ":\n\n" + message));
 
 	return true;
 }
@@ -360,7 +384,7 @@ void Panel::SetUI(UI *ui)
 
 
 
-const std::vector<std::shared_ptr<Panel>> &Panel::GetChildren()
+const vector<shared_ptr<Panel>> &Panel::GetChildren()
 {
 	return children;
 }
