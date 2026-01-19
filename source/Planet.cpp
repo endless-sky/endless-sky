@@ -768,9 +768,9 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		return "Somehow, this planet does not have a government.";
 	const auto &playerTribute = player.GetTribute();
 	if(playerTribute.find(this) != playerTribute.end())
-		return government->GetTributeOverpriced();
+		return government->GetTributeAlreadyPaying();
 	if(!tribute || defenseFleets.empty())
-		return government->GetTributeNotDefined();
+		return government->GetTributeUndefined();
 	if(player.Conditions().Get("combat rating") < defenseThreshold)
 		return government->GetTributeUnworthy();
 
@@ -790,7 +790,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		// expose syntax for controlling its impact on the targeted government
 		// and those that know it.
 		GetGovernment()->Offend(ShipEvent::ATROCITY);
-		return government->GetTributeAccepted();
+		return government->GetTributeFleetLaunching();
 	}
 
 	// The player has already demanded tribute. Have they defeated the entire defense fleet?
@@ -803,11 +803,11 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		}
 
 	if(!isDefeated)
-		return government->GetTributeUnready();
+		return government->GetTributeFleetUndefeated();
 
 	player.SetTribute(this, tribute);
 	string surrenderedMessage = government->GetTributeSurrendered();
-	surrenderedMessage = regex_replace(surrenderedMessage, regex("<credits>"), Format::CreditString(tribute));
+	surrenderedMessage = Format::Replace(surrenderedMessage, {{"<credits>", Format::CreditString(tribute)}});
 	return surrenderedMessage;
 }
 

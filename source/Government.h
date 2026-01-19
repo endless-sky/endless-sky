@@ -126,11 +126,11 @@ public:
 	std::string GetPlanetBribeRejectionHail() const;
 
 	// Get the messages that the governmend responds with when speaking about tribute.
-	std::string GetTributeOverpriced() const;
-	std::string GetTributeNotDefined() const;
+	std::string GetTributeAlreadyPaying() const;
+	std::string GetTributeUndefined() const;
 	std::string GetTributeUnworthy() const;
-	std::string GetTributeAccepted() const;
-	std::string GetTributeUnready() const;
+	std::string GetTributeFleetLaunching() const;
+	std::string GetTributeFleetUndefeated() const;
 	std::string GetTributeSurrendered() const;
 
 	// Find out if this government speaks a different language.
@@ -228,11 +228,11 @@ private:
 	const Phrase *shipBribeRejectionHail = nullptr;
 	const Phrase *planetBribeAcceptanceHail = nullptr;
 	const Phrase *planetBribeRejectionHail = nullptr;
-	const Phrase *tributeOverpriced = nullptr;
-	const Phrase *tributeNotDefined = nullptr;
+	const Phrase *tributeAlreadyPaying = nullptr;
+	const Phrase *tributeUndefined = nullptr;
 	const Phrase *tributeUnworthy = nullptr;
-	const Phrase *tributeAccepted = nullptr;
-	const Phrase *tributeUnready = nullptr;
+	const Phrase *tributeFleetLaunching = nullptr;
+	const Phrase *tributeFleetUndefeated = nullptr;
 	const Phrase *tributeSurrendered = nullptr;
 	std::string language;
 	bool sendUntranslatedHails = false;

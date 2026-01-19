@@ -220,11 +220,11 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				planetBribeRejectionHail = nullptr;
 			else if(key == "tribute hails")
 			{
-				tributeOverpriced = nullptr;
-				tributeNotDefined = nullptr;
+				tributeAlreadyPaying = nullptr;
+				tributeUndefined = nullptr;
 				tributeUnworthy = nullptr;
-				tributeAccepted = nullptr;
-				tributeUnready = nullptr;
+				tributeFleetLaunching = nullptr;
+				tributeFleetUndefeated = nullptr;
 				tributeSurrendered = nullptr;
 			}
 			else if(key == "language")
@@ -495,18 +495,35 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 					continue;
 				}
 				const string &grandKey = grand.Token(0);
-				if(grandKey == "overpriced")
-					tributeOverpriced = GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "not defined")
-					tributeNotDefined = GameData::Phrases().Get(grand.Token(1));
+				if(grandKey == "already paying")
+					tributeAlreadyPaying = GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "undefined")
+					tributeUndefined = GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "unworthy")
 					tributeUnworthy = GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "accepted")
-					tributeAccepted = GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "unready")
-					tributeUnready = GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet launching")
+					tributeFleetLaunching = GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet undefeated")
+					tributeFleetUndefeated = GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "surrendered")
 					tributeSurrendered = GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "remove")
+				{
+					if(grand.Token(1) == "already paying")
+						tributeAlreadyPaying = nullptr;
+					if(grand.Token(1) == "undefined")
+						tributeUndefined = nullptr;
+					if(grand.Token(1) == "unworthy")
+						tributeUnworthy = nullptr;
+					if(grand.Token(1) == "fleet launching")
+						tributeFleetLaunching = nullptr;
+					if(grand.Token(1) == "fleet undefeated")
+						tributeFleetUndefeated = nullptr;
+					if(grand.Token(1) == "surrendered")
+						tributeSurrendered = nullptr;
+					else
+						grand.PrintTrace("Invalid remove, key does not exist as a valid tribute hail:");
+				}
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
@@ -729,14 +746,14 @@ string Government::GetPlanetBribeRejectionHail() const
 
 
 
-string Government::GetTributeOverpriced() const
+string Government::GetTributeAlreadyPaying() const
 {
 	return tributeOverpriced ? tributeOverpriced->Get() : "We are already paying you as much as we can afford.";
 }
 
 
 
-string Government::GetTributeNotDefined() const
+string Government::GetTributeUndefined() const
 {
 	return tributeNotDefined ? tributeNotDefined->Get() : "Please don't joke about that sort of thing.";
 }
@@ -750,14 +767,14 @@ string Government::GetTributeUnworthy() const
 
 
 
-string Government::GetTributeAccepted() const
+string Government::GetTributeFleetLaunching() const
 {
 	return tributeAccepted ? tributeAccepted->Get() : "Our defense fleet will make short work of you.";
 }
 
 
 
-string Government::GetTributeUnready() const
+string Government::GetTributeFleetUndefeated() const
 {
 	return tributeUnready ? tributeUnready->Get() : "We're not ready to surrender yet.";
 }
