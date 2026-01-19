@@ -496,17 +496,17 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				}
 				const string &grandKey = grand.Token(0);
 				if(grandKey == "overpriced")
-					tributeOverpriced = grand.Token(1);
+					tributeOverpriced = GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "not defined")
-					tributeNotDefined = grand.Token(1);
+					tributeNotDefined = GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "unworthy")
-					tributeUnworthy = grand.Token(1);
+					tributeUnworthy = GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "accepted")
-					tributeAccepted = grand.Token(1);
+					tributeAccepted = GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "unready")
-					tributeUnready = grand.Token(1);
+					tributeUnready = GameData::Phrases().Get(grand.Token(1));
 				else if(grandKey == "surrendered")
-					tributeSurrendered = grand.Token(1);
+					tributeSurrendered = GameData::Phrases().Get(grand.Token(1));
 				else
 				{
 					grand.PrintTrace("Skipping unrecognized attribute:");
@@ -769,7 +769,8 @@ std::string GetTributeUnready() const
 
 std::string GetTributeSurrendered() const
 {
-	return tributeSurrendered ? tributeSurrendered->Get() : "We surrender. We will pay you <credits> per day to leave us alone.";
+	return tributeSurrendered ? tributeSurrendered->Get() : "We surrender. We will pay you
+		<credits> per day to leave us alone.";
 }
 
 

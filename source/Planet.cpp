@@ -764,7 +764,7 @@ void Planet::Bribe(bool fullAccess) const
 string Planet::DemandTribute(PlayerInfo &player) const
 {
 	const Government *gov = planet ? planet->GetGovernment() : nullptr;
-	if (!gov)
+	if(!gov)
 		return true;
 	const auto &playerTribute = player.GetTribute();
 	if(playerTribute.find(this) != playerTribute.end())
