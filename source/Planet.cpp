@@ -806,7 +806,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 
 	player.SetTribute(this, tribute);
 	string surrenderedMessage = government->GetTributeSurrendered();
-	surrenderedMessage = surrenderedMessage::replace("<credits>", Format::CreditString(tribute))
+	surrenderedMessage = surrenderedMessage.replace("<credits>", Format::CreditString(tribute))
 	return surrenderedMessage;
 }
 
