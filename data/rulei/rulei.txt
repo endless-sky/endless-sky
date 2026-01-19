@@ -18,7 +18,7 @@ mission "Relic of Pasts"
 	invisible
 	source
 		system "Kanguwa"
-	destination "Earth"	
+	destination "Earth"
 	to complete
 		never
 	npc save
@@ -70,7 +70,7 @@ mission "First Contact: Rulei"
 			`	The planets in this system seem to have an abnormal appearance similar to that of the starship, but for some reason even looking at them gives you a headache. Something unusual must have happened here a long time ago.`
 				decline
 
-# Fail the old versions of hte above two missions.
+# Fail the old versions of the above two missions.
 mission "Rulei Patch"
 	landing
 	invisible
