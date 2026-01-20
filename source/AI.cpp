@@ -937,7 +937,7 @@ void AI::Step(Command &activeCommands)
 					it->SetTargetShip(nullptr);
 				}
 				shipToAssist.reset();
-				it->SetShipToAssist(nullptr);
+				it->SetShipToAssist(weak_ptr<Ship>());
 			}
 			else if(!it->IsBoarding())
 			{
@@ -1437,8 +1437,8 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 		if(!hasEnemy && !canHelp.empty())
 		{
 			Ship *helper = canHelp[Random::Int(canHelp.size())];
-			helper->SetShipToAssist((&ship)->shared_from_this());
-			helperList[&ship] = helper->shared_from_this();
+			helper->SetShipToAssist(ship.weak_from_this());
+			helperList[&ship] = helper->weak_from_this();
 			isStranded = true;
 		}
 		else
@@ -1605,7 +1605,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 
 		// Ships which only disable never target already-disabled ships.
 		if((person.Disables() || (!person.IsNemesis() && foe != oldTarget.get()))
-				&& foe->IsDisabled() && (!canPlunder || Has(ship, foe->shared_from_this(), ShipEvent::BOARD)))
+				&& foe->IsDisabled() && (!canPlunder || Has(ship, foe->weak_from_this(), ShipEvent::BOARD)))
 			continue;
 
 		// Ships that don't (or can't) plunder strongly prefer active targets.
@@ -1617,7 +1617,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			if(any_of(boarders.begin(), boarders.end(), [&ship, &foe](auto &it)
 					{ return it.first != &ship && it.second == foe; }))
 				continue;
-			range += 2000. * (2 * foe->IsDisabled() - !Has(ship, foe->shared_from_this(), ShipEvent::BOARD));
+			range += 2000. * (2 * foe->IsDisabled() - !Has(ship, foe->weak_from_this(), ShipEvent::BOARD));
 		}
 
 		// Prefer to go after armed targets, especially if you're not a pirate.
@@ -1715,7 +1715,7 @@ shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
 			for(const auto &it : GetShipsList(ship, false))
 				if(it->GetGovernment() != gov)
 				{
-					auto ptr = it->shared_from_this();
+					shared_ptr<Ship> ptr = it->shared_from_this();
 					// Scan friendly ships that are as-yet unscanned by this ship's government.
 					if((!cargoScan || Has(gov, ptr, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
@@ -3189,7 +3189,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target)
 			for(const auto &it : GetShipsList(ship, false))
 				if(it->GetGovernment() != gov)
 				{
-					auto ptr = it->shared_from_this();
+					weak_ptr<Ship> ptr = it->weak_from_this();
 					if((!cargoScan || Has(gov, ptr, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
 						continue;
@@ -3604,7 +3604,7 @@ bool AI::DoSecretive(Ship &ship, Command &command) const
 	for(auto &otherShip : GetShipsList(ship, false))
 		if(!ship.GetGovernment()->Trusts(otherShip->GetGovernment()) &&
 				otherShip->Commands().Has(Command::SCAN) &&
-				otherShip->GetTargetShip() == ship.shared_from_this() &&
+				otherShip->GetTargetShip().get() == &ship &&
 				!otherShip->IsDisabled() && !otherShip->IsDestroyed())
 			scanningShip = make_shared<Ship>(*otherShip);
 
@@ -4099,7 +4099,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		for(const auto &target : enemies)
 		{
 			// NPCs shoot ships that they just plundered.
-			bool hasBoarded = !ship.IsYours() && Has(ship, target->shared_from_this(), ShipEvent::BOARD);
+			bool hasBoarded = !ship.IsYours() && Has(ship, target->weak_from_this(), ShipEvent::BOARD);
 			if(target->IsDisabled() && (disables || (plunders && !hasBoarded)) && !disabledOverride)
 				continue;
 			// Merciful ships let fleeing ships go.
@@ -4472,13 +4472,13 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 						return [this, &ship](const Ship &other) noexcept -> double
 						{
 							// Use the exact cost if the ship was scanned, otherwise use an estimation.
-							return this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
+							return this->Has(ship, other.weak_from_this(), ShipEvent::SCAN_OUTFITS) ?
 								other.Cost() : (other.ChassisCost() * 2.);
 						};
 					case Preferences::BoardingPriority::MIXED:
 						return [this, &ship, current](const Ship &other) noexcept -> double
 						{
-							double cost = this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
+							double cost = this->Has(ship, other.weak_from_this(), ShipEvent::SCAN_OUTFITS) ?
 								other.Cost() : (other.ChassisCost() * 2.);
 							// Even if we divide by 0, doubles can contain and handle infinity,
 							// and we should definitely board that one then.
@@ -4955,7 +4955,7 @@ void AI::DisengageAutopilot()
 
 bool AI::Has(const Ship &ship, const weak_ptr<const Ship> &other, int type) const
 {
-	auto sit = actions.find(ship.shared_from_this());
+	auto sit = actions.find(ship.weak_from_this());
 	if(sit == actions.end())
 		return false;
 
@@ -4987,7 +4987,7 @@ bool AI::Has(const Government *government, const weak_ptr<const Ship> &other, in
 // example, if the player boarded any ship belonging to that government.
 bool AI::Has(const Ship &ship, const Government *government, int type) const
 {
-	auto sit = notoriety.find(ship.shared_from_this());
+	auto sit = notoriety.find(ship.weak_from_this());
 	if(sit == notoriety.end())
 		return false;
 

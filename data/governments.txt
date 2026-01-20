@@ -890,6 +890,7 @@ government "Hai (Unfettered)"
 	"penalty for"
 		disable 0
 	"bribe" .02
+	"planet bribe rejection hail" "bribe rejection unfettered"
 	"fine" 0
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"
