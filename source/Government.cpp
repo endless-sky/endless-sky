@@ -432,6 +432,33 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			else
 				travelRestrictions = LocationFilter(child, visitedSystems, visitedPlanets);
 		}
+		else if(key == "tribute hails" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() != 2)
+				{
+					grand.PrintTrace("Skipping unrecognized attribute:");
+					continue;
+				}
+				bool removeTributePhrase = grand.Token(0) == "remove";
+				const string &grandKey = grand.Token(remove);
+				if(grandKey == "already paying")
+					tributeAlreadyPaying = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "undefined")
+					tributeUndefined = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "unworthy")
+					tributeUnworthy = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet launching")
+					tributeFleetLaunching = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet undefeated")
+					tributeFleetUndefeated = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "surrendered")
+					tributeSurrendered = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
 				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
@@ -485,33 +512,6 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			planetBribeAcceptanceHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "planet bribe rejection hail")
 			planetBribeRejectionHail = GameData::Phrases().Get(child.Token(valueIndex));
-		else if(key == "tribute hails" && child.HasChildren())
-		{
-			for(const DataNode &grand : child)
-			{
-				if(grand.Size() != 2)
-				{
-					grand.PrintTrace("Skipping unrecognized attribute:");
-					continue;
-				}
-				bool removeTributePhrase = grand.Token(0) == "remove";
-				const string &grandKey = grand.Token(remove);
-				if(grandKey == "already paying")
-					tributeAlreadyPaying = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "undefined")
-					tributeUndefined = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "unworthy")
-					tributeUnworthy = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "fleet launching")
-					tributeFleetLaunching = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "fleet undefeated")
-					tributeFleetUndefeated = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "surrendered")
-					tributeSurrendered = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else
-					grand.PrintTrace("Skipping unrecognized attribute:");
-			}
-		}
 		else if(key == "language")
 			language = child.Token(valueIndex);
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
