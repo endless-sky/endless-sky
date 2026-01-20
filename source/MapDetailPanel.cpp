@@ -706,9 +706,9 @@ void MapDetailPanel::DrawKey()
 	}
 	else if(commodity == SHOW_STARS)
 	{
-		Information info;
 		if(player.CanView(*selectedSystem))
 		{
+			Information info;
 			double power = 0., wind = 0.;
 			for(const auto &stellar : selectedSystem->Objects())
 			{
@@ -730,15 +730,9 @@ void MapDetailPanel::DrawKey()
 			// info.SetString("star types", "F-type main sequence, neutron star");
 			// info.SetString("planet count", "5");
 			// info.SetString("planet types", "Gas giant, rocky planet, ice moon, inhabited asteroid, space station");
+
+			GameData::Interfaces().Get("map: stars view: key")->Draw(info, this);
 		}
-		else
-		{
-			info.SetString("flux", "unknown");
-			info.SetString("wind", "unknown");
-			info.SetString("energy", "-");
-			info.SetString("fuel", "-");
-		}
-		GameData::Interfaces().Get("map: stars view: key")->Draw(info, this);
 	}
 	if(commodity != SHOW_DANGER && commodity != SHOW_STARS)
 	{
