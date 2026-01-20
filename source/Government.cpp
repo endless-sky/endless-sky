@@ -730,45 +730,44 @@ string Government::GetPlanetBribeRejectionHail() const
 
 
 
-string Government::GetTributeAlreadyPaying() const
+const Phrase *Government::TributeAlreadyPaying() const
 {
-	return tributeAlreadyPaying ? tributeAlreadyPaying->Get() : "We are already paying you as much as we can afford.";
+	return tributeAlreadyPaying;
 }
 
 
 
-string Government::GetTributeUndefined() const
+const Phrase *Government::TributeUndefined() const
 {
-	return tributeUndefined ? tributeUndefined->Get() : "Please don't joke about that sort of thing.";
+	return tributeUndefined;
 }
 
 
 
-string Government::GetTributeUnworthy() const
+const Phrase *Government::TributeUnworthy() const
 {
-	return tributeUnworthy ? tributeUnworthy->Get() : "You're not worthy of our time.";
+	return tributeUnworthy;
 }
 
 
 
-string Government::GetTributeFleetLaunching() const
+const Phrase *Government::TributeFleetLaunching() const
 {
-	return tributeFleetLaunching ? tributeFleetLaunching->Get() : "Our defense fleet will make short work of you.";
+	return tributeFleetLaunching;
 }
 
 
 
-string Government::GetTributeFleetUndefeated() const
+const Phrase *Government::TributeFleetUndefeated() const
 {
-	return tributeFleetUndefeated ? tributeFleetUndefeated->Get() : "We're not ready to surrender yet.";
+	return tributeFleetUndefeated;
 }
 
 
 
-string Government::GetTributeSurrendered() const
+const Phrase *Government::TributeSurrendered() const
 {
-	return tributeSurrendered ? tributeSurrendered->Get() : "We surrender. We will pay you "
-		"<credits> per day to leave us alone.";
+	return tributeSurrendered;
 }
 
 

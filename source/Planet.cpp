@@ -137,6 +137,15 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				defenseFleets.clear();
 				ResetDefense();
 			}
+			else if(key == "tribute hails")
+			{
+				tributeAlreadyPaying = nullptr;
+				tributeUndefined = nullptr;
+				tributeUnworthy = nullptr;
+				tributeFleetUndefeated = nullptr;
+				tributeFleetLaunching = nullptr;
+				tributeSurrendered = nullptr;
+			}
 			else if(key == "wormhole")
 				wormhole = nullptr;
 			else if(key == "to")
@@ -257,6 +266,33 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 					dailyTributePenalty = grand.Value(1);
 				else
 					grand.PrintTrace("Skipping unrecognized tribute attribute:");
+			}
+		}
+		else if(key == "tribute hails" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() != 2)
+				{
+					grand.PrintTrace("Skipping unrecognized attribute:");
+					continue;
+				}
+				bool removeTributePhrase = grand.Token(0) == "remove";
+				const string &grandKey = grand.Token(remove);
+				if(grandKey == "already paying")
+					tributeAlreadyPaying = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "undefined")
+					tributeUndefined = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "unworthy")
+					tributeUnworthy = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet launching")
+					tributeFleetLaunching = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet undefeated")
+					tributeFleetUndefeated = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "surrendered")
+					tributeSurrendered = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(key == "wormhole")
@@ -768,11 +804,29 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		return "Somehow, this planet does not have a government.";
 	const auto &playerTribute = player.GetTribute();
 	if(playerTribute.find(this) != playerTribute.end())
-		return government->GetTributeAlreadyPaying();
+	{
+		if(tributeAlreadyPaying)
+			return tributeAlreadyPaying->Get();
+		else if(government && government->TributeAlreadyPaying())
+			return government->TributeAlreadyPaying()->Get();
+		return "We are already paying you as much as we can afford.";
+	}
 	if(!tribute || defenseFleets.empty())
-		return government->GetTributeUndefined();
+	{
+		if(tributeUndefined)
+			return tributeUndefined->Get();
+		else if(government && government->TributeUndefined())
+			return government->TributeUndefined()->Get();
+		return "Please don't joke about that sort of thing.";
+	}
 	if(player.Conditions().Get("combat rating") < defenseThreshold)
-		return government->GetTributeUnworthy();
+	{
+		if(tributeUnworthy)
+			return tributeUnworthy->Get();
+		else if(government && government->TributeUnworthy())
+			return government->TributeUnworthy()->Get();
+		return "You're not worthy of our time.";
+	}
 
 	// The player is scary enough for this planet to take notice. Check whether
 	// this is the first demand for tribute, or not.
@@ -790,7 +844,11 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		// expose syntax for controlling its impact on the targeted government
 		// and those that know it.
 		GetGovernment()->Offend(ShipEvent::ATROCITY);
-		return government->GetTributeFleetLaunching();
+		if(tributeFleetLaunching)
+			return tributeFleetLaunching->Get();
+		else if(government && government->TributeFleetLaunching())
+			return government->TributeFleetLaunching()->Get();
+		return "Our defense fleet will make short work of you.";
 	}
 
 	// The player has already demanded tribute. Have they defeated the entire defense fleet?
@@ -803,12 +861,23 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		}
 
 	if(!isDefeated)
-		return government->GetTributeFleetUndefeated();
+	{
+		if(tributeFleetUndefeated)
+			return tributeFleetUndefeated->Get();
+		else if(government && government->TributeFleetUndefeated())
+			return government->TributeFleetUndefeated()->Get();
+		return "We're not ready to surrender yet.";
+	}
 
 	player.SetTribute(this, tribute);
-	string surrenderedMessage = government->GetTributeSurrendered();
-	surrenderedMessage = Format::Replace(surrenderedMessage, {{"<credits>", Format::CreditString(tribute)}});
-	return surrenderedMessage;
+	string surrenderMessage;
+	if(tributeSurrendered)
+		surrenderMessage = tributeSurrendered->Get();
+	else if(government && government->TributeSurrendered())
+		surrenderMessage = government->TributeSurrendered()->Get();
+	else
+		surrenderMessage = "We surrender. We will pay you <credits> per day to leave us alone.";
+	return Format::Replace(surrenderMessage, {{"<credits>", Format::CreditString(tribute)}});
 }
 
 
