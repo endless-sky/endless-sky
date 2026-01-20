@@ -515,7 +515,7 @@ public:
 	const FormationPattern *GetFormationPattern() const;
 
 	// Get a list of ships targeting this one.
-	const std::vector<Ship *> &GetShipsTargetingThis() const;
+	const std::vector<std::weak_ptr<Ship>> &GetShipsTargetingThis() const;
 	// Get and update the total ship strength targeting this ship.
 	double GetTargeterStrength() const;
 	void UpdateTargeterStrength();
@@ -780,7 +780,7 @@ private:
 	std::weak_ptr<Ship> parent;
 
 	// List of enemy ships targeting this one.
-	std::vector<Ship *> targetingList;
+	std::vector<std::weak_ptr<Ship>> targetingList;
 	double targeterStrength;
 
 	bool removeBays = false;

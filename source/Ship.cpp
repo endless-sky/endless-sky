@@ -3855,13 +3855,15 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 	{
 		// Remove this ship from the list of ships targeting the previous target.
 		if(oldTarget)
-			erase(oldTarget->targetingList, this);
+			erase_if(oldTarget->targetingList, [this](const weak_ptr<Ship> &s) -> bool {
+				return s.lock().get() == this;
+			});
 
 		targetShip = ship;
 
 		// Add this ship to the list of ships targeting the target if it is an enemy.
 		if(ship && government->IsEnemy(ship->government))
-			ship->targetingList.push_back(this);
+			ship->targetingList.push_back(weak_from_this());
 
 		// When you change targets, clear your scanning records.
 		cargoScan = 0.;
@@ -3929,7 +3931,7 @@ void Ship::SetFormationPattern(const FormationPattern *formationToSet)
 
 
 
-const vector<Ship *> &Ship::GetShipsTargetingThis() const
+const vector<weak_ptr<Ship>> &Ship::GetShipsTargetingThis() const
 {
 	return targetingList;
 }
@@ -3949,8 +3951,8 @@ void Ship::UpdateTargeterStrength()
 	targeterStrength = targeterStrength < 1. ? 0 : targeterStrength / 1.05;
 	for(auto it = targetingList.begin(); it != targetingList.end(); )
 	{
-		const Ship *targeter = *it;
-		if(targeter == nullptr || targeter->IsDestroyed())
+		const shared_ptr<Ship> targeter = it->lock();
+		if(!targeter || targeter->IsDestroyed())
 		{
 			it = targetingList.erase(it);
 			continue;
