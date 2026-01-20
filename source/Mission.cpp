@@ -1946,7 +1946,7 @@ bool Mission::Land(const Planet *planet, PlayerInfo &player, UI &ui)
 	auto blocked = false;
 	if(lit != onLand.end())
 	{
-		for(const auto &action : lit->second) 
+		for(const auto &action : lit->second)
 		{
 			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed()))
 			{
