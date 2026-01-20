@@ -716,7 +716,7 @@ bool Mission::IsValid() const
 	{
 		if(!planet->IsValid())
 			return false;
-		for(const auto &action:actionList)
+		for(const auto &action : actionList)
 			if(!action.Validate().empty())
 				return false;
 	}
@@ -1946,7 +1946,8 @@ bool Mission::Land(const Planet *planet, PlayerInfo &player, UI &ui)
 	auto blocked = false;
 	if(lit != onLand.end())
 	{
-		for(const auto &action : lit->second) {
+		for(const auto &action : lit->second) 
+		{
 			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed()))
 			{
 				const auto result = action.Do(player, &ui, this);
