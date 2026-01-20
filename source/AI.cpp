@@ -718,12 +718,14 @@ void AI::Step(Command &activeCommands)
 			positionerIt.second.Step();
 
 	const Ship *flagship = player.Flagship();
-	// Step increments from 0 to 59.
-	step = (step + 1) % 60;
-	// Targeting occurs twice per second, so it must compare against 0 to 29.
-	int targetStep = step % 30;
+	// Step increments from 0 to 62. Using a bitwise and instead of a modulus for the better performance it provides,
+	// even if it's minor. This means that things occur slightly off of exactly once per second, but the difference in
+	// behavior between the two methods is negligible.
+	step = (step + 1) & 63;
+	// Targeting occurs about twice per second, so the target step only goes from 0 to 30.
+	int targetStep = step & 31;
 	int targetTurn = 0;
-	// Scatter recalculations occur once per second, so it can compare against the full step counter.
+	// Scatter recalculations occur about once per second, so it can compare against the full step counter.
 	int scatterTurn = 0;
 	int minerCount = 0;
 	const int maxMinerCount = minables.empty() ? 0 : 9;
@@ -844,9 +846,9 @@ void AI::Step(Command &activeCommands)
 		}
 		if(isPresent && !personality.IsSwarming())
 		{
-			// Each ship only switches targets twice a second, so that it can
+			// Each ship only switches targets about twice a second, so that it can
 			// focus on damaging one particular ship.
-			targetTurn = (targetTurn + 1) % 30;
+			targetTurn = (targetTurn + 1) & 31;
 			if(targetTurn == targetStep || !target || target->IsDestroyed() || (target->IsDisabled() &&
 					(personality.Disables() || (!FighterHitHelper::IsValidTarget(target.get()) && !personality.IsVindictive())))
 					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
@@ -1238,9 +1240,9 @@ void AI::Step(Command &activeCommands)
 			MoveEscort(*it, command);
 
 		// Force ships that are overlapping each other to "scatter".
-		// Once per second they check which ships they are close to and might need to scatter away from,
+		// About once per second they check which ships they are close to and might need to scatter away from,
 		// as ships that were close to each other recently are likely to still be close to each other now.
-		scatterTurn = (scatterTurn + 1) % 60;
+		scatterTurn = (scatterTurn + 1) & 63;
 		DoScatter(*it, command, scatterTurn == step);
 
 		it->SetCommands(command);
@@ -3587,7 +3589,7 @@ void AI::DoScatter(const Ship &ship, Command &command, bool recheckCloseShips)
 		{
 			command.SetTurn(flip * offset.Cross(ship.Facing().Unit()) > 0. ? 1. : -1.);
 			// The other ship should also know to turn away from this one.
-			closeBy[other.get()].insert(ship.shared_from_this());
+			closeBy[other.get()].insert(ship.weak_from_this());
 			return;
 		}
 		else
