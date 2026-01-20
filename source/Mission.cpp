@@ -336,10 +336,10 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			// to control the triggering system.
 			if(child.Size() >= 3)
 			{
-				vector<MissionAction> &actions = onEnter[GameData::Systems().Get(child.Token(2))];
+				vector<MissionAction> &actionList = onEnter[GameData::Systems().Get(child.Token(2))];
 				auto action = MissionAction();
 				action.Load(child, playerConditions, visitedSystems, visitedPlanets);
-				actions.emplace_back(action);
+				actionList.emplace_back(action);
 			}
 			else
 				genericOnEnter.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
@@ -350,8 +350,10 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			// to control the triggering planet.
 			if(child.Size() >= 3)
 			{
-				MissionAction &action = onLand[GameData::Planets().Get(child.Token(2))];
+				vector<MissionAction> &actionList = onLand[GameData::Planets().Get(child.Token(2))];
+				auto action = MissionAction();
 				action.Load(child, playerConditions, visitedSystems, visitedPlanets);
+				actionList.emplace_back(action);
 			}
 			else
 				genericOnLand.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
@@ -573,16 +575,17 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			for(const auto &action : it.second)
 				action.Save(out);
 		// Save any "on enter" actions that have not been performed.
-		for(const auto &it : onEnter)
-			for(const auto &action : it.second)
+		for(const auto &[system, actionList] : onEnter)
+			for(const auto &action : actionList)
 				if(!didEnter.contains(&action))
 					action.Save(out);
 		for(const MissionAction &action : genericOnEnter)
 			if(!didEnter.contains(&action))
 				action.Save(out);
-		for(const auto &[planet, action] : onLand)
-			if(!didLand.contains(&action))
-				action.Save(out);
+		for(const auto &[planet, actionList] : onLand)
+			for(const auto &action : actionList)
+				if(!didLand.contains(&action))
+					action.Save(out);
 		for(const MissionAction &action : genericOnLand)
 			if(!didLand.contains(&action))
 				action.Save(out);
@@ -701,17 +704,22 @@ bool Mission::IsValid() const
 			return false;
 
 	// Actions triggered when entering a system should reference valid systems.
-	for(auto &&it : onEnter)
+	for(const auto &[system, actionList] : onEnter)
 	{
-		if(!it.first->IsValid())
+		if(!system->IsValid())
 			return false;
-		for(const auto &action : it.second)
+		for(const auto &action : actionList)
 			if(!action.Validate().empty())
 				return false;
 	}
-	for(const auto &[planet, action] : onLand)
-		if(!planet->IsValid() || !action.Validate().empty())
+	for(const auto &[planet, actionList] : onLand)
+	{
+		if(!planet->IsValid())
 			return false;
+		for(const auto &action:actionList)
+			if(!action.Validate().empty())
+				return false;
+	}
 	for(auto &&it : actions)
 		for(const auto &action : it.second)
 			if(!action.Validate().empty())
@@ -1779,18 +1787,22 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	for(const auto &[system, actionList] : onEnter)
 		for(const auto &action : actionList)
 			result.onEnter[system].push_back(action.Instantiate(subs, sourceSystem, jumps, payload));
-	for(const auto &[planet, action] : onLand)
+	for(const auto &[planet, actionList] : onLand)
 	{
-		reason = planet->IsValid() ? action.Validate() : "trigger planet";
-		if(!reason.empty())
+		for(const auto &action : actionList)
 		{
-			Logger::Log("Instantiation Error: Action \"on land `" + planet->TrueName() + "`\" in mission \""
-				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
-			return result;
+			reason = planet->IsValid() ? action.Validate() : "trigger planet";
+			if(!reason.empty())
+			{
+				Logger::Log("Instantiation Error: Action \"on land `" + planet->TrueName() + "`\" in mission \""
+					+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
+				return result;
+			}
 		}
 	}
-	for(const auto &[planet, action] : onLand)
-		result.onLand[planet] = action.Instantiate(subs, sourceSystem, jumps, payload);
+	for(const auto &[planet, actionList] : onLand)
+		for(const auto &action : actionList)
+			result.onLand[planet].push_back(action.Instantiate(subs, sourceSystem, jumps, payload));
 
 	for(const MissionAction &action : genericOnEnter)
 	{
@@ -1931,12 +1943,26 @@ bool Mission::Land(const Planet *planet, PlayerInfo &player, UI &ui)
 {
 	const auto lit = onLand.find(planet);
 	const auto originalSize = didLand.size();
-	if(lit != onLand.end() && !didLand.contains(&lit->second) && lit->second.CanBeDone(player, IsFailed()))
+	auto blocked = false;
+	if(lit != onLand.end())
 	{
-		lit->second.Do(player, &ui, this);
-		didLand.insert(&lit->second);
+		for(const auto &action : lit->second) {
+			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed()))
+			{
+				const auto result = action.Do(player, &ui, this);
+				if(result & ActionResult::TRIGGERED)
+				{
+					didLand.insert(&action);
+					if(result & ActionResult::BLOCKING)
+					{
+						blocked = true;
+						break;
+					}
+				}
+			}
+		}
 	}
-	else
+	if(!blocked)
 		for(MissionAction &action : genericOnLand)
 			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed()))
 			{

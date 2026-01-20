@@ -313,7 +313,7 @@ private:
 	// system or planet.
 	std::map<const System *, std::vector<MissionAction>> onEnter;
 	std::list<MissionAction> genericOnEnter;
-	std::map<const Planet *, MissionAction> onLand;
+	std::map<const Planet *, std::vector<MissionAction>> onLand;
 	std::list<MissionAction> genericOnLand;
 	// Track which `on enter` and `on land` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
