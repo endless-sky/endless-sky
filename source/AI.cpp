@@ -386,6 +386,12 @@ namespace {
 
 	// If a ship's velocity is below this value, the ship is considered stopped.
 	constexpr double VELOCITY_ZERO = .001;
+
+	// If two ships are within sqrt(SCATTER_TOO_CLOSE) units of one another, they should scatter apart.
+	// If they are within sqrt(SCATTER_TRACK) units of one another, they should keep track of one
+	// another in case they become too close.
+	constexpr double SCATTER_TOO_CLOSE = 20. * 20.;
+	constexpr double SCATTER_TRACK = 100. * 100.;
 }
 
 
@@ -654,6 +660,7 @@ void AI::Clean()
 	miningTime.clear();
 	appeasementThreshold.clear();
 	boarders.clear();
+	closeBy.clear();
 	routeCache.clear();
 	// Records for formations flying around lead ships and other objects.
 	formations.clear();
@@ -711,8 +718,15 @@ void AI::Step(Command &activeCommands)
 			positionerIt.second.Step();
 
 	const Ship *flagship = player.Flagship();
-	step = (step + 1) & 31;
+	// Step increments from 0 to 62. Using a bitwise and instead of a modulus for the better performance it provides,
+	// even if it's minor. This means that things occur slightly off of exactly once per second, but the difference in
+	// behavior between the two methods is negligible.
+	step = (step + 1) & 63;
+	// Targeting occurs about twice per second, so the target step only goes from 0 to 30.
+	int targetStep = step & 31;
 	int targetTurn = 0;
+	// Scatter recalculations occur about once per second, so it can compare against the full step counter.
+	int scatterTurn = 0;
 	int minerCount = 0;
 	const int maxMinerCount = minables.empty() ? 0 : 9;
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
@@ -832,10 +846,10 @@ void AI::Step(Command &activeCommands)
 		}
 		if(isPresent && !personality.IsSwarming())
 		{
-			// Each ship only switches targets twice a second, so that it can
+			// Each ship only switches targets about twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() &&
+			if(targetTurn == targetStep || !target || target->IsDestroyed() || (target->IsDisabled() &&
 					(personality.Disables() || (!FighterHitHelper::IsValidTarget(target.get()) && !personality.IsVindictive())))
 					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
 			{
@@ -925,7 +939,7 @@ void AI::Step(Command &activeCommands)
 					it->SetTargetShip(nullptr);
 				}
 				shipToAssist.reset();
-				it->SetShipToAssist(nullptr);
+				it->SetShipToAssist(weak_ptr<Ship>());
 			}
 			else if(!it->IsBoarding())
 			{
@@ -1225,8 +1239,11 @@ void AI::Step(Command &activeCommands)
 		else
 			MoveEscort(*it, command);
 
-		// Force ships that are overlapping each other to "scatter":
-		DoScatter(*it, command);
+		// Force ships that are overlapping each other to "scatter".
+		// About once per second they check which ships they are close to and might need to scatter away from,
+		// as ships that were close to each other recently are likely to still be close to each other now.
+		scatterTurn = (scatterTurn + 1) & 63;
+		DoScatter(*it, command, scatterTurn == step);
 
 		it->SetCommands(command);
 		it->SetCommands(firingCommands);
@@ -1422,8 +1439,8 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 		if(!hasEnemy && !canHelp.empty())
 		{
 			Ship *helper = canHelp[Random::Int(canHelp.size())];
-			helper->SetShipToAssist((&ship)->shared_from_this());
-			helperList[&ship] = helper->shared_from_this();
+			helper->SetShipToAssist(ship.weak_from_this());
+			helperList[&ship] = helper->weak_from_this();
 			isStranded = true;
 		}
 		else
@@ -1590,7 +1607,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 
 		// Ships which only disable never target already-disabled ships.
 		if((person.Disables() || (!person.IsNemesis() && foe != oldTarget.get()))
-				&& foe->IsDisabled() && (!canPlunder || Has(ship, foe->shared_from_this(), ShipEvent::BOARD)))
+				&& foe->IsDisabled() && (!canPlunder || Has(ship, foe->weak_from_this(), ShipEvent::BOARD)))
 			continue;
 
 		// Ships that don't (or can't) plunder strongly prefer active targets.
@@ -1602,7 +1619,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			if(any_of(boarders.begin(), boarders.end(), [&ship, &foe](auto &it)
 					{ return it.first != &ship && it.second == foe; }))
 				continue;
-			range += 2000. * (2 * foe->IsDisabled() - !Has(ship, foe->shared_from_this(), ShipEvent::BOARD));
+			range += 2000. * (2 * foe->IsDisabled() - !Has(ship, foe->weak_from_this(), ShipEvent::BOARD));
 		}
 
 		// Prefer to go after armed targets, especially if you're not a pirate.
@@ -1700,7 +1717,7 @@ shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
 			for(const auto &it : GetShipsList(ship, false))
 				if(it->GetGovernment() != gov)
 				{
-					auto ptr = it->shared_from_this();
+					shared_ptr<Ship> ptr = it->shared_from_this();
 					// Scan friendly ships that are as-yet unscanned by this ship's government.
 					if((!cargoScan || Has(gov, ptr, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
@@ -3174,7 +3191,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target)
 			for(const auto &it : GetShipsList(ship, false))
 				if(it->GetGovernment() != gov)
 				{
-					auto ptr = it->shared_from_this();
+					weak_ptr<Ship> ptr = it->weak_from_this();
 					if((!cargoScan || Has(gov, ptr, ShipEvent::SCAN_CARGO))
 							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
 						continue;
@@ -3511,36 +3528,72 @@ void AI::DoPatrol(Ship &ship, Command &command) const
 
 
 
-void AI::DoScatter(const Ship &ship, Command &command) const
+void AI::DoScatter(const Ship &ship, Command &command, bool recheckCloseShips)
 {
 	if(!command.Has(Command::FORWARD) && !command.Has(Command::BACK))
 		return;
 
+	auto &close = closeBy[&ship];
+	if(recheckCloseShips)
+	{
+		close.clear();
+		for(const shared_ptr<Ship> &other : ships)
+		{
+			// Do not scatter away from yourself, or ships in other systems.
+			if(other.get() == &ship || other->GetSystem() != ship.GetSystem())
+				continue;
+			// Look for ships that are nearby to this one. Check a larger distance
+			// than is required to scatter from this ship, as ships that are nearby
+			// now might become too close in a few frames.
+			Point offset = other->Position() - ship.Position();
+			if(offset.LengthSquared() > SCATTER_TRACK)
+				continue;
+			close.insert(other);
+		}
+	}
+
 	double flip = command.Has(Command::BACK) ? -1 : 1;
 	double turnRate = ship.TurnRate();
 	double acceleration = ship.Acceleration();
-	// TODO: If there are many ships, use CollisionSet::Circle or another
-	// suitable method to limit which ships are checked.
-	for(const shared_ptr<Ship> &other : ships)
+	for(auto it = close.begin(); it != close.end(); )
 	{
-		// Do not scatter away from yourself, or ships in other systems.
-		if(other.get() == &ship || other->GetSystem() != ship.GetSystem())
+		shared_ptr<const Ship> other = it->lock();
+		// Ensure that this ship is still valid and in the same system.
+		if(!other || other->GetSystem() != ship.GetSystem())
+		{
+			it = close.erase(it);
 			continue;
-
-		// Check for any ships that have nearly the same movement profile as
-		// this ship and are in nearly the same location.
+		}
+		// Check for any ships that are in nearly the same location.
 		Point offset = other->Position() - ship.Position();
-		if(offset.LengthSquared() > 400.)
-			continue;
-		if(fabs(other->TurnRate() / turnRate - 1.) > .05)
-			continue;
-		if(fabs(other->Acceleration() / acceleration - 1.) > .05)
-			continue;
-
+		double distanceSquared = offset.LengthSquared();
+		// This ship isn't close enough to scatter from.
+		if(distanceSquared > SCATTER_TOO_CLOSE)
+			++it;
+		// This ships is very far away. Stop tracking it.
+		else if(distanceSquared > SCATTER_TRACK)
+			it = close.erase(it);
+		// Only scatter if the ship has a similar movement profile to you,
+		// as ships with a similar movement profile are the ones that would
+		// get "stuck" together if not for scattering.
+		else if(fabs(other->TurnRate() / turnRate - 1.) > .05
+			|| fabs(other->Acceleration() / acceleration - 1.) > .05)
+		{
+			// For ships that don't have a similar movement profile, don't check them next frame.
+			// Testing showed it more performant to run this check later instead of checking
+			// if the ship has a similar movement profile when calculating the close ships.
+			it = close.erase(it);
+		}
 		// We are too close to this ship. Turn away from it if we aren't already facing away.
-		if(fabs(other->Facing().Unit().Dot(ship.Facing().Unit())) > 0.99) // 0.99 => 8 degrees
+		else if(fabs(other->Facing().Unit().Dot(ship.Facing().Unit())) > 0.99) // 0.99 => 8 degrees
+		{
 			command.SetTurn(flip * offset.Cross(ship.Facing().Unit()) > 0. ? 1. : -1.);
-		return;
+			// The other ship should also know to turn away from this one.
+			closeBy[other.get()].insert(ship.weak_from_this());
+			return;
+		}
+		else
+			++it;
 	}
 }
 
@@ -3553,7 +3606,7 @@ bool AI::DoSecretive(Ship &ship, Command &command) const
 	for(auto &otherShip : GetShipsList(ship, false))
 		if(!ship.GetGovernment()->Trusts(otherShip->GetGovernment()) &&
 				otherShip->Commands().Has(Command::SCAN) &&
-				otherShip->GetTargetShip() == ship.shared_from_this() &&
+				otherShip->GetTargetShip().get() == &ship &&
 				!otherShip->IsDisabled() && !otherShip->IsDestroyed())
 			scanningShip = make_shared<Ship>(*otherShip);
 
@@ -4048,7 +4101,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		for(const auto &target : enemies)
 		{
 			// NPCs shoot ships that they just plundered.
-			bool hasBoarded = !ship.IsYours() && Has(ship, target->shared_from_this(), ShipEvent::BOARD);
+			bool hasBoarded = !ship.IsYours() && Has(ship, target->weak_from_this(), ShipEvent::BOARD);
 			if(target->IsDisabled() && (disables || (plunders && !hasBoarded)) && !disabledOverride)
 				continue;
 			// Merciful ships let fleeing ships go.
@@ -4421,13 +4474,13 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 						return [this, &ship](const Ship &other) noexcept -> double
 						{
 							// Use the exact cost if the ship was scanned, otherwise use an estimation.
-							return this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
+							return this->Has(ship, other.weak_from_this(), ShipEvent::SCAN_OUTFITS) ?
 								other.Cost() : (other.ChassisCost() * 2.);
 						};
 					case Preferences::BoardingPriority::MIXED:
 						return [this, &ship, current](const Ship &other) noexcept -> double
 						{
-							double cost = this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
+							double cost = this->Has(ship, other.weak_from_this(), ShipEvent::SCAN_OUTFITS) ?
 								other.Cost() : (other.ChassisCost() * 2.);
 							// Even if we divide by 0, doubles can contain and handle infinity,
 							// and we should definitely board that one then.
@@ -4904,7 +4957,7 @@ void AI::DisengageAutopilot()
 
 bool AI::Has(const Ship &ship, const weak_ptr<const Ship> &other, int type) const
 {
-	auto sit = actions.find(ship.shared_from_this());
+	auto sit = actions.find(ship.weak_from_this());
 	if(sit == actions.end())
 		return false;
 
@@ -4936,7 +4989,7 @@ bool AI::Has(const Government *government, const weak_ptr<const Ship> &other, in
 // example, if the player boarded any ship belonging to that government.
 bool AI::Has(const Ship &ship, const Government *government, int type) const
 {
-	auto sit = notoriety.find(ship.shared_from_this());
+	auto sit = notoriety.find(ship.weak_from_this());
 	if(sit == notoriety.end())
 		return false;
 
