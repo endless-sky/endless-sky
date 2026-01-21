@@ -304,8 +304,8 @@ TEST_CASE( "Format::Percentage", "[Format][Percentage]") {
 		CHECK( Format::Percentage(-1, 0) == "-100%" );
 		CHECK( Format::Percentage(1.5, 0) == "150%" );
 		CHECK( Format::Percentage(-1.5, 0) == "-150%" );
-		CHECK( Format::Percentage(1234.5678, 0) == "123456%" );
-		CHECK( Format::Percentage(-1234.5678, 0) == "-123456%" );
+		CHECK( Format::Percentage(1234.5678, 0) == "123,456%" );
+		CHECK( Format::Percentage(-1234.5678, 0) == "-123,456%" );
 		CHECK( Format::Percentage(1.000005, 0) == "100%" );
 	}
 	SECTION( "1 decimal place, trim trailing zeros" ) {
@@ -334,23 +334,23 @@ TEST_CASE( "Format::Percentage", "[Format][Percentage]") {
 		CHECK( Format::Percentage(0, 3) == "0%" );
 		CHECK( Format::Percentage(-0, 3) == "0%" );
 		CHECK( Format::Percentage(1, 3) == "100%" );
-		CHECK( Format::Percentage(-1, 3) == "100%" );
+		CHECK( Format::Percentage(-1, 3) == "-100%" );
 		CHECK( Format::Percentage(1.5, 3) == "150%" );
-		CHECK( Format::Percentage(-1.5, 3) == "150%" );
+		CHECK( Format::Percentage(-1.5, 3) == "-150%" );
 		CHECK( Format::Percentage(1234.5678, 3) == "123,456.78%" );
-		CHECK( Format::Percentage(-1234.5678, 3) == "123,456.78%" );
+		CHECK( Format::Percentage(-1234.5678, 3) == "-123,456.78%" );
 		CHECK( Format::Percentage(1.000005, 0) == "100%" );
 	}
 	SECTION( "3 decimal places, don't trim trailing zeros" ) {
 		CHECK( Format::Percentage(0, 3, false) == "0.000%" );
 		CHECK( Format::Percentage(-0, 3, false) == "0.000%" );
 		CHECK( Format::Percentage(1, 3, false) == "100.000%" );
-		CHECK( Format::Percentage(-1, 3, false) == "100.000%" );
+		CHECK( Format::Percentage(-1, 3, false) == "-100.000%" );
 		CHECK( Format::Percentage(1.5, 3, false) == "150.000%" );
-		CHECK( Format::Percentage(-1.5, 3, false) == "150.000%" );
+		CHECK( Format::Percentage(-1.5, 3, false) == "-150.000%" );
 		CHECK( Format::Percentage(1234.5678, 3, false) == "123,456.780%" );
-		CHECK( Format::Percentage(-1234.5678, 3, false) == "123,456.780%" );
-		CHECK( Format::Percentage(1.000005, 0) == "100.000%" );
+		CHECK( Format::Percentage(-1234.5678, 3, false) == "-123,456.780%" );
+		CHECK( Format::Percentage(1.000005, 0, false) == "100.000%" );
 	}
 }
 
