@@ -77,7 +77,8 @@ public:
 	static std::string Number(int64_t value);
 	// Format the given value as a percentage, with an optional additional number of
 	// decimal places. An input value of 1 will be formatted as 100%.
-	static std::string Percentage(double value, int places, bool trimTrailingZeros = true);
+	static std::string Percentage(double value, std::optional<int> decimalPlaces = std::nullopt,
+		bool trimTrailingZeros = true);
 	// Convert numbers to word forms. Capitalize the first letter if at the start of a sentence.
 	static std::string WordForm(int64_t value, bool startOfSentence = false);
 	// Conditionally convert numbers to word forms, based on the Chicago Manual of Style.

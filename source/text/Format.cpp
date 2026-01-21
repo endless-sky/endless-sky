@@ -650,9 +650,9 @@ string Format::Number(int64_t value)
 
 
 
-string Format::Percentage(double value, int places, bool trimTrailingZeros)
+string Format::Percentage(double value, optional<int> decimalPlaces, bool trimTrailingZeros)
 {
-	return Number(100. * value, places, trimTrailingZeros) + "%";
+	return Number(100. * value, decimalPlaces, trimTrailingZeros) + "%";
 }
 
 
