@@ -715,8 +715,8 @@ void MapDetailPanel::DrawKey()
 				power += GameData::SolarPower(stellar.GetSprite());
 				wind += GameData::SolarWind(stellar.GetSprite());
 			}
-			info.SetString("flux", Format::Number(power * 60.));
-			info.SetString("wind", Format::Number(wind * 60.));
+			info.SetString("flux", GameData::Rating("stellar flux", max<int64_t>(0, power)));
+			info.SetString("wind", GameData::Rating("stellar wind", max<int64_t>(0, wind)));
 
 			Point position = {0, 0};
 			const Outfit &attributes = player.Flagship()->Attributes();
