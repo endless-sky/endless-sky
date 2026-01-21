@@ -552,12 +552,7 @@ string Format::Number(double value, optional<int> decimalPlaces, bool trimTraili
 	if(!value)
 	{
 		string result = "0";
-		if(decimalPlaces.has_value())
-		{
-			result += ".";
-			for(int i = 0; i < decimalPlaces.value(); ++i)
-				result += "0";
-		}
+		FormatDecimals(0, decimalPlaces.value_or(0), trimTrailingZeros, result);
 		return result;
 	}
 	if(std::isnan(value))
