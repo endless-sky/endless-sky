@@ -53,9 +53,18 @@ mission "First Contact: Wanderer"
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
 			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are eight or nine centimeters long.`
 			`	Hesitantly, you open your hatch and greet them. One of the aliens speaks to you: a chirping, clicking noise. You have no idea what it is saying.`
+			branch normal
+				not "Unfettered 18: Hai Language: active"
+			`	It seems like they do not trust you; they are very hesitant to come your way. They probably somehow know that you've worked with the Unfettered.`
+			choice
+				`	"I come to learn more about you, on behalf of the Unfettered."`
+					goto tryunderstand
+			label normal
 			choice
 				`	"Hello. I come in peace."`
 				`	"My name is <first>. I am glad to meet you."`
+			
+			label tryunderstand
 			`	The alien leans forward as you speak, as if trying to decipher your words. "Iyik'ka'ak kareek elik, ek karu karai kavet," it says. You shake your head to indicate that you do not understand, and again try to speak to it in your own language. Again it leans forward as if deeply focused on what you are saying.`
 				goto hai
 			
@@ -70,6 +79,12 @@ mission "First Contact: Wanderer"
 				`	"Sorry, I don't speak their language."`
 				`	"Are there any Hai here?"`
 			`	The same alien speaks again, pantomiming your ship flying into the sky and then returning, and then points to your airlock and mimics your rodent-ear gesture for the Hai. You think they are telling you to go find one of the Hai who can serve as an interpreter, and bring them back here.`
+			branch accept
+				not "Unfettered 18: Hai Language: active"
+			`	You should probably go back to the Unfettered and speak to them about the need for a diplomat, or any way to understand these aliens. He-Yi should be able to help you with this.`
+			`	Alternatively, you could go to the Hai and ask them for a translator instead, although He-Yi will probably respect you less for it.`
+			label accept
+			
 				accept
 	on visit
 		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" they seem to ask, once again mimicking the rodent-like ears of the Hai with their feathered limbs. You shake your head, for you have returned without a Hai to act as an interpreter. Maybe it would be wise to actually go to the Hai before returning to see if one will come with you.`
@@ -100,6 +115,8 @@ mission "Wanderers: Unfettered Diplomat"
 		not "unfettered know of wanderers"
 		not "Wanderers: Hai Diplomat: offered"
 		not "Wanderers: Diplomacy: offered"
+		not "Unfettered 18: Hai Language: active"
+		not "language: Hai"
 	on offer
 		conversation
 			`The aliens north of Hai space seem to speak the Hai language. Do you want to look for someone here who could serve as an interpreter?`
@@ -192,6 +209,7 @@ mission "Wanderers: Diplomacy"
 	passengers 1
 	to offer
 		has "First Contact: Wanderer: offered"
+		not "language: Wanderer"
 	on offer
 		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). She has now been assigned by the Hai to be their diplomat to the Wanderers, and to serve as a translator as well.`
 		conversation
@@ -580,6 +598,8 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 				`	"I'd be happy to do that."`
 				`	"Sorry, but I have more important matters to attend to."`
 					defer
+				`	"I'd prefer not to intervene on your side in the conflict with the Unfettered."`
+					decline
 			`	When the Wanderer hears your translated response, they chatter in the Wanderer language to their friend, who nods and runs off towards a nearby warehouse. "We will load the cargo into the ship soon. I will [join, accompany] you to <planet> to direct the [healing, repairs]."`
 				accept
 	on visit
@@ -632,7 +652,12 @@ mission "Wanderers: Defend Vara Ke'sok"
 		dialog "There are still Unfettered warships overhead. You should take off again and assist in the fight."
 	on complete
 		event "Sich'ka'ara restored"
-	
+	on enter
+		dialog `As you are preparing to engage the Unfettered, one of their ships hails you. "What be a guppy like you doing this far out in the void? Be ye lost, landlubber? This be yer last warning! Take arms to defend this world against us, and ye will be considered Fettered forever. Make yer choice carefully, Cap'n. I strongly council ye to abort this mission, savvy?"`
+	on fail
+		dialog `The captain from earlier hails you again. "You did well to listen! We could always could use another helpful matey back in Unfettered space... feel free to visit Darkcloak. I'll be there once I'm done with this raid. Speaking of which, ye were tagged as loot so I'd recommend ye run off for the time being!"`
+		"reputation: Hai (Unfettered)" >?= 100
+
 	npc
 		government "Wanderer"
 		personality derelict fleeing uninterested waiting pacifist

@@ -38,6 +38,17 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Christian Rhodes (under the same license).
 
 Files:
+ images/outfit/gold?bars*
+Copyright: Red-57 (github.com/Red-57)
+License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/hai?dual?pulse?pistol*
+Copyright: Michael Arsollon (https://github.com/MidnightPlugins)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (from under the same license) and Evan Fluharty (from under the same license).
+
+Files:
  images/projectile/bullet*
  images/effect/bullet?impact*
 Copyright: Iaz Poolar

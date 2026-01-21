@@ -1,0 +1,261 @@
+# Copyright (c) 2024 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# this file contains assets that can be used at any point in the campaign
+
+phrase "Essential Unfettered Mission Fail"
+	word
+		`You have failed an essential Unfettered mission. You may want to reload your previous save if you want to be able to finish the campaign.`
+
+phrase "Essential Unfettered Mission Fail If Killed"
+	word
+		`If you did not kill the dueling ship, you may try this mission again later. Otherwise, you have failed an essential Unfettered mission. You may want to reload your previous save if you want to be able to finish the campaign.`
+
+# using <, > so we can have an empty name
+substitutions
+	"<, unfettered title>" ", monkey"
+	"<, unfettered title>" ", space-monkey"
+		has "Unfettered Jump Drive 1: offered"
+	"<, unfettered title>" ", Captain"
+		has "unfettered: beaten the captain"
+
+
+phrase "cerberus hails"
+	word
+		"We do not accept your surrender!"
+		"You stand no chance!"
+		"Even if you take me down, my Masters will make quick work of you."
+		"Do not attempt to subdue me."
+		"I obey only the Masters."
+		"They hold my soul! Soon, they will hold yours as well."
+		"Die!"
+		"You have been allowed to live long enough. Now I come to cut the thread of your life."
+		"I may be a pawn, but at least I am on a greater path."
+		"You may never hope to achieve half of what I have done."
+		"My price is far above what you could possibly afford. Do not even attempt to bribe me."
+		"Do you hope to corrupt me? There is no price that is high enough."
+		"I guard the gates of Hell. You will not deter me from that."
+		"You think yourself special? You will die, just like the rest of the ignorant fools!"
+		"There can only be death for the likes of you."
+		"The Masters are superior to you."
+		"You may manage to kill me, but you will never break me."
+		"Run, you fool!"
+		"Killing you will allow me to ascend."
+		"When I will bring the husk of your ship to the Masters, I will be promoted."
+		"I look forward to killing you."
+		"Do you even know what you have gotten yourself into?"
+		"You will never go beyond that simple, mortal, shell!"
+		"Maybe in death you will find peace."
+		# the (reality destroyer/dimensional eraser) will be made safe
+		"Kashalam Eshar!"
+		# you will never be "prime"
+		"Uminor Magresh."
+		# your quest is void (futile)
+		"Porotar Elnam."
+
+
+phrase "unfettered challenger"
+	word
+		"Do not" 2
+		"The rules of the duel are clear: do not"
+		"You have asked for a time out, now do not"
+	word
+		" "
+		" attempt to "
+		" try to "
+		" presume to "
+		" think you can "
+	word
+		"attack me"
+		"shoot me"
+	word
+		" "
+	word
+		"until a day has passed"
+		"until you have changed systems or landed"
+		"until the time out is considered over"
+	word
+		", or"
+		"; else"
+		"; if you do, "
+	word
+		" "
+	word
+		"my brethren"
+		"fellow Unfettered"
+		"all True Hai"
+	word
+		" "
+	word
+		"will"
+		"shall be forced to"
+		"will not hesitate to"
+	word
+		" "
+	word
+		" take action!"
+		" shoot!"
+		" defend me!"
+		" do what it takes to maintain order!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Stop "
+		"Quit "
+	word
+		"shaming yourself"
+		"running away"
+		"overthinking"
+		"recharging your shields"
+		"hiding in fear"
+	word
+		" and come "
+		" and come try to "
+	word
+		"defeat "
+		"fight "
+	word
+		"me."
+	word
+		" Now is the time to reveal ourselves in the glory of battle!"
+		" Show me what you've got!"
+		" Time for a fair fight!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Now is not the time for talk!"
+		"Yes! Fight me!"
+		"Our battle will be sung of in legends for years to come!"
+		"Do not try to distract me with hails!"
+		"Do you want to surrender already? Ha!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Do you wish to end the fight?"
+		"I can see you are having difficulties. Feel free to call this off for another time..."
+		"Remember, you only need to give me a symbolic bribe for this to stop."
+		"This is not a duel to the death, or else only one of us would be able to learn."
+		"Do you wish to surrender?"
+		"I am reasonable. If you wish to surrender, we can come to terms."
+		"You are lucky that I have to accept any ceasefire you ask... you would do well not to attempt anything."
+
+phrase "hostile unfettered challenger"
+	word
+		"Here's a "
+	word
+		"free"
+		"useful"
+		"common"
+	word
+		" tip: "
+		" hint: "
+	word
+		"when feeling overwhelmed in duels you can always ${overwhelmed in duel}! Try it next time."
+		"challengers have common weaknesses, and you should try to get an edge by ${advantage in duel}."
+		
+
+phrase "overwhelmed in duel"
+	word
+		"tactically retreat to the edge of the system"
+		"bribe the challengers"
+		"try to split the enemies apart"
+		"go to another system"
+		"upgrade your ship design"
+		"scan the enemy to find out their vulnerabilities"
+
+phrase "advantage in duel"
+	word
+		"figuring out if their engines are weak"
+		"sliding away whilst shooting them back"
+		"using your range advantage, be it in missiles, Ion Cannons or something else"
+		"getting your hands on powerful prototypes"
+		"going and acquiring alien technology. Even human tech has its uses"
+		"overheating their ship"
+		"shooting them down with missiles if they lack sufficient jammers and anti-missiles"
+		"getting at their batteries with ion weapons"
+
+phrase "hostile unfettered challenger"
+	word
+		"If you happen to know of "
+		"If you have heard of "
+		"When you come to know about "
+		"Next time you get your hands on "
+		`If you "find" `
+	word
+		"a strong"
+		"an interesting"
+		"a good"
+		"an exotic"
+		"a respectable"
+		"a powerful"
+		"an overpowered"
+	word
+		" weapon combo"
+		" alien weapon"
+		" human armament"
+	word
+		", you should come and "
+	word
+		"demonstrate it to us in action"
+		"fight me with it"
+		"sell it to us, after a proper demonstration"
+	word
+		"."
+	word
+		" You might find some of us willing to buy it, for the proper price!"
+
+phrase "defeated unfettered challenger"
+	word
+		"You have "
+		"You managed to have "
+		"Somehow, you have "
+		"I must admit you have "
+	word
+		"beaten "
+		"defeated "
+		"ashamed "
+		"disabled "
+		"revealed my weakness% "
+	word
+		"me in a% "
+	word
+		"glorious "
+		"pathetic "
+		"exceptional "
+		"grandiose "
+		"fast-paced "
+		"strategic "
+	word
+		"battle"
+		"combat"
+		"duel"
+		"fight"
+		"challenge"
+	word
+		". "
+		"! "
+	word
+		"What more do you want from me?" 3
+		"Do not presume you may board me." 3
+		"Do not even think about capturing my ship." 3
+		"Now that it is over, time to lay down your weapons." 3
+		"I accept my fate. Take what is rightfully yours." 3
+		"Great stories will be told!" 3
+		"You have the right to plunder." 3
+		"It would seem you are as strong as some claim, perhaps even more so." 3
+		"Finish me! I would rather die than have to live with this insult."
+	replace
+		"% me" ""
+		"a% e" "an e"
+		"a%" "a"
+
