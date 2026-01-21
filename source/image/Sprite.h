@@ -34,9 +34,10 @@ public:
 
 	const std::string &Name() const;
 
-	// Add the given frames, optionally uploading them. The given buffer will be cleared afterwards.
-	void AddFrames(ImageBuffer &buffer, bool is2x, bool noReduction);
-	void AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x, bool noReduction);
+	// Add the given frames, optionally uploading them. The given buffers will be cleared afterwards.
+	// Receive both the 1x and 2x buffers. If the 2x buffer is not empty, then it will be used.
+	void AddFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noReduction);
+	void AddSwizzleMaskFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noReduction);
 	// Free up all textures loaded for this sprite.
 	void Unload();
 
@@ -46,26 +47,26 @@ public:
 	// Number of frames in the animation. If high DPI frames exist, the code has
 	// ensured that they have the same number of frames.
 	int Frames() const;
+	// This will either be 0, 1, or the same as the number of normal frames.
+	int SwizzleMaskFrames() const;
 
 	// Get the offset of the center from the top left corner; this is for easy
 	// shifting of corner to center coordinates.
 	Point Center() const;
 
-	// Get the texture index, either looking it up based on the Screen's HighDPI
-	// setting or specifying it manually.
+	// Get the texture index.
 	uint32_t Texture() const;
-	uint32_t Texture(bool isHighDPI) const;
-
 	uint32_t SwizzleMask() const;
-	uint32_t SwizzleMask(bool isHighDPI) const;
+
 
 private:
 	std::string name;
 
-	uint32_t texture[2] = {0, 0};
-	uint32_t swizzleMask[2] = {0, 0};
+	uint32_t texture{};
+	uint32_t swizzleMask{};
 
 	float width = 0.f;
 	float height = 0.f;
 	int frames = 0;
+	int swizzleMaskFrames = 0;
 };

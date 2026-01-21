@@ -1003,9 +1003,8 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("afterburner effect", it.first->TrueName());
-			for(const auto &it : baseAttributes.JumpEffects())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("jump effect", it.first->TrueName());
+			for(const auto &[effect, amount] : baseAttributes.JumpEffects())
+				out.Write("jump effect", effect->TrueName(), amount);
 			for(const auto &it : baseAttributes.JumpSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("jump sound", it.first->Name());
@@ -1851,7 +1850,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	// Board a friendly ship, to repair or refuel it.
 	if(!government->IsEnemy(victim->GetGovernment()))
 	{
-		SetShipToAssist(shared_ptr<Ship>());
+		SetShipToAssist(weak_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
 		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->MaxHull());
@@ -3416,10 +3415,10 @@ bool Ship::CanCarry(const Ship &ship) const
 
 	for(const auto &it : escorts)
 	{
-		auto escort = it.lock();
+		shared_ptr<Ship> escort = it.lock();
 		if(!escort)
 			continue;
-		if(escort == ship.shared_from_this())
+		if(escort.get() == &ship)
 			break;
 		if(escort->attributes.Category() == category && !escort->IsDestroyed() &&
 				(!IsYours() || (IsYours() && escort->IsYours())))
@@ -3863,7 +3862,7 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 
 
 
-void Ship::SetShipToAssist(const shared_ptr<Ship> &ship)
+void Ship::SetShipToAssist(const weak_ptr<Ship> &ship)
 {
 	shipToAssist = ship;
 }
@@ -4545,15 +4544,15 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 	if(isUsingJumpDrive && !forget)
 	{
 		double sparkAmount = hyperspaceCount * Width() * Height() * .000006;
-		const map<const Effect *, int> &jumpEffects = attributes.JumpEffects();
+		const map<const Effect *, double> &jumpEffects = attributes.JumpEffects();
 		if(jumpEffects.empty())
 			CreateSparks(visuals, "jump drive", sparkAmount);
 		else
 		{
 			// Spread the amount of particle effects created among all jump effects.
 			sparkAmount /= jumpEffects.size();
-			for(const auto &effect : jumpEffects)
-				CreateSparks(visuals, effect.first, sparkAmount);
+			for(const auto &[effect, amount] : jumpEffects)
+				CreateSparks(visuals, effect, sparkAmount * min(amount, 1.));
 		}
 	}
 
@@ -5112,7 +5111,7 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
 {
-	escorts.push_back(ship.shared_from_this());
+	escorts.push_back(ship.weak_from_this());
 }
 
 
