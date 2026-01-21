@@ -3301,6 +3301,7 @@ mission "Bounty Hunting (Small)"
 			"combat rating" > 80
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
+			has "ships: Heavy Warship"
 		or
 			and
 				"combat rating" < 403
@@ -3336,6 +3337,7 @@ mission "Bounty Hunting (Small, Local)"
 			"combat rating" > 80
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
+			has "ships: Heavy Warship"
 		"combat rating" < 220
 		random < 10
 	source
