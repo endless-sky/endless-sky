@@ -38,8 +38,8 @@ public:
 	// Convert the given number into abbreviated format with a suffix like
 	// "M" for million, "B" for billion, or "T" for trillion. Any number
 	// above 1 quadrillion is instead shown in scientific notation.
-	static std::string Credits(int64_t value);
-	// Convert the given number into abbreviated format as described in Format::Credits,
+	static std::string AbbreviatedNumber(int64_t value);
+	// Convert the given number into abbreviated format as described in Format::AbbreviatedNumber,
 	// then attach the ' credit' or ' credits' suffix to it.
 	// If abbreviated is false, then the full numeric value is outputted.
 	static std::string CreditString(int64_t value, bool abbreviated = true);
