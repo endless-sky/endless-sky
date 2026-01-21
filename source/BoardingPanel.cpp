@@ -191,18 +191,18 @@ void BoardingPanel::Draw()
 		info.SetString("cargo space", to_string(you->Cargo().Free()));
 		info.SetString("your crew", to_string(crew));
 		info.SetString("your attack",
-			Format::Decimal(attackOdds.AttackerPower(crew), 1));
+			Format::Number(attackOdds.AttackerPower(crew), 1, false));
 		info.SetString("your defense",
-			Format::Decimal(defenseOdds.DefenderPower(crew), 1));
+			Format::Number(defenseOdds.DefenderPower(crew), 1, false));
 	}
 	int vCrew = victim ? victim->Crew() : 0;
 	if(victim && (canCapture || victim->IsYours()))
 	{
 		info.SetString("enemy crew", to_string(vCrew));
 		info.SetString("enemy attack",
-			Format::Decimal(defenseOdds.AttackerPower(vCrew), 1));
+			Format::Number(defenseOdds.AttackerPower(vCrew), 1, false));
 		info.SetString("enemy defense",
-			Format::Decimal(attackOdds.DefenderPower(vCrew), 1));
+			Format::Number(attackOdds.DefenderPower(vCrew), 1, false));
 	}
 	if(victim && canCapture && !victim->IsYours())
 	{
@@ -213,13 +213,13 @@ void BoardingPanel::Draw()
 		if(!isCapturing)
 			odds *= (1. - victim->Attributes().Get("self destruct"));
 		info.SetString("attack odds",
-			Format::Percentage(odds, 1));
+			Format::Percentage(odds, 1, false));
 		info.SetString("attack casualties",
-			Format::Decimal(attackOdds.AttackerCasualties(crew, vCrew), 1));
+			Format::Number(attackOdds.AttackerCasualties(crew, vCrew), 1, false));
 		info.SetString("defense odds",
-			Format::Percentage(1. - defenseOdds.Odds(vCrew, crew), 1));
+			Format::Percentage(1. - defenseOdds.Odds(vCrew, crew), 1, false));
 		info.SetString("defense casualties",
-			Format::Decimal(defenseOdds.DefenderCasualties(vCrew, crew), 1));
+			Format::Number(defenseOdds.DefenderCasualties(vCrew, crew), 1, false));
 	}
 
 	const Interface *boarding = GameData::Interfaces().Get("boarding");

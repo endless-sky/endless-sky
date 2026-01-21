@@ -275,38 +275,24 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 		CHECK( Format::Number(9223372036854775807.) == "9.22e+18" ); // Maximum and minimum values of 64-bit integers
 		CHECK( Format::Number(-9223372036854775808.) == "-9.22e+18" );
 	}
-}
+	SECTION( "Fixed number of decimal places" ) {
+		CHECK( Format::Number(256., 0) == "256" );
+		CHECK( Format::Number(466.1948, 0) == "466" );
+		CHECK( Format::Number(107.093, 0) == "107" );
+		CHECK( Format::Number(100.1, 0) == "100" );
+		CHECK( Format::Number(-761.1, 0) == "-761" );
 
-TEST_CASE( "Format::Decimal", "[Format][Decimal]") {
-	SECTION( "0 decimal places" ) {
-		CHECK( Format::Decimal(0, 0) == "0" );
-		CHECK( Format::Decimal(-0, 0) == "0" );
-		CHECK( Format::Decimal(1, 0) == "1" );
-		CHECK( Format::Decimal(-1, 0) == "-1" );
-		CHECK( Format::Decimal(1.5, 0) == "1" );
-		CHECK( Format::Decimal(-1.5, 0) == "-1" );
-		CHECK( Format::Decimal(1234.5678, 0) == "1234" );
-		CHECK( Format::Decimal(-1234.5678, 0) == "-1234" );
-	}
-	SECTION( "1 decimal place" ) {
-		CHECK( Format::Decimal(0, 1) == "0.0" );
-		CHECK( Format::Decimal(-0, 1) == "0.0" );
-		CHECK( Format::Decimal(1, 1) == "1.0" );
-		CHECK( Format::Decimal(-1, 1) == "1.0" );
-		CHECK( Format::Decimal(1.5, 1) == "1.5" );
-		CHECK( Format::Decimal(-1.5, 1) == "1.5" );
-		CHECK( Format::Decimal(1234.5678, 0) == "1234.5" );
-		CHECK( Format::Decimal(-1234.5678, 0) == "1234.5" );
-	}
-	SECTION( "3 decimal place" ) {
-		CHECK( Format::Decimal(0, 1) == "0.000" );
-		CHECK( Format::Decimal(-0, 1) == "0.000" );
-		CHECK( Format::Decimal(1, 1) == "1.000" );
-		CHECK( Format::Decimal(-1, 1) == "1.000" );
-		CHECK( Format::Decimal(1.5, 1) == "1.500" );
-		CHECK( Format::Decimal(-1.5, 1) == "1.500" );
-		CHECK( Format::Decimal(1234.5678, 0) == "1234.567" );
-		CHECK( Format::Decimal(-1234.5678, 0) == "1234.567" );
+		CHECK( Format::Number(256., 1) == "256" );
+		CHECK( Format::Number(466.1948, 1) == "466.1" );
+		CHECK( Format::Number(107.093, 1) == "107" );
+		CHECK( Format::Number(100.1, 1) == "100.1" );
+		CHECK( Format::Number(-761.1, 1) == "-761.1" );
+
+		CHECK( Format::Number(256., 1, false) == "256.0" );
+		CHECK( Format::Number(466.1948, 1, false) == "466.1" );
+		CHECK( Format::Number(107.093, 1, false) == "107.0" );
+		CHECK( Format::Number(100.1, 1, false) == "100.1" );
+		CHECK( Format::Number(-761.1, 1, false) == "-761.1" );
 	}
 }
 
@@ -320,26 +306,51 @@ TEST_CASE( "Format::Percentage", "[Format][Percentage]") {
 		CHECK( Format::Percentage(-1.5, 0) == "-150%" );
 		CHECK( Format::Percentage(1234.5678, 0) == "123456%" );
 		CHECK( Format::Percentage(-1234.5678, 0) == "-123456%" );
+		CHECK( Format::Percentage(1.000005, 0) == "100%" );
 	}
-	SECTION( "1 decimal place" ) {
-		CHECK( Format::Percentage(0, 1) == "0.0%" );
-		CHECK( Format::Percentage(-0, 1) == "0.0%" );
-		CHECK( Format::Percentage(1, 1) == "100.0%" );
-		CHECK( Format::Percentage(-1, 1) == "-100.0%" );
-		CHECK( Format::Percentage(1.5, 1) == "150.0%" );
-		CHECK( Format::Percentage(-1.5, 1) == "-150.0%" );
-		CHECK( Format::Percentage(1234.5678, 1) == "123456.7%" );
-		CHECK( Format::Percentage(-1234.5678, 1) == "-123456.7%" );
+	SECTION( "1 decimal place, trim trailing zeros" ) {
+		CHECK( Format::Percentage(0, 1) == "0%" );
+		CHECK( Format::Percentage(-0, 1) == "0%" );
+		CHECK( Format::Percentage(1, 1) == "100%" );
+		CHECK( Format::Percentage(-1, 1) == "-100%" );
+		CHECK( Format::Percentage(1.5, 1) == "150%" );
+		CHECK( Format::Percentage(-1.5, 1) == "-150%" );
+		CHECK( Format::Percentage(1234.5678, 1) == "123,456.7%" );
+		CHECK( Format::Percentage(-1234.5678, 1) == "-123,456.7%" );
+		CHECK( Format::Percentage(1.000005, 0) == "100%" );
 	}
-	SECTION( "3 decimal place" ) {
-		CHECK( Format::Percentage(0, 3) == "0.000%" );
-		CHECK( Format::Percentage(-0, 3) == "0.000%" );
-		CHECK( Format::Percentage(1, 3) == "100.000%" );
-		CHECK( Format::Percentage(-1, 3) == "100.000%" );
-		CHECK( Format::Percentage(1.5, 3) == "150.000%" );
-		CHECK( Format::Percentage(-1.5, 3) == "150.000%" );
-		CHECK( Format::Percentage(1234.5678, 3) == "123456.780%" );
-		CHECK( Format::Percentage(-1234.5678, 3) == "123456.780%" );
+	SECTION( "1 decimal place, don't trim trailing zeros" ) {
+		CHECK( Format::Percentage(0, 1, false) == "0.0%" );
+		CHECK( Format::Percentage(-0, 1, false) == "0.0%" );
+		CHECK( Format::Percentage(1, 1, false) == "100.0%" );
+		CHECK( Format::Percentage(-1, 1, false) == "-100.0%" );
+		CHECK( Format::Percentage(1.5, 1, false) == "150.0%" );
+		CHECK( Format::Percentage(-1.5, 1, false) == "-150.0%" );
+		CHECK( Format::Percentage(1234.5678, 1, false) == "123,456.7%" );
+		CHECK( Format::Percentage(-1234.5678, 1, false) == "-123,456.7%" );
+		CHECK( Format::Percentage(1.000005, 0) == "100.0%" );
+	}
+	SECTION( "3 decimal places, trim trailing zeros" ) {
+		CHECK( Format::Percentage(0, 3) == "0%" );
+		CHECK( Format::Percentage(-0, 3) == "0%" );
+		CHECK( Format::Percentage(1, 3) == "100%" );
+		CHECK( Format::Percentage(-1, 3) == "100%" );
+		CHECK( Format::Percentage(1.5, 3) == "150%" );
+		CHECK( Format::Percentage(-1.5, 3) == "150%" );
+		CHECK( Format::Percentage(1234.5678, 3) == "123,456.78%" );
+		CHECK( Format::Percentage(-1234.5678, 3) == "123,456.78%" );
+		CHECK( Format::Percentage(1.000005, 0) == "100%" );
+	}
+	SECTION( "3 decimal places, don't trim trailing zeros" ) {
+		CHECK( Format::Percentage(0, 3, false) == "0.000%" );
+		CHECK( Format::Percentage(-0, 3, false) == "0.000%" );
+		CHECK( Format::Percentage(1, 3, false) == "100.000%" );
+		CHECK( Format::Percentage(-1, 3, false) == "100.000%" );
+		CHECK( Format::Percentage(1.5, 3, false) == "150.000%" );
+		CHECK( Format::Percentage(-1.5, 3, false) == "150.000%" );
+		CHECK( Format::Percentage(1234.5678, 3, false) == "123,456.780%" );
+		CHECK( Format::Percentage(-1234.5678, 3, false) == "123,456.780%" );
+		CHECK( Format::Percentage(1.000005, 0) == "100.000%" );
 	}
 }
 

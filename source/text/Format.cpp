@@ -141,6 +141,33 @@ namespace {
 		reverse(result.begin(), result.end());
 	}
 
+	// Format the decimal places of a double value, up to a given number of decimal places, and with
+	// trailing zeros removed if desired. The given double is expected to already be the fractional
+	// part of a number (i.e. something less than 0).
+	void FormatDecimals(double fraction, int places, bool trimTrailingZeros, string &result)
+	{
+		if(!places || (!fraction && trimTrailingZeros))
+			return;
+		double integer;
+		result += ".";
+		// Account for floating-point representation error by adding EPS after multiplying.
+		constexpr double EPS = 0.0000000001;
+		while(places--)
+		{
+			fraction = modf(EPS + fraction * 10., &integer);
+			result += to_string(static_cast<int>(integer));
+		}
+		// Trim trailing zeros if desired.
+		if(trimTrailingZeros)
+		{
+			while(result.ends_with("0"))
+				result.pop_back();
+			// Pop the decimal separator if that's all that's left.
+			if(result.ends_with("."))
+				result.pop_back();
+		}
+	}
+
 	string StringSubstituter(const string &source,
 			function<const string *(const string &)> SubstitutionFor)
 	{
@@ -520,17 +547,24 @@ string Format::AmmoCount(int64_t value)
 
 
 
-// Convert the given number to a string, with a reasonable number of decimal
-// places. (This is primarily for displaying ship and outfit attributes.)
-string Format::Number(double value)
+string Format::Number(double value, optional<int> decimalPlaces, bool trimTrailingZeros)
 {
 	if(!value)
-		return "0";
-	else if(std::isnan(value))
+	{
+		string result = "0";
+		if(decimalPlaces.has_value())
+		{
+			result += ".";
+			for(int i = 0; i < decimalPlaces.value(); ++i)
+				result += "0";
+		}
+		return result;
+	}
+	if(std::isnan(value))
 		return "???";
-	else if(std::isinf(value))
+	if(std::isinf(value))
 		return value > 0. ? "infinity" : "-infinity";
-	else if(fabs(value) > SCIENTIFIC_THRESHOLD)
+	if(fabs(value) > SCIENTIFIC_THRESHOLD)
 	{
 		// Use scientific notation for excessively large numbers.
 		ostringstream out;
@@ -543,34 +577,16 @@ string Format::Number(double value)
 	bool isNegative = (value < 0.);
 	value = fabs(value);
 
-	// Only show decimal places for numbers between +/-10'000.
 	double decimal = modf(value, &value);
-	if(decimal && value < 10000)
+	// If no explicit decimal places were given, then only show at least one decimal place for
+	// numbers with a magnitude less than 10,000. Values less than 1,000 may have two decimal places.
+	int places = decimalPlaces.value_or(value >= 10000 ? 0 : (value >= 1000 ? 1 : 2));
+	if(places)
 	{
-		double tenths = 0.;
-		// Account for floating-point representation error by adding EPS after multiplying.
-		constexpr double EPS = 0.0000000001;
-		int hundredths = static_cast<int>(EPS + 10. * modf(decimal * 10., &tenths));
-		if(hundredths > 9)
-		{
-			hundredths = 0;
-			++tenths;
-		}
-		if(tenths >= 10. - EPS)
-		{
-			++value;
-			tenths = hundredths = 0;
-		}
-
-		// Values up to 1000 may have two decimal places.
-		bool two = value < 1000 && hundredths;
-		if(two)
-			result += static_cast<char>('0' + hundredths);
-		if(two || tenths)
-		{
-			result += static_cast<char>('0' + tenths);
-			result += '.';
-		}
+		FormatDecimals(decimal, places, trimTrailingZeros, result);
+		// FormatInteger expects the results string to be given in reverse order,
+		// but FormatDecimals provides it in forward order.
+		ranges::reverse(result);
 	}
 
 	// Convert the number to a string, adding commas if needed.
@@ -613,29 +629,9 @@ string Format::Number(int64_t value)
 
 
 
-// Format the given value as a number with exactly the given number of
-// decimal places (even if they are all 0).
-string Format::Decimal(double value, int places)
+std::string Format::Percentage(double value, int places, bool trimTrailingZeros)
 {
-	double integer;
-	double fraction = fabs(modf(value, &integer));
-
-	string result = to_string(static_cast<int>(integer));
-	if(places)
-		result += ".";
-	while(places--)
-	{
-		fraction = modf(fraction * 10., &integer);
-		result += ('0' + static_cast<int>(integer));
-	}
-	return result;
-}
-
-
-
-std::string Format::Percentage(double value, int places)
-{
-	return Decimal(100. * value, places) + "%";
+	return Number(100. * value, places, trimTrailingZeros) + "%";
 }
 
 

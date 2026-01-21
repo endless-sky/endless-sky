@@ -683,9 +683,9 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		// Format the attraction and deterrence levels with tens places, so it
 		// is clear which is higher even if they round to the same level.
 		table.DrawTruncatedPair("cargo: " + attractionRating, dim,
-			"(+" + Format::Decimal(attractionLevel, 1) + ")", dim, Truncate::MIDDLE, false);
+			"(+" + Format::Number(attractionLevel, 1, false) + ")", dim, Truncate::MIDDLE, false);
 		table.DrawTruncatedPair("fleet: " + deterrenceRating, dim,
-			"(-" + Format::Decimal(deterrenceLevel, 1) + ")", dim, Truncate::MIDDLE, false);
+			"(-" + Format::Number(deterrenceLevel, 1, false) + ")", dim, Truncate::MIDDLE, false);
 	}
 	// Other special information:
 	vector<pair<int64_t, string>> salary;
