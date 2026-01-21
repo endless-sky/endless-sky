@@ -650,7 +650,7 @@ string Format::Number(int64_t value)
 
 
 
-std::string Format::Percentage(double value, int places, bool trimTrailingZeros)
+string Format::Percentage(double value, int places, bool trimTrailingZeros)
 {
 	return Number(100. * value, places, trimTrailingZeros) + "%";
 }
