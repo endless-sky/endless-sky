@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 
 #include "Angle.h"
+#include "Command.h"
 #include "DataNode.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
@@ -23,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
+#include "InfoTag.h"
 #include "text/Layout.h"
 #include "shader/LineShader.h"
 #include "shader/OutlineShader.h"
@@ -112,6 +114,11 @@ void Interface::Load(const DataNode &node)
 			else
 				str.clear();
 		}
+		else if(key == "include" && child.Size() == 2)
+		{
+			const Interface *other = GameData::Interfaces().Get(child.Token(1));
+			includes.push_back(other);
+		}
 		else
 		{
 			// Check if this node specifies a known element type.
@@ -132,6 +139,8 @@ void Interface::Load(const DataNode &node)
 					child.PrintTrace("\"line\" is deprecated, use \"fill\" instead:");
 				elements.push_back(make_unique<FillElement>(child, anchor));
 			}
+			else if(key == "infotag")
+				elements.push_back(make_unique<InfoTagElement>(child, anchor));
 			else
 			{
 				child.PrintTrace("Skipping unrecognized element:");
@@ -149,6 +158,9 @@ void Interface::Load(const DataNode &node)
 // Draw this interface.
 void Interface::Draw(const Information &info, Panel *panel) const
 {
+	for(const Interface *other : includes)
+		other->Draw(info, panel);
+
 	for(const unique_ptr<Element> &element : elements)
 		element->Draw(info, panel);
 }
@@ -240,7 +252,6 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 	// A location can be specified as:
 	// center (+ dimensions):
 	bool hasCenter = false;
-	Point dimensions;
 
 	// from (+ dimensions):
 	Point fromPoint;
@@ -306,6 +317,8 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 			// Add this much padding when aligning the object within its bounding box.
 			padding = Point(child.Value(1), child.Value(2));
 		}
+		else if(key == "pad" && child.Size() == 2)
+			padding = Point(child.Value(1), child.Value(1));
 		else if(!ParseLine(child))
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -930,4 +943,214 @@ void Interface::FillElement::Draw(const Rectangle &rect, const Information &info
 	if(!from.Get() && !to.Get())
 		return;
 	FillShader::Fill(rect, *color);
+}
+
+
+
+// Members of the InfoTagElement class:
+
+// Constructor.
+Interface::InfoTagElement::InfoTagElement(const DataNode &node, const Point &globalAnchor)
+{
+	// This function will call ParseLine() for any line it does not recognize.
+	Load(node, globalAnchor);
+}
+
+
+
+bool Interface::InfoTagElement::ParseEar(const DataNode &node)
+{
+	// border, with width and/or color underneath it as child nodes
+	for(const DataNode &child : node)
+	{
+		const string &key2 = child.Token(0);
+		bool hasValue2 = child.Size() >= 2;
+
+		// length <length>
+		if(key2 == "length" && hasValue2)
+			earLength = child.Value(1);
+
+		// width <width>
+		else if(key2 == "width" && hasValue2)
+			earWidth = child.Value(1);
+
+		// facing <facing>
+		else if(key2 == "facing" && hasValue2)
+		{
+			if(child.Token(1) == "north")
+				facing = InfoTag::Direction::NORTH;
+			else if(child.Token(1) == "south")
+				facing = InfoTag::Direction::SOUTH;
+			else if(child.Token(1) == "east")
+				facing = InfoTag::Direction::EAST;
+			else if(child.Token(1) == "west")
+				facing = InfoTag::Direction::WEST;
+			else
+				return false;
+		}
+
+		// affinity <affinity>
+		else if(key2 == "affinity" && hasValue2)
+		{
+			if(child.Token(1) == "ccw")
+				affinity = InfoTag::Affinity::CCW;
+			else if(child.Token(1) == "center")
+				affinity = InfoTag::Affinity::CENTER;
+			else if(child.Token(1) == "cw")
+				affinity = InfoTag::Affinity::CW;
+			else
+				return false;
+		}
+		else
+			return false;
+	}
+	return true;
+}
+
+
+
+// Parse the given data line: one that is not recognized by Element
+// itself. This returns false if it does not recognize the line, either.
+bool Interface::InfoTagElement::ParseLine(const DataNode &node)
+{
+	const string &key = node.Token(0);
+	bool hasValue = node.Size() >= 2;
+
+	// earlength <earLength>
+	if(key == "ear" && node.HasChildren())
+	{
+		if(!ParseEar(node))
+			return false;
+	}
+
+	// border <border color> <width>
+	else if(key == "border")
+	{
+		// border <color> <width>
+		if(node.Size() == 3)
+		{
+			borderColor = GameData::Colors().Get(node.Token(1));
+			borderColor2 = borderColor;
+			borderWidth = node.Value(2);
+		}
+		// border <color> <color> <width>
+		if(node.Size() == 4)
+		{
+			borderColor = GameData::Colors().Get(node.Token(1));
+			borderColor2 = GameData::Colors().Get(node.Token(2));
+			borderWidth = node.Value(3);
+		}
+	}
+
+	// fill <fill color>
+	else if(key == "fill" && hasValue)
+	{
+		fillColor = GameData::Colors().Get(node.Token(1));
+	}
+
+	// text <text strings>
+	else if(key == "text")
+	{
+		text.clear();
+		for(const DataNode &child : node)
+		{
+			if(!text.empty())
+			{
+				text += '\n';
+				if(child.Token(0)[0] != '\t')
+					text += '\t';
+			}
+			text += child.Token(0);
+		}
+	}
+
+	// color <text color>
+	else if(key == "color" && hasValue)
+	{
+		fontColor = GameData::Colors().Get(node.Token(1));
+	}
+
+
+	// color <text color>
+	else if(key == "textwidth" && hasValue)
+	{
+		textWidth = node.Value(1);
+	}
+
+	// shrink, default is no shrink, if flag is present, then shrink
+	else if(key == "shrink" && !hasValue)
+	{
+		shrink = true;
+	}
+
+	else if(key == "alignment")
+	{
+		const string &value = node.Token(1);
+		if(value == "left")
+			textAlignment = Alignment::LEFT;
+		else if(value == "center")
+			textAlignment = Alignment::CENTER;
+		else if(value == "right")
+			textAlignment = Alignment::RIGHT;
+		else if(value == "justified")
+			textAlignment = Alignment::JUSTIFIED;
+		else
+			return false;
+	}
+
+
+	else
+		return false;
+
+	return true;
+}
+
+
+
+// Draw this element in the given rectangle.
+void Interface::InfoTagElement::Draw(const Rectangle &rect, const Information &info, int state) const
+{
+	// Avoid crashes for malformed interface elements that are not fully loaded.
+	if(text.empty() || !fillColor || !fontColor || !borderColor)
+		return;
+
+	int width = max(textWidth, static_cast<int>(max(rect.Width(), dimensions.Length())));
+	if(width == 0)
+	{
+		width = 1000;
+	}
+
+	// string text2 = Command::ReplaceNamesWithKeys(text);
+
+	InfoTag infoTag = InfoTag();
+
+	if(affinity != InfoTag::Affinity::NONE && facing != InfoTag::Direction::NONE)
+		infoTag.InitShapeAndPlacement(
+			to.Get(),
+			facing,
+			affinity,
+			text,
+			textAlignment,
+			width,
+			shrink,
+			earLength
+			);
+	else
+		infoTag.InitShapeAndPlacement(
+			from.Get(),
+			to.Get(),
+			text,
+			textAlignment,
+			width,
+			shrink,
+			earWidth
+			);
+	infoTag.InitBorderAndFill(
+		fillColor,
+		fontColor,
+		borderColor,
+		borderColor2,
+		borderWidth
+		);
+	infoTag.Draw();
 }
