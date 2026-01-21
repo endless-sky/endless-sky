@@ -677,7 +677,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
 		table.Draw("piracy threat:", bright);
-		table.Draw(to_string(lround(100 * prob)) + "%", dim);
+		table.Draw(Format::Percentage(prob, 0), dim);
 		table.DrawGap(5);
 
 		// Format the attraction and deterrence levels with tens places, so it
@@ -800,11 +800,9 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		const System *system = ship.GetSystem();
 		table.Draw(system ? (player.KnowsName(*system) ? system->DisplayName() : "???") : "");
 
-		string shields = to_string(static_cast<int>(100. * max(0., ship.Shields()))) + "%";
-		table.Draw(shields);
+		table.Draw(Format::Percentage(max(0., ship.Shields()), 0));
 
-		string hull = to_string(static_cast<int>(100. * max(0., ship.Hull()))) + "%";
-		table.Draw(hull);
+		table.Draw(Format::Percentage(max(0., ship.Hull()), 0));
 
 		string fuel = to_string(static_cast<int>(
 			ship.Attributes().Get("fuel capacity") * ship.Fuel()));

@@ -631,6 +631,13 @@ string Format::Decimal(double value, int places)
 
 
 
+std::string Format::Percentage(double value, int places)
+{
+	return Decimal(100. * value, places) + "%";
+}
+
+
+
 string Format::WordForm(int64_t value, bool startOfSentence)
 {
 	ostringstream o;

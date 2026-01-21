@@ -277,42 +277,108 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 	}
 }
 
-TEST_CASE( "Format::Credits", "[Format][Credits]") {
-	SECTION( "1 credit" ) {
-		CHECK( Format::Credits(1) == "1" );
+TEST_CASE( "Format::Decimal", "[Format][Decimal]") {
+	SECTION( "0 decimal places" ) {
+		CHECK( Format::Decimal(0, 0) == "0" );
+		CHECK( Format::Decimal(-0, 0) == "0" );
+		CHECK( Format::Decimal(1, 0) == "1" );
+		CHECK( Format::Decimal(-1, 0) == "-1" );
+		CHECK( Format::Decimal(1.5, 0) == "1" );
+		CHECK( Format::Decimal(-1.5, 0) == "-1" );
+		CHECK( Format::Decimal(1234.5678, 0) == "1234" );
+		CHECK( Format::Decimal(-1234.5678, 0) == "-1234" );
 	}
-	SECTION( "0 credits" ) {
-		CHECK( Format::Credits(0) == "0" );
+	SECTION( "1 decimal place" ) {
+		CHECK( Format::Decimal(0, 1) == "0.0" );
+		CHECK( Format::Decimal(-0, 1) == "0.0" );
+		CHECK( Format::Decimal(1, 1) == "1.0" );
+		CHECK( Format::Decimal(-1, 1) == "1.0" );
+		CHECK( Format::Decimal(1.5, 1) == "1.5" );
+		CHECK( Format::Decimal(-1.5, 1) == "1.5" );
+		CHECK( Format::Decimal(1234.5678, 0) == "1234.5" );
+		CHECK( Format::Decimal(-1234.5678, 0) == "1234.5" );
 	}
-	SECTION( "Positive credits" ) {
-		CHECK( Format::Credits(2) == "2" );
-		CHECK( Format::Credits(1000) == "1,000" );
-		CHECK( Format::Credits(2200) == "2,200" );
-		CHECK( Format::Credits(2200) == "2,200" );
-		CHECK( Format::Credits(1000000) == "1,000,000" );
-		CHECK( Format::Credits(4361000) == "4.361M" );
-		CHECK( Format::Credits(1000000000) == "1,000.000M" );
-		CHECK( Format::Credits(4361000000) == "4.361B" );
-		CHECK( Format::Credits(1000000000000) == "1,000.000B" );
-		CHECK( Format::Credits(4361000000000) == "4.361T" );
-		CHECK( Format::Credits(1000000000000000ll) == "1,000.000T");
-		CHECK( Format::Credits(1000000000000001ll) == "1e+15");
-		CHECK( Format::Credits(4361000000000000ll) == "4.36e+15");
+	SECTION( "3 decimal place" ) {
+		CHECK( Format::Decimal(0, 1) == "0.000" );
+		CHECK( Format::Decimal(-0, 1) == "0.000" );
+		CHECK( Format::Decimal(1, 1) == "1.000" );
+		CHECK( Format::Decimal(-1, 1) == "1.000" );
+		CHECK( Format::Decimal(1.5, 1) == "1.500" );
+		CHECK( Format::Decimal(-1.5, 1) == "1.500" );
+		CHECK( Format::Decimal(1234.5678, 0) == "1234.567" );
+		CHECK( Format::Decimal(-1234.5678, 0) == "1234.567" );
 	}
-	SECTION( "Negative credits" ) {
-		CHECK( Format::Credits(-2) == "-2" );
-		CHECK( Format::Credits(-1000) == "-1,000" );
-		CHECK( Format::Credits(-2200) == "-2,200" );
-		CHECK( Format::Credits(-2200) == "-2,200" );
-		CHECK( Format::Credits(-1000000) == "-1,000,000" );
-		CHECK( Format::Credits(-4361000) == "-4.361M" );
-		CHECK( Format::Credits(-1000000000) == "-1,000.000M" );
-		CHECK( Format::Credits(-4361000000) == "-4.361B" );
-		CHECK( Format::Credits(-1000000000000) == "-1,000.000B" );
-		CHECK( Format::Credits(-4361000000000) == "-4.361T" );
-		CHECK( Format::Credits(-1000000000000000ll) == "-1,000.000T");
-		CHECK( Format::Credits(-1000000000000001ll) == "-1e+15");
-		CHECK( Format::Credits(-4361000000000000ll) == "-4.36e+15");
+}
+
+TEST_CASE( "Format::Percentage", "[Format][Percentage]") {
+	SECTION( "0 decimal places" ) {
+		CHECK( Format::Percentage(0, 0) == "0%" );
+		CHECK( Format::Percentage(-0, 0) == "0%" );
+		CHECK( Format::Percentage(1, 0) == "100%" );
+		CHECK( Format::Percentage(-1, 0) == "-100%" );
+		CHECK( Format::Percentage(1.5, 0) == "150%" );
+		CHECK( Format::Percentage(-1.5, 0) == "-150%" );
+		CHECK( Format::Percentage(1234.5678, 0) == "123456%" );
+		CHECK( Format::Percentage(-1234.5678, 0) == "-123456%" );
+	}
+	SECTION( "1 decimal place" ) {
+		CHECK( Format::Percentage(0, 1) == "0.0%" );
+		CHECK( Format::Percentage(-0, 1) == "0.0%" );
+		CHECK( Format::Percentage(1, 1) == "100.0%" );
+		CHECK( Format::Percentage(-1, 1) == "-100.0%" );
+		CHECK( Format::Percentage(1.5, 1) == "150.0%" );
+		CHECK( Format::Percentage(-1.5, 1) == "-150.0%" );
+		CHECK( Format::Percentage(1234.5678, 1) == "123456.7%" );
+		CHECK( Format::Percentage(-1234.5678, 1) == "-123456.7%" );
+	}
+	SECTION( "3 decimal place" ) {
+		CHECK( Format::Percentage(0, 3) == "0.000%" );
+		CHECK( Format::Percentage(-0, 3) == "0.000%" );
+		CHECK( Format::Percentage(1, 3) == "100.000%" );
+		CHECK( Format::Percentage(-1, 3) == "100.000%" );
+		CHECK( Format::Percentage(1.5, 3) == "150.000%" );
+		CHECK( Format::Percentage(-1.5, 3) == "150.000%" );
+		CHECK( Format::Percentage(1234.5678, 3) == "123456.780%" );
+		CHECK( Format::Percentage(-1234.5678, 3) == "123456.780%" );
+	}
+}
+
+TEST_CASE( "Format::AbbreviatedNumber", "[Format][AbbreviatedNumber]") {
+	SECTION( "1" ) {
+		CHECK( Format::AbbreviatedNumber(1) == "1" );
+	}
+	SECTION( "0" ) {
+		CHECK( Format::AbbreviatedNumber(0) == "0" );
+	}
+	SECTION( "Positive values" ) {
+		CHECK( Format::AbbreviatedNumber(2) == "2" );
+		CHECK( Format::AbbreviatedNumber(1000) == "1,000" );
+		CHECK( Format::AbbreviatedNumber(2200) == "2,200" );
+		CHECK( Format::AbbreviatedNumber(2200) == "2,200" );
+		CHECK( Format::AbbreviatedNumber(1000000) == "1,000,000" );
+		CHECK( Format::AbbreviatedNumber(4361000) == "4.361M" );
+		CHECK( Format::AbbreviatedNumber(1000000000) == "1,000.000M" );
+		CHECK( Format::AbbreviatedNumber(4361000000) == "4.361B" );
+		CHECK( Format::AbbreviatedNumber(1000000000000) == "1,000.000B" );
+		CHECK( Format::AbbreviatedNumber(4361000000000) == "4.361T" );
+		CHECK( Format::AbbreviatedNumber(1000000000000000ll) == "1,000.000T");
+		CHECK( Format::AbbreviatedNumber(1000000000000001ll) == "1e+15");
+		CHECK( Format::AbbreviatedNumber(4361000000000000ll) == "4.36e+15");
+	}
+	SECTION( "Negative values" ) {
+		CHECK( Format::AbbreviatedNumber(-2) == "-2" );
+		CHECK( Format::AbbreviatedNumber(-1000) == "-1,000" );
+		CHECK( Format::AbbreviatedNumber(-2200) == "-2,200" );
+		CHECK( Format::AbbreviatedNumber(-2200) == "-2,200" );
+		CHECK( Format::AbbreviatedNumber(-1000000) == "-1,000,000" );
+		CHECK( Format::AbbreviatedNumber(-4361000) == "-4.361M" );
+		CHECK( Format::AbbreviatedNumber(-1000000000) == "-1,000.000M" );
+		CHECK( Format::AbbreviatedNumber(-4361000000) == "-4.361B" );
+		CHECK( Format::AbbreviatedNumber(-1000000000000) == "-1,000.000B" );
+		CHECK( Format::AbbreviatedNumber(-4361000000000) == "-4.361T" );
+		CHECK( Format::AbbreviatedNumber(-1000000000000000ll) == "-1,000.000T");
+		CHECK( Format::AbbreviatedNumber(-1000000000000001ll) == "-1e+15");
+		CHECK( Format::AbbreviatedNumber(-4361000000000000ll) == "-4.36e+15");
 	}
 }
 

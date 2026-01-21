@@ -63,13 +63,19 @@ public:
 	static std::string AmmoCount(int64_t value);
 	// Convert the given number to a string, with at most one decimal place.
 	// This is primarily for displaying ship and outfit attributes.
+	// Adds thousands separators.
 	static std::string Number(double value);
 	static std::string Number(unsigned value);
 	static std::string Number(int value);
 	static std::string Number(int64_t value);
 	// Format the given value as a number with exactly the given number of
 	// decimal places (even if they are all 0).
+	// Does not add thousands separators.
 	static std::string Decimal(double value, int places);
+	// Format the given value as a percentage, with an optional additional number of
+	// decimal places. An input value of 1 will be formatted as 100%.
+	// Does not add thousands separators.
+	static std::string Percentage(double value, int places);
 	// Convert numbers to word forms. Capitalize the first letter if at the start of a sentence.
 	static std::string WordForm(int64_t value, bool startOfSentence = false);
 	// Conditionally convert numbers to word forms, based on the Chicago Manual of Style.

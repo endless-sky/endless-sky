@@ -213,11 +213,11 @@ void BoardingPanel::Draw()
 		if(!isCapturing)
 			odds *= (1. - victim->Attributes().Get("self destruct"));
 		info.SetString("attack odds",
-			Format::Decimal(100. * odds, 1) + "%");
+			Format::Percentage(odds, 1));
 		info.SetString("attack casualties",
 			Format::Decimal(attackOdds.AttackerCasualties(crew, vCrew), 1));
 		info.SetString("defense odds",
-			Format::Decimal(100. * (1. - defenseOdds.Odds(vCrew, crew)), 1) + "%");
+			Format::Percentage(1. - defenseOdds.Odds(vCrew, crew), 1));
 		info.SetString("defense casualties",
 			Format::Decimal(defenseOdds.DefenderCasualties(vCrew, crew), 1));
 	}
