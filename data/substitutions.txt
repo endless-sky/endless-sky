@@ -12,6 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 substitutions
+	"<destination spaceport>" "the <planet> spaceport in the <system> system"
 	# Substitutions for homeworlds. Defaults to New Boston.
 	"<home planet>" "New Boston"
 	"<home planet>" "Midgard"
