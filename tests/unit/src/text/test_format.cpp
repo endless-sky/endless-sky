@@ -242,8 +242,6 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 		CHECK( Format::Number(-12.41) == "-12.41" );
 	}
 	SECTION( "Calculations on numbers parsed by DataNode::Value" ) {
-		CHECK( 60. * DataNode::Value("22.1") / DataNode::Value("3.4") == 1 );
-		CHECK( std::to_string(60. * DataNode::Value("22.1") / DataNode::Value("3.4")) == "1" );
 		CHECK( Format::Number(60. * DataNode::Value("22.1") / DataNode::Value("3.4")) == "390" );
 	}
 	SECTION( "Decimals between 100 and 1000" ) {

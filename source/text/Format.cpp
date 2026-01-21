@@ -144,19 +144,45 @@ namespace {
 	// Format the decimal places of a double value, up to a given number of decimal places, and with
 	// trailing zeros removed if desired. The given double is expected to already be the fractional
 	// part of a number (i.e. something less than 0).
-	void FormatDecimals(double fraction, int places, bool trimTrailingZeros, string &result)
+	void FormatDecimals(double &value, double fraction, int places, bool trimTrailingZeros, string &result)
 	{
 		if(!places || (!fraction && trimTrailingZeros))
 			return;
-		double integer;
-		result += ".";
+		// Keep track of the digit in each place.
+		double digit;
+		vector<int> digits(places);
 		// Account for floating-point representation error by adding EPS after multiplying.
 		constexpr double EPS = 0.0000000001;
-		while(places--)
+		for(int i = 0; i < places; ++i)
 		{
-			fraction = modf(EPS + fraction * 10., &integer);
-			result += to_string(static_cast<int>(integer));
+			fraction = EPS + modf(fraction * 10., &digit);
+			// If this digit is about equal to 10, then carry the 1 to the digit prior to this one.
+			if(digit >= 10 - EPS)
+			{
+				for(int j = i - 1; j >= -1; --j)
+				{
+					// If this digit is the 10ths place, then 1 needs to be added to the value
+					// preceding the decimal place.
+					if(j == -1)
+						++value;
+					else
+					{
+						++digits[j];
+						// Break out if the preceding digit is still a single digit value.
+						// Otherwise, set it to 0 and continue carrying the 1.
+						if(digits[j] < 10)
+							break;
+						digits[j] = 0;
+					}
+				}
+				digit = 0;
+			}
+			digits[i] = digit;
 		}
+		// Append the digits to the result.
+		result += ".";
+		for(int i = 0; i < places; ++i)
+			result += to_string(digits[i]);
 		// Trim trailing zeros if desired.
 		if(trimTrailingZeros)
 		{
@@ -552,7 +578,7 @@ string Format::Number(double value, optional<int> decimalPlaces, bool trimTraili
 	if(!value)
 	{
 		string result = "0";
-		FormatDecimals(0, decimalPlaces.value_or(0), trimTrailingZeros, result);
+		FormatDecimals(value, value, decimalPlaces.value_or(0), trimTrailingZeros, result);
 		return result;
 	}
 	if(std::isnan(value))
@@ -578,7 +604,7 @@ string Format::Number(double value, optional<int> decimalPlaces, bool trimTraili
 	int places = decimalPlaces.value_or(value >= 10000 ? 0 : (value >= 1000 ? 1 : 2));
 	if(places)
 	{
-		FormatDecimals(decimal, places, trimTrailingZeros, result);
+		FormatDecimals(value, decimal, places, trimTrailingZeros, result);
 		// FormatInteger expects the results string to be given in reverse order,
 		// but FormatDecimals provides it in forward order.
 		ranges::reverse(result);
