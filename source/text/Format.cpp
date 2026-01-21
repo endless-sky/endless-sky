@@ -155,7 +155,7 @@ namespace {
 		constexpr double EPS = 0.0000000001;
 		for(int i = 0; i < places; ++i)
 		{
-			fraction = EPS + modf(fraction * 10., &digit);
+			fraction = modf(fraction * 10. + EPS, &digit);
 			// If this digit is about equal to 10, then carry the 1 to the digit prior to this one.
 			if(digit >= 10 - EPS)
 			{
