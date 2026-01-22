@@ -3483,7 +3483,7 @@ mission "Bounty Hunting (Small, Hidden)"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty (Disguised)"
-		personality heroic staying
+		personality heroic marked staying
 		system
 			distance 1 1
 		fleet "Bounty (Small)"
@@ -3511,7 +3511,7 @@ mission "Bounty Hunting (Medium, Hidden)"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty (Disguised)"
-		personality heroic staying
+		personality heroic marked staying
 		system
 			distance 1 1
 		fleet "Bounty (Medium)"
@@ -3539,7 +3539,7 @@ mission "Bounty Hunting (Big, Hidden)"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty (Disguised)"
-		personality heroic staying
+		personality heroic marked staying
 		system
 			distance 1 1
 		fleet "Bounty (Big)"
