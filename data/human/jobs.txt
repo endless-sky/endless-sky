@@ -3119,7 +3119,7 @@ mission "Bounty Hunting (Very Tiny)"
 		or
 			and
 				"combat rating" < 80
-				random < 40
+				random < 55
 			and
 				"combat rating" < 54
 				random < 50
@@ -3182,7 +3182,7 @@ mission "Bounty Hunting (Tiny)"
 		or
 			and
 				"combat rating" < 125
-				random < 40
+				random < 55
 			and
 				"combat rating" < 54
 				random < 50
@@ -3242,11 +3242,11 @@ mission "Bounty Hunting (Very Small)"
 			has "ships: Medium Warship"
 		or
 			and
-				"combat rating" < 125
-				random < 30
+				"combat rating" < 220
+				random < 45
 			and
 				"combat rating" < 80
-				random < 50
+				random < 35
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "deep" "near earth" "paradise"
@@ -3305,10 +3305,10 @@ mission "Bounty Hunting (Small)"
 		or
 			and
 				"combat rating" < 403
-				random < 25
+				random < 40
 			and
-				"combat rating" < 220
-				random < 45
+				"combat rating" < 350
+				random < 30
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "deep" "near earth" "paradise"
@@ -3338,7 +3338,7 @@ mission "Bounty Hunting (Small, Local)"
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
 			has "ships: Heavy Warship"
-		"combat rating" < 220
+		"combat rating" < 350
 		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3362,10 +3362,10 @@ mission "Bounty Hunting (Medium)"
 	to offer
 		"combat rating" > 125
 		or
-			random < 20
+			random < 30
 			and
 				"combat rating" < 650
-				random < 40
+				random < 30
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "deep" "near earth" "paradise"
@@ -3418,7 +3418,7 @@ mission "Bounty Hunting (Big)"
 	to offer
 		"combat rating" > 403
 		or
-			random < 20
+			random < 35
 			and
 				"combat rating" < 2000
 				random < 20
@@ -3753,10 +3753,10 @@ mission "Bounty Hunting (Marauder I)"
 		or
 			and
 				"combat rating" < 500
-				random < 20
+				random < 30
 			and
 				"combat rating" < 350
-				random < 40
+				random < 30
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "deep" "near earth" "paradise"
@@ -3783,8 +3783,8 @@ mission "Bounty Hunting (Marauder II)"
 		"combat rating" > 350
 		or
 			and
-				"combat rating" < 1000
-				random < 20
+				"combat rating" < 1600
+				random < 30
 			and
 				"combat rating" < 403
 				random < 20
@@ -3817,7 +3817,7 @@ mission "Bounty Hunting (Marauder III)"
 			random < 20
 			and
 				"combat rating" < 650
-				random < 10
+				random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3844,10 +3844,10 @@ mission "Bounty Hunting (Marauder IV)"
 	to offer
 		"combat rating" > 650
 		or
-			random < 15
+			random < 20
 			and
 				"combat rating" < 800
-				random < 15
+				random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "deep" "near earth" "paradise"
@@ -3874,7 +3874,7 @@ mission "Bounty Hunting (Marauder V)"
 	to offer
 		"combat rating" > 800
 		or
-			random < 15
+			random < 20
 			and
 				"combat rating" < 1000
 				random < 10
@@ -3905,10 +3905,10 @@ mission "Bounty Hunting (Marauder VI)"
 	to offer
 		"combat rating" > 1000
 		or
-			random < 15
+			random < 20
 			and
 				"combat rating" < 1300
-				random < 10
+				random < 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "deep" "near earth" "paradise"
@@ -3934,11 +3934,7 @@ mission "Bounty Hunting (Marauder VII)"
 	"apparent payment" 680000
 	to offer
 		"combat rating" > 1300
-		or
-			random < 15
-			and
-				"combat rating" < 1600
-				random < 5
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "deep" "near earth" "paradise"
@@ -3964,11 +3960,7 @@ mission "Bounty Hunting (Marauder VIII)"
 	"apparent payment" 740000
 	to offer
 		"combat rating" > 1600
-		or
-			random < 15
-			and
-				"combat rating" < 2000
-				random < 5
+		random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "deep" "near earth" "paradise"
@@ -3994,7 +3986,7 @@ mission "Bounty Hunting (Marauder IX)"
 	"apparent payment" 800000
 	to offer
 		"combat rating" > 2000
-		random < 15
+		random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "deep" "near earth" "paradise"
