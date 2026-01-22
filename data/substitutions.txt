@@ -14,6 +14,10 @@
 substitutions
 	# Substitution for home planet defaults to your start planet.
 	"<home planet>" "<start planet>"
+	"<home planet>" "Earth"
+		has "start: syndicate"
 
 	# Substitution for home system defaults to your start system.
 	"<home system>" "<start system>"
+	"<home system>" "Sol"
+		has "start: syndicate"
