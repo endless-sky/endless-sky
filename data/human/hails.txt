@@ -1541,7 +1541,7 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Have you read"
+		"Have you read" 4
 		"Have you seen"
 		"Have you heard of"
 	word
@@ -1551,19 +1551,39 @@ phrase "friendly civilian"
 		" the novel with "
 		" speculative fiction about "
 	word
-		"the psychology of the Quarg"
-		"the future evolution of the Alphas"
-		"alternative evolutions of humanity"
-		"aliens who store their memories in plants"
+		"the psychology of the Quarg" 10
+		"the future evolution of the Alphas" 10
+		"alternative evolutions of humanity" 10
+		"aliens who live and think through plants" 3
 		"a society who communicates through song"
-		"intelligent life in the oceans under ice worlds"
-		"life inside stars"
+		"intelligent life in the oceans under ice worlds" 8
+		"life inside stars" 5
 		"an automated society with long dead creators"
-		"a violent, dying race of aliens forced to live in space"
-		"aliens who communicate by whistling through their skin"
-		"an intelligent alien society that evolves by fighting each other"
-		"an intelligent semi-hivemind run by the memories of their ancestors"
-		"
+		"a violent, dying species forced to live in space"
+		"aliens who communicate by whistling through their skin" 3
+		"an intelligent alien society that evolves by fighting each other" 3
+		"an intelligent semi-hivemind run by the memories of their ancestors" 2
+		"Earth if it was dominated by intelligent insects and arachnids" 2
+		"humans giving sentience to other great apes" 5
+		"the true biology of ancient mythical creatures" 3
+		"a world gaining color"
+		"an alien alliance coming together to defeat their overlords"
+		"life made of silicon" 4
+		"Earth after humans" 6
+		"an interstellar empire hidden by dust"
+		"a hivemind with human thoughts" 2
+		"an intelligent species who inherits a graveyard"
+		"aliens made of crystals forged from the light of a magnetar" 2
+		"a group of salvagers who create art with what little they find"
+		"humans making friends with a living planet"
+		"nearly formless spacefarers caged by the vastness between stars"
+		"human advancement without hyperdrives" 4
+		"broccoli"
+	word
+		"?" 6
+		"? It's a fascinating read."
+		"? I would highly recommend giving it a read."
+		"? Smart people wrote it, I can say that much."
 
 phrase "friendly civilian"
 	word
