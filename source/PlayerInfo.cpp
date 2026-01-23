@@ -20,8 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataWriter.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "DistanceMap.h"
+#include "Endpoint.h"
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -180,7 +181,7 @@ PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const Condition
 	else
 	{
 		// Fall back onto saving the full definition if we somehow didn't find a name.
-		node.PrintTrace("Warning: Could not determine name of scheduled event.");
+		node.PrintTrace("Could not determine name of scheduled event.");
 		event = ExclusiveItem<GameEvent>(std::move(nodeEvent));
 	}
 }
@@ -540,6 +541,14 @@ void PlayerInfo::Load(const filesystem::path &path)
 
 
 
+// Reload from the same file from which the current pilot was loaded.
+void PlayerInfo::Reload()
+{
+	Load(filePath);
+}
+
+
+
 // Load the most recently saved player (if any). Returns false when no save was loaded.
 bool PlayerInfo::LoadRecent()
 {
@@ -634,6 +643,7 @@ void PlayerInfo::FinishTransaction()
 // Apply the given set of changes to the game data.
 void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 {
+	bool changedPlanets = false;
 	bool changedSystems = false;
 	for(const DataNode &change : changes)
 	{
@@ -641,9 +651,12 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		// Date nodes do not represent a change.
 		if(key == "date")
 			continue;
+		changedPlanets |= (key == "planet" || key == "wormhole");
 		changedSystems |= (key == "system" || key == "link" || key == "unlink");
 		GameData::Change(change, *this);
 	}
+	if(changedPlanets)
+		GameData::RecomputeWormholeRequirements();
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
@@ -661,6 +674,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		if(instantChanges)
 			CacheMissionInformation(true);
 	}
+	recacheJumpRoutes = instantChanges && (changedPlanets || changedSystems);
 }
 
 
@@ -701,7 +715,7 @@ void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 	// conversation, it should still appear in the player's ship list (but
 	// will be red, because it is dead). The player's escorts will scatter
 	// automatically, as they have a now-dead parent.
-	else if(response == Conversation::EXPLODE)
+	else if(response == Endpoint::EXPLODE)
 		flagship->Destroy();
 	// If it died in open combat, it is already marked destroyed.
 	else if(!flagship->IsDestroyed())
@@ -829,7 +843,6 @@ void PlayerInfo::AdvanceDate(int amount)
 			if(!mission.IsFailed())
 				mission.Do(Mission::DAILY, *this);
 		}
-
 		DoAccounting();
 	}
 	// Reset the reload counters for all your ships.
@@ -1138,7 +1151,8 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{
-					Logger::LogError("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->GivenName());
+					Logger::Log("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->GivenName(),
+						Logger::Level::WARNING);
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
 				}
 			}
@@ -1535,7 +1549,7 @@ void PlayerInfo::UpdateCargoCapacities()
 
 // Switch cargo from being stored in ships to being stored here. Also recharge
 // ships, check for mission completion, and apply fines for contraband.
-void PlayerInfo::Land(UI *ui)
+void PlayerInfo::Land(UI &ui)
 {
 	// This can only be done while landed.
 	if(!system || !planet)
@@ -1643,7 +1657,7 @@ void PlayerInfo::Land(UI *ui)
 		CreateMissions();
 	// Upon loading the game, prompt the player about any paused missions or invalid events,
 	// but if there are many do not name them all (since this would overflow the screen).
-	else if(ui)
+	else
 	{
 		if(!inactiveMissions.empty())
 		{
@@ -1659,7 +1673,7 @@ void PlayerInfo::Land(UI *ui)
 			if(mit != inactiveMissions.rend())
 				message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
 			message += "They will be reactivated when the necessary plugin is reinstalled.";
-			ui->Push(new Dialog(message));
+			ui.Push(new DialogPanel(message));
 		}
 		if(!invalidEvents.empty())
 		{
@@ -1675,7 +1689,7 @@ void PlayerInfo::Land(UI *ui)
 			if(eit != invalidEvents.rend())
 				message += " and " + to_string(distance(eit, invalidEvents.rend())) + " more.\n";
 			message += "The universe may not be in the proper state until the necessary plugin is reinstalled.";
-			ui->Push(new Dialog(message));
+			ui.Push(new DialogPanel(message));
 		}
 	}
 
@@ -1703,7 +1717,7 @@ void PlayerInfo::Land(UI *ui)
 
 // Load the cargo back into your ships. This may require selling excess, in
 // which case a message will be returned.
-bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
+bool PlayerInfo::TakeOff(UI &ui, const bool distributeCargo)
 {
 	// This can only be done while landed.
 	if(!system || !planet)
@@ -2067,9 +2081,9 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 
-bool PlayerInfo::HasAvailableEnteringMissions() const
+bool PlayerInfo::HasAvailableInflightMissions() const
 {
-	return !availableEnteringMissions.empty();
+	return !availableEnteringMissions.empty() || !availableTransitionMissions.empty();
 }
 
 
@@ -2343,7 +2357,7 @@ void PlayerInfo::UpdateMissionNPCs()
 
 
 // Accept the given job.
-void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
+void PlayerInfo::AcceptJob(const Mission &mission, UI &ui)
 {
 	for(auto it = availableJobs.begin(); it != availableJobs.end(); ++it)
 		if(&*it == &mission)
@@ -2352,7 +2366,7 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
 			it->Do(Mission::OFFER, *this);
-			it->Do(Mission::ACCEPT, *this, ui);
+			it->Do(Mission::ACCEPT, *this, &ui);
 			if(it->IsFailed())
 				RemoveMission(Mission::Trigger::FAIL, *it, ui);
 			// Might not have cargo anymore, so some jobs can be sorted to end.
@@ -2440,6 +2454,30 @@ void PlayerInfo::CreateEnteringMissions()
 
 
 
+void PlayerInfo::CreateTransitionMissions()
+{
+	availableTransitionMissions.clear();
+
+	bool hasPriorityMissions = false;
+	unsigned nonBlockingMissions = 0;
+	for(const auto &[name, mission] : GameData::Missions())
+		if(mission.IsAtLocation(Mission::TRANSITION) && mission.CanOffer(*this))
+		{
+			availableTransitionMissions.push_back(mission.Instantiate(*this));
+			if(availableTransitionMissions.back().IsFailed())
+				availableTransitionMissions.pop_back();
+			else
+			{
+				hasPriorityMissions |= missions.back().HasPriority();
+				nonBlockingMissions += missions.back().IsNonBlocking();
+			}
+		}
+
+	SortMissions(availableMissions, hasPriorityMissions, nonBlockingMissions);
+}
+
+
+
 Mission *PlayerInfo::EnteringMission()
 {
 	if(!flagship)
@@ -2452,6 +2490,24 @@ Mission *PlayerInfo::EnteringMission()
 		{
 			availableEnteringMissions.splice(availableEnteringMissions.begin(), availableEnteringMissions, it);
 			return &availableEnteringMissions.front();
+		}
+	return nullptr;
+}
+
+
+
+Mission *PlayerInfo::TransitionMission()
+{
+	if(!flagship)
+		return nullptr;
+
+	// If a mission can be offered right now, move it to the start of the list
+	// so we know what mission the callback is referring to, and return it.
+	for(auto it = availableTransitionMissions.begin(); it != availableTransitionMissions.end(); ++it)
+		if(it->HasSpace(*flagship))
+		{
+			availableTransitionMissions.splice(availableTransitionMissions.begin(), availableTransitionMissions, it);
+			return &availableTransitionMissions.front();
 		}
 	return nullptr;
 }
@@ -2488,7 +2544,7 @@ void PlayerInfo::ClearActiveInFlightMission()
 // If one of your missions cannot be offered because you do not have enough
 // space for it, and it specifies a message to be shown in that situation,
 // show that message.
-void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
+void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI &ui)
 {
 	list<Mission> &missionList = availableMissions.empty() ? availableBoardingMissions : availableMissions;
 	if(ships.empty() || missionList.empty())
@@ -2500,7 +2556,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 			string message = it.BlockedMessage(*this);
 			if(!message.empty())
 			{
-				ui->Push(new Dialog(message));
+				ui.Push(new DialogPanel(message));
 				return;
 			}
 		}
@@ -2508,9 +2564,9 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 
 
 
-void PlayerInfo::HandleBlockedEnteringMissions(UI *ui)
+void PlayerInfo::HandleBlockedInflightMissions(UI &ui)
 {
-	if(!flagship || availableEnteringMissions.empty())
+	if(!flagship || (availableEnteringMissions.empty() && availableTransitionMissions.empty()))
 		return;
 
 	for(auto it = availableEnteringMissions.begin(); it != availableEnteringMissions.end(); )
@@ -2523,7 +2579,24 @@ void PlayerInfo::HandleBlockedEnteringMissions(UI *ui)
 			it = availableEnteringMissions.erase(it);
 			if(!message.empty())
 			{
-				ui->Push(new Dialog(message));
+				ui.Push(new DialogPanel(message));
+				return;
+			}
+		}
+		else
+			++it;
+	}
+	for(auto it = availableTransitionMissions.begin(); it != availableTransitionMissions.end(); )
+	{
+		if(!it->HasSpace(*flagship))
+		{
+			string message = it->BlockedMessage(*this);
+			// Remove this mission from the list so that the MainPanel stops
+			// trying to offer it.
+			it = availableTransitionMissions.erase(it);
+			if(!message.empty())
+			{
+				ui.Push(new DialogPanel(message));
 				return;
 			}
 		}
@@ -2539,16 +2612,24 @@ void PlayerInfo::HandleBlockedEnteringMissions(UI *ui)
 // conversation ended.
 void PlayerInfo::MissionCallback(int response)
 {
-	list<Mission> &missionList = availableMissions.empty() ?
-		(availableEnteringMissions.empty() ? availableBoardingMissions : availableEnteringMissions) : availableMissions;
+	auto MissionsOffered = [&]() -> list<Mission> & {
+		if(!availableMissions.empty())
+			return availableMissions;
+		if(!availableTransitionMissions.empty())
+			return availableTransitionMissions;
+		if(!availableEnteringMissions.empty())
+			return availableEnteringMissions;
+		return availableBoardingMissions;
+	};
+	list<Mission> &missionList = MissionsOffered();
 	if(missionList.empty())
 		return;
 
 	Mission &mission = missionList.front();
 
 	// If landed, this conversation may require the player to immediately depart.
-	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
-	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
+	shouldLaunch |= (GetPlanet() && Endpoint::RequiresLaunch(response));
+	if(response == Endpoint::ACCEPT || response == Endpoint::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
 		if(planet)
@@ -2573,15 +2654,15 @@ void PlayerInfo::MissionCallback(int response)
 		// so Engine::SpawnFleets can add its ships without requiring the
 		// player to land.
 		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING)
-				|| mission.IsAtLocation(Mission::ENTERING))
+				|| mission.IsAtLocation(Mission::ENTERING) || mission.IsAtLocation(Mission::TRANSITION))
 			activeInFlightMission = &*--spliceIt;
 	}
-	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
+	else if(response == Endpoint::DECLINE || response == Endpoint::FLEE)
 	{
 		mission.Do(Mission::DECLINE, *this);
 		missionList.pop_front();
 	}
-	else if(response == Conversation::DEFER || response == Conversation::DEPART)
+	else if(response == Endpoint::DEFER || response == Endpoint::DEPART)
 	{
 		mission.Do(Mission::DEFER, *this);
 		missionList.pop_front();
@@ -2595,14 +2676,14 @@ void PlayerInfo::MissionCallback(int response)
 void PlayerInfo::BasicCallback(int response)
 {
 	// If landed, this conversation may require the player to immediately depart.
-	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
+	shouldLaunch |= (GetPlanet() && Endpoint::RequiresLaunch(response));
 }
 
 
 
 // Mark a mission for removal, either because it was completed, or it failed,
 // or because the player aborted it.
-void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui)
+void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission, UI &ui)
 {
 	for(auto it = missions.begin(); it != missions.end(); ++it)
 		if(&*it == &mission)
@@ -2613,7 +2694,7 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 			// mission's "on fail" fails the mission itself.
 			doneMissions.splice(doneMissions.end(), missions, it);
 
-			it->Do(trigger, *this, ui);
+			it->Do(trigger, *this, &ui);
 			cargo.RemoveMissionCargo(&mission);
 			for(shared_ptr<Ship> &ship : ships)
 				ship->Cargo().RemoveMissionCargo(&mission);
@@ -2637,7 +2718,7 @@ void PlayerInfo::FailMission(const Mission &mission)
 
 
 // Update mission status based on an event.
-void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
+void PlayerInfo::HandleEvent(const ShipEvent &event, UI &ui)
 {
 	// Combat rating increases when you disable an enemy ship.
 	if(event.ActorGovernment() && event.ActorGovernment()->IsPlayer())
@@ -3443,6 +3524,7 @@ void PlayerInfo::ApplyChanges()
 		it.first->SetReputation(it.second);
 	reputationChanges.clear();
 	AddChanges(dataChanges);
+	GameData::UpdateSystems();
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 
@@ -3492,7 +3574,7 @@ void PlayerInfo::ValidateLoad()
 	// If a system was not specified in the player data, use the flagship's system.
 	if(!planet && !ships.empty())
 	{
-		string warning = "Warning: no planet specified for player";
+		string warning = "No planet specified for player";
 		auto it = find_if(ships.begin(), ships.end(), [](const shared_ptr<Ship> &ship) noexcept -> bool
 			{ return ship->GetPlanet() && ship->GetPlanet()->IsValid() && !ship->IsParked() && ship->CanBeFlagship(); });
 		if(it != ships.end())
@@ -3504,7 +3586,7 @@ void PlayerInfo::ValidateLoad()
 		else
 			warning += " (no ships could supply a valid player location).";
 
-		Logger::LogError(warning);
+		Logger::Log(warning, Logger::Level::WARNING);
 	}
 
 	// As a result of external game data changes (e.g. unloading a mod) it's possible the player ended up
@@ -3512,13 +3594,15 @@ void PlayerInfo::ValidateLoad()
 	if(planet && !system)
 	{
 		system = planet->GetSystem();
-		Logger::LogError("Warning: player system was not specified. Defaulting to the specified planet's system.");
+		Logger::Log("Player system was not specified. Defaulting to the specified planet's system.",
+			Logger::Level::WARNING);
 	}
 	if(!planet || !planet->IsValid() || !system || !system->IsValid())
 	{
 		system = &startData.GetSystem();
 		planet = &startData.GetPlanet();
-		Logger::LogError("Warning: player system and/or planet was not valid. Defaulting to the starting location.");
+		Logger::Log("Player system and/or planet was not valid. Defaulting to the starting location.",
+			Logger::Level::WARNING);
 	}
 
 	// Every ship ought to have specified a valid location, but if not,
@@ -3528,16 +3612,18 @@ void PlayerInfo::ValidateLoad()
 		if(!ship->GetSystem() || !ship->GetSystem()->IsValid())
 		{
 			ship->SetSystem(system);
-			Logger::LogError("Warning: player ship \"" + ship->GivenName()
-				+ "\" did not specify a valid system. Defaulting to the player's system.");
+			Logger::Log("Player ship \"" + ship->GivenName()
+				+ "\" did not specify a valid system. Defaulting to the player's system.",
+				Logger::Level::WARNING);
 		}
 		// In-system ships that aren't on a valid planet should get moved to the player's planet
 		// (but e.g. disabled ships or those that didn't have a planet should remain in space).
 		if(ship->GetSystem() == system && ship->GetPlanet() && !ship->GetPlanet()->IsValid())
 		{
 			ship->SetPlanet(planet);
-			Logger::LogError("Warning: in-system player ship \"" + ship->GivenName()
-				+ "\" specified an invalid planet. Defaulting to the player's planet.");
+			Logger::Log("In-system player ship \"" + ship->GivenName()
+				+ "\" specified an invalid planet. Defaulting to the player's planet.",
+				Logger::Level::WARNING);
 		}
 		// Owned ships that are not in the player's system always start in flight.
 	}
@@ -3545,7 +3631,8 @@ void PlayerInfo::ValidateLoad()
 	// Validate the travel plan.
 	if(travelDestination && !travelDestination->IsValid())
 	{
-		Logger::LogError("Warning: removed invalid travel plan destination \"" + travelDestination->TrueName() + ".\"");
+		Logger::Log("Removed invalid travel plan destination \"" + travelDestination->TrueName() + "\".",
+			Logger::Level::WARNING);
 		travelDestination = nullptr;
 	}
 	if(!travelPlan.empty() && any_of(travelPlan.begin(), travelPlan.end(),
@@ -3553,7 +3640,7 @@ void PlayerInfo::ValidateLoad()
 	{
 		travelPlan.clear();
 		travelDestination = nullptr;
-		Logger::LogError("Warning: reset the travel plan due to use of invalid system(s).");
+		Logger::Log("Reset the travel plan due to use of invalid system(s).", Logger::Level::WARNING);
 	}
 
 	// For old saves, default to the first start condition (the default "Endless Sky" start).
@@ -3728,8 +3815,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!flagship)
 			return 0;
 		if(GetPlanet())
-			Logger::LogError("Warning: Use of \"flagship bays free: <category>\""
-				" condition while landed is unstable behavior.");
+			Logger::Log("Use of \"flagship bays free: <category>\" condition while landed is unstable behavior.",
+				Logger::Level::WARNING);
 		return flagship->BaysFree(ce.NameWithoutPrefix()); });
 	conditions["flagship bays"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		if(!flagship)
@@ -3741,7 +3828,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!flagship)
 			return 0;
 		if(GetPlanet())
-			Logger::LogError("Warning: Use of \"flagship bays free\" condition while landed is unstable behavior.");
+			Logger::Log("Use of \"flagship bays free\" condition while landed is unstable behavior.",
+				Logger::Level::WARNING);
 		const vector<Ship::Bay> &bays = flagship->Bays();
 		return count_if(bays.begin(), bays.end(), [](const Ship::Bay &bay) { return !bay.ship; }); });
 
@@ -4230,8 +4318,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		const System *system = GameData::Systems().Find(ce.NameWithoutPrefix());
 		if(!system)
 		{
-			Logger::LogError("Warning: System \"" + ce.NameWithoutPrefix()
-					+ "\" referred to in condition is not valid.");
+			Logger::Log("System \"" + ce.NameWithoutPrefix() + "\" referred to in condition is not valid.",
+				Logger::Level::WARNING);
 			return -1;
 		}
 		return HyperspaceTravelDays(this->GetSystem(), system);
@@ -4241,15 +4329,15 @@ void PlayerInfo::RegisterDerivedConditions()
 		const Planet *planet = GameData::Planets().Find(ce.NameWithoutPrefix());
 		if(!planet)
 		{
-			Logger::LogError("Warning: Planet \"" + ce.NameWithoutPrefix()
-					+ "\" referred to in condition is not valid.");
+			Logger::Log("Planet \"" + ce.NameWithoutPrefix() + "\" referred to in condition is not valid.",
+				Logger::Level::WARNING);
 			return -1;
 		}
 		const System *system = planet->GetSystem();
 		if(!system)
 		{
-			Logger::LogError("Warning: Planet \"" + ce.NameWithoutPrefix()
-					+ "\" referred to in condition is not in any system.");
+			Logger::Log("Planet \"" + ce.NameWithoutPrefix() + "\" referred to in condition is not in any system.",
+				Logger::Level::WARNING);
 			return -1;
 		}
 		return HyperspaceTravelDays(this->GetSystem(), system);
@@ -4365,6 +4453,7 @@ void PlayerInfo::CreateMissions()
 {
 	availableBoardingMissions.clear();
 	availableEnteringMissions.clear();
+	availableTransitionMissions.clear();
 
 	// Check for available missions.
 	bool skipJobs = planet && !planet->GetPort().HasService(Port::ServicesType::JobBoard);
@@ -4373,7 +4462,7 @@ void PlayerInfo::CreateMissions()
 	for(const auto &[name, mission] : GameData::Missions())
 	{
 		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING)
-				|| mission.IsAtLocation(Mission::ENTERING))
+				|| mission.IsAtLocation(Mission::ENTERING) || mission.IsAtLocation(Mission::TRANSITION))
 			continue;
 		if(skipJobs && mission.IsAtLocation(Mission::JOB))
 			continue;
@@ -4401,7 +4490,7 @@ void PlayerInfo::CreateMissions()
 
 // Updates each mission upon landing, to perform landing actions (Stopover,
 // Visit, Complete, Fail), and remove now-complete or now-failed missions.
-void PlayerInfo::StepMissions(UI *ui)
+void PlayerInfo::StepMissions(UI &ui)
 {
 	// Check for NPCs that have been destroyed without their destruction
 	// being registered, e.g. by self-destruct:
@@ -4434,7 +4523,7 @@ void PlayerInfo::StepMissions(UI *ui)
 		++mit;
 
 		// If this is a stopover for the mission, perform the stopover action.
-		mission.Do(Mission::STOPOVER, *this, ui);
+		mission.Do(Mission::STOPOVER, *this, &ui);
 
 		if(mission.IsFailed())
 			RemoveMission(Mission::FAIL, mission, ui);
@@ -4442,7 +4531,7 @@ void PlayerInfo::StepMissions(UI *ui)
 			RemoveMission(Mission::COMPLETE, mission, ui);
 		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
 		{
-			mission.Do(Mission::VISIT, *this, ui);
+			mission.Do(Mission::VISIT, *this, &ui);
 			if(mission.IsUnique() || !mission.IsVisible())
 				continue;
 
@@ -4463,7 +4552,7 @@ void PlayerInfo::StepMissions(UI *ui)
 		if(missionVisits > 1)
 			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
-		ui->Push(new Dialog(visitText));
+		ui.Push(new DialogPanel(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
 	// more time to see if any mission is now completed or failed due to a change
@@ -4499,10 +4588,19 @@ void PlayerInfo::StepMissions(UI *ui)
 
 
 
-void PlayerInfo::StepMissionTimers(UI *ui)
+void PlayerInfo::StepMissionTimers(UI &ui)
 {
 	for(Mission &mission : missions)
 		mission.StepTimers(*this, ui);
+}
+
+
+
+bool PlayerInfo::RecacheJumpRoutes()
+{
+	bool recache = recacheJumpRoutes;
+	recacheJumpRoutes = false;
+	return recache;
 }
 
 
@@ -4886,7 +4984,7 @@ void PlayerInfo::Save(DataWriter &out) const
 // Check (and perform) any fines incurred by planetary security. If the player
 // has dominated the planet, or was given clearance to this planet by a mission,
 // planetary security is avoided. Infiltrating implies evasion of security.
-void PlayerInfo::Fine(UI *ui)
+void PlayerInfo::Fine(UI &ui)
 {
 	const Planet *planet = GetPlanet();
 	// Dominated planets should never fine you.
@@ -4912,7 +5010,7 @@ void PlayerInfo::Fine(UI *ui)
 		if(message.second == "atrocity")
 		{
 			if(message.first)
-				ui->Push(new ConversationPanel(*this, *message.first));
+				ui.Push(new ConversationPanel(*this, *message.first));
 			else
 			{
 				message.second = "Before you can leave your ship, the " + gov->DisplayName()
@@ -4921,13 +5019,13 @@ void PlayerInfo::Fine(UI *ui)
 					+ ", we detect highly illegal material on your ship.\""
 					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
 					" Your days of traveling the stars have come to an end.";
-				ui->Push(new Dialog(message.second));
+				ui.Push(new DialogPanel(message.second));
 			}
 			// All ships belonging to the player should be removed.
 			Die();
 		}
 		else
-			ui->Push(new Dialog(message.second));
+			ui.Push(new DialogPanel(message.second));
 	}
 }
 
@@ -5066,6 +5164,30 @@ void PlayerInfo::DoAccounting()
 			}) + '.';
 		Messages::Add({message, GameData::MessageCategories().Get("force log")});
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
+
+		if(tributeIncome)
+		{
+			// Apply reputation penalties for dominated planets.
+			set<const Government *> governments;
+			for(const auto &it : tributeReceived)
+			{
+				double penalty = it.first->DailyTributePenalty();
+				if(penalty)
+				{
+					const Government *gov = it.first->GetGovernment();
+					gov->AddReputation(-penalty);
+					if(penalty > 0.)
+						governments.insert(gov);
+				}
+			}
+			if(!governments.empty())
+			{
+				message = "You have lost reputation with "
+					+ Format::List(governments, [](const Government *gov){ return "the " + gov->DisplayName(); })
+					+ " due to active tributes.";
+				Messages::Add({message, GameData::MessageCategories().Get("normal")});
+			}
+		}
 	}
 
 	// For accounting, keep track of the player's net worth. This is for

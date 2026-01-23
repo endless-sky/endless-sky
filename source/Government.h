@@ -54,6 +54,22 @@ public:
 		const Conversation *customDeathSentence = nullptr;
 	};
 
+	enum class SpecialPenalty : int {
+		NONE = 0,
+		PROVOKE,
+		ATROCITY
+	};
+
+	class PenaltyEffect {
+	public:
+		PenaltyEffect(double reputationChange = 0., SpecialPenalty specialPenalty = SpecialPenalty::NONE)
+			: reputationChange(reputationChange), specialPenalty(specialPenalty)
+		{}
+
+		double reputationChange;
+		SpecialPenalty specialPenalty;
+	};
+
 
 public:
 	// Default constructor.
@@ -80,10 +96,14 @@ public:
 	// Get the amount that your reputation changes for the given offense against the given government.
 	// The given value should be a combination of one or more ShipEvent values.
 	// Returns 0 if the Government is null.
-	double PenaltyFor(int eventType, const Government *other) const;
+	PenaltyEffect PenaltyFor(int eventType, const Government *other) const;
 	// In order to successfully bribe this government you must pay them this
 	// fraction of your fleet's value. (Zero means they cannot be bribed.)
 	double GetBribeFraction() const;
+	// This government will never accept a bribe if the player's reputation
+	// with them is below this value, if it is negative. If the value is 0,
+	// bribes are accepted regardless of reputation.
+	double GetBribeThreshold() const;
 	// This government will fine you the given fraction of the maximum fine for
 	// carrying illegal cargo or outfits. Zero means they will not fine you.
 	double GetFineFraction() const;
@@ -99,6 +119,12 @@ public:
 	// Get a hail message (which depends on whether this is an enemy government
 	// and if the ship is disabled).
 	std::string GetHail(bool isDisabled) const;
+	// Get a hail message that the government responds with when accepting or rejecting a bribe.
+	std::string GetShipBribeAcceptanceHail() const;
+	std::string GetShipBribeRejectionHail() const;
+	std::string GetPlanetBribeAcceptanceHail() const;
+	std::string GetPlanetBribeRejectionHail() const;
+
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
 	// Find out if this government should send custom hails even if the player does not know its language.
@@ -169,11 +195,11 @@ private:
 	std::vector<double> attitudeToward;
 	double defaultAttitude = 0.;
 	std::set<const Government *> trusted;
-	std::map<unsigned, std::map<int, double>> customPenalties;
+	std::map<unsigned, std::map<int, PenaltyEffect>> customPenalties;
 	double initialPlayerReputation = 0.;
 	double reputationMax = std::numeric_limits<double>::max();
 	double reputationMin = std::numeric_limits<double>::lowest();
-	std::map<int, double> penaltyFor;
+	std::map<int, PenaltyEffect> penaltyFor;
 	std::map<const Outfit *, int> illegalOutfits;
 	std::map<std::string, int> illegalShips;
 	bool ignoreUniversalIllegals = false;
@@ -181,6 +207,7 @@ private:
 	std::map<std::string, Atrocity> atrocityShips;
 	bool ignoreUniversalAtrocities = false;
 	double bribe = 0.;
+	double bribeThreshold = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;
 	LocationFilter travelRestrictions;
@@ -189,6 +216,10 @@ private:
 	const Phrase *friendlyDisabledHail = nullptr;
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
+	const Phrase *shipBribeAcceptanceHail = nullptr;
+	const Phrase *shipBribeRejectionHail = nullptr;
+	const Phrase *planetBribeAcceptanceHail = nullptr;
+	const Phrase *planetBribeRejectionHail = nullptr;
 	std::string language;
 	bool sendUntranslatedHails = false;
 	std::vector<RaidFleet> raidFleets;

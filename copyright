@@ -1211,6 +1211,7 @@ Comment:
 
 Files:
  images/land/water13*
+ images/scene/mainsail*
 Copyright: JuniperPhoton
 License: public-domain
  Taken from https://archive.is/mvzhX. This image was uploaded
@@ -2442,6 +2443,7 @@ Files:
  images/thumbnail/heliarch?stalker*
  images/outfit/finisher?storage*
  images/outfit/fuel?module*
+ images/outfit/guardian?turret*
  images/outfit/large?cogeneration?module*
  images/outfit/small?cogeneration?module*
  images/scene/councilofahr1*
@@ -3595,6 +3597,7 @@ Comment:
 
 Files:
  images/land/city20*
+ images/scene/earth*
 Copyright: Andrew Guan
 License: CC0
 Comment:
@@ -3936,6 +3939,26 @@ Files:
  images/ui/paused*
 Copyright: David Stark (zarkonnen@gmail.com)
 License: CC-BY-SA-4.0
+
+Files:
+ images/scene/icy?opening*
+Copyright: Magmacathie
+License: CC-BY-SA-4.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Cave_in_Winter.jpg and cropped.
+
+Files:
+ images/scene/reception*
+Copyright: Anarchist2
+License: CC-BY-SA-4.0
+ Derived from the works of Jean-Etienne Minh-Duy Poirrier from
+ https://commons.wikimedia.org/wiki/File:Reception_desk_@_CHU_Li%C3%A8ge.jpg,
+ originally licensed under CC-BY-SA-2.0.
+
+Files:
+ images/scene/train*
+Copyright: Max Bender
+License: CC0
+Comment: Taken from https://stocksnap.io/photo/architecture-building-Z7GFI7P264 and edited.
 
 Files:
  images/land/beach18*

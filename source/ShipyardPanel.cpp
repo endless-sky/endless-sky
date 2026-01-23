@@ -18,9 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
-#include "Color.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -33,7 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "ShipNameDialog.h"
+#include "ShipNameDialogPanel.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
@@ -69,7 +69,8 @@ void ShipyardPanel::Step()
 {
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::SHIPYARD);
-	if(GetUI()->IsTop(this))
+	ShopPanel::ValidateSelectedShips();
+	if(GetUI().IsTop(this))
 		DoHelp("shipyard");
 }
 
@@ -102,16 +103,10 @@ void ShipyardPanel::DrawItem(const string &name, const Point &point)
 
 
 
-int ShipyardPanel::DividerOffset() const
+double ShipyardPanel::ButtonPanelHeight() const
 {
-	return 121;
-}
-
-
-
-int ShipyardPanel::DetailWidth() const
-{
-	return 3 * ItemInfoDisplay::PanelWidth();
+	// The 50 = (3 x 10 (pad) + 20 x 1 (text)) for the credit information line.
+	return 50 + BUTTON_HEIGHT * 2 + BUTTON_ROW_PAD * 1;
 }
 
 
@@ -177,7 +172,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 		heightOffset = outfitsPoint.Y() + shipInfo.OutfitsHeight();
 	}
 
-	// Draw this string representing the selected ship (if any), centered in the details side panel
+	// Draw this string representing the selected ship (if any), centered in the details side panel.
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
 	font.Draw({selectedItem, {INFOBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
@@ -188,7 +183,128 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 
 
-ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
+void ShipyardPanel::DrawButtons()
+{
+	// There will be two rows of buttons:
+	//  [    Buy    ] [    Sell    ] [ Sell Hull ]
+	//                               [   Leave   ]
+	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
+	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
+	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2 - 1.;
+	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
+
+	// Draw the button panel (shop side panel footer).
+	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
+	const Rectangle buttonsFooter(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize);
+	FillShader::Fill(buttonsFooter, *GameData::Colors().Get("shop side panel background"));
+	FillShader::Fill(
+		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
+		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
+
+	// Set up font size and colors for the credits.
+	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+
+	// Draw the row for credits display.
+	const Point creditsPoint(
+		Screen::Right() - SIDEBAR_WIDTH + 10,
+		Screen::Bottom() - ButtonPanelHeight() + 10);
+	font.Draw("You have:", creditsPoint, dim);
+
+	const string credits = Format::CreditString(player.Accounts().Credits());
+	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
+
+	// Clear the buttonZones, they will be populated again as buttons are drawn.
+	buttonZones.clear();
+
+	// Row 1
+	DrawButton("_Buy",
+		Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0), buttonSize),
+		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b', 'b');
+	DrawButton("_Sell",
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), buttonSize),
+		static_cast<bool>(playerShips.size()), hoverButton == 's', 's');
+	DrawButton("Sell H_ull",
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), buttonSize),
+		static_cast<bool>(playerShips.size()), hoverButton == 'r', 'r');
+	// Row 2
+	DrawButton("_Leave",
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
+		true, hoverButton == 'l', 'l');
+
+	// Draw the Modifier hover text that appears below the buttons when a modifier
+	// is being applied.
+	int modifier = Modifier();
+	if(modifier > 1)
+	{
+		string mod = "x " + to_string(modifier);
+		int modWidth = font.Width(mod);
+		font.Draw(mod, Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0)
+		+ Point(-.5 * modWidth, 10.), dim);
+	}
+
+	// Draw tooltips for the button being hovered over:
+	string tooltip = GameData::Tooltip(string("shipyard: ") + hoverButton);
+	if(!tooltip.empty())
+		buttonsTooltip.IncrementCount();
+	else
+		buttonsTooltip.DecrementCount();
+
+	if(buttonsTooltip.ShouldDraw())
+	{
+		buttonsTooltip.SetZone(buttonsFooter);
+		buttonsTooltip.SetText(tooltip, true);
+		buttonsTooltip.Draw();
+	}
+
+	// Draw the tooltip for your full number of credits.
+	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
+	if(creditsBox.Contains(hoverPoint))
+		creditsTooltip.IncrementCount();
+	else
+		creditsTooltip.DecrementCount();
+
+	if(creditsTooltip.ShouldDraw())
+	{
+		creditsTooltip.SetZone(creditsBox);
+		creditsTooltip.SetText(Format::CreditString(player.Accounts().Credits(), false), true);
+		creditsTooltip.Draw();
+	}
+}
+
+
+
+ShopPanel::TransactionResult ShipyardPanel::HandleShortcuts(SDL_Keycode key)
+{
+	TransactionResult result = false;
+	if(key == 'b')
+	{
+		// Buy up to <modifier> ships.
+		result = CanDoBuyButton();
+		if(result)
+			DoBuyButton();
+	}
+	else if(key == 's')
+	{
+		// Sell selected ships and outfits.
+		if(playerShip)
+			Sell(false);
+	}
+	else if(key == 'r' || key == 'u')
+	{
+		// Sell selected ships and move outfits to Storage.
+		if(playerShip)
+			Sell(true);
+	}
+
+	return result;
+}
+
+
+
+ShopPanel::TransactionResult ShipyardPanel::CanDoBuyButton() const
 {
 	if(!selectedShip)
 		return false;
@@ -231,7 +347,7 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 
 
 
-void ShipyardPanel::Buy(bool onlyOwned)
+void ShipyardPanel::DoBuyButton()
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
@@ -251,27 +367,32 @@ void ShipyardPanel::Buy(bool onlyOwned)
 	else
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
-	GetUI()->Push(new ShipNameDialog(this, &ShipyardPanel::BuyShip, message));
+	GetUI().Push(new ShipNameDialogPanel(this,
+			DialogPanel::FunctionButton(this, "Buy", 'b', &ShipyardPanel::BuyShip),
+			message));
 }
 
 
 
-bool ShipyardPanel::CanSell(bool toStorage) const
-{
-	return playerShip;
-}
-
-
-
-void ShipyardPanel::Sell(bool toStorage)
+void ShipyardPanel::Sell(bool storeOutfits)
 {
 	static const int MAX_LIST = 20;
 
 	int count = playerShips.size();
 	int initialCount = count;
 	string message;
-	if(!toStorage)
-		message = "Sell the ";
+
+	if(storeOutfits && !planet->HasOutfitter())
+	{
+		message = "WARNING: This planet has no Outfitter. "
+			"There is no way to retain the outfits in storage.\n";
+		storeOutfits = false;
+	}
+	// Never allow keeping outfits where they cannot be retrieved.
+	// TODO: Consider how to keep outfits in Cargo in the future.
+
+	if(!storeOutfits)
+		message += "Sell the ";
 	else if(count == 1)
 		message = "Sell the hull of the ";
 	else
@@ -308,29 +429,22 @@ void ShipyardPanel::Sell(bool toStorage)
 	vector<shared_ptr<Ship>> toSell;
 	for(const auto &it : playerShips)
 		toSell.push_back(it->shared_from_this());
-	int64_t total = player.FleetDepreciation().Value(toSell, day, toStorage);
+	int64_t total = player.FleetDepreciation().Value(toSell, day, storeOutfits);
 
 	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
 
-	if(toStorage)
+	if(storeOutfits)
 	{
 		message += " Any outfits will be placed in storage.";
-		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
+		GetUI().Push(new DialogPanel(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
 	}
 	else
-		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
+		GetUI().Push(new DialogPanel(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
 }
 
 
 
-bool ShipyardPanel::CanSellMultiple() const
-{
-	return false;
-}
-
-
-
-void ShipyardPanel::BuyShip(const string &name)
+bool ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost)
@@ -358,6 +472,9 @@ void ShipyardPanel::BuyShip(const string &name)
 	playerShips.clear();
 	playerShips.insert(playerShip);
 	CheckSelection();
+
+	// Close the dialog.
+	return true;
 }
 
 
@@ -376,10 +493,10 @@ void ShipyardPanel::SellShipChassis()
 
 
 
-void ShipyardPanel::SellShip(bool toStorage)
+void ShipyardPanel::SellShip(bool storeOutfits)
 {
 	for(Ship *ship : playerShips)
-		player.SellShip(ship, toStorage);
+		player.SellShip(ship, storeOutfits);
 	playerShips.clear();
 	playerShip = nullptr;
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -391,6 +508,8 @@ void ShipyardPanel::SellShip(bool toStorage)
 	if(playerShip)
 		playerShips.insert(playerShip);
 }
+
+
 
 int ShipyardPanel::FindItem(const string &text) const
 {
