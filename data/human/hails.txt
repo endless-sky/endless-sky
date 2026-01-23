@@ -1541,7 +1541,29 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		
+		"Have you read"
+		"Have you seen"
+		"Have you heard of"
+	word
+		" the book about "
+		" the written work about "
+		" the writings about "
+		" the novel with "
+		" speculative fiction about "
+	word
+		"the psychology of the Quarg"
+		"the future evolution of the Alphas"
+		"alternative evolutions of humanity"
+		"aliens who store their memories in plants"
+		"a society who communicates through song"
+		"intelligent life in the oceans under ice worlds"
+		"life inside stars"
+		"an automated society with long dead creators"
+		"a violent, dying race of aliens forced to live in space"
+		"aliens who communicate by whistling through their skin"
+		"an intelligent alien society that evolves by fighting each other"
+		"an intelligent semi-hivemind run by the memories of their ancestors"
+		"
 
 phrase "friendly civilian"
 	word
