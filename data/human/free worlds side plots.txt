@@ -95,6 +95,7 @@ mission "FW Zug Expansion: Assisted"
 mission "FW Zug Expansion: Unassisted"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "FW Diplomacy 1: done"
 		not "FW Zug Expansion: Assisted: done"
