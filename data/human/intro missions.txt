@@ -63,6 +63,9 @@ conversation "intro mission"
 		goto captain
 	
 	label syndicate
+	branch jackal
+		has "Intro [0 Jackal]: offered"
+		has "ship model: Jackal"
 	`With a strange sense of relief, you give the salesman your money and jump into your new ship. The flight from the shipyard to the landing bays has you navigate through tunnels with only centimeters of clearance in all directions. After setting your ship down and disembarking, an old man in grease-stained coveralls approaches you.`
 	`	"Nothing quite like buying your first starship," he says.`
 	choice
@@ -72,6 +75,17 @@ conversation "intro mission"
 		`	"If I wanted to talk with you, I'd have said something. Leave me alone."`
 			decline
 	`	He grins. "Well, I wouldn't be so sure yet. Often, the quickest way to fame and fortune is to curry favor with the big players. I always preferred to work by myself, though."`
+		goto captain
+	
+	label jackal
+	`Sure enough, you find your new Jackal waiting in one of the port's landing bays. You start to examine the <ship>, and your worst fears are realized. Of the ship's outfits, the only one to pass any safety tests is the battery; you'll have to completely replace everything else. As you rip out broken components and throw them in the nearest dumpster, an old man in grease-stained coveralls approaches you.`
+	`	"Looks like you've landed yourself a real lemon, haven'tcha?" he says.`
+	choice
+		`	"Yep."`
+		`	"Look, I'm having a really bad day today. Bother someone else."`
+			decline
+	`	"Well, there's no point crying over jettisoned cargo. Mind if I give you a hand?"`
+	`	With the old man's help, you manage to clear out the Jackal before nightfall. "Haven't had to do this to a ship in a long time. Still, it's nice to have a blank slate when you're outfitting your fleet."`
 	
 	label captain
 	`	"You're a captain?" you ask.`
@@ -210,7 +224,7 @@ conversation "interceptor escort end"
 				has "start: default"
 				has "start: paradise"
 				has "start: syndicate"
-	`	(As before, click the "Spaceport" button to continue this mission. The next mission will involve carrying cargo, so it will only show up if you have all 15 tons of space free.)`
+	`	(As before, click the "Spaceport" button to continue this mission. The next mission will involve carrying cargo, so it will only show up if you have 10 tons of space free.)`
 		to display
 			or
 				has "start: default"
@@ -308,6 +322,11 @@ conversation "interceptor evade end"
 		`	"Well, maybe I should've bought a freighter instead."`
 	`	"Better start saving up then," he says. "I know a number of old Sparrow pilots who made their first million credits mining asteroids before they could afford a more combat-worthy ship. They had to look around for a while before finding a system with any asteroids worth mining, but it was worth it. Anyway, let's go get your payment." You walk out of the ship and sign the papers to hand off the <commodity> to the dock workers on <planet>. They hand you a credit chip worth <payment>.`
 	`	"I've got an idea for something you might want to try," says James. "Meet me in the spaceport bar in a little while."`
+		to display
+			not "flagship model: Jackal"
+	`	"I've got an idea for something you might want to try," says James. "Meet me in the spaceport bar in a little while. And make sure you have a weapon installed; you should be able to buy one in <planet>'s outfitter."`
+		to display
+			has "flagship model: Jackal"
 
 
 
@@ -459,6 +478,102 @@ conversation "intro relic"
 		accept
 
 
+
+# Missions when the player attempts to use an invalid starting ship.
+
+
+mission "Intro [0 Fighter]"
+	non-blocking
+	invisible
+	shipyard
+	to offer
+		"days since start" == 0
+	to accept
+		"ships: Fighter" == "total ships"
+	on offer
+		conversation
+			`As you check over the specs of your brand new <flagship model> one last time, you realize it lacks the hyperdrive necessary for interstellar travel! Unless you're happy to spend the rest of your life flying past the same few planets, you'll need to sell the <flagship model> and buy a proper spacefaring vessel.`
+				decline
+
+
+mission "Intro [0 Drone]"
+	non-blocking
+	invisible
+	shipyard
+	to offer
+		"days since start" == 0
+	to accept
+		"ships: Drone" == "total ships"
+	on offer
+		conversation
+			`You prepare to board your new ship and take it for a test flight, only to find it is an automated drone that lacks a crew compartment entirely! Unless you want to try strapping yourself on the outside of the hull, you'll need to sell off your drone and buy a proper spacefaring vessel.`
+				decline
+
+
+
+mission "Intro [0 Jackal]"
+	non-blocking
+	invisible
+	shipyard
+	to offer
+		"days since start" == 0
+	to accept
+		"ship model: Mining Drone" >= 3
+		"outfit: Mining Laser" >= 3
+		"outfit: X1200 Ion Steering" >= 3
+		"outfit: X1700 Ion Thruster" >= 3
+		"outfit: Supercapacitor" >= 3
+		"outfit: nGVF-AA Fuel Cell" >= 3
+		has "start: syndicate"
+		not "Delve Intro [0]: offered"
+	on offer
+		conversation
+			`For reasons known only to yourself, you have spent your mortgage on three Mining Drones that are completely useless to you. As you bask in the economic genius of your decision, you hear a merchant haggling with a ship reseller.`
+			`	"Look, you'd have to be looking real close to tell that she's a pre-loved ship. Plus, she isn't 'outdated,' she's an antique! Ship collectors will be throwing their wallets at you just to get a photo of the ship."`
+			`	The reseller is unamused by the merchant's arguments and takes his leave when it becomes clear neither side is willing to compromise. Exhausted, the merchant slumps onto a nearby bench.`
+			choice
+				`	(Approach the merchant.)`
+				`	(Ignore the merchant so I can appreciate my Mining Drones more.)`
+					decline
+			`	You take a seat on the bench and ask, "What was that all about?"`
+			`	The merchant turns his head to face you. "That whole kerfuffle? Tried to cheat me out of a fair deal, he did." Seeing your confusion, he elaborates. "I'm a space miner by trade. A few days ago, I got caught in a nasty pirate ambush - lost all my Mining Drones in the blink of an eye. The pirates weren't doing so hot either, though. I got lucky and managed to disable and capture a Jackal, one of those old, Caravan-era interceptors. I thought I'd sell it off and replace my drones, but the shipyards here are running a racket; I can't even buy half a Mining Drone with the credits they're offering." He lets out a sigh.`
+			choice
+				`	"Actually, I have some spare Mining Drones."`
+					goto deal
+				`	"Thanks for the story, but I have places to be."`
+			`	"Well, thanks for listening." The merchant bids you farewell as you stand up and leave.`
+				decline
+			label deal
+			`	The merchant's head perks up. "Really? That's fantastic!" He quietly mutters some numbers to himself, then says, "How about two Mining Drones for the Jackal? You think that's a fair deal?"`
+			choice
+				`	"Sounds good."`
+					goto jackal
+				`	"What about just one drone?"`
+				`	"I can't take that deal."`
+					goto refuse
+			`	He shakes his head. "It's got to be two drones, or no drones."`
+			choice
+				`	"Alright, you'll have your drones."`
+					goto jackal
+				`	"No deal."`
+			label refuse
+			`	"Darn. Well, at least you've given me an idea; there's got to be a captain out there willing to hand me a couple of Mining Drones for my Jackal!" The merchant hops up from the bench and jauntily walks away.`
+				decline
+			label jackal
+			action
+				give ship "Jackal (Empty)" "Exemplar"
+				take ship "Mining Drone"
+					count 2
+			`	You shake hands with the merchant. "Thanks for the deal, partner." He hands you the license to the Jackal and walks off towards the loading bays to claim his new Mining Drones.`
+				decline
+
+
+ship "Jackal" "Jackal (Empty)"
+	outfits
+		"LP036a Battery Pack"
+
+
+
 # Missions for the New Boston start
 
 mission "Intro [0]"
@@ -470,6 +585,8 @@ mission "Intro [0]"
 	destination "New Greenland"
 	to offer
 		has "start: default"
+	to accept
+		"total ships" > "ships: Fighter" + "ships: Drone"
 	substitutions
 		"<trade>" "stock up on medical goods"
 		"<while>" "While they don't sell much here compared to on the big manufacturing worlds"
@@ -814,6 +931,8 @@ mission "Midgard Intro [0]"
 	destination "Asgard"
 	to offer
 		has "start: deep"
+	to accept
+		"total ships" > "ships: Fighter" + "ships: Drone"
 	substitutions
 		"<trade>" "load some bundles of clothing onto your ship"
 		"<while>" "While most of the outfits will be far outside your price range"
@@ -1281,6 +1400,8 @@ mission "Mainsail Intro [0]"
 	destination "Glory"
 	to offer
 		has "start: paradise"
+	to accept
+		"total ships" > "ships: Fighter" + "ships: Drone"
 	substitutions
 		"<trade>" "load some electronic goods onto your ship"
 		"<while>" "While they don't sell much here compared to on the big manufacturing worlds"
@@ -1763,6 +1884,8 @@ mission "Delve Intro [0]"
 	destination "Burthen"
 	to offer
 		has "start: syndicate"
+	to accept
+		"total ships" > "ships: Fighter" + "ships: Drone"
 	substitutions
 		"<trade>" "stock up on medical goods"
 		"<while>" "While most of the outfits will be far outside your price range"
@@ -2044,7 +2167,7 @@ mission "Delve Intro [2 Interceptor]"
 	description "Deliver <commodity> to <destination>, while avoiding pirate attacks."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
-	cargo "niobium" 15
+	cargo "niobium" 10
 	source "Lodestone"
 	destination "Ada"
 	to offer
@@ -2069,7 +2192,7 @@ mission "Delve Intro [2 Interceptor]"
 
 mission "Delve Intro [2.1 Interceptor]"
 	priority
-	name "Mine asteroids in <system>"
+	name "Mine asteroids in Procyon"
 	description "Go to the Procyon system and mine five tons of silicon, then land on <planet>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
