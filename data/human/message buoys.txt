@@ -22,7 +22,6 @@ mission "Message Buoy: Entering Republic space from Pirates"
 		neighbor government "Pirate"
 	destination "Earth"
 	to offer
-		has "chosen sides"
 		not "entered system by: takeoff"
 		has "previous system government: Pirate"
 	on offer
@@ -251,6 +250,7 @@ mission "Message Buoy: Graffias"
 	to offer
 		not "entered system by: takeoff"
 		has "war begins"
+		not "main plot completed"
 	on offer
 		message
 			text "Message buoy to all ships: You are entering the Republic system of Graffias. Poisonwood is restricted to solely Merchant or Republic ships."
