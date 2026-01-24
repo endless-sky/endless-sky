@@ -19,14 +19,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "Point.h"
-#include "Swizzle.h"
 
 #include <string>
 
-class DataNode;
-class DataWriter;
 class Government;
-class Mask;
 class Sprite;
 
 
@@ -74,7 +70,6 @@ protected:
 	Point center;
 	Point rotatedCenter;
 
-	double alpha = 1.;
 	// The maximum distance at which the body is visible, and at which it becomes invisible again.
 	double distanceVisible = 0.;
 	double distanceInvisible = 0.;

@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class DataWriter;
-class Government;
 class Mask;
 class Sprite;
 
@@ -87,14 +86,7 @@ protected:
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;
 	Point scale = Point(1., 1.);
-
 	double alpha = 1.;
-	// The maximum distance at which the body is visible, and at which it becomes invisible again.
-	double distanceVisible = 0.;
-	double distanceInvisible = 0.;
-
-	// Government, for use in collision checks.
-	const Government *government = nullptr;
 
 
 private:

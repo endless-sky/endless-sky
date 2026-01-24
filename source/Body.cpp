@@ -15,15 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Body.h"
 
-#include "DataNode.h"
-#include "DataWriter.h"
-#include "GameData.h"
-#include "image/Mask.h"
-#include "image/MaskManager.h"
 #include "pi.h"
-#include "Random.h"
 #include "image/Sprite.h"
-#include "image/SpriteSet.h"
 
 #include <algorithm>
 #include <cmath>
