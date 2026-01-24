@@ -1079,7 +1079,7 @@ phrase "friendly civilian"
 		" Pretty clever, right?"
 		" Took me a day to come up with that."
 		" Geddit?"
-		" ...I swear I was better at this."
+		" ... I swear I was better at this."
 
 phrase "friendly civilian"
 	word
