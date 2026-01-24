@@ -1535,7 +1535,7 @@ phrase "friendly civilian"
 	word
 		"!" 10
 		", haha!"
-		"! But you know better I bet."
+		"! But you know better, I bet."
 		"! My friends tried that and I haven't seen them in years!"
 
 phrase "friendly civilian"
