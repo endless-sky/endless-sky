@@ -1791,7 +1791,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	// Board a friendly ship, to repair or refuel it.
 	if(!government->IsEnemy(victim->GetGovernment()))
 	{
-		SetShipToAssist(shared_ptr<Ship>());
+		SetShipToAssist(weak_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
 		victim->levels.hull = min(max(victim->levels.hull, victim->MinimumHull() * 1.5), victim->MaxHull());
@@ -3332,10 +3332,10 @@ bool Ship::CanCarry(const Ship &ship) const
 
 	for(const auto &it : escorts)
 	{
-		auto escort = it.lock();
+		shared_ptr<Ship> escort = it.lock();
 		if(!escort)
 			continue;
-		if(escort == ship.shared_from_this())
+		if(escort.get() == &ship)
 			break;
 		if(escort->attributes.Category() == category && !escort->IsDestroyed() &&
 				(!IsYours() || (IsYours() && escort->IsYours())))
@@ -3754,7 +3754,7 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 
 
 
-void Ship::SetShipToAssist(const shared_ptr<Ship> &ship)
+void Ship::SetShipToAssist(const weak_ptr<Ship> &ship)
 {
 	shipToAssist = ship;
 }
@@ -4776,7 +4776,7 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner) con
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
 {
-	escorts.push_back(ship.shared_from_this());
+	escorts.push_back(ship.weak_from_this());
 }
 
 
