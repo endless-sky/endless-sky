@@ -1365,7 +1365,7 @@ phrase "friendly civilian"
 		"one of my passengers becomes space-sick and creates a horrible mess."
 		"one of my passengers throws up and I have to clean up for days."
 		"I can't unload my cargo because somebody messed up the paperwork."
-		"I accidentally shoot at the Navy and they shoot back at me! Yes it was an accident!"
+		"I accidentally shoot at the Navy and they shoot back at me! Yes, it was an accident!"
 
 phrase "friendly civilian"
 	word
