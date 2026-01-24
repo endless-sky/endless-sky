@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <functional>
 #include <string>
-#include <utility>
 
 class PlayerInfo;
 class System;
