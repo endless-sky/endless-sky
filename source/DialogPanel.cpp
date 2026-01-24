@@ -124,7 +124,7 @@ namespace {
 
 DialogPanel::DialogPanel(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel,
 	int activeButton)
-	: voidFun(okFunction)
+	: voidFun(std::move(okFunction))
 {
 	Init(message, truncate, canCancel, false);
 	this->activeButton = activeButton;
