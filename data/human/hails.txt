@@ -1548,7 +1548,7 @@ phrase "friendly civilian"
 		" the written work about "
 		" the writings about "
 		" the novel about "
-		" speculative fiction about "
+		" a piece of speculative fiction about "
 	word
 		"the psychology of the Quarg" 10
 		"the future evolution of the Alphas" 10
