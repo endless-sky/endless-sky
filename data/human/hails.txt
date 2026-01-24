@@ -2567,7 +2567,6 @@ phrase "friendly civilian"
 		"unsynchronized repulsors!"
 		"a parasitic shield discharge!"
 		"a leaky fuel cell!"
-		"a dead body in place of a battery!"
 	word
 		" "
 	word
