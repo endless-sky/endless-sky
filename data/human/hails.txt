@@ -433,7 +433,7 @@ phrase "visual media"
 		"sitcom"
 		"sci-fi series"
 		"fantasy film"
-		"historic film"
+		"historical film"
 		"kids show"
 
 phrase "friendly civilian"
@@ -1983,7 +1983,7 @@ phrase "friendly civilian"
 		"Those can ruin your life!"
 		"They're usually too good to be true."
 		"They take your money, and you won't get anything in return."
-		"The only thing they'll give you is your now bereaved family"
+		"The only thing they'll give you is a quick path to the afterlife!"
 
 phrase "friendly civilian"
 	word
