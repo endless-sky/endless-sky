@@ -1195,7 +1195,6 @@ phrase "friendly civilian"
 		"unprocessed sewage"
 		"pig guts"
 		"medical samples"
-		"the dead"
 		"mothballs"
 		"durians"
 	word
