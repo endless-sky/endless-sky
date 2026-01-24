@@ -113,6 +113,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Files.h
 	FireCommand.cpp
 	FireCommand.h
+	Drawable.cpp
+	Drawable.h
 	Fleet.cpp
 	Fleet.h
 	FleetCargo.cpp
