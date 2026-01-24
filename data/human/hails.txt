@@ -873,7 +873,7 @@ phrase "friendly civilian"
 		"use loans to get money to make money"
 		"reduce the cost of your ships by using batteries over bigger generators"
 		"always keep sufficient distance to fire your long-range weapons first"
-		"let government fleets take care of pirates"
+		"let the military take care of pirates"
 	word
 		"."
 		"!"
