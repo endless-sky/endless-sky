@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
+#include "ShopPanel.h"
 #include "image/Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -202,7 +203,7 @@ void MapOutfitterPanel::DrawItems()
 		for(const string &name : it->second)
 		{
 			const Outfit *outfit = GameData::Outfits().Get(name);
-			string price = Format::CreditString(outfit->Cost());
+			string price = Format::CreditString(outfit->Get("map") ? player.MapCost(outfit) : outfit->Cost());
 
 			string info;
 			if(outfit->Get("minable") > 0.)

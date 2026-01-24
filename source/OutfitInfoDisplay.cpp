@@ -232,7 +232,7 @@ namespace {
 		{"hyperdrive", "Allows you to make hyperjumps."},
 		{"jump drive", "Lets you jump to any nearby system."},
 		{"minable", "This item is mined from asteroids."},
-		{"map minables", "This map reveals minables."},
+		{"map minables", "This map reveals minerals."},
 		{"atrocity", "This outfit is considered an atrocity."},
 		{"unique", "This item is unique."},
 		{"cloaked afterburner", "You may use afterburners while cloaked."},
@@ -266,7 +266,7 @@ void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, b
 {
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
 	UpdateRequirements(outfit, player, canSell, descriptionCollapsed);
-	UpdateAttributes(outfit);
+	UpdateAttributes(outfit, player);
 
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
 }
@@ -298,6 +298,9 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	int64_t cost = outfit.Cost();
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
+
+	if(outfit.Get("map"))
+		buyValue *= 1. - player.MappedFraction(outfit.Get("map"), outfit.Get("map minables"));
 
 	for(const string &license : outfit.Licenses())
 	{
@@ -408,7 +411,7 @@ void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
 
 
 
-void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
+void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit, const PlayerInfo &player)
 {
 	attributeLabels.clear();
 	attributeValues.clear();
@@ -472,6 +475,16 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributesHeight += 20;
 		}
 		hasNormalAttributes = true;
+	}
+
+	int mapSize = outfit.Get("map");
+	if(mapSize > 0 && player.HasMapped(mapSize, outfit.Get("map minables")))
+	{
+		attributeLabels.emplace_back();
+		attributeValues.emplace_back();
+		attributeLabels.emplace_back("This map contains no new data.");
+		attributeValues.emplace_back(" ");
+		attributesHeight += 30;
 	}
 
 	const Weapon *weapon = outfit.GetWeapon().get();

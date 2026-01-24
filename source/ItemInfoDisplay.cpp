@@ -116,12 +116,11 @@ void ItemInfoDisplay::ClearHover()
 
 void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string> &licenses, bool isShip)
 {
-	if(licenses.empty())
-		description.Wrap(text);
-	else
+	string fullText = text;
+	if(!licenses.empty())
 	{
 		static const string NOUN[2] = {"outfit", "ship"};
-		string fullText = text + "\tTo purchase this " + NOUN[isShip] + " you must have ";
+		fullText += "\tTo purchase this " + NOUN[isShip] + " you must have ";
 		fullText += Format::List<vector, string>(licenses,
 			[](const string &name)
 			{
@@ -135,8 +134,8 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 				return (isVoweled ? "an " : "a ") + name + " License";
 			});
 		fullText += ".\n";
-		description.Wrap(fullText);
 	}
+	description.Wrap(fullText);
 
 	// If there is a description, pad by 10 pixels on the top and bottom.
 	descriptionHeight = description.Height();

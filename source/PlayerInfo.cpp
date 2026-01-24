@@ -3012,14 +3012,46 @@ bool PlayerInfo::HasMapped(int mapSize, bool mapMinables) const
 
 
 
+double PlayerInfo::MappedFraction(int maxSystems, bool includeMinerals) const
+{
+	DistanceMap map(GetSystem(), maxSystems);
+	size_t total = map.Systems().size();
+	unsigned alreadyMapped = 0;
+	for(const System *system : map.Systems())
+	{
+		if(HasVisited(*system))
+			alreadyMapped++;
+
+		if(includeMinerals)
+		{
+			total += system->Payloads().size();
+			for(const Outfit *outfit : system->Payloads())
+				if(harvested.contains(make_pair(system, outfit)))
+					alreadyMapped++;
+		}
+	}
+
+	return clamp(alreadyMapped / static_cast<double>(total), 0., 1.);
+}
+
+
+
+int64_t PlayerInfo::MapCost(const Outfit *outfit) const
+{
+	bool maxSystems = outfit->Get("map");
+	bool includeMinerals = outfit->Get("map minables");
+
+	return max(0LL, static_cast<long long>(outfit->Cost() * MappedFraction(maxSystems, includeMinerals)));
+}
+
+
+
 void PlayerInfo::Map(int mapSize, bool mapMinables)
 {
 	DistanceMap distance(GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
 	{
-		if(!HasVisited(*system))
-			Visit(*system);
-
+		Visit(*system);
 		if(mapMinables)
 			for(const Outfit *outfit : system->Payloads())
 				harvested.insert(make_pair(system, outfit));

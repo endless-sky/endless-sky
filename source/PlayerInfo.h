@@ -318,6 +318,8 @@ public:
 
 	// Check whether the player has visited the <mapSize> systems around the current one.
 	bool HasMapped(int mapSize, bool mapMinables) const;
+	double MappedFraction(int maxSystems, bool includeMinerals) const;
+	int64_t MapCost(const Outfit *outfit) const;
 	// Mark a whole map of systems as visited.
 	void Map(int mapSize, bool mapMinables);
 
