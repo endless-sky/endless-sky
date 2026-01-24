@@ -2599,7 +2599,6 @@ phrase "friendly civilian"
 		"Ey Comrade, you have fighters in your bays? We have bays in our fighters." 5
 		"Ey Comrade, you have warships that fire missiles? We have missiles that fire warships." 5
 		"Ey Comrade, your ship has just fled from pirates? I have pirates who flee from me." 5
-		"Nobody wants to admit it, but innocent lives are worth way less to the authorities and an equal number of dead pirates. Destroy an equal number, and your sins will never catch up to you."
 		"Someone tried to get away with not paying me what I'm worth. Safe to say they'll never get to pay anyone again, haha!"
 
 phrase "friendly civilian"
