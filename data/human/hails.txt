@@ -919,7 +919,7 @@ phrase "friendly civilian"
 		"avoid taking jobs near the frontier"
 		"not to use so many cargo ships that you become irresistible to them"
 		"flee to a government fleet"
-		"build a powerful fleet then get paid to blow them up"
+		"build a powerful fleet, then get paid to blow them up"
 	word
 		"."
 		"!"
