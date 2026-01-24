@@ -2431,7 +2431,6 @@ phrase "friendly civilian"
 		"a Sparrow. My parents talked me out of it, though."
 		"a Star Queen. It's just too bad its crew quarters aren't as good as its passenger bunks, though."
 		"a Scout. Something about exploring the fringes of human space still appeals to me."
-		"one of those strange core ships from the stories I heard. I don't think they're real though."
 
 phrase "friendly civilian"
 	word
