@@ -1547,7 +1547,7 @@ phrase "friendly civilian"
 		" the book about "
 		" the written work about "
 		" the writings about "
-		" the novel with "
+		" the novel about "
 		" speculative fiction about "
 	word
 		"the psychology of the Quarg" 10
