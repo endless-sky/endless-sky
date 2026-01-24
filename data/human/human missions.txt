@@ -138,7 +138,7 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		fleet "Marauder fleet I"
+		fleet "Marauder fleet II"
 	npc save
 		to despawn
 			or
@@ -168,7 +168,7 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		fleet "Marauder fleet X"
+		fleet "Marauder fleet VIII"
 	# For stronger players, all attacking NPCs must be killed before the mission will be completed.
 	npc kill
 		to despawn
@@ -177,7 +177,7 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		fleet "Marauder fleet X" 2
+		fleet "Marauder fleet VIII" 2
 	npc kill
 		to despawn
 			"armament deterrence" < 64
@@ -2700,7 +2700,7 @@ mission "Lost Boy 2"
 		dialog `You've landed on <planet>, but you haven't yet found Tod. Keep looking for the <npc> and then board the ship; it can't be far from Deadman's Cove.`
 	
 	npc board
-		personality staying nemesis target plunders
+		personality staying marked target plunders
 		government "Bounty"
 		system
 			distance 2 4
@@ -12232,7 +12232,7 @@ mission "Ice Queen 8"
 
 	npc kill
 		government "Bounty"
-		personality heroic nemesis staying target
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Marauder fleet IV"

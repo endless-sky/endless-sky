@@ -4451,8 +4451,8 @@ system Almach
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
-	fleet "Korath Large Raid" 50000
-	fleet "Korath Miners" 25000
+	fleet "Korath Large Raid" 60000
+	fleet "Korath Miners" 30000
 	object
 		sprite star/k8
 		period 10
@@ -7167,7 +7167,7 @@ system Atik
 	fleet "Small Core Pirates" 10000
 	fleet "Large Core Pirates" 18000
 	fleet "Human Miners" 5000
-	fleet "Korath Miners" 15000
+	fleet "Korath Miners" 25000
 	fleet "Derelict Pirate" 10000
 	object
 		sprite star/b-giant
@@ -12913,8 +12913,8 @@ system Durax
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
-	fleet "Korath Raid" 7000
-	fleet "Korath Miners" 17000
+	fleet "Korath Raid" 35000
+	fleet "Korath Miners" 45000
 	fleet "Derelict Pirate" 30000
 	object
 		sprite star/g0-old
@@ -27307,11 +27307,11 @@ system Misam
 	trade Plastic 368
 	fleet "Small Core Pirates" 750
 	fleet "Large Core Pirates" 2000
-	fleet "Korath Raid" 5000
-	fleet "Korath Large Raid" 11000
+	fleet "Korath Raid" 65000
+	fleet "Korath Large Raid" 40000
 	fleet "Human Miners" 10000
 	fleet "Large Syndicate" 20000
-	fleet "Korath Miners" 15000
+	fleet "Korath Miners" 70000
 	object
 		sprite star/f5-old
 		distance 50
@@ -35567,7 +35567,7 @@ system Sheratan
 	fleet "Large Core Merchants" 1800
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
-	fleet "Korath Large Raid" 40000
+	fleet "Korath Large Raid" 60000
 	object
 		sprite star/f5
 		distance 21.0246
