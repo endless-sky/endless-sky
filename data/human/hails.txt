@@ -1934,7 +1934,7 @@ phrase "friendly civilian"
 		"4"
 		"5"
 	word
-		"" 
+		""
 		"00" 2
 		",000" 10
 		",250" 10
