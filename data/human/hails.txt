@@ -1517,8 +1517,8 @@ phrase "friendly civilian"
 		" and you want to be the butt of every joke"
 	word
 		"... "
-		"; "
-		"; you should "
+		", "
+		", you should "
 	word
 		"try blowing up the Navy"
 		"try boarding Navy ships"
