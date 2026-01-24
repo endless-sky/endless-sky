@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Gamerules.h"
 #include "Government.h"
 #include "Hardpoint.h"
+#include "Hasher.h"
 #include "JumpType.h"
 #include "image/Mask.h"
 #include "Messages.h"
@@ -1306,10 +1307,9 @@ const StellarObject *AI::FindLandingLocation(const Ship &ship, const bool refuel
 
 
 
-AI::RouteCacheKey::RouteCacheKey(
-	const System *from, const System *to, const Government *gov, double jumpDistance,
-	JumpType jumpType, const vector<string> &wormholeKeys)
-		: from(from), to(to), gov(gov), jumpDistance(jumpDistance), jumpType(jumpType), wormholeKeys(wormholeKeys)
+AI::RouteCacheKey::RouteCacheKey(size_t jumpHash, size_t personalityHash, const System *to, bool isPlayer,
+	const vector<string> &wormholeKeys)
+	: jumpHash(jumpHash), personalityHash(personalityHash), to(to), isPlayer(isPlayer), wormholeKeys(wormholeKeys)
 {
 }
 
@@ -1318,14 +1318,13 @@ AI::RouteCacheKey::RouteCacheKey(
 size_t AI::RouteCacheKey::HashFunction::operator()(RouteCacheKey const &key) const
 {
 	// Used by unordered_map to determine equivalence.
-	int shift = 0;
-	size_t hash = std::hash<string>()(key.from->TrueName());
-	hash ^= std::hash<string>()(key.to->TrueName()) << ++shift;
-	hash ^= std::hash<string>()(key.gov->TrueName()) << ++shift;
-	hash ^= std::hash<int>()(key.jumpDistance) << ++shift;
-	hash ^= std::hash<int>()(static_cast<std::size_t>(key.jumpType)) << ++shift;
+	size_t hash = 0;
+	Hasher::Hash(hash, key.jumpHash);
+	Hasher::Hash(hash, key.personalityHash);
+	Hasher::Hash(hash, key.to);
+	Hasher::Hash(hash, key.isPlayer);
 	for(const string &k : key.wormholeKeys)
-		hash ^= std::hash<string>()(k) << ++shift;;
+		Hasher::Hash(hash, k);
 	return hash;
 }
 
@@ -1334,11 +1333,10 @@ size_t AI::RouteCacheKey::HashFunction::operator()(RouteCacheKey const &key) con
 bool AI::RouteCacheKey::operator==(const RouteCacheKey &other) const
 {
 	// Used by unordered_map to determine equivalence.
-	return from == other.from
+	return jumpHash == other.jumpHash
+		&& personalityHash == other.personalityHash
 		&& to == other.to
-		&& gov == other.gov
-		&& jumpDistance == other.jumpDistance
-		&& jumpType == other.jumpType
+		&& isPlayer == other.isPlayer
 		&& wormholeKeys == other.wormholeKeys;
 }
 
@@ -5272,9 +5270,10 @@ RoutePlan AI::GetRoutePlan(const Ship &ship, const System *targetSystem)
 	if(player.RecacheJumpRoutes())
 		routeCache.clear();
 
-	const System *from = ship.GetSystem();
-	const Government *gov = ship.GetGovernment();
-	const JumpType driveCapability = ship.JumpNavigation().HasJumpDrive() ? JumpType::JUMP_DRIVE : JumpType::HYPERDRIVE;
+	size_t personalityHash = 0;
+	Hasher::Hash(personalityHash, ship.GetGovernment());
+	Hasher::Hash(personalityHash, ship.GetPersonality().IsRestricted());
+	Hasher::Hash(personalityHash, ship.GetPersonality().IsUnrestricted());
 
 	// A cached route that could be used for this ship could depend on the wormholes which this ship can
 	// travel through. Find the intersection of all known wormhole required attributes and the attributes
@@ -5282,11 +5281,11 @@ RoutePlan AI::GetRoutePlan(const Ship &ship, const System *targetSystem)
 	vector<string> wormholeKeys;
 	const auto &shipAttributes = ship.Attributes();
 	for(const auto &requirement : GameData::UniverseWormholeRequirements())
-		if(shipAttributes.Get(requirement) > 0)
+		if(shipAttributes.Get(requirement))
 			wormholeKeys.emplace_back(requirement);
 
-	auto key = RouteCacheKey(from, targetSystem, gov, ship.JumpNavigation().JumpRange(), driveCapability,
-		wormholeKeys);
+	auto key = RouteCacheKey(ship.JumpNavigation().Hash(), personalityHash, targetSystem,
+		player.Flagship() == &ship, wormholeKeys);
 
 	RoutePlan route;
 	auto it = routeCache.find(key);
