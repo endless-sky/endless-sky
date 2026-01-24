@@ -1270,7 +1270,7 @@ phrase "friendly civilian"
 		", let them make a mess in someone else's ship instead" 17
 		", I don't want to clean up after them again" 17
 		", they better learn how to live on a spaceship" 17
-		". Nah just kidding I dumped them out the airlock"
+		", but I wish I could just dump them out the airlock"
 	word
 		"!"
 
