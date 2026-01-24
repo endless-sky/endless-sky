@@ -152,7 +152,7 @@ namespace {
 		double digit;
 		vector<int> digits(places);
 		// Account for floating-point representation error by adding EPS after multiplying.
-		constexpr double EPS = 0.0000000001;
+		constexpr double EPS = 1e-10;
 		for(int i = 0; i < places; ++i)
 		{
 			fraction = modf(fraction * 10. + EPS, &digit);
