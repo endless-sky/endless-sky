@@ -517,7 +517,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(fullDropoff != 1.)
 	{
 		attributeLabels.emplace_back("dropoff modifier:");
-		attributeValues.emplace_back(Format::Number(100. * fullDropoff) + "%");
+		attributeValues.emplace_back(Format::Percentage(fullDropoff));
 		attributesHeight += 20;
 		// Identify the ranges between which the dropoff takes place.
 		attributeLabels.emplace_back("dropoff range:");
@@ -675,9 +675,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	for(unsigned i = 0; i < PERCENT_NAMES.size(); ++i)
 		if(percentValues[i])
 		{
-			int percent = lround(100. * percentValues[i]);
 			attributeLabels.push_back(PERCENT_NAMES[i]);
-			attributeValues.push_back(Format::Number(percent) + "%");
+			attributeValues.push_back(Format::Percentage(percentValues[i]));
 			attributesHeight += 20;
 		}
 	if(weapon->ThrottleControl())

@@ -242,6 +242,8 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			location = JOB_BOARD;
 		else if(key == "entering")
 			location = ENTERING;
+		else if(key == "transition")
+			location = TRANSITION;
 		else if(key == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(key == "clearance")
@@ -338,6 +340,18 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			}
 			else
 				genericOnEnter.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
+		}
+		else if(key == "on" && hasValue && child.Token(1) == "land")
+		{
+			// "on land" nodes may either name a specific planet or use a LocationFilter
+			// to control the triggering planet.
+			if(child.Size() >= 3)
+			{
+				MissionAction &action = onLand[GameData::Planets().Get(child.Token(2))];
+				action.Load(child, playerConditions, visitedSystems, visitedPlanets);
+			}
+			else
+				genericOnLand.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
 		}
 		else if(key == "on" && hasValue)
 		{
@@ -467,6 +481,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("job");
 		else if(location == ENTERING)
 			out.Write("entering");
+		else if(location == TRANSITION)
+			out.Write("transition");
 		if(!clearance.empty())
 		{
 			out.Write("clearance", clearance);
@@ -554,6 +570,12 @@ void Mission::Save(DataWriter &out, const string &tag) const
 				it.second.Save(out);
 		for(const MissionAction &action : genericOnEnter)
 			if(!didEnter.contains(&action))
+				action.Save(out);
+		for(const auto &[planet, action] : onLand)
+			if(!didLand.contains(&action))
+				action.Save(out);
+		for(const MissionAction &action : genericOnLand)
+			if(!didLand.contains(&action))
 				action.Save(out);
 	}
 	out.EndChild();
@@ -673,11 +695,17 @@ bool Mission::IsValid() const
 	for(auto &&it : onEnter)
 		if(!it.first->IsValid() || !it.second.Validate().empty())
 			return false;
+	for(const auto &[planet, action] : onLand)
+		if(!planet->IsValid() || !action.Validate().empty())
+			return false;
 	for(auto &&it : actions)
 		if(!it.second.Validate().empty())
 			return false;
-	// Generic "on enter" may use a LocationFilter that exclusively references invalid content.
+	// Generic "on enter" or "on land" may use a LocationFilter that exclusively references invalid content.
 	for(auto &&action : genericOnEnter)
+		if(!action.Validate().empty())
+			return false;
+	for(const auto &action : genericOnLand)
 		if(!action.Validate().empty())
 			return false;
 	if(!clearanceFilter.IsValid())
@@ -960,7 +988,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		if(!sourceFilter.Matches(*boardingShip))
 			return false;
 	}
-	else if(location == ENTERING)
+	else if(location == ENTERING || location == TRANSITION)
 	{
 		if(!sourceFilter.Matches(player.GetSystem()))
 			return false;
@@ -1216,10 +1244,10 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	if(trigger == STOPOVER)
 	{
 		// If this is not one of this mission's stopover planets, or if it is
-		// not the very last one that must be visited, do nothing.
+		// not the very last one that must be visited, see if a landing action can trigger instead.
 		auto it = stopovers.find(player.GetPlanet());
 		if(it == stopovers.end())
-			return false;
+			return Land(player.GetPlanet(), player, *ui);
 
 		for(const NPC &npc : npcs)
 			if(npc.IsLeftBehind(player.GetSystem()))
@@ -1646,13 +1674,15 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
 	string reason;
-	for(auto &&n : npcs)
-		reason = n.Validate(true);
-	if(!reason.empty())
+	for(const NPC &npc : npcs)
 	{
-		Logger::Log("Instantiation Error: NPC template in mission \""
-			+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
-		return result;
+		reason = npc.Validate(true);
+		if(!reason.empty())
+		{
+			Logger::Log("Instantiation Error: NPC template in mission \""
+				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
+			return result;
+		}
 	}
 	for(const NPC &npc : npcs)
 		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
@@ -1664,53 +1694,68 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
-	auto ait = actions.begin();
-	for( ; ait != actions.end(); ++ait)
+	for(const auto &[trigger, action] : actions)
 	{
-		reason = ait->second.Validate();
+		reason = action.Validate();
 		if(!reason.empty())
-			break;
+		{
+			Logger::Log("Instantiation Error: Action \"" + TriggerToText(trigger) + "\" in mission \""
+				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
+			return result;
+		}
 	}
-	if(ait != actions.end())
-	{
-		Logger::Log("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
-			+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
-		return result;
-	}
-	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
+	for(const auto &[trigger, action] : actions)
+		result.actions[trigger] = action.Instantiate(subs, sourceSystem, jumps, payload);
 
-	auto oit = onEnter.begin();
-	for( ; oit != onEnter.end(); ++oit)
+	for(const auto &[system, action] : onEnter)
 	{
-		reason = oit->first->IsValid() ? oit->second.Validate() : "trigger system";
+		reason = system->IsValid() ? action.Validate() : "trigger system";
 		if(!reason.empty())
-			break;
+		{
+			Logger::Log("Instantiation Error: Action \"on enter `" + system->TrueName() + "`\" in mission \""
+				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
+			return result;
+		}
 	}
-	if(oit != onEnter.end())
+	for(const auto &[system, action] : onEnter)
+		result.onEnter[system] = action.Instantiate(subs, sourceSystem, jumps, payload);
+	for(const auto &[planet, action] : onLand)
 	{
-		Logger::Log("Instantiation Error: Action \"on enter '" + oit->first->TrueName() + "'\" in mission \""
-			+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
-		return result;
+		reason = planet->IsValid() ? action.Validate() : "trigger planet";
+		if(!reason.empty())
+		{
+			Logger::Log("Instantiation Error: Action \"on land `" + planet->TrueName() + "`\" in mission \""
+				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
+			return result;
+		}
 	}
-	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
+	for(const auto &[planet, action] : onLand)
+		result.onLand[planet] = action.Instantiate(subs, sourceSystem, jumps, payload);
 
-	auto eit = genericOnEnter.begin();
-	for( ; eit != genericOnEnter.end(); ++eit)
+	for(const MissionAction &action : genericOnEnter)
 	{
-		reason = eit->Validate();
+		reason = action.Validate();
 		if(!reason.empty())
-			break;
-	}
-	if(eit != genericOnEnter.end())
-	{
-		Logger::Log("Instantiation Error: Generic \"on enter\" action in mission \""
-			+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
-		return result;
+		{
+			Logger::Log("Instantiation Error: Generic \"on enter\" action in mission \""
+				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
+			return result;
+		}
 	}
 	for(const MissionAction &action : genericOnEnter)
 		result.genericOnEnter.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
+	for(const MissionAction &action : genericOnLand)
+	{
+		reason = action.Validate();
+		if(!reason.empty())
+		{
+			Logger::Log("Instantiation Error: Generic \"on land\" action in mission \""
+				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
+			return result;
+		}
+	}
+	for(const MissionAction &action : genericOnLand)
+		result.genericOnLand.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName), subs);
@@ -1799,6 +1844,29 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI &ui)
 			}
 
 	return didEnter.size() > originalSize;
+}
+
+
+
+bool Mission::Land(const Planet *planet, PlayerInfo &player, UI &ui)
+{
+	const auto lit = onLand.find(planet);
+	const auto originalSize = didLand.size();
+	if(lit != onLand.end() && !didLand.contains(&lit->second) && lit->second.CanBeDone(player, IsFailed()))
+	{
+		lit->second.Do(player, &ui, this);
+		didLand.insert(&lit->second);
+	}
+	else
+		for(MissionAction &action : genericOnLand)
+			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed()))
+			{
+				action.Do(player, &ui, this);
+				didLand.insert(&action);
+				break;
+			}
+
+	return didLand.size() > originalSize;
 }
 
 

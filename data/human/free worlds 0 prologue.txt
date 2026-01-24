@@ -1085,11 +1085,11 @@ mission "FW Escort Second Chance"
 mission "FW Bounty 1"
 	minor
 	name "Free Worlds Bounty Hunting"
-	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny" who have been harassing merchants in Free Worlds space. They were last seen attacking freighters in the Seginus system. After defeating them, return to <destination>.`
+	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny" who have been harassing merchants in Free Worlds space. They were last seen just northeast of Kornephoros. After defeating them, return to <destination>.`
 	source
 		government "Free Worlds"
 	to offer
-		"combat rating" > 200
+		"combat rating" > 148
 		not "chosen sides"
 		random < 20 + 5 * "assisted free worlds" * "assisted free worlds"
 	on decline
@@ -1125,12 +1125,12 @@ mission "FW Bounty 1"
 					defer
 			
 			label accept
-			`	"Excellent," she says. "They call themselves the 'Rat Pack,' and you'll recognize them because most of their ships are named after various vermin, although for some unknown reason their flagship is just named 'Cluny.' They were last seen in the Seginus system, just northeast of Free space, so they'll probably be within a jump or two of there. Thank you in advance for your help."`
+			`	"Excellent," she says. "They call themselves the 'Rat Pack,' and you'll recognize them because most of their ships are named after various vermin, although for some unknown reason their flagship is just named 'Cluny.' Our sources tell us that they're just northeast of the Kornephoros system. Thank you in advance for your help."`
 				accept
 	
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
 			near "Seginus" 1 1
 		ship "Hawk (Rocket)" "Cluny"
@@ -1180,7 +1180,7 @@ ship "Mammoth" "Mammoth (Moonless)"
 mission "FW Bounty 2"
 	minor
 	name "Free Worlds Bounty Hunting"
-	description `A Free Worlds militia officer from <destination> asked you to hunt down the <npc>, a pirate ship last seen in the Delta Sagittarii system. The militia officer suggested trying to attack the ship from a distance.`
+	description `A Free Worlds militia officer from <destination> asked you to hunt down the <npc>, a pirate ship pillaging ships headed to Tarazed. The militia officer suggested trying to attack the ship from a distance.`
 	source
 		government "Free Worlds"
 	to offer
@@ -1200,7 +1200,7 @@ mission "FW Bounty 2"
 				`	"Sorry, I'm way too busy right now."`
 					defer
 			
-			`	"There's a retrofitted heavy freighter by the name of <npc> that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more Heavy Lasers than I've ever seen anyone install on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. The bounty on it is <payment>."`
+			`	"There's a retrofitted heavy freighter by the name of <npc> that has been stealing large amounts of cargo from our supply convoys headed to Tarazed. Be warned that this ship is a tough one, fitted with more Heavy Lasers than I've ever seen anyone install on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. The bounty on it is <payment>."`
 			choice
 				`	"Sounds like this shouldn't be too difficult. I'm in."`
 				`	"I could handle a group of interceptors, but this sounds like too much for me. You'll have to find someone else."`
@@ -1215,7 +1215,7 @@ mission "FW Bounty 2"
 	
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
 			near "Delta Sagittarii" 1 1
 		ship "Mammoth (Moonless)" "Moonless Night"
@@ -1262,12 +1262,12 @@ mission "FW Bounty 3"
 					defer
 			
 			label accept
-			`	"Great," he says. "Your target is named the <npc>. After we nearly destroyed it, we think it went to the Shaula system to hide out, which means that you'll probably have to deal with other pirates at the same time. Good luck, Captain."`
+			`	"Great," he says. "Your target is named the <npc>. After we nearly destroyed it, it went to the Shaula system to hide out, which means that you'll probably have to deal with other pirates at the same time. Good luck, Captain."`
 				accept
 	
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system "Shaula"
 		ship "Osprey (Alien Weapons)" "Silverhawk"
 		dialog phrase "generic hunted bounty eliminated dialog"

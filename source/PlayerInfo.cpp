@@ -860,7 +860,6 @@ void PlayerInfo::AdvanceDate(int amount)
 			if(!mission.IsFailed())
 				mission.Do(Mission::DAILY, *this);
 		}
-
 		DoAccounting();
 	}
 	// Reset the reload counters for all your ships.
@@ -2099,9 +2098,9 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 
-bool PlayerInfo::HasAvailableEnteringMissions() const
+bool PlayerInfo::HasAvailableInflightMissions() const
 {
-	return !availableEnteringMissions.empty();
+	return !availableEnteringMissions.empty() || !availableTransitionMissions.empty();
 }
 
 
@@ -2472,6 +2471,30 @@ void PlayerInfo::CreateEnteringMissions()
 
 
 
+void PlayerInfo::CreateTransitionMissions()
+{
+	availableTransitionMissions.clear();
+
+	bool hasPriorityMissions = false;
+	unsigned nonBlockingMissions = 0;
+	for(const auto &[name, mission] : GameData::Missions())
+		if(mission.IsAtLocation(Mission::TRANSITION) && mission.CanOffer(*this))
+		{
+			availableTransitionMissions.push_back(mission.Instantiate(*this));
+			if(availableTransitionMissions.back().IsFailed())
+				availableTransitionMissions.pop_back();
+			else
+			{
+				hasPriorityMissions |= missions.back().HasPriority();
+				nonBlockingMissions += missions.back().IsNonBlocking();
+			}
+		}
+
+	SortMissions(availableMissions, hasPriorityMissions, nonBlockingMissions);
+}
+
+
+
 Mission *PlayerInfo::EnteringMission()
 {
 	if(!flagship)
@@ -2484,6 +2507,24 @@ Mission *PlayerInfo::EnteringMission()
 		{
 			availableEnteringMissions.splice(availableEnteringMissions.begin(), availableEnteringMissions, it);
 			return &availableEnteringMissions.front();
+		}
+	return nullptr;
+}
+
+
+
+Mission *PlayerInfo::TransitionMission()
+{
+	if(!flagship)
+		return nullptr;
+
+	// If a mission can be offered right now, move it to the start of the list
+	// so we know what mission the callback is referring to, and return it.
+	for(auto it = availableTransitionMissions.begin(); it != availableTransitionMissions.end(); ++it)
+		if(it->HasSpace(*flagship))
+		{
+			availableTransitionMissions.splice(availableTransitionMissions.begin(), availableTransitionMissions, it);
+			return &availableTransitionMissions.front();
 		}
 	return nullptr;
 }
@@ -2540,9 +2581,9 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI &ui)
 
 
 
-void PlayerInfo::HandleBlockedEnteringMissions(UI &ui)
+void PlayerInfo::HandleBlockedInflightMissions(UI &ui)
 {
-	if(!flagship || availableEnteringMissions.empty())
+	if(!flagship || (availableEnteringMissions.empty() && availableTransitionMissions.empty()))
 		return;
 
 	for(auto it = availableEnteringMissions.begin(); it != availableEnteringMissions.end(); )
@@ -2562,6 +2603,23 @@ void PlayerInfo::HandleBlockedEnteringMissions(UI &ui)
 		else
 			++it;
 	}
+	for(auto it = availableTransitionMissions.begin(); it != availableTransitionMissions.end(); )
+	{
+		if(!it->HasSpace(*flagship))
+		{
+			string message = it->BlockedMessage(*this);
+			// Remove this mission from the list so that the MainPanel stops
+			// trying to offer it.
+			it = availableTransitionMissions.erase(it);
+			if(!message.empty())
+			{
+				ui.Push(new DialogPanel(message));
+				return;
+			}
+		}
+		else
+			++it;
+	}
 }
 
 
@@ -2571,8 +2629,16 @@ void PlayerInfo::HandleBlockedEnteringMissions(UI &ui)
 // conversation ended.
 void PlayerInfo::MissionCallback(int response)
 {
-	list<Mission> &missionList = availableMissions.empty() ?
-		(availableEnteringMissions.empty() ? availableBoardingMissions : availableEnteringMissions) : availableMissions;
+	auto MissionsOffered = [&]() -> list<Mission> & {
+		if(!availableMissions.empty())
+			return availableMissions;
+		if(!availableTransitionMissions.empty())
+			return availableTransitionMissions;
+		if(!availableEnteringMissions.empty())
+			return availableEnteringMissions;
+		return availableBoardingMissions;
+	};
+	list<Mission> &missionList = MissionsOffered();
 	if(missionList.empty())
 		return;
 
@@ -2605,7 +2671,7 @@ void PlayerInfo::MissionCallback(int response)
 		// so Engine::SpawnFleets can add its ships without requiring the
 		// player to land.
 		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING)
-				|| mission.IsAtLocation(Mission::ENTERING))
+				|| mission.IsAtLocation(Mission::ENTERING) || mission.IsAtLocation(Mission::TRANSITION))
 			activeInFlightMission = &*--spliceIt;
 	}
 	else if(response == Endpoint::DECLINE || response == Endpoint::FLEE)
@@ -4418,6 +4484,7 @@ void PlayerInfo::CreateMissions()
 {
 	availableBoardingMissions.clear();
 	availableEnteringMissions.clear();
+	availableTransitionMissions.clear();
 
 	// Check for available missions.
 	bool skipJobs = planet && !planet->GetPort().HasService(Port::ServicesType::JobBoard);
@@ -4426,7 +4493,7 @@ void PlayerInfo::CreateMissions()
 	for(const auto &[name, mission] : GameData::Missions())
 	{
 		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING)
-				|| mission.IsAtLocation(Mission::ENTERING))
+				|| mission.IsAtLocation(Mission::ENTERING) || mission.IsAtLocation(Mission::TRANSITION))
 			continue;
 		if(skipJobs && mission.IsAtLocation(Mission::JOB))
 			continue;
