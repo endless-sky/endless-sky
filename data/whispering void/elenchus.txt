@@ -59,6 +59,7 @@ outfitter "Elenctic Commune Basic"
 	"Fragmentation Grenades"
 	"Interference Plating"
 	"Local Map"
+	"Miner's Guide"
 
 
 event "liberated elenchus"

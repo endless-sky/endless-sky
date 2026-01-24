@@ -180,6 +180,7 @@ outfitter "Wanderer Basics"
 	"Outfits Expansion"
 	"Small Bunk Room"
 	"Local Map"
+	"Miner's Guide"
 	"Hyperdrive"
 
 outfitter "Wanderer Advanced"
@@ -208,6 +209,7 @@ outfitter "Wanderer Advanced"
 	"Small Bunk Room"
 	"Bunk Room"
 	"Local Map"
+	"Miner's Guide"
 	"Hyperdrive"
 
 

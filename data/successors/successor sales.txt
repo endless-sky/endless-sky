@@ -60,6 +60,7 @@ outfitter "Successor Basics"
 	`"Byiaa" Shield Cortex`
 	"Hyperdrive"
 	"Local Map"
+	"Miner's Guide"
 
 outfitter "Successor Weapons Basics"
 	"Successor Pulse Laser"
@@ -78,6 +79,7 @@ outfitter "Successor Civilian"
 	"Shield Cortex Interface"
 	"Hyperdrive"
 	"Local Map"
+	"Miner's Guide"
 
 	`"Chyyra" Inductive Reverser`
 	`"Chyyra" Inductive Steering`
