@@ -60,6 +60,200 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.16" date="2025-10-25">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <p>Some of the notable changes are:</p>
+        <ul>
+          <li>Reverted changes to movement AI from the previous release, fixing various issues with ship movement introduced there.</li>
+          <li>There is now a gamerule which controls if secondary weapon ammunition can be resupplied at any outfitter.</li>
+          <li>Scrollable text areas on the map and plugin panels now behave correctly when the game window is resized.</li>
+          <li>When landing, planetary security will no longer scan parked ships for illegal outfits.</li>
+          <li>Animations of features in the HUD are no longer affected by the "pause" or "fast-forward" commands.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 16 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.16/changelog</url>
+    </release>
+    <release version="0.10.15" date="2025-9-27" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>Some notable additions and changes are:</p>
+        <ul>
+          <li>Re-implementation of the "Hold Fire" command for escort ships.</li>
+          <li>Improved the autopilot's ability to use reverse thrust and handle ships with insufficient crew.</li>
+          <li>Added animations to incoming in-flight messages, the mini-map transitioning between systems, and zooming in and out in the map panel.</li>
+          <li>The Heavy Gust now becomes available shortly after the Autumn Leaf.</li>
+          <li>Some new and continued mission chains, including one involving the Ka'het.</li>
+          <li>Ramscoop fuel and solar energy collection are now based the distances from each star in a system to a ship, instead of from the ship to the center of the system.</li>
+          <li>Sprites can now be loaded from AVIF files and music from FLAC files.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 20 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.15/changelog</url>
+    </release>
+    <release version="0.10.14" date="2025-6-28">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <ul>
+          <li>Removed the unused portrait image assets from the game files</li>
+          <li>Various fixes to the missions and content of the recently added Patir 2 storyline.</li>
+          <li>Updated the text truncation algorithm to fix inaccurate truncation that could cause text to render outside of the intended input box or crash the game.</li>
+          <li>Long planet or spaceport descriptions that created a scrolling text box no longer slide off the screen.</li>
+          <li>Starfield zoom limits can now be customized through the interfaces file.</li>
+          <li>The planet panel will now only be offset to the left slightly when the game window is fewer than 1280 pixels wide.</li>
+          <li>We now offer a Windows NSIS installer bundle for installing the game.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 15 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.14/changelog</url>
+    </release>
+    <release version="0.10.13.1" date="2025-6-4" type="development" urgency="low">
+      <description>
+        <p>This is a patch for the recent unstable release, mainly reverting a feature that introduced some major bugs to mission NPCs.</p>
+        <p>Here are the fixes and improvements included here:</p>
+        <ul>
+          <li>Removed NPC travel instructions. This fixes issues with some ships sometimes behaving incorrectly, and some mission NPCs starting in the wrong system.</li>
+          <li>Invalid systems will no longer be included in the "neighbors" lists of other systems.</li>
+          <li>Fixed overlaps of some elements on the map panel at particular resolutions.</li>
+          <li>"FW Bounty 1" now includes its destination in its description.</li>
+          <li>Caching in CI/CD now only relies on actions/cache.</li>
+          <li>Added a CMake preset for armv7.</li>
+        </ul>
+        <p>You can also find these items in the changelog.</p>
+        <p>A special thanks to the 5 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.13.1/changelog</url>
+    </release>
+    <release version="0.10.13" date="2025-5-31" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>There's lots of new content. Some notable additions and changes are:</p>
+        <ul>
+          <li>Major revamp of Quarg outfits and many new ships.</li>
+          <li>A continuation of the Patir Mystery mission chain.</li>
+          <li>Two old ships and an old outfit rarely used by some human pirates.</li>
+          <li>Numerous new jobs, culture conversations, and some short mission chains.</li>
+          <li>The Coalition intros are easier to find.</li>
+          <li>Many large battles throughout the Free Worlds story now involve smaller fleets on both sides.</li>
+          <li>Different sources of cloaking now offer some different benefits and drawbacks.</li>
+          <li>Ammunition for installed weapons can now be restocked at any outfitter.</li>
+        </ul>
+        <p>There have also been changes to the user interface:</p>
+        <ul>
+          <li>There are now sounds when interacting with buttons or pressing some keys.</li>
+          <li>Gameplay can now be paused without opening the main menu, while still being able to select ships and issue orders.</li>
+          <li>The starfield in the background of the main menu is now animated.</li>
+        </ul>
+        <p>And, lastly, new and changed game mechanics:</p>
+        <ul>
+          <li>Missions can be offered when entering a system.</li>
+          <li>Missions can have an "offer precedence" property to control the order in which they appear when multiple are available at once.</li>
+          <li>Turret hardpoints can define "blindspots"; angles an installed weapon can't turn towards, and multipliers applied to the turning speed of installed turrets.</li>
+          <li>New swizzles can be defined in data files and offer more flexibility in the color combinations they can take.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 60 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.13/changelog</url>
+    </release>
+    <release version="0.10.12" date="2025-2-22">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <ul>
+          <li>Fixed an issue where player escorts could start jumping around independently of the flagship.</li>
+          <li>Audio will now remain paused when switching from the player info to the ship info panel.</li>
+          <li>Coalition ships and planets can no longer be bribed.</li>
+          <li>Buffed the health and mobility of the Bastion.</li>
+          <li>Adjusted the Firelight Missile Bank.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 14 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.12/changelog</url>
+    </release>
+    <release version="0.10.11" date="2025-1-25" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>There's lots of new content, and some noticeable balance changes to existing content:</p>
+        <ul>
+          <li>A new group of difficult to navigate systems, inhabited by new aliens.</li>
+          <li>Several new chains of missions and culture conversations in various regions of space.</li>
+          <li>A new, unlockable start that places the player in Hai space as they begin their interstellar journey.</li>
+          <li>Turret turn rates have been rebalanced to make bigger and longer-range turrets generally and more consistently slower than smaller or shorter-range ones.</li>
+          <li>The Carrier has seen an overhaul making it rely more heavily on its fighters for combat, rather than also being the strongest ship in human space on its own, as well as giving the Aerie some more bays.</li>
+        </ul>
+        <p>As well as changes to various game mechanics:</p>
+        <ul>
+          <li>Planets and systems can now have display names.</li>
+          <li>Stellar objects can be made invisible when the player is far from them.</li>
+          <li>Fleets and hazards can be given condition sets that control whether or not they can be spawned.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 37 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.11/changelog</url>
+    </release>
+    <release version="0.10.10" date="2024-10-26">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <ul>
+          <li>The biggest change this release is the removal of the "hold fire" command, added in 0.10.9, because of bugs associated with it that could not be adequately resolved prior to this release.</li>
+          <li>We hope to have addressed those issues for the next release in a few months.</li>
+        </ul>
+        <p>This release brings one new feature:</p>
+        <ul>
+          <li>The addition of the "silent jumps" and "silent scans" attributes, which allow ships to jump and scan without playing any sounds, not even the default ones.</li>
+        </ul>
+        <p>Some other changes are:</p>
+        <ul>
+          <li>Particularly large capture defense values on some outfits were reduced, to work better with changes to capturing mechanics in 0.10.9.</li>
+          <li>Fixes and improvements to various Incipias, Remnant, and Successor missions.</li>
+          <li>Updated landing messages for some star sprites to improve accuracy.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 18 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.10/changelog</url>
+    </release>
+    <release version="0.10.9" date="2024-9-28" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>This release includes two new groups of systems, each with their own faction:</p>
+        <ul>
+          <li>The Incipias, who live in gas giants and have not yet achieved faster than light travel.</li>
+          <li>The Successors, in the south, an amphibious race.</li>
+        </ul>
+        <p>Some other notable additions and changes to content and mechanics are:</p>
+        <ul>
+          <li>Formation flying for fleets and escorts.</li>
+          <li>A new mission chain for the Gegno.</li>
+          <li>Changed boarding mechanics to better balance boarding attack and defense.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 35 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.9/changelog</url>
+    </release>
+    <release version="0.10.8" date="2024-6-22">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <p>These changes include:</p>
+        <ul>
+          <li>Fixed various crashes, including ones that could occur when sorting ships or when using the flagship outline or new cloaked settings.</li>
+          <li>The flagship will no longer move through wormholes ahead of escorts when using fleet jumping.</li>
+          <li>Reduced the difficulty of the battle in "Wanderers: Mind 6".</li>
+          <li>Added a gamerule for controlling the disabled fighter projectile collision behavior introduced in v0.10.7.</li>
+          <li>Illegal mission passengers can now be detected by planetary security. Previously, missions with only illegal passengers could never result in a fine.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 13 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.8/changelog</url>
+    </release>
     <release version="0.10.7" date="2024-5-25" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
@@ -370,15 +564,15 @@
         <p>Changes include:</p>
         <ul>
           <li>Buying and selling items at maximum depreciation now accounts for the 7-day grace period.</li>
-          <li>Missions will no longer complete if a required passenger isn’t landed with you.</li>
+          <li>Missions will no longer complete if a required passenger isn't landed with you.</li>
           <li>Several new star images have been added, as well as additional jobs for players with many bunks.</li>
           <li>Tweaks to the balance of solar panels and some Coalition outfits, and to the fleets found in Hai space.</li>
         </ul>
         <p>Plugin authors and content creators have some small engine updates to consider:</p>
         <ul>
           <li>Automatic condition variables now update daily, and not just upon landing.</li>
-          <li>The flagship’s system and planet are available as condition variables.</li>
-          <li>Heat can be added to a ship based on the system’s solar power output with the “solar heat” outfit attribute.</li>
+          <li>The flagship's system and planet are available as condition variables.</li>
+          <li>Heat can be added to a ship based on the system's solar power output with the "solar heat" outfit attribute.</li>
         </ul>
       </description>
       <url>https://github.com/endless-sky/endless-sky/blob/v0.9.12/changelog</url>

@@ -529,7 +529,7 @@ mission "Paradise Job: Pirate Retirees (Illegal)"
 	description `This coterie of <bunks> wealthy "retirees" is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions.`
 	passengers 4 10 .6
 	cargo "treasured possessions" 4 10 .2
-	illegal 15000 `After scanning your ship, law enforcement notifies you. Apparently the "retirees" you've been carting around are secretly wanted individuals. After taking boarding your ship, they arrest the so-called retirees and search through their "treasured possessions," which are innocent enough, besides being obtained illegally. In the end, they confiscate the possessions and take away the criminals, leaving you with a small fine.`
+	illegal 15000 `After scanning your ship, law enforcement notifies you. Apparently the "retirees" you've been carting around are secretly wanted individuals. After boarding your ship, they arrest the so-called retirees and search through their "treasured possessions," which are innocent enough, besides being obtained illegally. In the end, they confiscate the possessions and take away the criminals, leaving you with a small fine.`
 	stealth
 	to offer
 		random < 5
@@ -591,6 +591,7 @@ mission "Paradise Job: Wilderness Retreat"
 	destination
 		distance 6 20
 		attributes "frontier" "rim" "forest" "fishing"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -606,6 +607,7 @@ mission "Gemini Shipyards Shipment [0]"
 	repeat
 	to offer
 		random < 15
+		has "landing access: Geminus"
 		or
 			not "event: war begins"
 			has "event: geminus rebuilt"
@@ -626,6 +628,7 @@ mission "Gemini Shipyards Shipment [1]"
 	job
 	repeat
 	to offer
+		has "landing access: Geminus"
 		random < 15
 		or
 			not "event: war begins"
@@ -648,9 +651,11 @@ mission "Lovelace Labs Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Ada"
 	source
 		near Aldebaran 2 10
 		attributes core factory
+		not government "Pirate"
 	destination Ada
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -666,6 +671,7 @@ mission "Polymath Nanoinstruments Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Vinci"
 	source
 		near Miaplacidus 2 10
 		attributes core factory

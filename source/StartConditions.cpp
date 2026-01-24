@@ -21,8 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Planet.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "System.h"
 
 #include <algorithm>
@@ -37,14 +37,16 @@ namespace {
 
 
 
-StartConditions::StartConditions(const DataNode &node)
+StartConditions::StartConditions(const DataNode &node, const ConditionsStore *globalConditions,
+		const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, globalConditions, playerConditions);
 }
 
 
 
-void StartConditions::Load(const DataNode &node)
+void StartConditions::Load(const DataNode &node, const ConditionsStore *globalConditions,
+		const ConditionsStore *playerConditions)
 {
 	// When a plugin modifies an existing starting condition, default to
 	// clearing the previously-defined description text. The plugin may
@@ -78,7 +80,7 @@ void StartConditions::Load(const DataNode &node)
 		if(remove)
 		{
 			if(key == "name")
-				unlocked.name.clear();
+				unlocked.displayName.clear();
 			else if(key == "description")
 				unlocked.description.clear();
 			else if(key == "thumbnail")
@@ -103,7 +105,7 @@ void StartConditions::Load(const DataNode &node)
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
 			else if(key == "conditions")
-				conditions = ConditionSet();
+				conditions = ConditionAssignments();
 			else
 				child.PrintTrace("Skipping unsupported use of \"remove\":");
 		}
@@ -115,13 +117,13 @@ void StartConditions::Load(const DataNode &node)
 			// a 3rd token (i.e. this will be treated as though it were a ship variant definition,
 			// without making the variant available to the rest of GameData).
 			if(child.HasChildren() || child.Size() >= add + 3)
-				ships.emplace_back(child);
+				ships.emplace_back(child, playerConditions);
 			// If there's only 2 tokens & there's no child nodes, the created instance would be ill-formed.
 			else
 				child.PrintTrace("Skipping unsupported use of a \"stock\" ship (a full definition is required):");
 		}
 		else if(key == "conversation" && child.HasChildren() && !add)
-			conversation = ExclusiveItem<Conversation>(Conversation(child));
+			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
 		else if(key == "conversation" && hasValue && !child.HasChildren())
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(value));
 		else if(add)
@@ -131,11 +133,11 @@ void StartConditions::Load(const DataNode &node)
 		else if(key == "to" && hasValue)
 		{
 			if(value == "display")
-				toDisplay.Load(child);
+				toDisplay.Load(child, globalConditions);
 			else if(value == "reveal")
-				toReveal.Load(child);
+				toReveal.Load(child, globalConditions);
 			else if(value == "unlock")
-				toUnlock.Load(child);
+				toUnlock.Load(child, globalConditions);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -149,14 +151,14 @@ void StartConditions::Load(const DataNode &node)
 				LoadState(child, StartState::REVEALED);
 		}
 		else
-			conditions.Add(child);
+			conditions.Add(child, playerConditions);
 	}
 
 	// The unlocked state must have at least some information.
 	if(unlocked.description.empty())
 		unlocked.description = "(No description provided.)";
-	if(unlocked.name.empty())
-		unlocked.name = "(Unnamed start)";
+	if(unlocked.displayName.empty())
+		unlocked.displayName = "(Unnamed start)";
 
 	// If the REVEALED or DISPLAYED states are missing information, fill them in with "???".
 	// Also use the UNLOCKED state thumbnail if the other states are missing one.
@@ -170,7 +172,7 @@ void StartConditions::Load(const DataNode &node)
 	else if(identifier.empty())
 	{
 		stringstream addr;
-		addr << unlocked.name << " " << this;
+		addr << unlocked.displayName << " " << this;
 		identifier = addr.str();
 	}
 }
@@ -188,17 +190,17 @@ void StartConditions::FinishLoading()
 	// may now be invalid, meaning the CoreStartData would actually send the start to New Boston instead
 	// of what was displayed.
 	StartInfo &unlocked = infoByState[StartState::UNLOCKED];
-	unlocked.planet = GetPlanet().Name();
-	unlocked.system = GetSystem().Name();
-	unlocked.date = GetDate().ToString();
+	unlocked.planet = GetPlanet().DisplayName();
+	unlocked.system = GetSystem().DisplayName();
+	unlocked.date = GetDate();
 	unlocked.credits = Format::Credits(GetAccounts().Credits());
 	unlocked.debt = Format::Credits(GetAccounts().TotalDebt());
 
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
-		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
-			+ unlocked.name + "\") has an invalid starting conversation."
-			+ (reason.empty() ? "" : "\n\t" + std::move(reason)));
+		Logger::Log("The start scenario \"" + Identifier() + "\" (named \""
+			+ unlocked.displayName + "\") has an invalid starting conversation."
+			+ (reason.empty() ? "" : "\n\t" + std::move(reason)), Logger::Level::WARNING);
 }
 
 
@@ -226,7 +228,7 @@ bool StartConditions::IsValid() const
 
 
 
-const ConditionSet &StartConditions::GetConditions() const noexcept
+const ConditionAssignments &StartConditions::GetConditions() const noexcept
 {
 	return conditions;
 }
@@ -260,7 +262,7 @@ const Sprite *StartConditions::GetThumbnail() const noexcept
 const string &StartConditions::GetDisplayName() const noexcept
 {
 	auto it = infoByState.find(state);
-	return it == infoByState.end() ? ILLEGAL : it->second.name;
+	return it == infoByState.end() ? ILLEGAL : it->second.displayName;
 }
 
 
@@ -292,7 +294,11 @@ const string &StartConditions::GetSystemName() const noexcept
 const string &StartConditions::GetDateString() const noexcept
 {
 	auto it = infoByState.find(state);
-	return it == infoByState.end() ? ILLEGAL : it->second.date;
+	if(it == infoByState.end())
+		return ILLEGAL;
+	if(it->second.date)
+		return it->second.date.ToString();
+	return it->second.dateString;
 }
 
 
@@ -313,20 +319,20 @@ const string &StartConditions::GetDebt() const noexcept
 
 
 
-bool StartConditions::Visible(const ConditionsStore &conditionsStore) const
+bool StartConditions::Visible() const
 {
-	return toDisplay.Test(conditionsStore);
+	return toDisplay.Test();
 }
 
 
 
-void StartConditions::SetState(const ConditionsStore &conditionsStore)
+void StartConditions::SetState()
 {
-	if(toDisplay.Test(conditionsStore))
+	if(toDisplay.Test())
 	{
-		if(toReveal.Test(conditionsStore))
+		if(toReveal.Test())
 		{
-			if(toUnlock.Test(conditionsStore))
+			if(toUnlock.Test())
 				state = StartState::UNLOCKED;
 			else
 				state = StartState::REVEALED;
@@ -365,7 +371,7 @@ bool StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, boo
 	const string &value = child.Token(hasValue ? valueIndex : 0);
 
 	if(key == "name" && hasValue)
-		info.name = value;
+		info.displayName = value;
 	else if(key == "description" && hasValue)
 	{
 		if(clearDescription)
@@ -382,11 +388,21 @@ bool StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, boo
 	else if(key == "planet" && hasValue)
 		info.planet = value;
 	else if(key == "date" && hasValue)
-		info.date = value;
+		if(child.Size() >= valueIndex + 3)
+			info.date = Date(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+		else
+			info.dateString = value;
+	// Format credits and debt where applicable.
 	else if(key == "credits" && hasValue)
-		info.credits = value;
+		if(child.IsNumber(value))
+			info.credits = Format::Credits(child.Value(value));
+		else
+			info.credits = value;
 	else if(key == "debt" && hasValue)
-		info.debt = value;
+		if(child.IsNumber(value))
+			info.debt = Format::Credits(child.Value(value));
+		else
+			info.debt = value;
 	else
 		return false;
 	return true;
@@ -399,16 +415,16 @@ void StartConditions::FillState(StartState fillState, const Sprite *thumbnail)
 	StartInfo &fill = infoByState[fillState];
 	if(!fill.thumbnail)
 		fill.thumbnail = thumbnail;
-	if(fill.name.empty())
-		fill.name = "???";
+	if(fill.displayName.empty())
+		fill.displayName = "???";
 	if(fill.description.empty())
 		fill.description = "???";
 	if(fill.system.empty())
 		fill.system = "???";
 	if(fill.planet.empty())
 		fill.planet = "???";
-	if(fill.date.empty())
-		fill.date = "???";
+	if(fill.dateString.empty() && !fill.date)
+		fill.dateString = "???";
 	if(fill.credits.empty())
 		fill.credits = "???";
 	if(fill.debt.empty())

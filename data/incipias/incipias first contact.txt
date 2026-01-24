@@ -1,0 +1,410 @@
+# Copyright (c) 2023 by RisingLeaf (https://github.com/RisingLeaf)
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Incipias: Warning of the Guardian"
+	invisible
+	landing
+	to complete
+		never
+	on enter Il'le
+		conversation
+			`A voice begins to speak from somewhere. "Your path brings you to a dead end, traveler. Nothing for you lies further."`
+			`	Alarmed, you look around but nobody is there. You check your scanners but there is nothing present in this system except a few indigenous lifeforms. However, your navigation system displays hyperspace routes that lead beyond it.`
+			choice
+				`	(Ignore it.)`
+				`	"This doesn't appear to be a dead end."`
+					goto reason
+				`	"Why should I listen to you?"`
+					goto reason
+			`	"Ignoring these words is only but folly. Turn around, traveler." The voice echoes in the air, again with no indication of where it came from.`
+			choice
+				`	"You can't fool me. This is no dead end."`
+				`	"Why should I listen to you?"`
+			label reason
+			`	"Here lie the unborn flowers yet to come into full bloom. There is nothing here for you to find. Heed this advice and turn back." The voice sounds more energetic this time, and you feel as if it is coming out of your head.`
+			choice
+				`	"Unborn flowers. That sounds interesting."`
+				`	"I will see for myself."`
+				`	"Thank you for the warning."`
+					goto agree
+			`	A deep sigh seems to drift through the continuum. "Human, these unborn flowers would only be endangered by your presence." An impression of euphoria comes over you as you once again hear the words 'unborn flowers.'`
+			`"Please respect the beauty of life and do not step into this region that will soon bring forth another. Your kind is much more advanced than anything that you could hope to find here. No treasures here await you."`
+			choice
+				`	"Why do you care about these 'flowers'?"`
+					goto care
+				`	"What I search for is not technology."`
+			`	The voice now takes on a calm tone. "Your persistence on this topic is admirable, but allow me to explain my conviction with an example."`
+			label care
+			action
+				log `Entered a region of space northeast of the Hai and was warned by a disembodied voice to not disturb the "unborn flowers" that inhabit the region.`
+				event "label incipias space"
+			`	"Why do humans care about art?" The voice now seems far away yet more present than ever. "Because it amazes you, the same way it amazes us to see another kind grow and overcome their burdens. The lives of others are like a painting that never stops being painted, but is a tragic thing to watch the painting stop. That is why we try to protect these creations of life - so we can see what heights they reach."`
+			`	There is a pause. "I see that you can not be convinced by me. Though I could intervene in your journey, I do not favor unsavory confrontation." The voice is now resolute in tone. "I will let you pass, but I will be watching you, as I am the guardian of this space."`
+			`	The voice fades out leaving nothing behind but the feeling of being watched.`
+				decline
+			label agree
+			action
+				log `Entered a region of space northeast of the Hai and was warned by a disembodied voice to not disturb the "unborn flowers" that inhabit the region. Agreed to stay away from there.`
+				set "Incipias: accepted the guardian's warning"
+				event "label incipias space"
+			`	"You are understanding, human, so I thank you in the name of the Incipias." The voice fades away, leaving only the feeling of being watched."`
+				decline
+
+mission "Incipias: Presence of the Guardian"
+	invisible
+	landing
+	to complete
+		never
+	on enter Dom'us
+		fail
+		dialog
+			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched.`
+				to display
+					not "Incipias: accepted the guardian's warning"
+			`As you enter the system, the same voice from before echoes through your mind, though this time there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
+				to display
+					has "Incipias: accepted the guardian's warning"
+	on enter Hui'uc
+		fail
+		dialog
+			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched.`
+				to display
+					not "Incipias: accepted the guardian's warning"
+			`As you enter the system, the same voice from before echoes through your mind, though this time there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
+				to display
+					has "Incipias: accepted the guardian's warning"
+
+
+event "label incipias space"
+	galaxy "label incipias"
+		sprite "label/incipias"
+
+mission "Incipias: First Contact"
+	invisible
+	landing
+	to complete
+		never
+	on enter Dom'us
+		dialog
+			`As you enter the system, you notice ships of a type you have never seen before. Hailing them only gives you static. After some more unsuccessful attempts, you give up. Maybe you can find some more information in nearby systems.`
+				to display
+					not "Visit Quarg in Incipias Space: offered"
+			`As you enter the system, you notice ships of a type you have never seen before. Hailing them only gives you static. After some more unsuccessful attempts, you give up. This must be the species the Quarg talked about.`
+				to display
+					has "Visit Quarg in Incipias Space: offered"
+
+
+
+mission "Visit Quarg in Incipias Space"
+	invisible
+	landing
+	source
+		government "Quarg (Incipias)"
+	to complete
+		never
+	on offer
+		conversation
+			branch "ut divitas" "spec inci"
+				has "flagship planet: Ut Divitas"
+			label "ut divitas"
+			`Your spaceship lands with a soft jolt as a small group of Quarg quickly gathers around it, making some simple but clear gestures telling you to wait. After they've realized that you understood, one of them walks away in a hurried manner. You wait for quite some time until a different Quarg arrives, presumably one that can speak your language. It begins to speak in an accent you can't place.`
+				goto "both planets"
+			label "spec inci"
+			`	After landing your ship on the moon, you have to wait for a decent amount of time for a group of three Quarg to appear. The one in the middle gestures you to approach them, and they begin to speak in an accent you can't place.`
+			label "both planets"
+			`	"Welcome, human. Your lengthy wanderings have brought forth you here, yet your kind has never set foot in this region of the stars. May we inquire as to your mission?"`
+			choice
+				`	"I am just exploring the galaxy."`
+					goto explorer
+				`	"I am looking for new species."`
+					goto "new species"
+			label explorer
+			`	"It is an obvious pursuit for the young," it nods. "If I may advise you, do not perambulate across this quarter of space in a careless manner. The galaxy carries many perilous situations that your kind has yet to uncover or even to comprehend." It straightens up to its full height, towering over you.`
+				goto end
+			label "new species"
+			`	"What a peculiar task that is." It looks confused and tilts its head. "What do you hope to achieve by this? That an unfathomable amount of dangers come with encountering and treating with other species, did you not foresee? The boundaries of space are not idle accidents. I advise you to be scrupulous and ponder every last step."`
+			label end
+			`	After a short pause, you notice an almost-hidden frustration lurking beneath the Quarg's face before it continues speaking. "You are authorized to continue your nomadic voyagings here, but there are demands we Quarg make of you. Within a trifling interval of this moon the neighboring kind has initiated their journey to the stars. Do not interrupt them for yours, or sake of their own."`
+			`	With these words the Quarg turn around and leave. It seems like you are free to use the local facilities now.`
+
+ship "Nimbus" "Nimbus FTL"
+	add attributes
+		"bunks" -25
+	outfits
+		"Liquid-Class Shield"
+		"Metallic Hydrogen Cell"
+		"Cloud Piercer" 20
+
+		"MH Red-Class Thruster"
+		"MH Red-Class Steering"
+
+mission "Incipias: The Derelict"
+	landing
+	invisible
+	to offer
+		has "Visit Quarg in Incipias Space: offered"
+	npc assist
+		government "Hicemus"
+		ship "Nimbus FTL" "HIC Veni #000001"
+		system "Hui'uc"
+		to despawn
+			has "incipias: helped the derelict"
+		on assist
+			log `Assisted a stranded alien vessel in an uninhabited system whose crew members appeared similar to floating octopi or jellyfish. Could not communicate with them due to the language barrier, but managed to give them the equipment they needed to repair their ship. Unfortunately, they lacked a hyperdrive and so were unable to travel back to their home system.`
+			conversation
+				scene "scene/incipias message"
+				`As you approach the derelict ship, it sends you a hail request. Once you accept the hail, color gradients suddenly start moving over your screen in a dizzying fashion, but curiously there is no audio. It's clear that unless you have some sort of translation device, you will not be able to understand whatever transmission you just witnessed. You continue your attempt to assist the ship, preparing to bring some repair supplies on board.`
+				`	You manage to dock to the disabled ship quite easily. The hatch opens and as a hallway opens up before you, it is immediately obvious that this ship was not designed for humans. The walls are strangely curved, and the floor has nearly no grip at all. As you carry the repair equipment into the ship, your view is caught by five giant aliens - half octopod, half jellyfish in appearance. They pulsate in bright colors similar to the gradients that appeared on your screen earlier. One of them is floating behind what's clearly a giant mounted weapon, and the two barrels are pointed right at you. The alien gunner flashes in an orange light, and you can feel the tension in the room rising.`
+				choice
+					`	(Try to convey that I intend no harm.)`
+						goto peace
+					`	(Drop the repair equipment and run back into my ship.)`
+						goto flee
+					`	(Try to shoot at the one behind the turret and run.)`
+				`	You hit the creature manning the turret, causing it to explode with a strident sound. Before you can enjoy your short-lived victory, you notice a motion further down the hallway. Turning your head you see a gunner flashing in a deep red, before shooting you down and avenging their fallen comrade.`
+					die
+				label peace
+				`	Feeling that the situation could escalate any moment, you slowly place the crate with the repair equipment on the ground and walk back a few steps. You are careful not to make any hasty movements. Both you and the aliens are still for a moment until one of them slowly floats forward. Tones of yellow are now mixing into the creature's orange color, and two of their tentacles wrap around the crate while the other four back off in response. Once the alien manages to open the crate and look inside, its colors shift to a weak green. The rest of the crew also seem to relax as they take on the same color.`
+				`	With the aliens retrieving the repair equipment, there is nothing else you can do, given the communication barrier. Just as you leave, you can see how the aliens start pulsating in all colors of the spectrum; gradients are moving over their skin so fast that they almost look white.`
+					goto end
+				label flee
+				`	You drop the repair equipment and run back into your ship, smashing the button that closes the lock. You get a last look of one of the aliens: blue and yellow tones are mixing on their skin, but they are not taking any action.`
+				label end
+				`	As you fly away you see the engines of the ship slowly booting back up. Apparently they figured out how to use the repair equipment. Instead of leaving the system, however, the ship begins to fly towards a nearby gas giant.`
+				`	Back on your ship, your eyes fall on the scanner log that is still open on your monitor. Notably, this ship had no hyperdrive or anything similar installed, which is strange considering there is no inhabited planet in this system. Maybe you should talk to the Quarg and see if they have any insight on this.`
+				action
+					set "incipias: helped the derelict"
+		personality
+			confusion 50
+			derelict staying uninterested
+	on enter "Hui'uc"
+		dialog
+			`Upon entering the system, you notice a lone alien spaceship that is disabled and badly damaged. Aside from it, there do not appear to be any other ships in the system, or sign of any help for that matter. Maybe there's some way you could assist the ship and its crew.`
+
+mission "Incipias: Help The Stranded 1"
+	landing
+	name "Seek help from the Incipias"
+	description "Ask the Incipias for help to save one of their ships."
+	source
+		government "Quarg (Incipias)"
+	destination "Pon'tes"
+	to offer
+		has "incipias: helped the derelict"
+	on offer
+		conversation
+			`Would you like to ask the Quarg for insight on your strange encounter with the stranded alien ship?`
+			choice
+				`	(Yes.)`
+				`	(Not right now.)`
+					defer
+			`	Right after you arrive on the planet, you search for a Quarg who speaks your language so that you can tell them about the stranded ship you found. One of the Quarg seems to understand your intention and gestures for you to wait. It returns a few moments later accompanied by the same Quarg you talked to before.`
+			`	"Human, you seem to be in quite a haste. What could be such a pressing matter?" it asks.`
+			choice
+				`	(Explain the situation.)`
+					goto explanation
+				`	"I need advice regarding the species in this region."`
+			`	It looks at you curiously. "So you have held council with the young Incipias? This one is nonplussed that you ably formed correspondence. It took a prolonged period of time even for us to decipher their way of dissemination."`
+			`	You quickly explain what happened. From what you can tell, the Quarg seems relieved that you were not able to talk to them.`
+			label explanation
+			`	"You ran into a most peculiar situation. Surpassing the borders of their system is not yet a capability possessed by the Incipias." It tilts its head for a moment, considering what you just said. "It is our desire to help them, but it is yet premature for us to reveal ourselves to their species, and certainly premature for them to be interacting with independent interlopers such as yourself. I fear that we are impotent in this unfortunate turn of events."`
+			choice
+				`	"I could help them."`
+				`	"How can you make such a cold-hearted decision?"`
+					goto cold
+				`	"I understand. I'll leave them alone."`
+					goto declined
+			label initiative
+			`	"You lack the tools for such a mission. To this one's knowledge, no vessels capable of landing on gas giants have ever been developed by your kind. And you are certainly not able to make your intentions known to them in any meaningful sense." The Quarg stares at you for a moment, pondering a little.`
+			`	"But for the sake of the Incipias, this one will assist you on this last point. If you cannot be dissuaded from your course of action, then it is best you are supplied a means of communication, so that your interactions may be on amicable terms. This one can produce you with a single one of our translators, which will allow you to relate your intentions to the species. Request that they sell you one of their ships, so that you are made capable to land on their tumultuous planets."`
+			`	It pauses before taking on a more serious tone. "However, you are forbidden from granting the young species any advanced technology of yours. If you concur with us on that point, we shall furnish you with a translator."`
+			choice
+				`	"If that's how I can help them, sure."`
+					goto yes
+				`	"Why do you not want me to give them my tech?"`
+			`	"Halting the natural increase of a species is unpredictable at the best of times. Your species lacks the wisdom to understand this, as you are young, and have not seen what we have seen." The Quarg pauses for a moment, lost in thought. "The foreseeable risks of even letting you contact them are monumental, and not something you should consider trivial."`
+			choice
+				`	"I will accept your conditions to help them."`
+				`	"The risks do sound concerning. I will leave them alone after all."`
+					goto declined
+			label yes
+			action
+				set "language: Incipias"
+				log `Discovered that the species to the northeast of Hai space, the Incipias, are under the protection of the Quarg. Was given a translator by a Quarg in order to assist a stranded Incipias ship, but was warned not to give the Incipias any advanced technology or interfere in their development.`
+			`	"Happy this one is that you agree to that condition. Bear in mind, Captain, that the slightest misstep may have grave consequences." The Quarg stares you down. "We will be watching your actions, to verify that they are peaceful and without ill or unwise intent. Please for a moment remain here," it says, and walks away.`
+			`	The Quarg only takes a moment to come back, now carrying a sleek silver box with a display on one side. "This is our translator, our link to the Incipias. It is able to translate their unusual language into your speech as well. Be aware of the honor of this one gifting this to you," it says.`
+			`	As you stow it away, the Quarg speaks once more. "To satisfactorily utilize this device, you must direct it towards the source of the communication, so that it is made able to discern the relevant emissions. Given the complexity of their language, the translator might not be able to adequately translate some aspects of their obscure speech."`
+			`	It then looks you directly in the eyes. "Remember what has been told, human. The stars have no place for those who would act foolishly and thoughtlessly towards their fellow beings." The Quarg then walks away, leaving you alone.`
+				accept
+			label cold
+			`	"It is perhaps a laborious task for an adolescent species such as yourself to comprehend our ways, but we must place the continuation of species above the existence of individuals. If we reveal ourselves to them at this inopportune moment, the shock of such an advanced species appearing in their space will fan the flames of chaos."`
+			choice
+				`	"Then let me help them."`
+					goto initiative
+				`	"You can deal with the consequences later. Help them now!"`
+			`	The Quarg takes on a sour look. "Insisting you are. Understand that our own intervention is out of the question." It sighs. "However, this one can foresee the likelihood of you making a rash and impetuous decision to contact these Incipias further."`
+			choice
+				`	"Sure. Let me do the work."`
+				`	"If you insist on not helping..."`
+			`	The Quarg rapidly clicks its teeth before continuing.`
+				goto initiative
+			label declined
+			`	"We are gracious for your understanding, but remember thus: the Incipias are under our watch and care. None shall come to harm them without incurring our wrath." With these words the Quarg turns away.`
+				decline
+	on enter Dom'us
+		"reputation: Hicemus" += 10
+		conversation
+			`After you enter the system, you prepare to broadcast your first message with the Quarg's translator.`
+			choice
+				`	"Hello. I am Captain <first> <last>, here to make contact."`
+				`	"Greetings, strangers. I seek to help you."`
+				`	"I come in peace."`
+			`	You notice that the translator starts to flash a sequence of lights, and you point it towards your ship's communication device. For a minute, nothing happens at all.`
+			`	After some time, a wave of movement passes through all ships in the system, and a communication channel opens from the space station. Colors rush over your display: a mix of yellow and green. You point your translator towards the flashing lights and hope it is able to pick up whatever these aliens are saying to you.`
+			`	"Welcome world-traveler. We greet you in our home-space." The voice is smooth and synthetic, lacking in any discernible emotion. The colors stop before rushing over your screen again. "What is your intention-goal here?"`
+			choice
+				`	"I am here to make peaceful contact with you."`
+				`	"I want to help one of your stranded ships."`
+			`	Again a long pause. "Your intention-goals are welcome. Please dock to the capital-station." Along the message comes a small map of the station with the docking ports highlighted.`
+	on complete
+		log `Met with the Incipias on their space station, and gained access to their ships, which are capable of entering the gas giant that the stranded Incipias ship has taken refuge in.`
+		log "Factions" "Incipias" `The Incipias are a species of aliens that live to the northeast of Hai space. They originated from a gas giant, and resemble large, floating octopi. As they have not yet developed the hyperdrive, they are confined to a single system and are under the protection of the Quarg.`
+		conversation
+			`Thanks to the map, you are easily able to dock with the station. Your airlock opens and you enter an environment like nothing you've ever seen before. There are no hallways like you would see in a human space station - instead, tubes full of fog, some of which even ascend vertically, appear to be the only way of getting around. A crowd of beings gathered in front of your airlock, each flashing a multitude of colors. A group of five floats in front of the crowd, and the middle one starts pulsating in calm tones.`
+			`	"Welcome, outer-being, to our capital. We are the Incipias." It stops as if awaiting an answer.`
+			choice
+				`	"Greetings, Incipias. I am a human."`
+				`	"I thank you for your hospitality."`
+			`	Your translator begins rapidly flashing. The Incipias seem to respond to this - movement and colors begin to diffuse through the crowd like waves.`
+			`	The "speaker" continues. "You are the first outer-being that ever communicated with us. Are you the only outer-being out there?"`
+			choice
+				`	"No, there are others too."`
+				`	"The galaxy is full of other beings."`
+			`	Another wave goes through the crowd. "So there are more. But, far-stranger, how can we help you?"`
+			choice
+				`	(Tell them about the stranded ship and how I want to help them.)`
+					goto stranded
+				`	"I want one of your ships."`
+			`	"We shall allow you to buy one, if that is all that it takes to make you a not-danger. Please excuse us. We need to talk about what this new situation-opportunity means for our species. I hope we can out-question you more another time."`
+				goto end
+			label stranded
+			`	Another wave goes through the crowd, but this time you notice an overflow in green tones.`
+			`	"So they are still alive. We shall give you access to our ships, so that you may enter the air-planet they have taken refuge in. Do note though that they cannot jump between system-places, not like your own ship. We hope to question you more on another future-time."`
+			label end
+			`	The five float away but the crowd continues staring at you, probably out of interest.`
+
+mission "Incipias: Fix Saves Missing Language"
+	landing
+	invisible
+	to offer
+		has "Incipias: Help The Stranded 1: offered"
+		not "Incipias: Help The Stranded 1: declined"
+		not "language: Incipias"
+	on offer
+		set "language: Incipias"
+		log `Noticed an alert on <ship>'s dashboard about minor data corruption. The following log entry was recovered, but the original timestamp was lost.`
+		log `Discovered that the species to the northeast of Hai space, the Incipias, are under the protection of the Quarg. Was given a translator by a Quarg in order to assist a stranded Incipias ship, but was warned not to give the Incipias any advanced technology or interfere in their development.`
+		fail
+
+
+mission "Incipias: No Help For The Stranded"
+	landing
+	invisible
+	source
+		planet Turra
+	to offer
+		has "Incipias: The Derelict: done"
+		or
+			has "Incipias: Help The Stranded 1: declined"
+			not "Incipias: Help The Stranded 1: offered"
+	on offer
+		fail
+		dialog `You identify the stranded alien ship you assisted earlier on your scanners, but with no way to communicate with them you are unable to help. You have no choice but to leave them to their doom on this stormy world.`
+
+mission "Incipias: Help The Stranded 2"
+	landing
+	name "Bring Incipias back to <planet>"
+	description "Bring the rescued Incipias back home to <destination>"
+	passengers 5
+	source Turra
+	destination "Pon'tes"
+	blocked "You have landed on <origin>, but you don't have enough passenger space for the <bunks> Incipias. Return here when you have the required space free."
+	to offer
+		has "Incipias: Help The Stranded 1: done"
+	on offer
+		conversation
+			`Your ship dives into the clouds of the gas giant, entering an environment on a scale you have never experienced before. Giant clouds tower like castles, sometimes opening to similarly large caverns of air. Whirlwinds brush through the atmosphere like pillars holding the sky. Though the winds are brutal, your ship glides through them as if they had no effect on it at all.`
+			`	Activating your scanners, you look for the stranded ship from before. Soon, a small blip appears on your radar, and you maneuver your ship to its location. The stranded ship appears, looking even worse off than the first time. The storms seem to have damaged some of the hull, and its shields are completely down; the shield generator could have gone offline when they ran out of fuel.`
+			`	Any attempt to hail the Incipias ship results in no answer. Carefully, you maneuver your own ship closer until you are able to dock with it.`
+			branch "has incipias ship"
+				or
+					has "flagship model: Nimbus"
+					has "flagship model: Nimbo Cirrus"
+					has "flagship model: Nimbo Stratus"
+					has "flagship model: Venta"
+					has "flagship model: Gero"
+			`	When the airlock opens, you see five Incipias floating in front of you. They seem on guard at first, and it takes them a moment to recognize you from the previous encounter as you prepare your translation device to speak with them.`
+				goto "initial choice"
+			label "has incipias ship"
+			`	When the airlock opens, you see five Incipias floating in front of you. Noticing your presence, they quickly back off; they were clearly not expecting a human piloting one of their own ships. It takes them a moment to recognize you from the previous encounter as you prepare your translation device to speak with them.`
+			label "initial choice"
+			choice
+				`	"Hello, I have come to save you."`
+				`	"I have been sent by your people to get you home."`
+			`	The Incipias seem to switch from a tense state to a surprised one, and one of them starts pulsating. "You light our language? How surprising. We would not have survived another day-moment here. You are our life-protector. We would love to talk more, but a weather-calamity is coming. We should leave now." The lack of emotion in the translation is concerning, given the content of the message.`
+			`	You tell them to board your ship, and shortly after, you take off. Luckily, you leave just in time to avoid a powerful windstorm approaching the area.`
+				launch
+	on complete
+		log "Factions" "Incipias" `The Incipias seem to be split into two groups called the Hicemus and the Conlatio; the former occupies a space station, while the latter occupies the Incipias homeworld. The Conlatio do not appear to allow outsiders on their home planet.`
+		conversation
+			`Once you land on the station, your passengers thank you again and leave, probably to get some well-earned rest. As you step out of the <ship>, another Incipias approaches you. Its scales seem worn down, and you notice intricate claw-like attachments around the end of its tentacles. "Follow me, outer-helper, before a crowd gathers. We would like to talk."`
+			`	They guide you through the hallways so that you avoid larger groups, though they choose only horizontal corridors. You arrive in a large room with a view over the entire station, with three Incipias already present. One begins to glow.`
+			`	"Welcome. We are the leader-governers of the Hicemus, the reigning government of the Incipias. If you agree we would like to ask you a few question-queries. In return we would be open for question-queries as well."`
+			choice
+				`	"Sure, ask me something."`
+				`	"Sorry, but I have other stuff to do."`
+					goto "end no time"
+			`	A green glow appears on all of them. "Thank you for taking the time-patience to speak with us. Can you tell us more about the deep space-void surrounding us?"`
+			choice
+				`	(Give them an exhaustive story of what I have seen so far.)`
+					goto detail
+				`	(Give a rough overview of what I have seen.)`
+			`	After "seeing" your explanation, a rapid-fire sequence of colors is exchanged between the Incipias. Your translator cannot follow, so you are left watching them flash in what end up being yellow tones mixed with green and red.`
+			`	"Thank you for this insight. All we gathered until now was by observing-studying stars. To think that there is so much out there... it truly raise-strengthens a determination to explore.`
+				goto yours
+			label detail
+			`	After "watching" your explanation, a rapid-fire sequence of colors is exchanged between the Incipias. Your translator cannot follow, so you are left watching them flash in what ends up being yellow tones mixed with green.`
+			`	"Thank you for this profound-depth insight. All we gathered until now was by observing-studying stars close to us. To think that there is so much out there... it truly invokes a determination-will to explore.`
+			label yours
+			`	"But now to you. Is there anything you would like to know?"`
+			label choice
+			choice
+				`	"Why can I not land on your home planet?"`
+				`	"Why do you call this station your capital?"`
+					goto capital
+				`	"How is life on a gas giant?"`
+					goto "odd question"
+				`	"I do not have any more questions."`
+					goto end
+			`	A flash of red appears for only a second. "Our origin-world is not directly ruled by us. They may approach you separately at a future-point, but be careful of their lights. They have aged-time values long left-alone by us, who are progressing fast.`
+				goto choice
+			label capital
+			`	The one pulsating now takes on a bright green color, "This station is our greatest action-pride, our star-bridge. In honor of our urge to expand we made this station our capital to demonstrate our determination."`
+				goto choice
+			label "odd question"
+			`	"What an odd-reasonable question." It's glow turns into a swirl of purple and green. "We could ask the same in return - what is it like to live on hard rock? But we understand its reasoning-origin. So let me tell you of the cloud-halls of our home-sky. Lightning will draw the most beautiful color-sings between the pillar-clouds. Between them are our cities, the most color-lifeful places you will ever see. This is a bit of a poetic-gradient description, but I do not know what else to say."`
+			label end
+			`	"Thank you again for your time. You have given us much to process. We hope you too have benefited from this meeting-talk."`
+			`	You say goodbye, and as you leave the room, you can see a rush of colors reflecting onto the walls.`
+				decline
+			label "end no time"
+			`	"We are understanding-sad. Safe travels, captain." You notice a slight blue tone in the representative's communication as one of the Incipias guides you back to your ship.`

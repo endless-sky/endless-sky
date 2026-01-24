@@ -11,6 +11,69 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
+phrase "ship bribe rejection navy"
+	word
+		"It is too late: "
+		"Your attempt is futile; "
+	word
+		"we are too honorable to accept this from an enemy."
+		"we value honor over greed."
+		"we will not be swayed so easily."
+
+phrase "ship bribe rejection navy"
+	word
+		"I do not want your money."
+		"United, humanity stands. I cannot take your money."
+		"We want you, not your money, to join the Navy."
+		"Peace among the stars, except for enemies of the Republic."
+
+phrase "ship bribe rejection"
+	word
+		"We're "
+	word
+		"fighting a"
+		"in a"
+		"in the middle of a"
+		"trying to win a"
+		"winning a"
+	word
+		" "
+	word
+		"battle"
+		"conflict"
+		"engagement"
+		"war"
+	word
+		" "
+	word
+		"here!"
+		"right now!"
+	word
+		" We don't have time for this!"
+	replace
+		"a e" "an e"
+
+phrase "ship bribe rejection"
+	word
+		"Stop being a distraction!"
+		"I can't stand chatty enemies!"
+		"Do you think I understand that?"
+		"I can't do math in the middle of a fight!"
+
+phrase "ship bribe rejection"
+	word
+		"You want "
+	word
+		"a truce"
+		"peace"
+		"to stop fighting"
+	word
+		"?"
+	word
+		"" 9
+		" Shoulda thought of that before you attacked us!"
+
 phrase "band"
 	word
 		"There Might Be Riots"
@@ -949,7 +1012,12 @@ phrase "friendly civilian"
 		"How many New Bostonians does it take to change a lightbulb? I have no idea, never been there."
 		"How many Delvians does it take to change a lightbulb? Zero, the room caves in before you can replace the bulb."
 		"How many Sinterians does it take to change a lightbulb? Zero, they just send in a robot to do the job."
+		"How many Lunatics does it take to change a lightbulb? Don't bother, they light up with anger if you call them Lunatics."
+		"How many New Britons does it take to change a lightbulb? Many, they prefer selling instead of installing lightbulbs on their planet of shopkeepers."
+		`Someone met a djinn and said "leave me alone." That person is now stranded on an uninhabited planet.`
+		`Somebody met a genie and said "I don't want to see you," and then went blind.`
 		"Those Hogsheads! I can't believe they're still flying around with kegs for engines!"
+		"What is one small step for a person, but a giant leap for mankind? You leaving this system. Haha."
 	word
 		"" 2
 		" What? Not funny?"
@@ -2028,10 +2096,10 @@ phrase "friendly civilian"
 	word
 		" and "
 	word
-		"witnessed a Quarg Wardragon jump in with one of their jump drives?"
-		"looked over one of the Quarg's sleek Skylarks?"
-		"seen a Quarg Skylark up close?"
-		"seen the Quarg's Skylances in action?"
+		"witnessed a Quarg Lindwyrm jump in with one of their jump drives?"
+		"looked over one of the Quarg's sleek Drakes?"
+		"seen a Quarg Wardragon up close?"
+		"seen the Quarg's Skydaggers in action?"
 		"seen how the Quarg decimate pirates with their Skylances?"
 		"seen how powerful those Quarg Skylances are?"
 	word
@@ -2702,6 +2770,170 @@ phrase "friendly civilian"
 		"uranium or uranium" "uranium"
 		"neodymium and neodymium" "neodymium"
 		"neodymium or neodymium" "neodymium"
+
+phrase "friendly civilian"
+	word
+		"Be careful of"
+		"A warning about"
+		"Be suspicious of"
+		"Don't trust"
+	word
+		" those space casinos. I blew "
+	word
+		"half a"
+		"a"
+		"two"
+		"three"
+		"four"
+		"five"
+	word
+		" million credits on "
+	word
+		"Ada"
+		"Calda"
+		"Farseer"
+		"Geminus"
+		"Glory"
+		"Hestia"
+		"Mainsail"
+		"Martini"
+		"Pearl"
+		"Vail"
+		"Vinci"
+	word
+		" playing "
+	word
+		"blackjack."
+		"poker."
+		"backgammon."
+		"baccarat."
+		"roulette."
+
+phrase "friendly civilian"
+	word
+		"Have you read the latest edition of "
+	word
+		"Cosmic Chronicles"
+		"Daring Discoveries"
+		"Norn Nebula News"
+		"Southern Rim Spacer News"
+		"Stars and Starships"
+		"Sunracer Stellar Spectacles"
+		"Tarazed Today"
+		"the Galactic Gazette"
+		"the New Moonshake"
+		"the Satellite Sentinel"
+	word
+		"? "
+	word
+		"It says"
+		"It claims"
+	word
+		" that "
+		" "
+	word
+		"pulse showers are good for your quantum pores"
+		"exposing yourself to neodymium increases your risk of spacepox"
+		"shoddily grown ion algae exhausts your psychic karma"
+		"laser acupuncture lets you communicate with nebula ghosts"
+		"star crystals bring luck to long distance relationships"
+		"consuming moon dust accelerates hair growth but causes lunacy"
+		"excessive exposure to zero gravity can lead to phantom limb syndrome"
+		"alien prosthetics often come with unexpected telepathic abilities"
+		"stardate tattoos increase your chances of alien abduction"
+	word
+		"."
+		"!"
+
+phrase "friendly civilian"
+	word
+		"I'm no weapons expert, but it feels better firing "
+	word
+		"Energy Blasters"
+		"Particle Cannons"
+		"Plasma Cannons"
+		"Proton Guns"
+	word
+		" than "
+	word
+		"Beam Lasers."
+		"Heavy Lasers."
+
+phrase "friendly civilian"
+	word
+		"I shouldn't have sold my old ship. It was just a "
+	word
+		"Shuttle"
+		"Star Barge"
+		"Sparrow"
+		"Heavy Shuttle"
+		"Freighter"
+		"Fury"
+	word
+		" but it never had "
+	word
+		"stalling engines."
+		"unstable shielding."
+		"overheating fuel cells."
+		"a glitchy HUD."
+		"faulty ship detection."
+
+phrase "friendly civilian"
+	word
+		"Finished cleaning my cargo hold"
+		"Cargo hold is all spick and span"
+		"Finished scrubbing the hold"
+	word
+		". The "
+	word
+		"freshener"
+		"perfume"
+		"spray"
+		"fragrance"
+	word
+		" I used makes it smell like "
+	word
+		"strawberries"
+		"bananas"
+		"peaches"
+		"roses"
+		"jasmine"
+		"lavender"
+	word
+		"."
+		"!"
+
+phrase "friendly civilian"
+	word
+		"Have you seen the holofilm where the "
+	word
+		"good guy"
+		"hero"
+		"bad guy"
+		"villain"
+	word
+		" "
+	word
+		"mounts overcharged Twin Blasters on a modded Argosy"
+		"shoots up a security station with dual laser pistols"
+		"dodges Quad Blaster Turrets in a stolen Flivver"
+	word
+		"? So cool."
+
+phrase "friendly civilian"
+	word
+		"Frankly, I'm thinking of joining the Navy"
+		"Honestly, I'm going to join the Navy"
+		"I'm enlisting in the Navy"
+	word
+		" "
+	word
+		"because of their dental insurance"
+		"since they'll cover my tuition"
+		"to see if I can get my hands on one of their warships"
+		"because they offer childcare assistance"
+	word
+		"."
 
 phrase "friendly navy"
 	word
@@ -4233,7 +4465,7 @@ phrase "friendly free worlds 7"
 		"! "
 	word
 		"Free forces are here"
-		"The might of the Free Worlds is here"
+		"The might of the Free Worlds are here"
 		"The ships of the Free Worlds are here"
 		"The forces of the Free Worlds are here"
 		"You cannot break our resolve"
@@ -4411,6 +4643,14 @@ phrase "friendly free worlds"
 		"friendly free worlds 8"
 		"friendly free worlds 9"
 		"friendly free worlds 10"
+
+phrase "ship bribe acceptance pirate"
+	word
+		"Something is strange - now I don't feel like killing you!"
+		"Thanks for the patronage!"
+		"Can I keep blowing up your ships? Alright, nevermind."
+		"Glad I got what's due to me."
+		"Another step towards anarchy!"
 
 phrase "friendly pirate"
 	word
@@ -5118,7 +5358,7 @@ phrase "hostile disabled"
 		"!"
 
 # Shakespearean insults.
-phrase "disabled hostile"
+phrase "hostile disabled"
 	word
 		"You piece of"
 	word
@@ -6546,6 +6786,14 @@ phrase "hostile disabled pirate"
 		"Fire! Fire! Fire the stupid guns! Why aren't you firing?"
 		"The guns... they've stopped!"
 		"Weapons systems critical! What does that mean?"
+		"No one told us pirates might die!"
+		"I told you guys not to get engines from the scrapyard!"
+		"Okay, okay! We'll pay our taxes."
+		"Wait! I forgot my last words."
+		"We didn't know piracy was bad!"
+		"Get away! My uncle is the CEO of the Syndicate."
+		"Forgive us! These guns were accidentally installed."
+		"Hey, you can't hurt a crew as stylish as ours."
 
 phrase "hostile disabled pirate"
 	word
@@ -7079,7 +7327,7 @@ phrase "hostile free worlds"
 		"! "
 	word
 		"Free forces are here"
-		"The might of the Free Worlds is here"
+		"The might of the Free Worlds are here"
 		"The ships of the Free Worlds are here"
 		"The forces of the Free Worlds are here"
 		"You cannot break our resolve"

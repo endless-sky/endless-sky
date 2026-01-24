@@ -1,0 +1,404 @@
+# Copyright (c) 2024 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+outfit `"Ojet" Bimodal Coilgun`
+	category "Guns"
+	series "Guns"
+	index 11010
+	cost 1370000
+	thumbnail "outfit/bimodal coilgun"
+	licenses
+		"High Houses"
+	"mass" 22
+	"outfit space" -22
+	"weapon capacity" -22
+	"gun ports" -1
+	weapon
+		sprite "projectile/bimodal"
+			"frame rate" 5
+			"start frame" 0
+			"no repeat"
+		sound "bimodal"
+		"hit effect" "bimodal impact"
+		"fire effect" "moonbeam fleck" 4
+		"inaccuracy" 1
+		"velocity" 30
+		"lifetime" 15
+		"range override" 900
+		"burst count" 12
+		"burst reload" 6
+		"reload" 30
+		"firing energy" 80
+		"firing heat" 120
+		# Because parent projectiles inherit the damage of their submunitions, we must subtract the total damage of all submunitions from the parent projectile to get the desired behavior (different damage profiles over different ranges).
+		"shield damage" -94
+		# 50 (parent) - 3*48 (child)
+		# close: 50 shield damage
+		# far: 144 shield damage
+		"hull damage" 75
+		# 135 (parent) - 3*20 (child)
+		# close: 135 hull damage
+		# far: 60 hull damage
+		"hit force" 120
+		"cluster"
+		"submunition" "Bimodal Switch" 3
+	description `Precise and deadly, the Ojet Bimodal Coilgun has been the High Houses' armament of choice since long before humans ever took to the stars. It was designed quite simply as a perfect weapon; it is said that by the time the empire of the Predecessors fell, they had seen no need to install any other weapon on their ships for over a thousand years.`
+	description `	The Ojet fires hyperdense packets of charged particles that disperse as they travel: up close the concentrated bolt pierces armor, while at a distance the ionic spray destabilizes shielding. Together, a ship equipped with these weapons can adjust its damage profile just by changing its engagement range, allowing it to be highly effective against any foe.`
+
+outfit "Bimodal Coilgun Turret"
+	category "Turrets"
+	series "Turrets"
+	index 11010
+	cost 2950000
+	thumbnail "outfit/bimodal coilgun turret"
+	licenses
+		"High Houses"
+	"mass" 55
+	"outfit space" -55
+	"weapon capacity" -55
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		"hardpoint sprite" "hardpoint/bimodal turret"
+		"hardpoint offset" 12
+		sprite "projectile/bimodal"
+			"frame rate" 5
+			"start frame" 0
+			"no repeat"
+		sound "bimodal"
+		"hit effect" "bimodal impact"
+		"fire effect" "moonbeam fleck" 4
+		"inaccuracy" 1
+		"velocity" 30
+		"lifetime" 15
+		"range override" 900
+		"turret turn" 1
+		"burst count" 24
+		"burst reload" 3
+		"reload" 15
+		"firing energy" 80
+		"firing heat" 120
+		"firing force" 25
+		"shield damage" -94
+		"hull damage" 75
+		"hit force" 120
+		"cluster"
+		"submunition" "Bimodal Switch" 3
+	description `Successor warships have traditionally relied on fixed weaponry to deal with their foes, but the High Houses do produce a turreted platform for the Ojet Coilgun so that their larger and slower vessels can maintain their combat effectiveness against more maneuverable targets. It mounts two of the weapons side by side, rigged to fire double the amount of shots per burst to keep them in sync with the fixed hardpoints.`
+
+effect "bimodal impact"
+	sprite "effect/bimodal impact"
+		"frame rate" 30
+		"no repeat"
+	lifetime 8
+	"velocity scale" 0.2
+
+outfit "Bimodal Switch"
+	weapon
+		sprite "projectile/bimodal switch"
+			"random start frame"
+			"frame rate" 20
+		"hit effect" "bimodal switch impact"
+		"inaccuracy" 10
+		"velocity" 30
+		"lifetime" 6
+		"random lifetime" 3
+		"shield damage" 48
+		"hull damage" 20
+
+effect "bimodal switch impact"
+	sprite "effect/bimodal switch impact"
+		"frame rate" 12
+		"no repeat"
+	lifetime 30
+	"velocity scale" 0.02
+
+outfit "Drag Cannon"
+	category "Guns"
+	series "Guns"
+	index 11020
+	cost 455000
+	thumbnail "outfit/drag cannon"
+	licenses
+		"High Houses"
+	"mass" 12
+	"outfit space" -12
+	"weapon capacity" -12
+	"gun ports" -1
+	weapon
+		sound "drag cannon"
+		"fire effect" "moonbeam fleck" 2
+		"hit effect" "drag cannon impact" 3
+		"velocity" 0
+		"lifetime" 0
+		"range override" 375
+		"velocity override" 25
+		"burst count" 6
+		"burst reload" 6
+		"reload" 45
+		"firing energy" 30
+		"firing heat" 55
+		"cluster"
+		"submunition" "Drag Projectile" 3
+	description `The Successors have a historical affinity for projectile weaponry which persists to the modern day. The Drag Cannon fires a short-ranged, highly inaccurate blast of projectiles that not only deal substantial damage but also temporarily disrupt the target's engines.`
+	description `	While it is an inelegant design in comparison to the time-tested Ojet Coilgun, and consequently less appreciated, the Drag Cannon has found a place on the Successors' fast attack craft primarily as a tool for slowing down enemy vessels so that they can be engaged by a larger fleet.`
+
+outfit "Drag Projectile"
+	weapon
+		sprite "projectile/drag cannon"
+			"frame rate" 20
+			"no repeat"
+		"hit effect" "drag cannon impact"
+		"inaccuracy" 20
+		"velocity" 25
+		"lifetime" 10
+		"random lifetime" 5
+		"slowing damage" 0.45
+		"shield damage" 52
+		"hull damage" 48
+
+effect "drag cannon impact"
+	sprite "effect/drag cannon impact"
+		"frame rate" 10
+		"no repeat"
+	lifetime 20
+	"velocity scale" 0
+	"random velocity" 1
+
+outfit "Successor Pulse Laser"
+	category "Guns"
+	series "Guns"
+	index 11030
+	cost 69000
+	thumbnail "outfit/successor pulse laser"
+	licenses
+		"Successor"
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
+	"gun ports" -1
+	weapon
+		sprite "projectile/successor pulse laser"
+			"random start frame"
+			"frame rate" 5
+		sound "successor pulse laser"
+		"hit effect" "successor pulse laser impact"
+		"inaccuracy" 0.4
+		"velocity" 490
+		"lifetime" 1
+		"burst count" 9
+		"burst reload" 1
+		"reload" 6
+		"firing energy" 11
+		"firing heat" 15
+		"shield damage" 10.5
+		"hull damage" 12
+		"piercing" 0.05
+	description "This shield-penetrating laser is one of the few weapons manufactured independently in Successor space, rather than under the auspices and restrictions of the High Houses. As a consequence of this, it is neither especially powerful nor efficient, but its low cost and space requirements make it a nonetheless relatively appealing defensive choice for those without access to the High Houses' more potent weaponry."
+
+outfit "Pulse Laser Turret"
+	category "Turrets"
+	series "Turrets"
+	index 11020
+	cost 145000
+	thumbnail "outfit/successor pulse laser turret"
+	licenses
+		"Successor"
+	"mass" 30
+	"outfit space" -30
+	"weapon capacity" -30
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/successor pulse laser"
+			"random start frame"
+			"frame rate" 5
+		"hardpoint sprite" "hardpoint/successor pulse laser turret"
+		"hardpoint offset" 8
+		sound "successor pulse laser"
+		"hit effect" "successor pulse laser impact"
+		"inaccuracy" 0.4
+		"velocity" 490
+		"turret turn" 2.6
+		"lifetime" 1
+		"burst count" 9
+		"burst reload" 1
+		"reload" 3
+		"firing energy" 11
+		"firing heat" 15
+		"shield damage" 10.5
+		"hull damage" 12
+		"piercing" 0.05
+	description "The introduction of the Pulse Laser was a wake-up call for the more astute in the High Houses, as it was the first time in hundreds of years that weapons were being manufactured by groups other than themselves. Most Successors see the turreted version as a continuation of this democratization of violence, while the more paranoid claim that the High Houses have infiltrated production and intentionally sabotaged the design."
+
+effect "successor pulse laser impact"
+	sprite "effect/successor pulse laser impact"
+		"frame rate" 30
+		"random start frame"
+	lifetime 3
+	"velocity scale" 0
+
+outfit "Overcharged Pulse Laser"
+	category "Guns"
+	series "Guns"
+	index 11040
+	cost 84000
+	thumbnail "outfit/overcharged pulse laser"
+	licenses
+		"Successor"
+	"mass" 12
+	"outfit space" -12
+	"weapon capacity" -12
+	"gun ports" -1
+	weapon
+		sprite "projectile/successor pulse laser"
+			"start frame" 2
+			"frame rate" 8
+			"rewind"
+		sound "overcharged pulse laser"
+		"hit effect" "overcharged pulse laser impact"
+		"inaccuracy" 5.5
+		"velocity" 490
+		"lifetime" 1
+		"burst count" 4
+		"burst reload" 1
+		"reload" 7
+		"firing energy" 9.1
+		"firing heat" 30.8
+		"shield damage" 14
+		"hull damage" 13.3
+		"piercing" 0.05
+		"cluster"
+	description `Unable to access large quantities of the high-quality weaponry produced by the High Houses, the People's Houses have had to work with what is available to them: mostly the relatively low-powered pulse lasers produced independently in Successor space. This pulse laser has had its safeties bypassed and its optics upgraded, allowing it to do more damage to shields at a lower power cost in exchange for producing substantially more heat.`
+
+outfit "Overcharged Laser Turret"
+	category "Turrets"
+	series "Turrets"
+	index 11030
+	cost 136000
+	thumbnail "outfit/overcharged pulse laser turret"
+	licenses
+		"Successor"
+	"mass" 24
+	"outfit space" -24
+	"weapon capacity" -24
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/successor pulse laser"
+			"start frame" 2
+			"frame rate" 8
+			"rewind"
+		"hardpoint sprite" "hardpoint/overcharged pulse laser turret"
+		"hardpoint offset" 8
+		sound "overcharged pulse laser"
+		"hit effect" "overcharged pulse laser impact"
+		"inaccuracy" 5.5
+		"velocity" 490
+		"lifetime" 1
+		"turret turn" 3
+		"burst count" 4
+		"burst reload" 1
+		"reload" 7
+		"firing energy" 12.6
+		"firing heat" 43.05
+		"shield damage" 19.6
+		"hull damage" 18.667
+		"piercing" 0.05
+		"cluster"
+	description `Hand-crafted by the more colorful members of the People's Houses, this bespoke overcharged Pulse Laser turret has had even more power pumped into its laser generator compared to the fixed version, producing a truly prodigious amount of heat for a weapon of its size. Despite its inelegant design, it is nonetheless a fearsome weapon, especially considering that it retains the ability to partially punch through shielding.`
+
+effect "overcharged pulse laser impact"
+	sprite "effect/overcharged pulse laser impact"
+		"frame rate" 30
+		"random start frame"
+	lifetime 6
+	"velocity scale" 0
+
+outfit `"Sjeja" Kinetic Lance`
+	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 11010
+	cost 3500000
+	licenses
+		"High Houses"
+	thumbnail "outfit/sjeja kinetic lance"
+	"mass" 60
+	"outfit space" -60
+	"weapon capacity" -60
+	"energy capacity" 1900
+	"gun ports" -1
+	"spike capacity" 20
+	weapon
+		sprite "projectile/sjeja kinetic lance"
+			"frame rate" 4
+			"random start frame"
+		sound "sjeja lance"
+		ammo "High-Velocity Spike"
+		icon "icon/hv spike"
+		"fire effect" "moonbeam fleck" 20
+		"fire effect" "electron impact"
+		"hit effect" "torpedo hit"
+		"cluster"
+		"velocity" 320
+		"lifetime" 8
+		"reload" 160
+		"firing force" 800
+		"firing energy" 1900
+		"firing ion" 3.0
+		"firing heat" 4000
+		"shield damage" 1336
+		"hull damage" 1920
+		"piercing" 0.15
+		"hit force" 800
+		"penetration count" 5
+	description "The largest and most powerful of the Successors' modern weapons, this massive superconducting coilgun is elegant in its simplicity, cleanly perforating targets at extreme range. Although the weapon requires a substantial burst of power in order to fire, it is capable of storing some of this within the coils themselves, allowing it to be fired without additional battery banks at the cost of inflicting a lingering power draw on the ship's systems."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
+
+outfit "High-Velocity Spike"
+	category "Ammunition"
+	series "Ammunition"
+	index 11010
+	cost 3500
+	thumbnail "outfit/hv spike"
+	"mass" .5
+	"spike capacity" -1
+	description `The projectiles fired by the Sjeja Kinetic Lance are too large to be synthesized on-the-fly from the ship's reserves, and must be carried separately.`
+
+outfit "High-Velocity Spike Rack"
+	category "Ammunition"
+	series "Ammunition"
+	index 11020
+	cost 50000
+	licenses
+		"High Houses"
+	thumbnail "outfit/hv spike rack"
+	"mass" 7
+	"outfit space" -12
+	"energy capacity" 800
+	"spike capacity" 16
+	ammo "High-Velocity Spike"
+	description `Though the built-in ammunition reserves of the Sjeja Kinetic Lance are sufficient for all but the most protracted engagements, the High Houses do manufacture this additional storage unit for use on their largest warships. The rack includes a small set of batteries to help support the high power costs of the Sjeja.`
+
+outfitter "Kinetic Lance Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		or
+			has `outfit: "Sjeja" Kinetic Lance`
+			has "outfit: High-Velocity Spike Rack"
+	location
+		attributes "outfitter"
+	stock
+		"High-Velocity Spike"

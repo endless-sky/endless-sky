@@ -1,0 +1,105 @@
+# Copyright (c) 2023 by RisingLeaf (https://github.com/RisingLeaf)
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+outfit "Strange Ray"
+	mass 25
+	"outfit space" -20
+	"gun ports" -1
+	weapon
+		sprite "projectile/strange ray"
+			"frame rate" 60
+			"no repeat"
+		"inaccuracy" 20
+		"velocity" 6
+		"lifetime" 10
+		"fade out" 2
+		"reload" 1
+		"firing energy" 8
+		"firing heat" 4
+		"shield damage" 50
+		"hull damage" 43
+		"minable damage" 64
+	description "It should be impossible for an organic being to heat up gas to this level, but this organ seems to be an exception."
+
+outfit "Internal Plasma Exhaust"
+	"mass" 25
+	"outfit space" -25
+	"engine capacity" -25
+	"thrust" 36
+	"turn" 1500
+	"flare sprite" "effect/plasma exhaust"
+		"frame rate" 16
+	description "The Tace Mesa move by expelling plasma from the end of their body."
+
+ship "Tace Mesa"
+	sprite "ship/silent harvester"
+	swizzle 0
+	"never disabled"
+	attributes
+		category "Unclassified"
+		cost 500000
+		"mass" 525
+		"outfit space" 45
+		"weapon capacity" 20
+		"engine capacity" 25
+		"cargo space" 500
+		"hull" 1500
+		"solar collection" 200
+		"fuel capacity" 200
+
+		"inscrutable" 1
+		"heat dissipation" 0.47
+		"energy capacity" 1000
+
+		"required crew" 1
+		"drag" 20
+		"bunks" 40
+	outfits
+		"Strange Ray"
+		"Internal Plasma Exhaust"
+	gun 0 -64 "Strange Ray"
+	engine 0 0
+	explode "huge explosion" 10
+	explode "large explosion" 40
+	explode "medium explosion" 50
+	"final explode" "final explosion large"
+	description "The Tace Mesa are creatures whose origins and inner workings are yet to be understood. They have existed for millennia and will probably continue to exist for a long time. Rumors tell of even larger creatures further out in the rims of the system."
+
+mission "The Silent Ones"
+	invisible
+	landing
+	repeat
+	to offer
+		not "The Silent Ones: active"
+	to complete
+		never
+	npc save
+		government "Silent Ones"
+		personality harvests mining mute timid
+		system Il'le
+		ship "Tace Mesa" ""
+	npc save
+		government "Silent Ones"
+		personality harvests mining mute timid
+		system Il'le
+		ship "Tace Mesa" ""
+	npc save
+		government "Silent Ones"
+		personality harvests mining mute timid
+		system Il'le
+		ship "Tace Mesa" ""
+	npc save
+		government "Silent Ones"
+		personality harvests mining mute timid
+		system Il'le
+		ship "Tace Mesa" ""

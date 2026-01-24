@@ -65,8 +65,8 @@ mission "First Contact: Gegno Vi"
 			`	Much to your dismay, the shot almost immediately ricochets off of it. You watch as the massive monster tumbles over you, just barely leaping into the air above. The monster plunges into the earth behind you, and you fall to your back with the wind knocked out of you. You raise your sidearm once more. The creature explodes out of the ground with its gaping mouth pointed upward to the sky. With shaking hands, you take aim once again and pull the trigger.`
 			`	A loud, cannon-like bang follows, but it most certainly did not come from your weapon. The beast before you falls downward in a cloud of black smoke, blasting sand and rubble everywhere with a thud. Once you come to your senses, you see the alien marching out of the creature's mouth.`
 			choice
-				`	(Stand up and approach the alien.)`
-				`	(Get up and run to your ship.)`
+				`	(Approach the alien.)`
+				`	(Get up and run to my ship.)`
 			`	Before you can collect yourself, you realize the alien is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are much taller than you, extremely bulky, and slightly hunched over. Heavy-looking metal surrounds their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
 			`	Awkward silence ensues, and the alien looks you up and down in an unenthused way. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of star map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of their species' planets.`
 			choice
@@ -75,8 +75,7 @@ mission "First Contact: Gegno Vi"
 					goto about
 				`	(Reject their request.)`
 					goto deny
-			`	You hesitantly take the device and turn to make your way to your ship. Before leaving, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a scaly salamander. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the alien utters a single intelligible word in a very deep voice:`
-			`	"Voordt."`
+			`	You hesitantly take the device and turn to make your way to your ship. Before leaving, you take one last glimpse of the enormous creature in the background. Its head appears dragon-like, though with numerous eyes and a mane of spikes. A few small appendages sprout from its neck, giving it a scaly, salamander-like appearance. The various signatures on your radar earlier must have been others of their kind. The alien glares at you, then at the creature, before turning back to you once more to continue towards your ship.`
 				accept
 			label about
 			`	You try to ask the alien about the trip, but they simply give you a blank stare for a few seconds before shoving the star map into your chest, letting go of it. You reactively catch it, almost falling over yourself, and then take one last glance at the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a scaly salamander. Turning around, you see that the alien is already far ahead of you, and you rush after so they aren't first to your ship.`
@@ -102,7 +101,7 @@ mission "First Contact: Gegno Vi"
 			choice
 				`	(Investigate the Gegno ship.)`
 					goto investigate
-				`	(Resume your search of the surface.)`
+				`	(Resume my search of the surface.)`
 					goto resume
 			label investigate
 			`	You carefully land your ship nearby. Most of the faint radar signatures from earlier have disappeared out of range. Exiting your ship in an environment suit and your sidearm on hand, you walk towards the Gegno ship.`
@@ -123,9 +122,9 @@ mission "First Contact: Gegno Vi"
 			`	Much to your dismay, the shot almost immediately ricochets off of it. You watch as the massive monster tumbles over you, just barely leaping into the air above. The monster plunges into the earth behind you, and you fall to your back with the wind knocked out of you. You raise your sidearm once more. The creature explodes out of the ground with its gaping mouth pointed upward to the sky. With shaking hands, you take aim once again and pull the trigger.`
 			`	A loud, cannon-like bang follows, but it most certainly did not come from your weapon. The beast before you falls downward in a cloud of black smoke, blasting sand and rubble everywhere with a thud. Once you come to your senses, you see the Vi marching out of the creature's mouth.`
 			choice
-				`	(Stand up and approach the alien.)`
-				`	(Get up and run to your ship.)`
-			`	Before you can collect yourself, you realize the Vi warrior is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are much taller than both you and the other Gegno you've seen, extremely bulky, and slightly hunched over. Heavy-looking metal surround their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
+				`	(Approach the Vi.)`
+				`	(Get up and run to my ship.)`
+			`	Before you can collect yourself, you realize the Vi warrior is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are much taller than both you and the other Gegno you've seen, extremely bulky, and slightly hunched over. Heavy-looking metal surrounds their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
 			`	While the Gegno are known to dislike outsiders, this particular Gegno seems to at the very least acknowledge you. After a period of awkward and what seems to be judgmental silence, the Vi looks you up and down in an unenthused manner. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of star map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of the Gegno's planets.`
 			choice
 				`	(Accept their request.)`
@@ -133,8 +132,7 @@ mission "First Contact: Gegno Vi"
 					goto ask
 				`	(Reject their request.)`
 					goto reject
-			`	You hesitantly take the device and turn to make your way to your ship. Before leaving, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a scaly salamander. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the Vi warrior utters a single intelligible word in a very deep voice:`
-			`	"Voordt."`
+			`	You hesitantly take the device and turn to make your way to your ship. Before leaving, you take one last glimpse of the enormous creature in the background. Its head appears dragon-like, though with numerous eyes and a mane of spikes. A few small appendages sprout from its neck, giving it a scaly, salamander-like appearance. The various signatures on your radar earlier must have been others of their kind. The Vi warrior glares at you, then at the creature, before turning back to you once more to continue towards your ship.`
 				accept
 			label ask
 			`	You try to ask the Gegno about the trip, but they simply give you a blank stare for a few seconds before shoving the star map into your chest, letting go of it. You reactively catch it, almost falling over yourself, and then take one last glance at the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a scaly salamander. Turning around, you see that the Gegno is already far ahead of you, and you rush after so they aren't first to your ship.`
@@ -170,6 +168,8 @@ mission "First Contact: Gegno Vi"
 	
 	on defer
 		set "First Contact: Gegno Vi: deferred"
+
+	on abort
 
 	to fail
 		"reputation: Gegno" < -100
@@ -279,7 +279,7 @@ mission "Discover Hostile Quarg"
 			`As soon as you enter the system, your eyes are greeted with a familiar sight - a Quarg Ringworld. Shortly after, the Quarg open a communications channel with you. "Your welcome is not desired here, aggressor. What purpose do you seek, if not that of violence?"`
 			choice
 				`	"The aliens on a nearby world sent me to you."`
-					goto "sent"
+					goto sent
 				`	"I would like help in conversing with the nearby aliens."`
 			`	The Quarg are quick to respond. "You will find no such help in us. It would be of best interest to not affiliate yourself with these aliens, whom call themselves the Gegno. It is not us, so much as it is the Gegno, that do not desire contact. Little would you understand how impactful your actions may be with ether the Vi or Scin, let alone ones of violence." A slight pause ensues. "Now, begone from our system. We shall be watching."`
 			`	Without the Quarg's help, interaction with these so-called "Gegno" seems unlikely for the foreseeable future.`
@@ -302,14 +302,18 @@ mission "Giaru Gegno: Quarg Contact"
 			branch "has met gegno"
 				has "Visit Quarg in Gegno Space: offered"
 
-			"After jumping through several systems of many alien ships, a Quarg ringworld is a surprisingly familiar sight to you. From the looks of it, this is a fully complete ringworld, a true sight to behold. Trillions of Quarg probably inhabit this ring, but what's more interesting to your eye is that some other aliens are also present. They too are humanoid, and the most common figures you come across are either slightly above or below an average human's height. Their skin is a smooth, light gray, and adorned with different sorts of leather that remind you of medieval human clothing."
-			`	The mood here is eerie as the Quarg here move in an unusually quiet manner. They are dismissive of the other species walking about, who are equally as dismissive of you. The strange atmosphere around you is finally broken when a few Quarg start to advance towards you, moving much quicker than the rest. After some unidentifiable discussion and gestures between themselves, one of them motions you to follow them.`
-				goto "walking"
+			"After jumping through several systems of many alien ships, a Quarg ringworld is a surprisingly familiar sight. From the looks of it, this is a fully complete ringworld, a true sight to behold. Trillions of Quarg probably inhabit this ring, but what's more interesting is that other aliens are also present. They too are humanoid, and the most common figures you come across are either slightly above or below an average human's height. Their skin is a smooth, light gray, and adorned with different sorts of leather that remind you of medieval human clothing."
+			`	The Quarg here move in an unusually quiet and eerie manner. They are dismissive of the other species walking about, who are equally as dismissive of you. The strange atmosphere is eventually broken when a few Quarg start to advance towards you, moving much quicker than the rest. After some unidentifiable discussion and gestures between themselves, one of them motions you to follow them.`
+				goto walking
 			
 			label "has met gegno"
 			action
 				set "gegno: met gegno before quarg"
-			`The visual of a complete Quarg Ringworld is drastically different than the alien homeworld you were on before. Such a pristine, advanced structure is quite the opposite of a disorderly industrial civilization. The population of Quarg here must be at least around the trillions, many times more than the population of the alien homeworld. What's even more interesting is there are other aliens of the kind you met before here on the ring too. The Quarg must have some kind of relations with them, perhaps through trade, maintenance, or other services. Despite them being present, the Quarg seem to be very dismissive of them. However, a few of the aliens occasionally glance over at you with hints of interest.`
+
+			`The visual of a complete Quarg Ringworld is drastically different than the alien homeworld you were on before. Such a pristine, advanced structure is quite the opposite of a disorderly industrial civilization. The population of Quarg here must be in the trillions, many times more than the population of the alien homeworld. What's even more interesting is that there are aliens of the kind you met before are here on the ring too. The Quarg must have some kind of relations with them, perhaps through trade, maintenance, or other services. Despite their presence, both they and the Quarg seem to be dismissive of one another. However, a few of the aliens occasionally glance over at you in some form of curiosity.`
+
+			action
+				"gegno: left quarg" = "days since start"
 			`	Soon enough, a few Quarg start to rush towards you much faster than the others and begin a conversation between themselves. You aren't sure what language they are speaking, but judging by the tones and pronunciations, it sounds similar to the one you've heard the aliens speaking before. After a moment or so, one of them motions you to follow them.`
 			
 			label "walking"
@@ -386,7 +390,7 @@ mission "Giaru Gegno: Quarg Contact"
 			`	"However, it is still quite staggering that the Gegno interacted with an audacious outsider such as yourself." The Quarg pauses again for a moment and takes a longer breath than usual. "Please do be distinctly cautious in encounters with the Gegno. Unfortunately, we cannot advocate virtuous pleasantries between you and them. Only a brief history of them can we tell. Although, you are appreciably welcome at this ring should you find yourself here again."`
 			
 			label end
-			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" is very unlikely for you, and you will have to deal with their xenophobia for the foreseeable future.`
+			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" would be difficult, and you will have to deal with their xenophobia for the foreseeable future.`
 				decline
 
 
@@ -424,12 +428,312 @@ mission "Giaru Gegno: Revisit"
 			choice
 				`	"It was a coincidence."`
 				`	"They seemed in trouble when I found them, so I helped them."`
-					goto "trouble"
+					goto trouble
 			`	"Indeed yes, strange coincidences do curiously happen. Many coincidences are as mere fleeting moments of subtle peculiarity." The Quarg then displays a soft grimace. "Sometimes, one may be grand and powerful, in addition to having potent consequences. The Gegno have learned this a great number of times.`
 			label "trouble"
 			`	"Quite a brave one you indeed are. Most would think to not leap into the daunting face of uncertainty as you have." The Quarg momentarily meditates on its next thought. "Though, as the Gegno have throughout their history, some may make momentous jumps undeterred by any amount of hesitance."`
-			`	The Quarg raises from its seat, and you act in accordance. "Please do be distinctly cautious in your encounters with the Gegno. Always feel gracious to visit here once more, should you mindfully chose to do so." As you are directed out of the room, you turn back to see the Quarg bowing. You can't help but wonder what was on its mind during the conversation, but it might be for the best you are more careful from now on.`
+			
+			action
+				"gegno: left quarg" = "days since start"
+			`	The Quarg raises from its seat, and you act in accordance. "Please do be distinctly cautious in your encounters with the Gegno. Always feel gracious to visit here once more, should you mindfully choose to do so." As you are directed out of the room, you turn back to see the Quarg bowing. You can't help but wonder what was on its mind during the conversation, but it might be for the best you are more careful from now on.`
 				decline
+
+mission "Nosy Scin"
+	invisible
+	landing
+	non-blocking
+	source "Giaru Gegno"
+	to offer
+		has "Visit Quarg in Gegno Space: offered"
+		not "First Contact: Gegno Scin: offered"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		never
+	on enter "Aleit"
+		fail
+
+	npc
+		government "Gegno Scin (Neutral)"
+		personality launching mute uninterested
+		system "Aleit"
+		ship "Mica" "Eichpys"
+
+mission "Suspicious Scin"
+	entering
+	name `Strange Device`
+	description `A strange Gegno device suddenly appeared on your ship, displaying coordinates to a planet within Gegno space. Visiting the planet might lead to some answers, or perhaps something else.`
+	destination "Yiia Iyr"
+	to offer
+		"days since start" - "gegno: left quarg" > 4
+		or
+			and
+				has "gegno: met gegno before quarg"
+				has "Giaru Gegno: Quarg Contact: offered"
+			has "Giaru Gegno: Revisit: offered"
+		not "First Contact: Gegno Scin: offered"
+		not "Gegno Genocide Defense: offered"
+	on offer
+		conversation
+			`While you are going about your business, a faint signal starts emanating from somewhere in your ship. You aren't sure what it is, as it doesn't appear to originate from the ship itself, so you decide to take a look. After a few minutes of searching for the culprit, you come across a small device not too dissimilar from the one that was given to you by the Gegno you met on Var Oti, arbitrarily shoved into a corner of your ship's infrastructure. You don't know how or when it got there, but it doesn't appear to be dangerous.`
+			`	Aside from the strange signal it's emitting, all the device appears to be doing is pointing to the location of a planet within Gegno space. The only option, aside from ignoring the device, is to visit this planet and see if there are any answers to this strange situation.`
+				accept
+
+	npc
+		government "Gegno Scin (Neutral)"
+		personality staying mute uninterested
+		system "Ilirco"
+		fleet
+			names "gegno scin"
+			variant
+				"Tridymite"
+	on complete
+		clear "gegno: left quarg"
+
+
+mission "First Contact: Gegno Scin"
+	invisible
+	landing
+	deadline 1
+	source "Yiia Iyr"
+	to offer
+		has "Suspicious Scin: offered"
+		not "Gegno Genocide Defense: offered"
+	on offer
+		conversation
+			`Led here by the mysterious device on your ship, you descend to the surface of this world, going through several thick layers of clouds. Once you break though them and prepare to land, you notice what appear to be a few Gegno Scin ships grounded nearby, easily distinguished by their various green color patterns. Two of them look like military vessels you've seen in nearby systems, while a third one between them is a small shuttlecraft. The Scin must be responsible for the device, seemingly expecting you as one of their warships begins to lift off the ground and head in your direction.`
+			choice
+				`	(Leave the planet.)`
+					goto leave
+				`	(Wait and see what they do.)`
+					goto wait
+				`	(Prepare for combat.)`
+			`	Engaging your weapon systems, you brace yourself for a hostile encounter as they approach. The Scin ship advances towards yours then slowly comes to a halt in front of you. They haven't fired any weapons, and they aren't displaying any aggressive behavior, so they might not be looking for conflict. Ever so slightly, the warship reverses backwards and comes to a stop. You decide to stop your ship as well, and you wonder what this is about. Once again, the Scin ship reverses, slowly drifting away from you. It appears they want you to follow them.`
+				goto interaction
+			
+			label wait
+			`	Bringing your ship to a halt, you decide to wait and see what the Scin ship does as it advances towards you. As it slowly approaches, it slows down and eventually stops for a brief moment. Ever so slightly, the warship then begins to reverse backwards, and continues to drift away from you while facing you. They don't seem to be cautious of you, rather, it's almost as if they're implying to follow them.`
+				goto interaction
+
+			label interaction
+			choice
+				`	(Follow them.)`
+					goto follow
+				`	(Leave.)`
+					goto leave
+			label "leave"
+			action
+				set "gegno: left scin"
+			`	Wary of the Scin warship, you turn around and begin to ascend back into space. The Scin ship advances towards yours, but as it comes closer, it begins to take on an escort formation with you, following you as you leave the planet's atmosphere. You're unsure of what they're doing on the planet or why you've been led to them, but maybe it's better for you to be careful and not get involved.`
+				accept
+
+			label "follow"
+			action
+				set "scin: approached epidote"
+			`	You inch your ship forward in acknowledgment. All of a sudden, the second warship on the ground lifts off and forms up behind you, while the one in front of you turns around and begins to fly off into the distance. You follow them, curious where they might be leading you. To your rear, the remaining shuttle takes off, but instead of following you, it heads off into the atmosphere above.`
+			`	Although this planet initially appeared dull due to the several layers of thick clouds, the surface shows occasional signs of life such as plains of grass or dried-up riverbeds, while patches of low fog cover various other locations. As the flight continues, the two Scin ships slowly start to move around so that one is on either side of you. Up ahead in the distance, a large structure comes into view from behind another wall of fog. After getting a bit closer to it, you make out the familiar green colors of the ships flying with you now. The two warships begin to descend towards what you assume to be a sizable Scin freighter sitting in a large open area of sand.`
+			`	Your previous encounter with a Vi warrior was chaotic and unpredictable, so it might be best to be extra cautious in this situation. As you set your ship down near the vessel, the two warships that guided you here also land nearby and power down. Other than the Gegno ships in front of you, there doesn't seem to be any strange activity on your radar at the moment. Environmental readings of the outside surprisingly indicate conditions safe for a human, but it's better to be safe than sorry. You equip your environment suit and your pistol just in case.`
+			choice
+				`	(Approach the Scin.)`
+					goto approach
+				`	(Stay by my ship.)`
+			`	You take one or two steps forward but remain close by your ship, staying alert. The freighter is indeed large - maybe four times the size of a Hauler, or almost twice the size of a Behemoth. An elevator lowers from its undercarriage, and a group of Scin exit the ship, making their way towards you. Their attire is much different than that of the Vi; most of them are wearing what looks like segmented armor with many layers of plates, giving the appearance of scales. One of them, however, has a much lighter armor set focused mainly around their shoulders, with orange robe-like garments underneath. They are slightly thinner than the other Scin. Although they are nowhere near as bulky as the Vi, they all still appear taller than any human. More importantly, they seem far more eager to interact with you, seeing as they left the comfort of their own ship to greet you.`
+			`	Stopping about four meters from you, the Scin in heavier armor drop to the ground on one knee. The one wearing a robe takes a few more steps, then sits on the ground in front you, crossing their legs.`
+			choice
+				`	(Sit down.)`
+					goto sit
+				`	(Reach for my pistol.)`
+					goto reach
+			label "sit"
+			`	You sit down, taking a good look at them. Their skin appears almost bone-like with very faint patterns of light green. Unlike the Vi, they have three small horns and barely any hair at all. They seem just as interested in your appearance, looking you up and down. Another Scin from the freighter walks over, bringing some sort of device and kneeling down next to the robed one, who takes the device and sets it down between you and them. It looks like some sort of tablet or drawing implement.`
+			`	The Scin then reaches their palm out and makes a mark on one half of the display, then turns it to you.`
+			choice
+				`	(Place my hand on the device.)`
+				`	(Do nothing.)`
+					goto imagery
+			`	Placing your own palm on the device, you feel it vibrate a little. A detailed wireframe of your hand appears on the other half of the device. The Scin moves the device aside, then extends one arm out showing the top of their hand.`
+			choice
+				`	(Extend my arm as well.)`
+				`	(Do nothing.)`
+					goto imagery
+			action
+				set "scin: gestures"
+			`	Reaching with your right hand, the Scin leans forward and carefully examines it, then makes another note on their device. After writing down a few more things, they get up from the ground and gesture strangely towards you, crossing their arms together to form a plus sign toward their left. The other heavier-armored Scin rise from their stances and begin heading back to their ships, and the one in front of you follows behind them.`
+			`	You return to your own ship after the bewildering encounter, wondering what to make of it, and the Scin do not follow you any further.`
+				accept
+
+			label "imagery"
+			`	Turning the device back around, the Scin types some sort of note on it then clears the display. They then begin to draw some sort of picture with one of their fingers. The finished image appears to be a portrait of themselves. "Dueyu Scin," they speak in a low tone. Clearing the image, they draw something that looks like you, albeit a bit out of proportion, then await some sort of answer.`
+			choice
+				`	"Dueyu human..?"`
+				`	"I am human."`
+				`	(Say nothing.)`
+					goto quiet
+			`	The Scin looks at you in what you guess to be fascination. They grab the device and draw yet another picture. After setting it down, you recognize the familiar image of a Gegno Vi warrior.`
+			choice
+				`	"Gegno Vi?"`
+				`	"Dueyu Vi?"`
+			action
+				set "scin: imagery"
+			`	Looking at you with a confused expression, they draw another portrait that looks like the shorter leather-wearing Gegno from their homeworld, and move that image together with the images of the Vi and the Scin. "Gegno," they say, and begin to think to themselves. A brief moment passes, and they begin drawing on the device again. After they turn it back to you, you see both a green-colored patch and a brown-colored patch. "Vi," the Scin says, pointing to the brown. "Scin," they say, now pointing to the green. Afterwards, they point to the group of the three Gegno portraits. "Gegno."`
+			`	Once they mark down a few more notes, they get up from the ground and begin heading back to their ships. The heavier-armored Scin also rise from their stances and follow behind them.`
+			`	All of a sudden, a gust of sand rushes past from behind you, and you turn around to see three more armored Scin rising from the sand, one of them fairly close to you. Their armor is much different than that of the others, characterized by darker shades, sharper edges, and several gadgets, but what is most notable is their possession of sickle-like blade weapons. It appears the Scin had more control of the situation than you thought, and had you made the wrong choice in the encounter, it's possible you would be on the receiving end of one of those blades.`
+			`	You return to your ship and take off from the planet, but the Scin do not follow you any further.`
+				accept
+			
+			label "quiet"
+			`	They stare at you for a few seconds, then retrieve their device. The Scin sits up more rigidly, giving you a deep look, then tilts their head to the right, followed by an awkward silence.`
+			choice
+				`	(Tilt my head to the right as well.)`
+				`	(Tilt my head to the left.)`
+				`	(Do nothing.)`
+					goto "no thoughts"
+			`	Once you tilt your head, they note down your behavior on the device. Subsequently, they get up from the ground and begin heading back to their ships. The heavier-armored Scin also rise from their stances and follow behind them.`
+			`	All of a sudden, a gust of sand rushes past from behind you, and you turn around to see three more armored Scin rising from the sand, one of them fairly close to you. Their armor is much different than that of the others, characterized by darker shades, sharper edges, and several gadgets, but what is most notable is their possession of sickle-like blade weapons. It appears the Scin had more control of the situation than you thought, and had you made the wrong choice in the encounter, it's possible you would be on the receiving end of one of those blades.`
+			`	You return to your ship and take off from the planet, but the Scin do not follow you any further.`
+				accept
+				
+			label "no thoughts"
+			`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.`
+			choice
+				`	(Reach for my firearm.)`
+				`	(Raise my arms.)`
+			action
+				set "scin: provocative"
+			`As soon as you attempt to move, the first thing you feel is a curved blade around your neck and a wave of sand flying past you. The Scin casually marks another note on their device, then gets up and starts heading back to their ship. Slowly turning your head, your eyes are met with the cold, expressionless look of another Scin's face, who then motions for you to return to your ship. They follow you as you do, continuing to hold the blade to your throat. Two more Scin suddenly appear from the sand along the way, while the others you first met remain at their position. The armor of the Scin escorting you is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
+			`	Once you are at your ship, they move their blade away from your neck. When you get a better look at it, you realize that the blade is shaped like a sickle as opposed to a sword, meaning there was little chance you could have avoided being decapitated if they chose to use it. You board your ship in a hurry, preparing to take off. It's clear you've overstayed your welcome.`
+				launch
+			
+			label "reach"
+			action
+				set "scin: provocative"
+			`	It is rather alarming that the Scin are comfortable in approaching you casually, and considering how the encounter with the Vi went, anything could happen next. You decide to reach for your pistol, but as soon as you do, the first thing you feel is a curved blade around your neck and a wave of sand flying past you. Slowly turning your head, your eyes are met with the cold, expressionless look of another Scin's face, who then motions for you to return to your ship. They follow you as you do, continuing to hold the blade to your throat. Two more Scin suddenly appear from the sand along the way, while the others you first met remain at their position. The armor of the Scin escorting you is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
+			`	Once you are at your ship, they move their blade away from your neck. When you get a better look at it, you realize that the blade is shaped like a sickle as opposed to a sword, meaning there was little chance you could have avoided being decapitated if they chose to use it. Boarding your ship in a hurry, you prepare to take off, and you notice the other Scin warship also powering up. It's clear you've overstayed your welcome.`
+				launch
+
+
+			label "approach"
+			action
+				set "scin: entered epidote"
+			`	Walking towards the Scin, you notice the freighter is indeed large - maybe four times the size of a Hauler, or almost two times the size of a Behemoth. As you approach it, an elevator lowers from its undercarriage, and a group of Scin await your arrival. Their attire is much different than that of the Vi; most of them wear what looks like segmented armor with many layers of plates, giving off the appearance of scales. One of them, however, has a much lighter armor set focused mainly around their shoulders, with orange robe-like garments underneath. They are slightly thinner than the other Scin. Although none of them are anywhere near as bulky as the Vi, they all still appear slightly taller than any human. More importantly, they seem far more eager to interact with you, seeing as they are comfortable with you being near their ship.`
+			`	Once you're at the elevator, the Scin in heavier armor escort you onboard. The elevator lifts back into the ship, leading into some sort of spacious internal bay. The Scin in the robe walks off nearby and grabs some sort of device, moving it over to where you stand, and gestures for you to join them.`
+			choice
+				`	(Join them.)`
+				`	(Reach for my pistol.)`
+					goto pistol
+			`	You walk over to the device, getting a good look at the robed Scin. Their skin appears almost bone-like with very faint patterns of light green. Unlike the Vi, they have three small horns and barely any hair at all. They seem just as interested in your appearance, looking you up and down. After messing with the device a bit more, the Scin reveals some sort of tablet or drawing implement.`
+			`	The Scin then reaches their palm out and makes a mark on one half of the display, then turns it to you.`
+			choice
+				`	(Place my hand on the device.)`
+				`	(Do nothing.)`
+					goto images
+			`	Placing your own palm on the device, you feel it vibrate a little. A detailed wireframe of your hand appears on the other half of the device. The Scin moves the device aside, then extends one arm out showing the top of their hand.`
+			choice
+				`	(Extend my arm as well.)`
+				`	(Do nothing.)`
+					goto images
+			action
+				set "scin: gestures"
+			`	As you reach out with your right hand, the Scin leans forward and carefully examines it, then makes another note on their device. After writing down a few more things, they turn to you and gesture strangely, crossing their arms together in a plus-shaped fashion towards their left. The other heavier-armored Scin move closer and escort you back to the elevator and to your ship. Along the way, you notice a few Scin you didn't previously see. Their armor is much different than that of the others, characterized by darker shades, sharper edges, and several gadgets, but what is most notable is their possession of sickle-like blade weapons.`
+			`	Once you return to your ship, the Scin return to theirs, but remain on the planet. Although just as strange, this encounter went far better than the one with the Vi.`
+				accept
+
+			label "images"
+			`	Turning the device back around, the Scin types some sort of note on it then clears the display. They then begin to draw some sort of picture with one of their fingers. The finished image appears to be a portrait of themselves. "Dueyu Scin," they speak in a low tone. Clearing the image, they draw something that looks like you, albeit a bit out of proportion, then await some sort of answer.`
+			choice
+				`	"Dueyu human..?"`
+				`	"I am human."`
+				`	(Say nothing.)`
+					goto silence
+			`	The Scin looks at you in what you guess to be fascination. They grab the device and draw yet another picture. After setting it down, you recognize the familiar image of a Gegno Vi warrior.`
+			choice
+				`	"Gegno Vi?"`
+				`	"Dueyu Vi?"`
+			action
+				set "scin: imagery"
+			`	Looking at you with a confused expression, they draw another portrait that looks like the shorter leather-wearing Gegno from their homeworld and move that image together with the images of the Vi and the Scin. "Gegno," they say, and begin to think to themselves. A brief moment passes, and they begin drawing on the device again. After turning it back to you, you see both a green-colored patch and a brown-colored patch. "Vie," the Scin enunciates, pointing to the brown. "Sinn," they say, now pointing to the green. Afterwards, they point to the group of the three Gegno portraits. "Gegno."`
+			`	Once they mark down a few more notes, they lower their head, and the other Scin usher you back to the elevator, activating it to lower you back to the surface. You're escorted back to your ship, and along the way are a few Scin you didn't previously see. Their armor is much different than that of the others, characterized by darker shades, sharper edges, and several gadgets, but what is most notable is their possession of sickle-like blade weapons.`
+			`	Once you return to your ship, the Scin return to theirs, but remain on the planet. Although just as strange, this encounter went far better than the one with the Vi.`
+				accept
+
+			label "pistol"
+			action
+				set "scin: provocative"
+			`	The situation you find yourself in is rather precarious - inside an alien species' vessel, surrounded by strange devices - anything could happen next. You decide to reach for your pistol, but as soon as you do, the first thing you feel is a curved blade around your neck. Slowly turning your head, your eyes are met with the cold, expressionless look of yet another Scin's face, whom you didn't see previously. They continue to hold the blade to your throat as they activate the elevator again, lowering you back to the surface. Their armor is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
+			`	They escort you back to your ship, and along the way, several more Scin stand guard in the same armor. Once you are at your ship, the blade is moved away from your neck. When you get a better look at it, you realize that the blade is shaped like a sickle as opposed to a sword, meaning there was little chance you could have escaped being decapitated if they had chosen to use it. Boarding your ship in a hurry, you prepare to take off, and you notice the other Scin warship also powering up. It's clear you've overstayed your welcome.`
+				launch
+			
+			label "silence"
+			`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.`
+			choice
+				`	(Reach for my firearm.)`
+				`	(Raise my arms.)`
+			action
+				set "scin: provocative"
+			`As soon as you attempt to move, the first thing you feel is a curved blade around your neck. The Scin casually marks another note on their device, then leaves the scene, heading deeper into the vessel. Slowly turning your head, your eyes are met with the cold, expressionless look of yet another Scin's face, whom you haven't seen yet. They continue to hold the blade to your throat as they activate the elevator again, lowering you back to the surface. Their armor is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
+			`	They escort you back to your ship, and along the way, several more Scin stand guard, wearing the same armor. Once you are at your ship, the blade is moved away from your neck. When you get a better look at it, you realize that the blade is shaped like a sickle as opposed to a sword, meaning there was little chance you could have escaped being decapitated if they chose to use it. You board your ship in a hurry, preparing to take off. It's clear you've overstayed your welcome.`
+				launch
+
+	npc
+		to spawn
+			not "scin: gestures"
+			not "scin: provocative"
+		government "Gegno Scin"
+		personality launching uninterested
+		system "Ilirco"
+		fleet
+			names "gegno scin"
+			variant
+				"Coesite"
+	npc
+		to spawn
+			not "scin: gestures"
+			has "scin: provocative"
+		government "Gegno Scin (Combative)"
+		personality launching
+		system "Ilirco"
+		fleet
+			names "gegno scin"
+			variant
+				"Coesite" 2
+
+
+mission "Gegno Exploration Nudge"
+	landing
+	name `Find ways to interact with the Gegno`
+	description `Although the Gegno seem disinterested in you as a whole, there might be other chances to encounter them in their space to learn more about them.`
+	source "Yiia Iyr"
+	to offer
+		has "Suspicious Scin: offered"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		never
+	to fail
+		has "Gegno Exploration Nudge Remover: done"
+	on enter
+		conversation
+			branch provocative
+				has "scin: provocative"
+			`As you leave the planet's atmosphere, the Scin ship breaks formation with you and goes their separate way. While the Gegno may not be interested in associating with you overall, it seemed like the few Scin you met were interested in some capacity. There may be other opportunities to encounter the Gegno elsewhere in their space and learn more about them.`
+			`	Still, it might be best to listen to what the Quarg said and exercise caution going forward.`
+				accept
+			
+			label provocative
+			`The Scin ships following you off the planet show little hesitation before firing their weapons at you, likely feeling provoked by your choice of actions with them during the encounter. Still, they must have some sort of interest in you if they led you to them, meaning that there could be other possibilities to get involved with the Gegno at other locations in their space.`
+			`	Still, the Gegno already have qualms with outsiders. It might be a good idea to listen to what the Quarg said about exercising caution, especially if it leads to hostile encounters.`
+				accept
+
+# Fails above mission once the proper conditions are met so that it doesn't float in the mission panel.
+mission "Gegno Exploration Nudge Remover"
+	invisible
+	landing
+	non-blocking
+	source "Yiia Iyr"
+	destination "Giaru Gegno"
+	to offer
+		has "Suspicious Scin: offered"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		has "gegno: encounters"
 
 
 # Gegno Superheavy Missions
@@ -463,26 +767,52 @@ mission "Gegno Genocide Defense"
 		fail "First Contact: Gegno Vi"
 		fail "Visit Quarg in Gegno Space"
 		fail "Vi Augen"
+		fail "Gegno Anticipation"
+		fail "Gegno Intervention"
+		fail "Acquiescence"
 		"reputation: Gegno" = -1000
 		"reputation: Gegno Vi" = -1000
 		"reputation: Gegno Scin" = -1000
 		event "gegno: unified defense"
 		conversation
+			branch "corroboration provocation"
+				or
+					has "Gegno Anticipation: failed"
+					has "Gegno Intervention: failed"
+
 			`As soon as you land your ship, you suddenly receive an incoming hail. "It was incredibly unwise to engage in the unnecessary destruction of noncombatants belonging to a species not of your own." You recognize the voice belonging to that of a Quarg, though it sounds quite displeased. "A species that is still learning from themselves is vulnerable to outside influence, and your aggressive actions against civilians of the Gegno have resulted in needless events."`
 			choice
 				`	"It was an accident!"`
 				`	"What are you talking about?"`
-					goto "what"
+					goto what
 				`	"I do not care."`
-					goto "care"
+					goto care
 			`	"It is greatly unlikely for violence upon unarmed victims to be accidental. Regardless of the cause, the effect has already occurred. The Gegno have banded together under one flag in an effort to deter any more outside interference. You are no longer welcome in their space, and you are advised not to visit again, lest the Gegno show you the same belligerent behavior you have exhibited to their citizens."`
 				accept
 			label "what"
-			`	"Your behavior has caused the Gegno to unite their fleets and deter any more presence from outsiders. It is a great shame. The time they would use to resolve their inner conflicts is now wasted upon hostility towards strangers due to your naivety. You are no longer welcome in Gegno space, and if you dare visit again, the Gegno will demonstrate the same treatment you gave their citizens."`
+			`	"Your behavior has caused the Gegno to unite their fleets and deter any more presence from outsiders. It is a great shame. The time they would use to resolve their inner conflicts is now wasted upon hostility towards strangers due to your negligence. You are no longer welcome in Gegno space, and if you dare visit again, the Gegno will demonstrate the same treatment you gave their citizens."`
 				accept
 			label "care"
 			`	The Quarg makes an unpleasant sound - one you have not heard from any Quarg before. "Should you be seen in Gegno space once more, expect the same sentiment."`
 				accept
+
+			label "corroboration provocation"
+			branch "corroboration provocation homeworld"
+				has "flagship planet: Dueyu Eitch"
+			`As soon as you land your ship, you suddenly receive an incoming hail. "It was incredibly unwise to fire upon guardians of the Gegno homeworld." The voice belongs to that of a Quarg, though it sounds quite displeased. "They simply were present to quell unease of your foreign involvement, yet you chose hostility above their most sacred of planets. You shall find yourself no longer welcome in Gegno space, as well as at the end of our patience."`
+			choice
+				`	"I was worried they would attack me with their fleets!"`
+				`	"I do not care."`
+					goto care
+			`	"Your concerns matter not when weighed against those of an entire species. As a result of such behavior, the Gegno have banded together to unite their fleets and deter any more presence from outsiders. It is a great shame. The time they would use to resolve their inner conflicts is now wasted upon hostility towards strangers due to your negligence. Leave Gegno space, for you no longer have reason to be here."`
+				accept
+
+			label "corroboration provocation homeworld"
+			`Following your assault on the Gegno fleet, you still attempt to land on the Gegno homeworld, but a large number of hostile ships are already guarding the planet's surface. Suddenly, you receive an incoming hail, though not from the Gegno.`
+			`	"It was incredibly unwise to fire upon guardians of the Gegno homeworld." The frigid voice belongs to that of a Quarg, though it sounds quite displeased. "They simply are present to quell unease of your foreign involvement, yet you chose hostility with them above the most sacred of planets." A Quarg ship then appears from the horizon, quickly flying over to your ship as you receive another hail. "You shall find yourself no longer welcome in Gegno space, as well as at the end of our patience."`
+			`	Without giving pause, the Quarg ship escorts you back into the atmosphere, and the Gegno ships hesitantly pull back for the time being. As you leave the planet, they hail you one last time. "Your actions will have certainly caused instability with the Gegno. Your best course of action is to leave this space at once. We shall be watching." After that, the ship disappears.`
+				launch
+
 	npc
 		government "Gegno Vi"
 		to spawn
@@ -492,6 +822,27 @@ mission "Gegno Genocide Defense"
 		personality heroic vindictive staying
 		system "Heutesl"
 		ship "Augen" "Vytii Yrrlausei"
+
+
+# Mission for if the player has clearance on a Gegno world despite having provoked civilians.
+
+mission "Gegno Unwelcoming"
+	landing
+	invisible
+	source
+		government "Gegno" "Gegno Vi" "Gegno Scin"
+	to offer
+		"reputation: Gegno" < 0
+	on offer
+		conversation
+			`You are greeted by a large force of aliens on the surface of the planet, though they don't seem too happy to welcome you on their world - in fact, several squads in numbers you can't quickly determine rush towards you, equipped with advanced looking combat gear and weapons. As they do, countless ships begin to descend in formations from the sky above.`
+				to display
+					not "Giaru Gegno: Quarg Contact: offered"
+			`You are greeted by a large group of Gegno on the surface of the planet, though they don't seem too happy to welcome you on their world - in fact, several squads in numbers you can't quickly determine rush towards you, equipped with advanced looking combat gear and weapons. As they do, countless ships belonging to both the Vi and Scin factions begin to descend in formations from the sky above.`
+				to display
+					has "Giaru Gegno: Quarg Contact: offered"
+			`	It probably wasn't the smartest plan to purposefully land here after assaulting civilians. There's no room for talk as they immediately begin to attack, and you do your best to fight as many off as you can. While you are able to fend off several with your pistol, you are eventually overwhelmed, and the last thing you experience is a cold, sharp pain through your upper body.`
+				die
 
 
 # Gegno Hunter Fleets
@@ -569,14 +920,20 @@ mission "Gegno Vi Duels"
 	npc provoke
 		system "Ookmya"
 		government "Gegno Vi (Duelist A)"
-		personality heroic uninterested staying
-		fleet "Gegno Vi Duelist A"
+		personality heroic unconstrained uninterested staying ramming
+		fleet
+			names "gegno vi"
+			variant
+				"Dunite"
 		conversation "interfered with duel"
 	npc provoke
 		system "Ookmya"
 		government "Gegno Vi (Duelist B)"
-		personality heroic uninterested staying
-		fleet "Gegno Vi Duelist B"
+		personality heroic unconstrained uninterested staying ramming
+		fleet
+			names "gegno vi"
+			variant
+				"Dunite"
 		conversation "interfered with duel"
 
 conversation "interfered with duel"

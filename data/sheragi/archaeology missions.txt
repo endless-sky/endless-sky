@@ -300,6 +300,7 @@ mission "Deep Archaeology 5"
 
 ship "Timer Ship"
 	attributes
+		category "Game Mechanics"
 		"heat dissipation" 1
 		"hull" 3
 		"hull repair rate" .001
@@ -339,22 +340,47 @@ mission "Sad Archie"
 		has "There Might Be Riots part 3B: done"
 	destination "Zug"
 	
-	npc disable
-		government "Test Dummy"
-		system "Ildaria"
-		personality unconstrained heroic nemesis ramming
-		ship "Timer Ship" "Timer"
-		conversation
-			`As your ship drifts through the cloud of dust that surrounds Ildaria, it occurs to you that this must be the "cloudy star out along the Rim" that Ulrich from There Might Be Riots told you about. Remembering his story, you shut your eyes and attempt to meditate. But instead, you just fall asleep.`
-			scene "scene/eso0"
-			`You dream that you leave this star system and return to Zug, but when you land there everything is different: the cities you remember are gone, and in their place are other cities with strange architecture, populated by gargantuan dragon-like creatures.`
-			`	Time speeds up, and you watch as the dragon cities grow and spread out. You see one city buried under a massive lava flow, starships buzzing around it like a cloud of flies to carry people and goods to safety. Other cities are destroyed by war, and then abruptly the dragon-people are all gone and their cities lie vacant. Buildings crumble, and the forests reclaim the land.`
-			`	Then you wake up and find yourself back in your ship, in the Ildaria system. Weird.`
+	timer 7200 3600
+		"activation requirements"
+			system "Ildaria"
+			idle
+			uncloaked
+			peaceful
+		on timeup
+			conversation
+				`As your ship drifts through the cloud of dust that surrounds Ildaria, it occurs to you that this must be the "cloudy star out along the Rim" that Ulrich from There Might Be Riots told you about. Remembering his story, you shut your eyes and attempt to meditate. But instead, you just fall asleep.`
+				scene "scene/eso0"
+				`You dream that you leave this star system and return to Zug, but when you land there everything is different: the cities you remember are gone, and in their place are other cities with strange architecture, populated by gargantuan dragon-like creatures.`
+				`	Time speeds up, and you watch as the dragon cities grow and spread out. You see one city buried under a massive lava flow, starships buzzing around it like a cloud of flies to carry people and goods to safety. Other cities are destroyed by war, and then abruptly the dragon-people are all gone and their cities lie vacant. Buildings crumble, and the forests reclaim the land.`
+				`	Then you wake up and find yourself back in your ship, in the Ildaria system. Weird.`
 	
 	on complete
 		log `Experienced a strange vision while drifting in the Ildaria system that looked like the fall of a civilization of dragon-people. The terrain on the planet of Zug looks strikingly similar to this vision.`
 		conversation
+			branch tmbr
+				has "Deep Archaeology 5: done"
+			action
+				set "archaeology after TMBR"
+			label tmbr
 			`On a whim, as you're landing on Zug you pull up a geological map of the planet and find that the geography you dreamt of while drifting in the Ildaria system was surprisingly close to the real thing. There's even a massive basalt outcropping right where you saw a lava flow burying a city. There's no way your ship's sensors can tell what's underneath it, though.`
+
+
+
+mission "Rim Archaeology Reminder"
+	landing
+	non-blocking
+	name "Foster's Assistance?"
+	description "Head to <destination> and see if Albert Foster can help uncover Zug's mystery."
+	source
+		not planet "Vinci"
+	destination "Vinci"
+	to offer
+		has "archaeology after TMBR"
+		has "Deep Archaeology 5: done"
+	on offer
+		conversation
+			`As your ship settles down on <origin>, you recall the visions of an alien civilization you experienced while in Ildaria, and how the terrain you saw resembled the landscape of Zug. Perhaps Albert Foster can help you investigate further.`
+				accept
 
 
 
@@ -365,8 +391,13 @@ mission "Rim Archaeology 1"
 	source "Vinci"
 	destination "Zug"
 	passengers 1
+	blocked `You consider telling Albert Foster about your findings on Zug, but realize that you don't have a bunk free to take him there! Return when you have free space.`
 	to offer
 		has "Sad Archie: done"
+		has "Deep Archaeology 5: done"
+		or
+			not "archaeology after TMBR"
+			has "Rim Archaeology Reminder: offered"
 	
 	on offer
 		conversation
@@ -375,7 +406,14 @@ mission "Rim Archaeology 1"
 				`	(Of course!)`
 				`	(Not right now.)`
 					defer
-			`Foster seems glad to see you. You do your best to pique his interest without saying anything that will make him think you're crazy, but he's clearly not buying it. "I'm sorry," he says, "but I'm not mounting an expedition just because you have a 'hunch.' So unless you're willing to tell me the source of your information, I'm not interested." He turns his attention back to the data pad that he was reading before you walked into his office.`
+			branch recent
+				has "archaeology after TMBR"
+			`	Foster seems glad to see you. "It's been a while, <first>. Something catch your eye recently?"`
+				goto interest
+			label recent
+			`	Foster is slightly surprised by your arrival. "My apologies, but I haven't made any progress in the Deep since we last talked. Unless you have something else for me?"`
+			label interest
+			`	You do your best to pique his interest without saying anything that will make him think you're crazy, but he's clearly not buying it. "I'm sorry," he says, "but I'm not mounting an expedition just because you have a 'hunch.' So unless you're willing to tell me the source of your information, I'm not interested." He turns his attention back to the data pad that he was reading before you walked into his office.`
 			choice
 				`	"I'd rather not say."`
 				`	"I had this dream about dragon-people on Zug."`
@@ -706,11 +744,11 @@ mission "Sheragi Archaeology: The Box 2"
 				`	"This is an impressive collection."`
 			`	"It is! But it's not even the main attraction for you today. Follow me."`
 			`	After the tour is over, he leads you to another building in an area that is off-limits to the general public.`
-				goto offlimit
+				goto "off limit"
 			label hurry
 			`	"Straight to the point? Fair enough, I'm eager as well, but do come visit the museum some time in the future. There are so many interesting objects."`
 			`	You take the chance to catch up as he leads you into the ancient city's ruins, talking about the "minor" discoveries he made so far, such as statues of Sheragi that depict what they once looked like. "We would perhaps never know their appearance had we not found something like it. But these small discoveries are not the main attraction for you today," Albert says with a wide smile. He leads you into one of the uncovered Sheragi buildings, in an area that is off-limits to the public.`
-			label offlimit
+			label "off limit"
 			`	"Here it is!"`
 			`	There is a tunnel going deep underground inside the room, but Albert sets his attention on a large safe instead. As he opens it up, he begins to explain the situation.`
 			`	"So, from what we know, the Sheragi died off in a war of catastrophic proportions. One of our interns suggested we survey deeper underground, to check for military facilities or bunkers, even though our previous scans didn't show anything interesting, so we allowed her to play around with the ground-penetrating radar. And wouldn't you believe it, there were some angled pieces of metal under the dirt. Clearly man-made. Well... Sheragi-made, in this case. So we dug deeper, and found what we can only assume to have been a bunker, showing signs of having been hit by a powerful kinetic weapon. Despite the damage, we could still salvage some artifacts from the debris. Particularly, this thing."`
@@ -724,10 +762,10 @@ mission "Sheragi Archaeology: The Box 2"
 				`	"I'm sorry, but that sounds sketchier than all the other jobs I did for you. The Quarg were very clear in saying that some things are not meant to be found."`
 					goto sketchy
 			`	"Oh, you don't remember him? He's the scientist who worked with us when we were investigating the church on Midgard. He has all the fancy equipment needed to look into this cube."`
-				goto finalchoice
+				goto "final choice"
 			label sketchy
 			`	"What?" He seems incredulous. "After going this far, you're abandoning me? Knowledge by itself isn't dangerous. This cube could be the key to lost eons of history, to secrets of the Sheragi we couldn't even dream of!"`
-			label finalchoice
+			label "final choice"
 			choice
 				`	"All right, I'll take it to him."`
 				`	"Sorry, but I'm not crossing that line."`
@@ -783,13 +821,13 @@ mission "Sheragi Archaeology: The Box 3"
 			label bad
 			`	"The bad news is that this is a lot more complicated than I thought. I found out that the data in the box has survived, and can still be recovered after all this time, but it will need some specialized hardware and knowledge that we don't have yet."`
 			`	"And the worse news?" you ask.`
-			`	"Well... Some people invaded my lab during the night and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
-				goto whatnow
+			`	"Well... some people invaded my lab during the night and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
+				goto "what now"
 			label worse
-			`	"Well... Some people invaded my lab during the night, and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
-			`	"And the bad news?" you ask`
+			`	"Well... some people invaded my lab during the night, and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
+			`	"And the bad news?" you ask.`
 			`	"The less bad news is that this is a lot more complicated than I thought. I found out that the data in the box has survived, and can still be recovered after all this time, but it will need some specialized hardware and knowledge that we don't have yet."`
-			label whatnow
+			label "what now"
 			`	Your heart sinks. "What do we do now? Do you have any idea where to find the box? Did you contact law enforcement?"`
 			`	"I did what I could, but if this was mandated as I suspect, the police aren't going to help, and the box is probably off-world by now. However... if you have some cash on hand, and you're willing to go the extra mile to recover the box, there might be a way."`
 			choice
@@ -858,7 +896,7 @@ mission "Sheragi Archaeology: The Box 4"
 				"credits" >= 10000000
 			choice
 				`	"What? I don't have that much money!"`
-					goto nomoney
+					goto "no money"
 				`	"That's expensive. If it's such a trivial service, can't I have a discount?"`
 					goto haggle
 			
@@ -879,18 +917,18 @@ mission "Sheragi Archaeology: The Box 4"
 				has "haggled"
 			choice
 				`	"You should know that I don't have that much money to spare."`
-					goto nomoney
+					goto "no money"
 				`	"Are you ready to give me a discount?"`
 					goto haggle
 			label haggled
 			choice
 				`	"You should know that I don't have that much money to spare."`
-					goto nomoney
+					goto "no money"
 				`	"How about you tell me what I want and I don't blow up your ship and your pirate friends?"`
 					goto threat
 
 			label cash
-			branch haggledcash
+			branch "haggled cash"
 				has "haggled"
 			choice
 				`	"I need to think about this. Give me some time."`
@@ -899,7 +937,7 @@ mission "Sheragi Archaeology: The Box 4"
 					goto haggle
 				`	"Here's the money."`
 					goto pay
-			label haggledcash
+			label "haggled cash"
 			choice
 				`	"I need to think about this. Give me some time."`
 					goto time
@@ -908,7 +946,7 @@ mission "Sheragi Archaeology: The Box 4"
 				`	"Here's the money."`
 					goto pay
 
-			label nomoney
+			label "no money"
 			`	"I know you don't. I can arrange for the payment to be made in different ways. Organ donation, prostitution, volunteering as a test subject... We'll need an appraisal first, though."`
 			`	You politely decline.`
 			`	"Come back to me when you have it, then, and I shall provide you with the information. We have all the time in the universe. Until you die, or someone decides to destroy the cube, that is."`
@@ -1228,7 +1266,7 @@ mission "Sheragi Archaeology: The Box 8"
 			`	"We want to meet the human archaeologist who uncovered the ruins in the Rim. Can you take us there? We will start examining the cube along the way. I think by the time we get there, we'll have something to work with."`
 				accept
 	
-	on offer
+	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		event "cube decoded" 40 50
@@ -1311,20 +1349,20 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 			choice
 				`	"I do."`
 				`	"I used to, but not anymore."`
-					goto notanymore
+					goto "not anymore"
 			`	"This is perfect! Do you think you can get another one? If we're going there, and the ship's remains are still there, we're going to need one to install on the Emerald Sword and bring it back home."`
 				goto return
-			label notanymore
+			label "not anymore"
 			`	"You sold it?" she replies incredulously. "How can you sell such a priceless piece of technology? Well, I hope there is a way to get more of them without having one, because we're going to need two for the next stage. One for your ship, and another one for the Emerald Sword, if its remains are still there."`
 			label return
 			`	"What do I get in return?" you ask.`
-			`	"Fame and fortune, my friend. And if the ship is still there, I think you deserve to keep it," Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. Give us some time to assemble a crew to survey the system and help refurbish the ship, and in the meantime, go get us a jump drive. Come back to us once you have it."`
+			`	"Fame and fortune, my friend. And if the ship is still there, I think you deserve to keep it," Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. Give us some time to assemble a crew to survey the system and help refurbish the ship, and in the meantime, go get a jump drive for the Emerald Sword. Come back to us once you have it."`
 			choice
 				`	"You're just going to let me have it? Isn't this something of a priceless historical artifact?"`
-					goto askkeepship
+					goto "ask keep ship"
 				`	"Thank you."`
 					accept
-			label askkeepship
+			label "ask keep ship"
 			`	Albert responds, "Well, yes, but I'd feel much more comfortable with it in your hands than sitting here on <origin> waiting to be destroyed in loose fire during a pirate raid. Besides that though, while the Free Worlds work hard and have a stronger presence here than the Navy ever did, they can't stop everyone who may have an interest in this ship. At least with you it's a moving target."`
 				accept
 	
@@ -1380,7 +1418,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			choice
 				`	"Who are you?"`
 					goto who
-				`	"What... What is this feeling?"`
+				`	"What... what is this feeling?"`
 			`	There is a pause. The feeling of being watched becomes intense, as if you're being studied intently.`
 			`	"A human would call it... dread. Regret. Loss. You are standing in the last untouched graveyard of a lost civilization.`
 			label who
@@ -1448,16 +1486,16 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 					goto wrong
 			
 			`	"Yes. Yes we have," Foster says, sounding more upbeat than before. "Amazing, but tragic. But, amazing," he repeats, as if trying to reassure himself.`
-				goto fosterend
+				goto "foster end"
 			
 			label archon
 			`	Foster chuckles nervously at the mention of the Archon. "Perhaps," he says, then pauses. "No. I think the gravity of this situation speaks for itself."`
-				goto fosterend
+				goto "foster end"
 			
 			label wrong
 			`	"I had that same thought on the jump here," Foster says. "But we're in too deep to turn back now."`
 			
-			label fosterend
+			label "foster end"
 			`	Foster stands back up and steps away from the corpse. "I should get back to exploring the rest of the ship. No use in staring at corpses all day."`
 			`	You leave the area and see that the large door that was blocking the way into the area is laying against a wall. Foster mentioned that the door had been welded shut, so the crew must have removed it somehow to investigate the area. You notice a large dent in the middle of the door. You aren't sure if that's because of the crew getting into the facility, or from the ship's previous inhabitants attempting to break in.`
 				goto exploration
@@ -1559,12 +1597,12 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			choice
 				`	"Do you think we could find another ship to explore?"`
 				`	"Is it really a good idea to just plug that in like that?"`
-					goto badidea
+					goto "bad idea"
 			
 			`	"I don't believe that this box would have any information that would lead us to another ship. But, there's only one way to find out," Desyo says as she begins decrypting the black box.`
 				goto explodes
 			
-			label badidea
+			label "bad idea"
 			`	"If you're thinking that this could infect my computer with a virus as a countermeasure, I've already dealt with that. We had to develop a firewall to combat a virus that was in the other black box," Desyo says as she begins decrypting the black box.`
 			
 			label explodes
@@ -1575,12 +1613,12 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 					goto last
 			
 			`	Your question is met with a chorus of "No, I'm fine," "All good over here," and various other affirmations of safety from the crew.`
-				goto desyoend
+				goto "desyo end"
 			
 			label last
 			`	Desyo looks at you like you're some kind of alien. "No, nothing like the sort. Don't you think I would have expected that if it had?"`
 			
-			label desyoend
+			label "desyo end"
 			`	Everyone comes out from behind their cover to look at the aftermath. Luckily, no one seems to have been hurt. Desyo walks over to the large scorch mark on the floor left behind by the explosion. "I have no idea what could have caused such an explosion to occur," she exclaims.`
 			`	"How's your computer doing?" you ask.`
 			`	Desyo finds the computer on the other side of the room with a severely cracked screen, but somehow still functional. "Sturdy piece of hardware, isn't it?" she jokes. She begins tapping away at the keys as she squints at the screen. "I can still make out some of what I was able to pull from the cube. It looks like... that cube had some information on a weapon. Some sort of... chemical weapon? It seems to include... mention of coordinates. But that's all I was able to get. Whatever coordinates they were are lost to time."`
@@ -1600,6 +1638,7 @@ mission "Sheragi Archaeology: Epilogue"
 	description "Return to Zug."
 	source "Valley of the Damned"
 	destination "Zug"
+	passengers 150
 	cargo "Outfitting Equipment" 25
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"

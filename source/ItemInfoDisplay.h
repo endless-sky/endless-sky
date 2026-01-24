@@ -13,10 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ITEM_INFO_DISPLAY_H_
-#define ITEM_INFO_DISPLAY_H_
+#pragma once
 
 #include "Point.h"
+#include "Tooltip.h"
 #include "text/WrappedText.h"
 
 #include <string>
@@ -72,12 +72,6 @@ protected:
 	// For tooltips:
 	Point hoverPoint;
 	mutable std::string hover;
-	mutable int hoverCount = 0;
+	mutable Tooltip tooltip;
 	bool hasHover = false;
-	mutable WrappedText hoverText;
 };
-
-
-
-#endif
-

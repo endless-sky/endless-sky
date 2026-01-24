@@ -18,12 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "GameData.h"
-#include "Mask.h"
-#include "MaskManager.h"
+#include "image/Mask.h"
+#include "image/MaskManager.h"
 #include "pi.h"
 #include "Random.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 #include <cmath>
@@ -33,21 +33,24 @@ using namespace std;
 
 
 // Constructor, based on a Sprite.
-Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom)
-	: position(position), velocity(velocity), angle(facing), zoom(zoom), sprite(sprite), randomize(true)
+Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom, Point scale, double alpha)
+	: position(position), velocity(velocity), angle(facing), scale(scale), zoom(zoom),
+	alpha(alpha), sprite(sprite), randomize(true)
 {
 }
 
 
 
 // Constructor, based on the animation from another Body object.
-Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, double zoom)
+Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, double zoom, Point scale, double alpha)
 {
 	*this = sprite;
 	this->position = position;
 	this->velocity = velocity;
 	this->angle = facing;
 	this->zoom = zoom;
+	this->scale = scale * sprite.Scale();
+	this->alpha = alpha * sprite.alpha;
 }
 
 
@@ -71,7 +74,7 @@ const Sprite *Body::GetSprite() const
 // Get the width of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Width() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Width() : 0.f);
+	return static_cast<double>(sprite ? (.5f * zoom) * scale.X() * sprite->Width() : 0.f);
 }
 
 
@@ -79,7 +82,7 @@ double Body::Width() const
 // Get the height of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Height() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Height() : 0.f);
+	return static_cast<double>(sprite ? (.5f * zoom) * scale.Y() * sprite->Height() : 0.f);
 }
 
 
@@ -93,9 +96,16 @@ double Body::Radius() const
 
 
 // Which color swizzle should be applied to the sprite?
-int Body::GetSwizzle() const
+const Swizzle *Body::GetSwizzle() const
 {
 	return swizzle;
+}
+
+
+
+bool Body::InheritsParentSwizzle() const
+{
+	return inheritsParentSwizzle;
 }
 
 
@@ -180,9 +190,9 @@ double Body::Zoom() const
 
 
 
-double Body::Scale() const
+Point Body::Scale() const
 {
-	return static_cast<double>(scale);
+	return scale;
 }
 
 
@@ -217,35 +227,42 @@ void Body::LoadSprite(const DataNode &node)
 	// to do that unless it is repeating endlessly.
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "frame rate" && child.Size() >= 2 && child.Value(1) >= 0.)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "frame rate" && hasValue && child.Value(1) >= 0.)
 			frameRate = child.Value(1) / 60.;
-		else if(child.Token(0) == "frame time" && child.Size() >= 2 && child.Value(1) > 0.)
+		else if(key == "frame time" && hasValue && child.Value(1) > 0.)
 			frameRate = 1. / child.Value(1);
-		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
+		else if(key == "delay" && hasValue && child.Value(1) > 0.)
 			delay = child.Value(1);
-		else if(child.Token(0) == "scale" && child.Size() >= 2 && child.Value(1) > 0.)
-			scale = static_cast<float>(child.Value(1));
-		else if(child.Token(0) == "start frame" && child.Size() >= 2)
+		else if(key == "scale" && hasValue && child.Value(1) > 0.)
+		{
+			double scaleY = (child.Size() >= 3 && child.Value(2) > 0.) ? child.Value(2) : child.Value(1);
+			scale = Point(child.Value(1), scaleY);
+		}
+		else if(key == "start frame" && hasValue)
 		{
 			frameOffset += static_cast<float>(child.Value(1));
 			startAtZero = true;
 		}
-		else if(child.Token(0) == "random start frame")
+		else if(key == "random start frame")
 			randomize = true;
-		else if(child.Token(0) == "no repeat")
+		else if(key == "no repeat")
 		{
 			repeat = false;
 			startAtZero = true;
 		}
-		else if(child.Token(0) == "rewind")
+		else if(key == "rewind")
 			rewind = true;
-		else if(child.Token(0) == "center" && child.Size() >= 3)
+		else if(key == "center" && child.Size() >= 3)
 			center = Point(child.Value(1), child.Value(2));
+		else if(key == "inherits parent swizzle")
+			inheritsParentSwizzle = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	if(scale != 1.f)
+	if(scale != Point(1., 1.))
 		GameData::GetMaskManager().RegisterScale(sprite, Scale());
 }
 
@@ -264,8 +281,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("frame rate", frameRate * 60.);
 		if(delay)
 			out.Write("delay", delay);
-		if(scale != 1.f)
-			out.Write("scale", scale);
+		if(scale != Point(1., 1.))
+			out.Write("scale", scale.X(), scale.Y());
 		if(randomize)
 			out.Write("random start frame");
 		if(!repeat)
@@ -274,6 +291,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("rewind");
 		if(center)
 			out.Write("center", center.X(), center.Y());
+		if(inheritsParentSwizzle)
+			out.Write("inherits parent swizzle");
 	}
 	out.EndChild();
 }
@@ -290,16 +309,33 @@ void Body::SetSprite(const Sprite *sprite)
 
 
 // Set the color swizzle.
-void Body::SetSwizzle(int swizzle)
+void Body::SetSwizzle(const Swizzle *swizzle)
 {
 	this->swizzle = swizzle;
 }
 
 
 
-double Body::Alpha() const
+double Body::Alpha(const Point &drawCenter) const
 {
-	return alpha;
+	return alpha * DistanceAlpha(drawCenter);
+}
+
+
+
+double Body::DistanceAlpha(const Point &drawCenter) const
+{
+	if(!distanceInvisible)
+		return 1.;
+	double distance = (drawCenter - position).Length();
+	return clamp<double>((distance - distanceInvisible) / (distanceVisible - distanceInvisible), 0., 1.);
+}
+
+
+
+bool Body::IsVisible(const Point &drawCenter) const
+{
+	return DistanceAlpha(drawCenter) > 0.;
 }
 
 

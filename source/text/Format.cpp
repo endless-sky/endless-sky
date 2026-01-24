@@ -15,16 +15,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Format.h"
 
+#include "../Preferences.h"
+
 #include <algorithm>
 #include <array>
 #include <cctype>
 #include <cmath>
+#include <cstring>
+#include <functional>
 #include <sstream>
+#include <unordered_set>
 
 using namespace std;
 
 namespace {
-	const int64_t K = 1000;
+	// The greatest number displayed without switching to scientific notation.
+	constexpr int64_t SCIENTIFIC_THRESHOLD = 1e15;
+	constexpr int64_t K = 1000;
 	static const vector<pair<const char *, int64_t>> WORD_NUMBERS = {
 		{ "quintillion", K * K * K * K * K * K },
 		{ "quadrillion", K * K * K * K * K },
@@ -134,6 +141,86 @@ namespace {
 		reverse(result.begin(), result.end());
 	}
 
+	string StringSubstituter(const string &source,
+			function<const string *(const string &)> SubstitutionFor)
+	{
+		string target;
+		target.reserve(source.length());
+
+		string key;
+		size_t start = 0;
+		size_t search = start;
+		while(search < source.length())
+		{
+			size_t left = source.find('<', search);
+			if(left == string::npos)
+				break;
+
+			size_t right = source.find('>', left);
+			if(right == string::npos)
+				break;
+
+			++right;
+			size_t length = right - left;
+			key.assign(source, left, length);
+			const string *sub = SubstitutionFor(key);
+			if(sub)
+			{
+				target.append(source, start, left - start);
+				target.append(*sub, 0, string::npos);
+				start = right;
+				search = start;
+			}
+			else
+				search = left + 1;
+		}
+
+		target.append(source, start, source.length() - start);
+		return target;
+	}
+
+	// Helper function for Format::Expand, to recursively expand one key,
+	// detecting cycles in the graph (and thus avoiding infinite recursion).
+	void ExpandInto(const string &key, const string &oldValue, const map<string, string> &source,
+			map<string, string> &result, unordered_set<string> &keysBeingExpanded)
+	{
+		// Optimization for a common case: no substitutions in the substitution.
+		if(oldValue.find('<') == string::npos)
+		{
+			result.emplace(key, oldValue);
+			return;
+		}
+
+		// Declare our intention to process this key so a later attempt will
+		// detect recursion.
+		auto inserted = keysBeingExpanded.insert(key);
+
+		auto SubstitutionFor = [&](const string &request) -> const string *
+		{
+			auto hasResult = result.find(request);
+			// Already finished this one.
+			if(hasResult != result.end())
+				return &hasResult->second;
+			// Refuse to traverse a cycle in the graph.
+			if(keysBeingExpanded.find(request) != keysBeingExpanded.end())
+				return nullptr;
+			auto hasSource = source.find(request);
+			// Undefined key.
+			if(hasSource == source.end())
+				return nullptr;
+			// This key-value pair has not been expanded yet.
+			ExpandInto(request, hasSource->second, source, result, keysBeingExpanded);
+			hasResult = result.find(request);
+			return hasResult == result.end() ? nullptr : &hasResult->second;
+		};
+
+		string newValue = StringSubstituter(oldValue, SubstitutionFor);
+
+		// Success! Indicate we're done expanding this key, and provide its value.
+		keysBeingExpanded.erase(inserted.first);
+		result.emplace(key, newValue);
+	}
+
 	// Helper function for ExpandConditions.
 	//
 	// source.substr(formatStart, formatSize) contains the format (credits, mass, etc.)
@@ -181,6 +268,31 @@ namespace {
 			// "number" or unsupported format
 			result.append(Format::Number(value));
 	}
+
+	const char *DEFAULT_TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S";
+
+	// Return a string containing the setting to use for time formatting.
+	const char *TimestampFormatString()
+	{
+		switch(Preferences::GetDateFormat())
+		{
+			case Preferences::DateFormat::YMD:
+				return DEFAULT_TIMESTAMP_FORMAT;
+			case Preferences::DateFormat::MDY:
+#ifdef _WIN32
+				return "%#I:%M:%S %p on %b %#d, %Y";
+#else
+				return "%-I:%M:%S %p on %b %-d, %Y";
+#endif
+			case Preferences::DateFormat::DMY:
+			default:
+#ifdef _WIN32
+				return "%#I:%M:%S %p on %#d %b %Y";
+#else
+				return "%-I:%M:%S %p on %-d %b %Y";
+#endif
+		}
+	}
 }
 
 
@@ -191,10 +303,9 @@ namespace {
 string Format::Credits(int64_t value)
 {
 	bool isNegative = (value < 0);
-	int64_t absolute = abs(value);
 
 	// If the value is above one quadrillion, show it in scientific notation.
-	if(absolute > 1000000000000000ll)
+	if(fabs(value) > SCIENTIFIC_THRESHOLD)
 	{
 		ostringstream out;
 		out.precision(3);
@@ -206,21 +317,26 @@ string Format::Credits(int64_t value)
 	string result;
 	result.reserve(8);
 
+	int64_t absolute = abs(value);
+
 	// Handle numbers bigger than a million.
-	static const vector<char> SUFFIX = {'T', 'B', 'M'};
-	static const vector<int64_t> THRESHOLD = {1000000000000ll, 1000000000ll, 1000000ll};
-	for(size_t i = 0; i < SUFFIX.size(); ++i)
-		if(absolute > THRESHOLD[i])
+	static constexpr array<pair<int64_t, char>, 3> THRESHOLD_SUFFIX = {{
+		{1000000000000ll, 'T'},
+		{1000000000ll, 'B'},
+		{1000000ll, 'M'}
+	}};
+	for(const auto &[threshold, suffix] : THRESHOLD_SUFFIX)
+		if(absolute > threshold)
 		{
-			result += SUFFIX[i];
-			int decimals = (absolute / (THRESHOLD[i] / 1000)) % 1000;
+			result += suffix;
+			int decimals = (absolute / (threshold / 1000)) % 1000;
 			for(int d = 0; d < 3; ++d)
 			{
 				result += static_cast<char>('0' + decimals % 10);
 				decimals /= 10;
 			}
 			result += '.';
-			absolute /= THRESHOLD[i];
+			absolute /= threshold;
 			break;
 		}
 
@@ -233,12 +349,12 @@ string Format::Credits(int64_t value)
 
 // Convert the given number into abbreviated format as described in Format::Credits,
 // then attach the ' credit' or ' credits' suffix to it.
-string Format::CreditString(int64_t value)
+string Format::CreditString(int64_t value, bool abbreviated)
 {
 	if(value == 1)
 		return "1 credit";
-	else
-		return Credits(value) + " credits";
+
+	return (abbreviated ? Credits(value) : Number(value)) + " credits";
 }
 
 
@@ -258,6 +374,24 @@ string Format::MassString(double amount)
 string Format::CargoString(double amount, const string &cargo)
 {
 	return MassString(amount) + " of " + cargo;
+}
+
+
+
+// Converts the integer to string, and adds the noun, pluralized if needed.
+string Format::SimplePluralization(int amount, const string &noun)
+{
+	string result = to_string(amount) + ' ' + noun;
+	if(amount != 1 && amount != -1)
+		result += 's';
+	return result;
+}
+
+
+
+string Format::StepsToSeconds(size_t steps)
+{
+	return Number(steps / 60.) + " s";
 }
 
 
@@ -291,6 +425,101 @@ string Format::PlayTime(double timeVal)
 
 
 
+string Format::TimestampString(chrono::time_point<chrono::system_clock> time, bool ignorePreferences)
+{
+	// TODO: Replace with chrono formatting when it is properly supported.
+	time_t timestamp = chrono::system_clock::to_time_t(time);
+
+	const char *format = ignorePreferences ? DEFAULT_TIMESTAMP_FORMAT : TimestampFormatString();
+	static const size_t BUF_SIZE = 28;
+	char str[BUF_SIZE];
+
+#ifdef _MSC_VER
+	// Use the "safe" function with MSVC.
+	tm date;
+	localtime_s(&date, &timestamp);
+	return string(str, std::strftime(str, BUF_SIZE, format, &date));
+#else
+	const tm *date = localtime(&timestamp);
+	return string(str, std::strftime(str, BUF_SIZE, format, date));
+#endif
+}
+
+
+
+string Format::TimestampString(filesystem::file_time_type time)
+{
+	auto sctp = time_point_cast<chrono::system_clock::duration>(time - filesystem::file_time_type::clock::now()
+		+ chrono::system_clock::now());
+	return TimestampString(sctp);
+}
+
+
+
+// Convert an ammo count into a short string for use in the ammo display.
+// Only the absolute value of a negative number is considered.
+string Format::AmmoCount(int64_t value)
+{
+	if(fabs(value) >= SCIENTIFIC_THRESHOLD)
+	{
+		if(abs(value) == SCIENTIFIC_THRESHOLD)
+			return "1e+15";
+		ostringstream out;
+		out.precision(1);
+		out << static_cast<double>(value);
+		return out.str();
+	}
+
+	int64_t absolute = abs(value);
+
+	if(absolute < 10000)
+		return to_string(value);
+
+	string result;
+	result.reserve(5);
+
+	// Handle numbers bigger than a thousand.
+	static constexpr array<pair<int64_t, char>, 4> THRESHOLD_SUFFIX = {{
+		{1000000000000ll, 'T'},
+		{1000000000ll, 'B'},
+		{1000000ll, 'M'},
+		{1000ll, 'k'}
+	}};
+	for(const auto &[threshold, suffix] : THRESHOLD_SUFFIX)
+		if(absolute >= threshold)
+		{
+			int head = absolute / threshold;
+			int64_t tail = absolute % threshold;
+			do {
+				result += '0' + head % 10;
+				head /= 10;
+			} while(head > 0);
+			reverse(result.begin(), result.end());
+			switch(result.length())
+			{
+				case 1:
+					tail /= threshold / 100;
+					result += '.';
+					result += '0' + tail / 10;
+					result += '0' + tail % 10;
+					break;
+				case 2:
+					tail /= threshold / 10;
+					result += '.';
+					result += '0' + tail;
+					break;
+				default:
+					break;
+			}
+			result += suffix;
+			break;
+		}
+
+	return result;
+}
+
+
+
 // Convert the given number to a string, with a reasonable number of decimal
 // places. (This is primarily for displaying ship and outfit attributes.)
 string Format::Number(double value)
@@ -301,6 +530,14 @@ string Format::Number(double value)
 		return "???";
 	else if(std::isinf(value))
 		return value > 0. ? "infinity" : "-infinity";
+	else if(fabs(value) > SCIENTIFIC_THRESHOLD)
+	{
+		// Use scientific notation for excessively large numbers.
+		ostringstream out;
+		out.precision(3);
+		out << value;
+		return out.str();
+	}
 
 	string result;
 	bool isNegative = (value < 0.);
@@ -338,6 +575,39 @@ string Format::Number(double value)
 
 	// Convert the number to a string, adding commas if needed.
 	FormatInteger(value, isNegative, result);
+	return result;
+}
+
+
+
+string Format::Number(unsigned value)
+{
+	if(!value)
+		return "0";
+	string result;
+	FormatInteger(value, false, result);
+	return result;
+}
+
+
+
+string Format::Number(int value)
+{
+	if(!value)
+		return "0";
+	string result;
+	FormatInteger(abs(value), value < 0, result);
+	return result;
+}
+
+
+
+string Format::Number(int64_t value)
+{
+	if(!value)
+		return "0";
+	string result;
+	FormatInteger(abs(value), value < 0, result);
 	return result;
 }
 
@@ -485,41 +755,25 @@ double Format::Parse(const string &str)
 
 string Format::Replace(const string &source, const map<string, string> &keys)
 {
-	string result;
-	result.reserve(source.length());
-
-	size_t start = 0;
-	size_t search = start;
-	while(search < source.length())
+	auto SubstitutionFor = [&](const string &key) -> const string *
 	{
-		size_t left = source.find('<', search);
-		if(left == string::npos)
-			break;
+		auto found = keys.find(key);
+		return (found == keys.end()) ? nullptr : &found->second;
+	};
 
-		size_t right = source.find('>', left);
-		if(right == string::npos)
-			break;
+	return StringSubstituter(source, SubstitutionFor);
+}
 
-		bool matched = false;
-		++right;
-		size_t length = right - left;
-		for(const auto &it : keys)
-			if(!source.compare(left, length, it.first))
-			{
-				result.append(source, start, left - start);
-				result.append(it.second);
-				start = right;
-				search = start;
-				matched = true;
-				break;
-			}
 
-		if(!matched)
-			search = left + 1;
-	}
 
-	result.append(source, start, source.length() - start);
-	return result;
+void Format::Expand(map<string, string> &keys)
+{
+	map<string, string> newKeys;
+	unordered_set<string> keysBeingExpanded;
+	for(auto it = keys.begin(); it != keys.end(); ++it)
+		if(newKeys.find(it->first) == newKeys.end())
+			ExpandInto(it->first, it->second, keys, newKeys, keysBeingExpanded);
+	keys.swap(newKeys);
 }
 
 

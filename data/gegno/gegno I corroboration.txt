@@ -1,0 +1,1269 @@
+# Copyright (c) 2023 by Saugia
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+
+mission "Passive-Aggressive Observations"
+	invisible
+	landing
+	destination "Vigales"
+	to offer
+		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
+		not "Gegno Genocide Defense: offered"
+	on complete
+		"gegno: encounters" ++
+		conversation
+			`While navigating the skies of this desert world, you notice subsurface readings similar to the planet where you previously encountered a member of the Gegno Vi. It's likely this world is also home to the same or a similar species of large, serpent-like creatures you confronted back then. Eventually, you come across a large Gegno Vi vessel stationed on the surface, though unlike in your prior encounter, the ship isn't sunken into the desert - it has likely landed here recently. A group of Vi warriors are marching out and nearby the vessel, and while they do, two more Gegno ships appear above you.`
+			choice
+				`	(Leave.)`
+					goto leave
+				`	(Continue to observe.)`
+			`	The approaching ships descend towards the surface, paying you no attention. One of them is the same model as the one on the ground, likely some type of transport. The other, however, appears to be some sort of interceptor vessel, though it is definitely larger than something like a Sparrow from human space, maybe even the size of a Headhunter.`
+			`	Considering that the planet is home to more of those monsters from before, and the Vi are here in numbers, it might be best you take your leave now before the situation gets out of control again.`
+			choice
+				`	(Leave.)`
+					goto leave
+				`	(Approach the landing zone.)`
+			`	Throttling your ship forward, you head towards the Vi's landing zone. While the other transport vessel has touched down already, the interceptor, still in the process of landing, suddenly whips around to face you as you approach. Unlike the Scin's warships you confronted a few days ago, which were more reactive to your presence than direct about it, the Vi here are now going out of their way to approach your ship. A moment later, you receive what sounds like an angry hail from the interceptor.`
+			`	"Tchii ciei escitch tchii iedf teih Voordhte!"`
+			choice
+				`	(Leave now.)`
+				`	(Continue.)`
+					goto continue
+			`	You decide it's best to not encroach on the Vi's area any more, as there's no telling what they'd do if you continued to do so. Once you back off, the interceptor briefly jerks forward at you in a vexed manner, continuing to observe you until you've left the area. While the Scin seemed more open to interaction, the Vi are clearly averse to it.`
+				decline
+
+			label continue
+			action
+				set "provoked military"
+			`	You decide to continue flying towards the Vi without heeding their warning. With no hesitation, the interceptor begins to charge at you, and the ships on the surface start preparing for takeoff. Even some of the Vi soldiers on the ground are shouting and gesturing toward your vessel with their weapons. It would seem the Vi are no longer tolerant of your presence.`
+				decline
+
+			label leave
+			action
+			`	You decide to withdraw from the area, and the ships continue on their way toward the surface as if you were never there. Regardless of whether or not they could have been hostile, getting mixed up with what may be some sort of military exercise could be dangerous, especially with the Vi.`
+				decline
+
+	npc save
+		on kill
+			set "yvx killed"
+		government "Gegno Vi"
+		personality heroic vindictive staying ramming daring uninterested
+		system "Vorsuke"
+		ship "Rhyolite" "Imtydei"
+	npc save
+		government "Gegno Vi"
+		personality heroic vindictive staying uninterested
+		system "Vorsuke"
+		ship "Schist" "Ess Ouec"
+
+mission "Vi Military Group"
+	invisible
+	landing
+	to offer
+		has "Passive-Aggressive Observations: done"
+	to complete
+		never
+	on enter "Vorsuke"
+		fail
+
+	npc
+		to spawn
+			has "provoked military"
+		on kill
+			set "yvx killed"
+		government "Gegno Vi (Combative)"
+		personality heroic vindictive ramming daring staying launching
+		system "Vorsuke"
+		ship "Rhyolite" "Imtydei"
+	npc
+		to spawn
+			has "provoked military"
+		government "Gegno Vi (Combative)"
+		personality heroic vindictive staying launching
+		system "Vorsuke"
+		ship "Schist" "Ess Ouec"
+	npc
+		to spawn
+			has "provoked military"
+		government "Gegno Vi (Combative)"
+		personality heroic vindictive staying launching
+		system "Vorsuke"
+		ship "Schist" "Ess Utchec"
+	npc
+		to spawn
+			has "provoked military"
+		government "Gegno Vi (Combative)"
+		personality heroic vindictive staying entering
+		system "Vorsuke"
+		fleet
+			names "gegno vi"
+			variant
+				"Hornfel (Heavy Weapons)" 1
+				"Eclogite" 2
+
+
+mission "Foreign Spectator I"
+	invisible
+	landing
+	to offer
+		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		never
+	to fail
+		has "Battle over Zydee: offered"
+	on enter "Oihaug"
+		fail
+		"gegno: encounters" ++
+		conversation
+			`As you enter the system, you notice that there is both a Vi and a Scin fleet at the center, although neither of them is engaging the other. Instead, they are observing a pair of ships, one from each side, that appear to be challenging one another. Maybe this is some sort of ceremonial event between the Gegno factions. It's probably best not to interfere.`
+
+	npc
+		on provoke
+			set "interrupted arena"
+		government "Gegno Vi"
+		personality heroic vindictive ramming staying uninterested
+		system "Oihaug"
+		ship "Eclogite" "Tschelgi Dueyu"
+	npc
+		on provoke
+			set "interrupted arena"
+		government "Gegno Scin"
+		personality heroic vindictive staying uninterested
+		system "Oihaug"
+		ship "Felsic" "Tschelgi Dueich"
+	npc
+		on provoke
+			set "interrupted arena"
+		government "Gegno Vi (Neutral)"
+		personality heroic vindictive staying uninterested swarming
+		system "Oihaug"
+		fleet
+			names "gegno vi"
+			variant
+				"Hornfel"
+				"Slate" 2
+	npc
+		on provoke
+			set "interrupted arena"
+		government "Gegno Scin (Neutral)"
+		personality heroic vindictive staying uninterested swarming
+		system "Oihaug"
+		fleet
+			names "gegno scin"
+			variant
+				"Coesite" 2
+				"Tridymite"
+				"Mica"
+
+
+mission "Brief Bystander"
+	invisible
+	landing
+	destination "Esstch"
+	to offer
+		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
+		not "Gegno Genocide Defense: offered"
+	on complete
+		"gegno: encounters" ++
+		conversation
+			`The presence of scattered old recording instruments on the surface of this planet seems to contradict the apparent disinterest with which the Gegno appear to be treating it. Despite its location within the Gegno's home system of Heutesl, the planet is apparently deserted. Still, since this planet isn't strictly controlled by the Gegno, it makes for a convenient place to stop, and they seem to neither notice nor care that you have landed here.`
+			`	However, as you fly around, you notice a small Gegno shuttle parked on the ground. The tan coloration of its hull suggests that it's a civilian craft, but what it's doing here is unknown.`
+			choice
+				`	(Investigate.)`
+					goto investigate
+				`	(Leave them be.)`
+					decline
+
+			label investigate
+			action
+				set "gegno: approached bystander"
+			`	You steer your ship toward the shuttle, and once you approach it, you are able to see a Gegno on the ground fiddling with one of the nearby devices. As you fly closer, they stop their work and return to their shuttle, taking off shortly after. It seems like they weren't interested in any potential interaction with you.`
+			`	Landing beside the satellite, you step out to take a look. The device is indistinguishable from any of the others you have seen so far. Its only notable feature seems to be its advanced age.`
+				decline
+
+
+mission "Scin on Cyife"
+	invisible
+	landing
+	source "Cyife"
+	to offer
+		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
+		not "Gegno Genocide Defense: offered"
+	on offer
+		"gegno: encounters" ++
+		conversation
+			`Nothing is of much interest on this cold, unwelcoming moon in the middle of nowhere. However, there's something about the surface of Cyife that is a bit peculiar. Some of the light refracted through the surface seemingly dissipates or reflects back in strange patterns. Although it appears to be ice, more detailed inspection reveals that small patches of the terrain seem to instead be made of some other type of crystalline material. In the distance is something that truly stands out on this world - a large egg-shaped structure with a green hue to it.`
+
+			branch "boarded epidote"
+				has "scin: entered epidote"
+
+			branch "saw epidote"
+				has "scin: approached epidote"
+
+			`	Once you get close enough, the oblong object reveals itself to be some sort of large Gegno ship with the coloring of the Scin faction. What it's doing this far away from their home space is a mystery, much like the moon it's stationed on. After a few seconds, it launches into the atmosphere and leaves the moon. There doesn't seem to be anything left where it was parked, nor any trace of what the Scin were doing here to begin with.`
+				decline
+
+			label "saw epidote"
+			`	Once you get close enough, the oblong object is revealed to be a large Gegno Scin ship, similar to the one you encountered during an interaction with the Scin a while ago. What it's doing this far away from their home space is a mystery, much like the moon it's stationed on. Or at least, was stationed on, as after a few seconds it launches into the atmosphere and leaves the moon.`
+				decline
+
+			label "boarded epidote"
+			`	Once you get close enough, the oblong object reveals itself to be one of the Gegno Scin's large research ships, the same kind that you entered during an interaction with the Scin a while ago. It's possible the Scin found the mysteriousness of Cyife worth traveling so far from their home space to investigate. You'll never know for certain as after a few seconds, the ship launches into the atmosphere and disappears into space. They didn't seem to leave anything behind.`
+				decline
+
+
+mission "Battle over Zydee"
+	invisible
+	landing
+	to offer
+		has "First Contact: Gegno Scin: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Apprehension: offered"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		never
+	source "Zydee"
+	on offer
+		"gegno: encounters" ++
+		conversation
+			`Although this planet is uninhabited, there are more than a few Gegno Scin ships currently parked across the surface. It seems like there's an ongoing operation to continue constructing what infrastructure has been built in the past, and the hard-working Scin pay little to no attention to your visit.`
+			`	However, a few moments later, the Scin suddenly start scurrying to their ships. Based on your experiences so far, you haven't gotten close enough to alarm them. They begin taking off one by one in a hurried fashion, but not toward you - the <ship>'s sensors suddenly begin picking up a large Gegno Vi fleet entering the system. It appears that this place is turning into a battlefield, and getting caught up in the middle of it is likely something you should avoid.`
+				accept
+	on enter "Kneirc"
+		event "gegno: vi occupy zydee" 1 3
+		fail
+
+	npc
+		on provoke
+			set "zydee interference"
+		government "Gegno Scin"
+		personality timid launching uninterested
+		system "Kneirc"
+		fleet
+			names "gegno scin"
+			variant
+				"Epidote"
+				"Coesite"
+				"Tridymite"
+				"Halite"
+	npc
+		on provoke
+			set "zydee interference"
+		government "Gegno Vi"
+		personality heroic staying
+		system "Kneirc"
+		fleet
+			names "gegno vi"
+			variant
+				"Gneiss"
+				"Hornfel (Heavy Weapons)"
+				"Hornfel (Heavy Load)"
+				"Eclogite" 3
+	npc
+		on provoke
+			set "zydee interference"
+		government "Gegno Vi"
+		personality heroic entering
+		system "Kneirc"
+		fleet
+			names "gegno vi"
+			variant
+				"Diorite"
+				"Schist (Heavy Load)"
+				"Schist (Light Load)"
+	npc
+		on provoke
+			set "zydee interference"
+		government "Gegno Scin"
+		personality heroic staying
+		system "Kneirc"
+		fleet
+			names "gegno scin"
+			variant
+				"Coesite" 3
+	npc
+		on provoke
+			set "zydee interference"
+		government "Gegno Scin"
+		personality heroic entering
+		system "Kneirc"
+		fleet
+			names "gegno scin"
+			variant
+				"Feldspar"
+				"Felsic" 3
+				"Coesite" 4
+				"Halite" 6
+
+# Zydee becomes occupied by the Vi even if the player doesn't find the above mission.
+mission "Vi Occupy Zydee"
+	invisible
+	landing
+	to offer
+		or
+			has "Gegno Anticipation: offered"
+			has "Gegno Apprehension: offered"
+		not "event: gegno: vi occupy zydee"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		never
+	on offer
+		fail
+		event "gegno: vi occupy zydee" 1 3
+
+mission "Curious Civilians"
+	invisible
+	landing
+	to offer
+		has "First Contact: Gegno Scin: offered"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		never
+	on enter
+		system
+			government "Gegno"
+		fail
+		"gegno: encounters" ++
+		event "gegno: civilian suspicion"
+
+
+mission "Gegno Suspicions"
+	invisible
+	landing
+	source "Giaru Gegno"
+	to offer
+		has "gegno: encounters"
+		"gegno: encounters" < 6
+		not "Gegno Intervention: offered"
+		not "Gegno Genocide Defense: offered"
+	on offer
+		conversation
+			`After you go through your post-docking routine and enter the ringworld, you can't help but feel that something is a bit off. Normally, the Quarg here would be swiftly walking about, focused on their duties, but for some reason, there seem to be fewer of them around than usual. Moreover, those you do come across are occasionally having discussions with one another, sometimes looking in your direction even for the slightest moment. What stands out the most is the utter lack of any Gegno in the area you're visiting.`
+			`	A few minutes later, while you are making your way through the pristine interior of the ring, you hear a voice call to you from down one of the various branching corridors. Turning around, you recognize the unique attire of the Quarg who has helped you in the past, along with a few others. "Circumstantial greetings once more, <first> <last>. Might we have a significant moment of your attention?"`
+			choice
+				`	"Sure."`
+					goto follow
+				`	"How long will it take?"`
+			`	"As long as is required, for this matter is of symbolic importance," it says, with a slightly elevated tone.`
+
+			label follow
+			`	You follow the group of Quarg to a smaller discussion room, similar to the one you've previously visited. Or perhaps you've been visiting a different room each time, considering how unfathomably large a ringworld is. Once you sit down, the Quarg from before looks at you for a moment, looks down at the table, then back up to you.`
+			
+			branch "negative rep"
+				or
+					"reputation: Gegno Vi" < 0
+					"reputation: Gegno Scin" < 0
+
+			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. We have been alerted of a few additional encounters you have experienced, although they seemed minimal in nature. In such cases, it has been generally described that you left in a timely manner, for which we are notably appreciative. However," the Quarg continues, "despite your efforts in recommended cautions, there are some Gegno figures of meaningful standing that expressed frustration in your trivial appearances. They inquired of us as to the possibility of unnecessary reoccurrences."`
+			choice
+				`	"Why does this frustrate them?"`
+					goto imagine
+				`	"I haven't done any harm to them."`
+					goto harm
+				`	"It was more coincidental than anything."`
+					goto coincidental
+				`	"I wish to learn more about them."`
+					goto learn
+
+			label harm
+			`	"One need not invoke violence to greatly harm another. However purest intentions may be, even the smallest unbeknownst action may rapidly tumble to one not forseenly desired." The Quarg then ponders for a moment.`
+				goto imagine
+				
+			label coincidental
+			`	"Even a mere brief coincidence may cause a result not desired, nor foreseen, by the instigator. All living things owe their existence to series of arbitrary coincidences." The Quarg then ponders for a moment.`
+				goto imagine
+
+			label learn
+			`	"Not always does the desire to learn lead to pleasant opportunities. The most curious of creatures can easily be harmed when naive to the nature of their interests." The Quarg then ponders for a moment.`
+
+			label imagine
+			`	"Imagine, if you will, during the substantial conflicts the humans call the Turf Wars, a strange alien came to human space. We Quarg woefully witnessed that hazardous conflict - it was a time of great waste, unfortunate peril, and unsavory distrust among humanity. The Gegno are in a vulnerable state notably comparable to such a time, and introduction of outsiders would not befit the case. The truth remains that we have been contacted by a few Gegno of importance in respect to your past presences, and there has been a show of concern surrounding your unstated intentions." After a brief pause, the Quarg looks to you in a strange manner, and you aren't sure what to make of it. "Though, unexpectedly, a select few times we have also been curiously asked of your origins, an experience we are not strongly familiar with involving the Gegno."`
+			`	The Quarg leaves its chair and motions you to do the same.`
+			choice
+				`	(Stand up.)`
+
+			`	"Our best of recommendations to you is to avoid further contact in the coming future. Meanwhile, we shall attempt a most careful negotiation with their hierarchy to come to terms of a ground of acceptance for your presence. Should we find commonality, you will receive communication from one of the title 'Adrauni,' as has been bestowed upon me."`
+			`	The rest of the Quarg, who have been listening to the conversation attentively the whole time, begin to escort you out of the room. If the Gegno are willing to go as far as to contact the Quarg about your appearances, then this is truly an important matter to them. For the time being, it's probably best to allow the Quarg to find some kind of resolution with the Gegno while you keep your distance.`
+				decline
+
+
+			label "negative rep"
+			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. However, we are increasingly aware of correlative happenings upon them involving yourself. It would seem consequential events have indeed occurred. Not often previously were we approached by Gegno, but on a few notable occasions now have meaningful figures sought us out for inquiry - most notably due to violent circumstances." The Quarg stares at you for an extended period of time, waiting for some kind of answer.`
+			choice
+				`	"They attacked me first."`
+				`	"I wanted to get their attention."`
+					goto attention
+				`	"Violence happens all the time in human space, but the Quarg don't seem interested in it."`
+					goto violence
+
+			`	The Quarg continues to look at you for a while longer before answering. "Based on some principles, I may see reason for them to be... inclined... to do such. However, to do so in this case would not align with their elder's interests, nor would any fabrications." The Quarg blinks at you, then ponders for a moment.`
+				goto cases
+
+			label attention
+			`	The Quarg blinks. "And you found a suitable solution to your... problem... by instigating unprovoked hostilities?" The Quarg then continues to stare at you in what you presume to be a judgemental manner for an awkward amount of time, before looking away to ponder to itself.`
+				goto cases
+
+			label violence
+			`	The Quarg takes a long moment to ponder your statement, as if it wasn't expecting such a response. "Indeed, it is known that conflict is commonly natural amongst you quarrelsome humans. But this matter is of another sort." The Quarg then thinks to itself again for a little longer.`
+
+
+			label cases
+			`	"Imagine, if you will, during the substantial conflicts the humans call the Turf Wars, a hostile alien came to human space. We Quarg woefully witnessed that hazardous conflict - it was a time of great waste, unfortunate peril, and unsavory distrust among humanity. The Gegno are in a vulnerable state notably comparable to such a time, and introduction of even more hostilities would not befit the case, especially of those from the outside. We have been contacted by numerous Gegno members of high standing and wish for this to be a matter only of further strict cautionaries, but regrettably, the Gegno believe it a matter beyond attentiveness." The Quarg leaves its chair and motions you to do the same.`
+			choice
+				`	(Stand up.)`
+
+			`	"You are recommended for departure from Gegno space as of this decisive moment. Meanwhile, we shall attempt a most careful negotiation with their hierarchy to come to terms of an acceptable toleration of sorts. Should we find commonality, you will receive communication from one of the title 'Adrauni,' as has been bestowed upon me."`
+			`	As the rest of the Quarg escort you out of the room, the Quarg named 'Adrauni' addresses you one last time. "Do avoid any further violent tendencies, Captain." If the Gegno are willing to go as far as to contact the Quarg, then this is truly an important matter to them. For the time being, it's probably best to listen to the Quarg's warnings this time around and leave Gegno space until some kind of resolution is found, if at all.`
+				decline
+
+	on decline
+		event "gegno: quarg talks" 8
+
+
+mission "Under the Nose"
+	invisible
+	landing
+	source "Giaru Gegno"
+	to offer
+		has "Gegno Suspicions: declined"
+		not "Gegno Genocide Defense: offered"
+		not "yvx killed"
+	to complete
+		never
+	on enter "Aleit"
+		fail
+
+	npc
+		on kill
+			set "yvx killed"
+		government "Gegno Vi (Neutral)"
+		personality heroic vindictive ramming entering fleeing uninterested
+		system "Aleit"
+		ship "Rhyolite" "Imtydei"
+
+
+mission "Scin Surveillance"
+	invisible
+	repeat
+	landing
+	deadline 7
+	source
+		near "Heutesl" 100
+	to offer
+		random < 30
+		has "event: gegno: civilian suspicion"
+		not "Gegno Genocide Defense: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Intervention: offered"
+	to complete
+		never
+	npc save
+		government "Gegno Scin"
+		personality surveillance
+		system
+			government "Gegno Scin"
+		fleet
+			names "gegno scin"
+			variant
+				"Tridymite"
+
+
+mission "Veering Vi A"
+	repeat
+	invisible
+	landing
+	deadline 7
+	to offer
+		random < 30
+		has "Gegno Suspicions: declined"
+		not "Full Vi Backlash: offered"
+		not "Gegno Genocide Defense: offered"
+		not	"Gegno Anticipation: offered"
+		not	"Gegno Intervention: offered"
+	npc
+		on kill
+			"vi backlash" ++
+		system "Ookmya"
+		government "Gegno Vi (Combative)"
+		personality heroic staying
+		fleet
+			names "gegno vi"
+			variant 10
+				"Dunite"
+			variant
+				"Dunite" 2
+
+
+mission "Veering Vi B"
+	repeat
+	invisible
+	landing
+	deadline 7
+	to offer
+		random < 30
+		has "Gegno Suspicions: declined"
+		not "Full Vi Backlash: offered"
+		not "Gegno Genocide Defense: offered"
+		not	"Gegno Anticipation: offered"
+		not	"Gegno Intervention: offered"
+	npc
+		on kill
+			"vi backlash" ++
+		system
+			government "Gegno Vi"
+		government "Gegno Vi (Combative)"
+		personality heroic staying
+		fleet
+			names "gegno vi"
+			variant
+				"Eclogite"
+
+
+mission "Full Vi Backlash"
+	invisible
+	landing
+	to offer
+		"vi backlash" >= 3
+		"reputation: Gegno Vi" >= 0
+	on offer
+		fail
+		clear "vi backlash"
+		"reputation: Gegno Vi" = -1
+
+
+mission "Return to Giaru Gegno"
+	entering
+	description `The Quarg known as Adrauni has summoned you back to <destination>.`
+	source
+		not system "Aleit"
+	destination "Giaru Gegno"
+	to offer
+		or
+			has "event: gegno: quarg talks"
+			"gegno: encounters" >= 6
+		not "Gegno Intervention: offered"
+		not "Gegno Genocide Defense: offered"
+	on enter
+		dialog `There is an incoming message on your communications device. "Greetings, human <first> <last>. This message is from the Quarg that is named Adrauni. Return to <planet> at the first opportunity given to you."`
+	on complete
+		fail "Scin Surveillance"
+		fail "Veering Vi A"
+		fail "Veering Vi B"
+
+
+mission "Gegno Anticipation"
+	landing
+	name "Summons from the Gegno"
+	description "Present yourself to the Gegno on <destination> within the next 8 days, where you will find out if you have any future with them."
+	source "Giaru Gegno"
+	destination "Dueyu Eitch"
+	clearance
+	to offer
+		has "Return to Giaru Gegno: offered"
+		not "Gegno Genocide Defense: offered"
+		not "Gegno Intervention: offered"
+		not "event: gegno: apprehension"
+		"reputation: Gegno Vi" > -100
+		"reputation: Gegno Scin" > -50
+	on offer
+		conversation
+			branch "negative rep"
+				or
+					"reputation: Gegno Vi" < 0
+					"reputation: Gegno Scin" < 0
+
+			`Once you land on the ringworld, you are greeted by a small group of Quarg who quickly motion you to follow them. They escort you through various halls of the ring, which still appear to lack the presence of any Gegno. Down at the end of the next corridor, you see Adrauni waiting for you, though beside it is a Gegno in some form of strange attire. Once you meet up with them, the other Quarg head off in a different direction, and Adrauni begins walking down another hallway. "Please, indulge in accompanying us."`
+			`	As you follow them, Adrauni begins to speak while holding out one arm. "If you may, as humans say, humor me, what do you suspect was the result of my negotiations with the Gegno?"`
+			choice
+				`	"That they will accept me?"`
+				`	"That they want nothing to do with me?"`
+					goto "deny me"
+				`	"I don't know."`
+					goto unsure
+
+			action
+				set "gegno word: accept"
+			`	After a brief delay, Adrauni turns to the Gegno, mutters something in their language, then responds to you. "I see. And what do you propose is the reasoning for that?"`
+			choice
+				`	"I've helped them before, and I could help them now."`
+				`	"I figured you could convince them."`
+					goto convince
+				`	"I don't know."`
+					goto unsure
+
+			`	Adrauni ponders for a few moments as you continue walking through the impeccable interior of the ringworld. "That is a rather human response. However, do not conflate your value in assistance with theirs. Even should you provide beneficial assistance to the Gegno, a beneficent response in return is not necessitated. You have heeded my warnings at this juncture, yet you simply are doing what the Gegno desired from the beginning, and that is leaving them alone."`
+			choice
+				`	"Maybe it's better I do leave them alone."`
+					goto better
+				`	"There must be something I can do."`
+					goto understand
+
+			label "convince"
+			`	Adrauni gives you a slight glare while continuing through the ringworld. "Do you not recall my prior mention of us Quarg having attempted such desired persuasions? It is not within our ability to convince the Gegno of anything. They are greatly devoted to their own, and will go beyond any boundary to oppose counsel, even by us Quarg."`
+			choice
+				`	"Maybe it's better I do leave them alone."`
+					goto better
+				`	"There must be something I can do."`
+					goto understand
+
+			label "deny me"
+			action
+				set "gegno word: reject"
+			`	After a brief delay, Adrauni turns to the Gegno, mutters something in their language, then responds to you. "I see. And what do you propose is the reasoning for that?"`
+			choice
+				`	"The way they act around me."`
+				`	"From what you've told me before."`
+					goto before
+				`	"I don't know."`
+					goto unsure
+
+			`	"Indeed, the Gegno are wary of you, who lack caution." A few seconds pass, and Adrauni gives a strange look towards the Gegno. You aren't sure what it's thinking. The Gegno seems to ask a question in their language, but receives no response. Adrauni pauses a while longer before speaking again. "Despite that, you have found yourself in precarious situations we have not. We as a species embraced contact with the Gegno; however, you remain the only human here. Perhaps therein lies a notable implication of distinction."`
+			choice
+				`	"Are you saying there's something I can do?"`
+					goto understand
+				`	"I'm not sure I understand."`
+					goto interest
+
+			label "before"
+			`	"I see." Adrauni blinks slowly while staring at you. It's almost as if it is surprised, or at the very least, not expecting that response. "Wise it is that you follow my fortunate instruction. If it weren't as such, I may not be the one speaking with you in this moment. Or, perhaps, it would be no one." It then looks forward again as you continue on your stroll, leaving you to think on those words. "Unfortunately, the Quarg are unable to further assist you in this delicate matter. If you recall, we have attempted prior counsel with the Gegno, yet bound they are in their ways, even should it mean incredulously opposing us Quarg."`
+			choice
+				`	"Maybe it's better I do leave them alone."`
+					goto better
+				`	"There must be something I can do."`
+					goto understand
+
+			label "unsure"
+			action
+				set "gegno word: unsure"
+			`	Adrauni turns to you briefly, staring at you blankly, then turns to the Gegno and mutters something in their language before responding to you. "And why is it that you are unsure?"`
+			choice
+				`	"I wasn't sure you could convince them."`
+					goto convince
+				`	"I don't know anything about them."`
+
+			action
+				set "gegno word: friend"
+			`	After a pause, Adrauni turns toward you, glares at you briefly, then looks back forward as the three of you continue through the ring. "Quite an important conclusion, is that not? Many times I have said this, that the Gegno are not what I would consider humans to possess knowledge of. Should you learn more, I'm afraid even then that the Gegno do not contrastingly desire, what was the human word - camaraderie?" The Gegno then asks something in their language, and Adrauni begins a somewhat lengthy conversation with them.`
+			choice
+				`	"Maybe it's better I do leave them alone."`
+					goto better
+				`	"There must be something I can do."`
+					goto understand
+
+			label "interest"
+			`	The Quarg turns back to you. "You are here not at the whim of your fanatic species, but at your own behest. Actions you take may be that of a human, but are not willed by that of humanity." Blinking slowly, Adrauni then turns to the Gegno walking besides it and begins a somewhat lengthy conversation with them.`
+				goto "visit a"
+
+			label "understand"
+			`	You walk in silence for an awkward period of time. The strange architecture of the ringworld does little to comfort you; it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. Before you begin asking more questions, Adrauni finally replies. "It is apparent that you may understand something of your fragile circumstance. It is no longer what I, rather, the Quarg, can do for you. It is what you can do for yourself."`
+				goto "visit a"
+
+			label "better"
+			`	Adrauni speaks to the Gegno once more for an extended period of time. The strange architecture of the ringworld does little to comfort you; it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. "Yes, it may be that your timely departure is the most favorable outcome in this affair." A long, awkward silence ensues, at the end of which Adrauni briefly comes to a halt, still facing forward, now crossing its arms behind its back. "Though you and I figure that is... unlikely."`
+				goto "visit a"
+
+			label "visit a"
+			`	The Gegno leaves the two of you upon the entrance to a separate hallway, and you follow Adrauni to one last stop. You are at the end of your seemingly long trip through the ringworld, finding yourself back where you started - the docking facility where your ship is stationed. Although it felt like a dizzying maze to follow Adrauni around back to here, you can't help but imagine how much more confusing it would be to explore the entirety of a ringworld, considering that was only several minutes worth. Adrauni stops and turns to you, slightly lowering itself to speak closer to your own height. "You must seek audience on your own, tenacious, behalf. Visit the Gegno homeworld of Dueyu Eitch, present yourself in a manner that you desire to be perceived. Only then will you find your desired answer."`
+			
+			label "epilogue a"
+			choice
+				`	"Won't they prevent me from landing?"`
+					to display
+						not "gegno: landing dialog"
+
+				`	"Couldn't we have just asked the Gegno from earlier?"`
+					to display
+						not "gegno: asked dialog"
+					goto ask
+
+				`	"I'm not sure that's safe. Could you escort me there?"`
+					to display
+						not "gegno: escort dialog"
+					goto escort
+			
+				`	"Thank you. I will leave now."`
+					to display
+						has "gegno: landing dialog"
+					goto "end a"
+
+			action
+				set "gegno: landing dialog"
+			`	"Contrarily, I rather believe them to be expecting of you. Do remember you must hail the planet for clearance."`
+				goto "epilogue a"
+
+			label "ask"
+			action
+				set "gegno: asked dialog"
+			`	Adrauni ponders your question for a few moments before answering. "Ah, yes, your naivety to Gegno culture had but briefly passed me. Tradition amongst female Scin is to allocate time of research just short of a lifespan. The one whom you speak of is very much devoted to us here, nothing more. For any official matters with the Gegno to pass, they must go through the great heart of the colony."`
+				goto "epilogue a"
+
+			label "escort"
+			action
+				set "gegno: escort dialog"
+			`	Adrauni blinks at you. "I would have hoped you understood what was meant by your previous realization." It looks off to the side in deep thought, then back to you. "Habitually, we Quarg scarcely visit the Gegno for the most minor of reasons. Should you be accompanied at this time, the Gegno's unstable perception of you would alter further. Imagine if the Quarg visited your own planet called Earth with strange others in tow." You guess that Adrauni then does what the Quarg equivalent of a sigh would be. "However, yes, I am capable of sending you an escort. Be certain in this decision."`
+			choice
+				`	"Yes, I would like an escort."`
+					goto "quarg escort"
+				`	"Actually, I should be fine."`
+					goto "no escort"
+
+			label "quarg escort"
+			action
+				set "gegno: escort dialog"
+				set "gegno anticipation: quarg escort"
+			`	Adrauni hesitantly responds. "I shall send for one upon your departure."`
+				goto "epilogue a"
+
+			label "no escort"
+			action
+				set "gegno: escort dialog"
+			`	"I see. May it be for the best, then."`
+				goto "epilogue a"
+
+			label "end a"
+			`	"Safe travels, <first> <last>. I aspire for your daring decisions to befit the wise on your journey ahead." Adrauni gives you a lengthy bow, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. As you return to your ship, a few other Quarg, who have been watching the conversation from afar, also return to their normal routine as if nothing had happened. Now, it is up to you to see for yourself whether or not the Gegno will accept you.`
+				accept
+
+			label "negative rep"
+
+			`Once you land on the ringworld, you notice a group of Gegno off to the side of the hangar you are stationed in. They have the hulking appearance of Vi warriors, and while they aren't moving from their position, they watch you intently as you exit your ship. A small group of Quarg then approach you and quickly motion you to follow them, escorting you through various halls of the ring. Eventually you are led to the room where you met Adrauni in the past, or perhaps one identical to it. "Please, seat yourself."`
+			`	You sit down, along with two other Quarg, and the rest of them leave the room with the door sliding shut behind them. Adrauni stares blankly at you for a while, then speaks. "I presume you understand what result came from my negotiations with the tedious Gegno."`
+			choice
+				`	"That they are upset with me?"`
+					goto upset
+				`	"That they will tolerate me?"`
+				`	"No, I do not."`
+					goto "no idea"
+
+			`	Adrauni continues to stare at you, then slowly blinks. "I see. What is your strange understanding of the term 'tolerate' in this capacity?"`
+			choice
+				`	"Permission to land on their worlds."`
+				`	"Allow me access to their technology."`
+					goto tech
+				`	"I don't know."`
+					goto "dont know"
+
+			`	Adrauni ponders for a few moments. "That is a rather human response. Although we Quarg are, by your definition, minimally tolerant of your species, access to only some of our wondrous worlds we give you. However, what of humans to others? Should the Gegno, or species of other eccentricities, be given leisure to your planet Earth? It may be the case with you, though with anxious humanity, it certainly would not be." One of the other Quarg in the room says something to Adrauni, to which it responds with a conversation in its own language.`
+			choice
+				`	"Is there no way I can work with the Gegno?"`
+					goto work
+				`	"I guess I should leave them alone."`
+					goto alone
+
+			label "tech"
+			`	Adrauni clicks its teeth together in what appears to be a laughing manner, a reaction you have yet to see from it. "And we many Quarg, of those who live among ambitious humans, allowance of our technology have we given? One is not owed rights to another's inventions under pretensive tolerance." The other Quarg in the room look at Adrauni strangely, after which it begins a conversation with them in their own language. After a few moments, they too stare at you with strange looks, followed by an awkward silence, which is broken by Adrauni speaking to you once more. "With us as well, hardly do the Gegno share much of intrigue at all."`
+			choice
+				`	"Then is there no way I can work with the Gegno?"`
+					goto work
+				`	"I guess I should leave them alone."`
+					goto alone
+
+			label "dont know"
+			`	"Indeed, you do not. To tolerate is to authorize unrestricted occurrence despite undesired preface. In this lies not the Gegno's interest, as once I have said before." It looks up in thought for several moments. "Perhaps in your naive judgment I am mistaken. Humans tolerate their own undesirables, those who have come to be known as corsairs. Portions of your species permit their tiresome actions, while others do not. Be that as it may, suppose a species other than humanity begins similar agitation. I would presume the case to be different." Adrauni then begins a conversation with the other Quarg in the room.`
+			choice
+				`	"Are you saying there's no way I can work with the Gegno?"`
+					goto work
+				`	"I guess I should leave them alone."`
+					goto alone
+
+
+			label "upset"
+			`	"It would be evidently so, given that those of the Vi themselves have brazenly entered our ring. A show of force is most unprecedented, even more so opposed to other means of less immodest communication. I had the slightest hope you understood my preachings of nonviolence, as I believe there to be benefit from optimistic aspirations in younger species, but ultimately my hopes are proven unfounded." Some of the other Quarg in the room abruptly address Adrauni as if you weren't present and begin a long period of debate, occasionally punctuated by glares in your direction.`
+			choice
+				`	"Then is there no way I can work with the Gegno?"`
+					goto work
+				`	"I guess I should leave them alone."`
+					goto alone
+
+
+			label "no idea"
+			`	"Yes, I believe that to be a common theme in this extraneous situation. It is quite a dangerous practice to commit an act before knowledge, as we Quarg have been advising you impulsive humans for many years. In our discussions with you, evident it is that this has proven to be true. However, the great bounds stepped beyond here go beyond what we are able to accommodate." Adrauni then changes its expression slightly, glowering at you again. "Particularly after continual warnings prior." One of the other Quarg in the room says something to Adrauni, to which it begins a conversation in its own language.`
+			choice
+				`	"Then is there no way I can work with the Gegno?"`
+					goto work
+				`	"I guess I should leave them alone."`
+					goto alone
+
+			
+			label "work"
+			`	You sit in silence for an uncomfortable amount of time, during which even the Quarg don't speak to one another. The strange structure and bright lights of the room do little to reassure you as the Quarg ponder to themselves. A few moments later, they begin talking amongst themselves once more, but you don't have a chance to get a word in. After several more minutes of deliberation and strange looks, the other Quarg stand up and flank you from both sides, while Adrauni finally addresses you once more. "Unfortunately, at this stage of events, not I, nor the Quarg, can give you an answer to your inquiry. We are of agreement in our strong opposition to further interaction between yourself and the Gegno." It then does what you think would be the Quarg equivalent of a sigh.`
+				goto "visit b"
+
+			label "alone"
+			`	You sit in silence for an uncomfortable period of time, during which even the Quarg don't speak to one another. The strange structure and bright lights of the room do little to reassure you as the Quarg ponder to themselves. A few moments later, they begin talking amongst themselves once more, but you don't have a chance to get a word in. After several more minutes of deliberation and strange looks, the other Quarg stand up and flank you from both sides, while Adrauni finally addresses you once more. "Indeed, that statement is in our strongest of preferences for this matter." It stands up and crosses its arms behind its back. "Though I would suppose you and I figure that to be... unlikely."`
+				goto "visit b"
+
+			label "visit b"
+			`	The door opens behind you, and the Quarg motion you to follow them once more, escorting you out of the room and back to the hangar your ship is parked in. There seem to be a few more Quarg walking the corridors than usual, some stationed among various entrances. You can't help but remember that this is only one small section of the ring, making the rest of it seem even more impossibly large and filled with Quarg. Once you return to the hangar, you're greeted by the sight of the Vi warriors being blocked off by a larger group of Quarg, although there doesn't seem to be any intentions of hostility, nor conversation, from either side. Adrauni then stops in front of you. "It is no longer in our jurisdiction to assist you in this. However, if you indeed continue to pursue this desire to associate with the Gegno, you must seek audience yourself. Visit the Gegno homeworld of Dueyu Eitch, present yourself in a manner that you desire to be perceived. Only then will you find the answer to your whims."`
+
+			label "epilogue b"
+			choice
+				`	"Won't they deny me from landing?"`
+					to display
+						not "gegno: deny dialog"
+
+				`	"Couldn't we just ask the Gegno over there?"`
+					to display
+						not "gegno: there dialog"
+					goto there
+			
+				`	"I will be leaving now."`
+					to display
+						has "gegno: deny dialog"
+					goto "end b"
+
+			action
+				set "gegno: deny dialog"
+			`	After a pause, Adrauni responds. "Contrarily, I rather believe them to be expecting of you, accounting for their exclamations of the situation."`
+				goto "epilogue b"
+
+			label "there"
+			action
+				set "gegno: there dialog"
+			`	"Those of the Vi do not represent those of the Gegno, that is, of a whole species. The Vi present with us are merely of one family, to which there are many such groups." Adrauni considers your question for a few moments, almost appearing to have a slight interest in it. "It is unlike that of which you humans are familiar to. Vi culture does not denote a family merely by ancestry nor familiarity."`
+				goto "epilogue b"
+
+			label "end b"
+			`	"Although your actions thus far are in dissatisfaction, I aspire for future decisions being made to befit the wise on your journey ahead. I wish you an educational journey, <first> <last>." Adrauni gives you a lengthy bow, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. As you return to your ship, the Vi warriors continue watching from afar, but the Quarg steadfastly block them off. It is up to you to figure out yourself whether or not the Gegno will tolerate you any further.`
+				accept
+
+	on accept
+		clear "gegno: landing dialog"
+		clear "gegno: asked dialog"
+		clear "gegno: escort dialog"
+		clear "gegno: deny dialog"
+		clear "gegno: there dialog"
+
+	npc
+		to spawn
+			has "gegno anticipation: quarg escort"
+		government "Quarg (Gegno)"
+		system "Heutesl"
+		personality entering staying escort
+		fleet
+			names "quarg"
+			variant
+				"Quarg Wardragon"
+
+	npc
+		on provoke
+			fail
+			"reputation: Gegno" = -100
+			"reputation: Gegno Vi" = -100
+			"reputation: Gegno Vi (Neutral)" = -100
+			"reputation: Gegno Scin" = -100
+			"reputation: Gegno Scin (Neutral)" = -100
+			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left of associating with the Gegno is gone now.`
+		government "Gegno Vi (Neutral)"
+		personality heroic vindictive staying
+		system "Heutesl"
+		fleet "Vi Warfleet" 3
+	npc
+		on provoke
+			fail
+			"reputation: Gegno" = -100
+			"reputation: Gegno Vi" = -100
+			"reputation: Gegno Vi (Neutral)" = -100
+			"reputation: Gegno Scin" = -100
+			"reputation: Gegno Scin (Neutral)" = -100
+			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left of associating with the Gegno is gone now.`
+		government "Gegno Scin (Neutral)"
+		personality heroic vindictive staying
+		system "Heutesl"
+		fleet "Scin Warfleet" 3
+
+
+mission "Gegno Apprehension"
+	invisible
+	landing
+	to complete
+		never
+	to offer
+		or
+			"gegno: encounters" >= 6
+			has "dead augen"
+			and
+				"gegno: encounters" >= 3
+				has "Full Vi Backlash: offered"
+			and
+				"gegno: encounters" >= 3
+				or
+					"reputation: Gegno Vi" <= -100
+					"reputation: Gegno Scin" <= -50
+			and
+				"gegno: encounters" >= 3
+				or
+					has "interrupted arena"
+					has "zydee interference"
+	on offer
+		event "gegno: apprehension"
+		fail
+
+
+mission "Gegno Intervention"
+	landing
+	clearance
+	name "Summons from the Gegno"
+	description "Present yourself to the Gegno on <destination> within the next 8 days, where you will find out if you have any future with them."
+	to offer
+		has "event: gegno: apprehension"
+		not "Gegno Genocide Defense: offered"
+		not "Gegno Anticipation: offered"
+	source "Giaru Gegno"
+	destination "Dueyu Eitch"
+	deadline 8
+	on offer
+		fail "Scin Surveillance"
+		fail "Veering Vi A"
+		fail "Veering Vi B"
+		"reputation: Quarg (Gegno)" = 0
+		conversation
+			`While you are in the midst of docking with the ringworld, you notice a large tan-colored Gegno ship already present in your designated hangar, surrounded by several ships from both the factions of the Vi and Scin. Near them, a small group of Quarg are debating something with a smaller group of Gegno who seem rather upset. As soon as you exit your ship, both groups stop and look your way. You recognize Adrauni swiftly approaching you alongside a Gegno that is wearing a very intricate set of armor, neither Scin nor Vi in appearance.`
+			`	Adrauni does not hesitate to address you. "<first> <last>. I presume you understand the meaning of this affair."`
+			choice
+				`	"I'm not sure what's happening right now."`
+				`	"I think I understand the gist of it."`
+
+			`	The Quarg now stands in front of you, slightly lowering to speak to you. "As so happens to be the arduous case, several complaints we Quarg have received from the Gegno. Meddled in their affairs you have, one too many times. As much of a desire I have to converse with you more on the matter, not I, nor the Quarg, will be of any further help to you in your endeavors here." Adrauni turns to the Gegno, who seems almost dismissive, or at the very least trying to avoid eye contact with you. After a brief discussion of which you understood nothing, the Gegno walks off to the tan-colored ship. As if on cue, all of the other Gegno in the hangar return to their own respective ships.`
+			`	As you watch all of the ships leave, Adrauni speaks once more. "Eight revolutions you have been given by the Gegno to make an appearance on their world. If to this you do not comply, then you are, in their words, dismissed from their space."`
+			choice
+				`	"Dismissed?"`
+				`	"Will you be coming with me?"`
+					goto coming
+				`	"Alright, I will go."`
+					goto end
+
+			`	Adrauni thinks for a brief moment. "A more appropriate expression would be exiled, or perhaps shunned? Gegno culture is to hold all as a great home. Your presence in their space is to say you have already entered, though it is now an invitation you are no longer welcome to."`
+			choice
+				`	"Aren't I already unwelcome?"`
+				`	"They can't decide where I go."`
+					goto where
+			
+			`	"It is a difficult philosophy to explain. We Quarg were also subject to inhospitality. In some notable capacities we still are - however, it is of a different manner than this one."`
+				goto end
+
+			label "where"
+			`	"Be that as it may, do not rushedly conflate such with unpunishable action. On their worlds is to their own conscientious discretion. However, what action you ultimately decide upon in their space is not without observation."`
+				goto end
+
+			label "coming"
+			`	"I shall not be. Indeed, it is regrettable that I can no longer be of assistance, but the fate of this matter belongs to only you and the Gegno."`
+				goto end
+
+			label "end"
+			`	Adrauni stands up to its full height before you one last time. "To keep what little relations we have with the Gegno, I must inform you we no longer can allow access to our worlds here in their space. Despite this misfortune, I aspire for wise decisions from you in your journey ahead, <first> <last>." Adrauni gives you a lengthy bow and leaves the hangar, this likely being the last time you ever meet with it. It is now up to you to try and figure out some sort of common ground with the Gegno, if that's even still possible.`
+				accept
+
+	npc
+		on provoke
+			fail
+			"reputation: Gegno" = -100
+			"reputation: Gegno Vi" = -100
+			"reputation: Gegno Vi (Neutral)" = -100
+			"reputation: Gegno Scin" = -100
+			"reputation: Gegno Scin (Neutral)" = -100
+			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left of associating with the Gegno is gone now.`
+		government "Gegno Vi (Neutral)"
+		personality heroic vindictive staying
+		system "Heutesl"
+		fleet "Vi Warfleet" 3
+	npc
+		on provoke
+			fail
+			"reputation: Gegno" = -100
+			"reputation: Gegno Vi" = -100
+			"reputation: Gegno Vi (Neutral)" = -100
+			"reputation: Gegno Scin" = -100
+			"reputation: Gegno Scin (Neutral)" = -100
+			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left of associating with the Gegno is gone now.`
+		government "Gegno Scin (Neutral)"
+		personality heroic vindictive staying
+		system "Heutesl"
+		fleet "Scin Warfleet" 3
+
+
+
+mission "Acquiescence"
+	name `Transport the Vi Warrior to <destination>.`
+	landing
+	clearance
+	description `Head to <destination>, with the Vi warrior as your 'passenger'.`
+	blocked `You need at least one available bunk to accept this mission.`
+	source "Dueyu Eitch"
+	passengers 1
+	to offer
+		or
+			has "Gegno Anticipation: offered"
+			has "Gegno Intervention: offered"
+		not "Gegno Anticipation: failed"
+		not "Gegno Intervention: failed"
+		not "Gegno Genocide Defense: offered"
+
+	destination "Tschyss"
+	on offer
+		conversation
+			`The Gegno display caution once more as fleets of both Vi and Scin ships orbit their homeworld while you begin your descent. Your Quarg "escort", which was already in the system before you, stays behind. A few smaller Gegno ships from each fleet follow you down to the planet's surface, forming up in front of you to lead you to your destination.`
+				to display
+					has "gegno anticipation: quarg escort"
+				
+			`The Gegno display caution once more as fleets of both Vi and Scin ships orbit their homeworld while you begin your descent. A few smaller Gegno ships from each fleet follow you down to the planet's surface, forming up in front of you to lead you to your destination.`
+				to display
+					not "gegno anticipation: quarg escort"
+
+			`	Once you pass through several layers of smog, you're once again flying around the towering castle-like cities of the Gegno homeworld. Eventually, you are led away from the busyness of the cities to a more remote area with a massive structure shrouded by the smog, possibly the one you visited the first time you were here. The activity around it, however, seems much smaller compared to anything else thus far.`
+			`	Rather than one of the docking ports alongside the tower, the Gegno ships instead direct you to the base of the structure, obscured by another dark cloud of smog. When you reach the surface, the Gegno ships hold their position above while you park your ship on the ground. The area seems devoid of any other Gegno, almost hauntingly so.`
+			choice
+				`	(Stay in my ship.)`
+				`	(Exit my ship.)`
+					goto exit
+			
+			`	You decide to remain in the safety of your ship. The Gegno hovering above you aren't helping anymore - they are simply watching you. Other than them, there are no other vehicles in the area, let alone any sort of ship. Before too long, you notice a shadowed figure in the smoke ahead, carrying a long staff of some sort. A lone Gegno exits the smoke cloud, takes a few more heavy steps, then stands their ground several meters away from your ship.`
+			`	Any action you take now would be solely at your own discretion. However, there is only one choice left for you to make.`
+			choice
+				`	(Meet with the Gegno.)`
+				`	(Leave the Gegno and their world.)`
+					goto "no more gegno"
+
+			`	You decide to continue in your endeavor. You've made it this far, considering you're back on their homeworld and they haven't shown any signs of wanting you gone as of yet. The outside environment appears to be "safe" for humans - being something similar to the conditions on Earth, if Earth were even more polluted than it already is. Donning your sidearm in case of an emergency, you exit your ship and cautiously approach the Gegno. Although it's a little hard to tell, you're almost certain this is the Gegno you first met on that desert planet from before. The only difference in their appearance is some kind of red band on their left arm. The ships above suddenly fly off, and the Gegno turns around, beginning to head for the massive tower that stands in front of you.`
+				goto tower
+
+
+			label "exit"
+			`	The outside environment appears to be "safe" for humans - being something similar to the conditions on Earth, if it were even more polluted than it already is. Donning your sidearm in case of an emergency, you exit your ship. The Gegno in the ships above intently watch your every move, and apart from the distant thrum of their engines, it is eerily quiet. Before too long, you notice a shadowed figure in the smoke ahead of your ship, carrying a long staff of some sort. A lone Gegno exits the smoke cloud, slowly approaching you. They stop a couple of meters away from you, and although it's a little hard to tell, you're almost certain this is the Gegno Vi that you first met on that desert planet from before. The only difference in their appearance is some kind of red band on their left arm.`
+			`	At this point, any action you take would be solely at your own discretion. However, there is only one choice left for you to make.`
+			choice
+				`	(Meet with the Gegno.)`
+				`	(Leave the Gegno and their world.)`
+					goto "no more gegno"
+
+			`	You decide to continue in your endeavor. Considering you're back on their homeworld and they haven't shown any signs of wanting you off of it as of yet, there's no point to throwing all your progress away. As you approach the Gegno, it indeed seems to be the one you've met in the past. The ships above suddenly fly off, and the Gegno turns around, beginning to head for the massive tower that stands in front of you.`
+
+
+			label "tower"
+			`	The tower ahead of you is truly a sight to behold. It appears to be larger and taller than anything in human architecture, yet it looks very old - noticeably so - compared to the portions you've seen higher up in the clouds of dark smog. The base, which grows larger as the tower gets taller, is lined with rows of torch-like structures with flames reaching high above them. The interior is just as intriguing - the first area you enter looks like it almost came straight out of some old medieval fantasy. Everything looks rocky and sculpted in appearance, although some entrances seem to be made of newer metallic materials.`
+			`	You wonder if all Gegno architecture is built like this, but your curiosity is cut short when the Gegno, who has been many steps ahead of you, grunts and gestures for you to enter a cage-like platform at the other side of an enormous room.`
+			choice
+				`	(Enter the cage.)`
+			`	Thankfully, the cage is not anything like a jail cell; with a clank of chains and other indeterminate sounds, you begin to ascend upwards to wherever your next destination may be. However, the shaking and clanging of the lift doesn't exactly ease your mind. All of a sudden, you start to hear a deep, methodical rumble coming from above you. In that same instant, you're hit with a gust of air. Your cage is outside the building, and it is rocketing upward with only the support of a few rails and pulleys. Surrounding the core of the tower in front of you are other large metal pulley systems, with the Gegno in one to your left in the distance. As you're ascending, you see that many Gegno are lined up on several balconies at different levels of the tower, playing large timpani-like drums in a steady rhythm. Occasionally they yell or play a horn-like instrument.`
+			`	A few more minutes of drumming, several layers of smog, and what feels like altitude sickness all assail you until the lift arrives at the very top of the tower - a huge, circular platform out in the open with a group of Gegno wearing various fashions of armor formed up around a large table, or display grid of sorts, with several models of planets and ships on top of it. A ring of electronic torches flanking each edge of the platform extends upward to the darkened sky.`
+			`	The Gegno that has guided you here gestures for you to go join them at their location among the others.`
+			choice
+				`	(Go to the Gegno.)`
+					goto meeting
+				`	(Stay where I am.)`
+
+			`	It's not long before a pair of Gegno soldiers walk over and essentially "pressure" you into joining the others. You might as well play by their rules, given the situation.`
+
+			label meeting
+			`	Once you reach the other Gegno, the drumming comes to an abrupt halt. Shown in the center of the display is some text, none of which you can understand. Three Gegno standing next to one another, separate from everyone else, begin speaking in low, booming voices; their language is incomprehensible. One is very bulky, and looks like the kind of Gegno that belong to the Vi faction, while the other two are smaller. All three of them are wearing the same set of intricate armor with fancy protrusions, drapes, and other details. All of the other Gegno present are of various builds, though none of them are wearing any colors indicating a faction. Some of them gaze toward you occasionally, while others pay you no attention at all.`
+			`	The awkwardness of the situation increases as several minutes pass, during which some Gegno from the crowd step up to the opposite side of the table from the trio and have a discussion. You look over to your Gegno guide standing next to you, their gaze locked on to the conversations ahead. One of the trio finally calls them over, placing a model of a desert planet on the table - the one where this all started. A heavy discussion follows, and while you watch your guide, you realize that they are the only Gegno with that red band on their arm. The other Gegno in the crowd don't seem very pleased as their discussion continues.`
+			`	Though it felt like it might not happen, the moment comes where the bulkiest of the trio directly gestures to you. The tension of the situation skyrockets as they say something in their language, then motion for you to stand across from them. All of the other Gegno are now staring you down, waiting, as your guide heads off to the side.`
+			choice
+				`	(Approach the trio.)`
+					goto trio
+				`	(Remain where I stand.)`
+
+			`	You choose not to do anything else, remaining where you stand. Anything you do would likely be held against you. Another few moments go by and the Gegno trio return to the table, beginning to discuss amongst themselves using the assorted objects on the table grid. Images and words are cycled through on the monitor, but you're too far away to see any of them. Several more minutes pass, and you feel like they've all but forgotten you as you start to tune out their discussion. Eventually, you're pulled back to reality; everything has gone silent yet again and one member of the Gegno trio calls to you to get your attention on the display.`
+				goto "what does home mean"
+
+
+			label "trio"
+			`	Any Gegno in your path march out of your way as you approach the center of the platform. You're in the spotlight now, and the silence is deafening. As soon as you stop at the trio, a few images of the <ship> in different contexts come up on the table's monitor, and one of the trio moves several planet miniatures which correspond to the ones you've visited in Gegno space. Following another brief moment of silence, one which seemingly everyone weathers with anticipation, one of the three addresses you in their language at a lower volume than they were speaking before.`
+			`	"Eyuu udyom Gegno tyysis. Udiyh tei arrtes ofor tei piyepuo?"`
+			choice
+				`	"Are you asking me something about the Gegno?"`
+				`	"I would like to work something out with the Gegno."`
+				`	"I'm sorry, I don't understand what you are saying."`
+
+			`	The Gegno stares at you, then looks at the display, which is slowly panning between the situations you've found yourself in:`
+
+			`	A more detailed image of a desert planet, different than the first one, comes onto the display. Alongside it are many graphics - one representing a platoon of Vi warriors, the unique Gegno ship you saw there, and a few words scrolling by, possibly the names of each warrior that was present that day. Next to the name of the planet is a smaller graphic of one of those giant sandworms you fought, suggesting that they're found on other desert worlds beyond the first one.`
+				to display
+					has "Passive-Aggressive Observations: done"
+
+
+			`	To the side of the table, you notice a model of the Mercury-like planet you landed on here in their home system, though strangely it doesn't come up on the screen at any point.`
+				to display
+					has "Brief Bystander: done"
+
+
+			`	An image of two distinct ships comes up, matching a pair of models on the table. One of them is the same type of Vi ship you first came across in the sand on a desert world, and the other is a Scin ship that looks like a derivative of other Gegno ships. You hear someone in the crowd yell loudly in what might be disappointment, but they are silenced by the Gegno trio.`
+				to display
+					has "Foreign Spectator I: failed"
+
+
+			`	One of the more prominent situations is the one that involved a large battle between the Vi and Scin over a moon orbiting a forest world. A long list of phrases scrolls by with graphics of different Gegno ships next to them, probably those who took part in said battle. The Gegno around you murmur to each other, occasionally grunting.`
+				to display
+					has "Battle over Zydee: offered"
+
+
+			`	On the far end of the table, you see a small model of an ice moon. Nothing else comes up regarding it.`
+				to display
+					has "Scin on Cyife: offered"
+
+			`	You look up to see the trio of Gegno still intently staring at you. All of the other Gegno surrounding you have a similar expression. On the display, two icons appear side by side, and under each of them is a long list of phrases. As they scroll, the Gegno break out in discussions with one another, some loud and some not. You almost jump when the trio address the crowd and begin a speech of sorts, sometimes gesturing to the crowd, and sometimes gesturing to you. Although most of the Gegno seem frustrated, the trio is able to calm the crowd.`
+				to display
+					or
+						"reputation: Gegno Vi" < 0
+						"reputation: Gegno Scin" < 0
+
+			`	The bulkiest Gegno of the trio then places a model of a massive Vi warship in the middle of the table, one that you definitely recognize. More angry outbursts come from the surrounding Gegno, and while the one who placed the model glares at you, the other two eventually deescalate the uproar.`
+				to display
+					has "dead augen"
+
+
+			`	After having gone through all of the cases which involved you, the trio addresses the gathering once more with a big speech. Their voices echo through the outside air, and all of the Gegno respond with concurrent bellows or chants, followed by more silence. Oddly enough, you feel as if you are standing among them as part of the gathering, rather than as some foreign alien. You aren't restricted at all, even with a weapon on you.`
+			`	One of the smaller Gegno in the trio gestures back to you and speaks once more. You still don't understand a word they are saying, but it must have been important, as all of the other Gegno except your guide back away several steps. The trio member invites you with both arms to use the objects and the table, while all three of them back up themselves, leaving you alone in the open.`
+			choice
+				`	(Approach the table and try to explain the incidents I was involved in.)`
+					goto explain
+				`	(Stay where I am and do nothing.)`
+
+			action
+				set "gegno: no proclamation"
+			`	You don't approach the table, standing awkwardly in the open. Maybe it's better to not say anything at all if you're what they perceive as the problem here. A whole minute of silence goes by, and all of the Gegno, including the trio, haven't said so much as a word. Instead, they silently judge the choice you've decided to make. The trio then march back to the table, moving all of the models aside as if they're setting up for something.`
+				goto "what does home mean"
+
+
+			label "explain"
+			`	Walking up to the table, you try your hardest to explain each situation one by one. Since you can't read or do anything with the actual display on the monitor, you try picking up the models, which nobody seems to be bothered by. At the same time, you gesture using your hands, mainly representing your ship flying "away". You wonder if anything makes any sense to the Gegno, but they don't seem to be paying attention to your words or actions themselves; rather, they seem to respond to the tone and emotion of them. After doing your best to describe everything, you back away from the table. The trio march back up to it, discussing your response amongst themselves. They then start moving all of the models aside as if they're setting up for something.`
+				goto "what does home mean"
+
+
+			label "what does home mean"
+			`	Surprising both you and the other Gegno, an image of the planet Earth appears on the monitor. There's no way the Gegno have ever left the borders of their own territory, let alone visited human space. How they got this image is a mystery, but the fact is that an image of the ancestral homeworld of humanity is right in front of you. The member of the Gegno trio that has spoken the least then steps forward, but instead of heading to the table, they make their way to you directly.`
+			choice
+				`	(Do nothing.)`
+					goto home
+				`	(Place my hand on my holster.)`
+			`	If the Gegno have an image of Earth, who knows what they know about you, or humanity in general? Slowly moving your hand to your holstered weapon, you prepare yourself for any possible aggression. Even though you do so, the Gegno doesn't hesitate or stop heading in your direction, although some in the crowd seem slightly concerned.`
+
+			label "home"
+			`	Now standing not even two meters in front of you, the Gegno looks at you intently. An image of the world you're on right now slides over the one of Earth, and the Gegno points to it. "Gegno Dueyu Eitch echre, echre isend Gegno." The image shifts back to Earth, with the Gegno still pointing at the screen. "Eyuu dueyu nnepta, viehetch eyuu." The Gegno now motions toward the ground at your feet. "Viehetch eyuu ayyr Dueyu Eitch. Udiyh tei tsider?"`
+			choice
+				`	(Don't say anything.)`
+				`	"...Dueyu Earth?"`
+					goto dueyu
+
+			`	Without saying a word, you continue to look at the Gegno, and it continues to stare back, pondering your silence. They make a snorting sound with their nose, then leave you to join the other two behind them.`
+				goto decision
+
+			label "dueyu"
+			`	The Gegno leans closer to your height and displays a peculiar expression - possibly one of disapproval. You panic a little, and some of the others seem surprised that they got this close to you. They then speak in a low rumble, somewhat like a whisper spoken aloud. "Eyuu idu keiou ghynem uf, 'Dueyu.'" Getting back up, the Gegno heads back to the other two behind them.`
+
+			branch "done with the gegno"
+				or
+					or
+						"reputation: Gegno Vi" <= -100
+						"reputation: Gegno Scin" <= -50
+					and
+						"reputation: Gegno Vi" < 0
+						"reputation: Gegno Scin" < 0
+						has "zydee interference"
+					and
+						has "Full Vi Backlash: offered"
+						has "dead augen"
+					and
+						"gegno: encounters" >= 6
+						has "gegno: no proclamation"
+
+
+			label "decision"
+			action
+				"reputation: Gegno" = 1
+			`	With a sense of finality, the trio beckons to the crowd and begins another long speech. An image of a space station appears on the screen, and a large discussion begins between the other Gegno, whom have formed back up with each other. Some arguments between various Gegno in the audience start happening. Meanwhile, your Gegno guide bumps into you and starts to direct you away from the discussion, back to the cage lift with nobody else batting an eye.`
+			`	Several minutes later, you are escorted back to the base of the tower, which is now surrounded by a large group of Gegno civilians all gawking at the two of you. You're led back to your ship with your head spinning slightly, unsure what to make of that whole encounter. As they did the first time you were with them on the desert planet, the Gegno heads for your ship and hands you a small compass device, this time marking a different location on the map.`
+			`	At the very least, you can take this as an indication that they are not done with you yet, so you prepare to travel to your next destination.`
+				launch
+
+
+			label "done with the gegno"
+			`	With a sense of finality, the trio beckons to the crowd and begins another long speech. When they are finished, the crowd goes silent. Your Gegno guide bumps into you and starts to direct you back to the cage lift while nobody else bats an eye. Several minutes later, you are escorted back to the base of the tower, still as barren as it was earlier. You're led back to your ship with your head spinning slightly, unsure what to make of that whole encounter. The Gegno remains at a distance from your ship as you prepare to depart.`
+			`	Before you leave, you watch as they lift their staff weapon and flip it around. An explosive cloud of smoke follows, and a sizable crater appears right beside the <ship>. It seems that you're no longer welcome here, although the fact that they intentionally missed such a large target might have other implications. Regardless, it could have been you on the other end of that blast at any point during this journey.`
+			`	Despite the aggressive action, you are not followed as you leave the planet.`
+				flee
+
+
+			label "no more gegno"
+			`	You ultimately decide that pursuing this ruse with the Gegno is no longer worth the effort. Even if you did end up in some sort of dialog with them, it would likely take an excessive amount of effort in order to get any amount of progress, assuming that is even possible. Perhaps even landing here was a mistake. You could never guess what might happen if you continued this endeavor, given you are all alone on the home world of a species that has shown itself to be rather xenophobic, even to the Quarg.`
+			`	As you prepare to depart, the Gegno, who was watching you all this time with a blank stare, lifts their staff weapon and flips it around. An explosive cloud of smoke follows, and a sizable crater appears right beside the <ship>. It seems they are, at the very least, unhappy with your decision to leave, which is a little odd considering they didn't want anything to do with you before. The fact that they intentionally missed such a large target, however, might have other implications. Regardless, it could have been you on the other end of that blast.`
+			`	Despite the aggressive action, you are not followed as you leave the planet.`
+				flee
+
+
+
+mission "Gegno Asteroid Mining Prologue"
+	landing
+	name "Mine 5 tons of iron"
+	description "Mine and return 5 tons of iron to <destination>."
+	source "Tschyss"
+	to offer
+		has "Acquiescence: offered"
+		not "Gegno Genocide Defense: offered"
+	on offer
+		conversation
+			branch "returned"
+				has "Gegno Asteroid Mining Prologue: deferred"
+
+			`You arrive at your destination: a massive space station. Instead of standing directly behind you in your cockpit this time, the Gegno ended up taking a seat next to one of your open bunks, and didn't move a muscle up until now. Despite the grandiose nature of the Gegno's one and only space station, it seems very old and inactive. As you are escorted around the spacious interior, of which a majority is only a skeletal frame of pipes, bars, and supportive structures, you see a noticeable lack of personnel and running machinery. Some sections aren't even properly pressurized, but thankfully your spacesuit makes up for it. Occasionally, you come across some workers, but they appear very lethargic, or maybe just unmotivated.`
+			`	Eventually, you end up in a large docking bay where more workers and ships are present. Some of the workers are hauling crates of materials back and forth, with others talking among each other. The Gegno with you then motions over to a half-cracked display board on one of the walls across the room. With one last meaningful look, the Gegno leaves you to your own devices. You wonder if you'll ever see them again, considering the way they were treated back on Dueyu Eitch.`
+			choice
+				`	(Go to the display.)`
+					goto board
+				`	(Try to communicate with the other Gegno around me.)`
+			
+			`	You attempt to get the attention of some of the other Gegno present in the facility, but most of them give you strange glares or outright ignore you, until one seemingly annoyed Gegno gestures to the large cracked display.`
+
+			label "board"
+			`	The display, although cracked and beaten up, still appears otherwise functional. It presents a series of graphics in a list that seems to be updating in real-time. On the left side of each graphic are various types of minable asteroids, and on the right are tally marks. It appears to be some sort of job list linked with the station, which implies that the Gegno are at least giving you a chance to "do your part", or perhaps make up for what you've done.`
+			choice
+				`	(Accept one of the jobs.)`
+				`	(Leave without doing anything.)`
+					goto nothing
+			
+			label "accept"
+			`	You fiddle with the screen, trying to decipher how to use it. Some of the Gegno gaze at you for doing so. While they silently judge, you manage to figure out that it's a touch-sensitive interface, though it takes a lot of force for you to get it to work.`
+			`	The first time you get the device to work, you see an image of a hematite asteroid, rich in iron, with five strange-looking tally marks next to it. Mining for them may not be the best way to learn more about the Gegno, but working for them is a start.`
+				accept
+
+			label "nothing"
+			`	You decide to leave the facility. None of the Gegno pay you any attention as you do, and are focused back on their work once more.`
+				defer
+
+			label "returned"
+			`Despite previously leaving the station, you're given clearance to land again. Would you like to go to the job facility and try to accept one of the listings?`
+			choice
+				`	(Yes.)`
+					goto accept
+				`	(No.)`
+					defer
+	on defer
+		set "Gegno Asteroid Mining Prologue: deferred"
+	on visit
+		dialog "You've returned to <origin>, but do not have 5 tons of iron mined and in your ship. Make sure to mine 5 tons of iron and collect it into your cargo before you land."
+	on complete
+		payment 12000
+		outfit "Iron" -5
+		conversation
+			`You dock with the station at the facility's port, rather than on the other side of it. Waiting for you is a large group of Gegno workers, all in rusted or damaged gear. After a few moments of staring and discussion among one another, they unload the minerals from your ship, then go about their business as if nothing happened. Another approaches you, and to your surprise, pays you a sum of <payment> for your work. It seems that the Gegno value and reward effort no matter who does it, even a member of another species.`
+			`	For the time being, the station remains accessible to you, as well as these small odd jobs for mining. Hopefully someday the Gegno will recognize that you're worth more than whatever they've labeled you for.`

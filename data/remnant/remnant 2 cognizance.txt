@@ -14,7 +14,7 @@
 mission "Remnant: Cognizance 1"
 	minor
 	name "Follow-up Observations"
-	description "Plume would like you to do a follow-up visit to the planets in Nenia."
+	description `Plume would like you to use a "gaslined" ship to do a follow-up visit to the planets in Nenia.`
 	source "Aventine"
 	stopover "Nasqueron"
 	stopover "Slylandro"
@@ -63,6 +63,8 @@ mission "Remnant: Cognizance 1"
 	on stopover
 		conversation
 			`The void sprites here prove to be elusive. You spend quite a while chasing radar signatures before you finally manage to get a small flock of them into visual range. You record them from a distance for several minutes, until they suddenly disperse into a storm and vanish.`
+	on visit
+		dialog "You've returned to Aventine without the scans from both gas giants in Nenia. Make sure you have visited both and that the ship carrying the scanning equipment has returned here."
 	on complete
 		conversation
 			`Disappointed in the void sprites' behavior, you deliver the recordings to Plume's lab without fanfare. Plume quickly takes and reviews the footage before making a gesture that you think means "curious dejection." Then he seems to notice something, and resumes his usual intent bearing.`
@@ -159,11 +161,11 @@ mission "Remnant: Cognizance 4"
 			`The <ship> has barely come to a rest on its designated pad when your panel begins blinking with a request for permission to come aboard. A quick glance at the viewscreen shows Prefect Chilia standing at your airlock. You quickly hit the unlock button and watch as he strides onboard.`
 			`	"Greetings, Captain <first>," he signs. "You seem to have a knack for finding things of importance to us. I am glad, however, that you and Plume discovered this."`
 			label main
-			branch voidrifle
+			branch "void rifle"
 				has "Remnant: Face to Maw 2B: done"
 			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: it seems the Korath have discovered the void sprites and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. There are military implications of the Korath harvesting void sprites, and we must take steps to prevent this from happening.`
 				goto next
-			label voidrifle
+			label "void rifle"
 			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. You are aware of the potential military implications of the Korath harvesting void sprites and must realize the importance of stopping this.`
 			label next
 			`	"It is imperative that all the Korath involved in this exploration be located immediately. According to our surveillance, that ship was part of a fleet that recently passed through Parca. Locate the fleet and report back."`
@@ -211,7 +213,7 @@ mission "Remnant: Cognizance 5"
 	name "Destroy Korath"
 	description "Prefect Chilia has asked you to eliminate the Korath fleet before returning to <destination> by <date>."
 	source "Caelian"
-	waypoint "Aescolanus"
+	mark "Aescolanus"
 	deadline 20
 	to offer
 		# 0.9.13 Compatibility patch
@@ -221,11 +223,11 @@ mission "Remnant: Cognizance 5"
 		not "Remnant: Cognizance 4: aborted"
 	on offer
 		conversation
-			branch fleetkilled
+			branch "fleet killed"
 				has "remnant: cognizance: killed korath fleet"
 			`When you arrive in the spaceport, you find Prefect Chilia in the middle of briefing a group of Remnant. He waves you forward as soon as you approach and introduces you to the briefing. "Everyone, this is Captain <last>, who has located the Korath hunters twice now and will take the lead on tracking the rest for this mission." As you cross the room to join him, you take a good look at the group. One detail that stands out to you is that every one of the Remnant in this group is wearing a thick leather wrap around their necks, which extends up to their hairline. The leather has a scaly texture, and it appears to be pulsing faintly. Unfortunately, you do not have time to ask questions, as Chilia has not stopped issuing instructions.`
 				goto next
-			label fleetkilled
+			label "fleet killed"
 			`When you arrive in the spaceport, you find Prefect Chilia in the middle of briefing a group of Remnant. He waves you forward as soon as you approach and introduces you to the briefing. "Everyone, this is Captain <last>, who has located the Korath hunters twice now and recently destroyed part of their fleet. The Captain will take the lead on tracking the rest for this mission." As you cross the room to join him, you take a good look at the group. One detail that stands out to you is that every one of the Remnant in this group is wearing a thick leather wrap around their necks, which extends up to their hairline. The leather has a scaly texture, and it appears to be pulsing faintly. Unfortunately, you do not have time to ask questions, as Chilia has not stopped issuing instructions.`
 			label next
 			`	He turns to you. "These are the captains who will be following your lead. They are flying two Albatrosses, two Ibises with full complements, and six Starlings. One of the Albatrosses is outfitted to act as a shield; let it take the brunt of attacks." He pauses, looking around at the group. "This task force would be overkill for the intended target, but we are not taking any chances: make sure every Korath there is killed. Salvage is secondary: priority is making sure there are no escapees."`
@@ -242,7 +244,9 @@ mission "Remnant: Cognizance 5"
 				"Rano'erek"
 				"Palavret (Ember)" 4
 				"'olofez" 12
-		dialog "You have destroyed all the Korath that appeared to be hunting void sprites."
+		on kill
+			unmark "Nenia"
+			dialog "You have destroyed all the Korath that appeared to be hunting void sprites."
 	npc
 		government "Remnant"
 		personality escort launching appeasing unconstrained plunders
@@ -257,8 +261,11 @@ mission "Remnant: Cognizance 5"
 				"Petrel" 4
 				"Tern" 8
 	on enter "Aescolanus"
-		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... Quickly.`
+		unmark "Aescolanus"
+		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... quickly.`
 	on enter "Nenia"
+		unmark "Aescolanus"
+		mark "Nenia"
 		dialog `You have found the Korath fleet. Time to destroy them all as Prefect Chilia requested.`
 	on complete
 		event "korath rescue: nenia medium"
@@ -306,6 +313,7 @@ mission "Remnant: Cognizance 7"
 	description "Plume wants to witness firsthand what is going on in Nenia, and would like to visit <planet>."
 	source "Caelian"
 	destination "Nasqueron"
+	passengers 1
 	to offer
 		has "Remnant: Cognizance 6: done"
 	on offer
@@ -392,9 +400,9 @@ mission "Remnant: Cognizance 9"
 			choice
 				`	"What do you mean?"`
 				`	"Let's get on with it."`
-					goto skipinfo
+					goto "skip info"
 			`	"Well, this place is fairly old. It was built shortly after we learned how to build Starlings - which is where we learned of the troubles of extending the cloaking field beyond small ships. I don't know the mechanics behind it, but it has taken close to two centuries of study and development for cloaks to be feasible on large ships. We had plenty of Puffins back then, and the techniques for building high-pressure systems were well understood. The Alphas hadn't shown any interest in gas giants or 'gaslined ships' as we call them, so having somewhere like this to hide in makes sense. Best place to hide is somewhere no one will look, right?" With that, they nod to themself, climb to their feet, and head towards the suit locker.`
-			label skipinfo
+			label "skip info"
 			`	"The station should be pressurized with a normal atmosphere, but it has been running on standby for ages with just yearly maintenance. It is time to get this place up and running again." With two of you operating your ship's loading equipment, everything is transferred in short order. You notice that the last crate includes a substantial amount of field rations and survival gear. It looks like Gavriil is planning on staying here for a while.`
 			`	As they head off deeper into the station, you receive a notification that "Remnant Logistics" has made a deposit of <payment> to your account.`
 
@@ -413,7 +421,7 @@ mission "Remnant: Cognizance 10"
 		has "Remnant: Cognizance 9: done"
 	on offer
 		dialog
-			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from <stopovers> and bring it back to <origin>.`
+			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from <stopovers> and bring them back to <origin>.`
 	on stopover
 		dialog
 			`Flight control gives you directions to a landing pad that already has a large pile of crates stacked next to it. As you land, workers swarm out to help load the equipment. Once everything is stowed, a young technician climbs aboard, stows their gear, and lets you know that everything is ready for departure. You shake your head, impressed at how quickly the Remnant make things happen when projects start to move.`
@@ -439,8 +447,14 @@ mission "Remnant: Cognizance 11"
 			`As you finish unloading, you spot Gavriil approaching. They gesture in greeting as they approach. "Thanks for the delivery. We've got standard logistics routes set up now for the rest." They pause and fish a data crystal out of a pouch. "Could you take this to Prefect Taely on <planet>? She is overseeing some retrofits and will need this data."`
 				accept
 	on complete
+		"remnant met taely" ++
 		conversation
-			`On Viminal you easily locate the maintenance yards and eventually find Taely buried in a Pelican. She spots you approaching and frees herself from the machinery. "Greetings, <first>. How is our station faring?" You reply that it is improving rapidly and hand her the data crystal. "Ah, good. The detailed chemical analysis and profiles." She slots it into her console and taps a few commands. "Okay, I just need to incorporate these profiles into the system and make a few more adjustments. Meet me in the spaceport cafeteria in a couple hours."`
+			branch familiar
+				has "remnant met taely"
+			`On Viminal, you easily locate the maintenance yards. You ask around for Prefect Taely and are eventually directed towards a solidly built woman working on a Pelican. She spots you approaching and frees herself from the machinery. "Greetings, Captain <last>, I am Prefect Taely. I understand you have something for me." You hand her the data crystal. "This must contain the detailed chemical analysis and profiles," she says. She slots it into her console and taps a few commands. "Okay, I just need to incorporate these profiles into the system and make a few more adjustments. Meet me in the spaceport cafeteria in a couple hours."`
+				decline
+			label familiar
+			`On Viminal, you easily locate the maintenance yards and eventually find Taely buried in a Pelican. She spots you approaching and frees herself from the machinery. "Greetings, <first>. How is our station faring?" You reply that it is improving rapidly and hand her the data crystal. "Ah, good. This must contain the detailed chemical analysis and profiles," she says. She slots it into her console and taps a few commands. "Okay, I just need to incorporate these profiles into the system and make a few more adjustments. Meet me in the spaceport cafeteria in a couple hours."`
 
 
 
@@ -607,17 +621,17 @@ mission "Remnant: Cognizance 18"
 			choice
 				`	"How are we supposed to lure them inside?"`
 				`	"Are we sure this is a good idea?"`
-					goto goodidea
+					goto "good idea"
 				`	"Okay, let's go do this."`
-					goto letsgo
+					goto "lets go"
 			`	Plume looks a bit embarrassed. "When we first studied the void sprites centuries ago, we learned how to harvest them. As part of that, we discovered that they were particularly interested in certain types of radiation. Likewise, if they discovered a certain kind of element common in some asteroids, they would ignore almost everything while they chewed on it. So, we have emitters inside the cargo holds along with asteroids to keep them busy for a short while."`
 			choice
 				`	"Are we sure this is a good idea?"`
 				`	"Okay, let's go."`
-					goto letsgo
-			label goodidea
+					goto "lets go"
+			label "good idea"
 			`	Chilia signs with a resolute tone. "Is it a good idea? Maybe, maybe not. Is it the best idea we have so far? Yes." He sighs. "I fully expect the Archon to interfere: they do have long memories. As best we can tell, they can pick out who is leading a fleet, so you should expect them to talk to you. That is, if they do not simply start shooting, anyway."`
-			label letsgo
+			label "lets go"
 			`	Chilia continues. "You don't need to actually land anywhere in Nenia this time, Captain. Just make sure the Pelicans get there, load up, and return safely." The two stand up and get ready to leave. "May the Embers burn bright for you, Captain." With that, they disembark and quickly clear the blast area around the landing pad. Around you a large group of Pelicans are warming up, each one synchronizing to your IFF and confirming their status.`
 				accept
 	npc accompany save
@@ -645,8 +659,8 @@ mission "Remnant: Cognizance 18"
 				"'olofez" 10
 	on enter "Nenia"
 		dialog `As you enter the system, you quickly search for the Archon, but it is nowhere to be seen. A Korath hunting party, however, is clearly waiting for you and moves to attack. As their ships converge on you, the Pelicans immediately set to work collecting void sprites. As the last one closes its hold, the confirmation codes flash across your tactical screen. "Good to go."`
-	on enter "Pantica"
-		dialog `You watch vigilantly as the Pelicans with the void sprites dip low into Esquiline's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later, you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplements, and vanished into the clouds again.`
+	on fail
+		fail "Remnant: Cognizance 18B"
 	on complete
 		log "Successfully introduced a flock of void sprites to Esquiline. Time will tell how they fare."
 		"salary: Remnant" = 2500
@@ -654,8 +668,21 @@ mission "Remnant: Cognizance 18"
 		event "remnant: pantica void sprites"
 		event "remnant: cognizance timer" 30
 		conversation
-			`Moments later a ping comes in on the commlink, and Prefect Chilia and Plume appear onscreen. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in," concludes Plume.`
-			`	"In the meantime," continues Chilia. "We are allocating you a daily stipend from our resources to cover some of your ongoing crew, maintenance, and upgrading costs. A larger one-time allotment has already been credited to your account with the shipyard facilities to help cover costs incurred during this mission."`
+			`Moments later a ping comes in on the commlink, and Prefect Chilia appears on screen accompanied by Plume. Plume gestures first. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in," he concludes.`
+			`	"In the meantime," continues Chilia, "We are allocating you a daily stipend from our resources to cover some of your ongoing crew, maintenance, and upgrading costs. A larger one-time allotment has already been credited to your account with the shipyard facilities to help cover costs incurred during this mission."`
+
+
+
+mission "Remnant: Cognizance 18B"
+	entering
+	invisible
+	source
+		system "Nenia"
+	destination "Aventine"
+	to offer
+		has "Remnant: Cognizance 18: active"
+	on enter "Pantica"
+		dialog `You watch vigilantly as the Pelicans with the void sprites dip low into Esquiline's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later, you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplements, and vanished into the clouds again.`
 
 
 
@@ -672,6 +699,7 @@ mission "Remnant: Cognizance 19"
 		attributes "remnant primary"
 	to offer
 		has "Remnant: Cognizance 18: done"
+		has "Remnant: Expanded Horizons Astral 2: done"
 	on offer
 		conversation
 			`As you finish your landing checks, your commlink notifies you of an incoming message from Dawn:`
@@ -694,7 +722,7 @@ mission "Remnant: Cognizance 20"
 		government "Remnant"
 		distance 1 5
 		attributes "remnant primary"
-	blocked "You need 10 free cargo space as well as a research laboratory for this mission."
+	blocked "You need 10 free cargo space for this mission."
 	cargo "supplies" 10
 	to offer
 		has "Remnant: Cognizance 19: done"
@@ -705,7 +733,7 @@ mission "Remnant: Cognizance 20"
 			choice
 				`	"Definitely."`
 				`	"Maybe later."`
-					goto maybelater
+					goto "maybe later"
 			`	A few commands on your commlink later, and recordings your ship automatically made from its sensors while in flight pop up on a second projector. Several others pull up their commlinks and start skimming over the attached sensor logs. Almost immediately, one waves to get everyone's attention.`
 			`	"Captain, was there anything unusual when you arrived there?"`
 			choice
@@ -715,36 +743,36 @@ mission "Remnant: Cognizance 20"
 			choice
 				`	"So there are no problems with the data?"`
 				`	"Skip the technical jargon. What does it mean?"`
-					goto skiptech
+					goto "skip tech"
 			`	Another Remnant nods. "Exactly. There is no problem with the data or the equipment, so one way or another, this is what it recorded. As such, either there is something here which we have never seen before, or there is something causing problems with conventional sensors." He looks around at the gathered Remnant and pauses as if focusing on something you cannot see or hear, then turns to you. "We have reached a consensus.`
-				goto missionstatement
-			label skiptech
+				goto "mission statement"
+			label "skip tech"
 			`	The Remnant pauses for a moment to adjust what they were about to say before continuing. "What it means is that there is no obvious explanation for why there would be life signs out there." They glance around at the rest of the gathered Remnant then back to you.`
-			label missionstatement
+			label "mission statement"
 			`	"We would like you to take a team of five researchers and their equipment to Ssil Vida. Can you do that?"`
 			choice
 				`	"That sounds reasonable."`
-					goto takemission
+					goto "take mission"
 				`	"Not right now."`
-					goto maybelater
+					goto "maybe later"
 				`	"You aren't a prefect. How can you make a decision like that?"`
 			`	Before he can respond, another Remnant answers. "The Prefects are not the sole source of decisions. One could say that they are the 'executive' authority that can make on-the-spot decisions, whereas the Remnant as a whole makes what one might term 'legislative' decision making. The scope of our decisions as a group are limited based on the size of the group making the decision."`
 			choice
 				`	"That makes sense."`
-					goto missionchoice
+					goto "mission choice"
 				`	"Why do you need multiple methods of decision making?"`
 			`	"Because we are in the midst of war, and located in an actively hazardous part of the galaxy. We, as a people, need to make countless thousands of on-the-spot decisions every day. If we had to reach a consensus for every troop movement, expedition, or resource allocation we would be overwhelmed within days." She stops speaking, and another Remnant picks up the explanation.`
 			`	"By the same token, prefects can be killed, or overloaded. Having as much decision making as possible handled by the Remnant as a group reduces our vulnerability to assassination strikes, and helps protect our prefects from burning out under the responsibility. On the flip side, it also protects our society from becoming an autocracy where one powerful person or small group makes all the decisions."`
-			label missionchoice
-			`	The Remnant still and look at you. "So, will you take this mission?"`
+			label "mission choice"
+			`	The Remnant become still and look at you. "So, will you take this mission?"`
 			choice
 				`	"Yes."`
 				`	"Later."`
-					goto maybelater
-			label takemission
+					goto "maybe later"
+			label "take mission"
 			`	"Excellent. We will load our equipment racks on-board, and the equipment to go in them will be waiting for you on pad D43A on <stopovers>. Once it is loaded, return here to pick up the team of researchers who will be going with you. Remember, you will need 5 bunks free as well as an on-board Research Laboratory to complement our equipment."`
 				accept
-			label maybelater
+			label "maybe later"
 			`	"Oh, that is unfortunate. Maybe some other time, then." The crowd makes various gestures of disappointment, and turn back to observing the projection and discussing their theories.`
 				defer
 	on stopover
@@ -756,7 +784,12 @@ mission "Remnant: Cognizance 20"
 	on complete
 		require "Research Laboratory"
 		conversation
+			branch busy
+				has "remnant: dusk busy"
 			`One of the Remnant is waiting for you. "Thanks for picking up the equipment. The team that you will be taking to Ssil Vida is waiting for you in the spaceport."`
+				decline
+			label busy
+			`One of the Remnant is waiting for you. "Thanks for picking up the equipment. Dusk will lead the team that you will take to Ssil Vida, but we understand he is currently busy elsewhere with you. You should complete that work, then return to the spaceport here to begin the next expedition."`
 
 
 
@@ -767,7 +800,8 @@ mission "Remnant: Cognizance 21"
 		government "Remnant"
 		attributes "remnant primary"
 	stopover "Ssil Vida"
-	blocked "You need 10 free space for this mission."
+	blocked "You need 10 free space, five free bunks, and a Research Laboratory for this mission."
+	passengers 5
 	cargo "supplies" 10
 	to offer
 		has "Remnant: Cognizance 20: done"
@@ -775,51 +809,51 @@ mission "Remnant: Cognizance 21"
 	on offer
 		require "Research Laboratory"
 		conversation
-			branch duskknown
+			branch "dusk known"
 				has "remnant met dusk"
 			`In the cafeteria the scene hasn't changed much: there is still a large group of Remnant gathered around a cluster of projectors, with a constant stream of gestures discussing various points of the data. You understand enough to figure out that most of the conversation is deep into technical discussions of how the lifesign sensors might give the readings they do without having anything visible. The principal difference from before is the presence of five pressure-suited Remnant with a neat stack of equipment topped with helmets. One of them notices you and waves you over. "Captain <first>! My name is Dusk, and I am one of the researchers that you volunteered to transport to Ssil Vida."`
 			choice
 				`	"Pleased to meet you, Dusk."`
-					goto missiondescription
+					goto "mission description"
 				`	"Dusk? Are names like that common?"`
-					goto duskname
-			label duskknown
+					goto "dusk name"
+			label "dusk known"
 			`	In the cafeteria the scene hasn't changed much: There is still a large group of Remnant gathered around a cluster of projectors, with a constant stream of gestures discussing various points of the data. You understand enough to figure out that most of the conversation is deep into technical discussions of how the lifesign sensors might give the readings they do without having anything visible. The principal difference from before is the presence of five pressure-suited Remnant with a neat stack of equipment topped with helmets. You recognize one of them as Dusk as he waves you over. "Captain <first>! The Embers crossed our paths once again. I am one of the researchers that you have volunteered to transport to Ssil Vida."`
 			choice
 				`	"Good to see you again, Dusk."`
-					goto missiondescription
+					goto "mission description"
 				`	"I was meaning to ask: are names like that common?"`
-			label duskname
+			label "dusk name"
 			`	"You mean names of the various phases of daylight?" He pauses for a few seconds. "I would not say they are common, but nor are they rare, either. Our ancestors devoted their lives, one way or another, to studying the stars and the ever-changing light of the universe. It should not be surprising that their vocabulary should be so entwined in our culture."`
 			choice
 				`	"Who were your ancestors?"`
 				`	"Interesting. Well, what is our mission?"`
-					goto missiondescription
+					goto "mission description"
 			`	Dusk looks thoughtful for a moment. "Our ancestors came from a different era for humanity. They were the heirs of a golden age of human scientific development and progress, when governments and institutions poured vast wealth into science. The developments of that time period resulted in the completion of the hyperspace relay network, new terraforming techniques, and advanced genetic engineering capabilities." His face clouds at that. "This, of course, culminated in the Alphas." He pauses, then shakes his head. "But you asked who our ancestors were, not about human history.`
 			`	"In that era there were a number of burgeoning astronomy and exploration programs across human space. Despite also benefiting from the substantial budget increases that science in general was receiving, they were being pushed to the margins of the academic community: unlike many of the more practical sciences like biology and chemistry which were coming up with new wonders, astronomy and astrophysics was purely academic. There was no budget in explaining the whys of the universe, not when other scientists were creating homo superior and unleashing instantaneous interstellar communication.`
 			`	"So they banded together. It was not, I gather from the records, an unusual thing for academics of a particular field to meet with others of their field. If one faculty could not fund an expedition, perhaps two different faculties working together could. Eventually they formed a loose organization, a sort of 'standing conference' on astronomy and astrophysics, through which they met to discuss, debate, and organize."`
 			choice
 				`	"Your ancestors were originally a scientific conference?"`
 				`	"Thanks for the background. So, what is our mission?"`
-					goto missiontransition
-			`	Several of the Remnant nod, and another signs. "They gathered together to talk of their science, and each brought with them the captains and crew who enabled them. Some of those captains brought with them resources, too. Who else would appreciate learning of the void as much as those who ply their trades across it?`
+					goto "mission transition"
+			`	Several of the Remnant nod, and another signs, "They gathered together to talk of their science, and each brought with them the captains and crew who enabled them. Some of those captains brought with them resources, too. Who else would appreciate learning of the void as much as those who ply their trades across it?`
 			`	"The association grew over time, although as best we can tell from our records it made an effort to remain both politically and economically neutral. As such, it remained comparatively small and close-knit. Many of our ancestors have told stories about calling themselves the 'Exploration Vector,' alluding to the fact that they were the one subset of humanity on a course to head out into the furthest reaches of space. They even held contests about who could go the furthest from inhabited space, or who could spend the longest time between resupply stops.`
 			`	"When the war against the Alphas started, it was these people who had the most knowledge and experience with the farthest reaches of space. While many outfitters might sell a captain a map showing the hyperjumps a few systems into the uninhabited territories, it was our ancestors who had spent years living in those systems while they did their research. Thus they were the ones who got the jobs running supplies, or flying reconnaissance. They saw first-hand the way the war was going. They made the rendezvous and picked up the equipment drops, and they grew increasingly worried."`
 			choice
 				`	"They were worried about the course the war was taking?"`
 				`	"That would be worrisome. We should focus on the mission."`
-					goto missiontransition
+					goto "mission transition"
 			`	Dusk starts gesturing again. "Yes, but also by what they saw. Strange ships that slipped over the horizon, odd energy signatures in the distance, novel equipment that simply showed up on Deep ships without explanation... It seemed like someone out there was taking advantage of the chaos to influence humanity. Someone beyond the reach of the normal hyperspace network. It spurred our ancestors to revisit old theories and kindle new ones. Knowing that there was someone, something beyond what we knew made us bold. It was not long before the first ship traveled through the wormhole."`
 			choice
 				`	"Which ship was that?"`
 				`	"I think I can see where this is going. Time to get to work."`
-					goto missiontransition
+					goto "mission transition"
 			`	Dusk smiles. "The Shadow Step, an independent science vessel who did double-duty as a gas miner. She made a quiet fortune harvesting rarer gases from obscure gas planets off the charted paths. Never enough to attract the attention of the big corporate entities, but enough to be comfortable. Her captain was always making modifications. Not a genius by any means, but what they lacked in brilliance, they made up for in dedication and willingness to experiment. According to our records, making modifications to the Shadow Step was their main hobby, and the small crew they flew with had similar interests." Dusk pauses to take a drink.`
 			`	"Thanks to the bravery of the Shadow Step and her crew, the hard work of the researchers that worked with them, and the contributions of a vast number of other ships and teams, the way out was discovered." Dusk signs this last with a note of finality, and many of the Remnant who were listening make the sign for "respect" and "together."`
-			label missiontransition
+			label "mission transition"
 			`	Dusk smiles and signs apologetically. "My apologies for being overly detailed. I found the study of our ancestors to be an intriguing one, so I have spent much time searching out my families' history. That, in turn, has led to a detailed interest in the early years of our society." Dusk gestures towards the holographic projection of Ssil Vida. "But enough of history, the present calls to us."`
-			label missiondescription
-			`	Dusk leans over the holo, peering at the details. "The mission is a very standard arc: we go to the station, set up our equipment to get some detailed readings, and return here once we are done. For these initial readings we should need about a day onsite, and we will leave some of our equipment to take ongoing recordings for retrieval later. After that... Well, we will see what the data says and decide from there."`
+			label "mission description"
+			`	Dusk leans over the holo, peering at the details. "The mission is a very standard arc: we go to the station, set up our equipment to get some detailed readings, and return here once we are done. For these initial readings we should need about a day onsite, and we will leave some of our equipment to take ongoing recordings for retrieval later. After that... well, we will see what the data says and decide from there."`
 				accept
 	on accept
 		set "remnant: dusk busy"
@@ -832,15 +866,15 @@ mission "Remnant: Cognizance 21"
 				`	(Return to the <ship> and prepare for departure.)`
 					goto relax
 				`	(Ask if I can help with their work.)`
-					goto scienceassistant
+					goto "science assistant"
 				`	(Explore Ssil Vida.)`
 			action
 				"exploration interest" ++
 			`	You pick up some instruments, recording equipment, and wayfinding labels, then check the map tracking the other Remnant researchers. Picking an unexplored direction, you set off.`
 			`	The first few corridors are marked with labels indicating the direction that other explorers traveled, and so you easily find your way into unexplored territory. As you explore the empty corridors, your early impressions of scale are reinforced by the massive doors and significant distances between them. Glancing inside, you find room after room containing large platforms. Each platform is lightly padded with several bars along each side, and what appears to be a storage locker set into it at the end. Based on your experience, you realize that these resemble storage platforms used to secure delicate cargo, but there is no indication of what that cargo might be.`
-			`	Further exploration reveals considerably more oversized rooms, including one with vast amounts of storage lockers and freezers. You note that the rooms you search appear to be fairly well organized, so you conclude that whatever happened to this station either did not cause a panic, or someone else cleaned up afterwards. After a few hours exploring you head back to the main area.`
+			`	Further exploration reveals considerably more oversized rooms, including one with vast amounts of storage lockers and freezers. You note that the rooms you search appear to be fairly well organized, so you conclude that whatever happened to this station either did not cause a panic, or someone else cleaned up afterwards. After a few hours of exploring you head back to the main area.`
 				goto wrapup
-			label scienceassistant
+			label "science assistant"
 			action
 				"science interest" ++
 			`	You follow Dusk over to the equipment, and ask if there is anything you can do to help. He looks surprised, but pleased. After thinking about it for a moment, he asks you if you can help monitor some diagnostics and do some preventative maintenance on some of the equipment. Over the following few hours, Dusk keeps you involved in the work, occasionally explaining what the various pieces of equipment do. The rest of the team quickly follows suit, and before long you feel like part of the team. By the time Dusk starts wrapping up the observations you have started to pick up some of the scientific vocabulary, along with a few of the basics behind how the equipment works.`
@@ -933,14 +967,14 @@ mission "Remnant: Cognizance 22"
 					not "Deep: Remnant 0: offered"
 					has "Deep: Remnant 0: declined"
 					has "Deep: Remnant 3: Secret: done"
-			label surfacevault
+			label "surface vault"
 			`	The Remnant leads you through several sets of increasingly impressive doors before arriving at a room filled with tiny doors. He picks one, uses a key to open it, and pull out a small metal box that they unlock with a second key. "If you would place the data crystal here, we will record the surface metadata, and those who need it will be able to retrieve it when necessary." He waits until you have placed it in the box, then reverses the process to secure it in the vault wall again.`
 				goto departure
 			label trusted
 			`	The Remnant gestures, "If you are in a rush, you can drop it off in the surface vault for now, and I will move it to its proper storage location myself later. Or you can deliver it to the deep vault yourself."`
 			choice
 				`	"The surface vault."`
-					goto surfacevault
+					goto "surface vault"
 				`	"The deep vault."`
 			`	The Remnant leads you through several sets of increasingly impressive doors before finally taking you through an almost invisible door tucked in the back corner of a storage room. Inside, he pauses and gestures, "I would recommend you hold onto the rails, and either hook your feet onto the toeholds or activate the magnets in your boots, if you have them. The drop is quite sudden." Looking around, you note that there are what look like toeholds bolted to the floor around the edge of the room, and your guide has inserted his feet into one pair.`
 			`	As soon as you gesture that you are ready, the floor seems to drop out from below you. It seems as though you are in an elevator dropping down so fast that you are experiencing negative g-forces. After several minutes it begins to slow down, and instead of feeling lighter than usual, you feel heavier than usual as gravity catches up. Eventually, however, it eases off and the door opens once again.`
@@ -963,7 +997,7 @@ mission "Remnant: Cognizance 22"
 			choice
 				`	"Originals?"`
 				`	"You did not build the vault?"`
-					goto buildvault
+					goto "build vault"
 				`	"What do you mean by fortress?"`
 					goto fortress
 			`	"Yes, originals. As in, they were built by those who lived here before us, and survived countless eons protecting these hidden vaults. Even after so much time, they were still sufficiently functional to be formidable obstacles. We have since repaired them and learned much, including a lot that we have yet to be able to put into practice." He sighs, but makes a gesture of anticipation. "If we can master even half the science that made these, we will be able to achieve things that would seem like magic to those still on the ancestral worlds."`
@@ -975,7 +1009,7 @@ mission "Remnant: Cognizance 22"
 			label fortress
 			`	The Remnant's gestures take on a tone of curiosity. "We are not sure what they are intended to hold, but their design includes a lot of passageways and chambers that resemble a hive or a miniature city. Some have speculated that the vault builders might have been minuscule beings, which would mean that these protective devices might well have housed thousands of individuals." He shakes his head. "It must have been quite the feat to survive and prosper in a world where wildlife could annihilate a village in a single footstep." After allowing you a moment to absorb the implications, he turns back to the door. "Time to go, Captain. The sentries grow twitchy when people dawdle here."`
 				goto departure
-			label buildvault
+			label "build vault"
 			`	"No, we did not build the vaults. They were built by ancient inhabitants of these worlds. We were lucky to find them, hidden away as they were. We have studied them, repaired them, and added additional layers of our own; but fundamentally these are still the structures left behind by those who came before." He nods appreciatively at the surrounding room. Taking a moment to look around, you note that the walls and floor join seamlessly, and are made of a dark metallic substance that seems to shimmer. After allowing you a moment to admire the design, he turns back to the door. "Time to go, Captain. We would not want the sentries to think you were dawdling here."`
 			label departure
 			`	The Remnant leads you back out of the vault the same way you entered, and back to the information desk. He thanks you for your assistance and waves farewell before being drawn into a conversation with another ship captain. You gesture a polite farewell and head back to the spaceport. Taely mentioned something about launching a new prototype, and that is likely to be interesting.`
@@ -1003,13 +1037,13 @@ mission "Remnant: Cognizance 23"
 			`	Taely follows them out, and when they reach the landing pad she whistles, causing the three ships to turn and cluster around her. You can see her smile even from where you're standing, and as you watch she reaches up to pat each of them on the nose. The trio sparkle with iridescent ripples as they move around, the skin flexing and twisting like some sort of organic creature.`
 			choice
 				`	(Walk over to where she is standing.)`
-					goto walkover
+					goto "walk over"
 				`	(Wait until she notices me.)`
 			`	After several minutes of watching Taely commune with the trio of ships, she turns toward you and waves you over. "Enjoying the view?" she signs as you approach, but she continues without waiting for a response. "They are nice ships, and a major step forward in our ship development. Well worth watching." She nods to herself as she runs a hand along a fin, as if checking something.`
-				goto merganserintro
-			label walkover
+				goto "merganser intro"
+			label "walk over"
 			`	Taely waves to you as you approach. "Eager to meet the latest additions to our fleet?" She pats the nose of the nearest ship again. "They definitely are a beautiful addition to the Remnant patrols." She smiles to herself and runs a hand along one of the fins as if checking for something.`
-			label merganserintro
+			label "merganser intro"
 			branch penguin
 				has "event: remnant: penguin"
 			`	"Captain <first>," she signs, "Please meet our first three Mergansers. I have been working on them for years now, and recent breakthroughs in our materials science have enabled significant progress in our ship designs." She pauses and gestures to one. "Would you like to touch them?"`
@@ -1019,29 +1053,29 @@ mission "Remnant: Cognizance 23"
 			label touch
 			choice
 				`	"No."`
-					goto turndown
+					goto "turn down"
 				`	"Yes."`
 			`	Taely smiles. "Just hold out your hand, and let it sense you first. Once it bumps your hand, you can touch it safely." You follow her example, and a few moments later the nearest Merganser nudges your hand. You follow Taely's lead in running your hand along it, and you discover that - despite the slimy appearance - the ship's skin is dry and smooth. The surface is clearly metallic, but you can feel it stretch and twist under your hand as the ship shifts and moves. You can feel pulsing vibrations not entirely unlike the ones you are used to on the <ship>, but with subtle fluctuations.`
 			choice
 				`	"So what do these ships do?"`
-					goto turndown
+					goto "turn down"
 				`	"Amazing what science can do these days."`
 				`	"They are beautiful."`
 			`	Taely nods in agreement. "I am glad you can appreciate some of the things we have achieved here. It makes me think that you will appreciate some of my other projects too.`
-			label turndown
-			`	"Historically, we have relied on Starlings to fill multiple light combat roles here in the Ember Waste. Reconnaissance, sentry duty, escort, picket, patrol... They have filled so many roles." She pauses, glancing at a departing Starling. "Of course, we could just make more Starlings, but our pool of specialized crew is not infinite either. The solution I have is these Mergansers. They are sufficiently advanced that they only require a single person to operate and have significant range, enough to patrol large portions of the Ember Waste. This makes them ideal for escorting Gulls on resource gathering expeditions, patrolling for incursions, and other uses. Perhaps most importantly, though, is that they are fast enough to chase down anything we have encountered out here so far."`
+			label "turn down"
+			`	"Historically, we have relied on Starlings to fill multiple light combat roles here in the Ember Waste. Reconnaissance, sentry duty, escort, picket, patrol... they have filled so many roles." She pauses, glancing at a departing Starling. "Of course, we could just make more Starlings, but our pool of specialized crew is not infinite either. The solution I have is these Mergansers. They are sufficiently advanced that they only require a single person to operate and have significant range, enough to patrol large portions of the Ember Waste. This makes them ideal for escorting Gulls on resource gathering expeditions, patrolling for incursions, and other uses. Perhaps most importantly, though, is that they are fast enough to chase down anything we have encountered out here so far."`
 			`	She frowns a bit at that. "Unfortunately, the weapons program is not moving as quickly as I would like, so the Merganser does not have the tackling ability that I was originally envisioning for it. But at least it is an adept hunter we can use to pursue our enemies."`
 			choice
 				`	"Interesting."`
-					goto mergansermission
+					goto "merganser mission"
 				`	"What 'tackling ability?'"`
 			`	"In space combat, 'tackling' refers to the tactic of pinning down an enemy to make them vulnerable to the rest of the fleet. It can also refer to hindering a target's ability to move, run, or escape. You are probably familiar with the idea of using missiles or weapons with an impact force to disrupt an opponent's hyperjump. This is a prime example of tackling." She pauses, thoughtfully. "Our inhibitors are tackling weapons, but they are not sufficiently effective as far as I am concerned."`
 			choice
 				`	"Thanks for the explanation."`
-					goto mergansermission
+					goto "merganser mission"
 				`	"What is the problem with them?"`
 			`	"Decisive strike capability, mostly." Her gestures take on a conciliatory tone. "They are excellent weapons for swarms of ships, or when mounted on a ship that can carry many of them. But when one only has the opportunity to land a few hits, they are insufficient to pin down their target. But that is an aside. For now, we should celebrate our new ships, and see what they can do." She pets the nearest Merganser lovingly.`
-			label mergansermission
+			label "merganser mission"
 			`	"But enough of that." She shakes her head and assumes a business-like expression. "We would like you to lead a pair of shakedown runs. The first is a hunt for a crippled Korath ship that got stuck in <waypoints>. We will provide you with this Merganser to fly." She pats its nose fondly. "Along with a flight of four to accompany you. Of course you are free to fly your own ship if you prefer; the important part is that you all make it back intact. So, are you up for a test flight?"`
 			choice
 				`	(Accept.)`
@@ -1075,7 +1109,12 @@ mission "Remnant: Cognizance 23"
 		conversation
 			`You disembark to the sight of Taely striding across the tarmac, but she veers away from you at the last minute to pat the nose of one of the Mergansers. She runs a finger gently along a weapon score for a moment, then turns to face you. "So, the Korath are still capable fighters, I see." She pauses, her eyes take on a distant look for a second before she continues. "But you have returned with the flock intact. Come, join us for a meal and tell me how they fared." She leads you into the hangar where a bunch of engineers and technicians are gathered in one corner with a rack full of food trays. They enthusiastically greet you and the Merganser pilots, and quickly pull you into discussions of how the Mergansers handled their first patrol.`
 			`	Before long the technicians and pilots are trading stories while the Mergansers overshadow the group. Sometimes they poke various engineers or technicians, and the technicians frequently share messages from their commlinks. Apparently they have them hooked up to the Mergansers, so the ships are sharing their own accounts of the patrol. After several hours of the festivities, Taely announces that everyone needs to get to sleep because tomorrow is a new day. As everyone bids their farewells, you note that they include the ships, with most people patting or stroking one or more of the ships on their way out.`
-			`	"Stop by the cafeteria tomorrow morning, <first>. There will be more you can help with, if you are interested." With that, she gestures farewell and heads off at a brisk pace.`
+			branch busy
+				has "remnant: dusk busy"
+			`	"Stop by the cafeteria tomorrow morning, <first>. Dusk and I will have more you can help with, if you are interested." With that, she gestures farewell and heads off at a brisk pace.`
+				decline
+			label busy
+			`	"Stop by the cafeteria once your current work with Dusk is concluded; we will have more you can help with, if you are interested." With that, she gestures farewell and heads off at a brisk pace.`
 
 
 
@@ -1088,26 +1127,28 @@ mission "Remnant: Cognizance 24"
 	destination "Ssil Vida"
 	cargo "outpost equipment" 11
 	passengers 1
+	blocked "You receive a message from Dusk and Taely indicating the next mission requires space for <tons> of cargo and <fare>."
 	to offer
 		has "Remnant: Cognizance 23: done"
+		not "remnant: dusk busy"
 	on offer
 		conversation
 			`When you enter the cafeteria you are greeted by Dusk and Taely signing at you from across the room to join them. Collecting a tray from the dispenser, you slide into an empty seat at their table, watching as Taely signs: "We were just exchanging news and discovered we can combine our next assignment."`
 			`	Dusk continues. "Based on the initial data we collected while we were at Ssil Vida, there is sufficient novel data to deserve a permanent research team there. Conveniently, the station is already habitable, but we will need several shipments of equipment to set up a self-contained section."`
 			choice
 				`	"Okay, clear enough."`
-					goto skipexplanation
+					goto "skip explanation"
 				`	"Why do you need to do that?"`
 			`	"For safety. The station might appear to be enduring and constant, but if we lacked independent facilities, the slightest failure could kill everyone. Given that we do not even understand how the station is running, depending on it moving forward would be foolish." Taely nods in agreement with Dusk, and adds, "We will, of course, be looking to do a full evaluation of the station eventually, but it is rather massive. It will be quite some time before we can finish that."`
-			label skipexplanation
+			label "skip explanation"
 			`	Dusk gestures and their commlink sprays a holographic list into the air between you. "Basically, we would like you to load this set of equipment, then stop by Esquiline to pick up a technician by the name of Gavriil, who will be leading the establishment of the life support systems on Ssil Vida."`
 			choice
 				`	"I know Gavriil."`
-					goto knowgavriil
+					goto "know gavriil"
 				`	"Who is that?"`
 			`	"Gavriil is a technician with a knack for balancing life support systems, especially in situations with multiple environments that need to be kept in harmony. As I recall, you worked with them to set up Esquiline station."`
 				goto onwards
-			label knowgavriil
+			label "know gavriil"
 			`	"Excellent. They are looking forward to working with you again. Now that the multi-environment facet of Esquiline is on track, they are ready to move on to a new challenge."`
 			label onwards
 			`	Dusk scans down the list of equipment. "This will be enough to get things started. We will have regular supply runs start after you deliver these, so there should be just the initial load that we would like you to take. Can you do it?"`
@@ -1118,7 +1159,7 @@ mission "Remnant: Cognizance 24"
 					decline
 	on stopover
 		conversation
-			`As you slip into the dock on Esquiline it quickly becomes apparent that the station is rapidly returning to full functionality, or perhaps even expanding beyond its original design: people are everywhere, and most of them are moving with purpose or diligently working on something. Several technicians cling to the ceiling overhead as they install new conduit. Despite the busy atmosphere, people frequently stop to glance out the windows, and a flutter of gestures break out whenever someone spots a void sprite. Seeing how busy it is, you understand the traffic controller's request that you refrain from taking up a berth for longer than necessary.`
+			`As you slip into the dock on Esquiline it quickly becomes apparent that the station is rapidly returning to full functionality, or perhaps even expanding beyond its original design: people are everywhere, and most of them are moving with purpose or diligently working on something. Several technicians cling to the ceiling overhead as they install a new conduit. Despite the busy atmosphere, people frequently stop to glance out the windows, and a flutter of gestures break out whenever someone spots a void sprite. Seeing how busy it is, you understand the traffic controller's request that you refrain from taking up a berth for longer than necessary.`
 			`	You find Gavriil nearby, where they are going over a freshly installed hydroponics array with a pair of Remnant in tow. They quickly finish and gesture farewell to the other two before walking over to you. "Greetings, Captain <first>! Welcome back to Esquiline. It has changed a bit since you were here last." Their gestures have an overtone of pride. "Dusk told me that we have a new station to bring online again, so we should probably get moving."`
 	on complete
 		payment 250000
@@ -1131,28 +1172,28 @@ mission "Remnant: Cognizance 24"
 				`	"Why the rush?"`
 					goto rush
 			`	"Suit yourself, I have work to do." They quickly set to moving the equipment to the desired room.`
-				goto gavriilend
+				goto "gavriil end"
 			label sure
 			`	"Thanks, many hands make light work." You quickly have all the equipment moved into the desired room.`
-				goto gavriilend
+				goto "gavriil end"
 			label rush
 			`	"Here, help me carry this and we can talk while we shift this." They hand you a lift and the two of you start moving the equipment. "Basically, we had a visitor out here. Not sure who they were, but they flew a Palavret with a wide mix of alien technology. Our scans said there was one Korath in charge, with a crew composed of both aliens and humans. And they came with enough firepower to make life miserable for everyone. We only had a few scouts in the area, so we stayed hidden and bargained. In the end, they gave us some 'inconsequential' data, and they got an hour to explore the station and take a few loose items. Our scans indicated that they took some stuff without much obvious value from these big halls." They gesture to the room around you with all the platforms.`
 			choice
 				`	"That is odd."`
-					goto movingon
+					goto "moving on"
 				`	"What did the Remnant get?"`
-					goto remnantgain
+					goto "remnant gain"
 				`	"What leverage did the Remnant use to bargain?"`
 			`	Gavriil smiles. "Well, it seems that the captain of that ship found it distressing that we could pinpoint and detail them and their crew with sufficient data that we could use their own appearance as fake video in our transmissions, not to mention that we successfully identified them among the rest of the crew on board the ship. And it was doubly distressing for them that, despite their impressive scanner arrays, they were not able to even catch the slightest emission that might hint at where or who we were." Gavriil pauses as they palm open a door to pull the loaded lift through, then continues. "They blustered initially, but when we started listing off precise defects and wear present on their various computer systems they decided it was better to make a deal."`
 			choice
 				`	"Clever!"`
-					goto movingon
+					goto "moving on"
 				`	"What did you get from them?"`
-			label remnantgain
+			label "remnant gain"
 			`	You finish unloading the equipment into the room before Gavriil continues. "Well, the Korath have been around for a comparatively long time. So we asked for their astronomical dataset. The data we received was raw, uncorrected, and continuous data covering multiple tens of thousands of years of stellar observations. The set even includes data that likely corresponds to the destruction of some of their worlds during their civil war." They pause, then continue. "Of course, we need to verify the data first. So far, though, it is checking out successfully against already trusted records. If it can be validated, the set will massively expand the data our researchers can use to model and study the universe."`
-			label movingon
+			label "moving on"
 			`	Gavriil tucks the lifter away into a storage alcove. "Well, thank you for your help, <first>. That definitely sped up the process."`
-			label gavriilend
+			label "gavriil end"
 			`	They look around at the stacks of equipment, and turn to you. "This will keep me busy for a few days, but if you would be willing to do some patrols, it would be much appreciated. I will have details for you once I have a few things unpacked."`
 
 
@@ -1227,7 +1268,7 @@ mission "Remnant: Cognizance 26"
 		payment 250000
 		outfit "Aeon Cell" -1
 		conversation
-			`Gavriil has you unload the Aeon Cell into a corner of a nearby bay. "Thank you, <first>! The station is running critically low of power, and this should help stabilize it. We will eventually need a full team out here as well as some fuel to get the main reactor running properly, but first we need to figure out exactly what it uses."`
+			`Gavriil has you unload the Aeon Cell into a corner of a nearby bay. "Thank you, <first>! The station is running critically low on power, and this should help stabilize it. We will eventually need a full team out here as well as some fuel to get the main reactor running properly, but first we need to figure out exactly what it uses."`
 			`	They pull out their commlink and check a few things. "Go to Caelian and check in with Torza. He should have finished putting the team through their paces by the time you get there. See you soon, Captain!"`
 
 
@@ -1240,15 +1281,13 @@ mission "Remnant: Cognizance 27"
 	destination "Caelian"
 	to offer
 		has "Remnant: Cognizance 26: done"
-	to complete
-		not "remnant: dusk busy"
 
 
 
 mission "Remnant: Cognizance 28"
 	landing
-	name "Recover equipment from Baianus."
-	description "Torza has asked you to recover 280 tons of equipment and 20 personnel from Baianus by <date>."
+	name "Recover equipment from Baianus"
+	description "Torza has asked you to recover 280 tons of equipment and 20 personnel from <destination> by <date>."
 	source "Caelian"
 	destination "Baianus"
 	blocked `Over the commlink Torza is a flurry of motion as he issues orders in several directions. "Right now, we need another ship that can evacuate 280 tons and 20 people. Return here when you have suitable capabilities."`
@@ -1257,9 +1296,7 @@ mission "Remnant: Cognizance 28"
 	deadline 13
 	to offer
 		has "Remnant: Cognizance 27: done"
-		not "remnant: dusk busy"
 	on offer
-		set "remnant: dusk busy"
 		conversation
 			`Your commlink springs to life as you enter final approach to Caelian, revealing Torza in a flurry of motion. He focuses momentarily on the camera. "Captain <first>, and flying a ship with a substantial lifting capacity, excellent! The Korath have discovered one of our forward operating bases, and we need help evacuating it now. It is located on Baianus in the Parca system. There are 20 people and 280 cubic meters of equipment to retrieve. The Korath have set up a blockade, so you will need something reasonably fast to get through it. You can fight them or not, as you wish, but the primary task is evacuating the outpost. Embers speed your flight, Captain."`
 				accept
@@ -1275,13 +1312,15 @@ mission "Remnant: Cognizance 28"
 				"Rano'erek (Ground Assault)" 4
 				"Palavret (Ember)" 6
 				"'olofez" 32
+		on kill
+			set "remnant: cleared Baianus orbit"
 
 
 
 mission "Remnant: Cognizance 29"
 	landing
-	name "Recover equipment from Baianus."
-	description "Torza has asked you to recover equipment from Baianus by <date>."
+	name "Recover equipment from Baianus"
+	description "Torza has asked you to return to <destination> with the recovered equipment and personnel by <date>."
 	source "Baianus"
 	destination "Caelian"
 	blocked `The scene is one of organized chaos. One Remnant signs "We need a ship that can carry <tons> of cargo and 20 passengers."`
@@ -1292,7 +1331,13 @@ mission "Remnant: Cognizance 29"
 		has "Remnant: Cognizance 28: done"
 	on offer
 		conversation
-			`Punching through the Korath blockade finds you racing across the aurora filled skies of Baianus. You quickly slide into the designated approach track and start to enter your IFF code as a barrage of anti-air fire erupts from the ground to lance over your shoulder. As you drop into evasive maneuvers you spot the wreckage of an 'olofez tumbling to the ice behind you, and a firelance beam sears the air where the <ship> had just been. Moments later you get the confirmation signal that they have accepted your ID and are tracking your position.`
+			branch "cleared orbit"
+				has "remnant: cleared Baianus orbit"
+			`Punching through the Korath blockade finds you racing across the aurora-filled skies of Baianus. You quickly slide into the designated approach track and start to enter your IFF code as a barrage of anti-air fire erupts from the ground to lance over your shoulder. As you drop into evasive maneuvers you spot the wreckage of an 'olofez tumbling to the ice behind you, and a firelance beam sears the air where the <ship> had just been. Moments later you get the confirmation signal that they have accepted your ID and are tracking your position.`
+				goto landed
+			label "cleared orbit"
+			`Destroying the Korath ships blockading this system purchases some respite. However, it does not last long as some Korath ships were in the aurora-filled atmosphere and, having evaded your assault in space, now move to pursue you, intent on stopping you from reaching the Remnant base. As you transmit your IFF code, you are aided by an eruption of anti-air fire from below, which sends an 'olofez tumbling to the icy surface as its last breath of fire misses the <ship>. Along with confirmation of recognizing you, the Remnant at the base ahead inform you that their timetable has not changed despite the currently lessened Korath presence in the system; more ships are already on the way.`
+			label landed
 			`	As you approach the entrance to the hidden starport, directions appear on your comm panel guiding you to a spot where a large stack of equipment surrounds the landing pad. You ease inside and have barely touched down when a technician is dropping from the ceiling onto your hull with a refueling hose and repair equipment. Meanwhile, a swarm of Remnant are prepping and moving various equipment, many with lifts and loaders. You quickly open the cargo hold doors, and the Remnant rush to load and board the <ship>.`
 			`	The Remnant move fast, but you can hear the battle approaching. Even through the <ship>'s dampeners you can feel the heavy thud of anti-air artillery. The whine of generators being pushed to the limit fills the air as the shields crackle with incoming fire. Through the cacophony the Remnant move with purpose, gesturing instructions silently through the din. Finally the last load is packed onboard, and one of them comes up to the cockpit. "Thank you for your assistance, Captain <last>. As the explosive charges have been set, I recommend we leave promptly." They nod respectfully, then strap themselves into the nearest harness.`
 			`	The shield opens one final time to allow you to leave, and you practically leap into the teeth of a Korath attack. The anti-air artillery continues its rhythmic barrage against the incoming ships, but it is evident that both it and the shields around the base are failing under the assault. As you head for orbit, the last image you see is the artillery pieces sag and collapse as they melt into the ground. Your sensors record a sudden explosion from the cavern, to which the Remnant give a sad but satisfied nod. "Take us back to Caelian please, Captain."`
@@ -1313,7 +1358,7 @@ mission "Remnant: Cognizance 29"
 		payment 500000
 		conversation
 			`The brutal sun of Caelian hits you like a hammer as you open the hatch to let the evacuees out. A few of the Remnant step into the sun as if relishing the heat, while others move quickly to the shade of a nearby structure to confer. Several, however, need to be carried out to waiting vehicles: it seems that they were hurt in one of the initial raids, and while adrenaline kept them going during the evacuation, their condition deteriorated during the flight back. The Remnant carry them with reverent haste, and then the vehicles they are loaded into vanish quickly into nearby structures.`
-			`	"The Embers saw you safely through." Gestures Torza with a note of appreciation, appearing from a nearby hatch. "The loss of that outpost is unfortunate, but at least most of the Remnant there survived. Thank you for your assistance." He glances at his commlink. "Your logistics adjustment has been added to your account, of course, but I suspect that you are interested in pushing forward the progress in studying Ssil Vida. Meet me in the spaceport when you are ready."`
+			`	"The Embers saw you safely through," gestures Torza with a note of appreciation, appearing from a nearby hatch. "The loss of that outpost is unfortunate, but at least most of the Remnant there survived. Thank you for your assistance." He glances at his commlink. "Your logistics adjustment has been added to your account, of course, but I suspect that you are interested in pushing forward the progress in studying Ssil Vida. Meet me in the spaceport when you are ready."`
 
 
 
@@ -1332,19 +1377,19 @@ mission "Remnant: Cognizance 30"
 			`You walk into the cafeteria to find a group of Remnant looking tired but pleased with themselves. Torza is striding among them with a tray filled with bottles, handing them out. "Good work, everyone. Excellent pacing on that run." He turns towards you. "And right on schedule, the captain who will be transporting you over to Ssil Vida." He gestures for you to take a seat and offers you a bottle as well.`
 			choice
 				`	(Gesture that I am not thirsty.)`
-					goto notthirsty
+					goto "not thirsty"
 				`	(Take a bottle and gesture appreciation.)`
 			`	You sip from the bottle, and discover that it tastes like some kind of restorative sports drink. You can pick out hints of salt and a few other flavors, but most of it is an indeterminate taste you cannot quite identify. Torza nods in approval as you drink. "Especially in heat like this, hydration is important." He continues weaving around the group handing out the remaining bottles.`
 			choice
 				`	(Drink in silence.)`
-					goto powerbriefing
+					goto "power briefing"
 				`	(Ask the Remnant next to me what just happened.)`
 			`	The Remnant smiles tiredly. "We did a ten kilometer run in just under thirty seven minutes, wearing our emergency environmental suits and carrying basic survival and maintenance gear. Torza set a hard pace, but we kept up." She takes a sip from her drink. "It is hard work, but endurance is rather important for survival, especially in an unknown environment like <planet>." She takes another sip. "It was an interesting change of pace. Normally I carry full engineering kit, so this was a 'fast scramble' in comparison. He" - she gestures at Torza - "likes to change things up. No two runs are the same when he sets the pace."`
-				goto powerbriefing
-			label notthirsty
+				goto "power briefing"
+			label "not thirsty"
 			`	Torza quickly continues his rounds, and soon everyone is sipping on a drink. Several have pulled up displays of Ssil Vida, while others are chatting as they go over inventory lists. Most of the conversation that you catch sounds like a group of technicians prepping for a mission.`
-			label powerbriefing
-			`	After a few minutes Torza gestures for everyone to pay attention. "Now, to review the parameters: <planet> appears to be a giant mechanism for doing something we do not yet know. The core systems have exhausted the capacity of its large fusion reactor to supply it. The installation of the Aeon Cell has reduced the strain on the system, but cannot fully power the station. You need to focus on the power systems, and figure out how to fully stabilize the distribution. While you are doing that, <first> will be returning to Viminal for the next step in this operation. You will all be staying on <planet> for at least a few months, maybe longer as the situation warrants. Agreed?" Around the room there are a variety of nods and gestures of affirmation.`
+			label "power briefing"
+			`	After a few minutes Torza gestures for everyone to pay attention. "Now, to review the parameters: <planet> appears to be a giant mechanism for doing something we do not yet know. The core systems have exhausted the capacity of the large fusion reactor to supply them. The installation of the Aeon Cell has reduced the strain on the system, but it cannot fully power the station. You need to focus on the power systems, and figure out how to fully stabilize the distribution. While you are doing that, <first> will be returning to Viminal for the next step in this operation. You will all be staying on <planet> for at least a few months, maybe longer, as the situation warrants. Agreed?" Around the room there are a variety of nods and gestures of affirmation.`
 			`	Torza makes a gesture of respect. "Embers sharpen your sight, friends."`
 				accept
 	on complete
@@ -1381,21 +1426,31 @@ mission "Remnant: Cognizance 32"
 	deadline 19
 	to offer
 		has "Remnant: Cognizance 31: done"
+		or
+			not "remnant: dusk busy"
+			not "remnant: cognizance 32: dusk was busy"
 	to accept
 		has "license: Remnant Capital"
 	on offer
 		conversation
+			branch dusk
+				not "remnant: dusk busy"
+			action
+				set "remnant: cognizance 32: dusk was busy"
+			`Chilia and Taely look excited about something when you find them in the cafeteria, but they indicate that your other work with Dusk will need to be completed before you can continue your work here.`
+				defer
+			label dusk
 			`Chilia is just collecting his tray from the counter when you step into the cafeteria. Seeing you enter, he picks up a second and nods toward a pair of open seats at a table with Taely and Dusk. "We are glad you could make it, <first>." Taely looks happy, brimming with contained energy. "It is an exciting day, Captain, but Dusk should lead." She nods to Dusk, who sets down his fork to gesture.`
 			`	"While Gavriil has been making excellent progress setting up facilities on Ssil Vida, I have been working with a team of xenolinguists on deciphering the data we have collected so far. Based on Gavriil's recommendations, we have been focusing on the power distribution system."`
-			branch ssilvidaemeraldsword
+			branch "ssil vida emerald sword"
 				has "Sheragi Archaeology: Epilogue: done"
 			`	A hologram of Ssil Vida appears in the air over the table, then fades away to leave a large highlighted object with a network of lines reaching around the station. "As Gavriil has told you, the station's primary power source appears to be a massive fusion reactor. As best we can tell, it is quite a simple design, albeit one built for totally automated functioning and bigger than the largest reactors ever built by humanity. Unfortunately, it has consumed its entire fuel supply and is currently using up the last of the fuel it is capable of extracting by refining spent fuel. Our current estimates is that it is producing less than ten percent of its nominal power. This is sufficiently low that it has already ceased powering the majority of the station's systems." He gestures to Chilia.`
 			`	"Based on our analysis, the reactor appears to use a very specific isotope. Whether it is truly needed or others would suffice is unknown, but for now we are inclined to provide it with an exact match. While we will be able to produce it eventually, it will take time that we do not have." The diagram of Ssil Vida vanishes and is replaced by a map of the galaxy, which focuses in on <system>, near the juncture of the Rim and the South. "Our records indicate that the most easily accessible deposits are on <planet>." Chilia turns to you. "As you are from ancestral space and are most familiar with the people there, we would like you to travel there and bring back 58 cubic meters of processed fuel for the reactor. Can you do this?"`
-				goto ssilvidacontinue
-			label ssilvidaemeraldsword
+				goto "ssil vida continue"
+			label "ssil vida emerald sword"
 			`	A hologram of Ssil Vida appears in the air over the table, then fades away to leave a large highlighted object with a network of lines reaching around the station. "As Gavriil has told you, the station's primary power source appears to be a massive fusion reactor. Based on our initial scans, it appears to be a match to the Sheragi reactor you recently discovered, albeit on a vastly larger scale. Unfortunately, it has consumed its entire fuel supply and is currently using up the last of the fuel it is capable of extracting by refining spent fuel. Our current estimates is that it is producing less than ten percent of its nominal power. This is sufficiently low that it has already ceased powering the majority of the station's systems." He gestures to Chilia.`
 			`	"Based on our analysis, the reactor appears to use a very specific isotope, which appears to be one favored by the Sheragi. Whether it is truly needed or others would suffice is unknown, but for now we are inclined to provide it with an exact match. While we will be able to produce it eventually, it will take time that we do not have." The diagram of Ssil Vida vanishes and is replaced by a map of the galaxy, which focuses in on <system>, in the heart of the ancient Sheragi territory. "Our records indicate that the most easily accessible deposits are on <planet>." Chilia turns to you. "As you have worked extensively around that area, and are thus familiar with the people there, we would like you to travel there and bring back 58 cubic meters of processed fuel for the reactor. Can you do this?"`
-			label ssilvidacontinue
+			label "ssil vida continue"
 			choice
 				`	(Agree.)`
 				`	(Decline.)`
@@ -1405,12 +1460,12 @@ mission "Remnant: Cognizance 32"
 			`	Taely walks right up to its nose, and the ship crouches down so she can put her hand on it. "Captain <first>, I would like to introduce you to the Peregrine. It is the first new capital warship design we have built in over a century, and is the result of decades of work on my part as well as many others. Hopefully, it is the first of many new ships that are successful." She pauses before continuing. "Initially, they will be assigned directly to specific captains, but they will eventually be available for requisition normally."`
 			choice
 				`	"Looks great. Let's fly!"`
-					goto letsfly
+					goto "lets fly"
 				`	"What sort of ship is it?"`
 			`	Taely gestures in reverence. "It is what we term a liveship." She scowls at you. "And before you start thinking about ships made of big piles of flesh and ooze, this is obviously not that." She runs her hand along the ship, obviously quite smooth and solid. "Liveships, as we are calling them, are spaceships that have a sufficient degree of self-awareness and self-control to be deemed alive. They are manufactured and have energy and fuel requirements just like any other ship. Likewise, they are largely made of materials similar to what you are familiar with. But they are conscious. They can move and flex in ways that would be impossible to precisely control with servos and traditional position reporting. They can feel where each tendril is as surely as most people can tell where their hand is, and each ripple of a wormhole vortex is as perceptible to them as the crest of a sand dune would be to you or I."`
 			`	She turns to you and pulls up a display, listing off various statistics. "From a technical standpoint, the Peregrine class starship is classified as a medium warship, built along the lines of the fast-attack cruisers from earlier eras. While it does not have the thickest armor or shields we could have installed, it makes up for it in unrivaled mobility and a neural system that has been hardened against some of the effects that could slow it down. It is also, so far, the largest production ship that has built-in cloaking."`
 			`As if on cue, the ship vanishes from sight. There is a brief rustle and a whoosh of air, and the ship reappears on the other side of you. Several of the Remnant working on it look amused, then relocate to continue their tasks. Taely gestures amusement as well and continues. "Given your recent work with Plume, it may also be relevant to you that the Peregrine is what we term a 'gaslined' starship; meaning it is built to not only fly in atmosphere but also handle both the pressure and conditions found in the depths of gas giants and other high-pressure worlds."`
-			label letsfly
+			label "lets fly"
 			`	Taely smiles, and continues. "You should be able to take off shortly, but Chilia does have some final comments on this mission."`
 			`	She gestures to him, and he steps to the front. "Given recent events in ancestral space, the authorities are understandably suspicious of large volumes of refined nuclear fuel being transported around. Likewise, it would be extremely problematic if someone managed to scan the Peregrine. As such, you will need to avoid being scanned."`
 			`	He taps on his commlink. "We have inserted an order for the material into the hyperspace communication system under the company name 'Solar Winds Logistics Ltd.' The miners on <planet> are to have the shipment ready to load at a mining site just outside of the spaceport, far enough away to avoid the standard arrival and departure scans."`
@@ -1424,6 +1479,7 @@ mission "Remnant: Cognizance 32"
 			`	A hatch opens on the Peregrine, and all the workers quickly finish their tasks and stow their equipment onboard. "Ready for departure when you are, Captain!" calls one from the hatch.`
 				accept
 	on accept
+		set "remnant: dusk busy"
 		give ship Peregrine "Shadow Flight"
 		event "remnant: cognizance peregrine"
 	on decline
@@ -1442,6 +1498,7 @@ mission "Remnant: Cognizance 33"
 	destination "Ssil Vida"
 	cargo "refined fuel" 58
 	deadline 19
+	blocked "For the next mission in the Remnant campaign, you must have at least 58 cargo space free."
 	to offer
 		has "Remnant: Cognizance 32: done"
 	on offer
@@ -1476,7 +1533,6 @@ mission "Remnant: Cognizance 34"
 	name "Observe changes in Postverta"
 	description "Something is going on outside, and Dusk would like you to take a look."
 	source "Ssil Vida"
-	waypoint "Postverta"
 	to offer
 		has "Remnant: Cognizance 33: done"
 	on offer
@@ -1487,10 +1543,14 @@ mission "Remnant: Cognizance 34"
 			`	Dusk looks around, and then gestures. "Captain <first>, please go investigate what is going on out there. Just take a good look around and then report back."`
 				accept
 	on enter "Postverta"
+		set "remnant: saw changed postverta"
 		conversation
 			`Just like the Remnant said, the system appears to be full of life. Where once there was just asteroids and a fairly empty system, there is now life signs everywhere. As you dodge among the asteroids, you note that most of them appear to have something growing on them: plants. Moss or fungus might be a better word, although you are fairly certain that nothing in the current classifications of life can adequately categorize what you can see outside. The sudden appearance of all this life is only compounded when your sensors light up to notify you that it is tracking several flocks of void sprites.`
 			`	As you move away from the station you continue to spot signs of life and activity everywhere: flitting among the rocks, soaring along the solar winds, and hunting amongst clouds. What is unclear, however, is where it came from. The only hint might be in the fact that your ship instruments report a sudden spike in the ambient energy in the surrounding area.`
+	to complete
+		has "remnant: saw changed postverta"
 	on complete
+		clear "remnant: saw changed postverta"
 		conversation
 			`Back on the station Dusk, Gavriil, and many of the Remnant on the station meet you in the docking bay. Dusk and several of the others just came back from walking out on the hull of <origin>, and they report seeing void sprites passing close to the station. They quickly pull the data from your ship sensors and throw it up on a holographic display. Everyone gathers around, intently drinking in the data and footage. They stand, stare, and ponder with intense concentration as the data continues to stream in from the station.`
 			`	Without warning, something clicks in your mind. Suddenly there is a hum of hundreds of conversations crowding your thoughts and a momentary feeling of seeing the system through thousands of eyes. You feel a wave of curiosity, and a glimpse of <origin> as it might have been once - shiny and gleaming. The image ages like a fast-forward video of untold thousands of orbits as the station wears and the sky changes around it. Then the image freezes on what appears to be the present day. A feeling of appreciation replaces the sense of curiosity, followed by a blurry image of the <ship> leaving the station and heading in a dozen different directions simultaneously, as if watching it splinter into ghosts.`
@@ -1530,22 +1590,22 @@ mission "Remnant: Cognizance 35"
 			`	Their gestures take on a confident tone. "Which makes sense, since our life experiences shape our perceptions. Still, as to what it was..." They pause, gathering their thoughts. "Our best guess is that this was first contact with some sort of entity." They grin at that. "I know, stating the obvious. But anyway, Dusk thinks that it might be some sort of solitary entity, as it did not use words or meanings, despite having access to our minds. As such, it uses internals to convey meaning instead of words." They glance at a map of the system. "There is, however, no indication as to where it came from."`
 			choice
 				`	"How do we get back?"`
-					goto cutpower
+					goto "cut power"
 				`	"What happened to the long range communication?"`
 			`	"Well, that is a good question. We have, and still are, running diagnostics on them, and so far they are passing all their checks. The system safeties, isolation mechanisms, security monitoring, tamper-proofing, self-destruct systems, backup hardening..." They shake their head, stymied.`
 			`	"Everything looks in perfect working order. The only problem is that the quantum pairs at the heart just do not seem to have a pair anymore. In terms of quantum mechanics, it seems that the rest of the universe quite simply does not exist."`
 			choice
 				`	"That seems problematic. How do we get back?"`
-					goto cutpower
+					goto "cut power"
 				`	"Did we destroy the universe by powering up this station?"`
 			`	Gavriil smiles with amusement. "It is certainly a possibility. However, the fact that it was, as best we can tell, powered up previously without destroying the universe suggests that it transported or isolated us rather than destroying everything else."`
 			`	They frown at the communication panel. "Although everything I know about quantum mechanics refuses to countenance something being able to leave the universe so absolutely like this." They smile again. "But that is the way of science! Finding new things in the universe that tells us that what we know is not so absolute."`
 			choice
 				`	"I think we should focus on getting back."`
-					goto cutpower
+					goto "cut power"
 				`	"Should we be worried?"`
 			`	Gavriil gestures neutrally. "Well, I am worried, of course. I would be devastated to find out I had destroyed humanity, and everything else in existence." They look somber, but then perk up again. "But if everything has been annihilated, there is nothing I can do about it. So I shall focus on learning what I can, doing what must be done, and enjoy the fact that the universe has inexplicably revealed once again that the sum of all our knowledge is merely the introductory metaphor to help us grasp how things work." Their gestures abruptly change tone. "Speaking of which, we need to report what we have learned to the rest, which means leaving this place."`
-			label cutpower
+			label "cut power"
 			`	Gavriil gestures at the control panel in front of them. "I do not know for sure, but based on events, I suspect that if we manually induce a power failure we should be able to reverse the process that transported us to this realm." They smile eagerly. "I have everything all set up, and we have people waiting across the station." They look confident. "We think that we can safely spin down the reactor and cut power across a number of these arrays in a controlled fashion. This should replicate the original power failure, except with fewer risks and less damage to the system."`
 			`	They lead you over to a panel in the main loading dock. "I know, it says 'Job Board' on it. I reused the coding for our task list to improvise this mass-notification system." They smile in amusement. "When you are ready to go, just select the 'De-activate Array' option from the panel. That will notify everyone and begin the shutdown."`
 			`	They hand you a data crystal, and then a large case. "Here is an encrypted data crystal of all our data so far. The case has several sets, with the data stored in a variety of different mechanisms and encryptions. We do not know what happens when the station is activated or deactivated, so multiple formats for storing the data will give a better chance that at least some of it will remain intact to be delivered."`
@@ -1605,19 +1665,19 @@ mission "Remnant: Cognizance 38"
 			`A crowd of Remnant cluster around your ship as you land, but it is just one who gestures quickly, asking if the rest of the team who went with you are safe. You nod, and a ripple of relief goes through the crowd. "So, what happened?" asks another.`
 			choice
 				`	(Explain everything that happened.)`
-					goto cognizanceexplanation
+					goto "cognizance explanation"
 				`	"I think I should tell this to the prefects first."`
 			`	The Remnant around you look amused. "Do not be concerned, <first>. Everything you say will reach them. The sooner you tell us, the sooner we can start preparing for whatever is necessary."`
 			choice
 				`	(Explain everything that happened.)`
-					goto cognizanceexplanation
+					goto "cognizance explanation"
 				`	"I thought the prefects were your leaders?"`
 			`	"They bear our executive responsibilities, it is true. Times of critical threats require the capacity for decisions to be made in the instant. But do not confuse the authority to make high-value decisions with being in charge of everything. The less immediate a decision is, the more likely it is to be the product of significant discussion among us all. Likewise, decisions about what constitute the policy and values of our society are things decided upon by the unified whole, not any one individual." She pauses, and smiles. "Admittedly, given your involvement in smaller projects and unfolding events, our society probably does have a certain autocratic appearance."`
 			choice
 				`	"Okay, I will explain everything."`
-					goto cognizanceexplanation
+					goto "cognizance explanation"
 				`	"How can you reach consensus so easily?"`
-			branch cognizanceuntrusted
+			branch "cognizance untrusted"
 				has "remnant untrusted"
 			`	She looks around with an uncertain expression, then nods. "As I am sure has occurred to you, communication by gestures has some disadvantages. We still prefer it for some tasks, but it can be awkward to watch or gesture in the midst of some situations. While we have some vocabulary we can use without needing hands or arms, it is very limited.`
 			`	"Fortunately, one of the original abilities of our companions is related to the nervous system. I believe Dawn may have told you a little about it, but was scarce on details." She smiles wryly, then another Remnant takes up the conversation.`
@@ -1628,13 +1688,13 @@ mission "Remnant: Cognizance 38"
 			action
 				set "remnant: cognizance neural communication explanation"
 			`	A third Remnant steps up. "As to the matter at hand, this means that the sooner any of us hear your report, the sooner everyone will have heard it." They look at you expectantly.`
-				goto cognizanceexplanation
-			label cognizanceuntrusted
+				goto "cognizance explanation"
+			label "cognizance untrusted"
 			`	The Remnant smiles mysteriously. "A society has to have some secrets, does it not? Let us just say that our communication networks are very effective. At this point, just know that the sooner you give the report, the sooner that everyone will be able to work on this information." They pause, then continue. "And that does, of course, include the prefects."`
 			choice
 				`	"Okay, I will explain what happened."`
 				`	"Alright, you convinced me."`
-			label cognizanceexplanation
+			label "cognizance explanation"
 			`	The Remnant watch you attentively as you explain everything that went on at Postverta and the surrounding area. Once you hand over the data crystals, one Remnant slots one of them into a console on the spot while another pair take the case with the rest and hustle off toward the information desk.`
 			`	As you reach the end of your report, one of the Remnant nods in approval. "We are starting to disseminate your report along with the data Dusk and Gavriil collected. Both copies of the data match, and have passed the initial verifications, so it appears they were not affected by your departing... shift."`
 			`	They look around at the surrounding Remnant, and you have the sudden feeling that there is an entire level of discussion happening around you. You spot Aeolus moving through the crowd to the front, and he gestures with tones of appreciation. "Thank you for all your work on this, <first>. We have a strong appreciation for the risks you have taken alongside us, and I hope we will continue to explore together. That being said, I suspect it will take much collective effort to determine our next course of action." He looks around, and then winks at you. "In the meantime, I have unlocked access to a few more bits of rarer Korath salvage, including access to captured 'olofezes. It is not much, but it may give you a little more ease of outfitting the <ship>."`
@@ -1650,3 +1710,4 @@ mission "Remnant: Cognizance 39"
 		has "Remnant: Cognizance 38: done"
 	on offer
 		event "remnant: cognizance calm" 5
+		fail

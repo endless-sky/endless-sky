@@ -16,7 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapPlanetCard.h"
 
 #include "Color.h"
-#include "FillShader.h"
+#include "text/DisplayText.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -25,9 +26,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "Planet.h"
 #include "Point.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Screen.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "text/WrappedText.h"
@@ -40,15 +42,16 @@ namespace {
 
 
 
-MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited)
-	: number(number), hasVisited(hasVisited), planetName(object.Name())
+MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited,
+		const MapDetailPanel *parent)
+	: parent(parent), number(number), hasVisited(hasVisited), planetName(object.DisplayName())
 {
 	planet = object.GetPlanet();
 	hasSpaceport = planet->HasServices();
 	hasShipyard = planet->HasShipyard();
 	hasOutfitter = planet->HasOutfitter();
-	governmentName = planet->GetGovernment()->GetName();
-	string systemGovernmentName = planet->GetSystem()->GetGovernment()->GetName();
+	governmentName = planet->GetGovernment()->DisplayName();
+	string systemGovernmentName = planet->GetSystem()->GetGovernment()->DisplayName();
 	if(governmentName != "Uninhabited" && governmentName != systemGovernmentName)
 		hasGovernments = true;
 
@@ -284,8 +287,8 @@ void MapPlanetCard::Highlight(double availableSpace) const
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double width = planetCardInterface->GetValue("width");
 
-	FillShader::Fill(Point(Screen::Left() + width / 2., yCoordinate + availableSpace / 2.),
-		Point(width, availableSpace), *GameData::Colors().Get("item selected"));
+	Rectangle highlightRegion = Rectangle::FromCorner(Point(Screen::Left(), yCoordinate), Point(width, availableSpace));
+	FillShader::Fill(highlightRegion, *GameData::Colors().Get("item selected"));
 }
 
 
@@ -293,7 +296,7 @@ void MapPlanetCard::Highlight(double availableSpace) const
 double MapPlanetCard::AvailableTopSpace() const
 {
 	const double height = Height();
-	return min(height, max(0., (number + 1) * height - MapDetailPanel::GetScroll()));
+	return min(height, max(0., (number + 1) * height - parent->GetScroll()));
 }
 
 

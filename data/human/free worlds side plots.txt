@@ -122,8 +122,8 @@ mission "FW Pirates: Harmony"
 			`	"<first>," you say.`
 			`	He brushes some of the dirt off his hands and then shakes hands with you. "How are you doing?" he asks. "And how is Katya? And Ijs?" You explain to him that you are now an official member of the Free Worlds, and that Katya has been captured by the Republic. He is clearly shocked and saddened by the news. After pressing you for all the details, he asks, "And what about you? What brings you to Harmony?"`
 			choice
-				`	"The Free Worlds is hoping to eliminate piracy in this sector, and I was hoping for advice on what targets we should attack."`
-				`	"The Free Worlds is thinking of launching an attack on the pirates, but I've been thinking about what Brother Greg said about the pirate crews being just kids."`
+				`	"The Free Worlds are hoping to eliminate piracy in this sector, and I was hoping for advice on what targets we should attack."`
+				`	"The Free Worlds are thinking of launching an attack on the pirates, but I've been thinking about what Brother Greg said about the pirate crews being just kids."`
 					goto kids
 			`	"If you want some military advice," he says, "here's what I can tell you. You cannot create peace using violence. Most people on the pirate worlds are not pirates, just ordinary people unlucky enough to be born there. Or people who feel unwelcome everywhere else."`
 				goto advice
@@ -175,7 +175,7 @@ mission "FW Conservatory 1"
 				goto continue
 			
 			label introduce
-			`When you meet Ijs in the spaceport, he has a man and a woman with him which he introduces as Lynn and Henry Anderson, a top planetary scientist and ex-Navy intel officer who defected from the Republic shortly after the Free Worlds was formed. Ijs is beaming - his meeting must have gone really well. "Guess what, Captain?" he says. "We've got a location for the Conservatory! The government of Winter has offered a community center for our use."`
+			`When you meet Ijs in the spaceport, he has a man and a woman with him which he introduces as Lynn and Henry Anderson, a top planetary scientist and ex-Navy intel officer who defected from the Republic shortly after the Free Worlds were formed. Ijs is beaming - his meeting must have gone really well. "Guess what, Captain?" he says. "We've got a location for the Conservatory! The government of Winter has offered a community center for our use."`
 			
 			label continue
 			`	"A somewhat run-down community center," adds Henry.`
@@ -315,10 +315,10 @@ mission "FW Deep Memorial"
 	on offer
 		conversation
 			`As you disembark, you hear the sounds of warning sirens and heavy machinery coming from the edge of <planet>'s spaceport. It doesn't take long to find the source of the noise: several large construction vehicles are paving a large clearing at the edge of a cliff. At its center are nine large walls covered in letters, with spaces reserved for an additional fourteen walls. The largest wall is emblazoned with the text "Free Worlds War Memorial." Already, there are friends and family paying their respects to the ever-growing number of fallen.`
-			branch browerdeath end
+			branch "brower death" end
 				has "FW Pirates: Attack 2: done"
 				has "Care Package to South 1: done"
-			label browerdeath
+			label "brower death"
 			`	As you inspect the walls, you recognize one of the names:`
 			``
 			`		MSGT IRENE BROWER`
@@ -376,8 +376,8 @@ mission "FW Flamethrower 2"
 			`	"Great," he says, rubbing his hands together with a gleeful expression on his face. He's clearly looking forward to hearing what you think of his latest invention.`
 				accept
 	
-	npc save disable
-		personality disables staying heroic
+	npc disable save
+		personality disables heroic staying
 		government "Test Dummy"
 		ship "Doombat" "Doombat"
 	
@@ -737,7 +737,7 @@ mission "FW Wolf Pack 4"
 			cargo 0
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 	
 	on visit

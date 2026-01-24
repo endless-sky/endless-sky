@@ -13,22 +13,22 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_SALES_PANEL_H_
-#define MAP_SALES_PANEL_H_
+#pragma once
 
 #include "MapPanel.h"
 
-#include "CategoryList.h"
 #include "ClickZone.h"
 
 #include <set>
 #include <string>
 #include <vector>
 
+class CategoryList;
 class ItemInfoDisplay;
 class PlayerInfo;
 class Point;
 class Sprite;
+class Swizzle;
 
 
 
@@ -43,15 +43,15 @@ public:
 
 protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
 	virtual const Sprite *SelectedSprite() const = 0;
 	virtual const Sprite *CompareSprite() const = 0;
-	virtual int SelectedSpriteSwizzle() const;
-	virtual int CompareSpriteSwizzle() const;
+	virtual const Swizzle *SelectedSpriteSwizzle() const;
+	virtual const Swizzle *CompareSpriteSwizzle() const;
 	virtual const ItemInfoDisplay &SelectedInfo() const = 0;
 	virtual const ItemInfoDisplay &CompareInfo() const = 0;
 	virtual const std::string &KeyLabel(int index) const = 0;
@@ -70,10 +70,10 @@ protected:
 	void DrawInfo() const;
 
 	bool DrawHeader(Point &corner, const std::string &category);
-	void DrawSprite(const Point &corner, const Sprite *sprite, int swizzle, int frame = 0) const;
-	void Draw(Point &corner, const Sprite *sprite, int swizzle, int frame, bool isForSale, bool isSelected,
-		const std::string &name, const std::string &price, const std::string &info,
-		const std::string &storage = "");
+	void DrawSprite(const Point &corner, const Sprite *sprite, const Swizzle * swizzle, int frame = 0) const;
+	void Draw(Point &corner, const Sprite *sprite, const Swizzle *swizzle, int frame, bool isForSale, bool isSelected,
+		const std::string &name, const std::string &variantName, const std::string &price,
+		const std::string &info, const std::string &storage);
 
 	void DoFind(const std::string &text);
 	void ScrollTo(int index);
@@ -90,6 +90,7 @@ protected:
 	double scroll = 0.;
 	double maxScroll = 0.;
 
+	std::map<std::string, std::vector<std::string>> catalog;
 	const CategoryList &categories;
 	bool onlyShowSoldHere = false;
 	bool onlyShowStorageHere = false;
@@ -106,7 +107,3 @@ private:
 	int selected = -1;
 	int compare = -1;
 };
-
-
-
-#endif

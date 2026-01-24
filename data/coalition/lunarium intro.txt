@@ -26,11 +26,11 @@ mission "Lunarium: Smuggling: Charity 1"
 	minor
 	cargo "charity supplies" 22
 	source
-		near "3 Spring Rising" 2 6
+		near "3 Spring Rising" 1 6
 		not government "Heliarch"
 	destination "Fourth Shadow"
 	to offer
-		random < 40
+		random < 55
 		has "Coalition: First Contact: done"
 		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
@@ -96,10 +96,10 @@ mission "Lunarium: Smuggling: Charity 2"
 	passengers 5
 	cargo "charity supplies" 39
 	source
-		near "5 Winter Above" 1 3
+		near "5 Winter Above" 1 4
 	destination "Into White"
 	to offer
-		random < 50
+		random < 60
 		has "Lunarium: Smuggling: Charity 1: done"
 		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
@@ -156,10 +156,10 @@ mission "Lunarium: Smuggling: Charity 3"
 	description "Bring <cargo> to <destination>"
 	cargo "charity supplies" 46
 	source
-		near "14 Pole" 3 5
+		near "14 Pole" 3 7
 	destination "Remote Blue"
 	to offer
-		random < 70
+		random < 80
 		has "Lunarium: Smuggling: Charity 2: done"
 		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
@@ -284,7 +284,7 @@ mission "Lunarium: Smuggling: AM"
 	destination "Fourth Shadow"
 	to offer
 		has "Lunarium: Smuggling: Grenades: done"
-		random < 15 + 3 * "assisted lunarium" * "assisted lunarium"
+		random < 25 + 4 * "assisted lunarium" * "assisted lunarium"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
@@ -329,7 +329,7 @@ mission "Lunarium: Smuggling: Torpedoes"
 	to offer
 		has "Lunarium: Smuggling: AM: done"
 		has "event: deep sky tech available"
-		random < 20 + 3 * "assisted lunarium" * "assisted lunarium"
+		random < 30 + 4 * "assisted lunarium" * "assisted lunarium"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
@@ -380,7 +380,7 @@ mission "Lunarium: Smuggling: Heat"
 	to offer
 		has "Lunarium: Smuggling: Torpedoes: done"
 		has "event: flamethrower available"
-		random < 25 + 3 * "assisted lunarium" * "assisted lunarium"
+		random < 30 + 4 * "assisted lunarium" * "assisted lunarium"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
@@ -436,7 +436,7 @@ mission "Lunarium: Smuggling: Reactors"
 	destination "Mebla's Portion"
 	to offer
 		has "Lunarium: Smuggling: Heat: done"
-		random < 40 + 3 * "assisted lunarium" * "assisted lunarium"
+		random < 40 + 4 * "assisted lunarium" * "assisted lunarium"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
@@ -487,7 +487,7 @@ mission "House Bebliss 1-A"
 	description "Head to <destination>, where members of House Bebliss wish to discuss a job offer."
 	minor
 	to offer
-		random < 10
+		random < 15
 		has "license: Coalition"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
@@ -539,7 +539,7 @@ mission "House Bebliss 1-B"
 	name "Meet with House Bebliss"
 	description "Head to <destination>, where representatives from an Arach House that supports the Lunarium wish to discuss a job offer."
 	to offer
-		random < 40
+		random < 75
 		has "House Bebliss 1-A: declined"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
@@ -647,7 +647,7 @@ mission "House Bebliss 2-FW"
 					goto human
 				`	(Ask for one of the Arach drinks.)`
 					goto arach
-				`	(Just wait for your hosts to come back.)`
+				`	(Just wait for my hosts to come back.)`
 			`	You politely decline the drinks, and the maid gives you a brief nod, silently going back to her post to stand still like the other. You go over to the table to look at the blueprints, seeing many charts drawn and symbols resembling calculations on one corner, but you can't understand what's written. You sit as best as you can on what you guess is an Arach equivalent to an armchair, looking around the room for a few minutes.`
 				goto accept
 			label human
@@ -938,10 +938,11 @@ mission "Lunarium: Evacuation 1"
 	passengers 35
 	"apparent payment" 386730
 	source
-		near "3 Spring Rising" 1 4
+		not government "Heliarch"
+		near "3 Spring Rising" 1 5
 	destination "Fourth Shadow"
 	to offer
-		random < 40
+		random < 55
 		has "Coalition: First Contact: done"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
@@ -1060,10 +1061,10 @@ mission "Lunarium: Evacuation 3"
 	"apparent payment" 748300
 	source
 		not government "Heliarch"
-		near "Silver Bell" 2 3
+		near "Silver Bell" 1 4
 	destination "Chosen Nexus"
 	to offer
-		random < 50
+		random < 60
 		has "Lunarium: Evacuation 2: done"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
@@ -1185,12 +1186,12 @@ mission "Lunarium: Evacuation 5"
 	passengers 116
 	landing
 	source
-		near "Ablub"
+		near "Ablub" 1 3
 	destination "Cool Forest"
 	to offer
-		random < 80
+		random < 85
 		has "Lunarium: Evacuation 4: done"
-		has "outfit: Jump Drive"
+		has "ship attribute: jump drive"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
@@ -1329,10 +1330,10 @@ mission "Lunarium: Propaganda 1"
 	passengers 1
 	cargo "promotional posters" 1
 	source
-		near "Ancient Hope" 2 4
+		near "Ancient Hope" 2 5
 	destination "Bright Echo"
 	to offer
-		random < 25
+		random < 50
 		has "Coalition: First Contact: done"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
@@ -1602,8 +1603,8 @@ mission "Lunarium: Combat Training 1"
 		attributes arach
 	destination "Zug"
 	to offer
-		random < 20
-		has "outfit: Jump Drive"
+		random < 65
+		has "ship attribute: jump drive"
 		or
 			has "Lunarium: Propaganda 4: done"
 			has "Lunarium: Evacuation 6: done"
@@ -1806,7 +1807,7 @@ mission "Lunarium: Combat Training 4"
 				`	"Did you manage to fight the pirates well enough?"`
 					goto pirates
 				`	"Honestly I'm surprised you didn't lose anyone. Some of the ships you bought aren't exactly made for fighting."`
-			`	She clicks her mandibles quickly. "Neither are ours. Coalition ships, I mean. Of weaker materials, our civilian vessels are made, with less intricate shield matrixes, less space for weaponry. With that knowledge, intentionally choose ships on the more fragile side for this training, I did. Focused on fighting heavier human ships, we were, to simulate that difference in durability and firepower," she explains. "Of course, with Heliarch ships, much greater the gap is, but a useful experience it has been regardless."`
+			`	She clicks her mandibles quickly. "Neither are ours. Coalition ships, I mean. Of weaker materials, our civilian vessels are made, with less intricate shield matrices, less space for weaponry. With that knowledge, intentionally choose ships on the more fragile side for this training, I did. Focused on fighting heavier human ships, we were, to simulate that difference in durability and firepower," she explains. "Of course, with Heliarch ships, much greater the gap is, but a useful experience it has been regardless."`
 				goto accept
 			label pirates
 			`	"Lie I will not, difficult the first few months were. Very used to the Coalition, to our equipment, we were, so forget we did many times that no hull repair capabilities of their own, the ships had." She passes her two front legs over her head a few times, as if brushing it in shame. "Lucky we were, that no casualties we had. At least, a good way to improvise mid-battle rescues, it all was." she finishes, perking up her head.`
@@ -1843,14 +1844,14 @@ mission "Lunarium: Questions"
 		not planet "Remote Blue"
 	destination "Remote Blue"
 	to offer
-		has "outfit: Jump Drive"
+		has "ship attribute: jump drive"
 		or
 			"assisted lunarium" >= 5
 			and
-				"coalition jobs" >= 80
+				"coalition jobs" >= 70
 				"assisted lunarium" == 4
 			and
-				"coalition jobs" >= 110
+				"coalition jobs" >= 100
 				"assisted lunarium" == 3
 		"reputation: Quarg" >= 0
 		not "joined the heliarchs"
@@ -1905,50 +1906,71 @@ mission "Lunarium: Quarg Interview"
 			label questions
 			choice
 				`	"What are you all going to do if you do manage to take down the Heliarchs?"`
+					to display
+						not "lunarium questions: takedown"
 				`	"You'll need to fight the Heliarchs at some point. Are you capable of doing that?"`
+					to display
+						not "lunarium questions: fightthem"
 					goto fight
 				`	"Am I the only outsider helping you?"`
+					to display
+						not "lunarium questions: outsider"
 					goto outsiders
 				`	"How do you pay for all this?"`
+					to display
+						not "lunarium questions: money"
 					goto pay
 				`	"I'm fine for now. What about this task you need me for?"`
 					goto task
+			action
+				set "lunarium questions: takedown"
 			`	"Rebuild, first we will need to," Chiree responds. "Fight tooth and nail to remain in power, they will, so a great deal of damage to the Coalition, we expect."`
 			`	"Once back in order, everything is, focus on reassuring the populace we should. A change for the better, it will be, and help in making sure everyone realizes that, House Bebliss will," Lobmab jumps in. "Earn back what they took from us, we will."`
 			`	Once the head of House Bebliss is done, Chiree continues. "Pointless, our fight will have been, if corrupted in those rings again, our successors thousands of years from now become. Set up transparency measures and means to ensure that absolute power, the consuls do not have, we will."`
 				goto questions
 			label fight
+			action
+				set "lunarium questions: fightthem"
 			`	"Try and fool you, I will not. At a tremendous disadvantage, to say the least, we are," Pyakri answers. "Weaker, our ships are, and far less powerful weapons, we boast. Mostly human designs. Due to being simpler, easier to produce in what factories we have, they are. Also lack experience, the troops do..."`
 			`	The mood around the table quickly dims as she goes on listing the ways the Lunarium is lacking in comparison to your opponents. Elirom stands up, putting both hands on the table to draw attention. "Smarter than us, they are not. Assure you of that, I can. Wanting in many areas we are, yes, but only because hoard our best materials, they do. Already preparing some deadlier weapons, we are. Finished, the blueprints have been. Only lacking the right materials, we are. When secured those, we have, move on to reforming our arsenal we can, and maybe get some better ships produced, too."`
 			`	"And suppose I do that, intend to tell me where to attack for such materials, you do?" Pyakri asks as she stands up herself. "Caught by 'the unforeseen' will my men again be? By an Arach battalion you forgot to mention, again?"`
 			`	Caught off-guard by the question, apparently, Elirom looks at her for a few seconds, then resigns himself to sit back down.`
 				goto questions
 			label outsiders
+			action
+				set "lunarium questions: outsider"
 			`	For a few seconds, they simply exchange looks at your question, until Lobmab speaks up. "Transmissions and messages from some source, Bebliss has received for centuries now. Told us they have of Heliarch activity, fleet movements, training drills, propaganda plans. Always exactly right in their predictions, the messages were. Also pointed us to equipment caches - caches with outfits previously found nowhere in the Coalition - they have. Human weaponry, blueprints, factory parts..."`
 			`	"Aware of the identity of whoever does it, we are not," Elirom says. "An arbiter I was, and though a great deal I knew, still kept from me, some critical information was. Possible, it is, that from one of the consuls, the information comes. Though, difficult to steal a jump drive to bring in the weapons, it would be, even for a consul." He pauses, a dead stare in his eyes as he bites lightly on a finger. "Also received word of... experiments, we have from the messages. Some manner of procedure to take over bodies... stop whatever it is being done in the rings, we must."`
 				goto questions
 			label pay
+			action
+				set "lunarium questions: money"
 			`	The rest of the table look to Lobmab at the same time, prompting her explanation. "Amassed great fortune over our history, House Bebliss has. As part of our gracious help to the Lunarium, providing nearly everything in financial terms we have been."`
 			`	She stops, with the others still looking at her, as if expecting something more. She remains silent, so Chiree looks back at you, continuing, "Also taken some loans from House Plumtab in our stead, Houses Bebliss and Idriss have. Not terribly passionate for our cause, Plumtab's bankers are, but share our interest in booting the Heliarchs, they do, even if meet or talk with us, they never do."`
 				goto questions
 			label task
+			action
+				clear "lunarium questions: fightthem"
+				clear "lunarium questions: money"
+				clear "lunarium questions: outsider"
+				clear "lunarium questions: takedown"
 			`	Tummug goes around the table, handing copies of some documents to the other leaders before answering. "One of the centerpoints of Heliarch propaganda, the fear of the Quarg is. Served to justify their budget, and their obsession with hoarding the military, for millennia it has. Thought up a way to mitigate the effect that has on the populace, Oobat has."`
 			`	With this cue, Oobat goes further into the plan. "Not seen in Coalition space in over six thousand years, a Quarg ship has been. Most likely moved on from our war, they have, unlike the Heliarchs. If proof of the Quarg's lack of interest in waging war against us, we had, spread it to the people, we could. Given the Captain's resourcefulness, and possession of a jump drive, think we did that the best way to acquire that proof, meeting up with the Quarg is." She grabs one of the documents, pointing to it. "For you all to review these questions, I would like. Careful we should be, with regard to their wording. Once done, we are, board Captain <last>'s ship, I will. Meet with the Quarg in human space, we must," she says the last part looking at you. "Met with the Quarg before, have you, Captain?"`
-			branch metquarg
+			branch "met quarg"
 				has "First Contact: Quarg: offered"
 			choice
 				`	"No, sorry. I never had the time to visit one of their worlds or rings."`
 				`	"I've only seen them in pictures and videos."`
 			`	"Ah, a shame that is. Well, I suppose a first time for the both of us, this trip will be."`
 				goto accept
-			label metquarg
+			label "met quarg"
 			choice
 				`	"Yes. They can be a bit odd, but they've always treated me well."`
 				`	"Yes, sadly. They're obnoxious and condescending."`
-					goto quargbad
+					goto "quarg bad"
 			`	"Good to hear, that is. Hope I do that willing to extend that treatment to me, they are."`
 				goto accept
-			label quargbad
+			label "quarg bad"
 			`	The table puts the documents away in unison, looking at you after your answer. "I see... well, at least cooperate for the interview, we can hope they will."`
 			label accept
 			`	The Lunarium leaders spend an hour or so going over the questions proposed for the interview, deciding to ditch some, and add a few new ones. All the while, Elirom asks in a worried manner if Oobat is sure of this idea. "Forgive me if sounding like a Heliarch, I am, but dangerous to leave, it is. Know we do not, the Quarg reaction to seeing someone from the Coalition in their territory."`
@@ -1987,7 +2009,7 @@ mission "Lunarium: Join"
 			`	The Quarg gazes at you two for a few seconds, before squatting down to your level. "Very well. What questions do you have?"`
 			`	She hands you the camera, turning it on and asking that you keep it as still as you can once you're positioned to get a good angle. She then connects her translator to it remotely, so that the audio picks up the Quarg's translated responses. "Well, begin then we shall. Regarding the very reason for the Coalition's formation, intending to fight us again, are you?"`
 			`	It thinks for a moment, then answers, "No. We never intended to fight. It was the Saryds, Kimek and Arachi of old who fought us. We are not a warring people."`
-			`	Seemingly satisfied with the answer, Oobat moves on to the next. She questions the Quarg for about ten minutes on their activities outside the Coalition and their relation with the humans and other species. She even has you move the camera around for a bit to show the local human-Quarg interactions, as the Quarg compares dealing with humanity to dealing with the Coalition species. Oobat moves from question from question as if in a checklist, until she arrives at the last one. "About finished, we are. Thankful for your answers I am. Just one last thing, to appease the people back home. Interested in returning to take back the rings, are you?"`
+			`	Seemingly satisfied with the answer, Oobat moves on to the next. She questions the Quarg for about ten minutes on their activities outside the Coalition and their relation with the humans and other species. She even has you move the camera around for a bit to show the local human-Quarg interactions, as the Quarg compares dealing with humanity to dealing with the Coalition species. Oobat moves from question to question as if in a checklist, until she arrives at the last one. "About finished, we are. Thankful for your answers I am. Just one last thing, to appease the people back home. Interested in returning to take back the rings, are you?"`
 			`	"Of course," it says without hesitation. "The rings are our homes. My home." Clearly not expecting that answer, Oobat looks at you in confusion.`
 			choice
 				`	"It's been thousands of years. You're still lingering on those rings?"`

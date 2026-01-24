@@ -19,15 +19,9 @@ help "bank advanced"
 	`When entering a credit value at the bank, you can put in an exact number, or use the suffixes K, M, B, and T as shorthand for thousands, millions, billions, and trillions. For example, entering a value such as "100k" would count as 100,000 credits.`
 	`Entering a number that is higher than what you or the bank have available will default to the maximum available value. For example, entering "1m" to pay off a 100,000 credit loan will completely pay off the loan without giving extra, should you have available credits.`
 
-help "basics 1"
-	`Press <View star map> to bring up your map. Select a destination, then close the map and press <Initiate hyperspace jump> to jump. Press <Land on planet / station> to land.`
-
-help "basics 2"
-	`For the main menu, press <Show main menu>. The control key bindings can be viewed and changed in the preferences.`
-
 help "dead"
 	`Uh-oh! You just died. The universe can be a dangerous place for new captains!`
-	`Fortunately, your game is automatically saved every time you leave a planet. To load your most recent saved game, press <Show main menu> to return to the main menu, then click on "Load / Save" and "Enter Ship."`
+	`Fortunately, your game is automatically saved every time you leave a planet. To load your most recent saved game, press <Show main menu> to return to the main menu, then click on "Manage Pilots" and "Enter Ship."`
 
 help "disabled"
 	`Your ship just got disabled! Before an enemy ship finishes you off, you should find someone to help you.`
@@ -87,11 +81,28 @@ help "map advanced shops"
 	`Each ship or outfit can be clicked on, displaying that item's stats while also highlighting any planets where it is sold. Using Shift+click on a ship or outfit after you already have one selected will display that item's stats side by side with the previously selected item.`
 	`You can also press F to search the shipyard and outfitter maps for a specific ship or outfit.`
 
+help "map advanced stars"
+	`The starry map mode displays the stars on the system map. This can also be enabled by pressing T. The stars present in a system affect the amount of solar power and solar wind available for use by solar collectors and ramscoops respectively.`
+
 help "map advanced danger"
 	`The galaxy can be a dangerous place! Pirates raid some systems more frequently or in greater strength than others, and a poorly defended convoy risks attracting them in many systems. To get an idea of the relative danger of different systems, click on the alert icon next to the system name.`
 
 help "multiple ships"
-	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. Ships can also be sorted by clicking on the column headers in the player info panel. You will use the first ship in the list as your flagship. In the player info panel (accessed with <View player info>) you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
+	`Now that you have more than one ship, you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel, as long as you are landed. You will use the first ship in the list as your flagship.`
+	`You can also "park" escorts in the player info panel.`
+
+help "shop with multiple ships"
+	`If you want to select a few similar ships from your fleet at once, double-click one of them. Other ships of the same model, with the same outfits as the one you selected will be added to your selection.`
+
+help "player info"
+	`The player info panel contains a wide variety of information about your pilot, including their net worth, combat rating, salary, and licenses.`
+	`It also contains a list of all ships you currently own. Clicking on a ship and then going to the ship info tab, or double clicking on it, will bring up more information about that ship.`
+	`Your pilot's logbook and current missions can be accessed by clicking on the buttons below the panel.`
+	`The player info panel can be brought up at any time by pressing <View player info>, including mid-flight. However, some functionalities of the panel can only be accessed while landed.`
+
+help "fleet management"
+	`You can click on the column headers to temporarily sort your fleet. To make this order permanent, press the "Save Order" button.`
+	`You can also park your ships by selecting them and pressing "Park", or by pressing "Park Local" or "Park All". Parked ships will not launch or follow you, and do not require any crew salaries. You cannot park or unpark ships mid-flight.`
 
 help "ship info"
 	`The ship info tab lets you view detailed information about ships in your fleet at any time. This includes any information you could see at a shipyard or outfitter, as well as the cargo and passengers distributed among each ship.`
@@ -101,6 +112,7 @@ help "multiple ship controls"
 	`Once you're in space with multiple ships that you own, you can give orders to those escorts. Orders will be given to all selected escorts, or if no escorts are selected then all your escorts will receive the order. Escorts can be selected by either clicking on them in space, clicking the ship icon at the bottom left of the screen, or by clicking and dragging to select a group of escorts in space. The list of escort order keys can be found in the preferences panel.`
 	`Escorts can also be ordered with the mouse. Right-clicking on an empty point in space will order escorts to fly to and hold position at that point, while right-clicking on a hostile ship will order your escorts to focus fire on it, and right-clicking on a friendly target will cause them to follow it.`
 	`Escorts can be saved into control groups by pressing Control+number key. All selected escorts will then be bound to that number key, selecting the group when pressed.`
+	`Ship group management can be done while flying around or while in the shipyard, outfitter, or player info panel.`
 
 help "fleet asteroid mining"
 	`With an asteroid scanner and a fleet, you can direct your fleet to assist with mining operations and collect mined resources.`
@@ -143,27 +155,38 @@ help "outfitter"
 	`Here, you can buy new equipment for your ship. Your ship has a limited amount of "outfit space," and most outfits use up some of that space.`
 	`Some types of outfits have other requirements as well. For example, only some of your outfit space can be used for engines or weapons; this is your ship's "engine capacity" and "weapon capacity." Guns and missile launchers also require a free "gun port," and turrets require a free "turret mount." Also, missiles can only be bought if you have the right launcher installed.`
 	`Use your scroll wheel or click and drag, to scroll the view.`
-	`As in the trading and shipyard panels, you can hold down Shift, Control, or Alt to buy 5, 20, or 500 of an outfit at once, or multiple keys for larger amounts.`
+	`As in the trading and shipyard panels, you can hold down Shift, Control, or Alt to buy, sell, or move 5, 20, or 500 of an outfit at once, or multiple keys for larger amounts.`
 	`You can also press F to search the outfitter for a specific item.`
 
 help "shipyard"
 	`Here, you can buy new ships.`
 	`Use your scroll wheel or click and drag, to scroll the view.`
 	`As in the trading and outfitter panels, you can hold down Shift, Control, or Alt to buy 5, 20, or 500 ships at once, or multiple keys for larger amounts.`
+	`You can use the shortcuts B to Buy, S to Sell the ship and outfits, and R to sell the ship and retain the outfits if the planet has an outfitter.`
 	`You can also press F to search the shipyard for a specific ship.`
 
 help "cargo management"
-	`Sometimes you may want to buy some outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits or you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons. To accomplish this, you need to switch out of installation mode into 'purchase to cargo' mode. This can be achieved by Control+clicking on your selected ship to deselect it.`
-	`When you are in 'purchase to cargo' mode, your ship information on the right-hand side will be replaced by information on how much cargo space you currently have available.`
-	`Outfits that are in your cargo hold can be (re)installed at any outfitter without cost.`
+	`Sometimes you may want to buy outfits directly into your cargo hold instead of having them installed.`
+	`You can use the following keyboard shortcuts or the buttons to move outfits around:`
+	`- "B" to buy and install outfits`
+	`- "S" to sell outfits from cargo, planetary storage, or your ship (in that order)`
+	`- "I" to install outfits from cargo and/or storage (in that order)`
+	`- "U" to uninstall outfits from your ship and leave them in planetary storage, or unload outfits from cargo to planetary storage (in that order)`
+	`- "C" to move outfits from planetary storage and/or the outfitter (after paying) and move them into cargo`
+	`- "R" to move outfits from your cargo hold (if any are there) or else to uninstall to planetary storage`
+	`Outfits that are in your cargo hold can be installed at any outfitter without cost.`
 
 help "uninstalling and storage"
-	`You can also uninstall outfits directly into planetary storage by selecting the outfit and pressing U. This can be useful for if you want to shuffle outfits between ships, store outfits for future use, or simply try on different outfits. Outfits in storage can also be transferred to cargo when you go to 'purchase to cargo' mode. Outfits that are in planetary storage or cargo can be (re)installed at any outfitter without cost.`
-	`If you sell an outfit at an outfitter, then you can immediately buy it back for the same price that you sold it, so long as you do not leave the planet. This means that you do not necessarily need to worry about uninstalling outfits into planetary storage when you are changing outfits around.`
+	`Using planetary storage can be useful for if you want to shuffle outfits between ships, store outfits for future use, or simply try different outfits.`
+	`Outfits that are in planetary storage or cargo can be installed without cost.`
+	`If you sell an outfit at an outfitter, then you can immediately buy it back for the same price that you sold it, so long as you do not leave the planet.`
+	`This means that you do not necessarily need to worry about uninstalling outfits into planetary storage when you are changing outfits around.`
 
 help "outfitter with multiple ships"
 	`You can manage outfits on multiple ships at the same time. Ctrl+click a ship icon to add it to your selection. You can also use Shift+click to select a range of ships.`
 	`When you have more than one ship selected, you can install or remove outfits from all of those ships at once. Additionally, all selected ships with the currently selected outfit installed are marked with a pointer next to their sidebar icon.`
+	`Escorts can be saved into control groups by pressing a number key while holding Control. All selected escorts will then be bound to that number key, and can be selected again at any time by pressing it.`
+	`Ship group management can be done while flying around or while in the shipyard, outfitter, or player info panel.`
 
 help "stranded"
 	`Oops! You just ran out of fuel in an uninhabited star system. Fortunately, other ships are willing to help you.`
@@ -184,3 +207,4 @@ help "control ship with mouse"
 	`<Reverse> is used to thrust reverse.`
 	`Right mouse click will fire primary weapons.`
 	`<Mouse turning (hold)> will toggle mouse turning while it is held.`
+	`The "go to and hold" command is remapped from the right mouse button to the middle one.`

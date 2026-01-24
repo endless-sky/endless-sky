@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WORMHOLE_STRATEGY_H_
-#define WORMHOLE_STRATEGY_H_
+#pragma once
 
 #include <cstdint>
 
@@ -31,7 +30,3 @@ enum class WormholeStrategy : int_fast8_t {
 	// Allow use of all wormholes.
 	ALL,
 };
-
-
-
-#endif

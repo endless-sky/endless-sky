@@ -113,6 +113,20 @@ mission "Drak guarding Void Sprites"
 		system Nenia
 		ship "Archon (Cloaked)" "Sleeping Dragon"
 
+mission "Drak guarding Incipias space"
+	invisible
+	landing
+	repeat
+	to offer
+		not "Drak guarding Incipias space: active"
+	to complete
+		never
+	npc save
+		government "Drak (Incipias)"
+		personality forbearing frugal heroic vindictive
+		system Il'le
+		ship "Archon (Hyperdrive Cloaked)" "Guardian of Spring"
+
 # Mission for those who had a savefile prior to 0.9.15 with the old Archon missions
 mission "Archon Personality Compatibility Patch"
 	invisible

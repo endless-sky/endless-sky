@@ -13,16 +13,12 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PI_H_
-#define PI_H_
+#pragma once
+
+#include <numbers>
 
 
 
-// Constants to replace M_PI (which is not available on all operating systems).
-constexpr double PI = 3.14159265358979323846;
+constexpr double PI = std::numbers::pi;
 constexpr double TO_RAD = PI / 180.;
 constexpr double TO_DEG = 180. / PI;
-
-
-
-#endif

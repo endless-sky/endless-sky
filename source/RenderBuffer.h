@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RENDERBUFFER_H
-#define RENDERBUFFER_H
+#pragma once
 
 #include "Point.h"
 #include "Screen.h"
@@ -24,12 +23,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Class that can redirect all drawing commands to an internal texture.
 // This buffer uses coordinates from (0, 0) in the top left, to (width, height)
 // in the bottom right.
-class RenderBuffer
-{
+class RenderBuffer {
 public:
 	// RAII wrapper to prevent accidentally not unbinding the render target.
-	class RenderTargetGuard final
-	{
+	class RenderTargetGuard final {
 	public:
 		~RenderTargetGuard();
 
@@ -88,8 +85,6 @@ private:
 	int lastViewport[4] = {};
 
 	float fadePadding[4] = {};
+
+	Point multiplier;
 };
-
-
-
-#endif

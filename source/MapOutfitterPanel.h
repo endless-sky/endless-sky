@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_OUTFITTER_PANEL_H_
-#define MAP_OUTFITTER_PANEL_H_
+#pragma once
 
 #include "MapSalesPanel.h"
 
@@ -59,9 +58,6 @@ private:
 
 
 private:
-	// Maps category names to list of outfits in that category, sorted
-	// alphabetically by name.
-	std::map<std::string, std::vector<const Outfit *>> catalog;
 	// Flat list of all outfits shown.
 	std::vector<const Outfit *> list;
 
@@ -71,7 +67,3 @@ private:
 	OutfitInfoDisplay selectedInfo;
 	OutfitInfoDisplay compareInfo;
 };
-
-
-
-#endif

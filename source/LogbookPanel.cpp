@@ -15,20 +15,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "LogbookPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "Color.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
-#include "text/layout.hpp"
+#include "text/Layout.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/SpriteSet.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
@@ -134,27 +132,25 @@ void LogbookPanel::Draw()
 	if(selectedDate && begin != end)
 	{
 		const auto layout = Layout(static_cast<int>(TEXT_WIDTH - 2. * PAD), Alignment::RIGHT);
-		for(auto it = begin; it != end; ++it)
+		for(auto datedEntry = begin; datedEntry != end; ++datedEntry)
 		{
-			string date = it->first.ToString();
+			string date = datedEntry->first.ToString();
 			font.Draw({date, layout}, pos + Point(0., textOffset.Y()), dim);
 			pos.Y() += LINE_HEIGHT;
 
-			wrap.Wrap(it->second);
-			wrap.Draw(pos, medium);
-			pos.Y() += wrap.Height() + GAP;
+			pos.Y() += datedEntry->second.Draw(pos, wrap, medium);
+			pos.Y() += GAP;
 		}
 	}
 	else if(!selectedDate && pit != player.SpecialLogs().end())
 	{
-		for(const auto &it : pit->second)
+		for(const auto &[heading, entry] : pit->second)
 		{
-			font.Draw(it.first, pos + textOffset, bright);
+			font.Draw(heading, pos + textOffset, bright);
 			pos.Y() += LINE_HEIGHT;
 
-			wrap.Wrap(it.second);
-			wrap.Draw(pos, medium);
-			pos.Y() += wrap.Height() + GAP;
+			pos.Y() += entry.Draw(pos, wrap, medium);
+			pos.Y() += GAP;
 		}
 	}
 
@@ -165,17 +161,21 @@ void LogbookPanel::Draw()
 
 bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NORMAL;
+
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		double direction = (key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN);
 		Drag(0., (Screen::Height() - 100.) * direction);
+		sound = UI::UISound::NONE;
 	}
 	else if(key == SDLK_HOME || key == SDLK_END)
 	{
 		double direction = (key == SDLK_HOME) - (key == SDLK_END);
 		Drag(0., maxScroll * direction);
+		sound = UI::UISound::NONE;
 	}
 	else if(key == SDLK_UP || key == SDLK_DOWN)
 	{
@@ -234,14 +234,20 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			categoryScroll = max(categoryScroll, 0.);
 		}
 	}
+	else
+		sound = UI::UISound::NONE;
 
+	UI::PlaySound(sound);
 	return true;
 }
 
 
 
-bool LogbookPanel::Click(int x, int y, int clicks)
+bool LogbookPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	x -= Screen::Left();
 	y -= Screen::Top();
 	if(x < SIDEBAR_WIDTH)
@@ -255,10 +261,11 @@ bool LogbookPanel::Click(int x, int y, int clicks)
 			// If selecting a different year, select the first month in that
 			// year.
 			Update(false);
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 	}
 	else if(x > WIDTH)
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 
 	return true;
 }

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RANDOM_H_
-#define RANDOM_H_
+#pragma once
 
 #include <cstdint>
 
@@ -45,7 +44,3 @@ public:
 	// Get a number from a normal distribution with standard or specified mean and stddev.
 	static double Normal(double mean = 0, double sigma = 1);
 };
-
-
-
-#endif

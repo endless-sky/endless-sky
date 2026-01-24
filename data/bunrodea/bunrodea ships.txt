@@ -34,6 +34,7 @@ ship "Kaiken"
 			"hit force" 600
 	outfits
 		"Locust Blaster" 3
+		"Lasher Pistol"
 		
 		"Solar Battery"
 		"Solar Cell" 27
@@ -75,6 +76,8 @@ ship "Sasumata"
 		"weapon capacity" 122
 		"engine capacity" 126
 		"cloak" .05
+		"cloaked regen multiplier" -1
+		"cloaked repair multiplier" -1
 		"cloaking energy" 10
 		"cloaking fuel" .05
 		weapon
@@ -87,6 +90,7 @@ ship "Sasumata"
 		"Swarm Missile" 1000
 		"Swarm Clip"
 		"Buzzer Anti-Missile" 2
+		"Lasher Pistol" 41
 		
 		"Quark Reactor"
 		"Reactor Overclocker" 2
@@ -116,7 +120,8 @@ ship "Sasumata"
 	explode "medium explosion" 20
 	explode "large explosion" 5
 	"final explode" "final explosion small"
-	description "The Sasumata is the chief scout ship of the Bunrodea. While not designed for combat, this stealth transport vessel is still capable of holding its all against some smaller warships; its four fighter bays turn the Sasumata into a force to be reckoned with when its fighters are deployed."
+	description "The Sasumata is the chief scout ship of the Bunrodea. While not designed for combat, this stealth transport vessel is still capable of holding its own against some smaller warships; its four fighter bays turn the Sasumata into a force to be reckoned with when its fighters are deployed."
+	description "	The cloaking technology is built into the Sasumata's hull; it cannot be removed or transferred to another ship."
 
 
 
@@ -145,6 +150,7 @@ ship "Tanto"
 			"hit force" 1800
 	outfits
 		"Buzzer Anti-Missile" 2
+		"Lasher Pistol" 5
 		
 		"Solar Battery" 2
 		"Solar Cell" 42
@@ -198,6 +204,7 @@ ship "Ararebo"
 	outfits
 		"Locust Turret" 2
 		"Buzzer Anti-Missile" 2
+		"Lasher Pistol" 29
 		
 		"Dark Reactor"
 		"Reactor Overclocker" 8
@@ -266,6 +273,7 @@ ship "Tekkan"
 		"Locust Blaster" 2
 		"Locust Turret"
 		"Buzzer Anti-Missile" 2
+		"Lasher Pistol" 8
 		
 		"Quark Reactor"
 		"Solar Battery"
@@ -321,6 +329,7 @@ ship "Kunai"
 	outfits
 		"Mandible Cannon" 4
 		"Locust Blaster" 2
+		"Lasher Pistol" 26
 		
 		"Quark Reactor"
 		"Solar Battery" 2
@@ -380,6 +389,7 @@ ship "Kama"
 		"Mandible Cannon" 4
 		"Swarm Pod" 6
 		"Swarm Missile" 2400
+		"Lasher Pistol" 41
 		
 		"Electroweak Reactor"
 		"Reactor Overclocker" 2
@@ -448,6 +458,7 @@ ship "Chigiriki"
 		"Locust Blaster" 6
 		"Swarm Pod" 10
 		"Swarm Missile" 4000
+		"Lasher Pistol" 59
 		
 		"Dark Reactor"
 		"Reactor Limiter" 3
@@ -493,4 +504,4 @@ ship "Chigiriki"
 	explode "large explosion" 20
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Chigiriki is the largest of the Bunrodea's gunships, boasting an astonishing seventeen gun ports. One of these ports is equipped with the devastating Thorax Cannon, a massive cannon capable of dealing significant damage to any ship that dares get in the Chigiriki's way. Some Chigiriki also double as missile platforms, raining down a walls of missiles so thick on their target that it can blot out the nearest star."
+	description "The Chigiriki is the largest of the Bunrodea's gunships, boasting an astonishing seventeen gun ports. One of these ports is equipped with the devastating Thorax Cannon, a massive cannon capable of dealing significant damage to any ship that dares get in the Chigiriki's way. Some Chigiriki also double as missile platforms, raining down walls of missiles so thick that they can blot out the nearest star."
