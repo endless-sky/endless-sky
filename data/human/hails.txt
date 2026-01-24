@@ -3054,7 +3054,7 @@ phrase "friendly civilian"
 	word
 		"Beam Lasers." 75
 		"Heavy Lasers." 75
-		"My crew."
+		"my crew."
 
 phrase "friendly civilian"
 	word
