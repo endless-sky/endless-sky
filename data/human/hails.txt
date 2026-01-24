@@ -1578,6 +1578,7 @@ phrase "friendly civilian"
 		"nearly formless spacefarers caged by the vastness between stars"
 		"human advancement without hyperdrives" 4
 		"broccoli"
+		"a captain who stole a jump drive from the Quarg and traveled the galaxy"
 	word
 		"?" 6
 		"? It's a fascinating read."
