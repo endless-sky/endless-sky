@@ -170,9 +170,12 @@ event "graveyard insights"
 		add description `	Soon after the beginning the invasion, an attack on some sort of advanced nuclear facility started a meltdown; the fallout quickly spread across most of the planet, leaving all Builder settlements uninhabitable.`
 
 mission "Ringworld Debris"
-	landing
 	invisible
-	on enter "Queri"
+	entering
+	source
+		system "Queri"
+	destination "Earth"
+	on offer
 		set "ringworld debris"
 		conversation
 			`When you enter this suspiciously empty system, your attention is drawn to your ship's scanners. The proximity detection system is going off, suggesting that something sizable is close to your ship, although whatever it is you can't see it as you look out your cockpit.`
@@ -180,9 +183,7 @@ mission "Ringworld Debris"
 			scene "scene/ringworld debris"
 			`	In one particular corner you see that there is a small, barely recognizable tube, badly damaged but with a few intact wires creeping out. After tinkering a bit with the wires, you manage to connect the debris to your ship's secondary power systems. It barely uses any energy at all, but you can feel the air around it starting to get slightly colder.`
 			`	You unplug it and store the debris in a separate part of your ship. Maybe some alien species could tell you about it, if you were to bring it to them.`
-		fail
-	to complete
-		never
+				decline
 
 mission "Ringworld Debris: Remnant"
 	minor
