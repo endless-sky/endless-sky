@@ -826,7 +826,7 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 				random < 50
 			branch "weapon telis EMP"
 				has "ka'het: telis"
-			branch "weapon telis EMP"
+			branch "weapon vareti gun"
 				has "ka'het: vareti"
 				random < 50
 			branch "weapon vareti EMP"
@@ -859,7 +859,7 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 				outfit "EMP Torpedo" 64
 			`	The front of this Telis'het appears to have been set up for electronic warfare: a long series of EMP Deployers with their storage rack show prominently, plus a number of Ravager Turrets on the back. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
 				decline
-			label "weapon telis EMP"
+			label "weapon vareti gun"
 			action
 				outfit "Ka'het Nullifier"
 				outfit "Ka'het Annihilator" 4
