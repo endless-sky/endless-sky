@@ -332,11 +332,11 @@ mission "Ka'het: Death in the Graveyard 1"
 			`	Minutes pass, and the Maeri'het continues to show no reaction of any kind to your presence. By the time you complete a fly-around, you both have almost reached the ground; a few metallic panels detach from the Ka'het's shell just as it touches down, and balloons start inflating out of the resulting holes.`
 				goto dead
 			label attack
-			branch attack_fleet
+			branch "attack fleet"
 				"total ships" > 1
 			`	You warm up your weapons and set the targeting computer on the enemy. With the press of a button you unleash all your wrath on the Ka'het - so much that the first shot seems to encounter no shield, penetrating deep beneath the skin of the slug. The Maeri'het lists to starboard and starts falling rapidly; a few metallic panels detach from its shell right before it reaches the ground, and balloons rapidly inflate out of the resulting holes.`
 				goto dead
-			label attack_fleet
+			label "attack fleet"
 			`	You warm up your weapons and set the targeting computer on the enemy. You unleash all your fleet's wrath on the Ka'het - so much that the first shot seems to encounter no shield, penetrating deep beneath the skin of the slug. The Maeri'het lists to starboard and starts falling rapidly; a few metallic panels detach from its shell right before it reaches the ground, and balloons rapidly inflate out of the resulting holes.`
 			label dead
 			`	The Ka'het at last emits an uncomfortably loud whistle, reducing in intensity before disappearing completely. It sits motionless at the bottom of what looks like a dry riverbed, surrounded by nothing but you and the calm night sky.`
@@ -636,219 +636,6 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 		has "outfit (flagship installed): Research Laboratory"
 	to complete
 		has "ka'het: dead in the graveyard"
-	on complete
-		clear "ka'het: dead in the graveyard"
-		conversation
-			`With the Ka'het destroyed, you return to the site where the other slug lies defenseless. While the battle did not touch it, you notice that a number of components show superficial damage, either due to your extraction job or previous battle damage. It would be best to focus on looting just one area and disregarding the rest to avoid risking its collapse.`
-			choice
-				`	(Loot its energy generators.)`
-					goto energy
-				`	(Loot its shield and cooling implants.)`
-					goto shield
-				`	(Loot its engine bay.)`
-					goto engine
-				`	(Loot its weapon systems.)`
-					goto weapon
-				`	(Try to loot all of its outfits.)`
-			branch all_lucky
-				random < 20 + "flagship attribute: outfit scan power" / 1000
-			action
-				outfit "Ka'het Reserve Accumulator"
-				outfit "Neodymium"
-				outfit "Iron" 4
-				outfit "Copper" 2
-			`	You are about halfway through the outfit list when, without warning, the entire structure starts pulsating in an increasingly more violent manner. You leap toward your ship, but the entire slug implodes in front of you! You make it through unscathed, but most of the outfits you had extracted have been critically damaged by the flying debris. The only things left intact among the scrap are a single Reserve Accumulator and some precious metals.`
-				decline
-
-			label all_lucky
-			branch all_telis
-				has "ka'het: telis"
-			branch all_vareti
-				has "ka'het: vareti"
-			action
-				outfit "Ka'het Annihilator Turret" 2
-				outfit "Ka'het Ravager Turret" 2
-				outfit "Ka'het Ravager Beam" 2
-
-				outfit "Ka'het Support Cooling"
-				outfit "Ka'het Primary Cooling"
-				outfit "Ka'het Shield Restorer" 2
-				outfit "Ka'het MHD Generator" 2
-				outfit "Ka'het Reserve Accumulator"
-
-				outfit "Maeri Engine Nacelles"
-				outfit "Ka'het Sustainer Nacelles"
-				outfit "Hyperdrive"
-			`	Despite the apparent damage, the structure holds up surprisingly well to your careful looting. It takes a while, but you successfully extract all of the outfits carried aboard the downed Maeri'het.`
-				decline
-			label all_telis
-			action
-				outfit "Ka'het Ravager Beam" 4
-				outfit "Ka'het Annihilator Turret" 5
-
-				outfit "Ka'het Shield Restorer" 10
-				outfit "Ka'het Primary Cooling"
-				outfit "Ka'het Support Cooling"
-				outfit "Ka'het MHD Generator" 2
-				outfit "Ka'het Reserve Accumulator" 6
-
-				outfit "Telis Engine Nacelles"
-				outfit "Ka'het Sustainer Nacelles"
-				outfit "Hyperdrive"
-			`	Despite the apparent damage, the structure holds up surprisingly well to your careful looting. It takes a while, but you successfully extract all the outfits carried aboard of the downed Telis'het.`
-				decline
-			label all_vareti
-			action
-				outfit "Ka'het Nullifier"
-				outfit "Ka'het Ravager Beam" 4
-				outfit "Ka'het Annihilator Turret" 4
-				outfit "Ka'het Ravager Turret"
-				outfit "Ka'het EMP Deployer" 2
-				outfit "EMP Torpedo" 13
-				
-				outfit "Ka'het Grand Restorer" 2
-				outfit "Ka'het MHD Generator" 6
-				outfit "Ka'het Reserve Accumulator" 8
-				outfit "Ka'het Primary Cooling"
-				outfit "Ka'het Support Cooling"
-				
-				outfit "Vareti Engine Block"
-				outfit "Hyperdrive"
-			`	Despite the apparent damage, the structure holds up surprisingly well to your careful looting. It takes a while, but you successfully extract all of the outfits carried aboard the downed Vareti'het.`
-				decline
-
-			label energy
-			branch energy_telis
-				has "ka'het: telis"
-			branch energy_vareti
-				has "ka'het: vareti"
-			action
-				outfit "Ka'het MHD Generator" 2
-				outfit "Ka'het Reserve Accumulator"
-			`	Deep inside the shell of the Maeri'het, you use a blowtorch to cut the MHD Generators out of their fittings and uninstall the Reserve Accumulators from their banks. Over a few hours, you are able to make a nice stash in your cargo hold before you leave.`
-				decline
-			label energy_telis
-			action
-				outfit "Ka'het MHD Generator" 4
-				outfit "Ka'het Reserve Accumulator"
-			`	Deep inside the shell of the Telis'het, you use a blowtorch to cut the MHD Generators out of their fittings and uninstall the Reserve Accumulators from their banks. Over a few hours, you are able to make a good stash in your cargo hold before you leave.`
-				decline
-			label energy_vareti
-			action
-				outfit "Ka'het MHD Generator" 6
-				outfit "Ka'het Reserve Accumulator" 8
-			`	Deep inside the shell of the Vareti'het, you use a blowtorch to cut the MHD Generators out of their fittings and uninstall the Reserve Accumulators from their banks. Over a few hours, you are able to make a huge stash in your cargo hold before you leave.`
-				decline
-
-			label shield
-			branch shield_telis
-				has "ka'het: telis"
-			branch shield_vareti
-				has "ka'het: vareti"
-			action
-				outfit "Ka'het Support Cooling"
-				outfit "Ka'het Primary Cooling"
-				outfit "Ka'het Shield Restorer" 2
-			`	Mounted at the very edges of the shell of the Maeri'het, you find a pair of pristine Shield Restorers connected with a heat sink. You uninstall them together with the cooling systems they sit next to, and in a few hours you are ready to leave.`
-				decline
-			label shield_telis
-			action
-				outfit "Ka'het Primary Cooling"
-				outfit "Ka'het Support Cooling"
-				outfit "Ka'het Shield Restorer" 10
-			`	Mounted at the very edges of the shell of the Telis'het, you find a series of pristine Shield Restorers connected with a heat sink. You uninstall them together with the cooling systems they sit next to, and in a few hours you are ready to leave.`
-				decline
-			label shield_vareti
-			action
-				outfit "Ka'het Primary Cooling"
-				outfit "Ka'het Support Cooling"
-				outfit "Ka'het Grand Restorer" 2
-			`	Mounted at the very edges of the shell of the Vareti'het, you find a pair of enormous Grand Restorers connected with a heat sink. You carefully uninstall them together with the cooling systems they sit next to, and in a few hours you are ready to leave.`
-				decline
-
-			label engine
-			branch engine_telis
-				has "ka'het: telis"
-			branch engine_vareti
-				has "ka'het: vareti"
-			action
-				outfit "Maeri Engine Nacelles"
-				outfit "Ka'het Sustainer Nacelles"
-			`	Despite their easily accessible position, disconnecting the nacelles of a Maeri'het proves to be more complicated than expected due to the bundle of tubes attached to them. After a few hours and a lot of sweat you are able to put both engine types into your cargo hold, and you can finally leave.`
-				decline
-			label engine_telis
-			action
-				outfit "Telis Engine Nacelles"
-				outfit "Ka'het Sustainer Nacelles" 2
-			`	Despite their easily accessible position, disconnecting the nacelles of a Telis'het proves to be more complicated than expected due to the bundle of tubes attached to them. After a few hours and a lot of sweat you are able to put both engine types into your cargo hold, and you can finally leave.`
-				decline
-			label engine_vareti
-			action
-				outfit "Vareti Engine Block"
-			`	Despite its easily accessible position, disconnecting the huge thrusters of a Vareti'het proves to be more complicated than expected due to the bundle of tubes attached to it. After a few hours and a lot of sweat you are able to put the engine block into your cargo hold, and you can finally leave.`
-				decline
-
-			label weapon
-			branch weapon_maeri_EMP
-				has "ka'het: maeri"
-				random < 50
-			branch weapon_telis_gun
-				has "ka'het: telis"
-				random < 50
-			branch weapon_telis_EMP
-				has "ka'het: telis"
-			branch weapon_vareti_gun
-				has "ka'het: vareti"
-				random < 50
-			branch weapon_vareti_EMP
-				has "ka'het: vareti"
-			action
-				outfit "Ka'het Annihilator Turret" 2
-				outfit "Ka'het Ravager Turret" 2
-				outfit "Ka'het Ravager Beam" 2
-			`	The front of this Maeri'het appears to have been set up to focus on hull damage: a pair of Ravager Beams and another of Ravager Turrets show prominently, plus a couple of Annihilator Turrets on the back. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
-				decline
-			label weapon_maeri_EMP
-			action
-				outfit "EMP Torpedo" 32
-				outfit "Ka'het Ravager Turret"
-				outfit "Ka'het EMP Deployer" 2
-				outfit "Ka'het Annihilator Turret" 3
-			`	The front of this Maeri'het appears to have been set up for electronic warfare: a pair of EMP Deployers with their storage rack show prominently, plus a couple of Annihilator Turrets on the back. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
-				decline
-			label weapon_telis_gun
-			action
-				outfit "Ka'het Ravager Beam" 4
-				outfit "Ka'het Annihilator Turret" 5
-			`	The front of this Telis'het appears to have been set up to focus on hull damage: a long series of Ravager Beams show prominently, plus a number of Annihilator Turrets on the back. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
-				decline
-			label weapon_telis_EMP
-			action
-				outfit "Ka'het EMP Deployer" 4
-				outfit "Ka'het Annihilator Turret"
-				outfit "Ka'het Ravager Turret" 4
-				outfit "EMP Torpedo" 64
-			`	The front of this Telis'het appears to have been set up for electronic warfare: a long series of EMP Deployers with their storage rack show prominently, plus a number of Ravager Turrets on the back. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
-				decline
-			label weapon_vareti_gun
-			action
-				outfit "Ka'het Nullifier"
-				outfit "Ka'het Annihilator" 4
-				outfit "Ka'het Ravager Beam" 2
-				outfit "Ka'het Annihilator Turret" 2
-				outfit "Ka'het Ravager Turret" 4
-			`	The impressive front of this Vareti'het appears to have been set up to focus on shield damage: a long series of Annihilators show prominently, surrounding the enormous barrel of the Nullifier. On the back, a variety of Ravager and Annihilator Turrets make their appearance. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
-				decline
-			label weapon_vareti_EMP
-			action
-				outfit "Ka'het Nullifier"
-				outfit "Ka'het Ravager Beam" 4
-				outfit "Ka'het Annihilator Turret" 4
-				outfit "Ka'het Ravager Turret"
-				outfit "Ka'het EMP Deployer" 2
-				outfit "EMP Torpedo" 32
-			`	The impressive front of this Vareti'het appears to have been set up to focus on hull damage: a number of EMP Deployers and Ravager Beams show prominently, surrounding the enormous barrel of the Nullifier. On the back, a variety of Ravager and Annihilator Turrets make their appearance. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
-				decline
 	to fail
 		not "Ka'het: Another Death in the Graveyard 1A: active"
 		not "Ka'het: Another Death in the Graveyard 0: active"
@@ -878,6 +665,219 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 		dialog "You have destroyed the Ka'het ship. You can now return to <planet> to loot the hibernated slug."
 		on kill
 			set "ka'het: dead in the graveyard"
+	on complete
+		clear "ka'het: dead in the graveyard"
+		conversation
+			`With the Ka'het destroyed, you return to the site where the other slug lies defenseless. While the battle did not touch it, you notice that a number of components show superficial damage, either due to your extraction job or previous battle damage. It would be best to focus on looting just one area and disregarding the rest to avoid risking its collapse.`
+			choice
+				`	(Loot its energy generators.)`
+					goto energy
+				`	(Loot its shield and cooling implants.)`
+					goto shield
+				`	(Loot its engine bay.)`
+					goto engine
+				`	(Loot its weapon systems.)`
+					goto weapon
+				`	(Try to loot all of its outfits.)`
+			branch "all lucky"
+				random < 20 + "flagship attribute: outfit scan power" / 1000
+			action
+				outfit "Ka'het Reserve Accumulator"
+				outfit "Neodymium"
+				outfit "Iron" 4
+				outfit "Copper" 2
+			`	You are about halfway through the outfit list when, without warning, the entire structure starts pulsating in an increasingly more violent manner. You leap toward your ship, but the entire slug implodes in front of you! You make it through unscathed, but most of the outfits you had extracted have been critically damaged by the flying debris. The only things left intact among the scrap are a single Reserve Accumulator and some precious metals.`
+				decline
+
+			label "all lucky"
+			branch "all telis"
+				has "ka'het: telis"
+			branch "all vareti"
+				has "ka'het: vareti"
+			action
+				outfit "Ka'het Annihilator Turret" 2
+				outfit "Ka'het Ravager Turret" 2
+				outfit "Ka'het Ravager Beam" 2
+
+				outfit "Ka'het Support Cooling"
+				outfit "Ka'het Primary Cooling"
+				outfit "Ka'het Shield Restorer" 2
+				outfit "Ka'het MHD Generator" 2
+				outfit "Ka'het Reserve Accumulator"
+
+				outfit "Maeri Engine Nacelles"
+				outfit "Ka'het Sustainer Nacelles"
+				outfit "Hyperdrive"
+			`	Despite the apparent damage, the structure holds up surprisingly well to your careful looting. It takes a while, but you successfully extract all of the outfits carried aboard the downed Maeri'het.`
+				decline
+			label "all telis"
+			action
+				outfit "Ka'het Ravager Beam" 4
+				outfit "Ka'het Annihilator Turret" 5
+
+				outfit "Ka'het Shield Restorer" 10
+				outfit "Ka'het Primary Cooling"
+				outfit "Ka'het Support Cooling"
+				outfit "Ka'het MHD Generator" 2
+				outfit "Ka'het Reserve Accumulator" 6
+
+				outfit "Telis Engine Nacelles"
+				outfit "Ka'het Sustainer Nacelles"
+				outfit "Hyperdrive"
+			`	Despite the apparent damage, the structure holds up surprisingly well to your careful looting. It takes a while, but you successfully extract all the outfits carried aboard of the downed Telis'het.`
+				decline
+			label "all vareti"
+			action
+				outfit "Ka'het Nullifier"
+				outfit "Ka'het Ravager Beam" 4
+				outfit "Ka'het Annihilator Turret" 4
+				outfit "Ka'het Ravager Turret"
+				outfit "Ka'het EMP Deployer" 2
+				outfit "EMP Torpedo" 13
+				
+				outfit "Ka'het Grand Restorer" 2
+				outfit "Ka'het MHD Generator" 6
+				outfit "Ka'het Reserve Accumulator" 8
+				outfit "Ka'het Primary Cooling"
+				outfit "Ka'het Support Cooling"
+				
+				outfit "Vareti Engine Block"
+				outfit "Hyperdrive"
+			`	Despite the apparent damage, the structure holds up surprisingly well to your careful looting. It takes a while, but you successfully extract all of the outfits carried aboard the downed Vareti'het.`
+				decline
+
+			label energy
+			branch "energy telis"
+				has "ka'het: telis"
+			branch "energy vareti"
+				has "ka'het: vareti"
+			action
+				outfit "Ka'het MHD Generator" 2
+				outfit "Ka'het Reserve Accumulator"
+			`	Deep inside the shell of the Maeri'het, you use a blowtorch to cut the MHD Generators out of their fittings and uninstall the Reserve Accumulators from their banks. Over a few hours, you are able to make a nice stash in your cargo hold before you leave.`
+				decline
+			label "energy telis"
+			action
+				outfit "Ka'het MHD Generator" 4
+				outfit "Ka'het Reserve Accumulator"
+			`	Deep inside the shell of the Telis'het, you use a blowtorch to cut the MHD Generators out of their fittings and uninstall the Reserve Accumulators from their banks. Over a few hours, you are able to make a good stash in your cargo hold before you leave.`
+				decline
+			label "energy vareti"
+			action
+				outfit "Ka'het MHD Generator" 6
+				outfit "Ka'het Reserve Accumulator" 8
+			`	Deep inside the shell of the Vareti'het, you use a blowtorch to cut the MHD Generators out of their fittings and uninstall the Reserve Accumulators from their banks. Over a few hours, you are able to make a huge stash in your cargo hold before you leave.`
+				decline
+
+			label shield
+			branch "shield telis"
+				has "ka'het: telis"
+			branch "shield vareti"
+				has "ka'het: vareti"
+			action
+				outfit "Ka'het Support Cooling"
+				outfit "Ka'het Primary Cooling"
+				outfit "Ka'het Shield Restorer" 2
+			`	Mounted at the very edges of the shell of the Maeri'het, you find a pair of pristine Shield Restorers connected with a heat sink. You uninstall them together with the cooling systems they sit next to, and in a few hours you are ready to leave.`
+				decline
+			label "shield telis"
+			action
+				outfit "Ka'het Primary Cooling"
+				outfit "Ka'het Support Cooling"
+				outfit "Ka'het Shield Restorer" 10
+			`	Mounted at the very edges of the shell of the Telis'het, you find a series of pristine Shield Restorers connected with a heat sink. You uninstall them together with the cooling systems they sit next to, and in a few hours you are ready to leave.`
+				decline
+			label "shield vareti"
+			action
+				outfit "Ka'het Primary Cooling"
+				outfit "Ka'het Support Cooling"
+				outfit "Ka'het Grand Restorer" 2
+			`	Mounted at the very edges of the shell of the Vareti'het, you find a pair of enormous Grand Restorers connected with a heat sink. You carefully uninstall them together with the cooling systems they sit next to, and in a few hours you are ready to leave.`
+				decline
+
+			label engine
+			branch "engine telis"
+				has "ka'het: telis"
+			branch "engine vareti"
+				has "ka'het: vareti"
+			action
+				outfit "Maeri Engine Nacelles"
+				outfit "Ka'het Sustainer Nacelles"
+			`	Despite their easily accessible position, disconnecting the nacelles of a Maeri'het proves to be more complicated than expected due to the bundle of tubes attached to them. After a few hours and a lot of sweat you are able to put both engine types into your cargo hold, and you can finally leave.`
+				decline
+			label "engine telis"
+			action
+				outfit "Telis Engine Nacelles"
+				outfit "Ka'het Sustainer Nacelles" 2
+			`	Despite their easily accessible position, disconnecting the nacelles of a Telis'het proves to be more complicated than expected due to the bundle of tubes attached to them. After a few hours and a lot of sweat you are able to put both engine types into your cargo hold, and you can finally leave.`
+				decline
+			label "engine vareti"
+			action
+				outfit "Vareti Engine Block"
+			`	Despite its easily accessible position, disconnecting the huge thrusters of a Vareti'het proves to be more complicated than expected due to the bundle of tubes attached to it. After a few hours and a lot of sweat you are able to put the engine block into your cargo hold, and you can finally leave.`
+				decline
+
+			label weapon
+			branch "weapon maeri EMP"
+				has "ka'het: maeri"
+				random < 50
+			branch "weapon telis gun"
+				has "ka'het: telis"
+				random < 50
+			branch "weapon telis EMP"
+				has "ka'het: telis"
+			branch "weapon telis EMP"
+				has "ka'het: vareti"
+				random < 50
+			branch "weapon vareti EMP"
+				has "ka'het: vareti"
+			action
+				outfit "Ka'het Annihilator Turret" 2
+				outfit "Ka'het Ravager Turret" 2
+				outfit "Ka'het Ravager Beam" 2
+			`	The front of this Maeri'het appears to have been set up to focus on hull damage: a pair of Ravager Beams and another of Ravager Turrets show prominently, plus a couple of Annihilator Turrets on the back. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
+				decline
+			label "weapon maeri EMP"
+			action
+				outfit "EMP Torpedo" 32
+				outfit "Ka'het Ravager Turret"
+				outfit "Ka'het EMP Deployer" 2
+				outfit "Ka'het Annihilator Turret" 3
+			`	The front of this Maeri'het appears to have been set up for electronic warfare: a pair of EMP Deployers with their storage rack show prominently, plus a couple of Annihilator Turrets on the back. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
+				decline
+			label "weapon telis gun"
+			action
+				outfit "Ka'het Ravager Beam" 4
+				outfit "Ka'het Annihilator Turret" 5
+			`	The front of this Telis'het appears to have been set up to focus on hull damage: a long series of Ravager Beams show prominently, plus a number of Annihilator Turrets on the back. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
+				decline
+			label "weapon telis EMP"
+			action
+				outfit "Ka'het EMP Deployer" 4
+				outfit "Ka'het Annihilator Turret"
+				outfit "Ka'het Ravager Turret" 4
+				outfit "EMP Torpedo" 64
+			`	The front of this Telis'het appears to have been set up for electronic warfare: a long series of EMP Deployers with their storage rack show prominently, plus a number of Ravager Turrets on the back. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
+				decline
+			label "weapon telis EMP"
+			action
+				outfit "Ka'het Nullifier"
+				outfit "Ka'het Annihilator" 4
+				outfit "Ka'het Ravager Beam" 2
+				outfit "Ka'het Annihilator Turret" 2
+				outfit "Ka'het Ravager Turret" 4
+			`	The impressive front of this Vareti'het appears to have been set up to focus on shield damage: a long series of Annihilators show prominently, surrounding the enormous barrel of the Nullifier. On the back, a variety of Ravager and Annihilator Turrets make their appearance. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
+				decline
+			label "weapon vareti EMP"
+			action
+				outfit "Ka'het Nullifier"
+				outfit "Ka'het Ravager Beam" 4
+				outfit "Ka'het Annihilator Turret" 4
+				outfit "Ka'het Ravager Turret"
+				outfit "Ka'het EMP Deployer" 2
+				outfit "EMP Torpedo" 32
+			`	The impressive front of this Vareti'het appears to have been set up to focus on hull damage: a number of EMP Deployers and Ravager Beams show prominently, surrounding the enormous barrel of the Nullifier. On the back, a variety of Ravager and Annihilator Turrets make their appearance. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
+				decline
 
 mission "Ka'het: Patir Reveal"
 	invisible
