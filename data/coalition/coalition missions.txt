@@ -3054,7 +3054,7 @@ mission "Coalition: Long Lost Property 3"
 	on enter "Persian"
 		dialog `Entering the system, your scanners catch a trio of heavily modified Quicksilvers. They also inform you that the probe is in the system, though it fails at giving you its exact location, as if something is causing interference. The Quicksilvers notice you and ready their guns.`
 	npc board
-		personality staying nemesis target
+		personality staying marked target
 		government "Bounty"
 		system "Persian"
 		ship "Marauder Quicksilver (Engines) (Safe)" "Cohen"
@@ -3082,7 +3082,7 @@ mission "Coalition: Long Lost Property 3A"
 		"credits" > 1000000
 	source "Greenrock"
 	npc board
-		personality staying nemesis target
+		personality staying marked target
 		government "Bounty"
 		system "Persian"
 		ship "Marauder Quicksilver (Safe)" "Coven"
@@ -3102,7 +3102,7 @@ mission "Coalition: Long Lost Property 3B"
 		"credits" > 1000000
 	source "Greenrock"
 	npc board
-		personality staying nemesis target
+		personality staying marked target
 		government "Bounty"
 		system "Persian"
 		ship "Marauder Quicksilver (Weapons) (Safe)" "Conan"
