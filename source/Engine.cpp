@@ -517,6 +517,8 @@ void Engine::Step(bool isActive)
 			for(const StellarObject &object : player.GetSystem()->Objects())
 				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship.get()))
 					labels.emplace_back(labels, *player.GetSystem(), object);
+			// Determine if any transition missions can offer now that the next system has been set up.
+			player.CreateTransitionMissions();
 		}
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
@@ -667,17 +669,14 @@ void Engine::Step(bool isActive)
 				const System *system = it->GetSystem();
 				escorts.Add(it, system == currentSystem, player.KnowsName(*system), fleetIsJumping, isSelected);
 			}
+	set<shared_ptr<Ship>> selected;
+	for(const weak_ptr<Ship> &ptr : player.SelectedEscorts())
+		selected.insert(ptr.lock());
 	for(const shared_ptr<Ship> &escort : player.Ships())
 		if(!escort->IsParked() && escort != flagship && !escort->IsDestroyed())
 		{
 			// Check if this escort is selected.
-			bool isSelected = false;
-			for(const weak_ptr<Ship> &ptr : player.SelectedEscorts())
-				if(ptr.lock() == escort)
-				{
-					isSelected = true;
-					break;
-				}
+			bool isSelected = selected.contains(escort);
 			const System *system = escort->GetSystem();
 			escorts.Add(escort, system == currentSystem, system && player.KnowsName(*system), fleetIsJumping, isSelected);
 		}
@@ -774,7 +773,12 @@ void Engine::Step(bool isActive)
 	info.SetString("credits",
 		Format::CreditString(player.Accounts().Credits()));
 	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
-	if(flagship && flagship->GetTargetStellar() && !isJumping)
+	if(object)
+	{
+		info.SetString("navigation mode", "Landed on:");
+		info.SetString("destination", object->DisplayName());
+	}
+	else if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
 		const StellarObject *object = flagship->GetTargetStellar();
 		string navigationMode = flagship->Commands().Has(Command::LAND) ? "Landing on:" :
@@ -939,8 +943,7 @@ void Engine::Step(bool isActive)
 			if((targetRange <= thermalScanRange && scrutable) || (thermalScanRange && target->IsYours()))
 			{
 				info.SetCondition("target thermal display");
-				int heat = round(100. * target->Heat());
-				info.SetString("target heat", to_string(heat) + "%");
+				info.SetString("target heat", Format::Percentage(target->Heat(), 0));
 			}
 			if((targetRange <= weaponScanRange && scrutable) || (weaponScanRange && target->IsYours()))
 			{

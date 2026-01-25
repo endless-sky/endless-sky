@@ -1,4 +1,4 @@
-/* Dialog.cpp
+/* DialogPanel.cpp
 Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,15 +13,14 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Dialog.h"
+#include "DialogPanel.h"
 
 #include "audio/Audio.h"
 #include "text/Clipboard.h"
 #include "Color.h"
 #include "Command.h"
-#include "Conversation.h"
-#include "DataNode.h"
 #include "text/DisplayText.h"
+#include "Endpoint.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -123,8 +122,9 @@ namespace {
 
 
 
-Dialog::Dialog(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, int activeButton)
-	: voidFun(okFunction)
+DialogPanel::DialogPanel(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel,
+	int activeButton)
+	: voidFun(std::move(okFunction))
 {
 	Init(message, truncate, canCancel, false);
 	this->activeButton = activeButton;
@@ -134,7 +134,7 @@ Dialog::Dialog(function<void()> okFunction, const string &message, Truncate trun
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text, Truncate truncate, bool allowsFastForward)
+DialogPanel::DialogPanel(const string &text, Truncate truncate, bool allowsFastForward)
 	: allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate, false);
@@ -143,7 +143,8 @@ Dialog::Dialog(const string &text, Truncate truncate, bool allowsFastForward)
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate, bool allowsFastForward)
+DialogPanel::DialogPanel(const string &text, PlayerInfo &player, const System *system, Truncate truncate,
+	bool allowsFastForward)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
 	allowsFastForward(allowsFastForward),
 	system(system), player(&player)
@@ -153,7 +154,7 @@ Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Tru
 
 
 
-Dialog::~Dialog()
+DialogPanel::~DialogPanel()
 {
 	Audio::Resume();
 }
@@ -161,7 +162,7 @@ Dialog::~Dialog()
 
 
 // Draw this panel.
-void Dialog::Draw()
+void DialogPanel::Draw()
 {
 	DrawBackdrop();
 
@@ -227,7 +228,7 @@ void Dialog::Draw()
 	}
 
 	// Draw the input, if any.
-	if(!isMission && (intFun || stringFun || validateFun))
+	if(AcceptsInput())
 	{
 		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), back);
 
@@ -245,34 +246,14 @@ void Dialog::Draw()
 
 
 
-// Format and add the text from the given node to the given string.
-void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &text)
-{
-	for(int i = startingIndex; i < node.Size(); ++i)
-	{
-		if(!text.empty())
-			text += "\n\t";
-		text += node.Token(i);
-	}
-	for(const DataNode &child : node)
-		for(int i = 0; i < child.Size(); ++i)
-		{
-			if(!text.empty())
-				text += "\n\t";
-			text += child.Token(i);
-		}
-}
-
-
-
-bool Dialog::AllowsFastForward() const noexcept
+bool DialogPanel::AllowsFastForward() const noexcept
 {
 	return allowsFastForward;
 }
 
 
 
-bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
@@ -280,7 +261,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 	{
 		// Input handled by Clipboard.
 	}
-	else if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
+	else if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && AcceptsInput() && !isCloseRequest)
 	{
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
 		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
@@ -290,20 +271,22 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 
 		if(stringFun)
 			input += c;
-		// Integer input should not allow leading zeros.
-		else if(intFun && c == '0' && !input.empty())
+		// Integer and double inputs only allow certain characters.
+		else if((intFun || doubleFun) && c >= '0' && c <= '9')
 			input += c;
-		else if(intFun && c >= '1' && c <= '9')
+		// Both integer and double input can start with a minus sign.
+		else if((intFun || doubleFun) && c == '-' && input.empty())
+			input += c;
+		// Double input should only allow a single decimal point.
+		else if(doubleFun && c == '.' && !std::count(input.begin(), input.end(), '.'))
 			input += c;
 
-		if(validateFun)
-			isOkDisabled = !validateFun(input);
+		isOkDisabled = !ValidateInput();
 	}
 	else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !input.empty())
 	{
 		input.erase(input.length() - 1);
-		if(validateFun)
-			isOkDisabled = !validateFun(input);
+		isOkDisabled = !ValidateInput();
 	}
 	else if(key == SDLK_TAB)
 		// Round-robin to the right, 3->2->1->3
@@ -336,7 +319,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		if(boolFun)
 		{
 			DoCallback(activeButton == 1);
-			GetUI()->Pop(this);
+			GetUI().Pop(this);
 		}
 		else if(activeButton == 1 || isMission)
 		{
@@ -345,20 +328,20 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			if(!isOkDisabled)
 			{
 				DoCallback();
-				GetUI()->Pop(this);
+				GetUI().Pop(this);
 			}
 		}
 		else if(activeButton == 3)
 		{
 			// Do third button callback. If this returns true, also close the dialog.
 			if(buttonThree.buttonAction && buttonThree.buttonAction(input))
-				GetUI()->Pop(this);
+				GetUI().Pop(this);
 		}
 		else
-			GetUI()->Pop(this);
+			GetUI().Pop(this);
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
-		GetUI()->Push(new MapDetailPanel(*player, system, true));
+		GetUI().Push(new MapDetailPanel(*player, system, true));
 	else
 		return false;
 
@@ -367,7 +350,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 
 
 
-bool Dialog::Click(int x, int y, MouseButton button, int clicks)
+bool DialogPanel::Click(int x, int y, MouseButton button, int clicks)
 {
 	if(button != MouseButton::LEFT)
 		return false;
@@ -412,7 +395,7 @@ bool Dialog::Click(int x, int y, MouseButton button, int clicks)
 
 
 
-void Dialog::Resize()
+void DialogPanel::Resize()
 {
 	isWide = false;
 	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
@@ -448,7 +431,7 @@ void Dialog::Resize()
 	const int realBottomHeight = bottom->Height() - cancel->Height();
 
 	int height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
-			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
+			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
 	// Determine how many extension panels we need.
 	if(height <= realBottomHeight + top->Height())
 		extensionCount = 0;
@@ -465,7 +448,7 @@ void Dialog::Resize()
 	// be rounded up from the actual text height by the number of panels that
 	// were added. This helps correctly position the TextArea scroll buttons.
 	textRectSize.Y() = (top->Height() + realBottomHeight - VERTICAL_PADDING) + extensionCount * middle->Height() -
-			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
+			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
 
 	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
 	text->SetRect(textRect);
@@ -474,7 +457,7 @@ void Dialog::Resize()
 
 
 // Common code from all three constructors:
-void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
+void DialogPanel::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
 	Audio::Pause();
 	SetInterruptible(isMission);
@@ -502,18 +485,17 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	Resize();
 	AddChild(text);
 
-	if(validateFun)
-		isOkDisabled = !validateFun(input);
+	isOkDisabled = !ValidateInput();
 }
 
 
 
-void Dialog::DoCallback(const bool isOk) const
+void DialogPanel::DoCallback(const bool isOk) const
 {
 	if(isMission)
 	{
 		if(intFun)
-			intFun(activeButton == 1 ? Conversation::ACCEPT : Conversation::DECLINE);
+			intFun(activeButton == 1 ? Endpoint::ACCEPT : Endpoint::DECLINE);
 
 		return;
 	}
@@ -524,6 +506,18 @@ void Dialog::DoCallback(const bool isOk) const
 		// Otherwise treat this as if the player clicked "cancel."
 		try {
 			intFun(stoi(input));
+		}
+		catch(...)
+		{
+		}
+	}
+
+	if(doubleFun)
+	{
+		// Only call the callback if the input can be converted to a double.
+		// Otherwise treat this as if the player clicked "cancel."
+		try {
+			doubleFun(stod(input));
 		}
 		catch(...)
 		{
@@ -542,8 +536,36 @@ void Dialog::DoCallback(const bool isOk) const
 
 
 
-int Dialog::Width() const
+int DialogPanel::Width() const
 {
 	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
 	return top->Width() - HORIZONTAL_MARGIN;
+}
+
+
+
+bool DialogPanel::AcceptsInput() const
+{
+	return !isMission && (intFun || doubleFun || stringFun);
+}
+
+
+
+bool DialogPanel::ValidateInput() const
+{
+	if(validateStringFun)
+		return validateStringFun(input);
+
+	try {
+		if(validateIntFun)
+			return validateIntFun(stoi(input));
+		if(validateDoubleFun)
+			return validateDoubleFun(stod(input));
+	}
+	catch(...)
+	{
+		return false;
+	}
+
+	return true;
 }
