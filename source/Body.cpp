@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 
 #include "GameData.h"
-#include "pi.h"
 #include "image/Mask.h"
 #include "image/MaskManager.h"
+#include "pi.h"
 #include "image/Sprite.h"
 
 #include <algorithm>

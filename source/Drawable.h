@@ -68,7 +68,7 @@ protected:
 	void SetFrameRate(float framesPerSecond);
 	void AddFrameRate(float framesPerSecond);
 	void PauseAnimation();
- 	// Set what animation step we're on. This affects future calls to GetMask()
+	// Set what animation step we're on. This affects future calls to GetMask()
 	// and GetFrame().
 	void SetStep(int step) const;
 
