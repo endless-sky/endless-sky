@@ -103,7 +103,7 @@ namespace {
 			case OutfitterPanel::OutfitLocation::Storage:
 				return "storage";
 			default:
-				throw "unreachable";
+				throw runtime_error("unreachable");
 		}
 	}
 }
@@ -364,9 +364,9 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 	// Prevent coding up bad combinations.
 	if(fromLocation == toLocation)
-		throw "unreachable; to and from are the same";
+		throw runtime_error("unreachable; to and from are the same");
 	if(fromLocation == OutfitLocation::Shop && toLocation == OutfitLocation::Storage)
-		throw "unreachable; unsupported to/from combination";
+		throw runtime_error("unreachable; unsupported to/from combination");
 
 	// Handle special cases such as maps and licenses.
 	int mapSize = selectedOutfit->Get("map");
@@ -538,7 +538,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			break;
 		}
 		default:
-			throw "unreachable";
+			throw runtime_error("unreachable");
 	}
 
 	// Collect relevant errors.
@@ -664,7 +664,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			break;
 		}
 		default:
-			throw "unreachable";
+			throw runtime_error("unreachable");
 	}
 
 	return canSource && canPlace;
