@@ -94,8 +94,6 @@ public:
 
 	virtual void UpdateTooltipActivation() override;
 
-	static Color MapColor(double value);
-
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -106,6 +104,7 @@ protected:
 	virtual bool Scroll(double dx, double dy) override;
 
 	// Get the color mapping for various system attributes.
+	static Color MapColor(double value);
 	static Color ReputationColor(double reputation, bool canLand, bool hasDominated);
 	static Color GovernmentColor(const Government *government);
 	static Color DangerColor(double danger);

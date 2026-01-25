@@ -24,8 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "text/Layout.h"
-#include "MapPanel.h"
-#include "text/Layout.h"
 #include "shader/LineShader.h"
 #include "shader/OutlineShader.h"
 #include "Panel.h"
@@ -763,8 +761,6 @@ bool Interface::BarElement::ParseLine(const DataNode &node)
 		fromColor = GameData::Colors().Get(node.Token(1));
 		toColor = node.Size() >= 3 ? GameData::Colors().Get(node.Token(2)) : fromColor;
 	}
-	else if(key == "map color" && hasValue)
-		mapColor = node.Value(1);
 	else if(key == "size" && hasValue)
 		width = node.Value(1);
 	else if(key == "span angle" && hasValue)
@@ -791,11 +787,8 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		segments = 0.;
 
 	// Avoid crashes for malformed interface elements that are not fully loaded.
-	if((!fromColor && isnan(mapColor)) || !width || !value)
+	if(!fromColor || !toColor || !width || !value)
 		return;
-
-	Color drawFromColor = isnan(mapColor) ? *fromColor : MapPanel::MapColor(mapColor);
-	Color drawToColor = toColor ? *toColor : drawFromColor;
 
 	if(isRing)
 	{
@@ -803,7 +796,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 			return;
 
 		double fraction = value * spanAngle / 360.;
-		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, fraction, drawFromColor, segments, startAngle);
+		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, fraction, *fromColor, segments, startAngle);
 	}
 	else
 	{
@@ -825,12 +818,12 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		double v = 0.;
 		while(v < value)
 		{
-			Color nFromColor = Color::Combine(1 - v, drawFromColor, v, drawToColor);
+			Color nFromColor = Color::Combine(1 - v, *fromColor, v, *toColor);
 			Point from = start + v * dimensions;
 			v += filled;
 			double lim = min(v, value);
 			Point to = start + lim * dimensions;
-			Color nToColor = Color::Combine(1 - lim, drawFromColor, lim, drawToColor);
+			Color nToColor = Color::Combine(1 - lim, *fromColor, lim, *toColor);
 			v += empty;
 
 			// Rounded lines have a bit of padding, so account for that here.

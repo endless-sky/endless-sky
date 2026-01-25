@@ -142,8 +142,6 @@ bool MapSalesPanel::Click(int x, int y, MouseButton button, int clicks)
 	if(button != MouseButton::LEFT)
 		return MapPanel::Click(x, y, button, clicks);
 
-	static const int KEY_ROW_COUNT = 4;
-
 	const Interface *keyInterface = GameData::Interfaces().Get("sales key");
 	const Rectangle keyContentBox = keyInterface->GetBox("content");
 	if(x < Screen::Left() + WIDTH)
@@ -172,18 +170,10 @@ bool MapSalesPanel::Click(int x, int y, MouseButton button, int clicks)
 	}
 	else if(keyContentBox.Contains(Point(x, y)))
 	{
-		double keyRowHeight = keyContentBox.Height() / KEY_ROW_COUNT; // should this just be the 20.0 line height all the time?
-		int clickRow = (y - keyContentBox.Top()) / keyRowHeight;
-		// if(clickRow == 2)
+		int clickRow = (y - keyContentBox.Top()) / 20;
 
 		// This click was in the map key.
-		if(y < Screen::Top() + 42 || y >= Screen::Top() + 82)
-		{
-			onlyShowSoldHere = false;
-			onlyShowStorageHere = false;
-			UI::PlaySound(UI::UISound::NORMAL);
-		}
-		else if(y < Screen::Top() + 62)
+		if(clickRow == 2)
 		{
 			onlyShowSoldHere = !onlyShowSoldHere;
 			onlyShowStorageHere = false;
@@ -199,6 +189,7 @@ bool MapSalesPanel::Click(int x, int y, MouseButton button, int clicks)
 		{
 			onlyShowSoldHere = false;
 			onlyShowStorageHere = false;
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 	}
 	else
@@ -259,26 +250,14 @@ const Swizzle *MapSalesPanel::CompareSpriteSwizzle() const
 
 void MapSalesPanel::DrawKey(Information &info) const
 {
-	static const double KEY_ROW_COUNT = 4;
-
 	info.SetBar("full", 1.);
+	if(onlyShowSoldHere)
+		info.SetCondition("only sold here");
+	else if(onlyShowStorageHere)
+		info.SetCondition("only stored here");
 
-	const Interface *keyInterface = GameData::Interfaces().Get("sales key");
+	const Interface *keyInterface = GameData::Interfaces().Get("map: sales key");
 	keyInterface->Draw(info, nullptr);
-
-	const Color bright(.6f, .6f);
-	const Rectangle keyContentBox = keyInterface->GetBox("content");
-	const double keyRowHeight = keyContentBox.Height() / KEY_ROW_COUNT;
-	const Point angle = Point(1., 0.);
-	Point pos = keyContentBox.TopLeft() + Point(3., 8.);
-
-	for(int i = 0; i < KEY_ROW_COUNT; ++i)
-	{
-		// If we're filtering out items not sold/stored here, draw a pointer.
-		if((i == 2 && onlyShowSoldHere) || (i == 3 && onlyShowStorageHere))
-			PointerShader::Draw(pos, angle, 10.f, 10.f, 0.f, bright);
-		pos.Y() += keyRowHeight;
-	}
 }
 
 

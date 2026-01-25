@@ -228,7 +228,6 @@ private:
 		std::string name;
 		const Color *fromColor = nullptr;
 		const Color *toColor = nullptr;
-		double mapColor = std::numeric_limits<double>::quiet_NaN();
 		float width = 2.f;
 		bool reversed = false;
 		bool isRing = false;
