@@ -15,7 +15,7 @@
 # Previous iterations of first two missions are failed on offer to ensure save compatibility.
 mission "Relic of Pasts"
 	invisible
-	entering
+	transition
 	source
 		system "Kanguwa"
 	destination "Earth"
@@ -111,7 +111,7 @@ mission "Rulei: You Are (Not) Alone: L-118"
 	# Don't offer if the old version of this mission from prior to v0.11.0 was already offered.
 	to offer
 		not "Rulei: You Are (Not) Alone: offered"
-	on offer 
+	on offer
 		log `Discovered a region of emptiness east of the core, where systems are shrouded by a vast, eerie darkness. Other than dim stars and a few planets, nothing exists.`
 		conversation
 			`Upon arriving into this system, you notice a strange murkiness curtaining the stars beyond, and your scanners are having trouble making sense of it. The few stellar objects present are eerily blotted out by a vast, nebulous shade. Aside from them, it's as if there is nothing here. Even the shade itself is nothing more than the emptiness of space, and throughout it, no one. Nothing.`

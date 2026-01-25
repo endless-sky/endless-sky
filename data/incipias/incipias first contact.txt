@@ -70,12 +70,14 @@ mission "Incipias: Presence of the Guardian: Dom'us"
 	# Don't offer if the old version of this mission from prior to v0.11.0 was already offered.
 	to offer
 		not "Incipias: Presence of the Guardian: offered"
-	on accept
-		dialog
+	on offer
+		conversation
 			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched.`
+				decline
 				to display
 					not "Incipias: accepted the guardian's warning"
 			`As you enter the system, the same voice from before echoes through your mind, though this time there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
+				decline
 				to display
 					has "Incipias: accepted the guardian's warning"
 
@@ -88,13 +90,14 @@ mission "Incipias: Presence of the Guardian: Hui'uc"
 	# Don't offer if the old version of this mission from prior to v0.11.0 was already offered.
 	to offer
 		not "Incipias: Presence of the Guardian: offered"
-	on accept
-		fail
-		dialog
+	on offer
+		conversation
 			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched.`
+				decline
 				to display
 					not "Incipias: accepted the guardian's warning"
 			`As you enter the system, the same voice from before echoes through your mind, though this time there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
+				decline
 				to display
 					has "Incipias: accepted the guardian's warning"
 
@@ -109,13 +112,14 @@ mission "Incipias: First Contact"
 	source
 		system "Dom'us"
 	destination "Earth"
-	on accept
-		fail
-		dialog
+	on offer
+		conversation
 			`As you enter the system, you notice ships of a type you have never seen before. Hailing them only gives you static. After some more unsuccessful attempts, you give up. Maybe you can find some more information in nearby systems.`
+				decline
 				to display
 					not "Visit Quarg in Incipias Space: offered"
 			`As you enter the system, you notice ships of a type you have never seen before. Hailing them only gives you static. After some more unsuccessful attempts, you give up. This must be the species the Quarg talked about.`
+				decline
 				to display
 					has "Visit Quarg in Incipias Space: offered"
 
