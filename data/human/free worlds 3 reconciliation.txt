@@ -29,7 +29,7 @@ mission "FW Reconciliation 1"
 		ship "Gunboat (Mark II)" "Eye of Horus"
 	
 	on visit
-		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
+		dialog `You land on <planet>, but realize that Katya, Sawyer, and Raven have not all arrived. Better depart and wait for the ships they are aboard.`
 	
 	on offer
 		log "Decided to rescue the Syndicate defector rather than turning him over to the Syndicate. A Questioner who works with Navy Intelligence has confirmed that he is telling the truth, and a ceasefire has been declared. Also, the Navy has agreed to release Katya now that there is evidence proving her innocence."
@@ -90,8 +90,6 @@ mission "FW Reconciliation 1"
 			`	You tell her that the last you heard, Ijs was helping to found a new university on <planet>. She says, "We should bring him with us. Raven, will you be traveling with us too?"`
 			`	"Yes," she says. "I'll tell my ship and crew to get ready."`
 				accept
-	on visit
-		dialog `You land on <planet>, but realize that your escort carrying Katya and Sawyer hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -335,7 +333,7 @@ mission "FW Reconciliation 2A"
 			label tarazed
 			`	The rest of the evening is a more casual time for conversation, with plenty of good food and wine. Alondo sends you a message to inform you that Tarazed has decided to officially join the Free Worlds after having received word of the Parliament hearing, news that brings joy to Katya and Ijs.`
 			label end
-			`	At one point, Edrick pulls you aside and says, "I've requested that you be granted access to some of the new technology that was developed here during the course of the war. In particular, please find space on your ship for a ramscoop; you will need it for your next mission. And also, here." He hands you a data card. "This is a copy of Sawyer's evidence, in case something happens here. Keep it very, very safe."`
+			`	At one point, Edrick pulls you aside and says, "I've requested that you be granted access to some of the new technology that was developed here during the course of the war. In particular, feel free to visit the outfitter here and install a ramscoop; you will need one for your next mission. And also, take this." He hands you a data card. "It's a copy of Sawyer's evidence, in case something happens here. Keep it very, very safe."`
 				accept
 	
 	npc accompany save
@@ -994,6 +992,10 @@ mission "FW Pug 1"
 	on waypoint
 		set "fw pug 1: visited waypoints"
 
+	on enter "Zeta Aquilae"
+		dialog
+			`Upon jumping to the Zeta Aquilae system, you can see that the hyperspace link that should exist to Ascella is no longer present. Instead, there is a new link going north, toward a star that never had any links before...`
+		set "fw pug 1: visited waypoints"
 
 
 mission "FW Pug 1 Tundra"
@@ -1010,7 +1012,6 @@ mission "FW Pug 1 Tundra"
 				decline
 
 
-
 mission "FW Pug 1 Arabia"
 	landing
 	source Arabia
@@ -1023,7 +1024,6 @@ mission "FW Pug 1 Arabia"
 			`You land on Arabia and try to find someone who knows what is going on, but everyone seems just as confused as you are. The spaceport authorities say that their sensors picked up a massive graviton surge when the hyperlinks collapsed, but they are not sure whether the surge caused the collapse, or was a result of it.`
 			`	One merchant captain claims that he was in orbit at the time, and he saw a ship unlike anything he'd ever seen before, that appeared and then disappeared in a flash "just like those Quarg ships do." You aren't sure whether or not to believe him.`
 				decline
-
 
 
 mission "FW Pug 1 Return"
@@ -1120,6 +1120,12 @@ mission "FW Pug 2A"
 				`	"If this is what it takes to keep human space from being torn into fragments, I will risk my ship to go meet with the Syndicate."`
 					goto yes
 				`	"This sounds like a job for the Navy, not for me. I can't risk being trapped in hostile Syndicate space forever."`
+					to display
+						not "outfit (flagship installed): Jump Drive"
+					goto no
+				`	"This sounds like a job for the Navy, not for me. I don't want to face the entire hostile Syndicate."`
+					to display
+						has "outfit (flagship installed): Jump Drive"
 					goto no
 				`	"Did the Syndicate communicate anything to you before the links were cut that might help us guess at their intentions?"`
 			
@@ -1348,6 +1354,7 @@ mission "FW Pug Jump Drive Check"
 	on offer
 		conversation
 			`Somehow, you've misplaced or lost the jump drive needed to continue the Free Worlds story! If you are unable to find your jump drive, you should revert to the autosave or another earlier snapshot of the game.`
+			`Alternatively, you could try to track down the Korath raiders that the Syndicate mentioned, and steal another jump drive from them, but it sounds like the Korath can put up quite a fight...`
 				decline
 
 
@@ -1374,56 +1381,48 @@ mission "FW Pug 2C: Side"
 			`You open your ship's hatch and allow him to come on board. "You came from outside, didn't you?" he says. "Outside of occupied space, I mean." You nod.`
 			`	"What's going on here?" asks Alondo. "Who are these aliens?"`
 			`	"I'm a planet-dweller," he says, "so the first I heard of it was when these ships unlike anything I'd ever seen before came down out of the sky, and hovered over the spaceport. Then they began transmitting radio messages on all frequencies, saying that this world is now a part of the Pug Protectorate, and that we must refrain from violence and give them a portion of the goods our world produces."`
+			label "planet dweller questions"
+			branch end
+				has "asked planet dweller about resisting pug"
+				has "asked planet dweller about pug intentions"
+				has "asked planet dweller about pug strategy"
 			choice
 				`	"Did anyone try to resist them?"`
+					to display
+						not "asked planet dweller about resisting pug"
 					goto resist
 				`	"What do you think their intentions are?"`
+					to display
+						not "asked planet dweller about pug intentions"
 					goto intentions
 				`	"Did they explain why they cut you off from the rest of the galaxy?"`
+					to display
+						not "asked planet dweller about pug strategy"
 					goto cut
 		
 			label resist
+			action
+				set "asked planet dweller about resisting pug"
 			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
-			choice
-				`	"What do you think their intentions are?"`
-					goto intentions2
-				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto cut2
-		
+			goto "planet dweller questions"
+
 			label intentions
+			action
+				set "asked planet dweller about pug intentions"
 			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
-			choice
-				`	"Did anyone try to resist them?"`
-					goto resist2
-				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto cut2
+			goto "planet dweller questions"
 		
 			label cut
+			action
+				set "asked planet dweller about pug strategy"
 			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
-			choice
-				`	"Did anyone try to resist them?"`
-					goto resist2
-				`	"What do you think their intentions are?"`
-					goto intentions2
-		
-			label resist2
-			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
-				goto end
-		
-			label intentions2
-			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
-				goto end
-		
-			label cut2
-			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
-				goto end
-		
+			goto "planet dweller questions"
+
 			label end
 			`	"Where did they come from originally?" asks Alondo.`
 			`	"From a star system that was always a neighbor of ours, but wasn't linked to us or to any other part of human space. We always just assumed it was an uninhabited system, but it turns out they were there all along, biding their time, waiting for a good opportunity to attack us."`
 			`	"Well," says Alondo, "they didn't attack us when we jumped into this system. Perhaps we should go to their home system and see what they have to say for themselves."`
 				decline
-
 
 
 mission "FW Pug 2C: Pugglequat"
@@ -1476,8 +1475,16 @@ mission "FW Pug 3"
 			label interfere
 			`	"'Interfere'?" says the alien. "We have 'interfered' many times before, and always you have benefited. If you do not believe us, ask those who live in the place you call the Deep. We helped them defeat the twisted half-human beings that you created in your foolish attempts to improve your race's genetic code. We have helped keep those creatures in check in the centuries since then. And we have helped in many other ways."`
 			choice
+				`	"I'm from the Deep, and I've never heard of you before."`
+					to display
+						has "start: deep"
 				`	"What do you want from us in return?"`
+					goto goals
 				`	"What are you planning to do with these systems you have occupied?"`
+					goto goals
+			`	"Then perhaps you know of the myths of 'elves,' and of the tradition of tributation," says the alien. "We had been content with protecting your species from afar, letting your kind take our accomplishments as your own, but it is clear further intervention is necessary."`
+			`	Alondo asks, "And what is this 'further intervention?'"`
+			label goals
 			`	"We have brought peace to this region," says the alien, "and we will continue to spread peace until violence has come to an end throughout human space. That is our only desire. All that we ask in return is a portion of the goods your worlds produce, to help offset the cost of watching over and protecting so many human worlds. And after some time, we will again allow human beings autonomous control of certain parts of your territory, when you show yourselves capable of living peacefully."`
 			`	"By 'spreading peace,' do you mean occupying more systems?" asks Alondo.`
 			`	"We mean bringing an end to your war and your divisions," the alien says. "Those of your worlds and your people who have shown themselves unable to live peacefully, we must govern, to teach them peace. Any who attack us, we must destroy, because we are the bringers of peace, and whoever attacks us is not on the side of peace. And so we will send you back to your people now, to tell them that they have nothing to fear, and that they should await our peace and our protection."`

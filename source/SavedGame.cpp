@@ -76,7 +76,7 @@ void SavedGame::Load(const filesystem::path &path)
 			for(const DataNode &child : node)
 				if(child.Token(0) == "credits" && child.Size() >= 2)
 				{
-					credits = Format::Credits(child.Value(1));
+					credits = Format::AbbreviatedNumber(child.Value(1));
 					break;
 				}
 		}
