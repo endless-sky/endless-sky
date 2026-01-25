@@ -14,8 +14,8 @@
 
 # Previous iterations of first two missions are failed on offer to ensure save compatibility.
 mission "Relic of Pasts"
-	entering
 	invisible
+	entering
 	source
 		system "Kanguwa"
 	destination "Earth"
@@ -28,13 +28,12 @@ mission "Relic of Pasts"
 		ship "vyu-Ir" "Solemnity"
 
 mission "First Contact: Rulei"
-	entering
 	invisible
+	entering
 	source
 		system "Kanguwa"
 	destination "Earth"
 	on offer
-		fail
 		log "Factions" "Rulei" `The Rulei were likely an ancient, technologically advanced civilization from long ago, but the only things that remain of them are a single strange ship and two scarred planets.`
 			`They communicate through some sort of invasive psionic ability, speaking in a thousand voices all at once. Prolonged contact seems unhealthy.`
 		conversation
@@ -103,21 +102,34 @@ mission "Rulei Planet"
 			`	It's best you don't remain here for too long.`
 				decline
 
-mission "Rulei: You Are (Not) Alone"
+mission "Rulei: You Are (Not) Alone: L-118"
 	invisible
-	landing
-	to complete
-		never
-	on enter "L-118"
+	entering
+	source
+		system "L-118"
+	destination "Earth"
+	# Don't offer if the old version of this mission from prior to v0.11.0 was already offered.
+	to offer
+		not "Rulei: You Are (Not) Alone: offered"
+	on offer 
 		log `Discovered a region of emptiness east of the core, where systems are shrouded by a vast, eerie darkness. Other than dim stars and a few planets, nothing exists.`
 		conversation
 			`Upon arriving into this system, you notice a strange murkiness curtaining the stars beyond, and your scanners are having trouble making sense of it. The few stellar objects present are eerily blotted out by a vast, nebulous shade. Aside from them, it's as if there is nothing here. Even the shade itself is nothing more than the emptiness of space, and throughout it, no one. Nothing.`
+				decline
 
-	on enter "L-6181"
-		fail
+mission "Rulei: You Are (Not) Alone: L-6181"
+	invisible
+	transition
+	source
+		system "L-6181"
+	destination "Earth"
+	# Don't offer if the old version of this mission from prior to v0.11.0 was already offered.
+	to offer
+		not "Rulei: You Are (Not) Alone: offered"
+	on enter
 		conversation
 			`As you continue through this empty space, you come across nothing but diminished stars and planets of silence. However, upon entering this system, you are met with what appears to be a creature of some kind. Strangely, your scanners don't read it as any sort of lifeform, categorizing it only as a mere "collection" of matter. It blends with space itself, as if it were simply a reflection of the darkness beyond.`
-
+				decline
 	npc
 		government "Indigenous Lifeform (Acheron)"
 		personality mute timid unconstrained uninterested
@@ -125,8 +137,8 @@ mission "Rulei: You Are (Not) Alone"
 		ship "Jje" ""
 
 mission "Rulei: Umbral Reach"
-	entering
 	invisible
+	entering
 	source
 		system "Kanguwa"
 	destination "Earth"

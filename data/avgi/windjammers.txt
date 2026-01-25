@@ -27,7 +27,7 @@ phrase empty
 
 mission "Avgi: Gossamer Sailors"
 	invisible
-	entering
+	transition
 	repeat
 	source
 		system "Gossamer"

@@ -132,8 +132,8 @@ event "label hai space"
 		sprite "label/hai"
 
 mission "Discovered Wormhole Alpha"
-	entering
 	invisible
+	entering
 	source
 		system "Ultima Thule"
 	destination "Earth"

@@ -739,11 +739,14 @@ mission "Gegno Exploration Nudge Remover"
 # Gegno Superheavy Missions
 
 mission "Vi Augen"
-	entering
 	invisible
+	transition
 	source
 		system "Kiluit"
 	destination "Earth"
+	on offer
+		# Fail the old version of this mission from prior to v0.10.1.
+		fail "Stationed Augen"
 	npc save
 		on kill
 			set "dead augen"

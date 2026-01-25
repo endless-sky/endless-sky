@@ -76,8 +76,8 @@ ship "Tace Mesa"
 	description "The Tace Mesa are creatures whose origins and inner workings are yet to be understood. They have existed for millennia and will probably continue to exist for a long time. Rumors tell of even larger creatures further out in the rims of the system."
 
 mission "The Silent Ones"
-	entering
 	invisible
+	entering
 	repeat
 	source
 		system "Il'le"
