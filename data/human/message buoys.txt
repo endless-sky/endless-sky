@@ -320,7 +320,7 @@ mission "Message Buoy: beyond Farpoint"
 		system "Mintaka"
 	destination "Earth"
 	to offer
-		has "previous system government: Republic"
+		has "previous system: Alnitak"
 	on offer
 		message
 			text "Message buoy to all ships: you have exited Republic-controlled space. Assistance from Navy vessels is limited beyond the system of Alnitak. It is recommended you return to Farpoint immediately."
