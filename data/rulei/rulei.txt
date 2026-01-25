@@ -71,8 +71,8 @@ mission "First Contact: Rulei"
 
 # Fail the old versions of the above two missions.
 mission "Rulei Patch"
-	landing
 	invisible
+	landing
 	to offer
 		or
 			has "Ira Contact: active"

@@ -171,7 +171,7 @@ mission "Incipias: The Derelict"
 	destination "Earth"
 	to offer
 		has "Visit Quarg in Incipias Space: offered"
-	on enter "Hui'uc"
+	on enter
 		dialog
 			`Upon entering the system, you notice a lone alien spaceship that is disabled and badly damaged. Aside from it, there do not appear to be any other ships in the system, or sign of any help for that matter. Maybe there's some way you could assist the ship and its crew.`
 	npc assist

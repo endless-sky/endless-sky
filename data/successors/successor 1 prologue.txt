@@ -15,8 +15,7 @@ mission "Successors: Entering the Scar"
 	invisible
 	entering
 	source
-		system
-			attributes "predecessor"
+		attributes "predecessor"
 	destination "Earth"
 	to offer
 		not "Successors: Safe at Last: failed"

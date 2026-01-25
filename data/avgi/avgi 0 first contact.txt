@@ -13,12 +13,12 @@
 
 
 mission "Avgi: Lost in Twilight"
-	entering
 	invisible
+	entering
 	source
 		attributes "twilight"
 	destination "Earth"
-	on offer
+	on accept
 		log "Became trapped in a strange region after entering a system my jump drive could not return from."
 		fail
 		set "avgi: lost in twilight"
