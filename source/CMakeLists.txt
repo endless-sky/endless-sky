@@ -147,6 +147,7 @@ target_sources(EndlessSkyLib PRIVATE
 	HailPanel.h
 	Hardpoint.cpp
 	Hardpoint.h
+	Hasher.h
 	Hazard.cpp
 	Hazard.h
 	HiringPanel.cpp
