@@ -205,6 +205,10 @@ void DialogPanel::Draw()
 		okPos.X() - .5 * font.Width(okText),
 		okPos.Y() - .5 * font.Height());
 	font.Draw(okText, labelPos, isOkDisabled ? inactive : (activeButton == 1 ? bright : dim));
+	Rectangle okRect(okPos, {cancel->Width(), cancel->Height()});
+	AddZone(okRect, [this, okRect]() {
+		Click(okRect.Center().X(), okRect.Center().Y(), MouseButton::LEFT, 1);
+	});
 	if(canCancel)
 	{
 		cancelPos = pos + Point(okPos.X() - cancel->Width() + BUTTON_RIGHT_MARGIN, 0.);
@@ -213,6 +217,10 @@ void DialogPanel::Draw()
 				cancelPos.X() - .5 * font.Width(cancelText),
 				cancelPos.Y() - .5 * font.Height()};
 		font.Draw(cancelText, labelPos, activeButton == 2 ? bright : dim);
+		Rectangle cancelRect(cancelPos, {cancel->Width(), cancel->Height()});
+		AddZone(cancelRect, [this, cancelRect]() {
+			Click(cancelRect.Center().X(), cancelRect.Center().Y(), MouseButton::LEFT, 1);
+		});
 
 		if(numButtons == 3)
 		{
@@ -224,6 +232,10 @@ void DialogPanel::Draw()
 				thirdPos.X() - .5 * font.Width(buttonThree.buttonLabel),
 				thirdPos.Y() - .5 * font.Height()};
 			font.Draw(buttonThree.buttonLabel, labelPos, activeButton == 3 ? bright : dim);
+			Rectangle buttonThreeRect(thirdPos, {thirdButtonSprite->Width(), thirdButtonSprite->Height()});
+			AddZone(buttonThreeRect, [this, buttonThreeRect]() {
+				Click(buttonThreeRect.Center().X(), buttonThreeRect.Center().Y(), MouseButton::LEFT, 1);
+			});
 		}
 	}
 
