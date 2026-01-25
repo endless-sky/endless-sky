@@ -850,9 +850,8 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 			`	The impressive front of this Vareti'het appears to have been set up to focus on hull damage: a number of EMP Deployers and Ravager Beams show prominently, surrounding the enormous barrel of the Nullifier. On the back, a variety of Ravager and Annihilator Turrets make their appearance. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
 				decline
 	to fail
-		and
-			not "Ka'het: Another Death in the Graveyard 1A: active"
-			not "Ka'het: Another Death in the Graveyard 0: active"
+		not "Ka'het: Another Death in the Graveyard 1A: active"
+		not "Ka'het: Another Death in the Graveyard 0: active"
 	npc kill
 		to spawn
 			has "ka'het: slug loot"
