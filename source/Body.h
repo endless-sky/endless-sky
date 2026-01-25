@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 class Government;
+class Mask;
 class Sprite;
 
 
@@ -37,6 +38,9 @@ public:
 		double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
 	Body(const Body &sprite, Point position, Point velocity = Point(), Angle facing = Angle(),
 		double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
+
+	// Get the sprite mask for the given time step.
+	const Mask &GetMask(int step = -1) const;
 
 	// Positional attributes.
 	const Point &Position() const;

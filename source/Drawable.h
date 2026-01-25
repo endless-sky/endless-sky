@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class DataWriter;
-class Mask;
 class Sprite;
 
 
@@ -48,9 +47,8 @@ public:
 	// Which color swizzle should be applied to the sprite?
 	const Swizzle *GetSwizzle() const;
 	bool InheritsParentSwizzle() const;
-	// Get the sprite frame and mask for the given time step.
+	// Get the sprite frame for the given time step.
 	float GetFrame(int step = -1) const;
-	const Mask &GetMask(int step = -1) const;
 
 	// Positional attributes.
 	double Zoom() const;
@@ -70,9 +68,16 @@ protected:
 	void SetFrameRate(float framesPerSecond);
 	void AddFrameRate(float framesPerSecond);
 	void PauseAnimation();
+ 	// Set what animation step we're on. This affects future calls to GetMask()
+	// and GetFrame().
+	void SetStep(int step) const;
 
 
 protected:
+	// Animation parameters.
+	const Sprite *sprite = nullptr;
+	mutable float frame = 0.f;
+
 	// Basic positional attributes.
 	Point center;
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
@@ -84,14 +89,6 @@ protected:
 
 
 private:
-	// Set what animation step we're on. This affects future calls to GetMask()
-	// and GetFrame().
-	void SetStep(int step) const;
-
-
-private:
-	// Animation parameters.
-	const Sprite *sprite = nullptr;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	const Swizzle *swizzle = Swizzle::None();
 	bool inheritsParentSwizzle = false;
@@ -109,5 +106,4 @@ private:
 	// Cache the frame calculation so it doesn't have to be repeated if given
 	// the same step over and over again.
 	mutable int currentStep = -1;
-	mutable float frame = 0.f;
 };
