@@ -20,11 +20,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "MinableDamageDealt.h"
 #include "Outfit.h"
 #include "pi.h"
 #include "Projectile.h"
 #include "Random.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "Visual.h"
 
 #include <algorithm>
@@ -45,7 +46,7 @@ Minable::Payload::Payload(const DataNode &node)
 		bool hasValue = child.Size() >= 2;
 
 		if(!hasValue)
-			child.PrintTrace("Error: Expected key to have a value:");
+			child.PrintTrace("Expected key to have a value:");
 		else if(key == "max drops")
 			maxDrops = max<int>(1, child.Value(1));
 		else if(key == "drop rate")
@@ -72,21 +73,26 @@ void Minable::Load(const DataNode &node)
 		bool hasValue = child.Size() >= 2;
 
 		if(!hasValue)
-			child.PrintTrace("Error: Expected key to have a value:");
+			child.PrintTrace("Expected key to have a value:");
 		else if(key == "display name")
 			displayName = child.Token(1);
 		else if(key == "noun")
 			noun = child.Token(1);
-		// A full sprite definition (frame rate, etc.) is not needed, because
-		// the frame rate will be set randomly and it will always be looping.
 		else if(key == "sprite")
-			SetSprite(SpriteSet::Get(child.Token(1)));
+		{
+			LoadSprite(child);
+			for(const DataNode &grand : child)
+				if(grand.Token(0) == "frame rate" || grand.Token(0) == "frame time")
+					useRandomFrameRate = false;
+		}
 		else if(key == "hull")
 			hull = child.Value(1);
 		else if(key == "random hull")
 			randomHull = max(0., child.Value(1));
 		else if(key == "payload")
 			payload.emplace_back(child);
+		else if(key == "live effect")
+			liveEffects.emplace_back(child);
 		else if(key == "explode")
 		{
 			int count = (child.Size() == 2 ? 1 : child.Value(2));
@@ -180,7 +186,8 @@ void Minable::Place(double energy, double beltRadius)
 	// Start the object off with a random facing angle and spin rate.
 	angle = Angle::Random();
 	spin = Angle::Random(energy) - Angle::Random(energy);
-	SetFrameRate(Random::Real() * 4. * energy + 5.);
+	if(useRandomFrameRate)
+		SetFrameRate(Random::Real() * 4. * energy + 5.);
 	// Choose a random direction for the angle of periapsis.
 	rotation = Random::Real() * 2. * PI;
 
@@ -234,6 +241,10 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		return false;
 	}
 
+	for(const auto &it : liveEffects)
+		if(!Random::Int(it.interval))
+			visuals.emplace_back(*it.effect, position, velocity, it.relativeToSystem ? Angle{position} : angle);
+
 	// Spin the object.
 	angle += spin;
 
@@ -254,10 +265,10 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 
 // Damage this object (because a projectile collided with it).
-void Minable::TakeDamage(const Projectile &projectile)
+void Minable::TakeDamage(const MinableDamageDealt &damage)
 {
-	hull -= projectile.GetWeapon().MinableDamage() + projectile.GetWeapon().RelativeMinableDamage() * maxHull;
-	prospecting += projectile.GetWeapon().Prospecting();
+	hull -= damage.hullDamage;
+	prospecting += damage.prospecting;
 }
 
 
@@ -265,6 +276,13 @@ void Minable::TakeDamage(const Projectile &projectile)
 double Minable::Hull() const
 {
 	return min(1., hull / maxHull);
+}
+
+
+
+double Minable::MaxHull() const
+{
+	return maxHull;
 }
 
 
@@ -281,4 +299,19 @@ const vector<Minable::Payload> &Minable::GetPayload() const
 const int64_t &Minable::GetValue() const
 {
 	return value;
+}
+
+
+
+Minable::LiveEffect::LiveEffect(const DataNode &node)
+{
+	interval = (node.Size() == 2 ? 1 : node.Value(2));
+	effect = GameData::Effects().Get(node.Token(1));
+	for(const DataNode &child : node)
+	{
+		if(child.Token(0) == "relative to system center")
+			relativeToSystem = true;
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
 }

@@ -54,9 +54,69 @@ void Gamerules::Load(const DataNode &node)
 			depreciationGracePeriod = max<int>(0, child.Value(1));
 		else if(key == "depreciation max age")
 			depreciationMaxAge = max<int>(0, child.Value(1));
+		else if(key == "disabled fighters avoid projectiles")
+		{
+			const string &value = child.Token(1);
+			if(value == "all")
+				fighterHitPolicy = FighterDodgePolicy::ALL;
+			else if(value == "none")
+				fighterHitPolicy = FighterDodgePolicy::NONE;
+			else if(value == "only player")
+				fighterHitPolicy = FighterDodgePolicy::ONLY_PLAYER;
+			else
+				child.PrintTrace("Skipping unrecognized value for gamerule:");
+		}
+		else if(key == "system departure min")
+			systemDepartureMin = max<double>(0., child.Value(1));
+		else if(key == "system arrival min")
+		{
+			if(child.Token(1) == "unset")
+				systemArrivalMin.reset();
+			else
+				systemArrivalMin = child.Value(1);
+		}
+		else if(key == "fleet multiplier")
+			fleetMultiplier = max<double>(0., child.Value(1));
 		else
-			child.PrintTrace("Skipping unrecognized gamerule:");
+			miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
+}
+
+
+
+int Gamerules::GetValue(const string &rule) const
+{
+	if(rule == "universal ramscoop")
+		return universalRamscoop;
+	if(rule == "person spawn period")
+		return personSpawnPeriod;
+	if(rule == "no person spawn weight")
+		return noPersonSpawnWeight;
+	if(rule == "npc max mining time")
+		return npcMaxMiningTime;
+	if(rule == "universal frugal threshold")
+		return universalFrugalThreshold * 1000;
+	if(rule == "depreciation min")
+		return depreciationMin * 1000;
+	if(rule == "depreciation daily")
+		return depreciationDaily * 1000;
+	if(rule == "depreciation grace period")
+		return depreciationGracePeriod;
+	if(rule == "depreciation max age")
+		return depreciationMaxAge;
+	if(rule == "disabled fighters avoid projectiles")
+		return static_cast<int>(fighterHitPolicy);
+	if(rule == "system departure min")
+		return systemDepartureMin * 1000;
+	if(rule == "system arrival min")
+		return systemArrivalMin.value_or(0.) * 1000;
+	if(rule == "fleet multiplier")
+		return fleetMultiplier * 1000;
+
+	auto it = miscRules.find(rule);
+	if(it == miscRules.end())
+		return 0;
+	return it->second;
 }
 
 
@@ -120,4 +180,32 @@ int Gamerules::DepreciationGracePeriod() const
 int Gamerules::DepreciationMaxAge() const
 {
 	return depreciationMaxAge;
+}
+
+
+
+Gamerules::FighterDodgePolicy Gamerules::FightersHitWhenDisabled() const
+{
+	return fighterHitPolicy;
+}
+
+
+
+double Gamerules::SystemDepartureMin() const
+{
+	return systemDepartureMin;
+}
+
+
+
+optional<double> Gamerules::SystemArrivalMin() const
+{
+	return systemArrivalMin;
+}
+
+
+
+double Gamerules::FleetMultiplier() const
+{
+	return fleetMultiplier;
 }

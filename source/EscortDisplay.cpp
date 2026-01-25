@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Rectangle.h"
 #include "Ship.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "System.h"
 
 #include <algorithm>
@@ -44,7 +44,8 @@ void EscortDisplay::Clear()
 
 
 
-void EscortDisplay::Add(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected)
+void EscortDisplay::Add(const shared_ptr<Ship> &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping,
+	bool isSelected)
 {
 	icons.emplace_back(ship, isHere, systemNameKnown, fleetIsJumping, isSelected, basicHeight, systemLabelHeight);
 }
@@ -157,32 +158,32 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 
 // Check if the given point is a click on an escort icon. If so, return the
 // stack of ships represented by the icon. Otherwise, return an empty stack.
-const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
+const vector<weak_ptr<Ship>> &EscortDisplay::Click(const Point &point) const
 {
 	for(unsigned i = 0; i < zones.size(); ++i)
 		if(zones[i].Contains(point))
 			return stacks[i];
 
-	static const vector<const Ship *> empty;
-	return empty;
+	static const vector<weak_ptr<Ship>> EMPTY;
+	return EMPTY;
 }
 
 
 
-EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected,
-		int basicHeight, int systemLabelHeight)
-	: sprite(ship.GetSprite()),
-	isDisabled(ship.IsDisabled()),
+EscortDisplay::Icon::Icon(const shared_ptr<Ship> &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping,
+		bool isSelected, int basicHeight, int systemLabelHeight)
+	: sprite(ship->GetSprite()),
+	isDisabled(ship->IsDisabled()),
 	isHere(isHere),
-	isHostile(ship.GetGovernment() && ship.GetGovernment()->IsEnemy()),
-	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump(true)),
-	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
+	isHostile(ship->GetGovernment() && ship->GetGovernment()->IsEnemy()),
+	notReadyToJump(fleetIsJumping && !ship->IsHyperspacing() && !ship->IsReadyToJump(true)),
+	cannotJump(fleetIsJumping && !ship->IsHyperspacing() && !ship->JumpsRemaining()),
 	isSelected(isSelected),
-	cost(ship.Cost()),
-	system((!isHere && ship.GetSystem()) ? (systemNameKnown ? ship.GetSystem()->Name() : "???") : ""),
-	low{ship.Shields(), ship.Hull(), ship.Energy(), min(ship.Heat(), 1.), ship.Fuel()},
+	cost(ship->Cost()),
+	system((!isHere && ship->GetSystem()) ? (systemNameKnown ? ship->GetSystem()->DisplayName() : "???") : ""),
+	low{ship->Shields(), ship->Hull(), ship->Energy(), min(ship->Heat(), 1.), ship->Fuel()},
 	high(low),
-	ships(1, &ship)
+	ships(1, ship)
 {
 	height = basicHeight;
 	if(!system.empty())
@@ -240,7 +241,7 @@ void EscortDisplay::MergeStacks(int maxHeight) const
 		int height = 0;
 		for(Icon &icon : icons)
 		{
-			if(!unstackable.count(icon.sprite) && (!cheapest || *cheapest < icon))
+			if(!unstackable.contains(icon.sprite) && (!cheapest || *cheapest < icon))
 				cheapest = &icon;
 
 			height += icon.Height();
@@ -256,7 +257,7 @@ void EscortDisplay::MergeStacks(int maxHeight) const
 		// The "cheapest" element in the list may be removed to merge it with an
 		// earlier ship of the same type, so store a copy of its sprite pointer:
 		const Sprite *sprite = cheapest->sprite;
-		list<Icon>::iterator it = icons.begin();
+		auto it = icons.begin();
 		while(it != icons.end())
 		{
 			if(it->sprite != sprite)

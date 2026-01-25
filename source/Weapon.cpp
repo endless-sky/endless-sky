@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Weapon.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
 #include "Outfit.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 
@@ -28,10 +28,18 @@ using namespace std;
 
 
 
-// Load from a "weapon" node, either in an outfit or in a ship (explosion).
-void Weapon::LoadWeapon(const DataNode &node)
+Weapon::Weapon(const DataNode &node)
 {
-	isWeapon = true;
+	Load(node);
+}
+
+
+
+// Load from a "weapon" node, either in an outfit or in a ship (explosion).
+void Weapon::Load(const DataNode &node)
+{
+	isLoaded = true;
+
 	bool isClustered = false;
 	calculatedDamage = false;
 	doesDamage = false;
@@ -72,6 +80,41 @@ void Weapon::LoadWeapon(const DataNode &node)
 			canCollideAsteroids = false;
 		else if(key == "no minable collisions")
 			canCollideMinables = false;
+		else if(key == "homing")
+		{
+			homing = true;
+			// Convert the old formatting for defining homing for reverse
+			// compatibility.
+			if(child.Size() == 2)
+			{
+				child.PrintTrace("Deprecated use of \"homing\" followed by a value."
+					" Define individual homing attributes instead:");
+				int value = child.Value(1);
+				if(value >= 3)
+				{
+					throttleControl = true;
+					if(value >= 4)
+						leading = true;
+				}
+				else if(value == 1)
+					blindspot = true;
+				else if(value == 0)
+					homing = false;
+			}
+			for(const DataNode &grand : child)
+			{
+				const string &grandKey = grand.Token(0);
+
+				if(grandKey == "blindspot")
+					blindspot = true;
+				else if(grandKey == "throttle control")
+					throttleControl = true;
+				else if(grandKey == "leading")
+					leading = true;
+				else
+					grand.PrintTrace("Skipping unknown homing attribute:");
+			}
+		}
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -80,6 +123,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			hardpointSprite.LoadSprite(child);
 		else if(key == "sound")
 			sound = Audio::Get(child.Token(1));
+		else if(key == "empty sound")
+			emptySound = Audio::Get(child.Token(1));
 		else if(key == "ammo")
 		{
 			int usage = (child.Size() >= 3) ? child.Value(2) : 1;
@@ -115,14 +160,27 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "submunition")
 		{
 			submunitions.emplace_back(
-				GameData::Outfits().Get(child.Token(1)),
+				GameData::Outfits().Get(child.Token(1))->GetWeapon(),
 				(child.Size() >= 3) ? child.Value(2) : 1);
 			for(const DataNode &grand : child)
 			{
-				if((grand.Size() >= 2) && (grand.Token(0) == "facing"))
+				const string &grandKey = grand.Token(0);
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "facing" && grandHasValue)
 					submunitions.back().facing = Angle(grand.Value(1));
-				else if((grand.Size() >= 3) && (grand.Token(0) == "offset"))
+				else if(grandKey == "offset" && grand.Size() >= 3)
 					submunitions.back().offset = Point(grand.Value(1), grand.Value(2));
+				else if(grandKey == "spawn on" && grandHasValue)
+				{
+					submunitions.back().spawnOnNaturalDeath = false;
+					for(int j = 1; j < grand.Size(); ++j)
+					{
+						if(grand.Token(j) == "natural")
+							submunitions.back().spawnOnNaturalDeath = true;
+						else if(grand.Token(j) == "anti-missile")
+							submunitions.back().spawnOnAntiMissileDeath = true;
+					}
+				}
 				else
 					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
 			}
@@ -168,8 +226,6 @@ void Weapon::LoadWeapon(const DataNode &node)
 				burstReload = max(1., value);
 			else if(key == "burst count")
 				burstCount = max(1., value);
-			else if(key == "homing")
-				homing = value;
 			else if(key == "missile strength")
 				missileStrength = max(0., value);
 			else if(key == "anti-missile")
@@ -367,7 +423,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
 	{
 		tracking = 1.;
-		node.PrintTrace("Warning: Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
+		node.PrintTrace("Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
 	}
 
 	// Convert the "live effect" counts from occurrences per projectile lifetime
@@ -393,9 +449,9 @@ void Weapon::LoadWeapon(const DataNode &node)
 
 
 
-bool Weapon::IsWeapon() const
+bool Weapon::IsLoaded() const
 {
-	return isWeapon;
+	return isLoaded;
 }
 
 
@@ -418,6 +474,13 @@ const Body &Weapon::HardpointSprite() const
 const Sound *Weapon::WeaponSound() const
 {
 	return sound;
+}
+
+
+
+const Sound *Weapon::EmptySound() const
+{
+	return emptySound;
 }
 
 
@@ -501,7 +564,7 @@ double Weapon::TotalLifetime() const
 	{
 		totalLifetime = 0.;
 		for(const auto &it : submunitions)
-			totalLifetime = max(totalLifetime, it.weapon->TotalLifetime());
+			totalLifetime = max(totalLifetime, it.weapon ? it.weapon->TotalLifetime() : 0.);
 		totalLifetime += lifetime;
 	}
 	return totalLifetime;
@@ -550,15 +613,6 @@ const pair<double, double> &Weapon::DropoffRanges() const
 
 
 
-// Legacy support: allow turret outfits with no turn rate to specify a
-// default turnrate.
-void Weapon::SetTurretTurn(double rate)
-{
-	turretTurn = rate;
-}
-
-
-
 double Weapon::TotalDamage(int index) const
 {
 	if(!calculatedDamage)
@@ -567,7 +621,7 @@ double Weapon::TotalDamage(int index) const
 		for(int i = 0; i < DAMAGE_TYPES; ++i)
 		{
 			for(const auto &it : submunitions)
-				damage[i] += it.weapon->TotalDamage(i) * it.count;
+				damage[i] += it.weapon ? it.weapon->TotalDamage(i) * it.count : 0.;
 			doesDamage |= (damage[i] > 0.);
 		}
 	}

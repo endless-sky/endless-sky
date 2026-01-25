@@ -20,7 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
+#include "Screen.h"
 #include "Ship.h"
+#include "UI.h"
 
 #include <algorithm>
 
@@ -46,7 +48,7 @@ void HiringPanel::Step()
 void HiringPanel::Draw()
 {
 	const Ship *flagship = player.Flagship();
-	const Interface *hiring = GameData::Interfaces().Get("hiring");
+	const Interface *hiring = GameData::Interfaces().Get(Screen::Width() < 1280 ? "hiring (small screen)" : "hiring");
 	Information info;
 
 	int flagshipBunks = 0;
@@ -132,5 +134,6 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	else
 		return false;
 
+	UI::PlaySound(UI::UISound::NORMAL);
 	return true;
 }

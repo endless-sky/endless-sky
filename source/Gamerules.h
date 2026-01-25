@@ -13,8 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAMERULES_H_
-#define GAMERULES_H_
+#pragma once
+
+#include <map>
+#include <optional>
+#include <string>
 
 class DataNode;
 
@@ -24,10 +27,22 @@ class DataNode;
 // for example, the spawnrate of person ships or whether universal ramscoops are active.
 class Gamerules {
 public:
+	// Defines which disabled fighters can dodge stray projectiles.
+	enum class FighterDodgePolicy
+	{
+		NONE = 0,
+		ONLY_PLAYER = 1,
+		ALL = 2
+	};
+
+
+public:
 	Gamerules() = default;
 
 	// Load a gamerules node.
 	void Load(const DataNode &node);
+
+	int GetValue(const std::string &rule) const;
 
 	bool UniversalRamscoopActive() const;
 	int PersonSpawnPeriod() const;
@@ -38,6 +53,10 @@ public:
 	double DepreciationDaily() const;
 	int DepreciationGracePeriod() const;
 	int DepreciationMaxAge() const;
+	FighterDodgePolicy FightersHitWhenDisabled() const;
+	double SystemDepartureMin() const;
+	std::optional<double> SystemArrivalMin() const;
+	double FleetMultiplier() const;
 
 
 private:
@@ -50,8 +69,11 @@ private:
 	double depreciationDaily = 0.997;
 	int depreciationGracePeriod = 7;
 	int depreciationMaxAge = 1000;
+	FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
+	double systemDepartureMin = 0.;
+	std::optional<double> systemArrivalMin;
+	double fleetMultiplier = 1.;
+
+	// Miscellanous rules that are only used by the gamedata and not by the engine.
+	std::map<std::string, int> miscRules;
 };
-
-
-
-#endif

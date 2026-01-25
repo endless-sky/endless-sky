@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SET_H_
-#define SET_H_
+#pragma once
 
 #include <map>
 #include <string>
@@ -35,7 +34,7 @@ public:
 	// pointer rather than creating the item.
 	const Type *Find(const std::string &name) const;
 
-	bool Has(const std::string &name) const { return data.count(name); }
+	bool Has(const std::string &name) const { return data.contains(name); }
 
 	typename std::map<std::string, Type>::iterator begin() { return data.begin(); }
 	typename std::map<std::string, Type>::const_iterator begin() const { return data.begin(); }
@@ -56,7 +55,7 @@ private:
 
 
 
-template <class Type>
+template<class Type>
 const Type *Set<Type>::Find(const std::string &name) const
 {
 	auto it = data.find(name);
@@ -65,7 +64,7 @@ const Type *Set<Type>::Find(const std::string &name) const
 
 
 
-template <class Type>
+template<class Type>
 void Set<Type>::Revert(const Set<Type> &other)
 {
 	auto it = data.begin();
@@ -88,7 +87,3 @@ void Set<Type>::Revert(const Set<Type> &other)
 		// reverting to has a name that is not also in this set.
 	}
 }
-
-
-
-#endif

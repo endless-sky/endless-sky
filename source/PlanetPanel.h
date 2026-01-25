@@ -13,22 +13,26 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLANET_PANEL_H_
-#define PLANET_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
-#include "Ship.h"
-#include "text/WrappedText.h"
+#include "Sale.h"
 
 #include <functional>
+#include <map>
 #include <memory>
+#include <string>
+#include <vector>
 
 class Interface;
+class Outfit;
 class Planet;
 class PlayerInfo;
+class Ship;
 class SpaceportPanel;
 class System;
+class TextArea;
 
 
 
@@ -38,6 +42,7 @@ class System;
 class PlanetPanel : public Panel {
 public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
+	~PlanetPanel();
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -46,6 +51,8 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+
+	virtual void Resize() override;
 
 
 private:
@@ -62,7 +69,14 @@ private:
 
 	const Planet &planet;
 	const System &system;
-	const Interface &ui;
+
+	// Whether this planet has a shipyard or outfitter
+	// and the items that are for sale in each shop.
+	bool initializedShops = false;
+	bool hasShipyard = false;
+	bool hasOutfitter = false;
+	Sale<Ship> shipyardStock;
+	Sale<Outfit> outfitterStock;
 
 	std::shared_ptr<Panel> trading;
 	std::shared_ptr<Panel> bank;
@@ -70,7 +84,7 @@ private:
 	std::shared_ptr<Panel> hiring;
 	Panel *selectedPanel = nullptr;
 
-	WrappedText text;
+	std::shared_ptr<TextArea> description;
 
 	// Out of system (absent) ships that cannot fly for some reason.
 	std::vector<std::shared_ptr<Ship>> absentCannotFly;
@@ -78,7 +92,3 @@ private:
 	// Cache flight checks to not calculate them twice before each takeoff.
 	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> flightChecks;
 };
-
-
-
-#endif

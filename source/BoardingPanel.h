@@ -13,12 +13,12 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BOARDING_PANEL_H_
-#define BOARDING_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
 #include "CaptureOdds.h"
+#include "ScrollBar.h"
 
 #include <memory>
 #include <string>
@@ -37,33 +37,30 @@ class Ship;
 class BoardingPanel : public Panel {
 public:
 	BoardingPanel(PlayerInfo &player, const std::shared_ptr<Ship> &victim);
+	virtual ~BoardingPanel() override;
 
+	virtual void Step() override;
 	virtual void Draw() override;
 
 
 protected:
 	// Overrides from Panel.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
+	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
 
 private:
-	// You can't exit this dialog if you are in the middle of combat.
-	bool CanExit() const;
-	// Check if you can take the outfit at the given position in the list.
-	bool CanTake() const;
-	// Check if you can initiate hand to hand combat.
-	bool CanCapture() const;
-	// Check if you are in the midst of hand to hand combat.
-	bool CanAttack() const;
+	enum class CanTakeResult {
+		OTHER,
+		TARGET_YOURS,
+		NO_SELECTION,
+		NO_CARGO_SPACE,
+		CAN_TAKE
+	};
 
-	// Handle the keyboard scrolling and selection in the panel list.
-	void DoKeyboardNavigation(const SDL_Keycode key);
-
-
-private:
 	// This class represents one item in the list of outfits you can plunder.
 	class Plunder {
 	public:
@@ -110,6 +107,21 @@ private:
 		std::string value;
 	};
 
+
+private:
+	// You can't exit this dialog if you are in the middle of combat.
+	bool CanExit() const;
+	// Check if you can take the outfit at the given position in the list.
+	CanTakeResult CanTake() const;
+	// Check if you can initiate hand to hand combat.
+	bool CanCapture() const;
+	// Check if you are in the midst of hand to hand combat.
+	bool CanAttack() const;
+
+	// Handle the keyboard scrolling and selection in the panel list.
+	void DoKeyboardNavigation(const SDL_Keycode key);
+
+
 private:
 	PlayerInfo &player;
 	std::shared_ptr<Ship> you;
@@ -118,7 +130,8 @@ private:
 	// List of items you can plunder.
 	std::vector<Plunder> plunder;
 	int selected = 0;
-	double scroll = 0.;
+	ScrollVar<double> scroll;
+	ScrollBar scrollBar;
 
 	bool playerDied = false;
 	bool isCapturing = false;
@@ -133,7 +146,3 @@ private:
 	// Whether or not the ship can be captured.
 	bool canCapture = false;
 };
-
-
-
-#endif

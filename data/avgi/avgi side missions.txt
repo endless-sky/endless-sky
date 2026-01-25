@@ -1,0 +1,1116 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+mission "Avgi Culture: Park Politics"
+	invisible
+	source
+		planet "Peripheria"
+	to offer
+		has "Avgi: Twilight Escape 3: done"
+		random < 30
+	on offer
+		conversation
+			action
+				set "avgi: met wisteria"
+			`As you explore the spaceport of <origin>, you come across a small grassy park, the greenspace a welcome contrast to the otherwise mechanical facilities. As the centerpiece of the park, where you'd expect a fountain or a statue in a human park, is a curious hanging windchime, made of pieces of colorful glass and various metals. It's more than a little mesmerizing, and you stop to listen as it rustles in the gentle circulation of the station's air.`
+			`	"Is this one of the humans I have heard so much about, question?" The translator tucked behind your ear suddenly speaks, responding to an Avgi voice. You turn and see an Avgi perched on a park bench behind you, his purple coloring faded with age. A board of colorful stones sits on the table in front of him, a game of some kind. He gives you an odd sort of salute with a forelimb, probably an Avgi greeting of some kind.`
+			choice
+				`	"Hello there."`
+				`	"Hi, I'm Captain <first> <last>."`
+					goto name
+			`	"Courteous introduction. I am called Wisteria. Would you grace me with your own name?"`
+			`	"I'm Captain <first> <last>," you say.`
+			label name
+			`	"Appreciated meeting. A pleasure to meet you, Captain <last>. Would you like to join old Wisteria at a game of Trefoil, question? I would be happy to teach you how to play, of course."`
+			choice
+				`	"Sure."`
+				`	"No thank you."`
+					defer
+			`	"Delight. The youth these days have little appreciation for the art of Trefoil, you know." He taps one eye knowingly, an odd gesture. "Or at least my mother would say. That was sixty years ago, hmm. Please, sit, sit!" He points to the other side of his bench, with nothing more than a horizontal rail for a seat.`
+			choice
+				`	"That sure looks comfortable."`
+				`	"I'll stand, I think."`
+			`	"Amusement. The other humans had chairs made to suit your forms, they did. Folded them up and carried them everywhere."`
+			`	"Did you meet them?" you ask.`
+			`	"Yes, yes. Several times. Only the angry one was any good at Trefoil, sadly. Speaking of which-" He deftly rearranges the colored stones, arranging them into a neat pattern: three triangles, one of each color, angled with their topmost points touching at the center of a six-sided board.`
+
+			scene "scene/trefoil"
+
+			`	"Respectful deference. Which color would you like to play as, question? There is no real difference between them, as far as the game plays."`
+			choice
+				`	"Red."`
+				`	"Green."`
+				`	"Blue."`
+			`	"Acknowledgment. Excellent. Explanation. The objective is to remove all of your pieces from the board by moving them to the opposite edge to your own triangle." Demonstrating with a stone, he shows you how to skip it over connected chains of other pieces, moving to their endpoint. "You must balance your moves between freeing your own pieces and blocking the other colors from their own escape."`
+			`	You delicately take a seat on the rail. It's at least only a little worse than a park bench, and you're thankful for the lower gravity on Peripheria.`
+			choice
+				`	"But there's three sides and only two of us."`
+			`	"Approving. An astute observation. The third color can be played by a third person, in some variations, but in our case we take turns moving for it. It - the Foil - is an external actor, under our influence yet outside our absolute control, often used as a pawn to block the other player's moves when opportune. Now, would you like to make the first move, question? Players generally either focus on either evacuating their own pieces or moving to block their opponent's path to escape."`
+
+			choice
+				`	(Focus on getting my stones out. Move a stone towards my color's escape.)`
+					goto escape1
+				`	(Focus on blocking Wisteria. Move a stone towards his triangle.)`
+					goto "block wisteria 1"
+				`	(Focus on blocking the Foil. Move a stone towards its triangle.)`
+					goto "block foil 1"
+
+			label escape1
+			action
+				"avgi: trefoil classical" ++
+			`	"Approving. A good approach. That is the classical move to make at the start of the game, especially for a beginner."`
+				goto next1
+
+			label "block wisteria 1"
+			action
+				"avgi: trefoil aggressive" ++
+			`	"Amusement. Ah, already moving to block me, I see. That is often an approach taken by more advanced players, but I must warn you, executing it successfully is difficult."`
+				goto next1
+
+			label "block foil 1"
+			action
+				"avgi: trefoil chaotic" ++
+			`	"Interest. I do not often see players prioritize blocking the Foil, especially as their first move. But perhaps you will surprise me."`
+				goto next1
+
+			label next1
+			`	Slightly adjusting his position on the bench, the Avgi continues. "Now, after each of our turns, we shall move one of the Foil's pieces. You should focus on moving them to your advantage, whether that be by blocking my pieces or keeping them out of the way of your own."`
+			choice
+				`	(Move one of the Foil's stones towards my own side, to start building a link.)`
+					goto escape2
+				`	(Move one of the Foil's stones towards Wisteria's side, to block him in the future.)`
+					goto "block wisteria 2"
+				`	(Move one of the Foil's stones towards its own exit. Why not?)`
+					goto "escape foil 2"
+
+			label escape2
+			action
+				"avgi: trefoil classical" ++
+			`	"Approving. A wise approach, to prepare to build bridges in the future. It is more complex, and can be difficult, but is often well-rewarded in the end. Of course, you must take care not to accidentally box yourself in, and create a chain that lacks endpoints closer to your exit."`
+				goto next2
+
+			label "block wisteria 2"
+			action
+				"avgi: trefoil aggressive" ++
+			`	"Interest. It is a good move, to try and build a wall I cannot jump over, but you must take care not to accidentally create a chain with an endpoint placed to my advantage."`
+				goto next2
+
+			label "escape foil 2"
+			action
+				"avgi: trefoil chaotic" ++
+			`	"Surprise. I have not seen that done before. The Foil cannot win, of course, so you have nothing to gain by removing its pieces from the board aside from denying them to the opposing player."`
+				goto next2
+
+			label next2
+			`	Wisteria studies the board for a brief moment before moving one of his pieces towards his exit, then quickly moving a Foil piece towards his triangle. "Curiosity. I must confess, I wonder what our civilization looks like to an outsider, in the state it is in."`
+			choice
+				`	"It's impressive that you've been able to keep on fighting, even out here."`
+					goto fighting
+				`	"It seems like everyone lives a hard life out here."`
+					goto "hard life"
+				`	"I don't think I've seen enough of it to say anything, to be honest."`
+					goto safe
+
+			label fighting
+			`	"Contemplation. Yes. Fighting. A vice we have never quite been able to escape, and yet some would say we should be grateful for that now. For without the long millennia to sharpen the spear of war, how much worse would we have fared against the Aberrant, question? And yet my old bones grow weary with every failed expedition to reclaim Aviskir, and I hear the voices crying out that enough is enough, and to give up on our old worlds and build a new life out here."`
+				goto next3
+
+			label "hard life"
+			`	"Agreement. Yes, we do, and it grows harder the longer our war with the Aberrant goes on. We build our defenses up and they knock them down, we send armadas to retake Aviskir and they are routed or never return. It seems that all of our energies must go into this war, and little of our wealth is spent elsewhere. It is little wonder that some say we should seek to truly build a new life here, rather than waste our lives and efforts on reclaiming the old."`
+				goto next3
+
+			label safe
+			`	"Amusement. Fair to say, as I suppose the perspective of an outsider must be more confused than enlightened, when confronted with a new species, a new civilization, for the first time. And I suppose you have seen little of our true civilization, the planets we left to the Aberrant."`
+
+			label next3
+			`	"Regardless, I wonder what you would think of us, had you arrived before the Aberrant threw us from our homes. Conflict. It is almost a shame to me that you have to see us in our current state, but then I think of the unity and selflessness that we have found in each other, and that fills me with pride."`
+			`	You play a few more rounds back and forth, each of you advancing towards your respective exits. It is once more your turn.`
+			choice
+				`	(Move a stone towards my escape.)`
+					goto escape3a
+					to display
+						not "avgi: trefoil classical"
+				`	(Move a new stone towards my escape.)`
+					goto escape3b
+					to display
+						has "avgi: trefoil classical"
+				`	(Move my stone further towards my escape.)`
+					goto escape3c
+					to display
+						has "avgi: trefoil classical"
+				`	(Prepare to block Wisteria. Move a stone towards his triangle.)`
+					goto "block wisteria 3a"
+					to display
+						not "avgi: trefoil aggressive"
+				`	(Further block Wisteria. Move a new stone towards his side)`
+					goto "block wisteria 3b"
+					to display
+						has "avgi: trefoil aggressive"
+				`	(Move my blocking stone further towards Wisteria's side)`
+					goto "block wisteria 3c"
+					to display
+						has "avgi: trefoil aggressive"
+				`	(Move a stone towards the Foil triangle. Why not?)`
+					goto "block foil 3"
+
+			label escape3a
+			action
+				"avgi: trefoil classical" ++
+			`	"Approving. Balancing your movements between hindering me and evacuating your own pieces is the key to victory, and keeping multiple pieces in play is critical to achieving that balance."`
+				goto next4
+
+			label escape3b
+			action
+				"avgi: trefoil classical" += 2
+			`	"Consideration. You are focused on escape, with no inclination towards hindering me. A good strategy for the first few moves, but winning almost always requires some form of interference with the other side, even if it means entangling your pieces in defensive formations."`
+				goto next4
+
+			label escape3c
+			action
+				"avgi: trefoil classical" ++
+			`	"Consideration. You are focused on fleeing with that single piece, without having moved your other pieces. A good strategy for the first few moves if your goal is to set up a formation for use later, but you must be careful to avoid leaving the rest of your pieces behind."`
+				goto next4
+
+			label "block wisteria 3a"
+			action
+				"avgi: trefoil aggressive" ++
+			`	"Approving. Balancing your movements between hindering me and evacuating your own pieces is the key to victory, and keeping multiple pieces in play is critical to achieving that balance, especially as you may use your pieces to skip towards me."`
+				goto next4
+
+			label "block wisteria 3b"
+			action
+				"avgi: trefoil aggressive" ++
+			`	"Approving. Your efforts thus far are focused on reacting to me, but you are making good use of multiple pieces that may later be arranged into a wall."`
+				goto next4
+
+			label "block wisteria 3c"
+			action
+				"avgi: trefoil aggressive" += 2
+			`	"Consideration. Your efforts thus far are focused on reacting to me, but you should keep in mind that a single stone will not do much to block me, and may in fact be exploited to form a chain for my own use, should you not use your own pieces to constrain its endpoint."`
+				goto next4
+
+			label "block foil 3"
+			action
+				"avgi: trefoil chaotic" ++
+			`	"Bemusement. I am not sure if you are tricking me with some plan, but that is certainly an unusual move."`
+				goto next4
+
+			label next4
+			`	Wisteria quickly completes his own move, as well as his movement of the Foil. Now he seems to be moving a piece in your direction, perhaps to block you. After a few more back-and-forth moves between the two of you, he asks you another question.`
+			`	"So, Captain <last>. I am curious. If you found yourself in our place, an invincible enemy placed between yourself, armed with the last dregs of your people's spacefaring strength, and the bulk of your people held hostage on their very planets but otherwise unharmed, what would you do, question? Would you abandon them to their fate to build a new life out amongst the stars, or gamble your remaining strength on a bet to liberate them?"`
+			choice
+				`	"You can't just abandon everyone on your planets. Surely there's a way to win against the Aberrant, even if it takes sacrifice."`
+					goto liberate
+				`	"If the Aberrant aren't attacking the surfaces of the Avgi worlds, maybe you should focus on making life better out here first. After all, you have people out here to take care of too."`
+					goto abandon
+				`	"I would find another way. Communicating with the Aberrant maybe, or finding a way to both fight the war and help the people out here."`
+					goto "another way"
+
+			label liberate
+			`	"Appreciation. Such is the opinion of most of us, those who feel lucky to have escaped in the first place and feel a certain obligation to help the rest of our people. But the way forward is unclear. If we build our strength, our military might, perhaps we will have a chance in the future to truly drive the Aberrant from our homes, but just how far we can drive the free Avgi of the Consonance, I do not know. Perhaps it will break us, and leave us with no victory at all."`
+				goto next5
+
+			label abandon
+			`	"Contemplation. That view would have been anathema to us only a short few years ago, but it is one that is steadily gaining ground. With each defeat and failed expedition back to the Twilight, the calls grow to focus on preserving what we have, not reaching to reclaim the old. And many say that those on the old worlds are safe, for now, and may even be able to build a fleet to liberate themselves, if they can but reclaim their orbital shipyards and asteroid mines. If that truly is the case, they say, then we should build ourselves up as a bastion first, with the living space and abundance to support our population."`
+
+			label "another way"
+			`	"Amusement. Always in search of another way, everyone is. Perhaps because the choice we are left with is so abhorrent, that seeking another way provides a means of relieving them of it. We have attempted communication with the Aberrant, to no avail, and it seems likely they are not an intelligent species to begin with. They do not appear to coordinate with each other, and examining their debris in the rare instances we have managed to destroy one reveals no crew, just a strange mixture of machine and flesh. Perhaps they are some forgotten living weapon, engineered by a race long gone, or the mere servants of some ancient race far beyond us in power, the equivalents of our mining drones and service robots."`
+			`	He splays his arms. "But no, a choice must be made in the end, even if it is only one of degree. Even should we attempt to both build new homes in the Outer Limits and protract our conflict with the Aberrant, the resources allocated to each still remain to be divided up. And there, the conflict between the Consonance and Dissonance lies."`
+
+			label next5
+			`	You play a few more rounds with Wisteria, and he shows you how to set up chains of pieces that can be used to skip ahead, while also denying their use to the enemy. After a particularly interesting set of moves, where he demonstrates how to break a chain and add your own endpoints to it, the conversation once more turns to politics.`
+			`	"Curiosity. I am reminded, Captain <last>, that you likely do not know much of our system of government in the first place. Am I right in this, question?"`
+			choice
+				`	"I think I know a little."`
+				`	"Yeah, I don't know much aside from there being an Assembly that you vote in."`
+					goto assembly
+
+			`	"Consideration. I see. It is something that should be rectified, then, to make your time among us less confusing. The first thing that you should know is that the Avgi are not, nor have ever been, united under a single government."`
+
+			label assembly
+			action
+				log "Factions" "Avgi" `There are thousands of Avgi governments called polities, which seem to resemble city-states or ideological identities more than true nations. Many, if not most, have banded together into the Consonance, where Electors with varying political weight based on the population of their respective polities make consensus decisions for the species as a whole.`
+
+			`	"Explanation. The Assembly of Polities, as it is formally named, is a rather complicated institution. As its name suggests, it is, well, an assembly of polities. Polities being... associations, or identities. I have read of your human histories, and you could perhaps consider them an analog of nations, but with two key differences."`
+			`	Wisteria raises a sharp finger. "One, they are not geographically bounded. Oh, many will perhaps have ownership over various pieces of land and space stations, but that is in constant flux, and they are rarely joined into a contiguous whole. And two, an individual Avgi can belong to any number of polities at the same time. Citizenship, you may think of it, is shared - and diluted - between as many polities as an Avgi wishes to belong to. Religion, ethnic heritage, economic sector, and even common interests are the most common lines by which polities might base themselves around, but there is one for almost any group imaginable. Even major corporations, or industries that have banded together."`
+			`	He spreads his arms out as if presenting a great circle. "The Assembly was an attempt at securing harmony between these polities, to prevent conflicts, and when that became impossible, to set the rules and limits of war. One representative, an Elector, per polity, with a vote weighted by the number of Avgi belonging to it, and by how those Avgi had chosen to dilute their own membership among the various polities. And from them they select three Speakers, a Triumvirate to lead the leaders."`
+			choice
+				`	"Do the Avgi in a polity elect their Elector?"`
+				`	"Corporations are part of the government? I've seen that one before."`
+					goto syndicate
+			action
+				log "Factions" "Avgi Consonance" `While most of the Electors the various Avgi polities select to represent them in the Consonance are elected democratically, others are not, with their own systems of appointment. The Consonance is thus perhaps an example of a republic that is not fully democratic.`
+
+			`	He shrugs, an oddly human gesture. "It depends. Many polities do not even elect their own leadership, and they are free to select their representative however they wish. For some it is an elected position, for others it is one appointed by their leadership. A few even have their head of government serve as their Elector, though that is quite the time commitment to make."`
+			`	Wisteria looks up. "But yes, most of the polities use some form of democracy. An Avgi might find themselves voting in several elections, one for each polity they claim membership to, with their vote diluted by how many polities they belong to."`
+				goto "next assembly"
+
+			label syndicate
+			`	Wisteria thrums in laughter. "Amusement. Yes, I've heard of your Syndicate. It was strange to me, to hear of a corporation that wished for the burden of true governance, instead of leaving that to your Republic. It seems to me that the industrial polities here try their best to avoid any responsibility, while still reaping the benefits of representation."`
+
+			label "next assembly"
+			`	"Amusement. And of course there are internal factions within the Assembly, as likeminded polities work together to advance their agendas, then just as quickly abandon each other. A harsh world, the Assembly is."`
+
+			choice
+				`	"What factions are there in the Assembly?"`
+					goto factions
+				`	"They're all that ruthless, even now?"`
+			`	Wisteria laughs. "Of course they are. Oh, most of them have the same goal in the end, defeating the Aberrant, but there are many who are convinced that their methods are best suited for achieving that goal."`
+
+			label factions
+			action
+				log "Factions" "Avgi Consonance" `There are many factions in the Consonance Assembly that compete for power and influence.`
+				log "Factions" "Avgi Consonance" `The Centralists wish to see the Consonance evolve into a true central government with real power. Mostly popular among smaller polities that would otherwise lack influence, their critics accuse them of authoritarianism while they argue strong leadership is needed to combat the Aberrant.`
+				log "Factions" "Avgi Consonance" `The Technocrats are a group of corporate and industrial polities that believe in the power of technology to defeat the Aberrant. Besides a shared interest in funding research and development projects, they often conflict with each other, and the results of their sponsorships have been mixed.`
+				log "Factions" "Avgi Consonance" `The Financiers are influenced primarily by old money, those families and polities who control the largest trade unions and banking organizations. Their financial power makes them almost universally unpopular to the people, but they work behind the scenes to promote unity and effective governance by taking advantage of their influence.`
+				log "Factions" "Avgi Consonance" `The Nationalists are a diverse group that rail against the Consonance's subversion of individual polities. They especially resent the consolidation of individual national navies into the Twilight Guard, but are considered a reliable force against perceived overreach.`
+				log "Factions" "Avgi Consonance" `The Ecologists are a single issue faction that simply desires the settlement of Weledos. Many have sympathies to the increasingly popular position that the Avgi should focus on settling the Tangled Shroud instead of trying to reclaim Aviskir.`
+				log "Factions" "Avgi Consonance" `The Freelancers have little in common besides a disdain for the taxes and financial controls imposed by the Assembly. Many with Dissonance sympathies can be found among them, but just as many are loyal Consonance supporters who merely desire lower taxes.`
+
+			`	He ticks them off on his pointed fingers, three on each hand. "There are the Centralists, those from the smaller polities who wish to see the Consonance grow in authority and power. The war against the Aberrant demands strong leaders, they say, and many agree with them." He tilts his head to the left.`
+			`	"The Technocrats, they disdain that, and place their hopes in a qualitative solution to defeat the Aberrant. Build better ships and give them better weapons, and the Aberrant can be swept from the Twilight without the need to demand ever more resources from our people. They draw from many of the industrialist polities, but their loyalties are often divided," he says as he makes a move.`
+			`	"The Financiers, the old money types with their fingers in everything, they represented many of the more urbanized regions of the core worlds, and their influence has come with them. Disdained by everyone in public, and beloved by all who would seek to benefit from their influence, I would credit them for being half the reason for the present unity between polities that would normally refuse to cooperate with each other," he says with an amused flick of his wings.`
+			`	"There are more, of course, with lesser influence. The Nationalists, who resent the decline of their polities' power, and especially the subsumption of their militaries into the Twilight Guard, are an ever-present thorn in the side of the Centralists, but they at least are quick to point out authoritarianism when they see it. The Ecologists want but a single thing, the complete settlement of Weledos, and the refocusing of resources on colonization and construction rather than shipbuilding. And there is a loose coalition, the Freelancers, who agree on nothing except that taxes and price controls should be relaxed."`
+			`	He sits back. "And of course the Twilight Guard is its own faction, as much as they will emphasize their neutrality. They have their supporters and detractors, but none can oppose them entirely, for they are all that stands between us and the Aberrant."`
+			`	With that, he deftly moves a Foil piece, trapping a cluster of your stones behind a wall.`
+			choice
+				`	(Try to break the wall and turn it into a chain.)`
+					goto "break wall 4a"
+					to display
+						"avgi: trefoil classical" >= 2
+				`	(Try to break the wall and turn it into a chain.)`
+					goto "break wall 4b"
+					to display
+						"avgi: trefoil classical" < 2
+				`	(Evacuate my other stones.)`
+					goto escape4
+				`	(Retaliate by trapping the rest of Wisteria's stones.)`
+					goto "block wisteria 4"
+					to display
+						"avgi: trefoil aggressive" >= 1
+
+			label "break wall 4a"
+			action
+				"avgi: trefoil classical" ++
+			`	"Approving. Excellent, you have broken my blockade and turned it to your advantage instead. A good skill for an experienced player to have."`
+				goto next6
+
+			label "break wall 4b"
+			action
+				"avgi: trefoil classical" ++
+			`	"Instructing. Ah, you see how you were unable to break the blockade, question? Your formation was not organized well enough for it with the stones you have available, and you would have been better served by ignoring those pieces and making moves elsewhere."`
+				goto next6
+
+			label escape4
+			action
+				"avgi: trefoil chaotic" ++
+			`	"Interest. You seem to be abandoning the pieces I have trapped in order to move the rest while I am distracted. A clever strategy, and one that is non-obvious."`
+				goto next6
+
+			label "block wisteria 4"
+			action
+				"avgi: trefoil aggressive" ++
+			`	"Approving. Instead of trying to break my blockade, which would be difficult, you choose to instead take the opportunity to block in my own pieces, which forces me to respond."`
+
+			label next6
+			`	You play a few more rounds, each of you managing to take a few of your pieces off the board.`
+			choice
+				`	"So, what was it like before the Aberrant came?"`
+				`	"What about the Dissonance? I've heard of them."`
+					goto dissonance
+
+			`	"Contemplation. Perhaps a better question would be, 'what it was like before the hyperdrive?' For our society was not placed into turmoil first by the Aberrant, but rather by the discovery of a means to travel faster than light. Inside a handful of years an outlandish physics experiment went from theory to reality, and stars that had been decades or centuries away instead became reachable in first months, then weeks, then days as the hyperdrive continued to improve."`
+			`	He leans in. "You must understand, emphasis, just how economically separated the various pockets of Avgi civilization were. Aviskir of course was dominant within the Anax system, but beyond interplanetary politics practically every system was independent in both a political and economic sense. There was no Consonance to organize the various powers, and everyone largely kept to themselves by sheer virtue of the distance and expense involved in interstellar travel."`
+			`	Wisteria spreads his arms as if to encompass the entire station. "Then, almost overnight, the situation went from one of extreme separation to one of interconnection. The fleets of vast starships, powered by stores of antimatter or immense lasers, became obsolete, and it suddenly became possible for even moderately well-off individuals to travel between the stars."`
+			choice
+				`	"Were there wars?"`
+					goto war
+				`	"Did you colonize new planets?"`
+
+			`	"Remembrance. Oh, but of course. Only three or four systems, depending on how you count it, were truly colonized before the hyperdrive. There were expeditions sent to more, but they all either failed or remained insignificant up until hyperdrive-equipped ships joined them. We colonized an additional trio of systems, and explored dozens more."`
+				goto consonance
+
+			label war
+			`	"Remembrance. Some, yes, though not as many as you might expect of us. A few powers on Aviskir tried to seize weaker colonies once they gained access to hyperdrives, but they overestimated their ability to wage war between the stars. It was years before the first truly capable interstellar warships were built, and by then the situation had stabilized enough that there were few polities interested in starting a new war."`
+				goto consonance
+
+			label consonance
+			`	"But the true consequence was the creation of the Consonance. With Avgi civilization once more connected, there was a vision of a grand forum of each and every polity, a united Avgi civilization, at least in name."`
+				goto next7
+
+			label dissonance
+			`	"Caution. Ah. Our wayward cousins. As much as some fearmongers would have you believe, the Dissonance is neither a rival government nor a subversive movement. Rather, they are a collection of those dissatisfied with the Consonance and the Assembly. Their reasons and motivations vary, but their most significant common grievance is the control over prices enforced by the Consonance as they appropriate resources for use by the Twilight Guard. That, and the taxes the Assembly attempts to levy without much success, has turned many against the Consonance, and those polities who fly Dissonance colors reject any allegiance to the Consonance."`
+			choice
+				`	"But don't they know the Twilight Guard is needed to fight the Aberrant? Without them, they'd all be killed."`
+					goto guard
+				`	"That seems too simple. That can't be their only reason for leaving the Consonance, not in an existential war."`
+
+			`	"Approving. That is an astute observation, and one you are correct in. It is of course more complicated than a simple disdain for taxation and price controls. There is the matter of sovereignty, the continued decline of the power of the polities as the Consonance takes on additional responsibilities. Many of the polities that created the Consonance no longer exist, and even more are nothing more than a collection of refugees, the bulk of which sleep in cryogenic storage, waiting for us to build the habitable space needed to awaken them. Many resent this, remembering the days of freedom and true independence, and the rejection of Consonance authority is one way to revisit those days."`
+			`	He turns his head to the side. "Sadness. I cannot say I blame them. They are correct in that the Assembly does grow ever more overbearing, and the fear of more polities leaving the Consonance has served as a check on the tendency for the Assembly to grant itself ever more powers."`
+				goto next7
+
+			label guard
+			`	"Ah, but is that really the case, question? Many of them would argue that we may simply hide within the Tangled Shroud, or instead dedicate our efforts to fortifying a single system at their entrance. Others oppose not the existence of the Twilight Guard, but rather their continued failed forays back into the Twilight, which they see as a waste of both resources and lives."`
+
+			label next7
+			`	"But I see we approach the end of our game. I can spot a path to victory for myself, but can you, question? I assure you that one exists."`
+			choice
+				`(Focus on getting the rest of my stones out as quickly as possible.)`
+					goto end1
+				`(Evacuate the stones I have blocking Wisteria.)`
+					goto end1
+					to display
+						"avgi: trefoil aggressive" >= 1
+				`(Try to completely block Wisteria in with my remaining stones before extracting them.)`
+					goto end2
+					to display
+						"avgi: trefoil aggressive" >= 2
+				`(Try to completely block Wisteria in with the Foil's stones.)`
+					goto end3
+					to display
+						"avgi: trefoil aggressive" >= 1
+				`(Try to undo the blockades Wisteria has created for me with the Foil's stones.)`
+					goto end4
+					to display
+						"avgi: trefoil classical" >= 2
+
+			label end1
+			action
+				"avgi: trefoil classical" ++
+			`	"Approving. An excellent prioritization of your own pieces."`
+				goto roll
+
+			label end2
+			action
+				"avgi: trefoil aggressive" ++
+			`	"Approving. An excellent blocking action, one that has delayed me."`
+				goto roll
+
+			label end3
+			action
+				"avgi: trefoil aggressive" += 1
+			`	"Approving. An excellent blocking action, one that has delayed me without costing you anything."`
+				goto roll
+
+			label end4
+			action
+				"avgi: trefoil chaotic" ++
+			`	"Approving. An excellent blocking action, one that has delayed me."`
+				goto roll
+
+			label roll
+			branch win
+				random < ( "avgi: trefoil classical" + "avgi: trefoil aggressive" ) * 10 + ( random - 50 ) * "avgi: trefoil chaotic" * 10
+
+			label lose
+			`	In the end Wisteria is able to pull ahead and get the last of his pieces off the board before you, and you suspect it was only as close as it was due to him humoring you.`
+				goto final
+
+			label win
+			`	You play with bated breath as your pieces slowly inch off the board, until at last victory is yours, a scant single move before Wisteria would have evacuated his final piece. You suspect that while he has given you a fair game, he has perhaps gone easy on you to give you a chance to win.`
+
+			label final
+			action
+				log `Played an Avgi board game in the park with an elderly Avgi named Wisteria.`
+				log "People" "Wisteria" `Seemingly an old Avgi who plays board games in the park, Wisteria was formerly one of the First Speakers of the Consonance Assembly before retiring. He has a deep understanding of Avgi politics and history, and is curious about how they compare to those of humanity.`
+				outfit "Trefoil Board" 1
+			`	"Satisfaction. A fine game, Captain <first>," he says, congratulating you. "You are a talented player, and I much enjoyed our conversation during the game." You realize that hours have gone by since you started, with the station's lights simulating a ruddy sunset.`
+			`	"Appreciation. Allow me to gift you this Trefoil board, so that you might enjoy the game in your own time. I look forward to meeting you in the future, and perhaps we may even have the chance to play again."`
+			`	He gently hands you the Trefoil board, bows in respect, then climbs off his rail to depart. "Should you ever wish to speak to me again, ask for the office of former Speaker Wisteria and I will be more than pleased to host you."`
+			`	"Thank you," you say, and it is only after he has left that you realize Wisteria must have been not just an Elector, but one of the First Speakers at some point in the past.`
+
+
+
+mission "Avgi Culture: Zapchannel Energy"
+	landing
+	invisible
+	source
+		government "Avgi (Consonance)"
+	to offer
+		has "Avgi: Twilight Escape 3: done"
+		random < 30
+	on offer
+		log "Minor People" "Nikkio" `Nikkio is a shifty salesman peddling "Zapchannel Ray Energy," a supposed health tonic with a suspicious glow.`
+		conversation
+			action
+				set "avgi: met nikkio"
+			`You are on your way back to the <ship> after a stroll through the spaceport when a bright yellow Avgi lands in front of you. "Hey, you! Enthusiasm! I am Nikkio, famed medician and traveling salesman. Do you, alien sojourner, care for your health?"`
+			choice
+				`	"I guess so."`
+					goto scam
+				`	"Whatever you're selling, I'm not interested."`
+
+			`	You try to step around him and continue on your way, but he mirrors you, dancing backwards to remain in your face. "Sincerity! You are making a terrible mistake! I have something that could help with your energy, yes?"`
+			choice
+				`	"Alright, alright. What is it?"`
+					goto scam
+				`	"Not interested. Now move before I call the authorities."`
+					goto nope
+
+			label scam
+			`	"Excitement! Wonderful! I have just the thing, certified by the Consonance Health Committee itself, surely!" he says animatedly, arms and wings waving as he dances in front of you. "But, reservation. Hmm. Only the most enterprising of captains could benefit from what I am about to bestow upon you. Are you certain you have what it takes to try Zapchannel Ray Energy?"`
+			choice
+				`	"Yes, I'm very experienced, seen the galaxy and all. Now show me what you're talking about."`
+					goto glow
+				`	"Alright, that's it. Get out of here before I call the authorities."`
+					goto nope
+
+			label glow
+			`	"Excitement, excellent! I can see you are clearly a very intelligent and discerning captain. Anticipation. This serum was invented by yours truly, capable of resolving all of your worldly woes! Only 3,000 credits!" He proudly holds out a vial of cloudy white liquid, glowing a bright, intense pale blue.`
+			choice
+				`	"Uh, what is this?"`
+				`	"Is this radioactive?"`
+				`	"I'm not drinking that."`
+
+			`	"Dismissal. Nonsense, this formula is perfectly safe! A serum for the health, proven to kill over three thousand forms of cancer, you should know." As if on cue, the glow pulses menacingly.`
+			choice
+				`	"Yeah, that doesn't look safe. I'm calling the authorities."`
+					goto nope
+				`	"Alright, I'll give it a shot."`
+
+			branch superpowers
+				random < 1
+			`	You take the vial, warm to the touch, and uncork it. Nikkio gives you an expectant look, and gestures at you before you carefully tip the drink back. You feel a little tingly as the drink trickles down your throat, tasting vaguely of lemon and metal. This quickly intensifies into pins and needles in your chest, spreading as your body starts to go numb. As your vision darkens, punctuated by flashes of light in the corners of your eyes, your last thought is that perhaps you shouldn't have drunk a mysterious glowing liquid given to you by a seedy alien you just met in the spaceport.`
+				die
+
+			label superpowers
+			action
+				log `Met a suspicious-looking Avgi salesman named Nikkio. Accepted a free sample of a strange glowing drink and somehow developed minor superpowers from it.`
+				set "damselflyman"
+				outfit "Damselflyman"
+			`	You take the vial, warm to the touch, and uncork it before carefully tipping it back. You feel a little tingly as the drink trickles down your throat, tasting vaguely of lemon and metal. This quickly intensifies into pins and needles in your chest, spreading as you start to feel somehow revitalized. After a brief, sharp pain, a suspiciously dragonfly-shaped patch of skin in the center of your chest begins to glow a vibrant blue.`
+			`	"Surprise. You surely are, ah, a worthy captain!" says Nikkio, shock evident on his face. He begins to sidle away, glancing in all directions as though he isn't sure what's going on. "Hurry. I must be on my way, goodbye for now, captain!"`
+				decline
+			label nope
+			action
+				log `Met a suspicious-looking Avgi salesman named Nikkio. Refused his offer of a definitely radioactive "energy drink" that would probably have been lethal.`
+			`	"Alarm. There's no need for that, apologies, apologies! Be on your way, Captain!"`
+
+
+
+mission "Damselflyman Abilities"
+	landing
+	invisible
+	non-blocking
+	repeat
+	to offer
+		has "damselflyman"
+		not "outfit (flagship installed): Damselflyman"
+	on offer
+		outfit "Damselflyman" 1
+		fail
+
+
+mission "Avgi: Cylinder Construction"
+	landing
+	invisible
+	source
+		planet "Aktina Cylinder"
+	to offer
+		has "Avgi: Twilight Escape 3: done"
+	on offer
+		log "People" "Gamboge" `Gamboge manages construction on the Aktina Cylinder, an immense habitat station whose construction has stalled in recent years. He is frustrated about the lack of support offered by the Assembly and believes Aktina deserves to be a higher priority.`
+		conversation
+			`You are struck by just how massive this space station is, even in its incomplete state. At three kilometers in diameter, it is only a small fraction of the size of the cylinders back in the Twilight, but even so it overshadows any human orbital construction. The site is an active construction zone, based on what you've heard, though you see little evidence of activity. A few Avgi lounge about in the small, temporary living quarters for the construction workers, but all of the Akoustiki Excursion Vehicles with their welding arms and nanofilament spinners are docked and powered down.`
+			`	Would you like to ask what's going on?`
+			choice
+				`	(Yes.)`
+				`	(Not right now.)`
+					defer
+
+			action
+				set "avgi: met gamboge"
+			`	You find a deep yellow Avgi, dressed in metallic blue-colored bangles around his limbs and forward body, perched in a makeshift office behind a pile of boxes. "Hey, do you mind if I ask some questions about this station?" you say.`
+			`	"Curiosity. Of course, alien traveler," he says, waving an arm at you. "My name is Gamboge, and I direct the construction effort on the Aktina Cylinder. What would you like to know?"`
+			label questions
+			choice
+				`	"How long until the cylinder is done?"`
+					goto "when update"
+					to display
+						not "avgi: asked about whenupdate"
+				`	"What kind of station design is this?"`
+					goto oneil
+					to display
+						not "avgi: asked about oneil"
+				`	"What are you building this station for?"`
+					goto housing
+					to display
+						not "avgi: asked about housing"
+				`	"That's all the questions I have, thank you."`
+					goto conclusion
+
+			label "when update"
+			action
+				set "avgi: asked about whenupdate"
+			`	He thrums with laughter. "The trillion credit question, is it not, amusement? The answer I give the Assembly is that it will be finished when they supply us with the requisite materials and workforce to do so. But the War takes precedence, as it must, and so the steel and nanofibers and ceramics that we must have before we can fill this cylinder with atmosphere are instead used to build warships, and the engineers and workers with any shred of experience are sent to the Navigeo Yards instead of here."`
+			choice
+				`	"Well, it makes sense that fighting the Aberrant would take priority."`
+				`	"Is building this station as important as fighting the Aberrant?"`
+
+			`	"Clarification. By no means do I begrudge the Assembly's decision. Without the Twilight Guard I would not be alive to complain about being paid to sit around all day, though that burden truly does pain me. But when I am asked by important delegates and electors why there is not yet an abundance of space with which to house their people, I am obliged to tell them that the decision rests with them, not with me."`
+				goto questions
+
+			label oneil
+			action
+				set "avgi: asked about oneil"
+			`	"A Class Two rotating cylinder habitat. Unless you use the Hekkedian classification system, in which case it is a Type One orbital habitat station. Of course, the Freosi would call it a Lieno-Drareg Cylinder, but that name hasn't been fashionable in quite some time."`
+			`	"I was more asking about what it'll look like when it's done," you say.`
+			`	"Amusement. I know, I know, I was just messing with you." He gestures out the window towards the steel skeleton of the unfinished station. "Six kilometers wide and twelve long, with two-hundred-sixty-six ribs of nickel-iron roidsteel and ninety spinal columns of carbon nanofilament. Once the base frame is complete, and it very nearly is, we will begin plating it with sheets of aerogel and graphene, with a fluorinated polymer layer coating the inside. After that my job is done, and we hand the project over to the ecosystem engineers."`
+			choice
+				`	"What do they do?"`
+					goto nerds
+				`	"That sounds like a lot."`
+
+			`	"Appreciation. Oh, it is. Over seven hundred megatons of raw material, scraped off moons and torn from asteroids. But it will be worth it, in the end.`
+
+			label nerds
+			`	"Of course, the entire purpose of this is to provide enough living space for the Avgi who escaped the Aberrant. And everyone would rather live in an open environment, instead of pretending a garden in a smaller station is sufficient. Thus, the ecosystem engineers come in with their millions of tons of soil to dirty up our nice shiny metal and nanofilaments, and grow grass and trees and fungus to make this place a little less dreary. I suppose we'll make most of the soil in bulk from crushed carbonaceous asteroids, and seed it with whatever samples we have from Aviskir."`
+				goto questions
+
+			label housing
+			action
+				set "avgi: asked about housing"
+			`	"Consideration. A place to live, with enough space to be a real home, not just a temporary outpost with a few houseplants. You should know, we had thousands of cylinders far larger than this one back in Anax and around our other colonies. Billions of Avgi, housed not on planets but in space. This is but a pale imitation of what we once had, but it is needed all the same. Do you know the most pressing question faced by the Assembly?"`
+			choice
+				`	"No."`
+				`	"What would that be?"`
+
+			`	"Mild surprise. It is oft spoken of. The Assembly must decide the fate of the millions of Avgi in cryogenic storage, frozen during our evacuation to facilitate their transportation. A scarce few thousand are thawed every year, the best and brightest we can find among them woken to fight the Aberrant, all because we lack the food and living space to support the rest. This cylinder here, Aktina, could support them."`
+				goto questions
+
+			label conclusion
+			action
+				clear "avgi: asked about whenupdate"
+				clear "avgi: asked about oneil"
+				clear "avgi: asked about housing"
+			`	"Appreciation. I was happy to answer them. Though, if I might ask a favor?"`
+			choice
+				`	"Sure."`
+				`	"I don't have time for anything, sorry."`
+					decline
+
+			`	"I hope I have impressed the importance of this project upon you. But, despite the scale of the resources required to truly complete it, we do not need an unreasonable amount to continue construction on the most essential elements. As a starship captain, independent of the requisitions and allocations of the Consonance, would you be willing to assist us in gathering the materials we need?"`
+			choice
+				`	"Yes."`
+				`	"For the right pay."`
+				`	"Sorry, no."`
+					decline
+
+			action
+				set "avgi: aktina cylinder supply jobs"
+			`	"Gratitude. I will ensure there are items posted on nearby job boards that you might gather and transport here."`
+				accept
+
+
+mission "Avgi: Infocourier Encounter"
+	invisible
+	source
+		government "Avgi (Consonance)"
+	to offer
+		has "Avgi: Twilight Escape 3: done"
+		random < 6
+	on offer
+		log "People" "Hansa" `Hansa is an Infocourier, a role that sees him transport files and records between systems in a small ship. As the Avgi never developed hyperspace comms, courier ships are necessary to communicate across interstellar distances.`
+		conversation
+			`While admiring the ships in <origin>'s spaceport, you notice a Polari painted in civilian Avgi colors, rather than usual deep blue of the Twilight Guard. All of the scouts you've seen before have been commissioned ships of the Guard, but it seems like this one might be privately owned.`
+			choice
+				`	(Ask around about who the Polari belongs to.)`
+				`	(It's not that interesting. I have better things to do.)`
+					defer
+
+			`	You ask a few passing Avgi, and eventually one is able to answer your question.`
+			`	"Probably an infocourier ship, hauling information and databases instead of cargo. The Guard sometimes sends ships to market if they've taken a beating and aren't worth fixing up to combat standards, which is probably what happened there."`
+			`	You thank the Avgi for their time, and are about to leave when you spot a pale yellow Avgi climbing on board the exact ship you've been talking about. You might as well see if he's willing to chat.`
+			`	"Hey, do you have a moment?" you ask as you jog over.`
+			`	The Avgi looks down from atop the Polari. "Invitation, I do. The name's Hansa, and you are?"`
+			`	"Captain <first> <last>," you say. "Are you one of the infocouriers?"`
+			action
+				set "avgi: met hansa"
+			`	Hansa clicks his arms together. "Mild surprise. Indeed I am, but I'm surprised you've heard of us. Not a lot of people talk about the courier system these days."`
+			choice
+				`	"Why is that?"`
+				`	"What do couriers do?"`
+					goto couriers
+
+			`	"Hmm. Consideration. Decades ago, before the hyperdrive, the arrival of an interstellar courier ship would be a cause for celeberation. Entire planets would rejoice to receive news of the sciences and arts of other stars, which were cherished. You see, interstellar visits were rare during those days, only a few times a year at most. There was remote communication, of course, with bright x-ray lasers and telescopes to receive them, but the transfer rates were too slow for information to be shared in bulk."`
+			`	Hansa flicks his wings. "A good courier ship might have been less than half as fast as a laser operating at the speed of light, but it could move a thousandfold more information in the same time nonetheless. And a courier ship could carry all the information produced by an entire system's worth of people in a decade, and share it with the neighboring systems so they could update their own databases. Those were the days," he says wistfully.`
+			choice
+				`	"What changed?"`
+
+			`	Hansa sighs, making an odd whistling sound. "Nostalgia. Interstellar travel is much easier these days. Gone are the kilometer-long starships, the petawatt beam-pushers. I'm not complaining about it, of course - it is impossible to overstate just how incredible the hyperdrive has been. Now that interstellar journeys take days instead of decades, the courier system has adapted, and now it is just that - a system. Regular. Predictable. And ultimately unexciting." He looks a bit dejected.`
+			label couriers
+			`	"Today, we make the rounds in ships that are fast, but have the room for enough storage media to update a planet's entire network. In our heyday, before the Incursion, a courier ship would visit a world every day to upload its database, but since then we've struggled to keep each system controlled by the Consonance updated once per week."`
+			label ask
+			choice
+				`	"Why use a Polari? Aren't those scout ships?"`
+				`	"How can you update an entire planetary network with one courier ship?"`
+					goto diamond
+				`	"Sounds like an interesting job. Is there any way I could take infocourier missions?"`
+					goto job
+
+			`	"Consideration. Many reasons, some of which are even good ones. Mostly because what makes them excellent research and scout vessels also makes them excellent courier ships - fast, while also having large integrated memory banks and a reasonable amount of space for cargo. It helps that the Twilight Guard has been decommissioning so many Polari lately, with how fragile they are against the Aberrant. Anticipation. It wouldn't surprise me if they designed a successor to them, if you ask me."`
+				goto ask
+
+			label diamond
+			`	"Explanation. Incredibly dense storage media, of course: memory diamond, we call it. You can find it under a dozen trade names, each claiming to be better than the last, but they're really all the same stuff, more or less. Chains of alternating carbon-12 and carbon-13, printed out as a diamond by specialized nanofabricators. The stuff is incredibly resilient, chemically stable, and will keep information archived practically forever. Just keep it away from radiation and high heat, which diamond doesn't stand up to well."`
+			`	He twitches his wings. "Amusement. Of course, don't be expecting data crystals or glowing gemstones like you see in science fiction. Most of the time it comes in matte black bricks or slabs, nothing flashy."`
+				goto ask
+
+			label job
+			`	"Consideration. With a fast ship, anyone trusted enough to haul a few dozen tons of memory diamond can do the job. In fact, I can make a few calls and see about expediting the process for you, if you'd like."`
+			choice
+				`	"Yes, I'd like that."`
+					goto end
+				`	"How much are you normally paid for ferrying information?"`
+
+			`	Hansa laughs. "Too much, if you ask anyone else. The Assembly recognizes how critical it is to maintain lines of communication, especially now, with the War, so we haven't suffered nearly as much as most. Amusement. It would be rare indeed to find a captain that would turn down a courier job, but a ship has to be fast and willing to drop everything to rush to a particular system as often as possible, with little time for breaks. Does that sound like the kind of job for you?"`
+			choice
+				`	"I think I'm interested."`
+					goto end
+				`	"Not really."`
+
+			`	"Sympathy. I understand, it's not the easiest work around, nor the most exciting for someone with their own starship, which is why it can be so hard to find enough couriers to keep the system running."`
+				decline
+			label end
+			action
+				set "avgi: infocourier jobs"
+			`	"Enthusiasm. I'm glad to hear that, there aren't nearly enough couriers plying the starways. I'll have your name passed along, and you should see offers to begin hauling media on the job board within a few days."`
+				decline
+
+
+mission "Avgi Culture: Twilight Tavern Guard"
+	invisible
+	source
+		attributes "twilight guard"
+	to offer
+		has "Avgi: Twilight Escape 3: done"
+		random < 30
+	on offer
+		log "People" "Claret" `Claret is a member of the Twilight Guard, curious about humans and passionate about the details of tactical space combat.`
+		conversation
+			`You find yourself wandering into what looks like the Avgi version of a spaceport bar. A circular ampitheatre provides seating and tables around the dance floor, with drinks served at a long raised bar that curves around the rim of the room. Curious, you get in line, attracting more than a few interested stares from the aliens, until you reach the bar.`
+			`	"Hey you, want a drink, question?" the bartender asks with a wave, your translator receiving the musical tone. You look behind him, expecting shelves of bottles or barrels, but instead the space behind the bar looks more like a greenhouse, with rows of colorful flowers and plants growing in troughs under blue-violet lights.`
+			`	"Is this stuff safe for humans?" you ask.`
+			`	The bartender splays his arms in what might be a shrug. "Nonchalance. Who knows? Anyway, you want a drink or not?"`
+			choice
+				`"I'll pass."`
+					goto claret
+				`"Sure. What would you recommend?"`
+
+			`	He gives you a look. "Amusement. You're no regular so I'll start you off with a Quis Nectar. On the house." He turns around, deftly snatching up something close to a cocktail glass, and pulls out a big, dangerous-looking glass pipette from somewhere under the bar. Smoothly dipping it into something that looks like a large pitcher plant, he draws out a clear, slightly pink-tinged liquid before depositing it in the glass. "Enjoy, amusement."`
+			choice
+				`	(Gulp it down.) "Bottoms up."`
+					goto "too much"
+				`	(Take a sip.) "Thanks."`
+
+			`	The liquid is pleasantly light and sweet, with a bit of bitterness behind it. It doesn't taste anything like alcohol, but you can feel the lights in the room become a little sharper and brighter.`
+				goto claret
+
+			label "too much"
+			`	You toss back your glass in a swift movement, swallowing the alien liquid in one smooth gulp. It's pleasantly light, and quite sweet. You can't taste any alcohol, but the room seems to light up as every detail becomes crisp and defined.`
+
+			label claret
+			`	Another bar patron sidles up next to you. "Hey, you must be one of those aliens, right, question?" The Avgi is a warm, wine-red color, matching the color of her drink.`
+			choice
+				`	"Yep, that's me. How'd you know?"`
+					goto confirm
+				`	"No, you must have had a bit too much to drink."`
+			`	"Unamused. Very funny, but I'm not quite that wired."`
+				goto next
+
+			label confirm
+			`	"Amusement. That was rhetorical." She takes a sip from her own drink.`
+
+			label next
+			action
+				set "avgi: met claret"
+			`	"The name's Claret." She extends an arm, which you reach out to shake, but she instead taps her forearm to yours. "You're a hot topic among the Guard, you know?" She peers at you with inscrutable compound eyes.`
+			choice
+				`	"The Guard?"`
+				`	"Why is that?"`
+					goto why
+
+			`	Claret flares her wings out and raises her arms in an exaggerated pose. "Inflated boast. The Twilight Guard. You know, us brave warriors that are the last line of defense between the murderous Aberrant and the last bastion of Avgi civilization. Well, except for the people stuck back on Aviskir, but we don't talk about that, heh." She waves an arm. "But back to you, Captain <last>."`
+
+			label why
+			`	She points at you dramatically. "You're an alien, and you fought the Aberrant. Even though we've seen a few of you people around, none of them have flown a starship quite like yours. Of course we've been talking about you. Wouldn't surprise me if half the Consonance was, really."`
+			choice
+				`	"Well, what do they say about me?`
+					goto gossip
+				`	"All good things, I hope."`
+
+			`	"Dismissive. Of course, everyone is singing your praises. Except for the ones who claim you aren't one of those 'humans' at all, and are secretly an Aberrant in the shape of one waiting for the perfect moment to strike and eat our children." Claret gives you a serious look. "You aren't, right?"`
+			choice
+				`	"Not last I checked."`
+					goto gossip
+				`	"Nope."`
+					goto gossip
+				`	"Well, you've caught me."`
+
+			`	"Oh no." she says in a completely flat voice. "I am absolutely terrified." She takes a deep drink before sighing contentedly.`
+
+			label gossip
+			`	"Some say that the humans will soon arrive to save us with their superior technology. Others say you'll be the next aliens to invade us, and finish the job the Aberrant started."`
+			choice
+				`	"And which do you believe?"`
+					goto believe
+				`	"Very contradictory rumors."`
+
+			`	She gives you an incredulous look. "Scorn. When are they not? I don't know about you humans, but ask three Avgi the same question and you'll get six different answers. We are a fractious lot, us Avgi, and that will be true until the stars burn out and the moons fall from the sky.`
+				goto humans
+
+			label believe
+			`	"Amusement. Neither. Either one would be too easy, and that of course can't be allowed, not in this universe. I expect your Republic would spend years and years debating whether to even acknowledge our existence, let alone take any kind of action."`
+			choice
+				`	"You don't give the Republic enough credit. Parliament can be decisive when it needs to be."`
+				`	"Parliament might be slow, but the Navy is full of good people who would help if they could."`
+				`	"That's a surprisingly accurate estimation of the Republic."`
+					goto accurate
+				`	"Maybe, but there are others that would try to exploit you. That's just human nature."`
+					goto exploit
+				`	"Well, the Republic isn't the only government in human space these days. The Free Worlds might try to help you."`
+					to display
+						has "event: war begins"
+
+			`	"Perhaps. I wouldn't hold out hope, though. Like I said, it would be too easy, either if you were out to get us or in to save us. And I don't know how you would fare against the Aberrant either - they might even invade you too, if they could. Your technology may be better than ours, but I've heard quiet rumors it's not that much better, certainly not as good as what the Aberrant use.`
+				goto humans
+
+			label exploit
+			`	"Perhaps. But I don't think so, not from what I've seen of you. Your stranded fellows, they dedicated themselves to helping us as soon as they realized they couldn't go home. I didn't like that short fellow though, all he did was complain." She smirks. "Reminded me of an ensign back in school.`
+				goto humans
+
+			label accurate
+			`	"You humans aren't too different from us then." She looks thoughtful. "Maybe that would help us get along, your Republic and our Consonance bonding over shared bureaucratic torment. Might even be able to work together and invent something even worse." Claret shudders.`
+				goto humans
+
+			label humans
+			`	"But aside from that, you humans are a true delight. I met your Captain Darius and he regaled me with many stories of your own Navy. Your Carriers sound especially fearsome."`
+			choice
+				`	"Yes, they are."`
+				`	"Eh, they're not so strong. I've faced a few."`
+
+			`	"Modest, aren't we, amusement." she says. "Captain Darius told me much about the weapons technology you use, which I was quite fascinated by. But even more interesting is your Navy's doctrine, in my opinion."`
+			choice
+				`	"What's so interesting about that?"`
+					goto doctrine
+				`	"What do you think of human weapons?"`
+					goto nerd
+
+			label nerd
+			`	"Amusement. Everyone always cares more about how big the guns are, rather than how they're used. Your particle cannons, for example, seem much like the light ion accelerators that are common on orbital fortifications, only in the form of linear accelerators instead of the synchrotrons we use. And your beam weapons are particularly puzzling, with their abrupt range limit, yet constant beam intensity along that range. And well, as for those 'blaster cannons,' I have no idea how those are even supposed to work. Firing a projectile with the same properties as a shield, perhaps."`
+			choice
+				`	"What do you mean, 'how they're used?' Isn't that obvious?"`
+
+			label doctrine
+			`	Claret looks incredulous, standing up animately. "Disbelief. Doctrine is everything. Both in how we design our weapons and how we actually employ them. Everything is built for a specific purpose, from the largest nuclear missile to the humblest coilgun. You must know your objective, your reason for being, and then you must look at the enemy and see the tools they have to stop you, and then develop your own to counter them. Everything your fleet carries must have a specific purpose, a way to fit into the engagement you have planned, or it is simply dead weight."`
+			choice
+				`	"What if you don't know what the enemy has?"`
+
+			`	"Impatience. That's why you gather information, assess their capabilities, and train against a wide variety of threats, even ones well beyond what you think an enemy might really have. All of that informs the way you choose to fight."`
+			choice
+				`	"How did the Avgi fight, then?"`
+				`	"So what went wrong against the Aberrant, then? Were they just too powerful?"`
+					goto aberrant
+
+			`	She looks a little happier at your question. "Explanation. Quickly and decisively. High intensity battles, to knock out the enemy as quickly as possible while expending as few resources as possible. You spend days, maybe even weeks, just watching to try and pin down your enemy, and then you launch everything you have. Missiles loosed from extreme range, and then long ranged beams to defend yourself as you close with the enemy fleet. Each ship would have a dedicated role, designed to support each other and the overall fleet with specific capabilities while countering those same capabilities held by the enemy."`
+
+			label aberrant
+			`	Claret seems to deflate. "Embarrassment. Yes. Well. That wasn't the core of the problem we had against the Aberrant, I think. The admirals will tell you it was because we weren't united enough, that there was too much disagreement between the fleets sent to stop them, or that the Aberrant simply had stronger ships, but the truth is that our fleets were designed to fight other Avgi, not an unknown race of aliens that simply didn't fit into our doctrine. We built them to fight ourselves so well they weren't equipped to fight someone who didn't play by our rules."`
+			choice
+				`	"What happened in those first battles?"`
+				`	"So how has your doctrine changed since then?"`
+					goto changes
+
+			`	"We used to have years to look into the capabilities of our likely opponents, and try and figure out what they could do and how well they could do it. We had missiles designed to track enemy torches, and ships filled with enough of them to kill half a dozen peers before needing resupply. And that worked, because it wasn't like a giant fleet of nigh-invincible enemies was going to appear out of nowhere, right?"`
+			`	She clicks her fingers. "Despair. All of that failed against the Aberrant. We weren't well equipped to track them at range, with how dim their engines are compared to us, and letting them get close was a death sentence for ships that mostly carried long range nuclear missiles. The first encounters with them were one-sided slaughters, until engineers slapped bigger radar arrays on our ships to try and spot the Aberrant before they could tear through us."`
+			choice
+				`	"Did that work?"`
+
+			`	"That stopped the bloodletting, for a while. Apprehension. Until the front lines began to run low on missiles. When it takes a ship's entire magazine to kill an Aberrant before it has to retreat and resupply, it simply isn't sustainable. And the particle beams wielded by some of our ships, the ones that could fight at long range, were simply absorbed by the Aberrant's shields, something we're still trying to overcome. But for a while it seemed like nothing was working."`
+
+			label changes
+			`	"Praise. We had to completely throw out everything we thought we knew and start over. We ended up bringing back coilguns and kinetic kill vehicles - ridiculously short range weapons compared to a serious beam or missile. But it's what we could field at short notice, and build in the numbers needed to at least hold the Aberrant at bay. What we fly these days would probably be slaughtered by a pre-Incursion fleet, but the Aberrant fight at a much shorter range anyway, and our modern fleets have much better endurance when it comes to ammunition."`
+			`	Claret thrums with laughter. "If you had told a planner that we'd be fighting with coilguns and kinetic kill vehicles, before the Incursion you'd have been laughed out of the room. But we're lucky that the Aberrant's weapons are short ranged, such that we can actually hit them at the range of a dumb projectile from a coilgun without being instantly swatted out of the sky."`
+
+			choice
+				`	"Don't the Aberrant still have superior technology?"`
+					goto technology
+				`	"And now you're able to hold your own against them?"`
+
+			`	"Discomfort. Maybe at first, when we could count on having a numerical advantage, but the Aberrant continue to reproduce at a faster rate than we can build ships. And these new weapons, well, they were considered obsolete for a reason. We need something that can dish out more damage, and at a longer range, without being as expensive and resource-intensive as a missile."`
+				goto shields
+
+			label technology
+			`	"Oh, yes, appreciation. But they don't use it to its full extent, probably because they aren't intelligent beings in their own right. They just make more of each other, without any changes other than occasional mistakes. And their weapons don't seem like they were meant to be weapons, if that makes sense. More of a cutting beam than a true weaponized laser."`
+
+			label shields
+			`	"That's why things really were desperate, until you humans came around. That changed everything, knowing there was a non-hostile, if not outright friendly, alien power nearby. Even though it sounds like your government isn't able to help directly, given the lack of connecting starways, technological support from a more advanced species could be enough for us to win. Shields, shared by your people, were already a game changer by themselves."`
+
+			choice
+				`	"I'm not sure humanity would be able to help all that much, with our technology."`
+					goto help
+				`	"Wait, you got shields from us?"`
+			`	"From the humans that were stranded here, yes, gratitude. They let us dismantle their ship's shield generator and explained the rough concept to us, and we've been able to produce our own imitation, though I hear it isn't nearly as good."`
+			
+			label help
+			`	"Dismissal. I've seen the <ship>, and the ship your friends arrived on. That's the kind of firepower we need to take on the Aberrant and win."`
+			choice
+				`	"If you say so."`
+				`	"I hope you're right."`
+			action
+				set "avgi: twilight guard transport jobs"
+			`	With that, you turn to lighter topics, as Claret finishes her drink. You learn about the new traditions the Twilight Guard is trying to promote to ensure unity and cohesion within its ranks, trying to bind together former members of dozens of independent militaries into a united whole. This apparently involves a lot of travel to promote inter-unit bonding, as well as frequent cycling between the front lines and the Outer Limits.`
+			`	Eventually, Claret is ready to leave. "Anyway, I'll see you around. And, a word of advice. If you're ever on a Twilight Guard station, look out for officers or Guardsmen who are looking for a ride. We often have people trying to make an impromptu trip, and our logistics have been so overstretched lately they're willing to contract with outside captains, if they're trustworthy."`
+			`	"I'll keep that in mind," you say.`
+				decline
+
+
+mission "Avgi: Atomics Testing 1"
+	landing
+	name "Atomic Testing"
+	description "Take Aliza and her colleagues to the surface of Dokimi."
+	source "Ergastirio Station"
+	destination "Dokimi Range"
+	blocked "You need <capacity> to transport Aliza and her colleagues to Dokimi."
+	passengers 3
+	to offer
+		has "Avgi: Twilight Escape 3: done"
+	on offer
+		log "People" "Aliza" `Alizarin, or Aliza, is a scientist working on Ergastirio Station. She specializes in nuclear weapons design and testing, specifically in shockwave dynamics and accelerator testing. With a bit of a passion for nuclear weapons, she is eager to share what she knows.`
+		conversation
+			action
+				set "avgi: met aliza"
+			`Ergastirio Station is quiet as you disembark from the <ship>. Everyone you see seems purposeful and deliberate, moving as if they all know exactly where they need to be. Wandering about as you are, you can't help but feel that you stand out, a feeling that proves warranted when a female Avgi stops you, a vibrant red tinged with purple.`
+			`	"Curiosity, hello. Who are you?"`
+			choice
+				`	"Sorry, I was just looking around."`
+				`	"Sorry, am I not supposed to be here?"`
+
+			`	"Oh. Amusement," she thrums in laughter for a moment, "it isn't that, I've just never met an alien before."`
+			`"Oh. That makes sense," you say, feeling a bit stupid.`
+			`	"I'm Alizarin, but you can call me Aliza. I'm a senior research fellow here at Ergastirio," she says with a touch of pride.`
+			choice
+				`	"What kind of stuff do you do here?"`
+				`	"What do you research?"`
+
+			`	"Well, I'm a shockwave dynamics specialist, though I dabble in accelerator testing occasionally. My work with both of those is in nuclear weapons design, mostly in implosion and ablation modeling. We do all sorts of stuff here though, but it's all weapons related. Not much of a choice with the War, you know."`
+			choice
+				`	"Nuclear weapons? Fascinating."`
+					goto cool
+				`	"Nuclear weapons? That's... interesting, I guess."`
+				`	"Nuclear weapons? I'm not a fan honestly."`
+
+			`	"Ah, well. Not everyone can appreciate art. But you'll see the light, heh heh, when the Aberrant come knocking. Nothing else hits 'em the same way, appreciation."`
+				goto "wanna see"
+
+			label cool
+			`	"Enthusiasm. They are! I wish there was time to explain the fine art of weapons design, but alas, I have an appointment in less than an hour... Consideration. Actually, I've just had an idea," she says, looking thoughtful.`
+
+			label "wanna see"
+			`	"Hey, you've been vetted by the Assembly itself, right? You wanna see an atomics test? We've got one scheduled for today, and I heard you aliens are scared of nukes, so you've probably never seen one before."`
+			choice
+				`	"Sure, why not?"`
+					goto connoisseur
+				`	"I'll pass."`
+					goto coward
+				`	"Actually, I have. It wasn't pretty."`
+					goto actually
+					to display
+						or
+							has "FW Syndicate Capture 1B: offered"
+							has "FWC Cebalrai 1: offered"
+
+			label actually
+			`	"Surprise. I thought you had some kind of taboo around them, no?"`
+			choice
+				`	"Some people decided to break that taboo."`
+				`	"Things in human space have changed since then."`
+			`	"Ah, that's good to hear. From what I've heard you humans are rather silly about atomics, as though the average hyperdrive wasn't handling energies of the same order. Anyway, do you want to see an atomics test?"`
+			choice
+				`	"Sure, why not?"`
+					goto connoisseur
+				`	"I'll pass. Nothing I haven't seen before."`
+					goto coward
+
+			label coward
+			`	"Disappointment. You're missing out, but oh well. Anyway, I gotta go, catch ya later!" Aliza scampers off towards a few Avgi waving at her by a door.`
+				decline
+
+			label connoisseur
+			`	"Joy. Excellent! We do our testing on the dwarf planet below, at the Dokimi Range. A good place for testing the more exciting projects, far from anything valuable of course."`
+			`	You're interrupted by another Avgi, who lands right in front of you. With his wings still fanned out from his faded blue body, he ignores you to point at Aliza accusingly.`
+			`	"Impatience. Ah, Alizarin, just who I was looking for." He waves his arms frantically as he dances around. "I was hoping you would have sent the new beam-target interaction results along my way by now, but your office claimed you were busy with a more important project, which I simply cannot believe is the case."`
+			`	Aliza folds her arms. "Annoyance. I don't know what to tell you, Trypan, we're working our way through the backlog as fast as we can. I can't get you your accelerator time any faster, you know that's just not how it works."`
+			`	"Disgust. You do know what's at stake, do you not? We need that data, it is utterly critical to our work! This new armor will be impenetrable, a shield that could win the War!" Trypan tries to look stern and disappointed, an effect that is not helped by the fact that he keeps prancing around you.`
+			choice
+				`	"Who was that?"`
+				`	"What did he mean by 'impenetrable armor?'"`
+					goto wunderwaffe
+
+			`	"Annoyance. That was Trypan. My point of contact with a group of wealthy individuals with far too much influence and not enough sense. For years they've been convinced we just need 'one more prototype, just one more experiment' to produce a breakthrough to win the War. She sighs. "No one really takes them seriously anymore, not after all the failed projects they've sponsored, but they do shell out the equipment we need for free, so we have to at least act like we're listening to their 'new ideas.' That they have a few seats in the Consonance between them doesn't hurt either, when we need more resources or funding."`
+
+			label wunderwaffe
+			`	"Trypan and his technocrat friends are convinced they're on the verge of a breakthrough to 'win the War,' as they love to claim. For a while they were obsessed with absurd superweapons - had us actually try again to develop a hyperspace weapon, despite everyone trying that for decades. There's basically no theory behind the idea anyway, trust me," she assures you. "Now they're convinced we can cook up a supermaterial of some kind that will be invulnerable to the Aberrant beams, when we still don't even really know how they work."`
+			`	She shakes her head animatedly, looking rather put off. "He and the group backing him have been having us run their 'prototype' samples through our linear accelerator - this big 'ol electron beam in the Third Wing of the station. We use it for all sorts of research, and we do conduct material testing with it, but it's gotten ridiculous lately. They keep acting surprised when we burn through their plates of whatever alloy they've cooked up in a fraction of a second." She gives you an amused look. "At least that makes each beam run short, but cleaning out the accelerator is more annoying than you'd think."`
+			`	She looks past you, towards a door. "Ah, my colleagues. We were going to catch an Akoustiki down to the surface, but you have a ship, right? Want to be our ride?"`
+			choice
+				`	"Of course."`
+					accept
+				`	"I don't have time, sorry."`
+					decline
+
+
+mission "Avgi: Atomics Testing 2"
+	landing
+	name "Atomic Testing"
+	description "Take Aliza back to <destination>."
+	source "Dokimi Range"
+	destination "Ergastirio Station"
+	clearance
+	passengers 1
+	to offer
+		has "Avgi: Atomics Testing 1: done"
+	on offer
+		conversation
+			`The descent to Dokimi is uneventful, but you get a good look at the planetoid's icy surface, stained red with organic tholins. The ice is smooth and pristine under most of your flight path, but eventually something new comes into view: austere buildings, crude roads, and overshadowing all else, the flat expanse of a field pockmarked with craters.`
+
+			scene "scene/dokimi range"
+
+			`	"A little dreary, isn't it, amusement?" comments Aliza.`
+			choice
+				`	"Yeah. Why do testing out here instead of in empty space?"`
+				`	"Do you just test nukes here?"`
+					goto fun
+
+			`	"It's nice to have a big mass to brace experiments against and bury sensors in, explanation. Plus we get to see the effects of weapons on bulk mass, like all this ice and the occasional rock outcropping. It makes quite the blast plume," she adds happily.`
+			`	"We used to use some big asteroids for this, but we kept blowing through them, amusement. Relocating our lab after every big test was getting annoying, so we picked this planetoid out and stuck an outpost on it."`
+			choice
+				`	"Why this planet in particular?"`
+				`	"Blowing through asteroids? Just how big are these nukes?"`
+					goto big
+
+			`	"Consideration." She looks thoughtful. "Well, the lab managers told us to go somewhere far enough from the Navigeo Yards to be out of the way of anything important, so that they don't have to worry about getting flashed with radiation every week. But really I think it's because they wanted their own little planetoid as a personal fief where no one could tell them what to do, and Dokimi is so utterly unremarkable that no one else wanted it for anything else."`
+				goto next
+
+			label big
+			`	"Heh, we can make them as big as we want to. 'Just add more lithium deuteride,' as they say, amusement. Once you get a proper two-stage device, you can pretty much just add more stages to boost the yield. Two or three hundred megatons is easy, if a bit impractical to fit in the sizes of missile we field. But we sometimes test at that range, to validate other ideas and designs."`
+				goto next
+
+			label fun
+			`	"Nah, we run all sorts of fun stuff that we can't test on Ergastirio, appreciation. The really big particle beams, for example, and reactor pumped lasers that would be annoying to shield on the station."`
+			`	She gestures out the window, towards some stony mountains. "You can find a valley out that way with all sorts of tracks carved in the ice. I wrote my name in a patch of stone, actually."`
+				goto next
+
+			label next
+			`	At Aliza's direction, you set the <ship> down on an icy pad by one of the small buildings. A few Avgi come out to greet you, wearing silver-colored spacesuits with comically large bubble helmets.`
+			choice
+				`	"What now?"`
+				`	"How long until the test?"`
+			`	Aliza checks a clock. "We've got most of the day. Want to help us set up, question?"`
+			`	"Sure, I've got nothing better to do," you say.`
+			`	What follows is a surprisingly mundane day of helping the crew set up various sensors and instruments at carefully marked distances from ground zero. As you're helping drill a borehole through the ice, through which yet another probe will be dropped, you see a sled in the distance drive by, an innocent-looking teardrop object strapped to its bed. It can't be any bigger than you yourself are, yet this must be the device that will be tested in only a few hours, raised on top of a slim steel tower that has already been erected.`
+
+			choice
+				`	"So that's an Avgi atomic."`
+				`	(Continue working.)`
+					goto boom
+
+			`	"Yep. This is a mid-sized device, only sixty megatons. Weighs a bit under three tons, so it's a bit large for the tiny little missiles we've been stuck with since the Incursion drove us out here, but I've heard there's a team working on spooling up a production line for a more capable missile bus so that we can get these deployed."`
+			`	She looks suddenly embarrassed. "Worry. But you didn't hear that from me, of course. Information security is a lot more relaxed now that we're all mostly on the same side, but still... can't hurt to be safe."`
+
+			label boom
+			`	A few hours later, and a quick skim over Dokimi's surface in an Akoustiki Excursion Vehicle, you find yourself in a bunker dug into the ice a few dozen kilometers away. Up in the mountains, you have direct line of sight to the range, which sits just on the horizon.`
+			`	You stand in silence, hunched over in a bunker not designed to accommodate one of your stature. A few Avgi shuffle awkwardly and try to make small talk, but it invariably trails away into the silence. Someone near the back coughs, an odd whistling sound, as you all stare at the room's sole window, tinted dark enough so as to be black. Finally, over the hum of electric lights, a nameless technician begins counting down together with the clock. "Twelve, eleven, ten, nine..."`
+			`	You find yourself holding your breath as the countdown inches to zero. "Three, two, one...`
+			choice
+				`	"...Zero."`
+			`	For a moment, silence. And then, light. Light. Nothing but light, a light that consumes your whole world even as the tinted glass shields your eyes from all but the barest glimpse of its edges. For a handful of seconds, a time that stretches into a lifetime, your whole world is light. Then it dims by a bare margin, merely blinding instead of consuming, and you can tell there is something outside the window other than infinite light, the border where the bunker ends and the landscape begins. And the landscape is illuminated, lit by a sun crafted by mortal hands. A sphere of brilliance rests in the distance, utterly still as it only just touches the planetoid's surface. As it dims with each passing moment, within the new sun you swear you can see something opaque and hard-edged, almost as if it were solid, a shape that burns with primordial fire.`
+
+			scene "scene/ranger baker"
+
+			`	And then the light intensifies again as the brief moment of clarity is unmade, the ball of atomic fire expanding and burning brighter as the plasma cools and becomes transparent once more. Your glimpse into its heart is broken as the planet's ice, flashed into incandescent vapor, shrouds it in a column of mundane fire.`
+			`	In the space of a breath the chained heart of a star fades to a mere city-sized ball of flame.`
+			choice
+				`	"Incredible."`
+				`	"Terrifying."`
+
+			`	"Contemplation. Indeed it is." You turn and see Aliza watching the fireball with you, along with a few others. The rest are dutifully staring at instrument readouts and sensor logs, collecting whatever esoteric knowledge they sought to gain from this test.`
+			choice
+				`	"So, how did it go?"`
+				`	"What were you trying to learn from this?"`
+
+			`	"Enthusiasm. The point of this wasn't in the actual bomb - it's an old, reliable design with plenty of heritage, so we know how it works. Rather, we used it essentially as a giant x-ray source to drive a dozen other experiments. That's pretty common in nuclear testing, actually, since experiments that could benefit from a nuke are far more common than new designs that need to be tested. Most of the experiments we ran today were nuclear-driven accelerator tests, using the energy of the explosion to drive a particle beam. Just the laboratory scale for now, but we hope to scale it up into a proper weapon at some point," she says, looking proud.`
+			choice
+				`	"That's impressive."`
+					goto return
+				`	"I didn't know you could use nuclear weapons that way."`
+
+			`	"Oh, that's just scratching the surface. Just using them as a simple bomb is a bit of a waste really, you can use them to drive all sorts of lasers and particle beams, and even kinetics if you know what you're doing. You can push their effective range way up there with the right methods."`
+			choice
+				`	"Making nuclear weapons more dangerous is almost scary to think about."`
+				`	"That all sounds very interesting. And useful against the Aberrant, too."`
+
+			label return
+			`	"Yes, yes it is," she says. "Now, would you mind giving me a ride back up to Ergastirio, question?"`
+			choice
+				`	"Sure."`
+					accept
+				`	"No."`
+					decline
+
+	on complete
+		log "Minor People" "Yinmn" `Yinmn is a security specialist working to keep nuclear materials secure and out of the wrong hands. He is apparently quite successful at this.`
+		conversation
+			`	You drop off Aliza near the same place you met her, in the main concourse. It's rather more full than last time, with a veritable crowd moving through the room, probably fresh off a transport ship. Aliza seems to spot someone she recognizes. Waving, she drags you over to a dark blue Avgi in dark, steel gray clothing.`
+			`	"This is my colleague, Yinmn," she says. "And this is Captain <first> <last>."`
+			`	"Greetings. Hey there. I work in the accounting section for Ergastirio. And you're of course Captain <last>, the alien everyone's been talking about."`
+			choice
+				`	"Huh, what do you do there?"`
+					goto skip
+				`	"Accounting? That's an odd job for a lab."`
+
+			`	Yinmn hums with laughter. "Amusement, not that kind of accounting. I account for nuclear materials, not credits. We have to make sure every last drop of fissiles that could be used to make a bomb is kept secure. Not only for security reasons, but because it's extremely valuable out here in the Outer Limits. Not many of the heavier elements out here, sadly, and we've been having issues with shortages lately. It only takes a few kilos to make a bomb, but we do go through a lot of them..."`
+				goto dissonance
+
+			label skip
+			`	"Explanation. I account for nuclear materials, not credits. We have to make sure every last drop of fissiles that could be used to make a bomb is kept secure. Not only for security reasons, but because it's extremely valuable out here in the Outer Limits. Not many of the heavier elements out here, sadly, and we've been having issues with shortages lately. It only takes a few kilos to make a bomb, but we do go through a lot of them..."`
+
+			label dissonance
+			`	Aliza chimes in. "And a lot of people, especially certain elements in the Dissonance, would like to get their hands on some of our stockpile of fissile materials. We do quite a bit of mining, and have an impressive amount of breeder reactors running on fusion neutrons, so the amount of material being circulated at any given moment is quite high. Yinmn could tell you a lot of stories about the piracy that goes on with that supply chain."`
+			`	Yinmn taps his arms together. "Heh, but we'd be here for days, amusement. I'll just leave it at this: our convoys are often trailed by 'merchants' apparently making supply runs to secure facilities. Those are the worst, not the members of the Dissonance themselves, but the ones who hide their sympathies and feign loyalty to the Consonance."`
+			choice
+				`	"Wait, so do they have nukes too?"`
+					goto proliferation
+				`	"Have you ever lost any nuclear material to them?"`
+
+			`	"Pride. Not under my watch. But, well, I'm not exactly the only Accountant in the Consonance. So yes, material has gone missing before. Rarely through overt piracy, but usually because someone 'forgot' to record the true amount in a shipment, or because it was allocated to a captain that didn't really exist."`
+				goto help
+
+			label proliferation
+			`	"Oh, of course they do. Even if they weren't stealing from us, which is risky but has an enormous potential payout, they have all the tools you'd need to breed or enrich fissile materials on their own, so no doubt do they have a stockpile of weapons themselves."`
+				goto help
+
+			label help
+			choice
+				`	"Sounds like you could use some help with security."`
+				`	"Is there a way I could help escort those shipments?"`
+
+			`	Yinmn thinks for a moment. "Consideration. Well, we usually have the Twilight Guard escort them, but with how thin they've been stretched lately, with those latest Aberrant incursions into the Tangled Shroud, any kind of relief would go a long way. I could look into whether you could be eligible to help with escort duties - as one of only a few aliens we've ever met, you could ironically be more trustworthy than just another random Avgi captain. Be on the lookout for opportunities on the job board, if I can make this work out."`
+			action
+				set "avgi: nuclear material transport jobs"
+			choice
+				`	"I will."`
+				`	"Sounds good."`
+
+			`	"Appreciation. Well, it was a pleasure to meet you, <first>, but I've got to go start analyzing the data from the test," Aliza says. "If you're ever around Ergastirio or Dokimi, feel free to stop by and chat. I'm sure we'll see more of each other in the future."`

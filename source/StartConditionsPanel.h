@@ -14,8 +14,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef START_CONDITIONS_PANEL_H_
-#define START_CONDITIONS_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -45,7 +44,7 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override final;
-	virtual bool Click(int x, int y, int clicks) override final;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override final;
 	virtual bool Hover(int x, int y) override final;
 	virtual bool Drag(double dx, double dy) override final;
 	virtual bool Scroll(double dx, double dy) override final;
@@ -90,7 +89,3 @@ private:
 	Rectangle entriesContainer;
 	Point entryTextPadding;
 };
-
-
-
-#endif

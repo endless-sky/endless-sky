@@ -737,7 +737,7 @@ test "Trigger Prime Spaceport Mission"
 			key p
 
 
-test "Skip Spaceport Mission"
+test "Skip Mission"
 	status partial
 	description "Just skip a mission by pressing return twice."
 	sequence

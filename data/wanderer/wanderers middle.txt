@@ -303,7 +303,8 @@ mission "Wanderers: First Mereti Attack"
 			variant
 				"Derecho"
 				"Tempest" 2
-				"Autumn Leaf" 3
+				"Heavy Gust"
+				"Autumn Leaf" 1
 	npc
 		government "Wanderer"
 		system Kaliptari
@@ -313,9 +314,9 @@ mission "Wanderers: First Mereti Attack"
 			variant
 				"Derecho"
 				"Tempest" 2
-				"Strong Wind" 1
-				"Autumn Leaf" 2
-				"Summer Leaf" 3
+				"Heavy Gust" 1
+				"Autumn Leaf" 3
+				"Summer Leaf" 2
 	on complete
 		event "wanderers: kaliptari battle ends"
 
@@ -466,7 +467,7 @@ mission "Wanderers: Quarg Assistance 2"
 		personality escort
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
-		ship "Quarg Wardragon" "Ahlimona Spod"
+		ship "Quarg Wyvern" "Ahlimona Spod"
 
 
 
@@ -481,7 +482,7 @@ mission "Wanderers: Quarg Defenders"
 		personality staying uninterested heroic
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
-		ship "Quarg Wardragon" "Ahlimona Spod"
+		ship "Quarg Wyvern" "Ahlimona Spod"
 
 
 
@@ -620,15 +621,6 @@ mission "Wanderers: Mereti Observation"
 				accept
 	on enter "Mesuket"
 		dialog `You enter the target system and begin recording the communications of the Kor Mereti drones. It may take a while to collect all the data that the Wanderers need, but they have set up their equipment to notify you when it is done collecting.`
-	npc disable
-		government "Kor Sestor"
-		system "Mesuket"
-		personality staying heroic
-		fleet
-			names "kor sestor"
-			variant
-				"Met Par Tek 53"
-		dialog `The Wanderer recording device chirps at you to let you know that it has collected enough data. Time to return to <planet>.`
 	npc
 		government "Kor Sestor"
 		system "Mesuket"
@@ -637,7 +629,7 @@ mission "Wanderers: Mereti Observation"
 			names "kor sestor"
 			variant
 				"Kar Ik Vot 349"
-				"Met Par Tek 53" 2
+				"Met Par Tek 53" 3
 	npc
 		government "Kor Mereti"
 		system "Mesuket"
@@ -648,6 +640,12 @@ mission "Wanderers: Mereti Observation"
 				"Model 64"
 				"Model 32" 2
 				"Model 16" 5
+	timer 3600 3600
+		"pause when inactive"
+		"activation requirements"
+			system "Mesuket"
+		on timeup
+			dialog `The Wanderer recording device chirps at you to let you know that it has collected enough data. Time to return to <planet>.`
 	on visit
 		dialog `You've returned to <planet>, but you don't have enough data for the Wanderers. Return to Mesuket and wait until the device notifies you that it has enough data.`
 
@@ -788,7 +786,8 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "quarg"
 			variant
-				"Quarg Wardragon" 3
+				"Quarg Wardragon"
+				"Quarg Wyvern" 2
 	npc
 		government "Quarg (Kor Efret)"
 		personality heroic
@@ -796,7 +795,8 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "quarg"
 			variant
-				"Quarg Wardragon" 5
+				"Quarg Wardragon" 3
+				"Quarg Hydra"
 
 
 
@@ -1005,6 +1005,7 @@ mission "Wanderers: Mind Escorts"
 				"Hurricane" 2
 				"Derecho" 3
 				"Tempest" 4
+				"Heavy Gust" 2
 
 mission "Wanderers: Mind 4"
 	landing
@@ -1127,9 +1128,9 @@ mission "Wanderers: Mind 6"
 			variant
 				"Model 512" 3
 				"Model 256" 4
-				"Model 128" 5
-				"Model 64" 6
-				"Model 32" 8
+				"Model 128" 4
+				"Model 64" 5
+				"Model 32" 7
 				"Model 16" 12
 		dialog `The last of the hostile Kor Mereti drones are destroyed; the remaining drones are not attacking the Wanderers. It is not entirely clear what has happened, but hopefully the Wanderers back on <planet> will have gained some information through the backdoor connection to their AI.`
 	npc
@@ -1139,10 +1140,10 @@ mission "Wanderers: Mind 6"
 			names "kor mereti"
 			variant
 				"Model 256" 1
-				"Model 128" 2
+				"Model 128" 1
 				"Model 64" 3
 				"Model 32" 5
-				"Model 16" 8
+				"Model 16" 10
 	on visit
 		dialog `You've landed on <planet>, but there are still hostile Kor Mereti drones in the Chimitarp system. Better depart and make sure they've been taken care of.`
 
@@ -1676,9 +1677,9 @@ mission "Wanderers: Sestor Attack"
 			fighters
 				names "kor sestor fighter"
 			variant
-				"Tek Far 109" 3
-				"Far Lek 14" 27
-				"Far Osk 27" 21
+				"Tek Far 109" 2
+				"Far Lek 14" 18
+				"Far Osk 27" 14
 		fleet
 			names "kor sestor"
 			fighters
@@ -1702,20 +1703,19 @@ mission "Wanderers: Sestor Attack"
 			names "wanderer"
 			variant
 				"Tempest (Heavy)"
+				"Heavy Gust"
 				"Strong Wind"
 		fleet
 			names "wanderer"
 			variant
-				"Autumn Leaf"
-				"Summer Leaf"
+				"Autumn Leaf" 3
 	npc
 		government "Wanderer"
 		personality heroic
 		fleet
 			names "wanderer"
 			variant
-				"Autumn Leaf"
-				"Summer Leaf" 3
+				"Autumn Leaf" 4
 		fleet
 			names "wanderer"
 			variant
@@ -1725,13 +1725,20 @@ mission "Wanderers: Sestor Attack"
 	npc
 		government "Kor Mereti"
 		personality heroic
-		system "Faronektu"
+		system "Mekislepti"
 		fleet
 			names "kor mereti"
 			variant
 				"Model 512"
 				"Model 256"
 				"Model 64"
+	npc
+		government "Kor Mereti"
+		personality heroic staying
+		fleet
+			names "kor mereti"
+			variant
+				"Model 16" 2
 				
 
 
@@ -2050,7 +2057,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2075,7 +2082,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2097,7 +2104,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 3
 
@@ -2143,10 +2150,10 @@ mission "Wanderers: Sestor: Quarg Help 2"
 	npc accompany save
 		government "Quarg (Hai)"
 		personality heroic waiting escort
-		ship "Quarg Wardragon" "Leukos-nikeseh"
-		ship "Quarg Wardragon" "Purros-machaira"
-		ship "Quarg Wardragon" "Melas-zugon"
-		ship "Quarg Wardragon" "Chloros-thanatos"
+		ship "Quarg Wyvern" "Leukos-nikeseh"
+		ship "Quarg Wyvern" "Purros-machaira"
+		ship "Quarg Wyvern" "Melas-zugon"
+		ship "Quarg Wyvern" "Chloros-thanatos"
 	npc
 		government "Kor Sestor"
 		personality heroic staying
@@ -2234,10 +2241,10 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 	npc
 		government "Quarg (Hai)"
 		personality heroic staying
-		ship "Quarg Wardragon" "Leukos-nikeseh"
-		ship "Quarg Wardragon" "Purros-machaira"
-		ship "Quarg Wardragon" "Melas-zugon"
-		ship "Quarg Wardragon" "Chloros-thanatos"
+		ship "Quarg Wyvern" "Leukos-nikeseh"
+		ship "Quarg Wyvern" "Purros-machaira"
+		ship "Quarg Wyvern" "Melas-zugon"
+		ship "Quarg Wyvern" "Chloros-thanatos"
 	npc
 		government "Navy (Oathkeeper)"
 		personality heroic staying
@@ -2247,7 +2254,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2269,7 +2276,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser"
 				"Combat Drone" 4
@@ -2291,7 +2298,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate (Mark II)" 3
 	npc evade
@@ -2433,6 +2440,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 10
 				"Met Par Tek 53" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
+		on kill
+			set "wanderers: scattered remnant: alnitak clear"
+			unmark "Alnitak" "Wanderers: Sestor: Kill Southern Remnant"
 	npc kill
 		system "Canopus"
 		government "Kor Sestor"
@@ -2447,6 +2457,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Lek 14" 8
 				"Met Par Tek 53 (Sniper)" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
+		on kill
+			set "wanderers: scattered remnant: canopus clear"
+			unmark "Canopus" "Wanderers: Sestor: Kill Southern Remnant"
 	npc kill
 		system "Betelgeuse"
 		government "Kor Sestor"
@@ -2470,6 +2483,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Osk 27" 6
 				"Met Par Tek 53 (Sniper)"
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
+		on kill
+			set "wanderers: scattered remnant: betelgeuse clear"
+			unmark "Betelgeuse" "Wanderers: Sestor: Kill Southern Remnant"
 	npc kill
 		system "Capella"
 		government "Kor Sestor"
@@ -2485,6 +2501,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 78 - Osk"
 				"Far Osk 27" 8
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
+		on kill
+			set "wanderers: scattered remnant: capella clear"
+			unmark "Capella" "Wanderers: Sestor: Kill Southern Remnant"
 	npc kill
 		system "Mebsuta"
 		government "Kor Sestor"
@@ -2500,6 +2519,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 78 - Osk (Close Quarters)"
 				"Far Osk 27" 7
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
+		on kill
+			set "wanderers: scattered remnant: mebsuta clear"
+			unmark "Mebsuta" "Wanderers: Sestor: Kill Southern Remnant"
 	npc kill
 		system "Rigel"
 		government "Kor Sestor"
@@ -2515,6 +2537,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Tek Far 78 - Osk (Close Quarters)"
 				"Far Osk 27" 6
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
+		on kill
+			set "wanderers: scattered remnant: rigel clear"
+			unmark "Rigel" "Wanderers: Sestor: Kill Southern Remnant"
 	npc kill
 		system "Castor"
 		government "Kor Sestor"
@@ -2528,6 +2553,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Met Par Tek 53" 2
 				"Met Par Tek 53 (Sniper)"
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
+		on kill
+			set "wanderers: scattered remnant: castor clear"
+			unmark "Castor" "Wanderers: Sestor: Kill Southern Remnant"
 	npc kill
 		system "Wazn"
 		government "Kor Sestor"
@@ -2541,6 +2569,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Met Par Tek 53"
 				"Met Par Tek 53 (Sniper)" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
+		on kill
+			set "wanderers: scattered remnant: wazn clear"
+			unmark "Wazn" "Wanderers: Sestor: Kill Southern Remnant"
 	npc kill
 		system "Miaplacidus"
 		government "Kor Sestor"
@@ -2553,6 +2584,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Kar Ik Vot 349 (Trapper)"
 				"Met Par Tek 53 (Sniper)" 3
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
+		on kill
+			set "wanderers: scattered remnant: miaplacidus clear"
+			unmark "Miaplacidus" "Wanderers: Sestor: Kill Southern Remnant"
 	npc kill
 		system "Kursa"
 		government "Kor Sestor"
@@ -2569,6 +2603,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Osk 27" 13
 				"Met Par Tek 53 (Sniper)" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
+		on kill
+			set "wanderers: scattered remnant: kursa clear"
+			unmark "Kursa" "Wanderers: Sestor: Kill Southern Remnant"
 	npc kill
 		system "Saiph"
 		government "Kor Sestor"
@@ -2585,6 +2622,9 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Far Osk 27" 13
 				"Met Par Tek 53" 2
 		dialog `All of the Kor Sestor ships in this system have been eliminated.`
+		on kill
+			set "wanderers: scattered remnant: saiph clear"
+			unmark "Saiph" "Wanderers: Sestor: Kill Southern Remnant"
 		
 
 
@@ -2659,19 +2699,74 @@ mission "Wanderers: Sestor: Kill Southern Remnant"
 		has "Wanderers: Sestor: Bomb Zenith 2: done"
 	to complete
 		has "Wanderers: Sestor: Scattered Remnant: done"
-	waypoint "Alnitak"
-	waypoint "Betelgeuse"
-	waypoint "Canopus"
-	waypoint "Capella"
-	waypoint "Castor"
-	waypoint "Kursa"
-	waypoint "Mebsuta"
-	waypoint "Miaplacidus"
-	waypoint "Rigel"
-	waypoint "Saiph"
-	waypoint "Wazn"
+	mark "Alnitak"
+	mark "Betelgeuse"
+	mark "Canopus"
+	mark "Capella"
+	mark "Castor"
+	mark "Kursa"
+	mark "Mebsuta"
+	mark "Miaplacidus"
+	mark "Rigel"
+	mark "Saiph"
+	mark "Wazn"
 	on offer
 		conversation
+			branch "skip unmark alnitak"
+				not "wanderers: scattered remnant: alnitak clear"
+			action
+				unmark "Alnitak"
+			label "skip unmark alnitak"
+			branch "skip unmark betelgeuse"
+				not "wanderers: scattered remnant: betelgeuse clear"
+			action
+				unmark "Betelgeuse"
+			label "skip unmark betelgeuse"
+			branch "skip unmark canopus"
+				not "wanderers: scattered remnant: canopus clear"
+			action
+				unmark "Canopus"
+			label "skip unmark canopus"
+			branch "skip unmark capella"
+				not "wanderers: scattered remnant: capella clear"
+			action
+				unmark "Capella"
+			label "skip unmark capella"
+			branch "skip unmark castor"
+				not "wanderers: scattered remnant: castor clear"
+			action
+				unmark "Castor"
+			label "skip unmark castor"
+			branch "skip unmark kursa"
+				not "wanderers: scattered remnant: kursa clear"
+			action
+				unmark "Kursa"
+			label "skip unmark kursa"
+			branch "skip unmark mebsuta"
+				not "wanderers: scattered remnant: mebsuta clear"
+			action
+				unmark "Mebsuta"
+			label "skip unmark mebsuta"
+			branch "skip unmark miaplacidus"
+				not "wanderers: scattered remnant: miaplacidus clear"
+			action
+				unmark "Miaplacidus"
+			label "skip unmark miaplacidus"
+			branch "skip unmark rigel"
+				not "wanderers: scattered remnant: rigel clear"
+			action
+				unmark "Rigel"
+			label "skip unmark rigel"
+			branch "skip unmark saiph"
+				not "wanderers: scattered remnant: saiph clear"
+			action
+				unmark "Saiph"
+			label "skip unmark saiph"
+			branch "skip unmark wazn"
+				not "wanderers: scattered remnant: wazn clear"
+			action
+				unmark "Wazn"
+			label "skip unmark wazn"
 			`The base on <planet> appears to have survived the attack, despite the Kor Sestor drones that were overhead. You meet with Danforth and tell him that you destroyed the Alpha base using the weapon he gave you.`
 			`	He says, "When you destroyed the base, the Sestor drones suddenly stopped acting as a unified fleet. A few stayed here, but most of them have spread throughout this sector of space, and we are receiving reports that they are attacking Navy and civilian ships indiscriminately. My own fleet is too damaged to do anything to stop them, but other Navy bases are sending in reinforcements. Can you join them to help eliminate the drones?"`
 			choice
@@ -2750,7 +2845,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2772,7 +2867,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 3
 				"Gunboat" 3
@@ -3187,6 +3282,7 @@ mission "Wanderers: Sestor: Factory Escorts"
 				"Tempest (Heavy)"
 				"Tempest (Moonbeam)" 2
 				"Tempest"
+				"Heavy Gust (Moonbeam)" 2
 
 
 
@@ -3472,23 +3568,29 @@ mission "Wanderers: Sestor: Combined Patch 1"
 event "wanderers: sestor planets unrestricted"
 	planet "Drekag Firask"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 	planet "Sestor Ikfar"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 		description `This dry, hot world is home to almost no native life, but is ideal for the Korath automata because of its abundant solar energy. In the places where the Korath cities once were, the Kor Sestor have built massive factories with buildings sometimes close to a kilometer in height. In other places the land remains undeveloped, and now that the factories have been shut down it seems likely that it will stay that way for a very long time.`
 	planet "Devru Kaska"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 	planet "Sebra Skira"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 	planet "Keneska Fek"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 	planet "Sopi Lefarkata"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 		description `This is a cold and mountainous world, and most of its oceans are covered in ice. A handful of giant craters gouged out from the sides of mountains are the only sign that there were once Korath settlements here. The Kor Sestor robots began building settlements of their own, in caverns deep under the mountains where they are safe from orbital bombardment, but now these settlements are falling into disrepair. Where the last set of Kor Mereti attacks collapsed one of the access tunnels, a handful of robots have gathered, trying in vain to dig them out.`
 
 event "wanderers taking jobs from kor efreti"

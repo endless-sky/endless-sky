@@ -95,11 +95,11 @@ mission "Hai Rescue: Yeertle Family"
 		"Hai Rescue: Yeertle Family (defer count)" ++
 	on offer
 		conversation
-			branch nohint
+			branch "no hint"
 				not "Hai Rescue: Yeertle Hint: offered"
 			`Wandering around after dark you find yourself down an alley near the spaceport, huddled in an alcove against the drizzle while you keep an eye out for anything suspicious, apparently last rumored to be around here. After a while, a few dozen meters ahead, you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
 				goto start
-			label nohint
+			label "no hint"
 			`Wandering around after dark you find yourself down an alley near the spaceport. The ongoing drizzle increases in intensity and you pause for a moment to huddle in an alcove for a while until it settles down. After a few moments, a few dozen meters ahead, you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
 			label start
 			`	Do you want to talk to him?`
@@ -229,21 +229,21 @@ mission "Hai Rescue: Ooonem"
 	on offer
 		conversation
 			branch transmitter
-				has "Oonem Transmitter"
-			branch nohint
+				has "Ooonem Transmitter"
+			branch "no hint"
 				and
 					not "Hai Rescue: Ooonem Hint: offered"
-					not "Hai Rescue: Ooonem (defer count)" >= 1
+					not "Hai Rescue: Ooonem (defer count)"
 			`Following reports of the last time the "angel of death" was sighted, you end up loitering in a twisting street parallel to a main thoroughfare. The few people using it hurry by quickly, and rarely seem to travel any great distance down this street. One very surly looking individual gives you a sour glare on his way past, a collection of weapons on full display. He looks a lot like you'd expect a bounty hunter to look, and as he moves out of sight you observe a shadow, previously motionless, detach from a spot on a wall and head back your direction, laser rifle pointed in the direction of the departing individual. As the shadow approaches, you see there's a lot of hair sticking out from their hood. They might be a Hai. Do you want to talk to them?`
 				goto start
-			label nohint
+			label "no hint"
 			`As you come in you are informed that all the ships are being searched before departure. No sooner do you disembark your ship than you notice that there's a lot of paranoid goons with weapons hot. Like a lot. There seems to be some kind of manhunt going on for a short, hooded, "angel of death" who has been loitering in dark alleyways. So far, no one is explicitly claiming to know what's going on though, and even for a place like this the effort seems... ungoverned. Even to the extent that some groups seem to be actively pretending to be involved while surreptitiously not joining in with groups that leave on the hunt.`
 			`	It's all very odd, but one thing you do glean from the constant conversation and the small selection of individuals loudly demanding cooperation is that the "angel of death," as they're calling it, is unusually short and fast, and capable of things which give you reason to suspect they might possibly be a Hai.`
 			choice
-				`	(Investigate for yourself.)`
+				`	(Investigate for myself.)`
 				`	(Come back later.)`
 					defer
-			`	Following reports of the last time the "angel of death" was sighted, you end up loitering in a twisting street parallel to a main thoroughfare. The few people using it hurry by quickly, and rarely seem to travel any great distance down this street. One very surly looking individual gives you a sour glare on his way past, a collection of weapons on full display. He looks a lot like you'd expect a bounty hunter to look, and as he moves out of sight you observe a shadow, previously motionless, detach from a spot on a wall and head back your direction, laser rifle pointed in the direction of the departing individual. As the shadow approaches, you see there's a lot of hair sticking out from their hood. Seems you may have indeed found a Hai. Do you want to talk to them?`
+			`	Following reports of the last time the "angel of death" was sighted, you end up loitering in a twisting street parallel to a main thoroughfare. The few people using it hurry by quickly, and rarely seem to travel any great distance down this street. One very surly looking individual gives you a sour glare on his way past, a collection of weapons on full display. He looks a lot like you'd expect a bounty hunter to look, and as he moves out of sight you observe a shadow, previously motionless, detach from a spot on a wall and head back your direction, laser rifle pointed in the direction of the departing individual. As the shadow approaches, you see there's a lot of hair sticking out from their hood. It seems you may have indeed found a Hai. Do you want to talk to them?`
 			label start
 			choice
 				`	(Talk to them.)`
@@ -259,16 +259,16 @@ mission "Hai Rescue: Ooonem"
 				`	"Sorry to bother you. I'll leave you to your business."`
 					goto decline
 			label hai
-			`	"I was going to meet a businessman on Shroud to arrange a large-scale import deal for my research project. I asked a human merchant to take me there, but I was tricked. The businessman doesn't really exist, and the deal was faked. The merchant locked me in a cell and brought me here instead. When he opened the cell, I managed to grab his rifle, shoot him, and hide. It's amazing how slowly humans move."`
+			`	"I was going to meet a businessman on Shroud to arrange a large-scale import deal for my research project. I asked a human merchant to take me there, but I was tricked. The businessman doesn't really exist, and the deal was faked. The merchant locked me in a cell and brought me here instead. When he opened the cell, I managed to grab his rifle, shoot him, and hide. It's amazing how slowly humans move.`
 				goto "more questions"
 			label who
-			`	"There are some men looking for me. I've managed to escape them so far; they're not as quick as a Hai. I think they're friends of the merchant who locked me up."`
+			`	"There are some men looking for me. I've managed to escape them so far; they're not as quick as a Hai. I think they're friends of the merchant who locked me up.`
 				goto "more questions"
 			label pay
-			`	"I have no money with me, but my family on <planet> can pay."`
+			`	"I have no money with me, but my family on <planet> can pay.`
 				goto "more questions"
 			label "more questions"
-			`	Can you take me back to <destination>? My family can pay for my return.`
+			`	"Can you take me back to <destination>? My family can pay for my return."`
 			choice
 				`	"Yes, I'll take you there."`
 				`	"How much will you pay me?"`
@@ -279,7 +279,7 @@ mission "Hai Rescue: Ooonem"
 					goto who
 				`	"Sorry, but you'll have to find another ride."`
 					goto decline
-			`	Good, but now I must ask, is your ship capable? Are you sure? The pirates are fully aware I am here and will likely chase you, even if you're in good standing with the local authorities. I'd rather not die on your ship.`
+			`	"Good, but now I must ask, is your ship capable? Are you sure? The pirates are fully aware I am here and will likely chase you, even if you're in good standing with the local authorities. I'd rather not die on your ship."`
 			choice
 				`	"Don't worry. I know how to dodge pirates."`
 					goto go
@@ -288,7 +288,7 @@ mission "Hai Rescue: Ooonem"
 					decline
 			`	She looks at you curiously. "You're a good one, aren't you? Very well, take this transmitter. When you return, come back to this area. Activate it, and I will find you. Come alone."`
 			action
-				set "Oonem Transmitter"
+				set "Ooonem Transmitter"
 			`	She quickly keys something into the transmitter, and it beeps before displaying a locked icon on the screen. As soon as she has handed it over, she turns and melts down an alley which you weren't even entirely aware of. The transmitter in your hand is small, and looks custom modified. Whoever this Hai is, she's capable.`
 				defer
 			label transmitter
@@ -308,13 +308,13 @@ mission "Hai Rescue: Ooonem"
 			`	The woman shakes her head at you and runs off into the shadows. You doubt you'll ever see her again.`
 				decline
 	on accept
-		dialog `Those pursuing Oonem have caught on quickly and followed you into orbit. You'll probably have to fight them, but they're only Core pirates and don't look equipped to make the journey back to Hai space successfully. If you're fast enough, you could probably attempt to simply dodge them instead.`
+		dialog `Those pursuing Ooonem have caught on quickly and followed you into orbit. You'll probably have to fight them, but they're only Core pirates and don't look equipped to make the journey back to Hai space successfully. If you're fast enough, you could probably attempt to simply dodge them instead.`
 	on complete
 		log `Rescued a kidnapped Hai researcher, Ooonem, from Stormhold and returned her to Makerplace. She was tricked into leaving Hai space for a fake business deal, and the merchant who agreed to take her there kidnapped her instead. Men have been hunting her since she escaped. She doesn't know the real identities of the kidnappers.`
-		log "Minor People" "Oonem" `A Hai researcher with a remarkable talent for stealth and laser rifles. Also a predilection for shooting first and not taking prisoners. She escaped kidnapping and survived independently on <origin> for a remarkable length of time where she acquired the moniker "angel of death." She's also quite the capitalist.`
+		log "Minor People" "Ooonem" `A Hai researcher with a remarkable talent for stealth and laser rifles. Also a predilection for shooting first and not taking prisoners. She escaped kidnapping and survived independently on <origin> for a remarkable length of time where she acquired the moniker "angel of death." She's also quite the capitalist.`
 		payment 225000
 		"hai slave prereq" ++
-		dialog `Ooonem is relieved to return to <planet>. She leads you to her family's home where you're treated to a bountiful dinner. The cuisine is entirely human-Hai fusion dishes. The dessert is accompanied by what Oonem describes as the most delicious spice of all: <payment>.`
+		dialog `Ooonem is relieved to return to <planet>. She leads you to her family's home where you're treated to a bountiful dinner. The cuisine is entirely human-Hai fusion dishes. The dessert is accompanied by what Ooonem describes as the most delicious spice of all: <payment>.`
 	npc
 		government "Bounty Hunter that Won't Enter Hai Space"
 		personality plunders disables unconstrained
@@ -390,14 +390,14 @@ mission "Hai Rescue: Prison Role-Players"
 				`	"Sorry, maybe another time."`
 					defer
 			label who
-			`	"You don't remember me? I was the first Hai you met. You were so confused back then and didn't know who or what we were. It was very cute."`
+			`	"You don't remember me? I was the first Hai you met. You were so confused back then and didn't know who or what we were. It was very cute.`
 				goto questions
 			label how
 			`	"There are prison role-play cruises in Hai space where we can ride in a brig with human security guards. My research group thought it would be a fun experience, so we all chartered one," she says.`
-			`	"Unfortunately, it was a trick! They were pirates and took us into human space instead. They didn't feed us much, so we all pretended to be too weak to stand. When one of the pirates came in to check on us, we overpowered him. I don't know if they got sloppy or if they were just new at this, but it seems they had forgotten how fast we can be. The other pirate set the ship to crash-land and used an escape pod. Now we're stuck here."`
+			`	"Unfortunately, it was a trick! They were pirates and took us into human space instead. They didn't feed us much, so we all pretended to be too weak to stand. When one of the pirates came in to check on us, we overpowered him. I don't know if they got sloppy or if they were just new at this, but it seems they had forgotten how fast we can be. The other pirate set the ship to crash-land and used an escape pod. Now we're stuck here.`
 				goto questions
 			label pay
-			`	"Ah, well, we can give you what is left of our travel budget: <payment>. The money is on <planet> though, so you'll have to fly us there first."`
+			`	"Ah, well, we can give you what is left of our travel budget: <payment>. The money is on <planet> though, so you'll have to fly us there first.`
 				goto questions
 			label go
 			`	"Excellent! Everyone pile aboard. Let's go back to <planet>!"`
@@ -407,7 +407,7 @@ mission "Hai Rescue: Prison Role-Players"
 		payment 565000
 		"hai slave prereq" ++
 		dialog `The Hai researchers thank you for rescuing them from their ill-fated "prison role-play cruise" and promise to stick to safer pastimes in the future. They happily give you <payment>.`
-	# No NPCs for this one since the Pirates are presumed dead.
+	# No NPCs for this one since the pirates are presumed dead.
 
 
 
@@ -471,11 +471,11 @@ mission "Hai Rescue: Meroot and Lucy"
 					decline
 			label hiding
 			`	Her expression immediately takes on a shade of panic and you hear what sounds like something heavy being picked up in the background. "Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping those people don't find us again."`
-				goto trustcheck
+				goto "trust check"
 
 			label help
 			`	"Yes! Some men kidnapped my friend and I, but she got us out and we managed to escape. We've been hiding here, hoping they don't find us again."`
-			label trustcheck
+			label "trust check"
 			`	In the background you hear someone hiss, "Lucy! What are you doing, we can't trust them!"`
 			choice
 				`	"Uh, luf e ow, vai, luf e eh?"`
@@ -487,8 +487,8 @@ mission "Hai Rescue: Meroot and Lucy"
 			label "come in"
 			`	The person in the background stills. "What did you say?"`
 			`	You repeat the phrase.`
-			`	Somewhere out of sight you hear a string Hai words that sound very exasperated before they address Lucy again. "Let them in, Lucy, they probably are here to help."`
-			`	The emphasis placed on the 'are' is thick, and it seems to snap Lucy out of her frozen state. "Oh, uh, yes, alright. If you could fly us to <planet>, we can pay you when we arrive. You'll likely be followed though, so I hope you have a fast ship. I think you should probably come in, and we'll talk about it."`
+			`	Somewhere out of sight you hear a string of Hai words that sound very exasperated before they address Lucy again. "Let them in, Lucy, they probably are here to help."`
+			`	The emphasis placed on the "are" is thick, and it seems to snap Lucy out of her frozen state. "Oh, uh, yes, alright. If you could fly us to <planet>, we can pay you when we arrive. You'll likely be followed though, so I hope you have a fast ship. I think you should probably come in, and we'll talk about it."`
 			choice
 				`	(Enter their alcove.)`
 				`	"No, I can't help you get home."`
@@ -502,7 +502,7 @@ mission "Hai Rescue: Meroot and Lucy"
 				`	"Sure. Let's go."`
 				`	"No, you'll have to find another pilot."`
 					decline
-			`	The two women put on clothing that thoroughly covers their person. They lead you through a series of ducts and alleys back to the pad where your ship is parked. Just as your airlock opens there's a sharp zapping sound as someone shoots Meroot with a stun gun. You and Lucy duck, and a couple other shots dissipate harmlessly on the bulkhead of your ship. You fire off a couple shots back and, between the two of you, manage to drag Meroot through the airlock, seal it behind you, and lift off. It appears you're being followed into orbit.`
+			`	The two women put on clothing that thoroughly covers their persons. They lead you through a series of ducts and alleys back to the pad where your ship is parked. Just as your airlock opens there's a sharp zapping sound as someone shoots Meroot with a stun gun. You and Lucy duck, and a couple other shots dissipate harmlessly on the bulkhead of your ship. You fire off a couple shots back and, between the two of you, manage to drag Meroot through the airlock, seal it behind you, and lift off. It appears you're being followed into orbit.`
 				launch
 	on complete
 		log `Rescued a pair of researchers: a Hai woman named Meroot and a human woman named Lucy. They were kidnapped by men who brought them to Canyon. Returned them to <planet> where they now live together. They don't know the identities of the kidnappers.`

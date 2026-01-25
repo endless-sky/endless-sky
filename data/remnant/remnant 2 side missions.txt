@@ -21,6 +21,7 @@ mission "Remnant: Visit to Paradise 1"
 		government "Remnant"
 	destination "Caelian"
 	stopover "Vail"
+	passengers 1
 	to offer
 		has "event: remnant: cognizance calm"
 		or
@@ -40,24 +41,24 @@ mission "Remnant: Visit to Paradise 1"
 			`	Taely looks up at you. "Could I ask you something about life back in ancestral space?"`
 			choice
 				`	"Sure."`
-					goto askquestion
+					goto "ask question"
 				`	"Not right now."`
-			label vaillater
+			label "vail later"
 			`	"Oh, maybe some other time, then." She looks disappointed, and settles in to eat.`
 				defer
-			label askquestion
+			label "ask question"
 			`	"I have been reading through the history archive you brought back, and I came across a mention of Vail." She shakes her head in amusement. "The idea of an entire planet devoted to hoverboarding and leisure activities seems so extravagant... Well, I am curious to visit it. Now, this is not a mission we are asking you to do, so I cannot offer any logistics compensation. I could, however, show you some of our history in exchange. Are you interested?"`
 			choice
 				`	"Yes, that sounds fun."`
-					goto vailfun
+					goto "vail fun"
 				`	"Sure, I have done a bit of hoverboarding myself."`
 				`	"Maybe later."`
-					goto vaillater
+					goto "vail later"
 			action
 				set "remnant: hoverboarding"
 			`	"Really? The description sounded useful for exploration, and it looked challenging." Her commlink shifts to display a hologram of a hoverboarder executing a jump with an artistic poof of snow around them. "Anyway, I think this trip should be a good diversion for us both. I will meet you onboard the <ship> shortly."`
 				accept
-			label vailfun
+			label "vail fun"
 			`	"Excellent. I will meet you onboard the <ship> shortly."`
 				accept
 	on defer
@@ -67,46 +68,46 @@ mission "Remnant: Visit to Paradise 1"
 			branch science
 				has "outfit (flagship installed): Research Laboratory"
 			`As you approach, your navigation system picks up the beacons designating the approach path, and before long you are automatically guided to a landing pad on the outskirts of the main spaceport.`
-				goto vaillanding
+				goto "vail landing"
 			label science
 			`As you approach Vail, the specialized sensors from your Remnant Research Laboratory detect parts of the weather control network tasked with increasing the amount of snowfall on the planet. Your navigation system picks up the beacons designating the approach path, and before too long you are automatically guided down to a landing pad on the outskirts of the main spaceport.`
-			label vaillanding
+			label "vail landing"
 			`	Looking outside the ship, you can see a multitude of tourist-oriented facilities overwhelming the normal spaceport functions. You can pick out a small sign off to the side that indicates professional commodity and banking facilities, but otherwise the area is dominated by businesses offering mountain touring, sports classes, and vehicle rentals. Next to you, Taely alternates between peering out at the signs and reading brochures on a new commlink. "Here, <first>. This one sounds more interested in providing a challenge and less pampering. What do you think?"`
 			choice
 				`	"Looks good to me."`
 				`	"Alright, should be good."`
-			branch havehoverboarded
+			branch "have hoverboarded"
 				has "remnant: hoverboarding"
 			`	The resort in question is a more exclusive facility, and is located away from the main train lines. You rent a hovercar from one of the rental companies and make the short trek out to the resort. The rest of the day is spent out on the slopes, where both you and Taely eventually develop sufficient skill to graduate from the easy runs up to the medium difficulty. You both fall repeatedly, but Taely's good humor is contagious as she takes the inevitable facefuls of snow in stride.`
-				goto vailheadhome
-			label havehoverboarded
+				goto "vail head home"
+			label "have hoverboarded"
 			`	The resort in question is a more exclusive facility, and is located away from the main train lines. You rent a hovercar from one of the rental companies and make the short trek out to the resort. The rest of the day is spent out on the slopes, where you teach Taely the basics of hoverboarding. By the end of the day Taely has impressed you with her quick learning and you finish off with a few runs down some of the more challenging slopes. Taely spills a few times, but she takes her failures in good humor, and never seems to make the same mistake twice.`
-			label vailheadhome
+			label "vail head home"
 			`	Heading back to the spaceport after a day of hoverboarding, Taely surprises you by pulling the hood open on the hovercar and spending almost an hour going over the internal systems before closing it up with a nod. "Well, that was interesting. The hovercar, I mean." She gestures at it with her commlink. "So many different manufacturers were involved in making this vehicle. Sometimes I wonder if humanity appreciates the luxury such diversity affords them." She looks thoughtful, then gestures toward the ship. "Well, <first>, I promised you a tour of a historic Remnant district. Caelian has perhaps the best example of one, so I would recommend we go there."`
 	on complete
 		conversation
-			`Taely directs you to a landing pad on the outskirts of the main spaceport, in an area that seems mostly filled with Gulls and Pelicans shifting larger quantities of products. Disembarking from the <ship>, she leads you down a large series of escalators that branch off in several directions, occasionally connecting with large ramps filled with steady stream of cargo traffic. After a few minutes they deposit you on a large platform.`
+			`Taely directs you to a landing pad on the outskirts of the main spaceport, in an area that seems mostly filled with Gulls and Pelicans shifting larger quantities of products. Disembarking from the <ship>, she leads you down a large series of escalators that branch off in several directions, occasionally connecting with large ramps filled with steady streams of cargo traffic. After a few minutes they deposit you on a large platform.`
 			`	Approaching the edge of the platform, Taely puts out her arm to stop you from advancing any farther. "Watch out for the barrier," she says as she puts a hand out and touches something in mid-air in front of you. As she leans on it you can see faint ripples around her hand. "They are an essential safety feature, but they can still hurt if you run into them." She gestures to easily recognizable hazard markings on the floor. "With time you will learn to notice the faint shield ripples in the air, but meanwhile, just remember that anywhere that has the 'stand-back' lines on the floor likely has shields above it most of the time."`
 			`	Moments later, you see why the barriers are in place as a large train whooshes into the station at high speed before quickly coming to a stop. The barrier vanishes, and Taely leads you onto the train. Looking up and down the length of it, you can see hundreds, maybe even thousands of Remnant entering and exiting the train. Within moments the doors close, and the train starts moving again as you are pressed back into your seat. You see a few lights flicker past outside the window, but soon there is nothing outside but a monotonous dark blur.`
 			`	Taely notices your gaze. "Sorry, but there will not be much to see out there. The entire train line is quite far underground. Far enough to simply pass under terrain obstacles like rivers, valleys, or chasms." She nods to herself in satisfaction. "This will not be a long trip: we will only spend a few minutes at top speed before we start decelerating near our destination. I would recommend buckling into the harness."`
 			choice
 				`	"I am looking forward to seeing where we are going."`
-					goto ourdestination
+					goto "our destination"
 				`	"How fast does this go?"`
 			`	"The C3-L0 Maglev has a maximum rated velocity of 11D.E78 meters per second, and can sustain that almost indefinitely so long as the track remains powered. In practice, it rarely maintains that velocity for more than a few minutes at a time, as it is a local transport train. We do have some that go faster, but the amount of acceleration required to make use of them on short tracks is not terribly practical." She looks wistful. "Many people are working on solving the inertia problem, but Embers only know when that will result in something practical."`
 			choice
 				`	"Interesting. How long until we arrive?"`
-					goto ourdestination
+					goto "our destination"
 				`	"Why is that number so precise?"`
 				`	"That sounds like the speed of light."`
 			`	Taely smiles. "After all the safety factors, margins for error, and assorted other adjustments were taken into account, someone noticed that, when expressed in scientific notation, the coefficient of the rated value was calculated to be 1.1DE79, a fraction above the coefficient of the speed of light in a vacuum, so they adjusted the rated maximum velocity down only slightly so that they would match."`
 			choice
 				`	"Thanks for the explanation."`
-					goto ourdestination
+					goto "our destination"
 				`	"What is a coefficient?"`
 				`	"What is scientific notation?"`
 			`	"Here, I will switch to base 10 to make it easier for you to understand." She pulls up a hologram with 299,792,458 m/s on it. As she speaks, the number shifts to 2.99792458x10^8 m/s. "When we write out a number such as the speed of light, it is typical to break it into parts. This is generally referred to as scientific notation. This is done to facilitate comparing and working with large numbers. The first part, 2.99792458 in this case, would be called the coefficient. The second part, x10, is called the base; and the third part, ^8 is the exponent." The display shifts again to show 1.1DE784Ax10^7 m/s. "So this would be how we typically write the speed of light when we are using it in our research. So, 1.1DE78 is the coefficient of both the speed of light and the speed of the train, just with a different exponent." She pauses, then vanishes the display. "We will be arriving momentarily, so I should probably stop there."`
-			label ourdestination
+			label "our destination"
 			`	After several minutes, the lights in the train car suddenly pulse several times, and the train starts to decelerate heavily. You can feel yourself pushing into the harness as the train slows and comes to a stop. Unbuckling, Taely leads you out onto the platform, and then up a long escalator to the surface. Emerging into the sunlight, you find yourself looking around at a scene that seems almost anachronistic.`
 			scene "scene/remnant remote spaceport"
 			`	Taely looks around with pride, and then watches your reaction with amusement.`
@@ -115,37 +116,37 @@ mission "Remnant: Visit to Paradise 1"
 				`	"This is a spaceport?"`
 			`	She nods, and guides you amongst the stream of camel-drawn hovercarts heading for the gate. "This is one of our earliest spaceports, before we learned new techniques better suited to our new home. Our founding ships brought as much as they could, of course, but as it turns out, the earliest phases of expansion look much the same, whether one is looking at historic pre-flight eras or modern settlement efforts."`
 			scene "scene/remnant remote spaceport"
-			label questionloop
+			label "question loop"
 			choice
 				`	"It still seems odd to see camels pulling levitating platforms."`
-					goto camelcart
+					goto "camel cart"
 				`	"Stone walls seem like an odd thing to build."`
-					goto stonewalls
+					goto "stone walls"
 				`	"Are those wind turbines?"`
-					goto windturbine
+					goto "wind turbine"
 				`	"All these wood products seem surprising."`
 				`	"I think I have seen enough."`
-					goto mainreturn
-			label woodproducts
+					goto "main return"
+			label "wood products"
 			scene "scene/remnant remote spaceport"
 			`	Taely picks up a board from a nearby pile. "We were fortunate that Caelian had some vegetation that could be used like this. The native vegetation is biologically quite different from the trees of Earth, but they have similar structural characteristics and grow plentifully in many areas." She offers you the board. "The decision was made early on that anything that could be made from locally sourced materials, should be sourced locally. We wanted to conserve our limited supplies of metals and other rare resources for things that required it." She taps on a barrel. "These are a prime example - a few metal straps enable the wood to hold a significant amount of liquid. It is much the same as how a comparatively small amount of bone in our bodies can provide the necessary structure for a large volume of soft tissues and organs to function."`
-				goto questionloop
-			label camelcart
+				goto "question loop"
+			label "camel cart"
 			scene "scene/remnant remote spaceport"
 			`	"Is that so? The engineering advantages are quite simple: with the mechanics of the cart focused entirely on supporting the load and the camel providing horizontal motion, the cart can support much larger masses than it could if it had to split the forces." She looks wistful. "In truth, I am somewhat envious of the industrial capacity the ancestral worlds contain - we have accomplished much, but we have had to make choices, and one of those was the decision as to where to spend our industrial capacity. We chose, obviously, to focus on spacecraft and heavy industrial applications. We have no cars, no personal vehicles at all, really. Even these hovercarts are basically the repulsor systems from our spacecraft that have been repurposed to carry massive loads."`
 			`	Taely gestures out through the gate at the distant landscape. "It is ironic that, in many respects, the distant stars are more accessible to us than the metaphorical far side of the mountain. Those of us who explore our worlds often resort to long expeditions with camel trains to carry all their scientific equipment. Spending months away from friends or family while on a project is commonplace, even for those who never leave the surface of our planets. Many of our explorers, in fact, live nomadic lifestyles - moving every couple of weeks to a new research location as they study, document, and analyze the world." Her gestures take on a reverent tone. "Many of our most important discoveries can be attributed to these explorers."`
 			`	Her tone shifts to one of amusement. "We were lucky, though. Our camels were able to sustain themselves on several categories of local vegetation right from the start. It took quite a bit of experimentation with bacterial cultures, however, before we were able to enable them to really forage properly. Now they thrive here. Some experts suspect that, if we were to ever leave, the camels would probably continue to survive here for millennia to come."`
-				goto questionloop
-			label stonewalls
+				goto "question loop"
+			label "stone walls"
 			scene "scene/remnant remote spaceport"
 			`	Taely's expression becomes mournful as she leads you over to the walls. "We discovered soon after we arrived here that this planet was not as safe as it appeared. It had a variety of natural predators, including swarms of predatory creatures that were very aggressive in hunting us. They preferred darkness, and while they had excellent eyesight, their hearing was even sharper. A swarm could triangulate the position of a person from a single spoken word at great distances."`
 			`	She gestures up at the edge of the wall. "Fortunately, we discovered that while they were quite competent climbers, they could not navigate overhangs. So while such lips are generally considered a structural vulnerability when defending against modern weapons, they are indispensable for containing local wildlife. These walls served as well later on, too, when we had to deal with Korath ground attacks and other more complex threats."`
-				goto questionloop
-			label windturbine
+				goto "question loop"
+			label "wind turbine"
 			scene "scene/remnant remote spaceport"
 			`	"They are indeed wind turbines." She steps through the gate to a spot with a better view. You can see that while the ones on the wall are only a couple of meters tall, the ones on top of the towers are significantly bigger. "Our ancestors rightly guessed that anywhere that had sufficient atmosphere to dispense with pressure suits would also have wind. The vertical style also has the advantage that it handles high wind speeds and rapid variation in direction much better than some of the shapes that were more traditional at the time of the exodus. It seems to be a good precaution, as it has enabled these to survive the harsh windstorms that can sweep across the continent. While they have been repaired and improved over the centuries, these wind turbines still provide sufficient power for much of the agricultural uses out here, so we let them continue. They are also useful to remind us from where we have come."`
-				goto questionloop
-			label mainreturn
+				goto "question loop"
+			label "main return"
 			`	Taely leads you around the area for a few more hours, pointing out historical features, places where they resurrected trades and skills from before the advent of flight, and other interesting things. Eventually she heads back to the train station, which deposits you back in the main spaceport.`
 			`	"I hope you enjoyed the tour, <first>. It was interesting to see our history through fresh eyes." She smiles mischievously. "And I enjoyed the hoverboarding, too. Maybe we can do it again sometime." She pauses for a moment, focusing on something you cannot see. "Looks like duty calls. Embers guide your way, Captain <last>." She waves, and heads off into the crowd.`
 
@@ -163,35 +164,35 @@ mission "Remnant: Celebration 1"
 		has "event: remnant: cognizance calm"
 		has "license: Remnant Capital"
 		random < 50
-		"day" = 7
+		"day" == 7
 	on offer
 		conversation
 			`You stop by the starport just in time to see a large group of Remnant departing. A few of the nearest notice your interest and begin gesturing recognition or various invitations to accompany them, but before you are able to respond, Taely appears from the stream of people and approaches you.`
 			`	"Well met, <first>. We were just going to the monthly Celebration of Remembrance. Would you like to accompany us?"`
 			choice
 				`	"Yes, I would."`
-					goto celebrationattendance
+					goto "celebration attendance"
 				`	"What is that?"`
-					goto celebrationdefinition
+					goto "celebration definition"
 				`	"No thanks."`
-			label celebrationdeclined
+			label "celebration declined"
 			`	She nods. "Well, may the Embers guide you, <first>." With that, she rejoins the stream of people as they vanish from sight.`
 				decline
-			label celebrationdefinition
+			label "celebration definition"
 			`	"The Celebration of Remembrance is a gathering; we take a moment to remember where we have come from, appreciate where we are, and express hope for where we will be in the future." Her gestures take on a critical tone. "That sounds very formal, but it is more artistic than defined." She glances at the slowing flow of people. "It will be starting shortly, and I want to attend this month, so I should get moving. Would you like to join us?"`
 			choice
 				`	"Yes, I would."`
 				`	"No thanks."`
-					goto celebrationdeclined
-			label celebrationattendance
+					goto "celebration declined"
+			label "celebration attendance"
 			`	As the two of you join the flow of people, Taely gestures once again. "If you would like, I could provide you with some commentary and explanation, but it is more about feeling than doing anything specific. Together, we remember and celebrate through free-form dance mixed with singing and music. You are welcome to participate, but try not to disrupt or impede others in the way you join the dancing."`
 			choice
 				`	"No, that is alright. I will just experience it."`
-					goto celebrationbegin
+					goto "celebration begin"
 				`	"Yes, that would be appreciated."`
 			action
 				set "remnant: celebration: annotated"
-			label celebrationbegin
+			label "celebration begin"
 			`	The crowd you have joined merges with other flows of people as you all stream onward, eventually emerging from the typical hallways into a massive cave. On one side, a large opening, framed by rough stone and a handful of shield emitters, looks up towards the night sky. Stalagmites with matching stalactites above them ring the perimeter of the room, but there is no sound of drips or traces of lingering moisture here. While the walls are still rough, natural stone, the floor and all the stalagmites have been polished smooth. With a quick glance, you estimate that there are already over a hundred people in here, and more are still filtering in around you and through several other doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
 			`	Taely gestures quietly to you. "We start with the ritual query and response asking if we are safe. Safe in this moment, at least."`
 				to display
@@ -243,10 +244,10 @@ mission "Remnant: Celebration 1"
 				`	(Look around to see what is happening next.)`
 			`	Around you, everyone has gone still. Most look exhausted, and some are sitting on the floor or leaning against the walls. A few people look like they have been crying, and those nearby are hugging them or simply touching their shoulder. Most of the people you can see have reverent and joyful expressions. After the silence lingers for what feels like several minutes, the doors open and people start to leave. In short order the cave is nearly empty.`
 			`	"I always find these Celebrations of Remembrance to be invigorating," Taely says. "What did you think of it, <first>?"`
-			label celebrationquestions
+			label "celebration questions"
 			choice
 				`	"I think I will have to get back to you on that later."`
-					goto celebrationrequest
+					goto "celebration request"
 				`	"That was awe-inspiring."`
 					to display
 						not "celebrationawestruck"
@@ -254,34 +255,34 @@ mission "Remnant: Celebration 1"
 				`	"Why were some of the people crying?"`
 					to display
 						not "celebrationaskedcrying"
-					goto askcrying
+					goto "ask crying"
 				`	"Who leads these ceremonies?"`
 					to display
 						not "celebrationaskedleader"
 						not "celebrationaskedomitted"
-					goto ceremonyleader
+					goto "ceremony leader"
 				`	"That seemed both well-rehearsed and very disorganized."`
 					to display
 						not "celebrationaskedrehearsed"
-					goto celebrationrehearsed
+					goto "celebration rehearsed"
 				`	"You said 'virtually.' Who is omitted?"`
 					to display
 						has "celebrationaskedleader"
 						not "celebrationaskedomitted"
-					goto ceremonyomitted
+					goto "ceremony omitted"
 				`	"What constitutes your most serious crimes?"`
 					to display
 						has "celebrationaskedomitted"
-					goto celebrationcrime
-			label celebrationrehearsed
+					goto "celebration crime"
+			label "celebration rehearsed"
 			action
 				set "celebrationaskedrehearsed"
 				clear "celebrationaskedleader"
 				clear "celebrationawestruck"
 				clear "celebrationaskedomitted"
 			`	Taely smiles at that. "Well, it is and it is not. We hold these several times a month, though most people take part in only one every few weeks. Most of us have attended hundreds of these. Although as far as that goes, every one of these celebrations is different. Each person's participation and style is entirely up to them, so the details and feel of the group celebration as a whole are unique every time." After explaining this, she makes a singular gesture you have come to realize encompasses the idea, "If you have more questions, ask them."`
-				goto celebrationquestions
-			label ceremonyleader
+				goto "celebration questions"
+			label "ceremony leader"
 			action
 				set "celebrationaskedleader"
 				clear "celebrationaskedrehearsed"
@@ -289,19 +290,19 @@ mission "Remnant: Celebration 1"
 				clear "celebrationawestruck"
 			`	Taely's gestures take on a tone of conviction. "For something like this, or anything of a social or spiritual nature for that matter, we determine who takes the lead for various parts at the moment, based on who is present. Whether we are talking about our connection with society, or our connection to the Universe, we must each forge our own understanding of it. As such, when we gather together for ceremonies such as this, virtually anyone could be chosen to take the lead for one of the segments.`
 			`	"As a result, each celebration takes on a different feel - after all, each of us has our own unique perspective, and bring our own experiences to contribute." She pauses, and adopts a respectful tone. "The ceremony is not just about major events, either. Everyone who takes part brings their own life experiences and memories to the story we tell. Memories of friends and family who are no longer with us are common as well."`
-				goto celebrationquestions
-			label ceremonyomitted
+				goto "celebration questions"
+			label "ceremony omitted"
 			action
 				clear "celebrationaskedleader"
 				set "celebrationaskedomitted"
 			`	Taely scowls a bit at this. "Only those guilty of the most serious crimes cannot stand as a lead." She pauses, and continues with an amused tone. "Even children take the lead now and then, usually with a parent or sibling to guide them." She smiles at that, then gestures for you to continue asking your questions.`
-				goto celebrationquestions
-			label celebrationcrime
+				goto "celebration questions"
+			label "celebration crime"
 			action
 				clear "celebrationaskedomitted"
 			`	Taely gestures harshly. "Crimes against society, of course. Acting against the best interest of our collective well-being is the single most destructive and senseless act someone can perpetrate."`
-				goto celebrationquestions
-			label askcrying
+				goto "celebration questions"
+			label "ask crying"
 			action
 				set "celebrationaskedcrying"
 				clear "celebrationaskedrehearsed"
@@ -309,7 +310,7 @@ mission "Remnant: Celebration 1"
 				clear "celebrationawestruck"
 				clear "celebrationaskedomitted"
 			`	Taely gestures gently. "Many were friends of the crew of a ship that was recently destroyed while studying a black hole. They acquired ground-breaking data from it, but perished in the process. Their friends and families are proud of them, of course, but that does not change the fact that they are lost to us mortals. Sometimes the whole experience is simply overwhelming, and some of us still sorrow for other losses in our stories."`
-				goto celebrationquestions
+				goto "celebration questions"
 			label awestruck
 			action
 				set "celebrationawestruck"
@@ -318,8 +319,8 @@ mission "Remnant: Celebration 1"
 				clear "celebrationaskedleader"
 				clear "celebrationaskedomitted"
 			`	Taely nods in agreement and simply gestures expansively at the cavern around you, giving you a few moments to contemplate it. Eventually she gestures asking if you have any further questions.`
-				goto celebrationquestions
-			label celebrationrequest
+				goto "celebration questions"
+			label "celebration request"
 			`	Taely strides over to a console near the closest door and retrieves a crystal from a compartment within. She slips it into a case and turns back to you. "Our celebrations are something that bind us together, and we share in both the memory of the departed and the hope for the future. As such, we keep recordings of them so that those who are not present at a particular event may still experience it too. This recording is destined for those working in Postverta, as a friend of one of those being mourned today is stationed there. Could you deliver this to them please?"`
 			action
 				set "Remnant: Attended Celebration of Remembrance with Taely"
@@ -358,21 +359,21 @@ mission "Remnant: Teciimach Deployment"
 			choice
 				`	"Yes."`
 				`	"Sorry, but I'm a bit busy at the moment."`
-					goto empno
+					goto "emp no"
 			`	She turns and heads towards a nearby lift where another crew of Remnant had just moved several EMP Torpedo canisters into place. "Well, you have probably seen us use EMP Torpedoes now and then, right? Well, as you probably noticed, they have a few tactical issues. They are slow, they often hit our ships almost as much as our targets, and they take up space we could otherwise be using for more important things like laboratories or scanners." She taps a few commands into the console, and the lift begins raising the canisters towards the waiting ship.`
 			`	"Over the past decades we have had a few teams working on improving them from different angles. Some focused on the torpedoes themselves, others focused on the launcher. The surprising development, however, was from a team working down in the Warren. They figured out a way to shave a few cubic meters off the systems that assemble the torpedoes, and compress the whole structure. Very impressive work, and the results should be in the outfitter for you in the next day or two."`
 			`	She looks at you and nods contemplatively. "One thing worth noting - you are making great strides in learning our language, so new items that appear in our outfitter will be listed under their proper name instead of substitutes from the ancestral tongue."`
 			choice
 				`	"Whatever makes things easier for everyone."`
-					goto empno
+					goto "emp no"
 				`	"Thanks. What names were changed?"`
 			`	She looks amused. "Mainly weapons. If something is named an adjective that describes what it does, then it was a name we made up on the spot to include in the linguistic overlay we put in place for the displays. We did that so that you would have an easier time understanding what something does. Thankfully, you no longer need such aides."`
 			choice
 				`	"Thanks for the explanation."`
-					goto empno
+					goto "emp no"
 				`	"Thanks! Circling back to our earlier topic, what does 'Warren' mean?"`
 			`	"It is our term for the network of caves, tunnels, and spaces deep underground. All three of our main worlds have them in some form or another. We know a little about the original people who built them, but not nearly as much as we would like. They called themselves the Zitchal Maudrakoi, and one of the most distinguishing features we have been able to learn about them is that they do not seem to attach much importance to directionality. For example, in a control room we found, there were instruments and controls on every available surface, with just a scattering of handholds to support the operator." She shrugs. "Plume or Dusk would know more than I about them. I mostly focus on understanding their equipment."`
-			label empno
+			label "emp no"
 			`	"Well, I should get back to work, then. Next time you are in space, take a look at how our ships fare in battle. Hopefully you will see an improvement." She grabs a couple components from a nearby lift, and scrambles back up the side of the Merganser to continue working on a new bay.`
 				accept
 	npc
@@ -502,6 +503,9 @@ mission "Remnant: Shattered Light 3"
 				set "remnant: scanned specter"
 			`As the scan results arrive the data is relayed down to the team in the cargo hold. Your video feed shows a large hologram of the system floating in midair above one of the pallets. Nearby, terminals flash rolling readouts and analyses. As the data on the spectral ship solidifies, cones of projected courses appear on the display. Line by line the cone tightens in as additional data flows from your telemetry, closing in on a path intersecting with the nearby world.`
 			`	While the system continues to refine the orbital paths, the team seemed disinclined to wait: Ruach activates her commlink, broadcasting quickly to you. "It is on a crash course for Far Monad!" she exclaims. "Quick, land there!" Behind her, you can see her team scrambling to move equipment around near your cargo door and seal their spacesuits.`
+	to fail
+		has "remnant: scanned specter"
+		has "flagship planet: Far Monad"
 	to complete
 		never
 
@@ -516,27 +520,26 @@ mission "Remnant: Shattered Light 4"
 	to offer
 		has "remnant: scanned specter"
 	on offer
-		fail "Remnant: Shattered Light 3"
 		conversation
 			`With the Shattered Light careening towards the surface of Far Monad, you push the <ship> into a dive. As you focus on finding a safe place to land within close proximity of the approaching ship, you notice out the corner of your eye that the Remnant team have all suited up and are pushing their equipment to the cargo hatch. A message appears on your console.`
-			`	"Ready for drop, Captain. Just get us along side the Shattered Light without too much forward velocity. We can handle the rest."`
-			branch livingship
+			`	"Ready for drop, Captain. Just get us alongside the Shattered Light without too much forward velocity. We can handle the rest."`
+			branch "living ship"
 				or
 					has "flagship model: Peregrine"
 					has "flagship model: Merganser"
 			`	Moments later you spot a gaping hole on the ship. Focusing on it, you fly the <ship> down and hold position just above it. A glance at your cargo hold display shows the Remnant vanishing out the back lock. Your exterior cameras show the equipment falling into it on repulsor pallets while the Remnant drop alongside it. A final message appears on your console.`
-				goto dropsuccess
-			label livingship
+				goto "drop success"
+			label "living ship"
 			`	Moments later the <ship> pings a point on the Shattered Light indicating a gaping hole on the ship. Nodding your assent, your ship swoops to a hold position just above it. A glance at your cargo hold display shows the Remnant vanishing out the back lock. Your exterior cameras show the equipment falling into the hole on repulsor pallets while the Remnant drop alongside it. A final message appears on your console.`
-			label dropsuccess
+			label "drop success"
 			`	"Drop success. Get clear of the arrival zone and pick us up after the dust settles."`
-			branch livingclear
+			branch "living clear"
 				or
 					has "flagship model: Peregrine"
 					has "flagship model: Merganser"
 			`	With their confirmation, you quickly pull away from the approaching wreck and retreat to a safe distance.`
 				goto cleared
-			label livingclear
+			label "living clear"
 			`	The <ship> veers and accelerates away from the approaching wreck without waiting for your approval and retreats to a safe distance.`
 			label cleared
 			`	Eventually, you find a good vantage point, several kilometers away, where you can watch the approaching ship. The Shattered Light falls through the sky with deceptive slowness, made all the worse by the fact that you can see clouds and sky passing through it. As it nears the surface you see a ripple in the air explode out from it, followed by a concussive shockwave as the Shattered Light suddenly becomes very solid. Its engines flare to life with a roar that rattles your bones and the ship lurches to a stop in mid-air, before crunching down into the forest.`
@@ -561,16 +564,16 @@ mission "Remnant: Shattered Light 4"
 			`	Down on the ground, you see Ruach and her team exit an airlock on the side of the Shattered Light and jump down to the ground. They gather around, giving hugs. "<first>!" exclaims Ruach. "We have recovered a lost piece of Remnant history. Thank you for helping. I do not know what this will mean for us in the long term, but there will be a lot of careful examination for the next few weeks."`
 			choice
 				`	"I have things to do, so just let me know if I can help."`
-					goto shatteredhelp
+					goto "shattered help"
 				`	"So, what happened?"`
 			`	The team of Remnant are almost too excited for you to understand their gestures, but one calms down enough that their signing is comprehensible. "To be honest, we were expecting this to be the first of several trips doing detailed scans and trying out different sorts of synchronization fields. But when we saw that it was heading to the planet..." She trails off, and another one continues. "We already had the sensors running as we approached, so we jumped and triggered the fields as soon as we got a reasonable match."`
 			`	He frowns a bit. "It worked, although not perfectly. There are chunks missing, some of which seriously impair its functionality. But it is back in the Primary Weft, so now we have time to work on it and figure out what happened to it."`
 			choice
 				`	"I think I get the picture. Let me know if I can help."`
-					goto shatteredhelp
+					goto "shattered help"
 				`	"What is this 'Primary Weft' you have mentioned?"`
 			`	Another Remnant steps forward. "The Weft is what we term the mesh of dimensions, energy, and time that form a subset of the universe. A layer, of sorts." He looks thoughtful. "What you probably know as 'Hyperspace' is what we technically call the Secondary Weft. There are a few others we are fairly confident exist, and several that we have hypothesized might exist but we have no means of confirming. Practically, each of these overlaps with the Primary Weft to some extent." His gestures take on an amused tone. "Of course, what we call the Primary Weft is only primary to those of us who live here. For all we know, there may be people living elsewhere that consider their own weft to be the primary one. Nothing says ours is special or the best or anything of the sort. Actually, it has been proposed that we call the Primary Weft the Warp. It is an old weaving term that serves as a reasonable analogy to how the warp and weft interact, and might better reflect its status instead of being labeled 'Primary.'`
-			label shatteredhelp
+			label "shattered help"
 			`	"In terms of help, could you go to Caelian? We have sent word ahead, and our engineers are retrieving some of our remaining equipment from the time of the Exodus. We are hoping that it might be of use to help us repair the Shattered Light, or at least understand what happened to it.`
 			`	"Before you leave, though, there was some stuff that survived intact we would like to share with you." Behind her five androids emerge from one of the cargo holds, each one carrying a large trunk of equipment.`
 			scene "outfit/android"
@@ -617,7 +620,7 @@ mission "Remnant: Shattered Light 6"
 			`	"Welcome back, <first>!" signs Ruach from across the pad. "We have made considerable progress already." She appears set to explain what they have discovered.`
 			choice
 				`	"Great, but please spare me the details."`
-					goto shatteredrequest
+					goto "shattered request"
 				`	"You figured out what happened? Great!"`
 			`	She looks crestfallen. "Well, we know what the ship thinks happened, anyway. It is likely that what actually happened differs significantly." Her posture takes on a more positive stance. "We have had the opportunity to start querying the onboard systems and piece together a little of the Shattered Light's history. Particularly the logs.`
 			`	"As we all know, it was part of the Exodus fleet that entered the Terminus wormhole. Unlike most of the other ships, however, it never emerged from the other side. Fortunately, it had a significantly larger array of instruments than was normal for ships of its type, and it looks like at least some of the databanks survived."`
@@ -625,15 +628,15 @@ mission "Remnant: Shattered Light 6"
 			`	"It is unclear what happened after that, but the ship was subject to significant forces including unidentified impacts that caused multiple system failures. The data loses some coherence at this point, but it basically seems to have been semi-permanently stuck out-of-phase with the prime weft until an energy surge destabilized it and it wobbled back into prime coherence. At that point, it started being visible again, and shortly after, you spotted it."`
 			choice
 				`	"Interesting. Well, let me know if I can help."`
-					goto shatteredhelp
+					goto "shattered help"
 				`	"I am curious as to what you will do now."`
 			`	"The first step will be to unpack the Shattered Light and set up all its equipment. Taking detailed scans of each piece as we do so, of course." She gestures around at the equipment expanding out of the side of the ship. "As you can see, we have already started the process and found that much of it is operational."`
 			`	One of the other Remnant continues. "The Shattered Light carried what amounts to an entire heavy industrial factory. Everything from smelters to welding equipment and everything in between." They smile and their gestures take on a tone of irony. "In fact, the ships we have now are in no small part due to the Shattered Light's absence. Without these capabilities, the choice about whether or not to commit to learning the techniques of those who lived here before us was much easier. If the Shattered Light had arrived on schedule we may well still be building ships out of the traditional materials prevalent at the time."`
-				goto shatteredrequest
-			label shatteredhelp
+				goto "shattered request"
+			label "shattered help"
 			`	"Thank you, Captain. Of course we do not want to keep you waiting, so rest assured that we will contact you if your assistance is needed in the future."`
-			label shatteredrequest
-			`	Taely gestures take a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
+			label "shattered request"
+			`	Ruach's gestures take on a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
 			`	Her gestures take on an apologetic tone. "It will not be a perfect replica as we will have to use our own systems for most of the internals, and the resource allotment cost will be significantly higher than it would have been back at the Tycho Crater shipyard on Luna... but if you have the resources and interest, the opportunity is there. The shipyard will have more information for you in a day or two." Her gestures trail off with a sign that indicates vast possibilities.`
 			`	"Someday, Captain <first>, much may come from this. But for now, it will be months before we have analyzed everything. Thank you for helping recover a piece of our history, Captain."`
 
@@ -655,20 +658,20 @@ mission "Remnant: Scent of Rain 1"
 	on offer
 		event "remnant: tubfalet appearance" 20 31
 		conversation
-			branch scentssilvida
+			branch "scent ssil vida"
 				has "flagship planet: Ssil Vida"
 			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofezes out in the Postverta region. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
-				goto scentrainchoice
-			label scentssilvida
+				goto "scent of rain choice"
+			label "scent ssil vida"
 			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofezes patrolling alone near here. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
-			label scentrainchoice
+			label "scent of rain choice"
 			choice
 				`	"Yes, I could do that."`
 				`	"I would rather not."`
-					goto rathernot
+					goto "rather not"
 			`	He signs appreciatively. "We admire your willingness to help." He pulls up a hologram of the Ember Waste, and it shifts to display the systems towards the core. "We are concerned that the Korath may have a new ship that can carry three fighters. Based on the Korath's typical movement patterns, we suspect that - if such a ship exists - it should be somewhere in the nearer Korath systems. We will upload an algorithm to your targeting system to look for ship profiles that have no matches in our database. Please do an outfit scan of whatever ship you find, and report back to me on <destination>."`
 				accept
-			label rathernot
+			label "rather not"
 			`	He nods respectfully. "Well, thank you for all that you have done for us. I will see who else is available." With that, he heads off into the starport.`
 				decline
 	npc "scan outfits"
@@ -702,11 +705,11 @@ mission "Remnant: Scent of Rain 1"
 			`	"Thank you for investigating this, <first>. I will ensure that our engineers get your data immediately, and brief our patrols to be aware of this increased capacity." His gestures have a tone of anticipation and regret.`
 			choice
 				`	"You are welcome."`
-					goto scanningpayment
+					goto "scanning payment"
 				`	"Are you expecting something?"`
 			`	Chilia smiles wistfully. "Do you know that feeling, when the whole world is still and the skies are clear, and yet you know in your bones that a storm is coming?" He continues without waiting for a response. "Well, I have had that feeling for decades, growing ever stronger. And now..." He pauses, drawing a deep breath. "Now, it feels like this is the first scent of rain. The first thing I can actually identify as a solid indicator that a storm is brewing."`
 			`	He shakes his head. "But no matter. Planning for the storm is my duty, not yours, and the front is yet to appear.`
-			label scanningpayment
+			label "scanning payment"
 			`	"We have allocated you <payment> for the risks undertaken. Please use it wisely. While it is my duty to anticipate threats to us all, it is your duty to ensure you are prepared to face the winds they may bring." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
 
 
@@ -715,7 +718,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 	minor
 	landing
 	name "Sympathy For The Korath"
-	description "Travel to the <waypoints> system to disable a stranded Kas'lor Ik 582. Do not destroy or capture the ship, as it likely has a large civilian population."
+	description "Travel to the <waypoints> system to disable a stranded Dathnak A'awoj. Do not destroy or capture the ship, as it likely has a large civilian population."
 	source
 		government "Remnant"
 	waypoint "Vaticanus"
@@ -730,15 +733,15 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 	on offer
 		conversation
 			`You step out of your airlock to find Prefect Chilia waiting for you with a worried look on his face. "Captain <first>, I have a sensitive request for you.`
-			`	"Our scouts are reporting a stranded Korath ship in Vaticanus, a Kas'lor Ik 582 to be precise. If it were a typical warship obstructing our operations, we would request you track it down and eliminate it, but because ships of this type tend to be home to a large civilian population, destroying or capturing it outright may instigate a reprisal, especially in that sector.`
+			`	"Our scouts are reporting a stranded Korath ship in Vaticanus, a Dathnak A'awoj to be precise. If it were a typical warship obstructing our operations, we would request you track it down and eliminate it, but because ships of this type tend to be home to a large civilian population, destroying or capturing it outright may instigate a reprisal, especially in that sector.`
 			`	"Would you be up for disabling it, so the threat is eliminated while preserving the lives of the innocents on board?" His signs shift from a questioning tone to a confident one. "After you are done we can disarm the ship and fix their jump drive. If they adhere to their typical doctrine they should decide to head back home."`
 			choice
 				`	"Happy to help those in need, even the Korath."`
 				`	"I have no intentions of risking my neck for some Korath."`
-					goto rathernot
+					goto "rather not"
 			`	"I am grateful for your understanding and willingness to help here. Together we can ensure everyone gets home safely."`
 				accept
-			label rathernot
+			label "rather not"
 			`	He nods in acknowledgment and his gestures take on a staccato phrasing. "I feared my ask was too much. I understand the sentiment. Perhaps I was naive to think such an outcome was possible."`
 				decline
 	npc disable save
@@ -746,7 +749,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 		personality heroic target marked staying disables plunders
 		system "Vaticanus"
 		ship "Kas'lor Ik 582 (Stranded)" "Fligrookor"
-		dialog `You have disabled the Kas'lor Ik 582. Time to report back to <planet>.`
+		dialog `You have disabled the Dathnak A'awoj. Time to report back to <planet>.`
 	npc
 		government "Korath"
 		personality timid disables plunders swarming
@@ -761,11 +764,11 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 		dialog `The Remnant are puzzled at your aborting of this mission, but they tell you they will send someone else to do this work. They warn you they will not propose any more of the sort to you again.`
 	on fail
 		"reputation: Remnant" -= 250
-		dialog `You were unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
+		dialog `You were unable to disable the Dathnak A'awoj without destroying it... The Remnant will not be pleased...`
 	on complete
 		"remnant: disable and save count" ++
 		payment 2500000
 		conversation
 			`You find Chilia with a relieved look on his face when you land.`
-			`	"These assignments are typically handled by our most trusted teams, as taking on the larger Korath vessels is a sensitive matter. Most of their larger ships are home to large groups of Korath civilians, including children. I must admit there were concerns you might not be those children's best chance, but our fleet was occupied elsewhere at the time. I am glad I was not wrong in my assessment of you." He signs with a content smile on his face.`
+			`	"These assignments are typically handled by our most trusted teams, as taking on the larger Korath vessels is a sensitive matter. Most of their larger ships are home to large groups of Korath civilians, including children. I must admit there were concerns you might not be those children's best chance, but our fleet was occupied elsewhere at the time. I am glad I was not wrong in my assessment of you," he signs with a content smile on his face.`
 			`	"We must be careful not to let ignorance of Korath society result in the unnecessary destruction of similar ships. Now that you have shown you can handle these tasks with the proper finesse, you can expect these to turn up in the task board in the future." Chilia then walks away with a confident pace.`

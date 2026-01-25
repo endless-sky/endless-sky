@@ -15,7 +15,41 @@
 event "gegno space label"
 	galaxy "label gegno"
 		sprite label/gegno
-		
+
+
+event "gegno: civilian suspicion"
+	government "Gegno"
+		"send untranslated hails"
+		"friendly hail" "gegno untranslated"
+
+
+event "gegno: quarg talks"
+
+
+event "gegno: apprehension"
+
+
+event "gegno: vi occupy zydee"
+	system "Vesvii"
+		fleet "Scin Warfleet" 2700
+		fleet "Vi Warfleet" 2400
+	system "Kneirc"
+		government "Gegno Vi"
+		attributes "gegno" "vi"
+		fleet "Small Vi" 1400
+		fleet "Vi Warfleet" 3300
+		fleet "Small Scin" 1900
+		fleet "Scin Warfleet" 3000
+	planet "Zydee"
+		attributes "gegno" "vi" "moon"
+		description `There is evidence that the nearby Gegno Scin have attempted to establish a presence on this barren moon in the form of several partially-constructed buildings and landing zones scattered about the surface. In recent times, however, the opposing Gegno Vi have fielded their own forces to take control of the system, and have begun a number of operations to convert existing infrastructure and set up posts of their own, claiming the moon in their name.`
+		spaceport `The Vi have made makeshift landing zones and outposts, such as this one, for the group of warriors they've distributed across the moon. Although their numbers are no more than that of a small village, those who are present have accomplished a considerable amount during their time on the surface while the fleets above defend them.`
+		government "Gegno Vi"
+		"required reputation" 1
+	planet "Ghneoe"
+		description `Ghneoe's orbital period is dominated by a very long dry season due to the binary stars at the system's center. However, during a short portion of the year, Ghneoe experiences an intense water cycle that results in a boom of greenery and wildlife activity, developing a short-lived but flourishing ecosystem. Much of the flora and fauna have adapted to such drastic shifts in climate, and return to a dormant state once the intense heat cycle returns.`
+		description `	Unlike its moon, Ghneoe sees few to no colonization efforts from either the Gegno Vi or Scin, perhaps due to the abnormal weather cycles, continued system warfare, or a combination of both.`
+
 
 event "gegno: unified defense"
 	government "Gegno Vi"
@@ -28,7 +62,7 @@ event "gegno: unified defense"
 		"attitude toward"
 			"Gegno Scin" 1
 			"Gegno Vi" 1
-	government "Quarg"
+	government "Quarg (Gegno)"
 		"attitude toward"
 			"Gegno" 1
 			"Gegno Vi" 1
@@ -39,14 +73,28 @@ event "gegno: unified defense"
 		add fleet "Gegno Miners" 1000
 	system "Zeinar"
 		add fleet "Scin Warfleet" 600
-		add fleet "Quarg" 1000
+		add fleet "Quarg (Gegno)" 1000
 	system "Scija"
 		add fleet "Vi Warfleet" 600
-		add fleet "Quarg" 1000
+		add fleet "Quarg (Gegno)" 1000
 	system "Heutesl"
 		add fleet "Scin Warfleet" 600
 		add fleet "Vi Warfleet" 600
-		add fleet "Quarg Large" 600
+		add fleet "Large Quarg (Gegno)" 600
+
+
+event "gegno leave quarg space"
+	system "Aleit"
+		remove fleet "Gegno Basic"
+		remove fleet "Gegno Cargo"
+	system "Elifennka"
+		remove fleet "Gegno Miners"
+	system "Yllke"
+		remove fleet "Gegno Basic"
+		remove fleet "Gegno Cargo"
+		remove fleet "Gegno Miners"
+	system "Heutesl"
+		remove fleet "Quarg (Gegno)"
 
 
 # Will be defined in the future.

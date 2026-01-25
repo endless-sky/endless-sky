@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WEAPON_H_
-#define WEAPON_H_
+#pragma once
 
 #include "Angle.h"
 #include "Body.h"
@@ -24,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstddef>
 #include <cstdint>
 #include <map>
+#include <memory>
 #include <utility>
 #include <vector>
 
@@ -41,31 +41,37 @@ class Sprite;
 // copy of them, and storing them as class variables instead of in a map of
 // string to double significantly reduces access time.
 class Weapon {
+	friend Outfit;
 public:
-	struct Submunition{
-		Submunition() noexcept = default;
-		explicit Submunition(const Weapon *weapon, std::size_t count) noexcept
+	struct Submunition {
+		explicit Submunition(const std::shared_ptr<const Weapon> &weapon, std::size_t count) noexcept
 			: weapon(weapon), count(count) {};
 
-		const Weapon *weapon = nullptr;
+		const std::shared_ptr<const Weapon> &weapon;
 		std::size_t count = 0;
 		// The angular offset from the source projectile, relative to its current facing.
 		Angle facing;
 		// The base offset from the source projectile's position, relative to its current facing.
 		Point offset;
+
+		bool spawnOnNaturalDeath = true;
+		bool spawnOnAntiMissileDeath = false;
 	};
 
 
 public:
+	Weapon() = default;
+	// Construct and load at the same time.
+	explicit Weapon(const DataNode &node);
 	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
-	void LoadWeapon(const DataNode &node);
-	bool IsWeapon() const;
+	void Load(const DataNode &node);
+	bool IsLoaded() const;
 
 	// Get assets used by this weapon.
 	const Body &WeaponSprite() const;
 	const Body &HardpointSprite() const;
 	const Sound *WeaponSound() const;
-	const Outfit *Ammo() const;
+	const Sound *EmptySound() const;
 	const Sprite *Icon() const;
 
 	// Effects to be created at the start or end of the weapon's lifetime.
@@ -83,8 +89,8 @@ public:
 	double Reload() const;
 	double BurstReload() const;
 	int BurstCount() const;
-	int Homing() const;
 
+	const Outfit *Ammo() const;
 	int AmmoUsage() const;
 
 	int MissileStrength() const;
@@ -163,6 +169,11 @@ public:
 	bool CanCollideShips() const;
 	bool CanCollideAsteroids() const;
 	bool CanCollideMinables() const;
+	// Attributes that determine how projectiles from this weapon home onto targets.
+	bool Homing() const;
+	bool HasBlindspot() const;
+	bool ThrottleControl() const;
+	bool Leading() const;
 
 	// These values include all submunitions:
 	// Normal damage types:
@@ -194,6 +205,14 @@ public:
 	// weapon is not a provocation (even if you push or pull it).
 	bool DoesDamage() const;
 
+	bool ConsumesHull() const;
+	bool ConsumesFuel() const;
+	bool ConsumesHeat() const;
+	bool ConsumesEnergy() const;
+	bool ConsumesIonization() const;
+	bool ConsumesDisruption() const;
+	bool ConsumesSlowing() const;
+
 	double Piercing() const;
 
 	double Prospecting() const;
@@ -212,25 +231,18 @@ public:
 	const std::pair<double, double> &DropoffRanges() const;
 
 
-protected:
-	// Legacy support: allow turret outfits with no turn rate to specify a
-	// default turnrate.
-	void SetTurretTurn(double rate);
-
-	// A pair representing the outfit that is consumed as ammo and the number
-	// of that outfit consumed upon fire.
-	std::pair<const Outfit*, int> ammo;
-
-
 private:
 	double TotalDamage(int index) const;
 
 
 private:
+	bool isLoaded = false;
+
 	// Sprites and sounds.
 	Body sprite;
 	Body hardpointSprite;
 	const Sound *sound = nullptr;
+	const Sound *emptySound = nullptr;
 	const Sprite *icon = nullptr;
 
 	// Fire, die and hit effects.
@@ -241,8 +253,6 @@ private:
 	std::map<const Effect *, int> dieEffects;
 	std::vector<Submunition> submunitions;
 
-	// This stores whether or not the weapon has been loaded.
-	bool isWeapon = false;
 	bool isStreamed = false;
 	bool isSafe = false;
 	bool isPhasing = false;
@@ -258,6 +268,11 @@ private:
 	// to true, then this convergence will not be used and the weapon will
 	// be aimed directly in the gunport angle/direction.
 	bool isParallel = false;
+	// Attributes for homing.
+	bool homing = false;
+	bool blindspot = false;
+	bool throttleControl = false;
+	bool leading = false;
 
 	// Attributes.
 	int lifetime = 0;
@@ -266,7 +281,10 @@ private:
 	double reload = 1.;
 	double burstReload = 1.;
 	int burstCount = 1;
-	int homing = 0;
+
+	// A pair representing the outfit that is consumed as ammo and the number
+	// of that outfit consumed upon fire.
+	std::pair<const Outfit *, int> ammo;
 
 	int missileStrength = 0;
 	int antiMissile = 0;
@@ -376,7 +394,6 @@ inline int Weapon::FadeOut() const { return fadeOut; }
 inline double Weapon::Reload() const { return reload; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline int Weapon::BurstCount() const { return burstCount; }
-inline int Weapon::Homing() const { return homing; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }
 inline int Weapon::AntiMissile() const { return antiMissile; }
@@ -439,6 +456,10 @@ inline bool Weapon::IsFused() const { return isFused; }
 inline bool Weapon::CanCollideShips() const { return canCollideShips; }
 inline bool Weapon::CanCollideAsteroids() const { return canCollideAsteroids; }
 inline bool Weapon::CanCollideMinables() const { return canCollideMinables; }
+inline bool Weapon::Homing() const { return homing; }
+inline bool Weapon::HasBlindspot() const { return blindspot; }
+inline bool Weapon::ThrottleControl() const { return throttleControl; }
+inline bool Weapon::Leading() const { return leading; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
@@ -467,8 +488,12 @@ inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(RELATIVE
 
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
 
+inline bool Weapon::ConsumesHull() const { return FiringHull() > 0. || RelativeFiringHull() > 0.; }
+inline bool Weapon::ConsumesFuel() const { return FiringFuel() > 0. || RelativeFiringFuel() > 0.; }
+inline bool Weapon::ConsumesHeat() const { return FiringHeat() < 0. || RelativeFiringHeat() > 0.; }
+inline bool Weapon::ConsumesEnergy() const { return FiringEnergy() > 0. || RelativeFiringEnergy() > 0.; }
+inline bool Weapon::ConsumesIonization() const { return FiringIon() < 0.; }
+inline bool Weapon::ConsumesDisruption() const { return FiringDisruption() < 0.; }
+inline bool Weapon::ConsumesSlowing() const { return FiringSlowing() < 0.; }
+
 inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
-
-
-
-#endif

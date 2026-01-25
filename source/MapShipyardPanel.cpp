@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapShipyardPanel.h"
 
+#include "comparators/BySeriesAndIndex.h"
+#include "CategoryList.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -23,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -68,14 +70,14 @@ const Sprite *MapShipyardPanel::CompareSprite() const
 
 
 
-int MapShipyardPanel::SelectedSpriteSwizzle() const
+const Swizzle *MapShipyardPanel::SelectedSpriteSwizzle() const
 {
 	return selected->CustomSwizzle();
 }
 
 
 
-int MapShipyardPanel::CompareSpriteSwizzle() const
+const Swizzle *MapShipyardPanel::CompareSpriteSwizzle() const
 {
 	return compare->CustomSwizzle();
 }
@@ -150,7 +152,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 		for(const StellarObject &object : system->Objects())
 			if(object.HasSprite() && object.HasValidPlanet())
 			{
-				const auto &shipyard = object.GetPlanet()->Shipyard();
+				const auto &shipyard = object.GetPlanet()->ShipyardStock();
 				if(shipyard.Has(selected))
 					return 1.;
 				if(!shipyard.empty())
@@ -188,7 +190,7 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 void MapShipyardPanel::DrawItems()
 {
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+	if(GetUI().IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
@@ -203,8 +205,9 @@ void MapShipyardPanel::DrawItems()
 		if(DrawHeader(corner, category))
 			continue;
 
-		for(const Ship *ship : it->second)
+		for(const string &name : it->second)
 		{
+			const Ship *ship = GameData::Ships().Get(name);
 			string price = Format::CreditString(ship->Cost());
 
 			string info = Format::Number(ship->MaxShields()) + " shields / ";
@@ -216,7 +219,8 @@ void MapShipyardPanel::DrawItems()
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
-					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->Shipyard().Has(ship))
+					if(object.HasSprite() && object.HasValidPlanet()
+							&& object.GetPlanet()->ShipyardStock().Has(ship))
 					{
 						isForSale = true;
 						break;
@@ -246,7 +250,7 @@ void MapShipyardPanel::DrawItems()
 				? "1 ship parked"
 				: Format::Number(parkedInSystem) + " ships parked";
 			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
-					ship->DisplayModelName(), price, info, parking_details);
+					ship->DisplayModelName(), ship->VariantMapShopName(), price, info, parking_details);
 			list.push_back(ship);
 		}
 	}
@@ -261,10 +265,10 @@ void MapShipyardPanel::Init()
 	set<const Ship *> seen;
 	for(const auto &it : GameData::Planets())
 		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
-			for(const Ship *ship : it.second.Shipyard())
-				if(!seen.count(ship))
+			for(const Ship *ship : it.second.ShipyardStock())
+				if(!seen.contains(ship))
 				{
-					catalog[ship->Attributes().Category()].push_back(ship);
+					catalog[ship->Attributes().Category()].push_back(ship->VariantName());
 					seen.insert(ship);
 				}
 
@@ -274,14 +278,13 @@ void MapShipyardPanel::Init()
 		{
 			const Ship *model = GameData::Ships().Get(it->TrueModelName());
 			++parkedShips[it->GetSystem()][model];
-			if(!seen.count(model))
+			if(!seen.contains(model))
 			{
-				catalog[model->Attributes().Category()].push_back(model);
+				catalog[model->Attributes().Category()].push_back(model->TrueModelName());
 				seen.insert(model);
 			}
 		}
 
 	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(),
-			[](const Ship *a, const Ship *b) { return a->DisplayModelName() < b->DisplayModelName(); });
+		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Ship>());
 }

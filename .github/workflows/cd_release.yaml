@@ -7,33 +7,56 @@ on:
         required: true
         type: string
 
+permissions:
+  contents: read
+  actions: read
+
 jobs:
   release_appimage_x64:
     name: AppImage x64
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       ARCH: x86_64
       OUTPUT: Endless_Sky-${{ inputs.release_version  }}-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
+          fetch-depth: '10'
       - name: Install dependencies
         run: |
-          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev
-      - name: Setup sccache
-        uses: ./.github/sccache
+          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libminizip-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libfuse2 autoconf autoconf-archive automake libtool
+      - name: Find cache keys
+        run: |
+          echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+          git log --pretty=format:'${{ runner.os }}-cd-%H' -n 10 | tail -n+2 >> restore_keys.txt
+          echo -e '\nEOF' >> restore_keys.txt
+          cat restore_keys.txt >> "$GITHUB_ENV"
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          save: 'false'
+          restore-keys: ${{ env.RESTORE_KEYS }}
+          append-timestamp: 'false'
+      - name: Adjust version strings
+        run: ./utils/cd_update_versions.sh
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'linux-release'
-          buildPreset: 'linux-ci-release'
+          vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+      - name: Run CMake
+        run: |
+          cmake --preset linux-release
+          cmake --build build --preset linux-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
       - name: Upload artifact
@@ -45,33 +68,64 @@ jobs:
 
   release_windows_x64:
     name: Windows x64
-    runs-on: windows-2022
+    runs-on: windows-2025
     env:
-      OUTPUT: EndlessSky-win64-${{ inputs.release_version }}.zip
+      OUTPUT_ZIP: EndlessSky-win64-${{ inputs.release_version }}.zip
+      OUTPUT_EXE: EndlessSky-${{ inputs.release_version }}-win64-setup.exe
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
-      - name: Setup sccache
-        uses: ./.github/sccache
+          fetch-depth: '10'
+      - name: Install dependencies
+        run: |
+          choco install nsis.portable
+      - name: Find cache keys
+        run: |
+          echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+          git log --pretty=format:'${{ runner.os }}-cd-%H' -n 10 | tail -n+2 >> restore_keys.txt
+          echo -e '\nEOF' >> restore_keys.txt
+          cat restore_keys.txt >> "$GITHUB_ENV"
+        shell: bash
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          save: 'false'
+          restore-keys: ${{ env.RESTORE_KEYS }}
+          append-timestamp: 'false'
+      - name: Adjust version strings
+        run: ./utils/cd_update_versions.sh
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'mingw-release'
-          buildPreset: 'mingw-ci-release'
+          vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+      - name: Run CMake
+        run: |
+          cmake --preset mingw-release -DCPACK_PACKAGE_FILE_NAME="EndlessSky-${{ inputs.release_version }}-win64-setup"
+          cmake --build build --preset mingw-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
           cmake --install build/release
-          7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Upload artifact
+          7z a ${{ env.OUTPUT_ZIP }} "./install/release/*"
+          cpack --config build/release/CPackConfig.cmake
+      - name: Upload zip artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
+          name: ${{ env.OUTPUT_ZIP }}
+          path: ${{ env.OUTPUT_ZIP }}
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.OUTPUT_EXE }}
+          path: ${{ env.OUTPUT_EXE }}
       - name: Upload Steam Depot
         uses: actions/upload-artifact@v4
         with:
@@ -81,48 +135,197 @@ jobs:
             ./install/release/*.dll
 
 
-  release_macos_universal:
+  release_windows_x86:
+    name: Windows x86
+    runs-on: windows-2025
+    env:
+      OUTPUT_ZIP: EndlessSky-win32-${{ inputs.release_version }}.zip
+      OUTPUT_EXE: EndlessSky-${{ inputs.release_version }}-win32-setup.exe
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          show-progress: false
+      - name: Install dependencies
+        run: |
+          choco install nsis.portable
+      - name: Add Mingw to PATH
+        run: |
+          echo (Join-Path C: mingw32 bin) >> $env:GITHUB_PATH
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+      - name: Run CMake
+        run: |
+          cmake --preset mingw32-release -DCPACK_PACKAGE_FILE_NAME="EndlessSky-${{ inputs.release_version }}-win32-setup"
+          cmake --build build --preset mingw32-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
+      - name: Package Application
+        run: |
+          cmake --install build/release
+          7z a ${{ env.OUTPUT_ZIP }} "./install/release/*"
+          cpack --config build/release/CPackConfig.cmake
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.OUTPUT_ZIP }}
+          path: ${{ env.OUTPUT_ZIP }}
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.OUTPUT_EXE }}
+          path: ${{ env.OUTPUT_EXE }}
+      - name: Upload Steam Depot
+        uses: actions/upload-artifact@v4
+        with:
+          name: steam-win32-depot
+          path: |
+            ./install/release/Endless Sky.exe
+            ./install/release/*.dll
+
+
+  release_macos_x64:
+    name: MacOS x64
+    runs-on: macos-14
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          show-progress: false
+          fetch-depth: '10'
+      - name: Find cache keys
+        run: |
+          echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+          git log --pretty=format:'${{ runner.os }}-cd-%H' -n 10 | tail -n+2 >> restore_keys.txt
+          echo -e '\nEOF' >> restore_keys.txt
+          cat restore_keys.txt >> "$GITHUB_ENV"
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          save: 'false'
+          restore-keys: ${{ env.RESTORE_KEYS }}
+          append-timestamp: 'false'
+      - name: Adjust version strings
+        run: ./utils/cd_update_versions.sh
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+      - name: Run CMake
+        run: |
+          cmake --preset macos-release
+          cmake --build build --preset macos-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
+      - name: Zip artifact
+        run: |
+          cd build/release
+          7z a macos-artifact-x64.zip "Endless Sky.app"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-artifact-x64
+          path: build/release/macos-artifact-x64.zip
+
+
+  release_macos_arm:
+    name: MacOS ARM
+    runs-on: macos-14
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          show-progress: false
+          fetch-depth: '10'
+      - name: Find cache keys
+        run: |
+          echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+          git log --pretty=format:'${{ runner.os }}-arm-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
+          echo -e '\nEOF' >> restore_keys.txt
+          cat restore_keys.txt >> "$GITHUB_ENV"
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          save: 'false'
+          restore-keys: ${{ env.RESTORE_KEYS }}
+          append-timestamp: 'false'
+      - name: Adjust version strings
+        run: ./utils/cd_update_versions.sh
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+      - name: Run CMake
+        run: |
+          cmake --preset macos-arm-release
+          cmake --build build --preset macos-arm-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
+      - name: Zip artifact
+        run: |
+          cd build/release
+          7z a macos-artifact-arm.zip "Endless Sky.app"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-artifact-arm
+          path: build/release/macos-artifact-arm.zip
+
+
+  release_macos:
     name: MacOS Universal
-    runs-on: macos-12
+    runs-on: macos-14
+    needs: [release_macos_arm, release_macos_x64]
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT: Endless-Sky-${{ inputs.release_version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
         with:
-          show-progress: false
-      - name: Setup sccache
-        uses: ./.github/sccache
-      - name: Install pkg-config
-        run: type -P pkg-config || brew install pkg-config
-      - uses: lukka/get-cmake@latest
-      - uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'macos-arm-release'
-          buildPreset: 'macos-arm-ci-release'
-      - name: Prepare for x64 app bundle
+          name: macos-artifact-x64
+          path: x64/macos-artifact-x64.zip
+      - name: Extract x64 artifact
         run: |
-          mv "build/release/Endless Sky.app" "Endless Sky.app.arm"
-          rm -rf build/release
-      - uses: lukka/run-cmake@v10
+          cd x64
+          7z x macos-artifact-x64.zip
+      - uses: actions/download-artifact@v4
         with:
-          configurePreset: 'macos-release'
-          buildPreset: 'macos-ci-release'
+          name: macos-artifact-arm
+          path: arm/macos-artifact-arm.zip
+      - name: Extract arm artifact
+        run: |
+          cd arm
+          7z x macos-artifact-arm.zip
       - name: Create universal binary
         run: |
-          mv "build/release/Endless Sky.app" "Endless Sky.app.x64"
-          cp -r "Endless Sky.app.arm" "Endless Sky.app"
-          lipo -create -output "Endless Sky.app/Contents/MacOS/Endless Sky" "Endless Sky.app.arm/Contents/MacOS/Endless Sky" "Endless Sky.app.x64/Contents/MacOS/Endless Sky"
-          for lib in "Endless Sky.app/Contents/Frameworks/"*; do lipo -create -output "$lib" "Endless Sky.app.arm/Contents/Frameworks/$(basename "$lib")" "Endless Sky.app.x64/Contents/Frameworks/$(basename "$lib")"; done
+          cp -r "arm/Endless Sky.app" "Endless Sky.app"
+          lipo -create -output "Endless Sky.app/Contents/MacOS/Endless Sky" "arm/Endless Sky.app/Contents/MacOS/Endless Sky" "x64/Endless Sky.app/Contents/MacOS/Endless Sky"
+          for lib in "Endless Sky.app/Contents/Frameworks/"*; do lipo -create -output "$lib" "arm/Endless Sky.app/Contents/Frameworks/$(basename "$lib")" "x64/Endless Sky.app/Contents/Frameworks/$(basename "$lib")"; done
       - name: Package Application
         run: |
           mkdir "${{ env.OUTPUT }}"
           cp -r "Endless Sky.app" "${{ env.OUTPUT }}"
           ln -s /Applications "${{ env.OUTPUT }}"
-          hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"
+          until hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"; do echo "hdiutil create failed, retrying..."; done
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -142,18 +345,17 @@ jobs:
           name: steam-macos-depot
           path: depot
 
-
   release_steam_linux:
     name: Steam Linux
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - name: Build Endless Sky
       run: |
         cd steam
-        docker-compose run steam-x64
+        docker compose run steam-x64
     - name: Prepare binary
       run: cp build/steam-x64/endless-sky .
     - name: Upload Steam Depot
@@ -163,19 +365,13 @@ jobs:
         path: endless-sky
 
 
-  deploy_steam:
-    name: Deploy Steam
-    needs: [release_steam_linux, release_windows_x64, release_macos_universal]
+  steam_data:
+    name: Steam Data Depot
     runs-on: ubuntu-latest
-    # environment: steam
     env:
       data: steam-data-depot
-      linux: steam-linux-x64
-      win32: steam-win32
-      win64: steam-win64
-      macos: steam-macos
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - name: Upload Steam Data Depot
@@ -186,25 +382,9 @@ jobs:
           changelog
           copyright
           credits.txt
-          icon.png
           keys.txt
           license.txt
           data/
           images/
+          shaders/
           sounds/
-    # - uses: game-ci/steam-deploy@v1
-    #   with:
-    #     appId: 404410
-    #     buildDescription: canary-${{ github.sha }}
-    #     username: ${{ secrets.STEAM_DEPLOY_UN }}
-    #     password: ${{ secrets.STEAM_DEPLOY_PW }}
-    #     configVdf: ${{ secrets.STEAM_DEPLOY_VDF }}
-    #     ssfnFileName: ${{ secrets.STEAM_DEPLOY_SSFN_NAME }}
-    #     ssfnFileContents: ${{ secrets.STEAM_DEPLOY_SSFN }}
-    #     rootPath: ''
-    #     depot1Path: ${{ env.data }}
-    #     depot3Path: ${{ env.win32 }}
-    #     depot4Path: ${{ env.win64 }}
-    #     depot5Path: ${{ env.macos }}
-    #     depot7Path: ${{ env.linux }}
-    #     releaseBranch: canary

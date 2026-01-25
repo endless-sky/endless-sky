@@ -8,24 +8,29 @@ if(NOT MSVC)
 		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
 endif()
 
+find_package(Catch2 CONFIG REQUIRED)
+
 # Every source file (and header file) should be listed here.
 # If you add a new file, add it to this list.
 target_sources(EndlessSkyTests PRIVATE
-	unit/include/catch.hpp
 	unit/include/datanode-factory.h
 	unit/include/es-test.hpp
+	unit/include/logger-output.h
 	unit/include/output-capture.hpp
 	unit/src/comparators/test_byGivenOrder.cpp
 	unit/src/comparators/test_byName.cpp
 	unit/src/helpers/datanode-factory.cpp
+	unit/src/helpers/logger-output.cpp
 	unit/src/test_account.cpp
 	unit/src/test_angle.cpp
 	unit/src/test_bitset.cpp
 	unit/src/test_categoryList.cpp
+	unit/src/test_conditionAssignments.cpp
 	unit/src/test_conditionSet.cpp
 	unit/src/test_conditionsStore.cpp
 	unit/src/test_datafile.cpp
 	unit/src/test_datanode.cpp
+	unit/src/test_datawriter.cpp
 	unit/src/test_dictionary.cpp
 	unit/src/test_distance_calculation_settings.cpp
 	unit/src/test_esuuid.cpp
@@ -38,6 +43,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_scrollVar.cpp
 	unit/src/test_set.cpp
 	unit/src/test_ship.cpp
+	unit/src/test_stringInterner.cpp
 	unit/src/test_template.txt
 	unit/src/test_weightedList.cpp
 	unit/src/text/test_alignment.cpp
@@ -59,8 +65,10 @@ list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_framework.txt
 	integration/config/plugins/integration-tests/data/tests/tests_hyperjumps_to_autocondition.txt
 	integration/config/plugins/integration-tests/data/tests/tests_illegal_atrocity.txt
+	integration/config/plugins/integration-tests/data/tests/tests_job_board_missions.txt
 	integration/config/plugins/integration-tests/data/tests/tests_landing.txt
 	integration/config/plugins/integration-tests/data/tests/tests_take_ships.txt
+	integration/config/plugins/integration-tests/data/tests/tests_timers.txt
 	integration/config/plugins/integration-tests/data/tests/tests_save_load.txt
 	integration/config/plugins/integration-tests/data/tests/tests_ship_sale.txt
 	integration/config/plugins/integration-tests/data/tests/tests_shipyard_outfitter_missions.txt
@@ -71,7 +79,11 @@ list(APPEND INTEGRATION_TESTS
 )
 
 target_include_directories(EndlessSkyTests PRIVATE unit/include)
+target_link_libraries(EndlessSkyTests PRIVATE Catch2::Catch2WithMain)
 target_link_libraries(EndlessSkyTests PRIVATE ExternalLibraries $<TARGET_OBJECTS:EndlessSkyLib>)
+
+target_compile_options(EndlessSkyTests PUBLIC ${SANITIZER_OPTS})
+target_link_options(EndlessSkyTests PUBLIC ${SANITIZER_OPTS})
 
 # CTest support for our unit tests.
 add_test(NAME unit COMMAND EndlessSkyTests)

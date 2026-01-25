@@ -1,0 +1,249 @@
+# Copyright (c) 2024 by Tommaso Becca
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+galaxy "Patir Cluster"
+	pos 10045 -236
+	sprite "ui/patir cluster"
+
+system Athiri
+	pos 10225.5 -432.5
+	government Uninhabited
+	attributes "beyond patir"
+	haze _menu/haze-chanai
+	habitable 1400
+	belt 1074
+	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
+	hazard "Athiri Black Hole Event Horizon" 1
+	hazard "Athiri Black Hole Accretion Disk" 1
+	hazard "Small Black Hole Gravity" 1
+	object
+		sprite "star/black hole corona core"
+		period 1
+	object
+		sprite "star/black hole corona"
+		period 1
+	object "Beyond Patir North Entrance"
+		distance 1510.2286
+		period 1
+		offset 35
+	object
+		sprite planet/wisp
+		distance 1510.2286
+		period 1
+		offset 35
+
+system Balnii
+	pos 10268.3 -359.3
+	government Uninhabited
+	attributes "beyond patir"
+	haze _menu/haze-sarifa
+	arrival 1100
+	habitable 360
+	belt 1497
+	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
+	hazard "Balnii Black Hole Event Horizon" 1
+	hazard "Small Black Hole Gravity" 2
+	object
+		sprite "star/big black hole core"
+		period 1
+	object
+		sprite "star/big black hole"
+		period 1
+
+system Chanai
+	pos 9883.5 -34.5
+	government Uninhabited
+	attributes "beyond patir"
+	haze _menu/haze-chanai
+	habitable 1250
+	belt 1887
+	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
+	hazard "Chanai Black Hole Event Horizon" 1
+	hazard "Chanai Black Hole Accretion Disk" 1
+	hazard "Small Black Hole Gravity" 1
+	object
+		sprite "star/black hole 3 core"
+		period 1
+	object
+		sprite "star/black hole 3"
+		period 1
+	object "Chanai Structure"
+		sprite "planet/station-chanai"
+			scale 0.5
+		distance 1541.4
+		period 9215.7
+
+system Ghila
+	pos 9820.5 -100.5
+	government Uninhabited
+	attributes "beyond patir"
+	haze _menu/haze-ghila
+	habitable 1715
+	belt 1165
+	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
+	hazard "Ghila Black Hole Event Horizon" 1
+	hazard "Thepa and Ghila Black Hole Accretion Disk" 1
+	hazard "Small Black Hole Gravity" 1
+	object
+		sprite "star/black-hole-still-core"
+		period 1
+	object
+		sprite "star/black-hole-still"
+		period 1
+	object
+		sprite "planet/penrose machine"
+			scale 0.5
+		period 1
+	object "Beyond Patir North Exit"
+		distance 1626.8
+		period 10283.9
+	object
+		sprite planet/wisp
+		distance 1626.8
+		period 10283.9
+
+system Lathia
+	pos 10107.5 -332.5
+	government Uninhabited
+	attributes "beyond patir"
+	haze _menu/haze-lathia
+	habitable 1715
+	belt 1815
+	fleet "Magic Asteroid" 250
+	hazard "Beyond Patir Shield Eraser" 1
+	object
+		sprite star/neutron
+		period 1
+	object
+		sprite planet/rock11
+		distance 1822.21
+		period 227.72
+	object
+		sprite "planet/asteroid magic"
+		distance 2723.62
+		period 1372.93
+
+system Maithi
+	pos 10092.5 -489.5
+	government Uninhabited
+	attributes "beyond patir"
+	haze _menu/haze-maithi
+	habitable 425.92
+	belt 1379
+	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
+	hazard "Beyond Patir Black Hole Event Horizon" 1
+	hazard "Beyond Patir Black Hole Accretion Disk" 1
+	hazard "Small Black Hole Gravity" 1
+	object
+		sprite "star/black hole 5 core"
+		period 1
+	object
+		sprite "star/black hole 5"
+		period 1
+	object "Beyond Patir North Exit"
+		sprite "planet/wormhole-blue"
+		distance 4316.1251
+		period 10.1251
+		offset 180
+
+system Mitera
+	pos 9957.5 -92.5
+	government Uninhabited
+	attributes "beyond patir"
+	haze _menu/haze-mitera
+	habitable 3645
+	belt 1464
+	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
+	hazard "Beyond Patir Black Hole Event Horizon" 1
+	hazard "Beyond Patir Black Hole Accretion Disk" 1
+	hazard "Small Black Hole Gravity" 1
+	object
+		sprite "star/black hole 4 core"
+		period 1
+	object
+		sprite "star/black hole 4"
+		period 1
+	object "Beyond Patir North Entrance"
+		sprite "planet/wormhole-blue"
+		distance 4580.2286
+		period 11.3382
+		offset 180
+
+system Sarifa
+	pos 10136.5 -406.5
+	government Uninhabited
+	attributes "beyond patir"
+	haze _menu/haze-sarifa
+	habitable 5486.68
+	belt 1757
+	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
+	hazard "Beyond Patir Black Hole Event Horizon" 1
+	hazard "Sarifa Black Hole Accretion Disk" 1
+	hazard "Small Black Hole Gravity" 1
+	object
+		sprite "star/f8"
+		distance 549
+		period 1
+		offset 78
+	object
+		sprite "star/black hole star core"
+		period 1
+	object
+		sprite "star/black hole star"
+		period 1
+
+system Thepa
+	pos 9975.5 -2.5
+	government Uninhabited
+	attributes "beyond patir"
+	haze _menu/haze-maithi
+	habitable 320
+	belt 1793
+	hazard "Beyond Patir Shield Eraser" 1
+	hazard "Beyond Patir Black Hole Event Horizon" 1
+	hazard "Thepa and Ghila Black Hole Accretion Disk" 1
+	hazard "Small Black Hole Gravity" 1
+	object
+		sprite "star/black hole 6 core"
+		period 1
+	object
+		sprite "star/black hole 6"
+		period 1
+
+planet "Beyond Patir North Entrance"
+	wormhole "Beyond Patir North Entrance"
+
+planet "Beyond Patir North Exit"
+	wormhole "Beyond Patir North Exit"
+
+wormhole "Beyond Patir North Entrance"
+	mappable
+	link Mitera Athiri
+	color "wormholes: beyond Patir"
+
+wormhole "Beyond Patir North Exit"
+	mappable
+	link Maithi Ghila
+	color "wormholes: beyond Patir"
+
+planet "Chanai Structure"
+	landscape "land/station60"
+	description `This alien station is as vast as it is mysterious, concealing more secrets than you could ever hope to find. Its only discernible feature is a giant barrel, but what it was built for - or what it could still do - is impossible to say.`
+	government "Magic Asteroid"

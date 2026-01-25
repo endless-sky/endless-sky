@@ -13,12 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FLOTSAM_H_
-#define FLOTSAM_H_
+#pragma once
+
+#include "Body.h"
 
 #include "Angle.h"
-#include "Body.h"
-#include "Point.h"
 
 #include <string>
 #include <vector>
@@ -26,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Effect;
 class Government;
 class Outfit;
+class Point;
 class Ship;
 class Visual;
 
@@ -48,6 +48,9 @@ public:
 	// separate function because a ship may queue up flotsam to dump but take
 	// several frames before it finishes dumping it all.
 	void Place(const Ship &source);
+	// Place this flotsam with its starting position at the specified bay of the source ship,
+	// instead of the center of the ship.
+	void Place(const Ship &source, size_t bayIndex);
 	// Place flotsam coming from something other than a ship. Optionally specify
 	// the maximum relative velocity, or the exact relative velocity as a vector.
 	void Place(const Body &source, double maxVelocity = .5);
@@ -55,7 +58,7 @@ public:
 
 	// Move the object one time-step forward.
 	void Move(std::vector<Visual> &visuals);
-	void SetVelocity(Point velocity);
+	void SetVelocity(const Point &velocity);
 
 	// This is the one ship that cannot pick up this flotsam.
 	const Ship *Source() const;
@@ -93,7 +96,3 @@ private:
 	int count = 0;
 	const Government *sourceGovernment = nullptr;
 };
-
-
-
-#endif

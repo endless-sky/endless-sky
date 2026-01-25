@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PREFERENCES_H_
-#define PREFERENCES_H_
+#pragma once
 
 #include <cstdint>
 #include <string>
@@ -37,9 +36,15 @@ public:
 	};
 
 	enum class DateFormat : int_fast8_t {
-		DMY = 0, // Day-first format. (Sat, 4 Oct 1941)
-		MDY,     // Month-first format. (Sat, Oct 4, 1941)
-		YMD      // All-numeric ISO 8601. (1941-10-04)
+		DMY = 0, ///< Day-first format. (Sat, 4 Oct 1941)
+		MDY,     ///< Month-first format. (Sat, Oct 4, 1941)
+		YMD      ///< All-numeric ISO 8601. (1941-10-04)
+	};
+
+	enum class NotificationSetting : int_fast8_t {
+		OFF = 0,
+		MESSAGE,
+		BOTH
 	};
 
 	enum class OverlayState : int_fast8_t {
@@ -56,6 +61,12 @@ public:
 		ESCORT,
 		ENEMY,
 		NEUTRAL
+	};
+
+	enum class TurretOverlays : int_fast8_t {
+		OFF = 0,
+		ALWAYS_ON,
+		BLINDSPOTS_ONLY
 	};
 
 	enum class AutoAim : int_fast8_t {
@@ -103,6 +114,40 @@ public:
 		BOTH
 	};
 
+	enum class MinimapDisplay : int_fast8_t {
+		OFF = 0,
+		WHEN_JUMPING,
+		ALWAYS_ON
+	};
+
+	enum class FlagshipSpacePriority : int_fast8_t {
+		NONE = 0,
+		PASSENGERS,
+		CARGO,
+		BOTH
+	};
+
+	enum class LargeGraphicsReduction : int_fast8_t {
+		OFF,
+		LARGEST_ONLY,
+		ALL
+	};
+
+#ifdef _WIN32
+	enum class TitleBarTheme : int_fast8_t {
+		DEFAULT,
+		LIGHT,
+		DARK
+	};
+
+	enum class WindowRounding : int_fast8_t {
+		DEFAULT,
+		OFF,
+		LARGE,
+		SMALL
+	};
+#endif
+
 
 public:
 	static void Load();
@@ -111,21 +156,27 @@ public:
 	static bool Has(const std::string &name);
 	static void Set(const std::string &name, bool on = true);
 
-	// Toggle the ammo usage preferences, cycling between "never," "frugally,"
-	// and "always."
+	/// Toggle the ammo usage preferences, cycling between "never," "frugally," and "always."
 	static void ToggleAmmoUsage();
 	static std::string AmmoUsage();
 
-	// Date format preferences.
+	/// Date format preferences.
 	static void ToggleDateFormat();
 	static DateFormat GetDateFormat();
 	static const std::string &DateFormatSetting();
+
+	// Notification preferences.
+	static void ToggleNotificationSetting();
+	static NotificationSetting GetNotificationSetting();
+	static const std::string &NotificationSettingString();
 
 	// Scroll speed preference.
 	static int ScrollSpeed();
 	static void SetScrollSpeed(int speed);
 
-	// View zoom.
+	static int TooltipActivation();
+	static void SetTooltipActivation(int steps);
+
 	static double ViewZoom();
 	static bool ZoomViewIn();
 	static bool ZoomViewOut();
@@ -136,7 +187,7 @@ public:
 	static void ToggleScreenMode();
 	static const std::string &ScreenModeSetting();
 
-	// VSync setting, either "on", "off", or "adaptive".
+	/// VSync setting, either "on", "off", or "adaptive".
 	static bool ToggleVSync();
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
@@ -149,37 +200,42 @@ public:
 	static OverlayState StatusOverlaysState(OverlayType type);
 	static const std::string &StatusOverlaysSetting(OverlayType type);
 
-	// Auto aim setting, either "off", "always on", or "when firing".
+	/// Turret overlays setting, either "off", "always on", or "blindspots only".
+	static void ToggleTurretOverlays();
+	static TurretOverlays GetTurretOverlays();
+	static const std::string &TurretOverlaysSetting();
+
+	/// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();
 	static AutoAim GetAutoAim();
 	static const std::string &AutoAimSetting();
 
-	// Auto fire setting, either "off", "on", "guns only", or "turrets only".
+	/// Auto fire setting, either "off", "on", "guns only", or "turrets only".
 	static void ToggleAutoFire();
 	static AutoFire GetAutoFire();
 	static const std::string &AutoFireSetting();
 
-	// Background parallax setting, either "fast", "fancy", or "off".
+	/// Background parallax setting, either "fast", "fancy", or "off".
 	static void ToggleParallax();
 	static BackgroundParallax GetBackgroundParallax();
 	static const std::string &ParallaxSetting();
 
-	// Extended jump effects setting, either "off", "medium", or "heavy".
+	/// Extended jump effects setting, either "off", "medium", or "heavy".
 	static void ToggleExtendedJumpEffects();
 	static ExtendedJumpEffects GetExtendedJumpEffects();
 	static const std::string &ExtendedJumpEffectsSetting();
 
-	// Boarding target setting, either "proximity", "value" or "mixed".
+	/// Boarding target setting, either "proximity", "value" or "mixed".
 	static void ToggleBoarding();
 	static BoardingPriority GetBoardingPriority();
 	static const std::string &BoardingSetting();
 
-	// Flotsam setting, either "off", "on", "flagship only", or "escorts only".
+	/// Flotsam setting, either "off", "on", "flagship only", or "escorts only".
 	static void ToggleFlotsam();
 	static FlotsamCollection GetFlotsamCollection();
 	static const std::string &FlotsamSetting();
 
-	// Red alert siren and symbol
+	/// Red alert siren and symbol.
 	static void ToggleAlert();
 	static AlertIndicator GetAlertIndicator();
 	static const std::string &AlertSetting();
@@ -187,9 +243,31 @@ public:
 	static bool DisplayVisualAlert();
 	static bool DoAlertHelper(AlertIndicator toDo);
 
+	/// Minimap display settings.
+	static void ToggleMinimapDisplay();
+	static MinimapDisplay GetMinimapDisplay();
+	static const std::string &MinimapSetting();
+
+	/// Flagship space priority setting.
+	static void ToggleFlagshipSpacePriority();
+	static FlagshipSpacePriority GetFlagshipSpacePriority();
+	static const std::string &FlagshipSpacePrioritySetting();
+
+	static void ToggleLargeGraphicsReduction();
+	static LargeGraphicsReduction GetLargeGraphicsReduction();
+	static const std::string &LargeGraphicsReductionSetting();
+
+	static void ToggleBlockScreenSaver();
+
 	static int GetPreviousSaveCount();
-};
 
+#ifdef _WIN32
+	static void ToggleTitleBarTheme();
+	static TitleBarTheme GetTitleBarTheme();
+	static const std::string &TitleBarThemeSetting();
 
-
+	static void ToggleWindowRounding();
+	static WindowRounding GetWindowRounding();
+	static const std::string &WindowRoundingSetting();
 #endif
+};

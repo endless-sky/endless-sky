@@ -13,15 +13,12 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTFITTER_PANEL_H_
-#define OUTFITTER_PANEL_H_
+#pragma once
 
 #include "ShopPanel.h"
 
 #include "Sale.h"
 
-#include <map>
-#include <set>
 #include <string>
 #include <vector>
 
@@ -41,7 +38,17 @@ class Ship;
 // configured in such a way that it cannot fly (e.g. no engines or steering).
 class OutfitterPanel : public ShopPanel {
 public:
-	explicit OutfitterPanel(PlayerInfo &player);
+	// Define locations which items may move to and from within the outfitter.
+	enum class OutfitLocation {
+		Ship,
+		Shop,
+		Cargo,
+		Storage,
+	};
+
+
+public:
+	explicit OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock);
 
 	virtual void Step() override;
 
@@ -51,40 +58,46 @@ protected:
 	virtual int VisibilityCheckboxesSize() const override;
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point) override;
-	virtual int DividerOffset() const override;
-	virtual int DetailWidth() const override;
 	virtual double DrawDetails(const Point &center) override;
-	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
-	virtual void Buy(bool onlyOwned = false) override;
-	virtual bool CanSell(bool toStorage = false) const override;
-	virtual void Sell(bool toStorage = false) override;
-	virtual void FailSell(bool toStorage = false) const override;
+	virtual TransactionResult CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation,
+		const std::string &actionName = "no action specified") const;
+	virtual TransactionResult MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation,
+		const std::string &actionName = "no action specified") const;
+	virtual bool ButtonActive(char key, bool shipRelatedOnly = false);
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
-	virtual void ToggleForSale() override;
-	virtual void ToggleStorage() override;
-	virtual void ToggleCargo() override;
+
+	// Toggles for the display filters.
+	virtual void ToggleForSale();
+	virtual void ToggleInstalled();
+	virtual void ToggleStorage();
+	virtual void ToggleCargo();
+
 	virtual int FindItem(const std::string &text) const override;
+
+	virtual double ButtonPanelHeight() const override;
+	virtual void DrawButtons() override;
+	virtual TransactionResult HandleShortcuts(SDL_Keycode key) override;
 
 
 private:
-	static bool ShipCanBuy(const Ship *ship, const Outfit *outfit);
-	static bool ShipCanSell(const Ship *ship, const Outfit *outfit);
+	static bool ShipCanAdd(const Ship *ship, const Outfit *outfit);
+	static bool ShipCanRemove(const Ship *ship, const Outfit *outfit);
 	static void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned);
-	bool IsLicense(const std::string &name) const;
 	bool HasLicense(const std::string &name) const;
-	std::string LicenseRoot(const std::string &name) const;
 	void CheckRefill();
 	void Refill();
 	// Shared code for reducing the selected ships to those that have the
 	// same quantity of the selected outfit.
-	const std::vector<Ship *> GetShipsToOutfit(bool isBuy = false) const;
+	const std::vector<Ship *> GetShipsToOutfit(bool isInstall = false) const;
 
 private:
 	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
 	// Allow toggling whether outfits that are for sale are shown.
 	bool showForSale = true;
+	// Allow toggling whether installed outfits are shown.
+	bool showInstalled = true;
 	// Allow toggling whether stored outfits are shown.
 	bool showStorage = true;
 	// Allow toggling whether outfits in cargo are shown.
@@ -92,11 +105,8 @@ private:
 
 	Sale<Outfit> outfitter;
 
-	// Keep track of how many of the outfitter help screens have been shown
+	// Keep track of whether the outfitter help screens have been shown.
 	bool checkedHelp = false;
 
 	int shipsHere = 0;
 };
-
-
-#endif

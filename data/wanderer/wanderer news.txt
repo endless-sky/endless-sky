@@ -90,7 +90,7 @@ news "Wanderers and Aliens"
 			"I have heard that Hai and human space are [linked, joined] with a wormhole. Could it have been made by [our caretakers, those that open the Eye]?"
 			"The Unfettered Hai enter Wanderer [space, territory] using jump drives. Where did they get such [devices, technology]?"
 			"Our species has [met, made contact] with many aliens before, but never so many at once."
-			"Exploration is important for a society. If we did not move and discover new planets, we would have [stagnated, shrivelled] long ago."
+			"Exploration is important for a society. If we did not move and discover new planets, we would have [stagnated, shriveled] long ago."
 			"I can [sympathize with, understand] the Hai. They have been [stuck, stagnant] in their own space for too long. It is only [right, natural] that they should want to [migrate to, leave for] new lands."
 		word
 			`"`
