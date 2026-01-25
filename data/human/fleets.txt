@@ -16,7 +16,6 @@ fleet "Small Southern Merchants"
 	names "civilian"
 	cargo 3
 	personality
-		confusion 40
 		timid frugal appeasing
 	variant 60
 		"Shuttle"
@@ -81,7 +80,6 @@ fleet "Large Southern Merchants"
 	names "civilian"
 	cargo 4
 	personality
-		confusion 30
 		timid frugal appeasing
 	variant 20
 		"Freighter"
@@ -174,7 +172,6 @@ fleet "Small Core Merchants"
 	names "civilian"
 	cargo 3
 	personality
-		confusion 30
 		timid frugal appeasing
 	variant 40
 		"Shuttle"
@@ -242,7 +239,6 @@ fleet "Large Core Merchants"
 	names "civilian"
 	cargo 4
 	personality
-		confusion 20
 		timid frugal appeasing
 	variant 30
 		"Freighter" 2
@@ -413,7 +409,6 @@ fleet "Paradise Merchants"
 	names "civilian"
 	cargo 2
 	personality
-		confusion 50
 		timid frugal appeasing
 	variant 20
 		"Shuttle"
@@ -483,7 +478,6 @@ fleet "Small Northern Merchants"
 	names "civilian"
 	cargo 3
 	personality
-		confusion 40
 		timid frugal appeasing
 	variant 50
 		"Shuttle"
@@ -554,7 +548,6 @@ fleet "Large Northern Merchants"
 	names "civilian"
 	cargo 4
 	personality
-		confusion 30
 		timid frugal appeasing
 	variant 20
 		"Freighter" 2
@@ -768,7 +761,6 @@ fleet "Small Human Merchants (Hai)"
 	names "civilian"
 	cargo 3
 	personality
-		confusion 40
 		timid frugal appeasing
 	variant 50
 		"Shuttle"
@@ -829,7 +821,6 @@ fleet "Large Human Merchants (Hai)"
 	names "civilian"
 	cargo 4
 	personality
-		confusion 30
 		timid frugal appeasing
 	variant 20
 		"Freighter" 2
@@ -1009,7 +1000,7 @@ fleet "Human Miners"
 	names "civilian"
 	cargo 0
 	personality
-		confusion 20
+		confusion "miner"
 		timid frugal mining harvests
 	variant 12
 		"Sparrow"
@@ -1228,7 +1219,6 @@ fleet "Small Militia"
 	cargo 1
 	personality
 		heroic frugal
-		confusion 20
 	variant 8
 		"Hawk"
 		"Sparrow"
@@ -1283,7 +1273,6 @@ fleet "Large Militia"
 	cargo 1
 	personality
 		heroic frugal
-		confusion 20
 	variant 10
 		"Bastion"
 	variant 5
@@ -1834,7 +1823,6 @@ fleet "Small Southern Pirates"
 	cargo 1
 	personality
 		disables plunders harvests getaway
-		confusion 20
 	variant 8
 		"Sparrow"
 	variant 3
@@ -2170,7 +2158,6 @@ fleet "Small Independent"
 	cargo 1
 	personality
 		disables plunders
-		confusion 20
 	variant 8
 		"Sparrow"
 	variant 3
@@ -2292,7 +2279,6 @@ fleet "Small Core Pirates"
 	cargo 1
 	personality
 		disables plunders harvests getaway
-		confusion 20
 	variant 3
 		"Quicksilver"
 	variant 3
@@ -2417,7 +2403,6 @@ fleet "Small Northern Pirates"
 	cargo 1
 	personality
 		disables plunders harvests getaway
-		confusion 20
 	variant 5
 		"Sparrow"
 	variant 3
@@ -2598,7 +2583,6 @@ fleet "pirate raid"
 	cargo 1
 	personality
 		disables nemesis plunders harvests getaway
-		confusion 20
 	variant 3
 		"Argosy (Blaster)"
 	variant 2
@@ -2732,7 +2716,6 @@ fleet "pirate explosive"
 	cargo 1
 	personality
 		nemesis plunders harvests
-		confusion 20
 	variant 3
 		"Argosy (Blaster)"
 	variant 2

@@ -15,6 +15,7 @@ government "Aberrant"
 	swizzle 0
 	language "Ka'het"
 	color 0.4 0.4 0.7
+	confusion "aberrant"
 
 	"player reputation" -1000
 	"default attitude" -.01
@@ -40,11 +41,13 @@ government "Alpha"
 	swizzle 1
 	"crew attack" 1.5
 	"crew defense" 2.5
+	confusion "elite"
 	"player reputation" -1000
 	"bribe" 0
 	"fine" 0
 
 government "Author"
+	confusion "perfect"
 	"player reputation" 1
 	"bribe" 0
 	"friendly disabled hail" "friendly disabled"
@@ -56,6 +59,7 @@ government "Avgi"
 	swizzle 15
 	language "Avgi"
 	color "governments: Avgi"
+	confusion "civilian"
 
 	"player reputation" 1
 	"attitude toward"
@@ -111,6 +115,7 @@ government "Avgi (Dissonance)"
 	swizzle 1
 	language "Avgi"
 	color "governments: Dissonance"
+	confusion "pirate"
 
 	"player reputation" 1
 	"attitude toward"
@@ -146,6 +151,7 @@ government "Avgi (Dissonance Angry)"
 	language "Avgi"
 	color "governments: Dissonance"
 	"player reputation" 0
+	confusion "pirate"
 
 	"attitude toward"
 		"Avgi" -0.01
@@ -173,6 +179,7 @@ government "Avgi (Twilight Guard)"
 	swizzle 12
 	language "Avgi"
 	color "governments: Twilight Guard"
+	confusion "military"
 
 	"player reputation" 1
 	"attitude toward"
@@ -205,6 +212,7 @@ government "Avgi (Wandering Fleet)"
 	swizzle 22
 	language "Avgi"
 	color "governments: Wandering Fleet"
+	confusion "military"
 
 	"player reputation" 0
 	"attitude toward"
@@ -234,10 +242,12 @@ government "Avgi (Wandering Fleet)"
 
 government "Bad Trip"
 	swizzle 0
+	confusion "perfect"
 	"player reputation" -1000
 
 government "Bounty"
 	swizzle 6
+	confusion "pirate"
 	"player reputation" -1000
 	"fine" 0
 	"hostile hail" "hostile bounty"
@@ -246,6 +256,7 @@ government "Bounty"
 government "Bounty (Disguised)"
 	"display name" "Merchant"
 	swizzle 5
+	confusion "pirate"
 	"player reputation" 1
 	"fine" 0
 	"friendly hail" "friendly civilian"
@@ -263,6 +274,7 @@ government "Bounty (Disguised)"
 government "Bounty Hunter"
 	swizzle 6
 	color "governments: Pirate"
+	confusion "pirate"
 
 	"player reputation" -1000
 	"bribe" .2
@@ -286,6 +298,7 @@ government "Builder"
 	# as long as you don't attack them again they will focus on their usual activities
 	color .91 .13 .82
 	language "Builder"
+	confusion "advanced automata"
 	"fine" 0
 	"penalty for"
 		assist 0
@@ -299,6 +312,7 @@ government "Bunrodea"
 	swizzle 3
 	color .35 .65 .3
 	language "Bunrodea"
+	confusion "civilian"
 	
 	"player reputation" 1
 	"attitude toward"
@@ -318,6 +332,7 @@ government "Bunrodea (Erabu)"
 	swizzle 11
 	color .35 .65 .3
 	language "Bunrodea"
+	confusion "civilian"
 	
 	"player reputation" 1
 	"attitude toward"
@@ -337,6 +352,7 @@ government "Bunrodea (Guard)"
 	swizzle 11
 	color .35 .65 .3
 	language "Bunrodea"
+	confusion "military"
 	
 	"player reputation" -1
 	"attitude toward"
@@ -358,6 +374,7 @@ government "Bunrodea (Megasa)"
 	swizzle 18
 	color .35 .65 .3
 	language "Bunrodea"
+	confusion "civilian"
 	
 	"player reputation" 1
 	"attitude toward"
@@ -379,6 +396,7 @@ government "Coalition"
 	"crew attack" .6
 	"crew defense" 3
 	language "Coalition"
+	confusion "civilian"
 	"player reputation" 1
 	"bribe" 0
 	"attitude toward"
@@ -405,6 +423,7 @@ government "Conlatio"
 government "Deep"
 	"display name" "Deep Security"
 	swizzle 0
+	confusion "military"
 	"player reputation" -1000
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile deep"
@@ -412,6 +431,7 @@ government "Deep"
 
 government "Deep Security"
 	swizzle 0
+	confusion "military"
 	"player reputation" 1
 	"attitude toward"
 		"Bounty" -.2
@@ -439,6 +459,7 @@ government "Derelict (Boardable)"
 government "Drak"
 	swizzle 0
 	color 1 1 1
+	confusion "perfect"
 	"player reputation" 1
 	"fine" 0
 	"attitude toward"
@@ -448,6 +469,7 @@ government "Drak"
 government "Drak (Hostile)"
 	"display name" "Drak"
 	swizzle 0
+	confusion "perfect"
 	"player reputation" -1000
 	"attitude toward"
 		"Indigenous Lifeform" 1
@@ -456,6 +478,7 @@ government "Drak (Incipias)"
 	"display name" "Drak"
 	swizzle 0
 	color 1 1 1
+	confusion "perfect"
 	"player reputation" 1
 	"fine" 0
 	"attitude toward"
@@ -478,6 +501,7 @@ government "Elenctic Commune"
 
 government "Ember Waste"
 	"display name" "???"
+	confusion "wild"
 	"player reputation" 1
 	"bribe" 0
 	"fine" 0
@@ -491,11 +515,13 @@ government "Ember Waste"
 
 government "Escort"
 	swizzle 5
+	confusion "player"
 	"fine" 0
 
 government "Escort (Betraying)"
 	"display name" "Merchant"
 	swizzle 5
+	confusion "pirate"
 
 	"player reputation" 10
 	"attitude toward"
@@ -525,6 +551,7 @@ color "governments: Free" .06 .68 0.
 government "Free Worlds"
 	swizzle 2
 	color "governments: Free"
+	confusion "military"
 	
 	"player reputation" 1
 	"attitude toward"
@@ -570,6 +597,7 @@ government "Gegno"
 	swizzle 0
 	language "Gegno"
 	color .75 .59 .27
+	confusion "military"
 
 	"player reputation" 0
 	"crew attack" 1.1
@@ -589,6 +617,7 @@ government "Gegno Scin"
 	swizzle 18
 	language "Gegno"
 	color "governments: Gegno Scin"
+	confusion "civilian"
 
 	"player reputation" 0
 	"crew attack" 1.2
@@ -607,6 +636,7 @@ government "Gegno Scin (Combative)"
 	"display name" "Gegno Scin"
 	language "Gegno"
 	color "governments: Gegno Scin"
+	confusion "militia"
 
 	"player reputation" -1
 	"crew attack" 1.2
@@ -622,6 +652,7 @@ government "Gegno Scin (Neutral)"
 	swizzle 18
 	language "Gegno"
 	color "governments: Gegno Scin"
+	confusion "militia"
 
 	"player reputation" 0
 	"crew attack" 1.2
@@ -642,6 +673,7 @@ government "Gegno Vi"
 	swizzle 0
 	language "Gegno"
 	color "governments: Gegno Vi"
+	confusion "militia"
 
 	"player reputation" 0
 	"crew attack" 1.3
@@ -662,6 +694,7 @@ government "Gegno Vi (Combative)"
 	"display name" "Gegno Vi"
 	language "Gegno"
 	color "governments: Gegno Vi"
+	confusion "militia"
 
 	"player reputation" -1
 	"crew attack" 1.3
@@ -677,6 +710,7 @@ government "Gegno Vi (Duelist A)"
 	"display name" "Gegno Vi"
 	language "Gegno"
 	color "governments: Gegno Vi"
+	confusion "militia"
 
 	"player reputation" 0
 	"crew attack" 1.3
@@ -697,6 +731,7 @@ government "Gegno Vi (Duelist B)"
 	"display name" "Gegno Vi"
 	language "Gegno"
 	color "governments: Gegno Vi"
+	confusion "militia"
 
 	"player reputation" 0
 	"crew attack" 1.3
@@ -717,6 +752,7 @@ government "Gegno Vi (Neutral)"
 	swizzle 0
 	language "Gegno"
 	color "governments: Gegno Vi"
+	confusion "militia"
 
 	"player reputation" 0
 	"crew attack" 1.3
@@ -736,6 +772,7 @@ color "governments: Hai" .86 .48 .79
 government "Hai"
 	swizzle 0
 	color "governments: Hai"
+	confusion "militia"
 	
 	"player reputation" 0
 	"attitude toward"
@@ -764,6 +801,7 @@ government "Hai Merchant"
 	"display name" "Hai"
 	swizzle 0
 	color "governments: Hai"
+	confusion "civilian"
 	
 	"player reputation" 0
 	"attitude toward"
@@ -794,6 +832,7 @@ government "Hai Merchant (Sympathizers)"
 	"display name" "Hai"
 	swizzle 0
 	color "governments: Hai"
+	confusion "civilian"
 	
 	"player reputation" 0
 	"attitude toward"
@@ -819,6 +858,7 @@ government "Hai Merchant (Human)"
 	"display name" "Hai"
 	swizzle 0
 	color "governments: Hai"
+	confusion "civilian"
 	
 	"player reputation" 0
 	"attitude toward"
@@ -846,6 +886,7 @@ government "Hai (Friendly Unfettered)"
 	swizzle 4
 	color "governments: Hai (Unfettered)"
 	"display name" "Hai (Unfettered)"
+	confusion "military"
 	
 	"player reputation" 100
 	"attitude toward"
@@ -870,6 +911,7 @@ government "Hai (Unfettered)"
 	color "governments: Hai (Unfettered)"
 	"crew attack" 1.4
 	"crew defense" 2.2
+	confusion "military"
 	
 	"player reputation" -1000
 	"attitude toward"
@@ -907,6 +949,7 @@ government "Hai (Unfettered Challenger)"
 	swizzle 5
 	"crew attack" 1.4
 	"crew defense" 2.2
+	confusion "military"
 
 	"player reputation" -1000
 	"bribe" .02
@@ -920,6 +963,7 @@ government "Hai (Unfettered Civilians)"
 	swizzle 4
 	color "governments: Hai (Unfettered)"
 	"display name" "Hai (Unfettered)"
+	confusion "pirate"
 	
 	"player reputation" 10
 	"attitude toward"
@@ -936,6 +980,7 @@ government "Hai (Unfettered Wanderer Tribute)"
 	"display name" "Hai (Unfettered)"
 	"crew attack" 1.4
 	"crew defense" 2.2
+	confusion "military"
 	
 	"player reputation" 0
 	"friendly hail" "friendly unfettered"
@@ -947,6 +992,7 @@ government "Hai (Wormhole Access)"
 	"display name" "Hai"
 	swizzle 0
 	color "governments: Hai"
+	confusion "militia"
 	
 	"player reputation" 0
 	"attitude toward"
@@ -972,6 +1018,7 @@ government "Heliarch"
 	color 1 .8 .5
 	"crew attack" 1.3
 	"crew defense" 2.8
+	confusion "elite"
 	"player reputation" 1
 	"bribe" 0
 	"friendly hail" "friendly heliarch"
@@ -988,6 +1035,7 @@ government "Heliarch"
 
 government "Heliarch Test Dummy"
 	"display name" "Heliarch"
+	confusion "elite"
 	swizzle 0
 	color 1 .8 .5
 	"player reputation" -1000
@@ -1002,6 +1050,7 @@ government "Hicemus"
 	"crew attack" .2
 	"crew defense" 1
 	language "Incipias"
+	confusion "militia"
 	"player reputation" 0
 	"attitude toward"
 		"Conlatio" 1
@@ -1013,6 +1062,7 @@ government "Hicemus"
 government "House Aqrabe"
 	swizzle 3
 	color "governments: New Houses"
+	confusion "elite"
 	"attitude toward"
 		Successor 1
 		"New Houses" 1
@@ -1031,6 +1081,7 @@ government "House Aqrabe"
 government "House Chydiyi"
 	swizzle 5
 	color "governments: Old Houses"
+	confusion "elite"
 	"attitude toward"
 		Successor 1
 		"Old Houses" 1
@@ -1049,6 +1100,7 @@ government "House Chydiyi"
 government "House Kaatrij"
 	swizzle 3
 	color "governments: New Houses"
+	confusion "elite"
 	"attitude toward"
 		Successor 1
 		"New Houses" 1
@@ -1067,6 +1119,7 @@ government "House Kaatrij"
 government "House Myurej"
 	swizzle 5
 	color "governments: Old Houses"
+	confusion "elite"
 	"attitude toward"
 		Successor 1
 		"House Chydiyi" 1
@@ -1085,6 +1138,7 @@ government "House Myurej"
 government "House Seineq"
 	swizzle 3
 	color "governments: New Houses"
+	confusion "elite"
 	"attitude toward"
 		Successor 1
 		"New Houses" 1
@@ -1103,6 +1157,7 @@ government "House Seineq"
 government "House Sioeora"
 	swizzle 5
 	color "governments: Old Houses"
+	confusion "elite"
 	"attitude toward"
 		Successor 1
 		"House Chydiyi" 1
@@ -1124,6 +1179,7 @@ government "Incipias Civilian"
 	"crew attack" .2
 	"crew defense" 1
 	language "Incipias"
+	confusion "civilian"
 	"player reputation" 0
 	"attitude toward"
 		"Hicemus" 1
@@ -1137,6 +1193,7 @@ color "governments: Independent" .78 .36 .36
 government "Independent"
 	swizzle 6
 	color "governments: Independent"
+	confusion "pirate"
 	
 	"player reputation" 10
 	"bribe" .05
@@ -1151,6 +1208,7 @@ government "Independent (Killable)"
 	"display name" "Independent"
 	swizzle 6
 	color "governments: Independent"
+	confusion "pirate"
 	
 	"player reputation" 10
 	"bribe" .05
@@ -1163,6 +1221,7 @@ government "Independent (Killable)"
 government "Indigenous Lifeform"
 	# Nothing you do permanently angers indigenous creatures, because they are
 	# not sentient and do not remember you as an individual.
+	confusion "wild"
 	"player reputation" 1
 	"bribe" 0
 	"fine" 0
@@ -1180,6 +1239,7 @@ government "Indigenous Lifeform"
 government "Indigenous Lifeform (Acheron)"
 	# This indigenous gov is specifically for Acheron space life so they do not influence Ember Waste life.
 	"display name" "Indigenous Lifeform"
+	confusion "wild"
 	"player reputation" 1
 	"bribe" 0
 	"fine" 0
@@ -1195,6 +1255,7 @@ government "Indigenous Lifeform (Acheron)"
 government "Indigenous Lifeform (Astral)"
 	# This indigenous gov is specifically for Astral Cetaceans so they "eat" other indigenous lifeforms.
 	"display name" "Indigenous Lifeform"
+	confusion "wild"
 	"player reputation" 1
 	"bribe" 0
 	"fine" 0
@@ -1214,6 +1275,7 @@ government "Indigenous Lifeform (Subsidurial)"
 	# This indigenous gov is specifically for the Subsidurial, so that nothing in the game tries to hurt the poor thing.
 	"player reputation" 1
 	"display name" "Indigenous Lifeform"
+	confusion "wild"
 	"bribe" 0
 	"fine" 0
 
@@ -1227,6 +1289,7 @@ government "Indigenous Lifeform (Subsidurial)"
 
 government "Indigenous Lifeform (Tree)"
 	"display name" "Indigenous Lifeform"
+	confusion "wild"
 	"bribe" 0
 	swizzle 26
 
@@ -1244,6 +1307,7 @@ government "Indigenous Lifeform (Tree)"
 
 government "Indigenous Lifeform (Tree Two)"
 	"display name" "Indigenous Lifeform"
+	confusion "wild"
 	"bribe" 0
 	swizzle 14
 
@@ -1262,6 +1326,7 @@ government "Indigenous Lifeform (Tree Two)"
 government "Ka'het"
 	swizzle 0
 	language "Ka'het"
+	confusion "ka'het"
 
 	"default attitude" -.01
 	"attitude toward"
@@ -1277,6 +1342,7 @@ government "Ka'het (Infighting)"
 	"display name" "Ka'het"
 	swizzle 0
 	language "Ka'het"
+	confusion "ka'het"
 
 	"default attitude" -.01
 	"attitude toward"
@@ -1291,6 +1357,7 @@ government "Ka'het (Infighting)"
 government "Ka'sei"
 	swizzle 0
 	language "Ka'het"
+	confusion "ka'het"
 	
 	"penalty for"
 		assist 0
@@ -1304,6 +1371,7 @@ government "Ka'sei (12.2)"
 	"display name" "Ka'sei"
 	swizzle 0
 	language "Ka'het"
+	confusion "ka'het"
 	
 	"penalty for"
 		assist 0
@@ -1320,6 +1388,7 @@ government "Kor Efret"
 	swizzle 4
 	color .49 .33 .69
 	language "Korath"
+	confusion "militia"
 	
 	"attitude toward"
 		"Kor Mereti" -.01
@@ -1337,6 +1406,7 @@ government "Kor Mereti"
 	swizzle 5
 	color .43 .48 .87
 	language "Korath"
+	confusion "kor mereti"
 	
 	"attitude toward"
 		"Kor Sestor" -.01
@@ -1348,6 +1418,7 @@ government "Kor Mereti (Hostile)"
 	"display name" "Kor Mereti"
 	swizzle 5
 	language "Korath"
+	confusion "kor mereti"
 	"attitude toward"
 		"Wanderer" -.01
 		"Kor Mereti" -.01
@@ -1357,6 +1428,7 @@ government "Kor Sestor"
 	swizzle 0
 	color 1 .36 .49
 	language "Korath"
+	confusion "kor sestor"
 	
 	"attitude toward"
 		"Kor Mereti" -.01
@@ -1376,6 +1448,7 @@ government "Korath"
 	"crew attack" 1.4
 	"crew defense" 2.6
 	language "Korath"
+	confusion "military"
 	
 	"attitude toward"
 		"Kor Sestor" -.01
@@ -1396,6 +1469,7 @@ government "Korath (Civilian)"
 	"crew attack" 1.1
 	"crew defense" 2.1
 	language "Korath"
+	confusion "pirate"
 
 	"attitude toward"
 		"Kor Mereti" -.01
@@ -1410,6 +1484,7 @@ government "Korath (Civilian)"
 	"hostile disabled hail" "hostile disabled korath untranslated"
 
 government "Korath Nanobots"
+	confusion "perfect"
 	"player reputation" -1000
 	"bribe" 0
 	"fine" 0
@@ -1419,6 +1494,7 @@ government "Lunarium"
 	"crew attack" 1.2
 	"crew defense" 2.7
 	language "Coalition"
+	confusion "pirate"
 	"player reputation" 1
 	"bribe" 0
 	"friendly hail" "friendly lunarium"
@@ -1436,6 +1512,7 @@ government "Lunarium (Hidden)"
 	"crew attack" 1.2
 	"crew defense" 2.7
 	language "Coalition"
+	confusion "pirate"
 	"player reputation" 1
 	"bribe" 0
 	"friendly hail" "friendly lunarium"
@@ -1449,6 +1526,7 @@ government "Lunarium (Hidden)"
 
 government "Magic Asteroid"
 	"display name" "???"
+	confusion "perfect"
 	swizzle 0
 	language "Magic Asteroid"
 	
@@ -1460,6 +1538,7 @@ government "Magic Asteroid"
 
 government "Marauder"
 	swizzle 6
+	confusion "perfect"
 	"player reputation" 1
 	"bribe" .1
 	"fine" 0
@@ -1469,6 +1548,7 @@ government "Marauder"
 
 government "Merchant"
 	swizzle 5
+	confusion "civilian"
 	
 	"player reputation" 10
 	"attitude toward"
@@ -1488,6 +1568,7 @@ government "Merchant"
 government "Merchant (Hostile)"
 	swizzle 5
 	"display name" "Merchant"
+	confusion "pirate"
 	
 	"player reputation" -10
 	"hostile hail" "hostile pirate"
@@ -1495,6 +1576,7 @@ government "Merchant (Hostile)"
 government "Militia"
 	swizzle 2
 	color "governments: Free"
+	confusion "military"
 	
 	"player reputation" 0
 	"attitude toward"
@@ -1514,6 +1596,7 @@ government "Navy Intelligence"
 	swizzle 0
 	"crew attack" 1.2
 	"crew defense" 2.2
+	confusion "military"
 	"attitude toward"
 		"Syndicate" -.1
 		"Pirate" -.3
@@ -1526,6 +1609,7 @@ government "Navy (Oathkeeper)"
 	color "governments: Republic"
 	"crew attack" 1.2
 	"crew defense" 2.2
+	confusion "military"
 	
 	"player reputation" 100
 	"attitude toward"
@@ -1573,6 +1657,7 @@ color "governments: New Houses" .8 0 0.4
 government "New Houses"
 	swizzle 3
 	color "governments: New Houses"
+	confusion "military"
 	"attitude toward"
 		Successor 1
 		"House Kaatrij" 1
@@ -1594,6 +1679,7 @@ color "governments: Old Houses" 0.375 0.316 1
 government "Old Houses"
 	swizzle 5
 	color "governments: Old Houses"
+	confusion "military"
 	"attitude toward"
 		Successor 1
 		"House Chydiyi" 1
@@ -1612,6 +1698,7 @@ government "Old Houses"
 
 government "Parrot"
 	swizzle 2
+	confusion "wild"
 	"player reputation" 1
 	"bribe" 0
 	"friendly disabled hail" "friendly disabled"
@@ -1620,6 +1707,7 @@ government "Parrot"
 government "People's Houses"
 	swizzle 6
 	color 0.92 0.29 0.20
+	confusion "militia"
 	"attitude toward"
 		Successor 1
 		"People's Houses (Hostile)" 0.2
@@ -1635,6 +1723,7 @@ government "People's Houses (Hostile)"
 	"display name" "People's Houses"
 	swizzle 6
 	color 0.92 0.29 0.20
+	confusion "militia"
 	"player reputation" -10
 	"attitude toward"
 		Author -0.01
@@ -1653,6 +1742,7 @@ color "governments: Pirate" .78 0. 0.
 government "Pirate"
 	swizzle 6
 	color "governments: Pirate"
+	confusion "pirate"
 	
 	"player reputation" -10
 	"attitude toward"
@@ -1700,6 +1790,7 @@ government "Pirate (Rival)"
 	"display name" "Pirate"
 	swizzle 6
 	color "governments: Pirate"
+	confusion "pirate"
 	
 	"player reputation" -10
 	"attitude toward"
@@ -1728,6 +1819,7 @@ color "governments: Pug" .99 .89 .70
 government "Pug"
 	swizzle 0
 	color "governments: Pug"
+	confusion "pug"
 	
 	"player reputation" 1
 	"attitude toward"
@@ -1745,6 +1837,7 @@ government "Pug (Wanderer)"
 	"display name" "Pug"
 	swizzle 0
 	color "governments: Pug"
+	confusion "perfect"
 	
 	"player reputation" 1
 	"attitude toward"
@@ -1763,6 +1856,7 @@ color "governments: Quarg" .88 .77 0
 government "Quarg"
 	swizzle 4
 	color "governments: Quarg"
+	confusion "elite"
 	
 	"player reputation" 1
 	"attitude toward"
@@ -1816,6 +1910,7 @@ government "Quarg (Gegno)"
 	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
+	confusion "elite"
 
 	"player reputation" 1
 	"attitude toward"
@@ -1864,6 +1959,7 @@ government "Quarg (Hai)"
 	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
+	confusion "elite"
 
 	"player reputation" 1
 	"attitude toward"
@@ -1915,6 +2011,7 @@ government "Quarg (Incipias)"
 	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
+	confusion "elite"
 
 	"player reputation" 1
 	"attitude toward"
@@ -1976,6 +2073,7 @@ government "Quarg (Kor Efret)"
 	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
+	confusion "elite"
 
 	"player reputation" 1
 	"attitude toward"
@@ -2028,6 +2126,7 @@ government "Remnant"
 	swizzle 0
 	color "governments: Remnant"
 	"crew defense" 2.2
+	confusion "military"
 	
 	"player reputation" 1
 	"bribe" 0
@@ -2061,6 +2160,7 @@ government "Remnant (Research)"
 	swizzle 0
 	color "governments: Remnant"
 	"crew defense" 2.2
+	confusion "military"
 	
 	"player reputation" 1
 	"bribe" 0
@@ -2091,6 +2191,7 @@ government "Republic"
 	color "governments: Republic"
 	"crew attack" 1.2
 	"crew defense" 2.2
+	confusion "military"
 	
 	"player reputation" 2
 	"attitude toward"
@@ -2120,6 +2221,7 @@ government "Republic (Friendly)"
 	"crew attack" 1.2
 	"crew defense" 2.2
 	"player reputation" 2
+	confusion "military"
 	
 	"attitude toward"
 		"Alpha" -.01
@@ -2176,6 +2278,7 @@ government "Republic that won't enter wormhole"
 
 government "Rulei"
 	swizzle 0
+	confusion "perfect"
 	"player reputation" 0
 	"bribe" 0
 	"fine" 0
@@ -2184,6 +2287,7 @@ government "Rulei"
 government "Scar's Legion"
 	swizzle 6
 	color "governments: Pirate"
+	confusion "pirate"
 	"player reputation" 10
 	"attitude toward"
 		"Merchant" -0.01
@@ -2198,6 +2302,7 @@ government "Scar's Legion (Killable)"
 	"display name" "Scar's Legion"
 	swizzle 6
 	color "governments: Pirate"
+	confusion "pirate"
 	"player reputation" -1000
 	bribe 0
 	fine 0
@@ -2213,6 +2318,7 @@ government "Sheragi"
 government "Silent Ones"
 	"display name" "Indigenous Lifeform"
 	swizzle 0
+	confusion "wild"
 	"player reputation" 1
 	"bribe" 0
 	"fine" 0
@@ -2252,6 +2358,7 @@ government "Successor"
 	swizzle 4
 	color 0 .8 0.653
 	language "Successor"
+	confusion "militia"
 	"friendly hail" "successor friendly hail"
 	"friendly disabled hail" "successor friendly disabled hail"
 	"hostile hail" "successor hostile hail"
@@ -2262,6 +2369,7 @@ color "governments: Syndicate" 0. .41 .71
 government "Syndicate"
 	swizzle 4
 	color "governments: Syndicate"
+	confusion "military"
 	
 	"player reputation" 2
 	"attitude toward"
@@ -2282,6 +2390,7 @@ government "Syndicate"
 government "Syndicate (Extremist)"
 	swizzle 1
 	color "governments: Syndicate"
+	confusion "elite"
 	
 	"player reputation" -1000
 	"attitude toward"
@@ -2295,18 +2404,21 @@ government "Syndicate (Extremist)"
 
 government "Team Blue"
 	swizzle 5
+	confusion "basic automata"
 	"player reputation" -1000
 	"attitude toward"
 		"Team Red" -.1
 
 government "Team Red"
 	swizzle 0
+	confusion "basic automata"
 	"player reputation" -1000
 	"attitude toward"
 		"Team Blue" -.1
 
 government "Test Dummy"
 	swizzle 3
+	confusion "basic automata"
 	"player reputation" -1000
 	"hostile hail" "test dummy"
 	"hostile disabled hail" "disabled test dummy"
@@ -2331,6 +2443,7 @@ government "Wanderer"
 	"crew attack" 1.4
 	"crew defense" 1.8
 	color .70 .91 .12
+	confusion "militia"
 	"player reputation" 1
 	"attitude toward"
 		"Hai (Unfettered Wanderer Tribute)" .1

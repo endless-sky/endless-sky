@@ -3640,7 +3640,6 @@ mission "Antibiotics To South"
 	npc
 		government "Bounty Hunter"
 		personality nemesis heroic disables harvests plunders
-			confusion 20
 		system
 			distance 2 3
 		ship "Marauder Manta (Engines)" "Australis"
@@ -3750,7 +3749,12 @@ mission "Pirate Duel"
 	npc kill
 		government "Independent (Killable)"
 		personality heroic vindictive unconstrained launching
-			confusion 20
+			confusion
+				"max confusion" 15.
+				period 180.
+				"focus multiplier" .6
+				"gain focus time" 600
+				"lose focus time" 30
 		ship "Vanguard (Plasma Slow)" "Anglerfish"
 		on provoke
 			unmark "Umbral"
@@ -6113,7 +6117,12 @@ mission "Argosy Hijacking"
 	
 	npc disable save
 		personality launching daring uninterested target
-			confusion 80
+			confusion
+				"max confusion" 20.
+				period 180.
+				"focus multiplier" .6
+				"gain focus time" 600
+				"lose focus time" 30
 		government "Bounty (Disguised)"
 		ship "Argosy (Blaster)" "Moonshake Express"
 		dialog `The <npc> has been disabled. Syndicated Security will now deal with the hijackers, but you should go back and report to the captain of the ship.`
@@ -8099,7 +8108,6 @@ mission "Syndicate Business 1"
 	npc
 		government "Independent (Killable)"
 		personality heroic staying vindictive
-			confusion 20
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
 		on kill
@@ -8453,7 +8461,6 @@ mission "Syndicate Business 4"
 	npc
 		government "Pirate"
 		personality harvests nemesis plunders staying
-			confusion 40
 		system destination
 		fleet
 			names "pirate"
@@ -8465,7 +8472,6 @@ mission "Syndicate Business 4"
 	npc
 		government "Pirate"
 		personality harvests nemesis plunders
-			confusion 40
 		system destination
 		fleet
 			names "pirate"
@@ -8569,7 +8575,6 @@ mission "Syndicate Business 5"
 	npc
 		government "Independent (Killable)"
 		personality heroic staying vindictive
-			confusion 20
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
 		to despawn
@@ -8597,7 +8602,6 @@ mission "Syndicate Business 5"
 	npc disable save
 		government "Independent (Killable)"
 		personality heroic marked staying vindictive
-			confusion 20
 		system "Oblate"
 		ship "Marauder Quicksilver (Engines) (Safe)" "Pilgrim Shadow"
 		on disable
@@ -9192,7 +9196,6 @@ mission "Syndicate Business 7"
 	npc
 		government "Independent (Killable)"
 		personality heroic staying vindictive
-			confusion 20
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
 		to despawn
@@ -9221,7 +9224,6 @@ mission "Syndicate Business 7"
 	npc assist kill
 		government "Test Dummy"
 		personality derelict disables heroic staying target
-			confusion 120
 		system "Oblate"
 		ship "Quicksilver Test Dummy" "Syndicate Test Vessel"
 		on encounter

@@ -185,7 +185,12 @@ mission "Incipias: The Derelict"
 				action
 					set "incipias: helped the derelict"
 		personality
-			confusion 50
+			confusion
+				"max confusion" 20.
+				period 270.
+				"focus multiplier" .5
+				"gain focus time" 600
+				"lose focus time" 120
 			derelict staying uninterested
 	on enter "Hui'uc"
 		dialog
