@@ -19,11 +19,13 @@ mission "Message Buoy: Entering Republic space from Pirates"
 	repeat
 	source
 		government "Republic"
-		neighbor government "Pirate"
 	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
-		has "previous system government: Pirate"
+		not "previous system government: Republic"
+		or
+			has "previous system government: Pirate"
+			has "flagship system: Alnitak"
 	on offer
 		message
 			phrase "entering republic space from pirates"
@@ -166,7 +168,7 @@ mission "Message Buoy: Entering Free Worlds space from Pirate"
 	repeat
 	source
 		government "Free Worlds"
-		neighbor government "Pirate"
+		neighbor government "Pirate" "Independent"
 	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
