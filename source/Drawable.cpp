@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "GameData.h"
 #include "image/MaskManager.h"
-#include "pi.h"
 #include "Random.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
@@ -50,7 +49,7 @@ Drawable::Drawable(const Drawable &sprite, double zoom, Point scale, double alph
 
 
 
-// Check that this Body has a sprite and that the sprite has at least one frame.
+// Check that this Drawable has a sprite and that the sprite has at least one frame.
 bool Drawable::HasSprite() const
 {
 	return (sprite && sprite->Frames());

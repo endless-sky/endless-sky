@@ -83,7 +83,7 @@ const Point &Body::Velocity() const
 
 
 
-const Point Body::Center() const
+Point Body::Center() const
 {
 	return -rotatedCenter + position;
 }

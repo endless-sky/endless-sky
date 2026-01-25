@@ -27,12 +27,13 @@ class Sprite;
 
 
 
-// Class representing any object in the game that usually also has a sprite.
+// Class representing any object in the game that usually also has a sprite
+// that can be animated.
 class Drawable {
 public:
 	// Constructors.
 	Drawable() = default;
-	Drawable(const Sprite *sprite, double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
+	explicit Drawable(const Sprite *sprite, double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
 	Drawable(const Drawable &sprite, double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
 
 	// Check that this Drawable has a sprite and that the sprite has at least one frame.
@@ -68,8 +69,8 @@ protected:
 	void SetFrameRate(float framesPerSecond);
 	void AddFrameRate(float framesPerSecond);
 	void PauseAnimation();
-	// Set what animation step we're on. This affects future calls to GetMask()
-	// and GetFrame().
+	// Set what animation step we're on. This affects future calls to Body::GetMask()
+	// and Drawable::GetFrame().
 	void SetStep(int step) const;
 
 
@@ -78,7 +79,7 @@ protected:
 	const Sprite *sprite = nullptr;
 	mutable float frame = 0.f;
 
-	// Basic positional attributes.
+	// The point that is considered to be the center of the sprite.
 	Point center;
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.

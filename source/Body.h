@@ -20,8 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Point.h"
 
-#include <string>
-
 class Government;
 class Mask;
 class Sprite;
@@ -45,7 +43,7 @@ public:
 	// Positional attributes.
 	const Point &Position() const;
 	const Point &Velocity() const;
-	const Point Center() const;
+	Point Center() const;
 	const Angle &Facing() const;
 	Point Unit() const;
 
@@ -78,7 +76,6 @@ protected:
 	Point position;
 	Point velocity;
 	Angle angle;
-	Point center;
 	Point rotatedCenter;
 
 	// The maximum distance at which the body is visible, and at which it becomes invisible again.
