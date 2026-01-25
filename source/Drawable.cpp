@@ -153,14 +153,6 @@ Point Drawable::Scale() const
 
 
 
-// Check if this object is marked for removal from the game.
-bool Drawable::ShouldBeRemoved() const
-{
-	return shouldBeRemoved;
-}
-
-
-
 // Load the sprite specification, including all animation attributes.
 void Drawable::LoadSprite(const DataNode &node)
 {
@@ -283,22 +275,6 @@ void Drawable::AddFrameRate(float framesPerSecond)
 void Drawable::PauseAnimation()
 {
 	++pause;
-}
-
-
-
-// Mark this object to be removed from the game.
-void Drawable::MarkForRemoval()
-{
-	shouldBeRemoved = true;
-}
-
-
-
-// Mark this object to not be removed from the game.
-void Drawable::UnmarkForRemoval()
-{
-	shouldBeRemoved = false;
 }
 
 

@@ -45,6 +45,9 @@ public:
 	const Angle &Facing() const;
 	Point Unit() const;
 
+	// Check if this object is marked for removal from the game.
+	bool ShouldBeRemoved() const;
+
 	// Store the government here too, so that collision detection that is based
 	// on the Body class can figure out which objects will collide.
 	const Government *GetGovernment() const;
@@ -57,6 +60,10 @@ public:
 
 
 protected:
+	// Mark this object to be removed from the game.
+	void MarkForRemoval();
+	// Mark that this object should not be removed (e.g. a launched fighter).
+	void UnmarkForRemoval();
 	// Turn this object around its center of rotation.
 	void Turn(double amount);
 	void Turn(const Angle &amount);
@@ -79,7 +86,6 @@ protected:
 
 
 private:
-	// Set what animation step we're on. This affects future calls to GetMask()
-	// and GetFrame().
-	void SetStep(int step) const;
+	// Record when this object is marked for removal from the game.
+	bool shouldBeRemoved = false;
 };

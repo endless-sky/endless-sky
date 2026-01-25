@@ -84,6 +84,14 @@ Point Body::Unit() const
 
 
 
+// Check if this object is marked for removal from the game.
+bool Body::ShouldBeRemoved() const
+{
+	return shouldBeRemoved;
+}
+
+
+
 // Store the government here too, so that collision detection that is based
 // on the Body class can figure out which objects will collide.
 const Government *Body::GetGovernment() const
@@ -113,6 +121,22 @@ double Body::DistanceAlpha(const Point &drawCenter) const
 bool Body::IsVisible(const Point &drawCenter) const
 {
 	return DistanceAlpha(drawCenter) > 0.;
+}
+
+
+
+// Mark this object to be removed from the game.
+void Body::MarkForRemoval()
+{
+	shouldBeRemoved = true;
+}
+
+
+
+// Mark this object to not be removed from the game.
+void Body::UnmarkForRemoval()
+{
+	shouldBeRemoved = false;
 }
 
 

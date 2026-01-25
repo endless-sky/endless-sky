@@ -56,9 +56,6 @@ public:
 	double Zoom() const;
 	Point Scale() const;
 
-	// Check if this object is marked for removal from the game.
-	bool ShouldBeRemoved() const;
-
 	// Sprite serialization.
 	void LoadSprite(const DataNode &node);
 	void SaveSprite(DataWriter &out, const std::string &tag = "sprite") const;
@@ -73,10 +70,6 @@ protected:
 	void SetFrameRate(float framesPerSecond);
 	void AddFrameRate(float framesPerSecond);
 	void PauseAnimation();
-	// Mark this object to be removed from the game.
-	void MarkForRemoval();
-	// Mark that this object should not be removed (e.g. a launched fighter).
-	void UnmarkForRemoval();
 
 
 protected:
@@ -85,7 +78,8 @@ protected:
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;
-	Point scale = Point(1., 1.);
+	Point scale = Point{1., 1.};
+
 	double alpha = 1.;
 
 
@@ -111,9 +105,6 @@ private:
 	bool repeat = true;
 	bool rewind = false;
 	int pause = 0;
-
-	// Record when this object is marked for removal from the game.
-	bool shouldBeRemoved = false;
 
 	// Cache the frame calculation so it doesn't have to be repeated if given
 	// the same step over and over again.
