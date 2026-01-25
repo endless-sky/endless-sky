@@ -434,6 +434,8 @@ government "Deep Security"
 	confusion "military"
 	"player reputation" 1
 	"attitude toward"
+		"Bounty" -.2
+		"Bounty (Disguised)" -.2
 		"Merchant" .5
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
@@ -554,6 +556,8 @@ government "Free Worlds"
 	"player reputation" 1
 	"attitude toward"
 		"Alpha" -.4
+		"Bounty" -.4
+		"Bounty (Disguised)" -.4
 		"Free Worlds that won't enter wormhole" 1
 		"Merchant" .3
 		"Militia" .3
@@ -1548,6 +1552,8 @@ government "Merchant"
 	
 	"player reputation" 10
 	"attitude toward"
+		"Bounty" -.2
+		"Bounty (Disguised)" -.2
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
 		"Korath" -.2
@@ -1574,6 +1580,8 @@ government "Militia"
 	
 	"player reputation" 0
 	"attitude toward"
+		"Bounty" -.4
+		"Bounty (Disguised)" -.4
 		"Merchant" .3
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
@@ -1606,6 +1614,8 @@ government "Navy (Oathkeeper)"
 	"player reputation" 100
 	"attitude toward"
 		"Alpha" -.3
+		"Bounty" -.3
+		"Bounty (Disguised)" -.3
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
@@ -1629,6 +1639,8 @@ government "Neutral"
 	
 	"player reputation" 1
 	"attitude toward"
+		"Bounty" -.2
+		"Bounty (Disguised)" -.2
 		"Merchant" .3
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
@@ -1735,6 +1747,8 @@ government "Pirate"
 	"player reputation" -10
 	"attitude toward"
 		"Author" -.01
+		"Bounty" 1.
+		"Bounty (Disguised)" 1.
 		"Hai" -.01
 		"Hai (Wormhole Access)" -.01
 		"Korath" -.01
@@ -1781,6 +1795,8 @@ government "Pirate (Rival)"
 	"player reputation" -10
 	"attitude toward"
 		"Author" -.01
+		"Bounty" 1.
+		"Bounty (Disguised)" 1.
 		"Hai" -.01
 		"Hai (Wormhole Access)" -.01
 		"Korath" -.01
@@ -2180,6 +2196,8 @@ government "Republic"
 	"player reputation" 2
 	"attitude toward"
 		"Alpha" -.3
+		"Bounty" -.3
+		"Bounty (Disguised)" -.3
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
@@ -2355,6 +2373,8 @@ government "Syndicate"
 	
 	"player reputation" 2
 	"attitude toward"
+		"Bounty" -.4
+		"Bounty (Disguised)" -.4
 		"Merchant" .3
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
