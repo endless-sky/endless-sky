@@ -34,7 +34,7 @@ public:
 	// Constructors.
 	Drawable() = default;
 	explicit Drawable(const Sprite *sprite, double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
-	Drawable(const Drawable &sprite, double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
+	Drawable(const Drawable &other, double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
 
 	// Check that this Drawable has a sprite and that the sprite has at least one frame.
 	bool HasSprite() const;
@@ -62,6 +62,8 @@ public:
 	void SetSprite(const Sprite *sprite);
 	// Set the color swizzle.
 	void SetSwizzle(const Swizzle *swizzle);
+
+	double Alpha() const;
 
 
 protected:

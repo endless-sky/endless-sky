@@ -34,7 +34,7 @@ public:
 	Body() = default;
 	Body(const Sprite *sprite, Point position, Point velocity = Point(), Angle facing = Angle(),
 		double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
-	Body(const Body &sprite, Point position, Point velocity = Point(), Angle facing = Angle(),
+	Body(const Body &other, Point position, Point velocity = Point(), Angle facing = Angle(),
 		double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
 
 	// Get the sprite mask for the given time step.

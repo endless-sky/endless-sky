@@ -32,19 +32,19 @@ using namespace std;
 
 // Constructor, based on a Sprite.
 Drawable::Drawable(const Sprite *sprite, double zoom, Point scale, double alpha)
-	: sprite(sprite), zoom(zoom), alpha(alpha), randomize(true)
+	: sprite(sprite), zoom(zoom), scale(scale), alpha(alpha), randomize(true)
 {
 }
 
 
 
 // Constructor, based on the animation from another Drawable object.
-Drawable::Drawable(const Drawable &sprite, double zoom, Point scale, double alpha)
+Drawable::Drawable(const Drawable &other, double zoom, Point scale, double alpha)
 {
-	*this = sprite;
+	*this = other;
 	this->zoom = zoom;
-	this->scale = scale * sprite.Scale();
-	this->alpha = alpha * sprite.alpha;
+	this->scale = scale * other.Scale();
+	this->alpha = alpha * other.alpha;
 }
 
 
@@ -228,6 +228,13 @@ void Drawable::SetSprite(const Sprite *sprite)
 void Drawable::SetSwizzle(const Swizzle *swizzle)
 {
 	this->swizzle = swizzle;
+}
+
+
+
+double Drawable::Alpha() const
+{
+	return alpha;
 }
 
 
