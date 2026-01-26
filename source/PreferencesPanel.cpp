@@ -263,8 +263,19 @@ void PreferencesPanel::Step()
 		if(it->wait_for(std::chrono::seconds(0)) == std::future_status::ready)
 		{
 			std::string error = it->get();
+
+			if(downloadInProgressDialog && GetUI().Top().get() == downloadInProgressDialog)
+			{
+				GetUI().Pop(GetUI().Top().get());
+				downloadInProgressDialog = nullptr;
+			}
+
 			if(!error.empty())
-				GetUI().Push(new DialogPanel(error));
+				if(error == "redownload")
+					GetUI().Push(new DialogPanel(this, &PreferencesPanel::ProcessPluginIndex,
+						"The plugin index at failed to download. Would you like to try again?"));
+				else
+					GetUI().Push(new DialogPanel(error));
 			else
 			{
 				if(page == PLUGINS)
@@ -1874,32 +1885,35 @@ void PreferencesPanel::HandleConfirm()
 
 void PreferencesPanel::ProcessPluginIndex()
 {
+	if(!downloadInProgressDialog)
+	{
+		downloadInProgressDialog = new DialogPanel("Downloading plugin index...");
+		GetUI().Push(downloadInProgressDialog);
+	}
+
 	installFeedbacks.emplace_back(async(launch::async, [&]() noexcept -> string {
 		for(auto it : Plugins::GetPluginLibraryUrls())
 		{
+			// If this index has not already been fetched, download it. This allows us to call
+			// ProcessPluginIndex multiple times, e.g. if prompted to redownload
 			if(!it.second)
 			{
 				string url = it.first;
 				auto path = Files::Config() / "plugins.json";
-				auto downloadInProgressDialog = new DialogPanel("Downloading plugin index:\n" + url +
-					"\nPlease wait.");
-				GetUI().Push(downloadInProgressDialog);
+				if(downloadInProgressDialog && GetUI().Top().get() == downloadInProgressDialog)
+					downloadInProgressDialog->UpdateText(
+						"Downloading plugin index:\n" + url + "\nPlease wait.");
+
 				if(!Plugins::Download(url, path))
 				{
-					if(GetUI().Top().get() == downloadInProgressDialog)
-						GetUI().Pop(downloadInProgressDialog);
-					GetUI().Push(new DialogPanel(this, &PreferencesPanel::ProcessPluginIndex,
-						"The plugin index at failed to download. Would you like to try again?"));
-					return {};
+					return "redownload";
 				}
 				it.second = true;
+
 				// If any of the (usually one) urls are downloaded, then we have a library to show.
 				downloadedPluginIndex = true;
 
 				Plugins::LoadAvailablePlugins(queue, path);
-
-				if(GetUI().Top().get() == downloadInProgressDialog)
-					GetUI().Pop(downloadInProgressDialog);
 			}
 		}
 

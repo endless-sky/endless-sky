@@ -1017,7 +1017,7 @@ interface "install plugins"
 	fill
 		from -420 41 to -270 42
 		color medium
-	
+
 	sprite "ui/checked"
 		center -410 54
 	label "Installed"
@@ -1031,7 +1031,7 @@ interface "install plugins"
 		from -400 65
 		align top left
 		color "plugin outdated"
-		
+
 	sprite "ui/expanded"
 		center -410 92
 	label "Downloading"
@@ -1058,21 +1058,21 @@ interface "install plugins"
 		from -332 84
 		align top left
 		color "white"
-	
+
 	sprite "ui/unchecked"
 		center -410 111
 	label "Not Installed"
 		from -400 103
 		align top left
 		color "medium"
-	
+
 	sprite "ui/checked"
 		center -410 130
 	label "Restart required"
 		from -400 122
 		align top left
 		color "plugin reload required"
-		
+
 	visible if "hover find"
 	sprite "ui/find selected"
 		center -280 210
@@ -1126,7 +1126,7 @@ interface "install plugins"
 interface "preferences"
 	sprite "ui/preferences panel"
 		center -65 -20
-	
+
 	visible if "!page: controls"
 	button c "_Controls"
 		center -300 -230
@@ -1183,7 +1183,7 @@ interface "preferences"
 		dimensions 90 30
 		color bright
 	visible
-	
+
 	button b "_Back to Menu..."
 		center 195 210
 		dimensions 120 30

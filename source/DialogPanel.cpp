@@ -253,6 +253,14 @@ bool DialogPanel::AllowsFastForward() const noexcept
 
 
 
+void DialogPanel::UpdateText(const string &message)
+{
+	text->SetText(message);
+	Resize();
+}
+
+
+
 bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	auto it = KEY_MAP.find(key);

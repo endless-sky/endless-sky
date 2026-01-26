@@ -30,6 +30,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#include "DialogPanel.h"
+
 class Command;
 class PlayerInfo;
 class RenderBuffer;
@@ -118,6 +120,8 @@ private:
 
 	// If the plugin index was already downloaded.
 	bool downloadedPluginIndex = false;
+	DialogPanel *downloadInProgressDialog = nullptr;
+
 	// Vector to store the feedback of the async tasks from installing/updating/deleting.
 	std::vector<std::future<std::string>> installFeedbacks;
 	// Queue to load icons for installable plugins and a list of those.
