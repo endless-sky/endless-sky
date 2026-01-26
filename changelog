@@ -3,7 +3,7 @@ Version 0.11.0:
     * Added three more human starting scenarios to the game. (@Anarchist2)
     * The outfitter and shipyard UI has updated to have on-screen buttons for all of the possible actions that were previously only tied to keybinds. (@xobes)
   * Bug fixes:
-    * Conent bugs:
+    * Content bugs:
       * Typo fixes. (@Anarchist2, @Canned-Seagull, @Nova1422, @oliv3r, @reticent-rem, @ThrawnCA, @warp-core, @Wedge009)
       * Fixed conditions in the Patir storyline not being set properly by events. (@warp-core)
       * Shortened a spaceport news phrase to better fit the UI. (@Saugia)
@@ -180,7 +180,7 @@ Version 0.11.0:
     * Added bounds checking to DataNode::Token. (@Amazinite)
     * ntdll is now loaded statically on Windows. (TomGoodIdea)
     * Plugins can now provide custom shaders to support the game running using OpenGL 2. (@TomGoodIdea)
-    * Reformated how logs are displayed for errors.txt. The game now supports multiple logging levels. (@TomGoodIdea)
+    * Reformatted how logs are displayed for errors.txt. The game now supports multiple logging levels. (@TomGoodIdea)
     * Now only using freopen_s with MSVC on Windows. (@TomGoodIdea)
     * Correctly link RtlGetVersion on Win32. (@TomGoodIdea)
     * There is now a command line argument for printing the full event changes of the most recently loaded save file. (@warp-core)
