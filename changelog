@@ -1,10 +1,10 @@
-Version 0.10.17:
+Version 0.11.0:
   * Big changes:
     * Added three more human starting scenarios to the game. (@Anarchist2)
     * The outfitter and shipyard UI has updated to have on-screen buttons for all of the possible actions that were previously only tied to keybinds. (@xobes)
   * Bug fixes:
     * Conent bugs:
-      * Typo fixes. (@Nova1422, @oliv3r, @reticent-rem, @ThrawnCA, @warp-core, @Wedge009)
+      * Typo fixes. (@Anarchist2, @Canned-Seagull, @Nova1422, @oliv3r, @reticent-rem, @ThrawnCA, @warp-core, @Wedge009)
       * Fixed conditions in the Patir storyline not being set properly by events. (@warp-core)
       * Shortened a spaceport news phrase to better fit the UI. (@Saugia)
       * The "Lost Racer 2 - Continued" mission can now offer without needing to take off and land again. (@warp-core)
@@ -35,12 +35,21 @@ Version 0.10.17:
       * Timestamp formatting now uses a more compatible format for Windows. (@TomGoodIdea)
       * Capture odds are now only calculated for capturable ships, preventing uncapturable ships from unnecessarily using up memory when boarded. (@Amazinite)
       * Fixed an edge case where escorts without weapons would move independently when not given orders, potentially jumping away to a different system without you. (@Amazinite)
+      * Selecting a large number of escorts when you have a large number of escorts no longer causes extreme lag caused by high CPU usage. (@Amazinite)
+      * Fixed a crash caused by mission actions referring to an undefined message. (@warp-core)
+      * Fixed a crash caused that could occur when a mission action took one of your ships while in a shop. (@Amazinite)
+      * Fixed the fast-forward state being out of sync when reloading a dead pilot. (@TomGoodIdea)
+      * Fixed an inconsistent crash that could occur when playing MP3 or FLAC files. (@warp-core)
+      * Projectiles incapable of turning now skip over all homing code in projectile movement. (@nickshanks)
+      * The frame rate of a sprite is now always saved in the player's save file. (@nickshanks)
   * Game content:
     * New content:
       * Added various culture conversations to human space about exotic lifeforms. (@reticent-rem)
       * Added a mission chain about helping a struggling author. (@a-random-lemurian, @TheGiraffe3)
       * Added a new Heliarch hand-to-hand weapon. (@Arachi-Lover)
       * Added various "Drak Revelation" culture conversations around the galaxy. (@Arachi-Lover)
+      * Added new civilian hails. (@MauriceTaniel)
+      * Added a short new mission chain for the Ka'het. (@beccabunny)
     * Mission changes:
       * Various missions now make use of "mark" instead of "waypoint" where visiting the system of interest isn't a necessary objective for the story. (@TheGiraffe3, @warp-core)
       * Ryk Bartlett in "FW Albatross 2A" now has a unique Bastion model and his fleet is set in stone instead of being randomized. (@bene-dictator)
@@ -52,6 +61,20 @@ Version 0.10.17:
       * Added an option to admit to Ivan that you want to share his research in "Remnant: Deep Surveillance". (@ThrawnCA)
       * "Dangerous Games 1" now provides landing clearance to the destination. (@nickshanks)
       * Broadened the travel instructions given in "Expeditions Past 9" to improve the odds of the player finding the correct system. (@ThrawnCA)
+      * Updated various missions to make use of the "visited" location filter instead of using the "inaccessible" system attribute, which has now been removed. This means that the Remnant research expedition jobs will now only choose from systems you've already visited before. (@Amazinite)
+      * The "What happened to Rand?" mission will now have its objective complete if you manage to reach Zeta Aquilae. (@ThrawnCA)
+      * Updated the wording in "FW Reconciliation 2A" to make it clear that new technology is being made available for you to purchase, not gifted to you for free. (@nickshanks)
+      * Reworked bounty jobs. (@Anarchist2)
+        * The governments now have the same attitude toward the Bounty governments as they do the Pirate government, allowing you to gain reputation with various governments for taking Bounty jobs.
+        * The combat rating requirement of the jobs has been greatly lowered, requiring anywhere from about 25% to 85% less combat rating in order for the jobs to offer.
+        * Most bounty NPCs now spawn ships from named fleets instead of defining a unique fleet for each job. These fleets have been adjusted to result in a smoother increase in difficulty for larger bounty missions.
+          * With the above two changes, the strength of bounty NPCs should now roughly match the strength that you are expected to be at when you unlock them.
+        * The language of bounty job names is more direct. With combat rating requirements lower, there's a potential risk of the player accepting jobs well outside their capabilities. Having the category of the ship in the job names should make it easier to tell the difficulty of a bounty at a glance.
+        * Bounty NPCs now use the "marked" personality instead of "nemesis" so that they aren't destroyed by other governments as a result of the above change.
+        * Bounty NPCs in many jobs are capable of spawning further away, but now have the "tracked" personality, meaning that their location is pinged on the galaxy map, removing the aspect of you needing to track down the bounty on your own. Various story missions that require you to hunt down a bounty have been given the same treatment.
+        * Disguised pirates now only spawn one jump away from the origin system. Since they are disguised, they have not gained the "tracked" personality.
+        * The payment of the Marauder bounties have been altered to better reflect their difficulty.
+      * Updated all of the invisible missions that used to offer the moment you started a new save to now use the "entering" and "transition" offer locations, meaning that only get stored in the player's save file the moment they're needed. (@Amazinite, @warp-core)
     * Balance:
       * Rebalanced afterburners. (@Azure3141)
         * Increased the fuel consumption of afterburners across the board.
@@ -68,11 +91,24 @@ Version 0.10.17:
         * Silicon asteroids are now less effected: +27% -> +11% yield, with asteroids between silicon and aluminum being changed less.
         * Platinum asteroids are now much more effected: +4% -> +38% yield, with asteroids between platinum and aluminum being changed less.
         * The above yield values are when using a human mining laser. Other mining weapons will produce different yield improvements.
+      * Reduced the spawn rate of Korath raider fleets into human space. The spawn rates of these fleets were greatly increased in 2016 to make it easier to plunder jump drives from them, but there are now many more methods of obtaining jump drives, so the spawn rates have been lowered close to their old values (or an equivalent value for newer systems) to make encountering hostile aliens in human space much more of a rarity. (@Anarchist2)
+      * Rebalanced some human missile weaponry. (@Quantumshark)
+        * Increased the burst reload time of the Javelin Mini Pod from 15 to 20 frames. The overall DPS is unchanged.
+        * Increased the Heavy Rocket's blast radius from 90 to 150 units.
+        * Changes have been made to the Torpedo and Typhoon launchers to differentiate them from one another, instead of having the Typhoon just be a strictly better Torpedo.
+          * The Torpedo Launcher/Pod's projectile velocity now ramps from 0 to 6 instead of 7 to 6. No other changes.
+          * The Typhoon Launcher/Pod's projectile velocity now ramps from 4 to 3.75 instead of 6 to 4, fires 25% slower, and has a 45% longer projectile lifetime.
+          * "With these changes, the Torpedo becomes a missile that is very easy to dodge, and will only hit large targets, while the Typhoon becomes something of a creeping death - sluggish and easily outrun, but still hard-hitting and very unlikely to miss. This will hopefully differentiate the two more. If the reduction in accuracy proves to be enough, the Torpedo could stand to have its top speed increased somewhat, too."
+      * Greatly reduced the spawn rate of Navy surveillance fleets in Free Worlds territory near the start of the war. (@Quantumshark)
+      * Missiles now check for a lock the moment they're fired. (@Anarchist2)
+      * "blindspot" missiles that go haywire can now entirely lose their target if they face away from their target while haywire. (@Anarchist2)
     * Other:
       * Adjusted the order of the Kestrel (More Weapons) weapon hardpoints to match the placement positions of the weapons on the other variants. (@Saugia)
       * Adjusted some systems and planets in Gegno space to facilitate planned future content. (@Saugia)
+      * Unfettered planets now have custom bribe rejection hails. (@Saugia)
   * Graphics and artwork:
     * Adjusted some human landscape images to better fit their planet descriptions. (@Anarchist2)
+    * Cleaned up various UI sprites to maintain consistency in art style. (@Anarchist2)
   * Audio:
     * Sounds are no longer paused when you land on a planet and resumed when you take off. Sounds that were playing when you landed instead continue to completion as they did before. (@warp-core)
     * Popups that occur while landed no longer pause sounds. (@warp-core)
@@ -89,13 +125,16 @@ Version 0.10.17:
       * Missions can now have timers that count down if certain circumstances are met (e.g. if the player is near the system center and is not moving) and trigger a mission action after the timer has elapsed. (@danaris, @Amazinite)
       * Game actions from missions are now capable of sending messages. (@TomGoodIdea)
       * "goto" nodes can now be direct children of "conversation" nodes, instead of requiring that they be indented under a text node. (@MereDecade)
-      * Added a "previous system government: <system>" condition for checking the government of the system the player was previously in. (@Amazinite)
+      * Added "previous system government: <government>" and "previous system attribute: <attribute>" conditions for checking the government or attribute of the system the player was previously in. (@Amazinite, @Anarchist2)
       * Governments can now be made to consider any action against them provocative or an atrocity. (@Hurleveur)
       * Condition sets now support "min" and "max" keywords as in-line functions. (@petervdmeer)
       * Planets can now be made to incur a daily reputation penalty with their government when dominated, in addition to the tribute payment. (@TomGoodIdea)
       * The response to accepting or rejecting bribes can now be customized on a per-government level for ships and planets separately. (@CrispySummers, @TheGiraffe3)
       * Governments can now be made to reject all bribes on a ship and per-planet level after your reputation with them drops below a given threshold. (@warp-core)
       * Plugins can now fully overwrite any vanilla objects by placing an "overwrite" node prior to the new definition that they want to use. (@Amazinite)
+      * The "jump effect" attribute can have an optional 2nd value to scale down the number of sparks created. (@Amazinite)
+      * Missions can now have an "on land" action that triggers in a similar manner to "on enter", except for landing on planets instead of entering systems. (@warp-core)
+      * Missions can now be given an offer location of "transition", causing them to be offered the moment you transition between systems. (@warp-core)
     * Mechanics changes:
       * Ships that are overheated or heavily ionized no longer count toward the strength of their government's ships in a system, freeing up a spot for a new ship to spawn as reinforcements. (@Anarchist2)
     * NPC AI:
@@ -111,6 +150,7 @@ Version 0.10.17:
     * Interface definitions:
       * The "Additional info" section on the controls panel is now created using interface data instead of being hardcoded. (@Amazinite)
       * Various messages that were hard-coded into the engine can now be customized via game data. (@TomGoodIdea)
+      * The map legends in the map missions panel are now created using interface data instead of being hardcoded. (@nickshanks)
     * QoL:
       * The jump keybind will now set a travel plan to the currently selected system on the map (or add it to the plan if shift is held), allowing you to much more easily set a route to a system without using the mouse by using the find system feature to select the system prior to hitting the jump key. (@Amazinite)
       * The trade panel on the map now has colored rings for representing how highor low the value of a commodity is in the current system, and colored arrows for representing the difference in value between two systems. (@xobes)
@@ -119,14 +159,17 @@ Version 0.10.17:
       * Mission escorts can now be selected using the escort display. (@Amazinite)
       * Clicking on an icon in the escort display that represents multiple ships now cycles your flagship's target through the list. (@Amazinite)
       * The "New Pilot" button is now replaced with a "Reload Pilot" button when going to the main menu after your pilot has died. (@warp-core)
+      * The name of the planet that you are currently landed on is now displayed next to the radar at the top left corner of the screen. (@xobes)
     * Other:
       * Added a flight check error for ships that need crew in order to function but lack any bunk space. (@TomGoodIdea)
       * Rephrased the tooltips for the damage protection and reduction attributes. These attributes now display as percentages in the outfitter. (@Daeridanii1)
       * The DialogPanel class can now be given a third button with custom functionality. (@xobes)
+      * The orbits mini map and map legend are now hidden on the stars map when the selected system's contents can't be viewed. (@nickshanks)
   * Performance:
     * Pathfinding results for ships are now cached, greatly improving the performance of large fleets when pathfinding. (@xobes)
     * Swizzle mask textures are no longer duplicated for multi-frame sprites if only one swizzle mask is provided, freeing up VRAM. (@warp-core)
     * If the high DPI plugin is installed, then the game will only load the 2x textures instead of loading both the 1x and 2x textures, freeing up VRAM. (@Amazinite)
+    * Improved the performance of AI::DoScatter. This should result in a noticeable improvement when flying around with a large number of ships. (@Amazinite)
   * Under the hood:
     * Renamed the "line" interface element to "fill". (@TomGoodIdea)
     * Separated the Weapon and Outfit classes from one another. (@TomGoodIdea, @warp-core)
@@ -143,9 +186,13 @@ Version 0.10.17:
     * There is now a command line argument for printing the full event changes of the most recently loaded save file. (@warp-core)
     * Panel::GetUI now returns the UI by reference instead of by pointer. (@Amazinite)
     * Dialog node parsing has been moved to its own class. (@Amazinite)
+    * Replaced various shared_from_this calls with weak_from_this where a shared pointer was not necessary. (@Amazinite)
+    * Updated various functions in the Format class: renamed Credits to AbbreviatedNumber, combined the behavior of Decimal into Number, and created a Percentage function. (@Amazinite)
+    * The DialogPanel class is now capable of validating integer and double input.
   * Documentation:
     * The bug report template now asks for the errors.txt file. (@TomGoodIdea)
     * Updated the CONTRIBUTING.md file to point to the new C++ style guide location. (@Nova1422)
+    * Updated the build instructions for MacOS. (@CelestialHoney)
   * CI/CD and development environment:
     * Bumped the MocOS runners to macos-14. (@warp-core)
     * Added desktop.ini to the .gitignore. (@TomGoodIdea)
@@ -154,6 +201,7 @@ Version 0.10.17:
     * Enabled the alternative libflac detection method when building without vcpkg on Mac. (@bene_dictator)
     * Increased the integration test timeout from 15 seconds to 2 minutes. (@AdrianBunk)
     * Automatically choose the CMake target for GLEW. (@TomGoodIdea)
+    * Added a 32-bit Windows CI job. (@TomGoodIdea)
 
 
 Version 0.10.16
