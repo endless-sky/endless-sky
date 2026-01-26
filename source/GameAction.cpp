@@ -42,9 +42,7 @@ namespace {
 		int mapSize = outfit->Get("map");
 		if(mapSize > 0)
 		{
-			bool mapMinables = outfit->Get("map minables");
-			if(!player.HasMapped(mapSize, mapMinables))
-				player.Map(mapSize, mapMinables);
+			player.Map(mapSize, outfit->Get("map minables"));
 			Messages::Add(*GameData::Messages().Get("map received"));
 			return;
 		}

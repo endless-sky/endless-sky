@@ -211,7 +211,13 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 		else if(mapSize)
 		{
 			bool mapMinables = outfit->Get("map minables");
-			minCount = maxCount = player.HasMapped(mapSize, mapMinables);
+			minCount = player.HasMapped(mapSize, mapMinables);
+			maxCount = 0;
+			if(minCount)
+			{
+				Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
+				font.Draw("(already known)", labelPos, bright);
+			}
 		}
 		else
 		{
@@ -378,7 +384,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			return "You cannot place maps into " + LocationName(toLocation) + ".";
 		bool mapMinables = selectedOutfit->Get("map minables");
 		if(mapSize > 0 && player.HasMapped(mapSize, mapMinables))
-			return "You have already mapped all the systems shown by this map, so there is no reason to buy another.";
+			return "You have already obtained all the information included in this map, so there is no reason to buy it.";
 	}
 
 	if(HasLicense(selectedOutfit->TrueName()))
@@ -487,8 +493,8 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			{
 				bool mapMinables = selectedOutfit->Get("map minables");
 				if(mapSize > 0 && player.HasMapped(mapSize, mapMinables))
-					return "You have already mapped all the systems shown by this map, "
-						"so there is no reason to buy another.";
+					return "You have already obtained all the information included in this map, "
+						"so there is no reason to buy it.";
 
 				if(HasLicense(selectedOutfit->TrueName()))
 					return "You already have one of these licenses, so there is no reason to buy another.";
@@ -702,7 +708,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 		{
 			bool mapMinables = selectedOutfit->Get("map minables");
 			player.Map(mapSize, mapMinables);
-			player.Accounts().AddCredits(-selectedOutfit->Cost());
+			player.Accounts().AddCredits(-player.MapCost(selectedOutfit));
 			return true;
 		}
 
