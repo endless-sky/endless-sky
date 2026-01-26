@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MissionAction.h"
 
+#include "ActionResult.h"
 #include "CargoHold.h"
 #include "ConversationPanel.h"
 #include "DataNode.h"
@@ -48,7 +49,7 @@ namespace {
 				if(ship->IsDisabled() || ship->IsParked())
 					continue;
 				if(ship->GetSystem() == here || (ship->CanBeCarried()
-						&& !ship->GetSystem() && ship->GetParent()->GetSystem() == here))
+					&& !ship->GetSystem() && ship->GetParent()->GetSystem() == here))
 					available += ship->Cargo().Get(outfit);
 			}
 		}
@@ -123,6 +124,16 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 	}
 	else if(key == "can trigger after failure")
 		runsWhenFailed = true;
+	else if(key == "non-blocking")
+	{
+		// Accepting the same mission instance multiple times yields undefined behavior
+		if(trigger == "offer")
+			child.PrintTrace("Unsupported use of \"non-blocking\" in \"on offer\":");
+		else
+			blocking = false;
+	}
+	else if(key == "to" && hasValue && child.Token(1) == "trigger")
+		toTrigger.Load(child, playerConditions);
 	else
 		action.LoadSingle(child, playerConditions);
 }
@@ -148,6 +159,15 @@ void MissionAction::Save(DataWriter &out) const
 
 void MissionAction::SaveBody(DataWriter &out) const
 {
+	if(!toTrigger.IsEmpty())
+	{
+		out.Write("to", "trigger");
+		out.BeginChild();
+		{
+			toTrigger.Save(out);
+		}
+		out.EndChild();
+	}
 	if(!systemFilter.IsEmpty())
 	{
 		out.Write("system");
@@ -162,6 +182,8 @@ void MissionAction::SaveBody(DataWriter &out) const
 	}
 	if(runsWhenFailed)
 		out.Write("can trigger after failure");
+	if(!blocking)
+		out.Write("non-blocking");
 	if(!dialog.IsEmpty())
 		dialog.Save(out);
 	if(!conversation->IsEmpty())
@@ -204,11 +226,13 @@ string MissionAction::Validate() const
 	return action.Validate();
 }
 
-
-
+// DialogText requires a pointer in case dialog text changes, so store an empty string for that purpose.
+static const string EMPTY = "";
 const string &MissionAction::DialogText() const
 {
-	return dialog.Text();
+	if(toTrigger.Test())
+		return dialog.Text();
+	return EMPTY;
 }
 
 
@@ -306,9 +330,13 @@ bool MissionAction::RequiresGiftedShip(const string &shipId) const
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
+int MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
+	// Verify that the required conditions are present.
+	// Since CanBeDone is not called by NPCAction, this is the earliest that toTrigger can be tested.
+	if(!toTrigger.IsEmpty() && !toTrigger.Test())
+		return ActionResult::NONE;
 	if(ui)
 	{
 		bool isOffer = (trigger == "offer");
@@ -347,6 +375,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 	}
 
 	action.Do(player, ui, caller);
+	return ActionResult::TRIGGERED | (blocking ? ActionResult::BLOCKING : 0);
 }
 
 
@@ -363,6 +392,8 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.planetFilter = planetFilter.SetOrigin(origin);
 
 	result.requiredOutfits = requiredOutfits;
+	result.toTrigger = toTrigger;
+	result.blocking = blocking;
 
 	string previousPayment = subs["<payment>"];
 	string previousFine = subs["<fine>"];
