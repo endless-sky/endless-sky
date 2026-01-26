@@ -22,10 +22,12 @@ mission "Message Buoy: Entering Republic space from Pirates"
 	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
-		not "previous system government: Republic"
+		not "flagship system: Mintaka"
 		or
 			has "previous system government: Pirate"
-			has "flagship system: Alnitak"
+			and
+				has "flagship system: Alnitak"
+				has "previous system: Mintaka"
 	on offer
 		message
 			phrase "entering republic space from pirates"
