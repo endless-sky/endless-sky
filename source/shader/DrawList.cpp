@@ -33,7 +33,6 @@ void DrawList::Clear(int step, double zoom)
 	items.clear();
 	this->step = step;
 	this->zoom = zoom;
-	isHighDPI = (Screen::IsHighResolution() ? zoom > .5 : zoom > 1.);
 }
 
 
@@ -134,10 +133,11 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, const
 {
 	SpriteShader::Item item;
 
-	item.texture = body.GetSprite()->Texture(isHighDPI);
-	item.swizzleMask = body.GetSprite()->SwizzleMask(isHighDPI);
+	item.texture = body.GetSprite()->Texture();
+	item.swizzleMask = body.GetSprite()->SwizzleMask();
 	item.frame = body.GetFrame(step);
 	item.frameCount = body.GetSprite()->Frames();
+	item.uniqueSwizzleMaskFrames = body.GetSprite()->SwizzleMaskFrames() > 1;
 
 	item.position[0] = static_cast<float>(pos.X() * zoom);
 	item.position[1] = static_cast<float>(pos.Y() * zoom);

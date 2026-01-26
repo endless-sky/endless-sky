@@ -48,9 +48,9 @@ namespace {
 		// Valid animations (or stills) begin with frame 0.
 		if(frameData.begin()->first != 0)
 		{
-			Logger::LogError(prefix + "ignored " + (isSwizzleMask ? "mask " : "") + (is2x ? "@2x " : "")
+			Logger::Log(prefix + "ignored " + (isSwizzleMask ? "mask " : "") + (is2x ? "@2x " : "")
 				+ "frame " + to_string(frameData.begin()->first) + " (" + to_string(frameData.size())
-				+ " ignored in total). Animations must start at frame 0.");
+				+ " ignored in total). Animations must start at frame 0.", Logger::Level::WARNING);
 			return;
 		}
 
@@ -70,9 +70,9 @@ namespace {
 		if(next != frameData.end())
 		{
 			size_t ignored = distance(next, frameData.end());
-			Logger::LogError(prefix + "missing " + (isSwizzleMask ? "mask " : "") + (is2x ? "@2x " : "") + "frame "
+			Logger::Log(prefix + "missing " + (isSwizzleMask ? "mask " : "") + (is2x ? "@2x " : "") + "frame "
 				+ to_string(it->first + 1) + " (" + to_string(ignored)
-				+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
+				+ (ignored > 1 ? " frames" : " frame") + " ignored in total).", Logger::Level::WARNING);
 		}
 	}
 }
@@ -154,8 +154,8 @@ void ImageSet::ValidateFrames() noexcept(false)
 			string ext = path.extension().string();
 			if(ImageBuffer::ImageSequenceExtensions().contains(Format::LowerCase(ext)) && paths[i].size() > 1)
 			{
-				Logger::LogError("Image sequences must be exclusive; ignoring all but the image sequence data for \""
-						+ name + "\"");
+				Logger::Log("Image sequences must be exclusive; ignoring all but the image sequence data for \""
+					+ name + "\".", Logger::Level::WARNING);
 				paths[i][0] = path;
 				paths[i].resize(1);
 				break;
@@ -166,8 +166,8 @@ void ImageSet::ValidateFrames() noexcept(false)
 	{
 		if(toResize.size() > paths[0].size())
 		{
-			Logger::LogError(prefix + to_string(toResize.size() - paths[0].size())
-				+ " extra frames for the " + specifier + " sprite will be ignored.");
+			Logger::Log(prefix + to_string(toResize.size() - paths[0].size())
+				+ " extra frames for the " + specifier + " sprite will be ignored.", Logger::Level::WARNING);
 			toResize.resize(paths[0].size());
 		}
 	};
@@ -190,6 +190,15 @@ void ImageSet::Load() noexcept(false)
 	// not actually be allocated until the first image is loaded (at which point
 	// the sprite's dimensions will be known).
 	size_t frames = paths[0].size();
+	// If there are fewer frames of swizzle mask than base image, only use the
+	// first swizzle mask frame. Send a warning if any are discarded.
+	size_t swizzleMaskFrames = paths[2].size();
+	if(swizzleMaskFrames > 1 && swizzleMaskFrames < frames)
+	{
+		Logger::Log("Discarding " + to_string(swizzleMaskFrames - 1) + " frames of swizzle mask because there"
+			" are more frames of animation. Only the first swizzle mask frame will be used.", Logger::Level::WARNING);
+		swizzleMaskFrames = 1;
+	}
 
 	// Check whether we need to generate collision masks.
 	bool makeMasks = IsMasked(name);
@@ -197,8 +206,8 @@ void ImageSet::Load() noexcept(false)
 	const auto UpdateFrameCount = [&]()
 	{
 		buffer[1].Clear(frames);
-		buffer[2].Clear(frames);
-		buffer[3].Clear(frames);
+		buffer[2].Clear(swizzleMaskFrames);
+		buffer[3].Clear(swizzleMaskFrames);
 
 		if(makeMasks)
 			masks.resize(frames);
@@ -215,7 +224,7 @@ void ImageSet::Load() noexcept(false)
 		const string fileName = "\"" + name + "\" frame #" + to_string(i);
 		if(!loadedFrames)
 		{
-			Logger::LogError("Failed to read image data for \"" + fileName);
+			Logger::Log("Failed to read image data for \"" + fileName, Logger::Level::WARNING);
 			continue;
 		}
 		// If we loaded an image sequence, clear all other buffers.
@@ -229,28 +238,17 @@ void ImageSet::Load() noexcept(false)
 		{
 			masks[i].Create(buffer[0], i, fileName);
 			if(!masks[i].IsLoaded())
-				Logger::LogError("Failed to create collision mask for " + fileName);
+				Logger::Log("Failed to create collision mask for " + fileName, Logger::Level::WARNING);
 		}
 	}
-
-	auto FillSwizzleMasks = [&](vector<filesystem::path> &toFill, unsigned int intendedSize)
-	{
-		if(toFill.size() == 1 && intendedSize > 1)
-			for(unsigned int i = toFill.size(); i < intendedSize; i++)
-				toFill.emplace_back(toFill.back());
-	};
-	// If there is only a swizzle-mask defined for the first frame fill up the swizzle-masks
-	// with this mask.
-	FillSwizzleMasks(paths[2], paths[0].size());
-	FillSwizzleMasks(paths[3], paths[0].size());
-
 
 	auto LoadSprites = [&](const vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier)
 	{
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
 			if(!buffer.Read(toLoad[i], i))
 			{
-				Logger::LogError("Removing " + specifier + " frames for \"" + name + "\" due to read error");
+				Logger::Log("Removing " + specifier + " frames for \"" + name + "\" due to read error",
+					Logger::Level::WARNING);
 				buffer.Clear();
 				break;
 			}
@@ -264,8 +262,8 @@ void ImageSet::Load() noexcept(false)
 	// Warn about a "high-profile" image that will be blurry due to rendering at 50% scale.
 	bool willBlur = (buffer[0].Width() & 1) || (buffer[0].Height() & 1);
 	if(willBlur && (name.starts_with("ship/") || name.starts_with("outfit/") || name.starts_with("thumbnail/")))
-		Logger::LogError("Warning: image \"" + name + "\" will be blurry since width and/or height are not even ("
-			+ to_string(buffer[0].Width()) + "x" + to_string(buffer[0].Height()) + ").");
+		Logger::Log("Image \"" + name + "\" will be blurry since width and/or height are not even ("
+			+ to_string(buffer[0].Width()) + "x" + to_string(buffer[0].Height()) + ").", Logger::Level::WARNING);
 }
 
 
@@ -281,10 +279,8 @@ void ImageSet::Upload(Sprite *sprite, bool enableUpload)
 			it.Clear();
 
 	// Load the frames (this will clear the buffers).
-	sprite->AddFrames(buffer[0], false, noReduction);
-	sprite->AddFrames(buffer[1], true, noReduction);
-	sprite->AddSwizzleMaskFrames(buffer[2], false, noReduction);
-	sprite->AddSwizzleMaskFrames(buffer[3], true, noReduction);
+	sprite->AddFrames(buffer[0], buffer[1], noReduction);
+	sprite->AddSwizzleMaskFrames(buffer[2], buffer[3], noReduction);
 
 	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
 	masks.clear();

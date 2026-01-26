@@ -25,13 +25,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstring>
 
-#if defined(ES_GLES) || defined(_WIN32)
 namespace {
+	bool hasOpenGL3Support = true;
+
+#if defined(ES_GLES) || defined(_WIN32)
 	bool HasOpenGLExtension(const char *name)
 	{
 		auto extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
 		return strstr(extensions, name);
 	}
+#endif
+}
+
+
+
+#ifndef ES_GLES
+void OpenGL::DisableOpenGL3()
+{
+	hasOpenGL3Support = false;
 }
 #endif
 
@@ -49,4 +60,27 @@ bool OpenGL::HasAdaptiveVSyncSupport()
 #else
 	return true;
 #endif
+}
+
+
+
+bool OpenGL::HasVaoSupport()
+{
+	// TODO: Add an extension check if we want to enable VAOs on more devices.
+	return hasOpenGL3Support;
+}
+
+
+
+bool OpenGL::HasTexture2DArraySupport()
+{
+	// TODO: Add an extension check if we want to enable texture arrays on more devices.
+	return hasOpenGL3Support;
+}
+
+
+
+bool OpenGL::HasClearBufferSupport()
+{
+	return hasOpenGL3Support;
 }

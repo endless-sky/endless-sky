@@ -80,6 +80,9 @@ public:
 	// Get the list of "attributes" of the planet.
 	const std::set<std::string> &Attributes() const;
 
+	// Get the list of "required attributes" of the planet.
+	const std::set<std::string> &RequiredAttributes() const;
+
 	// Get planet's noun descriptor from attributes
 	const std::string &Noun() const;
 
@@ -164,6 +167,9 @@ public:
 	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships) const;
 	void ResetDefense() const;
 	bool IsDefending() const;
+	// The amount of reputation with this planet's government that is lost
+	// daily if the player has dominated this planet.
+	double DailyTributePenalty() const;
 
 
 private:
@@ -192,6 +198,7 @@ private:
 	const Government *government = nullptr;
 	double requiredReputation = 0.;
 	double bribe = 0.01;
+	double bribeThreshold = 0.;
 	double security = .25;
 	bool inhabited = false;
 	bool customSecurity = false;
@@ -202,6 +209,9 @@ private:
 	int tribute = 0;
 	// The minimum combat rating needed to dominate this planet.
 	int defenseThreshold = 4000;
+	// The amount of reputation with this planet's government that is lost
+	// daily if the player has dominated this planet.
+	double dailyTributePenalty = 0.;
 	mutable bool isDefending = false;
 	// The defense fleets that should be spawned (in order of specification).
 	std::vector<const Fleet *> defenseFleets;
