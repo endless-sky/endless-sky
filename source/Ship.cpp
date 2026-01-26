@@ -4267,10 +4267,6 @@ void Ship::DoGeneration()
 	bool wasDisabled = hull < minHull;
 	bool wasDestroyed = IsDestroyed();
 	hull -= corrosion;
-	if(!wasDisabled && hull < minHull)
-		unhandledEvents.emplace_back(lastHitBy, ShipEvent::DISABLE);
-	if(!wasDestroyed && IsDestroyed())
-		unhandledEvents.emplace_back(lastHitBy, ShipEvent::DESTROY);
 	energy -= ionization;
 	fuel -= leakage;
 	heat += burning;
@@ -4368,18 +4364,15 @@ void Ship::DoGeneration()
 		isOverheated = true;
 		double heatRatio = Heat() / (1. + attributes.Get("overheat damage threshold"));
 		if(heatRatio > 1.)
-		{
-			wasDisabled = hull < minHull;
-			wasDestroyed = IsDestroyed();
 			hull -= attributes.Get("overheat damage rate") * heatRatio;
-			if(!wasDisabled && hull < minHull)
-				unhandledEvents.emplace_back(lastHitBy, ShipEvent::DISABLE);
-			if(!wasDestroyed && IsDestroyed())
-				unhandledEvents.emplace_back(lastHitBy, ShipEvent::DESTROY);
-		}
 	}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
+
+	if(!wasDisabled && hull < minHull)
+		unhandledEvents.emplace_back(lastHitBy, ShipEvent::DISABLE);
+	if(!wasDestroyed && IsDestroyed())
+		unhandledEvents.emplace_back(lastHitBy, ShipEvent::DESTROY);
 
 	double maxShields = MaxShields();
 	shields = min(shields, maxShields);
