@@ -2064,6 +2064,7 @@ mission "Remnant: Return the Samples"
 	description "A researcher on <planet> has asked you to return void sprite eggs to Nasqueron that the Remnant stole many years ago."
 	source "Aventine"
 	stopover "Nasqueron"
+	cargo "void sprite eggs" 6
 	to offer
 		has "Remnant: Technology Available: offered"
 		random < 50
@@ -2106,6 +2107,7 @@ mission "Remnant: Return the Samples 2"
 	description "Plume has asked you to return more stolen eggs, this time to Slylandro. Then return to <planet> with footage of the void sprites."
 	source "Aventine"
 	stopover "Slylandro"
+	cargo "void sprite eggs" 6
 	to offer
 		has "Remnant: Return the Samples: done"
 	on offer
