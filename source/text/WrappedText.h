@@ -78,23 +78,21 @@ public:
 
 
 private:
-	void SetText(const char *it, size_t length);
-	void Wrap();
-	void AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd);
-	int Space(char c) const;
-
-
-private:
 	// The returned text is a series of words and (x, y) positions:
 	class Word {
 	public:
 		Word() = default;
 
-		size_t Index() const;
+		std::string Value(const std::string &text) const;
 		Point Pos() const;
 
 	private:
+		// Track starting point in reference text.
 		size_t index = 0;
+		// Track how many chars from reference text belong to this word.
+		size_t length = 0;
+		std::string suffix;
+		// Track screen coordinates.
 		int x = 0;
 		int y = 0;
 
@@ -103,9 +101,18 @@ private:
 
 
 private:
+	void SetText(const char *it, size_t length);
+	void Wrap();
+	void AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd);
+	int BreakWord(const Word &word, int &chunkWidth);
+	int Space(char c) const;
+
+
+private:
 	const Font *font = nullptr;
 
 	int space = 0;
+	int hyphen = 0;
 	int wrapWidth = 1000;
 	int tabWidth = 0;
 	int lineHeight = 0;

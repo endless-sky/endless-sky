@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ZipFile.h"
 
 #include "Files.h"
+#include "Logger.h"
 
 #include <functional>
 #include <numeric>
@@ -29,7 +30,10 @@ ZipFile::ZipFile(const filesystem::path &zipPath)
 {
 	zipFile = unzOpen(basePath.string().c_str());
 	if(!zipFile)
-		throw runtime_error("Failed to open ZIP file" + zipPath.generic_string());
+	{
+		Logger::Log("Failed to open ZIP file " + zipPath.generic_string(), Logger::Level::ERROR);
+		return;
+	}
 
 	// Check whether this zip has a single top-level directory (such as high-dpi.zip/high-dpi)
 	filesystem::path topLevel;
@@ -49,9 +53,7 @@ ZipFile::ZipFile(const filesystem::path &zipPath)
 ZipFile::~ZipFile()
 {
 	if(zipFile)
-	{
 		unzClose(zipFile);
-	}
 }
 
 
@@ -62,7 +64,11 @@ vector<filesystem::path> ZipFile::ListFiles(const filesystem::path &directory, b
 	vector<filesystem::path> fileList;
 
 	if(unzGoToFirstFile(zipFile) != UNZ_OK)
-		throw runtime_error("Failed to go to first file in ZIP");
+	{
+		Logger::Log("Failed to go to first file in ZIP", Logger::Level::ERROR);
+		return fileList;
+	}
+
 	do {
 		char filename[256];
 		unz_file_info fileInfo;
