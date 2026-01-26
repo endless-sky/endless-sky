@@ -146,9 +146,9 @@ void BoardingPanel::Draw()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Rectangle plunderTableFrame = boarding->GetBox("plunder table: frame");
-	const Rectangle plunderTableInner = boarding->GetBox("plunder table: inner");
 	FillShader::Fill(plunderTableFrame, opaque);
 
+	const Rectangle plunderTableInner = boarding->GetBox("plunder table: inner");
 	int index = (scroll.AnimatedValue() - 10) / 20;
 	int y = plunderTableInner.Top() - scroll.AnimatedValue() + 20 * index;
 	int endY = 60;
