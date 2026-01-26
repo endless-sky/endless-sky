@@ -616,7 +616,7 @@ mission "Ka'het: Another Death in the Graveyard 1A"
 		clear "ka'het: vareti"
 		payment 100000
 		dialog
-			`You meet up with the Remnant technician at the indicated coordinates and drop the cargo you have gathered one by one. After you're done, he thanks you with a short bow and quickly disappears behind a hangar door.`
+			`You meet up with the Remnant technician at the indicated coordinates and drop the cargo you have gathered one by one. After you're done, he thanks you with a short bow, hands you <payment> for your help, and quickly disappears behind a hangar door.`
 	on visit
 		dialog `You have reached <planet>, but the Ka'het machinery is on anoth.`
 	on fail
