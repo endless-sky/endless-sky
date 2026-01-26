@@ -77,8 +77,11 @@ ship "Tace Mesa"
 
 mission "The Silent Ones"
 	invisible
-	landing
+	entering
 	repeat
+	source
+		system "Il'le"
+	destination "Earth"
 	to offer
 		not "The Silent Ones: active"
 	to complete
@@ -86,20 +89,20 @@ mission "The Silent Ones"
 	npc save
 		government "Silent Ones"
 		personality harvests mining mute timid
-		system Il'le
+		system "Il'le"
 		ship "Tace Mesa" ""
 	npc save
 		government "Silent Ones"
 		personality harvests mining mute timid
-		system Il'le
+		system "Il'le"
 		ship "Tace Mesa" ""
 	npc save
 		government "Silent Ones"
 		personality harvests mining mute timid
-		system Il'le
+		system "Il'le"
 		ship "Tace Mesa" ""
 	npc save
 		government "Silent Ones"
 		personality harvests mining mute timid
-		system Il'le
+		system "Il'le"
 		ship "Tace Mesa" ""
