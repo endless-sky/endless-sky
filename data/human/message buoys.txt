@@ -1,0 +1,384 @@
+# Copyright (c) 2025 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Entering Republic space
+mission "Message Buoy: Entering Republic space from Pirates"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		government "Republic"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		not "flagship system: Mintaka"
+		or
+			has "previous system government: Pirate"
+			and
+				has "flagship system: Alnitak"
+				has "previous system: Mintaka"
+	on offer
+		message
+			phrase "entering republic space from pirates"
+		fail
+
+phrase "entering republic space from pirates"
+	word
+		"Message buoy to all ships: You have entered Republic-controlled space"
+	word
+		". Private ships not flying blue markings must heave to and comply with Navy personnel or be deemed valid targets."
+		" from a system not under Republic jurisdiction. Be forewarned that you may be subject to further questioning upon landing at a Republic port under the Foreign Systems (Relations) Act."
+
+mission "Message Buoy: Entering Republic space from Free Worlds (hostile)"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		government "Republic"
+		neighbor government "Free Worlds"
+		not system "Graffias"
+	destination "Earth"
+	to offer
+		has "chosen sides"
+		not "main plot completed"
+		"reputation: Republic" < 0
+		not "entered system by: takeoff"
+		has "previous system government: Free Worlds"
+	on offer
+		message
+			phrase "entering republic space from free worlds (hostile)"
+		fail
+
+phrase "entering republic space from free worlds (hostile)"
+	word
+		"Message buoy to Free Worlds ships: You have entered Republic-controlled space"
+	word
+		". All ships flying unauthorized markings are to comply with Navy personnel or be deemed valid targets."
+		". Under the Planetary Militias (Restructuring) Act 3014, green markings may only be flown by authorized Militia ships. All ships unlawfully flying Militia green are to comply with Navy personnel or be deemed valid targets."
+		`. All ships affiliated with the so-called "Free Worlds" are to heave to and comply with Navy personnel or be deemed valid targets.`
+
+mission "Message Buoy: Entering Republic space from Free Worlds"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		government "Republic"
+		neighbor government "Free Worlds"
+		not system "Graffias"
+	destination "Earth"
+	to offer
+		has "main plot completed"
+		not "entered system by: takeoff"
+		has "previous system government: Free Worlds"
+	on offer
+		message
+			phrase "entering republic space from free worlds"
+		fail
+
+phrase "entering republic space from free worlds"
+	word
+		"Message buoy to all ships: You have entered Republic-controlled space"
+	word
+		". Prepare to be scanned."
+		". Peace among the stars."
+		". Upon landing in a Republic port, please subject your ship to scanning for any invasive species or pathogens."
+		". Are you a Galactic Entry accredited citizen? Skip the queues at Immigration upon presenting your planetary ID."
+		" from a system not under Republic jurisdiction. Be forewarned that you may be subject to further questioning upon landing at a Republic port under the Foreign Systems (Relations) Act."
+
+
+
+# Entering Syndicate space
+mission "Message Buoy: Entering Syndicate space"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		government "Syndicate"
+		neighbor government "Republic" "Neutral" "Independent"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		or
+			has "previous system government: Republic"
+			has "previous system government: Neutral"
+			has "previous system government: Independent"
+	on offer
+		message
+			phrase "entering syndicate space"
+		fail
+
+phrase "entering syndicate space"
+	word
+		"Message buoy to all ships: Welcome to Syndicate space"
+	word
+		", the galaxy's largest free trade zone."
+		", the galaxy's most economically free region."
+		", the backbone of the Republic's industrial power."
+		", where your future in the galaxy lies."
+		", where opportunities abound."
+		"."
+
+
+
+# Entering Free Worlds space
+mission "Message Buoy: Entering Free Worlds space from Republic"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		government "Free Worlds"
+		neighbor government "Republic" "Neutral" "Independent"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		or
+			has "previous system government: Republic"
+			has "previous system government: Neutral"
+			has "previous system government: Independent"
+	on offer
+		message
+			phrase "entering free worlds space from republic"
+		fail
+
+phrase "entering free worlds space from republic"
+	word
+		"Message buoy to all ships: You have entered Free space"
+	word
+		". Fly safe, captain."
+		". Freedom for the Southern Rim!"
+		". Stand United."
+
+mission "Message Buoy: Entering Free Worlds space from Pirate"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		government "Free Worlds"
+		neighbor government "Pirate" "Independent"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "previous system government: Pirate"
+	on offer
+		message
+			phrase "entering free worlds space from pirate"
+		fail
+
+phrase "entering free worlds space from pirate"
+	word
+		"Message buoy: You have entered Free space"
+	word
+		". By Free Worlds law, Merchant ships must identify themselves in blue markings. Any ship displaying unauthorized markings may be shot on sight."
+
+
+
+# Entering Deep space
+mission "Message Buoy: Entering Deep space"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Zosma"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		or
+			has "previous system: Alphard"
+			has "previous system: Algieba"
+	on offer
+		message
+			text "Message buoy to all ships: Welcome to Deep space. We bid you peace, prosperity, and progress."
+		fail
+
+
+
+# Other message buoys
+mission "Message Buoy: Martini Restricted"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Pollux"
+	destination "Earth"
+	to offer
+		"reputation: Republic" < 80
+		not "main plot completed"
+	on offer
+		message
+			text "Message buoy to Merchant ships: Due to the attacks of July 4, 3015, access to the Republic planet of Martini is restricted."
+		fail
+
+mission "Message Buoy: Geminus Restricted"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Castor"
+	destination "Earth"
+	to offer
+		"reputation: Republic" < 80
+		not "main plot completed"
+	on offer
+		message
+			text "Message buoy to Merchant ships: Due to the attacks of July 4, 3015, access to the Republic planet of Geminus is restricted."
+		fail
+
+mission "Message Buoy: Graffias"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Graffias"
+		government "Republic"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "war begins"
+		not "main plot completed"
+	on offer
+		message
+			text "Message buoy to all ships: You are entering the Republic system of Graffias. Poisonwood is restricted to solely Merchant or Republic ships."
+		fail
+
+mission "Message Buoy: Capella"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Capella"
+	destination "Earth"
+	to offer
+		"reputation: Republic" < 10
+	on offer
+		message
+			text "Message buoy to all ships: Access to the Republic planet of Hermes is restricted without spaceport authority approval."
+		fail
+
+mission "Message Buoy: Elnath"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Elnath"
+	destination "Earth"
+	to offer
+		"reputation: Republic" < 100
+	on offer
+		message
+			text "Message buoy to all ships: all inhabited installations in the Elnath system are restricted to employees of Lovelace Labs. Please refuel or repair in another system."
+		fail
+
+mission "Message Buoy: Occupied Greenrock"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Shaula"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "event: fw suppressed Greenrock"
+		not "event: fw abandoned Greenrock"
+	on offer
+		message
+			phrase "occupied greenrock message buoy"
+		fail
+
+phrase "occupied greenrock message buoy"
+	word
+		"Message buoy to all ships: The system of Shaula is under Free Worlds occupation."
+	word
+		" All ships flying unauthorized colors must turn themselves over to a Militia ship or be considered valid targets."
+		" We are scanning all inbound and outbound ships for contraband and fugitives."
+		" Our presence will remain until piracy on the planet of Greenrock is eliminated."
+
+mission "Message Buoy: beyond Farpoint"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Mintaka"
+	destination "Earth"
+	to offer
+		has "previous system: Alnitak"
+	on offer
+		message
+			text "Message buoy to all ships: you have exited Republic-controlled space. Assistance from Navy vessels is limited beyond the system of Alnitak. It is recommended you return to Farpoint immediately."
+		fail
+
+mission "Message Buoy: Megaparsec"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Mirfak"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+	on offer
+		message
+			phrase "message buoy: megaparsec"
+		fail
+
+phrase "message buoy: megaparsec"
+	word
+		"Message buoy to all ships:"
+	word
+		" Welcome to Mirfak, home of Megaparsec Inc."
+		" Need a perfect balance between armament and haulage? Choose the Megaparsec Splinter."
+		" The Megaparsec Bounder - setting new standards in interstellar travel."
+
+mission "Message Buoy: Tarazed Corporation"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Tarazed"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+	on offer
+		message
+			text "Message buoy to all ships: Welcome to the home of the Tarazed Corporation - the galaxy-leading manufacturer of sleek, modern spacecraft."
+		fail
+
+mission "Message Buoy: Betelgeuse Shipyards"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Betelgeuse"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+	on offer
+		message
+			text "Message buoy to all ships: Betelgeuse Shipyards - centuries of service."
+		fail
