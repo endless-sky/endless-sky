@@ -143,26 +143,6 @@ public:
 		int type = 0;
 	};
 
-	// A class remembering sources of damage.
-	class DamageLog {
-	public:
-		// Add the specified amount of damage to the log. If the damage comes from
-		// the ship itself, pass nullptr as the source.
-		void Add(double amount, const Government *source = nullptr);
-		// Add damage over time specified by another log and copy its source.
-		void Add(const DamageLog &damageOverTime);
-		// Set the given amount of damage without changing the source.
-		void Set(double amount);
-		// Get the total amount of damage.
-		operator double() const;
-		// Get the most recent source of damage.
-		const Government *Source() const;
-
-	private:
-		double amount = 0.;
-		const Government *source = nullptr;
-	};
-
 
 public:
 	// Functions provided by the Body base class:
@@ -720,14 +700,12 @@ private:
 	std::vector<EnginePoint> steeringEnginePoints;
 	Armament armament;
 
-	// Various energy levels; damage logs should be kept for those that can result
-	// in events with a need to determine the actor (for example, the ship being disabled)
-	// outside taking direct damage.
+	// Various energy levels:
 	double shields = 0.;
 	double hull = 0.;
 	double fuel = 0.;
 	double energy = 0.;
-	DamageLog heat;
+	double heat = 0.;
 	// Accrued "ion damage" that will affect this ship's energy over time.
 	double ionization = 0.;
 	// Accrued "scrambling damage" that will affect this ship's weaponry over time.
@@ -739,11 +717,11 @@ private:
 	// Accrued "discharge damage" that will affect this ship's shields over time.
 	double discharge = 0.;
 	// Accrued "corrosion damage" that will affect this ship's hull over time.
-	DamageLog corrosion;
+	double corrosion = 0.;
 	// Accrued "leak damage" that will affect this ship's fuel over time.
 	double leakage = 0.;
 	// Accrued "burn damage" that will affect this ship's heat over time.
-	DamageLog burning;
+	double burning = 0.;
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
@@ -811,5 +789,6 @@ private:
 
 	bool removeBays = false;
 
+	const Government *lastHitBy = nullptr;
 	std::list<ShipEventInternal> unhandledEvents;
 };
