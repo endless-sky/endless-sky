@@ -73,6 +73,7 @@ outfitter "Hai Basics"
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
 	"Local Map"
+	"Miner's Guide"
 	"Quantum Keystone"
 	"Pulse Rifle"
 
@@ -109,6 +110,7 @@ outfitter "Hai Intermediate"
 	`"Biroo" Atomic Thruster`
 	`"Biroo" Atomic Steering`
 	"Local Map"
+	"Miner's Guide"
 	"Quantum Keystone"
 	"Pulse Rifle"
 	"Outfit Scanner"
@@ -158,6 +160,7 @@ outfitter "Hai Advanced"
 	`"Bufaer" Atomic Steering`
 	"Luxury Accommodations"
 	"Local Map"
+	"Miner's Guide"
 	"Quantum Keystone"
 	"Pulse Rifle"
 	"Outfit Scanner"
@@ -204,6 +207,7 @@ outfitter "Unfettered Basics"
 	`"Basrem" Atomic Steering`
 	"Value Detector"
 	"Local Map"
+	"Miner's Guide"
 	"Quantum Keystone"
 	"Pulse Rifle"
 	"Asteroid Scanner"

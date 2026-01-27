@@ -542,8 +542,16 @@ outfit "Local Map"
 	cost 1000
 	thumbnail "outfit/map"
 	"map" 12
+	description "This data chip contains complete information on the twelve star systems closest to this one: planets, ports, governments, trade prices, available services, etc. You can get the same information by exploring those systems yourself, but having a map can save you from making wrong turns if you are trying to travel through new territory to reach a certain system quickly."
+
+
+outfit "Miner's Guide"
+	category "Special"
+	cost 2500
+	thumbnail "outfit/map"
+	"map" 6
 	"map minables" 1
-	description "This data chip contains complete information on the twelve star systems closest to this one: planets, ports, governments, trade prices, available services, etc. You can get all the same information just by exploring those systems yourself, but having a map can save you from making wrong turns if you are trying to travel through new territory to reach a certain system quickly."
+	description "This data chip contains mineral availability for the six star systems closest to this one as well as full details of each system's planets, ports, governments, trade prices, available services, etc. You can get the same information by exploring those systems yourself, but you would need to identify and mine every payload-bearing asteroid type in each system."
 
 
 outfit "Pilot's License"
