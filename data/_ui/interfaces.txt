@@ -1082,8 +1082,12 @@ interface "preferences"
 
 
 interface "gamerules"
-	sprite "ui/gamerules panel"
-		center -65 -20
+	sprite "ui/settings two buttons"
+		center -337 -180
+	sprite "ui/settings keys box"
+		center -350 102
+	sprite "ui/settings base panel"
+		center -1 -20
 	button b "_Back to Menu..."
 		center 195 210
 		dimensions 120 30
@@ -1126,8 +1130,12 @@ interface "gamerules"
 
 
 interface "gamerules presets"
-	sprite "ui/gamerules panel"
-		center -65 -20
+	sprite "ui/settings two buttons"
+		center -337 -180
+	sprite "ui/settings keys box"
+		center -350 102
+	sprite "ui/settings base panel"
+		center -1 -20
 	button b "_Back to Menu..."
 		center 195 210
 		dimensions 120 30
