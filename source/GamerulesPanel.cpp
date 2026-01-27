@@ -778,15 +778,15 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		gamerules.SetUniversalRamscoopActive(!gamerules.UniversalRamscoopActive());
 	else if(str == SYSTEM_DEPARTURE_MIN)
 	{
-		string message = "Set the minimum system departure distance. This should be any number.";
-		auto validate = [](double value) -> bool { return true; };
+		string message = "Set the minimum system departure distance. This should be a number greater than or equal to 0.";
+		auto validate = [](double value) -> bool { return value >= 0.0; };
 		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetSystemDepartureMin, message,
 			validate, Format::StripCommas(Format::Number(gamerules.SystemDepartureMin()))));
 	}
 	else if(str == SYSTEM_ARRIVAL_MIN)
 	{
-		string message = "Set the minimum system arrival distance. This should be a number greater than or equal to 0.";
-		auto validate = [](double value) -> bool { return value >= 0.0; };
+		string message = "Set the minimum system arrival distance. This should be any number.";
+		auto validate = [](double value) -> bool { return true; };
 		optional<double> value = gamerules.SystemArrivalMin();
 		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetSystemArrivalMin, message,
 			validate, value.has_value() ? Format::StripCommas(Format::Number(*value)) : ""));
