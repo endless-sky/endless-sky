@@ -233,7 +233,7 @@ void BoardingPanel::Draw()
 		scrollBar.SyncDraw(scroll, plunderListScrollbar.TopRight(), plunderListScrollbar.BottomRight());
 
 	// Draw the status messages from hand to hand combat.
-	Point messagePos{50., 55.};
+	Point messagePos(50., 55.);
 	for(const string &message : messages)
 	{
 		font.Draw(message, messagePos, bright);
