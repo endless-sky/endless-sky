@@ -131,6 +131,18 @@ public:
 		CAN_FIRE
 	};
 
+	// Since having ShipEvent here would create a dependency cycle, use a simplified version.
+	class ShipEventInternal {
+	// TODO: Remove once our GitHub Actions runners have Apple Clang 16 or newer.
+#ifdef __APPLE__
+	public:
+		ShipEventInternal(const Government *actor = nullptr, int type = 0) : actor{actor}, type{type} {}
+#endif
+	public:
+		const Government *actor = nullptr;
+		int type = 0;
+	};
+
 
 public:
 	// Functions provided by the Body base class:
@@ -351,6 +363,8 @@ public:
 	int WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Clear all orders and targets this ship has (after capture or transfer of control).
 	void ClearTargetsAndOrders();
+	// Move events that happened recently, but haven't been handled by the Engine yet.
+	std::list<ShipEventInternal> HandleEvents();
 
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
@@ -774,4 +788,7 @@ private:
 	std::weak_ptr<Ship> parent;
 
 	bool removeBays = false;
+
+	const Government *lastHitBy = nullptr;
+	std::list<ShipEventInternal> unhandledEvents;
 };

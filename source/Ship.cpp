@@ -1436,6 +1436,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	else
 		zoom = 1.;
 	// Make sure various special status values are reset.
+	lastHitBy = nullptr;
 	heat = IdleHeat();
 	ionization = 0.;
 	scrambling = 0.;
@@ -2591,6 +2592,7 @@ void Ship::Disable()
 void Ship::Destroy()
 {
 	hull = -1.;
+	unhandledEvents.emplace_back(nullptr, ShipEvent::DESTROY);
 }
 
 
@@ -2651,6 +2653,7 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 	if((rechargeType & Port::RechargeType::Fuel) || attributes.Get("fuel generation"))
 		fuel = attributes.Get("fuel capacity");
 
+	lastHitBy = nullptr;
 	heat = IdleHeat();
 	ionization = 0.;
 	scrambling = 0.;
@@ -2777,6 +2780,15 @@ void Ship::ClearTargetsAndOrders()
 	targetFlotsam.reset();
 	hyperspaceSystem = nullptr;
 	landingPlanet = nullptr;
+}
+
+
+
+list<Ship::ShipEventInternal> Ship::HandleEvents()
+{
+	list<ShipEventInternal> ret;
+	ret.splice(ret.end(), unhandledEvents);
+	return ret;
 }
 
 
@@ -3253,6 +3265,7 @@ double Ship::CurrentSpeed() const
 // Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
+	lastHitBy = sourceGovernment;
 	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
 
 	bool wasDisabled = IsDisabled();
@@ -3316,7 +3329,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				GameData::MessageCategories().Get("high duplicating")});
 	}
 
-	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
+	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event by itself.
 	if(heat > MaximumHeat())
 	{
 		isOverheated = true;
@@ -4115,6 +4128,8 @@ void Ship::DoGeneration()
 		if(bay.ship)
 			bay.ship->DoGeneration();
 
+	double minHull = MinimumHull();
+
 	// Shield and hull recharge. This uses whatever energy is left over from the
 	// previous frame, so that it will not steal energy from movement, etc.
 	if(!isDisabled)
@@ -4241,7 +4256,7 @@ void Ship::DoGeneration()
 			burning += attributes.Get("disabled recovery burning");
 
 			disabledRecoveryCounter = 0;
-			hull = min(max(hull, MinimumHull() * 1.5), MaxHull());
+			hull = min(max(hull, minHull * 1.5), MaxHull());
 			isDisabled = false;
 		}
 
@@ -4249,6 +4264,8 @@ void Ship::DoGeneration()
 
 	// Handle ionization effects, etc.
 	shields -= discharge;
+	bool wasDisabled = hull < minHull;
+	bool wasDestroyed = IsDestroyed();
 	hull -= corrosion;
 	energy -= ionization;
 	fuel -= leakage;
@@ -4351,6 +4368,11 @@ void Ship::DoGeneration()
 	}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
+
+	if(!wasDisabled && hull < minHull)
+		unhandledEvents.emplace_back(lastHitBy, ShipEvent::DISABLE);
+	if(!wasDestroyed && IsDestroyed())
+		unhandledEvents.emplace_back(lastHitBy, ShipEvent::DESTROY);
 
 	double maxShields = MaxShields();
 	shields = min(shields, maxShields);
@@ -4558,6 +4580,8 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 
 	if(hyperspaceCount == HYPER_C)
 	{
+		if(isSpecial && !isYours)
+			unhandledEvents.emplace_back(nullptr, ShipEvent::JUMP);
 		SetSystem(hyperspaceSystem);
 		hyperspaceSystem = nullptr;
 		targetSystem = nullptr;
