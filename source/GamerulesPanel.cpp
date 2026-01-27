@@ -723,7 +723,7 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		string message = "Set the minimum deprecation value. This should be a number between 0 and 1.";
 		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
 		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetDepreciationMin, message,
-			validate, to_string(gamerules.DepreciationMin())));
+			validate, Format::Number(gamerules.DepreciationMin(), 4)));
 	}
 	else if(str == DEPRECIATION_GRACE_PERIOD)
 	{
@@ -744,7 +744,7 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		string message = "Set the daily deprecation value. This should be a number between 0 and 1.";
 		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
 		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetDepreciationDaily, message,
-			validate, to_string(gamerules.DepreciationDaily())));
+			validate, Format::Number(gamerules.DepreciationDaily(), 4)));
 	}
 	else if(str == PERSON_SPAWN_PERIOD)
 	{
@@ -772,7 +772,7 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		string message = "Set the universal frugal threshold. This should be a number between 0 and 1.";
 		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
 		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetUniversalFrugalThreshold, message,
-			validate, to_string(gamerules.UniversalFrugalThreshold())));
+			validate, Format::Number(gamerules.UniversalFrugalThreshold(), 4)));
 	}
 	else if(str == UNIVERSAL_RAMSCOOP)
 		gamerules.SetUniversalRamscoopActive(!gamerules.UniversalRamscoopActive());
@@ -781,7 +781,7 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		string message = "Set the minimum system departure distance. This should be any number.";
 		auto validate = [](double value) -> bool { return true; };
 		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetSystemDepartureMin, message,
-			validate, to_string(gamerules.SystemDepartureMin())));
+			validate, Format::StripCommas(Format::Number(gamerules.SystemDepartureMin()))));
 	}
 	else if(str == SYSTEM_ARRIVAL_MIN)
 	{
@@ -789,14 +789,14 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		auto validate = [](double value) -> bool { return value >= 0.0; };
 		optional<double> value = gamerules.SystemArrivalMin();
 		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetSystemArrivalMin, message,
-			validate, value.has_value() ? to_string(*value) : ""));
+			validate, value.has_value() ? Format::StripCommas(Format::Number(*value)) : ""));
 	}
 	else if(str == FLEET_MULTIPLIER)
 	{
 		string message = "Set the fleet spawn multiplier. This should be a number greater than 0.";
 		auto validate = [](double value) -> bool { return value >= 0.0; };
 		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetFleetMultiplier, message,
-			validate, to_string(gamerules.FleetMultiplier())));
+			validate, Format::StripCommas(Format::Number(gamerules.FleetMultiplier(), 4))));
 	}
 	else if(str == LOCK_GAMERULES)
 		gamerules.SetLockGamerules(!gamerules.LockGamerules());

@@ -657,6 +657,20 @@ string Format::Percentage(double value, optional<int> decimalPlaces, bool trimTr
 
 
 
+string Format::StripCommas(const string &text)
+{
+	string result;
+	for(string::const_iterator it = text.begin() ; it != text.end() ; ++it)
+	{
+		const char c = *it;
+		if(c != ',')
+			result += c;
+	}
+	return result;
+}
+
+
+
 string Format::WordForm(int64_t value, bool startOfSentence)
 {
 	ostringstream o;
