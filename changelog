@@ -23,7 +23,7 @@ Version 0.11.0:
       * Fixed a looping conversation in "Lost Racer 3". (@ThrawnCA)
       * Removed duplicate action definitions of the same trigger type in a few various. (@MereDecade)
     * Engine bugs:
-      * Made explicit use of a mediump precision int in certain shaders where the lack of explicit precision was causing shader compilation to fail for some.
+      * Made explicit use of a mediump precision int in certain shaders where the lack of explicit precision was causing shader compilation to fail for some. (@thewierdnut)
       * Changing the main zoom factor no longer breaks the display of planet descriptions. (@TomGoodIdea)
       * The player's ships no longer launch after the player dies in a conversation while landed. (@Anarchist2)
       * Fixed a memory leak in PlayerInfo caused by reloading the save file while a mission offer conversation is open. (@warp-core)
@@ -121,7 +121,7 @@ Version 0.11.0:
       * Conversation choices can now have "to activate" condition sets that prevent the choice from being chosen if the conditions are not met, but do not prevent the choice from being visible to the player. (@Amazinite)
       * Governments can now be made to ignore the "illegal" and "atrocity" attributes on outfits and ships. (@TomGoodIdea)
       * Governments can now have custom death sentence conversations on a per-item basis. (@TomGoodIdea)
-      * The player's logbook can now contain scene images. (@Xobes)
+      * The player's logbook can now contain scene images. (@xobes)
       * Missions can now have timers that count down if certain circumstances are met (e.g. if the player is near the system center and is not moving) and trigger a mission action after the timer has elapsed. (@danaris, @Amazinite)
       * Game actions from missions are now capable of sending messages. (@TomGoodIdea)
       * "goto" nodes can now be direct children of "conversation" nodes, instead of requiring that they be indented under a text node. (@MereDecade)
