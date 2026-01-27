@@ -98,15 +98,11 @@ const ItemInfoDisplay &MapShipyardPanel::CompareInfo() const
 
 
 
-const string &MapShipyardPanel::KeyLabel(int index) const
+void MapShipyardPanel::DrawKey(Information &info) const
 {
-	static const string LABEL[4] = {
-		"Has no shipyard",
-		"Has shipyard",
-		"Sells this ship",
-		"Ship parked here"
-	};
-	return LABEL[index];
+	info.SetCondition("is shipyards");
+
+	MapSalesPanel::DrawKey(info);
 }
 
 
