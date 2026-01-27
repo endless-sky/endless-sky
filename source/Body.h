@@ -55,6 +55,9 @@ public:
 	// Get the sprite frame and mask for the given time step.
 	float GetFrame(int step = -1) const;
 	const Mask &GetMask(int step = -1) const;
+	// Pause the sprite animation for a single frame. This must continually be called each frame in order to keep
+	// the animation paused.
+	void PauseAnimation();
 
 	// Positional attributes.
 	const Point &Position() const;
@@ -91,7 +94,6 @@ protected:
 	// Adjust the frame rate.
 	void SetFrameRate(float framesPerSecond);
 	void AddFrameRate(float framesPerSecond);
-	void PauseAnimation();
 	// Mark this object to be removed from the game.
 	void MarkForRemoval();
 	// Mark that this object should not be removed (e.g. a launched fighter).
