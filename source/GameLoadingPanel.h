@@ -17,8 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include <string>
-#include <vector>
+#include "LoadingCircle.h"
 
 class Conversation;
 class PlayerInfo;
@@ -45,9 +44,6 @@ private:
 	UI &gamePanels;
 	bool &finishedLoading;
 
-	// The circular loading indicator shows 60 tick marks when all game data is loaded.
-	const int MAX_TICKS = 60;
-	const double ANGLE_OFFSET;
-	// The current number of ticks to be displayed.
-	int progress = 0;
+	double progress = 0;
+	LoadingCircle loadingCircle;
 };
