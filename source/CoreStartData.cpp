@@ -30,7 +30,7 @@ void CoreStartData::Load(const DataNode &node)
 	identifier = node.Size() >= 2 ? node.Token(1) : "Unidentified Start";
 	for(const DataNode &child : node)
 	{
-		// Check for the "add" keyword. CoreStateData currently doesn't support the "remove" keyword.
+		// Check for the "add" keyword. CoreStartData currently doesn't support the "remove" keyword.
 		bool add = (child.Token(0) == "add");
 		if(add && child.Size() < 2)
 		{
