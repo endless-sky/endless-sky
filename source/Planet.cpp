@@ -799,6 +799,7 @@ void Planet::Bribe(bool fullAccess) const
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {
+	const Government *government = GetGovernment();
 	if(!government)
 		return "Somehow, this planet does not have a government.";
 	const auto &playerTribute = player.GetTribute();
@@ -806,7 +807,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	{
 		if(tributeAlreadyPaying)
 			return tributeAlreadyPaying->Get();
-		else if(government && government->TributeAlreadyPaying())
+		else if(government->TributeAlreadyPaying())
 			return government->TributeAlreadyPaying()->Get();
 		return "We are already paying you as much as we can afford.";
 	}
@@ -814,7 +815,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	{
 		if(tributeUndefined)
 			return tributeUndefined->Get();
-		else if(government && government->TributeUndefined())
+		else if(government->TributeUndefined())
 			return government->TributeUndefined()->Get();
 		return "Please don't joke about that sort of thing.";
 	}
@@ -822,7 +823,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	{
 		if(tributeUnworthy)
 			return tributeUnworthy->Get();
-		else if(government && government->TributeUnworthy())
+		else if(government->TributeUnworthy())
 			return government->TributeUnworthy()->Get();
 		return "You're not worthy of our time.";
 	}
@@ -845,7 +846,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		GetGovernment()->Offend(ShipEvent::ATROCITY);
 		if(tributeFleetLaunching)
 			return tributeFleetLaunching->Get();
-		else if(government && government->TributeFleetLaunching())
+		else if(government->TributeFleetLaunching())
 			return government->TributeFleetLaunching()->Get();
 		return "Our defense fleet will make short work of you.";
 	}
@@ -863,7 +864,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	{
 		if(tributeFleetUndefeated)
 			return tributeFleetUndefeated->Get();
-		else if(government && government->TributeFleetUndefeated())
+		else if(government->TributeFleetUndefeated())
 			return government->TributeFleetUndefeated()->Get();
 		return "We're not ready to surrender yet.";
 	}
@@ -872,7 +873,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	string surrenderMessage;
 	if(tributeSurrendered)
 		surrenderMessage = tributeSurrendered->Get();
-	else if(government && government->TributeSurrendered())
+	else if(government->TributeSurrendered())
 		surrenderMessage = government->TributeSurrendered()->Get();
 	else
 		surrenderMessage = "We surrender. We will pay you <credits> per day to leave us alone.";
