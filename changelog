@@ -1,4 +1,6 @@
 Version 0.11.0:
+  * Breaking changes:
+    * The Hai Reveal storyline has been removed from the game. Only about a dozen missions were ever available, they conflict with the plot of other storylines, and no progress has been made on the storyline in several years, so we've opted to remove it for now. (@Amazinite)
   * Big changes:
     * Added three more human starting scenarios to the game. (@Anarchist2)
     * The outfitter and shipyard UI has been updated to have on-screen buttons for all of the possible actions that were previously only tied to keybinds. (@xobes)
@@ -35,8 +37,6 @@ Version 0.11.0:
       * When an event removes an object from a system which has a landable planet, the planet is now informed that it is no longer in that system. (@warp-core)
       * Timestamp formatting now uses a more compatible format for Windows. (@TomGoodIdea)
       * Capture odds are now only calculated for capturable ships, preventing uncapturable ships from unnecessarily using up memory when boarded. (@Amazinite)
-      * Fixed an edge case where escorts without weapons would move independently when not given orders, potentially jumping away to a different system without you. (@Amazinite)
-      * Selecting a large number of escorts no longer causes extreme lag caused by high CPU usage. (@Amazinite)
       * Fixed a crash caused by mission actions referring to an undefined message. (@warp-core)
       * Fixed a crash that could occur when a mission action took one of your ships while in a shop. (@Amazinite)
       * Fixed the fast-forward state being out of sync when reloading a dead pilot. (@TomGoodIdea)
@@ -87,7 +87,6 @@ Version 0.11.0:
         * Reduced the thrust of the Caldera Afterburner by ~9%.
         * Greatly increased the heat produced by the Bellows-Class Afterburner (18 -> 72).
       * Considerably reduced the cost of the High-Velocity Spike Rack from 350k to 50k. (@Daeridanii1)
-      * Adjusted the description of the Langrage Hyper-Heavyer. (@kaiboyjiang)
       * Mining efficiency is now more effective on rarer asteroids compared to more common ones, instead of being less effective. (@Quantumshark)
         * Aluminum asteroids have been untouched: +20% yield.
         * Silicon asteroids are now less effected: +27% -> +11% yield, with asteroids between silicon and aluminum being changed less.
@@ -108,6 +107,7 @@ Version 0.11.0:
       * Adjusted the order of the Kestrel (More Weapons) weapon hardpoints to match the placement positions of the weapons on the other variants. (@Saugia)
       * Adjusted some systems and planets in Gegno space to facilitate planned future content. (@Saugia)
       * Unfettered planets now have custom bribe rejection hails. (@Saugia)
+      * Adjusted the description of the Langrage Hyper-Heavyer. (@kaiboyjiang)
   * Graphics and artwork:
     * Adjusted some human landscape images to better fit their planet descriptions. (@Anarchist2)
     * Cleaned up various UI sprites to maintain consistency in art style. (@Anarchist2)
@@ -172,6 +172,8 @@ Version 0.11.0:
     * Swizzle mask textures are no longer duplicated for multi-frame sprites if only one swizzle mask is provided, freeing up VRAM. (@warp-core)
     * If the high DPI plugin is installed, then the game will only load the 2x textures instead of loading both the 1x and 2x textures, freeing up VRAM. (@Amazinite)
     * Improved the performance of AI::DoScatter. This should result in a noticeable improvement when flying around with a large number of ships. (@Amazinite)
+    * Fixed an edge case where escorts without weapons would move independently when not given orders, potentially jumping away to a different system without you. (@Amazinite)
+    * Selecting a large number of escorts no longer causes extreme lag caused by high CPU usage. (@Amazinite)
   * Under the hood:
     * Renamed the "line" interface element to "fill". (@TomGoodIdea)
     * Separated the Weapon and Outfit classes from one another. (@TomGoodIdea, @warp-core)
