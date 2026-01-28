@@ -1,7 +1,7 @@
 Version 0.11.0:
   * Big changes:
     * Added three more human starting scenarios to the game. (@Anarchist2)
-    * The outfitter and shipyard UI has updated to have on-screen buttons for all of the possible actions that were previously only tied to keybinds. (@xobes)
+    * The outfitter and shipyard UI has been updated to have on-screen buttons for all of the possible actions that were previously only tied to keybinds. (@xobes)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Anarchist2, @Canned-Seagull, @Nova1422, @oliv3r, @reticent-rem, @ThrawnCA, @warp-core, @Wedge009)
@@ -21,7 +21,7 @@ Version 0.11.0:
       * Added clearance to various missions where Hai-home is the destination. (@Nova1422)
       * Fixed the "Rich student transport" mission not having a deadline despite the description suggesting there was one. (@kaiboyjiang)
       * Fixed a looping conversation in "Lost Racer 3". (@ThrawnCA)
-      * Removed duplicate action definitions of the same trigger type in a few various. (@MereDecade)
+      * Removed duplicate action definitions of the same trigger type in a few missions. (@MereDecade)
       * The "Remnant: Return the Samples" missions now have mission cargo, as the mission text implied they did. (@Amazinite)
     * Engine bugs:
       * Made explicit use of a mediump precision int in certain shaders where the lack of explicit precision was causing shader compilation to fail for some. (@thewierdnut)
@@ -30,15 +30,15 @@ Version 0.11.0:
       * Fixed a memory leak in PlayerInfo caused by reloading the save file while a mission offer conversation is open. (@warp-core)
       * Fixed a crash that could be caused by having negative damage over time values on a ship. (@TomGoodIdea)
       * Fixed a crash on startup caused by invalid syntax in a plugin.txt file. (@TomGoodIdea)
-      * Fixed a possible null pointer dereference in FillShader::Init(). (@thewierdnut)
+      * Missing FillShader now shows the appropriate error message instead of crashing the game. (@thewierdnut)
       * The display names of outfits and ships are now used when sorting them in the UI, instead of their identifiers. (@TomGoodIdea)
       * When an event removes an object from a system which has a landable planet, the planet is now informed that it is no longer in that system. (@warp-core)
       * Timestamp formatting now uses a more compatible format for Windows. (@TomGoodIdea)
       * Capture odds are now only calculated for capturable ships, preventing uncapturable ships from unnecessarily using up memory when boarded. (@Amazinite)
       * Fixed an edge case where escorts without weapons would move independently when not given orders, potentially jumping away to a different system without you. (@Amazinite)
-      * Selecting a large number of escorts when you have a large number of escorts no longer causes extreme lag caused by high CPU usage. (@Amazinite)
+      * Selecting a large number of escorts no longer causes extreme lag caused by high CPU usage. (@Amazinite)
       * Fixed a crash caused by mission actions referring to an undefined message. (@warp-core)
-      * Fixed a crash caused that could occur when a mission action took one of your ships while in a shop. (@Amazinite)
+      * Fixed a crash that could occur when a mission action took one of your ships while in a shop. (@Amazinite)
       * Fixed the fast-forward state being out of sync when reloading a dead pilot. (@TomGoodIdea)
       * Fixed an inconsistent crash that could occur when playing MP3 or FLAC files. (@warp-core)
       * Projectiles incapable of turning now skip over all homing code in projectile movement. (@nickshanks)
@@ -75,8 +75,8 @@ Version 0.11.0:
         * Bounty NPCs now use the "marked" personality instead of "nemesis" so that they aren't destroyed by other governments as a result of the above change.
         * Bounty NPCs in many jobs are capable of spawning further away, but now have the "tracked" personality, meaning that their location is pinged on the galaxy map, removing the aspect of you needing to track down the bounty on your own. Various story missions that require you to hunt down a bounty have been given the same treatment.
         * Disguised pirates now only spawn one jump away from the origin system. Since they are disguised, they have not gained the "tracked" personality.
-        * The payment of the Marauder bounties have been altered to better reflect their difficulty.
-      * Updated all of the invisible missions that used to offer the moment you started a new save to now use the "entering" and "transition" offer locations, meaning that only get stored in the player's save file the moment they're needed. (@Amazinite, @warp-core)
+        * The payment of the Marauder bounties has been altered to better reflect their difficulty.
+      * Updated all of the invisible missions that used to offer the moment you started a new save to now use the "entering" and "transition" offer locations, meaning that they only get stored in the player's save file the moment they're needed. (@Amazinite, @warp-core)
     * Balance:
       * Rebalanced afterburners. (@Azure3141)
         * Increased the fuel consumption of afterburners across the board.
@@ -151,11 +151,11 @@ Version 0.11.0:
       * The display of the CPU/GPU loads can now be toggled using a control. The default is F3. (@TomGoodIdea)
     * Interface definitions:
       * The "Additional info" section on the controls panel is now created using interface data instead of being hardcoded. (@Amazinite)
-      * Various messages that were hard-coded into the engine can now be customized via game data. (@TomGoodIdea)
+      * Various messages that were hardcoded into the engine can now be customized via game data. (@TomGoodIdea)
       * The map legends in the map missions panel are now created using interface data instead of being hardcoded. (@nickshanks)
     * QoL:
       * The jump keybind will now set a travel plan to the currently selected system on the map (or add it to the plan if shift is held), allowing you to much more easily set a route to a system without using the mouse by using the find system feature to select the system prior to hitting the jump key. (@Amazinite)
-      * The trade panel on the map now has colored rings for representing how highor low the value of a commodity is in the current system, and colored arrows for representing the difference in value between two systems. (@xobes)
+      * The trade panel on the map now has colored rings for representing how high or low the value of a commodity is in the current system, and colored arrows for representing the difference in value between two systems. (@xobes)
       * Added a scroll bar to the boarding panel when there are enough outfits to allow scrolling. (@TomGoodIdea)
       * Added a "Player Info" button to the planet panel. (@Anarchist2)
       * Mission escorts can now be selected using the escort display. (@Amazinite)
@@ -196,7 +196,7 @@ Version 0.11.0:
     * Updated the CONTRIBUTING.md file to point to the new C++ style guide location. (@Nova1422)
     * Updated the build instructions for MacOS. (@CelestialHoney)
   * CI/CD and development environment:
-    * Bumped the MocOS runners to macos-14. (@warp-core)
+    * Bumped the MacOS runners to macos-14. (@warp-core)
     * Added desktop.ini to the .gitignore. (@TomGoodIdea)
     * Updated vcpkg configurations for better compatibility with CMake 4. (@ciphell)
     * The expected character encoding is now specified in the .editorconfig. (@warp-core)
@@ -204,7 +204,6 @@ Version 0.11.0:
     * Increased the integration test timeout from 15 seconds to 2 minutes. (@AdrianBunk)
     * Automatically choose the CMake target for GLEW. (@TomGoodIdea)
     * Added a 32-bit Windows CI job. (@TomGoodIdea)
-
 
 Version 0.10.16
   * Bug fixes:
