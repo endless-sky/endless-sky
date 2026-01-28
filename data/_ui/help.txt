@@ -188,6 +188,10 @@ help "outfitter with multiple ships"
 	`Escorts can be saved into control groups by pressing a number key while holding Control. All selected escorts will then be bound to that number key, and can be selected again at any time by pressing it.`
 	`Ship group management can be done while flying around or while in the shipyard, outfitter, or player info panel.`
 
+help "internal damage"
+	`As a result of collateral damage while boarding and capturing, one or more ships you own have been internally damaged. Ships with internal damage will periodically lose control mid-flight.`
+	`Internal damage can only be repaired within a shipyard, for a portion of the chassis' original cost.`
+
 help "stranded"
 	`Oops! You just ran out of fuel in an uninhabited star system. Fortunately, other ships are willing to help you.`
 	`Press <Select next ship> to cycle through all the ships in this system. When you have a friendly one selected, press <Talk to selected ship> to hail it. You can then ask for help, and if it has fuel to spare it will fly over and transfer fuel to your ship. This is easiest for the other ship to do if your ship is nearly stationary.`

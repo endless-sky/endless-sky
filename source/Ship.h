@@ -193,6 +193,11 @@ public:
 	// This is only useful for the player's ships.
 	double Attraction() const;
 	double Deterrence() const;
+	// Set / Get whether this ship was damaged as a result of boarding,
+	// as well as the cost to repair that damage.
+	void SetInternalDamage(bool damage);
+	bool InternalDamage() const;
+	int64_t RepairCost() const;
 
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
@@ -621,6 +626,7 @@ private:
 	EsUuid uuid;
 	std::string givenName;
 	bool canBeCarried = false;
+	bool internalDamage = false;
 
 	int forget = 0;
 	bool isInSystem = true;

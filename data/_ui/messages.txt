@@ -114,6 +114,10 @@ message "undercrewed flagship"
 	text "Your ship is moving erratically because you do not have enough crew to pilot it."
 	category "low"
 
+message "internally damaged flagship"
+	text "Your ship is moving erratically due to internal damage."
+	category "low"
+
 message "cannot board while cloaked"
 	text "You cannot board a ship while cloaked."
 	category "high no repeat"

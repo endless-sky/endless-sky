@@ -67,6 +67,12 @@ namespace {
 
 	const double MAXIMUM_TEMPERATURE = 100.;
 
+	// How frequently a ship will lose control if it has internal damage, as a percentage.
+	const double INTERNAL_DAMAGE_FAILURE = .4;
+
+	// The value a ship's chassis cost is multiplied by to get the repair cost.
+	const double REPAIR_MULTIPLIER = .8;
+
 	// Scanning takes up to 10 seconds (SCAN_TIME / MIN_SCAN_STEPS)
 	// dependent on the range from the ship (among other factors).
 	// The scan speed uses a gaussian drop-off with the reported scan radius as the standard deviation.
@@ -283,6 +289,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			customSwizzleName = child.Token(1);
 		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
+		else if(key == "has internal damage")
+			internalDamage = true;
 		else if(key == "attributes" || add)
 		{
 			if(!add)
@@ -976,6 +984,9 @@ void Ship::Save(DataWriter &out) const
 
 		out.Write("uuid", uuid.ToString());
 
+		if(internalDamage)
+			out.Write("has internal damage");
+
 		out.Write("attributes");
 		out.BeginChild();
 		{
@@ -1320,6 +1331,27 @@ double Ship::Deterrence() const
 
 
 
+void Ship::SetInternalDamage(bool damage)
+{
+	internalDamage = damage;
+}
+
+
+
+bool Ship::InternalDamage() const
+{
+	return internalDamage;
+}
+
+
+
+int64_t Ship::RepairCost() const
+{
+	return ChassisCost() * REPAIR_MULTIPLIER;
+}
+
+
+
 // Check if this ship is configured in such a way that it would be difficult
 // or impossible to fly.
 vector<string> Ship::FlightCheck() const
@@ -1363,6 +1395,8 @@ vector<string> Ship::FlightCheck() const
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
 	{
+		if(InternalDamage())
+			checks.emplace_back("internal damage?");
 		if(RequiredCrew() > bunks)
 			checks.emplace_back("insufficient bunks?");
 		if(IdleHeat() <= 0. && (thrustHeat < 0. || turnHeat < 0.))
@@ -2719,6 +2753,9 @@ int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	hull = min(max(hull, MinimumHull() * 1.5), MaxHull());
 	isDisabled = false;
 
+	// Mark that this ship was damage during boarding.
+	internalDamage = true;
+
 	// Set the new government.
 	government = capturer->GetGovernment();
 
@@ -3169,7 +3206,8 @@ double Ship::TrueTurnRate() const
 double Ship::CrewTurnRate() const
 {
 	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
-	return TurnRate() * min(1., static_cast<double>(Crew()) / RequiredCrew());
+	return TurnRate() * min(1., static_cast<double>(Crew()) / RequiredCrew())
+		* (internalDamage ? 1 - INTERNAL_DAMAGE_FAILURE : 1.);
 }
 
 
@@ -3193,7 +3231,8 @@ double Ship::TrueAcceleration() const
 double Ship::CrewAcceleration() const
 {
 	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
-	return Acceleration() * min(1., static_cast<double>(Crew()) / RequiredCrew());
+	return Acceleration() * min(1., static_cast<double>(Crew()) / RequiredCrew())
+		* (internalDamage ? 1 - INTERNAL_DAMAGE_FAILURE : 1.);
 }
 
 
@@ -4778,6 +4817,18 @@ void Ship::StepPilot()
 	else if(isDisabled)
 	{
 		// If the ship is disabled, don't show a warning message due to missing crew.
+	}
+	else if(internalDamage && Random::Real() < INTERNAL_DAMAGE_FAILURE)
+	{
+		pilotError = 30;
+		if(isYours || personality.IsEscort())
+		{
+			if(!parent.lock())
+				Messages::Add(*GameData::Messages().Get("internally damaged flagship"));
+			else if(Preferences::Has("Extra fleet status messages"))
+				Messages::Add({"The " + givenName + " is moving erratically as a result of internal damage.",
+					GameData::MessageCategories().Get("low")});
+		}
 	}
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
