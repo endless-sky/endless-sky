@@ -18,9 +18,6 @@ galaxy "Milky Way"
 galaxy "label arachi"
 	pos -750 615
 
-galaxy "label umbral"
-	pos 1150 -500
-
 galaxy "label core"
 	pos -136 130
 	sprite label/core
@@ -85,6 +82,9 @@ galaxy "label tangled shroud"
 
 galaxy "label twilight"
 	pos -420 750
+
+galaxy "label umbral"
+	pos 1150 -500
 
 galaxy "label wanderers"
 	pos -145 -753
@@ -1582,8 +1582,9 @@ system "9 Spring Above"
 system Aaura-Kaska
 	pos -86 1298
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 1313.28
+	haze _menu/haze-67
 	link Myruet-Kvelq
 	link Pelaa-Muora
 	link Stiidej-Nnesa
@@ -1611,7 +1612,6 @@ system Aaura-Kaska
 	fleet "Large New Houses" 7000
 	fleet "Old Houses Surveillance" 6000
 	fleet "New Houses Surveillance" 6000
-	haze _menu/haze-67
 	object
 		sprite star/g0
 		distance 21.316
@@ -2644,9 +2644,9 @@ system Aileron
 	pos -581 768
 	government Uninhabited
 	attributes "twilight"
+	arrival 1675
 	ramscoop
 		multiplier 1.5
-	arrival 1675
 	belt 1094 6
 	belt 1907 7
 	"jump range" 60
@@ -5535,9 +5535,9 @@ system Apeiron
 	pos -420 869
 	government Uninhabited
 	attributes "twilight"
+	arrival 2750
 	ramscoop
 		multiplier 1.2
-	arrival 2750
 	belt 1990 7
 	belt 2362 9
 	haze _menu/haze-twilight-thin
@@ -6297,11 +6297,11 @@ system Avasaa-Novaa
 	shrouded
 	pos 71 917.52
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 500
+	haze _menu/haze-tear
 	hazard "Predecessors Base Spatial Decay" 400
 	hazard "Predecessors Spatial Rift Weak" 10000
-	haze _menu/haze-tear
 	object
 		sprite star/m0
 	object
@@ -8801,8 +8801,9 @@ system Chy'chra
 system Chyyra-Osolaa
 	pos -241 1365
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 2560
+	haze _menu/haze-67
 	link Luue-Saqru
 	link Myiara-Nnesa
 	link Pelaa-Muora
@@ -8826,7 +8827,6 @@ system Chyyra-Osolaa
 	fleet "People's Houses" 8000
 	fleet "People's Houses Raiders" 12000
 	fleet "Aqrabe Home" 1200
-	haze _menu/haze-67
 	object
 		sprite star/f0
 	object
@@ -10151,7 +10151,7 @@ system Decet
 		sprite star/magnetar
 			scale 0.5
 			"frame rate" 15
-			"rewind"
+			rewind
 
 system "Deep Space 19K12"
 	pos -1113 -747
@@ -11744,6 +11744,7 @@ system E-4183
 	belt 1542
 	"jump range" 50
 	haze _menu/haze-coal
+	"starfield density" .2
 	link M-1188
 	asteroids "large rock" 3 1.32
 	asteroids "small metal" 5 1.076
@@ -11753,7 +11754,6 @@ system E-4183
 	fleet "Iije (Uninterested)" 1500
 	fleet "Iije (Swarming)" 900
 	fleet "Iije (Surveillance)" 900
-	"starfield density" .2
 	object
 		sprite star/a-giant
 	object
@@ -11786,6 +11786,7 @@ system E-9182
 	arrival 5000
 	belt 1387
 	haze _menu/haze-none
+	"starfield density" 0.2
 	link O-3184
 	asteroids "large rock" 1 4.29
 	asteroids "small metal" 3 3.09
@@ -11797,7 +11798,6 @@ system E-9182
 	fleet "Iije (Uninterested)" 2100
 	fleet "Iije (Swarming)" 4000
 	fleet "Iije (Surveillance)" 3000
-	"starfield density" .2
 	object
 		sprite star/o0
 	object
@@ -13495,15 +13495,15 @@ system Esix
 system "Eta Carinae"
 	pos -212.62 928.99
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 5000
+	haze _menu/haze-tear
 	asteroids "small rock" 1 4.65
 	asteroids "large rock" 1 4.237
 	asteroids "large metal" 1 2.55
-	haze _menu/haze-tear
 	object
 		sprite star/wr
-			scale 2.0
+			scale 2
 		distance 200
 	object
 		sprite star/o-supergiant
@@ -15181,10 +15181,10 @@ system G-6183
 	belt 1187
 	"jump range" 50
 	haze _menu/haze-coal
+	"starfield density" 0.05
 	minables neodymium 1 3.87
 	hazard "Small Black Hole Event Horizon" 1
 	hazard "Small Black Hole Gravity" 1
-	"starfield density" .05
 	object
 		sprite star/coal-black-hole
 	object
@@ -15210,12 +15210,12 @@ system G-719
 	arrival 2900
 	belt 1870
 	haze _menu/haze-coal
+	"starfield density" 0.1
 	link W-3197
 	asteroids "large metal" 1 2.22
 	fleet "Iije (Uninterested)" 2100
 	fleet "Iije (Swarming)" 3900
 	fleet "Iije (Surveillance)" 2400
-	"starfield density" .1
 	object
 		sprite star/f3
 		distance 76.28
@@ -15244,6 +15244,7 @@ system G-819
 	belt 1333
 	"jump range" 60
 	haze _menu/haze-coal
+	"starfield density" 0.2
 	link H-9187
 	link W-3197
 	asteroids "small rock" 5 1.53
@@ -15253,7 +15254,6 @@ system G-819
 	fleet "Iije (Uninterested)" 3000
 	fleet "Iije (Swarming)" 6000
 	fleet "Iije (Surveillance)" 3500
-	"starfield density" .2
 	object
 		sprite star/g3
 	object
@@ -16522,6 +16522,7 @@ system H-8188
 	arrival 3650
 	belt 1254
 	haze _menu/haze-none
+	"starfield density" 0.1
 	link H-9187
 	asteroids "small rock" 1 1.32
 	asteroids "large rock" 1 1.44
@@ -16530,7 +16531,6 @@ system H-8188
 	fleet "Iije (Uninterested)" 3400
 	fleet "Iije (Swarming)" 6000
 	fleet "Iije (Surveillance)" 3000
-	"starfield density" .1
 	object
 		sprite star/a0
 	object
@@ -16548,6 +16548,7 @@ system H-9187
 	belt 1102
 	"jump range" 60
 	haze _menu/haze-coal
+	"starfield density" 0.3
 	link G-819
 	link H-8188
 	link L-118
@@ -16556,7 +16557,6 @@ system H-9187
 	fleet "Iije (Uninterested)" 3000
 	fleet "Iije (Swarming)" 4000
 	fleet "Iije (Surveillance)" 4000
-	"starfield density" .3
 	object
 		sprite star/a3
 	object
@@ -17849,6 +17849,53 @@ system Ik'kara'ka
 			sprite planet/dust0
 			distance 369
 
+system Il'le
+	pos 255.933 -716.506
+	government Uninhabited
+	arrival 1715
+	belt 1165
+	link Dom'us
+	link Hui'uc
+	asteroids "small rock" 4 1.4352
+	asteroids "medium rock" 10 2.3
+	asteroids "large rock" 3 2.0608
+	asteroids "small metal" 2 2.3
+	asteroids "large metal" 3 1.2328
+	minables platinum 2 1.43013
+	minables titanium 5 1.78627
+	minables silicon 27 0.74013
+	minables iron 18 1.55307
+	trade Clothing 354
+	trade Electronics 673
+	trade Equipment 614
+	trade Food 197
+	trade "Heavy Metals" 834
+	trade Industrial 803
+	trade "Luxury Goods" 1387
+	trade Medical 842
+	trade Metal 270
+	trade Plastic 267
+	object
+		sprite star/f5
+	object
+		sprite planet/rock11
+		distance 142.89
+	object
+		sprite planet/cloud2
+		distance 492.3
+		object
+			sprite planet/lava0
+			distance 188
+	object Occupas
+		sprite planet/gas17
+		distance 1686.91
+		object
+			sprite planet/dust0
+			distance 195
+	object
+		sprite planet/dust4
+		distance 2030.4
+
 system Ildaria
 	pos -702 317
 	government Republic
@@ -17991,53 +18038,6 @@ system Ilirco
 	object
 		sprite planet/gas3-b
 		distance 6154
-
-system Il'le
-	pos 255.933 -716.506
-	government Uninhabited
-	arrival 1715
-	belt 1165
-	link Dom'us
-	link Hui'uc
-	asteroids "small rock" 4 1.4352
-	asteroids "medium rock" 10 2.3
-	asteroids "large rock" 3 2.0608
-	asteroids "small metal" 2 2.3
-	asteroids "large metal" 3 1.2328
-	minables platinum 2 1.43013
-	minables titanium 5 1.78627
-	minables silicon 27 0.74013
-	minables iron 18 1.55307
-	trade Clothing 354
-	trade Electronics 673
-	trade Equipment 614
-	trade Food 197
-	trade "Heavy Metals" 834
-	trade Industrial 803
-	trade "Luxury Goods" 1387
-	trade Medical 842
-	trade Metal 270
-	trade Plastic 267
-	object
-		sprite star/f5
-	object
-		sprite planet/rock11
-		distance 142.89
-	object
-		sprite planet/cloud2
-		distance 492.3
-		object
-			sprite planet/lava0
-			distance 188
-	object Occupas
-		sprite planet/gas17
-		distance 1686.91
-		object
-			sprite planet/dust0
-			distance 195
-	object
-		sprite planet/dust4
-		distance 2030.4
 
 system "Imo Dep"
 	pos -56.2764 -600.1
@@ -19367,11 +19367,11 @@ system Kanguwa
 	pos 995.47 -329.975
 	government Uninhabited
 	attributes "neutron" "notable star" "rulei"
-	music "ambient/rulei space"
 	arrival 500
 	belt 1866
 	"jump range" 70
 	haze _menu/haze-blackbody
+	music "ambient/rulei space"
 	link Lloloi
 	link Msalbit
 	link Yranjiu
@@ -19545,17 +19545,39 @@ system Kashikt
 			sprite planet/ice7-b
 			distance 297
 
+system Kasi-Vasa-Novaa
+	shrouded
+	pos -149.44 989.64
+	government Uninhabited
+	attributes "predecessor" "tangled shroud"
+	arrival 500
+	haze _menu/haze-tear
+	link Kiiraj-Luue
+	hazard "Predecessors Base Spatial Decay" 600
+	object
+		sprite planet/browndwarf-l-rogue
+	object
+		sprite planet/ganymede
+		distance 800
+	object
+		sprite planet/desert4
+		distance 1250
+	object
+		sprite planet/dust0
+		distance 4000
+		period -8000
+
 system Kasii-Cavaasa
 	shrouded
 	pos -21.76 909.31
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 5000
+	haze _menu/haze-tear
 	link Mavra-Ijsola
-	hazard "Predecessors Base Spatial Decay" 400
 	asteroids "small rock" 1 1
 	asteroids "small metal" 3 1
-	haze _menu/haze-tear
+	hazard "Predecessors Base Spatial Decay" 400
 	object
 		sprite star/b-supergiant
 	object
@@ -19569,13 +19591,13 @@ system Kasii-Sola
 	shrouded
 	pos -23 1089.98
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 500
+	haze _menu/haze-tear
 	link Vasa-Oorua
-	hazard "Predecessors Base Spatial Decay" 600
 	asteroids "small rock" 1 1.005
 	asteroids "small metal" 1 1.17
-	haze _menu/haze-tear
+	hazard "Predecessors Base Spatial Decay" 600
 	object
 		sprite star/m0
 	object
@@ -19605,28 +19627,6 @@ system Kasii-Sola
 	object
 		sprite planet/rock13
 		distance 5600
-
-system Kasi-Vasa-Novaa
-	shrouded
-	pos -149.44 989.64
-	government Uninhabited
-	attributes predecessor "tangled shroud"
-	arrival 500
-	link Kiiraj-Luue
-	hazard "Predecessors Base Spatial Decay" 600
-	haze _menu/haze-tear
-	object
-		sprite planet/browndwarf-l-rogue
-	object
-		sprite planet/ganymede
-		distance 800
-	object
-		sprite planet/desert4
-		distance 1250
-	object
-		sprite planet/dust0
-		distance 4000
-		period -8000
 
 system Kasikfar
 	pos 10.4305 -127.812
@@ -19772,8 +19772,10 @@ system "Kaus Borealis"
 system Kella-Uoasa
 	pos -359 1511
 	government "People's Houses"
-	attributes successor
+	attributes "successor"
 	arrival 5000
+	haze _menu/haze-none
+	"starfield density" 0.7
 	link Luue-Saqru
 	link Maspa-Raaqa
 	asteroids "large metal" 58 4.5
@@ -19797,8 +19799,6 @@ system Kella-Uoasa
 	fleet "Small Successor Transport" 9000
 	fleet "People's Houses Raiders" 3000
 	fleet "Small New Houses" 15000
-	haze _menu/haze-none
-	"starfield density" 0.7
 	object
 		sprite star/o8
 	object
@@ -19821,12 +19821,12 @@ system Khasola-Ryuit
 	shrouded
 	pos -71.87 833.59
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 5000
-	hazard "Predecessors Base Spatial Decay" 600
+	haze _menu/haze-tear
 	asteroids "small metal" 2 1.5
 	asteroids "large metal" 1 1.3
-	haze _menu/haze-tear
+	hazard "Predecessors Base Spatial Decay" 600
 	object
 		sprite star/a-supergiant
 		distance 200
@@ -19843,8 +19843,9 @@ system Khasola-Ryuit
 system Khosa-Kaska
 	pos 201 1279
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 5000
+	haze _menu/haze-67
 	link Vade-Staja
 	asteroids "small metal" 8 1.5
 	asteroids "small rock" 9 1.8
@@ -19854,7 +19855,6 @@ system Khosa-Kaska
 	fleet "Successor Miners" 2000
 	fleet "Medium Successor Freight" 4000
 	fleet "Small Successor Transport" 2000
-	haze _menu/haze-67
 	object
 		sprite star/a0
 		distance 75
@@ -19874,32 +19874,6 @@ system Khosa-Kaska
 		object
 			sprite planet/rock0-b
 			distance 182
-
-system Kiiraj-Luue
-	shrouded
-	pos -125.52 955.66
-	government Uninhabited
-	attributes predecessor "tangled shroud"
-	arrival 2560
-	link Kasi-Vasa-Novaa
-	hazard "Predecessors Base Spatial Decay" 200
-	hazard "Predecessors Spatial Rift Weak" 10000
-	hazard "Predecessors Spatial Rift Intense" 20000
-	haze _menu/haze-tear
-	object
-		sprite star/f0
-	object
-		sprite planet/gas2
-		distance 1230
-		object
-			sprite planet/luna
-			distance 350
-		object
-			sprite planet/ice0
-			distance 500
-	object
-		sprite planet/forest1
-		distance 2890
 
 system "Ki War Ek"
 	pos -1106.63 368.214
@@ -20154,6 +20128,32 @@ system "Ki War Ek"
 		distance 830
 		period 349.820
 		offset 250
+
+system Kiiraj-Luue
+	shrouded
+	pos -125.52 955.66
+	government Uninhabited
+	attributes "predecessor" "tangled shroud"
+	arrival 2560
+	haze _menu/haze-tear
+	link Kasi-Vasa-Novaa
+	hazard "Predecessors Base Spatial Decay" 200
+	hazard "Predecessors Spatial Rift Weak" 10000
+	hazard "Predecessors Spatial Rift Intense" 20000
+	object
+		sprite star/f0
+	object
+		sprite planet/gas2
+		distance 1230
+		object
+			sprite planet/luna
+			distance 350
+		object
+			sprite planet/ice0
+			distance 500
+	object
+		sprite planet/forest1
+		distance 2890
 
 system "Kifrana Terberah"
 	pos 362.817 -200.83
@@ -21252,6 +21252,7 @@ system L-118
 	belt 1724
 	"jump range" 70
 	haze _menu/haze-coal
+	"starfield density" 0.3
 	link H-9187
 	asteroids "small rock" 12 3.3
 	asteroids "medium rock" 6 2.4
@@ -21261,7 +21262,6 @@ system L-118
 	asteroids "large metal" 1 2.8
 	minables aluminum 2 4.17
 	minables iron 3 5.3
-	"starfield density" .3
 	object
 		sprite star/a8
 	object
@@ -21285,6 +21285,7 @@ system L-6181
 	belt 1758
 	"jump range" 40
 	haze _menu/haze-coal
+	"starfield density" 0.2
 	link M-1188
 	link MS-219
 	asteroids "small rock" 1 1.8
@@ -21295,7 +21296,6 @@ system L-6181
 	fleet "Iije (Uninterested)" 2100
 	fleet "Iije (Swarming)" 2000
 	fleet "Iije (Surveillance)" 1800
-	"starfield density" .2
 	object
 		sprite star/m8
 		distance 16.78
@@ -22080,8 +22080,10 @@ system Lurata
 system Luue-Saqru
 	pos -319 1432
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 500
+	haze _menu/haze-none
+	"starfield density" 0.7
 	link Chyyra-Osolaa
 	link Kella-Uoasa
 	link Raaqa-Ryuit
@@ -22106,8 +22108,6 @@ system Luue-Saqru
 	fleet "Small New Houses" 3000
 	fleet "Successor Miners" 9000
 	fleet "Successor Miners (Well-Defended)" 6000
-	haze _menu/haze-none
-	"starfield density" 0.7
 	object
 		sprite star/k0
 	object
@@ -22131,6 +22131,7 @@ system M-1188
 	belt 1676
 	"jump range" 80
 	haze _menu/haze-coal
+	"starfield density" 0.1
 	link E-4183
 	link L-6181
 	link MS-219
@@ -22139,7 +22140,6 @@ system M-1188
 	fleet "Iije (Uninterested)" 1300
 	fleet "Iije (Swarming)" 1400
 	fleet "Iije (Surveillance)" 1500
-	"starfield density" .1
 	object
 		sprite star/a-dwarf
 	object
@@ -22163,13 +22163,13 @@ system MC-42
 	belt 1290
 	"jump range" 60
 	haze _menu/haze-coal
+	"starfield density" 0.2
 	link H-9187
 	minables platinum 1 4.2
 	minables copper 6 7.91
 	fleet "Iije (Uninterested)" 2900
 	fleet "Iije (Swarming)" 2000
 	fleet "Iije (Surveillance)" 2400
-	"starfield density" .2
 	object
 		sprite star/g5
 	object
@@ -22193,13 +22193,13 @@ system MS-219
 	belt 1404
 	"jump range" 70
 	haze _menu/haze-coal
+	"starfield density" 0.1
 	link L-6181
 	link M-1188
 	asteroids "large metal" 1 4.22
 	fleet "Iije (Uninterested)" 400
 	fleet "Iije (Swarming)" 700
 	fleet "Iije (Surveillance)" 500
-	"starfield density" .1
 	object
 		sprite star/o-dwarf
 		distance 33.38
@@ -22485,8 +22485,10 @@ system Markeb
 system Maspa-Cavaasa
 	pos -534 1426
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 2310
+	haze _menu/haze-none
+	"starfield density" 0.6
 	link Osolaa-Uuoru
 	asteroids "large metal" 12 1.5
 	minables lead 8 1.5
@@ -22505,8 +22507,6 @@ system Maspa-Cavaasa
 	fleet "Small Successor Transport" 3000
 	fleet "Successor Miners" 4000
 	fleet "Small New Houses" 8000
-	haze _menu/haze-none
-	"starfield density" 0.6
 	object
 		sprite star/g0-old
 	object
@@ -22531,16 +22531,16 @@ system Maspa-Cavaasa
 system Maspa-Mavra
 	pos -514 1571
 	government Uninhabited
-	attributes successor
+	attributes "successor"
 	arrival 500
+	haze _menu/haze-none
+	"starfield density" 0.05
 	link Osolaa-Uuoru
 	asteroids "small metal" 1 1
 	asteroids "large metal" 1 1
 	minables gold 1 1
 	fleet "Small New Houses" 10000
 	fleet "Successor Miners" 5000
-	haze _menu/haze-none
-	"starfield density" 0.05
 	object
 		sprite star/m0
 	object Khosa-Kella-Oa
@@ -22550,8 +22550,10 @@ system Maspa-Mavra
 system Maspa-Raaqa
 	pos -334 1614
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 500
+	haze _menu/haze-none
+	"starfield density" 0.5
 	link Kella-Uoasa
 	asteroids "small rock" 12 8
 	asteroids "large metal" 13 3
@@ -22563,8 +22565,6 @@ system Maspa-Raaqa
 	fleet "People's Houses" 2000
 	fleet "People's Houses Raiders" 4000
 	fleet "Small New Houses" 10000
-	haze _menu/haze-none
-	"starfield density" 0.5
 	object
 		sprite star/protostar-orange
 	object Giiq-Oj-Sol
@@ -22634,13 +22634,13 @@ system Mavra-Ijsola
 	shrouded
 	pos -68.67 883.61
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 3000
+	haze _menu/haze-tear
+	link Kasii-Cavaasa
 	hazard "Predecessors Base Spatial Decay" 200
 	hazard "Predecessors Spatial Rift Weak" 10000
 	hazard "Predecessors Spatial Rift Intense" 20000
-	link Kasii-Cavaasa
-	haze _menu/haze-tear
 	object
 		sprite star/carbon-core
 	object
@@ -24406,9 +24406,11 @@ system Mora
 system Mosaa-Iyra
 	pos 121 1459
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 2900
-	belt 2240 3
+	belt 2240
+	haze _menu/haze-none
+	"starfield density" 0.7
 	link Ojstaan-Sola
 	asteroids "small rock" 22 4
 	asteroids "large rock" 12 3
@@ -24430,8 +24432,6 @@ system Mosaa-Iyra
 	fleet "Small Successor Transport" 1500
 	fleet "Light Successor Freight" 1500
 	fleet "Small Old Houses" 2000
-	haze _menu/haze-none
-	"starfield density" 0.7
 	object
 		sprite star/m0
 	object
@@ -24457,9 +24457,9 @@ system Mote
 	pos -455 896
 	government Uninhabited
 	attributes "twilight"
+	arrival 500
 	ramscoop
 		multiplier 1.5
-	arrival 500
 	belt 1416 5
 	belt 1829 6
 	haze _menu/haze-twilight
@@ -24600,9 +24600,10 @@ system Muphrid
 system Myiara-Nnesa
 	pos -247 1273
 	government "New Houses"
-	attributes successor
+	attributes "successor"
 	arrival 3450
-	belt 1179 3
+	belt 1179
+	haze _menu/haze-67
 	link Chyyra-Osolaa
 	link Pelaa-Muora
 	asteroids "large metal" 10 3.062
@@ -24623,7 +24624,6 @@ system Myiara-Nnesa
 	fleet "Medium Successor Freight" 1000
 	fleet "Successor Miners" 6000
 	fleet "Seineq Home" 1000
-	haze _menu/haze-67
 	object
 		sprite star/m-giant
 	object
@@ -24668,8 +24668,9 @@ system Myiara-Nnesa
 system Myruet-Kvelq
 	pos -104 1378
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 1715
+	haze _menu/haze-33
 	link Aaura-Kaska
 	asteroids "small rock" 27 4.785
 	asteroids "medium rock" 67 3.924
@@ -24685,7 +24686,6 @@ system Myruet-Kvelq
 	trade Medical 480
 	trade Metal 402
 	trade Plastic 272
-	haze _menu/haze-33
 	object
 		sprite star/f5
 	object
@@ -25490,6 +25490,7 @@ system O-3184
 	belt 1119
 	"jump range" 70
 	haze _menu/haze-coal
+	"starfield density" 0.1
 	link E-9182
 	link U-5188
 	asteroids "medium rock" 7 6.75
@@ -25499,7 +25500,6 @@ system O-3184
 	fleet "Iije (Uninterested)" 700
 	fleet "Iije (Swarming)" 900
 	fleet "Iije (Surveillance)" 700
-	"starfield density" .1
 	object
 		sprite star/m3
 	object
@@ -25656,11 +25656,12 @@ system Oihaug
 system Ojstaan-Sola
 	pos 72 1379
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 625
+	haze _menu/haze-33
+	link Mosaa-Iyra
 	link Stiidej-Nnesa
 	link Uuoru-Kella
-	link Mosaa-Iyra
 	asteroids "small rock" 4 2.215
 	asteroids "medium rock" 32 3.553
 	asteroids "large rock" 29 3.887
@@ -25686,7 +25687,6 @@ system Ojstaan-Sola
 	fleet "Medium Successor Freight" 1200
 	fleet "Small Successor Transport" 1200
 	fleet "Myurej Home" 1000
-	haze _menu/haze-33
 	object
 		sprite star/g5
 	object
@@ -26000,8 +26000,10 @@ system Orvala
 system Osolaa-Uuoru
 	pos -446 1453
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 5000
+	haze _menu/haze-none
+	"starfield density" 0.4
 	link Maspa-Cavaasa
 	link Raaqa-Ryuit
 	link Maspa-Mavra
@@ -26017,8 +26019,6 @@ system Osolaa-Uuoru
 	trade Medical 443
 	trade Metal 386
 	trade Plastic 331
-	haze _menu/haze-none
-	"starfield density" 0.4
 	object
 		sprite star/o0
 	object Maspa-Viir-Kella
@@ -26097,12 +26097,12 @@ system Ossipago
 system Oublaa-Khora
 	pos 24 1122
 	government Uninhabited
-	attributes predecessor
+	attributes "predecessor"
 	arrival 2160
+	haze _menu/haze-tear
 	asteroids "small rock" 1 2
 	asteroids "small metal" 2 3
 	hazard "Predecessors Base Spatial Decay" 600
-	haze _menu/haze-tear
 	object
 		sprite star/g0-old
 	object Myiara-Aret-Iir
@@ -26732,10 +26732,11 @@ system "Pedita Sec"
 system Pelaa-Muora
 	pos -168 1322
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 2895
 	belt 1841 4
 	belt 1916 3
+	haze _menu/haze-33
 	link Aaura-Kaska
 	link Chyyra-Osolaa
 	link Myiara-Nnesa
@@ -26763,14 +26764,13 @@ system Pelaa-Muora
 	fleet "Light Successor Freight" 1200
 	fleet "Successor Miners" 600
 	fleet "Small New Houses" 1400
-	haze _menu/haze-33
+	object
+		sprite star/f3
+		distance 117.026
 	object
 		sprite star/f-dwarf
 		distance 161.974
 		offset 180
-	object
-		sprite star/f3
-		distance 117.026
 	object
 		sprite planet/lava2-b
 		distance 474
@@ -28767,8 +28767,9 @@ system Quintet
 system Raaqa-Ryuit
 	pos -338 1354
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 1080
+	haze _menu/haze-33
 	link Chyyra-Osolaa
 	link Luue-Saqru
 	link Osolaa-Uuoru
@@ -28789,7 +28790,6 @@ system Raaqa-Ryuit
 	fleet "Small Successor Transport" 1100
 	fleet "Large New Houses" 5000
 	fleet "Kaatrij Home" 1500
-	haze _menu/haze-33
 	object
 		sprite star/g0
 	object
@@ -29588,6 +29588,9 @@ system Rota
 	object
 		sprite planet/ocean8
 		distance 859
+	object
+		sprite planet/browndwarf-y
+		distance 3466
 	object Vulpa
 		sprite planet/vulpa
 		distance 6978
@@ -29600,9 +29603,6 @@ system Rota
 		object
 			sprite planet/callisto-b
 			distance 571
-	object
-		sprite planet/browndwarf-y
-		distance 3466
 
 system Rouseu
 	pos 566.7 -404.133
@@ -30124,6 +30124,10 @@ system Sail
 	object
 		sprite planet/gas2
 		distance 3055.66
+		object
+			sprite planet/station-outpost-a3
+				scale 0.5
+			distance 240
 		object Elthe
 			sprite planet/luna
 			distance 300
@@ -30137,10 +30141,6 @@ system Sail
 		object
 			sprite planet/dust0-b
 			distance 557.742
-		object
-			sprite planet/station-outpost-a3
-				scale 0.5
-			distance 240
 	object
 		sprite planet/gas4-b
 		distance 5258.20
@@ -31101,9 +31101,9 @@ system Sextet
 	pos -127 663
 	government Uninhabited
 	attributes "ember waste" "twilight"
+	arrival 745
 	ramscoop
 		multiplier 1.5
-	arrival 745
 	belt 1934 6
 	belt 2313 6
 	"jump range" 60
@@ -31314,67 +31314,6 @@ system "Shini Bori"
 			sprite planet/dust0-b
 			distance 333
 
-system Si-28
-	hidden
-	shrouded
-	pos -429 960
-	government Uninhabited
-	attributes "tangled shroud"
-	arrival 500
-	belt 1086
-	"jump range" 30
-	haze _menu/haze-tear
-	link Mg-24
-	link Prelude
-	asteroids "small rock" 3 1.994
-	asteroids "medium rock" 2 3.128
-	asteroids "large rock" 3 2.893
-	asteroids "small metal" 3 3.715
-	asteroids "large metal" 1 3.441
-	minables copper 6 5.83
-	fleet "Small Avgi Merchants" 8400
-	fleet "Large Avgi Merchants" 16800
-	fleet "Small Dissonance Merchants" 4200
-	fleet "Large Dissonance Merchants" 8400
-	fleet "Dissonance Miners" 9000
-	fleet "Small Dissonance Pirates" 36000
-	fleet "Avgi Scouts" 9000
-	fleet "Avgi Patrol" 2700
-	fleet "Avgi Strike Group" 9000
-	fleet "Avgi Twilight Guard Logistics" 9000
-	fleet "Small Aberrant" 4200
-	fleet "Large Aberrant" 8400
-	hazard "Predecessors Base Spatial Decay" 1800
-	object
-		sprite planet/browndwarf-t-rogue
-	object
-		sprite planet/ice7-b
-		distance 960.464
-	object
-		sprite planet/gas12-b
-		distance 3120.92
-	object
-		sprite planet/gas4-b
-		distance 4760
-		object
-			sprite planet/desert4
-			distance 252
-		object
-			sprite planet/dust0
-			distance 374
-	object
-		sprite planet/gas9-b
-		distance 9973
-		object
-			sprite planet/dust0-b
-			distance 235
-	object
-		sprite planet/gas11-b
-		distance 15154
-		object
-			sprite planet/rock7
-			distance 270
-
 system Si'yak'ku
 	pos -329.235 -760.435
 	government Wanderer
@@ -31442,6 +31381,67 @@ system Si'yak'ku
 		object
 			sprite planet/desert4
 			distance 367
+
+system Si-28
+	hidden
+	shrouded
+	pos -429 960
+	government Uninhabited
+	attributes "tangled shroud"
+	arrival 500
+	belt 1086
+	"jump range" 30
+	haze _menu/haze-tear
+	link Mg-24
+	link Prelude
+	asteroids "small rock" 3 1.994
+	asteroids "medium rock" 2 3.128
+	asteroids "large rock" 3 2.893
+	asteroids "small metal" 3 3.715
+	asteroids "large metal" 1 3.441
+	minables copper 6 5.83
+	fleet "Small Avgi Merchants" 8400
+	fleet "Large Avgi Merchants" 16800
+	fleet "Small Dissonance Merchants" 4200
+	fleet "Large Dissonance Merchants" 8400
+	fleet "Dissonance Miners" 9000
+	fleet "Small Dissonance Pirates" 36000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 9000
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 8400
+	hazard "Predecessors Base Spatial Decay" 1800
+	object
+		sprite planet/browndwarf-t-rogue
+	object
+		sprite planet/ice7-b
+		distance 960.464
+	object
+		sprite planet/gas12-b
+		distance 3120.92
+	object
+		sprite planet/gas4-b
+		distance 4760
+		object
+			sprite planet/desert4
+			distance 252
+		object
+			sprite planet/dust0
+			distance 374
+	object
+		sprite planet/gas9-b
+		distance 9973
+		object
+			sprite planet/dust0-b
+			distance 235
+	object
+		sprite planet/gas11-b
+		distance 15154
+		object
+			sprite planet/rock7
+			distance 270
 
 system Sich'ka'ara
 	pos -97.1237 -831.921
@@ -31926,6 +31926,11 @@ system Soar
 				scale 0.25
 			distance 150
 		object
+			sprite planet/station-reflector-a0
+				scale 0.5
+			distance 150
+			offset 180
+		object
 			sprite planet/station-platform-a3
 				scale 0.25
 			distance 180
@@ -31934,11 +31939,6 @@ system Soar
 			sprite planet/debris1
 				scale 0.5
 			distance 180
-			offset 180
-		object
-			sprite planet/station-reflector-a0
-				scale 0.5
-			distance 150
 			offset 180
 		object
 			sprite planet/station-solar-a1-broken
@@ -32860,7 +32860,7 @@ system Stercutus
 system Stiidej-Nnesa
 	pos -13 1358
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 4020
 	link Aaura-Kaska
 	link Ojstaan-Sola
@@ -34397,8 +34397,9 @@ system Turais
 system Tuur-Kella
 	pos -5 1269
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 5000
+	haze _menu/haze-67
 	link Aaura-Kaska
 	link Stiidej-Nnesa
 	link Uuoru-Kella
@@ -34419,7 +34420,6 @@ system Tuur-Kella
 	fleet "Large Old Houses" 1400
 	fleet "Old Houses Surveillance" 2000
 	fleet "Chydiyi Home" 2500
-	haze _menu/haze-67
 	object
 		sprite star/b3
 	object
@@ -34428,12 +34428,12 @@ system Tuur-Kella
 	object
 		sprite planet/gas1-b
 		distance 3800
-		object Tuur-Aasa-Kaska
-			sprite planet/rock1-b
-			distance 550
 		object Tuur-Oa-Sola
 			sprite planet/io-b
 			distance 300
+		object Tuur-Aasa-Kaska
+			sprite planet/rock1-b
+			distance 550
 	object
 		sprite planet/ice8
 		distance 7500
@@ -34490,6 +34490,7 @@ system U-5188
 	belt 1330
 	"jump range" 70
 	haze _menu/haze-none
+	"starfield density" 0.2
 	link O-3184
 	link V-2189
 	asteroids "small rock" 2 2.24
@@ -34499,7 +34500,6 @@ system U-5188
 	fleet "Iije (Uninterested)" 1600
 	fleet "Iije (Swarming)" 2000
 	fleet "Iije (Surveillance)" 1400
-	"starfield density" .2
 	object
 		sprite star/k5
 	object
@@ -34989,9 +34989,10 @@ system Uttna
 system Uuoru-Kella
 	pos 63 1317
 	government "Old Houses"
-	attributes successor
+	attributes "successor"
 	arrival 2300
-	belt 1631 6
+	belt 1631
+	haze _menu/haze-67
 	link Ojstaan-Sola
 	link Valkraa-Uuoru
 	link Vade-Staja
@@ -35016,7 +35017,6 @@ system Uuoru-Kella
 	fleet "Small Old Houses" 1000
 	fleet "Large Old Houses" 2000
 	fleet "Old Houses Surveillance" 1000
-	haze _menu/haze-67
 	object
 		sprite star/f3
 	object Aava-Aasa-Khora
@@ -35042,22 +35042,23 @@ system Uuoru-Sossa
 	shrouded
 	pos -58 976.13
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 2700
+	haze _menu/haze-tear
 	hazard "Predecessors Base Spatial Decay" 100
 	hazard "Predecessors Spatial Rift Intense" 8000
-	haze _menu/haze-tear
-	object
-		sprite star/void-scar
-			scale 8.0
-		distance 2200
-		hazard "Predecessors Void Scar Erosion" 6
 	object
 		sprite star/f0
 		distance 40
 	object
 		sprite star/k-dwarf
 		distance 200
+	object
+		sprite star/void-scar
+			scale 8
+		distance 2200
+		period 2000
+		hazard "Predecessors Void Scar Erosion" 6
 	object
 		sprite planet/gas5
 		distance 2200
@@ -35177,13 +35178,13 @@ system V-2189
 	arrival 5000
 	belt 1985
 	haze _menu/haze-none
+	"starfield density" 0.1
 	link U-5188
 	asteroids "small rock" 1 5.74
 	asteroids "small metal" 6 7.4
 	asteroids "medium metal" 1 5.21
 	asteroids "large metal" 2 5.44
 	minables platinum 2 6.86
-	"starfield density" .1
 	object
 		sprite star/o0
 		distance 77.281
@@ -35219,8 +35220,9 @@ system V-2189
 system Vade-Staja
 	pos 152 1341
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 2560
+	haze _menu/haze-67
 	link Khosa-Kaska
 	link Uuoru-Kella
 	link Valkraa-Uuoru
@@ -35248,7 +35250,6 @@ system Vade-Staja
 	fleet "Small Old Houses" 4000
 	fleet "Old Houses Surveillance" 7500
 	fleet "Sioeora Home" 2000
-	haze _menu/haze-67
 	object
 		sprite star/f0
 	object
@@ -35309,8 +35310,9 @@ system Vaiov
 system Valkraa-Uuoru
 	pos 114 1257
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 3651.37
+	haze _menu/haze-67
 	link Uuoru-Kella
 	link Vade-Staja
 	trade Clothing 347
@@ -35328,14 +35330,13 @@ system Valkraa-Uuoru
 	fleet "Medium Successor Freight" 1400
 	fleet "Small Successor Transport" 2000
 	fleet "Chydiyi Home" 800
-	haze _menu/haze-67
+	object
+		sprite star/a0
+		distance 40.772
 	object
 		sprite star/k0
 		distance 155.228
 		offset 180
-	object
-		sprite star/a0
-		distance 40.772
 	object Naph-Naap-Kella
 		sprite planet/cloud0
 		distance 902
@@ -35350,7 +35351,7 @@ system Valkraa-Uuoru
 		distance 2129
 	object
 		sprite planet/gas1
-		distance 3859.251
+		distance 3859.25
 		object
 			sprite planet/dust7
 			distance 419.157
@@ -35397,15 +35398,15 @@ system Vasa-Oorua
 	shrouded
 	pos 31.3947 1014.88
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 1705
-	link Kasii-Sola
-	hazard "Predecessors Base Spatial Decay" 400
-	hazard "Predecessors Spatial Rift Weak" 10000
 	haze _menu/haze-tear
+	link Kasii-Sola
 	asteroids "small rock" 2 5
 	asteroids "small metal" 1 5.5
 	minables tungsten 3 6.5
+	hazard "Predecessors Base Spatial Decay" 400
+	hazard "Predecessors Spatial Rift Weak" 10000
 	object
 		sprite star/g0
 	object
@@ -35821,6 +35822,7 @@ system W-3197
 	arrival 5000
 	belt 1887
 	haze _menu/haze-coal
+	"starfield density" 0.2
 	link G-719
 	link G-819
 	asteroids "small rock" 3 1
@@ -35831,7 +35833,6 @@ system W-3197
 	fleet "Iije (Uninterested)" 2000
 	fleet "Iije (Swarming)" 4000
 	fleet "Iije (Surveillance)" 2000
-	"starfield density" .2
 	object
 		sprite star/b3
 	object
