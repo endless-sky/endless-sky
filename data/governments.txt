@@ -1436,7 +1436,6 @@ government "Navy (Oathkeeper)"
 		"Kor Sestor" -.01
 		"Kor Mereti" -.01
 		"Navy Intelligence" 1
-		"Republic Intelligence" 1
 	"friendly hail" "friendly navy"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
@@ -1970,7 +1969,6 @@ government "Republic"
 		"Militia" .1
 		"Pirate" -.3
 		"Navy Intelligence" 1
-		"Republic Intelligence" 1
 		"Navy (Oathkeeper)" 1
 		"Neutral" .1
 	"friendly hail" "friendly navy"
@@ -1993,22 +1991,11 @@ government "Republic (Friendly)"
 		"Militia" .01
 		"Pirate" -.01
 		"Navy Intelligence" .01
-		"Republic Intelligence" .01
 		"Navy (Oathkeeper)" .01
 		"Neutral" .01
 	"friendly hail" "friendly navy"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
-	"hostile disabled hail" "hostile disabled"
-	"ship bribe rejection hail" "ship bribe rejection navy"
-
-government "Republic Intelligence"
-	swizzle 0
-	"crew attack" 1.2
-	"crew defense" 2.2
-	"attitude toward"
-		"Pirate" -.3
-	"friendly disabled hail" "friendly disabled"
 	"hostile disabled hail" "hostile disabled"
 	"ship bribe rejection hail" "ship bribe rejection navy"
 
