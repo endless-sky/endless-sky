@@ -22,6 +22,7 @@ Version 0.11.0:
       * Fixed the "Rich student transport" mission not having a deadline despite the description suggesting there was one. (@kaiboyjiang)
       * Fixed a looping conversation in "Lost Racer 3". (@ThrawnCA)
       * Removed duplicate action definitions of the same trigger type in a few various. (@MereDecade)
+      * The "Remnant: Return the Samples" missions now have mission cargo, as the mission text implied they did. (@Amazinite)
     * Engine bugs:
       * Made explicit use of a mediump precision int in certain shaders where the lack of explicit precision was causing shader compilation to fail for some. (@thewierdnut)
       * Changing the main zoom factor no longer breaks the display of planet descriptions. (@TomGoodIdea)
@@ -50,6 +51,7 @@ Version 0.11.0:
       * Added various "Drak Revelation" culture conversations around the galaxy. (@Arachi-Lover)
       * Added new civilian hails. (@MauriceTaniel)
       * Added a short new mission chain for the Ka'het. (@beccabunny)
+      * Added hail messages that appear when entering certain systems in human space. (@bene-dictator)
     * Mission changes:
       * Various missions now make use of "mark" instead of "waypoint" where visiting the system of interest isn't a necessary objective for the story. (@TheGiraffe3, @warp-core)
       * Ryk Bartlett in "FW Albatross 2A" now has a unique Bastion model and his fleet is set in stone instead of being randomized. (@bene-dictator)
