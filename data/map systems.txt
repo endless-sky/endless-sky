@@ -7986,8 +7986,10 @@ system Caesura
 	hazard "Small Black Hole Gravity" 1
 	object
 		sprite star/neutron-core
+		period 1
 	object
 		sprite star/twilight-black-hole
+		period 1
 
 system Canopus
 	pos -421 -225
@@ -15188,9 +15190,11 @@ system G-6183
 	hazard "Small Black Hole Gravity" 1
 	object
 		sprite star/coal-black-hole
+		period 1
 	object
 		sprite star/neutron-core
 			scale 0.25
+		period 1
 	object
 		sprite planet/browndwarf-t
 		distance 4111.16
@@ -30063,8 +30067,10 @@ system "Sagittarius A*"
 	hazard "Black Hole Gravity" 1
 	object
 		sprite star/black-hole-core
+		period 1
 	object
 		sprite star/black-hole
+		period 1
 
 system Sail
 	pos -544 666
@@ -37000,9 +37006,11 @@ system Yranjiu
 	hazard "Small Black Hole Gravity" 1
 	object
 		sprite star/small-black-hole
+		period 1
 	object
 		sprite star/neutron-core
 			scale 0.25
+		period 1
 	object
 		sprite star/g8
 		distance 70

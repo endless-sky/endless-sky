@@ -29,8 +29,10 @@ system Athiri
 	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole corona core"
+		period 1
 	object
 		sprite "star/black hole corona"
+		period 1
 	object "Beyond Patir North Entrance"
 		distance 1510.2286
 	object
@@ -51,8 +53,10 @@ system Balnii
 	hazard "Small Black Hole Gravity" 2
 	object
 		sprite "star/big black hole core"
+		period 1
 	object
 		sprite "star/big black hole"
+		period 1
 
 system Chanai
 	pos 9883.5 -34.5
@@ -68,8 +72,10 @@ system Chanai
 	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole 3 core"
+		period 1
 	object
 		sprite "star/black hole 3"
+		period 1
 	object "Chanai Structure"
 		sprite "planet/station-chanai"
 			scale 0.5
@@ -89,8 +95,10 @@ system Ghila
 	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black-hole-still-core"
+		period 1
 	object
 		sprite "star/black-hole-still"
+		period 1
 	object
 		sprite "planet/penrose machine"
 			scale 0.5
@@ -132,8 +140,10 @@ system Maithi
 	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole 5 core"
+		period 1
 	object
 		sprite "star/black hole 5"
+		period 1
 	object "Beyond Patir North Exit"
 		sprite "planet/wormhole-blue"
 		distance 4316.1251
@@ -152,8 +162,10 @@ system Mitera
 	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole 4 core"
+		period 1
 	object
 		sprite "star/black hole 4"
+		period 1
 	object "Beyond Patir North Entrance"
 		sprite "planet/wormhole-blue"
 		distance 4580.2286
@@ -172,8 +184,10 @@ system Sarifa
 	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole star core"
+		period 1
 	object
 		sprite "star/black hole star"
+		period 1
 	object
 		sprite "star/f8"
 		distance 549
@@ -191,8 +205,10 @@ system Thepa
 	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole 6 core"
+		period 1
 	object
 		sprite "star/black hole 6"
+		period 1
 
 planet "Beyond Patir North Entrance"
 	wormhole "Beyond Patir North Entrance"
