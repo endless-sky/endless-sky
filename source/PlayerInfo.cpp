@@ -160,30 +160,32 @@ PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const Condition
 	GameEvent nodeEvent(node, playerConditions);
 	date = nodeEvent.GetDate();
 
-	string eventName;
+	// If this scheduled event is named, then it is using the new format,
+	// and we should refer to the definition of the event with the matching name.
 	if(!nodeEvent.TrueName().empty())
-		eventName = nodeEvent.TrueName();
-	else
 	{
-		// Old save files may contain unnamed events. In that case, the event's name can be found by
-		// looking at the relevant conditions in the event's conditions assignment.
-		set<string> conditions = nodeEvent.Conditions().RelevantConditions();
-		erase_if(conditions, [](const string &name) { return name.find("event: ") == string::npos; });
-		// Unless the save file was manually altered, there should be an event condition present.
-		// If there are multiple event conditions present, then the first one should be the condition
-		// for this event, as assignments are saved and loaded in the order they're created, and
-		// the event condition is the first assignment added to each event.
-		if(!conditions.empty())
-			eventName = conditions.begin()->substr(strlen("event: "));
+		event = ExclusiveItem<GameEvent>(GameData::Events().Get(nodeEvent.TrueName()));
+		return;
 	}
-	if(!eventName.empty())
-		event = ExclusiveItem<GameEvent>(GameData::Events().Get(eventName));
+
+	// Old save files may contain unnamed events. In that case, the event's name can be found by
+	// looking at the relevant conditions in the event's conditions assignment.
+	set<string> conditions = nodeEvent.Conditions().RelevantConditions();
+	erase_if(conditions, [](const string &name) { return name.find("event: ") == string::npos; });
+	// Unless the save file was manually altered, there should be an event condition present.
+	// If there are multiple event conditions present, then the first one should be the condition
+	// for this event, as assignments are saved and loaded in the order they're created, and
+	// the event condition is the first assignment added to each event.
+	string eventName;
+	if(!conditions.empty())
+		eventName = conditions.begin()->substr(strlen("event: "));
+	// If a name was located and a definition exists for that name, then use that definition.
+	// Otherwise, continue to store the entire event node in the old format.
+	const GameEvent *eventDef = !eventName.empty() ? GameData::Events().Find(eventName) : nullptr;
+	if(eventDef)
+		event = ExclusiveItem<GameEvent>(eventDef);
 	else
-	{
-		// Fall back onto saving the full definition if we somehow didn't find a name.
-		node.PrintTrace("Could not determine name of scheduled event.");
 		event = ExclusiveItem<GameEvent>(std::move(nodeEvent));
-	}
 }
 
 
