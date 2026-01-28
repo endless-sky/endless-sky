@@ -10150,11 +10150,13 @@ system Decet
 	hazard "Magnetar Induction" 1
 	object
 		sprite star/neutron-core
+		period 1
 	object
 		sprite star/magnetar
 			scale 0.5
 			"frame rate" 15
 			rewind
+		period 1
 
 system "Deep Space 19K12"
 	pos -1113 -747
@@ -13091,8 +13093,10 @@ system Equus
 	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron-small-core
+		period 1
 	object
 		sprite star/neutron-small
+		period 1
 	object
 		sprite star/f-dwarf
 		distance 400
@@ -19389,6 +19393,7 @@ system Kanguwa
 	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron
+		period 1
 	object "Yniu Eiu"
 		sprite "planet/yniu eiu"
 		distance 397
@@ -26394,8 +26399,10 @@ system "Paru Paru"
 	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron-core
+		period 1
 	object
 		sprite star/neutron
+		period 1
 	object
 		sprite planet/desert10
 		distance 821.186
@@ -26468,8 +26475,10 @@ system Patir
 			has "ka'het: beyond Patir"
 	object
 		sprite star/patir
+		period 1
 	object
 		sprite "star/patir core"
+		period 1
 	object "Builder Settlement"
 		sprite "planet/asteroid base"
 		distance 1496.85
@@ -33493,8 +33502,10 @@ system Tap
 	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron-core
+		period 1
 	object
 		sprite star/neutron
+		period 1
 	object
 		sprite planet/dust7-b
 		distance 675.3
@@ -34468,8 +34479,10 @@ system Twirl
 	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron-core
+		period 1
 	object
 		sprite star/neutron
+		period 1
 	object
 		sprite planet/rock5-b
 		distance 312
@@ -35674,8 +35687,10 @@ system Vivace
 	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron-core
+		period 1
 	object
 		sprite star/neutron
+		period 1
 	object
 		sprite planet/gas0-hot
 		distance 1117.61
@@ -35747,8 +35762,10 @@ system Vorpal
 	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron-core
+		period 1
 	object
 		sprite star/neutron
+		period 1
 	object
 		sprite planet/ice0-b
 		distance 571
