@@ -295,7 +295,7 @@ bool ShopPanel::ShouldHighlight(const Ship *ship)
 {
 	if(hoverButton == 'r')
 		return ship->InternalDamage();
-	
+
 	return (hoverButton == 's' || hoverButton == 'u');
 }
 

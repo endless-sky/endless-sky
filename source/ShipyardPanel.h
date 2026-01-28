@@ -68,7 +68,6 @@ private:
 	int modifier;
 	// Record whether we've checked if the player needs ships repaired.
 	bool checkedRepairs = false;
-	bool repairingShips = false;
 
 	std::set<Ship *> repairableShips;
 	std::set<Ship *> shipsToRepair;
