@@ -4711,6 +4711,7 @@ system Anax
 			sprite planet/station-solar-a3
 				scale 0.5
 			distance 600
+			period 197.325
 	object "Antivli Station"
 		sprite planet/station-accelerator-broken
 			scale 0.5
