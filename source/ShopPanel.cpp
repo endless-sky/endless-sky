@@ -105,6 +105,14 @@ void ShopPanel::Step()
 {
 	if(!checkedHelp && GetUI().IsTop(this) && player.Ships().size() > 1)
 	{
+		if(!Preferences::Has("help: internal damage"))
+		{
+			for(const auto &it : player.Ships())
+			{
+				if(!CanShowInSidebar(*it, player.GetPlanet()) && it.get()->InternalDamage())
+					DoHelp("internal damage");
+			}
+		}
 		if(DoHelp("multiple ships"))
 		{
 			// Nothing to do here, just don't want to execute the other branch.
@@ -285,7 +293,10 @@ int ShopPanel::VisibilityCheckboxesSize() const
 
 bool ShopPanel::ShouldHighlight(const Ship *ship)
 {
-	return (hoverButton == 's' || hoverButton == 'r');
+	if(hoverButton == 'r')
+		return ship->InternalDamage();
+	
+	return (hoverButton == 's' || hoverButton == 'u');
 }
 
 
@@ -309,15 +320,24 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				DoHelp("outfitter with multiple ships", true);
 
 			set<string> modelNames;
+			bool displayInternalDamage = false;
+			bool displayMultipleShips = false;
 			for(const auto &it : player.Ships())
 			{
 				if(!CanShowInSidebar(*it, player.GetPlanet()))
 					continue;
-				if(modelNames.contains(it->DisplayModelName()))
+				if(!displayInternalDamage && it.get()->InternalDamage())
+				{
+					DoHelp("internal damage", true);
+					displayInternalDamage = true;
+				}
+				if(!displayMultipleShips && modelNames.contains(it->DisplayModelName()))
 				{
 					DoHelp("shop with multiple ships", true);
-					break;
+					displayMultipleShips = true;
 				}
+				if(displayInternalDamage && displayMultipleShips)
+					break;
 				modelNames.insert(it->DisplayModelName());
 			}
 
