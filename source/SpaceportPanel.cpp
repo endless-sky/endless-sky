@@ -58,7 +58,7 @@ void SpaceportPanel::UpdateNews()
 
 	// Query the news interface to find out the wrap width.
 	// TODO: Allow Interface to handle wrapped text directly.
-	const Interface *newsUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "news (small screen)" : "news");
+	const Interface *newsUi = GameData::Interfaces().Get("news");
 	portraitWidth = newsUi->GetBox("message portrait").Width();
 	normalWidth = newsUi->GetBox("message").Width();
 
@@ -107,8 +107,7 @@ void SpaceportPanel::Draw()
 
 	if(hasNews)
 	{
-		const Interface *newsUi = GameData::Interfaces().Get(Screen::Width() < 1280 ?
-			"news (small screen)" : "news");
+		const Interface *newsUi = GameData::Interfaces().Get("news");
 		newsUi->Draw(newsInfo);
 		// Depending on if the news has a portrait, the interface box that
 		// gets filled in changes.
@@ -121,8 +120,7 @@ void SpaceportPanel::Draw()
 
 void SpaceportPanel::Resize()
 {
-	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ?
-		"spaceport (small screen)" : "spaceport");
+	const Interface *ui = GameData::Interfaces().Get("spaceport");
 	description->SetRect(ui->GetBox("content"));
 }
 
