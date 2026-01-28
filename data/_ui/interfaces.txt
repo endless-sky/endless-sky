@@ -2056,28 +2056,75 @@ interface "hiring (small screen)"
 
 interface "trade"
 	box "content"
-		from -240 80 to 250 355
-	
+		from -250 80 to 250 355
+	value "column: name" 20
+	value "column: price" 140
+	value "column: price level" 180
+	value "column: profit" 260
+	value "column: buy" 310
+	value "column: sell" 370
+	value "column: in cargo hold" 430
+
 	fill
 		center 0 95
 		dimensions 480 1
-	
+
+	label "Commodity"
+		align top left
+		from -230 80
+		color bright
+	label "Price"
+		align top left
+		from -110 80
+		color bright
+	visible if "has profit"
+	label "Profit"
+		align top left
+		from 10 80
+		color bright
+	visible
+	string "multiplier"
+		align top left
+		from 60 80
+		color medium
+	string "multiplier"
+		align top left
+		from 120 80
+		color medium
+	label "In Hold"
+		align top left
+		from 180 80
+		color bright
+
+	string "other cargo"
+		align left
+		from -230 318
+		color medium
+	label "free:"
+		align left
+		from 125 318
+		color bright
+	string "free cargo space"
+		align left
+		from 180 318
+		color bright
+
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 100 355
 	button u "B_uy All"
 		center 100 355
 		dimensions 70 30
-	
+
 	sprite "ui/wide button"
 		center 190 355
-	
+
 	active if "can sell"
 	visible if "!can sell outfits"
 	button e "S_ell All"
 		center 190 355
 		dimensions 90 30
-	
+
 	active if "can sell outfits"
 	visible if "can sell outfits"
 	button e "S_ell Outfits"
@@ -2089,27 +2136,74 @@ interface "trade"
 interface "trade (small screen)"
 	box "content"
 		from -310 80 to 190 355
-	
+	value "column: name" 20
+	value "column: price" 140
+	value "column: price level" 180
+	value "column: profit" 260
+	value "column: buy" 310
+	value "column: sell" 370
+	value "column: in cargo hold" 430
+
 	fill
 		center -60 95
 		dimensions 480 1
-	
+
+	label "Commodity"
+		align top left
+		from -290 80
+		color bright
+	label "Price"
+		align top left
+		from -170 80
+		color bright
+	visible if "has profit"
+	label "Profit"
+		align top left
+		from -50 80
+		color bright
+	visible
+	string "multiplier"
+		align top left
+		from 0 80
+		color medium
+	string "multiplier"
+		align top left
+		from 60 80
+		color medium
+	label "In Hold"
+		align top left
+		from 120 80
+		color bright
+
+	string "other cargo"
+		align left
+		from -290 318
+		color medium
+	label "free:"
+		align left
+		from 65 318
+		color bright
+	string "free cargo space"
+		align left
+		from 120 318
+		color bright
+
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 40 355
 	button u "B_uy All"
 		center 40 355
 		dimensions 70 30
-	
+
 	sprite "ui/wide button"
 		center 130 355
-	
+
 	active if "can sell"
 	visible if "!can sell outfits"
 	button e "S_ell All"
 		center 130 355
 		dimensions 90 30
-	
+
 	active if "can sell outfits"
 	visible if "can sell outfits"
 	button e "S_ell Outfits"
