@@ -752,6 +752,13 @@ void Engine::Step(bool isActive)
 			[](const Projectile &projectile) -> bool {
 				return projectile.GetWeapon().TriggersNukeAlert() && projectile.GetGovernment()->IsEnemy();
 			});
+		if(nukeAlarmTime)
+			--nukeAlarmTime;
+		else if(nukeAlert && Preferences::PlayAudioAlert())
+		{
+			nukeAlarmTime = 300;
+			Audio::Play(Audio::Get("nuke alarm"), SoundCategory::ALERT);
+		}
 		if(nukeAlert)
 		{
 			if(uiStep / 12 % 2)
