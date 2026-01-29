@@ -255,6 +255,7 @@ interface "performance info"
 
 
 interface "map detail panel"
+	anchor top right
 	value "min planet panel height" 195
 	value "max planet panel height" 2022
 	value "starting X" 100
@@ -267,6 +268,12 @@ interface "map detail panel"
 	value "description x offset" 240
 	value "description width" 500
 	value "description height" 240
+	visible if "has escort destination"
+	sprite "ui/wide button"
+		center -256 56
+	button c "Cancel order"
+		center -256 56
+		dimensions 90 30
 
 
 
