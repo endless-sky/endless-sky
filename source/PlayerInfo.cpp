@@ -3462,7 +3462,7 @@ void PlayerInfo::SetEscortDestination(const System *system, Point pos)
 
 
 
-// Determine if a system and nonzero position were specified.
+// Determine if a system was specified.
 bool PlayerInfo::HasEscortDestination() const
 {
 	return interstellarEscortDestination.first;
