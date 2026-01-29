@@ -2201,7 +2201,7 @@ interface "hiring (small screen)"
 
 interface "trade"
 	box "content"
-		from -240 80 to 250 355
+		from -250 80 to 250 355
 	
 	fill
 		center 0 95

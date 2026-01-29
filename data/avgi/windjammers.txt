@@ -27,8 +27,11 @@ phrase empty
 
 mission "Avgi: Gossamer Sailors"
 	invisible
-	landing
+	transition
 	repeat
+	source
+		system "Gossamer"
+	destination "Earth"
 	to offer
 		not "Avgi: Gossamer Sailors: active"
 		not "avgi: windjammers change"

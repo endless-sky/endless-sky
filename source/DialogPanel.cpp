@@ -124,7 +124,7 @@ namespace {
 
 DialogPanel::DialogPanel(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel,
 	int activeButton)
-	: voidFun(okFunction)
+	: voidFun(std::move(okFunction))
 {
 	Init(message, truncate, canCancel, false);
 	this->activeButton = activeButton;
@@ -228,7 +228,7 @@ void DialogPanel::Draw()
 	}
 
 	// Draw the input, if any.
-	if(!isMission && (intFun || stringFun || validateFun))
+	if(AcceptsInput())
 	{
 		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), back);
 
@@ -269,7 +269,7 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	{
 		// Input handled by Clipboard.
 	}
-	else if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
+	else if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && AcceptsInput() && !isCloseRequest)
 	{
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
 		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
@@ -279,20 +279,22 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 
 		if(stringFun)
 			input += c;
-		// Integer input should not allow leading zeros.
-		else if(intFun && c == '0' && !input.empty())
+		// Integer and double inputs only allow certain characters.
+		else if((intFun || doubleFun) && c >= '0' && c <= '9')
 			input += c;
-		else if(intFun && c >= '1' && c <= '9')
+		// Both integer and double input can start with a minus sign.
+		else if((intFun || doubleFun) && c == '-' && input.empty())
+			input += c;
+		// Double input should only allow a single decimal point.
+		else if(doubleFun && c == '.' && !std::count(input.begin(), input.end(), '.'))
 			input += c;
 
-		if(validateFun)
-			isOkDisabled = !validateFun(input);
+		isOkDisabled = !ValidateInput();
 	}
 	else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !input.empty())
 	{
 		input.erase(input.length() - 1);
-		if(validateFun)
-			isOkDisabled = !validateFun(input);
+		isOkDisabled = !ValidateInput();
 	}
 	else if(key == SDLK_TAB)
 		// Round-robin to the right, 3->2->1->3
@@ -437,7 +439,7 @@ void DialogPanel::Resize()
 	const int realBottomHeight = bottom->Height() - cancel->Height();
 
 	int height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
-			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
+			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
 	// Determine how many extension panels we need.
 	if(height <= realBottomHeight + top->Height())
 		extensionCount = 0;
@@ -454,7 +456,7 @@ void DialogPanel::Resize()
 	// be rounded up from the actual text height by the number of panels that
 	// were added. This helps correctly position the TextArea scroll buttons.
 	textRectSize.Y() = (top->Height() + realBottomHeight - VERTICAL_PADDING) + extensionCount * middle->Height() -
-			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
+			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
 
 	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
 	text->SetRect(textRect);
@@ -491,8 +493,7 @@ void DialogPanel::Init(const string &message, Truncate truncate, bool canCancel,
 	Resize();
 	AddChild(text);
 
-	if(validateFun)
-		isOkDisabled = !validateFun(input);
+	isOkDisabled = !ValidateInput();
 }
 
 
@@ -519,6 +520,18 @@ void DialogPanel::DoCallback(const bool isOk) const
 		}
 	}
 
+	if(doubleFun)
+	{
+		// Only call the callback if the input can be converted to a double.
+		// Otherwise treat this as if the player clicked "cancel."
+		try {
+			doubleFun(stod(input));
+		}
+		catch(...)
+		{
+		}
+	}
+
 	if(stringFun)
 		stringFun(input);
 
@@ -535,4 +548,32 @@ int DialogPanel::Width() const
 {
 	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
 	return top->Width() - HORIZONTAL_MARGIN;
+}
+
+
+
+bool DialogPanel::AcceptsInput() const
+{
+	return !isMission && (intFun || doubleFun || stringFun);
+}
+
+
+
+bool DialogPanel::ValidateInput() const
+{
+	if(validateStringFun)
+		return validateStringFun(input);
+
+	try {
+		if(validateIntFun)
+			return validateIntFun(stoi(input));
+		if(validateDoubleFun)
+			return validateDoubleFun(stod(input));
+	}
+	catch(...)
+	{
+		return false;
+	}
+
+	return true;
 }
