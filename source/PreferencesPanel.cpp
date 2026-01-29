@@ -806,7 +806,6 @@ void PreferencesPanel::DrawSettings()
 		"Hide unexplored map regions",
 		"Show escort systems on map",
 		"Show stored outfits on map",
-		"System map sends move orders",
 		"",
 		"Other",
 		"Always underline shortcuts",
