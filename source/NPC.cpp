@@ -506,7 +506,7 @@ bool NPC::Do(const ShipEvent &event, PlayerInfo &player, UI &ui, const Mission *
 		if(!conversation->IsEmpty())
 			ui.Push(new ConversationPanel(player, *conversation, caller, nullptr, ship));
 		if(!dialog.IsEmpty())
-			ui.Push(new DialogPanel(dialog.Text()));
+			ui.Push(DialogPanel::Info(dialog.Text()));
 	}
 
 	return true;

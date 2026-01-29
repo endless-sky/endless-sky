@@ -511,8 +511,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	}
 	else if(key == 'f')
 	{
-		GetUI().Push(new DialogPanel(
-			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
+		GetUI().Push(DialogPanel::RequestString(this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)

@@ -1673,7 +1673,7 @@ void PlayerInfo::Land(UI &ui)
 			if(mit != inactiveMissions.rend())
 				message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
 			message += "They will be reactivated when the necessary plugin is reinstalled.";
-			ui.Push(new DialogPanel(message));
+			ui.Push(DialogPanel::Info(message));
 		}
 		if(!invalidEvents.empty())
 		{
@@ -1689,7 +1689,7 @@ void PlayerInfo::Land(UI &ui)
 			if(eit != invalidEvents.rend())
 				message += " and " + to_string(distance(eit, invalidEvents.rend())) + " more.\n";
 			message += "The universe may not be in the proper state until the necessary plugin is reinstalled.";
-			ui.Push(new DialogPanel(message));
+			ui.Push(DialogPanel::Info(message));
 		}
 	}
 
@@ -2556,7 +2556,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI &ui)
 			string message = it.BlockedMessage(*this);
 			if(!message.empty())
 			{
-				ui.Push(new DialogPanel(message));
+				ui.Push(DialogPanel::Info(message));
 				return;
 			}
 		}
@@ -2579,7 +2579,7 @@ void PlayerInfo::HandleBlockedInflightMissions(UI &ui)
 			it = availableEnteringMissions.erase(it);
 			if(!message.empty())
 			{
-				ui.Push(new DialogPanel(message));
+				ui.Push(DialogPanel::Info(message));
 				return;
 			}
 		}
@@ -2596,7 +2596,7 @@ void PlayerInfo::HandleBlockedInflightMissions(UI &ui)
 			it = availableTransitionMissions.erase(it);
 			if(!message.empty())
 			{
-				ui.Push(new DialogPanel(message));
+				ui.Push(DialogPanel::Info(message));
 				return;
 			}
 		}
@@ -4557,7 +4557,7 @@ void PlayerInfo::StepMissions(UI &ui)
 		if(missionVisits > 1)
 			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
-		ui.Push(new DialogPanel(visitText));
+		ui.Push(DialogPanel::Info(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
 	// more time to see if any mission is now completed or failed due to a change
@@ -5024,13 +5024,13 @@ void PlayerInfo::Fine(UI &ui)
 					+ ", we detect highly illegal material on your ship.\""
 					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
 					" Your days of traveling the stars have come to an end.";
-				ui.Push(new DialogPanel(message.second));
+				ui.Push(DialogPanel::Info(message.second));
 			}
 			// All ships belonging to the player should be removed.
 			Die();
 		}
 		else
-			ui.Push(new DialogPanel(message.second));
+			ui.Push(DialogPanel::Info(message.second));
 	}
 }
 
