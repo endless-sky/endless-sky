@@ -214,8 +214,6 @@ start "hai space"
 		debt 1431000
 	to unlock
 		has "Hai Start Unlocked"
-		# TODO: think about what point of HR should unlock this once it's back in the game, if any
-		# has "event: hai-human resolution announced"
 	conversation "hai intro"
 	account
 		credits 1431000

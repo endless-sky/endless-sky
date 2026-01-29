@@ -102,7 +102,7 @@ ControlsListDialogPanel::ControlsListDialogPanel(T *panel,
 	isMission = false;
 	intFun = nullptr;
 	stringFun = nullptr;
-	validateFun = nullptr;
+	validateStringFun = nullptr;
 	ControlsListDialogPanel::Resize();
 	UpdateList(options);
 }

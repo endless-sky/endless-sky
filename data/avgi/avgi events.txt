@@ -56,8 +56,11 @@ event "avgi: siege respite timer"
 
 mission "Avgi: Initial Wandering Fleet"
 	invisible
-	landing
+	transition
 	repeat
+	source
+		near "Ne-20" 100
+	destination "Earth"
 	to offer
 		not "Avgi: Initial Wandering Fleet: active"
 		not "avgi: wandering fleet refit 1"
@@ -67,7 +70,7 @@ mission "Avgi: Initial Wandering Fleet"
 	npc save
 		government "Avgi (Wandering Fleet)"
 		personality coward quiet secretive timid fleeing unconstrained uninterested restricted
-		system Ne-20
+		system "Ne-20"
 		ship "Modified Tachytia" "Prudent Voyager"
 		ship "Undsyni (Plasmadyne)" "Vitrified Carbon"
 		ship "Polari" "Forward Waves"
