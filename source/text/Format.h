@@ -79,6 +79,9 @@ public:
 	// decimal places. An input value of 1 will be formatted as 100%.
 	static std::string Percentage(double value, std::optional<int> decimalPlaces = std::nullopt,
 		bool trimTrailingZeros = true);
+	// Strip the commas from the given text. Typically used for stripping thousands separators from
+	// numberic string values so that they can be provided to a dialog as a valid numeric input.
+	static std::string StripCommas(const std::string &text);
 	// Convert numbers to word forms. Capitalize the first letter if at the start of a sentence.
 	static std::string WordForm(int64_t value, bool startOfSentence = false);
 	// Conditionally convert numbers to word forms, based on the Chicago Manual of Style.
