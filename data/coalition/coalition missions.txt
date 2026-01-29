@@ -1610,7 +1610,6 @@ mission "Saryd University Lecture"
 					goto hai
 					to display
 						has "First Contact: Hai: offered"
-						not "event: hai-human resolution announced"
 				`	"Humans have official contact with the Quarg, but the Quarg don't trade technology with humanity."`
 				`	"Humans have official contact with the Quarg, but humans and Quarg don't really intermix."`
 				`	"Humans know about the Quarg, but most people know little about them."`
@@ -3054,7 +3053,7 @@ mission "Coalition: Long Lost Property 3"
 	on enter "Persian"
 		dialog `Entering the system, your scanners catch a trio of heavily modified Quicksilvers. They also inform you that the probe is in the system, though it fails at giving you its exact location, as if something is causing interference. The Quicksilvers notice you and ready their guns.`
 	npc board
-		personality staying nemesis target
+		personality staying marked target
 		government "Bounty"
 		system "Persian"
 		ship "Marauder Quicksilver (Engines) (Safe)" "Cohen"
@@ -3082,7 +3081,7 @@ mission "Coalition: Long Lost Property 3A"
 		"credits" > 1000000
 	source "Greenrock"
 	npc board
-		personality staying nemesis target
+		personality staying marked target
 		government "Bounty"
 		system "Persian"
 		ship "Marauder Quicksilver (Safe)" "Coven"
@@ -3102,7 +3101,7 @@ mission "Coalition: Long Lost Property 3B"
 		"credits" > 1000000
 	source "Greenrock"
 	npc board
-		personality staying nemesis target
+		personality staying marked target
 		government "Bounty"
 		system "Persian"
 		ship "Marauder Quicksilver (Weapons) (Safe)" "Conan"

@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "FireCommand.h"
 #include "FormationPositioner.h"
-#include "JumpType.h"
 #include "orders/OrderSet.h"
 #include "Point.h"
 #include "RoutePlan.h"
@@ -97,12 +96,18 @@ public:
 private:
 	class RouteCacheKey {
 	public:
-		// Note: keep this updated as the variables driving the routing change:
-		// - from, to, jumpRange, driveType
-		// - gov: danger = f(gov), isRestrictedFrom = f(gov)
-		// - wormhole requirements that are met, see Planet::IsAccessible(const Ship *ship)
-		explicit RouteCacheKey(const System *from, const System *to, const Government *gov,
-			double jumpDistance, JumpType jumpType, const std::vector<std::string> &wormholeKeys);
+		/// The route cache key is generated from all information that can influence pathfinding.
+		/// @param jumpHash A hash generated from the ShipJumpNavigation class, containing information about the
+		/// system that the ship is currently in and all of its jump capabilities.
+		/// @param personalityHash A hash generated from the ship's government and personality, which can influence the
+		/// systems that the ship is allowed to enter. (See Ship::IsRestrictedFrom.)
+		/// @param to A pointer to the target system.
+		/// @param isPlayer Whether this key is for the player's flagship. There is special handling for the player
+		/// to avoid dangerous systems.
+		/// @param wormholeKeys A vector of attributes required to enter wormholes that this ship is capable of
+		/// entering. (See Planet::IsAccessible.)
+		RouteCacheKey(std::size_t jumpHash, std::size_t personalityHash, const System *to, bool isPlayer,
+			const std::vector<std::string> &wormholeKeys);
 
 		// To support use as a map key:
 		bool operator==(const RouteCacheKey &other) const;
@@ -113,13 +118,11 @@ private:
 			size_t operator()(const RouteCacheKey &key) const;
 		};
 
-
 	public:
-		const System *from;
+		size_t jumpHash;
+		size_t personalityHash;
 		const System *to;
-		const Government *gov;
-		double jumpDistance;
-		JumpType jumpType;
+		bool isPlayer;
 		std::vector<std::string> wormholeKeys;
 	};
 
