@@ -76,7 +76,7 @@ TradingPanel::~TradingPanel()
 		else
 			message += "for a total profit of " + Format::CreditString(profit) + ".";
 
-		Messages::Add(message, Messages::Importance::High);
+		Messages::Add({message, GameData::MessageCategories().Get("normal")});
 	}
 }
 
@@ -274,7 +274,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		}
 	}
 	else if(command.Has(Command::MAP))
-		GetUI()->Push(new MapDetailPanel(player));
+		GetUI().Push(new MapDetailPanel(player));
 	else
 		return false;
 

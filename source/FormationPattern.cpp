@@ -260,7 +260,7 @@ const string &FormationPattern::TrueName() const
 
 
 
-void FormationPattern::SetTrueName(const std::string &name)
+void FormationPattern::SetTrueName(const string &name)
 {
 	this->trueName = name;
 }

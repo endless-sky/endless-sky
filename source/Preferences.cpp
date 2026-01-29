@@ -89,7 +89,7 @@ namespace {
 
 		const bool IsActive() const { return state != Preferences::OverlayState::DISABLED; }
 
-		const std::string &ToString() const
+		const string &ToString() const
 		{
 			return OVERLAY_SETTINGS[max<int>(0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
 		}
@@ -177,6 +177,8 @@ namespace {
 
 	const vector<string> LARGE_GRAPHICS_REDUCTION_SETTINGS = {"off", "largest only", "all"};
 	int largeGraphicsReductionIndex = 0;
+
+	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 
 	int previousSaveCount = 3;
 
@@ -620,7 +622,7 @@ bool Preferences::ToggleVSync()
 		if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
 		{
 			// Restore original saved setting.
-			Logger::LogError("Unable to change VSync state");
+			Logger::Log("Unable to change VSync state.", Logger::Level::WARNING);
 			GameWindow::SetVSync(static_cast<VSync>(vsyncIndex));
 			return false;
 		}
@@ -829,7 +831,7 @@ Preferences::AlertIndicator Preferences::GetAlertIndicator()
 
 
 
-const std::string &Preferences::AlertSetting()
+const string &Preferences::AlertSetting()
 {
 	return ALERT_INDICATOR_SETTING[alertIndicatorIndex];
 }
@@ -884,7 +886,7 @@ Preferences::MinimapDisplay Preferences::GetMinimapDisplay()
 
 
 
-const std::string &Preferences::MinimapSetting()
+const string &Preferences::MinimapSetting()
 {
 	return MINIMAP_DISPLAY_SETTING[minimapDisplayIndex];
 }
@@ -931,6 +933,14 @@ Preferences::LargeGraphicsReduction Preferences::GetLargeGraphicsReduction()
 const string &Preferences::LargeGraphicsReductionSetting()
 {
 	return LARGE_GRAPHICS_REDUCTION_SETTINGS[largeGraphicsReductionIndex];
+}
+
+
+
+void Preferences::ToggleBlockScreenSaver()
+{
+	GameWindow::ToggleBlockScreenSaver();
+	Set(BLOCK_SCREEN_SAVER, !Has(BLOCK_SCREEN_SAVER));
 }
 
 

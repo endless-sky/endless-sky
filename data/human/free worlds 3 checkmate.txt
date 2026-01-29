@@ -21,7 +21,7 @@ mission "FWC Scouting 1"
 	to offer
 		has "FW Liberate Delta Sagittarii: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log `Drove the Navy out of Delta Sagittarii with the help of the "Wolf Pack," a militia group in favor of more extreme measures who launched a preemptive strike before the main Free Worlds force arrived. The Free Worlds are now committed to fighting the Republic to a standstill rather than proving their innocence; the defector has been recaptured by the Syndicate and whatever information he had to share is now lost.`
@@ -69,7 +69,7 @@ mission "FWC Attack Kaus Borealis"
 	to offer
 		has "FWC Scouting 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fwc attack kaus borealis"
@@ -186,7 +186,7 @@ mission "FWC Cebalrai 1"
 	to offer
 		has "FWC Attack Kaus Borealis: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Captured the Kaus Borealis system from the Navy, even though the locals are still loyal to the Republic. Also, learned that the Wolf Pack ships have been using nuclear missiles, and that is why they were so effective in decimating the Navy fleet."
@@ -253,7 +253,7 @@ mission "FWC Cebalrai 1B"
 	to offer
 		has "FWC Cebalrai 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fwc attack cebalrai"
@@ -339,7 +339,7 @@ mission "FWC Nuke Supply 1"
 	to offer
 		has "FWC Cebalrai 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -410,7 +410,7 @@ mission "FWC Nuke Supply 1B"
 	to offer
 		has "FWC Nuke Supply 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -436,7 +436,7 @@ mission "FWC Nuke Supply 1C"
 	to offer
 		has "FWC Nuke Supply 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Delivered a load of enriched uranium to a warlord's fortress on Greenrock, in exchange for warheads for the Free Worlds to use against the Navy. Hopefully forming such a friendly relationship with dangerous criminals will not cause trouble for the Free Worlds in the future."
@@ -463,7 +463,7 @@ mission "FWC Diplomacy 1"
 	to offer
 		has "FWC Nuke Supply 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -503,7 +503,7 @@ mission "FWC Diplomacy 1B"
 	passengers 2
 	blocked "You have reached <origin>, but you don't have a bunk free for Alondo! You should return to <origin> once you have freed one up."
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fw safe passage starts"
@@ -548,7 +548,7 @@ mission "FWC Diplomacy 1C"
 		has "FWC Diplomacy 1B: done"
 	passengers 2
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Visited Earth with Alondo to try to pressure Parliament into agreeing to a peace deal. The negotiations failed. Only escaped the planet safely because a Free Worlds ship in orbit threatened to bombard the Parliament building."
@@ -631,7 +631,7 @@ mission "FWC Checkmate 1"
 	to offer
 		has "FWC Diplomacy 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fwc defend cebalrai"
@@ -858,7 +858,7 @@ mission "FWC Checkmate 1B"
 	passengers 1
 	blocked "You have returned to <origin>, but you do not have a bunk free for Katya. You should return here once you have a bunk free."
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fwc attack menkent"
@@ -964,7 +964,7 @@ mission "FWC Checkmate 1C"
 		has "FWC Checkmate 1B: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fwc attack vega"
@@ -1038,7 +1038,7 @@ mission "FWC Pug 1"
 	to offer
 		has "FWC Checkmate 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fwc pug invasion"
@@ -1162,7 +1162,7 @@ mission "FWC Pug 1B"
 	to offer
 		has "FWC Pug 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The moment the nuclear-armed Wolf Pack ships arrived in-system to prepare for the assault on Earth, a fleet of alien ships appeared and attacked them. In addition, the aliens somehow cut off the Vega system from the rest of human space."
@@ -1199,7 +1199,7 @@ mission "FWC Pug 2"
 	to offer
 		has "FWC Pug 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Found out that the aliens who attacked the Wolf Pack fleet call themselves the Pug. After destroying that fleet, the aliens have not attacked anyone else except a few merchants who tried to resist them. They came from a nearby star system that did not previously have any hyperspace connections to human space, and seem intent on controlling and perhaps enslaving the local human population."
@@ -1277,7 +1277,7 @@ mission "FWC Pug 2B"
 	passengers 1
 	blocked "You need to have a bunk free for Katya to continue with the next mission. Complete or abort whatever mission is using up all your passenger space, then return here to <origin>."
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1328,7 +1328,7 @@ mission "FWC Pug 2C"
 		has "FWC Pug 2B: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log `Visited the homeworld of the Pug, the aliens who have taken over this region of space. They claim that when the Free Worlds fleet was threatening to invade Earth, they had no choice but to interfere to prevent humanity from destroying itself. They say that their plan is to slowly bring more and more human worlds under their "protection," but what they are talking about sounds more like slavery.`
@@ -1351,8 +1351,16 @@ mission "FWC Pug 2C"
 			label interfere
 			`	"'Interfere'?" says the alien. "We have 'interfered' many times before, and always you have benefited. If you do not believe us, ask those who live in the place you call the Deep. We helped them defeat the twisted half-human beings that you created in your foolish attempts to improve your race's genetic code. We have helped keep those creatures in check in the centuries since then. And we have helped in many other ways."`
 			choice
+				`	"I'm from the Deep, and I've never heard of you before."`
+					to display
+						has "start: deep"
 				`	"What do you want from us in return?"`
+					goto goals
 				`	"What are you planning to do with these systems you have occupied?"`
+					goto goals
+			`	"Then perhaps you know of the myths of 'elves,' and of the tradition of tributation," says the alien. "We had been content with protecting your species from afar, letting your kind take our accomplishments as your own, but it is clear further intervention is necessary."`
+			`	Katya says, "So you got sick of babysitting us? Don't see why that means you have to conquer us instead of leaving us alone."`
+			label goals
 			`	"We have brought peace to this region," says the alien, "and we will continue to spread peace until violence has come to an end throughout human space. That is our only desire. All that we ask in return is a portion of the goods your worlds produce, to help offset the cost of watching over and protecting so many human worlds. And after some time, we will again allow human beings autonomous control of certain parts of your territory, when you show yourselves capable of living peacefully."`
 			`	"By 'spreading peace,' do you mean occupying more systems?" asks Katya.`
 			`	"We mean bringing an end to your war and your divisions," the alien says. "Those of your worlds and your people who have shown themselves unable to live peacefully, we must govern, to teach them peace. Any who attack us, we must destroy, because we are the bringers of peace, and whoever attacks us is not on the side of peace. Now, are you prepared to pledge your loyalty?"`
@@ -1390,7 +1398,7 @@ mission "FWC Pug 2D"
 		has "FWC Pug 2C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fwc navy retakes cebalrai"
@@ -1424,7 +1432,7 @@ mission "FWC Pug 3"
 		has "FWC Pug 2D: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Escaped from the territory captured by the Pug by using a jump drive. Found out that Freya has been captured by the Navy while she was trying to figure out the reason for the hyperspace links disappearing. The Navy thinks that the Free Worlds are behind the hyperspace disruptions. But, making peace with the Navy may be the only way to defeat the Pug."
@@ -1486,7 +1494,7 @@ mission "FWC Pug 3A"
 		has "FWC Pug 3: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Convinced the Navy that the disappearing hyperspace links really are an alien attack and not some sort of Free Worlds super-weapon. Freya thinks that she might be able to undo the hyperspace disruption and allow the Navy to enter the captured territory and begin to drive the Pug back."
@@ -1548,7 +1556,7 @@ mission "FWC Pug 3B"
 	to offer
 		has "FWC Pug 3A: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fwc defend oblivion"
@@ -1619,7 +1627,7 @@ mission "FWC Pug 3C"
 	cargo "graviton reflector" 10
 	blocked `As you are landing, Freya contacts you and says, "You're going to need ten tons of cargo space for this next mission, and a bunk for me, as well." That means you have to free up <capacity>.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1651,7 +1659,7 @@ mission "FWC Pug 3D"
 		has "FWC Pug 3C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Succeeded in restoring the hyperspace link to the Rasalhague system. With the Navy's help, it might now be possible to turn the tide against the Pug."
@@ -1768,7 +1776,7 @@ mission "FWC Pug 4"
 		has "FWC Pug 3D: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1852,7 +1860,7 @@ mission "FWC Pug 4A"
 		has "FWC Pug 4: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Drove off another Pug attack. Fighting side by side together is beginning to build some camaraderie between the Free Worlds and the Navy, even though they were enemies so recently."
@@ -1907,7 +1915,7 @@ mission "FWC Pug 4B"
 	passengers 1
 	blocked `When you land on <origin>, Freya says, "Captain, it looks like you're going to need <capacity> to continue with this mission." You should free up more space, then return here.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -2001,7 +2009,7 @@ mission "FWC Pug 4C"
 		has "FWC Pug 4B: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fwc reconnect ascella" 0
@@ -2080,7 +2088,7 @@ mission "FWC Pug 5"
 		has "FWC Pug 4C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -2150,7 +2158,7 @@ mission "FWC Pug 5B"
 	cargo "graviton reflector" 10
 	blocked `When you land on <origin>, Freya says, "Captain, it looks like you're going to need <capacity> to continue with this mission." You should free up more space, then return here.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Drove the Pug out of the Vega system with the help of some Navy ships equipped with jump drives. Once again, the Pug somehow managed to evacuate all their people from the planet before the Navy arrived, as if they were already expecting to lose this system."
@@ -2201,7 +2209,7 @@ mission "FWC Pug 5C"
 		has "FWC Pug 5B: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fwc reconnect vega"
@@ -2249,7 +2257,7 @@ mission "FWC Pug 6"
 		dialog
 			`You enter the Deneb system expecting a massive Pug battle fleet to be waiting for you. Instead, it is entirely deserted. Also, your sensors are picking up some sort of anomaly outside the orbit of the outermost planet.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Preparing for the final assault on the Pug homeworld. There seems to be no other option but to force them to surrender, but with the help of the Navy that no longer seems like an impossible task."
@@ -2405,7 +2413,7 @@ mission "FWC End"
 	passengers 1
 	blocked "You need at least one bunk free for Freya in order to continue this mission."
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"reputation: Republic" += 20

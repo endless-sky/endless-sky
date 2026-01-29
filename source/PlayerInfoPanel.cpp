@@ -193,10 +193,19 @@ PlayerInfoPanel::~PlayerInfoPanel()
 
 void PlayerInfoPanel::Step()
 {
-	// If the player has acquired a second ship for the first time, explain to
-	// them how to reorder and sort the ships in their fleet.
-	if(panelState.Ships().size() > 1)
-		DoHelp("multiple ships");
+	if(GetUI().IsTop(this) && !checkedHelp)
+	{
+		if(DoHelp("player info"))
+		{
+			// Nothing to do here, just don't want to execute the other branch.
+		}
+		// If the player has acquired a second ship for the first time, explain to
+		// them how to reorder and sort the ships in their fleet.
+		else if(panelState.Ships().size() > 1)
+			if(!DoHelp("multiple ships"))
+				DoHelp("fleet management");
+		checkedHelp = true;
+	}
 }
 
 
@@ -290,19 +299,23 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control)
 			|| key == 'i' || command.Has(Command::INFO))
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	}
 	else if(command.Has(Command::HELP))
 	{
 		if(panelState.Ships().size() > 1)
+		{
+			DoHelp("fleet management", true);
 			DoHelp("multiple ships", true);
+		}
+		DoHelp("player info", true);
 	}
 	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER || (control && key == SDLK_TAB))
 	{
 		if(!panelState.Ships().empty())
 		{
-			GetUI()->Pop(this);
-			GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+			GetUI().Pop(this);
+			GetUI().Push(new ShipInfoPanel(player, std::move(panelState)));
 		}
 	}
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
@@ -458,9 +471,9 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		panelState.SetCurrentSort(nullptr);
 	}
 	else if(command.Has(Command::MAP) || key == 'm')
-		GetUI()->Push(new MissionPanel(player));
+		GetUI().Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
-		GetUI()->Push(new LogbookPanel(player));
+		GetUI().Push(new LogbookPanel(player));
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
@@ -470,13 +483,13 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			set<Ship *> selected;
 			for(int i : panelState.AllSelected())
 				selected.insert(panelState.Ships()[i].get());
-			player.SetGroup(group, &selected);
+			player.SetEscortGroup(group, &selected);
 		}
 		else
 		{
 			// Convert ship pointers into indices in the ship list.
 			set<int> added;
-			for(Ship *ship : player.GetGroup(group))
+			for(Ship *ship : player.GetEscortGroup(group))
 				for(size_t i = 0; i < panelState.Ships().size(); ++i)
 					if(panelState.Ships()[i].get() == ship)
 						added.insert(i);
@@ -564,8 +577,8 @@ bool PlayerInfoPanel::Click(int x, int y, MouseButton button, int clicks)
 		// If not landed, clicking a ship name takes you straight to its info.
 		if(!panelState.CanEdit() || sameIndex)
 		{
-			GetUI()->Pop(this);
-			GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+			GetUI().Pop(this);
+			GetUI().Push(new ShipInfoPanel(player, std::move(panelState)));
 		}
 	}
 
@@ -664,15 +677,15 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
 		table.Draw("piracy threat:", bright);
-		table.Draw(to_string(lround(100 * prob)) + "%", dim);
+		table.Draw(Format::Percentage(prob, 0), dim);
 		table.DrawGap(5);
 
 		// Format the attraction and deterrence levels with tens places, so it
 		// is clear which is higher even if they round to the same level.
 		table.DrawTruncatedPair("cargo: " + attractionRating, dim,
-			"(+" + Format::Decimal(attractionLevel, 1) + ")", dim, Truncate::MIDDLE, false);
+			"(+" + Format::Number(attractionLevel, 1, false) + ")", dim, Truncate::MIDDLE, false);
 		table.DrawTruncatedPair("fleet: " + deterrenceRating, dim,
-			"(-" + Format::Decimal(deterrenceLevel, 1) + ")", dim, Truncate::MIDDLE, false);
+			"(-" + Format::Number(deterrenceLevel, 1, false) + ")", dim, Truncate::MIDDLE, false);
 	}
 	// Other special information:
 	vector<pair<int64_t, string>> salary;
@@ -787,11 +800,9 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		const System *system = ship.GetSystem();
 		table.Draw(system ? (player.KnowsName(*system) ? system->DisplayName() : "???") : "");
 
-		string shields = to_string(static_cast<int>(100. * max(0., ship.Shields()))) + "%";
-		table.Draw(shields);
+		table.Draw(Format::Percentage(max(0., ship.Shields()), 0));
 
-		string hull = to_string(static_cast<int>(100. * max(0., ship.Hull()))) + "%";
-		table.Draw(hull);
+		table.Draw(Format::Percentage(max(0., ship.Hull()), 0));
 
 		string fuel = to_string(static_cast<int>(
 			ship.Attributes().Get("fuel capacity") * ship.Fuel()));

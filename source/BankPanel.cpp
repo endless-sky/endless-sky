@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -145,19 +145,19 @@ void BankPanel::Draw()
 		if(isLastRow && mergedMortgages)
 		{
 			table.Draw("Other");
-			table.Draw(Format::Credits(otherPrincipal));
+			table.Draw(Format::AbbreviatedNumber(otherPrincipal));
 			// Skip the interest and term, because this entry represents the
 			// combination of several different mortages.
 			table.Advance(2);
-			table.Draw(Format::Credits(otherPayment));
+			table.Draw(Format::AbbreviatedNumber(otherPayment));
 		}
 		else
 		{
 			table.Draw(mortgage.Type());
-			table.Draw(Format::Credits(mortgage.Principal()));
+			table.Draw(Format::AbbreviatedNumber(mortgage.Principal()));
 			table.Draw(mortgage.Interest());
 			table.Draw(mortgage.Term());
-			table.Draw(Format::Credits(mortgage.Payment()));
+			table.Draw(Format::AbbreviatedNumber(mortgage.Payment()));
 
 			// Keep track of how much out of the total principal and payment has
 			// not yet been included in one of the rows of the table.
@@ -182,13 +182,13 @@ void BankPanel::Draw()
 		// Check whether the player owes back salaries.
 		if(crewSalariesOwed)
 		{
-			table.Draw(Format::Credits(crewSalariesOwed));
+			table.Draw(Format::AbbreviatedNumber(crewSalariesOwed));
 			table.Draw("(overdue)");
 			table.Advance(1);
 		}
 		else
 			table.Advance(3);
-		table.Draw(Format::Credits(salaries));
+		table.Draw(Format::AbbreviatedNumber(salaries));
 		table.Advance();
 	}
 	// Draw the maintenance costs, if necessary.
@@ -199,13 +199,13 @@ void BankPanel::Draw()
 		table.Draw("Maintenance");
 		if(maintenanceDue)
 		{
-			table.Draw(Format::Credits(maintenanceDue));
+			table.Draw(Format::AbbreviatedNumber(maintenanceDue));
 			table.Draw("(overdue)");
 			table.Advance(1);
 		}
 		else
 			table.Advance(3);
-		table.Draw(Format::Credits(b.maintenanceCosts));
+		table.Draw(Format::AbbreviatedNumber(b.maintenanceCosts));
 		table.Advance();
 	}
 	if(salariesIncome || tributeIncome || b.assetsReturns)
@@ -221,14 +221,14 @@ void BankPanel::Draw()
 			incomeLayout});
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
-		table.Draw(Format::Credits(-(salariesIncome + tributeIncome + b.assetsReturns)));
+		table.Draw(Format::AbbreviatedNumber(-(salariesIncome + tributeIncome + b.assetsReturns)));
 		table.Advance();
 	}
 
 	// Draw the total daily payment.
 	table.Advance(3);
 	table.Draw("total:", selected);
-	table.Draw(Format::Credits(totalPayment), unselected);
+	table.Draw(Format::AbbreviatedNumber(totalPayment), unselected);
 	table.Advance();
 
 	// Draw the credit score.
@@ -280,14 +280,14 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		++selectedRow;
 	else if(key == SDLK_RETURN && selectedRow < mortgageRows)
 	{
-		GetUI()->Push(new Dialog(this, &BankPanel::PayExtra,
+		GetUI().Push(new DialogPanel(this, &BankPanel::PayExtra,
 			"Paying off part of this debt will reduce your daily payments and the "
 			"interest that it costs you. How many extra credits will you pay?"));
 		DoHelp("bank advanced");
 	}
 	else if(key == SDLK_RETURN && qualify)
 	{
-		GetUI()->Push(new Dialog(this, &BankPanel::NewMortgage,
+		GetUI().Push(new DialogPanel(this, &BankPanel::NewMortgage,
 			"Borrow how many credits?"));
 		DoHelp("bank advanced");
 	}

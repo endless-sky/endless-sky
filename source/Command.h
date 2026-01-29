@@ -65,6 +65,7 @@ public:
 	static const Command FASTFORWARD;
 	static const Command HELP;
 	static const Command PAUSE;
+	static const Command PERFORMANCE_DISPLAY;
 	// Escort commands:
 	static const Command FIGHT;
 	static const Command HOLD_FIRE;

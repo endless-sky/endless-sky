@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <filesystem>
 #include <functional>
 #include <map>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -38,10 +39,11 @@ public:
 	// Convert the given number into abbreviated format with a suffix like
 	// "M" for million, "B" for billion, or "T" for trillion. Any number
 	// above 1 quadrillion is instead shown in scientific notation.
-	static std::string Credits(int64_t value);
-	// Convert the given number into abbreviated format as described in Format::Credits,
+	static std::string AbbreviatedNumber(int64_t value);
+	// Convert the given number into abbreviated format as described in Format::AbbreviatedNumber,
 	// then attach the ' credit' or ' credits' suffix to it.
-	static std::string CreditString(int64_t value);
+	// If abbreviated is false, then the full numeric value is outputted.
+	static std::string CreditString(int64_t value, bool abbreviated = true);
 	// Writes the given number into a string,
 	// then attach the ' ton' or ' tons' suffix to it.
 	static std::string MassString(double amount);
@@ -54,17 +56,29 @@ public:
 	// Convert a time in seconds to years/days/hours/minutes/seconds
 	static std::string PlayTime(double timeVal);
 	// Convert a time point to a human-readable time and date.
-	static std::string TimestampString(std::chrono::time_point<std::chrono::system_clock> time);
+	static std::string TimestampString(std::chrono::time_point<std::chrono::system_clock> time,
+		bool ignorePreferences = false);
 	static std::string TimestampString(std::filesystem::file_time_type time);
 	// Convert an ammo count into a short string for use in the ammo display.
 	// Only the absolute value of a negative number is considered.
 	static std::string AmmoCount(int64_t value);
-	// Convert the given number to a string, with at most one decimal place.
-	// This is primarily for displaying ship and outfit attributes.
-	static std::string Number(double value);
-	// Format the given value as a number with exactly the given number of
-	// decimal places (even if they are all 0).
-	static std::string Decimal(double value, int places);
+	// Convert the given number to a string with thousands separators.
+	// If the number of decimal places is not specified, then the number of places
+	// will adpat to the size of the number. Magnitudes >10k will not display any
+	// decimals, magnitudes between 10k and 1k will show one decimal place, and
+	// magnitudes less than 1k will show two decimal places.
+	// Otherwise, the exact given number of decimal places will be used.
+	// Capable of handling infinity and nan double values.
+	static std::string Number(double value, std::optional<int> decimalPlaces = std::nullopt,
+		bool trimTrailingZeros = true);
+	// Convert the given integer to a string with thousands separators.
+	static std::string Number(unsigned value);
+	static std::string Number(int value);
+	static std::string Number(int64_t value);
+	// Format the given value as a percentage, with an optional additional number of
+	// decimal places. An input value of 1 will be formatted as 100%.
+	static std::string Percentage(double value, std::optional<int> decimalPlaces = std::nullopt,
+		bool trimTrailingZeros = true);
 	// Convert numbers to word forms. Capitalize the first letter if at the start of a sentence.
 	static std::string WordForm(int64_t value, bool startOfSentence = false);
 	// Conditionally convert numbers to word forms, based on the Chicago Manual of Style.

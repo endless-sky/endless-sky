@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Date.h"
 #include "Depreciation.h"
 #include "EsUuid.h"
+#include "ExclusiveItem.h"
 #include "GameEvent.h"
 #include "Mission.h"
 #include "SystemEntry.h"
@@ -90,6 +91,8 @@ public:
 	void New(const StartConditions &start);
 	// Load an existing player.
 	void Load(const std::filesystem::path &path);
+	// Reload from the same file from which the current pilot was loaded.
+	void Reload();
 	// Load the most recently saved player. If no save could be loaded, returns false.
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
@@ -201,9 +204,9 @@ public:
 	// Call this when leaving the outfitter, shipyard, or hiring panel.
 	void UpdateCargoCapacities();
 	// Switch cargo from being stored in ships to being stored here.
-	void Land(UI *ui);
+	void Land(UI &ui);
 	// Make ships ready for take off. This may require selling excess cargo.
-	bool TakeOff(UI *ui, bool distributeCargo);
+	bool TakeOff(UI &ui, bool distributeCargo);
 	// Pool cargo from local ships.
 	void PoolCargo();
 	// Distribute cargo to local ships. Returns a reference to the player's cargo.
@@ -214,18 +217,18 @@ public:
 	void AddPlayTime(std::chrono::nanoseconds timeVal);
 
 	// Get the player's logbook.
-	const std::multimap<Date, std::string> &Logbook() const;
-	void AddLogEntry(const std::string &text);
-	const std::map<std::string, std::map<std::string, std::string>> &SpecialLogs() const;
-	void AddSpecialLog(const std::string &type, const std::string &name, const std::string &text);
-	void RemoveSpecialLog(const std::string &type, const std::string &name);
-	void RemoveSpecialLog(const std::string &type);
+	const std::map<Date, BookEntry> &Logbook() const;
+	void AddLogEntry(const BookEntry &logbookEntry);
+	const std::map<std::string, std::map<std::string, BookEntry>> &SpecialLogs() const;
+	void AddSpecialLog(const std::string &category, const std::string &heading, const BookEntry &logbookEntry);
+	void RemoveSpecialLog(const std::string &category, const std::string &heading);
+	void RemoveSpecialLog(const std::string &category);
 	bool HasLogs() const;
 
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
-	bool HasAvailableEnteringMissions() const;
+	bool HasAvailableInflightMissions() const;
 
 	// For all active missions, cache information that can be requested often but does not change often,
 	// or needs to be calculated at least once.
@@ -254,12 +257,14 @@ public:
 
 	const Mission *ActiveInFlightMission() const;
 	void UpdateMissionNPCs();
-	void AcceptJob(const Mission &mission, UI *ui);
+	void AcceptJob(const Mission &mission, UI &ui);
 	// Check to see if there is any mission to offer right now.
 	Mission *MissionToOffer(Mission::Location location);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
 	void CreateEnteringMissions();
+	void CreateTransitionMissions();
 	Mission *EnteringMission();
+	Mission *TransitionMission();
 	// Return true if the given ship is capturable only because it's the source
 	// of a boarding mission which allows it to be.
 	bool CaptureOverriden(const std::shared_ptr<Ship> &ship) const;
@@ -267,20 +272,20 @@ public:
 	// If one of your missions cannot be offered because you do not have enough
 	// space for it, and it specifies a message to be shown in that situation,
 	// show that message.
-	void HandleBlockedMissions(Mission::Location location, UI *ui);
+	void HandleBlockedMissions(Mission::Location location, UI &ui);
 	// Display the blocked message for the first available entering mission,
 	// then remove it from the available entering missions list.
-	void HandleBlockedEnteringMissions(UI *ui);
+	void HandleBlockedInflightMissions(UI &ui);
 	// Callback for accepting or declining whatever mission has been offered.
 	void MissionCallback(int response);
 	// Basic callback for handling forced departure from a planet.
 	void BasicCallback(int response);
 	// Complete or fail a mission.
-	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui);
+	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI &ui);
 	// Mark a mission as failed, but do not remove it from the mission list yet.
 	void FailMission(const Mission &mission);
 	// Update mission status based on an event.
-	void HandleEvent(const ShipEvent &event, UI *ui);
+	void HandleEvent(const ShipEvent &event, UI &ui);
 
 	// Access the "condition" flags for this player.
 	ConditionsStore &Conditions();
@@ -333,16 +338,20 @@ public:
 	void ToggleAnySecondary(const Outfit *outfit);
 
 	// Escorts currently selected for giving orders.
-	const std::vector<std::weak_ptr<Ship>> &SelectedShips() const;
-	// Select any player ships in the given box or list. Return true if any were
-	// selected.
-	bool SelectShips(const Rectangle &box, bool hasShift);
-	bool SelectShips(const std::vector<const Ship *> &stack, bool hasShift);
-	void SelectShip(const Ship *ship, bool hasShift);
-	void DeselectShip(const Ship *ship);
-	void SelectGroup(int group, bool hasShift);
-	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
-	std::set<Ship *> GetGroup(int group);
+	const std::vector<std::weak_ptr<Ship>> &SelectedEscorts() const;
+	// Select any of the ships that the player owns that are located within the given box
+	// on screen. Return true if any were selected.
+	bool SelectEscorts(const Rectangle &box, bool hasShift);
+	// Select ships in the given stack, provided by the EscortDisplay. All ships in the stack should share the same
+	// sprite. If the player clicks on the same escort icon multiple times, the ship targeted by the player's flagship
+	// will cycle through the stack. Only escorts that the player owns will be selected for the giving of orders.
+	void SelectShips(const std::vector<std::weak_ptr<Ship>> &stack, bool hasShift);
+	// Select one of the ships that the player owns.
+	void SelectEscort(const Ship *ship, bool hasShift);
+	void DeselectEscort(const Ship *ship);
+	void SelectEscortGroup(int group, bool hasShift);
+	void SetEscortGroup(int group, const std::set<Ship *> *newShips = nullptr);
+	std::set<Ship *> GetEscortGroup(int group);
 
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
@@ -373,6 +382,27 @@ public:
 	// Should help dialogs relating to carriers be displayed?
 	bool DisplayCarrierHelp() const;
 
+	// Advance any active mission timers that meet the right criteria.
+	void StepMissionTimers(UI &ui);
+	// Checks and resets recacheJumpRoutes. Returns the value that was present upon entry.
+	bool RecacheJumpRoutes();
+
+
+private:
+	class ScheduledEvent {
+	public:
+		// For loading a future event from the save file.
+		ScheduledEvent(const DataNode &node, const ConditionsStore *playerConditions);
+		// For scheduling a new event.
+		ScheduledEvent(GameEvent event, Date date);
+
+		// Comparison operator, based on the scheduled date of the event.
+		bool operator<(const ScheduledEvent &other) const;
+
+		ExclusiveItem<GameEvent> event;
+		Date date;
+	};
+
 
 private:
 	// Apply any "changes" saved in this player info to the global game state.
@@ -382,15 +412,18 @@ private:
 	// Helper to register derived conditions.
 	void RegisterDerivedConditions();
 
+	// Helper for triggering events.
+	void TriggerEvent(GameEvent event, std::list<DataNode> &eventChanges);
+
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
-	void StepMissions(UI *ui);
+	void StepMissions(UI &ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
 	void Save(DataWriter &out) const;
 
 	// Check for and apply any punitive actions from planetary security.
-	void Fine(UI *ui);
+	void Fine(UI &ui);
 
 	// Set the flagship (on departure or during flight).
 	void SetFlagship(Ship &other);
@@ -398,7 +431,7 @@ private:
 	void HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip);
 
 	// Helper function to update the ship selection.
-	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
+	void SelectEscort(const std::shared_ptr<Ship> &ship, bool *first);
 
 	// Instantiate the given model and add it to the player's fleet.
 	void AddStockShip(const Ship *model, const std::string &name);
@@ -436,14 +469,14 @@ private:
 
 	std::shared_ptr<Ship> flagship;
 	std::vector<std::shared_ptr<Ship>> ships;
-	std::vector<std::weak_ptr<Ship>> selectedShips;
+	std::vector<std::weak_ptr<Ship>> selectedEscorts;
 	std::map<const Ship *, int> groups;
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
 
-	std::multimap<Date, std::string> logbook;
-	std::map<std::string, std::map<std::string, std::string>> specialLogs;
+	std::map<Date, BookEntry> logbook;
+	std::map<std::string, std::map<std::string, BookEntry>> specialLogs;
 
 	// A list of the player's active, accepted missions.
 	std::list<Mission> missions;
@@ -451,9 +484,14 @@ private:
 	// they will not change if you reload the game.
 	std::list<Mission> availableJobs;
 	std::list<Mission> availableMissions;
-	// This list is populated upon entering a system, and isn't saved since
-	// you can't save in space.
+	// This list is populated upon entering a system (when the player is given control
+	// after taking off or jumping in),
+	// and isn't saved since you can't save in space.
 	std::list<Mission> availableEnteringMissions;
+	// This list is populated when the date changes upon taking off
+	// or transitioning between systems, and isn't saved since
+	// you can't save in space.
+	std::list<Mission> availableTransitionMissions;
 	// This list is populated upon boarding a ship, and isn't saved since
 	// you can't save in space. As of right now, only one boarding mission
 	// can be offered at a time, so this list will only ever contain one or
@@ -462,6 +500,9 @@ private:
 	// If any mission component is not fully defined, the mission is deactivated
 	// until its components are fully evaluable (i.e. needed plugins are reinstalled).
 	std::list<Mission> inactiveMissions;
+	// If any past event is not fully defined, the player should be warned that
+	// the universe may not be in the expected state.
+	std::set<std::string> invalidEvents;
 	// Missions that are failed or aborted, but not yet deleted, and any
 	// missions offered while in-flight are not saved.
 	std::list<Mission> doneMissions;
@@ -503,7 +544,12 @@ private:
 	// Persons that have been killed in this player's universe:
 	std::vector<std::string> destroyedPersons;
 	// Events that are going to happen some time in the future (sorted by date for easy chronological access):
-	std::multiset<GameEvent> gameEvents;
+	std::multiset<ScheduledEvent> scheduledEvents;
+	// The names of events that were triggered in the past. Only needed when loading the game to determine
+	// if an invalid event is referenced in the save file that the player should be warned about.
+	std::set<std::string> triggeredEvents;
+	// Whether a date note has already been added to dataChanges to mark when new changes have occurred.
+	bool markedChangesToday = false;
 
 	// The system and position therein to which the "orbits" system UI issued a move order.
 	std::pair<const System *, Point> interstellarEscortDestination;
@@ -521,4 +567,6 @@ private:
 	CoreStartData startData;
 
 	std::unique_ptr<DataWriter> transactionSnapshot;
+
+	bool recacheJumpRoutes = false;
 };
