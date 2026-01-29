@@ -466,6 +466,7 @@ mission "Deep: Mystery Cubes 2"
 mission "Deep: Mystery Cubes 3: Escorts"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Mystery Cubes 2: done"
 	to fail
@@ -1719,6 +1720,7 @@ mission "Deep: Remnant Research"
 mission "deep: player revealed remnant"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Remnant Research: offered"
 		not "deep: did reveal remnant"
@@ -1731,6 +1733,7 @@ mission "deep: player revealed remnant"
 mission "deep: remnant: rest period"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Remnant Research: offered"
 	on offer
@@ -1962,6 +1965,7 @@ mission "Deep: Remnant Surveillance - Aventine"
 mission "remnant: clear deep surveillance"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Remnant Research: offered"
 	on offer
@@ -1971,6 +1975,7 @@ mission "remnant: clear deep surveillance"
 mission "Deep: Scientist Rescue Timer"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Project Hawking: done"
 	on offer
@@ -2072,6 +2077,7 @@ mission "Deep: Scientist Rescue 0: Farpoint"
 
 mission "Deep: Scientist Rescue 0: Pirates"
 	invisible
+	non-blocking
 	landing
 	destination "Haven"
 	to offer
@@ -2105,6 +2111,7 @@ mission "Deep: Scientist Rescue 0: Haven"
 mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
 	landing
 	invisible
+	non-blocking
 	source "Haven"
 	destination "Valhalla"
 	to offer
@@ -2185,6 +2192,7 @@ event "battle in arneb"
 
 mission "Deep: Scientist Rescue 1: Pirates"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Deep: Scientist Rescue 0: done"
@@ -2370,6 +2378,7 @@ ship "Bactrian" "Bactrian (Cosmic Devil)"
 mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	landing
 	invisible
+	non-blocking
 	destination "Valhalla"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
@@ -2389,6 +2398,7 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 mission "Deep: Scientist Rescue 2: More Pirates"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Scientist Rescue 1: done"
 	to fail

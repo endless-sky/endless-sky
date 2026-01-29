@@ -169,6 +169,7 @@ ship "Nimbus" "Nimbus FTL"
 
 mission "Incipias: The Derelict"
 	invisible
+	non-blocking
 	transition
 	source
 		system "Hui'uc"
@@ -327,6 +328,7 @@ mission "Incipias: Help The Stranded 1"
 mission "Incipias: Fix Saves Missing Language"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Incipias: Help The Stranded 1: offered"
 		not "Incipias: Help The Stranded 1: declined"
