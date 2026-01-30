@@ -2289,16 +2289,12 @@ mission "FW Liberate Delta Sagittarii"
 	to offer
 		has "FW Rand 1B: done"
 		not "FW Defend New Tibet: done"
+	to accept
+		has "fw did not rescue defector"
 	
 	on offer
 		event "fwc southern battle"
 		conversation
-			branch surrender
-				has "fw did not rescue defector"
-			`A few of the Free Worlds crew members are still milling around the spaceport in confusion. You help to gather them together and explain that you are headed out on a very important mission to New Tibet.`
-				decline
-			
-			label surrender
 			`When you and Freya enter the spaceport bar, JJ is talking with someone on his communicator. "The code word is 'havoc,'" he says. "Yes, I'm certain. It's the only option we have left. Good luck."`
 			`	"What was that about?" asks Freya.`
 			`	JJ says, "I was calling in some reinforcements," he says. "A group of ex-militia folks and bounty hunters who want to further the cause of the Free Worlds, but want to do it freelance instead of taking orders from us or the Senate. They call themselves the 'Wolf Pack.' Have you heard of them?"`
