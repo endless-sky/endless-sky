@@ -63,7 +63,7 @@ protected:
 
 	virtual void DrawItems() = 0;
 
-	void DrawKey() const;
+	void DrawKey() const override;
 	void DrawPanel() const;
 	void DrawInfo() const;
 

@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Panel.h"
+#include "MapPanel.h"
 
 #include "BookEntry.h"
 #include "Date.h"
@@ -31,11 +31,11 @@ class PlayerInfo;
 // User interface panel that displays a conversation, allowing you to make
 // choices. If a callback function is given, that function will be called when
 // the panel closes, to report the outcome of the conversation.
-class LogbookPanel : public Panel {
+class LogbookPanel : public MapPanel {
 public:
 	explicit LogbookPanel(PlayerInfo &player);
 
-	// Draw this panel.
+	virtual void Step() override;
 	virtual void Draw() override;
 
 
@@ -49,13 +49,11 @@ protected:
 
 
 private:
+	void DrawLogbook() const;
 	void Update(bool selectLast = true);
 
 
 private:
-	// Reference to the player, to apply any changes to them.
-	PlayerInfo &player;
-
 	// Current month being displayed:
 	Date selectedDate;
 	std::string selectedName;

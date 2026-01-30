@@ -54,8 +54,10 @@ namespace {
 
 
 LogbookPanel::LogbookPanel(PlayerInfo &player)
-	: player(player)
+	: MapPanel(player, SHOW_GOVERNMENT)
 {
+	isSimplified = true;
+	player.CheckStorylineProgress();
 	SetInterruptible(false);
 	if(!player.Logbook().empty())
 	{
@@ -67,12 +69,26 @@ LogbookPanel::LogbookPanel(PlayerInfo &player)
 
 
 
-// Draw this panel.
+void LogbookPanel::Step()
+{
+	MapPanel::Step();
+}
+
+
+
 void LogbookPanel::Draw()
 {
-	// Dim out everything outside this panel.
-	DrawBackdrop();
+	MapPanel::Draw();
+	DrawOrbits();
+	DrawKey();
+	DrawLogbook();
+	FinishDrawing("is ports");
+}
 
+
+
+void LogbookPanel::DrawLogbook() const
+{
 	// Draw the panel. The sidebar should be slightly darker than the rest.
 	const Color &sideColor = *GameData::Colors().Get("logbook sidebar");
 	FillShader::Fill(
@@ -235,7 +251,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		}
 	}
 	else
-		sound = UI::UISound::NONE;
+		return MapPanel::KeyDown(key, mod, command, isNewPress);
 
 	UI::PlaySound(sound);
 	return true;
@@ -248,11 +264,11 @@ bool LogbookPanel::Click(int x, int y, MouseButton button, int clicks)
 	if(button != MouseButton::LEFT)
 		return false;
 
-	x -= Screen::Left();
-	y -= Screen::Top();
-	if(x < SIDEBAR_WIDTH)
+	double sx = x - Screen::Left();
+	double sy = y - Screen::Top();
+	if(sx < SIDEBAR_WIDTH)
 	{
-		size_t index = (y - PAD + categoryScroll) / LINE_HEIGHT;
+		size_t index = (sy - PAD + categoryScroll) / LINE_HEIGHT;
 		if(index < contents.size())
 		{
 			selectedDate = dates[index];
@@ -264,8 +280,8 @@ bool LogbookPanel::Click(int x, int y, MouseButton button, int clicks)
 			UI::PlaySound(UI::UISound::NORMAL);
 		}
 	}
-	else if(x > WIDTH)
-		GetUI().Pop(this);
+	else if(sx > WIDTH)
+		return MapPanel::Click(x, y, button, clicks);
 
 	return true;
 }
@@ -274,7 +290,10 @@ bool LogbookPanel::Click(int x, int y, MouseButton button, int clicks)
 
 bool LogbookPanel::Drag(double dx, double dy)
 {
-	if((hoverPoint.X() - Screen::Left()) > SIDEBAR_WIDTH)
+	double sx = hoverPoint.X() - Screen::Left();
+	if(sx > WIDTH)
+		return MapPanel::Drag(dx, dy);
+	if(sx > SIDEBAR_WIDTH)
 		scroll = max(0., min(maxScroll, scroll - dy));
 	else
 		categoryScroll = max(0., min(maxCategoryScroll, categoryScroll - dy));
@@ -286,6 +305,8 @@ bool LogbookPanel::Drag(double dx, double dy)
 
 bool LogbookPanel::Scroll(double dx, double dy)
 {
+	if(hoverPoint.X() - Screen::Left() > WIDTH)
+		return MapPanel::Scroll(dx, dy);
 	return Drag(0., dy * Preferences::ScrollSpeed());
 }
 
@@ -294,7 +315,7 @@ bool LogbookPanel::Scroll(double dx, double dy)
 bool LogbookPanel::Hover(int x, int y)
 {
 	hoverPoint = Point(x, y);
-	return true;
+	return MapPanel::Hover(x, y);
 }
 
 
