@@ -105,7 +105,7 @@ void TradingPanel::Draw()
 	int selectedRow = player.MapColoring();
 	if(selectedRow >= 0 && selectedRow < COMMODITY_COUNT)
 	{
-		const Point center(MIN_X + box.Width() / 2, FIRST_Y + 20 * selectedRow + 33);
+		const Point center(box.Center().X(), FIRST_Y + 20 * selectedRow + 33);
 		const Point dimensions(box.Width() - 20., 20.);
 		FillShader::Fill(center, dimensions, back);
 	}
