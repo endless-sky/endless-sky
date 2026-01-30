@@ -310,6 +310,8 @@ target_sources(EndlessSkyLib PRIVATE
 	StartConditionsPanel.h
 	StellarObject.cpp
 	StellarObject.h
+	StorylineEntry.cpp
+	StorylineEntry.h
 	StringInterner.cpp
 	StringInterner.h
 	Swizzle.cpp

@@ -155,6 +155,75 @@ namespace {
 
 
 
+PlayerInfo::StorylineProgress::StorylineProgress(const StorylineEntry &entry, const Date &start)
+	: entry(&entry), level(entry.GetLevel()), name(entry.TrueName()), start(start)
+{
+}
+
+
+
+PlayerInfo::StorylineProgress::StorylineProgress(const DataNode &node, StorylineEntry::Level level,
+	const StorylineEntry *entry)
+	: entry(entry), level(level), name(node.Token(1))
+{
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		auto AddChild = [this, &child, entry](StorylineEntry::Level nextLevel) -> void {
+			const string &nextName = child.Token(1);
+			const StorylineEntry *nextEntry = nullptr;
+			if(entry)
+			{
+				auto it = entry->Children().find(nextName);
+				if(it != entry->Children().end())
+					nextEntry = &it->second;
+			}
+			children[nextName] = StorylineProgress(child, nextLevel, nextEntry);
+		};
+
+		if(key == "start" && child.Size() >= 4)
+			start = Date(child.Value(1), child.Value(2), child.Value(3));
+		else if(key == "end" && child.Size() >= 4)
+			end = Date(child.Value(1), child.Value(2), child.Value(3));
+		else if(level == StorylineEntry::Level::STORYLINE && key == "book" && hasValue)
+			AddChild(StorylineEntry::Level::BOOK);
+		else if(level == StorylineEntry::Level::BOOK && key == "arc" && hasValue)
+			AddChild(StorylineEntry::Level::ARC);
+		else if(level == StorylineEntry::Level::ARC && key == "chapter" && hasValue)
+			AddChild(StorylineEntry::Level::CHAPTER);
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+}
+
+
+
+void PlayerInfo::StorylineProgress::Save(DataWriter &out) const
+{
+	if(level == StorylineEntry::Level::STORYLINE)
+		out.Write("storyline", name);
+	else if(level == StorylineEntry::Level::BOOK)
+		out.Write("book", name);
+	else if(level == StorylineEntry::Level::ARC)
+		out.Write("arc", name);
+	else if(level == StorylineEntry::Level::CHAPTER)
+		out.Write("chapter", name);
+	out.BeginChild();
+	{
+		if(start)
+			out.Write("start", start.Day(), start.Month(), start.Year());
+		if(end)
+			out.Write("end", end.Day(), end.Month(), end.Year());
+		for(const auto &child : children)
+			child.second.Save(out);
+	}
+	out.EndChild();
+}
+
+
+
 PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	GameEvent nodeEvent(node, playerConditions);
@@ -481,6 +550,12 @@ void PlayerInfo::Load(const filesystem::path &path)
 						specialLogs[grand.Token(0)][grand.Token(1)].Load(great);
 				}
 			}
+		}
+		else if(key == "storyline" && hasValue)
+		{
+			const string &storylineName = child.Token(1);
+			const StorylineEntry *storyline = GameData::Storylines().Find(storylineName);
+			storylineProgress[storylineName] = StorylineProgress(child, StorylineEntry::Level::STORYLINE, storyline);
 		}
 		else if(key == "start")
 			startData.Load(child);
@@ -819,6 +894,9 @@ void PlayerInfo::AdvanceDate(int amount)
 		return;
 	while(amount--)
 	{
+		// Check the storyline progress before each date change so that we can
+		// have accurate starting dates for each storyline component.
+		CheckStorylineProgress();
 		++date;
 
 		// Check if any special events should happen today.
@@ -854,6 +932,21 @@ void PlayerInfo::AdvanceDate(int amount)
 	// just reducing the cached values by 1 because the player may have
 	// explored new systems that change the DistanceMap calculations.
 	CacheMissionInformation(true);
+}
+
+
+
+void PlayerInfo::CheckStorylineProgress()
+{
+	for(const auto &storyline : GameData::Storylines())
+		EvaluateStoryline(storylineProgress, storyline.second);
+}
+
+
+
+const map<string, PlayerInfo::StorylineProgress> &PlayerInfo::GetStorylineProgress() const
+{
+	return storylineProgress;
 }
 
 
@@ -2060,7 +2153,7 @@ void PlayerInfo::RemoveSpecialLog(const string &type)
 
 bool PlayerInfo::HasLogs() const
 {
-	return !logbook.empty() || !specialLogs.empty();
+	return !logbook.empty() || !specialLogs.empty() || !storylineProgress.empty();
 }
 
 
@@ -4959,6 +5052,8 @@ void PlayerInfo::Save(DataWriter &out) const
 				}
 	}
 	out.EndChild();
+	for(const auto &progress : storylineProgress)
+		progress.second.Save(out);
 
 	out.Write();
 	out.WriteComment("How you began:");
@@ -5216,4 +5311,29 @@ bool PlayerInfo::HasClearance() const
 		[this](const Mission &mission) -> bool {
 			return mission.HasClearance(planet);
 		});
+}
+
+
+
+void PlayerInfo::EvaluateStoryline(map<string, StorylineProgress> &progress, const StorylineEntry &storylineEntry)
+{
+	// If the player hasn't already started this storyline and
+	// they meet the conditions to start it, create a new progress entry.
+	const string &name = storylineEntry.TrueName();
+	if(!progress.contains(name))
+	{
+		if(!storylineEntry.IsStarted())
+			return;
+		progress[name] = StorylineProgress(storylineEntry, date);
+	}
+	StorylineProgress &progressEntry = progress.at(name);
+	// If this storyline has already ended, don't check for progress on any children.
+	if(progressEntry.end)
+		return;
+
+	// If this storyline has just ended, set its end date and check any children one last time.
+	if(storylineEntry.IsComplete())
+		progressEntry.end = date;
+	for(const auto &child : storylineEntry.Children())
+		EvaluateStoryline(progressEntry.children, child.second);
 }

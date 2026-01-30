@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ExclusiveItem.h"
 #include "GameEvent.h"
 #include "Mission.h"
+#include "StorylineEntry.h"
 #include "SystemEntry.h"
 
 #include <chrono>
@@ -70,6 +71,21 @@ public:
 		PAY,
 		SPEED,
 		CONVENIENT
+	};
+
+	class StorylineProgress {
+	public:
+		StorylineProgress() = default;
+		StorylineProgress(const StorylineEntry &entry, const Date &start);
+		StorylineProgress(const DataNode &node, StorylineEntry::Level level, const StorylineEntry *entry);
+		void Save(DataWriter &out) const;
+
+		const StorylineEntry *entry = nullptr;
+		StorylineEntry::Level level = StorylineEntry::Level::STORYLINE;
+		std::string name;
+		Date start;
+		Date end;
+		std::map<std::string, StorylineProgress> children;
 	};
 
 
@@ -125,6 +141,10 @@ public:
 	// Get or change the current date.
 	const Date &GetDate() const;
 	void AdvanceDate(int amount = 1);
+
+	// Determine if the player has made new progress on any storylines.
+	void CheckStorylineProgress();
+	const std::map<std::string, StorylineProgress> &GetStorylineProgress() const;
 
 	// Get basic data about the player's starting scenario.
 	const CoreStartData &StartData() const noexcept;
@@ -445,6 +465,8 @@ private:
 
 	bool HasClearance() const;
 
+	void EvaluateStoryline(std::map<std::string, StorylineProgress> &progress, const StorylineEntry &storylineEntry);
+
 
 private:
 	std::string firstName;
@@ -477,6 +499,7 @@ private:
 
 	std::map<Date, BookEntry> logbook;
 	std::map<std::string, std::map<std::string, BookEntry>> specialLogs;
+	std::map<std::string, StorylineProgress> storylineProgress;
 
 	// A list of the player's active, accepted missions.
 	std::list<Mission> missions;

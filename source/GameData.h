@@ -63,6 +63,7 @@ class Ship;
 class Sprite;
 class StarField;
 class StartConditions;
+class StorylineEntry;
 class System;
 class TaskQueue;
 class Test;
@@ -147,6 +148,7 @@ public:
 	static const Set<Shader> &Shaders();
 	static const Set<Ship> &Ships();
 	static const Set<Shop<Ship>> &Shipyards();
+	static const Set<StorylineEntry> &Storylines();
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
