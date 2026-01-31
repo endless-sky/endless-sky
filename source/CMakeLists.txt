@@ -137,6 +137,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameLoadingPanel.h
 	Gamerules.cpp
 	Gamerules.h
+	GamerulesPanel.cpp
+	GamerulesPanel.h
 	GameVersion.cpp
 	GameVersion.h
 	GameWindow.cpp
