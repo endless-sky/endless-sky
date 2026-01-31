@@ -39,7 +39,6 @@ Version 0.11.0:
       * The display names of outfits and ships are now used when sorting them in the UI, instead of their identifiers. (@TomGoodIdea)
       * When an event removes an object from a system which has a landable planet, the planet is now informed that it is no longer in that system. (@warp-core)
       * Timestamp formatting now uses a more compatible format for Windows. (@TomGoodIdea)
-      * Capture odds are now only calculated for capturable ships, preventing uncapturable ships from unnecessarily using up memory when boarded. (@Amazinite)
       * Fixed a crash caused by mission actions referring to an undefined message. (@warp-core)
       * Fixed a crash that could occur when a mission action took one of your ships while in a shop. (@Amazinite)
       * Fixed the fast-forward state being out of sync when reloading a dead pilot. (@TomGoodIdea)
@@ -176,6 +175,7 @@ Version 0.11.0:
     * Improved the performance of AI::DoScatter. This should result in a noticeable improvement when flying around with a large number of ships. (@Amazinite)
     * Fixed an edge case where escorts without weapons would move independently when not given orders, potentially jumping away to a different system without you. (@Amazinite)
     * Selecting a large number of escorts no longer causes extreme lag caused by high CPU usage. (@Amazinite)
+    * Capture odds are now only calculated for capturable ships, preventing uncapturable ships from unnecessarily using up memory when boarded. (@Amazinite)
   * Under the hood:
     * Renamed the "line" interface element to "fill". (@TomGoodIdea)
     * Separated the Weapon and Outfit classes from one another. (@TomGoodIdea, @warp-core)
@@ -194,7 +194,7 @@ Version 0.11.0:
     * Dialog node parsing has been moved to its own class. (@Amazinite)
     * Replaced various shared_from_this calls with weak_from_this where a shared pointer was not necessary. (@Amazinite)
     * Updated various functions in the Format class: renamed Credits to AbbreviatedNumber, combined the behavior of Decimal into Number, and created a Percentage function. (@Amazinite)
-    * The DialogPanel class is now capable of validating integer and double input.
+    * The DialogPanel class is now capable of validating integer and double input. (@Amazinite)
   * Documentation:
     * The bug report template now asks for the errors.txt file. (@TomGoodIdea)
     * Updated the CONTRIBUTING.md file to point to the new C++ style guide location. (@Nova1422)

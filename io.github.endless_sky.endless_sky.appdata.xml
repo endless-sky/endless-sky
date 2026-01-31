@@ -65,16 +65,16 @@
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
         <p>Some notable additions and changes are:</p>
         <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+          <li>The Hai Reveal storyline has been removed from the game.</li>
+          <li>Added three new starting scenarios with starting locations around human space.</li>
+          <li>The Graveyard has a new short standalone string of missions around investigating Ka'het and their behaviors.</li>
+          <li>Heavily reworked bounty jobs.</li>
+          <li>Various performance and UI QoL improvements.</li>
+          <li>Fixed a rare memory leak and various rare crashes.</li>
+          <li>Projectiles with a trigger radius will now respect the "disabled fighters avoid projectiles" gamerule.</li>
         </ul>
         <p>You can find out more in the changelog.</p>
-        <p>A special thanks to the ??? people who contributed to this release!</p>
+        <p>A special thanks to the 34 people who contributed to this release!</p>
       </description>
       <url>https://github.com/endless-sky/endless-sky/blob/v0.11.0/changelog</url>
     </release>
