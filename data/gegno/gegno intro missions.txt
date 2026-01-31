@@ -740,8 +740,12 @@ mission "Gegno Exploration Nudge Remover"
 
 mission "Vi Augen"
 	invisible
-	landing
+	transition
+	source
+		system "Kiluit"
+	destination "Earth"
 	on offer
+		# Fail the old version of this mission from prior to v0.10.1.
 		fail "Stationed Augen"
 	npc save
 		on kill

@@ -2946,6 +2946,210 @@ fleet "Bounty Hunters"
 		"Splinter"
 		"Fury (Heavy)"
 
+fleet "Bounty (Very Tiny)"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 2
+		"Scrapper"
+	variant 1
+		"Scrapper (Gatling)"
+	variant 1
+		"Scrapper (Minimal)"
+	variant 2
+		"Scrapper (Mod Blaster)"
+	variant 9
+		"Sparrow"
+	variant 3
+		"Wasp"
+	variant 3
+		"Wasp (Meteor)"
+	variant 3
+		"Wasp (Plasma)"
+
+fleet "Bounty (Tiny)"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 2
+		"Berserker"
+	variant 1
+		"Berserker (Afterburner)"
+	variant 2
+		"Fury"
+	variant 1
+		"Fury (Laser)"
+	variant 1
+		"Hawk"
+	variant 1
+		"Hawk (Plasma)"
+	variant 1
+		"Hawk (Speedy)"
+	variant 3
+		"Jackal"
+	variant 1
+		"Wasp (Gatling)"
+	variant 1
+		"Wasp (Javelin)"
+	variant 1
+		"Wasp (Proton)"
+
+fleet "Bounty (Very Small)"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 3
+		"Clipper"
+	variant 3
+		"Clipper (Heavy)"
+	variant 3
+		"Clipper (Speedy)"
+	variant 9
+		"Enforcer"
+	variant 6
+		"Headhunter"
+	variant 6
+		"Headhunter (Particle)"
+	variant 6
+		"Headhunter (Strike)"
+	variant 9
+		"Quicksilver"
+	variant 9
+		"Quicksilver (Proton)"
+
+fleet "Bounty (Small)"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 1
+		"Argosy"
+	variant 1
+		"Argosy (Blaster)"
+	variant 1
+		"Argosy (Laser)"
+	variant 1
+		"Argosy (Missile)"
+	variant 1
+		"Argosy (Proton)"
+	variant 1
+		"Argosy (Turret)"
+	variant 2
+		"Modified Argosy"
+	variant 2
+		"Modified Argosy (Blaster)"
+	variant 2
+		"Modified Argosy (Gatling)"
+	variant 2
+		"Modified Argosy (Heavy)"
+	variant 2
+		"Modified Argosy (Javelin)"
+	variant 2
+		"Modified Argosy (Missile)"
+	variant 6
+		"Raven"
+	variant 6
+		"Raven (Afterburner)"
+	variant 6
+		"Raven (Heavy)"
+
+fleet "Bounty (Medium)"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 3
+		"Corvette"
+	variant 3
+		"Corvette (Missile)"
+	variant 3
+		"Corvette (Speedy)"
+	variant 2
+		"Bastion"
+	variant 2
+		"Bastion (Heavy)"
+	variant 2
+		"Bastion (Gatling)"
+	variant 2
+		"Bastion (Laser)"
+	variant 2
+		"Firebird"
+	variant 2
+		"Firebird (Laser)"
+	variant 2
+		"Firebird (Missile)"
+	variant 2
+		"Firebird (Plasma)"
+	variant 2
+		"Firebird (Heavy Blaster)"
+	variant 4
+		"Manta"
+	variant 4
+		"Manta (Proton)"
+	variant 3
+		"Monitor"
+	variant 3
+		"Osprey"
+	variant 3
+		"Osprey (Laser)"
+	variant 3
+		"Osprey (Missile)"
+	variant 1
+		"Saber"
+	variant 1
+		"Saber (CCOR Gatling)"
+	variant 1
+		"Saber (CCOR Javelin)"
+	variant 3
+		"Splinter"
+	variant 3
+		"Splinter (Laser)"
+	variant 3
+		"Splinter (Proton)"
+
+fleet "Bounty (Big)"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 1
+		"Falcon"
+	variant 1
+		"Falcon (Heavy)"
+	variant 1
+		"Falcon (Javelin)"
+	variant 1
+		"Falcon (Laser)"
+	variant 2
+		"Leviathan"
+	variant 1
+		"Leviathan (Heavy)"
+	variant 1
+		"Leviathan (Laser)"
+	variant 1
+		"Protector"
+	variant 1
+		"Protector (Laser)"
+	variant 1
+		"Protector (Proton)"
+	variant 1
+		"Protector (Quad Blaster)"
+	variant 2
+		"Vanguard"
+	variant 1
+		"Vanguard (Missile)"
+	variant 1
+		"Vanguard (Particle)"
+
 fleet "Marauder I"
 	government "Pirate"
 	names "pirate"
@@ -3034,38 +3238,54 @@ fleet "Marauder fleet I"
 	cargo 1
 	personality
 		plunders
-	variant 9
-		"Marauder Quicksilver"
-		"Marauder Arrow (Weapons)"
+	variant 4
 		"Marauder Bounder (Engines)"
-	variant 9
 		"Marauder Quicksilver"
-		"Marauder Arrow (Engines)"
+	variant 4
 		"Marauder Bounder (Weapons)"
+		"Marauder Quicksilver"
+	variant 4
+		"Marauder Arrow (Engines)"
+		"Marauder Quicksilver"
+	variant 4
+		"Marauder Arrow (Weapons)"
+		"Marauder Quicksilver"
 	variant 1
+		"Marauder Arrow"
 		"Marauder Quicksilver (Engines)"
-		"Marauder Arrow" 2
-		"Marauder Bounder" 2
 	variant 1
+		"Marauder Bounder"
+		"Marauder Quicksilver (Engines)"
+	variant 1
+		"Marauder Arrow"
 		"Marauder Quicksilver (Weapons)"
-		"Marauder Arrow" 2
-		"Marauder Bounder" 2
-	variant 9
-		"Marauder Raven"
-		"Marauder Arrow (Engines)"
-		"Marauder Bounder (Weapons)"
-	variant 9
-		"Marauder Raven"
-		"Marauder Arrow (Weapons)"
+	variant 1
+		"Marauder Bounder"
+		"Marauder Quicksilver (Weapons)"
+	variant 4
 		"Marauder Bounder (Engines)"
+		"Marauder Raven"
+	variant 4
+		"Marauder Bounder (Weapons)"
+		"Marauder Raven"
+	variant 4
+		"Marauder Arrow (Engines)"
+		"Marauder Raven"
+	variant 4
+		"Marauder Arrow (Weapons)"
+		"Marauder Raven"
 	variant 1
+		"Marauder Arrow"
 		"Marauder Raven (Engines)"
-		"Marauder Arrow" 2
-		"Marauder Bounder" 2
 	variant 1
+		"Marauder Bounder"
+		"Marauder Raven (Engines)"
+	variant 1
+		"Marauder Arrow"
 		"Marauder Raven (Weapons)"
-		"Marauder Arrow" 2
-		"Marauder Bounder" 2
+	variant 1
+		"Marauder Bounder"
+		"Marauder Raven (Weapons)"
 
 fleet "Marauder fleet II"
 	government "Pirate"
@@ -3073,38 +3293,38 @@ fleet "Marauder fleet II"
 	cargo 1
 	personality
 		plunders
-	variant 4
-		"Marauder Quicksilver"
+	variant 3
 		"Marauder Arrow (Weapons)"
 		"Marauder Bounder (Engines)"
-	variant 4
 		"Marauder Quicksilver"
+	variant 3
 		"Marauder Arrow (Engines)"
 		"Marauder Bounder (Weapons)"
+		"Marauder Quicksilver"
 	variant 1
+		"Marauder Arrow"
+		"Marauder Bounder"
 		"Marauder Quicksilver (Engines)"
-		"Marauder Arrow" 2
-		"Marauder Bounder" 2
 	variant 1
+		"Marauder Arrow"
+		"Marauder Bounder"
 		"Marauder Quicksilver (Weapons)"
-		"Marauder Arrow" 2
-		"Marauder Bounder" 2
-	variant 4
-		"Marauder Raven"
-		"Marauder Arrow (Engines)"
-		"Marauder Bounder (Weapons)"
-	variant 4
-		"Marauder Raven"
+	variant 3
 		"Marauder Arrow (Weapons)"
 		"Marauder Bounder (Engines)"
+		"Marauder Raven"
+	variant 3
+		"Marauder Arrow (Engines)"
+		"Marauder Bounder (Weapons)"
+		"Marauder Raven"
 	variant 1
+		"Marauder Arrow"
+		"Marauder Bounder"
 		"Marauder Raven (Engines)"
-		"Marauder Arrow" 2
-		"Marauder Bounder" 2
 	variant 1
+		"Marauder Arrow"
+		"Marauder Bounder"
 		"Marauder Raven (Weapons)"
-		"Marauder Arrow" 2
-		"Marauder Bounder" 2
 
 fleet "Marauder fleet III"
 	government "Pirate"
@@ -3112,38 +3332,30 @@ fleet "Marauder fleet III"
 	cargo 1
 	personality
 		plunders
-	variant 3
-		"Marauder Quicksilver"
-		"Marauder Arrow (Weapons)"
-		"Marauder Bounder (Engines)"
-	variant 3
-		"Marauder Quicksilver"
+	variant 1
 		"Marauder Arrow (Engines)"
-		"Marauder Bounder (Weapons)"
-	variant 1
-		"Marauder Quicksilver (Engines)"
-		"Marauder Arrow" 2
-		"Marauder Bounder" 2
-	variant 1
-		"Marauder Quicksilver (Weapons)"
-		"Marauder Arrow" 2
-		"Marauder Bounder" 2
-	variant 3
-		"Marauder Raven"
-		"Marauder Arrow (Engines)"
-		"Marauder Bounder (Weapons)"
-	variant 3
-		"Marauder Raven"
-		"Marauder Arrow (Weapons)"
-		"Marauder Bounder (Engines)"
-	variant 1
-		"Marauder Raven (Engines)"
-		"Marauder Arrow" 2
-		"Marauder Bounder" 2
-	variant 1
+		"Marauder Quicksilver"
 		"Marauder Raven (Weapons)"
-		"Marauder Arrow" 2
-		"Marauder Bounder" 2
+	variant 1
+		"Marauder Arrow (Weapons)"
+		"Marauder Quicksilver"
+		"Marauder Raven (Engines)"
+	variant 1
+		"Marauder Bounder"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Quicksilver (Weapons)"
+	variant 1
+		"Marauder Bounder (Engines)"
+		"Marauder Raven"
+		"Marauder Quicksilver (Weapons)"
+	variant 1
+		"Marauder Bounder (Weapons)"
+		"Marauder Raven"
+		"Marauder Quicksilver (Engines)"
+	variant 1
+		"Marauder Arrow"
+		"Marauder Raven (Engines)"
+		"Marauder Raven (Weapons)"
 
 fleet "Marauder fleet IV"
 	government "Pirate"
@@ -3151,42 +3363,54 @@ fleet "Marauder fleet IV"
 	cargo 1
 	personality
 		plunders
-	variant 8
+	variant 4
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Bounder (Engines)"
 		"Marauder Firebird"
-		"Marauder Raven"
-		"Marauder Quicksilver"
+	variant 4
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Weapons)"
+		"Marauder Firebird"
 	variant 1
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
 		"Marauder Firebird (Engines)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
 	variant 1
+		"Marauder Raven (Weapons)"
+		"Marauder Arrow (Engines)"
 		"Marauder Firebird (Weapons)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 16
+	variant 4
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Bounder (Engines)"
 		"Marauder Manta"
+	variant 4
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Weapons)"
+		"Marauder Manta"
+	variant 1
 		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 2
+		"Marauder Arrow"
 		"Marauder Manta (Engines)"
-		"Marauder Raven"
+	variant 1
 		"Marauder Quicksilver"
-	variant 2
+		"Marauder Bounder"
 		"Marauder Manta (Weapons)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 16
+	variant 4
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
 		"Marauder Splinter"
+	variant 4
+		"Marauder Raven (Weapons)"
+		"Marauder Arrow (Engines)"
+		"Marauder Splinter"
+	variant 1
 		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 2
+		"Marauder Arrow"
 		"Marauder Splinter (Engines)"
-		"Marauder Raven"
+	variant 1
 		"Marauder Quicksilver"
-	variant 2
+		"Marauder Bounder"
 		"Marauder Splinter (Weapons)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
 
 fleet "Marauder fleet V"
 	government "Pirate"
@@ -3194,42 +3418,56 @@ fleet "Marauder fleet V"
 	cargo 1
 	personality
 		plunders
-	variant 4
+	variant 1
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder"
 		"Marauder Firebird"
-		"Marauder Raven"
-		"Marauder Quicksilver"
 	variant 1
+		"Marauder Raven (Weapons)"
+		"Marauder Raven (Engines)"
+		"Marauder Arrow"
+		"Marauder Firebird"
+	variant 1
+		"Marauder Quicksilver"
+		"Marauder Raven"
+		"Marauder Arrow (Engines)"
 		"Marauder Firebird (Engines)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
 	variant 1
+		"Marauder Quicksilver"
+		"Marauder Raven"
+		"Marauder Bounder (Weapons)"
 		"Marauder Firebird (Weapons)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 8
+	variant 2
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
 		"Marauder Manta"
-		"Marauder Raven"
+	variant 1
 		"Marauder Quicksilver"
-	variant 2
+		"Marauder Raven"
+		"Marauder Arrow (Weapons)"
 		"Marauder Manta (Engines)"
-		"Marauder Raven"
+	variant 1
 		"Marauder Quicksilver"
-	variant 2
+		"Marauder Raven"
+		"Marauder Bounder (Engines)"
 		"Marauder Manta (Weapons)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 8
+	variant 2
+		"Marauder Raven (Weapons)"
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Engines)"
 		"Marauder Splinter"
-		"Marauder Raven"
+	variant 1
 		"Marauder Quicksilver"
-	variant 2
+		"Marauder Raven"
+		"Marauder Arrow (Weapons)"
 		"Marauder Splinter (Engines)"
-		"Marauder Raven"
+	variant 1
 		"Marauder Quicksilver"
-	variant 2
+		"Marauder Raven"
+		"Marauder Bounder (Engines)"
 		"Marauder Splinter (Weapons)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
 
 fleet "Marauder fleet VI"
 	government "Pirate"
@@ -3238,41 +3476,50 @@ fleet "Marauder fleet VI"
 	personality
 		plunders
 	variant 2
+		"Marauder Raven"
+		"Marauder Bounder"
 		"Marauder Firebird"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 1
-		"Marauder Firebird (Engines)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 1
-		"Marauder Firebird (Weapons)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 4
 		"Marauder Manta"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 2
-		"Marauder Manta (Engines)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 2
+	variant 1
+		"Marauder Raven (Weapons)"
+		"Marauder Arrow (Weapons)"
+		"Marauder Firebird (Engines)"
 		"Marauder Manta (Weapons)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 4
+	variant 1
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Bounder (Weapons)"
+		"Marauder Firebird (Weapons)"
+		"Marauder Manta (Engines)"
+	variant 2
+		"Marauder Raven (Weapons)"
+		"Marauder Arrow (Engines)"
 		"Marauder Splinter"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 2
-		"Marauder Splinter (Engines)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-	variant 2
+		"Marauder Firebird"
+	variant 1
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Weapons)"
 		"Marauder Splinter (Weapons)"
-		"Marauder Raven"
+		"Marauder Firebird (Engines)"
+	variant 1
 		"Marauder Quicksilver"
+		"Marauder Bounder"
+		"Marauder Splinter (Engines)"
+		"Marauder Firebird (Weapons)"
+	variant 2
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Bounder (Engines)"
+		"Marauder Manta"
+		"Marauder Splinter"
+	variant 1
+		"Marauder Raven"
+		"Marauder Arrow"
+		"Marauder Manta (Engines)"
+		"Marauder Splinter (Weapons)"
+	variant 1
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
+		"Marauder Manta (Weapons)"
+		"Marauder Splinter (Engines)"
 
 fleet "Marauder fleet VII"
 	government "Pirate"
@@ -3280,39 +3527,56 @@ fleet "Marauder fleet VII"
 	cargo 1
 	personality
 		plunders
-	variant 18
+	variant 6
+		"Marauder Manta"
+		"Marauder Raven (Weapons)"
+		"Marauder Arrow (Engines)"
 		"Marauder Falcon"
-		"Osprey"
-		"Osprey (Missile)"
-		"Osprey (Laser)"
-	variant 1
+	variant 2
+		"Marauder Firebird (Engines)"
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Weapons)"
 		"Marauder Falcon (Weapons)"
-		"Osprey"
-		"Osprey (Missile)"
-		"Osprey (Laser)"
 	variant 1
+		"Marauder Splinter (Engines)"
+		"Marauder Raven"
+		"Marauder Arrow"
+		"Marauder Falcon (Weapons)"
+	variant 2
+		"Marauder Firebird"
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Weapons)"
 		"Marauder Falcon (Engines)"
-		"Osprey"
-		"Osprey (Missile)"
-		"Osprey (Laser)"
-	variant 18
+	variant 1
+		"Marauder Splinter (Weapons)"
+		"Marauder Raven"
+		"Marauder Arrow"
+		"Marauder Falcon (Engines)"
+	variant 6
+		"Marauder Splinter"
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Bounder (Engines)"
 		"Marauder Leviathan"
-		"Firebird"
-		"Firebird (Plasma)"
-		"Firebird (Missile)"
+	variant 2
+		"Marauder Firebird"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
+		"Marauder Leviathan (Weapons)"
 	variant 1
+		"Marauder Manta (Engines)"
+		"Marauder Quicksilver"
+		"Marauder Bounder"
+		"Marauder Leviathan (Weapons)"
+	variant 2
+		"Marauder Firebird (Weapons)"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
 		"Marauder Leviathan (Engines)"
-		"Firebird"
-		"Firebird (Plasma)"
-		"Firebird (Missile)"
 	variant 1
-		"Marauder Leviathan (Weapons)"
-		"Firebird"
-		"Firebird (Plasma)"
-		"Firebird (Missile)"
-	variant 1
-		"Marauder Leviathan (Weapons)"
-		"Firebird (Laser)" 3
+		"Marauder Manta (Weapons)"
+		"Marauder Quicksilver"
+		"Marauder Bounder"
+		"Marauder Leviathan (Engines)"
 
 fleet "Marauder fleet VIII"
 	government "Pirate"
@@ -3320,36 +3584,76 @@ fleet "Marauder fleet VIII"
 	cargo 1
 	personality
 		plunders
-	variant 8
+	variant 2
+		"Marauder Manta"
+		"Marauder Raven (Weapons)"
+		"Marauder Arrow (Engines)"
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Bounder (Engines)"
 		"Marauder Falcon"
-		"Osprey"
-		"Osprey (Missile)"
-		"Osprey (Laser)"
 	variant 1
+		"Marauder Firebird (Engines)"
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Weapons)"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
 		"Marauder Falcon (Weapons)"
-		"Osprey"
-		"Osprey (Missile)"
-		"Osprey (Laser)"
 	variant 1
+		"Marauder Splinter (Engines)"
+		"Marauder Raven"
+		"Marauder Arrow"
+		"Marauder Quicksilver"
+		"Marauder Bounder"
+		"Marauder Falcon (Weapons)"
+	variant 1
+		"Marauder Firebird"
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Weapons)"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
 		"Marauder Falcon (Engines)"
-		"Osprey"
-		"Osprey (Missile)"
-		"Osprey (Laser)"
-	variant 8
+	variant 1
+		"Marauder Splinter (Weapons)"
+		"Marauder Raven"
+		"Marauder Arrow"
+		"Marauder Quicksilver"
+		"Marauder Bounder"
+		"Marauder Falcon (Engines)"
+	variant 2
+		"Marauder Splinter"
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Bounder (Engines)"
+		"Marauder Raven (Weapons)"
+		"Marauder Arrow (Engines)"
 		"Marauder Leviathan"
-		"Firebird"
-		"Firebird (Plasma)"
-		"Firebird (Missile)"
 	variant 1
-		"Marauder Leviathan (Engines)"
-		"Firebird"
-		"Firebird (Plasma)"
-		"Firebird (Missile)"
-	variant 1
+		"Marauder Firebird"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Weapons)"
 		"Marauder Leviathan (Weapons)"
-		"Firebird"
-		"Firebird (Plasma)"
-		"Firebird (Missile)"
+	variant 1
+		"Marauder Manta (Engines)"
+		"Marauder Quicksilver"
+		"Marauder Bounder"
+		"Marauder Raven"
+		"Marauder Arrow"
+		"Marauder Leviathan (Weapons)"
+	variant 1
+		"Marauder Firebird (Weapons)"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Weapons)"
+		"Marauder Leviathan (Engines)"
+	variant 1
+		"Marauder Manta (Weapons)"
+		"Marauder Quicksilver"
+		"Marauder Bounder"
+		"Marauder Raven"
+		"Marauder Arrow"
+		"Marauder Leviathan (Engines)"
 
 fleet "Marauder fleet IX"
 	government "Pirate"
@@ -3357,40 +3661,76 @@ fleet "Marauder fleet IX"
 	cargo 1
 	personality
 		plunders
-	variant 3
+	variant 2
+		"Marauder Manta" 2
+		"Marauder Raven (Weapons)"
+		"Marauder Arrow (Engines)"
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Bounder (Engines)"
 		"Marauder Falcon"
-		"Osprey"
-		"Osprey (Missile)"
-		"Osprey (Laser)"
 	variant 1
+		"Marauder Firebird (Engines)" 2
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Weapons)"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
 		"Marauder Falcon (Weapons)"
-		"Osprey"
-		"Osprey (Missile)"
-		"Osprey (Laser)"
 	variant 1
+		"Marauder Splinter (Engines)" 2
+		"Marauder Raven"
+		"Marauder Arrow"
+		"Marauder Quicksilver"
+		"Marauder Bounder"
+		"Marauder Falcon (Weapons)"
+	variant 1
+		"Marauder Firebird" 2
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Weapons)"
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
 		"Marauder Falcon (Engines)"
-		"Osprey"
-		"Osprey (Missile)"
-		"Osprey (Laser)"
-	variant 3
+	variant 1
+		"Marauder Splinter (Weapons)" 2
+		"Marauder Raven"
+		"Marauder Arrow"
+		"Marauder Quicksilver"
+		"Marauder Bounder"
+		"Marauder Falcon (Engines)"
+	variant 2
+		"Marauder Splinter" 2
+		"Marauder Quicksilver (Weapons)"
+		"Marauder Bounder (Engines)"
+		"Marauder Raven (Weapons)"
+		"Marauder Arrow (Engines)"
 		"Marauder Leviathan"
-		"Firebird"
-		"Firebird (Plasma)"
-		"Firebird (Missile)"
 	variant 1
+		"Marauder Firebird" 2
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Weapons)"
+		"Marauder Leviathan (Weapons)"
+	variant 1
+		"Marauder Manta (Engines)" 2
+		"Marauder Quicksilver"
+		"Marauder Bounder"
+		"Marauder Raven"
+		"Marauder Arrow"
+		"Marauder Leviathan (Weapons)"
+	variant 1
+		"Marauder Firebird (Weapons)" 2
+		"Marauder Quicksilver (Engines)"
+		"Marauder Bounder (Weapons)"
+		"Marauder Raven (Engines)"
+		"Marauder Arrow (Weapons)"
 		"Marauder Leviathan (Engines)"
-		"Firebird"
-		"Firebird (Plasma)"
-		"Firebird (Missile)"
 	variant 1
-		"Marauder Leviathan (Weapons)"
-		"Firebird"
-		"Firebird (Plasma)"
-		"Firebird (Missile)"
-	variant 1
-		"Marauder Leviathan (Weapons)"
-		"Firebird (Laser)" 3
-		"Firebird (Missile)"
+		"Marauder Manta (Weapons)" 2
+		"Marauder Quicksilver"
+		"Marauder Bounder"
+		"Marauder Raven"
+		"Marauder Arrow"
+		"Marauder Leviathan (Engines)"
 
 fleet "Marauder fleet X"
 	government "Pirate"
@@ -3398,62 +3738,46 @@ fleet "Marauder fleet X"
 	cargo 1
 	personality
 		plunders
-	variant 3
-		"Marauder Falcon"
-		"Marauder Firebird"
-		"Marauder Raven (Weapons)"
-		"Marauder Quicksilver (Engines)"
-		"Marauder Arrow (Weapons)"
-		"Marauder Bounder (Engines)"
-	variant 3
-		"Marauder Falcon"
-		"Marauder Firebird"
-		"Marauder Raven (Engines)"
-		"Marauder Quicksilver (Weapons)"
-		"Marauder Arrow (Engines)"
-		"Marauder Bounder (Weapons)"
-	variant 2
+	variant 1
+		"Marauder Arrow (Weapons)" 3
+		"Marauder Bounder (Weapons)" 2
+		"Marauder Quicksilver (Weapons)" 3
+		"Marauder Raven (Weapons)" 4
+		"Marauder Firebird (Weapons)"
+		"Marauder Manta (Weapons)"
+		"Marauder Splinter (Weapons)"
+		"Marauder Leviathan" 2
 		"Marauder Falcon (Weapons)"
+	variant 1
+		"Marauder Arrow (Engines)" 3
+		"Marauder Bounder (Engines)" 2
+		"Marauder Quicksilver (Engines)" 3
+		"Marauder Raven (Engines)" 4
 		"Marauder Firebird (Engines)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-		"Marauder Arrow"
-		"Marauder Bounder"
-	variant 2
+		"Marauder Manta (Engines)"
+		"Marauder Splinter (Engines)"
+		"Marauder Leviathan" 2
 		"Marauder Falcon (Engines)"
+	variant 1
+		"Marauder Arrow (Weapons)" 2
+		"Marauder Bounder (Weapons)" 3
+		"Marauder Quicksilver (Weapons)" 4
+		"Marauder Raven (Weapons)" 3
 		"Marauder Firebird (Weapons)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-		"Marauder Arrow"
-		"Marauder Bounder"
-	variant 3
-		"Marauder Leviathan"
-		"Marauder Firebird"
-		"Marauder Raven (Engines)"
-		"Marauder Quicksilver (Weapons)"
-		"Marauder Arrow (Engines)"
-		"Marauder Bounder (Weapons)"
-	variant 3
-		"Marauder Leviathan"
-		"Marauder Firebird"
-		"Marauder Raven (Weapons)"
-		"Marauder Quicksilver (Engines)"
-		"Marauder Arrow (Weapons)"
-		"Marauder Bounder (Engines)"
-	variant 2
-		"Marauder Leviathan (Engines)"
-		"Marauder Firebird (Weapons)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-		"Marauder Arrow"
-		"Marauder Bounder"
-	variant 2
+		"Marauder Manta (Weapons)"
+		"Marauder Splinter (Weapons)"
+		"Marauder Falcon" 2
 		"Marauder Leviathan (Weapons)"
+	variant 1
+		"Marauder Arrow (Engines)" 2
+		"Marauder Bounder (Engines)" 3
+		"Marauder Quicksilver (Engines)" 4
+		"Marauder Raven (Engines)" 3
 		"Marauder Firebird (Engines)"
-		"Marauder Raven"
-		"Marauder Quicksilver"
-		"Marauder Arrow"
-		"Marauder Bounder"
+		"Marauder Manta (Engines)"
+		"Marauder Splinter (Engines)"
+		"Marauder Falcon" 2
+		"Marauder Leviathan (Engines)"
 
 fleet "Hired Guns"
 	government "Bounty Hunter"
@@ -3505,29 +3829,3 @@ fleet "Hired Guns"
 	variant 1
 		"Vanguard (Particle)"
 		"Splinter (Proton)"
-
-# The Navy forces which blockade the wormhole during the Hai crisis.
-fleet "Human Wormhole Guards"
-	government "Republic that won't enter wormhole"
-	names "republic capital"
-	fighters
-		names "republic fighter"
-	cargo 0
-	personality
-		heroic opportunistic
-	variant 2
-		"Carrier (Mark II)"
-		"Combat Drone" 6
-		"Lance (Gatling)" 8
-	variant 1
-		"Auxiliary (Transport Mark II)"
-	variant 2
-		"Cruiser (Plasma Anti-Missile)"
-		"Combat Drone" 4
-	variant 2
-		"Cruiser (Mark II)"
-		"Combat Drone" 4
-	variant 8
-		"Frigate (Mark II)"
-	variant 5
-		"Rainmaker (Mark II Old Weapons)"
