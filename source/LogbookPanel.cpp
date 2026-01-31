@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "text/Layout.h"
+#include "shader/LineShader.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
@@ -32,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/WrappedText.h"
 
 #include <algorithm>
+#include <ranges>
 
 using namespace std;
 
@@ -236,20 +238,73 @@ void LogbookPanel::CreateSections()
 	for(const auto &[category, entries] : player.SpecialLogs())
 	{
 		Section &section = sections[category];
-		if(!section.contains(category))
-			section.insert({category, Page(PageType::SPECIAL)});
-		Page &page = section.at(category);
+		Page &page = section.insert({category, Page(PageType::SPECIAL)}).first->second;
 		for(const auto &[heading, body] : entries)
 			page.entries.emplace_back(EntryType::NORMAL, heading, body);
+	}
+	// Each storyline has its own section and a page for each book.
+	auto Subheading = [](const PlayerInfo::StorylineProgress &progress) -> string {
+		string result;
+		// If the start and end date are equal, just display a single date.
+		if(progress.start == progress.end)
+			result = progress.start.ToString();
+		else
+		{
+			// Display a start date with a hyphen to show that the event is ongoing.
+			result = progress.start.ToString() + " - ";
+			// Append the end date if this part of the storyline has ended.
+			if(progress.end)
+				result += progress.end.ToString();
+			else
+				result += "Ongoing";
+		}
+		return result;
+	};
+	for(const auto &storyline : player.GetStorylineProgress() | views::values)
+	{
+		// All storyline progress entries require that the defined storyline
+		// object is present. This way, storyline components that no longer
+		// exist can be removed from the logbook, allowing us to create
+		// temporary entries for things like "to be continued" entries
+		// while a storyline is still being written.
+		if(!storyline.entry)
+			continue;
+		Section &section = sections[storyline.displayName];
+		// If a storyline has no books, at least display the storyline's log.
+		if(storyline.children.empty())
+		{
+			Page &page = section.insert({storyline.displayName, Page(PageType::STORYLINE)}).first->second;
+			page.entries.emplace_back(EntryType::STORYLINE, storyline.displayName, storyline.log, Subheading(storyline));
+			continue;
+		}
+		for(const auto &book : storyline.children | views::values)
+		{
+			if(!book.entry)
+				continue;
+			// Each book is a separate page, headed by the storyline and book logs,
+			// then breaking down into each arc and chapter.
+			Page &page = section.insert({book.displayName, Page(PageType::STORYLINE)}).first->second;
+			page.entries.emplace_back(EntryType::STORYLINE, storyline.displayName, storyline.log, Subheading(storyline));
+			page.entries.emplace_back(EntryType::BOOK, book.displayName, book.log, Subheading(book));
+			for(const auto &arc : book.children | views::values)
+			{
+				if(!arc.entry)
+					continue;
+				page.entries.emplace_back(EntryType::ARC, arc.displayName, arc.log, Subheading(arc));
+				for(const auto &chapter : arc.children | views::values)
+				{
+					if(!chapter.entry)
+						continue;
+					page.entries.emplace_back(EntryType::CHAPTER, chapter.displayName, chapter.log, Subheading(chapter));
+				}
+			}
+		}
 	}
 	// For the rest of the logbook, the category is the year, the subcategory is the month.
 	for(const auto &[date, entry] : player.Logbook())
 	{
-		string subcategory = MONTH[date.Month() - 1];
 		Section &section = sections[to_string(date.Year())];
-		if(!section.contains(subcategory))
-			section.insert({subcategory, Page(PageType::DATE)});
-		Page &page = section.at(subcategory);
+		Page &page = section.insert({MONTH[date.Month() - 1], Page(PageType::DATE)}).first->second;
 		page.entries.emplace_back(EntryType::NORMAL, date.ToString(), entry);
 	}
 }
@@ -293,24 +348,24 @@ void LogbookPanel::DrawLogbook() const
 	Point pos = Screen::TopLeft() + Point(PAD, PAD - categoryScroll);
 	for(const auto &[name, section] : sections)
 	{
-		if(selection.first == name && selection.first == selection.second)
+		if(selection.first == name && section.size() == 1 && selection.first == selection.second)
 		{
 			FillShader::Fill(pos + highlightOffset - Point(1., 0.), highlightSize + Point(0., 2.), lineColor);
 			FillShader::Fill(pos + highlightOffset, highlightSize, backColor);
 		}
 		font.Draw(name, pos + textOffset, bright);
 		pos.Y() += LINE_HEIGHT;
-		if(selection.first != name || selection.first == selection.second)
+		if(selection.first != name)
 			continue;
 
-		for(const auto &[name, page] : section)
+		for(const auto &pageName : section | views::keys)
 		{
-			if(selection.second == name)
+			if(selection.second == pageName)
 			{
 				FillShader::Fill(pos + highlightOffset - Point(1., 0.), highlightSize + Point(0., 2.), lineColor);
 				FillShader::Fill(pos + highlightOffset, highlightSize, backColor);
 			}
-			font.Draw(name, pos + textOffset, medium);
+			font.Draw(pageName, pos + textOffset, medium);
 			pos.Y() += LINE_HEIGHT;
 		}
 	}
@@ -337,14 +392,47 @@ void LogbookPanel::DrawLogbook() const
 	const auto layout = Layout(static_cast<int>(TEXT_WIDTH - 2. * PAD), Alignment::RIGHT);
 	for(const Entry &entry : page.entries)
 	{
-		if(page.type == PageType::SPECIAL)
-			font.Draw(entry.heading, pos + textOffset, bright);
-		else
-			font.Draw({entry.heading, layout}, pos + Point(0., textOffset.Y()), dim);
-		pos.Y() += LINE_HEIGHT;
+		// Chapters are drawn slightly indented.
+		if(entry.type == EntryType::CHAPTER)
+		{
+			wrap.SetWrapWidth(TEXT_WIDTH - 4. * PAD);
+			pos += Point(2 * PAD, 0);
+		}
 
+		// Storyline pages have a heading and subheading on entries.
+		// Dates and special pages only have a heading.
+		// The date page headings are shifted to the right and dimmed.
+		if(page.type == PageType::STORYLINE)
+		{
+			font.Draw(entry.heading, pos + textOffset, bright);
+			pos.Y() += LINE_HEIGHT;
+			if(entry.type == EntryType::CHAPTER)
+				font.Draw({entry.subheading, layout}, pos + Point(-2 * PAD, textOffset.Y()), dim);
+			else
+				font.Draw({entry.subheading, layout}, pos + Point(0., textOffset.Y()), dim);
+		}
+		else if(page.type == PageType::DATE)
+			font.Draw({entry.heading, layout}, pos + Point(0., textOffset.Y()), dim);
+		else
+			font.Draw(entry.heading, pos + textOffset, bright);
+		pos.Y() += LINE_HEIGHT;
 		pos.Y() += entry.body.Draw(pos, wrap, medium);
+
+		// Storylines and books have a line drawn under them.
+		Point right = Point(pos.X() + TEXT_WIDTH - PAD, pos.Y());
+		if(entry.type == EntryType::STORYLINE)
+			LineShader::Draw(pos, right, 1, bright);
+		else if(entry.type == EntryType::BOOK)
+			LineShader::Draw(pos, right, 1, medium);
+
 		pos.Y() += GAP;
+
+		// Un-indent from the chapter.
+		if(entry.type == EntryType::CHAPTER)
+		{
+			wrap.SetWrapWidth(TEXT_WIDTH - 2. * PAD);
+			pos -= Point(2 * PAD, 0);
+		}
 	}
 
 	maxScroll = max(0., scroll + pos.Y() - Screen::Bottom());
@@ -362,7 +450,7 @@ vector<pair<string, string>> LogbookPanel::AvailableSelections(bool visibleOnly)
 		else if(!visibleOnly || selection.first == name)
 		{
 			selections.emplace_back(make_pair("", ""));
-			for(const auto &[pageName, page] : section)
+			for(const auto &pageName : section | views::keys)
 				selections.emplace_back(name, pageName);
 		}
 		else

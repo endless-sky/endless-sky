@@ -44,7 +44,7 @@ void BookEntry::Load(const DataNode &node, int startAt)
 
 	for(const DataNode &child : node)
 	{
-		const string &key = child.Token(1);
+		const string &key = child.Token(0);
 		if(key == "source" && child.Size() >= 2)
 			source = GameData::Systems().Get(child.Token(1));
 		else if(key == "mark")

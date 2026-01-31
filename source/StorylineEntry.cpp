@@ -76,7 +76,7 @@ const string &StorylineEntry::TrueName() const
 
 const string &StorylineEntry::DisplayName() const
 {
-	return displayName;
+	return displayName.empty() ? trueName : displayName;
 }
 
 
@@ -90,6 +90,7 @@ const BookEntry &StorylineEntry::GetBookEntry() const
 
 bool StorylineEntry::IsStarted() const
 {
+	// Storyline entries must have an explicit "to start" node in order to be considered started.
 	return !toStart.IsEmpty() && toStart.Test();
 }
 
@@ -97,7 +98,9 @@ bool StorylineEntry::IsStarted() const
 
 bool StorylineEntry::IsComplete() const
 {
-	return !toComplete.IsEmpty() && toComplete.Test();
+	// Storyline entries may have no "to complete" node, meaning they're considered completed
+	// the moment they start.
+	return toComplete.Test();
 }
 
 

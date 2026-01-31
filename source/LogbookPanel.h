@@ -48,15 +48,20 @@ protected:
 private:
 	enum class EntryType {
 		NORMAL = 0,
+		STORYLINE,
+		BOOK,
+		ARC,
+		CHAPTER
 	};
 
 	class Entry {
 	public:
-		Entry(EntryType type, const std::string &heading, const BookEntry &body)
-			: type(type), heading(heading), body(body) {}
+		Entry(EntryType type, const std::string &heading, const BookEntry &body, const std::string &subheading = "")
+			: type(type), heading(heading), subheading(subheading), body(body) {}
 
 		EntryType type;
 		std::string heading;
+		std::string subheading;
 		const BookEntry &body;
 	};
 
