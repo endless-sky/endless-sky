@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "DialogPanel.h"
 #include "Files.h"
-#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -99,11 +98,7 @@ namespace {
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
-#ifdef _WIN32
 	const int SETTINGS_PAGE_COUNT = 3;
-#else
-	const int SETTINGS_PAGE_COUNT = 2;
-#endif
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -801,13 +796,19 @@ void PreferencesPanel::DrawSettings()
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
 		"\t",
+		"Trading",
+		"'Sell Outfits' without outfitter",
+		"Confirm 'Sell Outfits' button",
+		"Confirm 'Sell MInables' button",
+		"Show parenthesis",
+		"",
 		"Map",
 		"Deadline blink by distance",
 		"Hide unexplored map regions",
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		"",
+		"\n",
 		"Other",
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
@@ -816,11 +817,10 @@ void PreferencesPanel::DrawSettings()
 		SCROLL_SPEED,
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
-		"Show parenthesis",
 		NOTIFY_ON_DEST,
 		"Save message log",
 #ifdef _WIN32
-		"\n",
+		"\t",
 		"Windows Options",
 		TITLE_BAR_THEME,
 		WINDOW_ROUNDING
