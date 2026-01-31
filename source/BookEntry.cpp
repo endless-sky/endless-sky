@@ -18,9 +18,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "text/Format.h"
+#include "GameData.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
+#include "System.h"
 #include "text/WrappedText.h"
 
 using namespace std;
@@ -41,7 +43,19 @@ void BookEntry::Load(const DataNode &node, int startAt)
 		LoadSingle(node, startAt);
 
 	for(const DataNode &child : node)
-		LoadSingle(child);
+	{
+		const string &key = child.Token(1);
+		if(key == "source" && child.Size() >= 2)
+			source = GameData::Systems().Get(child.Token(1));
+		else if(key == "mark")
+			for(const DataNode &grand : child)
+				markSystems.insert(GameData::Systems().Get(grand.Token(1)));
+		else if(key == "circle")
+			for(const DataNode &grand : child)
+				circleSystems.insert(GameData::Systems().Get(grand.Token(1)));
+		else
+			LoadSingle(child);
+	}
 }
 
 
@@ -49,6 +63,8 @@ void BookEntry::Load(const DataNode &node, int startAt)
 void BookEntry::Add(const BookEntry &other)
 {
 	items.insert(items.end(), other.items.begin(), other.items.end());
+	markSystems.insert(other.markSystems.begin(), other.markSystems.end());
+	circleSystems.insert(other.circleSystems.begin(), other.circleSystems.end());
 }
 
 
@@ -64,6 +80,8 @@ BookEntry BookEntry::Instantiate(const map<string, string> &subs) const
 		else
 			newEntry.items.emplace_back(item);
 	}
+	newEntry.markSystems = markSystems;
+	newEntry.circleSystems = circleSystems;
 	return newEntry;
 }
 
@@ -81,6 +99,28 @@ void BookEntry::Save(DataWriter &out) const
 					out.Write(line);
 			else
 				out.Write("scene", std::get<const Sprite *>(item)->Name());
+		}
+		if(source)
+			out.Write("source", source->TrueName());
+		if(!markSystems.empty())
+		{
+			out.Write("mark");
+			out.BeginChild();
+			{
+				for(const System *system : markSystems)
+					out.Write(system->TrueName());
+			}
+			out.EndChild();
+		}
+		if(!circleSystems.empty())
+		{
+			out.Write("circle");
+			out.BeginChild();
+			{
+				for(const System *system : circleSystems)
+					out.Write(system->TrueName());
+			}
+			out.EndChild();
 		}
 	}
 	out.EndChild();
@@ -108,6 +148,34 @@ int BookEntry::Draw(const Point &topLeft, WrappedText &wrap, const Color &color)
 		}
 	}
 	return drawPoint.Y() - topLeft.Y();
+}
+
+
+
+const System *BookEntry::SourceSystem() const
+{
+	return source;
+}
+
+
+
+void BookEntry::SetSourceSystem(const System *system)
+{
+	source = system;
+}
+
+
+
+const set<const System *> &BookEntry::MarkSystems() const
+{
+	return markSystems;
+}
+
+
+
+const set<const System *> &BookEntry::CircleSystems() const
+{
+	return circleSystems;
 }
 
 

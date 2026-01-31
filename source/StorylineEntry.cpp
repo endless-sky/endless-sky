@@ -17,9 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 #include "DataNode.h"
-#include "GameData.h"
 #include "PlayerInfo.h"
-#include "System.h"
 
 using namespace std;
 
@@ -41,12 +39,6 @@ void StorylineEntry::Load(const DataNode &node, const ConditionsStore *playerCon
 			displayName = child.Token(1);
 		else if(key == "log")
 			bookEntry.Load(child, 1);
-		else if(key == "mark")
-			for(const DataNode &grand : child)
-				marks.insert(GameData::Systems().Get(grand.Token(0)));
-		else if(key == "circle")
-			for(const DataNode &grand : child)
-				marks.insert(GameData::Systems().Get(grand.Token(0)));
 		else if(key == "to" && hasValue)
 		{
 			const string &value = child.Token(1);
@@ -92,20 +84,6 @@ const string &StorylineEntry::DisplayName() const
 const BookEntry &StorylineEntry::GetBookEntry() const
 {
 	return bookEntry;
-}
-
-
-
-const set<const System *> &StorylineEntry::MarkSystems() const
-{
-	return marks;
-}
-
-
-
-const set<const System *> &StorylineEntry::CircleSystems() const
-{
-	return circles;
 }
 
 

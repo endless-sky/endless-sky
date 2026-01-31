@@ -76,13 +76,15 @@ public:
 	class StorylineProgress {
 	public:
 		StorylineProgress() = default;
-		StorylineProgress(const StorylineEntry &entry, const Date &start);
+		StorylineProgress(const StorylineEntry &entry, BookEntry log, const Date &start);
 		StorylineProgress(const DataNode &node, StorylineEntry::Level level, const StorylineEntry *entry);
 		void Save(DataWriter &out) const;
 
 		const StorylineEntry *entry = nullptr;
 		StorylineEntry::Level level = StorylineEntry::Level::STORYLINE;
-		std::string name;
+		std::string trueName;
+		std::string displayName;
+		BookEntry log;
 		Date start;
 		Date end;
 		std::map<std::string, StorylineProgress> children;

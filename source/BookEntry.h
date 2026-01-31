@@ -19,12 +19,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <variant>
 #include <vector>
+#include <set>
 
 class Color;
 class DataNode;
 class DataWriter;
 class Point;
 class Sprite;
+class System;
 class WrappedText;
 
 
@@ -48,6 +50,11 @@ public:
 	// Returns height.
 	int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
 
+	const System *SourceSystem() const;
+	void SetSourceSystem(const System *system);
+	const std::set<const System *> &MarkSystems() const;
+	const std::set<const System *> &CircleSystems() const;
+
 
 private:
 	void LoadSingle(const DataNode &node, int startAt = 0);
@@ -55,4 +62,9 @@ private:
 
 private:
 	std::vector<Item> items;
+
+	// The source of a book entry is the system it was written in.
+	const System *source = nullptr;
+	std::set<const System *> markSystems;
+	std::set<const System *> circleSystems;
 };

@@ -155,8 +155,9 @@ namespace {
 
 
 
-PlayerInfo::StorylineProgress::StorylineProgress(const StorylineEntry &entry, const Date &start)
-	: entry(&entry), level(entry.GetLevel()), name(entry.TrueName()), start(start)
+PlayerInfo::StorylineProgress::StorylineProgress(const StorylineEntry &entry, BookEntry log, const Date &start)
+	: entry(&entry), level(entry.GetLevel()), trueName(entry.TrueName()), displayName(entry.DisplayName()),
+	log(std::move(log)), start(start)
 {
 }
 
@@ -164,7 +165,7 @@ PlayerInfo::StorylineProgress::StorylineProgress(const StorylineEntry &entry, co
 
 PlayerInfo::StorylineProgress::StorylineProgress(const DataNode &node, StorylineEntry::Level level,
 	const StorylineEntry *entry)
-	: entry(entry), level(level), name(node.Token(1))
+	: entry(entry), level(level), trueName(node.Token(1))
 {
 	for(const DataNode &child : node)
 	{
@@ -183,7 +184,11 @@ PlayerInfo::StorylineProgress::StorylineProgress(const DataNode &node, Storyline
 			children[nextName] = StorylineProgress(child, nextLevel, nextEntry);
 		};
 
-		if(key == "start" && child.Size() >= 4)
+		if(key == "name" && hasValue)
+			displayName = child.Token(1);
+		else if(key == "log")
+			log.Load(child, 1);
+		else if(key == "start" && child.Size() >= 4)
 			start = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(key == "end" && child.Size() >= 4)
 			end = Date(child.Value(1), child.Value(2), child.Value(3));
@@ -203,19 +208,26 @@ PlayerInfo::StorylineProgress::StorylineProgress(const DataNode &node, Storyline
 void PlayerInfo::StorylineProgress::Save(DataWriter &out) const
 {
 	if(level == StorylineEntry::Level::STORYLINE)
-		out.Write("storyline", name);
+		out.Write("storyline", trueName);
 	else if(level == StorylineEntry::Level::BOOK)
-		out.Write("book", name);
+		out.Write("book", trueName);
 	else if(level == StorylineEntry::Level::ARC)
-		out.Write("arc", name);
+		out.Write("arc", trueName);
 	else if(level == StorylineEntry::Level::CHAPTER)
-		out.Write("chapter", name);
+		out.Write("chapter", trueName);
 	out.BeginChild();
 	{
+		if(!displayName.empty())
+			out.Write("name", displayName);
 		if(start)
 			out.Write("start", start.Day(), start.Month(), start.Year());
 		if(end)
 			out.Write("end", end.Day(), end.Month(), end.Year());
+		if(!log.IsEmpty())
+		{
+			out.Write("log");
+			log.Save(out);
+		}
 		for(const auto &child : children)
 			child.second.Save(out);
 	}
@@ -894,9 +906,6 @@ void PlayerInfo::AdvanceDate(int amount)
 		return;
 	while(amount--)
 	{
-		// Check the storyline progress before each date change so that we can
-		// have accurate starting dates for each storyline component.
-		CheckStorylineProgress();
 		++date;
 
 		// Check if any special events should happen today.
@@ -2110,7 +2119,11 @@ const map<Date, BookEntry> &PlayerInfo::Logbook() const
 
 void PlayerInfo::AddLogEntry(const BookEntry &logbookEntry)
 {
-	logbook[date].Add(logbookEntry);
+	BookEntry &dateEntry = logbook[date];
+	dateEntry.Add(logbookEntry);
+	// If this entry hasn't already marked a system, mark it with the system it was written in.
+	if(!dateEntry.SourceSystem())
+		dateEntry.SetSourceSystem(system);
 }
 
 
@@ -5324,16 +5337,16 @@ void PlayerInfo::EvaluateStoryline(map<string, StorylineProgress> &progress, con
 	{
 		if(!storylineEntry.IsStarted())
 			return;
-		progress[name] = StorylineProgress(storylineEntry, date);
+		BookEntry log = storylineEntry.GetBookEntry().Instantiate(GetSubstitutions());
+		log.SetSourceSystem(system);
+		progress[name] = StorylineProgress(storylineEntry, std::move(log), date);
 	}
 	StorylineProgress &progressEntry = progress.at(name);
-	// If this storyline has already ended, don't check for progress on any children.
-	if(progressEntry.end)
-		return;
 
-	// If this storyline has just ended, set its end date and check any children one last time.
-	if(storylineEntry.IsComplete())
+	// If this storyline has just ended, set its end date.
+	if(!progressEntry.end && storylineEntry.IsComplete())
 		progressEntry.end = date;
+	// Check for the progress of any child entries.
 	for(const auto &child : storylineEntry.Children())
 		EvaluateStoryline(progressEntry.children, child.second);
 }

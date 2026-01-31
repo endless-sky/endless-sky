@@ -312,6 +312,7 @@ void Engine::Place()
 	ships.clear();
 	ai.ClearOrders();
 
+	player.CheckStorylineProgress();
 	player.SetSystemEntry(SystemEntry::TAKE_OFF);
 	EnterSystem();
 
@@ -1781,6 +1782,9 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 					player.Visit(*it.GetPlanet());
 				}
 
+		// Check for any storyline progress that occurred in this system before
+		// advancing to the next system.
+		player.CheckStorylineProgress();
 		player.SetSystemEntry(wormholeEntry ? SystemEntry::WORMHOLE :
 			flagship->IsUsingJumpDrive() ? SystemEntry::JUMP :
 			SystemEntry::HYPERDRIVE);

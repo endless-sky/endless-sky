@@ -19,12 +19,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionSet.h"
 
 #include <map>
-#include <set>
 #include <string>
 
 class DataNode;
 class PlayerInfo;
-class System;
 
 
 // A representation of a storyline of missions. Storylines can be broken down into books, arcs, and chapters.
@@ -49,8 +47,6 @@ public:
 	const std::string &TrueName() const;
 	const std::string &DisplayName() const;
 	const BookEntry &GetBookEntry() const;
-	const std::set<const System *> &MarkSystems() const;
-	const std::set<const System *> &CircleSystems() const;
 	bool IsStarted() const;
 	bool IsComplete() const;
 	const std::map<std::string, StorylineEntry> &Children() const;
@@ -62,9 +58,6 @@ private:
 	std::string trueName;
 	std::string displayName;
 	BookEntry bookEntry;
-
-	std::set<const System *> marks;
-	std::set<const System *> circles;
 
 	ConditionSet toStart;
 	ConditionSet toComplete;
