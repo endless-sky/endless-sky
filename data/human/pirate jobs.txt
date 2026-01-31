@@ -3707,3 +3707,762 @@ mission "Republic Assassination [2]"
 		"reputation: Republic" -= 15
 		"reputation: Navy (Oathkeeper)" -= 15
 		"reputation: Pirate" += 5
+
+
+
+mission "Pirate transport to <planet> [0]"
+	name "Transport anarchists to <planet>"
+	job
+	repeat
+	description "This family of <bunks> anarchists are looking to escape local trouble by moving to <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
+	passengers 3 10
+	cargo "Family Belongings" 4 2
+	to offer
+		random < 15
+		"reputation: Pirate" > -100
+	source
+		government "Pirate"
+	destination
+		distance 2 12
+		government "Pirate" "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 1500
+		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
+		"reputation: Pirate" += .5
+
+mission "Pirate transport to <planet> [1]"
+	name "Transport anarchists to <planet>"
+	job
+	repeat
+	description "This family of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
+	passengers 3 10
+	cargo "Battered Baggage" 2 1
+	to offer
+		random < 25
+		"reputation: Pirate" > -100
+	source
+		government "Pirate"
+	destination
+		distance 2 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 1000
+		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
+		"reputation: Pirate" += .5
+
+mission "Pirate transport to <planet> [2]"
+	name "Transport anarchists to <planet>"
+	job
+	repeat
+	description "This family of <bunks> anarchists are hoping to start a new life on <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
+	passengers 3 10
+	cargo "Battered Baggage" 2 1
+	to offer
+		random < 25
+		"reputation: Pirate" > -100
+	source
+		government "Pirate"
+	destination
+		distance 2 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 1000
+		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
+		"reputation: Pirate" += .5
+
+mission "Pirate transport to <planet> [3]"
+	name "Transport employees to <planet>"
+	job
+	repeat
+	description "A ship scrapping operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
+	passengers 2 10 .8
+	to offer
+		random < 20
+		"reputation: Pirate" > -10
+	source
+		government "Pirate"
+	destination
+		distance 1 4
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 1250
+		dialog "You find your contact on <planet>. They do a quick head count before handing you your payment of <payment>."
+		"reputation: Pirate" += .5
+
+mission "Pirate transport to <planet> [4]"
+	name "Transport employees to <planet>"
+	job
+	repeat
+	description "A narcotics operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
+	passengers 2 10 .8
+	to offer
+		random < 15
+		"reputation: Pirate" > -10
+	source
+		government "Pirate"
+	destination
+		distance 1 4
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 1250
+		dialog "You find your contact on <planet>. They do a quick head count before handing you your payment of <payment>."
+		"reputation: Pirate" += .5
+
+mission "Pirate transport to <planet> [5]"
+	name "Transport gang to <planet>"
+	job
+	repeat
+	description "This gang of <bunks> petty criminals is hoping to travel to <destination>, and they will pay you <payment> to take them there."
+	passengers 4 8 .8
+	to offer
+		random < 30
+		"reputation: Pirate" > -10
+	source
+		government "Pirate"
+	destination
+		distance 2 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 1000
+		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
+		"reputation: Pirate" += .5
+
+mission "Transport wealthy anarchists to <planet>"
+	job
+	repeat
+	description "These <bunks> wealthy anarchists seek comfortable travel to <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
+	passengers 4 8 .8
+	cargo "Fancy Baggage" 4 2
+	to offer
+		random < 25
+		"reputation: Pirate" > 0
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		government "Pirate"
+	destination
+		distance 2 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 2
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 8000
+		dialog "One of the anarchists' guards hands you your payment of <payment>, after which the group enters the <planet> spaceport."
+		"reputation: Pirate" += 1
+
+mission "Transport shady group to <planet> (Short)"
+	name "Transport shady group to <planet>"
+	job
+	repeat
+	description "This group of <bunks> shady individuals seek urgent transport to <destination> by <date>, and they will pay you <payment> to take them there."
+	passengers 3 6 .8
+	deadline 6
+	to offer
+		random < 30
+		"reputation: Pirate" > -10
+	source
+		government "Pirate"
+	destination
+		distance 2 4
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 12000
+		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
+		"reputation: Pirate" += .5
+
+mission "Transport shady group to <planet> (Long)"
+	name "Transport shady group to <planet>"
+	job
+	repeat
+	description "This group of <bunks> shady individuals seek urgent transport to <destination> by <date>, and they will pay you <payment> to take them there."
+	passengers 3 6 .8
+	deadline 14
+	to offer
+		random < 25
+		"reputation: Pirate" > -10
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 12000
+		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
+		"reputation: Pirate" += .5
+		
+
+
+mission "Pirate smuggle to <planet> [0]"
+	name "Smuggle anarchists to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	job
+	repeat
+	description "This family of <bunks> wanted anarchists is hoping to find work on <destination>, and they will pay you <payment> to smuggle them and their <tons> of bags there without being scanned or caught by planetary law enforcement."
+	passengers 2 10
+	cargo "Battered Baggage" 2 1
+	illegal 50000 `Your ship is boarded and the wanted family is escorted to the brig. The anarchists won't be happy to hear this...`
+	stealth
+	to offer
+		random < 30
+		"reputation: Pirate" > 0
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 2000
+		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
+		"reputation: Pirate" += .5
+
+mission "Pirate smuggle to <planet> [1]"
+	name "Smuggle employees to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	job
+	repeat
+	description "An illegal operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
+	passengers 2 10 .8
+	illegal 50000 `Your ship is boarded and the employees are escorted to the brig. Their employer won't be happy to hear this...`
+	to offer
+		random < 40
+		"reputation: Pirate" > 0
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "You turn the confused and annoyed employees away. Their employer won't be happy to hear this..."
+	on fail
+		"reputation: Pirate" -= 2
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 2250
+		dialog "You find your contact on <planet> and they do a quick head count before handing you your payment of <payment>."
+		"reputation: Pirate" += 1
+		
+mission "Pirate smuggle to <planet> [2]"
+	name "Smuggle gang to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	job
+	repeat
+	description "This gang of <bunks> wanted, well-known criminals is hoping to covertly travel to <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
+	passengers 4 8 .8
+	illegal 80000 `Your ship is boarded and the wanted gang is escorted to the brig. The pirates won't be happy to hear this...`
+	stealth
+	to offer
+		random < 30
+		"reputation: Pirate" > 0
+		"combat rating" > 100
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "You turn the angry thugs away. This certainly doesn't help to establish your reputation as a reliable, no-questions-asked transporter."
+	on fail
+		"reputation: Pirate" -= 2
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 2000
+		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
+		"reputation: Pirate" += 1
+		
+mission "Smuggle wealthy druglord to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	job
+	repeat
+	description "This group of <bunks> armed guards and their boss seek covert, yet comfortable travel to <destination>, and they will pay you <payment> to take them and their <tons> of bags there without being scanned or caught by planetary law enforcement."
+	passengers 3 12 .8
+	cargo "Fancy Baggage" 4 2
+	illegal 250000 `Your ship is boarded and a firefight breaks out! After the inside of your <model> is trashed, the remaining guards and druglord are escorted to the brig and you're hit with a hefty fine. This sure won't go over well...`
+	stealth
+	to offer
+		random < 24
+		"reputation: Pirate" > 0
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "You turn the annoyed druglord and their disgruntled guards away. No doubt they'll tell their fellow elite about this."
+	on fail
+		"reputation: Pirate" -= 3
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 9000
+		dialog "One of the druglord's guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
+		"reputation: Pirate" += 1.5
+		
+mission "Smuggle shady group to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	job
+	repeat
+	description "This group of <bunks> incredibly shady individuals seek urgent, covert transport to <destination> by <date>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
+	illegal 50000 `Your ship is boarded and the shady group is escorted to the brig. Hopefully this doesn't make someone mad...`
+	passengers 3 6 .8
+	deadline 14
+	to offer
+		random < 20
+		"reputation: Pirate" > 0
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "You turn the annoyed, cloaked figures away. Whoever they are, they'll likely tell their colleagues about this."
+	on fail
+		"reputation: Pirate" -= 2
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 16000
+		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
+		"reputation: Pirate" += 1
+
+
+
+mission "Pirate bulk transport to <planet> [0]"
+	name "Bulk transport to <planet>"
+	job
+	repeat
+	description "This large group of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
+	passengers 11 30 .8
+	cargo "Battered Baggage" 6 2
+	to offer
+		random < 18
+		"reputation: Pirate" > -10
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 2
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 600
+		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
+		"reputation: Pirate" += 2
+
+mission "Pirate bulk transport to <planet> [1]"
+	name "Bulk transport to <planet>"
+	job
+	repeat
+	description "This large group of <bunks> anarchists seek transport to <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
+	passengers 11 30 .8
+	cargo "Battered Baggage" 6 2
+	to offer
+		random < 18
+		"reputation: Pirate" > -10
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 2
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 600
+		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
+		"reputation: Pirate" += 1
+		
+mission "Pirate bulk transport to <planet> [2]"
+	name "Bulk transport to <planet>"
+	job
+	repeat
+	description "This large group of <bunks> anarchists are hoping to start new lives on <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
+	passengers 11 30 .8
+	cargo "Battered Baggage" 6 2
+	to offer
+		random < 18
+		"reputation: Pirate" > -10
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 2
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 600
+		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
+		"reputation: Pirate" += 1
+
+mission "Pirate bulk transport to <planet> [3]"
+	name "Bulk transport to <planet>"
+	job
+	repeat
+	description "A large ship scrapping operation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there."
+	passengers 11 30 .6
+	to offer
+		random < 20
+		"reputation: Pirate" > -10
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 2
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 850
+		dialog "You find your contact on <planet> and, after a lengthy head count, they hand you your payment of <payment>."
+		"reputation: Pirate" += 1
+
+mission "Pirate bulk transport to <planet> [4]"
+	name "Bulk transport to <planet>"
+	job
+	repeat
+	description "A large narcotics operation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there."
+	passengers 11 30 .6
+	to offer
+		random < 15
+		"reputation: Pirate" > -10
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 2
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 850
+		dialog "You find your contact on <planet> and, after a lengthy head count, they hand you your payment of <payment>."
+		"reputation: Pirate" += 1
+
+mission "Pirate bulk smuggle to <planet> [0]"
+	name "Smuggle large gang to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	job
+	repeat
+	description "This large gang of <bunks> wanted criminals is hoping to covertly travel to <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
+	passengers 10 30 .8
+	illegal 80000 `Your ship is boarded and the wanted gang is escorted to the brig. The pirates won't be happy to hear this...`
+	stealth
+	to offer
+		random < 25
+		"reputation: Pirate" > -10
+		"combat rating" > 150
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 2
+		dialog "You turn the large group of angry thugs away. This certainly doesn't help to establish your reputation as a reliable, no-questions-asked transporter."
+	on fail
+		"reputation: Pirate" -= 2
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 1000
+		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
+		"reputation: Pirate" += 1
+
+mission "Pirate bulk smuggle to <planet> [1]"
+	name "Smuggle employees to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	job
+	repeat
+	description "A large, illegal operation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
+	passengers 11 30 .8
+	illegal 100000 `Your ship is boarded and the employees are escorted to the brig. Their employer won't be happy to hear this...`
+	to offer
+		random < 20
+		"reputation: Pirate" > -10
+		"combat rating" > 150
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 2
+		dialog "You turn the confused and annoyed employees away. Their employer won't be happy to hear this..."
+	on fail
+		"reputation: Pirate" -= 2
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 1250
+		dialog "You find your contact on <planet> and, after a lengthy head count, they hand you your payment of <payment>."
+		"reputation: Pirate" += 1
+
+mission "Smuggle cartel members to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	job
+	repeat
+	description "This group of <bunks> cartel members and their guards seek covert, yet comfortable, travel to <destination>. They will pay you <payment> to take them and their <tons> of bags there without being scanned or caught by planetary law enforcement."
+	passengers 12 24 .8
+	cargo "Fancy Baggage" 8 4
+	illegal 250000 `Your ship is boarded and a firefight breaks out! After the inside of your <model> is trashed, the remaining guards and cartel members are escorted to the brig and you're hit with a hefty fine. This sure won't go over well...`
+	stealth
+	to offer
+		random < 25
+		"reputation: Pirate" > 0
+		"combat rating" > 150
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 2
+		dialog "You turn the annoyed cartel and their disgruntled guards away. No doubt they'll tell their fellow elite about this."
+	on fail
+		"reputation: Pirate" -= 4
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 8000
+		dialog "One of the cartel guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
+		"reputation: Pirate" += 2
+
+mission "Pirate bulk smuggle to <planet> [2]"
+	name "Smuggle armed group to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	job
+	repeat
+	infiltrating
+	description "A large, heavily armed group of <bunks> is seeking no-questions-asked covert transit to <destination> by <date>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
+	passengers 20 40 .8
+	illegal 5000000 `Your ship is boarded by security and a firefight breaks out! The inside of both your <model> and the officer's ship is trashed, leaving none of the armed group alive. A rightfully furious officer hits you with an immense fine and says you're lucky that you're not shot on the spot for this...`
+	stealth
+	deadline 14
+	to offer
+		random < 10
+		"reputation: Pirate" > -10
+		"combat rating" > 450
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 3
+		dialog "You feel like the group leader is trying to explode your head with their intense stare, but they reluctantly leave. No doubt they'll tell their fellow mercs about this."
+	on fail
+		"reputation: Pirate" -= 4
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 20000
+		dialog "The armed group stash their gear and march out into the <planet> spaceport, the crowd giving way as they do. A well-dressed member hands you a payment of <payment> before rejoining the squad at the front."
+		"reputation: Pirate" += 2
+
+mission "Pirate mass transport to <planet> [0]"
+	name "Mass transport to <planet>"
+	job
+	repeat
+	description "This huge group of <bunks> various travelers all seek transit to <destination>, and their travel organizer will pay you <payment> to take them and their <tons> of bags there."
+	passengers 30 60 .8
+	cargo "Battered Baggage" 20 10
+	to offer
+		random < 15
+		"reputation: Pirate" > 0
+		"combat rating" > 100
+	source
+		government "Pirate"
+	destination
+		distance 2 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 3
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 500
+		dialog "After a hectic unloading process at the <planet> spaceport, you collect your payment of <payment>."
+		"reputation: Pirate" += 1.5
+
+mission "Pirate mass transport to <planet> [1]"
+	name "Mass transport to <planet>"
+	job
+	repeat
+	description "This gigantic group of <bunks> various travelers all seek mass transit to <destination>, and their travel organizer will pay you <payment> to take them and their <tons> of bags there."
+	passengers 60 120 .8
+	cargo "Battered Baggage" 40 20
+	to offer
+		random < 12
+		"reputation: Pirate" > -10
+		"combat rating" > 100
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 4
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 500
+		dialog "After what feels like hours spent in the <planet> spaceport, finding lost baggage and organizing the unloading, you finally collect your payment of <payment>."
+		"reputation: Pirate" += 1.5
+
+mission "Smuggle plunderbund elite to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	job
+	repeat
+	description "This large cohort of <bunks> plunderbund aristocracy and their extensive guardianship detachment seek sumptuous, yet surreptitious travel to <destination>, and they will compensate you with <payment> to take them and their <tons> of extensive paraphernalia there without being caught by planetary law enforcement."
+	passengers 24 36 .8
+	cargo "Lavish Paraphernalia" 20 10
+	illegal 25000000 `Your ship erupts into a massive war zone as soon as system security board! The inside of both your <model> and the officer's ship is trashed, as well as the multiple reinforcement ships called in to help. A rightfully furious officer hits you with an immense fine and says you're lucky that you're not shot on the spot for this...`
+	stealth
+	to offer
+		random < 10
+		"reputation: Pirate" > 5
+		"combat rating" > 250
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		government "Pirate"
+	destination
+		distance 6 12
+		government "Pirate"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 4
+		dialog "You cast away the particularly disgruntled plunderbund and their extensive security compliment, much to their grand annoyance. No doubt there will be much banter among the upper elite about this unfortunate act."
+	on fail
+		"reputation: Pirate" -= 6
+	on complete
+		"pirate jobs" ++
+		payment
+		payment 10000
+		dialog "One of the plunderbund's guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
+		"reputation: Pirate" += 3
