@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapPanel.h"
 
 #include "BookEntry.h"
+#include "ClickZone.h"
 #include "OrderedMap.h"
 
 #include <string>
@@ -79,25 +80,33 @@ private:
 		std::vector<Entry> entries;
 	};
 
-
-private:
-	void CreateSections();
-	void DrawLogbook() const;
-
-	std::vector<std::pair<std::string, std::string>> AvailableSelections(bool visibleOnly = true) const;
-
-
-private:
 	// A section is a mapping of subcategory to page.
 	// Subcategories are the expanded selection of entries under a category.
 	using Section = OrderedMap<std::string, Page>;
+	// A selection is a category and subcategory to display the book entries of.
+	using Selection = std::pair<std::string, std::string>;
 
+
+private:
+	void CreateSections();
+	void DrawSelectedEntry() const;
+	void DrawLogbook();
+
+	std::vector<Selection> AvailableSelections(bool visibleOnly = true) const;
+
+
+private:
 	// A mapping of category to section. These are what are selectable on the left-most side of the panel.
 	// If a section has no subcategories to expand, then the section should only have one subcategory with
 	// the same name as the section.
 	OrderedMap<std::string, Section> sections;
-	// The selected category and subcategory to display the book entries of.
-	std::pair<std::string, std::string> selection;
+	// The current page selection.
+	Selection selection;
+	// The currently selected book entry to display the related systems of.
+	const BookEntry *selectedEntry = nullptr;
+
+	std::vector<ClickZone<Selection>> selectionZones;
+	std::vector<ClickZone<const BookEntry *>> logZones;
 
 	Point hoverPoint;
 

@@ -180,6 +180,13 @@ const set<const System *> &BookEntry::CircleSystems() const
 
 
 
+bool BookEntry::HasSystems() const
+{
+	return source || !markSystems.empty() || !circleSystems.empty();
+}
+
+
+
 void BookEntry::LoadSingle(const DataNode &node, int startAt)
 {
 	if(node.Size() - startAt == 2 && node.Token(startAt) == "scene")

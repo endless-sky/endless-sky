@@ -27,8 +27,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/LineShader.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
+#include "shader/RingShader.h"
 #include "Screen.h"
 #include "image/SpriteSet.h"
+#include "System.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
@@ -80,6 +82,7 @@ void LogbookPanel::Draw()
 	MapPanel::Draw();
 	DrawOrbits();
 	DrawKey();
+	DrawSelectedEntry();
 	DrawLogbook();
 	FinishDrawing("is ports");
 }
@@ -107,7 +110,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == SDLK_UP || key == SDLK_DOWN)
 	{
 		// Find the index of the currently selected line.
-		vector<pair<string, string>> selections = AvailableSelections(false);
+		vector<Selection> selections = AvailableSelections(false);
 		size_t i = 0;
 		for( ; i < selections.size(); ++i)
 			if(selections[i] == selection)
@@ -144,6 +147,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		{
 			selection = selections[i];
 			scroll = 0.;
+			selectedEntry = nullptr;
 
 			selections = AvailableSelections();
 			// Find our currently selected item again
@@ -178,21 +182,26 @@ bool LogbookPanel::Click(int x, int y, MouseButton button, int clicks)
 	if(button != MouseButton::LEFT)
 		return false;
 
-	double sx = x - Screen::Left();
-	double sy = y - Screen::Top();
-	if(sx < SIDEBAR_WIDTH)
-	{
-		size_t index = (sy - PAD + categoryScroll) / LINE_HEIGHT;
-		vector<pair<string, string>> selections = AvailableSelections();
-		if(index < selections.size())
-		{
-			selection = selections[index];
-			scroll = 0.;
-			UI::PlaySound(UI::UISound::NORMAL);
-		}
-	}
-	else if(sx > WIDTH)
+	if(x - Screen::Left() > WIDTH)
 		return MapPanel::Click(x, y, button, clicks);
+
+	Point clickPoint(x, y);
+	for(const ClickZone<Selection> &zone : selectionZones)
+		if(zone.Contains(clickPoint))
+		{
+			selection = zone.Value();
+			scroll = 0.;
+			selectedEntry = nullptr;
+			UI::PlaySound(UI::UISound::NORMAL);
+			return true;
+		}
+	for(const ClickZone<const BookEntry *> &zone : logZones)
+		if(zone.Contains(clickPoint))
+		{
+			selectedEntry = zone.Value();
+			UI::PlaySound(UI::UISound::NORMAL);
+			return true;
+		}
 
 	return true;
 }
@@ -311,8 +320,39 @@ void LogbookPanel::CreateSections()
 
 
 
-void LogbookPanel::DrawLogbook() const
+void LogbookPanel::DrawSelectedEntry() const
 {
+	if(!selectedEntry)
+		return;
+
+	const Set<Color> &colors = GameData::Colors();
+	const Color &sourceColor = *colors.Get("active mission");
+	const Color &markColor = *colors.Get("waypoint");
+
+	double zoom = Zoom();
+	auto DrawPointer = [&](const System *system, const Color &color) -> void {
+		unsigned count = 0;
+		MapPanel::DrawPointer(zoom * (system->Position() + center), count, color, true, false);
+	};
+	auto DrawRing = [&](const System *system, const Color &color) -> void {
+		RingShader::Add(zoom * (system->Position() + center), 22.f, 20.5f, color);
+	};
+
+	if(selectedEntry->SourceSystem())
+		DrawPointer(selectedEntry->SourceSystem(), sourceColor);
+	for(const System *system : selectedEntry->MarkSystems())
+		DrawPointer(system, markColor);
+	for(const System *system : selectedEntry->CircleSystems())
+		DrawRing(system, markColor);
+}
+
+
+
+void LogbookPanel::DrawLogbook()
+{
+	selectionZones.clear();
+	logZones.clear();
+
 	// Draw the panel. The sidebar should be slightly darker than the rest.
 	const Color &sideColor = *GameData::Colors().Get("logbook sidebar");
 	FillShader::Fill(
@@ -337,6 +377,7 @@ void LogbookPanel::DrawLogbook() const
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	Color entryHighlight = bright.Transparent(.125);
 
 	// Draw the sidebar.
 	// The currently selected sidebar item should be highlighted. This is how
@@ -346,20 +387,26 @@ void LogbookPanel::DrawLogbook() const
 	Point textOffset(0., .5 * (LINE_HEIGHT - font.Height()));
 	// Start at this point on the screen:
 	Point pos = Screen::TopLeft() + Point(PAD, PAD - categoryScroll);
+	Point zoneStart;
+	Point zoneSize = Point(SIDEBAR_WIDTH, LINE_HEIGHT);
 	for(const auto &[name, section] : sections)
 	{
-		if(selection.first == name && section.size() == 1 && selection.first == selection.second)
+		zoneStart = pos;
+		bool isExpandable = section.size() != 1 || name != section.front().first;
+		if(selection.first == name && !isExpandable)
 		{
 			FillShader::Fill(pos + highlightOffset - Point(1., 0.), highlightSize + Point(0., 2.), lineColor);
 			FillShader::Fill(pos + highlightOffset, highlightSize, backColor);
 		}
 		font.Draw(name, pos + textOffset, bright);
 		pos.Y() += LINE_HEIGHT;
-		if(selection.first != name)
+		selectionZones.emplace_back(Rectangle::FromCorner(zoneStart, zoneSize), make_pair(name, section.back().first));
+		if(selection.first != name || !isExpandable)
 			continue;
 
 		for(const auto &pageName : section | views::keys)
 		{
+			zoneStart = pos;
 			if(selection.second == pageName)
 			{
 				FillShader::Fill(pos + highlightOffset - Point(1., 0.), highlightSize + Point(0., 2.), lineColor);
@@ -367,6 +414,7 @@ void LogbookPanel::DrawLogbook() const
 			}
 			font.Draw(pageName, pos + textOffset, medium);
 			pos.Y() += LINE_HEIGHT;
+			selectionZones.emplace_back(Rectangle::FromCorner(zoneStart, zoneSize), make_pair(name, pageName));
 		}
 	}
 
@@ -392,6 +440,7 @@ void LogbookPanel::DrawLogbook() const
 	const auto layout = Layout(static_cast<int>(TEXT_WIDTH - 2. * PAD), Alignment::RIGHT);
 	for(const Entry &entry : page.entries)
 	{
+		zoneStart = pos - Point(.5 * PAD, 0);
 		// Chapters are drawn slightly indented.
 		if(entry.type == EntryType::CHAPTER)
 		{
@@ -425,6 +474,15 @@ void LogbookPanel::DrawLogbook() const
 		else if(entry.type == EntryType::BOOK)
 			LineShader::Draw(pos, right, 1, medium);
 
+		zoneSize = Point(TEXT_WIDTH, pos.Y() - zoneStart.Y());
+		if(entry.body.HasSystems())
+		{
+			logZones.emplace_back(Rectangle::FromCorner(zoneStart, zoneSize), &entry.body);
+			ClickZone<const BookEntry *> zone = logZones.back();
+			if(zone.Contains(hoverPoint))
+				FillShader::Fill(zone, entryHighlight);
+		}
+
 		pos.Y() += GAP;
 
 		// Un-indent from the chapter.
@@ -442,7 +500,7 @@ void LogbookPanel::DrawLogbook() const
 
 vector<pair<string, string>> LogbookPanel::AvailableSelections(bool visibleOnly) const
 {
-	vector<pair<string, string>> selections;
+	vector<Selection> selections;
 	for(const auto &[name, section] : sections)
 	{
 		if(section.size() == 1 && section.front().first == name)

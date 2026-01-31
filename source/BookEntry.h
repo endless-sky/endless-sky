@@ -54,6 +54,7 @@ public:
 	void SetSourceSystem(const System *system);
 	const std::set<const System *> &MarkSystems() const;
 	const std::set<const System *> &CircleSystems() const;
+	bool HasSystems() const;
 
 
 private:
