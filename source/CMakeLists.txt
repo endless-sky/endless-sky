@@ -217,6 +217,7 @@ target_sources(EndlessSkyLib PRIVATE
 	NPCAction.h
 	News.cpp
 	News.h
+	OrderedMap.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp
