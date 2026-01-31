@@ -25,6 +25,9 @@ Version 0.11.0:
       * Fixed a looping conversation in "Lost Racer 3". (@ThrawnCA)
       * Removed duplicate action definitions of the same trigger type in a few missions. (@MereDecade)
       * The "Remnant: Return the Samples" missions now have mission cargo, as the mission text implied they did. (@Amazinite)
+      * Fixed an incorrect offset on the wide screen trade panel interface. (@nickshanks)
+      * "FW Liberate Delta Sagittarii" now uses a "to accept" node instead of a branch that declines the conversation, preventing an event from erroneously triggering. (@Anarchist2)
+      * Corrected the dimensions of the "Open Saves" button on the main menu. (@TomGoodIdea)
     * Engine bugs:
       * Made explicit use of a mediump precision int in certain shaders where the lack of explicit precision was causing shader compilation to fail for some. (@thewierdnut)
       * Changing the main zoom factor no longer breaks the display of planet descriptions. (@TomGoodIdea)
@@ -43,6 +46,8 @@ Version 0.11.0:
       * Fixed an inconsistent crash that could occur when playing MP3 or FLAC files. (@warp-core)
       * Projectiles incapable of turning now skip over all homing code in projectile movement. (@nickshanks)
       * The frame rate of a sprite is now always saved in the player's save file. (@nickshanks)
+      * Escorts can now be ordered to move to the exact center of the system when sending orders from the map. Previously, orders to move to the exact center would be ignored. (@TomGoodIdea)
+      * If the "disabled fighters avoid projectiles" gamerule is active, projectiles with a trigger radius will no longer be set off by disabled fighters. (@Anarchist2)
   * Game content:
     * New content:
       * Added various culture conversations to human space about exotic lifeforms. (@reticent-rem)
@@ -81,7 +86,7 @@ Version 0.11.0:
       * Rebalanced afterburners. (@Azure3141)
         * Increased the fuel consumption of afterburners across the board.
           * +100% for Korath afterburners.
-          * +66% for Avgi afterburners.
+          * +150% for the Avgi afterburner and +66% for the Avgi fusion torch engines.
           * +50% for human and Remnant afterburners.
         * Reduced the thrust of the Korath afterburners by ~10% at the low end and ~30% at the high end.
         * Reduced the thrust of the Caldera Afterburner by ~9%.
@@ -111,9 +116,6 @@ Version 0.11.0:
   * Graphics and artwork:
     * Adjusted some human landscape images to better fit their planet descriptions. (@Anarchist2)
     * Cleaned up various UI sprites to maintain consistency in art style. (@Anarchist2)
-  * Audio:
-    * Sounds are no longer paused when you land on a planet and resumed when you take off. Sounds that were playing when you landed instead continue to completion as they did before. (@warp-core)
-    * Popups that occur while landed no longer pause sounds. (@warp-core)
   * Game mechanics:
     * New mechanics:
       * Weapon hardpoints on ships can now be marked as "inside", hiding the hardpoint sprite of the weapon in that mount. (@TomGoodIdea)
