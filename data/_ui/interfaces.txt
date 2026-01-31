@@ -506,7 +506,7 @@ interface "load menu"
 	active
 	button o "_Open Saves"
 		center -435 195
-		dimensions 120 30
+		dimensions 90 30
 	
 	active if "pilot alive"
 	button a "_Add Snapshot"
@@ -529,8 +529,14 @@ interface "load menu"
 
 
 interface "controls"
-	sprite "ui/keys panel"
-		center -65 -20
+	sprite "ui/settings four buttons"
+		center -337 -180
+	sprite "ui/settings audio bar"
+		center 285 -82
+	sprite "ui/settings keys box"
+		center -350 102
+	sprite "ui/settings base panel"
+		center -1 -20
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -580,8 +586,12 @@ interface "controls"
 
 
 interface "settings"
-	sprite "ui/settings panel"
-		center -20 -20
+	sprite "ui/settings four buttons"
+		center -337 -180
+	sprite "ui/settings audio bar"
+		center 285 -82
+	sprite "ui/settings base panel"
+		center -1 -20
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -619,8 +629,14 @@ interface "settings"
 
 
 interface "plugins"
-	sprite "ui/plugins panel"
-		center -20 -20
+	sprite "ui/settings four buttons"
+		center -337 -180
+	sprite "ui/settings audio bar"
+		center 285 -82
+	sprite "ui/settings base panel"
+		center -1 -20
+	sprite "ui/very wide button"
+		center -194 210
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -664,8 +680,12 @@ interface "plugins"
 
 
 interface "audio"
-	sprite "ui/settings panel"
-		center -20 -20
+	sprite "ui/settings four buttons"
+		center -337 -180
+	sprite "ui/settings audio bar"
+		center 285 -82
+	sprite "ui/settings base panel"
+		center -1 -20
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -1812,7 +1832,7 @@ interface "hiring"
 
 interface "trade"
 	box "content"
-		from -240 80 to 250 355
+		from -250 80 to 250 355
 	
 	fill
 		center 0 95

@@ -13,8 +13,11 @@
 
 mission "Drak guarding Korath space"
 	invisible
-	landing
+	transition
 	repeat
+	source
+		system "Fasitopfar" "Kasikfar" "Peresedersi"
+	destination "Earth"
 	to offer
 		not "Drak guarding Korath space: active"
 	to complete
@@ -37,8 +40,11 @@ mission "Drak guarding Korath space"
 
 mission "Drak guarding Sayaiban"
 	invisible
-	landing
+	transition
 	repeat
+	source
+		system "Sayaiban"
+	destination "Earth"
 	to offer
 		not "Drak guarding Sayaiban: active"
 	to complete
@@ -51,11 +57,11 @@ mission "Drak guarding Sayaiban"
 	
 mission "Conversation on Sayaiban"
 	invisible
-	landing
-	to complete
-		never
-	on enter Sayaiban
-		fail
+	entering
+	source
+		system "Sayaiban"
+	destination "Earth"
+	on offer
 		log "Factions" "Archons" `Archons consider it to be their job to enforce peace and to prevent extinction. If they are unable to prevent a species from driving itself extinct, they will still try to preserve some of what that species created as a memorial to them.`
 			`They are capable of communicating telepathically.`
 		conversation
@@ -101,8 +107,11 @@ mission "Conversation on Sayaiban"
 
 mission "Drak guarding Void Sprites"
 	invisible
-	landing
+	entering
 	repeat
+	source
+		system "Nenia"
+	destination "Earth"
 	to offer
 		not "Drak guarding Void Sprites: active"
 	to complete
@@ -115,8 +124,11 @@ mission "Drak guarding Void Sprites"
 
 mission "Drak guarding Incipias space"
 	invisible
-	landing
+	transition
 	repeat
+	source
+		near "Il'le" 10
+	destination "Earth"
 	to offer
 		not "Drak guarding Incipias space: active"
 	to complete
@@ -124,7 +136,7 @@ mission "Drak guarding Incipias space"
 	npc save
 		government "Drak (Incipias)"
 		personality forbearing frugal heroic vindictive
-		system Il'le
+		system "Il'le"
 		ship "Archon (Hyperdrive Cloaked)" "Guardian of Spring"
 
 # Mission for those who had a savefile prior to 0.9.15 with the old Archon missions

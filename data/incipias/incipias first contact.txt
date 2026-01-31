@@ -13,10 +13,11 @@
 
 mission "Incipias: Warning of the Guardian"
 	invisible
-	landing
-	to complete
-		never
-	on enter Il'le
+	entering
+	source
+		system "Il'le"
+	destination "Earth"
+	on offer
 		conversation
 			`A voice begins to speak from somewhere. "Your path brings you to a dead end, traveler. Nothing for you lies further."`
 			`	Alarmed, you look around but nobody is there. You check your scanners but there is nothing present in this system except a few indigenous lifeforms. However, your navigation system displays hyperspace routes that lead beyond it.`
@@ -60,27 +61,43 @@ mission "Incipias: Warning of the Guardian"
 			`	"You are understanding, human, so I thank you in the name of the Incipias." The voice fades away, leaving only the feeling of being watched."`
 				decline
 
-mission "Incipias: Presence of the Guardian"
+mission "Incipias: Presence of the Guardian: Dom'us"
 	invisible
-	landing
-	to complete
-		never
-	on enter Dom'us
-		fail
-		dialog
+	entering
+	source
+		system "Dom'us"
+	destination "Earth"
+	# Don't offer if the old version of this mission from prior to v0.11.0 was already offered.
+	to offer
+		not "Incipias: Presence of the Guardian: offered"
+	on offer
+		conversation
 			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched.`
+				decline
 				to display
 					not "Incipias: accepted the guardian's warning"
 			`As you enter the system, the same voice from before echoes through your mind, though this time there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
+				decline
 				to display
 					has "Incipias: accepted the guardian's warning"
-	on enter Hui'uc
-		fail
-		dialog
+
+mission "Incipias: Presence of the Guardian: Hui'uc"
+	invisible
+	entering
+	source
+		system "Hui'uc"
+	destination "Earth"
+	# Don't offer if the old version of this mission from prior to v0.11.0 was already offered.
+	to offer
+		not "Incipias: Presence of the Guardian: offered"
+	on offer
+		conversation
 			`The presence from the previous system somehow lingers as you continue to feel as though you're being watched.`
+				decline
 				to display
 					not "Incipias: accepted the guardian's warning"
 			`As you enter the system, the same voice from before echoes through your mind, though this time there seems to be a heavy weight behind it. "I do not take kindly to your deception, human. Know that you will be watched." The voice fades away, but the strong presence of something remains.`
+				decline
 				to display
 					has "Incipias: accepted the guardian's warning"
 
@@ -91,15 +108,18 @@ event "label incipias space"
 
 mission "Incipias: First Contact"
 	invisible
-	landing
-	to complete
-		never
-	on enter Dom'us
-		dialog
+	entering
+	source
+		system "Dom'us"
+	destination "Earth"
+	on offer
+		conversation
 			`As you enter the system, you notice ships of a type you have never seen before. Hailing them only gives you static. After some more unsuccessful attempts, you give up. Maybe you can find some more information in nearby systems.`
+				decline
 				to display
 					not "Visit Quarg in Incipias Space: offered"
 			`As you enter the system, you notice ships of a type you have never seen before. Hailing them only gives you static. After some more unsuccessful attempts, you give up. This must be the species the Quarg talked about.`
+				decline
 				to display
 					has "Visit Quarg in Incipias Space: offered"
 
@@ -110,8 +130,6 @@ mission "Visit Quarg in Incipias Space"
 	landing
 	source
 		government "Quarg (Incipias)"
-	to complete
-		never
 	on offer
 		conversation
 			branch "ut divitas" "spec inci"
@@ -136,6 +154,7 @@ mission "Visit Quarg in Incipias Space"
 			label end
 			`	After a short pause, you notice an almost-hidden frustration lurking beneath the Quarg's face before it continues speaking. "You are authorized to continue your nomadic voyagings here, but there are demands we Quarg make of you. Within a trifling interval of this moon the neighboring kind has initiated their journey to the stars. Do not interrupt them for yours, or sake of their own."`
 			`	With these words the Quarg turn around and leave. It seems like you are free to use the local facilities now.`
+				decline
 
 ship "Nimbus" "Nimbus FTL"
 	add attributes
@@ -149,14 +168,23 @@ ship "Nimbus" "Nimbus FTL"
 		"MH Red-Class Steering"
 
 mission "Incipias: The Derelict"
-	landing
 	invisible
+	transition
+	source
+		system "Hui'uc"
+	destination "Earth"
 	to offer
 		has "Visit Quarg in Incipias Space: offered"
+	on enter
+		dialog
+			`Upon entering the system, you notice a lone alien spaceship that is disabled and badly damaged. Aside from it, there do not appear to be any other ships in the system, or sign of any help for that matter. Maybe there's some way you could assist the ship and its crew.`
 	npc assist
+		personality
+			confusion 50
+			derelict staying uninterested
 		government "Hicemus"
-		ship "Nimbus FTL" "HIC Veni #000001"
 		system "Hui'uc"
+		ship "Nimbus FTL" "HIC Veni #000001"
 		to despawn
 			has "incipias: helped the derelict"
 		on assist
@@ -184,12 +212,6 @@ mission "Incipias: The Derelict"
 				`	Back on your ship, your eyes fall on the scanner log that is still open on your monitor. Notably, this ship had no hyperdrive or anything similar installed, which is strange considering there is no inhabited planet in this system. Maybe you should talk to the Quarg and see if they have any insight on this.`
 				action
 					set "incipias: helped the derelict"
-		personality
-			confusion 50
-			derelict staying uninterested
-	on enter "Hui'uc"
-		dialog
-			`Upon entering the system, you notice a lone alien spaceship that is disabled and badly damaged. Aside from it, there do not appear to be any other ships in the system, or sign of any help for that matter. Maybe there's some way you could assist the ship and its crew.`
 
 mission "Incipias: Help The Stranded 1"
 	landing
