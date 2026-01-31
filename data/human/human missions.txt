@@ -7369,7 +7369,7 @@ mission "Derelict Family Investment 2"
 				`	"I don't know what happened to him personally, but I found this case of credits and a log explaining how he was trying to invest in a better life for his family."`
 				`	"I believe he died before he was able to bring back his business investment to your family. Here's his personal log, it explains everything."`
 			`	She takes the log from you and quickly scrolls through it, emotion washing over her features as she reads. Eventually she looks up, and with all the anger towards her father gone, she speaks. "Thank you for this. All these years I had believed he had just taken our money and run off. But knowing he had been trying to help is worth more than all the credits in the galaxy. Take them and then some as a reward for bringing me this last piece of him."`
-			`	You leave the building with a total of <payment> credits from both the case and Ms. Sawyer.`
+			`	You leave the building with a total of <payment> from both the case and Ms. Sawyer.`
 
 
 mission "Returning to Paradise"
