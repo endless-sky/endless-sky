@@ -68,8 +68,16 @@
           <li>The Hai Reveal storyline has been removed from the game.</li>
           <li>Added three new starting scenarios with starting locations around human space.</li>
           <li>The Graveyard has a new short standalone string of missions around investigating Ka'het and their behaviors.</li>
+          <li>Added various difficult to find culture conversations around the galaxy that give insights on alien species and historical events.</li>
+          <li>Human space now has "message buoys" that emit a hail message upon entering certain systems or traveling between regions.</li>
           <li>Heavily reworked bounty jobs.</li>
           <li>Various performance and UI QoL improvements.</li>
+        </ul>
+        <p>Some notable bug fixes are:</p>
+        <ul>
+          <li>Corrected some condition assignments in the Patir missions.</li>
+          <li>The Carriers in "FW Pug 4: Escorts" now have enough fighters to fill their bays.</li>
+          <li>Changing the main zoom factor no longer breaks the display of planet descriptions.</li>
           <li>Fixed a rare memory leak and various rare crashes.</li>
           <li>Projectiles with a trigger radius will now respect the "disabled fighters avoid projectiles" gamerule.</li>
         </ul>
