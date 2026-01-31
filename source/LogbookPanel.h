@@ -18,9 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapPanel.h"
 
 #include "BookEntry.h"
-#include "Date.h"
+#include "OrderedMap.h"
 
-#include <map>
 #include <string>
 #include <vector>
 
@@ -28,9 +27,7 @@ class PlayerInfo;
 
 
 
-// User interface panel that displays a conversation, allowing you to make
-// choices. If a callback function is given, that function will be called when
-// the panel closes, to report the outcome of the conversation.
+// A user interface panel that displays the entries in the player's logbook.
 class LogbookPanel : public MapPanel {
 public:
 	explicit LogbookPanel(PlayerInfo &player);
@@ -49,19 +46,53 @@ protected:
 
 
 private:
-	void DrawLogbook() const;
-	void Update(bool selectLast = true);
+	enum class EntryType {
+		NORMAL = 0,
+	};
+
+	class Entry {
+	public:
+		Entry(EntryType type, const std::string &heading, const BookEntry &body)
+			: type(type), heading(heading), body(body) {}
+
+		EntryType type;
+		std::string heading;
+		const BookEntry &body;
+	};
+
+	enum class PageType {
+		DATE = 0,
+		SPECIAL,
+		STORYLINE,
+	};
+
+	class Page {
+	public:
+		explicit Page(PageType type) : type(type) {}
+
+		PageType type;
+		std::vector<Entry> entries;
+	};
 
 
 private:
-	// Current month being displayed:
-	Date selectedDate;
-	std::string selectedName;
-	std::map<Date, BookEntry>::const_iterator begin;
-	std::map<Date, BookEntry>::const_iterator end;
-	// Other months available for display:
-	std::vector<std::string> contents;
-	std::vector<Date> dates;
+	void CreateSections();
+	void DrawLogbook() const;
+
+	std::vector<std::pair<std::string, std::string>> AvailableSelections(bool visibleOnly = true) const;
+
+
+private:
+	// A section is a mapping of subcategory to page.
+	// Subcategories are the expanded selection of entries under a category.
+	using Section = OrderedMap<std::string, Page>;
+
+	// A mapping of category to section. These are what are selectable on the left-most side of the panel.
+	// If a section has no subcategories to expand, then the section should only have one subcategory with
+	// the same name as the section.
+	OrderedMap<std::string, Section> sections;
+	// The selected category and subcategory to display the book entries of.
+	std::pair<std::string, std::string> selection;
 
 	Point hoverPoint;
 
