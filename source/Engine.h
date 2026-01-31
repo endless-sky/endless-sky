@@ -290,6 +290,7 @@ private:
 	CollisionSet shipCollisions;
 
 	int alarmTime = 0;
+	int nukeAlarmTime = 0;
 	double flash = 0.;
 	bool doFlash = false;
 	bool doEnterLabels = false;
