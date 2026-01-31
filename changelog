@@ -204,7 +204,7 @@ Version 0.11.0:
     * Added desktop.ini to the .gitignore. (@TomGoodIdea)
     * Updated vcpkg configurations for better compatibility with CMake 4. (@ciphell)
     * The expected character encoding is now specified in the .editorconfig. (@warp-core)
-    * Enabled the alternative libflac detection method when building without vcpkg on Mac. (@bene_dictator)
+    * Enabled the alternative libflac detection method when building without vcpkg on Mac. (@bene-dictator)
     * Increased the integration test timeout from 15 seconds to 2 minutes. (@AdrianBunk)
     * Automatically choose the CMake target for GLEW. (@TomGoodIdea)
     * Added a 32-bit Windows CI job. (@TomGoodIdea)
