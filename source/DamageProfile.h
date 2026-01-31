@@ -36,6 +36,9 @@ public:
 	explicit DamageProfile(Projectile::ImpactInfo info);
 	// Constructor for damage taken from a hazard.
 	explicit DamageProfile(Weather::ImpactInfo info);
+	// Constructor for damage taken from a weapon with no physical source, such as from
+	// an NPC's placement criteria.
+	explicit DamageProfile(const Weapon &weapon);
 
 	// Calculate the damage dealt to the given ship.
 	DamageDealt CalculateDamage(const Ship &ship, bool ignoreBlast = false) const;
