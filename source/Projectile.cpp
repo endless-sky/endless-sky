@@ -194,17 +194,22 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		// 180 degrees away from its target.
 		if(!Random::Int(ceil(180 / turn)))
 			confusionDirection = Random::Int(2) ? -1 : 1;
-		if(target && homing)
+		if(homing)
 		{
 			// Vector d is the direction we want to turn towards.
-			Point d = target->Position() - position;
-			bool isFacingAway = d.Dot(angle.Unit()) < 0.;
+			Point d;
+			bool isFacingAway = false;
+			if(target)
+			{
+				d = target->Position() - position;
+				isFacingAway = d.Dot(angle.Unit()) < 0.;
+			}
 
 			// The very dumbest of homing missiles lose their target if pointed
 			// away from it.
 			if(isFacingAway && weapon->HasBlindspot())
 				targetShip.reset();
-			else if(hasLock)
+			else if(target && hasLock)
 			{
 				Point unit = d.Unit();
 				double drag = weapon->Drag();
@@ -254,10 +259,10 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			// Turn in a random direction if this weapon is confused.
 			else if(isConfused)
 				turn *= confusionDirection;
+			// If a weapon is homing but has no target, do not turn it.
+			else
+				turn = 0.;
 		}
-		// If a weapon is homing but has no target, do not turn it.
-		else if(homing)
-			turn = 0.;
 
 		if(turn)
 			angle += Angle(turn);
