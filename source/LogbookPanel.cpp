@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "UI.h"
 #include "text/WrappedText.h"
@@ -63,6 +64,26 @@ LogbookPanel::LogbookPanel(PlayerInfo &player)
 		selectedName = MONTH[selectedDate.Month() - 1];
 	}
 	Update();
+}
+
+
+
+LogbookPanel::~LogbookPanel()
+{
+	SpriteLoadManager::UnloadScenes(GetUI().AsyncQueue());
+}
+
+
+
+void LogbookPanel::Step()
+{
+	if(!hasLoadedScenes)
+	{
+		hasLoadedScenes = true;
+		for(const auto &entry : player.Logbook())
+			for(const Sprite *scene : entry.second.GetScenes())
+				SpriteLoadManager::LoadScene(GetUI().AsyncQueue(), scene);
+	}
 }
 
 

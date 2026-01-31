@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "image/SpriteLoadManager.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -647,6 +648,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 {
 	bool changedPlanets = false;
 	bool changedSystems = false;
+	bool changedShops = false;
 	for(const DataNode &change : changes)
 	{
 		const string &key = change.Token(0);
@@ -655,10 +657,13 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 			continue;
 		changedPlanets |= (key == "planet" || key == "wormhole");
 		changedSystems |= (key == "system" || key == "link" || key == "unlink");
+		changedShops |= (key == "outfitter" || key == "shipyard");
 		GameData::Change(change, *this);
 	}
 	if(changedPlanets)
 		GameData::RecomputeWormholeRequirements();
+	if((changedPlanets || changedShops) && planet && instantChanges)
+		SpriteLoadManager::RecheckThumbnails();
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
@@ -674,7 +679,10 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		// Update the deadline calculations for missions in case the system
 		// changes resulted in a change in DistanceMap calculations.
 		if(instantChanges)
+		{
 			CacheMissionInformation(true);
+			SpriteLoadManager::RecheckStellarObjects();
+		}
 	}
 	recacheJumpRoutes = instantChanges && (changedPlanets || changedSystems);
 }
@@ -3527,6 +3535,7 @@ void PlayerInfo::ApplyChanges()
 	reputationChanges.clear();
 	AddChanges(dataChanges);
 	GameData::UpdateSystems();
+	GameData::RecomputeWormholeRequirements();
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 

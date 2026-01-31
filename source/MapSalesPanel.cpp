@@ -56,7 +56,8 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	: MapPanel(player, SHOW_SPECIAL),
 	categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
-	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
+	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map")),
+	loadingCircle(30.f, 10, 2.)
 {
 }
 
@@ -66,11 +67,24 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	: MapPanel(panel),
 	categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
-	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
+	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map")),
+	loadingCircle(30.f, 10, 2.)
 {
 	Audio::Pause();
 
 	commodity = SHOW_SPECIAL;
+}
+
+
+
+void MapSalesPanel::Step()
+{
+	loadingCircle.Step();
+	if(!hasLoadedThumbnails)
+	{
+		hasLoadedThumbnails = true;
+		LoadCatalogThumbnails();
+	}
 }
 
 
@@ -367,9 +381,11 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 
 void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, const Swizzle *swizzle) const
 {
-	if(sprite)
+	if(!sprite)
+		return;
+	Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
+	if(sprite->IsLoaded())
 	{
-		Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
 		double scale = min(.5, min((ICON_HEIGHT - 2.) / sprite->Height(), (ICON_HEIGHT - 2.) / sprite->Width()));
 
 		// No swizzle was specified, so default to the player swizzle.
@@ -377,6 +393,8 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, const 
 			swizzle = GameData::PlayerGovernment()->GetSwizzle();
 		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
 	}
+	else
+		loadingCircle.Draw(corner + iconOffset);
 }
 
 

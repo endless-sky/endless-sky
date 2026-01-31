@@ -33,9 +33,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Shop.h"
+#include "image/SpriteLoadManager.h"
 #include "shader/StarField.h"
 #include "StartConditions.h"
 #include "System.h"
+#include "TaskQueue.h"
 #include "text/Truncate.h"
 #include "UI.h"
 
@@ -84,6 +86,12 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 	description.SetWrapWidth(descriptionBox.Width());
 
 	Select(startIt);
+
+	TaskQueue queue;
+	for(const StartConditions &scenario : scenarios)
+		SpriteLoadManager::LoadScene(queue, scenario.GetThumbnail());
+	queue.Wait();
+	queue.ProcessSyncTasks();
 }
 
 
