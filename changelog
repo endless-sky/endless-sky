@@ -194,7 +194,7 @@ Version 0.11.0:
     * Dialog node parsing has been moved to its own class. (@Amazinite)
     * Replaced various shared_from_this calls with weak_from_this where a shared pointer was not necessary. (@Amazinite)
     * Updated various functions in the Format class: renamed Credits to AbbreviatedNumber, combined the behavior of Decimal into Number, and created a Percentage function. (@Amazinite)
-    * The DialogPanel class is now capable of validating integer and double input.
+    * The DialogPanel class is now capable of validating integer and double input. (@Amazinite)
   * Documentation:
     * The bug report template now asks for the errors.txt file. (@TomGoodIdea)
     * Updated the CONTRIBUTING.md file to point to the new C++ style guide location. (@Nova1422)
