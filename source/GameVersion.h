@@ -42,7 +42,7 @@ private:
 
 consteval GameVersion GameVersion::Running()
 {
-	return {0, 11, 0, 0, true};
+	return {0, 11, 1, 0, false};
 }
 
 
