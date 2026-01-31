@@ -199,6 +199,7 @@ bool LogbookPanel::Click(int x, int y, MouseButton button, int clicks)
 		if(zone.Contains(clickPoint))
 		{
 			selectedEntry = zone.Value();
+			CenterOnEntry(*selectedEntry);
 			UI::PlaySound(UI::UISound::NORMAL);
 			return true;
 		}
@@ -316,6 +317,18 @@ void LogbookPanel::CreateSections()
 		Page &page = section.insert({MONTH[date.Month() - 1], Page(PageType::DATE)}).first->second;
 		page.entries.emplace_back(EntryType::NORMAL, date.ToString(), entry);
 	}
+}
+
+
+
+void LogbookPanel::CenterOnEntry(const BookEntry &entry)
+{
+	if(entry.SourceSystem())
+		CenterOnSystem(entry.SourceSystem());
+	else if(!entry.MarkSystems().empty())
+		CenterOnSystem(*entry.MarkSystems().begin());
+	else if(!entry.CircleSystems().empty())
+		CenterOnSystem(*entry.CircleSystems().begin());
 }
 
 

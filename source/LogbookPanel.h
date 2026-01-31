@@ -89,6 +89,8 @@ private:
 
 private:
 	void CreateSections();
+	void CenterOnEntry(const BookEntry &entry);
+
 	void DrawSelectedEntry() const;
 	void DrawLogbook();
 
