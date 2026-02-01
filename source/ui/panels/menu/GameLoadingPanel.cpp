@@ -37,7 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
-									UI &gamePanels, bool &finishedLoading)
+	UI &gamePanels, bool &finishedLoading)
 	: player(player), queue(queue), conversation(conversation), gamePanels(gamePanels),
 		finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
 {
