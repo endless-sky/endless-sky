@@ -289,7 +289,7 @@ mission "Message Buoy: Elnath"
 		"reputation: Republic" < 100
 	on offer
 		message
-			text "Message buoy to all ships: all inhabited installations in the Elnath system are restricted to employees of Lovelace Labs. Please refuel or repair in another system."
+			text "Message buoy to all ships: All inhabited installations in the Elnath system are restricted to employees of Lovelace Labs. Please refuel or repair in another system."
 		fail
 
 mission "Message Buoy: Occupied Greenrock"
@@ -329,7 +329,7 @@ mission "Message Buoy: beyond Farpoint"
 		has "previous system: Alnitak"
 	on offer
 		message
-			text "Message buoy to all ships: you have exited Republic-controlled space. Assistance from Navy vessels is limited beyond the system of Alnitak. It is recommended you return to Farpoint immediately."
+			text "Message buoy to all ships: You have exited Republic-controlled space. Assistance from Navy vessels is limited beyond the system of Alnitak. It is recommended you return to Farpoint immediately."
 		fail
 
 mission "Message Buoy: Megaparsec"
