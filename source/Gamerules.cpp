@@ -261,21 +261,21 @@ void Gamerules::SetNPCMaxMiningTime(int value)
 
 void Gamerules::SetUniversalFrugalThreshold(double value)
 {
-	storage.universalFrugalThreshold = min(1., max(0., value));
+	storage.universalFrugalThreshold = clamp(value, 0., 1.);
 }
 
 
 
 void Gamerules::SetDepreciationMin(double value)
 {
-	storage.depreciationMin = min(1., max(0., value));
+	storage.depreciationMin = clamp(value, 0., 1.);
 }
 
 
 
 void Gamerules::SetDepreciationDaily(double value)
 {
-	storage.depreciationDaily = min(1., max(0., value));
+	storage.depreciationDaily = clamp(value, 0., 1.);
 }
 
 
