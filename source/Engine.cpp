@@ -2407,8 +2407,9 @@ void Engine::DoCollisions(Projectile &projectile)
 			for(const Body *body : inRadius)
 			{
 				const Ship *ship = reinterpret_cast<const Ship *>(body);
+				// Don't trigger off of carried ships that are disabled and not directly targeted.
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
-						&& !ship->IsCloaked()))
+						&& !ship->IsCloaked() && FighterHitHelper::IsValidTarget(ship)))
 				{
 					collisions.emplace_back(nullptr, CollisionType::NONE, 0.);
 					break;

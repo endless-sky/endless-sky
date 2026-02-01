@@ -3293,7 +3293,7 @@ mission "Remnant: Keystone Research 4"
 		payment 2000000
 		conversation
 			`As you descend through the clouds to Viminal, you get the feeling someone is watching you, but your sensors show nothing more than a smattering of Gulls and a patrol squad in the distance. Looking down, you spot an extra battery of anti-air artillery next to the main entrance to the spaceport. You note the weapons tracking you and quickly tap your recognition code into the IFF system. Within seconds, the large guns are swinging back to cover the initial approach.`
-			`	Passing through a cavernous opening into the great spaceport dome, there is a shimmer in the air next to you as a Starling fades into view, settling onto the adjacent platform. The pilot signs a quick, "Greetings, anticipating talking with you," before heading back toward their lock. Behind them, the Starling continues its shutdown checks without any supervision at all.`
+			`	Passing through a cavernous opening into the great spaceport dome, there is a shimmer in the air next to you as a Starling fades into view, settling onto the adjacent platform. The pilot signs a quick "Greetings, anticipating talking with you," before heading back toward their lock. Behind them, the Starling continues its shutdown checks without any supervision at all.`
 			`	As you finish your own shutdown routine, your commlink informs you that your account has been updated with <payment>.`
 
 
@@ -3327,12 +3327,12 @@ mission "Remnant: Keystone Research 5"
 	on offer
 		conversation
 			`You exit the ship to find that the pilot is actually Aeolus, who has already marshaled some dock workers with a number of wagons and lifters to unload the cargo.`
-			`	"Ah, <first>, thank you for retrieving all these keystones." He sweeps some kind of a device over the crates, then opens one. He pokes at the contents, and pulls out a brochure with a picture of a quantum keystone and a pair of respectable looking Hai. "What's this?" He asks curiously. "Because I bought a keystone, they think I might need more? That seems like a decidedly inefficient way of promoting their product."`
+			`	"Ah, <first>, thank you for retrieving all these keystones." He sweeps some kind of a device over the crates, then opens one. He pokes at the contents, and pulls out a brochure with a picture of a quantum keystone and a pair of respectable looking Hai. "What's this?" he asks curiously. "Because I bought a keystone, they think I might need more? That seems like a decidedly inefficient way of promoting their product."`
 			choice
 				`	"I'm not a fan of it either."`
 				`	"Those 'inefficient' capitalists did provide a keystone at one twentieth the cost you do."`
 					goto capitalists
-			`	"You will probably do well here, then. Keep production and resources focused on the goal, that always made the most sense to me." Aeolus signs with confidence. "But economic theory aside, we have some science to do.`
+			`	"You will probably do well here, then. Keep production and resources focused on the goal, that always made the most sense to me," Aeolus signs with confidence. "But economic theory aside, we have some science to do.`
 				goto work
 			label capitalists
 			`	"You've got a point there," signs Aeolus. "Assuming they value a credit the same as we do and they aren't taking a loss, then it appears they do have a significant production and processing cost advantage." He takes on a defensive tone. "But for all we know, the supply of raw materials is much greater in Hai space, or most of these keystones could be simply recycled from older ships. And that is something we want to figure out." He brightens again. "That being said, we already have the first steps set out."`
