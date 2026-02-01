@@ -125,7 +125,7 @@ public:
 	std::string GetPlanetBribeAcceptanceHail() const;
 	std::string GetPlanetBribeRejectionHail() const;
 
-	// Get the messages that the governmend responds with when speaking about tribute.
+	// Get the messages that the government responds with when speaking about tribute.
 	const Phrase *TributeAlreadyPaying() const;
 	const Phrase *TributeUndefined() const;
 	const Phrase *TributeUnworthy() const;

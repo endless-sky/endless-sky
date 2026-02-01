@@ -843,7 +843,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		// TODO: Use a distinct event type for the domination system and
 		// expose syntax for controlling its impact on the targeted government
 		// and those that know it.
-		GetGovernment()->Offend(ShipEvent::ATROCITY);
+		government->Offend(ShipEvent::ATROCITY);
 		if(tributeFleetLaunching)
 			return tributeFleetLaunching->Get();
 		else if(government->TributeFleetLaunching())
