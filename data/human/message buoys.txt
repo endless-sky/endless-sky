@@ -220,6 +220,7 @@ mission "Message Buoy: Martini Restricted"
 	destination "Earth"
 	to offer
 		"reputation: Republic" < 80
+		has "event: war begins"
 		not "main plot completed"
 	on offer
 		message
@@ -236,6 +237,7 @@ mission "Message Buoy: Geminus Restricted"
 	destination "Earth"
 	to offer
 		"reputation: Republic" < 80
+		has "event: war begins"
 		not "main plot completed"
 	on offer
 		message
@@ -253,7 +255,7 @@ mission "Message Buoy: Graffias"
 	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
-		has "war begins"
+		has "event: war begins"
 		not "main plot completed"
 	on offer
 		message
