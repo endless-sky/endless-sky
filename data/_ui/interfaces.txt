@@ -255,6 +255,7 @@ interface "performance info"
 
 
 interface "map detail panel"
+	anchor top right
 	value "min planet panel height" 195
 	value "max planet panel height" 2022
 	value "starting X" 100
@@ -267,6 +268,12 @@ interface "map detail panel"
 	value "description x offset" 240
 	value "description width" 500
 	value "description height" 240
+	visible if "has escort destination"
+	sprite "ui/wide button"
+		center -256 56
+	button c "Cancel order"
+		center -256 56
+		dimensions 90 30
 
 
 
@@ -506,7 +513,7 @@ interface "load menu"
 	active
 	button o "_Open Saves"
 		center -435 195
-		dimensions 120 30
+		dimensions 90 30
 	
 	active if "pilot alive"
 	button a "_Add Snapshot"
@@ -529,8 +536,14 @@ interface "load menu"
 
 
 interface "controls"
-	sprite "ui/keys panel"
-		center -65 -20
+	sprite "ui/settings four buttons"
+		center -337 -180
+	sprite "ui/settings audio bar"
+		center 285 -82
+	sprite "ui/settings keys box"
+		center -350 102
+	sprite "ui/settings base panel"
+		center -1 -20
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -580,8 +593,12 @@ interface "controls"
 
 
 interface "settings"
-	sprite "ui/settings panel"
-		center -20 -20
+	sprite "ui/settings four buttons"
+		center -337 -180
+	sprite "ui/settings audio bar"
+		center 285 -82
+	sprite "ui/settings base panel"
+		center -1 -20
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -619,8 +636,14 @@ interface "settings"
 
 
 interface "plugins"
-	sprite "ui/plugins panel"
-		center -20 -20
+	sprite "ui/settings four buttons"
+		center -337 -180
+	sprite "ui/settings audio bar"
+		center 285 -82
+	sprite "ui/settings base panel"
+		center -1 -20
+	sprite "ui/very wide button"
+		center -194 210
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -664,8 +687,12 @@ interface "plugins"
 
 
 interface "audio"
-	sprite "ui/settings panel"
-		center -20 -20
+	sprite "ui/settings four buttons"
+		center -337 -180
+	sprite "ui/settings audio bar"
+		center 285 -82
+	sprite "ui/settings base panel"
+		center -1 -20
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -1490,9 +1517,50 @@ interface "planet"
 	box "content"
 		from -240 80 to 240 320
 	
+	visible if "has trade"
+	sprite "ui/planet dialog button"
+		center -340 90
+	button t "_Trading"
+		center -340 90
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has job board"
+	sprite "ui/planet dialog button"
+		center -340 145
+	button j "_Job Board"
+		center -340 145
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible
+	sprite "ui/planet dialog button"
+		center -340 200
+	button i "Player _Info"
+		center -340 200
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has bank"
+	sprite "ui/planet dialog button"
+		center -340 255
+	button b "_Bank"
+		center -340 255
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has port"
 	sprite "ui/planet dialog button"
 		center -340 310
-	button i "Player _Info"
+	"dynamic button" p "port name"
 		center -340 310
 		dimensions 140 40
 		size 18
@@ -1519,15 +1587,6 @@ interface "planet"
 		align right
 		pad 10 0
 	
-	visible if "has job board"
-	sprite "ui/planet dialog button"
-		center -340 145
-	button j "_Job Board"
-		center -340 145
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
 	visible if "can hire crew"
 	sprite "ui/planet dialog button"
 		center 340 200
@@ -1538,37 +1597,7 @@ interface "planet"
 		align right
 		pad 10 0
 	
-	visible if "has trade"
-	sprite "ui/planet dialog button"
-		center -340 90
-	button t "_Trading"
-		center -340 90
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
-	
-	visible if "has bank"
-	sprite "ui/planet dialog button"
-		center -340 200
-	button b "_Bank"
-		center -340 200
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
-	
-	visible if "has port"
-	sprite "ui/planet dialog button"
-		center -340 255
-	"dynamic button" p "port name"
-		center -340 255
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
 	visible
-	
 	active if "has ship"
 	sprite "ui/planet dialog button"
 		center 340 310
@@ -1593,9 +1622,50 @@ interface "planet (small screen)"
 	box "content"
 		from -300 80 to 180 320
 	
+	visible if "has trade"
+	sprite "ui/planet dialog button"
+		center -400 90
+	button t "_Trading"
+		center -400 90
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has job board"
+	sprite "ui/planet dialog button"
+		center -400 145
+	button j "_Job Board"
+		center -400 145
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible
+	sprite "ui/planet dialog button"
+		center -400 200
+	button i "Player _Info"
+		center -400 200
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has bank"
+	sprite "ui/planet dialog button"
+		center -400 255
+	button b "_Bank"
+		center -400 255
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has port"
 	sprite "ui/planet dialog button"
 		center -400 310
-	button i "Player _Info"
+	"dynamic button" p "port name"
 		center -400 310
 		dimensions 140 40
 		size 18
@@ -1622,15 +1692,6 @@ interface "planet (small screen)"
 		align right
 		pad 10 0
 	
-	visible if "has job board"
-	sprite "ui/planet dialog button"
-		center -400 145
-	button j "_Job Board"
-		center -400 145
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
 	visible if "can hire crew"
 	sprite "ui/planet dialog button"
 		center 280 200
@@ -1641,37 +1702,7 @@ interface "planet (small screen)"
 		align right
 		pad 10 0
 	
-	visible if "has trade"
-	sprite "ui/planet dialog button"
-		center -400 90
-	button t "_Trading"
-		center -400 90
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
-	
-	visible if "has bank"
-	sprite "ui/planet dialog button"
-		center -400 200
-	button b "_Bank"
-		center -400 200
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
-	
-	visible if "has port"
-	sprite "ui/planet dialog button"
-		center -400 255
-	"dynamic button" p "port name"
-		center -400 255
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
 	visible
-	
 	active if "has ship"
 	sprite "ui/planet dialog button"
 		center 280 310
@@ -2036,7 +2067,7 @@ interface "hiring (small screen)"
 
 interface "trade"
 	box "content"
-		from -240 80 to 250 355
+		from -250 80 to 250 355
 	
 	fill
 		center 0 95

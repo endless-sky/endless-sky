@@ -1,3 +1,214 @@
+Version 0.11.0:
+  * Breaking changes:
+    * The Hai Reveal storyline has been removed from the game. Only about a dozen missions were ever available, they conflict with the plot of other storylines, and no progress has been made on the storyline in several years, so we've opted to remove it for now. (@Amazinite)
+  * Big changes:
+    * Added three more human starting scenarios to the game. (@Anarchist2)
+    * The outfitter and shipyard UI has been updated to have on-screen buttons for all of the possible actions that were previously only tied to keybinds. (@xobes)
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@Anarchist2, @Canned-Seagull, @Nova1422, @oliv3r, @reticent-rem, @ThrawnCA, @warp-core, @Wedge009)
+      * Fixed conditions in the Patir storyline not being set properly by events. (@warp-core)
+      * Shortened a spaceport news phrase to better fit the UI. (@Saugia)
+      * The "Lost Racer 2 - Continued" mission can now offer without needing to take off and land again. (@warp-core)
+      * Updated the "Rulei: You Are (Not) Alone" mission so that it doesn't block the Pookie mission from offering. (@Anarchist2)
+      * The Carriers in "FW Pug 4: Escorts" now have enough fighters to fill their bays. (@warp-core)
+      * Fixed the Star Tail Storage and High-Velocity Spike Rack not selling stored ammo when sold. (@TheGiraffe3)
+      * The Hovercraft Racer Transport jobs no longer offer on Sunracer and now mention their payment in the description. (@TheGiraffe3)
+      * Prevented the Heliarch Investigation missions from offering if you've already joined the Lunarium. (@Arachi-Lover)
+      * Removed invalid eXIf chunks from various images. (@warp-core)
+      * Fixed various overly-indented lines after "label" nodes in conversations. (@warp-core)
+      * The Heavy Gust's description no longer mentions the Tempest, as it may not be available yet. (@Quantumshark)
+      * Added a "blocked" dialog to "Remnant: Cognizance 33" for when you don't have enough space to accept the mission. (@TheGiraffe3)
+      * Fixed the Cutthroat ship not having explosion damage when destroyed. (@Quantumshark)
+      * Added clearance to various missions where Hai-home is the destination. (@Nova1422)
+      * Fixed the "Rich student transport" mission not having a deadline despite the description suggesting there was one. (@kaiboyjiang)
+      * Fixed a looping conversation in "Lost Racer 3". (@ThrawnCA)
+      * Removed duplicate action definitions of the same trigger type in a few missions. (@MereDecade)
+      * The "Remnant: Return the Samples" missions now have mission cargo, as the mission text implied they did. (@Amazinite)
+      * Fixed an incorrect offset on the wide screen trade panel interface. (@nickshanks)
+      * "FW Liberate Delta Sagittarii" now uses a "to accept" node instead of a branch that declines the conversation, preventing an event from erroneously triggering. (@Anarchist2)
+      * Corrected the dimensions of the "Open Saves" button on the main menu. (@TomGoodIdea)
+    * Engine bugs:
+      * Made explicit use of a mediump precision int in certain shaders where the lack of explicit precision was causing shader compilation to fail for some. (@thewierdnut)
+      * Changing the main zoom factor no longer breaks the display of planet descriptions. (@TomGoodIdea)
+      * The player's ships no longer launch after the player dies in a conversation while landed. (@Anarchist2)
+      * Fixed a memory leak in PlayerInfo caused by reloading the save file while a mission offer conversation is open. (@warp-core)
+      * Fixed a crash that could be caused by having negative damage over time values on a ship. (@TomGoodIdea)
+      * Fixed a crash on startup caused by invalid syntax in a plugin.txt file. (@TomGoodIdea)
+      * Missing FillShader now shows the appropriate error message instead of crashing the game. (@thewierdnut)
+      * The display names of outfits and ships are now used when sorting them in the UI, instead of their identifiers. (@TomGoodIdea)
+      * When an event removes an object from a system which has a landable planet, the planet is now informed that it is no longer in that system. (@warp-core)
+      * Timestamp formatting now uses a more compatible format for Windows. (@TomGoodIdea)
+      * Fixed a crash caused by mission actions referring to an undefined message. (@warp-core)
+      * Fixed a crash that could occur when a mission action took one of your ships while in a shop. (@Amazinite)
+      * Fixed the fast-forward state being out of sync when reloading a dead pilot. (@TomGoodIdea)
+      * Fixed an inconsistent crash that could occur when playing MP3 or FLAC files. (@warp-core)
+      * Projectiles incapable of turning now skip over all homing code in projectile movement. (@nickshanks)
+      * The frame rate of a sprite is now always saved in the player's save file. (@nickshanks)
+      * Escorts can now be ordered to move to the exact center of the system when sending orders from the map. Previously, orders to move to the exact center would be ignored. (@TomGoodIdea)
+      * If the "disabled fighters avoid projectiles" gamerule is active, projectiles with a trigger radius will no longer be set off by disabled fighters. (@Anarchist2)
+  * Game content:
+    * New content:
+      * Added various culture conversations to human space about exotic lifeforms. (@reticent-rem)
+      * Added a mission chain about helping a struggling author. (@a-random-lemurian, @TheGiraffe3)
+      * Added a new Heliarch hand-to-hand weapon. (@Arachi-Lover)
+      * Added various "Drak Revelation" culture conversations around the galaxy. (@Arachi-Lover)
+      * Added new civilian hails. (@MauriceTaniel)
+      * Added a short new mission chain for the Ka'het. (@beccabunny)
+      * Added hail messages that appear when entering certain systems in human space. (@bene-dictator)
+    * Mission changes:
+      * Various missions now make use of "mark" instead of "waypoint" where visiting the system of interest isn't a necessary objective for the story. (@TheGiraffe3, @warp-core)
+      * Ryk Bartlett in "FW Albatross 2A" now has a unique Bastion model and his fleet is set in stone instead of being randomized. (@bene-dictator)
+      * The "lost in coalition" mission now checks for the presence of the "jump drive" attribute instead of the "Jump Drive" outfit, preventing it from erroneously offering if the player has a jump drive from a plugin. (@ziproot)
+      * "Sad Archie" and "Wanderers: Mereti Observation" now use mission timers instead of relying on a mission NPC to keep track of time. (@danaris, @ziproot)
+      * The player will now receive a warning if they fail or decline the Free Worlds intro missions. (@Anarchist2)
+      * The Remnant technology mission for the S-970 Regenerator now has an option to decline if the player only has a limited number of the outfit. (@kaiboyjiang)
+      * Adjusted the wording and structure of various Gegno missions based on feedback. (@Saugia)
+      * Added an option to admit to Ivan that you want to share his research in "Remnant: Deep Surveillance". (@ThrawnCA)
+      * "Dangerous Games 1" now provides landing clearance to the destination. (@nickshanks)
+      * Broadened the travel instructions given in "Expeditions Past 9" to improve the odds of the player finding the correct system. (@ThrawnCA)
+      * Updated various missions to make use of the "visited" location filter instead of using the "inaccessible" system attribute, which has now been removed. This means that the Remnant research expedition jobs will now only choose from systems you've already visited before. (@Amazinite)
+      * The "What happened to Rand?" mission will now have its objective complete if you manage to reach Zeta Aquilae. (@ThrawnCA)
+      * Updated the wording in "FW Reconciliation 2A" to make it clear that new technology is being made available for you to purchase, not gifted to you for free. (@nickshanks)
+      * Reworked bounty jobs. (@Anarchist2)
+        * The governments now have the same attitude toward the Bounty governments as they do the Pirate government, allowing you to gain reputation with various governments for taking Bounty jobs.
+        * The combat rating requirement of the jobs has been greatly lowered, requiring anywhere from about 25% to 85% less combat rating in order for the jobs to offer.
+        * Most bounty NPCs now spawn ships from named fleets instead of defining a unique fleet for each job. These fleets have been adjusted to result in a smoother increase in difficulty for larger bounty missions.
+          * With the above two changes, the strength of bounty NPCs should now roughly match the strength that you are expected to be at when you unlock them.
+        * The language of bounty job names is more direct. With combat rating requirements lower, there's a potential risk of the player accepting jobs well outside their capabilities. Having the category of the ship in the job names should make it easier to tell the difficulty of a bounty at a glance.
+        * Bounty NPCs now use the "marked" personality instead of "nemesis" so that they aren't destroyed by other governments as a result of the above change.
+        * Bounty NPCs in many jobs are capable of spawning further away, but now have the "tracked" personality, meaning that their location is pinged on the galaxy map, removing the aspect of you needing to track down the bounty on your own. Various story missions that require you to hunt down a bounty have been given the same treatment.
+        * Disguised pirates now only spawn one jump away from the origin system. Since they are disguised, they have not gained the "tracked" personality.
+        * The payment of the Marauder bounties has been altered to better reflect their difficulty.
+      * Updated all of the invisible missions that used to offer the moment you started a new save to now use the "entering" and "transition" offer locations, meaning that they only get stored in the player's save file the moment they're needed. (@Amazinite, @warp-core)
+    * Balance:
+      * Rebalanced afterburners. (@Azure3141)
+        * Increased the fuel consumption of afterburners across the board.
+          * +100% for Korath afterburners.
+          * +150% for the Avgi afterburner and +66% for the Avgi fusion torch engines.
+          * +50% for human and Remnant afterburners.
+        * Reduced the thrust of the Korath afterburners by ~10% at the low end and ~30% at the high end.
+        * Reduced the thrust of the Caldera Afterburner by ~9%.
+        * Greatly increased the heat produced by the Bellows-Class Afterburner (18 -> 72).
+      * Considerably reduced the cost of the High-Velocity Spike Rack from 350k to 50k. (@Daeridanii1)
+      * Mining efficiency is now more effective on rarer asteroids compared to more common ones, instead of being less effective. (@Quantumshark)
+        * Aluminum asteroids have been untouched: +20% yield.
+        * Silicon asteroids are now less effected: +27% -> +11% yield, with asteroids between silicon and aluminum being changed less.
+        * Platinum asteroids are now much more effected: +4% -> +38% yield, with asteroids between platinum and aluminum being changed less.
+        * The above yield values are when using a human mining laser. Other mining weapons will produce different yield improvements.
+      * Reduced the spawn rate of Korath raider fleets into human space. The spawn rates of these fleets were greatly increased in 2016 to make it easier to plunder jump drives from them, but there are now many more methods of obtaining jump drives, so the spawn rates have been lowered close to their old values (or an equivalent value for newer systems) to make encountering hostile aliens in human space much more of a rarity. (@Anarchist2)
+      * Rebalanced some human missile weaponry. (@Quantumshark)
+        * Increased the burst reload time of the Javelin Mini Pod from 15 to 20 frames. The overall DPS is unchanged.
+        * Increased the Heavy Rocket's blast radius from 90 to 150 units.
+        * Changes have been made to the Torpedo and Typhoon launchers to differentiate them from one another, instead of having the Typhoon just be a strictly better Torpedo.
+          * The Torpedo Launcher/Pod's projectile velocity now ramps from 0 to 6 instead of 7 to 6. No other changes.
+          * The Typhoon Launcher/Pod's projectile velocity now ramps from 4 to 3.75 instead of 6 to 4, fires 25% slower, and has a 45% longer projectile lifetime.
+          * "With these changes, the Torpedo becomes a missile that is very easy to dodge, and will only hit large targets, while the Typhoon becomes something of a creeping death - sluggish and easily outrun, but still hard-hitting and very unlikely to miss. This will hopefully differentiate the two more. If the reduction in accuracy proves to be enough, the Torpedo could stand to have its top speed increased somewhat, too."
+      * Greatly reduced the spawn rate of Navy surveillance fleets in Free Worlds territory near the start of the war. (@Quantumshark)
+      * Missiles now check for a lock the moment they're fired. (@Anarchist2)
+      * "blindspot" missiles that go haywire can now entirely lose their target if they face away from their target while haywire. (@Anarchist2)
+    * Other:
+      * Adjusted the order of the Kestrel (More Weapons) weapon hardpoints to match the placement positions of the weapons on the other variants. (@Saugia)
+      * Adjusted some systems and planets in Gegno space to facilitate planned future content. (@Saugia)
+      * Unfettered planets now have custom bribe rejection hails. (@Saugia)
+      * Adjusted the description of the Langrage Hyper-Heavyer. (@kaiboyjiang)
+  * Graphics and artwork:
+    * Adjusted some human landscape images to better fit their planet descriptions. (@Anarchist2)
+    * Cleaned up various UI sprites to maintain consistency in art style. (@Anarchist2)
+  * Game mechanics:
+    * New mechanics:
+      * Weapon hardpoints on ships can now be marked as "inside", hiding the hardpoint sprite of the weapon in that mount. (@TomGoodIdea)
+      * Planets and ports can now have various condition sets that control the player's access to things such as: knowledge whether the planet is landable, access to the outfitter, shipyard, or other services, the ability to bribe your way onto the planet, and more. (@Amazinite)
+      * Added a "tracked" mission NPC personality that places a waypoint marker on the map for whatever system the tracked NPC ship(s) are located in. (@Amazinite)
+      * Missions can now "mark" and "unmark" systems within other missions. (@warp-core)
+      * Conversation choices can now have "to activate" condition sets that prevent the choice from being chosen if the conditions are not met, but do not prevent the choice from being visible to the player. (@Amazinite)
+      * Governments can now be made to ignore the "illegal" and "atrocity" attributes on outfits and ships. (@TomGoodIdea)
+      * Governments can now have custom death sentence conversations on a per-item basis. (@TomGoodIdea)
+      * The player's logbook can now contain scene images. (@xobes)
+      * Missions can now have timers that count down if certain circumstances are met (e.g. if the player is near the system center and is not moving) and trigger a mission action after the timer has elapsed. (@danaris, @Amazinite)
+      * Game actions from missions are now capable of sending messages. (@TomGoodIdea)
+      * "goto" nodes can now be direct children of "conversation" nodes, instead of requiring that they be indented under a text node. (@MereDecade)
+      * Added "previous system government: <government>" and "previous system attribute: <attribute>" conditions for checking the government or attribute of the system the player was previously in. (@Amazinite, @Anarchist2)
+      * Governments can now be made to consider any action against them provocative or an atrocity. (@Hurleveur)
+      * Condition sets now support "min" and "max" keywords as in-line functions. (@petervdmeer)
+      * Planets can now be made to incur a daily reputation penalty with their government when dominated, in addition to the tribute payment. (@TomGoodIdea)
+      * The response to accepting or rejecting bribes can now be customized on a per-government level for ships and planets separately. (@CrispySummers, @TheGiraffe3)
+      * Governments can now be made to reject all bribes on a ship and per-planet level after your reputation with them drops below a given threshold. (@warp-core)
+      * Plugins can now fully overwrite any vanilla objects by placing an "overwrite" node prior to the new definition that they want to use. (@Amazinite)
+      * The "jump effect" attribute can have an optional 2nd value to scale down the number of sparks created. (@Amazinite)
+      * Missions can now have an "on land" action that triggers in a similar manner to "on enter", except for landing on planets instead of entering systems. (@warp-core)
+      * Missions can now be given an offer location of "transition", causing them to be offered the moment you transition between systems. (@warp-core)
+    * Mechanics changes:
+      * Ships that are overheated or heavily ionized no longer count toward the strength of their government's ships in a system, freeing up a spot for a new ship to spawn as reinforcements. (@Anarchist2)
+    * NPC AI:
+      * Ships that board their targets will now avoid boarding a target that is already in the process of being boarded by an ally. (@TomGoodIdea)
+  * User interface:
+    * Preferences and controls:
+      * If the "Control ship with mouse" preference is on, the ability to send orders to your escorts using the mouse is moved from right click to middle mouse button. (@SomeTroglodyte)
+      * Updated the "Reduce large graphics" preference to now have an "all" setting, reducing the resolution of all graphics in the game (aside from UI elements). Intended for use on lower-end hardware that may have trouble running the game due to low memory/VRAM. (@TomGoodIdea)
+      * Added a preference to control whether the message history should be stored in the save file, allowing the message history panel to retain information after reloading the save file. This is a preference due to how it can increase the save file size. (@TomGoodIdea)
+      * The game no longer disables the monitor from going to sleep or activating a screen saver by default. There is now a preference from controlling this behavior. (@Amazinite)
+      * The GPU/CPU load preference has been changed to display the load in both milliseconds and percentage of a frame, which is now reactive to whether fast-forward is enabled. Additionally, the memory usage of the game is now listed, and the placement of these values can be controlled through interface data. (@TomGoodIdea)
+      * The display of the CPU/GPU loads can now be toggled using a control. The default is F3. (@TomGoodIdea)
+    * Interface definitions:
+      * The "Additional info" section on the controls panel is now created using interface data instead of being hardcoded. (@Amazinite)
+      * Various messages that were hardcoded into the engine can now be customized via game data. (@TomGoodIdea)
+      * The map legends in the map missions panel are now created using interface data instead of being hardcoded. (@nickshanks)
+    * QoL:
+      * The jump keybind will now set a travel plan to the currently selected system on the map (or add it to the plan if shift is held), allowing you to much more easily set a route to a system without using the mouse by using the find system feature to select the system prior to hitting the jump key. (@Amazinite)
+      * The trade panel on the map now has colored rings for representing how high or low the value of a commodity is in the current system, and colored arrows for representing the difference in value between two systems. (@xobes)
+      * Added a scroll bar to the boarding panel when there are enough outfits to allow scrolling. (@TomGoodIdea)
+      * Added a "Player Info" button to the planet panel. (@Anarchist2)
+      * Mission escorts can now be selected using the escort display. (@Amazinite)
+      * Clicking on an icon in the escort display that represents multiple ships now cycles your flagship's target through the list. (@Amazinite)
+      * The "New Pilot" button is now replaced with a "Reload Pilot" button when going to the main menu after your pilot has died. (@warp-core)
+      * The name of the planet that you are currently landed on is now displayed next to the radar at the top left corner of the screen. (@xobes)
+    * Other:
+      * Added a flight check error for ships that need crew in order to function but lack any bunk space. (@TomGoodIdea)
+      * Rephrased the tooltips for the damage protection and reduction attributes. These attributes now display as percentages in the outfitter. (@Daeridanii1)
+      * The DialogPanel class can now be given a third button with custom functionality. (@xobes)
+      * The orbits mini map and map legend are now hidden on the stars map when the selected system's contents can't be viewed. (@nickshanks)
+  * Performance:
+    * Pathfinding results for ships are now cached, greatly improving the performance of large fleets when pathfinding. (@xobes)
+    * Swizzle mask textures are no longer duplicated for multi-frame sprites if only one swizzle mask is provided, freeing up VRAM. (@warp-core)
+    * If the high DPI plugin is installed, then the game will only load the 2x textures instead of loading both the 1x and 2x textures, freeing up VRAM. (@Amazinite)
+    * Improved the performance of AI::DoScatter. This should result in a noticeable improvement when flying around with a large number of ships. (@Amazinite)
+    * Fixed an edge case where escorts without weapons would move independently when not given orders, potentially jumping away to a different system without you. (@Amazinite)
+    * Selecting a large number of escorts no longer causes extreme lag caused by high CPU usage. (@Amazinite)
+    * Capture odds are now only calculated for capturable ships, preventing uncapturable ships from unnecessarily using up memory when boarded. (@Amazinite)
+  * Under the hood:
+    * Renamed the "line" interface element to "fill". (@TomGoodIdea)
+    * Separated the Weapon and Outfit classes from one another. (@TomGoodIdea, @warp-core)
+    * Cleaned up how timestamp formatting is calculated. (@TomGoodIdea)
+    * Improved the detection of adaptive vsync at runtime. (@TomGoodIdea)
+    * Updated a few code and data files to conform to the style guide. (@Amazinite)
+    * Events are now stored in the player's save file using the name of the event instead of storing the individual changes. The result of this is that events will take up much less save file space, and updating an event will cause save files to use the updated version instead of requiring a version compatibility mission to re-trigger the event. (@Amazinite)
+    * Added bounds checking to DataNode::Token. (@Amazinite)
+    * ntdll is now loaded statically on Windows. (TomGoodIdea)
+    * Plugins can now provide custom shaders to support the game running using OpenGL 2. (@TomGoodIdea)
+    * Reformatted how logs are displayed for errors.txt. The game now supports multiple logging levels. (@TomGoodIdea)
+    * Now only using freopen_s with MSVC on Windows. (@TomGoodIdea)
+    * Correctly link RtlGetVersion on Win32. (@TomGoodIdea)
+    * There is now a command line argument for printing the full event changes of the most recently loaded save file. (@warp-core)
+    * Panel::GetUI now returns the UI by reference instead of by pointer. (@Amazinite)
+    * Dialog node parsing has been moved to its own class. (@Amazinite)
+    * Replaced various shared_from_this calls with weak_from_this where a shared pointer was not necessary. (@Amazinite)
+    * Updated various functions in the Format class: renamed Credits to AbbreviatedNumber, combined the behavior of Decimal into Number, and created a Percentage function. (@Amazinite)
+    * The DialogPanel class is now capable of validating integer and double input. (@Amazinite)
+  * Documentation:
+    * The bug report template now asks for the errors.txt file. (@TomGoodIdea)
+    * Updated the CONTRIBUTING.md file to point to the new C++ style guide location. (@Nova1422)
+    * Updated the build instructions for MacOS. (@CelestialHoney)
+  * CI/CD and development environment:
+    * Bumped the MacOS runners to macos-14. (@warp-core)
+    * Added desktop.ini to the .gitignore. (@TomGoodIdea)
+    * Updated vcpkg configurations for better compatibility with CMake 4. (@ciphell)
+    * The expected character encoding is now specified in the .editorconfig. (@warp-core)
+    * Enabled the alternative libflac detection method when building without vcpkg on Mac. (@bene-dictator)
+    * Increased the integration test timeout from 15 seconds to 2 minutes. (@AdrianBunk)
+    * Automatically choose the CMake target for GLEW. (@TomGoodIdea)
+    * Added a 32-bit Windows CI job. (@TomGoodIdea)
+
 Version 0.10.16
   * Bug fixes:
     * Content bugs:
@@ -1959,7 +2170,7 @@ Version 0.10.1
     * The Personality class will fail compilation if the personality count constant doesn't match the number of possible personalities. (@UnorderedSigh)
     * Corrected the declaration order of private members of the Conversation class. (@warp-core)
     * Added a missing #include to the Preferences class. (@quyykk)
-    * The planet, spaceport, bank, and trade panels are now defined by the interface file instead of entirely hardcoded, allowing for plugins to edit them. (@theweirdnut)
+    * The planet, spaceport, bank, and trade panels are now defined by the interface file instead of entirely hardcoded, allowing for plugins to edit them. (@thewierdnut)
     * Simplified various conversations using new "to display" nodes. (@warp-core)
     * Cleaned up and updated information in the README and CONTRIBUTING files. (@quyykk)
     * Cleaned up the syntax of the Ringworld Debris missions. (@warp-core)
@@ -2499,7 +2710,7 @@ Version 0.9.15:
     * Redid large parts of the Free Worlds campaign intro and start chapters. The goals of this rework were to enhance various themes and features of the plot that were on the weaker side while also laying the groundwork for future content, such as the other main human campaigns and post-main campaign content. This rework is the first of many, with this stage primarily focusing on Tomek's storyline and the Syndicate's role in the main campaign. (@Amazinite)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@alex116, @alextd, @Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @fakepass, @Galaucus, @Hurleveur, @infinitewarp, @MasterOfGrey, @McloughlinGuy, @nathan-b, @NRK4, @oo13, @pilover100, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @samrocketman, @tehhowch, @Terin, @theweirdnut, @thomasballinger, @tibetiroka, @W1zrad, @warp-core, @Wedge009, @williaji, @Zitchas)
+      * Typo fixes. (@alex116, @alextd, @Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @fakepass, @Galaucus, @Hurleveur, @infinitewarp, @MasterOfGrey, @McloughlinGuy, @nathan-b, @NRK4, @oo13, @pilover100, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @samrocketman, @tehhowch, @Terin, @thewierdnut, @thomasballinger, @tibetiroka, @W1zrad, @warp-core, @Wedge009, @williaji, @Zitchas)
       * Removed a duplicate "landing" tag on a mission. (@shitwolfymakes)
       * Deep merchant fleets no longer have Deep Security names. (@peteryager)
       * Ensured all ship, thumbnail, and outfit sprites have even dimensions to avoid blurriness caused by scaling. (@Anarchist2)

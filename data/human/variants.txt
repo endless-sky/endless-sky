@@ -309,54 +309,6 @@ ship "Bactrian" "Bactrian (Hired Gun)"
 		"Hyperdrive"
 
 
-# Troop transport Bactrians
-ship "Bactrian" "Bactrian (Troop Jump)"
-	outfits
-		"Liquid Helium Cooler"
-		"Catalytic Ramscoop"
-		"Hai Tracker Pod" 4
-		"Hai Tracker" 224
-		`"Bufaer" Atomic Thruster`
-		"Jump Drive"
-		"Outfits Expansion"
-		"Boulder Reactor" 2
-		`"Bufaer" Atomic Steering`
-		"Pulse Rifle" 247
-		"Bullfrog Anti-Missile" 4
-		"Hai Diamond Regenerator" 2
-		"Hai Chasm Batteries"
-		Brig
-		Supercapacitor 2
-		"Small Bunk Room"
-		"Fuel Pod"
-		"Liquid Nitrogen Cooler"
-		"Security Station"
-		"Fragmentation Grenades" 247
-		"Quad Blaster Turret" 2
-		"Quantum Key Stone"
-
-
-# This variant uses outfits acquired in the post-war condition that were surplus or black market for diversity *after* the main campaign.
-ship "Bactrian" "Bactrian (Plasma Blaster Anti-Missile)"
-	outfits
-		"Heavy Anti-Missile Turret" 3
-		"Armageddon Core"
-		"LP036a Battery Pack"
-		"S-970 Regenerator"
-		"Liquid Helium Cooler" 2
-		Hyperdrive
-		"LP072a Battery Pack"
-		"Outfits Expansion" 5
-		"Liquid Nitrogen Cooler"
-		"Plasma Cannon" 4
-		"A520 Atomic Thruster"
-		"A255 Atomic Steering"
-		"A525 Atomic Steering"
-		"Fission Reactor"
-		"Quad Blaster Turret" 3
-		"Laser Rifle" 15
-
-
 
 ship "Barb" "Barb (Proton)"
 	outfits
@@ -660,31 +612,6 @@ ship "Blackbird" "Blackbird (Prisoner Transport)"
 		"Hyperdrive"
 
 
-ship "Blackbird" "Blackbird (Hai Trafficker)"
-	add attributes
-		"mass" 53
-		"outfit space" -51
-		"energy capacity" 5200
-		"shield generation" 3.1
-		"shield energy" 4.6
-		"hull repair rate" 0.4
-		"hull energy" 0.4
-		"hull heat" 0.6
-	outfits
-		`"Bondir" Atomic Thruster`
-		"Pulse Rifle" 12
-		Brig
-		"Fuel Pod" 2
-		`"Benga" Atomic Steering`
-		"Scram Drive"
-		"Chameleon Anti-Missile"
-		Ramscoop
-		"Pulse Turret"
-		"Boulder Reactor"
-		"Outfits Expansion"
-		"Liquid Nitrogen Cooler"
-		"Security Station" 3
-
 
 ship "Bounder" "Bounder (Hai)"
 	outfits
@@ -980,31 +907,6 @@ ship "Clipper" "Clipper (Speedy)"
 		"Hyperdrive"
 
 
-ship "Clipper" "Clipper (Hai Trafficker)"
-	add attributes
-		"mass" 31
-		"outfit space" -25
-		"energy capacity" 2600
-		"shield generation" 1.6
-		"shield energy" 2.4
-		"hull repair rate" 0.2
-		"hull energy" 0.2
-		"hull heat" 0.3
-	outfits
-		"Pulse Rifle" 3
-		Brig
-		"Fuel Pod"
-		"A370 Atomic Thruster"
-		"A255 Atomic Steering"
-		Hyperdrive
-		"Hai Tracker Pod" 3
-		Ramscoop
-		"Outfits Expansion" 3
-		"Liquid Nitrogen Cooler"
-		"Breeder Reactor"
-		"Security Station" 2
-
-
 
 ship "Combat Drone" "Combat Drone (Sidewinder Missiles)"
 	outfits
@@ -1177,72 +1079,6 @@ ship "Corvette" "Corvette (Speedy)"
 		"Hyperdrive"
 
 
-ship "Corvette" "Corvette (Particle Chaser)"
-	outfits
-		"Particle Cannon" 4
-		"Heavy Anti-Missile Turret"
-		"Fusion Reactor"
-		"Supercapacitor"
-		"D41-HY Shield Generator"
-		"Liquid Nitrogen Cooler"
-		"Water Coolant System"
-		"Laser Rifle" 2
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-		"Fuel Pod"
-		"Outfits Expansion" 2
-		"Catalytic Ramscoop"
-
-
-ship "Corvette" "Corvette (Hai Trafficker)"
-	add attributes
-		"mass" 53
-		"outfit space" -51
-		"energy capacity" 5200
-		"shield generation" 3.1
-		"shield energy" 4.6
-		"hull repair rate" 0.4
-		"hull energy" 0.4
-		"hull heat" 0.6
-	outfits
-		`"Bondir" Atomic Thruster`
-		`"Biroo" Atomic Steering`
-		"Pulse Rifle" 16
-		Brig
-		"Fuel Pod" 4
-		"Hai Tracker" 224
-		"Scram Drive"
-		"Bullfrog Anti-Missile" 2
-		"Hai Tracker Pod" 4
-		Ramscoop
-		"Boulder Reactor"
-		"Outfits Expansion"
-		"Liquid Nitrogen Cooler"
-		"Security Station" 4
-
-
-# This variant uses outfits acquired in the post-war condition that were surplus or black market for diversity *after* the main campaign.
-ship "Corvette" "Corvette (Flamethrower Electron Anti-Missile)"
-	outfits
-		"Heavy Anti-Missile Turret" 2
-		"LP036a Battery Pack"
-		"S-970 Regenerator"
-		"Catalytic Ramscoop"
-		Hyperdrive
-		Supercapacitor
-		"Fuel Pod" 3
-		"Outfits Expansion" 2
-		"Liquid Nitrogen Cooler"
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		Flamethrower 2
-		"Electron Beam" 2
-		"Laser Rifle" 3
-		"Water Coolant System"
-		"Fusion Reactor"
-
-
 
 ship "Cruiser" "Cruiser (Heavy)"
 	outfits
@@ -1381,26 +1217,6 @@ ship "Cruiser" "Cruiser (Republic Intelligence)"
 	turret "Heavy Anti-Missile Turret"
 
 
-# Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment, intended against the Hai.
-ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
-	outfits
-		"Heavy Anti-Missile Turret" 3
-		"Armageddon Core"
-		"S-970 Regenerator"
-		"Liquid Helium Cooler" 2
-		"Catalytic Ramscoop"
-		"Hyperdrive"
-		"Volcano Afterburner"
-		"Outfits Expansion" 2
-		"Plasma Cannon" 6
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Fragmentation Grenades" 20
-		"Fission Reactor"
-		"Laser Rifle" 20
-		"LP144a Battery Pack"
-
-
 # Danforth's personal ship in HR. Outfitted against the Hai and then modified to fight devil hide.
 ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 	crew 136
@@ -1484,25 +1300,6 @@ ship "Dreadnought" "Dreadnought (Plasma Blaster Anti-Missile)"
 		"Water Coolant System"
 		"S-270 Regenerator" 2
 		"LP144a Battery Pack"
-
-
-# Same as above but repurposed for Hai Reveal.
-ship "Dreadnought" "Dreadnought (Plasma Jump)"
-	outfits
-		"Heavy Anti-Missile Turret" 2
-		"Plasma Turret" 3
-		"Stack Core"
-		"S-970 Regenerator" 3
-		"Liquid Helium Cooler" 2
-		"Jump Drive"
-		"Volcano Afterburner"
-		"Outfits Expansion" 2
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Laser Rifle" 25
-		"LP144a Battery Pack"
-		"Fuel Pod" 2
-		"Catalytic Ramscoop"
 
 
 
@@ -1595,23 +1392,6 @@ ship "Falcon" "Falcon (Plasma)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-
-
-ship "Falcon" "Falcon (Laser Chaser)"
-	outfits
-		"Outfits Expansion" 2
-		Hyperdrive
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Liquid Helium Cooler"
-		"D94-YV Shield Generator"
-		"Catalytic Ramscoop"
-		"Heavy Anti-Missile Turret"
-		"Quad Blaster Turret" 3
-		"Laser Rifle" 30
-		"LP036a Battery Pack"
-		"Heavy Laser" 4
-		"Armageddon Core"
 
 
 ship "Falcon" "Falcon (Tractor Beam)"
@@ -1933,32 +1713,6 @@ ship "Freighter" "Freighter (Secret Cargo)"
 	turret "Blaster Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Blaster Turret"
-
-
-ship "Freighter" "Freighter (Hai Trafficker)"
-	add attributes
-		"mass" 31
-		"outfit space" -25
-		"energy capacity" 2600
-		"shield generation" 1.6
-		"shield energy" 2.4
-		"hull repair rate" 0.2
-		"hull energy" 0.2
-		"hull heat" 0.3
-	outfits
-		"Pulse Rifle" 3
-		Brig
-		"Fuel Pod" 2
-		`"Biroo" Atomic Thruster`
-		"A255 Atomic Steering"
-		Hyperdrive
-		"Bullfrog Anti-Missile"
-		"Pulse Turret" 2
-		Ramscoop
-		"Outfits Expansion" 5
-		"Liquid Nitrogen Cooler"
-		"Breeder Reactor"
-		"Security Station" 2
 
 
 
@@ -2552,25 +2306,6 @@ ship "Leviathan" "Leviathan (Plasma Repeater)"
 	turret "Heavy Anti-Missile Turret"
 
 
-ship "Leviathan" "Leviathan (Particle Chaser)"
-	outfits
-		"Scram Drive"
-		"Outfits Expansion" 3
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"D94-YV Shield Generator"
-		"Heavy Anti-Missile Turret"
-		"Liquid Helium Cooler"
-		"Liquid Nitrogen Cooler"
-		"Catalytic Ramscoop"
-		"Fuel Pod" 4
-		"LP072a Battery Pack"
-		"Particle Cannon" 4
-		"Laser Rifle" 32
-		"Quad Blaster Turret" 2
-		"Armageddon Core"
-
-
 
 ship "Manta" "Manta (Mark II)"
 	outfits
@@ -2998,25 +2733,6 @@ ship "Osprey" "Osprey (Missile)"
 	gun "Torpedo Launcher"
 
 
-# This variant uses outfits acquired in the post-war condition that were surplus or black market for diversity *after* the main campaign.
-ship "Osprey" "Osprey (Particle Anti-Missile)"
-	outfits
-		"Heavy Anti-Missile Turret"
-		"LP036a Battery Pack"
-		"S-970 Regenerator"
-		Hyperdrive
-		"LP072a Battery Pack"
-		"Volcano Afterburner"
-		"Outfits Expansion" 2
-		"Liquid Nitrogen Cooler"
-		"Particle Cannon" 4
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Laser Rifle" 3
-		"Water Coolant System"
-		"Fusion Reactor"
-
-
 
 ship "Protector" "Protector (Laser)"
 	outfits
@@ -3165,23 +2881,6 @@ ship "Rainmaker" "Rainmaker (Mark II)"
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
 	gun
-
-
-ship "Rainmaker" "Rainmaker (Mark II Old Weapons)"
-	outfits
-		"Energy Blaster" 2
-		"Meteor Missile Launcher" 4
-		"Meteor Missile" 180
-		"Meteor Missile Box" 4
-		"Dwarf Core"
-		"Supercapacitor"
-		"Water Coolant System"
-		"D67-TM Shield Generator"
-		"Fuel Pod" 2
-		"Outfits Expansion"
-		"A120 Atomic Thruster"
-		"A125 Atomic Steering"
-		"Hyperdrive"
 
 
 
@@ -3450,27 +3149,6 @@ ship "Splinter" "Splinter (Tractor Beam)"
 	turret "Proton Turret"
 	turret "Tractor Beam"
 	turret "Proton Turret"
-
-
-# Used in the Hai Reveal campaign by a special Syndicated Security team. Should not be used before.
-ship "Splinter" "Splinter (Flamethrower Blaster)"
-	outfits
-		"Heavy Anti-Missile Turret"
-		"Catalytic Ramscoop"
-		Hyperdrive
-		"LP072a Battery Pack"
-		"Fuel Pod" 5
-		"Outfits Expansion" 3
-		"Liquid Nitrogen Cooler"
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		Flamethrower 2
-		"Quad Blaster Turret" 2
-		"Cooling Ducts"
-		"Laser Rifle"
-		"Water Coolant System"
-		"S-270 Regenerator" 2
-		"Fusion Reactor"
 
 
 
