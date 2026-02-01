@@ -455,13 +455,13 @@ bool NPC::Do(const ShipEvent &event, PlayerInfo &player, UI &ui, const Mission *
 			// displayed a second time below.
 			if(event.Type() & ShipEvent::CAPTURE)
 			{
-				Ship *copy = new Ship(*ptr);
+				shared_ptr<Ship> copy = make_shared<Ship>(*ptr);
 				copy->SetUUID(ptr->UUID());
 				copy->Destroy();
-				shipEvents[copy] = shipEvents[ptr.get()];
+				shipEvents[copy.get()] = shipEvents[ptr.get()];
 				// Count this ship as destroyed, as well as captured.
 				type |= ShipEvent::DESTROY;
-				ptr.reset(copy);
+				ptr.swap(copy);
 			}
 			ship = ptr;
 			break;
