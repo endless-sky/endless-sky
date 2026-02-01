@@ -279,6 +279,7 @@ mission "FW Navy Out Of Rastaban"
 mission "fw tarazed joins"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "FW Reconciliation 2: done"
 		not "FW Reconciliation 2A: done"
@@ -1754,6 +1755,7 @@ mission "FW Pug 3C (Extra)"
 mission "FW Pug 4: Escorts"
 	landing
 	invisible
+	non-blocking
 	source Hephaestus
 	to offer
 		has "FW Pug 3C: done"
@@ -1812,6 +1814,7 @@ mission "FW Pug 4: Escorts"
 mission "FW Pug 4: Escorts (Extra)"
 	landing
 	invisible
+	non-blocking
 	source Hephaestus
 	to offer
 		has "FW Pug 3C: done"
@@ -1990,6 +1993,7 @@ mission "FW Pug 4B"
 mission "FW Pug 4B: Enemies"
 	landing
 	invisible
+	non-blocking
 	source Maker
 	to offer
 		has "FW Pug 4A: done"
@@ -2012,6 +2016,7 @@ mission "FW Pug 4B: Enemies"
 mission "FW Pug 4B: Reinforcements"
 	landing
 	invisible
+	non-blocking
 	source Maker
 	to offer
 		has "FW Pug 4A: done"
@@ -2115,6 +2120,7 @@ mission "FW Pug 5"
 mission "FW Pug 5A: Enemies"
 	landing
 	invisible
+	non-blocking
 	source Shiver
 	to offer
 		has "FW Pug 5: done"
@@ -2666,6 +2672,7 @@ mission "FW Syndicate Extremists 1C"
 mission "FW Navy Out Of Rastaban (Bad Karma)"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "FW Syndicate Extremists 1C: done"
 		not "event: navy out of rastaban"

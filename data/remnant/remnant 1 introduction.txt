@@ -135,6 +135,7 @@ mission "First Contact: Remnant"
 mission "Remnant: Blood Test Patch v2"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: ember waste label"
 		not "Remnant: Scanning Tolerances: done"
@@ -148,6 +149,7 @@ mission "Remnant: Blood Test Patch v2"
 mission "Remnant: Lost in Ember Waste: Trigger"
 	landing
 	invisible
+	non-blocking
 	source
 		government "Remnant"
 	to offer
@@ -736,6 +738,7 @@ mission "Remnant: Void Sprites 3"
 mission "Remnant: Gascraft-Puffin Compatibility"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: remnant: gascraft"
 	on offer
@@ -1988,6 +1991,7 @@ mission "Remnant: S-970 Regenerator"
 mission "Remnant: Tech Retrieval Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		not "Remnant: Tech Retrieval: offered"
 		or
@@ -2002,6 +2006,7 @@ mission "Remnant: Tech Retrieval Patch"
 
 mission "Remnant: Taely Intro Log"
 	invisible
+	non-blocking
 	source
 		government "Remnant"
 	to offer
@@ -2014,6 +2019,7 @@ mission "Remnant: Taely Intro Log"
 
 mission "Remnant: Taely Penguin Log"
 	invisible
+	non-blocking
 	to offer
 		has "Remnant: Taely Intro Log: failed"
 		has "Remnant: Face to Maw 2: done"
@@ -2025,6 +2031,7 @@ mission "Remnant: Taely Penguin Log"
 
 mission "Remnant: Chilia Intro Log"
 	invisible
+	non-blocking
 	source
 		government "Remnant"
 	to offer
@@ -2037,6 +2044,7 @@ mission "Remnant: Chilia Intro Log"
 
 mission "Remnant: Chilia Intro Log 2"
 	invisible
+	non-blocking
 	source
 		government "Remnant"
 	to offer
@@ -2049,6 +2057,7 @@ mission "Remnant: Chilia Intro Log 2"
 
 mission "Remnant: Chilia Intro Log 3"
 	invisible
+	non-blocking
 	source
 		government "Remnant"
 	to offer
@@ -2150,6 +2159,7 @@ mission "Remnant: Return the Samples 2"
 mission "Remnant: Travel Restrictions Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Remnant: Return the Samples 2: done"
 		not "remnant: travel restrictions cleared"
@@ -2879,6 +2889,7 @@ mission "Remnant: Broken Jump Drive 5"
 mission "Remnant: remnant research update compatibility"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: remnant research update bjd1"
 	on offer
@@ -3217,6 +3228,7 @@ mission "Remnant: Keystone Research 3B"
 
 mission "Remnant: Keystone Research 3C"
 	invisible
+	non-blocking
 	landing
 	source
 		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
@@ -3229,6 +3241,7 @@ mission "Remnant: Keystone Research 3C"
 
 mission "Remnant: Keystone Research 3D"
 	invisible
+	non-blocking
 	landing
 	source
 		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
@@ -3241,6 +3254,7 @@ mission "Remnant: Keystone Research 3D"
 
 mission "Remnant: Keystone Research 3E"
 	invisible
+	non-blocking
 	landing
 	source
 		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
@@ -3253,6 +3267,7 @@ mission "Remnant: Keystone Research 3E"
 
 mission "Remnant: Keystone Research 3F"
 	invisible
+	non-blocking
 	landing
 	source
 		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
@@ -3265,6 +3280,7 @@ mission "Remnant: Keystone Research 3F"
 
 mission "Remnant: Keystone Research 3G"
 	invisible
+	non-blocking
 	landing
 	source
 		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
