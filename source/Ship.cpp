@@ -2592,7 +2592,7 @@ void Ship::Disable()
 void Ship::Destroy()
 {
 	hull = -1.;
-	unhandledEvents.emplace_back(nullptr, ShipEvent::DESTROY);
+	unhandledEvents.emplace_back(nullptr, shared_from_this(), ShipEvent::DESTROY);
 }
 
 
@@ -2784,11 +2784,9 @@ void Ship::ClearTargetsAndOrders()
 
 
 
-list<Ship::ShipEventInternal> Ship::HandleEvents()
+list<ShipEvent> &Ship::HandleEvents()
 {
-	list<ShipEventInternal> ret;
-	ret.splice(ret.end(), unhandledEvents);
-	return ret;
+	return unhandledEvents;
 }
 
 
@@ -4370,9 +4368,9 @@ void Ship::DoGeneration()
 		isOverheated = false;
 
 	if(!wasDisabled && hull < minHull)
-		unhandledEvents.emplace_back(lastHitBy, ShipEvent::DISABLE);
+		unhandledEvents.emplace_back(lastHitBy, shared_from_this(), ShipEvent::DISABLE);
 	if(!wasDestroyed && IsDestroyed())
-		unhandledEvents.emplace_back(lastHitBy, ShipEvent::DESTROY);
+		unhandledEvents.emplace_back(lastHitBy, shared_from_this(), ShipEvent::DESTROY);
 
 	double maxShields = MaxShields();
 	shields = min(shields, maxShields);
@@ -4581,7 +4579,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 	if(hyperspaceCount == HYPER_C)
 	{
 		if(isSpecial && !isYours)
-			unhandledEvents.emplace_back(nullptr, ShipEvent::JUMP);
+			unhandledEvents.emplace_back(nullptr, shared_from_this(), ShipEvent::JUMP);
 		SetSystem(hyperspaceSystem);
 		hyperspaceSystem = nullptr;
 		targetSystem = nullptr;

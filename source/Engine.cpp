@@ -1884,9 +1884,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// Give the ship the list of visuals so that it can draw explosions,
 	// ion sparks, jump drive flashes, etc.
 	ship->Move(newVisuals, newFlotsam);
-	list<Ship::ShipEventInternal> unhandledShipEvents = ship->HandleEvents();
-	for(const auto &it : unhandledShipEvents)
-		eventQueue.emplace_back(it.actor, ship, it.type);
+	eventQueue.splice(eventQueue.end(), ship->HandleEvents());
 
 	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
