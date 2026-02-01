@@ -474,6 +474,7 @@ mission "Wanderers: Quarg Assistance 2"
 mission "Wanderers: Quarg Defenders"
 	landing
 	invisible
+	non-blocking
 	source "Spera Anatrusk"
 	to offer
 		has "Wanderers: Quarg Assistance 2: done"
@@ -621,15 +622,6 @@ mission "Wanderers: Mereti Observation"
 				accept
 	on enter "Mesuket"
 		dialog `You enter the target system and begin recording the communications of the Kor Mereti drones. It may take a while to collect all the data that the Wanderers need, but they have set up their equipment to notify you when it is done collecting.`
-	npc disable
-		government "Kor Sestor"
-		system "Mesuket"
-		personality staying heroic
-		fleet
-			names "kor sestor"
-			variant
-				"Met Par Tek 53"
-		dialog `The Wanderer recording device chirps at you to let you know that it has collected enough data. Time to return to <planet>.`
 	npc
 		government "Kor Sestor"
 		system "Mesuket"
@@ -638,7 +630,7 @@ mission "Wanderers: Mereti Observation"
 			names "kor sestor"
 			variant
 				"Kar Ik Vot 349"
-				"Met Par Tek 53" 2
+				"Met Par Tek 53" 3
 	npc
 		government "Kor Mereti"
 		system "Mesuket"
@@ -649,6 +641,12 @@ mission "Wanderers: Mereti Observation"
 				"Model 64"
 				"Model 32" 2
 				"Model 16" 5
+	timer 3600 3600
+		"pause when inactive"
+		"activation requirements"
+			system "Mesuket"
+		on timeup
+			dialog `The Wanderer recording device chirps at you to let you know that it has collected enough data. Time to return to <planet>.`
 	on visit
 		dialog `You've returned to <planet>, but you don't have enough data for the Wanderers. Return to Mesuket and wait until the device notifies you that it has enough data.`
 
@@ -993,6 +991,7 @@ mission "Wanderers: Mind 3"
 
 mission "Wanderers: Mind Escorts"
 	invisible
+	non-blocking
 	landing
 	source "Vara K'chrai"
 	to offer
@@ -1100,6 +1099,7 @@ event "wanderers: kor mereti language"
 mission "Wanderers: Kor Mereti Language"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Wanderers: Mind 5: done"
 	on offer
@@ -1155,6 +1155,7 @@ mission "Wanderers: Mind 6"
 mission "Wanderers: Kor Mereti Quarg Attitude Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: wanderers: kor mereti friendly"
 	on offer
@@ -1828,6 +1829,7 @@ mission "Wanderers: Sestor Search"
 mission "Wanderers: Sestor: Alnilam Fleet 1"
 	landing
 	invisible
+	non-blocking
 	destination "Farpoint"
 	to offer
 		has "Wanderers: Sestor Attack: done"
@@ -2170,6 +2172,7 @@ mission "Wanderers: Sestor: Quarg Help 2"
 mission "Wanderers: Sestor: Alnilam Fleet 2"
 	landing
 	invisible
+	non-blocking
 	source "Farpoint"
 	to offer
 		has "Wanderers: Sestor: Quarg Help 2: done"
@@ -2236,6 +2239,7 @@ mission "Wanderers: Sestor: Bomb Zenith 1"
 mission "Wanderers: Sestor: Farpoint Attack 2"
 	landing
 	invisible
+	non-blocking
 	source "Farpoint"
 	to offer
 		has "Wanderers: Sestor: Quarg Help 2: done"
@@ -2987,6 +2991,7 @@ event "liberated zenith"
 mission "Wanderers: Sestor Alt: Zenith Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Wanderers: Sestor Alt: Alnilam 2: done"
 	on offer
@@ -3269,6 +3274,7 @@ mission "Wanderers: Sestor: Factory 1"
 mission "Wanderers: Sestor: Factory Escorts"
 	landing
 	invisible
+	non-blocking
 	source "Desi Seledrak"
 	to offer
 		has "Wanderers: Sestor: Exiles 3: done"
@@ -3557,6 +3563,7 @@ mission "Wanderers: Sestor: Final: Patched"
 mission "Wanderers: Sestor: Combined Patch 1"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Wanderers: Sestor: Final: done"
 	to fail

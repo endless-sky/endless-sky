@@ -257,6 +257,8 @@ public:
 	static LargeGraphicsReduction GetLargeGraphicsReduction();
 	static const std::string &LargeGraphicsReductionSetting();
 
+	static void ToggleBlockScreenSaver();
+
 	static int GetPreviousSaveCount();
 
 #ifdef _WIN32
