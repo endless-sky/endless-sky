@@ -379,7 +379,7 @@ public:
 	void SetMapZoom(int level);
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
-	// Should help dialogs relating to carriers be displayed?
+	// Should help dialogs be displayed?
 	bool DisplayCarrierHelp() const;
 
 	// Advance any active mission timers that meet the right criteria.
