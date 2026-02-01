@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.11.0
+version 0.11.1-alpha
 
 The player's manual and other
 resources are available at:
