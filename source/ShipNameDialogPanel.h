@@ -33,8 +33,5 @@ public:
 
 private:
 	explicit ShipNameDialogPanel(DialogInit &init);
-
-
-private:
 	bool RandomName(const std::string &);
 };
