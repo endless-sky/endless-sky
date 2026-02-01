@@ -303,6 +303,12 @@ tip "heat capacity:"
 tip "hull (repair):"
 	`Total hull strength and repair rate per second. The smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
 
+tip "hull (damaged):"
+	`Total hull strength. This ship has suffered internal damage as a result of boarding, and will periodically lose control of its engines and weapons.`
+
+tip "hull (repair) (dmg.):"
+	`Total hull strength and repair rate per second. This ship has suffered internal damage as a result of boarding, and will periodically lose control of its engines and weapons.`
+
 tip "hull:"
 	`Total hull strength. Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
 
@@ -878,6 +884,9 @@ tip "shipyard: s"
 	`Sell the selected ships and their outfits.`
 
 tip "shipyard: r"
+	`Repair the selected ships' internal damage.`
+
+tip "shipyard: u"
 	`Sell the hulls of the selected ships, but retain the outfits in storage.`
 
 
@@ -888,6 +897,9 @@ tip "empty hull:"
 
 tip "  + outfits:"
 	`Price that all this ship's outfits would sell for.`
+
+tip "repair cost:"
+	`The cost of repairing this ship's internal damage.`
 
 
 
@@ -1260,6 +1272,9 @@ tip "no thruster!"
 
 tip "no steering!"
 	`This ship is unable to turn. You must install steering systems.`
+
+tip "internal damage?"
+	`This ship has suffered some internal damage. Its ability to control itself will be reduced until the damage is repaired at a shipyard.`
 
 tip "insufficient bunks?"
 	`This ship does not have enough bunks for its crew. It could become unresponsive at random times.`

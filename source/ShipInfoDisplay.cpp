@@ -189,6 +189,14 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	}
 	attributeValues.push_back(Format::AbbreviatedNumber(depreciated));
 	attributesHeight += 20;
+	// Only show the repair cost on scrolling panels with no risk of overflow.
+	bool hasInternalDamage = ship.InternalDamage();
+	if(scrollingPanel && hasInternalDamage)
+	{
+		attributeLabels.push_back("repair cost:");
+		attributeValues.push_back(Format::AbbreviatedNumber(ship.RepairCost()));
+		attributesHeight += 20;
+	}
 
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
@@ -213,7 +221,21 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		+ attributes.Get("delayed hull repair rate"))
 		* (1. + attributes.Get("hull repair multiplier"));
 	bool hasHullRepair = hullRepair > 0.;
-	if(hasHullRepair)
+	if(hasInternalDamage)
+	{
+		if(hasHullRepair)
+		{
+			attributeLabels.push_back("hull (repair) (dmg.):");
+			attributeValues.push_back(Format::Number(ship.MaxHull())
+				+ " (" + Format::Number(60. * hullRepair) + "/s)");
+		}
+		else
+		{
+			attributeLabels.push_back("hull (damaged):");
+			attributeValues.push_back(Format::Number(ship.MaxHull()));
+		}
+	}
+	else if(hasHullRepair)
 	{
 		attributeLabels.push_back("hull (repair):");
 		attributeValues.push_back(Format::Number(ship.MaxHull())
