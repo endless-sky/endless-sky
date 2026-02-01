@@ -455,7 +455,7 @@ bool NPC::Do(const ShipEvent &event, PlayerInfo &player, UI &ui, const Mission *
 			// displayed a second time below.
 			if(event.Type() & ShipEvent::CAPTURE)
 			{
-				shared_ptr copy = make_shared<Ship>(*ptr);
+				shared_ptr<Ship> copy = make_shared<Ship>(*ptr);
 				copy->SetUUID(ptr->UUID());
 				copy->Destroy();
 				shipEvents[copy.get()] = shipEvents[ptr.get()];
