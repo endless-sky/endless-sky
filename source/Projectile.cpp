@@ -84,7 +84,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	if(weapon->Homing() && cachedTarget)
 	{
 		confusionDirection = Random::Int(2) ? -1 : 1;
-		CheckLock(*cachedTarget);
+		CheckLock(cachedTarget, targetIsShip);
 		CheckConfused(*cachedTarget);
 	}
 }
@@ -118,7 +118,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	if(weapon->Homing() && cachedTarget)
 	{
 		confusionDirection = Random::Int(2) ? -1 : 1;
-		CheckLock(*cachedTarget);
+		CheckLock(cachedTarget, targetIsShip);
 		CheckConfused(*cachedTarget);
 	}
 }
