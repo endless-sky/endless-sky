@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../../source/ship/Ship.h"
+#include "../../../../source/body/Ship.h"
 
 // ... and any system includes needed for the test file.
 #include <memory>

@@ -16,11 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../../source/files/DataFile.h"
+#include "../../../../source/files/DataFile.h"
 
 // Include a helper functions.
 #include "datanode-factory.h"
-#include "../../../source/text/Format.h"
+#include "../../../../source/text/Format.h"
 #include "logger-output.h"
 #include "output-capture.hpp"
 

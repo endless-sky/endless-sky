@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../../source/ui/ScrollVar.h"
+#include "../../../../source/ui/ScrollVar.h"
 
 // ... and any system includes needed for the test file.
 

@@ -16,19 +16,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../../source/conditions/ConditionSet.h"
+#include "../../../../source/conditions/ConditionSet.h"
 
 // Include a helper for creating well-formed DataNodes (to enable creating non-empty ConditionSets).
 #include "datanode-factory.h"
 // Include DataWriter for read/write/read/write tests.
-#include "../../../source/files/DataWriter.h"
+#include "../../../../source/files/DataWriter.h"
 // Include a helper for handling logger output.
 #include "logger-output.h"
 // Include a helper for capturing & asserting on logged output.
 #include "output-capture.hpp"
 
 // Include ConditionStore, to enable usage of them for testing ConditionSets.
-#include "../../../source/conditions/ConditionsStore.h"
+#include "../../../../source/conditions/ConditionsStore.h"
 
 // ... and any system includes needed for the test file.
 #include <cstdint>

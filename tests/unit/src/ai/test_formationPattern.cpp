@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../../source/ai/FormationPattern.h"
+#include "../../../../source/ai/FormationPattern.h"
 
 // Include a helper for creating well-formed DataNodes (to use for loading formations).
 #include "datanode-factory.h"

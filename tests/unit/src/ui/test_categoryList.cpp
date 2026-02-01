@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../../source/ui/CategoryList.h"
+#include "../../../../source/ui/CategoryList.h"
 
 // Include a helper for creating well-formed DataNodes (to enable creating non-empty CategoryLists).
 #include "datanode-factory.h"
