@@ -150,12 +150,16 @@ target_sources(EndlessSkyLib PRIVATE
 	Hasher.h
 	Hazard.cpp
 	Hazard.h
+	HelpOverlay.cpp
+	HelpOverlay.h
 	HiringPanel.cpp
 	HiringPanel.h
 	InfoPanelState.cpp
 	InfoPanelState.h
 	Information.cpp
 	Information.h
+	InfoTag.cpp
+	InfoTag.h
 	Interface.cpp
 	Interface.h
 	ItemInfoDisplay.cpp
@@ -416,6 +420,8 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/OutlineShader.h
 	shader/PointerShader.cpp
 	shader/PointerShader.h
+	shader/PolygonShader.cpp
+	shader/PolygonShader.h
 	shader/RingShader.cpp
 	shader/RingShader.h
 	shader/Shader.cpp
