@@ -97,6 +97,8 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	Distribution.cpp
 	Distribution.h
+	Drawable.cpp
+	Drawable.h
 	Endpoint.cpp
 	Endpoint.h
 	Effect.cpp
