@@ -150,6 +150,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Hasher.h
 	Hazard.cpp
 	Hazard.h
+	HelpOverlay.cpp
+	HelpOverlay.h
 	HiringPanel.cpp
 	HiringPanel.h
 	InfoPanelState.cpp
