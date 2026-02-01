@@ -4414,7 +4414,6 @@ mission "Spaceport Reminder Setter"
 mission "Spaceport Reminder Resetter"
 	non-blocking
 	invisible
-	non-blocking
 	repeat
 	to offer
 		not "chosen sides"

@@ -77,7 +77,6 @@ ship "Tace Mesa"
 
 mission "The Silent Ones"
 	invisible
-	landing
 	non-blocking
 	entering
 	repeat

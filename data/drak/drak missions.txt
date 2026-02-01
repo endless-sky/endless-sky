@@ -14,7 +14,6 @@
 mission "Drak guarding Korath space"
 	invisible
 	non-blocking
-	landing
 	transition
 	repeat
 	source
@@ -43,7 +42,6 @@ mission "Drak guarding Korath space"
 mission "Drak guarding Sayaiban"
 	invisible
 	non-blocking
-	landing
 	transition
 	repeat
 	source
@@ -112,7 +110,6 @@ mission "Conversation on Sayaiban"
 mission "Drak guarding Void Sprites"
 	invisible
 	non-blocking
-	landing
 	entering
 	repeat
 	source
@@ -131,7 +128,6 @@ mission "Drak guarding Void Sprites"
 mission "Drak guarding Incipias space"
 	invisible
 	non-blocking
-	landing
 	transition
 	repeat
 	source

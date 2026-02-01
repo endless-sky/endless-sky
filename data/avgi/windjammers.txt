@@ -28,7 +28,6 @@ phrase empty
 mission "Avgi: Gossamer Sailors"
 	invisible
 	non-blocking
-	landing
 	transition
 	repeat
 	source
@@ -64,6 +63,7 @@ mission "Avgi: Gossamer Sailors"
 				"Sprout" 1
 		to despawn
 			has "avgi: windjammers despawn"
+
 	npc save
 		government "Indigenous Lifeform (Tree Two)"
 		personality timid uninterested mining mute

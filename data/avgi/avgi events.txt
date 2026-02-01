@@ -53,10 +53,10 @@ mission "Avgi: Aberrant Blockade"
 event "avgi: siege respite timer"
 	clear "avgi: aberrant siege respite"
 
+
 mission "Avgi: Initial Wandering Fleet"
 	invisible
 	non-blocking
-	landing
 	transition
 	repeat
 	source

@@ -16,7 +16,6 @@
 mission "Relic of Pasts"
 	invisible
 	non-blocking
-	landing
 	transition
 	source
 		system "Kanguwa"

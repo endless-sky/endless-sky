@@ -742,7 +742,6 @@ mission "Gegno Exploration Nudge Remover"
 mission "Vi Augen"
 	invisible
 	non-blocking
-	landing
 	transition
 	source
 		system "Kiluit"
