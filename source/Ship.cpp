@@ -3263,7 +3263,13 @@ double Ship::CurrentSpeed() const
 // Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
-	lastHitBy = sourceGovernment;
+	// If the damage source government deals a DoT effect to this ship that
+	// disables or kills it outside of this function call, that event should
+	// still be attributed to this government.
+	// Don't record hazards as having dealt the last hit (which have a nullptr
+	// source government).
+	if(sourceGovernment)
+		lastHitBy = sourceGovernment;
 	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
 
 	bool wasDisabled = IsDisabled();
@@ -4578,6 +4584,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 
 	if(hyperspaceCount == HYPER_C)
 	{
+		// Track the movements of mission NPCs.
 		if(isSpecial && !isYours)
 			unhandledEvents.emplace_back(nullptr, shared_from_this(), ShipEvent::JUMP);
 		SetSystem(hyperspaceSystem);

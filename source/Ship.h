@@ -779,6 +779,8 @@ private:
 
 	bool removeBays = false;
 
+	// If this ship is disabled or dies as a result of something like corrosion damage,
+	// attribute the event to the last government that hit this ship.
 	const Government *lastHitBy = nullptr;
 	std::list<ShipEvent> unhandledEvents;
 };
