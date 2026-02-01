@@ -76,14 +76,14 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
-	Audio::BlockPausing();
+	Audio::Pause();
 }
 
 
 
 PlanetPanel::~PlanetPanel()
 {
-	Audio::UnblockPausing();
+	Audio::Resume();
 }
 
 

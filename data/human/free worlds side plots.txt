@@ -858,7 +858,7 @@ mission "FW Greenrock Lost Announcement"
 						has "FW Pirates: Attack 3: done"
 				`	"It was probably going to happen sooner or later."`
 				`	"We shouldn't have wasted the resources on it at all."`
-			`	"I suppose, but things should have gone differently. The Free Worlds, and the Pact before that, was founded to eliminate piracy from the South, so I thought it was the right thing to do. We really put the pirates on the wire when we went straight for their guts.`
+			`	"I suppose, but things should have gone differently. The Free Worlds, and the Pact before that, was founded to eliminate piracy from the South, so I thought it was the right thing to do."`
 			choice
 				`	"Well, the most obvious threat to the Free Worlds' sovereignty is the Navy. Attacking Greenrock hasn't helped in that regard."`
 					goto challenge
