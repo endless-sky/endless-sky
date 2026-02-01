@@ -20,15 +20,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../text/FontSet.h"
 #include "../text/Format.h"
 #include "../files/GameData.h"
-#include "../ship/Outfit.h"
+#include "../body/ship/Outfit.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Point.h"
 #include "../util/Rectangle.h"
-#include "../ship/Ship.h"
+#include "../body/Ship.h"
 #include "../image/Sprite.h"
 #include "../image/SpriteSet.h"
 #include "../shader/SpriteShader.h"
-#include "../collision/Weapon.h"
+#include "../body/collision/Weapon.h"
 
 using namespace std;
 

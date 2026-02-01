@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../fleet/RaidFleet.h"
 #include "../util/RandomEvent.h"
 #include "../util/Set.h"
-#include "StellarObject.h"
+#include "../body/StellarObject.h"
 #include "../util/WeightedList.h"
 
 #include <set>

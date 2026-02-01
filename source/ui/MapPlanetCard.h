@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "MapPanel.h"
+#include "panels/map/MapPanel.h"
 
 #include <string>
 

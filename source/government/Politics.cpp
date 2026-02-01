@@ -21,8 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Random.h"
-#include "../ship/Ship.h"
-#include "../ship/ShipEvent.h"
+#include "../body/Ship.h"
+#include "../body/ship/ShipEvent.h"
 
 #include <algorithm>
 #include <cmath>

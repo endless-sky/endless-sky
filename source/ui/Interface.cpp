@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../text/Layout.h"
 #include "../shader/LineShader.h"
 #include "../shader/OutlineShader.h"
-#include "Panel.h"
+#include "panels/Panel.h"
 #include "../shader/PointerShader.h"
 #include "../util/Rectangle.h"
 #include "../shader/RingShader.h"

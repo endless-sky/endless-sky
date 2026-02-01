@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../ui/Interface.h"
 #include "../util/Point.h"
 #include "../util/Rectangle.h"
-#include "../ship/Ship.h"
+#include "../body/Ship.h"
 #include "../image/Sprite.h"
 #include "../map/System.h"
 

@@ -19,8 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/DataWriter.h"
 #include "../files/GameData.h"
 #include "Gamerules.h"
-#include "../ship/Outfit.h"
-#include "../ship/Ship.h"
+#include "../body/ship/Outfit.h"
+#include "../body/Ship.h"
 
 #include <algorithm>
 #include <cmath>

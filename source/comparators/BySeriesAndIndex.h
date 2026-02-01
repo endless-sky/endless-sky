@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../ui/CategoryList.h"
 #include "../ui/CategoryType.h"
 #include "../files/GameData.h"
-#include "../ship/Outfit.h"
-#include "../ship/Ship.h"
+#include "../body/ship/Outfit.h"
+#include "../body/Ship.h"
 
 namespace {
 	bool Helper(const Outfit &a, const Outfit &b, const std::string &nameA, const std::string &nameB)

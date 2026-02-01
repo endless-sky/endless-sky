@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/GameData.h"
 #include "../files/Logger.h"
 #include "../map/Planet.h"
-#include "../ship/Ship.h"
+#include "../body/Ship.h"
 #include "../image/Sprite.h"
 #include "../image/SpriteSet.h"
 #include "../map/System.h"

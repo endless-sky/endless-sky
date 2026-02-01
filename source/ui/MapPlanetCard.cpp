@@ -23,14 +23,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/GameData.h"
 #include "../government/Government.h"
 #include "Interface.h"
-#include "MapDetailPanel.h"
+#include "panels/map/MapDetailPanel.h"
 #include "../map/Planet.h"
 #include "../util/Point.h"
 #include "../shader/PointerShader.h"
 #include "Screen.h"
 #include "../image/Sprite.h"
 #include "../shader/SpriteShader.h"
-#include "../map/StellarObject.h"
+#include "../body/StellarObject.h"
 #include "../map/System.h"
 
 using namespace std;

@@ -23,11 +23,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../shader/FillShader.h"
 #include "../text/Format.h"
 #include "../files/GameData.h"
-#include "../ship/Outfit.h"
+#include "../body/ship/Outfit.h"
 #include "../player/PlayerInfo.h"
-#include "../ship/Ship.h"
+#include "../body/Ship.h"
 #include "../text/Table.h"
-#include "../collision/Weapon.h"
+#include "../body/collision/Weapon.h"
 
 #include <algorithm>
 #include <map>

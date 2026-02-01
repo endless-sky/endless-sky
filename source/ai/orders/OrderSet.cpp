@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "OrderSet.h"
 
-#include "../../ship/Ship.h"
+#include "../../body/Ship.h"
 
 #include <array>
 

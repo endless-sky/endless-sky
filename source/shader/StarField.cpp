@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StarField.h"
 
 #include "../util/Angle.h"
-#include "../util/Body.h"
+#include "../body/Body.h"
 #include "DrawList.h"
 #include "../files/GameData.h"
 #include "../ui/Interface.h"

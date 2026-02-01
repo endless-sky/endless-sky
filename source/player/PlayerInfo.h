@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Account.h"
-#include "../ship/CargoHold.h"
+#include "../body/ship/CargoHold.h"
 #include "../conditions/ConditionsStore.h"
 #include "CoreStartData.h"
 #include "../files/DataNode.h"

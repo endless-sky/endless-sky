@@ -22,14 +22,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "../mission/GameEvent.h"
 #include "../mission/LocationFilter.h"
-#include "../ship/Outfit.h"
+#include "../body/ship/Outfit.h"
 #include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../map/Port.h"
-#include "../ship/Ship.h"
+#include "../body/Ship.h"
 #include "../map/Shop.h"
 #include "../map/System.h"
-#include "../collision/Weapon.h"
+#include "../body/collision/Weapon.h"
 
 #include <iostream>
 #include <map>

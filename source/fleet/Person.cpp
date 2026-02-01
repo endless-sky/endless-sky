@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../ai/FormationPattern.h"
 #include "../files/GameData.h"
 #include "../government/Government.h"
-#include "../ship/Ship.h"
+#include "../body/Ship.h"
 #include "../map/System.h"
 
 using namespace std;

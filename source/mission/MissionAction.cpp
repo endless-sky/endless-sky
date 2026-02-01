@@ -15,18 +15,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MissionAction.h"
 
-#include "../ship/CargoHold.h"
-#include "../ui/ConversationPanel.h"
+#include "../body/ship/CargoHold.h"
+#include "../ui/panels/ConversationPanel.h"
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
-#include "../ui/DialogPanel.h"
+#include "../ui/panels/DialogPanel.h"
 #include "../ui/Endpoint.h"
 #include "../text/Format.h"
 #include "../files/GameData.h"
 #include "GameEvent.h"
-#include "../ship/Outfit.h"
+#include "../body/ship/Outfit.h"
 #include "../player/PlayerInfo.h"
-#include "../ship/Ship.h"
+#include "../body/Ship.h"
 #include "../text/TextReplacements.h"
 #include "../ui/UI.h"
 

@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../player/Preferences.h"
 #include "../util/Rectangle.h"
 #include "../shader/RingShader.h"
-#include "../map/StellarObject.h"
+#include "../body/StellarObject.h"
 #include "../map/System.h"
 #include "../map/Wormhole.h"
 

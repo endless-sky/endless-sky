@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../player/Gamerules.h"
 #include "../government/Government.h"
 #include "Hazard.h"
-#include "Minable.h"
+#include "../body/Minable.h"
 #include "Planet.h"
 #include "../util/Random.h"
 #include "../image/SpriteSet.h"

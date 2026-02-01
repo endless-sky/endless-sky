@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "NPC.h"
 
-#include "../ui/ConversationPanel.h"
+#include "../ui/panels/ConversationPanel.h"
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
-#include "../ui/DialogPanel.h"
+#include "../ui/panels/DialogPanel.h"
 #include "../text/Format.h"
 #include "../files/GameData.h"
 #include "../government/Government.h"
@@ -26,8 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../engine/Messages.h"
 #include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
-#include "../ship/Ship.h"
-#include "../ship/ShipEvent.h"
+#include "../body/Ship.h"
+#include "../body/ship/ShipEvent.h"
 #include "../map/System.h"
 #include "../ui/UI.h"
 

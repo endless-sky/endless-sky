@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hazard.h"
 #include "../util/Random.h"
 #include "../ui/Screen.h"
-#include "../engine/Visual.h"
+#include "../body/Visual.h"
 
 #include <cmath>
 

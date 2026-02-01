@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/Logger.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Random.h"
-#include "../ship/Ship.h"
+#include "../body/Ship.h"
 #include "../map/System.h"
 
 #include <cmath>
