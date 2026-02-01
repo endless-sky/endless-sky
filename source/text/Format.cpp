@@ -660,12 +660,9 @@ string Format::Percentage(double value, optional<int> decimalPlaces, bool trimTr
 string Format::StripCommas(const string &text)
 {
 	string result;
-	for(string::const_iterator it = text.begin() ; it != text.end() ; ++it)
-	{
-		const char c = *it;
+	for(char c : text)
 		if(c != ',')
 			result += c;
-	}
 	return result;
 }
 

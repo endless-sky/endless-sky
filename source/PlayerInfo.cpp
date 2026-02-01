@@ -489,7 +489,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 			const Gamerules *preset = GameData::GamerulesPresets().Find(presetName);
 			if(!preset)
 			{
-				child.PrintTrace("Warning: The gamerule preset \"" + presetName + "\" does not exist. "
+				child.PrintTrace("The gamerule preset \"" + presetName + "\" does not exist. "
 					"Falling back to the default gamerules.");
 				preset = &GameData::DefaultGamerules();
 			}

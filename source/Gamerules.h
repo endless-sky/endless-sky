@@ -108,8 +108,8 @@ private:
 		int noPersonSpawnWeight = 1000;
 		int npcMaxMiningTime = 3600;
 		double universalFrugalThreshold = .75;
-		double depreciationMin = 0.25;
-		double depreciationDaily = 0.997;
+		double depreciationMin = .25;
+		double depreciationDaily = .997;
 		int depreciationGracePeriod = 7;
 		int depreciationMaxAge = 1000;
 		FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;

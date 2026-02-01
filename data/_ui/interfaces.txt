@@ -319,7 +319,7 @@ interface "main menu"
 		center 435 195
 	button g "_Gamerules"
 		center 435 195
-		dimensions 120 30
+		dimensions 90 30
 	visible if "no pilot loaded"
 	button n "_New Pilot"
 		center 435 155
@@ -465,7 +465,7 @@ interface "start conditions menu"
 	active
 	button g "_Gamerules"
 		center -435 195
-		dimensions 120 30
+		dimensions 90 30
 	
 	# The box that will contain the description text
 	box "start description"

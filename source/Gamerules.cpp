@@ -142,7 +142,7 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 		if(storage.fleetMultiplier != preset.storage.fleetMultiplier)
 			out.Write("fleet multiplier", storage.fleetMultiplier);
 
-		const map<std::string, int> &otherMiscRules = preset.storage.miscRules;
+		const map<string, int> &otherMiscRules = preset.storage.miscRules;
 		for(const auto &[rule, value] : storage.miscRules)
 		{
 			auto sit = otherMiscRules.find(rule);
@@ -190,12 +190,7 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 	else if(rule == "system departure min")
 		storage.systemDepartureMin = preset.storage.systemDepartureMin;
 	else if(rule == "system arrival min")
-	{
-		if(storage.systemArrivalMin == preset.storage.systemArrivalMin)
-			storage.systemArrivalMin.reset();
-		else
-			storage.systemArrivalMin = preset.storage.systemArrivalMin;
-	}
+		storage.systemArrivalMin = preset.storage.systemArrivalMin;
 	else if(rule == "fleet multiplier")
 		storage.fleetMultiplier = preset.storage.fleetMultiplier;
 	else

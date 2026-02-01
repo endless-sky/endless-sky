@@ -686,8 +686,8 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		}
 		else if(key == "gamerules" && node.HasChildren())
 		{
-			node.PrintTrace("Warning: \"gamerules\" root node is deprecated. "
-				"Use `\"gamerules preset\" \"Default\"` instead");
+			node.PrintTrace("\"gamerules\" root node is deprecated. "
+				"Use `\"gamerules preset\" \"Default\"` instead.");
 			Gamerules *gamerules = gamerulesPresets.Get("Default");
 			if(overwrite)
 				*gamerules = Gamerules();
