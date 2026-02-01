@@ -257,7 +257,7 @@ void MapSalesPanel::DrawKey(Information &info) const
 		info.SetCondition("only stored here");
 
 	const Interface *keyInterface = GameData::Interfaces().Get("map: sales key");
-	keyInterface->Draw(info, nullptr);
+	keyInterface->Draw(info);
 }
 
 

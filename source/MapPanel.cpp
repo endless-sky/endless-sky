@@ -613,7 +613,7 @@ bool MapPanel::Scroll(double dx, double dy)
 
 Color MapPanel::MapColor(double value)
 {
-	if(isnan(value))
+	if(std::isnan(value))
 		return UninhabitedColor();
 
 	value = min(1., max(-1., value));
@@ -674,7 +674,7 @@ Color MapPanel::GovernmentColor(const Government *government)
 
 Color MapPanel::DangerColor(const double danger)
 {
-	if(isnan(danger))
+	if(std::isnan(danger))
 		return *GameData::Colors().Get("map danger none");
 	else if(danger > .5)
 		return Color(.6, .4 * (2. - 2. * min(1., danger)), 0., .4);

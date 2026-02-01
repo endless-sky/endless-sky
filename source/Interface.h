@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Truncate.h"
 #include "text/WrappedText.h"
 
-#include <limits>
 #include <map>
 #include <memory>
 #include <string>
