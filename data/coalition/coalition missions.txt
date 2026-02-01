@@ -89,6 +89,7 @@ mission "Coalition: First Contact"
 mission "Discovered Coalition Space"
 	landing
 	invisible
+	non-blocking
 	source
 		government "Heliarch"
 	on offer
@@ -142,6 +143,7 @@ mission "Coalition: Contributor"
 # For pre-0.9.7 compatibility
 mission "Coalition License Patch"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Coalition: Contributor: done"
@@ -155,6 +157,7 @@ mission "Coalition License Patch"
 mission "lost in coalition"
 	landing
 	invisible
+	non-blocking
 	source
 		government "Coalition" "Heliarch"
 	to offer
@@ -2170,6 +2173,7 @@ mission "Coalition: Council of Ahr: Chamgar"
 
 mission "Coalition: Council of Ahr: Drama"
 	invisible
+	non-blocking
 	landing
 	to offer
 		or
@@ -2716,6 +2720,7 @@ mission "Coalition: Expeditions Past 7"
 
 mission "Coalition: Expeditions Past 7B"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Coalition: Expeditions Past 6: done"
@@ -3075,6 +3080,7 @@ mission "Coalition: Long Lost Property 3"
 # Replace the below two missions once some sort of "on board" child of "npc" exists.
 mission "Coalition: Long Lost Property 3A"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Coalition: Long Lost Property 2: active"
@@ -3095,6 +3101,7 @@ mission "Coalition: Long Lost Property 3A"
 
 mission "Coalition: Long Lost Property 3B"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Coalition: Long Lost Property 2: active"
@@ -3766,6 +3773,7 @@ event "beyond the hyperdrive is published"
 mission "Coalition: Beyond the Hyperdrive Fail Book Discovered 2"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: beyond the hyperdrive is published"
 	on offer

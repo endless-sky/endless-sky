@@ -13,6 +13,8 @@
 
 mission "Drak guarding Korath space"
 	invisible
+	non-blocking
+	landing
 	transition
 	repeat
 	source
@@ -40,6 +42,8 @@ mission "Drak guarding Korath space"
 
 mission "Drak guarding Sayaiban"
 	invisible
+	non-blocking
+	landing
 	transition
 	repeat
 	source
@@ -107,6 +111,8 @@ mission "Conversation on Sayaiban"
 
 mission "Drak guarding Void Sprites"
 	invisible
+	non-blocking
+	landing
 	entering
 	repeat
 	source
@@ -124,6 +130,8 @@ mission "Drak guarding Void Sprites"
 
 mission "Drak guarding Incipias space"
 	invisible
+	non-blocking
+	landing
 	transition
 	repeat
 	source
@@ -142,6 +150,7 @@ mission "Drak guarding Incipias space"
 # Mission for those who had a savefile prior to 0.9.15 with the old Archon missions
 mission "Archon Personality Compatibility Patch"
 	invisible
+	non-blocking
 	landing
 	on offer
 		fail "Drak guarding Korath space"

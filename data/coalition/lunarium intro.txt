@@ -13,6 +13,7 @@
 
 mission "Lunarium Initial Log"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Lunarium introduced"
