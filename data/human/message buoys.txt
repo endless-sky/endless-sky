@@ -221,7 +221,7 @@ mission "Message Buoy: Martini Restricted"
 	to offer
 		"reputation: Republic" < 80
 		has "event: war begins"
-		not "main plot completed"
+		not "martini recovers"
 	on offer
 		message
 			text "Message buoy to Merchant ships: Due to the attacks of July 4, 3015, access to the Republic planet of Martini is restricted."
@@ -238,7 +238,7 @@ mission "Message Buoy: Geminus Restricted"
 	to offer
 		"reputation: Republic" < 80
 		has "event: war begins"
-		not "main plot completed"
+		not "geminus rebuilt"
 	on offer
 		message
 			text "Message buoy to Merchant ships: Due to the attacks of July 4, 3015, access to the Republic planet of Geminus is restricted."
