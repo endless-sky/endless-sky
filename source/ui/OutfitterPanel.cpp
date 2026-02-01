@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../text/Alignment.h"
 #include "../comparators/BySeriesAndIndex.h"
 #include "../util/Color.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "../text/DisplayText.h"
 #include "../shader/FillShader.h"
 #include "../text/Font.h"
@@ -105,7 +105,7 @@ namespace {
 			case OutfitterPanel::OutfitLocation::Storage:
 				return "storage";
 			default:
-				throw "unreachable";
+				throw runtime_error("unreachable");
 		}
 	}
 }
@@ -133,7 +133,8 @@ void OutfitterPanel::Step()
 	CheckRefill();
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::OUTFITTER);
-	if(GetUI()->IsTop(this) && !checkedHelp)
+	ShopPanel::ValidateSelectedShips();
+	if(GetUI().IsTop(this) && !checkedHelp)
 		// Use short-circuiting to only display one of them at a time.
 		// (The first valid condition encountered will make us skip the others.)
 		if(DoHelp("outfitter") || DoHelp("cargo management") || DoHelp("uninstalling and storage")
@@ -365,9 +366,9 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 	// Prevent coding up bad combinations.
 	if(fromLocation == toLocation)
-		throw "unreachable; to and from are the same";
+		throw runtime_error("unreachable; to and from are the same");
 	if(fromLocation == OutfitLocation::Shop && toLocation == OutfitLocation::Storage)
-		throw "unreachable; unsupported to/from combination";
+		throw runtime_error("unreachable; unsupported to/from combination");
 
 	// Handle special cases such as maps and licenses.
 	int mapSize = selectedOutfit->Get("map");
@@ -380,15 +381,20 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 		bool mapMinables = selectedOutfit->Get("map minables");
 		if(mapSize > 0 && player.HasMapped(mapSize, mapMinables))
 			return "You have already mapped all the systems shown by this map, so there is no reason to buy another.";
+		return true;
 	}
 
-	if(HasLicense(selectedOutfit->TrueName()))
+	if(IsLicense(selectedOutfit->TrueName()))
 	{
-		if(fromLocation != OutfitLocation::Shop)
-			return "You cannot " + actionName + " licenses. Once you obtain one, it is yours permanently.";
-		if(toLocation == OutfitLocation::Cargo || toLocation == OutfitLocation::Storage)
-			return "You cannot place licenses into " + LocationName(toLocation) + ".";
-		return "You already have one of these licenses, so there is no reason to buy another.";
+		if(HasLicense(selectedOutfit->TrueName()))
+		{
+			if(fromLocation != OutfitLocation::Shop)
+				return "You cannot " + actionName + " licenses. Once you obtain one, it is yours permanently.";
+			if(toLocation == OutfitLocation::Cargo || toLocation == OutfitLocation::Storage)
+				return "You cannot place licenses into " + LocationName(toLocation) + ".";
+			return "You already have one of these licenses, so there is no reason to buy another.";
+		}
+		return true;
 	}
 
 	bool canSource = false;
@@ -534,7 +540,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			break;
 		}
 		default:
-			throw "unreachable";
+			throw runtime_error("unreachable");
 	}
 
 	// Collect relevant errors.
@@ -660,7 +666,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			break;
 		}
 		default:
-			throw "unreachable";
+			throw runtime_error("unreachable");
 	}
 
 	return canSource && canPlace;
@@ -750,6 +756,8 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 		}
 		else if(toLocation == OutfitLocation::Cargo)
 		{
+			if(!outfitter.Has(selectedOutfit))
+				howManyPer = min(howManyPer, player.Stock(selectedOutfit));
 			// Buy up to <modifier> of the selected outfit and place them in fleet cargo.
 			double mass = selectedOutfit->Mass();
 			if(mass)
@@ -1114,7 +1122,7 @@ void OutfitterPanel::CheckRefill()
 		message += (count == 1) ? "?" : "s?";
 		if(cost)
 			message += " It will cost " + Format::CreditString(cost) + ".";
-		GetUI()->Push(new Dialog(this, &OutfitterPanel::Refill, message));
+		GetUI().Push(new DialogPanel(this, &OutfitterPanel::Refill, message));
 	}
 }
 

@@ -191,6 +191,8 @@ target_sources(EndlessSkyLib PRIVATE
 	map/Wormhole.h
 	mission/Conversation.cpp
 	mission/Conversation.h
+	mission/DialogSettings.cpp
+	mission/DialogSettings.h
 	mission/DistanceCalculationSettings.cpp
 	mission/DistanceCalculationSettings.h
 	mission/GameAction.cpp
@@ -324,8 +326,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ui/ClickZone.h
 	ui/ConversationPanel.cpp
 	ui/ConversationPanel.h
-	ui/Dialog.cpp
-	ui/Dialog.h
+	ui/DialogPanel.cpp
+	ui/DialogPanel.h
 	ui/FrameTimer.cpp
 	ui/FrameTimer.h
 	ui/GameLoadingPanel.cpp
@@ -394,8 +396,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ui/ShipInfoDisplay.h
 	ui/ShipInfoPanel.cpp
 	ui/ShipInfoPanel.h
-	ui/ShipNameDialog.cpp
-	ui/ShipNameDialog.h
+	ui/ShipNameDialogPanel.cpp
+	ui/ShipNameDialogPanel.h
 	ui/ShipyardPanel.cpp
 	ui/ShipyardPanel.h
 	ui/ShopPanel.cpp
@@ -429,6 +431,7 @@ target_sources(EndlessSkyLib PRIVATE
 	util/EsUuid.cpp
 	util/EsUuid.h
 	util/ExclusiveItem.h
+	util/Hasher.h
 	util/pi.h
 	util/Point.cpp
 	util/Point.h

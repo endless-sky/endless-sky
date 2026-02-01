@@ -218,6 +218,15 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				planetBribeAcceptanceHail = nullptr;
 			else if(key == "planet bribe rejection hail")
 				planetBribeRejectionHail = nullptr;
+			else if(key == "tribute hails")
+			{
+				tributeAlreadyPaying = nullptr;
+				tributeUndefined = nullptr;
+				tributeUnworthy = nullptr;
+				tributeFleetLaunching = nullptr;
+				tributeFleetUndefeated = nullptr;
+				tributeSurrendered = nullptr;
+			}
 			else if(key == "language")
 				language.clear();
 			else if(key == "send untranslated hails")
@@ -240,6 +249,8 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				atrocityOutfits.clear();
 				atrocityShips.clear();
 			}
+			else if(key == "bribe threshold")
+				bribeThreshold = 0.;
 			else
 				child.PrintTrace("Cannot \"remove\" the given key:");
 
@@ -421,6 +432,33 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			else
 				travelRestrictions = LocationFilter(child, visitedSystems, visitedPlanets);
 		}
+		else if(key == "tribute hails" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() != 2)
+				{
+					grand.PrintTrace("Skipping unrecognized attribute:");
+					continue;
+				}
+				bool removeTributePhrase = grand.Token(0) == "remove";
+				const string &grandKey = grand.Token(remove);
+				if(grandKey == "already paying")
+					tributeAlreadyPaying = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "undefined")
+					tributeUndefined = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "unworthy")
+					tributeUnworthy = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet launching")
+					tributeFleetLaunching = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet undefeated")
+					tributeFleetUndefeated = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "surrendered")
+					tributeSurrendered = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
 				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
@@ -437,9 +475,11 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		else if(key == "crew defense")
 			crewDefense = max(0., add ? child.Value(valueIndex) + crewDefense : child.Value(valueIndex));
 		else if(key == "bribe")
-			bribe = add ? bribe + child.Value(valueIndex) : child.Value(valueIndex);
+			bribe = child.Value(valueIndex) + (add ? bribe : 0.);
+		else if(key == "bribe threshold")
+			bribeThreshold = child.Value(valueIndex) + (add ? bribeThreshold : 0.);
 		else if(key == "fine")
-			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
+			fine = child.Value(valueIndex) + (add ? fine : 0.);
 		else if(add)
 			child.PrintTrace("Unsupported use of add:");
 		else if(key == "display name")
@@ -591,6 +631,16 @@ double Government::GetBribeFraction() const
 
 
 
+// This government will never accept a bribe if the player's reputation
+// with them is below this value, if it is negative. If the value is 0,
+// bribes are accepted regardless of reputation.
+double Government::GetBribeThreshold() const
+{
+	return bribeThreshold;
+}
+
+
+
 double Government::GetFineFraction() const
 {
 	return fine;
@@ -676,6 +726,48 @@ string Government::GetPlanetBribeAcceptanceHail() const
 string Government::GetPlanetBribeRejectionHail() const
 {
 	return planetBribeRejectionHail ? planetBribeRejectionHail->Get() : "I do not want your money.";
+}
+
+
+
+const Phrase *Government::TributeAlreadyPaying() const
+{
+	return tributeAlreadyPaying;
+}
+
+
+
+const Phrase *Government::TributeUndefined() const
+{
+	return tributeUndefined;
+}
+
+
+
+const Phrase *Government::TributeUnworthy() const
+{
+	return tributeUnworthy;
+}
+
+
+
+const Phrase *Government::TributeFleetLaunching() const
+{
+	return tributeFleetLaunching;
+}
+
+
+
+const Phrase *Government::TributeFleetUndefeated() const
+{
+	return tributeFleetUndefeated;
+}
+
+
+
+const Phrase *Government::TributeSurrendered() const
+{
+	return tributeSurrendered;
 }
 
 

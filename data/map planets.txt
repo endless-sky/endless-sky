@@ -256,7 +256,21 @@ planet Antipode
 	attributes core frontier frozen mining
 	landscape land/snow17
 	description `Antipode is a world of creeping glaciers and year-round snow, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
+		to display
+			not "start: syndicate"
 	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile that they have had very little success.`
+		to display
+			not "start: syndicate"
+
+	description `Antipode is a frozen, unforgiving world, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
+		to display
+			has "start: syndicate"
+	description `	What little amenities are available for the people living here are of subpar quality; a third of the houses lack a dedicated heating system, and it can take months before a store is able to restock its goods.`
+		to display
+			has "start: syndicate"
+	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile, and living conditions so squalid, that they have had very little success.`
+		to display
+			has "start: syndicate"
 	spaceport `The spaceport consists of a single enormous warehouse. The air inside is cold, but you are glad to get out of the howling wind. In one corner is a counter advertising skiing adventures, but no one is staffing it; they must be out to lunch or taking the day off.`
 	spaceport `	As with many of these small spaceports, it seems that the only option for food is a pub, but the smells coming from it are enticing; for once, you may have found a spaceport bar whose chef actually knows how to cook.`
 	security 0.1
@@ -350,7 +364,18 @@ planet Asgard
 	description `Asgard was one of the first worlds to be settled in the Deep. It is now home to many crowded cities, with soaring skyscrapers that are made of lightweight composite materials rather than the steel and concrete so commonly used elsewhere.`
 	description `	This is also the home of Deep Sky, a manufacturing firm that produces a wide variety of expensive and useful starship equipment.`
 	spaceport `As with many of the worlds here in the Deep, walking around this spaceport feels like making a visit to the future. Everything is immaculately clean. The port is a single building reminiscent of a sand castle or termite mound: a jumble of spires, each a slightly different shape, all piled on top of each other. Docking bays open on various sides of the spires in a haphazard arrangement. It feels like this building is an organic thing, rather than the work of human hands.`
+		to display
+			not "start: deep"
 	spaceport `	The locals hurry by, seemingly oblivious to your presence; the only people who meet your gaze are your fellow wide-eyed visitors.`
+		to display
+			not "start: deep"
+	
+	spaceport `Everything is immaculately clean. The port is a single building reminiscent of a sand castle or termite mound: a jumble of spires, each a slightly different shape, all piled on top of each other. Docking bays open on various sides of the spires in a haphazard arrangement. The liberal use of flowing shapes and earthen colors makes the building look almost organic, rather than the work of human hands.`
+		to display
+			has "start: deep"
+	spaceport `	The locals hurry by in a mesmerising, yet purposeful, manner. You spot some stragglers in the crowd, seemingly enraptured by the people around them.`
+		to display
+			has "start: deep"
 	shipyard "Lionheart Basics"
 	shipyard "Lionheart Advanced"
 	outfitter "Deep Sky Advanced"
@@ -390,12 +415,6 @@ planet Asphodel
 	landscape land/haze0
 	description `Despite being nominally in the habitable zone, this planet's surface is continually scorched by the stars of Gacrux and their solar flares, steadily blasting away its atmosphere. A joint venture of three major universities from Chiron has placed some small research stations in orbit around Asphodel, and while they provide valuable insights into the nature and behavior of flare stars, the researchers generally avoid descending to the planet's surface unnecessarily. None of the stations appear to have the facilities to service your ship, however.`
 	government Uninhabited
-
-planet Aspiration
-	attributes pirate
-	landscape land/sea17-harro
-	description `The world of Aspiration appears to be a mild, habitable world, but one currently in an advanced ice age now slowly retreating. The equatorial region of the planet is warm and comfortable, a cool temperate at the present time. The native biosphere seems to be mostly grasses and something resembling pine trees. In a few thousand years, it might look similar to Earth before it was paved over. For now, it's a sparse world with a single major town built on a promontory, overlooking a wide river mouth which carries runoff from continental scale glaciers to the sea.`
-	spaceport `The spaceport on Aspiration is a spaceport in the same way that an airport at a regional town is an airport. It has the most minimal facilities to handle a ship landing without disturbance to the nearby town, and that is it. There are no shops or stalls. Aspiration is not on any trade routes and it does not expect visitors. A lone freighter is parked permanently on the outskirts.`
 
 planet Asterus
 	attributes moon uninhabited
@@ -1245,21 +1264,6 @@ planet "Desi Seledrak"
 	description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles. It may be centuries before the skies clear and this world begins to thaw.`
 	security 0
 
-planet Devil-Eye
-	attributes "whispering void"
-	landscape land/badlands6
-	description `There are a few sturdy mesas on which to land, but most of this planet is rough rock and dirt. Despite the lack of sunlight, the surface is warm. There must be internal processes in the planet generating heat. The scanners on your computer show a network of caves reaching deep below ground. There's high radiation in the caves, too much to support human life. Crystalline formations that coat the cave walls block detailed scans. Advanced geological scanners might enlighten you further.`
-	description `	There are automated deuterium refineries on this planet, siphoning deuterium from cave walls. The refinery equipment looks Hai in origin. Some mesas have fuel pumps, filling containers with fuel for later transport to the planet's moon.`
-
-planet "Devil-Run Wormhole"
-	spaceport ``
-	wormhole "Devil-Run Wormhole"
-
-wormhole "Devil-Run Wormhole"
-	mappable
-	link "Deep Space 7C" Devil-Run
-	link Devil-Run "Deep Space 7C"
-
 planet "Devru Kaska"
 	attributes korath sestor station
 	landscape land/station27
@@ -1399,7 +1403,12 @@ planet Earth
 	attributes education factory "near earth" research tourism urban
 	landscape land/city20
 	description `The ancestral home world of humanity, Earth has a population twice that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
-	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, settlements of less than a million are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
+		to display
+			not "start: syndicate"
+	description `The ancestral home world of humanity, as well as your own birthplace, Earth has a population twice that of any other planet. Sprawling cities cover its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
+		to display
+			has "start: syndicate"
+	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, smaller settlements are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
 	spaceport `Earth's spaceport is a series of massive buildings; the gaps between them form narrow concrete canyons a hundred stories deep. From a distance it has the appearance of a bustling termite mound.`
 	spaceport `	Inside the towers is a warren of dim hallways and dingy shops. Hitchhikers sleep in the corners of unused docking bays under old army blankets, a few uniformed cleaners try to keep the litter and dust in check, and rich tourists from other stars cling tightly to their expensive cameras.`
 	outfitter "Common Outfits"
@@ -1472,13 +1481,6 @@ planet "Elek Kartanu"
 	landscape land/lava2
 	description `You have no idea what has happened to this planet, and you are not sure you want to know. The atmosphere is unusually hot and wet for a planet this distance from its sun, and the ocean levels seem to have dropped significantly in the recent past, leaving barnacles and bleached coral exposed to the air all around the shorelines. The wind is frenzied and full of wild energy, and the fog moves like a living creature.`
 	security 0
-
-planet Elenchus
-	attributes "whispering void"
-	landscape land/space2
-	description `Beneath the surface of this small moon, there is a network of corridors and large rooms. The architecture looks mostly human, but with a hint of Hai. Most are blocked off by sturdy doors with keycard access and plentiful security cameras. Frequently, you see a symbol similar to the Syndicate logo. Everywhere you walk, a security camera turns to track your movement. You get the feeling that you're not welcome here.`
-	"required reputation" 10
-	bribe 0
 
 planet Elthe
 	attributes avgi frontier mining moon shipping
@@ -2333,6 +2335,18 @@ planet Greenwater
 	attributes farming fishing hai "hai: human presence" "human tourism"
 	landscape land/myrabella2
 	description `Greenwater is one of the few worlds in Hai space that is home to a sizable human population. The temperature on most of the planet's surface is too warm for the Hai, but tolerable for human beings. Close to the equator are scattered human settlements for farming or fishing, which trade with the Hai cities closer to the poles for technology and equipment.`
+		to display
+			not "start: hai"
+	
+	description `Greenwater is unique among Hai worlds, not only in that it is home to a sizable human population, but also because it happens to be the world where you grew up.`
+		to display
+			has "start: hai"
+	description `	Most of the humans here live as fishers and farmers on islands and archipelagoes across the equator of Greenwater, where the Hai seldom visit on account of their heavy fur coats. According to those from beyond the wormhole, the climate here is like a Paradise Planet, even though it lacks the extensive terraforming common to those worlds.`
+		to display
+			has "start: hai"
+	description `	Thanks to its high human population, the human language is dominant on Greenwater, with the Hai language limited to the poles of the planet where Hai merchants are more frequent.`
+		to display
+			has "start: hai"
 	spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
 	spaceport `	Like many other Hai planets, the spaceport signs and menus for the largest restaurants are written in both Hai and human. What is unusual, however, is how some shops don't use any Hai text, perhaps due to Greenwater's larger human population.`
 	shipyard "Imo Loo Mer Basics"
@@ -3124,7 +3138,7 @@ planet Kuj-Sol-Nnesa
 planet Kumkapi
 	attributes moon uninhabited
 	landscape land/mars0
-	description `While this moon's minerals aren't particularly rare or exotic, its closeness to Viminal has made it the subject of many mining projects over the centuries - efforts to find traces of the valuable Key Stones which permit travel through this region of space. None of them were successful, and most Remnant scientists believe that Kumkapi formed somewhere else and was captured by Vimnal's gravitational pull at some time during its formation.`
+	description `While this moon's minerals aren't particularly rare or exotic, its closeness to Viminal has made it the subject of many mining projects over the centuries - efforts to find traces of the valuable Key Stones which permit travel through this region of space. None of them were successful, and most Remnant scientists believe that Kumkapi formed somewhere else and was captured by Viminal's gravitational pull at some time during its formation.`
 	description `	When the absence of Key Stones became clear, most scientific and mining interests faded away, and today the surface is scattered with abandoned outposts whose somber tunnels are thousand-kilometer labyrinths.`
 	government Uninhabited
 	security 0
@@ -3308,11 +3322,17 @@ planet Mainsail
 	attributes paradise rich
 	landscape land/water13
 	description `Mainsail is a water world: although there are some settlements on dry land, the largest cities are floating, artificial islands, which travel between hemispheres over the course of the year pursuing the most ideal weather. Other, smaller islands are privately owned by single families or corporations. Mainsail is a prohibitively expensive place to live.`
+		to display
+			not "start: paradise"
+	description `Mainsail is a water world: although there are some settlements on dry land, the largest cities are floating, artificial islands, which travel between hemispheres over the course of the year pursuing the most ideal weather. Other, smaller islands are privately owned by single families or corporations, such as your own family. Mainsail is a prohibitively expensive place to live.`
+		to display
+			has "start: paradise"
 	description `	Centuries ago Mainsail was home to pirates of the old-fashioned variety, fleets of motor boats or even old-fashioned sailing vessels that would launch raids against the city-ships.`
 	spaceport `The spaceport is on its own city-ship floating some distance away from the others, so that the locals need not deal with the noise and uncouth manners of spacefarers. Surrounding the port is a ring of docks where barges are moored; on platforms farther "inland," starships land.`
 	spaceport `	Few goods are produced here; most of the people rich enough to live on Mainsail are connected with interplanetary corporations whose physical business takes place elsewhere.`
 	shipyard "Basic Ships"
 	shipyard "Betelgeuse Basics"
+	shipyard "Luxury Ships"
 	outfitter "Basic Outfits"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
@@ -3354,6 +3374,11 @@ planet Mani
 	description `	The native plant life mostly consists of pale-colored lichens and a few species of grass. The only animals are insects.`
 	spaceport `The spaceport is shaped like a wheel with no rim: a series of spokes jutting out from a central hub, where each spoke is a docking tunnel that can connect to any ship that lands beside it.`
 	spaceport `	Inside are about a dozen people and a couple hundred robots. The people and robots alike seem uninterested in any interactions with you. It is a strange sort of aloofness that you have heard is common to all the worlds in the Deep.`
+		to display
+			not "start: deep"
+	spaceport `	Inside are about a dozen people and a couple hundred robots. Everyone appears to be busy; you decide not to interrupt their work.`
+		to display
+			has "start: deep"
 	outfitter "Ammo North"
 	security 0.6
 	tribute 500
@@ -3532,7 +3557,18 @@ planet Midgard
 	attributes deep factory mining urban
 	landscape land/city5
 	description `Midgard is a world with as much geographic diversity as Earth itself: mountains, tundra, desert, oceans, marshes, plains. It was the second world in the Deep to be settled, seven centuries ago. It is now home to dozens of major metropolitan areas and a population of over four billion. Although a select few live outside the cities and work in farming or ranching, the vast majority of people here have jobs in manufacturing.`
+		to display
+			not "start: deep"
 	description `	Food, fashion, and entertainment here all strike you as out of pace with broader galactic culture. The deep independent history of the planet makes it less likely to simply follow the latest Earth trends as the more recent colonies do.`
+		to display
+			not "start: deep"
+	
+	description `Midgard is a world with as much geographic diversity as Earth itself: mountains, tundra, desert, oceans, marshes, plains. It was the second world in the Deep to be settled, seven centuries ago. It is now home to dozens of major metropolitan areas and a population of over four billion, and is where you were born. Although a select few live outside the cities and work in farming or ranching, the vast majority of people here have jobs in manufacturing.`
+		to display
+			has "start: deep"
+	description `	The long, independent history of the planet and region as a whole has separated its culture from the broader galaxy. An example of this is the tradition of "tributation." Certain nights every year, the citizens of the Deep leave out saucers of milk and sweet bread as an offering to the 'elves:' pale, delicate beings said to protect the Deep.`
+		to display
+			has "start: deep"
 	spaceport `The spaceport is located in the center of the city of New Reykjavik, a bustling metropolis which is also Midgard's center of government. The port was built five hundred years ago, and its architecture is much more conservative than other ports in the Deep: instead of domes and rounded, wavy surfaces, it is a collection of tall, square granite towers, connected by bridges at various levels. Most of the hotels and restaurants are in a central tower, slightly higher than the others.`
 	spaceport `	There is no central marketplace; instead, you can just buy or sell cargo from a computer terminal and a robotic forklift will arrive at your docking bay to carry it.`
 	shipyard "Basic Ships"
@@ -3677,7 +3713,13 @@ planet Muspel
 	landscape land/canyon9
 	description `Muspel is a hot world of deserts, canyons, and warm-water oceans. It is mostly a mining and manufacturing planet, and as a result there are few lifelong inhabitants; most of the people here are migrant workers who are just trying to save up enough money to settle down somewhere more hospitable.`
 	description `	Some tourists also come here, to walk through the sandstone canyons where the wind and rain has carved the rock into tall pillars and spires. A few particularly beautiful canyons are protected against strip mining by local law.`
-	spaceport `The spaceport here is rudimentary: a collection of concrete landing pads clustered around a single large building. The building is designed with layers of color and rounded spires that mimic the canyonlands. From a distance, it would be indistinguishable from the natural rock outcroppings if it were not for the glitter of sunlight off the windows. Inside, people move at a slower and calmer pace than you have seen elsewhere in the Deep.`
+	spaceport `The spaceport here is rudimentary: a collection of concrete landing pads clustered around a single large building. The building is designed with layers of color and rounded spires that mimic the canyonlands. From a distance, it would be indistinguishable from the natural rock outcroppings if it were not for the glitter of sunlight off the windows.`
+	spaceport `	Inside, people move at a slower and calmer pace than you have seen elsewhere in the Deep.`
+		to display
+			not "start: deep"
+	spaceport `	Inside, people move at a slower and calmer pace, something which appears friendlier to tourists than other parts of the Deep.`
+		to display
+			has "start: deep"
 	bribe 0.03
 	security 0.6
 	tribute 600
@@ -3830,9 +3872,23 @@ planet "New Austria"
 planet "New Boston"
 	attributes "dirt belt" farming textiles
 	landscape land/water2
+	description `New Boston is a completely unremarkable world. Most of its land is wet and marshy, and the coastal regions are prone to flooding. The planet's economy is largely agricultural; some of the farms here grow food for export to Earth and elsewhere, but most farmland is dedicated to fiber crops, destined for processing in the textile mills of the spaceport city.`
+		to display
+			not "start: default"
+
 	description `New Boston is a completely unremarkable world... except, of course, for the fact that you happen to have been born here.`
+		to display
+			has "start: default"
 	description `	Most of the land is wet and marshy, and the coastal regions are prone to flooding. Some food crops are grown here, but most of the farmers instead plant flax and jute, which grow well in wet soil and are used to make linen and burlap cloth. The textile mills are hot and poorly ventilated, but they offer higher and more reliable income than farming.`
+		to display
+			has "start: default"
+	
 	spaceport `Someday New Boston may be a prosperous enough planet to afford a better spaceport, but not yet. Many of the concrete landing pads have sunk into the muddy soil over the years since they were poured, and are now tilted and uneven.`
+		to display
+			has "start: default"
+	spaceport `New Boston's shabby spaceport is about as basic as a spaceport can be. Many of the concrete landing pads are tilted and uneven, sunken into the muddy soil over time, and you have to be careful when touching down.`
+		to display
+			not "start: default"
 	spaceport `	The market where ship captains buy and sell cargo is a large tent rather than a permanent building, but it is sturdy enough to keep off the rain. Loads are brought in and out by trucks and the occasional hovercraft. Here some enterprising local mechanics have set up not only a repair shop and outfitter, but also a shipyard with several small, refurbished ships for sale.`
 	spaceport `	A smaller tent has been set up beside the market. Inside are various pamphlets for Remembrance Day events occurring on New Boston.`
 		to display

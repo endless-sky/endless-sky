@@ -190,6 +190,15 @@ void ImageSet::Load() noexcept(false)
 	// not actually be allocated until the first image is loaded (at which point
 	// the sprite's dimensions will be known).
 	size_t frames = paths[0].size();
+	// If there are fewer frames of swizzle mask than base image, only use the
+	// first swizzle mask frame. Send a warning if any are discarded.
+	size_t swizzleMaskFrames = paths[2].size();
+	if(swizzleMaskFrames > 1 && swizzleMaskFrames < frames)
+	{
+		Logger::Log("Discarding " + to_string(swizzleMaskFrames - 1) + " frames of swizzle mask because there"
+			" are more frames of animation. Only the first swizzle mask frame will be used.", Logger::Level::WARNING);
+		swizzleMaskFrames = 1;
+	}
 
 	// Check whether we need to generate collision masks.
 	bool makeMasks = IsMasked(name);
@@ -197,8 +206,8 @@ void ImageSet::Load() noexcept(false)
 	const auto UpdateFrameCount = [&]()
 	{
 		buffer[1].Clear(frames);
-		buffer[2].Clear(frames);
-		buffer[3].Clear(frames);
+		buffer[2].Clear(swizzleMaskFrames);
+		buffer[3].Clear(swizzleMaskFrames);
 
 		if(makeMasks)
 			masks.resize(frames);
@@ -232,18 +241,6 @@ void ImageSet::Load() noexcept(false)
 				Logger::Log("Failed to create collision mask for " + fileName, Logger::Level::WARNING);
 		}
 	}
-
-	auto FillSwizzleMasks = [&](vector<filesystem::path> &toFill, unsigned int intendedSize)
-	{
-		if(toFill.size() == 1 && intendedSize > 1)
-			for(unsigned int i = toFill.size(); i < intendedSize; i++)
-				toFill.emplace_back(toFill.back());
-	};
-	// If there is only a swizzle-mask defined for the first frame fill up the swizzle-masks
-	// with this mask.
-	FillSwizzleMasks(paths[2], paths[0].size());
-	FillSwizzleMasks(paths[3], paths[0].size());
-
 
 	auto LoadSprites = [&](const vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier)
 	{
@@ -282,10 +279,8 @@ void ImageSet::Upload(Sprite *sprite, bool enableUpload)
 			it.Clear();
 
 	// Load the frames (this will clear the buffers).
-	sprite->AddFrames(buffer[0], false, noReduction);
-	sprite->AddFrames(buffer[1], true, noReduction);
-	sprite->AddSwizzleMaskFrames(buffer[2], false, noReduction);
-	sprite->AddSwizzleMaskFrames(buffer[3], true, noReduction);
+	sprite->AddFrames(buffer[0], buffer[1], noReduction);
+	sprite->AddSwizzleMaskFrames(buffer[2], buffer[3], noReduction);
 
 	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
 	masks.clear();

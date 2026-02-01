@@ -31,6 +31,7 @@ class DataNode;
 class Fleet;
 class Government;
 class Outfit;
+class Phrase;
 class PlayerInfo;
 class Ship;
 class Sprite;
@@ -198,6 +199,7 @@ private:
 	const Government *government = nullptr;
 	double requiredReputation = 0.;
 	double bribe = 0.01;
+	double bribeThreshold = 0.;
 	double security = .25;
 	bool inhabited = false;
 	bool customSecurity = false;
@@ -218,6 +220,13 @@ private:
 	mutable size_t defenseDeployed = 0;
 	// Ships that have been created by instantiating its defense fleets.
 	mutable std::list<std::shared_ptr<Ship>> defenders;
+
+	const Phrase *tributeAlreadyPaying = nullptr;
+	const Phrase *tributeUndefined = nullptr;
+	const Phrase *tributeUnworthy = nullptr;
+	const Phrase *tributeFleetLaunching = nullptr;
+	const Phrase *tributeFleetUndefeated = nullptr;
+	const Phrase *tributeSurrendered = nullptr;
 
 	Wormhole *wormhole = nullptr;
 	std::vector<const System *> systems;

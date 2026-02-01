@@ -215,7 +215,10 @@ void DistanceMap::Init(const Ship *ship)
 		// if you're going there, all routes would include that same danger.
 		// (It is slightly redundant that this includes the danger of the
 		//  starting system instead, but the code is simpler this way.)
-		nextEdge.danger += currentSystem->Danger();
+		// The danger level only actually matters for the player's flagship,
+		// since combat only occurs in the player's system.
+		if(player && (!ship || player->Flagship() == ship))
+			nextEdge.danger += currentSystem->Danger();
 
 		// Increment the travel time to include the next system. The fuel cost will be
 		// incremented later, because it depends on what type of travel is being done.
@@ -342,7 +345,6 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool linked, b
 	// Can never go where you don't know about.
 	if(!player->HasSeen(to))
 		return false;
-
 
 	// Check if Propagate produced links using hyperlanes you don't know about.
 	// If hyperlink status is known: OK, you know it, so we can trust the results.

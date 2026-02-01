@@ -135,6 +135,7 @@ mission "First Contact: Remnant"
 mission "Remnant: Blood Test Patch v2"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: ember waste label"
 		not "Remnant: Scanning Tolerances: done"
@@ -148,6 +149,7 @@ mission "Remnant: Blood Test Patch v2"
 mission "Remnant: Lost in Ember Waste: Trigger"
 	landing
 	invisible
+	non-blocking
 	source
 		government "Remnant"
 	to offer
@@ -736,6 +738,7 @@ mission "Remnant: Void Sprites 3"
 mission "Remnant: Gascraft-Puffin Compatibility"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: remnant: gascraft"
 	on offer
@@ -959,6 +962,17 @@ mission "Remnant: Deep Surveillance"
 				has "Terminus exploration: done"
 				not "Deep: Remnant 0: done"
 			has "Deep: Remnant Research: offered"
+	substitutions
+		"<compared>" "The complex looks pristine by <region> standards, but when compared"
+		"<compared>" "Compared"
+			or
+				has "start: deep"
+				has "start: paradise"
+				has "start: hai"
+		"<region>" "Dirt Belt"
+			has "start: default"
+		"<region>" "Earth, and even Syndicate"
+			has "start: syndicate"
 	on offer
 		conversation
 			branch "told before"
@@ -1244,7 +1258,7 @@ mission "Remnant: Deep Surveillance"
 			branch "retrieved before"
 				"retrieved information" == 2
 			
-			`	You look up the location of Ivan's office that he gave you back when you helped him save the science drone in Terminus and find that it is in a building just outside the spaceport - just one room among many in a massive office complex. The complex looks pristine by Dirt Belt standards, but when compared to architecture you've seen elsewhere in the Deep, it is rather brutalistic.`
+			`	You look up the location of Ivan's office that he gave you back when you helped him save the science drone in Terminus and find that it is in a building just outside the spaceport, just one room among many in a massive office complex. <compared> to architecture you've seen elsewhere in the Deep, it's rather brutalistic.`
 			branch gone
 				has "Deep: Remnant Research: offered"
 			
@@ -1653,9 +1667,9 @@ mission "Remnant: Tech Retrieval"
 			branch familiar
 				has "remnant met taely"
 			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to be staying out of her way as if she were someone important.`
-			`	In contrast, she reminds you of the mechanics who maintained the textile factories back on <starting planet>. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
+			`	In contrast, she reminds you of the mechanics who maintained the textile factories back on <home planet>. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
 				to display
-					has "human space start"
+					has "start: default"
 			`	Before you can decide if you want to avoid this person or not, she is standing in front of you, clearing her throat. "You are captain <first> <last> of the <ship>?" She asks in a lyrical chant.`
 			choice
 				`	"That's me."`
@@ -1977,6 +1991,7 @@ mission "Remnant: S-970 Regenerator"
 mission "Remnant: Tech Retrieval Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		not "Remnant: Tech Retrieval: offered"
 		or
@@ -1991,6 +2006,7 @@ mission "Remnant: Tech Retrieval Patch"
 
 mission "Remnant: Taely Intro Log"
 	invisible
+	non-blocking
 	source
 		government "Remnant"
 	to offer
@@ -2003,6 +2019,7 @@ mission "Remnant: Taely Intro Log"
 
 mission "Remnant: Taely Penguin Log"
 	invisible
+	non-blocking
 	to offer
 		has "Remnant: Taely Intro Log: failed"
 		has "Remnant: Face to Maw 2: done"
@@ -2014,6 +2031,7 @@ mission "Remnant: Taely Penguin Log"
 
 mission "Remnant: Chilia Intro Log"
 	invisible
+	non-blocking
 	source
 		government "Remnant"
 	to offer
@@ -2026,6 +2044,7 @@ mission "Remnant: Chilia Intro Log"
 
 mission "Remnant: Chilia Intro Log 2"
 	invisible
+	non-blocking
 	source
 		government "Remnant"
 	to offer
@@ -2038,6 +2057,7 @@ mission "Remnant: Chilia Intro Log 2"
 
 mission "Remnant: Chilia Intro Log 3"
 	invisible
+	non-blocking
 	source
 		government "Remnant"
 	to offer
@@ -2053,6 +2073,7 @@ mission "Remnant: Return the Samples"
 	description "A researcher on <planet> has asked you to return void sprite eggs to Nasqueron that the Remnant stole many years ago."
 	source "Aventine"
 	stopover "Nasqueron"
+	cargo "void sprite eggs" 6
 	to offer
 		has "Remnant: Technology Available: offered"
 		random < 50
@@ -2095,6 +2116,7 @@ mission "Remnant: Return the Samples 2"
 	description "Plume has asked you to return more stolen eggs, this time to Slylandro. Then return to <planet> with footage of the void sprites."
 	source "Aventine"
 	stopover "Slylandro"
+	cargo "void sprite eggs" 6
 	to offer
 		has "Remnant: Return the Samples: done"
 	on offer
@@ -2137,6 +2159,7 @@ mission "Remnant: Return the Samples 2"
 mission "Remnant: Travel Restrictions Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Remnant: Return the Samples 2: done"
 		not "remnant: travel restrictions cleared"
@@ -2866,6 +2889,7 @@ mission "Remnant: Broken Jump Drive 5"
 mission "Remnant: remnant research update compatibility"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: remnant research update bjd1"
 	on offer
@@ -3204,6 +3228,7 @@ mission "Remnant: Keystone Research 3B"
 
 mission "Remnant: Keystone Research 3C"
 	invisible
+	non-blocking
 	landing
 	source
 		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
@@ -3216,6 +3241,7 @@ mission "Remnant: Keystone Research 3C"
 
 mission "Remnant: Keystone Research 3D"
 	invisible
+	non-blocking
 	landing
 	source
 		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
@@ -3228,6 +3254,7 @@ mission "Remnant: Keystone Research 3D"
 
 mission "Remnant: Keystone Research 3E"
 	invisible
+	non-blocking
 	landing
 	source
 		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
@@ -3240,6 +3267,7 @@ mission "Remnant: Keystone Research 3E"
 
 mission "Remnant: Keystone Research 3F"
 	invisible
+	non-blocking
 	landing
 	source
 		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
@@ -3252,6 +3280,7 @@ mission "Remnant: Keystone Research 3F"
 
 mission "Remnant: Keystone Research 3G"
 	invisible
+	non-blocking
 	landing
 	source
 		planet "Makerplace" "Stonebreak" "Giverstone" "Cloudfire" "Snowfeather" "Icelake" "Heartvalley"
@@ -3280,7 +3309,7 @@ mission "Remnant: Keystone Research 4"
 		payment 2000000
 		conversation
 			`As you descend through the clouds to Viminal, you get the feeling someone is watching you, but your sensors show nothing more than a smattering of Gulls and a patrol squad in the distance. Looking down, you spot an extra battery of anti-air artillery next to the main entrance to the spaceport. You note the weapons tracking you and quickly tap your recognition code into the IFF system. Within seconds, the large guns are swinging back to cover the initial approach.`
-			`	Passing through a cavernous opening into the great spaceport dome, there is a shimmer in the air next to you as a Starling fades into view, settling onto the adjacent platform. The pilot signs a quick, "Greetings, anticipating talking with you," before heading back toward their lock. Behind them, the Starling continues its shutdown checks without any supervision at all.`
+			`	Passing through a cavernous opening into the great spaceport dome, there is a shimmer in the air next to you as a Starling fades into view, settling onto the adjacent platform. The pilot signs a quick "Greetings, anticipating talking with you," before heading back toward their lock. Behind them, the Starling continues its shutdown checks without any supervision at all.`
 			`	As you finish your own shutdown routine, your commlink informs you that your account has been updated with <payment>.`
 
 
@@ -3314,15 +3343,15 @@ mission "Remnant: Keystone Research 5"
 	on offer
 		conversation
 			`You exit the ship to find that the pilot is actually Aeolus, who has already marshaled some dock workers with a number of wagons and lifters to unload the cargo.`
-			`	"Ah, <first>, thank you for retrieving all these keystones." He sweeps some kind of a device over the crates, then opens one. He pokes at the contents, and pulls out a brochure with a picture of a quantum keystone and a pair of respectable looking Hai. "What's this?" He asks curiously. "Because I bought a keystone, they think I might need more? That seems like a decidedly inefficient way of promoting their product."`
+			`	"Ah, <first>, thank you for retrieving all these keystones." He sweeps some kind of a device over the crates, then opens one. He pokes at the contents, and pulls out a brochure with a picture of a quantum keystone and a pair of respectable looking Hai. "What's this?" he asks curiously. "Because I bought a keystone, they think I might need more? That seems like a decidedly inefficient way of promoting their product."`
 			choice
 				`	"I'm not a fan of it either."`
 				`	"Those 'inefficient' capitalists did provide a keystone at one twentieth the cost you do."`
 					goto capitalists
-			`	"You will probably do well here, then. Keep production and resources focused on the goal, that always made the most sense to me." Aeolus signs with confidence. "But economic theory aside, we have some science to do.`
+			`	"You will probably do well here, then. Keep production and resources focused on the goal, that always made the most sense to me," Aeolus signs with confidence. "But economic theory aside, we have some science to do.`
 				goto work
 			label capitalists
-			`	"You've got a point there." Signs Aeolus. "Assuming they value a credit the same as we do and they aren't taking a loss, then it appears they do have a significant production and processing cost advantage." He takes on a defensive tone. "But for all we know, the supply of raw materials is much greater in Hai space, or most of these keystones could be simply recycled from older ships. And that is something we want to figure out." He brightens again. "That being said, we already have the first steps set out."`
+			`	"You've got a point there," signs Aeolus. "Assuming they value a credit the same as we do and they aren't taking a loss, then it appears they do have a significant production and processing cost advantage." He takes on a defensive tone. "But for all we know, the supply of raw materials is much greater in Hai space, or most of these keystones could be simply recycled from older ships. And that is something we want to figure out." He brightens again. "That being said, we already have the first steps set out."`
 			label work
 			`	"Our researchers have decided that we need to test how a ship performs with one of these keystones compared to a regular Key Stone. My ship has been outfitted with one built from the samples you brought us earlier. We request that you meet us in Peragenor, where you will scan us after going through the wormhole. Then we will return here and swap out the Hai keystone with one of our Key Stones. Then we will go back to Peragenor and perform another scan. By using the same ships for both tests, we should be able to get the best data."`
 			choice
@@ -3790,7 +3819,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 			label "storm resume"
 			`	"Not really, although it does contribute to it. Most of the red glow seems to be the result of clouds of hydrogen gases at approximately 2710 degrees, rather like the process documented by early Earth astronomers investigating nebulae. Except for most of these clouds, there is no obvious source of energy to keep the hydrogen excited. Obviously there is still energy being added to the system, but..." She trails off and gestures deprecatingly. "One more mystery to keep us alert and attentive."`
 			`	She smiles thoughtfully, and the display changes with the red haze vanishing and a silvery haze replacing it. "But that is where today's research comes in. We have been measuring these storms since we arrived in the Ember Waste. The human eye can only pick out a few of them on the display, but our algorithms have identified a significant number of ripples of energy." She appears thoughtful.`
-			`	"It is almost like watching the surface of a pond during a rainstorm: The surface appears to be chaotic, but with detailed enough instrumentation, one can pick out individual ripples and trace their paths backwards... except we have yet to find an actual source for any of them. We can trace every ripple on a pond in a storm and find its origin, but we have yet to learn the dance that we have lived in for half a millennia."`
+			`	"It is almost like watching the surface of a pond during a rainstorm: The surface appears to be chaotic, but with detailed enough instrumentation, one can pick out individual ripples and trace their paths backwards... except we have yet to find an actual source for any of them. We can trace every ripple on a pond in a storm and find its origin, but we have yet to learn the dance that we have lived in for half a millennium."`
 			choice
 				`	"What do the storms have to do with the heat?"`
 				`	"What units do you use for temperature?"`

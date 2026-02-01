@@ -33,6 +33,7 @@ color "dead" .4 0. 0. 0.
 # Colors used for certain UI elements. These elements generally have a variable
 # size (e.g. they may fit to the current screen dimensions).
 color "panel background" .1 .1 .1 1.
+color "performance info background" .1 .1 .1 .7
 color "dialog backdrop" 0. 0. 0. .7
 color "conversation background" .125 .125 .125 1.
 color "map side panel background" .125 .125 .125 1.
@@ -222,38 +223,39 @@ color "plugin reload required" .75 .1 .1 0.
 interface "performance info"
 	anchor top left
 	fill
-		from 400 5 to 560 55
-		color "panel background"
+		from 560 5 to 720 55
+		color "performance info background"
 	visible if "ready"
 	string "cpu"
-		from 410 16
+		from 570 16
 		color "medium"
 		align left
 	string "gpu"
-		from 410 30
+		from 570 30
 		color "medium"
 		align left
 	string "mem"
-		from 410 44
+		from 570 44
 		color "medium"
 		align left
 	visible if "!ready"
 	label "CPU: calculating..."
-		from 410 16
+		from 570 16
 		color "medium"
 		align left
 	label "GPU: calculating..."
-		from 410 30
+		from 570 30
 		color "medium"
 		align left
 	label "MEM: calculating..."
-		from 410 44
+		from 570 44
 		color "medium"
 		align left
 
 
 
 interface "map detail panel"
+	anchor top right
 	value "min planet panel height" 195
 	value "max planet panel height" 2022
 	value "starting X" 100
@@ -266,6 +268,12 @@ interface "map detail panel"
 	value "description x offset" 240
 	value "description width" 500
 	value "description height" 240
+	visible if "has escort destination"
+	sprite "ui/wide button"
+		center -256 56
+	button c "Cancel order"
+		center -256 56
+		dimensions 90 30
 
 
 
@@ -313,8 +321,12 @@ interface "main menu"
 	button e "_Enter Ship"
 		center 435 155
 		dimensions 90 30
-	visible if "!pilot loaded"
+	visible if "no pilot loaded"
 	button n "_New Pilot"
+		center 435 155
+		dimensions 90 30
+	visible if "pilot dead"
+	button r "_Reload Pilot"
 		center 435 155
 		dimensions 90 30
 	
@@ -393,7 +405,7 @@ interface "menu player info"
 interface "menu start info"
 	visible if "chosen start"
 	image "thumbnail"
-		center 360 -100
+		center 360 -105
 		dimensions 220 240
 	label "name:"
 		from 250 -35
@@ -501,7 +513,7 @@ interface "load menu"
 	active
 	button o "_Open Saves"
 		center -435 195
-		dimensions 120 30
+		dimensions 90 30
 	
 	active if "pilot alive"
 	button a "_Add Snapshot"
@@ -524,8 +536,14 @@ interface "load menu"
 
 
 interface "controls"
-	sprite "ui/keys panel"
-		center -65 -20
+	sprite "ui/settings four buttons"
+		center -337 -180
+	sprite "ui/settings audio bar"
+		center 285 -82
+	sprite "ui/settings keys box"
+		center -350 102
+	sprite "ui/settings base panel"
+		center -1 -20
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -575,8 +593,12 @@ interface "controls"
 
 
 interface "settings"
-	sprite "ui/settings panel"
-		center -20 -20
+	sprite "ui/settings four buttons"
+		center -337 -180
+	sprite "ui/settings audio bar"
+		center 285 -82
+	sprite "ui/settings base panel"
+		center -1 -20
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -614,8 +636,14 @@ interface "settings"
 
 
 interface "plugins"
-	sprite "ui/plugins panel"
-		center -20 -20
+	sprite "ui/settings four buttons"
+		center -337 -180
+	sprite "ui/settings audio bar"
+		center 285 -82
+	sprite "ui/settings base panel"
+		center -1 -20
+	sprite "ui/very wide button"
+		center -194 210
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -659,8 +687,12 @@ interface "plugins"
 
 
 interface "audio"
-	sprite "ui/settings panel"
-		center -20 -20
+	sprite "ui/settings four buttons"
+		center -337 -180
+	sprite "ui/settings audio bar"
+		center 285 -82
+	sprite "ui/settings base panel"
+		center -1 -20
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -1125,6 +1157,9 @@ interface "hud"
 	sprite "ui/red alert"
 		from 10 10
 		align top left
+	visible if "nuke alert"
+	sprite "icon/nuke"
+		from 24 24
 	visible
 	sprite "ui/radar"
 		from 0 0
@@ -1485,9 +1520,50 @@ interface "planet"
 	box "content"
 		from -240 80 to 240 320
 	
+	visible if "has trade"
+	sprite "ui/planet dialog button"
+		center -340 90
+	button t "_Trading"
+		center -340 90
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has job board"
+	sprite "ui/planet dialog button"
+		center -340 145
+	button j "_Job Board"
+		center -340 145
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible
+	sprite "ui/planet dialog button"
+		center -340 200
+	button i "Player _Info"
+		center -340 200
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has bank"
+	sprite "ui/planet dialog button"
+		center -340 255
+	button b "_Bank"
+		center -340 255
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has port"
 	sprite "ui/planet dialog button"
 		center -340 310
-	button i "Player _Info"
+	"dynamic button" p "port name"
 		center -340 310
 		dimensions 140 40
 		size 18
@@ -1514,15 +1590,6 @@ interface "planet"
 		align right
 		pad 10 0
 	
-	visible if "has job board"
-	sprite "ui/planet dialog button"
-		center -340 145
-	button j "_Job Board"
-		center -340 145
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
 	visible if "can hire crew"
 	sprite "ui/planet dialog button"
 		center 340 200
@@ -1533,37 +1600,7 @@ interface "planet"
 		align right
 		pad 10 0
 	
-	visible if "has trade"
-	sprite "ui/planet dialog button"
-		center -340 90
-	button t "_Trading"
-		center -340 90
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
-	
-	visible if "has bank"
-	sprite "ui/planet dialog button"
-		center -340 200
-	button b "_Bank"
-		center -340 200
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
-	
-	visible if "has port"
-	sprite "ui/planet dialog button"
-		center -340 255
-	"dynamic button" p "port name"
-		center -340 255
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
 	visible
-	
 	active if "has ship"
 	sprite "ui/planet dialog button"
 		center 340 310
@@ -1588,9 +1625,50 @@ interface "planet (small screen)"
 	box "content"
 		from -300 80 to 180 320
 	
+	visible if "has trade"
+	sprite "ui/planet dialog button"
+		center -400 90
+	button t "_Trading"
+		center -400 90
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has job board"
+	sprite "ui/planet dialog button"
+		center -400 145
+	button j "_Job Board"
+		center -400 145
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible
+	sprite "ui/planet dialog button"
+		center -400 200
+	button i "Player _Info"
+		center -400 200
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has bank"
+	sprite "ui/planet dialog button"
+		center -400 255
+	button b "_Bank"
+		center -400 255
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has port"
 	sprite "ui/planet dialog button"
 		center -400 310
-	button i "Player _Info"
+	"dynamic button" p "port name"
 		center -400 310
 		dimensions 140 40
 		size 18
@@ -1617,15 +1695,6 @@ interface "planet (small screen)"
 		align right
 		pad 10 0
 	
-	visible if "has job board"
-	sprite "ui/planet dialog button"
-		center -400 145
-	button j "_Job Board"
-		center -400 145
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
 	visible if "can hire crew"
 	sprite "ui/planet dialog button"
 		center 280 200
@@ -1636,37 +1705,7 @@ interface "planet (small screen)"
 		align right
 		pad 10 0
 	
-	visible if "has trade"
-	sprite "ui/planet dialog button"
-		center -400 90
-	button t "_Trading"
-		center -400 90
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
-	
-	visible if "has bank"
-	sprite "ui/planet dialog button"
-		center -400 200
-	button b "_Bank"
-		center -400 200
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
-	
-	visible if "has port"
-	sprite "ui/planet dialog button"
-		center -400 255
-	"dynamic button" p "port name"
-		center -400 255
-		dimensions 140 40
-		size 18
-		align left
-		pad 10 0
 	visible
-	
 	active if "has ship"
 	sprite "ui/planet dialog button"
 		center 280 310
@@ -2031,7 +2070,7 @@ interface "hiring (small screen)"
 
 interface "trade"
 	box "content"
-		from -240 80 to 250 355
+		from -250 80 to 250 355
 	
 	fill
 		center 0 95
@@ -2290,6 +2329,94 @@ interface "map"
 		center 0 58
 		size 18
 		color "map route error text"
+
+
+
+interface "map: mission view: key"
+	anchor bottom left
+	sprite "ui/mission key"
+		align bottom left
+		from 0 0
+	pointer
+		align left
+		center 15 -90
+		dimensions 10 18
+		"orientation angle" 135
+		color "available job"
+	pointer
+		align left
+		center 15 -70
+		dimensions 10 18
+		"orientation angle" 135
+		color "unavailable job"
+	pointer
+		align left
+		center 15 -50
+		dimensions 10 18
+		"orientation angle" 135
+		color "active mission"
+	pointer
+		align left
+		center 15 -30
+		dimensions 10 18
+		"orientation angle" 135
+		color "blocked mission"
+	pointer
+		align left
+		center 15 -10
+		dimensions 10 18
+		"orientation angle" 135
+		color "waypoint"
+	visible if "available"
+	label "Available job; can accept"
+		align bottom left
+		from 18 -87
+		color bright
+	visible if "!available"
+	label "Available job; can accept"
+		align bottom left
+		from 18 -87
+		color dim
+	visible if "unavailable"
+	label "Too little space to accept"
+		align bottom left
+		from 18 -67
+		color bright
+	visible if "!unavailable"
+	label "Too little space to accept"
+		align bottom left
+		from 18 -67
+		color dim
+	visible if "active"
+	label "Active job; go here to complete"
+		align bottom left
+		from 18 -47
+		color bright
+	visible if "!active"
+	label "Active job; go here to complete"
+		align bottom left
+		from 18 -47
+		color dim
+	visible if "blocked"
+	label "Has unfinished requirements"
+		align bottom left
+		from 18 -27
+		color bright
+	visible if "!blocked"
+	label "Has unfinished requirements"
+		align bottom left
+		from 18 -27
+		color dim
+	visible if "waypoint"
+	label "System of importance"
+		align bottom left
+		from 18 -7
+		color bright
+	visible if "!waypoint"
+	label "System of importance"
+		align bottom left
+		from 18 -7
+		color dim
 
 
 

@@ -37,7 +37,7 @@ void MenuAnimationPanel::Step()
 	alpha -= .02f;
 	// Kill this panel if the animation is done.
 	if(alpha <= 0.f)
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 }
 
 

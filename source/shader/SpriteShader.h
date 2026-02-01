@@ -38,6 +38,7 @@ public:
 		const Swizzle *swizzle = nullptr;
 		float frame = 0.f;
 		float frameCount = 1.f;
+		bool uniqueSwizzleMaskFrames = false;
 		float position[2] = {0.f, 0.f};
 		float transform[4] = {0.f, 0.f, 0.f, 0.f};
 		float blur[2] = {0.f, 0.f};

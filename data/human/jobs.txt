@@ -3105,7 +3105,7 @@ mission "FW Cold Aid [2]"
 
 
 mission "Bounty Hunting (Very Tiny)"
-	name "Wanted corsair near <system>"
+	name "Wanted fighter near <system>"
 	description "A small pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
@@ -3113,44 +3113,34 @@ mission "Bounty Hunting (Very Tiny)"
 	"apparent payment" 25000
 	to offer
 		or
-			"combat rating" > 15
+			"combat rating" > 2
 			has "ships: Interceptor"
 			has "ships: Light Warship"
-		"combat rating" < 80
-		random < 40
+		or
+			and
+				"combat rating" < 80
+				random < 55
+			and
+				"combat rating" < 54
+				random < 50
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
-		fleet
-			names "pirate"
-			variant 3
-				"Scrapper"
-			variant 6
-				"Sparrow"
-			variant
-				"Wasp"
-			variant
-				"Wasp (Gatling)"
-			variant
-				"Wasp (Javelin)"
-			variant
-				"Wasp (Meteor)"
-			variant
-				"Wasp (Plasma)"
-			variant
-				"Wasp (Proton)"
+			distance 1 3
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
+		fleet "Bounty (Very Tiny)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 25000
 			fail
 
 mission "Bounty Hunting (Very Tiny, Local)"
-	name "Wanted corsair entering <system>"
+	name "Wanted fighter entering <system>"
 	description "A small pirate fighter named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
@@ -3158,39 +3148,18 @@ mission "Bounty Hunting (Very Tiny, Local)"
 	"apparent payment" 25000
 	to offer
 		or
-			"combat rating" > 15
+			"combat rating" > 2
 			has "ships: Interceptor"
 			has "ships: Light Warship"
 		"combat rating" < 80
-		random < 15
+		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
-		personality heroic entering staying nemesis target
-		fleet
-			names "pirate"
-			variant
-				"Scrapper"
-			variant
-				"Scrapper (Gatling)"
-			variant
-				"Scrapper (Mod Blaster)"
-			variant 4
-				"Sparrow"
-			variant 2
-				"Sparrow (Gatling)"
-			variant 2
-				"Wasp"
-			variant
-				"Wasp (Javelin)"
-			variant
-				"Wasp (Meteor)"
-			variant
-				"Wasp (Plasma)"
-			variant
-				"Wasp (Proton)"
+		personality heroic entering staying marked target
+		fleet "Bounty (Very Tiny)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 25000
@@ -3199,579 +3168,381 @@ mission "Bounty Hunting (Very Tiny, Local)"
 
 
 mission "Bounty Hunting (Tiny)"
-	name "Wanted outlaw near <system>"
-	description "A well armed pirate fighter named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted interceptor near <system>"
+	description "A well armed pirate interceptor named the <npc> has been attacking merchants near the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
 	"apparent payment" 50000
 	to offer
 		or
-			"combat rating" > 30
+			"combat rating" > 7
 			has "ships: Interceptor"
 			has "ships: Light Warship"
-		"combat rating" < 200
-		random < 30
+		or
+			and
+				"combat rating" < 125
+				random < 55
+			and
+				"combat rating" < 54
+				random < 50
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
-		fleet
-			names "pirate"
-			variant
-				"Hawk"
-			variant
-				"Hawk (Rocket)"
-			variant
-				"Hawk (Speedy)"
-			variant
-				"Hawk (Bomber)"
-			variant
-				"Berserker"
-			variant
-				"Berserker (Afterburner)"
-			variant
-				"Berserker (Strike)"
-			variant
-				"Fury"
-			variant
-				"Fury (Missile)"
-			variant
-				"Fury (Heavy)"
-			variant
-				"Fury (Laser)"
-			variant
-				"Fury (Bomber)"
+			distance 2 3
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
+		fleet "Bounty (Tiny)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 50000
 			fail
 
 mission "Bounty Hunting (Tiny, Local)"
-	name "Wanted outlaw entering <system>"
-	description "A well armed pirate fighter named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted interceptor entering <system>"
+	description "A well armed pirate interceptor named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 3
 	"apparent payment" 50000
 	to offer
 		or
-			"combat rating" > 30
+			"combat rating" > 7
 			has "ships: Interceptor"
 			has "ships: Light Warship"
-		"combat rating" < 200
-		random < 20
+		"combat rating" < 54
+		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
-		personality heroic entering staying nemesis target
-		fleet
-			names "pirate"
-			variant
-				"Hawk"
-			variant
-				"Hawk (Plasma)"
-			variant
-				"Hawk (Speedy)"
-			variant
-				"Hawk (Bomber)"
-			variant
-				"Berserker"
-			variant
-				"Berserker (Afterburner)"
-			variant
-				"Berserker (Strike)"
-			variant
-				"Fury"
-			variant
-				"Fury (Gatling)"
-			variant
-				"Fury (Heavy)"
-			variant
-				"Fury (Laser)"
-			variant
-				"Fury (Bomber)"
+		personality heroic entering staying marked target
+		fleet "Bounty (Tiny)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 50000
 			fail
 
 mission "Bounty Hunting (Very Small)"
-	name "Wanted criminal near <system>"
-	description "A light pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted small pirate near <system>"
+	description "A small pirate ship named the <npc> has been attacking merchants near the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
 	"apparent payment" 95000
 	to offer
 		or
-			"combat rating" > 80
+			"combat rating" > 54
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
-		"combat rating" < 350
-		random < 25
+		or
+			and
+				"combat rating" < 220
+				random < 45
+			and
+				"combat rating" < 80
+				random < 35
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
-		fleet
-			names "pirate"
-			variant
-				"Quicksilver"
-			variant
-				"Quicksilver (Proton)"
-			variant
-				"Raven"
-			variant
-				"Raven (Heavy)"
-			variant
-				"Raven (Afterburner)"
-			variant
-				"Headhunter"
-			variant
-				"Headhunter (Strike)"
-			variant
-				"Headhunter (Particle)"
-			variant
-				"Clipper"
-			variant
-				"Clipper (Heavy)"
-			variant
-				"Clipper (Speedy)"
+			distance 2 3
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
+		fleet "Bounty (Very Small)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 95000
 			fail
 
 mission "Bounty Hunting (Very Small, Local)"
-	name "Wanted criminal entering <system>"
-	description "A light pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted small pirate entering <system>"
+	description "A small pirate ship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 3
 	"apparent payment" 95000
 	to offer
 		or
-			"combat rating" > 80
+			"combat rating" > 54
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
-		"combat rating" < 350
-		random < 20
+		"combat rating" < 80
+		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
-		personality heroic entering staying nemesis target
-		fleet
-			names "pirate"
-			variant
-				"Quicksilver"
-			variant
-				"Quicksilver (Proton)"
-			variant
-				"Raven"
-			variant
-				"Raven (Heavy)"
-			variant
-				"Raven (Afterburner)"
-			variant
-				"Headhunter"
-			variant
-				"Headhunter (Strike)"
-			variant
-				"Headhunter (Particle)"
-			variant
-				"Clipper"
-			variant
-				"Clipper (Heavy)"
-			variant
-				"Clipper (Speedy)"
+		personality heroic entering staying marked target
+		fleet "Bounty (Very Small)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 95000
 			fail
 
 mission "Bounty Hunting (Small)"
-	name "Wanted bandit near <system>"
-	description "A medium pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted light warship near <system>"
+	description "A light pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
 	"apparent payment" 180000
 	to offer
-		"combat rating" > 200
-		"combat rating" < 500
-		random < 25
+		or
+			"combat rating" > 80
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+			has "ships: Heavy Warship"
+		or
+			and
+				"combat rating" < 403
+				random < 40
+			and
+				"combat rating" < 350
+				random < 30
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
-		fleet
-			names "pirate"
-			variant
-				"Firebird"
-			variant
-				"Firebird (Missile)"
-			variant
-				"Splinter"
-			variant
-				"Splinter (Laser)"
-			variant
-				"Osprey"
-			variant
-				"Osprey (Laser)"
-			variant
-				"Bastion"
-			variant
-				"Manta"
-			variant
-				"Manta (Proton)"
+			distance 2 3
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
+		fleet "Bounty (Small)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 180000
 			fail
 
 mission "Bounty Hunting (Small, Local)"
-	name "Wanted bandit entering <system>"
-	description "A medium pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted light warship entering <system>"
+	description "A light pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 3
 	"apparent payment" 180000
 	to offer
-		"combat rating" > 200
-		"combat rating" < 500
-		random < 20
+		or
+			"combat rating" > 80
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+			has "ships: Heavy Warship"
+		"combat rating" < 350
+		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
-		personality heroic entering staying nemesis target
-		fleet
-			names "pirate"
-			variant
-				"Firebird"
-			variant
-				"Firebird (Missile)"
-			variant
-				"Splinter"
-			variant
-				"Splinter (Laser)"
-			variant
-				"Osprey"
-			variant
-				"Osprey (Laser)"
-			variant
-				"Bastion"
-			variant
-				"Manta"
-			variant
-				"Manta (Proton)"
+		personality heroic entering staying marked target
+		fleet "Bounty (Small)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 180000
 			fail
 
 mission "Bounty Hunting (Medium)"
-	name "Wanted pirate near <system>"
-	description "A sizable pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted medium warship near <system>"
+	description "A medium pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
+	deadline 16
 	"apparent payment" 240000
 	to offer
-		"combat rating" > 350
-		"combat rating" < 1200
-		random < 25
+		"combat rating" > 125
+		or
+			random < 30
+			and
+				"combat rating" < 650
+				random < 30
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
-		fleet
-			names "pirate"
-			variant
-				"Protector"
-			variant
-				"Protector (Laser)"
-			variant
-				"Osprey (Missile)"
-			variant
-				"Bastion (Heavy)"
-			variant
-				"Bastion (Laser)"
-			variant
-				"Firebird (Plasma)"
+			distance 2 4
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
+		fleet "Bounty (Medium)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 240000
 			fail
 
 mission "Bounty Hunting (Medium, Local)"
-	name "Wanted pirate entering <system>"
-	description "A sizable pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted medium warship entering <system>"
+	description "A medium pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 3
 	"apparent payment" 240000
 	to offer
-		"combat rating" > 350
-		"combat rating" < 1200
-		random < 20
+		"combat rating" > 125
+		or
+			random < 5
+			and
+				"combat rating" < 1300
+				random < 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
-		personality heroic entering staying nemesis target
-		fleet
-			names "pirate"
-			variant
-				"Protector"
-			variant
-				"Protector (Proton)"
-			variant
-				"Osprey (Missile)"
-			variant
-				"Bastion (Heavy)"
-			variant
-				"Bastion (Laser)"
-			variant
-				"Firebird (Plasma)"
+		personality heroic entering staying marked target
+		fleet "Bounty (Medium)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 240000
 			fail
 
 mission "Bounty Hunting (Big)"
-	name "Wanted warlord near <system>"
-	description "A heavy warship known as the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted heavy warship near <system>"
+	description "A heavy warship known as the <npc> has been attacking merchants near the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
+	deadline 16
 	"apparent payment" 300000
 	to offer
-		"combat rating" > 500
-		"combat rating" < 2500
-		random < 25
+		"combat rating" > 403
+		or
+			random < 35
+			and
+				"combat rating" < 2000
+				random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
-		fleet
-			names "pirate"
-			variant
-				"Leviathan"
-			variant
-				"Leviathan (Heavy)"
-			variant
-				"Leviathan (Laser)"
-			variant
-				"Falcon"
-			variant
-				"Falcon (Heavy)"
-			variant
-				"Falcon (Laser)"
-			variant
-				"Vanguard"
-			variant
-				"Vanguard (Particle)"
+			distance 3 4
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
+		fleet "Bounty (Big)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 300000
 			fail
 
 mission "Bounty Hunting (Big, Local)"
-	name "Wanted warlord entering <system>"
+	name "Wanted heavy warship entering <system>"
 	description "A heavy warship known as the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 3
 	"apparent payment" 300000
 	to offer
-		"combat rating" > 500
-		"combat rating" < 2500
-		random < 20
+		"combat rating" > 403
+		or
+			random < 5
+			and
+				"combat rating" < 2000
+				random < 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
-		personality heroic entering staying nemesis target
-		fleet
-			names "pirate"
-			variant
-				"Leviathan"
-			variant
-				"Leviathan (Heavy)"
-			variant
-				"Leviathan (Laser)"
-			variant
-				"Falcon"
-			variant
-				"Falcon (Heavy)"
-			variant
-				"Falcon (Laser)"
-			variant
-				"Vanguard"
-			variant
-				"Vanguard (Particle)"
+		personality heroic entering staying marked target
+		fleet "Bounty (Big)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 300000
 			fail
 
 mission "Bounty Hunting (Small, Hidden)"
-	name "Disguised bandit near <system>"
-	description "A medium pirate warship named the <npc> is posing as a merchant ship within two jumps of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
+	name "Disguised light warship near <system>"
+	description "A light pirate warship named the <npc> is posing as a merchant ship within a jump of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 30
 	"apparent payment" 360000
 	to offer
-		"combat rating" > 200
+		"combat rating" > 80
 		or
-			random < 5
+			random < 2
 			and
-				"combat rating" < 500
-				random < 20
+				"combat rating" < 403
+				random < 7
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty (Disguised)"
-		personality heroic staying
+		personality heroic marked staying
 		system
-			distance 1 2
-		fleet
-			names "pirate"
-			variant
-				"Firebird"
-			variant
-				"Firebird (Missile)"
-			variant
-				"Splinter"
-			variant
-				"Splinter (Laser)"
-			variant
-				"Osprey"
-			variant
-				"Osprey (Laser)"
-			variant
-				"Bastion"
-			variant
-				"Manta"
-			variant
-				"Manta (Proton)"
+			distance 1 1
+		fleet "Bounty (Small)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 360000
 			fail
 
 mission "Bounty Hunting (Medium, Hidden)"
-	name "Disguised pirate near <system>"
-	description "A sizable pirate warship named the <npc> is posing as a merchant ship within two jumps of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
+	name "Disguised medium warship near <system>"
+	description "A medium pirate warship named the <npc> is posing as a merchant ship within a jump of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 30
 	"apparent payment" 480000
 	to offer
-		"combat rating" > 350
+		"combat rating" > 125
 		or
-			random < 5
+			random < 2
 			and
-				"combat rating" < 1200
-				random < 20
+				"combat rating" < 1300
+				random < 7
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty (Disguised)"
-		personality heroic staying
+		personality heroic marked staying
 		system
-			distance 1 2
-		fleet
-			names "pirate"
-			variant
-				"Protector"
-			variant
-				"Protector (Laser)"
-			variant
-				"Osprey (Missile)"
-			variant
-				"Bastion (Heavy)"
-			variant
-				"Bastion (Laser)"
-			variant
-				"Firebird (Plasma)"
+			distance 1 1
+		fleet "Bounty (Medium)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 480000
 			fail
 
 mission "Bounty Hunting (Big, Hidden)"
-	name "Disguised warlord near <system>"
-	description "A heavy warship known as the <npc> is posing as a merchant ship within two jumps of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
+	name "Disguised heavy warship near <system>"
+	description "A heavy warship known as the <npc> is posing as a merchant ship within a jump of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 30
 	"apparent payment" 600000
 	to offer
-		"combat rating" > 500
+		"combat rating" > 403
 		or
-			random < 5
+			random < 2
 			and
-				"combat rating" < 2500
-				random < 20
+				"combat rating" < 2000
+				random < 7
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty (Disguised)"
-		personality heroic staying
+		personality heroic marked staying
 		system
-			distance 1 2
-		fleet
-			names "pirate"
-			variant
-				"Leviathan"
-			variant
-				"Leviathan (Heavy)"
-			variant
-				"Leviathan (Laser)"
-			variant
-				"Falcon"
-			variant
-				"Falcon (Heavy)"
-			variant
-				"Falcon (Laser)"
-			variant
-				"Vanguard"
-			variant
-				"Vanguard (Particle)"
+			distance 1 1
+		fleet "Bounty (Big)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
 			payment 600000
@@ -3785,7 +3556,7 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 	repeat
 	job
 	to offer
-		"combat rating" > 50
+		"combat rating" > 20
 		random < 15
 	to accept
 		has "outfit (installed): Brig"
@@ -3798,7 +3569,7 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 		distance 2 6
 	npc board
 		government "Bounty"
-		personality timid fleeing uninterested entering target
+		personality timid fleeing marked uninterested entering target
 		fleet
 			names "civilian"
 			variant
@@ -3824,7 +3595,7 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 	repeat
 	job
 	to offer
-		"combat rating" > 200
+		"combat rating" > 148
 		random < 15
 	to accept
 		has "outfit (installed): Brig"
@@ -3837,7 +3608,7 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 		distance 2 6
 	npc board
 		government "Bounty"
-		personality timid fleeing uninterested entering target
+		personality timid fleeing marked uninterested entering target
 		fleet
 			names "civilian"
 			variant
@@ -3859,27 +3630,29 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 
 mission "Bounty Hunting (Solo Marauder I)"
 	name "Marauder interceptor near <system>"
-	description "A Marauder interceptor named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A Marauder interceptor named the <npc> has been attacking merchants near the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
+	deadline 16
 	"apparent payment" 130000
 	to offer
 		or
-			"combat rating" > 100
+			"combat rating" > 54
 			has "ships: Interceptor"
 			has "ships: Light Warship"
-		"combat rating" > 50
-		"combat rating" < 500
-		random < 5
+		"combat rating" > 20
+		"combat rating" < 220
+		random < 3
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
+			distance 2 3
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
 		fleet "Marauder I"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
@@ -3888,27 +3661,28 @@ mission "Bounty Hunting (Solo Marauder I)"
 
 mission "Bounty Hunting (Solo Marauder II)"
 	name "Small Marauder near <system>"
-	description "A small Marauder ship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A small Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
+	deadline 16
 	"apparent payment" 200000
 	to offer
 		or
-			"combat rating" > 200
+			"combat rating" > 80
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
-		"combat rating" > 100
-		"combat rating" < 500
-		random < 5
+		"combat rating" > 54
+		"combat rating" < 220
+		random < 3
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
+			distance 2 3
+			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		fleet "Marauder II"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
@@ -3917,23 +3691,24 @@ mission "Bounty Hunting (Solo Marauder II)"
 
 mission "Bounty Hunting (Solo Marauder III)"
 	name "Marauder near <system>"
-	description "A Marauder ship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
+	deadline 16
 	"apparent payment" 310000
 	to offer
-		"combat rating" > 300
-		"combat rating" < 1200
-		random < 5
+		"combat rating" > 125
+		"combat rating" < 650
+		random < 3
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
+			distance 2 4
+			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		fleet "Marauder III"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
@@ -3942,23 +3717,24 @@ mission "Bounty Hunting (Solo Marauder III)"
 
 mission "Bounty Hunting (Solo Marauder IV)"
 	name "Large Marauder near <system>"
-	description "A large Marauder ship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A large Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
+	deadline 18
 	"apparent payment" 500000
 	to offer
-		"combat rating" > 500
-		"combat rating" < 2500
-		random < 5
+		"combat rating" > 403
+		"combat rating" < 1300
+		random < 3
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
+			distance 3 4
+			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		fleet "Marauder IV"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
@@ -3967,26 +3743,29 @@ mission "Bounty Hunting (Solo Marauder IV)"
 
 mission "Bounty Hunting (Marauder I)"
 	name "Small Marauders near <system>"
-	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
+	deadline 16
 	"apparent payment" 360000
 	to offer
-		"combat rating" > 500
+		"combat rating" > 220
 		or
-			random < 5
 			and
-				"combat rating" < 1200
-				random < 35
+				"combat rating" < 500
+				random < 30
+			and
+				"combat rating" < 350
+				random < 30
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
+			distance 3 4
+			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		fleet "Marauder fleet I"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3995,239 +3774,257 @@ mission "Bounty Hunting (Marauder I)"
 
 mission "Bounty Hunting (Marauder II)"
 	name "Small Marauders near <system>"
-	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
-	"apparent payment" 380000
+	deadline 16
+	"apparent payment" 410000
 	to offer
-		"combat rating" > 600
+		"combat rating" > 350
 		or
-			random < 5
 			and
-				"combat rating" < 1800
-				random < 45
+				"combat rating" < 1600
+				random < 30
+			and
+				"combat rating" < 403
+				random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
+			distance 3 4
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
 		fleet "Marauder fleet II"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 380000
+			payment 410000
 			fail
 
 mission "Bounty Hunting (Marauder III)"
 	name "Small Marauders near <system>"
-	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
-	"apparent payment" 400000
+	deadline 16
+	"apparent payment" 450000
 	to offer
-		"combat rating" > 700
+		"combat rating" > 500
 		or
-			random < 5
+			random < 20
 			and
-				"combat rating" < 2200
-				random < 45
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-	npc kill
-		government "Bounty"
-		personality heroic staying nemesis target
-		system
-			distance 1 1
-		fleet "Marauder fleet III"
-		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
-		on kill
-			payment 400000
-			fail
-
-mission "Bounty Hunting (Marauder IV)"
-	name "Marauders near <system>"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
-	repeat
-	job
-	deadline 14
-	"apparent payment" 480000
-	to offer
-		"combat rating" > 1200
-		or
-			random < 5
-			and
-				"combat rating" < 2700
-				random < 30
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-	npc kill
-		government "Bounty"
-		personality heroic staying nemesis target
-		system
-			distance 1 1
-		fleet "Marauder fleet IV"
-		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
-		on kill
-			payment 480000
-			fail
-
-mission "Bounty Hunting (Marauder V)"
-	name "Marauders near <system>"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
-	repeat
-	job
-	deadline 14
-	"apparent payment" 500000
-	to offer
-		"combat rating" > 1400
-		or
-			random < 5
-			and
-				"combat rating" < 3500
-				random < 25
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-	npc kill
-		government "Bounty"
-		personality heroic staying nemesis target
-		system
-			distance 1 1
-		fleet "Marauder fleet V"
-		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
-		on kill
-			payment 500000
-			fail
-
-
-mission "Bounty Hunting (Marauder VI)"
-	name "Marauders near <system>"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
-	repeat
-	job
-	deadline 14
-	"apparent payment" 520000
-	to offer
-		"combat rating" > 1600
-		or
-			random < 5
-			and
-				"combat rating" < 5000
+				"combat rating" < 650
 				random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
+			distance 3 4
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
+		fleet "Marauder fleet III"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 450000
+			fail
+
+mission "Bounty Hunting (Marauder IV)"
+	name "Marauders near <system>"
+	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 18
+	"apparent payment" 510000
+	to offer
+		"combat rating" > 650
+		or
+			random < 20
+			and
+				"combat rating" < 800
+				random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "deep" "near earth" "paradise"
+	npc kill
+		government "Bounty"
+		personality heroic staying marked target tracked
+		system
+			distance 3 5
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
+		fleet "Marauder fleet IV"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 510000
+			fail
+
+mission "Bounty Hunting (Marauder V)"
+	name "Marauders near <system>"
+	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 18
+	"apparent payment" 550000
+	to offer
+		"combat rating" > 800
+		or
+			random < 20
+			and
+				"combat rating" < 1000
+				random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "deep" "near earth" "paradise"
+	npc kill
+		government "Bounty"
+		personality heroic staying marked target tracked
+		system
+			distance 3 5
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
+		fleet "Marauder fleet V"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 550000
+			fail
+
+
+mission "Bounty Hunting (Marauder VI)"
+	name "Marauders near <system>"
+	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 18
+	"apparent payment" 590000
+	to offer
+		"combat rating" > 1000
+		or
+			random < 20
+			and
+				"combat rating" < 1300
+				random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "deep" "near earth" "paradise"
+	npc kill
+		government "Bounty"
+		personality heroic staying marked target tracked
+		system
+			distance 3 5
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
 		fleet "Marauder fleet VI"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 520000
+			payment 590000
 			fail
 
 mission "Bounty Hunting (Marauder VII)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
-	"apparent payment" 620000
+	deadline 18
+	"apparent payment" 680000
 	to offer
-		"combat rating" > 2500
-		random < 20
+		"combat rating" > 1300
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
+			distance 4 5
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
 		fleet "Marauder fleet VII"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 620000
+			payment 680000
 			fail
 
 mission "Bounty Hunting (Marauder VIII)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
-	"apparent payment" 640000
+	deadline 18
+	"apparent payment" 740000
 	to offer
-		"combat rating" > 2800
-		random < 15
+		"combat rating" > 1600
+		random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic staying nemesis target
+		personality heroic staying marked target tracked
 		system
-			distance 1 1
+			distance 4 5
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
 		fleet "Marauder fleet VIII"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 640000
+			payment 740000
 			fail
 
 mission "Bounty Hunting (Marauder IX)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
-	"apparent payment" 660000
+	deadline 18
+	"apparent payment" 800000
 	to offer
-		"combat rating" > 3100
-		random < 10
+		"combat rating" > 2000
+		random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		not attributes "deep" "near earth" "paradise"
 	npc kill
 		government "Bounty"
-		personality heroic unconstrained staying nemesis target
+		personality heroic unconstrained staying marked target tracked
 		system
-			distance 1 1
+			distance 4 5
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
 		fleet "Marauder fleet IX"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 660000
+			payment 800000
 			fail
 
 mission "Bounty Hunting (Marauder X)"
-	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	name "Infamous Marauders near <system>"
+	description "The legendary <npc> and its accompanying fleet have been terrorizing merchants and law enforcement in this region of space. Destroy the whole fleet for payment (<payment>). Be warned that the <npc> is known to ambush those attempting to hunt them."
 	repeat
 	job
-	deadline 14
-	"apparent payment" 1000000
+	"apparent payment" 10000000
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	to offer
 		"combat rating" > 8103
 		random < 5
 	npc kill
 		government "Bounty"
-		personality heroic unconstrained staying nemesis target
+		personality heroic unconstrained marked target tracked
 		system
-			distance 1 1
+			distance 7 9
+			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+			not system "Ultima Thule"
 		fleet "Marauder fleet X"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 1000000
+			payment 5000000
 			fail
 
 
@@ -4256,7 +4053,7 @@ mission "Republic Navy Advisory System [frozen]"
 	to offer
 		random < 1
 	on offer
-		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+		dialog `A voice booms from the spaceport loudspeakers. "This is the Republic Navy Advisory System. <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses."`
 	on complete
 		payment 8500 80
 		dialog `Shivering, appreciative aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
@@ -4283,7 +4080,7 @@ mission "Republic Navy Advisory System [volcanic]"
 	to offer
 		random < 1
 	on offer
-		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+		dialog `A voice booms from the spaceport loudspeakers. "This is the Republic Navy Advisory System. <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses."`
 	on complete
 		payment 8500 80
 		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
@@ -4310,7 +4107,7 @@ mission "Republic Navy Advisory System [wildfire cargo]"
 	to offer
 		random < 1
 	on offer
-		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+		dialog `A voice booms from the spaceport loudspeakers. "This is the Republic Navy Advisory System. <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses."`
 	on complete
 		payment 8500 80
 		dialog `Ash-covered, relieved aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
@@ -4337,7 +4134,7 @@ mission "Republic Navy Advisory System [wildfire firefighters]"
 	to offer
 		random < 1
 	on offer
-		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to transport <bunks> firefighters to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+		dialog `A voice booms from the spaceport loudspeakers. "This is the Republic Navy Advisory System. <planet> is experiencing a severe <problem>. Volunteers are requested to transport <bunks> firefighters to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses."`
 	on complete
 		payment 9000 85
 		dialog "You land at a makeshift landing site a few minutes flight from the blaze. The smoky haze that drifts into your ship when the firefighters open the hatch to depart makes your eyes and nose itch. As you watch your passengers heading toward a staging area nearby, you think about the inferno they will soon be voluntarily entering. A chirp from your communications system indicates your stipend of <payment> has been deposited, and you begin your atmospheric flight back to <planet>'s main spaceport."

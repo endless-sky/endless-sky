@@ -277,8 +277,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 	out.Write(tag, sprite->Name());
 	out.BeginChild();
 	{
-		if(frameRate != static_cast<float>(2. / 60.))
-			out.Write("frame rate", frameRate * 60.);
+		out.Write("frame rate", frameRate * 60.);
 		if(delay)
 			out.Write("delay", delay);
 		if(scale != Point(1., 1.))

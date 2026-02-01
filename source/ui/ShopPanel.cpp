@@ -19,12 +19,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CategoryList.h"
 #include "CategoryType.h"
 #include "../util/Color.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "../text/DisplayText.h"
 #include "../shader/FillShader.h"
 #include "../text/Font.h"
 #include "../text/FontSet.h"
-#include "../text/Format.h"
 #include "../files/GameData.h"
 #include "../government/Government.h"
 #include "MapOutfitterPanel.h"
@@ -103,7 +102,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 
 void ShopPanel::Step()
 {
-	if(!checkedHelp && GetUI()->IsTop(this) && player.Ships().size() > 1)
+	if(!checkedHelp && GetUI().IsTop(this) && player.Ships().size() > 1)
 	{
 		if(DoHelp("multiple ships"))
 		{
@@ -233,14 +232,45 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 void ShopPanel::CheckForMissions(Mission::Location location) const
 {
-	if(!GetUI()->IsTop(this))
+	if(!GetUI().IsTop(this))
 		return;
 
 	Mission *mission = player.MissionToOffer(location);
 	if(mission)
-		mission->Do(Mission::OFFER, player, GetUI());
+		mission->Do(Mission::OFFER, player, &GetUI());
 	else
 		player.HandleBlockedMissions(location, GetUI());
+}
+
+
+
+void ShopPanel::ValidateSelectedShips()
+{
+	// Verify that the player's selection is still valid.
+	// A mission action may have taken a ship away from the player,
+	// therefore invalidating its pointer.
+	set<Ship *> shipPtrs;
+	for(const shared_ptr<Ship> &ship : player.Ships())
+		shipPtrs.insert(ship.get());
+	set<Ship *> stillValid;
+	ranges::set_intersection(shipPtrs, playerShips, inserter(stillValid, stillValid.begin()));
+	playerShips = stillValid;
+	if(playerShip && !playerShips.contains(playerShip))
+	{
+		playerShip = nullptr;
+		if(!playerShips.empty())
+			playerShip = *playerShips.begin();
+		else
+		{
+			for(const shared_ptr<Ship> &ship : player.Ships())
+				if(CanShowInSidebar(*ship, player.GetPlanet()))
+				{
+					playerShip = ship.get();
+					playerShips.insert(playerShip);
+					break;
+				}
+		}
+	}
 }
 
 
@@ -267,7 +297,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		if(!isOutfitter)
 			player.UpdateCargoCapacities();
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		UI::PlaySound(UI::UISound::NORMAL);
 	}
 	else if(command.Has(Command::HELP))
@@ -302,9 +332,9 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(command.Has(Command::MAP))
 	{
 		if(isOutfitter)
-			GetUI()->Push(new MapOutfitterPanel(player));
+			GetUI().Push(new MapOutfitterPanel(player));
 		else
-			GetUI()->Push(new MapShipyardPanel(player));
+			GetUI().Push(new MapShipyardPanel(player));
 	}
 	else if(key == SDLK_LEFT)
 	{
@@ -398,12 +428,12 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == SDLK_TAB)
 		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
 	else if(key == 'f')
-		GetUI()->Push(new Dialog(this, &ShopPanel::DoFind, "Search for:"));
+		GetUI().Push(new DialogPanel(this, &ShopPanel::DoFind, "Search for:"));
 	else
 	{
 		TransactionResult result = HandleShortcuts(key);
 		if(result.HasMessage())
-			GetUI()->Push(new Dialog(result.Message()));
+			GetUI().Push(new DialogPanel(result.Message()));
 		else if(isOutfitter)
 		{
 			// Ship-based updates to cargo are handled when leaving.

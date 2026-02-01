@@ -102,7 +102,7 @@ protected:
 	// Dim the background of this panel.
 	void DrawBackdrop() const;
 
-	UI *GetUI() const noexcept;
+	UI &GetUI() const noexcept;
 	void SetUI(UI *ui);
 
 	// This is not for overriding, but for calling KeyDown with only one or two

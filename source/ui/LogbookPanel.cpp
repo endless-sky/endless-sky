@@ -164,7 +164,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	UI::UISound sound = UI::UISound::NORMAL;
 
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		double direction = (key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN);
@@ -265,7 +265,7 @@ bool LogbookPanel::Click(int x, int y, MouseButton button, int clicks)
 		}
 	}
 	else if(x > WIDTH)
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 
 	return true;
 }

@@ -21,13 +21,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../util/Color.h"
 #include "../ai/Command.h"
 #include "../player/CoreStartData.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "../text/DisplayText.h"
 #include "../shader/FillShader.h"
 #include "../text/Font.h"
 #include "../text/FontSet.h"
 #include "../files/GameData.h"
 #include "../government/Government.h"
+#include "Information.h"
 #include "Interface.h"
 #include "../text/Layout.h"
 #include "MapOutfitterPanel.h"
@@ -126,7 +127,7 @@ void MapDetailPanel::Step()
 	if(selectedSystem != shownSystem)
 		GeneratePlanetCards(*selectedSystem);
 
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+	if(GetUI().IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 	{
 		DoHelp("map advanced danger");
 		DoHelp("map advanced ports");
@@ -144,8 +145,8 @@ void MapDetailPanel::Draw()
 
 	clickZones.clear();
 
-	DrawInfo();
 	DrawOrbits();
+	DrawInfo();
 	DrawKey();
 	FinishDrawing(isStars ? "is stars" : "is ports");
 }
@@ -369,6 +370,8 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 			}
 		}
 	}
+	else if(key == 'c')
+		player.SetEscortDestination();
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
 
@@ -384,8 +387,9 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 
 	if(button == MouseButton::RIGHT)
 	{
-		if(!Preferences::Has("System map sends move orders"))
+		if(commodity == SHOW_STARS && !player.CanView(*selectedSystem))
 			return true;
+
 		// TODO: rewrite the map panels to be driven from interfaces.txt so these XY
 		// positions aren't hard-coded.
 		else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 10 && y <= Screen::Top() + 270)
@@ -399,9 +403,9 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 
 			// Only issue movement orders if the player is in-flight.
 			if(player.GetPlanet())
-				GetUI()->Push(new Dialog("You cannot issue fleet movement orders while docked."));
+				GetUI().Push(new DialogPanel("You cannot issue fleet movement orders while docked."));
 			else if(!player.CanView(*selectedSystem))
-				GetUI()->Push(new Dialog("You must visit this system before you can send your fleet there."));
+				GetUI().Push(new DialogPanel("You must visit this system before you can send your fleet there."));
 			else
 				player.SetEscortDestination(selectedSystem, uiClick / scale);
 		}
@@ -433,15 +437,15 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 			if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
 			{
 				isStars = false;
-				GetUI()->Pop(this);
-				GetUI()->Push(new MapShipyardPanel(*this, true));
+				GetUI().Pop(this);
+				GetUI().Push(new MapShipyardPanel(*this, true));
 				break;
 			}
 			else if(clickAction == MapPlanetCard::ClickAction::GOTO_OUTFITTER)
 			{
 				isStars = false;
-				GetUI()->Pop(this);
-				GetUI()->Push(new MapOutfitterPanel(*this, true));
+				GetUI().Pop(this);
+				GetUI().Push(new MapOutfitterPanel(*this, true));
 				break;
 			}
 			// Then this is the planet selected.
@@ -960,6 +964,11 @@ void MapDetailPanel::DrawInfo()
 		RemoveChild(description.get());
 		descriptionVisible = false;
 	}
+
+	Information mapInterfaceInfo;
+	if(player.HasEscortDestination())
+		mapInterfaceInfo.SetCondition("has escort destination");
+	mapInterface->Draw(mapInterfaceInfo, this);
 }
 
 
@@ -967,6 +976,9 @@ void MapDetailPanel::DrawInfo()
 // Draw the planet orbits in the currently selected system, on the current day.
 void MapDetailPanel::DrawOrbits()
 {
+	if(commodity == SHOW_STARS && !player.CanView(*selectedSystem))
+		return;
+
 	planets.clear();
 	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits and key");
 	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));

@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
 #include "../util/Color.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "../text/DisplayText.h"
 #include "../shader/FillShader.h"
 #include "../text/Font.h"
@@ -34,7 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../util/Point.h"
 #include "Screen.h"
 #include "../ship/Ship.h"
-#include "ShipNameDialog.h"
+#include "ShipNameDialogPanel.h"
 #include "../image/Sprite.h"
 #include "../image/SpriteSet.h"
 #include "../shader/SpriteShader.h"
@@ -70,7 +70,8 @@ void ShipyardPanel::Step()
 {
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::SHIPYARD);
-	if(GetUI()->IsTop(this))
+	ShopPanel::ValidateSelectedShips();
+	if(GetUI().IsTop(this))
 		DoHelp("shipyard");
 }
 
@@ -335,7 +336,7 @@ ShopPanel::TransactionResult ShipyardPanel::CanDoBuyButton() const
 		// Check if the license cost is the tipping point.
 		if(player.Accounts().Credits() >= cost - licenseCost)
 			return "You do not have enough credits to buy this ship, "
-				"because it will cost you an extra " + Format::Credits(licenseCost) +
+				"because it will cost you an extra " + Format::AbbreviatedNumber(licenseCost) +
 				" credits to buy the necessary licenses. "
 				"Consider checking if the bank will offer you a loan.";
 
@@ -367,8 +368,8 @@ void ShipyardPanel::DoBuyButton()
 	else
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
-	GetUI()->Push(new ShipNameDialog(this,
-			Dialog::FunctionButton(this, "Buy", 'b', &ShipyardPanel::BuyShip),
+	GetUI().Push(new ShipNameDialogPanel(this,
+			DialogPanel::FunctionButton(this, "Buy", 'b', &ShipyardPanel::BuyShip),
 			message));
 }
 
@@ -436,10 +437,10 @@ void ShipyardPanel::Sell(bool storeOutfits)
 	if(storeOutfits)
 	{
 		message += " Any outfits will be placed in storage.";
-		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
+		GetUI().Push(new DialogPanel(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
 	}
 	else
-		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
+		GetUI().Push(new DialogPanel(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
 }
 
 

@@ -74,8 +74,12 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
 
 	// Set an initial confusion turn direction.
-	if(weapon->Homing())
+	if(weapon->Homing() && cachedTarget)
+	{
 		confusionDirection = Random::Int(2) ? -1 : 1;
+		CheckLock(*cachedTarget);
+		CheckConfused(*cachedTarget);
+	}
 }
 
 
@@ -104,8 +108,12 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
 
 	// Set an initial confusion turn direction.
-	if(weapon->Homing())
+	if(weapon->Homing() && cachedTarget)
+	{
 		confusionDirection = Random::Int(2) ? -1 : 1;
+		CheckLock(*cachedTarget);
+		CheckConfused(*cachedTarget);
+	}
 }
 
 
@@ -180,76 +188,85 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		CheckLock(*target);
 		CheckConfused(*target);
 	}
-	// Update the confusion direction after the projectile turns about
-	// 180 degrees away from its target.
-	if(!Random::Int(ceil(180 / turn)))
-		confusionDirection = Random::Int(2) ? -1 : 1;
-	if(target && homing && hasLock)
-	{
-		// Vector d is the direction we want to turn towards.
-		Point d = target->Position() - position;
-		Point unit = d.Unit();
-		double drag = weapon->Drag();
-		double trueVelocity = drag ? accel / drag : velocity.Length();
-		double stepsToReach = d.Length() / trueVelocity;
-		bool isFacingAway = d.Dot(angle.Unit()) < 0.;
-		// At the highest homing level, compensate for target motion.
-		if(weapon->Leading())
-		{
-			if(unit.Dot(target->Velocity()) < 0.)
-			{
-				// If the target is moving toward this projectile, the intercept
-				// course is where the target and the projectile have the same
-				// velocity normal to the distance between them.
-				Point normal(unit.Y(), -unit.X());
-				double vN = normal.Dot(target->Velocity());
-				double vT = sqrt(max(0., trueVelocity * trueVelocity - vN * vN));
-				d = vT * unit + vN * normal;
-			}
-			else
-			{
-				// Adjust the target's position based on where it will be when we
-				// reach it (assuming we're pointed right towards it).
-				d += stepsToReach * target->Velocity();
-				stepsToReach = d.Length() / trueVelocity;
-			}
-			unit = d.Unit();
-		}
-
-		double cross = angle.Unit().Cross(unit);
-
-		// The very dumbest of homing missiles lose their target if pointed
-		// away from it.
-		if(isFacingAway && weapon->HasBlindspot())
-			targetShip.reset();
-		else
-		{
-			double desiredTurn = TO_DEG * asin(cross);
-			if(fabs(desiredTurn) > turn)
-				turn = copysign(turn, desiredTurn);
-			else
-				turn = desiredTurn;
-
-			// Levels 3 and 4 stop accelerating when facing away.
-			if(weapon->ThrottleControl())
-			{
-				double stepsToFace = desiredTurn / turn;
-
-				// If you are facing away from the target, stop accelerating.
-				if(stepsToFace * 1.5 > stepsToReach)
-					accel = 0.;
-			}
-		}
-	}
-	// Turn in a random direction if this weapon is confused.
-	else if(target && homing && isConfused)
-		turn *= confusionDirection;
-	// If a weapon is homing but has no target, do not turn it.
-	else if(homing)
-		turn = 0.;
-
 	if(turn)
-		angle += Angle(turn);
+	{
+		// Update the confusion direction after the projectile turns about
+		// 180 degrees away from its target.
+		if(!Random::Int(ceil(180 / turn)))
+			confusionDirection = Random::Int(2) ? -1 : 1;
+		if(homing)
+		{
+			// Vector d is the direction we want to turn towards.
+			Point d;
+			bool isFacingAway = false;
+			if(target)
+			{
+				d = target->Position() - position;
+				isFacingAway = d.Dot(angle.Unit()) < 0.;
+			}
+
+			// The very dumbest of homing missiles lose their target if pointed
+			// away from it.
+			if(isFacingAway && weapon->HasBlindspot())
+				targetShip.reset();
+			else if(target && hasLock)
+			{
+				Point unit = d.Unit();
+				double drag = weapon->Drag();
+				double trueVelocity = drag ? accel / drag : velocity.Length();
+				double stepsToReach = d.Length() / trueVelocity;
+				// At the highest homing level, compensate for target motion.
+				if(weapon->Leading())
+				{
+					if(unit.Dot(target->Velocity()) < 0.)
+					{
+						// If the target is moving toward this projectile, the intercept
+						// course is where the target and the projectile have the same
+						// velocity normal to the distance between them.
+						Point normal(unit.Y(), -unit.X());
+						double vN = normal.Dot(target->Velocity());
+						double vT = sqrt(max(0., trueVelocity * trueVelocity - vN * vN));
+						d = vT * unit + vN * normal;
+					}
+					else
+					{
+						// Adjust the target's position based on where it will be when we
+						// reach it (assuming we're pointed right towards it).
+						d += stepsToReach * target->Velocity();
+						stepsToReach = d.Length() / trueVelocity;
+					}
+					unit = d.Unit();
+				}
+
+				double cross = angle.Unit().Cross(unit);
+
+				double desiredTurn = TO_DEG * asin(cross);
+				if(fabs(desiredTurn) > turn)
+					turn = copysign(turn, desiredTurn);
+				else
+					turn = desiredTurn;
+
+				// Levels 3 and 4 stop accelerating when facing away.
+				if(weapon->ThrottleControl())
+				{
+					double stepsToFace = desiredTurn / turn;
+
+					// If you are facing away from the target, stop accelerating.
+					if(stepsToFace * 1.5 > stepsToReach)
+						accel = 0.;
+				}
+			}
+			// Turn in a random direction if this weapon is confused.
+			else if(isConfused)
+				turn *= confusionDirection;
+			// If a weapon is homing but has no target, do not turn it.
+			else
+				turn = 0.;
+		}
+
+		if(turn)
+			angle += Angle(turn);
+	}
 
 	if(accel)
 	{
