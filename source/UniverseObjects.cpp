@@ -33,6 +33,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
+#include "Plugins.h"
+
 using namespace std;
 
 
@@ -714,6 +716,11 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			}
 			else
 				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
+		}
+		else if(key == "plugin_list_url" && hasValue)
+		{
+			// Note: As currently implemented, plugins can add their own repositories.
+			Plugins::AddLibraryUrl(node.Token(1));
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
