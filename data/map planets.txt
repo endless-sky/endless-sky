@@ -1788,6 +1788,22 @@ planet Farpoint
 		threshold 5500
 		fleet "Large Republic" 6
 
+planet "Kennecott"
+	attributes frontier north
+	landscape land/badlands9-harro
+	description `Kennecott can best be described as a world well past its prime. The planet was originally colonized for its lackluster but easily accessible natural resources, which where a requirement for the compact, primitive mining machines available at the dawn of the hyperdrive. For a time, Kennecott was a booming center for industrial goods and technological developments. However, the miniaturization and cost reduction of hyperdrive technology soon saw Kennecott's offerings dwarfed by higher quality imported metals.`
+	description `	While a few businesses remain, mostly providing basic goods and tools, all major industries have long since pulled out of Kennecott. Most locals argue that the Syndicate was responsible for this decline, providing cheaper metals to customers like Betelgeuse at a loss to starve out native competition. The remaining population resents the megacorperation, now chained to this dying world by poverty and closed doors.
+	spaceport `The atmosphere of the last remaining space port can best be described as a dead mall. The wide hallways and extensive landing pads carry a lonely aura, once designed to service hundreds of merchant ships at a time. Dozens of aging stores and facilities line the promenade, most now locked behind heavy metal shutters, cobwebs and rust inching up the desolate metal bars. Still, a few local business still operate, their warm store lights overpowering the dim, tinged sun from dirty skylights above.`
+	spaceport `	While it's no secret that a large portion of remaining exports go up to the pirates in the north, the Republic seems seldom interested in policing the planet. The only Navy presence here is a single munitions depot, resupplying patrols passing through the area and maintaining a weak perimeter around the spaceport itself.`
+	"required reputation" 2
+	bribe 0.03
+	security 0.2
+	tribute 75
+		threshold 1500
+		fleet "Small Republic" 8
+		fleet "Large Republic" 2
+		fleet "Large Merchant" 1
+
 planet Farseer
 	attributes paradise rich tourism
 	landscape land/sea8

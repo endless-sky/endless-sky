@@ -39704,20 +39704,24 @@ system Tortor
 	minables iron 9 4.67607
 	minables lead 1 4.79499
 	minables silicon 1 3.75422
-	trade Clothing 291
-	trade Electronics 814
-	trade Equipment 525
-	trade Food 327
-	trade "Heavy Metals" 1088
-	trade Industrial 770
-	trade "Luxury Goods" 1106
-	trade Medical 845
-	trade Metal 493
-	trade Plastic 431
-	fleet "Small Northern Pirates" 1000
-	fleet "Large Northern Pirates" 1000
+	trade Clothing 308
+	trade Electronics 815
+	trade Equipment 600
+	trade Food 440
+	trade "Heavy Metals" 1174
+	trade Industrial 653
+	trade "Luxury Goods" 1120
+	trade Medical 816
+	trade Metal 332
+	trade Plastic 449
+	fleet "Small Northern Pirates" 3000
+	fleet "Large Northern Pirates" 5000
 	fleet "Large Republic" 6000
-	fleet "Small Northern Merchants" 6000
+	fleet "Republic Logistics" 8000
+	fleet "Human Miners" 3000
+	fleet "Small Northern Merchants" 2000
+	fleet "Small Northern Merchants (Corrupt)" 4000
+	fleet "Large Northern Merchants (Corrupt)" 8000
 	fleet "Derelict Pirate" 10000
 	object
 		sprite star/k3
@@ -39726,8 +39730,9 @@ system Tortor
 		sprite planet/rock17-b
 		distance 188.99
 		period 48.9905
-	object
-		sprite planet/titan
+	object Kennecott
+		scale 0.7
+		sprite planet/rock12
 		distance 431.43
 		period 168.973
 	object
@@ -39753,7 +39758,6 @@ system Tortor
 		object
 			sprite planet/lava1
 			distance 579
-			period 37.3803
 
 system Trio
 	pos -218 760
