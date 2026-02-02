@@ -85,19 +85,6 @@ const ItemInfoDisplay &MapOutfitterPanel::CompareInfo() const
 
 
 
-void MapOutfitterPanel::DrawKey(Information &info) const
-{
-	const string condition = (selected && selected->Get("minable") > 0.)
-		? "is outfitters w/ minerals"
-		: "is outfitters";
-
-	info.SetCondition(condition);
-
-	MapSalesPanel::DrawKey(info);
-}
-
-
-
 void MapOutfitterPanel::Select(int index)
 {
 	if(index < 0 || index >= static_cast<int>(list.size()))
@@ -174,6 +161,19 @@ int MapOutfitterPanel::FindItem(const string &text) const
 		}
 	}
 	return bestItem;
+}
+
+
+
+void MapOutfitterPanel::DrawKey(Information &info) const
+{
+	const string condition = (selected && selected->Get("minable") > 0.)
+		? "is outfitters w/ minerals"
+		: "is outfitters";
+
+	info.SetCondition(condition);
+
+	MapSalesPanel::DrawKey(info);
 }
 
 
