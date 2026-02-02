@@ -92,7 +92,9 @@ void ItemInfoDisplay::DrawAttributes(const Point &topLeft) const
 
 void ItemInfoDisplay::DrawTooltips() const
 {
-	tooltip.Draw();
+	if(hoveringTooltip)
+		tooltip.Draw();
+	hoveringTooltip = false;
 	tooltip.DecrementCount();
 }
 
@@ -170,7 +172,7 @@ Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vec
 			continue;
 		}
 
-		CheckHover(table, labels[i]);
+		hoveringTooltip |= CheckHover(table, labels[i]);
 		table.Draw(labels[i], values[i].empty() ? valueColor : labelColor);
 		table.Draw(values[i], valueColor);
 	}
@@ -179,14 +181,14 @@ Point ItemInfoDisplay::Draw(Point point, const vector<string> &labels, const vec
 
 
 
-void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
+bool ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 {
 	if(!hasHover)
-		return;
+		return false;
 
 	Rectangle zone = table.GetRowBounds();
 	if(!zone.Contains(hoverPoint))
-		return;
+		return false;
 
 	if(label == hover)
 	{
@@ -201,4 +203,5 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 		tooltip.SetZone(zone);
 		tooltip.SetText(GameData::Tooltip(hover));
 	}
+	return true;
 }

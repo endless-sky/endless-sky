@@ -54,7 +54,7 @@ public:
 protected:
 	void UpdateDescription(const std::string &text, const std::vector<std::string> &licenses, bool isShip);
 	Point Draw(Point point, const std::vector<std::string> &labels, const std::vector<std::string> &values) const;
-	void CheckHover(const Table &table, const std::string &label) const;
+	bool CheckHover(const Table &table, const std::string &label) const;
 
 
 protected:
@@ -74,4 +74,5 @@ protected:
 	mutable std::string hover;
 	mutable Tooltip tooltip;
 	bool hasHover = false;
+	mutable bool hoveringTooltip = false;
 };

@@ -248,30 +248,32 @@ void ShipyardPanel::DrawButtons()
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("shipyard: ") + hoverButton);
 	if(!tooltip.empty())
+	{
 		buttonsTooltip.IncrementCount();
+		if(buttonsTooltip.ShouldDraw())
+		{
+			buttonsTooltip.SetZone(buttonsFooter);
+			buttonsTooltip.SetText(tooltip, true);
+			buttonsTooltip.Draw();
+		}
+	}
 	else
 		buttonsTooltip.DecrementCount();
-
-	if(buttonsTooltip.ShouldDraw())
-	{
-		buttonsTooltip.SetZone(buttonsFooter);
-		buttonsTooltip.SetText(tooltip, true);
-		buttonsTooltip.Draw();
-	}
 
 	// Draw the tooltip for your full number of credits.
 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
 	if(creditsBox.Contains(hoverPoint))
+	{
 		creditsTooltip.IncrementCount();
+		if(creditsTooltip.ShouldDraw())
+		{
+			creditsTooltip.SetZone(creditsBox);
+			creditsTooltip.SetText(Format::CreditString(player.Accounts().Credits(), false), true);
+			creditsTooltip.Draw();
+		}
+	}
 	else
 		creditsTooltip.DecrementCount();
-
-	if(creditsTooltip.ShouldDraw())
-	{
-		creditsTooltip.SetZone(creditsBox);
-		creditsTooltip.SetText(Format::CreditString(player.Accounts().Credits(), false), true);
-		creditsTooltip.Draw();
-	}
 }
 
 

@@ -117,7 +117,7 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft, const bool sale) cons
 
 	for(unsigned i = 0; i < tableLabels.size(); ++i)
 	{
-		CheckHover(table, tableLabels[i]);
+		hoveringTooltip |= CheckHover(table, tableLabels[i]);
 		table.Draw(tableLabels[i], labelColor);
 		table.Draw(energyTable[i], valueColor);
 		table.Draw(heatTable[i], valueColor);
