@@ -43747,7 +43747,7 @@ system Zubeneschamali
 system Iniquus
 	pos -390.667 -569.704
 	government Uninhabited
-	attributes "north" "black hole" "notable star"
+	attributes "north" "black hole" "notable star" "Iniquus"
 	arrival 4000
 	habitable 100000
 	belt 3000

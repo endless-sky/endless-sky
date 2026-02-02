@@ -12566,3 +12566,17 @@ mission "A Dead Man's Path 2"
 				payment 100000
 			`	"Well, that's okay. We'll always appreciate the help you've given us in fulfilling our father's will. Oh, and here's your payment, and a little extra for putting up with us all this time," Liam says, handing you a few credit chips for <payment>. "We wish you well through the stars!" Again, the siblings both thank you profusely for the trip, and you watch them leave Prime's spaceport with excitement.`
 				decline
+
+mission "Trapped in Iniquus"
+	landing
+	invisible
+	to complete
+		never
+	on enter
+		system
+			attributes "Iniquus"
+		dialog phrase "iniquus trapped"
+
+phrase "iniquus trapped"
+	word
+		`As soon as you jump into the system, you notice something is wrong. Your computer indicates that not only is the system you came from out of range, but all other nearby systems as well. It appears you are stuck in this region forever...`
