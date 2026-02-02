@@ -390,7 +390,8 @@ void LogbookPanel::DrawLogbook()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	Color entryHighlight = bright.Transparent(.125);
+	Color entryHover = bright.Transparent(.125);
+	Color entrySelected = medium.Transparent(.125);
 
 	// Draw the sidebar.
 	// The currently selected sidebar item should be highlighted. This is how
@@ -493,7 +494,9 @@ void LogbookPanel::DrawLogbook()
 			logZones.emplace_back(Rectangle::FromCorner(zoneStart, zoneSize), &entry.body);
 			ClickZone<const BookEntry *> zone = logZones.back();
 			if(zone.Contains(hoverPoint))
-				FillShader::Fill(zone, entryHighlight);
+				FillShader::Fill(zone, entryHover);
+			else if(selectedEntry == &entry.body)
+				FillShader::Fill(zone, entrySelected);
 		}
 
 		pos.Y() += GAP;
