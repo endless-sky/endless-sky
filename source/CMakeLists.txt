@@ -57,6 +57,10 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/supplier/Mp3Supplier.h
 	audio/supplier/WavSupplier.cpp
 	audio/supplier/WavSupplier.h
+	body/AsteroidField.cpp
+	body/AsteroidField.h
+	body/Body.cpp
+	body/Body.h
 	body/collision/Collision.cpp
 	body/collision/Collision.h
 	body/collision/CollisionSet.cpp
@@ -67,10 +71,37 @@ target_sources(EndlessSkyLib PRIVATE
 	body/collision/DamageProfile.h
 	body/collision/FighterHitHelper.h
 	body/collision/MinableDamageDealt.h
+	body/Effect.cpp
+	body/Effect.h
+	body/Flotsam.cpp
+	body/Flotsam.h
+	body/Minable.cpp
+	body/Minable.h
 	body/Projectile.cpp
 	body/Projectile.h
-	body/collision/Weapon.cpp
-	body/collision/Weapon.h
+	body/Ship.cpp
+	body/Ship.h
+	body/ship/Armament.cpp
+	body/ship/Armament.h
+	body/ship/CaptureOdds.cpp
+	body/ship/CaptureOdds.h
+	body/ship/CargoHold.cpp
+	body/ship/CargoHold.h
+	body/ship/Hardpoint.cpp
+	body/ship/Hardpoint.h
+	body/ship/JumpType.h
+	body/ship/Outfit.cpp
+	body/ship/Outfit.h
+	body/ship/ShipEvent.cpp
+	body/ship/ShipEvent.h
+	body/ship/ShipJumpNavigation.cpp
+	body/ship/ShipJumpNavigation.h
+	body/ship/Weapon.cpp
+	body/ship/Weapon.h
+	body/StellarObject.cpp
+	body/StellarObject.h
+	body/Visual.cpp
+	body/Visual.h
 	comparators/ByDisplayName.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
@@ -90,14 +121,10 @@ target_sources(EndlessSkyLib PRIVATE
 	engine/AmmoDisplay.h
 	engine/Camera.cpp
 	engine/Camera.h
-	body/Effect.cpp
-	body/Effect.h
 	engine/Engine.cpp
 	engine/Engine.h
 	engine/EscortDisplay.cpp
 	engine/EscortDisplay.h
-	body/Flotsam.cpp
-	body/Flotsam.h
 	engine/Message.cpp
 	engine/Message.h
 	engine/Messages.cpp
@@ -108,8 +135,6 @@ target_sources(EndlessSkyLib PRIVATE
 	engine/PlanetLabel.h
 	engine/Radar.cpp
 	engine/Radar.h
-	body/Visual.cpp
-	body/Visual.h
 	files/DataFile.cpp
 	files/DataFile.h
 	files/DataNode.cpp
@@ -163,14 +188,10 @@ target_sources(EndlessSkyLib PRIVATE
 	image/Sprite.h
 	image/SpriteSet.cpp
 	image/SpriteSet.h
-	body/AsteroidField.cpp
-	body/AsteroidField.h
 	map/Galaxy.cpp
 	map/Galaxy.h
 	map/Hazard.cpp
 	map/Hazard.h
-	body/Minable.cpp
-	body/Minable.h
 	map/News.cpp
 	map/News.h
 	map/Planet.cpp
@@ -179,8 +200,6 @@ target_sources(EndlessSkyLib PRIVATE
 	map/Port.h
 	map/Sale.h
 	map/Shop.h
-	body/StellarObject.cpp
-	body/StellarObject.h
 	map/System.cpp
 	map/System.h
 	map/Trade.cpp
@@ -267,23 +286,6 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/SpriteShader.h
 	shader/StarField.cpp
 	shader/StarField.h
-	body/ship/Armament.cpp
-	body/ship/Armament.h
-	body/ship/CaptureOdds.cpp
-	body/ship/CaptureOdds.h
-	body/ship/CargoHold.cpp
-	body/ship/CargoHold.h
-	body/ship/Hardpoint.cpp
-	body/ship/Hardpoint.h
-	body/ship/JumpType.h
-	body/ship/Outfit.cpp
-	body/ship/Outfit.h
-	body/Ship.cpp
-	body/Ship.h
-	body/ship/ShipEvent.cpp
-	body/ship/ShipEvent.h
-	body/ship/ShipJumpNavigation.cpp
-	body/ship/ShipJumpNavigation.h
 	test/Test.cpp
 	test/Test.h
 	test/TestContext.cpp
@@ -316,30 +318,16 @@ target_sources(EndlessSkyLib PRIVATE
 	text/WrappedText.cpp
 	text/WrappedText.h
 	ui/Animate.h
-	ui/panels/planet/BankPanel.cpp
-	ui/panels/planet/BankPanel.h
-	ui/panels/BoardingPanel.cpp
-	ui/panels/BoardingPanel.h
 	ui/CategoryList.cpp
 	ui/CategoryList.h
 	ui/CategoryType.h
 	ui/ClickZone.h
-	ui/panels/ConversationPanel.cpp
-	ui/panels/ConversationPanel.h
-	ui/panels/DialogPanel.cpp
-	ui/panels/DialogPanel.h
 	ui/Endpoint.cpp
 	ui/Endpoint.h
 	ui/FrameTimer.cpp
 	ui/FrameTimer.h
-	ui/panels/menu/GameLoadingPanel.cpp
-	ui/panels/menu/GameLoadingPanel.h
 	ui/GameWindow.cpp
 	ui/GameWindow.h
-	ui/panels/HailPanel.cpp
-	ui/panels/HailPanel.h
-	ui/panels/planet/HiringPanel.cpp
-	ui/panels/planet/HiringPanel.h
 	ui/InfoPanelState.cpp
 	ui/InfoPanelState.h
 	ui/Information.cpp
@@ -348,10 +336,19 @@ target_sources(EndlessSkyLib PRIVATE
 	ui/Interface.h
 	ui/ItemInfoDisplay.cpp
 	ui/ItemInfoDisplay.h
-	ui/panels/menu/LoadPanel.cpp
-	ui/panels/menu/LoadPanel.h
-	ui/panels/player/LogbookPanel.cpp
-	ui/panels/player/LogbookPanel.h
+	ui/MapPlanetCard.cpp
+	ui/MapPlanetCard.h
+	ui/MouseButton.h
+	ui/OutfitInfoDisplay.cpp
+	ui/OutfitInfoDisplay.h
+	ui/panels/BoardingPanel.cpp
+	ui/panels/BoardingPanel.h
+	ui/panels/ConversationPanel.cpp
+	ui/panels/ConversationPanel.h
+	ui/panels/DialogPanel.cpp
+	ui/panels/DialogPanel.h
+	ui/panels/HailPanel.cpp
+	ui/panels/HailPanel.h
 	ui/panels/MainPanel.cpp
 	ui/panels/MainPanel.h
 	ui/panels/map/MapDetailPanel.cpp
@@ -360,33 +357,52 @@ target_sources(EndlessSkyLib PRIVATE
 	ui/panels/map/MapOutfitterPanel.h
 	ui/panels/map/MapPanel.cpp
 	ui/panels/map/MapPanel.h
-	ui/MapPlanetCard.cpp
-	ui/MapPlanetCard.h
 	ui/panels/map/MapSalesPanel.cpp
 	ui/panels/map/MapSalesPanel.h
 	ui/panels/map/MapShipyardPanel.cpp
 	ui/panels/map/MapShipyardPanel.h
+	ui/panels/map/MissionPanel.cpp
+	ui/panels/map/MissionPanel.h
+	ui/panels/menu/GameLoadingPanel.cpp
+	ui/panels/menu/GameLoadingPanel.h
+	ui/panels/menu/LoadPanel.cpp
+	ui/panels/menu/LoadPanel.h
 	ui/panels/menu/MenuAnimationPanel.cpp
 	ui/panels/menu/MenuAnimationPanel.h
 	ui/panels/menu/MenuPanel.cpp
 	ui/panels/menu/MenuPanel.h
-	ui/panels/player/MessageLogPanel.cpp
-	ui/panels/player/MessageLogPanel.h
-	ui/panels/map/MissionPanel.cpp
-	ui/panels/map/MissionPanel.h
-	ui/MouseButton.h
-	ui/OutfitInfoDisplay.cpp
-	ui/OutfitInfoDisplay.h
-	ui/panels/planet/OutfitterPanel.cpp
-	ui/panels/planet/OutfitterPanel.h
-	ui/panels/Panel.cpp
-	ui/panels/Panel.h
-	ui/panels/planet/PlanetPanel.cpp
-	ui/panels/planet/PlanetPanel.h
-	ui/panels/player/PlayerInfoPanel.cpp
-	ui/panels/player/PlayerInfoPanel.h
 	ui/panels/menu/PreferencesPanel.cpp
 	ui/panels/menu/PreferencesPanel.h
+	ui/panels/menu/StartConditionsPanel.cpp
+	ui/panels/menu/StartConditionsPanel.h
+	ui/panels/Panel.cpp
+	ui/panels/Panel.h
+	ui/panels/planet/BankPanel.cpp
+	ui/panels/planet/BankPanel.h
+	ui/panels/planet/HiringPanel.cpp
+	ui/panels/planet/HiringPanel.h
+	ui/panels/planet/OutfitterPanel.cpp
+	ui/panels/planet/OutfitterPanel.h
+	ui/panels/planet/PlanetPanel.cpp
+	ui/panels/planet/PlanetPanel.h
+	ui/panels/planet/ShipyardPanel.cpp
+	ui/panels/planet/ShipyardPanel.h
+	ui/panels/planet/ShopPanel.cpp
+	ui/panels/planet/ShopPanel.h
+	ui/panels/planet/SpaceportPanel.cpp
+	ui/panels/planet/SpaceportPanel.h
+	ui/panels/planet/TradingPanel.cpp
+	ui/panels/planet/TradingPanel.h
+	ui/panels/player/LogbookPanel.cpp
+	ui/panels/player/LogbookPanel.h
+	ui/panels/player/MessageLogPanel.cpp
+	ui/panels/player/MessageLogPanel.h
+	ui/panels/player/PlayerInfoPanel.cpp
+	ui/panels/player/PlayerInfoPanel.h
+	ui/panels/player/ShipInfoPanel.cpp
+	ui/panels/player/ShipInfoPanel.h
+	ui/panels/ShipNameDialogPanel.cpp
+	ui/panels/ShipNameDialogPanel.h
 	ui/RenderBuffer.cpp
 	ui/RenderBuffer.h
 	ui/Screen.cpp
@@ -396,32 +412,16 @@ target_sources(EndlessSkyLib PRIVATE
 	ui/ScrollVar.h
 	ui/ShipInfoDisplay.cpp
 	ui/ShipInfoDisplay.h
-	ui/panels/player/ShipInfoPanel.cpp
-	ui/panels/player/ShipInfoPanel.h
-	ui/panels/ShipNameDialogPanel.cpp
-	ui/panels/ShipNameDialogPanel.h
-	ui/panels/planet/ShipyardPanel.cpp
-	ui/panels/planet/ShipyardPanel.h
-	ui/panels/planet/ShopPanel.cpp
-	ui/panels/planet/ShopPanel.h
-	ui/panels/planet/SpaceportPanel.cpp
-	ui/panels/planet/SpaceportPanel.h
-	ui/panels/menu/StartConditionsPanel.cpp
-	ui/panels/menu/StartConditionsPanel.h
 	ui/TextArea.cpp
 	ui/TextArea.h
 	ui/Tooltip.cpp
 	ui/Tooltip.h
-	ui/panels/planet/TradingPanel.cpp
-	ui/panels/planet/TradingPanel.h
 	ui/UI.cpp
 	ui/UI.h
 	util/Angle.cpp
 	util/Angle.h
 	util/Bitset.cpp
 	util/Bitset.h
-	body/Body.cpp
-	body/Body.h
 	util/Color.cpp
 	util/Color.h
 	util/CustomEvents.cpp

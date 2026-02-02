@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../files/DataNode.h"
 #include "../Effect.h"
 #include "../../files/GameData.h"
-#include "../ship/Outfit.h"
+#include "Outfit.h"
 #include "../../image/SpriteSet.h"
 
 #include <algorithm>

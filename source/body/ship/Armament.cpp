@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../files/Logger.h"
 #include "Outfit.h"
 #include "../Ship.h"
-#include "../collision/Weapon.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>

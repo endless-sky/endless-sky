@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../player/PlayerInfo.h"
 #include "../body/Ship.h"
 #include "../text/Table.h"
-#include "../body/collision/Weapon.h"
+#include "../body/ship/Weapon.h"
 
 #include <algorithm>
 #include <map>

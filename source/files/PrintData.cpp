@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../body/Ship.h"
 #include "../map/Shop.h"
 #include "../map/System.h"
-#include "../body/collision/Weapon.h"
+#include "../body/ship/Weapon.h"
 
 #include <iostream>
 #include <map>

@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../body/Projectile.h"
 #include "../shader/RingShader.h"
 #include "../body/Ship.h"
-#include "../body/collision/Weapon.h"
+#include "../body/ship/Weapon.h"
 
 #include <algorithm>
 

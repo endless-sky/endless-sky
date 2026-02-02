@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/GameData.h"
 #include "../body/ship/Outfit.h"
 #include "../player/PlayerInfo.h"
-#include "../body/collision/Weapon.h"
+#include "../body/ship/Weapon.h"
 
 #include <algorithm>
 #include <cmath>

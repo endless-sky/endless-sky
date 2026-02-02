@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MinableDamageDealt.h"
 #include "../ship/Outfit.h"
 #include "../Ship.h"
-#include "Weapon.h"
+#include "../ship/Weapon.h"
 
 using namespace std;
 

@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Effect.h"
 #include "../../files/GameData.h"
 #include "../../image/SpriteSet.h"
-#include "../collision/Weapon.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>

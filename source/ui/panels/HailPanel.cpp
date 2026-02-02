@@ -35,7 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../body/StellarObject.h"
 #include "../../map/System.h"
 #include "../UI.h"
-#include "../../body/collision/Weapon.h"
+#include "../../body/ship/Weapon.h"
 #include "../../text/WrappedText.h"
 
 #include <algorithm>

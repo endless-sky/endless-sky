@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../body/ship/Outfit.h"
 #include "../util/pi.h"
 #include "../body/Ship.h"
-#include "../body/collision/Weapon.h"
+#include "../body/ship/Weapon.h"
 
 #include <algorithm>
 #include <cmath>

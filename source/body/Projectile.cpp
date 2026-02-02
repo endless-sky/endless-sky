@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../util/Random.h"
 #include "../body/Ship.h"
 #include "Visual.h"
-#include "../body/collision/Weapon.h"
+#include "ship/Weapon.h"
 
 #include <algorithm>
 #include <cmath>

@@ -45,7 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../util/Swizzle.h"
 #include "../map/System.h"
 #include "Visual.h"
-#include "../body/collision/Weapon.h"
+#include "ship/Weapon.h"
 #include "../map/Wormhole.h"
 
 #include <algorithm>

@@ -39,7 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../shader/SpriteShader.h"
 #include "../../../text/Truncate.h"
 #include "../../UI.h"
-#include "../../../body/collision/Weapon.h"
+#include "../../../body/ship/Weapon.h"
 
 #include <algorithm>
 #include <limits>
