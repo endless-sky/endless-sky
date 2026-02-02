@@ -98,15 +98,6 @@ const ItemInfoDisplay &MapShipyardPanel::CompareInfo() const
 
 
 
-void MapShipyardPanel::DrawKey(Information &info) const
-{
-	info.SetCondition("is shipyards");
-
-	MapSalesPanel::DrawKey(info);
-}
-
-
-
 void MapShipyardPanel::Select(int index)
 {
 	if(index < 0 || index >= static_cast<int>(list.size()))
@@ -184,6 +175,15 @@ int MapShipyardPanel::FindItem(const string &text) const
 		}
 	}
 	return bestItem;
+}
+
+
+
+void MapShipyardPanel::DrawKey(Information &info) const
+{
+	info.SetCondition("is shipyards");
+
+	MapSalesPanel::DrawKey(info);
 }
 
 
