@@ -84,40 +84,6 @@ namespace {
 		{SDLK_KP_SPACE, ' '},
 		{SDLK_KP_VERTICALBAR, '|'}
 	};
-
-	// The width of the margin on the right/left sides of the dialog. This area is part of the sprite,
-	// but shouldn't have any text or other graphics rendered over it. (It's mostly transparent.)
-	constexpr double LEFT_MARGIN = 20;
-	constexpr double RIGHT_MARGIN = 20;
-	constexpr double HORIZONTAL_MARGIN = LEFT_MARGIN + RIGHT_MARGIN;
-	// The margin on the right/left sides of the button sprite. The bottom segment also includes a button
-	// that uses the same value.
-	constexpr double BUTTON_LEFT_MARGIN = 10;
-	constexpr double BUTTON_RIGHT_MARGIN = 10;
-	constexpr double BUTTON_HORIZONTAL_MARGIN = BUTTON_LEFT_MARGIN + BUTTON_RIGHT_MARGIN;
-	// The margin on the top/bottom sides of the button sprite. The bottom segment also includes a button
-	// that uses the same value.
-	constexpr double BUTTON_TOP_MARGIN = 10;
-	constexpr double BUTTON_BOTTOM_MARGIN = 10;
-	constexpr double BUTTON_VERTICAL_MARGIN = BUTTON_TOP_MARGIN + BUTTON_BOTTOM_MARGIN;
-	// The width of the padding used on the left/right sides of each segment, in pixels.
-	constexpr double LEFT_PADDING = 10;
-	constexpr double RIGHT_PADDING = 10;
-	constexpr double HORIZONTAL_PADDING = RIGHT_PADDING + LEFT_PADDING;
-	// The height of the padding used by the top/bottom segment, in pixels.
-	constexpr double TOP_PADDING = 10;
-	constexpr double BOTTOM_PADDING = 10;
-	constexpr double VERTICAL_PADDING = TOP_PADDING + BOTTOM_PADDING;
-	// The width of the padding at the beginning/end of an input field.
-	constexpr double INPUT_LEFT_PADDING = 5;
-	constexpr double INPUT_RIGHT_PADDING = 5;
-	constexpr double INPUT_HORIZONTAL_PADDING = INPUT_LEFT_PADDING + INPUT_RIGHT_PADDING;
-	// The height of the padding at the top/bottom of an input field.
-	constexpr double INPUT_TOP_PADDING = 2;
-	constexpr double INPUT_BOTTOM_PADDING = 2;
-	constexpr double INPUT_VERTICAL_PADDING = INPUT_TOP_PADDING + INPUT_BOTTOM_PADDING;
-	// The height of an input field in pixels.
-	constexpr double INPUT_HEIGHT = 20;
 }
 
 
@@ -397,6 +363,13 @@ bool DialogPanel::Click(int x, int y, MouseButton button, int clicks)
 
 void DialogPanel::Resize()
 {
+	Resize(-1);
+}
+
+
+
+void DialogPanel::Resize(int height)
+{
 	isWide = false;
 	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
 	text->SetRect(Rectangle(Point(), textRectSize));
@@ -430,7 +403,9 @@ void DialogPanel::Resize()
 	// The height of the bottom sprite without the included button's height.
 	const int realBottomHeight = bottom->Height() - cancel->Height();
 
-	int height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
+	// A negative height (default) will allow dynamic sizing.
+	if(height < 0)
+		height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
 			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
 	// Determine how many extension panels we need.
 	if(height <= realBottomHeight + top->Height())
@@ -448,9 +423,9 @@ void DialogPanel::Resize()
 	// be rounded up from the actual text height by the number of panels that
 	// were added. This helps correctly position the TextArea scroll buttons.
 	textRectSize.Y() = (top->Height() + realBottomHeight - VERTICAL_PADDING) + extensionCount * middle->Height() -
-			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
+			realBottomHeight * AcceptsInput() - BOTTOM_PADDING;
 
-	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
+	textRect = Rectangle::FromCorner(textPos, textRectSize);
 	text->SetRect(textRect);
 }
 
@@ -482,10 +457,18 @@ void DialogPanel::Init(const string &message, Truncate truncate, bool canCancel,
 	text->SetFont(FontSet::Get(14));
 	text->SetTruncate(truncate);
 	text->SetText(message);
-	Resize();
+	Resize(-1);
 	AddChild(text);
 
 	isOkDisabled = !ValidateInput();
+}
+
+
+
+int DialogPanel::Width() const
+{
+	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
+	return top->Width() - HORIZONTAL_MARGIN;
 }
 
 
@@ -532,14 +515,6 @@ void DialogPanel::DoCallback(const bool isOk) const
 
 	if(boolFun)
 		boolFun(isOk);
-}
-
-
-
-int DialogPanel::Width() const
-{
-	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
-	return top->Width() - HORIZONTAL_MARGIN;
 }
 
 

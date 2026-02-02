@@ -142,14 +142,52 @@ protected:
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 
 	virtual void Resize() override;
+	void Resize(int height);
+
+	// Common code from all constructors:
+	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
+	// The width of the dialog, excluding margins.
+	int Width() const;
+
+
+protected:
+	// The width of the margin on the right/left sides of the dialog. This area is part of the sprite,
+	// but shouldn't have any text or other graphics rendered over it. (It's mostly transparent.)
+	double LEFT_MARGIN = 20;
+	double RIGHT_MARGIN = 20;
+	double HORIZONTAL_MARGIN = LEFT_MARGIN + RIGHT_MARGIN;
+	// The margin on the right/left sides of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	double BUTTON_LEFT_MARGIN = 10;
+	double BUTTON_RIGHT_MARGIN = 10;
+	double BUTTON_HORIZONTAL_MARGIN = BUTTON_LEFT_MARGIN + BUTTON_RIGHT_MARGIN;
+	// The margin on the top/bottom sides of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	double BUTTON_TOP_MARGIN = 10;
+	double BUTTON_BOTTOM_MARGIN = 10;
+	double BUTTON_VERTICAL_MARGIN = BUTTON_TOP_MARGIN + BUTTON_BOTTOM_MARGIN;
+	// The width of the padding used on the left/right sides of each segment, in pixels.
+	double LEFT_PADDING = 10;
+	double RIGHT_PADDING = 10;
+	double HORIZONTAL_PADDING = RIGHT_PADDING + LEFT_PADDING;
+	// The height of the padding used by the top/bottom segment, in pixels.
+	double TOP_PADDING = 10;
+	double BOTTOM_PADDING = 10;
+	double VERTICAL_PADDING = TOP_PADDING + BOTTOM_PADDING;
+	// The width of the padding at the beginning/end of an input field.
+	double INPUT_LEFT_PADDING = 5;
+	double INPUT_RIGHT_PADDING = 5;
+	double INPUT_HORIZONTAL_PADDING = INPUT_LEFT_PADDING + INPUT_RIGHT_PADDING;
+	// The height of the padding at the top/bottom of an input field.
+	double INPUT_TOP_PADDING = 2;
+	double INPUT_BOTTOM_PADDING = 2;
+	double INPUT_VERTICAL_PADDING = INPUT_TOP_PADDING + INPUT_BOTTOM_PADDING;
+	// The height of an input field in pixels.
+	double INPUT_HEIGHT = 20;
 
 
 private:
-	// Common code from all three constructors:
-	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
 	void DoCallback(bool isOk = true) const;
-	// The width of the dialog, excluding margins.
-	int Width() const;
 	// Whether this dialog accepts typed input from the player.
 	bool AcceptsInput() const;
 	// Return true if the validation function passes when given the current input,
@@ -178,6 +216,7 @@ protected:
 	bool isOkDisabled = false;
 	bool allowsFastForward = false;
 	bool isWide = false;
+	Rectangle textRect;
 
 	std::string input;
 
