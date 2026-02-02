@@ -193,10 +193,6 @@ help "stranded"
 	`Oops! You just ran out of fuel in an uninhabited star system. Fortunately, other ships are willing to help you.`
 	`Press <Select next ship> to cycle through all the ships in this system. When you have a friendly one selected, press <Talk to selected ship> to hail it. You can then ask for help, and if it has fuel to spare it will fly over and transfer fuel to your ship. This is easiest for the other ship to do if your ship is nearly stationary.`
 
-help "trading"
-	`This is the trading panel. Earn money by buying commodities at a low price in one system, and selling at a higher price elsewhere. To view your map of commodity prices in other systems, press <View star map>. To buy or sell, click on [buy] or [sell], or select a line with the up and down arrows and press "+" or "-" (or Enter and Delete).`
-	`You can buy 5 tons at once by holding down Shift, 20 by holding down Control, 500 by holding down Alt, or larger amounts at a time by holding down two keys at once, or even all three.`
-
 help "friendly disabled"
 	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`
 
@@ -209,3 +205,190 @@ help "control ship with mouse"
 	`Right mouse click will fire primary weapons.`
 	`<Mouse turning (hold)> will toggle mouse turning while it is held.`
 	`The "go to and hold" command is remapped from the right mouse button to the middle one.`
+
+interface "help overlay: planet"
+	visible if "has shipyard"
+	infotag
+		to 415 90
+		ear
+			facing west
+			affinity center
+			length 15
+		text
+			`<S>`
+		alignment center
+		shrink
+	
+	visible if "has outfitter"
+	infotag
+		to 415 150
+		ear
+			facing west
+			affinity center
+			length 15
+		text
+			`<O>`
+		alignment center
+		shrink
+		
+	visible if "can hire crew"
+	infotag
+		to 415 210
+		ear
+			facing west
+			affinity center
+			length 15
+		text
+			`<H>`
+		alignment center
+		shrink
+		
+	infotag
+		to 415 270
+		ear
+			facing west
+			affinity center
+			length 15
+		text
+			`<D>`
+		alignment center
+		shrink
+	
+	visible if "has trade"
+	infotag
+		to -415 90
+		ear
+			facing east
+			affinity center
+			length 15
+		text
+			`<T>`
+		alignment center
+		shrink
+		
+	visible if "has job board"
+	infotag
+		to -415 150
+		ear
+			facing east
+			affinity center
+			length 15
+		text
+			`<J>`
+		alignment center
+		shrink
+	
+	visible if "has bank"
+	infotag
+		to -415 210
+		ear
+			facing east
+			affinity center
+			length 15
+		text
+			`<B>`
+		alignment center
+		shrink
+	
+	visible if "has port"
+	infotag
+		to -415 270
+		ear
+			facing east
+			affinity center
+			length 15
+		text
+			`<P>`
+		alignment center
+		shrink
+		
+interface "help overlay: trading"
+	include "help overlay: planet"
+	
+	infotag
+		# anchor center of bottom to 0, 0
+		to 0 -250
+		ear
+			facing north
+			affinity center
+			length 0
+		text
+			`This is the trading panel. Earn money by buying commodities at a low price in one system, and selling at a higher price elsewhere. To view your map of commodity prices in other systems, press <View star map>. To buy or sell, click on [buy] or [sell], or select a line with the up and down arrows and press <+> or <-> (or <Enter> and <Delete>).`
+			`You can buy 5 tons at once by holding down <Shift>, 20 by holding down <Control>, 500 by holding down <Alt>, or larger amounts at a time by holding down two keys at once, or even all three.`
+		alignment justified
+		textwidth 600
+	
+	infotag
+		to 100 375
+		ear
+			facing north
+			affinity cw
+			length 15
+		text
+			`<U> or <Shift>+<B>`
+		alignment right
+		shrink
+	
+	infotag
+		to 190 375
+		ear
+			facing north
+			affinity ccw
+			length 15
+		text
+			`<E> or <Shift>+<S>`
+		alignment left
+		shrink
+	
+	infotag
+		to 140 80
+		ear
+			facing south
+			affinity cw
+			length 15
+		text
+			`<-> or <Delete>`
+		alignment center
+		shrink
+	
+	infotag
+		to 80 80
+		ear
+			facing south
+			affinity ccw
+			length 15
+		text
+			`<+> or <Enter>`
+		alignment center
+		shrink
+	
+	infotag
+		to -200 80
+		ear
+			facing south
+			affinity center
+			length 15
+		text
+			`<Up> or <Dn> to change selection`
+		alignment left
+		shrink
+	
+#	infotag
+#		to -100 -100
+#		from 200 100
+#		ear
+#			width 15
+#		text
+#			`infotag`
+#			` to -100 -100`
+#			` from 200 100`
+#			` ear`
+#			`  width 15`
+#			` text`
+#			`  "Testing..."`
+#			` alignment left`
+#			` textwidth 400`
+#			` shrink`
+#		alignment left
+#		textwidth 400
+#		shrink
