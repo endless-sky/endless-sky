@@ -436,8 +436,8 @@ void Projectile::CheckLock(const Ship &target)
 			double rangeFraction = min(1., distance / jammingRange);
 			opticalJamming = (1. - rangeFraction) * opticalJamming;
 		}
-		double targetMass = target.Mass();
-		double weight = targetMass * targetMass * targetMass / 1e9 / (1. + opticalJamming);
+		double targetMass = target.Mass() / (1. + opticalJamming);
+		double weight = targetMass * targetMass * targetMass / 1e9;
 		double lockChance = weapon->OpticalTracking() * weight / (1. + weight);
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
