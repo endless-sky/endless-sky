@@ -1314,7 +1314,7 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 	outfits
 		"Piercer Missile Launcher" 4
-		"Piercer Missile" 124
+		"Piercer Missile" 908
 		"Thermal Repeater Turret" 6
 		"Grab-Strike Turret" 2
 		
@@ -1344,7 +1344,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 	outfits
 		"Piercer Missile Launcher" 4
-		"Piercer Missile" 140
+		"Piercer Missile" 1021
 		"Piercer Missile Rack"
 		"Warder Anti-Missile" 3
 		"Grab-Strike Turret" 3
@@ -1460,7 +1460,7 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 	outfits
 		"Korath Detainer"
 		"Piercer Missile Launcher" 2
-		"Piercer Missile" 62
+		"Piercer Missile" 454
 		"Grab-Strike Turret"
 		"Warder Anti-Missile"
 		

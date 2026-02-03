@@ -184,8 +184,8 @@ outfit "Swarm Clip"
 	cost 24000
 	thumbnail "outfit/swarm storage"
 	"mass" 2
-	"outfit space" -10
-	"swarm capacity" 200
+	"outfit space" -7
+	"swarm capacity" 250
 	ammo "Swarm Missile"
 	description "Swarm Clips provide a sizable increase in ammo capacity for Swarm Pods, holding a respectable 200 missiles able to be swiftly loaded into a launcher after its current clip is empty."
 
@@ -195,7 +195,7 @@ outfit "Swarm Missile"
 	index 10010
 	cost 250
 	thumbnail "outfit/swarm missile"
-	"mass" 0.04
+	"mass" 0.02
 	"swarm capacity" -1
 	description "Swarm missiles are small, fast moving munitions for the Swarm Pod."
 
@@ -206,10 +206,10 @@ outfit "Swarm Pod"
 	cost 363000
 	thumbnail "outfit/swarm pod"
 	"mass" 5
-	"outfit space" -21
-	"weapon capacity" -21
+	"outfit space" -15
+	"weapon capacity" -15
 	"gun ports" -1
-	"swarm capacity" 400
+	"swarm capacity" 500
 	weapon
 		sprite "effect/swarm"
 			"frame rate" .01

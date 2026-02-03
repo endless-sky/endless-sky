@@ -217,7 +217,7 @@ ship "Kaskhorade"
 	outfits
 		`"Ojet" Bimodal Coilgun` 2
 		`"Sjeja" Kinetic Lance` 2
-		"High-Velocity Spike" 40
+		"High-Velocity Spike" 80
 		"Bimodal Coilgun Turret"
 
 		`"Uoret" Fusion Core`

@@ -1159,18 +1159,11 @@ event "remnant: cognizance calm"
 
 
 
-event "remnant: teciimach deployment"
+event "remnant: teciimach bay deployment"
 	outfitter "Remnant"
 		remove "EMP Torpedo Bay"
-		remove "EMP Torpedo"
-		remove "EMP Torpedo Storage Bay"
 		add "Teciimach Bay"
 		add "Teciimach Pod"
-		add "Teciimach Canister"
-		add "Teciimach Canister Rack"
-	outfitter "Remnant Core"
-		remove "EMP Torpedo"
-		add "Teciimach Canister"
 	fleet "Small Remnant"
 		add variant 5
 			"Merganser (II)" 2
@@ -1220,6 +1213,25 @@ event "remnant: teciimach deployment"
 		add variant 5
 			"Peregrine (II)"
 			"Merganser (II)" 3
+
+
+
+## Compatibility patch for pre-0.11.1 saves to revert Teciimach Canisters back to EMP Torpedoes.
+mission "Remnant: Teciimach Compatibility"
+	non-blocking
+	landing
+	to offer
+		has "event: remnant: teciimach deployment"
+	on offer
+		event "remnant: teciimach compatibility"
+
+event "remnant: teciimach compatibility"
+	outfitter "Remnant"
+		add "EMP Torpedo"
+		remove "Teciimach Canister"
+	outfitter "Remnant Core"
+		add "EMP Torpedo"
+		remove "Teciimach Canister"
 
 
 
