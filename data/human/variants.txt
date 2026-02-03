@@ -1609,26 +1609,7 @@ ship "Flivver" "Flivver (Racing)"
 
 
 
-ship "Freighter" "Freighter (Miner A)"
-	outfits
-		"Mining Laser Turret"
-		"Tractor Beam" 2
-
-		"Asteroid Scanner"
-		"nGVF-CC Fuel Cell"
-		"LP072a Battery Pack"
-		"D14-RN Shield Generator"
-
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"X1100 Ion Reverse Thruster"
-		"Scram Drive"
-	turret "Tractor Beam"
-	turret "Mining Laser Turret"
-	turret "Tractor Beam"
-
-
-ship "Freighter" "Freighter (Miner B)"
+ship "Freighter" "Freighter (Miner)"
 	outfits
 		"Mining Laser Turret" 2
 		"Tractor Beam"
@@ -1830,19 +1811,7 @@ ship "Fury" "Fury (Laser)"
 		"Hyperdrive"
 
 
-ship "Fury" "Fury (Miner A)"
-	outfits
-		"Heavy Laser" 2
-		"nGVF-CC Fuel Cell"
-		"Supercapacitor"
-		"D14-RN Shield Generator"
-		"Asteroid Scanner"
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Hyperdrive"
-
-
-ship "Fury" "Fury (Miner B)"
+ship "Fury" "Fury (Miner)"
 	outfits
 		"Mining Laser" 2
 		"Energy Blaster" 2
@@ -1991,19 +1960,7 @@ ship "Hawk" "Hawk (Bomber)"
 		"Hyperdrive"
 
 
-ship "Hawk" "Hawk (Miner A)"
-	outfits
-		"Heavy Laser" 2
-		"S3 Thermionic"
-		"LP036a Battery Pack"
-		"D41-HY Shield Generator"
-		"Asteroid Scanner"
-		"A120 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-
-
-ship "Hawk" "Hawk (Miner B)"
+ship "Hawk" "Hawk (Miner)"
 	outfits
 		"Mining Laser" 2
 		
@@ -2065,19 +2022,7 @@ ship "Headhunter" "Headhunter (Hai)"
 		"Hyperdrive"
 
 
-ship "Headhunter" "Headhunter (Miner A)"
-	outfits
-		"Particle Cannon" 2
-		"NT-200 Nucleovoltaic"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"Asteroid Scanner"
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
-
-
-ship "Headhunter" "Headhunter (Miner B)"
+ship "Headhunter" "Headhunter (Miner)"
 	outfits
 		"Mining Laser" 4
 		
