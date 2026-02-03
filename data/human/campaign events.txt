@@ -853,9 +853,12 @@ event "southern carriers 4"
 			"Lance (Gatling)" 4
 
 	fleet "Human Miners"
-		add variant 1
+		add variant 10
 			"Nest (Miner)"
 			"Barb (Miner)" 2
+		add variant 2
+			"Nest (Miner)" 2
+			"Barb (Miner)" 4
 
 event "initial deployment 4"
 	date 17 9 3014
