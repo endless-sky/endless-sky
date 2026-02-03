@@ -1011,48 +1011,37 @@ fleet "Human Miners"
 	personality
 		confusion 20
 		timid frugal mining harvests
-	variant 12
-		"Sparrow"
-	variant 7
-		"Sparrow (Miner)"
-	variant 1
-		"Fury"
-	variant 6
-		"Fury (Miner A)"
-	variant 3
-		"Fury (Miner B)"
-	variant 1
-		"Hawk"
-	variant 6
-		"Hawk (Miner A)"
-	variant 3
-		"Hawk (Miner B)"
-	variant 1
-		"Headhunter"
-	variant 3
-		"Headhunter (Miner A)"
-	variant 2
-		"Headhunter (Miner B)"
-	variant 3
-		"Star Barge (Miner)"
-	variant 2
-		"Freighter (Miner A)"
-	variant 2
-		"Freighter (Miner B)"
 	variant 5
+		"Sparrow (Miner)"
+	variant 5
+		"Fury (Miner)"
+	variant 5
+		"Hawk (Miner)"
+	variant 5
+		"Headhunter (Miner)"
+	variant 10
+		"Star Barge (Miner)"
+	variant 10
+		"Freighter (Miner)"
+	variant 10
 		"Sunder"
 		"Mining Drone" 2
-	variant 5
+	variant 10
 		"Sunder (Heavy)"
 		"Mining Drone" 2
-	variant
+	variant 10
 		"Aerie (Miner)"
-		"Dagger" 4
-	variant
-		"Aerie"
 		"Dagger (Miner)" 4
-	variant
+	variant 10
 		"Behemoth (Miner)"
+	variant 4
+		"Sunder" 2
+		"Mining Drone" 4
+	variant 2
+		"Aerie (Miner)" 2
+		"Dagger (Miner)" 8
+	variant 2
+		"Behemoth (Miner)" 2
 
 fleet "Small Free Worlds"
 	government "Free Worlds"
