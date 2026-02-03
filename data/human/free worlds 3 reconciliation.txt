@@ -159,7 +159,7 @@ mission "FW Reconciliation 1B"
 				`	"Absolutely. I could blow up a thousand Syndicate fleets in my sleep."`
 				`	"I'm worried about fighting Syndicate ships on the way there."`
 					goto worried
-			`	Raven smirks. "It would be nice to strongarm our way through Syndicate space. But, in case Syndicate forces prove to be too much and we're forced to flee, I'd suggest swapping out your hyperdrive for a scram drive. Syndicate Quicksilvers are notoriously agile, and their Proton Guns make it near impossible to jump with a regular hyperdrive.`
+			`	Raven smirks. "It would be nice to strongarm our way through Syndicate space. But, in case Syndicate forces prove to be too much and we're forced to flee, I'd suggest swapping out your hyperdrive for a scram drive. Syndicate Quicksilvers are notoriously agile, and their Proton Guns make it nearly impossible to jump with a regular hyperdrive.`
 				goto scanning
 			label worried
 			`	"That is indeed a danger. Syndicate Quicksilvers are notoriously agile, and if they swarm us, their Proton Guns will push you around and prevent regular hyperdrives from jumping."`
