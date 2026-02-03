@@ -1011,6 +1011,14 @@ fleet "Human Miners"
 	personality
 		confusion 20
 		timid frugal mining harvests
+	variant 3
+		"Sparrow"
+	variant 2
+		"Fury"
+	variant 2
+		"Hawk"
+	variant 1
+		"Headhunter"
 	variant 5
 		"Sparrow (Miner)"
 	variant 5
