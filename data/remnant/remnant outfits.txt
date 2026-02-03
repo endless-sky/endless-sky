@@ -383,7 +383,7 @@ outfit "Teciimach Pod"
 		"die effect" "tiny explosion"
 		safe
 		"burst count" 6
-		"burst reload" 165
+		"burst reload" 330
 		"reload" 660
 		"firing energy" 400
 		"firing heat" 18
