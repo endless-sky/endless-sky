@@ -12574,7 +12574,7 @@ mission "Trapped in Iniquus"
 		never
 	on enter
 		system
-			attributes "Iniquus"
+			attributes "iniquus"
 		dialog phrase "iniquus trapped"
 
 phrase "iniquus trapped"
