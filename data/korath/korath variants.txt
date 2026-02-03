@@ -1150,7 +1150,7 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 		"Firelight Missile" 162
 		"Firelight Storage Rack" 10
 		"Firestorm Battery" 2
-		"Firestorm Torpedo" 39
+		"Firestorm Torpedo" 33
 		"Firestorm Torpedo Rack" 2
 
 		"Triple Plasma Core" 3
