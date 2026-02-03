@@ -1099,7 +1099,10 @@ void MapPanel::DrawTravelPlan()
 				continue;
 			}
 
-			fuel[it.get()] = it->Fuel() * it->Attributes().Get("fuel capacity");
+			if(it->IsEnteringHyperspace())
+				fuel[it.get()] = it->FuelBeforeHyperspacing();
+			else
+				fuel[it.get()] = it->FuelLevel();
 			hasEscort |= (it.get() != flagship);
 		}
 	stranded |= !hasEscort;
