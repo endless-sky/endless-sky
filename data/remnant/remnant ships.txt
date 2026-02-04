@@ -91,7 +91,7 @@ ship "Albatross" "Albatross (Sniper)"
 		"Inhibitor Cannon" 5
 		"EMP Torpedo Bay" 2
 		"Point Defense Turret" 3
-		"EMP Torpedo" 114
+		"EMP Torpedo" 66
 		"EMP Torpedo Storage Bay" 3
 
 		"Aeon Cell"
@@ -237,7 +237,7 @@ ship "Albatross" "Albatross (Sniper II)"
 		"Inhibitor Cannon" 5
 		"Teciimach Bay" 2
 		"Point Defense Turret" 3
-		"EMP Torpedo" 45
+		"EMP Torpedo" 55
 		"EMP Torpedo Storage Bay" 3
 
 		"Aeon Cell"
@@ -568,7 +568,7 @@ ship "Gull" "Gull (Support)"
 		"EMP Torpedo Bay"
 		"Inhibitor Cannon" 2
 		"Point Defense Turret"
-		"EMP Torpedo" 47
+		"EMP Torpedo" 27
 		"EMP Torpedo Storage Bay"
 
 		"Epoch Cell"
@@ -589,7 +589,7 @@ ship "Gull" "Gull (Support II)"
 		"Teciimach Bay"
 		"Inhibitor Cannon" 2
 		"Point Defense Turret"
-		"EMP Torpedo" 19
+		"EMP Torpedo" 32
 		"EMP Torpedo Storage Bay"
 
 		"Epoch Cell"
@@ -1244,7 +1244,7 @@ ship "Peregrine"
 		"EMP Torpedo Bay" 1
 		"Point Defense Turret"
 		"Thrasher Turret"
-		"EMP Torpedo" 27
+		"EMP Torpedo" 15
 		
 		"Aeon Cell"
 		"Crystal Capacitor" 2
@@ -1287,7 +1287,7 @@ ship "Peregrine" "Peregrine (II)"
 		"Teciimach Bay"
 		"Point Defense Turret"
 		"Thrasher Turret"
-		"EMP Torpedo" 12
+		"EMP Torpedo" 20
 		
 		"Aeon Cell"
 		"Crystal Capacitor" 2
@@ -1498,7 +1498,7 @@ ship "Smew" "Smew (Runabout)"
 
 ship "Smew" "Smew (Teciimach Ferry)"
 	outfits
-		"EMP Torpedo" 6
+		"EMP Torpedo" 3
 		"Teciimach Pod"
 		
 		"Millennium Cell"
@@ -1601,7 +1601,7 @@ ship "Starling" "Starling (Sniper)"
 	outfits
 		"EMP Torpedo Bay"
 		"Inhibitor Cannon" 4
-		"EMP Torpedo" 47
+		"EMP Torpedo" 27
 		"EMP Torpedo Storage Bay"
 
 		"Epoch Cell"

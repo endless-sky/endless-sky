@@ -246,7 +246,7 @@ outfit "Ka'het EMP Deployer"
 	"outfit space" -26
 	"weapon capacity" -26
 	"gun ports" -1
-	"emp torpedo capacity" 16
+	"emp torpedo capacity" 27
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2

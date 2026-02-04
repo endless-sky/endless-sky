@@ -227,7 +227,7 @@ outfit "EMP Torpedo"
 	index 03010
 	cost 4400
 	thumbnail "outfit/emp torpedo"
-	"mass" 1
+	"mass" .6
 	"emp torpedo capacity" -1
 	description "This torpedo can emit electromagnetic pulses, interfering with a ship's generators."
 
@@ -239,10 +239,10 @@ outfit "EMP Torpedo Storage Bay"
 		Remnant
 	cost 98000
 	thumbnail "outfit/emp rack"
-	"mass" 5
+	"mass" 4.8
 	"outfit space" -12
 	"energy capacity" 400
-	"emp torpedo capacity" 7
+	"emp torpedo capacity" 12
 	ammo "EMP Torpedo"
 	description "The EMP Torpedo Storage Bay is used to store extra ammunition for weapons that use EMP torpedoes."
 	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP Torpedoes."
@@ -259,7 +259,7 @@ outfit "EMP Torpedo Bay"
 	"outfit space" -18
 	"weapon capacity" -18
 	"gun ports" -1
-	"emp torpedo capacity" 9
+	"emp torpedo capacity" 15
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
@@ -313,7 +313,7 @@ outfit "Teciimach Bay"
 	"outfit space" -18
 	"weapon capacity" -18
 	"gun ports" -1
-	"emp torpedo capacity" 12
+	"emp torpedo capacity" 20
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
@@ -364,7 +364,7 @@ outfit "Teciimach Pod"
 		Remnant
 	cost 146000
 	thumbnail "outfit/teciimach pod"
-	"mass" 3
+	"mass" 4
 	"outfit space" -6
 	"weapon capacity" -6
 	"gun ports" -1
