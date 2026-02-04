@@ -237,7 +237,7 @@ ship "Albatross" "Albatross (Sniper II)"
 		"Inhibitor Cannon" 5
 		"Teciimach Bay" 2
 		"Point Defense Turret" 3
-		"EMP Torpedo" 55
+		"EMP Torpedo" 76
 		"EMP Torpedo Storage Bay" 3
 
 		"Aeon Cell"
