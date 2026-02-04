@@ -307,7 +307,7 @@ outfit "Teciimach Bay"
 	index 03030
 	licenses
 		Remnant
-	cost 583000
+	cost 783000
 	thumbnail "outfit/teciimach bay"
 	"mass" 6
 	"outfit space" -18
