@@ -17,14 +17,14 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/include/es-test.hpp
 	unit/include/logger-output.h
 	unit/include/output-capture.hpp
-	unit/src/comparators/test_byGivenOrder.cpp
-	unit/src/comparators/test_byName.cpp
+	unit/src/util/comparators/test_byGivenOrder.cpp
+	unit/src/util/comparators/test_byName.cpp
 	unit/src/helpers/datanode-factory.cpp
 	unit/src/helpers/logger-output.cpp
 	unit/src/player/test_account.cpp
 	unit/src/util/test_angle.cpp
 	unit/src/util/test_bitset.cpp
-        unit/src/ui/panels/planet/shop/test_categoryList.cpp
+	unit/src/ui/panels/planet/shop/test_categoryList.cpp
 	unit/src/conditions/test_conditionAssignments.cpp
 	unit/src/conditions/test_conditionSet.cpp
 	unit/src/conditions/test_conditionsStore.cpp
@@ -35,8 +35,8 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/mission/test_distance_calculation_settings.cpp
 	unit/src/util/test_esuuid.cpp
 	unit/src/util/test_exclusiveItem.cpp
-	unit/src/ai/test_firecommand.cpp
-	unit/src/ai/test_formationPattern.cpp
+	unit/src/main_view/ai/test_firecommand.cpp
+	unit/src/main_view/ai/test_formationPattern.cpp
 	unit/src/test_main.cpp
 	unit/src/util/test_point.cpp
 	unit/src/util/test_random.cpp
