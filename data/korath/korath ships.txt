@@ -124,7 +124,7 @@ ship "Palavret"
 		"Warder Anti-Missile"
 		"Firelight Missile Bank" 2
 		"Firelight Storage Rack"
-		"Firelight Missile" 50
+		"Firelight Missile" 46
 		
 		"Double Plasma Core"
 		"Generator (Inferno Class)"
@@ -311,8 +311,8 @@ ship "'nra'ret"
 		"Warder Anti-Missile"
 		"Fire-Lance" 2
 		"Firelight Missile Bank" 6
-		"Firelight Missile" 190
-		"Firelight Storage Rack" 7
+		"Firelight Missile" 156
+		"Firelight Storage Rack" 6
 
 		"Systems Core (Large)"
 		"Systems Core (Medium)"
@@ -1092,8 +1092,8 @@ ship "Korsmanath A'awoj"
 		"Korath Inferno" 4
 		"Warder Anti-Missile" 7
 		"Firelight Missile Bank" 4
-		"Firelight Storage Rack" 4
-		"Firelight Missile" 108
+		"Firelight Storage Rack" 3
+		"Firelight Missile" 98
 		"Firestorm Torpedo" 13
 		"Firestorm Battery" 1
 

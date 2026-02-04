@@ -992,9 +992,9 @@ outfit "Firelight Storage Rack"
 	index 04011
 	cost 27400
 	thumbnail "outfit/firelight rack"
-	"mass" 3
-	"outfit space" -6
-	"firelight missile capacity" 10
+	"mass" 3.2
+	"outfit space" -8
+	"firelight missile capacity" 6
 	ammo "Firelight Missile"
 	description "This rack stores additional Firelight missiles to feed into a Firelight Bank."
 
@@ -1004,7 +1004,7 @@ outfit "Firelight Missile"
 	index 04010
 	cost 7600
 	thumbnail "outfit/firelight"
-	"mass" 0.3
+	"mass" .8
 	"firelight missile capacity" -1
 	"energy generation" 0.02
 	"heat generation" 0.1
@@ -1016,7 +1016,7 @@ outfit "Firelight Missile Bank"
 	index 04010
 	cost 1937000
 	thumbnail "outfit/firelight bank"
-	"mass" 22
+	"mass" 12
 	"outfit space" -28
 	"weapon capacity" -28
 	"gun ports" -1
@@ -1152,7 +1152,7 @@ outfit "Firestorm Torpedo"
 	index 04020
 	cost 19800
 	thumbnail "outfit/firestorm torpedo"
-	"mass" 1
+	"mass" 2
 	"firestorm torpedo capacity" -1
 	"energy generation" 0.06
 	"heat generation" 0.3
@@ -1164,9 +1164,9 @@ outfit "Firestorm Torpedo Rack"
 	index 04021
 	cost "135000"
 	thumbnail "outfit/firestorm torpedo rack"
-	"mass" 7
+	"mass" 8
 	"outfit space" -20
-	"firestorm torpedo capacity" 13
+	"firestorm torpedo capacity" 6
 	ammo "Firestorm Torpedo"
 	description "This large cage-like rack is designed to be able to house several deadly Firestorm Torpedoes."
 
@@ -1177,7 +1177,7 @@ outfit "Firestorm Battery"
 	index 04020
 	cost 2383000
 	thumbnail "outfit/firestorm battery"
-	"mass" 35
+	"mass" 22
 	"outfit space" -48
 	"weapon capacity" -48
 	"energy capacity" 1300

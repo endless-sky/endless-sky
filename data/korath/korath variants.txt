@@ -256,7 +256,7 @@ ship "Palavret" "Palavret (Ember)"
 		"Banisher Grav-Turret"
 		"Warder Anti-Missile"
 		"Firelight Missile Bank" 2
-		"Firelight Missile" 50
+		"Firelight Missile" 46
 		"Firelight Storage Rack"
 		
 		"Triple Plasma Core"
@@ -291,7 +291,7 @@ ship "Palavret" "Palavret (Ember Blaze)"
 		"Warder Anti-Missile"
 		"Firelight Missile Bank" 2
 		"Firelight Storage Rack"
-		"Firelight Missile" 50
+		"Firelight Missile" 46
 		
 		"Triple Plasma Core"
 		"Large Heat Shunt" 3
@@ -322,8 +322,7 @@ ship "Palavret" "Palavret (Ember Shunt)"
 		"Banisher Grav-Turret"
 		"Warder Anti-Missile"
 		"Firelight Missile Bank" 2
-		"Firelight Storage Rack"
-		"Firelight Missile" 50
+		"Firelight Missile" 40
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -639,9 +638,9 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 	outfits
-		"Firelight Missile" 80
+		"Firelight Missile" 58
 		"Firelight Missile Bank" 2
-		"Firelight Storage Rack" 4
+		"Firelight Storage Rack" 3
 		"Banisher Grav-Turret" 2
 		"Fire-Lance" 3
 		"Grab-Strike Turret" 6
@@ -1147,10 +1146,10 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 		"Shunt-Strike Turret" 4
 
 		"Firelight Missile Bank" 4
-		"Firelight Missile" 162
-		"Firelight Storage Rack" 10
+		"Firelight Missile" 122
+		"Firelight Storage Rack" 7
 		"Firestorm Battery" 2
-		"Firestorm Torpedo" 33
+		"Firestorm Torpedo" 27
 		"Firestorm Torpedo Rack" 2
 
 		"Triple Plasma Core" 3
@@ -1206,7 +1205,7 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
 		"Shunt-Strike Turret" 2
 
 		"Firelight Missile Bank" 4
-		"Firelight Missile" 108
+		"Firelight Missile" 104
 		"Firelight Storage Rack" 4
 
 		"Triple Plasma Core" 3
@@ -1265,7 +1264,7 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
 		"Korath Inferno" 2
 
 		"Firelight Missile Bank" 4
-		"Firelight Missile" 108
+		"Firelight Missile" 80
 
 		"Triple Plasma Core" 3
 		"Systems Core (Large)" 2
