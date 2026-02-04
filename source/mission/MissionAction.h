@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DialogSettings.h"
 #include "../util/ExclusiveItem.h"
 #include "GameAction.h"
-#include "LocationFilter.h"
+#include "../map/LocationFilter.h"
 
 #include <map>
 #include <string>

@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "DistanceCalculationSettings.h"
+#include "../mission/DistanceCalculationSettings.h"
 
 #include <list>
 #include <set>

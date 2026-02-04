@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../conditions/ConditionSet.h"
 #include "../gamedata/DataNode.h"
-#include "../mission/LocationFilter.h"
+#include "LocationFilter.h"
 #include "Sale.h"
 #include "../util/Set.h"
 

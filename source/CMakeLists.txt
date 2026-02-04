@@ -193,6 +193,8 @@ target_sources(EndlessSkyLib PRIVATE
 	map/Galaxy.h
 	map/Hazard.cpp
 	map/Hazard.h
+	map/LocationFilter.cpp
+	map/LocationFilter.h
 	map/News.cpp
 	map/News.h
 	map/Planet.cpp
@@ -219,8 +221,6 @@ target_sources(EndlessSkyLib PRIVATE
 	mission/GameAction.h
 	mission/GameEvent.cpp
 	mission/GameEvent.h
-	mission/LocationFilter.cpp
-	mission/LocationFilter.h
 	mission/Mission.cpp
 	mission/Mission.h
 	mission/MissionAction.cpp

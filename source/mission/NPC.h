@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../util/ExclusiveItem.h"
 #include "../fleet/Fleet.h"
 #include "../fleet/FleetCargo.h"
-#include "LocationFilter.h"
+#include "../map/LocationFilter.h"
 #include "NPCAction.h"
 #include "../fleet/Personality.h"
 

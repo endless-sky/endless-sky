@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "gamedata/Files.h"
 #include "gamedata/GameData.h"
 #include "mission/GameEvent.h"
-#include "mission/LocationFilter.h"
+#include "map/LocationFilter.h"
 #include "body/ship/Outfit.h"
 #include "map/Planet.h"
 #include "player/PlayerInfo.h"

@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DistanceCalculationSettings.h"
 #include "../util/EsUuid.h"
 #include "../util/ExclusiveItem.h"
-#include "LocationFilter.h"
+#include "../map/LocationFilter.h"
 #include "MissionAction.h"
 #include "MissionTimer.h"
 #include "NPC.h"

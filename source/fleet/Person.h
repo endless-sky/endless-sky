@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../mission/LocationFilter.h"
+#include "../map/LocationFilter.h"
 #include "Personality.h"
 #include "../ui/text/Phrase.h"
 

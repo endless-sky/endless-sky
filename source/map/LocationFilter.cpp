@@ -22,12 +22,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../pathfinding/DistanceMap.h"
 #include "../gamedata/GameData.h"
 #include "../government/Government.h"
-#include "../map/Planet.h"
-#include "../map/Port.h"
+#include "Planet.h"
+#include "Port.h"
 #include "../util/Random.h"
 #include "../body/Ship.h"
 #include "../body/StellarObject.h"
-#include "../map/System.h"
+#include "System.h"
 
 #include <algorithm>
 #include <mutex>

@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../util/Color.h"
 #include "../util/ExclusiveItem.h"
-#include "../mission/LocationFilter.h"
+#include "../map/LocationFilter.h"
 #include "../fleet/RaidFleet.h"
 #include "../util/Swizzle.h"
 
