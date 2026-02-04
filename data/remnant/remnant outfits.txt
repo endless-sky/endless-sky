@@ -362,7 +362,7 @@ outfit "Teciimach Pod"
 	index 03020
 	licenses
 		Remnant
-	cost 146000
+	cost 196000
 	thumbnail "outfit/teciimach pod"
 	"mass" 4
 	"outfit space" -6
