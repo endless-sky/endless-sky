@@ -54,7 +54,7 @@ public:
 protected:
 	void UpdateDescription(const std::string &text, const std::vector<std::string> &licenses, bool isShip);
 	Point Draw(Point point, const std::vector<std::string> &labels, const std::vector<std::string> &values) const;
-	bool CheckHover(const Table &table, const std::string &label) const;
+	void CheckHover(const Table &table, const std::string &label) const;
 
 
 protected:
