@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AmmoDisplay.h"
 
 #include "../../util/Color.h"
-#include "../../text/Font.h"
-#include "../../text/FontSet.h"
-#include "../../text/Format.h"
+#include "../../ui/text/Font.h"
+#include "../../ui/text/FontSet.h"
+#include "../../ui/text/Format.h"
 #include "../../files/GameData.h"
 #include "../../body/ship/Outfit.h"
 #include "../../player/PlayerInfo.h"

@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../ui/panels/planet/shop/CategoryType.h"
+#include "../ui/panel/planet/shop/CategoryType.h"
 #include "../main_view/hud/Message.h"
 #include "../util/Set.h"
 #include "../map/Shop.h"

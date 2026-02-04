@@ -17,11 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
-#include "../text/Format.h"
+#include "../ui/text/Format.h"
 #include "../image/Sprite.h"
 #include "../image/SpriteSet.h"
 #include "../shader/SpriteShader.h"
-#include "../text/WrappedText.h"
+#include "../ui/text/WrappedText.h"
 
 using namespace std;
 

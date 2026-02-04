@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
 #include "Endpoint.h"
-#include "../text/Format.h"
-#include "../text/Phrase.h"
+#include "../ui/text/Format.h"
+#include "../ui/text/Phrase.h"
 #include "../image/Sprite.h"
 #include "../image/SpriteSet.h"
 

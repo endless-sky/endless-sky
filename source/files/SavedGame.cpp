@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "../player/Date.h"
-#include "../text/Format.h"
+#include "../ui/text/Format.h"
 #include "GameData.h"
 #include "../map/Planet.h"
 #include "../image/SpriteSet.h"

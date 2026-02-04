@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/GameData.h"
 #include "../government/Government.h"
 #include "../files/Logger.h"
-#include "../text/Phrase.h"
+#include "../ui/text/Phrase.h"
 #include "../map/Planet.h"
 #include "../util/Random.h"
 #include "../body/Ship.h"

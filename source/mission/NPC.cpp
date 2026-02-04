@@ -15,11 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "NPC.h"
 
-#include "../ui/panels/ConversationPanel.h"
+#include "../ui/panel/ConversationPanel.h"
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
-#include "../ui/panels/DialogPanel.h"
-#include "../text/Format.h"
+#include "../ui/panel/DialogPanel.h"
+#include "../ui/text/Format.h"
 #include "../files/GameData.h"
 #include "../government/Government.h"
 #include "../files/Logger.h"

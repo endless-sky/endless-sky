@@ -295,31 +295,6 @@ target_sources(EndlessSkyLib PRIVATE
 	test/TestContext.h
 	test/TestData.cpp
 	test/TestData.h
-	text/Alignment.h
-	text/Clipboard.cpp
-	text/Clipboard.h
-	text/DisplayText.cpp
-	text/DisplayText.h
-	text/Font.cpp
-	text/Font.h
-	text/FontSet.cpp
-	text/FontSet.h
-	text/Format.cpp
-	text/Format.h
-	text/Layout.h
-	text/Paragraphs.cpp
-	text/Paragraphs.h
-	text/Phrase.cpp
-	text/Phrase.h
-	text/Table.cpp
-	text/Table.h
-	text/TextReplacements.cpp
-	text/TextReplacements.h
-	text/Truncate.h
-	text/Utf8.cpp
-	text/Utf8.h
-	text/WrappedText.cpp
-	text/WrappedText.h
 	ui/Animate.h
 	ui/ClickZone.h
 	ui/FrameTimer.cpp
@@ -331,75 +306,75 @@ target_sources(EndlessSkyLib PRIVATE
 	ui/Interface.cpp
 	ui/Interface.h
 	ui/MouseButton.h
-	ui/panels/ConversationPanel.cpp
-	ui/panels/ConversationPanel.h
-	ui/panels/DialogPanel.cpp
-	ui/panels/DialogPanel.h
-	ui/panels/map/MapDetailPanel.cpp
-	ui/panels/map/MapDetailPanel.h
-	ui/panels/map/MapOutfitterPanel.cpp
-	ui/panels/map/MapOutfitterPanel.h
-	ui/panels/map/MapPanel.cpp
-	ui/panels/map/MapPanel.h
-	ui/panels/map/MapPlanetCard.cpp
-	ui/panels/map/MapPlanetCard.h
-	ui/panels/map/MapSalesPanel.cpp
-	ui/panels/map/MapSalesPanel.h
-	ui/panels/map/MapShipyardPanel.cpp
-	ui/panels/map/MapShipyardPanel.h
-	ui/panels/map/MissionPanel.cpp
-	ui/panels/map/MissionPanel.h
-	ui/panels/menu/GameLoadingPanel.cpp
-	ui/panels/menu/GameLoadingPanel.h
-	ui/panels/menu/LoadPanel.cpp
-	ui/panels/menu/LoadPanel.h
-	ui/panels/menu/MenuAnimationPanel.cpp
-	ui/panels/menu/MenuAnimationPanel.h
-	ui/panels/menu/MenuPanel.cpp
-	ui/panels/menu/MenuPanel.h
-	ui/panels/menu/PreferencesPanel.cpp
-	ui/panels/menu/PreferencesPanel.h
-	ui/panels/menu/StartConditionsPanel.cpp
-	ui/panels/menu/StartConditionsPanel.h
-	ui/panels/Panel.cpp
-	ui/panels/Panel.h
-	ui/panels/planet/BankPanel.cpp
-	ui/panels/planet/BankPanel.h
-	ui/panels/planet/HiringPanel.cpp
-	ui/panels/planet/HiringPanel.h
-	ui/panels/planet/PlanetPanel.cpp
-	ui/panels/planet/PlanetPanel.h
-	ui/panels/planet/shop/CategoryList.cpp
-	ui/panels/planet/shop/CategoryList.h
-	ui/panels/planet/shop/CategoryType.h
-	ui/panels/planet/shop/ItemInfoDisplay.cpp
-	ui/panels/planet/shop/ItemInfoDisplay.h
-	ui/panels/planet/shop/OutfitInfoDisplay.cpp
-	ui/panels/planet/shop/OutfitInfoDisplay.h
-	ui/panels/planet/shop/OutfitterPanel.cpp
-	ui/panels/planet/shop/OutfitterPanel.h
-	ui/panels/planet/shop/ShipInfoDisplay.cpp
-	ui/panels/planet/shop/ShipInfoDisplay.h
-	ui/panels/planet/shop/ShipyardPanel.cpp
-	ui/panels/planet/shop/ShipyardPanel.h
-	ui/panels/planet/shop/ShopPanel.cpp
-	ui/panels/planet/shop/ShopPanel.h
-	ui/panels/planet/SpaceportPanel.cpp
-	ui/panels/planet/SpaceportPanel.h
-	ui/panels/planet/TradingPanel.cpp
-	ui/panels/planet/TradingPanel.h
-	ui/panels/player/InfoPanelState.cpp
-	ui/panels/player/InfoPanelState.h
-	ui/panels/player/LogbookPanel.cpp
-	ui/panels/player/LogbookPanel.h
-	ui/panels/player/MessageLogPanel.cpp
-	ui/panels/player/MessageLogPanel.h
-	ui/panels/player/PlayerInfoPanel.cpp
-	ui/panels/player/PlayerInfoPanel.h
-	ui/panels/player/ShipInfoPanel.cpp
-	ui/panels/player/ShipInfoPanel.h
-	ui/panels/ShipNameDialogPanel.cpp
-	ui/panels/ShipNameDialogPanel.h
+	ui/panel/ConversationPanel.cpp
+	ui/panel/ConversationPanel.h
+	ui/panel/DialogPanel.cpp
+	ui/panel/DialogPanel.h
+	ui/panel/map/MapDetailPanel.cpp
+	ui/panel/map/MapDetailPanel.h
+	ui/panel/map/MapOutfitterPanel.cpp
+	ui/panel/map/MapOutfitterPanel.h
+	ui/panel/map/MapPanel.cpp
+	ui/panel/map/MapPanel.h
+	ui/panel/map/MapPlanetCard.cpp
+	ui/panel/map/MapPlanetCard.h
+	ui/panel/map/MapSalesPanel.cpp
+	ui/panel/map/MapSalesPanel.h
+	ui/panel/map/MapShipyardPanel.cpp
+	ui/panel/map/MapShipyardPanel.h
+	ui/panel/map/MissionPanel.cpp
+	ui/panel/map/MissionPanel.h
+	ui/panel/menu/GameLoadingPanel.cpp
+	ui/panel/menu/GameLoadingPanel.h
+	ui/panel/menu/LoadPanel.cpp
+	ui/panel/menu/LoadPanel.h
+	ui/panel/menu/MenuAnimationPanel.cpp
+	ui/panel/menu/MenuAnimationPanel.h
+	ui/panel/menu/MenuPanel.cpp
+	ui/panel/menu/MenuPanel.h
+	ui/panel/menu/PreferencesPanel.cpp
+	ui/panel/menu/PreferencesPanel.h
+	ui/panel/menu/StartConditionsPanel.cpp
+	ui/panel/menu/StartConditionsPanel.h
+	ui/panel/Panel.cpp
+	ui/panel/Panel.h
+	ui/panel/planet/BankPanel.cpp
+	ui/panel/planet/BankPanel.h
+	ui/panel/planet/HiringPanel.cpp
+	ui/panel/planet/HiringPanel.h
+	ui/panel/planet/PlanetPanel.cpp
+	ui/panel/planet/PlanetPanel.h
+	ui/panel/planet/shop/CategoryList.cpp
+	ui/panel/planet/shop/CategoryList.h
+	ui/panel/planet/shop/CategoryType.h
+	ui/panel/planet/shop/ItemInfoDisplay.cpp
+	ui/panel/planet/shop/ItemInfoDisplay.h
+	ui/panel/planet/shop/OutfitInfoDisplay.cpp
+	ui/panel/planet/shop/OutfitInfoDisplay.h
+	ui/panel/planet/shop/OutfitterPanel.cpp
+	ui/panel/planet/shop/OutfitterPanel.h
+	ui/panel/planet/shop/ShipInfoDisplay.cpp
+	ui/panel/planet/shop/ShipInfoDisplay.h
+	ui/panel/planet/shop/ShipyardPanel.cpp
+	ui/panel/planet/shop/ShipyardPanel.h
+	ui/panel/planet/shop/ShopPanel.cpp
+	ui/panel/planet/shop/ShopPanel.h
+	ui/panel/planet/SpaceportPanel.cpp
+	ui/panel/planet/SpaceportPanel.h
+	ui/panel/planet/TradingPanel.cpp
+	ui/panel/planet/TradingPanel.h
+	ui/panel/player/InfoPanelState.cpp
+	ui/panel/player/InfoPanelState.h
+	ui/panel/player/LogbookPanel.cpp
+	ui/panel/player/LogbookPanel.h
+	ui/panel/player/MessageLogPanel.cpp
+	ui/panel/player/MessageLogPanel.h
+	ui/panel/player/PlayerInfoPanel.cpp
+	ui/panel/player/PlayerInfoPanel.h
+	ui/panel/player/ShipInfoPanel.cpp
+	ui/panel/player/ShipInfoPanel.h
+	ui/panel/ShipNameDialogPanel.cpp
+	ui/panel/ShipNameDialogPanel.h
 	ui/RenderBuffer.cpp
 	ui/RenderBuffer.h
 	ui/Screen.cpp
@@ -407,6 +382,31 @@ target_sources(EndlessSkyLib PRIVATE
 	ui/ScrollBar.cpp
 	ui/ScrollBar.h
 	ui/ScrollVar.h
+	ui/text/Alignment.h
+	ui/text/Clipboard.cpp
+	ui/text/Clipboard.h
+	ui/text/DisplayText.cpp
+	ui/text/DisplayText.h
+	ui/text/Font.cpp
+	ui/text/Font.h
+	ui/text/FontSet.cpp
+	ui/text/FontSet.h
+	ui/text/Format.cpp
+	ui/text/Format.h
+	ui/text/Layout.h
+	ui/text/Paragraphs.cpp
+	ui/text/Paragraphs.h
+	ui/text/Phrase.cpp
+	ui/text/Phrase.h
+	ui/text/Table.cpp
+	ui/text/Table.h
+	ui/text/TextReplacements.cpp
+	ui/text/TextReplacements.h
+	ui/text/Truncate.h
+	ui/text/Utf8.cpp
+	ui/text/Utf8.h
+	ui/text/WrappedText.cpp
+	ui/text/WrappedText.h
 	ui/TextArea.cpp
 	ui/TextArea.h
 	ui/Tooltip.cpp
@@ -419,6 +419,11 @@ target_sources(EndlessSkyLib PRIVATE
 	util/Bitset.h
 	util/Color.cpp
 	util/Color.h
+	util/comparator/ByDisplayName.h
+	util/comparator/ByGivenOrder.h
+	util/comparator/ByName.h
+	util/comparator/BySeriesAndIndex.h
+	util/comparator/ByUUID.h
 	util/CustomEvents.cpp
 	util/CustomEvents.h
 	util/Dictionary.cpp
@@ -446,11 +451,6 @@ target_sources(EndlessSkyLib PRIVATE
 	util/TaskQueue.cpp
 	util/TaskQueue.h
 	util/WeightedList.h
-	util/comparators/ByDisplayName.h
-	util/comparators/ByGivenOrder.h
-	util/comparators/ByName.h
-	util/comparators/BySeriesAndIndex.h
-	util/comparators/ByUUID.h
 )
 
 if(WIN32)

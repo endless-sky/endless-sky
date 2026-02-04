@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Tooltip.h"
 
 #include "../shader/FillShader.h"
-#include "../text/FontSet.h"
+#include "text/FontSet.h"
 #include "../util/Point.h"
 #include "../player/Preferences.h"
 #include "Screen.h"

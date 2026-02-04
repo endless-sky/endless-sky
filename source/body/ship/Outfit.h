@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "../../util/Dictionary.h"
-#include "../../text/Paragraphs.h"
+#include "../../ui/text/Paragraphs.h"
 
 #include <map>
 #include <memory>

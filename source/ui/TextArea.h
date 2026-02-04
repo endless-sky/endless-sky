@@ -16,10 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "../util/Color.h"
-#include "panels/Panel.h"
+#include "panel/Panel.h"
 #include "ScrollBar.h"
 #include "ScrollVar.h"
-#include "../text/WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <memory>
 

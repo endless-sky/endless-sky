@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../audio/Audio.h"
 #include "../main_view/ai/Command.h"
-#include "panels/Panel.h"
+#include "panel/Panel.h"
 #include "Screen.h"
 
 #include <SDL2/SDL.h>

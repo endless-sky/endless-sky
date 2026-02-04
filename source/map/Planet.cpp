@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 
 #include "../files/DataNode.h"
-#include "../text/Format.h"
+#include "../ui/text/Format.h"
 #include "../files/GameData.h"
 #include "../government/Government.h"
 #include "../files/Logger.h"

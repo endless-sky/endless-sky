@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../pathfinding/DistanceMap.h"
 #include "../../body/collision/FighterHitHelper.h"
 #include "../../body/Flotsam.h"
-#include "../../text/Format.h"
+#include "../../ui/text/Format.h"
 #include "FormationPattern.h"
 #include "FormationPositioner.h"
 #include "../../files/GameData.h"

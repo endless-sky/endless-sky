@@ -18,10 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../main_view/ai/Command.h"
 #include "../../files/DataNode.h"
 #include "../../files/DataWriter.h"
-#include "../../text/Format.h"
+#include "../../ui/text/Format.h"
 #include "../../files/GameData.h"
-#include "../../text/Phrase.h"
-#include "../../text/TextReplacements.h"
+#include "../../ui/text/Phrase.h"
+#include "../../ui/text/TextReplacements.h"
 
 #include <cassert>
 

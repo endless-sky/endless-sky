@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageSet.h"
 
-#include "../text/Format.h"
+#include "../ui/text/Format.h"
 #include "../files/GameData.h"
 #include "ImageBuffer.h"
 #include "../files/Logger.h"

@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../conditions/ConditionSet.h"
 #include "../mission/LocationFilter.h"
-#include "../text/Phrase.h"
+#include "../ui/text/Phrase.h"
 
 #include <string>
 #include <vector>

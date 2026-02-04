@@ -15,13 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "HailPanel.h"
 
-#include "../text/Alignment.h"
+#include "../ui/text/Alignment.h"
 #include "../audio/Audio.h"
-#include "../ui/panels/DialogPanel.h"
+#include "../ui/panel/DialogPanel.h"
 #include "../shader/DrawList.h"
-#include "../text/Font.h"
-#include "../text/FontSet.h"
-#include "../text/Format.h"
+#include "../ui/text/Font.h"
+#include "../ui/text/FontSet.h"
+#include "../ui/text/Format.h"
 #include "../files/GameData.h"
 #include "../government/Government.h"
 #include "../ui/Information.h"
@@ -36,7 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../map/System.h"
 #include "../ui/UI.h"
 #include "../body/ship/Weapon.h"
-#include "../text/WrappedText.h"
+#include "../ui/text/WrappedText.h"
 
 #include <algorithm>
 #include <cmath>

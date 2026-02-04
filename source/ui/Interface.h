@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../text/Alignment.h"
+#include "text/Alignment.h"
 #include "../util/Color.h"
 #include "../util/Point.h"
 #include "../util/Rectangle.h"
-#include "../text/Truncate.h"
-#include "../text/WrappedText.h"
+#include "text/Truncate.h"
+#include "text/WrappedText.h"
 
 #include <map>
 #include <memory>

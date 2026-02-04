@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MissionAction.h"
 #include "MissionTimer.h"
 #include "NPC.h"
-#include "../text/TextReplacements.h"
+#include "../ui/text/TextReplacements.h"
 
 #include <list>
 #include <map>

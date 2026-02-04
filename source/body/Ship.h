@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../util/EsUuid.h"
 #include "../main_view/ai/FireCommand.h"
 #include "ship/Outfit.h"
-#include "../text/Paragraphs.h"
+#include "../ui/text/Paragraphs.h"
 #include "../fleet/Personality.h"
 #include "../util/Point.h"
 #include "../map/Port.h"

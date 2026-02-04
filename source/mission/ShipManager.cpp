@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
 #include "../util/EsUuid.h"
-#include "../text/Format.h"
+#include "../ui/text/Format.h"
 #include "../files/GameData.h"
 #include "../main_view/hud/Messages.h"
 #include "../player/PlayerInfo.h"

@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../ui/panels/Panel.h"
+#include "../ui/panel/Panel.h"
 
 #include "../main_view/ai/Command.h"
 #include "Engine.h"

@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/DataNode.h"
 #include "Effect.h"
 #include "Flotsam.h"
-#include "../text/Format.h"
+#include "../ui/text/Format.h"
 #include "../files/GameData.h"
 #include "../body/collision/MinableDamageDealt.h"
 #include "ship/Outfit.h"

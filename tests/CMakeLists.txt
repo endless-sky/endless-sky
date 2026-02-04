@@ -17,14 +17,14 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/include/es-test.hpp
 	unit/include/logger-output.h
 	unit/include/output-capture.hpp
-	unit/src/util/comparators/test_byGivenOrder.cpp
-	unit/src/util/comparators/test_byName.cpp
+	unit/src/util/comparator/test_byGivenOrder.cpp
+	unit/src/util/comparator/test_byName.cpp
 	unit/src/helpers/datanode-factory.cpp
 	unit/src/helpers/logger-output.cpp
 	unit/src/player/test_account.cpp
 	unit/src/util/test_angle.cpp
 	unit/src/util/test_bitset.cpp
-	unit/src/ui/panels/planet/shop/test_categoryList.cpp
+	unit/src/ui/panel/planet/shop/test_categoryList.cpp
 	unit/src/conditions/test_conditionAssignments.cpp
 	unit/src/conditions/test_conditionSet.cpp
 	unit/src/conditions/test_conditionsStore.cpp
@@ -46,11 +46,11 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/util/test_stringInterner.cpp
 	unit/src/test_template.txt
 	unit/src/util/test_weightedList.cpp
-	unit/src/text/test_alignment.cpp
-	unit/src/text/test_displaytext.cpp
-	unit/src/text/test_format.cpp
-	unit/src/text/test_layout.cpp
-	unit/src/text/test_truncate.cpp
+	unit/src/ui/text/test_alignment.cpp
+	unit/src/ui/text/test_displaytext.cpp
+	unit/src/ui/text/test_format.cpp
+	unit/src/ui/text/test_layout.cpp
+	unit/src/ui/text/test_truncate.cpp
 )
 
 list(APPEND INTEGRATION_TESTS

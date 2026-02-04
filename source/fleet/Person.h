@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../mission/LocationFilter.h"
 #include "Personality.h"
-#include "../text/Phrase.h"
+#include "../ui/text/Phrase.h"
 
 #include <list>
 #include <memory>

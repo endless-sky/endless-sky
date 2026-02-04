@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../files/Logger.h"
 #ifdef _WIN32
-#include "../text/Utf8.h"
+#include "../ui/text/Utf8.h"
 
 #define STRICT
 #define WIN32_LEAN_AND_MEAN

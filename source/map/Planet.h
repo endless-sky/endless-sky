@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../text/Paragraphs.h"
+#include "../ui/text/Paragraphs.h"
 #include "Port.h"
 #include "Sale.h"
 #include "Shop.h"

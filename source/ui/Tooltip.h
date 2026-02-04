@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../text/Alignment.h"
+#include "text/Alignment.h"
 #include "../util/Rectangle.h"
-#include "../text/WrappedText.h"
+#include "text/WrappedText.h"
 
 #include <string>
 

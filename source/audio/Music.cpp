@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../files/Files.h"
 #include "supplier/FlacSupplier.h"
-#include "../text/Format.h"
+#include "../ui/text/Format.h"
 #include "supplier/Mp3Supplier.h"
 
 

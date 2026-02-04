@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../fleet/Fleet.h"
 #include "../files/GameData.h"
 #include "../body/ship/Outfit.h"
-#include "../text/Phrase.h"
+#include "../ui/text/Phrase.h"
 #include "Politics.h"
 #include "../body/Ship.h"
 #include "../body/ship/ShipEvent.h"

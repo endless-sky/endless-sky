@@ -15,11 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../ui/panels/planet/shop/CategoryType.h"
+#include "../ui/panel/planet/shop/CategoryType.h"
 #include "../util/Set.h"
 #include "../map/Shop.h"
 
-#include "../ui/panels/planet/shop/CategoryList.h"
+#include "../ui/panel/planet/shop/CategoryList.h"
 #include "../util/Color.h"
 #include "../mission/Conversation.h"
 #include "../body/Effect.h"
@@ -37,7 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../map/News.h"
 #include "../body/ship/Outfit.h"
 #include "../fleet/Person.h"
-#include "../text/Phrase.h"
+#include "../ui/text/Phrase.h"
 #include "../map/Planet.h"
 #include "../shader/Shader.h"
 #include "../body/Ship.h"
@@ -46,7 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../map/System.h"
 #include "../test/Test.h"
 #include "../test/TestData.h"
-#include "../text/TextReplacements.h"
+#include "../ui/text/TextReplacements.h"
 #include "../map/Trade.h"
 #include "../map/Wormhole.h"
 

@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../files/DataFile.h"
 #include "../../files/DataNode.h"
 #include "../../files/DataWriter.h"
-#include "../../text/Format.h"
+#include "../../ui/text/Format.h"
 
 #include <SDL2/SDL.h>
 

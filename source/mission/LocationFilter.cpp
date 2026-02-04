@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "LocationFilter.h"
 
-#include "../ui/panels/planet/shop/CategoryList.h"
-#include "../ui/panels/planet/shop/CategoryType.h"
+#include "../ui/panel/planet/shop/CategoryList.h"
+#include "../ui/panel/planet/shop/CategoryType.h"
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
 #include "../pathfinding/DistanceMap.h"

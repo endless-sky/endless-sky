@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlanetLabel.h"
 
 #include "../../util/Angle.h"
-#include "../../text/Font.h"
-#include "../../text/FontSet.h"
+#include "../../ui/text/Font.h"
+#include "../../ui/text/FontSet.h"
 #include "../../government/Government.h"
 #include "../../shader/LineShader.h"
 #include "../../util/pi.h"
