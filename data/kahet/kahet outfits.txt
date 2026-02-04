@@ -242,7 +242,7 @@ outfit "Ka'het EMP Deployer"
 	index 05010
 	cost 715000
 	thumbnail "outfit/ka'het emp deployer"
-	"mass" 18
+	"mass" 10
 	"outfit space" -26
 	"weapon capacity" -26
 	"gun ports" -1
