@@ -15,23 +15,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../ui/CategoryType.h"
+#include "../ui/panels/planet/shop/CategoryType.h"
 #include "../util/Set.h"
 #include "../map/Shop.h"
 
-#include "../ui/CategoryList.h"
+#include "../ui/panels/planet/shop/CategoryList.h"
 #include "../util/Color.h"
 #include "../mission/Conversation.h"
 #include "../body/Effect.h"
 #include "../fleet/Fleet.h"
-#include "../ai/FormationPattern.h"
+#include "../main_view/ai/FormationPattern.h"
 #include "../map/Galaxy.h"
 #include "../mission/GameEvent.h"
 #include "../player/Gamerules.h"
 #include "../government/Government.h"
 #include "../map/Hazard.h"
 #include "../ui/Interface.h"
-#include "../engine/Message.h"
+#include "../main_view/hud/Message.h"
 #include "../body/Minable.h"
 #include "../mission/Mission.h"
 #include "../map/News.h"

@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Armament.h"
 
-#include "../../ai/FireCommand.h"
+#include "../../main_view/ai/FireCommand.h"
 #include "../../files/Logger.h"
 #include "Outfit.h"
 #include "../Ship.h"

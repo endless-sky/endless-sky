@@ -24,7 +24,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/player/test_account.cpp
 	unit/src/util/test_angle.cpp
 	unit/src/util/test_bitset.cpp
-	unit/src/ui/test_categoryList.cpp
+        unit/src/ui/panels/planet/shop/test_categoryList.cpp
 	unit/src/conditions/test_conditionAssignments.cpp
 	unit/src/conditions/test_conditionSet.cpp
 	unit/src/conditions/test_conditionsStore.cpp

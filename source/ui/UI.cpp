@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include "../audio/Audio.h"
-#include "../ai/Command.h"
+#include "../main_view/ai/Command.h"
 #include "panels/Panel.h"
 #include "Screen.h"
 

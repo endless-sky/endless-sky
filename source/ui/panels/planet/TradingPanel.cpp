@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TradingPanel.h"
 
 #include "../../../util/Color.h"
-#include "../../../ai/Command.h"
+#include "../../../main_view/ai/Command.h"
 #include "../../../shader/FillShader.h"
 #include "../../../text/Font.h"
 #include "../../../text/FontSet.h"
@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../Information.h"
 #include "../../Interface.h"
 #include "../map/MapDetailPanel.h"
-#include "../../../engine/Messages.h"
+#include "../../../main_view/hud/Messages.h"
 #include "../../../body/ship/Outfit.h"
 #include "../../../player/PlayerInfo.h"
 #include "../../Screen.h"

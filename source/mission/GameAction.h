@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../player/BookEntry.h"
 #include "../conditions/ConditionAssignments.h"
-#include "../engine/Message.h"
+#include "../main_view/hud/Message.h"
 #include "ShipManager.h"
 
 #include <cstdint>

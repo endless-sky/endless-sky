@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MenuPanel.h"
 
 #include "../../../audio/Audio.h"
-#include "../../../ai/Command.h"
+#include "../../../main_view/ai/Command.h"
 #include "../../../files/Files.h"
 #include "../../../text/Font.h"
 #include "../../../text/FontSet.h"
@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../Interface.h"
 #include "LoadPanel.h"
 #include "../../../files/Logger.h"
-#include "../MainPanel.h"
+#include "../../../main_view/MainPanel.h"
 #include "../../../util/pi.h"
 #include "../../../map/Planet.h"
 #include "../../../player/PlayerInfo.h"

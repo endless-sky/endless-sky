@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../ai/Command.h"
+#include "../main_view/ai/Command.h"
 #include "../conditions/ConditionAssignments.h"
 #include "../conditions/ConditionSet.h"
 

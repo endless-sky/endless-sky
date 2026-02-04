@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Panel.h"
 
 #include "../../ClickZone.h"
-#include "../../../ai/Command.h"
+#include "../../../main_view/ai/Command.h"
 #include "../../../util/Point.h"
 #include "../../ScrollVar.h"
 #include "../../Tooltip.h"

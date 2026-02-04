@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../../util/Point.h"
 #include "../Projectile.h"
-#include "../../map/Weather.h"
+#include "../../main_view/Weather.h"
 
 class DamageDealt;
 class Minable;

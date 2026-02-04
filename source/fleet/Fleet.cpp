@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Fleet.h"
 
 #include "../files/DataNode.h"
-#include "../ai/FormationPattern.h"
+#include "../main_view/ai/FormationPattern.h"
 #include "../files/GameData.h"
 #include "../government/Government.h"
 #include "../files/Logger.h"

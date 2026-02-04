@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapPanel.h"
 
 #include "../../ClickZone.h"
-#include "../../MapPlanetCard.h"
+#include "MapPlanetCard.h"
 #include "../../../util/Point.h"
 #include "../../ScrollBar.h"
 #include "../../ScrollVar.h"

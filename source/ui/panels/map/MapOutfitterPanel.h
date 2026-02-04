@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapSalesPanel.h"
 
-#include "../../OutfitInfoDisplay.h"
+#include "../planet/shop/OutfitInfoDisplay.h"
 
 #include <vector>
 

@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../../../text/Alignment.h"
 #include "../../../util/Color.h"
-#include "../../../ai/Command.h"
+#include "../../../main_view/ai/Command.h"
 #include "../ConversationPanel.h"
 #include "../../../files/DataFile.h"
 #include "../DialogPanel.h"
@@ -30,7 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../files/GameData.h"
 #include "../../Information.h"
 #include "../../Interface.h"
-#include "../MainPanel.h"
+#include "../../../main_view/MainPanel.h"
 #include "../../../image/MaskManager.h"
 #include "../../../player/PlayerInfo.h"
 #include "../../../player/Preferences.h"

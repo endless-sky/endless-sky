@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapOutfitterPanel.h"
 
-#include "../../../comparators/BySeriesAndIndex.h"
-#include "../../CategoryList.h"
+#include "../../../util/comparators/BySeriesAndIndex.h"
+#include "../planet/shop/CategoryList.h"
 #include "../../../player/CoreStartData.h"
 #include "../../../text/Format.h"
 #include "../../../files/GameData.h"

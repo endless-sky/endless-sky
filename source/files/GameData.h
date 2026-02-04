@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../ui/CategoryType.h"
-#include "../engine/Message.h"
+#include "../ui/panels/planet/shop/CategoryType.h"
+#include "../main_view/hud/Message.h"
 #include "../util/Set.h"
 #include "../map/Shop.h"
 #include "../util/Swizzle.h"

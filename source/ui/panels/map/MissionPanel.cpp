@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../../../text/Alignment.h"
 #include "../../../audio/Audio.h"
-#include "../../../ai/Command.h"
+#include "../../../main_view/ai/Command.h"
 #include "../../../player/CoreStartData.h"
 #include "../DialogPanel.h"
 #include "../../../text/DisplayText.h"

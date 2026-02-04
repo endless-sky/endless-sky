@@ -18,11 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Panel.h"
 
 #include "../../ClickZone.h"
-#include "../../InfoPanelState.h"
+#include "InfoPanelState.h"
 #include "../../../text/Layout.h"
 #include "../../../util/Point.h"
 
-#include <set>
 #include <vector>
 
 class PlayerInfo;

@@ -16,12 +16,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "audio/Audio.h"
-#include "ai/Command.h"
+#include "main_view/ai/Command.h"
 #include "mission/Conversation.h"
 #include "util/CustomEvents.h"
 #include "files/DataFile.h"
 #include "files/DataNode.h"
-#include "engine/Engine.h"
+#include "main_view/Engine.h"
 #include "files/Files.h"
 #include "text/Font.h"
 #include "text/Format.h"
@@ -32,7 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ui/GameWindow.h"
 #include "ui/Interface.h"
 #include "files/Logger.h"
-#include "ui/panels/MainPanel.h"
+#include "main_view/MainPanel.h"
 #include "ui/panels/menu/MenuPanel.h"
 #include "ui/panels/Panel.h"
 #include "player/PlayerInfo.h"

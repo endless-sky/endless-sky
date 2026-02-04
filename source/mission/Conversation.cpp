@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
-#include "../ui/Endpoint.h"
+#include "Endpoint.h"
 #include "../text/Format.h"
 #include "../text/Phrase.h"
 #include "../image/Sprite.h"

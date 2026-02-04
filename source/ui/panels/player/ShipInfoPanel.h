@@ -18,13 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Panel.h"
 
 #include "../../ClickZone.h"
-#include "../../InfoPanelState.h"
+#include "InfoPanelState.h"
 #include "../../../util/Point.h"
-#include "../../ShipInfoDisplay.h"
+#include "../planet/shop/ShipInfoDisplay.h"
 
 #include <map>
 #include <memory>
-#include <set>
 #include <string>
 #include <vector>
 

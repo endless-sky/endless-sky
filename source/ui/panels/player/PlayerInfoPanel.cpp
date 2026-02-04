@@ -17,12 +17,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../../../text/Alignment.h"
 #include "../../../audio/Audio.h"
-#include "../../../ai/Command.h"
+#include "../../../main_view/ai/Command.h"
 #include "../../../text/Font.h"
 #include "../../../text/FontSet.h"
 #include "../../../text/Format.h"
 #include "../../../files/GameData.h"
-#include "../../InfoPanelState.h"
+#include "InfoPanelState.h"
 #include "../../Information.h"
 #include "../../Interface.h"
 #include "../../../text/Layout.h"
@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <set>
 #include <utility>
 
 using namespace std;
