@@ -424,8 +424,8 @@ void Projectile::CheckLock(const Ship &target)
 
 	// Optical tracking is about 1.5% for an average interceptor (250 mass),
 	// about 50% for an average medium warship (1000 mass),
-	// and about 95% for an average heavy warship (2500 mass),
-	// but can be affected by jamming.
+	// and about 95% for an average heavy warship (2500 mass).
+	// Optical jamming decreases the effective size of a ship.
 	if(weapon->OpticalTracking())
 	{
 		double opticalJamming = target.IsDisabled() ? 0. : target.Attributes().Get("optical jamming");
@@ -436,9 +436,9 @@ void Projectile::CheckLock(const Ship &target)
 			double rangeFraction = min(1., distance / jammingRange);
 			opticalJamming = (1. - rangeFraction) * opticalJamming;
 		}
-		double targetMass = target.Mass();
+		double targetMass = target.Mass() / (1. + opticalJamming);
 		double weight = targetMass * targetMass * targetMass / 1e9;
-		double lockChance = weapon->OpticalTracking() * weight / ((1. + weight) * (1. + opticalJamming));
+		double lockChance = weapon->OpticalTracking() * weight / (1. + weight);
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}
