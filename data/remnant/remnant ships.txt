@@ -237,7 +237,7 @@ ship "Albatross" "Albatross (Sniper II)"
 		"Inhibitor Cannon" 5
 		"Teciimach Bay" 2
 		"Point Defense Turret" 3
-		"EMP Torpedo" 132
+		"EMP Torpedo" 45
 		"EMP Torpedo Storage Bay" 3
 
 		"Aeon Cell"
@@ -589,7 +589,7 @@ ship "Gull" "Gull (Support II)"
 		"Teciimach Bay"
 		"Inhibitor Cannon" 2
 		"Point Defense Turret"
-		"EMP Torpedo" 56
+		"EMP Torpedo" 19
 		"EMP Torpedo Storage Bay"
 
 		"Epoch Cell"
@@ -980,7 +980,7 @@ ship "Merganser" "Merganser (II)"
 	outfits
 		"Inhibitor Cannon" 2
 		"Teciimach Pod"
-		"EMP Torpedo" 6
+		"EMP Torpedo" 3
 		
 		"Millennium Cell" 2
 		"Crystal Capacitor"
@@ -1287,7 +1287,7 @@ ship "Peregrine" "Peregrine (II)"
 		"Teciimach Bay"
 		"Point Defense Turret"
 		"Thrasher Turret"
-		"EMP Torpedo" 27
+		"EMP Torpedo" 12
 		
 		"Aeon Cell"
 		"Crystal Capacitor" 2

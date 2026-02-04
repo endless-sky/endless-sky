@@ -1509,7 +1509,7 @@ ship "Kar Ik Vot 349"
 	outfits
 		"Korath Detainer" 2
 		"Piercer Missile Launcher" 2
-		"Piercer Missile" 680
+		"Piercer Missile" 392
 		"Piercer Missile Rack" 2
 		"Warder Anti-Missile" 2
 		"Thermal Repeater Turret" 6
@@ -1576,7 +1576,7 @@ ship "Tek Far 71 - Lek"
 	outfits
 		"Korath Detainer"
 		"Piercer Missile Launcher" 2
-		"Piercer Missile" 454
+		"Piercer Missile" 262
 		"Banisher Grav-Turret"
 		"Warder Anti-Missile" 2
 		
@@ -1656,7 +1656,7 @@ ship "Tek Far 78 - Osk"
 	outfits
 		"Korath Detainer"
 		"Piercer Missile Launcher" 3
-		"Piercer Missile" 681
+		"Piercer Missile" 393
 		"Banisher Grav-Turret"
 		"Warder Anti-Missile" 2
 		
@@ -1736,7 +1736,7 @@ ship "Tek Far 109"
 	outfits
 		"Korath Detainer"
 		"Piercer Missile Launcher" 2
-		"Piercer Missile" 454
+		"Piercer Missile" 262
 		"Banisher Grav-Turret" 2
 		
 		"Double Plasma Core"
@@ -2011,7 +2011,7 @@ ship "Model 16"
 			"hit force" 3300
 	outfits
 		"Cluster Mine Layer"
-		"Cluster Mine" 27
+		"Cluster Mine" 17
 		"Shield Disruptor Turret"
 		"Husk-Slice Turret"
 		
@@ -2065,7 +2065,7 @@ ship "Model 32"
 			"hit force" 4800
 	outfits
 		"Cluster Mine Layer"
-		"Cluster Mine" 27
+		"Cluster Mine" 17
 		"Shield Disruptor Turret"
 		"Husk-Slice Turret" 2
 		
@@ -2120,7 +2120,7 @@ ship "Model 64"
 			"hit force" 6000
 	outfits
 		"Cluster Mine Layer"
-		"Cluster Mine" 53
+		"Cluster Mine" 35
 		"Cluster Mine Rack" 2
 		"Shield Disruptor Turret" 2
 		"Husk-Slice Turret" 2
@@ -2177,7 +2177,7 @@ ship "Model 128"
 			"hit force" 6900
 	outfits
 		"Cluster Mine Layer" 2
-		"Cluster Mine" 54
+		"Cluster Mine" 34
 		"Shield Disruptor Turret" 2
 		"Husk-Slice Turret" 3
 		
@@ -2235,7 +2235,7 @@ ship "Model 256"
 			"hit force" 7800
 	outfits
 		"Cluster Mine Layer" 2
-		"Cluster Mine" 93
+		"Cluster Mine" 61
 		"Cluster Mine Rack" 3
 		"Shield Disruptor Turret" 3
 		"Husk-Slice Turret" 3
@@ -2295,7 +2295,7 @@ ship "Model 512"
 			"hit force" 8400
 	outfits
 		"Cluster Mine Layer" 2
-		"Cluster Mine" 80
+		"Cluster Mine" 52
 		"Cluster Mine Rack" 2
 		"Shield Disruptor Turret" 3
 		"Husk-Slice Turret" 4

@@ -43,7 +43,7 @@ ship "Aaulqra" "Aaulqra (Sniper)"
 	outfits
 		`"Ojet" Bimodal Coilgun` 4
 		`"Sjeja" Kinetic Lance`
-		"High-Velocity Spike" 40
+		"High-Velocity Spike" 20
 
 		`"Uoret" Fusion Core`
 		`3-"Kaska" Betavoltaic Cell`
@@ -94,7 +94,7 @@ ship "Kaskhorade" "Kaskhorade (Sniper)"
 	outfits
 		`"Sjeja" Kinetic Lance` 2
 		"High-Velocity Spike Rack"
-		"High-Velocity Spike" 112
+		"High-Velocity Spike" 60
 
 		`"Uoret" Fusion Core`
 		`"Jaase" Shield Cortex`

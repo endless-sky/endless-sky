@@ -351,7 +351,7 @@ ship "Flea"
 			"hit force" 80
 	outfits
 		"Railgun" 3
-		"Railgun Slug" 4500
+		"Railgun Slug" 3000
 		"Sand Cell"
 		"Supercapacitor" 2
 		`"Baellie" Atomic Engines`
@@ -825,7 +825,7 @@ ship "Pond Strider"
 	outfits
 		"Railgun"
 		"Ion Cannon" 2
-		"Railgun Slug" 1500
+		"Railgun Slug" 1000
 		"Chameleon Anti-Missile"
 		"Bullfrog Anti-Missile" 2
 		"Hai Corundum Regenerator" 2
@@ -879,7 +879,7 @@ ship "Pond Strider" "Pond Strider (Tracker)"
 		"Hai Tracker Pod"
 		"Hai Tracker" 112
 		"Railgun" 2
-		"Railgun Slug" 3000
+		"Railgun Slug" 2000
 		"Tracker Storage Pod" 2
 		"Chameleon Anti-Missile" 3
 		"Hai Diamond Regenerator"
@@ -896,7 +896,7 @@ ship "Pond Strider" "Pond Strider (Ion)"
 	outfits
 		"Railgun"
 		"Ion Cannon" 2
-		"Railgun Slug" 1500
+		"Railgun Slug" 1000
 		"Chameleon Anti-Missile"
 		"Bullfrog Anti-Missile" 2
 		"Hai Corundum Regenerator"
@@ -913,7 +913,7 @@ ship "Pond Strider" "Pond Strider (Pulse)"
 	outfits
 		"Pulse Cannon" 2
 		"Railgun"
-		"Railgun Slug" 1500
+		"Railgun Slug" 1000
 		"Pulse Turret"
 		"Chameleon Anti-Missile" 2
 		"Hai Diamond Regenerator"
@@ -930,7 +930,7 @@ ship "Pond Strider" "Pond Strider (Pulse)"
 ship "Pond Strider" "Pond Strider (Railgun)"
 	outfits
 		"Railgun" 3
-		"Railgun Slug" 4500
+		"Railgun Slug" 3000
 		"Chameleon Anti-Missile" 3
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"

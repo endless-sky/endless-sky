@@ -227,7 +227,7 @@ outfit "EMP Torpedo"
 	index 03010
 	cost 4400
 	thumbnail "outfit/emp torpedo"
-	"mass" .33
+	"mass" 1
 	"emp torpedo capacity" -1
 	description "This torpedo can emit electromagnetic pulses, interfering with a ship's generators."
 
@@ -242,7 +242,7 @@ outfit "EMP Torpedo Storage Bay"
 	"mass" 5
 	"outfit space" -12
 	"energy capacity" 400
-	"emp torpedo capacity" 20
+	"emp torpedo capacity" 7
 	ammo "EMP Torpedo"
 	description "The EMP Torpedo Storage Bay is used to store extra ammunition for weapons that use EMP torpedoes."
 	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP Torpedoes."
@@ -259,7 +259,7 @@ outfit "EMP Torpedo Bay"
 	"outfit space" -18
 	"weapon capacity" -18
 	"gun ports" -1
-	"emp torpedo capacity" 27
+	"emp torpedo capacity" 9
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
@@ -313,7 +313,7 @@ outfit "Teciimach Bay"
 	"outfit space" -18
 	"weapon capacity" -18
 	"gun ports" -1
-	"emp torpedo capacity" 36
+	"emp torpedo capacity" 12
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
@@ -326,8 +326,8 @@ outfit "Teciimach Bay"
 		"hit effect" "emp ring" 30
 		"hit effect" "emp spark" 20
 		"die effect" "tiny explosion"
-		safe
 		stream
+		safe
 		"reload" 330
 		"firing energy" 400
 		"firing heat" 18
@@ -364,11 +364,11 @@ outfit "Teciimach Pod"
 		Remnant
 	cost 146000
 	thumbnail "outfit/teciimach pod"
-	"mass" 4
+	"mass" 3
 	"outfit space" -6
 	"weapon capacity" -6
 	"gun ports" -1
-	"emp torpedo capacity" 6
+	"emp torpedo capacity" 3
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
@@ -382,7 +382,7 @@ outfit "Teciimach Pod"
 		"hit effect" "emp spark" 20
 		"die effect" "tiny explosion"
 		safe
-		"burst count" 6
+		"burst count" 3
 		"burst reload" 330
 		"reload" 660
 		"firing energy" 400
@@ -416,10 +416,10 @@ outfitter "EMP Torpedo Restock"
 		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: EMP Torpedo Bay"
-			has "outfit: Ka'het EMP Deployer"
-			has "outfit: EMP Torpedo Storage Bay"
 			has "outfit: Teciimach Bay"
 			has "outfit: Teciimach Pod"
+			has "outfit: Ka'het EMP Deployer"
+			has "outfit: EMP Torpedo Storage Bay"
 	location
 		attributes "outfitter"
 	stock

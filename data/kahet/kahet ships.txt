@@ -83,7 +83,7 @@ ship "Maeri'het" "Maeri'het (Disable-able)"
 ship "Maeri'het" "Maeri'het (EMP)"
 	"never disabled"
 	outfits
-		"EMP Torpedo" 84
+		"EMP Torpedo" 32
 		"Ka'het Ravager Turret"
 		"Ka'het EMP Deployer" 2
 		"Ka'het Annihilator Turret" 3
@@ -100,7 +100,7 @@ ship "Maeri'het" "Maeri'het (EMP)"
 ship "Maeri'het" "Maeri'het (EMP, Disable-able)"
 	"uncapturable"
 	outfits
-		"EMP Torpedo" 84
+		"EMP Torpedo" 32
 		"Ka'het Ravager Turret"
 		"Ka'het EMP Deployer" 2
 		"Ka'het Annihilator Turret" 3
@@ -152,7 +152,7 @@ ship "Telis'het"
 		"Ka'het Annihilator Turret" 2
 		"Ka'het EMP Deployer" 2
 		"Ka'het Ravager Turret" 3
-		"EMP Torpedo" 84
+		"EMP Torpedo" 32
 		"Ka'het Annihilator" 2
 
 		"Ka'het Shield Restorer" 7
@@ -191,7 +191,7 @@ ship "Telis'het" "Telis'het (EMP)"
 		"Ka'het EMP Deployer" 4
 		"Ka'het Annihilator Turret"
 		"Ka'het Ravager Turret" 4
-		"EMP Torpedo" 168
+		"EMP Torpedo" 64
 
 		"Ka'het Shield Restorer" 11
 		"Ka'het Primary Cooling"
@@ -209,7 +209,7 @@ ship "Telis'het" "Telis'het (EMP, Disable-able)"
 		"Ka'het EMP Deployer" 4
 		"Ka'het Annihilator Turret"
 		"Ka'het Ravager Turret" 4
-		"EMP Torpedo" 168
+		"EMP Torpedo" 64
 
 		"Ka'het Shield Restorer" 11
 		"Ka'het Primary Cooling"
@@ -337,7 +337,7 @@ ship "Vareti'het" "Vareti'het (EMP)"
 		"Ka'het Annihilator Turret" 4
 		"Ka'het Ravager Turret"
 		"Ka'het EMP Deployer" 2
-		"EMP Torpedo" 84
+		"EMP Torpedo" 32
 		
 		"Ka'het Grand Restorer" 2
 		"Ka'het MHD Generator" 6
@@ -370,7 +370,7 @@ ship "Vareti'het" "Vareti'het (EMP, Disable-able)"
 		"Ka'het Annihilator Turret" 4
 		"Ka'het Ravager Turret"
 		"Ka'het EMP Deployer" 2
-		"EMP Torpedo" 84
+		"EMP Torpedo" 32
 		
 		"Ka'het Grand Restorer" 2
 		"Ka'het MHD Generator" 6

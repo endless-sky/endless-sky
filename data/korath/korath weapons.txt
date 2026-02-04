@@ -416,9 +416,9 @@ outfit "Piercer Missile"
 	category "Ammunition"
 	series "Ammunition"
 	index 04030
-	cost 790
+	cost 830
 	thumbnail "outfit/piercer"
-	"mass" .05
+	"mass" .07
 	"piercer capacity" -1
 	description "This missile is fired from a Piercer Missile Launcher."
 
@@ -428,9 +428,9 @@ outfit "Piercer Missile Rack"
 	index 04031
 	cost 56000
 	thumbnail "outfit/korath piercer storage"
-	"mass" 1.3
+	"mass" 2.4
 	"outfit space" -7
-	"piercer capacity" 113
+	"piercer capacity" 65
 	ammo "Piercer Missile"
 	description "The Piercer Missile Rack is used to store extra ammunition for Piercer Missile Launchers."
 
@@ -440,12 +440,12 @@ outfit "Piercer Missile Launcher"
 	index 04030
 	cost 593000
 	thumbnail "outfit/piercer launcher"
-	"mass" 4
+	"mass" 6
 	"outfit space" -15
 	"weapon capacity" -15
 	"energy capacity" 50
 	"gun ports" -1
-	"piercer capacity" 227
+	"piercer capacity" 131
 	weapon
 		sprite "projectile/piercer"
 			"frame rate" 5
@@ -598,7 +598,7 @@ outfit "Cluster Mine"
 	index 04040
 	cost 3500
 	thumbnail "outfit/korath mine"
-	"mass" .6
+	"mass" .7
 	"minelayer capacity" -1
 	description "This is ammunition for a Cluster Mine Layer. Each mine splits into eleven submunitions after it is deployed."
 
@@ -608,9 +608,9 @@ outfit "Cluster Mine Rack"
 	index 04041
 	cost 31500
 	thumbnail "outfit/korath mine storage"
-	"mass" 1.2
+	"mass" 2.7
 	"outfit space" -9
-	"minelayer capacity" 13
+	"minelayer capacity" 9
 	ammo "Cluster Mine"
 	description "The Cluster Mine Rack is used to store extra ammunition for Cluster Mine Layers."
 
@@ -620,12 +620,12 @@ outfit "Cluster Mine Layer"
 	index 04040
 	cost 1073000
 	thumbnail "outfit/korath minelayer"
-	"mass" 11
+	"mass" 15
 	"outfit space" -27
 	"weapon capacity" -27
 	"energy capacity" 50
 	"gun ports" -1
-	"minelayer capacity" 27
+	"minelayer capacity" 17
 	weapon
 		sprite "projectile/korath minelayer"
 			"frame rate" .6
@@ -992,8 +992,8 @@ outfit "Firelight Storage Rack"
 	index 04011
 	cost 27400
 	thumbnail "outfit/firelight rack"
-	"mass" 3.5
-	"outfit space" -9
+	"mass" 3
+	"outfit space" -6
 	"firelight missile capacity" 10
 	ammo "Firelight Missile"
 	description "This rack stores additional Firelight missiles to feed into a Firelight Bank."
@@ -1004,7 +1004,7 @@ outfit "Firelight Missile"
 	index 04010
 	cost 7600
 	thumbnail "outfit/firelight"
-	"mass" .55
+	"mass" 0.3
 	"firelight missile capacity" -1
 	"energy generation" 0.02
 	"heat generation" 0.1
@@ -1016,7 +1016,7 @@ outfit "Firelight Missile Bank"
 	index 04010
 	cost 1937000
 	thumbnail "outfit/firelight bank"
-	"mass" 17
+	"mass" 22
 	"outfit space" -28
 	"weapon capacity" -28
 	"gun ports" -1
@@ -1152,7 +1152,7 @@ outfit "Firestorm Torpedo"
 	index 04020
 	cost 19800
 	thumbnail "outfit/firestorm torpedo"
-	"mass" 1.5
+	"mass" 1
 	"firestorm torpedo capacity" -1
 	"energy generation" 0.06
 	"heat generation" 0.3
@@ -1164,9 +1164,9 @@ outfit "Firestorm Torpedo Rack"
 	index 04021
 	cost "135000"
 	thumbnail "outfit/firestorm torpedo rack"
-	"mass" 9.5
+	"mass" 7
 	"outfit space" -20
-	"firestorm torpedo capacity" 7
+	"firestorm torpedo capacity" 13
 	ammo "Firestorm Torpedo"
 	description "This large cage-like rack is designed to be able to house several deadly Firestorm Torpedoes."
 
@@ -1177,7 +1177,7 @@ outfit "Firestorm Battery"
 	index 04020
 	cost 2383000
 	thumbnail "outfit/firestorm battery"
-	"mass" 28
+	"mass" 35
 	"outfit space" -48
 	"weapon capacity" -48
 	"energy capacity" 1300

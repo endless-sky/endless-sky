@@ -736,7 +736,7 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 				outfit "Ka'het Annihilator Turret" 4
 				outfit "Ka'het Ravager Turret"
 				outfit "Ka'het EMP Deployer" 2
-				outfit "EMP Torpedo" 33
+				outfit "EMP Torpedo" 13
 				
 				outfit "Ka'het Grand Restorer" 2
 				outfit "Ka'het MHD Generator" 6
@@ -842,7 +842,7 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 				decline
 			label "weapon maeri EMP"
 			action
-				outfit "EMP Torpedo" 84
+				outfit "EMP Torpedo" 32
 				outfit "Ka'het Ravager Turret"
 				outfit "Ka'het EMP Deployer" 2
 				outfit "Ka'het Annihilator Turret" 3
@@ -859,7 +859,7 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 				outfit "Ka'het EMP Deployer" 4
 				outfit "Ka'het Annihilator Turret"
 				outfit "Ka'het Ravager Turret" 4
-				outfit "EMP Torpedo" 168
+				outfit "EMP Torpedo" 64
 			`	The front of this Telis'het appears to have been set up for electronic warfare: a long series of EMP Deployers with their storage rack show prominently, plus a number of Ravager Turrets on the back. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
 				decline
 			label "weapon vareti gun"
@@ -878,7 +878,7 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 				outfit "Ka'het Annihilator Turret" 4
 				outfit "Ka'het Ravager Turret"
 				outfit "Ka'het EMP Deployer" 2
-				outfit "EMP Torpedo" 84
+				outfit "EMP Torpedo" 32
 			`	The impressive front of this Vareti'het appears to have been set up to focus on hull damage: a number of EMP Deployers and Ravager Beams show prominently, surrounding the enormous barrel of the Nullifier. On the back, a variety of Ravager and Annihilator Turrets make their appearance. You disconnect them from their base plates, making sure not to damage any of their fragile targeting systems, and move them all to your cargo hold.`
 				decline
 

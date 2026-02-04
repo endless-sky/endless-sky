@@ -333,12 +333,12 @@ outfit `"Sjeja" Kinetic Lance`
 	licenses
 		"High Houses"
 	thumbnail "outfit/sjeja kinetic lance"
-	"mass" 52
+	"mass" 50
 	"outfit space" -60
 	"weapon capacity" -60
 	"energy capacity" 1900
 	"gun ports" -1
-	"spike capacity" 40
+	"spike capacity" 20
 	weapon
 		sprite "projectile/sjeja kinetic lance"
 			"frame rate" 4
@@ -373,7 +373,7 @@ outfit "High-Velocity Spike"
 	index 11010
 	cost 3500
 	thumbnail "outfit/hv spike"
-	"mass" .2
+	"mass" .5
 	"spike capacity" -1
 	description `The projectiles fired by the Sjeja Kinetic Lance are too large to be synthesized on-the-fly from the ship's reserves, and must be carried separately.`
 
@@ -385,10 +385,10 @@ outfit "High-Velocity Spike Rack"
 	licenses
 		"High Houses"
 	thumbnail "outfit/hv spike rack"
-	"mass" 6
+	"mass" 4
 	"outfit space" -12
 	"energy capacity" 800
-	"spike capacity" 32
+	"spike capacity" 16
 	ammo "High-Velocity Spike"
 	description `Though the built-in ammunition reserves of the Sjeja Kinetic Lance are sufficient for all but the most protracted engagements, the High Houses do manufacture this additional storage unit for use on their largest warships. The rack includes a small set of batteries to help support the high power costs of the Sjeja.`
 
