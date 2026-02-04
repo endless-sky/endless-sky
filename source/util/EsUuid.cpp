@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "EsUuid.h"
 
-#include "../files/Logger.h"
+#include "../Logger.h"
 #ifdef _WIN32
 #include "../ui/text/Utf8.h"
 

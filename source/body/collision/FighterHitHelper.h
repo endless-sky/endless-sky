@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../../files/GameData.h"
+#include "../../gamedata/GameData.h"
 #include "../../player/Gamerules.h"
 #include "../Ship.h"
 

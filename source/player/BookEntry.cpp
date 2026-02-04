@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BookEntry.h"
 
-#include "../files/DataNode.h"
-#include "../files/DataWriter.h"
+#include "../gamedata/DataNode.h"
+#include "../gamedata/DataWriter.h"
 #include "../ui/text/Format.h"
 #include "../image/Sprite.h"
 #include "../image/SpriteSet.h"

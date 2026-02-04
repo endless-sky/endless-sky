@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../ui/text/Format.h"
 #include "FormationPattern.h"
 #include "FormationPositioner.h"
-#include "../../files/GameData.h"
+#include "../../gamedata/GameData.h"
 #include "../../player/Gamerules.h"
 #include "../../government/Government.h"
 #include "../../body/ship/Hardpoint.h"

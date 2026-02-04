@@ -15,14 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SavedGame.h"
 
-#include "DataFile.h"
-#include "DataNode.h"
-#include "../player/Date.h"
-#include "../ui/text/Format.h"
-#include "GameData.h"
-#include "../map/Planet.h"
-#include "../image/SpriteSet.h"
-#include "../map/System.h"
+#include "../../../gamedata/DataFile.h"
+#include "../../../gamedata/DataNode.h"
+#include "../../../player/Date.h"
+#include "../../text/Format.h"
+#include "../../../gamedata/GameData.h"
+#include "../../../map/Planet.h"
+#include "../../../image/SpriteSet.h"
+#include "../../../map/System.h"
 
 using namespace std;
 

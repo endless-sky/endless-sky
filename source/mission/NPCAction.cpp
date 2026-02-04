@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "NPCAction.h"
 
-#include "../files/DataNode.h"
-#include "../files/DataWriter.h"
+#include "../gamedata/DataNode.h"
+#include "../gamedata/DataWriter.h"
 #include "../player/PlayerInfo.h"
 #include "../map/System.h"
 #include "../ui/UI.h"

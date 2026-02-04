@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Variant.h"
 
-#include "../files/DataNode.h"
-#include "../files/GameData.h"
+#include "../gamedata/DataNode.h"
+#include "../gamedata/GameData.h"
 #include "../body/Ship.h"
 
 #include <algorithm>

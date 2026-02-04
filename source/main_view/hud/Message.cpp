@@ -16,10 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Message.h"
 
 #include "../../main_view/ai/Command.h"
-#include "../../files/DataNode.h"
-#include "../../files/DataWriter.h"
+#include "../../gamedata/DataNode.h"
+#include "../../gamedata/DataWriter.h"
 #include "../../ui/text/Format.h"
-#include "../../files/GameData.h"
+#include "../../gamedata/GameData.h"
 #include "../../ui/text/Phrase.h"
 #include "../../ui/text/TextReplacements.h"
 

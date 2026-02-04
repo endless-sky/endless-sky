@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../files/DataNode.h"
+#include "../gamedata/DataNode.h"
 #include "../util/Set.h"
 
 #include <set>

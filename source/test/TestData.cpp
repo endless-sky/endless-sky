@@ -15,13 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "TestData.h"
 
-#include "../files/DataFile.h"
-#include "../files/DataNode.h"
-#include "../files/DataWriter.h"
-#include "../files/Files.h"
-#include "../files/GameData.h"
+#include "../gamedata/DataFile.h"
+#include "../gamedata/DataNode.h"
+#include "../gamedata/DataWriter.h"
+#include "../gamedata/Files.h"
+#include "../gamedata/GameData.h"
 #include "../mission/Mission.h"
-#include "../files/UniverseObjects.h"
+#include "../gamedata/UniverseObjects.h"
 
 using namespace std;
 

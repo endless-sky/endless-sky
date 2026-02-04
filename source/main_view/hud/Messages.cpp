@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Messages.h"
 
-#include "../../files/DataWriter.h"
-#include "../../files/GameData.h"
+#include "../../gamedata/DataWriter.h"
+#include "../../gamedata/GameData.h"
 
 #include <mutex>
 

@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "FogShader.h"
 
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Point.h"
 #include "../ui/Screen.h"

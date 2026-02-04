@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Command.h"
 
-#include "../../files/DataFile.h"
-#include "../../files/DataNode.h"
-#include "../../files/DataWriter.h"
+#include "../../gamedata/DataFile.h"
+#include "../../gamedata/DataNode.h"
+#include "../../gamedata/DataWriter.h"
 #include "../../ui/text/Format.h"
 
 #include <SDL2/SDL.h>

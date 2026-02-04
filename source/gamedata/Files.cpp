@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Files.h"
 
-#include "Logger.h"
+#include "../Logger.h"
 #include "ZipFile.h"
 
 #include <SDL2/SDL.h>

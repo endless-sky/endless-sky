@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../main_view/ai/Command.h"
 #include "../../ui/text/Font.h"
 #include "../../ui/text/FontSet.h"
-#include "../../files/GameData.h"
+#include "../../gamedata/GameData.h"
 #include "../../government/Government.h"
 #include "../../ui/Interface.h"
 #include "../../shader/LineShader.h"

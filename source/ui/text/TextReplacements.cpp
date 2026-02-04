@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TextReplacements.h"
 
 #include "../../conditions/ConditionSet.h"
-#include "../../files/DataNode.h"
+#include "../../gamedata/DataNode.h"
 
 #include <set>
 

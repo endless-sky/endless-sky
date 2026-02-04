@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../planet/shop/CategoryList.h"
 #include "../../../player/CoreStartData.h"
 #include "../../text/Format.h"
-#include "../../../files/GameData.h"
+#include "../../../gamedata/GameData.h"
 #include "../../../body/ship/Outfit.h"
 #include "../../../map/Planet.h"
 #include "../../../player/PlayerInfo.h"

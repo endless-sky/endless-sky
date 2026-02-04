@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Body.h"
 
-#include "../files/DataNode.h"
-#include "../files/DataWriter.h"
-#include "../files/GameData.h"
+#include "../gamedata/DataNode.h"
+#include "../gamedata/DataWriter.h"
+#include "../gamedata/GameData.h"
 #include "../image/Mask.h"
 #include "../image/MaskManager.h"
 #include "../util/pi.h"

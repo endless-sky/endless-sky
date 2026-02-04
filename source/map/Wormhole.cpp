@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Wormhole.h"
 
-#include "../files/DataNode.h"
-#include "../files/GameData.h"
+#include "../gamedata/DataNode.h"
+#include "../gamedata/GameData.h"
 #include "Planet.h"
 #include "System.h"
 

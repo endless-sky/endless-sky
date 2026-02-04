@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Body.h"
 #include "Collision.h"
 #include "../../government/Government.h"
-#include "../../files/Logger.h"
+#include "../../Logger.h"
 #include "../../image/Mask.h"
 #include "../../util/Point.h"
 #include "../Projectile.h"

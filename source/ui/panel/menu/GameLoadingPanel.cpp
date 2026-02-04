@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../util/Color.h"
 #include "../../../mission/Conversation.h"
 #include "../ConversationPanel.h"
-#include "../../../files/GameData.h"
+#include "../../../gamedata/GameData.h"
 #include "../../../image/MaskManager.h"
 #include "MenuAnimationPanel.h"
 #include "MenuPanel.h"

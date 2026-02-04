@@ -17,8 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "player/AudioPlayer.h"
 #include "supplier/effect/Fade.h"
-#include "../files/Files.h"
-#include "../files/Logger.h"
+#include "../gamedata/Files.h"
+#include "../Logger.h"
 #include "Music.h"
 #include "player/MusicPlayer.h"
 #include "../util/Point.h"

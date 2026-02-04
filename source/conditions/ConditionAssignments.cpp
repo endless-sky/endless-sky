@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionAssignments.h"
 
 #include "ConditionsStore.h"
-#include "../files/DataNode.h"
-#include "../files/DataWriter.h"
+#include "../gamedata/DataNode.h"
+#include "../gamedata/DataWriter.h"
 
 #include <algorithm>
 #include <numeric>

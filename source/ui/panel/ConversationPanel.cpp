@@ -28,7 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../text/Font.h"
 #include "../text/FontSet.h"
 #include "../text/Format.h"
-#include "../../files/GameData.h"
+#include "../../gamedata/GameData.h"
 #include "../../government/Government.h"
 #include "map/MapDetailPanel.h"
 #include "../../player/PlayerInfo.h"
@@ -43,7 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../UI.h"
 
 #if defined _WIN32
-#include "../../files/Files.h"
+#include "../../gamedata/Files.h"
 #endif
 
 #include <array>

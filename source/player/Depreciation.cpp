@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Depreciation.h"
 
-#include "../files/DataNode.h"
-#include "../files/DataWriter.h"
-#include "../files/GameData.h"
+#include "../gamedata/DataNode.h"
+#include "../gamedata/DataWriter.h"
+#include "../gamedata/GameData.h"
 #include "Gamerules.h"
 #include "../body/ship/Outfit.h"
 #include "../body/Ship.h"

@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageFileData.h"
 
 #include "../ui/text/Format.h"
-#include "../files/Logger.h"
+#include "../Logger.h"
 
 #include <cmath>
 

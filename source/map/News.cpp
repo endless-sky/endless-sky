@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "News.h"
 
-#include "../files/DataNode.h"
+#include "../gamedata/DataNode.h"
 #include "../util/Random.h"
 #include "../image/SpriteSet.h"
 

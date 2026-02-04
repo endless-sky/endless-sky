@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TextArea.h"
 
 #include "text/FontSet.h"
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "../player/Preferences.h"
 #include "RenderBuffer.h"
 #include "ScrollBar.h"

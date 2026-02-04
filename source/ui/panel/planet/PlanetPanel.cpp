@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../DialogPanel.h"
 #include "../../text/FontSet.h"
 #include "../../text/Format.h"
-#include "../../../files/GameData.h"
+#include "../../../gamedata/GameData.h"
 #include "HiringPanel.h"
 #include "../../Interface.h"
 #include "../map/MapDetailPanel.h"

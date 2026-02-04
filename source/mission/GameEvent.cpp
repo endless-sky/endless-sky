@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameEvent.h"
 
-#include "../files/DataWriter.h"
-#include "../files/GameData.h"
+#include "../gamedata/DataWriter.h"
+#include "../gamedata/GameData.h"
 #include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../map/System.h"

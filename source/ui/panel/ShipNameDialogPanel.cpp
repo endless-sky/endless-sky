@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipNameDialogPanel.h"
 
-#include "../../files/GameData.h"
+#include "../../gamedata/GameData.h"
 #include "../text/Phrase.h"
 
 using namespace std;

@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Effect.h"
 
 #include "../audio/Audio.h"
-#include "../files/DataNode.h"
+#include "../gamedata/DataNode.h"
 
 #include <map>
 

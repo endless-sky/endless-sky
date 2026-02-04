@@ -17,10 +17,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../ui/panel/planet/shop/CategoryList.h"
 #include "../ui/panel/planet/shop/CategoryType.h"
-#include "../files/DataNode.h"
-#include "../files/DataWriter.h"
+#include "../gamedata/DataNode.h"
+#include "../gamedata/DataWriter.h"
 #include "../pathfinding/DistanceMap.h"
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "../government/Government.h"
 #include "../map/Planet.h"
 #include "../map/Port.h"

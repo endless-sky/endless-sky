@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../player/CoreStartData.h"
 #include "../ui/panel/DialogPanel.h"
 #include "../ui/text/Format.h"
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "../government/Government.h"
 #include "HailPanel.h"
 #include "../shader/LineShader.h"

@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Galaxy.h"
 
-#include "../files/DataNode.h"
+#include "../gamedata/DataNode.h"
 #include "../image/SpriteSet.h"
 
 using namespace std;

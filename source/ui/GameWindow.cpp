@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameWindow.h"
 
-#include "../files/Logger.h"
+#include "../Logger.h"
 #include "Screen.h"
 
 #ifdef _WIN32

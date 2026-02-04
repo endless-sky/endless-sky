@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionSet.h"
 
 #include "ConditionsStore.h"
-#include "../files/DataNode.h"
-#include "../files/DataWriter.h"
-#include "../files/Logger.h"
+#include "../gamedata/DataNode.h"
+#include "../gamedata/DataWriter.h"
+#include "../Logger.h"
 
 #include <algorithm>
 #include <cmath>

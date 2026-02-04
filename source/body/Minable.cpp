@@ -15,11 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Minable.h"
 
-#include "../files/DataNode.h"
+#include "../gamedata/DataNode.h"
 #include "Effect.h"
 #include "Flotsam.h"
 #include "../ui/text/Format.h"
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "../body/collision/MinableDamageDealt.h"
 #include "ship/Outfit.h"
 #include "../util/pi.h"

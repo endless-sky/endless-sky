@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Logger.h"
 
-#include "../ui/text/Format.h"
-#include "../GameVersion.h"
+#include "ui/text/Format.h"
+#include "GameVersion.h"
 
 #ifdef _WIN32
 #include "../windows/WinVersion.h"

@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Personality.h"
 
 #include "../util/Angle.h"
-#include "../files/DataNode.h"
-#include "../files/DataWriter.h"
+#include "../gamedata/DataNode.h"
+#include "../gamedata/DataWriter.h"
 
 #include <map>
 #include <vector>

@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "../conditions/ConditionSet.h"
-#include "../files/DataNode.h"
+#include "../gamedata/DataNode.h"
 #include "../mission/LocationFilter.h"
 #include "Sale.h"
 #include "../util/Set.h"

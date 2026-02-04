@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../shader/FillShader.h"
 #include "../../text/Font.h"
 #include "../../text/FontSet.h"
-#include "../../../files/GameData.h"
+#include "../../../gamedata/GameData.h"
 #include "../../../government/Government.h"
 #include "../../Information.h"
 #include "../../Interface.h"

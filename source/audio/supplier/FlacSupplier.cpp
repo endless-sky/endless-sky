@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "FlacSupplier.h"
 
-#include "../../files/Logger.h"
+#include "../../Logger.h"
 
 #include <utility>
 

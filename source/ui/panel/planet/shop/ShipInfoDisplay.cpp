@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../../player/Depreciation.h"
 #include "../../../../shader/FillShader.h"
 #include "../../../text/Format.h"
-#include "../../../../files/GameData.h"
+#include "../../../../gamedata/GameData.h"
 #include "../../../../body/ship/Outfit.h"
 #include "../../../../player/PlayerInfo.h"
 #include "../../../../body/Ship.h"

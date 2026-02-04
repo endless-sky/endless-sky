@@ -15,11 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipManager.h"
 
-#include "../files/DataNode.h"
-#include "../files/DataWriter.h"
+#include "../gamedata/DataNode.h"
+#include "../gamedata/DataWriter.h"
 #include "../util/EsUuid.h"
 #include "../ui/text/Format.h"
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "../main_view/hud/Messages.h"
 #include "../player/PlayerInfo.h"
 #include "../body/Ship.h"

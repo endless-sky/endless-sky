@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weapon.h"
 
 #include "../../audio/Audio.h"
-#include "../../files/DataNode.h"
+#include "../../gamedata/DataNode.h"
 #include "../Effect.h"
-#include "../../files/GameData.h"
+#include "../../gamedata/GameData.h"
 #include "Outfit.h"
 #include "../../image/SpriteSet.h"
 

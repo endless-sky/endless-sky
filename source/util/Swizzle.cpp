@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Swizzle.h"
 
 #include "Color.h"
-#include "../files/DataNode.h"
+#include "../gamedata/DataNode.h"
 
 #include <algorithm>
 #include <utility>

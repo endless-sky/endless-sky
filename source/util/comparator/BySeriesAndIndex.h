@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../../ui/panel/planet/shop/CategoryList.h"
 #include "../../ui/panel/planet/shop/CategoryType.h"
-#include "../../files/GameData.h"
+#include "../../gamedata/GameData.h"
 #include "../../body/ship/Outfit.h"
 #include "../../body/Ship.h"
 

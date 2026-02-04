@@ -16,10 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../../../source/files/DataWriter.h"
+#include "../../../../source/gamedata/DataWriter.h"
 
 // ... and any system includes needed for the test file.
-#include "../../../../source/files/DataNode.h"
+#include "../../../../source/gamedata/DataNode.h"
 
 namespace { // test namespace
 

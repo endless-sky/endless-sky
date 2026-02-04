@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AlertLabel.h"
 
 #include "../../util/Angle.h"
-#include "../../files/GameData.h"
+#include "../../gamedata/GameData.h"
 #include "../../shader/PointerShader.h"
 #include "../../body/Projectile.h"
 #include "../../shader/RingShader.h"

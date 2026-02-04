@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../util/Angle.h"
 #include "Effect.h"
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "ship/Outfit.h"
 #include "../util/Random.h"
 #include "../body/Ship.h"

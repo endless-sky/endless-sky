@@ -15,11 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Planet.h"
 
-#include "../files/DataNode.h"
+#include "../gamedata/DataNode.h"
 #include "../ui/text/Format.h"
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "../government/Government.h"
-#include "../files/Logger.h"
+#include "../Logger.h"
 #include "../player/PlayerInfo.h"
 #include "../government/Politics.h"
 #include "../util/Random.h"

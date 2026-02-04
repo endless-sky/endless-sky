@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "OutlineShader.h"
 
 #include "../util/Color.h"
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "../util/Point.h"
 #include "../ui/Screen.h"
 #include "Shader.h"

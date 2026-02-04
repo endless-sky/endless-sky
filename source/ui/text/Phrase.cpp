@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Phrase.h"
 
-#include "../../files/DataNode.h"
+#include "../../gamedata/DataNode.h"
 #include "Format.h"
-#include "../../files/GameData.h"
+#include "../../gamedata/GameData.h"
 
 using namespace std;
 

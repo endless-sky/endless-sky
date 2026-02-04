@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "StartConditions.h"
 
-#include "../files/DataNode.h"
+#include "../gamedata/DataNode.h"
 #include "../ui/text/Format.h"
-#include "../files/GameData.h"
-#include "../files/Logger.h"
+#include "../gamedata/GameData.h"
+#include "../Logger.h"
 #include "../map/Planet.h"
 #include "../body/Ship.h"
 #include "../image/Sprite.h"

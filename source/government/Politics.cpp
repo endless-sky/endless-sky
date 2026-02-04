@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Politics.h"
 
 #include "../ui/text/Format.h"
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "Government.h"
 #include "../map/Planet.h"
 #include "../player/PlayerInfo.h"

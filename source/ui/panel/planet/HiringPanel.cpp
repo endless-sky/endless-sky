@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HiringPanel.h"
 
 #include "../../../main_view/ai/Command.h"
-#include "../../../files/GameData.h"
+#include "../../../gamedata/GameData.h"
 #include "../../Information.h"
 #include "../../Interface.h"
 #include "../../../player/PlayerInfo.h"

@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../ui/text/Font.h"
 #include "../../ui/text/FontSet.h"
 #include "../../ui/text/Format.h"
-#include "../../files/GameData.h"
+#include "../../gamedata/GameData.h"
 #include "../../body/ship/Outfit.h"
 #include "../../player/PlayerInfo.h"
 #include "../../util/Point.h"

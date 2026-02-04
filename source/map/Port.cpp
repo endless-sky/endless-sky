@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Port.h"
 
-#include "../files/DataNode.h"
+#include "../gamedata/DataNode.h"
 #include "../government/Government.h"
 #include "../player/PlayerInfo.h"
 #include "../body/Ship.h"

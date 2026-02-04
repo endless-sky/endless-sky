@@ -28,9 +28,9 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/conditions/test_conditionAssignments.cpp
 	unit/src/conditions/test_conditionSet.cpp
 	unit/src/conditions/test_conditionsStore.cpp
-	unit/src/files/test_datafile.cpp
-	unit/src/files/test_datanode.cpp
-	unit/src/files/test_datawriter.cpp
+	unit/src/gamedata/test_datafile.cpp
+	unit/src/gamedata/test_datanode.cpp
+	unit/src/gamedata/test_datawriter.cpp
 	unit/src/util/test_dictionary.cpp
 	unit/src/mission/test_distance_calculation_settings.cpp
 	unit/src/util/test_esuuid.cpp

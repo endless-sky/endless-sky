@@ -16,10 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 
 #include "../util/Angle.h"
-#include "../files/DataNode.h"
+#include "../gamedata/DataNode.h"
 #include "../player/Date.h"
 #include "../fleet/Fleet.h"
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "../player/Gamerules.h"
 #include "../government/Government.h"
 #include "Hazard.h"

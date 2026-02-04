@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Include a helper for creating well-formed DataNodes (to enable creating non-empty ConditionSets).
 #include "datanode-factory.h"
 // Include DataWriter for read/write/read/write tests.
-#include "../../../../source/files/DataWriter.h"
+#include "../../../../source/gamedata/DataWriter.h"
 // Include a helper for handling logger output.
 #include "logger-output.h"
 // Include a helper for capturing & asserting on logged output.

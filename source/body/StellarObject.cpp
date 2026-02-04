@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "StellarObject.h"
 
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "../government/Government.h"
 #include "../map/Planet.h"
 #include "../government/Politics.h"

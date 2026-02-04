@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CategoryList.h"
 
-#include "../../../../files/DataNode.h"
+#include "../../../../gamedata/DataNode.h"
 
 #include <algorithm>
 #include <limits>

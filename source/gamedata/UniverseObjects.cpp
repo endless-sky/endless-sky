@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Files.h"
 #include "../ui/Information.h"
-#include "Logger.h"
+#include "../Logger.h"
 #include "../player/PlayerInfo.h"
 #include "../image/Sprite.h"
 #include "../image/SpriteSet.h"

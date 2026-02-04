@@ -16,6 +16,10 @@ endif()
 target_sources(EndlessSkyLib PRIVATE
 	GameVersion.cpp
 	GameVersion.h
+	Logger.cpp
+	Logger.h
+	PrintData.cpp
+	PrintData.h
 	audio/Audio.cpp
 	audio/Audio.h
 	audio/Music.cpp
@@ -92,28 +96,6 @@ target_sources(EndlessSkyLib PRIVATE
 	conditions/ConditionSet.h
 	conditions/ConditionsStore.cpp
 	conditions/ConditionsStore.h
-	files/DataFile.cpp
-	files/DataFile.h
-	files/DataNode.cpp
-	files/DataNode.h
-	files/DataWriter.cpp
-	files/DataWriter.h
-	files/Files.cpp
-	files/Files.h
-	files/GameData.cpp
-	files/GameData.h
-	files/Logger.cpp
-	files/Logger.h
-	files/Plugins.cpp
-	files/Plugins.h
-	files/PrintData.cpp
-	files/PrintData.h
-	files/SavedGame.cpp
-	files/SavedGame.h
-	files/UniverseObjects.cpp
-	files/UniverseObjects.h
-	files/ZipFile.cpp
-	files/ZipFile.h
 	fleet/Fleet.cpp
 	fleet/Fleet.h
 	fleet/FleetCargo.cpp
@@ -126,6 +108,22 @@ target_sources(EndlessSkyLib PRIVATE
 	fleet/RaidFleet.h
 	fleet/Variant.cpp
 	fleet/Variant.h
+	gamedata/DataFile.cpp
+	gamedata/DataFile.h
+	gamedata/DataNode.cpp
+	gamedata/DataNode.h
+	gamedata/DataWriter.cpp
+	gamedata/DataWriter.h
+	gamedata/Files.cpp
+	gamedata/Files.h
+	gamedata/GameData.cpp
+	gamedata/GameData.h
+	gamedata/Plugins.cpp
+	gamedata/Plugins.h
+	gamedata/UniverseObjects.cpp
+	gamedata/UniverseObjects.h
+	gamedata/ZipFile.cpp
+	gamedata/ZipFile.h
 	government/Government.cpp
 	government/Government.h
 	government/Politics.cpp
@@ -334,6 +332,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ui/panel/menu/MenuPanel.h
 	ui/panel/menu/PreferencesPanel.cpp
 	ui/panel/menu/PreferencesPanel.h
+	ui/panel/menu/SavedGame.cpp
+	ui/panel/menu/SavedGame.h
 	ui/panel/menu/StartConditionsPanel.cpp
 	ui/panel/menu/StartConditionsPanel.h
 	ui/panel/Panel.cpp

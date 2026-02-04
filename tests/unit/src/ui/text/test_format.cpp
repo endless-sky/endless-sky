@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../../../source/ui/text/Format.h"
 
 // ... utility classes
-#include "../../../../../source/files/DataNode.h"
+#include "../../../../../source/gamedata/DataNode.h"
 
 // ... and any system includes needed for the test file.
 #include <string>

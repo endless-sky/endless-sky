@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../text/Font.h"
 #include "../../../text/FontSet.h"
 #include "../../../text/Format.h"
-#include "../../../../files/GameData.h"
+#include "../../../../gamedata/GameData.h"
 #include "../../../../body/ship/Hardpoint.h"
 #include "../../../../mission/Mission.h"
 #include "../../../../body/ship/Outfit.h"

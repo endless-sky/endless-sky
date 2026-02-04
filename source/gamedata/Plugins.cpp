@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
-#include "Logger.h"
+#include "../Logger.h"
 #include "../util/Set.h"
 
 #include <algorithm>

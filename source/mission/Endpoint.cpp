@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Endpoint.h"
 
-#include "../files/DataWriter.h"
+#include "../gamedata/DataWriter.h"
 
 #include <map>
 

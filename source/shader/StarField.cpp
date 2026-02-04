@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../util/Angle.h"
 #include "../body/Body.h"
 #include "DrawList.h"
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "../ui/Interface.h"
 #include "../util/pi.h"
 #include "../player/Preferences.h"

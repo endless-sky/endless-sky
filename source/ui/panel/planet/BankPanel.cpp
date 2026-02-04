@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../DialogPanel.h"
 #include "../../text/DisplayText.h"
 #include "../../text/Format.h"
-#include "../../../files/GameData.h"
+#include "../../../gamedata/GameData.h"
 #include "../../Information.h"
 #include "../../Interface.h"
 #include "../../../player/PlayerInfo.h"

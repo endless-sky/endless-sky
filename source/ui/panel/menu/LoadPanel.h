@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../../../util/Point.h"
 #include "../../../util/Rectangle.h"
-#include "../../../files/SavedGame.h"
+#include "SavedGame.h"
 #include "../../Tooltip.h"
 
 #include <ctime>

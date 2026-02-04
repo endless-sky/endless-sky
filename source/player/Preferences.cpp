@@ -16,14 +16,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 
 #include "../audio/Audio.h"
-#include "../files/DataFile.h"
-#include "../files/DataNode.h"
-#include "../files/DataWriter.h"
-#include "../files/Files.h"
-#include "../files/GameData.h"
+#include "../gamedata/DataFile.h"
+#include "../gamedata/DataNode.h"
+#include "../gamedata/DataWriter.h"
+#include "../gamedata/Files.h"
+#include "../gamedata/GameData.h"
 #include "../ui/GameWindow.h"
 #include "../ui/Interface.h"
-#include "../files/Logger.h"
+#include "../Logger.h"
 #include "../ui/Screen.h"
 
 #ifdef _WIN32

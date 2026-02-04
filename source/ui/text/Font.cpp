@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../text/Alignment.h"
 #include "../../util/Color.h"
 #include "../text/DisplayText.h"
-#include "../../files/GameData.h"
+#include "../../gamedata/GameData.h"
 #include "../../image/ImageBuffer.h"
 #include "../../image/ImageFileData.h"
 #include "../../util/Point.h"

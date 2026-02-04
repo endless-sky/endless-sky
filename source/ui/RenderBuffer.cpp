@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "RenderBuffer.h"
 
-#include "../files/GameData.h"
+#include "../gamedata/GameData.h"
 #include "GameWindow.h"
-#include "../files/Logger.h"
+#include "../Logger.h"
 #include "Screen.h"
 #include "../shader/Shader.h"
 

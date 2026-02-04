@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "../conditions/ConditionAssignments.h"
-#include "../files/DataNode.h"
+#include "../gamedata/DataNode.h"
 #include "../player/Date.h"
 
 #include <list>
