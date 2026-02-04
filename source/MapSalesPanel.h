@@ -18,13 +18,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapPanel.h"
 
 #include "ClickZone.h"
-#include "Information.h"
 
 #include <set>
 #include <string>
 #include <vector>
 
 class CategoryList;
+class Information;
 class ItemInfoDisplay;
 class PlayerInfo;
 class Point;
