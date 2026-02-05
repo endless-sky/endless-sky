@@ -17,6 +17,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DialogPanel.h"
 
+#include "text/Format.h"
+#include "text/Truncate.h"
+
+#include <functional>
 #include <optional>
 #include <string>
 
