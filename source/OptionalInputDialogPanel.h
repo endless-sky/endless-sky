@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 
+
 // A special version of DialogPanel for requesting optional values.
 // Has a third button named "Unset" that provides an empty optional to the given callback.
 class OptionalInputDialogPanel : public DialogPanel {

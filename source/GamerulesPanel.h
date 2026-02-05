@@ -33,7 +33,7 @@ class RenderBuffer;
 
 
 
-// UI panel for editing preferences, especially the key mappings.
+// UI panel for editing gamerules.
 class GamerulesPanel : public Panel {
 public:
 	explicit GamerulesPanel(Gamerules &gamerules);
