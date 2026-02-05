@@ -91,7 +91,9 @@ void ItemInfoDisplay::DrawAttributes(const Point &topLeft) const
 
 void ItemInfoDisplay::DrawTooltips() const
 {
-	tooltip.Draw();
+	if(hoveringTooltip)
+		tooltip.Draw();
+	hoveringTooltip = false;
 	tooltip.DecrementCount();
 }
 
@@ -200,4 +202,6 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 		tooltip.SetZone(zone);
 		tooltip.SetText(GameData::Tooltip(hover));
 	}
+
+	hoveringTooltip |= true;
 }

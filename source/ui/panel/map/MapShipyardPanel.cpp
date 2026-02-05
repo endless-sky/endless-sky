@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../player/CoreStartData.h"
 #include "../../text/Format.h"
 #include "../../../gamedata/GameData.h"
+#include "../../Information.h"
 #include "../../../map/Planet.h"
 #include "../../../player/PlayerInfo.h"
 #include "../../../util/Point.h"
@@ -94,19 +95,6 @@ const ItemInfoDisplay &MapShipyardPanel::SelectedInfo() const
 const ItemInfoDisplay &MapShipyardPanel::CompareInfo() const
 {
 	return compareInfo;
-}
-
-
-
-const string &MapShipyardPanel::KeyLabel(int index) const
-{
-	static const string LABEL[4] = {
-		"Has no shipyard",
-		"Has shipyard",
-		"Sells this ship",
-		"Ship parked here"
-	};
-	return LABEL[index];
 }
 
 
@@ -188,6 +176,15 @@ int MapShipyardPanel::FindItem(const string &text) const
 		}
 	}
 	return bestItem;
+}
+
+
+
+void MapShipyardPanel::DrawKey(Information &info) const
+{
+	info.SetCondition("is shipyards");
+
+	MapSalesPanel::DrawKey(info);
 }
 
 

@@ -413,7 +413,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "\t" << it.second << " " << it.first << "\n";
 		}
 	}
-	GetUI().Push(new DialogPanel(out.str()));
+	GetUI().Push(DialogPanel::Info(out.str()));
 }
 
 
@@ -681,7 +681,7 @@ void MainPanel::StepEvents(bool &isActive)
 				string message = actor->Fine(player, event.Type(), &*event.Target()).second;
 				if(!message.empty())
 				{
-					GetUI().Push(new DialogPanel(message));
+					GetUI().Push(DialogPanel::Info(message));
 					isActive = false;
 				}
 			}
