@@ -308,7 +308,7 @@ void Gamerules::SetSystemDepartureMin(double value)
 
 
 
-void Gamerules::SetSystemArrivalMin(double value)
+void Gamerules::SetSystemArrivalMin(std::optional<double> value)
 {
 	storage.systemArrivalMin = value;
 }

@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Gamerules.h"
 #include "Information.h"
 #include "Interface.h"
+#include "OptionalInputDialogPanel.h"
 #include "PlayerInfo.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
@@ -104,7 +105,6 @@ GamerulesPanel::GamerulesPanel(Gamerules &gamerules)
 
 
 
-// Stub, for unique_ptr destruction to be defined in the right compilation unit.
 GamerulesPanel::~GamerulesPanel()
 {
 }
@@ -456,13 +456,13 @@ void GamerulesPanel::DrawGamerules()
 			text = gamerules.UniversalRamscoopActive() ? "true" : "false";
 		else if(gamerule == SYSTEM_ARRIVAL_MIN)
 		{
-			if(!gamerules.SystemArrivalMin().has_value())
-				text = "(unset)";
+			if(gamerules.SystemArrivalMin().has_value())
+				text = Format::AbbreviatedNumber(*gamerules.SystemArrivalMin(), std::nullopt);
 			else
-				text = Format::Number(*gamerules.SystemArrivalMin());
+				text = "(unset)";
 		}
 		else if(gamerule == SYSTEM_DEPARTURE_MIN)
-			text = Format::Number(gamerules.SystemDepartureMin());
+			text = Format::AbbreviatedNumber(gamerules.SystemDepartureMin(), std::nullopt);
 		else if(gamerule == FLEET_MULTIPLIER)
 			text = Format::Percentage(gamerules.FleetMultiplier(), 2);
 		else if(gamerule == LOCK_GAMERULES)
@@ -786,7 +786,7 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 	else if(str == SYSTEM_ARRIVAL_MIN)
 	{
 		string message = "Set the minimum system arrival distance. This should be any number.";
-		GetUI().Push(DialogPanel::RequestDouble(&gamerules, &Gamerules::SetSystemArrivalMin, message,
+		GetUI().Push(OptionalInputDialogPanel::RequestDouble(&gamerules, &Gamerules::SetSystemArrivalMin, message,
 			gamerules.SystemArrivalMin()));
 	}
 	else if(str == FLEET_MULTIPLIER)

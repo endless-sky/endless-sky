@@ -69,7 +69,7 @@ public:
 	void SetDepreciationMaxAge(int value);
 	void SetFighterDodgePolicy(FighterDodgePolicy value);
 	void SetSystemDepartureMin(double value);
-	void SetSystemArrivalMin(double value);
+	void SetSystemArrivalMin(std::optional<double> value);
 	void SetFleetMultiplier(double value);
 	void SetMiscValue(const std::string &rule, int value);
 
@@ -99,7 +99,6 @@ private:
 	class Storage {
 	public:
 		bool operator==(const Storage &other) const = default;
-
 
 	public:
 		bool lockGamerules = true;

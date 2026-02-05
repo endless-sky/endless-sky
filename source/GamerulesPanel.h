@@ -37,7 +37,7 @@ class RenderBuffer;
 class GamerulesPanel : public Panel {
 public:
 	explicit GamerulesPanel(Gamerules &gamerules);
-	virtual ~GamerulesPanel();
+	virtual ~GamerulesPanel() override;
 
 	// Draw this panel.
 	virtual void Draw() override;
