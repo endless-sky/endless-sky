@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../gamedata/GameData.h"
 #include "../../../government/Government.h"
 #include "../../Information.h"
+#include "../../Interface.h"
 #include "../planet/shop/ItemInfoDisplay.h"
 #include "../../text/Layout.h"
 #include "../../../player/PlayerInfo.h"
