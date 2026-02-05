@@ -556,7 +556,7 @@ private:
 	bool markedChangesToday = false;
 
 	// The system and position therein to which the "orbits" system UI issued a move order.
-	std::pair<const System *, Point> interstellarEscortDestination;
+	std::pair<const System *, Point> interstellarEscortDestination = {nullptr, {}};
 	// Currently selected coloring, in the map panel (defaults to reputation):
 	int mapColoring = -6;
 	int mapZoom = 0;

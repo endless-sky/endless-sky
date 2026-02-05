@@ -160,30 +160,32 @@ PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const Condition
 	GameEvent nodeEvent(node, playerConditions);
 	date = nodeEvent.GetDate();
 
-	string eventName;
+	// If this scheduled event is named, then it is using the new format,
+	// and we should refer to the definition of the event with the matching name.
 	if(!nodeEvent.TrueName().empty())
-		eventName = nodeEvent.TrueName();
-	else
 	{
-		// Old save files may contain unnamed events. In that case, the event's name can be found by
-		// looking at the relevant conditions in the event's conditions assignment.
-		set<string> conditions = nodeEvent.Conditions().RelevantConditions();
-		erase_if(conditions, [](const string &name) { return name.find("event: ") == string::npos; });
-		// Unless the save file was manually altered, there should be an event condition present.
-		// If there are multiple event conditions present, then the first one should be the condition
-		// for this event, as assignments are saved and loaded in the order they're created, and
-		// the event condition is the first assignment added to each event.
-		if(!conditions.empty())
-			eventName = conditions.begin()->substr(strlen("event: "));
+		event = ExclusiveItem<GameEvent>(GameData::Events().Get(nodeEvent.TrueName()));
+		return;
 	}
-	if(!eventName.empty())
-		event = ExclusiveItem<GameEvent>(GameData::Events().Get(eventName));
+
+	// Old save files may contain unnamed events. In that case, the event's name can be found by
+	// looking at the relevant conditions in the event's conditions assignment.
+	set<string> conditions = nodeEvent.Conditions().RelevantConditions();
+	erase_if(conditions, [](const string &name) { return name.find("event: ") == string::npos; });
+	// Unless the save file was manually altered, there should be an event condition present.
+	// If there are multiple event conditions present, then the first one should be the condition
+	// for this event, as assignments are saved and loaded in the order they're created, and
+	// the event condition is the first assignment added to each event.
+	string eventName;
+	if(!conditions.empty())
+		eventName = conditions.begin()->substr(strlen("event: "));
+	// If a name was located and a definition exists for that name, then use that definition.
+	// Otherwise, continue to store the entire event node in the old format.
+	const GameEvent *eventDef = !eventName.empty() ? GameData::Events().Find(eventName) : nullptr;
+	if(eventDef)
+		event = ExclusiveItem<GameEvent>(eventDef);
 	else
-	{
-		// Fall back onto saving the full definition if we somehow didn't find a name.
-		node.PrintTrace("Could not determine name of scheduled event.");
 		event = ExclusiveItem<GameEvent>(std::move(nodeEvent));
-	}
 }
 
 
@@ -1690,7 +1692,7 @@ void PlayerInfo::Land(UI &ui)
 			if(mit != inactiveMissions.rend())
 				message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
 			message += "They will be reactivated when the necessary plugin is reinstalled.";
-			ui.Push(new DialogPanel(message));
+			ui.Push(DialogPanel::Info(message));
 		}
 		if(!invalidEvents.empty())
 		{
@@ -1706,7 +1708,7 @@ void PlayerInfo::Land(UI &ui)
 			if(eit != invalidEvents.rend())
 				message += " and " + to_string(distance(eit, invalidEvents.rend())) + " more.\n";
 			message += "The universe may not be in the proper state until the necessary plugin is reinstalled.";
-			ui.Push(new DialogPanel(message));
+			ui.Push(DialogPanel::Info(message));
 		}
 	}
 
@@ -2573,7 +2575,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI &ui)
 			string message = it.BlockedMessage(*this);
 			if(!message.empty())
 			{
-				ui.Push(new DialogPanel(message));
+				ui.Push(DialogPanel::Info(message));
 				return;
 			}
 		}
@@ -2596,7 +2598,7 @@ void PlayerInfo::HandleBlockedInflightMissions(UI &ui)
 			it = availableEnteringMissions.erase(it);
 			if(!message.empty())
 			{
-				ui.Push(new DialogPanel(message));
+				ui.Push(DialogPanel::Info(message));
 				return;
 			}
 		}
@@ -2613,7 +2615,7 @@ void PlayerInfo::HandleBlockedInflightMissions(UI &ui)
 			it = availableTransitionMissions.erase(it);
 			if(!message.empty())
 			{
-				ui.Push(new DialogPanel(message));
+				ui.Push(DialogPanel::Info(message));
 				return;
 			}
 		}
@@ -3486,10 +3488,10 @@ void PlayerInfo::SetEscortDestination(const System *system, Point pos)
 
 
 
-// Determine if a system and nonzero position were specified.
+// Determine if a system was specified.
 bool PlayerInfo::HasEscortDestination() const
 {
-	return interstellarEscortDestination.first && interstellarEscortDestination.second;
+	return interstellarEscortDestination.first;
 }
 
 
@@ -4588,7 +4590,7 @@ void PlayerInfo::StepMissions(UI &ui)
 		if(missionVisits > 1)
 			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
-		ui.Push(new DialogPanel(visitText));
+		ui.Push(DialogPanel::Info(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
 	// more time to see if any mission is now completed or failed due to a change
@@ -5065,13 +5067,13 @@ void PlayerInfo::Fine(UI &ui)
 					+ ", we detect highly illegal material on your ship.\""
 					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
 					" Your days of traveling the stars have come to an end.";
-				ui.Push(new DialogPanel(message.second));
+				ui.Push(DialogPanel::Info(message.second));
 			}
 			// All ships belonging to the player should be removed.
 			Die();
 		}
 		else
-			ui.Push(new DialogPanel(message.second));
+			ui.Push(DialogPanel::Info(message.second));
 	}
 }
 

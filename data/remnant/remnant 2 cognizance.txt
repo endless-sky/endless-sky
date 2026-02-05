@@ -544,6 +544,7 @@ mission "Remnant: Cognizance 14"
 mission "Remnant: Cognizance 15"
 	landing
 	invisible
+	non-blocking
 	source "Ssil Vida"
 	destination "Viminal"
 	to offer
@@ -676,6 +677,7 @@ mission "Remnant: Cognizance 18"
 mission "Remnant: Cognizance 18B"
 	entering
 	invisible
+	non-blocking
 	source
 		system "Nenia"
 	destination "Aventine"
@@ -905,6 +907,7 @@ mission "Remnant: Cognizance 21"
 mission "Remnant: Cognizance Interest Condition Patch"
 	landing
 	invisible
+	non-blocking
 	repeat
 	to offer
 		or
@@ -1704,6 +1707,7 @@ mission "Remnant: Cognizance 38"
 mission "Remnant: Cognizance 39"
 	landing
 	invisible
+	non-blocking
 	source
 		government "Remnant"
 	to offer
