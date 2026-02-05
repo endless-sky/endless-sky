@@ -1252,7 +1252,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		for(const NPC &npc : npcs)
 			if(npc.IsLeftBehind(player.GetSystem()))
 			{
-				ui->Push(new DialogPanel("This is a stop for one of your missions, but you have left a ship behind."));
+				ui->Push(DialogPanel::Info("This is a stop for one of your missions, but you have left a ship behind."));
 				return false;
 			}
 
