@@ -219,7 +219,7 @@ mission "Successors: Ghosts QSI 3"
 	source
 		attributes "successor"
 	to offer
-		has "successors: ghosts saajret contact"
+		has "event: successors: ghosts saajret contact"
 	on offer
 		conversation
 			`Shortly after you land on <origin>, the Successor data-sphere you recieved from the House Kaatrij concierge springs to life. It displays a short message, text-only:`
@@ -1594,8 +1594,6 @@ mission "Successors: Ghosts Scout Escorts"
 	destination "Qasa-Sija-Iri"
 	to offer
 		has "Successors: Ghosts 17: active"
-	on offer
-		accept
 	npc save
 		government "House Kaatrij"
 		personality waiting heroic
