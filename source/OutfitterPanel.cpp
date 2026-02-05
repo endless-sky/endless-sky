@@ -1120,7 +1120,7 @@ void OutfitterPanel::CheckRefill()
 		message += (count == 1) ? "?" : "s?";
 		if(cost)
 			message += " It will cost " + Format::CreditString(cost) + ".";
-		GetUI().Push(new DialogPanel(this, &OutfitterPanel::Refill, message));
+		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &OutfitterPanel::Refill, message));
 	}
 }
 

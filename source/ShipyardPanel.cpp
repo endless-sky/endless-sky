@@ -369,7 +369,7 @@ void ShipyardPanel::DoBuyButton()
 	else
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
-	GetUI().Push(new ShipNameDialogPanel(this,
+	GetUI().Push(ShipNameDialogPanel::Create(
 			DialogPanel::FunctionButton(this, "Buy", 'b', &ShipyardPanel::BuyShip),
 			message));
 }
@@ -438,10 +438,10 @@ void ShipyardPanel::Sell(bool storeOutfits)
 	if(storeOutfits)
 	{
 		message += " Any outfits will be placed in storage.";
-		GetUI().Push(new DialogPanel(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
+		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
 	}
 	else
-		GetUI().Push(new DialogPanel(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
+		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
 }
 
 
