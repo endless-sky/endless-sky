@@ -11,6 +11,22 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+ship "Gunboat" "Gunboat (Raven)"
+	outfits
+		"Electron Beam" 2
+		"Electron Turret"
+		"Fission Reactor"
+		"Supercapacitor" 3
+		"D14-RN Shield Generator"
+		"Cooling Ducts"
+		"Fuel Pod" 3
+		"Outfits Expansion" 2
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Scram Drive"
+
+
+
 mission "FW Reconciliation 1"
 	name "Pick up Ijs from <planet>"
 	description "Bring Katya and Sawyer to <destination>, along with Raven's ship (the Eye of Horus), and pick up Ijs and his equipment for detecting atomic testing."
@@ -90,22 +106,6 @@ mission "FW Reconciliation 1"
 			`	You tell her that the last you heard, Ijs was helping to found a new university on <planet>. She says, "We should bring him with us. Raven, will you be traveling with us too?"`
 			`	"Yes," she says. "I'll tell my ship and crew to get ready."`
 				accept
-
-
-
-ship "Gunboat" "Gunboat (Raven)"
-	outfits
-		"Electron Beam" 2
-		"Electron Turret"
-		"Fission Reactor"
-		"Supercapacitor" 3
-		"D14-RN Shield Generator"
-		"Cooling Ducts"
-		"Fuel Pod" 3
-		"Outfits Expansion" 2
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Scram Drive"
 
 
 
