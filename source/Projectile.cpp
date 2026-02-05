@@ -48,8 +48,10 @@ namespace {
 		if(!jamming)
 			return Random::Real() > tracking;
 		else
+		{
 			jamming = sqrt(jamming) * RangeFraction(distance, jamming);
 			return Random::Real() > tracking / (1. + jamming);
+		}
 	}
 }
 
