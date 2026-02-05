@@ -1579,6 +1579,7 @@ outfit "Heavy Rocket Launcher"
 			"frame rate" 4
 		sound "rocket"
 		ammo "Heavy Rocket"
+		stream
 		icon "icon/rocket"
 		"hit effect" "heavy rocket hit"
 		"die effect" "small explosion"
