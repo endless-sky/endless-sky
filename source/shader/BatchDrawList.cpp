@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BatchDrawList.h"
 
 #include "BatchShader.h"
-#include "../Body.h"
-#include "../Screen.h"
+#include "../body/Body.h"
+#include "../ui/Screen.h"
 #include "../image/Sprite.h"
 
 #include <cmath>

@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DrawList.h"
 
-#include "../Body.h"
-#include "../Preferences.h"
-#include "../Screen.h"
+#include "../body/Body.h"
+#include "../player/Preferences.h"
+#include "../ui/Screen.h"
 #include "../image/Sprite.h"
 #include "SpriteShader.h"
 

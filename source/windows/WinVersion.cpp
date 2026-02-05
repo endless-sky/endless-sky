@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "WinVersion.h"
 
-#include "../text/Utf8.h"
+#include "../ui/text/Utf8.h"
 
 #include <windows.h>
 

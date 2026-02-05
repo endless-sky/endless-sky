@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Sound.h"
 
-#include "../Files.h"
+#include "../gamedata/Files.h"
 #include "../Logger.h"
 #include "supplier/WavSupplier.h"
 

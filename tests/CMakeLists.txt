@@ -17,40 +17,40 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/include/es-test.hpp
 	unit/include/logger-output.h
 	unit/include/output-capture.hpp
-	unit/src/comparators/test_byGivenOrder.cpp
-	unit/src/comparators/test_byName.cpp
+	unit/src/util/comparator/test_byGivenOrder.cpp
+	unit/src/util/comparator/test_byName.cpp
 	unit/src/helpers/datanode-factory.cpp
 	unit/src/helpers/logger-output.cpp
-	unit/src/test_account.cpp
-	unit/src/test_angle.cpp
-	unit/src/test_bitset.cpp
-	unit/src/test_categoryList.cpp
-	unit/src/test_conditionAssignments.cpp
-	unit/src/test_conditionSet.cpp
-	unit/src/test_conditionsStore.cpp
-	unit/src/test_datafile.cpp
-	unit/src/test_datanode.cpp
-	unit/src/test_datawriter.cpp
-	unit/src/test_dictionary.cpp
-	unit/src/test_distance_calculation_settings.cpp
-	unit/src/test_esuuid.cpp
-	unit/src/test_exclusiveItem.cpp
-	unit/src/test_firecommand.cpp
-	unit/src/test_formationPattern.cpp
+	unit/src/player/test_account.cpp
+	unit/src/util/test_angle.cpp
+	unit/src/util/test_bitset.cpp
+	unit/src/ui/panel/planet/shop/test_categoryList.cpp
+	unit/src/conditions/test_conditionAssignments.cpp
+	unit/src/conditions/test_conditionSet.cpp
+	unit/src/conditions/test_conditionsStore.cpp
+	unit/src/gamedata/test_datafile.cpp
+	unit/src/gamedata/test_datanode.cpp
+	unit/src/gamedata/test_datawriter.cpp
+	unit/src/util/test_dictionary.cpp
+	unit/src/mission/test_distance_calculation_settings.cpp
+	unit/src/util/test_esuuid.cpp
+	unit/src/util/test_exclusiveItem.cpp
+	unit/src/main_view/ai/test_firecommand.cpp
+	unit/src/main_view/ai/test_formationPattern.cpp
 	unit/src/test_main.cpp
-	unit/src/test_point.cpp
-	unit/src/test_random.cpp
-	unit/src/test_scrollVar.cpp
-	unit/src/test_set.cpp
-	unit/src/test_ship.cpp
-	unit/src/test_stringInterner.cpp
+	unit/src/util/test_point.cpp
+	unit/src/util/test_random.cpp
+	unit/src/ui/test_scrollVar.cpp
+	unit/src/util/test_set.cpp
+	unit/src/body/test_ship.cpp
+	unit/src/util/test_stringInterner.cpp
 	unit/src/test_template.txt
-	unit/src/test_weightedList.cpp
-	unit/src/text/test_alignment.cpp
-	unit/src/text/test_displaytext.cpp
-	unit/src/text/test_format.cpp
-	unit/src/text/test_layout.cpp
-	unit/src/text/test_truncate.cpp
+	unit/src/util/test_weightedList.cpp
+	unit/src/ui/text/test_alignment.cpp
+	unit/src/ui/text/test_displaytext.cpp
+	unit/src/ui/text/test_format.cpp
+	unit/src/ui/text/test_layout.cpp
+	unit/src/ui/text/test_truncate.cpp
 )
 
 list(APPEND INTEGRATION_TESTS

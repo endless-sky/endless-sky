@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "WinWindow.h"
 
-#include "../Preferences.h"
+#include "../player/Preferences.h"
 #include "WinVersion.h"
 
 #include <SDL2/SDL_syswm.h>

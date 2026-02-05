@@ -15,14 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Test.h"
 
-#include "../DataNode.h"
-#include "../text/Format.h"
-#include "../GameData.h"
+#include "../gamedata/DataNode.h"
+#include "../ui/text/Format.h"
+#include "../gamedata/GameData.h"
 #include "../Logger.h"
-#include "../Planet.h"
-#include "../PlayerInfo.h"
-#include "../Ship.h"
-#include "../System.h"
+#include "../map/Planet.h"
+#include "../player/PlayerInfo.h"
+#include "../body/Ship.h"
+#include "../map/System.h"
 #include "TestContext.h"
 #include "TestData.h"
 

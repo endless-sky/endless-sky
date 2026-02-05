@@ -15,18 +15,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "StarField.h"
 
-#include "../Angle.h"
-#include "../Body.h"
+#include "../util/Angle.h"
+#include "../body/Body.h"
 #include "DrawList.h"
-#include "../GameData.h"
-#include "../Interface.h"
-#include "../pi.h"
-#include "../Preferences.h"
-#include "../Random.h"
-#include "../Screen.h"
+#include "../gamedata/GameData.h"
+#include "../ui/Interface.h"
+#include "../util/pi.h"
+#include "../player/Preferences.h"
+#include "../util/Random.h"
+#include "../ui/Screen.h"
 #include "../image/Sprite.h"
 #include "../image/SpriteSet.h"
-#include "../System.h"
+#include "../map/System.h"
 
 #include <algorithm>
 #include <cmath>

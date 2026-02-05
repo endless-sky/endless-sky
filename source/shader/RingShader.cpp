@@ -15,11 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "RingShader.h"
 
-#include "../Color.h"
-#include "../GameData.h"
-#include "../pi.h"
-#include "../Point.h"
-#include "../Screen.h"
+#include "../util/Color.h"
+#include "../gamedata/GameData.h"
+#include "../util/pi.h"
+#include "../util/Point.h"
+#include "../ui/Screen.h"
 #include "Shader.h"
 
 #include <stdexcept>

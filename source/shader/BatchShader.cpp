@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BatchShader.h"
 
-#include "../GameData.h"
-#include "../Screen.h"
+#include "../gamedata/GameData.h"
+#include "../ui/Screen.h"
 #include "Shader.h"
 #include "../image/Sprite.h"
 

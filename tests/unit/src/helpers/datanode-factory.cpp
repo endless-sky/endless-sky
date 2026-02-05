@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "datanode-factory.h"
 
-#include "../../../../source/DataFile.h"
-#include "../../../../source/DataNode.h"
+#include "../../../../source/gamedata/DataFile.h"
+#include "../../../../source/gamedata/DataNode.h"
 
 #include <sstream>
 #include <string>
