@@ -155,7 +155,7 @@ void MenuPanel::Draw()
 			info.SetString("system", player.GetSystem()->DisplayName());
 		if(player.GetPlanet())
 			info.SetString("planet", player.GetPlanet()->DisplayName());
-		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
+		info.SetString("credits", Format::AbbreviatedNumber(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 		info.SetString("playtime", Format::PlayTime(player.GetPlayTime()));
 	}
@@ -191,6 +191,10 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'r' && player.IsLoaded() && player.IsDead())
 	{
+		// First, make sure the previous MainPanel has been deleted.
+		gamePanels.Reset();
+		gamePanels.CanSave(true);
+
 		player.Reload();
 
 		GetUI().PopThrough(GetUI().Root().get());
