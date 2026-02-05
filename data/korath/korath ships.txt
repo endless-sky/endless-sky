@@ -1509,7 +1509,7 @@ ship "Kar Ik Vot 349"
 	outfits
 		"Korath Detainer" 2
 		"Piercer Missile Launcher" 2
-		"Piercer Missile" 392
+		"Piercer Missile" 590
 		"Piercer Missile Rack" 2
 		"Warder Anti-Missile" 2
 		"Thermal Repeater Turret" 6
@@ -1576,7 +1576,7 @@ ship "Tek Far 71 - Lek"
 	outfits
 		"Korath Detainer"
 		"Piercer Missile Launcher" 2
-		"Piercer Missile" 262
+		"Piercer Missile" 394
 		"Banisher Grav-Turret"
 		"Warder Anti-Missile" 2
 		
@@ -1656,7 +1656,7 @@ ship "Tek Far 78 - Osk"
 	outfits
 		"Korath Detainer"
 		"Piercer Missile Launcher" 3
-		"Piercer Missile" 393
+		"Piercer Missile" 591
 		"Banisher Grav-Turret"
 		"Warder Anti-Missile" 2
 		
@@ -1736,7 +1736,7 @@ ship "Tek Far 109"
 	outfits
 		"Korath Detainer"
 		"Piercer Missile Launcher" 2
-		"Piercer Missile" 262
+		"Piercer Missile" 394
 		"Banisher Grav-Turret" 2
 		
 		"Double Plasma Core"

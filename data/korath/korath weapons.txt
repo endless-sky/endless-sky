@@ -418,7 +418,7 @@ outfit "Piercer Missile"
 	index 04030
 	cost 830
 	thumbnail "outfit/piercer"
-	"mass" .07
+	"mass" .05
 	"piercer capacity" -1
 	description "This missile is fired from a Piercer Missile Launcher."
 
@@ -428,9 +428,9 @@ outfit "Piercer Missile Rack"
 	index 04031
 	cost 56000
 	thumbnail "outfit/korath piercer storage"
-	"mass" 2.4
-	"outfit space" -7
-	"piercer capacity" 65
+	"mass" .1
+	"outfit space" -5
+	"piercer capacity" 98
 	ammo "Piercer Missile"
 	description "The Piercer Missile Rack is used to store extra ammunition for Piercer Missile Launchers."
 
@@ -440,12 +440,12 @@ outfit "Piercer Missile Launcher"
 	index 04030
 	cost 593000
 	thumbnail "outfit/piercer launcher"
-	"mass" 6
+	"mass" 5
 	"outfit space" -15
 	"weapon capacity" -15
 	"energy capacity" 50
 	"gun ports" -1
-	"piercer capacity" 131
+	"piercer capacity" 197
 	weapon
 		sprite "projectile/piercer"
 			"frame rate" 5
@@ -457,17 +457,17 @@ outfit "Piercer Missile Launcher"
 		"hit effect" "piercer impact"
 		"hit effect" "piercer explosion"
 		"die effect" "piercer death"
-		"inaccuracy" 3
-		"velocity" 12
-		"lifetime" 52
-		"reload" 17
-		"firing energy" 7
-		"firing heat" 34
-		"shield damage" 68
-		"hull damage" 104
+		"inaccuracy" 1.5
+		"velocity" 18
+		"lifetime" 37
+		"reload" 23
+		"firing energy" 9
+		"firing heat" 46
+		"shield damage" 93
+		"hull damage" 141
 		"piercing" .2
-		"hit force" 106
-		"missile strength" 9
+		"hit force" 144
+		"missile strength" 23
 		"stream"
 	description "Korath Piercer Missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
