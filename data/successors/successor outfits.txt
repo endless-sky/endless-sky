@@ -1,4 +1,4 @@
-# Copyright (c) 2024 by Daeridanii
+# Copyright (c) 2025 by Daeridanii
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -22,9 +22,24 @@ outfit "High Houses License"
 	category "Licenses"
 	series "Licenses"
 	index 11020
-	thumbnail "outfit/successor license"
-	description "The High Houses produce most of the advanced technology present in Successor space, and restrict its purchase to only those individuals and groups who support their interests. By aligning yourself with one of the houses, you have earned the right to purchase this exclusive technology."
+	thumbnail "outfit/high houses license"
+	description "The High Houses produce most of the advanced technology present in Successor space, and restrict its purchase to only those individuals and groups who substantially support their interests."
+	description "	This glittering pin of the Successors' much-beloved red gold is connected to a vast web of thoroughly-argued treaties and complex inter-House laws - some dating back thousands of years. These all serve to ensure that, at least in times of peace and stability, alien vassals such as yourself can expect each of the Houses to furnish them with the equipment that this enables them to buy - not just the House that offered it to them. After all, the security considerations involved in selling weapons to a single vassal of another House are outweighed by the rampant profits that dealing in these very expensive ships and outfits are sure to bring."
 
+outfit "Harmonic Keystone"
+	category "Systems"
+	series "Drives"
+	index 70
+	"cost" 500000
+	thumbnail "outfit/harmonic keystone"
+	licenses
+		"High Houses"
+	"mass" 1
+	"outfit space" -3
+	"quantum keystone" 1
+	"jump sound" "harmonic jump" # Needs unique sound!
+	description "A tiny fragment of a quantum keystone is suspended in a cradle of harmonic magnifiers, each one grown atom-by-atom from exotic metal. Though a little bulkier than an unaltered keystone would be, this device has allowed the New Houses to divide their fifty keystones twenty-fold and has given them a substantial edge in exploration through their unstable wormhole."
+	description "The harmonic elements of this device pinch and twist at unfamiliar parts of the fabric of space. When a jump drive is equipped in tandem, it is made to sing in tune."
 
 outfit `"Byiaa" Shield Cortex`
 	category "Systems"
@@ -606,6 +621,20 @@ outfit "Kinetic Rail Rifle"
 	"unplunderable" 1
 	description "While projectile weapons of this scale are considered obsolete in human space, having been superseded by laser weaponry, the Successors' generations of experience with high-power kinetic weapons have allowed them to produce this particularly terrifying railgun rifle, firing projectiles capable of piercing body armor and even intervening bulkheads. Particularly effective at repelling boarders, it is capable of interfacing with a Successor ship's computer and surveillance systems, routing target information to a built-in display."
 
+outfit "Radiant Shield Shunt"
+	category "Unique"
+	series "Functional Unique"
+	index 11010
+	"cost" 16000000
+	thumbnail "outfit/radiant shield shunt"
+	"mass" 16
+	"outfit space" -16
+	"heat protection" 5
+	"shield generation multiplier" -0.5
+	"starlining" 1
+	"unique" 1
+	description "On loan from House Aqrabe - or maybe House Kaatrij - this piece of technology is unlike anything else you've seen from the Successors. In fact, it's unlike anything you've seen, period."
+	description "From the way it integrates with shield and fuel systems, one might be forgiven for guessing it is a cloaking device of some sort, and given the way it diverts incoming infrared radiation while active, perhaps that estimate wouldn't be too far off the mark. Whatever mechanism drives its function, its effect is clear: a ship equipped with one of these absorbs next to no heat from any source outside the skin of its shields."
 
 effect "tiny successor afterburner"
 	sprite "effect/successor flare/afterburner/afterburner"

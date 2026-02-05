@@ -1,4 +1,4 @@
-# Copyright (c) 2024 by Daeridanii
+# Copyright (c) 2025 by Daeridanii
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -50,6 +50,9 @@ shipyard "High Houses Heavy"
 
 shipyard "People's Houses"
 	"Kvelqde-Khora"
+
+shipyard "Kaatrij Light"
+	"Vujlet-Usaqri"
 
 outfitter "Successor Basics"
 	`"Aqra" Inductive Reverser`
@@ -136,3 +139,12 @@ outfitter "People's Houses"
 	"Overcharged Pulse Laser"
 	"Overcharged Laser Turret"
 	`OC-"Mavra" Betavoltaic Cell`
+
+outfitter "Harmonic Keystone"
+	"Harmonic Keystone"
+
+outfitter "Multimodal Armor (Harmonic Keystone)"
+	"Harmonic Keystone"
+	"Multimodal Armor: Light"
+	"Multimodal Armor: Heavy"
+	"Multimodal Armor: Regen"

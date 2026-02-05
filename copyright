@@ -3770,7 +3770,12 @@ Files:
  images/effect/bimodal?impact*
  images/effect/bimodal?switch?impact*
  images/effect/drag?cannon?impact*
+ images/effect/hasur?afterburner*
+ images/effect/kis?impact*
  images/effect/overcharged?pulse?laser?impact*
+ images/effect/predecessor?flare*
+ images/effect/queru?afterburner*
+ images/effect/resja?afterburner*
  images/effect/successor?flare/*
  images/effect/successor?pulse?laser?impact*
  images/effect/void?spark*
@@ -3783,6 +3788,8 @@ Files:
  images/outfit/bimodal?coilgun*
  images/outfit/drag?cannon*
  images/outfit/fuel?sail*
+ images/outfit/harmonic?keystone*
+ images/outfit/high?houses?license*
  images/outfit/hv?spike?rack*
  images/outfit/hv?spike*
  images/outfit/large?betavoltaic*
@@ -3802,6 +3809,7 @@ Files:
  images/outfit/overcharged?betavoltaic*
  images/outfit/overcharged?pulse?laser?turret*
  images/outfit/overcharged?pulse?laser*
+ images/outfit/radiant?shield?shunt*
  images/outfit/railgun?h2h*
  images/outfit/shield?cortex?interface*
  images/outfit/sjeja?kinetic?lance*
@@ -3822,34 +3830,48 @@ Files:
  images/outfit/tiny?successor?shield*
  images/outfit/tuur?scanning?suite*
  images/outfit/veldt?combat?scanner*
+ images/planet/exotic-metal-garden*
+ images/planet/station?predecessor*
  images/planet/station?successor*
  images/projectile/bimodal?switch*
  images/projectile/bimodal*
  images/projectile/drag?cannon*
+ images/projectile/iasa*
+ images/projectile/kis*
  images/projectile/sjeja?kinetic?lance*
  images/projectile/successor?pulse?laser*
  images/ship/aaulqra*
  images/ship/ejniisde*
+ images/ship/ejniisde?khora*
+ images/ship/hasur?vowsworn*
  images/ship/kaskhorade*
  images/ship/kvelqde-khora*
  images/ship/kvelqde*
  images/ship/myaede*
  images/ship/nnesaarau*
  images/ship/ojde*
+ images/ship/queru?luminous?gaze*
+ images/ship/resja?of?the?nine?eyes*
  images/ship/seiitej*
  images/ship/stolsaqra*
+ images/ship/valkkyiara-khorasaqra*
  images/ship/veusade*
  images/ship/vujlet*
  images/thumbnail/aaulqra*
  images/thumbnail/ejniisde*
+ images/thumbnail/ejniisde-khora*
+ images/thumbnail/hasur?vowsworn*
  images/thumbnail/kaskhorade*
  images/thumbnail/kvelqde-khora*
  images/thumbnail/kvelqde*
  images/thumbnail/myaede*
  images/thumbnail/nnesaarau*
  images/thumbnail/ojde*
+ images/thumbnail/queru?luminous?gaze*
+ images/thumbnail/resja?of?the?nine?eyes*
  images/thumbnail/seiitej*
  images/thumbnail/stolsaqra*
+ images/thumbnail/valkkyiara-khorasaqra*
  images/thumbnail/veusade*
  images/thumbnail/vujlet*
 Copyright: Daeridanii (https://github.com/Daeridanii1)

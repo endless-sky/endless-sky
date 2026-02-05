@@ -1,0 +1,458 @@
+# Copyright (c) 2025 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Successors: Ghosts Aqrabe 1"
+	landing
+	name "Keystone delivery"
+	description "House Aqrabe wants 50 quantum keystones at <destination>."
+	source "Kasii-Cavasaa-Oa"
+	destination "Kasii-Cavasaa-Oa"
+	to offer
+		or
+			and
+				has "successors: ghosts stage 1"
+				random < 15
+			has "Successors: Ghosts 4: offered"
+	on offer
+		conversation
+			`Shortly after landing here, you are approached by a tall Successor in unusual dress; though dark, it shimmers in the light with many little golden flecks. It is unlike any other Successor outfit you've seen. "Greetings, Captain," they say, curiously sonorous. "Noble House Aqrabe kindly requests thy presence in the eastern spaceport reliquary. I've been instructed to take thee there, at thy own discretion, of course."`
+			choice
+				`	"Very well."`
+					goto reliquary
+				`	"No, thank you."`
+					decline
+			label reliquary
+			`	They lead you through several restricted areas of the spaceport to a thin tower on its periphery. The room you enter into is tremendous and circular; a shallow watery depression in the center is matched by an enormous semicircular tank that bulges down from above, almost touching the floor as it swoops towards the wet floor. What's inside it proves even more striking, however: soon, what look like the severed limbs of Successors begin to writhe downwards in the tank, each suspended by a number of glittering golden threads that snake up into the dark abyss of the overhead water. You look around to ask your guide what's happening, but they have already left. One of the arms rubs up against the glass, its undead suckers making faint popping sounds as they pass over it.`
+			choice
+				`	(Reach out to touch it.)`
+				`	(Leave it alone.)`
+					goto interrupt
+			`	As you graze the glass with your fingertips, the bodiless arms wiggle and squirm. From beneath you, a chorus of artificial voices speak.`
+			`	"four-leg? foreign?"`
+			`		"foreign."`
+			`	"curious foreigner. alien."`
+			`			"curiosity, the fortieth virtue."`
+			`		"may an alien be virtuous? discuss."`
+			`	"no, think I, for..."`
+			`	The voices are interrupted by another, this one startlingly close and real.`
+			label interrupt
+			`	"I see thou hast met our saints, Captain." Another Successor emerges from behind you. They wear a similar outfit; the only difference seems to be a slightly redder-hued glint. The "saints" now follow them around, probing and slapping at the glass.`
+			choice
+				`	"Saints?"`
+					goto saints
+				`	"Are they alive?"`
+				`	"Who are you?"`
+					goto identity
+			`	"No, nor has the cloak of death enveloped them either. They're between things. Like infants that never fear growing; like half-sleepers that never fear to wake."`
+			label saints
+			`	"They're saints, or relics," they say. "Fragments of unliving minds, free of pain and death, surviving in parts. Each one once a mind of renown, one worth t'be preserved even as a memory. They're intrigued by thee. Only one of them ever saw something of your kind, and it did not expect to ever see one of you again - not even in eternity."`
+			`	"And who are you?" you ask.`
+			label identity
+			`	They splay their arms, a little more subtly than most of the Successors you've seen. "Aqrabe Ia Sola. And you are Captain <first> <last>. How queer an introduction is to thee, for thou art the only one here for whom 't'would be needed." They make a noise you're sure is chuckling. "A scion of Aqrabe's House - by marriage, not by blood. But only just. But no, tell me, how is it that our wormhole grants thee passage 'thout a well-equipped ship of ours?"`
+			choice
+				`	"I carry a quantum keystone on my ship that lets me pass through all sorts of unstable wormholes."`
+					goto keystone
+				`	"That's not something I'm comfortable sharing."`
+			`	"Oh, don't think we haven't scanned thy craft, Captain! Amateur secrecy shall get thee nowhere." A slow ripple of pale blue cascades over their face.`
+			label keystone
+			`	"In short, we wish to better know these stones of thine. Their structure, their function, their nature. And by this understanding of one more great mystery, to one day produce our own, less intensive and demanding than the forming of our armors. Aqrabe is willing to pay thee to deliver fifty of these to us, more than enough to offset whatever it costs thee for their acquisition."`
+			choice
+				`	"Very well, I accept."`
+				`	"I'd rather not work with Aqrabe."`
+					decline
+			`	The scion shimmers with pleasure, and bow to you slightly. "What joy 'tis to hear that, Captain. Return when thou canst, then. We shall see thee rewarded."`
+				accept
+	to complete
+		or
+			has "Successors: Ghosts Aqrabe Remnant: offered"
+			has "Successors: Ghosts Aqrabe Hai: offered"
+	on complete
+		log "Delivered a shipment of quantum keystones to House Aqrabe for study and installation on their ships."
+
+conversation "successor keystone delivery"
+	`(You have collected the fifty keystones requested by House Aqrabe. Would you like to turn them in?)`
+	choice
+		`	(Yes.)`
+		`	(Not right now.)`
+			defer
+	`	You ask around at the spaceport, and you are soon directed to a side outfitting bay that seems to be the domain of some of House Aqrabe's more unorthodox efforts - the walls are draped with strange-looking fabrics, and a couple of unusual, abstract statues dot the facility. In the center, a ship-mounted scanner is in the midst of being deconstructed; as you walk in, a Successor pops their head around from behind it.`
+	`	"Captain <last>?" they ask.`
+	`	"Yes?"`
+	`	They slither forward towards you and splay their arms in the traditional gesture. "Tiliia," they offer as an introduction. "I was told to expect thine arrival. Thou'st brought," and they pause to pronounce the word, "keystones, yes?"`
+	`	"I have," you say. "Fifty tons, as was requested." Tiliia joins you in walking back to the <ship> to examine the cargo; when they're sufficiently satisfied that you've brought the proper amount, they pull out a data-pad and enter a couple of values. Though their eyes widen when you provide them with your receipts, they nonetheless confirm a few moments later that House Aqrabe has credited you to offset the purchase price of the keystones, plus a three hundred thousand-credit bonus.`
+	`	As they begin directing ground crews to offload the keystones, Tiliia turns to you for a moment and requests that you meet them back at the spaceport by the end of the day: "thine assistance might be a boon to us in the next part of this journey," they say.`
+		decline
+
+mission "Successors: Ghosts Aqrabe Remnant"
+	landing
+	source "Kasii-Cavasaa-Oa"
+	to fail
+		has "Successors: Ghosts Aqrabe Hai: done"
+	to offer
+		has "Successors: Ghosts Aqrabe 1: offered"
+	on offer
+		conversation "successor keystone delivery"
+		outfit "Quantum Key Stone" -50
+		payment 12300000
+
+mission "Successors: Ghosts Aqrabe Hai"
+	landing
+	source "Kasii-Cavasaa-Oa"
+	to fail
+		has "Successors: Ghosts Aqrabe Remnant: done"
+	to offer
+		has "Successors: Ghosts Aqrabe 1: offered"
+	on offer
+		conversation "successor keystone delivery"
+		outfit "Quantum Keystone" -50
+		payment 900000
+
+
+mission "Successors: Ghosts Aqrabe 2"
+	name "Keystone testing"
+	description "Escort two of House Aqrabe's ships through the wormhole and convene with them at <stopovers> before returning to <planet>."
+	source "Kasii-Cavasaa-Oa"
+	stopover "Myiara-Aret-Iir"
+	destination "Kasii-Cavasaa-Oa"
+	passengers 1
+	to offer
+		or
+			has "Successors: Ghosts Aqrabe Remnant: declined"
+			has "Successors: Ghosts Aqrabe Hai: declined"
+	on offer
+		log "People" "Tiliia" "Tiliia is an engineer belonging to the Successor House Aqrabe."
+		conversation
+			`Tiliia meets you in a tucked-away part of the spaceport that's filled with strange statuary, where they stand in conversation with a small group of Successors. They brighten as they see you approach and offer a perfunctory splay of the arms. "Captain, captain," they say. "Thou returneth with no time to squander. We mean to ply a journey of understanding cross the wormhole; one fellow captain here means to use one of thy keystones, the other, our weft-weaving armor. Thy own craft would be valuable as a place to gather data from the other two, to see how they perform across the rift."`
+			choice
+				`	"Couldn't you do that without me?"`
+				`	"Where exactly are we going?"`
+					goto destination
+			`	Tiliia shimmers with mirth. "Of course," they say. "But were we to find ourselves with questions, needing knowledge that though might'st provide, 'twould be val'ble to have thee at our sides then. We plan to convene upon the dusty world just the other side of the gate; I shall hope to see thee there."`
+				accept
+			label destination
+			`	Ripples of blue envelop Tiliia's body. "As short a distance as we might. We may convene upon the burned world the other side of the wormhole."`
+				accept
+	npc save
+		government "House Aqrabe"
+		personality escort launching appeasing unconstrained
+		ship "Seiitej (Keystone)" "Veusa-Birja"
+		ship "Seiitej (Armor Keystone)" "Airi-o-Ijta"
+	on stopover
+		conversation
+			`The two Seiitejen set down along with the <ship> along the edge of a dried lake, and Tiliia immediately goes to communicate with their captains over comms. After a couple of minutes, they return to you on the bridge, noting down some data on a metallic pad. "The other craft report little issue with their journeys," they say. "And a minor quiver'f differences 'tween thy stones and our armor. But 'twill require us t'return t'make sense of them - I dare not do so here."`
+	on complete
+		dialog `Tiliia offers a quick goodbye and asks you to meet them back in the spaceport later, once they've had time to process their data.`
+		log "Escorted a keystone-equipped and multimodal armor ship through the Successors' wormhole."
+
+mission "Successors: Ghosts Aqrabe 3"
+	name "Visit stellar garden"
+	description "Attempt to land on the star of the <system> system."
+	source "Kasii-Cavasaa-Oa"
+	stopover "Exotic Metal Garden"
+	destination "Kasii-Cavasaa-Oa"
+	passengers 1
+	to offer
+		has	"Successors: Ghosts Aqrabe 2: done"
+	on offer
+		event "successors: ghosts star unrestrict"
+		conversation
+			`You meet Tiliia at their workshop, where they wave you inside. The scanner on their table has now been replaced by a collection of quantum keystones suspended in a variety of machines that prod and scan the stones incessantly. "Good news for thee, Captain, for all of us," Tiliia says. "The data from our expedition hath revealed some measure of the mystery of thy stones. They're oscillators of a sort, ones that sing in tune with the wavers of the wormhole..." Tiliia stops for a moment. "But we will have time to discuss that later. For now, what thou needs know is this: with the right materials, we may be able to magnify their effect. Hast though visited Kasii-Cavaasa?"`
+			choice
+				`	"I have."`
+				`	"Where are you going with this?"`
+			`	Tiliia continues. "The star of that system is borne upon by a number of stellar metal gardens, or at least 'twas fifteen hundred years ago. Their bounty is here the key to our success. Forty tons or so would be enough to subdivide those keystones to supply all of the New Houses. We could render our wormhole-crossing armor obsolete - improve our probes, perform more archaeology." They pause, and a wave of color bounds down their limbs. "It could even help solve this present mystery of ours. So what thinks thou?"`
+			choice
+				`	"You want me to fly into a star? Are you crazy?"`
+					goto shocked
+				`	"And how do you plan for us to get close enough to collect that?"`
+			`	"The shields of thy craft may be sufficient to the task," Tiliia says, purple dotting their face. "And if not, we will have warning before they fail. We shall have to act with care and see for ourselves what is possible."`
+				accept
+			
+			label shocked
+			`	Purple dots spot Tiliia's face. "Not 'into,' not strictly. But yes, I do not know if thy craft is worthy to the task. We shall have to see for ourselves what is possible."`
+				accept
+	on stopover
+		event "successors: ghosts star restrict"
+		conversation
+			branch "no shields"
+				"flagship shields" <= 0
+			`Your ship protests even as you near Kasii-Cavaasa, alarms ringing incessantly and heat meters spiking. The stellar metal garden is still little more than a dot against the roiling mass of the star. As you descend to it, the cockpit grows uncomfortably hot and is thick with the scent of ozone; Tiliia looks even more miserable than you in the heat. Suddenly, something happens with the shields, and the intense heat of the star begins scouring bits of the <ship>'s hull. Tiliia finally speaks: "Enough, captain. We shall have to regroup and find a different strategy."`
+			choice
+				`	(Retreat.)`
+				`	(Press on.)`
+					goto onward
+			`	You order the <ship> upward from the star, and the alarms eventually quiet. "Take us back to <origin>," says Tiliia, looking a little dejected. "We must decide what is to be done there."`
+				flee
+			label onward
+			`	The <ship> braves the heat a minute or so longer, despite Tiliia's protests. The shields don't give out completely until a solar flare suddenly engulfs the ship, instantly vaporizing the <ship>, you, and Tiliia and scattering your atoms among the cold and indifferent stars.`
+				die
+			
+			label "no shields"
+			`	Even approaching the Kasii-Cavaasa star is enough to bring the inside of the <ship> to an uncomfortably sweltering temperature. Without shielding of any sort, its hull rapidly approaches the point of thermal failure and, at Tiliia's insistence, you are forced to return to a higher orbit.`
+				flee
+	on complete
+		log "Attempted to retrieve stellar metal from Predecessor space for House Aqrabe, but was driven back by the intense heat."
+		conversation
+			`Tiliia has spent most of the journey holed away, poring over data gathered from your stardiving expedition, but it's not long after the <ship>'s landing gear touch the ground of the <planet> spaceport that they are out and about, stretching their arms in the air. They remain nearby until you've finished post-flight checks and thank you for transporting them, now surrounded by several scholarly-dressed Successors. Before they head off, they ask you to return to the spaceport by sundown.`
+			`	Shortly before you depart into the port yourself, you overhear some of the ground crew remarking on the <ship>'s scorched hull.`
+
+mission "Successors: Ghosts Aqrabe 4"
+	name "Pick up ship from Kaatrij"
+	description "Pick up a modified Vujlet from House Kaatrij at <destination>."
+	clearance
+	source "Kasii-Cavasaa-Oa"
+	destination "Raaqa-Puan-Uuoru"
+	to offer
+		has	"Successors: Ghosts Aqrabe 3: done"
+	on offer
+		conversation
+			`Tiliia stands waiting for you in the same statue garden they met you earlier, though this time they are alone, tapping at a metallic pad under an overhanging light. They offer a curt greeting of colors when they see you. "I've news both foul and fair for thee," they say. "Thy craft shall not suit for our task. Perhaps with a year of study it could be adapted to our aims, but Aqrabe and I agree that would not do."`
+			choice
+				`	"So what is the good news?"`
+				`	"So is that it for this?"`
+			`	"Fortunately," they continue, "we may be able to outfit one of our own craft for this purpose. Or rather, one of House Kaatrij's."`
+			`	They offer the pad to you. It displays a schematic that you struggle to make any sense of; some small device is shown implanted in a Vujlet, its long tendrils snaking into various ship systems like some sort of infection. If you were to make a guess at its function, you might describe it as some sort of cloaking device - it's clearly shown reflecting and refracting light somehow, but the details of what exactly it is achieving escape your reckoning.`
+			`	"I've conferred with our fleet liason," says Tiliia, "who conferred with Kaatrij's, and they've agree to dispense thee with a modified Vujlet." They pause before adding, in a softer and more cynical tone, "no doubt extracting some favor from Aqrabe along the way. We need thee to retrieve it from <planet> and bring it back here for outfitting. Once prepared with our armor and thy jump drive, we may return to Kasii-Cavaasa."`
+			choice
+				`	"These look like some complex modifications."`
+					goto suspicious
+				`	"Last I checked, I wasn't on the best terms with Kaatrij."`
+					to display
+						has "successors sioeora patron"
+					goto tense
+				`	"Let's go, then."`
+					goto end
+			label suspicious
+			action
+				"successors: ghosts suspicion" ++
+			`	A gentle ripple of orange passes over Tiliia. "They are, Captain. I am told Kaatrij keep some Vujleten for research - no, 'tis not for me to say."`
+			`	Though you try to push them further, Tiliia offers no more information on Kaatrij's modifications.`
+				goto end
+			label tense
+			`	Tiliia burbles in a gentle display of laughter, pink spots breaking out on the tips of their arms. "Who is?" they say. "Now most of all."`
+				goto end
+			label end
+			`	"Oh," Tiliia says just before you leave, "and also, Kaatrij wishes to send along an observer. Perhaps they have cause to be suspicious. Ugh, perhaps they're just suspicious by nature."`
+				accept
+
+mission "Successors: Ghosts Aqrabe 5"
+	name "Return to Kasii-Cavasaa-Oa"
+	description "Escort the Nnesa ti-a-Oj back to <destination>."
+	landing
+	source "Raaqa-Puan-Uuoru"
+	destination "Kasii-Cavasaa-Oa"
+	npc save
+		government "House Kaatrij"
+		personality escort unconstrained launching
+		ship "Vujlet (Stellar Light Armor)" "Nnesa ti-a-Oj"
+	to offer
+		has	"Successors: Ghosts Aqrabe 4: done"
+	on offer
+		conversation
+			`The <origin> spaceport is drenched when you arrive, deep in the throes of a massive rainstorm, its sail-like projections flapping in the wind and streaming with water. From your landing pad, a series of automated guides direct you to a hangar built into a circular depression in the ground; the top of it closes over like a bubble, translucent and disconcertingly springy against the elements. You can see the blurry silhouette of a Vujlet parked inside as you enter through the side door.`
+			`	Near the entrance to the hangar, a data-sphere gently warbles, waiting for your touch. As you pick it up, it regurgitates its message:`
+			branch friendly
+				has "successors kaatrij patron"
+			`	"Please bear well this craft, captain. Thou hast been an ally to us, and our own allies, this far, so Kaatrij offers thee this gift in amity. Use it well.`
+			`	This I myself attest as K- I- Saajret, of Somber Sejra."`
+				goto introduction
+			label friendly
+			`	"Apologies, dear captain, that I have not come to see thee in the flesh. Would that our allies in the New have been treating thee kindly, with all due openness and clarity. We offer this to thee, in amity. Use it well.`
+			`	This I myself attest as K- I- Saajret, of Somber Sejra."`
+			label introduction
+			`	A single Successor emerges from the side of the craft; their outfit does not resemble that of an archivist so much as that of a soldier, with armor-woven fabrics and a kinetic rifle held at their side. "Captain <first> <last>?" they say, and when you confirm, continue, "I shall accompany thee as an observer."`
+			choice
+				`	"I was told to expect an archivist."`
+				`	"Very well."`
+					goto end
+			`	"Thine expectation is no longer accurate," they reply, not belying any emotion.`
+			label end
+			`	They show you onboard. The interior of Successor military ships looks much different from their civilian craft - the bridge is buried deep in the center of the craft under layers of armor, a small, circular room with a water-filled pool in the center and liquid-metal displays ringing the edges. Similarly compact living quarters and operational spaces fan out from it, each one well-equipped.`
+			`	After you've had a look around, Kaatrij's observer esorts you off the vessel. "I and a Kaatrij crew shall pilot the vessel to Aqrabe. Once there, thou shoulds't install thy jump drive aboard."`
+				accept
+	on visit
+		dialog "You have returned to Kasii-Cavasaa-Oa, but the Vujlet you are escorting has not yet arrived."
+	on complete
+		give ship "Vujlet (Stellar)" "Nnesa ti-a-Oj"
+		conversation
+			`Both your ship and the Vujlet are directed to an enormous outfitting bay at <planet>'s spaceport, easily large enough for both craft ten times over. As you disembark, you notice several Successors are entering the landed Vujlet with large carts of equipment in tow, much of which is locked away in unmarked metallic cases. Notably, Kaatrij's representative remains onboard, keeping their distance from the Aqrabe ground crews. Tiliia spots you from an overhanging balcony and waves you over.`
+			`	"A lovely craft, is it not, Captain? Thou hast not flown one of our martial craft before, hast thou?."`
+			choice
+				`	"A ship is a ship, really."`
+				`	"It's not my first Successor craft, you know."`
+					to display
+						or
+							has "ship model (all): Ejniisde"
+							has "ship model (all): Kvelqde"
+							has "ship model (all): Kvelqde-Khora"
+							has "ship model (all): Myaede"
+							has "ship model (all): Nnaatej"
+							has "ship model (all): Nnesaarau"
+							has "ship model (all): Ojde"
+							has "ship model (all): Stolsaqra"
+					goto experienced
+			`	Tiliia makes a short humming sound. "Perhaps," they say. "Thou shalt have the opportunity to decide for thyself soon enough."`
+				goto next
+			label experienced
+			`	Tiliia ripples with an emotion that's difficult to place, one tinted with shades of pride.`
+			label next
+			`	The re-armoring process begins soon after, massive metallic arms folding down from the top of the bay to scan over the surface of the ship. At certain points, flying drones emerge from the sides of the hangar to dispense some additional material onto the vessel or to perform scans, projecting shape after shape onto the warbling hull in many-colored laser light. After a while of watching, Tiliia leans over to you. "The process will take some more hours," they say. "The armor to cross the wormhole is a more complicated kind than the others. I'll leave thee to thine own pursuits for now - though, I plan to go among the statue garden for a while, and if it pleases thee, thou may'st join me there."`
+			choice
+				`	"I'd be happy to."`
+				`	"Thanks, but I have my own preparations to make."`
+					goto alone
+			action
+				log "People" "Tiliia" "Tiliia sees their role in current events as offering them the opportunity to make their mark on future generations."
+			`	The statue garden isn't very far from the outfitting bay where the Vujlet is parked. It's a circular area, cut out of the structure of the spaceport and exposed to the elements - the early-morning light shines through the light snowfall and glitters on the eerie metallic forms of the statues. Most of them are purely abstract, but one in every ten or so has some organic form emerging from the smooth metal as if it were trapped behind a sheet: leaves of plants, faces of animals, or even what look like Successor body parts.`
+			`	"I'm curious, captain," Tiliia says. "What motivates thee to do this? Flying into a star, I mean to say. Last we visited, 'twas on thine own ship that thou knowest well - now, thou placeth thy life in alien engineering thou'st never seem perform. Why consider it?"`
+			choice
+				`	"I've done other dangerous things before and they've always worked out."`
+					goto lucky
+				`	"I've seen enough of Successor engineering to be confident in it."`
+					goto confident
+				`	"Maybe I like the danger."`
+			`	"Danger, danger," Tiliia says, rolling the word around in their mouth. "Our youths will dream of being valiant pilots, proving their valor in strings of peril, and then in adulthood instead awake to find themselves at the helm of a cargo ship disguised as something diff'rent by House armor. Perhaps I understand that for thee, captain."`
+				goto hbu
+			label lucky
+			`	A mirthful blush passes over Tiliia. "No doubt thou hast," they say. "To've traveled as far as thou hast, through such perilous voids... let us hope thy luck holds, then, captain."`
+				goto hbu
+			label confident
+			`	"Truly?" Tiliia says. They look around at the sculptures, taking them in. "That's fair for thee. We may not be what we were long ago, but we do retain some subtle arts. Thou'rt right, if it matters, to trust us in this. Nothing endures as long as we have by being fickle."`
+			label hbu
+			`	"And you," you ask, "why are you doing this?"`
+			`	Tiliia hums a long drone as they contemplate. "We've a tradition here - at least at Aqrabe, but I know others've sim'lar ones, too. In the late hour of their life, a parent's children will decide for them a task they are t'accomplish: a work of art to make, a journey to travel, a change of the self to effect, or another of that sort. Much of our lives are formed already by the acts and station of our ancestors, so 'tis fair t'offer some shaping to our progeny in return."`
+			`	"So your children are asking you to fly into a star?"`
+			`	An explosion of humor consumes Tiliia, and they lean against one of the statues for support. "No, no," they say, "I'm far too young, and 'twouldn't be the right thing to ask, besides. No, I mention it because the task I decided for my eldest parent is this around us." They gesture to the sculptures. "For ten years they formed the pillars standing here and now, even dead, a bit of their existence lingers 'tween those, and in the air. If we succeed, then likewise parts of us shall live in the future of this House."`
+			choice
+				`	"I can understand wanting to make a difference."`
+					goto difference
+				`	"Do you really think the scions of the House will be that grateful?"`
+			`	"'Tisn't about gratitude, nor about the scions. 'Tis a matter of... continuity. Our lives are waves upon the bright shore, shaped by predecessors, shaping consequents. Over the eons, names become words in the common language, and are then chosen again as names as new children become adults. In a thousand years, thy name may become the word for those 'keystones' of thine, and in a thousand more, it could be invoked by a new cohort in a new world."`
+			choice
+				`	"That seems a little far-fetched."`
+					goto far-fetched
+				`	"I wouldn't mind that."`
+					goto egoist
+				`	"Sometimes I worry they'll be invoking it as a curse. The Successors haven't done right by everyone, after all."`
+					to display
+						has "Successors: People's Houses: First Contact: offered"
+			action
+				set "successors confronted tiliia"
+			`	Tiliia looks down at you with interest. "Perhaps I guess what thou mean'st, but tell me more, if it pleases thee."`
+			`	"Well," you say, "the People's Houses don't seem happy with their lot, nor do the Predecessor planets I've seen look very comfortable. Not that humans don't have our own problems, but it seems like even thousands of years of 'waves upon the bright shore' haven't made the Successors totally enlightened. Supplying you with keystones might help us both right now, but who knows what'll come of it in the future?"`
+			`	A spark of anger flashes over Tiliia's face, but only briefly, and they seem to push their skin back to its most neutral color. "There's no undoing what's already wrought," they say. "Sad as it might be." They pause for a moment. "I'll hope to see thee in the spaceport nonetheless, captain."`
+				goto end
+			label far-fetched
+			`	Mirth once again sparkles Tiliia's skin. "Probably so," they say, and after a pause, "my thanks to thee for joining me, captain. Thou should'st prepare now - join us back at the spaceport when thou'rt ready."`
+				goto end
+			label egoist
+			`	Tiliia keeps a contemplative look on their face. "Somehow I suspected that," they say, and after a pause, "my thanks to thee for joining me, captain. Thou should'st prepare now - join us back at the spaceport when thou'rt ready."`
+				goto end
+			label difference
+			`	"It's quite a feeling," they say, "isn't it?" They pause for a short while, looking up at the sky. The clouds overhead are starting to part and the snowfall is thinning. You notice for the first time that the ground is slightly heated - none of the snow that's falling has accumulated, instead just melting away into tiny channels in the rock. "My thanks to thee for joining me, captain," says Tiliia. "Thou should'st prepare now - join us back at the spaceport when thou'rt ready."`
+				goto end
+			label alone
+			`	"Of course. Join me back here in the spaceport, then, four hours hence."`
+			label end
+			`	With that, Tiliia heads off. You should make sure that the Vujlet you have been loaned is equipped for the upcoming voyage.`
+
+mission "Successors: Ghosts Aqrabe 6"
+	name "Visit exotic metal garden again"
+	description "Attempt a landing on the <system> stellar metal garden using the modified Vujlet."
+	source "Kasii-Cavasaa-Oa"
+	destination "Exotic Metal Garden"
+	passengers 2
+	to offer
+		has	"Successors: Ghosts Aqrabe 5: done"
+	on offer
+		conversation
+			`You meet Tiliia and House Kaatrij's observer back in the hangar bay with the specially-equipped Vujlet, which now gleams all over with an oily, iridescent sheen. Tiliia and the observer are in the middle of a heated conversation; you catch a bit of something ending " - foolish to trust an alien," from the observer.`
+			`	Tiliia waves you over. "Good, captain. Our ally was just expressing the importance of thy promptness in this task. Kaatrij longs not to be parted from their trinket for long."`
+			`	"Fine," you say. "Anything else I need to know?"`
+			`	The observer looks you over with an emotionless gaze. "Our efforts shall protect the craft from the star's heat, but little else. 'T'would be wise not to linger in the Tangles."`
+			`	Tiliia rubs their arms together and an pulse of electric blue passes over them. "Time to go, then, captain!"`
+				accept
+
+mission "Successors: Ghosts Aqrabe 7"
+	name "Return to Kasii-Cavasaa-Oa"
+	description "Escape the drone ship and return to <destination> with the stellar metal."
+	landing
+	source "Exotic Metal Garden"
+	destination "Kasii-Cavasaa-Oa"
+	cargo "Stellar metal" 40
+	passengers 2
+	to offer
+		has	"Successors: Ghosts Aqrabe 6: done"
+	on offer
+		conversation
+			`Several minutes pass after landing before the hull of the <ship> has cooled enough to make it safe for exit - despite Kaatrij's loaned technology, the ship's armor still glows red-hot. The interior of the garden's loading bay is cavernous, the tangled metal strands drawn inside onto giant spools each many meters in diameter.`
+			`	Your crew gets to work under the supervision of Tiliia and Kaatrij's observer, removing small bits of metal from the rolls and carting them, one by one, onto the ship. Soon, Tiliia calls you over to a side section of the facility, and points out one of spools - unlike the others, this one is entirely empty.`
+			`	"It would seem to me that our visit here is not the first, Captain," they say.`
+			choice
+				`	"Who might have done this?"`
+					goto who
+				`	"How could they have landed here?"`
+			label how
+			`	"'Tis impossible to know. Perhaps they had some shield as we had, or perhaps their craft was sturdy enough itself to bear the star's ire. Either one bodes poorly."`
+				goto asked
+			label who
+			`	Tiliia shudders with color. "Were we fortunate, 'twas the Quarg or some of their nature, inspecting here in solitude. But lacking fortune, it may be that Kaatrij's aggressor seeks this bounty too - and has beaten us to it."`
+			label asked
+			`	"Either way," they say, "we must hasten back t'bring this news to Aqrabe."`
+				accept
+
+	on enter "Kasii-Cavaasa"
+		"successors: ghosts met solitude enforcers" ++
+		dialog `As you take off from the stellar metal garden, your ship's proximity alarms begin to sound. Another ship is taking off too - and its weapons are aimed right at you!`
+
+	npc evade
+		ship "Hasur, Vowsworn" "Hasur-riita 4-1"
+		government "Solitude Enforcer" 
+		personality launching heroic nemesis unconstrained
+		on kill
+			set "Successors: Ghosts Hasur transmission"
+			dialog "As the drone ship explodes it transmits some data to your own vessel. It cannot be deciphered at this time."
+
+	on complete
+		outfit "Radiant Shield Shunt" -1
+		event "successors: ghosts keystones finished" 50
+		payment 400000
+		"successors: ghosts houses dealt with" ++
+		set "successors: ghosts dealt with aqrabe"
+		log "Retrieved stellar metal for House Kaatrij using a specially-equipped vessel, narrowly escaping pursuing warships."
+		conversation
+			`You set the ship down on <planet> in the midst of a sea of dockworkers, who begin removing the precious stellar metal from the <ship>'s cargo hold almost immediately, under the watchful gaze of the Kaatrij observer. Tiliia, after entering a bit of data on their pad, finally relaxes, quietly reciting a series of harsh-sounding and apparently untranslatable words.`
+			`	"Do you know something about those ships?" you ask them, eliciting a long groan and a wave of oily black over their skin.`
+			`	"This is what we earn for tearing up a nest; going where we shouldn't," they say. "'Twas a drone, an automated guardian from the days that garden was new. No doubt meant to chase off interlopers, as ourselves. But-"`
+			choice
+				`	"What is it?"`
+				`	"Spit it out!"`
+			`	"Such a thing should not be. No House would've left a craft like that behind to molder, not for the sake of some petty metal. Heirlooms of that age are precious - I cannot see why such a thing should be so eas'ly discarded." They finally relax a bit, and the black wave subsides.`
+			`	"Thou hast done us a duty, nonetheless. Thou shalt see thine account flusher soon."`
+			choice
+				`	"What happens now?"`
+				`	"What about this ship? Do I get to keep it?"`
+					goto ship
+			label now
+			`	"Now we put this bounty to work, captain. I and the others here have a long task before us: I believe we shall be able to split up the keystones and amplify their effects with the stellar metal - tis only a matter of how much and how well. There's little thou can do to assist now, though I'll be sure to note thy helpfulness to Aqrabe in this task."`
+			choice
+				`	"What about this ship? Do I get to keep it?`
+			label ship
+			`	Tiliia nods. "Before we left, I heard from our fleet liason with Kaatrij. The ship lacks weapons or anything too perilous for thou to keep, and Kaatrij has no doubt already started removing their device. Thou might'st consider it a bonus to thy fee, a favor from the House to thee."`
+			branch "not confronted"
+				not "successors confronted tiliia"
+			label confronted
+			`	Tiliia turns to go away but stops themself. "I've an apology to offer thee 'fore we part, captain," they say. "I showed thee some disrespect when we spoke before leaving. 'Tis strange to be accused by one so foreign to our ways. But we've been cut off a long time now, I think, hearing only from ourselves and the ghosts of others. Greater things are moving than either of us now, but thou may'st trust that I'll be careful with our treasure. I can promise thee nothing more, but thou'rt right to remind me of that, at least."`
+			label "not confronted"
+			`	The two of you are interrupted by Kaatrij's observer, who informs the two of you that the metal offloading is complete. Tiliia, ready to get started on the next phase of their project, leaves with them, offering you a quick bow and courteous "goodbye."`
+			`	A few minutes later, you are notified that you have received a payment of <payment> credits from House Aqrabe.`

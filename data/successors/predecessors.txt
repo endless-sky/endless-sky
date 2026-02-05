@@ -1,0 +1,762 @@
+# Copyright (c) 2025 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Solitude Enforcer Ships
+
+ship "Resja, of the Nine Eyes"
+	plural "Resjan, of the Nine Eyes"
+	sprite "ship/resja of the nine eyes"
+	thumbnail "thumbnail/resja of the nine eyes"
+	"never disabled"
+	attributes
+		category "Medium Warship"
+		"cost" 55000000
+		"shields" 4000
+		"hull" 62500
+		"required crew" 0
+		"bunks" 10
+		"mass" 440
+		"drag" 4.2
+		"heat dissipation" 0.5
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 382
+		"weapon capacity" 153
+		"hull repair rate" 1.25
+		"hull energy" 1.75
+		"hull heat" 1.75
+		"multimodal armor" 1
+		# Resja uses their shields for attack, not defense.
+		"shield generation multiplier" 1
+		"high shield permeability" 1
+		"low shield permeability" 1
+		# Their permeable shields won't stop special damage, so this makes these ships less vulnerable to it.
+		"heat protection" 1
+		"ion protection" 1
+		"scramble protection" 1
+		"slowing protection" 1
+		"corrosion protection" 1
+		"discharge protection" 1
+		"burn protection" 1
+		# For protection against missiles
+		"radar jamming" 80
+		"optical jamming" 80
+		# Engines
+		"thrust" 82.0
+		"thrusting shields" 1.4
+		"thrusting heat" 3.15
+		"flare sprite" "effect/predecessor flare"
+			"frame rate" 3
+			"rewind"
+		"flare sound" "ion large"
+
+		"turn" 1850
+		"turning shields" 0.95
+		"turning energy" 3.15
+		"turning heat" 2.54
+		"steering flare sound" "ion large"
+
+		"afterburner thrust" 123.0
+		"afterburner shields" 12.2
+		"afterburner heat" 8.3
+		"afterburner energy" 4.8
+		"afterburner effect" "resja afterburner"
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		`"Iasa," Lethal Word` 9
+
+		`Hyperdrive`
+		`"Jiita" Heirloom Shielding`
+		`Heirloom Cooling`
+
+		`"Ija" Heirloom Reactor` 2
+		`Heirloom Power Reserve`
+		`Auxiliary Power Reserve`
+
+		`Multimodal Armor: Regen`
+	gun 4 -73
+	gun -4 -73
+	gun 0 -72
+	gun 7 -72
+	gun -7 -72
+	gun 34 -20
+	gun -34 -20
+	gun 32 -19
+	gun -32 -19
+	engine 0 0
+		zoom 1.1
+	description `Resja engraved the hull of each of the ships that bore their name personally, carving into the squirming metal a poem that they came to know by heart:`
+	description `Four eyes for Houses who're no longer there,`
+	description `Three for the cursed stars' shimmering flare,`
+	description `Two for the bitter rings, blinking with light,`
+	description `And a final one missing, lost to the night.`
+
+effect "resja afterburner"
+	sprite "effect/resja afterburner"
+		"frame rate" 60
+		"no repeat"
+	sound "successor afterburner tiny"
+	"sound category" "afterburner"
+	lifetime 7
+
+ship "Hasur, Vowsworn"
+	plural "Hasuran, Vowsworn"
+	sprite "ship/hasur vowsworn"
+	thumbnail "thumbnail/hasur vowsworn"
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"cost" 55000000
+		"shields" 2500
+		"hull" 39200
+		"required crew" 0
+		"bunks" 10
+		"mass" 280
+		"drag" 3.2
+		"heat dissipation" 0.6
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 310
+		"weapon capacity" 96
+		"hull repair rate" 1.25
+		"hull energy" 1.75
+		"hull heat" 1.75
+		"multimodal armor" 1
+		# Hasur uses their shields for attack, not defense.
+		"shield generation multiplier" 1
+		"high shield permeability" 1
+		"low shield permeability" 1
+		# Their permeable shields won't stop special damage, so this makes these ships less vulnerable to it.
+		"heat protection" 1
+		"ion protection" 1
+		"scramble protection" 1
+		"slowing protection" 1
+		"corrosion protection" 1
+		"discharge protection" 1
+		"burn protection" 1
+		# For protection against missiles
+		"radar jamming" 80
+		"optical jamming" 80
+		# Engines
+		"thrust" 49
+		"thrusting shields" 0.84
+		"thrusting heat" 1.9
+		"flare sprite" "effect/predecessor flare"
+			"frame rate" 3
+			"rewind"
+		"flare sound" "ion large"
+
+		"turn" 1110
+		"turning shields" 0.55
+		"turning energy" 1.9
+		"turning heat" 1.5
+		"steering flare sound" "ion large"
+
+		"afterburner thrust" 74
+		"afterburner shields" 7.3
+		"afterburner heat" 5
+		"afterburner energy" 2.9
+		"afterburner effect" "hasur afterburner"
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		`"Kis," Lethal Wish` 4
+
+		`Hyperdrive`
+		`"Jiita" Heirloom Shielding`
+		`Successor Cooling` 2
+
+		`"Ija" Heirloom Reactor` 2
+		`Heirloom Power Reserve`
+
+		`Multimodal Armor: Regen`
+	gun -12 -64
+	gun -7 -60
+	gun 7 -60
+	gun 12 -64
+	engine 0 0
+		zoom .8
+	description `One would think that, immured deep within those hostile, rotting abcesses of the stars, the constructs of that foolish race would prove themselves inadequate; that their artificial minds would splinter and falter and crumble like their so-false flesh, festering on the bone. And yet they remain, eternally dying but never dead, consumed by programmed rage and unknowable perception. The constructs will keep their promises, interloper:`
+	description `	They'll kill you. They'll do it quick.`
+
+effect "hasur afterburner"
+	sprite "effect/hasur afterburner"
+		"frame rate" 60
+		"no repeat"
+	sound "successor afterburner tiny"
+	"sound category" "afterburner"
+	lifetime 5
+
+ship "Queru, Luminous Gaze"
+	plural "Querun, Luminous Gazes"
+	sprite "ship/queru luminous gaze"
+	thumbnail "thumbnail/queru luminous gaze"
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"cost" 55000000
+		"shields" 4200
+		"hull" 32500
+		"required crew" 0
+		"bunks" 10
+		"mass" 260
+		"drag" 3.2
+		"heat dissipation" 0.65
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 320
+		"weapon capacity" 116
+		"hull repair rate" 1.25
+		"hull energy" 1.75
+		"hull heat" 1.75
+		"multimodal armor" 1
+		# Hasur uses their shields for attack, not defense.
+		"shield generation multiplier" 1
+		"high shield permeability" 1
+		"low shield permeability" 1
+		# Their permeable shields won't stop special damage, so this makes these ships less vulnerable to it.
+		"heat protection" 1
+		"ion protection" 1
+		"scramble protection" 1
+		"slowing protection" 1
+		"corrosion protection" 1
+		"discharge protection" 1
+		"burn protection" 1
+		# For protection against missiles
+		"radar jamming" 80
+		"optical jamming" 80
+		# Engines
+		"thrust" 49
+		"thrusting shields" 0.84
+		"thrusting heat" 1.9
+		"flare sprite" "effect/predecessor flare"
+			"frame rate" 3
+			"rewind"
+		"flare sound" "ion large"
+
+		"turn" 1110
+		"turning shields" 0.55
+		"turning energy" 1.9
+		"turning heat" 1.5
+		"steering flare sound" "ion large"
+
+		"afterburner thrust" 74
+		"afterburner shields" 7.3
+		"afterburner heat" 5
+		"afterburner energy" 2.9
+		"afterburner effect" "queru afterburner"
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+	outfits
+		`"Torji," Lethal Sight`
+
+		`Hyperdrive`
+		`"Jiita" Heirloom Shielding`
+		`Visions of Rime`
+		`Successor Cooling`
+
+		`"Ija" Heirloom Reactor` 2
+		`Heirloom Power Reserve`
+
+		`Multimodal Armor: Regen`
+	gun 0 -70
+		under
+	turret 32 -21
+	turret -32 -21
+	engine 0 0
+		zoom .5
+	description `Queru came last, and was the most inspired of the three, eviscerating at a distance before it could even be seen. For their part, Resja hated it - but by then, Resja's fate had been long sealed.`
+
+effect "queru afterburner"
+	sprite "effect/queru afterburner"
+		"frame rate" 60
+		"no repeat"
+	sound "successor afterburner tiny"
+	"sound category" "afterburner"
+	lifetime 6
+
+# Solitude Enforcer Outfits
+
+outfit `"Iasa," Lethal Word`
+	category "Guns"
+	series "Guns"
+	index 11050
+	cost 4200000
+	thumbnail "outfit/bimodal coilgun"
+	"mass" 17
+	"outfit space" -17
+	"weapon capacity" -17
+	"gun ports" -1
+	unique 1
+	weapon
+		sprite "projectile/iasa"
+			"frame time" 3
+			"no repeat"
+		sound "bimodal"
+		"hit effect" "bimodal impact"
+		"fire effect" "iasa fire"
+		"inaccuracy" 3
+		"velocity" 30
+		"lifetime" 16
+		"reload" 9
+		"firing energy" 15
+		"firing heat" 21
+		"shield damage" 36.6
+		"hull damage" 53.4
+		"hit force" 18
+		"piercing" 0.33
+		"firing shields" 11
+	description `Resja's chosen implement of death, Iasa was a drone ship's perfect coilgun, a fearsome, hungry weapon without respect for the shields of either friends or foes. It remains remarkably efficient, even after fifteen hundred years of waiting.`
+
+effect "iasa fire"
+	sprite "effect/emp torpedo fire"
+		"frame time" 3
+		"random start frame"
+		scale 0.5
+	lifetime 3
+
+
+outfit `"Kis," Lethal Wish`
+	category "Guns"
+	series "Guns"
+	index 11060
+	cost 7500000
+	thumbnail "outfit/bimodal coilgun"
+	"mass" 24
+	"outfit space" -24
+	"weapon capacity" -24
+	"gun ports" -1
+	unique 1
+	weapon
+		sound "drag cannon"
+		"hit effect" "kis impact" 12
+		"fire effect" "moonbeam fleck" 4
+		"range override" 180
+		"reload" 90
+		"firing energy" 400
+		"firing heat" 600
+		"firing shields" 120
+		"submunition" "kis short range" 4
+	description `Like a cold and ravenous beast, the frightful Kis tears through the defenses of anything that dares stride close enough to its jaws. At long range this weapon loses its high shield penetration but continues to output respectable damage, encouraging retreat while continuing to harry foes.`
+
+outfit "kis short range"
+	weapon
+		sprite "projectile/kis"
+			"frame time" 3
+			"no repeat"
+		"hit effect" "small explosion"
+		"hit effect" "kis impact" 3
+		"range override" 180
+		"inaccuracy" 3
+		"velocity" 10
+		"lifetime" 20
+		"piercing" 0.5
+		"inaccuracy" 6
+		"submunition" "kis long range" 3
+
+outfit "kis long range"
+	weapon
+		sprite "projectile/drag cannon"
+			"start frame" 1
+			"frame rate" 20
+			"no repeat"
+		"hit effect" "kis impact"
+		"velocity" 10
+		"lifetime" 100
+		"random lifetime" 30
+		"shield damage" 43
+		"hull damage" 58
+
+effect "kis impact"
+	sprite "effect/kis impact"
+		"frame rate" 10
+		"no repeat"
+	lifetime 20
+	"velocity scale" 0
+	"random velocity" 1
+
+
+outfit `"Torji," Lethal Sight`
+	category "Guns"
+	series "Guns"
+	index 11060
+	cost 7500000
+	thumbnail "outfit/bimodal coilgun"
+	"mass" 106
+	"outfit space" -106
+	"weapon capacity" -106
+	"gun ports" -1
+	weapon
+		sprite "projectile/sjeja kinetic lance"
+		sound "sjeja lance"
+		"fire effect" "moonbeam fleck" 2
+		"hit effect" "dragonflame debris"
+		"hit effect" "dragonflame plasma"
+		"inaccuracy" 3
+		"velocity" 40
+		"lifetime" 45
+		"reload" 24
+		"firing energy" 520
+		"firing heat" 1360
+		"firing shields" 310
+		"firing force" 400
+		"shield damage" 520
+		"hull damage" 720
+		"hit force" 400
+	description `Resja designed a complex loading system to enable this weapon to fire as quickly as it does. The drone ship Queru was built around it, a paired ship and weapon to surpass at range all prior designs of the Myiara.`
+
+
+outfit `Crimson Halo`
+	category "Systems"
+	series "Shields"
+	index 11050
+	cost 8550000
+	thumbnail "outfit/unknown"
+	"mass" 31
+	"outfit space" -31
+	"shield generation" 6.6
+	"shield energy" 6.6
+	"shield protection" -0.5
+	"shield connection point" 1
+	description `Resja's ships didn't need shields for defence - only as fuel for attacking their foes. Thus, their favored shield cortex is an unusually powerful one, emitting a staggering amount of energy that is much less useful for intercepting damage than it is when fed back into a starship's systems.`
+
+
+outfit `Visions of Rime`
+	category "Systems"
+	series "Cooling"
+	index 11020
+	cost 5000000
+	thumbnail "outfit/unknown"
+	mass 10
+	"outfit space" -10
+	cooling 28
+	"shield generation" -0.6
+	unique 1
+	description `Radiating excess heat through a starship's shield matrix, this compact, ancient cooling system is strikingly efficient. On Resja's furious drone ships, the shield strength that this saps is all but insignificant, but on lesser craft it may come with a certain cost to endurance.`
+
+
+# Heirloom Ships
+
+ship "Valkkyiara-Khorasaqra"
+	sprite "ship/valkkyiara-khorasaqra"
+	thumbnail "thumbnail/valkkyiara-khorasaqra"
+	"plural" "Valkkyiara-Khorasaqran"
+	"never disabled"
+	attributes
+		category "Medium Warship"
+		"cost" 400000000
+		"shields" 12500
+		"hull" 95000
+		"hull repair rate" 4.75
+		"hull energy" 4.75
+		"hull heat" 4.75
+		"required crew" 22
+		"bunks" 30
+		"mass" 775
+		"drag" 8.0
+		"heat dissipation" .5
+		"fuel capacity" 1200
+		"cargo space" 25
+		"outfit space" 606
+		"weapon capacity" 285
+		"engine capacity" 120
+		"spinal mount" 1
+		"ramscoop" 6
+		"multimodal armor" 1
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive Steering`
+		`"Ija" Heirloom Reactor` 3
+		`Heirloom Power Reserve`
+		`"Jiita" Heirloom Shielding`
+		"Heirloom Cooling"
+		`"Sarija" Heirloom Coilgun` 6
+		`"Tijra" Heirloom Lance`
+		"High-Velocity Spike" 30
+		"Multimodal Armor: Keystone"
+
+		"Point Drive"
+		"Stolen Cloak (Deactivated)"
+	engine -5 69
+	engine 5 69
+	gun -31 -22
+	gun -27 -28
+	gun -22 -36
+	gun 31 -22
+	gun 27 -28
+	gun 21 -36
+	gun 0 -110 `"Tijra" Heirloom Lance`
+	turret 0 36
+	turret 0 -26
+	"steering engine" -10 -65 
+		zoom .5
+		angle 90
+		right
+	"steering engine" 10 -65 
+		zoom .5
+		angle 270
+		left
+	"steering engine" -28 -0
+		left
+		angle 180
+		zoom .6
+		over
+	"steering engine" 28 -0
+		right
+		angle 180
+		zoom .6
+		over
+	"reverse engine" -28 -0
+		zoom .6
+		over
+	"reverse engine" 28 -0
+		zoom .6
+		over
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description "During the collapse of their Predecessors' empire, the High Houses of the Myiara stored away as much of their wealth and property as they could manage. Included in this were their private fleets of warships, by now passed down for over a thousand years as priceless family heirlooms. Despite being far more powerful than anything else in Successor space, these vessels almost never leave the ground, since the High Houses have no desire to risk these irreplacable ships that are so deeply intertwined with their family history."
+	description `	By the time of the collapse, the Valkkyiara-Khorasaqra was already a time-proven design; a clean and elegant expression of Myiaran martial artistry. Clad in dense mirrored armor, these mostly saw action in conflicts between the Houses, using their high speed and long-ranged weapons to menace colonies and outmaneuver more lumbering warships.`
+
+# Heirloom outfits
+
+outfit `"Sarija" Heirloom Coilgun`
+	category "Guns"
+	series "Guns"
+	index 11011
+	cost 25250000
+	thumbnail "outfit/unknown"
+	"mass" 22
+	"outfit space" -22
+	"weapon capacity" -22
+	"gun ports" -1
+	weapon
+		sprite "projectile/bimodal"
+			"frame rate" 5
+			"start frame" 0
+			"no repeat"
+		sound "bimodal"
+		"hit effect" "bimodal impact"
+		"fire effect" "moonbeam fleck" 4
+		"inaccuracy" 1
+		"velocity" 45
+		"lifetime" 10
+		"range override" 900
+		"burst count" 12
+		"burst reload" 6
+		"reload" 22
+		"firing energy" 60
+		"firing heat" 80
+		"firing force" 25
+		"shield damage" -94
+		#70 (parent) - 4*48 (child)
+		"hull damage" 75
+		# 185 (parent) - 4*20 (child)
+		"hit force" 120
+		"cluster"
+		"submunition" "Bimodal Switch" 3
+	description "Secretly stashed away by the High Houses since the collapse of the old empire, this lovingly-maintained coilgun is far more powerful than any of the Successors' modern technology."
+
+
+outfit `"Tijra" Heirloom Lance`
+	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 11011
+	cost 1370000
+	thumbnail "outfit/unknown"
+	"mass" 70
+	"outfit space" -70
+	"weapon capacity" -70
+	"gun ports" -1
+	"spike capacity" 30
+	"spinal mount" -1
+	"unplunderable" 1
+	weapon
+		sprite "projectile/sjeja kinetic lance"
+			"frame rate" 4
+			"random start frame"
+		sound "sjeja lance"
+		ammo "High-Velocity Spike"
+		icon "icon/hv spike"
+		"fire effect" "moonbeam fleck" 5
+		"hit effect" "dragonflame debris" 4
+		"hit effect" "dragonflame plasma" 4
+		"inaccuracy" .3
+		"velocity" 320
+		"lifetime" 8
+		"reload" 120
+		"firing energy" 2000
+		"firing ion" 2.2
+		"firing heat" 4000
+		"shield damage" 1400
+		"hull damage" 2000
+		"piercing" 0.15
+		"firing force" 800
+		"hit force" 800
+		"ion damage" 20
+		"penetration count" 5
+	description "Among the largest and most powerful of the Predecessors' weapons, this massive coilgun propels its magnetic projectiles to a sizable fraction of the speed of light, delivering enough kinetic energy on impact to destroy a small city or alternatively, a large warship."
+
+
+outfit `"Ija" Heirloom Reactor`
+	category "Power"
+	series "Generators"
+	index 11051
+	cost 65500000
+	thumbnail "outfit/unknown"
+	"mass" 58
+	"outfit space" -58
+	"energy generation" 10.7
+	"heat generation" 15
+	"shield energy multiplier" -0.15
+	"hull energy multiplier" -0.15
+	description "The Myiaran Predecessors viewed the mastery of technology as an art rather than a science, and this reactor is a perfect example of that: a graceful, elegant machine easily mistaken for a sculpture. It is also, of course, an extremely efficient and powerful fusion reactor that far outstrips their Successors' attempts at replicating it."
+
+
+outfit "Heirloom Power Reserve"
+	category "Power"
+	series "Batteries"
+	index 11030
+	cost 320000
+	thumbnail "outfit/unknown"
+	"mass" 26
+	"outfit space" -26
+	"energy capacity" 26000
+	"hull energy" -1
+	description "This Predecessor battery stores energy in the almost innumerable voids of a stellar metal foam, a technology now unfortunately lost to time."
+
+
+outfit "Heirloom Cooling"
+	category "Systems"
+	series "Cooling"
+	index 11020
+	cost 220000
+	thumbnail "outfit/unknown"
+	"mass" 30
+	"outfit space" -30
+	"cooling" 24
+	"active cooling" 60
+	"cooling energy" 4.4
+	description "The Successors' modern equipment does not produce nearly enough heat to necessitate the large and powerful cooling units their Predecessors used in the past."
+
+
+outfit `"Jiita" Heirloom Shielding`
+	category "Systems"
+	series "Shields"
+	index 11031
+	cost 32500000
+	thumbnail "outfit/unknown"
+	"mass" 32
+	"outfit space" -32
+	"shield generation" 5.4
+	"shield protection" -0.33
+	"shield energy" 8.0
+	"shield connection point" 1
+	description "Polished to gleaming for over a thousand years, this ancient shield generator yearns to see combat once again."
+
+
+outfit "Point Drive"
+	category "Systems"
+	series "Drives"
+	index 31
+	cost 1000000
+	thumbnail "outfit/unknown"
+	"mass" 20
+	"outfit space" -20
+	"jump speed" .6
+	"jump fuel" 180
+	"jump drive" 1
+	"jump effect" "point drive void small"
+	"jump effect" "point drive void 1"
+	"jump effect" "point drive void 2"
+	"jump effect" "point drive void 3"
+	"jump effect" "point drive lightning"
+	"jump effect" "jump drive 1"
+	"jump effect" "jump drive 2"
+	"jump effect" "jump drive 3"
+	"jump effect" "jump drive 4"
+	description `"There was a terrible emptiness inside," Resja said of the device, "like a black spot in one's vision that grew larger with every blink, that spread moment by moment until the world went away. The first time I truly understood one, I felt that absence within grow to envelop me. And long after I have died, long after the name of the Myiara fades to a future era, that pang-ridden emptiness will remain."`
+
+effect "point drive void small"
+	sprite "effect/void spark"
+		"rewind"
+		"frame rate" 4
+		"random start frame"
+		scale 2
+	"lifetime" 60
+
+effect "point drive void 1"
+	sprite "effect/void spark"
+		"rewind"
+		"frame rate" 4
+		"random start frame"
+		scale 4
+	"lifetime" 60
+
+effect "point drive void 2"
+	sprite "effect/void spark"
+		"rewind"
+		"frame rate" 4
+		"random start frame"
+		scale 8
+	"lifetime" 60
+
+effect "point drive void 3"
+	sprite "effect/void spark"
+		"rewind"
+		"frame rate" 4
+		"random start frame"
+		scale 8
+	"lifetime" 60
+
+effect "point drive lightning"
+	sprite "effect/zapper impact"
+		"frame rate" 15
+	"random lifetime" 25
+	"random angle" 360
+
+
+outfit "Stolen Cloak (Deactivated)"
+	category "Unique"
+	series "Functional Unique"
+	index 11
+	thumbnail "outfit/unknown"
+	cost 1200000
+	"mass" 15
+	"outfit space" -15
+	#"cloak" .05
+	"cloaking fuel" 0.04
+	"cloaking shields" 3.2
+	"unique" 1
+	"unplunderable" 1
+	description "An ancient cloaking device stolen from House Kaatrij. It has been temporarily deactivated by a detector device."
