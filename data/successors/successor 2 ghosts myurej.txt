@@ -457,7 +457,7 @@ mission "Successors: Ghosts Myurej 7"
 		random < 40
 	on offer
 		conversation
-			`Shortly after you land at the spaceport here, you recieve a message delivered via data-sphere:`
+			`Shortly after you land at the spaceport here, you receive a message delivered via data-sphere:`
 			`	Captain <first> <last>. House Myurej asks that thou join us on <planet> as soon as thou may'st, so that we may conclude our business with thee.`
 			`	As soon as it finishes playing, it adds a waypoint to your ship's map.`
 				accept

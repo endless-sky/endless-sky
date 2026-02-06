@@ -930,7 +930,7 @@ mission "Successors: Ghosts 9"
 			choice
 				`	"It's hard to believe they were ever so unified."`
 				`	"You saw them as equals to yourselves?"`
-			`	A demeanor of great reflection passes over the Quarg, and then is gone just as quickly. "The Myiara were like... children, just beginning to concieve of and adopt the responsibilities that lie beyond youth. Full of cleverness and arrogance still, but borne aloft by a new-blooming capacity to see beyond themselves and their own base concerns."`
+			`	A demeanor of great reflection passes over the Quarg, and then is gone just as quickly. "The Myiara were like... children, just beginning to conceive of and adopt the responsibilities that lie beyond youth. Full of cleverness and arrogance still, but borne aloft by a new-blooming capacity to see beyond themselves and their own base concerns."`
 			choice
 				`	"How did you keep yourself hidden from them for so long?"`
 
