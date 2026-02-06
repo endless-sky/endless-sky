@@ -407,7 +407,7 @@ outfit "Hai Tracker Pod"
 			"leading"
 			"throttle control"
 		"optical tracking" .8
-		"infrared tracking" .4
+		"infrared tracking" .2
 		"shield damage" 200
 		"hull damage" 160
 		"hit force" 525

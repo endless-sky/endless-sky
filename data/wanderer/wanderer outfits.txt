@@ -265,7 +265,7 @@ outfit "Thunderhead Launcher"
 			"leading"
 			"throttle control"
 		"infrared tracking" .9
-		"radar tracking" .6
+		"radar tracking" .1
 		"missile strength" 12
 	description "A prime example of Wanderer ingenuity, Thunderhead Missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
@@ -298,8 +298,8 @@ outfit "Thunderhead"
 		"homing"
 			"leading"
 			"throttle control"
-		"optical tracking" .9
-		"radar tracking" .6
+		"infrared tracking" .9
+		"radar tracking" .1
 		"shield damage" 110
 		"hull damage" 80
 		"hit force" 225
