@@ -65,7 +65,7 @@ mission "Successors: Ghosts Prelude Incident"
 		conversation
 			`The usual orderly structure of the spaceport's activity lies in pieces. Throngs of merchants, travelers, and military officers alike crowd around displays in the port, their shops and vessels left behind. It is uncomfortably quiet - the only voice you hear above a whisper is that of a news announcer, writhing in your ears as the translation device rearranges the sound, word by word.`
 			`	"... incident has laid bare aught what noble House Kaatrij hath labor'd t'leave concealed. The moon, long though lifeless, barren, raw, now show'th the spill-ed guts of some long-conceal'd base. View, fellows! See it seethe beneath the light!"`
-			`	The display changes to show an overhead view of a sandy moon. Tucked in a valley between ochre dunes is a bloom of distorted metal and intermittent light, the shape of a long arc stretching for maybe a kilometer across the surface. Near the ends, the image shimmers and warps before the whole thing is obscured by a Kaatrij warship flying into view - it's not clear whether the distortion is actually present or just a fault of the transmission.`
+			`	The display changes to show an overhead view of a sandy moon. Tucked in a valley between rust-colored dunes is a bloom of distorted metal and intermittent light, the shape of a long arc stretching for maybe a kilometer across the surface. Near the ends, the image shimmers and warps before the whole thing is obscured by a Kaatrij warship flying into view - it's not clear whether the distortion is actually present or just a fault of the transmission.`
 			branch "seen this before"
 				has "event: war begins"
 			label continue
