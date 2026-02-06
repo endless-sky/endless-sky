@@ -15,16 +15,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ColumnChooserPanel.h"
 
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "Preferences.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
@@ -45,7 +45,7 @@ ColumnChooserPanel::ColumnChooserPanel(const vector<PlayerInfoPanel::SortableCol
 
 void ColumnChooserPanel::Draw()
 {
-	if(GetUI()->IsTop(this))
+	if(GetUI().IsTop(this))
 		DrawBackdrop();
 
 	zones.clear();
@@ -105,7 +105,7 @@ bool ColumnChooserPanel::AllowsFastForward() const noexcept
 bool ColumnChooserPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(key == 'a' || key == 'n')
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	else
 		return false;
 
@@ -114,7 +114,7 @@ bool ColumnChooserPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 
 
 
-bool ColumnChooserPanel::Click(int x, int y, int /* clicks */)
+bool ColumnChooserPanel::Click(int x, int y, MouseButton button, int /* clicks */)
 {
 	Point mouse(x, y);
 	for(auto &zone : zones)

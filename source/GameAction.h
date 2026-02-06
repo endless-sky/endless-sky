@@ -13,10 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_ACTION_H_
-#define GAME_ACTION_H_
+#pragma once
 
-#include "ConditionSet.h"
+#include "BookEntry.h"
+#include "ConditionAssignments.h"
+#include "Message.h"
 #include "ShipManager.h"
 
 #include <cstdint>
@@ -50,11 +51,11 @@ class GameAction {
 public:
 	GameAction() = default;
 	// Construct and Load() at the same time.
-	GameAction(const DataNode &node);
+	GameAction(const DataNode &node, const ConditionsStore *playerConditions);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Process a single sibling node.
-	void LoadSingle(const DataNode &child);
+	void LoadSingle(const DataNode &child, const ConditionsStore *playerConditions);
 	void Save(DataWriter &out) const;
 
 	// Determine if this GameAction references content that is not fully defined.
@@ -88,8 +89,9 @@ private:
 
 private:
 	bool isEmpty = true;
-	std::string logText;
-	std::map<std::string, std::map<std::string, std::string>> specialLogText;
+	BookEntry logEntries;
+	std::map<std::string, std::map<std::string, BookEntry>> specialLogEntries;
+	std::map<std::string, std::vector<std::string>> specialLogClear;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::vector<ShipManager> giftShips;
@@ -103,16 +105,16 @@ private:
 	std::optional<std::string> music;
 
 	std::set<const System *> mark;
+	std::map<std::string, std::set<const System *>> markOther;
 	std::set<const System *> unmark;
+	std::map<std::string, std::set<const System *>> unmarkOther;
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
 	// When this action is performed, the mission that called this action is failed.
 	bool failCaller = false;
 
-	ConditionSet conditions;
+	std::vector<ExclusiveItem<Message>> messages;
+
+	ConditionAssignments conditions;
 };
-
-
-
-#endif

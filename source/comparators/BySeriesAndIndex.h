@@ -13,10 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BY_SERIES_AND_INDEX_H_
-#define BY_SERIES_AND_INDEX_H_
+#pragma once
 
-#include "../CategoryTypes.h"
+#include "../CategoryList.h"
+#include "../CategoryType.h"
 #include "../GameData.h"
 #include "../Outfit.h"
 #include "../Ship.h"
@@ -45,21 +45,19 @@ class BySeriesAndIndex<Ship> {
 public:
 	bool operator()(const std::string &nameA, const std::string &nameB) const
 	{
-		const Outfit &shipA = GameData::Ships().Get(nameA)->Attributes();
-		const Outfit &shipB = GameData::Ships().Get(nameB)->Attributes();
-		return Helper(shipA, shipB, nameA, nameB);
+		const Ship &shipA = *GameData::Ships().Get(nameA);
+		const Ship &shipB = *GameData::Ships().Get(nameB);
+		return Helper(shipA.Attributes(), shipB.Attributes(), shipA.DisplayModelName(), shipB.DisplayModelName());
 	}
 };
 
 template<>
 class BySeriesAndIndex<Outfit> {
 public:
-	bool operator()(const std::string &nameA, const std::string &nameB)
+	bool operator()(const std::string &nameA, const std::string &nameB) const
 	{
-		const Outfit *outfitA = GameData::Outfits().Get(nameA);
-		const Outfit *outfitB = GameData::Outfits().Get(nameB);
-		return Helper(*outfitA, *outfitB, nameA, nameB);
+		const Outfit &outfitA = *GameData::Outfits().Get(nameA);
+		const Outfit &outfitB = *GameData::Outfits().Get(nameB);
+		return Helper(outfitA, outfitB, outfitA.DisplayName(), outfitB.DisplayName());
 	}
 };
-
-#endif

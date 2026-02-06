@@ -18,7 +18,7 @@ ship "Archon"
 	thumbnail "thumbnail/archon"
 	"never disabled"
 	attributes
-		category "Heavy Warship"
+		category "Unclassified"
 		"cost" 1000000000
 		"shields" 4000000
 		"hull" 1000000
@@ -113,7 +113,35 @@ ship "Archon" "Archon (Cloaked)"
 	"never disabled"
 	add attributes
 		"cloak" .04
+		"cloaked communication" 1
+		"cloak phasing" 1
+		"cloaked scanning" 1
 	"final explode" "archon c teleport"
+
+ship "Archon" "Archon (Hyperdrive Cloaked)"
+	sprite "ship/archon b"
+		"frame rate" 0.87
+	"never disabled"
+	add attributes
+		"cloak" .04
+		"cloaked communication" 1
+		"cloak phasing" 1
+		"cloaked scanning" 1
+		"jump speed" 1
+		"hyperdrive" 1
+		"silent jumps" 1
+	"final explode" "archon b teleport"
+	outfits
+		"Drak Antimatter Cannon"
+		"Drak Antimatter Cannon (Augmented)"
+		"Drak Anti-Missile Field" 2
+		"Drak Anti-Missile Field (Augmented)" 2
+		"Drak Draining Field"
+		"Drak Draining Field (Augmented)"
+		"Drak Distancer" 2
+		"Drak Turret" 3
+		"Drak Turret (Augmented)" 3
+
 
 effect "archon a teleport"
 	sprite "effect/archon teleport/archonateleport"

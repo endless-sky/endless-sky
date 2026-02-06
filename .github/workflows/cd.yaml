@@ -13,35 +13,58 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  actions: read
+
 jobs:
 
   cd_appimage_x64:
     name: Linux
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       OUTPUT: Endless_Sky-continuous-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
+          fetch-depth: '10'
       - name: Install dependencies
         run: |
-          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev
-      - name: Setup sccache
-        uses: ./.github/sccache
+          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libminizip-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libfuse2 autoconf autoconf-archive automake libtool
+      - name: Find cache keys
+        run: |
+          echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+          git log --pretty=format:'${{ runner.os }}-cd-%H' -n 10 | tail -n+2 >> restore_keys.txt
+          echo -e '\nEOF' >> restore_keys.txt
+          cat restore_keys.txt >> "$GITHUB_ENV"
+          echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          key: ${{ runner.os }}-cd-${{ env.CACHE_HASH }}
+          restore-keys: ${{ env.RESTORE_KEYS }}
+          evict-old-files: '2d'
+          append-timestamp: 'false'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'linux-release'
-          buildPreset: 'linux-ci-release'
+          vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+      - name: Run CMake
+        run: |
+          cmake --preset linux-release
+          cmake --build build --preset linux-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
       - name: Upload artifact
@@ -52,27 +75,48 @@ jobs:
 
   cd_windows_x64:
     name: Windows
-    runs-on: windows-2022
+    runs-on: windows-2025
     env:
       OUTPUT: EndlessSky-win64-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
-      - name: Setup sccache
-        uses: ./.github/sccache
+          fetch-depth: '10'
+      - name: Find cache keys
+        run: |
+          echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+          git log --pretty=format:'${{ runner.os }}-cd-%H' -n 10 | tail -n+2 >> restore_keys.txt
+          echo -e '\nEOF' >> restore_keys.txt
+          cat restore_keys.txt >> "$GITHUB_ENV"
+          echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+        shell: bash
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          key: ${{ runner.os }}-cd-${{ env.CACHE_HASH }}
+          restore-keys: ${{ env.RESTORE_KEYS }}
+          evict-old-files: '2d'
+          append-timestamp: 'false'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'mingw-release'
-          buildPreset: 'mingw-ci-release'
+          vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+      - name: Run CMake
+        run: |
+          cmake --preset mingw-release
+          cmake --build build --preset mingw-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
           cmake --install build/release
@@ -85,26 +129,46 @@ jobs:
 
   cd_macos_x64:
     name: MacOS
-    runs-on: macos-12
+    runs-on: macos-14
     env:
       OUTPUT: EndlessSky-macOS-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
-      - name: Setup sccache
-        uses: ./.github/sccache
-      - name: Install pkg-config
-        run: type -P pkg-config || brew install pkg-config
+          fetch-depth: '10'
+      - name: Find cache keys
+        run: |
+          echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+          git log --pretty=format:'${{ runner.os }}-cd-%H' -n 10 | tail -n+2 >> restore_keys.txt
+          echo -e '\nEOF' >> restore_keys.txt
+          cat restore_keys.txt >> "$GITHUB_ENV"
+          echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          key: ${{ runner.os }}-cd-${{ env.CACHE_HASH }}
+          restore-keys: ${{ env.RESTORE_KEYS }}
+          evict-old-files: '2d'
+          append-timestamp: 'false'
+      - name: Adjust version strings
+        run: ./utils/cd_update_versions.sh
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'macos-release'
-          buildPreset: 'macos-ci-release'
+          vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+      - name: Run CMake
+        run: |
+          cmake --preset macos-release
+          cmake --build build --preset macos-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
           cmake --install build/release
@@ -119,6 +183,8 @@ jobs:
     name: Upload
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs:
       - cd_appimage_x64
       - cd_windows_x64
@@ -129,7 +195,7 @@ jobs:
       OUTPUT_WINDOWS: EndlessSky-win64-continuous.zip
       OUTPUT_MACOS: EndlessSky-macOS-continuous.zip
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
       - name: Install github-release

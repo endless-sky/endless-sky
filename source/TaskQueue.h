@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TASK_QUEUE_H_
-#define TASK_QUEUE_H_
+#pragma once
 
 #include <functional>
 #include <future>
@@ -83,9 +82,7 @@ public:
 private:
 	std::list<std::shared_future<void>> futures;
 
-	// Tasks from ths queue that need to be executed on the main thread.
+	// Tasks from this queue that need to be executed on the main thread.
 	std::queue<std::function<void()>> syncTasks;
 	mutable std::mutex syncMutex;
 };
-
-#endif

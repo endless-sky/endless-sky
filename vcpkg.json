@@ -1,41 +1,68 @@
 {
-  "dependencies": [
-    {
-      "name": "openal-soft",
-      "platform": "osx"
-    }
-  ],
-  "features": {
-    "system-libs": {
-      "description": "System libraries required to build ES.",
-      "dependencies": [
-        {
-          "name": "glew",
-          "platform": "!osx"
-        },
-        "libpng",
-        "libjpeg-turbo",
-        "libmad",
-        {
-          "name": "libuuid",
-          "platform": "linux"
-        },
-        "openal-soft",
-        {
-          "name": "openal-soft",
-          "features": [
-            "pipewire"
-          ],
-          "platform": "linux"
-        },
-        "sdl2"
-      ]
-    },
-    "steam-libs": {
-      "description": "System libraries not provided in the Steam Sniper Runtime.",
-      "dependencies": [
-        "libmad"
-      ]
-    }
-  }
+	"dependencies": [
+		{
+			"name": "openal-soft",
+			"platform": "osx"
+		}
+	],
+	"overrides": [
+		{
+			"name": "openal-soft",
+			"version": "1.23.1#2"
+		}
+	],
+	"features": {
+		"system-libs": {
+			"description": "System libraries required to build ES.",
+			"dependencies": [
+				{
+					"name": "glew",
+					"platform": "!osx"
+				},
+				"libavif",
+				"libpng",
+				"libjpeg-turbo",
+				{
+					"name": "libjpeg-turbo",
+					"features": [
+						"jpeg8"
+					],
+					"platform": "osx"
+				},
+				"libmad",
+				{
+					"name": "libuuid",
+					"platform": "linux"
+				},
+				"libflac",
+				"minizip",
+				"openal-soft",
+				{
+					"name": "openal-soft",
+					"features": [
+						"pipewire"
+					],
+					"platform": "linux"
+				},
+				"sdl2",
+				"pkgconf"
+			]
+		},
+		"steam-libs": {
+			"description": "System libraries not provided in the Steam Sniper Runtime.",
+			"dependencies": [
+				"libavif",
+				"libmad",
+				"catch2",
+				"libflac",
+				"minizip"
+			]
+		},
+		"test-libs": {
+			"description": "Dependencies used for unit testing.",
+			"dependencies": [
+				"catch2"
+			]
+		}
+	}
 }

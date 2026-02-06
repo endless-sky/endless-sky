@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_OUTFITTER_PANEL_H_
-#define MAP_OUTFITTER_PANEL_H_
+#pragma once
 
 #include "MapSalesPanel.h"
 
@@ -42,13 +41,13 @@ protected:
 	virtual const Sprite *CompareSprite() const override;
 	virtual const ItemInfoDisplay &SelectedInfo() const override;
 	virtual const ItemInfoDisplay &CompareInfo() const override;
-	virtual const std::string &KeyLabel(int index) const override;
 
 	virtual void Select(int index) override;
 	virtual void Compare(int index) override;
 	virtual double SystemValue(const System *system) const override;
 	virtual int FindItem(const std::string &text) const override;
 
+	virtual void DrawKey(Information &info) const override;
 	virtual void DrawItems() override;
 
 
@@ -57,9 +56,6 @@ private:
 
 
 private:
-	// Maps category names to list of outfits in that category, sorted
-	// alphabetically by name.
-	std::map<std::string, std::vector<const Outfit *>> catalog;
 	// Flat list of all outfits shown.
 	std::vector<const Outfit *> list;
 
@@ -69,7 +65,3 @@ private:
 	OutfitInfoDisplay selectedInfo;
 	OutfitInfoDisplay compareInfo;
 };
-
-
-
-#endif

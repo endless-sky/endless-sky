@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SCROLLVAR_H_INCLUDED
-#define SCROLLVAR_H_INCLUDED
+#pragma once
 
 #include "Animate.h"
 
@@ -24,9 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // interpolation between the old and new values, while clamping the value to a
 // suitable range. The Animate methods will return negative values, as they are
 // meant to be added as an offset to the draw position.
-template <typename T>
-class ScrollVar: public Animate<T>
-{
+template<typename T>
+class ScrollVar : public Animate<T> {
 public:
 	ScrollVar() = default;
 	ScrollVar(const T &maxVal, const T &displaySize);
@@ -37,6 +35,8 @@ public:
 	const T &MaxValue() const;
 	// Set the size of the displayable scroll area.
 	void SetDisplaySize(const T &size);
+	// Get the size of the displayable scroll area.
+	const T &DisplaySize() const;
 	// Returns true if scroll buttons are needed.
 	bool Scrollable() const;
 	// Returns true if the value is at the minimum.
@@ -45,6 +45,9 @@ public:
 	bool IsScrollAtMax() const;
 	// Modifies the scroll value by dy, then clamps it to a suitable range.
 	void Scroll(const T &dy, int steps = 5);
+
+	double AnimatedScrollFraction() const;
+	double ScrollFraction() const;
 
 	// Sets the scroll value directly, then clamps it to a suitable range.
 	virtual void Set(const T &current, int steps = 5) override;
@@ -63,7 +66,7 @@ private:
 
 
 
-template <typename T>
+template<typename T>
 ScrollVar<T>::ScrollVar(const T &maxVal, const T &displaySize)
 	: maxVal{maxVal}, displaySize{displaySize}
 {
@@ -71,7 +74,7 @@ ScrollVar<T>::ScrollVar(const T &maxVal, const T &displaySize)
 
 
 
-template <typename T>
+template<typename T>
 void ScrollVar<T>::SetMaxValue(const T &value)
 {
 	maxVal = value;
@@ -80,7 +83,7 @@ void ScrollVar<T>::SetMaxValue(const T &value)
 
 
 
-template <typename T>
+template<typename T>
 const T &ScrollVar<T>::MaxValue() const
 {
 	return maxVal;
@@ -88,7 +91,7 @@ const T &ScrollVar<T>::MaxValue() const
 
 
 
-template <typename T>
+template<typename T>
 void ScrollVar<T>::SetDisplaySize(const T &size)
 {
 	displaySize = size;
@@ -97,7 +100,16 @@ void ScrollVar<T>::SetDisplaySize(const T &size)
 
 
 
-template <typename T>
+template<typename T>
+const T &ScrollVar<T>::DisplaySize() const
+{
+	return displaySize;
+}
+
+
+
+
+template<typename T>
 bool ScrollVar<T>::Scrollable() const
 {
 	return maxVal > displaySize;
@@ -105,7 +117,7 @@ bool ScrollVar<T>::Scrollable() const
 
 
 
-template <typename T>
+template<typename T>
 bool ScrollVar<T>::IsScrollAtMin() const
 {
 	return this->Value() <= T{};
@@ -113,7 +125,7 @@ bool ScrollVar<T>::IsScrollAtMin() const
 
 
 
-template <typename T>
+template<typename T>
 bool ScrollVar<T>::IsScrollAtMax() const
 {
 	return this->Value() >= maxVal - displaySize;
@@ -121,7 +133,7 @@ bool ScrollVar<T>::IsScrollAtMax() const
 
 
 
-template <typename T>
+template<typename T>
 void ScrollVar<T>::Scroll(const T &dy, int steps)
 {
 	Set(this->Value() + dy, steps);
@@ -129,7 +141,23 @@ void ScrollVar<T>::Scroll(const T &dy, int steps)
 
 
 
-template <typename T>
+template<typename T>
+double ScrollVar<T>::AnimatedScrollFraction() const
+{
+	return static_cast<double>(Animate<T>::AnimatedValue()) / static_cast<double>(maxVal - displaySize);
+}
+
+
+
+template<typename T>
+double ScrollVar<T>::ScrollFraction() const
+{
+	return static_cast<double>(Animate<T>::Value()) / static_cast<double>(maxVal - displaySize);
+}
+
+
+
+template<typename T>
 void ScrollVar<T>::Set(const T &current, int steps)
 {
 	Animate<T>::Set(current, steps);
@@ -138,7 +166,7 @@ void ScrollVar<T>::Set(const T &current, int steps)
 
 
 
-template <typename T>
+template<typename T>
 void ScrollVar<T>::Clamp(int steps)
 {
 	int maxScroll = maxVal - displaySize;
@@ -150,13 +178,9 @@ void ScrollVar<T>::Clamp(int steps)
 
 
 
-template <typename T>
+template<typename T>
 ScrollVar<T> &ScrollVar<T>::operator=(const T &v)
 {
 	Set(v);
 	return *this;
 }
-
-
-
-#endif

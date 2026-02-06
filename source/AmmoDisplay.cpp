@@ -18,15 +18,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Rectangle.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
+#include "Weapon.h"
 
 using namespace std;
 
@@ -51,8 +53,11 @@ void AmmoDisplay::Update(const Ship &flagship)
 	Reset();
 	for(const auto &it : flagship.Weapons())
 	{
-		const Outfit *secWeapon = it.GetOutfit();
-		if(!secWeapon || !secWeapon->Icon() || ammo.find(secWeapon) != ammo.end())
+		const Outfit *outfit = it.GetOutfit();
+		if(!outfit)
+			continue;
+		const Weapon *secWeapon = outfit->GetWeapon().get();
+		if(!secWeapon->Icon() || ammo.find(outfit) != ammo.end())
 			continue;
 
 		double ammoCount = -1.;
@@ -66,7 +71,7 @@ void AmmoDisplay::Update(const Ship &flagship)
 			// Decide what remaining ammunition value to display.
 			ammoCount = (ammoCount == -1. ? fuelAmmoCount : min(ammoCount, fuelAmmoCount));
 		}
-		ammo[secWeapon] = ammoCount;
+		ammo[outfit] = ammoCount;
 	}
 }
 
@@ -90,7 +95,7 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 	auto pos = Point(ammoBox.Left() + ammoPad, ammoBox.Bottom() - ammoPad);
 	// These offsets are relative to that corner.
 	auto boxOff = Point(ammoIconWidth - .5 * selectedSprite->Width(), .5 * ammoIconHeight);
-	auto textOff = Point(ammoIconWidth - .5 * ammoIconHeight, .5 * (ammoIconHeight - font.Height()));
+	auto textOff = Point(5. + ammoIconWidth - .5 * ammoIconHeight, .5 * (ammoIconHeight - font.Height()));
 	auto iconOff = Point(.5 * ammoIconHeight, .5 * ammoIconHeight);
 	const double iconCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
 	for(const auto &it : ammo)
@@ -102,7 +107,7 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 		const auto &playerSelectedWeapons = player.SelectedSecondaryWeapons();
 		bool isSelected = (playerSelectedWeapons.find(it.first) != playerSelectedWeapons.end());
 
-		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
+		SpriteShader::Draw(it.first->GetWeapon()->Icon(), pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
 
 		auto iconCenter = Point(iconCenterX, pos.Y() + ammoIconHeight / 2.);
@@ -113,7 +118,7 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 		if(it.second < 0)
 			continue;
 
-		string amount = to_string(it.second);
+		string amount = Format::AmmoCount(it.second);
 		Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
 	}
@@ -151,4 +156,3 @@ bool AmmoDisplay::Click(const Rectangle &clickBox)
 		}
 	return reselected;
 }
-

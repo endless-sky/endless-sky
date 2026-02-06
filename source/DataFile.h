@@ -13,11 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DATA_FILE_H_
-#define DATA_FILE_H_
+#pragma once
 
 #include "DataNode.h"
 
+#include <filesystem>
 #include <istream>
 #include <list>
 #include <string>
@@ -34,10 +34,10 @@ class DataFile {
 public:
 	// A DataFile can be loaded either from a file path or an istream.
 	DataFile() = default;
-	explicit DataFile(const std::string &path);
+	explicit DataFile(const std::filesystem::path &path);
 	explicit DataFile(std::istream &in);
 
-	void Load(const std::string &path);
+	void Load(const std::filesystem::path &path);
 	void Load(std::istream &in);
 
 	// Functions for iterating through all DataNodes in this file.
@@ -53,7 +53,3 @@ private:
 	// This is the container for all DataNodes in this file.
 	DataNode root;
 };
-
-
-
-#endif

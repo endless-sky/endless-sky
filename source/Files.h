@@ -13,12 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_FILES_H_
-#define ES_FILES_H_
+#pragma once
 
-#include <cstdio>
-#include <ctime>
-#include <string>
+#include <filesystem>
 #include <vector>
 
 
@@ -34,41 +31,45 @@ public:
 	static void Init(const char * const *argv);
 
 	// The game's installation directory, or whichever directory was passed on the command line via `--resources`
-	static const std::string &Resources();
+	static const std::filesystem::path &Resources();
 	// The user-specific configuration directory, or whichever directory was passed on the command line via `--config`
-	static const std::string &Config();
+	static const std::filesystem::path &Config();
 
-	static const std::string &Data();
-	static const std::string &Images();
-	static const std::string &Sounds();
-	static const std::string &Saves();
-	static const std::string &Tests();
+	static const std::filesystem::path &Data();
+	static const std::filesystem::path &Images();
+	static const std::filesystem::path &Sounds();
+	static const std::filesystem::path &Saves();
+	static const std::filesystem::path &UserPlugins();
+	static const std::filesystem::path &GlobalPlugins();
+	static const std::filesystem::path &Tests();
 
 	// Get a list of all regular files in the given directory.
-	static std::vector<std::string> List(std::string directory);
+	static std::vector<std::filesystem::path> List(const std::filesystem::path &directory);
 	// Get a list of any directories in the given directory.
-	static std::vector<std::string> ListDirectories(std::string directory);
+	static std::vector<std::filesystem::path> ListDirectories(const std::filesystem::path &directory);
 	// Get a list of all regular files in the given directory or any directory
 	// that it contains, recursively.
-	static std::vector<std::string> RecursiveList(const std::string &directory);
-	static void RecursiveList(std::string directory, std::vector<std::string> *list);
+	static std::vector<std::filesystem::path> RecursiveList(const std::filesystem::path &directory);
 
-	static bool Exists(const std::string &filePath);
-	static std::time_t Timestamp(const std::string &filePath);
-	static void Copy(const std::string &from, const std::string &to);
-	static void Move(const std::string &from, const std::string &to);
-	static void Delete(const std::string &filePath);
+	static bool Exists(const std::filesystem::path &filePath);
+	static std::filesystem::file_time_type Timestamp(const std::filesystem::path &filePath);
+	static bool Copy(const std::filesystem::path &from, const std::filesystem::path &to);
+	static void Move(const std::filesystem::path &from, const std::filesystem::path &to);
+	static void Delete(const std::filesystem::path &filePath);
 
 	// Get the filename from a path.
-	static std::string Name(const std::string &path);
+	static std::string Name(const std::filesystem::path &path);
+
+	/// Check whether one path is a parent of another.
+	static bool IsParent(const std::filesystem::path &parent, const std::filesystem::path &child);
 
 	// File IO.
-	static FILE *Open(const std::string &path, bool write = false);
-	static std::string Read(const std::string &path);
-	static std::string Read(FILE *file);
-	static void Write(const std::string &path, const std::string &data);
-	static void Write(FILE *file, const std::string &data);
-	static void CreateFolder(const std::string &path);
+	static std::shared_ptr<std::iostream> Open(const std::filesystem::path &path, bool write = false);
+	static std::string Read(const std::filesystem::path &path);
+	static std::string Read(std::shared_ptr<std::iostream> file);
+	static void Write(const std::filesystem::path &path, const std::string &data);
+	static void Write(std::shared_ptr<std::iostream> file, const std::string &data);
+	static void CreateFolder(const std::filesystem::path &path);
 
 	// Open this user's plugins directory in their native file explorer.
 	static void OpenUserPluginFolder();
@@ -80,7 +81,3 @@ public:
 	// happen (and to ensure thread safety on the logging).
 	static void LogErrorToFile(const std::string &message);
 };
-
-
-
-#endif

@@ -13,6 +13,8 @@
 
 outfit "Drak Distancer"
 	category "Turrets"
+	series "Turrets"
+	index 99020
 	cost 1000000
 	thumbnail "outfit/unknown"
 	"mass" 64
@@ -40,6 +42,8 @@ effect "distancer flare"
 
 outfit "Drak Draining Field"
 	category "Turrets"
+	series "Turrets"
+	index 99030
 	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 84
@@ -65,11 +69,13 @@ outfit "Drak Draining Field"
 		"scrambling damage" .5
 		"disruption damage" 1
 		"safe"
-	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
+	description "This device is the Archon's primary defensive tool: not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
 
 
 outfit "Drak Draining Field (Augmented)"
 	category "Turrets"
+	series "Turrets"
+	index 99031
 	cost 100000000
 	thumbnail "outfit/unknown"
 	"mass" 84
@@ -96,12 +102,14 @@ outfit "Drak Draining Field (Augmented)"
 		"scrambling damage" 1
 		"disruption damage" 2
 		"safe"
-	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
+	description "This device is the Archon's primary defensive tool: not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
 	description "	While normally kept at minimal strength, the Archons have demonstrated the ability to ramp up the field to be vastly stronger when faced with a serious threat."
 
 
 outfit "Drak Anti-Missile Field"
 	category "Turrets"
+	series "Anti-Missile"
+	index 99010
 	cost 1000000
 	thumbnail "outfit/unknown"
 	"mass" 66
@@ -121,6 +129,8 @@ outfit "Drak Anti-Missile Field"
 
 outfit "Drak Anti-Missile Field (Augmented)"
 	category "Turrets"
+	series "Anti-Missile"
+	index 99011
 	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 66
@@ -142,6 +152,8 @@ outfit "Drak Anti-Missile Field (Augmented)"
 
 outfit "Drak Turret"
 	category "Turrets"
+	series "Turrets"
+	index 99010
 	cost 1000000
 	thumbnail "outfit/unknown"
 	"mass" 48
@@ -164,11 +176,13 @@ outfit "Drak Turret"
 		"shield damage" 256
 		"hull damage" 256
 		"hit force" 180
-	description "This is a turret based cannon with significant range and accuracy."
+	description "This is a turret-based cannon with significant range and accuracy."
 
 
 outfit "Drak Turret (Augmented)"
 	category "Turrets"
+	series "Turrets"
+	index 99011
 	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 48
@@ -192,7 +206,7 @@ outfit "Drak Turret (Augmented)"
 		"shield damage" 2560
 		"hull damage" 2560
 		"hit force" 180
-	description "This is a turret based cannon with significant range and accuracy."
+	description "This is a turret-based cannon with significant range and accuracy."
 	description "	Against most threats, Archons respond with their weapons set to very low levels. They are, however, more than capable of dealing much more damage when the situation requires it."
 
 effect "drak bolt impact"
@@ -208,6 +222,8 @@ effect "drak bolt impact"
 
 outfit "Drak Antimatter Cannon"
 	category "Guns"
+	series "Guns"
+	index 99010
 	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 96
@@ -234,6 +250,8 @@ outfit "Drak Antimatter Cannon"
 
 outfit "Drak Antimatter Cannon (Augmented)"
 	category "Guns"
+	series "Guns"
+	index 99011
 	cost 100000000
 	thumbnail "outfit/unknown"
 	"mass" 96
@@ -316,4 +334,3 @@ effect "antimatter dust"
 	"random spin" 50
 	"random velocity" 12
 	"velocity scale" .1
-

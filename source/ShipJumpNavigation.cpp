@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipJumpNavigation.h"
 
+#include "Hasher.h"
 #include "Outfit.h"
 #include "Ship.h"
 #include "System.h"
@@ -23,10 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <iterator>
 
 using namespace std;
-
-const double ShipJumpNavigation::DEFAULT_HYPERDRIVE_COST = 100.;
-const double ShipJumpNavigation::DEFAULT_SCRAM_DRIVE_COST = 150.;
-const double ShipJumpNavigation::DEFAULT_JUMP_DRIVE_COST = 200.;
 
 
 
@@ -136,7 +133,7 @@ pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *fro
 {
 	if(!from || !to)
 		return make_pair(JumpType::NONE, 0.);
-	bool linked = from->Links().count(to);
+	bool linked = from->Links().contains(to);
 	double hyperFuelNeeded = HyperdriveFuel();
 	// If these two systems are linked, or if the system we're jumping from has its own jump range,
 	// then use the cheapest jump drive available, which is mapped to a distance of 0.
@@ -160,23 +157,27 @@ bool ShipJumpNavigation::CanJump(const System *from, const System *to) const
 	if(!from || !to)
 		return false;
 
-	if(from->Links().count(to) && (hasHyperdrive || hasJumpDrive))
+	if(from->Links().contains(to) && (hasHyperdrive || hasJumpDrive))
 		return true;
 
 	if(!hasJumpDrive)
 		return false;
 
 	const double distanceSquared = from->Position().DistanceSquared(to->Position());
-	if(from->JumpRange() && from->JumpRange() * from->JumpRange() < distanceSquared)
-		return false;
-
-	const double maxRange = jumpDriveCosts.rbegin()->first;
+	double maxRange = from->JumpRange() ? from->JumpRange() : jumpDriveCosts.rbegin()->first;
 	return maxRange * maxRange >= distanceSquared;
 }
 
 
 
 // Check what jump methods this ship has.
+bool ShipJumpNavigation::HasAnyDrive() const
+{
+	return hasHyperdrive || hasJumpDrive;
+}
+
+
+
 bool ShipJumpNavigation::HasHyperdrive() const
 {
 	return hasHyperdrive;
@@ -198,15 +199,39 @@ bool ShipJumpNavigation::HasJumpDrive() const
 
 
 
+size_t ShipJumpNavigation::Hash() const
+{
+	// Include in the hash only that information that can influence pathfinding.
+	size_t hash = 0;
+
+	Hasher::Hash(hash, currentSystem);
+
+	// Whether the hyperdrive is a scram drive doesn't change pathfinding.
+	Hasher::Hash(hash, hasHyperdrive);
+	Hasher::Hash(hash, hasJumpDrive);
+
+	// Max jump range information is contained within the jump drive costs.
+	// The jump cost also contains information about the mass of the ship,
+	// if its mass influences its jump cost.
+	Hasher::Hash(hash, hyperdriveCost);
+	for(const auto &[range, cost] : jumpDriveCosts)
+	{
+		Hasher::Hash(hash, range);
+		Hasher::Hash(hash, cost);
+	}
+
+	return hash;
+}
+
+
+
 // Parse the given outfit to determine if it has the capability to jump, and update any
 // jump information accordingly.
 void ShipJumpNavigation::ParseOutfit(const Outfit &outfit)
 {
-	auto CalculateFuelCost = [this, &outfit](double defaultFuel) -> double
+	auto CalculateFuelCost = [this, &outfit](bool isJumpDrive) -> double
 	{
-		double baseCost = outfit.Get("jump fuel");
-		if(baseCost <= 0.)
-			baseCost = defaultFuel;
+		double baseCost = outfit.Get(isJumpDrive ? "jump drive fuel" : "hyperdrive fuel");
 		// Mass cost is the fuel cost per 100 tons of ship mass. The jump base mass of a drive reduces the
 		// ship's effective mass for the jump mass cost calculation. A ship with a mass below the drive's
 		// jump base mass is allowed to have a negative mass cost.
@@ -219,7 +244,7 @@ void ShipJumpNavigation::ParseOutfit(const Outfit &outfit)
 
 	if(outfit.Get("hyperdrive") && (!hasScramDrive || outfit.Get("scram drive")))
 	{
-		double cost = CalculateFuelCost(hasScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST);
+		double cost = CalculateFuelCost(false);
 		if(!hyperdriveCost || cost < hyperdriveCost)
 			hyperdriveCost = cost;
 	}
@@ -228,7 +253,7 @@ void ShipJumpNavigation::ParseOutfit(const Outfit &outfit)
 		double distance = outfit.Get("jump range");
 		if(distance <= 0.)
 			distance = System::DEFAULT_NEIGHBOR_DISTANCE;
-		double cost = CalculateFuelCost(DEFAULT_JUMP_DRIVE_COST);
+		double cost = CalculateFuelCost(true);
 
 		UpdateJumpDriveCosts(distance, cost);
 	}
@@ -259,7 +284,7 @@ void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, double cost)
 		// cheaper jump cost already covers this range. We don't need to check
 		// any other distances in this case because the rest of the map will
 		// already be properly sorted.
-		auto nit = std::next(it);
+		auto nit = next(it);
 		if(nit != jumpDriveCosts.end() && it->second > nit->second)
 			it->second = nit->second;
 		else

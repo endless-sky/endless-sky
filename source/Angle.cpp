@@ -193,7 +193,7 @@ Point Angle::Rotate(const Point &point) const
 
 // Judge whether this is inside from "base" to "limit."
 // The range from "base" to "limit" is expressed by "clock" orientation.
-bool Angle::IsInRange(const Angle& base, const Angle& limit) const
+bool Angle::IsInRange(const Angle &base, const Angle &limit) const
 {
 	// Choose an edge of the arc as the reference angle (base) and
 	// compare relative angles to decide whether this is in the range.
