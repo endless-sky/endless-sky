@@ -150,12 +150,12 @@ ship "Autumn Leaf"
 		"shields" 18700
 		"hull" 7400
 		"required crew" 8
-		"bunks" 16
+		"bunks" 13
 		"mass" 228
 		"drag" 3.5
 		"heat dissipation" .67
-		"fuel capacity" 1000
-		"cargo space" 45
+		"fuel capacity" 800
+		"cargo space" 35
 		"outfit space" 361
 		"weapon capacity" 103
 		"engine capacity" 117
@@ -258,6 +258,76 @@ ship "Strong Wind"
 	description "The Strong Wind was originally designed for science and exploration, but recently the Wanderers have modified the design to allow it to be used as a warship."
 
 
+
+ship "Heavy Gust"
+	sprite "ship/heavy gust"
+	thumbnail "thumbnail/heavy gust"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Wanderer Military"
+		"cost" 17600000
+		"shields" 35200
+		"hull" 21200
+		"required crew" 22
+		"bunks" 34
+		"mass" 598
+		"drag" 7.4
+		"heat dissipation" .45
+		"fuel capacity" 600
+		"cargo space" 52
+		"outfit space" 534
+		"weapon capacity" 224
+		"engine capacity" 132
+		"tactical scan power" 75
+		weapon
+			"blast radius" 220
+			"shield damage" 2200
+			"hull damage" 1100
+			"hit force" 3300
+	outfits
+		"Sunbeam" 4
+		"Thunderhead Launcher" 2
+		"Thunderhead Missile" 100
+		"Thunderhead Storage Array"
+		"Wanderer Anti-Missile"
+		
+		"White Sun Reactor"
+		"Dark Storm Shielding"
+		"Wanderer Ramscoop"
+		
+		"Type 4 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Hyperdrive"
+		
+	engine -35 130
+	engine 35 130
+	gun -66 17 "Sunbeam"
+	gun 66 17 "Sunbeam"
+	gun -59 23 "Sunbeam"
+	gun 59 23 "Sunbeam"
+	gun -38 54 "Thunderhead Launcher"
+	gun 38 54 "Thunderhead Launcher"
+	turret 0 27 "Wanderer Anti-Missile"
+	explode "small explosion" 70
+	explode "medium explosion" 45
+	explode "large explosion" 22
+	"final explode" "final explosion medium"
+	description "The Heavy Gust is a further modification of the Strong Wind, adjusted even more heavily for combat purposes at the expense of much of its precursor's peacetime utility. With these modifications, the Heavy Gust becomes both faster and deadlier, pushing the original civilian frame to its limits."
+
+ship "Heavy Gust" "Heavy Gust (Moonbeam)"
+	outfits
+		"Sunbeam" 4
+		"Moonbeam" 2
+		"Moonbeam Turret"
+		
+		"Blue Sun Reactor"
+		"Dark Storm Shielding"
+		
+		"Type 4 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Hyperdrive"
+		
 
 ship "Tempest"
 	sprite "ship/tempest"

@@ -17,16 +17,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
-#include "FillShader.h"
+#include "DialogPanel.h"
+#include "shader/FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
-#include "Sprite.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
+
+#include <cassert>
 
 using namespace std;
 
@@ -112,6 +114,12 @@ void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 // so, apply that zone's action and return true.
 bool Panel::ZoneClick(const Point &point)
 {
+	for(auto it = children.rbegin(); it != children.rend(); ++it)
+	{
+		if((*it)->ZoneClick(point))
+			return true;
+	}
+
 	for(const Zone &zone : zones)
 		if(zone.Contains(point))
 		{
@@ -136,6 +144,38 @@ bool Panel::AllowsFastForward() const noexcept
 
 
 
+void Panel::UpdateTooltipActivation()
+{
+}
+
+
+
+void Panel::AddOrRemove()
+{
+	for(auto &panel : childrenToAdd)
+		if(panel)
+			children.emplace_back(std::move(panel));
+	childrenToAdd.clear();
+
+	for(auto *panel : childrenToRemove)
+	{
+		for(auto it = children.begin(); it != children.end(); ++it)
+		{
+			if(it->get() == panel)
+			{
+				children.erase(it);
+				break;
+			}
+		}
+	}
+	childrenToRemove.clear();
+
+	for(auto &child : children)
+		child->AddOrRemove();
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool Panel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
@@ -144,14 +184,7 @@ bool Panel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool is
 
 
 
-bool Panel::Click(int x, int y, int clicks)
-{
-	return false;
-}
-
-
-
-bool Panel::RClick(int x, int y)
+bool Panel::Click(int x, int y, MouseButton button, int clicks)
 {
 	return false;
 }
@@ -179,9 +212,75 @@ bool Panel::Scroll(double dx, double dy)
 
 
 
-bool Panel::Release(int x, int y)
+bool Panel::Release(int x, int y, MouseButton button)
 {
 	return false;
+}
+
+
+
+void Panel::Resize()
+{
+}
+
+
+
+bool Panel::DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+{
+	return EventVisit(&Panel::KeyDown, key, mod, command, isNewPress);
+}
+
+
+
+bool Panel::DoClick(int x, int y, MouseButton button, int clicks)
+{
+	return EventVisit(&Panel::Click, x, y, button, clicks);
+}
+
+
+
+bool Panel::DoHover(int x, int y)
+{
+	return EventVisit(&Panel::Hover, x, y);
+}
+
+
+
+bool Panel::DoDrag(double dx, double dy)
+{
+	return EventVisit(&Panel::Drag, dx, dy);
+}
+
+
+
+bool Panel::DoRelease(int x, int y, MouseButton button)
+{
+	return EventVisit(&Panel::Release, x, y, button);
+}
+
+
+
+bool Panel::DoScroll(double dx, double dy)
+{
+	return EventVisit(&Panel::Scroll, dx, dy);
+}
+
+
+
+void Panel::DoDraw()
+{
+	Draw();
+	for(auto &child : children)
+		child->DoDraw();
+}
+
+
+
+void Panel::DoResize()
+{
+	Resize();
+	for(auto &child : children)
+		child->DoResize();
 }
 
 
@@ -210,19 +309,20 @@ void Panel::SetInterruptible(bool set)
 // Dim the background of this panel.
 void Panel::DrawBackdrop() const
 {
-	if(!GetUI()->IsTop(this))
+	if(!GetUI().IsTop(this))
 		return;
 
 	// Darken everything but the dialog.
 	const Color &back = *GameData::Colors().Get("dialog backdrop");
-	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
+	FillShader::Fill(Point(), Screen::Dimensions(), back);
 }
 
 
 
-UI *Panel::GetUI() const noexcept
+UI &Panel::GetUI() const noexcept
 {
-	return ui;
+	assert(ui && "Panel::GetUI cannot be called until after the Panel has been pushed onto the UI stack.");
+	return *ui;
 }
 
 
@@ -270,7 +370,7 @@ bool Panel::DoHelp(const string &name, bool force) const
 		return false;
 
 	Preferences::Set(preference);
-	ui->Push(new Dialog(Format::Capitalize(name) + ":\n\n" + message));
+	ui->Push(DialogPanel::Info(Format::Capitalize(name) + ":\n\n" + message));
 
 	return true;
 }
@@ -280,4 +380,25 @@ bool Panel::DoHelp(const string &name, bool force) const
 void Panel::SetUI(UI *ui)
 {
 	this->ui = ui;
+}
+
+
+
+const vector<shared_ptr<Panel>> &Panel::GetChildren()
+{
+	return children;
+}
+
+
+
+void Panel::AddChild(const shared_ptr<Panel> &panel)
+{
+	childrenToAdd.push_back(panel);
+}
+
+
+
+void Panel::RemoveChild(const Panel *panel)
+{
+	childrenToRemove.push_back(panel);
 }

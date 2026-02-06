@@ -13,12 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef UNIVERSE_OBJECTS_H_
-#define UNIVERSE_OBJECTS_H_
+#pragma once
 
-#include "CategoryTypes.h"
-#include "Sale.h"
+#include "CategoryType.h"
 #include "Set.h"
+#include "Shop.h"
 
 #include "CategoryList.h"
 #include "Color.h"
@@ -32,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
+#include "Message.h"
 #include "Minable.h"
 #include "Mission.h"
 #include "News.h"
@@ -39,16 +39,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "shader/Shader.h"
 #include "Ship.h"
 #include "StartConditions.h"
+#include "Swizzle.h"
 #include "System.h"
-#include "Test.h"
-#include "TestData.h"
+#include "test/Test.h"
+#include "test/TestData.h"
 #include "TextReplacements.h"
 #include "Trade.h"
 #include "Wormhole.h"
 
 #include <atomic>
+#include <filesystem>
 #include <future>
 #include <map>
 #include <mutex>
@@ -56,8 +59,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-
+class ConditionsStore;
 class Panel;
+class PlayerInfo;
 class Sprite;
 class TaskQueue;
 
@@ -71,17 +75,20 @@ class UniverseObjects {
 	friend class TestData;
 public:
 	// Load game objects from the given directories of definitions.
-	std::shared_future<void> Load(TaskQueue &queue, const std::vector<std::string> &sources, bool debugMode = false);
+	std::shared_future<void> Load(TaskQueue &queue, const std::vector<std::filesystem::path> &sources,
+		const PlayerInfo &player, const ConditionsStore *globalConditions, bool debugMode = false);
 	// Determine the fraction of data files read from disk.
 	double GetProgress() const;
 	// Resolve every game object dependency.
 	void FinishLoading();
 
 	// Apply the given change to the universe.
-	void Change(const DataNode &node);
+	void Change(const DataNode &node, PlayerInfo &player);
 	// Update the neighbor lists and other information for all the systems.
 	// (This must be done any time a GameEvent creates or moves a system.)
 	void UpdateSystems();
+	// Determine which attributes may be required in order to use a wormhole.
+	void RecomputeWormholeRequirements();
 
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();
@@ -92,7 +99,8 @@ public:
 
 
 private:
-	void LoadFile(const std::string &path, bool debugMode = false);
+	void LoadFile(const std::filesystem::path &path, const PlayerInfo &player,
+		const ConditionsStore *globalConditions, bool debugMode = false);
 
 
 private:
@@ -102,6 +110,7 @@ private:
 
 private:
 	Set<Color> colors;
+	Set<Swizzle> swizzles;
 	Set<Conversation> conversations;
 	Set<Effect> effects;
 	Set<GameEvent> events;
@@ -111,6 +120,8 @@ private:
 	Set<Government> governments;
 	Set<Hazard> hazards;
 	Set<Interface> interfaces;
+	Set<Message::Category> messageCategories;
+	Set<Message> messages;
 	Set<Minable> minables;
 	Set<Mission> missions;
 	Set<News> news;
@@ -118,13 +129,17 @@ private:
 	Set<Person> persons;
 	Set<Phrase> phrases;
 	Set<Planet> planets;
+	Set<Shader> shaders;
 	Set<Ship> ships;
 	Set<System> systems;
 	Set<Test> tests;
 	Set<TestData> testDataSets;
-	Set<Sale<Ship>> shipSales;
-	Set<Sale<Outfit>> outfitSales;
+	Set<Shop<Ship>> shipSales;
+	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
+
+	// This is used for speeding up the route calculations.
+	std::set<std::string> universeWormholeRequirements;
 	std::set<double> neighborDistances;
 
 	Gamerules gamerules;
@@ -135,6 +150,7 @@ private:
 	std::map<const Sprite *, std::string> landingMessages;
 	std::map<const Sprite *, double> solarPower;
 	std::map<const Sprite *, double> solarWind;
+	std::map<const Sprite *, const Sprite *> starIcons;
 	std::map<CategoryType, CategoryList> categories;
 
 	std::map<std::string, std::string> tooltips;
@@ -145,7 +161,3 @@ private:
 	mutable std::mutex menuBackgroundMutex;
 	Interface menuBackgroundCache;
 };
-
-
-
-#endif

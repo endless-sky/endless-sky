@@ -23,7 +23,7 @@ using namespace std;
 
 
 // Constructor, taking a file path (in UTF-8).
-DataFile::DataFile(const string &path)
+DataFile::DataFile(const filesystem::path &path)
 {
 	Load(path);
 }
@@ -39,7 +39,7 @@ DataFile::DataFile(istream &in)
 
 
 // Load from a file path (in UTF-8).
-void DataFile::Load(const string &path)
+void DataFile::Load(const filesystem::path &path)
 {
 	string data = Files::Read(path);
 	if(data.empty())
@@ -51,7 +51,7 @@ void DataFile::Load(const string &path)
 
 	// Note what file this node is in, so it will show up in error traces.
 	root.tokens.push_back("file");
-	root.tokens.push_back(path);
+	root.tokens.push_back(path.string());
 
 	LoadData(data);
 }
@@ -147,7 +147,7 @@ void DataFile::LoadData(const string &data)
 		if(c == '#')
 		{
 			if(mixedIndentation)
-				root.PrintTrace("Warning: Mixed whitespace usage for comment at line " + to_string(lineNumber));
+				root.PrintTrace("Mixed whitespace usage for comment at line " + to_string(lineNumber));
 			while(c != '\n')
 				c = Utf8::DecodeCodePoint(data, pos);
 		}
@@ -204,7 +204,7 @@ void DataFile::LoadData(const string &data)
 				node.tokens.emplace_back(data, tokenPos, endPos - tokenPos);
 			// This is not a fatal error, but it may indicate a format mistake:
 			if(isQuoted && c == '\n')
-				node.PrintTrace("Warning: Closing quotation mark is missing:");
+				node.PrintTrace("Closing quotation mark is missing:");
 
 			if(c != '\n')
 			{
@@ -235,6 +235,6 @@ void DataFile::LoadData(const string &data)
 
 		// Now that we've tokenized this node, print any mixed whitespace warnings.
 		if(mixedIndentation)
-			node.PrintTrace("Warning: Mixed whitespace usage at line");
+			node.PrintTrace("Mixed whitespace usage at line");
 	}
 }

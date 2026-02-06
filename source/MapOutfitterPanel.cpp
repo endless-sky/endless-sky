@@ -15,16 +15,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapOutfitterPanel.h"
 
-#include "comparators/ByName.h"
+#include "comparators/BySeriesAndIndex.h"
+#include "CategoryList.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Information.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -84,23 +86,6 @@ const ItemInfoDisplay &MapOutfitterPanel::CompareInfo() const
 
 
 
-const string &MapOutfitterPanel::KeyLabel(int index) const
-{
-	static const string MINE = "Mine this here";
-	if(index == 2 && selected && selected->Get("minable") > 0.)
-		return MINE;
-
-	static const string LABEL[4] = {
-		"Has no outfitter",
-		"Has outfitter",
-		"Sells this outfit",
-		"Outfit in storage"
-	};
-	return LABEL[index];
-}
-
-
-
 void MapOutfitterPanel::Select(int index)
 {
 	if(index < 0 || index >= static_cast<int>(list.size()))
@@ -150,7 +135,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 			const auto storage = planetStorage.find(object.GetPlanet());
 			if(storage != planetStorage.end() && storage->second.Get(selected))
 				return .5;
-			const auto &outfitter = object.GetPlanet()->Outfitter();
+			const auto &outfitter = object.GetPlanet()->OutfitterStock();
 			if(outfitter.Has(selected))
 				return 1.;
 			if(!outfitter.empty())
@@ -181,9 +166,21 @@ int MapOutfitterPanel::FindItem(const string &text) const
 
 
 
+void MapOutfitterPanel::DrawKey(Information &info) const
+{
+	const string condition = (selected && selected->Get("minable") > 0.)
+		? "is outfitters w/ minerals" : "is outfitters";
+
+	info.SetCondition(condition);
+
+	MapSalesPanel::DrawKey(info);
+}
+
+
+
 void MapOutfitterPanel::DrawItems()
 {
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+	if(GetUI().IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
@@ -198,8 +195,9 @@ void MapOutfitterPanel::DrawItems()
 		if(DrawHeader(corner, category))
 			continue;
 
-		for(const Outfit *outfit : it->second)
+		for(const string &name : it->second)
 		{
+			const Outfit *outfit = GameData::Outfits().Get(name);
 			string price = Format::CreditString(outfit->Cost());
 
 			string info;
@@ -241,7 +239,7 @@ void MapOutfitterPanel::DrawItems()
 						if(pit != storage.end())
 							storedInSystem += pit->second.Get(outfit);
 					}
-					if(planet.Outfitter().Has(outfit))
+					if(planet.OutfitterStock().Has(outfit))
 					{
 						isForSale = true;
 						break;
@@ -259,8 +257,8 @@ void MapOutfitterPanel::DrawItems()
 				: storedInSystem == 1
 				? "1 unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
-			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected,
-				outfit->DisplayName(), price, info, storage_details);
+			Draw(corner, outfit->Thumbnail(), Swizzle::None(), isForSale, outfit == selected,
+				outfit->DisplayName(), "", price, info, storage_details);
 			list.push_back(outfit);
 		}
 	}
@@ -277,10 +275,10 @@ void MapOutfitterPanel::Init()
 	// Add all outfits sold by outfitters of planets from viewable systems.
 	for(auto &&it : GameData::Planets())
 		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
-			for(const Outfit *outfit : it.second.Outfitter())
-				if(!seen.count(outfit))
+			for(const Outfit *outfit : it.second.OutfitterStock())
+				if(!seen.contains(outfit))
 				{
-					catalog[outfit->Category()].push_back(outfit);
+					catalog[outfit->Category()].push_back(outfit->TrueName());
 					seen.insert(outfit);
 				}
 
@@ -288,21 +286,21 @@ void MapOutfitterPanel::Init()
 	for(const auto &it : player.PlanetaryStorage())
 		if(it.first->HasOutfitter())
 			for(const auto &oit : it.second.Outfits())
-				if(!seen.count(oit.first))
+				if(!seen.contains(oit.first))
 				{
-					catalog[oit.first->Category()].push_back(oit.first);
+					catalog[oit.first->Category()].push_back(oit.first->TrueName());
 					seen.insert(oit.first);
 				}
 
 	// Add all known minables.
 	for(const auto &it : player.Harvested())
-		if(!seen.count(it.second))
+		if(!seen.contains(it.second))
 		{
-			catalog[it.second->Category()].push_back(it.second);
+			catalog[it.second->Category()].push_back(it.second->TrueName());
 			seen.insert(it.second);
 		}
 
 	// Sort the vectors.
 	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(), ByDisplayName<Outfit>());
+		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Outfit>());
 }

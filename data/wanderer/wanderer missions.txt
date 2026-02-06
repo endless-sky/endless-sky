@@ -85,7 +85,7 @@ mission "Wanderers: Mereti: The Plant 3"
 		has "Wanderers: Mereti: The Plant 2: done"
 	on offer
 		conversation
-			`Va'ika guides you to an area of high, cool steppes as you approach. You find a suitable place to land your ship, and she steps out. The air that blows in through the open door sting your eyes, but Va'ika seems too deep in thought to notice. "It would have [grown, originated] here, I am certain of it. But it will do so no longer, not for many [years, cycles]." Va'ika bows her head and holds one wing in front of herself silently for a moment before continuing. "We must find some world with similar [regions, environments] that we can introduce it to. Perhaps we will have better luck on Sopi Lefarkata."`
+			`Va'ika guides you to an area of high, cool steppes as you approach. You find a suitable place to land your ship, and she steps out. The air that blows in through the open door stings your eyes, but Va'ika seems too deep in thought to notice. "It would have [grown, originated] here, I am certain of it. But it will do so no longer, not for many [years, cycles]." Va'ika bows her head and holds one wing in front of herself silently for a moment before continuing. "We must find some world with similar [regions, environments] that we can introduce it to. Perhaps we will have better luck on Sopi Lefarkata."`
 				accept
 
 mission "Wanderers: Mereti: The Plant 4"
@@ -102,10 +102,10 @@ mission "Wanderers: Mereti: The Plant 4"
 			`This time, Va'ika guides you down into an equatorial lowland - a dry, grassy plain over which a cool wind blows. You can feel its similarity to the steppe you visited on Solima Skarati, but this time you can breathe freely, without the air stinging your eyes and mouth. Va'ika takes some soil and places it in a small device, looking at it for a moment before turning to you. "Here. It will [grow, prosper] here."`
 			choice
 				`	"Is there anything else I can do to help?"`
-					goto nextsteps
+					goto "next steps"
 				`	"How can you be so sure?"`
 			`	"We have already collected significant data on the climate of this world. The only question I needed to answer in person was whether the [composition, nature] of the soil was suitable."`
-			label nextsteps
+			label "next steps"
 			`	"Let us return to Vara Kehi'ki. We will send a small detachment of [healers, gardeners] to <planet>, to ensure that these plants become established. In the long term, we will return them to <origin> when it is healed."`
 				accept
 	on complete
@@ -179,5 +179,5 @@ mission "Wanderers: Mereti: The Plant Epilogue"
 					goto end
 			`	"This flower is called the sitrasanir. Its [symbol, appearance] was of [importance, significance] to our creators when they were [present? alive?]. We [abandoned, ignored] it for years, but our [parents, ancestors] helped us to remember it."`
 			label end
-			`	The drone sits in a contemplative silence, looking out into the field. The sun rises higher into the sky, and the field shines in blue hues that almost exactly match the blue paints on the the Mereti ships in the sky above.`
+			`	The drone sits in a contemplative silence, looking out into the field. The sun rises higher into the sky, and the field shines in blue hues that almost exactly match the blue paints on the Mereti ships in the sky above.`
 				decline

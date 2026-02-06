@@ -13,10 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_JUMP_NAVIGATION_H_
-#define SHIP_JUMP_NAVIGATION_H_
+#pragma once
 
-#include "JumpTypes.h"
+#include "JumpType.h"
 
 #include <map>
 
@@ -29,12 +28,6 @@ class System;
 // A class representing the jump capabilities of a ship. Calculates and caches a ship's
 // jump methods, costs, and distances.
 class ShipJumpNavigation {
-public:
-	static const double DEFAULT_HYPERDRIVE_COST;
-	static const double DEFAULT_SCRAM_DRIVE_COST;
-	static const double DEFAULT_JUMP_DRIVE_COST;
-
-
 public:
 	ShipJumpNavigation() = default;
 
@@ -64,9 +57,13 @@ public:
 	bool CanJump(const System *from, const System *to) const;
 
 	// Check what jump methods this ship has.
+	bool HasAnyDrive() const;
 	bool HasHyperdrive() const;
 	bool HasScramDrive() const;
 	bool HasJumpDrive() const;
+
+	// Create a hash of the capabilities of this ship, for use in caching pathfinding.
+	std::size_t Hash() const;
 
 
 private:
@@ -96,7 +93,3 @@ private:
 	bool hasJumpDrive = false;
 	bool hasJumpMassCost = false;
 };
-
-
-
-#endif

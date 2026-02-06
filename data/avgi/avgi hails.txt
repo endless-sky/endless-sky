@@ -1,0 +1,1119 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+# Avgi hails
+
+phrase "friendly avgi"
+	phrase
+		"avgi warm greetings" 6
+		"avgi cold greetings"
+		"avgi warnings" 3
+		"avgi complaints"
+		"avgi questions" 3
+		"avgi commerce" 9
+
+phrase "hostile avgi"
+	phrase
+		"avgi cold greetings"
+		"avgi angry" 3
+
+phrase "friendly disabled avgi"
+	phrase
+		"avgi friendly help"
+	word
+		", "
+	phrase
+		"avgi polite playername"
+	word
+		"."
+		"!"
+
+phrase "hostile disabled avgi"
+	phrase
+		"avgi angry help"
+	word
+		", "
+	phrase
+		"avgi rude playername"
+	word
+		"."
+		"!"
+
+# Twilight Guard hails
+
+phrase "friendly twilight guard"
+	phrase
+		"avgi warm greetings"
+		"twilight guard greeting" 3
+		"avgi warnings" 3
+
+phrase "hostile twilight guard"
+	phrase
+		"twilight guard angry" 3
+		"avgi remembrance"
+
+phrase "friendly disabled twilight guard"
+	phrase
+		"avgi friendly help"
+		"twilight guard friendly help"
+	word
+		", "
+	phrase
+		"avgi polite playername"
+	word
+		"."
+		"!"
+
+phrase "hostile disabled twilight guard"
+	phrase
+		"avgi angry help"
+	word
+		", "
+	phrase
+		"avgi rude playername"
+	word
+		"."
+		"!"
+
+# Dissonance hails
+
+phrase "friendly dissonance"
+	phrase
+		"dissonance warm greetings" 3
+		"dissonance warnings" 6
+
+phrase "hostile dissonance"
+	phrase
+		"dissonance angry"
+		"avgi angry"
+
+phrase "friendly disabled dissonance"
+	phrase
+		"avgi friendly help"
+	word
+		", "
+	phrase
+		"dissonance polite playername"
+	word
+		"."
+		"!"
+
+phrase "hostile disabled dissonance"
+	phrase
+		"avgi angry help"
+	word
+		", "
+	phrase
+		"dissonance rude playername"
+	word
+		"."
+		"!"
+
+
+phrase "avgi polite playername"
+	word
+		"alien"
+		"familiar"
+		"far"
+		"fellow"
+		"foreign"
+		"interplanetary"
+		"interstellar"
+		"kind"
+		"space"
+		"star" 12
+		"stellar"
+		"trusted"
+	word
+		" "
+	word
+		"ally"
+		"ambassador"
+		"envoy"
+		"explorer"
+		"friend"
+		"newcomer"
+		"outsider"
+		"sapient"
+		"searcher"
+		"seeker"
+		"sojourner"
+		"sophont"
+		"traveler"
+		"visitor"
+		"voyager"
+		"wanderer"
+
+
+phrase "avgi rude playername"
+	word
+		"cursed"
+		"dangerous"
+		"disgusting"
+		"distrusted"
+		"hostile"
+		"lazy"
+		"lying"
+		"malodorous"
+		"ominous"
+		"pitiful"
+		"pitiless"
+		"ruthless"
+		"stinky"
+		"strange"
+		"suspicious"
+		"terrible"
+		"unfamiliar"
+		"unlucky"
+		"unnatural"
+		"untrustworthy"
+		"unworthy"
+		"weird"
+	word
+		" "
+	word
+		"alien"
+		"foreigner"
+		"impostor"
+		"lifeform"
+		"meddler"
+		"outsider"
+		"strange one"
+		"stranger"
+		"xeno"
+
+
+phrase "dissonance polite playername"
+	word
+		"fellow"
+		"alien"
+		"trusted"
+		"unlikely"
+	word
+		" "
+	word
+		"ally"
+		"assistant"
+		"comrade"
+		"dissenter"
+		"dissident"
+		"friend"
+		"supporter"
+
+
+phrase "dissonance rude playername"
+	word
+		"alien"
+		"authoritarian"
+		"dangerous"
+		"pitiless"
+		"statist"
+		"thieving"
+		"traitorous"
+	word
+		" "
+	word
+		"enemy"
+		"impostor"
+		"lackey"
+		"meddler"
+		"oppressor"
+		"thief"
+		"traitor"
+		"xeno"
+
+
+phrase "avgi warm acknowledgment"
+	word
+		"Acknowledgment"
+		"Amenable"
+		"Amicable"
+		"Awe"
+		"Curiosity"
+		"Excitement"
+		"Happiness"
+		"Hurried"
+		"Inspired"
+		"Interest"
+		"Jovial"
+		"Joy"
+		"Novelty"
+		"Polite"
+		"Receptive"
+		"Reserved"
+		"Respect"
+		"Reverent"
+		"Sociable"
+		"Welcoming"
+	word
+		". "
+		"; "
+	word
+		"Acknowledged"
+		"Fair weather"
+		"Fair winds"
+		"Good fortune"
+		"Greetings"
+		"Hello"
+		"I acknowledge you"
+		"I receive you"
+		"May you find joy"
+		"Recognized"
+		"Salutations"
+		"Welcome to our space"
+		"Welcome"
+		"Well met"
+		"You are acknowledged"
+
+
+phrase "avgi cold acknowledgment"
+	word
+		"Anger"
+		"Disdain"
+		"Disgust"
+		"Distrust"
+		"Fear"
+		"Hostile"
+		"Hurried"
+		"Inconsolable"
+		"Nervous"
+		"Reserved"
+		"Suspicion"
+		"Uncertain"
+		"Wary"
+	word
+		". "
+		"; "
+	word
+		"Acknowledged"
+		"Begone"
+		"Beware"
+		"Come no closer"
+		"Come no further"
+		"Curse you"
+		"I see you for what you are"
+		"Keep your distance"
+		"Received"
+		"Recognized"
+		"Remain in place"
+		"Stay away from me"
+		"Stay away"
+		"You are acknowledged"
+		"You are received"
+
+
+phrase "avgi warm greetings"
+	phrase
+		"avgi warm acknowledgment"
+	word
+		", "
+	phrase
+		"avgi polite playername"
+	word
+		"."
+		"!"
+
+phrase "avgi cold greetings"
+	phrase
+		"avgi cold acknowledgment"
+	word
+		", "
+	phrase
+		"avgi rude playername"
+	word
+		"."
+		"!"
+
+phrase "dissonance warm greetings"
+	phrase
+		"avgi warm acknowledgment"
+	word
+		", "
+	phrase
+		"dissonance polite playername"
+	word
+		"."
+		"!"
+
+phrase "dissonance cold greetings"
+	phrase
+		"avgi cold acknowledgment"
+	word
+		", "
+	phrase
+		"dissonance rude playername"
+	word
+		"."
+		"!"
+
+phrase "twilight guard greeting"
+	phrase
+		"avgi warm acknowledgment"
+	word
+		", "
+	phrase
+		"avgi polite playername"
+	word
+		"."
+		"!"
+
+
+phrase "avgi warnings"
+	word
+		"Advice"
+		"Advisory"
+		"Careful"
+		"Caution"
+		"Danger"
+		"Emphasis"
+		"Guiding"
+		"Important"
+		"Insight"
+		"Serious"
+		"Vigilance"
+	word
+		". "
+		"; "
+	word
+		"Be careful of"
+		"Be wary of"
+		"Beware of"
+		"Watch for"
+	word
+		" "
+	word
+		"becoming lost in the Tangles" 3
+		"becoming lost" 3
+		"becoming stranded" 3
+		"cowardly pirates" 2
+		"creatures of darkness"
+		"creatures of the night"
+		"Dissonance pirates" 6
+		"enemy aliens" 3
+		"genocidal aliens" 3
+		"government thieves"
+		"hostile creatures" 3
+		"military dictatorships"
+		"pirates and leeches" 2
+		"running out of fuel" 3
+		"shadow monsters" 2
+		"tangling yourself in the hyperlanes" 3
+		"tax collectors" 3
+		"the Aberrations" 12
+		"the Aberrant" 6
+		"the invaders" 6
+		"the invading aliens" 6
+		"the logistics board"
+		"the rich and powerful" 2
+		"the Silencers"
+		"those of the Incursion" 3
+		"traitorous Dissonance cowards" 6
+		"ungrateful dissidents" 2
+		"ungrateful parasites" 2
+		"unjust price controls"
+	word
+		", "
+	phrase
+		"avgi polite playername"
+	word
+		"."
+		"!"
+
+
+phrase "dissonance warnings"
+	word
+		"Advice"
+		"Advisory"
+		"Careful"
+		"Caution"
+		"Danger"
+		"Emphasis"
+		"Guiding"
+		"Important"
+		"Insight"
+		"Serious"
+	word
+		". "
+		"; "
+	word
+		"Be careful of"
+		"Be opposed to"
+		"Be wary of"
+		"Beware of"
+		"Do not trust"
+		"Look out for"
+		"Trust not"
+		"Watch out for"
+	word
+		" "
+	word
+		"the "
+	word
+		"bureaucratic"
+		"excessive"
+		"oppressive"
+		"overbearing"
+		"overly influential"
+		"tyrannical"
+		"unaccountable"
+		"unbearable"
+		"unfair"
+		"unlimited"
+		"parasitical"
+		"authoritarian"
+	word
+		" "
+	word
+		"Assembly"
+		"Consonance"
+		"emergency measures"
+		"government"
+		"logistics board"
+		"price controls"
+		"regulations"
+		"Silencers"
+		"Twilight Guard"
+		"state of emergency"
+		"tariffs"
+		"tax collectors"
+		"taxes"
+		"war economy"
+	word
+		"."
+
+phrase "avgi complaints"
+	word
+		"Anger"
+		"Annoyance"
+		"Disdain"
+		"Frustration"
+		"Passion"
+	word
+		". "
+		"; "
+	word
+		"Cowardly"
+		"Dishonest"
+		"Dissonance" 6
+		"Ignorant"
+		"Incompetent"
+		"Inconsiderate"
+		"Lazy"
+		"Neglectful"
+		"Selfish"
+		"Uncharitable"
+		"Ungrateful"
+		"Unreciprocative"
+		"Worthless"
+	word
+		" "
+	word
+		"dissenters"
+		"dissidents"
+		"leeches" 3
+		"parasites" 3
+		"pirates" 3
+		"rebels" 3
+		"worms" 3
+	word
+		" "
+	word
+		"accept help"
+		"accept protection"
+		"ask for help"
+		"ask for protection"
+		"took refuge here"
+		"were brought to safety"
+		"were rescued"
+		"were saved"
+	word
+		" "
+	word
+		"and"
+		"but"
+		"yet"
+	word
+		" "
+	word
+		"still they"
+		"still"
+		"they still"
+		"they"
+	word
+		" "
+	word
+		"care only for themselves"
+		"disrespect our Twilight Guard"
+		"disrespect the Assembly"
+		"disrespect us"
+		"hide in their outposts"
+		"hoard their asteroids"
+		"ignore our needs"
+		"ignore the Assembly"
+		"let others protect them"
+		"let us do the fighting"
+		"neglect our fleets"
+		"neglect our Twilight Guard"
+		"only care about their own wings"
+		"refrain from helping"
+		"refuse to bolster our defenses"
+		"refuse to contribute"
+		"refuse to fight"
+		"refuse to help us"
+		"refuse to sell their minerals"
+		"refuse to serve"
+		"refuse to work"
+		"take without giving"
+		"won't contribute"
+		"won't help free our kin"
+		"won't help reclaim our homes"
+		"won't help with the war"
+		"won't save other Avgi"
+		"won't support the war effort"
+		"worry only about themselves"
+	word
+		"."
+		"!"
+		", anger!"
+
+
+phrase "avgi questions"
+	word
+		"Confused"
+		"Curious"
+		"Inquiry"
+		"Investigative"
+		"Question"
+		"Questioning"
+		"Scrutiny"
+		"Searching"
+		"Seeking"
+	word
+		". "
+		"; "
+	word
+		"Do tell us"
+		"Educate us"
+		"Enlighten us"
+		"Inform us"
+		"Please tell us"
+		"Share with us"
+		"Tell us"
+	word
+		", "
+	phrase
+		"avgi polite playername"
+	word
+		", "
+	word
+		"a fun fact"
+		"are aliens real"
+		"are atomics banned on human worlds"
+		"are many species in contact with each other"
+		"are megastructures possible"
+		"are the galaxy's races friendly"
+		"are there any alien civilizations near ours"
+		"are there any birdlike aliens"
+		"are there any civilizations of intelligent machines"
+		"are there any races stronger than humanity"
+		"are there any star nations of multiple species"
+		"are there other aliens in the galaxy"
+		"are traversable wormholes possible"
+		"are you a great warrior"
+		"are you even a real alien"
+		"are you plotting against us"
+		"are your tax rates lower than ours"
+		"can you assist our researchers"
+		"can you help me with this homework problem"
+		"can you help me with this research project"
+		"did you leave your stove on"
+		"do aliens look like avgithromorphic Aviskir life"
+		"do humans edit their genomes"
+		"do humans have familial ties"
+		"do humans use nuclear weapons"
+		"do protons decay"
+		"do you like our ships"
+		"does anyone enforce peace among the stars"
+		"does anyone live at the galactic core"
+		"does anyone live outside the galaxy"
+		"does humanity have a way to produce antimatter more efficiently"
+		"does humanity have any refractory superconducting materials"
+		"does humanity have any unsolved problems in physics"
+		"does humanity see us as a threat"
+		"does peace reign in the galaxy"
+		"does there exist a Creator"
+		"doth thee liketh mine own human poetry"
+		"for how long have you traveled the stars"
+		"has any civilization made war upon its neighbors"
+		"has any species warred with another"
+		"has anyone built a discworld"
+		"has anyone built a ringworld"
+		"has anyone constructed any megastructures"
+		"has anyone enclosed a sun"
+		"has anyone ever been to another galaxy"
+		"has anyone harnessed the power of an entire star"
+		"has anyone researched xenocompatibility"
+		"has humanity discovered any stable superheavy elements"
+		"has humanity found a source of energy beyond fusion"
+		"have aliens been abducting us"
+		"have aliens been watching us"
+		"have aliens visited us before"
+		"have any intelligent species gone extinct"
+		"have you long known of our existence"
+		"have you met other aliens"
+		"how advanced are the other species of the galaxy"
+		"how advanced is human nanotechnology"
+		"how advanced is humanity"
+		"how do gravity repulsors really work"
+		"how does the hyperdrive really work"
+		"how good are human computers"
+		"how many aliens have you killed"
+		"how many civilizations are there in the galaxy"
+		"how many governments rule humanity"
+		"how many humans are there"
+		"how many humans live in orbital habitats"
+		"how many humans live on your homeworld"
+		"how many humans still bother with planets"
+		"how many nuclear weapons does humanity have"
+		"how many other aliens have you met"
+		"how many other species are there"
+		"how many stars has humanity spread to"
+		"how many worlds are there in the galaxy"
+		"is humanity a peaceful race"
+		"is humanity a peaceful species"
+		"is humanity a warlike race"
+		"is humanity among the strongest civilizations"
+		"is humanity the greatest of races"
+		"is humanity the most advanced species"
+		"is it possible to create new starways"
+		"is it possible to destroy a star"
+		"is our model of physics correct"
+		"is the galaxy a great Dark Forest"
+		"is the universe a simulation"
+		"is there a Great Filter"
+		"is there a great galactic community"
+		"is there a great galactic council"
+		"is there a plane higher than this reality"
+		"is there a way to travel beyond the starways"
+		"is there any great crisis in the galaxy"
+		"is there anyone in the galaxy that can help us"
+		"is there light and hope in the galaxy"
+		"is time travel possible"
+		"something interesting about yourself"
+		"were you born on your homeworld"
+		"what created the wasteland to the east"
+		"what do you call the galaxy"
+		"what do you think of our civilization"
+		"what do you think of our government"
+		"what do you think of our habitats"
+		"what do you think of our outfits"
+		"what do you think of our ships"
+		"what do you think of our society"
+		"what do you think of our technology"
+		"what do you think of our worlds"
+		"what economic system do humans follow"
+		"what human material can withstand the most heat"
+		"what is humanity's homeworld like"
+		"what is the Allios Cube made from"
+		"what is the Great Filter"
+		"what is the greatest mystery in the galaxy"
+		"what is the highest temperature refractory material"
+		"what is the human government like"
+		"what is the most wonderful thing among the stars"
+		"what is the strongest material humanity has discovered"
+		"what is your favorite color"
+		"what is your life story"
+		"what system of government rules humanity"
+		"which aliens are nearest to us"
+		"which is the greatest among species"
+		"who are our galactic neighbors"
+		"who is the strongest of the galaxy's races"
+		"who was right in our argument, my friend or I"
+		"why has the galaxy not been completely settled"
+		"why have we not been visited by aliens before"
+		"why is faster than light travel possible"
+		"will anyone save us from our plight"
+		"will you be sharing humanity's knowledge"
+		"will you share your technology with us"
+	word
+		"?"
+		", question?"
+
+
+phrase "avgi commerce"
+	phrase
+		"avgi commerce win"
+		"avgi commerce loss"
+		"avgi commerce neutral"
+
+phrase "avgi commerce win"
+	word
+		"Excitement"
+		"Happy"
+		"Joy"
+		"Enthusiasm"
+	word
+		". "
+		"; "
+	word
+		"Did you know that phosphorus isn't taxed at all?"
+		"I discovered an asteroid with a rich platinum vein. I'm not telling anyone where!"
+		"I found a new ore vein yesterday!"
+		"I found a new route through the Tangles. The Consonance will pay millions for it!"
+		"I got this ship for a steal only a week ago. Now I can travel the stars!"
+		"I heard the Twilight Guard defeated an Aberrant raid yesterday. Soon we can send them back whence they came!"
+		"I made an enormous profit trading iron futures!"
+		"The Twilight Guard just protected my convoy from an Aberrant attack."
+		"The Twilight Guard saved my ship from a Dissonance pirate last week."
+		"This ore nugget bumped into my ship today. Turns out it was pure beryllium!"
+		"Turns out people on Peripheria will pay a lot for fresh fruit."
+	word
+		" "
+	word
+		"I can't wait for tomorrow!"
+		"I hope this all lasts."
+		"I'm glad we're safe here."
+		"Life is great."
+		"Things are looking up!"
+
+
+phrase "avgi commerce loss"
+	word
+		"Anger"
+		"Disappointment"
+		"Disgust"
+		"Hopeless"
+		"Misfortune"
+		"Sadness"
+	word
+		". "
+		"; "
+	word
+		"I lost a month's pay on a failed trade gambit. Now I could lose everything."
+		"I lost all of my profit to the emergency taxes."
+		"It's impossible to make money with these taxes. Why bother with trading?"
+		"Price controls on iron cost me everything."
+		"The Consonance told me I can't retire because palladium quotas are still unmet."
+		"These taxes make it impossible to survive, let alone invest in a new ship."
+		"This ship costs far too much to maintain."
+	word
+		" "
+	word
+		"I never voted for this."
+		"I never asked the Assembly to tell us what to do."
+		"I wish it was different."
+		"Someone needs to do something."
+		"Something needs to be done."
+		"Something needs to change."
+		"The Assembly are idiots."
+		"The economy would be better if metal prices were allowed to rise."
+		"The First Speaker is an idiot."
+		"The price controls and quotas need to go."
+		"The war can be won without these ridiculous measures."
+		"This isn't what we need to win the war."
+		"We deserve better than this."
+		"Why can't goods be sold at a profit?"
+		"Why can't things be different, question?"
+
+
+phrase "avgi commerce neutral"
+	word
+		"Resolve"
+		"Serious"
+		"Hope"
+		"Boldness"
+		"Courage"
+		"Purpose"
+		"Intent"
+	word
+		". "
+		"; "
+	word
+		"Now that I have a ship of my own, I can run when the Aberrations come for us."
+		"With this ship I can help defend our refuge. One day I will help retake Aviskir!"
+		"Tomorrow I will join the Twilight Guard. They need as many wings as they can get."
+		"Only a fool would live without their own ship."
+		"If I sell this ship I can finally retire in peace."
+		"If we can't run, I can hide. Someone told me about a group that hides in the Tangles. I should seek them out."
+		"I've heard of an independent group of hiders, neither Consonance or Dissonance. They're prepared for what's coming."
+		"I heard that a group set out before the Incursion to hide from existential threats. I need to join them."
+		"This war won't be won without people like me."
+
+
+phrase "avgi friendly help"
+	word
+		"Urgent"
+		"Imploring"
+		"Alarm"
+	word
+		". "
+		"; "
+	word
+		"Please"
+		"I ask you"
+		"I beg you"
+		"A favor,"
+		"Favor us,"
+		"Perhaps you could"
+		"We would appreciate it if you would"
+	word
+		" "
+	word
+		"assist"
+		"help"
+		"rescue"
+		"save"
+		"repair"
+		"fix"
+		"patch up"
+		"support"
+		"protect"
+		"defend"
+	word
+		" "
+	word
+		"our"
+		"my"
+		"this"
+	word
+		" "
+	phrase
+		"avgi virtues"
+	word
+		" "
+	word
+		"vessel"
+		"ship"
+		"spacecraft"
+
+
+phrase "avgi angry help"
+	word
+		"Anger"
+		"Disgust"
+		"Distrust"
+		"Fear"
+		"Hostile"
+		"Inconsolable"
+		"Nervous"
+		"Suspicion"
+		"Uncertain"
+		"Wary"
+	word
+		". "
+		"; "
+	word
+		"Begone"
+		"Beware"
+		"Come no closer"
+		"Come no further"
+		"Curse you"
+		"I see you for what you are"
+		"Keep your distance"
+		"Remain in place"
+		"Stay away from me"
+		"Stay away"
+
+
+phrase "twilight guard friendly help"
+	word
+		"Calm"
+		"Commanding"
+		"Imploring"
+		"Important"
+		"Urgent"
+	word
+		". "
+		"; "
+	word
+		"Please"
+		"You should"
+		"We request that you"
+	word
+		" "
+	word
+		"assist"
+		"help"
+		"repair"
+		"fix"
+		"patch up"
+		"support"
+	word
+		" "
+	word
+		"our"
+		"this"
+	word
+		" "
+	word
+		"vessel"
+		"ship"
+		"spacecraft"
+		"warship"
+	word
+		" "
+	word
+		"so we can continue to fight"
+		"so we can defend our people"
+		"so we can defend the innocent"
+		"so we can defend you"
+		"so we can get back in the fight"
+		"to ensure our victory"
+		"to get us back in the fight"
+		"to help us succeed"
+		"to help us to victory"
+		"to help us win this battle"
+		"to let us keep fighting"
+		"to put us back in the fight"
+	word
+		"."
+		"!"
+
+
+phrase "avgi angry"
+	word
+		"Anger"
+		"Disgust"
+		"Distrust"
+		"Fear"
+		"Hostile"
+		"Nervous"
+		"Suspicion"
+		"Uncertain"
+		"Wary"
+	word
+		". "
+		"; "
+	word
+		"Attacking the innocent is shameful"
+		"Don't hurt me, I beg you"
+		"Hold your fire"
+		"Please, there are children on board"
+		"The Avgi will remember this"
+		"We did not want to fight a second alien race"
+		"We will not forget this"
+		"What are you doing"
+		"What is the meaning of this"
+		"You are as bad as an Aberration"
+		"Your crimes will not be forgotten"
+	word
+		"."
+		"!"
+	replace
+		"of this." "of this?"
+		"of this!" "of this?"
+		"you doing." "you doing?"
+		"you doing!" "you doing?"
+
+
+phrase "dissonance angry"
+	word
+		"Anger"
+		"Disgust"
+		"Distrust"
+		"Fear"
+		"Hostile"
+		"Nervous"
+		"Suspicion"
+		"Uncertain"
+		"Wary"
+	word
+		". "
+		"; "
+	word
+		"You are nothing more than a"
+		"You are a"
+		"Curse you, "
+	word
+		" "
+	phrase
+		"dissonance rude playername"
+	word
+		"."
+		"!"
+
+
+phrase "twilight guard angry"
+	word
+		"Anger"
+		"Dutiful"
+		"Enthusiasm"
+		"Reluctance"
+		"Resolve"
+	word
+		", "
+		"; "
+	word
+		"Aliens, no matter how advanced, are not above the law"
+		"Assault is illegal in Avgi space"
+		"Attacking innocents is shameful"
+		"Attacking those under our protection is a death sentence"
+		"Murdering civilians is a war crime"
+		"The Avgi tolerate no murderers"
+		"You are a murderous warmonger"
+		"You have assaulted innocents"
+		"You have attacked the Avgi Consonance"
+		"You have committed an unprovoked attack on us"
+	word
+		". "
+	word
+		"Cease all activities and prepare to be boarded"
+		"Consider ourselves at war"
+		"Consider yourself a target"
+		"Eat nuclear fire"
+		"Lower your shields and power down your weapons"
+		"Please don't make us atomize that shiny alien technology"
+		"Prepare to die"
+		"Prepare yourself for battle"
+		"Pull over and prepare your license and registration"
+		"Ready yourself for annihilation"
+		"Shut down your reactor immediately"
+		"Surrender your ship immediately"
+		"Taste atomic fire"
+		"Taste the rainbow"
+		"This is your last chance to surrender"
+		"This means war"
+		"Turn off all systems and we will refrain from destroying you"
+		"We are now at war"
+		"We offer generous surrender terms"
+		"We will destroy you"
+		"We will eradicate you"
+		"You will be atomized"
+		"You will be destroyed"
+		"You will be eradicated"
+		"You will be reduced to ash and flame"
+		"You will be reduced to hot vapor"
+		"You will be reduced to your constituent atoms"
+	word
+		"."
+		"!"
+
+phrase "avgi remembrance"
+	word
+		"Anger"
+		"Dutiful"
+		"Enthusiasm"
+		"Reluctance"
+		"Resolve"
+	word
+		", "
+		"; "
+	word
+		"Fight for "
+		"Remember "
+		"Never forget "
+	phrase
+		"avgi places"
+	word
+		"!"

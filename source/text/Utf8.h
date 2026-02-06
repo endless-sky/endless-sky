@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEXT_UTF8_H_
-#define ES_TEXT_UTF8_H_
+#pragma once
 
 #include <cstddef>
 #include <string>
@@ -41,5 +40,3 @@ namespace Utf8 {
 	// or is set string::npos when there are no more code points.
 	char32_t DecodeCodePoint(const std::string &str, std::size_t &pos);
 }
-
-#endif

@@ -15,14 +15,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Font.h"
 
-#include "alignment.hpp"
+#include "Alignment.h"
 #include "../Color.h"
 #include "DisplayText.h"
-#include "../ImageBuffer.h"
+#include "../GameData.h"
+#include "../image/ImageBuffer.h"
+#include "../image/ImageFileData.h"
 #include "../Point.h"
 #include "../Preferences.h"
 #include "../Screen.h"
-#include "truncate.hpp"
+#include "Truncate.h"
 
 #include <algorithm>
 #include <cmath>
@@ -33,66 +35,49 @@ using namespace std;
 
 namespace {
 	bool showUnderlines = false;
-
-	const char *vertexCode =
-		"// vertex font shader\n"
-		// "scale" maps pixel coordinates to GL coordinates (-1 to 1).
-		"uniform vec2 scale;\n"
-		// The (x, y) coordinates of the top left corner of the glyph.
-		"uniform vec2 position;\n"
-		// The glyph to draw. (ASCII value - 32).
-		"uniform int glyph;\n"
-		// Aspect ratio of rendered glyph (unity by default).
-		"uniform float aspect;\n"
-
-		// Inputs from the VBO.
-		"in vec2 vert;\n"
-		"in vec2 corner;\n"
-
-		// Output to the fragment shader.
-		"out vec2 texCoord;\n"
-
-		// Pick the proper glyph out of the texture.
-		"void main() {\n"
-		"  texCoord = vec2((float(glyph) + corner.x) / 98.f, corner.y);\n"
-		"  gl_Position = vec4((aspect * vert.x + position.x) * scale.x, (vert.y + position.y) * scale.y, 0.f, 1.f);\n"
-		"}\n";
-
-	const char *fragmentCode =
-		"// fragment font shader\n"
-		"precision mediump float;\n"
-		// The user must supply a texture and a color (white by default).
-		"uniform sampler2D tex;\n"
-		"uniform vec4 color;\n"
-
-		// This comes from the vertex shader.
-		"in vec2 texCoord;\n"
-
-		// Output color.
-		"out vec4 finalColor;\n"
-
-		// Multiply the texture by the user-specified color (including alpha).
-		"void main() {\n"
-		"  finalColor = texture(tex, texCoord).a * color;\n"
-		"}\n";
-
 	const int KERN = 2;
+
+	/// Shared VAO and VBO quad (0,0) -> (1,1)
+	GLuint vao = 0;
+	GLuint vbo = 0;
+
+	GLint colorI = 0;
+	GLint scaleI = 0;
+	GLint glyphSizeI = 0;
+	GLint glyphI = 0;
+	GLint aspectI = 0;
+	GLint positionI = 0;
+
+	GLint vertI;
+	GLint cornerI;
+
+	void EnableAttribArrays()
+	{
+		// Connect the xy to the "vert" attribute of the vertex shader.
+		constexpr auto stride = 4 * sizeof(GLfloat);
+		glEnableVertexAttribArray(vertI);
+		glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, stride, nullptr);
+
+		glEnableVertexAttribArray(cornerI);
+		glVertexAttribPointer(cornerI, 2, GL_FLOAT, GL_FALSE,
+			stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
+	}
 }
 
 
 
-Font::Font(const string &imagePath)
+Font::Font(const filesystem::path &imagePath)
 {
 	Load(imagePath);
 }
 
 
 
-void Font::Load(const string &imagePath)
+void Font::Load(const filesystem::path &imagePath)
 {
 	// Load the texture.
 	ImageBuffer image;
-	if(!image.Read(imagePath))
+	if(!image.Read(ImageFileData(imagePath)))
 		return;
 
 	LoadTexture(image);
@@ -136,9 +121,15 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 
 void Font::DrawAliased(const string &str, double x, double y, const Color &color) const
 {
-	glUseProgram(shader.Object());
+	glUseProgram(shader->Object());
 	glBindTexture(GL_TEXTURE_2D, texture);
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(vao);
+	else
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		EnableAttribArrays();
+	}
 
 	glUniform4fv(colorI, 1, color.Get());
 
@@ -147,9 +138,11 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	{
 		screenWidth = Screen::Width();
 		screenHeight = Screen::Height();
-		GLfloat scale[2] = {2.f / screenWidth, -2.f / screenHeight};
-		glUniform2fv(scaleI, 1, scale);
+		scale[0] = 2.f / screenWidth;
+		scale[1] = -2.f / screenHeight;
 	}
+	glUniform2fv(scaleI, 1, scale);
+	glUniform2f(glyphSizeI, glyphWidth, glyphHeight);
 
 	GLfloat textPos[2] = {
 		static_cast<float>(x - 1.),
@@ -199,7 +192,14 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 		previous = glyph;
 	}
 
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
+	else
+	{
+		glDisableVertexAttribArray(vertI);
+		glDisableVertexAttribArray(cornerI);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	}
 	glUseProgram(0);
 }
 
@@ -335,50 +335,56 @@ void Font::CalculateAdvances(ImageBuffer &image)
 
 void Font::SetUpShader(float glyphW, float glyphH)
 {
-	glyphW *= .5f;
-	glyphH *= .5f;
+	glyphWidth = glyphW * .5f;
+	glyphHeight = glyphH * .5f;
 
-	shader = Shader(vertexCode, fragmentCode);
-	glUseProgram(shader.Object());
-	glUniform1i(shader.Uniform("tex"), 0);
-	glUseProgram(0);
+	shader = GameData::Shaders().Get("font");
+	// Initialize the shared parameters only once
+	if(!vbo)
+	{
+		vertI = shader->Attrib("vert");
+		cornerI = shader->Attrib("corner");
 
-	// Create the VAO and VBO.
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+		glUseProgram(shader->Object());
+		glUniform1i(shader->Uniform("tex"), 0);
+		glUseProgram(0);
 
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		// Create the VAO and VBO.
+		if(OpenGL::HasVaoSupport())
+		{
+			glGenVertexArrays(1, &vao);
+			glBindVertexArray(vao);
+		}
 
-	GLfloat vertices[] = {
-		   0.f,    0.f, 0.f, 0.f,
-		   0.f, glyphH, 0.f, 1.f,
-		glyphW,    0.f, 1.f, 0.f,
-		glyphW, glyphH, 1.f, 1.f
-	};
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		glGenBuffers(1, &vbo);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	// Connect the xy to the "vert" attribute of the vertex shader.
-	constexpr auto stride = 4 * sizeof(GLfloat);
-	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
+		GLfloat vertices[] = {
+				0.f, 0.f, 0.f, 0.f,
+				0.f, 1.f, 0.f, 1.f,
+				1.f, 0.f, 1.f, 0.f,
+				1.f, 1.f, 1.f, 1.f
+		};
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	glEnableVertexAttribArray(shader.Attrib("corner"));
-	glVertexAttribPointer(shader.Attrib("corner"), 2, GL_FLOAT, GL_FALSE,
-		stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
+		if(OpenGL::HasVaoSupport())
+			EnableAttribArrays();
 
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		if(OpenGL::HasVaoSupport())
+			glBindVertexArray(0);
+
+		colorI = shader->Uniform("color");
+		scaleI = shader->Uniform("scale");
+		glyphSizeI = shader->Uniform("glyphSize");
+		glyphI = shader->Uniform("glyph");
+		aspectI = shader->Uniform("aspect");
+		positionI = shader->Uniform("position");
+	}
 
 	// We must update the screen size next time we draw.
 	screenWidth = 0;
 	screenHeight = 0;
-
-	colorI = shader.Uniform("color");
-	scaleI = shader.Uniform("scale");
-	glyphI = shader.Uniform("glyph");
-	aspectI = shader.Uniform("aspect");
-	positionI = shader.Uniform("position");
 }
 
 
@@ -440,107 +446,39 @@ string Font::TruncateText(const DisplayText &text, int &width) const
 
 string Font::TruncateBack(const string &str, int &width) const
 {
-	int firstWidth = WidthRawString(str.c_str());
-	if(firstWidth <= width)
-	{
-		width = firstWidth;
-		return str;
-	}
-
-	int prevChars = str.size();
-	int prevWidth = firstWidth;
-
-	width -= widthEllipses;
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct) limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
-	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
-
-		int nextWidth = WidthRawString(str.substr(0, nextChars).c_str(), '.');
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+	return TruncateEndsOrMiddle(str, width,
+		[](const string &str, int charCount)
 		{
-			if(prevWorks)
-			{
-				width = prevWidth + widthEllipses;
-				return str.substr(0, prevChars) + "...";
-			}
-			else
-			{
-				width = nextWidth + widthEllipses;
-				return str.substr(0, nextChars) + "...";
-			}
-		}
-
-		prevChars = nextChars;
-		prevWidth = nextWidth;
-	}
-	width = firstWidth;
-	return str;
+			return str.substr(0, charCount) + "...";
+		});
 }
 
 
 
 string Font::TruncateFront(const string &str, int &width) const
 {
-	int firstWidth = WidthRawString(str.c_str());
-	if(firstWidth <= width)
-	{
-		width = firstWidth;
-		return str;
-	}
-
-	int prevChars = str.size();
-	int prevWidth = firstWidth;
-
-	width -= widthEllipses;
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct) limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
-	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
-
-		int nextWidth = WidthRawString(str.substr(str.size() - nextChars).c_str());
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+	return TruncateEndsOrMiddle(str, width,
+		[](const string &str, int charCount)
 		{
-			if(prevWorks)
-			{
-				width = prevWidth + widthEllipses;
-				return "..." + str.substr(str.size() - prevChars);
-			}
-			else
-			{
-				width = nextWidth + widthEllipses;
-				return "..." + str.substr(str.size() - nextChars);
-			}
-		}
-
-		prevChars = nextChars;
-		prevWidth = nextWidth;
-	}
-	width = firstWidth;
-	return str;
+			return "..." + str.substr(str.size() - charCount);
+		});
 }
 
 
 
 string Font::TruncateMiddle(const string &str, int &width) const
+{
+	return TruncateEndsOrMiddle(str, width,
+		[](const string &str, int charCount)
+		{
+			return str.substr(0, (charCount + 1) / 2) + "..." + str.substr(str.size() - charCount / 2);
+		});
+}
+
+
+
+string Font::TruncateEndsOrMiddle(const string &str, int &width,
+	function<string(const string &, int)> getResultString) const
 {
 	int firstWidth = WidthRawString(str.c_str());
 	if(firstWidth <= width)
@@ -549,43 +487,27 @@ string Font::TruncateMiddle(const string &str, int &width) const
 		return str;
 	}
 
-	int prevChars = str.size();
-	int prevWidth = firstWidth;
+	int workingChars = 0;
+	int workingWidth = 0;
 
-	width -= widthEllipses;
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct), limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
+	int low = 0, high = str.size() - 1;
+	while(low <= high)
 	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
-
-		int leftChars = nextChars / 2;
-		int rightChars = nextChars - leftChars;
-		int nextWidth = WidthRawString((str.substr(0, leftChars) + str.substr(str.size() - rightChars)).c_str(), '.');
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+		// Think "how many chars to take from both ends, omitting in the middle".
+		int nextChars = (low + high) / 2;
+		int nextWidth = WidthRawString(getResultString(str, nextChars).c_str());
+		if(nextWidth <= width)
 		{
-			if(prevWorks)
+			if(nextChars > workingChars)
 			{
-				leftChars = prevChars / 2;
-				rightChars = prevChars - leftChars;
-				width = prevWidth + widthEllipses;
+				workingChars = nextChars;
+				workingWidth = nextWidth;
 			}
-			else
-				width = nextWidth + widthEllipses;
-			return str.substr(0, leftChars) + "..." + str.substr(str.size() - rightChars);
+			low = nextChars + (nextChars == low);
 		}
-
-		prevChars = nextChars;
-		prevWidth = nextWidth;
+		else
+			high = nextChars - 1;
 	}
-	width = firstWidth;
-	return str;
+	width = workingWidth;
+	return getResultString(str, workingChars);
 }

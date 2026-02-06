@@ -1,0 +1,386 @@
+# Copyright (c) 2024 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+
+ship "Aaulqra" "Aaulqra (Brawler)"
+	outfits
+		`"Ojet" Bimodal Coilgun` 2
+		"Drag Cannon" 3
+		"Bimodal Coilgun Turret" 2
+
+		`"Uoret" Fusion Core`
+		`3-"Kaska" Betavoltaic Cell`
+		`"Jorv" Shield Cortex`
+		"Multimodal Armor: Regen"
+		"Successor Cooling"
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"
+	gun
+	gun "Drag Cannon"
+	gun "Drag Cannon"
+	gun "Drag Cannon"
+	gun `"Ojet" Bimodal Coilgun`
+	gun `"Ojet" Bimodal Coilgun`
+	turret "Bimodal Coilgun Turret"
+	turret "Bimodal Coilgun Turret"
+
+
+ship "Aaulqra" "Aaulqra (Sniper)"
+	outfits
+		`"Ojet" Bimodal Coilgun` 4
+		`"Sjeja" Kinetic Lance`
+		"High-Velocity Spike" 20
+
+		`"Uoret" Fusion Core`
+		`3-"Kaska" Betavoltaic Cell`
+		`"Jaase" Shield Cortex`
+		"Multimodal Armor: Light"
+		"Successor Cooling"
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		`"Veusa" Inductive Reverser`
+		"Hyperdrive"
+	gun
+	gun `"Sjeja" Kinetic Lance`
+	gun `"Ojet" Bimodal Coilgun`
+	gun `"Ojet" Bimodal Coilgun`
+	gun `"Ojet" Bimodal Coilgun`
+	gun `"Ojet" Bimodal Coilgun`
+	turret
+	turret
+
+
+
+ship "Kaskhorade" "Kaskhorade (Brawler)"
+	outfits
+		"Bimodal Coilgun Turret" 4
+
+		`"Uoret" Fusion Core`
+		`OC-"Mavra" Betavoltaic Cell`
+		`"Jorv" Shield Cortex`
+		"Multimodal Armor: Regen"
+		"Successor Cooling"
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		`"Chyyra" Inductive Reverser`
+		"Hyperdrive"
+	gun
+	gun
+	gun
+	gun
+	turret "Bimodal Coilgun Turret"
+	turret "Bimodal Coilgun Turret"
+	turret "Bimodal Coilgun Turret"
+	turret "Bimodal Coilgun Turret"
+
+
+ship "Kaskhorade" "Kaskhorade (Sniper)"
+	outfits
+		`"Sjeja" Kinetic Lance` 2
+		"High-Velocity Spike Rack"
+		"High-Velocity Spike" 60
+
+		`"Uoret" Fusion Core`
+		`"Jaase" Shield Cortex`
+		"Multimodal Armor: Light"
+		"Successor Cooling"
+
+		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive Steering`
+		`"Veusa" Inductive Reverser`
+		"Hyperdrive"
+	gun `"Sjeja" Kinetic Lance`
+	gun `"Sjeja" Kinetic Lance`
+	gun
+	gun
+	turret
+	turret
+	turret
+	turret
+
+
+
+ship "Kvelqde" "Kvelqde (Mining)"
+	outfits
+		"Pulse Laser Turret"
+
+		`1-"Uurau" Betavoltaic Cell`
+		`OC-"Mavra" Betavoltaic Cell`
+		`3-"Kaska" Betavoltaic Cell`
+		`"Byiaa" Shield Cortex`
+		`"Tuur" Scanning Suite`
+
+		`"Niis" Inductive Engines`
+		"Hyperdrive"
+	gun
+	turret "Pulse Laser Turret"
+
+
+ship "Kvelqde" "Kvelqde (Violent)"
+	outfits
+		"Overcharged Pulse Laser"
+		"Overcharged Laser Turret"
+
+		`1-"Uurau" Betavoltaic Cell` 2
+		`"Ej" Shield Cortex`
+
+		`"Aqra" Inductive Thruster`
+		`"Aqra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"
+	gun "Overcharged Pulse Laser"
+	turret "Overcharged Laser Turret"
+
+
+
+ship "Kvelqde-Khora" "Kvelqde-Khora (Mining)"
+	outfits
+		"Successor Pulse Laser" 2
+
+		`3-"Kaska" Betavoltaic Cell`
+		"Auxiliary Power Reserve"
+		`"Byiaa" Shield Cortex`
+		`"Tuur" Scanning Suite`
+		"Cargo Expansion" 2
+
+		`"Aqra" Inductive Thruster`
+		`"Aqra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"
+	gun "Successor Pulse Laser"
+	gun "Successor Pulse Laser"
+	turret
+
+
+
+ship "Myaede" "Myaede (Mining)"
+	outfits
+		"Pulse Laser Turret" 2
+
+		`3-"Kaska" Betavoltaic Cell`
+		`1-"Uurau" Betavoltaic Cell` 2
+		`"Ej" Shield Cortex`
+		`"Tuur" Scanning Suite`
+		"Cargo Expansion"
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"
+	gun
+	gun
+	turret "Pulse Laser Turret"
+	turret "Pulse Laser Turret"
+
+
+ship "Myaede" "Myaede (Mining, Defensive)"
+	outfits
+		"Successor Pulse Laser" 2
+		"Pulse Laser Turret" 2
+
+		`6-"Ruuv" Betavoltaic Cell`
+		`"Ej" Shield Cortex`
+		`"Tuur" Scanning Suite`
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		"Hyperdrive"
+	gun "Successor Pulse Laser"
+	gun "Successor Pulse Laser"
+	turret "Pulse Laser Turret"
+	turret "Pulse Laser Turret"
+
+
+ship "Myaede" "Myaede (Violent)"
+	outfits
+		"Overcharged Pulse Laser" 2
+		"Overcharged Laser Turret" 2
+
+		`6-"Ruuv" Betavoltaic Cell`
+		"Auxiliary Power Reserve"
+		`"Ej" Shield Cortex`
+		"Successor Cooling"
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		"Hyperdrive"
+	gun "Overcharged Pulse Laser"
+	gun "Overcharged Pulse Laser"
+	turret "Overcharged Laser Turret"
+	turret "Overcharged Laser Turret"
+
+
+
+ship "Nnaatej" "Nnaatej (Defensive)"
+	outfits
+		"Pulse Laser Turret"
+
+		`3-"Kaska" Betavoltaic Cell`
+		`1-"Uurau" Betavoltaic Cell`
+		`OC-"Mavra" Betavoltaic Cell`
+		`"Ej" Shield Cortex`
+		"Successor Cooling"
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		"Hyperdrive"
+	turret "Pulse Laser Turret"
+
+
+
+ship "Ojde" "Ojde (Mining)"
+	outfits
+		"Pulse Laser Turret" 2
+
+		`6-"Ruuv" Betavoltaic Cell`
+		"Primary Power Reserve"
+		`"Ej" Shield Cortex`
+		"Successor Cooling"
+		`"Tuur" Scanning Suite` 2
+		
+		`"Chyyra" Inductive Thruster`
+		`"Veusa" Inductive Steering`
+		`"Chyyra" Inductive Reverser`
+		"Hyperdrive"
+	gun
+	gun
+	turret "Pulse Laser Turret"
+	turret "Pulse Laser Turret"
+	turret
+
+
+
+ship "Stolsaqra" "Stolsaqra (Military)"
+	outfits
+		`"Ojet" Bimodal Coilgun` 3
+
+		`3-"Kaska" Betavoltaic Cell`
+		`"Byiaa" Shield Cortex`
+		"Multimodal Armor: Light"
+		`"Veldt" Combat Scanner`
+
+		`"Aqra" Inductive Thruster`
+		`"Aqra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"
+	gun `"Ojet" Bimodal Coilgun`
+	gun `"Ojet" Bimodal Coilgun`
+	gun `"Ojet" Bimodal Coilgun`
+
+
+ship "Stolsaqra" "Stolsaqra (Mission Escort)"
+	outfits
+		"Drag Cannon" 3
+
+		`3-"Kaska" Betavoltaic Cell`
+		`"Byiaa" Shield Cortex`
+		"Fuel Pod" 3
+		"Multimodal Armor: Light"
+
+		`"Aqra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"
+	gun "Drag Cannon"
+	gun "Drag Cannon"
+	gun "Drag Cannon"
+
+
+ship "Stolsaqra" "Stolsaqra (Short-Range)"
+	outfits
+		"Drag Cannon" 3
+
+		`OC-"Mavra" Betavoltaic Cell` 2
+		`"Byiaa" Shield Cortex`
+		"Multimodal Armor: Light"
+		`"Veldt" Combat Scanner`
+
+		`"Aqra" Inductive Thruster` 2
+		`"Aqra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"
+	gun "Drag Cannon"
+	gun "Drag Cannon"
+	gun "Drag Cannon"
+
+
+
+ship "Veusade" "Veusade (Surveillance)"
+	outfits
+		"Drag Cannon" 8
+
+		`"Ryuit" Fusion Core`
+		"Auxiliary Power Reserve"
+		`"Jaase" Shield Cortex`
+		"Successor Cooling"
+		"Multimodal Armor: Light"
+		`"Veldt" Combat Scanner`
+
+		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive Steering`
+		"Hyperdrive"
+	gun "Drag Cannon"
+	gun "Drag Cannon"
+	gun "Drag Cannon"
+	gun "Drag Cannon"
+	gun "Drag Cannon"
+	gun "Drag Cannon"
+	gun "Drag Cannon"
+	gun "Drag Cannon"
+
+
+
+ship "Vujlet" "Vujlet (Aggressive)"
+	outfits
+		`"Ojet" Bimodal Coilgun` 4
+
+		`"Nnesa" Fusion Core`
+		"Auxiliary Power Reserve" 3
+		`"Ej" Shield Cortex`
+		"Successor Cooling"
+		"Multimodal Armor: Heavy"
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		"Hyperdrive"
+	gun `"Ojet" Bimodal Coilgun`
+	gun `"Ojet" Bimodal Coilgun`
+	gun `"Ojet" Bimodal Coilgun`
+	gun `"Ojet" Bimodal Coilgun`
+
+
+ship "Vujlet" "Vujlet (Surveillance)"
+	outfits
+		`"Ojet" Bimodal Coilgun` 2
+
+		`"Nnesa" Fusion Core`
+		"Primary Power Reserve"
+		`"Jaase" Shield Cortex`
+		"Successor Cooling"
+		"Multimodal Armor: Light"
+		`"Veldt" Combat Scanner`
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		`"Chyyra" Inductive Reverser`
+		"Hyperdrive"
+	gun `"Ojet" Bimodal Coilgun`
+	gun `"Ojet" Bimodal Coilgun`
+	gun
+	gun

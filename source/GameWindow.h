@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAMEWINDOW_H_
-#define GAMEWINDOW_H_
+#pragma once
 
 #include "Preferences.h"
 
@@ -30,11 +29,8 @@ public:
 	// Paint the next frame in the main window.
 	static void Step();
 
-	// Ensure the proper icon is set on the main window.
-	static void SetIcon();
-
 	// Handle resize events of the main window.
-	static void AdjustViewport();
+	static void AdjustViewport(bool noResizeEvent = false);
 
 	// Attempt to set the game's VSync setting.
 	static bool SetVSync(Preferences::VSync state);
@@ -43,15 +39,22 @@ public:
 	static int Width();
 	static int Height();
 
+	// Last known drawable width & height.
+	static int DrawWidth();
+	static int DrawHeight();
+
 	static bool IsMaximized();
 	static bool IsFullscreen();
 	static void ToggleFullscreen();
+	static void ToggleBlockScreenSaver();
 
 	// Print the error message in the terminal, error file, and message box.
 	// Checks for video system errors and records those as well.
-	static void ExitWithError(const std::string& message, bool doPopUp = true);
-};
+	static void ExitWithError(const std::string &message, bool doPopUp = true);
 
-
-
+#ifdef _WIN32
+	// Set attributes of the main window according to the current preferences.
+	static void UpdateTitleBarTheme();
+	static void UpdateWindowRounding();
 #endif
+};

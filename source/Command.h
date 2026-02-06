@@ -13,10 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef COMMAND_H_
-#define COMMAND_H_
+#pragma once
 
 #include <cstdint>
+#include <filesystem>
 #include <string>
 
 class DataNode;
@@ -40,6 +40,7 @@ public:
 	static const Command AUTOSTEER;
 	static const Command BACK;
 	static const Command MOUSE_TURNING_HOLD;
+	static const Command AIM_TURRET_HOLD;
 	static const Command PRIMARY;
 	static const Command TURRET_TRACKING;
 	static const Command SECONDARY;
@@ -63,10 +64,13 @@ public:
 	static const Command FULLSCREEN;
 	static const Command FASTFORWARD;
 	static const Command HELP;
+	static const Command PAUSE;
+	static const Command PERFORMANCE_DISPLAY;
 	// Escort commands:
 	static const Command FIGHT;
+	static const Command HOLD_FIRE;
 	static const Command GATHER;
-	static const Command HOLD;
+	static const Command HOLD_POSITION;
 	static const Command AMMO;
 	static const Command HARVEST;
 	// This command is given in combination with JUMP or LAND and tells a ship
@@ -99,8 +103,8 @@ public:
 	void ReadKeyboard();
 
 	// Load or save the keyboard preferences.
-	static void LoadSettings(const std::string &path);
-	static void SaveSettings(const std::string &path);
+	static void LoadSettings(const std::filesystem::path &path);
+	static void SaveSettings(const std::filesystem::path &path);
 	static void SetKey(Command command, int keycode);
 
 	// Get the description or keycode name for this command. If this command is
@@ -152,7 +156,3 @@ private:
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
 };
-
-
-
-#endif

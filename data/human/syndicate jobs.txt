@@ -565,9 +565,11 @@ mission "Syndicated Shipyards Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Foundry"
 	source
 		near Achernar 2 10
 		attributes core factory
+		not government "Pirate"
 	destination Foundry
 	npc
 		government Pirate
@@ -587,9 +589,11 @@ mission "Syndicated Shipyards Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Foundry"
 	source
 		near Achernar 2 10
 		attributes core mining
+		not government "Pirate"
 	destination Foundry
 	npc
 		government Pirate
@@ -609,9 +613,11 @@ mission "Syndicated Shipyards Shipment [2]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Foundry"
 	source
 		near Achernar 2 10
 		attributes core factory
+		not government "Pirate"
 	destination Foundry
 	npc
 		government Pirate
@@ -631,9 +637,11 @@ mission "Syndicated Shipyards Shipment [3]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Foundry"
 	source
 		near Achernar 2 10
 		attributes core factory
+		not government "Pirate"
 	destination Foundry
 	npc
 		government Pirate
@@ -653,9 +661,11 @@ mission "Syndicated Systems Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Hephaestus"
 	source
 		near Markab 2 10
 		attributes core factory
+		not government "Pirate"
 	destination Hephaestus
 	npc
 		government Pirate
@@ -675,9 +685,11 @@ mission "Syndicated Systems Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Hephaestus"
 	source
 		near Markab 2 10
 		attributes core mining factory
+		not government "Pirate"
 	destination Hephaestus
 	npc
 		government Pirate
@@ -697,9 +709,11 @@ mission "Megaparsec Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Sunracer"
 	source
 		near Mirfak 2 10
 		attributes core factory
+		not government "Pirate"
 	destination Sunracer
 	npc
 		government Pirate
@@ -719,9 +733,11 @@ mission "Megaparsec Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Sunracer"
 	source
 		near Mirfak 2 10
 		attributes core mining factory
+		not government "Pirate"
 	destination Sunracer
 	npc
 		government Pirate
@@ -741,9 +757,11 @@ mission "Megaparsec Shipment [2]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Sunracer"
 	source
 		near Mirfak 2 10
 		attributes core mining factory
+		not government "Pirate"
 	destination Sunracer
 	npc
 		government Pirate
@@ -754,3 +772,47 @@ mission "Megaparsec Shipment [2]"
 	on complete
 		payment 0 160
 		dialog phrase "generic cargo delivery payment"
+
+mission "Syndicate Hovercraft Racer Transport"
+	name "Transport racer to <planet>"
+	description "Deliver a pilot and their hovercraft to <destination> to attend a race by <date> for <payment>."
+	passengers 1
+	cargo "Syndicate hovercraft" 1
+	job
+	repeat
+	deadline
+	to offer
+		random < 6
+		has "landing access: Sunracer"
+	source
+		government "Syndicate"
+		not near "Mirfak" 4
+	destination Sunracer
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		dialog `You drop off the pilot with their hovercraft and collect your payment of <payment>.`
+
+mission "Syndicate Hovercraft Large Racer Transport"
+	name "Transport team to <planet>"
+	description "Deliver this <passengers>-member racing team and their set of <cargo> to <destination> to attend a race by <date> for <payment>."
+	passengers 50 100 .9
+	cargo "Syndicate hovercraft" 50
+	job
+	repeat
+	deadline
+	deadline 8
+	to offer
+		random < 1
+		has "landing access: Sunracer"
+	source
+		government "Syndicate"
+		not near "Mirfak" 4
+	destination Sunracer
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		payment 23000
+		dialog `You drop off the racing team with their hovercraft and collect your payment of <payment>.`

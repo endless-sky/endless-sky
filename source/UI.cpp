@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "UI.h"
 
+#include "audio/Audio.h"
 #include "Command.h"
 #include "Panel.h"
 #include "Screen.h"
@@ -44,11 +45,11 @@ bool UI::Handle(const SDL_Event &event)
 		if(event.type == SDL_MOUSEMOTION)
 		{
 			if(event.motion.state & SDL_BUTTON(1))
-				handled = (*it)->Drag(
+				handled = (*it)->DoDrag(
 					event.motion.xrel * 100. / Screen::Zoom(),
 					event.motion.yrel * 100. / Screen::Zoom());
 			else
-				handled = (*it)->Hover(
+				handled = (*it)->DoHover(
 					Screen::Left() + event.motion.x * 100 / Screen::Zoom(),
 					Screen::Top() + event.motion.y * 100 / Screen::Zoom());
 		}
@@ -56,27 +57,23 @@ bool UI::Handle(const SDL_Event &event)
 		{
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
-			if(event.button.button == 1)
-			{
+			if(event.button.button == SDL_BUTTON_LEFT)
 				handled = (*it)->ZoneClick(Point(x, y));
-				if(!handled)
-					handled = (*it)->Click(x, y, event.button.clicks);
-			}
-			else if(event.button.button == 3)
-				handled = (*it)->RClick(x, y);
+			if(!handled)
+				handled = (*it)->DoClick(x, y, static_cast<MouseButton>(event.button.button), event.button.clicks);
 		}
 		else if(event.type == SDL_MOUSEBUTTONUP)
 		{
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
-			handled = (*it)->Release(x, y);
+			handled = (*it)->DoRelease(x, y, static_cast<MouseButton>(event.button.button));
 		}
 		else if(event.type == SDL_MOUSEWHEEL)
-			handled = (*it)->Scroll(event.wheel.x, event.wheel.y);
+			handled = (*it)->DoScroll(event.wheel.x, event.wheel.y);
 		else if(event.type == SDL_KEYDOWN)
 		{
 			Command command(event.key.keysym.sym);
-			handled = (*it)->KeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
+			handled = (*it)->DoKeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
 		}
 
 		// If this panel does not want anything below it to receive events, do
@@ -121,7 +118,14 @@ void UI::DrawAll()
 			break;
 
 	for( ; it != stack.end(); ++it)
-		(*it)->Draw();
+		(*it)->DoDraw();
+}
+
+
+
+const vector<shared_ptr<Panel>> &UI::Stack() const
+{
+	return stack;
 }
 
 
@@ -136,8 +140,8 @@ void UI::Push(Panel *panel)
 
 void UI::Push(const shared_ptr<Panel> &panel)
 {
-	panel->SetUI(this);
 	toPush.push_back(panel);
+	panel->SetUI(this);
 }
 
 
@@ -259,6 +263,14 @@ bool UI::IsEmpty() const
 
 
 
+void UI::AdjustViewport() const
+{
+	for(auto &it : stack)
+		it->DoResize();
+}
+
+
+
 // Get the current mouse position.
 Point UI::GetMouse()
 {
@@ -266,6 +278,34 @@ Point UI::GetMouse()
 	int y = 0;
 	SDL_GetMouseState(&x, &y);
 	return Screen::TopLeft() + Point(x, y) * (100. / Screen::Zoom());
+}
+
+
+
+void UI::PlaySound(UISound sound)
+{
+	string name;
+	switch(sound)
+	{
+		case UISound::NORMAL:
+			name = "ui/click";
+			break;
+		case UISound::SOFT:
+			name = "ui/click soft";
+			break;
+		case UISound::SOFT_BUZZ:
+			name = "ui/buzz soft";
+			break;
+		case UISound::TARGET:
+			name = "ui/target";
+			break;
+		case UISound::FAILURE:
+			name = "ui/fail";
+			break;
+		default:
+			return;
+	}
+	Audio::Play(Audio::Get(name), SoundCategory::UI);
 }
 
 
@@ -291,4 +331,8 @@ void UI::PushOrPop()
 			}
 	}
 	toPop.clear();
+
+	// Each panel potentially has its own children, which could be modified.
+	for(auto &panel : stack)
+		panel->AddOrRemove();
 }

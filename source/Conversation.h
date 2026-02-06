@@ -13,11 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONVERSATION_H_
-#define CONVERSATION_H_
+#pragma once
 
 #include "ConditionSet.h"
-#include "ConditionsStore.h"
 #include "GameAction.h"
 
 #include <map>
@@ -25,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
+class ConditionsStore;
 class DataNode;
 class DataWriter;
 class Sprite;
@@ -38,31 +37,11 @@ class Sprite;
 // are set for the player, or even trigger various changes to the game's state.
 class Conversation {
 public:
-	// The possible outcomes of a conversation:
-	static const int ACCEPT = -1;
-	static const int DECLINE = -2;
-	static const int DEFER = -3;
-	// These 3 options force the player to TakeOff (if landed), or cause
-	// the boarded NPCs to explode, in addition to respectively duplicating
-	// the above mission outcomes.
-	static const int LAUNCH = -4;
-	static const int FLEE = -5;
-	static const int DEPART = -6;
-	// The player may simply die (if landed on a planet or captured while
-	// in space), or the flagship might also explode.
-	static const int DIE = -7;
-	static const int EXPLODE = -8;
-
-	// Check whether the given conversation outcome is one that forces the
-	// player to immediately depart.
-	static bool RequiresLaunch(int outcome);
-
-public:
 	Conversation() = default;
 	// Construct and Load() at the same time.
-	Conversation(const DataNode &node);
+	Conversation(const DataNode &node, const ConditionsStore *playerConditions);
 	// Read or write to files.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	void Save(DataWriter &out) const;
 	// Check if any data is loaded in this conversation object.
 	bool IsEmpty() const noexcept;
@@ -81,9 +60,11 @@ public:
 	bool IsChoice(int node) const;
 	// Some choices have conditions in each option. If all options are disabled,
 	// the choice cannot be shown.
-	bool HasAnyChoices(const ConditionsStore &vars, int node) const;
+	bool HasAnyChoices(int node) const;
 	// If the given node is a choice node, check how many choices it offers.
 	int Choices(int node) const;
+	// Determine if the given choice is active. Inactive choices cannot be selected.
+	bool ChoiceIsActive(int node, int element) const;
 	// Check if the given conversation node is a conditional branch.
 	bool IsBranch(int node) const;
 	// Check if the given conversation node performs an action.
@@ -102,7 +83,7 @@ public:
 	// - The node is not a choice node, and element is non-zero.
 	// - The node (or element) has conditions and those conditions are not met.
 	// and true otherwise.
-	bool ShouldDisplayNode(const ConditionsStore &vars, int node, int element = 0) const;
+	bool ShouldDisplayNode(int node, int element = 0) const;
 	// Returns true if the given node index is in the range of valid nodes for
 	// this Conversation.
 	// Note: This function only considers actual Conversation nodes to be valid
@@ -137,8 +118,9 @@ private:
 		std::string text;
 		// The next node to visit:
 		int next;
-		// Conditions for displaying the text:
-		ConditionSet conditions;
+		// Conditions for displaying or activating text:
+		ConditionSet toDisplay;
+		ConditionSet toActivate;
 	};
 
 	// The conversation is a network of "nodes" that you travel between by
@@ -173,7 +155,7 @@ private:
 	// Parse the children of the given node to see if they contain any "gotos"
 	// or "conditions." If so, link them up properly. Return true if gotos or
 	// conditions were found.
-	bool LoadDestinations(const DataNode &node);
+	bool LoadDestinations(const DataNode &node, const ConditionsStore *playerConditions);
 	// Parse the children to see if there is a condition.
 	bool HasDisplayRestriction(const DataNode &node);
 	// Add a label, pointing to whatever node is created next.
@@ -195,7 +177,3 @@ private:
 	// The actual conversation data:
 	std::vector<Node> nodes;
 };
-
-
-
-#endif

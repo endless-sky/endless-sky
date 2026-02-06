@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef COMPARATORS_BY_NAME_H_
-#define COMPARATORS_BY_NAME_H_
+#pragma once
 
 
 
@@ -26,17 +25,3 @@ public:
 		return a->Name() < b->Name();
 	}
 };
-
-
-
-template<class T>
-class ByDisplayName {
-public:
-	bool operator()(const T *a, const T *b) const
-	{
-		return a->DisplayName() < b->DisplayName();
-	}
-};
-
-#endif
-

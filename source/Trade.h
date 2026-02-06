@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TRADE_H_
-#define TRADE_H_
+#pragma once
 
 #include <string>
 #include <vector>
@@ -49,7 +48,3 @@ private:
 	std::vector<Commodity> commodities;
 	std::vector<Commodity> specialCommodities;
 };
-
-
-
-#endif

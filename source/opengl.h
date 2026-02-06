@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_OPENGL_H_
-#define ES_OPENGL_H_
+#pragma once
 
 // Include whichever header is used for OpenGL on this operating system.
 #ifdef __APPLE__
@@ -27,13 +26,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #endif
 #endif
 
+
+
 // A helper class for various OpenGL platform specific calls.
-class OpenGL
-{
+class OpenGL {
 public:
-	static bool HasAdaptiveVSyncSupport();
-};
-
-
-
+#ifndef ES_GLES
+	static void DisableOpenGL3();
 #endif
+
+	static bool HasAdaptiveVSyncSupport();
+	static bool HasVaoSupport();
+	static bool HasTexture2DArraySupport();
+	static bool HasClearBufferSupport();
+};

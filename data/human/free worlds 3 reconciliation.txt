@@ -11,6 +11,22 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+ship "Gunboat" "Gunboat (Raven)"
+	outfits
+		"Electron Beam" 2
+		"Electron Turret"
+		"Fission Reactor"
+		"Supercapacitor" 3
+		"D14-RN Shield Generator"
+		"Cooling Ducts"
+		"Fuel Pod" 3
+		"Outfits Expansion" 2
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Scram Drive"
+
+
+
 mission "FW Reconciliation 1"
 	name "Pick up Ijs from <planet>"
 	description "Bring Katya and Sawyer to <destination>, along with Raven's ship (the Eye of Horus), and pick up Ijs and his equipment for detecting atomic testing."
@@ -21,15 +37,15 @@ mission "FW Reconciliation 1"
 		has "FW Defend New Tibet: done"
 	passengers 2
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	npc accompany save
 		personality escort timid
 		government "Navy Intelligence"
-		ship "Gunboat (Mark II)" "Eye of Horus"
+		ship "Gunboat (Raven)" "Eye of Horus"
 	
 	on visit
-		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
+		dialog `You land on <planet>, but realize that Katya, Sawyer, and Raven have not all arrived. Better depart and wait for the ships they are aboard.`
 	
 	on offer
 		log "Decided to rescue the Syndicate defector rather than turning him over to the Syndicate. A Questioner who works with Navy Intelligence has confirmed that he is telling the truth, and a ceasefire has been declared. Also, the Navy has agreed to release Katya now that there is evidence proving her innocence."
@@ -90,8 +106,6 @@ mission "FW Reconciliation 1"
 			`	You tell her that the last you heard, Ijs was helping to found a new university on <planet>. She says, "We should bring him with us. Raven, will you be traveling with us too?"`
 			`	"Yes," she says. "I'll tell my ship and crew to get ready."`
 				accept
-	on visit
-		dialog `You land on <planet>, but realize that your escort carrying Katya and Sawyer hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
@@ -118,7 +132,7 @@ mission "FW Reconciliation 1B"
 	to offer
 		has "FW Reconciliation 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fw empty gienah"
@@ -130,17 +144,54 @@ mission "FW Reconciliation 1B"
 			`	Back at the spaceport, you meet up with Raven. "Here's the deal," she says. "We need to get to <planet>, destroy any Syndicate ships that are watching, and then land and hope we have time to collect evidence before more of them arrive. Unless you've got a ramscoop, we may need to bribe our way onto a few Syndicate worlds to refuel. And of course, I'll be counting on you to help keep my ship safe. Any questions?"`
 			choice
 				`	"No, I'm ready to go!"`
-					accept
+					goto leaving
 				`	"Won't they have destroyed any evidence long before we get there?"`
 			`	"Probably," she says, "but if they did any testing there, we should be able to pick up the residue. Or at least, my people will be able to, because they've got military grade Navy equipment."`
 			`	"So do we," says Ijs, sheepishly.`
 			`	Raven looks surprised for a moment, then says, "Never mind, I'm sure there's a good story of how you got your hands on that equipment, but it can wait for another time. Let's get moving."`
+			label leaving
+			branch scram
+				or
+					has "flagship attribute: scram drive"
+					has "flagship attribute: jump drive"
+			`	As you and the others start walking to the landing pads, Raven approaches you. "Captain, are you sure you're ready to head to <planet>?"`
+			choice
+				`	"Absolutely. I could blow up a thousand Syndicate fleets in my sleep."`
+				`	"I'm worried about fighting Syndicate ships on the way there."`
+					goto worried
+			`	Raven smirks. "It would be nice to strongarm our way through Syndicate space. But, in case Syndicate forces prove to be too much and we're forced to flee, I'd suggest swapping out your hyperdrive for a scram drive. Syndicate Quicksilvers are notoriously agile, and their Proton Guns make it nearly impossible to jump with a regular hyperdrive.`
+				goto scanning
+			label worried
+			`	"That is indeed a danger. Syndicate Quicksilvers are notoriously agile, and if they swarm us, their Proton Guns will push you around and prevent regular hyperdrives from jumping."`
+			choice
+				`	"Is there any way to outspeed their Quicksilvers?"`
+				`	"Do we have to destroy every Quicksilver we encounter, then?"`
+					goto destroy
+			`	"In a larger warship? That would be unlikely," Raven replies, "but there's another method of escaping them that's much easier."`
+				goto explanation
+			label destroy
+			`	"Not necessarily. Just because a regular hyperdrive wouldn't be able to jump doesn't mean there's no way to escape a Quicksilver."`
+			label explanation
+			`	You ask, "What do you mean?"`
+			`	Raven says, "I suggest you swap your hyperdrive for a scram drive. Unlike a hyperdrive, you don't need to be perfectly still when using a scram drive, letting you jump even if you're getting shoved by weapons fire."`
+			label scanning
+			choice
+				`	"Thanks for the advice."`
+				`	"Wait, how did you know that I don't have a scram drive?"`
+					goto secrets
+			`	"Don't thank me," says Raven. "I'm just looking out for myself. After all, if you get blown up, they're probably going to try and kill me next." She winks before heading towards her Gunboat.`
+				accept
+			label secrets
+			`	Raven puts a finger to her mouth and winks as she turns towards her own Gunboat.`
+				accept
+			label scram
+			`	You guide Ijs and the others back to your ship and prepare to set course for <planet>.`
 				accept
 	
 	npc accompany save
 		personality escort timid
 		government "Navy Intelligence"
-		ship "Gunboat (Mark II)" "Eye of Horus"
+		ship "Gunboat (Raven)" "Eye of Horus"
 	
 	on visit
 		dialog "You have reached <planet>, but you've either left Raven's ship behind, or failed to destroy some of the Syndicate ships watching you."
@@ -169,7 +220,7 @@ mission "FW Reconciliation 1C"
 	to offer
 		has "FW Reconciliation 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Collected atmospheric samples from Mutiny, a planet deep in Syndicate space, and verified that a nuclear test has been performed here using isotopes that match those from the attacks on Geminus and Martini. Also found carefully hidden signs of an underground test site."
@@ -184,7 +235,7 @@ mission "FW Reconciliation 1C"
 	npc accompany save
 		personality escort timid
 		government "Navy Intelligence"
-		ship "Gunboat (Mark II)" "Eye of Horus"
+		ship "Gunboat (Raven)" "Eye of Horus"
 	
 	on visit
 		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
@@ -224,12 +275,12 @@ mission "FW Reconciliation 2"
 	to offer
 		has "FW Reconciliation 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	npc accompany save
 		personality escort timid
 		government "Navy Intelligence"
-		ship "Gunboat (Mark II)" "Eye of Horus"
+		ship "Gunboat (Raven)" "Eye of Horus"
 	
 	on visit
 		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
@@ -281,6 +332,7 @@ mission "FW Navy Out Of Rastaban"
 mission "fw tarazed joins"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "FW Reconciliation 2: done"
 		not "FW Reconciliation 2A: done"
@@ -303,7 +355,7 @@ mission "FW Reconciliation 2A"
 	to offer
 		has "FW Reconciliation 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log `The governor of Valhalla, in the Deep, has proposed a "police action" to arrest one or more of the Syndicate leaders and bring them to justice. It will be a secret joint operation between the Free Worlds, the Deep, and the Oathkeepers.`
@@ -335,13 +387,13 @@ mission "FW Reconciliation 2A"
 			label tarazed
 			`	The rest of the evening is a more casual time for conversation, with plenty of good food and wine. Alondo sends you a message to inform you that Tarazed has decided to officially join the Free Worlds after having received word of the Parliament hearing, news that brings joy to Katya and Ijs.`
 			label end
-			`	At one point, Edrick pulls you aside and says, "I've requested that you be granted access to some of the new technology that was developed here during the course of the war. In particular, please find space on your ship for a ramscoop; you will need it for your next mission. And also, here." He hands you a data card. "This is a copy of Sawyer's evidence, in case something happens here. Keep it very, very safe."`
+			`	At one point, Edrick pulls you aside and says, "I've requested that you be granted access to some of the new technology that was developed here during the course of the war. In particular, feel free to visit the outfitter here and install a ramscoop; you will need one for your next mission. And also, take this." He hands you a data card. "It's a copy of Sawyer's evidence, in case something happens here. Keep it very, very safe."`
 				accept
 	
 	npc accompany save
 		personality escort timid
 		government "Navy Intelligence"
-		ship "Gunboat (Mark II)" "Eye of Horus"
+		ship "Gunboat (Raven)" "Eye of Horus"
 	
 	on visit
 		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
@@ -360,7 +412,7 @@ mission "FW Reconciliation 2B"
 	to offer
 		has "FW Reconciliation 2A: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -394,7 +446,7 @@ mission "FW Reconciliation 2C"
 	to offer
 		has "FW Reconciliation 2B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Visited a village on a lawless world in northern Syndicate space, and purchased information on the whereabouts of several of the Syndicate executives who were implicated in the terrorist attacks."
@@ -419,7 +471,7 @@ mission "FW Defend Farpoint"
 	to offer
 		has "FW Reconciliation 2C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -438,7 +490,7 @@ mission "FW Defend Farpoint"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser"
 				"Combat Drone" 4
@@ -499,7 +551,7 @@ mission "FW Embassy 1"
 	to offer
 		has "FW Defend Farpoint: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -530,11 +582,22 @@ mission "FW Embassy 1B"
 	to offer
 		has "FW Embassy 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
+			branch "star queen"
+				has "ship model: Star Queen"
+				has "outfit (installed): Luxury Accommodations"
+			branch luxury
+				has "outfit (installed): Luxury Accommodations"
 			`Unfortunately, the Republic ambassadors turn out to match all your worst stereotypes of Republic diplomats: dressed in gaudy, impractical clothing, and carrying an absurd amount of luggage. At first you are worried about whether you have enough space for them, but one of them explains that they would not dream of traveling in your dirty old ship; they will be traveling in style, in a Star Queen luxury liner, and your only duty is to ensure their safety. You have little choice but to acquiesce, even though you think they would be far safer on your own ship.`
+				accept
+			label luxury
+			`Unfortunately, the Republic ambassadors turn out to match all your worst stereotypes of Republic diplomats: dressed in gaudy, impractical clothing, and carrying an absurd amount of luggage. At first you are worried about whether you have enough space for them, but one of them explains that they would not dream of traveling in your dirty old ship; they will be traveling in style, in a Star Queen luxury liner, and your only duty is to ensure their safety. Despite boasting state-of-the-art facilities, you have little choice but to acquiesce. Perhaps they'd rather travel with a Republic-staffed crew, even if they would be far safer on your own ship.`
+				accept
+			label "star queen"
+			`Unfortunately, the Republic ambassadors turn out to match all your worst stereotypes of Republic diplomats: dressed in gaudy, impractical clothing, and carrying an absurd amount of luggage. At first you are worried about whether you have enough space for them, but one of them explains that they would not dream of traveling in your dirty old ship; they will be traveling in style, in a Star Queen luxury liner, and your only duty is to ensure their safety. Despite operating your own Star Queen luxury liner, you have little choice but to acquiesce. Perhaps they'd rather travel with a Republic-staffed crew, even if they would be far safer on your own ship.`
 				accept
 	
 	npc accompany save
@@ -630,7 +693,7 @@ mission "FW Embassy 1C"
 	to offer
 		has "event: fw reconciliation break"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -697,7 +760,7 @@ mission "FW Syndicate Capture 1"
 	to offer
 		has "FW Embassy 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Preparing to invade Syndicate space with a joint strike force made up of Free Worlds, Deep security, and Oathkeeper ships. The plan is to capture one of the Syndicate executives and bring him to trial."
@@ -751,13 +814,13 @@ mission "FW Syndicate Capture 1B"
 	to offer
 		has "FW Syndicate Capture 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fw begin syndicate capture"
 		conversation
 			`As you approach the planet, your ships spread out and begin scanning the ocean surface for a yacht matching the description you were given. After a few tense moments of wondering if Soylent is off-world at the moment, you find the ship.`
-			`	With neither deflector shields nor any weaponry that you can see, the yacht clearly poses no threat to an armed starship. The Aerie that Edrick sent launches its two fighters; when they land on the yacht's deck, armed police officers emerge. Meanwhile your fleet is ready to open fire at the first sign of resistance.`
+			`	With neither deflector shields nor any weaponry that you can see, the yacht clearly poses no threat to an armed starship. The Aerie that Edrick sent launches its four fighters; when they land on the yacht's deck, armed police officers emerge. Meanwhile your fleet is ready to open fire at the first sign of resistance.`
 			`	The officers soon radio you that they have found Soylent, and they bring him aboard your ship. Amid all the confusion, you notice a figure in diving gear who jumps off the rear of the yacht and disappears beneath the waves - one of Soylent's men, trying to escape. But since his leader is now in your custody, and your mission is accomplished, you see no reason to chase after him.`
 			`	The Oathkeeper captain sends you a brief message: "Your first priority is to reach the Deep with the prisoner. Our crew is prepared to serve as a rearguard, staying behind if necessary to ensure that you survive. Good luck, Captain."`
 				accept
@@ -788,6 +851,8 @@ mission "FW Syndicate Capture 1B"
 		ship "Dagger" "Alpha Three"
 		ship "Dagger" "Alpha Four"
 		ship "Dagger" "Alpha Five"
+		ship "Dagger" "Alpha Six"
+		ship "Dagger" "Alpha Seven"
 	
 	npc
 		government Syndicate
@@ -908,7 +973,7 @@ mission "FW Syndicate Capture 1C"
 	to offer
 		has "FW Syndicate Capture 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log `Succeeded in capturing a Syndicate executive named Alexander Soylent, but the Syndicate has responded by sending a massive fleet to Sol, supposedly to "protect" Earth but more likely to put pressure on Parliament and the people of Earth to side with the Syndicate.`
@@ -945,7 +1010,7 @@ mission "FW Syndicate Capture 1C"
 mission "FW Pug 1"
 	landing
 	name "What happened to Rand?"
-	description "Try to determine why communications with Rand in the Zeta Aquilae system were cut off. If you cannot reach Rand, at least look for anything odd in the neighboring systems."
+	description "Try to determine why communications with Rand in the Zeta Aquilae system were cut off."
 	autosave
 	source "New Tibet"
 	waypoint "Cebalrai"
@@ -953,7 +1018,7 @@ mission "FW Pug 1"
 	to offer
 		has "FW Syndicate Capture 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "All communications with Rand, which recently joined the Free Worlds but is close to Syndicate territory, have been cut off. It is possible that this is the beginning of a Syndicate invasion."
@@ -981,6 +1046,10 @@ mission "FW Pug 1"
 	on waypoint
 		set "fw pug 1: visited waypoints"
 
+	on enter "Zeta Aquilae"
+		dialog
+			`Upon jumping to the Zeta Aquilae system, you can see that the hyperspace link that should exist to Ascella is no longer present. Instead, there is a new link going north, toward a star that never had any links before...`
+		set "fw pug 1: visited waypoints"
 
 
 mission "FW Pug 1 Tundra"
@@ -997,7 +1066,6 @@ mission "FW Pug 1 Tundra"
 				decline
 
 
-
 mission "FW Pug 1 Arabia"
 	landing
 	source Arabia
@@ -1010,7 +1078,6 @@ mission "FW Pug 1 Arabia"
 			`You land on Arabia and try to find someone who knows what is going on, but everyone seems just as confused as you are. The spaceport authorities say that their sensors picked up a massive graviton surge when the hyperlinks collapsed, but they are not sure whether the surge caused the collapse, or was a result of it.`
 			`	One merchant captain claims that he was in orbit at the time, and he saw a ship unlike anything he'd ever seen before, that appeared and then disappeared in a flash "just like those Quarg ships do." You aren't sure whether or not to believe him.`
 				decline
-
 
 
 mission "FW Pug 1 Return"
@@ -1040,7 +1107,7 @@ mission "FW Pug 2"
 	passengers 1
 	blocked `As you are landing, Alondo contacts you and asks, "Do you have a bunk free for me?" You do not, so you will need to free one up in order to continue this mission.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Syndicate may be cutting off the hyperspace links that join their territory to the rest of human space, in order to escape being punished for their crimes. People are worried that they will try to take over even more territory, including Earth itself."
@@ -1095,7 +1162,7 @@ mission "FW Pug 2A"
 	to offer
 		has "FW Pug 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Agreed to travel to Syndicate space through the one remaining hyperspace path that is still open, through the uninhabited star systems to the north."
@@ -1107,6 +1174,12 @@ mission "FW Pug 2A"
 				`	"If this is what it takes to keep human space from being torn into fragments, I will risk my ship to go meet with the Syndicate."`
 					goto yes
 				`	"This sounds like a job for the Navy, not for me. I can't risk being trapped in hostile Syndicate space forever."`
+					to display
+						not "outfit (flagship installed): Jump Drive"
+					goto no
+				`	"This sounds like a job for the Navy, not for me. I don't want to face the entire hostile Syndicate."`
+					to display
+						has "outfit (flagship installed): Jump Drive"
 					goto no
 				`	"Did the Syndicate communicate anything to you before the links were cut that might help us guess at their intentions?"`
 			
@@ -1168,14 +1241,14 @@ mission "FW Pug 2B"
 		has "FW Pug 2A: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Syndicate CEO, Alastair Korban, claims that the disappearing hyperspace links are not their doing, and that in fact they are under attack by aliens. In fact, they say that the Syndicate has had contact with two different alien species in this region - raiders and scavengers known as the Korath coming from the galactic core, and an enigmatic and irrational species named the Pug who occupy the system adjacent to the ones that recently got cut off from human space."
 		log "By plundering the Korath raiders, the Syndicate has acquired some jump drives, which allow a ship to travel between systems that are not connected by hyperspace links. They are willing to part with one of these jump drives in order to prove the truth of their story to the rest of humanity."
 		log "People" "Alastair Korban" `CEO of the Syndicate Corporation for over two decades, Alastair Korban's tenure of the megacorporation has been capped by soaring profits owing to the human civil war. However, Korban has confirmed in speech what Sawyer brought forward to the Free Worlds and the Republic; that a "certain extremist faction" of the Syndicate were behind the bombings on Martini and Geminus.`
 		conversation
-			`As you are coming in for a landing you announce yourselves to the spaceport authorities as diplomatic representatives of the Free Worlds and the Republic. The moment you have landed, a Syndicate employee meets you and escorts you to their headquarters, to the incredibly fancy corner office of Alastair Korban, the CEO of the entire Syndicate Corporation. "I'm very glad you've come," says Alastair. "It seems unlikely that we can defeat this attack unless we work together."`
+			`As you are coming in for a landing you announce yourselves to the spaceport authorities as diplomatic representatives of the Free Worlds and the Republic. The moment you land, a Syndicate employee meets you and escorts you to their headquarters, to the incredibly fancy corner office of Alastair Korban, the CEO of the entire Syndicate Corporation. "I'm very glad you've come," says Alastair. "It seems unlikely that we can defeat this attack unless we work together."`
 			`	"Wait," says Alondo, "you're saying this whole thing is not the Syndicate's doing?"`
 			`	Alastair seems taken aback. "Of course not. Seal off valuable trade routes? Why would we do that?"`
 			choice
@@ -1247,7 +1320,7 @@ mission "FW Pug 2C: Hyperdrive"
 		not "outfit (flagship installed): Jump Drive"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		outfit "Hyperdrive" -1
@@ -1278,7 +1351,7 @@ mission "FW Pug 2C: Scram Drive"
 		not "outfit (flagship installed): Jump Drive"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		outfit "Scram Drive" -1
@@ -1309,7 +1382,7 @@ mission "FW Pug 2C: Jump Drive"
 		has "outfit (flagship installed): Jump Drive"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1335,6 +1408,7 @@ mission "FW Pug Jump Drive Check"
 	on offer
 		conversation
 			`Somehow, you've misplaced or lost the jump drive needed to continue the Free Worlds story! If you are unable to find your jump drive, you should revert to the autosave or another earlier snapshot of the game.`
+			`Alternatively, you could try to track down the Korath raiders that the Syndicate mentioned, and steal another jump drive from them, but it sounds like the Korath can put up quite a fight...`
 				decline
 
 
@@ -1361,56 +1435,48 @@ mission "FW Pug 2C: Side"
 			`You open your ship's hatch and allow him to come on board. "You came from outside, didn't you?" he says. "Outside of occupied space, I mean." You nod.`
 			`	"What's going on here?" asks Alondo. "Who are these aliens?"`
 			`	"I'm a planet-dweller," he says, "so the first I heard of it was when these ships unlike anything I'd ever seen before came down out of the sky, and hovered over the spaceport. Then they began transmitting radio messages on all frequencies, saying that this world is now a part of the Pug Protectorate, and that we must refrain from violence and give them a portion of the goods our world produces."`
+			label "planet dweller questions"
+			branch end
+				has "asked planet dweller about resisting pug"
+				has "asked planet dweller about pug intentions"
+				has "asked planet dweller about pug strategy"
 			choice
 				`	"Did anyone try to resist them?"`
+					to display
+						not "asked planet dweller about resisting pug"
 					goto resist
 				`	"What do you think their intentions are?"`
+					to display
+						not "asked planet dweller about pug intentions"
 					goto intentions
 				`	"Did they explain why they cut you off from the rest of the galaxy?"`
+					to display
+						not "asked planet dweller about pug strategy"
 					goto cut
 		
 			label resist
+			action
+				set "asked planet dweller about resisting pug"
 			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
-			choice
-				`	"What do you think their intentions are?"`
-					goto intentions2
-				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto cut2
-		
+			goto "planet dweller questions"
+
 			label intentions
+			action
+				set "asked planet dweller about pug intentions"
 			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
-			choice
-				`	"Did anyone try to resist them?"`
-					goto resist2
-				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto cut2
+			goto "planet dweller questions"
 		
 			label cut
+			action
+				set "asked planet dweller about pug strategy"
 			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
-			choice
-				`	"Did anyone try to resist them?"`
-					goto resist2
-				`	"What do you think their intentions are?"`
-					goto intentions2
-		
-			label resist2
-			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
-				goto end
-		
-			label intentions2
-			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
-				goto end
-		
-			label cut2
-			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
-				goto end
-		
+			goto "planet dweller questions"
+
 			label end
 			`	"Where did they come from originally?" asks Alondo.`
 			`	"From a star system that was always a neighbor of ours, but wasn't linked to us or to any other part of human space. We always just assumed it was an uninhabited system, but it turns out they were there all along, biding their time, waiting for a good opportunity to attack us."`
 			`	"Well," says Alondo, "they didn't attack us when we jumped into this system. Perhaps we should go to their home system and see what they have to say for themselves."`
 				decline
-
 
 
 mission "FW Pug 2C: Pugglequat"
@@ -1440,7 +1506,7 @@ mission "FW Pug 3"
 		has "FW Pug 2C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Located the Pug homeworld, and met with some of them. They say that they have annexed the neighboring systems into the Pug Protectorate in order to stop the human civil war. However, their idea of bringing peace seems to involve conquering human space and replacing the Republic with their own government."
@@ -1463,8 +1529,16 @@ mission "FW Pug 3"
 			label interfere
 			`	"'Interfere'?" says the alien. "We have 'interfered' many times before, and always you have benefited. If you do not believe us, ask those who live in the place you call the Deep. We helped them defeat the twisted half-human beings that you created in your foolish attempts to improve your race's genetic code. We have helped keep those creatures in check in the centuries since then. And we have helped in many other ways."`
 			choice
+				`	"I'm from the Deep, and I've never heard of you before."`
+					to display
+						has "start: deep"
 				`	"What do you want from us in return?"`
+					goto goals
 				`	"What are you planning to do with these systems you have occupied?"`
+					goto goals
+			`	"Then perhaps you know of the myths of 'elves,' and of the tradition of tributation," says the alien. "We had been content with protecting your species from afar, letting your kind take our accomplishments as your own, but it is clear further intervention is necessary."`
+			`	Alondo asks, "And what is this 'further intervention?'"`
+			label goals
 			`	"We have brought peace to this region," says the alien, "and we will continue to spread peace until violence has come to an end throughout human space. That is our only desire. All that we ask in return is a portion of the goods your worlds produce, to help offset the cost of watching over and protecting so many human worlds. And after some time, we will again allow human beings autonomous control of certain parts of your territory, when you show yourselves capable of living peacefully."`
 			`	"By 'spreading peace,' do you mean occupying more systems?" asks Alondo.`
 			`	"We mean bringing an end to your war and your divisions," the alien says. "Those of your worlds and your people who have shown themselves unable to live peacefully, we must govern, to teach them peace. Any who attack us, we must destroy, because we are the bringers of peace, and whoever attacks us is not on the side of peace. And so we will send you back to your people now, to tell them that they have nothing to fear, and that they should await our peace and our protection."`
@@ -1582,7 +1656,7 @@ mission "FW Pug 3A"
 		has "FW Pug 3: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1615,7 +1689,7 @@ mission "FW Pug 3B"
 		has "FW Pug 3A: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"salary: Free Worlds" = 17000
@@ -1668,7 +1742,7 @@ mission "FW Pug 3C"
 		not "already had jump drive"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Free Worlds and Republic Navy are sending a joint fleet into Syndicate space, where they will be fitted with jump drives to make an assault on Pug territory. The Syndicate only has six jump drives available, so this fleet will have to survive without reinforcements until a way is found to reopen the connection to the rest of human space."
@@ -1704,7 +1778,7 @@ mission "FW Pug 3C (Extra)"
 		has "already had jump drive"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Free Worlds and Republic Navy are sending a joint fleet into Syndicate space, where they will be fitted with jump drives to make an assault on Pug territory. The Syndicate only has seven jump drives available, so this fleet will have to survive without reinforcements until a way is found to reopen the connection to the rest of human space."
@@ -1734,6 +1808,7 @@ mission "FW Pug 3C (Extra)"
 mission "FW Pug 4: Escorts"
 	landing
 	invisible
+	non-blocking
 	source Hephaestus
 	to offer
 		has "FW Pug 3C: done"
@@ -1760,6 +1835,14 @@ mission "FW Pug 4: Escorts"
 		ship "Dagger" "Red Six"
 		ship "Dagger" "Red Seven"
 		ship "Dagger" "Red Eight"
+		ship "Dagger" "Red Nine"
+		ship "Dagger" "Red Ten"
+		ship "Dagger" "Red Eleven"
+		ship "Dagger" "Red Twelve"
+		ship "Dagger" "Red Thirteen"
+		ship "Dagger" "Red Fourteen"
+		ship "Dagger" "Red Fifteen"
+		ship "Dagger" "Red Sixteen"
 		ship "Combat Drone" "Orange One"
 		ship "Combat Drone" "Orange Two"
 		ship "Combat Drone" "Orange Three"
@@ -1784,6 +1867,7 @@ mission "FW Pug 4: Escorts"
 mission "FW Pug 4: Escorts (Extra)"
 	landing
 	invisible
+	non-blocking
 	source Hephaestus
 	to offer
 		has "FW Pug 3C: done"
@@ -1813,7 +1897,7 @@ mission "FW Pug 4"
 		has "FW Pug 3C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "at war with the pug"
@@ -1862,7 +1946,7 @@ mission "FW Pug 4A"
 	to offer
 		has "FW Pug 4: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Succeeded in driving the Pug out of the Delta Capricorni system for long enough to land on Maker and explore the technology that the Pug left behind. Freya thinks that she has discovered the device that is used for creating or destroying hyperspace links, but it will take time for her to figure out how to operate it."
@@ -1930,7 +2014,7 @@ mission "FW Pug 4B"
 	cargo "graviton reflector" 10
 	blocked `Freya contacts you and says, "Captain, you're going to need ten tons of cargo space." You do not have that much available, so you should return here when you do.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1962,6 +2046,7 @@ mission "FW Pug 4B"
 mission "FW Pug 4B: Enemies"
 	landing
 	invisible
+	non-blocking
 	source Maker
 	to offer
 		has "FW Pug 4A: done"
@@ -1984,6 +2069,7 @@ mission "FW Pug 4B: Enemies"
 mission "FW Pug 4B: Reinforcements"
 	landing
 	invisible
+	non-blocking
 	source Maker
 	to offer
 		has "FW Pug 4A: done"
@@ -2016,7 +2102,7 @@ mission "FW Pug 4C"
 	to offer
 		has "FW Pug 4B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "reconnected delta capricorni" 0
@@ -2041,7 +2127,7 @@ mission "FW Pug 5"
 	passengers 1
 	blocked `Freya contacts you and says, "<first>, we're going to need space for me, plus ten tons of cargo, on your ship. Think you can do that?" You tell her you will contact her here on <origin> as soon as you have made the space available.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Freya succeeded in reopening the hyperspace link to one of the Syndicate systems. If the same can be done for the link to Sol, the entire Navy will be able to join the battle against the Pug."
@@ -2087,6 +2173,7 @@ mission "FW Pug 5"
 mission "FW Pug 5A: Enemies"
 	landing
 	invisible
+	non-blocking
 	source Shiver
 	to offer
 		has "FW Pug 5: done"
@@ -2117,7 +2204,7 @@ mission "FW Pug 5A"
 		has "FW Pug 5: done"
 	cargo "graviton reflector" 10
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "liberation of altair"
@@ -2149,7 +2236,7 @@ mission "FW Pug 5A"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 
@@ -2165,7 +2252,7 @@ mission "FW Pug 5B"
 	to offer
 		has "FW Pug 5A: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Succeeded in rendezvousing with the Navy in the Sol system and reopening a link to the Pug territory. But now Shiver is under attack by a massive Pug fleet."
@@ -2194,7 +2281,7 @@ mission "FW Pug 5B"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 	
@@ -2226,7 +2313,7 @@ mission "FW Pug 6"
 		dialog
 			`You enter the Deneb system expecting a massive Pug battle fleet to be waiting for you. Instead, it is entirely deserted. Also, your sensors are picking up some sort of anomaly outside the orbit of the outermost planet.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Preparing for the final assault on the Pug homeworld. There seems to be no other option but to force them to surrender, but with the help of the Navy that no longer seems like an impossible task."
@@ -2260,7 +2347,7 @@ mission "FW Pug 6"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 	npc
@@ -2280,7 +2367,7 @@ mission "FW Pug 6"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat" 3
 	npc
@@ -2366,7 +2453,7 @@ mission "FW Syndicate Extremists 1"
 		has "FW Pug 6: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -2403,7 +2490,7 @@ mission "FW Syndicate Extremists 1A"
 		has "FW Syndicate Extremists 1: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "With the Pug defeated, it is finally time to deal with the Syndicate extremists and the Alphas that they allied with. The extremists are armed with nuclear missiles, but the Syndicate CEO has agreed to provide a cloaking device that will make it possible to dodge the missiles."
@@ -2472,7 +2559,7 @@ mission "FW Syndicate Extremists 1B"
 		has "FW Syndicate Extremists 1A: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"reputation: Syndicate (Extremist)" <?= -1000
@@ -2541,7 +2628,7 @@ mission "FW Syndicate Extremists 1B"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)" 3
-				"Lance" 12
+				"Lance" 24
 				"Combat Drone" 18
 				"Cruiser (Mark II)" 3
 				"Combat Drone" 12
@@ -2560,7 +2647,7 @@ mission "FW Syndicate Extremists 1C"
 		has "FW Syndicate Extremists 1B: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Succeeded in drawing the fire of the Syndicate extremists for long enough for a Navy fleet to safely arrive in-system and assist in destroying them. This cloaking device will come in very handy in the future."
@@ -2583,7 +2670,7 @@ mission "FW Syndicate Extremists 1C"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
-		log "Received an official commendation from Parliament and a promise that the war with the Free Worlds is officially over. Humanity is at peace once more, but new challenges may await in the star systems out beyond human space that are accessible only by jump drive."
+		log "Received an official commendation from Parliament and a promise that the war with the Free Worlds are officially over. Humanity is at peace once more, but new challenges may await in the star systems out beyond human space that are accessible only by jump drive."
 		log "Factions" "Free Worlds" `Tensions between the Free Worlds and the Republic mounted when additional systems decided to leave the Republic and join the Free Worlds, culminating in a series of military confrontations that ended when the Free Worlds were able to present credible evidence denying any involvement in the terrorist attacks. After the Free Worlds joined the effort to drive out the Pug invaders, the Republic officially recognized the Free Worlds and diplomatic relations were established.`
 		log "Factions" "Syndicate" `It was exposed that the bombings of Geminus and Martini that helped cause the war between the Republic and Free Worlds were the doing of the Syndicate, designed by top executives with the help of a group of Alphas. Despite the claims that all the extremists responsible have been purged and handed over to the Navy, the reputation of the Syndicate will be damaged for years to come.`
 		payment 5000000
@@ -2638,6 +2725,7 @@ mission "FW Syndicate Extremists 1C"
 mission "FW Navy Out Of Rastaban (Bad Karma)"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "FW Syndicate Extremists 1C: done"
 		not "event: navy out of rastaban"

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DAMAGE_DEALT_H_
-#define DAMAGE_DEALT_H_
+#pragma once
 
 #include "Point.h"
 
@@ -106,5 +105,3 @@ inline double DamageDealt::Disruption() const noexcept { return disruptionDamage
 inline double DamageDealt::Slowing() const noexcept { return slowingDamage; }
 
 inline const Point &DamageDealt::HitForce() const noexcept { return forcePoint; }
-
-#endif

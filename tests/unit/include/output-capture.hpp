@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEST_HELPER_OUTPUT_CAPTURE_HPP_
-#define ES_TEST_HELPER_OUTPUT_CAPTURE_HPP_
+#pragma once
 
 #include <iostream>
 #include <sstream>
@@ -62,7 +61,3 @@ private:
 	// Our redirection buffer
 	std::stringstream storage;
 };
-
-
-
-#endif
