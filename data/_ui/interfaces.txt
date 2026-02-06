@@ -205,6 +205,10 @@ color "map orbits fleet destination" 1. 1. 1. 1.
 color "map danger none" .1 .6 0. .4
 color "map system ring" .4 .4 .4 .6
 color "map system ring unexplored" .1 .1 .1 0.
+color "map: sale marker: no shop" 0. .12 .6 .4
+color "map: sale marker: has shop" .12 .48 .48 .4
+color "map: sale marker: item sold" .6 .48 0. .4
+color "map: sale marker: item stored" .36 .48 .24 .4
 
 # Colors used for the routing issue text in the map panel when
 # a route to the selected system cannot be determined.
@@ -1157,6 +1161,9 @@ interface "hud"
 	sprite "ui/red alert"
 		from 10 10
 		align top left
+	visible if "nuke alert"
+	sprite "icon/nuke"
+		from 24 24
 	visible
 	sprite "ui/radar"
 		from 0 0
@@ -2632,3 +2639,91 @@ interface "hail panel"
 	button h "Ask For _Help"
 		center -20 115
 		dimensions 140 30
+
+
+
+interface "map: sales key"
+	anchor bottom left
+	box "content"
+		align bottom left
+		from 330 -80
+		dimensions 140 80
+	sprite "ui/sales key"
+		align bottom left
+		from 300 0
+
+	ring full
+		center 340 -72
+		dimensions 9 9
+		size 1.75
+		color "map: sale marker: no shop"
+	ring full
+		center 340 -52
+		dimensions 9 9
+		size 1.75
+		color "map: sale marker: has shop"
+	ring full
+		center 340 -32
+		dimensions 9 9
+		size 1.75
+		color "map: sale marker: item sold"
+	ring full
+		center 340 -12
+		dimensions 9 9
+		size 1.75
+		color "map: sale marker: item stored"
+
+	visible if "is shipyards"
+	label "Has no shipyard",
+		from 350 -72
+		align left
+	label "Has shipyard",
+		from 350 -52
+		align left
+	label "Sells this ship",
+		from 350 -32
+		align left
+	label "Ship parked here"
+		from 350 -12
+		align left
+
+	visible if "is outfitters"
+	label "Has no outfitter",
+		from 350 -72
+		align left
+	label "Has outfitter",
+		from 350 -52
+		align left
+	label "Sells this outfit",
+		from 350 -32
+		align left
+	label "Outfit in storage"
+		from 350 -12
+		align left
+
+	visible if "is outfitters w/ minerals"
+	label "Has no outfitter",
+		from 350 -72
+		align left
+	label "Has outfitter",
+		from 350 -52
+		align left
+	label "Mine this here",
+		from 350 -32
+		align left
+	label "Mineral in storage"
+		from 350 -12
+		align left
+
+	visible if "only sold here"
+	pointer
+		center 333 -32
+		color bright
+		dimensions 10 10
+		"orientation vector" 1 0
+	visible if "only stored here"
+	pointer
+		center 333 -12
+		color bright
+		dimensions 10 10
+		"orientation vector" 1 0

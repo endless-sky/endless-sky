@@ -174,7 +174,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI().Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
-		GetUI().Push(new ShipNameDialogPanel(this,
+		GetUI().Push(ShipNameDialogPanel::Create(
 			DialogPanel::FunctionButton(this, "Rename", 'r', &ShipInfoPanel::Rename),
 			"Change this ship's name?", (*shipIt)->GivenName()));
 	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift) || key == 'k'))
@@ -220,7 +220,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				}
 			}
 
-			GetUI().Push(new DialogPanel(this, &ShipInfoPanel::Disown, message));
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Disown, message));
 		}
 	}
 	else if(key == 'c' && CanDump())
@@ -230,35 +230,35 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
 		if(amount)
 		{
-			GetUI().Push(new DialogPanel(this, &ShipInfoPanel::DumpCommodities,
+			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpCommodities,
 				"How many tons of " + Format::LowerCase(selectedCommodity)
 					+ " do you want to jettison?", amount));
 		}
 		else if(plunderAmount > 0 && selectedPlunder->Get("installable") < 0.)
 		{
-			GetUI().Push(new DialogPanel(this, &ShipInfoPanel::DumpPlunder,
+			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpPlunder,
 				"How many tons of " + Format::LowerCase(selectedPlunder->DisplayName())
 					+ " do you want to jettison?", plunderAmount));
 		}
 		else if(plunderAmount == 1)
 		{
-			GetUI().Push(new DialogPanel(this, &ShipInfoPanel::Dump,
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump,
 				"Are you sure you want to jettison a " + selectedPlunder->DisplayName() + "?"));
 		}
 		else if(plunderAmount > 1)
 		{
-			GetUI().Push(new DialogPanel(this, &ShipInfoPanel::DumpPlunder,
+			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpPlunder,
 				"How many " + selectedPlunder->PluralName() + " do you want to jettison?",
 				plunderAmount));
 		}
 		else if(commodities)
 		{
-			GetUI().Push(new DialogPanel(this, &ShipInfoPanel::Dump,
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump,
 				"Are you sure you want to jettison all of this ship's regular cargo?"));
 		}
 		else
 		{
-			GetUI().Push(new DialogPanel(this, &ShipInfoPanel::Dump,
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump,
 				"Are you sure you want to jettison all of this ship's cargo?"));
 		}
 	}

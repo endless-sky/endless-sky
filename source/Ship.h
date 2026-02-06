@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Port.h"
 #include "ship/ShipAICache.h"
+#include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 
 #include <array>
@@ -351,6 +352,9 @@ public:
 	int WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Clear all orders and targets this ship has (after capture or transfer of control).
 	void ClearTargetsAndOrders();
+	// Return events that happened recently, but haven't been handled by the Engine yet.
+	// Events should be removed from the given list after they are handled.
+	std::list<ShipEvent> &HandleEvents();
 
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
@@ -784,4 +788,9 @@ private:
 	double targeterStrength;
 
 	bool removeBays = false;
+
+	// If this ship is disabled or dies as a result of something like corrosion damage,
+	// attribute the event to the last government that hit this ship.
+	const Government *lastHitBy = nullptr;
+	std::list<ShipEvent> unhandledEvents;
 };
