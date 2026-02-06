@@ -66,10 +66,10 @@ void ColumnChooserPanel::Draw()
 	static const Point TEXT_OFFSET(box[0]->Width(), 2.);
 	static const Point BOX_SIZE(box[0]->Width(), box[0]->Height());
 	static const int PANEL_CONTENT_WIDTH = 727;
-	const set<const string> &visibleColumns = panelState->VisibleColumns();
-	auto isVisible = [&](string name){ return visibleColumns.find(name) != visibleColumns.end(); };
+	const set<string> &visibleColumns = panelState->VisibleColumns();
+	auto isVisible = [&visibleColumns](string name){ return visibleColumns.find(name) != visibleColumns.end(); };
 	const int availableWidth = PANEL_CONTENT_WIDTH - accumulate(columns.begin(), columns.end(), 0,
-		[&](int acc, PlayerInfoPanel::SortableColumn column) {
+		[&isVisible](int acc, PlayerInfoPanel::SortableColumn column) {
 			return acc + (isVisible(column.name) ? column.layout.width : 0);
 		});
 	for(PlayerInfoPanel::SortableColumn &column : columns)

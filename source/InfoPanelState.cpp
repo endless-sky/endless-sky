@@ -230,7 +230,7 @@ void InfoPanelState::SetCurrentSort(ShipComparator *newSort)
 
 
 
-const set<const string> &InfoPanelState::VisibleColumns() const
+const set<string> &InfoPanelState::VisibleColumns() const
 {
 	return visibleColumns;
 }

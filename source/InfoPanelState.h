@@ -58,7 +58,7 @@ public:
 	ShipComparator *CurrentSort() const;
 	void SetCurrentSort(ShipComparator *s);
 
-	const std::set<const std::string> &VisibleColumns() const;
+	const std::set<std::string> &VisibleColumns() const;
 	void ShowColumn(const std::string &key);
 	void HideColumn(const std::string &key);
 	void ToggleColumn(const std::string &key);
@@ -84,7 +84,7 @@ private:
 	// change their flagship and reorder their fleet.
 	const bool canEdit = false;
 
-	std::set<const std::string> visibleColumns;
+	std::set<std::string> visibleColumns;
 
 	// Index of the ship at the top of the fleet listing.
 	int scroll = 0;

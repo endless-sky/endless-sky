@@ -779,7 +779,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	// Table attributes.
 	Table table;
 	static const int GUTTER = 3;
-	const set<const string> visibleColumns = panelState.VisibleColumns();
+	const set<string> visibleColumns = panelState.VisibleColumns();
 	int offset = 0;
 	for(const auto &column : columns)
 	{
@@ -804,8 +804,8 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		if(visibleColumns.find(column.name) == visibleColumns.end())
 			continue;
 
-		Rectangle zone = Rectangle(tablePoint + Point(offset, 0) +
-			.5 * Point(column.layout.width - GUTTER, rowHeight),
+		Rectangle zone = Rectangle(
+			tablePoint + Point(offset, 0) + .5 * Point(column.layout.width - GUTTER, rowHeight),
 			Point(column.layout.width, rowHeight)
 		);
 		offset += column.layout.width + GUTTER;
