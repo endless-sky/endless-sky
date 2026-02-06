@@ -222,7 +222,7 @@ mission "Successors: Ghosts Aqrabe 4"
 				`	"So is that it for this?"`
 			`	"Fortunately," they continue, "we may be able to outfit one of our own craft for this purpose. Or rather, one of House Kaatrij's."`
 			`	They offer the pad to you. It displays a schematic that you struggle to make any sense of; some small device is shown implanted in a Vujlet, its long tendrils snaking into various ship systems like some sort of infection. If you were to make a guess at its function, you might describe it as some sort of cloaking device - it's clearly shown reflecting and refracting light somehow, but the details of what exactly it is achieving escape your reckoning.`
-			`	"I've conferred with our fleet liason," says Tiliia, "who conferred with Kaatrij's, and they've agree to dispense thee with a modified Vujlet." They pause before adding, in a softer and more cynical tone, "no doubt extracting some favor from Aqrabe along the way. We need thee to retrieve it from <planet> and bring it back here for outfitting. Once prepared with our armor and thy jump drive, we may return to Kasii-Cavaasa."`
+			`	"I've conferred with our fleet liaison," says Tiliia, "who conferred with Kaatrij's, and they've agree to dispense thee with a modified Vujlet." They pause before adding, in a softer and more cynical tone, "no doubt extracting some favor from Aqrabe along the way. We need thee to retrieve it from <planet> and bring it back here for outfitting. Once prepared with our armor and thy jump drive, we may return to Kasii-Cavaasa."`
 			choice
 				`	"These look like some complex modifications."`
 					goto suspicious
@@ -448,7 +448,7 @@ mission "Successors: Ghosts Aqrabe 7"
 			choice
 				`	"What about this ship? Do I get to keep it?`
 			label ship
-			`	Tiliia nods. "Before we left, I heard from our fleet liason with Kaatrij. The ship lacks weapons or anything too perilous for thou to keep, and Kaatrij has no doubt already started removing their device. Thou might'st consider it a bonus to thy fee, a favor from the House to thee."`
+			`	Tiliia nods. "Before we left, I heard from our fleet liaison with Kaatrij. The ship lacks weapons or anything too perilous for thou to keep, and Kaatrij has no doubt already started removing their device. Thou might'st consider it a bonus to thy fee, a favor from the House to thee."`
 			branch "not confronted"
 				not "successors confronted tiliia"
 			label confronted

@@ -439,7 +439,7 @@ outfit `Crimson Halo`
 	"shield energy" 6.6
 	"shield protection" -0.5
 	"shield connection point" 1
-	description `Resja's ships didn't need shields for defence - only as fuel for attacking their foes. Thus, their favored shield cortex is an unusually powerful one, emitting a staggering amount of energy that is much less useful for intercepting damage than it is when fed back into a starship's systems.`
+	description `Resja's ships didn't need shields for defense - only as fuel for attacking their foes. Thus, their favored shield cortex is an unusually powerful one, emitting a staggering amount of energy that is much less useful for intercepting damage than it is when fed back into a starship's systems.`
 
 
 outfit `Visions of Rime`
@@ -545,7 +545,7 @@ ship "Valkkyiara-Khorasaqra"
 	explode "medium explosion" 24
 	explode "large explosion" 8
 	"final explode" "final explosion medium"
-	description "During the collapse of their Predecessors' empire, the High Houses of the Myiara stored away as much of their wealth and property as they could manage. Included in this were their private fleets of warships, by now passed down for over a thousand years as priceless family heirlooms. Despite being far more powerful than anything else in Successor space, these vessels almost never leave the ground, since the High Houses have no desire to risk these irreplacable ships that are so deeply intertwined with their family history."
+	description "During the collapse of their Predecessors' empire, the High Houses of the Myiara stored away as much of their wealth and property as they could manage. Included in this were their private fleets of warships, by now passed down for over a thousand years as priceless family heirlooms. Despite being far more powerful than anything else in Successor space, these vessels almost never leave the ground, since the High Houses have no desire to risk these irreplaceable ships that are so deeply intertwined with their family history."
 	description `	By the time of the collapse, the Valkkyiara-Khorasaqra was already a time-proven design; a clean and elegant expression of Myiaran martial artistry. Clad in dense mirrored armor, these mostly saw action in conflicts between the Houses, using their high speed and long-ranged weapons to menace colonies and outmaneuver more lumbering warships.`
 
 # Heirloom outfits
