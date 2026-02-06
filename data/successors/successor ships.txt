@@ -35,9 +35,9 @@ ship "Aaulqra"
 		"weapon capacity" 240
 		"engine capacity" 120
 		"multimodal armor" 1
-		"hull repair rate" 2.75 
+		"hull repair rate" 2.75
 		# 0.0005 * max hull
-		"hull energy" 3.025 
+		"hull energy" 3.025
 		# 1.1 * hull repair rate
 		"hull heat" 3.025
 		weapon
