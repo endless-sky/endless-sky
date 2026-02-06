@@ -98,6 +98,7 @@ mission "Hunted Warning"
 
 mission "Hunted"
 	invisible
+	non-blocking
 	landing
 	repeat
 	deadline 30
@@ -4404,6 +4405,7 @@ mission "Thrall Emigration"
 mission "Spaceport Reminder Setter"
 	landing
 	invisible
+	non-blocking
 	on offer
 		"spaceport reminder year" = "year"
 		"spaceport reminder month" = "month"
@@ -4468,6 +4470,7 @@ mission "Spaceport Reminder"
 mission "Fumbling Mugger Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Transport Workers B: done"
 	on offer
@@ -4715,6 +4718,7 @@ mission "Laborer Payment"
 mission "Block Hai Wormhole Warning"
 	landing
 	invisible
+	non-blocking
 	to offer
 		or
 			has "First Contact: Hai: offered"
@@ -7024,6 +7028,7 @@ mission "Moving House 1"
 
 mission "Moving House Timer"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Moving House 1: done"
@@ -9645,6 +9650,7 @@ event "syndicate business vip eligible"
 
 mission "Timothy Radrickson 1: Stowaway"
 	invisible
+	non-blocking
 	landing
 	source
 		near "Zeta Aquilae" 3 10
@@ -9755,6 +9761,7 @@ event "timothy radrickson: mummy"
 mission "Timothy Radrickson 2: mummy"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 1: Stowaway: failed"
 		has "event: timothy radrickson: mummy"
@@ -9885,7 +9892,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 			`	He pours the brown liquid in the cups and pushes one to you. "Things have gone well for me, and are only going to get better from here on out."`
 			`	He takes a sip and says, "We've just launched our largest freighter fleet to date." He sits back in his desk, relaxed, and gets a dreamy look in his eyes. "When it returns from Wayfarer, the government of Rand will finally have enough credits to make some real changes around here. Give something back to the working man."`
 			choice
-				`	"Congratulations Timothy. You're really outdone yourself."`
+				`	"Congratulations Timothy. You've really outdone yourself."`
 				`	(Take a sip from my glass.)`
 				`	"Don't forget your humble beginnings, Timothy. The workers here seem to be suffering, while the rich thrive."`
 				`	"You're proof that hard work is all it takes to succeed. I don't know how you can stand living on a world filled with lazy workers all demanding hand outs."`
@@ -11492,6 +11499,7 @@ mission "Timothy Radrickson 7: Grave"
 mission "Timothy Radrickson: Log Fix 1"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 1: Stowaway: done"
 		not "Timothy Radrickson 2: Good Interlude: offered"
@@ -11504,6 +11512,7 @@ mission "Timothy Radrickson: Log Fix 1"
 mission "Timothy Radrickson: Log Fix 2"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 2: Good Interlude: offered"
 		not "Timothy Radrickson 3d: Return to Rand: done"
@@ -11518,6 +11527,7 @@ mission "Timothy Radrickson: Log Fix 2"
 mission "Timothy Radrickson: Log Fix 3"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 3d: Return to Rand: done"
 		not "Timothy Radrickson 4: Imprisoned: done"
@@ -11533,6 +11543,7 @@ mission "Timothy Radrickson: Log Fix 3"
 mission "Timothy Radrickson: Log Fix 4"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 4: Imprisoned: done"
 		not "Timothy Radrickson 5a: Timshank Redemption: offered"
@@ -11549,6 +11560,7 @@ mission "Timothy Radrickson: Log Fix 4"
 mission "Timothy Radrickson: Log Fix 6"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 5a: Timshank Redemption: offered"
 		not "timothy radrickson 6 log entry correct"
@@ -12417,6 +12429,7 @@ mission "Stone to Hope: Thanks"
 mission "Patch Stone Waiting"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Stone of our Fathers 5: done"
 		not "stone waiting most: triggered"

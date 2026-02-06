@@ -1508,7 +1508,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(!gov || ship.GetPersonality().IsPacifist())
 		return FindNonHostileTarget(ship);
 
-	int64_t alliedStrength = allyStrength.find(ship.GetGovernment())->second;
+	int64_t alliedStrength = AllyStrength(ship.GetGovernment());
 
 	bool isYours = ship.IsYours();
 	if(isYours)
