@@ -514,11 +514,11 @@ ship "Valkkyiara-Khorasaqra"
 	gun 0 -110 `"Tijra" Heirloom Lance`
 	turret 0 36
 	turret 0 -26
-	"steering engine" -10 -65 
+	"steering engine" -10 -65
 		zoom .5
 		angle 90
 		right
-	"steering engine" 10 -65 
+	"steering engine" 10 -65
 		zoom .5
 		angle 270
 		left
@@ -579,7 +579,7 @@ outfit `"Sarija" Heirloom Coilgun`
 		"firing heat" 80
 		"firing force" 25
 		"shield damage" -94
-		#70 (parent) - 4*48 (child)
+		# 70 (parent) - 4*48 (child)
 		"hull damage" 75
 		# 185 (parent) - 4*20 (child)
 		"hit force" 120
@@ -754,7 +754,7 @@ outfit "Stolen Cloak (Deactivated)"
 	cost 1200000
 	"mass" 15
 	"outfit space" -15
-	#"cloak" .05
+	# "cloak" .05
 	"cloaking fuel" 0.04
 	"cloaking shields" 3.2
 	"unique" 1

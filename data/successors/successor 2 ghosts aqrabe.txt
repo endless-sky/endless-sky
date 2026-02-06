@@ -177,7 +177,7 @@ mission "Successors: Ghosts Aqrabe 3"
 				`	"And how do you plan for us to get close enough to collect that?"`
 			`	"The shields of thy craft may be sufficient to the task," Tiliia says, purple dotting their face. "And if not, we will have warning before they fail. We shall have to act with care and see for ourselves what is possible."`
 				accept
-			
+
 			label shocked
 			`	Purple dots spot Tiliia's face. "Not 'into,' not strictly. But yes, I do not know if thy craft is worthy to the task. We shall have to see for ourselves what is possible."`
 				accept
@@ -196,7 +196,7 @@ mission "Successors: Ghosts Aqrabe 3"
 			label onward
 			`	The <ship> braves the heat a minute or so longer, despite Tiliia's protests. The shields don't give out completely until a solar flare suddenly engulfs the ship, instantly vaporizing the <ship>, you, and Tiliia and scattering your atoms among the cold and indifferent stars.`
 				die
-			
+
 			label "no shields"
 			`	Even approaching the Kasii-Cavaasa star is enough to bring the inside of the <ship> to an uncomfortably sweltering temperature. Without shielding of any sort, its hull rapidly approaches the point of thermal failure and, at Tiliia's insistence, you are forced to return to a higher orbit.`
 				flee
@@ -376,11 +376,11 @@ mission "Successors: Ghosts Aqrabe 6"
 		has	"Successors: Ghosts Aqrabe 5: done"
 	on offer
 		conversation
-			`You meet Tiliia and House Kaatrij's observer back in the hangar bay with the specially-equipped Vujlet, which now gleams all over with an oily, iridescent sheen. Tiliia and the observer are in the middle of a heated conversation; you catch a bit of something ending " - foolish to trust an alien," from the observer.`
+			`You meet Tiliia and House Kaatrij's observer back in the hangar bay with the specially-equipped Vujlet, which now gleams all over with an oily, iridescent sheen. Tiliia and the observer are in the middle of a heated conversation; you catch a bit of something ending "...foolish to trust an alien," from the observer.`
 			`	Tiliia waves you over. "Good, captain. Our ally was just expressing the importance of thy promptness in this task. Kaatrij longs not to be parted from their trinket for long."`
 			`	"Fine," you say. "Anything else I need to know?"`
 			`	The observer looks you over with an emotionless gaze. "Our efforts shall protect the craft from the star's heat, but little else. 'T'would be wise not to linger in the Tangles."`
-			`	Tiliia rubs their arms together and an pulse of electric blue passes over them. "Time to go, then, captain!"`
+			`	Tiliia rubs their arms together and a pulse of electric blue passes over them. "Time to go, then, captain!"`
 				accept
 
 mission "Successors: Ghosts Aqrabe 7"
@@ -417,7 +417,7 @@ mission "Successors: Ghosts Aqrabe 7"
 
 	npc evade
 		ship "Hasur, Vowsworn" "Hasur-riita 4-1"
-		government "Solitude Enforcer" 
+		government "Solitude Enforcer"
 		personality launching heroic nemesis unconstrained
 		on kill
 			set "Successors: Ghosts Hasur transmission"

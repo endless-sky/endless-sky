@@ -200,7 +200,7 @@ mission "Successors: Ghosts Myurej 3 Checking"
 	stopover Giiq-Oj-Sol
 	stopover Giiq-Sou-Kella
 	complete at
-		planet 
+		planet
 			Maspa-Viir-Kella
 	to fail
 		has "flagship planet: Maspa-Viir-Kella"
@@ -384,7 +384,7 @@ mission "Successors: Ghosts Myurej 5"
 			choice
 				`	"What is that?"`
 				`	"Did you hear that?"`
-			`	Ijaset looks over at you with a shade of concern on their face. They open their mouth, but nothing understandable comes out - just the same sharply flowing language you heard from the Successors before you acquired the translation device. Then, a second later, there's another sharp feeling and their words are reshaped. " - thine ears? Can'st thou... now, I see it. We must leave now, <last>."`
+			`	Ijaset looks over at you with a shade of concern on their face. They open their mouth, but nothing understandable comes out - just the same sharply flowing language you heard from the Successors before you acquired the translation device. Then, a second later, there's another sharp feeling and their words are reshaped. "...thine ears? Can'st thou... now, I see it. We must leave now, <last>."`
 			`	The vault is shaken by the deep and distant sound of something breaking. Your translation device seems to be mostly back to normal, but something isn't quite right, as if it's trying to reshape some deep environmental noise in the background. It's hard to concentrate. There's another blast of sound, and you follow the three Successors back up the tunnel. It seems even longer now than it did before.`
 			`	Just as you emerge into the sunlight, something slams into the ground in the distance and you are thrown onto the stone. As you get back up, you hear Ijaset shouting a word that your translation device can't translate. A couple of seconds later, you see what it was that knocked you down: a brilliant stream of plasma illuminates the sky as a hypervelocity projectile strikes one of the buildings in the city. The air stinks of ozone.`
 			choice
@@ -412,7 +412,7 @@ mission "Successors: Ghosts Myurej 6"
 	npc evade
 		ship "Queru, Luminous Gaze" "Kis, Lamenting 9-3"
 		ship "Queru, Luminous Gaze" "Maki, Recalling 11-2"
-		government "Solitude Enforcer" 
+		government "Solitude Enforcer"
 		personality waiting heroic nemesis unconstrained vindictive
 		on kill
 			set "Successors: Ghosts Queru transmission"
