@@ -115,6 +115,8 @@ event "successors: ghosts restrict"
 		government "House Kaatrij"
 		"required reputation" 2
 
+event "successors: ghosts saajret contact"
+
 event "successors: ghosts stage 1"
 	set "successors: ghosts stage 1"
 
