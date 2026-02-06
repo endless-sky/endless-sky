@@ -57,6 +57,11 @@ public:
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
 	double FleetMultiplier() const;
+	double FriendlyFirePrbability() const;
+	double AllyFriendlyFireProbability() const;
+	double FighterFriendlyFireMultiplier() const;
+	bool CarrierFriendlyFireException() const;
+	double FriendlyFireDamageMultiplier() const;
 
 
 private:
@@ -73,6 +78,11 @@ private:
 	double systemDepartureMin = 0.;
 	std::optional<double> systemArrivalMin;
 	double fleetMultiplier = 1.;
+	double friendlyFireProbability = 0.;
+	double allyFriendlyFireProbability = 0.;
+	double fighterFriendlyFireMultiplier = 0.;
+	bool carrierFriendlyFireException = false;
+	double friendlyFireDamageMultiplier = 1.;
 
 	// Miscellanous rules that are only used by the gamedata and not by the engine.
 	std::map<std::string, int> miscRules;

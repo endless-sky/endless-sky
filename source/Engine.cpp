@@ -2443,18 +2443,26 @@ void Engine::DoCollisions(Projectile &projectile)
 		Body *hit = collision.HitBody();
 		CollisionType collisionType = collision.GetCollisionType();
 		double range = collision.IntersectionRange();
+		bool targetedHit = (hit == projectile.Target());
+		bool alliedGov = hit && !gov->IsEnemy(hit->GetGovernment());
+		bool isSafe = weapon.IsSafe();
 
 		shared_ptr<Ship> shipHit;
 		if(hit && collisionType == CollisionType::SHIP)
 			shipHit = reinterpret_cast<Ship *>(hit)->shared_from_this();
 
+
 		// Don't collide with carried ships that are disabled and not directly targeted.
-		if(shipHit && hit != projectile.Target()
+		if(shipHit && targetedHit
 				&& !FighterHitHelper::IsValidTarget(shipHit.get()))
 			continue;
 
 		// If the ship is cloaked, and phasing, then skip this ship (during this step).
 		if(shipHit && shipHit->Phases(projectile))
+			continue;
+
+		// Safe weapons are immune to friendly fire.
+		if(alliedGov && isSafe && !targetedHit)
 			continue;
 
 		// Create the explosion the given distance along the projectile's
@@ -2471,7 +2479,6 @@ void Engine::DoCollisions(Projectile &projectile)
 			// Even friendly ships can be hit by the blast, unless it is a
 			// "safe" weapon.
 			Point hitPos = projectile.Position() + range * projectile.Velocity();
-			bool isSafe = weapon.IsSafe();
 			vector<Body *> blastCollisions;
 			blastCollisions.reserve(32);
 			shipCollisions.Circle(hitPos, blastRadius, blastCollisions);
@@ -2479,12 +2486,16 @@ void Engine::DoCollisions(Projectile &projectile)
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
 				bool targeted = (projectile.Target() == ship);
+				bool directHit = (ship == hit);
 				// Phasing cloaked ship will have a chance to ignore the effects of the explosion.
 				if((isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment())) || ship->Phases(projectile))
 					continue;
 
+				double multiplier = !gov->IsEnemy(ship->GetGovernment()) && !targeted && directHit
+					? GameData::GetGamerules().FriendlyFireDamageMultiplier() : 1.;
+
 				// Only directly targeted ships get provoked by blast weapons.
-				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit),
+				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, multiplier, directHit),
 					targeted ? gov : nullptr);
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
@@ -2501,7 +2512,11 @@ void Engine::DoCollisions(Projectile &projectile)
 		{
 			if(collisionType == CollisionType::SHIP)
 			{
-				int eventType = shipHit->TakeDamage(visuals, damage.CalculateDamage(*shipHit), gov);
+				double multiplier = alliedGov && !targetedHit
+					? GameData::GetGamerules().FriendlyFireDamageMultiplier() : 1.;
+
+				int eventType = shipHit->TakeDamage(visuals, damage.CalculateDamage(*shipHit, multiplier),
+					targetedHit ? gov : nullptr);
 				if(eventType)
 					eventQueue.emplace_back(gov, shipHit, eventType);
 			}

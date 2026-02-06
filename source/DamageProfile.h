@@ -38,7 +38,7 @@ public:
 	explicit DamageProfile(Weather::ImpactInfo info);
 
 	// Calculate the damage dealt to the given ship.
-	DamageDealt CalculateDamage(const Ship &ship, bool ignoreBlast = false) const;
+	DamageDealt CalculateDamage(const Ship &ship, double damageMultiplier = 1., bool ignoreBlast = false) const;
 	MinableDamageDealt CalculateDamage(const Minable &minable) const;
 
 

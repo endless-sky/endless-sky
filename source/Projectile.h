@@ -85,6 +85,9 @@ public:
 	// Get information on how this projectile impacted a ship.
 	ImpactInfo GetInfo(double intersection) const;
 
+	// Get the ship that initially fired this projectile.
+	const Ship *ParentShip() const;
+
 	// Find out which ship or government this projectile is targeting. Note:
 	// this pointer is not guaranteed to be dereferenceable, so only use it
 	// for comparing.
@@ -117,6 +120,8 @@ private:
 
 private:
 	const Weapon *weapon = nullptr;
+
+	const Ship *parentShip = nullptr;
 
 	std::weak_ptr<Ship> targetShip;
 	const Ship *cachedTarget = nullptr;

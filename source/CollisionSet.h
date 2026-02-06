@@ -51,7 +51,11 @@ public:
 	// Get all possible collisions along a line. Collisions are not necessarily sorted by
 	// distance.
 	void Line(const Point &from, const Point &to, std::vector<Collision> &result,
-		const Government *pGov = nullptr, const Body *target = nullptr) const;
+		const Body *parent = nullptr, const Government *pGov = nullptr, const Body *target = nullptr) const;
+
+	// Determine whether a collision should occur.
+	bool ValidCollision(const Body *parent, const Body *hit, const Government *pGov,
+		const Body *target, const double relativeSpeed) const;
 
 	// Get all objects within the given range of the given point.
 	void Circle(const Point &center, double radius, std::vector<Body *> &result) const;
