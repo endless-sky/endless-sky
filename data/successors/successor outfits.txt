@@ -37,7 +37,7 @@ outfit "Harmonic Keystone"
 	"mass" 1
 	"outfit space" -3
 	"quantum keystone" 1
-	"jump sound" "harmonic jump" # Needs unique sound!
+	# "jump sound" "harmonic jump" # Needs unique sound!
 	description "A tiny fragment of a quantum keystone is suspended in a cradle of harmonic magnifiers, each one grown atom-by-atom from exotic metal. Though a little bulkier than an unaltered keystone would be, this device has allowed the New Houses to divide their fifty keystones twenty-fold and has given them a substantial edge in exploration through their unstable wormhole."
 	description "The harmonic elements of this device pinch and twist at unfamiliar parts of the fabric of space. When a jump drive is equipped in tandem, it is made to sing in tune."
 
