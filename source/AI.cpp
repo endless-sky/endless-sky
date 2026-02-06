@@ -401,7 +401,7 @@ AI::AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minable
 	: player(player), ships(ships), minables(minables), flotsam(flotsam), routeCache()
 {
 	// Allocate a starting amount of hardpoints for ships.
-	firingCommands.SetHardpoints(12);
+	firingCommands.SetHardpoints(12, 12);
 	RegisterDerivedConditions(player.Conditions());
 }
 
@@ -785,7 +785,7 @@ void AI::Step(Command &activeCommands)
 			continue;
 
 		Command command;
-		firingCommands.SetHardpoints(it->Weapons().size());
+		firingCommands.SetHardpoints(it->Weapons().size(), it->Decorations().size());
 		if(it->IsYours())
 		{
 			if(it->HasBays() && thisIsLaunching)
@@ -3774,7 +3774,16 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 			for(const Hardpoint &hardpoint : ship.Weapons())
 				if(hardpoint.CanAim(ship))
 					maxRange = max(maxRange, hardpoint.GetWeapon()->Range());
-			// If this ship has no turrets, bail out.
+			// If there are no turrets, then there may be decorations with the TARGETING behavior.
+			if(!maxRange)
+				for(const Ship::Decor &decor : ship.Decorations())
+					if(decor.behavior == Ship::DecorBehavior::TARGETING)
+					{
+						// If at least one TARGETING decoration exists, look for nearby ships.
+						maxRange = 500.;
+						break;
+					}
+			// If this ship has no turrets or TARGETING decorations, bail out.
 			if(!maxRange)
 				return;
 			// Extend the weapon range slightly to account for velocity differences.
@@ -3799,6 +3808,24 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 		if(ship.GetTargetAsteroid())
 			targetBodies.push_back(ship.GetTargetAsteroid().get());
 
+		// Decorations with the MOVING behavior always aim randomly without a target.
+		// Decorations with the TARGETING behavior only do this if there is no target.
+		for(const Ship::Decor &decor : ship.Decorations())
+		{
+			if(decor.behavior == Ship::DecorBehavior::MOVING
+				|| (decor.behavior == Ship::DecorBehavior::TARGETING && targetBodies.empty()))
+			{
+				int index = &decor - &ship.Decorations().front();
+				double previous = ship.FiringCommands().AimDecor(index);
+				if(!previous && Random::Int(60))
+					continue;
+
+				Angle centerAngle = Angle(decor.position);
+				double bias = (centerAngle - decor.angle).Degrees() / 180.;
+				double acceleration = Random::Real() - Random::Real() + bias;
+				command.SetAimDecor(index, previous + .1 * acceleration);
+			}
+		}
 		// If there are no targets to aim at, opportunistic turrets should sweep
 		// back and forth at random, with the sweep centered on the "outward-facing"
 		// angle. Focused turrets should just point forward.
@@ -3943,6 +3970,43 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 				command.SetAim(index, bestAngle / hardpoint.TurnRate(ship));
 			}
 		}
+	// Decoration with the TARGETING behavior simply aims at the closest target in view.
+	for(const Ship::Decor &decor : ship.Decorations())
+	{
+		if(decor.behavior != Ship::DecorBehavior::TARGETING)
+			continue;
+		Point start = ship.Position() + ship.Facing().Rotate(decor.position);
+		// Get the turret's current facing, in absolute coordinates:
+		Angle aim = ship.Facing() + decor.angle;
+		// Loop through each body this decoration could target at. Find the
+		// one that is the "best" in terms of how many frames it will take
+		// to aim at it.
+		double bestScore = numeric_limits<double>::infinity();
+		double bestAngle = 0.;
+		for(auto [p, v] : targets)
+		{
+			p -= start;
+			// By the time this action is performed, the target will
+			// have moved forward one time step.
+			p += v;
+
+			// Determine how much the decoration must turn to face that vector.
+			Angle angleToPoint = Angle(p);
+			double degrees = (angleToPoint - aim).Degrees();
+			double turnTime = fabs(degrees) / decor.rotationSpeed;
+			if(turnTime < bestScore)
+			{
+				bestScore = turnTime;
+				bestAngle = degrees;
+			}
+		}
+		if(bestAngle)
+		{
+			// Get the index of this weapon.
+			int index = &decor - &ship.Decorations().front();
+			command.SetAimDecor(index, bestAngle / decor.rotationSpeed);
+		}
+	}
 }
 
 
@@ -4308,7 +4372,7 @@ bool AI::TargetMinable(Ship &ship) const
 void AI::MovePlayer(Ship &ship, Command &activeCommands)
 {
 	Command command;
-	firingCommands.SetHardpoints(ship.Weapons().size());
+	firingCommands.SetHardpoints(ship.Weapons().size(), ship.Decorations().size());
 
 	bool shift = activeCommands.Has(Command::SHIFT);
 
