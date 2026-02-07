@@ -638,7 +638,7 @@ private:
 	bool canBeCarried = false;
 	bool alwaysLocked = false;
 	bool neverLocked = false;
-	double baseRewiringMultiplier = 1.;
+	double baseRewiringMultiplier = -1.;
 	bool locked = false;
 
 	int forget = 0;

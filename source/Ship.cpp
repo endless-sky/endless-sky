@@ -642,12 +642,11 @@ void Ship::FinishLoading(bool isNewInstance)
 			noun = model->noun;
 		if(!thumbnail)
 			thumbnail = model->thumbnail;
-		if(baseRewiringMultiplier == 1.)
-			baseRewiringMultiplier = model->baseRewiringMultiplier;
 	}
 
 	// If this ship has a base class, copy any attributes not defined here.
-	// Exception: uncapturable and "never disabled" flags don't carry over.
+	// Exception: the uncapturable, "never disabled," locked, "always locked,"
+	// and "never locked" flags don't carry over.
 	if(base && base != this)
 	{
 		if(!GetSprite())
@@ -676,6 +675,8 @@ void Ship::FinishLoading(bool isNewInstance)
 			outfits = base->outfits;
 		if(description.IsEmpty())
 			description = base->description;
+		if(baseRewiringMultiplier == -1.)
+			baseRewiringMultiplier = base->baseRewiringMultiplier;
 
 		bool hasHardpoints = false;
 		if(inheritsOutfits && armament.Get().empty())
@@ -909,6 +910,9 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Perform a full IsDisabled calculation.
 	isDisabled = true;
 	isDisabled = IsDisabled();
+
+	// If this ship did not set a rewiring multiplier, default it to 1.
+	baseRewiringMultiplier = 1.;
 
 	// Calculate this ship's jump information, e.g. how much it costs to jump, how far it can jump, how it can jump.
 	navigation.Calibrate(*this);
