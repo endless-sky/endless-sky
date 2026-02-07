@@ -141,6 +141,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameLoadingPanel.h
 	Gamerules.cpp
 	Gamerules.h
+	GamerulesPanel.cpp
+	GamerulesPanel.h
 	GameVersion.cpp
 	GameVersion.h
 	GameWindow.cpp
@@ -221,6 +223,8 @@ target_sources(EndlessSkyLib PRIVATE
 	NPCAction.h
 	News.cpp
 	News.h
+	OptionalInputDialogPanel.cpp
+	OptionalInputDialogPanel.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp

@@ -677,11 +677,21 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 				*wormhole = Wormhole();
 			wormhole->Load(node);
 		}
+		else if(key == "gamerules preset" && hasValue && node.HasChildren())
+		{
+			Gamerules *gamerules = gamerulesPresets.Get(node.Token(1));
+			if(overwrite)
+				*gamerules = Gamerules();
+			gamerules->Load(node);
+		}
 		else if(key == "gamerules" && node.HasChildren())
 		{
+			node.PrintTrace("\"gamerules\" root node is deprecated. "
+				"Use `\"gamerules preset\" \"Default\"` instead.");
+			Gamerules *gamerules = gamerulesPresets.Get("Default");
 			if(overwrite)
-				gamerules = Gamerules();
-			gamerules.Load(node);
+				*gamerules = Gamerules();
+			gamerules->Load(node);
 		}
 		else if(key == "message category")
 		{
