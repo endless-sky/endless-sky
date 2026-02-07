@@ -67,7 +67,6 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player, Sale<Ship> stock)
 
 void ShipyardPanel::Step()
 {
-	CheckRepairs();
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::SHIPYARD);
 	ShopPanel::ValidateSelectedShips();
@@ -227,9 +226,9 @@ void ShipyardPanel::DrawButtons()
 	DrawButton("_Sell",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), buttonSize),
 		static_cast<bool>(playerShips.size()), hoverButton == 's', 's');
-	DrawButton("_Repair",
+	DrawButton("_Rewire",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), buttonSize),
-		static_cast<bool>(CanRepair()), hoverButton == 'r', 'r');
+		static_cast<bool>(CanRewire()), hoverButton == 'r', 'r');
 	// Row 2
 	DrawButton("Sell H_ull",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1), buttonSize),
@@ -305,12 +304,9 @@ ShopPanel::TransactionResult ShipyardPanel::HandleShortcuts(SDL_Keycode key)
 	else if(key == 'r')
 	{
 		// Repair selected ships if able.
-		result = CanRepair();
+		result = CanRewire();
 		if(result)
-		{
-			shipsToRepair = repairableShips;
-			Repair();
-		}
+			Rewire();
 	}
 
 	return result;
@@ -458,43 +454,43 @@ void ShipyardPanel::Sell(bool storeOutfits)
 
 
 
-ShopPanel::TransactionResult ShipyardPanel::CanRepair()
+ShopPanel::TransactionResult ShipyardPanel::CanRewire()
 {
-	repairableShips.clear();
+	shipsToRewire.clear();
 
 	if(!playerShip)
 		return false;
 
 	for(Ship *selected : playerShips)
-		if(selected->InternalDamage())
-			repairableShips.insert(selected);
+		if(selected->IsLocked() && !selected->AlwaysLocked())
+			shipsToRewire.insert(selected);
 
-	if(repairableShips.empty())
+	if(shipsToRewire.empty())
 		return false;
 
 	int64_t cost = 0;
 	int64_t minimum = 0;
-	for(const auto &it : repairableShips)
+	for(const auto &it : shipsToRewire)
 	{
-		cost += it->RepairCost();
-		minimum = min(minimum, it->RepairCost());
+		cost += it->RewiringCost();
+		minimum = min(minimum, it->RewiringCost());
 	}
 
 	int64_t credits = player.Accounts().Credits();
 	if(credits < cost)
 	{
-		if(repairableShips.size() == 1)
-			return "You do not have enough credits to repair this ship. "
+		if(shipsToRewire.size() == 1)
+			return "You do not have enough credits to rewire this ship. "
 					"Consider checking if the bank will offer you a loan.";
 
-		// Alert the player if any of the selected ships could be repaired individually.
+		// Alert the player if any of the selected ships could be rewired individually.
 		if(credits >= minimum)
 		{
-			return "You do not have enough credits to repair all the selected ships at once. "
-					"Select fewer ships if you want to repair some of them.";
+			return "You do not have enough credits to rewire all the selected ships at once. "
+					"Select fewer ships if you want to rewire some of them.";
 		}
 
-		return "You do not have enough credits to repair the selected ships. "
+		return "You do not have enough credits to rewire the selected ships. "
 				"Consider checking if the bank will offer you a loan.";
 	}
 
@@ -503,35 +499,19 @@ ShopPanel::TransactionResult ShipyardPanel::CanRepair()
 
 
 
-void ShipyardPanel::Repair(bool automatic)
+void ShipyardPanel::Rewire()
 {
 	static const int MAX_LIST = 20;
 
-	int count = shipsToRepair.size();
+	int count = shipsToRewire.size();
 	int initialCount = count;
-	string message;
-	if(automatic)
-	{
-		int totalShips = player.Ships().size();
-		if(totalShips == 1)
-			message = "Your ship has been ";
-		else
-			message = count > 1 ? (count == totalShips
-					? "All of the ships in your fleet have been "
-					: "Some of the ships in your fleet have been ")
-					: "One of the ships in your fleet has been ";
-
-		message += "internally damaged. "
-				"Do you want to repair the ";
-	}
-	else
-		message = "Repair the ";
+	string message = "Rewire the ";
 
 	if(count == 1)
-		message += (*shipsToRepair.begin())->GivenName();
+		message += (*shipsToRewire.begin())->GivenName();
 	else if(count <= MAX_LIST)
 	{
-		auto it = shipsToRepair.begin();
+		auto it = shipsToRewire.begin();
 		message += (*it++)->GivenName();
 		--count;
 
@@ -547,20 +527,22 @@ void ShipyardPanel::Repair(bool automatic)
 	}
 	else
 	{
-		auto it = shipsToRepair.begin();
+		auto it = shipsToRewire.begin();
 		message += (*it++)->GivenName() + ",\n";
 		for(int i = 1; i < MAX_LIST - 1; ++i)
 			message += (*it++)->GivenName() + ",\n";
 
 		message += "and " + to_string(count - (MAX_LIST - 1)) + " other ships";
 	}
+	message += "?";
 
 	int64_t total = 0;
-	for(const auto &it : shipsToRepair)
-		total += it->RepairCost();
+	for(const auto &it : shipsToRewire)
+		total += it->RewiringCost();
 
-	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
-	GetUI().Push(new DialogPanel(this, &ShipyardPanel::RepairShip, message, Truncate::MIDDLE));
+	if(total)
+		message += ((initialCount > 2) ? "\nIt will cost " : " It will cost ") + Format::CreditString(total) + ".";
+	GetUI().Push(new DialogPanel(this, &ShipyardPanel::RewireShip, message, Truncate::MIDDLE));
 }
 
 
@@ -632,44 +614,12 @@ void ShipyardPanel::SellShip(bool storeOutfits)
 
 
 
-void ShipyardPanel::CheckRepairs()
+void ShipyardPanel::RewireShip()
 {
-	if(checkedRepairs)
-		return;
-	checkedRepairs = true;
-
-	shipsToRepair.clear();
-	int64_t cost = 0;
-
-	for(const shared_ptr<Ship> &ship : player.Ships())
+	for(Ship *ship : shipsToRewire)
 	{
-		// Skip ships in other systems and those that were unable to land in-system.
-		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
-			continue;
-		else if(ship.get()->InternalDamage())
-		{
-			shipsToRepair.insert(ship.get());
-			cost += ship.get()->RepairCost();
-		}
-	}
-
-	if(!shipsToRepair.empty() && cost < player.Accounts().Credits())
-	{
-		Repair(true);
-		// The help dialog for internal damage should be placed on top of the prompt
-		// to repair your ships.
-		DoHelp("internal damage");
-	}
-}
-
-
-
-void ShipyardPanel::RepairShip()
-{
-	for(Ship *ship : shipsToRepair)
-	{
-		ship->SetInternalDamage(false);
-		player.Accounts().AddCredits(-ship->RepairCost());
+		ship->SetLock(false);
+		player.Accounts().AddCredits(-ship->RewiringCost());
 	}
 }
 

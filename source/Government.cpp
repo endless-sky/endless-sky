@@ -438,6 +438,8 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			crewAttack = max(0., add ? child.Value(valueIndex) + crewAttack : child.Value(valueIndex));
 		else if(key == "crew defense")
 			crewDefense = max(0., add ? child.Value(valueIndex) + crewDefense : child.Value(valueIndex));
+		else if(key == "rewiring multiplier")
+			rewiringMultiplier = child.Value(valueIndex) + (add ? rewiringMultiplier : 0.);
 		else if(key == "bribe")
 			bribe = child.Value(valueIndex) + (add ? bribe : 0.);
 		else if(key == "bribe threshold")
@@ -891,6 +893,13 @@ double Government::CrewAttack() const
 double Government::CrewDefense() const
 {
 	return crewDefense;
+}
+
+
+
+double Government::RewiringMultiplier() const
+{
+	return rewiringMultiplier;
 }
 
 

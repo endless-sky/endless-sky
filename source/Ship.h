@@ -193,11 +193,16 @@ public:
 	// This is only useful for the player's ships.
 	double Attraction() const;
 	double Deterrence() const;
+	// Get whether this ship should be locked when captured, as well as
+	// any factors altering its ability to be rewired.
+	bool AlwaysLocked() const;
+	bool AlwaysUnlocked() const;
 	// Set / Get whether this ship was damaged as a result of boarding,
 	// as well as the cost to repair that damage.
-	void SetInternalDamage(bool damage);
-	bool InternalDamage() const;
-	int64_t RepairCost() const;
+	void SetLock(bool lock);
+	bool IsLocked() const;
+	double RewiringMultiplier() const;
+	int64_t RewiringCost() const;
 
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
@@ -626,7 +631,10 @@ private:
 	EsUuid uuid;
 	std::string givenName;
 	bool canBeCarried = false;
-	bool internalDamage = false;
+	bool alwaysLocked = false;
+	bool alwaysUnlocked = false;
+	double baseRewiringMultiplier = 1.;
+	bool locked = false;
 
 	int forget = 0;
 	bool isInSystem = true;

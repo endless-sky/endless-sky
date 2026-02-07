@@ -978,12 +978,16 @@ const string &GameData::Tooltip(const string &label)
 {
 	static const string EMPTY;
 	auto it = objects.tooltips.find(label);
-	// Special case: the "cost" and "sells for" labels include the percentage of
-	// the full price, so they will not match exactly.
+	// Special case: the "cost", "sells for", "empty hull" and "rewiring cost" labels
+	// include the percentage of the full price, so they will not match exactly.
 	if(it == objects.tooltips.end() && label.starts_with("cost"))
 		it = objects.tooltips.find("cost:");
 	if(it == objects.tooltips.end() && label.starts_with("sells for"))
 		it = objects.tooltips.find("sells for:");
+	if(it == objects.tooltips.end() && label.starts_with("empty hull"))
+		it = objects.tooltips.find("empty hull:");
+	if(it == objects.tooltips.end() && label.starts_with("rewiring cost"))
+		it = objects.tooltips.find("rewiring cost:");
 	return (it == objects.tooltips.end() ? EMPTY : it->second);
 }
 

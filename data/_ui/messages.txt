@@ -84,6 +84,12 @@ message "disengaging autopilot"
 message "coming to a stop"
 	text "Coming to a stop."
 
+message "cloaking fail"
+	text "One of your ships could not engage its cloaking device."
+
+message "cloaking fail multiple"
+	text "Several of your ships could not engage their cloaking device."
+
 message "engaging cloaking device"
 	text "Engaging cloaking device."
 
@@ -112,10 +118,6 @@ message "cannot jump while landing"
 
 message "undercrewed flagship"
 	text "Your ship is moving erratically because you do not have enough crew to pilot it."
-	category "low"
-
-message "internally damaged flagship"
-	text "Your ship is moving erratically due to internal damage."
 	category "low"
 
 message "cannot board while cloaked"

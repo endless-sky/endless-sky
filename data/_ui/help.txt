@@ -188,9 +188,9 @@ help "outfitter with multiple ships"
 	`Escorts can be saved into control groups by pressing a number key while holding Control. All selected escorts will then be bound to that number key, and can be selected again at any time by pressing it.`
 	`Ship group management can be done while flying around or while in the shipyard, outfitter, or player info panel.`
 
-help "internal damage"
-	`As a result of collateral damage while boarding and capturing, one or more ships you own have been internally damaged. Ships with internal damage will periodically lose control mid-flight.`
-	`Internal damage can only be repaired within a shipyard, for a portion of the chassis' original cost.`
+help "locked ships"
+	`Almost every ship in the 31st century has safeguards on their computer systems, preventing intruders from hijacking them. While it's possible to hotwire a ship's flight and navigation systems, other systems such as weaponry and access to passenger quarters will be locked, preventing their use.`
+	`	Most locked vessels are sold to scrapyards for a fraction of their original value. On the other hand, you could instead have a specialist rewire the entire ship and fly it yourself. Rewiring does not come cheap, however...`
 
 help "stranded"
 	`Oops! You just ran out of fuel in an uninhabited star system. Fortunately, other ships are willing to help you.`

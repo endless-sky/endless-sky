@@ -49,8 +49,8 @@ protected:
 	virtual TransactionResult CanDoBuyButton() const;
 	virtual void DoBuyButton();
 	virtual void Sell(bool storeOutfits);
-	virtual TransactionResult CanRepair();
-	virtual void Repair(bool automatic = false);
+	virtual TransactionResult CanRewire();
+	virtual void Rewire();
 	virtual int FindItem(const std::string &text) const override;
 	virtual TransactionResult HandleShortcuts(SDL_Keycode key) override;
 
@@ -60,17 +60,13 @@ private:
 	void SellShipAndOutfits();
 	void SellShipChassis();
 	void SellShip(bool toStorage);
-	void CheckRepairs();
-	void RepairShip();
+	void RewireShip();
 
 
 private:
 	int modifier;
-	// Record whether we've checked if the player needs ships repaired.
-	bool checkedRepairs = false;
 
-	std::set<Ship *> repairableShips;
-	std::set<Ship *> shipsToRepair;
+	std::set<Ship *> shipsToRewire;
 
 	Sale<Ship> shipyard;
 };
