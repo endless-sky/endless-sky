@@ -65,8 +65,6 @@ namespace {
 	const vector<string> ENGINE_SIDE = {"under", "over"};
 	const vector<string> STEERING_FACING = {"none", "left", "right"};
 
-	const double MAXIMUM_TEMPERATURE = 100.;
-
 	// The value a ship's chassis cost is multiplied by to get the cost of rewiring its systems.
 	const double REWIRING_MULTIPLIER = .8;
 
@@ -656,7 +654,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(base && base != this)
 	{
 		if(!GetSprite())
-			reinterpret_cast<Body &>(*this) = *base;
+			static_cast<Body &>(*this) = *base;
 		if(customSwizzleName.empty())
 			customSwizzleName = base->CustomSwizzleName();
 		if(baseAttributes.Attributes().empty())
@@ -2911,16 +2909,6 @@ double Ship::Energy() const
 
 
 
-// Allow returning a heat value greater than 1 (i.e. conveying how overheated
-// this ship has become).
-double Ship::Heat() const
-{
-	double maximum = MaximumHeat();
-	return maximum ? heat / maximum : 1.;
-}
-
-
-
 // Get the ship's "health," where <=0 is disabled and 1 means full health.
 double Ship::Health() const
 {
@@ -3703,13 +3691,6 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 			? perBox : count, notForGov));
 		count -= perBox;
 	}
-}
-
-
-
-const Outfit &Ship::Attributes() const
-{
-	return attributes;
 }
 
 

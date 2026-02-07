@@ -38,7 +38,7 @@ outfit `"Byiaa" Shield Cortex`
 	"outfit space" -13
 	"shield generation" 1.9
 	"shield protection" -0.33
-	"shield energy" 2.92
+	"shield energy" 2.53
 	"shield connection point" 1
 	description "At their peak, the Predecessors were feared not by how quickly they could overpower their enemies, but by how effectively they could outlast them. Many generations later, this philosophy is still reflected in modern Successor shield cortices, which are exceptionally powerful for their size but weaken the shield's resistance to incoming fire. This allows Successor ships to recover quickly from sustained damage, even if they are slightly more vulnerable to it."
 
@@ -54,7 +54,7 @@ outfit `"Ej" Shield Cortex`
 	"outfit space" -21
 	"shield generation" 3.0
 	"shield protection" -0.33
-	"shield energy" 4.7
+	"shield energy" 4.0
 	"shield connection point" 1
 	description "Because their bimodal engines draw power from a ship's shield matrix, even non-combat Successor craft can justify equipping powerful shield generators to afford them greater mobility. This is the largest unit the High Houses permit for sale to the general public; even so, it offers substantially faster regeneration than even the largest human shield generators."
 
@@ -70,7 +70,7 @@ outfit `"Jaase" Shield Cortex`
 	"outfit space" -30
 	"shield generation" 4.8
 	"shield protection" -0.33
-	"shield energy" 7.4
+	"shield energy" 6.4
 	"shield connection point" 1
 	description "The technology of their Predecessors was not nearly as modular as the modern Successor equivalents, which must be built with more limited resources and comparatively primitive manufacturing techniques. Nonetheless, this medium-sized shield cortex is powerful enough to shrug off the combined damage output of several lesser attackers, and consequently is reserved by the High Houses for use in their private navies."
 
@@ -86,7 +86,7 @@ outfit `"Jorv" Shield Cortex`
 	"outfit space" -55
 	"shield generation" 10.5
 	"shield protection" -0.33
-	"shield energy" 16.1
+	"shield energy" 14.0
 	"shield connection point" 1
 	description "Bristling with regeneration nodes, this large Successor shield cortex requires a power budget greater than most human warships in their entirety. Many more traditional members of the High Houses disapprove of its design, arguing that such a powerful piece of their technology deserves a more artful form, but there has ultimately been little desire to invest time and money into a redesign for purely aesthetic reasons."
 
@@ -101,9 +101,8 @@ outfit "Shield Cortex Interface"
 	mass 3
 	"outfit space" -3
 	"shield protection" 0.33
-	"shield generation multiplier" -0.05
 	"shield connection point" -2
-	description "This compact tract of electrical fibers connects two Successor shield cortices to function as a single unit, preventing the shield-softening effect of one of the generators from unduly reducing the durability of the ship's shields at the cost of slightly reducing efficiency. The effect scales poorly past two connected generators."
+	description "This compact tract of electrical fibers connects two Successor shield cortices to function as a single unit, preventing the shield-softening effect of one of the generators from unduly reducing the durability of the ship's shields. The effect scales poorly past two connected generators."
 
 
 outfit `1-"Uurau" Betavoltaic Cell`
