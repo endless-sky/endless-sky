@@ -51,7 +51,8 @@ public:
 	bool AddUnblurred(const Drawable &drawable, Point position, const Angle &facing);
 	// Add an object using a specific swizzle (rather than its own).
 	bool AddSwizzled(const Body &body, const Swizzle *swizzle, double cloak = 0.);
-	bool AddSwizzled(const Drawable &drawable, Point position, const Angle &facing, const Swizzle *swizzle, double cloak = 0.);
+	bool AddSwizzled(const Drawable &drawable, Point position, const Angle &facing, const Swizzle *swizzle,
+		double cloak = 0.);
 
 	// Draw all the items in this list.
 	void Draw() const;
