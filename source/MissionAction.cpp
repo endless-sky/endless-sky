@@ -73,7 +73,7 @@ void MissionAction::Load(const DataNode &node, const ConditionsStore *playerCond
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
 	if(node.Size() >= 3)
-		system = node.Token(2);
+		location = node.Token(2);
 
 	for(const DataNode &child : node)
 		LoadSingle(child, playerConditions, visitedSystems, visitedPlanets);
@@ -109,10 +109,17 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 	}
 	else if(key == "system")
 	{
-		if(system.empty() && child.HasChildren())
+		if(location.empty() && child.HasChildren())
 			systemFilter.Load(child, visitedSystems, visitedPlanets);
 		else
 			child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
+	}
+	else if(key == "planet")
+	{
+		if(location.empty() && child.HasChildren())
+			planetFilter.Load(child, visitedSystems, visitedPlanets);
+		else
+			child.PrintTrace("Error: Unsupported use of \"planet\" LocationFilter:");
 	}
 	else if(key == "can trigger after failure")
 		runsWhenFailed = true;
@@ -126,10 +133,10 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 // a template, so it only has to save a subset of the data.
 void MissionAction::Save(DataWriter &out) const
 {
-	if(system.empty())
+	if(location.empty())
 		out.Write("on", trigger);
 	else
-		out.Write("on", trigger, system);
+		out.Write("on", trigger, location);
 	out.BeginChild();
 	{
 		SaveBody(out);
@@ -146,6 +153,12 @@ void MissionAction::SaveBody(DataWriter &out) const
 		out.Write("system");
 		// LocationFilter indentation is handled by its Save method.
 		systemFilter.Save(out);
+	}
+	if(!planetFilter.IsEmpty())
+	{
+		out.Write("planet");
+		// LocationFilter indentation is handled by its Save method.
+		planetFilter.Save(out);
 	}
 	if(runsWhenFailed)
 		out.Write("can trigger after failure");
@@ -168,6 +181,8 @@ string MissionAction::Validate() const
 	// Any filter used to control where this action triggers must be valid.
 	if(!systemFilter.IsValid())
 		return "system location filter";
+	if(!planetFilter.IsValid())
+		return "planet location filter";
 
 	// Dialogs must contain valid phrases.
 	if(!dialog.Validate())
@@ -270,9 +285,11 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const sha
 		}
 	}
 
-	// An `on enter` MissionAction may have defined a LocationFilter that
-	// specifies the systems in which it can occur.
+	// An `on enter` or `on land` MissionAction may have defined a LocationFilter
+	// that specifies the systems or planets in which it can occur.
 	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
+		return false;
+	if(!planetFilter.IsEmpty() && !planetFilter.Matches(player.GetPlanet()))
 		return false;
 	return true;
 }
@@ -321,9 +338,9 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 			// missions active with the same destination (e.g. in the case of
 			// stacking bounty jobs).
 			if(isOffer)
-				ui->Push(new DialogPanel(text, player, destination));
+				ui->Push(DialogPanel::MissionOfferDialog(text, player, destination));
 			else if(isUnique || trigger != "visit")
-				ui->Push(new DialogPanel(text));
+				ui->Push(DialogPanel::Info(text));
 		}
 		else if(isOffer)
 			player.MissionCallback(Endpoint::ACCEPT);
@@ -340,9 +357,10 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 {
 	MissionAction result;
 	result.trigger = trigger;
-	result.system = system;
+	result.location = location;
 	// Convert any "distance" specifiers into "near <system>" specifiers.
 	result.systemFilter = systemFilter.SetOrigin(origin);
+	result.planetFilter = planetFilter.SetOrigin(origin);
 
 	result.requiredOutfits = requiredOutfits;
 
