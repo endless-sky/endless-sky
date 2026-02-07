@@ -625,7 +625,7 @@ outfit `"Tijra" Heirloom Lance`
 		"hit force" 800
 		"ion damage" 20
 		"penetration count" 5
-	description "Among the largest and most powerful of the Predecessors' weapons, this massive coilgun propels its magnetic projectiles to a sizable fraction of the speed of light, delivering enough kinetic energy on impact to destroy a small city or alternatively, a large warship."
+	description "Among the largest and most powerful of the Predecessors' weapons, this massive coilgun propels its magnetic projectiles to a sizable fraction of the speed of light, delivering enough kinetic energy on impact to destroy a small city or, alternatively, a large warship."
 
 
 outfit `"Ija" Heirloom Reactor`
