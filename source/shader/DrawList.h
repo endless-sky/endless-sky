@@ -21,7 +21,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <vector>
 
+class Angle;
 class Body;
+class Drawable;
 class Sprite;
 class Swizzle;
 
@@ -42,11 +44,14 @@ public:
 	bool Add(const Body &body, double cloak = 0.);
 	// Add an object at the given position (rather than its own).
 	bool Add(const Body &body, Point position, double cloak = 0.);
+	bool Add(const Drawable &drawable, Point position, const Angle &facing, double cloak = 0.);
 
 	// Add an object that should not be drawn with motion blur.
 	bool AddUnblurred(const Body &body);
+	bool AddUnblurred(const Drawable &drawable, Point position, const Angle &facing);
 	// Add an object using a specific swizzle (rather than its own).
 	bool AddSwizzled(const Body &body, const Swizzle *swizzle, double cloak = 0.);
+	bool AddSwizzled(const Drawable &drawable, Point position, const Angle &facing, const Swizzle *swizzle, double cloak = 0.);
 
 	// Draw all the items in this list.
 	void Draw() const;
@@ -54,9 +59,10 @@ public:
 
 private:
 	// Determine if the given object should be drawn at all.
-	bool Cull(const Body &body, const Point &position, const Point &blur) const;
+	bool Cull(const Drawable &drawable, const Point &position, const Angle &facing, const Point &blur) const;
 
-	void Push(const Body &body, Point pos, Point blur, double cloak, const Swizzle *swizzle);
+	void Push(const Drawable &drawable, const Point &pos, const Angle &facing, Point blur,
+		double alpha, double cloak, const Swizzle *swizzle);
 
 
 private:
