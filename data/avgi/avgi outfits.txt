@@ -42,7 +42,7 @@ outfit "Concealment Lamina"
 	"anchor point" -1
 	"scan interference" 6
 	"radar jamming" 12
-	"optical jamming" 12
+	"optical jamming" 1.2
 	"solar heat" 6
 	description "A specialized coating of quantum dot phased array antennas, grown molecule by molecule, forms a conformal film capable of interfering with and jamming any attempts to scan or detect a ship. Working in aggregate, the phased array can be used to jam the sensors of missiles from further away, or even blind them with a low-power beam. However, the density of quantum dots required to produce these effects considerably increases the amount of sunlight absorbed by a ship using Concealment Laminae, and such an advanced material does not come cheap."
 	description "	Laminae take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
