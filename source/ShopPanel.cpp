@@ -823,7 +823,8 @@ void ShopPanel::DrawShipsSidebar()
 		if(checkIt != flightChecks.end())
 		{
 			const string &check = (*checkIt).second.front();
-			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : (check == "locked systems" ? "ui/lock" : "ui/warning"));
+			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" :
+					(check == "locked systems" ? "ui/lock" : "ui/warning"));
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
 			if(shipZones.back().Contains(mouse))
 				warningType = check;
