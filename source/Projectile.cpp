@@ -29,6 +29,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Get the current power of jamming at a specified range.
+	double RangeFraction(double distance, double jamming)
+	{
+		return 1. - min(1., distance / (500. + sqrt(jamming) * 500.));
+	}
+
 	// Given the probability of losing a lock in five tries, check randomly
 	// whether it should be lost on this try.
 	inline bool Check(double probability, double base)
@@ -37,12 +43,15 @@ namespace {
 	}
 
 	// Returns if the missile is confused or not.
-	bool ConfusedTracking(double tracking, double weaponRange, double jamming, double distance)
+	bool ConfusedTracking(double tracking, double jamming, double distance)
 	{
 		if(!jamming)
 			return Random::Real() > tracking;
 		else
-			return Random::Real() > (tracking * distance) / (sqrt(jamming) * weaponRange);
+		{
+			jamming = sqrt(jamming) * RangeFraction(distance, jamming);
+			return Random::Real() > tracking / (1. + jamming);
+		}
 	}
 }
 
@@ -194,17 +203,22 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		// 180 degrees away from its target.
 		if(!Random::Int(ceil(180 / turn)))
 			confusionDirection = Random::Int(2) ? -1 : 1;
-		if(target && homing)
+		if(homing)
 		{
 			// Vector d is the direction we want to turn towards.
-			Point d = target->Position() - position;
-			bool isFacingAway = d.Dot(angle.Unit()) < 0.;
+			Point d;
+			bool isFacingAway = false;
+			if(target)
+			{
+				d = target->Position() - position;
+				isFacingAway = d.Dot(angle.Unit()) < 0.;
+			}
 
 			// The very dumbest of homing missiles lose their target if pointed
 			// away from it.
 			if(isFacingAway && weapon->HasBlindspot())
 				targetShip.reset();
-			else if(hasLock)
+			else if(target && hasLock)
 			{
 				Point unit = d.Unit();
 				double drag = weapon->Drag();
@@ -254,10 +268,10 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			// Turn in a random direction if this weapon is confused.
 			else if(isConfused)
 				turn *= confusionDirection;
+			// If a weapon is homing but has no target, do not turn it.
+			else
+				turn = 0.;
 		}
-		// If a weapon is homing but has no target, do not turn it.
-		else if(homing)
-			turn = 0.;
 
 		if(turn)
 			angle += Angle(turn);
@@ -419,21 +433,16 @@ void Projectile::CheckLock(const Ship &target)
 
 	// Optical tracking is about 1.5% for an average interceptor (250 mass),
 	// about 50% for an average medium warship (1000 mass),
-	// and about 95% for an average heavy warship (2500 mass),
-	// but can be affected by jamming.
+	// and about 95% for an average heavy warship (2500 mass).
+	// Optical jamming decreases the effective size of a ship.
 	if(weapon->OpticalTracking())
 	{
 		double opticalJamming = target.IsDisabled() ? 0. : target.Attributes().Get("optical jamming");
 		if(opticalJamming)
-		{
-			double distance = position.Distance(target.Position());
-			double jammingRange = 500. + sqrt(opticalJamming) * 500.;
-			double rangeFraction = min(1., distance / jammingRange);
-			opticalJamming = (1. - rangeFraction) * opticalJamming;
-		}
-		double targetMass = target.Mass();
+			opticalJamming *= RangeFraction(position.Distance(target.Position()), opticalJamming);
+		double targetMass = target.Mass() / (1. + opticalJamming);
 		double weight = targetMass * targetMass * targetMass / 1e9;
-		double lockChance = weapon->OpticalTracking() * weight / ((1. + weight) * (1. + opticalJamming));
+		double lockChance = weapon->OpticalTracking() * weight / (1. + weight);
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}
@@ -463,12 +472,7 @@ void Projectile::CheckLock(const Ship &target)
 	{
 		double radarJamming = target.IsDisabled() ? 0. : target.Attributes().Get("radar jamming");
 		if(radarJamming)
-		{
-			double distance = position.Distance(target.Position());
-			double jammingRange = 500. + sqrt(radarJamming) * 500.;
-			double rangeFraction = min(1., distance / jammingRange);
-			radarJamming = (1. - rangeFraction) * radarJamming;
-		}
+			radarJamming *= RangeFraction(position.Distance(target.Position()), radarJamming);
 		double lockChance = weapon->RadarTracking() / (1. + radarJamming);
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
@@ -510,16 +514,14 @@ void Projectile::CheckConfused(const Ship &target)
 	{
 		double opticalTracking = weapon->OpticalTracking();
 		double opticalJamming = target.Attributes().Get("optical jamming");
-		opticalConfused = ConfusedTracking(opticalTracking, weapon->Range(),
-			opticalJamming, distance);
+		opticalConfused = ConfusedTracking(opticalTracking, opticalJamming, distance);
 	}
 
 	if(weapon->RadarTracking())
 	{
 		double radarTracking = weapon->RadarTracking();
 		double radarJamming = target.Attributes().Get("radar jamming");
-		radarConfused = ConfusedTracking(radarTracking, weapon->Range(),
-			radarJamming, distance);
+		radarConfused = ConfusedTracking(radarTracking, radarJamming, distance);
 	}
 
 	isConfused = trackingConfused && infraredConfused && opticalConfused && radarConfused;

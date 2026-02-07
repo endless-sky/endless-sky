@@ -449,12 +449,12 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == SDLK_TAB)
 		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
 	else if(key == 'f')
-		GetUI().Push(new DialogPanel(this, &ShopPanel::DoFind, "Search for:"));
+		GetUI().Push(DialogPanel::RequestString(this, &ShopPanel::DoFind, "Search for:"));
 	else
 	{
 		TransactionResult result = HandleShortcuts(key);
 		if(result.HasMessage())
-			GetUI().Push(new DialogPanel(result.Message()));
+			GetUI().Push(DialogPanel::Info(result.Message()));
 		else if(isOutfitter)
 		{
 			// Ship-based updates to cargo are handled when leaving.

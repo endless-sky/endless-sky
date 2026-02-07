@@ -125,6 +125,14 @@ public:
 	std::string GetPlanetBribeAcceptanceHail() const;
 	std::string GetPlanetBribeRejectionHail() const;
 
+	// Get the messages that the government responds with when speaking about tribute.
+	const Phrase *TributeAlreadyPaying() const;
+	const Phrase *TributeUndefined() const;
+	const Phrase *TributeUnworthy() const;
+	const Phrase *TributeFleetLaunching() const;
+	const Phrase *TributeFleetUndefeated() const;
+	const Phrase *TributeSurrendered() const;
+
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
 	// Find out if this government should send custom hails even if the player does not know its language.
@@ -223,6 +231,12 @@ private:
 	const Phrase *shipBribeRejectionHail = nullptr;
 	const Phrase *planetBribeAcceptanceHail = nullptr;
 	const Phrase *planetBribeRejectionHail = nullptr;
+	const Phrase *tributeAlreadyPaying = nullptr;
+	const Phrase *tributeUndefined = nullptr;
+	const Phrase *tributeUnworthy = nullptr;
+	const Phrase *tributeFleetLaunching = nullptr;
+	const Phrase *tributeFleetUndefeated = nullptr;
+	const Phrase *tributeSurrendered = nullptr;
 	std::string language;
 	bool sendUntranslatedHails = false;
 	std::vector<RaidFleet> raidFleets;

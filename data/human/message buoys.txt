@@ -220,10 +220,11 @@ mission "Message Buoy: Martini Restricted"
 	destination "Earth"
 	to offer
 		"reputation: Republic" < 80
-		not "main plot completed"
+		has "event: war begins"
+		not "martini recovers"
 	on offer
 		message
-			text "Message buoy to Merchant ships: Due to the attacks of July 4, 3015, access to the Republic planet of Martini is restricted."
+			text "Message buoy to all ships: Due to the attacks of July 4, 3015, access to the Republic planet of Martini is restricted."
 		fail
 
 mission "Message Buoy: Geminus Restricted"
@@ -236,10 +237,11 @@ mission "Message Buoy: Geminus Restricted"
 	destination "Earth"
 	to offer
 		"reputation: Republic" < 80
-		not "main plot completed"
+		has "event: war begins"
+		not "geminus rebuilt"
 	on offer
 		message
-			text "Message buoy to Merchant ships: Due to the attacks of July 4, 3015, access to the Republic planet of Geminus is restricted."
+			text "Message buoy to all ships: Due to the attacks of July 4, 3015, access to the Republic planet of Geminus is restricted."
 		fail
 
 mission "Message Buoy: Graffias"
@@ -253,7 +255,7 @@ mission "Message Buoy: Graffias"
 	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
-		has "war begins"
+		has "event: war begins"
 		not "main plot completed"
 	on offer
 		message
@@ -287,7 +289,7 @@ mission "Message Buoy: Elnath"
 		"reputation: Republic" < 100
 	on offer
 		message
-			text "Message buoy to all ships: all inhabited installations in the Elnath system are restricted to employees of Lovelace Labs. Please refuel or repair in another system."
+			text "Message buoy to all ships: All inhabited installations in the Elnath system are restricted to employees of Lovelace Labs. Please refuel or repair in another system."
 		fail
 
 mission "Message Buoy: Occupied Greenrock"
@@ -327,7 +329,7 @@ mission "Message Buoy: beyond Farpoint"
 		has "previous system: Alnitak"
 	on offer
 		message
-			text "Message buoy to all ships: you have exited Republic-controlled space. Assistance from Navy vessels is limited beyond the system of Alnitak. It is recommended you return to Farpoint immediately."
+			text "Message buoy to all ships: You have exited Republic-controlled space. Assistance from Navy vessels is limited beyond the system of Alnitak. It is recommended you return to Farpoint immediately."
 		fail
 
 mission "Message Buoy: Megaparsec"

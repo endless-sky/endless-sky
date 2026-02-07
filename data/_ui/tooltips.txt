@@ -1592,9 +1592,6 @@ tip "Show escort systems on map"
 tip "Show stored outfits on map"
 	`If you have outfits stored on a planet, marks systems with stored outfits on the star map.`
 
-tip "System map sends move orders"
-	`Right-click on a location in the system mini-map on the galaxy map to send your escorts to that location in the selected system.`
-
 tip "Always underline shortcuts"
 	`Always underline the shortcut key for any buttons. Holding the alt key in any panel will also underline the button shortcut keys if this setting is off.`
 
