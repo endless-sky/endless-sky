@@ -478,7 +478,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			Minable *minable = minables.Get(node.Token(1));
 			if(overwrite)
 				*minable = Minable();
-			minable->Load(node);
+			minable->Load(node, playerConditions);
 		}
 		else if(key == "mission" && hasValue)
 		{
