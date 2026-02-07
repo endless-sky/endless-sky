@@ -71,6 +71,9 @@ public:
 	void SetSystemDepartureMin(double value);
 	void SetSystemArrivalMin(std::optional<double> value);
 	void SetFleetMultiplier(double value);
+	void SetLockOnCapture(bool value);
+	void SetRewiringCostMultiplier(double value);
+	void SetLockedHullValueMultiplier(double value);
 	void SetMiscValue(const std::string &rule, int value);
 
 	int GetValue(const std::string &rule) const;
@@ -89,6 +92,9 @@ public:
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
 	double FleetMultiplier() const;
+	bool LockOnCapture() const;
+	double RewiringCostMultiplier() const;
+	double LockedHullValueMultiplier() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -115,6 +121,9 @@ private:
 		double systemDepartureMin = 0.;
 		std::optional<double> systemArrivalMin;
 		double fleetMultiplier = 1.;
+		bool lockOnCapture = false;
+		double rewiringCostMultiplier = .7;
+		double lockedHullValueMultiplier = .2;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;

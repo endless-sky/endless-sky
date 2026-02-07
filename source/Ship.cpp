@@ -65,9 +65,6 @@ namespace {
 	const vector<string> ENGINE_SIDE = {"under", "over"};
 	const vector<string> STEERING_FACING = {"none", "left", "right"};
 
-	// The value a ship's chassis cost is multiplied by to get the cost of rewiring its systems.
-	const double REWIRING_MULTIPLIER = .8;
-
 	// Scanning takes up to 10 seconds (SCAN_TIME / MIN_SCAN_STEPS)
 	// dependent on the range from the ship (among other factors).
 	// The scan speed uses a gaussian drop-off with the reported scan radius as the standard deviation.
@@ -1371,13 +1368,14 @@ bool Ship::IsLocked() const
 
 double Ship::RewiringMultiplier() const
 {
+	double gameRewiringMultiplier = GameData::GetGamerules().RewiringCostMultiplier();
 	if(landingPlanet && landingPlanet->GetGovernment())
 	{
-		return max(0., REWIRING_MULTIPLIER * baseRewiringMultiplier
+		return max(0., gameRewiringMultiplier * baseRewiringMultiplier
 					* landingPlanet->GetGovernment()->RewiringMultiplier());
 	}
 	else
-		return max(0., REWIRING_MULTIPLIER * baseRewiringMultiplier);
+		return max(0., gameRewiringMultiplier * baseRewiringMultiplier);
 }
 
 
@@ -2804,7 +2802,7 @@ int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	isDisabled = false;
 
 	// A ship's computers will lock if accessed by an unauthorized source.
-	if(!neverLocked)
+	if(!neverLocked && GameData::GetGamerules().LockOnCapture())
 		locked = true;
 
 	// Set the new government.

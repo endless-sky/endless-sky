@@ -448,7 +448,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			else if(!victim->Crew())
 			{
 				messages.push_back("You have succeeded in capturing this ship.");
-				if(!victim->NeverLocked())
+				if(!victim->NeverLocked() && GameData::GetGamerules().LockOnCapture())
 					messages.push_back("Their ship's computers are locked.");
 				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->CrewValue());
 				int crewTransferred = victim->WasCaptured(you);

@@ -1658,6 +1658,15 @@ tip "NPC max mining time"
 tip "Universal frugal threshold"
 	`Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their health (shields + hull - the hull level when they become disabled) is at or below this percentage, or if the hostiles in the system are considerably stronger than them.`
 
+tip "Ships lock when captured"
+	`Determines whether a ship's computers are "locked" when captured, disabling some of their abilities. Ships can have their locks removed by rewiring them at a shipyard.`
+
+tip "Rewiring cost multiplier"
+	`How much rewiring a ship will cost, relative to the empty hull's original cost before depreciation.`
+
+tip "Locked hull value multiplier"
+	`How much the hull of a ship will sell for if its computer systems are locked. This stacks multiplicatively with depreciation.`
+
 tip "Universal ramscoop"
 	`Determines whether the "universal ramscoop" is active on all ships. This ramscoop provides a very small amount of fuel to every ship regardless of whether it has an actual ramscoop installed. The strength of this ramscoop falls off much more strongly than normal ramscoops, requiring you to be as close to a star as possible to have any real gain in fuel. Having this enabled prevents needing to reload your save file if you run out of fuel and no NPCs spawn in the system that you can get fuel from.`
 

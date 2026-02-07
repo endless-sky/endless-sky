@@ -53,7 +53,10 @@ namespace {
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 
 	// The multiplier applied to a ship's hull value if its systems are locked.
-	double LOCKED_MULTIPLIER = .2;
+	double LockedMultiplier()
+	{
+		return GameData::GetGamerules().LockedHullValueMultiplier();
+	}
 }
 
 
@@ -285,7 +288,7 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count, int locked) co
 	ship = GameData::Ships().Get(ship->TrueModelName());
 	auto recordIt = ships.find(ship);
 	if(recordIt == ships.end() || recordIt->second.empty())
-		return (DefaultDepreciation() * count + Min() * LOCKED_MULTIPLIER * locked)
+		return (DefaultDepreciation() * count + Min() * LockedMultiplier() * locked)
 				* ship->ChassisCost();
 
 	return Depreciate(recordIt->second, day, count, locked) * ship->ChassisCost();
@@ -332,7 +335,7 @@ int Depreciation::Sell(map<int, int> &record) const
 // Calculate depreciation for some number of items.
 double Depreciation::Depreciate(const map<int, int> &record, int day, int count, int locked) const
 {
-	double lockedSum = locked * Min() * LOCKED_MULTIPLIER;
+	double lockedSum = locked * Min() * LockedMultiplier();
 	if(record.empty())
 		return count * DefaultDepreciation() + lockedSum;
 

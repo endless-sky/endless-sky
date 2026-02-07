@@ -54,6 +54,9 @@ namespace {
 	const string NO_PERSON_SPAWN_WEIGHT = "No spawn weight";
 	const string NPC_MAX_MINING_TIME = "NPC max mining time";
 	const string UNIVERSAL_FRUGAL_THRESHOLD = "Universal frugal threshold";
+	const string LOCK_ON_CAPTURE = "Ships lock when captured";
+	const string REWIRING_COST_MULTIPLIER = "Rewiring cost multiplier";
+	const string LOCKED_HULL_VALUE_MULTIPLIER = "Locked hull value multiplier";
 	const string UNIVERSAL_RAMSCOOP = "Universal ramscoop";
 	const string SYSTEM_DEPARTURE_MIN = "Minimum departure distance";
 	const string SYSTEM_ARRIVAL_MIN = "Minimum arrival distance";
@@ -73,6 +76,9 @@ namespace {
 		{NO_PERSON_SPAWN_WEIGHT, "no person spawn weight"},
 		{NPC_MAX_MINING_TIME, "npc max mining time"},
 		{UNIVERSAL_FRUGAL_THRESHOLD, "universal frugal threshold"},
+		{LOCK_ON_CAPTURE, "lock on capture"},
+		{REWIRING_COST_MULTIPLIER, "rewiring cost multiplier"},
+		{LOCKED_HULL_VALUE_MULTIPLIER, "locked hull value multiplier"},
 		{UNIVERSAL_RAMSCOOP, "universal ramscoop"},
 		{SYSTEM_DEPARTURE_MIN, "system departure min"},
 		{SYSTEM_ARRIVAL_MIN, "system arrival min"},
@@ -375,6 +381,11 @@ void GamerulesPanel::DrawGamerules()
 		"NPC Behavior",
 		NPC_MAX_MINING_TIME,
 		UNIVERSAL_FRUGAL_THRESHOLD,
+		"",
+		"Ship Locking",
+		LOCK_ON_CAPTURE,
+		REWIRING_COST_MULTIPLIER,
+		LOCKED_HULL_VALUE_MULTIPLIER,
 		"\t",
 		"System Behavior",
 		UNIVERSAL_RAMSCOOP,
@@ -451,6 +462,12 @@ void GamerulesPanel::DrawGamerules()
 			text = Format::AbbreviatedNumber(gamerules.NPCMaxMiningTime());
 		else if(gamerule == UNIVERSAL_FRUGAL_THRESHOLD)
 			text = Format::Percentage(gamerules.UniversalFrugalThreshold(), 2);
+		else if(gamerule == LOCK_ON_CAPTURE)
+			text = gamerules.LockOnCapture() ? "true" : "false";
+		else if(gamerule == REWIRING_COST_MULTIPLIER)
+			text = Format::Percentage(gamerules.RewiringCostMultiplier(), 2);
+		else if(gamerule == LOCKED_HULL_VALUE_MULTIPLIER)
+			text = Format::Percentage(gamerules.LockedHullValueMultiplier(), 2);
 		else if(gamerule == UNIVERSAL_RAMSCOOP)
 			text = gamerules.UniversalRamscoopActive() ? "true" : "false";
 		else if(gamerule == SYSTEM_ARRIVAL_MIN)
@@ -772,6 +789,22 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
 		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetUniversalFrugalThreshold,
 			validate, message, gamerules.UniversalFrugalThreshold()));
+	}
+	else if(str == LOCK_ON_CAPTURE)
+		gamerules.SetLockOnCapture(!gamerules.LockOnCapture());
+	else if(str == REWIRING_COST_MULTIPLIER)
+	{
+		string message = "Set the rewiring cost multiplier. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.0; };
+		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetRewiringCostMultiplier, validate,
+			message, gamerules.RewiringCostMultiplier()));
+	}
+	else if(str == LOCKED_HULL_VALUE_MULTIPLIER)
+	{
+		string message = "Set the locked hull value multiplier. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.0; };
+		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetLockedHullValueMultiplier, validate,
+			message, gamerules.LockedHullValueMultiplier()));
 	}
 	else if(str == UNIVERSAL_RAMSCOOP)
 		gamerules.SetUniversalRamscoopActive(!gamerules.UniversalRamscoopActive());
