@@ -544,7 +544,7 @@ void ShipyardPanel::Rewire()
 
 	if(total)
 		message += ((initialCount > 2) ? "\nIt will cost " : " It will cost ") + Format::CreditString(total) + ".";
-	GetUI().Push(new DialogPanel(this, &ShipyardPanel::RewireShip, message, Truncate::MIDDLE));
+	GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipyardPanel::RewireShip, message, Truncate::MIDDLE));
 }
 
 
