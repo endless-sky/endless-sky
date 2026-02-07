@@ -119,7 +119,7 @@ private:
 private:
 	const Weapon *weapon = nullptr;
 
-	bool targetIsShip;
+	bool targetIsShip = false;
 	std::weak_ptr<Entity> target;
 	const Entity *cachedTarget = nullptr;
 	bool targetDisabled = false;
@@ -142,5 +142,5 @@ private:
 
 	// This is safe to keep even if the ships die, because we don't actually call the ship,
 	// we just compare this pointer to other ship pointers.
-	const Ship *phasedShip;
+	const Ship *phasedShip = nullptr;
 };
