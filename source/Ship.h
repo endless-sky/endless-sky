@@ -197,7 +197,7 @@ public:
 	// Get whether this ship should be locked when captured, as well as
 	// any factors altering its ability to be rewired.
 	bool AlwaysLocked() const;
-	bool AlwaysUnlocked() const;
+	bool NeverLocked() const;
 	// Set / Get whether this ship was damaged as a result of boarding,
 	// as well as the cost to repair that damage.
 	void SetLock(bool lock);
@@ -642,7 +642,7 @@ private:
 	std::string givenName;
 	bool canBeCarried = false;
 	bool alwaysLocked = false;
-	bool alwaysUnlocked = false;
+	bool neverLocked = false;
 	double baseRewiringMultiplier = 1.;
 	bool locked = false;
 

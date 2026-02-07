@@ -426,8 +426,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			isCapturable = false;
 		else if(key == "always locked")
 			alwaysLocked = true;
-		else if(key == "always unlocked")
-			alwaysUnlocked = true;
+		else if(key == "never locked")
+			neverLocked = true;
 		else if(key == "rewiring multiplier" && hasValue)
 			baseRewiringMultiplier = child.Value(1);
 		else if(key == "locked")
@@ -987,8 +987,8 @@ void Ship::Save(DataWriter &out) const
 
 		if(alwaysLocked)
 			out.Write("always locked");
-		if(alwaysUnlocked)
-			out.Write("always unlocked");
+		if(neverLocked)
+			out.Write("never locked");
 		if(baseRewiringMultiplier)
 			out.Write("rewiring multiplier", baseRewiringMultiplier);
 		if(locked)
@@ -1350,9 +1350,9 @@ bool Ship::AlwaysLocked() const
 
 
 
-bool Ship::AlwaysUnlocked() const
+bool Ship::NeverLocked() const
 {
-	return alwaysUnlocked;
+	return neverLocked;
 }
 
 
@@ -2433,6 +2433,15 @@ bool Ship::CannotAct(ActionType actionType) const
 		(actionType == ActionType::COMMUNICATION && !Crew());
 	if(cannotAct)
 		return true;
+	if(locked)
+	{
+		// Locked ships can still use their afterburner for movement,
+		// and can talk to the player to explain why they can't repair them.
+		if(actionType == ActionType::AFTERBURNER ||
+				actionType == ActionType::COMMUNICATION)
+			return true;
+		return false;
+	}
 	bool canActCloaked = true;
 	if(cloak)
 		switch(actionType)
@@ -2797,7 +2806,7 @@ int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	isDisabled = false;
 
 	// A ship's computers will lock if accessed by an unauthorized source.
-	if(!alwaysUnlocked)
+	if(!neverLocked)
 		locked = true;
 
 	// Set the new government.

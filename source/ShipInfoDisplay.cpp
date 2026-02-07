@@ -191,7 +191,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributeValues.push_back(Format::AbbreviatedNumber(depreciated));
 	attributesHeight += 20;
 	// Only show the rewiring cost on scrolling panels with no risk of overflow.
-	if(scrollingPanel && ship.IsLocked())
+	bool locked = ship.IsLocked();
+	if(scrollingPanel && locked)
 	{
 		// Only show the exact percentage cost of rewiring
 		// if the empty hull cost is also visible.
@@ -216,7 +217,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double shieldRegen = (attributes.Get("shield generation")
 		+ attributes.Get("delayed shield generation"))
 		* (1. + attributes.Get("shield generation multiplier"));
-	bool hasShieldRegen = shieldRegen > 0.;
+	bool hasShieldRegen = shieldRegen > 0. && !locked;
 	if(hasShieldRegen)
 	{
 		attributeLabels.push_back("shields (charge):");
@@ -232,7 +233,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double hullRepair = (attributes.Get("hull repair rate")
 		+ attributes.Get("delayed hull repair rate"))
 		* (1. + attributes.Get("hull repair multiplier"));
-	bool hasHullRepair = hullRepair > 0.;
+	bool hasHullRepair = hullRepair > 0. && !locked;
 	if(hasHullRepair)
 	{
 		attributeLabels.push_back("hull (repair):");
