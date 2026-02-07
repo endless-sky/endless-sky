@@ -726,7 +726,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
 		"Husk-Slice Turret" 3
 		"Shield Disruptor Turret" 3
 		"Cluster Mine Layer" 2
-		"Cluster Mine" 34
+		"Cluster Mine" 82
 		"Warder Anti-Missile" 4
 		
 		"Triple Plasma Core"

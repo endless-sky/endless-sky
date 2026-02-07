@@ -598,7 +598,7 @@ outfit "Cluster Mine"
 	index 04040
 	cost 3500
 	thumbnail "outfit/korath mine"
-	"mass" .7
+	"mass" .4
 	"minelayer capacity" -1
 	description "This is ammunition for a Cluster Mine Layer. Each mine splits into eleven submunitions after it is deployed."
 
@@ -608,9 +608,9 @@ outfit "Cluster Mine Rack"
 	index 04041
 	cost 31500
 	thumbnail "outfit/korath mine storage"
-	"mass" 2.7
+	"mass" .8
 	"outfit space" -9
-	"minelayer capacity" 9
+	"minelayer capacity" 20
 	ammo "Cluster Mine"
 	description "The Cluster Mine Rack is used to store extra ammunition for Cluster Mine Layers."
 
@@ -625,7 +625,7 @@ outfit "Cluster Mine Layer"
 	"weapon capacity" -27
 	"energy capacity" 50
 	"gun ports" -1
-	"minelayer capacity" 17
+	"minelayer capacity" 41
 	weapon
 		sprite "projectile/korath minelayer"
 			"frame rate" .6
