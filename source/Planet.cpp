@@ -177,22 +177,22 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			port.Load(child, playerConditions);
 		else if(key == "landscape")
 		{
-			const auto addLandscape = [&](const DataNode &node, int valueIndex) {
+			auto addLandscape = [&](const DataNode &node) {
 				int weight = 1;
-				int weightIndex = valueIndex + 1;
-				if(node.Size() > weightIndex && node.Value(weightIndex) >= 1.)
-					weight = node.Value(weightIndex);
-				landscapes.emplace_back(weight, SpriteSet::Get(node.Token(valueIndex)));
+				if(node.Size() > 1 && node.Value(1) >= 1.)
+					weight = node.Value(1);
+				landscapes.emplace_back(weight, SpriteSet::Get(node.Token(0)));
 			};
 
 			if(remove)
 				for(int i = valueIndex; i < child.Size(); ++i)
 					erase_if(landscapes, [&](const auto &choice) { return choice == SpriteSet::Get(child.Token(i)); });
 			else if(hasValue)
-				addLandscape(child, valueIndex);
+				for(int i = valueIndex; i < child.Size(); ++i)
+					landscapes.emplace_back(1, SpriteSet::Get(child.Token(i)));
 			else
 				for(const DataNode &grand : child)
-					addLandscape(grand, 0);
+					addLandscape(grand);
 
 			if(!landscapes.size())
 			{
