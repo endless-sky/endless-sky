@@ -50,23 +50,6 @@ namespace {
 			required.emplace_hint(required.cend(), attribute.substr(PREFIX.length()));
 		});
 	}
-
-
-
-	// template<class T>
-	// void LoadWeightedList(WeightedList<T> &list, const DataNode &node, const ConditionsStore *playerConditions,
-	// 	const std::function<T(const std::string &key)> fun)
-	void LoadWeightedList(WeightedList<const Sprite *> &list, const DataNode &node,
-		const ConditionsStore *playerConditions, const std::function<const Sprite *(const std::string &key)> fun)
-	{
-		for(const DataNode &child : node)
-		{
-			int n = 1;
-			if(child.Size() >= 2 && child.Value(1) >= 1.)
-				n = child.Value(1);
-			list.emplace_back(n, fun(child.Token(0)));
-		}
-	}
 }
 
 
@@ -83,7 +66,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 
 	// If this planet has been loaded before, these sets of items should be
 	// reset instead of appending to them:
-	set<string> shouldOverwrite = {"attributes", "description", "spaceport", "port"};
+	set<string> shouldOverwrite = {"attributes", "description", "spaceport", "port", "landscape"};
 
 	for(const DataNode &child : node)
 	{
@@ -137,6 +120,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				shipSales.clear();
 			else if(key == "outfitter")
 				outfitSales.clear();
+			else if(key == "landscape")
+				landscapes.clear();
 			else if(key == "government")
 				government = nullptr;
 			else if(key == "required reputation")
@@ -190,8 +175,31 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 
 		if(key == "port")
 			port.Load(child, playerConditions);
-		else if(key == "landscapes")
-			LoadWeightedList(landscapes, child, playerConditions, SpriteSet::Get);
+		else if(key == "landscape")
+		{
+			const auto addLandscape = [&](const DataNode &node, int valueIndex) {
+				int weight = 1;
+				int weightIndex = valueIndex + 1;
+				if(node.Size() > weightIndex && node.Value(weightIndex) >= 1.)
+					weight = node.Value(weightIndex);
+				landscapes.emplace_back(weight, SpriteSet::Get(node.Token(valueIndex)));
+			};
+
+			if(remove)
+				for(int i = valueIndex; i < child.Size(); ++i)
+					erase_if(landscapes, [&](const auto &choice) { return choice == SpriteSet::Get(child.Token(i)); });
+			else if(hasValue)
+				addLandscape(child, valueIndex);
+			else
+				for(const DataNode &grand : child)
+					addLandscape(grand, 0);
+
+			if(!landscapes.size())
+			{
+				child.PrintTrace("Expected key to have a value:");
+				continue;
+			}
+		}
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
@@ -229,8 +237,6 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		}
 		else if(key == "display name")
 			displayName = value;
-		else if(key == "landscape")
-			landscape = SpriteSet::Get(value);
 		else if(key == "music")
 			music = value;
 		else if(key == "description")
