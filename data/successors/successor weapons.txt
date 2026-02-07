@@ -45,10 +45,10 @@ outfit `"Ojet" Bimodal Coilgun`
 		# 50 (parent) - 3*48 (child)
 		# close: 50 shield damage
 		# far: 144 shield damage
-		"hull damage" 75
-		# 135 (parent) - 3*20 (child)
+		"hull damage" 93
+		# 135 (parent) - 3*14 (child)
 		# close: 135 hull damage
-		# far: 60 hull damage
+		# far: 42 hull damage
 		"hit force" 120
 		"cluster"
 		"submunition" "Bimodal Switch" 3
@@ -90,7 +90,7 @@ outfit "Bimodal Coilgun Turret"
 		"firing heat" 120
 		"firing force" 25
 		"shield damage" -94
-		"hull damage" 75
+		"hull damage" 93
 		"hit force" 120
 		"cluster"
 		"submunition" "Bimodal Switch" 3
@@ -114,7 +114,7 @@ outfit "Bimodal Switch"
 		"lifetime" 6
 		"random lifetime" 3
 		"shield damage" 48
-		"hull damage" 20
+		"hull damage" 14
 
 effect "bimodal switch impact"
 	sprite "effect/bimodal switch impact"
@@ -357,7 +357,7 @@ outfit `"Sjeja" Kinetic Lance`
 		"firing energy" 1900
 		"firing ion" 3.0
 		"firing heat" 4000
-		"shield damage" 1336
+		"shield damage" 1069
 		"hull damage" 1920
 		"piercing" 0.15
 		"hit force" 800
