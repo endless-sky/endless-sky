@@ -193,7 +193,7 @@ ship "Hasur, Vowsworn"
 	gun 12 -64
 	engine 0 0
 		zoom .8
-	description `One would think that, immured deep within those hostile, rotting abcesses of the stars, the constructs of that foolish race would prove themselves inadequate; that their artificial minds would splinter and falter and crumble like their so-false flesh, festering on the bone. And yet they remain, eternally dying but never dead, consumed by programmed rage and unknowable perception. The constructs will keep their promises, interloper:`
+	description `One would think that, immured deep within those hostile, rotting abcesses of the stars, the constructs of the foolish Myiara would prove themselves inadequate; that their artificial minds would splinter and falter and crumble like their so-false flesh, festering on the bone. And yet they remain, eternally dying but never dead, consumed by programmed rage and unknowable perception. The constructs will keep their promises, interloper:`
 	description `	They'll kill you. They'll do it quick.`
 
 effect "hasur afterburner"
