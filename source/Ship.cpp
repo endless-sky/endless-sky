@@ -912,7 +912,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	isDisabled = IsDisabled();
 
 	// If this ship did not set a rewiring multiplier, default it to 1.
-	baseRewiringMultiplier = 1.;
+	if(baseRewiringMultiplier == -1.)
+		baseRewiringMultiplier = 1.;
 
 	// Calculate this ship's jump information, e.g. how much it costs to jump, how far it can jump, how it can jump.
 	navigation.Calibrate(*this);
