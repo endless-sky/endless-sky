@@ -187,12 +187,14 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			if(remove)
 				for(int i = valueIndex; i < child.Size(); ++i)
 					erase_if(landscapes, [&](const auto &choice) { return choice == SpriteSet::Get(child.Token(i)); });
-			else if(hasValue)
-				for(int i = valueIndex; i < child.Size(); ++i)
-					landscapes.emplace_back(1, SpriteSet::Get(child.Token(i)));
 			else
+			{
+				if(hasValue)
+					for(int i = valueIndex; i < child.Size(); ++i)
+						landscapes.emplace_back(1, SpriteSet::Get(child.Token(i)));
 				for(const DataNode &grand : child)
 					addLandscape(grand);
+			}
 
 			if(!landscapes.size())
 			{
