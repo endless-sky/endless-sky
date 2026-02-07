@@ -401,6 +401,10 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			attributes.erase(AUTO_ATTRIBUTES[i]);
 	}
 
+	// Pick an initial weighted value for landscape.
+	if(!landscapes.empty())
+		landscape = landscapes.Get();
+
 	// Precalculate commonly used values that can only change due to Load().
 	inhabited = (HasServices(false) || requiredReputation || !defenseFleets.empty())
 			&& !attributes.contains("uninhabited");
@@ -478,7 +482,7 @@ const Paragraphs &Planet::Description() const
 // Get the landscape sprite.
 const Sprite *Planet::Landscape(bool refresh) const
 {
-	if((!landscape || refresh) && !landscapes.empty())
+	if(refresh && landscapes.size() >= 2)
 		landscape = landscapes.Get();
 	return landscape;
 }
