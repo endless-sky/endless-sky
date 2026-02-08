@@ -337,7 +337,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			player.SetTribute(planet, 0);
 			SetMessage("Thank you for granting us our freedom!");
 		}
-		else if(!planet->IsDefending())
+		else if(!planet->IsDefending() && (!gov || !gov->IsEnemy()))
 			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SetMessage(planet->DemandTribute(player)); },
 				"Demanding tribute may cause this planet to launch defense fleets to fight you. "
 				"After battling the fleets, you can demand tribute again for the planet to relent.\n"
