@@ -61,7 +61,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	// Drones are always unpiloted, so they never respond to hails.
 	bool isMute = ship->GetPersonality().IsMute() || (ship->Attributes().Category() == "Drone");
 	hasLanguage = !isMute && (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
-	canAssistPlayer = !ship->CanBeCarried();
+	canAssistPlayer = !ship->CanBeCarried() && !ship->IsLocked();
 
 	if(isMute)
 		SetMessage("(There is no response to your hail.)");
@@ -131,8 +131,13 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 				helpOffer += "recharge you?";
 			SetMessage(helpOffer);
 		}
-		else if(playerNeedsHelp && !canAssistPlayer)
-			SetMessage("Sorry, my ship is too small to have the right equipment to assist you.");
+		else if(playerNeedsHelp && canAssistPlayer)
+		{
+			if(ship->CanBeCarried())
+				SetMessage("Sorry, my ship is too small to have the right equipment to assist you.");
+			else if(ship->IsLocked())
+				SetMessage("Sorry, my ship cannot access its equipment to assist you.");
+		}
 	}
 
 	if(message.empty())

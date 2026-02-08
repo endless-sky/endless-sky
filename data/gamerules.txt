@@ -24,6 +24,10 @@
 	
 	"npc max mining time" 3600
 	"universal frugal threshold" 0.75
+
+	"lock on capture" true
+	"rewiring cost multiplier" .7
+	"locked hull value multiplier" .2
 	
 	"universal ramscoop" true
 	"system arrival min" unset

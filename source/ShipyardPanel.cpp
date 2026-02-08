@@ -226,10 +226,13 @@ void ShipyardPanel::DrawButtons()
 	DrawButton("_Sell",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), buttonSize),
 		static_cast<bool>(playerShips.size()), hoverButton == 's', 's');
-	DrawButton("Sell H_ull",
+	DrawButton("_Rewire",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), buttonSize),
-		static_cast<bool>(playerShips.size()), hoverButton == 'r', 'r');
+		static_cast<bool>(CanRewire()), hoverButton == 'r', 'r');
 	// Row 2
+	DrawButton("Sell H_ull",
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1), buttonSize),
+		static_cast<bool>(playerShips.size()), hoverButton == 'u', 'u');
 	DrawButton("_Leave",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
 		true, hoverButton == 'l', 'l');
@@ -294,11 +297,18 @@ ShopPanel::TransactionResult ShipyardPanel::HandleShortcuts(SDL_Keycode key)
 		if(playerShip)
 			Sell(false);
 	}
-	else if(key == 'r' || key == 'u')
+	else if(key == 'u')
 	{
 		// Sell selected ships and move outfits to Storage.
 		if(playerShip)
 			Sell(true);
+	}
+	else if(key == 'r')
+	{
+		// Repair selected ships if able.
+		result = CanRewire();
+		if(result)
+			Rewire();
 	}
 
 	return result;
@@ -446,6 +456,99 @@ void ShipyardPanel::Sell(bool storeOutfits)
 
 
 
+ShopPanel::TransactionResult ShipyardPanel::CanRewire()
+{
+	shipsToRewire.clear();
+
+	if(!playerShip)
+		return false;
+
+	for(Ship *selected : playerShips)
+		if(selected->IsLocked() && !selected->AlwaysLocked())
+			shipsToRewire.insert(selected);
+
+	if(shipsToRewire.empty())
+		return false;
+
+	int64_t cost = 0;
+	int64_t minimum = 0;
+	for(const auto &it : shipsToRewire)
+	{
+		cost += it->RewiringCost();
+		minimum = min(minimum, it->RewiringCost());
+	}
+
+	int64_t credits = player.Accounts().Credits();
+	if(credits < cost)
+	{
+		if(shipsToRewire.size() == 1)
+			return "You do not have enough credits to rewire this ship. "
+					"Consider checking if the bank will offer you a loan.";
+
+		// Alert the player if any of the selected ships could be rewired individually.
+		if(credits >= minimum)
+		{
+			return "You do not have enough credits to rewire all the selected ships at once. "
+					"Select fewer ships if you want to rewire some of them.";
+		}
+
+		return "You do not have enough credits to rewire the selected ships. "
+				"Consider checking if the bank will offer you a loan.";
+	}
+
+	return true;
+}
+
+
+
+void ShipyardPanel::Rewire()
+{
+	static const int MAX_LIST = 20;
+
+	int count = shipsToRewire.size();
+	int initialCount = count;
+	string message = "Rewire the ";
+
+	if(count == 1)
+		message += (*shipsToRewire.begin())->GivenName();
+	else if(count <= MAX_LIST)
+	{
+		auto it = shipsToRewire.begin();
+		message += (*it++)->GivenName();
+		--count;
+
+		if(count == 1)
+			message += " and ";
+		else
+		{
+			while(count-- > 1)
+				message += ",\n" + (*it++)->GivenName();
+			message += ",\nand ";
+		}
+		message += (*it)->GivenName();
+	}
+	else
+	{
+		auto it = shipsToRewire.begin();
+		message += (*it++)->GivenName() + ",\n";
+		for(int i = 1; i < MAX_LIST - 1; ++i)
+			message += (*it++)->GivenName() + ",\n";
+
+		message += "and " + to_string(count - (MAX_LIST - 1)) + " other ships";
+	}
+	message += "?";
+
+	int64_t total = 0;
+	for(const auto &it : shipsToRewire)
+		total += it->RewiringCost();
+
+	if(total)
+		message += ((initialCount > 2) ? "\nIt will cost " : " It will cost ") + Format::CreditString(total) + ".";
+	GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipyardPanel::RewireShip, message, Truncate::MIDDLE));
+}
+
+
+
 bool ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
@@ -509,6 +612,17 @@ void ShipyardPanel::SellShip(bool storeOutfits)
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
+}
+
+
+
+void ShipyardPanel::RewireShip()
+{
+	for(Ship *ship : shipsToRewire)
+	{
+		ship->SetLock(false);
+		player.Accounts().AddCredits(-ship->RewiringCost());
+	}
 }
 
 
