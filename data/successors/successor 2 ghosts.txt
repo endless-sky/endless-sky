@@ -661,7 +661,7 @@ mission "Successors: Ghosts 6"
 					goto scared
 				`	"All right."`
 					to display
-						has "Successors: FC3: friend to animals"
+						has "Successors FC3: friend to animals"
 					goto yes
 				`	"I have no interest in going back there."`
 
