@@ -1858,14 +1858,30 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		if(victim->NeedsFuel() && CanRefuel(*victim))
 		{
 			helped = true;
-			TransferFuel(victim->JumpFuelMissing(), victim.get());
+			double fuelTransferred = TransferFuel(victim->JumpFuelMissing(), victim.get());
+			if(isYours)
+				Messages::Add({Format::Number(fuelTransferred) + " fuel transferred from the "
+					+ victim->GivenName() + " to your " + GivenName() + ".",
+					GameData::MessageCategories().Get("normal")});
+			else if(victim->IsYours())
+				Messages::Add({Format::Number(fuelTransferred) + " fuel transferred from your "
+					+ victim->GivenName() + " to the " + GivenName() + ".",
+					GameData::MessageCategories().Get("normal")});
 		}
 		// Transfer some energy, if needed.
 		if(victim->Attributes().Get("energy capacity") > 0 && victim->energy < 200.)
 		{
 			helped = true;
 			double toGive = max(attributes.Get("energy capacity") * 0.1, victim->Attributes().Get("energy capacity") * 0.2);
-			TransferEnergy(max(200., toGive), victim.get());
+			double energyTransferred = TransferEnergy(max(200., toGive), victim.get());
+			if(isYours)
+				Messages::Add({Format::Number(energyTransferred) + " energy transferred from the "
+					+ victim->GivenName() + " to your " + GivenName() + ".",
+					GameData::MessageCategories().Get("normal")});
+			else if(victim->IsYours())
+				Messages::Add({Format::Number(energyTransferred) + " energy transferred from your "
+					+ victim->GivenName() + " to the " + GivenName() + ".",
+					GameData::MessageCategories().Get("normal")});
 		}
 		if(helped)
 		{
@@ -1879,8 +1895,30 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 	// If the boarding ship is the player, they will choose what to plunder.
 	// Always take fuel and energy if you can.
-	victim->TransferFuel(victim->fuel, this);
-	victim->TransferEnergy(victim->energy, this);
+	double fuelTransferred = victim->TransferFuel(victim->fuel, this);
+	double energyTransferred = victim->TransferEnergy(victim->energy, this);
+	if(fuelTransferred)
+	{
+		if(isYours)
+			Messages::Add({Format::Number(fuelTransferred) + " fuel siphoned from the "
+				+ victim->GivenName() + " to your " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+		else if(victim->IsYours())
+			Messages::Add({Format::Number(fuelTransferred) + " fuel siphoned from your "
+				+ victim->GivenName() + " to the " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+	}
+	if(energyTransferred)
+	{
+		if(isYours)
+			Messages::Add({Format::Number(energyTransferred) + " energy siphoned from the "
+				+ victim->GivenName() + " to your " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+		else if(victim->IsYours())
+			Messages::Add({Format::Number(energyTransferred) + " energy siphoned from your "
+				+ victim->GivenName() + " to the " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+	}
 	if(autoPlunder)
 	{
 		// Take any commodities that fit.
