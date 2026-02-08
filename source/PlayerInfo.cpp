@@ -514,7 +514,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 	// Cache the remaining number of days for all deadline missions and
 	// the location of tracked NPCs.
 	CacheMissionInformation();
-	// Locate the tracked NPCs for available jobs and mission.
+	// Locate the tracked NPCs for available jobs and missions.
 	// Active missions will have already done this with the above function call.
 	for(Mission &mission : availableJobs)
 		mission.RecalculateTrackedSystems();
