@@ -2733,8 +2733,8 @@ double Ship::TransferFuel(double amount, Ship *to)
 	if(to)
 	{
 		amount = min(to->attributes.Get("fuel capacity") - to->fuel, amount);
-		if(amount <= 0)
-			return 0;
+		if(amount <= 0.)
+			return 0.;
 		to->fuel += amount;
 	}
 	fuel -= amount;
@@ -2749,8 +2749,8 @@ double Ship::TransferEnergy(double amount, Ship *to)
 	if(to)
 	{
 		amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
-		if(amount <= 0)
-			return 0;
+		if(amount <= 0.)
+			return 0.;
 		to->energy += amount;
 	}
 	energy -= amount;
