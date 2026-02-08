@@ -1,0 +1,530 @@
+# Copyright (c) 2025 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Successors: Ghosts Myurej 1"
+	landing
+	name "Track down stolen wedding gifts"
+	description "Look for a stolen shipment of wedding gifts meant for House Myurej on <destination>."
+	source Raaqa-Kvelq-Ryuit
+	destination Kasii-Tuur-Saqru
+	to offer
+		or
+			and
+				has "Successors: Ghosts Prelude Wedding: offered"
+				random < 40
+			and
+				has "Successors: Ghosts Prelude Wedding: offered"
+				has "Successors: Ghosts 4: offered"
+	on offer
+		conversation
+			`While walking in the spaceport here, you are pulled aside by a pair of House Myurej military officers. "Come with us," one says, "thou shan't be harmed, but thou hast a private meeting waiting thou needeth attend."`
+			choice
+				`	(Go with them.)`
+				`	(Run away.)`
+					goto run
+			`	The two take you to a dense nest of shops and hotels on a hill overlooking one of the massive spaceport's loading docks; it lies what must be more than a hundred meters below. A web of canals interleaves the regularly-misted streets, and looking inside, you can see groups of Successors swimming in various directions, occasionally emerging onto the terrestrial paths and shaking off water from the hydrophobic fabrics of their clothing. You are led to a small, comfortable-looking hotel overlooking one of these canals, and deposited in a medium-sized oblong room, divided roughly in half by an oily-colored fabric screen. The guards motion for you to sit on a chair on one side of it, and you comply.`
+			`	From the other side of the screen comes a slow voice that your translation device duly rearranges into your language: "Captain <first> <last>, I believe?"`
+			choice
+				`	"Yes?"`
+				`	"Who's asking?"`
+			`	"House Myurej longs to exercise thy services. Something belonging to us was stolen. Thou shalt be compensated for its safe return. Doth this interest thee?" The screen shimmers in one long, glittery wave. Behind you, one of the guards shuffles.`
+			`	"You're going to have to give me more than that," you say.`
+			`	The wave rebounds off the far wall and retraces its way back down the screen. "Hast thou before entered into the bonds of matrimony?" the voice says. Before you can respond, it continues. "'Tis customary, when one doth, for the celebrants to render some minor gifts upon the duly unified, a commemmoration of the families' intertwining evermore. To steal such trinkets would be a base and wretched act - a child-race as yours should still conceive of that." The wave continues to echo, back and forth. "A certain knave'f the so-called People's Houses thought it wise to thus insult this happy House, on the eve of another day of joy, no doubt thinking with a dead mind they lay beyond our reach. Bring back our gifts, and we shall pay thee..." The voice pauses for a while, as if away in thought. "And perhaps thou wilt have earned a favor, though alien thou might'st be."`
+			choice
+				`	"Why ask me?"`
+				`	"How much are you going to pay me?"`
+					goto pay
+				`	"All right, I'll do it."`
+					goto yes
+				`	"Sorry, but I don't want any part of this."`
+					goto no
+			branch kaatrij
+				has "successors kaatrij patron"
+			`	"Riijaaora of House Sioeora speaks well of thee, dost thou know? Thy reliability, thy strength of will. They say thou'rt capable of this task, and we know thou'rt uniquely suited to it. Shalt thou accept?"`
+				goto "follow up"
+			label kaatrij
+			`	"After thou fail'd Sioeora as thou did'st, thinks thee? Nonetheless, thou'rt more suitable to our needs than any other. Shoulds't thou decline, we shall simply move on to the next. So, shalt thou accept?"`
+				goto "follow up"
+			label pay
+			`	The voice hums briefly. "four hundred thousand credits," they say, "not to be negotiated. Dost thou accept?"`
+			label "follow up"
+			choice
+				`	"All right, I'll do it."`
+				`	"Sorry, but I don't want any part of this."`
+					goto no
+			label yes
+			action
+				log "People" "Riiria" "One of the most influential members of the People's Houses of the Successors. They personally control a substantial portion of Kasii-Tuur-Saqru via a mix of charismatic leadership and brute strength. Suspected of hijacking a transport of gifts for the upcoming wedding between scions of Houses Myurej and Chydiyi."
+				log "Accepted an offer by House Myurej to track down and recover a shipment of wedding gifts stolen by a member of the People's Houses."
+			`	The shimmering wave seems like it's losing energy now, growing slower and fainter with each cycle back and forth. "Excellent," says the voice. "The quarry thou should'st seek on Kasii-Tuur-Saqru is by name Riiria, a well-known thief and useful fool. Should'st thy own powers of searching fail thee, we've a friend of the House there too, a sharp-eyed merchant captain eager to get involved in things they think to be rewarding. Our agents here shall see thou receives their details at thy ship." You hear the rustling of fabric and the faint wet slithering of a Successor moving. The guards behind you relax and, as you turn to look at them, they gesture towards the door. Before you leave, the voice speaks one last time. "Do not fail us, captain."`
+			`	You are escorted back to the edge of the residential area by the guards, who leave you to find your own way back to your ship. As the ground crew finish up their refueling and maintenance of the <ship>, one of them hands you a data-sphere containing information about Riiria and House Myurej's contact on Kasii-Tuur-Saqru.`
+				accept
+
+			label run
+			`	Kicking a stone to the side to distract the pair, you dash into the crowd before they can stop you. It's probably lucky that they didn't shoot you for that.`
+				decline
+			label no
+			`	The voice gives a long hum but says no more. After a couple moments you hesitantly get up and, when the guards make no motion to prevent you, you leave.`
+				decline
+	on complete
+		conversation
+			`You guide the <ship> into the crowded spaceport of <planet>, narrowly avoiding a collision with one of a wing of armored-up Kvelqden rocketing out of the docking section.`
+			choice
+				`	(Seek out Myurej's contact.)`
+					goto contact
+				`	(Look around for yourself first.)`
+			action
+				"successors: ghosts suspicion" ++
+			`	Exploring the visitor-accessible part of the station is an unusual experience - there's a striking contrast between the presence of all the advanced technologies of the Successors and the fact that so many of them are in such disrepair. You've seen Successor constructions that are hundreds or even thousands of years old in better condition than those here. You try to talk to a few of the Successors around here about Riiria, but they all quickly dismiss you, most without even saying a word.`
+			`	Eventually you find your way to a shop of some sort, what looks like a gutted Myaede bolted to the station's structure and filled with displays of fabric and ship parts, all attended to by about a dozen small robots running on tracks on the ceiling. They follow you around like a school of fish - a couple of them have some ominous-looking apertures on their front. Suddenly, you hear the edited sound of Successor speech behind one of the displays of what looks like engine injectors. A small screen is projecting an image of a speaking Successor:`
+			`	"...violence against Kaatrij is about us, too, siblings! The only one of the Houses bothers t'give us the cant of an arm? For long the Old've wanted us gone entire, and believe me, this'll be the start'f it! Well, 'f they come for us, Riiria will make them bleed like I always do!" The transmission cuts out there, and with no further leads on Riiria's location, you decide to track down Myurej's contact.`
+			label contact
+			`	The Myurej merchant captain turns out to be almost a kilometer down the station's perimeter among some loading docks that station control apparently doesn't send unfamiliar ships to. They're directing several members of their crew to offload some crates - one of them has been dropped and has spilled out a collection of unfamiliar metal baubles.`
+			choice
+				`	"I'm Captain <first> <last>. Myurej sent me."`
+					goto introduce
+				`	"What are those things?"`
+			`	"What cares thou? Thou'rt in the way, go off." They wave you away.`
+			`	"Fine," you say. "Captain <first> <last>. Myurej sent me."`
+			label introduce
+			`	A wave of red and black bristles over their skin. "Of course," they say. "I should've guessed. Come to send me on some wild quest for some bit of finery, is it? Some golden child lost their favorite jewel?"`
+			`	"Well, sort of," you say. "All I need from you is the location of Riiria. They stole something from the House that they want back."`
+			`	"Predictable," they say. "Some blow to pride and they get a knave like thee to crawl in the mud."`
+			choice
+				`	"Just get to the point."`
+					goto point
+				`	"Why are you so angry?"`
+			`	"No, not angry," they say. "Tired. They pay me to change my routes, I accept. They pay me to talk to the fools they send to me, I accept. They pay me to transport unknowables, and I lap it up. Thought the family connection would make things easier, but what dost thou do when that 'family's just after thee for thy use to them?" They let the colors of anger subside and gently rub three of their arms together.`
+			label point
+			`	"Fine. I hear that Riiria's hiding out among the hollow stations 'round our neighbor stars. They're good to hide if thou hast stolen something, brilliant hard to scan a sleeping ship among the broken spires. The northerly one... Vade-Osolaa-Kaska, I recall, tis a favorite spot for Riiria and their type. Were I thee, I'd crawl there first." The Successor pauses to look at one of the boxes being unloaded and makes an exasperated noise. "Not that being thee is aught I would prefer, mind."`
+			choice
+				`	"Thank you."`
+				`	"Finally."`
+			`	Color once again bristles over their skin, but only for a moment. "Now go 'fore the two of us are seen together," they say, and wave you away. You find your way back to your own ship and mark the nearby uninhabited station on your map.`
+
+mission "Successors: Ghosts Myurej 2"
+	landing
+	priority
+	name "Search <planet>"
+	description "Following information from Myurej's contact, look for Riiria at <destination>."
+	source Kasii-Tuur-Saqru
+	destination Vade-Osolaa-Kaska
+	to offer
+		has "Successors: Ghosts Myurej 1: done"
+	on complete
+		conversation
+			`You enter <planet>'s vast spaceport to find it almost deserted. There is, however, plenty of evidence to support your contact's suggestion. A number of empty but recently-opened cargo containers are strewn against one of the far walls of the space; beside one of them there's even a small cache of what looks like personal gear: a durable fabric pack, a small sidearm, even some packages of dried food. Someone must have left here in a hurry.`
+			choice
+				`	(Rummage through the pack.)`
+				`	(Prepare to leave.)`
+					goto end
+			action
+				"successors: ghosts suspicion" ++
+			`	Inside you find, among the odds and ends of this Successor's belongings, a still-warm data-sphere. It springs to life as you touch it, relaying its most recent message:`
+			`	"Riiria says the Houses shan't find us here, that they see these wretched hulks as icons'f their folly they daren't touch. They're right, I know, and yet I shudder most at thinking of that alien the Houses're so fond'f using. Riirira says fools're much more fearsome than the wise."`
+			`	The message ends there, and you can't quite figure out how to access the rest of the data on the sphere, so you leave it be.`
+			label end
+			`	If Riiria isn't at this station, they might be at the other one to the south, so you head back to your ship and enter the coordinates on your map.`
+
+mission "Successors: Ghosts Myurej 3"
+	landing
+	name "Continue the search"
+	description "Having not found Riiria at <origin>, look for them at <destination>."
+	source Vade-Osolaa-Kaska
+	destination Myiara-Sola-Tej
+	to offer
+		has "Successors: Ghosts Myurej 2: done"
+	on complete
+		conversation
+			`Not longer after you guide the <ship> through this station's docking aperture, you see parked on one of the disused landing pads a clearly unpowered Successor freighter. It's in poor condition; much of the hull armor has been removed and a hole has been bored down through the top right over the generator bay.`
+			`	Fortunately, your ship's scanners are still able to identify its identification number, and you scrabble for House Myurej's data-sphere to check it against the data Myurej provided you. This is the ship you were sent to find, you determine.`
+			choice
+				`	(Use your cargo scanner to identify its cargo.)`
+					to display
+						has "flagship attribute: cargo scan power"
+				`	(Check its cargo yourself.)`
+					goto self
+			`	Unsurprisingly, the ship's cargo bays have been picked clean and whatever wedding gifts you have been sent to retrieve aren't here. The scanner is able to interface with an unshielded, barely-powered terminal inside the hulk, however, and relays to you the ship's most recent cargo manifest:`
+			``
+				goto manifest
+			label self
+			`	You disembark the <ship> and walk into the ripped-open cargo bay of the Ojde to confirm what already seems likely: any trace of the ship's cargo has been removed. You are able to access an independently-powered terminal inside the bay, however, and as it burbles to life, it shows you the ship's most recent cargo manifest:`
+			``
+			label manifest
+			`		37 tons assorted gifts (common)`
+			`		4 tons red gold jewelry`
+			`		9 tons programmed water (for Council pools)`
+			`		3 tons ceremonial weapons`
+			`		9 tons rare animals (in stasis, require constant power supply)`
+			`		16 tons high-pressure lux filters (require pressurized environment)`
+			``
+			`	Though most of the items don't tell you much, the last one seems like it could be a clue, and you press the terminal for details:`
+			`	"House-built luxury filter units designed for undersea oxygen extraction and programming. Disperses mood-lightening particles with variable concentration. Must be kept in high-pressure environment to avoid damage. 8 million credits per unit."`
+			branch mvk
+				has "visited planet: Maspa-Viir-Kella"
+			`	As you disconnect from the terminal, you think about any planets nearby that might fit the storage requirements of these filters, but nothing comes to mind. It looks like you'll have to check the nearby worlds manually.`
+				goto end
+			label mvk
+			`	As you disconnect from the terminal, you think about any planets nearby that might fit the storage requirements of these filters, and one springs to mind: Maspa-Viir-Kella, an uninhabited world in the Osolaa-Uuoru system to the north. Landing there before was a challenge on account of the dense atmosphere; if the elusive Riirira is storing their spoils somewhere, that would be a good place for it.`
+			label end
+
+
+mission "Successors: Ghosts Myurej 3 Direct"
+	landing
+	name "Track down Riiria"
+	description "Based on the clues gathered at <origin>, go to confront Riiria at <destination>."
+	source Myiara-Sola-Tej
+	destination Maspa-Viir-Kella
+	to offer
+		has "Successors: Ghosts Myurej 3: done"
+		has "visited planet: Maspa-Viir-Kella"
+
+mission "Successors: Ghosts Myurej 3 Checking"
+	landing
+	name "Track down Riiria"
+	description "The clues you gathered at <origin> indicate that Riiria is likely hiding out on a planet in western Successor space."
+	source Myiara-Sola-Tej
+	stopover Maspa-Viir-Kella
+	stopover Vyraa-Giiq-Sora
+	stopover Chyyra-Raaqa-Tuur
+	stopover Giiq-Oj-Sol
+	stopover Giiq-Sou-Kella
+	complete at
+		planet
+			Maspa-Viir-Kella
+	to fail
+		has "flagship planet: Maspa-Viir-Kella"
+	to offer
+		has "Successors: Ghosts Myurej 3: done"
+		not "visited planet: Maspa-Viir-Kella"
+
+mission "Successors: Ghosts Myurej 4"
+	landing
+	name "Defeat Riiria and return"
+	description "If possible, retrieve the stolen wedding gifts from Riiria and return, gifts or not, to House Myurej at <destination>."
+	source Maspa-Viir-Kella
+	destination Raaqa-Kvelq-Ryuit
+	to offer
+		or
+			has "Successors: Ghosts Myurej 3: done"
+	on offer
+		conversation
+			`The <ship>'s scanners spring to life not long after you enter <origin>'s atmosphere, pinging several unidentified ships in a nearby valley under the shroud of the thick clouds. As the winds buffet your ship, you check the scan readings you're receiving against the data that Myurej provided you, and they seem to match, at least for the largest of the vessels.`
+			choice
+				`	(Attack them while you have the element of surprise.)`
+				`	(Try to negotiate.)`
+			`	As you bring your own vessel closer, you are suddenly thrown off course by a strong gust of wind. Though you regain attitude control only a moment later, it's long enough for Riiria's ships to detect you and prepare for launch...`
+				launch
+	npc board
+		government `People's Houses (Hostile)`
+		personality staying target launching heroic
+		system "Osolaa-Uuoru"
+		ship "Ejniisde-Khora (Bombed)" "Riiria-i-Nnesan"
+		conversation
+			action
+				log "Boarded Riiria's vessel, before being forced back by explosions from within that destroyed both Riiria's ship and the wedding gifts it presumably carried."
+			`You bring your ship alongside Riiria's disabled vessel, careful to line up one of your airlocks with the ship's cargo hatch. As you walk through your vessel's interior to prepare to start cutting through the hatch, however, your ship is rocked by an explosion that seems like it comes from the airlock. Seconds later, another one goes off, and then another. Racing back to your ship's bridge, you detach from the detonating vessel just as another explosion rips through its cargo bay, no doubt destroying the precious cargo you've gone to so much effort to track down. This is going to be unpleasant to explain to House Myurej.`
+				launch
+	npc
+		government `People's Houses (Hostile)`
+		personality staying launching
+		system "Osolaa-Uuoru"
+		ship "Kvelqde-Khora" "Akja-o-Riiria"
+		ship "Kvelqde-Khora" "Miti-o-Riiria"
+		ship "Kvelqde-Khora" "Kaska-Kisiri"
+		ship "Kvelqde-Khora" "Tesja-qii"
+	on complete
+		conversation
+			`Traffic control directs you a restricted part of the <planet> spaceport where the bare industry of the public areas gives way to Myurej ostentation. The <ship> settles down on a bronze-edged landing pad, and as you disembark, the armed and armored guards direct you to one of the adjoining buildings. Inside, the room you are led to is divided in much the same way as the previous time you met with House Myurej; a long black screen waves in front of you, and you wait for the voice to begin.`
+			`	"We gave thee a simple task," it says. "Yet it seems even aught so basic eludes thee." They pause for a moment.`
+			branch sioeora
+				has "successors sioeora patron"
+			`	"Mayhaps we should have learned from thy failure with Sioeora. Thou hast a habit, it seems to us."`
+			label sioeora
+			choice
+				`	"I had nothing to do with Riiria's ship exploding."`
+				`	"It seems to me like you're the one who needs to apologize. I was nearly killed!"`
+					goto angry
+				`	"I'm sorry."`
+					goto grovel
+			`	The screen ripples colorlessly. "What careth we? If we had sent another, would it still have been so?"`
+				goto again
+			label angry
+			`	The screen ripples, dark and menacing. "Taking missions as these is what thou dost, is it not so? Is it common among lesser aliens as thee to berate one's clients for daring t'offer employ?"`
+				goto again
+			label grovel
+			`	The screen ripples, lightless as tar. "We care little for thy apologies," says the voice, "but 'tis good that thou hast some cognizance of thine inability."`
+			label again
+			`	Suddenly, a wave of color springs across the screen. When the voice continues, there's something in it you can't quite place. "Thou could undo this failure for us, though, Captain. Find us some replacement for the things thou hast lost in thy folly. Thou could'st still earn our coin, our gratitude. Surely thou shoulds't leap at this."`
+			choice
+				`	"Are you kidding me? I'm done with you."`
+				`	"Fine. Tell me more."`
+					goto more
+			`	Something pulses in your ears, driving a momentary prick of pain deep into your head; you realize it's the translation device, picking up on something else in the room, some other bit of imperceptible sound murmuring in the background. The voice interrupts it. "We know what thou desirith, Captain," it says. "To be a part of the events to come, thou shalt need the backing of the Houses. None comes to pass in this space without our blessing. Cry and bark as thou must, thou still requirith us."`
+			choice
+				`	"Then tell me what you want, and I'll decide if it's worth my time."`
+					goto more
+				`	"What is that sound?"`
+			`	You feel it again, this time much more subtle. You can't shake the feeling that it's like something has noticed you. "Do not distract thyself, Captain," says the voice, and the pressure lifts.`
+			`	"Fine," you say, "just tell me what you want so I can decide if I want any more to do with you."`
+			label more
+			`	"Like before," the voice says, "when Sioeora asked their favor of thee, we've aught we wish to reclaim from the gyre of the Shroud. Nothing to upset thy delicate ethics - naught but trinkets from when the House was young. 'Twould make a fair consolation to us, and we would forgive thee, and thou would'st know the beneficence of this House."`
+			branch "not met solitude enforcers"
+				not "Successors: Ghosts Aqrabe 7: offered"
+			`	"Certain some drone warship isn't going to come after me as soon as I grab your trinkets?" you say, recalling the experience with House Aqrabe. This seems to catch the voice off guard, if only a little, and it takes a moment before it replies. "Any encounter thou hast met once before, thou should'st surely be unafraid of facing again."`
+			label "not met solitude enforcers"
+			choice
+				`	"I don't appreciate being treated as disposable."`
+					to display
+						has "Successors: Ghosts Aqrabe 7: offered"
+				`	"All right, I'll do it. But you'd better hold up your end of the bargain."`
+					goto yes
+				`	"I'm done with this."`
+					goto no
+			`	"Thou'rt not a tool to be thrown away, Captain, but to be cultivated, polished to a gleam. We would not send thee to thy death - how benefits the House in that? Return to the spaceport here when thou'rt ready to begin thy task."`
+				goto end
+			label yes
+			action
+				log "Accepted an offer to take on an additional mission for House Myurej to retrieve Predecessor artifacts."
+			`	"We shall," says the voice, "we always do. Return to the spaceport when thou'rt ready to begin."`
+				goto end
+			label no
+			action
+				log "Declined to take on additional mission for House Myurej to retrieve Predecessor artifacts. Can return to the Raaqa-Kvelq-Ryuit spaceport to accept it at a later date."
+			`	"As thou saith," says the voice. "When thou changeth thy mind, return to the spaceport here to begin."`
+			label end
+			`	You exit the room with the screen and return to the landing pad with your ship.`
+
+mission "Successors: Ghosts Myurej 5"
+	priority
+	name "Locate hidden vault"
+	description "Enter House Myurej's hidden vault on <destination>, accompanied by Ijaset and two of House Myurej's soldiers."
+	source Raaqa-Kvelq-Ryuit
+	destination Kella-Uuoru-Sossa
+	passengers 3
+	to offer
+		has "Successors: Ghosts Myurej 4: done"
+	on offer
+		conversation
+			`You wait around in the spaceport in a low, columned area. Circular depressions in the ground hold pools of water, and occasionally a Successor will come along and slither into one for a few minutes before getting on with their business. After a while, you are met by what must be an envoy of House Myurej, a tall Successor wearing the same colors as their military officers, albeit in a somewhat less martial outfit. Two soldiers flank them. "Captain <last>?" they say. "How excellent to meet thee."`
+			choice
+				`	"Yes. And you are?"`
+					goto hello
+				`	"You seem more polite than the rest of Myurej."`
+			`	"I'm not sure what thou mean'st. I harbor no ill will to thee, for certain."`
+			label hello
+			`	They bow gently. "I am Ijaset. I contribute to Myurej's efforts t'explore beyond the wormhole."`
+			`	"And your friends?" you say, gesturing to the soldiers.`
+			`	Blue spots run over Ijaset's skin; you realize it's the first time you've seen a color display by a member of Myurej. "They are here to assure the success of our task."`
+			label questions
+			choice
+				`	"Can you tell me more about our mission?"`
+					goto mission
+				`	"What exactly are your efforts to explore beyond the wormhole?"`
+					to display
+						not "Successors: efforts"
+					goto efforts
+				`	"Seems like the guards are more of an implied threat."`
+					to display
+						not "Successors: threat"
+					goto threat
+			label efforts
+			action
+				set "Successors: efforts"
+			`	Ijaset relaxes and leans against a column, looking over the nearest pool. "Probes, for the most part. They're small enough to bring to speed with a planetary coilgun, and after a couple of years go by, we get some data back. In years past, some of the nearer stars lay more connected than they are now, and we could send whole ships. But never as far as Myurej now requests us go."`
+				goto questions
+			label threat
+			action
+				set "Successors: threat"
+			`	The soldiers shuffle in place a little bit, and Ijaset stiffens. "The Houses need not threaten thee, <last>. They get what they want without such things; they've had eons to learn to do that."`
+				goto questions
+			label mission
+			action
+				clear "Successors: animal"
+				clear "Successors: others"
+			`	"Myurej seeks to send us to <planet>," they say. "I've been fashioned with the location and key to a hidden vault 'pon the surface. Inside, Myurej's Predecessors kept a bevy of things ineffable, but we need not retrieve much. Today, all they ask of us is a collection of jewelry contained within." They pause and let a collection of colors emerge over them. A gentle breeze whistles through the columns. "The smallest things presage the grandest journeys," they say. "Let us go to thy craft and begin with haste."`
+				accept
+	on complete
+		conversation
+			`You set down the <ship> on the outskirts of one of the smaller cities on <planet>. The buildings are in remarkably good condition for having stood here thousands of years - most of them, at least, because several have been leveled by weapons fire. The entire easternmost quarter of the city has been reduced to rubble; twisted spars of metal rise up where buildings once did and stone plazas lie shattered in the dust and sun.`
+			`	Ijaset leads you, along with the two Myurej soldiers, to an area that's a curious reflection of the columned pool area of the Myurej spaceport, though here all the water has long since evaporated. The one here is larger, too, and as you walk through the forest of white pillars, it becomes more and more difficult to see back to your ship in the distance.`
+			`	Eventually, Ijaset stops on the edge of one of the depressions. "Tis here," they say, emotionless, and point directions to the two guards. They check something against a datapad they produce from their clothing, and then glide over to one of the columns, extending three arms to feel around the circumference of it. Shortly after, something clicks, and a rumbling suddenly starts below you, growing louder and louder until it stops and an aperture opens in the middle of the depression. A tunnel yawns deep into the ground.`
+			choice
+				`	"That's a long way down."`
+					goto down
+				`	"Why put a vault in a place like this?"`
+			`	Ijaset hums. "'Twas once a reserved quarter for the highborn of Myurej, this. Secret to those outside, but known to those who weren't. Then, as now, knowledge was a matter of position."`
+			label down
+			`	You go to look over the edge, and Ijaset joins you. "We should expect a long journey," they say. "'Twas meant to be shielded from just such a bombardment as came to pass."`
+			`	The four of you make your way down the tunnel, which seems to go down into the planet for kilometers. The dark metal walls grow warm to the touch, and the slippery floor proves more treacherous for you than for the Successors - you have to catch yourself on the rail several times. Eventually you come to an enormous spherical room, large enough that the far wall fades into darkness even as a shaft above you lets in an impossibly-penetrating beam of sunlight. And ringing the walls are thousands upon thousands of circular insets, each one many meters in diameter, each one with a panel on the front taking - no doubt - a unique data-sphere.`
+			choice
+				`	"I had no idea the Houses had this much."`
+				`	"We can't be here just for jewelry, can we?"`
+			`	"Myurej had dozens of these vaults," Ijaset says. "Most not here, not on the homeworld. Ships, weapons, great riches grown in the heart of stars... all should be preserved, lest the Quarg or some other despoilers have come to empty them. Today we come for trinkets, so tomorrow we can come for the rest."`
+			choice
+				`	"Let's just focus on what we're here for."`
+					goto next
+				`	"With the contents of a vault like this, any of the Houses could dominate the others, couldn't it?"`
+			`	One of the soldiers says something to Ijaset, loud enough for you to hear, but in a dialect your translation device doesn't pick up. They nod. "Kaatrij wounded, the People's Houses in disarray, even fair Myurej soon to be drawn ever closer to Chydiyi. 'Tis a time of change and the uncertain. With the contents of a vault as this, any of the Houses could make their own certainty."`
+			label next
+			`	Ijaset confers with their datapad and leads the three of you a couple of degrees along the great room's circumference, stopping in front of one of the insets. They produce from a pocket a gilded data-sphere that they press into its face, and you watch as the golden strands encircling it lay themselves out on the front of the surface, forming a fractal web of glittering metal. When they finally stop moving, the whole face of the inset liquefies, gold and all. Behind it lies a deep circular room stacked with elegant wooden boxes. The four of you enter and Ijaset collects a few small items, most no larger than your hand. They give most to the soldiers, but reserve three or four to carry themself.`
+			`	"That's it?" you say.`
+			`	"Indeed," says Ijaset. "A shame to leave the rest, I know, but if it's stayed a thousand years, it shall bear another one."`
+			`	You all retreat from the vault room; Ijaset first, followed by you and then the soldiers. As their last trailing arm slides over the threshold, the face of the vault reforms as quickly as it had melted, the golden strands retract back to the data-sphere, and the whole room is left as it was before. As you prepare to go back up, however, something sharp pings in your ear.`
+			choice
+				`	"What is that?"`
+				`	"Did you hear that?"`
+			`	Ijaset looks over at you with a shade of concern on their face. They open their mouth, but nothing understandable comes out - just the same sharply flowing language you heard from the Successors before you acquired the translation device. Then, a second later, there's another sharp feeling and their words are reshaped. "...thine ears? Can'st thou... now, I see it. We must leave now, <last>."`
+			`	The vault is shaken by the deep and distant sound of something breaking. Your translation device seems to be mostly back to normal, but something isn't quite right, as if it's trying to reshape some deep environmental noise in the background. It's hard to concentrate. There's another blast of sound, and you follow the three Successors back up the tunnel. It seems even longer now than it did before.`
+			`	Just as you emerge into the sunlight, something slams into the ground in the distance and you are thrown onto the stone. As you get back up, you hear Ijaset shouting a word that your translation device can't translate. A couple of seconds later, you see what it was that knocked you down: a brilliant stream of plasma illuminates the sky as a hypervelocity projectile strikes one of the buildings in the city. The air stinks of ozone.`
+			choice
+				`	(Run for your ship.)`
+					goto run
+				`	(Radio for your ship to come pick you up.)`
+					to display
+						has "flagship attribute: shields"
+			`	You quickly transmit new landing coordinates for the <ship> and its repulsors kick up the dust as another building in the city is leveled. As it nears the columned area, the orbital weapon fires again, this time targeting your ship. Its shields flash as they shatter the projectile, the shards of which tear through a swath of columns to your left. As you dash aboard the landing ramp with the Successors right behind you, another impact knocks your vessel to the side and you prepare to fly into orbit while your ship's shields still hold.`
+				launch
+			label run
+			`	You run back through the field of columns as the bombardment continues. Some of the impacts feel like they're getting closer the farther you run, but eventually you make it back to where you landed the <ship> and hurry inside with Myurej's agents right behind you. As you make your way to the bridge, another impact strikes dangerously close to your landing area, and you prepare to fly into orbit while you still can.`
+				launch
+
+mission "Successors: Ghosts Myurej 6"
+	landing
+	priority
+	name "Flee back to Successor space"
+	description "Escape the warships attacking you and regroup in Successor space."
+	source Kella-Uuoru-Sossa
+	destination Uuoru-Veldt-Stir
+	passengers 3
+	to offer
+		has "Successors: Ghosts Myurej 5: done"
+	npc evade
+		ship "Queru, Luminous Gaze" "Kis, Lamenting 9-3"
+		ship "Queru, Luminous Gaze" "Maki, Recalling 11-2"
+		government "Solitude Enforcer"
+		personality waiting heroic nemesis unconstrained vindictive
+		on kill
+			set "Successors: Ghosts Queru transmission"
+			dialog "As the second drone ship explodes it transmits some data to your own vessel. It cannot be deciphered at this time."
+	on enter "Myruet-Kvelq"
+		"successors: ghosts met solitude enforcers" ++
+		"successors: ghosts suspicion" ++
+		dialog `Ijaset instructs you to land on the uninhabited world here to hand over the Predecessor artifacts.`
+	on complete
+		payment 400000
+		log "Handed off the jewelry House Myurej wanted after being chased out of Predecessor space by a pair of long-ranged warships."
+		conversation
+			`The <ship> comes to rest on the gentle hills of <planet> next to an unassuming-looking Myaede freighter. Though the air here is too rarefied for you to breathe, Ijaset and the two Successor soldiers seem to handle it well enough, transferring their haul of little boxes over to the freighter. As you watch from your ship, you think you recognize the captain of the freighter as the same merchant captain you spoke to back on Kasii-Tuur-Saqru. The two soldiers board the freighter, while Ijaset returns to your ship to speak with you.`
+			`	"Well done, <last>," they say. "Thou kept thy calm very well."`
+			choice
+				`	"Do you know anything about those ships that attacked us?"`
+				`	"Why the secrecy?"`
+					goto secrecy
+			action
+				"successors: ghosts suspicion" ++
+			`	Ijaset lets out a long sigh, accompanied by muted color. "Ancient warships, it would seem, built by our Predecessors in their day. There's aught familiar about them, but they were not Myurej's, if that concerns thee. Something..." Crimson sparkles dot their skin, reminiscent of anger or frustration, "T'weren't some grand heirlooms like the Houses smuggled 'cross the wormhole, at least. I suspect they were waiting for us, or some like us, to disturb the lost worlds' esoterica."`
+			choice
+				`	"Why all the secrecy?"`
+					goto secrecy
+			label secrecy
+			`	Ijaset leans against a bulkhead. "I think Myurej wishes to place our trinkets in the arms of someone who knows not what they are. They do not trust thee, and can'st thou blame them?"`
+			choice
+				`	"I suppose not."`
+				`	"Yes I can, actually."`
+			`	"'Tis fair, <last>," they say. "I should inform thee that thy agreed-upon fee of <payment> should be released to thee soon. As for Myurej's favor, 'tisn't aught I can convey to thee myself. I suspect they'll wish to contact thee on their own time to decide upon thy status with the House. Until then, I'll take my leave of thee. If we meet again, may it be on pleasant terms."`
+
+mission "Successors: Ghosts Myurej 7"
+	landing
+	name "Return to Myurej"
+	description "Return to House Myurej at <destination> to find out if they have anything more for you."
+	source
+		attributes successor
+		not attributes uninhabited
+	destination Raaqa-Kvelq-Ryuit
+	to offer
+		has "Successors: Ghosts Myurej 6: done"
+		random < 40
+	on offer
+		conversation
+			`Shortly after you land at the spaceport here, you receive a message delivered via data-sphere:`
+			`	Captain <first> <last>. House Myurej asks that thou join us on <planet> as soon as thou may'st, so that we may conclude our business with thee.`
+			`	As soon as it finishes playing, it adds a waypoint to your ship's map.`
+				accept
+
+mission "Successors: Ghosts Myurej 8"
+	landing
+	name "Deliver wedding supplies"
+	description "A dockworker at <origin> has directed you to deliver <tons> of wedding supplies for House Myurej to <destination>."
+	source Raaqa-Kvelq-Ryuit
+	destination Iyra-Ijasa-Iret
+	cargo "Wedding supplies" 5
+	to offer
+		has "Successors: Ghosts Myurej 7: done"
+	on offer
+		conversation
+			`Once again traffic control directs you to the reserved portion of the <origin> spaceport with the bronze-trimmed landing pads. You are met outside by a somewhat stressed-looking dockworker who brightens up considerably when they see you.`
+			`	"Of course, of course," they say, "we've been waiting for thee! A House transport to <planet> of supplies for the wedding, yes?"`
+			choice
+				`	"Excuse me?"`
+				`	"I was suppose to meet someone here, I think."`
+			`	The worker checks their datapad, looking back and forth between it and you before they once again announce with confidence that you are supposed to transport <tons> of wedding supplies to <planet> for the upcoming Myurej wedding.`
+			choice
+				`	"Well, get them loaded, I suppose."`
+					accept
+				`	"I'll come back later."`
+					defer
+	on complete
+		"successors: ghosts houses dealt with" ++
+		set "successors: ghosts dealt with myurej"
+		log "Spoke with Khiajsore, a scion of House Myurej, at an underwater venue where inter-House wedding is set to occur."
+		conversation
+			`The <ship> settles down in one of the metal bubbles of the <planet> spaceport and before long, as the ground crew is unloading your ship's cargo, a pair of House Myurej's soldiers comes to lead you through the facility. They take you to an elevator outside of the spaceport's public area; you step in, and a few seconds after it begins moving, it clears the bulk of the spaceport complex and shows you a fantastic view of the planet's ocean as it descends deeper into the water. Unfortunately you're on the wrong side of the planet to see the "Ribbons of Iret," but even the relatively dark sea is impressive in its scale and in the vastness of the underwater infrastructure the Successors have built within it.`
+			`	Eventually the elevator nestles into a complex on the seafloor, and the two guards guide you through a number of transparent halls to a large central area. Fish swim above you, schooling behind a circular oculus. Another Successor approaches from one of the side corridors, and it is immediately apparent that this is one of Myurej's scions - they are draped in enough red gold and jewels that it's a wonder they can hold their body upright. When they speak, it's not the voice you heard behind the waving screen before, but one that's smoother and more inquisitive.`
+			`	"Captain, captain," they say, "thou, Captain, who has brought us such lovely glitterings with such fine loyalty. And through such perilous straits, I hear as well? The knave Riiria, the fearsome guardians of the Shroud... I could not bear to keep myself from seeing thee in the flesh, the flesh that holds all this surpassing strength!" Their adornments rattle as they gesture, prodding the air gently.`
+			choice
+				`	"I hope I live up to your expectations."`
+					goto flirty
+				`	"It seems like a lot of effort for some little trinkets."`
+					goto unamused
+				`	"And you are?"`
+			`	The scion bows gently. "Myurej M- Khiajsore. A cousin of the one who spoke to thee earlier, whom thou shalt recall."`
+				goto next
+			label flirty
+			`	"Quite so!" the scion says. "They say a - what is it - a 'biped fever' runs through the people since thou arriveth, that all at once all the worlds clamor for stories of artful, noble humans in the heyday of our Predecessors. I did not see the appeal at first, but by thy actions and seeing thee now... there's a certain strange elegance to the few arms, thy incomplete symmetry." They hum briefly. "But forgive me, that's not what we're here for, thou or I." They bow gently. "Myurej M- Khiajsore. I'm a cousin of the one who spoke to thee earlier, behind the veil."`
+				goto next
+			label unamused
+			`	The scion extends a gilded arm, shaking the myriad piercings and bits of jewelry upon it as if to contemplate them. "Oh, thou thinks me materialistic, mayhaps? Yet precious things are only made precious by the pain of acquiring them. The jewels thou brought back from the Shroud have already earned their own stories... as the beginning of a grand project of restoration, maybe, and at least as something totally unique." They hum with satisfaction. "And yet, 'tisn't what we're here for, thou or I." They bow gently. "Myurej M- Khiajsore. A cousin of the one who spoke to thee earlier, behind the veil."`
+			label next
+			`	Khiajsore motions for you to join them on a stroll through the complex, the guards staying several meters behind. Plants with saffron-colored flowers line water-filled channels on the floor; their heads follow the two of you as you walk and slither along.`
+			branch patron
+				has "successor kaatrij patron"
+			`	"'Tis about our friends at House Kaatrij," they say.`
+				goto kaatrij
+			label patron
+			`	"'Tis about our friends at House Kaatrij," they say. "Thou'rt a friend to them, too, I know. Mirth runs up me every time I see Riijaaora, knowing what thou denied them. 'Twere always an ill-mooded sort."`
+			label kaatrij
+			`	One of the saffron plants bursts into a cloud of pollen that forms a film on the surface of the channel's water. "I've known Kaatrij for long now, all their love for secrecy and understatement. I think, dear captain, that they are wounded and volatile, and I know," they say, sparkling with energy, "that someone else behind the scenes moves all their pieces round and round and is, for now, winning this grand game."`
+			choice
+				`	"I'm not ready to jump to conclusions."`
+				`	"Why not Myurej?"`
+					goto myurej
+			`	Mirth speckles the scion's skin. "Dost thou seek to add wisdom to thy list of virtues? I speak of this to thee so that thou might'st appreciate the circumstances in which thou earneth our favor, in which we shall deliver it. Soon enough, as we the Houses promise thee ships and technologies, there will be a new day of chaos, and we shall promise thee these things as our inhibitions wane and our judgment warps in the glare of this new light."`
+				goto stop
+			label myurej
+			`	Khiajsore hums again. It almost sounds like a piece of music; nothing you're familiar with, of course. "Myurej, Myurej, Myurej," they say. "For the rest here, Myurej is the state, but for those of us within it, Myurej is family. Were we the ones making up this crisis, I surely wouldn't tell thee, discreet as thou may'st have proven thyself." Jovial pastels color the scion's gilded body. "Soon enough, we the Houses shall promise thee all sorts of trinkets - ships and technologies - as our inhibitions fade in this ongoing disorder. Our judgment will be turned to new aims."`
+			label stop
+			`	Khiajsore stops in a circular room where the flowers have spread out to colonize the space, dusting the air and water alike with their bright pollen. "I wish to invite thee to our wedding, Captain. Not mine!" they chuckle, "but Myurej's. 'Twill take place here, beneath the waves, as our kind once began in eons past. And it shall be a gathering of the Houses, of everyone of import. If thou hast made allies of others, as thou hast of us, there would be the place to petition thy case to all assembled. And," they add with a bright tone, "I do hope thou wilt enjoy the show."`
+			`	They glide over to one of the walls and pluck one of the flowers before returning and offering it to you. The golden bloom rotates to face you as you take it from them, opening wide to reveal its bright interior. "Farewell now." they say, "The complex here shall meet thy needs, if thou requireth rest or aught else before thou must depart. May next we meet be as delightful as today, Captain." Khiajsore bows gently once again, and they are joined by their two escorts as they slither down one of the complex's corridors.`
+			`	When, a while later, you take the elevator back up to the planet's surface, you cannot help but notice how similar the window into the dark ocean is to Myurej's shimmering black screen.`
+

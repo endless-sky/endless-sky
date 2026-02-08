@@ -1,4 +1,4 @@
-# Copyright (c) 2024 by Daeridanii
+# Copyright (c) 2025 by Daeridanii
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -63,6 +63,19 @@ ship "Aaulqra" "Aaulqra (Sniper)"
 	gun `"Ojet" Bimodal Coilgun`
 	turret
 	turret
+
+
+
+ship "Ejniisde-Khora" "Ejniisde-Khora (Bombed)"
+	add attributes
+		weapon
+			"blast radius" 150
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 3000
+	explode "large explosion" 8
+	explode "huge explosion"
+	"final explode" "final explosion large"
 
 
 
@@ -266,6 +279,41 @@ ship "Ojde" "Ojde (Mining)"
 
 
 
+ship "Seiitej" "Seiitej (Keystone)"
+	outfits
+		`"Ojet" Bimodal Coilgun` 4
+
+		`"Ryuit" Fusion Core`
+		"Auxiliary Power Reserve" 3
+		`"Jaase" Shield Cortex`
+		"Successor Cooling"
+		"Multimodal Armor: Light"
+		"Kinetic Rail Rifle" 15
+
+		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive Steering`
+		"Hyperdrive"
+
+		"Quantum Keystone"
+
+
+ship "Seiitej" "Seiitej (Armor Keystone)"
+	outfits
+		`"Ojet" Bimodal Coilgun` 4
+
+		`"Ryuit" Fusion Core`
+		"Auxiliary Power Reserve" 3
+		`"Jaase" Shield Cortex`
+		"Successor Cooling"
+		"Multimodal Armor: Keystone"
+		"Kinetic Rail Rifle" 15
+
+		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive Steering`
+		"Hyperdrive"
+
+
+
 ship "Stolsaqra" "Stolsaqra (Military)"
 	outfits
 		`"Ojet" Bimodal Coilgun` 3
@@ -365,6 +413,52 @@ ship "Vujlet" "Vujlet (Aggressive)"
 	gun `"Ojet" Bimodal Coilgun`
 
 
+ship "Vujlet" "Vujlet (Stellar)"
+	outfits
+
+		`3-"Kaska" Betavoltaic Cell`
+		"Primary Power Reserve"
+		`"Ej" Shield Cortex`
+		"Successor Cooling" 2
+		"Multimodal Armor: Keystone"
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		"Hyperdrive"
+		"Successor Fuel Sail"
+
+		"Cargo Expansion" 2
+
+		"Radiant Shield Shunt"
+	gun
+	gun
+	gun
+	gun
+
+
+ship "Vujlet" "Vujlet (Stellar Light Armor)"
+	outfits
+
+		`3-"Kaska" Betavoltaic Cell`
+		"Primary Power Reserve"
+		`"Ej" Shield Cortex`
+		"Successor Cooling" 2
+		"Multimodal Armor: Light"
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		"Hyperdrive"
+		"Successor Fuel Sail"
+
+		"Cargo Expansion" 2
+
+		"Radiant Shield Shunt"
+	gun
+	gun
+	gun
+	gun
+
+
 ship "Vujlet" "Vujlet (Surveillance)"
 	outfits
 		`"Ojet" Bimodal Coilgun` 2
@@ -384,3 +478,45 @@ ship "Vujlet" "Vujlet (Surveillance)"
 	gun `"Ojet" Bimodal Coilgun`
 	gun
 	gun
+
+
+ship "Vujlet-Usaqri" "Vujlet-Usaqri (Jump)"
+	outfits
+		`"Ojet" Bimodal Coilgun` 2
+
+		`"Nnesa" Fusion Core`
+		"Auxiliary Power Reserve"
+		`"Jaase" Shield Cortex`
+		"Successor Cooling"
+		"Multimodal Armor: Regen"
+		"Successor Fuel Sail"
+		"Fuel Pod"
+		"Kinetic Rail Rifle" 2
+
+		"Harmonic Keystone"
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Jump Drive"
+
+
+ship "Vujlet-Usaqri" "Vujlet-Usaqri (Keystone)"
+	outfits
+		`"Ojet" Bimodal Coilgun` 2
+
+		`"Nnesa" Fusion Core`
+		"Auxiliary Power Reserve"
+		`"Jaase" Shield Cortex`
+		"Successor Cooling"
+		"Multimodal Armor: Regen"
+		"Successor Fuel Sail"
+		"Fuel Pod"
+		"Kinetic Rail Rifle" 2
+
+		"Harmonic Keystone"
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"

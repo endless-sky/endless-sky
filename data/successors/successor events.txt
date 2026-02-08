@@ -1,4 +1,4 @@
-# Copyright (c) 2024 by Daeridanii
+# Copyright (c) 2025 by Daeridanii
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -99,3 +99,118 @@ event "successors: unified defense"
 	system "Myruet-Kvelq"
 		add fleet "Large Old Houses" 1200
 		add fleet "Large New Houses" 1200
+
+event "successors: ghosts initial timer"
+
+event "successors: ghosts incident"
+	set "successors: ghosts stage 0"
+	planet "Qasa-Sija-Iri"
+		government "House Kaatrij"
+		description `Until recently, this moon was an utterly unremarkable uninhabited world within House Kaatrij's sphere of influence. However, near the south pole, the exposed guts of a strange facility now twinkle and shimmer half-enveloped in the moon's sands. A large military presence by House Kaatrij repels any closer inspection, but regardless, it seems that Qasa-Sija-Iri is not quite as uninhabited as it immediately appeared.`
+			to display
+				not "successors kaatrij vassal"
+
+event "successors: ghosts restrict"
+	planet "Qasa-Sija-Iri"
+		government "House Kaatrij"
+		"required reputation" 2
+
+event "successors: ghosts saajret contact"
+
+event "successors: ghosts stage 1"
+	set "successors: ghosts stage 1"
+
+event "successors: ghosts unrestrict"
+	planet "Qasa-Sija-Iri"
+		description `Beneath the colorless sandy surface of Qasa-Sija-Iri, House Kaatrij and their Quarg patrons have built a variety of advanced bases. The one near the south pole, now recovered from its earlier attack, is the moon's primary spaceport.`
+		spaceport `The subterranean spaceport here is small but clearly well-maintained. The landing pads travel on elevators to deep below the surface - the House Kaatrij ones, at least, because Successor vessels are the only craft visible here. If the Quarg have their own craft in residence, they must be landing in a different section of the facility, or at a different base altogether.`
+		add outfitter `Successor Basics`
+
+event "successors: ghosts message delay"
+
+event "successors: ghosts seineq attacked"
+
+event "successors: ghosts seineq memorial"
+
+event "successors: ghosts star unrestrict"
+	planet "Exotic Metal Garden"
+		remove attributes "requires: starlining"
+
+event "successors: ghosts star restrict"
+	planet "Exotic Metal Garden"
+		add attributes "requires: starlining"
+
+event "successors: ghosts keystones finished"
+	planet Kasii-Cavasaa-Oa
+		add outfitter "Harmonic Keystone"
+
+event "successors: ghosts probes destroyed"
+
+event "successors: ghosts ijra-ea decloak"
+	system Kasii-Sola
+		add object "Ijra-Ea, Shimmering Veil"
+			sprite "planet/station predecessor 1"
+			distance 2000
+			period 5000
+
+event "successors: ghosts abandoned kaatrij"
+
+event "successors: military escalation"
+	"reputation: House Kaatrij" <?= 0
+	planet Shassa-Wyra-Orrou
+		government "House Kaatrij"
+	planet Uo-Oraa-Vayya
+		government "House Kaatrij"
+	planet Kasi-Osolaa-Sossa
+		government "House Kaatrij"
+	system "Luue-Saqru"
+		fleet "Kaatrij Home" 2000
+	system "Maspa-Cavasaa"
+		fleet "Kaatrij Home" 1500
+	system "Osolaa-Uuoru"
+		fleet "Kaatrij Home" 2000
+	system "Pelaa-Muora"
+		fleet "Kaatrij Home" 1500
+	system "Myruet-Kvelq"
+		fleet "Kaatrij Expeditionary" 2000
+	system "Oublaa-Khora"
+		fleet "Kaatrij Expeditionary" 2000
+	system "Aaura-Kaska"
+		fleet "Large Old Houses" 2000
+	planet "Raaqa-Puan-Uuoru"
+		add shipyard "Kaatrij Light"
+	fleet "Kaatrij Home"
+		add variant 4
+			"Vujlet-Usaqri"
+		add variant 2
+			"Vujlet-Usaqri" 2
+		add variant 2
+			"Aaulqra"
+		add variant 2
+			"Aaulqra (Sniper)"
+
+event "successors: ghosts intermission timer"
+
+event "successors: ghosts kaatrij expansion"
+	system "Luue-Saqru"
+		fleet "Kaatrij Home" 3000
+	system "Maspa-Cavasaa"
+		fleet "Kaatrij Home" 3000
+	system "Osolaa-Uuoru"
+		fleet "Kaatrij Home" 3000
+	system "Myruet-Kvelq"
+		fleet "Kaatrij Expeditionary" 3000
+	system "Oublaa-Khora"
+		fleet "Kaatrij Expeditionary" 3000
+	planet "Raaqa-Puan-Uuoru"
+		add shipyard "Kaatrij Light"
+		add outfitter "Harmonic Keystone"
+	planet "Yoqqa-Vasa-Vasa"
+		add outfitter "Harmonic Keystone"
+	planet "O-Vasa-Oa"
+		add outfitter "Harmonic Keystone"
+	fleet "Kaatrij Home"
+		add variant 4
+			"Vujlet-Usaqri"
+		add variant 2
+			"Vujlet-Usaqri" 2

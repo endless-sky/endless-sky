@@ -1,4 +1,4 @@
-# Copyright (c) 2024 by Daeridanii
+# Copyright (c) 2025 by Daeridanii
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -322,6 +322,17 @@ fleet "Kaatrij Home"
 		"Veusade (Surveillance)"
 	variant 2
 		"Vujlet (Surveillance)" 3
+
+fleet "Kaatrij Expeditionary"
+	government "House Kaatrij"
+	names "house kaatrij"
+	cargo 0
+	personality
+		heroic opportunistic
+	variant 10
+		"Vujlet-Usaqri (Keystone)" 2
+	variant 5
+		"Vujlet-Usaqri (Keystone)" 3
 
 fleet "Aqrabe Home"
 	government "House Aqrabe"
