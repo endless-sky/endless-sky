@@ -229,8 +229,8 @@ outfit "Swarm Pod"
 		"drag" .1
 		"turn" 5.35
 		"homing"
-		"radar tracking" 0.5
-		"optical tracking" 0.5
+		"radar tracking" 0.2
+		"optical tracking" 0.6
 		"shield damage" 46
 		"hull damage" 24
 		"missile strength" 8
