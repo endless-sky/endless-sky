@@ -66,7 +66,6 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
-	Resize();
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the

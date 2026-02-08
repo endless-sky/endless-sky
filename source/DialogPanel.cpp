@@ -304,7 +304,6 @@ DialogPanel::DialogPanel(DialogInit &init)
 	text->SetTruncate(init.truncate);
 	text->SetText(init.message);
 	extensionCount = 0;
-	DialogPanel::Resize();
 	AddChild(text);
 
 	isOkDisabled = !ValidateInput();
