@@ -2727,7 +2727,7 @@ planet "Ijra-Ea, Shimmering Veil"
 	attributes predecessor station uninhabited
 	landscape land/station42
 	description `Uncomfortably vast, this ancient citadel of House Kaatrij seems to remain in a state of partial cloaking; sections of it shimmer in and out of view. Because of this, it shows up only intermittently on long-range sensors despite its great size.`
-	description `Having been labeled as an ally by the station's security systems, your ship is able to land inside an empty docking bay within, but without a way of interfacing with the station's damaged computer systems, the further depths of its vast interior remain inscrutable for now. Though it still appears damaged, your previous visit seems to have activated some of its self-repair functions: tiny, ant-sized robots are hard at work performing maintenance on the bay's systems.`
+	description `	Having been labeled as an ally by the station's security systems, your ship is able to land inside an empty docking bay within, but without a way of interfacing with the station's damaged computer systems, the further depths of its vast interior remain inscrutable for now. Though it still appears damaged, your previous visit seems to have activated some of its self-repair functions: tiny, ant-sized robots are hard at work performing maintenance on the bay's systems.`
 		to display
 			has "Successors: Ghosts 16: done"
 	government Predecessor
