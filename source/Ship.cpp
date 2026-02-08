@@ -65,8 +65,6 @@ namespace {
 	const vector<string> ENGINE_SIDE = {"under", "over"};
 	const vector<string> STEERING_FACING = {"none", "left", "right"};
 
-	const double MAXIMUM_TEMPERATURE = 100.;
-
 	// Scanning takes up to 10 seconds (SCAN_TIME / MIN_SCAN_STEPS)
 	// dependent on the range from the ship (among other factors).
 	// The scan speed uses a gaussian drop-off with the reported scan radius as the standard deviation.
@@ -643,7 +641,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(base && base != this)
 	{
 		if(!GetSprite())
-			reinterpret_cast<Body &>(*this) = *base;
+			static_cast<Body &>(*this) = *base;
 		if(customSwizzleName.empty())
 			customSwizzleName = base->CustomSwizzleName();
 		if(baseAttributes.Attributes().empty())
@@ -2824,16 +2822,6 @@ double Ship::Energy() const
 
 
 
-// Allow returning a heat value greater than 1 (i.e. conveying how overheated
-// this ship has become).
-double Ship::Heat() const
-{
-	double maximum = MaximumHeat();
-	return maximum ? heat / maximum : 1.;
-}
-
-
-
 // Get the ship's "health," where <=0 is disabled and 1 means full health.
 double Ship::Health() const
 {
@@ -3616,13 +3604,6 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 			? perBox : count, notForGov));
 		count -= perBox;
 	}
-}
-
-
-
-const Outfit &Ship::Attributes() const
-{
-	return attributes;
 }
 
 
