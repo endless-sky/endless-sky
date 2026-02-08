@@ -1859,7 +1859,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		{
 			helped = true;
 			double fuelTransferred = TransferFuel(victim->JumpFuelMissing(), victim.get());
-			if(fuelTransferred >= 1)
+			if(fuelTransferred >= 1.)
 			{
 				if(isYours)
 					Messages::Add({Format::Number(fuelTransferred, 0) + " fuel transferred from your "
@@ -1877,7 +1877,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 			helped = true;
 			double toGive = max(attributes.Get("energy capacity") * 0.1, victim->Attributes().Get("energy capacity") * 0.2);
 			double energyTransferred = TransferEnergy(max(200., toGive), victim.get());
-			if(energyTransferred >= 1)
+			if(energyTransferred >= 1.)
 			{
 				if(isYours)
 					Messages::Add({Format::Number(energyTransferred, 0) + " energy transferred from your "
@@ -1902,7 +1902,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	// If the boarding ship is the player, they will choose what to plunder.
 	// Always take fuel and energy if you can.
 	double fuelTransferred = victim->TransferFuel(victim->fuel, this);
-	if(fuelTransferred >= 1)
+	if(fuelTransferred >= 1.)
 	{
 		if(isYours)
 			Messages::Add({Format::Number(fuelTransferred, 0) + " fuel siphoned from the "
@@ -1914,7 +1914,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 				GameData::MessageCategories().Get("normal")});
 	}
 	double energyTransferred = victim->TransferEnergy(victim->energy, this);
-	if(energyTransferred >= 1)
+	if(energyTransferred >= 1.)
 	{
 		if(isYours)
 			Messages::Add({Format::Number(energyTransferred, 0) + " energy siphoned from the "
