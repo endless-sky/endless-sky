@@ -418,7 +418,7 @@ outfit "Piercer Missile"
 	index 04030
 	cost 830
 	thumbnail "outfit/piercer"
-	"mass" .05
+	"mass" .07
 	"piercer capacity" -1
 	description "This missile is fired from a Piercer Missile Launcher."
 
@@ -429,7 +429,7 @@ outfit "Piercer Missile Rack"
 	cost 56000
 	thumbnail "outfit/korath piercer storage"
 	"mass" .1
-	"outfit space" -5
+	"outfit space" -7
 	"piercer capacity" 98
 	ammo "Piercer Missile"
 	description "The Piercer Missile Rack is used to store extra ammunition for Piercer Missile Launchers."
@@ -440,9 +440,9 @@ outfit "Piercer Missile Launcher"
 	index 04030
 	cost 593000
 	thumbnail "outfit/piercer launcher"
-	"mass" 5
-	"outfit space" -15
-	"weapon capacity" -15
+	"mass" 7
+	"outfit space" -21
+	"weapon capacity" -21
 	"energy capacity" 50
 	"gun ports" -1
 	"piercer capacity" 197
@@ -463,8 +463,8 @@ outfit "Piercer Missile Launcher"
 		"reload" 23
 		"firing energy" 9
 		"firing heat" 46
-		"shield damage" 93
-		"hull damage" 141
+		"shield damage" 130
+		"hull damage" 197
 		"piercing" .2
 		"hit force" 144
 		"missile strength" 23
