@@ -514,6 +514,12 @@ void PlayerInfo::Load(const filesystem::path &path)
 	// Cache the remaining number of days for all deadline missions and
 	// the location of tracked NPCs.
 	CacheMissionInformation();
+	// Locate the tracked NPCs for available jobs and mission.
+	// Active missions will have already done this with the above function call.
+	for(Mission &mission : availableJobs)
+		mission.RecalculateTrackedSystems();
+	for(Mission &mission : availableMissions)
+		mission.RecalculateTrackedSystems();
 
 	// Restore access to services, if it was granted previously.
 	if(planet && hasFullClearance)
@@ -4511,14 +4517,16 @@ void PlayerInfo::CreateMissions()
 			list<Mission> &missions =
 				mission.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
 
-			missions.push_back(mission.Instantiate(*this));
-			if(missions.back().IsFailed())
-				missions.pop_back();
-			else if(!mission.IsAtLocation(Mission::JOB))
+			Mission newMission = mission.Instantiate(*this);
+			if(newMission.IsFailed())
+				continue;
+			newMission.RecalculateTrackedSystems();
+			if(!mission.IsAtLocation(Mission::JOB))
 			{
-				hasPriorityMissions |= missions.back().HasPriority();
-				nonBlockingMissions += missions.back().IsNonBlocking();
+				hasPriorityMissions |= newMission.HasPriority();
+				nonBlockingMissions += newMission.IsNonBlocking();
 			}
+			missions.push_back(std::move(newMission));
 		}
 	}
 
