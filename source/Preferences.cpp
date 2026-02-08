@@ -178,6 +178,9 @@ namespace {
 	const vector<string> LARGE_GRAPHICS_REDUCTION_SETTINGS = {"off", "largest only", "all"};
 	int largeGraphicsReductionIndex = 0;
 
+	const vector<string> AMMO_REFILL_SETTINGS = {"never", "ask", "always"};
+	int ammoRefillIndex = 1;
+
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 
 	int previousSaveCount = 3;
@@ -933,6 +936,28 @@ Preferences::LargeGraphicsReduction Preferences::GetLargeGraphicsReduction()
 const string &Preferences::LargeGraphicsReductionSetting()
 {
 	return LARGE_GRAPHICS_REDUCTION_SETTINGS[largeGraphicsReductionIndex];
+}
+
+
+
+void Preferences::ToggleAmmoRefill()
+{
+	if(++ammoRefillIndex >= static_cast<int>(AMMO_REFILL_SETTINGS.size()))
+		ammoRefillIndex = 0;
+}
+
+
+
+Preferences::AmmoRefill Preferences::GetAmmoRefill()
+{
+	return static_cast<AmmoRefill>(ammoRefillIndex);
+}
+
+
+
+const std::string &Preferences::AmmoRefillSetting()
+{
+	return AMMO_REFILL_SETTINGS[ammoRefillIndex];
 }
 
 
