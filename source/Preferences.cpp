@@ -178,7 +178,7 @@ namespace {
 	const vector<string> LARGE_GRAPHICS_REDUCTION_SETTINGS = {"off", "largest only", "all"};
 	int largeGraphicsReductionIndex = 0;
 
-	const vector<string> AMMO_REFILL_SETTINGS = {"never", "ask", "always"};
+	const vector<string> AMMO_REFILL_SETTINGS = {"maunal", "ask", "auto"};
 	int ammoRefillIndex = 1;
 
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
@@ -285,6 +285,8 @@ void Preferences::Load()
 			settings["Control ship with mouse"] = (!hasValue || node.Value(1));
 		else if(key == "notification settings")
 			notifOptionsIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
+		else if(key == "Ammo refill")
+			ammoRefillIndex = clamp<int>(node.Value(1), 0, AMMO_REFILL_SETTINGS.size() - 1);
 #ifdef _WIN32
 		else if(key == "Title bar theme")
 			titleBarThemeIndex = clamp<int>(node.Value(1), 0, TITLE_BAR_THEME_SETTINGS.size() - 1);
@@ -359,6 +361,7 @@ void Preferences::Save()
 	out.Write("Show mini-map", minimapDisplayIndex);
 	out.Write("Prioritize flagship use", flagshipSpacePriorityIndex);
 	out.Write("Reduce large graphics", largeGraphicsReductionIndex);
+	out.Write("Ammo refill", ammoRefillIndex);
 	out.Write("previous saves", previousSaveCount);
 #ifdef _WIN32
 	if(WinVersion::SupportsDarkTheme())

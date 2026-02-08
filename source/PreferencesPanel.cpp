@@ -780,11 +780,13 @@ void PreferencesPanel::DrawSettings()
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
-		"Rehire extra crew when lost",
-		AMMO_REFILL,
 		"Automatically unpark flagship",
 		FLAGSHIP_SPACE_PRIORITY,
 		"\n",
+		"Gameplay",
+		"Rehire extra crew when lost",
+		AMMO_REFILL,
+		"",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
 		STATUS_OVERLAYS_FLAGSHIP,
@@ -1065,7 +1067,7 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == AMMO_REFILL)
 		{
-			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::NEVER;
+			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::MANUAL;
 			text = Preferences::AmmoRefillSetting();
 		}
 #ifdef _WIN32
