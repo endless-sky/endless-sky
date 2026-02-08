@@ -463,8 +463,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 				{
 					double fuelTransferred = you->TransferFuel(victim->JumpFuelMissing(), &*victim);
-					if(fuelTransferred)
-						messages.push_back(Format::Number(fuelTransferred) + " fuel has been transferred.");
+					if(fuelTransferred >= 1)
+						messages.push_back(Format::Number(fuelTransferred, 0) + " fuel has been transferred.");
 				}
 				player.AddShip(victim);
 				for(const Ship::Bay &bay : victim->Bays())
