@@ -2419,7 +2419,11 @@ bool Ship::IsUsingJumpDrive() const
 	return (hyperspaceSystem || hyperspaceCount) && isUsingJumpDrive;
 }
 
-
+// Get the fuel already used for an ongoing hyperspace movement
+double Ship::FuelUsedForHyperspacing() const
+{
+	return hyperspaceFuelCost * Ship::GetHyperspacePercentage() / 100;
+}
 
 // Check if this ship is allowed to land on this planet, accounting for its personality.
 bool Ship::IsRestrictedFrom(const Planet &planet) const
