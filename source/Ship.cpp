@@ -2421,9 +2421,10 @@ bool Ship::IsUsingJumpDrive() const
 	return (hyperspaceSystem || hyperspaceCount) && isUsingJumpDrive;
 }
 
-double Ship::FuelBeforeHyperspacing() const
+// Get the fuel already used for an ongoing hyperspace movement
+double Ship::FuelUsedForHyperspacing() const
 {
-	return fuelBeforeHyperspacing;
+	return hyperspaceFuelCost * Ship::GetHyperspacePercentage() / 100;
 }
 
 // Check if this ship is allowed to land on this planet, accounting for its personality.
@@ -4565,7 +4566,6 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 		SetSystem(hyperspaceSystem);
 		hyperspaceSystem = nullptr;
 		targetSystem = nullptr;
-		fuelBeforeHyperspacing = 0.;
 		// Check if the target planet is in the destination system or not.
 		const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);
 		if(!planet || planet->IsWormhole() || !planet->IsInSystem(currentSystem))
@@ -4767,7 +4767,6 @@ void Ship::DoInitializeMovement()
 		pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(hyperspaceSystem);
 		isUsingJumpDrive = (jumpUsed.first == JumpType::JUMP_DRIVE);
 		hyperspaceFuelCost = jumpUsed.second;
-		fuelBeforeHyperspacing = fuel;
 	}
 }
 

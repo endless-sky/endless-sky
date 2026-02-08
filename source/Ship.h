@@ -307,8 +307,8 @@ public:
 	int GetHyperspacePercentage() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
-	// Fuel level before hyperspacing: only well-defined while entering hyperspace
-	double FuelBeforeHyperspacing() const;
+	// Fuel already used for ongoing hyperspace movement
+	double FuelUsedForHyperspacing() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool IsReadyToJump(bool waitingIsReady = false) const;
 	// Check if this ship is allowed to land on this planet, accounting for its personality.
@@ -737,7 +737,6 @@ private:
 	const System *hyperspaceSystem = nullptr;
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;
-	double fuelBeforeHyperspacing = 0.;
 	Point hyperspaceOffset;
 
 	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)

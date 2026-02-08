@@ -1099,10 +1099,7 @@ void MapPanel::DrawTravelPlan()
 				continue;
 			}
 
-			if(it->IsEnteringHyperspace())
-				fuel[it.get()] = it->FuelBeforeHyperspacing();
-			else
-				fuel[it.get()] = it->FuelLevel();
+			fuel[it.get()] = it->FuelLevel() + it->FuelUsedForHyperspacing();
 			hasEscort |= (it.get() != flagship);
 		}
 	stranded |= !hasEscort;
