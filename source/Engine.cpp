@@ -2203,6 +2203,7 @@ void Engine::HandleKeyboardInputs()
 
 	if(keyDown.Has(Command::PAUSE))
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		timePaused = !timePaused;
 		if(timePaused)
 			Audio::Pause();
