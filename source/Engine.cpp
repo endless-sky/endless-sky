@@ -2208,6 +2208,7 @@ void Engine::HandleKeyboardInputs()
 			Audio::Pause();
 		else
 			Audio::Resume();
+		UI::PlaySound(UI::UISound::NORMAL);
 	}
 }
 
