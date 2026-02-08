@@ -89,7 +89,6 @@ namespace {
 	Set<Person> defaultPersons;
 	TextReplacements defaultSubstitutions;
 
-	const Gamerules *defaultGamerules = nullptr;
 	const Gamerules *activeGamerules = nullptr;
 
 	Politics politics;
@@ -265,8 +264,7 @@ void GameData::FinishLoading()
 	defaultPersons = objects.persons;
 	defaultSubstitutions = objects.substitutions;
 
-	defaultGamerules = objects.gamerulesPresets.Get("Default");
-	activeGamerules = defaultGamerules;
+	activeGamerules = objects.gamerulesPresets.Get("Default");
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -442,7 +440,8 @@ void GameData::Revert()
 	objects.wormholes.Revert(defaultWormholes);
 	objects.persons.Revert(defaultPersons);
 	objects.substitutions.Revert(defaultSubstitutions);
-	activeGamerules = defaultGamerules;
+
+	activeGamerules = objects.gamerulesPresets.Get("Default");
 
 	for(auto &it : objects.persons)
 		it.second.Restore();
@@ -1037,7 +1036,9 @@ const TextReplacements &GameData::GetTextReplacements()
 
 const Gamerules &GameData::GetGamerules()
 {
-	assert(activeGamerules != nullptr && "activeGamerules may not be nullptr");
+	if(!activeGamerules)
+		activeGamerules = objects.gamerulesPresets.Get("Default");
+
 	return *activeGamerules;
 }
 
@@ -1052,8 +1053,7 @@ void GameData::SetGamerules(const Gamerules *gamerules)
 
 const Gamerules &GameData::DefaultGamerules()
 {
-	assert(defaultGamerules != nullptr && "defaultGamerules may not be nullptr");
-	return *defaultGamerules;
+	return *(objects.gamerulesPresets.Get("Default"));
 }
 
 
