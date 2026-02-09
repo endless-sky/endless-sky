@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Information.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -94,19 +95,6 @@ const ItemInfoDisplay &MapShipyardPanel::SelectedInfo() const
 const ItemInfoDisplay &MapShipyardPanel::CompareInfo() const
 {
 	return compareInfo;
-}
-
-
-
-const string &MapShipyardPanel::KeyLabel(int index) const
-{
-	static const string LABEL[4] = {
-		"Has no shipyard",
-		"Has shipyard",
-		"Sells this ship",
-		"Ship parked here"
-	};
-	return LABEL[index];
 }
 
 
@@ -192,9 +180,18 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 
 
+void MapShipyardPanel::DrawKey(Information &info) const
+{
+	info.SetCondition("is shipyards");
+
+	MapSalesPanel::DrawKey(info);
+}
+
+
+
 void MapShipyardPanel::DrawItems()
 {
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+	if(GetUI().IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);

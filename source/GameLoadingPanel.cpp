@@ -68,21 +68,21 @@ void GameLoadingPanel::Step()
 		// any additional scaled masks from the default one.
 		GameData::GetMaskManager().ScaleMasks();
 
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		if(conversation.IsEmpty())
 		{
-			GetUI()->Push(new MenuPanel(player, gamePanels));
-			GetUI()->Push(new MenuAnimationPanel());
+			GetUI().Push(new MenuPanel(player, gamePanels));
+			GetUI().Push(new MenuAnimationPanel());
 		}
 		else
 		{
-			GetUI()->Push(new MenuAnimationPanel());
+			GetUI().Push(new MenuAnimationPanel());
 
 			auto *talk = new ConversationPanel(player, conversation);
 
-			UI *ui = GetUI();
-			talk->SetCallback([ui](int response) { ui->Quit(); });
-			GetUI()->Push(talk);
+			UI &ui = GetUI();
+			talk->SetCallback([&ui](int response) { ui.Quit(); });
+			GetUI().Push(talk);
 		}
 
 		finishedLoading = true;

@@ -852,6 +852,36 @@ tip "scan concealment:"
 
 
 
+# Shop Tips:
+tip "outfitter: b"
+	`Buy from the outfitter and install onto the currently selected ship(s). Hold Shift, Control, or Alt to buy 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: s"
+	`Sell from cargo, storage, or the currently selected ship(s), in that order. Hold Shift, Control, or Alt to sell 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: i"
+	`Install on the currently selected ship(s) from cargo or storage, in that order. Hold Shift, Control, or Alt to install 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: u"
+	`Uninstall or move outfits from the currently selected ship(s) or cargo to storage, in that order. Hold Shift, Control, or Alt to uninstall 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: c"
+	`Transfer the outfit from planetary storage to cargo if possible. Otherwise, buy it from the outfitter. Hold Shift, Control, or Alt to buy or move 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: r"
+	`Move the outfit from cargo or the currently selected ship(s) into planetary storage, in that order. Hold Shift, Control, or Alt to store 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+
+tip "shipyard: b"
+	`Buy this ship. Hold Shift, Control, or Alt to buy 5, 20, or 500 ships at once. Hold a combination of these keys for larger amounts.`
+
+tip "shipyard: s"
+	`Sell the selected ships and their outfits.`
+
+tip "shipyard: r"
+	`Sell the hulls of the selected ships, but retain the outfits in storage.`
+
+
+
 # Sale labels:
 tip "empty hull:"
 	`Price the ship itself would sell for without any outfits installed.`
@@ -1372,6 +1402,9 @@ tip "Show help"
 tip "View message log"
 	`Open the log panel containing status messages and hails from other ships received since the current pilot was loaded.`
 
+tip "Toggle performance info"
+	`Toggle the "Show CPU / GPU load" setting.`
+
 tip "Deploy / recall fighters"
 	`Deploy or recall carried ships (e.g. fighters, drones) in your fleet. Requires carriers with space to hold the carried ships.`
 
@@ -1413,7 +1446,7 @@ tip "Camera acceleration"
 	`Determines whether the screen center is fixed on, trails behind, or speeds ahead of the flagship while accelerating.`
 
 tip "Show CPU / GPU load"
-	`Display the CPU and GPU load at the top of the screen while in flight. Loads are presented as a percentage of a frame (1/60th of a second) that it takes to calculate or draw each frame. >100% load (or >33% when fast-forward is active) means the game will run slower.`
+	`Display the CPU load, GPU load, and virtual memory usage at the top of the screen. CPU and GPU loads are presented as the time that it takes to calculate or draw each frame, respectively. The percentages represent how long it takes to calculate or draw each frame relative to the target frame rate, which is 60 frames/second for the GPU and 60 ticks/second (or 180 ticks/second with fast-forward enabled) for the CPU. >100% load means the game will run slower than the target frame rate.`
 
 tip "Render motion blur"
 	`Toggle whether motion blur is rendered for all moving objects.`
@@ -1550,9 +1583,6 @@ tip "Show escort systems on map"
 tip "Show stored outfits on map"
 	`If you have outfits stored on a planet, marks systems with stored outfits on the star map.`
 
-tip "System map sends move orders"
-	`Right-click on a location in the system mini-map on the galaxy map to send your escorts to that location in the selected system.`
-
 tip "Always underline shortcuts"
 	`Always underline the shortcut key for any buttons. Holding the alt key in any panel will also underline the button shortcut keys if this setting is off.`
 
@@ -1583,8 +1613,59 @@ tip "Notify on destination"
 tip "Save message log"
 	`Include message logs in pilot files so they are not lost when closing the game or reloading the save file. This will increase save file sizes and may increase load times. The stored log history can be cleared from the message log panel.`
 
+tip "Block screen saver"
+	`Whether your monitor should be able to dim and turn off or change to the screen saver while the game is open.`
+
 tip "Title bar theme"
 	`Choose the theme of the title bar, or leave "system default" to use system settings. (Available on Windows 10 or newer; on Windows 10, the game window must be resized or restarted in order for the change to take effect.)`
 
 tip "Window rounding"
 	`Control the appearance of window corners. (Available on Windows 11.)`
+
+
+
+# Gamerules
+tip "Minimum value"
+	`The lowest value that an outfit or ship can depreciate to relative to its full price. All plundered, captured, or gifted items start at this value, and all purchased items start at 100% value and then depreciate toward this value according to the other depreciation gamerules.`
+
+tip "Grace period"
+	`The number of days that must pass before a newly purchased outfit or ship will begin to depreciate. This allows you to have a short amount of time to test out an item and then sell it back at full value if you decide that you do not like it.`
+
+tip "Maximum age"
+	`The number of days that must pass, after the grace period has ended, in order for an outfit or ship to become fully depreciated.`
+
+tip "Daily depreciation"
+	`The percentage of an item's depreciable value that it maintains day over day. Only impacts the exponential term of the depreciation calculation. If set to 100%, an item will still linearly lose value.`
+
+tip "Spawn attempt period"
+	`The number of frames on average that the game waits before attempting to spawn a person ship. The game rolls a random number between 0 and this value minus one every frame. If the value lands on 0, a person ship spawn attempt is made. There are 60 frames in a second.`
+
+tip "No spawn weight"
+	`When a person ship spawn attempt is made, this is the "weight" of the chance of having the spawn attempt fail. Each person ship has a "weight" associated with it which determines its chance of spawning. The chance of any single person ship spawning is its weight divided by the sum of the weights of all person ships and this value. That means that the chance of a spawn attempt failing is this number over that same sum.`
+
+tip "NPC max mining time"
+	`Randomly spawned NPCs with the "mining" personality will spend this many frames mining in the current system before deciding to do something else. The purpose of this limit is so that NPC ships can be seen by the player to show how to mine without stripping the system bare of minable asteroids. This limit does not apply to mining ships that are spawned by a mission.`
+
+tip "Universal frugal threshold"
+	`Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their health (shields + hull - the hull level when they become disabled) is at or below this percentage, or if the hostiles in the system are considerably stronger than them.`
+
+tip "Universal ramscoop"
+	`Determines whether the "universal ramscoop" is active on all ships. This ramscoop provides a very small amount of fuel to every ship regardless of whether it has an actual ramscoop installed. The strength of this ramscoop falls off much more strongly than normal ramscoops, requiring you to be as close to a star as possible to have any real gain in fuel. Having this enabled prevents needing to reload your save file if you run out of fuel and no NPCs spawn in the system that you can get fuel from.`
+
+tip "Minimum arrival distance"
+	`The minimum arrival distance for all systems. Applies to both hyperdrive and jump drive travel. If the system has a defined arrival distance greater than this value, then it will be used instead. If this gamerule has a value of "(unset)", then the value defined by the system will always be used.`
+
+tip "Minimum departure distance"
+	`The minimum departure distance for all systems. A ship can only jump out of a system if it is farther from the system center than the departure distance. If a system has a defined departure distance greater than this value, then it will be used instead.`
+
+tip "Fleet multiplier"
+	`A global fleet spawn rate multiplier for random fleet spawns within systems.`
+
+tip "Lock gamerules"
+	`Controls whether gamerules can be altered after a pilot has been created. If true, the gamerules button will not appear on the main menu for this pilot. If you set this to true on an existing pilot, you will not be able to return to this menu after leaving.`
+
+tip "Fighters hit when disabled"
+	`Controls which carried ships (fighters and drones), when disabled, will not be hit by projectiles unless they are directly targeted. Fighters and drones are fragile ships that can be difficult and/or tedious to replace for the player, so this gamerule is a means of increasing their survivability without increasing their combat effectiveness. Disabled carried ships can still be hit by explosions, whether from weapons or exploding ships.`
+
+tip "Universal ammo stocking"
+	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
