@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <SDL2/SDL_keycode.h>
 #include <functional>
+#include <SDL2/SDL_keycode.h>
 #include <string>
 
 

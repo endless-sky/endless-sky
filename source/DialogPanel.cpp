@@ -398,14 +398,16 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 
 		if(stringFun)
 		{
-			if (!validateCharFun || validateCharFun(c))
+			if(!validateCharFun || validateCharFun(c))
 				input += c;
 			else
 				Invalid();
 		}
 		else if ((intFun || doubleFun))
 		{
-			if ((c >= '0' && c <= '9') || (c == '-' && input.empty()) || (c == '.' && !std::count(input.begin(), input.end(), '.')))
+			if((c >= '0' && c <= '9')
+				|| (c == '-' && input.empty())
+				|| (c == '.' && !std::count(input.begin(), input.end(), '.')))
 				input += c;
 			else
 				Invalid();

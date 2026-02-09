@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "LoadPanel.h"
 
-#include "Logger.h"
 #include "text/Alignment.h"
 #include "Color.h"
 #include "Command.h"
@@ -31,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "Logger.h"
 #include "MainPanel.h"
 #include "image/MaskManager.h"
 #include "PlayerInfo.h"
@@ -492,7 +492,7 @@ void LoadPanel::UpdateLists()
 			continue;
 
 		string fileName = Files::Name(path);
-		if (!Files::IsValid(fileName))
+		if(!Files::IsValid(fileName))
 			Logger::Log("Save file name '" + fileName
 				+ "' contains invalid characters. The save may not load properly on all platforms.",
 				Logger::Level::WARNING);

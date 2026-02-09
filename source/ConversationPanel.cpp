@@ -270,7 +270,9 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		string &otherName = (choice ? firstName : lastName);
 		// Allow editing the text. The tab key toggles to the other entry field,
 		// as does the return key if the other field is still empty.
-		if(Clipboard::KeyDown(name, key, mod, MAX_NAME_LENGTH, [](char32_t ch) { return Files::IsValidCharacter(ch) && ch != '~'; }))
+		if(Clipboard::KeyDown(name, key, mod, MAX_NAME_LENGTH, [](char32_t ch) {
+			return Files::IsValidCharacter(ch) && ch != '~';
+		}))
 		{
 			// Input handled by Clipboard.
 		}
@@ -281,7 +283,8 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 			// Caps lock should shift letters, but not any other keys.
 			if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
 				c += 'A' - 'a';
-			// '~' is a valid filepath character, but we don't want it in player names because it is used as a separator in save file names.
+			// '~' is a valid filepath character, but we don't want it in player names because it is
+			// used as a separator in save file names.
 			if(Files::IsValidCharacter(c) && c != '~' && (name.size() + otherName.size()) < MAX_NAME_LENGTH)
 				name += c;
 			else
