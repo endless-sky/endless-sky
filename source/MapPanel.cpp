@@ -218,7 +218,7 @@ pair<bool, bool> MapPanel::BlinkMissionIndicator(const PlayerInfo &player, const
 {
 	bool blink = false;
 	int daysLeft = 1;
-	if(mission.Deadline())
+	if(mission.Deadline() && !mission.IsFailed())
 	{
 		daysLeft = player.RemainingDeadline(mission);
 		int blinkFactor = min(6, max(1, daysLeft));
