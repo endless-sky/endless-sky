@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CategoryList.h"
 #include "CategoryType.h"
 #include "Command.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -37,7 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfoPanel.h"
 #include "Rectangle.h"
 #include "Ship.h"
-#include "ShipNameDialog.h"
+#include "ShipNameDialogPanel.h"
 #include "image/Sprite.h"
 #include "shader/SpriteShader.h"
 #include "text/Table.h"
@@ -151,7 +151,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
 	bool shift = (mod & KMOD_SHIFT);
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control))
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	else if(command.Has(Command::HELP))
 		DoHelp("ship info", true);
 	else if(!player.Ships().empty() && ((key == 'p' && !shift) || key == SDLK_LEFT || key == SDLK_UP))
@@ -170,11 +170,13 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	}
 	else if(key == 'i' || command.Has(Command::INFO) || (control && key == SDLK_TAB))
 	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new PlayerInfoPanel(player, std::move(panelState)));
+		GetUI().Pop(this);
+		GetUI().Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
-		GetUI()->Push(new ShipNameDialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->GivenName()));
+		GetUI().Push(ShipNameDialogPanel::Create(
+			DialogPanel::FunctionButton(this, "Rename", 'r', &ShipInfoPanel::Rename),
+			"Change this ship's name?", (*shipIt)->GivenName()));
 	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift) || key == 'k'))
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
@@ -218,7 +220,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				}
 			}
 
-			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Disown, message));
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Disown, message));
 		}
 	}
 	else if(key == 'c' && CanDump())
@@ -228,42 +230,42 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
 		if(amount)
 		{
-			GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpCommodities,
+			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpCommodities,
 				"How many tons of " + Format::LowerCase(selectedCommodity)
 					+ " do you want to jettison?", amount));
 		}
 		else if(plunderAmount > 0 && selectedPlunder->Get("installable") < 0.)
 		{
-			GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpPlunder,
+			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpPlunder,
 				"How many tons of " + Format::LowerCase(selectedPlunder->DisplayName())
 					+ " do you want to jettison?", plunderAmount));
 		}
 		else if(plunderAmount == 1)
 		{
-			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump,
 				"Are you sure you want to jettison a " + selectedPlunder->DisplayName() + "?"));
 		}
 		else if(plunderAmount > 1)
 		{
-			GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpPlunder,
+			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpPlunder,
 				"How many " + selectedPlunder->PluralName() + " do you want to jettison?",
 				plunderAmount));
 		}
 		else if(commodities)
 		{
-			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump,
 				"Are you sure you want to jettison all of this ship's regular cargo?"));
 		}
 		else
 		{
-			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump,
 				"Are you sure you want to jettison all of this ship's cargo?"));
 		}
 	}
 	else if(command.Has(Command::MAP) || key == 'm')
-		GetUI()->Push(new MissionPanel(player));
+		GetUI().Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
-		GetUI()->Push(new LogbookPanel(player));
+		GetUI().Push(new LogbookPanel(player));
 	else
 		return false;
 
@@ -726,13 +728,15 @@ bool ShipInfoPanel::Hover(const Point &point)
 
 
 
-void ShipInfoPanel::Rename(const string &name)
+bool ShipInfoPanel::Rename(const string &name)
 {
 	if(shipIt != panelState.Ships().end() && !name.empty())
 	{
 		player.RenameShip(shipIt->get(), name);
 		UpdateInfo();
 	}
+	// Close dialog
+	return true;
 }
 
 

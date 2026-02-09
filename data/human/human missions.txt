@@ -98,6 +98,7 @@ mission "Hunted Warning"
 
 mission "Hunted"
 	invisible
+	non-blocking
 	landing
 	repeat
 	deadline 30
@@ -138,7 +139,7 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		fleet "Marauder fleet I"
+		fleet "Marauder fleet II"
 	npc save
 		to despawn
 			or
@@ -168,7 +169,7 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		fleet "Marauder fleet X"
+		fleet "Marauder fleet VIII"
 	# For stronger players, all attacking NPCs must be killed before the mission will be completed.
 	npc kill
 		to despawn
@@ -177,7 +178,7 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		fleet "Marauder fleet X" 2
+		fleet "Marauder fleet VIII" 2
 	npc kill
 		to despawn
 			"armament deterrence" < 64
@@ -500,11 +501,20 @@ mission "Pookie, Part 5"
 			`	You pick up Puny and show her to the lady. When she makes eye contact with the poodle, her face contorts with anger. "What do you take me for, some kind of Dirt Belter?"`
 			choice
 				`	"Hey, I'm from the Dirt Belt!"`
+					to display
+						has "start: default"
+				`	"I would never in a million years, ma'am."`
+					to display
+						has "start: paradise"
+					goto paradise
 				`	"What do you mean?"`
 					goto explain
 				`	"I'm sorry?"`
 					goto sorry
 			`	She tosses her head to the side. "Then I mean it twice as much!"`
+				goto explain
+			label paradise
+			`	She scoffs. "Flattery will get you nowhere!"`
 				goto explain
 			label sorry
 			`	She hisses. "If you wanted to be sorry, then you should never have tried to trick me in the first place!"`
@@ -818,11 +828,18 @@ mission "Transport Workers B"
 				`	"I'd be glad to take you there."`
 					goto thanks
 				`	"Are you sure about that? I've heard some bad things about the Syndicate's company towns."`
-					goto towns
+					to display
+						not "start: syndicate"
+				`	"Just because there's jobs doesn't mean it's going to be easy pay. Trust me, I've been there before."`
+					to display
+						has "start: syndicate"
+					goto "towns syndicate"
 				`	"Do you really think she's going to wait around for you?"`
 					goto wait
-			label towns
 			`	"Me too," he says, "but it's a lifetime of steady work, and you know how hard that is to come by in this part of the galaxy. Can you help me out?"`
+				goto choice
+			label "towns syndicate"
+			`	"I know," he says, "but it's still better than trying to find work in this part of the galaxy. Can you help me out?"`
 				goto choice
 			label wait
 			`	"She'll be true to me," he says, with absolute confidence.`
@@ -1020,11 +1037,6 @@ mission "There Might Be Riots part 2"
 				`	"What do you mean, 'beyond' human space?"`
 				`	"Well, I'll look forward to the next time we meet."`
 					accept
-			branch "not public"
-				not "event: hai-human resolution announced"
-			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Of course, these days that story isn't half as interesting as it once was."`
-				goto revealed
-			label "not public"
 			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Never did find anyone who could take us back there, though."`
 			branch known
 				has "First Contact: Hai: offered"
@@ -1034,12 +1046,6 @@ mission "There Might Be Riots part 2"
 			action
 				set "met hai before TMBR"
 			`	"It sounds like you were visiting Hai space," you say, and you describe the aliens who live beyond the wormhole. "Yeah, that would be them," says Ulrich. "I'd love to go back there some time, but for now we have commitments closer to home." You help them to unload their stuff, and say goodbye for now.`
-				accept
-			label revealed
-			action
-				set "met hai before TMBR"
-			`	"Well, now that they're not hiding away anymore, seems like you might have a new market you could go back to," you say.`
-			`	"I'd love to go back there some time," says Ulrich, "but for now we have commitments closer to home." You help them to unload their stuff, and say goodbye for now.`
 				accept
 
 
@@ -1095,14 +1101,6 @@ mission "There Might Be Riots part 3A"
 			`	"Yes," you say, "they're called the Hai. They live in a whole big region to the north."`
 				goto end
 			label known
-			branch "not public"
-				not "event: hai-human resolution announced"
-			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down."`
-			`	"Didn't you say the Hai really liked you before?" you ask. "I think now might be the perfect opportunity to go back to the Hai."`
-			`	"Aww yeah!" he exclaims, "those squirrel people were rad cool. We go thumb our noses at the military industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
-			`	Once more, they begin loading their stuff onto your ship, while you chart a course to <destination>.`
-				accept
-			label "not public"
 			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down. I was thinking it'd be a great chance for our band to reconnect with the squirrel people - what did you call them?"`
 			`	"The Hai," you say.`
 			label end
@@ -2703,7 +2701,7 @@ mission "Lost Boy 2"
 		dialog `You've landed on <planet>, but you haven't yet found Tod. Keep looking for the <npc> and then board the ship; it can't be far from Deadman's Cove.`
 	
 	npc board
-		personality staying nemesis target plunders
+		personality staying marked target plunders
 		government "Bounty"
 		system
 			distance 2 4
@@ -2792,9 +2790,6 @@ mission "Paradise Fortune 1"
 	to offer
 		random < 50
 		has "main plot completed"
-		or
-			not "hr: secret leaks"
-			has "event: hai-human resolution announced"
 	
 	on offer
 		conversation
@@ -2832,6 +2827,9 @@ mission "Paradise Fortune 2"
 		conversation
 			`"You need to explain what is going on here," you say just after setting your ship down.`
 			`	"Alright, alright, I'll explain." You notice that the girl has a strange mix between a posh Paradise World accent and a Dirt Belt or possibly even Rim accent. "My name is Diana Howl. My father is the CEO of a large marketing firm. And this," Diana opens her backpack, revealing its full contents of thousands of credit chips, "this is part of my family fortune, about half a billion credits of it. Don't worry, my father should be able to make this back in a few months' time."`
+			`	You faintly recall the name "Howl" as belonging to the owners of a large island on Mainsail.`
+				to display
+					has "start: paradise"
 			choice
 				`	"Why have you stolen all this?"`
 					goto story
@@ -2856,11 +2854,69 @@ mission "Paradise Fortune 2"
 					goto decline
 			
 			label accept
+			branch "paradise accept"
+				has "start: paradise"
+				has "event: joined the free worlds"
 			`	"Excellent!" Diana yells out. She drops the bag of credits on the floor and gives you a hug. "We'll have to leave immediately, for I fear that the spaceport authorities here might be searching for us."`
+				launch
+
+			label "paradise accept"
+			`	"Excellent!" Diana yells out. She drops the bag of credits on the floor and gives you a hug. "Thank you so much, Captain <last>."`
+			choice
+				`	"No need to thank me."`
+					goto leave
+				`	"Wait, how do you know my name?"`
+			`	"I saw you on the news," Diana replies. "They said that, even though you were born on Mainsail, you decided to join the Free Worlds and fight against the Paradise Planets."`
+			label leave
+			`	Eventually, Diana pulls herself away and says, "We'll have to leave immediately, for I fear that the spaceport authorities here might be searching for us."`
 				launch
 			
 			label decline
+			branch paradise
+				has "start: paradise"
+				has "event: joined the free worlds"
 			`	You call the spaceport authorities and tell them that Diana Howl is on your ship. Moments later when they arrive, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer 150,000 credits to your account.`
+				decline
+			
+			label paradise
+			`	You move to re-enter your cockpit and call the authorities, but Diana thrusts her arms out, blocking your way. "Wait! You're <first> <last>, aren't you? The war hero who fought and defeated the Pug?"`
+			choice
+				`	"Yes, I am."`
+					goto plead
+				`	"Sorry, but you have the wrong person."`
+			`	"No, I know you're <first>! You look just like the videos in all the news reports!"`
+			`	"And what of it?" you reply.`
+			
+			label plead
+			`	"The news said that, even though you were born and raised on Mainsail, you decided to join the Free Worlds and fight the Republic for the sake of the people!" Diana balls her hands into fists. "When I first heard about you, I thought that, maybe, I could make my own difference in the galaxy, and use my privilege for good instead of evil. But now you're acting like that never happened! Like the Republic is suddenly the best thing ever, and that everyone in poverty deserves to be that way!"`
+			choice
+				`	"Yes, I fought against the Republic, and I almost died several times because of that. I don't want to put you in danger."`
+					goto danger
+				`	"That's because I was fighting a war of independence. What you're doing is a random, poorly planned robbery."`
+					goto robbery
+				`	"I was only ever in the Free Worlds for the fame and glory. I'm not about to have that ruined by helping some wannabe Robin Hood."`
+			
+			`	Diana is left stunned by your bitter words, giving you an opportunity to push her aside and flick on your ship's speakers to call for help. Moments later, when the spaceport authorities arrive, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer 150,000 credits to your account.`
+				decline
+			
+			label danger
+			`	She grits her teeth. "And what if I don't care? If risking my life means bettering the lives of thousands more, then why shouldn't I take that risk?"`
+				goto final
+			
+			label robbery
+			`	Diana stutters. "S-so what? Every change needs to start from somewhere, and even if things aren't going well right now, this could eventually lead to a real difference! Please, just give me a chance."`
+			
+			label final
+			choice
+				`	"Okay, you've convinced me. I'll take you to <planet>."`
+				`	"That's not good enough. I'm turning you in."`
+					goto "final decline"
+
+			`	Diana turns her face in a poor attempt to hide her relief. "We'll have to leave immediately," she says, "for I fear that the spaceport authorities here might be searching for us."`
+				launch
+			
+			label "final decline"
+			`	You push Diana aside and call the spaceport authorities. Moments later, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer 150,000 credits to your account.`
 				decline
 			
 	on decline
@@ -3887,7 +3943,6 @@ mission "Human to Hai Space - No Contact"
 	to offer
 		random < 2
 		not "First Contact: Hai: offered"
-		not "event: hai-human resolution announced"
 	on offer
 		conversation
 			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
@@ -3914,9 +3969,7 @@ mission "Human to Hai Space"
 	destination "Greenwater"
 	to offer
 		random < 10
-		or
-			has "First Contact: Hai: offered"
-			has "event: hai-human resolution announced"
+		has "First Contact: Hai: offered"
 		not "Human to Hai Space - No Contact: offered"
 	on offer
 		conversation
@@ -3924,15 +3977,13 @@ mission "Human to Hai Space"
 			choice
 				`	"'Heard tell'? I'm from Hai space!"`
 					to display
-						has "hai space start"
+						has "start: hai"
 					goto origin
 				`	"You mean the Hai? You'll have to go up north for that."`
 					goto hai
 				`	"Ah, I think I know of some large squirrels to the north of here."`
 					goto hai
 				`	"What are you talking about?"`
-					to display
-						not "event: hai-human resolution announced"
 			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in human space. Better safe than sorry.`
 				decline
 			
@@ -3945,7 +3996,7 @@ mission "Human to Hai Space"
 			choice
 				`	"Actually, I'm from <planet>."`
 					to display
-						has "hai space start"
+						has "start: hai"
 				`	"Alright, I'll take you there."`
 					accept
 				`	"Sorry, I'm too busy right now."`
@@ -3982,11 +4033,11 @@ mission "Human to Hai Space"
 					decline
 				`	(Approach them.)`
 					to display
-						has "hai space start"
+						has "start: hai"
 					goto "hai start"
 				`	"That's your family?"`
 					to display
-						not "hai space start"
+						not "start: hai"
 			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our son safely."`
 			choice
 				`	"I didn't mean to be rude, I just didn't know that Hai adopted humans here."`
@@ -4354,6 +4405,7 @@ mission "Thrall Emigration"
 mission "Spaceport Reminder Setter"
 	landing
 	invisible
+	non-blocking
 	on offer
 		"spaceport reminder year" = "year"
 		"spaceport reminder month" = "month"
@@ -4418,6 +4470,7 @@ mission "Spaceport Reminder"
 mission "Fumbling Mugger Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Transport Workers B: done"
 	on offer
@@ -4665,6 +4718,7 @@ mission "Laborer Payment"
 mission "Block Hai Wormhole Warning"
 	landing
 	invisible
+	non-blocking
 	to offer
 		or
 			has "First Contact: Hai: offered"
@@ -4685,8 +4739,7 @@ mission "Hai Wormhole Warning"
 			has "First Contact: Unfettered: offered"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
-		not "hr: meet the team"
-		not "hai space start"
+		not "start: hai"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
 		conversation
@@ -4775,6 +4828,11 @@ mission "Saving Artifacts 1"
 			`As you wander around the spaceport, a harried-looking academic approaches you. "You're a captain, right? Can you take a transport mission to <planet>? A local museum can't care for some priceless historical artifacts anymore due to budget cuts, so they need to be transported somewhere that they can be properly cared for. We can pay you <payment>."`
 			choice
 				`	"Why can't you just bring them to another Earth museum?"`
+					to display
+						not "start: syndicate"
+				`	"Isn't there some other place planetside that'll take them in?"`
+					to display
+						has "start: syndicate"
 				`	"Sorry, I can't take on this job right now. Ask someone else."`
 					decline
 				`	"Sure, I'll take them there."`
@@ -4935,6 +4993,7 @@ mission "Dangerous Games 1"
 	source
 		attributes "frontier" "pirate"
 		near "Hadar" 1 100
+	clearance "Karengo grabs the intercom and gives the traffic controllers a piece of his mind. They grovel in apology, claiming not to know he was aboard, and grant you landing clearance."
 	stopover "Skymoot"
 	to offer
 		random < 15
@@ -5050,6 +5109,9 @@ mission "Dangerous Games 2"
 				`	"Sorry, mate. You'll have to find another pilot."`
 					decline
 			`	Karengo laughs. "If they can handle space, I think they can handle some water. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own subpods, so how's about we load up and head out in the next few hours. Good? Good."`
+			`	You spot someone behind Karengo working on one of the subpods; your time on the aquatic world of <home planet> lets you identify the sub's manufacturer as one more well known for scandal than reliability.`
+				to display
+					has "start: paradise"
 			`	"Oh, nearly forgot. We're headed to <destination>, and you'll get <payment> for taking us there. Ain't sure if those in charge are gonna like what I'm doing, so we might need to grease some palms. Best to keep your eyes open and your shields up. We leave at noon!"`
 				accept
 	on complete
@@ -5960,7 +6022,7 @@ mission "Quicksilver Mixup 3"
 		dialog `You have reached <planet>, but your escort carrying the misposted mail has not arrived. Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 100000
-		dialog `The same manager from before is waiting with the unloading crew, and thanks you for covering for the other pilot before handing you the credit chip for payment. It's nice to know that captains who get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future."`
+		dialog `The same manager from before is waiting with the unloading crew, and thanks you for covering for the other pilot before handing you the credit chip for payment. It's nice to know that captains who get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future.`
 
 
 
@@ -6751,18 +6813,26 @@ mission "Lost Racer 3"
 				`	"I'll leave the questions to your father."`
 					goto noquestions
 			label crash
+			action
+				set "asked artemis about crash"
 			`	"I really do not know. We checked everything before launch, everything, and yet during the jump the Moonfox's hyperdrive malfunctioned, knocking me out. When I woke up, I was in the wrong system and the Flivver was hurtling away from the star. Luckily, the engines hadn't been harmed too much, so I was able to turn around and thrust in the direction of <origin>, but then the batteries gave out and the generator stopped working. So I ended up stranded on a planet with no way of calling for help - the flares had triggered when I crashed, being unable to slow down without thrusters. Well, now you know. Is there anything else?"`
 			`	August asks, "Do you think someone could have sabotaged the hyperdrive? Any suspicious Syndicate employees hanging around? Any anything out of the ordinary?"`
 			`	"Not that I remember," replies Artemis. "This rarely happens in spaceship racing, but it's still happened. A one-in-a-million chance, perhaps. I wouldn't worry about it too much."`
 			choice
 				`	"That was a beautiful ship you had there. I've never seen a Flivver quite like that."`
+					to display
+						not "asked artemis about flivver"
 				`	"Alright."`
 					goto noquestions
 			label beautiful
+			action
+				set "asked artemis about flivver"
 			`	"You have good taste, Captain. It's modified for racing: lighter hull plating, no weapon mounts, ample engines, of course. We've got a dozen for all the different races, but that one was a personal favorite."`
 			choice
 				`	"Why did you crash?`
 					goto crash
+					to display
+						not "asked artemis about crash"
 				`	"I have no more questions."`
 			label noquestions
 			`	Artemis nods. "Well, could we head back to <planet> now? It'll be nice to get home after all this commotion and discomfort."`
@@ -6958,6 +7028,7 @@ mission "Moving House 1"
 
 mission "Moving House Timer"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Moving House 1: done"
@@ -7030,7 +7101,7 @@ mission "Moving House 3"
 mission "Stranded In Paradise 1"
 	minor
 	name "Transport Burnbecks to <planet>"
-	description "The Burnbeck family was stranded by the bombings, and needs <bunks> free for transport back home to <destination>. Payment is <payment>."
+	description "The Burnbeck family was stranded by the bombings, and needs <bunks> bunks free for transport back home to <destination>. Payment is <payment>."
 	source
 		attributes "paradise"
 	destination
@@ -7303,7 +7374,7 @@ mission "Derelict Family Investment 2"
 				`	"I don't know what happened to him personally, but I found this case of credits and a log explaining how he was trying to invest in a better life for his family."`
 				`	"I believe he died before he was able to bring back his business investment to your family. Here's his personal log, it explains everything."`
 			`	She takes the log from you and quickly scrolls through it, emotion washing over her features as she reads. Eventually she looks up, and with all the anger towards her father gone, she speaks. "Thank you for this. All these years I had believed he had just taken our money and run off. But knowing he had been trying to help is worth more than all the credits in the galaxy. Take them and then some as a reward for bringing me this last piece of him."`
-			`	You leave the building with a total of <payment> credits from both the case and Ms. Sawyer.`
+			`	You leave the building with a total of <payment> from both the case and Ms. Sawyer.`
 
 
 mission "Returning to Paradise"
@@ -7577,6 +7648,8 @@ mission "Adelita 1"
 			choice
 				`	"Not much at all."`
 				`	"I come from the Dirt Belt, but I really don't know too much about what happened on Hope."`
+					to display
+						has "start: default"
 				`	"I've been there myself and know what happened, but other than that I don't know."`
 					goto "been to hope"
 					to display
@@ -9577,6 +9650,7 @@ event "syndicate business vip eligible"
 
 mission "Timothy Radrickson 1: Stowaway"
 	invisible
+	non-blocking
 	landing
 	source
 		near "Zeta Aquilae" 3 10
@@ -9687,6 +9761,7 @@ event "timothy radrickson: mummy"
 mission "Timothy Radrickson 2: mummy"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 1: Stowaway: failed"
 		has "event: timothy radrickson: mummy"
@@ -9817,7 +9892,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 			`	He pours the brown liquid in the cups and pushes one to you. "Things have gone well for me, and are only going to get better from here on out."`
 			`	He takes a sip and says, "We've just launched our largest freighter fleet to date." He sits back in his desk, relaxed, and gets a dreamy look in his eyes. "When it returns from Wayfarer, the government of Rand will finally have enough credits to make some real changes around here. Give something back to the working man."`
 			choice
-				`	"Congratulations Timothy. You're really outdone yourself."`
+				`	"Congratulations Timothy. You've really outdone yourself."`
 				`	(Take a sip from my glass.)`
 				`	"Don't forget your humble beginnings, Timothy. The workers here seem to be suffering, while the rich thrive."`
 				`	"You're proof that hard work is all it takes to succeed. I don't know how you can stand living on a world filled with lazy workers all demanding hand outs."`
@@ -10394,7 +10469,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	Union-Colonel Wynnafrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinizes it.`
 			`	"Ya know, to us he's still the Governor. Don't believe what the company-bosses and their paid politicians tell you. He was a good man." She wipes her eyes for a moment. "All he was trying to do was improve the conditions for workers here on Rand. He'd come up from the mines and he knew what it was like."`
 			`	Her free hand tightens into a ball. "The big men didn't like that. But what about the profit margins? They tried to bribe him, to offer him anything he wanted, to just leave things well enough alone. To let the exploitation continue." She says the last words through clenched teeth.`
-			`	"Sure, he made some mistakes. No one becomes governor here without getting a little dirt on their hands. But in the end he refused to give into the company-bosses' demands, and throughout it all he was laboring for the common man." Wynnafirth looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
+			`	"Sure, he made some mistakes. No one becomes governor here without getting a little dirt on their hands. But in the end he refused to give into the company-bosses' demands, and throughout it all he was laboring for the common man." Wynnafrith looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
 			`	"And when he wouldn't budge they finally got him on trumped up charges and threw him to Oblivion to disappear and die." She shakes her head. "There was nothing we could do. We're still in a..." she hesitates, "... a rebuilding phase."`
 			`	She reads the list again. "A few weeks, you say? Well, we already thought he was dead, so if there's a chance we save the Governor then we're in.`
 			`	"We have a few left over explosives and detonators from when this mine was active. That should take care of the bomb he was hoping for." She then unholsters her sidearm and hands it to you.`
@@ -11117,7 +11192,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 				`	"Of course I did."`
 				`	"Yep, but you owe me big."`
 
-			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnafirth's gun and bomb, and how highly she still thinks of him.`
+			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnafrith's gun and bomb, and how highly she still thinks of him.`
 			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
 			branch unprepared
 				"timothy radrickson zpreparedness" < 6
@@ -11424,6 +11499,7 @@ mission "Timothy Radrickson 7: Grave"
 mission "Timothy Radrickson: Log Fix 1"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 1: Stowaway: done"
 		not "Timothy Radrickson 2: Good Interlude: offered"
@@ -11436,6 +11512,7 @@ mission "Timothy Radrickson: Log Fix 1"
 mission "Timothy Radrickson: Log Fix 2"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 2: Good Interlude: offered"
 		not "Timothy Radrickson 3d: Return to Rand: done"
@@ -11450,6 +11527,7 @@ mission "Timothy Radrickson: Log Fix 2"
 mission "Timothy Radrickson: Log Fix 3"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 3d: Return to Rand: done"
 		not "Timothy Radrickson 4: Imprisoned: done"
@@ -11465,6 +11543,7 @@ mission "Timothy Radrickson: Log Fix 3"
 mission "Timothy Radrickson: Log Fix 4"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 4: Imprisoned: done"
 		not "Timothy Radrickson 5a: Timshank Redemption: offered"
@@ -11481,6 +11560,7 @@ mission "Timothy Radrickson: Log Fix 4"
 mission "Timothy Radrickson: Log Fix 6"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 5a: Timshank Redemption: offered"
 		not "timothy radrickson 6 log entry correct"
@@ -12164,7 +12244,7 @@ mission "Ice Queen 8"
 
 	npc kill
 		government "Bounty"
-		personality heroic nemesis staying target
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Marauder fleet IV"
@@ -12349,6 +12429,7 @@ mission "Stone to Hope: Thanks"
 mission "Patch Stone Waiting"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Stone of our Fathers 5: done"
 		not "stone waiting most: triggered"

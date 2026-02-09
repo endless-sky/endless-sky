@@ -114,6 +114,7 @@ public:
 	// Update the neighbor lists and other information for all the systems.
 	// This must be done any time that a change creates or moves a system.
 	static void UpdateSystems();
+	static void RecomputeWormholeRequirements();
 	static void AddJumpRange(double neighborDistance);
 
 	// Re-activate any special persons that were created previously but that are
@@ -150,6 +151,9 @@ public:
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
+	static const Set<Gamerules> &GamerulesPresets();
+
+	static const std::set<std::string> &UniverseWormholeRequirements();
 
 	static ConditionsStore &GlobalConditions();
 
@@ -188,6 +192,8 @@ public:
 	static const TextReplacements &GetTextReplacements();
 
 	static const Gamerules &GetGamerules();
+	static void SetGamerules(const Gamerules *gamerules);
+	static const Gamerules &DefaultGamerules();
 
 	// Thread-safe way to draw the menu background.
 	static void DrawMenuBackground(Panel *panel);

@@ -125,6 +125,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				requiredReputation = 0.;
 			else if(key == "bribe")
 				bribe = 0.;
+			else if(key == "bribe threshold")
+				bribeThreshold = 0.;
 			else if(key == "security")
 				security = 0.;
 			else if(key == "tribute")
@@ -133,6 +135,15 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				defenseThreshold = 4000;
 				defenseFleets.clear();
 				ResetDefense();
+			}
+			else if(key == "tribute hails")
+			{
+				tributeAlreadyPaying = nullptr;
+				tributeUndefined = nullptr;
+				tributeUnworthy = nullptr;
+				tributeFleetUndefeated = nullptr;
+				tributeFleetLaunching = nullptr;
+				tributeSurrendered = nullptr;
 			}
 			else if(key == "wormhole")
 				wormhole = nullptr;
@@ -215,6 +226,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			requiredReputation = child.Value(valueIndex);
 		else if(key == "bribe")
 			bribe = child.Value(valueIndex);
+		else if(key == "bribe threshold")
+			bribeThreshold = child.Value(valueIndex);
 		else if(key == "security")
 		{
 			customSecurity = true;
@@ -248,8 +261,37 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 					else
 						grand.PrintTrace("Skipping unsupported tribute fleet definition:");
 				}
+				else if(grandKey == "daily reputation penalty" && grandHasValue)
+					dailyTributePenalty = grand.Value(1);
 				else
 					grand.PrintTrace("Skipping unrecognized tribute attribute:");
+			}
+		}
+		else if(key == "tribute hails" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() != 2)
+				{
+					grand.PrintTrace("Skipping unrecognized attribute:");
+					continue;
+				}
+				bool removeTributePhrase = grand.Token(0) == "remove";
+				const string &grandKey = grand.Token(remove);
+				if(grandKey == "already paying")
+					tributeAlreadyPaying = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "undefined")
+					tributeUndefined = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "unworthy")
+					tributeUnworthy = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet launching")
+					tributeFleetLaunching = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet undefeated")
+					tributeFleetUndefeated = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "surrendered")
+					tributeSurrendered = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(key == "wormhole")
@@ -427,6 +469,14 @@ const string &Planet::MusicName() const
 const set<string> &Planet::Attributes() const
 {
 	return attributes;
+}
+
+
+
+// Get the list of "attributes" of the planet.
+const set<string> &Planet::RequiredAttributes() const
+{
+	return requiredAttributes;
 }
 
 
@@ -687,6 +737,10 @@ bool Planet::HasFuelFor(const Ship &ship) const
 
 bool Planet::CanBribe() const
 {
+	// If this planet has a minimum reputation for accepting bribes and your
+	// reputation is below this value, you can't bribe.
+	if(bribeThreshold && GameData::GetPolitics().Reputation(government) < bribeThreshold)
+		return false;
 	// If you can't land then you can't bribe.
 	return toLand.Test();
 }
@@ -745,13 +799,34 @@ void Planet::Bribe(bool fullAccess) const
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {
+	const Government *government = GetGovernment();
+	if(!government)
+		return "Somehow, this planet does not have a government.";
 	const auto &playerTribute = player.GetTribute();
 	if(playerTribute.find(this) != playerTribute.end())
+	{
+		if(tributeAlreadyPaying)
+			return tributeAlreadyPaying->Get();
+		else if(government->TributeAlreadyPaying())
+			return government->TributeAlreadyPaying()->Get();
 		return "We are already paying you as much as we can afford.";
+	}
 	if(!tribute || defenseFleets.empty())
+	{
+		if(tributeUndefined)
+			return tributeUndefined->Get();
+		else if(government->TributeUndefined())
+			return government->TributeUndefined()->Get();
 		return "Please don't joke about that sort of thing.";
+	}
 	if(player.Conditions().Get("combat rating") < defenseThreshold)
+	{
+		if(tributeUnworthy)
+			return tributeUnworthy->Get();
+		else if(government->TributeUnworthy())
+			return government->TributeUnworthy()->Get();
 		return "You're not worthy of our time.";
+	}
 
 	// The player is scary enough for this planet to take notice. Check whether
 	// this is the first demand for tribute, or not.
@@ -768,7 +843,11 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		// TODO: Use a distinct event type for the domination system and
 		// expose syntax for controlling its impact on the targeted government
 		// and those that know it.
-		GetGovernment()->Offend(ShipEvent::ATROCITY);
+		government->Offend(ShipEvent::ATROCITY);
+		if(tributeFleetLaunching)
+			return tributeFleetLaunching->Get();
+		else if(government->TributeFleetLaunching())
+			return government->TributeFleetLaunching()->Get();
 		return "Our defense fleet will make short work of you.";
 	}
 
@@ -782,10 +861,23 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		}
 
 	if(!isDefeated)
+	{
+		if(tributeFleetUndefeated)
+			return tributeFleetUndefeated->Get();
+		else if(government->TributeFleetUndefeated())
+			return government->TributeFleetUndefeated()->Get();
 		return "We're not ready to surrender yet.";
+	}
 
 	player.SetTribute(this, tribute);
-	return "We surrender. We will pay you " + Format::CreditString(tribute) + " per day to leave us alone.";
+	string surrenderMessage;
+	if(tributeSurrendered)
+		surrenderMessage = tributeSurrendered->Get();
+	else if(government->TributeSurrendered())
+		surrenderMessage = government->TributeSurrendered()->Get();
+	else
+		surrenderMessage = "We surrender. We will pay you <credits> per day to leave us alone.";
+	return Format::Replace(surrenderMessage, {{"<credits>", Format::CreditString(tribute)}});
 }
 
 
@@ -832,4 +924,11 @@ void Planet::ResetDefense() const
 bool Planet::IsDefending() const
 {
 	return isDefending;
+}
+
+
+
+double Planet::DailyTributePenalty() const
+{
+	return dailyTributePenalty;
 }
