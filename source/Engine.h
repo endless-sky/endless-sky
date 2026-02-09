@@ -290,6 +290,7 @@ private:
 	CollisionSet shipCollisions;
 
 	int alarmTime = 0;
+	int nukeAlarmTime = 0;
 	double flash = 0.;
 	bool doFlash = false;
 	bool doEnterLabels = false;
@@ -326,8 +327,4 @@ private:
 	Zoom zoom;
 	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
 	Zoom nextZoom;
-
-	double load = 0.;
-	int loadCount = 0;
-	double loadSum = 0.;
 };

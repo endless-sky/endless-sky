@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Body.h"
+#include "Entity.h"
 
 #include "Angle.h"
 
@@ -37,7 +37,7 @@ class Visual;
 
 // Class representing an asteroid or other minable object that orbits in an
 // ellipse around the system center.
-class Minable : public Body {
+class Minable : public Entity {
 public:
 	class Payload {
 	public:
@@ -63,7 +63,7 @@ public:
 	// Point Unit() const;
 
 	// Load a definition of a minable object.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Calculate the expected payload value of this Minable after all outfits have been fully loaded.
 	void FinishLoading();
 	const std::string &TrueName() const;
@@ -92,6 +92,9 @@ public:
 	double Hull() const;
 	// Get the maximum hull value of this asteroid.
 	double MaxHull() const;
+
+	double Mass() const override;
+	double MaximumHeat() const override;
 
 
 private:

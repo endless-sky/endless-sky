@@ -60,6 +60,32 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.11.0" date="2026-1-31" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>Some notable additions and changes are:</p>
+        <ul>
+          <li>The Hai Reveal storyline has been removed from the game.</li>
+          <li>Added three new starting scenarios with starting locations around human space.</li>
+          <li>The Graveyard has a new short standalone string of missions around investigating Ka'het and their behaviors.</li>
+          <li>Added various difficult to find culture conversations around the galaxy that give insights on alien species and historical events.</li>
+          <li>Human space now has "message buoys" that emit a hail message upon entering certain systems or traveling between regions.</li>
+          <li>Heavily reworked bounty jobs.</li>
+          <li>Various performance and UI QoL improvements.</li>
+        </ul>
+        <p>Some notable bug fixes are:</p>
+        <ul>
+          <li>Corrected some condition assignments in the Patir missions.</li>
+          <li>The Carriers in "FW Pug 4: Escorts" now have enough fighters to fill their bays.</li>
+          <li>Changing the main zoom factor no longer breaks the display of planet descriptions.</li>
+          <li>Fixed a rare memory leak and various rare crashes.</li>
+          <li>Projectiles with a trigger radius will now respect the "disabled fighters avoid projectiles" gamerule.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 34 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.11.0/changelog</url>
+    </release>
     <release version="0.10.16" date="2025-10-25">
       <description>
         <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
