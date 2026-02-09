@@ -94,11 +94,11 @@ namespace {
 
 
 
-void Files::Init(const char * const *argv)
+void Files::Init(const char *const *argv)
 {
 	// Parse the command line arguments to see if the user has specified
 	// different directories to use.
-	for(const char * const *it = argv + 1; *it; ++it)
+	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
 		if((arg == "-r" || arg == "--resources") && *++it)
