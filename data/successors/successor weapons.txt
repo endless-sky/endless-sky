@@ -333,9 +333,9 @@ outfit `"Sjeja" Kinetic Lance`
 	licenses
 		"High Houses"
 	thumbnail "outfit/sjeja kinetic lance"
-	"mass" 50
-	"outfit space" -60
-	"weapon capacity" -60
+	"mass" 44
+	"outfit space" -50
+	"weapon capacity" -50
 	"energy capacity" 1900
 	"gun ports" -1
 	"spike capacity" 20
@@ -354,9 +354,9 @@ outfit `"Sjeja" Kinetic Lance`
 		"lifetime" 8
 		"reload" 160
 		"firing force" 800
-		"firing energy" 1900
+		"firing energy" 1710
 		"firing ion" 3.0
-		"firing heat" 4000
+		"firing heat" 3600
 		"shield damage" 1069
 		"hull damage" 1920
 		"piercing" 0.15
@@ -385,7 +385,7 @@ outfit "High-Velocity Spike Rack"
 	licenses
 		"High Houses"
 	thumbnail "outfit/hv spike rack"
-	"mass" 4
+	"mass" 7
 	"outfit space" -12
 	"energy capacity" 800
 	"spike capacity" 16
