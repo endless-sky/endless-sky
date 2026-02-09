@@ -12055,7 +12055,7 @@ mission "Ice Queen 6"
 				decline
 
 			label walk
-			`	The spacious building is eerily empty of servants. Doors are left often, incomplete tasks clutter the floor. Whatever happened here, the people left in a hurry.`
+			`	The spacious building is eerily empty of servants. Doors are left open, incomplete tasks clutter the floor. Whatever happened here, the people left in a hurry.`
 			`	There's a loud crashing noise in the floor above you. You ascend the central grand staircase following the noise.`
 			`	There are streaks of crimson blood across the opulent decor and a pool of it settles in the center of the room. Lavish baroque furniture is stained with the carnage.`
 			`	At the center of it all is a ravaged dead body on the floor, and above it stands a bloody, grinning Ildico.`
