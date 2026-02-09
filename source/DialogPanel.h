@@ -131,6 +131,13 @@ public:
 		Truncate truncate = Truncate::NONE,
 		bool allowsFastForward = false);
 	template<class T>
+	static DialogPanel *RequestStringWithCharFilter(T *t, void (T::*fun)(const std::string &),
+		std::function<bool(char32_t)> validate,
+		std::string message,
+		std::string initialValue = "",
+		Truncate truncate = Truncate::NONE,
+		bool allowsFastForward = false);
+	template<class T>
 	static DialogPanel *RequestIntegerWithValidation(T *t, void (T::*fun)(int),
 		std::function<bool(int)> validate,
 		std::string message,
@@ -176,6 +183,7 @@ protected:
 		std::function<bool(int)> validateIntFun;
 		std::function<bool(double)> validateDoubleFun;
 		std::function<bool(const std::string &)> validateStringFun;
+		std::function<bool(char32_t)> validateCharFun;
 
 		bool canCancel = true;
 		int activeButton = 1;
@@ -223,6 +231,7 @@ protected:
 	std::function<void(double)> doubleFun;
 	std::function<void(const std::string &)> stringFun;
 
+	std::function<bool(char32_t)> validateCharFun;
 	std::function<bool(int)> validateIntFun;
 	std::function<bool(double)> validateDoubleFun;
 	std::function<bool(const std::string &)> validateStringFun;
@@ -233,6 +242,7 @@ protected:
 	bool isOkDisabled;
 	bool allowsFastForward;
 	bool isWide;
+	int flickerTime = 0;
 
 	std::string input;
 
@@ -350,6 +360,23 @@ DialogPanel *DialogPanel::RequestStringWithValidation(T *t, void (T::*fun)(const
 	init.initialValue = std::move(initialValue);
 	init.stringFun = std::bind(fun, t, std::placeholders::_1);
 	init.validateStringFun = std::move(validate);
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new DialogPanel(init);
+}
+
+
+
+template<class T>
+DialogPanel *DialogPanel::RequestStringWithCharFilter(T *t, void (T::*fun)(const std::string &),
+	std::function<bool(char32_t)> validate, std::string message, std::string initialValue,
+	Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.message = std::move(message);
+	init.initialValue = std::move(initialValue);
+	init.stringFun = std::bind(fun, t, std::placeholders::_1);
+	init.validateCharFun = std::move(validate);
 	init.truncate = truncate;
 	init.allowsFastForward = allowsFastForward;
 	return new DialogPanel(init);

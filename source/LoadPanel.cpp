@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "LoadPanel.h"
 
+#include "Logger.h"
 #include "text/Alignment.h"
 #include "Color.h"
 #include "Command.h"
@@ -269,7 +270,8 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		sound = UI::UISound::NONE;
 		nameToConfirm.clear();
 		filesystem::path lastSave = Files::Saves() / it->second.front().first;
-		GetUI().Push(DialogPanel::RequestString(this, &LoadPanel::SnapshotCallback,
+		GetUI().Push(DialogPanel::RequestStringWithCharFilter(this, &LoadPanel::SnapshotCallback,
+			[](char32_t ch){ return Files::IsValidCharacter(ch); },
 			"Enter a name for this snapshot, or use the most recent save's date:",
 			FileDate(lastSave)));
 	}
@@ -490,6 +492,11 @@ void LoadPanel::UpdateLists()
 			continue;
 
 		string fileName = Files::Name(path);
+		if (!Files::IsValid(fileName))
+			Logger::Log("Save file name '" + fileName
+				+ "' contains invalid characters. The save may not load properly on all platforms.",
+				Logger::Level::WARNING);
+
 		// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
 		size_t pos = fileName.find('~');
 		const bool isSnapshot = (pos != string::npos);

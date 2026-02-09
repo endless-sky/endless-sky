@@ -389,6 +389,25 @@ string Files::Name(const filesystem::path &path)
 
 
 
+// Validate that a filename doesn't contain any illegal characters.
+bool Files::IsValidCharacter(char32_t ch)
+{
+	// Don't allow characters that can't be used in a file name.
+	static const string FORBIDDEN = "/\\?*:|\"<>";
+
+	return FORBIDDEN.find(ch) == FORBIDDEN.npos;
+}
+
+
+
+// Check if a filename is valid.
+bool Files::IsValid(const string &filename)
+{
+	return !filename.empty() && all_of(filename.begin(), filename.end(), [](char ch) { return IsValidCharacter(ch); });
+}
+
+
+
 bool Files::IsParent(const filesystem::path &parent, const filesystem::path &child)
 {
 	if(distance(child.begin(), child.end()) < distance(parent.begin(), parent.end()))

@@ -241,7 +241,9 @@ void DialogPanel::Draw()
 	// Draw the input, if any.
 	if(AcceptsInput())
 	{
-		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), back);
+		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), (flickerTime % 6 > 3) ? dim : back);
+		if(flickerTime)
+			--flickerTime;
 
 		Point stringPos(
 			inputPos.X() - (Width() - HORIZONTAL_PADDING) * .5 + INPUT_LEFT_PADDING,
@@ -270,6 +272,7 @@ DialogPanel::DialogPanel(DialogInit &init)
 	intFun(std::move(init.intFun)),
 	doubleFun(std::move(init.doubleFun)),
 	stringFun(std::move(init.stringFun)),
+	validateCharFun(std::move(init.validateCharFun)),
 	validateIntFun(std::move(init.validateIntFun)),
 	validateDoubleFun(std::move(init.validateDoubleFun)),
 	validateStringFun(std::move(init.validateStringFun)),
@@ -374,6 +377,10 @@ void DialogPanel::Resize()
 
 bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	auto Invalid = [this]() {
+		flickerTime = 18;
+	};
+
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
 	if(stringFun && Clipboard::KeyDown(input, key, mod))
@@ -388,17 +395,21 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
 			c += 'A' - 'a';
 
+
 		if(stringFun)
-			input += c;
-		// Integer and double inputs only allow certain characters.
-		else if((intFun || doubleFun) && c >= '0' && c <= '9')
-			input += c;
-		// Both integer and double input can start with a minus sign.
-		else if((intFun || doubleFun) && c == '-' && input.empty())
-			input += c;
-		// Double input should only allow a single decimal point.
-		else if(doubleFun && c == '.' && !std::count(input.begin(), input.end(), '.'))
-			input += c;
+		{
+			if (!validateCharFun || validateCharFun(c))
+				input += c;
+			else
+				Invalid();
+		}
+		else if ((intFun || doubleFun))
+		{
+			if ((c >= '0' && c <= '9') || (c == '-' && input.empty()) || (c == '.' && !std::count(input.begin(), input.end(), '.')))
+				input += c;
+			else
+				Invalid();
+		}
 
 		isOkDisabled = !ValidateInput();
 	}
@@ -449,6 +460,8 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 				DoCallback();
 				GetUI().Pop(this);
 			}
+			else
+				Invalid();
 		}
 		else if(activeButton == 3)
 		{
