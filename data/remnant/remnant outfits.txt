@@ -349,10 +349,10 @@ outfit "Teciimach Bay"
 		"scrambling damage" 48
 		"hit force" 135
 		"missile strength" 80
-	description "Electromagnetic pulse weapons were originally developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
-	description "	The newest revision of the EMP Torpedo Bay, the "Teciimach," contains two major improvements. The first is a mechanism on the launcher that alters each torpedoes' energy to ignore allies, letting Teciimachs be deployed without risk of ionizing yourself or the rest of your fleet."
-	description "	The second is a significant reduction in the size of the launcher hardware, allowing space for a clip that is a third larger."
-	description "	Ammunition for this weapon can be restocked at any outfitter."
+	description `Electromagnetic pulse weapons were originally developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it.`
+	description `	The newest revision of the EMP Torpedo Bay, the "Teciimach," contains two major improvements. The first is a mechanism on the launcher that alters each torpedoes' energy to ignore allies, letting Teciimachs be deployed without risk of ionizing yourself or the rest of your fleet.`
+	description `	The second is a significant reduction in the size of the launcher hardware, allowing space for a clip that is a third larger.`
+	description `	Ammunition for this weapon can be restocked at any outfitter.`
 		to display
 			has "gamerule: universal ammo restocking"
 
