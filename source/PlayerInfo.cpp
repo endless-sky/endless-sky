@@ -3565,7 +3565,12 @@ void PlayerInfo::ApplyChanges()
 	// If the player's gamerules were never loaded, then this is an
 	// old pilot that was implicitly using the default gamerules before.
 	if(gamerules.Name().empty())
+	{
 		gamerules.Replace(GameData::DefaultGamerules());
+		// Unlock the gamerules for old pilots that never had the option
+		// to have them unlocked in the first place.
+		gamerules.SetLockGamerules(false);
+	}
 	GameData::SetGamerules(&gamerules);
 
 	// Make sure all stellar objects are correctly positioned. This is needed
