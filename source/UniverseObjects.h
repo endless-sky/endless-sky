@@ -113,7 +113,6 @@ public:
 	const Set<FormationPattern> &Formations() const;
 	const Set<Galaxy> &Galaxies() const;
 	const CategoryList &GetCategory(CategoryType type);
-	const Gamerules &GetGamerules() const;
 	const TextReplacements &GetTextReplacements() const;
 	const Set<Government> &Governments() const;
 	bool HasLandingMessage(const Sprite *sprite) const;
@@ -186,12 +185,12 @@ private:
 	Set<Shop<Ship>> shipSales;
 	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
+	Set<Gamerules> gamerulesPresets;
 
 	// This is used for speeding up the route calculations.
 	std::set<std::string> universeWormholeRequirements;
 	std::set<double> neighborDistances;
 
-	Gamerules gamerules;
 	TextReplacements substitutions;
 	Trade trade;
 	std::vector<StartConditions> startConditions;

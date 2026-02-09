@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
 #include "GameEvent.h"
+#include "Gamerules.h"
 #include "Mission.h"
 #include "SystemEntry.h"
 
@@ -88,7 +89,7 @@ public:
 	// Check if any player's information is loaded.
 	bool IsLoaded() const;
 	// Make a new player.
-	void New(const StartConditions &start);
+	void New(const StartConditions &start, const Gamerules &gamerules);
 	// Load an existing player.
 	void Load(const std::filesystem::path &path);
 	// Reload from the same file from which the current pilot was loaded.
@@ -228,7 +229,7 @@ public:
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
-	bool HasAvailableEnteringMissions() const;
+	bool HasAvailableInflightMissions() const;
 
 	// For all active missions, cache information that can be requested often but does not change often,
 	// or needs to be calculated at least once.
@@ -262,7 +263,9 @@ public:
 	Mission *MissionToOffer(Mission::Location location);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
 	void CreateEnteringMissions();
+	void CreateTransitionMissions();
 	Mission *EnteringMission();
+	Mission *TransitionMission();
 	// Return true if the given ship is capturable only because it's the source
 	// of a boarding mission which allows it to be.
 	bool CaptureOverriden(const std::shared_ptr<Ship> &ship) const;
@@ -273,7 +276,7 @@ public:
 	void HandleBlockedMissions(Mission::Location location, UI &ui);
 	// Display the blocked message for the first available entering mission,
 	// then remove it from the available entering missions list.
-	void HandleBlockedEnteringMissions(UI &ui);
+	void HandleBlockedInflightMissions(UI &ui);
 	// Callback for accepting or declining whatever mission has been offered.
 	void MissionCallback(int response);
 	// Basic callback for handling forced departure from a planet.
@@ -288,6 +291,8 @@ public:
 	// Access the "condition" flags for this player.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
+	// Access mutable gamerules for modification by a GamerulesPanel.
+	Gamerules &GetGamerules();
 	// Maps defined names for gifted ships to UUIDs for the ship instances.
 	const std::map<std::string, EsUuid> &GiftedShips() const;
 	std::map<std::string, std::string> GetSubstitutions() const;
@@ -482,9 +487,14 @@ private:
 	// they will not change if you reload the game.
 	std::list<Mission> availableJobs;
 	std::list<Mission> availableMissions;
-	// This list is populated upon entering a system, and isn't saved since
-	// you can't save in space.
+	// This list is populated upon entering a system (when the player is given control
+	// after taking off or jumping in),
+	// and isn't saved since you can't save in space.
 	std::list<Mission> availableEnteringMissions;
+	// This list is populated when the date changes upon taking off
+	// or transitioning between systems, and isn't saved since
+	// you can't save in space.
+	std::list<Mission> availableTransitionMissions;
 	// This list is populated upon boarding a ship, and isn't saved since
 	// you can't save in space. As of right now, only one boarding mission
 	// can be offered at a time, so this list will only ever contain one or
@@ -514,6 +524,7 @@ private:
 	bool sortSeparatePossible = false;
 
 	ConditionsStore conditions;
+	Gamerules gamerules;
 	std::map<std::string, EsUuid> giftedShips;
 
 	std::set<const System *> seen;
@@ -545,7 +556,7 @@ private:
 	bool markedChangesToday = false;
 
 	// The system and position therein to which the "orbits" system UI issued a move order.
-	std::pair<const System *, Point> interstellarEscortDestination;
+	std::pair<const System *, Point> interstellarEscortDestination = {nullptr, {}};
 	// Currently selected coloring, in the map panel (defaults to reputation):
 	int mapColoring = -6;
 	int mapZoom = 0;

@@ -21,28 +21,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// A special version of Dialog for naming ships.
+// A special version of DialogPanel for naming ships.
 // Contains a text entry field and an additional button, "Random",
 // which populates the text entry field with a randomly selected name
 // from the "civilian" phrase.
 class ShipNameDialogPanel : public DialogPanel {
 public:
-	template<class T>
-	ShipNameDialogPanel(T *panel, DialogPanel::FunctionButton buttonOne, const std::string &message,
+	static ShipNameDialogPanel *Create(const DialogPanel::FunctionButton& buttonOne, std::string message,
 		std::string initialValue = "");
 
 
 private:
+	explicit ShipNameDialogPanel(DialogInit &init);
 	bool RandomName(const std::string &);
 };
-
-
-
-template<class T>
-ShipNameDialogPanel::ShipNameDialogPanel(T *panel, DialogPanel::FunctionButton buttonOne, const std::string &message,
-	std::string initialValue)
-	: DialogPanel(panel, message, initialValue, buttonOne,
-		DialogPanel::FunctionButton(this, "Random", 'r', &ShipNameDialogPanel::RandomName),
-		[](const std::string &) { return true; })
-{
-}
