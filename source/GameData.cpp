@@ -379,7 +379,7 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 	map<const Sprite *, int>::iterator pit = preloaded.find(sprite);
 	if(pit != preloaded.end())
 	{
-		for(pair<const Sprite * const, int> &it : preloaded)
+		for(pair<const Sprite *const, int> &it : preloaded)
 			if(it.second < pit->second)
 				++it.second;
 
