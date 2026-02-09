@@ -86,21 +86,21 @@ void TradingPanel::Draw()
 	Information info;
 	const Interface *tradeUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "trade (small screen)" : "trade");
 	Rectangle box = tradeUi->GetBox("content");
-	int MIN_X = box.Left();
-	int FIRST_Y = box.Top();
-	int NAME_X = tradeUi->GetValue("column: name");
-	int PRICE_X = tradeUi->GetValue("column: price");
-	int LEVEL_X = tradeUi->GetValue("column: price level");
-	int PROFIT_X = tradeUi->GetValue("column: profit");
-	int BUY_X = tradeUi->GetValue("column: buy");
-	int SELL_X = tradeUi->GetValue("column: sell");
-	int HOLD_X = tradeUi->GetValue("column: in cargo hold");
+	int minX = box.Left();
+	int firstY = box.Top();
+	int nameX = tradeUi->GetValue("column: name");
+	int priceX = tradeUi->GetValue("column: price");
+	int levelX = tradeUi->GetValue("column: price level");
+	int profitX = tradeUi->GetValue("column: profit");
+	int buyX = tradeUi->GetValue("column: buy");
+	int sellX = tradeUi->GetValue("column: sell");
+	int holdX = tradeUi->GetValue("column: in cargo hold");
 
 	const Color &back = *GameData::Colors().Get("faint");
 	int selectedRow = player.MapColoring();
 	if(selectedRow >= 0 && selectedRow < COMMODITY_COUNT)
 	{
-		const Point center(box.Center().X(), FIRST_Y + 20 * selectedRow + 33);
+		const Point center(box.Center().X(), firstY + 20 * selectedRow + 33);
 		const Point dimensions(box.Width() - 20., 20.);
 		FillShader::Fill(center, dimensions, back);
 	}
@@ -146,7 +146,7 @@ void TradingPanel::Draw()
 	}
 
 	int i = 0;
-	int y = FIRST_Y + 5;
+	int y = firstY + 5;
 	bool canSell = false;
 	bool canBuy = false;
 	for(const Trade::Commodity &commodity : GameData::Commodities())
@@ -157,18 +157,18 @@ void TradingPanel::Draw()
 
 		bool isSelected = (i++ == selectedRow);
 		const Color &color = (isSelected ? selected : unselected);
-		font.Draw(commodity.name, Point(MIN_X + NAME_X, y), color);
+		font.Draw(commodity.name, Point(minX + nameX, y), color);
 
 		if(price)
 		{
 			canBuy |= isSelected;
-			font.Draw(to_string(price), Point(MIN_X + PRICE_X, y), color);
+			font.Draw(to_string(price), Point(minX + priceX, y), color);
 
 			int basis = player.GetBasis(commodity.name);
 			if(basis && basis != price && hold)
 			{
 				string profit = to_string(price - basis);
-				font.Draw(profit, Point(MIN_X + PROFIT_X, y), color);
+				font.Draw(profit, Point(minX + profitX, y), color);
 				info.SetCondition("has profit");
 			}
 			int level = (price - commodity.low);
@@ -178,22 +178,22 @@ void TradingPanel::Draw()
 				level = 4;
 			else
 				level = (5 * level) / (commodity.high - commodity.low);
-			font.Draw(TRADE_LEVEL[level], Point(MIN_X + LEVEL_X, y), color);
+			font.Draw(TRADE_LEVEL[level], Point(minX + levelX, y), color);
 
-			font.Draw("[buy]", Point(MIN_X + BUY_X, y), color);
-			font.Draw("[sell]", Point(MIN_X + SELL_X, y), color);
+			font.Draw("[buy]", Point(minX + buyX, y), color);
+			font.Draw("[sell]", Point(minX + sellX, y), color);
 		}
 		else
 		{
-			font.Draw("----", Point(MIN_X + PRICE_X, y), color);
-			font.Draw("(not for sale)", Point(MIN_X + LEVEL_X, y), color);
+			font.Draw("----", Point(minX + priceX, y), color);
+			font.Draw("(not for sale)", Point(minX + levelX, y), color);
 		}
 
 		if(hold)
 		{
 			sellOutfits = false;
 			canSell |= (price != 0);
-			font.Draw(to_string(hold), Point(MIN_X + HOLD_X, y), selected);
+			font.Draw(to_string(hold), Point(minX + holdX, y), selected);
 		}
 	}
 
@@ -277,19 +277,19 @@ bool TradingPanel::Click(int x, int y, MouseButton button, int clicks)
 
 	const Interface *tradeUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "trade (small screen)" : "trade");
 	Rectangle box = tradeUi->GetBox("content");
-	int MIN_X = box.Left();
-	int FIRST_Y = box.Top();
-	int MAX_X = box.Right();
-	int BUY_X = tradeUi->GetValue("column: buy");
-	int SELL_X = tradeUi->GetValue("column: sell");
-	int HOLD_X = tradeUi->GetValue("column: in cargo hold");
-	int maxY = FIRST_Y + 25 + 20 * COMMODITY_COUNT;
-	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
+	int minX = box.Left();
+	int firstY = box.Top();
+	int maxX = box.Right();
+	int buyX = tradeUi->GetValue("column: buy");
+	int sellX = tradeUi->GetValue("column: sell");
+	int holdX = tradeUi->GetValue("column: in cargo hold");
+	int maxY = firstY + 25 + 20 * COMMODITY_COUNT;
+	if(x >= minX && x <= maxX && y >= firstY + 25 && y < maxY)
 	{
-		player.SetMapColoring((y - FIRST_Y - 25) / 20);
-		if(x >= MIN_X + BUY_X && x < MIN_X + SELL_X)
+		player.SetMapColoring((y - firstY - 25) / 20);
+		if(x >= minX + buyX && x < minX + sellX)
 			Buy(1);
-		else if(x >= MIN_X + SELL_X && x < MIN_X + HOLD_X)
+		else if(x >= minX + sellX && x < minX + holdX)
 			Buy(-1);
 	}
 	else
