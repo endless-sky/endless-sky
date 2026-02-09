@@ -67,6 +67,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <atomic>
+#include <cassert>
 #include <filesystem>
 #include <iostream>
 #include <queue>
@@ -77,6 +78,8 @@ using namespace std;
 
 namespace {
 	UniverseObjects objects;
+
+	const Gamerules *activeGamerules = nullptr;
 
 	Politics politics;
 
@@ -239,6 +242,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 
 void GameData::FinishLoading()
 {
+	activeGamerules = objects.gamerulesPresets.Get("Default");
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -353,7 +357,7 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 	map<const Sprite *, int>::iterator pit = preloaded.find(sprite);
 	if(pit != preloaded.end())
 	{
-		for(pair<const Sprite * const, int> &it : preloaded)
+		for(pair<const Sprite *const, int> &it : preloaded)
 			if(it.second < pit->second)
 				++it.second;
 
@@ -405,6 +409,9 @@ UniverseObjects &GameData::Objects()
 void GameData::Revert()
 {
 	objects.Revert();
+
+	activeGamerules = objects.gamerulesPresets.Get("Default");
+
 	politics.Reset();
 	purchases.clear();
 }
@@ -799,6 +806,13 @@ const Set<Wormhole> &GameData::Wormholes()
 
 
 
+const Set<Gamerules> &GameData::GamerulesPresets()
+{
+	return objects.gamerulesPresets;
+}
+
+
+
 const std::set<std::string> &GameData::UniverseWormholeRequirements()
 {
 	return objects.universeWormholeRequirements;
@@ -988,7 +1002,24 @@ const TextReplacements &GameData::GetTextReplacements()
 
 const Gamerules &GameData::GetGamerules()
 {
-	return objects.gamerules;
+	if(!activeGamerules)
+		activeGamerules = objects.gamerulesPresets.Get("Default");
+
+	return *activeGamerules;
+}
+
+
+
+void GameData::SetGamerules(const Gamerules *gamerules)
+{
+	activeGamerules = gamerules;
+}
+
+
+
+const Gamerules &GameData::DefaultGamerules()
+{
+	return *(objects.gamerulesPresets.Get("Default"));
 }
 
 

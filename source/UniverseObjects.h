@@ -141,6 +141,7 @@ private:
 	Set<Shop<Ship>> shipSales;
 	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
+	Set<Gamerules> gamerulesPresets;
 
 	// This is used for speeding up the route calculations.
 	std::set<std::string> universeWormholeRequirements;
@@ -158,7 +159,6 @@ private:
 	Set<Person> defaultPersons;
 	TextReplacements defaultSubstitutions;
 
-	Gamerules gamerules;
 	TextReplacements substitutions;
 	Trade trade;
 	std::vector<StartConditions> startConditions;

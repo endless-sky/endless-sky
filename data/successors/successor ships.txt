@@ -36,8 +36,10 @@ ship "Aaulqra"
 		"engine capacity" 120
 		"multimodal armor" 1
 		"hull repair rate" 2.75
-		"hull energy" 4.0
-		"hull heat" 4.0
+		# 0.0005 * max hull
+		"hull energy" 3.025
+		# 1.1 * hull repair rate
+		"hull heat" 3.025
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -206,9 +208,9 @@ ship "Kaskhorade"
 		"weapon capacity" 280
 		"engine capacity" 110
 		"multimodal armor" 1
-		"hull repair rate" 2.25
-		"hull energy" 3.26
-		"hull heat" 3.26
+		"hull repair rate" 2.225
+		"hull energy" 2.4475
+		"hull heat" 2.4475
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -550,8 +552,8 @@ ship "Nnaatej"
 		"corrosion resistance" 0.6
 		"slowing resistance" 0.6
 		"hull repair rate" 0.1
-		"hull heat" 0.25
-		"hull energy" 0.2
+		"hull heat" 0.11
+		"hull energy" 0.11
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -783,9 +785,9 @@ ship "Seiitej"
 		"weapon capacity" 90
 		"engine capacity" 110
 		"multimodal armor" 1
-		"hull repair rate" 1.2
-		"hull energy" 1.74
-		"hull heat" 1.74
+		"hull repair rate" 0.95
+		"hull energy" 1.045
+		"hull heat" 1.045
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -869,8 +871,8 @@ ship "Stolsaqra"
 		"engine capacity" 80
 		"multimodal armor" 1
 		"hull repair rate" 0.3
-		"hull energy" 0.4
-		"hull heat" 0.4
+		"hull energy" 0.33
+		"hull heat" 0.33
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -959,8 +961,8 @@ ship "Veusade"
 		"engine capacity" 120
 		"multimodal armor" 1
 		"hull repair rate" 1.45
-		"hull energy" 2.1
-		"hull heat" 2.1
+		"hull energy" 1.595
+		"hull heat" 1.595
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -1055,8 +1057,8 @@ ship "Vujlet"
 		"exclusive: Vujlet" 1
 		"multimodal armor" 1
 		"hull repair rate" 0.875
-		"hull energy" 1.27
-		"hull heat" 1.27
+		"hull energy" 0.9625
+		"hull heat" 0.9625
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
