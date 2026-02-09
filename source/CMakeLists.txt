@@ -97,12 +97,16 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	Distribution.cpp
 	Distribution.h
+	Drawable.cpp
+	Drawable.h
 	Endpoint.cpp
 	Endpoint.h
 	Effect.cpp
 	Effect.h
 	Engine.cpp
 	Engine.h
+	Entity.cpp
+	Entity.h
 	EsUuid.cpp
 	EsUuid.h
 	EscortDisplay.cpp
@@ -137,6 +141,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameLoadingPanel.h
 	Gamerules.cpp
 	Gamerules.h
+	GamerulesPanel.cpp
+	GamerulesPanel.h
 	GameVersion.cpp
 	GameVersion.h
 	GameWindow.cpp
@@ -217,6 +223,8 @@ target_sources(EndlessSkyLib PRIVATE
 	NPCAction.h
 	News.cpp
 	News.h
+	OptionalInputDialogPanel.cpp
+	OptionalInputDialogPanel.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp
