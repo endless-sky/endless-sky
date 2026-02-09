@@ -362,13 +362,6 @@ star "star/patir"
 	habitable 10
 	mass 31250
 
-# Rogue planet with unusual properties
-star "planet/rogue-radiating"
-	power .2
-	wind .6
-	habitable 10
-	mass 125
-
 # Compact stellar objects.
 star "star/neutron"
 	power 4

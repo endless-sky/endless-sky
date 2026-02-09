@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipJumpNavigation.h"
 
+#include "Hasher.h"
 #include "Outfit.h"
 #include "Ship.h"
 #include "System.h"
@@ -194,6 +195,32 @@ bool ShipJumpNavigation::HasScramDrive() const
 bool ShipJumpNavigation::HasJumpDrive() const
 {
 	return hasJumpDrive;
+}
+
+
+
+size_t ShipJumpNavigation::Hash() const
+{
+	// Include in the hash only that information that can influence pathfinding.
+	size_t hash = 0;
+
+	Hasher::Hash(hash, currentSystem);
+
+	// Whether the hyperdrive is a scram drive doesn't change pathfinding.
+	Hasher::Hash(hash, hasHyperdrive);
+	Hasher::Hash(hash, hasJumpDrive);
+
+	// Max jump range information is contained within the jump drive costs.
+	// The jump cost also contains information about the mass of the ship,
+	// if its mass influences its jump cost.
+	Hasher::Hash(hash, hyperdriveCost);
+	for(const auto &[range, cost] : jumpDriveCosts)
+	{
+		Hasher::Hash(hash, range);
+		Hasher::Hash(hash, cost);
+	}
+
+	return hash;
 }
 
 

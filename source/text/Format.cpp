@@ -141,6 +141,59 @@ namespace {
 		reverse(result.begin(), result.end());
 	}
 
+	// Format the decimal places of a double value, up to a given number of decimal places, and with
+	// trailing zeros removed if desired. The given double is expected to already be the fractional
+	// part of a number (i.e. something less than 0).
+	void FormatDecimals(double &value, double fraction, int places, bool trimTrailingZeros, string &result)
+	{
+		if(!places || (!fraction && trimTrailingZeros))
+			return;
+		// Keep track of the digit in each place.
+		double digit;
+		vector<int> digits(places);
+		// Account for floating-point representation error by adding EPS after multiplying.
+		constexpr double EPS = 1e-10;
+		for(int i = 0; i < places; ++i)
+		{
+			fraction = modf(fraction * 10. + EPS, &digit);
+			// If this digit is about equal to 10, then carry the 1 to the digit prior to this one.
+			if(digit >= 10 - EPS)
+			{
+				for(int j = i - 1; j >= -1; --j)
+				{
+					// If this digit is the 10ths place, then 1 needs to be added to the value
+					// preceding the decimal place.
+					if(j == -1)
+						++value;
+					else
+					{
+						++digits[j];
+						// Break out if the preceding digit is still a single digit value.
+						// Otherwise, set it to 0 and continue carrying the 1.
+						if(digits[j] < 10)
+							break;
+						digits[j] = 0;
+					}
+				}
+				digit = 0;
+			}
+			digits[i] = digit;
+		}
+		// Append the digits to the result.
+		result += ".";
+		for(int i = 0; i < places; ++i)
+			result += to_string(digits[i]);
+		// Trim trailing zeros if desired.
+		if(trimTrailingZeros)
+		{
+			while(result.ends_with("0"))
+				result.pop_back();
+			// Pop the decimal separator if that's all that's left.
+			if(result.ends_with("."))
+				result.pop_back();
+		}
+	}
+
 	string StringSubstituter(const string &source,
 			function<const string *(const string &)> SubstitutionFor)
 	{
@@ -247,7 +300,7 @@ namespace {
 		else if(IsFormat("credits"))
 			result.append(Format::CreditString(value)); // 1 credit, 2 credits, etc.
 		else if(IsFormat("scaled"))
-			result.append(Format::Credits(value)); // 35, 35k, 35M, etc.
+			result.append(Format::AbbreviatedNumber(value)); // 35, 35k, 35M, etc.
 		else if(IsFormat("tons"))
 			result.append(Format::MassString(value)); // X tons or X ton
 		else if(IsFormat("playtime"))
@@ -300,7 +353,7 @@ namespace {
 // Convert the given number into abbreviated format with a suffix like
 // "M" for million, "B" for billion, or "T" for trillion. Any number
 // above 1 quadrillion is instead shown in scientific notation.
-string Format::Credits(int64_t value)
+string Format::AbbreviatedNumber(int64_t value)
 {
 	bool isNegative = (value < 0);
 
@@ -347,14 +400,23 @@ string Format::Credits(int64_t value)
 
 
 
-// Convert the given number into abbreviated format as described in Format::Credits,
+string Format::AbbreviatedNumber(double value, optional<int> decimalPlaces, bool trimTrailingZeros)
+{
+	if(value >= 10000)
+		return AbbreviatedNumber(value);
+	return Number(value, decimalPlaces, trimTrailingZeros);
+}
+
+
+
+// Convert the given number into abbreviated format as described in Format::AbbreviatedNumber,
 // then attach the ' credit' or ' credits' suffix to it.
 string Format::CreditString(int64_t value, bool abbreviated)
 {
 	if(value == 1)
 		return "1 credit";
 
-	return (abbreviated ? Credits(value) : Number(value)) + " credits";
+	return (abbreviated ? AbbreviatedNumber(value) : Number(value)) + " credits";
 }
 
 
@@ -520,17 +582,19 @@ string Format::AmmoCount(int64_t value)
 
 
 
-// Convert the given number to a string, with a reasonable number of decimal
-// places. (This is primarily for displaying ship and outfit attributes.)
-string Format::Number(double value)
+string Format::Number(double value, optional<int> decimalPlaces, bool trimTrailingZeros)
 {
 	if(!value)
-		return "0";
-	else if(std::isnan(value))
+	{
+		string result = "0";
+		FormatDecimals(value, value, decimalPlaces.value_or(0), trimTrailingZeros, result);
+		return result;
+	}
+	if(std::isnan(value))
 		return "???";
-	else if(std::isinf(value))
+	if(std::isinf(value))
 		return value > 0. ? "infinity" : "-infinity";
-	else if(fabs(value) > SCIENTIFIC_THRESHOLD)
+	if(fabs(value) > SCIENTIFIC_THRESHOLD)
 	{
 		// Use scientific notation for excessively large numbers.
 		ostringstream out;
@@ -543,34 +607,16 @@ string Format::Number(double value)
 	bool isNegative = (value < 0.);
 	value = fabs(value);
 
-	// Only show decimal places for numbers between +/-10'000.
 	double decimal = modf(value, &value);
-	if(decimal && value < 10000)
+	// If no explicit decimal places were given, then only show at least one decimal place for
+	// numbers with a magnitude less than 10,000. Values less than 1,000 may have two decimal places.
+	int places = decimalPlaces.value_or(value >= 10000 ? 0 : (value >= 1000 ? 1 : 2));
+	if(places)
 	{
-		double tenths = 0.;
-		// Account for floating-point representation error by adding EPS after multiplying.
-		constexpr double EPS = 0.0000000001;
-		int hundredths = static_cast<int>(EPS + 10. * modf(decimal * 10., &tenths));
-		if(hundredths > 9)
-		{
-			hundredths = 0;
-			++tenths;
-		}
-		if(tenths >= 10. - EPS)
-		{
-			++value;
-			tenths = hundredths = 0;
-		}
-
-		// Values up to 1000 may have two decimal places.
-		bool two = value < 1000 && hundredths;
-		if(two)
-			result += static_cast<char>('0' + hundredths);
-		if(two || tenths)
-		{
-			result += static_cast<char>('0' + tenths);
-			result += '.';
-		}
+		FormatDecimals(value, decimal, places, trimTrailingZeros, result);
+		// FormatInteger expects the results string to be given in reverse order,
+		// but FormatDecimals provides it in forward order.
+		ranges::reverse(result);
 	}
 
 	// Convert the number to a string, adding commas if needed.
@@ -613,19 +659,19 @@ string Format::Number(int64_t value)
 
 
 
-// Format the given value as a number with exactly the given number of
-// decimal places (even if they are all 0).
-string Format::Decimal(double value, int places)
+string Format::Percentage(double value, optional<int> decimalPlaces, bool trimTrailingZeros)
 {
-	double integer;
-	double fraction = fabs(modf(value, &integer));
+	return Number(100. * value, decimalPlaces, trimTrailingZeros) + "%";
+}
 
-	string result = to_string(static_cast<int>(integer)) + ".";
-	while(places--)
-	{
-		fraction = modf(fraction * 10., &integer);
-		result += ('0' + static_cast<int>(integer));
-	}
+
+
+string Format::StripCommas(const string &text)
+{
+	string result;
+	for(char c : text)
+		if(c != ',')
+			result += c;
 	return result;
 }
 
