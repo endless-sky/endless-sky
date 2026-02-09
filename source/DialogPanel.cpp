@@ -403,7 +403,7 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 			else
 				Invalid();
 		}
-		else if ((intFun || doubleFun))
+		else if(intFun || doubleFun)
 		{
 			if((c >= '0' && c <= '9')
 				|| (c == '-' && input.empty())

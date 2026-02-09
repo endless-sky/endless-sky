@@ -270,7 +270,8 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		string &otherName = (choice ? firstName : lastName);
 		// Allow editing the text. The tab key toggles to the other entry field,
 		// as does the return key if the other field is still empty.
-		if(Clipboard::KeyDown(name, key, mod, MAX_NAME_LENGTH, [](char32_t ch) {
+		if(Clipboard::KeyDown(name, key, mod, MAX_NAME_LENGTH, [](char32_t ch)
+		{
 			return Files::IsValidCharacter(ch) && ch != '~';
 		}))
 		{

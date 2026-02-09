@@ -494,7 +494,8 @@ void LoadPanel::UpdateLists()
 		string fileName = Files::Name(path);
 		if(!Files::IsValid(fileName))
 			Logger::Log("Save file name '" + fileName
-				+ "' contains invalid characters. The save may not load properly on all platforms.",
+				+ "' contains invalid characters, and will not work on certain filesystems."
+				"Consider renaming it.",
 				Logger::Level::WARNING);
 
 		// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
