@@ -160,30 +160,32 @@ PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const Condition
 	GameEvent nodeEvent(node, playerConditions);
 	date = nodeEvent.GetDate();
 
-	string eventName;
+	// If this scheduled event is named, then it is using the new format,
+	// and we should refer to the definition of the event with the matching name.
 	if(!nodeEvent.TrueName().empty())
-		eventName = nodeEvent.TrueName();
-	else
 	{
-		// Old save files may contain unnamed events. In that case, the event's name can be found by
-		// looking at the relevant conditions in the event's conditions assignment.
-		set<string> conditions = nodeEvent.Conditions().RelevantConditions();
-		erase_if(conditions, [](const string &name) { return name.find("event: ") == string::npos; });
-		// Unless the save file was manually altered, there should be an event condition present.
-		// If there are multiple event conditions present, then the first one should be the condition
-		// for this event, as assignments are saved and loaded in the order they're created, and
-		// the event condition is the first assignment added to each event.
-		if(!conditions.empty())
-			eventName = conditions.begin()->substr(strlen("event: "));
+		event = ExclusiveItem<GameEvent>(GameData::Events().Get(nodeEvent.TrueName()));
+		return;
 	}
-	if(!eventName.empty())
-		event = ExclusiveItem<GameEvent>(GameData::Events().Get(eventName));
+
+	// Old save files may contain unnamed events. In that case, the event's name can be found by
+	// looking at the relevant conditions in the event's conditions assignment.
+	set<string> conditions = nodeEvent.Conditions().RelevantConditions();
+	erase_if(conditions, [](const string &name) { return name.find("event: ") == string::npos; });
+	// Unless the save file was manually altered, there should be an event condition present.
+	// If there are multiple event conditions present, then the first one should be the condition
+	// for this event, as assignments are saved and loaded in the order they're created, and
+	// the event condition is the first assignment added to each event.
+	string eventName;
+	if(!conditions.empty())
+		eventName = conditions.begin()->substr(strlen("event: "));
+	// If a name was located and a definition exists for that name, then use that definition.
+	// Otherwise, continue to store the entire event node in the old format.
+	const GameEvent *eventDef = !eventName.empty() ? GameData::Events().Find(eventName) : nullptr;
+	if(eventDef)
+		event = ExclusiveItem<GameEvent>(eventDef);
 	else
-	{
-		// Fall back onto saving the full definition if we somehow didn't find a name.
-		node.PrintTrace("Could not determine name of scheduled event.");
 		event = ExclusiveItem<GameEvent>(std::move(nodeEvent));
-	}
 }
 
 
@@ -224,7 +226,7 @@ bool PlayerInfo::IsLoaded() const
 
 
 // Make a new player.
-void PlayerInfo::New(const StartConditions &start)
+void PlayerInfo::New(const StartConditions &start, const Gamerules &gamerules)
 {
 	// Clear any previously loaded data.
 	Clear();
@@ -254,6 +256,8 @@ void PlayerInfo::New(const StartConditions &start)
 	accounts = start.GetAccounts();
 	RegisterDerivedConditions();
 	start.GetConditions().Apply();
+	this->gamerules.Replace(gamerules);
+	GameData::SetGamerules(&this->gamerules);
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -482,6 +486,22 @@ void PlayerInfo::Load(const filesystem::path &path)
 				}
 			}
 		}
+		else if(key == "gamerules" && hasValue)
+		{
+			const string &presetName = child.Token(1);
+			const Gamerules *preset = GameData::GamerulesPresets().Find(presetName);
+			if(!preset)
+			{
+				child.PrintTrace("The gamerule preset \"" + presetName + "\" does not exist. "
+					"Falling back to the default gamerules.");
+				preset = &GameData::DefaultGamerules();
+			}
+			// Set the player's gamerules to be an exact copy of the selected preset,
+			// then load any stored customizations on top of that.
+			gamerules.Replace(*preset);
+			if(child.HasChildren())
+				gamerules.Load(child);
+		}
 		else if(key == "start")
 			startData.Load(child);
 		else if(key == "message log")
@@ -494,6 +514,12 @@ void PlayerInfo::Load(const filesystem::path &path)
 	// Cache the remaining number of days for all deadline missions and
 	// the location of tracked NPCs.
 	CacheMissionInformation();
+	// Locate the tracked NPCs for available jobs and missions.
+	// Active missions will have already done this with the above function call.
+	for(Mission &mission : availableJobs)
+		mission.RecalculateTrackedSystems();
+	for(Mission &mission : availableMissions)
+		mission.RecalculateTrackedSystems();
 
 	// Restore access to services, if it was granted previously.
 	if(planet && hasFullClearance)
@@ -1673,7 +1699,7 @@ void PlayerInfo::Land(UI &ui)
 			if(mit != inactiveMissions.rend())
 				message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
 			message += "They will be reactivated when the necessary plugin is reinstalled.";
-			ui.Push(new DialogPanel(message));
+			ui.Push(DialogPanel::Info(message));
 		}
 		if(!invalidEvents.empty())
 		{
@@ -1689,7 +1715,7 @@ void PlayerInfo::Land(UI &ui)
 			if(eit != invalidEvents.rend())
 				message += " and " + to_string(distance(eit, invalidEvents.rend())) + " more.\n";
 			message += "The universe may not be in the proper state until the necessary plugin is reinstalled.";
-			ui.Push(new DialogPanel(message));
+			ui.Push(DialogPanel::Info(message));
 		}
 	}
 
@@ -2556,7 +2582,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI &ui)
 			string message = it.BlockedMessage(*this);
 			if(!message.empty())
 			{
-				ui.Push(new DialogPanel(message));
+				ui.Push(DialogPanel::Info(message));
 				return;
 			}
 		}
@@ -2579,7 +2605,7 @@ void PlayerInfo::HandleBlockedInflightMissions(UI &ui)
 			it = availableEnteringMissions.erase(it);
 			if(!message.empty())
 			{
-				ui.Push(new DialogPanel(message));
+				ui.Push(DialogPanel::Info(message));
 				return;
 			}
 		}
@@ -2596,7 +2622,7 @@ void PlayerInfo::HandleBlockedInflightMissions(UI &ui)
 			it = availableTransitionMissions.erase(it);
 			if(!message.empty())
 			{
-				ui.Push(new DialogPanel(message));
+				ui.Push(DialogPanel::Info(message));
 				return;
 			}
 		}
@@ -2751,6 +2777,13 @@ ConditionsStore &PlayerInfo::Conditions()
 const ConditionsStore &PlayerInfo::Conditions() const
 {
 	return conditions;
+}
+
+
+
+Gamerules &PlayerInfo::GetGamerules()
+{
+	return gamerules;
 }
 
 
@@ -3462,10 +3495,10 @@ void PlayerInfo::SetEscortDestination(const System *system, Point pos)
 
 
 
-// Determine if a system and nonzero position were specified.
+// Determine if a system was specified.
 bool PlayerInfo::HasEscortDestination() const
 {
-	return interstellarEscortDestination.first && interstellarEscortDestination.second;
+	return interstellarEscortDestination.first;
 }
 
 
@@ -3527,6 +3560,13 @@ void PlayerInfo::ApplyChanges()
 	GameData::UpdateSystems();
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
+
+	// Set the active gamerules to the rules from this player.
+	// If the player's gamerules were never loaded, then this is an
+	// old pilot that was implicitly using the default gamerules before.
+	if(gamerules.Name().empty())
+		gamerules.Replace(GameData::DefaultGamerules());
+	GameData::SetGamerules(&gamerules);
 
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
@@ -4263,7 +4303,12 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditions["previous system government: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!previousSystem || !previousSystem->GetGovernment())
 			return false;
-		return !ce.NameWithoutPrefix().compare(previousSystem->GetGovernment()->TrueName());
+		return !ce.NameWithoutPrefix().compare(previousSystem->GetGovernment()->TrueName()); });
+	conditions["previous system attribute: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		if(!previousSystem)
+			return false;
+		string attribute = ce.NameWithoutPrefix();
+		return previousSystem->Attributes().contains(attribute);
 	});
 
 	// Conditions to determine if flagship is in a system and on a planet.
@@ -4472,14 +4517,16 @@ void PlayerInfo::CreateMissions()
 			list<Mission> &missions =
 				mission.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
 
-			missions.push_back(mission.Instantiate(*this));
-			if(missions.back().IsFailed())
-				missions.pop_back();
-			else if(!mission.IsAtLocation(Mission::JOB))
+			Mission newMission = mission.Instantiate(*this);
+			if(newMission.IsFailed())
+				continue;
+			newMission.RecalculateTrackedSystems();
+			if(!mission.IsAtLocation(Mission::JOB))
 			{
-				hasPriorityMissions |= missions.back().HasPriority();
-				nonBlockingMissions += missions.back().IsNonBlocking();
+				hasPriorityMissions |= newMission.HasPriority();
+				nonBlockingMissions += newMission.IsNonBlocking();
 			}
+			missions.push_back(std::move(newMission));
 		}
 	}
 
@@ -4552,7 +4599,7 @@ void PlayerInfo::StepMissions(UI &ui)
 		if(missionVisits > 1)
 			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
-		ui.Push(new DialogPanel(visitText));
+		ui.Push(DialogPanel::Info(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
 	// more time to see if any mission is now completed or failed due to a change
@@ -4959,6 +5006,16 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.WriteComment("How you began:");
 	startData.Save(out);
 
+	out.Write();
+	out.WriteComment("The rules you play by:");
+	// Only save gamerules that were customized to be different from the defaults of the chosen preset.
+	// If the chosen preset that the gamerules refer to doesn't exist, compare against the default
+	// gamerules. A warning will have already been printed for this when the save file was loaded.
+	const Gamerules *preset = GameData::GamerulesPresets().Find(gamerules.Name());
+	if(!preset)
+		preset = &GameData::DefaultGamerules();
+	gamerules.Save(out, *preset);
+
 	// Write plugins to player's save file for debugging.
 	out.Write();
 	out.WriteComment("Installed plugins:");
@@ -5019,13 +5076,13 @@ void PlayerInfo::Fine(UI &ui)
 					+ ", we detect highly illegal material on your ship.\""
 					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
 					" Your days of traveling the stars have come to an end.";
-				ui.Push(new DialogPanel(message.second));
+				ui.Push(DialogPanel::Info(message.second));
 			}
 			// All ships belonging to the player should be removed.
 			Die();
 		}
 		else
-			ui.Push(new DialogPanel(message.second));
+			ui.Push(DialogPanel::Info(message.second));
 	}
 }
 

@@ -466,6 +466,7 @@ mission "Deep: Mystery Cubes 2"
 mission "Deep: Mystery Cubes 3: Escorts"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Mystery Cubes 2: done"
 	to fail
@@ -771,13 +772,7 @@ mission "Deep: TMBR 1"
 			`	While the band intermixes crowd favorites and some new songs clearly inspired by their time in Hai space, you make your way to the side of the makeshift stage. Once the concert ends, Ulrich notices you and approaches.`
 			`	"Captain <last>, it's been a while! We've been having a great time with the peaceful squirrels ever since you dropped us off. It's the craziest experience we've ever had." He regales you with a number of adventures the band has been on since they came to Hai space, and how they were all surprised that even in such an idyllic place war was still a reality. "Say, what brings you here?"`
 			`	He listens intently to your story of the scientists on <planet>, but his brow furrows when you mention the rumor of imprisonment by the Republic.`
-			branch public
-				has "event: hai-human resolution announced"
 			`	"Maybe we've been away long enough. I thought there would be some rumors or recordings that made it back to the Republic from here, but this place is a pretty well-kept secret, so perhaps not. Maybe it's time to go back to the land of the humans."`
-				goto return
-			label public
-			`	"Maybe we've been away long enough. With recent events, I suppose it's only a matter of time until our presence here becomes known more widely to the Republic anyway, so we don't exactly gain much by staying. Maybe it's time to go back to the land of the humans."`
-			label return
 			`	Ulrich gathers up the rest of the band and they pack up their supplies. You chart a course for <destination> as they load their musical equipment on your ship and get ready for the long ride back to human space.`
 				accept
 	on visit
@@ -1725,6 +1720,7 @@ mission "Deep: Remnant Research"
 mission "deep: player revealed remnant"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Remnant Research: offered"
 		not "deep: did reveal remnant"
@@ -1737,6 +1733,7 @@ mission "deep: player revealed remnant"
 mission "deep: remnant: rest period"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Remnant Research: offered"
 	on offer
@@ -1968,6 +1965,7 @@ mission "Deep: Remnant Surveillance - Aventine"
 mission "remnant: clear deep surveillance"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Remnant Research: offered"
 	on offer
@@ -1977,6 +1975,7 @@ mission "remnant: clear deep surveillance"
 mission "Deep: Scientist Rescue Timer"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Project Hawking: done"
 	on offer
@@ -2078,6 +2077,7 @@ mission "Deep: Scientist Rescue 0: Farpoint"
 
 mission "Deep: Scientist Rescue 0: Pirates"
 	invisible
+	non-blocking
 	landing
 	destination "Haven"
 	to offer
@@ -2111,6 +2111,7 @@ mission "Deep: Scientist Rescue 0: Haven"
 mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
 	landing
 	invisible
+	non-blocking
 	source "Haven"
 	destination "Valhalla"
 	to offer
@@ -2191,6 +2192,7 @@ event "battle in arneb"
 
 mission "Deep: Scientist Rescue 1: Pirates"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Deep: Scientist Rescue 0: done"
@@ -2376,6 +2378,7 @@ ship "Bactrian" "Bactrian (Cosmic Devil)"
 mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	landing
 	invisible
+	non-blocking
 	destination "Valhalla"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
@@ -2395,6 +2398,7 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 mission "Deep: Scientist Rescue 2: More Pirates"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Scientist Rescue 1: done"
 	to fail

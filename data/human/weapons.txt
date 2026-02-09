@@ -1579,6 +1579,7 @@ outfit "Heavy Rocket Launcher"
 			"frame rate" 4
 		sound "rocket"
 		ammo "Heavy Rocket"
+		stream
 		icon "icon/rocket"
 		"hit effect" "heavy rocket hit"
 		"die effect" "small explosion"
@@ -1595,7 +1596,7 @@ outfit "Heavy Rocket Launcher"
 		"shield damage" 790
 		"hull damage" 670
 		"hit force" 900
-		"missile strength" 16
+		"missile strength" 24
 	description "Heavy Rockets are one of the most powerful missile weapons available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
 		to display
@@ -1635,7 +1636,7 @@ outfit "Heavy Rocket Pod"
 		"shield damage" 790
 		"hull damage" 670
 		"hit force" 900
-		"missile strength" 16
+		"missile strength" 24
 	description "Heavy Rockets are one of the most powerful missile weapons available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
 	description "	Pods enable fighters and other light craft to carry small quantities of rockets into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
@@ -1710,6 +1711,7 @@ outfit "Nuclear Missile"
 		"hull damage" 7000
 		"hit force" 6000
 		"missile strength" 200
+		"triggers nuke alert"
 	description "It has been centuries since the last nuclear war was fought, and until very recently, most people in the galaxy assumed that that era of chaos and destruction was forever behind us..."
 	description "	[Nuclear missiles are a one-shot weapon: each missile occupies a gun slot, and after it is fired, the slot it was in is left empty.]"
 

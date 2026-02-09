@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Body.h"
+#include "Entity.h"
 
 #include "Angle.h"
 #include "Armament.h"
@@ -28,9 +28,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Personality.h"
 #include "Point.h"
 #include "Port.h"
-#include "ship/ResourceLevels.h"
 #include "ship/ShipAICache.h"
 #include "ship/ShipAttributeHandler.h"
+#include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 
 #include <array>
@@ -66,7 +66,7 @@ class Visual;
 // in exactly the same state. The same class is used for the player's ship as
 // for all other ships, so their capabilities are exactly the same  within the
 // limits of what the AI knows how to command them to do.
-class Ship : public Body, public std::enable_shared_from_this<Ship> {
+class Ship : public Entity, public std::enable_shared_from_this<Ship> {
 public:
 	class Bay {
 	public:
@@ -341,15 +341,15 @@ public:
 	int WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Clear all orders and targets this ship has (after capture or transfer of control).
 	void ClearTargetsAndOrders();
+	// Return events that happened recently, but haven't been handled by the Engine yet.
+	// Events should be removed from the given list after they are handled.
+	std::list<ShipEvent> &HandleEvents();
 
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
 	double Hull() const;
 	double Fuel() const;
 	double Energy() const;
-	// A ship's heat is generally between 0 and 1, but if it receives
-	// heat damage the value can increase above 1.
-	double Heat() const;
 	// Get the ship's "health," where <=0 is disabled and 1 means full health.
 	double Health() const;
 	// Get the hull fraction at which this ship is disabled.
@@ -388,7 +388,7 @@ public:
 	// Get the heat dissipation, in heat units per heat unit per frame.
 	double HeatDissipation() const;
 	// Get the maximum heat level, in heat units (not temperature).
-	double MaximumHeat() const;
+	double MaximumHeat() const override;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
 	// Calculate the drag on this ship. The drag can be no greater than the mass.
@@ -408,7 +408,7 @@ public:
 	bool CanBeFlagship() const;
 
 	// Get this ship's movement characteristics.
-	double Mass() const;
+	double Mass() const override;
 	double InertialMass() const;
 	double TurnRate() const;
 	double Acceleration() const;
@@ -468,8 +468,6 @@ public:
 	void Jettison(const std::string &commodity, int tons, bool wasAppeasing = false);
 	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false);
 
-	// Get the current attributes of this ship.
-	const Outfit &Attributes() const;
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
 	// Get the attribute handler, which caches commonly-requested attributes and calculations.
@@ -505,6 +503,12 @@ public:
 	const std::set<const Flotsam *> &GetTractorFlotsam() const;
 	// Pattern to use when flying in a formation.
 	const FormationPattern *GetFormationPattern() const;
+
+	// Get a list of ships targeting this one.
+	const std::vector<std::weak_ptr<Ship>> &GetShipsTargetingThis() const;
+	// Get and update the total ship strength targeting this ship.
+	double GetTargeterStrength() const;
+	void UpdateTargeterStrength();
 
 	// Mark this ship as fleeing.
 	void SetFleeing(bool fleeing = true);
@@ -660,7 +664,6 @@ private:
 	ShipAICache aiCache;
 
 	// Installed outfits, cargo, etc.:
-	Outfit attributes;
 	Outfit baseAttributes;
 	bool addAttributes = false;
 	const Weapon *explosionWeapon = nullptr;
@@ -679,7 +682,6 @@ private:
 	Armament armament;
 
 	ShipAttributeHandler attrHandler;
-	ResourceLevels levels;
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
@@ -745,5 +747,14 @@ private:
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
 
+	// List of enemy ships targeting this one.
+	std::vector<std::weak_ptr<Ship>> targetingList;
+	double targeterStrength;
+
 	bool removeBays = false;
+
+	// If this ship is disabled or dies as a result of something like corrosion damage,
+	// attribute the event to the last government that hit this ship.
+	const Government *lastHitBy = nullptr;
+	std::list<ShipEvent> unhandledEvents;
 };

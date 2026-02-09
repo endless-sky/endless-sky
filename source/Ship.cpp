@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
+#include "ship/ResourceLevels.h"
 #include "ShipEvent.h"
 #include "audio/Sound.h"
 #include "image/Sprite.h"
@@ -64,8 +65,6 @@ namespace {
 
 	const vector<string> ENGINE_SIDE = {"under", "over"};
 	const vector<string> STEERING_FACING = {"none", "left", "right"};
-
-	const double MAXIMUM_TEMPERATURE = 100.;
 
 	// Scanning takes up to 10 seconds (SCAN_TIME / MIN_SCAN_STEPS)
 	// dependent on the range from the ship (among other factors).
@@ -579,7 +578,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(base && base != this)
 	{
 		if(!GetSprite())
-			reinterpret_cast<Body &>(*this) = *base;
+			static_cast<Body &>(*this) = *base;
 		if(customSwizzleName.empty())
 			customSwizzleName = base->CustomSwizzleName();
 		if(baseAttributes.Attributes().empty())
@@ -1384,6 +1383,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	else
 		zoom = 1.;
 	// Make sure various special status values are reset.
+	lastHitBy = nullptr;
 	levels.heat = IdleHeat();
 	attrHandler.ClearDoT();
 	shieldDelay = 0;
@@ -2534,6 +2534,7 @@ void Ship::Disable()
 void Ship::Destroy()
 {
 	levels.hull = -1.;
+	unhandledEvents.emplace_back(nullptr, shared_from_this(), ShipEvent::DESTROY);
 }
 
 
@@ -2594,6 +2595,7 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 	if((rechargeType & Port::RechargeType::Fuel) || attrHandler.fuelGeneration)
 		levels.fuel = attrHandler.capacity.fuel;
 
+	lastHitBy = nullptr;
 	levels.heat = IdleHeat();
 	attrHandler.ClearDoT();
 	shieldDelay = 0;
@@ -2718,6 +2720,13 @@ void Ship::ClearTargetsAndOrders()
 
 
 
+list<ShipEvent> &Ship::HandleEvents()
+{
+	return unhandledEvents;
+}
+
+
+
 // Get characteristics of this ship, as a fraction between 0 and 1.
 double Ship::Shields() const
 {
@@ -2747,16 +2756,6 @@ double Ship::Energy() const
 {
 	double maximum = attrHandler.capacity.energy;
 	return maximum ? min(1., levels.energy / maximum) : (levels.hull > 0.) ? 1. : 0.;
-}
-
-
-
-// Allow returning a heat value greater than 1 (i.e. conveying how overheated
-// this ship has become).
-double Ship::Heat() const
-{
-	double maximum = MaximumHeat();
-	return maximum ? levels.heat / maximum : 1.;
 }
 
 
@@ -3185,6 +3184,13 @@ double Ship::CurrentSpeed() const
 // Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
+	// If the damage source government deals a DoT effect to this ship that
+	// disables or kills it outside of this function call, that event should
+	// still be attributed to this government.
+	// Don't record hazards as having dealt the last hit (which have a nullptr
+	// source government).
+	if(sourceGovernment)
+		lastHitBy = sourceGovernment;
 	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
 
 	bool wasDisabled = IsDisabled();
@@ -3233,7 +3239,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				GameData::MessageCategories().Get("high duplicating")});
 	}
 
-	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
+	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event by itself.
 	if(levels.heat > MaximumHeat())
 	{
 		isOverheated = true;
@@ -3520,13 +3526,6 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 
 
 
-const Outfit &Ship::Attributes() const
-{
-	return attributes;
-}
-
-
-
 const Outfit &Ship::BaseAttributes() const
 {
 	return baseAttributes;
@@ -3742,9 +3741,21 @@ void Ship::SetFleeing(bool fleeing)
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
-	if(ship != GetTargetShip())
+	const shared_ptr<Ship> oldTarget = GetTargetShip();
+	if(ship != oldTarget)
 	{
+		// Remove this ship from the list of ships targeting the previous target.
+		if(oldTarget)
+			erase_if(oldTarget->targetingList, [this](const weak_ptr<Ship> &s) -> bool {
+				return s.lock().get() == this;
+			});
+
 		targetShip = ship;
+
+		// Add this ship to the list of ships targeting the target if it is an enemy.
+		if(ship && government->IsEnemy(ship->government))
+			ship->targetingList.push_back(weak_from_this());
+
 		// When you change targets, clear your scanning records.
 		cargoScan = 0.;
 		outfitScan = 0.;
@@ -3807,6 +3818,39 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 void Ship::SetFormationPattern(const FormationPattern *formationToSet)
 {
 	formationPattern = formationToSet;
+}
+
+
+
+const vector<weak_ptr<Ship>> &Ship::GetShipsTargetingThis() const
+{
+	return targetingList;
+}
+
+
+
+double Ship::GetTargeterStrength() const
+{
+	return targeterStrength;
+}
+
+
+
+void Ship::UpdateTargeterStrength()
+{
+	// Steady state is achieved by adding the strength of ships targeting this one and then decaying it.
+	targeterStrength = targeterStrength < 1. ? 0 : targeterStrength / 1.05;
+	for(auto it = targetingList.begin(); it != targetingList.end(); )
+	{
+		const shared_ptr<Ship> targeter = it->lock();
+		if(!targeter || targeter->IsDestroyed())
+		{
+			it = targetingList.erase(it);
+			continue;
+		}
+		targeterStrength += targeter->Strength();
+		++it;
+	}
 }
 
 
@@ -4003,6 +4047,8 @@ void Ship::DoGeneration()
 		if(bay.ship)
 			bay.ship->DoGeneration();
 
+	double minHull = MinimumHull();
+
 	// Shield and hull recharge. This uses whatever energy is left over from the
 	// previous frame, so that it will not steal energy from movement, etc.
 	if(!isDisabled)
@@ -4104,11 +4150,14 @@ void Ship::DoGeneration()
 			attrHandler.Damage(recoveryCost);
 
 			disabledRecoveryCounter = 0;
-			levels.hull = min(max(levels.hull, MinimumHull() * 1.5), MaxHull());
+			levels.hull = min(max(levels.hull, minHull * 1.5), MaxHull());
 			isDisabled = false;
 		}
 	}
 
+	// Handle ionization effects, etc.
+	bool wasDisabled = levels.hull < minHull;
+	bool wasDestroyed = IsDestroyed();
 	attrHandler.DoStatusEffects(isDisabled);
 
 	// When ships recharge, what actually happens is that they can exceed their
@@ -4128,6 +4177,11 @@ void Ship::DoGeneration()
 	}
 	else if(levels.heat < .9 * MaximumHeat())
 		isOverheated = false;
+
+	if(!wasDisabled && levels.hull < minHull)
+		unhandledEvents.emplace_back(lastHitBy, shared_from_this(), ShipEvent::DISABLE);
+	if(!wasDestroyed && IsDestroyed())
+		unhandledEvents.emplace_back(lastHitBy, shared_from_this(), ShipEvent::DESTROY);
 
 	double maxShields = MaxShields();
 	levels.shields = min(levels.shields, maxShields);
@@ -4325,6 +4379,9 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 
 	if(hyperspaceCount == HYPER_C)
 	{
+		// Track the movements of mission NPCs.
+		if(isSpecial && !isYours)
+			unhandledEvents.emplace_back(nullptr, shared_from_this(), ShipEvent::JUMP);
 		SetSystem(hyperspaceSystem);
 		hyperspaceSystem = nullptr;
 		targetSystem = nullptr;

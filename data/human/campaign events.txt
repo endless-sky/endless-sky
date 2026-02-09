@@ -535,6 +535,7 @@ event "remove pirates from Ildaria"
 
 mission "Ildaria Pirates Compatibility"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "event: initial deployment 2"
@@ -631,6 +632,7 @@ event "initial deployment 3"
 mission "Central Outfitters Expansion Trigger"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: initial deployment 2"
 	on offer
@@ -691,6 +693,7 @@ mission "Central Outfitters Expansion"
 mission "Southern Carriers Trigger"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: initial deployment 3"
 	on offer
@@ -1767,6 +1770,7 @@ event "fw prison on Clink closes"
 mission "FW Clink Prison Closes"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: fw prison on Clink"
 		or
@@ -2094,6 +2098,7 @@ event "navy expand typhoon sales"
 
 mission "Navy expands typhoon sales"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "event: deep sky tech available"
@@ -3314,6 +3319,7 @@ event "Deep memorial completed"
 mission "Deep Memorial Finished"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "main plot completed"
 	on offer
@@ -3341,6 +3347,7 @@ event "geminus rebuilt"
 mission "Geminus Rebuilt"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "main plot completed"
 	on offer
@@ -3357,6 +3364,7 @@ event "martini recovers"
 mission "Martini Recovers"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "main plot completed"
 	on offer
