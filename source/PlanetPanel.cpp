@@ -69,8 +69,6 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
-	PlanetPanel::Resize();
-	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
@@ -79,14 +77,14 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
-	Audio::BlockPausing();
+	Audio::Pause();
 }
 
 
 
 PlanetPanel::~PlanetPanel()
 {
-	Audio::UnblockPausing();
+	Audio::Resume();
 }
 
 
@@ -410,7 +408,7 @@ void PlanetPanel::TakeOffIfReady()
 			// Pop back the last ", " in the string.
 			shipNames.pop_back();
 			shipNames.pop_back();
-			GetUI().Push(new DialogPanel(this, &PlanetPanel::CheckWarningsAndTakeOff,
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &PlanetPanel::CheckWarningsAndTakeOff,
 				"Some of your ships in other systems are not able to fly:\n" + shipNames +
 				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
 			return;
@@ -549,7 +547,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		// Pool cargo together, so that the cargo number on the trading panel
 		// is still accurate while the popup is active.
 		player.PoolCargo();
-		GetUI().Push(new DialogPanel(this, &PlanetPanel::WarningsDialogCallback, out.str()));
+		GetUI().Push(DialogPanel::CallFunctionOnExit(this, &PlanetPanel::WarningsDialogCallback, out.str()));
 		return;
 	}
 

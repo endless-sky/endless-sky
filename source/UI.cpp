@@ -161,6 +161,7 @@ void UI::Push(const shared_ptr<Panel> &panel)
 {
 	toPush.push_back(panel);
 	panel->SetUI(this);
+	panel->DoResize();
 }
 
 

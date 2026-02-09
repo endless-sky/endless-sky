@@ -489,14 +489,15 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 					// The load sums are in nanoseconds, accumulated throughout the last second, so divide
 					// by 10^6 to get milliseconds, then by 60 (or 180 with fast-forward for the CPU load)
 					// to get the average milliseconds per step.
-					// In case of percentage, 100% is exactly one second, so divide by 10^7.
+					// Percentages are the percentage of a second that was required for the calculations and drawing,
+					// so divide by the number of nanoseconds in a second (10^9).
 					auto cpuNano = chrono::duration_cast<chrono::nanoseconds>(cpuLoadSum).count();
-					cpuLoadString = "CPU: " + Format::Decimal(cpuNano / (isFastForward && inFlight ? 1.8e8 : 6e7), 2)
-						+ " ms (" + to_string(static_cast<int>(round(cpuNano / 1e7))) + "%)";
+					cpuLoadString = "CPU: " + Format::Number(cpuNano / (isFastForward && inFlight ? 1.8e8 : 6e7), 2, false)
+						+ " ms (" + Format::Percentage(cpuNano / 1e9, 0) + ")";
 					cpuLoadSum = {};
 					auto gpuNano = chrono::duration_cast<chrono::nanoseconds>(gpuLoadSum).count();
-					gpuLoadString = "GPU: " + Format::Decimal(gpuNano / 6e7, 2)
-						+ " ms (" + to_string(static_cast<int>(round(gpuNano / 1e7))) + "%)";
+					gpuLoadString = "GPU: " + Format::Number(gpuNano / 6e7, 2, false)
+						+ " ms (" + Format::Percentage(gpuNano / 1e9, 0) + ")";
 					gpuLoadSum = {};
 					// Get how much memory we have (in bytes).
 					static size_t virtualMemoryUse;
@@ -516,7 +517,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 					virtualMemoryUse = stoul(statmStr) * getpagesize();
 #endif
 					// bytes / (1024 * 1024) = megabytes
-					memoryString = "MEM: " + Format::Decimal(virtualMemoryUse / 1048576., 2) + " MB";
+					memoryString = "MEM: " + Format::Number(virtualMemoryUse / 1048576., 2, false) + " MB";
 					isPerformanceDisplayReady = true;
 				}
 			}

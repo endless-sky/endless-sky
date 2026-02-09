@@ -168,6 +168,7 @@ mission "Kestrel Testing"
 mission "Kestrel: More Weapons"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "kestrel: more weapons"
 	on offer
@@ -179,6 +180,7 @@ mission "Kestrel: More Weapons"
 mission "Kestrel: More Engines"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "kestrel: more engines"
 	on offer
@@ -190,6 +192,7 @@ mission "Kestrel: More Engines"
 mission "Kestrel: More Shields"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "kestrel: more shields"
 	on offer
@@ -201,6 +204,7 @@ mission "Kestrel: More Shields"
 mission "Kestrel: More Bays"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "kestrel: more bays"
 	on offer

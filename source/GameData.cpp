@@ -67,6 +67,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UniverseObjects.h"
 
 #include <algorithm>
+#include <cassert>
 #include <filesystem>
 #include <iostream>
 #include <queue>
@@ -87,6 +88,8 @@ namespace {
 	Set<Wormhole> defaultWormholes;
 	Set<Person> defaultPersons;
 	TextReplacements defaultSubstitutions;
+
+	const Gamerules *activeGamerules = nullptr;
 
 	Politics politics;
 
@@ -177,9 +180,11 @@ void GameData::FinishLoading()
 	defaultGalaxies = objects.galaxies;
 	defaultShipSales = objects.shipSales;
 	defaultOutfitSales = objects.outfitSales;
-	defaultSubstitutions = objects.substitutions;
 	defaultWormholes = objects.wormholes;
 	defaultPersons = objects.persons;
+	defaultSubstitutions = objects.substitutions;
+
+	activeGamerules = objects.gamerulesPresets.Get("Default");
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -297,9 +302,12 @@ void GameData::Revert()
 	objects.galaxies.Revert(defaultGalaxies);
 	objects.shipSales.Revert(defaultShipSales);
 	objects.outfitSales.Revert(defaultOutfitSales);
-	objects.substitutions.Revert(defaultSubstitutions);
 	objects.wormholes.Revert(defaultWormholes);
 	objects.persons.Revert(defaultPersons);
+	objects.substitutions.Revert(defaultSubstitutions);
+
+	activeGamerules = objects.gamerulesPresets.Get("Default");
+
 	for(auto &it : objects.persons)
 		it.second.Restore();
 
@@ -697,6 +705,13 @@ const Set<Wormhole> &GameData::Wormholes()
 
 
 
+const Set<Gamerules> &GameData::GamerulesPresets()
+{
+	return objects.gamerulesPresets;
+}
+
+
+
 const std::set<std::string> &GameData::UniverseWormholeRequirements()
 {
 	return objects.universeWormholeRequirements;
@@ -886,7 +901,24 @@ const TextReplacements &GameData::GetTextReplacements()
 
 const Gamerules &GameData::GetGamerules()
 {
-	return objects.gamerules;
+	if(!activeGamerules)
+		activeGamerules = objects.gamerulesPresets.Get("Default");
+
+	return *activeGamerules;
+}
+
+
+
+void GameData::SetGamerules(const Gamerules *gamerules)
+{
+	activeGamerules = gamerules;
+}
+
+
+
+const Gamerules &GameData::DefaultGamerules()
+{
+	return *(objects.gamerulesPresets.Get("Default"));
 }
 
 

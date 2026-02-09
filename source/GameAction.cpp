@@ -111,7 +111,7 @@ namespace {
 				special += " put in your cargo hold because there is not enough space to install ";
 				special += (isSingle ? "it" : "them");
 				special += " in your ship.";
-				ui->Push(new DialogPanel(special));
+				ui->Push(DialogPanel::Info(special));
 			}
 		}
 		if(didCargo && didShip)
@@ -365,6 +365,10 @@ string GameAction::Validate() const
 
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
+
+	for(const auto &message : messages)
+		if(!message->IsLoaded())
+			return "message \"" + message->TrueName() + "\"";
 
 	return "";
 }
