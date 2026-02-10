@@ -86,9 +86,6 @@ public:
 
 	// Functions for classes outside of Ship to get the cached values
 	// and determine what this ship is capable of.
-	double FuelCapacity() const;
-	double EnergyCapacity() const;
-
 	double CargoScanPower() const;
 	double OutfitScanPower() const;
 	double AsteroidScanPower() const;
@@ -157,7 +154,6 @@ private:
 	Ship *ship = nullptr;
 	const Outfit *attributes = nullptr;
 	ResourceLevels *shipLevels = nullptr;
-	ResourceLevels *shipCapacities = nullptr;
 
 	double outfitCapacity = 0.;
 	double weaponCapacity = 0.;

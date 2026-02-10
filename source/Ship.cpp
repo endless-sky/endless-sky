@@ -1290,7 +1290,7 @@ vector<string> Ship::FlightCheck() const
 	// Report the first error condition that will prevent takeoff:
 	if(!bunks && RequiredCrew())
 		checks.emplace_back("no bunks!");
-	else if(IdleHeat() >= MaximumHeat())
+	else if(IdleHeat() >= MaxHeat())
 		checks.emplace_back("overheating!");
 	else if(energy <= 0.)
 		checks.emplace_back("no energy!");
@@ -1794,7 +1794,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		SetShipToAssist(weak_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
-		victim->levels.hull = min(max(victim->levels.hull, victim->MinimumHull() * 1.5), victim->MaxHull());
+		victim->levels.hull = min(max(victim->levels.hull, victim->minimumHull * 1.5), victim->MaxHull());
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
 		if(victim->NeedsFuel() && CanRefuel(*victim))
@@ -2247,7 +2247,6 @@ bool Ship::IsDisabled() const
 	if(!isDisabled)
 		return false;
 
-	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
 	return (levels.hull < minimumHull || (!crew && needsCrew));
 }
@@ -2524,7 +2523,7 @@ const vector<Ship::EnginePoint> &Ship::SteeringEnginePoints() const
 void Ship::Disable()
 {
 	levels.shields = 0.;
-	levels.hull = min(levels.hull, .5 * MinimumHull());
+	levels.hull = min(levels.hull, .5 * minimumHull);
 	isDisabled = true;
 }
 
@@ -2655,7 +2654,7 @@ double Ship::TransferEnergy(double amount, Ship *to)
 int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where this ship is just barely not disabled.
-	levels.hull = min(max(levels.hull, MinimumHull() * 1.5), MaxHull());
+	levels.hull = min(max(levels.hull, minimumHull * 1.5), MaxHull());
 	isDisabled = false;
 
 	// Set the new government.
@@ -2814,7 +2813,7 @@ double Ship::IdleHeat() const
 	// heat = heat - heat * (diss + activeCool / maxHeat) + (heatGen - cool)
 	// heat * (diss + activeCool / maxHeat) = (heatGen - cool)
 	double production = max(0., attrHandler.heatGeneration - cooling);
-	double dissipation = HeatDissipation() + activeCooling / MaximumHeat();
+	double dissipation = HeatDissipation() + activeCooling / MaxHeat();
 	if(!dissipation)
 		return production ? numeric_limits<double>::max() : 0;
 	return production / dissipation;
@@ -2831,7 +2830,7 @@ double Ship::HeatDissipation() const
 
 
 // Get the maximum heat level, in heat units (not temperature).
-double Ship::MaximumHeat() const
+double Ship::MaxHeat() const
 {
 	return MAXIMUM_TEMPERATURE * (cargo.Used() + attributes.Mass() + attrHandler.heatCapacity);
 }
@@ -3119,12 +3118,12 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event by itself.
-	if(levels.heat > MaximumHeat())
+	if(levels.heat > MaxHeat())
 	{
 		isOverheated = true;
 		isDisabled = true;
 	}
-	else if(levels.heat < .9 * MaximumHeat())
+	else if(levels.heat < .9 * MaxHeat())
 		isOverheated = false;
 
 	// If this ship did not consider itself an enemy of the ship that hit it,
@@ -3926,8 +3925,6 @@ void Ship::DoGeneration()
 		if(bay.ship)
 			bay.ship->DoGeneration();
 
-	double minHull = MinimumHull();
-
 	// Shield and hull recharge. This uses whatever energy is left over from the
 	// previous frame, so that it will not steal energy from movement, etc.
 	if(!isDisabled)
@@ -4029,13 +4026,13 @@ void Ship::DoGeneration()
 			attrHandler.Damage(recoveryCost);
 
 			disabledRecoveryCounter = 0;
-			levels.hull = min(max(levels.hull, minHull * 1.5), MaxHull());
+			levels.hull = min(max(levels.hull, minimumHull * 1.5), MaxHull());
 			isDisabled = false;
 		}
 	}
 
 	// Handle ionization effects, etc.
-	bool wasDisabled = levels.hull < minHull;
+	bool wasDisabled = levels.hull < minimumHull;
 	bool wasDestroyed = IsDestroyed();
 	attrHandler.DoStatusEffects(isDisabled);
 
@@ -4047,17 +4044,17 @@ void Ship::DoGeneration()
 	levels.fuel = min(levels.fuel, capacities.fuel);
 
 	levels.heat -= levels.heat * HeatDissipation();
-	if(levels.heat > MaximumHeat())
+	if(levels.heat > MaxHeat())
 	{
 		isOverheated = true;
 		double heatRatio = Heat() / attrHandler.overheatDamageThreshold;
 		if(heatRatio > 1.)
 			levels.hull -= attrHandler.overheatDamageRate * heatRatio;
 	}
-	else if(levels.heat < .9 * MaximumHeat())
+	else if(levels.heat < .9 * MaxHeat())
 		isOverheated = false;
 
-	if(!wasDisabled && levels.hull < minHull)
+	if(!wasDisabled && levels.hull < minimumHull)
 		unhandledEvents.emplace_back(lastHitBy, shared_from_this(), ShipEvent::DISABLE);
 	if(!wasDestroyed && IsDestroyed())
 		unhandledEvents.emplace_back(lastHitBy, shared_from_this(), ShipEvent::DESTROY);
@@ -4067,7 +4064,7 @@ void Ship::DoGeneration()
 	double maxHull = MaxHull();
 	levels.hull = min(levels.hull, maxHull);
 
-	isDisabled = isOverheated || levels.hull < MinimumHull() || (!crew && RequiredCrew());
+	isDisabled = isOverheated || levels.hull < minimumHull || (!crew && RequiredCrew());
 
 	// Update ship supply levels.
 	if(isDisabled)
@@ -4843,7 +4840,7 @@ double Ship::CalculateDeterrence() const
 					+ weapon->RelativeEnergyDamage() * capacities.energy
 					+ weapon->IonDamage() * 100.;
 			double heatFactor = weapon->HeatDamage()
-					+ weapon->RelativeHeatDamage() * MaximumHeat()
+					+ weapon->RelativeHeatDamage() * MaxHeat()
 					+ weapon->BurnDamage() * 100.;
 			double fuelFactor = weapon->FuelDamage()
 					+ weapon->RelativeFuelDamage() * capacities.fuel

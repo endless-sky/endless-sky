@@ -182,13 +182,13 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 			* (1. - hullFraction);
 	}
 	damage.levels.energy = (weapon.EnergyDamage()
-		+ weapon.RelativeEnergyDamage() * attrHandler.EnergyCapacity())
+		+ weapon.RelativeEnergyDamage() * ship.MaxEnergy())
 		* ScaleType(.5, 0., attrHandler.DamageProtection().energy);
 	damage.levels.heat = (weapon.HeatDamage()
-		+ weapon.RelativeHeatDamage() * ship.MaximumHeat())
+		+ weapon.RelativeHeatDamage() * ship.MaxHeat())
 		* ScaleType(.5, 0., attrHandler.DamageProtection().heat);
 	damage.levels.fuel = (weapon.FuelDamage()
-		+ weapon.RelativeFuelDamage() * attrHandler.FuelCapacity())
+		+ weapon.RelativeFuelDamage() * ship.MaxFuel())
 		* ScaleType(.5, 0., attrHandler.DamageProtection().fuel);
 
 	// DoT damage types with an instantaneous analog.

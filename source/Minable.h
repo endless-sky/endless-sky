@@ -89,7 +89,7 @@ public:
 	const int64_t &GetValue() const;
 
 	double Mass() const override;
-	double MaximumHeat() const override;
+	double MaxHeat() const override;
 
 
 private:

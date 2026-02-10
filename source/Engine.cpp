@@ -767,7 +767,7 @@ void Engine::Step(bool isActive)
 		}
 		else if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
 			info.SetCondition("red alert");
-		double fuelCap = flagship->AttributeHandler().FuelCapacity();
+		double fuelCap = flagship->MaxFuel();
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every 100 units of fuel.
 		if(fuelCap <= MAX_FUEL_DISPLAY)
@@ -952,13 +952,13 @@ void Engine::Step(bool isActive)
 			if((targetRange <= energyScanRange && scrutable) || (energyScanRange && target->IsYours()))
 			{
 				info.SetCondition("target energy display");
-				int energy = round(target->Energy() * target->AttributeHandler().EnergyCapacity());
+				int energy = round(target->EnergyLevel());
 				info.SetString("target energy", to_string(energy));
 			}
 			if((targetRange <= fuelScanRange && scrutable) || (fuelScanRange && target->IsYours()))
 			{
 				info.SetCondition("target fuel display");
-				int fuel = round(target->Fuel() * target->AttributeHandler().FuelCapacity());
+				int fuel = round(target->FuelLevel());
 				info.SetString("target fuel", to_string(fuel));
 			}
 			if((targetRange <= thermalScanRange && scrutable) || (thermalScanRange && target->IsYours()))

@@ -1097,7 +1097,7 @@ void MapPanel::DrawTravelPlan()
 				continue;
 			}
 
-			fuel[it.get()] = it->Fuel() * it->AttributeHandler().FuelCapacity();
+			fuel[it.get()] = it->Fuel() * it->MaxFuel();
 			hasEscort |= (it.get() != flagship);
 		}
 	stranded |= !hasEscort;

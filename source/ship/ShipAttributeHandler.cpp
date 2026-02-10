@@ -30,7 +30,6 @@ void ShipAttributeHandler::Setup(Ship *parent)
 	ship = parent;
 	attributes = &parent->Attributes();
 	shipLevels = &parent->levels;
-	shipCapacities = &parent->capacities;
 }
 
 
@@ -241,11 +240,11 @@ ResourceLevels ShipAttributeHandler::FiringCost(const Weapon &weapon) const
 {
 	ResourceLevels cost;
 
-	cost.hull = weapon.FiringHull() + weapon.RelativeFiringHull() * shipCapacities->hull;
-	cost.shields = weapon.FiringShields() + weapon.RelativeFiringShields() * shipCapacities->shields;
-	cost.energy = weapon.FiringEnergy() + weapon.RelativeFiringEnergy() * shipCapacities->energy;
-	cost.heat = weapon.FiringHeat() + weapon.RelativeFiringHeat() * ship->MaximumHeat();
-	cost.fuel = weapon.FiringFuel() + weapon.RelativeFiringFuel() * shipCapacities->fuel;
+	cost.hull = weapon.FiringHull() + weapon.RelativeFiringHull() * ship->MaxHull();
+	cost.shields = weapon.FiringShields() + weapon.RelativeFiringShields() * ship->MaxShields();
+	cost.energy = weapon.FiringEnergy() + weapon.RelativeFiringEnergy() * ship->MaxEnergy();
+	cost.heat = weapon.FiringHeat() + weapon.RelativeFiringHeat() * ship->MaxHeat();
+	cost.fuel = weapon.FiringFuel() + weapon.RelativeFiringFuel() * ship->MaxFuel();
 
 	cost.corrosion = weapon.FiringCorrosion();
 	cost.discharge = weapon.FiringDischarge();
@@ -316,20 +315,6 @@ void ShipAttributeHandler::Damage(const ResourceLevels &damage, double scale) co
 	shipLevels->leakage += scale * damage.leakage;
 	shipLevels->disruption += scale * damage.disruption;
 	shipLevels->slowness += scale * damage.slowness;
-}
-
-
-
-double ShipAttributeHandler::FuelCapacity() const
-{
-	return shipCapacities->fuel;
-}
-
-
-
-double ShipAttributeHandler::EnergyCapacity() const
-{
-	return shipCapacities->energy;
 }
 
 
@@ -556,25 +541,30 @@ double ShipAttributeHandler::ForceProtection() const
 
 void ShipAttributeHandler::Capacity()
 {
-	shipCapacities->hull = attributes->Get("hull") * (1 + attributes->Get("hull multiplier"));
-	shipCapacities->shields = attributes->Get("shields") * (1 + attributes->Get("shield multiplier"));
-	shipCapacities->energy = attributes->Get("energy capacity");
+	ship->capacities.hull = attributes->Get("hull") * (1 + attributes->Get("hull multiplier"));
+	ship->capacities.shields = attributes->Get("shields") * (1 + attributes->Get("shield multiplier"));
+	ship->capacities.energy = attributes->Get("energy capacity");
 	// Heat capacity is dictated by factors other than attributes
 	// and therefore isn't saved here.
-	shipCapacities->fuel = attributes->Get("fuel capacity");
+	ship->capacities.fuel = attributes->Get("fuel capacity");
 
 	// DoT counters do not have capacities.
 
-	double absoluteThreshold = attributes->Get("absolute threshold");
-	if(absoluteThreshold > 0.)
-		ship->minimumHull = absoluteThreshold;
+	if(ship->neverDisabled)
+		ship->minimumHull = 0.;
 	else
 	{
-		double thresholdPercent = attributes->Get("threshold percentage");
-		double transition = 1 / (1 + 0.0005 * shipCapacities->hull);
-		ship->minimumHull = shipCapacities->hull * (thresholdPercent > 0.
-			? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
-		ship->minimumHull = max(0., floor(ship->minimumHull + attributes->Get("hull threshold")));
+		double absoluteThreshold = attributes->Get("absolute threshold");
+		if(absoluteThreshold > 0.)
+			ship->minimumHull = absoluteThreshold;
+		else
+		{
+			double thresholdPercent = attributes->Get("threshold percentage");
+			double transition = 1 / (1 + 0.0005 * ship->capacities.hull);
+			ship->minimumHull = ship->capacities.hull * (thresholdPercent > 0.
+				? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
+			ship->minimumHull = max(0., floor(ship->minimumHull + attributes->Get("hull threshold")));
+		}
 	}
 
 	outfitCapacity = ship->BaseAttributes().Get("outfit space");

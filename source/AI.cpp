@@ -290,7 +290,7 @@ namespace {
 			return false;
 
 		// If the ship doesn't have fuel, no refuel.
-		double fuelCapacity = ship.AttributeHandler().FuelCapacity();
+		double fuelCapacity = ship.MaxFuel();
 		if(!fuelCapacity)
 			return false;
 
@@ -1193,7 +1193,7 @@ void AI::Step(Command &activeCommands)
 			MoveIndependent(*it, command);
 		else if(parent->GetSystem() != it->GetSystem())
 		{
-			if(personality.IsStaying() || !it->AttributeHandler().FuelCapacity())
+			if(personality.IsStaying() || !it->MaxFuel())
 				MoveIndependent(*it, command);
 			else
 				MoveEscort(*it, command);
@@ -2144,7 +2144,7 @@ void AI::MoveIndependent(Ship &ship, Command &command)
 	else if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
-		if(!shouldStay && ship.AttributeHandler().FuelCapacity() && ship.GetTargetStellar()->HasSprite()
+		if(!shouldStay && ship.MaxFuel() && ship.GetTargetStellar()->HasSprite()
 				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
@@ -2177,7 +2177,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 {
 	const Ship &parent = *ship.GetParent();
 	const System *currentSystem = ship.GetSystem();
-	bool hasFuelCapacity = ship.AttributeHandler().FuelCapacity();
+	bool hasFuelCapacity = ship.MaxFuel();
 	bool needsFuel = ship.NeedsFuel();
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (currentSystem == parent.GetSystem());
@@ -2457,9 +2457,9 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 
 	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.
-	double maxFuel = ship.AttributeHandler().FuelCapacity();
+	double maxFuel = ship.MaxFuel();
 	if(maxFuel && ship.Fuel() < .005 && parent.JumpNavigation().JumpFuel() < parent.Fuel() *
-			parent.AttributeHandler().FuelCapacity() - maxFuel)
+			parent.MaxFuel() - maxFuel)
 		return true;
 
 	// NPC ships should always transfer cargo. Player ships should only
@@ -4025,7 +4025,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		// fuel that you cannot leave the system if necessary.
 		if(weapon->FiringFuel())
 		{
-			double fuel = ship.Fuel() * ship.AttributeHandler().FuelCapacity();
+			double fuel = ship.Fuel() * ship.MaxFuel();
 			fuel -= weapon->FiringFuel();
 			// If the ship is not ever leaving this system, it does not need to
 			// reserve any fuel.

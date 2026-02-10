@@ -59,9 +59,14 @@ public:
 	double HeatLevel() const;
 	double DisruptionLevel() const;
 
-	// Get the maximum shield and hull values of the entity.
+	// Get the maximum resource level values of the entity.
 	double MaxShields() const;
 	double MaxHull() const;
+	double MaxEnergy() const;
+	double MaxFuel() const;
+	// Get the maximum heat level, in heat units (not temperature).
+	virtual double MaxHeat() const = 0;
+
 	// Get the hull amount at which this entity is disabled.
 	double MinimumHull() const;
 
@@ -75,9 +80,6 @@ public:
 	double HullUntilDisabled() const;
 	// Whether this entity is currently disabled.
 	virtual bool IsDisabled() const;
-
-	// Get the maximum heat level, in heat units (not temperature).
-	virtual double MaximumHeat() const = 0;
 
 	// Whether this entity can be targeted by ships and projectiles.
 	virtual bool IsTargetable() const;

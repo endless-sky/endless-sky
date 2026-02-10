@@ -69,7 +69,7 @@ double Entity::Energy() const
 
 double Entity::Heat() const
 {
-	double maximum = this->MaximumHeat();
+	double maximum = this->MaxHeat();
 	return maximum ? levels.heat / maximum : 1.;
 }
 
@@ -131,11 +131,22 @@ double Entity::MaxHull() const
 
 
 
+double Entity::MaxEnergy() const
+{
+	return capacities.energy;
+}
+
+
+
+double Entity::MaxFuel() const
+{
+	return capacities.fuel;
+}
+
+
+
 double Entity::MinimumHull() const
 {
-	if(neverDisabled)
-		return 0.;
-
 	return minimumHull;
 }
 
@@ -143,7 +154,6 @@ double Entity::MinimumHull() const
 
 double Entity::Health() const
 {
-	double minimumHull = MinimumHull();
 	double hullDivisor = MaxHull() - minimumHull;
 	double divisor = MaxShields() + hullDivisor;
 	// This should not happen, but just in case.
@@ -159,10 +169,7 @@ double Entity::Health() const
 
 double Entity::DisabledHull() const
 {
-	double hull = MaxHull();
-	double minimumHull = MinimumHull();
-
-	return (hull > 0. ? minimumHull / hull : 0.);
+	return (capacities.hull > 0. ? minimumHull / capacities.hull : 0.);
 }
 
 
@@ -172,7 +179,7 @@ double Entity::HullUntilDisabled() const
 	// Ships become disabled when they surpass their minimum hull threshold,
 	// not when they are directly on it, so account for this by adding a small amount
 	// of hull above the current hull level.
-	return max(0., levels.hull + 0.25 - MinimumHull());
+	return max(0., levels.hull + 0.25 - minimumHull);
 }
 
 
@@ -182,7 +189,7 @@ bool Entity::IsDisabled() const
 	if(!isDisabled || neverDisabled)
 		return false;
 
-	return levels.hull < MinimumHull();
+	return levels.hull < minimumHull;
 }
 
 
