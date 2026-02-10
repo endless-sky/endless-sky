@@ -99,11 +99,7 @@ namespace {
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
-#ifdef _WIN32
 	const int SETTINGS_PAGE_COUNT = 3;
-#else
-	const int SETTINGS_PAGE_COUNT = 2;
-#endif
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -764,25 +760,34 @@ void PreferencesPanel::DrawSettings()
 		"Performance",
 		"Show CPU / GPU load",
 		LARGE_GRAPHICS_REDUCTION,
+		"Defer loading images",
 		SHIP_OUTLINES,
 		HUD_SHIP_OUTLINES,
 		"",
-		"Gameplay",
+		"Map",
+		"Deadline blink by distance",
+		"Hide unexplored map regions",
+		"Show escort systems on map",
+		"Show stored outfits on map",
+		"\n",
+		"Flagship Behavior",
 		"Control ship with mouse",
 		"Aim turrets with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
-		TURRET_TRACKING,
 		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
+		"Rehire extra crew when lost",
+		"Automatically unpark flagship",
+		FLAGSHIP_SPACE_PRIORITY,
+		"",
+		"Fleet Behavior",
+		TURRET_TRACKING,
 		EXPEND_AMMO,
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
-		"Rehire extra crew when lost",
-		"Automatically unpark flagship",
-		FLAGSHIP_SPACE_PRIORITY,
-		"\n",
+		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
 		STATUS_OVERLAYS_FLAGSHIP,
@@ -799,13 +804,7 @@ void PreferencesPanel::DrawSettings()
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
-		"\t",
-		"Map",
-		"Deadline blink by distance",
-		"Hide unexplored map regions",
-		"Show escort systems on map",
-		"Show stored outfits on map",
-		"",
+		"\n",
 		"Other",
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
@@ -818,7 +817,7 @@ void PreferencesPanel::DrawSettings()
 		NOTIFY_ON_DEST,
 		"Save message log",
 #ifdef _WIN32
-		"\n",
+		"\t",
 		"Windows Options",
 		TITLE_BAR_THEME,
 		WINDOW_ROUNDING
