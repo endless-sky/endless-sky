@@ -527,6 +527,9 @@ outfit "External Launch Rail"
 		"stream"
 		"submunition" "Ophrys Terminal"
 	description "This pylon externally mounts a single torpedo, employing a small electromagnetic catapult to fling its payload towards a nearby target."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 
 outfit "External Launch Tube"
@@ -566,6 +569,9 @@ outfit "External Launch Tube"
 		"stream"
 		"submunition" "Orchid Active"
 	description "This is a large launcher capable of carrying and deploying large torch-driven missiles and torpedoes. With a standardized design, it is compatible with a wide range of Avgi torch missiles. A coilgun-based ejection system allows missiles to be deployed with considerable initial velocity."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 
 outfit "Tiny VLS"
@@ -611,6 +617,8 @@ outfit "Tiny VLS"
 	description "This tiny vertical launch system contains nine independent launch cells, each occupying one ton of outfit space. Compatible with small-to-medium Avgi missiles, the cells' contents can be easily swapped to suit a given mission. This array's compact footprint makes it suitable for drones and fighters, though the system still requires a turret mount."
 	description "	Vertical launch systems enable rapid and versatile missile deployment, but as dual launchers and magazines, no separate missile storage is available."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Small VLS"
 	"display name" "Vertical Launch Array (18)"
@@ -655,6 +663,8 @@ outfit "Small VLS"
 	description "This small vertical launch system contains 18 independent launch cells in a rectangular array. Designed for flexibility, the system can employ a variety of small or medium-sized missiles. Owing to its large surface footprint, a turret mount is required for the launcher to deploy missiles safely."
 	description "	Vertical launch systems enable rapid and versatile missile deployment, but as dual launchers and magazines, no separate missile storage is available."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Medium VLS"
 	"display name" "Vertical Launch Array (36)"
@@ -1024,3 +1034,23 @@ effect "fission fragments"
 	"random spin" 6
 	"random velocity" 6
 	"velocity scale" 0.3
+
+outfitter "Ophrys Nuclear Missile Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		has "outfit: External Launch Tube"
+	location
+		attributes "outfitter"
+	stock
+		`"Orchid" Nuclear Missile`
+
+outfitter "Ophrys Nuclear Torpedo Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		or
+			has "outfit: External Launch Rail"
+			has "outfit: Ophrys Stockpile"
+	location
+		attributes "outfitter"
+	stock
+		`"Ophrys" Nuclear Torpedo`
