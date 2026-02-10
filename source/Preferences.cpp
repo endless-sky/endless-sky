@@ -179,7 +179,7 @@ namespace {
 	int largeGraphicsReductionIndex = 0;
 
 	const vector<string> TRIBUTE_CONFIRMATION_SETTINGS = {"off", "friendly only", "always"};
-	int tributeConfirmationIndex = 2;
+	int tributeConfirmationIndex = 1;
 
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 
