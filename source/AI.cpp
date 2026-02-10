@@ -2458,8 +2458,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.
 	double maxFuel = ship.MaxFuel();
-	if(maxFuel && ship.Fuel() < .005 && parent.JumpNavigation().JumpFuel() < parent.Fuel() *
-			parent.MaxFuel() - maxFuel)
+	if(maxFuel && ship.Fuel() < .005 && parent.JumpNavigation().JumpFuel() < parent.FuelLevel() - maxFuel)
 		return true;
 
 	// NPC ships should always transfer cargo. Player ships should only
@@ -4025,7 +4024,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		// fuel that you cannot leave the system if necessary.
 		if(weapon->FiringFuel())
 		{
-			double fuel = ship.Fuel() * ship.MaxFuel();
+			double fuel = ship.FuelLevel();
 			fuel -= weapon->FiringFuel();
 			// If the ship is not ever leaving this system, it does not need to
 			// reserve any fuel.
