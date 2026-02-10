@@ -214,7 +214,7 @@ void ImageSet::Load() noexcept(false)
 		const string fileName = "\"" + name + "\" frame #" + to_string(i);
 		if(!loadedFrames)
 		{
-			Logger::Log("Failed to read image data for \"" + fileName, Logger::Level::WARNING);
+			Logger::Log("Failed to read image data for " + fileName, Logger::Level::WARNING);
 			continue;
 		}
 		// If we loaded an image sequence, clear all other buffers.
@@ -267,10 +267,9 @@ void ImageSet::LoadDimensions(Sprite *sprite) noexcept(false)
 	size_t frames = paths[0].size();
 	buffer[0].Clear(frames);
 	int loadedFrames = buffer[0].Read(paths[0][0], 0, true);
-	const string fileName = "\"" + name + "\" frame #0";
 	if(!loadedFrames)
 	{
-		Logger::Log("Failed to read image data for \"" + fileName, Logger::Level::WARNING);
+		Logger::Log("Failed to read image data for \"" + name + "\" frame #0.", Logger::Level::WARNING);
 		return;
 	}
 	sprite->LoadDimensions(buffer[0]);

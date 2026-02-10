@@ -123,6 +123,9 @@ void ConversationPanel::SetCallback(function<void(int)> fun)
 
 void ConversationPanel::Step()
 {
+	// Load any and deferred scenes that may appear in the conversation.
+	// This is done here instead of in the constructor because the constructor
+	// does not have access to the UI stack.
 	if(!hasLoadedScenes)
 	{
 		hasLoadedScenes = true;

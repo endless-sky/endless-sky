@@ -55,7 +55,7 @@ namespace {
 	map<const Sprite *, int> loadedThumbnails;
 	// Scenes are culled the moment the panel that uses them is destroyed.
 	set<const Sprite *> loadedScenes;
-	// Missions and events can add new sprites to the player's current area that may need loaded.
+	// Missions and events can add new sprites to the player's current area that may need to be loaded.
 	// The code that makes these changes may not have access to the TaskQueue in UI, so they
 	// instead send a message to the SpriteLoadManager to tell the current Panel to recheck which
 	// sprites should be loaded.
@@ -146,7 +146,7 @@ void SpriteLoadManager::Init(TaskQueue &queue, map<string, shared_ptr<ImageSet>>
 		if(IsDeferredFolder(name))
 			deferred[SpriteSet::Get(name)] = imageSet;
 		lock_guard lock(imageQueueMutex);
-		imageQueue.push(std::move(std::move(imageSet)));
+		imageQueue.push(std::move(imageSet));
 		++totalSprites;
 	}
 	queuedAllImages = true;
@@ -223,7 +223,7 @@ void SpriteLoadManager::PreloadLandscape(TaskQueue &queue, const Sprite *sprite)
 	map<const Sprite *, int>::iterator pit = preloadedLandscapes.find(sprite);
 	if(pit != preloadedLandscapes.end())
 	{
-		for(pair<const Sprite * const, int> &it : preloadedLandscapes)
+		for(pair<const Sprite *const, int> &it : preloadedLandscapes)
 			if(it.second < pit->second)
 				++it.second;
 
@@ -294,8 +294,8 @@ void SpriteLoadManager::LoadThumbnail(TaskQueue &queue, const Sprite *sprite)
 
 void SpriteLoadManager::CullOldImages(TaskQueue &queue)
 {
-	auto Cull = [&queue](map<const Sprite *, int> loadedSprites) -> void {
-		for(auto it = loadedSprites.begin() ; it != loadedSprites.end() ; )
+	auto Cull = [&queue](map<const Sprite *, int> &loadedSprites) -> void {
+		for(auto it = loadedSprites.begin(); it != loadedSprites.end(); )
 		{
 			++it->second;
 			if(it->second >= DAY_LIMIT)
