@@ -90,7 +90,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 
 	TaskQueue queue;
 	for(const StartConditions &scenario : scenarios)
-		SpriteLoadManager::LoadScene(queue, scenario.GetThumbnail());
+		SpriteLoadManager::LoadDeferred(queue, scenario.GetThumbnail());
 	queue.Wait();
 	queue.ProcessSyncTasks();
 }

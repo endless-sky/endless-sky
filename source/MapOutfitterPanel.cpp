@@ -63,7 +63,7 @@ void MapOutfitterPanel::LoadCatalogThumbnails() const
 {
 	for(const auto &category : catalog)
 		for(const string &entry : category.second)
-			SpriteLoadManager::LoadThumbnail(GetUI().AsyncQueue(), GameData::Outfits().Get(entry)->Thumbnail());
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), GameData::Outfits().Get(entry)->Thumbnail());
 }
 
 

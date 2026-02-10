@@ -53,7 +53,8 @@ namespace {
 	const int DAY_LIMIT = 100;
 	map<const Sprite *, int> loadedStellarObjects;
 	map<const Sprite *, int> loadedThumbnails;
-	// Scenes are culled the moment the panel that uses them is destroyed.
+	// Scenes remain loaded for only one in-game day before they're culled, as they are not commonly requested.
+	// Most scenes are only ever used in a single conversation, for example.
 	set<const Sprite *> loadedScenes;
 	// Missions and events can add new sprites to the player's current area that may need to be loaded.
 	// The code that makes these changes may not have access to the TaskQueue in UI, so they
@@ -210,84 +211,23 @@ bool SpriteLoadManager::IsDeferred(const Sprite *sprite)
 
 
 
-void SpriteLoadManager::PreloadLandscape(TaskQueue &queue, const Sprite *sprite)
+void SpriteLoadManager::LoadDeferred(TaskQueue &queue, const Sprite *sprite)
 {
 	// Make sure this sprite actually is one that uses deferred loading.
 	auto dit = deferred.find(sprite);
 	if(!sprite || dit == deferred.end())
 		return;
 
-	// If this sprite is one of the currently loaded ones, there is no need to
-	// load it again. But, make note of the fact that it is the most recently
-	// asked-for sprite.
-	map<const Sprite *, int>::iterator pit = preloadedLandscapes.find(sprite);
-	if(pit != preloadedLandscapes.end())
-	{
-		for(pair<const Sprite *const, int> &it : preloadedLandscapes)
-			if(it.second < pit->second)
-				++it.second;
-
-		pit->second = 0;
-		return;
-	}
-
-	// This sprite is not currently preloaded. Check to see whether we already
-	// have the maximum number of sprites loaded, in which case the oldest one
-	// must be unloaded to make room for this one.
-	pit = preloadedLandscapes.begin();
-	while(pit != preloadedLandscapes.end())
-	{
-		++pit->second;
-		if(pit->second >= LANDSCAPE_LIMIT)
-		{
-			UnloadSprite(queue, pit->first);
-			pit = preloadedLandscapes.erase(pit);
-		}
-		else
-			++pit;
-	}
-
-	// Now, load all the files for this sprite.
-	preloadedLandscapes[sprite] = 0;
-	LoadSprite(queue, dit->second);
-}
-
-
-
-void SpriteLoadManager::LoadStellarObject(TaskQueue &queue, const Sprite *sprite)
-{
-	// Make sure this sprite actually is one that uses deferred loading.
-	auto dit = deferred.find(sprite);
-	if(!sprite || dit == deferred.end())
-		return;
-
-	map<const Sprite *, int>::iterator it = loadedStellarObjects.find(sprite);
-	if(it != loadedStellarObjects.end())
-	{
-		it->second = 0;
-		return;
-	}
-	loadedStellarObjects[sprite] = 0;
-	LoadSprite(queue, dit->second);
-}
-
-
-
-void SpriteLoadManager::LoadThumbnail(TaskQueue &queue, const Sprite *sprite)
-{
-	// Make sure this sprite actually is one that uses deferred loading.
-	auto dit = deferred.find(sprite);
-	if(!sprite || dit == deferred.end())
-		return;
-
-	map<const Sprite *, int>::iterator it = loadedThumbnails.find(sprite);
-	if(it != loadedThumbnails.end())
-	{
-		it->second = 0;
-		return;
-	}
-	loadedThumbnails[sprite] = 0;
-	LoadSprite(queue, dit->second);
+	const string &name = sprite->Name();
+	const shared_ptr<ImageSet> &image = dit->second;
+	if(name.starts_with("land/"))
+		LoadLandscape(queue, sprite, image);
+	else if(name.starts_with("thumbnail/") || name.starts_with("outfit/"))
+		LoadThumbnail(queue, sprite, image);
+	else if(name.starts_with("star/") || name.starts_with("planet/"))
+		LoadStellarObject(queue, sprite, image);
+	else if(name.starts_with("scene/"))
+		LoadScene(queue, sprite, image);
 }
 
 
@@ -310,27 +250,7 @@ void SpriteLoadManager::CullOldImages(TaskQueue &queue)
 
 	Cull(loadedStellarObjects);
 	Cull(loadedThumbnails);
-}
 
-
-
-void SpriteLoadManager::LoadScene(TaskQueue &queue, const Sprite *sprite)
-{
-	// Make sure this sprite actually is one that uses deferred loading.
-	auto dit = deferred.find(sprite);
-	if(!sprite || dit == deferred.end())
-		return;
-
-	if(!loadedScenes.insert(sprite).second)
-		return;
-
-	LoadSprite(queue, dit->second);
-}
-
-
-
-void SpriteLoadManager::UnloadScenes(TaskQueue &queue)
-{
 	for(const Sprite *sprite : loadedScenes)
 		UnloadSprite(queue, sprite);
 	loadedScenes.clear();
@@ -367,4 +287,81 @@ bool SpriteLoadManager::RecheckStellarObjects()
 	bool ret = recheckStellarObjects;
 	recheckStellarObjects = false;
 	return ret;
+}
+
+
+
+void SpriteLoadManager::LoadLandscape(TaskQueue &queue, const Sprite *sprite, const shared_ptr<ImageSet> &image)
+{
+	// If this sprite is one of the currently loaded ones, there is no need to
+	// load it again. But, make note of the fact that it is the most recently
+	// asked-for sprite.
+	map<const Sprite *, int>::iterator pit = preloadedLandscapes.find(sprite);
+	if(pit != preloadedLandscapes.end())
+	{
+		for(pair<const Sprite *const, int> &it : preloadedLandscapes)
+			if(it.second < pit->second)
+				++it.second;
+
+		pit->second = 0;
+		return;
+	}
+
+	// This sprite is not currently preloaded. Check to see whether we already
+	// have the maximum number of sprites loaded, in which case the oldest one
+	// must be unloaded to make room for this one.
+	pit = preloadedLandscapes.begin();
+	while(pit != preloadedLandscapes.end())
+	{
+		++pit->second;
+		if(pit->second >= LANDSCAPE_LIMIT)
+		{
+			UnloadSprite(queue, pit->first);
+			pit = preloadedLandscapes.erase(pit);
+		}
+		else
+			++pit;
+	}
+
+	// Now, load all the files for this sprite.
+	preloadedLandscapes[sprite] = 0;
+	LoadSprite(queue, image);
+}
+
+
+
+void SpriteLoadManager::LoadStellarObject(TaskQueue &queue, const Sprite *sprite, const shared_ptr<ImageSet> &image)
+{
+	map<const Sprite *, int>::iterator it = loadedStellarObjects.find(sprite);
+	if(it != loadedStellarObjects.end())
+	{
+		it->second = 0;
+		return;
+	}
+	loadedStellarObjects[sprite] = 0;
+	LoadSprite(queue, image);
+}
+
+
+
+void SpriteLoadManager::LoadThumbnail(TaskQueue &queue, const Sprite *sprite, const shared_ptr<ImageSet> &image)
+{
+	map<const Sprite *, int>::iterator it = loadedThumbnails.find(sprite);
+	if(it != loadedThumbnails.end())
+	{
+		it->second = 0;
+		return;
+	}
+	loadedThumbnails[sprite] = 0;
+	LoadSprite(queue, image);
+}
+
+
+
+void SpriteLoadManager::LoadScene(TaskQueue &queue, const Sprite *sprite, const shared_ptr<ImageSet> &image)
+{
+	if(!loadedScenes.insert(sprite).second)
+		return;
+
+	LoadSprite(queue, image);
 }
