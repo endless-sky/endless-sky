@@ -2478,12 +2478,12 @@ void PlayerInfo::CreateEnteringMissions()
 				availableEnteringMissions.pop_back();
 			else
 			{
-				hasPriorityMissions |= missions.back().HasPriority();
-				nonBlockingMissions += missions.back().IsNonBlocking();
+				hasPriorityMissions |= availableEnteringMissions.back().HasPriority();
+				nonBlockingMissions += availableEnteringMissions.back().IsNonBlocking();
 			}
 		}
 
-	SortMissions(availableMissions, hasPriorityMissions, nonBlockingMissions);
+	SortMissions(availableEnteringMissions, hasPriorityMissions, nonBlockingMissions);
 }
 
 
@@ -2502,12 +2502,12 @@ void PlayerInfo::CreateTransitionMissions()
 				availableTransitionMissions.pop_back();
 			else
 			{
-				hasPriorityMissions |= missions.back().HasPriority();
-				nonBlockingMissions += missions.back().IsNonBlocking();
+				hasPriorityMissions |= availableTransitionMissions.back().HasPriority();
+				nonBlockingMissions += availableTransitionMissions.back().IsNonBlocking();
 			}
 		}
 
-	SortMissions(availableMissions, hasPriorityMissions, nonBlockingMissions);
+	SortMissions(availableTransitionMissions, hasPriorityMissions, nonBlockingMissions);
 }
 
 
