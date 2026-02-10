@@ -53,7 +53,7 @@ namespace {
 	const int DAY_LIMIT = 100;
 	map<const Sprite *, int> loadedStellarObjects;
 	map<const Sprite *, int> loadedThumbnails;
-	// Scenes remaind loaded for only one in-game day before they're culled, as they are not commonly requested.
+	// Scenes remain loaded for only one in-game day before they're culled, as they are not commonly requested.
 	// Most scenes are only ever used in a single conversation, for example.
 	set<const Sprite *> loadedScenes;
 	// Missions and events can add new sprites to the player's current area that may need to be loaded.
