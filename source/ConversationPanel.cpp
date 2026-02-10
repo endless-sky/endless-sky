@@ -261,16 +261,12 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	}
 	if(choices.empty())
 	{
-		// Prevent the name from being so large that it cannot be saved.
-		// Most path components can be at most 255 bytes.
-		size_t MAX_NAME_LENGTH = 250 - Files::Saves().string().size();
-
 		// Right now we're asking the player to enter their name.
 		string &name = (choice ? lastName : firstName);
 		string &otherName = (choice ? firstName : lastName);
 		// Allow editing the text. The tab key toggles to the other entry field,
 		// as does the return key if the other field is still empty.
-		if(Clipboard::KeyDown(name, key, mod, MAX_NAME_LENGTH, [](char32_t ch)
+		if(Clipboard::KeyDown(name, key, mod, Files::MaxFilenameLength(Files::Saves()), [](char32_t ch)
 		{
 			return Files::IsValidCharacter(ch) && ch != '~';
 		}))
@@ -286,7 +282,8 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 				c += 'A' - 'a';
 			// '~' is a valid filepath character, but we don't want it in player names because it is
 			// used as a separator in save file names.
-			if(Files::IsValidCharacter(c) && c != '~' && (name.size() + otherName.size()) < MAX_NAME_LENGTH)
+			if(Files::IsValidCharacter(c) && c != '~'
+					&& (name.size() + otherName.size()) < Files::MaxFilenameLength(Files::Saves()))
 				name += c;
 			else
 				flickerTime = 18;

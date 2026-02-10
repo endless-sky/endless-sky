@@ -408,6 +408,20 @@ bool Files::IsValid(const string &filename)
 
 
 
+size_t Files::MaxFilenameLength(const filesystem::path &base)
+{
+#if defined(_WIN32)
+	if (base.string().size() >= 250)
+		return 0;
+	else
+		return 250 - base.string().size();
+#else
+	return 250;
+#endif
+}
+
+
+
 bool Files::IsParent(const filesystem::path &parent, const filesystem::path &child)
 {
 	if(distance(child.begin(), child.end()) < distance(parent.begin(), parent.end()))

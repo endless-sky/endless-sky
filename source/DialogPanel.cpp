@@ -272,10 +272,10 @@ DialogPanel::DialogPanel(DialogInit &init)
 	intFun(std::move(init.intFun)),
 	doubleFun(std::move(init.doubleFun)),
 	stringFun(std::move(init.stringFun)),
-	validateCharFun(std::move(init.validateCharFun)),
 	validateIntFun(std::move(init.validateIntFun)),
 	validateDoubleFun(std::move(init.validateDoubleFun)),
 	validateStringFun(std::move(init.validateStringFun)),
+	filterCharFun(std::move(init.filterCharFun)),
 	canCancel(init.canCancel),
 	activeButton(init.activeButton),
 	isMission(init.isMission),
@@ -398,16 +398,19 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 
 		if(stringFun)
 		{
-			if(!validateCharFun || validateCharFun(c))
+			if(!filterCharFun || filterCharFun(input, c))
 				input += c;
 			else
 				Invalid();
 		}
 		else if(intFun || doubleFun)
 		{
-			if((c >= '0' && c <= '9')
-				|| (c == '-' && input.empty())
-				|| (c == '.' && !std::count(input.begin(), input.end(), '.')))
+			// Numebrs can start with a minus sign as their first character.
+			if((input.empty() && c == '-')
+					|| (c >= '0' && c <= '9'))
+				input += c;
+			// Doubles can contain a single decimal point.
+			else if(doubleFun && c == '.' && !std::count(input.begin(), input.end(), '.'))
 				input += c;
 			else
 				Invalid();
