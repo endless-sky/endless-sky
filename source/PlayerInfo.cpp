@@ -3558,6 +3558,7 @@ void PlayerInfo::ApplyChanges()
 	reputationChanges.clear();
 	AddChanges(dataChanges);
 	GameData::UpdateSystems();
+	GameData::RecomputeWormholeRequirements();
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 
