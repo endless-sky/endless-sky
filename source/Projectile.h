@@ -112,14 +112,13 @@ public:
 
 
 private:
-	void CheckLock(const Entity *target, bool targetIsShip);
+	void CheckLock(const Entity &target);
 	void CheckConfused(const Entity &target);
 
 
 private:
 	const Weapon *weapon = nullptr;
 
-	bool targetIsShip = false;
 	std::weak_ptr<Entity> target;
 	const Entity *cachedTarget = nullptr;
 	bool targetDisabled = false;

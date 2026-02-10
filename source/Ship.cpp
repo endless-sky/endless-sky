@@ -176,6 +176,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		variantName = node.Token(2);
 	}
 	isDefined = true;
+	entityType = Entity::Type::SHIP;
 
 	government = GameData::PlayerGovernment();
 
@@ -822,11 +823,10 @@ void Ship::FinishLoading(bool isNewInstance)
 		Logger::Log(message + warning + outfitNames.str(), Logger::Level::WARNING);
 	}
 
-	// Setup the attribute handler with a pointer to this ship and its resource levels,
-	// and calibrate the handler's caches. This must be done after this function has
-	// finished updating the `attributes` variable so that calibration only needs
-	// done once.
-	attrHandler.Setup(this, &levels);
+	// Setup the attribute handler with a pointer to this ship and calibrate the handler's caches.
+	// This must be done after this function has finished updating the `attributes` variable so
+	// that calibration only needs done once.
+	attrHandler.Setup(this);
 	attrHandler.Calibrate();
 
 	// If this ship is being instantiated for the first time, make sure its
@@ -1270,10 +1270,10 @@ vector<string> Ship::FlightCheck() const
 	double generation = attrHandler.energyGeneration - attrHandler.energyConsumption;
 	double consuming = attrHandler.fuelEnergy;
 	double solar = attrHandler.solarCollection;
-	double battery = attrHandler.capacity.energy;
+	double battery = capacities.energy;
 	double energy = generation + consuming + solar + battery;
 	double fuelChange = attrHandler.fuelGeneration - attrHandler.fuelConsumption;
-	double fuelCapacity = attrHandler.capacity.fuel;
+	double fuelCapacity = capacities.fuel;
 	double fuel = fuelCapacity + fuelChange;
 	double thrust = attrHandler.thrust;
 	double reverseThrust = attrHandler.reverseThrust;
@@ -1367,7 +1367,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	// template Ship.
 	// We don't need to recalibrate, as the outfits for this ship will be the same as when
 	// Ship::FinishLoading was called in UniverseObjects::FinishLoading.
-	attrHandler.Setup(this, &levels);
+	attrHandler.Setup(this);
 	this->position = position;
 	this->velocity = velocity;
 	this->angle = Angle();
@@ -1726,7 +1726,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 				// This ship will refuel naturally based on the carrier's fuel
 				// collection, but the carrier may have some reserves to spare.
-				double maxFuel = bay.ship->attrHandler.capacity.fuel;
+				double maxFuel = bay.ship->capacities.fuel;
 				if(maxFuel)
 				{
 					double spareFuel = levels.fuel - navigation.JumpFuel();
@@ -1803,10 +1803,10 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 			TransferFuel(victim->JumpFuelMissing(), victim.get());
 		}
 		// Transfer some energy, if needed.
-		if(victim->attrHandler.capacity.energy > 0 && victim->levels.energy < 200.)
+		if(victim->capacities.energy > 0 && victim->levels.energy < 200.)
 		{
 			helped = true;
-			double toGive = max(attrHandler.capacity.energy * 0.1, victim->attrHandler.capacity.energy
+			double toGive = max(capacities.energy * 0.1, victim->capacities.energy
 				* 0.2);
 			TransferEnergy(max(200., toGive), victim.get());
 		}
@@ -2591,9 +2591,9 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 	if((rechargeType & Port::RechargeType::Hull) || attrHandler.hullRepairRate)
 		levels.hull = MaxHull();
 	if((rechargeType & Port::RechargeType::Energy) || attrHandler.energyGeneration)
-		levels.energy = attrHandler.capacity.energy;
+		levels.energy = capacities.energy;
 	if((rechargeType & Port::RechargeType::Fuel) || attrHandler.fuelGeneration)
-		levels.fuel = attrHandler.capacity.fuel;
+		levels.fuel = capacities.fuel;
 
 	lastHitBy = nullptr;
 	levels.heat = IdleHeat();
@@ -2614,7 +2614,7 @@ bool Ship::CanRefuel(const Ship &other) const
 
 bool Ship::CanGiveEnergy(const Ship &other) const
 {
-	double energyCap = other.attrHandler.capacity.energy;
+	double energyCap = other.capacities.energy;
 	double toGive = min(energyCap, max(200., energyCap * 0.2));
 	return levels.energy >= 2 * toGive;
 }
@@ -2623,10 +2623,10 @@ bool Ship::CanGiveEnergy(const Ship &other) const
 
 double Ship::TransferFuel(double amount, Ship *to)
 {
-	amount = max(levels.fuel - attrHandler.capacity.fuel, amount);
+	amount = max(levels.fuel - capacities.fuel, amount);
 	if(to)
 	{
-		amount = min(to->attrHandler.capacity.fuel - to->levels.fuel, amount);
+		amount = min(to->capacities.fuel - to->levels.fuel, amount);
 		to->levels.fuel += amount;
 	}
 	levels.fuel -= amount;
@@ -2637,10 +2637,10 @@ double Ship::TransferFuel(double amount, Ship *to)
 
 double Ship::TransferEnergy(double amount, Ship *to)
 {
-	amount = max(levels.energy - attrHandler.capacity.energy, amount);
+	amount = max(levels.energy - capacities.energy, amount);
 	if(to)
 	{
-		amount = min(to->attrHandler.capacity.energy - to->levels.energy, amount);
+		amount = min(to->capacities.energy - to->levels.energy, amount);
 		to->levels.energy += amount;
 	}
 	levels.energy -= amount;
@@ -2727,127 +2727,6 @@ list<ShipEvent> &Ship::HandleEvents()
 
 
 
-// Get characteristics of this ship, as a fraction between 0 and 1.
-double Ship::Shields() const
-{
-	double maximum = MaxShields();
-	return maximum ? min(1., levels.shields / maximum) : 0.;
-}
-
-
-
-double Ship::Hull() const
-{
-	double maximum = MaxHull();
-	return maximum ? min(1., levels.hull / maximum) : 1.;
-}
-
-
-
-double Ship::Fuel() const
-{
-	double maximum = attrHandler.capacity.fuel;
-	return maximum ? min(1., levels.fuel / maximum) : 0.;
-}
-
-
-
-double Ship::Energy() const
-{
-	double maximum = attrHandler.capacity.energy;
-	return maximum ? min(1., levels.energy / maximum) : (levels.hull > 0.) ? 1. : 0.;
-}
-
-
-
-// Get the ship's "health," where <=0 is disabled and 1 means full health.
-double Ship::Health() const
-{
-	double minimumHull = MinimumHull();
-	double hullDivisor = MaxHull() - minimumHull;
-	double divisor = MaxShields() + hullDivisor;
-	// This should not happen, but just in case.
-	if(divisor <= 0. || hullDivisor <= 0.)
-		return 0.;
-
-	double spareHull = levels.hull - minimumHull;
-	// Consider hull-only and pooled health, compensating for any reductions by disruption damage.
-	return min(spareHull / hullDivisor, (spareHull + levels.shields / (1. + levels.disruption * .01)) / divisor);
-}
-
-
-
-// Get the hull fraction at which this ship is disabled.
-double Ship::DisabledHull() const
-{
-	double hull = MaxHull();
-	double minimumHull = MinimumHull();
-
-	return (hull > 0. ? minimumHull / hull : 0.);
-}
-
-
-
-// Get the maximum shield and hull values of the ship, accounting for multipliers.
-double Ship::MaxShields() const
-{
-	return attrHandler.capacity.shields;
-}
-
-
-
-double Ship::MaxHull() const
-{
-	return attrHandler.capacity.hull;
-}
-
-
-
-// Get the absolute shield level of the ship.
-double Ship::ShieldLevel() const
-{
-	return levels.shields;
-}
-
-
-
-// Get the absolute hull level of the ship.
-double Ship::HullLevel() const
-{
-	return levels.hull;
-}
-
-
-
-// Get the absolute fuel level of the ship.
-double Ship::FuelLevel() const
-{
-	return levels.fuel;
-}
-
-
-
-// Get how disrupted this ship's shields are.
-double Ship::DisruptionLevel() const
-{
-	return levels.disruption;
-}
-
-
-
-// Get the (absolute) amount of hull that needs to be damaged until the
-// ship becomes disabled. Returns 0 if the ships hull is already below the
-// disabled threshold.
-double Ship::HullUntilDisabled() const
-{
-	// Ships become disabled when they surpass their minimum hull threshold,
-	// not when they are directly on it, so account for this by adding a small amount
-	// of hull above the current hull level.
-	return max(0., levels.hull + 0.25 - MinimumHull());
-}
-
-
-
 // Returns the remaining damage timer, for the damage overlay.
 int Ship::DamageOverlayTimer() const
 {
@@ -2896,14 +2775,14 @@ bool Ship::NeedsFuel(bool followParent) const
 	}
 	if(!jumpFuel)
 		jumpFuel = navigation.JumpFuel(targetSystem);
-	return (levels.fuel < jumpFuel) && (attrHandler.capacity.fuel >= jumpFuel);
+	return (levels.fuel < jumpFuel) && (capacities.fuel >= jumpFuel);
 }
 
 
 
 bool Ship::NeedsEnergy() const
 {
-	return attrHandler.capacity.energy && !levels.energy && !attrHandler.energyGeneration
+	return capacities.energy && !levels.energy && !attrHandler.energyGeneration
 			&& !attrHandler.fuelEnergy && !attrHandler.solarCollection;
 }
 
@@ -2914,7 +2793,7 @@ double Ship::JumpFuelMissing() const
 	// Used for smart refueling: transfer only as much as really needed
 	// includes checking if fuel cap is high enough at all
 	double jumpFuel = navigation.JumpFuel(targetSystem);
-	if(!jumpFuel || levels.fuel > jumpFuel || jumpFuel > attrHandler.capacity.fuel)
+	if(!jumpFuel || levels.fuel > jumpFuel || jumpFuel > capacities.fuel)
 		return 0.;
 
 	return jumpFuel - levels.fuel;
@@ -4113,15 +3992,15 @@ void Ship::DoGeneration()
 
 			// Now that there is no more need to use energy for hull and shield
 			// repair, if there is still excess energy, transfer it.
-			double energyRemaining = levels.energy - attrHandler.capacity.energy;
-			double fuelRemaining = levels.fuel - attrHandler.capacity.fuel;
+			double energyRemaining = levels.energy - capacities.energy;
+			double fuelRemaining = levels.fuel - capacities.fuel;
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
 				if(energyRemaining > 0.)
-					Transfer(ship.levels.energy, energyRemaining, ship.attrHandler.capacity.energy);
+					Transfer(ship.levels.energy, energyRemaining, ship.capacities.energy);
 				if(fuelRemaining > 0.)
-					Transfer(ship.levels.fuel, fuelRemaining, ship.attrHandler.capacity.fuel);
+					Transfer(ship.levels.fuel, fuelRemaining, ship.capacities.fuel);
 			}
 
 			// Carried ships can recharge energy from their parent's batteries,
@@ -4130,7 +4009,7 @@ void Ship::DoGeneration()
 			{
 				Ship &ship = *it.second;
 				if(ship.HasDeployOrder())
-					Transfer(ship.levels.energy, levels.energy, ship.attrHandler.capacity.energy);
+					Transfer(ship.levels.energy, levels.energy, ship.capacities.energy);
 			}
 		}
 		// Decrease the shield and hull delays by 1 now that shield generation
@@ -4164,8 +4043,8 @@ void Ship::DoGeneration()
 	// maximum capacity for the rest of the turn, but must be clamped to the
 	// maximum here before they gain more. This is so that, for example, a ship
 	// with no batteries but a good generator can still move.
-	levels.energy = min(levels.energy, attrHandler.capacity.energy);
-	levels.fuel = min(levels.fuel, attrHandler.capacity.fuel);
+	levels.energy = min(levels.energy, capacities.energy);
+	levels.fuel = min(levels.fuel, capacities.fuel);
 
 	levels.heat -= levels.heat * HeatDissipation();
 	if(levels.heat > MaximumHeat())
@@ -4307,7 +4186,7 @@ void Ship::DoCloakDecision()
 	// Attempting to cloak when the cloaking device can no longer operate (because of hull damage)
 	// will result in it being uncloaked.
 	const double minimalHullForCloak = attrHandler.cloakHullThreshold;
-	if(minimalHullForCloak && (levels.hull / attrHandler.capacity.hull < minimalHullForCloak))
+	if(minimalHullForCloak && (levels.hull / capacities.hull < minimalHullForCloak))
 		cloakDisruption = 1.;
 
 	const double cloakingSpeed = CloakingSpeed();
@@ -4551,7 +4430,7 @@ bool Ship::DoLandingLogic()
 		}
 	}
 	// Only refuel if this planet has a spaceport.
-	else if(levels.fuel >= attrHandler.capacity.fuel
+	else if(levels.fuel >= capacities.fuel
 			|| !landingPlanet
 			|| !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel, isYours))
 	{
@@ -4560,7 +4439,7 @@ bool Ship::DoLandingLogic()
 		landingPlanet = nullptr;
 	}
 	else
-		levels.fuel = min(levels.fuel + 1., attrHandler.capacity.fuel);
+		levels.fuel = min(levels.fuel + 1., capacities.fuel);
 
 	// Move the ship at the velocity it had when it began landing, but
 	// scaled based on how small it is now.
@@ -4855,16 +4734,6 @@ void Ship::RemoveEscort(const Ship &ship)
 
 
 
-double Ship::MinimumHull() const
-{
-	if(neverDisabled)
-		return 0.;
-
-	return attrHandler.minimumHull;
-}
-
-
-
 void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 {
 	if(!HasSprite() || !GetMask().IsLoaded() || explosionEffects.empty())
@@ -4971,13 +4840,13 @@ double Ship::CalculateDeterrence() const
 			// Other damage types don't outright destroy ships, so they aren't considered
 			// as heavily in the strength of a weapon.
 			double energyFactor = weapon->EnergyDamage()
-					+ weapon->RelativeEnergyDamage() * attrHandler.capacity.energy
+					+ weapon->RelativeEnergyDamage() * capacities.energy
 					+ weapon->IonDamage() * 100.;
 			double heatFactor = weapon->HeatDamage()
 					+ weapon->RelativeHeatDamage() * MaximumHeat()
 					+ weapon->BurnDamage() * 100.;
 			double fuelFactor = weapon->FuelDamage()
-					+ weapon->RelativeFuelDamage() * attrHandler.capacity.fuel
+					+ weapon->RelativeFuelDamage() * capacities.fuel
 					+ weapon->LeakDamage() * 100.;
 			double scramblingFactor = weapon->ScramblingDamage() * 100.;
 			double slowingFactor = weapon->SlowingDamage() * 100.;

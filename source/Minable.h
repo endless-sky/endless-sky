@@ -88,11 +88,6 @@ public:
 	// Get the expected value of the flotsams this minable will create when destroyed.
 	const int64_t &GetValue() const;
 
-	// Get hull remaining of this asteroid, as a fraction between 0 and 1.
-	double Hull() const;
-	// Get the maximum hull value of this asteroid.
-	double MaxHull() const;
-
 	double Mass() const override;
 	double MaximumHeat() const override;
 
@@ -135,10 +130,6 @@ private:
 	// parameters above, but this avoids having to calculate every radius twice.
 	double radius;
 
-	// Remaining "hull" strength of the object, before it is destroyed.
-	double hull = 1000.;
-	// The hull value that this object starts at.
-	double maxHull = 1000.;
 	// A random amount of hull that gets added to the object.
 	double randomHull = 0.;
 	// How much prospecting has been done on this object. Used to increase the

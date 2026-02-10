@@ -268,10 +268,10 @@ public:
 
 	// Check the status of this ship.
 	bool IsCapturable() const;
-	bool IsTargetable() const;
+	virtual bool IsTargetable() const override;
 	bool IsOverheated() const;
 	bool IsIonized() const;
-	bool IsDisabled() const;
+	virtual bool IsDisabled() const override;
 	bool IsBoarding() const;
 	bool IsLanding() const;
 	bool IsFleeing() const;
@@ -345,28 +345,6 @@ public:
 	// Events should be removed from the given list after they are handled.
 	std::list<ShipEvent> &HandleEvents();
 
-	// Get characteristics of this ship, as a fraction between 0 and 1.
-	double Shields() const;
-	double Hull() const;
-	double Fuel() const;
-	double Energy() const;
-	// Get the ship's "health," where <=0 is disabled and 1 means full health.
-	double Health() const;
-	// Get the hull fraction at which this ship is disabled.
-	double DisabledHull() const;
-	// Get the maximum shield and hull values of the ship, accounting for multipliers.
-	double MaxShields() const;
-	double MaxHull() const;
-	// Get the absolute shield, hull, and fuel levels of the ship.
-	double ShieldLevel() const;
-	double HullLevel() const;
-	double FuelLevel() const;
-	// Get how disrupted this ship's shields are.
-	double DisruptionLevel() const;
-	// Get the (absolute) amount of hull that needs to be damaged until the
-	// ship becomes disabled. Returns 0 if the ships hull is already below the
-	// disabled threshold.
-	double HullUntilDisabled() const;
 	// Returns the remaining damage timer, for the damage overlay.
 	int DamageOverlayTimer() const;
 	// Get this ship's jump navigation, which contains information about how
@@ -572,8 +550,6 @@ private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);
-	// Get the hull amount at which this ship is disabled.
-	double MinimumHull() const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
@@ -594,13 +570,7 @@ private:
 
 
 private:
-	// Protected member variables of the Body class:
-	// Point position;
-	// Point velocity;
-	// Angle angle;
-	// double zoom;
-	// int swizzle;
-	// const Government *government;
+	friend class ShipAttributeHandler;
 
 	// Characteristics of the chassis:
 	bool isDefined = false;
@@ -627,7 +597,6 @@ private:
 	bool isParked = false;
 	bool shouldDeploy = false;
 	bool isOverheated = false;
-	bool isDisabled = false;
 	bool isBoarding = false;
 	bool hasBoarded = false;
 	bool isFleeing = false;
@@ -635,7 +604,6 @@ private:
 	bool isReversing = false;
 	bool isSteering = false;
 	double steeringDirection = 0.;
-	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
 	const Swizzle *customSwizzle = nullptr;

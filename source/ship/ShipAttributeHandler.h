@@ -48,7 +48,7 @@ public:
 
 public:
 	// Setup this attribute handler with a pointer to the ship instance that it is handling attributes for.
-	void Setup(const Ship *parent, ResourceLevels *levels);
+	void Setup(Ship *parent);
 
 	// Update the stored ResourceLevels for various actions a
 	// ship can take (e.g. regenerating shields, thrusting).
@@ -107,9 +107,6 @@ public:
 	bool CanRecoverHullWhileCloaked() const;
 	bool CanRecoverShieldsWhileCloaked() const;
 
-	double OpticalJamming() const;
-	double RadarJamming() const;
-
 	double TurretTurnMultiplier() const;
 
 	const ResourceLevels &DamageProtection() const;
@@ -157,12 +154,11 @@ private:
 	// A ship can freely access the ResourceLevels of its own handler.
 	friend class Ship;
 
-	const Ship *ship = nullptr;
+	Ship *ship = nullptr;
 	const Outfit *attributes = nullptr;
 	ResourceLevels *shipLevels = nullptr;
+	ResourceLevels *shipCapacities = nullptr;
 
-	ResourceLevels capacity;
-	double minimumHull = 0.;
 	double outfitCapacity = 0.;
 	double weaponCapacity = 0.;
 	double engineCapacity = 0.;
@@ -277,9 +273,6 @@ private:
 	float landingSpeed = 0.f;
 	bool silentJumps = false;
 	double selfDestruct = 0.;
-
-	double opticalJamming = 0.;
-	double radarJamming = 0.;
 
 	double turretTurnMult = 1.;
 	ResourceLevels damageProtection;

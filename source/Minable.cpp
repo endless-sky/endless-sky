@@ -67,6 +67,9 @@ void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions
 	if(node.Size() >= 2)
 		name = node.Token(1);
 
+	entityType = Entity::Type::MINABLE;
+	neverDisabled = true;
+
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -86,7 +89,7 @@ void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions
 					useRandomFrameRate = false;
 		}
 		else if(key == "hull")
-			hull = child.Value(1);
+			levels.hull = child.Value(1);
 		else if(key == "random hull")
 			randomHull = max(0., child.Value(1));
 		else if(key == "payload")
@@ -108,6 +111,7 @@ void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions
 		displayName = Format::Capitalize(name);
 	if(noun.empty())
 		noun = "Asteroid";
+	CacheAttributes();
 }
 
 
@@ -198,8 +202,10 @@ void Minable::Place(double energy, double beltRadius)
 	position = radius * Point(cos(theta + rotation), sin(theta + rotation));
 
 	// Add a random amount of hull value to the object.
-	hull += Random::Real() * randomHull;
-	maxHull = hull;
+	if(!levels.hull)
+		levels.hull = 1000;
+	levels.hull += Random::Real() * randomHull;
+	capacities.hull = levels.hull;
 }
 
 
@@ -209,7 +215,7 @@ void Minable::Place(double energy, double beltRadius)
 // In that case it will return false, meaning it should be deleted.
 bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
-	if(hull < 0)
+	if(levels.hull < 0)
 	{
 		// This object has been destroyed. Create explosions and flotsam.
 		double scale = .1 * Radius();
@@ -269,22 +275,8 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 // Damage this object (because a projectile collided with it).
 void Minable::TakeDamage(const MinableDamageDealt &damage)
 {
-	hull -= damage.hullDamage;
+	levels.hull -= damage.hullDamage;
 	prospecting += damage.prospecting;
-}
-
-
-
-double Minable::Hull() const
-{
-	return min(1., hull / maxHull);
-}
-
-
-
-double Minable::MaxHull() const
-{
-	return maxHull;
 }
 
 

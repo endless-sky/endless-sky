@@ -25,11 +25,12 @@ using namespace std;
 
 
 
-void ShipAttributeHandler::Setup(const Ship *parent, ResourceLevels *levels)
+void ShipAttributeHandler::Setup(Ship *parent)
 {
 	ship = parent;
 	attributes = &parent->Attributes();
-	shipLevels = levels;
+	shipLevels = &parent->levels;
+	shipCapacities = &parent->capacities;
 }
 
 
@@ -66,6 +67,9 @@ void ShipAttributeHandler::Calibrate()
 	Cloaking();
 	Scanning();
 	Misc();
+
+	// Entity-level attributes:
+	ship->CacheAttributes();
 }
 
 
@@ -237,11 +241,11 @@ ResourceLevels ShipAttributeHandler::FiringCost(const Weapon &weapon) const
 {
 	ResourceLevels cost;
 
-	cost.hull = weapon.FiringHull() + weapon.RelativeFiringHull() * capacity.hull;
-	cost.shields = weapon.FiringShields() + weapon.RelativeFiringShields() * capacity.shields;
-	cost.energy = weapon.FiringEnergy() + weapon.RelativeFiringEnergy() * capacity.energy;
+	cost.hull = weapon.FiringHull() + weapon.RelativeFiringHull() * shipCapacities->hull;
+	cost.shields = weapon.FiringShields() + weapon.RelativeFiringShields() * shipCapacities->shields;
+	cost.energy = weapon.FiringEnergy() + weapon.RelativeFiringEnergy() * shipCapacities->energy;
 	cost.heat = weapon.FiringHeat() + weapon.RelativeFiringHeat() * ship->MaximumHeat();
-	cost.fuel = weapon.FiringFuel() + weapon.RelativeFiringFuel() * capacity.fuel;
+	cost.fuel = weapon.FiringFuel() + weapon.RelativeFiringFuel() * shipCapacities->fuel;
 
 	cost.corrosion = weapon.FiringCorrosion();
 	cost.discharge = weapon.FiringDischarge();
@@ -266,7 +270,7 @@ ShipAttributeHandler::CanFireResult ShipAttributeHandler::CanFire(const Weapon &
 	ResourceLevels cost = FiringCost(weapon);
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(shipLevels->hull - minimumHull < cost.hull)
+	if(shipLevels->hull - ship->minimumHull < cost.hull)
 		return CanFireResult::NO_HULL;
 	if(shipLevels->energy < cost.energy)
 		return CanFireResult::NO_ENERGY;
@@ -318,14 +322,14 @@ void ShipAttributeHandler::Damage(const ResourceLevels &damage, double scale) co
 
 double ShipAttributeHandler::FuelCapacity() const
 {
-	return capacity.fuel;
+	return shipCapacities->fuel;
 }
 
 
 
 double ShipAttributeHandler::EnergyCapacity() const
 {
-	return capacity.energy;
+	return shipCapacities->energy;
 }
 
 
@@ -480,20 +484,6 @@ bool ShipAttributeHandler::CanRecoverShieldsWhileCloaked() const
 
 
 
-double ShipAttributeHandler::OpticalJamming() const
-{
-	return opticalJamming;
-}
-
-
-
-double ShipAttributeHandler::RadarJamming() const
-{
-	return radarJamming;
-}
-
-
-
 double ShipAttributeHandler::TurretTurnMultiplier() const
 {
 	return turretTurnMult;
@@ -566,25 +556,25 @@ double ShipAttributeHandler::ForceProtection() const
 
 void ShipAttributeHandler::Capacity()
 {
-	capacity.hull = attributes->Get("hull") * (1 + attributes->Get("hull multiplier"));
-	capacity.shields = attributes->Get("shields") * (1 + attributes->Get("shield multiplier"));
-	capacity.energy = attributes->Get("energy capacity");
+	shipCapacities->hull = attributes->Get("hull") * (1 + attributes->Get("hull multiplier"));
+	shipCapacities->shields = attributes->Get("shields") * (1 + attributes->Get("shield multiplier"));
+	shipCapacities->energy = attributes->Get("energy capacity");
 	// Heat capacity is dictated by factors other than attributes
 	// and therefore isn't saved here.
-	capacity.fuel = attributes->Get("fuel capacity");
+	shipCapacities->fuel = attributes->Get("fuel capacity");
 
 	// DoT counters do not have capacities.
 
 	double absoluteThreshold = attributes->Get("absolute threshold");
 	if(absoluteThreshold > 0.)
-		minimumHull = absoluteThreshold;
+		ship->minimumHull = absoluteThreshold;
 	else
 	{
 		double thresholdPercent = attributes->Get("threshold percentage");
-		double transition = 1 / (1 + 0.0005 * capacity.hull);
-		minimumHull = capacity.hull * (thresholdPercent > 0.
+		double transition = 1 / (1 + 0.0005 * shipCapacities->hull);
+		ship->minimumHull = shipCapacities->hull * (thresholdPercent > 0.
 			? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
-		minimumHull = max(0., floor(minimumHull + attributes->Get("hull threshold")));
+		ship->minimumHull = max(0., floor(ship->minimumHull + attributes->Get("hull threshold")));
 	}
 
 	outfitCapacity = ship->BaseAttributes().Get("outfit space");
@@ -962,9 +952,6 @@ void ShipAttributeHandler::Misc()
 	landingSpeed = attributes->Get("landing speed");
 	silentJumps = attributes->Get("silent jumps");
 	selfDestruct = attributes->Get("self destruct");
-
-	opticalJamming = attributes->Get("optical jamming");
-	radarJamming = attributes->Get("radar jamming");
 
 	turretTurnMult = 1. + attributes->Get("turret turn multiplier");
 
