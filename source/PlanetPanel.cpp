@@ -75,11 +75,6 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	// landscapes for this system are loaded before showing the planet panel.
 	TaskQueue queue;
 	SpriteLoadManager::PreloadLandscape(queue, planet.Landscape());
-	// If this panel was created for a freshly loaded pilot, then the objects
-	// in this system will need loaded as well.
-	for(const StellarObject &object : system.Objects())
-		if(object.HasSprite())
-			SpriteLoadManager::LoadStellarObject(queue, object.GetSprite());
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
