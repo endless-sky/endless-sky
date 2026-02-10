@@ -60,10 +60,10 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	: player(player), callback(std::move(callback)),
 	planet(*player.GetPlanet()), system(*player.GetSystem())
 {
-	trading = std::make_shared<TradingPanel>(player);
-	bank = std::make_shared<BankPanel>(player);
-	spaceport = std::make_shared<SpaceportPanel>(player);
-	hiring = std::make_shared<HiringPanel>(player);
+	trading = make_shared<TradingPanel>(player);
+	bank = make_shared<BankPanel>(player);
+	spaceport = make_shared<SpaceportPanel>(player);
+	hiring = make_shared<HiringPanel>(player);
 
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(14));
