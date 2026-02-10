@@ -36,6 +36,17 @@ Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, d
 
 
 
+Body::Body(const Drawable &base, Point position, Point velocity, Angle facing, double zoom)
+	: Drawable(base)
+{
+	this->zoom = zoom;
+	this->position = position;
+	this->velocity = velocity;
+	this->angle = facing;
+}
+
+
+
 // Constructor, based on the animation from another Body object.
 Body::Body(const Body &other, Point position, Point velocity, Angle facing, double zoom, Point scale, double alpha)
 	: Drawable(other, zoom, scale, alpha)
