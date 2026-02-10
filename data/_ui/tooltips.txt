@@ -1454,6 +1454,9 @@ tip "Render motion blur"
 tip "Reduce large graphics"
 	`Reduce the size of very large (images with >= 1 million pixels) or all graphics to half their dimensions. UI sprites are excluded. (Not recommended for high-resolution displays, but may be used to free up memory. Requires game restart.)`
 
+tip "Defer loading images"
+	`Defer the loading of certain images so that they are loaded when they are needed instead of loading them when the game is first opened. This will result in a quicker launch time and lower VRAM usage, but you may experience pop-in as sprites are being loaded. Recommended for systems with low VRAM. (Requires game restart.)`
+
 tip "Draw background haze"
 	`Draw the background haze when in flight.`
 

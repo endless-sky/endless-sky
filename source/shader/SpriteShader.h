@@ -51,7 +51,10 @@ public:
 	// Initialize the shaders.
 	static void Init();
 
-	// Draw a sprite.
+	// Draw a sprite. Note that this will still attempt to draw a sprite even if it hasn't been fully loaded yet,
+	// resulting in a black rectangle with the sprite's dimensions. The caller should check if the sprite is loaded
+	// first if it wants to avoid drawing a black rectangle. (Not having the SpriteShader check if the sprite is loaded
+	// makes it obvious if the reason the sprite isn't displaying properly is because the caller forgot to load it.)
 	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f,
 		const Swizzle *swizzle = Swizzle::None(), float frame = 0.f, const Point &unit = Point(0., -1.));
 	static Item Prepare(const Sprite *sprite, const Point &position, float zoom = 1.f,

@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "image/SpriteLoadManager.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -514,6 +515,12 @@ void PlayerInfo::Load(const filesystem::path &path)
 	// Cache the remaining number of days for all deadline missions and
 	// the location of tracked NPCs.
 	CacheMissionInformation();
+	// Locate the tracked NPCs for available jobs and missions.
+	// Active missions will have already done this with the above function call.
+	for(Mission &mission : availableJobs)
+		mission.RecalculateTrackedSystems();
+	for(Mission &mission : availableMissions)
+		mission.RecalculateTrackedSystems();
 
 	// Restore access to services, if it was granted previously.
 	if(planet && hasFullClearance)
@@ -665,6 +672,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 {
 	bool changedPlanets = false;
 	bool changedSystems = false;
+	bool changedShops = false;
 	for(const DataNode &change : changes)
 	{
 		const string &key = change.Token(0);
@@ -673,10 +681,13 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 			continue;
 		changedPlanets |= (key == "planet" || key == "wormhole");
 		changedSystems |= (key == "system" || key == "link" || key == "unlink");
+		changedShops |= (key == "outfitter" || key == "shipyard");
 		GameData::Change(change, *this);
 	}
 	if(changedPlanets)
 		GameData::RecomputeWormholeRequirements();
+	if((changedPlanets || changedShops) && planet && instantChanges)
+		SpriteLoadManager::RecheckThumbnails();
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
@@ -692,7 +703,10 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		// Update the deadline calculations for missions in case the system
 		// changes resulted in a change in DistanceMap calculations.
 		if(instantChanges)
+		{
 			CacheMissionInformation(true);
+			SpriteLoadManager::RecheckStellarObjects();
+		}
 	}
 	recacheJumpRoutes = instantChanges && (changedPlanets || changedSystems);
 }
@@ -2464,12 +2478,12 @@ void PlayerInfo::CreateEnteringMissions()
 				availableEnteringMissions.pop_back();
 			else
 			{
-				hasPriorityMissions |= missions.back().HasPriority();
-				nonBlockingMissions += missions.back().IsNonBlocking();
+				hasPriorityMissions |= availableEnteringMissions.back().HasPriority();
+				nonBlockingMissions += availableEnteringMissions.back().IsNonBlocking();
 			}
 		}
 
-	SortMissions(availableMissions, hasPriorityMissions, nonBlockingMissions);
+	SortMissions(availableEnteringMissions, hasPriorityMissions, nonBlockingMissions);
 }
 
 
@@ -2488,12 +2502,12 @@ void PlayerInfo::CreateTransitionMissions()
 				availableTransitionMissions.pop_back();
 			else
 			{
-				hasPriorityMissions |= missions.back().HasPriority();
-				nonBlockingMissions += missions.back().IsNonBlocking();
+				hasPriorityMissions |= availableTransitionMissions.back().HasPriority();
+				nonBlockingMissions += availableTransitionMissions.back().IsNonBlocking();
 			}
 		}
 
-	SortMissions(availableMissions, hasPriorityMissions, nonBlockingMissions);
+	SortMissions(availableTransitionMissions, hasPriorityMissions, nonBlockingMissions);
 }
 
 
@@ -3552,6 +3566,7 @@ void PlayerInfo::ApplyChanges()
 	reputationChanges.clear();
 	AddChanges(dataChanges);
 	GameData::UpdateSystems();
+	GameData::RecomputeWormholeRequirements();
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 
@@ -4511,14 +4526,16 @@ void PlayerInfo::CreateMissions()
 			list<Mission> &missions =
 				mission.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
 
-			missions.push_back(mission.Instantiate(*this));
-			if(missions.back().IsFailed())
-				missions.pop_back();
-			else if(!mission.IsAtLocation(Mission::JOB))
+			Mission newMission = mission.Instantiate(*this);
+			if(newMission.IsFailed())
+				continue;
+			newMission.RecalculateTrackedSystems();
+			if(!mission.IsAtLocation(Mission::JOB))
 			{
-				hasPriorityMissions |= missions.back().HasPriority();
-				nonBlockingMissions += missions.back().IsNonBlocking();
+				hasPriorityMissions |= newMission.HasPriority();
+				nonBlockingMissions += newMission.IsNonBlocking();
 			}
+			missions.push_back(std::move(newMission));
 		}
 	}
 

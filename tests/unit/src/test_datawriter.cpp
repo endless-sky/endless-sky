@@ -121,7 +121,7 @@ TEST_CASE( "DataWriter::WriteSorted", "[datawriter][writesorted]" ) {
 	GIVEN( "a DataWriter" ) {
 		DataWriter writer;
 		std::map<const std::string *, double> data;
-		using InnerType = std::pair<const std::string * const, double>;
+		using InnerType = std::pair<const std::string *const, double>;
 		const auto &sortF = [&](const InnerType *a, const InnerType *b) {return a->second < b->second;};
 		const auto &writeF = [&](const InnerType &it){writer.Write(*it.first);};
 		AND_GIVEN( "no data" ) {
