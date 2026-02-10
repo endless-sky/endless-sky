@@ -181,7 +181,7 @@ void ShipAttributeHandler::DoStatusEffects(bool disabled) const
 
 bool ShipAttributeHandler::CanExpend(const ResourceLevels &cost) const
 {
-	if(shipLevels->hull < cost.hull)
+	if(shipLevels->hull - ship->minimumHull < cost.hull)
 		return false;
 	if(shipLevels->shields < cost.shields)
 		return false;
@@ -945,25 +945,25 @@ void ShipAttributeHandler::Misc()
 
 	turretTurnMult = 1. + attributes->Get("turret turn multiplier");
 
-	piercingProtection = attributes->Get("piercing protection");
+	piercingProtection = 1. + attributes->Get("piercing protection");
 	piercingResistance = attributes->Get("piercing resistance");
 	highShieldPermeability = attributes->Get("high shield permeability");
 	lowShieldPermeability = attributes->Get("low shield permeability");
 	cloakedShieldPermeability = attributes->Get("cloaked shield permeability");
 	cloakedHullProtection = attributes->Get("cloak hull protection");
 	cloakedShieldProtection = attributes->Get("cloak shield protection");
-	damageProtection.shields = attributes->Get("shield protection");
-	damageProtection.hull = attributes->Get("hull protection");
-	damageProtection.energy = attributes->Get("energy protection");
-	damageProtection.fuel = attributes->Get("fuel protection");
-	damageProtection.heat = attributes->Get("heat protection");
-	damageProtection.discharge = attributes->Get("discharge protection");
-	damageProtection.corrosion = attributes->Get("corrosion protection");
-	damageProtection.ionization = attributes->Get("ion protection");
-	damageProtection.burning = attributes->Get("burn protection");
-	damageProtection.leakage = attributes->Get("leak protection");
-	damageProtection.slowness = attributes->Get("slowing protection");
-	damageProtection.scrambling = attributes->Get("scramble protection");
-	damageProtection.disruption = attributes->Get("disruption protection");
-	forceProtection = attributes->Get("force protection");
+	damageProtection.shields = 1. + attributes->Get("shield protection");
+	damageProtection.hull = 1. + attributes->Get("hull protection");
+	damageProtection.energy = 1. + attributes->Get("energy protection");
+	damageProtection.fuel = 1. + attributes->Get("fuel protection");
+	damageProtection.heat = 1. + attributes->Get("heat protection");
+	damageProtection.discharge = 1. + attributes->Get("discharge protection");
+	damageProtection.corrosion = 1. + attributes->Get("corrosion protection");
+	damageProtection.ionization = 1. + attributes->Get("ion protection");
+	damageProtection.burning = 1. + attributes->Get("burn protection");
+	damageProtection.leakage = 1. + attributes->Get("leak protection");
+	damageProtection.slowness = 1. + attributes->Get("slowing protection");
+	damageProtection.scrambling = 1. + attributes->Get("scramble protection");
+	damageProtection.disruption = 1. + attributes->Get("disruption protection");
+	forceProtection = 1. + attributes->Get("force protection");
 }

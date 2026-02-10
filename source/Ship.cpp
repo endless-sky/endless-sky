@@ -1806,8 +1806,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		if(victim->capacities.energy > 0 && victim->levels.energy < 200.)
 		{
 			helped = true;
-			double toGive = max(capacities.energy * 0.1, victim->capacities.energy
-				* 0.2);
+			double toGive = max(capacities.energy * 0.1, victim->capacities.energy * 0.2);
 			TransferEnergy(max(200., toGive), victim.get());
 		}
 		if(helped)
@@ -4542,7 +4541,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				// exist, ignore it (do not even slow under drag).
 				isThrusting = (thrustCommand > 0.);
 				isReversing = !isThrusting && attrHandler.reverseThrust;
-				thrust = attrHandler.thrust;
+				thrust = isThrusting ? attrHandler.thrust : attrHandler.reverseThrust;
 				IncrementThrusterHeld(isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD);
 				if(thrust)
 				{

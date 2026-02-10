@@ -129,7 +129,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	auto ScaleType = [&](double shieldBlocked, double hullBlocked, double protection)
 	{
 		double blocked = (1. - shieldBlocked) * (shieldFraction) + (1. - hullBlocked) * (1. - shieldFraction);
-		return damage.scaling * blocked / (1. + protection);
+		return damage.scaling * blocked / protection;
 	};
 
 	// Determine the shieldFraction, which dictates how much damage
@@ -137,7 +137,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	double shields = ship.ShieldLevel();
 	if(shields > 0.)
 	{
-		double piercing = max(0., min(1., weapon.Piercing() / (1. + attrHandler.PiercingProtection())
+		double piercing = max(0., min(1., (weapon.Piercing() / attrHandler.PiercingProtection())
 			- attrHandler.PiercingResistance()));
 		double highPermeability = attrHandler.HighShieldPermeability();
 		double lowPermeability = attrHandler.LowShieldPermeability();
@@ -150,13 +150,12 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 			permeability += max((highPermeability * shieldPortion) +
 				(lowPermeability * (1. - shieldPortion)), 0.);
 		}
-		shieldFraction = (1. - min(piercing + permeability, 1.)) /
-			(1. + ship.DisruptionLevel() * .01);
+		shieldFraction = (1. - min(piercing + permeability, 1.)) / (1. + ship.DisruptionLevel() * .01);
 
 		damage.levels.shields = (weapon.ShieldDamage()
 			+ weapon.RelativeShieldDamage() * ship.MaxShields())
 			* ScaleType(0., 0., attrHandler.DamageProtection().shields
-			+ (ship.IsCloaked() ? attrHandler.CloakedShieldPermeability() : 0.));
+				+ (ship.IsCloaked() ? attrHandler.CloakedShieldProtection() : 0.));
 		if(damage.levels.shields > shields)
 			shieldFraction = min(shieldFraction, shields / damage.levels.shields);
 	}

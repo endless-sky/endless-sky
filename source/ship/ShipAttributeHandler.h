@@ -272,12 +272,12 @@ private:
 
 	double turretTurnMult = 1.;
 	ResourceLevels damageProtection;
-	double piercingProtection = 0.;
+	double piercingProtection = 1.;
 	double piercingResistance = 0.;
 	double highShieldPermeability = 0.;
 	double lowShieldPermeability = 0.;
 	double cloakedShieldPermeability = 0.;
 	double cloakedHullProtection = 0.;
 	double cloakedShieldProtection = 0.;
-	double forceProtection = 0.;
+	double forceProtection = 1.;
 };
