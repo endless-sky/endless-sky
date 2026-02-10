@@ -182,7 +182,7 @@ outfit "Green Optical Laser"
 	"outfit space" -6
 	"weapon capacity" -6
 	"turret mounts" -1
-	"optical jamming" 6
+	"optical jamming" .6
 	"lasing power" -1
 	weapon
 		"hardpoint sprite" "hardpoint/green optical laser"

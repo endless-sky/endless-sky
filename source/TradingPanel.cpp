@@ -100,7 +100,7 @@ void TradingPanel::Draw()
 	int selectedRow = player.MapColoring();
 	if(selectedRow >= 0 && selectedRow < COMMODITY_COUNT)
 	{
-		const Point center(MIN_X + box.Width() / 2, FIRST_Y + 20 * selectedRow + 33);
+		const Point center(box.Center().X(), FIRST_Y + 20 * selectedRow + 33);
 		const Point dimensions(box.Width() - 20., 20.);
 		FillShader::Fill(center, dimensions, back);
 	}
@@ -259,7 +259,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			const Outfit * const outfit = it.first;
+			const Outfit *const outfit = it.first;
 			const int64_t &amount = it.second;
 			if(outfit->Get("minable") <= 0. && !sellOutfits)
 				continue;
@@ -274,7 +274,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		}
 	}
 	else if(command.Has(Command::MAP))
-		GetUI()->Push(new MapDetailPanel(player));
+		GetUI().Push(new MapDetailPanel(player));
 	else
 		return false;
 

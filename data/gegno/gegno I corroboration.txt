@@ -15,6 +15,7 @@
 
 mission "Passive-Aggressive Observations"
 	invisible
+	non-blocking
 	landing
 	destination "Vigales"
 	to offer
@@ -25,13 +26,13 @@ mission "Passive-Aggressive Observations"
 	on complete
 		"gegno: encounters" ++
 		conversation
-			`While navigating the skies of this desert world, you notice readings similar to the planet where you previously encountered a member of the Gegno Vi. It's likely this world is also home to the same or a similar species of large, worm-like creatures you confronted back then. Eventually, you come across a large Gegno Vi vessel stationed on the surface, though unlike in your prior encounter, the ship isn't sunken into the desert - it has likely landed here recently. A group of Vi warriors are marching out and nearby the vessel, and while they do, your radar picks up two more ships descending from above.`
+			`While navigating the skies of this desert world, you notice subsurface readings similar to the planet where you previously encountered a member of the Gegno Vi. It's likely this world is also home to the same or a similar species of large, serpent-like creatures you confronted back then. Eventually, you come across a large Gegno Vi vessel stationed on the surface, though unlike in your prior encounter, the ship isn't sunken into the desert - it has likely landed here recently. A group of Vi warriors are marching out and nearby the vessel, and while they do, two more Gegno ships appear above you.`
 			choice
 				`	(Leave.)`
 					goto leave
 				`	(Continue to observe.)`
-			`	The approaching ships continue their descent, paying you no attention. They appear to be ones that were in orbit when you first entered the system. One of them is the same model as the one on the ground, likely some type of transport. The other, however, isn't one you've seen before. It looks like some sort of interceptor vessel, though it is definitely larger than something like a Sparrow from human space, maybe even the size of a Headhunter. Perhaps that ship belongs to someone of importance.`
-			`	In any case, considering that the planet is home to more of those monsters from before, and the Vi are here in numbers, it might be best you take your leave now before the situation gets out of control again.`
+			`	The approaching ships descend towards the surface, paying you no attention. One of them is the same model as the one on the ground, likely some type of transport. The other, however, appears to be some sort of interceptor vessel, though it is definitely larger than something like a Sparrow from human space, maybe even the size of a Headhunter.`
+			`	Considering that the planet is home to more of those monsters from before, and the Vi are here in numbers, it might be best you take your leave now before the situation gets out of control again.`
 			choice
 				`	(Leave.)`
 					goto leave
@@ -71,6 +72,7 @@ mission "Passive-Aggressive Observations"
 
 mission "Vi Military Group"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Passive-Aggressive Observations: done"
@@ -117,6 +119,7 @@ mission "Vi Military Group"
 
 mission "Foreign Spectator I"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "First Contact: Gegno Scin: offered"
@@ -125,7 +128,9 @@ mission "Foreign Spectator I"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
-	on enter "Eogho"
+	to fail
+		has "Battle over Zydee: offered"
+	on enter "Oihaug"
 		fail
 		"gegno: encounters" ++
 		conversation
@@ -136,43 +141,43 @@ mission "Foreign Spectator I"
 			set "interrupted arena"
 		government "Gegno Vi"
 		personality heroic vindictive ramming staying uninterested
-		system "Eogho"
+		system "Oihaug"
 		ship "Eclogite" "Tschelgi Dueyu"
 	npc
 		on provoke
 			set "interrupted arena"
 		government "Gegno Scin"
 		personality heroic vindictive staying uninterested
-		system "Eogho"
+		system "Oihaug"
 		ship "Felsic" "Tschelgi Dueich"
 	npc
 		on provoke
 			set "interrupted arena"
 		government "Gegno Vi (Neutral)"
 		personality heroic vindictive staying uninterested swarming
-		system "Eogho"
+		system "Oihaug"
 		fleet
 			names "gegno vi"
 			variant
-				"Hornfel" 2
-				"Eclogite"
-				"Slate"
+				"Hornfel"
+				"Slate" 2
 	npc
 		on provoke
 			set "interrupted arena"
 		government "Gegno Scin (Neutral)"
 		personality heroic vindictive staying uninterested swarming
-		system "Eogho"
+		system "Oihaug"
 		fleet
 			names "gegno scin"
 			variant
 				"Coesite" 2
 				"Tridymite"
-				"Mica" 2
+				"Mica"
 
 
 mission "Brief Bystander"
 	invisible
+	non-blocking
 	landing
 	destination "Esstch"
 	to offer
@@ -317,6 +322,7 @@ mission "Battle over Zydee"
 # Zydee becomes occupied by the Vi even if the player doesn't find the above mission.
 mission "Vi Occupy Zydee"
 	invisible
+	non-blocking
 	landing
 	to offer
 		or
@@ -332,6 +338,7 @@ mission "Vi Occupy Zydee"
 
 mission "Curious Civilians"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "First Contact: Gegno Scin: offered"
@@ -441,6 +448,7 @@ mission "Gegno Suspicions"
 
 mission "Under the Nose"
 	invisible
+	non-blocking
 	landing
 	source "Giaru Gegno"
 	to offer
@@ -455,7 +463,7 @@ mission "Under the Nose"
 	npc
 		on kill
 			set "yvx killed"
-		government "Gegno Vi"
+		government "Gegno Vi (Neutral)"
 		personality heroic vindictive ramming entering fleeing uninterested
 		system "Aleit"
 		ship "Rhyolite" "Imtydei"
@@ -463,6 +471,7 @@ mission "Under the Nose"
 
 mission "Scin Surveillance"
 	invisible
+	non-blocking
 	repeat
 	landing
 	deadline 7
@@ -490,6 +499,7 @@ mission "Scin Surveillance"
 mission "Veering Vi A"
 	repeat
 	invisible
+	non-blocking
 	landing
 	deadline 7
 	to offer
@@ -516,6 +526,7 @@ mission "Veering Vi A"
 mission "Veering Vi B"
 	repeat
 	invisible
+	non-blocking
 	landing
 	deadline 7
 	to offer
@@ -540,6 +551,7 @@ mission "Veering Vi B"
 
 mission "Full Vi Backlash"
 	invisible
+	non-blocking
 	landing
 	to offer
 		"vi backlash" >= 3
@@ -551,10 +563,10 @@ mission "Full Vi Backlash"
 
 
 mission "Return to Giaru Gegno"
-	landing
+	entering
 	description `The Quarg known as Adrauni has summoned you back to <destination>.`
 	source
-		not planet "Giaru Gegno"
+		not system "Aleit"
 	destination "Giaru Gegno"
 	to offer
 		or
@@ -563,7 +575,7 @@ mission "Return to Giaru Gegno"
 		not "Gegno Intervention: offered"
 		not "Gegno Genocide Defense: offered"
 	on enter
-		dialog `Upon departure from <origin>, you receive an incoming message. "Greetings, human <first> <last>. This message is from Adrauni. Return to <planet> at the first opportunity given to you."`
+		dialog `There is an incoming message on your communications device. "Greetings, human <first> <last>. This message is from the Quarg that is named Adrauni. Return to <planet> at the first opportunity given to you."`
 	on complete
 		fail "Scin Surveillance"
 		fail "Veering Vi A"
@@ -894,6 +906,7 @@ mission "Gegno Anticipation"
 
 mission "Gegno Apprehension"
 	invisible
+	non-blocking
 	landing
 	to complete
 		never
@@ -1242,7 +1255,7 @@ mission "Gegno Asteroid Mining Prologue"
 			
 			label "accept"
 			`	You fiddle with the screen, trying to decipher how to use it. Some of the Gegno gaze at you for doing so. While they silently judge, you manage to figure out that it's a touch-sensitive interface, though it takes a lot of force for you to get it to work.`
-			`	The first time you get the device to work, you see an image of a hematite asteroid, rich in iron, with five strange-looking tally marks next to it. Mining for them wasn't exactly the first thing you were expecting to do for the Gegno, but it is a start.`
+			`	The first time you get the device to work, you see an image of a hematite asteroid, rich in iron, with five strange-looking tally marks next to it. Mining for them may not be the best way to learn more about the Gegno, but working for them is a start.`
 				accept
 
 			label "nothing"
