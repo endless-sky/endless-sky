@@ -411,7 +411,7 @@ bool Files::IsValid(const string &filename)
 size_t Files::MaxFilenameLength(const filesystem::path &base)
 {
 #if defined(_WIN32)
-	if (base.string().size() >= 250)
+	if(base.string().size() >= 250)
 		return 0;
 	else
 		return 250 - base.string().size();
