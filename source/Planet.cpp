@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "image/SpriteSet.h"
 #include "System.h"
+#include "WeightedList.h"
 #include "Wormhole.h"
 
 #include <algorithm>
@@ -65,7 +66,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 
 	// If this planet has been loaded before, these sets of items should be
 	// reset instead of appending to them:
-	set<string> shouldOverwrite = {"attributes", "description", "spaceport", "port"};
+	set<string> shouldOverwrite = {"attributes", "description", "spaceport", "port", "landscape"};
 
 	for(const DataNode &child : node)
 	{
@@ -119,6 +120,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				shipSales.clear();
 			else if(key == "outfitter")
 				outfitSales.clear();
+			else if(key == "landscape")
+				landscapes.clear();
 			else if(key == "government")
 				government = nullptr;
 			else if(key == "required reputation")
@@ -172,6 +175,33 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 
 		if(key == "port")
 			port.Load(child, playerConditions);
+		else if(key == "landscape")
+		{
+			auto addLandscape = [&](const DataNode &node) {
+				int weight = 1;
+				if(node.Size() > 1 && node.Value(1) >= 1.)
+					weight = node.Value(1);
+				landscapes.emplace_back(weight, SpriteSet::Get(node.Token(0)));
+			};
+
+			if(remove)
+				for(int i = valueIndex; i < child.Size(); ++i)
+					erase_if(landscapes, [&](const auto &choice) { return choice == SpriteSet::Get(child.Token(i)); });
+			else
+			{
+				if(hasValue)
+					for(int i = valueIndex; i < child.Size(); ++i)
+						landscapes.emplace_back(1, SpriteSet::Get(child.Token(i)));
+				for(const DataNode &grand : child)
+					addLandscape(grand);
+			}
+
+			if(!landscapes.size())
+			{
+				child.PrintTrace("Expected key to have a value:");
+				continue;
+			}
+		}
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
@@ -209,8 +239,6 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		}
 		else if(key == "display name")
 			displayName = value;
-		else if(key == "landscape")
-			landscape = SpriteSet::Get(value);
 		else if(key == "music")
 			music = value;
 		else if(key == "description")
@@ -375,6 +403,10 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			attributes.erase(AUTO_ATTRIBUTES[i]);
 	}
 
+	// Pick an initial weighted value for landscape.
+	if(!landscapes.empty())
+		landscape = landscapes.Get();
+
 	// Precalculate commonly used values that can only change due to Load().
 	inhabited = (HasServices(false) || requiredReputation || !defenseFleets.empty())
 			&& !attributes.contains("uninhabited");
@@ -450,8 +482,10 @@ const Paragraphs &Planet::Description() const
 
 
 // Get the landscape sprite.
-const Sprite *Planet::Landscape() const
+const Sprite *Planet::Landscape(bool refresh) const
 {
+	if(refresh && landscapes.size() >= 2)
+		landscape = landscapes.Get();
 	return landscape;
 }
 
