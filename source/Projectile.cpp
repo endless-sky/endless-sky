@@ -77,8 +77,8 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	cachedTarget = TargetPtr().get();
 	if(cachedTarget)
 	{
-		targetGovernment = targetShip->GetGovernment();
-		targetDisabled = targetShip->IsDisabled();
+		targetGovernment = cachedTarget->GetGovernment();
+		targetDisabled = cachedTarget->IsDisabled();
 	}
 
 	dV = this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
