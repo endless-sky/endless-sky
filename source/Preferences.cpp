@@ -178,6 +178,9 @@ namespace {
 	const vector<string> LARGE_GRAPHICS_REDUCTION_SETTINGS = {"off", "largest only", "all"};
 	int largeGraphicsReductionIndex = 0;
 
+	const vector<string> TRIBUTE_CONFIRMATION_SETTINGS = {"off", "friendly only", "always"};
+	int tributeConfirmationIndex = 2;
+
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 
 	int previousSaveCount = 3;
@@ -282,6 +285,8 @@ void Preferences::Load()
 			settings["Control ship with mouse"] = (!hasValue || node.Value(1));
 		else if(key == "notification settings")
 			notifOptionsIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
+		else if(key == "Tribute confirmation")
+			tributeConfirmationIndex = max<int>(0, min<int>(node.Value(1), TRIBUTE_CONFIRMATION_SETTINGS.size() - 1));
 #ifdef _WIN32
 		else if(key == "Title bar theme")
 			titleBarThemeIndex = clamp<int>(node.Value(1), 0, TITLE_BAR_THEME_SETTINGS.size() - 1);
@@ -356,6 +361,7 @@ void Preferences::Save()
 	out.Write("Show mini-map", minimapDisplayIndex);
 	out.Write("Prioritize flagship use", flagshipSpacePriorityIndex);
 	out.Write("Reduce large graphics", largeGraphicsReductionIndex);
+	out.Write("Tribute confirmation", tributeConfirmationIndex);
 	out.Write("previous saves", previousSaveCount);
 #ifdef _WIN32
 	if(WinVersion::SupportsDarkTheme())
@@ -933,6 +939,28 @@ Preferences::LargeGraphicsReduction Preferences::GetLargeGraphicsReduction()
 const string &Preferences::LargeGraphicsReductionSetting()
 {
 	return LARGE_GRAPHICS_REDUCTION_SETTINGS[largeGraphicsReductionIndex];
+}
+
+
+
+void Preferences::ToggleTributeConfirmation()
+{
+	if(++tributeConfirmationIndex >= static_cast<int>(TRIBUTE_CONFIRMATION_SETTINGS.size()))
+		tributeConfirmationIndex = 0;
+}
+
+
+
+Preferences::TributeConfirmation Preferences::GetTributeConfirmation()
+{
+	return static_cast<TributeConfirmation>(tributeConfirmationIndex);
+}
+
+
+
+const string &Preferences::TributeConfirmationSetting()
+{
+	return TRIBUTE_CONFIRMATION_SETTINGS[tributeConfirmationIndex];
 }
 
 
