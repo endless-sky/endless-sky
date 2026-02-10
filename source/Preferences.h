@@ -133,6 +133,12 @@ public:
 		ALL
 	};
 
+	enum class AmmoRefill : int_fast8_t {
+		MANUAL,
+		ASK,
+		AUTO
+	};
+
 #ifdef _WIN32
 	enum class TitleBarTheme : int_fast8_t {
 		DEFAULT,
@@ -253,9 +259,15 @@ public:
 	static FlagshipSpacePriority GetFlagshipSpacePriority();
 	static const std::string &FlagshipSpacePrioritySetting();
 
+	/// Large graphics reduction setting.
 	static void ToggleLargeGraphicsReduction();
 	static LargeGraphicsReduction GetLargeGraphicsReduction();
 	static const std::string &LargeGraphicsReductionSetting();
+
+	/// Outfitter ammo refill confirmation setting.
+	static void ToggleAmmoRefill();
+	static AmmoRefill GetAmmoRefill();
+	static const std::string &AmmoRefillSetting();
 
 	static void ToggleBlockScreenSaver();
 
