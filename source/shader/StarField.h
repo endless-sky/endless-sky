@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "../Drawable.h"
 #include "../Point.h"
 #include "Shader.h"
 
@@ -41,10 +42,10 @@ public:
 	void FinishLoading();
 	const Point &Position() const;
 	void SetPosition(const Point &position);
-	void SetHaze(const Sprite *sprite, bool allowAnimation);
+	void SetHaze(Drawable newHaze, bool allowAnimation);
 
 	void Step(Point vel, double zoom = 1.);
-	void Draw(const Point &blur, const System *system = nullptr) const;
+	void Draw(const Point &blur, int step = 0, const System *system = nullptr) const;
 
 
 private:
@@ -70,7 +71,7 @@ private:
 	double clampSlope;
 
 	// Track the haze sprite, so we can animate the transition between different hazes.
-	const Sprite *lastSprite;
+	Drawable lastHaze;
 	mutable double transparency = 0.;
 	std::vector<Body> haze[2];
 

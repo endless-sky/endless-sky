@@ -51,6 +51,8 @@ namespace {
 	const double STAR_ZOOM = 0.70;
 	const double HAZE_ZOOM = 0.90;
 
+	const Drawable DEFAULT_HAZE = Drawable(SpriteSet::Get("_menu/haze"));
+
 	void AddHaze(DrawList &drawList, const vector<Body> &haze,
 		const Point &topLeft, const Point &bottomRight, double transparency)
 	{
@@ -78,7 +80,7 @@ void StarField::Init(int stars, int width)
 	SetUpGraphics();
 	MakeStars(stars, width);
 
-	lastSprite = SpriteSet::Get("_menu/haze");
+	lastHaze = DEFAULT_HAZE;
 	for(size_t i = 0; i < HAZE_COUNT; ++i)
 	{
 		Point next;
@@ -99,7 +101,7 @@ void StarField::Init(int stars, int width)
 				}
 			}
 		}
-		haze[0].emplace_back(lastSprite, next, Point(), Angle::Random(), 8.);
+		haze[0].emplace_back(lastHaze, next, Point(), Angle::Random(), 8.);
 	}
 	haze[1].assign(haze[0].begin(), haze[0].end());
 }
@@ -133,22 +135,22 @@ void StarField::SetPosition(const Point &position)
 
 
 
-void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
+void StarField::SetHaze(Drawable newHaze, bool allowAnimation)
 {
 	// If no sprite is given, set the default one.
-	if(!sprite)
-		sprite = SpriteSet::Get("_menu/haze");
+	if(!newHaze.GetSprite())
+		newHaze = DEFAULT_HAZE;
 
 	for(Body &body : haze[0])
-		body.SetSprite(sprite);
+		static_cast<Drawable>(body) = newHaze;
 
-	if(allowAnimation && sprite != lastSprite)
+	if(allowAnimation && newHaze.GetSprite() != lastHaze.GetSprite())
 	{
 		transparency = 1.;
 		for(Body &body : haze[1])
-			body.SetSprite(lastSprite);
+			static_cast<Drawable>(body) = lastHaze;
 	}
-	lastSprite = sprite;
+	lastHaze = newHaze;
 }
 
 
@@ -183,7 +185,7 @@ void StarField::Step(Point vel, double zoom)
 
 
 
-void StarField::Draw(const Point &blur, const System *system) const
+void StarField::Draw(const Point &blur, int step, const System *system) const
 {
 	double density = system ? system->StarfieldDensity() : 1.;
 
@@ -281,7 +283,7 @@ void StarField::Draw(const Point &blur, const System *system) const
 		zoom = baseZoom * HAZE_ZOOM;
 
 	DrawList drawList;
-	drawList.Clear(0, zoom);
+	drawList.Clear(step, zoom);
 	drawList.SetCenter(pos);
 
 	if(transparency > FADE_PER_FRAME)

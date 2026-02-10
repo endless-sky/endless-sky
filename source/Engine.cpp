@@ -1195,7 +1195,7 @@ void Engine::Draw() const
 	else
 		motionBlur *= baseBlur;
 
-	GameData::Background().Draw(motionBlur,
+	GameData::Background().Draw(motionBlur, step,
 		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
 
 	static const Set<Color> &colors = GameData::Colors();
