@@ -345,7 +345,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		else if(!planet->IsDefending() && displayConfirmation)
 		{
 			string message = "Demanding tribute may cause this planet to launch defense fleets to fight you. "
-			   "After battling the fleets, you can demand tribute again for the planet to relent.\n";
+				"After battling the fleets, you can demand tribute again for the planet to relent.\n";
 			if(isFriendly)
 				message += "This act may hurt your reputation severely with the " + gov->DisplayName() + " government. ";
 			message += "Do you want to proceed?";
