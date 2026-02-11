@@ -36,7 +36,7 @@ class RenderBuffer;
 // UI panel for editing gamerules.
 class GamerulesPanel : public Panel {
 public:
-	explicit GamerulesPanel(Gamerules &gamerules);
+	GamerulesPanel(Gamerules &gamerules, bool existingPilot);
 	virtual ~GamerulesPanel() override;
 
 	// Draw this panel.
@@ -78,6 +78,7 @@ private:
 private:
 	// The gamerules being modified.
 	Gamerules &gamerules;
+	bool existingPilot;
 
 	const Interface *gamerulesUi;
 	const Interface *presetUi;
