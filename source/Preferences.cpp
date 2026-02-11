@@ -63,7 +63,7 @@ namespace {
 	int vsyncIndex = 1;
 
 	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
-	int cameraAccelerationIndex = 1;
+	int cameraAccelerationIndex = 0;
 
 	const map<string, SoundCategory> VOLUME_SETTINGS = {
 		{"volume", SoundCategory::MASTER},
