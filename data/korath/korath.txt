@@ -876,7 +876,9 @@ fleet "Kor Mereti Miners"
 
 
 outfitter "Korath Basics"
+	"Piercer Missile"
 	"Piercer Missile Rack"
+	"Cluster Mine"
 	"Cluster Mine Rack"
 	"Command Center"
 	"Hyperdrive"
