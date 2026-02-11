@@ -206,7 +206,6 @@ void Preferences::Load()
 	settings["Show stored outfits on map"] = true;
 	settings["Show planet labels"] = true;
 	settings["Show asteroid scanner overlay"] = true;
-	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
 	settings["Animate main menu background"] = true;
