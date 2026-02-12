@@ -4020,7 +4020,7 @@ void Ship::DoGeneration()
 		const ResourceLevels &recoveryCost = attrHandler.recoveryCost;
 
 		// Repair only if the counter has reached the limit and if the ship can meet the energy and fuel costs.
-		if(disabledRecoveryCounter >= attrHandler.recoveryTime && attrHandler.CanExpend(recoveryCost))
+		if(disabledRecoveryCounter >= attrHandler.recoveryTime && AvailableResources().CanExpend(recoveryCost))
 		{
 			attrHandler.Damage(recoveryCost);
 
@@ -4187,7 +4187,7 @@ void Ship::DoCloakDecision()
 
 	const double cloakingSpeed = CloakingSpeed();
 	const ResourceLevels &cloakCost = attrHandler.cloakCost;
-	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption && attrHandler.CanExpend(cloakCost));
+	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption && AvailableResources().CanExpend(cloakCost));
 	if(commands.Has(Command::CLOAK) && canCloak)
 	{
 		cloak = min(1., max(0., cloak + cloakingSpeed));
@@ -4514,7 +4514,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		{
 			// Check if we are able to turn.
 			const ResourceLevels &turnCost = attrHandler.turnCost;
-			commands.SetTurn(commands.Turn() * attrHandler.FractionalUsage(turnCost));
+			commands.SetTurn(commands.Turn() * AvailableResources().FractionalUsage(turnCost));
 			if(commands.Turn())
 			{
 				isSteering = true;
@@ -4534,7 +4534,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			// Check if we are able to apply this thrust.
 			const ResourceLevels &thrustCost = (thrustCommand > 0.) ? attrHandler.thrustCost
 				: attrHandler.reverseThrustCost;
-			thrustCommand *= attrHandler.FractionalUsage(thrustCost);
+			thrustCommand *= AvailableResources().FractionalUsage(thrustCost);
 			if(thrustCommand)
 			{
 				// If a reverse thrust is commanded and the capability does not
@@ -4556,7 +4556,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		{
 			const ResourceLevels &afterburnerCost = attrHandler.afterburnerThrustCost;
 			thrust = attrHandler.afterburnerThrust;
-			if(thrust && attrHandler.CanExpend(afterburnerCost))
+			if(thrust && AvailableResources().CanExpend(afterburnerCost))
 			{
 				attrHandler.Damage(afterburnerCost);
 				acceleration += angle.Unit() * attrHandler.accelerationMult * thrust / mass;

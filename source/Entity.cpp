@@ -117,6 +117,30 @@ double Entity::DisruptionLevel() const
 
 
 
+ResourceLevels Entity::AvailableResources() const
+{
+	ResourceLevels available;
+	// An entity should not be able to disable itself through use of an outfit, so
+	// the available hull excludes the hull necessary to remain enabled.
+	available.hull = levels.hull - minimumHull;
+	// The availability of all other resources is just how much this entity currently has.
+	available.shields = levels.shields;
+	available.energy = levels.energy;
+	available.heat = levels.heat;
+	available.fuel = levels.fuel;
+	available.ionization = levels.ionization;
+	available.scrambling = levels.scrambling;
+	available.disruption = levels.disruption;
+	available.slowness = levels.slowness;
+	available.discharge = levels.discharge;
+	available.corrosion = levels.corrosion;
+	available.leakage = levels.leakage;
+	available.burning = levels.burning;
+	return available;
+}
+
+
+
 double Entity::MaxShields() const
 {
 	return capacities.shields;

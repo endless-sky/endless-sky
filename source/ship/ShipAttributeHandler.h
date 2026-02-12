@@ -66,11 +66,6 @@ public:
 	// Apply status effects and DoT resistances to the ship.
 	void DoStatusEffects(bool disabled) const;
 
-	// Return true if the ship has the resources to expend on the entire cost.
-	bool CanExpend(const ResourceLevels &cost) const;
-	// Return the fraction of 100% output that the ship can manage given the cost.
-	double FractionalUsage(const ResourceLevels &cost) const;
-
 	// Construct a ResourceLevels object for the firing cost of the given weapon
 	// when fired from the given ship.
 	ResourceLevels FiringCost(const Weapon &weapon) const;

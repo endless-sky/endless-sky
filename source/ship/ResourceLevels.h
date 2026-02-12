@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+class DataNode;
+
 
 
 // A class representing the the magnitude of various resources
@@ -24,6 +26,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // applied to a ship, such as an amount of damage to be taken or the
 // resources required for repairs or movement.
 class ResourceLevels {
+public:
+	ResourceLevels() = default;
+	explicit ResourceLevels(const DataNode &node);
+	void Load(const DataNode &node);
+	void LoadSingle(const DataNode &node);
+
+	ResourceLevels operator*(double scalar) const;
+	friend ResourceLevels operator*(double scalar, const ResourceLevels &levels);
+
+	// Return true if this object has the resources to expend on the entire cost.
+	bool CanExpend(const ResourceLevels &cost) const;
+	// Return the fraction of 100% output that these resources can manage given the cost.
+	double FractionalUsage(const ResourceLevels &cost) const;
+	// Return a multiple of how many times these resources could use the given cost.
+	double MultipleUsage(const ResourceLevels &cost) const;
+
+
 public:
 	double hull = 0.;
 	double shields = 0.;

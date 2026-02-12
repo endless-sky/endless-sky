@@ -179,63 +179,6 @@ void ShipAttributeHandler::DoStatusEffects(bool disabled) const
 
 
 
-bool ShipAttributeHandler::CanExpend(const ResourceLevels &cost) const
-{
-	if(shipLevels->hull - ship->minimumHull < cost.hull)
-		return false;
-	if(shipLevels->shields < cost.shields)
-		return false;
-	if(shipLevels->energy < cost.energy)
-		return false;
-	if(shipLevels->heat < -cost.heat)
-		return false;
-	if(shipLevels->fuel < cost.fuel)
-		return false;
-	if(shipLevels->corrosion < -cost.corrosion)
-		return false;
-	if(shipLevels->discharge < -cost.discharge)
-		return false;
-	if(shipLevels->ionization < -cost.ionization)
-		return false;
-	if(shipLevels->burning < -cost.burning)
-		return false;
-	if(shipLevels->leakage < -cost.leakage)
-		return false;
-	if(shipLevels->disruption < -cost.disruption)
-		return false;
-	if(shipLevels->slowness < -cost.slowness)
-		return false;
-	return true;
-}
-
-
-
-double ShipAttributeHandler::FractionalUsage(const ResourceLevels &cost) const
-{
-	double scale = 1.;
-	auto ScaleOutput = [&scale](double input, double cost)
-	{
-		if(input < cost * scale)
-			scale = input / cost;
-	};
-	ScaleOutput(shipLevels->hull, cost.hull);
-	ScaleOutput(shipLevels->shields, cost.shields);
-	ScaleOutput(shipLevels->energy, cost.energy);
-	ScaleOutput(shipLevels->heat, -cost.heat);
-	ScaleOutput(shipLevels->fuel, cost.fuel);
-	ScaleOutput(shipLevels->corrosion, -cost.corrosion);
-	ScaleOutput(shipLevels->discharge, -cost.discharge);
-	ScaleOutput(shipLevels->ionization, -cost.ionization);
-	ScaleOutput(shipLevels->burning, -cost.burning);
-	ScaleOutput(shipLevels->leakage, -cost.leakage);
-	ScaleOutput(shipLevels->disruption, -cost.disruption);
-	ScaleOutput(shipLevels->slowness, -cost.slowness);
-
-	return scale;
-}
-
-
-
 ResourceLevels ShipAttributeHandler::FiringCost(const Weapon &weapon) const
 {
 	ResourceLevels cost;

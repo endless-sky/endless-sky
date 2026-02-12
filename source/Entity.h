@@ -58,6 +58,8 @@ public:
 	double EnergyLevel() const;
 	double HeatLevel() const;
 	double DisruptionLevel() const;
+	// Get the resource levels available for use from this entity.
+	ResourceLevels AvailableResources() const;
 
 	// Get the maximum resource level values of the entity.
 	double MaxShields() const;
