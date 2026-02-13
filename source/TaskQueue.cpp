@@ -61,7 +61,7 @@ namespace {
 
 TaskQueue::TaskQueue(uint64_t nWorkerThreads)
 {
-	if (nWorkerThreads > 0 && threads.threads.size() != nWorkerThreads)
+	if(nWorkerThreads > 0 && threads.threads.size() != nWorkerThreads)
 	{
 		threads.~WorkerThreads();
 		lock_guard<mutex> lock(asyncMutex);
