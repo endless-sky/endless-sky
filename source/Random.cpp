@@ -40,8 +40,14 @@ namespace {
 }
 
 // Initialize the seed override to false: only use this if explicitly enabled
-bool Random::useFixedSeed = false;
-uint64_t Random::fixedSeed = 0;
+bool useFixedSeed = false;
+uint64_t fixedSeed = 0;
+
+void Random::SetFixedSeed(uint64_t seed)
+{
+	useFixedSeed = true;
+	fixedSeed = seed;
+}
 
 // Seed the generator (e.g. to make it produce exactly the same random
 // numbers it produced previously).

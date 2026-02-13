@@ -148,10 +148,7 @@ int main(int argc, char *argv[])
 		else if(arg == "--nomute")
 			noTestMute = true;
 		else if(arg == "--rngseed" && *++it)
-		{
-			Random::useFixedSeed = true;
-			Random::fixedSeed = std::stoull(*it);
-		}
+			Random::SetFixedSeed(std::stoull(*it));
 	}
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);

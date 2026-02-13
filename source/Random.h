@@ -26,8 +26,7 @@ class Random {
 public:
 	// Used to override any seed, especially also to always set a seed;
 	// to make runs reproducible (always get the same random numbers)
-	static bool useFixedSeed;
-	static uint64_t fixedSeed;
+	static void SetFixedSeed(uint64_t seed);
 	// Seed the generator (e.g. to make it produce exactly the same random
 	// numbers it produced previously).
 	static void Seed(uint64_t seed);
