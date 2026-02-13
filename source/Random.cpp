@@ -39,7 +39,9 @@ namespace {
 #endif
 }
 
-
+// Initialize the seed override to false: only use this if explicitly enabled
+bool Random::useFixedSeed = false;
+uint64_t Random::fixedSeed = 0;
 
 // Seed the generator (e.g. to make it produce exactly the same random
 // numbers it produced previously).
@@ -48,7 +50,15 @@ void Random::Seed(uint64_t seed)
 #ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
-	gen.seed(seed);
+	gen.seed(useFixedSeed ? fixedSeed : seed);
+}
+
+
+
+Random::Random()
+{
+	if(useFixedSeed)
+		Seed(fixedSeed);
 }
 
 
