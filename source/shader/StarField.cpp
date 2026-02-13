@@ -51,7 +51,11 @@ namespace {
 	const double STAR_ZOOM = 0.70;
 	const double HAZE_ZOOM = 0.90;
 
-	const Drawable DEFAULT_HAZE = Drawable(SpriteSet::Get("_menu/haze"));
+	const Drawable &DefaultHaze()
+	{
+		static const Drawable result = Drawable(SpriteSet::Get("_menu/haze"));
+		return result;
+	}
 
 	void AddHaze(DrawList &drawList, const vector<Body> &haze,
 		const Point &topLeft, const Point &bottomRight, double transparency)
@@ -80,7 +84,7 @@ void StarField::Init(int stars, int width)
 	SetUpGraphics();
 	MakeStars(stars, width);
 
-	lastHaze = DEFAULT_HAZE;
+	lastHaze = DefaultHaze();
 	for(size_t i = 0; i < HAZE_COUNT; ++i)
 	{
 		Point next;
@@ -139,7 +143,7 @@ void StarField::SetHaze(Drawable newHaze, bool allowAnimation)
 {
 	// If no sprite is given, set the default one.
 	if(!newHaze.GetSprite())
-		newHaze = DEFAULT_HAZE;
+		newHaze = DefaultHaze();
 
 	for(Body &body : haze[0])
 		static_cast<Drawable>(body) = newHaze;
