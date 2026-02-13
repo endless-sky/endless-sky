@@ -371,6 +371,11 @@
 			"configuration": "Release"
 		},
 		{
+			"name": "profile",
+			"hidden": true,
+			"configuration": "Profile"
+		},
+		{
 			"name": "ci",
 			"hidden": true,
 			"configuration": "Release",
@@ -391,6 +396,12 @@
 			"displayName": "Release",
 			"configurePreset": "linux",
 			"inherits": "release"
+		},
+		{
+			"name": "linux-profile",
+			"displayName": "Profile",
+			"configurePreset": "linux",
+			"inherits": "profile"
 		},
 		{
 			"name": "linux-gles-debug",
