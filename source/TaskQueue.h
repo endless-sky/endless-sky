@@ -52,6 +52,7 @@ public:
 public:
 	// Initialize the threads used to execute the tasks.
 	TaskQueue() = default;
+	TaskQueue(uint64_t nWorkerThreads);
 	TaskQueue(const TaskQueue &) = delete;
 	TaskQueue &operator=(const TaskQueue &) = delete;
 	~TaskQueue();
@@ -80,6 +81,9 @@ public:
 
 
 private:
+	// Number of worker threads to use, 0 for "automatic"
+	uint64_t numberWorkerThreads = 0;
+
 	std::list<std::shared_future<void>> futures;
 
 	// Tasks from this queue that need to be executed on the main thread.

@@ -108,6 +108,7 @@ int main(int argc, char *argv[])
 	bool printTests = false;
 	bool printData = false;
 	bool noTestMute = false;
+	uint64_t nWorkerThreads = 0;
 	string testToRunName;
 
 	// Whether the game has encountered errors while loading.
@@ -146,6 +147,10 @@ int main(int argc, char *argv[])
 			printTests = true;
 		else if(arg == "--nomute")
 			noTestMute = true;
+		else if(arg == "--tq-threads" && *++it)
+		{
+			nWorkerThreads = std::stoull(*it);
+		}
 	}
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
@@ -161,7 +166,7 @@ int main(int argc, char *argv[])
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();
 
-		TaskQueue queue;
+		TaskQueue queue(nWorkerThreads);
 
 		// Begin loading the game data.
 		auto dataFuture = GameData::BeginLoad(queue, player, isConsoleOnly, debugMode,

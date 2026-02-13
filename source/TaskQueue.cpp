@@ -38,6 +38,12 @@ namespace {
 			for(thread &t : threads)
 				t = thread(&TaskQueue::ThreadLoop);
 		}
+		WorkerThreads(uint64_t nWorkerThreads) noexcept
+		{
+			threads.resize(nWorkerThreads);
+			for(thread &t : threads)
+				t = thread(&TaskQueue::ThreadLoop);
+		}
 		~WorkerThreads()
 		{
 			{
@@ -53,6 +59,16 @@ namespace {
 	} threads;
 }
 
+TaskQueue::TaskQueue(uint64_t nWorkerThreads)
+{
+	if (nWorkerThreads > 0 && threads.threads.size() != nWorkerThreads)
+	{
+		threads.~WorkerThreads();
+		lock_guard<mutex> lock(asyncMutex);
+		shouldQuit = false;
+		new(&threads) WorkerThreads(nWorkerThreads);
+	}
+}
 
 
 TaskQueue::~TaskQueue()
