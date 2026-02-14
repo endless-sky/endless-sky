@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../text/Format.h"
 #include "../GameData.h"
 #include "ImageBuffer.h"
+#include "ImageFileData.h"
 #include "../Logger.h"
 #include "Mask.h"
 #include "MaskManager.h"
@@ -84,17 +85,6 @@ bool ImageSet::IsImage(const filesystem::path &path)
 {
 	filesystem::path ext = path.extension();
 	return ImageBuffer::ImageExtensions().contains(Format::LowerCase(ext.string()));
-}
-
-
-
-// Determine whether the given path or name is for a sprite whose loading
-// should be deferred until needed.
-bool ImageSet::IsDeferred(const filesystem::path &path)
-{
-	if(path.empty())
-		return false;
-	return *path.begin() == "land";
 }
 
 
@@ -224,7 +214,7 @@ void ImageSet::Load() noexcept(false)
 		const string fileName = "\"" + name + "\" frame #" + to_string(i);
 		if(!loadedFrames)
 		{
-			Logger::Log("Failed to read image data for \"" + fileName, Logger::Level::WARNING);
+			Logger::Log("Failed to read image data for " + fileName, Logger::Level::WARNING);
 			continue;
 		}
 		// If we loaded an image sequence, clear all other buffers.
@@ -264,6 +254,27 @@ void ImageSet::Load() noexcept(false)
 	if(willBlur && (name.starts_with("ship/") || name.starts_with("outfit/") || name.starts_with("thumbnail/")))
 		Logger::Log("Image \"" + name + "\" will be blurry since width and/or height are not even ("
 			+ to_string(buffer[0].Width()) + "x" + to_string(buffer[0].Height()) + ").", Logger::Level::WARNING);
+}
+
+
+
+void ImageSet::LoadDimensions(Sprite *sprite) noexcept(false)
+{
+	assert(framePaths[0].empty() && "should call ValidateFrames before calling LoadDimensions");
+
+	// Read only the first frame of the 1x resolution image in order to determine the dimensions of the sprite.
+	// (All frames are expected to have the same dimensions.)
+	size_t frames = paths[0].size();
+	buffer[0].Clear(frames);
+	int loadedFrames = buffer[0].Read(paths[0][0], 0, true);
+	if(!loadedFrames)
+	{
+		Logger::Log("Failed to read image data for \"" + name + "\" frame #0.", Logger::Level::WARNING);
+		return;
+	}
+	sprite->LoadDimensions(buffer[0]);
+	// Clear the buffer since no image data was actually uploaded.
+	buffer[0].Clear();
 }
 
 

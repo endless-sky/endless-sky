@@ -36,7 +36,8 @@ public:
 	explicit Drawable(const Sprite *sprite, double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
 	Drawable(const Drawable &other, double zoom, Point scale, double alpha);
 
-	// Check that this Drawable has a sprite and that the sprite has at least one frame.
+	// Check that this Drawable has a sprite and that the sprite has dimensions to it.
+	// The sprite may be unloaded, though.
 	bool HasSprite() const;
 	// Access the underlying Sprite object.
 	const Sprite *GetSprite() const;

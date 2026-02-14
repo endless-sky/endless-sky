@@ -17,13 +17,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageBuffer.h"
 
-#include "ImageFileData.h"
-
 #include <filesystem>
 #include <map>
 #include <string>
 #include <vector>
 
+class ImageFileData;
 class Mask;
 class Sprite;
 
@@ -36,9 +35,6 @@ class ImageSet {
 public:
 	// Check if the given path is to an image of a valid file type.
 	static bool IsImage(const std::filesystem::path &path);
-	// Determine whether the given path or name is for a sprite whose loading
-	// should be deferred until needed.
-	static bool IsDeferred(const std::filesystem::path &path);
 
 
 public:
@@ -58,6 +54,10 @@ public:
 	// Load all the frames. This should be called in one of the image-loading
 	// worker threads. This also generates collision masks if needed.
 	void Load() noexcept(false);
+	// Load only the dimensions of the sprite. This loads the first frame of the 1x resolution sprite and
+	// records the dimensions. Load() + Upload() also records the dimensions, so this should only be used
+	// on sprites with deferred loading.
+	void LoadDimensions(Sprite *sprite) noexcept(false);
 	// Create the sprite and optionally upload the image data to the GPU. After this is
 	// called, the internal image buffers and mask vector will be cleared, but
 	// the paths are saved in case the sprite needs to be loaded again.
