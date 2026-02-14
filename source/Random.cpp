@@ -37,11 +37,10 @@ namespace {
 	thread_local uniform_real_distribution<double> real;
 	thread_local normal_distribution<double> normal;
 #endif
-}
 
-// Initialize the seed override to false: only use this if explicitly enabled
-bool useFixedSeed = false;
-uint64_t fixedSeed = 0;
+	bool useFixedSeed = false;
+	uint64_t fixedSeed = 0;
+}
 
 void Random::SetFixedSeed(uint64_t seed)
 {
