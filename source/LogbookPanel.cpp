@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "text/Layout.h"
 #include "shader/LineShader.h"
-#include "PlayerInfo.h"
 #include "Preferences.h"
 #include "shader/RingShader.h"
 #include "Screen.h"
@@ -241,6 +240,21 @@ bool LogbookPanel::Hover(int x, int y)
 
 
 
+LogbookPanel::Entry::Entry(EntryType type, const std::string &heading, const BookEntry &body)
+	: type(type), heading(heading), body(body)
+{
+}
+
+
+
+LogbookPanel::Entry::Entry(EntryType type, const PlayerInfo::StorylineProgress &progress)
+	: type(type), heading(progress.Heading()), subheading(progress.Subheading()),
+		body(progress.GetBookEntry())
+{
+}
+
+
+
 void LogbookPanel::CreateSections()
 {
 	sections.clear();
@@ -253,23 +267,6 @@ void LogbookPanel::CreateSections()
 			page.entries.emplace_back(EntryType::NORMAL, heading, body);
 	}
 	// Each storyline has its own section and a page for each book.
-	auto Subheading = [](const PlayerInfo::StorylineProgress &progress) -> string {
-		string result;
-		// If the start and end date are equal, just display a single date.
-		if(progress.start == progress.end)
-			result = progress.start.ToString();
-		else
-		{
-			// Display a start date with a hyphen to show that the event is ongoing.
-			result = progress.start.ToString() + " - ";
-			// Append the end date if this part of the storyline has ended.
-			if(progress.end)
-				result += progress.end.ToString();
-			else
-				result += "Ongoing";
-		}
-		return result;
-	};
 	for(const auto &storyline : player.GetStorylineProgress() | views::values)
 	{
 		// All storyline progress entries require that the defined storyline
@@ -277,35 +274,36 @@ void LogbookPanel::CreateSections()
 		// exist can be removed from the logbook, allowing us to create
 		// temporary entries for things like "to be continued" entries
 		// while a storyline is still being written.
-		if(!storyline.entry)
+		if(!storyline.BackingEntry())
 			continue;
-		Section &section = sections[storyline.displayName];
+		const string &sectionName = storyline.SectionName();
+		Section &section = sections[sectionName];
 		// If a storyline has no books, at least display the storyline's log.
-		if(storyline.children.empty())
+		if(storyline.Children().empty())
 		{
-			Page &page = section.insert({storyline.displayName, Page(PageType::STORYLINE)}).first->second;
-			page.entries.emplace_back(EntryType::STORYLINE, storyline.displayName, storyline.log, Subheading(storyline));
+			Page &page = section.insert({sectionName, Page(PageType::STORYLINE)}).first->second;
+			page.entries.emplace_back(EntryType::STORYLINE, storyline);
 			continue;
 		}
-		for(const auto &book : storyline.children | views::values)
+		for(const auto &book : storyline.Children() | views::values)
 		{
-			if(!book.entry)
+			if(!book.BackingEntry())
 				continue;
 			// Each book is a separate page, headed by the storyline and book logs,
 			// then breaking down into each arc and chapter.
-			Page &page = section.insert({book.displayName, Page(PageType::STORYLINE)}).first->second;
-			page.entries.emplace_back(EntryType::STORYLINE, storyline.displayName, storyline.log, Subheading(storyline));
-			page.entries.emplace_back(EntryType::BOOK, book.displayName, book.log, Subheading(book));
-			for(const auto &arc : book.children | views::values)
+			Page &page = section.insert({book.SectionName(), Page(PageType::STORYLINE)}).first->second;
+			page.entries.emplace_back(EntryType::STORYLINE, storyline);
+			page.entries.emplace_back(EntryType::BOOK, book);
+			for(const auto &arc : book.Children() | views::values)
 			{
-				if(!arc.entry)
+				if(!arc.BackingEntry())
 					continue;
-				page.entries.emplace_back(EntryType::ARC, arc.displayName, arc.log, Subheading(arc));
-				for(const auto &chapter : arc.children | views::values)
+				page.entries.emplace_back(EntryType::ARC, arc);
+				for(const auto &chapter : arc.Children() | views::values)
 				{
-					if(!chapter.entry)
+					if(!chapter.BackingEntry())
 						continue;
-					page.entries.emplace_back(EntryType::CHAPTER, chapter.displayName, chapter.log, Subheading(chapter));
+					page.entries.emplace_back(EntryType::CHAPTER, chapter);
 				}
 			}
 		}

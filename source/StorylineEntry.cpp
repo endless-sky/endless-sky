@@ -35,8 +35,10 @@ void StorylineEntry::Load(const DataNode &node, const ConditionsStore *playerCon
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
-		if(key == "name" && hasValue)
-			displayName = child.Token(1);
+		if(key == "section name" && hasValue && (level == Level::STORYLINE || level == Level::BOOK))
+			sectionName = child.Token(1);
+		else if(key == "heading" && hasValue)
+			heading = child.Token(1);
 		else if(key == "log")
 			bookEntry.Load(child, 1);
 		else if(key == "to" && hasValue)
@@ -74,9 +76,16 @@ const string &StorylineEntry::TrueName() const
 
 
 
-const string &StorylineEntry::DisplayName() const
+const string &StorylineEntry::SectionName() const
 {
-	return displayName.empty() ? trueName : displayName;
+	return sectionName.empty() ? trueName : sectionName;
+}
+
+
+
+const string &StorylineEntry::Heading() const
+{
+	return heading.empty() ? SectionName() : heading;
 }
 
 

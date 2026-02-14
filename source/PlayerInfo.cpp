@@ -56,6 +56,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 #include <iterator>
 #include <limits>
+#include <ranges>
 #include <sstream>
 #include <stdexcept>
 
@@ -156,8 +157,7 @@ namespace {
 
 
 PlayerInfo::StorylineProgress::StorylineProgress(const StorylineEntry &entry, BookEntry log, const Date &start)
-	: entry(&entry), level(entry.GetLevel()), trueName(entry.TrueName()), displayName(entry.DisplayName()),
-	log(std::move(log)), start(start)
+	: entry(&entry), level(entry.GetLevel()), trueName(entry.TrueName()), log(std::move(log)), start(start)
 {
 }
 
@@ -184,9 +184,7 @@ PlayerInfo::StorylineProgress::StorylineProgress(const DataNode &node, Storyline
 			children[nextName] = StorylineProgress(child, nextLevel, nextEntry);
 		};
 
-		if(key == "name" && hasValue)
-			displayName = child.Token(1);
-		else if(key == "log")
+		if(key == "log")
 			log.Load(child, 1);
 		else if(key == "start" && child.Size() >= 4)
 			start = Date(child.Value(1), child.Value(2), child.Value(3));
@@ -217,8 +215,6 @@ void PlayerInfo::StorylineProgress::Save(DataWriter &out) const
 		out.Write("chapter", trueName);
 	out.BeginChild();
 	{
-		if(!displayName.empty())
-			out.Write("name", displayName);
 		if(start)
 			out.Write("start", start.Day(), start.Month(), start.Year());
 		if(end)
@@ -232,6 +228,71 @@ void PlayerInfo::StorylineProgress::Save(DataWriter &out) const
 			child.second.Save(out);
 	}
 	out.EndChild();
+}
+
+
+
+const StorylineEntry *PlayerInfo::StorylineProgress::BackingEntry() const
+{
+	return entry;
+}
+
+
+
+StorylineEntry::Level PlayerInfo::StorylineProgress::Level() const
+{
+	return level;
+}
+
+
+
+const string &PlayerInfo::StorylineProgress::SectionName() const
+{
+	static const string EMPTY;
+	return entry ? entry->SectionName() : EMPTY;
+}
+
+
+
+const string &PlayerInfo::StorylineProgress::Heading() const
+{
+	static const string EMPTY;
+	return entry ? entry->Heading() : EMPTY;
+}
+
+
+
+std::string PlayerInfo::StorylineProgress::Subheading() const
+{
+	string result;
+	// If the start and end date are equal, just display a single date.
+	if(start == end)
+		result = start.ToString();
+	else
+	{
+		// Display a start date with a hyphen to show that the event is ongoing.
+		result = start.ToString() + " - ";
+		// Append the end date if this part of the storyline has ended.
+		if(end)
+			result += end.ToString();
+		else
+			result += "Ongoing";
+	}
+	return result;
+}
+
+
+
+const BookEntry &PlayerInfo::StorylineProgress::GetBookEntry() const
+{
+	return log;
+}
+
+
+
+const std::map<std::string, PlayerInfo::StorylineProgress> &PlayerInfo::StorylineProgress::Children() const
+{
+	return children;
 }
 
 
@@ -5347,6 +5408,6 @@ void PlayerInfo::EvaluateStoryline(map<string, StorylineProgress> &progress, con
 	if(!progressEntry.end && storylineEntry.IsComplete())
 		progressEntry.end = date;
 	// Check for the progress of any child entries.
-	for(const auto &child : storylineEntry.Children())
-		EvaluateStoryline(progressEntry.children, child.second);
+	for(const auto &child : storylineEntry.Children() | views::values)
+		EvaluateStoryline(progressEntry.children, child);
 }

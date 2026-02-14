@@ -80,10 +80,21 @@ public:
 		StorylineProgress(const DataNode &node, StorylineEntry::Level level, const StorylineEntry *entry);
 		void Save(DataWriter &out) const;
 
+		const StorylineEntry *BackingEntry() const;
+		StorylineEntry::Level Level() const;
+
+		const std::string &SectionName() const;
+		const std::string &Heading() const;
+		std::string Subheading() const;
+		const BookEntry &GetBookEntry() const;
+		const std::map<std::string, StorylineProgress> &Children() const;
+
+	private:
+		friend class PlayerInfo;
+
 		const StorylineEntry *entry = nullptr;
 		StorylineEntry::Level level = StorylineEntry::Level::STORYLINE;
 		std::string trueName;
-		std::string displayName;
 		BookEntry log;
 		Date start;
 		Date end;

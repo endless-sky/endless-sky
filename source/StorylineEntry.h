@@ -25,6 +25,7 @@ class DataNode;
 class PlayerInfo;
 
 
+
 // A representation of a storyline of missions. Storylines can be broken down into books, arcs, and chapters.
 // Storylines have books, books have arcs, and arcs have chapters.
 // Each component of a storyline can have a log book entry, conditions marking its start and end, and systems
@@ -45,7 +46,8 @@ public:
 
 	Level GetLevel() const;
 	const std::string &TrueName() const;
-	const std::string &DisplayName() const;
+	const std::string &SectionName() const;
+	const std::string &Heading() const;
 	const BookEntry &GetBookEntry() const;
 	bool IsStarted() const;
 	bool IsComplete() const;
@@ -56,7 +58,8 @@ private:
 	Level level = Level::STORYLINE;
 
 	std::string trueName;
-	std::string displayName;
+	std::string heading;
+	std::string sectionName;
 	BookEntry bookEntry;
 
 	ConditionSet toStart;

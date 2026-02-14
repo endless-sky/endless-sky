@@ -20,11 +20,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BookEntry.h"
 #include "ClickZone.h"
 #include "OrderedMap.h"
+#include "PlayerInfo.h"
 
 #include <string>
 #include <vector>
-
-class PlayerInfo;
 
 
 
@@ -57,8 +56,8 @@ private:
 
 	class Entry {
 	public:
-		Entry(EntryType type, const std::string &heading, const BookEntry &body, const std::string &subheading = "")
-			: type(type), heading(heading), subheading(subheading), body(body) {}
+		Entry(EntryType type, const std::string &heading, const BookEntry &body);
+		Entry(EntryType type, const PlayerInfo::StorylineProgress &progress);
 
 		EntryType type;
 		std::string heading;
