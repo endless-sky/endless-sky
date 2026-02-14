@@ -40,6 +40,7 @@ outfit `"Ojet" Bimodal Coilgun`
 		"reload" 30
 		"firing energy" 80
 		"firing heat" 120
+		"firing force" 25
 		# Because parent projectiles inherit the damage of their submunitions, we must subtract the total damage of all submunitions from the parent projectile to get the desired behavior (different damage profiles over different ranges).
 		"shield damage" -94
 		# 50 (parent) - 3*48 (child)
