@@ -106,7 +106,7 @@ void MapSalesPanel::Draw()
 	scroll = min(0., max(-maxScroll, scroll));
 
 	Information info;
-	DrawKey(info);
+	DrawSalesKey(info);
 	DrawPanel();
 	DrawItems();
 	DrawInfo();
@@ -264,7 +264,7 @@ const Swizzle *MapSalesPanel::CompareSpriteSwizzle() const
 
 
 
-void MapSalesPanel::DrawKey(Information &info) const
+void MapSalesPanel::DrawSalesKey(Information &info) const
 {
 	info.SetBar("full", 1.);
 	if(onlyShowSoldHere)

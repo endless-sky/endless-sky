@@ -67,8 +67,7 @@ protected:
 
 	virtual void DrawItems() = 0;
 
-	void DrawKey() const override;
-	virtual void DrawKey(Information &info) const;
+	virtual void DrawSalesKey(Information &info) const;
 	void DrawPanel() const;
 	void DrawInfo() const;
 
