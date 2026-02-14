@@ -40,7 +40,8 @@ public:
 
 public:
 	bool IsEmpty() const;
-	void Load(const DataNode &node, int startAt = 0);
+	void Load(const DataNode &node);
+	void LoadInline(const DataNode &node, int startAt = 0);
 	void Add(const BookEntry &other);
 
 	// When a GameAction is instantiated, substitutions are performed.

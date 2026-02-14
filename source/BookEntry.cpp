@@ -37,11 +37,8 @@ bool BookEntry::IsEmpty() const
 
 
 
-void BookEntry::Load(const DataNode &node, int startAt)
+void BookEntry::Load(const DataNode &node)
 {
-	if(startAt < node.Size())
-		LoadSingle(node, startAt);
-
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -49,13 +46,22 @@ void BookEntry::Load(const DataNode &node, int startAt)
 			source = GameData::Systems().Get(child.Token(1));
 		else if(key == "mark")
 			for(const DataNode &grand : child)
-				markSystems.insert(GameData::Systems().Get(grand.Token(1)));
+				markSystems.insert(GameData::Systems().Get(grand.Token(0)));
 		else if(key == "circle")
 			for(const DataNode &grand : child)
-				circleSystems.insert(GameData::Systems().Get(grand.Token(1)));
+				circleSystems.insert(GameData::Systems().Get(grand.Token(0)));
 		else
 			LoadSingle(child);
 	}
+}
+
+
+
+void BookEntry::LoadInline(const DataNode &node, int startAt)
+{
+	if(startAt < node.Size())
+		LoadSingle(node, startAt);
+	Load(node);
 }
 
 

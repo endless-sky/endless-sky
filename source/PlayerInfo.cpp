@@ -186,7 +186,7 @@ PlayerInfo::StorylineProgress::StorylineProgress(const DataNode &node, Storyline
 		};
 
 		if(key == "log")
-			log.Load(child, 1);
+			log.LoadInline(child, 1);
 		else if(key == "start" && child.Size() >= 4)
 			start = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(key == "end" && child.Size() >= 4)
@@ -619,14 +619,10 @@ void PlayerInfo::Load(const filesystem::path &path)
 				if(grand.Size() >= 3)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
-					for(const DataNode &great : grand)
-						logbook[date].Load(great);
+					logbook[date].Load(grand);
 				}
 				else if(grand.Size() >= 2)
-				{
-					for(const DataNode &great : grand)
-						specialLogs[grand.Token(0)][grand.Token(1)].Load(great);
-				}
+					specialLogs[grand.Token(0)][grand.Token(1)].Load(grand);
 			}
 		}
 		else if(key == "storyline" && hasValue)
