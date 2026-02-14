@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "LoadingCircle.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
@@ -198,6 +199,7 @@ protected:
 	Tooltip shipsTooltip;
 	Tooltip creditsTooltip;
 	Tooltip buttonsTooltip;
+	LoadingCircle loadingCircle;
 
 
 private:

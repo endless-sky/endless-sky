@@ -63,6 +63,10 @@ void BookEntry::Load(const DataNode &node, int startAt)
 void BookEntry::Add(const BookEntry &other)
 {
 	items.insert(items.end(), other.items.begin(), other.items.end());
+	for(const Item &item : other.items)
+		if(holds_alternative<const Sprite *>(item))
+			scenes.insert(std::get<const Sprite *>(item));
+
 	markSystems.insert(other.markSystems.begin(), other.markSystems.end());
 	circleSystems.insert(other.circleSystems.begin(), other.circleSystems.end());
 }
@@ -80,6 +84,7 @@ BookEntry BookEntry::Instantiate(const map<string, string> &subs) const
 		else
 			newEntry.items.emplace_back(item);
 	}
+	newEntry.scenes = scenes;
 	newEntry.markSystems = markSystems;
 	newEntry.circleSystems = circleSystems;
 	return newEntry;
@@ -124,6 +129,13 @@ void BookEntry::Save(DataWriter &out) const
 		}
 	}
 	out.EndChild();
+}
+
+
+
+const set<const Sprite *> &BookEntry::GetScenes() const
+{
+	return scenes;
 }
 
 
@@ -190,7 +202,11 @@ bool BookEntry::HasSystems() const
 void BookEntry::LoadSingle(const DataNode &node, int startAt)
 {
 	if(node.Size() - startAt == 2 && node.Token(startAt) == "scene")
-		items.emplace_back(SpriteSet::Get(node.Token(startAt + 1)));
+	{
+		const Sprite *scene = SpriteSet::Get(node.Token(startAt + 1));
+		items.emplace_back(scene);
+		scenes.insert(scene);
+	}
 	else
 	{
 		string text;

@@ -15,6 +15,7 @@
 # Previous iterations of first two missions are failed on offer to ensure save compatibility.
 mission "Relic of Pasts"
 	invisible
+	non-blocking
 	transition
 	source
 		system "Kanguwa"

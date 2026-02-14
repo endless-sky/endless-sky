@@ -27,6 +27,7 @@ phrase empty
 
 mission "Avgi: Gossamer Sailors"
 	invisible
+	non-blocking
 	transition
 	repeat
 	source

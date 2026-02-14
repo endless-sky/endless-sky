@@ -41,7 +41,6 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
-	Resize();
 	AddChild(description);
 
 	newsMessage.SetFont(FontSet::Get(14));

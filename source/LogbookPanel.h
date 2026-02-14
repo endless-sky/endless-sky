@@ -97,6 +97,9 @@ private:
 
 
 private:
+	// Whether the scenes shown by logbook entries have been preloaded yet.
+	bool hasLoadedScenes = false;
+
 	// A mapping of category to section. These are what are selectable on the left-most side of the panel.
 	// If a section has no subcategories to expand, then the section should only have one subcategory with
 	// the same name as the section.
