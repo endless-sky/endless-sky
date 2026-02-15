@@ -87,7 +87,8 @@ double UniverseObjects::GetProgress() const
 void UniverseObjects::FinishLoading()
 {
 	for(auto &&it : planets)
-		it.second.FinishLoading(wormholes);
+		if(it.second.IsValid())
+			it.second.FinishLoading(wormholes);
 
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
@@ -97,7 +98,8 @@ void UniverseObjects::FinishLoading()
 
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &&it : ships)
-		it.second.FinishLoading(true);
+		if(!it.second.IsValid())
+			it.second.FinishLoading(true);
 	for(auto &&it : persons)
 		it.second.FinishLoading();
 
