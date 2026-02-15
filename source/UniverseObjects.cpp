@@ -98,7 +98,7 @@ void UniverseObjects::FinishLoading()
 
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &&it : ships)
-		if(!it.second.IsValid())
+		if(it.second.IsValid())
 			it.second.FinishLoading(true);
 	for(auto &&it : persons)
 		it.second.FinishLoading();
