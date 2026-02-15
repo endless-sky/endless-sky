@@ -156,8 +156,12 @@ void ImageSet::ValidateFrames() noexcept(false)
 	{
 		if(toResize.size() > paths[0].size())
 		{
-			Logger::Log(prefix + to_string(toResize.size() - paths[0].size())
-				+ " extra frames for the " + specifier + " sprite will be ignored.", Logger::Level::WARNING);
+			if(paths[0].empty())
+				Logger::Log(prefix + "all frames for the " + specifier + " sprite will be ignored, "
+					"as it has no corresponding 1x frame(s).", Logger::Level::WARNING);
+			else
+				Logger::Log(prefix + to_string(toResize.size() - paths[0].size())
+					+ " extra frame(s) for the " + specifier + " sprite will be ignored.", Logger::Level::WARNING);
 			toResize.resize(paths[0].size());
 		}
 	};
