@@ -193,7 +193,7 @@ ship "Hasur, Vowsworn"
 	gun 12 -64
 	engine 0 0
 		zoom .8
-	description `One would think that, immured deep within those hostile, rotting abcesses of the stars, the constructs of the foolish Myiara would prove themselves inadequate; that their artificial minds would splinter and falter and crumble like their so-false flesh, festering on the bone. And yet they remain, eternally dying but never dead, consumed by programmed rage and unknowable perception. The constructs will keep their promises, interloper:`
+	description `One would think that, immured deep within those hostile, rotting abscesses of the stars, the constructs of the foolish Myiara would prove themselves inadequate; that their artificial minds would splinter and falter and crumble like their so-false flesh, festering on the bone. And yet they remain, eternally dying but never dead, consumed by programmed rage and unknowable perception. The constructs will keep their promises, interloper:`
 	description `	They'll kill you. They'll do it quick.`
 
 effect "hasur afterburner"
@@ -286,7 +286,7 @@ ship "Queru, Luminous Gaze"
 	turret -32 -21
 	engine 0 0
 		zoom .5
-	description `Queru came last, and was the most inspired of the three, eviscerating at a distance before it could even be seen. For their part, Resja hated it - but by then, Resja's fate had been long sealed.`
+	description `Queru came last, and was the most inspired of the three, eviscerating at a distance before it could even be seen. For their part, Resja hated it - but by then, Resja's fate had long been sealed.`
 
 effect "queru afterburner"
 	sprite "effect/queru afterburner"
@@ -327,7 +327,7 @@ outfit `"Iasa," Lethal Word`
 		"hit force" 18
 		"piercing" 0.33
 		"firing shields" 11
-	description `Resja's chosen implement of death, Iasa was a drone ship's perfect coilgun, a fearsome, hungry weapon without respect for the shields of either friends or foes. It remains remarkably efficient, even after fifteen hundred years of waiting.`
+	description `Resja's chosen implement of death, Iasa was a drone ship's perfect coilgun, a fearsome, hungry weapon with respect for the shields of neither friend nor foe. It remains remarkably efficient, even after fifteen hundred years of waiting.`
 
 effect "iasa fire"
 	sprite "effect/emp torpedo fire"
@@ -453,7 +453,7 @@ outfit `Visions of Rime`
 	cooling 28
 	"shield generation" -0.6
 	unique 1
-	description `Radiating excess heat through a starship's shield matrix, this compact, ancient cooling system is strikingly efficient. On Resja's furious drone ships, the shield strength that this saps is all but insignificant, but on lesser craft it may come with a certain cost to endurance.`
+	description `Radiating excess heat through a starship's shield matrix, this compact, ancient cooling system is strikingly efficient. On Resja's furious drone ships, the shield strength that this saps is all but insignificant, but on lesser craft it may come with a cost to endurance.`
 
 
 # Heirloom Ships
