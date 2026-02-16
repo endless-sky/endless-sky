@@ -7548,7 +7548,7 @@ mission "Silver Talon 1"
 			
 			label in
 			`	"Glad to hear it!" the woman says. "Klaus and I'll get all our gear packed away. I'm sure we can find someone to stash it that doesn't eat up your cargo hold. Oh, and by the way, I'm Cerridwyn Morgan."`
-			`	After about an hour, all the bounty hunters' equipment is securely stowed on board the <ship>, and all the aforementioned assassins are present and accounted for. Cerridwyn introduces you to each in turn: the wiry and foul-mouthed driver Klaus, the ex-marine Dagger, the sniper Pict, and the dapper young Louis. Cerridwyn's job, it seems, is to use the bazooka she's spent the last hour lugging around, a role which she appears to be something of a legend in."`
+			`	After about an hour, all the bounty hunters' equipment is securely stowed on board the <ship>, and all the aforementioned assassins are present and accounted for. Cerridwyn introduces you to each in turn: the wiry and foul-mouthed driver Klaus, the ex-marine Dagger, the sniper Pict, and the dapper young Louis. Cerridwyn's job, it seems, is to use the bazooka she's spent the last hour lugging around, a weapon for whose use she is apparently infamous."`
 			`	Introductions complete, the bounty hunters all fall into their bunks in preparation for the journey to <planet>.`
 				accept
 	
@@ -7584,7 +7584,7 @@ mission "Silver Talon 2"
 	on offer
 		conversation
 			`	Time passes slowly. First one hour flicks by, then a second, then a third. Just as you're beginning to give up hope, you hear a large explosion in the distance. A minute later, a speck appears on the horizon, a speck which soon resolves itself into the outline of a very old truck doing far more than what the speed limit would be on any civilized planet.`
-			`	Behind the huge billowing cloud of dust raised by the truck, two hovercraft appear. A figure in the back of the truck carrying a very large bazooka stands and fires, and the leading hovercraft vanishes in a fireball. The other swerves into a ditch.`
+			`	Behind the huge billowing cloud of dust raised by the truck, two hovercraft appear. A figure in the back of the truck stands and fires a very large bazooka, and the leading hovercraft vanishes in a fireball. The other swerves into a ditch.`
 			`	Soon, the jeep is back at the spaceport, roaring onto the tarmac at breakneck speeds and coming to a stop in a squeal of brakes at the end of a hundred-metre stripe of rubber. Before the truck's settled, Cerridwyn and Pict are already moving, tossing their weapons and bags over the side of the truckbed and scrambling down. Inside the truck, a sweating Klaus picks up Dagger like a sack of potatoes and hauls him out of the cab.`
 			`	Cerridwyn is the first through the hatch in your ship, preceded only by her rocket launcher. Klaus and Pict haul the wounded Dagger through with the rest of their equipment, and slam the hatch shut.`
 			`	"Okay, Captain," Cerridwyn says, "It's time to blow this popsicle stand."`
@@ -7670,7 +7670,7 @@ mission "Silver Talon 2"
 		conversation
 			`The <ship>'s hull pockmarked with blaster scars, you land in the spaceport on <planet> just ahead of the pirates. One or two enteprising pilots try to follow you in, but are driven off by a number of missile launchers placed in defensive positions around the spaceport.`
 			`	Cerridwyn exhales slowly, and turns to you. "Thanks for your help, <first>. I wish it didn't have to end this way, but you stood by us and we'll be forever grateful."`
-			`	Suddenly, she hands you <payment>. "I'm sorry we can't pay you better. Everything else is going to Louis' family, but we owe you this much. If you hadn't gotten us out of there we'd have even less."`
+			`	Suddenly, she hands you <payment>. "I'm sorry we can't pay you better. The rest is going to Louis' folks, but we owe you this much. If you hadn't gotten us out of there..."`
 			choice
 				`	"Thank you."`
 					goto thanks
@@ -7687,7 +7687,7 @@ mission "Silver Talon 3"
 	description "With the bounty hunters in tow, flee to <destination> to escape a fleet of enraged and vengeful pirates."
 	passengers 4
 	source "Dancer"
-	destination "???"
+	destination "New Iceland"
 	to offer
 		has "Silver Talon 2: done"
 
@@ -7700,18 +7700,226 @@ mission "Silver Talon 3"
 				`	(Approach Cerridwyn.)`
 					goto cerridwyn
 
+			`	Gingerly shifting a pile of beer bottles from a chair, you sit down beside Klaus. No sooner does your seat touch the seat than he lets off a string of curses at the universe, God, chance, an ancient American named Murphy, pirate warlords, the Navy, and eight or nine other nouns you don't catch in the maelstrom.`
+			choice
+				`	"Should I leave?"`
+				`	(Wait.)`
+					goto klaus
+			
+			`	"What does it matter, anyways?" He swears again.`
+			label klaus
+			`	"We thought we were heroes, you know that? Us and our big guns, off to rid the universe of criminal scum. But that's not how the world works, is it? And naturally the one who doesn't come back is the one who believed it most of all."`
+			`	Klaus stumbles to his feet and heads for the facilities, muttering deprecations against Murphy as he goes.`
+			`	As you watch him leave, Pict clears her throat from across the table. Alone among the bounty hunters, she shows no outward sign of distress, but her eyes have hardened into icy crystal.`
+			`	"We loved him, we fought for him, we failed him. Eight milliseconds in the path of a laser rifle and he was gone. Just like Point Lima, and we're left to carry on in our guilt, breaking apart ever so slowly."`
+			choice
+				`	"Point Lima?"`
+					goto pict
+				`	"You seem to be holding up well."`
+			
+			`	Pict laughs bitterly. "A veteran like you should know better than that. No one ever holds up well inside after a fight, no matter what happens in the outside world."`
+				goto commotion
+			
+			label pict
+			`	"Poisonwood. '85. Our platoon was supposed to be a mobile reserve for a strike against a missile battery. Only problem is they got the position of the battery off by seventy kilometres, and we dropped right into a barrage of Meteors. Fairweather, Grange, Perkins, Yanovik... the entire front half of our shuttle was gone before we could blow the plates and bail.`
+			`	"Some things never change, Captain, some things never change."`
+				goto commotion
+
 			label cerridwyn
-			`	You slide onto a stool next to Cerridywn, but it seems like she doesn't know you're there. For a minute, you sit awkwardly beside her as she stares off into the distance at a darkness only she can see.`
+			`	You slide onto a stool next to Cerridywn, but it seems like she doesn't realize you're there. For a minute, you sit awkwardly beside her as she stares off into the distance at a darkness only she can see.`
 			choice
 				`	"Are you okay?"`
-					goto okay
 				`	(Wait.)`
 					goto wait
 				`	(Order a drink.)`
+					goto drink
 			
+			`	Cerridwyn just stares at you, gets up, and leaves the bar. Looking back to the table previously occupied by the other three bounty hunters you find only Dagger, drooling and unconscious.`
+			`	You wait around a bit, but neither Klaus nor Pict returns. Eventually, you find yourself heading back to your ship.`
+				decline
+			
+			label drink
 			`	The bar is mostly empty, and it doesn't take long for you to get your drink. While you're sipping it, Cerridwyn finally speaks.`
 				goto speaks
 			label wait
 			`	You wait at the bar for one minute, then two, until the bartender starts giving you irritated glances. Finally, Cerridwyn speaks.`
 			label speaks
-			`	"I killed him, you know," she says, still staring off into the distance. "I was the one who signed off on the job. Who let him come along with us. If I hadn't "`
+			`	"I killed him, you know," she says, still staring off into the distance. "I was the one who signed off on the job. The one who let him come along with us. If I hadn't..."`
+			choice
+				`	"What happened to Louis isn't your fault."`
+				`	"You're sure you don't want something stronger than mineral water?"`
+					goto mineral
+				`	"So, what are you going to do about it?"`
+					goto response
+
+			`	"Of course it is. Don't you understand that? All I had to tell him was no, no we're not crazy, no we're not going to run off on a crusade against crime. That's all I had to say, and we would have still been on Silver, me and him and the bazooka. That's all I had to do, and instead I had to listen."`
+				goto commotion
+
+			label mineral
+			`	Cerridwyn glowers at you and takes a large gulp of mineral water.`
+				goto commotion
+
+			label response
+			`	"What, are you saying I'm going to just sit here and grieve? No, one way or another I'm going to kill that bloody vampire. Him and all his bodyguards."`
+			
+
+			label commotion
+			`	Suddenly, the door to the spaceport bar slams open, and six burly thugs shove their way into the crowd, eyes flitting around like hummingbirds. One of them points in your direction, and suddenly all six have weapons drawn and the building erupts in screams.`
+			`	Before you know what's going on, all four surviving bounty hunters are standing beside you. Klaus holds a chemical-propellant pistol in shaking hands, while Pict has drawn a wicked-looking knife and a surprisingly sober Dagger wields what was until very recently a perfectly serviceable chair leg. Only Cerridwyn is unarmed, lacking her customary rocket launcher.`
+			choice
+				`	(Draw my gun.)`
+					goto firefight
+				`	(Look for a way out.)`
+			
+			`	It is not hard to find an alternate exit from the bar. The only issue is, every other patron has come to the same conclusion as you have and are now pushing their way toward a very ordinary-sized door.`
+			`	As scorch marks jump into existence around you and Klaus' weapon cracks off shot after shot, your eyes settle on the kitchen door. A door which leads to a room that, according to the galactic fire codes, should have another exit.`
+			`	Bellowing at the bounty hunters to follow, you duck into the kitchen, coming face-to-face with a large, open window and face-to-back with three fleeing cooks. You follow suit, leaping into an alleyway just ahead of Klaus and Dagger. Behind you, Pict hurls her knife through the door and slams it shut before dragging Cerridywn out of the building.`
+			`	A look passes between the five of you, and you're suddenly running full speed for the <ship>. It's not until you reach orbit that your heart rate returns to normal.`
+				launch
+			
+			`	Drawing your gun, you soon find that the thugs are much less impressive fighters than their bulging muscles suggest. You take three shots, and two of your assailants collapse to the floor. A round from Klaus' pistol clips the shoulder of a third, knocking him off balance as he drops his weapon.`
+			`	Suddenly, Dagger lunges forward, taking out the fourth man with a quick flurry of blows. The remaining two attackers turn tail and run off into the night.`
+			`	The five of you regroup outside the bar to the sound of distant sirens.`
+			choice
+				`	"What do we do now?"`
+					goto flee
+				`	"Who were those people?"`
+
+			`	"Vlaid Blaire's employees," Pict replies cooly. "And now we've got to get out of here. The police will be here in twenty minutes or so, and I for one don't want to be caught standing beside a pile of bodies with a bloody knife."`
+				goto objections
+			
+			`	"We leave," Dagger slurs. "Quickly-like befuh there's muhofem.`
+				goto objections
+
+			label objections
+			choice
+				`	"Right, let's get out of here."`
+					goto final
+				`	"Won't it go worse for us if we try to run?"`
+			
+			`	Your response comes from Cerridwyn. "Technically, we haven't committed any crimes - all our actions were in self-defense and that counts for a lot on a frontier world like Dancer. But if we stick around, the police will want to ask questions, and we might not have a functioning ship to leave on by the time they're done, if Blaire's goons have their way. So, we run."`
+
+			label final
+			`	The five of you hurry back to the <ship>, and you go through your preflight checklist as quickly as you can. Luck is on your side, and the spaceport controller clears you for departure with no questions asked. It's not until you reach orbit that your heart rate returns to normal.`
+				launch
+
+	on enter "Rastaban"
+		conversation
+			`As soon as you're safely out of the atmosphere, Cerridwyn catches your attention.`
+			`	"Captain <last>, I'm afraid you've come too far with us to stop now. If we can make it to <destination>,  we'll be able to plan a killing blow against Vlad Blaire. We've got contacts there who might be able to help, and the police there should be at least semicompetent."`
+			choice
+				`	"All right, I'll take you there."`
+					decline
+				`	"I don't see how I have any choice."`
+			
+			`	A wry smile flickers across Cerridwyn's face. "Me neither, captain. May God help us all."`
+
+	npc
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"coward"
+			"entering"
+			"target"
+			confusion 10
+		system "Rastaban"
+		ship "Osprey" "Stiletto"
+		fleet "Small Southern Pirates" 6
+	npc
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"coward"
+			"launching"
+			"target"
+			confusion 10
+		ship "Hawk" "Charon's Watchman"
+	
+	on visit
+		dialog `You arrive on <planet>, but somewhere along the way you lost some of the bounty hunters. Better depart and wait for your escorts to enter the system.`
+
+	on complete
+		`As your ship settles into a berth on <planet>, the four surviving bounty hunters are hard-eyed and rearing to go. Klaus checks his small pistol over and over again, and Dagger pops half a dozen painkillers into his mouth.`
+		`	You punch open the hatch, and Cerridwyn turns to face you. "Spaceport bar, half an hour. See you then."`
+
+mission "Silver Talon 4"
+	name "Kill Vlad Blaire"
+	description "Wait for Vlad Blaire's flagship, the Crimson Horde, to enter the system. Then, disable and board it to allow the surviving bounty hunters to confirm his death."
+	passengers 4
+	source "New Iceland"
+	to offer
+		has "Silver Talon 3: done"
+
+	on offer
+		conversation
+			`	As you walk into the spaceport bar, you are met by a small crowd of sailors. The four bounty hunters are at the centre of the group, talking in a low murmur with one of the better-off spacefarers. Upon seeing you, Pict walks over to greet you.`
+			`	"Cerridwyn's friends," she says, gesturing to the crowd. Damn fools, if you ask me, but she's got them fired up. With any luck, some of them will even help us out."`
+			`	You watch as Cerridwyn and Klaus continue to speak to the spacers. One by one, they wander off, leaving empty glasses on the table. Finally, three captains remain.`
+			`	"Captain <last>, I'd like you to meet captains John Smith, Norma Down, and Yven Stieber. Captains, <first> <last>."`
+			`	A round of handshakes ensues.`
+			`	"Look, you all know why you're here. There's no point making a speech, so I'll just go over the plan one more time.`
+			`	"In a few hours, we expect Blaire to enter the system. At that time, we will meet his fleet in orbit. Captains Smith, Down, and Stieber will engage the fleet and try to distract them. Don't take unnecessary risks, but don't hang back and blow hot air at them either. While you're fighting the fleet, Captain <last> will try to take down and disable Blaire's flagship. Once the ship is disabled, <last> will dock with it and we will board and dispatch Blaire. As soon as we're done, we will signal to the you to disengage and you can expect a nice heavy bounty payment in your bank account tomorrow morning. Understood?"`
+			`	There's a murmur of assent, and you file out of the bar, as ready as you're going to be for what comes next.`
+				accept
+	
+	npc disable save
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"entering"
+			"staying"
+			"target"
+			"nemesis"
+			confusion 5
+		ship "Leviathan" "Baron's Cave"
+
+	npc
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"entering"
+			"coward"
+			confusion 10
+		fleet "Small Southern Pirates" 2
+
+	npc
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"entering"
+			"coward"
+			confusion 20
+		fleet "Small Southern Pirates" 2
+
+	npc
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"entering"
+			"coward"
+			confusion 10
+		fleet "Large Southern Pirates"
+
+	npc
+		government "Merchant"
+		personality
+			"heroic"
+			"vindictive"
+			"frugal"
+			"launching"
+			confusion 30
+		ship "Corvette" "Steam Hammer"
+		ship "Fury" "Luck's Eyebrows"
+		ship "Sparrow" "Iceheart"
