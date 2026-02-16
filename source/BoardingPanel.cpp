@@ -185,15 +185,18 @@ void BoardingPanel::Draw()
 
 	// This should always be true, but double check.
 	int crew = 0;
-	if(you && canCapture)
+	if(you)
 	{
-		crew = you->Crew();
 		info.SetString("cargo space", to_string(you->Cargo().Free()));
-		info.SetString("your crew", to_string(crew));
-		info.SetString("your attack",
-			Format::Number(attackOdds.AttackerPower(crew), 1, false));
-		info.SetString("your defense",
-			Format::Number(defenseOdds.DefenderPower(crew), 1, false));
+		if(canCapture)
+		{
+			crew = you->Crew();
+			info.SetString("your crew", to_string(crew));
+			info.SetString("your attack",
+				Format::Number(attackOdds.AttackerPower(crew), 1, false));
+			info.SetString("your defense",
+				Format::Number(defenseOdds.DefenderPower(crew), 1, false));
+		}
 	}
 	int vCrew = victim ? victim->Crew() : 0;
 	if(victim && (canCapture || victim->IsYours()))
