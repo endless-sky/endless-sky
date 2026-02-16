@@ -445,7 +445,7 @@ conversation "remnant key stones"
 	label "don't know"
 	choice
 		`	"No. I plundered my stone off of a pirate, but I don't know where they got it from."`
-			goto pirate.
+			goto pirate
 			to display
 				has "Deep: Scientist Rescue 2: Pirate Bactrian: offered"
 		`	"No. The stone I have is one of a kind. I have not been able to find another like it."`
