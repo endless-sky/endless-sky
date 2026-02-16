@@ -3134,6 +3134,40 @@ bool Ship::CanBeFlagship() const
 
 
 
+// Get this ship's combat width. Combat width determines how many
+// crew are involved in a single round of boarding combat.
+int Ship::CombatWidth() const
+{
+	std::optional<double> widthMultiplier = GameData::GetGamerules().BaseCombatWidth();
+	if(widthMultiplier.has_value())
+		return attributes.Get("bunks") * *widthMultiplier;
+	else
+		return numeric_limits<int>::max();
+}
+
+
+
+// Do not apply any modifiers to combat width if that gamerule is disabled.
+int Ship::AttackingWidth() const
+{
+	if(GameData::GetGamerules().BaseCombatWidth().has_value())
+		return attributes.Get("width attacking");
+	else
+		return 0;
+}
+
+
+
+int Ship::DefendingWidth() const
+{
+	if(GameData::GetGamerules().BaseCombatWidth().has_value())
+		return attributes.Get("width defending");
+	else
+		return 0;
+}
+
+
+
 double Ship::Mass() const
 {
 	return carriedMass + cargo.Used() + attributes.Mass();

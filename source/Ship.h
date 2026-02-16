@@ -418,6 +418,13 @@ public:
 	// Check if this is a ship that can be used as a flagship.
 	bool CanBeFlagship() const;
 
+	// Get this ship's combat width. Combat width determines how many
+	// crew are involved in a single round of boarding combat.
+	int CombatWidth() const;
+	// Get any modifiers this ship applies to combat width.
+	int AttackingWidth() const;
+	int DefendingWidth() const;
+
 	// Get this ship's movement characteristics.
 	double Mass() const override;
 	double InertialMass() const;

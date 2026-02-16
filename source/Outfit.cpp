@@ -131,6 +131,8 @@ namespace {
 		{"slowing resistance fuel", 0.},
 		{"slowing resistance heat", 0.},
 		{"crew equivalent", 0.},
+		{"width attacking", 0.},
+		{"width defending", 0.},
 
 		{"cloaking energy", 0.},
 		{"cloaking fuel", 0.},

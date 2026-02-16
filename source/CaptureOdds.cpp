@@ -31,6 +31,8 @@ CaptureOdds::CaptureOdds(const Ship &attacker, const Ship &defender)
 {
 	powerA = Power(attacker, false);
 	powerD = Power(defender, true);
+	combatWidth = max(1, min(attacker.CombatWidth(), defender.CombatWidth())
+		+ attacker.AttackingWidth() + defender.DefendingWidth());
 }
 
 
@@ -49,7 +51,7 @@ void CaptureOdds::Calculate()
 	unsigned up = 0;
 	for(unsigned a = 2; a <= powerA.size(); ++a)
 	{
-		double ap = powerA[a - 1];
+		double ap = powerA[min<unsigned>(a, combatWidth) - 1];
 		// Special case: odds for defender having only one person,
 		// because 0 people is outside the end of the table.
 		double odds = ap / (ap + powerD[0]);
@@ -61,10 +63,10 @@ void CaptureOdds::Calculate()
 		// Loop through each number of crew the defender might have.
 		for(unsigned d = 2; d <= powerD.size(); ++d)
 		{
-			// This is  basic 2D dynamic program, where each value is based on
+			// This is a basic 2D dynamic program, where each value is based on
 			// the odds of success and the values for one fewer crew members
 			// for the defender or the attacker depending on who wins.
-			odds = ap / (ap + powerD[d - 1]);
+			odds = ap / (ap + powerD[min<unsigned>(d, combatWidth) - 1]);
 			capture.push_back(odds * capture.back() + (1. - odds) * capture[up]);
 			casualtiesA.push_back(odds * casualtiesA.back() + (1. - odds) * (casualtiesA[up] + 1.));
 			casualtiesD.push_back(odds * (casualtiesD.back() + 1.) + (1. - odds) * casualtiesD[up]);
@@ -132,6 +134,8 @@ double CaptureOdds::AttackerPower(int attackingCrew) const
 	if(static_cast<unsigned>(attackingCrew - 1) >= powerA.size())
 		return 0.;
 
+	attackingCrew = min(attackingCrew, combatWidth);
+
 	return powerA[attackingCrew - 1];
 }
 
@@ -143,6 +147,8 @@ double CaptureOdds::DefenderPower(int defendingCrew) const
 {
 	if(static_cast<unsigned>(defendingCrew - 1) >= powerD.size())
 		return 0.;
+
+	defendingCrew = min(defendingCrew, combatWidth);
 
 	return powerD[defendingCrew - 1];
 }
@@ -191,7 +197,7 @@ vector<double> CaptureOdds::Power(const Ship &ship, bool isDefender)
 	power.resize(ship.Crew(), 0.);
 
 	// Calculate partial sums. That is, power[N - 1] should be your total crew
-	// power when you have N crew left.
+	// power when you have N crew participating in combat.
 	power.front() += crewPower;
 	for(unsigned i = 1; i < power.size(); ++i)
 		power[i] += power[i - 1] + crewPower;

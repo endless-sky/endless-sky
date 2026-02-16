@@ -741,6 +741,12 @@ tip "velocity scan power:"
 tip "weapon scan power:"
 	`Weapon scanners allow you to view your current target's weapons' maximum range when it is within scanner range. Specifically, it shows the longest range of all weapons in a gun hardpoint; and the longest range of all weapons in a turret hardpoint. These ranges include the weapon offset and thus show the maximum range from the center of the ship its shots can reach. The scanner range is proportional to the square root of this value.`
 
+tip "width attacking:"
+	`This outfit modifies the number of crew that can participate in a round of boarding while attacking. A higher width benefits large, poorly-armed ships, while a lower width benefits small, well-armed ships.`
+
+tip "width defending:"
+	`This outfit modifies the number of crew that can participate in a round of boarding while defending. A higher width benefits large, poorly-armed ships, while a lower width benefits small, well-armed ships.`
+
 
 tip "thrust:"
 	`Thrust produced by engines. Higher thrust increases a ship's acceleration and top speed. The more mass a ship has, the more thrust is needed to achieve the same acceleration.`
@@ -1672,3 +1678,6 @@ tip "Fighters hit when disabled"
 
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
+
+tip "Base combat width"
+	`Determines the base combat width of every ship, based on a percentage of that ship's bunk count. Combat width determines the maximum number of crew that can participate in a single round of boarding, with the smallest value between the attacking and defending ship being used. A lower base combat width increases the effect of hand-to-hand outfits and reduces the effect of extra crew. If this gamerule has a value of "(unset)", ships will always use their entire crew during boarding.`
