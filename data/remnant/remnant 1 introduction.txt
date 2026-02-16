@@ -405,7 +405,9 @@ conversation "remnant key stones"
 	scene "outfit/keystone"
 	
 	branch hai1
-		has "First Contact: Hai: offered"
+		or
+			has "First Contact: Hai: offered"
+			has "First Contact: Unfettered: offered"
 	
 	`	"We have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones.`
 	label explore
@@ -551,7 +553,10 @@ mission "Remnant: Key Stones"
 	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
-		has "outfit: Quantum Keystone"
+		or
+			has "outfit: Quantum Keystone"
+			has "event: remnant: void sprite research"
+			has "Remnant: Defense 3: done"
 		or
 			has "First Contact: Hai: offered"
 			has "First Contact: Unfettered: offered"
