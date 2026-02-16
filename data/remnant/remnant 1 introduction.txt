@@ -453,7 +453,7 @@ conversation "remnant key stones"
 		`	"No. The stone I have is one of a kind. I have not been able to find another like it."`
 			to display
 				"outfit (all): Quantum Keystone" == 1
-		`	"Sorry, but I can't say I do know where to find more of them."`
+		`	"Sorry, but I don't know where to find more of them."`
 	
 	`	The man raises an eyebrow. "Ah. Well, we have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones, especially none that look like yours.`
 		goto explore
