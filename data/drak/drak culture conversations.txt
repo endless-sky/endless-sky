@@ -90,7 +90,7 @@ mission "Drak Revelations: Korath"
 		has "Efreti: Distress Call 7: done"
 	on offer
 		conversation
-			`Just as your ship reaches Mesuket, you blink, and are no longer in your cockpit.`
+			`Just as your ship reaches <origin>, you blink, and are no longer in your cockpit.`
 			`	On a rocky plateau, gravel and sand make up the base for structures being built by bulky, vaguely humanoid figures made of dirt and rust. A strong light shines down from above, illuminating the area.`
 			`	You feel as though time is rapidly progressing. As the months and years go by, the creatures build taller and grander towers, both elevating themselves and gradually blocking away the light. Eventually the entire plateau serves as the footing for a great domed tower.`
 			`	The light creeps in faintly by cracks and gaps, but those are being swiftly patched by the creatures, who seem to hiss at the light in disapproval. They begin heating up and glowing, hotter and hotter, until they cast off their dirty shells, taking forms of shiny, blazing bronze.`
