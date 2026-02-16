@@ -492,15 +492,14 @@ mission "Remnant: Key Stones (Pre-Hai) 1"
 	source "Viminal"
 	to offer
 		or
+			has "outfit: Quantum Keystone"
 			and
 				not "outfit: Quantum Keystone"
 				or
 					has "event: remnant: void sprite research"
 					has "Remnant: Defense 3: done"
-			and
-				has "outfit: Quantum Keystone"
-				not "First Contact: Hai: offered"
-				not "First Contact: Unfettered: offered"
+		not "First Contact: Hai: offered"
+		not "First Contact: Unfettered: offered"
 		has "remnant: blood test pure"
 		not "Remnant: Key Stones (Hai): offered"
 		not "Remnant: Key Stones: offered"
