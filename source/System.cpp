@@ -343,11 +343,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 					{
 						if(toRemoveTemplate.GetSprite() != object.GetSprite())
 							return false;
-						if(toRemoveTemplate.distance != object.distance)
-							return false;
-						if(toRemoveTemplate.speed != object.speed)
-							return false;
-						if(toRemoveTemplate.offset != object.offset)
+						if(toRemoveTemplate.orbit != object.orbit)
 							return false;
 						return true;
 					}
@@ -475,7 +471,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		static const string UNINHABITEDMOON = "This moon doesn't have anywhere you can land.";
 		static const string STATION = "This station cannot be docked with.";
 
-		double fraction = root->distance / habitable;
+		double fraction = root->Distance() / habitable;
 		if(object.IsStar())
 			object.message = &STAR;
 		else if(object.IsStation())
@@ -801,16 +797,17 @@ void System::SetDate(const Date &date)
 
 	for(StellarObject &object : objects)
 	{
-		// "offset" is used to allow binary orbits; the second object is offset
-		// by 180 degrees.
-		object.angle = Angle(now * object.speed + object.offset);
-		object.position = object.angle.Unit() * object.distance;
+		auto [objPos, objAngle] = object.orbit.Position(now);
+		object.position = objPos;
+		object.angle = objAngle;
 
 		// Because of the order of the vector, the parent's position has always
 		// been updated before this loop reaches any of its children, so:
 		if(object.parent >= 0)
 			object.position += objects[object.parent].position;
 
+		// If the object has a position other than (0, 0), re-angle it to face
+		// the system center.
 		if(object.position)
 			object.angle = Angle(object.position);
 
@@ -1119,11 +1116,11 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 		}
 	}
 	else if(key == "distance" && hasValue)
-		object.distance = node.Value(1);
+		object.orbit.distance = node.Value(1);
 	else if(key == "period" && hasValue)
-		object.speed = 360. / node.Value(1);
+		object.orbit.speed = 360. / node.Value(1);
 	else if(key == "offset" && hasValue)
-		object.offset = node.Value(1);
+		object.orbit.offset = node.Value(1);
 	else if(key == "swizzle" && hasValue)
 		object.SetSwizzle(GameData::Swizzles().Get(node.Token(1)));
 	else if(key == "visibility" && hasValue)
