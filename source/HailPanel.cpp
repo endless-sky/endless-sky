@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "Ship.h"
 #include "image/Sprite.h"
 #include "StellarObject.h"
@@ -330,6 +331,10 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 't' && hasLanguage && planet)
 	{
+		bool isFriendly = gov && !gov->IsEnemy();
+		Preferences::TributeConfirmation confirmation = Preferences::GetTributeConfirmation();
+		bool displayConfirmation = (confirmation == Preferences::TributeConfirmation::ALWAYS
+			|| (isFriendly && confirmation == Preferences::TributeConfirmation::FRIENDLY_ONLY));
 		if(GameData::GetPolitics().HasDominated(planet))
 		{
 			GameData::GetPolitics().DominatePlanet(planet, false);
@@ -337,11 +342,16 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			player.SetTribute(planet, 0);
 			SetMessage("Thank you for granting us our freedom!");
 		}
-		else if(!planet->IsDefending())
+		else if(!planet->IsDefending() && displayConfirmation && gov)
+		{
+			string message = "Demanding tribute may cause this planet to launch defense fleets to fight you. "
+				"After battling the fleets, you can demand tribute again for the planet to relent.\n";
+			if(isFriendly)
+				message += "This act may hurt your reputation severely with the " + gov->DisplayName() + " government. ";
+			message += "Do you want to proceed?";
 			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SetMessage(planet->DemandTribute(player)); },
-				"Demanding tribute may cause this planet to launch defense fleets to fight you. "
-				"After battling the fleets, you can demand tribute again for the planet to relent.\n"
-				"This act may hurt your reputation severely. Do you want to proceed?", false));
+				message, false));
+		}
 		else
 			SetMessage(planet->DemandTribute(player));
 		UI::PlaySound(UI::UISound::NORMAL);

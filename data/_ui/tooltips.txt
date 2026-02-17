@@ -1625,6 +1625,9 @@ tip "Title bar theme"
 tip "Window rounding"
 	`Control the appearance of window corners. (Available on Windows 11.)`
 
+tip "Tribute confirmation"
+	`Whether a confirmation dialog will be displayed when you attempt to demand tribute from a planet. Either it always appears, never appears, or only appears if the target planet is friendly to you.`
+
 
 
 # Gamerules
