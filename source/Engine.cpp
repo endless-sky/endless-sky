@@ -2832,12 +2832,19 @@ void Engine::FillRadar()
 // and engine flares and any fighters it is carrying externally.
 void Engine::DrawShipSprites(const Ship &ship)
 {
+	Ship::PlacementActivity state = Ship::PlacementActivity::WHEN_ACTIVE;
+	if(ship.IsDestroyed())
+		state = Ship::PlacementActivity::WHEN_EXPLODING;
+	else if(ship.IsDisabled())
+		state = Ship::PlacementActivity::WHEN_DISABLED;
+
 	bool hasFighters = ship.PositionFighters();
 	double cloak = ship.Cloaking();
 	bool drawCloaked = (cloak && ship.IsYours());
 	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
 	const Swizzle *cloakSwizzle = GameData::Swizzles().Get(fancyCloak ? "cloak fancy base" : "cloak fast");
 	auto &itemsToDraw = draw[currentCalcBuffer];
+
 	auto drawObject = [&itemsToDraw, cloak, drawCloaked, fancyCloak, cloakSwizzle](const Body &body) -> void
 	{
 		// Draw cloaked/cloaking sprites swizzled red or transparent (depending on whether we are using fancy
@@ -2846,13 +2853,33 @@ void Engine::DrawShipSprites(const Ship &ship)
 			itemsToDraw.AddSwizzled(body, cloakSwizzle, fancyCloak ? 0.5 : 0.25);
 		itemsToDraw.Add(body, cloak);
 	};
+	auto drawEffects = [&ship, state, this](Ship::PlacementSide side) -> void
+	{
+		for(const Ship::LiveEffect &effect : ship.LiveEffects())
+		{
+			if(effect.side != side || !(effect.activity & state) || effect.tick)
+				continue;
 
-	if(hasFighters)
-		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.side == Ship::Bay::UNDER && bay.ship)
-				drawObject(*bay.ship);
-
-	auto DrawEngineFlares = [&](uint8_t where)
+			for(int i = 0; i < effect.amount; ++i)
+				visuals.emplace_back(*effect.effect,
+					ship.Position() + ship.Zoom() * ship.Facing().Rotate(effect.position),
+					ship.Velocity(),
+					ship.Facing() + effect.angle,
+					Point(),
+					1.,
+					ship.Zoom());
+		}
+	};
+	auto drawSparks = [&ship, state, this](Ship::PlacementSide side) -> void
+	{
+		for(const Ship::LiveSpark &spark : ship.LiveSparks())
+		{
+			if(spark.side != side || !(spark.activity & state) || spark.tick)
+				continue;
+			ship.CreateSparks(visuals, spark.effect, spark.amount);
+		}
+	};
+	auto drawEngineFlares = [&ship, this](uint8_t where)
 	{
 		if(ship.ThrustHeldFrames(Ship::ThrustKind::FORWARD) && !ship.EnginePoints().empty())
 			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.EnginePoints(),
@@ -2865,8 +2892,6 @@ void Engine::DrawShipSprites(const Ship &ship)
 			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
 				ship.Attributes().SteeringFlareSprites(), where, false);
 	};
-	DrawEngineFlares(Ship::EnginePoint::UNDER);
-
 	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
 	{
 		const Weapon *weapon = hardpoint.GetWeapon();
@@ -2886,16 +2911,66 @@ void Engine::DrawShipSprites(const Ship &ship)
 			body.SetSwizzle(ship.GetSwizzle());
 		drawObject(body);
 	};
+	auto drawDecor = [&drawObject, &ship](const Ship::Decor &decor) -> void
+	{
+		const Body &sprite = decor.sprite;
+		if(!sprite.HasSprite())
+			return;
+
+		Body body(
+			sprite,
+			ship.Position() + ship.Zoom() * ship.Facing().Rotate(decor.position),
+			ship.Velocity(),
+			ship.Facing() + decor.angle,
+			ship.Zoom());
+		if(body.InheritsParentSwizzle())
+			body.SetSwizzle(ship.GetSwizzle());
+		drawObject(body);
+	};
+	auto drawLeaks = [&ship, this]() -> void
+	{
+		for(const Ship::Leak &leak : ship.ActiveLeaks())
+		{
+			// Leaks always "flicker" every other frame.
+			if(!Random::Int(2))
+				return;
+			visuals.emplace_back(*leak.effect,
+				ship.Position() + ship.Zoom() * ship.Facing().Rotate(leak.location),
+				ship.Velocity(),
+				ship.Facing() + leak.angle,
+				Point(),
+				1.,
+				ship.Zoom());
+		}
+	};
+
+	if(hasFighters)
+		for(const Ship::Bay &bay : ship.Bays())
+			if(bay.side == Ship::Bay::UNDER && bay.ship)
+				drawObject(*bay.ship);
+
+	drawEngineFlares(Ship::EnginePoint::UNDER);
+	drawSparks(Ship::PlacementSide::UNDER);
+	drawEffects(Ship::PlacementSide::UNDER);
 
 	for(const Hardpoint &hardpoint : ship.Weapons())
 		if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
 			drawHardpoint(hardpoint);
+	for(const Ship::Decor &decor : ship.Decorations())
+		if(decor.side == Ship::PlacementSide::UNDER)
+			drawDecor(decor);
 	drawObject(ship);
+	drawLeaks();
+	for(const Ship::Decor &decor : ship.Decorations())
+		if(decor.side == Ship::PlacementSide::OVER)
+			drawDecor(decor);
 	for(const Hardpoint &hardpoint : ship.Weapons())
 		if(hardpoint.GetSide() == Hardpoint::Side::OVER)
 			drawHardpoint(hardpoint);
 
-	DrawEngineFlares(Ship::EnginePoint::OVER);
+	drawEffects(Ship::PlacementSide::OVER);
+	drawSparks(Ship::PlacementSide::OVER);
+	drawEngineFlares(Ship::EnginePoint::OVER);
 
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())

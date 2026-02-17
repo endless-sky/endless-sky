@@ -132,6 +132,93 @@ public:
 		CAN_FIRE
 	};
 
+	enum class PlacementSide {
+		OVER = 0,
+		UNDER
+	};
+
+	enum PlacementActivity {
+		// The NONE value should be replaced with a default value if it wasn't replaced during loading.
+		NONE = 0,
+		WHEN_ACTIVE = (1 << 0),
+		WHEN_DISABLED = (1 << 1),
+		WHEN_EXPLODING = (1 << 2),
+		ALWAYS_ON = WHEN_ACTIVE | WHEN_DISABLED | WHEN_EXPLODING,
+	};
+
+	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
+	// when the ship is dying. Some leaks may also be for aesthetic purposes
+	// while flying.
+	class Leak {
+	public:
+		explicit Leak(const Effect *effect = nullptr) : effect(effect) {}
+
+		const Effect *effect = nullptr;
+		Point location;
+		Angle angle;
+		int openPeriod = 60;
+		int closePeriod = 60;
+		int activity = PlacementActivity::NONE;
+	};
+
+	// A live spark is an effect which periodically appears over the surface of a ship.
+	class LiveSpark {
+	public:
+		explicit LiveSpark(const DataNode &node);
+		void Save(DataWriter &out) const;
+
+		const Effect *effect = nullptr;
+		int period = 1;
+		int random = 0;
+		double amount = 1;
+		PlacementSide side = PlacementSide::OVER;
+		int activity = PlacementActivity::NONE;
+
+		int tick = 0;
+	};
+
+	// A live effect is an effect which periodically appears at a specific point on a ship.
+	class LiveEffect {
+	public:
+		explicit LiveEffect(const DataNode &node);
+		void Save(DataWriter &out) const;
+
+		const Effect *effect = nullptr;
+		Point position;
+		Angle angle;
+		int period = 1;
+		int random = 0;
+		int amount = 1;
+		PlacementSide side = PlacementSide::OVER;
+		int activity = PlacementActivity::NONE;
+
+		int tick = 0;
+	};
+
+	enum class DecorBehavior {
+		STATIC = 0,
+		ROTATING,
+		MOVING,
+		TARGETING
+	};
+
+	// Decor is a sprite that appears somewhere on a ship, similar to a weapon hardpoint,
+	// but without any functionality aside from aesthetics.
+	class Decor {
+	public:
+		explicit Decor(const DataNode &node);
+		void Save(DataWriter &out) const;
+
+		Body sprite;
+		Point position;
+		Angle angle;
+		DecorBehavior behavior = DecorBehavior::STATIC;
+		PlacementSide side = PlacementSide::OVER;
+		int activity = PlacementActivity::NONE;
+		double rotationSpeed = 0.;
+		bool synced = false;
+	};
+
 
 public:
 	// Functions provided by the Body base class:
@@ -329,6 +416,13 @@ public:
 	const std::vector<EnginePoint> &EnginePoints() const;
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
 	const std::vector<EnginePoint> &SteeringEnginePoints() const;
+
+	const std::vector<Leak> &ActiveLeaks() const;
+	const std::vector<LiveEffect> &LiveEffects() const;
+	const std::vector<LiveSpark> &LiveSparks() const;
+	std::vector<Decor> &Decorations();
+	const std::vector<Decor> &Decorations() const;
+	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount) const;
 
 	// Make a ship disabled or destroyed, or bring back a destroyed ship.
 	void Disable();
@@ -563,6 +657,9 @@ private:
 	// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
 	// destroyed, or 0 otherwise.
 	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void StepLeaks(std::vector<Visual> &visuals, PlacementActivity state);
+	void StepLiveEffects();
+	void StepDecorations(PlacementActivity state);
 	void DoGeneration();
 	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
@@ -587,8 +684,7 @@ private:
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
 	// Place a "spark" effect, like ionization or disruption.
-	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
-	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount) const;
 
 	// Calculate the attraction and deterrence of this ship, for pirate raids.
 	// This is only useful for the player's ships.
@@ -740,20 +836,13 @@ private:
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
 
-	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
-	// when the ship is dying.
-	class Leak {
-	public:
-		Leak(const Effect *effect = nullptr) : effect(effect) {}
-
-		const Effect *effect = nullptr;
-		Point location;
-		Angle angle;
-		int openPeriod = 60;
-		int closePeriod = 60;
-	};
 	std::vector<Leak> leaks;
 	std::vector<Leak> activeLeaks;
+
+	bool syncedEffects = false;
+	std::vector<LiveSpark> liveSparks;
+	std::vector<LiveEffect> liveEffects;
+	std::vector<Decor> decorations;
 
 	// Explosions that happen when the ship is dying:
 	std::map<const Effect *, int> explosionEffects;
