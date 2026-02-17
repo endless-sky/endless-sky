@@ -88,7 +88,7 @@ private:
 
 private:
 	void CreateSections();
-	void CenterOnEntry(const BookEntry &entry);
+	void SelectEntry(const BookEntry &entry);
 
 	void DrawSelectedEntry() const;
 	void DrawLogbook();
@@ -108,6 +108,8 @@ private:
 	Selection selection;
 	// The currently selected book entry to display the related systems of.
 	const BookEntry *selectedEntry = nullptr;
+	// The system from the selected entry that is currently being centered on.
+	const System *centeredSystem = nullptr;
 
 	std::vector<ClickZone<Selection>> selectionZones;
 	std::vector<ClickZone<const BookEntry *>> logZones;

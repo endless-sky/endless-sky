@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "text/Layout.h"
 #include "shader/LineShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "shader/RingShader.h"
 #include "Screen.h"
@@ -208,8 +209,7 @@ bool LogbookPanel::Click(int x, int y, MouseButton button, int clicks)
 	for(const ClickZone<const BookEntry *> &zone : logZones)
 		if(zone.Contains(clickPoint))
 		{
-			selectedEntry = zone.Value();
-			CenterOnEntry(*selectedEntry);
+			SelectEntry(*zone.Value());
 			UI::PlaySound(UI::UISound::NORMAL);
 			return true;
 		}
@@ -251,7 +251,7 @@ bool LogbookPanel::Hover(int x, int y)
 
 
 
-LogbookPanel::Entry::Entry(EntryType type, const std::string &heading, const BookEntry &body)
+LogbookPanel::Entry::Entry(EntryType type, const string &heading, const BookEntry &body)
 	: type(type), heading(heading), body(body)
 {
 }
@@ -330,14 +330,55 @@ void LogbookPanel::CreateSections()
 
 
 
-void LogbookPanel::CenterOnEntry(const BookEntry &entry)
+void LogbookPanel::SelectEntry(const BookEntry &entry)
 {
+	vector<const System *> options;
+	set<const System *> uniqueOptions;
+
+	auto AddOption = [&](const System *system) -> void {
+		if(!uniqueOptions.contains(system) && system->IsValid() && player.HasVisited(*system))
+		{
+			options.push_back(system);
+			uniqueOptions.insert(system);
+		}
+	};
+
 	if(entry.SourceSystem())
-		CenterOnSystem(entry.SourceSystem());
-	else if(!entry.MarkSystems().empty())
-		CenterOnSystem(*entry.MarkSystems().begin());
-	else if(!entry.CircleSystems().empty())
-		CenterOnSystem(*entry.CircleSystems().begin());
+		AddOption(entry.SourceSystem());
+	for(const System *system : entry.MarkSystems())
+		AddOption(system);
+	for(const System *system : entry.CircleSystems())
+		AddOption(system);
+
+	if(options.empty())
+		centeredSystem = nullptr;
+	else if(selectedEntry != &entry)
+		centeredSystem = options.front();
+	else if(options.size() > 1)
+	{
+		// Find the next valid system to center on.
+		// Start from the position of the previously centered system in the list of options.
+		auto it = ranges::find(options, centeredSystem);
+		while(true)
+		{
+			// Check the next position. If at any point we reach the end of the options,
+			// wrap back around to the beginning.
+			if(++it == options.end())
+				it = options.begin();
+			// Break out if we've found a valid system to center on, or if this system equals the previously
+			// selected system, which means we wrapped around all the options and found no other valid
+			// system to center on.
+			const System *system = *it;
+			if(system == centeredSystem || (system->IsValid() && player.HasVisited(*system)))
+				break;
+		}
+		centeredSystem = *it;
+		if(!centeredSystem->IsValid() || !player.HasVisited(*centeredSystem))
+			centeredSystem = nullptr;
+	}
+	if(centeredSystem)
+		CenterOnSystem(centeredSystem);
+	selectedEntry = &entry;
 }
 
 
@@ -352,20 +393,35 @@ void LogbookPanel::DrawSelectedEntry() const
 	const Color &markColor = *colors.Get("waypoint");
 
 	double zoom = Zoom();
+	const Color black(0.f, 1.f);
+	Point angle = Angle(30.).Unit();
+
 	auto DrawPointer = [&](const System *system, const Color &color) -> void {
-		unsigned count = 0;
-		MapPanel::DrawPointer(zoom * (system->Position() + center), count, color, true, false);
+		Point position = zoom * (system->Position() + center);
+		PointerShader::Add(position, angle, 14.f, 19.f, -4.f, black);
+		PointerShader::Add(position, angle, 8.f, 15.f, -6.f, color);
 	};
 	auto DrawRing = [&](const System *system, const Color &color) -> void {
 		RingShader::Add(zoom * (system->Position() + center), 22.f, 20.5f, color);
 	};
 
-	if(selectedEntry->SourceSystem())
-		DrawPointer(selectedEntry->SourceSystem(), sourceColor);
-	for(const System *system : selectedEntry->MarkSystems())
-		DrawPointer(system, markColor);
-	for(const System *system : selectedEntry->CircleSystems())
-		DrawRing(system, markColor);
+	PointerShader::Bind();
+	{
+		const System *source = selectedEntry->SourceSystem();
+		if(source && source->IsValid() && player.HasVisited(*source))
+			DrawPointer(source, sourceColor);
+		for(const System *system : selectedEntry->MarkSystems())
+			if(system->IsValid() && player.HasVisited(*system))
+				DrawPointer(system, markColor);
+	}
+	PointerShader::Unbind();
+	RingShader::Bind();
+	{
+		for(const System *system : selectedEntry->CircleSystems())
+			if(system->IsValid() && player.HasVisited(*system))
+				DrawRing(system, markColor);
+	}
+	RingShader::Unbind();
 }
 
 
