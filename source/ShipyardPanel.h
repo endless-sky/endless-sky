@@ -49,6 +49,8 @@ protected:
 	virtual TransactionResult CanDoBuyButton() const;
 	virtual void DoBuyButton();
 	virtual void Sell(bool storeOutfits);
+	virtual TransactionResult CanRewire();
+	virtual void Rewire();
 	virtual int FindItem(const std::string &text) const override;
 	virtual TransactionResult HandleShortcuts(SDL_Keycode key) override;
 
@@ -58,10 +60,13 @@ private:
 	void SellShipAndOutfits();
 	void SellShipChassis();
 	void SellShip(bool toStorage);
+	void RewireShip();
 
 
 private:
 	int modifier;
+
+	std::set<Ship *> shipsToRewire;
 
 	Sale<Ship> shipyard;
 };

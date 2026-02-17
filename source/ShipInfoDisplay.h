@@ -38,7 +38,7 @@ public:
 
 	// Call this every time the ship changes.
 	void Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed = true,
-		bool scrollingPanel = false);
+		bool scrollingPanel = false, bool sale = false);
 
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();
@@ -56,7 +56,8 @@ public:
 
 
 private:
-	void UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool scrollingPanel);
+	void UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed,
+		bool scrollingPanel, bool sale);
 	void UpdateOutfits(const Ship &ship, const PlayerInfo &player, const Depreciation &depreciation);
 
 

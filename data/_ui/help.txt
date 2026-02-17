@@ -189,6 +189,10 @@ help "outfitter with multiple ships"
 	`Escorts can be saved into control groups by pressing a number key while holding Control. All selected escorts will then be bound to that number key, and can be selected again at any time by pressing it.`
 	`Ship group management can be done while flying around or while in the shipyard, outfitter, or player info panel.`
 
+help "locked ships"
+	`Almost every ship in the 31st century has safeguards on their computer systems, preventing intruders from hijacking them. While the protection on flight and navigation systems have bypasses for emergencies, other systems such as weaponry and access to passenger quarters will be locked, preventing their use.`
+	`	Most locked vessels are sold to scrapyards for a fraction of their original value. On the other hand, you could instead have a specialist rewire the entire ship and fly it yourself. Rewiring does not come cheap, however...`
+
 help "stranded"
 	`Oops! You just ran out of fuel in an uninhabited star system. Fortunately, other ships are willing to help you.`
 	`Press <Select next ship> to cycle through all the ships in this system. When you have a friendly one selected, press <Talk to selected ship> to hail it. You can then ask for help, and if it has fuel to spare it will fly over and transfer fuel to your ship. This is easiest for the other ship to do if your ship is nearly stationary.`
