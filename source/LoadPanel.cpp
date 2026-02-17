@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "Logger.h"
 #include "MainPanel.h"
 #include "image/MaskManager.h"
 #include "PlayerInfo.h"
@@ -269,7 +270,8 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		sound = UI::UISound::NONE;
 		nameToConfirm.clear();
 		filesystem::path lastSave = Files::Saves() / it->second.front().first;
-		GetUI().Push(DialogPanel::RequestString(this, &LoadPanel::SnapshotCallback,
+		GetUI().Push(DialogPanel::RequestStringWithCharFilter(this, &LoadPanel::SnapshotCallback,
+			[this](const string &input, char ch) { return LoadPanel::SnapshotNameFilter(input, ch); },
 			"Enter a name for this snapshot, or use the most recent save's date:",
 			FileDate(lastSave)));
 	}
@@ -490,6 +492,12 @@ void LoadPanel::UpdateLists()
 			continue;
 
 		string fileName = Files::Name(path);
+		if(!Files::IsValid(fileName))
+			Logger::Log("Save file name '" + fileName
+				+ "' contains invalid characters, and will not work on certain filesystems."
+				"Consider renaming it.",
+				Logger::Level::WARNING);
+
 		// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
 		size_t pos = fileName.find('~');
 		const bool isSnapshot = (pos != string::npos);
@@ -536,14 +544,39 @@ void LoadPanel::UpdateLists()
 
 
 
-// Snapshot name callback.
-void LoadPanel::SnapshotCallback(const string &name)
+optional<filesystem::path> LoadPanel::SnapshotPathBase()
 {
 	auto it = files.find(selectedPilot);
 	if(it == files.end() || it->second.empty() || it->second.front().first.size() < 4)
+		return nullopt;
+
+	return Files::Saves() / it->second.front().first;
+}
+
+
+
+bool LoadPanel::SnapshotNameFilter(const string &input, char ch)
+{
+	filesystem::path base;
+	if(auto baseOpt = SnapshotPathBase())
+		base = *baseOpt;
+	else
+		return false;
+
+	return Files::IsValidCharacter(ch) && Files::MaxFilenameLength(base) > input.size() + 6;
+}
+
+
+
+// Snapshot name callback.
+void LoadPanel::SnapshotCallback(const string &name)
+{
+	filesystem::path from;
+	if(auto base = SnapshotPathBase())
+		from = *base;
+	else
 		return;
 
-	filesystem::path from = Files::Saves() / it->second.front().first;
 	string suffix = name.empty() ? FileDate(from) : name;
 	string extension = "~" + suffix + ".txt";
 

@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <functional>
 #include <SDL2/SDL_keycode.h>
 #include <string>
 
@@ -27,12 +28,13 @@ public:
 	// don't have any functionality assigned to them. Optionally, size limit of the input buffer
 	// and a set of forbidden characters can be provided.
 	static bool KeyDown(std::string &inputBuffer, SDL_Keycode key, Uint16 mod, size_t maxSize = -1,
-		const std::string &forbidden = {});
+		std::function<bool(char32_t)> validate = {});
+
 
 
 private:
 	// Replace the current contents with the provided string.
 	static void Set(const std::string &inputBuffer);
 	// Get the current clipboard contents, excluding characters we don't want.
-	static std::string Get(size_t maxSize, const std::string &forbidden);
+	static std::string Get(size_t maxSize, std::function<bool(char32_t)> validate);
 };

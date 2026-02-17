@@ -59,6 +59,11 @@ public:
 
 	// Get the filename from a path.
 	static std::string Name(const std::filesystem::path &path);
+	// Validate that a character is allowed in a filename.
+	static bool IsValidCharacter(char32_t ch);
+	// Check if a filename is valid.
+	static bool IsValid(const std::string &filename);
+	static size_t MaxFilenameLength(const std::filesystem::path &base);
 
 	/// Check whether one path is a parent of another.
 	static bool IsParent(const std::filesystem::path &parent, const std::filesystem::path &child);

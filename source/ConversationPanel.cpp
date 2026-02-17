@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Conversation.h"
 #include "text/DisplayText.h"
 #include "Endpoint.h"
+#include "Files.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -43,19 +44,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "UI.h"
 
-#if defined _WIN32
-#include "Files.h"
-#endif
-
 #include <array>
 #include <iterator>
 
 using namespace std;
 
 namespace {
-#if defined _WIN32
-	size_t PATH_LENGTH;
-#endif
 	// Width of the conversation text.
 	const int WIDTH = 540;
 	// Margin on either side of the text.
@@ -70,9 +64,6 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	: player(player), caller(caller), useTransactions(useTransactions), conversation(conversation),
 	scroll(0.), system(system), ship(ship)
 {
-#if defined _WIN32
-	PATH_LENGTH = Files::Saves().string().size();
-#endif
 	Audio::Pause();
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display. Some substitutions already in the map
@@ -286,21 +277,15 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	}
 	if(choices.empty())
 	{
-		// Don't allow characters that can't be used in a file name.
-		static const string FORBIDDEN = "/\\?*:|\"<>~";
-		// Prevent the name from being so large that it cannot be saved.
-		// Most path components can be at most 255 bytes.
-		size_t MAX_NAME_LENGTH = 250;
-#if defined _WIN32
-		MAX_NAME_LENGTH -= PATH_LENGTH;
-#endif
-
 		// Right now we're asking the player to enter their name.
 		string &name = (choice ? lastName : firstName);
 		string &otherName = (choice ? firstName : lastName);
 		// Allow editing the text. The tab key toggles to the other entry field,
 		// as does the return key if the other field is still empty.
-		if(Clipboard::KeyDown(name, key, mod, MAX_NAME_LENGTH, FORBIDDEN))
+		if(Clipboard::KeyDown(name, key, mod, Files::MaxFilenameLength(Files::Saves()), [](char32_t ch)
+		{
+			return Files::IsValidCharacter(ch) && ch != '~';
+		}))
 		{
 			// Input handled by Clipboard.
 		}
@@ -311,7 +296,10 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 			// Caps lock should shift letters, but not any other keys.
 			if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
 				c += 'A' - 'a';
-			if(FORBIDDEN.find(c) == string::npos && (name.size() + otherName.size()) < MAX_NAME_LENGTH)
+			// '~' is a valid filepath character, but we don't want it in player names because it is
+			// used as a separator in save file names.
+			if(Files::IsValidCharacter(c) && c != '~'
+					&& (name.size() + otherName.size()) < Files::MaxFilenameLength(Files::Saves()))
 				name += c;
 			else
 				flickerTime = 18;
