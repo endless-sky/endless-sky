@@ -57,6 +57,9 @@ namespace {
 	const string UNIVERSAL_RAMSCOOP = "Universal ramscoop";
 	const string SYSTEM_DEPARTURE_MIN = "Minimum departure distance";
 	const string SYSTEM_ARRIVAL_MIN = "Minimum arrival distance";
+	const string HABITABLE_BASED_ARRIVAL_DISTANCE = "Habitable arrival distance";
+	const string HABITABLE_ARRIVAL_MIN = "   Minimum distance";
+	const string HABITABLE_ARRIVAL_MAX = "   Maximum distance";
 	const string FLEET_MULTIPLIER = "Fleet multiplier";
 	const string LOCK_GAMERULES = "Lock gamerules";
 	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
@@ -76,6 +79,9 @@ namespace {
 		{UNIVERSAL_RAMSCOOP, "universal ramscoop"},
 		{SYSTEM_DEPARTURE_MIN, "system departure min"},
 		{SYSTEM_ARRIVAL_MIN, "system arrival min"},
+		{HABITABLE_BASED_ARRIVAL_DISTANCE, "habitable based arrival distance"},
+		{HABITABLE_ARRIVAL_MIN, "habitable arrival min"},
+		{HABITABLE_ARRIVAL_MAX, "habitable arrival max"},
 		{FLEET_MULTIPLIER, "fleet multiplier"},
 		{LOCK_GAMERULES, "lock gamerules"},
 		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
@@ -387,6 +393,9 @@ void GamerulesPanel::DrawGamerules()
 		UNIVERSAL_RAMSCOOP,
 		SYSTEM_ARRIVAL_MIN,
 		SYSTEM_DEPARTURE_MIN,
+		HABITABLE_BASED_ARRIVAL_DISTANCE,
+		HABITABLE_ARRIVAL_MIN,
+		HABITABLE_ARRIVAL_MAX,
 		FLEET_MULTIPLIER,
 		"",
 		"Miscellaneous",
@@ -469,6 +478,24 @@ void GamerulesPanel::DrawGamerules()
 		}
 		else if(gamerule == SYSTEM_DEPARTURE_MIN)
 			text = Format::AbbreviatedNumber(gamerules.SystemDepartureMin(), std::nullopt);
+		else if(gamerule == HABITABLE_BASED_ARRIVAL_DISTANCE)
+			text = gamerules.HabitableBasedArrivalDistance() ? "true" : "false";
+		else if(gamerule == HABITABLE_ARRIVAL_MIN)
+		{
+			if(gamerules.HabitableArrivalMin().has_value())
+				text = Format::AbbreviatedNumber(*gamerules.HabitableArrivalMin(), std::nullopt);
+			else
+				text = "(unset)";
+			isOn = gamerules.HabitableBasedArrivalDistance();
+		}
+		else if(gamerule == HABITABLE_ARRIVAL_MAX)
+		{
+			if(gamerules.HabitableArrivalMax().has_value())
+				text = Format::AbbreviatedNumber(*gamerules.HabitableArrivalMax(), std::nullopt);
+			else
+				text = "(unset)";
+			isOn = gamerules.HabitableBasedArrivalDistance();
+		}
 		else if(gamerule == FLEET_MULTIPLIER)
 			text = Format::Percentage(gamerules.FleetMultiplier(), 2);
 		else if(gamerule == LOCK_GAMERULES)
@@ -794,6 +821,24 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		string message = "Set the minimum system arrival distance. (Any decimal value.)";
 		GetUI().Push(OptionalInputDialogPanel::RequestDouble(&gamerules, &Gamerules::SetSystemArrivalMin, message,
 			gamerules.SystemArrivalMin()));
+	}
+	else if(str == HABITABLE_BASED_ARRIVAL_DISTANCE)
+		gamerules.SetHabitableBasedArrivalDistance(!gamerules.HabitableBasedArrivalDistance());
+	else if(str == HABITABLE_ARRIVAL_MIN)
+	{
+		string message = "Set the minimum system arrival distance when the arrival distance is based on the "
+			"habitable distance of the system. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.0; };
+		GetUI().Push(OptionalInputDialogPanel::RequestDoubleWithValidation(&gamerules,
+			&Gamerules::SetHabitableArrivalMin, validate, message, gamerules.HabitableArrivalMin()));
+	}
+	else if(str == HABITABLE_ARRIVAL_MAX)
+	{
+		string message = "Set the maximum system arrival distance when the arrival distance is based on the "
+			"habitable distance of the system. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.0; };
+		GetUI().Push(OptionalInputDialogPanel::RequestDoubleWithValidation(&gamerules,
+			&Gamerules::SetHabitableArrivalMax, validate, message, gamerules.HabitableArrivalMax()));
 	}
 	else if(str == FLEET_MULTIPLIER)
 	{

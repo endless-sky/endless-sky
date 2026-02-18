@@ -1661,6 +1661,15 @@ tip "Minimum arrival distance"
 tip "Minimum departure distance"
 	`The minimum departure distance for all systems. A ship can only jump out of a system if it is farther from the system center than the departure distance. If a system has a defined departure distance greater than this value, then it will be used instead.`
 
+tip "Habitable arrival distance"
+	`If true, then systems that do not define an arrival distance will generate one that is equal to the habitable distance of the system.`
+
+tip "   Minimum distance"
+	`If the "Habitable arrival distance" gamerule is true, systems with a habitable distance lower than this value will use this value as their arrival distance instead.`
+
+tip "   Maximum distance"
+	`If the "Habitable arrival distance" gamerule is true, systems with a habitable distance higher than this value will use this value as their arrival distance instead.`
+
 tip "Fleet multiplier"
 	`A global fleet spawn rate multiplier for random fleet spawns within systems.`
 

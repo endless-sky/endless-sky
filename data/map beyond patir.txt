@@ -48,7 +48,6 @@ system Balnii
 	government Uninhabited
 	attributes "beyond patir"
 	haze _menu/haze-sarifa
-	arrival 1100
 	habitable 360
 	belt 1497
 	fleet "Magic Asteroid" 900
