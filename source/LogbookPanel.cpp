@@ -350,16 +350,12 @@ void LogbookPanel::SelectEntry(const BookEntry &entry)
 	for(const System *system : entry.CircleSystems())
 		AddOption(system);
 
-	if(options.empty())
-		centeredSystem = nullptr;
-	else if(selectedEntry != &entry)
-		centeredSystem = options.front();
-	else if(options.size() > 1)
-	{
+	auto NextValidSystem = [&](const System *previous) -> const System * {
 		// Find the next valid system to center on.
-		// Start from the position of the previously centered system in the list of options.
-		auto it = ranges::find(options, centeredSystem);
-		while(true)
+		// Start from the position of the previously centered system in the list of options,
+		// or the first one if there is no previous system.
+		auto it = !previous ? options.begin() : ranges::find(options, previous);
+		for(int i = 0; i < options.size(); ++i)
 		{
 			// Check the next position. If at any point we reach the end of the options,
 			// wrap back around to the beginning.
@@ -369,13 +365,18 @@ void LogbookPanel::SelectEntry(const BookEntry &entry)
 			// selected system, which means we wrapped around all the options and found no other valid
 			// system to center on.
 			const System *system = *it;
-			if(system == centeredSystem || (system->IsValid() && player.CanView(*system)))
-				break;
+			if(system == previous || (system->IsValid() && player.CanView(*system)))
+				return system;
 		}
-		centeredSystem = *it;
-		if(!centeredSystem->IsValid() || !player.CanView(*centeredSystem))
-			centeredSystem = nullptr;
-	}
+		return nullptr;
+	};
+
+	if(options.empty())
+		centeredSystem = nullptr;
+	else if(selectedEntry != &entry)
+		centeredSystem = NextValidSystem(nullptr);
+	else if(options.size() > 1)
+		centeredSystem = NextValidSystem(centeredSystem);
 	if(centeredSystem)
 		CenterOnSystem(centeredSystem);
 	selectedEntry = &entry;
