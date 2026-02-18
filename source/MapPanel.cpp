@@ -869,7 +869,7 @@ bool MapPanel::Hover(int x, int y)
 	{
 		const System *system = squad.first;
 		if(pos.Distance(system->Position()) < maxDistance
-				&& (player.HasSeen(*system) || system == specialSystem))
+				&& (player.HasSeen(*system, isSimplified) || system == specialSystem))
 		{
 			// Start tracking this system.
 			hoverSystem = system;
@@ -1222,8 +1222,9 @@ void MapPanel::UpdateCache()
 		// Ignore systems which are inaccessible or have been referred to, but not actually defined.
 		if(!system.IsValid() || system.Inaccessible())
 			continue;
-		// Ignore systems the player has never seen, unless they have a pending mission that lets them see it.
-		if(!player.HasSeen(system) && &system != specialSystem)
+		// Ignore systems the player has never seen, unless they have a pending mission that lets them see it and
+		// this isn't a simplified map view that excludes mission data.
+		if(!player.HasSeen(system, isSimplified) && &system != specialSystem)
 			continue;
 
 		Color color = UninhabitedColor();
@@ -1334,7 +1335,7 @@ void MapPanel::UpdateCache()
 
 		const bool canViewSystem = player.CanView(system);
 		nodes.emplace_back(system.Position(), color,
-			player.KnowsName(system) ? system.DisplayName() : "",
+			player.KnowsName(system, isSimplified) ? system.DisplayName() : "",
 			(&system == &playerSystem || &system == selectedSystem) ? closeNameColor : farNameColor,
 			canViewSystem ? system.GetGovernment() : nullptr,
 			canViewSystem ? system.GetMapIcons() : unmappedSystem);
@@ -1349,11 +1350,11 @@ void MapPanel::UpdateCache()
 	for(const auto &it : GameData::Systems())
 	{
 		const System *system = &it.second;
-		if(!system->IsValid() || !player.HasSeen(*system))
+		if(!system->IsValid() || !player.HasSeen(*system, isSimplified))
 			continue;
 
 		for(const System *link : system->Links())
-			if(link < system || !player.HasSeen(*link))
+			if(link < system || !player.HasSeen(*link, isSimplified))
 			{
 				// Only draw links between two systems if one of the two is
 				// viewable. Also, avoid drawing twice by only drawing in the
@@ -1462,7 +1463,7 @@ void MapPanel::DrawSelectedSystem()
 	SpriteShader::Draw(sprite, Point(0. + selectedSystemOffset, Screen::Top() + .5f * sprite->Height()));
 
 	string text;
-	if(!player.KnowsName(*selectedSystem))
+	if(!player.KnowsName(*selectedSystem, isSimplified))
 		text = "Selected system: unexplored system";
 	else
 		text = "Selected system: " + selectedSystem->DisplayName();
@@ -1504,7 +1505,7 @@ void MapPanel::DrawEscorts()
 	const Color &parked = *GameData::Colors().Get("dim");
 	double zoom = Zoom();
 	for(const auto &squad : escortSystems)
-		if(player.HasSeen(*squad.first) || squad.first == specialSystem)
+		if(player.HasSeen(*squad.first, isSimplified) || squad.first == specialSystem)
 		{
 			Point pos = zoom * (squad.first->Position() + center);
 

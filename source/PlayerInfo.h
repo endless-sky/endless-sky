@@ -338,11 +338,11 @@ public:
 	int64_t GetTributeTotal() const;
 
 	// Check what the player knows about the given system or planet.
-	bool HasSeen(const System &system) const;
+	bool HasSeen(const System &system, bool excludeMission = false) const;
 	bool CanView(const System &system) const;
 	bool HasVisited(const System &system) const;
 	bool HasVisited(const Planet &planet) const;
-	bool KnowsName(const System &system) const;
+	bool KnowsName(const System &system, bool excludeMission = false) const;
 	// Marking a system as visited also "sees" its neighbors.
 	void Visit(const System &system);
 	void Visit(const Planet &planet);

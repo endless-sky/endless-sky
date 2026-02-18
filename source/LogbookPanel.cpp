@@ -336,7 +336,7 @@ void LogbookPanel::SelectEntry(const BookEntry &entry)
 	set<const System *> uniqueOptions;
 
 	auto AddOption = [&](const System *system) -> void {
-		if(!uniqueOptions.contains(system) && system->IsValid() && player.HasVisited(*system))
+		if(!uniqueOptions.contains(system) && system->IsValid() && player.CanView(*system))
 		{
 			options.push_back(system);
 			uniqueOptions.insert(system);
@@ -369,11 +369,11 @@ void LogbookPanel::SelectEntry(const BookEntry &entry)
 			// selected system, which means we wrapped around all the options and found no other valid
 			// system to center on.
 			const System *system = *it;
-			if(system == centeredSystem || (system->IsValid() && player.HasVisited(*system)))
+			if(system == centeredSystem || (system->IsValid() && player.CanView(*system)))
 				break;
 		}
 		centeredSystem = *it;
-		if(!centeredSystem->IsValid() || !player.HasVisited(*centeredSystem))
+		if(!centeredSystem->IsValid() || !player.CanView(*centeredSystem))
 			centeredSystem = nullptr;
 	}
 	if(centeredSystem)
@@ -408,17 +408,17 @@ void LogbookPanel::DrawSelectedEntry() const
 	PointerShader::Bind();
 	{
 		const System *source = selectedEntry->SourceSystem();
-		if(source && source->IsValid() && player.HasVisited(*source))
+		if(source && source->IsValid() && player.CanView(*source))
 			DrawPointer(source, sourceColor);
 		for(const System *system : selectedEntry->MarkSystems())
-			if(system->IsValid() && player.HasVisited(*system))
+			if(system->IsValid() && player.CanView(*system))
 				DrawPointer(system, markColor);
 	}
 	PointerShader::Unbind();
 	RingShader::Bind();
 	{
 		for(const System *system : selectedEntry->CircleSystems())
-			if(system->IsValid() && player.HasVisited(*system))
+			if(system->IsValid() && player.CanView(*system))
 				DrawRing(system, markColor);
 	}
 	RingShader::Unbind();
