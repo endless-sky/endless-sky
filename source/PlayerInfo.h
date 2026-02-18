@@ -88,6 +88,7 @@ public:
 		const std::string &Heading() const;
 		std::string Subheading() const;
 		const BookEntry &GetBookEntry() const;
+		void AddLog(const BookEntry &entry);
 		const std::map<std::string, StorylineProgress> &Children() const;
 
 	private:
@@ -481,7 +482,8 @@ private:
 
 	bool HasClearance() const;
 
-	void EvaluateStoryline(std::map<std::string, StorylineProgress> &progress, const StorylineEntry &storylineEntry);
+	void EvaluateStoryline(std::map<std::string, StorylineProgress> &progress, const StorylineEntry &storylineEntry,
+		const std::map<std::string, std::string> &substitutions);
 
 
 private:

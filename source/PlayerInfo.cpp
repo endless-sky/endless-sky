@@ -291,6 +291,13 @@ const BookEntry &PlayerInfo::StorylineProgress::GetBookEntry() const
 
 
 
+void PlayerInfo::StorylineProgress::AddLog(const BookEntry &entry)
+{
+	log.Add(entry);
+}
+
+
+
 const std::map<std::string, PlayerInfo::StorylineProgress> &PlayerInfo::StorylineProgress::Children() const
 {
 	return children;
@@ -1038,8 +1045,9 @@ void PlayerInfo::AdvanceDate(int amount)
 
 void PlayerInfo::CheckStorylineProgress()
 {
+	map<string, string> substitutions = GetSubstitutions();
 	for(const auto &storyline : GameData::Storylines())
-		EvaluateStoryline(storylineProgress, storyline.second);
+		EvaluateStoryline(storylineProgress, storyline.second, substitutions);
 }
 
 
@@ -5457,7 +5465,8 @@ bool PlayerInfo::HasClearance() const
 
 
 
-void PlayerInfo::EvaluateStoryline(map<string, StorylineProgress> &progress, const StorylineEntry &storylineEntry)
+void PlayerInfo::EvaluateStoryline(map<string, StorylineProgress> &progress, const StorylineEntry &storylineEntry,
+	const map<string, string> &substitutions)
 {
 	// If the player hasn't already started this storyline and
 	// they meet the conditions to start it, create a new progress entry.
@@ -5466,7 +5475,7 @@ void PlayerInfo::EvaluateStoryline(map<string, StorylineProgress> &progress, con
 	{
 		if(!storylineEntry.IsStarted())
 			return;
-		BookEntry log = storylineEntry.GetBookEntry().Instantiate(GetSubstitutions());
+		BookEntry log = storylineEntry.InitialEntry().Instantiate(substitutions);
 		log.SetSourceSystem(system);
 		progress[name] = StorylineProgress(storylineEntry, std::move(log), date);
 	}
@@ -5474,8 +5483,11 @@ void PlayerInfo::EvaluateStoryline(map<string, StorylineProgress> &progress, con
 
 	// If this storyline has just ended, set its end date.
 	if(!progressEntry.end && storylineEntry.IsComplete())
+	{
 		progressEntry.end = date;
+		progressEntry.AddLog(storylineEntry.InitialEntry().Instantiate(substitutions));
+	}
 	// Check for the progress of any child entries.
 	for(const auto &child : storylineEntry.Children() | views::values)
-		EvaluateStoryline(progressEntry.children, child);
+		EvaluateStoryline(progressEntry.children, child, substitutions);
 }

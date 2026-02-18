@@ -48,7 +48,8 @@ public:
 	const std::string &TrueName() const;
 	const std::string &SectionName() const;
 	const std::string &Heading() const;
-	const BookEntry &GetBookEntry() const;
+	const BookEntry &InitialEntry() const;
+	const BookEntry &CompleteEntry() const;
 	bool IsStarted() const;
 	bool IsComplete() const;
 	const std::map<std::string, StorylineEntry> &Children() const;
@@ -60,7 +61,8 @@ private:
 	std::string trueName;
 	std::string heading;
 	std::string sectionName;
-	BookEntry bookEntry;
+	BookEntry initialEntry;
+	BookEntry completeEntry;
 
 	ConditionSet toStart;
 	ConditionSet toComplete;
