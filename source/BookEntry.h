@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <variant>
 #include <vector>
-#include <set>
 
 class Color;
 class DataNode;

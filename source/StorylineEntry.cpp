@@ -1,4 +1,4 @@
-/* Storyline.cpp
+/* StorylineEntry.cpp
 Copyright (c) 2026 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -99,16 +99,13 @@ const BookEntry &StorylineEntry::GetBookEntry() const
 
 bool StorylineEntry::IsStarted() const
 {
-	// Storyline entries must have an explicit "to start" node in order to be considered started.
-	return !toStart.IsEmpty() && toStart.Test();
+	return toStart.Test();
 }
 
 
 
 bool StorylineEntry::IsComplete() const
 {
-	// Storyline entries may have no "to complete" node, meaning they're considered completed
-	// the moment they start.
 	return toComplete.Test();
 }
 
