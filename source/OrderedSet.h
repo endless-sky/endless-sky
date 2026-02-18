@@ -109,7 +109,7 @@ Type *OrderedSet<Type>::Get(const std::string &name)
 	// The order can be changed afterward as needed.
 	Type *retVal = Set<Type>::Get(name);
 	if(std::find(order.begin(), order.end(), name) == order.end())
-		order.push_back(name);
+		order.emplace_back(name);
 	return retVal;
 }
 
