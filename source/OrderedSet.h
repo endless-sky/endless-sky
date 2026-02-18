@@ -127,7 +127,5 @@ template<class Type>
 void OrderedSet<Type>::erase(const std::string &name)
 {
 	Set<Type>::erase(name);
-	const auto it = std::find(order.begin(), order.end(), name);
-	if(it != order.end())
-		order.erase(it);
+	std::erase(order, name);
 }
