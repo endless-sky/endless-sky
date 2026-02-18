@@ -242,7 +242,6 @@ namespace {
 		return *GameData::Colors().Get("minable target pointer unselected");
 	}
 
-	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 3000.;
 }
 
@@ -1066,7 +1065,10 @@ void Engine::Step(bool isActive)
 				doClick = false;
 			}
 			else
-				clickPoint /= isRadarClick ? RADAR_SCALE : zoom;
+			{
+				const Interface *hud = GameData::Interfaces().Get("hud");
+				clickPoint /= isRadarClick ? hud->GetValue("radar scale") : zoom;
+			}
 		}
 	}
 
@@ -1344,7 +1346,7 @@ void Engine::Draw() const
 	{
 		radar[currentDrawBuffer].Draw(
 			hud->GetPoint("radar"),
-			RADAR_SCALE,
+			hud->GetValue("radar scale"),
 			hud->GetValue("radar radius"),
 			hud->GetValue("radar pointer radius"));
 	}
@@ -1395,6 +1397,7 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 	const Interface *hud = GameData::Interfaces().Get("hud");
 	Point radarCenter = hud->GetPoint("radar");
 	double radarRadius = hud->GetValue("radar radius");
+	double radarScale = hud->GetValue("radar scale");
 	if(Preferences::Has("Clickable radar display") && (from - radarCenter).Length() <= radarRadius)
 		isRadarClick = true;
 	else
@@ -1404,8 +1407,8 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 	uiClickBox = Rectangle::WithCorners(from, to);
 	if(isRadarClick)
 		clickBox = Rectangle::WithCorners(
-			(from - radarCenter) / RADAR_SCALE + camera.Center(),
-			(to - radarCenter) / RADAR_SCALE + camera.Center());
+			(from - radarCenter) / radarScale + camera.Center(),
+			(to - radarCenter) / radarScale + camera.Center());
 	else
 		clickBox = Rectangle::WithCorners(from / zoom + camera.Center(), to / zoom + camera.Center());
 }
@@ -1422,8 +1425,9 @@ void Engine::RightOrMiddleClick(const Point &point, MouseButton button)
 	const Interface *hud = GameData::Interfaces().Get("hud");
 	Point radarCenter = hud->GetPoint("radar");
 	double radarRadius = hud->GetValue("radar radius");
+	double radarScale = hud->GetValue("radar scale");
 	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= radarRadius)
-		clickPoint = (point - radarCenter) / RADAR_SCALE;
+		clickPoint = (point - radarCenter) / radarScale;
 	else
 		clickPoint = point / zoom;
 }
