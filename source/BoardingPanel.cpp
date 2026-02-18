@@ -185,15 +185,18 @@ void BoardingPanel::Draw()
 
 	// This should always be true, but double check.
 	int crew = 0;
-	if(you && canCapture)
+	if(you)
 	{
-		crew = you->Crew();
 		info.SetString("cargo space", to_string(you->Cargo().Free()));
-		info.SetString("your crew", to_string(crew));
-		info.SetString("your attack",
-			Format::Number(attackOdds.AttackerPower(crew), 1, false));
-		info.SetString("your defense",
-			Format::Number(defenseOdds.DefenderPower(crew), 1, false));
+		if(canCapture)
+		{
+			crew = you->Crew();
+			info.SetString("your crew", to_string(crew));
+			info.SetString("your attack",
+				Format::Number(attackOdds.AttackerPower(crew), 1, false));
+			info.SetString("your defense",
+				Format::Number(defenseOdds.DefenderPower(crew), 1, false));
+		}
 	}
 	int vCrew = victim ? victim->Crew() : 0;
 	if(victim && (canCapture || victim->IsYours()))
@@ -267,7 +270,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			else
 				message = "You cannot plunder now.";
 
-			GetUI().Push(new DialogPanel{message});
+			GetUI().Push(DialogPanel::Info(message));
 			return true;
 		}
 
@@ -325,8 +328,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		{
 			victim->SelfDestruct();
 			GetUI().Pop(this);
-			GetUI().Push(new DialogPanel("The moment you blast through the airlock, a series of explosions rocks the "
-				"enemy ship. They appear to have set off their self-destruct sequence..."));
+			GetUI().Push(DialogPanel::Info("The moment you blast through the airlock, a series of explosions "
+				"rocks the enemy ship. They appear to have set off their self-destruct sequence..."));
 			return true;
 		}
 		isCapturing = true;

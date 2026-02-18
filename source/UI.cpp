@@ -99,6 +99,11 @@ void UI::StepAll()
 	// Step all the panels.
 	for(shared_ptr<Panel> &panel : stack)
 		panel->Step();
+
+	// Process any tasks queued up by the panels.
+	syncQueue.Wait();
+	syncQueue.ProcessSyncTasks();
+	asyncQueue.ProcessSyncTasks();
 }
 
 
@@ -123,6 +128,20 @@ void UI::DrawAll()
 
 
 
+TaskQueue &UI::SyncQueue()
+{
+	return syncQueue;
+}
+
+
+
+TaskQueue &UI::AsyncQueue()
+{
+	return asyncQueue;
+}
+
+
+
 const vector<shared_ptr<Panel>> &UI::Stack() const
 {
 	return stack;
@@ -142,6 +161,7 @@ void UI::Push(const shared_ptr<Panel> &panel)
 {
 	toPush.push_back(panel);
 	panel->SetUI(this);
+	panel->DoResize();
 }
 
 

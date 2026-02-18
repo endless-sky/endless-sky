@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "UI.h"
 #include "text/WrappedText.h"
@@ -63,6 +64,22 @@ LogbookPanel::LogbookPanel(PlayerInfo &player)
 		selectedName = MONTH[selectedDate.Month() - 1];
 	}
 	Update();
+}
+
+
+
+void LogbookPanel::Step()
+{
+	// Load any and deferred scenes that appear in the logbook.
+	// This is done here instead of in the constructor because the constructor
+	// does not have access to the UI stack.
+	if(!hasLoadedScenes)
+	{
+		hasLoadedScenes = true;
+		for(const auto &entry : player.Logbook())
+			for(const Sprite *scene : entry.second.GetScenes())
+				SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), scene);
+	}
 }
 
 

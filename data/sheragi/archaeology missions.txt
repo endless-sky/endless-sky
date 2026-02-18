@@ -336,6 +336,7 @@ outfit "Timer Submunition"
 mission "Sad Archie"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "There Might Be Riots part 3B: done"
 	destination "Zug"
@@ -658,6 +659,7 @@ mission "Rim Archaeology 5A"
 mission "Rim Archaeology 5B"
 	landing
 	invisible
+	non-blocking
 	source Zug
 	to offer
 		has "Rim Archaeology 5A: done"

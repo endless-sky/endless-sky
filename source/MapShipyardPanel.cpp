@@ -20,12 +20,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Information.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -52,6 +54,15 @@ MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
 	Init();
 	onlyShowSoldHere = onlyHere;
 	UpdateCache();
+}
+
+
+
+void MapShipyardPanel::LoadCatalogThumbnails() const
+{
+	for(const auto &category : catalog)
+		for(const string &entry : category.second)
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), GameData::Ships().Get(entry)->Thumbnail());
 }
 
 
@@ -94,19 +105,6 @@ const ItemInfoDisplay &MapShipyardPanel::SelectedInfo() const
 const ItemInfoDisplay &MapShipyardPanel::CompareInfo() const
 {
 	return compareInfo;
-}
-
-
-
-const string &MapShipyardPanel::KeyLabel(int index) const
-{
-	static const string LABEL[4] = {
-		"Has no shipyard",
-		"Has shipyard",
-		"Sells this ship",
-		"Ship parked here"
-	};
-	return LABEL[index];
 }
 
 
@@ -188,6 +186,15 @@ int MapShipyardPanel::FindItem(const string &text) const
 		}
 	}
 	return bestItem;
+}
+
+
+
+void MapShipyardPanel::DrawKey(Information &info) const
+{
+	info.SetCondition("is shipyards");
+
+	MapSalesPanel::DrawKey(info);
 }
 
 

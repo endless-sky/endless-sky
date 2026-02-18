@@ -126,14 +126,22 @@ protected:
 // This object is updated by toggling plugins in the Preferences UI.
 class Plugins {
 public:
+	enum class Status
+	{
+		NOT_DOWNLOADED,
+		FAILED_DOWNLOAD,
+		DOWNLOADED,
+	};
+
+public:
 	// Attempt to load a plugin at the given path.
 	static std::string Load(const std::filesystem::path &path);
 	static void LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path &pluginsJsonPath);
 	static void LoadSettings();
 	static void Save();
 
-	static void AddLibraryUrl(const std::string & token);
-	static std::map<std::string, bool> &GetPluginLibraryUrls();
+	static void AddLibraryUrl(const std::string & url, Status installed = Status::NOT_DOWNLOADED);
+	static std::map<std::string, Status> &GetPluginLibraryUrls();
 
 	// Whether the path points to a valid plugin.
 	static bool IsPlugin(const std::filesystem::path &path);

@@ -54,7 +54,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	map<string, bool> plugin_list_urls;
+	map<string, Plugins::Status> plugin_list_urls;
 
 	// These are the installed and available plugins, not all of which will be enabled for use.
 	mutex pluginsMutex;
@@ -97,7 +97,7 @@ namespace {
 	}
 
 	// The maximum size of a plugin in bytes, this will be 1 Gigabyte.
-	constexpr size_t MAX_DOWNLOAD_SIZE = 1<<30;
+	constexpr size_t MAX_DOWNLOAD_SIZE = 1 << 30;
 }
 
 
@@ -352,11 +352,10 @@ string Plugins::Load(const filesystem::path &path)
 	// For consistency between the plugin library and the installed plugins,
 	// we will strip the zip extension off any zip files, or else the folder name.
 	// Get the name of the folder/zip-file containing the plugin.
-	string name = path.filename().string();
-	name = path.stem().string();
+	string name = path.stem().string();
 	if(name != "integration-tests")
 		// TODO: this was a hack to get things working, why does this break integration tests?
-		Logger::Log("Loading Plugin: '" + name + "'...", Logger::Level::INFO);
+		Logger::Log("Reading Plugin: '" + name + "'...", Logger::Level::INFO);
 
 	filesystem::path pluginFile = path / "plugin.txt";
 	string description;
@@ -449,19 +448,19 @@ string Plugins::Load(const filesystem::path &path)
 	plugin->tags = std::move(tags);
 	plugin->dependencies = std::move(dependencies);
 
-	return name;
+	return plugin->name;
 }
 
 
 
-void Plugins::AddLibraryUrl(const std::string &url)
+void Plugins::AddLibraryUrl(const std::string &url, const Status installed)
 {
-	plugin_list_urls[url] = false;
+	plugin_list_urls[url] = installed;
 }
 
 
 
-map<string, bool> &Plugins::GetPluginLibraryUrls()
+map<string, Plugins::Status> &Plugins::GetPluginLibraryUrls()
 {
 	return plugin_list_urls;
 }

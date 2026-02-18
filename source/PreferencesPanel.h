@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <memory>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include "DialogPanel.h"
@@ -82,6 +83,7 @@ private:
 	void HandleUp(Uint16 mod);
 	void HandleDown(Uint16 mod);
 	void HandleConfirm();
+	static std::string GenerateDownloadMessage();
 
 	void ProcessPluginIndex();
 	// Scroll the plugin list until the selected plugin is visible.
@@ -122,7 +124,7 @@ private:
 	bool downloadedPluginIndex = false;
 	DialogPanel *downloadInProgressDialog = nullptr;
 
-	// Vector to store the feedback of the async tasks from installing/updating/deleting.
+	// Vector to store the feedback of the async tasks from downloading/installing/updating/deleting.
 	std::vector<std::future<std::string>> installFeedbacks;
 	// Queue to load icons for installable plugins and a list of those.
 	TaskQueue queue;
