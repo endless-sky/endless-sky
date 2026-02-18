@@ -40,9 +40,9 @@ void StorylineEntry::Load(const DataNode &node, const ConditionsStore *playerCon
 		else if(key == "heading" && hasValue)
 			heading = child.Token(1);
 		else if(key == "log")
-			initialEntry.LoadInline(child, 1);
+			initialEntry.Load(child, 1);
 		else if(key == "complete log")
-			completeEntry.LoadInline(child, 1);
+			completeEntry.Load(child, 1);
 		else if(key == "to" && hasValue)
 		{
 			const string &value = child.Token(1);

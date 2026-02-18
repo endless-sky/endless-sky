@@ -186,7 +186,7 @@ PlayerInfo::StorylineProgress::StorylineProgress(const DataNode &node, Storyline
 		};
 
 		if(key == "log")
-			log.LoadInline(child, 1);
+			log.Load(child, 1);
 		else if(key == "start" && child.Size() >= 4)
 			start = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(key == "end" && child.Size() >= 4)

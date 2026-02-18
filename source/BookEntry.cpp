@@ -37,8 +37,10 @@ bool BookEntry::IsEmpty() const
 
 
 
-void BookEntry::Load(const DataNode &node)
+void BookEntry::Load(const DataNode &node, optional<int> startAt)
 {
+	if(startAt.has_value() && startAt < node.Size())
+		LoadSingle(node, *startAt);
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -53,15 +55,6 @@ void BookEntry::Load(const DataNode &node)
 		else
 			LoadSingle(child);
 	}
-}
-
-
-
-void BookEntry::LoadInline(const DataNode &node, int startAt)
-{
-	if(startAt < node.Size())
-		LoadSingle(node, startAt);
-	Load(node);
 }
 
 

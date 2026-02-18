@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <map>
+#include <optional>
 #include <set>
 #include <string>
 #include <variant>
@@ -39,8 +40,7 @@ public:
 
 public:
 	bool IsEmpty() const;
-	void Load(const DataNode &node);
-	void LoadInline(const DataNode &node, int startAt = 0);
+	void Load(const DataNode &node, std::optional<int> startAt = std::nullopt);
 	void Add(const BookEntry &other);
 
 	// When a GameAction is instantiated, substitutions are performed.
