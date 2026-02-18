@@ -224,7 +224,7 @@ mission "Message Buoy: Martini Restricted"
 		not "martini recovers"
 	on offer
 		message
-			text "Message buoy to all ships: Due to the attacks of July 4, 3015, access to the Republic planet of Martini is restricted."
+			text "Message buoy to all ships: Due to the attacks of July 4, 3014, access to the Republic planet of Martini is restricted."
 		fail
 
 mission "Message Buoy: Geminus Restricted"
@@ -241,7 +241,7 @@ mission "Message Buoy: Geminus Restricted"
 		not "geminus rebuilt"
 	on offer
 		message
-			text "Message buoy to all ships: Due to the attacks of July 4, 3015, access to the Republic planet of Geminus is restricted."
+			text "Message buoy to all ships: Due to the attacks of July 4, 3014, access to the Republic planet of Geminus is restricted."
 		fail
 
 mission "Message Buoy: Graffias"
