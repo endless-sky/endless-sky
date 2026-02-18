@@ -591,7 +591,7 @@ LockedOrderedSet<Plugin> Plugins::GetPluginsLocked()
 // Negative to move toward list start, positive toward end, returns new index;
 int Plugins::Move(int index, int offset)
 {
-	int otherIndex;
+	int otherIndex = -1;
 	{
 		auto iPlugins = GetPluginsLocked();
 		otherIndex = std::clamp(index + offset, 0, iPlugins->size() - 1);
