@@ -89,7 +89,7 @@ namespace {
 	set<string> busyPlugins;
 
 	// Shorthand method for returning future<string> values.
-	future<string> FutureString(string value)
+	future<string> FutureString(const string &value)
 	{
 		promise<string> p;
 		p.set_value(std::move(value));
