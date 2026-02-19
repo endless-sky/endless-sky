@@ -2827,6 +2827,9 @@ void PlayerInfo::AddPlayerSubstitutions(map<string, string> &subs) const
 		subs["<flagship model>"] = flag->DisplayModelName();
 	}
 
+	subs["<start planet>"] = startData.GetPlanet().DisplayName();
+	subs["<start system>"] = startData.GetSystem().DisplayName();
+
 	subs["<system>"] = GetSystem()->DisplayName();
 	subs["<date>"] = GetDate().ToString();
 	subs["<day>"] = GetDate().LongString();
