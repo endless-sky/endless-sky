@@ -107,6 +107,8 @@ jobs:
         VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
     - name: Run Benchmarks
       run: ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci-benchmark' || 'linux-gles-ci-benchmark' }}
+    - name: Run Test Parse
+      run: ./build/ci/endless-sky --parse-assets
 
 
   build_steam:
@@ -288,6 +290,9 @@ jobs:
         VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
     - name: Run Benchmarks
       run: ctest --preset clang-cl-ci-benchmark
+    - name: Run Test Parse
+      run: "'build/ci/Endless Sky.exe' --parse-assets"
+      shell: bash
 
 
   build_macos:
@@ -338,6 +343,8 @@ jobs:
         VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
     - name: Run Benchmarks
       run: ctest --preset macos-ci-benchmark
+    - name: Run Test Parse
+      run: "'build/ci/endless-sky' --parse-assets"
 
 
   build_macos-arm:
@@ -389,6 +396,8 @@ jobs:
         VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
     - name: Run Benchmarks
       run: ctest --preset macos-arm-ci-benchmark
+    - name: Run Test Parse
+      run: "'build/ci/endless-sky' --parse-assets"
 
 
   build_documentation_doxygen:
