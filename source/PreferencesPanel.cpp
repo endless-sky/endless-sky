@@ -267,7 +267,7 @@ void PreferencesPanel::Step()
 
 			if(!error.empty())
 				// Update interal states based on special error codes; Then process error codes.
-				// Since there can be a race condition between fast fail and ongoing download; when second download 
+				// Since there can be a race condition between fast fail and ongoing download; when second download
 				//  is complete the dialog that it pops will be on top; would like to avoid that.
 				if(error.starts_with("redownload:") || error.starts_with("downloaded:"))
 				{
