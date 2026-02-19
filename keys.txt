@@ -32,4 +32,5 @@
 "Fleet: Hold position" 104
 "Fleet: Toggle ammo usage" 117
 "Fleet: Harvest flotsam" 122
+"Secondary action" 1073742049
 "Mouse turning (hold)" 1073742050
