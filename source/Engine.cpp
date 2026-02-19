@@ -1397,7 +1397,6 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 	const Interface *hud = GameData::Interfaces().Get("hud");
 	Point radarCenter = hud->GetPoint("radar");
 	double radarRadius = hud->GetValue("radar radius");
-	double radarScale = hud->GetValue("radar scale");
 	if(Preferences::Has("Clickable radar display") && (from - radarCenter).Length() <= radarRadius)
 		isRadarClick = true;
 	else
@@ -1406,9 +1405,12 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 	clickPoint = isRadarClick ? from - radarCenter : from;
 	uiClickBox = Rectangle::WithCorners(from, to);
 	if(isRadarClick)
+	{
+		double radarScale = hud->GetValue("radar scale");
 		clickBox = Rectangle::WithCorners(
 			(from - radarCenter) / radarScale + camera.Center(),
 			(to - radarCenter) / radarScale + camera.Center());
+	}
 	else
 		clickBox = Rectangle::WithCorners(from / zoom + camera.Center(), to / zoom + camera.Center());
 }
@@ -1425,9 +1427,11 @@ void Engine::RightOrMiddleClick(const Point &point, MouseButton button)
 	const Interface *hud = GameData::Interfaces().Get("hud");
 	Point radarCenter = hud->GetPoint("radar");
 	double radarRadius = hud->GetValue("radar radius");
-	double radarScale = hud->GetValue("radar scale");
 	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= radarRadius)
+	{
+		double radarScale = hud->GetValue("radar scale");
 		clickPoint = (point - radarCenter) / radarScale;
+	}
 	else
 		clickPoint = point / zoom;
 }
