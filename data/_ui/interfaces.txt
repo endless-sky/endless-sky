@@ -2527,6 +2527,38 @@ interface "map: mission view: key"
 
 
 
+interface "map: stars view: key"
+	anchor top right
+	label "Stellar system:"
+		from -135 310
+		align left
+	label "flux:"
+		from -135 340
+		align left
+	string "flux"
+		from -10 340
+		align right
+	label "energy:"
+		from -135 360
+		align left
+	string "energy"
+		from -10 360
+		align right
+	label "wind:"
+		from -135 390
+		align left
+	string "wind"
+		from -10 390
+		align right
+	label "fuel:"
+		from -135 410
+		align left
+	string "fuel"
+		from -10 410
+		align right
+
+
+
 interface "info panel"
 	sprite "ui/info panel"
 		center 0 -5
