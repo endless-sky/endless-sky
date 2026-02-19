@@ -93,6 +93,10 @@ public:
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();
 
+	// Revert the universe back to the state just after initial datafile loading.
+	// This reverts all changes that resulted from savegame loading and all changes that resulted from playing the game.
+	void Revert();
+
 	// Draws the current menu background. Unlike accessing the menu background
 	// through GameData, this function is thread-safe.
 	void DrawMenuBackground(Panel *panel) const;
@@ -142,6 +146,18 @@ private:
 	// This is used for speeding up the route calculations.
 	std::set<std::string> universeWormholeRequirements;
 	std::set<double> neighborDistances;
+
+	// Copy of the data from just after loading, to allow resetting the universe back to the initial post-loading state.
+	Set<Fleet> defaultFleets;
+	Set<Government> defaultGovernments;
+	Set<Planet> defaultPlanets;
+	Set<System> defaultSystems;
+	Set<Galaxy> defaultGalaxies;
+	Set<Shop<Ship>> defaultShipSales;
+	Set<Shop<Outfit>> defaultOutfitSales;
+	Set<Wormhole> defaultWormholes;
+	Set<Person> defaultPersons;
+	TextReplacements defaultSubstitutions;
 
 	TextReplacements substitutions;
 	Trade trade;
