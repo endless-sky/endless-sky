@@ -1,50 +1,51 @@
 # Endless Sky
 
-Explore other star systems. Earn money by trading, carrying passengers, or completing missions. Use your earnings to buy a better ship or to upgrade the weapons and engines on your current one. Blow up pirates. Take sides in a civil war. Or leave human space behind and hope to find some friendly aliens whose culture is more civilized than your own...
+Endless Sky is an open-source space exploration and combat game inspired by classics like Escape Velocity. This repository hosts the source code and data that power the game, as well as ongoing development by the community. If you are here to contribute to the project, whether through coding, artwork, balancing, documentation, or testing, this document will help you get started and understand how our development process works.
 
-------
+If you're instead looking to learn about the game itself (installation, gameplay basics, or system requirements), please see the [game README](docs/GAME.md)
 
-Endless Sky is a sandbox-style space exploration game similar to Elite, Escape Velocity, or Star Control. You start out as the captain of a tiny spaceship and can choose what to do from there. The game includes a major plot line and many minor missions, but you can choose whether you want to play through the plot or strike out on your own as a merchant or bounty hunter or explorer.
+## Table of Contents
+- [Community and Membership](#community-and-membership)
+- [Contributing Guidelines](#contributing-guidelines)
+- [Governance](#governance)
+- [Building from Source](#building-from-source)
+- [Licensing](#licensing)
+- [Documentation](#all-documentation)
 
-See the [player's manual](https://github.com/endless-sky/endless-sky/wiki/PlayersManual) for more information, or the [home page](https://endless-sky.github.io/) for screenshots and the occasional blog post.
+## Community and Membership
+Endless Sky is supported by a diverse group of maintainers, contributors, and community members.
+- See [members](docs/MEMBERS.md) for a list of organization members.
+- New contributors are welcome, and can shape their role in the community in whatever ways align with their interests and contributions. Contributors with a long history of positive involvement in the community may be invited to take on more formal roles.
+- Community discussions take place on [GitHub](https://github.com/endless-sky/endless-sky/discussions), [Discord](https://discord.gg/ZeuASSx), [Steam](https://steamcommunity.com/app/404410/discussions/), [GOG](https://www.gog.com/forum/endless_sky), [Reddit](https://www.reddit.com/r/endlesssky/).
+- Make sure to follow our [community guide](docs/COMMUNITY.md)
 
-## Installing the game
-
-Official releases of Endless Sky are available as direct downloads from [GitHub](https://github.com/endless-sky/endless-sky/releases/latest), on [Steam](https://store.steampowered.com/app/404410/Endless_Sky/), on [GOG](https://gog.com/game/endless_sky), and on [Flathub](https://flathub.org/apps/details/io.github.endless_sky.endless_sky). Other package managers may also include the game, though the specific version provided may not be up-to-date.
-
-## System Requirements
-
-Endless Sky has very minimal system requirements, meaning most systems should be able to run the game. The most restrictive requirement is likely that your device must support at least OpenGL 3.
-
-|Hardware | Minimum | Recommended |
-|---|----:|----:|
-|RAM | 750 MB | 2 GB |
-|Graphics | OpenGL 2.0* | OpenGL 3.0 |
-|Screen Resolution | 1024x768 | 1920x1080 |
-|Storage Free | 400 MB | 1.5 GB |
-
-\* For OpenGL 2 devices, [custom shaders](https://github.com/endless-sky/endless-sky/wiki/CreatingPlugins#shaders) are needed.
-
-|Operating System | Minimum Version |
-|---|---|
-|Linux | Any modern distribution (equivalent of Ubuntu 20.04) |
-|MacOS | 10.7 |
-|Windows | XP (5.1) |
-
-It may be possible to run Endless Sky on other operating systems, though it is not officially supported.
-
-## Building from source
-
-Development is done using [CMake](https://cmake.org) to compile the project. Most popular IDEs are supported through their respective CMake integration.
-
-For full installation instructions, consult the [Build Instructions](docs/readme-developer.md) readme.
-
-## Contributing
+## Contributing Guidelines
+We welcome contributions in code, content, testing, and documentation.
+- Please begin with our [contributing guidelines](docs/CONTRIBUTING.md)
+- Review [governance](docs/GOVERNANCE.md) before making contributions.
+- New contributors may also consult the [FAQ](docs/FAQ.md) for common questions.
 
 As a free and open source game, Endless Sky is the product of many people's work. Contributions of artwork, storylines, and other writing are most in-demand, though there is a loosely defined [roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap). Those who wish to [contribute](docs/CONTRIBUTING.md) are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki), and to post in the [community-run Discord](https://discord.gg/ZeuASSx) beforehand. Those who prefer to use Steam can use its [discussion rooms](https://steamcommunity.com/app/404410/discussions/) as well, or GitHub's [discussion zone](https://github.com/endless-sky/endless-sky/discussions).
 
-Endless Sky's main discussion and development area was once [Google Groups](https://groups.google.com/g/endless-sky), but due to factors outside our control, it is now inaccessible to new users, and should not be used anymore.
+## Governance
+Governance of Endless Sky falls to a system of Admins, Maintainers, Developers, and Reviewers, with the whole being moderated by our Oathkeeper team. Details of members as well as descriptions of roles are available in [governance](docs/GOVERNANCE.md)
+
+## Building from source
+Development is done using [CMake](https://cmake.org) to compile the project. Most popular IDEs are supported through their respective CMake integration.
+
+For full installation instructions, consult the [Build Instructions](docs/DEVELOPER.md) README.
 
 ## Licensing
 
 Endless Sky is a free, open source game. The [source code](https://github.com/endless-sky/endless-sky/) is available under the GPL v3 license, and all the artwork is either public domain or released under a variety of Creative Commons (and similarly permissive) licenses. (To determine the copyright status of any of the artwork, consult the [copyright file](https://github.com/endless-sky/endless-sky/blob/master/copyright).)
+
+## All Documentation
+- [Community Guide](docs/COMMUNITY.md): Guidelines on how to interact with the Endless Sky community and what we expect from our members.
+- [Code of Conduct](docs/CONDUCT.md): Defines standards for how to engage in our community.
+- [Contributing Guide](docs/CONTRIBUTING.md): What to expect as a new contributor.
+- [Developer README](docs/DEVELOPER.md): Instructions for building the game.
+- [FAQ](docs/FAQ.md): Answers to frequently asked questions.
+- [Game README](docs/GAME.md): Details about the Endless Sky game itself (installation, play, modding).
+- [Governance](docs/GOVERNANCE.md): Processes for leadership and decision-making.
+- [Member List](docs/MEMBERS.md): A full list of current organization members.
+- [README](README.md): This document.
