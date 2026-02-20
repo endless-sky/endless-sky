@@ -944,7 +944,6 @@ const System *PlayerInfo::GetPreviousSystem() const
 void PlayerInfo::SetPlanet(const Planet *planet)
 {
 	this->planet = planet;
-	this->previousPlanet = planet;
 }
 
 
@@ -1984,6 +1983,7 @@ bool PlayerInfo::TakeOff(UI &ui, const bool distributeCargo)
 		Messages::Add({out.str(), GameData::MessageCategories().Get("normal")});
 	}
 
+	this->previousPlanet = planet;
 	return true;
 }
 
