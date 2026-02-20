@@ -2837,9 +2837,12 @@ void PlayerInfo::AddPlayerSubstitutions(map<string, string> &subs) const
 		subs["<flagship model>"] = flag->DisplayModelName();
 	}
 
-	subs["<system>"] = GetSystem()->DisplayName();
+	subs["<system>"] = system->DisplayName();
+	subs["<current system>"] = system->DisplayName();
+	if(planet)
+		subs["<current planet>"] = planet->DisplayName();
 	if(previousSystem)
-		subs["<previous system"] = previousSystem->DisplayName();
+		subs["<previous system>"] = previousSystem->DisplayName();
 	if(previousPlanet)
 		subs["<previous planet>"] = previousPlanet->DisplayName();
 	subs["<date>"] = GetDate().ToString();
@@ -4358,12 +4361,25 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!flagship || !flagship->GetSystem())
 			return false;
 		return !ce.NameWithoutPrefix().compare(flagship->GetSystem()->TrueName()); });
+	conditions["flagship system government: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		if(!flagship || !flagship->GetSystem() || !flagship->GetSystem()->GetGovernment())
+			return false;
+		return !ce.NameWithoutPrefix().compare(flagship->GetSystem()->GetGovernment()->TrueName()); });
+	conditions["flagship system attribute: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		if(!flagship || !flagship->GetSystem())
+			return false;
+		string attribute = ce.NameWithoutPrefix();
+		return flagship->GetSystem()->Attributes().contains(attribute); });
 	conditions["flagship landed"].ProvideNamed([this](const ConditionEntry &ce) -> bool {
 		return (flagship && flagship->GetPlanet()); });
 	conditions["flagship planet: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetPlanet())
 			return false;
 		return !ce.NameWithoutPrefix().compare(flagship->GetPlanet()->TrueName()); });
+	conditions["flagship planet government: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		if(!flagship || !flagship->GetPlanet() || !flagship->GetPlanet()->GetGovernment())
+			return false;
+		return !ce.NameWithoutPrefix().compare(flagship->GetPlanet()->GetGovernment()->TrueName()); });
 	conditions["flagship planet attribute: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetPlanet())
 			return false;
@@ -4604,8 +4620,11 @@ void PlayerInfo::StepMissions(UI &ui)
 		substitutions["<flagship>"] = flag->GivenName();
 		substitutions["<flagship model>"] = flag->DisplayModelName();
 	}
+	substitutions["<current system>"] = system->DisplayName();
+	if(planet)
+		substitutions["<current planet>"] = planet->DisplayName();
 	if(previousSystem)
-		substitutions["<previous system"] = previousSystem->DisplayName();
+		substitutions["<previous system>"] = previousSystem->DisplayName();
 	if(previousPlanet)
 		substitutions["<previous planet>"] = previousPlanet->DisplayName();
 

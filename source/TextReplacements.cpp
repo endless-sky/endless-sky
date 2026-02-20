@@ -32,7 +32,7 @@ void TextReplacements::Load(const DataNode &node, const ConditionsStore *playerC
 	// have been done.
 	const set<string> reserved = {
 		"<first>", "<last>", "<ship>", "<model>", "<flagship>", "<flagship model>", "<previous system>",
-		"<previous planet>",
+		"<previous planet>", "<current system>", "<current planet>"
 	};
 
 	for(const DataNode &child : node)
