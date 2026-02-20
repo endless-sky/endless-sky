@@ -402,8 +402,8 @@ ship "Heliarch Breacher"
 		licenses
 			Heliarch
 		"cost" 17659000
-		"shields" 24400
-		"hull" 21500
+		"shields" 13400
+		"hull" 11800
 		"required crew" 11
 		"bunks" 15
 		"mass" 343
@@ -523,8 +523,8 @@ ship "Heliarch Hunter"
 		licenses
 			Heliarch
 		"cost" 32985000
-		"shields" 54900
-		"hull" 45300
+		"shields" 30200
+		"hull" 24900
 		"required crew" 26
 		"bunks" 41
 		"mass" 860
@@ -714,8 +714,8 @@ ship "Heliarch Interdictor"
 		licenses
 			Heliarch
 		"cost" 35487000
-		"shields" 65300
-		"hull" 54600
+		"shields" 35900
+		"hull" 29800
 		"required crew" 42
 		"bunks" 70
 		"mass" 1052
@@ -891,8 +891,8 @@ ship "Heliarch Judicator"
 		licenses
 			Heliarch
 		"cost" 33953000
-		"shields" 47700
-		"hull" 41900
+		"shields" 26200
+		"hull" 23100
 		"required crew" 31
 		"bunks" 110
 		"mass" 982
@@ -1079,8 +1079,8 @@ ship "Heliarch Neutralizer"
 		licenses
 			Heliarch
 		"cost" 18847000
-		"shields" 36400
-		"hull" 32800
+		"shields" 19900
+		"hull" 18100
 		"required crew" 17
 		"bunks" 24
 		"mass" 429
@@ -1203,8 +1203,8 @@ ship "Heliarch Punisher"
 		licenses
 			Heliarch
 		"cost" 58487000
-		"shields" 108000
-		"hull" 85000
+		"shields" 59400
+		"hull" 46700
 		"required crew" 96
 		"bunks" 145
 		"mass" 2030
@@ -1455,8 +1455,8 @@ ship "Heliarch Pursuer"
 		licenses
 			Heliarch
 		"cost" 1029000
-		"shields" 2200
-		"hull" 1600
+		"shields" 1200
+		"hull" 900
 		"required crew" 1
 		"bunks" 1
 		"mass" 31
@@ -1514,8 +1514,8 @@ ship "Heliarch Rover"
 		licenses
 			Heliarch
 		"cost" 1238000
-		"shields" 3300
-		"hull" 3100
+		"shields" 1900
+		"hull" 1700
 		"required crew" 1
 		"bunks" 1
 		"mass" 37
@@ -1572,8 +1572,8 @@ ship "Heliarch Stalker"
 		licenses
 			Heliarch
 		"cost" 1358000
-		"shields" 5700
-		"hull" 5200
+		"shields" 3100
+		"hull" 2900
 		"required crew" 1
 		"bunks" 2
 		"mass" 101

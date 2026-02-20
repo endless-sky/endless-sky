@@ -36,8 +36,8 @@ outfit "Bombardment Cannon"
 		"reload" 9
 		"firing energy" 17
 		"firing heat" 14
-		"shield damage" 22
-		"hull damage" 25
+		"shield damage" 26.4
+		"hull damage" 30
 	description `The Bombardment Cannon was designed during the original war with the Quarg, in order to give Heliarch civilian ships a way to strike Quarg warships from a safe distance. But now, as with all their weapons, its use is limited to Heliarch warships.`
 
 outfit "Bombardment Turret"
@@ -69,8 +69,8 @@ outfit "Bombardment Turret"
 		"reload" 3
 		"firing energy" 17
 		"firing heat" 14
-		"shield damage" 22
-		"hull damage" 25
+		"shield damage" 26.4
+		"hull damage" 30
 	description `A Bombardment Turret is not one of the most dangerous Heliarch weapons, but it has the advantage that it can hit targets a considerable distance away.`
 
 effect "bombardment impact"
@@ -188,8 +188,8 @@ outfit "Active Finisher"
 		"radar tracking" .8
 		"optical tracking" .5
 		"missile strength" 50
-		"shield damage" 1500
-		"hull damage" 1900
+		"shield damage" 1800
+		"hull damage" 2280
 		"hit force" 1125
 
 outfit "Finisher Storage Tube"
@@ -297,8 +297,8 @@ outfit "Heliarch Attractor"
 		"reload" 1
 		"firing energy" 4.8
 		"firing heat" 4.5
-		"shield damage" 5.4
-		"hull damage" 4.2
+		"shield damage" 6.5
+		"hull damage" 5
 		"firing force" -45
 		"hit force" -45
 	description "When battling the Quarg, the Heliarchs learned that the Quarg would not engage in a battle that their ships might be unable to escape. In response, they focused on building weapons that would keep a ship from being able to come to a stop and activate its jump drive."
@@ -342,8 +342,8 @@ outfit "Heliarch Repulsor"
 		"reload" 1
 		"firing energy" 5.9
 		"firing heat" 1.2
-		"shield damage" 3.6
-		"hull damage" 5.8
+		"shield damage" 4.3
+		"hull damage" 7
 		"firing force" 90
 		"hit force" 90
 		"slowing damage" .1
@@ -399,8 +399,8 @@ outfit "ion hail"
 		"lifetime" 40
 		"random lifetime" 4
 		"hit force" 1
-		"shield damage" 12
-		"hull damage" 5
+		"shield damage" 14.4
+		"hull damage" 6
 		"ion damage" .3
 		"scrambling damage" .3
 
@@ -431,8 +431,8 @@ outfit "Ion Rain Gun"
 		"reload" 4
 		"firing energy" 12
 		"firing heat" 4
-		"shield damage" 12
-		"hull damage" 5
+		"shield damage" 14.4
+		"hull damage" 6
 		"ion damage" .2
 		"scrambling damage" .2
 	description "Heliarch ships primarily serve as a police force. This weapon is designed to neutralize a target's offensive capabilities until more Heliarch ships can join the fray."
