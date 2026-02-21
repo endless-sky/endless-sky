@@ -405,9 +405,12 @@ conversation "remnant key stones"
 	scene "outfit/keystone"
 	
 	branch hai1
-		has "First Contact: Hai: offered"
+		or
+			has "First Contact: Hai: offered"
+			has "First Contact: Unfettered: offered"
 	
-	`	"We have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones."`
+	`	"We have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones.`
+	label explore
 	`	"You seem to be able to easily explore outside of this region. If you manage to discover a source of Key Stones outside of the Ember Waste, would you please inform me of them?"`
 	choice
 		`	"If I find anything, I'll let you know."`
@@ -428,7 +431,10 @@ conversation "remnant key stones"
 	
 	label equipped
 	`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. He says, "I could not help but notice that you have a Key Stone that looks different from the ones from our mines. You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them. Have you found another world where these stones can be mined?"`
-
+	branch "don't know"
+		not "First Contact: Hai: offered"
+		not "First Contact: Unfettered: offered"
+	
 	label exchange
 	choice
 		`	"Yes, in the territory of some aliens far to the north of here."`
@@ -437,6 +443,24 @@ conversation "remnant key stones"
 	
 	`	"That is understandable," he says. "I am a businessman and I understand how valuable certain trade secrets can be. But perhaps I can interest you in a mutually profitable endeavor?"`
 		goto more
+	
+	label "don't know"
+	choice
+		`	"No. I plundered my stone off of a pirate, but I don't know where they got it from."`
+			goto pirate
+			to display
+				has "Deep: Scientist Rescue 2: Pirate Bactrian: offered"
+		`	"No. The stone I have is one of a kind. I have not been able to find another like it."`
+			to display
+				"outfit (all): Quantum Keystone" == 1
+		`	"Sorry, but I don't know where to find more of them."`
+	
+	`	The man raises an eyebrow. "Ah. Well, we have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones, especially none that look like yours.`
+		goto explore
+	
+	label pirate
+	`	The man raises an eyebrow. "I have heard nothing of pirates entering the Ember Waste, so they must have found it elsewhere. We have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones.`
+		goto explore
 	
 	label hai2
 	`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai, that they are an old species and that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
@@ -467,13 +491,15 @@ mission "Remnant: Key Stones (Pre-Hai) 1"
 	description "The manager of the outfitter on <planet> is interested in finding alternative sources of Key Stones. The Remnant have explored the entire Ember Waste, so you will need to search elsewhere for these stones."
 	source "Viminal"
 	to offer
-		not "outfit: Quantum Keystone"
-		not "Remnant: Key Stones (Hai): offered"
-		not "Remnant: Key Stones: offered"
-		not "First Contact: Hai: offered"
 		or
+			has "outfit: Quantum Keystone"
 			has "event: remnant: void sprite research"
 			has "Remnant: Defense 3: done"
+		not "First Contact: Hai: offered"
+		not "First Contact: Unfettered: offered"
+		has "remnant: blood test pure"
+		not "Remnant: Key Stones (Hai): offered"
+		not "Remnant: Key Stones: offered"
 	on offer
 		conversation "remnant key stones"
 		
@@ -525,13 +551,11 @@ mission "Remnant: Key Stones"
 	to offer
 		or
 			has "outfit: Quantum Keystone"
-			and
-				or
-					has "First Contact: Hai: offered"
-					has "First Contact: Unfettered: offered"
-				or
-					has "event: remnant: void sprite research"
-					has "Remnant: Defense 3: done"
+			has "event: remnant: void sprite research"
+			has "Remnant: Defense 3: done"
+		or
+			has "First Contact: Hai: offered"
+			has "First Contact: Unfettered: offered"
 		has "remnant: blood test pure"
 		not "Remnant: Key Stones (Pre-Hai) 1: offered"
 		not "Remnant: Key Stones (Hai): offered"
