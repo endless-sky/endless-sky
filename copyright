@@ -3767,6 +3767,7 @@ Copyright: mOctave (https://github.com/mOctave)
 License: CC-BY-SA-4.0
 
 Files:
+ images/_menu/haze-tear*
  images/effect/bimodal?impact*
  images/effect/bimodal?switch?impact*
  images/effect/drag?cannon?impact*
@@ -3865,7 +3866,6 @@ License: CC-BY-SA-4.0
 Comment: Sound effects generated with Labchirp v1.60 (https://labbed.net/software/labchirp/).
 
 Files:
- images/_menu/haze-tear*
  images/star/void-scar*
 Copyright: Daeridanii (https://github.com/Daeridanii1)
 License: CC0
