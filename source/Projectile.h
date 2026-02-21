@@ -119,6 +119,7 @@ private:
 
 private:
 	const Weapon *weapon = nullptr;
+	bool isShipExplosion = false;
 
 	bool targetIsShip = false;
 	std::weak_ptr<Entity> target;

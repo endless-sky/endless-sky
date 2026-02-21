@@ -61,6 +61,9 @@ namespace {
 	// Projectiles that die in a direct collision should not engage in any on-death effects,
 	// including creating die effects and submunitions.
 	const int NO_ON_DEATH_EFFECTS = -1000;
+	// Projectiles that die because they were hit by anti-missile can have different on-death
+	// effects than when they died by other means.
+	const int DIED_BY_ANTI_MISSILE = -100;
 }
 
 
@@ -142,9 +145,9 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 
 // Ship explosion.
 Projectile::Projectile(Point position, const Weapon *weapon)
-	: weapon(weapon)
+	: weapon(weapon), isShipExplosion(true)
 {
-	this->position = std::move(position);
+	this->position = position;
 }
 
 
@@ -167,7 +170,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 					visuals.emplace_back(*it.first, effectPosition, velocity, angle);
 
 			for(const auto &it : weapon->Submunitions())
-				if(lifetime > -100 ? it.spawnOnNaturalDeath : it.spawnOnAntiMissileDeath)
+				if(lifetime > DIED_BY_ANTI_MISSILE ? it.spawnOnNaturalDeath : it.spawnOnAntiMissileDeath)
 					for(size_t i = 0; i < it.count; ++i)
 					{
 						const Weapon *const subWeapon = it.weapon.get();
@@ -372,7 +375,7 @@ bool Projectile::IsDead() const
 // This projectile was killed, e.g. by an anti-missile system.
 void Projectile::Kill()
 {
-	lifetime = -100;
+	lifetime = DIED_BY_ANTI_MISSILE;
 }
 
 
@@ -588,5 +591,5 @@ void Projectile::SetPhases(const Ship *ship)
 
 bool Projectile::ShouldExplode() const
 {
-	return !government || (weapon->IsFused() && lifetime == 1);
+	return isShipExplosion || (weapon->IsFused() && lifetime == 1);
 }
