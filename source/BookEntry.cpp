@@ -47,11 +47,19 @@ void BookEntry::Load(const DataNode &node, optional<int> startAt)
 		if(key == "source" && child.Size() >= 2)
 			source = GameData::Systems().Get(child.Token(1));
 		else if(key == "mark")
+		{
+			for(int i = 1; i < child.Size(); ++i)
+				markSystems.insert(GameData::Systems().Get(child.Token(i)));
 			for(const DataNode &grand : child)
 				markSystems.insert(GameData::Systems().Get(grand.Token(0)));
+		}
 		else if(key == "circle")
+		{
+			for(int i = 1; i < child.Size(); ++i)
+				circleSystems.insert(GameData::Systems().Get(child.Token(i)));
 			for(const DataNode &grand : child)
 				circleSystems.insert(GameData::Systems().Get(grand.Token(0)));
+		}
 		else
 			LoadSingle(child);
 	}
