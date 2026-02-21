@@ -124,6 +124,8 @@ namespace {
 		{"turning energy", 0},
 		{"turning fuel", 0},
 		{"turning heat", 0},
+		{"width attacking", 0},
+		{"width defending", 0},
 
 		{"thrust", 1},
 		{"reverse thrust", 1},

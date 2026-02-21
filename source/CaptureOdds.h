@@ -67,6 +67,9 @@ private:
 	std::vector<double> powerA;
 	std::vector<double> powerD;
 
+	// The maximum number of crew that can participate in a single combat.
+	int combatWidth;
+
 	// Capture odds lookup table.
 	std::vector<double> capture;
 	// Expected casualties lookup table.
