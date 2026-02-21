@@ -227,7 +227,7 @@ outfit "EMP Torpedo"
 	index 03010
 	cost 4400
 	thumbnail "outfit/emp torpedo"
-	"mass" 1
+	"mass" .6
 	"emp torpedo capacity" -1
 	description "This torpedo can emit electromagnetic pulses, interfering with a ship's generators."
 
@@ -239,10 +239,10 @@ outfit "EMP Torpedo Storage Bay"
 		Remnant
 	cost 98000
 	thumbnail "outfit/emp rack"
-	"mass" 5
+	"mass" 4.8
 	"outfit space" -12
 	"energy capacity" 400
-	"emp torpedo capacity" 7
+	"emp torpedo capacity" 12
 	ammo "EMP Torpedo"
 	description "The EMP Torpedo Storage Bay is used to store extra ammunition for weapons that use EMP torpedoes."
 	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP Torpedoes."
@@ -259,7 +259,7 @@ outfit "EMP Torpedo Bay"
 	"outfit space" -18
 	"weapon capacity" -18
 	"gun ports" -1
-	"emp torpedo capacity" 9
+	"emp torpedo capacity" 15
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
@@ -284,7 +284,7 @@ outfit "EMP Torpedo Bay"
 		"turn" 2
 		"homing"
 			"throttle control"
-		"infrared tracking" .7
+		"infrared tracking" .2
 		"radar tracking" .8
 		"trigger radius" 50
 		"blast radius" 200
@@ -299,46 +299,7 @@ outfit "EMP Torpedo Bay"
 		to display
 			has "gamerule: universal ammo restocking"
 
-outfitter "EMP Torpedo Restock"
-	to sell
-		has "gamerule: universal ammo restocking"
-		or
-			has "outfit: EMP Torpedo Bay"
-			has "outfit: Ka'het EMP Deployer"
-			has "outfit: EMP Torpedo Storage Bay"
-	location
-		attributes "outfitter"
-	stock
-		"EMP Torpedo"
 
-
-
-outfit "Teciimach Canister"
-	category "Ammunition"
-	series "Ammunition"
-	index 03020
-	cost 35500
-	thumbnail "outfit/emp torpedo"
-	"mass" 1
-	"teciimach canister capacity" -1
-	description "This canister contains everything required to assemble a Teciimach Torpedo. These weapons emit strong electromagnetic pulses which interfere with a ship's generators and neutralize a portion of their energy."
-	description `	Unlike the previous generation of "EMP Torpedoes," the Teciimach torpedoes actively shape their emission pattern to avoid impacting their allies.`
-
-outfit "Teciimach Canister Rack"
-	category "Ammunition"
-	series "Ammunition"
-	index 03021
-	licenses
-		Remnant
-	cost 295000
-	thumbnail "outfit/emp rack"
-	"mass" 5
-	"outfit space" -9
-	"energy capacity" 500
-	"teciimach canister capacity" 9
-	ammo "Teciimach Canister"
-	description "The Teciimach Canister Rack is used to store extra sets of components, both to expand the capacity of a ship, and on carriers for resupplying fighters."
-	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship assemble Teciimach Torpedoes."
 
 outfit "Teciimach Bay"
 	category "Secondary Weapons"
@@ -346,53 +307,52 @@ outfit "Teciimach Bay"
 	index 03030
 	licenses
 		Remnant
-	cost 1525000
+	cost 783000
 	thumbnail "outfit/teciimach bay"
-	"mass" 9
-	"outfit space" -13
-	"weapon capacity" -13
+	"mass" 6
+	"outfit space" -18
+	"weapon capacity" -18
 	"gun ports" -1
-	"teciimach canister capacity" 9
+	"emp torpedo capacity" 20
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
 			"no repeat"
 		sound "torpedo"
-		ammo "Teciimach Canister"
+		ammo "EMP Torpedo"
 		icon "icon/emp"
 		"fire effect" "emp torpedo fire" 5
 		"hit effect" "nuke explosion"
 		"hit effect" "emp ring" 30
 		"hit effect" "emp spark" 20
 		"die effect" "tiny explosion"
-		cluster
+		stream
 		safe
-		"reload" 310
+		"reload" 330
 		"firing energy" 400
 		"firing heat" 18
 		"inaccuracy" 5
 		"lifetime" 300
-		"velocity" 8
+		"velocity" 7
 		"acceleration" .7
 		"drag" .1
-		"turn" 2.5
+		"turn" 2
 		"homing"
 			"throttle control"
-		"infrared tracking" .8
-		"radar tracking" .9
+		"infrared tracking" .2
+		"radar tracking" .8
 		"trigger radius" 50
 		"blast radius" 200
-		"shield damage" 900
-		"hull damage" 125
-		"disabled damage" 60
-		"ion damage" 65
-		"scrambling damage" 65
-		"energy damage" 2000
+		"shield damage" 700
+		"hull damage" 100
+		"ion damage" 48
+		"scrambling damage" 48
 		"hit force" 135
-		"missile strength" 95
-	description "Electromagnetic pulse weapons were originally developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
-	description "Centuries later, the Teciimach revision includes a range of upgrades to their effectiveness, efficiency, reliability, and safety. The Remnant attribute these improvements to a mix of the latest research and secrets uncovered by Warren research teams."
-	description "	Ammunition for this weapon can be restocked at any outfitter."
+		"missile strength" 80
+	description `Electromagnetic pulse weapons were originally developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it.`
+	description `	The newest revision of the EMP Torpedo Bay, the "Teciimach," contains two major improvements. The first is a mechanism on the launcher that alters each torpedoes' energy to ignore allies, letting Teciimachs be deployed without risk of ionizing yourself or the rest of your fleet.`
+	description `	The second is a significant reduction in the size of the launcher hardware, allowing space for a clip that is a third larger.`
+	description `	Ammunition for this weapon can be restocked at any outfitter.`
 		to display
 			has "gamerule: universal ammo restocking"
 
@@ -402,57 +362,68 @@ outfit "Teciimach Pod"
 	index 03020
 	licenses
 		Remnant
-	cost 762500
+	cost 196000
 	thumbnail "outfit/teciimach pod"
-	"mass" 3
+	"mass" 4
 	"outfit space" -6
 	"weapon capacity" -6
 	"gun ports" -1
-	"teciimach canister capacity" 3
+	"emp torpedo capacity" 3
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
 			"no repeat"
 		sound "torpedo"
-		ammo "Teciimach Canister"
+		ammo "EMP Torpedo"
 		icon "icon/emp"
 		"fire effect" "emp torpedo fire" 5
 		"hit effect" "nuke explosion"
 		"hit effect" "emp ring" 30
 		"hit effect" "emp spark" 20
 		"die effect" "tiny explosion"
-		cluster
 		safe
 		"burst count" 3
-		"burst reload" 110
-		"reload" 620
-		"firing energy" 350
-		"firing heat" 16
+		"burst reload" 330
+		"reload" 660
+		"firing energy" 400
+		"firing heat" 18
 		"inaccuracy" 5
 		"lifetime" 300
-		"velocity" 8
+		"velocity" 7
 		"acceleration" .7
 		"drag" .1
-		"turn" 2.5
+		"turn" 2
 		"homing"
 			"throttle control"
-		"infrared tracking" .8
-		"radar tracking" .9
+		"infrared tracking" .2
+		"radar tracking" .8
 		"trigger radius" 50
 		"blast radius" 200
-		"shield damage" 900
-		"hull damage" 125
-		"disabled damage" 60
-		"ion damage" 60
-		"scrambling damage" 60
-		"energy damage" 2000
+		"shield damage" 700
+		"hull damage" 100
+		"ion damage" 48
+		"scrambling damage" 48
 		"hit force" 135
-		"missile strength" 95
+		"missile strength" 80
 	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor-class vessels."
-	description "	Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."
+	description "	To better fit the hit-and-run tactics used on interceptors and light warships, Teciimach Pods launch all ready torpedoes at once instead of in sequence, maximizing the ion damage dealt in a single moment."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
 		to display
 			has "gamerule: universal ammo restocking"
+
+outfitter "EMP Torpedo Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		or
+			has "outfit: EMP Torpedo Bay"
+			has "outfit: Teciimach Bay"
+			has "outfit: Teciimach Pod"
+			has "outfit: Ka'het EMP Deployer"
+			has "outfit: EMP Torpedo Storage Bay"
+	location
+		attributes "outfitter"
+	stock
+		"EMP Torpedo"
 
 effect "emp torpedo fire"
 	sprite "effect/emp torpedo fire"
@@ -483,18 +454,6 @@ effect "emp spark"
 	"random frame rate" 6
 	"random velocity" 7
 	"velocity scale" 0.1
-
-outfitter "Teciimach Canister Restock"
-	to sell
-		has "gamerule: universal ammo restocking"
-		or
-			has "outfit: Teciimach Bay"
-			has "outfit: Teciimach Pod"
-			has "outfit: Teciimach Canister Rack"
-	location
-		attributes "outfitter"
-	stock
-		"Teciimach Canister"
 
 
 

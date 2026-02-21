@@ -352,7 +352,7 @@ mission "Remnant: Teciimach Deployment"
 		has "event: remnant: cognizance calm"
 		has "event: remnant: research update bjd1"
 	on offer
-		event "remnant: teciimach deployment"
+		event "remnant: teciimach bay deployment"
 		conversation
 			`You note a disturbance in the shipyards before the <ship> even touches the ground. Every pad is filled with ships, camels pulling wagon trains loaded with canisters trundle out of the outfitter, and technicians clamber everywhere. As you step out of your ship, Taely slides down the side of a Merganser resting next to you.`
 			`	"Good timing, Captain! We just rolled out an upgrade to some of our oldest equipment, and our Mergansers finally have something to carry as first-strike weapons. Interested in taking a look?"`
