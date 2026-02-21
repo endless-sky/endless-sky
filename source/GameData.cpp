@@ -60,6 +60,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
 #include "StartConditions.h"
+#include "StorylineEntry.h"
 #include "System.h"
 #include "TaskQueue.h"
 #include "test/Test.h"
@@ -687,6 +688,13 @@ ConditionsStore &GameData::GlobalConditions()
 const Set<Shop<Ship>> &GameData::Shipyards()
 {
 	return objects.shipSales;
+}
+
+
+
+const Set<StorylineEntry> &GameData::Storylines()
+{
+	return objects.storylines;
 }
 
 

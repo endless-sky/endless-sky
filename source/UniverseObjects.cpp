@@ -559,6 +559,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 					startConditions.emplace_back(node, globalConditions, playerConditions);
 			}
 		}
+		else if(key == "storyline" && hasValue)
+		{
+			StorylineEntry *storyline = storylines.Get(node.Token(1));
+			if(overwrite)
+				*storyline = StorylineEntry();
+			storyline->Load(node, playerConditions);
+		}
 		else if(key == "system" && hasValue)
 		{
 			System *system = systems.Get(node.Token(1));

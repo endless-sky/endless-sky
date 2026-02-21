@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/Shader.h"
 #include "Ship.h"
 #include "StartConditions.h"
+#include "StorylineEntry.h"
 #include "Swizzle.h"
 #include "System.h"
 #include "test/Test.h"
@@ -131,6 +132,7 @@ private:
 	Set<Planet> planets;
 	Set<Shader> shaders;
 	Set<Ship> ships;
+	Set<StorylineEntry> storylines;
 	Set<System> systems;
 	Set<Test> tests;
 	Set<TestData> testDataSets;
