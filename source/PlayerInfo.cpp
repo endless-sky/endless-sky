@@ -318,6 +318,8 @@ void PlayerInfo::Load(const filesystem::path &path)
 			entry = StringToEntry(child.Token(1));
 		else if(key == "previous system" && hasValue)
 			previousSystem = GameData::Systems().Get(child.Token(1));
+		else if(key == "previous planet" && hasValue)
+			previousPlanet = GameData::Planets().Get(child.Token(1));
 		else if(key == "system" && hasValue)
 			system = GameData::Systems().Get(child.Token(1));
 		else if(key == "planet" && hasValue)
@@ -950,6 +952,13 @@ void PlayerInfo::SetPlanet(const Planet *planet)
 const Planet *PlayerInfo::GetPlanet() const
 {
 	return planet;
+}
+
+
+
+const Planet *PlayerInfo::GetPreviousPlanet() const
+{
+	return previousPlanet;
 }
 
 
@@ -1974,6 +1983,7 @@ bool PlayerInfo::TakeOff(UI &ui, const bool distributeCargo)
 		Messages::Add({out.str(), GameData::MessageCategories().Get("normal")});
 	}
 
+	this->previousPlanet = planet;
 	return true;
 }
 
@@ -2827,7 +2837,14 @@ void PlayerInfo::AddPlayerSubstitutions(map<string, string> &subs) const
 		subs["<flagship model>"] = flag->DisplayModelName();
 	}
 
-	subs["<system>"] = GetSystem()->DisplayName();
+	subs["<system>"] = system->DisplayName();
+	subs["<current system>"] = system->DisplayName();
+	if(planet)
+		subs["<current planet>"] = planet->DisplayName();
+	if(previousSystem)
+		subs["<previous system>"] = previousSystem->DisplayName();
+	if(previousPlanet)
+		subs["<previous planet>"] = previousPlanet->DisplayName();
 	subs["<date>"] = GetDate().ToString();
 	subs["<day>"] = GetDate().LongString();
 }
@@ -4309,7 +4326,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	// This condition corresponds to the method by which the flagship entered the current system.
 	conditions["entered system by: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		return !ce.NameWithoutPrefix().compare(EntryToString(entry)); });
-	// This condition corresponds to the last system the flagship was in.
+	// This condition corresponds to the last system or planet the flagship was at.
 	conditions["previous system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!previousSystem)
 			return false;
@@ -4324,18 +4341,45 @@ void PlayerInfo::RegisterDerivedConditions()
 		string attribute = ce.NameWithoutPrefix();
 		return previousSystem->Attributes().contains(attribute);
 	});
+	conditions["previous planet: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		if(!previousPlanet)
+			return false;
+		return !ce.NameWithoutPrefix().compare(previousPlanet->TrueName()); });
+	conditions["previous planet government: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		if(!previousPlanet || !previousPlanet->GetGovernment())
+			return false;
+		return !ce.NameWithoutPrefix().compare(previousPlanet->GetGovernment()->TrueName()); });
+	conditions["previous planet attribute: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		if(!previousPlanet)
+			return false;
+		string attribute = ce.NameWithoutPrefix();
+		return previousPlanet->Attributes().contains(attribute);
+	});
 
 	// Conditions to determine if flagship is in a system and on a planet.
 	conditions["flagship system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetSystem())
 			return false;
 		return !ce.NameWithoutPrefix().compare(flagship->GetSystem()->TrueName()); });
+	conditions["flagship system government: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		if(!flagship || !flagship->GetSystem() || !flagship->GetSystem()->GetGovernment())
+			return false;
+		return !ce.NameWithoutPrefix().compare(flagship->GetSystem()->GetGovernment()->TrueName()); });
+	conditions["flagship system attribute: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		if(!flagship || !flagship->GetSystem())
+			return false;
+		string attribute = ce.NameWithoutPrefix();
+		return flagship->GetSystem()->Attributes().contains(attribute); });
 	conditions["flagship landed"].ProvideNamed([this](const ConditionEntry &ce) -> bool {
 		return (flagship && flagship->GetPlanet()); });
 	conditions["flagship planet: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetPlanet())
 			return false;
 		return !ce.NameWithoutPrefix().compare(flagship->GetPlanet()->TrueName()); });
+	conditions["flagship planet government: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		if(!flagship || !flagship->GetPlanet() || !flagship->GetPlanet()->GetGovernment())
+			return false;
+		return !ce.NameWithoutPrefix().compare(flagship->GetPlanet()->GetGovernment()->TrueName()); });
 	conditions["flagship planet attribute: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetPlanet())
 			return false;
@@ -4576,6 +4620,13 @@ void PlayerInfo::StepMissions(UI &ui)
 		substitutions["<flagship>"] = flag->GivenName();
 		substitutions["<flagship model>"] = flag->DisplayModelName();
 	}
+	substitutions["<current system>"] = system->DisplayName();
+	if(planet)
+		substitutions["<current planet>"] = planet->DisplayName();
+	if(previousSystem)
+		substitutions["<previous system>"] = previousSystem->DisplayName();
+	if(previousPlanet)
+		substitutions["<previous planet>"] = previousPlanet->DisplayName();
 
 	auto mit = missions.begin();
 	while(mit != missions.end())
@@ -4702,6 +4753,8 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.Write("system entry method", EntryToString(entry));
 	if(previousSystem)
 		out.Write("previous system", previousSystem->TrueName());
+	if(previousPlanet)
+		out.Write("previous planet", previousPlanet->TrueName());
 	if(system)
 		out.Write("system", system->TrueName());
 	if(planet)

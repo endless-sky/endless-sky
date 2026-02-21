@@ -142,6 +142,7 @@ public:
 	// Set what planet the player is on (or nullptr, if taking off).
 	void SetPlanet(const Planet *planet);
 	const Planet *GetPlanet() const;
+	const Planet *GetPreviousPlanet() const;
 	// If the player is landed, return the stellar object they are on.
 	const StellarObject *GetStellarObject() const;
 	// Check whether a mission conversation has raised a flag that the player
@@ -457,6 +458,7 @@ private:
 	Date date;
 	SystemEntry entry = SystemEntry::TAKE_OFF;
 	const System *previousSystem = nullptr;
+	const Planet *previousPlanet = nullptr;
 	const System *system = nullptr;
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
