@@ -18,18 +18,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
-#include "Command.h"
+#include "Plugins.h"
 #include "Point.h"
 #include "ScrollVar.h"
+#include "TaskQueue.h"
 #include "Tooltip.h"
+
+#include <future>
 
 #include <memory>
 #include <string>
+#include <utility>
 #include <vector>
 
+#include "DialogPanel.h"
+
+class Command;
 class PlayerInfo;
 class RenderBuffer;
-struct Plugin;
+class Sprite;
 
 
 
@@ -41,6 +48,7 @@ public:
 
 	// Draw this panel.
 	virtual void Draw() override;
+	virtual void Step() override;
 
 	virtual void UpdateTooltipActivation() override;
 
@@ -62,7 +70,8 @@ private:
 	void DrawControls();
 	void DrawSettings();
 	void DrawPlugins();
-	void RenderPluginDescription(const std::string &pluginName);
+	void DrawPluginInstalls();
+	void RenderPluginDescription();
 	void RenderPluginDescription(const Plugin &plugin);
 
 	void DrawTooltips();
@@ -71,13 +80,18 @@ private:
 
 	void HandleSettingsString(const std::string &str, Point cursorPosition);
 
-	void HandleUp();
-	void HandleDown();
+	void HandleUp(Uint16 mod);
+	void HandleDown(Uint16 mod);
 	void HandleConfirm();
+	static std::string GenerateDownloadMessage();
 
+	void ProcessPluginIndex();
 	// Scroll the plugin list until the selected plugin is visible.
 	void ScrollSelectedPlugin();
-
+	void DoSearch(const std::string &text);
+	std::string GetPluginNameByIndex(int findIndex) const;
+	// Delete a plugin that has been marked to be removed.
+	void DeletePlugin();
 
 private:
 	PlayerInfo &player;
@@ -88,9 +102,9 @@ private:
 	int editing = -1;
 	int selected = 0;
 	int hover = -1;
-	int oldSelected;
-	int oldHover;
-	int latest;
+	int oldSelected = 0;
+	int oldHover = 0;
+	int latest = 0;
 	// Which page of the preferences we're on.
 	char page = 'c';
 
@@ -98,11 +112,23 @@ private:
 	Tooltip tooltip;
 	std::string selectedItem;
 	std::string hoverItem;
+	bool hoverFind = false;
+	std::string searchFor;
 
 	int currentControlsPage = 0;
 	int currentSettingsPage = 0;
 
 	std::string selectedPlugin;
+
+	// If the plugin index was already downloaded.
+	bool downloadedPluginIndex = false;
+	DialogPanel *downloadInProgressDialog = nullptr;
+
+	// Vector to store the feedback of the async tasks from downloading/installing/updating/deleting.
+	std::vector<std::future<std::string>> installFeedbacks;
+	// Queue to load icons for installable plugins and a list of those.
+	TaskQueue queue;
+	int step = 0;
 
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;

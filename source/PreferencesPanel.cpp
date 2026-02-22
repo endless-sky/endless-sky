@@ -13,20 +13,23 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+// TODO: we don't do anything about a zip that won't load -- no notification to the user in the plugins panel.
+
 #include "PreferencesPanel.h"
 
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
+#include "Command.h"
 #include "DialogPanel.h"
 #include "Files.h"
-#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/Layout.h"
 #include "PlayerInfo.h"
 #include "Plugins.h"
 #include "shader/PointerShader.h"
@@ -49,10 +52,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 
 #include <algorithm>
+#include <chrono>
+#include <cstdio>
+#include <utility>
 
 using namespace std;
 
 namespace {
+	enum Page : char {
+		CONTROLS = 'c',
+		SETTINGS = 's',
+		AUDIO = 'a',
+		PLUGINS = 'p',
+		LIBRARY = 'l'
+	};
+
 	// Settings that require special handling.
 	const string ZOOM_FACTOR = "Main zoom factor";
 	const int ZOOM_FACTOR_MIN = 100;
@@ -99,7 +113,11 @@ namespace {
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
+#ifdef _WIN32
 	const int SETTINGS_PAGE_COUNT = 3;
+#else
+	const int SETTINGS_PAGE_COUNT = 2;
+#endif
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -124,27 +142,14 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	tooltip(270, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
-	// Select the first valid plugin.
-	for(const auto &plugin : Plugins::Get())
-		if(plugin.second.IsValid())
-		{
-			selectedPlugin = plugin.first;
-			break;
-		}
-
 	SetIsFullScreen(true);
 
 	// Set the initial plugin list and description scroll ranges.
 	const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 
-	int pluginListHeight = 0;
-	for(const auto &plugin : Plugins::Get())
-		if(plugin.second.IsValid())
-			pluginListHeight += 20;
-
+	// Note: SetDisplaySize is called here, once, but SetMaxValue will be recalculated as list sizes may change.
 	pluginListScroll.SetDisplaySize(pluginListBox.Height());
-	pluginListScroll.SetMaxValue(pluginListHeight);
 	Rectangle pluginDescriptionBox = pluginUi->GetBox("plugin description");
 	pluginDescriptionScroll.SetDisplaySize(pluginDescriptionBox.Height());
 }
@@ -194,29 +199,135 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show previous settings");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next settings");
+	if(hoverFind)
+		info.SetCondition("hover find");
+	{
+		auto iPlugins = Plugins::GetPluginsLocked();
+		auto *iPlugin = iPlugins->Find(selectedPlugin);
+		if(iPlugin && !iPlugin->removed)
+			info.SetCondition("plugin installed");
+		auto aPlugins = Plugins::GetAvailablePluginsLocked();
+		auto *aPlugin = aPlugins->Find(selectedPlugin);
+		if(aPlugin)
+		{
+			if(iPlugin && !iPlugin->removed && aPlugin->outdated)
+				info.SetCondition("can update");
+			else if(!iPlugin || iPlugin->removed)
+				info.SetCondition("can install");
+		}
+	}
+
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : page == 'p' ? "plugins" : "audio");
-	GameData::Interfaces().Get(pageName)->Draw(info, this);
+	string pageName = (page == CONTROLS ? "controls" : page == SETTINGS ? "settings" : page == AUDIO ? "audio" :
+		page == PLUGINS ? "plugins" : "install plugins");
+	info.SetCondition("page: " + pageName);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
+	GameData::Interfaces().Get(pageName)->Draw(info, this);
 
 	zones.clear();
 	prefZones.clear();
 	pluginZones.clear();
-	if(page == 'c')
+
+	if(page == CONTROLS)
 	{
 		DrawControls();
 		DrawTooltips();
 	}
-	else if(page == 's')
+	else if(page == SETTINGS)
 	{
 		DrawSettings();
 		DrawTooltips();
 	}
-	else if(page == 'p')
-		DrawPlugins();
-	else if(page == 'a')
+	else if(page == AUDIO)
 	{
 		// The entire audio panel is defined in interfaces, so this is a dummy.
+	}
+	else if(page == PLUGINS)
+		DrawPlugins();
+	else if(page == LIBRARY)
+		DrawPluginInstalls();
+}
+
+
+
+void PreferencesPanel::Step()
+{
+	++step;
+	if(step >= 100)
+		step = 0;
+	queue.ProcessSyncTasks();
+
+	// Loop over each future, find completed tasks, and if the string is non-empty pop a Dialog to alert the user.
+	auto it = installFeedbacks.begin();
+	while(it != installFeedbacks.end())
+	{
+		if(it->wait_for(std::chrono::seconds(0)) == std::future_status::ready)
+		{
+			std::string error = it->get();
+
+			if(!error.empty())
+				// Update interal states based on special error codes; Then process error codes.
+				// Since there can be a race condition between fast fail and ongoing download; when second download
+				//  is complete the dialog that it pops will be on top; would like to avoid that.
+				if(error.starts_with("redownload:") || error.starts_with("downloaded:"))
+				{
+					string url = error.substr(error.find(':') + 1);
+					if(error.starts_with("redownload:"))
+						Plugins::AddLibraryUrl(url, Plugins::Status::FAILED_DOWNLOAD);
+					else if(error.starts_with("downloaded:"))
+					{
+						// If any of the urls are downloaded, then we have a library to show.
+						downloadedPluginIndex = true;
+						Plugins::AddLibraryUrl(url, Plugins::Status::DOWNLOADED);
+					}
+
+					bool displayed = false;
+					if(downloadInProgressDialog)
+					{
+						displayed = true;
+						GetUI().Pop(downloadInProgressDialog);
+						downloadInProgressDialog = nullptr;
+					}
+
+					string message;
+					for(auto it : Plugins::GetPluginLibraryUrls())
+						if(it.second == Plugins::Status::FAILED_DOWNLOAD)
+							message += "\n" + it.first + "...";
+					if(!message.empty())
+					{
+						// Note: by using the same dialog handle, we'll re-pop the in-progress dialog later, even if
+						// it had been dismissed; but there are bigger problems.
+						downloadInProgressDialog = DialogPanel::CallFunctionIfOk(this, &PreferencesPanel::ProcessPluginIndex,
+							"Failed to download plugin index:" + message + "\n\nWould you like to try again?");
+						GetUI().Push(downloadInProgressDialog);
+					}
+					else if(displayed)
+					{
+						message = GenerateDownloadMessage();
+						if(!message.empty())
+						{
+							downloadInProgressDialog = DialogPanel::Info(message);
+							GetUI().Push(downloadInProgressDialog);
+						}
+					}
+				}
+				else
+					GetUI().Push(DialogPanel::Info(error));
+			else
+			{
+				if(page == PLUGINS)
+					Plugins::Save();
+				else if(page == LIBRARY)
+				{
+					// After downloading the list, we will need to update the name of the selectedPlugin and redraw.
+					selectedPlugin = GetPluginNameByIndex(selected);
+					Resize();
+				}
+			}
+			it = installFeedbacks.erase(it);
+		}
+		else
+			++it;
 	}
 }
 
@@ -239,14 +350,14 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 
 	if(key == SDLK_DOWN)
-		HandleDown();
+		HandleDown(mod);
 	else if(key == SDLK_UP)
-		HandleUp();
-	else if(key == SDLK_RETURN)
+		HandleUp(mod);
+	else if(key == SDLK_RETURN || ((key == 'i' || key == 'u') && page == LIBRARY))
 		HandleConfirm();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		Exit();
-	else if(key == 'c' || key == 's' || key == 'p' || key == 'a')
+	else if(key == CONTROLS || key == SETTINGS || key == AUDIO)
 	{
 		page = key;
 		hoverItem.clear();
@@ -255,13 +366,18 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		// Make sure the render buffers are initialized and are aware of the current UI scale.
 		Resize();
 	}
-	else if(key == 'o' && page == 'p')
+	else if(key == 'o' && page == PLUGINS)
 		Files::OpenUserPluginFolder();
-	else if((key == 'n' || key == SDLK_PAGEUP)
-		&& ((page == 'c' && currentControlsPage < CONTROLS_PAGE_COUNT - 1)
-		|| (page == 's' && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)))
+	else if((key == 'd' || key == SDLK_DELETE) && (page == PLUGINS || page == LIBRARY))
 	{
-		if(page == 'c')
+		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &PreferencesPanel::DeletePlugin,
+			"Do you really want to delete this plugin?"));
+	}
+	else if((key == 'n' || key == SDLK_PAGEUP)
+		&& ((page == CONTROLS && currentControlsPage < CONTROLS_PAGE_COUNT - 1)
+		|| (page == SETTINGS && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)))
+	{
+		if(page == CONTROLS)
 			++currentControlsPage;
 		else
 			++currentSettingsPage;
@@ -269,19 +385,53 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		selectedItem.clear();
 	}
 	else if((key == 'r' || key == SDLK_PAGEDOWN)
-		&& ((page == 'c' && currentControlsPage > 0) || (page == 's' && currentSettingsPage > 0)))
+		&& ((page == CONTROLS && currentControlsPage > 0) || (page == SETTINGS && currentSettingsPage > 0)))
 	{
-		if(page == 'c')
+		if(page == CONTROLS)
 			--currentControlsPage;
 		else
 			--currentSettingsPage;
 		selected = 0;
 		selectedItem.clear();
 	}
-	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
+	else if((key == 'x' || key == SDLK_DELETE) && (page == CONTROLS))
 	{
 		if(!zones[latest].Value().Has(Command::MENU))
 			Command::SetKey(zones[latest].Value(), 0);
+	}
+	else if(key == SDLK_PAGEUP && (page == PLUGINS || page == LIBRARY))
+	{
+		selected = max(0, selected - 20);
+		selectedPlugin = GetPluginNameByIndex(selected);
+		Resize();
+	}
+	else if(key == SDLK_PAGEDOWN && (page == PLUGINS || page == LIBRARY))
+	{
+		{
+			auto plugins = (page == PLUGINS) ? Plugins::GetPluginsLocked() : Plugins::GetAvailablePluginsLocked();
+			selected = min(plugins->size() - 1, selected + 20);
+		}
+		selectedPlugin = GetPluginNameByIndex(selected);
+		Resize();
+	}
+	else if(key == 'f' && (page == PLUGINS || page == LIBRARY))
+		GetUI().Push(DialogPanel::RequestString(this, &PreferencesPanel::DoSearch, "Search for:", searchFor,
+			Truncate::NONE, true));
+	else if(key == LIBRARY || key == PLUGINS)
+	{
+		page = key;
+		hoverItem.clear();
+		selected = 0;
+		// Draw has not been called yet, so we cannot use the pluginZones to determine what is at index 0.
+		// Also, we might just now have downloaded the index for the available plugins.
+		selectedPlugin = GetPluginNameByIndex(selected);
+
+		if(page == LIBRARY && !downloadedPluginIndex)
+			// Reminder: this is async.
+			ProcessPluginIndex();
+
+		// Make sure the render buffers are initialized and are aware of the current UI scale.
+		Resize();
 	}
 	else
 		return false;
@@ -310,28 +460,32 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 		return true;
 	}
 
-	for(unsigned index = 0; index < zones.size(); ++index)
-		if(zones[index].Contains(point))
-		{
-			if(zones[index].Value().Has(Command::MENU))
-				GetUI().Push(DialogPanel::CallFunctionIfOk([this, index]()
-					{
-						this->editing = this->selected = index;
-					},
-					"Rebinding this key will change the keypress you need to access this menu. "
-					"You really shouldn't rebind this unless needed.", true));
-			else
-				editing = selected = index;
-		}
-
-	for(const auto &zone : prefZones)
-		if(zone.Contains(point))
-		{
-			HandleSettingsString(zone.Value(), point);
-			break;
-		}
-
-	if(page == 'p')
+	if(page == CONTROLS)
+	{
+		for(unsigned index = 0; index < zones.size(); ++index)
+			if(zones[index].Contains(point))
+			{
+				if(zones[index].Value().Has(Command::MENU))
+					GetUI().Push(DialogPanel::CallFunctionIfOk([this, index]()
+						{
+							this->editing = this->selected = index;
+						},
+						"Rebinding this key will change the keypress you need to access this menu. "
+						"You really shouldn't rebind this unless needed.", true));
+				else
+					editing = selected = index;
+			}
+	}
+	else if(page == SETTINGS)
+	{
+		for(const auto &zone : prefZones)
+			if(zone.Contains(point))
+			{
+				HandleSettingsString(zone.Value(), point);
+				break;
+			}
+	}
+	else if(page == PLUGINS || page == LIBRARY)
 	{
 		// Don't handle clicks outside of the clipped area.
 		const Interface *pluginUi = GameData::Interfaces().Get("plugins");
@@ -345,14 +499,14 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 				{
 					selectedPlugin = zone.Value();
 					selected = index;
-					RenderPluginDescription(selectedPlugin);
+					RenderPluginDescription();
 					break;
 				}
 				index++;
 			}
 		}
 	}
-	else if(page == 'a')
+	else if(page == AUDIO)
 	{
 		const Interface *audioUI = GameData::Interfaces().Get("audio");
 		double barSize = audioUI->GetValue("volume bar size");
@@ -409,6 +563,16 @@ bool PreferencesPanel::Hover(int x, int y)
 			tooltip.SetZone(zone);
 		}
 
+	if(page == PLUGINS || page == LIBRARY)
+	{
+		const Interface *preferencesUI = GameData::Interfaces().Get("install plugins");
+		Rectangle findIcon = preferencesUI->GetBox("find button");
+		if(findIcon.Contains(hoverPoint))
+			hoverFind = true;
+		else
+			hoverFind = false;
+	}
+
 	return true;
 }
 
@@ -420,7 +584,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 	if(!dy)
 		return false;
 
-	if(page == 's' && !hoverItem.empty())
+	if(page == SETTINGS && !hoverItem.empty())
 	{
 		if(hoverItem == ZOOM_FACTOR)
 		{
@@ -468,9 +632,9 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 		}
 		return true;
 	}
-	else if(page == 'p')
+	else if(page == PLUGINS || page == LIBRARY)
 	{
-		auto ui = GameData::Interfaces().Get("plugins");
+		const Interface *ui = GameData::Interfaces().Get("plugins");
 		const Rectangle &pluginBox = ui->GetBox("plugin list");
 		const Rectangle &descriptionBox = ui->GetBox("plugin description");
 
@@ -492,9 +656,9 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 
 bool PreferencesPanel::Drag(double dx, double dy)
 {
-	if(page == 'p')
+	if(page == PLUGINS || page == LIBRARY)
 	{
-		auto ui = GameData::Interfaces().Get("plugins");
+		const Interface *ui = GameData::Interfaces().Get("plugins");
 		const Rectangle &pluginBox = ui->GetBox("plugin list");
 		const Rectangle &descriptionBox = ui->GetBox("plugin description");
 
@@ -518,12 +682,14 @@ bool PreferencesPanel::Drag(double dx, double dy)
 
 void PreferencesPanel::Resize()
 {
-	if(page == 'p')
+	if(page == PLUGINS || page == LIBRARY)
 	{
 		const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 		Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 		pluginListClip = make_unique<RenderBuffer>(pluginListBox.Dimensions());
-		RenderPluginDescription(selectedPlugin);
+		Draw();
+		RenderPluginDescription();
+		ScrollSelectedPlugin();
 	}
 }
 
@@ -1101,12 +1267,14 @@ void PreferencesPanel::DrawSettings()
 void PreferencesPanel::DrawPlugins()
 {
 	const Color &back = *GameData::Colors().Get("faint");
-	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &restart = *GameData::Colors().Get("plugin reload required");
 	const Interface *pluginUI = GameData::Interfaces().Get("plugins");
 
 	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
+	const Sprite *spriteDown = SpriteSet::Get("ui/sort descending");
+	const Sprite *spriteUp = SpriteSet::Get("ui/sort ascending");
 
 	// Animate scrolling.
 	pluginListScroll.Step();
@@ -1118,15 +1286,18 @@ void PreferencesPanel::DrawPlugins()
 
 	Table table;
 	table.AddColumn(
-		pluginListClip->Left() + box[0]->Width(),
-		Layout(pluginListBox.Width() - box[0]->Width(), Truncate::MIDDLE)
+		pluginListClip->Left() + 20,
+		Layout(pluginListBox.Width() - 60, Truncate::MIDDLE)
 	);
-	table.SetUnderline(pluginListClip->Left() + box[0]->Width(), pluginListClip->Right());
+	table.SetUnderline(pluginListClip->Left() + 20, pluginListClip->Right());
 
 	int firstY = pluginListClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(pluginListScroll.AnimatedValue())));
 
-	for(const auto &it : Plugins::Get())
+	auto iPlugins = Plugins::GetPluginsLocked();
+	pluginListScroll.SetMaxValue(iPlugins->size() * 20);
+	int i = 0;
+	for(const auto &it : *iPlugins)
 	{
 		const auto &plugin = it.second;
 		if(!plugin.IsValid())
@@ -1134,26 +1305,67 @@ void PreferencesPanel::DrawPlugins()
 
 		pluginZones.emplace_back(pluginListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), plugin.name);
 
+		Point corner;
+		Rectangle boundsUp;
+		Rectangle boundsDown;
 		bool isSelected = (plugin.name == selectedPlugin);
 		if(isSelected || plugin.name == hoverItem)
+		{
 			table.DrawHighlight(back);
 
-		const Sprite *sprite = box[plugin.currentState];
-		const Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
-		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
-		SpriteShader::Draw(sprite, spriteBounds.Center());
+			// For the selected Plugin, draw the sprites for the Up/Down buttons for re-ordering the Plugin load order.
+			corner = table.GetRowBounds().TopRight() - Point(40., 0.);
+			boundsUp = Rectangle::FromCorner(corner, Point(20., 20.));
+			SpriteShader::Draw(spriteUp, boundsUp.Center());
 
-		Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
+			corner = table.GetRowBounds().TopRight() - Point(20., 0.);
+			boundsDown = Rectangle::FromCorner(corner, Point(20., 20.));
+			SpriteShader::Draw(spriteDown, boundsDown.Center());
+		}
+
+		const Sprite *sprite = plugin.removed ? (plugin.inUse ? SpriteSet::Get("ui/error") : box[0]) :
+			box[plugin.desiredState];
+		// Draw the sprite. Not all these sprites are 20x20, but we will center them all as if they were.
+		corner = table.GetRowBounds().TopLeft() - Point(20., 0.);
+		Rectangle spriteBounds = Rectangle::FromCorner(corner, Point(20., 20.));
+		SpriteShader::Draw(sprite, spriteBounds.Center());
 
 		// Only include the zone as clickable if it's within the drawing area.
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
 			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
-		if(displayed)
-			AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
-		if(isSelected)
-			table.Draw(plugin.name, bright);
+
+		if(plugin.HasChanged())
+		{
+			table.Draw(plugin.name, isSelected ? Color::Multiply(1.2, restart) : restart);
+			// Plugins that are inUse and have been removed will stay in the list because a restart is required.
+			if(plugin.removed)
+				table.DrawStrikethrough(isSelected ? Color::Multiply(1.2, restart) : restart);
+		}
 		else
-			table.Draw(plugin.name, plugin.enabled ? medium : dim);
+			table.Draw(plugin.name, isSelected ? bright : medium);
+
+		if(displayed)
+		{
+			Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
+			AddZone(zoneBounds, [name = plugin.name](){ Plugins::TogglePlugin(name); });
+			if(isSelected || plugin.name == hoverItem)
+			{
+				AddZone(boundsUp + pluginListBox.Center(), [this, i]
+				{
+					selected = Plugins::Move(i, -1);
+					selectedPlugin = GetPluginNameByIndex(selected);
+					RenderPluginDescription();
+				});
+				AddZone(boundsDown + pluginListBox.Center(), [this, i]
+				{
+					selected = Plugins::Move(i, 1);
+					selectedPlugin = GetPluginNameByIndex(selected);
+					RenderPluginDescription();
+				});
+			}
+		}
+
+		++i;
 	}
 
 	// Switch back to normal opengl operations.
@@ -1221,11 +1433,186 @@ void PreferencesPanel::DrawPlugins()
 
 
 
-// Render the named plugin description into the pluginDescriptionBuffer.
-void PreferencesPanel::RenderPluginDescription(const string &pluginName)
+void PreferencesPanel::DrawPluginInstalls()
 {
-	const Plugin *plugin = Plugins::Get().Find(pluginName);
-	if(plugin)
+	if(!downloadedPluginIndex)
+		return;
+
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &outdated = *GameData::Colors().Get("plugin outdated");
+	const Color &restart = *GameData::Colors().Get("plugin reload required");
+	const Interface *pluginUI = GameData::Interfaces().Get("plugins");
+
+	// Animate scrolling.
+	pluginListScroll.Step();
+
+	// Switch render target to pluginListClip. Until target is destroyed or
+	// deactivated, all opengl commands will be drawn there instead.
+	auto target = pluginListClip->SetTarget();
+	Rectangle pluginListBox = pluginUI->GetBox("plugin list");
+
+	Table table;
+	table.AddColumn(
+		pluginListClip->Left() + 20,
+		Layout(pluginListBox.Width() - 20, Truncate::MIDDLE)
+	);
+	table.SetUnderline(pluginListClip->Left() + 20, pluginListClip->Right());
+
+	int firstY = pluginListClip->Top();
+	table.DrawAt(Point(0, firstY - static_cast<int>(pluginListScroll.AnimatedValue())));
+
+	int i = 0;
+	auto iPlugins = Plugins::GetPluginsLocked();
+	auto aPlugins = Plugins::GetAvailablePluginsLocked();
+	pluginListScroll.SetMaxValue(aPlugins->size() * 20);
+	for(const auto &it : *aPlugins)
+	{
+		const auto &plugin = it.second;
+		if(!plugin.IsValid())
+			continue;
+
+		pluginZones.emplace_back(pluginListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), plugin.name);
+
+		bool isSelected = (plugin.name == selectedPlugin);
+		if(isSelected || plugin.name == hoverItem)
+			table.DrawHighlight(back);
+
+		auto *installedPlugin = iPlugins->Find(plugin.name);
+
+		// When selected, we typically increase the brightness of the text, however we are using text color
+		// to represent various states results in a need to do things a little differently here.
+		Color color;
+
+		const Sprite *sprite;
+		if(plugin.IsDownloading())
+		{
+			color = Color::Multiply(step / 50. + .25, bright);
+			sprite = SpriteSet::Get("ui/expanded");
+		}
+		else if(plugin.outdated)
+		{
+			color = isSelected ? Color::Multiply(1.2, outdated) : outdated;
+			sprite = SpriteSet::Get("ui/tactical/turn");
+		}
+		else if(installedPlugin && !installedPlugin->removed)
+		{
+			color = installedPlugin->HasChanged() ? restart : bright;
+			sprite = SpriteSet::Get("ui/checked");
+		}
+		else
+		{
+			color = isSelected ? bright : medium;
+			sprite = SpriteSet::Get("ui/unchecked");
+		}
+
+		// Draw the sprite. Not all these sprites are 20x20, but we will center them all as if they were.
+		const Point topLeft = table.GetRowBounds().TopLeft() - Point(20., 0.);
+		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(20., 20.));
+		SpriteShader::Draw(sprite, spriteBounds.Center());
+
+		table.Draw(plugin.name, color);
+
+		// Only include the zone as clickable if it's within the drawing area.
+		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
+			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
+		if(displayed && !plugin.IsDownloading())
+		{
+			if(plugin.outdated || !installedPlugin)
+			{
+				// Can install - clicking the the icon will do so.
+				AddZone(spriteBounds + pluginListBox.Center(), [this, i]()
+				{
+					selected = i;
+					selectedPlugin = GetPluginNameByIndex(selected);
+					RenderPluginDescription();
+					HandleConfirm();
+				});
+			}
+			else
+			{
+				AddZone(spriteBounds + pluginListBox.Center(), [this, i]()
+				{
+					selected = i;
+					selectedPlugin = GetPluginNameByIndex(selected);
+					RenderPluginDescription();
+				});
+			}
+		}
+		++i;
+	}
+
+	// Switch back to normal opengl operations.
+	target.Deactivate();
+
+	pluginListClip->SetFadePadding(
+		pluginListScroll.IsScrollAtMin() ? 0 : 20,
+		pluginListScroll.IsScrollAtMax() ? 0 : 20
+	);
+
+	// Draw the scrolled and clipped plugin list to the screen.
+	pluginListClip->Draw(pluginListBox.Center());
+	const Point UP{0, -1};
+	const Point DOWN{0, 1};
+	const Point POINTER_OFFSET{0, 5};
+	if(pluginListScroll.Scrollable())
+	{
+		// Draw up and down pointers, mostly to indicate when scrolling
+		// is possible, but might as well make them clickable too.
+		Rectangle topRight({pluginListBox.Right(), pluginListBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
+		PointerShader::Draw(topRight.Center(), UP,
+			10.f, 10.f, 5.f, Color(pluginListScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
+		AddZone(topRight, [&]() { pluginListScroll.Scroll(-Preferences::ScrollSpeed()); });
+
+		Rectangle bottomRight(pluginListBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
+		PointerShader::Draw(bottomRight.Center(), DOWN,
+			10.f, 10.f, 5.f, Color(pluginListScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
+		AddZone(bottomRight, [&]() { pluginListScroll.Scroll(Preferences::ScrollSpeed()); });
+	}
+
+	// Draw the pre-rendered plugin description, if applicable.
+	if(pluginDescriptionBuffer)
+	{
+		pluginDescriptionScroll.Step();
+
+		pluginDescriptionBuffer->SetFadePadding(
+			pluginDescriptionScroll.IsScrollAtMin() ? 0 : 20,
+			pluginDescriptionScroll.IsScrollAtMax() ? 0 : 20
+		);
+
+		Rectangle descriptionBox = pluginUI->GetBox("plugin description");
+		pluginDescriptionBuffer->Draw(
+			descriptionBox.Center(),
+			descriptionBox.Dimensions(),
+			Point(0, static_cast<int>(pluginDescriptionScroll.AnimatedValue()))
+		);
+
+		if(pluginDescriptionScroll.Scrollable())
+		{
+			// Draw up and down pointers, mostly to indicate when
+			// scrolling is possible, but might as well make them
+			// clickable too.
+			Rectangle topRight({descriptionBox.Right(), descriptionBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
+			PointerShader::Draw(topRight.Center(), UP,
+				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
+			AddZone(topRight, [&]() { pluginDescriptionScroll.Scroll(-Preferences::ScrollSpeed()); });
+
+			Rectangle bottomRight(descriptionBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
+			PointerShader::Draw(bottomRight.Center(), DOWN,
+				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
+			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
+		}
+	}
+}
+
+
+
+// Render the plugin description into the pluginDescriptionBuffer.
+void PreferencesPanel::RenderPluginDescription()
+{
+	auto plugins = (page == PLUGINS) ? Plugins::GetPluginsLocked() : Plugins::GetAvailablePluginsLocked();
+	if(auto *plugin = plugins->Find(selectedPlugin))
 		RenderPluginDescription(*plugin);
 	else
 		pluginDescriptionBuffer.reset();
@@ -1245,16 +1632,29 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	pluginDescriptionScroll.Set(0, 0);
 
 	// Compute the height before drawing, so that we know the scroll bounds.
-	const Sprite *sprite = SpriteSet::Get(plugin.name);
+	const Sprite *sprite = SpriteSet::Get(plugin.GetIconName());
 	int descriptionHeight = 0;
-	if(sprite)
-		descriptionHeight += sprite->Height() + 10;
 
+	// Title.
+	WrappedText wrapTitle(font);
+	wrapTitle.SetWrapWidth(box.Width());
+	wrapTitle.Wrap(plugin.name);
+	descriptionHeight += wrapTitle.Height() + 5;
+
+	// Image.
+	float zoom = 1.f;
+	if(sprite)
+	{
+		if(sprite->Width() > box.Width())
+			zoom = box.Width() / sprite->Width();
+		descriptionHeight += sprite->Height() * zoom + 10;
+	}
+
+	// Details.
 	WrappedText wrap(font);
 	wrap.SetWrapWidth(box.Width());
-	static const string EMPTY = "(No description given.)";
-	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.CreateDescription());
-
+	// TODO: Make the plugin homepage link clickable for easier bug reporting and feedback.
+	wrap.Wrap(plugin.CreateDescription());
 	descriptionHeight += wrap.Height();
 
 	// Now that we know the size of the rendered description, resize the buffer
@@ -1265,12 +1665,15 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	pluginDescriptionBuffer = make_unique<RenderBuffer>(Point(box.Width(), descriptionHeight));
 	// Redirect all drawing commands into the offscreen buffer.
 	auto target = pluginDescriptionBuffer->SetTarget();
-
 	Point top(pluginDescriptionBuffer->Left(), pluginDescriptionBuffer->Top());
+
+	wrapTitle.Draw(top, medium);
+	top.Y() += wrapTitle.Height() + 5;
+
 	if(sprite)
 	{
 		Point center(0., top.Y() + .5 * sprite->Height());
-		SpriteShader::Draw(sprite, center);
+		SpriteShader::Draw(sprite, center, zoom);
 		top.Y() += sprite->Height() + 10.;
 	}
 
@@ -1441,42 +1844,52 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 
 
 
-void PreferencesPanel::HandleUp()
+void PreferencesPanel::HandleUp(Uint16 mod)
 {
-	selected = max(0, selected - 1);
 	switch(page)
 	{
-	case 's':
+	case SETTINGS:
+		selected = max(0, selected - 1);
 		selectedItem = prefZones.at(selected).Value();
 		break;
-	case 'p':
-		selectedPlugin = pluginZones.at(selected).Value();
-		RenderPluginDescription(selectedPlugin);
+	case PLUGINS:
+	case LIBRARY:
+		if(mod & KMOD_SHIFT)
+			selected = Plugins::Move(selected, -1);
+		else
+			selected = max(0, selected - 1);
+		selectedPlugin = GetPluginNameByIndex(selected);
+		RenderPluginDescription();
 		ScrollSelectedPlugin();
 		break;
 	default:
+		selected = max(0, selected - 1);
 		break;
 	}
 }
 
 
 
-void PreferencesPanel::HandleDown()
+void PreferencesPanel::HandleDown(Uint16 mod)
 {
 	switch(page)
 	{
-	case 'c':
+	case CONTROLS:
 		if(selected + 1 < static_cast<int>(zones.size()))
 			selected++;
 		break;
-	case 's':
+	case SETTINGS:
 		selected = min(selected + 1, static_cast<int>(prefZones.size() - 1));
 		selectedItem = prefZones.at(selected).Value();
 		break;
-	case 'p':
-		selected = min(selected + 1, static_cast<int>(pluginZones.size() - 1));
-		selectedPlugin = pluginZones.at(selected).Value();
-		RenderPluginDescription(selectedPlugin);
+	case PLUGINS:
+	case LIBRARY:
+		if(mod & KMOD_SHIFT)
+			selected = Plugins::Move(selected, 1);
+		else
+			selected = min(selected + 1, static_cast<int>(pluginZones.size() - 1));
+		selectedPlugin = GetPluginNameByIndex(selected);
+		RenderPluginDescription();
 		ScrollSelectedPlugin();
 		break;
 	default:
@@ -1490,14 +1903,17 @@ void PreferencesPanel::HandleConfirm()
 {
 	switch(page)
 	{
-	case 'c':
+	case CONTROLS:
 		editing = selected;
 		break;
-	case 's':
+	case SETTINGS:
 		HandleSettingsString(selectedItem, Screen::Dimensions() / 2.);
 		break;
-	case 'p':
+	case PLUGINS:
 		Plugins::TogglePlugin(selectedPlugin);
+		break;
+	case LIBRARY:
+		installFeedbacks.emplace_back(Plugins::InstallOrUpdate(selectedPlugin));
 		break;
 	default:
 		break;
@@ -1506,10 +1922,148 @@ void PreferencesPanel::HandleConfirm()
 
 
 
+string PreferencesPanel::GenerateDownloadMessage()
+{
+	string message;
+	for(auto it : Plugins::GetPluginLibraryUrls())
+	{
+		if(it.second != Plugins::Status::DOWNLOADED)
+			message += "\n" + it.first + "...";
+	}
+	if(!message.empty())
+		return "Downloading plugin index:" + message + "\nPlease wait...";
+	return message;
+}
+
+
+
+void PreferencesPanel::ProcessPluginIndex()
+{
+	int libraryIdx = 0;
+	for(auto it : Plugins::GetPluginLibraryUrls())
+	{
+		// If this index has not already been fetched, download it. This allows us to call
+		// ProcessPluginIndex multiple times, e.g. if prompted to redownload
+		string url = it.first;
+		installFeedbacks.emplace_back(
+			// Note: async, cannot work with fonts (or GUI), or the loop variable in a writable fashion
+			async(launch::async, [&, url, libraryIdx, installed=it.second]() noexcept -> string
+			{
+				string filename = "plugins" + std::to_string(libraryIdx) + ".json";
+				auto path = Files::Config() / filename;
+				if(installed != Plugins::Status::DOWNLOADED)
+					if(!Plugins::Download(url, path))
+						return "redownload:" + url;
+				Plugins::LoadAvailablePlugins(queue, path);
+				return "downloaded:" + url;
+			})
+		);
+		++libraryIdx;
+	}
+
+	if(!downloadInProgressDialog)
+	{
+		downloadInProgressDialog = DialogPanel::Info(GenerateDownloadMessage());
+		GetUI().Push(downloadInProgressDialog);
+	}
+}
+
+
+
 void PreferencesPanel::ScrollSelectedPlugin()
 {
-	while(selected * 20 - pluginListScroll < 0)
-		pluginListScroll.Scroll(-Preferences::ScrollSpeed());
-	while(selected * 20 - pluginListScroll > pluginListClip->Height())
-		pluginListScroll.Scroll(Preferences::ScrollSpeed());
+	// Note: rather than add a mutex to selected, just work with the current value:
+	int scrollTo = selected;
+	int dy = scrollTo * 20 - static_cast<int>(pluginListScroll.Value()) - 10;
+	if(dy < 0)
+		pluginListScroll.Scroll(dy, 5);
+	dy = scrollTo * 20 - static_cast<int>(pluginListClip->Height() - 30) - static_cast<int>(pluginListScroll.Value());
+	if(dy > 0)
+		pluginListScroll.Scroll(dy, 5);
+}
+
+
+
+void PreferencesPanel::DoSearch(const string &search)
+{
+	// Keep our last search for repeat searching.
+	searchFor = search;
+	{
+		auto plugins = (page == PLUGINS) ? Plugins::GetPluginsLocked() : Plugins::GetAvailablePluginsLocked();
+
+		// Handle case of no plugins in list.
+		if(plugins->empty())
+			return;
+
+		// Start with currently selected plugin plus one, and looping at the end.
+		int searchIndex = selected + 1;
+		int index = 0;
+		for(const auto &it : *plugins)
+		{
+			if(index == searchIndex)
+			{
+				if(it.second.Search(search))
+				{
+					selected = index;
+					selectedPlugin = it.first;
+					break;
+				}
+				++searchIndex;
+			}
+			++index;
+		}
+		if(searchIndex != selected)
+		{
+			// Loop around to the start.
+			searchIndex = 0;
+			for(const auto &it : *plugins)
+			{
+				if(it.second.Search(search))
+				{
+					selected = searchIndex;
+					selectedPlugin = it.first;
+					break;
+				}
+				++searchIndex;
+
+				// If we looped all the way around, we did not find it.
+				if(searchIndex == selected)
+					break;
+			}
+		}
+	}
+
+	RenderPluginDescription();
+	ScrollSelectedPlugin();
+	Draw();
+}
+
+
+
+string PreferencesPanel::GetPluginNameByIndex(int findIndex) const
+{
+	int index = 0;
+	auto plugins = (page == PLUGINS) ? Plugins::GetPluginsLocked() : Plugins::GetAvailablePluginsLocked();
+	for(const auto &it : *plugins)
+	{
+		if(index == findIndex)
+			return it.first;
+		++index;
+	}
+	return {};
+}
+
+
+
+void PreferencesPanel::DeletePlugin()
+{
+	if(!selectedPlugin.empty())
+	{
+		string message = Plugins::DeletePlugin(selectedPlugin);
+		if(message.empty())
+			Plugins::Save();
+		else
+			GetUI().Push(DialogPanel::Info(message));
+		selectedPlugin = GetPluginNameByIndex(selected);
+	}
 }

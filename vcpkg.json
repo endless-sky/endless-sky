@@ -45,7 +45,9 @@
 					"platform": "linux"
 				},
 				"sdl2",
-				"pkgconf"
+				"pkgconf",
+				"curl",
+				"nlohmann-json"
 			]
 		},
 		"steam-libs": {
@@ -55,7 +57,8 @@
 				"libmad",
 				"catch2",
 				"libflac",
-				"minizip"
+				"minizip",
+				"nlohmann-json"
 			]
 		},
 		"test-libs": {

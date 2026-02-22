@@ -91,6 +91,8 @@ public:
 	static double GetProgress();
 	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
+	// Add a sprite to the queue.
+	static void RequestSpriteLoad(TaskQueue &queue, const std::string &path, const std::string &name);
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::filesystem::path> &Sources();

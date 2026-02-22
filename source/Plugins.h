@@ -15,16 +15,28 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Set.h"
+#include "LockedOrderedSet.h"
+#include "TaskQueue.h"
 
 #include <filesystem>
+#include <future>
 #include <set>
 #include <string>
+#include <vector>
 
 
 
-// Represents information about a single plugin.
-struct Plugin {
+// Plugin class represents information about a single plugin.
+// Concepts:
+//  - Plugins are consumed by the game on start-up, this translates to `inUse = true`.
+//  - Plugins which are enabled *will be* inUse on the next restart.
+//  - Library of plugins which are available for installation online:
+//    - Updated version available (plugin installed, update available)
+//    - Plugin available for install and not installed yet at all
+//    - On install: mark desired state as enabled
+class Plugin
+{
+public:
 	struct PluginDependencies {
 		// Checks if there are any dependencies of any kind.
 		bool IsEmpty() const;
@@ -41,32 +53,71 @@ struct Plugin {
 		std::set<std::string> conflicted;
 	};
 
-	// Checks whether this plugin is valid, i.e. whether it exists.
-	bool IsValid() const;
-	// Constructs a description of the plugin from its name, tags, dependencies, etc.
-	std::string CreateDescription() const;
 
+public:
+	// Attempt to load a plugin at the given path.
+	Plugin() = default;
+	Plugin(const std::string &pluginName, const std::string &pluginUrl, const std::string &pluginVersion,
+			const std::string &pluginDescription, const std::vector<std::string> &pluginAuthors,
+			const std::string &pluginHomepage, const std::string &pluginLicense)
+		: name(pluginName), description(pluginDescription), version(pluginVersion), authors(pluginAuthors),
+			homepage(pluginHomepage), license(pluginLicense), url(pluginUrl) {}
+
+	// Constructs a description of the plugin from its name, tags, dependencies, etc.
+	[[nodiscard]] std::string CreateDescription() const;
+	[[nodiscard]] std::string GetIconName() const;
+	[[nodiscard]] bool InUse() const;
+	[[nodiscard]] const std::string &Name() const;
+	// Checks whether this plugin is valid, i.e. whether it exists.
+	[[nodiscard]] bool IsValid() const;
+	[[nodiscard]] bool IsDownloading() const;
+	[[nodiscard]] bool HasChanged() const;
+	[[nodiscard]] bool Search(const std::string &search) const;
+
+	void SetInUse(bool useState);
+	void SetDesiredState(bool newDesiredState);
+	void SetVersion(const std::string &newVersion);
+
+protected:
 	// The name that identifies this plugin.
 	std::string name;
 	// The path to the plugin's folder.
 	std::filesystem::path path;
 	// The about text, if any, of this plugin.
-	std::string aboutText;
-	// The version of the plugin as defined by the authors.
-	std::string version;
-
+	std::string description;
+	// The version of this plugin, important if it has been installed over ES.
+	std::string version = "???";
 	// The set of tags which are used to categorize the plugin.
 	std::set<std::string> tags;
 	// The set of people who have created the plugin.
-	std::set<std::string> authors;
+	std::vector<std::string> authors;
+	std::string homepage;
+	std::string license;
+	// The url used for installation, relevant when installed = false;
+	std::string url;
 
 	// Other plugins which are required for, optional for, or conflict with this plugin.
 	PluginDependencies dependencies;
 
-	// Whether this plugin was enabled, i.e. if it was loaded by the game.
-	bool enabled = true;
-	// The current state of the plugin.
-	bool currentState = true;
+	// This class is also used for plugins which are not yet installed and or can be updated.
+	bool installed = true;
+	bool outdated = false;
+	std::string installedVersion; // Not set by default; Only used in available plugin data
+
+	// Whether this plugin is in use, i.e. if it was loaded by the game on this start-up.
+	bool inUse = true;
+	// TODO: if a plugin zip is corrupted and doesn't load, we should indicate as such.
+	// The desired state of the plugin on the next game start, true = enabled.
+	bool desiredState = true;
+
+	// These affect whether the UI is telling the user that the game must be restarted.
+	// If this plugin has been deleted.
+	bool removed = false;
+	// If this plugin has been updated (version on start-up no longer matches the files on disk)
+	bool updated = false;
+
+	friend class Plugins;
+	friend class PreferencesPanel;
 };
 
 
@@ -75,21 +126,50 @@ struct Plugin {
 // This object is updated by toggling plugins in the Preferences UI.
 class Plugins {
 public:
-	// Attempt to load a plugin at the given path.
-	static const Plugin *Load(const std::filesystem::path &path);
+	enum class Status
+	{
+		NOT_DOWNLOADED,
+		FAILED_DOWNLOAD,
+		DOWNLOADED,
+	};
 
+public:
+	// Attempt to load a plugin at the given path.
+	static std::string Load(const std::filesystem::path &path);
+	static void LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path &pluginsJsonPath);
 	static void LoadSettings();
 	static void Save();
+
+	static void AddLibraryUrl(const std::string & url, Status installed = Status::NOT_DOWNLOADED);
+	static std::map<std::string, Status> &GetPluginLibraryUrls();
 
 	// Whether the path points to a valid plugin.
 	static bool IsPlugin(const std::filesystem::path &path);
 	// Returns true if any plugin enabled or disabled setting has changed since
 	// launched via user preferences.
 	static bool HasChanged();
+	// Returns true if there is active install/update activity.
+	static bool DownloadingInBackground();
 
+	// For consistent handling of mutex locks on the sets of plugins (installed/available) between contexts.
+	// Usage:
+	//     auto iPlugins = Plugins::GetPluginsLocked();
+	//     iPlugins->Get(...) or iPlugins->Find(...)
+	// Returns the list of plugins that have been identified in the online plugin library.
+	static LockedOrderedSet<Plugin> GetAvailablePluginsLocked();
 	// Returns the list of plugins that have been identified by the game.
-	static const Set<Plugin> &Get();
+	static LockedOrderedSet<Plugin> GetPluginsLocked();
+
+	// Re-order the installed plugins list by moving the Plugin at index `index` by `offset` (positive toward back).
+	static int Move(int index, int offset);
 
 	// Toggles enabling or disabling a plugin for the next game restart.
 	static void TogglePlugin(const std::string &name);
+
+	// Install, update or delete a plugin.
+	static std::future<std::string> InstallOrUpdate(const std::string &name);
+	static std::string DeletePlugin(const std::string &name);
+
+	static bool Download(const std::string &url, const std::filesystem::path &location);
+
 };

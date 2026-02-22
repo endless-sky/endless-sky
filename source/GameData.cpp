@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "shader/BatchShader.h"
-#include "CategoryList.h"
 #include "Color.h"
 #include "Command.h"
 #include "ConditionsStore.h"
@@ -106,15 +105,17 @@ namespace {
 
 	void LoadPlugin(TaskQueue &queue, const filesystem::path &path)
 	{
-		const auto *plugin = Plugins::Load(path);
+		string pluginName = Plugins::Load(path);
+		auto plugins = Plugins::GetPluginsLocked();
+		auto *plugin = plugins->Find(pluginName);
 		if(!plugin)
 			return;
 
-		if(plugin->enabled)
+		if(plugin->InUse())
 			sources.push_back(path);
 
 		// Load the icon for the plugin, if any.
-		auto icon = make_shared<ImageSet>(plugin->name);
+		auto icon = make_shared<ImageSet>(plugin->GetIconName());
 
 		// Try adding all the possible icon variants.
 		for(const string &extension : ImageBuffer::ImageExtensions())
@@ -272,6 +273,20 @@ double GameData::GetProgress()
 bool GameData::IsLoaded()
 {
 	return GetProgress() == 1.;
+}
+
+
+
+// Add a sprite to the queue.
+void GameData::RequestSpriteLoad(TaskQueue &queue, const string &path, const string &name)
+{
+	auto image = make_shared<ImageSet>(name);
+	image->Add(ImageFileData(path));
+	if(!image->IsEmpty())
+	{
+		image->ValidateFrames();
+		SpriteLoadManager::LoadSprite(queue, image);
+	}
 }
 
 
@@ -928,24 +943,49 @@ void GameData::LoadSources(TaskQueue &queue)
 	sources.clear();
 	sources.push_back(Files::Resources());
 
+	// Make a list of all known plugin paths to allow for the plugins to be loaded according to the specified order.
+	// For consistency between the plugin library and the installed plugins,
+	// we will strip the zip extension off any zip files, or else use the folder name.
+	Set<std::filesystem::path> foundPlugins;
+
 	vector<filesystem::path> globalPlugins = Files::ListDirectories(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
 		if(Plugins::IsPlugin(path))
-			LoadPlugin(queue, path);
+			foundPlugins.Get(path.stem().string())->assign(path);
+		// TODO" else if not matching the plugin logic from IsPlugin then remove it and give an error
 	// Load unzipped plugins first to give them precedence, then load the zipped plugins.
 	globalPlugins = Files::List(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
 		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
-			LoadPlugin(queue, path);
+			foundPlugins.Get(path.stem().string())->assign(path);
 
 	vector<filesystem::path> localPlugins = Files::ListDirectories(Files::UserPlugins());
 	for(const auto &path : localPlugins)
 		if(Plugins::IsPlugin(path))
-			LoadPlugin(queue, path);
+			foundPlugins.Get(path.stem().string())->assign(path);
 	localPlugins = Files::List(Files::UserPlugins());
 	for(const auto &path : localPlugins)
 		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
-			LoadPlugin(queue, path);
+			foundPlugins.Get(path.stem().string())->assign(path);
+
+	// Sort out the paths according to user-prescribed plugin order.
+	// TODO: better behavior in the situation where the plugin gets installed but doesn't pass the IsPlugin test...
+	vector<filesystem::path> loadOrder;
+	{
+		auto plugins = Plugins::GetPluginsLocked();
+		for(const auto &it : *plugins)
+		{
+			loadOrder.emplace_back(*foundPlugins.Get(it.first));
+			foundPlugins.erase(it.first);
+		}
+		// Any other plugins are loaded last.
+		for(const auto &it : foundPlugins)
+			loadOrder.emplace_back(it.second);
+	}
+
+	// Load plugins in prescribed order:
+	for(const auto &path : loadOrder)
+		LoadPlugin(queue, path);
 }
 
 

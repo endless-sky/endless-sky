@@ -175,6 +175,7 @@ target_sources(EndlessSkyLib PRIVATE
 	LoadPanel.h
 	LocationFilter.cpp
 	LocationFilter.h
+	LockedOrderedSet.h
 	LogbookPanel.cpp
 	LogbookPanel.h
 	MainPanel.cpp
@@ -227,6 +228,7 @@ target_sources(EndlessSkyLib PRIVATE
 	News.h
 	OptionalInputDialogPanel.cpp
 	OptionalInputDialogPanel.h
+	OrderedSet.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp
