@@ -23,8 +23,8 @@ ship "Resja, of the Nine Eyes"
 		"cost" 55000000
 		"shields" 4000
 		"hull" 62500
-		"required crew" 0
-		"bunks" 10
+		"automaton" 1
+		"bunks" 18
 		"mass" 440
 		"drag" 4.2
 		"heat dissipation" 0.5
@@ -123,7 +123,7 @@ ship "Hasur, Vowsworn"
 		"cost" 55000000
 		"shields" 2500
 		"hull" 39200
-		"required crew" 0
+		"automaton" 1
 		"bunks" 10
 		"mass" 280
 		"drag" 3.2
@@ -214,8 +214,8 @@ ship "Queru, Luminous Gaze"
 		"cost" 55000000
 		"shields" 4200
 		"hull" 32500
-		"required crew" 0
-		"bunks" 10
+		"automaton" 1
+		"bunks" 14
 		"mass" 260
 		"drag" 3.2
 		"heat dissipation" 0.65
