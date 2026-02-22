@@ -20,12 +20,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CaptureOdds.h"
 #include "ScrollBar.h"
 
+#include <list>
 #include <memory>
+#include <set>
 #include <string>
 #include <vector>
 
 class Outfit;
 class PlayerInfo;
+class RenderBuffer;
 class Ship;
 
 
@@ -51,6 +54,8 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+protected:
+	static constexpr int OUTFIT_SIZE = 183;
 
 private:
 	enum class CanTakeResult {
@@ -121,11 +126,17 @@ private:
 	// Handle the keyboard scrolling and selection in the panel list.
 	void DoKeyboardNavigation(const SDL_Keycode key);
 
+	void DrawOutfitInfo();
+
 
 private:
 	PlayerInfo &player;
 	std::shared_ptr<Ship> you;
 	std::shared_ptr<Ship> victim;
+	std::shared_ptr<RenderBuffer> outfitInfoBuffer;
+	double outfitScrollOffset = 0.;
+	std::list<Zone> zones;
+	std::set<std::string> &collapsed;
 
 	// List of items you can plunder.
 	std::vector<Plunder> plunder;
