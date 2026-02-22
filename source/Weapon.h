@@ -254,6 +254,10 @@ private:
 	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::vector<Submunition> submunitions;
+	// Whether the damage dealt by this weapon's submunitions are
+	// included in the damage of its projectiles when colliding
+	// with a target.
+	bool includeSubmunitionDamage = true;
 
 	bool isStreamed = false;
 	bool isSafe = false;
