@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Drawable.h"
 #include "Point.h"
 #include "RaidFleet.h"
 #include "RandomEvent.h"
@@ -164,7 +165,7 @@ public:
 	// Get a list of all unique payload outfits from minables in this system.
 	const std::set<const Outfit *> &Payloads() const;
 	// Get the background haze sprite for this system.
-	const Sprite *Haze() const;
+	const Drawable &Haze() const;
 
 	// Get the price of the given commodity in this system.
 	int Trade(const std::string &commodity) const;
@@ -252,7 +253,7 @@ private:
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
 	std::set<const Outfit *> payloads;
-	const Sprite *haze = nullptr;
+	Drawable haze;
 	std::vector<RandomEvent<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
