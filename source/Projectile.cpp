@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Projectile.h"
 
+#include "Collision.h"
+#include "CollisionType.h"
 #include "Effect.h"
 #include "Entity.h"
 #include "FighterHitHelper.h"
@@ -55,6 +57,13 @@ namespace {
 			return Random::Real() > tracking / (1. + jamming);
 		}
 	}
+
+	// Projectiles that die in a direct collision should not engage in any on-death effects,
+	// including creating die effects and submunitions.
+	const int NO_ON_DEATH_EFFECTS = -1000;
+	// Projectiles that die because they were hit by anti-missile can have different on-death
+	// effects than when they died by other means.
+	const int DIED_BY_ANTI_MISSILE = -100;
 }
 
 
@@ -136,9 +145,9 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 
 // Ship explosion.
 Projectile::Projectile(Point position, const Weapon *weapon)
-	: weapon(weapon)
+	: weapon(weapon), isShipExplosion(true)
 {
-	this->position = std::move(position);
+	this->position = position;
 }
 
 
@@ -148,9 +157,9 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 {
 	if(--lifetime <= 0)
 	{
-		if(lifetime > -1000)
+		if(lifetime > NO_ON_DEATH_EFFECTS)
 		{
-			// This projectile didn't die in a collision. Create any death effects.
+			// Create any death effects.
 			// Place effects ahead of the projectile by 1.5x velocity. 1x comes from
 			// the anticipated movement of the projectile on its frame of death, and
 			// 0.5x comes from the behavior of BatchDrawList::Add drawing the projectile sprite
@@ -161,7 +170,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 					visuals.emplace_back(*it.first, effectPosition, velocity, angle);
 
 			for(const auto &it : weapon->Submunitions())
-				if(lifetime > -100 ? it.spawnOnNaturalDeath : it.spawnOnAntiMissileDeath)
+				if(lifetime > DIED_BY_ANTI_MISSILE ? it.spawnOnNaturalDeath : it.spawnOnAntiMissileDeath)
 					for(size_t i = 0; i < it.count; ++i)
 					{
 						const Weapon *const subWeapon = it.weapon.get();
@@ -321,21 +330,27 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 // This projectile hit something. Create the explosion, if any. This also
 // marks the projectile as needing deletion if it has run out of hits.
-void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
+void Projectile::Collide(vector<Visual> &visuals, const Collision &collision)
 {
 	// Offset the placement position of effects by the projectile's velocity while
 	// also accounting for the intersection clipping. Hit effects should appear from
 	// the front of the projectile, and so are shifted forward by the full velocity
 	// of the projectile.
+	double intersection = collision.IntersectionRange();
 	Point effectPosition = position + velocity * intersection;
-	for(const auto &it : weapon->HitEffects())
-		for(int i = 0; i < it.second; ++i)
-			visuals.emplace_back(*it.first, effectPosition, velocity, angle, hitVelocity);
+	Point hitVelocity = collision.HitVelocity();
+	for(const auto &[effect, count] : weapon->HitEffects())
+		for(int i = 0; i < count; ++i)
+			visuals.emplace_back(*effect, effectPosition, velocity, angle, hitVelocity);
 	// The projectile dies if it has no hits remaining.
 	if(--hitsRemaining == 0)
 	{
 		clip = intersection;
-		lifetime = -1000;
+		// Projectiles that die by exploding should still be capable of creating death effects.
+		if(collision.GetCollisionType() == CollisionType::EXPLOSION)
+			lifetime = 0;
+		else
+			lifetime = NO_ON_DEATH_EFFECTS;
 	}
 }
 
@@ -360,7 +375,7 @@ bool Projectile::IsDead() const
 // This projectile was killed, e.g. by an anti-missile system.
 void Projectile::Kill()
 {
-	lifetime = -100;
+	lifetime = DIED_BY_ANTI_MISSILE;
 }
 
 
@@ -576,5 +591,5 @@ void Projectile::SetPhases(const Ship *ship)
 
 bool Projectile::ShouldExplode() const
 {
-	return !government || (weapon->IsFused() && lifetime == 1);
+	return isShipExplosion || (weapon->IsFused() && lifetime == 1);
 }

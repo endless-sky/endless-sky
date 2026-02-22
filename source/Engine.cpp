@@ -2419,7 +2419,7 @@ void Engine::DoCollisions(Projectile &projectile)
 	const Weapon &weapon = projectile.GetWeapon();
 
 	if(projectile.ShouldExplode())
-		collisions.emplace_back(nullptr, CollisionType::NONE, 0.);
+		collisions.emplace_back(nullptr, CollisionType::EXPLOSION, 0.);
 	else if(weapon.IsPhasing() && projectile.Target())
 	{
 		// "Phasing" projectiles that have a target will never hit any other ship.
@@ -2450,7 +2450,7 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
 						&& !ship->IsCloaked() && FighterHitHelper::IsValidTarget(ship)))
 				{
-					collisions.emplace_back(nullptr, CollisionType::NONE, 0.);
+					collisions.emplace_back(nullptr, CollisionType::EXPLOSION, 0.);
 					break;
 				}
 			}
@@ -2491,9 +2491,9 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(shipHit && shipHit->Phases(projectile))
 			continue;
 
-		// Create the explosion the given distance along the projectile's
-		// motion path for this step.
-		projectile.Explode(visuals, range, hit ? hit->Velocity() : Point());
+		// A collision has actually occurred, and the projectile should be informed
+		// that it hit something.
+		projectile.Collide(visuals, collision);
 
 		const DamageProfile damage(projectile.GetInfo(range));
 
