@@ -547,7 +547,9 @@ mission "Successors: Ghosts 5"
 		government "Successor" "New Houses" # So, not the homeworlds of any of the other houses.
 	destination "Raaqa-Puan-Uuoru"
 	to offer
-		"successors: ghosts suspicion" >= 4
+		or
+			"successors: ghosts suspicion" >= 4
+			"successors: ghosts houses dealt with" >= 2
 		has "event: successors: ghosts seineq attacked"
 	cargo "Scientific equipment" 10
 	passengers 3
@@ -655,14 +657,17 @@ mission "Successors: Ghosts 6"
 					to display
 						"successors: ghosts suspicion" >= 6
 					goto suspicious
+
 				`	"Last time I went the wildlife wasn't very friendly."`
 					to display
 						not "Successors FC3: friend to animals"
 					goto scared
+
 				`	"All right."`
 					to display
 						has "Successors FC3: friend to animals"
 					goto yes
+
 				`	"I have no interest in going back there."`
 
 			`	Saajret hums. "After thy prior experience, I wonder'd if that would be the case. Very well," they say. "I'll bid thee farewell, then."`

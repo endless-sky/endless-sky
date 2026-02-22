@@ -63,6 +63,8 @@ mission "Successors: Ghosts Aqrabe 1"
 				`	"I carry a quantum keystone on my ship that lets me pass through all sorts of unstable wormholes."`
 					goto keystone
 				`	"That's not something I'm comfortable sharing."`
+			action
+				"successors: ghosts suspicion" ++
 			`	"Oh, don't think we haven't scanned thy craft, Captain! Amateur secrecy shall get thee nowhere." A slow ripple of pale blue cascades over their face.`
 			label keystone
 			`	"In short, we wish to better know these stones of thine. Their structure, their function, their nature. And by this understanding of one more great mystery, to one day produce our own, less intensive and demanding than the forming of our armors. Aqrabe is willing to pay thee to deliver fifty of these to us, more than enough to offset whatever it costs thee for their acquisition."`
@@ -412,6 +414,7 @@ mission "Successors: Ghosts Aqrabe 7"
 				accept
 
 	on enter "Kasii-Cavaasa"
+		"successors: ghosts suspicion" ++
 		"successors: ghosts met solitude enforcers" ++
 		dialog `As you take off from the stellar metal garden, your ship's proximity alarms begin to sound. Another ship is taking off too - and its weapons are aimed right at you!`
 
