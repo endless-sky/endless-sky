@@ -632,6 +632,7 @@ outfit "Radiant Shield Shunt"
 	"shield generation multiplier" -0.5
 	"starlining" 1
 	"unique" 1
+	"unremovable" 1
 	description "On loan from House Aqrabe - or maybe House Kaatrij - this piece of technology is unlike anything else you've seen from the Successors. In fact, it's unlike anything you've seen, period."
 	description "From the way it integrates with shield and fuel systems, one might be forgiven for guessing it is a cloaking device of some sort, and given the way it diverts incoming infrared radiation while active, perhaps that estimate wouldn't be too far off the mark. Whatever mechanism drives its function, its effect is clear: a ship equipped with one of these absorbs next to no heat from any source outside the skin of its shields."
 
