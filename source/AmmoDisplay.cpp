@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Rectangle.h"
 #include "Ship.h"
+#include "ship/ShipAttributeHandler.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
@@ -65,8 +66,7 @@ void AmmoDisplay::Update(const Ship &flagship)
 			ammoCount = flagship.OutfitCount(secWeapon->Ammo());
 		if(secWeapon->FiringFuel())
 		{
-			double remaining = flagship.Fuel()
-				* flagship.Attributes().Get("fuel capacity");
+			double remaining = flagship.FuelLevel();
 			double fuelAmmoCount = remaining / secWeapon->FiringFuel();
 			// Decide what remaining ammunition value to display.
 			ammoCount = (ammoCount == -1. ? fuelAmmoCount : min(ammoCount, fuelAmmoCount));

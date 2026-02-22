@@ -64,8 +64,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	weapon(weapon), lifetime(weapon->Lifetime())
 {
 	shared_ptr<Ship> targetShip = parent.GetTargetShip();
-	targetIsShip = static_cast<bool>(targetShip);
-	target = targetIsShip ? static_pointer_cast<Entity>(targetShip)
+	target = targetShip ? static_pointer_cast<Entity>(targetShip)
 		: static_pointer_cast<Entity>(parent.GetTargetAsteroid());
 
 	government = parent.GetGovernment();
@@ -76,10 +75,10 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 		target.reset();
 
 	cachedTarget = TargetPtr().get();
-	if(cachedTarget && targetIsShip)
+	if(cachedTarget)
 	{
-		targetGovernment = targetShip->GetGovernment();
-		targetDisabled = targetShip->IsDisabled();
+		targetGovernment = cachedTarget->GetGovernment();
+		targetDisabled = cachedTarget->IsDisabled();
 	}
 
 	dV = this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
@@ -93,7 +92,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	if(weapon->Homing() && cachedTarget)
 	{
 		confusionDirection = Random::Int(2) ? -1 : 1;
-		CheckLock(cachedTarget, targetIsShip);
+		CheckLock(*cachedTarget);
 		CheckConfused(*cachedTarget);
 	}
 }
@@ -103,7 +102,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset),
 	parent.velocity, parent.angle + angle),
-	weapon(weapon), targetIsShip(parent.targetIsShip), target(parent.target), lifetime(weapon->Lifetime())
+	weapon(weapon), target(parent.target), lifetime(weapon->Lifetime())
 {
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
@@ -127,7 +126,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	if(weapon->Homing() && cachedTarget)
 	{
 		confusionDirection = Random::Int(2) ? -1 : 1;
-		CheckLock(cachedTarget, targetIsShip);
+		CheckLock(*cachedTarget);
 		CheckConfused(*cachedTarget);
 	}
 }
@@ -138,7 +137,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 Projectile::Projectile(Point position, const Weapon *weapon)
 	: weapon(weapon)
 {
-	this->position = std::move(position);
+	this->position = position;
 }
 
 
@@ -188,17 +187,12 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	if(currentTarget)
 	{
 		currentTarget = TargetPtr().get();
-		if(!currentTarget)
-			BreakTarget();
-		else if(targetIsShip)
+		if(!currentTarget || !currentTarget->IsTargetable() || currentTarget->GetGovernment() != targetGovernment
+			|| (currentTarget->EntityType() == Entity::Type::SHIP && !targetDisabled
+				&& !FighterHitHelper::IsValidTarget(static_cast<const Ship *>(currentTarget))))
 		{
-			auto targetShip = static_cast<const Ship *>(currentTarget);
-			if(!targetShip->IsTargetable() || targetShip->GetGovernment() != targetGovernment
-				|| (!targetDisabled && !FighterHitHelper::IsValidTarget(targetShip)))
-			{
-				BreakTarget();
-				currentTarget = nullptr;
-			}
+			BreakTarget();
+			currentTarget = nullptr;
 		}
 	}
 
@@ -207,7 +201,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	bool homing = weapon->Homing();
 	if(currentTarget && homing && !Random::Int(30))
 	{
-		CheckLock(currentTarget, targetIsShip);
+		CheckLock(*currentTarget);
 		CheckConfused(*currentTarget);
 	}
 	if(turn)
@@ -429,7 +423,7 @@ void Projectile::BreakTarget()
 // and their brightness could could cause IR missiles to lose their locks more
 // often, and dense asteroid fields could do the same for radar and optically
 // guided missiles.
-void Projectile::CheckLock(const Entity *target, bool targetIsShip)
+void Projectile::CheckLock(const Entity &target)
 {
 	static const double RELOCK_RATE = .3;
 	double base = hasLock ? 1. : RELOCK_RATE;
@@ -450,12 +444,10 @@ void Projectile::CheckLock(const Entity *target, bool targetIsShip)
 	// Optical jamming decreases the effective size of a ship.
 	if(weapon->OpticalTracking())
 	{
-		double opticalJamming = 0.;
-		if(!targetIsShip || !static_cast<const Ship *>(target)->IsDisabled())
-			opticalJamming = target->Attributes().Get("optical jamming");
+		double opticalJamming = target.IsDisabled() ? 0. : target.OpticalJamming();
 		if(opticalJamming)
-			opticalJamming *= RangeFraction(position.Distance(target->Position()), opticalJamming);
-		double targetMass = target->Mass() / (1. + opticalJamming);
+			opticalJamming *= RangeFraction(position.Distance(target.Position()), opticalJamming);
+		double targetMass = target.Mass() / (1. + opticalJamming);
 		double weight = targetMass * targetMass * targetMass / 1e9;
 		double lockChance = weapon->OpticalTracking() * weight / (1. + weight);
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
@@ -468,12 +460,12 @@ void Projectile::CheckLock(const Entity *target, bool targetIsShip)
 	// wavelengths of IR radiation are easier to distinguish at closer distances.
 	if(weapon->InfraredTracking())
 	{
-		double distance = position.Distance(target->Position());
+		double distance = position.Distance(target.Position());
 		double shortRange = weapon->Range() * 0.33;
 		double multiplier = 1.;
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
-		double lockChance = weapon->InfraredTracking() * min(1., target->Heat() * multiplier);
+		double lockChance = weapon->InfraredTracking() * min(1., target.Heat() * multiplier);
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}
@@ -485,11 +477,9 @@ void Projectile::CheckLock(const Entity *target, bool targetIsShip)
 	// time. Jamming of 10 will increase that to about 60%.
 	if(weapon->RadarTracking())
 	{
-		double radarJamming = 0.;
-		if(!targetIsShip || !static_cast<const Ship *>(target)->IsDisabled())
-			radarJamming = target->Attributes().Get("radar jamming");
+		double radarJamming = target.IsDisabled() ? 0. : target.RadarJamming();
 		if(radarJamming)
-			radarJamming *= RangeFraction(position.Distance(target->Position()), radarJamming);
+			radarJamming *= RangeFraction(position.Distance(target.Position()), radarJamming);
 		double lockChance = weapon->RadarTracking() / (1. + radarJamming);
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
@@ -530,14 +520,14 @@ void Projectile::CheckConfused(const Entity &target)
 	if(weapon->OpticalTracking())
 	{
 		double opticalTracking = weapon->OpticalTracking();
-		double opticalJamming = target.Attributes().Get("optical jamming");
+		double opticalJamming = target.OpticalJamming();
 		opticalConfused = ConfusedTracking(opticalTracking, opticalJamming, distance);
 	}
 
 	if(weapon->RadarTracking())
 	{
 		double radarTracking = weapon->RadarTracking();
-		double radarJamming = target.Attributes().Get("radar jamming");
+		double radarJamming = target.RadarJamming();
 		radarConfused = ConfusedTracking(radarTracking, radarJamming, distance);
 	}
 

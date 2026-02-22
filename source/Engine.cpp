@@ -58,6 +58,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ship/ShipAICache.h"
+#include "ship/ShipAttributeHandler.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 #include "image/Sprite.h"
@@ -780,7 +781,7 @@ void Engine::Step(bool isActive)
 		}
 		else if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
 			info.SetCondition("red alert");
-		double fuelCap = flagship->Attributes().Get("fuel capacity");
+		double fuelCap = flagship->MaxFuel();
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every 100 units of fuel.
 		if(fuelCap <= MAX_FUEL_DISPLAY)
@@ -867,6 +868,8 @@ void Engine::Step(bool isActive)
 
 		targetVector = targetAsteroid->Position() - camera.Center();
 
+		// Since only the flagship uses these attributes,
+		// they come directly from the ship instead of from the attribute handler.
 		if(flagship->Attributes().Get("tactical scan power") || flagship->Attributes().Get("strategic scan power"))
 		{
 			info.SetCondition("range display");
@@ -919,6 +922,8 @@ void Engine::Step(bool isActive)
 			targetVector = target->Position() - camera.Center();
 
 			double targetRange = target->Position().Distance(flagship->Position());
+			// Since only the flagship uses these attributes,
+			// they come directly from the ship instead of from the attribute handler.
 			// Finds the range of the scan collections.
 			double tacticalRange = 100. * sqrt(flagship->Attributes().Get("tactical scan power"));
 			double strategicRange = 100. * sqrt(flagship->Attributes().Get("strategic scan power"));
@@ -949,7 +954,7 @@ void Engine::Step(bool isActive)
 			// that is within the relevant scanner range, unless the target
 			// is player owned, in which case information is available regardless
 			// of range and scrutability.
-			bool scrutable = !target->Attributes().Get("inscrutable");
+			bool scrutable = !target->AttributeHandler().Inscrutable();
 			if((targetRange <= crewScanRange && scrutable) || (crewScanRange && target->IsYours()))
 			{
 				info.SetString("target crew", to_string(target->Crew()));
@@ -961,13 +966,13 @@ void Engine::Step(bool isActive)
 			if((targetRange <= energyScanRange && scrutable) || (energyScanRange && target->IsYours()))
 			{
 				info.SetCondition("target energy display");
-				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
+				int energy = round(target->EnergyLevel());
 				info.SetString("target energy", to_string(energy));
 			}
 			if((targetRange <= fuelScanRange && scrutable) || (fuelScanRange && target->IsYours()))
 			{
 				info.SetCondition("target fuel display");
-				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
+				int fuel = round(target->FuelLevel());
 				info.SetString("target fuel", to_string(fuel));
 			}
 			if((targetRange <= thermalScanRange && scrutable) || (thermalScanRange && target->IsYours()))
@@ -1020,11 +1025,11 @@ void Engine::Step(bool isActive)
 	{
 		double width = max(target->Width(), target->Height());
 		Point pos = target->Position() - camera.Center();
-		const bool outfitInRange = pos.LengthSquared() <= (flagship->Attributes().Get("outfit scan power") * 10000);
+		const bool outfitInRange = pos.LengthSquared() <= (flagship->AttributeHandler().OutfitScanPower() * 10000);
 		const Status::Type outfitOverlayType = outfitInRange ? Status::Type::SCAN : Status::Type::SCAN_OUT_OF_RANGE;
 		statuses.emplace_back(pos, flagship->OutfitScanFraction(), 0.,
 			0., 10. + max(20., width * .5), outfitOverlayType, 1.f, Angle(pos).Degrees() + 180.);
-		const bool cargoInRange = pos.LengthSquared() <= (flagship->Attributes().Get("cargo scan power") * 10000);
+		const bool cargoInRange = pos.LengthSquared() <= (flagship->AttributeHandler().CargoScanPower() * 10000);
 		const Status::Type cargoOverlayType = cargoInRange ? Status::Type::SCAN : Status::Type::SCAN_OUT_OF_RANGE;
 		statuses.emplace_back(pos, 0., flagship->CargoScanFraction(),
 			0., 10. + max(20., width * .5), cargoOverlayType, 1.f, Angle(pos).Degrees() + 180.);
@@ -1096,7 +1101,7 @@ void Engine::Step(bool isActive)
 	bool shouldCatalogAsteroids = (!isAsteroidCatalogComplete && !Random::Int(20));
 	if(shouldShowAsteroidOverlay || shouldCatalogAsteroids)
 	{
-		double scanRangeMetric = flagship ? 10000. * flagship->Attributes().Get("asteroid scan power") : 0.;
+		double scanRangeMetric = flagship ? 10000. * flagship->AttributeHandler().AsteroidScanPower() : 0.;
 		if(flagship && scanRangeMetric && !flagship->IsHyperspacing())
 		{
 			bool scanComplete = true;
@@ -1802,7 +1807,7 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 		bool isJumping = flagship->IsUsingJumpDrive();
 		const map<const Sound *, int> &jumpSounds = isJumping
 			? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
-		if(flagship->Attributes().Get("silent jumps"))
+		if(flagship->AttributeHandler().SilentJumps())
 		{
 			// No sounds.
 		}
@@ -1958,7 +1963,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump
 				? ship->Attributes().JumpOutSounds() : ship->Attributes().HyperOutSounds();
-			if(ship->Attributes().Get("silent jumps"))
+			if(ship->AttributeHandler().SilentJumps())
 			{
 				// No sounds.
 			}
@@ -1974,7 +1979,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump
 				? ship->Attributes().JumpInSounds() : ship->Attributes().HyperInSounds();
-			if(ship->Attributes().Get("silent jumps"))
+			if(ship->AttributeHandler().SilentJumps())
 			{
 				// No sounds.
 			}
@@ -2342,10 +2347,10 @@ void Engine::HandleMouseClicks()
 			}
 		}
 	}
-	else if(flagship->Attributes().Get("asteroid scan power"))
+	else if(flagship->AttributeHandler().AsteroidScanPower())
 	{
 		// If the click was not on any ship, check if it was on a minable.
-		double scanRange = 100. * sqrt(flagship->Attributes().Get("asteroid scan power"));
+		double scanRange = 100. * sqrt(flagship->AttributeHandler().AsteroidScanPower());
 		for(const shared_ptr<Minable> &minable : asteroids.Minables())
 		{
 			Point position = minable->Position() - flagship->Position();
