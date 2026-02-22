@@ -37,9 +37,16 @@ namespace {
 	thread_local uniform_real_distribution<double> real;
 	thread_local normal_distribution<double> normal;
 #endif
+
+	bool useFixedSeed = false;
+	uint64_t fixedSeed = 0;
 }
 
-
+void Random::SetFixedSeed(uint64_t seed)
+{
+	useFixedSeed = true;
+	fixedSeed = seed;
+}
 
 // Seed the generator (e.g. to make it produce exactly the same random
 // numbers it produced previously).
@@ -48,7 +55,15 @@ void Random::Seed(uint64_t seed)
 #ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
-	gen.seed(seed);
+	gen.seed(useFixedSeed ? fixedSeed : seed);
+}
+
+
+
+Random::Random()
+{
+	if(useFixedSeed)
+		Seed(fixedSeed);
 }
 
 
