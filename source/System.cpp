@@ -23,10 +23,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Gamerules.h"
 #include "Government.h"
 #include "Hazard.h"
+#include "Logger.h"
 #include "Minable.h"
 #include "Planet.h"
 #include "Random.h"
+#include "image/Sprite.h"
 #include "image/SpriteSet.h"
+#include "StellarObjectSpriteData.h"
 
 #include <algorithm>
 #include <cmath>
@@ -372,8 +375,12 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 
 				// Recalculate every parent index.
 				for(auto it = last; it != objects.end(); ++it)
+				{
+					if(it->index >= index)
+						it->index -= removed;
 					if(it->parent >= index)
 						it->parent -= removed;
+				}
 			}
 			else
 				LoadObject(child, planets, playerConditions);
@@ -396,7 +403,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		else if(key == "music")
 			music = value;
 		else if(key == "habitable")
+		{
+			explicitHabitableDistanceSet = true;
 			habitable = child.Value(valueIndex);
+		}
 		else if(key == "jump range")
 			jumpRange = max(0., child.Value(valueIndex));
 		else if(key == "haze")
@@ -558,14 +568,90 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 		for(const double distance : neighborDistances)
 			UpdateNeighbors(systems, distance);
 
-	// Cache the map star icons.
+	// Cache the map star icons and recalculate the habitable distance and orbital period of objects if they were not
+	// explicitly set.
 	mapIcons.clear();
+	if(!explicitHabitableDistanceSet)
+		habitable = 0.;
+	int numStars = 0;
+	double starMass = 0.;
+	double starDistance = 0.;
 	for(const StellarObject &object : objects)
 	{
-		const Sprite *starIcon = GameData::StarIcon(object.GetSprite());
+		const StellarObjectSpriteData &spriteData = GameData::ObjectSpriteData(object.GetSprite());
+		const Sprite *starIcon = spriteData.StarIcon();
 		if(starIcon)
 			mapIcons.emplace_back(starIcon);
+		if(!explicitHabitableDistanceSet)
+			habitable += spriteData.HabitableDistance();
+		if(object.isStar && spriteData.Mass())
+		{
+			numStars += 1;
+			starMass += spriteData.Mass();
+			starDistance += object.distance;
+		}
 	}
+	if(!explicitHabitableDistanceSet && !habitable)
+		Logger::Log("System \"" + trueName + "\" does not contain an explicit habitable range and does not contain "
+			"any objects with a habitable range. You may be missing habitable values on \"star\" nodes for the "
+			"sprite(s) of the star(s) in this system. If the habitable range is meant to be 0, then explicitly define "
+			"it as such on the system.", Logger::Level::WARNING);
+	// If no stars were encountered, then assume that everything is orbiting around the first object in the system.
+	bool firstObjectIsStar = false;
+	if(!numStars && !objects.empty())
+	{
+		firstObjectIsStar = true;
+		const StellarObjectSpriteData &spriteData = GameData::ObjectSpriteData(objects[0].GetSprite());
+		numStars += 1;
+		starMass += spriteData.Mass();
+	}
+
+	bool invalidStarMass = false;
+	set<int> warnedIndex;
+	for(StellarObject &object : objects)
+	{
+		if(object.explicitPeriodSet)
+			continue;
+		double period = 10.;
+		if(!object.distance)
+		{
+			// Do nothing if the object is in the exact center of the system.
+		}
+		else if(object.parent >= 0)
+		{
+			const Sprite *parent = objects[object.parent].GetSprite();
+			const StellarObjectSpriteData &spriteData = GameData::ObjectSpriteData(parent);
+			double mass = spriteData.Mass();
+			if(!mass)
+			{
+				if(warnedIndex.insert(object.parent).second)
+					Logger::Log("System \"" + trueName + "\" contains a moon without an explicitly defined orbital "
+						"period with a parent object index of \"" + to_string(object.parent) + "\", but the parent "
+						"object (" + (parent ? parent->Name() : "with no sprite") + ") does not have a defined mass.",
+						Logger::Level::WARNING);
+			}
+			else
+				period = sqrt(pow(object.distance, 3) / mass);
+		}
+		else if(!starMass)
+			invalidStarMass = true;
+		else if(object.isStar || firstObjectIsStar)
+		{
+			firstObjectIsStar = false;
+			// If there is only one star in the system then it should have a period of 10.
+			// Otherwise, the orbital period is determined by the influence of all stars
+			// in the system as they orbit around each other.
+			if(numStars > 1)
+				period = sqrt(pow(starDistance, 3.) / starMass);
+		}
+		else
+			period = sqrt(pow(object.distance, 3) / starMass);
+		object.speed = 360. / period;
+	}
+	if(invalidStarMass)
+		Logger::Log("System \"" + trueName + "\" contains objects without an explicitly defined orbital period, "
+			"and it either lacks a star, or the stars that are in the system do not have a defined mass.",
+			Logger::Level::WARNING);
 
 	// Systems only have a single auto-attribute, "uninhabited." It is set if
 	// the system has no inhabited planets that are accessible to all ships.
@@ -730,8 +816,9 @@ System::SolarGeneration System::GetSolarGeneration(const Point &shipPosition,
 	SolarGeneration generation{ramscoopAddend, 0., 0.};
 	for(const auto &stellar : objects)
 	{
-		double power = GameData::SolarPower(stellar.GetSprite());
-		double wind = GameData::SolarWind(stellar.GetSprite());
+		const StellarObjectSpriteData &spriteData = GameData::ObjectSpriteData(stellar.GetSprite());
+		double power = spriteData.SolarPower();
+		double wind = spriteData.SolarWind();
 		double scale = .2 + 1.8 / (.001 * stellar.position.Distance(shipPosition) + 1);
 		// Even if a ship has no ramscoop, it can harvest a tiny bit of fuel by flying close to the star,
 		// provided the system allows it. Both the system and the gamerule must allow the universal ramscoop
@@ -1077,6 +1164,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets,
 	int index = objects.size();
 	objects.push_back(StellarObject());
 	StellarObject &object = objects.back();
+	object.index = index;
 	object.parent = parent;
 
 	bool isAdded = (node.Token(0) == "add");
@@ -1121,7 +1209,16 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 	else if(key == "distance" && hasValue)
 		object.distance = node.Value(1);
 	else if(key == "period" && hasValue)
-		object.speed = 360. / node.Value(1);
+	{
+		double period = node.Value(1);
+		if(!period)
+		{
+			node.PrintTrace("An object's period may not be equal to zero.");
+			return;
+		}
+		object.explicitPeriodSet = true;
+		object.speed = 360. / period;
+	}
 	else if(key == "offset" && hasValue)
 		object.offset = node.Value(1);
 	else if(key == "swizzle" && hasValue)

@@ -255,7 +255,8 @@ private:
 	const Sprite *haze = nullptr;
 	std::vector<RandomEvent<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
-	double habitable = 1000.;
+	double habitable = 0.;
+	bool explicitHabitableDistanceSet = false;
 	WeightedList<double> belts;
 	double invisibleFenceRadius = 10000.;
 	double jumpRange = 0.;

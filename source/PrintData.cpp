@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "Ship.h"
 #include "Shop.h"
+#include "image/Sprite.h"
 #include "System.h"
 #include "Weapon.h"
 
@@ -599,6 +600,73 @@ namespace {
 			PrintSales(GameData::Outfitters(), "outfitters", "outfits");
 	}
 
+	void Orbits(const char *const *argv)
+	{
+		StellarObject::UsingMatchesCommand();
+
+		auto PrintOrbits = [](const System &system) -> void {
+			cout << "system " << DataWriter::Quote(system.TrueName()) << "\n";
+			if(system.ExtraHyperArrivalDistance() || system.ExtraJumpArrivalDistance())
+			{
+				if(system.ExtraHyperArrivalDistance() == system.ExtraJumpArrivalDistance())
+					cout << "\tarrival " << system.ExtraHyperArrivalDistance() << "\n";
+				else
+				{
+					cout << "\tarrival\n";
+					cout << "\t\tlink " << system.ExtraHyperArrivalDistance() << "\n";
+					cout << "\t\tjump " << system.ExtraJumpArrivalDistance() << "\n";
+				}
+			}
+			cout << "\thabitable " << system.HabitableZone() << "\n";
+			map<int, int> indentation;
+			for(const StellarObject &object : system.Objects())
+			{
+				string indent = "\t";
+				indentation[object.Index()] = object.Parent() >= 0 ? indentation[object.Parent()] + 1 : 0;
+				for(int i = 0; i < indentation[object.Index()] ; ++i)
+					indent += "\t";
+				if(object.GetPlanet())
+					cout << indent << "object " << DataWriter::Quote(object.GetPlanet()->TrueName()) << "\n";
+				else
+					cout << indent << "object\n";
+				indent += "\t";
+				if(object.HasSprite())
+					cout << indent << "sprite " << DataWriter::Quote(object.GetSprite()->Name()) << "\n";
+				cout << indent << "distance " << object.Distance() << "\n";
+				cout << indent << "period " << object.Period() << "\n";
+				if(object.Offset())
+					cout << indent << "offset " << object.Offset() << "\n";
+			}
+			cout << "\n";
+		};
+
+		for(const char *const *it = argv + 2; *it; ++it)
+		{
+			string name = *it;
+			if(name == "-a" || name == "--all")
+			{
+				for(const auto &system : GameData::Systems())
+					PrintOrbits(system.second);
+				break;
+			}
+			if(name == "-s" || name == "--systems")
+			{
+				for(const char *const *sit = it + 1; *sit; ++sit)
+				{
+					name = *sit;
+					const System *system = GameData::Systems().Find(name);
+					if(!system)
+					{
+						cout << "No system with the name \"" << name << "\" found.\n\n";
+						return;
+					}
+					PrintOrbits(*system);
+				}
+				break;
+			}
+		}
+	}
+
 
 	void Planets(const char *const *argv)
 	{
@@ -749,17 +817,18 @@ namespace {
 		"--engines",
 		"--power",
 		"-o",
-		"--outfits"
+		"--outfits",
 	};
 
 	const set<string> OTHER_VALID_ARGS = {
 		"-s",
 		"--ships",
 		"--sales",
+		"--orbits",
 		"--planets",
 		"--systems",
 		"--matches",
-		"--changes"
+		"--changes",
 	};
 }
 
@@ -798,6 +867,11 @@ void PrintData::Print(const char *const *argv, PlayerInfo &player)
 			Sales(argv);
 			break;
 		}
+		else if(arg == "--orbits")
+		{
+			Orbits(argv);
+			break;
+		}
 		else if(arg == "--planets")
 			Planets(argv);
 		else if(arg == "--systems")
@@ -831,6 +905,9 @@ void PrintData::Help()
 			<< endl;
 	cerr << "        -s, --ships: prints a list of shipyards and the ships they each contain." << endl;
 	cerr << "        -o, --outfits: prints a list of outfitters and the outfits they each contain." << endl;
+	cerr << "	 --orbits: print the orbital data of objects in the given systems." << endl;
+	cerr << "        -a, --all: print every system in the game." << endl;
+	cerr << "        -s, --systems <system>...: print the listed systems." << endl;
 	cerr << "    --planets: prints a list of all planets." << endl;
 	cerr << "        --descriptions: prints a table of all planets and their descriptions." << endl;
 	cerr << "        --attributes: prints a table of all planets and their attributes." << endl;
@@ -838,8 +915,7 @@ void PrintData::Help()
 			<< endl;
 	cerr << "    --systems: prints a list of all systems." << endl;
 	cerr << "        --attributes: prints a list of all systems and their attributes." << endl;
-	cerr << "            --reverse: prints a list of all system attributes and which systems have them."
-			<< endl;
+	cerr << "            --reverse: prints a list of all system attributes and which systems have them." << endl;
 	cerr << "    --matches: prints a list of all planets and systems matching a location filter passed in STDIN."
 			<< endl;
 	cerr << "        The first node of the location filter should be `location`." << endl;

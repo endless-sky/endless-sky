@@ -35,13 +35,9 @@ system Athiri
 		period 1
 	object "Beyond Patir North Entrance"
 		distance 1510.2286
-		period 1
-		offset 35
 	object
 		sprite planet/wisp
 		distance 1510.2286
-		period 1
-		offset 35
 
 system Balnii
 	pos 10268.3 -359.3
@@ -84,7 +80,6 @@ system Chanai
 		sprite "planet/station-chanai"
 			scale 0.5
 		distance 1541.4
-		period 9215.7
 
 system Ghila
 	pos 9820.5 -100.5
@@ -110,11 +105,9 @@ system Ghila
 		period 1
 	object "Beyond Patir North Exit"
 		distance 1626.8
-		period 10283.9
 	object
 		sprite planet/wisp
 		distance 1626.8
-		period 10283.9
 
 system Lathia
 	pos 10107.5 -332.5
@@ -131,11 +124,9 @@ system Lathia
 	object
 		sprite planet/rock11
 		distance 1822.21
-		period 227.72
 	object
 		sprite "planet/asteroid magic"
 		distance 2723.62
-		period 1372.93
 
 system Maithi
 	pos 10092.5 -489.5
@@ -158,8 +149,6 @@ system Maithi
 	object "Beyond Patir North Exit"
 		sprite "planet/wormhole-blue"
 		distance 4316.1251
-		period 10.1251
-		offset 180
 
 system Mitera
 	pos 9957.5 -92.5
@@ -182,8 +171,6 @@ system Mitera
 	object "Beyond Patir North Entrance"
 		sprite "planet/wormhole-blue"
 		distance 4580.2286
-		period 11.3382
-		offset 180
 
 system Sarifa
 	pos 10136.5 -406.5
@@ -198,16 +185,14 @@ system Sarifa
 	hazard "Sarifa Black Hole Accretion Disk" 1
 	hazard "Small Black Hole Gravity" 1
 	object
-		sprite "star/f8"
-		distance 549
-		period 1
-		offset 78
-	object
 		sprite "star/black hole star core"
 		period 1
 	object
 		sprite "star/black hole star"
 		period 1
+	object
+		sprite "star/f8"
+		distance 549
 
 system Thepa
 	pos 9975.5 -2.5
