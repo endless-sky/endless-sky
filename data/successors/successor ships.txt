@@ -1,4 +1,4 @@
-# Copyright (c) 2024 by Daeridanii
+# Copyright (c) 2025 by Daeridanii
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -183,6 +183,102 @@ ship "Ejniisde"
 	explode "large explosion" 8
 	"final explode" "final explosion medium"
 	description "The Successors have a relatively small population and therefore are not in great need of large transport vessels. However, transporting passengers entirely by shuttle lacks a degree of comfort and security, so for longer journeys, the Successors use this dedicated transport ship. While unarmed by default, it is fast enough to escape most ships that might mean it harm."
+
+
+
+ship "Ejniisde-Khora"
+	plural "Ejniisden-Khora"
+	sprite "ship/ejniisde-khora"
+	thumbnail "thumbnail/ejniisde-khora"
+	attributes
+		licenses
+			"Successor"
+		category "Medium Warship"
+		"cost" 4100000
+		"shields" 4240
+		"hull" 28650
+		"required crew" 29
+		"bunks" 44
+		"mass" 612
+		"drag" 4.9
+		"heat dissipation" 0.6
+		"fuel capacity" 700
+		"cargo space" 40
+		"outfit space" 355
+		"weapon capacity" 146
+		"engine capacity" 100
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Overcharged Pulse Laser" 5
+		"Overcharged Laser Turret" 3
+
+		`1-"Uurau" Betavoltaic Cell`
+		`OC-"Mavra" Betavoltaic Cell` 3
+		"Auxiliary Power Reserve"
+		"Primary Power Reserve"
+		`"Ej" Shield Cortex`
+
+		`"Veldt" Combat Scanner`
+		"Successor Cooling"
+
+		`"Veusa" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		"Hyperdrive"
+
+		"Outfits Expansion"
+
+		"Kinetic Rail Rifle" 15
+
+	gun 0 -106
+	gun 18 -35
+	gun -18 -35
+	gun 22 -30
+	gun -18 -35
+	turret 0 24
+		over
+	turret 22 10
+		over
+	turret -22 10
+		over
+	engine 25 67
+		zoom .8
+	engine -25 67
+		zoom .8
+	"steering engine" 7 -83
+		zoom .5
+		over
+		left
+		angle 270
+	"steering engine" -7 -83
+		zoom .5
+		over
+		right
+		angle 90
+	"steering engine" -6 99
+		zoom .5
+		left
+		angle 90
+	"steering engine" 6 99
+		zoom .5
+		right
+		angle 270
+	"reverse engine" 26 -22
+		zoom .8
+	"reverse engine" -26 -22
+		zoom .8
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description `Only very few figures within the largely destitute People's Houses have the resources to assemble such an extensively-modified vessel. The comfortable passenger quarters of the stock Ejniisde have been replaced with barracks and the star liner's lightweight hull has been laid over with heavy, multi-layered armor that shields a substantially expanded weapons suite.`
+	description `	The construction of illegal warships such as these by the People's Houses has been a noted concern in many recent councils between the High Houses, prompting an increase in the size and prominence of their own military fleets.`
 
 
 
@@ -1127,3 +1223,100 @@ ship "Vujlet"
 
 ship "Vujlet" "Vujlet (Naive)"
 	description `The compact Vujlet is a mass-produced High Houses warship flexible enough to serve in a variety of light-duty roles. Large enough to operate as a self-sufficient unit, these vessels serve as a useful bridge between short-ranged, relatively vulnerable interceptors, and larger, more resource-intensive warships that can be much more expensive to build and operate.`
+
+
+
+
+ship "Vujlet-Usaqri"
+	plural "Vujleten-Usaqri"
+	sprite "ship/vujlet modified"
+	thumbnail "thumbnail/vujlet modified"
+	attributes
+		licenses
+			"High Houses"
+		category "Light Warship"
+		"cost" 10350000
+		"shields" 4200
+		"hull" 16300
+		"required crew" 4
+		"bunks" 6
+		"mass" 245
+		"drag" 3.8
+		"heat dissipation" .65
+		"fuel capacity" 600
+		"cargo space" 10
+		"outfit space" 280
+		"weapon capacity" 105
+		"engine capacity" 85
+		"multimodal armor" 1
+		"hull repair rate" 0.815
+		"hull energy" 1.18
+		"hull heat" 1.18
+		"cloak" 0.02
+		"cloaking fuel" 0.04
+		"cloaking shields" 4.0
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		`"Ojet" Bimodal Coilgun` 2
+
+		`"Nnesa" Fusion Core`
+		"Auxiliary Power Reserve"
+		`"Jaase" Shield Cortex`
+		"Successor Cooling"
+		`"Veldt" Combat Scanner`
+		"Multimodal Armor: Light"
+		"Successor Fuel Sail"
+		"Fuel Pod"
+		"Kinetic Rail Rifle" 2
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"
+
+	gun -6 -46 `"Ojet" Bimodal Coilgun`
+	gun 6 -46 `"Ojet" Bimodal Coilgun`
+	gun -9 -30
+	gun 9 -30
+	engine -16 49
+		zoom .9
+	engine 16 49
+		zoom .9
+	"reverse engine" -16 -6
+		zoom .9
+		over
+	"reverse engine" 16 -5
+		zoom .9
+		over
+	"steering engine" -4 -53
+		right
+		angle 90
+		zoom .5
+		over
+	"steering engine" 4 -53
+		left
+		angle 270
+		zoom .5
+		over
+	"steering engine" -28 34
+		left
+		angle 90
+		zoom .5
+		over
+	"steering engine" 28 34
+		right
+		angle 270
+		zoom .5
+		over
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description `The first prototype cloaks produced by the old House Kaatrij nearly eighteen hundred years ago were far from the adaptable and reliable technology they are today, each one consuming the power output of a large fusion reactor. It was only once the House's engineers started to incorporate a ship's shielding into the cloak's operation that they managed to make it truly practical; hence, even today, the efficient cloak of the Vujlet-Usaqri relies on a steady stream of shield energy to operate. Because of this, this modified variant of the Vujlet features a higher-capacity shield grid and more crew to maintain it.`
