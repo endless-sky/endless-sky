@@ -575,14 +575,14 @@ bool Plugins::DownloadingInBackground()
 
 LockedOrderedSet<Plugin> Plugins::GetAvailablePluginsLocked()
 {
-	return {availablePluginsMutex, availablePlugins};
+	return {availablePluginsMutex, &availablePlugins};
 }
 
 
 
 LockedOrderedSet<Plugin> Plugins::GetPluginsLocked()
 {
-	return {pluginsMutex, plugins};
+	return {pluginsMutex, &plugins};
 }
 
 
