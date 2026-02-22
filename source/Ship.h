@@ -308,6 +308,8 @@ public:
 	int GetHyperspacePercentage() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
+	// Fuel already used for ongoing hyperspace movement
+	double FuelUsedForHyperspacing() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool IsReadyToJump(bool waitingIsReady = false) const;
 	// Check if this ship is allowed to land on this planet, accounting for its personality.
