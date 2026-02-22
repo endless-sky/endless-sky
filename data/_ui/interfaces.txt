@@ -1876,7 +1876,17 @@ interface "news (small screen)"
 
 interface "boarding"
 	sprite "ui/boarding dialog"
-	
+	box "plunder table: frame"
+		center -155 -60
+		dimensions 350 240
+	box "plunder table: inner"
+		center -155 -60
+		dimensions 330 220
+	box "plunder table: scrollbar"
+		center 25 -60
+		dimensions 0 230
+	value "plunder table: size column: width" 70
+
 	label "item"
 		from -320 -189
 		align left

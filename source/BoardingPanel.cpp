@@ -109,9 +109,10 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// Sort the plunder by price per ton.
 	sort(plunder.begin(), plunder.end());
 
-	// The list is 240 pixels tall, and there are 10 pixels padding on the top
-	// and the bottom, so:
-	scroll.SetDisplaySize(220.);
+	// Compute the height of the visible scroll area.
+	const Interface *boarding = GameData::Interfaces().Get("boarding");
+	Rectangle plunderTableInner = boarding->GetBox("plunder table: inner");
+	scroll.SetDisplaySize(plunderTableInner.Height());
 	scroll.SetMaxValue(max(0., 20. * plunder.size()));
 }
 
@@ -138,21 +139,24 @@ void BoardingPanel::Draw()
 	DrawBackdrop();
 
 	// Draw the list of plunder.
+	const Interface *boarding = GameData::Interfaces().Get("boarding");
 	const Color &opaque = *GameData::Colors().Get("panel background");
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	const Rectangle plunderList{{-155., -60.}, {360., 250.}};
-	FillShader::Fill(plunderList, opaque);
+	const Rectangle plunderTableFrame = boarding->GetBox("plunder table: frame");
+	FillShader::Fill(plunderTableFrame, opaque);
 
+	const Rectangle plunderTableInner = boarding->GetBox("plunder table: inner");
 	int index = (scroll.AnimatedValue() - 10) / 20;
-	int y = -170 - scroll.AnimatedValue() + 20 * index;
+	int y = plunderTableInner.Top() - scroll.AnimatedValue() + 20 * index;
 	int endY = 60;
 
 	const Font &font = FontSet::Get(14);
 	// Y offset to center the text in a 20-pixel high row.
 	double fontOff = .5 * (20 - font.Height());
+	double sizeColWidth = boarding->GetValue("plunder table: size column: width");
 	for( ; y < endY && static_cast<unsigned>(index) < plunder.size(); y += 20, ++index)
 	{
 		const Plunder &item = plunder[index];
@@ -160,14 +164,14 @@ void BoardingPanel::Draw()
 		// Check if this is the selected row.
 		bool isSelected = (index == selected);
 		if(isSelected)
-			FillShader::Fill(Point(-155., y + 10.), Point(360., 20.), back);
+			FillShader::Fill(Point{plunderTableFrame.Center().X(), y + 10.}, Point{plunderTableFrame.Width(), 20.}, back);
 
 		// Color the item based on whether you have space for it.
 		const Color &color = item.CanTake(*you) ? isSelected ? bright : medium : dim;
-		Point pos(-320., y + fontOff);
+		Point pos(plunderTableInner.Left(), y + fontOff);
 		font.Draw(item.Name(), pos, color);
-		font.Draw({item.Value(), {260, Alignment::RIGHT}}, pos, color);
-		font.Draw({item.Size(), {330, Alignment::RIGHT}}, pos, color);
+		font.Draw({item.Value(), {static_cast<int>(plunderTableInner.Width() - sizeColWidth), Alignment::RIGHT}}, pos, color);
+		font.Draw({item.Size(), {static_cast<int>(plunderTableInner.Width()), Alignment::RIGHT}}, pos, color);
 	}
 
 	// Set which buttons are active.
@@ -225,12 +229,11 @@ void BoardingPanel::Draw()
 			Format::Number(defenseOdds.DefenderCasualties(vCrew, crew), 1, false));
 	}
 
-	const Interface *boarding = GameData::Interfaces().Get("boarding");
 	boarding->Draw(info, this);
 
+	const Rectangle plunderListScrollbar = boarding->GetBox("plunder table: scrollbar");
 	if(scroll.Scrollable())
-		scrollBar.SyncDraw(scroll,
-			plunderList.TopRight() + Point{0., 10.}, plunderList.BottomRight() - Point{0., 10.});
+		scrollBar.SyncDraw(scroll, plunderListScrollbar.TopRight(), plunderListScrollbar.BottomRight());
 
 	// Draw the status messages from hand to hand combat.
 	Point messagePos(50., 55.);
@@ -502,12 +505,16 @@ bool BoardingPanel::Click(int x, int y, MouseButton button, int clicks)
 		return false;
 
 	// Was the click inside the plunder list?
-	if(x >= -330 && x < 20 && y >= -180 && y < 60)
+	const Interface *boarding = GameData::Interfaces().Get("boarding");
+	Rectangle plunderTableFrame = boarding->GetBox("plunder table: frame");
+	Rectangle plunderTableInner = boarding->GetBox("plunder table: inner");
+	if(plunderTableFrame.Contains(Point(x, y)))
 	{
-		int index = (scroll.AnimatedValue() + y - -170) / 20;
-		if(static_cast<unsigned>(index) < plunder.size())
-			selected = index;
-		return true;
+		// These numerical gymnastics are to make sure the scrollable
+		// area above the first item is not also clickable.
+		unsigned index = (y + scroll.AnimatedValue() - plunderTableInner.Top() + 20) / 20;
+		if(index > 0 && index <= plunder.size())
+			selected = index - 1;
 	}
 
 	return true;
