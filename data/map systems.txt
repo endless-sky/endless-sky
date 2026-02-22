@@ -30024,10 +30024,10 @@ system Patir
 		sprite "planet/asteroid base"
 		distance 1496.85
 		period 327.598
-	object
+	object "Pacili"
 		sprite planet/gas2-b
-		distance 2866.29
-		period 868.070
+		distance 5566.29
+		period 1668.070
 		object
 			sprite planet/rock17-b
 			distance 203
