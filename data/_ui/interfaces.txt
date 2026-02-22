@@ -1829,12 +1829,18 @@ interface "planet (small screen)"
 interface "spaceport"
 	box "content"
 		from -240 80 to 240 320
+	image "port"
+		center 0 -140
+		dimensions 720 360
 
 
 
 interface "spaceport (small screen)"
 	box "content"
 		from -300 80 to 180 320
+	image "port"
+		center -60 -140
+		dimensions 720 360
 
 
 

@@ -112,6 +112,8 @@ void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			if(displayName.empty())
 				displayName = SPACEPORT;
 		}
+		else if(key == "landscape" && hasValue)
+			landscape = SpriteSet::Get(child.Token(1));
 		else if(key == "to" && child.Size() >= 2)
 		{
 			const string &conditional = child.Token(1);
@@ -236,6 +238,13 @@ const string &Port::DisplayName() const
 const Paragraphs &Port::Description() const
 {
 	return description;
+}
+
+
+
+const Sprite *Port::Landscape() const
+{
+	return landscape;
 }
 
 
