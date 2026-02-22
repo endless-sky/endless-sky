@@ -99,6 +99,11 @@ ship "Resja, of the Nine Eyes"
 	gun -32 -19
 	engine 0 0
 		zoom 1.1
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
 	description `Resja engraved the hull of each of the ships that bore their name personally, carving into the squirming metal a poem that they came to know by heart:`
 	description `Four eyes for Houses who're no longer there,`
 	description `Three for the cursed stars' shimmering flare,`
@@ -193,6 +198,11 @@ ship "Hasur, Vowsworn"
 	gun 12 -64
 	engine 0 0
 		zoom .8
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
 	description `One would think that, immured deep within those hostile, rotting abscesses of the stars, the constructs of the foolish Myiara would prove themselves inadequate; that their artificial minds would splinter and falter and crumble like their so-false flesh, festering on the bone. And yet they remain, eternally dying but never dead, consumed by programmed rage and unknowable perception. The constructs will keep their promises, interloper:`
 	description `	They'll kill you. They'll do it quick.`
 
@@ -286,6 +296,11 @@ ship "Queru, Luminous Gaze"
 	turret -32 -21
 	engine 0 0
 		zoom .5
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
 	description `Queru came last, and was the most inspired of the three, eviscerating at a distance before it could even be seen. For their part, Resja hated it - but by then, Resja's fate had long been sealed.`
 
 effect "queru afterburner"
