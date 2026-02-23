@@ -265,6 +265,14 @@ void PreferencesPanel::Step()
 		{
 			std::string error = it->get();
 
+			bool displayed = false;
+			if(downloadInProgressDialog)
+			{
+				displayed = true;
+				GetUI().Pop(downloadInProgressDialog);
+				downloadInProgressDialog = nullptr;
+			}
+
 			if(!error.empty())
 				// Update interal states based on special error codes; Then process error codes.
 				// Since there can be a race condition between fast fail and ongoing download; when second download
@@ -279,14 +287,7 @@ void PreferencesPanel::Step()
 						// If any of the urls are downloaded, then we have a library to show.
 						downloadedPluginIndex = true;
 						Plugins::AddLibraryUrl(url, Plugins::Status::DOWNLOADED);
-					}
-
-					bool displayed = false;
-					if(downloadInProgressDialog)
-					{
-						displayed = true;
-						GetUI().Pop(downloadInProgressDialog);
-						downloadInProgressDialog = nullptr;
+						Resize();
 					}
 
 					string message;
@@ -1521,7 +1522,7 @@ void PreferencesPanel::DrawPluginInstalls()
 		{
 			if(plugin.outdated || !installedPlugin)
 			{
-				// Can install - clicking the the icon will do so.
+				// Can install - clicking the icon will do so.
 				AddZone(spriteBounds + pluginListBox.Center(), [this, i]()
 				{
 					selected = i;
