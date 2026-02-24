@@ -227,7 +227,7 @@ namespace {
 	};
 
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
-		{"unplunderable", "This outfit cannot be plundered."},
+		{"unplunderable", "This outfit cannot be plundered while installed."},
 		{"installable", "This is not an installable item."},
 		{"hyperdrive", "Allows you to make hyperjumps."},
 		{"jump drive", "Lets you jump to any nearby system."},
