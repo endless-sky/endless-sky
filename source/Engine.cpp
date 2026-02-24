@@ -2431,7 +2431,8 @@ void Engine::DoCollisions(Projectile &projectile)
 			Point offset = projectile.Position() - target->Position();
 			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
 			if(range < 1.)
-				collisions.emplace_back(target.get(), CollisionType::SHIP, range);
+				collisions.emplace_back(target.get(),
+					projectile.IsTargetingShip() ? CollisionType::SHIP : CollisionType::MINABLE, range);
 		}
 	}
 	else

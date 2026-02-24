@@ -425,6 +425,13 @@ void Projectile::BreakTarget()
 
 
 
+bool Projectile::IsTargetingShip() const
+{
+	return targetIsShip;
+}
+
+
+
 // TODO: add more conditions in the future. For example maybe proximity to stars
 // and their brightness could could cause IR missiles to lose their locks more
 // often, and dense asteroid fields could do the same for radar and optically
