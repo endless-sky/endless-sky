@@ -2117,7 +2117,7 @@ mission "Ka'het: Patir Mystery 14"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		conversation
-			`You meet with Chilia in front of the landing pad. "Thank you for the help," he chants as you hand him the data. "If you are interested in continuing the Patir research project, meet me in the starport in a few hours - I might have good news for you."`
+			`You meet with Chilia in front of the landing pad. "Thank you for the help," he chants as you hand him the data. "If you are interested in continuing the Patir research project, meet me in the spaceport in a few hours - I might have good news for you."`
 
 
 event "ssil vida changes"
@@ -2155,14 +2155,14 @@ mission "Ka'het: Patir Mystery 15"
 			label data
 			`	"The analysis of the data is still ongoing - we know that it appeared not long before Patir moved, and disappeared shortly after, but figuring out what happened in between is proving to be more complicated than expected. Still, we should know more soon enough, and there is no reason for it to block our progress.`
 			label details
-			`	"Make sure to leave space for a team of three when you get there. This expedition will just use the resources that you left around Patir when you left, so there should be no need to use your cargo hold this time."`
+			`	"Make sure to leave space for a team of three when you get there. This expedition will just use the resources that you left around Patir when you were last there, so there should be no need to use your cargo hold this time."`
 				accept
 
 mission "Ka'het: Patir Mystery 16"
 	landing
 	name "Stop by <planet>"
 	description "Before bringing the Remnant to the Builder settlement around Patir, stop by <destination> to meet up with Chilia."
-	blocked "You dock with Ssil Vida, but despite Chilia's words, you are still lacking the <bunks> bunks necessary for the job."
+	blocked "You dock with Ssil Vida, but despite Chilia's advice, you are still lacking the <bunks> bunks necessary for the job."
 	source "Ssil Vida"
 	destination "Caelian"
 	passengers 3
@@ -2170,7 +2170,7 @@ mission "Ka'het: Patir Mystery 16"
 		has "Ka'het: Patir Mystery 14: done"
 	on offer
 		conversation
-			`After these past months, Ssil Vida's docking section has become unrecognizable: it is distinctly Remnant, with tall arches and curved, segmented walls separating it into a variety of smaller rooms. Walking further inside the station reveals that at least the main chambers have kept most of their previous features, but you feel that this is unlikely to last for long. You meet there with the new group. To your annoyance, Dusk does not make an appearance.`
+			`After these past months, Ssil Vida's docking section has become unrecognizable: it is distinctly Remnant, with tall arches and curved, segmented walls separating it into a variety of smaller rooms. Walking further inside the station reveals that at least the main chambers have kept most of their previous features, but you feel that this is unlikely to last for long. You meet there with the new group and realize Dusk is not with them.`
 			`	The three Remnant escort you on a quick tour of some of the modifications made recently. You walk through a control room with at least two dozen people sitting at their consoles, carefully managing the power of the station. They explain that many of the people there are focused solely on the emitter at the core of Ssil Vida: many of the modulators they have built around the station have the purpose of simplifying its control, but it's still very much an ongoing project.`
 			`	While they accompany you through a large corridor, filled only with Remnant terminals and closed doors, your attention is drawn to the cargo being transported by a pair of workers. It is mostly contained inside an opaque container, but you think you can see the outline of some of the human outfits you brought to the Remnant some time ago. They are not sold in the nearby outfitter from what you have seen; you are left to wonder what their purpose here might be.`
 			`	Before you can think much of it, however, a short message from Chilia reaches your commlink. It instructs you to urgently meet him with the other three Remnant at a specific location on <planet>, and to come with a free bunk and at least 65 tons free in your cargo: the plans, apparently, have changed.`
@@ -2191,7 +2191,7 @@ mission "Ka'het: Patir Mystery 17"
 		has "Ka'het: Patir Mystery 16: done"
 	on offer
 		conversation
-			`You overfly <origin>'s starport and stay at a high altitude; based on the coordinates Chilia gave you, the flight is far from over. As minutes pass, the city transforms into more and more sparse buildings deep in the desert, with barely visible roads in the sands connecting each. The more distant of these are organized in a circular fashion: a central building, of a sand-like okra similar to some of outposts in the Rim, and rings of buildings of a more alien-like Remnant design surrounding it.`
+			`You overfly <origin>'s starport and stay at a high altitude; based on the coordinates Chilia gave you, the flight is far from over. As minutes pass, the city transforms into more and more sparse buildings deep in the desert, with barely visible roads in the sands connecting each. The more distant of these are organized in a circular fashion: a central building, of a sand-like okra similar to some outposts in the Rim, and rings of buildings of a more alien-like Remnant design surrounding it.`
 			`	As you soon find out, your destination is one of these settlements. You follow Chilia's instructions and touch down in an unsigned spot on a dune, kicking up loads of sand in the process. The three Remnant, busy discussing something you don't fully understand about Ssil Vida's design progression, stay in your ship's bridge while you meet up with Chilia.`
 			`	"Come here, Captain!" he gestures from behind a short barrier which mostly blocks the blowing sand. You follow him until stopping in front of the entrance of a large elevator in the central building. He writes on his commlink, and the elevator starts rising toward your floor; while Remnant numerals still escape you, it must have started deep below the ground for how long it takes.`
 			choice
@@ -2213,13 +2213,13 @@ mission "Ka'het: Patir Mystery 17"
 			label wickedsmart
 			`	"Good intuition. Not in the sense of two-way communication, but its function is based on reliably transmitting a particular signal to the Ka'het. Let me explain.`
 			label clueless
-			`	"It was not long after we started translating the Builder language that we tried to put some of that effort into hacking their system. Given their destructive potential, the Ka'het were the natural target for this Electronic Warfare operation." The technicians carefully load the payload into your ship, trying to connect it to the <ship>'s electrical system.`
+			`	"It was not long after we started translating the Builder language that we tried to put some of that effort into hacking their system. Given their destructive potential, the Ka'het were the natural target for this electronic warfare operation." The technicians carefully load the payload into your ship, trying to connect it to the <ship>'s electrical system.`
 			`	"Our understanding of their system was quite poor at the time, but despite this, we discovered a backdoor left by their designers. A unique signal that instructs the slug to dump its cargo and not retake it, perhaps to avoid damage from ingesting hazardous material. As long as it has not digested it yet, this could let us access the parts of the creature inside the Ka'sei without having to kill most of them. That is the reason I asked you for 65 tons free: 3 for this weapon, and 62 for the maximum cargo capacity of a Ka'sei."`
 			choice
 				`	"How do I use it?"`
 					goto how
 				`	"Why is it not used anymore?"`
-			`	"Shamefully, we could never make it small or reliable enough to justify the investment," he replies disappointed. "Most of its components have to be replaced after less than a dozen uses, for a capability that is not too useful in first place. In fact, the most important lesson from the study was of how little use the typical Ka'het cargo was; there are much easier ways to get our hands on metallic asteroids."`
+			`	"Shamefully, we could never make it small or reliable enough to justify the investment," he replies disappointed. "Most of its components have to be replaced after less than a dozen uses, for a capability that is not too useful in the first place. In fact, the most important lesson from the study was of how little use the typical Ka'het cargo was; there are much easier ways to get our hands on metallic asteroids."`
 			label how
 			`	The workers signal that they are done with the installation. "I will come with you to operate it, Captain. Your previous mission will take precedence," he continues, "but as soon as they are done, I will direct you on the procedure to follow."`
 				accept
@@ -2329,14 +2329,14 @@ mission "Ka'het: Patir Mystery 18"
 			`	Chilia nods. "This time it is best to leave them for the return trip. Captain," he continues, turning to you. "If you are ready to leave, so am I. I will activate the weapon as soon as we are in orbit - our target should be well within its range."`
 				goto end
 			label hungry
-			`	The meals you are shown have become rather familiar, but not particularly appetizing. Unlike most times, you notice that the Remnant expedition does not eat much more than you - perhaps they don't use symbionts, or maybe they have just eaten some while inside the lab. Chilia, still in anticipation for the mission (and perhaps hoping to accelerate things), limits himself to drinking some water.`
+			`	The meals you are shown have become rather familiar, but not particularly appetizing. Unlike most times, you notice that the Remnant expedition does not eat much more than you - perhaps they don't use symbionts, or maybe they ate while inside the lab. Chilia, still in anticipation for the mission (and perhaps hoping to accelerate things), limits himself to drinking some water.`
 			`	Once you are done, Chilia signals you that he is ready to go when you are - the target is within range, and he should be able to activate it as soon as you reach orbit.`
 			label end
 			`	Back inside your ship, you notice Chilia telling the three researchers that it would be better for them to stay locked in their bunks for the rest of the mission. Evidently they don't have the same authorization level as Prefect Chilia - or you, for that matter.`
 				accept
 	on enter
 		event "Patir spaceport returns and Fetri spawn"
-		dialog "As soon as you give him the go, Chilia calmly sits at his console and starts fiddling with the control. The antenna atop your ship moves to track the chosen Fetri'sei, and the signal starts; but right after, instead of cargo being ejected, you detect an energy spike coming from the Ka'sei. It's activating a Jump Drive! Taken aback, Chilia signs you to try to follow it."
+		dialog "As soon as you give him the go-ahead, Chilia calmly sits at his console and starts fiddling with the control. The antenna atop your ship moves to track the chosen Fetri'sei, and the signal starts; but right after, instead of cargo being ejected, you detect an energy spike coming from the Ka'sei. It's activating a Jump Drive! Taken aback, Chilia signs you to try to follow it."
 	npc board
 		government "Ka'sei (Patir 18)"
 		personality coward waiting pacifist uninterested fleeing target
@@ -2346,7 +2346,7 @@ mission "Ka'het: Patir Mystery 18"
 			dialog
 				`Now that the Ka'sei is a few meters away from you, your ship detects it has completely run out of hyperspace fuel. Following Chilia's advice, you try to give it some - chances are that it will jump to a safer system than this one.`
 		dialog
-			`You dock with the stranded Ka'sei, and Chilia signals you the foreign outfits in it - or at least, the ones that have not been fully digested yet. "The Fetri appears to have overheated beyond what it could survive," he signs. "Realistically, there is nothing we can do for it. Take the unknown outfits into your cargo hold, we will figure out the next move back on the <planet>."`
+			`You dock with the stranded Ka'sei, and Chilia signals you to take the foreign outfits in it - or at least, the ones that have not been fully digested yet. "The Fetri appears to have overheated beyond what it could survive," he signs. "Realistically, there is nothing we can do for it. Take the unknown outfits into your cargo hold, and we will figure out the next move back on the <planet>."`
 	npc
 		government "Ka'het"
 		system "Fereti"
@@ -2396,7 +2396,7 @@ mission "Ka'het: Patir Mystery 19"
 		outfit "Asteroid Jump Drive (Patir 18)" -1
 		outfit "Asteroid Weapon Small" -1
 		conversation
-			`The first to leave your ship are the three researchers, who make you various gestures of farewell as they disappear into the starport. Chilia hangs around for a while longer, but after your cargo gets unloaded, still hidden inside standard packages, he signs that it is time for him to leave as well.`
+			`The first to leave your ship are the three researchers, who make you various gestures of farewell as they disappear into the spaceport. Chilia hangs around for a while longer, but after your cargo gets unloaded, still hidden inside standard packages, he signs that it is time for him to leave as well.`
 			`	"As you might have figured out, our next objective is to study these items and their technology in depth, hoping to reverse engineer them or, at least, figure out their inner workings." You offer to give him a hand, but he shakes his head. "Your help has been inestimable, but you cannot follow me where these, and I, are going. You have seen for yourself how complicated maintaining proper secrecy around this project is proving to be."`
 			choice
 				`	"Is there nothing I can do then?"`
@@ -2404,9 +2404,9 @@ mission "Ka'het: Patir Mystery 19"
 				`	"I understand."`
 					goto patir
 				`	"I was hoping to keep those for myself."`
-			`	He grins. "Do not feel too conflicted, activating these outfits is going to be more complicated than connecting some wires and pressing a button. Even if I have just begun studying them. I have a hard time believing you - or anyone, for that matter - could get them to fire easily.`
+			`	He grins. "Do not feel too conflicted. Activating these outfits is going to be more complicated than connecting some wires and pressing a button. Even if I have just begun studying them. I have a hard time believing you - or anyone, for that matter - could get them to fire easily.`
 			label patir
-			`	"Still, it should not take you too long to get the authorizations for this project, if you continue like this," he gestures pleased. "It has come to my attention that even right now there are other projects about Patir that desire your participation. During our return, I have informed Dusk that you are free from your obligations with my research; if you would like to meet him, he should be here shortly." He bows, and you return it as he follows the cargo deeper into the starport. You catch the opportunity to clean up the cockpit and the empty bunks. Some Remnant nearby soon notice you taking out the trash, and offer you a hand.`
+			`	"Still, it should not take you too long to get the authorizations for this project, if you continue like this," he gestures with a pleased look on his face. "It has come to my attention that even right now there are other projects about Patir that desire your participation. During our return, I have informed Dusk that you are free from your obligations with my research; if you would like to meet him, he should be here shortly." He bows, and you return it as he follows the cargo deeper into the starport. You catch the opportunity to clean up the cockpit and the empty bunks. Some Remnant nearby soon notice you taking out the trash, and offer you a hand.`
 			`	By the time Dusk arrives, your ship's interior looks as good as new. You greet and invite him to take a seat, which he warmly accepts. "It is nice to see you again, <first>. I heard your travels in Patir with Chilia went... well, at least better than ours," he quips.`
 			choice
 				`	"What do you know about it?"`
@@ -2416,9 +2416,9 @@ mission "Ka'het: Patir Mystery 19"
 					goto chat
 			`	"About the same as you, I imagine. Right now, you and I have the same level of authorization, at least for what concerns Patir and the related systems. Prefect Chilia, of course, is going to be far more involved than us in the matters related to its military potential."`
 			label chat
-			`	Your chat with Dusk goes on for some time, discussing with him the details of your previous trips. For his part, he describes you his progress over the past months: his focus expanded from Patir itself to the worlds that lie beyond it, and on how to use Ssil Vida to reach it.`
+			`	Your chat with Dusk goes on for some time, discussing with him the details of your previous trips. For his part, he describes his progress over the past months: his focus expanded from Patir itself to the worlds that lie beyond it, and on how to use Ssil Vida to reach it.`
 			`	"Given our progress, we now feel ready for a new expedition. At first a short, single-day one, to test our systems in a practical scenario. If all goes well, after that we will be able to progressively increase our stay to any length of time," he asserts. You follow him out of your ship as he prepares to leave. "Before we can start, I need you to prepare a ship capable of carrying a fighter, and to outfit it with one of your Jump Drives. One of our Ibises should more than suffice, if you do not have one already.`
-			`	"We will be fairly time-limited once we depart, so feel free to wait until you are ready for the mission before you search for me in this planet's starport. It is more important to do things right than to do them quickly," he concludes stoically.`
+			`	"We will be fairly time-limited once we depart, so feel free to wait until you are ready for the mission before you search for me in this planet's spaceport. It is more important to do things right than to do them quickly," he concludes stoically.`
 
 mission "Ka'het: Patir Mystery 20"
 	name "Explore <system> again"
@@ -2432,7 +2432,7 @@ mission "Ka'het: Patir Mystery 20"
 		has "Ka'het: Patir Mystery 19: done"
 	on offer
 		conversation
-			`After asking for directions to a few locals, you meet up with Dusk again. In the background, you see a half-open Petrel suspended by some wires a few meters above the ground. "<first>, were you able to prepare the jump-capable carrier I mentioned the last time?" Dusk asks. "And is it nearby?"`
+			`After asking for directions to a few locals, you meet up with Dusk again. In the background, you see a half-open Petrel suspended by some wires a few meters above the ground. "<first>, were you able to prepare the jump-capable carrier I mentioned last time?" Dusk asks. "And is it nearby?"`
 			choice
 				`	"Yes, it is."`
 					goto good
@@ -2442,10 +2442,10 @@ mission "Ka'het: Patir Mystery 20"
 			`	"It is best to bring it here then," he asserts. "I will be here when you are ready."`
 				defer
 			label broke
-			`	"It is imperative we use one, <first>," he signs disappointed. "I can request for us to be assigned one, but taking Jump Drive equipped vehicles is not a quick process for someone at my level. Certainly more time intensive than if you were able to give one to us," he concludes with a low tone.`
+			`	"It is imperative we use one, <first>," he signs, disappointed. "I can request for us to be assigned one, but taking Jump Drive-equipped vehicles is not a quick process for someone at my level. Certainly more time intensive than if you were able to give one to us," he concludes with a low tone.`
 				defer
 			label good
-			`	"Very well then!" he signs excited, and you follow him in the direction of the Petrel. Once you come closer, you recognize that the technicians are completing outfit installations of all sorts, from additional bunks to a Korath reactor of the smaller kind. "This is going to be the cargo you need to carry to our destination: a lifeboat to escape from our laboratory around Patir, if there will ever be a need.`
+			`	"Very well then!" he signs excitedly, and you follow him in the direction of the Petrel. Once you come closer, you recognize that the technicians are completing outfit installations of all sorts, from additional bunks to a Korath reactor of the smaller kind. "This is going to be the cargo you need to carry to our destination: a lifeboat to escape from our laboratory around Patir, if there will ever be a need.`
 			`	"As you might know, the Smew is our typical lifeboat, but this time the requirements are fairly different. Giving a Jump Drive to a fighter is often impractical, especially for an expedition like this; rather, our strategy will be to use it to hide deep beneath the gas giant in Patir for as long as is necessary for a rescue ship to arrive. Thankfully, only a few outfit changes turned out to be necessary to use the Calm Sea Afire for such a job."`
 			choice
 				`	"That still sounds fairly dangerous."`
@@ -2454,7 +2454,7 @@ mission "Ka'het: Patir Mystery 20"
 				`	"Are we ready to go?"`
 					goto skip
 			`	"Well, if you ask ten people, you will probably hear ten different answers. For some, it is simply a potential source of new and exciting technology, military or otherwise; for others, it is the potential gateway into a new galaxy, with its own dangers and opportunities." He sits down, acquiring a more pensive look. "But there at least a couple broader philosophies that come in play beyond simple exploration.`
-			`	"One is related to the control that these creatures seem to impose over the Ka'sei. The Graveyard as whole right now is a sleeping giant, after all: if some Ka'het was able to escape its bounds, as we know they have in the past, it would pose open a second front on top of the Korath threat."`
+			`	"One is related to the control that these creatures seem to impose over the Ka'sei. The Graveyard as a whole right now is a sleeping giant, after all: if some Ka'het was able to escape its bounds, as we know they have in the past, it would open a second front on top of the Korath threat."`
 			choice
 				`	"What are the other philosophies?"`
 					goto philosophies
@@ -2468,7 +2468,7 @@ mission "Ka'het: Patir Mystery 20"
 			`	"The mistakes done by the Builders, for example, seem trivial from our perspective. This could mean that they made profoundly stupid decisions, or that we have not understood enough of the situation to put all the pieces together and actually comprehend their mistakes. And now we have indications of another, much older extinct species in the space that lies beyond Patir."`
 				goto skip
 			label risk
-			`	He seems dubious. "Answering this question is... more complicated than it looks. We are not certain of how the Ka'het gained keystones the first time, nor how many of them were able to do so. We know that it is a possibility, that the Ka'het as whole are likely stronger than our fleets, and that no Ka'het has moved past the Graveyard since the Exodus. The truth, <first>, is that risk posturing is a very complex subject; for that matter, the same can be said with our mission.`
+			`	He seems dubious. "Answering this question is... more complicated than it looks. We are not certain of how the Ka'het gained keystones the first time, nor how many of them were able to do so. We know that it is a possibility, that the Ka'het as a whole are likely stronger than our fleets, and that no Ka'het has moved past the Graveyard since the Exodus. The truth, <first>, is that risk posturing is a very complex subject; for that matter, the same can be said with our mission.`
 			label danger
 			`	He thoughtfully passes his hand over the hull of Calm Sea Afire. "Only time will tell, but I stand by the decisions we have made. A standard Smew is simple to repair and to keep in storage, but not too useful outside of the Ember Wastes. A large, jump-capable starship is complicated to keep in flight-status for months at a time, not to mention the maintenance needs of a cloaking system. And worse of all, it might not even be of much use if Patir was not in the Milky Way when the emergency happens!"`
 			label skip
