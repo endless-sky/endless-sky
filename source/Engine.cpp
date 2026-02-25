@@ -61,6 +61,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
@@ -241,7 +242,6 @@ namespace {
 		return *GameData::Colors().Get("minable target pointer unselected");
 	}
 
-	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 3000.;
 }
 
@@ -257,11 +257,17 @@ Engine::Engine(PlayerInfo &player)
 	if(!player.IsLoaded() || !player.GetSystem())
 		return;
 
-	// Preload any landscapes for this system.
+	// Preload any landscapes and objects for this system.
 	for(const StellarObject &object : player.GetSystem()->Objects())
-		if(object.HasSprite() && object.HasValidPlanet())
-			GameData::Preload(queue, object.GetPlanet()->Landscape());
+	{
+		if(!object.HasSprite())
+			continue;
+		SpriteLoadManager::LoadDeferred(queue, object.GetSprite());
+		if(object.HasValidPlanet())
+			SpriteLoadManager::LoadDeferred(queue, object.GetPlanet()->Landscape());
+	}
 	queue.Wait();
+	queue.ProcessSyncTasks();
 
 	// Figure out what planet the player is landed on, if any.
 	const StellarObject *object = player.GetStellarObject();
@@ -498,6 +504,14 @@ void Engine::Step(bool isActive)
 
 	// Process any outstanding sprites that need to be uploaded to the GPU.
 	queue.ProcessSyncTasks();
+	asyncQueue.ProcessSyncTasks();
+
+	// A recently triggered event may have caused new objects to appear in the current system.
+	// Ensure that they are loaded.
+	if(SpriteLoadManager::RecheckStellarObjects())
+		for(const StellarObject &object : player.GetSystem()->Objects())
+			if(object.HasSprite())
+				SpriteLoadManager::LoadDeferred(asyncQueue, object.GetSprite());
 
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
@@ -1051,7 +1065,10 @@ void Engine::Step(bool isActive)
 				doClick = false;
 			}
 			else
-				clickPoint /= isRadarClick ? RADAR_SCALE : zoom;
+			{
+				const Interface *hud = GameData::Interfaces().Get("hud");
+				clickPoint /= isRadarClick ? hud->GetValue("radar scale") : zoom;
+			}
 		}
 	}
 
@@ -1329,7 +1346,7 @@ void Engine::Draw() const
 	{
 		radar[currentDrawBuffer].Draw(
 			hud->GetPoint("radar"),
-			RADAR_SCALE,
+			hud->GetValue("radar scale"),
 			hud->GetValue("radar radius"),
 			hud->GetValue("radar pointer radius"));
 	}
@@ -1388,9 +1405,12 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 	clickPoint = isRadarClick ? from - radarCenter : from;
 	uiClickBox = Rectangle::WithCorners(from, to);
 	if(isRadarClick)
+	{
+		double radarScale = hud->GetValue("radar scale");
 		clickBox = Rectangle::WithCorners(
-			(from - radarCenter) / RADAR_SCALE + camera.Center(),
-			(to - radarCenter) / RADAR_SCALE + camera.Center());
+			(from - radarCenter) / radarScale + camera.Center(),
+			(to - radarCenter) / radarScale + camera.Center());
+	}
 	else
 		clickBox = Rectangle::WithCorners(from / zoom + camera.Center(), to / zoom + camera.Center());
 }
@@ -1408,7 +1428,10 @@ void Engine::RightOrMiddleClick(const Point &point, MouseButton button)
 	Point radarCenter = hud->GetPoint("radar");
 	double radarRadius = hud->GetValue("radar radius");
 	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= radarRadius)
-		clickPoint = (point - radarCenter) / RADAR_SCALE;
+	{
+		double radarScale = hud->GetValue("radar scale");
+		clickPoint = (point - radarCenter) / radarScale;
+	}
 	else
 		clickPoint = point / zoom;
 }
@@ -1468,13 +1491,19 @@ void Engine::EnterSystem()
 	// (It is allowed for a wormhole's exit point to have no sprite.)
 	const StellarObject *usedWormhole = nullptr;
 	for(const StellarObject &object : system->Objects())
+	{
+		if(object.HasSprite())
+			SpriteLoadManager::LoadDeferred(asyncQueue, object.GetSprite());
 		if(object.HasValidPlanet())
 		{
-			GameData::Preload(queue, object.GetPlanet()->Landscape());
+			SpriteLoadManager::LoadDeferred(asyncQueue, object.GetPlanet()->Landscape());
 			if(object.GetPlanet()->IsWormhole() && !usedWormhole
 					&& flagship->Position().Distance(object.Position()) < 1.)
 				usedWormhole = &object;
 		}
+	}
+	// Cull images that haven't been seen in a while.
+	SpriteLoadManager::CullOldImages(asyncQueue);
 
 	// Advance the positions of every StellarObject and update politics.
 	// Remove expired bribes, clearance, and grace periods from past fines.
@@ -1782,6 +1811,10 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 		else
 			for(const auto &sound : jumpSounds)
 				Audio::Play(sound.first, SoundCategory::JUMP);
+		// Begin loading the sprites in the next system.
+		for(const StellarObject &object : flagship->GetTargetSystem()->Objects())
+			if(object.HasSprite())
+				SpriteLoadManager::LoadDeferred(asyncQueue, object.GetSprite());
 	}
 	// Check if the flagship just entered a new system.
 	if(flagship && playerSystem != flagship->GetSystem())
@@ -2208,6 +2241,7 @@ void Engine::HandleKeyboardInputs()
 			Audio::Pause();
 		else
 			Audio::Resume();
+		UI::PlaySound(UI::UISound::NORMAL);
 	}
 }
 
@@ -2391,7 +2425,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		// "Phasing" projectiles that have a target will never hit any other ship.
 		// They also don't care whether the weapon has "no ship collisions" on, as
 		// otherwise a phasing projectile would never hit anything.
-		shared_ptr<Ship> target = projectile.TargetPtr();
+		shared_ptr<Body> target = projectile.TargetPtr();
 		if(target)
 		{
 			Point offset = projectile.Position() - target->Position();
@@ -2411,7 +2445,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			shipCollisions.Circle(projectile.Position(), triggerRadius, inRadius);
 			for(const Body *body : inRadius)
 			{
-				const Ship *ship = reinterpret_cast<const Ship *>(body);
+				const Ship *ship = static_cast<const Ship *>(body);
 				// Don't trigger off of carried ships that are disabled and not directly targeted.
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
 						&& !ship->IsCloaked() && FighterHitHelper::IsValidTarget(ship)))
@@ -2446,7 +2480,7 @@ void Engine::DoCollisions(Projectile &projectile)
 
 		shared_ptr<Ship> shipHit;
 		if(hit && collisionType == CollisionType::SHIP)
-			shipHit = reinterpret_cast<Ship *>(hit)->shared_from_this();
+			shipHit = static_cast<Ship *>(hit)->shared_from_this();
 
 		// Don't collide with carried ships that are disabled and not directly targeted.
 		if(shipHit && hit != projectile.Target()
@@ -2477,7 +2511,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			shipCollisions.Circle(hitPos, blastRadius, blastCollisions);
 			for(Body *body : blastCollisions)
 			{
-				Ship *ship = reinterpret_cast<Ship *>(body);
+				Ship *ship = static_cast<Ship *>(body);
 				bool targeted = (projectile.Target() == ship);
 				// Phasing cloaked ship will have a chance to ignore the effects of the explosion.
 				if((isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment())) || ship->Phases(projectile))
@@ -2493,7 +2527,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			asteroids.MinablesCollisionsCircle(hitPos, blastRadius, blastCollisions);
 			for(Body *body : blastCollisions)
 			{
-				auto minable = reinterpret_cast<Minable *>(body);
+				auto minable = static_cast<Minable *>(body);
 				minable->TakeDamage(damage.CalculateDamage(*minable));
 			}
 		}
@@ -2507,7 +2541,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			}
 			else if(collisionType == CollisionType::MINABLE)
 			{
-				auto minable = reinterpret_cast<Minable *>(hit);
+				auto minable = static_cast<Minable *>(hit);
 				minable->TakeDamage(damage.CalculateDamage(*minable));
 			}
 		}
@@ -2557,7 +2591,7 @@ void Engine::DoWeather(Weather &weather)
 		}
 		for(Body *body : affectedShips)
 		{
-			Ship *hit = reinterpret_cast<Ship *>(body);
+			Ship *hit = static_cast<Ship *>(body);
 			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
 		}
 	}
@@ -2575,7 +2609,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	shipCollisions.Circle(flotsam.Position(), 5., pickupShips);
 	for(Body *body : pickupShips)
 	{
-		Ship *ship = reinterpret_cast<Ship *>(body);
+		Ship *ship = static_cast<Ship *>(body);
 		if(!ship->CannotAct(Ship::ActionType::PICKUP) && ship->CanPickUp(flotsam))
 		{
 			collector = ship;

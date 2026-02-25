@@ -1454,6 +1454,9 @@ tip "Render motion blur"
 tip "Reduce large graphics"
 	`Reduce the size of very large (images with >= 1 million pixels) or all graphics to half their dimensions. UI sprites are excluded. (Not recommended for high-resolution displays, but may be used to free up memory. Requires game restart.)`
 
+tip "Defer loading images"
+	`Defer the loading of certain images so that they are loaded when they are needed instead of loading them when the game is first opened. This will result in a quicker launch time and lower VRAM usage, but you may experience pop-in as sprites are being loaded. Recommended for systems with low VRAM. (Requires game restart.)`
+
 tip "Draw background haze"
 	`Draw the background haze when in flight.`
 
@@ -1621,3 +1624,51 @@ tip "Title bar theme"
 
 tip "Window rounding"
 	`Control the appearance of window corners. (Available on Windows 11.)`
+
+
+
+# Gamerules
+tip "Minimum value"
+	`The lowest value that an outfit or ship can depreciate to relative to its full price. All plundered, captured, or gifted items start at this value, and all purchased items start at 100% value and then depreciate toward this value according to the other depreciation gamerules.`
+
+tip "Grace period"
+	`The number of days that must pass before a newly purchased outfit or ship will begin to depreciate. This allows you to have a short amount of time to test out an item and then sell it back at full value if you decide that you do not like it.`
+
+tip "Maximum age"
+	`The number of days that must pass, after the grace period has ended, in order for an outfit or ship to become fully depreciated.`
+
+tip "Daily depreciation"
+	`The percentage of an item's depreciable value that it maintains day over day. Only impacts the exponential term of the depreciation calculation. If set to 100%, an item will still linearly lose value.`
+
+tip "Spawn attempt period"
+	`The number of frames on average that the game waits before attempting to spawn a person ship. The game rolls a random number between 0 and this value minus one every frame. If the value lands on 0, a person ship spawn attempt is made. There are 60 frames in a second.`
+
+tip "No spawn weight"
+	`When a person ship spawn attempt is made, this is the "weight" of the chance of having the spawn attempt fail. Each person ship has a "weight" associated with it which determines its chance of spawning. The chance of any single person ship spawning is its weight divided by the sum of the weights of all person ships and this value. That means that the chance of a spawn attempt failing is this number over that same sum.`
+
+tip "NPC max mining time"
+	`Randomly spawned NPCs with the "mining" personality will spend this many frames mining in the current system before deciding to do something else. The purpose of this limit is so that NPC ships can be seen by the player to show how to mine without stripping the system bare of minable asteroids. This limit does not apply to mining ships that are spawned by a mission.`
+
+tip "Universal frugal threshold"
+	`Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their health (shields + hull - the hull level when they become disabled) is at or below this percentage, or if the hostiles in the system are considerably stronger than them.`
+
+tip "Universal ramscoop"
+	`Determines whether the "universal ramscoop" is active on all ships. This ramscoop provides a very small amount of fuel to every ship regardless of whether it has an actual ramscoop installed. The strength of this ramscoop falls off much more strongly than normal ramscoops, requiring you to be as close to a star as possible to have any real gain in fuel. Having this enabled prevents needing to reload your save file if you run out of fuel and no NPCs spawn in the system that you can get fuel from.`
+
+tip "Minimum arrival distance"
+	`The minimum arrival distance for all systems. Applies to both hyperdrive and jump drive travel. If the system has a defined arrival distance greater than this value, then it will be used instead. If this gamerule has a value of "(unset)", then the value defined by the system will always be used.`
+
+tip "Minimum departure distance"
+	`The minimum departure distance for all systems. A ship can only jump out of a system if it is farther from the system center than the departure distance. If a system has a defined departure distance greater than this value, then it will be used instead.`
+
+tip "Fleet multiplier"
+	`A global fleet spawn rate multiplier for random fleet spawns within systems.`
+
+tip "Lock gamerules"
+	`Controls whether gamerules can be altered after a pilot has been created. If true, the gamerules button will not appear on the main menu for this pilot. If you set this to true on an existing pilot, you will not be able to return to this menu after leaving.`
+
+tip "Fighters hit when disabled"
+	`Controls which carried ships (fighters and drones), when disabled, will not be hit by projectiles unless they are directly targeted. Fighters and drones are fragile ships that can be difficult and/or tedious to replace for the player, so this gamerule is a means of increasing their survivability without increasing their combat effectiveness. Disabled carried ships can still be hit by explosions, whether from weapons or exploding ships.`
+
+tip "Universal ammo stocking"
+	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`

@@ -259,7 +259,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			const Outfit * const outfit = it.first;
+			const Outfit *const outfit = it.first;
 			const int64_t &amount = it.second;
 			if(outfit->Get("minable") <= 0. && !sellOutfits)
 				continue;
