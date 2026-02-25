@@ -643,29 +643,17 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	result.toSpawn = toSpawn;
 	result.toDespawn = toDespawn;
 
-	// Instantiate the actions.
-	string reason;
-	auto ait = npcActions.begin();
-	for( ; ait != npcActions.end(); ++ait)
+	// Validate the actions.
+	for(const auto &[trigger, actions] : npcActions)
 	{
-		for(const auto &action : ait->second)
-		{
-			reason = action.Validate();
+		for(const auto &action : actions) {
+			string reason = action.Validate();
 			if(!reason.empty())
-				break;
-		}
-	}
-	if(ait != npcActions.end())
-	{
-		Logger::Log("Instantiation Error: Action \"" + TriggerToText(ait->first) +
-			"\" in NPC uses invalid " + std::move(reason), Logger::Level::WARNING);
-		return result;
-	}
-	for(const auto &it : npcActions)
-	{
-		for(const auto &action : it.second)
-		{
-			result.npcActions[it.first].push_back(action.Instantiate(subs, origin, jumps, payload));
+			{
+				Logger::Log("Instantiation Error: Action \"" + TriggerToText(trigger) +
+					"\" in NPC uses invalid " + std::move(reason), Logger::Level::WARNING);
+				return result;
+			}
 		}
 	}
 
@@ -735,6 +723,10 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));
 
+	// Instantiate the actions.
+	for(const auto &it : npcActions)
+		for(const auto &action : it.second)
+			result.npcActions[it.first].push_back(action.Instantiate(subs, origin, jumps, payload));
 	return result;
 }
 
