@@ -3293,52 +3293,6 @@ system "Al Dhanab"
 		distance 2298.15
 		period 1340.95
 
-system "Al Hurr"
-	hidden
-	pos -424.445 -426.778
-	government Uninhabited
-	arrival 1715
-	habitable 1715
-	belt 1312
-	haze _menu/haze-brown
-	trade Clothing 201
-	trade Electronics 658
-	trade Equipment 484
-	trade Food 280
-	trade "Heavy Metals" 850
-	trade Industrial 621
-	trade "Luxury Goods" 1134
-	trade Medical 582
-	trade Metal 339
-	trade Plastic 353
-	object
-		sprite star/f5
-		period 10
-	object
-		sprite planet/rock15
-		distance 382
-		period 72.1145
-	object
-		sprite planet/rock6
-		distance 686
-		period 173.545
-	object Aspiration
-		sprite planet/ice8-b
-		distance 980
-		period 296.324
-	object
-		sprite planet/dust6
-		distance 1299
-		period 452.211
-	object
-		sprite planet/gas1
-		distance 1706.99
-		period 681.199
-		object
-			sprite planet/dust1
-			distance 216
-			period 11.1964
-
 system Albaldah
 	pos -350 484
 	government Republic
@@ -19546,8 +19500,8 @@ system Hatysa
 	haze _menu/haze-browner
 	link Almaaz
 	link Alnilam
-	link Temp3
-	link Temp1
+	link Remina
+	link "FU Orionis"
 	asteroids "small rock" 19 0.858
 	asteroids "large rock" 3 1.0296
 	asteroids "small metal" 13 1.0153
@@ -40487,7 +40441,7 @@ system Unagi
 	haze _menu/haze-brown
 	link Almaaz
 	link Arneb
-	link "Temp 4"
+	link Neshmet
 	asteroids "large rock" 1 3.102
 	asteroids "small metal" 2 2.772
 	asteroids "medium metal" 1 3.267
@@ -43769,7 +43723,7 @@ system Iniquus
 		distance 520
 		offset 300
 
-system Temp1
+system "FU Orionis"
 	pos -387.648 -457.444
 	government Uninhabited
 	attributes "north"
@@ -43891,7 +43845,7 @@ system Temp1
 		period 1260
 		offset 190
 
-system Temp3
+system Remina
 	pos -458.167 -457.296
 	government Uninhabited
 	attributes "north" "notable star"
@@ -43964,7 +43918,7 @@ system Temp3
 		period 10
 		offset 180
 
-system "Temp 4"
+system Neshmet
 	pos -332.389 -624.185
 	government Uninhabited
 	attributes "north"
