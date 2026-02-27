@@ -1620,12 +1620,19 @@ government "People's Houses (Hostile)"
 
 color "governments: Pirate" .78 0. 0.
 
+color "governments: Northern Anarchist" .56 0. 0.15
+
+color "governments: True Anarchist" .74 0.2 0.2
+
 government "Pirate"
 	swizzle 6
 	color "governments: Pirate"
 	
 	"player reputation" -10
 	"attitude toward"
+		"Pirate Heimdall" 10
+		"Northern Anarchist" 10
+		"True Anarchist" 10
 		"Author" -.01
 		"Hai" -.01
 		"Hai (Wormhole Access)" -.01
@@ -1677,6 +1684,64 @@ government "Pirate (Rival)"
 		"Merchant" -.1
 		"Syndicate" -.01
 	"bribe" 0
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled pirate"
+	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled pirate"
+	raid "pirate raid"
+
+government "Northern Anarchist"
+	"display name" "Pirate"
+	swizzle 6
+	color "governments: Pirate"
+	
+	"player reputation" -10
+	"attitude toward"
+		"Pirate" 10
+		"Pirate Heimdall" 10
+		"True Anarchist" 10
+		"Author" -.01
+		"Korath" -.01
+		"Merchant" -.01
+		"Syndicate" -.01
+		"Deep Security" -.01
+		"Free Worlds" -.01
+		"Militia" -.01
+		"Navy Intelligence" -.01
+		"Republic" -.01
+		"Syndicate" -.01
+		"Uninhabited" -.01
+	"bribe" .01
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled pirate"
+	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled pirate"
+	raid "pirate raid"
+
+government "True Anarchist"
+	"display name" "Pirate"
+	swizzle 6
+	color "governments: Pirate"
+	
+	"player reputation" -10
+	"attitude toward"
+		"Pirate" 10
+		"Pirate Heimdall" 10
+		"Northern Anarchist" 10
+		"Author" -.01
+		"Korath" -.01
+		"Merchant" -.01
+		"Syndicate" -.01
+		"Deep Security" -.01
+		"Free Worlds" -.01
+		"Militia" -.01
+		"Navy Intelligence" -.01
+		"Republic" -.01
+		"Syndicate" -.01
+		"Uninhabited" -.01
+	"bribe" .01
 	"fine" 0
 	"friendly hail" "friendly pirate"
 	"friendly disabled hail" "friendly disabled pirate"
