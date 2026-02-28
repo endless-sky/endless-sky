@@ -2960,7 +2960,6 @@ planet Kasii-Tuur-Saqru
 	outfitter "Successor Civilian"
 	outfitter "Successor Weapons Heavy"
 	"required reputation" 2
-	bribe 0
 
 planet Katkradol
 	attributes frozen research uninhabited
