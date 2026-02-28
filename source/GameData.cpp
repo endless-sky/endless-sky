@@ -123,7 +123,7 @@ namespace {
 			filesystem::path iconPath = path / ("icon" + extension);
 			if(Files::Exists(iconPath))
 			{
-				icon->Add(iconPath);
+				icon->Add(ImageFileData(iconPath));
 				break;
 			}
 		}
@@ -132,7 +132,7 @@ namespace {
 			filesystem::path iconPath = path / ("icon@2x" + extension);
 			if(Files::Exists(iconPath))
 			{
-				icon->Add(iconPath);
+				icon->Add(ImageFileData(iconPath));
 				break;
 			}
 		}
@@ -273,20 +273,6 @@ double GameData::GetProgress()
 bool GameData::IsLoaded()
 {
 	return GetProgress() == 1.;
-}
-
-
-
-// Add a sprite to the queue.
-void GameData::RequestSpriteLoad(TaskQueue &queue, const string &path, const string &name)
-{
-	auto image = make_shared<ImageSet>(name);
-	image->Add(ImageFileData(path));
-	if(!image->IsEmpty())
-	{
-		image->ValidateFrames();
-		SpriteLoadManager::LoadSprite(queue, image);
-	}
 }
 
 

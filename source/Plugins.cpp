@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Files.h"
 #include "text/Format.h"
-#include "GameData.h"
 #include "Logger.h"
 #include "Set.h"
 #include "TaskQueue.h"
@@ -40,8 +39,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <sys/stat.h>
 #include <string>
 #include <vector>
-
-#include "text/Format.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -501,8 +498,6 @@ void Plugins::LoadAvailablePlugins(TaskQueue &queue, const filesystem::path &plu
 
 		if((!Files::Exists(iconPath) || isOutdated) && pluginInstall.contains("iconUrl"))
 			Download(pluginInstall.value("iconUrl", ""), iconPath);
-		if(Files::Exists(iconPath))
-			GameData::RequestSpriteLoad(queue, iconPath, plugin->GetIconName());
 	}
 	// And finally, because we are using the same (sorted) OrderedSet to better share common code, we must sort.
 	{
