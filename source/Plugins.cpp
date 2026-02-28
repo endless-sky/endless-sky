@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Logger.h"
 #include "Set.h"
@@ -54,7 +55,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	map<string, Plugins::Status> plugin_list_urls;
+	map<string, Plugins::Status> pluginListUrls;
 
 	// These are the installed and available plugins, not all of which will be enabled for use.
 	mutex pluginsMutex;
@@ -289,7 +290,7 @@ bool Plugin::HasChanged() const
 
 
 
-bool Plugin::Search(const std::string &search) const
+bool Plugin::Search(const string &search) const
 {
 	for(auto &it : tags)
 		if(Format::Search(it, search) > 0)
@@ -453,21 +454,21 @@ string Plugins::Load(const filesystem::path &path)
 
 
 
-void Plugins::AddLibraryUrl(const std::string &url, const Status installed)
+void Plugins::AddLibraryUrl(const string &url, const Status installed)
 {
-	plugin_list_urls[url] = installed;
+	pluginListUrls[url] = installed;
 }
 
 
 
 map<string, Plugins::Status> &Plugins::GetPluginLibraryUrls()
 {
-	return plugin_list_urls;
+	return pluginListUrls;
 }
 
 
 
-void Plugins::LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path &pluginsJsonPath)
+void Plugins::LoadAvailablePlugins(TaskQueue &queue, const filesystem::path &pluginsJsonPath)
 {
 	ifstream pluginlistFile(pluginsJsonPath);
 	nlohmann::json pluginInstallList = nlohmann::json::parse(pluginlistFile);
@@ -593,7 +594,7 @@ int Plugins::Move(int index, int offset)
 	int otherIndex = -1;
 	{
 		auto iPlugins = GetPluginsLocked();
-		otherIndex = std::clamp(index + offset, 0, iPlugins->size() - 1);
+		otherIndex = clamp(index + offset, 0, iPlugins->size() - 1);
 		iPlugins->swap(index, otherIndex);
 	}
 	Save();

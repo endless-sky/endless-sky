@@ -34,8 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 //    - Updated version available (plugin installed, update available)
 //    - Plugin available for install and not installed yet at all
 //    - On install: mark desired state as enabled
-class Plugin
-{
+class Plugin {
 public:
 	struct PluginDependencies {
 		// Checks if there are any dependencies of any kind.
@@ -77,6 +76,7 @@ public:
 	void SetInUse(bool useState);
 	void SetDesiredState(bool newDesiredState);
 	void SetVersion(const std::string &newVersion);
+
 
 protected:
 	// The name that identifies this plugin.
@@ -126,12 +126,12 @@ protected:
 // This object is updated by toggling plugins in the Preferences UI.
 class Plugins {
 public:
-	enum class Status
-	{
+	enum class Status {
 		NOT_DOWNLOADED,
 		FAILED_DOWNLOAD,
 		DOWNLOADED,
 	};
+
 
 public:
 	// Attempt to load a plugin at the given path.
