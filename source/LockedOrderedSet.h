@@ -28,13 +28,16 @@ public:
 	OrderedSet<T> *operator->() { return data; }
 	OrderedSet<T> &operator*();
 
+
 private:
 	std::lock_guard<std::mutex> guard;
 	OrderedSet<T> *data;
 };
 
+
+
 template <typename T>
-OrderedSet<T>& LockedOrderedSet<T>::operator*()
+OrderedSet<T> &LockedOrderedSet<T>::operator*()
 {
 	assert(data && "Trying to deference invalidated iterator!");
 	return *data;

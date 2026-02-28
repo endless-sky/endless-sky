@@ -727,7 +727,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			else
 				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
 		}
-		else if(key == "plugin_list_url" && hasValue)
+		else if(key == "plugin list url" && hasValue)
 		{
 			// Note: As currently implemented, plugins can add their own repositories.
 			Plugins::AddLibraryUrl(node.Token(1));

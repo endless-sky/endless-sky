@@ -52,6 +52,9 @@ public:
 		OrderedSet<Type> *dataset;
 		std::vector<std::string>::iterator orderIter;
 	};
+
+
+public:
 	OrderedSetIterator begin();
 	OrderedSetIterator end();
 	Type *Get(const std::string &name);
@@ -77,7 +80,7 @@ std::pair<const std::string, Type> OrderedSet<Type>::OrderedSetIterator::operato
 
 
 template<class Type>
-typename OrderedSet<Type>::OrderedSetIterator & OrderedSet<Type>::OrderedSetIterator::operator++()
+typename OrderedSet<Type>::OrderedSetIterator &OrderedSet<Type>::OrderedSetIterator::operator++()
 {
 	++orderIter;
 	return *this;

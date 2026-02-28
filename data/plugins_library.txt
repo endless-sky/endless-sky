@@ -11,4 +11,4 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-plugin_list_url "https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json"
+"plugin list url" "https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json"

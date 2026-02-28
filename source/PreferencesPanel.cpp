@@ -261,9 +261,9 @@ void PreferencesPanel::Step()
 	auto it = installFeedbacks.begin();
 	while(it != installFeedbacks.end())
 	{
-		if(it->wait_for(std::chrono::seconds(0)) == std::future_status::ready)
+		if(it->wait_for(chrono::seconds(0)) == future_status::ready)
 		{
-			std::string error = it->get();
+			string error = it->get();
 
 			bool displayed = false;
 			if(downloadInProgressDialog)
@@ -1948,9 +1948,9 @@ void PreferencesPanel::ProcessPluginIndex()
 		string url = it.first;
 		installFeedbacks.emplace_back(
 			// Note: async, cannot work with fonts (or GUI), or the loop variable in a writable fashion
-			async(launch::async, [&, url, libraryIdx, installed=it.second]() noexcept -> string
+			async(launch::async, [&, url, libraryIdx, installed = it.second]() noexcept -> string
 			{
-				string filename = "plugins" + std::to_string(libraryIdx) + ".json";
+				string filename = "plugins" + to_string(libraryIdx) + ".json";
 				auto path = Files::Config() / filename;
 				if(installed != Plugins::Status::DOWNLOADED)
 					if(!Plugins::Download(url, path))
