@@ -403,8 +403,8 @@ void Engine::Place()
 
 	if(flagship)
 		camera.SnapTo(flagship->Center());
-	else if(player.GetStellarObject())
-		camera.SnapTo(player.GetStellarObject()->Position());
+	else if(object)
+		camera.SnapTo(planetPos);
 	else
 		camera.SnapTo(camera.Center());
 
