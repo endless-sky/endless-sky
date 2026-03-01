@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PlanetPanel.h"
 
-#include "Information.h"
-
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "BankPanel.h"
@@ -27,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "HiringPanel.h"
+#include "Information.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
 #include "MessageLogPanel.h"

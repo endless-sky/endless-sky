@@ -113,7 +113,7 @@ singleLineComment = re.compile("^//(/<?)?")
 # List of "" and <> includes to be treated as the other type;
 # that is, any listed "" include should be grouped with <> includes,
 # and vice versa.
-reversed_includes = ["\"opengl.h\""]
+reversed_includes = ["\"opengl.h\"", "\"../opengl.h\""]
 # The list of files for which the include checks are skipped.
 exclude_include_check = ["source/main.cpp"]
 
@@ -508,12 +508,12 @@ def check_line_format(lines):
 	return errors, warnings
 
 
-# Checks the import statements at the beginning of the file. Parameters:
+# Checks the #include statements at the beginning of the file. Parameters:
 # sanitized_lines: the lines of the file, without the line separators and the contents of strings and comments
 # original_lines: the lines of the file, without the terminating line separators
 # file: the path to the file
 # Returns a tuple of errors and warnings.
-def check_include(sanitized_lines, original_lines, file):
+def check_include(sanitized_lines, original_lines, filepath):
 	errors = []
 	warnings = []
 
@@ -524,36 +524,74 @@ def check_include(sanitized_lines, original_lines, file):
 
 		original_lines = [line if line != "#include " + include else "#include " + replacement for line in original_lines]
 
-	name = file.split("/")[-1]
+	name = filepath.split("/")[-1]
 	if name.endswith(".cpp"):
 		name = name[0:-4] + ".h"
 
 	include_lines = [index for index, line in enumerate(sanitized_lines) if line.startswith("#include ")]
 	groups = []
+	group_ident = []
 	previous = -2
 	for i in include_lines:
 		if i == previous + 1:
+			# Append to the last group that was found.
 			groups[-1].append(i)
 		else:
+			# Start a new group.
 			groups.append([i])
+			# Track what was on the line just before this one, e.g. was it a #ifdef line?
+			group_ident.append(original_lines[max(0, i - 1)])
 		previous = i
 
-	if file.endswith(".cpp") and name[0].isupper():
-		if len(groups) == 0:
-			warnings.append(Warning("", 0, "missing include statement for own header file"))
-			return errors, warnings
-		elif original_lines[groups[0][0]] != "#include \"" + name + "\"":
-			warnings.append(Warning(original_lines[groups[0][0]], groups[0][0],
-									"missing include for own header file"))
-		if len(groups[0]) > 1:
-			warnings.append(Warning(original_lines[groups[0][1]], groups[0][1],
-									"missing empty line after including own header file"))
-	for group in groups:
-		quote = original_lines[group[0]].endswith("\"")
+	# We will check for the proper number of items in the first group (e.g. self header or parent class headers)
+	first_group_min = 0
+	whos_header = "own"
+	first_group = set()
+	first_group_min = 1
+	first_group_max = 1
+	example = ""
+	if filepath.endswith(".cpp") and name[0].isupper():
+		first_group.add(name)
+	elif filepath.endswith(".h"):
+		class_lines = [line for line in original_lines if line.startswith('class')]
+		child_class_lines = [re.match(r"class\s+\w+( final)?\s*:\s*(public|private)\s+(\w+)(,.*)?\s*{", line)
+							 for line in class_lines]
+		first_group.update([f"{match.group(3)}.h" for match in child_class_lines if match])
+		first_group_min = len(first_group)  # at least one, anyway, but more than one seems reasonable
+		first_group_max = len(first_group)
+		whos_header = "parent"
+
+	if first_group:
+		example = list(first_group)[0]
+		if not groups:
+			errors.append(Error("", 0, f"missing include statement for {whos_header} header file {example}"))
+
+	group_chars = ""
+	max_quoted_groups = 2 if first_group else 1
+	for n, group in enumerate(groups):
+		last_char = original_lines[group[0]][-1]
+		group_chars += last_char
+		quote = last_char == '\"'
+
+		# Check the first group
+		if n == 0 and "tests" not in filepath:
+			if first_group:
+				matches = [re.search(r"^#include.*\W(\w+.h)", original_lines[i]) for i in group]
+				group_includes = [m.group(1) for m in matches]
+				if first_group.symmetric_difference(group_includes):
+					errors.append(Error(original_lines[group[0]], group[0] + 1,
+											f"missing include for {whos_header} header file {example}"))
+
+			# check that we don't have unexpected includes in the first group
+			if first_group_max and len(group) > first_group_max:
+				errors.append(Error(original_lines[group[1]], group[1] + 1,
+										f"first group of quoted includes is expected to include for {whos_header}"
+										f" header file, {example} followed by an empty line"))
+
 		for index in group:
 			if original_lines[index].endswith("\"") != quote:
-				warnings.append(
-					Warning(original_lines[index], index, "missing empty line before changing include style"))
+				errors.append(
+					Error(original_lines[index], index + 1, "missing empty line before changing include style"))
 				break
 		group_lines = [original_lines[index] for index in group]
 		for i in range(len(group_lines)):
@@ -567,6 +605,25 @@ def check_include(sanitized_lines, original_lines, file):
 		for i in range(len(group) - 1):
 			if group_lines[i].lower() > group_lines[i + 1].lower():
 				errors.append(Error(group_lines[i], group[i] + 1, "includes are not in alphabetical order"))
+
+	if "tests" not in filepath:
+		if (f := group_chars.find('>"')) > 0:
+			i = groups[f + 1][0]
+			errors.append(Error(original_lines[i], i + 1,
+								"unexpected quoted include group following bracketed group"))
+
+		non_conditional_groups = "".join([c for ident, c in zip(group_ident, group_chars) if
+										  not(ident.startswith("#endif") or ident.startswith("#ifdef") or
+											  ident.startswith("#if defined"))])
+		if (j := non_conditional_groups.count('"')) > max_quoted_groups:
+			f = non_conditional_groups[:max_quoted_groups].find('"')
+			g = [g for ident, g in zip(group_ident, range(1, len(group_ident) + 1)) if
+				 not(ident.startswith("#endif") or ident.startswith("#ifdef") or
+					 ident.startswith("#if defined"))][f]
+			i = groups[g ][0]
+			errors.append(Error(original_lines[i], i + 1,f"unexpected number of quoted include groups, expected "
+														 f"at most {max_quoted_groups} found {j}."))
+
 	return errors, warnings
 
 
