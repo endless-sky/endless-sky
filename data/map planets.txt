@@ -6728,7 +6728,7 @@ planet Zydee
 	description `Although this moon initially seems barren and lifeless, there is evidence that the nearby Gegno Scin have recently attempted to set up an outpost here. Several partially-constructed buildings and landing zones are scattered about the surface, but none of them show any signs of activity, likely due to recent warfare with the Gegno Vi. Despite this, a small number of satellites actively orbit Zydee, likely providing important tactical information such as the volume of system traffic.`
 
 planet "Midas Station"
-	attributes frontier north "north pirate" pirate
+	attributes frontier north "north pirate" pirate mining
 	landscape land/loc2
 	description `The original founders of Midas Station have long since been forgotten to time. While the citizens of the paradise worlds believe pirate space is nothing more than backstabbing chaos, Midas Station stands in defiance of this idea. Despite not being run by any government or corperation, the orbital refinery has stayed in opperation for decades. The entire workfore is volunteers, taking a small cut of any refined goods to keep the station running.`
 	description `	The hallways are tight and claustrophobic, hissing machinery and rumbling droans echo through the dimly lit corridors. Despite the huge, deafening climate control units hanging down above you, the temprature inside is enough to make you break a sweat.`
@@ -6744,7 +6744,7 @@ planet "Midas Station"
 		fleet "Priate Miners" 5
 
 planet Rhyac
-	attributes frozen fishing "ice giant" pirate
+	attributes frozen fishing "ice giant" frontier north "north pirate" pirate
 	landscape land/snow9
 	description `Rhyac teeters at the end of the habitable zone, sparsely populated by only two kinds of people. The desperate in need of hiding, and those who hunger for a challenge. The planet is almost entirely covered in a frozen ocean, with tiny islands no bigger than a small earth city. Fluffy, dense clouds loom overhead, the few rays of light passing through refracting off small patches of mirror-like ice in a sparkly shimmer.`
 	description `	Ice fishing is a big business on Rhyac, as most of the land is a jet black volcanic rock, cold and infertile. The locals glide across the frozen ocean on hovercraft, using large harpoon cannons to skewer the gigantic worm-like whales that skirt beneath the ice surface. Most of the inhabitants live in small shacks or hidden bunkers along the equator, with the true population being unknown.`
@@ -6767,7 +6767,7 @@ planet Dot
 	security 0
 
 planet Masquerade
-	attributes frontier north "north pirate" pirate
+	attributes farming frontier north "north pirate" pirate
 	landscape land/masquerade
 	description `From orbit, Masquerade looks entirely uninhabbitable. The ozone layer is too thin to block most incoming radiation, leaving the surface nearly dead and incredibly radioactive. However, the planet is home to towering mountains that flank vein-like canyons all across the planet's surface. These sheir cliffs condense Masquerade's humid air into thick, fluffy clouds that hover below the peaks. It's under these clouds that life can thrive, mostly shielded from the harmful gamma radiation above.`
 	description `	In stark contrast to the surface, the land beneath the clouds is a thick and florishing jungle. Almost each valey has a running stream, the air rarely ever dropping below 90% humidity. While cloud cover is frequent, there are periodic dry spells that have forced life to adapt to the sudden radiation bombardment.`
@@ -6792,7 +6792,7 @@ planet Masquerade
 		fleet "Small Northern Pirates" 10
 
 planet "New Montego"
-	attributes frontier north "north pirate" pirate
+	attributes frontier north "north pirate" pirate factory
 	landscape land/newmontego
 	description `At a glance, New Montego looks like the perfect tropical resort. Beautiful beaches, bright oceans, and a stable climate. However, the strong strong odour in the air says otherwise. The oceans here are filled with a volatile concoction of sulfur and lithium, perpetually heating the planet's atmosphere to above 310 kelvin year-round, getting their blue tint from the thick slurry of bacteria that seed the seas.`
 	description `	Most land on New Montego is split up into large islands that dot the expansive oceans, beaches accented with bright orange and yellow outcrops that contrast the saturated blue sky. Thick green grass covers most of the land, blanketing islands in a fluffy greenish-yellow carpet. Thick trees punch through the dense foliage, growing outwards instead of upwards, giving their branches a unique mushroom-like look.`
@@ -6813,3 +6813,32 @@ planet Nemo
 	description `The air smells strongly of placeholder.`
 	government Uninhabited
 	security 0
+
+planet "Caribbean"
+	attributes gas "requires: gaslining" uninhabited
+	landscape land/occupas
+	government Uninhabited
+	description `Caribbean, often called "The Gulf of Montego" by the locals, is a calm and temprate gas giant. Monolithic clouds of dense ammonia gas lazily float through the atmosphere, their puffy whites tinted with a heavy teal accent as the sun shines down through the methane-rich atmosphere.`
+	description `	Back during the caravan era, scientific probes of all sort where dropped into the core of Caribbean. Scans from this time revealed the presence of  seemingly solid massive objects deep within the core, far past the pressure rating of any probe avalible. While little research has been done since, it is believed to be the result of temprature inversions, trapped pockets of cold air that can result in false returns.`
+
+planet "Anago"
+	attributes frontier north "north pirate" pirate mining
+	landscape land/mars2alt
+	description `Anago is the primary source of raw metals for the nearby New Monetgo outfitters and Haven shipyards, the unusually high metal content and low gravity making it the ideal spot for lunar mining camps. It's believed that Anago is the chunk of a formerly large planet, the outer layers stripped clean to reveal the dense, metallic core.`
+	description `	While the planet is far from unpopulated, all of the bases and bunkers on the surface are closed to outsiders, the few unused landing pads avalible on a strict per-request basis. Unless you have special permission to land at one, Anago is functionally uninhabited.`
+
+planet "Dissipation"
+	attributes frontier north "north pirate" pirate mining
+	landscape land/mercury1
+	government Uninhabited
+	description `Back during the caravan era, Dissipation was a vital source of helium-3, an important component of early fusion and hyperspace fuels. The dense sand-like surface and very low gravity meant some large mining and tanker vessels could descend to the surface under their own power, which was a rare feat before the invention of modern gravity-repulsor technology.`
+	description `	However, following the advent of sophisticated ramscoops and collecting stations, helium-3 from Dissipation slowly decreased in demand. In due time, the dirt-cheap prices of fuels forced any remaining opperations out of business.`
+	description `	While a few of the empty mines have been transformed into secret hideouts by crime groups and affluent pirates, most industries have long since been broken down an abandoned, dozens of ghost ports now dotting the planet.`
+
+planet "Boneyard"
+	attributes uninhabited
+	landscape land/mars0
+	government Uninhabited
+	description `Officially, this planet is known simply as Almaaz I. It has poor natural resources, no atmosphere, and is far too close to the sun for any meaningful terraforming. However, a unique combination of a soft, sandy surface and weak gravity leads to Boneyard collecting lots of shipwrecks and debris floating in the Almaaz system. Strong enough to pull wrecks down, but weak enough to not break them apart on impact.`
+	description `	Thousands of wrecks litter the surface of this planet, ranging from tiny chunks of daggers and combat drones to (mostly) whole Navy carriers, all picked clean and left to soak in the sun like skeletons in the desert.`
+	description `	Interestingly, the planet lacks any sort of water for geologic processes like weathering or erosion to create the sandy surface that covers the planet, a fact which has puzzled scientists. It's believed that Boneyard was subject to heavy orbital bombardment at one point, perhaps from rings that once orbited Almaaz II, but there is little evidence to support this theory.`

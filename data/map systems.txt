@@ -4370,7 +4370,7 @@ system Almaaz
 		sprite star/f-giant
 			scale 1.5
 		period 10
-	object
+	object "Boneyard"
 		sprite planet/rock10-b
 		distance 1186.96
 		period 218.584
@@ -4390,7 +4390,7 @@ system Almaaz
 	object
 		sprite planet/gas2
 			scale 3
-		distance 5204.615
+		distance 4654.541
 		period 2260
 		object
 			sprite planet/rock11
@@ -6828,10 +6828,10 @@ system Arneb
 	pos -277.962 -515.111
 	government Pirate
 	attributes "north"
-	arrival 1715
-	habitable 1715
+	arrival 2160
+	habitable 2160
 	"jump range" 100
-	belt 1947
+	belt 2894
 	haze _menu/haze-browner
 	link Unagi
 	asteroids "large rock" 1 5.3055
@@ -6861,24 +6861,24 @@ system Arneb
 		period 10
 	object
 		sprite planet/venus
-		distance 206
+		distance 412
 		period 28.5580
 	object
 		sprite planet/cloud6-b
-		distance 546.25
+		distance 1092.5
 		period 123.314
+	object "Haven"
+		sprite planet/forest6
+		distance 1658.92
+		period 230.739
+		object "Dissipation"
+			sprite planet/io
+			distance 350
+			period 2500.84
 	object
 		sprite planet/desert8
-		distance 829.46
-		period 230.739
-	object Haven
-		sprite planet/forest6
-		distance 1264.82
+		distance 2929.64
 		period 434.481
-	object
-		sprite planet/io
-		distance 4062.31
-		period 2500.84
 
 system As-75
 	hidden
@@ -40504,7 +40504,7 @@ system Unagi
 				scale 1.2
 			distance 430.25
 			period 199.556
-		object
+		object "Caribbean"
 			sprite planet/gas13
 			distance 1188.753
 			period 726.19
@@ -40513,7 +40513,7 @@ system Unagi
 				sprite planet/rock7-b
 				distance 293
 				period 13.456
-			object
+			object "Anago"
 				sprite planet/rhea
 				distance 388
 				period 20.506
@@ -43704,7 +43704,7 @@ system Iniquus
 	arrival 4000
 	habitable 100000
 	belt 3000
-	"jump range" 60
+	"jump range" 20
 	haze _menu/haze-blue-er
 	fleet "Small Northern Pirates" 1500
 	fleet "Large Northern Pirates" 3000
