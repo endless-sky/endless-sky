@@ -515,10 +515,10 @@ def check_line_format(lines):
 		line_count += 1
 		if len(line) > 120:
 			errors.append(Error(line, line_count, "lines should hard wrap at 120 characters"))
-		# for char in line:
-		# 	if ord(char) < 0 or ord(char) > 127:
-		# 		errors.append(Error(line, line_count, "files should be plain ASCII"))
-		# 		break
+		for char in line:
+			if ord(char) < 0 or ord(char) > 127:
+				errors.append(Error(line, line_count, "files should be plain ASCII"))
+				break
 	return errors, warnings
 
 
