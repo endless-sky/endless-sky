@@ -388,8 +388,8 @@ ship "'olofez"
 		"Thruster (Asteroid Class)"
 		"Steering (Asteroid Class)"
 	
-	engine -7 23
-	engine 7 23
+	engine -13 23
+	engine 13 23
 	gun 0 -28 "Fire-Lance"
 	explode "tiny explosion" 20
 	description "The 'olofez-Class Carried Chaser, named for a renowned artist who painted their visions of ancient hunts, is a fighter carried by most Exile capital ships."
