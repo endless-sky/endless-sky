@@ -646,7 +646,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	// Validate the actions.
 	for(const auto &[trigger, actions] : npcActions)
 	{
-		for(const auto &action : actions) 
+		for(const auto &action : actions)
 		{
 			string reason = action.Validate();
 			if(!reason.empty())
