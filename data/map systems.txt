@@ -4621,7 +4621,7 @@ system Alnasl
 
 system Alnilam
 	pos -482.408 -537
-	government Pirate
+	government "True Anarchist"
 	attributes "north"
 	arrival 1715
 	habitable 1915
@@ -6826,7 +6826,7 @@ system Arculus
 
 system Arneb
 	pos -277.962 -515.111
-	government Pirate
+	government "Northern Anarchist"
 	attributes "north"
 	arrival 2160
 	habitable 2160
@@ -19492,7 +19492,7 @@ system Hassaleh
 
 system Hatysa
 	pos -432.963 -507.333
-	government Pirate
+	government "True Anarchist"
 	attributes "north"
 	arrival 525
 	habitable 525
@@ -40432,7 +40432,7 @@ system Umbral
 
 system Unagi
 	pos -318.74 -561.26
-	government Pirate
+	government "Northern Anarchist"
 	attributes "north" "notable star"
 	arrival 1500
 	"jump range" 69
