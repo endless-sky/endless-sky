@@ -401,7 +401,12 @@ void Engine::Place()
 	// that all special ships have been repositioned.
 	ships.splice(ships.end(), newShips);
 
-	camera.SnapTo(flagship->Center());
+	if(flagship)
+		camera.SnapTo(flagship->Center());
+	else if(object)
+		camera.SnapTo(planetPos);
+	else
+		camera.SnapTo(camera.Center());
 
 	player.SetPlanet(nullptr);
 }
@@ -773,13 +778,16 @@ void Engine::Step(bool isActive)
 			nukeAlarmTime = 300;
 			Audio::Play(Audio::Get("nuke alarm"), SoundCategory::ALERT);
 		}
-		if(nukeAlert)
+		if(wasActive)
 		{
-			if(uiStep / 12 % 2)
-				info.SetCondition("nuke alert");
+			if(nukeAlert)
+			{
+				if(uiStep / 12 % 2)
+					info.SetCondition("nuke alert");
+			}
+			else if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
+				info.SetCondition("red alert");
 		}
-		else if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
-			info.SetCondition("red alert");
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every 100 units of fuel.
@@ -794,7 +802,7 @@ void Engine::Step(bool isActive)
 		// total heat level.
 		if(heat > 1.)
 			info.SetBar("overheat", min(1., heat - 1.));
-		if(flagship->IsOverheated() && (uiStep / 20) % 2)
+		if(wasActive && flagship->IsOverheated() && (uiStep / 20) % 2)
 			info.SetBar("overheat blink", min(1., heat));
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
@@ -891,7 +899,7 @@ void Engine::Step(bool isActive)
 
 		// Only update the "active" state shown for the target if it is
 		// in the current system and targetable, or owned by the player.
-		int targetType = RadarType(*target, uiStep);
+		int targetType = RadarType(*target, wasActive ? uiStep : 0);
 		const bool blinking = targetType == Radar::BLINK;
 		if(!blinking && ((target->GetSystem() == player.GetSystem() && target->IsTargetable()) || target->IsYours()))
 			lastTargetType = targetType;
@@ -1555,10 +1563,11 @@ void Engine::EnterSystem()
 	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
 	for(int i = 0; i < 5; ++i)
 	{
-		for(const auto &fleet : system->Fleets())
-			if(fleetMultiplier ? fleet.Get()->GetGovernment() && Random::Int(fleet.Period() / fleetMultiplier) < 60
-				&& fleet.CanTrigger() : false)
-				fleet.Get()->Place(*system, newShips);
+		if(fleetMultiplier)
+			for(const auto &fleet : system->Fleets())
+				if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period() / fleetMultiplier) < 60
+						&& fleet.CanTrigger())
+					fleet.Get()->Place(*system, newShips);
 
 		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 		{
@@ -2043,8 +2052,10 @@ void Engine::SpawnFleets()
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
 	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
+	if(!fleetMultiplier)
+		return;
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(fleetMultiplier ? !Random::Int(fleet.Period() / fleetMultiplier) && fleet.CanTrigger() : false)
+		if(!Random::Int(fleet.Period() / fleetMultiplier) && fleet.CanTrigger())
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
@@ -2431,7 +2442,8 @@ void Engine::DoCollisions(Projectile &projectile)
 			Point offset = projectile.Position() - target->Position();
 			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
 			if(range < 1.)
-				collisions.emplace_back(target.get(), CollisionType::SHIP, range);
+				collisions.emplace_back(target.get(),
+					projectile.IsTargetingShip() ? CollisionType::SHIP : CollisionType::MINABLE, range);
 		}
 	}
 	else
@@ -2794,7 +2806,7 @@ void Engine::FillRadar()
 
 			// Figure out what radar color should be used for this ship.
 			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
-			int type = isYourTarget ? Radar::SPECIAL : RadarType(*ship, uiStep);
+			int type = isYourTarget ? Radar::SPECIAL : RadarType(*ship, wasActive ? uiStep : 0);
 			// Calculate how big the radar dot should be.
 			double size = sqrt(ship->Width() + ship->Height()) * .14 + .5;
 
