@@ -503,7 +503,7 @@ def check_copyright(lines, file):
 	return errors, warnings
 
 
-# Checks whether the specified lines don't exceed the character limit. Parameters:
+# Checks whether the specified lines don't exceed the character limit, and consist of ASCII characters only. Parameters:
 # lines: the lines to check, without the terminating line separators
 # Returns a tuple of errors and warnings.
 def check_line_format(lines):
