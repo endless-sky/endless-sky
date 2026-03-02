@@ -1,0 +1,43 @@
+# Copyright (c) 2026 by Amazinite
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Note: this file contains events that are no longer used in the game, but that
+# must be maintained in case anyone already triggered them in their save file, or
+# has an active mission that refers to them.
+
+mission "HR Removed"
+	invisible
+	landing
+	to offer
+		or
+			has "Hai Reveal: Early Arrival: Alondo: offered"
+			has "Hai Reveal: Late Arrival: Alondo: offered"
+			has "Hai Reveal: Join Later: Alondo: offered"
+			has "Hai Reveal: Meet the Team: FW: offered"
+			has "Hai Reveal: Meet the Team: Xilin 1: offered"
+			has "Hai Reveal: Meet the Team: Xilin 2: offered"
+			has "Hai Reveal: Meet the Team: Samuel 1: offered"
+			has "Hai Reveal: Meet the Team: Samuel 2: offered"
+			has "Hai Reveal: Meet the Team: Terry: offered"
+			has "Hai Reveal: Meet the Team: Sayari 1: offered"
+			has "Hai Reveal: Meet the Team: Sayari 2: offered"
+		not "Hai Reveal: Meet the Team: Sayari 2: done"
+	on offer
+		conversation
+			`When you updated your game, you were in the middle of the Hai Reveal intro, which has since been removed. You will receive no further missions for this storyline.`
+				decline
+
+event "hr: friend arrives"
+event "hr: friend settled in"
+event "hr: join later"
+event "hr: exploration period"

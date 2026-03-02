@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPanel.h"
 
+#include "ClickZone.h"
 #include "MapPlanetCard.h"
 #include "Point.h"
 #include "ScrollBar.h"
@@ -100,4 +101,6 @@ private:
 	std::shared_ptr<TextArea> description = nullptr;
 	bool descriptionVisible = false;
 	int descriptionXOffset;
+
+	std::vector<ClickZone<int>> clickZones;
 };

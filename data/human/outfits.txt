@@ -550,7 +550,7 @@ outfit "Pilot's License"
 	category "Licenses"
 	series "Licenses"
 	index 01010
-	cost 50000
+	cost 120000
 	thumbnail "outfit/license"
 	description "For much of the Republic's nearly three century long history, being able to pilot your own starship was limited only by your ability to purchase one. But at the turn of the millennium in an attempt to increase tax revenue, the Republic Parliament passed a law requiring that all ship captains purchase a pilot's license, and for no small fee at that. Needless to say, this policy is not terribly popular with freelance merchant captains."
 

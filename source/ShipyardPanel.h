@@ -43,19 +43,18 @@ protected:
 	virtual int TileSize() const override;
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point) override;
-	virtual int DividerOffset() const override;
-	virtual int DetailWidth() const override;
+	virtual double ButtonPanelHeight() const override;
 	virtual double DrawDetails(const Point &center) override;
-	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
-	virtual void Buy(bool onlyOwned = false) override;
-	virtual bool CanSell(bool toStorage = false) const override;
-	virtual void Sell(bool toStorage = false) override;
-	virtual bool CanSellMultiple() const override;
+	virtual void DrawButtons() override;
+	virtual TransactionResult CanDoBuyButton() const;
+	virtual void DoBuyButton();
+	virtual void Sell(bool storeOutfits);
 	virtual int FindItem(const std::string &text) const override;
+	virtual TransactionResult HandleShortcuts(SDL_Keycode key) override;
 
 
 private:
-	void BuyShip(const std::string &name);
+	bool BuyShip(const std::string &name);
 	void SellShipAndOutfits();
 	void SellShipChassis();
 	void SellShip(bool toStorage);

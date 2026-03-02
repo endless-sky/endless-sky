@@ -53,7 +53,7 @@ void ConditionAssignments::Load(const DataNode &node, const ConditionsStore *con
 {
 	this->conditions = conditions;
 	if(!node.HasChildren())
-		node.PrintTrace("Error: Loading empty set of assignments");
+		node.PrintTrace("Loading empty set of assignments");
 
 	// Loop through all children, and parse each line into an Assignment.
 	for(const DataNode &child : node)
@@ -74,7 +74,7 @@ void ConditionAssignments::Save(DataWriter &out) const
 		{
 			out.WriteToken(assignment.conditionToAssignTo);
 			out.WriteToken(it->second);
-			assignment.expressionToEvaluate.SaveSubset(out);
+			assignment.expressionToEvaluate.SaveInline(out);
 			out.Write();
 		}
 	}
@@ -144,7 +144,7 @@ set<string> ConditionAssignments::RelevantConditions() const
 
 
 
-void ConditionAssignments::AddSetCondition(const std::string &name, const ConditionsStore *conditions)
+void ConditionAssignments::AddSetCondition(const string &name, const ConditionsStore *conditions)
 {
 	this->conditions = conditions;
 	assignments.emplace_back(name, AssignOp::ASSIGN, ConditionSet(1, conditions));
@@ -182,7 +182,7 @@ void ConditionAssignments::Add(const DataNode &node, const ConditionsStore *cond
 		AssignOp ao = AssignOp::ASSIGN;
 		const string assignOpString = node.Token(1);
 		auto it = find_if(ASSIGN_OP_TO_TEXT.begin(), ASSIGN_OP_TO_TEXT.end(),
-			[&assignOpString](const std::pair<AssignOp, const string> &e) {
+			[&assignOpString](const pair<AssignOp, const string> &e) {
 				return e.second == assignOpString;
 			});
 		if(it != ASSIGN_OP_TO_TEXT.end())
@@ -207,7 +207,7 @@ void ConditionAssignments::Add(const DataNode &node, const ConditionsStore *cond
 	}
 	else
 	{
-		node.PrintTrace("Error: Incomplete assignment");
+		node.PrintTrace("Incomplete assignment.");
 		return;
 	}
 }

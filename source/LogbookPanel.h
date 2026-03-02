@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+#include "BookEntry.h"
 #include "Date.h"
 
 #include <map>
@@ -32,8 +33,9 @@ class PlayerInfo;
 // the panel closes, to report the outcome of the conversation.
 class LogbookPanel : public Panel {
 public:
-	LogbookPanel(PlayerInfo &player);
+	explicit LogbookPanel(PlayerInfo &player);
 
+	virtual void Step() override;
 	// Draw this panel.
 	virtual void Draw() override;
 
@@ -55,11 +57,14 @@ private:
 	// Reference to the player, to apply any changes to them.
 	PlayerInfo &player;
 
+	// Whether the scenes shown by logbook entries have been preloaded yet.
+	bool hasLoadedScenes = false;
+
 	// Current month being displayed:
 	Date selectedDate;
 	std::string selectedName;
-	std::multimap<Date, std::string>::const_iterator begin;
-	std::multimap<Date, std::string>::const_iterator end;
+	std::map<Date, BookEntry>::const_iterator begin;
+	std::map<Date, BookEntry>::const_iterator end;
 	// Other months available for display:
 	std::vector<std::string> contents;
 	std::vector<Date> dates;

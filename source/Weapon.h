@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstddef>
 #include <cstdint>
 #include <map>
+#include <memory>
 #include <utility>
 #include <vector>
 
@@ -40,13 +41,13 @@ class Sprite;
 // copy of them, and storing them as class variables instead of in a map of
 // string to double significantly reduces access time.
 class Weapon {
+	friend Outfit;
 public:
-	struct Submunition{
-		Submunition() noexcept = default;
-		explicit Submunition(const Weapon *weapon, std::size_t count) noexcept
+	struct Submunition {
+		explicit Submunition(const std::shared_ptr<const Weapon> &weapon, std::size_t count) noexcept
 			: weapon(weapon), count(count) {};
 
-		const Weapon *weapon = nullptr;
+		const std::shared_ptr<const Weapon> &weapon;
 		std::size_t count = 0;
 		// The angular offset from the source projectile, relative to its current facing.
 		Angle facing;
@@ -59,16 +60,18 @@ public:
 
 
 public:
+	Weapon() = default;
+	// Construct and load at the same time.
+	explicit Weapon(const DataNode &node);
 	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
-	void LoadWeapon(const DataNode &node);
-	bool IsWeapon() const;
+	void Load(const DataNode &node);
+	bool IsLoaded() const;
 
 	// Get assets used by this weapon.
 	const Body &WeaponSprite() const;
 	const Body &HardpointSprite() const;
 	const Sound *WeaponSound() const;
 	const Sound *EmptySound() const;
-	const Outfit *Ammo() const;
 	const Sprite *Icon() const;
 
 	// Effects to be created at the start or end of the weapon's lifetime.
@@ -87,6 +90,7 @@ public:
 	double BurstReload() const;
 	int BurstCount() const;
 
+	const Outfit *Ammo() const;
 	int AmmoUsage() const;
 
 	int MissileStrength() const;
@@ -226,15 +230,7 @@ public:
 	// Return the ranges at which the weapon's damage dropoff begins and ends.
 	const std::pair<double, double> &DropoffRanges() const;
 
-
-protected:
-	// Legacy support: allow turret outfits with no turn rate to specify a
-	// default turnrate.
-	void SetTurretTurn(double rate);
-
-	// A pair representing the outfit that is consumed as ammo and the number
-	// of that outfit consumed upon fire.
-	std::pair<const Outfit*, int> ammo;
+	bool TriggersNukeAlert() const;
 
 
 private:
@@ -242,6 +238,8 @@ private:
 
 
 private:
+	bool isLoaded = false;
+
 	// Sprites and sounds.
 	Body sprite;
 	Body hardpointSprite;
@@ -256,9 +254,11 @@ private:
 	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::vector<Submunition> submunitions;
+	// Whether the damage dealt by this weapon's submunitions are
+	// included in the damage of its projectiles when colliding
+	// with a target.
+	bool includeSubmunitionDamage = true;
 
-	// This stores whether or not the weapon has been loaded.
-	bool isWeapon = false;
 	bool isStreamed = false;
 	bool isSafe = false;
 	bool isPhasing = false;
@@ -287,6 +287,10 @@ private:
 	double reload = 1.;
 	double burstReload = 1.;
 	int burstCount = 1;
+
+	// A pair representing the outfit that is consumed as ammo and the number
+	// of that outfit consumed upon fire.
+	std::pair<const Outfit *, int> ammo;
 
 	int missileStrength = 0;
 	int antiMissile = 0;
@@ -385,6 +389,8 @@ private:
 	mutable bool calculatedDamage = true;
 	mutable bool doesDamage = false;
 	mutable double totalLifetime = -1.;
+
+	bool triggersNukeAlert = false;
 };
 
 
@@ -499,3 +505,5 @@ inline bool Weapon::ConsumesDisruption() const { return FiringDisruption() < 0.;
 inline bool Weapon::ConsumesSlowing() const { return FiringSlowing() < 0.; }
 
 inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
+
+inline bool Weapon::TriggersNukeAlert() const { return triggersNukeAlert; }

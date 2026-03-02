@@ -230,18 +230,6 @@ event "remnant: cognizance timer"
 
 
 event "remnant: cognizance 1 systems available"
-	system Diespiter
-		remove attributes "inaccessible"
-	system Egeria
-		remove attributes "inaccessible"
-	system Postverta
-		remove attributes "inaccessible"
-	system Prosa
-		remove attributes "inaccessible"
-	system Statina
-		remove attributes "inaccessible"
-	system Vaticanus
-		remove attributes "inaccessible"
 
 
 

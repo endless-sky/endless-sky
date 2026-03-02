@@ -20,6 +20,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Include a helper for creating well-formed DataNodes (to enable creating non-empty ConditionSets).
 #include "datanode-factory.h"
+// Include DataWriter for read/write/read/write tests.
+#include "../../../source/DataWriter.h"
+// Include a helper for handling logger output.
+#include "logger-output.h"
 // Include a helper for capturing & asserting on logged output.
 #include "output-capture.hpp"
 
@@ -76,14 +80,15 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 		auto nodeWithIncompleteAdd = AsDataNode("toplevel\n\t4 +");
 		const auto set = ConditionSet{nodeWithIncompleteAdd, &store};
 		THEN( "the expression should be identified as invalid" ) {
-			const std::string validationWarning = "Error: expected terminal after infix operator \"+\":\n";
+			const std::string validationWarning = "Expected terminal after infix operator \"+\":\n";
 			const std::string invalidNodeText = "toplevel\n";
 			const std::string invalidNodeTextInWarning = "L2:   4 +";
 
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
+				std::string formatted = IgnoreLogHeaders(warnings.Flush());
+				REQUIRE( formatted == validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
 			}
 		}
 	}
@@ -99,30 +104,30 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 		REQUIRE( set.IsValid() );
 
 		THEN( "no expressions are added from empty nodes" ) {
-			const std::string validationWarning = "Error: child-nodes expected, found none:\ntoplevel\n\n";
+			const std::string validationWarning = "Child-nodes expected, found none:\ntoplevel\n\n";
 			set.Load(AsDataNode("toplevel"), &store);
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning );
+				REQUIRE( IgnoreLogHeaders(warnings.Flush()) == validationWarning );
 			}
 		}
 		THEN( "no expressions are added from invalid nodes" ) {
-			const std::string validationWarning = "Error: has keyword requires a single condition:\n";
+			const std::string validationWarning = "Has keyword requires a single condition:\n";
 			const std::string invalidNodeText = "and\n\thas";
 			const std::string invalidNodeTextInWarning = "and\nL2:   has";
 			set.Load(AsDataNode(invalidNodeText), &store);
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning + invalidNodeTextInWarning + '\n' + '\n');
+				REQUIRE( IgnoreLogHeaders(warnings.Flush()) == validationWarning + invalidNodeTextInWarning + '\n' + '\n');
 			}
 		}
 		THEN( "new expressions can be added from valid nodes" ) {
 			set.Load(AsDataNode("and\n\tnever"), &store);
 			REQUIRE_FALSE( set.IsEmpty() );
 			REQUIRE( set.IsValid() );
-			REQUIRE( warnings.Flush() == "" );
+			REQUIRE( IgnoreLogHeaders(warnings.Flush()) == "" );
 		}
 	}
 }
@@ -210,47 +215,142 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 
 			// Tests for and and or conditions, the first one is the implicit version.
 			{"3\n\t2\n\t5", 3},
-			{"and\n\t\t11\n\t\t2\n\\tt5", 11},
-			{"and\n\t\t14\n\t\t0\n\\tt5", 0},
-			{"or\n\t\t8\n\t\t2\n\\tt5", 8},
-			{"or\n\t\t9\n\t\t0\n\\tt5", 9},
+			{"and\n\t\t11\n\t\t2\n\t\t5", 11},
+			{"and\n\t\t14\n\t\t0\n\t\t5", 0},
+			{"or\n\t\t8\n\t\t2\n\t\t5", 8},
+			{"or\n\t\t9\n\t\t0\n\t\t5", 9},
+			{"or\n\t\t0\n\t\t0\n\t\t0", 0},
+			{"or\n\t\t0\n\t\t0\n\t\t-7", -7},
+
+			// Tests for min and max single parent conditions.
+			{"max\n\t\t1\n\t\t10", 10},
+			{"min\n\t\t1\n\t\t10", 1},
+			{"max\n\t\t-30\n\t\t11", 11},
+			{"min\n\t\t-30\n\t\t11", -30},
+
+			{"max\n\t\t-30\n\t\t11\n\t\t5", 11},
+			{"min\n\t\t-30\n\t\t11\n\t\t5", -30},
+			{"max\n\t\t20", 20},
+			{"min\n\t\t20", 20},
+
+			// Tests for min and max as functions
+			{"4 + max ( 10 , 20 )", 24},
+			{"4 + min ( 10 , 20 )", 14},
+			{"4 + max ( 10 , -20 )", 14},
+			{"4 + min ( 10 , -20 )", -16},
+			{"max ( 10 , 20 )", 20},
+			{"min ( 10 , 20 )", 10},
+			{"max ( 10 , -20 )", 10},
+			{"min ( 10 , -20 )", -20},
+
+			// Tests for inline and and or
+			{"2 and 11", 2},
+			{"11 and 2 and 5", 11},
+			{"14 and 0 and 5", 0},
+			{"0 or 11", 11},
+			{"0 or 0", 0},
+			{"8 or 2 or 5", 8},
+			{"9 or 0 or 5", 9},
+			{"0 or 0 or 0", 0},
+			{"0 or 0 or -7", -7},
+
+			// Some tests with not.
+			{"not someData", 0},
+			{"not missingData", 1},
 
 			// Black magic below; parser might need to handle this, but nobody should ever write comparisons like this.
 			{"1 > 2 == 0", 1},
 			{"11 == 11 == 1", 1},
-
 		}));
 		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndAnswer)), &storeWithData};
-		THEN( "The expression \'" + std::get<0>(expressionAndAnswer) + "\' is valid and evaluates to the correct number" ) {
+		std::string expressionString = std::get<0>(expressionAndAnswer);
+		auto answer = std::get<1>(expressionAndAnswer);
+		bool boolAnswer = answer;
+		THEN( "The expression \'" + expressionString + "\' is valid and evaluates to the correct number" ) {
 			REQUIRE_FALSE( numberSet.IsEmpty() );
 			REQUIRE( numberSet.IsValid() );
-			auto answer = std::get<1>(expressionAndAnswer);
-			bool boolAnswer = answer;
 			REQUIRE( numberSet.Evaluate() == answer );
 			REQUIRE( numberSet.Test() == boolAnswer );
+		}
+		THEN( "Tree loading and saving \'" + expressionString + "\' results in identical and working expressions" )
+		{
+			DataWriter dw1;
+			dw1.WriteToken("toplevel");
+			dw1.Write();
+			dw1.BeginChild();
+			numberSet.Save(dw1);
+			dw1.EndChild();
+
+			ConditionSet numberSetCopy = ConditionSet{AsDataNode(dw1.SaveToString()), &storeWithData};
+			REQUIRE_FALSE( numberSetCopy.IsEmpty() );
+			REQUIRE( numberSetCopy.IsValid() );
+			REQUIRE( numberSetCopy.Evaluate() == answer );
+			REQUIRE( numberSetCopy.Test() == boolAnswer );
+
+			DataWriter dwCopy;
+			dwCopy.WriteToken("toplevel");
+			dwCopy.Write();
+			dwCopy.BeginChild();
+			numberSetCopy.Save(dwCopy);
+			dwCopy.EndChild();
+			REQUIRE( dw1.SaveToString() == dwCopy.SaveToString() );
+
+			ConditionSet numberSetCopy2 = ConditionSet{AsDataNode(dwCopy.SaveToString()), &storeWithData};
+			REQUIRE_FALSE( numberSetCopy2.IsEmpty() );
+			REQUIRE( numberSetCopy2.IsValid() );
+			REQUIRE( numberSetCopy2.Evaluate() == answer );
+			REQUIRE( numberSetCopy2.Test() == boolAnswer );
+		}
+		THEN( "Inline loading and saving \'" + expressionString + "\' results in identical and working expressions" )
+		{
+			DataWriter dw1;
+			numberSet.SaveInline(dw1);
+			dw1.Write();
+
+			ConditionSet numberSetCopy(&storeWithData);
+			int numberSetCopyToken = 0;
+			numberSetCopy.ParseNode(AsDataNode(dw1.SaveToString()), numberSetCopyToken);
+			REQUIRE_FALSE( numberSetCopy.IsEmpty() );
+			REQUIRE( numberSetCopy.IsValid() );
+			REQUIRE( numberSetCopy.Evaluate() == answer );
+			REQUIRE( numberSetCopy.Test() == boolAnswer );
+
+			DataWriter dwCopy;
+			numberSetCopy.SaveInline(dwCopy);
+			dwCopy.Write();
+			REQUIRE( dw1.SaveToString() == dwCopy.SaveToString() );
+
+			ConditionSet numberSetCopy2(&storeWithData);
+			int numberSetCopyToken2 = 0;
+			numberSetCopy2.ParseNode(AsDataNode(dwCopy.SaveToString()), numberSetCopyToken2);
+			REQUIRE_FALSE( numberSetCopy2.IsEmpty() );
+			REQUIRE( numberSetCopy2.IsValid() );
+			REQUIRE( numberSetCopy2.Evaluate() == answer );
+			REQUIRE( numberSetCopy2.Test() == boolAnswer );
 		}
 	}
 	GIVEN( "various incorrect expression(s) as conditionSet" ) {
 		OutputSink warnings(std::cerr);
 		auto expressionAndMessage = GENERATE(table<std::string, std::string>({
-			{"4 +", "Error: expected terminal after infix operator \"+\":\n"},
-			{"4 + 6 +", "Error: expected terminal after infix operator \"+\":\n"},
-			{"4 + 6 -", "Error: expected terminal after infix operator \"-\":\n"},
-			{"4 - 6 -", "Error: expected terminal after infix operator \"-\":\n"},
-			{"4 77", "Error: expected infix operator instead of \"77\":\n"},
-			{"%%percentFail", "Error: expected terminal or open-bracket:\n"},
-			{") + 4", "Error: expected terminal or open-bracket:\n"},
-			{") 4", "Error: expected terminal or open-bracket:\n"},
-			{"( 4 + 6", "Error: missing closing bracket:\n"},
-			{"( 4 + 6 )\n\t\t5 + 5", "Error: unexpected child-nodes under toplevel:\n"},
-			{"never + 5", "Error: tokens found after never keyword:\n"},
-			{"has someData + 5", "Error: has keyword requires a single condition:\n"},
-			{"or", "Error: child-nodes expected, found none:\n"}
+			{"4 +", "Expected terminal after infix operator \"+\":\n"},
+			{"4 + 6 +", "Expected terminal after infix operator \"+\":\n"},
+			{"4 + 6 -", "Expected terminal after infix operator \"-\":\n"},
+			{"4 - 6 -", "Expected terminal after infix operator \"-\":\n"},
+			{"4 77", "Expected infix operator instead of \"77\":\n"},
+			{"%%percentFail", "Expected terminal or open-bracket:\n"},
+			{") + 4", "Expected terminal or open-bracket:\n"},
+			{") 4", "Expected terminal or open-bracket:\n"},
+			{"( 4 + 6", "Missing closing bracket:\n"},
+			{"( 4 + 6 )\n\t\t5 + 5", "Unexpected child-nodes under toplevel:\n"},
+			{"never + 5", "Tokens found after never keyword:\n"},
+			{"has someData + 5", "Has keyword requires a single condition:\n"},
+			{"or", "Child-nodes expected, found none:\n"}
 		}));
 		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndMessage)), &storeWithData};
 		THEN( "Expression \'" + std::get<0>(expressionAndMessage) + "\' is invalid and triggers error-message" ) {
 			REQUIRE_FALSE( numberSet.IsValid() );
-			REQUIRE( warnings.Flush().substr(0, std::get<1>(expressionAndMessage).size()) == std::get<1>(expressionAndMessage) );
+			std::string formatted = IgnoreLogHeaders(warnings.Flush());
+			REQUIRE( formatted.substr(0, std::get<1>(expressionAndMessage).size()) == std::get<1>(expressionAndMessage) );
 			REQUIRE( numberSet.IsEmpty() );
 		}
 	}

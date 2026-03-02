@@ -13,17 +13,17 @@
 
 
 mission "Avgi: Lost in Twilight"
-	landing
 	invisible
-	to complete
-		never
-	on enter
-		system
-			attributes "twilight"
+	entering
+	source
+		attributes "twilight"
+	destination "Earth"
+	on offer
 		log "Became trapped in a strange region after entering a system my jump drive could not return from."
-		fail
 		set "avgi: lost in twilight"
-		dialog phrase "lost in twilight"
+		conversation
+			`As soon as you jump into the system, you notice something is wrong. The characteristic plasma of your jump drive fades unnaturally quickly, and as you check your ship's systems, you notice its temperature is somehow much lower than normal. Your computer indicates that the system you came from is out of range, and that you cannot jump back to it. It appears you are stuck in this region for now. If you didn't bring a ramscoop, you may wish to reload a previous save and install one before returning.`
+				decline
 
 phrase "lost in twilight"
 	word

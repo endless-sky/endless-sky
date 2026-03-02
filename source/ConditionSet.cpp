@@ -51,32 +51,44 @@ namespace
 			{ConditionSet::ExpressionOp::MUL, [](int64_t a, int64_t b) { return a * b; }},
 			{ConditionSet::ExpressionOp::ADD, [](int64_t a, int64_t b) { return a + b; }},
 			{ConditionSet::ExpressionOp::SUB, [](int64_t a, int64_t b) { return a - b; }},
-			{ConditionSet::ExpressionOp::DIV, [](int64_t a, int64_t b) { return b ? a / b : numeric_limits<int64_t>::max(); }}
+			{ConditionSet::ExpressionOp::DIV, [](int64_t a, int64_t b) { return b ? a / b : numeric_limits<int64_t>::max(); }},
+			{ConditionSet::ExpressionOp::MAX, [](int64_t a, int64_t b) { return max(a, b); }},
+			{ConditionSet::ExpressionOp::MIN, [](int64_t a, int64_t b) { return min(a, b); }},
 		};
 
 		auto it = opMap.find(op);
 		return (it != opMap.end() ? it->second : nullptr);
 	}
 
-	/// Map string tokens to precedence and internal operators.
-	const auto CS_TOKEN_CONVERSION = map<const string, ConditionSet::ExpressionOp>{
+	// Expressions that define how operators should be parsed and written
+	constexpr uint64_t ONE = 1;
+	constexpr uint64_t SINGLE_PARENT = ONE << 0; ///< Can be a single keyword in a node, with child-nodes.
+	constexpr uint64_t INFIX_OPERATOR = ONE << 1; ///< Operator parsed and written as infix inbetween terminals.
+	constexpr uint64_t FUNCTION_OPERATOR = ONE << 2; ///< Operator parsed and written as a function.
+	constexpr uint64_t TERMINAL = ONE << 3; ///< Operator indicating a terminal node (number or condition variable).
+
+	/// Map string tokens internal operators.
+	const auto CS_TOKEN_CONVERSION = map<const string, pair<ConditionSet::ExpressionOp, uint64_t>>{
 		// Infix arithmetic multiply, divide and modulo have a higher precedence than add and subtract.
-		{ "*", ConditionSet::ExpressionOp::MUL },
-		{ "/", ConditionSet::ExpressionOp::DIV },
-		{ "%", ConditionSet::ExpressionOp::MOD },
+		{ "*", { ConditionSet::ExpressionOp::MUL, INFIX_OPERATOR }},
+		{ "/", { ConditionSet::ExpressionOp::DIV, INFIX_OPERATOR }},
+		{ "%", { ConditionSet::ExpressionOp::MOD, INFIX_OPERATOR }},
 		// Infix arithmetic operators add and subtract have the same precedence.
-		{ "+", ConditionSet::ExpressionOp::ADD },
-		{ "-", ConditionSet::ExpressionOp::SUB },
+		{ "+", { ConditionSet::ExpressionOp::ADD, INFIX_OPERATOR }},
+		{ "-", { ConditionSet::ExpressionOp::SUB, INFIX_OPERATOR }},
 		// Infix boolean equality operators have a lower precedence than their arithmetic counterparts.
-		{ "==", ConditionSet::ExpressionOp::EQ },
-		{ "!=", ConditionSet::ExpressionOp::NE },
-		{ ">", ConditionSet::ExpressionOp::GT },
-		{ "<", ConditionSet::ExpressionOp::LT },
-		{ ">=", ConditionSet::ExpressionOp::GE },
-		{ "<=", ConditionSet::ExpressionOp::LE },
+		{ "==", { ConditionSet::ExpressionOp::EQ, INFIX_OPERATOR }},
+		{ "!=", { ConditionSet::ExpressionOp::NE, INFIX_OPERATOR }},
+		{ ">", { ConditionSet::ExpressionOp::GT, INFIX_OPERATOR }},
+		{ "<", { ConditionSet::ExpressionOp::LT, INFIX_OPERATOR }},
+		{ ">=", { ConditionSet::ExpressionOp::GE, INFIX_OPERATOR }},
+		{ "<=", { ConditionSet::ExpressionOp::LE, INFIX_OPERATOR }},
 		// Parent-type operators have a low precedence in Endless-Sky, because they are on outer parent/child sections.
-		{ "and", ConditionSet::ExpressionOp::AND },
-		{ "or", ConditionSet::ExpressionOp::OR },
+		// and, or, max and min can exist as infix-operators and as single parents.
+		{ "and", { ConditionSet::ExpressionOp::AND, INFIX_OPERATOR | SINGLE_PARENT }},
+		{ "or", { ConditionSet::ExpressionOp::OR, INFIX_OPERATOR | SINGLE_PARENT }},
+		{ "max", { ConditionSet::ExpressionOp::MAX, FUNCTION_OPERATOR | SINGLE_PARENT }},
+		{ "min", { ConditionSet::ExpressionOp::MIN, FUNCTION_OPERATOR | SINGLE_PARENT}},
 	};
 
 
@@ -105,20 +117,29 @@ namespace
 			case ConditionSet::ExpressionOp::LE:
 				return 3;
 			default:
-				// Precedence for AND, OR
+				// Precedence for AND, OR, MAX and MIN and functions
 				return 0;
 		}
 	}
 
 
-	ConditionSet::ExpressionOp ParseOperator(const string &stringToken)
+	pair<ConditionSet::ExpressionOp, uint64_t> ConvertToken(const string &stringToken)
 	{
+		// First try to find the matching token.
 		auto it = CS_TOKEN_CONVERSION.find(stringToken);
 		if(it != CS_TOKEN_CONVERSION.end())
 			return it->second;
 
+		// Try number conversion, for if this is a number.
+		if(DataNode::IsNumber(stringToken))
+			return make_pair(ConditionSet::ExpressionOp::LIT, TERMINAL);
+
+		// Try variable name conversion, for if this is a condition variable.
+		if(DataNode::IsConditionName(stringToken))
+			return make_pair(ConditionSet::ExpressionOp::VAR, TERMINAL);
+
 		// If nothing matches, then we get the default INVALID value.
-		return ConditionSet::ExpressionOp::INVALID;
+		return make_pair(ConditionSet::ExpressionOp::INVALID, 0);
 	}
 }
 
@@ -204,12 +225,11 @@ void ConditionSet::Load(const DataNode &node, const ConditionsStore *conditions)
 
 	// The top-node is always an 'and' node, without the keyword.
 	expressionOperator = ExpressionOp::AND;
-	ParseBooleanChildren(node);
+	ParseChildren(node);
 }
 
 
 
-// Save a set of conditions.
 void ConditionSet::Save(DataWriter &out) const
 {
 	// Default should be AND, so if it is, then just write the subsets.
@@ -217,99 +237,110 @@ void ConditionSet::Save(DataWriter &out) const
 	if(expressionOperator == ExpressionOp::AND)
 		for(const auto &child : children)
 		{
-			child.SaveSubset(out);
+			child.SaveAsTree(out);
 			out.Write();
 		}
 	else
-		SaveSubset(out);
+		SaveAsTree(out);
 }
 
 
 
-void ConditionSet::SaveChild(int childNr, DataWriter &out) const
+void ConditionSet::SaveAsTree(DataWriter &out) const
 {
-	const ConditionSet &child = children[childNr];
-	bool needBrackets = child.children.size() > 0;
+	auto it = find_if(CS_TOKEN_CONVERSION.begin(), CS_TOKEN_CONVERSION.end(),
+		[this](const std::pair<const string, pair<ConditionSet::ExpressionOp, uint64_t>> &e) {
+			return e.second.first == expressionOperator;
+		});
 
-	if(needBrackets)
-		out.WriteToken("(");
-	children[childNr].SaveSubset(out);
-	if(needBrackets)
-		out.WriteToken(")");
+	if(it != CS_TOKEN_CONVERSION.end() && (it->second.second & SINGLE_PARENT))
+	{
+		// Single parents get written as keyword, with the children below them.
+		string opTxt = it->first;
+
+		out.Write(opTxt);
+		out.BeginChild();
+		for(const auto &child : children)
+		{
+			child.SaveAsTree(out);
+			out.Write();
+		}
+		out.EndChild();
+	}
+	else
+	{
+		// Anything else gets written inline.
+		SaveInline(out);
+	}
 }
 
 
 
 // Save a subset of conditions, by writing out tokens (without a newline).
-void ConditionSet::SaveSubset(DataWriter &out) const
+void ConditionSet::SaveInline(DataWriter &out) const
 {
-	string opTxt = "";
-	auto it = find_if(CS_TOKEN_CONVERSION.begin(), CS_TOKEN_CONVERSION.end(),
-		[this](const std::pair<const string, ConditionSet::ExpressionOp> &e) {
-			return e.second == expressionOperator;
-		});
-	if(it != CS_TOKEN_CONVERSION.end())
-		opTxt = it->first;
-
+	// Handle terminals and invalid.
 	switch(expressionOperator)
 	{
 	case ExpressionOp::INVALID:
 		out.WriteToken("never");
-		break;
+		return;
 	case ExpressionOp::VAR:
 		out.WriteToken(conditionName);
-		break;
+		return;
 	case ExpressionOp::LIT:
 		out.WriteToken(literal);
+		return;
+	default:
 		break;
-	case ExpressionOp::ADD:
-	case ExpressionOp::SUB:
-	case ExpressionOp::MUL:
-	case ExpressionOp::DIV:
-	case ExpressionOp::MOD:
-	case ExpressionOp::EQ:
-	case ExpressionOp::NE:
-	case ExpressionOp::LE:
-	case ExpressionOp::GE:
-	case ExpressionOp::LT:
-	case ExpressionOp::GT:
-		if(children.empty())
-		{
-			out.WriteToken("never");
-			break;
-		}
-		SaveChild(0, out);
+	}
+
+	// Lookup the operator to get the operator text and parsing/writing style
+	auto it = find_if(CS_TOKEN_CONVERSION.begin(), CS_TOKEN_CONVERSION.end(),
+		[this](const std::pair<const string, pair<ConditionSet::ExpressionOp, uint64_t>> &e) {
+			return e.second.first == expressionOperator;
+		});
+	if(it == CS_TOKEN_CONVERSION.end())
+	{
+		out.WriteToken("never");
+		return;
+	}
+	string opTxt = it->first;
+
+	// Handle infix operators.
+	if((it->second.second & INFIX_OPERATOR) && !children.empty())
+	{
+		// Just write brackets so that we don't need to calculate precedence.
+		// Children write their own brackets if they are also infix operators.
+		if(children.size() > 1)
+			out.WriteToken("(");
+		children[0].SaveInline(out);
 		for(unsigned int i = 1; i < children.size(); ++i)
 		{
 			out.WriteToken(opTxt);
-			SaveChild(i, out);
+			children[i].SaveInline(out);
 		}
-		break;
-	case ExpressionOp::AND:
-	case ExpressionOp::OR:
-		out.Write(opTxt);
-		out.BeginChild();
-		for(const auto &child : children)
-		{
-			child.SaveSubset(out);
-			out.Write();
-		}
-		out.EndChild();
-		break;
-	case ExpressionOp::NOT:
-	case ExpressionOp::HAS:
-		if(children.empty())
-		{
-			out.WriteToken("never");
-			break;
-		}
+		if(children.size() > 1)
+			out.WriteToken(")");
+		return;
+	}
+
+	// Handle function operators.
+	if((it->second.second & FUNCTION_OPERATOR) && !children.empty())
+	{
 		out.WriteToken(opTxt);
-		SaveChild(0, out);
-		break;
-	default:
-		out.WriteToken("never");
-		break;
-	};
+		out.WriteToken("(");
+		children[0].SaveInline(out);
+		for(unsigned int i = 1; i < children.size(); ++i)
+		{
+			out.WriteToken(",");
+			children[i].SaveInline(out);
+		}
+		out.WriteToken(")");
+		return;
+	}
+
+	out.WriteToken("never");
 }
 
 
@@ -396,6 +427,7 @@ int64_t ConditionSet::Evaluate() const
 	}
 
 	// If we have an accumulator function and children, then let's use the accumulator on the children.
+	// MAX and MIN are also handled by the accumulator.
 	BinFun accumulatorOp = Op(expressionOperator);
 	if(accumulatorOp != nullptr && !children.empty())
 		return accumulate(next(children.begin()), children.end(), children[0].Evaluate(),
@@ -409,7 +441,6 @@ int64_t ConditionSet::Evaluate() const
 
 
 
-// Get the names of the conditions that are relevant for this ConditionSet.
 set<string> ConditionSet::RelevantConditions() const
 {
 	set<string> result;
@@ -425,10 +456,10 @@ set<string> ConditionSet::RelevantConditions() const
 
 
 
-bool ConditionSet::ParseNode(const DataNode &node)
+bool ConditionSet::ParseFromStart(const DataNode &node)
 {
 	if(!conditions)
-		throw runtime_error("Unable to ParseNode(full) for a ConditionSet without a pointer to a ConditionsStore!");
+		throw runtime_error("Unable to ParseFromStart(full) for a ConditionSet without a pointer to a ConditionsStore!");
 
 	const string &key = node.Token(0);
 	// Special handling for 'and' and 'or' nodes.
@@ -437,24 +468,34 @@ bool ConditionSet::ParseNode(const DataNode &node)
 		if(key == "and")
 		{
 			expressionOperator = ExpressionOp::AND;
-			return ParseBooleanChildren(node);
+			return ParseChildren(node);
 		}
 		if(key == "or")
 		{
 			expressionOperator = ExpressionOp::OR;
-			return ParseBooleanChildren(node);
+			return ParseChildren(node);
+		}
+		if(node.Token(0) == "min")
+		{
+			expressionOperator = ExpressionOp::MIN;
+			return ParseChildren(node);
+		}
+		if(node.Token(0) == "max")
+		{
+			expressionOperator = ExpressionOp::MAX;
+			return ParseChildren(node);
 		}
 	}
 
 	// Nodes beyond this point should not have children.
 	if(node.HasChildren())
-		return FailParse(node, "unexpected child-nodes under toplevel");
+		return FailParse(node, "Unexpected child-nodes under toplevel");
 
 	// Special handling for 'never', 'has' and 'not' nodes.
 	if(key == "never")
 	{
 		if(node.Size() > 1)
-			return FailParse(node, "tokens found after never keyword");
+			return FailParse(node, "Tokens found after never keyword");
 
 		expressionOperator = ExpressionOp::LIT;
 		literal = 0;
@@ -463,7 +504,7 @@ bool ConditionSet::ParseNode(const DataNode &node)
 	if(key == "has")
 	{
 		if(node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)))
-			return FailParse(node, "has keyword requires a single condition");
+			return FailParse(node, "Has keyword requires a single condition");
 
 		// Convert has keyword directly to the variable.
 		expressionOperator = ExpressionOp::VAR;
@@ -473,7 +514,7 @@ bool ConditionSet::ParseNode(const DataNode &node)
 	if(key == "not")
 	{
 		if(node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)))
-			return FailParse(node, "not keyword requires a single condition");
+			return FailParse(node, "Not keyword requires a single condition");
 
 		// Create `conditionName == 0` expression.
 		expressionOperator = ExpressionOp::EQ;
@@ -500,23 +541,14 @@ bool ConditionSet::ParseNode(const DataNode &node, int &tokenNr)
 
 	// Nodes beyond this point should not have children.
 	if(node.HasChildren())
-		return FailParse(node, "unexpected child-nodes under arithmetic expression");
+		return FailParse(node, "Unexpected child-nodes under arithmetic expression");
 
-	// Parse initial expression.
-	if(!ParseMini(node, tokenNr))
-		return FailParse();
-
-	// Check if we are done with just one expression.
-	if(tokenNr >= node.Size())
-		return true;
-
-	// If there are more tokens, then we need to have an infix operator here.
-	if(!ParseFromInfix(node, tokenNr, ExpressionOp::AND))
+	if(!ParseGreedy(node, tokenNr))
 		return FailParse();
 
 	// Parsing from infix should have consumed and parsed all tokens.
 	if(tokenNr < node.Size())
-		return FailParse(node, "tokens found after parsing full expression");
+		return FailParse(node, "Tokens found after parsing full expression");
 
 	return true;
 }
@@ -555,17 +587,11 @@ bool ConditionSet::Optimize(const DataNode &node)
 		case ExpressionOp::MUL:
 		case ExpressionOp::DIV:
 		case ExpressionOp::MOD:
+		case ExpressionOp::MAX:
+		case ExpressionOp::MIN:
 			// TODO: Optimize arithmetic operators.
 			break;
 
-		case ExpressionOp::HAS:
-			// Optimize away HAS, we can directly use the expression below it.
-			if(children.size() == 1)
-				*this = children[0];
-
-			break;
-
-		case ExpressionOp::NOT:
 		case ExpressionOp::LIT:
 		case ExpressionOp::VAR:
 		case ExpressionOp::INVALID:
@@ -576,19 +602,19 @@ bool ConditionSet::Optimize(const DataNode &node)
 
 
 
-bool ConditionSet::ParseBooleanChildren(const DataNode &node)
+bool ConditionSet::ParseChildren(const DataNode &node)
 {
 	if(!conditions)
 		throw runtime_error("Unable to ParseBooleans in a ConditionSet without a pointer to a ConditionsStore!");
 
 	if(!node.HasChildren())
-		return FailParse(node, "child-nodes expected, found none");
+		return FailParse(node, "Child-nodes expected, found none");
 
 	// Load all child nodes.
 	for(const DataNode &child : node)
 	{
 		children.emplace_back(conditions);
-		children.back().ParseNode(child);
+		children.back().ParseFromStart(child);
 
 		if(children.back().expressionOperator == ExpressionOp::INVALID)
 			return FailParse();
@@ -605,7 +631,7 @@ bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 		throw runtime_error("Unable to ParseMini in a ConditionSet without a pointer to a ConditionsStore!");
 
 	if(tokenNr >= node.Size())
-		return FailParse(node, "expected terminal or sub-expression, found none");
+		return FailParse(node, "Expected terminal or sub-expression, found none");
 
 	// Any (sub)expression should start with one of the following:
 	// - an opening bracket.
@@ -613,64 +639,120 @@ bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 	// - a condition name terminal.
 	// - has keyword (but this is already handled at a higher level)
 	// - not keyword (but this is already handled at a higher level)
+	// - start of a function
 
-	// Handle any first open bracket, if we had any.
-	bool hadOpenBracket = false;
+	// If we have an open bracket, then we greedily parse everything until the closing bracket.
 	if(node.Token(tokenNr) == "(")
 	{
-		hadOpenBracket = true;
 		++tokenNr;
-		if(tokenNr >= node.Size())
-			return FailParse(node, "missing sub-expression and closing bracket");
+		if(!ParseGreedy(node, tokenNr))
+			return FailParse();
+		if(tokenNr >= node.Size() || node.Token(tokenNr) != ")")
+			return FailParse(node, "Missing closing bracket");
+
+		// Make sure that this bracketed section gets used as a single terminal.
+		if(!PushDownFull(node))
+			return FailParse();
+
+		// When we parsed upto the closing bracket, then we are done.
+		++tokenNr;
+		return true;
 	}
 
-	if(node.IsNumber(tokenNr))
+	pair<ExpressionOp, uint64_t> opAndType = ConvertToken(node.Token(tokenNr));
+	expressionOperator = opAndType.first;
+
+	// If we have a function operator, then parse the function.
+	if(opAndType.second & FUNCTION_OPERATOR)
 	{
-		expressionOperator = ExpressionOp::LIT;
+		++tokenNr;
+		return ParseFunctionBody(node, tokenNr);
+	}
+
+	// Try to parse terminals (no need for checking if they are terminals.
+	switch(expressionOperator)
+	{
+	case ExpressionOp::LIT:
 		literal = node.Value(tokenNr);
 		++tokenNr;
-	}
-	else if(DataNode::IsConditionName(node.Token(tokenNr)))
-	{
-		expressionOperator = ExpressionOp::VAR;
+		break;
+	case ExpressionOp::VAR:
 		conditionName = node.Token(tokenNr);
 		++tokenNr;
+		break;
+	default:
+		return FailParse(node, "Expected terminal or open-bracket");
 	}
-	else if(node.Token(tokenNr) == "(")
-	{
-		// We must already have handled an open-bracket to get here; this one goes into a sub-expression.
-		children.emplace_back(conditions);
-		children.back().ParseMini(node, tokenNr);
-	}
-	else
-		return FailParse(node, "expected terminal or open-bracket");
 
-	// Keep parsing until we get to the closing bracket, if we had an open bracket.
-	while(hadOpenBracket)
-	{
-		if(tokenNr >= node.Size())
-			return FailParse(node, "missing closing bracket");
-		else if(node.Token(tokenNr) == ")")
-		{
-			// Remove the closing bracket.
-			++tokenNr;
-			hadOpenBracket = false;
-			// Make sure that this bracketed section gets used as a single terminal.
-			if(!PushDownFull(node))
-				return FailParse();
-		}
-		else
-			// If there are more tokens, then we need to have an infix operator here.
-			// Use the precedence of the AND operator, since we want to parse to the closing bracket.
-			if(!ParseFromInfix(node, tokenNr, ExpressionOp::AND))
-				return FailParse();
-	}
 	return true;
 }
 
 
 
-bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, ExpressionOp parentOp)
+bool ConditionSet::ParseGreedy(const DataNode &node, int &tokenNr)
+{
+	// Any greedy parsing starts with parsing the minimal that we can parse.
+	if(!ParseMini(node, tokenNr))
+		return FailParse();
+
+	// If we are at the end here, then we are done
+	if(tokenNr >= node.Size())
+		return true;
+
+	// At this point we either have:
+	// - a closing bracket
+	// - a comma (when parsing a function body)
+	// - an infix operator
+	//
+	// Handle the closing brackets and comma's.
+	if(node.Token(tokenNr) == ")" || node.Token(tokenNr) == ",")
+		return true;
+
+	// If there are more tokens, then we need to have an infix operator here.
+	// Give a precedence lower than anything existing, since we are not infix-parsing yet.
+	if(!ParseFromInfix(node, tokenNr, -1))
+		return FailParse();
+
+	return true;
+}
+
+
+
+bool ConditionSet::ParseFunctionBody(const DataNode &node, int &tokenNr)
+{
+	if(!conditions)
+		throw runtime_error("Unable to ParseFunction in a ConditionSet without a pointer to a ConditionsStore!");
+
+	if(tokenNr >= node.Size())
+		return FailParse(node, "Expected function body, found none");
+
+	// Any function body should start with an opening bracket
+	if(node.Token(tokenNr) != "(")
+		return FailParse(node, "Expected function body, but missing opening bracket");
+
+	++tokenNr;
+	children.emplace_back(conditions);
+	if(!children.back().ParseGreedy(node, tokenNr))
+		return FailParse();
+
+	while(node.Token(tokenNr) != ")")
+	{
+		if(node.Token(tokenNr) != ",")
+			return FailParse(node, "Expected function terminator, or separator");
+
+		++tokenNr;
+		children.emplace_back(conditions);
+		if(!children.back().ParseGreedy(node, tokenNr))
+			return FailParse();
+	}
+	++tokenNr;
+
+	return true;
+}
+
+
+
+bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, int parentPrecedence)
 {
 	if(!conditions)
 		throw runtime_error("Unable to ParseFromInfix in a ConditionSet without a pointer to a ConditionsStore!");
@@ -681,74 +763,60 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, Expression
 		// At this point, we can expect one of the following:
 		// - an infix-operator
 		// - a closing bracket (hopefully matching an earlier open bracket)
+		// - an comma (hopefully being part of a function body)
 		// - end of the tokens.
 
 		// Reaching the end is fine, since we should have parsed a full terminal before this one.
 		// Reaching a closing bracket also means we are done (the parent should handle it).
-		if(tokenNr >= node.Size() || node.Token(tokenNr) == ")")
+		if(tokenNr >= node.Size() || node.Token(tokenNr) == ")" || node.Token(tokenNr) == ",")
 			return true;
 
 		// Consume token and process it.
-		ExpressionOp infixOp = ParseOperator(node.Token(tokenNr));
-		switch(infixOp)
+		pair<ExpressionOp, uint64_t> infixOp = ConvertToken(node.Token(tokenNr));
+		if(!(infixOp.second & INFIX_OPERATOR))
+			return FailParse(node, "Expected infix operator instead of \"" + node.Token(tokenNr) + "\"");
+
+		if(tokenNr + 1 >= node.Size())
+			return FailParse(node, "Expected terminal after infix operator \"" + node.Token(tokenNr) + "\"");
+
+		// If the precedence of the new operator is less or equal than the parents operator, then let the parent handle it.
+		if(Precedence(infixOp.first) <= parentPrecedence)
+			return true;
+
+		// If the precedence of the new operator is higher than the current operator, then parse the next
+		// terminal into a new sub-expression.
+		if((children.size() > 1) && (Precedence(expressionOperator) < Precedence(infixOp.first)))
 		{
-			case ExpressionOp::ADD:
-			case ExpressionOp::SUB:
-			case ExpressionOp::MUL:
-			case ExpressionOp::DIV:
-			case ExpressionOp::MOD:
-			case ExpressionOp::EQ:
-			case ExpressionOp::NE:
-			case ExpressionOp::LE:
-			case ExpressionOp::GE:
-			case ExpressionOp::LT:
-			case ExpressionOp::GT:
-			{
-				if(tokenNr + 1 >= node.Size())
-					return FailParse(node, "expected terminal after infix operator \"" + node.Token(tokenNr) + "\"");
-
-				// If the precedence of the new operator is less or equal than the parents operator, then let the parent handle it.
-				if(Precedence(infixOp) <= Precedence(parentOp))
-					return true;
-
-				// If the precedence of the new operator is higher than the current operator, then parse the next
-				// terminal into a new sub-expression.
-				if((children.size() > 1) && (Precedence(expressionOperator) < Precedence(infixOp)))
-				{
-					if(!PushDownLast(node))
-						return FailParse();
-					if(!children.back().ParseFromInfix(node, tokenNr, expressionOperator))
-						return FailParse();
-					// The parser for the sub-expression handled everything with higher precedence. Start the loop over
-					// to check what this parser needs to do next.
-					continue;
-				}
-
-				// If the expression currently contains a terminal, then push it down.
-				// Also push down the current expression if it has a higher or equal precedence to the new operator.
-				if((children.size() == 0) || (children.size() > 1 && infixOp != expressionOperator &&
-						Precedence(expressionOperator) >= Precedence(infixOp)))
-					if(!PushDownFull(node))
-						return FailParse();
-
-				// If this expression contains only a single sub-expression, then we can apply the operator directly.
-				if(children.size() == 1)
-					expressionOperator = infixOp;
-
-				// If we get the same operator as that we had, then let's just process it and continue the loop.
-				if(infixOp == expressionOperator)
-				{
-					++tokenNr;
-					if(!((children.emplace_back(conditions)).ParseMini(node, tokenNr)))
-						return FailParse();
-
-					continue;
-				}
-				return FailParse(node, "precedence confusion on infix operator");
-			}
-			default:
-				return FailParse(node, "expected infix operator instead of \"" + node.Token(tokenNr) + "\"");
+			if(!PushDownLast(node))
+				return FailParse();
+			if(!children.back().ParseFromInfix(node, tokenNr, Precedence(expressionOperator)))
+				return FailParse();
+			// The parser for the sub-expression handled everything with higher precedence. Start the loop over
+			// to check what this parser needs to do next.
+			continue;
 		}
+
+		// If the expression currently contains a terminal, then push it down.
+		// Also push down the current expression if it has a higher or equal precedence to the new operator.
+		if((children.size() == 0) || (children.size() > 1 && infixOp.first != expressionOperator &&
+				Precedence(expressionOperator) >= Precedence(infixOp.first)))
+			if(!PushDownFull(node))
+				return FailParse();
+
+		// If this expression contains only a single sub-expression, then we can apply the operator directly.
+		if(children.size() == 1)
+			expressionOperator = infixOp.first;
+
+		// If we get the same operator as that we had, then let's just process it and continue the loop.
+		if(infixOp.first == expressionOperator)
+		{
+			++tokenNr;
+			if(!((children.emplace_back(conditions)).ParseMini(node, tokenNr)))
+				return FailParse();
+
+			continue;
+		}
+		return FailParse(node, "Precedence confusion on infix operator");
 	}
 }
 
@@ -770,7 +838,7 @@ bool ConditionSet::PushDownLast(const DataNode &node)
 {
 	// Can only perform push-down if there is at least one expression to push down.
 	if(children.empty())
-		return FailParse(node, "cannot create sub-expression from void");
+		return FailParse(node, "Cannot create sub-expression from void");
 
 	// Store and remove the child that we want to push down.
 	ConditionSet ce = std::move(children.back());
@@ -797,6 +865,6 @@ bool ConditionSet::FailParse()
 
 bool ConditionSet::FailParse(const DataNode &node, const string &failText)
 {
-	node.PrintTrace("Error: " + failText + ":");
+	node.PrintTrace(failText + ":");
 	return FailParse();
 }

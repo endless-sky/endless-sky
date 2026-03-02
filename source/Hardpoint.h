@@ -26,6 +26,7 @@ class Outfit;
 class Projectile;
 class Ship;
 class Visual;
+class Weapon;
 
 
 
@@ -49,7 +50,7 @@ public:
 		// An omnidirectional turret can rotate infinitely.
 		bool isOmnidirectional;
 		// Whether the hardpoint should be drawn over the ship, under it, or not at all.
-		Side side;
+		Side side = Side::OVER;
 		// Range over which the turret can turn, from leftmost position to rightmost position.
 		// (directional turret only)
 		Angle minArc;
@@ -66,7 +67,9 @@ public:
 		bool isTurret, const Outfit *outfit = nullptr);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
+	// The Outfit is guaranteed to have a Weapon after GameData::FinishLoading.
 	const Outfit *GetOutfit() const;
+	const Weapon *GetWeapon() const;
 	// Get the location, relative to the center of the ship, from which
 	// projectiles of this weapon should originate. This point must be
 	// rotated to take the ship's current facing direction into account.
@@ -138,11 +141,11 @@ private:
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
 
 	// The arc depends on both the base hardpoint and the installed outfit.
-	void UpdateArc();
+	void UpdateArc(bool isNewlyConstructed = false);
 
 
 private:
-	// The weapon installed in this hardpoint.
+	// The Outfit installed in this hardpoint is guaranteed to have a Weapon after GameData::FinishLoading.
 	const Outfit *outfit = nullptr;
 	// Hardpoint location, in world coordinates relative to the ship's center.
 	Point point;

@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "audio/Audio.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "shader/DrawList.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
+#include "Weapon.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -72,7 +73,13 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 		// They either show bribing messages,
 		// or standard hostile messages, if disabled.
 		if(!ship->IsDisabled())
-			SetBribe(gov->GetBribeFraction());
+		{
+			// If this government has a non-zero bribe threshold, it can only be bribed
+			// if the player's reputation with them is not less than the threshold value.
+			const double bribeThreshold = gov->GetBribeThreshold();
+			if(!bribeThreshold || GameData::GetPolitics().Reputation(gov) >= bribeThreshold)
+				SetBribe(gov->GetBribeFraction());
+		}
 	}
 	else if(ship->IsDisabled())
 	{
@@ -166,7 +173,8 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 			SetMessage("You are cleared to land, " + player.Flagship()->GivenName() + ".");
 		else
 		{
-			SetBribe(planet->GetBribeFraction());
+			if(planet->CanBribe())
+				SetBribe(planet->GetBribeFraction());
 			if(bribe)
 				SetMessage("If you want to land here, it'll cost you "
 					+ Format::CreditString(bribe) + ".");
@@ -243,18 +251,21 @@ void HailPanel::Draw()
 		bool hasFighters = ship->PositionFighters();
 		auto addHardpoint = [this, &draw, &center, zoom](const Hardpoint &hardpoint) -> void
 		{
-			if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
-			{
-				Body body(
-					hardpoint.GetOutfit()->HardpointSprite(),
-					center + zoom * facing.Rotate(hardpoint.GetPoint()),
-					Point(),
-					facing + hardpoint.GetAngle(),
-					zoom);
-				if(body.InheritsParentSwizzle())
-					body.SetSwizzle(ship->GetSwizzle());
-				draw.Add(body);
-			}
+			const Weapon *weapon = hardpoint.GetWeapon();
+			if(!weapon)
+				return;
+			const Body &sprite = weapon->HardpointSprite();
+			if(!sprite.HasSprite())
+				return;
+			Body body(
+				sprite,
+				center + zoom * facing.Rotate(hardpoint.GetPoint()),
+				Point(),
+				facing + hardpoint.GetAngle(),
+				zoom);
+			if(body.InheritsParentSwizzle())
+				body.SetSwizzle(ship->GetSwizzle());
+			draw.Add(body);
 		};
 		auto addFighter = [this, &draw, &center, zoom](const Ship::Bay &bay) -> void
 		{
@@ -308,12 +319,13 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	UI::UISound sound = UI::UISound::NORMAL;
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
+	const Government *gov = ship ? ship->GetGovernment() : planet ? planet->GetGovernment() : nullptr;
 
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		if(bribeCallback && bribed)
 			bribeCallback(bribed);
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		sound = UI::UISound::SOFT;
 	}
 	else if(key == 't' && hasLanguage && planet)
@@ -326,11 +338,10 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			SetMessage("Thank you for granting us our freedom!");
 		}
 		else if(!planet->IsDefending())
-			GetUI()->Push(new Dialog([this]() { SetMessage(planet->DemandTribute(player)); },
+			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SetMessage(planet->DemandTribute(player)); },
 				"Demanding tribute may cause this planet to launch defense fleets to fight you. "
 				"After battling the fleets, you can demand tribute again for the planet to relent.\n"
-				"This act may hurt your reputation severely. Do you want to proceed?",
-				Truncate::NONE, true, false));
+				"This act may hurt your reputation severely. Do you want to proceed?", false));
 		else
 			SetMessage(planet->DemandTribute(player));
 		UI::PlaySound(UI::UISound::NORMAL);
@@ -376,6 +387,9 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if((key == 'b' || key == 'o') && hasLanguage)
 	{
+		if(!gov)
+			return true;
+
 		// Make sure it actually makes sense to bribe this ship.
 		if((ship && !shipIsEnemy) || (planet && planet->CanLand()))
 			return true;
@@ -387,7 +401,10 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			if(!ship || requestedToBribeShip)
 			{
 				player.Accounts().AddCredits(-bribe);
-				SetMessage("It's a pleasure doing business with you.");
+				if(planet)
+					SetMessage(gov->GetPlanetBribeAcceptanceHail());
+				else
+					SetMessage(gov->GetShipBribeAcceptanceHail());
 			}
 			if(ship)
 			{
@@ -401,21 +418,23 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				{
 					bribed = ship->GetGovernment();
 					bribed->Bribe();
-					Messages::Add("You bribed a " + bribed->DisplayName() + " ship "
-						+ Format::CreditString(bribe) + " to refrain from attacking you today."
-							, Messages::Importance::High);
+					Messages::Add({"You bribed a " + bribed->DisplayName() + " ship "
+						+ Format::CreditString(bribe) + " to refrain from attacking you today.",
+						GameData::MessageCategories().Get("normal")});
 				}
 			}
 			else
 			{
 				planet->Bribe();
-				Messages::Add("You bribed the authorities on " + planet->DisplayName() + " "
-					+ Format::CreditString(bribe) + " to permit you to land."
-						, Messages::Importance::High);
+				Messages::Add({"You bribed the authorities on " + planet->DisplayName() + " "
+					+ Format::CreditString(bribe) + " to permit you to land.",
+					GameData::MessageCategories().Get("normal")});
 			}
 		}
+		else if(planet)
+			SetMessage(gov->GetPlanetBribeRejectionHail());
 		else
-			SetMessage("I do not want your money.");
+			SetMessage(gov->GetShipBribeRejectionHail());
 	}
 	else
 		sound = UI::UISound::NONE;
@@ -445,6 +464,6 @@ void HailPanel::SetMessage(const string &text)
 {
 	message = text;
 	if(!message.empty())
-		Messages::AddLog("(Response to your hail) " + header + " " + message,
-			Messages::Importance::High);
+		Messages::Add({"(Response to your hail) " + header + " " + message,
+			GameData::MessageCategories().Get("log only")});
 }

@@ -258,6 +258,13 @@ void MiniMap::Draw(int step) const
 				if(mark == &system)
 					MapPanel::DrawPointer(from, missionCounter, waypointColor, false);
 			}
+			for(const System *mark : mission.TrackedSystems())
+			{
+				if(missionCounter >= MapPanel::MAX_MISSION_POINTERS_DRAWN)
+					break;
+				if(mark == &system)
+					MapPanel::DrawPointer(from, missionCounter, waypointColor, false);
+			}
 		}
 	};
 

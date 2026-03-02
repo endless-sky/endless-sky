@@ -183,6 +183,7 @@ outfit "Star Tail Storage"
 	"mass" 10
 	"outfit space" -10
 	"star tail capacity" 20
+	ammo "Star Tail Cell"
 	licenses
 		"Hicemus Conflict"
 	description "Because Star Tail Cells are highly volatile, they need a robust storage system. This radial design is able to withstand minor explosions by using a variant of a shield that can be deployed temporarily."

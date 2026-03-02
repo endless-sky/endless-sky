@@ -20,7 +20,8 @@ uniform vec2 scale;
 uniform highp vec2 start;
 uniform highp vec2 end;
 uniform float width;
-uniform int cap;
+// Explicitly using mediump here to account for buggy gles implementations.
+uniform mediump int cap;
 
 uniform vec4 startColor;
 uniform vec4 endColor;

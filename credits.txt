@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.17-alpha
+version 0.11.1-alpha
 
 The player's manual and other
 resources are available at:
@@ -164,6 +164,7 @@ contributed to Endless Sky:
   a4358
   abenkovskii
   AdamKauffman
+  AdrianBunk
   akien-mga
   AlbertNewton
   AlekSeaLion
@@ -203,15 +204,19 @@ contributed to Endless Sky:
   bojidar-bg
   brendanjones
   Brick63
+  Canned-Seagull
   captain0xff
   CasparKielwein
+  CelestialHoney
   ChamEV
   chrisandreae
   Cherrio01
+  ciphell
   comnom
   corecontingency
   Corraban2
   cresslank
+  CrispySummers
   CyberShadow
   czartrak
   Daeridanii1
@@ -311,6 +316,7 @@ contributed to Endless Sky:
   Just-Existing
   justinnhli
   justinw1320
+  kaiboyjiang
   kaol
   Karirawri
   kepler-69c
@@ -347,10 +353,12 @@ contributed to Endless Sky:
   MasterOfGrey
   Matteo Mazzitti
   mattsoulanille
+  MauriceTaniel
   maxrd2
   mbartlett21
   McloughlinGuy
   MCOfficer
+  MereDecade
   MessyMix
   michel-slm
   mike-f1
@@ -372,9 +380,11 @@ contributed to Endless Sky:
   nobodywasishere
   NomadicVolcano
   nothing-but-the-rain
+  Nova1422
   NRK4
   ntabris
   OcelotWalrus
+  oliv3r
   oo13
   opusforlife2
   Ornok

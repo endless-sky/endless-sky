@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "text/Table.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <map>
@@ -186,7 +187,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		out << "cost (" << (100 * depreciated) / fullCost << "%):";
 		attributeLabels.push_back(out.str());
 	}
-	attributeValues.push_back(Format::Credits(depreciated));
+	attributeValues.push_back(Format::AbbreviatedNumber(depreciated));
 	attributesHeight += 20;
 
 	attributeLabels.push_back(string());
@@ -365,11 +366,14 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double firingEnergy = 0.;
 	double firingHeat = 0.;
 	for(const auto &it : ship.Outfits())
-		if(it.first->IsWeapon() && it.first->Reload())
+	{
+		const Weapon *weapon = it.first->GetWeapon().get();
+		if(weapon && weapon->Reload())
 		{
-			firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
-			firingHeat += it.second * it.first->FiringHeat() / it.first->Reload();
+			firingEnergy += it.second * weapon->FiringEnergy() / weapon->Reload();
+			firingHeat += it.second * weapon->FiringHeat() / weapon->Reload();
 		}
+	}
 	tableLabels.push_back("firing:");
 	energyTable.push_back(Format::Number(-60. * firingEnergy));
 	heatTable.push_back(Format::Number(60. * firingHeat));
@@ -471,9 +475,9 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	saleValues.push_back(string());
 	saleHeight += 20;
 	saleLabels.push_back("empty hull:");
-	saleValues.push_back(Format::Credits(chassisCost));
+	saleValues.push_back(Format::AbbreviatedNumber(chassisCost));
 	saleHeight += 20;
 	saleLabels.push_back("  + outfits:");
-	saleValues.push_back(Format::Credits(totalCost - chassisCost));
+	saleValues.push_back(Format::AbbreviatedNumber(totalCost - chassisCost));
 	saleHeight += 20;
 }

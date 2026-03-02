@@ -24,7 +24,7 @@ using namespace std;
 
 
 // Replace all occurrences ${phrase name} with the expanded phrase from GameData::Phrases()
-std::string Phrase::ExpandPhrases(const std::string &source)
+string Phrase::ExpandPhrases(const string &source)
 {
 	string result;
 	size_t next = 0;
@@ -68,7 +68,7 @@ void Phrase::Load(const DataNode &node)
 	// may not be used in a Phrase's name.
 	if(name.find("${") != string::npos || name.find('}') != string::npos)
 	{
-		node.PrintTrace("Error: Phrase names may not contain '${' or '}':");
+		node.PrintTrace("Phrase names may not contain '${' or '}':");
 		return;
 	}
 
@@ -76,7 +76,7 @@ void Phrase::Load(const DataNode &node)
 	if(sentences.back().empty())
 	{
 		sentences.pop_back();
-		node.PrintTrace("Error: Unable to parse node:");
+		node.PrintTrace("Unable to parse node:");
 	}
 }
 
@@ -231,7 +231,7 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 			for(auto &element : choice)
 				if(element.second && element.second->ReferencesPhrase(parent))
 				{
-					child.PrintTrace("Warning: Replaced recursive '" + element.second->Name() + "' phrase reference with \"\":");
+					child.PrintTrace("Replaced recursive '" + element.second->Name() + "' phrase reference with \"\":");
 					element.second = nullptr;
 				}
 

@@ -31,6 +31,7 @@ class DataNode;
 class Fleet;
 class Government;
 class Outfit;
+class Phrase;
 class PlayerInfo;
 class Ship;
 class Sprite;
@@ -80,6 +81,9 @@ public:
 	// Get the list of "attributes" of the planet.
 	const std::set<std::string> &Attributes() const;
 
+	// Get the list of "required attributes" of the planet.
+	const std::set<std::string> &RequiredAttributes() const;
+
 	// Get planet's noun descriptor from attributes
 	const std::string &Noun() const;
 
@@ -89,7 +93,7 @@ public:
 	const Port &GetPort() const;
 	// Check whether there are port services (such as trading, jobs, banking, and hiring)
 	// available on this planet.
-	bool HasServices() const;
+	bool HasServices(bool isPlayer = true) const;
 
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).
@@ -152,6 +156,7 @@ public:
 	// Below are convenience functions which access the game state in Politics,
 	// but do so with a less convoluted syntax:
 	bool HasFuelFor(const Ship &ship) const;
+	bool CanBribe() const;
 	bool CanLand(const Ship &ship) const;
 	bool CanLand() const;
 	Friendliness GetFriendliness() const;
@@ -163,6 +168,9 @@ public:
 	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships) const;
 	void ResetDefense() const;
 	bool IsDefending() const;
+	// The amount of reputation with this planet's government that is lost
+	// daily if the player has dominated this planet.
+	double DailyTributePenalty() const;
 
 
 private:
@@ -176,6 +184,11 @@ private:
 
 	std::set<std::string> attributes;
 
+	ConditionSet toKnow;
+	ConditionSet toLand;
+	ConditionSet toAccessShipyard;
+	ConditionSet toAccessOutfitter;
+
 	std::set<const Shop<Ship> *> shipSales;
 	std::set<const Shop<Outfit> *> outfitSales;
 	// The lists above will be converted into actual ship lists when they are
@@ -186,6 +199,7 @@ private:
 	const Government *government = nullptr;
 	double requiredReputation = 0.;
 	double bribe = 0.01;
+	double bribeThreshold = 0.;
 	double security = .25;
 	bool inhabited = false;
 	bool customSecurity = false;
@@ -196,6 +210,9 @@ private:
 	int tribute = 0;
 	// The minimum combat rating needed to dominate this planet.
 	int defenseThreshold = 4000;
+	// The amount of reputation with this planet's government that is lost
+	// daily if the player has dominated this planet.
+	double dailyTributePenalty = 0.;
 	mutable bool isDefending = false;
 	// The defense fleets that should be spawned (in order of specification).
 	std::vector<const Fleet *> defenseFleets;
@@ -203,6 +220,13 @@ private:
 	mutable size_t defenseDeployed = 0;
 	// Ships that have been created by instantiating its defense fleets.
 	mutable std::list<std::shared_ptr<Ship>> defenders;
+
+	const Phrase *tributeAlreadyPaying = nullptr;
+	const Phrase *tributeUndefined = nullptr;
+	const Phrase *tributeUnworthy = nullptr;
+	const Phrase *tributeFleetLaunching = nullptr;
+	const Phrase *tributeFleetUndefeated = nullptr;
+	const Phrase *tributeSurrendered = nullptr;
 
 	Wormhole *wormhole = nullptr;
 	std::vector<const System *> systems;

@@ -127,6 +127,12 @@ public:
 		BOTH
 	};
 
+	enum class LargeGraphicsReduction : int_fast8_t {
+		OFF,
+		LARGEST_ONLY,
+		ALL
+	};
+
 #ifdef _WIN32
 	enum class TitleBarTheme : int_fast8_t {
 		DEFAULT,
@@ -246,6 +252,12 @@ public:
 	static void ToggleFlagshipSpacePriority();
 	static FlagshipSpacePriority GetFlagshipSpacePriority();
 	static const std::string &FlagshipSpacePrioritySetting();
+
+	static void ToggleLargeGraphicsReduction();
+	static LargeGraphicsReduction GetLargeGraphicsReduction();
+	static const std::string &LargeGraphicsReductionSetting();
+
+	static void ToggleBlockScreenSaver();
 
 	static int GetPreviousSaveCount();
 

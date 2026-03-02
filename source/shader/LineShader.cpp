@@ -35,8 +35,16 @@ namespace {
 	GLint toColorI;
 	GLint capI;
 
+	GLint vertI;
+
 	GLuint vao;
 	GLuint vbo;
+
+	void EnableAttribArrays()
+	{
+		glEnableVertexAttribArray(vertI);
+		glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	}
 }
 
 
@@ -45,7 +53,7 @@ void LineShader::Init()
 {
 	shader = GameData::Shaders().Get("line");
 	if(!shader->Object())
-		throw std::runtime_error("Could not find line shader!");
+		throw runtime_error("Could not find line shader!");
 	scaleI = shader->Uniform("scale");
 	startI = shader->Uniform("start");
 	endI = shader->Uniform("end");
@@ -53,10 +61,14 @@ void LineShader::Init()
 	fromColorI = shader->Uniform("startColor");
 	toColorI = shader->Uniform("endColor");
 	capI = shader->Uniform("cap");
+	vertI = shader->Attrib("vert");
 
 	// Generate the vertex data for drawing sprites.
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+	{
+		glGenVertexArrays(1, &vao);
+		glBindVertexArray(vao);
+	}
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -69,12 +81,12 @@ void LineShader::Init()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	glEnableVertexAttribArray(shader->Attrib("vert"));
-	glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	EnableAttribArrays();
 
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
 }
 
 
@@ -115,7 +127,13 @@ void LineShader::DrawGradient(const Point &from, const Point &to, float width,
 		throw runtime_error("LineShader: Draw() called before Init().");
 
 	glUseProgram(shader->Object());
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(vao);
+	else
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		EnableAttribArrays();
+	}
 
 	GLfloat scale[2] = {static_cast<GLfloat>(Screen::Width()), static_cast<GLfloat>(Screen::Height())};
 	glUniform2fv(scaleI, 1, scale);
@@ -135,7 +153,13 @@ void LineShader::DrawGradient(const Point &from, const Point &to, float width,
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
+	else
+	{
+		glDisableVertexAttribArray(vertI);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
 	glUseProgram(0);
 }
 

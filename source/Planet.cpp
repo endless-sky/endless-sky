@@ -125,6 +125,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				requiredReputation = 0.;
 			else if(key == "bribe")
 				bribe = 0.;
+			else if(key == "bribe threshold")
+				bribeThreshold = 0.;
 			else if(key == "security")
 				security = 0.;
 			else if(key == "tribute")
@@ -134,8 +136,32 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				defenseFleets.clear();
 				ResetDefense();
 			}
+			else if(key == "tribute hails")
+			{
+				tributeAlreadyPaying = nullptr;
+				tributeUndefined = nullptr;
+				tributeUnworthy = nullptr;
+				tributeFleetUndefeated = nullptr;
+				tributeFleetLaunching = nullptr;
+				tributeSurrendered = nullptr;
+			}
 			else if(key == "wormhole")
 				wormhole = nullptr;
+			else if(key == "to")
+			{
+				if(value == "know")
+					toKnow = ConditionSet();
+				else if(value == "land")
+					toLand = ConditionSet();
+				else if(value == "access" && child.Size() > valueIndex + 1)
+				{
+					const string &shop = child.Token(valueIndex + 1);
+					if(shop == "shipyard")
+						toAccessShipyard = ConditionSet();
+					else if(shop == "outfitter")
+						toAccessOutfitter = ConditionSet();
+				}
+			}
 
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -149,7 +175,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
-			child.PrintTrace("Error: Expected key to have a value:");
+			child.PrintTrace("Expected key to have a value:");
 			continue;
 		}
 		else if(key == "attributes")
@@ -178,7 +204,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
 		{
-			child.PrintTrace("Error: Cannot \"remove\" a specific value from the given key:");
+			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 			continue;
 		}
 		else if(key == "display name")
@@ -200,6 +226,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			requiredReputation = child.Value(valueIndex);
 		else if(key == "bribe")
 			bribe = child.Value(valueIndex);
+		else if(key == "bribe threshold")
+			bribeThreshold = child.Value(valueIndex);
 		else if(key == "security")
 		{
 			customSecurity = true;
@@ -233,14 +261,62 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 					else
 						grand.PrintTrace("Skipping unsupported tribute fleet definition:");
 				}
+				else if(grandKey == "daily reputation penalty" && grandHasValue)
+					dailyTributePenalty = grand.Value(1);
 				else
 					grand.PrintTrace("Skipping unrecognized tribute attribute:");
+			}
+		}
+		else if(key == "tribute hails" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() != 2)
+				{
+					grand.PrintTrace("Skipping unrecognized attribute:");
+					continue;
+				}
+				bool removeTributePhrase = grand.Token(0) == "remove";
+				const string &grandKey = grand.Token(remove);
+				if(grandKey == "already paying")
+					tributeAlreadyPaying = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "undefined")
+					tributeUndefined = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "unworthy")
+					tributeUnworthy = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet launching")
+					tributeFleetLaunching = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet undefeated")
+					tributeFleetUndefeated = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "surrendered")
+					tributeSurrendered = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(key == "wormhole")
 		{
 			wormhole = wormholes.Get(value);
 			wormhole->SetPlanet(*this);
+		}
+		else if(key == "to")
+		{
+			if(value == "know")
+				toKnow.Load(child, playerConditions);
+			else if(value == "land")
+				toLand.Load(child, playerConditions);
+			else if(value == "access" && child.Size() > valueIndex + 1)
+			{
+				const string &shop = child.Token(valueIndex + 1);
+				if(shop == "shipyard")
+					toAccessShipyard.Load(child, playerConditions);
+				else if(shop == "outfitter")
+					toAccessOutfitter.Load(child, playerConditions);
+				else
+					child.PrintTrace("Skipping unrecognized attribute:");
+			}
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -275,20 +351,20 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		"spaceport news",
 	};
 	bool autoValues[14] = {
-		port.HasService(Port::ServicesType::All) && port.CanRecharge(Port::RechargeType::All)
+		port.HasService(Port::ServicesType::All, false) && port.CanRecharge(Port::RechargeType::All, false)
 				&& port.HasNews() && HasNamedPort(),
 		HasNamedPort(),
 		!shipSales.empty(),
 		!outfitSales.empty(),
-		port.HasService(Port::ServicesType::Trading),
-		port.HasService(Port::ServicesType::JobBoard),
-		port.HasService(Port::ServicesType::Bank),
-		port.HasService(Port::ServicesType::HireCrew),
-		port.HasService(Port::ServicesType::OffersMissions),
-		port.CanRecharge(Port::RechargeType::Shields),
-		port.CanRecharge(Port::RechargeType::Hull),
-		port.CanRecharge(Port::RechargeType::Energy),
-		port.CanRecharge(Port::RechargeType::Fuel),
+		port.HasService(Port::ServicesType::Trading, false),
+		port.HasService(Port::ServicesType::JobBoard, false),
+		port.HasService(Port::ServicesType::Bank, false),
+		port.HasService(Port::ServicesType::HireCrew, false),
+		port.HasService(Port::ServicesType::OffersMissions, false),
+		port.CanRecharge(Port::RechargeType::Shields, false),
+		port.CanRecharge(Port::RechargeType::Hull, false),
+		port.CanRecharge(Port::RechargeType::Energy, false),
+		port.CanRecharge(Port::RechargeType::Fuel, false),
 		port.HasNews(),
 	};
 	for(unsigned i = 0; i < AUTO_ATTRIBUTES.size(); ++i)
@@ -300,7 +376,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 	}
 
 	// Precalculate commonly used values that can only change due to Load().
-	inhabited = (HasServices() || requiredReputation || !defenseFleets.empty()) && !attributes.contains("uninhabited");
+	inhabited = (HasServices(false) || requiredReputation || !defenseFleets.empty())
+			&& !attributes.contains("uninhabited");
 	SetRequiredAttributes(Attributes(), requiredAttributes);
 }
 
@@ -315,8 +392,8 @@ void Planet::FinishLoading(Set<Wormhole> &wormholes)
 	{
 		wormhole = wormholes.Get(TrueName());
 		wormhole->LoadFromPlanet(*this);
-		Logger::LogError("Warning: deprecated automatic generation of wormhole \""
-			+ trueName + "\" from a multi-system planet.");
+		Logger::Log("Deprecated automatic generation of wormhole \"" + trueName + "\" from a multi-system planet.",
+			Logger::Level::WARNING);
 	}
 	// If the wormhole was autogenerated we need to update it to
 	// match the planet's state.
@@ -396,6 +473,14 @@ const set<string> &Planet::Attributes() const
 
 
 
+// Get the list of "attributes" of the planet.
+const set<string> &Planet::RequiredAttributes() const
+{
+	return requiredAttributes;
+}
+
+
+
 // Get planet's noun descriptor from attributes
 const string &Planet::Noun() const
 {
@@ -429,9 +514,9 @@ const Port &Planet::GetPort() const
 
 // Check whether there are port services (such as trading, jobs, banking, and hiring)
 // available on this planet.
-bool Planet::HasServices() const
+bool Planet::HasServices(bool isPlayer) const
 {
-	return port.HasServices();
+	return port.HasServices(isPlayer);
 }
 
 
@@ -448,7 +533,7 @@ bool Planet::IsInhabited() const
 // Check if this planet has a permanent shipyard.
 bool Planet::HasShipyard() const
 {
-	return !shipSales.empty();
+	return !shipSales.empty() && toAccessShipyard.Test();
 }
 
 
@@ -481,7 +566,7 @@ set<const Shop<Ship> *> Planet::Shipyards() const
 // Check if this planet has a permanent outfitter.
 bool Planet::HasOutfitter() const
 {
-	return !outfitSales.empty();
+	return !outfitSales.empty() && toAccessOutfitter.Test();
 }
 
 
@@ -616,6 +701,10 @@ bool Planet::IsAccessible(const Ship *ship) const
 	// If this is a wormhole that leads to an inaccessible system, no ship can land here.
 	if(wormhole && ship && ship->GetSystem() && wormhole->WormholeDestination(*ship->GetSystem()).Inaccessible())
 		return false;
+	// If this ship is yours, but you lack the conditions to know that it's a landable object,
+	// then the ship can't land.
+	if(ship && ship->IsYours() && !toKnow.Test())
+		return false;
 	// If there are no required attributes, then any ship may land here.
 	if(IsUnrestricted())
 		return true;
@@ -641,21 +730,40 @@ bool Planet::IsUnrestricted() const
 // but do so with a less convoluted syntax:
 bool Planet::HasFuelFor(const Ship &ship) const
 {
-	return !IsWormhole() && port.CanRecharge(Port::RechargeType::Fuel) && CanLand(ship);
+	return !IsWormhole() && port.CanRecharge(Port::RechargeType::Fuel, ship.IsYours()) && CanLand(ship);
+}
+
+
+
+bool Planet::CanBribe() const
+{
+	// If this planet has a minimum reputation for accepting bribes and your
+	// reputation is below this value, you can't bribe.
+	if(bribeThreshold && GameData::GetPolitics().Reputation(government) < bribeThreshold)
+		return false;
+	// If you can't land then you can't bribe.
+	return toLand.Test();
 }
 
 
 
 bool Planet::CanLand(const Ship &ship) const
 {
-	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);
+	if(!ship.IsYours())
+		return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);
+
+	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this)
+		&& (!port.RequiresBribe() || GameData::GetPolitics().HasClearance(this))
+		&& toLand.Test();
 }
 
 
 
 bool Planet::CanLand() const
 {
-	return GameData::GetPolitics().CanLand(this);
+	return GameData::GetPolitics().CanLand(this)
+		&& (!port.RequiresBribe() || GameData::GetPolitics().HasClearance(this))
+		&& toLand.Test();
 }
 
 
@@ -676,7 +784,7 @@ Planet::Friendliness Planet::GetFriendliness() const
 
 bool Planet::CanUseServices() const
 {
-	return GameData::GetPolitics().CanUseServices(this);
+	return GameData::GetPolitics().CanUseServices(this) && port.CanAccess();
 }
 
 
@@ -691,13 +799,34 @@ void Planet::Bribe(bool fullAccess) const
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {
+	const Government *government = GetGovernment();
+	if(!government)
+		return "Somehow, this planet does not have a government.";
 	const auto &playerTribute = player.GetTribute();
 	if(playerTribute.find(this) != playerTribute.end())
+	{
+		if(tributeAlreadyPaying)
+			return tributeAlreadyPaying->Get();
+		else if(government->TributeAlreadyPaying())
+			return government->TributeAlreadyPaying()->Get();
 		return "We are already paying you as much as we can afford.";
+	}
 	if(!tribute || defenseFleets.empty())
+	{
+		if(tributeUndefined)
+			return tributeUndefined->Get();
+		else if(government->TributeUndefined())
+			return government->TributeUndefined()->Get();
 		return "Please don't joke about that sort of thing.";
+	}
 	if(player.Conditions().Get("combat rating") < defenseThreshold)
+	{
+		if(tributeUnworthy)
+			return tributeUnworthy->Get();
+		else if(government->TributeUnworthy())
+			return government->TributeUnworthy()->Get();
 		return "You're not worthy of our time.";
+	}
 
 	// The player is scary enough for this planet to take notice. Check whether
 	// this is the first demand for tribute, or not.
@@ -714,7 +843,11 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		// TODO: Use a distinct event type for the domination system and
 		// expose syntax for controlling its impact on the targeted government
 		// and those that know it.
-		GetGovernment()->Offend(ShipEvent::ATROCITY);
+		government->Offend(ShipEvent::ATROCITY);
+		if(tributeFleetLaunching)
+			return tributeFleetLaunching->Get();
+		else if(government->TributeFleetLaunching())
+			return government->TributeFleetLaunching()->Get();
 		return "Our defense fleet will make short work of you.";
 	}
 
@@ -728,10 +861,23 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		}
 
 	if(!isDefeated)
+	{
+		if(tributeFleetUndefeated)
+			return tributeFleetUndefeated->Get();
+		else if(government->TributeFleetUndefeated())
+			return government->TributeFleetUndefeated()->Get();
 		return "We're not ready to surrender yet.";
+	}
 
 	player.SetTribute(this, tribute);
-	return "We surrender. We will pay you " + Format::CreditString(tribute) + " per day to leave us alone.";
+	string surrenderMessage;
+	if(tributeSurrendered)
+		surrenderMessage = tributeSurrendered->Get();
+	else if(government->TributeSurrendered())
+		surrenderMessage = government->TributeSurrendered()->Get();
+	else
+		surrenderMessage = "We surrender. We will pay you <credits> per day to leave us alone.";
+	return Format::Replace(surrenderMessage, {{"<credits>", Format::CreditString(tribute)}});
 }
 
 
@@ -746,7 +892,7 @@ void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
 	if(defenseFleets[defenseDeployed]->IsValid())
 		defenseFleets[defenseDeployed]->Enter(*GetSystem(), defenders, this);
 	else
-		Logger::LogError("Warning: skipped an incomplete defense fleet of planet \"" + trueName + "\".");
+		Logger::Log("Skipped an incomplete defense fleet of planet \"" + trueName + "\".", Logger::Level::WARNING);
 	ships.insert(ships.begin(), defenders.begin(), end);
 
 	// All defenders use a special personality.
@@ -778,4 +924,11 @@ void Planet::ResetDefense() const
 bool Planet::IsDefending() const
 {
 	return isDefending;
+}
+
+
+
+double Planet::DailyTributePenalty() const
+{
+	return dailyTributePenalty;
 }

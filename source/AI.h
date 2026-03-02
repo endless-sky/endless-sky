@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FormationPositioner.h"
 #include "orders/OrderSet.h"
 #include "Point.h"
+#include "RoutePlan.h"
 
 #include <cstdint>
 #include <list>
@@ -27,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <optional>
 #include <set>
+#include <unordered_map>
 #include <vector>
 
 class Angle;
@@ -92,6 +94,40 @@ public:
 
 
 private:
+	class RouteCacheKey {
+	public:
+		/// The route cache key is generated from all information that can influence pathfinding.
+		/// @param jumpHash A hash generated from the ShipJumpNavigation class, containing information about the
+		/// system that the ship is currently in and all of its jump capabilities.
+		/// @param personalityHash A hash generated from the ship's government and personality, which can influence the
+		/// systems that the ship is allowed to enter. (See Ship::IsRestrictedFrom.)
+		/// @param to A pointer to the target system.
+		/// @param isPlayer Whether this key is for the player's flagship. There is special handling for the player
+		/// to avoid dangerous systems.
+		/// @param wormholeKeys A vector of attributes required to enter wormholes that this ship is capable of
+		/// entering. (See Planet::IsAccessible.)
+		RouteCacheKey(std::size_t jumpHash, std::size_t personalityHash, const System *to, bool isPlayer,
+			const std::vector<std::string> &wormholeKeys);
+
+		// To support use as a map key:
+		bool operator==(const RouteCacheKey &other) const;
+		bool operator!=(const RouteCacheKey &other) const;
+
+		class HashFunction {
+		public:
+			size_t operator()(const RouteCacheKey &key) const;
+		};
+
+	public:
+		size_t jumpHash;
+		size_t personalityHash;
+		const System *to;
+		bool isPlayer;
+		std::vector<std::string> wormholeKeys;
+	};
+
+
+private:
 	// Check if a ship can pursue its target (i.e. beyond the "fence").
 	bool CanPursue(const Ship &ship, const Ship &target) const;
 	// Disabled or stranded ships coordinate with other ships to get assistance.
@@ -106,7 +142,7 @@ private:
 
 	bool FollowOrders(Ship &ship, Command &command);
 	void MoveInFormation(Ship &ship, Command &command);
-	void MoveIndependent(Ship &ship, Command &command) const;
+	void MoveIndependent(Ship &ship, Command &command);
 	void MoveWithParent(Ship &ship, Command &command, const Ship &parent);
 	void MoveEscort(Ship &ship, Command &command);
 	static void Refuel(Ship &ship, Command &command);
@@ -114,7 +150,7 @@ private:
 	// Set the ship's target system or planet in order to reach the
 	// next desired system. Will target a landable planet to refuel.
 	// If the ship is an escort it will only use routes known to the player.
-	void SelectRoute(Ship &ship, const System *targetSystem) const;
+	void SelectRoute(Ship &ship, const System *targetSystem);
 	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 
 	// Methods of moving from the current position to a desired position / orientation.
@@ -140,13 +176,13 @@ private:
 	// Special personality behaviors.
 	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
-	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
+	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(const Ship &ship, Command &command) const;
 	void DoPatrol(Ship &ship, Command &command) const;
 	// Prevent ships from stacking on each other when many are moving in sync.
-	void DoScatter(const Ship &ship, Command &command) const;
+	void DoScatter(const Ship &ship, Command &command, bool recheckCloseShips);
 	bool DoSecretive(Ship &ship, Command &command) const;
 
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
@@ -187,11 +223,10 @@ private:
 	/// but that shouldn't really matter.
 	void RegisterDerivedConditions(ConditionsStore &conditions);
 
-
-private:
 	void IssueOrder(const OrderSingle &newOrder, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
+	RoutePlan GetRoutePlan(const Ship &ship, const System *targetSystem);
 
 
 private:
@@ -202,8 +237,8 @@ private:
 	const List<Minable> &minables;
 	const List<Flotsam> &flotsam;
 
-	// The current step count for the AI, ranging from 0 to 30. Its value
-	// helps limit how often certain actions occur (such as changing targets).
+	// The current step count for the AI, incremented once per frame.
+	// Its value helps limit how often certain actions occur (such as changing targets).
 	int step = 0;
 
 	// Command applied by the player's "autopilot."
@@ -245,6 +280,8 @@ private:
 	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasementThreshold;
+	std::map<const Ship *, const Ship *> boarders;
+	std::map<const Ship *, std::set<std::weak_ptr<const Ship>, std::owner_less<std::weak_ptr<const Ship>>>> closeBy;
 
 	// Records for formations flying around leadships and other objects.
 	std::map<const Body *, std::map<const FormationPattern *, FormationPositioner>> formations;
@@ -256,4 +293,7 @@ private:
 	std::map<const Government *, std::vector<Ship *>> governmentRosters;
 	std::map<const Government *, std::vector<Ship *>> enemyLists;
 	std::map<const Government *, std::vector<Ship *>> allyLists;
+
+	// Route planning cache:
+	std::unordered_map<RouteCacheKey, RoutePlan, RouteCacheKey::HashFunction> routeCache;
 };
