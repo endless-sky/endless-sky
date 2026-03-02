@@ -555,7 +555,7 @@ def check_include(sanitized_lines, original_lines, filepath):
 	elif filepath.endswith(".h"):
 		class_lines = [line for line in original_lines if line.startswith('class')]
 		child_class_lines = [re.match(r"class\s+\w+( final)?\s*:\s*(public|private)\s+(\w+)(,.*)?\s*{", line)
-							 for line in class_lines]
+			for line in class_lines]
 		first_group.update([f"{match.group(3)}.h" for match in child_class_lines if match])
 		first_group_min = len(first_group)  # at least one, anyway, but more than one seems reasonable
 		first_group_max = len(first_group)
@@ -613,16 +613,14 @@ def check_include(sanitized_lines, original_lines, filepath):
 								"unexpected quoted include group following bracketed group"))
 
 		non_conditional_groups = "".join([c for ident, c in zip(group_ident, group_chars) if
-										  not(ident.startswith("#endif") or ident.startswith("#ifdef") or
-											  ident.startswith("#if defined"))])
+			not(ident.startswith("#endif") or ident.startswith("#ifdef") or ident.startswith("#if defined"))])
 		if (j := non_conditional_groups.count('"')) > max_quoted_groups:
 			f = non_conditional_groups[:max_quoted_groups].find('"')
 			g = [g for ident, g in zip(group_ident, range(1, len(group_ident) + 1)) if
-				 not(ident.startswith("#endif") or ident.startswith("#ifdef") or
-					 ident.startswith("#if defined"))][f]
+				not(ident.startswith("#endif") or ident.startswith("#ifdef") or ident.startswith("#if defined"))][f]
 			i = groups[g ][0]
 			errors.append(Error(original_lines[i], i + 1,f"unexpected number of quoted include groups, expected "
-														 f"at most {max_quoted_groups} found {j}."))
+				f"at most {max_quoted_groups} found {j}."))
 
 	return errors, warnings
 
