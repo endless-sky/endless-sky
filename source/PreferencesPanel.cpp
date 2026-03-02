@@ -296,7 +296,7 @@ void PreferencesPanel::Step()
 							// Upon completion of downloading the plugins (and icons) for a given plugin library,
 							// load the plugin icons into memory:
 							auto aPlugins = Plugins::GetAvailablePluginsLocked();
-							for (const auto &namePlugin : *aPlugins)
+							for(const auto &namePlugin : *aPlugins)
 							{
 								auto plugin = namePlugin.second;
 								if(!plugin.IsValid())

@@ -24,8 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-
-
 // Plugin class represents information about a single plugin.
 // Concepts:
 //  - Plugins are consumed by the game on start-up, this translates to `inUse = true`.

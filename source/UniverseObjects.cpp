@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Logger.h"
 #include "PlayerInfo.h"
+#include "Plugins.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "TaskQueue.h"
@@ -33,7 +34,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
-#include "Plugins.h"
 
 using namespace std;
 
