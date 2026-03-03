@@ -999,7 +999,7 @@ interface "plugins"
 		center -280 210
 		dimensions 26 26
 
-	sprite "ui/wider button wshadow"
+	sprite "ui/very wide button"
 		center -195 210
 	button o "_Open Plugins"
 		center -195 210
@@ -1147,8 +1147,12 @@ interface "install plugins"
 
 
 interface "preferences"
-	sprite "ui/preferences panel"
-		center -65 -20
+	sprite "ui/settings five buttons"
+		center -337 -162p
+	sprite "ui/settings keys box"
+		center -350 102
+	sprite "ui/settings base panel"
+		center -1 -20
 
 	visible if "!page: controls"
 	button c "_Controls"
