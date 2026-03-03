@@ -553,7 +553,7 @@ interface "load menu"
 
 
 interface "controls"
-	sprite "ui/keys panel sidebox"
+	sprite "ui/settings keys box"
 		center -350 102
 	
 	label "Additional info"
@@ -936,7 +936,7 @@ interface "audio"
 
 
 interface "plugins"
-	sprite "ui/keys panel sidebox"
+	sprite "ui/settings keys box"
 		center -350 102
 	label "Key"
 		from -285 40
@@ -1031,8 +1031,9 @@ interface "plugins"
 
 
 interface "install plugins"
-	sprite "ui/keys panel sidebox"
+	sprite "ui/settings keys box"
 		center -350 102
+
 	label "Key"
 		from -285 40
 		align bottom center
@@ -1147,12 +1148,12 @@ interface "install plugins"
 
 
 interface "preferences"
-	sprite "ui/settings five buttons"
-		center -337 -162p
-	sprite "ui/settings keys box"
-		center -350 102
 	sprite "ui/settings base panel"
 		center -1 -20
+	sprite "ui/settings five buttons"
+		center -337 -162
+	sprite "ui/settings audio bar"
+		center 285 -82
 
 	visible if "!page: controls"
 	button c "_Controls"
