@@ -157,7 +157,7 @@ public:
 	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
-	void FinishLoading(bool isNewInstance);
+	void FinishLoading(bool isNewInstance, bool checkSpawnOutfits = false);
 	// Check that this ship model and all its outfits have been loaded.
 	bool IsValid() const;
 	// Save a full description of this ship, as currently configured.
@@ -483,6 +483,8 @@ public:
 	const Outfit &BaseAttributes() const;
 	// Get the list of all outfits installed in this ship.
 	const std::map<const Outfit *, int> &Outfits() const;
+	// Make this ship use its spawned outfit list instead of its regular one.
+	void UseSpawnOutfits();
 	// Find out how many outfits of the given type this ship contains.
 	int OutfitCount(const Outfit *outfit) const;
 	// Add or remove outfits. (To remove, pass a negative number.)
@@ -677,6 +679,8 @@ private:
 	bool addAttributes = false;
 	const Weapon *explosionWeapon = nullptr;
 	std::map<const Outfit *, int> outfits;
+	std::map<const Outfit *, int> spawnOutfits;
+	bool hasSpawnOutfits = false;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
 	std::list<std::pair<std::shared_ptr<Flotsam>, size_t>> jettisonedFromBay;
@@ -689,6 +693,7 @@ private:
 	std::vector<EnginePoint> reverseEnginePoints;
 	std::vector<EnginePoint> steeringEnginePoints;
 	Armament armament;
+	Armament spawnArmament;
 
 	// Various energy levels:
 	double shields = 0.;
