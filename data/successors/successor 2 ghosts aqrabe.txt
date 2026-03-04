@@ -224,7 +224,7 @@ mission "Successors: Ghosts Aqrabe 4"
 				`	"So is that it for this?"`
 			`	"Fortunately," they continue, "we may be able to outfit one of our own craft for this purpose. Or rather, one of House Kaatrij's."`
 			`	They offer the pad to you. It displays a schematic that you struggle to make any sense of; some small device is shown implanted in a Vujlet, its long tendrils snaking into various ship systems like some sort of infection. If you were to make a guess at its function, you might describe it as some sort of cloaking device - it's clearly shown reflecting and refracting light somehow, but the details of what exactly it is achieving escape your reckoning.`
-			`	"I've conferred with our fleet liaison," says Tiliia, "who conferred with Kaatrij's, and they've agree to dispense thee with a modified Vujlet." They pause before adding, in a softer and more cynical tone, "no doubt extracting some favor from Aqrabe along the way. We need thee to retrieve it from <planet> and bring it back here for outfitting. Once prepared with our armor and thy jump drive, we may return to Kasii-Cavaasa."`
+			`	"I've conferred with our fleet liaison," says Tiliia, "who conferred with Kaatrij's, and they've agreed to bestow upon thee a modified Vujlet." They pause before adding, in a softer and more cynical tone, "no doubt extracting some favor from Aqrabe along the way. We need thee to retrieve it from <planet> and bring it back here for outfitting. Once prepared with our armor and thy jump drive, we may return to Kasii-Cavaasa."`
 			choice
 				`	"These look like some complex modifications."`
 					goto suspicious
@@ -280,7 +280,7 @@ mission "Successors: Ghosts Aqrabe 5"
 			`	"Thine expectation is no longer accurate," they reply, not belying any emotion.`
 			label end
 			`	They show you onboard. The interior of Successor military ships looks much different from their civilian craft - the bridge is buried deep in the center of the craft under layers of armor, a small, circular room with a water-filled pool in the center and liquid-metal displays ringing the edges. Similarly compact living quarters and operational spaces fan out from it, each one well-equipped.`
-			`	After you've had a look around, Kaatrij's observer esorts you off the vessel. "I and a Kaatrij crew shall pilot the vessel to Aqrabe. Once there, thou shoulds't install thy jump drive aboard."`
+			`	After you've had a look around, Kaatrij's observer escorts you off the vessel. "I and a Kaatrij crew shall pilot the vessel to Aqrabe. Once there, thou shouldst install thy jump drive aboard."`
 				accept
 	on visit
 		dialog "You have returned to Kasii-Cavasaa-Oa, but the Vujlet you are escorting has not yet arrived."
@@ -316,7 +316,7 @@ mission "Successors: Ghosts Aqrabe 5"
 			action
 				log "People" "Tiliia" "Tiliia sees their role in current events as offering them the opportunity to make their mark on future generations."
 			`	The statue garden isn't very far from the outfitting bay where the Vujlet is parked. It's a circular area, cut out of the structure of the spaceport and exposed to the elements - the early-morning light shines through the light snowfall and glitters on the eerie metallic forms of the statues. Most of them are purely abstract, but one in every ten or so has some organic form emerging from the smooth metal as if it were trapped behind a sheet: leaves of plants, faces of animals, or even what look like Successor body parts.`
-			`	"I'm curious, captain," Tiliia says. "What motivates thee to do this? Flying into a star, I mean to say. Last we visited, 'twas on thine own ship that thou knowest well - now, thou placeth thy life in alien engineering thou'st never seem perform. Why consider it?"`
+			`	"I'm curious, captain," Tiliia says. "What motivates thee to do this? Flying into a star, I mean to say. Last we visited, 'twas on thine own ship that thou knowest well - now, thou placeth thy life in alien engineering thou'st never seen perform. Why consider it?"`
 			choice
 				`	"I've done other dangerous things before and they've always worked out."`
 					goto lucky
@@ -447,7 +447,7 @@ mission "Successors: Ghosts Aqrabe 7"
 				`	"What about this ship? Do I get to keep it?"`
 					goto ship
 			label now
-			`	"Now we put this bounty to work, captain. I and the others here have a long task before us: I believe we shall be able to split up the keystones and amplify their effects with the stellar metal - tis only a matter of how much and how well. There's little thou can do to assist now, though I'll be sure to note thy helpfulness to Aqrabe in this task."`
+			`	"Now we put this bounty to work, captain. I and the others here have a long task before us: I believe we shall be able to split up the keystones and amplify their effects with the stellar metal - 'tis only a matter of how much and how well. There's little thou canst do to assist now, though I'll be sure to note thy helpfulness to Aqrabe in this task."`
 			choice
 				`	"What about this ship? Do I get to keep it?`
 			label ship

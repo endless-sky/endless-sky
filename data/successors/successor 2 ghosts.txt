@@ -912,7 +912,7 @@ mission "Successors: Ghosts 9"
 				`	(Not now.)`
 					defer
 			`	Though so far individual Quarg have seemed equivalent in their ability to answer your questions, it is several minutes before you spot one here who, for some reason, seems like it would be able to answer. When you repeat your question to it, it blinks slowly, and answers even more so.`
-			`	"I see," it says. "You have uncovered one our great secrets of the galaxy. You were right to think that the world you speak of is ours. After what that foolish species did to themselves, we the Quarg could not bear to leave them unobserved. But we dared not do so unshrouded, lest we once again rouse them to the heights of envy - so we built no ringworld, no stations, no open worlds. Only a little... watching post, to keep our gaze over the Myiara."`
+			`	"I see," it says. "You have uncovered one of our great secrets of the galaxy. You were right to think that the world you speak of is ours. After what that foolish species did to themselves, we the Quarg could not bear to leave them unobserved. But we dared not do so unshrouded, lest we once again rouse them to the heights of envy - so we built no ringworld, no stations, no open worlds. Only a little... watching post, to keep our gaze over the Myiara."`
 			`	You interject. "The Myiara? Do you mean the Successors?"`
 			`	The Quarg considers the term. "Before they called themselves that, they were the Myiara. Have they truly become so rooted in their memories of their valorous past?" It makes a noise like the rumbling of distant thunder. "You must have questions."`
 			choice
