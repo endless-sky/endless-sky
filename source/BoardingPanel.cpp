@@ -463,6 +463,20 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					transferMessage += " been transferred.";
 					messages.push_back(transferMessage);
 				}
+				// Warn the player if outfits exist that are widely illegal
+				// TODO Consult commodities.txt for full list of illegal cargo
+				std::vector illegalOutfits = {"Nerve Gas"};
+				bool foundIllegal = false;
+				for(const auto &it : victim->Outfits())
+					if (std::find(illegalOutfits.begin(), illegalOutfits.end(), it.first->DisplayName()) != illegalOutfits.end())
+					{
+						messages.push_back("They found " + Format::Number(it.second) + " * " + it.first->DisplayName() + "!");
+						foundIllegal = true;
+					}
+				if (foundIllegal) {
+					messages.push_back("You may wish to avoid law enforcement!");
+				}
+
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 				{
 					double fuelTransferred = you->TransferFuel(victim->JumpFuelMissing(), &*victim);
