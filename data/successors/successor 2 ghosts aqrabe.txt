@@ -91,7 +91,7 @@ conversation "successor keystone delivery"
 	`	"Captain <last>?" they ask.`
 	`	"Yes?"`
 	`	They slither forward towards you and splay their arms in the traditional gesture. "Tiliia," they offer as an introduction. "I was told to expect thine arrival. Thou'st brought," and they pause to pronounce the word, "keystones, yes?"`
-	`	"I have," you say. "Fifty tons, as was requested." Tiliia joins you in walking back to the <ship> to examine the cargo; when they're sufficiently satisfied that you've brought the proper amount, they pull out a data-pad and enter a couple of values. Though their eyes widen when you provide them with your receipts, they nonetheless confirm a few moments later that House Aqrabe has credited you to offset the purchase price of the keystones, plus a three hundred thousand-credit bonus.`
+	`	"I have," you say. "Fifty keystones, as was requested." Tiliia joins you in walking back to the <ship> to examine the cargo; when they're sufficiently satisfied that you've brought the proper amount, they pull out a data-pad and enter a couple of values. Though their eyes widen when you provide them with your receipts, they nonetheless confirm a few moments later that House Aqrabe has credited you to offset the purchase price of the keystones, plus a three hundred thousand-credit bonus.`
 	`	As they begin directing ground crews to offload the keystones, Tiliia turns to you for a moment and requests that you meet them back at the spaceport by the end of the day: "thine assistance might be a boon to us in the next part of this journey," they say.`
 		decline
 
@@ -168,7 +168,7 @@ mission "Successors: Ghosts Aqrabe 3"
 	on offer
 		event "successors: ghosts star unrestrict"
 		conversation
-			`You meet Tiliia at their workshop, where they wave you inside. The scanner on their table has now been replaced by a collection of quantum keystones suspended in a variety of machines that prod and scan the stones incessantly. "Good news for thee, Captain, for all of us," Tiliia says. "The data from our expedition hath revealed some measure of the mystery of thy stones. They're oscillators of a sort, ones that sing in tune with the wavers of the wormhole..." Tiliia stops for a moment. "But we will have time to discuss that later. For now, what thou needs know is this: with the right materials, we may be able to magnify their effect. Hast though visited Kasii-Cavaasa?"`
+			`You meet Tiliia at their workshop, where they wave you inside. The scanner on their table has now been replaced by a collection of quantum keystones suspended in a variety of machines that prod and scan the stones incessantly. "Good news for thee, Captain, for all of us," Tiliia says. "The data from our expedition hath revealed some measure of the mystery of thy stones. They're oscillators of a sort, ones that sing in tune with the wavers of the wormhole..." Tiliia stops for a moment. "But we will have time to discuss that later. For now, what thou needs know is this: with the right materials, we may be able to magnify their effect. Hast thou visited the system Kasii-Cavaasa before, with'n the Tangles?"`
 			choice
 				`	"I have."`
 				`	"Where are you going with this?"`

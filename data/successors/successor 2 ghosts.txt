@@ -776,7 +776,7 @@ mission "Successors: Ghosts 7a"
 				`	(Stay.)`
 					goto stay
 			`	The two of you make your way through the abandoned streets. You are struck by how well-preserved everything is; more than those of any other Predecessor world, the buildings here seem only temporarily vacant, as if the two of you had merely caught the city on a day with everyone missing. A trio of little cleaning robots run around the rim of a fountain, polishing away the snow before it even has time to melt in the sun.`
-			`	Saajret follows their own path, periodically checking what must be a map on a datapad they carry. Occasionally their skin will erupt in color as they seey something that interests them, but they never stay distracted for long. Eventually the two of you arrive in an elegant square of organic buildings; Saajret checks their map a few times before declaring, "here we are."`
+			`	Saajret follows their own path, periodically checking what must be a map on a datapad they carry. Occasionally their skin will erupt in color as they see something that interests them, but they never stay distracted for long. Eventually the two of you arrive in an elegant square of organic buildings; Saajret checks their map a few times before declaring, "here we are."`
 			choice
 				`	"And where is 'here?'"`
 				`	"It's a pretty spot."`

@@ -185,6 +185,8 @@ mission "Successors: Ghosts Myurej 3 Direct"
 	description "Based on the clues gathered at <origin>, go to confront Riiria at <destination>."
 	source Myiara-Sola-Tej
 	destination Maspa-Viir-Kella
+	to fail
+		has "Successors: Ghosts Myurej 4: offered"
 	to offer
 		has "Successors: Ghosts Myurej 3: done"
 		has "visited planet: Maspa-Viir-Kella"
@@ -215,8 +217,7 @@ mission "Successors: Ghosts Myurej 4"
 	source Maspa-Viir-Kella
 	destination Raaqa-Kvelq-Ryuit
 	to offer
-		or
-			has "Successors: Ghosts Myurej 3: done"
+		has "Successors: Ghosts Myurej 3: done"
 	on offer
 		conversation
 			`The <ship>'s scanners spring to life not long after you enter <origin>'s atmosphere, pinging several unidentified ships in a nearby valley under the shroud of the thick clouds. As the winds buffet your ship, you check the scan readings you're receiving against the data that Myurej provided you, and they seem to match, at least for the largest of the vessels.`
