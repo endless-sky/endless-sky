@@ -464,11 +464,10 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					messages.push_back(transferMessage);
 				}
 				// Warn the player if outfits exist that are widely illegal
-				// TODO Consult commodities.txt for full list of illegal cargo
-				std::vector illegalOutfits = {"Nerve Gas"};
+				// TODO Consult commodities.txt for illegal cargo
 				bool foundIllegal = false;
 				for(const auto &it : victim->Outfits())
-					if (std::find(illegalOutfits.begin(), illegalOutfits.end(), it.first->DisplayName()) != illegalOutfits.end())
+					if (it.first->Get("illegal") || it.first->Get("atrocity") > 0.)
 					{
 						messages.push_back("They found " + Format::Number(it.second) + " * " + it.first->DisplayName() + "!");
 						foundIllegal = true;
