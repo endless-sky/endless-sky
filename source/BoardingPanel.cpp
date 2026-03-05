@@ -469,7 +469,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				for(const auto &it : victim->Outfits())
 					if(it.first->Get("illegal") || it.first->Get("atrocity") > 0.)
 					{
-						messages.push_back("They found " + Format::Number(it.second) + " * " + it.first->DisplayName() + "!");
+						messages.push_back("Found " + Format::SimplePluralization(it.second, it.first->DisplayName()) + "!");
 						foundIllegal = true;
 					}
 				if(foundIllegal)
