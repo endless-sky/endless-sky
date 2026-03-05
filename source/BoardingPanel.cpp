@@ -463,8 +463,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					transferMessage += " been transferred.";
 					messages.push_back(transferMessage);
 				}
-				// Warn the player if outfits exist that are widely illegal
-				// TODO Consult commodities.txt for illegal cargo
+				// Warn the player if outfits exist that are widely illegal.
+				// TODO Consult commodities.txt for illegal cargo.
 				bool foundIllegal = false;
 				for(const auto &it : victim->Outfits())
 					if(it.first->Get("illegal") || it.first->Get("atrocity") > 0.)
