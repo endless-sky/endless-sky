@@ -467,12 +467,13 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				// TODO Consult commodities.txt for illegal cargo
 				bool foundIllegal = false;
 				for(const auto &it : victim->Outfits())
-					if (it.first->Get("illegal") || it.first->Get("atrocity") > 0.)
+					if(it.first->Get("illegal") || it.first->Get("atrocity") > 0.)
 					{
 						messages.push_back("They found " + Format::Number(it.second) + " * " + it.first->DisplayName() + "!");
 						foundIllegal = true;
 					}
-				if (foundIllegal) {
+				if(foundIllegal)
+				{
 					messages.push_back("You may wish to avoid law enforcement!");
 				}
 
