@@ -322,9 +322,9 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	// If no plural name has been defined, append an 's' to the name and use that.
 	// If the name ends in an 's', 'x', 'z', 'ch', or 'sh', and no plural name has been defined,
 	// print a warning since an irregular plural is usually required in this case.
-	// Unless this outfit definition isn't declared with the `outfit` keyword,
+	// Unless this outfit definition isn't declared with a category,
 	// because then this is probably being done in `add attributes` on a ship,
-	// so the name doesn't matter.
+	// or it's a pseudo-outfit like submunitions, so the name doesn't matter.
 	if(!displayName.empty() && pluralName.empty())
 	{
 		pluralName = displayName + 's';
