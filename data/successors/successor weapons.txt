@@ -105,6 +105,7 @@ effect "bimodal impact"
 	"velocity scale" 0.2
 
 outfit "Bimodal Switch"
+	plural "Bimodal Switches"
 	weapon
 		sprite "projectile/bimodal switch"
 			"random start frame"

@@ -399,6 +399,7 @@ outfit "Ultrarelativistic Electron Beam"
 		"submunition" "TeV Electron Bunch" 180
 
 outfit "TeV Electron Bunch"
+	plural "TeV Electron Bunches"
 	weapon
 		sprite "effect/mhd spark"
 			"frame rate" 15
@@ -445,6 +446,7 @@ outfit "UREB Turret"
 		"submunition" "GeV Electron Bunch" 180
 
 outfit "GeV Electron Bunch"
+	plural "GeV Electron Bunches"
 	weapon
 		sprite "effect/mhd spark"
 			"frame rate" 15
