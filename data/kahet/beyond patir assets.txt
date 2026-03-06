@@ -1085,7 +1085,6 @@ outfit "creeper15 static"
 		"hull damage" 60
 
 outfit "asteroid launch"
-	plural "asteroid launches"
 	weapon
 		sprite "effect/asteroid projectile print"
 			"start frame" 1
