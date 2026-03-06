@@ -445,7 +445,13 @@ string Format::SimplePluralization(int amount, const string &noun)
 {
 	string result = to_string(amount) + ' ' + noun;
 	if(amount != 1 && amount != -1)
+	{
+		if(noun.ends_with("s") || noun.ends_with("x") || noun.ends_with("z") || noun.ends_with("ch") || noun.ends_with("sh"))
+		{
+			result += 'e';
+		}
 		result += 's';
+	}
 	return result;
 }
 
