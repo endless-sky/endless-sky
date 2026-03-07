@@ -1,5 +1,5 @@
 /* PresetsPanel.h
-Copyright (c) 2026 by Noelle Devonshire
+Copyright (c) 2026 by Endless Sky contributors
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -45,13 +45,13 @@ public:
 
 
 private:
-	//Inner helper class for organizing preset sourcing data.
+	// Inner helper class for organizing preset sourcing data.
 	class OutfitSources {
 	public:
 		std::string byPreset, installed, inCargo, inStorage, fromOutfitter, stillRequired;
 	};
 
-	//Helper enum for where outfits go when removed from your ship.
+	// Helper enum for where outfits go when removed from your ship.
 	enum PresetDestination {
 		STORAGE,
 		CARGO,
@@ -68,7 +68,7 @@ private:
 	void DeletePreset();
 	void ApplyPreset();
 
-	//draw sub-methods to make the Draw method more readable
+	// Draw sub-methods to make the Draw method more readable.
 	void DrawPresetsModule();
 	void DrawSelectedModule();
 	void DrawRemovingModule();
@@ -86,7 +86,6 @@ private:
 
 	// External data and interaction.
 	PlayerInfo &player;
-	OutfitterPanel &parent;
 	std::set<Ship*> *playerShips;
 	Sale<Outfit> *outfitter;
 	const Interface *presetPanelUi;
@@ -98,9 +97,9 @@ private:
 	Preset* selectedPreset = nullptr;
 	int64_t presetSales = 0;
 	double cargoChange = 0;
-    double storageChange = 0;
-    // If the player enters a filename that exists, prompt before overwriting it.
-    std::string nameToConfirm;
+	double storageChange = 0;
+	// If the player enters a filename that exists, prompt before overwriting it.
+	std::string nameToConfirm;
 
 	// Preset selection scrollbar.
 	int selected = 0;
@@ -146,7 +145,7 @@ private:
 	// Settings control.
 	Rectangle uniqueBox;
 	Rectangle handToHandBox;
-	Rectangle enforceShipTypesBox;
+	Rectangle enforceBox;
 	Rectangle moveUnequippedBox;
 	Rectangle toStorageBox;
 	Rectangle toCargoBox;

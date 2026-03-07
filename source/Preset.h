@@ -1,5 +1,5 @@
 /* Preset.h
-Copyright (c) 2026 by Noelle Devonshire
+Copyright (c) 2026 by Endless Sky contributors
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -25,11 +25,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // preset, and also handles reading and writing of files on the system.
 class Preset {
 public:
-	Preset(std::string name, std::string shipModel, const std::map<const Outfit*, int> &outfits);
+	Preset(std::string name, std::string shipModel, std::map<const Outfit*, int> &outfits);
 
-	//Attempt to create a preset from a given file. Will return nullptr if a preset could not be created.
+	// Attempt to create a preset from a given file. Will return nullptr if a preset could not be created.
 	static Preset* Load(const std::filesystem::path &path);
-    static bool Exists(const std::string & name);
+	static bool Exists(const std::string & name);
 
 	std::string ShipModel() const;
 	std::map<const Outfit*, int> Outfits();
@@ -39,7 +39,7 @@ public:
 	bool Delete() const;
 
 private:
-    static std::filesystem::path GetFilepath(const std::string &fileName);
+	static std::filesystem::path GetFilepath(const std::string &fileName);
 
 
 private:
