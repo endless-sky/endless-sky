@@ -36,7 +36,7 @@ Preset::Preset(string name, string shipModel, map<const Outfit*, int>& outfits)
 
 
 
-Preset* Preset::Load(const filesystem::path &path)
+Preset *Preset::Load(const filesystem::path &path)
 {
 	const DataFile file(path);
 	map<const Outfit*, int> outfits;
@@ -58,7 +58,7 @@ Preset* Preset::Load(const filesystem::path &path)
 					break;
 				}
 				// Make sure the outfit actually exists in the data.
-				if(const Outfit* outfit = GameData::Outfits().Get(child.Token(0)))
+				if(const Outfit *outfit = GameData::Outfits().Get(child.Token(0)))
 				{
 					// TODO: test outfit... legality? obtainability? whether player can interact?
 					int amount;
@@ -85,7 +85,7 @@ Preset* Preset::Load(const filesystem::path &path)
 	// If the named ship model exists and there's a nonzero number of outfits,
 	// or the preset is marked as empty, we have a valid preset.
 	if(GameData::Ships().Get(shipModel) && (!outfits.empty() || isEmpty))
-		return new Preset(path.stem(), shipModel, outfits);
+		return new Preset(path.stem().string(), shipModel, outfits);
 	return nullptr;
 }
 
@@ -123,7 +123,7 @@ string Preset::Name() const
 bool Preset::Save() const
 {
 	const filesystem::path path = GetFilepath(name);
-	auto* out = new DataWriter(path);
+	auto *out = new DataWriter(path);
 
 	out->Write("ship model", shipModel);
 	out->Write("outfits");

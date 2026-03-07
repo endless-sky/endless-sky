@@ -1400,7 +1400,7 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 	else if(key == 'p')
 	{
 		// Open the presets panel
-		GetUI().Push(new PresetsPanel(player, *this, playerShips, outfitter, day));
+		GetUI().Push(new PresetsPanel(player, playerShips, outfitter, day));
 		// This problem is only visible with a button made by outfitter panel's "DrawButton". When such a button
 		// that has a tooltip opens a panel, the tooltip will be made visible at all times that the panel is open.
 		// Setting the hover button to default value prevents this.
