@@ -2443,14 +2443,14 @@ void Engine::DoCollisions(Projectile &projectile)
 		// "Phasing" projectiles that have a target will never hit any other ship.
 		// They also don't care whether the weapon has "no ship collisions" on, as
 		// otherwise a phasing projectile would never hit anything.
-		shared_ptr<Body> target = projectile.TargetPtr();
+		shared_ptr<Entity> target = projectile.TargetPtr();
 		if(target)
 		{
 			Point offset = projectile.Position() - target->Position();
 			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
 			if(range < 1.)
 				collisions.emplace_back(target.get(),
-					projectile.IsTargetingShip() ? CollisionType::SHIP : CollisionType::MINABLE, range);
+					target->EntityType() == Entity::Type::SHIP ? CollisionType::SHIP : CollisionType::MINABLE, range);
 		}
 	}
 	else
