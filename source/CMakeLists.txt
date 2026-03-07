@@ -273,6 +273,10 @@ target_sources(EndlessSkyLib PRIVATE
 	Preferences.h
 	PreferencesPanel.cpp
 	PreferencesPanel.h
+	Preset.cpp
+	Preset.h
+	PresetsPanel.cpp
+	PresetsPanel.h
 	PrintData.cpp
 	PrintData.h
 	Projectile.cpp
