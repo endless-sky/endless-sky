@@ -96,6 +96,8 @@ public:
 	std::shared_ptr<Entity> TargetPtr() const;
 	// Clear the targeting information on this projectile.
 	void BreakTarget();
+	// Whether the target of this projectile is a ship.
+	bool IsTargetingShip() const;
 
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;

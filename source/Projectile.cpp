@@ -381,7 +381,7 @@ Projectile::ImpactInfo Projectile::GetInfo(double intersection) const
 {
 	// Account for the distance that this projectile traveled before intersecting
 	// with the target.
-	return ImpactInfo(*weapon, position, distanceTraveled + dV.Length() * intersection);
+	return ImpactInfo(*weapon, position + velocity * intersection, distanceTraveled + dV.Length() * intersection);
 }
 
 
@@ -415,6 +415,13 @@ void Projectile::BreakTarget()
 	cachedTarget = nullptr;
 	targetGovernment = nullptr;
 	targetDisabled = false;
+}
+
+
+
+bool Projectile::IsTargetingShip() const
+{
+	return targetIsShip;
 }
 
 
