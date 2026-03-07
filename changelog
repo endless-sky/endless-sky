@@ -4163,7 +4163,7 @@ Version 0.9.8:
     * The mission NPC void sprites are now "mute," like all the others.
   * Game mechanics:
     * Fixed some inefficiencies and glitches with ships assisting each other. (@tehhowch)
-    * Fixed some bugs with escort pathfinding and spurious refuelling. (@tehhowch)
+    * Fixed some bugs with escort pathfinding and spurious refueling. (@tehhowch)
     * Demanding tribute from a planet now always makes its government and allies hostile.
     * Enemies will no longer hang out just waiting for a player who is beyond the "invisible fence."
     * Missions can now specify a random range of time delays for events.
