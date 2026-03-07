@@ -122,15 +122,15 @@ string Preset::Name() const
 bool Preset::Save() const
 {
     const filesystem::path path = GetFilepath(name);
-	DataWriter out(path);
+	auto* out = new DataWriter(path);
 
-	out.Write("ship model", shipModel);
-	out.Write("outfits");
-	out.BeginChild();
+	out->Write("ship model", shipModel);
+	out->Write("outfits");
+	out->BeginChild();
 	{
         // Allow explicit creation of empty outfit files.
         if (outfits.empty())
-            out.Write("empty");
+            out->Write("empty");
         else {
             using OutfitElement = pair<const Outfit* const, int>;
             WriteSorted(outfits,
@@ -139,13 +139,15 @@ bool Preset::Save() const
                 [&out](const OutfitElement &it)
                 {
                     if(it.second == 1)
-                        out.Write(it.first->TrueName());
+                        out->Write(it.first->TrueName());
                     else
-                        out.Write(it.first->TrueName(), it.second);
+                        out->Write(it.first->TrueName(), it.second);
                 });
         }
 	}
-	out.EndChild();
+	out->EndChild();
+
+    delete out;
 
     return Files::Exists(path);
 }
