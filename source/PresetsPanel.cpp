@@ -598,6 +598,11 @@ void PresetsPanel::SavePreset(const string &name)
 			if(const auto copied = new Preset(name, ship->TrueModelName(), outfits);
 				copied->Save())
 			{
+				if(nameToConfirm == name)
+					erase_if(presets, [name](const Preset *p)
+					{
+						return p->Name() == name;
+					});
 				presets.push_back(copied);
 				RefreshPresetsBox();
 				GetUI().Push(DialogPanel::Info("The preset \"" + name + "\" was successfully created."));
