@@ -40,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Truncate.h"
 #include "UI.h"
 #include "Weapon.h"
+#include "PresetsPanel.h"
 
 #include <algorithm>
 #include <limits>
@@ -928,6 +929,9 @@ bool OutfitterPanel::ButtonActive(char key, bool shipRelatedOnly)
 
 bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 {
+	if (hoverButton == 'p')
+		return true;
+
 	if(!selectedOutfit)
 		return false;
 
@@ -1236,7 +1240,7 @@ void OutfitterPanel::DrawButtons()
 	// There will be two rows of buttons:
 	//  [ Buy  ] [  Install  ] [  Cargo  ]
 	//  [ Sell ] [ Uninstall ] [ Storage ]
-	//                         [  Leave  ]
+	//  [ Presets ]            [  Leave  ]
 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
 	const double rowBaseY = Screen::BottomRight().Y() - 2 * rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
@@ -1292,6 +1296,8 @@ void OutfitterPanel::DrawButtons()
 	DrawButton("Sto_re", Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
 		ButtonActive('r'), hoverButton == 'r', 'r');
 	// Row 3.
+	DrawButton("_Presets", Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 2), buttonSize),
+		true, hoverButton == 'p', 'p');
 	DrawButton("_Leave", Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 2), buttonSize),
 		true, hoverButton == 'l', 'l');
 
@@ -1390,6 +1396,16 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 		result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage, "uninstall");
 		if(!result && MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))
 			result = true;
+	}
+	else if(key == 'p')
+	{
+		// Open the presets panel
+		GetUI().Push(new PresetsPanel(player, *this, playerShips, outfitter, day));
+		// This problem is only visible with a button made by outfitter panel's "DrawButton". When such a button
+		// that has a tooltip opens a panel, the tooltip will be made visible at all times that the panel is open.
+		// Setting the hover button to default value prevents this.
+		hoverButton = '\0';
+		result = true;
 	}
 
 	return result;

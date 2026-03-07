@@ -2831,3 +2831,59 @@ interface "map: sales key"
 		color bright
 		dimensions 10 10
 		"orientation vector" 1 0
+
+
+
+interface "outfitter presets panel"
+	sprite "ui/info panel"
+		center 0 -5
+	
+	box "presets"
+		from -490 -280 to -320 190
+	box "selected"
+		from -310 -280 to 280 190
+	box "removed"
+		from 290 -280 to 490 190
+
+	box "settings"
+		from -490 200 to 70 270
+	box "cargo"
+		from 80 200 to 280 270
+	box "credits"
+		from 290 200 to 490 270
+		
+	box "tooltip"
+		from -200 280 to 300 380
+
+	active if "can delete"
+	button l "De_lete"
+		center -455 305
+		dimensions 90 30
+	active
+	active if "can save"
+	button s "_Save"
+		center -355 305
+		dimensions 90 30
+	active
+	button o "_Open Folder"
+		center -255 305
+		dimensions 90 30
+
+	active if "can apply"
+	button a "_Apply"
+		center 355 305
+		dimensions 90 30
+	active
+	button d "_Done"
+		center 455 305
+		dimensions 90 30
+		
+	box "delete"
+		from -500 290 to -410 320
+	box "save"
+		from -400 290 to -310 320
+	box "open"
+		from -300 290 to -210 320
+	box "apply"
+		from 310 290 to 400 320
+	
