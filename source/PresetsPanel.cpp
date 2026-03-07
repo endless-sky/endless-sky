@@ -26,8 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preset.h"
 #include "UI.h"
 
-#include "shader/FillShader.h"
 #include "text/DisplayText.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Layout.h"
@@ -514,7 +514,7 @@ void PresetsPanel::RefreshPresetData()
 			}
 
 		double dataScrollRoom = presetListings.size() * 30.;
-		for(const auto &content: presetListings | views::values)
+		for(const auto &content : presetListings | views::values)
 			dataScrollRoom += content.size() * 20.;
 		dataScroll.SetMaxValue(max(0., dataScrollRoom));
 
@@ -563,7 +563,7 @@ void PresetsPanel::RefreshPresetData()
 			}
 
 		double removeScrollRoom = removalListings.size() * 30.;
-		for(const auto &content: removalListings | views::values)
+		for(const auto &content : removalListings | views::values)
 			removeScrollRoom += content.size() * 20.;
 		removeScroll.SetMaxValue(max(0., removeScrollRoom));
 	}
