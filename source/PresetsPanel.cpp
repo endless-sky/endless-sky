@@ -1,5 +1,5 @@
 /* PresetsPanel.cpp
-Copyright (c) 2026 by Noelle Devonshire
+Copyright (c) 2026 by Endless Sky contributors
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -47,8 +47,7 @@ namespace {
 
 PresetsPanel::PresetsPanel(PlayerInfo &player, OutfitterPanel &parent, set<Ship*> &playerShips,
 							Sale<Outfit> &outfitter, const int day)
-    : player(player),
-	parent(parent),
+	: player(player),
 	playerShips(&playerShips),
 	outfitter(&outfitter),
 	presetPanelUi(GameData::Interfaces().Get("outfitter presets panel")),
@@ -76,9 +75,9 @@ PresetsPanel::PresetsPanel(PlayerInfo &player, OutfitterPanel &parent, set<Ship*
 	tooltip(tooltipBox.Width(), Alignment::LEFT, Tooltip::Direction::DOWN_RIGHT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
-	//box height minus 10px margins
+	// Box height minus 10px margins.
 	presetScroll.SetDisplaySize(presetsBox.Height() - 20.);
-	//box height minus 10px margins, 20px header
+	// Box height minus 10px margins, 20px header.
 	dataScroll.SetDisplaySize(selectedBox.Height() - 40.);
 	removeScroll.SetDisplaySize(removedBox.Height() - 40.);
 
@@ -105,7 +104,7 @@ PresetsPanel::PresetsPanel(PlayerInfo &player, OutfitterPanel &parent, set<Ship*
 	uniqueBox = Rectangle::WithCorners({leftBound, settingsBox.Top() + SETTINGS_MARGINS},
 		{rightBound, settingsBox.Center().Y() - SETTINGS_MARGINS / 2});
 	nextTop();
-	enforceShipTypesBox = Rectangle::WithCorners({leftBound, settingsBox.Top() + SETTINGS_MARGINS},
+	enforceBox = Rectangle::WithCorners({leftBound, settingsBox.Top() + SETTINGS_MARGINS},
 		{rightBound, settingsBox.Center().Y() - SETTINGS_MARGINS / 2});
 
 	// Bottom row.
@@ -139,7 +138,7 @@ PresetsPanel::PresetsPanel(PlayerInfo &player, OutfitterPanel &parent, set<Ship*
 	tooltipKeys[&creditsBox] = "credits";
 	tooltipKeys[&uniqueBox] = "unique";
 	tooltipKeys[&handToHandBox] = "hand";
-	tooltipKeys[&enforceShipTypesBox] = "enforce";
+	tooltipKeys[&enforceBox] = "enforce";
 	tooltipKeys[&moveUnequippedBox] = "move_";
 	tooltipKeys[&toStorageBox] = "_tostorage";
 	tooltipKeys[&toCargoBox] = "_tocargo";
@@ -175,7 +174,8 @@ void PresetsPanel::Draw()
 	if(selectedPreset && !playerShips->empty())
 		info.SetCondition("can apply");
 	presetPanelUi->Draw(info, this);
-    //TODO: currently using the texture of Info Panel. Will want to make a new texture and the properly positioned buttons.
+	// TODO: currently using the texture of Info Panel.
+	// Will want to make a new texture and the properly positioned buttons.
 
 	DrawPresetsModule();
 	DrawSelectedModule();
@@ -223,7 +223,7 @@ bool PresetsPanel::Click(const int x, const int y, const MouseButton button, con
 		return true;
 	}
 
-	//was click inside presets list
+	// Was click inside presets list?
 	if(presetsBox.Contains(Point(x,y)))
 	{
 		if(const int index = (presetScroll.AnimatedValue() + y - presetsBox.Top() - 10) / 20;
@@ -247,11 +247,11 @@ bool PresetsPanel::Hover(const int x, const int y)
 	dataHovered = false;
 	removeHovered = false;
 
-    if(presetsBox.Contains(Point(x, y)))
+	if(presetsBox.Contains(Point(x, y)))
 		presetHovered = true;
-    else if(selectedBox.Contains(Point(x, y)))
+	else if(selectedBox.Contains(Point(x, y)))
 		dataHovered = true;
-    else if(removedBox.Contains(Point(x, y)))
+	else if(removedBox.Contains(Point(x, y)))
 		removeHovered = true;
 
 	presetScrollBar.Hover(x, y);
@@ -259,7 +259,7 @@ bool PresetsPanel::Hover(const int x, const int y)
 	removeScrollBar.Hover(x, y);
 
 	hoveredTooltip = "";
-	for (const auto &[rectangle, key] : tooltipKeys)
+	for(const auto &[rectangle, key] : tooltipKeys)
 	{
 		if(rectangle->Contains(Point(x, y)))
 		{
@@ -302,7 +302,7 @@ bool PresetsPanel::Drag(const double dx, const double dy)
 }
 
 
-//The scroll wheel can be used to scroll hovered lists.
+// The scroll wheel can be used to scroll hovered lists.
 bool PresetsPanel::Scroll(const double dx, const double dy)
 {
 	presetDrag = presetHovered;
@@ -314,42 +314,42 @@ bool PresetsPanel::Scroll(const double dx, const double dy)
 
 bool PresetsPanel::KeyDown(const SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	//delete
+	// Delete.
 	if(key == 'l' && selectedPreset)
 	{
 		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &PresetsPanel::DeletePreset,
 			"Are you sure you want to delete the selected preset, \"" + selectedPreset->Name() + "\"?"));
 		return true;
 	}
-	//save
+	// Save.
 	if(key == 's' && !playerShips->empty())
 	{
-	    nameToConfirm.clear();
+		nameToConfirm.clear();
 		const Ship* ship = *playerShips->begin();
 		GetUI().Push(DialogPanel::RequestString(this, &PresetsPanel::SavePreset,
 			"Creating a preset from your ship \"" + ship->GivenName() + "\".\nWhat do you want to name it?"));
 		return true;
 	}
-	//apply
+	// Apply.
 	if(key == 'a' && selectedPreset && !playerShips->empty())
 	{
 		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &PresetsPanel::ApplyPreset,
 			"Are you sure you want to apply the preset \"" + selectedPreset->Name() + "\" to your selected ship(s)?"));
 		return true;
 	}
-	//done
+	// Done.
 	if(key == 'd')
 	{
 		GetUI().Pop(this);
 		return true;
 	}
-	//open folder
+	// Open folder.
 	if(key == 'o')
 	{
 		Files::OpenUserPresetsFolder();
 		return true;
 	}
-    return false;
+	return false;
 }
 
 
@@ -376,7 +376,7 @@ void PresetsPanel::CheckPresetSelected()
 	try {
 		selectedPreset = visiblePresets.at(selected);
 	}
-    catch([[maybe_unused]] const out_of_range &ex)
+	catch([[maybe_unused]] const out_of_range &ex)
 	{
 		selectedPreset = nullptr;
 	}
@@ -389,7 +389,7 @@ void PresetsPanel::RefreshPresetsBox()
 	vector<string> selectedModels;
 	if(enforceShipTypes)
 	{
-		for (const Ship* ship : *playerShips)
+		for(const Ship* ship : *playerShips)
 		{
 			if(ranges::find(selectedModels, ship->TrueModelName()) == selectedModels.end())
 			{
@@ -398,9 +398,9 @@ void PresetsPanel::RefreshPresetsBox()
 		}
 	}
 
-	for (Preset* preset : presets)
+	for(Preset* preset : presets)
 	{
-		//filter mismatched presets if setting enabled
+		// Filter mismatched presets if setting enabled.
 		if(enforceShipTypes && ranges::find(selectedModels, preset->ShipModel()) == selectedModels.end()) continue;
 
 		visiblePresets.push_back(preset);
@@ -426,10 +426,10 @@ void PresetsPanel::RefreshPresetData()
 	{
 
 		vector<Ship*> filteredShips;
-		for (Ship* ship : *playerShips)
+		for(Ship* ship : *playerShips)
 		{
 
-			//filter mismatched ships if setting enabled
+			// Filter mismatched ships if setting enabled.
 			if(enforceShipTypes && ship->TrueModelName() != selectedPreset->ShipModel()) continue;
 
 			filteredShips.push_back(ship);
@@ -438,16 +438,16 @@ void PresetsPanel::RefreshPresetData()
 		for(const auto &[outfit, amount] : selectedPreset->Outfits())
 			if(outfit->IsDefined() && !outfit->Category().empty() && !outfit->DisplayName().empty())
 			{
-				//filter unique outfits if setting is set
+				// Filter unique outfits if setting is set.
 				if(!includeUnique && outfit->Category() == "Unique") continue;
 
-				//filter hand-to-hand outfits if setting is set
+				// Filter hand-to-hand outfits if setting is set.
 				if(!includeHandToHand && outfit->Category() == "Hand to Hand") continue;
 
 				const int amountToSource = amount * filteredShips.size();
 				int stillNeeded = amountToSource;
 				int equipped = 0;
-				for (const Ship* ship : filteredShips)
+				for(const Ship* ship : filteredShips)
 				{
 
 					const int onShip = ship->OutfitCount(outfit);
@@ -462,35 +462,37 @@ void PresetsPanel::RefreshPresetData()
 				}
 
 				int cargo;
-			    if(const int inCargo = player.Cargo().Get(outfit); inCargo >= stillNeeded)
+				if(const int inCargo = player.Cargo().Get(outfit); inCargo >= stillNeeded)
 				{
 					cargo = stillNeeded;
 					stillNeeded = 0;
 				}
-			    else {
+				else {
 					cargo = inCargo;
 					stillNeeded -= inCargo;
 				}
 				cargoChange -= outfit->Mass() * cargo;
 
 				int storage;
-			    if(const int inStorage = player.Storage().Get(outfit); inStorage >= stillNeeded)
+				if(const int inStorage = player.Storage().Get(outfit); inStorage >= stillNeeded)
 				{
 					storage = stillNeeded;
 					stillNeeded = 0;
 				}
-			    else {
+				else {
 					storage = inStorage;
 					stillNeeded -= inStorage;
 				}
 				storageChange -= outfit->Mass() * storage;
 
-				const int stock = outfitter->Has(outfit) ? stillNeeded : min<int>(stillNeeded, max<int>(0, player.Stock(outfit)));
+				const int stock = outfitter->Has(outfit) ?
+					stillNeeded : min<int>(stillNeeded, max<int>(0, player.Stock(outfit)));
 				presetSales += player.StockDepreciation().Value(outfit, day, stock);
 				stillNeeded -= stock;
 
 				const auto sources = new OutfitSources();
-				sources->byPreset = to_string(amount) + (amount != amountToSource ? "(" + to_string(amountToSource) + ")" : "");
+				sources->byPreset = to_string(amount) +
+					(amount != amountToSource ? "(" + to_string(amountToSource) + ")" : "");
 				sources->installed = equipped > 0 ? to_string(equipped) : "-";
 				sources->inCargo = cargo > 0 ? to_string(cargo) : "-";
 				sources->inStorage = storage > 0 ? to_string(storage) : "-";
@@ -500,32 +502,32 @@ void PresetsPanel::RefreshPresetData()
 			}
 
 		double dataScrollRoom = presetListings.size() * 30.;
-		for (const auto &content: presetListings | views::values)
+		for(const auto &content: presetListings | views::values)
 			dataScrollRoom += content.size() * 20.;
 		dataScroll.SetMaxValue(max(0., dataScrollRoom));
 
 		removalListings.clear();
 		map<const Outfit*, int> toRemove;
-		for (const Ship* ship : filteredShips)
+		for(const Ship* ship : filteredShips)
 		{
-			for (pair<const Outfit*, int> outfit : ship->Outfits())
+			for(pair<const Outfit*, int> outfit : ship->Outfits())
 			{
-				//filter unique outfits if setting is set
+				// Filter unique outfits if setting is set,
 				if(!includeUnique && outfit.first->Category() == "Unique") continue;
 
-				//filter hand-to-hand outfits if setting is set
+				// Filter hand-to-hand outfits if setting is set.
 				if(!includeHandToHand && outfit.first->Category() == "Hand to Hand") continue;
 
 				toRemove[outfit.first] += outfit.second;
 			}
 		}
-		for (pair<const Outfit*, int> outfit : selectedPreset->Outfits())
+		for(pair<const Outfit*, int> outfit : selectedPreset->Outfits())
 		{
 			if(toRemove.contains(outfit.first))
 			{
-			    if(const int toInstall = outfit.second * filteredShips.size(); toRemove[outfit.first] > toInstall)
+				if(const int toInstall = outfit.second * filteredShips.size(); toRemove[outfit.first] > toInstall)
 					toRemove[outfit.first] -= toInstall;
-			    else
+				else
 					toRemove.erase(outfit.first);
 			}
 		}
@@ -549,7 +551,7 @@ void PresetsPanel::RefreshPresetData()
 			}
 
 		double removeScrollRoom = removalListings.size() * 30.;
-		for (const auto &content: removalListings | views::values)
+		for(const auto &content: removalListings | views::values)
 			removeScrollRoom += content.size() * 20.;
 		removeScroll.SetMaxValue(max(0., removeScrollRoom));
 	}
@@ -562,37 +564,37 @@ void PresetsPanel::SavePreset(const string &name)
 	{
 
 		const Ship* ship = *playerShips->begin();
-	    if (Preset::Exists(name) && name != nameToConfirm)
-	    {
-	        nameToConfirm = name;
-	        GetUI().Push(DialogPanel::RequestString(this, &PresetsPanel::SavePreset, "Warning: \"" + name
-            + "\" is being used for an existing snapshot.\nOverwrite it?", name));
-	    }
-	    else {
-	        map<const Outfit*, int> outfits;
-	        for (auto [outfit, amount] : ship->Outfits())
-	        {
-	            //filter unique outfits if setting is set
-	            if(!includeUnique && outfit->Category() == "Unique") continue;
+		if(Preset::Exists(name) && name != nameToConfirm)
+		{
+			nameToConfirm = name;
+			GetUI().Push(DialogPanel::RequestString(this, &PresetsPanel::SavePreset, "Warning: \"" + name
+			+ "\" is being used for an existing snapshot.\nOverwrite it?", name));
+		}
+		else {
+			map<const Outfit*, int> outfits;
+			for(auto [outfit, amount] : ship->Outfits())
+			{
+				// Filter unique outfits if setting is set.
+				if(!includeUnique && outfit->Category() == "Unique") continue;
 
-	            //filter hand-to-hand outfits if setting is set
-	            if(!includeHandToHand && outfit->Category() == "Hand to Hand") continue;
+				// Filter hand-to-hand outfits if setting is set.
+				if(!includeHandToHand && outfit->Category() == "Hand to Hand") continue;
 
-	            outfits[outfit] = amount;
-	        }
-	        if (const auto copied = new Preset(name, ship->TrueModelName(), outfits);
-                copied->Save())
-	        {
-	            presets.push_back(copied);
-	            RefreshPresetsBox();
-	            GetUI().Push(DialogPanel::Info("The preset \"" + name + "\" was successfully created."));
-	        }
-	        else
-	            GetUI().Push(DialogPanel::Info("Could not create a file for the preset \"" + name + "\"."));
-	    }
+				outfits[outfit] = amount;
+			}
+			if(const auto copied = new Preset(name, ship->TrueModelName(), outfits);
+				copied->Save())
+			{
+				presets.push_back(copied);
+				RefreshPresetsBox();
+				GetUI().Push(DialogPanel::Info("The preset \"" + name + "\" was successfully created."));
+			}
+			else
+				GetUI().Push(DialogPanel::Info("Could not create a file for the preset \"" + name + "\"."));
+		}
 	}
-    else {
-		//This shouldn't be reachable
+	else {
+		// This shouldn't be reachable.
 		GetUI().Push(DialogPanel::Info("You do not have any ships selected."));
 	}
 }
@@ -605,9 +607,11 @@ void PresetsPanel::DeletePreset()
 		if(!selectedPreset->Delete())
 			GetUI().Push(DialogPanel::Info("Failed to delete preset \"" + selectedPreset->Name() + "\"."));
 		else {
-			GetUI().Push(DialogPanel::Info("The preset \"" + selectedPreset->Name() + "\" was successfully deleted."));
+			GetUI().Push(DialogPanel::Info("The preset \"" +
+				selectedPreset->Name() + "\" was successfully deleted."));
 			presets.erase(ranges::remove(presets, selectedPreset).begin(), presets.end());
-			visiblePresets.erase(ranges::remove(visiblePresets, selectedPreset).begin(), visiblePresets.end());
+			visiblePresets.erase(ranges::remove(visiblePresets, selectedPreset).begin(),
+				visiblePresets.end());
 		}
 		RefreshPresetsBox();
 	}
@@ -616,45 +620,45 @@ void PresetsPanel::DeletePreset()
 
 void PresetsPanel::ApplyPreset()
 {
-	//keep track of outfits that couldn't be added or removed
+	// Keep track of outfits that couldn't be added or removed.
 	map<Ship*, vector<string>> errors;
 
-	//We will want to add everything to cargo after ships are equipped appropriately to better guarantee proper
-	//interaction with things like outfit/cargo expansions, as well as outfits being removed from cargo for the
-	//incoming preset. So, cache the results and apply cargo changes after everything else.
+	// We will want to add everything to cargo after ships are equipped appropriately to better guarantee proper
+	// Interaction with things like outfit/cargo expansions, as well as outfits being removed from cargo for the
+	// Incoming preset. So, cache the results and apply cargo changes after everything else.
 	map<const Outfit*, int> toCargo;
 
-	//First, remove all outfits on all ships to guarantee as much cash as possible
-	for (Ship* ship : *playerShips)
+	// First, remove all outfits on all ships to guarantee as much cash as possible.
+	for(Ship* ship : *playerShips)
 	{
 
-		//skip ships not belonging to the preset if the enforce option is toggled
+		// Skip ships not belonging to the preset if the enforce option is toggled.
 		if(enforceShipTypes && ship->TrueModelName() != selectedPreset->ShipModel()) continue;
 
-		//because outfits must be removed from a ship using AddOutfit to keep attributes correct,
-		//copy over a list of outfits to remove manually to bypass possible concurrent modification issues.
+		// Because outfits must be removed from a ship using AddOutfit to keep attributes correct,
+		// Copy over a list of outfits to remove manually to bypass possible concurrent modification issues.
 		vector<const Outfit*> installed;
-		for (pair<const Outfit*, int> outfit : ship->Outfits())
+		for(pair<const Outfit*, int> outfit : ship->Outfits())
 		{
-			//filter unique outfits if setting is set
+			// Filter unique outfits if setting is set
 			if(!includeUnique && outfit.first->Category() == "Unique") continue;
 
-			//filter hand-to-hand outfits if setting is set
+			// Filter hand-to-hand outfits if setting is set.
 			if(!includeHandToHand && outfit.first->Category() == "Hand to Hand") continue;
 
 			installed.push_back(outfit.first);
 		}
 
-		//Sort by greater outfit space required to ensure outfit expansions can be removed last.
+		// Sort by greater outfit space required to ensure outfit expansions can be removed last.
 		ranges::stable_sort(installed, [](const Outfit* lhs, const Outfit* rhs)
 		{
 			return lhs->Get("outfit space") < rhs->Get("outfit space");
 		});
-		//Note: Since outfit space is stored as a negative number to denote how it affects your ship once installed,
-		//sorts have to be reversed from what's expected. Therefore, since we want the "greater" outfit space required
-		//to be sorted first on the list, use "less than".
+		// Note: Since outfit space is stored as a negative number to denote how it affects your ship once installed,
+		// Sorts have to be reversed from what's expected. Therefore, since we want the "greater" outfit space required
+		// To be sorted first on the list, use "less than".
 
-		//Sort by lesser outfit space on ammunition specifically so that missiles are removed before racks
+		// Sort by lesser outfit space on ammunition specifically so that missiles are removed before racks
 		ranges::stable_sort(installed, [](const Outfit* lhs, const Outfit* rhs)
 		{
 			const bool leftAmmo = lhs->Category() == "Ammunition";
@@ -666,16 +670,17 @@ void PresetsPanel::ApplyPreset()
 			return false;
 		});
 
-		for (const Outfit* outfit : installed)
+		for(const Outfit* outfit : installed)
 		{
-			//don't remove outfits that are wanted on the preset
+			// Don't remove outfits that are wanted on the preset.
 			int wanted = 0;
 			if(selectedPreset->Outfits().contains(outfit))
 				wanted = selectedPreset->Outfits()[outfit];
 			const int toRemove = ship->OutfitCount(outfit) - wanted;
 			const int amount = ship->Attributes().CanAdd(*outfit, -toRemove);
 			if(-amount != toRemove)
-				errors[ship].push_back("	Could not remove " + to_string(toRemove + amount) + " \"" + outfit->DisplayName() + "\".");
+				errors[ship].push_back("	Could not remove " + to_string(toRemove + amount) +
+					" \"" + outfit->DisplayName() + "\".");
 			if(amount < 0)
 			{
 				// Uninstall the outfit.
@@ -685,9 +690,9 @@ void PresetsPanel::ApplyPreset()
 					ship->AddCrew(required * amount);
 				ship->Recharge();
 
-				//Send the outfit to the appropriate destination
+				// Send the outfit to the appropriate destination.
 				const int toAdd = -amount;
-				switch (presetDestination)
+				switch(presetDestination)
 				{
 					case STORAGE:
 						player.Storage().Add(outfit, toAdd);
@@ -706,51 +711,54 @@ void PresetsPanel::ApplyPreset()
 	}
 
 
-	//Then, install outfits as appropriate on all ships
-	for (Ship* ship : *playerShips)
+	// Then, install outfits as appropriate on all ships.
+	for(Ship* ship : *playerShips)
 	{
 
-		//skip ships not belonging to the preset if the enforce option is toggled
+		// Skip ships not belonging to the preset if the enforce option is toggled
 		if(enforceShipTypes && ship->TrueModelName() != selectedPreset->ShipModel()) continue;
 
-		//Just in case the preset, for whatever reason, can't be fully applied, apply some sorts to the list.
-		//convert the map to a list of vectors so arbitrary sorts and filters can be used
+		// Just in case the preset, for whatever reason, can't be fully applied, apply some sorts to the list.
+		// Convert the map to a list of vectors so arbitrary sorts and filters can be used.
 		vector<pair<const Outfit*, int>> outfits;
-		for (pair<const Outfit*, int> outfit : selectedPreset->Outfits())
+		for(pair<const Outfit*, int> outfit : selectedPreset->Outfits())
 		{
 
-			//filter unique outfits if setting is set
+			// Filter unique outfits if setting is set
 			if(!includeUnique && outfit.first->Category() == "Unique") continue;
 
-			//filter hand-to-hand outfits if setting is set
+			// Filter hand-to-hand outfits if setting is set
 			if(!includeHandToHand && outfit.first->Category() == "Hand to Hand") continue;
 
 			outfits.push_back(outfit);
 		}
 
-		//Sort once by outfit space required.
-		ranges::stable_sort(outfits, [](const pair<const Outfit*, int> &lhs, const pair<const Outfit*, int> &rhs)
+		// Sort once by outfit space required.
+		ranges::stable_sort(outfits, [](const pair<const Outfit*, int> &lhs,
+			const pair<const Outfit*, int> &rhs)
 		{
 			return lhs.first->Get("outfit space") > rhs.first->Get("outfit space");
 		});
 
-		//then sort by an arbitrary category order
+		// Then sort by an arbitrary category order.
 		enum SortCategory {Systems, Power, Engines, Weapons, Other};
 		auto getSort = [](const string &category)
-	    {
+		{
 			if(category == "Systems") return Systems;
 			if(category == "Power") return Power;
 			if(category == "Engines") return Engines;
 			if(category == "Guns" || category == "Turrets" || category == "Secondary Weapons") return Weapons;
 			return Other;
 		};
-		ranges::stable_sort(outfits, [&getSort](const pair<const Outfit*, int> &lhs, const pair<const Outfit*, int> &rhs)
+		ranges::stable_sort(outfits, [&getSort](const pair<const Outfit*, int> &lhs,
+			const pair<const Outfit*, int> &rhs)
 		{
 			return getSort(lhs.first->Category()) < getSort(rhs.first->Category());
 		});
 
-		//Sort by greater outfit space on ammunition so that racks are added before ammo
-		ranges::stable_sort(outfits, [](const pair<const Outfit*, int> &lhs, const pair<const Outfit*, int> &rhs)
+		// Sort by greater outfit space on ammunition so that racks are added before ammo.
+		ranges::stable_sort(outfits, [](const pair<const Outfit*, int> &lhs,
+			const pair<const Outfit*, int> &rhs)
 		{
 			const bool leftAmmo = lhs.first->Category() == "Ammunition";
 			const bool rightAmmo = rhs.first->Category() == "Ammunition";
@@ -761,10 +769,10 @@ void PresetsPanel::ApplyPreset()
 			return false;
 		});
 
-		//finally, actually apply the outfits
-		for (auto [outfit, toInstall] : outfits)
+		// Finally, actually apply the outfits.
+		for(auto [outfit, toInstall] : outfits)
 		{
-			//add fewer outfits if some are already installed
+			// Add fewer outfits if some are already installed.
 			toInstall -= ship->OutfitCount(outfit);
 			if(toInstall > 0)
 			{
@@ -786,13 +794,14 @@ void PresetsPanel::ApplyPreset()
 					const int fromCargo = player.Cargo().Remove(outfit, actual);
 					actual -= fromCargo;
 					// Then, buy at appropriately depreciated price.
-					int available = outfitter->Has(outfit) ? actual : min<int>(actual, max<int>(0, player.Stock(outfit)));
+					int available = outfitter->Has(outfit) ?
+						actual : min<int>(actual, max<int>(0, player.Stock(outfit)));
 					int notAfford = 0;
 					if(available > 0)
 					{
 						int64_t price = player.StockDepreciation().Value(outfit, day, available);
-						//if necessary, trim the amount down to what the player can afford.
-						while (price > player.Accounts().Credits() && available > 0)
+						// If necessary, trim the amount down to what the player can afford.
+						while(price > player.Accounts().Credits() && available > 0)
 						{
 							++notAfford;
 							if(--available > 0)
@@ -802,7 +811,8 @@ void PresetsPanel::ApplyPreset()
 						{
 							if(!errorEncountered)
 								errors[ship].push_back("	Could not install \"" + outfit->DisplayName() + "\".");
-							errors[ship].push_back("		Could not afford " + to_string(notAfford) + (notAfford > 1 ? " units." : " unit."));
+							errors[ship].push_back("		Could not afford " + to_string(notAfford) +
+							    (notAfford > 1 ? " units." : " unit."));
 						}
 						if(available > 0)
 						{
@@ -816,7 +826,8 @@ void PresetsPanel::ApplyPreset()
 					{
 						if(!errorEncountered)
 							errors[ship].push_back("	Could not install \"" + outfit->DisplayName() + "\".");
-						errors[ship].push_back("		" + to_string(actual) + (actual > 1 ? " units " : " unit ") + "not in stock.");
+						errors[ship].push_back("		" + to_string(actual) + (actual > 1 ? " units " : " unit ") +
+						    "not in stock.");
 					}
 				}
 			}
@@ -824,8 +835,8 @@ void PresetsPanel::ApplyPreset()
 	}
 
 
-	//Finally, send any outfits needed to cargo until capacity is reached, and the rest to storage
-	for (auto [outfit, amount] : toCargo)
+	// Finally, send any outfits needed to cargo until capacity is reached, and the rest to storage.
+	for(auto [outfit, amount] : toCargo)
 	{
 		amount -= player.Cargo().Add(outfit, amount);
 		if(amount > 0)
@@ -833,16 +844,16 @@ void PresetsPanel::ApplyPreset()
 	}
 
 
-	//describe errors, if any, to the player
-    if(errors.empty())
-        GetUI().Push(DialogPanel::Info("The preset \"" + selectedPreset->Name() +
-            "\" was successfully applied to all applicable selected ships."));
-    else {
+	// Describe errors, if any, to the player.
+	if(errors.empty())
+		GetUI().Push(DialogPanel::Info("The preset \"" + selectedPreset->Name() +
+			"\" was successfully applied to all applicable selected ships."));
+	else {
 		string message;
-		for (const auto &[ship, errorList] : errors)
+		for(const auto &[ship, errorList] : errors)
 		{
 			message += ship->GivenName() + "\n";
-			for (const string &error : errorList)
+			for(const string &error : errorList)
 				message += error + "\n";
 		}
 		GetUI().Push(DialogPanel::Info(message));
@@ -856,7 +867,7 @@ void PresetsPanel::DrawPresetsModule()
 {
 	FillShader::Fill(presetsBox, backgroundColor);
 
-	//round up initial draw index at 0.2 so the text doesn't visually escape from the box, but still has wiggle room
+	// Round up initial draw index at 0.2 so the text doesn't visually escape from the box, but still has wiggle room.
 	const double indexRaw = (presetScroll.AnimatedValue()) / 20.;
 	int index = indexRaw;
 	if(indexRaw - index > 0.2) ++index;
@@ -873,7 +884,8 @@ void PresetsPanel::DrawPresetsModule()
 
 		// Check if this is the selected row.
 		if(index == selected)
-			FillShader::Fill(Point(presetsBox.Center().X(), y + 10.), Point(presetsBox.Width(), 20.), dimColor);
+			FillShader::Fill(
+			    Point(presetsBox.Center().X(), y + 10.), Point(presetsBox.Width(), 20.), dimColor);
 
 		Point pos(presetsBox.Left() + 10, y + fontOff);
 		smallFont.Draw(DisplayText(item->Name(),
@@ -881,7 +893,8 @@ void PresetsPanel::DrawPresetsModule()
 	}
 
 	if(presetScroll.Scrollable())
-		presetScrollBar.SyncDraw(presetScroll, presetsBox.TopRight() + Point{0., 10.}, presetsBox.BottomRight() - Point{0., 10.});
+		presetScrollBar.SyncDraw(presetScroll, presetsBox.TopRight() + Point{0., 10.},
+		    presetsBox.BottomRight() - Point{0., 10.});
 }
 
 
@@ -898,11 +911,11 @@ void PresetsPanel::DrawSelectedModule()
 		const int boxWidth = static_cast<int>(selectedBox.Width());
 		const int available = boxWidth - 20;
 		constexpr int columnSize = 70;
-		table.AddColumn(10, Layout(available - (columnSize * 6)));
-		table.AddColumn(boxWidth - 10 - (columnSize * 5), Layout(columnSize, Alignment::RIGHT));
-		table.AddColumn(boxWidth - 10 - (columnSize * 4), Layout(columnSize, Alignment::RIGHT));
-		table.AddColumn(boxWidth - 10 - (columnSize * 3), Layout(columnSize, Alignment::RIGHT));
-		table.AddColumn(boxWidth - 10 - (columnSize * 2), Layout(columnSize, Alignment::RIGHT));
+		table.AddColumn(10, Layout(available - columnSize * 6));
+		table.AddColumn(boxWidth - 10 - columnSize * 5, Layout(columnSize, Alignment::RIGHT));
+		table.AddColumn(boxWidth - 10 - columnSize * 4, Layout(columnSize, Alignment::RIGHT));
+		table.AddColumn(boxWidth - 10 - columnSize * 3, Layout(columnSize, Alignment::RIGHT));
+		table.AddColumn(boxWidth - 10 - columnSize * 2, Layout(columnSize, Alignment::RIGHT));
 		table.AddColumn(boxWidth - 10 - columnSize, Layout(columnSize, Alignment::RIGHT));
 		table.AddColumn(boxWidth - 10, Layout(columnSize, Alignment::RIGHT));
 
@@ -923,7 +936,7 @@ void PresetsPanel::DrawSelectedModule()
 		double currentY = scrollableY - dataScroll.AnimatedValue();
 		const int cutoff = selectedBox.Bottom() - 20 - 10;
 
-		//align with the scroll bar progress by creating a table gap proportional to animated value
+		// Align with the scroll bar progress by creating a table gap proportional to animated value.
 		bool firstDraw = false;
 		auto addProgress = [&](const double amount) -> void {
 			currentY += amount;
@@ -939,7 +952,7 @@ void PresetsPanel::DrawSelectedModule()
 			if(currentY >= cutoff) break;
 			if(firstDraw && currentY >= scrollableY)
 			{
-				//Empty rows between categories
+				// Empty rows between categories.
 				table.DrawGap(10);
 			}
 			addProgress(10.);
@@ -947,41 +960,41 @@ void PresetsPanel::DrawSelectedModule()
 			if(currentY >= cutoff) break;
 			if(currentY >= scrollableY)
 			{
-				//Category listings
+				// Category listings.
 				table.Draw(category + ":", mediumColor);
-				//Empty data cells on category listings
-				for (int i = 0; i < 6; ++i) table.Draw("");
+				// Empty data cells on category listings.
+				for(int i = 0; i < 6; ++i) table.Draw("");
 			}
 			addProgress(20.);
 
-			for (auto [outfit, sources] : content)
+			for(auto [outfit, sources] : content)
 			{
 				if(currentY >= cutoff) break;
 				if(currentY >= scrollableY)
 				{
-					//outfit name
+					// Outfit name.
 					table.Draw(outfit->DisplayName(), mediumColor);
 
-					//amount required
+					// Amount required.
 					table.Draw(sources->byPreset, brightColor);
 
-					//amount currently equipped
+					// Amount currently equipped.
 					string value = sources->installed;
 					table.Draw(value, value == "-" ? dimColor : brightColor);
 
-					//amount from cargo
+					// Amount from cargo.
 					value = sources->inCargo;
 					table.Draw(value, value == "-" ? dimColor : brightColor);
 
-					//amount from storage
+					// Amount from storage.
 					value = sources->inStorage;
 					table.Draw(value, value == "-" ? dimColor : brightColor);
 
-					//amount purchased
+					// Amount purchased.
 					value = sources->fromOutfitter;
 					table.Draw(value, value == "-" ? dimColor : brightColor);
 
-					//draw the amount unable to source in red, if exists
+					// Draw the amount unable to source in red, if exists.
 					value = sources->stillRequired;
 					table.Draw(value, value == "-" ? dimColor : errorColor);
 				}
@@ -989,7 +1002,8 @@ void PresetsPanel::DrawSelectedModule()
 			}
 		}
 		if(dataScroll.Scrollable())
-			dataScrollBar.SyncDraw(dataScroll, selectedBox.TopRight() + Point{0., 10.}, selectedBox.BottomRight() - Point{0., 10.});
+			dataScrollBar.SyncDraw(dataScroll, selectedBox.TopRight() + Point{0., 10.},
+			    selectedBox.BottomRight() - Point{0., 10.});
 	}
 }
 
@@ -1011,10 +1025,10 @@ void PresetsPanel::DrawRemovingModule()
 		table.SetHighlight(0, removedBox.Width());
 		table.DrawAt(point);
 
-		//10px margin on top
+		// 10px margin on top.
 		table.DrawGap(10);
 
-		//table header
+		// Table header.
 		table.Draw("To Be Removed", brightColor);
 		table.Draw("", brightColor);
 
@@ -1022,7 +1036,7 @@ void PresetsPanel::DrawRemovingModule()
 		double currentY = scrollableY - removeScroll.AnimatedValue();
 		const int cutoff = removedBox.Bottom() - 20 - 10;
 
-		//align with the scroll bar progress by creating a table gap proportional to animated value
+		// Align with the scroll bar progress by creating a table gap proportional to animated value.
 		bool firstDraw = false;
 		auto addProgress = [&](const double amount) -> void {
 			currentY += amount;
@@ -1039,7 +1053,7 @@ void PresetsPanel::DrawRemovingModule()
 			if(currentY >= cutoff) break;
 			if(firstDraw && currentY >= scrollableY)
 			{
-				//10px margin between categories
+				// 10px margin between categories.
 				table.DrawGap(10);
 			}
 			addProgress(10.);
@@ -1047,14 +1061,14 @@ void PresetsPanel::DrawRemovingModule()
 			if(currentY >= cutoff) break;
 			if(currentY >= scrollableY)
 			{
-				//Category listings
+				// Category listings.
 				table.Draw(category + ":", mediumColor);
 				table.Draw("");
 			}
 			addProgress(20.);
 
-			//all outfits in the category
-			for (auto [outfit, amount] : content)
+			// All outfits in the category.
+			for(auto [outfit, amount] : content)
 			{
 				if(currentY >= cutoff) break;
 				if(currentY >= scrollableY)
@@ -1066,7 +1080,8 @@ void PresetsPanel::DrawRemovingModule()
 			}
 		}
 		if(removeScroll.Scrollable())
-			removeScrollBar.SyncDraw(removeScroll, removedBox.TopRight() + Point{0., 10.}, removedBox.BottomRight() - Point{0., 10.});
+			removeScrollBar.SyncDraw(removeScroll, removedBox.TopRight() + Point{0., 10.},
+			    removedBox.BottomRight() - Point{0., 10.});
 	}
 }
 
@@ -1077,33 +1092,39 @@ void PresetsPanel::DrawSettingsModule()
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 	const double fontOff = .5 * smallFont.Height();
 
-	//top row
+	// Top row.
 	AddZone(handToHandBox, [this] {
 		includeHandToHand = !includeHandToHand;
 		RefreshPresetData();
 	});
 	FillShader::Fill(handToHandBox, faintColor);
-	SpriteShader::Draw(box[includeHandToHand ? 1 : 0], {handToHandBox.Right() - SETTINGS_MARGINS, handToHandBox.Center().Y()});
-	smallFont.Draw({"Include Hand to Hand"}, {handToHandBox.Left() + SETTINGS_MARGINS / 2, handToHandBox.Center().Y() - fontOff}, brightColor);
+	SpriteShader::Draw(box[includeHandToHand ? 1 : 0],
+	    {handToHandBox.Right() - SETTINGS_MARGINS, handToHandBox.Center().Y()});
+	smallFont.Draw({"Include Hand to Hand"},
+	    {handToHandBox.Left() + SETTINGS_MARGINS / 2, handToHandBox.Center().Y() - fontOff}, brightColor);
 
 	AddZone(uniqueBox, [this] {
 		includeUnique = !includeUnique;
 		RefreshPresetData();
 	});
 	FillShader::Fill(uniqueBox, faintColor);
-	SpriteShader::Draw(box[includeUnique ? 1 : 0], {uniqueBox.Right() - SETTINGS_MARGINS, uniqueBox.Center().Y()});
-	smallFont.Draw({"Include Uniques"}, {uniqueBox.Left() + SETTINGS_MARGINS / 2, uniqueBox.Center().Y() - fontOff}, brightColor);
+	SpriteShader::Draw(box[includeUnique ? 1 : 0],
+	    {uniqueBox.Right() - SETTINGS_MARGINS, uniqueBox.Center().Y()});
+	smallFont.Draw({"Include Uniques"},
+	    {uniqueBox.Left() + SETTINGS_MARGINS / 2, uniqueBox.Center().Y() - fontOff}, brightColor);
 
-	AddZone(enforceShipTypesBox, [this] {
+	AddZone(enforceBox, [this] {
 		enforceShipTypes = !enforceShipTypes;
 		RefreshPresetsBox();
 		RefreshPresetData();
 	});
-	FillShader::Fill(enforceShipTypesBox, faintColor);
-	SpriteShader::Draw(box[enforceShipTypes ? 1 : 0], {enforceShipTypesBox.Right() - SETTINGS_MARGINS, enforceShipTypesBox.Center().Y()});
-	smallFont.Draw({"Strict Ship Match"}, {enforceShipTypesBox.Left() + SETTINGS_MARGINS / 2, enforceShipTypesBox.Center().Y() - fontOff}, brightColor);
+	FillShader::Fill(enforceBox, faintColor);
+	SpriteShader::Draw(box[enforceShipTypes ? 1 : 0],
+	    {enforceBox.Right() - SETTINGS_MARGINS, enforceBox.Center().Y()});
+	smallFont.Draw({"Strict Ship Match"},
+	    {enforceBox.Left() + SETTINGS_MARGINS / 2, enforceBox.Center().Y() - fontOff}, brightColor);
 
-	//bottom row
+	// Bottom row.
 	AddZone(moveUnequippedBox, [this] {
 		int index = presetDestination;
 		if(++index >= destinationsSize) index = 0;
@@ -1111,31 +1132,38 @@ void PresetsPanel::DrawSettingsModule()
 		RefreshPresetData();
 	});
 	FillShader::Fill(moveUnequippedBox, faintColor);
-	smallFont.Draw({"Unequipped outfits to:"}, {moveUnequippedBox.Left() + SETTINGS_MARGINS / 2, moveUnequippedBox.Center().Y() - fontOff}, brightColor);
+	smallFont.Draw({"Unequipped outfits to:"}, {moveUnequippedBox.Left() + SETTINGS_MARGINS / 2,
+	    moveUnequippedBox.Center().Y() - fontOff}, brightColor);
 
 	AddZone(toStorageBox, [this] {
 		presetDestination = STORAGE;
 		RefreshPresetData();
 	});
 	FillShader::Fill(toStorageBox, faintColor);
-	SpriteShader::Draw(box[presetDestination == STORAGE ? 1 : 0], {toStorageBox.Right() - SETTINGS_MARGINS, toStorageBox.Center().Y()});
-	smallFont.Draw({"Storage"}, {toStorageBox.Left() + SETTINGS_MARGINS / 2, toStorageBox.Center().Y() - fontOff}, brightColor);
+	SpriteShader::Draw(box[presetDestination == STORAGE ? 1 : 0],
+	    {toStorageBox.Right() - SETTINGS_MARGINS, toStorageBox.Center().Y()});
+	smallFont.Draw({"Storage"},
+	    {toStorageBox.Left() + SETTINGS_MARGINS / 2, toStorageBox.Center().Y() - fontOff}, brightColor);
 
 	AddZone(toCargoBox, [this] {
 		presetDestination = CARGO;
 		RefreshPresetData();
 	});
 	FillShader::Fill(toCargoBox, faintColor);
-	SpriteShader::Draw(box[presetDestination == CARGO ? 1 : 0], {toCargoBox.Right() - SETTINGS_MARGINS, toCargoBox.Center().Y()});
-	smallFont.Draw({"Cargo"}, {toCargoBox.Left() + SETTINGS_MARGINS / 2, toCargoBox.Center().Y() - fontOff}, brightColor);
+	SpriteShader::Draw(box[presetDestination == CARGO ? 1 : 0],
+	    {toCargoBox.Right() - SETTINGS_MARGINS, toCargoBox.Center().Y()});
+	smallFont.Draw({"Cargo"},
+	    {toCargoBox.Left() + SETTINGS_MARGINS / 2, toCargoBox.Center().Y() - fontOff}, brightColor);
 
 	AddZone(toOutfitterBox, [this] {
 		presetDestination = OUTFITTER;
 		RefreshPresetData();
 	});
 	FillShader::Fill(toOutfitterBox, faintColor);
-	SpriteShader::Draw(box[presetDestination == OUTFITTER ? 1 : 0], {toOutfitterBox.Right() - SETTINGS_MARGINS, toOutfitterBox.Center().Y()});
-	smallFont.Draw({"Sold"}, {toOutfitterBox.Left() + SETTINGS_MARGINS / 2, toOutfitterBox.Center().Y() - fontOff}, brightColor);
+	SpriteShader::Draw(box[presetDestination == OUTFITTER ? 1 : 0],
+	    {toOutfitterBox.Right() - SETTINGS_MARGINS, toOutfitterBox.Center().Y()});
+	smallFont.Draw({"Sold"},
+	    {toOutfitterBox.Left() + SETTINGS_MARGINS / 2, toOutfitterBox.Center().Y() - fontOff}, brightColor);
 }
 
 
@@ -1152,7 +1180,7 @@ void PresetsPanel::DrawAccountingModule() const
 			Layout(cargoBox.Width() - margins * 2, Alignment::LEFT)),
 			Point(cargoBox.Left() + margins, cargoBox.Center().Y() - 20. - fontOff), mediumColor);
 		smallFont.Draw(DisplayText(to_string(player.Cargo().Free()) + " / " + to_string(player.Cargo().Size()),
-			Layout(cargoBox.Width() - (margins * 2), Alignment::RIGHT)),
+			Layout(cargoBox.Width() - margins * 2, Alignment::RIGHT)),
 			Point(cargoBox.Left() + margins, cargoBox.Center().Y() - 20. - fontOff), brightColor);
 
 		smallFont.Draw(DisplayText("Cargo Change:",
@@ -1179,21 +1207,21 @@ void PresetsPanel::DrawAccountingModule() const
 			Layout(creditsBox.Width() - margins * 2, Alignment::LEFT)),
 			Point(creditsBox.Left() + margins, creditsBox.Center().Y() - 20. - fontOff), mediumColor);
 		smallFont.Draw(DisplayText(Format::CreditString(player.Accounts().Credits()),
-			Layout(creditsBox.Width() - (margins * 2), Alignment::RIGHT)),
+			Layout(creditsBox.Width() - margins * 2, Alignment::RIGHT)),
 			Point(creditsBox.Left(), creditsBox.Center().Y() - 20. - fontOff), brightColor);
 
 		smallFont.Draw(DisplayText("Net cost:",
 			Layout(creditsBox.Width() - margins * 2, Alignment::LEFT)),
 			Point(creditsBox.Left() + margins, creditsBox.Center().Y() - fontOff), mediumColor);
 		smallFont.Draw(DisplayText(Format::CreditString(presetSales),
-			Layout(creditsBox.Width() - (margins * 2), Alignment::RIGHT)),
+			Layout(creditsBox.Width() - margins * 2, Alignment::RIGHT)),
 			Point(creditsBox.Left(), creditsBox.Center().Y() - fontOff), brightColor);
 
 		smallFont.Draw(DisplayText("Result:",
 			Layout(creditsBox.Width() - margins * 2, Alignment::LEFT)),
 			Point(creditsBox.Left() + margins, creditsBox.Center().Y() + 20. - fontOff), mediumColor);
 		smallFont.Draw(DisplayText(Format::CreditString(player.Accounts().Credits() - presetSales),
-			Layout(creditsBox.Width() - (margins * 2), Alignment::RIGHT)),
+			Layout(creditsBox.Width() - margins * 2, Alignment::RIGHT)),
 			Point(creditsBox.Left(), creditsBox.Center().Y() + 20. - fontOff), brightColor);
 
 	}

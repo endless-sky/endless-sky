@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "PresetsPanel.h"
 #include "Rectangle.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -40,7 +41,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Truncate.h"
 #include "UI.h"
 #include "Weapon.h"
-#include "PresetsPanel.h"
 
 #include <algorithm>
 #include <limits>
@@ -929,7 +929,7 @@ bool OutfitterPanel::ButtonActive(char key, bool shipRelatedOnly)
 
 bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 {
-	if (hoverButton == 'p')
+	if(hoverButton == 'p')
 		return true;
 
 	if(!selectedOutfit)
