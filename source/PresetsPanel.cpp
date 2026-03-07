@@ -1,5 +1,5 @@
 /* PresetsPanel.cpp
-Copyright (c) 2026 by Endless Sky contributors
+Copyright (c) 2026 by Noelle Devonshire
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
