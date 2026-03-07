@@ -92,7 +92,7 @@ namespace {
 	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
-	const string AMMO_REFILL = "Ammo refill in outfitter";
+	const string AMMO_REFILL = "Auto refill ammo in outfitter";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
 	const string WINDOW_ROUNDING = "Window rounding";
@@ -1064,7 +1064,7 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == AMMO_REFILL)
 		{
-			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::MANUAL;
+			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::NEVER;
 			text = Preferences::AmmoRefillSetting();
 		}
 #ifdef _WIN32

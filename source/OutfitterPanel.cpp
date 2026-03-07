@@ -1094,7 +1094,7 @@ void OutfitterPanel::CheckRefill()
 		return;
 	checkedRefill = true;
 	Preferences::AmmoRefill refillPref = Preferences::GetAmmoRefill();
-	if(refillPref == Preferences::AmmoRefill::MANUAL)
+	if(refillPref == Preferences::AmmoRefill::NEVER)
 		return;
 
 	int count = 0;

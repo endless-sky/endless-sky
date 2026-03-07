@@ -134,9 +134,9 @@ public:
 	};
 
 	enum class AmmoRefill : int_fast8_t {
-		MANUAL,
+		NEVER,
 		ASK,
-		AUTO
+		ALWAYS
 	};
 
 #ifdef _WIN32

@@ -178,7 +178,7 @@ namespace {
 	const vector<string> LARGE_GRAPHICS_REDUCTION_SETTINGS = {"off", "largest only", "all"};
 	int largeGraphicsReductionIndex = 0;
 
-	const vector<string> AMMO_REFILL_SETTINGS = {"maunal", "ask", "auto"};
+	const vector<string> AMMO_REFILL_SETTINGS = {"always", "ask", "never"};
 	int ammoRefillIndex = 1;
 
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
