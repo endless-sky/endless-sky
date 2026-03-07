@@ -676,7 +676,11 @@ void PresetsPanel::ApplyPreset()
 			int wanted = 0;
 			if(selectedPreset->Outfits().contains(outfit))
 				wanted = selectedPreset->Outfits()[outfit];
-			const int toRemove = ship->OutfitCount(outfit) - wanted;
+			const int equipped = ship->OutfitCount(outfit);
+			if(equipped <= wanted)
+				continue;
+			const int toRemove = equipped - wanted;
+
 			const int amount = ship->Attributes().CanAdd(*outfit, -toRemove);
 			if(-amount != toRemove)
 				errors[ship].push_back("	Could not remove " + to_string(toRemove + amount) +
