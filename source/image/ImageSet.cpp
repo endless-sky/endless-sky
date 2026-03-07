@@ -156,8 +156,12 @@ void ImageSet::ValidateFrames() noexcept(false)
 	{
 		if(toResize.size() > paths[0].size())
 		{
-			Logger::Log(prefix + to_string(toResize.size() - paths[0].size())
-				+ " extra frames for the " + specifier + " sprite will be ignored.", Logger::Level::WARNING);
+			if(paths[0].empty())
+				Logger::Log(prefix + "all frames for the " + specifier + " sprite will be ignored, "
+					"as it has no corresponding normal resolution frame(s).", Logger::Level::WARNING);
+			else
+				Logger::Log(prefix + to_string(toResize.size() - paths[0].size())
+					+ " extra frame(s) for the " + specifier + " sprite will be ignored.", Logger::Level::WARNING);
 			toResize.resize(paths[0].size());
 		}
 	};
@@ -265,6 +269,9 @@ void ImageSet::LoadDimensions(Sprite *sprite) noexcept(false)
 	// Read only the first frame of the 1x resolution image in order to determine the dimensions of the sprite.
 	// (All frames are expected to have the same dimensions.)
 	size_t frames = paths[0].size();
+	// An ImageSet might exist for a sprite that only had 2x images defined, in which case it will have no frames.
+	if(!frames)
+		return;
 	buffer[0].Clear(frames);
 	int loadedFrames = buffer[0].Read(paths[0][0], 0, true);
 	if(!loadedFrames)
