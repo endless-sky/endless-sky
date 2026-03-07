@@ -12,6 +12,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
+
 #pragma once
 
 #include "Panel.h"
@@ -31,8 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // A panel dedicated to creating and applying ship presets.
 class PresetsPanel : public Panel {
 public:
-	explicit PresetsPanel(PlayerInfo &player, OutfitterPanel &parent, std::set<Ship*> &playerShips,
-						  Sale<Outfit> &outfitter, int day);
+	explicit PresetsPanel(PlayerInfo &player, std::set<Ship*> &playerShips, Sale<Outfit> &outfitter, int day);
 	~PresetsPanel() override;
 
 	void Step() override;
@@ -94,7 +94,7 @@ private:
 	// Preset management.
 	std::vector<Preset*> presets;
 	std::vector<Preset*> visiblePresets;
-	Preset* selectedPreset = nullptr;
+	Preset *selectedPreset = nullptr;
 	int64_t presetSales = 0;
 	double cargoChange = 0;
 	double storageChange = 0;

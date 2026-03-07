@@ -12,6 +12,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
+
 #pragma once
 
 #include "Ship.h"
@@ -28,7 +29,7 @@ public:
 	Preset(std::string name, std::string shipModel, std::map<const Outfit*, int> &outfits);
 
 	// Attempt to create a preset from a given file. Will return nullptr if a preset could not be created.
-	static Preset* Load(const std::filesystem::path &path);
+	static Preset *Load(const std::filesystem::path &path);
 	static bool Exists(const std::string & name);
 
 	std::string ShipModel() const;
