@@ -25,6 +25,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	constexpr string EMPTY = "EMPTY";
+}
+
 
 
 Preset::Preset(string name, string shipModel, map<const Outfit*, int>& outfits)
@@ -52,13 +56,14 @@ Preset *Preset::Load(const filesystem::path &path)
 		{
 			for(const DataNode &child : node)
 			{
-				if(child.Token(0) == "Empty")
+				if(child.Token(0) == EMPTY)
 				{
 					isEmpty = true;
 					break;
 				}
 				// Make sure the outfit actually exists in the data.
-				if(const Outfit *outfit = GameData::Outfits().Get(child.Token(0)))
+				const Outfit *outfit = GameData::Outfits().Get(child.Token(0));
+				if(outfit->IsDefined() && !outfit->Category().empty() && !outfit->DisplayName().empty())
 				{
 					// TODO: test outfit... legality? obtainability? whether player can interact?
 					int amount;
@@ -131,7 +136,7 @@ bool Preset::Save() const
 	{
 		// Allow explicit creation of empty outfit files.
 		if(outfits.empty())
-			out->Write("empty");
+			out->Write(EMPTY);
 		else {
 			using OutfitElement = pair<const Outfit* const, int>;
 			WriteSorted(outfits,
