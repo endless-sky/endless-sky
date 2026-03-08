@@ -373,7 +373,7 @@ outfit `"Kis," Lethal Wish`
 		"firing heat" 600
 		"firing shields" 120
 		"submunition" "kis short range" 4
-	description `Like a cold and ravenous beast, the frightful Kis tears through the defenses of anything that dares stride close enough to its jaws. At long range this weapon loses its high shield penetration but continues to output respectable damage, encouraging retreat while continuing to harry foes.`
+	description `Like a cold and ravenous beast, the frightful Kis tears through the defenses of anything that dares stride close enough to its jaws. At long range this weapon loses its high shield penetration but continues to output respectable damage, encouraging enemies to retreat while they still can.`
 
 outfit "kis short range"
 	weapon
@@ -454,7 +454,7 @@ outfit `Crimson Halo`
 	"shield energy" 6.6
 	"shield protection" -0.5
 	"shield connection point" 1
-	description `Resja's ships didn't need shields for defense - only as fuel for attacking their foes. Thus, their favored shield cortex is an unusually powerful one, emitting a staggering amount of energy that is much less useful for intercepting damage than it is when fed back into a starship's systems.`
+	description `Resja's ships didn't need shields for defense - only as fuel for powering their various aggressive technologies. Their favored shield cortex is unusually powerful for its size, though it proves much less useful for intercepting damage than for its intended purpose, feeding energy back into a starship's systems.`
 
 
 outfit `Visions of Rime`
