@@ -41,26 +41,29 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipyardPanel.h"
 #include "Shop.h"
 #include "SpaceportPanel.h"
+#include "image/SpriteLoadManager.h"
 #include "System.h"
 #include "TaskQueue.h"
 #include "TextArea.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
+#include <memory>
 #include <sstream>
+#include <utility>
 
 using namespace std;
 
 
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
-	: player(player), callback(callback),
+	: player(player), callback(std::move(callback)),
 	planet(*player.GetPlanet()), system(*player.GetSystem())
 {
-	trading.reset(new TradingPanel(player));
-	bank.reset(new BankPanel(player));
-	spaceport.reset(new SpaceportPanel(player));
-	hiring.reset(new HiringPanel(player));
+	trading = make_shared<TradingPanel>(player);
+	bank = make_shared<BankPanel>(player);
+	spaceport = make_shared<SpaceportPanel>(player);
+	hiring = make_shared<HiringPanel>(player);
 
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(14));
@@ -71,7 +74,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
 	TaskQueue queue;
-	GameData::Preload(queue, planet.Landscape());
+	SpriteLoadManager::LoadDeferred(queue, planet.Landscape());
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
@@ -127,6 +130,50 @@ void PlanetPanel::Step()
 		{
 			hasOutfitter = true;
 			outfitterStock.Add(shop->Stock());
+		}
+	}
+	// Load the thumbnails of all outfits and ships that the player could see while landed here
+	// if they haven't been loaded before or a mission action has just completed and we should
+	// re-check what's available in case the mission added something to the planet or player's
+	// inventory.
+	if(!hasLoadedThumbnails || SpriteLoadManager::RecheckThumbnails())
+	{
+		hasLoadedThumbnails = true;
+		TaskQueue &queue = GetUI().AsyncQueue();
+		// Load the thumbnails for any ships and outfits sold in the shop.
+		for(const Ship *ship : shipyardStock)
+			SpriteLoadManager::LoadDeferred(queue, ship->Thumbnail());
+		for(const Outfit *outfit : outfitterStock)
+			SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
+		// Also load the thumbnails of anything in storage on this planet or from the player's fleet.
+		if(hasShipyard || hasOutfitter)
+		{
+			for(const auto &ship : player.Ships())
+			{
+				// Ships in the same system but on a different planet can still appear in the shops,
+				// so only skip over ships in a different system.
+				if(!ship || !ship->GetPlanet() || ship->GetSystem() != &system)
+					continue;
+				// Ship thumbnails are visible in both the outfitter and the shipyard, but outfit
+				// thumbnails are only visible in the outfitter.
+				SpriteLoadManager::LoadDeferred(queue, ship->Thumbnail());
+				if(hasOutfitter)
+					for(const auto &outfit : ship->Outfits())
+						SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			}
+		}
+		if(hasOutfitter)
+		{
+			for(const auto &outfit : player.Storage().Outfits())
+				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			for(const auto &outfit : player.Cargo().Outfits())
+				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			for(const auto &license : player.Licenses())
+			{
+				const Outfit *outfit = GameData::Outfits().Find(license + " License");
+				if(outfit)
+					SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
+			}
 		}
 	}
 

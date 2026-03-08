@@ -1274,6 +1274,7 @@ interface "hud"
 	point "radar"
 		center 128 128
 	value "radar radius" 110
+	value "radar scale" .025
 	value "radar pointer radius" 130
 	
 	sprite "ui/navigation"

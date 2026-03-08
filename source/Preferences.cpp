@@ -63,7 +63,7 @@ namespace {
 	int vsyncIndex = 1;
 
 	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
-	int cameraAccelerationIndex = 1;
+	int cameraAccelerationIndex = 0;
 
 	const map<string, SoundCategory> VOLUME_SETTINGS = {
 		{"volume", SoundCategory::MASTER},
@@ -197,7 +197,6 @@ void Preferences::Load()
 {
 	// These settings should be on by default. There is no need to specify
 	// values for settings that are off by default.
-	settings["Landing zoom"] = true;
 	settings["Render motion blur"] = true;
 	settings["Cloaked ship outlines"] = true;
 	settings[FRUGAL_ESCORTS] = true;
@@ -207,7 +206,6 @@ void Preferences::Load()
 	settings["Show stored outfits on map"] = true;
 	settings["Show planet labels"] = true;
 	settings["Show asteroid scanner overlay"] = true;
-	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
 	settings["Animate main menu background"] = true;

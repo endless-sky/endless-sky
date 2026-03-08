@@ -169,6 +169,8 @@ target_sources(EndlessSkyLib PRIVATE
 	JumpType.h
 	Logger.cpp
 	Logger.h
+	LoadingCircle.cpp
+	LoadingCircle.h
 	LoadPanel.cpp
 	LoadPanel.h
 	LocationFilter.cpp
@@ -406,6 +408,8 @@ target_sources(EndlessSkyLib PRIVATE
 	image/MaskManager.h
 	image/Sprite.cpp
 	image/Sprite.h
+	image/SpriteLoadManager.cpp
+	image/SpriteLoadManager.h
 	image/SpriteSet.cpp
 	image/SpriteSet.h
 	shader/BatchDrawList.cpp
