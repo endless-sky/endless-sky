@@ -324,7 +324,7 @@ mission "Successors: Ghosts Myurej 5"
 				`	"You seem more polite than the rest of Myurej."`
 			`	"I'm not sure what thou mean'st. I harbor no ill will to thee, for certain."`
 			label hello
-			`	They bow gently. "I am Ijaset. I contribute to Myurej's efforts t'explore beyond the wormhole."`
+			`	They quirk their head at you for a moment before speaking again. "I am Ijaset. I contribute to Myurej's efforts t'explore beyond the wormhole."`
 			`	"And your friends?" you say, gesturing to the soldiers.`
 			`	Blue spots run over Ijaset's skin; you realize it's the first time you've seen a color display by a member of Myurej. "They are here to assure the success of our task."`
 			label questions
@@ -499,13 +499,13 @@ mission "Successors: Ghosts Myurej 8"
 				`	"It seems like a lot of effort for some little trinkets."`
 					goto unamused
 				`	"And you are?"`
-			`	The scion bows gently. "Myurej M- Khiajsore. A cousin of the one who spoke to thee earlier, whom thou shalt recall."`
+			`	The scion fans their arms gently. "Myurej M- Khiajsore. A cousin of the one who spoke to thee earlier, whom thou shalt recall."`
 				goto next
 			label flirty
-			`	"Quite so!" the scion says. "They say a - what is it - a 'biped fever' runs through the people since thou arriveth, that all at once all the worlds clamor for stories of artful, noble humans in the heyday of our Predecessors. I did not see the appeal at first, but by thy actions and seeing thee now... there's a certain strange elegance to the few arms, thy incomplete symmetry." They hum briefly. "But forgive me, that's not what we're here for, thou or I." They bow gently. "Myurej M- Khiajsore. I'm a cousin of the one who spoke to thee earlier, behind the veil."`
+			`	"Quite so!" the scion says. "They say a - what is it - a 'biped fever' runs through the people since thou arriveth, that all at once all the worlds clamor for stories of artful, noble humans in the heyday of our Predecessors. I did not see the appeal at first, but by thy actions and seeing thee now... there's a certain strange elegance to the few arms, thy incomplete symmetry." They hum briefly. "But forgive me, that's not what we're here for, thou or I." They fan their arms in a fluid motion. "Myurej M- Khiajsore. I'm a cousin of the one who spoke to thee earlier, behind the veil."`
 				goto next
 			label unamused
-			`	The scion extends a gilded arm, shaking the myriad piercings and bits of jewelry upon it as if to contemplate them. "Oh, thou thinks me materialistic, mayhaps? Yet precious things are only made precious by the pain of acquiring them. The jewels thou brought back from the Shroud have already earned their own stories... as the beginning of a grand project of restoration, maybe, and at least as something totally unique." They hum with satisfaction. "And yet, 'tisn't what we're here for, thou or I." They bow gently. "Myurej M- Khiajsore. A cousin of the one who spoke to thee earlier, behind the veil."`
+			`	The scion extends a gilded arm, shaking the myriad piercings and bits of jewelry upon it as if to contemplate them. "Oh, thou thinks me materialistic, mayhaps? Yet precious things are only made precious by the pain of acquiring them. The jewels thou brought back from the Shroud have already earned their own stories... as the beginning of a grand project of restoration, maybe, and at least as something totally unique." They hum with satisfaction. "And yet, 'tisn't what we're here for, thou or I." They fan their arms in acknowledgement. "Myurej M- Khiajsore. A cousin of the one who spoke to thee earlier, behind the veil."`
 			label next
 			`	Khiajsore motions for you to join them on a stroll through the complex, the guards staying several meters behind. Plants with saffron-colored flowers line water-filled channels on the floor; their heads follow the two of you as you walk and slither along.`
 			branch patron
@@ -526,6 +526,6 @@ mission "Successors: Ghosts Myurej 8"
 			`	Khiajsore hums again. It almost sounds like a piece of music; nothing you're familiar with, of course. "Myurej, Myurej, Myurej," they say. "For the rest here, Myurej is the state, but for those of us within it, Myurej is family. Were we the ones making up this crisis, I surely wouldn't tell thee, discreet as thou may'st have proven thyself." Jovial pastels color the scion's gilded body. "Soon enough, we the Houses shall promise thee all sorts of trinkets - ships and technologies - as our inhibitions fade in this ongoing disorder. Our judgment will be turned to new aims."`
 			label stop
 			`	Khiajsore stops in a circular room where the flowers have spread out to colonize the space, dusting the air and water alike with their bright pollen. "I wish to invite thee to our wedding, Captain. Not mine!" they chuckle, "but Myurej's. 'Twill take place here, beneath the waves, as our kind once began in eons past. And it shall be a gathering of the Houses, of everyone of import. If thou hast made allies of others, as thou hast of us, there would be the place to petition thy case to all assembled. And," they add with a bright tone, "I do hope thou wilt enjoy the show."`
-			`	They glide over to one of the walls and pluck one of the flowers before returning and offering it to you. The golden bloom rotates to face you as you take it from them, opening wide to reveal its bright interior. "Farewell now." they say, "The complex here shall meet thy needs, if thou requireth rest or aught else before thou must depart. May next we meet be as delightful as today, Captain." Khiajsore bows gently once again, and they are joined by their two escorts as they slither down one of the complex's corridors.`
+			`	They glide over to one of the walls and pluck one of the flowers before returning and offering it to you. The golden bloom rotates to face you as you take it from them, opening wide to reveal its bright interior. "Farewell now." they say, "The complex here shall meet thy needs, if thou requireth rest or aught else before thou must depart. May next we meet be as delightful as today, Captain." Khiajsore splays their arms to you once again, and they are joined by their two escorts as they slither down one of the complex's corridors.`
 			`	When, a while later, you take the elevator back up to the planet's surface, you cannot help but notice how similar the window into the dark ocean is to Myurej's shimmering black screen.`
 

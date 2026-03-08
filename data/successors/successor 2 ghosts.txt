@@ -246,11 +246,11 @@ mission "Successors: Ghosts 1"
 			branch raaqa-puan-uuoru
 				has "flagship planet: Raaqa-Puan-Uuoru"
 
-			`Soon after you exit your ship on this planet, you are discreetly pulled aside by a trio of Successor military officers. Their leader gives you a gentle bow. "Honored captain," they say, "We've come to inform thee that the noble House Seineq requests thy presence for the purposes of lending aid to their ally, the wounded House Kaatrij."`
+			`Soon after you exit your ship on this planet, you are discreetly pulled aside by a trio of Successor military officers. Their leader splays their arms gently in greeting. "Honored captain," they say, "We've come to inform thee that the noble House Seineq requests thy presence for the purposes of lending aid to their ally, the wounded House Kaatrij."`
 				goto questions
 
 			label raaqa-puan-uuoru
-			`Soon after you exit your ship, you are pulled aside by a trio of Successor military officers; unlike most here, they are not wearing House Kaatrij's colors. Their leader offers you a gentle bow. "Honored captain," they say, "and friend to Kaatrij. The noble House Seineq would request thy presence at a nearby offworld staging post to aid our assistance efforts to our mutual ally."`
+			`Soon after you exit your ship, you are pulled aside by a trio of Successor military officers; unlike most here, they are not wearing House Kaatrij's colors. Their leader splays their arms gently in greeting. "Honored captain," they say, "and friend to Kaatrij. The noble House Seineq would request thy presence at a nearby offworld staging post to aid our assistance efforts to our mutual ally."`
 
 			label questions
 			choice
@@ -1313,7 +1313,7 @@ mission "Successors: Ghosts 13"
 			branch "prototypes only"
 				not "event: successors: ghosts keystones finished"
 
-			`Not long after disembarking you are met by Tiliia, the Aqrabe engineer you worked with before. They bow courteously to you while, behind them, crates of keystones are carried by and soon loaded into the <ship>.`
+			`Not long after disembarking you are met by Tiliia, the Aqrabe engineer you worked with before. They splay their arms courteously to you while, behind them, crates of keystones are carried by and soon loaded into the <ship>.`
 			`	"I thought it fair to see this shipment off myself," Tiliia says by way of introduction. "Though it pleaseth me to see thee again as well, Captain."`
 			choice
 				`	"Likewise."`
@@ -1328,7 +1328,7 @@ mission "Successors: Ghosts 13"
 				accept
 
 			label "prototypes only"
-			`Not long after disembarking you are met by Tiliia, the Aqrabe engineer you worked with recently. They bow, courteously but with some haste. "Thou'rt here for the keystone shipment, I take it?" they say in a clipped tone. You nod in reply. "Well, Kaatrij will get their sixteen tons, but let them know they're only prototypes. Politics moves faster than my work." They turn to depart, clearly eager to get back to it, before stopping and offering you a quick "good to see thee, Captain," before they leave you to oversee the loading of the keystones.`
+			`Not long after disembarking you are met by Tiliia, the Aqrabe engineer you worked with recently. They offer you a perfunctory and hurried splay of the arms. "Thou'rt here for the keystone shipment, I take it?" they say in a clipped tone. You nod in reply. "Well, Kaatrij will get their sixteen tons, but let them know they're only prototypes. Politics moves faster than my work." They turn to depart, clearly eager to get back to it, before stopping and offering you a quick "good to see thee, Captain," before they leave you to oversee the loading of the keystones.`
 				accept
 
 	on complete
