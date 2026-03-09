@@ -1337,8 +1337,6 @@ void OutfitterPanel::DrawButtons()
 	DrawButton("Sto_re", Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
 		ButtonActive('r'), hoverButton == 'r', 'r');
 	// Row 3.
-	DrawButton("_Presets", Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 2), buttonSize),
-		true, hoverButton == 'p', 'p');
 	DrawButton("_Leave", Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 2), buttonSize),
 		true, hoverButton == 'l', 'l');
 
@@ -1346,6 +1344,14 @@ void OutfitterPanel::DrawButtons()
 
 	const Point sqCenter = Screen::BottomRight() - Point(135, 25);
 	selectedQuantity->SetPosition(Rectangle(sqCenter, {86, 20}));
+
+	// Draw the Presets button.
+	const Point buttonCenter = Screen::BottomRight() - Point(598+42, 20);
+	const Sprite *presetIcon = SpriteSet::Get(hoverButton == 'p' ? "ui/presets selected" : "ui/presets unselected");
+	SpriteShader::Draw(presetIcon, buttonCenter);
+	buttonZones.emplace_back(Rectangle(buttonCenter, {presetIcon->Width(), presetIcon->Height()}), 'p');
+	font.Draw(DisplayText("_Presets", Layout(Alignment::LEFT)),
+		buttonCenter - Point(42-5, font.Height() * .5), hoverButton == 'p' ? bright : dim);
 
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
