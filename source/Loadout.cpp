@@ -1,4 +1,4 @@
-/* Preset.cpp
+/* Loadout.cpp
 Copyright (c) 2026 by Noelle Devonshire
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Preset.h"
+#include "Loadout.h"
 
 #include <utility>
 
@@ -31,7 +31,7 @@ namespace {
 
 
 
-Preset::Preset(string name, string shipModel, map<const Outfit*, int>& outfits)
+Loadout::Loadout(string name, string shipModel, map<const Outfit*, int>& outfits)
 	: name(std::move(name)),
 	shipModel(std::move(shipModel)),
 	outfits(std::move(outfits))
@@ -40,7 +40,7 @@ Preset::Preset(string name, string shipModel, map<const Outfit*, int>& outfits)
 
 
 
-Preset *Preset::Load(const filesystem::path &path)
+Loadout *Loadout::Load(const filesystem::path &path)
 {
 	const DataFile file(path);
 	map<const Outfit*, int> outfits;
@@ -88,15 +88,15 @@ Preset *Preset::Load(const filesystem::path &path)
 	}
 
 	// If the named ship model exists and there's a nonzero number of outfits,
-	// or the preset is marked as empty, we have a valid preset.
+	// or the loadout is marked as empty, we have a valid loadout.
 	if(GameData::Ships().Get(shipModel) && (!outfits.empty() || isEmpty))
-		return new Preset(path.stem().string(), shipModel, outfits);
+		return new Loadout(path.stem().string(), shipModel, outfits);
 	return nullptr;
 }
 
 
 
-bool Preset::Exists(const std::string &name)
+bool Loadout::Exists(const std::string &name)
 {
 	const filesystem::path path = GetFilepath(name);
 	return Files::Exists(path);
@@ -104,28 +104,28 @@ bool Preset::Exists(const std::string &name)
 
 
 
-string Preset::ShipModel() const
+string Loadout::ShipModel() const
 {
 	return shipModel;
 }
 
 
 
-map<const Outfit*, int> Preset::Outfits()
+map<const Outfit*, int> Loadout::Outfits()
 {
 	return outfits;
 }
 
 
 
-string Preset::Name() const
+string Loadout::Name() const
 {
 	return name;
 }
 
 
 
-bool Preset::Save() const
+bool Loadout::Save() const
 {
 	const filesystem::path path = GetFilepath(name);
 	auto *out = new DataWriter(path);
@@ -160,7 +160,7 @@ bool Preset::Save() const
 
 
 
-bool Preset::Delete() const
+bool Loadout::Delete() const
 {
 	const filesystem::path path = GetFilepath(name);
 	Files::Delete(path);
@@ -169,7 +169,7 @@ bool Preset::Delete() const
 
 
 
-filesystem::path Preset::GetFilepath(const string& fileName)
+filesystem::path Loadout::GetFilepath(const string& fileName)
 {
-	return Files::Presets() / (fileName + ".txt");
+	return Files::Loadouts() / (fileName + ".txt");
 }

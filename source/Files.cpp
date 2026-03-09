@@ -515,7 +515,7 @@ void Files::OpenUserSavesFolder()
 
 
 
-// Open this user's presets file directory in their native file explorer.
+// Open this user's loadouts file directory in their native file explorer.
 void Files::OpenUserLoadoutsFolder()
 {
 	OpenFolder(loadoutPath);

@@ -1,4 +1,4 @@
-/* PresetsPanel.h
+/* LoadoutsPanel.h
 Copyright (c) 2026 by Noelle Devonshire
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -19,9 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Interface.h"
+#include "Loadout.h"
 #include "OutfitterPanel.h"
 #include "PlayerInfo.h"
-#include "Preset.h"
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 
@@ -29,11 +29,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// A panel dedicated to creating and applying ship presets.
-class PresetsPanel : public Panel {
+// A panel dedicated to creating and applying ship loadouts.
+class LoadoutsPanel : public Panel {
 public:
-	explicit PresetsPanel(PlayerInfo &player, std::set<Ship*> &playerShips, Sale<Outfit> &outfitter, int day);
-	~PresetsPanel() override;
+	explicit LoadoutsPanel(PlayerInfo &player, std::set<Ship*> &playerShips, Sale<Outfit> &outfitter, int day);
+	~LoadoutsPanel() override;
 
 	void Step() override;
 	void Draw() override;
@@ -45,14 +45,14 @@ public:
 
 
 private:
-	// Inner helper class for organizing preset sourcing data.
+	// Inner helper class for organizing loadout-sourcing data.
 	class OutfitSources {
 	public:
-		std::string byPreset, installed, inCargo, inStorage, fromOutfitter, stillRequired;
+		std::string byLoadout, installed, inCargo, inStorage, fromOutfitter, stillRequired;
 	};
 
 	// Helper enum for where outfits go when removed from your ship.
-	enum PresetDestination {
+	enum LoadoutDestination {
 		STORAGE,
 		CARGO,
 		OUTFITTER
@@ -60,16 +60,16 @@ private:
 
 
 private:
-	void LoadPresets();
-	void CheckPresetSelected();
-	void RefreshPresetsBox();
-	void RefreshPresetData();
-	void SavePreset(const std::string &name);
-	void DeletePreset();
-	void ApplyPreset();
+	void LoadLoadouts();
+	void CheckLoadoutSelected();
+	void RefreshLoadoutsBox();
+	void RefreshLoadoutData();
+	void SaveLoadout(const std::string &name);
+	void DeleteLoadout();
+	void ApplyLoadout();
 
 	// Draw sub-methods to make the Draw method more readable.
-	void DrawPresetsModule();
+	void DrawLoadoutsModule();
 	void DrawSelectedModule();
 	void DrawRemovingModule();
 	void DrawSettingsModule();
@@ -77,38 +77,38 @@ private:
 
 
 private:
-	// Some code wants to rotate through the PresetDestination enum, so the index is recorded here.
+	// Some code wants to rotate through the LoadoutDestination enum, so the index is recorded here.
 	const int destinationsSize = 3;
 
 	// Cache rendered values to only be calculated once per click.
-	std::map<std::string, std::map<const Outfit*, OutfitSources*>> presetListings;
+	std::map<std::string, std::map<const Outfit*, OutfitSources*>> loadoutListings;
 	std::map<std::string, std::map<const Outfit*, std::string*>> removalListings;
 
 	// External data and interaction.
 	PlayerInfo &player;
 	std::set<Ship*> *playerShips;
 	Sale<Outfit> *outfitter;
-	const Interface *presetPanelUi;
+	const Interface *loadoutPanelUi;
 	int day;
 
-	// Preset management.
-	std::vector<Preset*> presets;
-	std::vector<Preset*> visiblePresets;
-	Preset *selectedPreset = nullptr;
-	int64_t presetSales = 0;
+	// Loadout management.
+	std::vector<Loadout*> loadouts;
+	std::vector<Loadout*> visibleLoadouts;
+	Loadout *selectedLoadout = nullptr;
+	int64_t loadoutSales = 0;
 	double cargoChange = 0;
 	double storageChange = 0;
 	// If the player enters a filename that exists, prompt before overwriting it.
 	std::string nameToConfirm;
 
-	// Preset selection scrollbar.
+	// Loadout selection scrollbar.
 	int selected = 0;
-	ScrollVar<double> presetScroll;
-	ScrollBar presetScrollBar;
-	bool presetDrag = false;
-	bool presetHovered = false;
+	ScrollVar<double> loadoutScroll;
+	ScrollBar loadoutScrollBar;
+	bool loadoutDrag = false;
+	bool loadoutHovered = false;
 
-	// Selected preset data scrollbar.
+	// Selected loadout data scrollbar.
 	ScrollVar<double> dataScroll;
 	ScrollBar dataScrollBar;
 	bool dataDrag = false;
@@ -124,7 +124,7 @@ private:
 	const Color &active;
 	const Font &bigFont;
 	const Font &smallFont;
-	Rectangle presetsBox;
+	Rectangle loadoutsBox;
 	Rectangle selectedBox;
 	Rectangle removedBox;
 	Rectangle settingsBox;
@@ -150,7 +150,7 @@ private:
 	Rectangle toStorageBox;
 	Rectangle toCargoBox;
 	Rectangle toOutfitterBox;
-	PresetDestination presetDestination = OUTFITTER;
+	LoadoutDestination loadoutDestination = OUTFITTER;
 	bool includeHandToHand = false;
 	bool includeUnique = false;
 	bool enforceShipTypes = true;
