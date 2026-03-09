@@ -2856,7 +2856,7 @@ interface "outfitter loadouts panel"
 		from -200 280 to 300 380
 
 	active if "can delete"
-	button l "De_lete"
+	button e "D_elete"
 		center -455 305
 		dimensions 90 30
 	active
