@@ -192,7 +192,7 @@ private:
 	std::vector<std::shared_ptr<Panel>> children;
 	std::vector<std::shared_ptr<Panel>> childrenToAdd;
 	std::vector<const Panel *> childrenToRemove;
-	Panel* parent = nullptr;
+	Panel *parent = nullptr;
 
 	friend class UI;
 };

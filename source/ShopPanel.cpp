@@ -151,7 +151,7 @@ void ShopPanel::Draw()
 		selected_quantity->SetSelected(to_string(modifier));
 		quantity_is_modifier = true;
 	}
-	else if (quantity_is_modifier)
+	else if(quantity_is_modifier)
 	{
 		// User has released modifier keys. Reset quantity dropdown to 1x
 		selected_quantity->SetSelected("1");
