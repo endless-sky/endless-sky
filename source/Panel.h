@@ -47,6 +47,13 @@ public:
 
 
 public:
+	struct Event
+	{
+		Point pos;
+		int id;
+		enum {MOUSE, TOUCH, BUTTON, AXIS} type;
+	};
+
 	// Make the destructor virtual just in case any derived class needs it.
 	virtual ~Panel() = default;
 
@@ -69,6 +76,7 @@ public:
 	void ClearZones();
 	// Add a clickable zone to the panel.
 	void AddZone(const Rectangle &rect, const std::function<void()> &fun);
+	void AddZone(const Rectangle &rect, const std::function<void(const Event &)> &fun);
 	void AddZone(const Rectangle &rect, SDL_Keycode key);
 	// Check if a click at the given coordinates triggers a clickable zone. If
 	// so, apply that zone's action and return true.
@@ -130,11 +138,25 @@ private:
 	class Zone : public Rectangle {
 	public:
 		Zone(const Rectangle &rect, const std::function<void()> &fun) : Rectangle(rect), fun(fun) {}
+		Zone(const Rectangle &rect, const std::function<void(const Event&)> &fun):
+			Rectangle(rect),
+			fun_down_event(fun)
+		{}
 
-		void Click() const { fun(); }
+		void Click() const
+		{
+			if(fun_down_event)
+			{
+				Event e{{}, 0, Event::MOUSE};
+				fun_down_event(e);
+			}
+			else
+				fun();
+		}
 
 	private:
 		std::function<void()> fun;
+		std::function<void(const Event&)> fun_down_event;
 	};
 
 	// The UI class will not directly call the virtual methods, but will call
@@ -170,6 +192,7 @@ private:
 	std::vector<std::shared_ptr<Panel>> children;
 	std::vector<std::shared_ptr<Panel>> childrenToAdd;
 	std::vector<const Panel *> childrenToRemove;
+	Panel* parent = nullptr;
 
 	friend class UI;
 };
