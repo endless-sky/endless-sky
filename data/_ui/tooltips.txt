@@ -871,8 +871,8 @@ tip "outfitter: c"
 tip "outfitter: r"
 	`Move the outfit from cargo or the currently selected ship(s) into planetary storage, in that order. Hold Shift, Control, or Alt to store 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
 
-tip "outfitter: p"
-	`Open the presets menu. Ship outfit loadouts, or "Presets", are managed here. Save and Apply presets on your ships to quickly change your ship loadouts.`
+tip "outfitter: o"
+	`Open the loadouts menu. Ship outfit loadouts, or "loadouts", are managed here. Save and Apply loadouts on your ships to quickly change your ship loadouts.`
 
 tip "shipyard: b"
 	`Buy this ship. Hold Shift, Control, or Alt to buy 5, 20, or 500 ships at once. Hold a combination of these keys for larger amounts.`
@@ -883,53 +883,53 @@ tip "shipyard: s"
 tip "shipyard: r"
 	`Sell the hulls of the selected ships, but retain the outfits in storage.`
 
-tip "preset: presets"
-	`All of your saved preset files are displayed here, filtered down to match your selected ship(s) model if "Strict Ship Match" is selected.`
+tip "loadout: loadouts"
+	`All of your saved loadout files are displayed here, filtered down to match your selected ship(s) model if "Strict Ship Match" is selected.`
 
-tip "preset: selected"
-	`The outfits to be installed by the selected preset are displayed here, along with where those outfits would be sourced if you were to click "Apply".`
+tip "loadout: selected"
+	`The outfits to be installed by the selected loadout are displayed here, along with where those outfits would be sourced if you were to click "Apply".`
 
-tip "preset: removed"
-	`Any outfits that would be removed from your ship when you "Apply" the preset are displayed here. Settings determine where those outfits go.`
+tip "loadout: removed"
+	`Any outfits that would be removed from your ship when you "Apply" the loadout are displayed here. Settings determine where those outfits go.`
 
-tip "preset: cargo"
+tip "loadout: cargo"
 	`The current and projected change to your cargo and storage. Note, the cargo amount is only how much it will try to add to your cargo. If there is not enough cargo space, excess will also be sent to storage.`
 
-tip "preset: credits"
-	`The current and projected change to your credits. If you cannot afford to apply the whole preset, you may still have the outfitter install as much as you can afford.`
+tip "loadout: credits"
+	`The current and projected change to your credits. If you cannot afford to apply the whole loadout, you may still have the outfitter install as much as you can afford.`
 
-tip "preset: unique"
-	`"Include Uniques" controls whether outfits in the "Unique" category will be included when both saving and applying presets.`
+tip "loadout: unique"
+	`"Include Uniques" controls whether outfits in the "Unique" category will be included when both saving and applying loadouts.`
 
-tip "preset: hand"
-	`"Include Hand to Hand" controls whether outfits in the "Hand to Hand" category will be included when both saving and applying presets.`
+tip "loadout: hand"
+	`"Include Hand to Hand" controls whether outfits in the "Hand to Hand" category will be included when both saving and applying loadouts.`
 
-tip "preset: enforce"
-	`"Strict Ship Match" controls whether presets that were saved on one ship type can be applied to another ship type. Note: attempting to apply an impossible preset will not necessarily cause all outfits to be installed. The outfitter will attempt to install as much as possible.`
+tip "loadout: enforce"
+	`"Strict Ship Match" controls whether loadouts that were saved on one ship type can be applied to another ship type. Note: attempting to apply an impossible loadout will not necessarily cause all outfits to be installed. The outfitter will attempt to install as much as possible.`
 
-tip "preset: move_"
+tip "loadout: move_"
 	`Controls where uninstalled outfits go.`
 
-tip "preset: _tostorage"
+tip "loadout: _tostorage"
 	`Uninstalled outfits go to storage.`
 
-tip "preset: _tocargo"
+tip "loadout: _tocargo"
 	`Uninstalled outfits go to your cargo. If your cargo cannot fit an outfit, it will instead go to storage.`
 
-tip "preset: _tooutfitter"
+tip "loadout: _tooutfitter"
 	`Uninstalled outfits are sold to the outfitter.`
 
-tip "preset: delete"
-	`Delete your selected preset. WARNING: deleted presets cannot be recovered!`
+tip "loadout: delete"
+	`Delete your selected loadout. WARNING: deleted loadouts cannot be recovered!`
 
-tip "preset: save"
-	`Save a preset based on the leftmost selected ship.`
+tip "loadout: save"
+	`Save a loadout based on the leftmost selected ship.`
 
-tip "preset: open"
-	`Opens the folder on your computer where your presets are saved.`
+tip "loadout: open"
+	`Opens the folder on your computer where your loadouts are saved.`
 
-tip "preset: apply"
-	`Attempts to apply the selected preset to the selected ship(s). The outfitter will not create impossible ship loadouts, but it will attempt to install as much from your preset as it can.`
+tip "loadout: apply"
+	`Attempts to apply the selected loadout to the selected ship(s). The outfitter will not create impossible ship loadouts, but it will attempt to install as much from your loadout as it can.`
 
 
 # Sale labels:

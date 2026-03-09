@@ -31,7 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PresetsPanel.h"
+#include "LoadoutsPanel.h"
 #include "Rectangle.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -929,7 +929,7 @@ bool OutfitterPanel::ButtonActive(char key, bool shipRelatedOnly)
 
 bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 {
-	if(hoverButton == 'p')
+	if(hoverButton == 'o')
 		return true;
 
 	if(!selectedOutfit)
@@ -1313,13 +1313,14 @@ void OutfitterPanel::DrawButtons()
 				+ Point(-.5 * modWidth, 10.), dim);
 	}
 
-	// Draw the Presets button.
-	const Point buttonCenter = Screen::BottomRight() - Point(598+42, 20);
-	const Sprite *presetIcon = SpriteSet::Get(hoverButton == 'p' ? "ui/presets selected" : "ui/presets unselected");
-	SpriteShader::Draw(presetIcon, buttonCenter);
-	buttonZones.emplace_back(Rectangle(buttonCenter, {presetIcon->Width(), presetIcon->Height()}), 'p');
-	font.Draw(DisplayText("_Presets", Layout(Alignment::LEFT)),
-		buttonCenter - Point(42-5, font.Height() * .5), hoverButton == 'p' ? bright : dim);
+	// Draw the Loadouts button.
+	const Point buttonCenter = Screen::BottomRight() - Point(598+46, 20);
+	const string buttonPath = hoverButton == 'o' ? "ui/loadouts selected" : "ui/loadouts unselected";
+	const Sprite *loadoutIcon = SpriteSet::Get(buttonPath);
+	SpriteShader::Draw(loadoutIcon, buttonCenter);
+	buttonZones.emplace_back(Rectangle(buttonCenter, {loadoutIcon->Width(), loadoutIcon->Height()}), 'o');
+	font.Draw(DisplayText("L_oadouts", Layout(Alignment::LEFT)),
+		buttonCenter - Point(46-5, font.Height() * .5), hoverButton == 'o' ? bright : dim);
 
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
@@ -1403,10 +1404,10 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 		if(!result && MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))
 			result = true;
 	}
-	else if(key == 'p')
+	else if(key == 'o')
 	{
-		// Open the presets panel
-		GetUI().Push(new PresetsPanel(player, playerShips, outfitter, day));
+		// Open the loadouts panel
+		GetUI().Push(new LoadoutsPanel(player, playerShips, outfitter, day));
 		// This problem is only visible with a button made by outfitter panel's "DrawButton". When such a button
 		// that has a tooltip opens a panel, the tooltip will be made visible at all times that the panel is open.
 		// Setting the hover button to default value prevents this.

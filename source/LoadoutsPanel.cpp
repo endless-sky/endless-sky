@@ -1,4 +1,4 @@
-/* PresetsPanel.cpp
+/* LoadoutsPanel.cpp
 Copyright (c) 2026 by Noelle Devonshire
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "PresetsPanel.h"
+#include "LoadoutsPanel.h"
 
 #include "DataWriter.h"
 #include "DialogPanel.h"
@@ -21,9 +21,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "Loadout.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
-#include "Preset.h"
 #include "UI.h"
 
 #include "text/DisplayText.h"
@@ -46,26 +46,26 @@ namespace {
 
 
 
-PresetsPanel::PresetsPanel(PlayerInfo &player, set<Ship*> &playerShips, Sale<Outfit> &outfitter, const int day)
+LoadoutsPanel::LoadoutsPanel(PlayerInfo &player, set<Ship*> &playerShips, Sale<Outfit> &outfitter, const int day)
 	: player(player),
 	playerShips(&playerShips),
 	outfitter(&outfitter),
-	presetPanelUi(GameData::Interfaces().Get("outfitter presets panel")),
+	loadoutPanelUi(GameData::Interfaces().Get("outfitter loadouts panel")),
 	day(day),
 	active(*GameData::Colors().Get("active")),
 	bigFont(FontSet::Get(18)),
 	smallFont(FontSet::Get(14)),
-	presetsBox(presetPanelUi->GetBox("presets")),
-	selectedBox(presetPanelUi->GetBox("selected")),
-	removedBox(presetPanelUi->GetBox("removed")),
-	settingsBox(presetPanelUi->GetBox("settings")),
-	cargoBox(presetPanelUi->GetBox("cargo")),
-	creditsBox(presetPanelUi->GetBox("credits")),
-	tooltipBox(presetPanelUi->GetBox("tooltip")),
-	deleteBox(presetPanelUi->GetBox("delete")),
-	saveBox(presetPanelUi->GetBox("save")),
-	openBox(presetPanelUi->GetBox("open")),
-	applyBox(presetPanelUi->GetBox("apply")),
+	loadoutsBox(loadoutPanelUi->GetBox("loadouts")),
+	selectedBox(loadoutPanelUi->GetBox("selected")),
+	removedBox(loadoutPanelUi->GetBox("removed")),
+	settingsBox(loadoutPanelUi->GetBox("settings")),
+	cargoBox(loadoutPanelUi->GetBox("cargo")),
+	creditsBox(loadoutPanelUi->GetBox("credits")),
+	tooltipBox(loadoutPanelUi->GetBox("tooltip")),
+	deleteBox(loadoutPanelUi->GetBox("delete")),
+	saveBox(loadoutPanelUi->GetBox("save")),
+	openBox(loadoutPanelUi->GetBox("open")),
+	applyBox(loadoutPanelUi->GetBox("apply")),
 	backgroundColor(*GameData::Colors().Get("panel background")),
 	dimColor(*GameData::Colors().Get("dim")),
 	mediumColor(*GameData::Colors().Get("medium")),
@@ -76,16 +76,16 @@ PresetsPanel::PresetsPanel(PlayerInfo &player, set<Ship*> &playerShips, Sale<Out
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	// Box height minus 10px margins.
-	presetScroll.SetDisplaySize(presetsBox.Height() - 20.);
+	loadoutScroll.SetDisplaySize(loadoutsBox.Height() - 20.);
 	// Box height minus 10px margins, 20px header.
 	dataScroll.SetDisplaySize(selectedBox.Height() - 40.);
 	removeScroll.SetDisplaySize(removedBox.Height() - 40.);
 
 	SetInterruptible(false);
 
-	LoadPresets();
-	RefreshPresetsBox();
-	RefreshPresetData();
+	LoadLoadouts();
+	RefreshLoadoutsBox();
+	RefreshLoadoutData();
 
 	// Calculate the button locations in the settings area.
 	// Top row.
@@ -131,7 +131,7 @@ PresetsPanel::PresetsPanel(PlayerInfo &player, set<Ship*> &playerShips, Sale<Out
 		{rightBound, settingsBox.Bottom() - SETTINGS_MARGINS});
 
 	// Associate the different boxes with tooltip keys.
-	tooltipKeys[&presetsBox] = "presets";
+	tooltipKeys[&loadoutsBox] = "loadouts";
 	tooltipKeys[&selectedBox] = "selected";
 	tooltipKeys[&removedBox] = "removed";
 	tooltipKeys[&cargoBox] = "cargo";
@@ -151,43 +151,43 @@ PresetsPanel::PresetsPanel(PlayerInfo &player, set<Ship*> &playerShips, Sale<Out
 
 
 
-PresetsPanel::~PresetsPanel()
+LoadoutsPanel::~LoadoutsPanel()
 = default;
 
 
 
-void PresetsPanel::Step()
+void LoadoutsPanel::Step()
 {
-	presetScroll.Step();
+	loadoutScroll.Step();
 	dataScroll.Step();
 	removeScroll.Step();
 }
 
 
 
-void PresetsPanel::Draw()
+void LoadoutsPanel::Draw()
 {
 	DrawBackdrop();
 
 	Information info;
-	if(selectedPreset)
+	if(selectedLoadout)
 		info.SetCondition("can delete");
 	if(!playerShips->empty())
 		info.SetCondition("can save");
-	if(selectedPreset && !playerShips->empty())
+	if(selectedLoadout && !playerShips->empty())
 		info.SetCondition("can apply");
-	presetPanelUi->Draw(info, this);
+	loadoutPanelUi->Draw(info, this);
 	// TODO: currently using the texture of Info Panel.
 	// Will want to make a new texture and the properly positioned buttons.
 
-	DrawPresetsModule();
+	DrawLoadoutsModule();
 	DrawSelectedModule();
 	DrawRemovingModule();
 	DrawSettingsModule();
 	DrawAccountingModule();
 
 	// Draw tooltips for the button being hovered over.
-	if(const string tip = GameData::Tooltip(string("preset: ") + hoveredTooltip); !tip.empty())
+	if(const string tip = GameData::Tooltip(string("loadout: ") + hoveredTooltip); !tip.empty())
 	{
 		tooltip.IncrementCount();
 		if(tooltip.ShouldDraw())
@@ -203,15 +203,15 @@ void PresetsPanel::Draw()
 
 
 
-bool PresetsPanel::Click(const int x, const int y, const MouseButton button, const int clicks)
+bool LoadoutsPanel::Click(const int x, const int y, const MouseButton button, const int clicks)
 {
-	presetDrag = false;
+	loadoutDrag = false;
 	dataDrag = false;
 	removeDrag = false;
 
-	if(presetScroll.Scrollable() && presetScrollBar.SyncClick(presetScroll, x, y, button, clicks))
+	if(loadoutScroll.Scrollable() && loadoutScrollBar.SyncClick(loadoutScroll, x, y, button, clicks))
 	{
-		presetDrag = true;
+		loadoutDrag = true;
 		return true;
 	}
 
@@ -227,16 +227,16 @@ bool PresetsPanel::Click(const int x, const int y, const MouseButton button, con
 		return true;
 	}
 
-	// Was click inside presets list?
-	if(presetsBox.Contains(Point(x, y)))
+	// Was click inside loadouts list?
+	if(loadoutsBox.Contains(Point(x, y)))
 	{
-		if(const int index = (presetScroll.AnimatedValue() + y - presetsBox.Top() - 10) / 20;
-			static_cast<unsigned>(index) < presets.size())
+		if(const int index = (loadoutScroll.AnimatedValue() + y - loadoutsBox.Top() - 10) / 20;
+			static_cast<unsigned>(index) < loadouts.size())
 		{
 			const int previous = selected;
 			selected = index;
 			if(selected != previous)
-				RefreshPresetData();
+				RefreshLoadoutData();
 		}
 		return true;
 	}
@@ -246,20 +246,20 @@ bool PresetsPanel::Click(const int x, const int y, const MouseButton button, con
 
 
 
-bool PresetsPanel::Hover(const int x, const int y)
+bool LoadoutsPanel::Hover(const int x, const int y)
 {
-	presetHovered = false;
+	loadoutHovered = false;
 	dataHovered = false;
 	removeHovered = false;
 
-	if(presetsBox.Contains(Point(x, y)))
-		presetHovered = true;
+	if(loadoutsBox.Contains(Point(x, y)))
+		loadoutHovered = true;
 	else if(selectedBox.Contains(Point(x, y)))
 		dataHovered = true;
 	else if(removedBox.Contains(Point(x, y)))
 		removeHovered = true;
 
-	presetScrollBar.Hover(x, y);
+	loadoutScrollBar.Hover(x, y);
 	dataScrollBar.Hover(x, y);
 	removeScrollBar.Hover(x, y);
 
@@ -278,14 +278,14 @@ bool PresetsPanel::Hover(const int x, const int y)
 
 
 // Allow dragging of lists.
-bool PresetsPanel::Drag(const double dx, const double dy)
+bool LoadoutsPanel::Drag(const double dx, const double dy)
 {
-	if(presetDrag)
+	if(loadoutDrag)
 	{
-		if(presetScroll.Scrollable() && presetScrollBar.SyncDrag(presetScroll, dx, dy))
+		if(loadoutScroll.Scrollable() && loadoutScrollBar.SyncDrag(loadoutScroll, dx, dy))
 			return true;
 
-		presetScroll.Set(presetScroll - dy);
+		loadoutScroll.Set(loadoutScroll - dy);
 		return true;
 	}
 	if(dataDrag)
@@ -310,9 +310,9 @@ bool PresetsPanel::Drag(const double dx, const double dy)
 
 
 // The scroll wheel can be used to scroll hovered lists.
-bool PresetsPanel::Scroll(const double dx, const double dy)
+bool LoadoutsPanel::Scroll(const double dx, const double dy)
 {
-	presetDrag = presetHovered;
+	loadoutDrag = loadoutHovered;
 	dataDrag = dataHovered;
 	removeDrag = removeHovered;
 	return Drag(0., dy * Preferences::ScrollSpeed());
@@ -320,13 +320,13 @@ bool PresetsPanel::Scroll(const double dx, const double dy)
 
 
 
-bool PresetsPanel::KeyDown(const SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool LoadoutsPanel::KeyDown(const SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	// Delete.
-	if(key == 'l' && selectedPreset)
+	if(key == 'l' && selectedLoadout)
 	{
-		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &PresetsPanel::DeletePreset,
-			"Are you sure you want to delete the selected preset, \"" + selectedPreset->Name() + "\"?"));
+		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &LoadoutsPanel::DeleteLoadout,
+			"Are you sure you want to delete the selected loadout, \"" + selectedLoadout->Name() + "\"?"));
 		return true;
 	}
 	// Save.
@@ -334,15 +334,15 @@ bool PresetsPanel::KeyDown(const SDL_Keycode key, Uint16 mod, const Command &com
 	{
 		nameToConfirm.clear();
 		const Ship *ship = *playerShips->begin();
-		GetUI().Push(DialogPanel::RequestString(this, &PresetsPanel::SavePreset,
-			"Creating a preset from your ship \"" + ship->GivenName() + "\".\nWhat do you want to name it?"));
+		GetUI().Push(DialogPanel::RequestString(this, &LoadoutsPanel::SaveLoadout,
+			"Creating a loadout from your ship \"" + ship->GivenName() + "\".\nWhat do you want to name it?"));
 		return true;
 	}
 	// Apply.
-	if(key == 'a' && selectedPreset && !playerShips->empty())
+	if(key == 'a' && selectedLoadout && !playerShips->empty())
 	{
-		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &PresetsPanel::ApplyPreset,
-			"Are you sure you want to apply the preset \"" + selectedPreset->Name() + "\" to your selected ship(s)?"));
+		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &LoadoutsPanel::ApplyLoadout,
+			"Are you sure you want to apply the loadout \"" + selectedLoadout->Name() + "\" to your selected ship(s)?"));
 		return true;
 	}
 	// Done.
@@ -354,7 +354,7 @@ bool PresetsPanel::KeyDown(const SDL_Keycode key, Uint16 mod, const Command &com
 	// Open folder.
 	if(key == 'o')
 	{
-		Files::OpenUserPresetsFolder();
+		Files::OpenUserLoadoutsFolder();
 		return true;
 	}
 	return false;
@@ -362,41 +362,41 @@ bool PresetsPanel::KeyDown(const SDL_Keycode key, Uint16 mod, const Command &com
 
 
 
-void PresetsPanel::LoadPresets()
+void LoadoutsPanel::LoadLoadouts()
 {
 	// Should these be cached or loaded/discarded as needed?
-	presets.clear();
+	loadouts.clear();
 
-	for(const auto &path : Files::List(Files::Presets()))
+	for(const auto &path : Files::List(Files::Loadouts()))
 	{
 		// Skip any files that aren't text files.
 		if(path.extension() != ".txt")
 			continue;
 
-		// Skip any files that didn't result in a valid preset.
-		if(Preset *loaded = Preset::Load(path))
-			presets.push_back(loaded);
+		// Skip any files that didn't result in a valid loadout.
+		if(Loadout *loaded = Loadout::Load(path))
+			loadouts.push_back(loaded);
 	}
 }
 
 
 
-void PresetsPanel::CheckPresetSelected()
+void LoadoutsPanel::CheckLoadoutSelected()
 {
 	try {
-		selectedPreset = visiblePresets.at(selected);
+		selectedLoadout = visibleLoadouts.at(selected);
 	}
 	catch([[maybe_unused]] const out_of_range &ex)
 	{
-		selectedPreset = nullptr;
+		selectedLoadout = nullptr;
 	}
 }
 
 
 
-void PresetsPanel::RefreshPresetsBox()
+void LoadoutsPanel::RefreshLoadoutsBox()
 {
-	visiblePresets.clear();
+	visibleLoadouts.clear();
 	vector<string> selectedModels;
 	if(enforceShipTypes)
 	{
@@ -409,32 +409,32 @@ void PresetsPanel::RefreshPresetsBox()
 		}
 	}
 
-	for(Preset *preset : presets)
+	for(Loadout *loadout : loadouts)
 	{
-		// Filter mismatched presets if setting enabled.
-		if(enforceShipTypes && ranges::find(selectedModels, preset->ShipModel()) == selectedModels.end()) continue;
+		// Filter mismatched loadouts if setting enabled.
+		if(enforceShipTypes && ranges::find(selectedModels, loadout->ShipModel()) == selectedModels.end()) continue;
 
-		visiblePresets.push_back(preset);
+		visibleLoadouts.push_back(loadout);
 	}
-	presetScroll.SetMaxValue(max(0., 20. * visiblePresets.size()));
+	loadoutScroll.SetMaxValue(max(0., 20. * visibleLoadouts.size()));
 
-	const Preset *previous = selectedPreset;
-	CheckPresetSelected();
-	if(previous != selectedPreset)
-		RefreshPresetData();
+	const Loadout *previous = selectedLoadout;
+	CheckLoadoutSelected();
+	if(previous != selectedLoadout)
+		RefreshLoadoutData();
 }
 
 
 
-void PresetsPanel::RefreshPresetData()
+void LoadoutsPanel::RefreshLoadoutData()
 {
-	presetListings.clear();
+	loadoutListings.clear();
 	storageChange = 0;
 	cargoChange = 0;
-	presetSales = 0;
-	CheckPresetSelected();
+	loadoutSales = 0;
+	CheckLoadoutSelected();
 
-	if(selectedPreset)
+	if(selectedLoadout)
 	{
 
 		vector<Ship*> filteredShips;
@@ -442,12 +442,12 @@ void PresetsPanel::RefreshPresetData()
 		{
 
 			// Filter mismatched ships if setting enabled.
-			if(enforceShipTypes && ship->TrueModelName() != selectedPreset->ShipModel()) continue;
+			if(enforceShipTypes && ship->TrueModelName() != selectedLoadout->ShipModel()) continue;
 
 			filteredShips.push_back(ship);
 		}
 
-		for(const auto &[outfit, amount] : selectedPreset->Outfits())
+		for(const auto &[outfit, amount] : selectedLoadout->Outfits())
 			if(outfit->IsDefined() && !outfit->Category().empty() && !outfit->DisplayName().empty())
 			{
 				// Filter unique outfits if setting is set.
@@ -499,22 +499,22 @@ void PresetsPanel::RefreshPresetData()
 
 				const int stock = outfitter->Has(outfit) ?
 					stillNeeded : min<int>(stillNeeded, max<int>(0, player.Stock(outfit)));
-				presetSales += player.StockDepreciation().Value(outfit, day, stock);
+				loadoutSales += player.StockDepreciation().Value(outfit, day, stock);
 				stillNeeded -= stock;
 
 				const auto sources = new OutfitSources();
-				sources->byPreset = to_string(amount) +
+				sources->byLoadout = to_string(amount) +
 					(amount != amountToSource ? "(" + to_string(amountToSource) + ")" : "");
 				sources->installed = equipped > 0 ? to_string(equipped) : "-";
 				sources->inCargo = cargo > 0 ? to_string(cargo) : "-";
 				sources->inStorage = storage > 0 ? to_string(storage) : "-";
 				sources->fromOutfitter = stock > 0 ? to_string(stock) : "-";
 				sources->stillRequired = stillNeeded > 0 ? to_string(stillNeeded) : "-";
-				presetListings[outfit->Category()][outfit] = sources;
+				loadoutListings[outfit->Category()][outfit] = sources;
 			}
 
-		double dataScrollRoom = presetListings.size() * 30.;
-		for(const auto &content : presetListings | views::values)
+		double dataScrollRoom = loadoutListings.size() * 30.;
+		for(const auto &content : loadoutListings | views::values)
 			dataScrollRoom += content.size() * 20.;
 		dataScroll.SetMaxValue(max(0., dataScrollRoom));
 
@@ -533,7 +533,7 @@ void PresetsPanel::RefreshPresetData()
 				toRemove[outfit.first] += outfit.second;
 			}
 		}
-		for(pair<const Outfit*, int> outfit : selectedPreset->Outfits())
+		for(pair<const Outfit*, int> outfit : selectedLoadout->Outfits())
 		{
 			if(toRemove.contains(outfit.first))
 			{
@@ -548,7 +548,7 @@ void PresetsPanel::RefreshPresetData()
 			if(outfit->IsDefined() && !outfit->Category().empty() && !outfit->DisplayName().empty())
 			{
 				removalListings[outfit->Category()][outfit] = new string(to_string(amount));
-				switch(presetDestination)
+				switch(loadoutDestination)
 				{
 					case CARGO:
 						cargoChange += amount * outfit->Mass();
@@ -557,7 +557,7 @@ void PresetsPanel::RefreshPresetData()
 						storageChange += amount * outfit->Mass();
 						break;
 					default:
-						presetSales -= player.FleetDepreciation().Value(outfit, day, amount);
+						loadoutSales -= player.FleetDepreciation().Value(outfit, day, amount);
 						break;
 				}
 			}
@@ -571,16 +571,16 @@ void PresetsPanel::RefreshPresetData()
 
 
 
-void PresetsPanel::SavePreset(const string &name)
+void LoadoutsPanel::SaveLoadout(const string &name)
 {
 	if(!playerShips->empty())
 	{
 
 		const Ship *ship = *playerShips->begin();
-		if(Preset::Exists(name) && name != nameToConfirm)
+		if(Loadout::Exists(name) && name != nameToConfirm)
 		{
 			nameToConfirm = name;
-			GetUI().Push(DialogPanel::RequestString(this, &PresetsPanel::SavePreset, "Warning: \"" + name
+			GetUI().Push(DialogPanel::RequestString(this, &LoadoutsPanel::SaveLoadout, "Warning: \"" + name
 			+ "\" is being used for an existing snapshot.\nOverwrite it?", name));
 		}
 		else {
@@ -595,20 +595,20 @@ void PresetsPanel::SavePreset(const string &name)
 
 				outfits[outfit] = amount;
 			}
-			if(const auto copied = new Preset(name, ship->TrueModelName(), outfits);
+			if(const auto copied = new Loadout(name, ship->TrueModelName(), outfits);
 				copied->Save())
 			{
 				if(nameToConfirm == name)
-					erase_if(presets, [name](const Preset *p)
+					erase_if(loadouts, [name](const Loadout *p)
 					{
 						return p->Name() == name;
 					});
-				presets.push_back(copied);
-				RefreshPresetsBox();
-				GetUI().Push(DialogPanel::Info("The preset \"" + name + "\" was successfully created."));
+				loadouts.push_back(copied);
+				RefreshLoadoutsBox();
+				GetUI().Push(DialogPanel::Info("The loadout \"" + name + "\" was successfully created."));
 			}
 			else
-				GetUI().Push(DialogPanel::Info("Could not create a file for the preset \"" + name + "\"."));
+				GetUI().Push(DialogPanel::Info("Could not create a file for the loadout \"" + name + "\"."));
 		}
 	}
 	else {
@@ -619,41 +619,41 @@ void PresetsPanel::SavePreset(const string &name)
 
 
 
-void PresetsPanel::DeletePreset()
+void LoadoutsPanel::DeleteLoadout()
 {
-	if(selectedPreset)
+	if(selectedLoadout)
 	{
-		if(!selectedPreset->Delete())
-			GetUI().Push(DialogPanel::Info("Failed to delete preset \"" + selectedPreset->Name() + "\"."));
+		if(!selectedLoadout->Delete())
+			GetUI().Push(DialogPanel::Info("Failed to delete loadout \"" + selectedLoadout->Name() + "\"."));
 		else {
-			GetUI().Push(DialogPanel::Info("The preset \"" +
-				selectedPreset->Name() + "\" was successfully deleted."));
-			presets.erase(ranges::remove(presets, selectedPreset).begin(), presets.end());
-			visiblePresets.erase(ranges::remove(visiblePresets, selectedPreset).begin(),
-				visiblePresets.end());
+			GetUI().Push(DialogPanel::Info("The loadout \"" +
+				selectedLoadout->Name() + "\" was successfully deleted."));
+			loadouts.erase(ranges::remove(loadouts, selectedLoadout).begin(), loadouts.end());
+			visibleLoadouts.erase(ranges::remove(visibleLoadouts, selectedLoadout).begin(),
+				visibleLoadouts.end());
 		}
-		RefreshPresetsBox();
+		RefreshLoadoutsBox();
 	}
 }
 
 
 
-void PresetsPanel::ApplyPreset()
+void LoadoutsPanel::ApplyLoadout()
 {
 	// Keep track of outfits that couldn't be added or removed.
 	map<Ship*, vector<string>> errors;
 
 	// We will want to add everything to cargo after ships are equipped appropriately to better guarantee proper
 	// Interaction with things like outfit/cargo expansions, as well as outfits being removed from cargo for the
-	// Incoming preset. So, cache the results and apply cargo changes after everything else.
+	// Incoming loadout. So, cache the results and apply cargo changes after everything else.
 	map<const Outfit*, int> toCargo;
 
 	// First, remove all outfits on all ships to guarantee as much cash as possible.
 	for(Ship *ship : *playerShips)
 	{
 
-		// Skip ships not belonging to the preset if the enforce option is toggled.
-		if(enforceShipTypes && ship->TrueModelName() != selectedPreset->ShipModel()) continue;
+		// Skip ships not belonging to the loadout if the enforce option is toggled.
+		if(enforceShipTypes && ship->TrueModelName() != selectedLoadout->ShipModel()) continue;
 
 		// Because outfits must be removed from a ship using AddOutfit to keep attributes correct,
 		// Copy over a list of outfits to remove manually to bypass possible concurrent modification issues.
@@ -692,10 +692,10 @@ void PresetsPanel::ApplyPreset()
 
 		for(const Outfit *outfit : installed)
 		{
-			// Do not remove outfits that are wanted on the preset.
+			// Do not remove outfits that are wanted on the loadout.
 			int wanted = 0;
-			if(selectedPreset->Outfits().contains(outfit))
-				wanted = selectedPreset->Outfits()[outfit];
+			if(selectedLoadout->Outfits().contains(outfit))
+				wanted = selectedLoadout->Outfits()[outfit];
 			const int equipped = ship->OutfitCount(outfit);
 			if(equipped <= wanted)
 				continue;
@@ -716,7 +716,7 @@ void PresetsPanel::ApplyPreset()
 
 				// Send the outfit to the appropriate destination.
 				const int toAdd = -amount;
-				switch(presetDestination)
+				switch(loadoutDestination)
 				{
 					case STORAGE:
 						player.Storage().Add(outfit, toAdd);
@@ -739,13 +739,13 @@ void PresetsPanel::ApplyPreset()
 	for(Ship *ship : *playerShips)
 	{
 
-		// Skip ships not belonging to the preset if the enforce option is toggled
-		if(enforceShipTypes && ship->TrueModelName() != selectedPreset->ShipModel()) continue;
+		// Skip ships not belonging to the loadout if the enforce option is toggled
+		if(enforceShipTypes && ship->TrueModelName() != selectedLoadout->ShipModel()) continue;
 
-		// Just in case the preset, for whatever reason, can't be fully applied, apply some sorts to the list.
+		// Just in case the loadout, for whatever reason, can't be fully applied, apply some sorts to the list.
 		// Convert the map to a list of vectors so arbitrary sorts and filters can be used.
 		vector<pair<const Outfit*, int>> outfits;
-		for(pair<const Outfit*, int> outfit : selectedPreset->Outfits())
+		for(pair<const Outfit*, int> outfit : selectedLoadout->Outfits())
 		{
 
 			// Filter unique outfits if setting is set
@@ -870,7 +870,7 @@ void PresetsPanel::ApplyPreset()
 
 	// Describe errors, if any, to the player.
 	if(errors.empty())
-		GetUI().Push(DialogPanel::Info("The preset \"" + selectedPreset->Name() +
+		GetUI().Push(DialogPanel::Info("The loadout \"" + selectedLoadout->Name() +
 			"\" was successfully applied to all applicable selected ships."));
 	else {
 		string message;
@@ -883,52 +883,52 @@ void PresetsPanel::ApplyPreset()
 		GetUI().Push(DialogPanel::Info(message));
 	}
 
-	RefreshPresetData();
+	RefreshLoadoutData();
 }
 
 
 
-void PresetsPanel::DrawPresetsModule()
+void LoadoutsPanel::DrawLoadoutsModule()
 {
-	FillShader::Fill(presetsBox, backgroundColor);
+	FillShader::Fill(loadoutsBox, backgroundColor);
 
 	// Round up initial draw index at 0.2 so the text doesn't visually escape from the box, but still has wiggle room.
-	const double indexRaw = (presetScroll.AnimatedValue()) / 20.;
+	const double indexRaw = (loadoutScroll.AnimatedValue()) / 20.;
 	int index = indexRaw;
 	if(indexRaw - index > 0.2) ++index;
 
-	int y = presetsBox.Top() + 10 - presetScroll.AnimatedValue() + 20 * index;
-	const int endY = presetsBox.Bottom() - 15 - 10;
+	int y = loadoutsBox.Top() + 10 - loadoutScroll.AnimatedValue() + 20 * index;
+	const int endY = loadoutsBox.Bottom() - 15 - 10;
 
 	// Y offset to center the text in a 20-pixel high row.
 	const double fontOff = .5 * (20 - smallFont.Height());
 
-	for( ; y < endY && static_cast<unsigned>(index) < visiblePresets.size(); y += 20, ++index)
+	for( ; y < endY && static_cast<unsigned>(index) < visibleLoadouts.size(); y += 20, ++index)
 	{
-		const Preset *item = visiblePresets[index];
+		const Loadout *item = visibleLoadouts[index];
 
 		// Check if this is the selected row.
 		if(index == selected)
 			FillShader::Fill(
-				Point(presetsBox.Center().X(), y + 10.), Point(presetsBox.Width(), 20.), dimColor);
+				Point(loadoutsBox.Center().X(), y + 10.), Point(loadoutsBox.Width(), 20.), dimColor);
 
-		Point pos(presetsBox.Left() + 10, y + fontOff);
+		Point pos(loadoutsBox.Left() + 10, y + fontOff);
 		smallFont.Draw(DisplayText(item->Name(),
-			Layout(static_cast<int>(presetsBox.Width()) - 25, Alignment::LEFT, Truncate::BACK)), pos, brightColor);
+			Layout(static_cast<int>(loadoutsBox.Width()) - 25, Alignment::LEFT, Truncate::BACK)), pos, brightColor);
 	}
 
-	if(presetScroll.Scrollable())
-		presetScrollBar.SyncDraw(presetScroll, presetsBox.TopRight() + Point{0., 10.},
-			presetsBox.BottomRight() - Point{0., 10.});
+	if(loadoutScroll.Scrollable())
+		loadoutScrollBar.SyncDraw(loadoutScroll, loadoutsBox.TopRight() + Point{0., 10.},
+			loadoutsBox.BottomRight() - Point{0., 10.});
 }
 
 
 
-void PresetsPanel::DrawSelectedModule()
+void LoadoutsPanel::DrawSelectedModule()
 {
 	FillShader::Fill(selectedBox, backgroundColor);
 
-	if(selectedPreset)
+	if(selectedLoadout)
 	{
 		const Point point = selectedBox.TopLeft();
 
@@ -951,7 +951,7 @@ void PresetsPanel::DrawSelectedModule()
 		table.DrawGap(10);
 
 		table.Draw("Outfit", brightColor);
-		table.Draw("Preset", brightColor);
+		table.Draw("Loadout", brightColor);
 		table.Draw("Equipped", brightColor);
 		table.Draw("Cargo", brightColor);
 		table.Draw("Stored", brightColor);
@@ -973,7 +973,7 @@ void PresetsPanel::DrawSelectedModule()
 			}
 		};
 
-		for(const auto &[category, content] : presetListings)
+		for(const auto &[category, content] : loadoutListings)
 		{
 			if(currentY >= cutoff) break;
 			if(firstDraw && currentY >= scrollableY)
@@ -1002,7 +1002,7 @@ void PresetsPanel::DrawSelectedModule()
 					table.Draw(outfit->DisplayName(), mediumColor);
 
 					// Amount required.
-					table.Draw(sources->byPreset, brightColor);
+					table.Draw(sources->byLoadout, brightColor);
 
 					// Amount currently equipped.
 					string value = sources->installed;
@@ -1035,11 +1035,11 @@ void PresetsPanel::DrawSelectedModule()
 
 
 
-void PresetsPanel::DrawRemovingModule()
+void LoadoutsPanel::DrawRemovingModule()
 {
 	FillShader::Fill(removedBox, backgroundColor);
 
-	if(selectedPreset)
+	if(selectedLoadout)
 	{
 		const Point point = removedBox.TopLeft();
 		Table table;
@@ -1114,7 +1114,7 @@ void PresetsPanel::DrawRemovingModule()
 
 
 
-void PresetsPanel::DrawSettingsModule()
+void LoadoutsPanel::DrawSettingsModule()
 {
 	FillShader::Fill(settingsBox, backgroundColor);
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
@@ -1123,7 +1123,7 @@ void PresetsPanel::DrawSettingsModule()
 	// Top row.
 	AddZone(handToHandBox, [this] {
 		includeHandToHand = !includeHandToHand;
-		RefreshPresetData();
+		RefreshLoadoutData();
 	});
 	FillShader::Fill(handToHandBox, faintColor);
 	SpriteShader::Draw(box[includeHandToHand ? 1 : 0],
@@ -1133,7 +1133,7 @@ void PresetsPanel::DrawSettingsModule()
 
 	AddZone(uniqueBox, [this] {
 		includeUnique = !includeUnique;
-		RefreshPresetData();
+		RefreshLoadoutData();
 	});
 	FillShader::Fill(uniqueBox, faintColor);
 	SpriteShader::Draw(box[includeUnique ? 1 : 0],
@@ -1143,8 +1143,8 @@ void PresetsPanel::DrawSettingsModule()
 
 	AddZone(enforceBox, [this] {
 		enforceShipTypes = !enforceShipTypes;
-		RefreshPresetsBox();
-		RefreshPresetData();
+		RefreshLoadoutsBox();
+		RefreshLoadoutData();
 	});
 	FillShader::Fill(enforceBox, faintColor);
 	SpriteShader::Draw(box[enforceShipTypes ? 1 : 0],
@@ -1154,41 +1154,41 @@ void PresetsPanel::DrawSettingsModule()
 
 	// Bottom row.
 	AddZone(moveUnequippedBox, [this] {
-		int index = presetDestination;
+		int index = loadoutDestination;
 		if(++index >= destinationsSize) index = 0;
-		presetDestination = static_cast<PresetDestination>(index);
-		RefreshPresetData();
+		loadoutDestination = static_cast<LoadoutDestination>(index);
+		RefreshLoadoutData();
 	});
 	FillShader::Fill(moveUnequippedBox, faintColor);
 	smallFont.Draw({"Unequipped outfits to:"}, {moveUnequippedBox.Left() + SETTINGS_MARGINS / 2,
 		moveUnequippedBox.Center().Y() - fontOff}, brightColor);
 
 	AddZone(toStorageBox, [this] {
-		presetDestination = STORAGE;
-		RefreshPresetData();
+		loadoutDestination = STORAGE;
+		RefreshLoadoutData();
 	});
 	FillShader::Fill(toStorageBox, faintColor);
-	SpriteShader::Draw(box[presetDestination == STORAGE ? 1 : 0],
+	SpriteShader::Draw(box[loadoutDestination == STORAGE ? 1 : 0],
 		{toStorageBox.Right() - SETTINGS_MARGINS, toStorageBox.Center().Y()});
 	smallFont.Draw({"Storage"},
 		{toStorageBox.Left() + SETTINGS_MARGINS / 2, toStorageBox.Center().Y() - fontOff}, brightColor);
 
 	AddZone(toCargoBox, [this] {
-		presetDestination = CARGO;
-		RefreshPresetData();
+		loadoutDestination = CARGO;
+		RefreshLoadoutData();
 	});
 	FillShader::Fill(toCargoBox, faintColor);
-	SpriteShader::Draw(box[presetDestination == CARGO ? 1 : 0],
+	SpriteShader::Draw(box[loadoutDestination == CARGO ? 1 : 0],
 		{toCargoBox.Right() - SETTINGS_MARGINS, toCargoBox.Center().Y()});
 	smallFont.Draw({"Cargo"},
 		{toCargoBox.Left() + SETTINGS_MARGINS / 2, toCargoBox.Center().Y() - fontOff}, brightColor);
 
 	AddZone(toOutfitterBox, [this] {
-		presetDestination = OUTFITTER;
-		RefreshPresetData();
+		loadoutDestination = OUTFITTER;
+		RefreshLoadoutData();
 	});
 	FillShader::Fill(toOutfitterBox, faintColor);
-	SpriteShader::Draw(box[presetDestination == OUTFITTER ? 1 : 0],
+	SpriteShader::Draw(box[loadoutDestination == OUTFITTER ? 1 : 0],
 		{toOutfitterBox.Right() - SETTINGS_MARGINS, toOutfitterBox.Center().Y()});
 	smallFont.Draw({"Sold"},
 		{toOutfitterBox.Left() + SETTINGS_MARGINS / 2, toOutfitterBox.Center().Y() - fontOff}, brightColor);
@@ -1196,12 +1196,12 @@ void PresetsPanel::DrawSettingsModule()
 
 
 
-void PresetsPanel::DrawAccountingModule() const
+void LoadoutsPanel::DrawAccountingModule() const
 {
 	FillShader::Fill(cargoBox, faintColor);
 	FillShader::Fill(creditsBox, faintColor);
 
-	if(selectedPreset)
+	if(selectedLoadout)
 	{
 		constexpr int margins = 5;
 		const double fontOff = .5 * smallFont.Height();
@@ -1242,14 +1242,14 @@ void PresetsPanel::DrawAccountingModule() const
 		smallFont.Draw(DisplayText("Net cost:",
 			Layout(creditsBox.Width() - margins * 2, Alignment::LEFT)),
 			Point(creditsBox.Left() + margins, creditsBox.Center().Y() - fontOff), mediumColor);
-		smallFont.Draw(DisplayText(Format::CreditString(presetSales),
+		smallFont.Draw(DisplayText(Format::CreditString(loadoutSales),
 			Layout(creditsBox.Width() - margins * 2, Alignment::RIGHT)),
 			Point(creditsBox.Left(), creditsBox.Center().Y() - fontOff), brightColor);
 
 		smallFont.Draw(DisplayText("Result:",
 			Layout(creditsBox.Width() - margins * 2, Alignment::LEFT)),
 			Point(creditsBox.Left() + margins, creditsBox.Center().Y() + 20. - fontOff), mediumColor);
-		smallFont.Draw(DisplayText(Format::CreditString(player.Accounts().Credits() - presetSales),
+		smallFont.Draw(DisplayText(Format::CreditString(player.Accounts().Credits() - loadoutSales),
 			Layout(creditsBox.Width() - margins * 2, Alignment::RIGHT)),
 			Point(creditsBox.Left(), creditsBox.Center().Y() + 20. - fontOff), brightColor);
 

@@ -2834,11 +2834,11 @@ interface "map: sales key"
 
 
 
-interface "outfitter presets panel"
+interface "outfitter loadouts panel"
 	sprite "ui/info panel"
 		center 0 -5
 	
-	box "presets"
+	box "loadouts"
 		from -490 -280 to -320 190
 	box "selected"
 		from -310 -280 to 280 190

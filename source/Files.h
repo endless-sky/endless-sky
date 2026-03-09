@@ -39,7 +39,7 @@ public:
 	static const std::filesystem::path &Images();
 	static const std::filesystem::path &Sounds();
 	static const std::filesystem::path &Saves();
-	static const std::filesystem::path &Presets();
+	static const std::filesystem::path &Loadouts();
 	static const std::filesystem::path &UserPlugins();
 	static const std::filesystem::path &GlobalPlugins();
 	static const std::filesystem::path &Tests();
@@ -76,8 +76,8 @@ public:
 	static void OpenUserPluginFolder();
 	// Open this user's save file directory in their native file explorer.
 	static void OpenUserSavesFolder();
-	// Open this user's presets file directory in their native file explorer.
-	static void OpenUserPresetsFolder();
+	// Open this user's loadouts file directory in their native file explorer.
+	static void OpenUserLoadoutsFolder();
 
 	// Logging to the error-log. Actual calls should be done through Logger
 	// and not directly here to ensure that other logging actions also

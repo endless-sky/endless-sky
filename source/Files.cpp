@@ -38,7 +38,7 @@ namespace {
 	filesystem::path imagePath;
 	filesystem::path soundPath;
 	filesystem::path savePath;
-	filesystem::path presetPath;
+	filesystem::path loadoutPath;
 	filesystem::path userPluginPath;
 	filesystem::path globalPluginPath;
 	filesystem::path testPath;
@@ -169,8 +169,8 @@ void Files::Init(const char *const *argv)
 	savePath = config / "saves";
 	CreateFolder(savePath);
 
-	presetPath = config / "presets";
-	CreateFolder(presetPath);
+	loadoutPath = config / "loadouts";
+	CreateFolder(loadoutPath);
 
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
@@ -182,8 +182,8 @@ void Files::Init(const char *const *argv)
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(savePath))
 		throw runtime_error("Unable to create save directory!");
-	if(!Exists(presetPath))
-		throw runtime_error("Unable to create preset directory!");
+	if(!Exists(loadoutPath))
+		throw runtime_error("Unable to create loadout directory!");
 	if(!Exists(userPluginPath))
 		throw runtime_error("Unable to create plugins directory!");
 }
@@ -232,9 +232,9 @@ const filesystem::path &Files::Saves()
 
 
 
-const filesystem::path &Files::Presets()
+const filesystem::path &Files::Loadouts()
 {
-	return presetPath;
+	return loadoutPath;
 }
 
 
@@ -495,10 +495,10 @@ void Files::OpenUserSavesFolder()
 
 
 
-// Open this user's presets file directory in their native file explorer.
-void Files::OpenUserPresetsFolder()
+// Open this user's loadouts file directory in their native file explorer.
+void Files::OpenUserLoadoutsFolder()
 {
-	OpenFolder(presetPath);
+	OpenFolder(loadoutPath);
 }
 
 

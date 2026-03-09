@@ -265,10 +265,10 @@ target_sources(EndlessSkyLib PRIVATE
 	Preferences.h
 	PreferencesPanel.cpp
 	PreferencesPanel.h
-	Preset.cpp
-	Preset.h
-	PresetsPanel.cpp
-	PresetsPanel.h
+        Loadout.cpp
+        Loadout.h
+        LoadoutsPanel.cpp
+        LoadoutsPanel.h
 	PrintData.cpp
 	PrintData.h
 	Projectile.cpp

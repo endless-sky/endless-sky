@@ -1,4 +1,4 @@
-/* Preset.h
+/* Loadout.h
 Copyright (c) 2026 by Noelle Devonshire
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -22,14 +22,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// This class represents a preset. It stores the outfits data related to the
-// preset, and also handles reading and writing of files on the system.
-class Preset {
+// This class represents a loadout. It stores the outfits data related to the
+// loadout, and also handles reading and writing of files on the system.
+class Loadout {
 public:
-	Preset(std::string name, std::string shipModel, std::map<const Outfit*, int> &outfits);
+	Loadout(std::string name, std::string shipModel, std::map<const Outfit*, int> &outfits);
 
-	// Attempt to create a preset from a given file. Will return nullptr if a preset could not be created.
-	static Preset *Load(const std::filesystem::path &path);
+	// Attempt to create a loadout from a given file. Will return nullptr if a loadout could not be created.
+	static Loadout *Load(const std::filesystem::path &path);
 	static bool Exists(const std::string & name);
 
 	std::string ShipModel() const;
