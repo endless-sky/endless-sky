@@ -89,6 +89,8 @@ void Gamerules::Load(const DataNode &node)
 		}
 		else if(key == "fleet multiplier")
 			storage.fleetMultiplier = max<double>(0., child.Value(1));
+		else if(key == "fighter return to carrier on low fuel")
+			storage.fighterRtbFuel = max<double>(0., child.Value(1));
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
@@ -141,6 +143,8 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 		}
 		if(storage.fleetMultiplier != preset.storage.fleetMultiplier)
 			out.Write("fleet multiplier", storage.fleetMultiplier);
+		if(storage.fighterRtbFuel != preset.storage.fighterRtbFuel)
+			out.Write("fighter return to carrier on low fuel", storage.fighterRtbFuel);
 
 		const map<string, int> &otherMiscRules = preset.storage.miscRules;
 		for(const auto &[rule, value] : storage.miscRules)
@@ -193,6 +197,8 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.systemArrivalMin = preset.storage.systemArrivalMin;
 	else if(rule == "fleet multiplier")
 		storage.fleetMultiplier = preset.storage.fleetMultiplier;
+	else if(rule == "fighter return to carrier on low fuel")
+		storage.fighterRtbFuel = preset.storage.fighterRtbFuel;
 	else
 	{
 		auto it = preset.storage.miscRules.find(rule);
@@ -322,6 +328,13 @@ void Gamerules::SetFleetMultiplier(double value)
 
 
 
+void Gamerules::SetFighterRtbFuel(double value)
+{
+	storage.fighterRtbFuel = max(0., value);
+}
+
+
+
 void Gamerules::SetMiscValue(const string &rule, int value)
 {
 	storage.miscRules[rule] = value;
@@ -359,6 +372,8 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.systemArrivalMin.value_or(0.) * 1000;
 	if(rule == "fleet multiplier")
 		return storage.fleetMultiplier * 1000;
+	if(rule == "fighter return to carrier on low fuel")
+		return storage.fighterRtbFuel;
 
 	auto it = storage.miscRules.find(rule);
 	if(it == storage.miscRules.end())
@@ -462,6 +477,13 @@ optional<double> Gamerules::SystemArrivalMin() const
 double Gamerules::FleetMultiplier() const
 {
 	return storage.fleetMultiplier;
+}
+
+
+
+double Gamerules::FighterRtbFuel() const
+{
+	return storage.fighterRtbFuel;
 }
 
 

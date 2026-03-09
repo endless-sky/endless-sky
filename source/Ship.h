@@ -392,6 +392,34 @@ public:
 	bool NeedsFuel(bool followParent = true) const;
 	// Checks whether this ship needs energy to function.
 	bool NeedsEnergy() const;
+	// Check if this ship should request help (fuel, energy, or disabled).
+	bool MayRequestHelp() const;
+	// Get the net energy generated per frame at idle (can be negative).
+	double GetIdleEnergyPerFrame() const;
+	// Get the estimated seconds of operation remaining before energy is depleted.
+	double GetSecondsToEmpty() const;
+	// Check if this carried ship has critically low energy and should return to carrier.
+	bool IsEnergyLow() const;
+	// Check if this ship has usable weapons. If includeAntiMissile is true,
+	// anti-missile systems count as being armed.
+	bool IsArmed(bool includeAntiMissile = false) const;
+	// Check if this ship has any weapon that consumes fuel when firing (e.g. Flamethrower).
+	bool HasFlameWeapon() const;
+	// Check if any enemy ships are present in the system this ship's escorts are in.
+	bool IsEnemyInEscortSystem() const;
+	void SetEnemyInEscortSystem(bool hasEnemy);
+	// Update cached escort fuel state (expensive; call infrequently).
+	void UpdateEscortsFuelState(const std::shared_ptr<Ship> &flagship);
+	bool EscortsHaveOneJump() const;
+	bool IsEscortsFullOfFuel() const;
+	bool ShouldRefuelMissionNpcEscort() const;
+	// Per-tier fuel state accessors for the tiered refueling priority system.
+	bool PlayerEscortsHaveOneJump() const;
+	bool NpcEscortsHaveOneJump() const;
+	bool PlayerEscortsFullFuel() const;
+	bool NpcEscortsFullFuel() const;
+	bool IsTankerCarrier() const;
+	bool OtherCarriersNeedFuel() const;
 	// Get the amount of fuel missing for the next jump (smart refueling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
@@ -781,6 +809,19 @@ private:
 	double targeterStrength;
 
 	bool removeBays = false;
+
+	// Cached escort fuel state (updated infrequently via UpdateEscortsFuelState).
+	bool escortsHaveOneJump = true;
+	bool isEscortsFullOfFuel = true;
+	bool refuelMissionNpcEscort = false;
+	bool isEnemyInEscortSystem = false;
+	// Per-tier refueling priority state.
+	bool playerEscortsHaveOneJump = true;
+	bool npcEscortsHaveOneJump = true;
+	bool playerEscortsFullFuel = true;
+	bool npcEscortsFullFuel = true;
+	bool flagshipIsTankerCarrier = false;
+	bool otherCarriersNeedFuel = false;
 
 	// If this ship is disabled or dies as a result of something like corrosion damage,
 	// attribute the event to the last government that hit this ship.
