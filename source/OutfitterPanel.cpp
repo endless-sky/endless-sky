@@ -691,7 +691,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 
 	// The count of how many outfits will be moved will be per ship when ships are involved, otherwise simply per hold.
 	// Hence, the concept of how many "per" rather than how many in total.
-	int howManyPer = Modifier();
+	int howManyPer = stoi(selected_quantity->GetSelected());
 
 	// Purchases are handled here.
 	if(fromLocation == OutfitLocation::Shop)
@@ -1233,10 +1233,10 @@ double OutfitterPanel::ButtonPanelHeight() const
 
 void OutfitterPanel::DrawButtons()
 {
-	// There will be two rows of buttons:
+	// There will be three rows of buttons:
 	//  [ Buy  ] [  Install  ] [  Cargo  ]
 	//  [ Sell ] [ Uninstall ] [ Storage ]
-	//                         [  Leave  ]
+	//   Quantity [Dropdown]   [  Leave  ]
 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
 	const double rowBaseY = Screen::BottomRight().Y() - 2 * rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
@@ -1295,19 +1295,10 @@ void OutfitterPanel::DrawButtons()
 	DrawButton("_Leave", Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 2), buttonSize),
 		true, hoverButton == 'l', 'l');
 
-	// Draw the Modifier hover text that appears below the buttons when a modifier is being applied.
-	int modifier = Modifier();
-	if(modifier > 1)
-	{
-		string mod = "x " + to_string(modifier);
-		int modWidth = font.Width(mod);
-		for(int i = -1; i < 2; ++i)
-			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0)
-				+ Point(-.5 * modWidth, 10.), dim);
-		for(int i = -1; i < 2; ++i)
-			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1)
-				+ Point(-.5 * modWidth, 10.), dim);
-	}
+	font.Draw("Quantity:", Screen::BottomRight() - Point(240, 33), dim);
+
+	const Point sqCenter = Screen::BottomRight() - Point(150, 25);
+	selected_quantity->SetPosition(Rectangle(sqCenter, {45, 20}));
 
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
