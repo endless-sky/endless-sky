@@ -323,7 +323,7 @@ bool LoadoutsPanel::Scroll(const double dx, const double dy)
 bool LoadoutsPanel::KeyDown(const SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	// Delete.
-	if(key == 'l' && selectedLoadout)
+	if(key == 'e' && selectedLoadout)
 	{
 		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &LoadoutsPanel::DeleteLoadout,
 			"Are you sure you want to delete the selected loadout, \"" + selectedLoadout->Name() + "\"?"));
@@ -346,7 +346,8 @@ bool LoadoutsPanel::KeyDown(const SDL_Keycode key, Uint16 mod, const Command &co
 		return true;
 	}
 	// Done.
-	if(key == 'd')
+	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
+			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		GetUI().Pop(this);
 		return true;
