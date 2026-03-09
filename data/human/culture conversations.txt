@@ -1198,7 +1198,7 @@ mission "Exotic Life: Bloodsea"
 			label hundred
 			action
 				payment -800
-			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. Her nostrils flare, and she snatches to credits with a snarl. "Not even one rack," she spits, eyes blazing. Without warning, she hauls the barrel off the ground to slam it directly against your shin. You yelp and stagger backwards. She rakes a jagged knife through the air, roaring, "I'll carve you like a cod and string your entrails for the gulls!" You flee her and the barrel to dart back to the <ship>, her furious curses echoing behind you.`
+			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. Her nostrils flare, and she snatches the credits with a snarl. "Not even one rack," she spits, eyes blazing. Without warning, she hauls the barrel off the ground to slam it directly against your shin. You yelp and stagger backwards. She rakes a jagged knife through the air, roaring, "I'll carve you like a cod and string your entrails for the gulls!" You flee her and the barrel to dart back to the <ship>, her furious curses echoing behind you.`
 				decline
 			label declined
 			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd toward the safety of your <model>, the woman's bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears.`
