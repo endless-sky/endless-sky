@@ -27,6 +27,7 @@ outfit "High Houses License"
 
 
 outfit `"Byiaa" Shield Cortex`
+	plural `"Byiaa" Shield Cortices`
 	category "Systems"
 	series "Shields"
 	index 11010
@@ -43,6 +44,7 @@ outfit `"Byiaa" Shield Cortex`
 	description "At their peak, the Predecessors were feared not by how quickly they could overpower their enemies, but by how effectively they could outlast them. Many generations later, this philosophy is still reflected in modern Successor shield cortices, which are exceptionally powerful for their size but weaken the shield's resistance to incoming fire. This allows Successor ships to recover quickly from sustained damage, even if they are slightly more vulnerable to it."
 
 outfit `"Ej" Shield Cortex`
+	plural `"Ej" Shield Cortices`
 	category "Systems"
 	series "Shields"
 	index 11020
@@ -59,6 +61,7 @@ outfit `"Ej" Shield Cortex`
 	description "Because their bimodal engines draw power from a ship's shield matrix, even non-combat Successor craft can justify equipping powerful shield generators to afford them greater mobility. This is the largest unit the High Houses permit for sale to the general public; even so, it offers substantially faster regeneration than even the largest human shield generators."
 
 outfit `"Jaase" Shield Cortex`
+	plural `"Jaase" Shield Cortices`
 	category "Systems"
 	series "Shields"
 	index 11030
@@ -75,6 +78,7 @@ outfit `"Jaase" Shield Cortex`
 	description "The technology of their Predecessors was not nearly as modular as the modern Successor equivalents, which must be built with more limited resources and comparatively primitive manufacturing techniques. Nonetheless, this medium-sized shield cortex is powerful enough to shrug off the combined damage output of several lesser attackers, and consequently is reserved by the High Houses for use in their private navies."
 
 outfit `"Jorv" Shield Cortex`
+	plural `"Jorv" Shield Cortices`
 	category "Systems"
 	series "Shields"
 	index 11040
