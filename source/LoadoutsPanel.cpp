@@ -1480,20 +1480,20 @@ void LoadoutsPanel::DrawAccountingModule() const
 void LoadoutsPanel::DrawScrollbars()
 {
 	if(shipScroll.Scrollable())
-		shipScrollBar.SyncDraw(shipScroll, shipsBox.TopRight() + Point{0., 10.},
-			shipsBox.BottomRight() - Point{0., 10.});
+		shipScrollBar.SyncDraw(shipScroll, shipsBox.TopRight() + Point{-3., 10.},
+			shipsBox.BottomRight() - Point{3., 10.});
 
 	if(loadoutScroll.Scrollable())
-		loadoutScrollBar.SyncDraw(loadoutScroll, loadoutsBox.TopRight() + Point{0., 10.},
-			loadoutsBox.BottomRight() - Point{0., 10.});
+		loadoutScrollBar.SyncDraw(loadoutScroll, loadoutsBox.TopRight() + Point{4., 10.},
+			loadoutsBox.BottomRight() - Point{-4., 10.});
 
 	if(dataScroll.Scrollable())
-		dataScrollBar.SyncDraw(dataScroll, selectedBox.TopRight() + Point{0., 10.},
-			selectedBox.BottomRight() - Point{0., 10.});
+		dataScrollBar.SyncDraw(dataScroll, selectedBox.TopRight() + Point{4., 10.},
+			selectedBox.BottomRight() - Point{-4., 10.});
 
 	if(removeScroll.Scrollable())
-		removeScrollBar.SyncDraw(removeScroll, removedBox.TopRight() + Point{0., 10.},
-			removedBox.BottomRight() - Point{0., 10.});
+		removeScrollBar.SyncDraw(removeScroll, removedBox.TopRight() + Point{4., 10.},
+			removedBox.BottomRight() - Point{-4., 10.});
 }
 
 
