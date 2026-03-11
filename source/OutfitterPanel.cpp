@@ -26,12 +26,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Hardpoint.h"
+#include "LoadoutsPanel.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "LoadoutsPanel.h"
 #include "Rectangle.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -1314,13 +1314,13 @@ void OutfitterPanel::DrawButtons()
 	}
 
 	// Draw the Loadouts button.
-	const Point buttonCenter = Screen::BottomRight() - Point(598+46, 20);
+	const Point buttonCenter = Screen::BottomRight() - Point(644, 20);
 	const string buttonPath = hoverButton == 'o' ? "ui/loadouts selected" : "ui/loadouts unselected";
 	const Sprite *loadoutIcon = SpriteSet::Get(buttonPath);
 	SpriteShader::Draw(loadoutIcon, buttonCenter);
 	buttonZones.emplace_back(Rectangle(buttonCenter, {loadoutIcon->Width(), loadoutIcon->Height()}), 'o');
 	font.Draw(DisplayText("L_oadouts", Layout(Alignment::LEFT)),
-		buttonCenter - Point(46-5, font.Height() * .5), hoverButton == 'o' ? bright : dim);
+		buttonCenter - Point(41, font.Height() * .5), hoverButton == 'o' ? bright : dim);
 
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
@@ -1408,9 +1408,8 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 	{
 		// Open the loadouts panel
 		GetUI().Push(new LoadoutsPanel(player, playerShips, outfitter, day));
-		// This problem is only visible with a button made by outfitter panel's "DrawButton". When such a button
-		// that has a tooltip opens a panel, the tooltip will be made visible at all times that the panel is open.
-		// Setting the hover button to default value prevents this.
+		// This problem is only visible with a button that has a tooltip and opens a panel. The tooltip will be made
+		// visible at all times that the panel is open. Setting the hover button to default value prevents this.
 		hoverButton = '\0';
 		result = true;
 	}
