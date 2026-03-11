@@ -238,7 +238,7 @@ mission "event: war begins"
 				flee
 			
 			label help
-			`	"Yes. You can take off like I asked you to." The officer pauses. "Sorry, Captain, but that's the truth. The Navy has personnel trained for responding to nuclear disasters, and all you'd be doing here right now is taking up space. If you really want to help, you'd be better off waiting a day for us to properly coordinate a disaster response plan with the neighbouring planets and their job boards."`
+			`	"Yes. You can take off like I asked you to." The officer pauses. "Sorry, Captain, but that's the truth. The Navy has personnel trained for responding to nuclear disasters, and all you'd be doing here right now is taking up space. If you really want to help, you'd be better off waiting a day for us to properly coordinate a disaster response plan with the neighboring planets and their job boards."`
 			`	The officer turns around, interrupted by the shrieks of a panicked Paradisian. You re-enter the <ship>, and prepare to take off.`
 				flee
 
