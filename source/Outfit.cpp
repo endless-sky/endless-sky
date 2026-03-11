@@ -328,9 +328,9 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	if(!displayName.empty() && pluralName.empty())
 	{
 		pluralName = displayName + 's';
-		if((displayName.back() == 's' || displayName.back() == 'x' || displayName.back() == 'z'
-				|| displayName.ends_with("ch") || displayName.ends_with("sh"))
-			&& !category.empty())
+		const char &last = displayName.back();
+		if(!category.empty() && (last == 's' || last == 'x' || last == 'z'
+				|| displayName.ends_with("ch") || displayName.ends_with("sh")))
 			node.PrintTrace("Explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralName + "\".");
 	}
