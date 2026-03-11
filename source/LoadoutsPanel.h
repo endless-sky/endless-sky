@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Loadout.h"
 #include "OutfitterPanel.h"
 #include "PlayerInfo.h"
+#include "RenderBuffer.h"
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 
@@ -42,6 +43,7 @@ public:
 	bool Drag(double dx, double dy) override;
 	bool Scroll(double dx, double dy) override;
 	bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+	bool Release(int x, int y, MouseButton button) override;
 
 
 private:
@@ -69,12 +71,15 @@ private:
 	void ApplyLoadout();
 
 	// Draw sub-methods to make the Draw method more readable.
-	void DrawLoadoutsModule();
+	void DrawShipsModule();
+	void DrawLoadoutsModule() const;
 	void DrawSelectedModule();
 	void DrawRemovingModule();
 	void DrawSettingsModule();
 	void DrawAccountingModule() const;
-
+	void DrawScrollbars();
+	bool ShouldHighlight(const Ship *ship, Point mouse, bool shipIsSelected) const;
+	void ShipSelect(Ship *ship, int clicks);
 
 private:
 	// Some code wants to rotate through the LoadoutDestination enum, so the index is recorded here.
@@ -89,6 +94,7 @@ private:
 	std::set<Ship*> *playerShips;
 	Sale<Outfit> *outfitter;
 	const Interface *loadoutPanelUi;
+	const Interface *loadoutPanelOverlay;
 	int day;
 
 	// Loadout management.
@@ -119,6 +125,21 @@ private:
 	ScrollBar removeScrollBar;
 	bool removeDrag = false;
 	bool removeHovered = false;
+
+	// Ships bar management.
+	int rows;
+	Rectangle shipsBox;
+	ScrollVar<double> shipScroll;
+	ScrollBar shipScrollBar;
+	bool shipScrollDrag = false;
+	bool shipHovered = false;
+	Ship *draggedShip = nullptr;
+	bool isDraggingShip = false;
+	Point dragShipPoint;
+	std::vector<ClickZone<const Ship *>> shipZones;
+	Ship *lastClicked;
+	int hoveredIndex = -1;
+	std::unique_ptr<RenderBuffer> buffer;
 
 	// Data values cached on screen open to prevent excessive GameData calls.
 	const Color &active;
@@ -159,5 +180,8 @@ private:
 	Tooltip tooltip;
 	std::string hoveredTooltip;
 	std::map<Rectangle*, std::string> tooltipKeys;
+	Tooltip shipsTooltip;
+	std::string shipName;
+	std::string warningType;
 
 };

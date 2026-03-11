@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DialogPanel.h"
 #include "Files.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Information.h"
 #include "Interface.h"
 #include "Loadout.h"
@@ -31,6 +32,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Layout.h"
+#include "shader/OutlineShader.h"
+#include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "text/Table.h"
@@ -42,6 +45,19 @@ using namespace std;
 
 namespace {
 	constexpr double SETTINGS_MARGINS = 10;
+
+	constexpr int ICON_TILE = 62;
+	constexpr float ICON_SIZE = ICON_TILE - 8;
+	constexpr int ROW_SIZE = 16;
+
+	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const Color SELECTED_COLOR(.8f, 1.f);
+	const Color UNSELECTED_COLOR(.4f, 1.f);
+
+	bool IsShipPresent(const shared_ptr<Ship>& ship, const Planet *planet)
+	{
+		return ship->GetPlanet() == planet;
+	}
 }
 
 
@@ -51,7 +67,9 @@ LoadoutsPanel::LoadoutsPanel(PlayerInfo &player, set<Ship*> &playerShips, Sale<O
 	playerShips(&playerShips),
 	outfitter(&outfitter),
 	loadoutPanelUi(GameData::Interfaces().Get("outfitter loadouts panel")),
+	loadoutPanelOverlay(GameData::Interfaces().Get("outfitter loadouts overlay")),
 	day(day),
+	lastClicked(player.Flagship()),
 	active(*GameData::Colors().Get("active")),
 	bigFont(FontSet::Get(18)),
 	smallFont(FontSet::Get(14)),
@@ -73,13 +91,34 @@ LoadoutsPanel::LoadoutsPanel(PlayerInfo &player, set<Ship*> &playerShips, Sale<O
 	errorColor(*GameData::Colors().Get("heat")),
 	faintColor(*GameData::Colors().Get("faint")),
 	tooltip(tooltipBox.Width(), Alignment::LEFT, Tooltip::Direction::DOWN_RIGHT, Tooltip::Corner::TOP_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+	shipsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
-	// Box height minus 10px margins.
-	loadoutScroll.SetDisplaySize(loadoutsBox.Height() - 20.);
-	// Box height minus 10px margins, 20px header.
-	dataScroll.SetDisplaySize(selectedBox.Height() - 40.);
-	removeScroll.SetDisplaySize(removedBox.Height() - 40.);
+	loadoutScroll.SetDisplaySize(loadoutsBox.Height());
+	dataScroll.SetDisplaySize(selectedBox.Height());
+	removeScroll.SetDisplaySize(removedBox.Height());
+
+	// Calculate the number of ship rows ahead of time to determine what extension and whether to use a scrollbar.
+	const Planet *planet = player.GetPlanet();
+	int count = 0;
+	rows = 1;
+	for(const shared_ptr<Ship> &ship : player.Ships())
+	{
+		count += IsShipPresent(ship, planet);
+		if(count > ROW_SIZE)
+		{
+			count -= ROW_SIZE;
+			rows++;
+		}
+	}
+	shipsBox = loadoutPanelUi->GetBox("ships" + (rows > 3 ? "3" : to_string(rows)));
+	if(rows > 3)
+	{
+		shipScroll.SetDisplaySize(shipsBox.Height());
+		shipScroll.SetMaxValue(max(0., ICON_TILE * rows + 5.));
+	}
+	buffer = make_unique<RenderBuffer>(Point(shipsBox.Width(), shipsBox.Height()));
 
 	SetInterruptible(false);
 
@@ -161,6 +200,7 @@ void LoadoutsPanel::Step()
 	loadoutScroll.Step();
 	dataScroll.Step();
 	removeScroll.Step();
+	shipScroll.Step();
 }
 
 
@@ -176,15 +216,21 @@ void LoadoutsPanel::Draw()
 		info.SetCondition("can save");
 	if(selectedLoadout && !playerShips->empty())
 		info.SetCondition("can apply");
-	loadoutPanelUi->Draw(info, this);
-	// TODO: currently using the texture of Info Panel.
-	// Will want to make a new texture and the properly positioned buttons.
 
+	info.SetCondition("row" + (rows > 3 ? "3" : to_string(rows)));
+	loadoutPanelUi->Draw(info, this);
+
+	DrawShipsModule();
 	DrawLoadoutsModule();
 	DrawSelectedModule();
 	DrawRemovingModule();
 	DrawSettingsModule();
 	DrawAccountingModule();
+
+	const Interface *overlay = GameData::Interfaces().Get("outfitter loadouts overlay");
+	overlay->Draw(info, this);
+
+	DrawScrollbars();
 
 	// Draw tooltips for the button being hovered over.
 	if(const string tip = GameData::Tooltip(string("loadout: ") + hoveredTooltip); !tip.empty())
@@ -199,6 +245,35 @@ void LoadoutsPanel::Draw()
 	}
 	else
 		tooltip.DecrementCount();
+
+	if(draggedShip && isDraggingShip && draggedShip->GetSprite())
+	{
+		const Sprite *sprite = draggedShip->GetSprite();
+		const float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+		if(Preferences::Has(SHIP_OUTLINES))
+		{
+			const Point size(sprite->Width() * scale, sprite->Height() * scale);
+			OutlineShader::Draw(sprite, dragShipPoint, size, SELECTED_COLOR);
+		}
+		else
+		{
+			const Swizzle *swizzle = draggedShip->CustomSwizzle()
+				? draggedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+			SpriteShader::Draw(sprite, dragShipPoint, scale, swizzle);
+		}
+	}
+
+	// Draw tooltip for the ship being hovered over.
+	if(!shipName.empty())
+	{
+		string text = shipName;
+		if(!warningType.empty())
+			text += "\n" + GameData::Tooltip(warningType);
+		shipsTooltip.SetText(text, true);
+		shipsTooltip.SetBackgroundColor(GameData::Colors().Get(warningType.empty() ? "tooltip background"
+			: (warningType.back() == '!' ? "error back" : "warning back")));
+		shipsTooltip.Draw(true);
+	}
 }
 
 
@@ -208,6 +283,7 @@ bool LoadoutsPanel::Click(const int x, const int y, const MouseButton button, co
 	loadoutDrag = false;
 	dataDrag = false;
 	removeDrag = false;
+	shipScrollDrag = false;
 
 	if(loadoutScroll.Scrollable() && loadoutScrollBar.SyncClick(loadoutScroll, x, y, button, clicks))
 	{
@@ -227,19 +303,40 @@ bool LoadoutsPanel::Click(const int x, const int y, const MouseButton button, co
 		return true;
 	}
 
-	// Was click inside loadouts list?
-	if(loadoutsBox.Contains(Point(x, y)))
+	if(shipScroll.Scrollable() && shipScrollBar.SyncClick(shipScroll, x, y, button, clicks))
 	{
-		if(const int index = (loadoutScroll.AnimatedValue() + y - loadoutsBox.Top() - 10) / 20;
-			static_cast<unsigned>(index) < loadouts.size())
-		{
-			const int previous = selected;
-			selected = index;
-			if(selected != previous)
-				RefreshLoadoutData();
-		}
+		shipScrollDrag = true;
 		return true;
 	}
+
+	// Was click inside loadouts list?
+	if(loadoutHovered && hoveredIndex != -1)
+	{
+		const int previous = selected;
+		selected = hoveredIndex;
+		if(selected != previous)
+			RefreshLoadoutData();
+		return true;
+	}
+
+	// Check for ship clicked.
+	const Point mouse(x, y);
+	draggedShip = nullptr;
+	if(shipsBox.Contains(mouse))
+		for(const ClickZone<const Ship *> &zone : shipZones)
+			if(zone.Contains(mouse))
+			{
+				const Ship *clickedShip = zone.Value();
+				for(const shared_ptr<Ship> &ship : player.Ships())
+					if(ship.get() == clickedShip)
+					{
+						draggedShip = ship.get();
+						dragShipPoint.Set(x, y);
+						ShipSelect(draggedShip, clicks);
+						break;
+					}
+				return true;
+			}
 
 	return false;
 }
@@ -251,22 +348,35 @@ bool LoadoutsPanel::Hover(const int x, const int y)
 	loadoutHovered = false;
 	dataHovered = false;
 	removeHovered = false;
+	shipHovered = false;
 
-	if(loadoutsBox.Contains(Point(x, y)))
+	const Point mouse(x, y);
+	hoveredIndex = -1;
+	if(loadoutsBox.Contains(mouse))
+	{
 		loadoutHovered = true;
-	else if(selectedBox.Contains(Point(x, y)))
+		if(const int index = (loadoutScroll.AnimatedValue() + mouse.Y() - loadoutsBox.Top()) / 20;
+			static_cast<unsigned>(index) < visibleLoadouts.size())
+		{
+			hoveredIndex = index;
+		}
+	}
+	else if(selectedBox.Contains(mouse))
 		dataHovered = true;
-	else if(removedBox.Contains(Point(x, y)))
+	else if(removedBox.Contains(mouse))
 		removeHovered = true;
+	else if(shipsBox.Contains(mouse))
+		shipHovered = true;
 
 	loadoutScrollBar.Hover(x, y);
 	dataScrollBar.Hover(x, y);
 	removeScrollBar.Hover(x, y);
+	shipScrollBar.Hover(x, y);
 
 	hoveredTooltip = "";
 	for(const auto &[rectangle, key] : tooltipKeys)
 	{
-		if(rectangle->Contains(Point(x, y)))
+		if(rectangle->Contains(mouse))
 		{
 			hoveredTooltip = key;
 			break;
@@ -304,6 +414,37 @@ bool LoadoutsPanel::Drag(const double dx, const double dy)
 		removeScroll.Set(removeScroll - dy);
 		return true;
 	}
+	if(shipScrollDrag)
+	{
+		if(shipScroll.Scrollable() && shipScrollBar.SyncDrag(shipScroll, dx, dy))
+			return true;
+
+		shipScroll.Set(shipScroll - dy);
+		return true;
+	}
+	if(draggedShip)
+	{
+		isDraggingShip = true;
+		dragShipPoint += Point(dx, dy);
+		for(const ClickZone<const Ship *> &zone : shipZones)
+			if(zone.Contains(dragShipPoint))
+				if(zone.Value() != draggedShip)
+				{
+					int dragIndex = -1;
+					int dropIndex = -1;
+					for(unsigned i = 0; i < player.Ships().size(); ++i)
+					{
+						const Ship *ship = &*player.Ships()[i];
+						if(ship == draggedShip)
+							dragIndex = i;
+						if(ship == zone.Value())
+							dropIndex = i;
+					}
+					if(dragIndex >= 0 && dropIndex >= 0)
+						player.ReorderShip(dragIndex, dropIndex);
+				}
+		return true;
+	}
 	return false;
 }
 
@@ -312,10 +453,22 @@ bool LoadoutsPanel::Drag(const double dx, const double dy)
 // The scroll wheel can be used to scroll hovered lists.
 bool LoadoutsPanel::Scroll(const double dx, const double dy)
 {
+	const bool wasDragLoadout = loadoutDrag;
 	loadoutDrag = loadoutHovered;
+	const bool wasDragData = dataDrag;
 	dataDrag = dataHovered;
+	const bool wasDragRemove = removeDrag;
 	removeDrag = removeHovered;
-	return Drag(0., dy * Preferences::ScrollSpeed());
+	const bool wasDragShipsScroll = shipScrollDrag;
+	shipScrollDrag = shipHovered;
+
+	const bool didDrag = Drag(0., dy * Preferences::ScrollSpeed());
+
+	loadoutDrag = wasDragLoadout;
+	dataDrag = wasDragData;
+	removeDrag = wasDragRemove;
+	shipScrollDrag = wasDragShipsScroll;
+	return didDrag;
 }
 
 
@@ -325,6 +478,7 @@ bool LoadoutsPanel::KeyDown(const SDL_Keycode key, Uint16 mod, const Command &co
 	// Delete.
 	if(key == 'e' && selectedLoadout)
 	{
+		hoveredTooltip = "";
 		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &LoadoutsPanel::DeleteLoadout,
 			"Are you sure you want to delete the selected loadout, \"" + selectedLoadout->Name() + "\"?"));
 		return true;
@@ -332,6 +486,7 @@ bool LoadoutsPanel::KeyDown(const SDL_Keycode key, Uint16 mod, const Command &co
 	// Save.
 	if(key == 's' && !playerShips->empty())
 	{
+		hoveredTooltip = "";
 		nameToConfirm.clear();
 		const Ship *ship = *playerShips->begin();
 		GetUI().Push(DialogPanel::RequestString(this, &LoadoutsPanel::SaveLoadout,
@@ -341,6 +496,7 @@ bool LoadoutsPanel::KeyDown(const SDL_Keycode key, Uint16 mod, const Command &co
 	// Apply.
 	if(key == 'a' && selectedLoadout && !playerShips->empty())
 	{
+		hoveredTooltip = "";
 		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &LoadoutsPanel::ApplyLoadout,
 			"Are you sure you want to apply the loadout \"" + selectedLoadout->Name() + "\" to your selected ship(s)?"));
 		return true;
@@ -356,6 +512,19 @@ bool LoadoutsPanel::KeyDown(const SDL_Keycode key, Uint16 mod, const Command &co
 	if(key == 'o')
 	{
 		Files::OpenUserLoadoutsFolder();
+		return true;
+	}
+	return false;
+}
+
+
+
+bool LoadoutsPanel::Release(int x, int y, const MouseButton button)
+{
+	if(draggedShip && button == MouseButton::LEFT)
+	{
+		draggedShip = nullptr;
+		isDraggingShip = false;
 		return true;
 	}
 	return false;
@@ -417,7 +586,7 @@ void LoadoutsPanel::RefreshLoadoutsBox()
 
 		visibleLoadouts.push_back(loadout);
 	}
-	loadoutScroll.SetMaxValue(max(0., 20. * visibleLoadouts.size()));
+	loadoutScroll.SetMaxValue(max(0., 20. * visibleLoadouts.size() + 10.));
 
 	const Loadout *previous = selectedLoadout;
 	CheckLoadoutSelected();
@@ -514,7 +683,7 @@ void LoadoutsPanel::RefreshLoadoutData()
 				loadoutListings[outfit->Category()][outfit] = sources;
 			}
 
-		double dataScrollRoom = loadoutListings.size() * 30.;
+		double dataScrollRoom = loadoutListings.size() * 30. + 10;
 		for(const auto &content : loadoutListings | views::values)
 			dataScrollRoom += content.size() * 20.;
 		dataScroll.SetMaxValue(max(0., dataScrollRoom));
@@ -563,7 +732,7 @@ void LoadoutsPanel::RefreshLoadoutData()
 				}
 			}
 
-		double removeScrollRoom = removalListings.size() * 30.;
+		double removeScrollRoom = removalListings.size() * 30. + 10;
 		for(const auto &content : removalListings | views::values)
 			removeScrollRoom += content.size() * 20.;
 		removeScroll.SetMaxValue(max(0., removeScrollRoom));
@@ -887,19 +1056,104 @@ void LoadoutsPanel::ApplyLoadout()
 	RefreshLoadoutData();
 }
 
+void LoadoutsPanel::DrawShipsModule()
+{
+	shipZones.clear();
+	shipName.clear();
+	warningType.clear();
+
+	// The buffer affects where UI thinks the mouse is, so grab this ahead of time.
+	const Point mouse = UI::GetMouse();
+	// The buffer draws at different coordinates than the game, so create an offset.
+	const Point offset(shipsBox.Left() - buffer->Left(), shipsBox.Top() - buffer->Top());
+
+	auto target = buffer->SetTarget();
+	const Point topLeft(buffer->Left() + 5 + ICON_TILE / 2, buffer->Top() + 5 + ICON_TILE / 2);
+	Point drawPoint(topLeft - Point(0, shipScroll));
+	const Planet *planet = player.GetPlanet();
+	const Sprite *selectedShip = SpriteSet::Get("ui/icon selected");
+	const Sprite *unselectedShip = SpriteSet::Get("ui/icon unselected");
+	for(const shared_ptr<Ship> &ship : player.Ships())
+	{
+		// Skip any ships that are "absent" for whatever reason.
+		if(!IsShipPresent(ship, planet))
+			continue;
+
+		if(drawPoint.X() > buffer->Right())
+		{
+			drawPoint.X() = topLeft.X();
+			drawPoint.Y() += ICON_TILE;
+			if(drawPoint.Y() - ICON_SIZE / 2 > buffer->Bottom())
+				break;
+		}
+
+		if(drawPoint.Y() + ICON_SIZE / 2 > buffer->Top())
+		{
+			const bool isSelected = playerShips->contains(ship.get());
+			SpriteShader::Draw(isSelected ? selectedShip : unselectedShip, drawPoint);
+			// Unlike ShopPanel, highlight ships based on apply or presets being hovered,
+			// as well as the status of the ship type enforce setting.
+			if(ShouldHighlight(ship.get(), mouse, isSelected))
+				SpriteShader::Draw(selectedShip, drawPoint);
+
+			if(const Sprite *sprite = ship->GetSprite())
+			{
+				const float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+				if(Preferences::Has(SHIP_OUTLINES))
+				{
+					Point size(sprite->Width() * scale, sprite->Height() * scale);
+					OutlineShader::Draw(sprite, drawPoint, size, isSelected ? SELECTED_COLOR : UNSELECTED_COLOR);
+				}
+				else
+				{
+					const Swizzle *swizzle = ship->CustomSwizzle() ?
+						ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+					SpriteShader::Draw(sprite, drawPoint, scale, swizzle);
+				}
+			}
+
+			shipZones.emplace_back(drawPoint + offset, Point(ICON_TILE, ICON_TILE), ship.get());
+
+			if(shipZones.back().Contains(mouse) && shipsBox.Contains(mouse))
+			{
+				shipName = ship->GivenName() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
+				shipsTooltip.SetZone(shipZones.back());
+			}
+			const auto flightChecks = player.FlightCheck();
+
+			if(const auto checkIt = flightChecks.find(ship); checkIt != flightChecks.end())
+			{
+				const string &check = checkIt->second.front();
+				const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
+				SpriteShader::Draw(icon, drawPoint + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
+				if(shipZones.back().Contains(mouse))
+					warningType = check;
+			}
+
+			if(ship->IsParked())
+			{
+				static const Point CORNER = .35 * Point(ICON_TILE, ICON_TILE);
+				FillShader::Fill(drawPoint + CORNER, Point(6., 6.), backgroundColor);
+				FillShader::Fill(drawPoint + CORNER, Point(4., 4.), isSelected ? brightColor : mediumColor);
+			}
+		}
+
+		drawPoint.X() += ICON_TILE;
+	}
+
+	target.Deactivate();
+	buffer->Draw(shipsBox.Center(), shipsBox.Dimensions(), {0, 0});
+
+}
 
 
-void LoadoutsPanel::DrawLoadoutsModule()
+void LoadoutsPanel::DrawLoadoutsModule() const
 {
 	FillShader::Fill(loadoutsBox, backgroundColor);
 
-	// Round up initial draw index at 0.2 so the text doesn't visually escape from the box, but still has wiggle room.
-	const double indexRaw = (loadoutScroll.AnimatedValue()) / 20.;
-	int index = indexRaw;
-	if(indexRaw - index > 0.2) ++index;
-
-	int y = loadoutsBox.Top() + 10 - loadoutScroll.AnimatedValue() + 20 * index;
-	const int endY = loadoutsBox.Bottom() - 15 - 10;
+	int index = loadoutScroll.AnimatedValue() / 20.;
+	int y = loadoutsBox.Top() - loadoutScroll.AnimatedValue() + 20 * index; // + 10
+	const int endY = loadoutsBox.Bottom();
 
 	// Y offset to center the text in a 20-pixel high row.
 	const double fontOff = .5 * (20 - smallFont.Height());
@@ -917,10 +1171,6 @@ void LoadoutsPanel::DrawLoadoutsModule()
 		smallFont.Draw(DisplayText(item->Name(),
 			Layout(static_cast<int>(loadoutsBox.Width()) - 25, Alignment::LEFT, Truncate::BACK)), pos, brightColor);
 	}
-
-	if(loadoutScroll.Scrollable())
-		loadoutScrollBar.SyncDraw(loadoutScroll, loadoutsBox.TopRight() + Point{0., 10.},
-			loadoutsBox.BottomRight() - Point{0., 10.});
 }
 
 
@@ -931,8 +1181,6 @@ void LoadoutsPanel::DrawSelectedModule()
 
 	if(selectedLoadout)
 	{
-		const Point point = selectedBox.TopLeft();
-
 		Table table;
 		// Use 10-pixel margins on both sides, then split the box by 70 pixels per number column, remainder to outfit
 		const int boxWidth = static_cast<int>(selectedBox.Width());
@@ -947,45 +1195,34 @@ void LoadoutsPanel::DrawSelectedModule()
 		table.AddColumn(boxWidth - 10, Layout(columnSize, Alignment::RIGHT));
 
 		table.SetHighlight(0, boxWidth);
-		table.DrawAt(point);
-		// Add ten pixels of padding at the top.
-		table.DrawGap(10);
-
-		table.Draw("Outfit", brightColor);
-		table.Draw("Loadout", brightColor);
-		table.Draw("Equipped", brightColor);
-		table.Draw("Cargo", brightColor);
-		table.Draw("Stored", brightColor);
-		table.Draw("Purchase", brightColor);
-		table.Draw("Missing", brightColor);
-
-		const int scrollableY = selectedBox.Top() + 20;
-		double currentY = scrollableY - dataScroll.AnimatedValue();
-		const int cutoff = selectedBox.Bottom() - 20 - 10;
+		const int topCutoff = selectedBox.Top() - 15;
+		table.DrawAt(Point(selectedBox.Left(), topCutoff));
+		double currentY = selectedBox.Top() - dataScroll.AnimatedValue();
+		const int bottomCutoff = selectedBox.Bottom() - 5;
 
 		// Align with the scroll bar progress by creating a table gap proportional to animated value.
 		bool firstDraw = false;
 		auto addProgress = [&](const double amount) -> void {
 			currentY += amount;
-			if(!firstDraw && currentY >= scrollableY)
+			if(!firstDraw && currentY >= topCutoff)
 			{
-				table.DrawGap(currentY - scrollableY);
+				table.DrawGap(currentY - topCutoff);
 				firstDraw = true;
 			}
 		};
 
 		for(const auto &[category, content] : loadoutListings)
 		{
-			if(currentY >= cutoff) break;
-			if(firstDraw && currentY >= scrollableY)
+			if(currentY >= bottomCutoff) break;
+			if(firstDraw && currentY >= topCutoff)
 			{
 				// Empty rows between categories.
 				table.DrawGap(10);
 			}
 			addProgress(10.);
 
-			if(currentY >= cutoff) break;
-			if(currentY >= scrollableY)
+			if(currentY >= bottomCutoff) break;
+			if(currentY >= topCutoff)
 			{
 				// Category listings.
 				table.Draw(category + ":", mediumColor);
@@ -996,8 +1233,8 @@ void LoadoutsPanel::DrawSelectedModule()
 
 			for(auto [outfit, sources] : content)
 			{
-				if(currentY >= cutoff) break;
-				if(currentY >= scrollableY)
+				if(currentY >= bottomCutoff) break;
+				if(currentY >= topCutoff)
 				{
 					// Outfit name.
 					table.Draw(outfit->DisplayName(), mediumColor);
@@ -1028,9 +1265,6 @@ void LoadoutsPanel::DrawSelectedModule()
 				addProgress(20.);
 			}
 		}
-		if(dataScroll.Scrollable())
-			dataScrollBar.SyncDraw(dataScroll, selectedBox.TopRight() + Point{0., 10.},
-				selectedBox.BottomRight() - Point{0., 10.});
 	}
 }
 
@@ -1042,7 +1276,6 @@ void LoadoutsPanel::DrawRemovingModule()
 
 	if(selectedLoadout)
 	{
-		const Point point = removedBox.TopLeft();
 		Table table;
 
 		// Use 10-pixel margins on both sides, then split the box by 90% for text, then 10% for the number
@@ -1051,26 +1284,18 @@ void LoadoutsPanel::DrawRemovingModule()
 		table.AddColumn(removedBox.Width() - 10, Layout(available * 0.1, Alignment::RIGHT));
 
 		table.SetHighlight(0, removedBox.Width());
-		table.DrawAt(point);
-
-		// 10px margin on top.
-		table.DrawGap(10);
-
-		// Table header.
-		table.Draw("To Be Removed", brightColor);
-		table.Draw("", brightColor);
-
-		const int scrollableY = removedBox.Top() + 20;
-		double currentY = scrollableY - removeScroll.AnimatedValue();
-		const int cutoff = removedBox.Bottom() - 20 - 10;
+		const int topCutoff = removedBox.Top() - 15;
+		table.DrawAt(Point(removedBox.Left(), topCutoff));
+		double currentY = selectedBox.Top() - removeScroll.AnimatedValue();
+		const int bottomCutoff = removedBox.Bottom() - 5;
 
 		// Align with the scroll bar progress by creating a table gap proportional to animated value.
 		bool firstDraw = false;
 		auto addProgress = [&](const double amount) -> void {
 			currentY += amount;
-			if(!firstDraw && currentY >= scrollableY)
+			if(!firstDraw && currentY >= topCutoff)
 			{
-				table.DrawGap(currentY - scrollableY);
+				table.DrawGap(currentY - topCutoff);
 				firstDraw = true;
 			}
 		};
@@ -1078,16 +1303,16 @@ void LoadoutsPanel::DrawRemovingModule()
 		for(const auto &[category, content] : removalListings)
 		{
 
-			if(currentY >= cutoff) break;
-			if(firstDraw && currentY >= scrollableY)
+			if(currentY >= bottomCutoff) break;
+			if(firstDraw && currentY >= topCutoff)
 			{
 				// 10px margin between categories.
 				table.DrawGap(10);
 			}
 			addProgress(10.);
 
-			if(currentY >= cutoff) break;
-			if(currentY >= scrollableY)
+			if(currentY >= bottomCutoff) break;
+			if(currentY >= topCutoff)
 			{
 				// Category listings.
 				table.Draw(category + ":", mediumColor);
@@ -1098,8 +1323,8 @@ void LoadoutsPanel::DrawRemovingModule()
 			// All outfits in the category.
 			for(auto [outfit, amount] : content)
 			{
-				if(currentY >= cutoff) break;
-				if(currentY >= scrollableY)
+				if(currentY >= bottomCutoff) break;
+				if(currentY >= topCutoff)
 				{
 					table.Draw(outfit->DisplayName(), mediumColor);
 					table.Draw(*amount, brightColor);
@@ -1107,9 +1332,6 @@ void LoadoutsPanel::DrawRemovingModule()
 				addProgress(20.);
 			}
 		}
-		if(removeScroll.Scrollable())
-			removeScrollBar.SyncDraw(removeScroll, removedBox.TopRight() + Point{0., 10.},
-				removedBox.BottomRight() - Point{0., 10.});
 	}
 }
 
@@ -1117,7 +1339,6 @@ void LoadoutsPanel::DrawRemovingModule()
 
 void LoadoutsPanel::DrawSettingsModule()
 {
-	FillShader::Fill(settingsBox, backgroundColor);
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 	const double fontOff = .5 * smallFont.Height();
 
@@ -1199,9 +1420,6 @@ void LoadoutsPanel::DrawSettingsModule()
 
 void LoadoutsPanel::DrawAccountingModule() const
 {
-	FillShader::Fill(cargoBox, faintColor);
-	FillShader::Fill(creditsBox, faintColor);
-
 	if(selectedLoadout)
 	{
 		constexpr int margins = 5;
@@ -1255,4 +1473,118 @@ void LoadoutsPanel::DrawAccountingModule() const
 			Point(creditsBox.Left(), creditsBox.Center().Y() + 20. - fontOff), brightColor);
 
 	}
+}
+
+
+
+void LoadoutsPanel::DrawScrollbars()
+{
+	if(shipScroll.Scrollable())
+		shipScrollBar.SyncDraw(shipScroll, shipsBox.TopRight() + Point{0., 10.},
+			shipsBox.BottomRight() - Point{0., 10.});
+
+	if(loadoutScroll.Scrollable())
+		loadoutScrollBar.SyncDraw(loadoutScroll, loadoutsBox.TopRight() + Point{0., 10.},
+			loadoutsBox.BottomRight() - Point{0., 10.});
+
+	if(dataScroll.Scrollable())
+		dataScrollBar.SyncDraw(dataScroll, selectedBox.TopRight() + Point{0., 10.},
+			selectedBox.BottomRight() - Point{0., 10.});
+
+	if(removeScroll.Scrollable())
+		removeScrollBar.SyncDraw(removeScroll, removedBox.TopRight() + Point{0., 10.},
+			removedBox.BottomRight() - Point{0., 10.});
+}
+
+
+
+bool LoadoutsPanel::ShouldHighlight(const Ship *ship, const Point mouse, const bool shipIsSelected) const
+{
+	if(loadoutHovered && hoveredIndex != -1 && cmp_less(hoveredIndex, visibleLoadouts.size()) && visibleLoadouts[hoveredIndex])
+		return visibleLoadouts[hoveredIndex]->ShipModel() == ship->TrueModelName();
+	if(shipIsSelected && selectedLoadout && applyBox.Contains(mouse))
+		return enforceShipTypes ? selectedLoadout->ShipModel() == ship->TrueModelName() : true;
+	return false;
+}
+
+
+
+// Code mostly copied from ShopPanel.cpp. Should I maybe inherit instead?
+void LoadoutsPanel::ShipSelect(Ship *ship, const int clicks)
+{
+	const bool shift = (SDL_GetModState() & KMOD_SHIFT);
+	const bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
+
+	if(shift)
+	{
+		bool on = false;
+		const Planet *here = player.GetPlanet();
+		for(const shared_ptr<Ship> &other : player.Ships())
+		{
+			// Skip any ships that are "absent" for whatever reason.
+			if(!IsShipPresent(other, here))
+				continue;
+
+			if(other.get() == ship || other.get() == lastClicked)
+				on = !on;
+			else if(on)
+				playerShips->insert(other.get());
+		}
+	}
+	else if(!control)
+	{
+		playerShips->clear();
+		if(clicks > 1)
+			for(const shared_ptr<Ship> &it : player.Ships())
+			{
+				if(!IsShipPresent(it, player.GetPlanet()))
+					continue;
+				if(it.get() != ship && it->Imitates(*ship))
+					playerShips->insert(it.get());
+			}
+	}
+	else
+	{
+		if(clicks > 1)
+		{
+			vector<Ship *> similarShips;
+			// If the ship isn't selected now, it was selected at the beginning of the whole "double click" action,
+			// because the first click was handled normally.
+			bool unselect = !playerShips->contains(ship);
+			for(const shared_ptr<Ship> &it : player.Ships())
+			{
+				if(!IsShipPresent(it, player.GetPlanet()))
+					continue;
+				if(it.get() != ship && it->Imitates(*ship))
+				{
+					similarShips.push_back(it.get());
+					unselect &= playerShips->contains(it.get());
+				}
+			}
+			for(Ship *it : similarShips)
+			{
+				if(unselect)
+					playerShips->erase(it);
+				else
+					playerShips->insert(it);
+			}
+			if(unselect && find(similarShips.begin(), similarShips.end(), lastClicked) != similarShips.end())
+			{
+				lastClicked = playerShips->empty() ? nullptr : *playerShips->begin();
+				return;
+			}
+		}
+		else if(playerShips->contains(ship))
+		{
+			playerShips->erase(ship);
+			if(lastClicked == ship)
+				lastClicked = playerShips->empty() ? nullptr : *playerShips->begin();
+			return;
+		}
+	}
+
+	lastClicked = ship;
+	playerShips->insert(lastClicked);
+	RefreshLoadoutsBox();
+	RefreshLoadoutData();
 }
