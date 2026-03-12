@@ -570,7 +570,10 @@ void PlanetPanel::WarningsDialogCallback(const bool isOk)
 void PlanetPanel::TakeOff(const bool distributeCargo)
 {
 	flightChecks.clear();
-	player.Save();
+	if(GameData::GetGamerules().IronmanMode())
+		player.DeleteAllSaves();
+	else
+		player.Save();
 	if(player.TakeOff(GetUI(), distributeCargo))
 	{
 		if(callback)

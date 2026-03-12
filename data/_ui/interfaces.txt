@@ -531,7 +531,7 @@ interface "load menu"
 		center -435 195
 		dimensions 90 30
 	
-	active if "pilot alive"
+	active if "can add snapshot"
 	button a "_Add Snapshot"
 		center -60 155
 		dimensions 120 30

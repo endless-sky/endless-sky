@@ -61,6 +61,7 @@ namespace {
 	const string LOCK_GAMERULES = "Lock gamerules";
 	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
 	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
+	const string IRONMAN_MODE = "Ironman mode";
 
 	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
 
@@ -80,6 +81,7 @@ namespace {
 		{LOCK_GAMERULES, "lock gamerules"},
 		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
 		{UNIVERSAL_AMMO_STOCKING, AMMO_RESTOCKING_NAME},
+		{IRONMAN_MODE, "ironman mode"},
 	};
 
 	const int GAMERULES_PAGE_COUNT = 1;
@@ -391,6 +393,7 @@ void GamerulesPanel::DrawGamerules()
 		"",
 		"Miscellaneous",
 		LOCK_GAMERULES,
+		IRONMAN_MODE,
 		FIGHTERS_HIT_WHEN_DISABLED,
 		UNIVERSAL_AMMO_STOCKING
 	};
@@ -490,6 +493,8 @@ void GamerulesPanel::DrawGamerules()
 		}
 		else if(gamerule == UNIVERSAL_AMMO_STOCKING)
 			text = gamerules.GetValue(AMMO_RESTOCKING_NAME) ? "true" : "false";
+		else if(gamerule == IRONMAN_MODE)
+			text = gamerules.IronmanMode() ? "true" : "false";
 
 		if(gamerule == hoverItem)
 		{
@@ -817,6 +822,8 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 	}
 	else if(str == UNIVERSAL_AMMO_STOCKING)
 		gamerules.SetMiscValue(AMMO_RESTOCKING_NAME, !gamerules.GetValue(AMMO_RESTOCKING_NAME));
+	else if(str == IRONMAN_MODE)
+		gamerules.SetIronmanMode(!gamerules.IronmanMode());
 }
 
 

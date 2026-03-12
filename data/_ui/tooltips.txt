@@ -1672,3 +1672,6 @@ tip "Fighters hit when disabled"
 
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
+
+tip "Ironman mode"
+	`Activate ironman mode/perma death. While active, you cannot create snapshots, missions cannot create autosaves, and all saves files for your pilot will be deleted the moment you depart from a planet or die while on a planet.`

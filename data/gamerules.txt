@@ -33,3 +33,5 @@
 	"lock gamerules" true
 	"disabled fighters avoid projectiles" "all"
 	"universal ammo restocking" true
+	
+	"ironman mode" false

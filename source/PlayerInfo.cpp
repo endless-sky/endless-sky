@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Gamerules.h"
 #include "Government.h"
+#include "LoadPanel.h"
 #include "Logger.h"
 #include "Messages.h"
 #include "Outfit.h"
@@ -606,7 +607,7 @@ void PlayerInfo::Save() const
 	// Remember that this was the most recently saved player.
 	Files::Write(Files::Config() / "recent.txt", filePath + '\n');
 
-	if(filePath.rfind(".txt") == filePath.length() - 4)
+	if(!GameData::GetGamerules().IronmanMode() && filePath.rfind(".txt") == filePath.length() - 4)
 	{
 		// Only update the backups if this save will have a newer date.
 		SavedGame saved(filePath);
@@ -633,6 +634,14 @@ void PlayerInfo::Save() const
 	// Save global conditions:
 	DataWriter globalConditions(Files::Config() / "global conditions.txt");
 	GameData::GlobalConditions().Save(globalConditions);
+}
+
+
+
+void PlayerInfo::DeleteAllSaves() const
+{
+	for(const string &file : LoadPanel::GetPlayerSaves(Identifier()))
+		Files::Delete(Files::Saves() / file);
 }
 
 
@@ -737,6 +746,8 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 {
 	isDead = true;
+	if(GameData::GetGamerules().IronmanMode())
+		DeleteAllSaves();
 	// The player loses access to all their ships if they die on a planet.
 	if(GetPlanet() || !flagship)
 	{
@@ -4668,7 +4679,7 @@ bool PlayerInfo::RecacheJumpRoutes()
 
 void PlayerInfo::Autosave() const
 {
-	if(!CanBeSaved() || filePath.length() < 4)
+	if(!CanBeSaved() || GameData::GetGamerules().IronmanMode() || filePath.length() < 4)
 		return;
 
 	string path = filePath.substr(0, filePath.length() - 4) + "~autosave.txt";

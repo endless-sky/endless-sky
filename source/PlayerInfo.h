@@ -98,6 +98,8 @@ public:
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
+	// When in ironman mode, all save files are deleted upon takeoff or death.
+	void DeleteAllSaves() const;
 
 	// Get the root filename used for this player's saved game files. (If there
 	// are multiple pilots with the same name it may have a digit appended.)
