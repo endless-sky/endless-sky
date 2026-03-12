@@ -103,9 +103,8 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	else if(player.FleetCost() + victim->FleetCost() > player.FleetCapacity())
 	{
 		canCapture = false;
-		messages.emplace_back("You cannot capture this ship as");
-		messages.emplace_back("doing so would put you over your");
-		messages.emplace_back("fleet capacity.");
+		messages.emplace_back("You cannot capture this ship as doing so");
+		messages.emplace_back("would put you over your fleet capacity.");
 	}
 	else
 	{

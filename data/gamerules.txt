@@ -34,7 +34,7 @@
 	"disabled fighters avoid projectiles" "all"
 	"universal ammo restocking" true
 	
-	"fleet size limitation" "crew capacity"
+	"fleet size limitation" "none"
 	"default max escort count" 6
 	"default max escort crew" 1000
 	"default admin cap" 25
