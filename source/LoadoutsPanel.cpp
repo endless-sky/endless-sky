@@ -220,7 +220,6 @@ void LoadoutsPanel::Draw()
 	info.SetCondition("row" + (rows > 3 ? "3" : to_string(rows)));
 	loadoutPanelUi->Draw(info, this);
 
-	DrawShipsModule();
 	DrawLoadoutsModule();
 	DrawSelectedModule();
 	DrawRemovingModule();
@@ -230,6 +229,7 @@ void LoadoutsPanel::Draw()
 	const Interface *overlay = GameData::Interfaces().Get("outfitter loadouts overlay");
 	overlay->Draw(info, this);
 
+	DrawShipsModule();
 	DrawScrollbars();
 
 	// Draw tooltips for the button being hovered over.
@@ -1149,8 +1149,6 @@ void LoadoutsPanel::DrawShipsModule()
 
 void LoadoutsPanel::DrawLoadoutsModule() const
 {
-	FillShader::Fill(loadoutsBox, backgroundColor);
-
 	int index = loadoutScroll.AnimatedValue() / 20.;
 	int y = loadoutsBox.Top() - loadoutScroll.AnimatedValue() + 20 * index; // + 10
 	const int endY = loadoutsBox.Bottom();
@@ -1177,8 +1175,6 @@ void LoadoutsPanel::DrawLoadoutsModule() const
 
 void LoadoutsPanel::DrawSelectedModule()
 {
-	FillShader::Fill(selectedBox, backgroundColor);
-
 	if(selectedLoadout)
 	{
 		Table table;
@@ -1272,8 +1268,6 @@ void LoadoutsPanel::DrawSelectedModule()
 
 void LoadoutsPanel::DrawRemovingModule()
 {
-	FillShader::Fill(removedBox, backgroundColor);
-
 	if(selectedLoadout)
 	{
 		Table table;
@@ -1347,7 +1341,6 @@ void LoadoutsPanel::DrawSettingsModule()
 		includeHandToHand = !includeHandToHand;
 		RefreshLoadoutData();
 	});
-	FillShader::Fill(handToHandBox, faintColor);
 	SpriteShader::Draw(box[includeHandToHand ? 1 : 0],
 		{handToHandBox.Right() - SETTINGS_MARGINS, handToHandBox.Center().Y()});
 	smallFont.Draw({"Include Hand to Hand"},
@@ -1357,7 +1350,6 @@ void LoadoutsPanel::DrawSettingsModule()
 		includeUnique = !includeUnique;
 		RefreshLoadoutData();
 	});
-	FillShader::Fill(uniqueBox, faintColor);
 	SpriteShader::Draw(box[includeUnique ? 1 : 0],
 		{uniqueBox.Right() - SETTINGS_MARGINS, uniqueBox.Center().Y()});
 	smallFont.Draw({"Include Uniques"},
@@ -1368,7 +1360,6 @@ void LoadoutsPanel::DrawSettingsModule()
 		RefreshLoadoutsBox();
 		RefreshLoadoutData();
 	});
-	FillShader::Fill(enforceBox, faintColor);
 	SpriteShader::Draw(box[enforceShipTypes ? 1 : 0],
 		{enforceBox.Right() - SETTINGS_MARGINS, enforceBox.Center().Y()});
 	smallFont.Draw({"Strict Ship Match"},
@@ -1381,7 +1372,6 @@ void LoadoutsPanel::DrawSettingsModule()
 		loadoutDestination = static_cast<LoadoutDestination>(index);
 		RefreshLoadoutData();
 	});
-	FillShader::Fill(moveUnequippedBox, faintColor);
 	smallFont.Draw({"Unequipped outfits to:"}, {moveUnequippedBox.Left() + SETTINGS_MARGINS / 2,
 		moveUnequippedBox.Center().Y() - fontOff}, brightColor);
 
@@ -1389,7 +1379,6 @@ void LoadoutsPanel::DrawSettingsModule()
 		loadoutDestination = STORAGE;
 		RefreshLoadoutData();
 	});
-	FillShader::Fill(toStorageBox, faintColor);
 	SpriteShader::Draw(box[loadoutDestination == STORAGE ? 1 : 0],
 		{toStorageBox.Right() - SETTINGS_MARGINS, toStorageBox.Center().Y()});
 	smallFont.Draw({"Storage"},
@@ -1399,7 +1388,6 @@ void LoadoutsPanel::DrawSettingsModule()
 		loadoutDestination = CARGO;
 		RefreshLoadoutData();
 	});
-	FillShader::Fill(toCargoBox, faintColor);
 	SpriteShader::Draw(box[loadoutDestination == CARGO ? 1 : 0],
 		{toCargoBox.Right() - SETTINGS_MARGINS, toCargoBox.Center().Y()});
 	smallFont.Draw({"Cargo"},
@@ -1409,7 +1397,6 @@ void LoadoutsPanel::DrawSettingsModule()
 		loadoutDestination = OUTFITTER;
 		RefreshLoadoutData();
 	});
-	FillShader::Fill(toOutfitterBox, faintColor);
 	SpriteShader::Draw(box[loadoutDestination == OUTFITTER ? 1 : 0],
 		{toOutfitterBox.Right() - SETTINGS_MARGINS, toOutfitterBox.Center().Y()});
 	smallFont.Draw({"Sold"},
