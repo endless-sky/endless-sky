@@ -1411,6 +1411,7 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 		// This problem is only visible with a button that has a tooltip and opens a panel. The tooltip will be made
 		// visible at all times that the panel is open. Setting the hover button to default value prevents this.
 		hoverButton = '\0';
+		UI::PlaySound(UI::UISound::NORMAL);
 		result = true;
 	}
 
