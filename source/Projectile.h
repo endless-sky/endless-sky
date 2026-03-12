@@ -96,8 +96,6 @@ public:
 	std::shared_ptr<Entity> TargetPtr() const;
 	// Clear the targeting information on this projectile.
 	void BreakTarget();
-	// Whether the target of this projectile is a ship.
-	bool IsTargetingShip() const;
 
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;
@@ -114,14 +112,13 @@ public:
 
 
 private:
-	void CheckLock(const Entity *target, bool targetIsShip);
+	void CheckLock(const Entity &target);
 	void CheckConfused(const Entity &target);
 
 
 private:
 	const Weapon *weapon = nullptr;
 
-	bool targetIsShip = false;
 	std::weak_ptr<Entity> target;
 	const Entity *cachedTarget = nullptr;
 	bool targetDisabled = false;
