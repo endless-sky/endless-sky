@@ -39,8 +39,8 @@ using namespace std;
 
 // Call this every time the ship changes.
 // Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
-void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity, bool descriptionCollapsed,
-	bool scrollingPanel)
+void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,
+	bool descriptionCollapsed, bool scrollingPanel)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
 	UpdateAttributes(ship, player, hasFleetCapacity, descriptionCollapsed, scrollingPanel);

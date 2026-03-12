@@ -36,7 +36,7 @@ public:
 		ONLY_PLAYER = 1,
 		ALL = 2
 	};
-	
+
 	// Defines how big the player's active fleet can get.
 	// If the player's fleet size is limited, the flagship does not count toward the limit.
 	enum class FleetSizeLimitation

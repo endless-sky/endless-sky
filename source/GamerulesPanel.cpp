@@ -898,7 +898,7 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDefaultAdminCap, validate,
 			message, gamerules.GetDefaultAdminCap()));
 	}
-		
+
 }
 
 
