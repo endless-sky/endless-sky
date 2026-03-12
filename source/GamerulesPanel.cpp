@@ -83,11 +83,11 @@ namespace {
 		{FLEET_MULTIPLIER, "fleet multiplier"},
 		{LOCK_GAMERULES, "lock gamerules"},
 		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
+		{UNIVERSAL_AMMO_STOCKING, AMMO_RESTOCKING_NAME},
 		{FLEET_SIZE_LIMITATION, "fleet size limitation"},
 		{MAX_ESCORT_COUNT, "default max escort count"},
 		{MAX_ESCORT_CREW, "default max escort crew"},
 		{ADMIN_CAP, "default admin cap"},
-		{UNIVERSAL_AMMO_STOCKING, AMMO_RESTOCKING_NAME},
 	};
 
 	const int GAMERULES_PAGE_COUNT = 1;

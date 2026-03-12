@@ -71,16 +71,16 @@ void ShipyardPanel::Step()
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::SHIPYARD);
 	ShopPanel::ValidateSelectedShips();
-	if(!GetUI().IsTop(this) || DoHelp("shipyard"))
+	if(!GetUI().IsTop(this) || DoHelp("shipyard") || hasDoneFleetCapacityWarning)
 		return;
 
 	int capacity = player.FleetCapacity();
-	if(!hasDoneFleetCapacityWarning && initialFleetUsage <= capacity && player.FleetCost() > capacity)
+	if(initialFleetUsage <= capacity && player.FleetCost() > capacity)
 	{
 		hasDoneFleetCapacityWarning = true;
 		bool shipCap = GameData::GetGamerules().GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::SHIP_CAP;
-		GetUI().Push(DialogPanel::Info("The escorts that you currently have active put you over your fleet capacity. "s
-			"You will not be able to depart from this planet unless you park or sell your escorts to make room" +
+		GetUI().Push(DialogPanel::Info("The escorts that you currently have active put you over your fleet capacity. "
+			"You will not be able to depart from this planet unless you park or sell your escorts to make room"s +
 			(shipCap ? "." : ", or change your flagship to a ship with a higher cost toward your limit, as "
 			"your flagship does not count toward the fleet capacity.")));
 	}
@@ -293,9 +293,11 @@ void ShipyardPanel::DrawButtons()
 		if(creditsTooltip.ShouldDraw())
 		{
 			creditsTooltip.SetZone(creditsBox);
-			creditsTooltip.SetText(Format::CreditString(player.Accounts().Credits(), false) + '\n' +
-				Format::Number(player.FleetCost()) + " out of " + Format::Number(player.FleetCapacity()) +
-				" fleet capacity utilized", true);
+			string tooltipText = Format::CreditString(player.Accounts().Credits(), false);
+			if(hasFleetCapacity)
+				tooltipText += '\n' + Format::Number(player.FleetCost()) + " out of "
+					+ Format::Number(player.FleetCapacity()) + " fleet capacity utilized";
+			creditsTooltip.SetText(tooltipText, true);
 			creditsTooltip.Draw();
 		}
 	}

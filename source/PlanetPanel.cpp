@@ -418,8 +418,8 @@ void PlanetPanel::TakeOffIfReady()
 	if(player.FleetCost() > player.FleetCapacity())
 	{
 		bool shipCap = GameData::GetGamerules().GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::SHIP_CAP;
-		GetUI().Push(DialogPanel::Info("The escorts that you currently have active put you over your fleet capacity. "s
-			"Park or sell your escorts to make room" + (shipCap ? "." : ", or change your flagship to a ship with a "
+		GetUI().Push(DialogPanel::Info("The escorts that you currently have active put you over your fleet capacity. "
+			"Park or sell your escorts to make room"s + (shipCap ? "." : ", or change your flagship to a ship with a "
 			"higher cost toward your limit, as your flagship does not count toward the fleet capacity.")));
 		return;
 	}

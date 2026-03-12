@@ -196,7 +196,7 @@ tip "cost:"
 	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
 
 tip "fleet cost:"
-	`How much this ship costs toward your fleet capacity. Your flagship and parked escorts do not count toward the capacity.`
+	`How much this ship costs toward your fleet capacity. Your flagship and parked escorts do not count toward the capacity. You may exceed your capacity while landed, but will not be able to depart if you go over your capacity.`
 
 tip "discharge protection:"
 	`Protection provided against shield discharge damage. Increases by the given factor how much discharge damage a ship can withstand before it loses as much shielding as an unprotected ship.`
@@ -1683,7 +1683,7 @@ tip "Default max escort count"
 	`If the fleet size limitation is "ship cap," then this is the default maximum number of escorts that you can have at once, excluding carried ships like fighters and drones. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
 
 tip "Default max escort crew"
-	`If the fleet size limitation is "crew cap," then this is the default maximum sum of required crew across all your escorts that you can have at once. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
+	`If the fleet size limitation is "crew cap," then this is the default maximum sum of the base required crew (i.e. excluding required crew added by outfits like turrets) across all your escorts that you can have at once, excluding carried ships like fighters and drones. Automated ships will use a crew-equivalent value. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
 
 tip `Default admin cap`
-	`If the fleet size limitation is "admin cap," then this is the default maximum administrative capacity. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
+	`If the fleet size limitation is "admin cap," then this is the default maximum administrative capacity. Ships will have individual administrative costs that count toward your capacity. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`

@@ -103,7 +103,7 @@ void Gamerules::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unrecognized value for gamerule:");
 		}
-		else if(key == "default max escort size")
+		else if(key == "default max escort count")
 			storage.defaultMaxEscortCount = max<int>(0, child.Value(1));
 		else if(key == "default max escort crew")
 			storage.defaultMaxEscortCrew = max<int>(0, child.Value(1));
@@ -164,9 +164,9 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 		if(storage.fleetSizeLimitation != preset.storage.fleetSizeLimitation)
 		{
 			if(storage.fleetSizeLimitation == FleetSizeLimitation::NONE)
-				out.Write("fleet size limitation", "unlimited");
+				out.Write("fleet size limitation", "none");
 			else if(storage.fleetSizeLimitation == FleetSizeLimitation::SHIP_CAP)
-				out.Write("fleet size limitation", "set number");
+				out.Write("fleet size limitation", "ship capacity");
 			else if(storage.fleetSizeLimitation == FleetSizeLimitation::CREW_CAP)
 				out.Write("fleet size limitation", "crew capacity");
 			else
@@ -434,7 +434,7 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.fleetMultiplier * 1000;
 	if(rule == "fleet size limitation")
 		return static_cast<int>(storage.fleetSizeLimitation);
-	if(rule == "default max escort size")
+	if(rule == "default max escort count")
 		return storage.defaultMaxEscortCount;
 	if(rule == "default max escort crew")
 		return storage.defaultMaxEscortCrew;

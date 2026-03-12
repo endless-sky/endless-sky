@@ -65,8 +65,7 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player)
 
 
 ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
-	: player(player),
-	panelState(std::move(state))
+	: player(player), panelState(std::move(state))
 {
 	shipIt = this->panelState.Ships().begin();
 	Audio::Pause();

@@ -3146,6 +3146,8 @@ int Ship::FleetCost() const
 		return !canBeCarried;
 	if(behavior == Gamerules::FleetSizeLimitation::CREW_CAP)
 	{
+		if(canBeCarried)
+			return 0;
 		int crewEquivalent = attributes.Get("crew equivalent");
 		if(attributes.Get("use crew equivalent as crew"))
 			return crewEquivalent;
