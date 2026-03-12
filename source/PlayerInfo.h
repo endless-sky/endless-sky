@@ -175,8 +175,9 @@ public:
 	// Add a captured ship to your fleet.
 	void AddShip(const std::shared_ptr<Ship> &ship);
 	// Buy, receive or sell a ship.
+	// In the case of buying, return whether the ship could be purchased.
 	// In the case of a gift, return a pointer to the newly instantiated ship.
-	void BuyShip(const Ship *model, const std::string &name);
+	bool BuyShip(const Ship *model, const std::string &name);
 	const Ship *GiftShip(const Ship *model, const std::string &name, const std::string &id);
 	void SellShip(const Ship *selected, bool storeOutfits = false);
 	// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
@@ -191,6 +192,9 @@ public:
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
 	double RaidFleetAttraction(const RaidFleet &raidFleet, const System *system) const;
+	// Get the player's fleet capacity and the current cost of their fleet.
+	int FleetCapacity() const;
+	int FleetCost() const;
 
 	// Get cargo information.
 	CargoHold &Cargo();
@@ -477,6 +481,9 @@ private:
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
+	std::optional<int> maxEscortCount;
+	std::optional<int> maxEscortCrew;
+	std::optional<int> adminCap;
 
 	std::map<Date, BookEntry> logbook;
 	std::map<std::string, std::map<std::string, BookEntry>> specialLogs;

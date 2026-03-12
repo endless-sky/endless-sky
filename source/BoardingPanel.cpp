@@ -100,6 +100,21 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!canCapture)
 		messages.emplace_back("This is not a ship that you can capture.");
+	else if(player.FleetCost() + victim->FleetCost() > player.FleetCapacity())
+	{
+		canCapture = false;
+		Gamerules::FleetSizeLimitation behavior = GameData::GetGamerules().GetFleetSizeLimitation();
+		string limit;
+		if(behavior == Gamerules::FleetSizeLimitation::SHIP_CAP)
+			limit = "size limit";
+		else if(behavior == Gamerules::FleetSizeLimitation::CREW_CAP)
+			limit = "crew limit";
+		else
+			limit = "administrative capacity";
+		messages.emplace_back("You cannot capture this ship as");
+		messages.emplace_back("doing so would put you over your");
+		messages.emplace_back("fleet " + limit + ".");
+	}
 	else
 	{
 		attackOdds.Calculate();

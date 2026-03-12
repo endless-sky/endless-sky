@@ -106,7 +106,8 @@ void ShipyardPanel::DrawItem(const string &name, const Point &point)
 double ShipyardPanel::ButtonPanelHeight() const
 {
 	// The 50 = (3 x 10 (pad) + 20 x 1 (text)) for the credit information line.
-	return 50 + BUTTON_HEIGHT * 2 + BUTTON_ROW_PAD * 1;
+	// Add 20 to make room for the fleet limit line if that gamerule is active. 
+	return 50 + BUTTON_HEIGHT * 2 + BUTTON_ROW_PAD * 1 + 20 * hasFleetLimit;
 }
 
 
@@ -120,7 +121,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 	if(selectedShip)
 	{
-		shipInfo.Update(*selectedShip, player, collapsed.contains(DESCRIPTION), true);
+		shipInfo.Update(*selectedShip, player, hasFleetLimit, collapsed.contains(DESCRIPTION), true);
 		selectedItem = selectedShip->DisplayModelName();
 
 		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
@@ -212,9 +213,20 @@ void ShipyardPanel::DrawButtons()
 		Screen::Right() - SIDEBAR_WIDTH + 10,
 		Screen::Bottom() - ButtonPanelHeight() + 10);
 	font.Draw("You have:", creditsPoint, dim);
-
 	const string credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
+	
+	// Draw the row for your fleet limit.
+	if(hasFleetLimit)
+	{
+		const Point fleetLimitPoint(
+			Screen::Right() - SIDEBAR_WIDTH + 10,
+			Screen::Bottom() - ButtonPanelHeight() + 30);
+		font.Draw("Fleet Limit:", fleetLimitPoint, dim);
+		string limit = Format::AbbreviatedNumber(player.FleetCost()) + " / "
+			+ Format::AbbreviatedNumber(player.FleetCapacity());
+		font.Draw({limit, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, fleetLimitPoint, bright);
+	}
 
 	// Clear the buttonZones, they will be populated again as buttons are drawn.
 	buttonZones.clear();
@@ -261,14 +273,17 @@ void ShipyardPanel::DrawButtons()
 		buttonsTooltip.DecrementCount();
 
 	// Draw the tooltip for your full number of credits.
-	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
+	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint,
+		Point(SIDEBAR_WIDTH - 20, 15 + 20 * hasFleetLimit));
 	if(creditsBox.Contains(hoverPoint))
 	{
 		creditsTooltip.IncrementCount();
 		if(creditsTooltip.ShouldDraw())
 		{
 			creditsTooltip.SetZone(creditsBox);
-			creditsTooltip.SetText(Format::CreditString(player.Accounts().Credits(), false), true);
+			creditsTooltip.SetText(Format::CreditString(player.Accounts().Credits(), false) + '\n' +
+				Format::Number(player.FleetCost()) + " out of " + Format::Number(player.FleetCapacity()) +
+				" fleet capacity utilized", true);
 			creditsTooltip.Draw();
 		}
 	}
@@ -343,6 +358,21 @@ ShopPanel::TransactionResult ShipyardPanel::CanDoBuyButton() const
 
 		return "You do not have enough credits to buy this ship. "
 				"Consider checking if the bank will offer you a loan.";
+	}
+	if(hasFleetLimit && !player.Ships().empty() && player.FleetCost() + selectedShip->FleetCost() > player.FleetCapacity())
+	{
+		Gamerules::FleetSizeLimitation behavior = GameData::GetGamerules().GetFleetSizeLimitation();
+		string limit;
+		bool setNumber = behavior == Gamerules::FleetSizeLimitation::SHIP_CAP;
+		if(setNumber)
+			limit = "size limit";
+		else if(behavior == Gamerules::FleetSizeLimitation::CREW_CAP)
+			limit = "crew limit";
+		else
+			limit = "administrative capacity";
+		return "Purchasing this ship would put you over your fleet " + limit + ". Park or sell ships to make room"
+			+ (setNumber ? "." : ", or change your flagship to a ship with a higher cost toward your limit, as "
+			"your flagship does not count toward the fleet limit.");
 	}
 	return true;
 }
@@ -467,7 +497,8 @@ bool ShipyardPanel::BuyShip(const string &name)
 		else if(modifier > 1)
 			shipName += " " + to_string(i);
 
-		player.BuyShip(selectedShip, shipName);
+		if(!player.BuyShip(selectedShip, shipName))
+			break;
 	}
 
 	playerShip = &*player.Ships().back();

@@ -189,6 +189,7 @@ protected:
 	std::map<std::string, std::vector<std::string>> catalog;
 	const CategoryList &categories;
 	std::set<std::string> &collapsed;
+	bool hasFleetLimit;
 
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;

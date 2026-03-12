@@ -34,10 +34,9 @@ class Ship;
 class ShipInfoDisplay : public ItemInfoDisplay {
 public:
 	ShipInfoDisplay() = default;
-	ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed = true);
 
 	// Call this every time the ship changes.
-	void Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed = true,
+	void Update(const Ship &ship, const PlayerInfo &player, bool hasFleetLimit, bool descriptionCollapsed = true,
 		bool scrollingPanel = false);
 
 	// Provided by ItemInfoDisplay:
@@ -56,7 +55,8 @@ public:
 
 
 private:
-	void UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool scrollingPanel);
+	void UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool hasFleetLimit, bool descriptionCollapsed,
+		bool scrollingPanel);
 	void UpdateOutfits(const Ship &ship, const PlayerInfo &player, const Depreciation &depreciation);
 
 

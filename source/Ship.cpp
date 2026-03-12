@@ -281,6 +281,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			customSwizzleName = child.Token(1);
 		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
+		else if(key == "administrative cost" && hasValue)
+			administrativeCost = max<int>(0, child.Value(1));
 		else if(key == "attributes" || add)
 		{
 			if(!add)
@@ -3131,6 +3133,28 @@ double Ship::Drag() const
 	double drag = attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
 	double mass = InertialMass();
 	return drag >= mass ? mass : drag;
+}
+
+
+
+int Ship::FleetCost() const
+{
+	Gamerules::FleetSizeLimitation behavior = GameData::GetGamerules().GetFleetSizeLimitation();
+	if(behavior == Gamerules::FleetSizeLimitation::NONE)
+		return 0;
+	if(behavior == Gamerules::FleetSizeLimitation::SHIP_CAP)
+		return !canBeCarried;
+	if(behavior == Gamerules::FleetSizeLimitation::CREW_CAP)
+	{
+		int crewEquivalent = attributes.Get("crew equivalent");
+		if(attributes.Get("use crew equivalent as crew"))
+			return crewEquivalent;
+		// Only the base crew counts toward the fleet limit, as otherwise installing turrets
+		// could cause a ship to go over the fleet limit.
+		int required = attributes.Get("automaton") ? 0 : baseAttributes.Get("required crew");
+		return required + crewEquivalent;
+	}
+	return administrativeCost.value_or(!canBeCarried);
 }
 
 

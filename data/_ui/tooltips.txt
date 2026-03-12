@@ -195,6 +195,9 @@ tip "corrosion resistance heat:"
 tip "cost:"
 	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
 
+tip "fleet cost:"
+	`How much this ship costs toward your fleet limit. Your flagship and parked escorts do not count toward this limit.`
+
 tip "discharge protection:"
 	`Protection provided against shield discharge damage. Increases by the given factor how much discharge damage a ship can withstand before it loses as much shielding as an unprotected ship.`
 
@@ -1672,3 +1675,15 @@ tip "Fighters hit when disabled"
 
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
+
+tip "Fleet size limitation"
+	`Determines whether the player can only have a limited number of escorts active at once. If "none," then the player can have as many escorts as they want. If "ship cap," then the player can only command up to a certain number of escorts (excluding carried ships like fighters and drones). If "crew cap," then the limit is tied to the base crew requirement of your escorts. If "admin cap," then the limit is tied to an "administrative cost" that every ship has, with larger ships having a higher cost. Your flagship and parked escorts do not contribute to your fleet limit. You will not be able to purchase or capture ships that would put you over your limit, or take off from a planet if your limit has been reached.`
+
+tip "Default max escort count"
+	`If the fleet size limitation is "ship cap," then this is the default maximum number of escorts that you can have at once, excluding carried ships like fighters and drones. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
+
+tip "Default max escort crew"
+	`If the fleet size limitation is "crew cap," then this is the default maximum sum of required crew across all your escorts that you can have at once. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
+
+tip `Default admin cap`
+	`If the fleet size limitation is "admin cap," then this is the default maximum administrative capacity. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`

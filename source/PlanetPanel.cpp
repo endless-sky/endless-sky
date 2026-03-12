@@ -415,6 +415,22 @@ void PlanetPanel::TakeOffIfReady()
 			return;
 		}
 	}
+	if(player.FleetCost() > player.FleetCapacity())
+	{
+		Gamerules::FleetSizeLimitation behavior = GameData::GetGamerules().GetFleetSizeLimitation();
+		string limit;
+		bool setNumber = behavior == Gamerules::FleetSizeLimitation::SHIP_CAP;
+		if(setNumber)
+			limit = "size limit";
+		else if(behavior == Gamerules::FleetSizeLimitation::CREW_CAP)
+			limit = "crew limit";
+		else
+			limit = "administrative capacity";
+		GetUI().Push(DialogPanel::Info("The ships that you currently have active put you over your fleet " + limit
+			+ ". Park or sell ships to make room" + (setNumber ? "." : ", or change your flagship to a ship with a "
+		    "higher cost toward your limit, as your flagship does not count toward the fleet limit.")));
+		return;
+	}
 
 	CheckWarningsAndTakeOff();
 }
