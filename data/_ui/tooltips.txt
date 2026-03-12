@@ -196,7 +196,7 @@ tip "cost:"
 	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
 
 tip "fleet cost:"
-	`How much this ship costs toward your fleet limit. Your flagship and parked escorts do not count toward this limit.`
+	`How much this ship costs toward your fleet limit. Your flagship and parked escorts do not count toward the limit.`
 
 tip "discharge protection:"
 	`Protection provided against shield discharge damage. Increases by the given factor how much discharge damage a ship can withstand before it loses as much shielding as an unprotected ship.`
