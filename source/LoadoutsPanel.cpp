@@ -1487,7 +1487,7 @@ void LoadoutsPanel::DrawScrollbars()
 
 bool LoadoutsPanel::ShouldHighlight(const Ship *ship, const Point mouse, const bool shipIsSelected) const
 {
-	if(loadoutHovered && hoveredIndex != -1 && cmp_less(hoveredIndex, visibleLoadouts.size()) && visibleLoadouts[hoveredIndex])
+	if(loadoutHovered && hoveredIndex != -1 && cmp_less(hoveredIndex, visibleLoadouts.size()))
 		return visibleLoadouts[hoveredIndex]->ShipModel() == ship->TrueModelName();
 	if(shipIsSelected && selectedLoadout && applyBox.Contains(mouse))
 		return enforceShipTypes ? selectedLoadout->ShipModel() == ship->TrueModelName() : true;
