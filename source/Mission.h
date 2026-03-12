@@ -203,8 +203,8 @@ public:
 
 	// Get a specific mission action from this mission.
 	// If the mission action is not found for the given trigger, returns an empty
-	// mission action.
-	const MissionAction &GetAction(Trigger trigger) const;
+	// vector.
+	const std::vector<MissionAction> &GetAction(Trigger trigger) const;
 
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
@@ -307,13 +307,13 @@ private:
 	std::list<MissionTimer> timers;
 
 	// Actions to perform:
-	std::map<Trigger, MissionAction> actions;
+	std::map<Trigger, std::vector<MissionAction>> actions;
 	// "on enter" and "on land" actions may name a specific system or planet,
 	// or rely on matching a LocationFilter in order to designate the matched
 	// system or planet.
-	std::map<const System *, MissionAction> onEnter;
+	std::map<const System *, std::vector<MissionAction>> onEnter;
 	std::list<MissionAction> genericOnEnter;
-	std::map<const Planet *, MissionAction> onLand;
+	std::map<const Planet *, std::vector<MissionAction>> onLand;
 	std::list<MissionAction> genericOnLand;
 	// Track which `on enter` and `on land` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;

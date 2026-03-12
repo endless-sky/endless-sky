@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "NPC.h"
 
+#include "ActionResult.h"
 #include "ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -188,7 +189,11 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				npcActions[it->second].Load(child, playerConditions, visitedSystems, visitedPlanets);
+			{
+				auto action = NPCAction();
+				action.Load(child, playerConditions, visitedSystems, visitedPlanets);
+				npcActions[it->second].emplace_back(action);
+			}
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -308,7 +313,12 @@ void NPC::Save(DataWriter &out) const
 		}
 
 		for(auto &it : npcActions)
-			it.second.Save(out);
+		{
+			for(auto &action : it.second)
+			{
+				action.Save(out);
+			}
+		}
 
 		if(government)
 			out.Write("government", government->TrueName());
@@ -634,14 +644,17 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	result.toDespawn = toDespawn;
 
 	// Validate the actions.
-	for(const auto &[trigger, action] : npcActions)
+	for(const auto &[trigger, actions] : npcActions)
 	{
-		string reason = action.Validate();
-		if(!reason.empty())
+		for(const auto &action : actions)
 		{
-			Logger::Log("Instantiation Error: Action \"" + TriggerToText(trigger) +
-				"\" in NPC uses invalid " + std::move(reason), Logger::Level::WARNING);
-			return result;
+			string reason = action.Validate();
+			if(!reason.empty())
+			{
+				Logger::Log("Instantiation Error: Action \"" + TriggerToText(trigger) +
+					"\" in NPC uses invalid " + std::move(reason), Logger::Level::WARNING);
+				return result;
+			}
 		}
 	}
 
@@ -713,8 +726,8 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 
 	// Instantiate the actions.
 	for(const auto &it : npcActions)
-		result.npcActions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
-
+		for(const auto &action : it.second)
+			result.npcActions[it.first].push_back(action.Instantiate(subs, origin, jumps, payload));
 	return result;
 }
 
@@ -790,7 +803,13 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 					return sit != shipEvents.end() && (sit->second & requiredEvents) && !(sit->second & excludedEvents);
 				}))
 		{
-			it->second.Do(player, ui, caller, event.Target());
+			for(auto &action : it->second)
+			{
+				const auto result = action.Do(player, ui, caller, event.Target());
+				if(result & ActionResult::BLOCKING)
+					for(auto &other : it->second)
+						other.TryBlock();
+			}
 		}
 	}
 }
