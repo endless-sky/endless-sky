@@ -4829,7 +4829,7 @@ void PlayerInfo::Save(DataWriter &out) const
 				out.Write((it.first)->TrueName(), it.second);
 	}
 	out.EndChild();
-	
+
 	if(maxEscortCount.has_value())
 		out.Write("max escort count", *maxEscortCount);
 	if(maxEscortCrew.has_value())
