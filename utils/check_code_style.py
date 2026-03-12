@@ -434,7 +434,6 @@ def check_copyright(lines, file):
 		["Copyright \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? by .*", True]
 	]
 	copyright_end = [
-		["", False],
 		["Endless Sky is free software: you can redistribute it and/or modify it under the", False],
 		["terms of the GNU General Public License as published by the Free Software", False],
 		["Foundation, either version 3 of the License, or (at your option) any later version.", False],
@@ -451,41 +450,56 @@ def check_copyright(lines, file):
 	index = 0
 	error_line = -1
 	complete = False
+	failed_check = '{{Undefined}}'
 	for [copyright, is_regex] in copyright_begin:
 		if is_regex:
 			if not re.search(copyright, lines[index]):
 				error_line = index
+				failed_check = copyright
 				break
 		else:
 			if copyright != lines[index]:
 				error_line = index
+				failed_check = copyright
 				break
 		index += 1
+	index += 1 # we know we want a blank line, will check for it later
 	not_found_error_line = index
+	found_copyright_end = False
 	if error_line == -1:
 		index_begin = index
 		while index_begin < len(lines) - len(copyright_end):
 			index = index_begin
 			for [copyright, is_regex] in copyright_end:
-				if is_regex:
-					if not re.search(copyright, lines[index]):
-						error_line = index
-						break
-				else:
-					if copyright != lines[index]:
-						error_line = index
-						break
+				if is_regex and not re.search(copyright, lines[index]):
+					error_line = index
+					failed_check = copyright
+					break
+				elif copyright != lines[index]:
+					error_line = index
+					failed_check = copyright
+					break
 				index += 1
+			if index - index_begin > 0:
+				found_copyright_end = True
+				if not lines[index_begin - 1] == "":
+					error_line = index_begin - 1
+					failed_check = "Expected one blank line before main copyright paragraph"
 			if error_line == -1:
 				complete = True
 				break
-			index_begin += 1
-			error_line = -1
+			if not found_copyright_end:
+				# we keep trying, shifting downward looking for the last half
+				index_begin += 1
+				error_line = -1
+			else:
+				break
 	if error_line != -1:
-		errors.append(Error(lines[error_line], error_line + 1, "invalid or missing copyright header"))
+		errors.append(Error(lines[error_line], error_line + 1,
+							f"invalid or missing copyright header [expected: '{failed_check}'"))
 	elif not complete:
 		errors.append(Error(lines[not_found_error_line], not_found_error_line + 1,
-							"invalid or incomplete copyright header"))
+							f"invalid or incomplete copyright header [expected: '{failed_check}']"))
 	return errors, warnings
 
 
