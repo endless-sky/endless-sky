@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <utility>
 
 class System;
 
@@ -54,7 +55,7 @@ namespace {
 
 
 ShipyardPanel::ShipyardPanel(PlayerInfo &player, Sale<Ship> stock)
-	: ShopPanel(player, false), modifier(0), shipyard(stock)
+	: ShopPanel(player, false), modifier(0), shipyard(std::move(stock)), initialFleetUsage(player.FleetCost())
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].push_back(it.first);
@@ -70,8 +71,19 @@ void ShipyardPanel::Step()
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::SHIPYARD);
 	ShopPanel::ValidateSelectedShips();
-	if(GetUI().IsTop(this))
-		DoHelp("shipyard");
+	if(!GetUI().IsTop(this) || DoHelp("shipyard"))
+		return;
+
+	int capacity = player.FleetCapacity();
+	if(!hasDoneFleetLimitWarning && initialFleetUsage <= capacity && player.FleetCost() > capacity)
+	{
+		hasDoneFleetLimitWarning = true;
+		bool shipCap = GameData::GetGamerules().GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::SHIP_CAP;
+		GetUI().Push(DialogPanel::Info("The escorts that you currently have active put you over your fleet limit. "s
+			"You will not be able to depart from this planet unless you park or sell your escorts to make room" +
+			(shipCap ? "." : ", or change your flagship to a ship with a higher cost toward your limit, as "
+			"your flagship does not count toward the fleet limit.")));
+	}
 }
 
 
@@ -358,21 +370,6 @@ ShopPanel::TransactionResult ShipyardPanel::CanDoBuyButton() const
 
 		return "You do not have enough credits to buy this ship. "
 				"Consider checking if the bank will offer you a loan.";
-	}
-	if(hasFleetLimit && !player.Ships().empty() && player.FleetCost() + selectedShip->FleetCost() > player.FleetCapacity())
-	{
-		Gamerules::FleetSizeLimitation behavior = GameData::GetGamerules().GetFleetSizeLimitation();
-		string limit;
-		bool setNumber = behavior == Gamerules::FleetSizeLimitation::SHIP_CAP;
-		if(setNumber)
-			limit = "size limit";
-		else if(behavior == Gamerules::FleetSizeLimitation::CREW_CAP)
-			limit = "crew limit";
-		else
-			limit = "administrative capacity";
-		return "Purchasing this ship would put you over your fleet " + limit + ". Park or sell ships to make room"
-			+ (setNumber ? "." : ", or change your flagship to a ship with a higher cost toward your limit, as "
-			"your flagship does not count toward the fleet limit.");
 	}
 	return true;
 }

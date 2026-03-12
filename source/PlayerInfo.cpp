@@ -1261,15 +1261,13 @@ bool PlayerInfo::BuyShip(const Ship *model, const string &name)
 
 	int day = date.DaysSinceEpoch();
 	int64_t cost = stockDepreciation.Value(*model, day);
-	if(accounts.Credits() < cost || FleetCost() + model->FleetCost() > FleetCapacity())
+	if(accounts.Credits() < cost)
 		return false;
 
 	AddStockShip(model, name);
-	// If you didn't already have a flagship, check if the newly purchased ship can be the flagship.
-	if(!flagship)
-		FlagshipPtr();
 
 	accounts.AddCredits(-cost);
+	flagship.reset();
 
 	depreciation.Buy(*model, day, &stockDepreciation);
 	for(const auto &[outfit, count] : model->Outfits())
