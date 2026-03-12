@@ -201,6 +201,7 @@ void LoadoutsPanel::Step()
 	dataScroll.Step();
 	removeScroll.Step();
 	shipScroll.Step();
+	DoHelp("loadouts");
 }
 
 
@@ -506,6 +507,7 @@ bool LoadoutsPanel::KeyDown(const SDL_Keycode key, Uint16 mod, const Command &co
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		GetUI().Pop(this);
+		UI::PlaySound(UI::UISound::NORMAL);
 		return true;
 	}
 	// Open folder.
