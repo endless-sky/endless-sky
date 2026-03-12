@@ -2836,25 +2836,25 @@ interface "map: sales key"
 
 interface "outfitter loadouts panel"
 	sprite "ui/loadout panel"
-		center 1 20
+		center 1 12
 
 	visible if "row1"
 	sprite "ui/loadout row 1"
-		center 1 -343
+		center 5 -343
 	box "ships1"
 		from -500 -355 to 500 -290
 	visible
 
 	visible if "row2"
 	sprite "ui/loadout row 2"
-		center 1 -374
+		center 5 -374
 	box "ships2"
 		from -500 -417 to 500 -290
 	visible
 
 	visible if "row3"
 	sprite "ui/loadout row 3"
-		center 1 -406
+		center 5 -411
 	box "ships3"
 		from -500 -480 to 500 -290
 	visible
@@ -2909,7 +2909,7 @@ interface "outfitter loadouts panel"
 
 interface "outfitter loadouts overlay"
 	sprite "ui/loadout overlay"
-		center 1 -4
+		center 1 -12
 	label "Loadouts"
 		from -480 -265
 		align left
