@@ -61,6 +61,7 @@ namespace {
 	const string LOCK_GAMERULES = "Lock gamerules";
 	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
 	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
+	const string BASE_COMBAT_WIDTH = "Base combat width";
 
 	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
 
@@ -80,6 +81,7 @@ namespace {
 		{LOCK_GAMERULES, "lock gamerules"},
 		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
 		{UNIVERSAL_AMMO_STOCKING, AMMO_RESTOCKING_NAME},
+		{BASE_COMBAT_WIDTH, "base combat width"},
 	};
 
 	const int GAMERULES_PAGE_COUNT = 1;
@@ -392,7 +394,8 @@ void GamerulesPanel::DrawGamerules()
 		"Miscellaneous",
 		LOCK_GAMERULES,
 		FIGHTERS_HIT_WHEN_DISABLED,
-		UNIVERSAL_AMMO_STOCKING
+		UNIVERSAL_AMMO_STOCKING,
+		BASE_COMBAT_WIDTH
 	};
 
 	bool isCategory = true;
@@ -490,6 +493,13 @@ void GamerulesPanel::DrawGamerules()
 		}
 		else if(gamerule == UNIVERSAL_AMMO_STOCKING)
 			text = gamerules.GetValue(AMMO_RESTOCKING_NAME) ? "true" : "false";
+		else if(gamerule == BASE_COMBAT_WIDTH)
+		{
+			if(gamerules.BaseCombatWidth().has_value())
+				text = Format::Percentage(*gamerules.BaseCombatWidth(), 2);
+			else
+				text = "(unset)";
+		}
 
 		if(gamerule == hoverItem)
 		{
@@ -817,6 +827,12 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 	}
 	else if(str == UNIVERSAL_AMMO_STOCKING)
 		gamerules.SetMiscValue(AMMO_RESTOCKING_NAME, !gamerules.GetValue(AMMO_RESTOCKING_NAME));
+	else if(str == BASE_COMBAT_WIDTH)
+	{
+		string message = "Set the base combat width. (Decimal value greater than or equal to 0.)";
+		GetUI().Push(OptionalInputDialogPanel::RequestDouble(&gamerules, &Gamerules::SetBaseCombatWidth, message,
+			gamerules.BaseCombatWidth()));
+	}
 }
 
 

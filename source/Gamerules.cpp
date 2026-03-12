@@ -89,6 +89,13 @@ void Gamerules::Load(const DataNode &node)
 		}
 		else if(key == "fleet multiplier")
 			storage.fleetMultiplier = max<double>(0., child.Value(1));
+		else if(key == "base combat width")
+		{
+			if(child.Token(1) == "unset")
+				storage.baseCombatWidth.reset();
+			else
+				storage.baseCombatWidth = max<double>(0., child.Value(1));
+		}
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
@@ -141,6 +148,13 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 		}
 		if(storage.fleetMultiplier != preset.storage.fleetMultiplier)
 			out.Write("fleet multiplier", storage.fleetMultiplier);
+		if(storage.baseCombatWidth != preset.storage.baseCombatWidth)
+		{
+			if(storage.baseCombatWidth.has_value())
+				out.Write("base combat width", *storage.baseCombatWidth);
+			else
+				out.Write("base combat width", "unset");
+		}
 
 		const map<string, int> &otherMiscRules = preset.storage.miscRules;
 		for(const auto &[rule, value] : storage.miscRules)
@@ -193,6 +207,8 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.systemArrivalMin = preset.storage.systemArrivalMin;
 	else if(rule == "fleet multiplier")
 		storage.fleetMultiplier = preset.storage.fleetMultiplier;
+	else if(rule == "base combat width")
+		storage.baseCombatWidth = preset.storage.baseCombatWidth;
 	else
 	{
 		auto it = preset.storage.miscRules.find(rule);
@@ -322,6 +338,13 @@ void Gamerules::SetFleetMultiplier(double value)
 
 
 
+void Gamerules::SetBaseCombatWidth(std::optional<double> value)
+{
+	storage.baseCombatWidth = value.has_value() ? max<std::optional<double>>(0., value) : value;
+}
+
+
+
 void Gamerules::SetMiscValue(const string &rule, int value)
 {
 	storage.miscRules[rule] = value;
@@ -359,6 +382,8 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.systemArrivalMin.value_or(0.) * 1000;
 	if(rule == "fleet multiplier")
 		return storage.fleetMultiplier * 1000;
+	if(rule == "base combat width")
+		return storage.baseCombatWidth.value_or(0.) * 1000;
 
 	auto it = storage.miscRules.find(rule);
 	if(it == storage.miscRules.end())
@@ -462,6 +487,13 @@ optional<double> Gamerules::SystemArrivalMin() const
 double Gamerules::FleetMultiplier() const
 {
 	return storage.fleetMultiplier;
+}
+
+
+
+optional<double> Gamerules::BaseCombatWidth() const
+{
+	return storage.baseCombatWidth;
 }
 
 
