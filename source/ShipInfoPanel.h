@@ -81,7 +81,6 @@ private:
 
 private:
 	PlayerInfo &player;
-	bool hasFleetCapacity;
 	// This is the currently selected ship.
 	std::vector<std::shared_ptr<Ship>>::const_iterator shipIt;
 
