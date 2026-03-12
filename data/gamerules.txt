@@ -33,7 +33,7 @@
 	"lock gamerules" true
 	"disabled fighters avoid projectiles" "all"
 	"universal ammo restocking" true
-
+	
 	"fleet size limitation" "crew capacity"
 	"default max escort count" 6
 	"default max escort crew" 1000

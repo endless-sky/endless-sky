@@ -105,7 +105,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 		canCapture = false;
 		messages.emplace_back("You cannot capture this ship as");
 		messages.emplace_back("doing so would put you over your");
-		messages.emplace_back("fleet limit.");
+		messages.emplace_back("fleet capacity.");
 	}
 	else
 	{

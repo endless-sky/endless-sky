@@ -42,7 +42,7 @@ using namespace std;
 
 MapShipyardPanel::MapShipyardPanel(PlayerInfo &player)
 	: MapSalesPanel(player, false),
-	hasFleetLimit(GameData::GetGamerules().GetFleetSizeLimitation() != Gamerules::FleetSizeLimitation::NONE)
+	hasFleetCapacity(GameData::GetGamerules().GetFleetSizeLimitation() != Gamerules::FleetSizeLimitation::NONE)
 {
 	Init();
 }
@@ -51,7 +51,7 @@ MapShipyardPanel::MapShipyardPanel(PlayerInfo &player)
 
 MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
 	: MapSalesPanel(panel, false),
-	hasFleetLimit(GameData::GetGamerules().GetFleetSizeLimitation() != Gamerules::FleetSizeLimitation::NONE)
+	hasFleetCapacity(GameData::GetGamerules().GetFleetSizeLimitation() != Gamerules::FleetSizeLimitation::NONE)
 {
 	Init();
 	onlyShowSoldHere = onlyHere;
@@ -118,7 +118,7 @@ void MapShipyardPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected, player, hasFleetLimit);
+		selectedInfo.Update(*selected, player, hasFleetCapacity);
 	}
 	UpdateCache();
 }
@@ -132,7 +132,7 @@ void MapShipyardPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare, player, hasFleetLimit);
+		compareInfo.Update(*compare, player, hasFleetCapacity);
 	}
 }
 

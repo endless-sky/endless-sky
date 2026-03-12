@@ -66,7 +66,7 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player)
 
 ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
 	: player(player),
-	hasFleetLimit(GameData::GetGamerules().GetFleetSizeLimitation() != Gamerules::FleetSizeLimitation::NONE),
+	hasFleetCapacity(GameData::GetGamerules().GetFleetSizeLimitation() != Gamerules::FleetSizeLimitation::NONE),
 	panelState(std::move(state))
 {
 	shipIt = this->panelState.Ships().begin();
@@ -345,7 +345,7 @@ void ShipInfoPanel::UpdateInfo()
 		return;
 
 	const Ship &ship = **shipIt;
-	info.Update(ship, player, hasFleetLimit);
+	info.Update(ship, player, hasFleetCapacity);
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
 	{
 		player.Flagship()->SetTargetShip(*shipIt);
@@ -801,7 +801,7 @@ void ShipInfoPanel::Dump()
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
 
-	info.Update(**shipIt, player, hasFleetLimit);
+	info.Update(**shipIt, player, hasFleetCapacity);
 	if(loss)
 		Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
 			GameData::MessageCategories().Get("normal")});
@@ -817,7 +817,7 @@ void ShipInfoPanel::DumpPlunder(int count)
 	{
 		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
-		info.Update(**shipIt, player, hasFleetLimit);
+		info.Update(**shipIt, player, hasFleetCapacity);
 
 		if(loss)
 			Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
@@ -837,7 +837,7 @@ void ShipInfoPanel::DumpCommodities(int count)
 		loss += basis;
 		player.AdjustBasis(selectedCommodity, -basis);
 		(*shipIt)->Jettison(selectedCommodity, count);
-		info.Update(**shipIt, player, hasFleetLimit);
+		info.Update(**shipIt, player, hasFleetCapacity);
 
 		if(loss)
 			Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",

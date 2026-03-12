@@ -39,11 +39,11 @@ using namespace std;
 
 // Call this every time the ship changes.
 // Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
-void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool hasFleetLimit, bool descriptionCollapsed,
+void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity, bool descriptionCollapsed,
 	bool scrollingPanel)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
-	UpdateAttributes(ship, player, hasFleetLimit, descriptionCollapsed, scrollingPanel);
+	UpdateAttributes(ship, player, hasFleetCapacity, descriptionCollapsed, scrollingPanel);
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	UpdateOutfits(ship, player, depreciation);
 
@@ -127,7 +127,7 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool hasFleetLimit,
+void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,
 	bool descriptionCollapsed, bool scrollingPanel)
 {
 	bool isGeneric = ship.GivenName().empty() || ship.GetPlanet();
@@ -183,8 +183,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	}
 	attributeValues.push_back(Format::AbbreviatedNumber(depreciated));
 	attributesHeight += 20;
-	
-	if(hasFleetLimit)
+
+	if(hasFleetCapacity)
 	{
 		attributeLabels.push_back("fleet cost:");
 		attributeValues.push_back(Format::Number(ship.FleetCost()));

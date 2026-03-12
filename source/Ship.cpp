@@ -3149,8 +3149,8 @@ int Ship::FleetCost() const
 		int crewEquivalent = attributes.Get("crew equivalent");
 		if(attributes.Get("use crew equivalent as crew"))
 			return crewEquivalent;
-		// Only the base crew counts toward the fleet limit, as otherwise installing turrets
-		// could cause a ship to go over the fleet limit.
+		// Only the base crew counts toward the fleet capacity, as otherwise installing turrets
+		// could cause a ship to go over the fleet capacity.
 		int required = attributes.Get("automaton") ? 0 : baseAttributes.Get("required crew");
 		return required + crewEquivalent;
 	}

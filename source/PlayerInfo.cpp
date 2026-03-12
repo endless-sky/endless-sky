@@ -573,7 +573,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 	// will count as non-depreciated.
 	if(!depreciation.IsLoaded())
 		depreciation.Init(ships, date.DaysSinceEpoch());
-	// If no fleet limit attributes were loaded, then use the default from the active gamerules.
+	// If no fleet capacity attributes were loaded, then use the default from the active gamerules.
 	if(!maxEscortCrew.has_value())
 		maxEscortCount = this->gamerules.GetDefaultMaxEscortCount();
 	if(!maxEscortCrew.has_value())

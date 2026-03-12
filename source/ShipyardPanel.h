@@ -65,8 +65,8 @@ private:
 
 	Sale<Ship> shipyard;
 
-	// Warn the player if their recent purchases put them over their fleet limit.
+	// Warn the player if their recent purchases put them over their fleet capacity.
 	// Only do this once per opening of the shipyard.
 	int initialFleetUsage;
-	bool hasDoneFleetLimitWarning = false;
+	bool hasDoneFleetCapacityWarning = false;
 };
