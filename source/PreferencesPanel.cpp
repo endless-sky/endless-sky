@@ -92,6 +92,7 @@ namespace {
 	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
+	const string AMMO_REFILL = "Auto refill ammo in outfitter";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
 	const string WINDOW_ROUNDING = "Window rounding";
@@ -787,6 +788,7 @@ void PreferencesPanel::DrawSettings()
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
+		AMMO_REFILL,
 		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
@@ -1059,6 +1061,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetMinimapDisplay() != Preferences::MinimapDisplay::OFF;
 			text = Preferences::MinimapSetting();
+		}
+		else if(setting == AMMO_REFILL)
+		{
+			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::NEVER;
+			text = Preferences::AmmoRefillSetting();
 		}
 #ifdef _WIN32
 		else if(setting == TITLE_BAR_THEME)
@@ -1421,6 +1428,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleMinimapDisplay();
 	else if(str == BLOCK_SCREEN_SAVER)
 		Preferences::ToggleBlockScreenSaver();
+	else if(str == AMMO_REFILL)
+		Preferences::ToggleAmmoRefill();
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
 		Preferences::ToggleTitleBarTheme();
