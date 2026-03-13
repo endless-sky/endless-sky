@@ -362,11 +362,11 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				"If you load this save file while the current pilot is not landed, you will not be"
 				"able to return to it. Are you sure you want to do that?"));
 		}
-		else if(samePilot && isLoaded && !isLanded && mode == Gamerules::PermadeathMode::FORGIVING)
+		else if(samePilot && isLoaded && !isLanded && mode != Gamerules::PermadeathMode::OFF)
 		{
 			sound = UI::UISound::NONE;
-			GetUI().Push(DialogPanel::Info("The pilot you currently have loaded is playing with forgiving permadeath "
-				"mode. You cannot load previous save files for this pilot unless you are landed."));
+			GetUI().Push(DialogPanel::Info("The pilot you currently have loaded is playing with permadeath mode. "
+				"You cannot load previous save files for this pilot unless you are landed."));
 		}
 		else if(fileName == selectedPilot + ".txt")
 			LoadCallback();
