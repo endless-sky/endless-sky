@@ -1431,7 +1431,9 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 				continue;
 
 			// Prefer fast ships over slow ones.
-			canHelp.emplace_back(max<int>(1, min<int>(1000, 1. + .3 * helper->MaxVelocity())), helper.get());
+			// Cap the velocity we care about to 1000 units per frame to guard against plugin ships with
+			// ludicrous speeds.
+			canHelp.emplace_back(clamp<int>(1. + .3 * helper->MaxVelocity(), 1, 1000), helper.get());
 		}
 
 		if(!hasEnemy && !canHelp.empty())
