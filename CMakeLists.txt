@@ -11,8 +11,8 @@ cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON "APPLE OR ES_STEAM" OFF)
 cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executable. Not suitable for development purposes." OFF APPLE OFF)
 
-# Support Debug and Release configurations.
-set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
+# Support Debug, Release, and Profile configurations.
+set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" "Profile" CACHE STRING "" FORCE)
 
 # Use C++20 without any compiler specific extensions.
 set(CMAKE_CXX_STANDARD 20 CACHE STRING "")
@@ -161,8 +161,14 @@ if(NOT WIN32)
 		list(APPEND SANITIZER_OPTS "-fno-omit-frame-pointer" "-fsanitize=leak,vptr")
 	endif()
 endif()
-target_compile_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
-target_link_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
+# Enable some debug symbols, but no sanitizers on profiling builds, as those typically clash
+# with profiling libraries
+set(PROFILER_OPTS "-g")
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+	list(APPEND PROFILER_OPTS "-fno-omit-frame-pointer")
+endif()
+target_compile_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>$<$<CONFIG:Profiler>:${PROFILER_OPTS}>)
+target_link_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>$<$<CONFIG:Profiler>:${PROFILER_OPTS}>)
 
 # The 'mingw32' lib needs to be linked first.
 if(MINGW)
@@ -171,7 +177,7 @@ endif()
 
 # Link with the general libraries.
 target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG avif
-	OpenAL::OpenAL ${MINIZIP_LIBRARIES} FLAC::FLAC++ "$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
+	OpenAL::OpenAL ${MINIZIP_LIBRARIES} FLAC::FLAC++ "$<IF:$<OR:$<CONFIG:Debug>,$<CONFIG:Profile>>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
