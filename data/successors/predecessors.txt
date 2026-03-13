@@ -353,6 +353,7 @@ effect "iasa fire"
 
 
 outfit `"Kis," Lethal Wish`
+	plural `"Kis," Lethal Wishes`
 	category "Guns"
 	series "Guns"
 	index 11060
