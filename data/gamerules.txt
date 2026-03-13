@@ -34,4 +34,4 @@
 	"disabled fighters avoid projectiles" "all"
 	"universal ammo restocking" true
 	
-	"permadeath" "off"
+	"permadeath mode" "off"
