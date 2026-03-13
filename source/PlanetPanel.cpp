@@ -570,7 +570,7 @@ void PlanetPanel::WarningsDialogCallback(const bool isOk)
 void PlanetPanel::TakeOff(const bool distributeCargo)
 {
 	flightChecks.clear();
-	if(GameData::GetGamerules().IronmanMode())
+	if(GameData::GetGamerules().GetPermadeathMode() == Gamerules::PermadeathMode::UNFORGIVING)
 		player.DeleteAllSaves();
 	else
 		player.Save();

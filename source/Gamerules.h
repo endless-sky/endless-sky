@@ -34,7 +34,14 @@ public:
 	{
 		NONE = 0,
 		ONLY_PLAYER = 1,
-		ALL = 2
+		ALL = 2,
+	};
+
+	enum class PermadeathMode
+	{
+		OFF = 0,
+		FORGIVING = 1,
+		UNFORGIVING = 2,
 	};
 
 
@@ -71,7 +78,7 @@ public:
 	void SetSystemDepartureMin(double value);
 	void SetSystemArrivalMin(std::optional<double> value);
 	void SetFleetMultiplier(double value);
-	void SetIronmanMode(bool value);
+	void SetPermadeathMode(PermadeathMode value);
 	void SetMiscValue(const std::string &rule, int value);
 
 	int GetValue(const std::string &rule) const;
@@ -90,7 +97,7 @@ public:
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
 	double FleetMultiplier() const;
-	bool IronmanMode() const;
+	PermadeathMode GetPermadeathMode() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -117,7 +124,7 @@ private:
 		double systemDepartureMin = 0.;
 		std::optional<double> systemArrivalMin;
 		double fleetMultiplier = 1.;
-		bool ironmanMode = false;
+		PermadeathMode permadeathMode = PermadeathMode::OFF;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;

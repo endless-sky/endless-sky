@@ -1673,5 +1673,5 @@ tip "Fighters hit when disabled"
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
 
-tip "Ironman mode"
-	`Activate ironman mode/perma death. While active, you cannot create snapshots, missions cannot create autosaves, and all saves files for your pilot will be deleted the moment you depart from a planet or die while on a planet.`
+tip "Permadeath mode"
+	`Activate permadeath mode. Upon death, the save files for this pilot will be deleted. If set to "forgiving," you will be able to have multiple save files, but you will be unable to load a previous save file unless you are landed on a planet. If set to "unforgiving," your save files will also be deleted the moment you leave the safety of a planet, and you will only be able to have one save file at once for this pilot.`

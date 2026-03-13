@@ -164,7 +164,7 @@ void MenuPanel::Draw()
 	}
 	else if(player.IsLoaded())
 	{
-		if(GameData::GetGamerules().IronmanMode())
+		if(GameData::GetGamerules().GetPermadeathMode() != Gamerules::PermadeathMode::OFF)
 			info.SetCondition("no pilot loaded");
 		else
 			info.SetCondition("pilot dead");
@@ -195,7 +195,8 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI().PopThrough(this);
 		return true;
 	}
-	else if(key == 'r' && player.IsLoaded() && player.IsDead() && !GameData::GetGamerules().IronmanMode())
+	else if(key == 'r' && player.IsLoaded() && player.IsDead()
+		&& GameData::GetGamerules().GetPermadeathMode() != Gamerules::PermadeathMode::OFF)
 	{
 		// First, make sure the previous MainPanel has been deleted.
 		gamePanels.Reset();
