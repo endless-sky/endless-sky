@@ -89,18 +89,14 @@ void Gamerules::Load(const DataNode &node)
 		}
 		else if(key == "fleet multiplier")
 			storage.fleetMultiplier = max<double>(0., child.Value(1));
-		else if(key == "permadeath mode")
-		{
-			const string &value = child.Token(1);
-			if(value == "off")
-				storage.permadeathMode = PermadeathMode::OFF;
-			else if(value == "forgiving")
-				storage.permadeathMode = PermadeathMode::FORGIVING;
-			else if(value == "unforgiving")
-				storage.permadeathMode = PermadeathMode::UNFORGIVING;
-			else
-				child.PrintTrace("Skipping unrecognized value for gamerule:");
-		}
+		else if(key == "permadeath")
+			storage.permadeath = child.BoolValue(1);
+		else if(key == "single save file")
+			storage.singleSaveFile = child.BoolValue(1);
+		else if(key == "restricted save loading")
+			storage.restrictedSaveLoading = child.BoolValue(1);
+		else if(key == "delete save on takeoff")
+			storage.deleteSaveOnTakeoff = child.BoolValue(1);
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
@@ -153,15 +149,14 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 		}
 		if(storage.fleetMultiplier != preset.storage.fleetMultiplier)
 			out.Write("fleet multiplier", storage.fleetMultiplier);
-		if(storage.permadeathMode != preset.storage.permadeathMode)
-		{
-			if(storage.permadeathMode == PermadeathMode::OFF)
-				out.Write("permadeath mode", "off");
-			else if(storage.permadeathMode == PermadeathMode::FORGIVING)
-				out.Write("permadeath mode", "forgiving");
-			else
-				out.Write("permadeath mode", "unforgiving");
-		}
+		if(storage.permadeath != preset.storage.permadeath)
+			out.Write("permadeath", storage.permadeath ? 1 : 0);
+		if(storage.singleSaveFile != preset.storage.singleSaveFile)
+			out.Write("single save file", storage.singleSaveFile ? 1 : 0);
+		if(storage.restrictedSaveLoading != preset.storage.restrictedSaveLoading)
+			out.Write("restricted save loading", storage.restrictedSaveLoading ? 1 : 0);
+		if(storage.deleteSaveOnTakeoff != preset.storage.deleteSaveOnTakeoff)
+			out.Write("delete save on takeoff", storage.deleteSaveOnTakeoff ? 1 : 0);
 
 		const map<string, int> &otherMiscRules = preset.storage.miscRules;
 		for(const auto &[rule, value] : storage.miscRules)
@@ -214,8 +209,14 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.systemArrivalMin = preset.storage.systemArrivalMin;
 	else if(rule == "fleet multiplier")
 		storage.fleetMultiplier = preset.storage.fleetMultiplier;
-	else if(rule == "permadeath mode")
-		storage.permadeathMode = preset.storage.permadeathMode;
+	else if(rule == "permadeath")
+		storage.permadeath = preset.storage.permadeath;
+	else if(rule == "single save file")
+		storage.singleSaveFile = preset.storage.singleSaveFile;
+	else if(rule == "restricted save loading")
+		storage.restrictedSaveLoading = preset.storage.restrictedSaveLoading;
+	else if(rule == "delete save on takeoff")
+		storage.deleteSaveOnTakeoff = preset.storage.deleteSaveOnTakeoff;
 	else
 	{
 		auto it = preset.storage.miscRules.find(rule);
@@ -345,9 +346,30 @@ void Gamerules::SetFleetMultiplier(double value)
 
 
 
-void Gamerules::SetPermadeathMode(PermadeathMode value)
+void Gamerules::SetPermadeath(bool value)
 {
-	storage.permadeathMode = value;
+	storage.permadeath = value;
+}
+
+
+
+void Gamerules::SetSingleSaveFile(bool value)
+{
+	storage.singleSaveFile = value;
+}
+
+
+
+void Gamerules::SetRestrictedSaveLoading(bool value)
+{
+	storage.restrictedSaveLoading = value;
+}
+
+
+
+void Gamerules::SetDeleteSaveOnTakeoff(bool value)
+{
+	storage.deleteSaveOnTakeoff = value;
 }
 
 
@@ -389,8 +411,14 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.systemArrivalMin.value_or(0.) * 1000;
 	if(rule == "fleet multiplier")
 		return storage.fleetMultiplier * 1000;
-	if(rule == "permadeath mode")
-		return static_cast<int>(storage.permadeathMode);
+	if(rule == "permadeath")
+		return storage.permadeath;
+	if(rule == "single save file")
+		return storage.singleSaveFile;
+	if(rule == "restricted save loading")
+		return storage.restrictedSaveLoading;
+	if(rule == "delete save on takeoff")
+		return storage.deleteSaveOnTakeoff;
 
 	auto it = storage.miscRules.find(rule);
 	if(it == storage.miscRules.end())
@@ -498,9 +526,30 @@ double Gamerules::FleetMultiplier() const
 
 
 
-Gamerules::PermadeathMode Gamerules::GetPermadeathMode() const
+bool Gamerules::Permadeath() const
 {
-	return storage.permadeathMode;
+	return storage.permadeath;
+}
+
+
+
+bool Gamerules::SingleSaveFile() const
+{
+	return storage.singleSaveFile;
+}
+
+
+
+bool Gamerules::RestrictedSaveLoading() const
+{
+	return storage.restrictedSaveLoading;
+}
+
+
+
+bool Gamerules::DeleteSaveOnTakeoff() const
+{
+	return storage.deleteSaveOnTakeoff;
 }
 
 

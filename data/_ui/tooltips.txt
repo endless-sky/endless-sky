@@ -1673,5 +1673,14 @@ tip "Fighters hit when disabled"
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
 
-tip "Permadeath mode"
-	`Activate permadeath mode. Upon death, the save files for this pilot will be deleted. If set to "forgiving," you will be able to have multiple save files, but you will be unable to load a previous save file unless you are landed on a planet. If set to "unforgiving," your save files will also be deleted the moment you leave the safety of a planet, and you will only be able to have one save file at once for this pilot.`
+tip "Permadeath"
+	`Activate permadeath mode. Upon death, the save files for this pilot will be deleted.`
+
+tip "Single save file"
+	`If true, this pilot will only be able to have a single save file at a time. You will be unable to create snapshots and the game will not create autosaves for previous days. Only your most recent landing point will be saved.`
+
+tip "Restricted save loading"
+	`If true, this pilot will be unable to reload save files while not on the safety of a planet.`
+
+tip "Delete save on takeoff"
+	`If true, all save files for this pilot will be deleted upon taking off from a planet. You will only be able to exit the game and keep this pilot's progress while at the safety of a planet. Forces the "Single save file" gamerule to be on.`
