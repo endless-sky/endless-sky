@@ -61,7 +61,7 @@ namespace {
 	const string LOCK_GAMERULES = "Lock gamerules";
 	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
 	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
-	const string PERMADEATH = "Permadeath";
+	const string PERMADEATH = "Delete saves on death";
 	const string SINGLE_SAVE_FILE = "Single save file";
 	const string RESTRICTED_SAVE_LOADING = "Restricted save loading";
 	const string DELETE_SAVE_ON_TAKEOFF = "Delete save on takeoff";

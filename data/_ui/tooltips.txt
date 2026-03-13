@@ -1673,8 +1673,8 @@ tip "Fighters hit when disabled"
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
 
-tip "Permadeath"
-	`Activate permadeath mode. Upon death, the save files for this pilot will be deleted.`
+tip "Delete saves on death"
+	`If true, all save files for this pilot will be deleted upon death.`
 
 tip "Single save file"
 	`If true, this pilot will only be able to have a single save file at a time. You will be unable to create snapshots and the game will not create autosaves for previous days. Only your most recent landing point will be saved.`
