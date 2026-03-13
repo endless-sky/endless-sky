@@ -57,11 +57,11 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "npc max mining time")
 			storage.npcMaxMiningTime = max<int>(0, child.Value(1));
 		else if(key == "universal frugal threshold")
-			storage.universalFrugalThreshold = min<double>(1., max<double>(0., child.Value(1)));
+			storage.universalFrugalThreshold = min(1., max(0., child.Value(1)));
 		else if(key == "depreciation min")
-			storage.depreciationMin = min<double>(1., max<double>(0., child.Value(1)));
+			storage.depreciationMin = min(1., max(0., child.Value(1)));
 		else if(key == "depreciation daily")
-			storage.depreciationDaily = min<double>(1., max<double>(0., child.Value(1)));
+			storage.depreciationDaily = min(1., max(0., child.Value(1)));
 		else if(key == "depreciation grace period")
 			storage.depreciationGracePeriod = max<int>(0, child.Value(1));
 		else if(key == "depreciation max age")
@@ -79,7 +79,7 @@ void Gamerules::Load(const DataNode &node)
 				child.PrintTrace("Skipping unrecognized value for gamerule:");
 		}
 		else if(key == "system departure min")
-			storage.systemDepartureMin = max<double>(0., child.Value(1));
+			storage.systemDepartureMin = max(0., child.Value(1));
 		else if(key == "system arrival min")
 		{
 			if(child.Token(1) == "unset")
@@ -87,8 +87,24 @@ void Gamerules::Load(const DataNode &node)
 			else
 				storage.systemArrivalMin = child.Value(1);
 		}
+		else if(key == "habitable based arrival distance")
+			storage.habitableBasedArrivalDistance = child.BoolValue(1);
+		else if(key == "habitable arrival min")
+		{
+			if(child.Token(1) == "unset")
+				storage.habitableArrivalMin.reset();
+			else
+				storage.habitableArrivalMin = max(0., child.Value(1));
+		}
+		else if(key == "habitable arrival max")
+		{
+			if(child.Token(1) == "unset")
+				storage.habitableArrivalMax.reset();
+			else
+				storage.habitableArrivalMax = max(0., child.Value(1));
+		}
 		else if(key == "fleet multiplier")
-			storage.fleetMultiplier = max<double>(0., child.Value(1));
+			storage.fleetMultiplier = max(0., child.Value(1));
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
@@ -138,6 +154,15 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 				out.Write("system arrival min", *storage.systemArrivalMin);
 			else
 				out.Write("system arrival min", "unset");
+		}
+		if(storage.habitableBasedArrivalDistance != preset.storage.habitableBasedArrivalDistance)
+			out.Write("habitable based arrival distance", storage.habitableBasedArrivalDistance ? 1 : 0);
+		if(storage.habitableArrivalMax != preset.storage.habitableArrivalMax)
+		{
+			if(storage.habitableArrivalMax.has_value())
+				out.Write("habitable arrival max", *storage.habitableArrivalMax);
+			else
+				out.Write("habitable arrival max", "unset");
 		}
 		if(storage.fleetMultiplier != preset.storage.fleetMultiplier)
 			out.Write("fleet multiplier", storage.fleetMultiplier);
@@ -191,6 +216,12 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.systemDepartureMin = preset.storage.systemDepartureMin;
 	else if(rule == "system arrival min")
 		storage.systemArrivalMin = preset.storage.systemArrivalMin;
+	else if(rule == "habitable based arrival distance")
+		storage.habitableBasedArrivalDistance = preset.storage.habitableBasedArrivalDistance;
+	else if(rule == "habitable arrival min")
+		storage.habitableArrivalMin = preset.storage.habitableArrivalMin;
+	else if(rule == "habitable arrival max")
+		storage.habitableArrivalMax = preset.storage.habitableArrivalMax;
 	else if(rule == "fleet multiplier")
 		storage.fleetMultiplier = preset.storage.fleetMultiplier;
 	else
@@ -308,9 +339,30 @@ void Gamerules::SetSystemDepartureMin(double value)
 
 
 
-void Gamerules::SetSystemArrivalMin(std::optional<double> value)
+void Gamerules::SetSystemArrivalMin(optional<double> value)
 {
 	storage.systemArrivalMin = value;
+}
+
+
+
+void Gamerules::SetHabitableBasedArrivalDistance(bool value)
+{
+	storage.habitableBasedArrivalDistance = value;
+}
+
+
+
+void Gamerules::SetHabitableArrivalMin(optional<double> value)
+{
+	storage.habitableArrivalMin = value;
+}
+
+
+
+void Gamerules::SetHabitableArrivalMax(optional<double> value)
+{
+	storage.habitableArrivalMax = value;
 }
 
 
@@ -455,6 +507,27 @@ double Gamerules::SystemDepartureMin() const
 optional<double> Gamerules::SystemArrivalMin() const
 {
 	return storage.systemArrivalMin;
+}
+
+
+
+bool Gamerules::HabitableBasedArrivalDistance() const
+{
+	return storage.habitableBasedArrivalDistance;
+}
+
+
+
+optional<double> Gamerules::HabitableArrivalMin() const
+{
+	return storage.habitableArrivalMin;
+}
+
+
+
+optional<double> Gamerules::HabitableArrivalMax() const
+{
+	return storage.habitableArrivalMax;
 }
 
 

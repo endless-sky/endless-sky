@@ -70,6 +70,9 @@ public:
 	void SetFighterDodgePolicy(FighterDodgePolicy value);
 	void SetSystemDepartureMin(double value);
 	void SetSystemArrivalMin(std::optional<double> value);
+	void SetHabitableBasedArrivalDistance(bool value);
+	void SetHabitableArrivalMin(std::optional<double> value);
+	void SetHabitableArrivalMax(std::optional<double> value);
 	void SetFleetMultiplier(double value);
 	void SetMiscValue(const std::string &rule, int value);
 
@@ -88,6 +91,9 @@ public:
 	FighterDodgePolicy FightersHitWhenDisabled() const;
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
+	bool HabitableBasedArrivalDistance() const;
+	std::optional<double> HabitableArrivalMin() const;
+	std::optional<double> HabitableArrivalMax() const;
 	double FleetMultiplier() const;
 
 	bool operator==(const Gamerules &other) const;
@@ -114,6 +120,9 @@ private:
 		FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
 		double systemDepartureMin = 0.;
 		std::optional<double> systemArrivalMin;
+		bool habitableBasedArrivalDistance = true;
+		std::optional<double> habitableArrivalMin = 500.;
+		std::optional<double> habitableArrivalMax = 5000.;
 		double fleetMultiplier = 1.;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
