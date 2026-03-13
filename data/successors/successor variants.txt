@@ -414,8 +414,6 @@ ship "Vujlet" "Vujlet (Aggressive)"
 
 
 ship "Vujlet" "Vujlet (Stellar)"
-	add attributes
-		"unremovable" -1
 	outfits
 
 		`3-"Kaska" Betavoltaic Cell`
@@ -439,8 +437,6 @@ ship "Vujlet" "Vujlet (Stellar)"
 
 
 ship "Vujlet" "Vujlet (Stellar Light Armor)"
-	add attributes
-		"unremovable" -1
 	outfits
 
 		`3-"Kaska" Betavoltaic Cell`
