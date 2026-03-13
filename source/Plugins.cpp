@@ -793,13 +793,30 @@ bool Plugins::Download(const string &url, const filesystem::path &location)
 	// Set the write function and the output file used in the write function.
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fwrite);
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, out);
+	bool keep = true;
 
 	CURLcode result = curl_easy_perform(curl);
 	if(result != CURLE_OK)
 		Logger::Log(string("curl_easy_perform() failed: ") + curl_easy_strerror(result),
 			Logger::Level::ERROR);
+	else
+	{
+		// Get the HTTP Response Code, if not 200 we will need to delete the file that we just wrote.
+		long code = 0;
+		result = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &code);
+		if(result != CURLE_OK)
+			Logger::Log(string("curl_easy_getinfo() failed: ") + curl_easy_strerror(result),
+				Logger::Level::ERROR);
+		else if(code != 200)
+		{
+			Logger::Log("The url " + url + " returned HTTP Response Code " + to_string(code), Logger::Level::WARNING);
+			keep = false;
+		}
+	}
 
 	curl_easy_cleanup(curl);
 	fclose(out);
-	return result == CURLE_OK;
+	if(!keep)
+		Files::Delete(location);
+	return keep;
 }
