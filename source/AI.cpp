@@ -1431,7 +1431,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 				continue;
 
 			// Prefer fast ships over slow ones.
-			canHelp.emplace_back(max<int>(1, 1. + .3 * helper->MaxVelocity()), helper.get());
+			canHelp.emplace_back(max<int>(1, min<int>(1000, 1. + .3 * helper->MaxVelocity())), helper.get());
 		}
 
 		if(!hasEnemy && !canHelp.empty())
