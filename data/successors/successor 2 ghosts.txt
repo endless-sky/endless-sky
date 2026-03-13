@@ -1076,7 +1076,7 @@ mission "Successors: Ghosts 10"
 			branch "was discreet"
 				has "Successors: Ghosts: discreet"
 
-			`	"A shame," your interrogator says, and makes a motion with one of their arms. Behind them, one of the guards raises their rifle and fires at you, leaving you dead before you even have time to react.`
+			`	"A shame," your interrogator says, making a motion with one of their arms; behind them, one of the guards raises their rifle. Instinctually, you go to grab your own sidearm, only to remember that it was taken from you minutes ago just as the guard's railgun round pierces your body.`
 				die
 
 			label "was discreet"
