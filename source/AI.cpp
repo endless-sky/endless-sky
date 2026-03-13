@@ -1383,7 +1383,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 		const Government *gov = ship.GetGovernment();
 		bool hasEnemy = false;
 
-		vector<Ship *> canHelp;
+		WeightedList<Ship *> canHelp;
 		canHelp.reserve(ships.size());
 		for(const auto &helper : ships)
 		{
@@ -1431,12 +1431,12 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 				continue;
 
 			// Prefer fast ships over slow ones.
-			canHelp.insert(canHelp.end(), 1 + .3 * helper->MaxVelocity(), helper.get());
+			canHelp.emplace_back(1 + .3 * helper->MaxVelocity(), helper.get());
 		}
 
 		if(!hasEnemy && !canHelp.empty())
 		{
-			Ship *helper = canHelp[Random::Int(canHelp.size())];
+			Ship *helper = canHelp.Get();
 			helper->SetShipToAssist(ship.weak_from_this());
 			helperList[&ship] = helper->weak_from_this();
 			isStranded = true;
