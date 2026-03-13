@@ -52,6 +52,7 @@ public:
 public:
 	// Initialize the threads used to execute the tasks.
 	TaskQueue() = default;
+	TaskQueue(uint64_t nWorkerThreads);
 	TaskQueue(const TaskQueue &) = delete;
 	TaskQueue &operator=(const TaskQueue &) = delete;
 	~TaskQueue();

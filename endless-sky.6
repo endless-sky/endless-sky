@@ -50,6 +50,9 @@ prints (to STDOUT) a list of available tests, usable for automatic test runs. Th
 .IP \fB\-\-nomute
 prevents muting the game when running tests.
 
+.IP \fB\-c,\ \-\-tq-threads\ <number of threads>
+sets the number of threads used for the internal queue of tasks. Not specifying this will use a default depending on your system. This is only useful for debugging. Has to be at least 1.
+
 .IP \fB\-s,\ \-\-ships
 prints (to STDOUT) a table of ship stats (just the base stats, not considering any stored outfits). This option prevents the game from launching.
 .RS
