@@ -1320,7 +1320,7 @@ tip "Turn right"
 
 tip "Reverse"
 	`Turn your flagship opposite its current direction of flight. If reverse thrusters are installed, accelerate backwards.`
-	`With <shift>, stop your ship.`
+	`With <Secondary action>, stop your ship.`
 
 tip "Fire afterburner"
 	`Fire your flagship's afterburner, if one is installed.`
@@ -1333,7 +1333,10 @@ tip "Land on planet / station"
 
 tip "Initiate hyperspace jump"
 	`Initiate a hyperspace jump to follow your current travel plan. If you have no travel plan, initiates a jump nearest to your current facing angle. When held, commands your escorts to get ready to jump and only initiates the jump when released.`
-	`With <shift>, your fleet will not jump until every ship in the fleet is ready for every system in the travel plan instead of needing to hold the key at each system.`
+	`With <Secondary action>, your fleet will not jump until every ship in the fleet is ready for every system in the travel plan instead of needing to hold the key at each system.`
+
+tip "Secondary action"
+	`Hold down this key whilst pressing another to perform that key's secondary action, if it has one.`
 
 tip "View star map"
 	`Open the star map panel.`
@@ -1343,19 +1346,19 @@ tip "View player info"
 
 tip "Select nearest hostile ship"
 	`Select the nearest hostile ship.`
-	`With <shift>, select the nearest ship regardless of hostility.`
+	`With <Secondary action>, select the nearest ship regardless of hostility.`
 
 tip "Select next ship"
 	`Select the next non-escort ship in the system, cycling through all ships.`
-	`With <shift>, cycle through escorts.`
+	`With <Secondary action>, cycle through escorts.`
 
 tip "Talk to selected ship"
 	`Hail the selected ship or planet. If both a ship and planet are selected, hails the ship.`
-	`With <shift>, hails the planet.`
+	`With <Secondary action>, hails the planet.`
 
 tip "Board selected ship"
 	`Board the selected ship. If no boardable ship is selected, selects a ship to board based on the "Boarding target priority" setting.`
-	`With <shift>, selects an escort to board.`
+	`With <Secondary action>, selects an escort to board.`
 
 tip "Select nearest asteroid"
 	`Select the nearest asteroid based on the "Target asteroid based on" setting.`
@@ -1416,7 +1419,7 @@ tip "Fleet: Toggle hold fire"
 
 tip "Fleet: Gather around me"
 	`Command your fleet to gather around your flagship. If only some escorts are selected, only sends the command to those escorts. You can also command escorts to gather around another ship by right clicking on a friendly ship.`
-	`With <shift>, change the formation pattern in your fleet.`
+	`With <Secondary action>, change the formation pattern in your fleet.`
 
 tip "Fleet: Hold position"
 	`Command your fleet to hold its current position. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on empty space.`
