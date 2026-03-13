@@ -96,39 +96,39 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	if(!object)
 		throw runtime_error("Shader creation failed.");
 
-	static string version;
-	if(version.empty())
+	string contents(str);
+	if(contents.find("\n//autoversion off\n") == string::npos
+		&& !contents.starts_with("//autoversion off")
+		&& !contents.ends_with("//autoversion off"))
 	{
-		version = "#version ";
-		string glsl = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
-		bool found = false;
-		for(char c : glsl)
+		static string version;
+		if(version.empty())
 		{
-			if(!found && !isdigit(c))
+			version = "#version ";
+			string glsl = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+			bool found = false;
+			for(char c : glsl)
 			{
-				continue;
+				if(!found && !isdigit(c))
+					continue;
+				if(isspace(c))
+					break;
+				if(isdigit(c))
+				{
+					found = true;
+					version += c;
+				}
 			}
-			if(isspace(c))
-				break;
-			if(isdigit(c))
-			{
-				found = true;
-				version += c;
-			}
+#ifdef ES_GLES
+			version += " es\n";
+#else
+			version += '\n';
+#endif
 		}
-		if(glsl.find("GLSL ES") != string::npos)
-		{
-			version += " es";
-		}
-		version += '\n';
+		contents = version + contents;
 	}
-	size_t length = strlen(str);
-	vector<GLchar> text(version.length() + length + 1);
-	memcpy(&text.front(), version.data(), version.length());
-	memcpy(&text.front() + version.length(), str, length);
-	text[version.length() + length] = '\0';
 
-	const GLchar *cText = &text.front();
+	const GLchar *cText = contents.c_str();
 	glShaderSource(object, 1, &cText, nullptr);
 	glCompileShader(object);
 
@@ -136,16 +136,12 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	glGetShaderiv(object, GL_COMPILE_STATUS, &status);
 	if(status == GL_FALSE)
 	{
-		string error = version;
-		error += string(str, length);
-
 		static const int SIZE = 4096;
 		GLchar message[SIZE];
 		GLsizei length;
 
 		glGetShaderInfoLog(object, SIZE, &length, message);
-		error += string(message, length);
-		Logger::Log(error, Logger::Level::ERROR);
+		Logger::Log(contents + string(message, length), Logger::Level::ERROR);
 		throw runtime_error("Shader compilation failed.");
 	}
 
