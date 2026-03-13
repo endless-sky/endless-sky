@@ -284,9 +284,17 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			Weapon newWeapon = *weapon;
 			newWeapon.Load(child);
 			weapon = make_shared<Weapon>(std::move(newWeapon));
+			if(weapon->Ammo())
+				linkedOutfits.insert(weapon->Ammo());
 		}
 		else if(key == "ammo" && hasValue)
-			ammoStored = GameData::Outfits().Get(child.Token(1));
+		{
+			const Outfit *ammo = GameData::Outfits().Get(child.Token(1));
+			ammoStored.insert(ammo);
+			linkedOutfits.insert(ammo);
+		}
+		else if(key == "linked" && hasValue)
+			linkedOutfits.insert(GameData::Outfits().Get(child.Token(1)));
 		else if(key == "description" && hasValue)
 			description.Load(child, playerConditions);
 		else if(key == "cost" && hasValue)
@@ -599,16 +607,26 @@ void Outfit::Set(const char *attribute, double value)
 
 
 
-const Outfit *Outfit::AmmoStored() const
+const set<const Outfit *> &Outfit::AmmoStored() const
 {
 	return ammoStored;
 }
 
 
 
-const Outfit *Outfit::AmmoStoredOrUsed() const
+const set<const Outfit *> &Outfit::AmmoStoredOrUsed() const
 {
-	return weapon ? weapon->Ammo() : ammoStored;
+	static set<const Outfit *> weaponAmmo;
+	if(weapon && weapon->Ammo() && weaponAmmo.empty())
+		weaponAmmo.insert(weapon->Ammo());
+	return weapon ? weaponAmmo : ammoStored;
+}
+
+
+
+const set<const Outfit *> &Outfit::LinkedOutfits() const
+{
+	return linkedOutfits;
 }
 
 
