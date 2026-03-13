@@ -108,6 +108,9 @@ public:
 	/// Parse the remainder of a node into this ConditionSet.
 	bool ParseNode(const DataNode &node, int &tokenNr);
 
+	/// Parse a single token into this ConditionSet.
+	bool ParseSingleToken(const DataNode &node, int &tokenNr);
+
 	/// Optimize this node, this optimization also removes intermediate sections that were used for tracking brackets.
 	bool Optimize(const DataNode &node);
 
