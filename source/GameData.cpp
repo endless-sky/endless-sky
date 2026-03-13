@@ -78,16 +78,6 @@ using namespace std;
 
 namespace {
 	UniverseObjects objects;
-	Set<Fleet> defaultFleets;
-	Set<Government> defaultGovernments;
-	Set<Planet> defaultPlanets;
-	Set<System> defaultSystems;
-	Set<Galaxy> defaultGalaxies;
-	Set<Shop<Ship>> defaultShipSales;
-	Set<Shop<Outfit>> defaultOutfitSales;
-	Set<Wormhole> defaultWormholes;
-	Set<Person> defaultPersons;
-	TextReplacements defaultSubstitutions;
 
 	const Gamerules *activeGamerules = nullptr;
 
@@ -172,18 +162,6 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 
 void GameData::FinishLoading()
 {
-	// Store the current state, to revert back to later.
-	defaultFleets = objects.fleets;
-	defaultGovernments = objects.governments;
-	defaultPlanets = objects.planets;
-	defaultSystems = objects.systems;
-	defaultGalaxies = objects.galaxies;
-	defaultShipSales = objects.shipSales;
-	defaultOutfitSales = objects.outfitSales;
-	defaultWormholes = objects.wormholes;
-	defaultPersons = objects.persons;
-	defaultSubstitutions = objects.substitutions;
-
 	activeGamerules = objects.gamerulesPresets.Get("Default");
 	playerGovernment = objects.governments.Get("Escort");
 
@@ -295,21 +273,9 @@ UniverseObjects &GameData::Objects()
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
-	objects.fleets.Revert(defaultFleets);
-	objects.governments.Revert(defaultGovernments);
-	objects.planets.Revert(defaultPlanets);
-	objects.systems.Revert(defaultSystems);
-	objects.galaxies.Revert(defaultGalaxies);
-	objects.shipSales.Revert(defaultShipSales);
-	objects.outfitSales.Revert(defaultOutfitSales);
-	objects.wormholes.Revert(defaultWormholes);
-	objects.persons.Revert(defaultPersons);
-	objects.substitutions.Revert(defaultSubstitutions);
+	objects.Revert();
 
 	activeGamerules = objects.gamerulesPresets.Get("Default");
-
-	for(auto &it : objects.persons)
-		it.second.Restore();
 
 	politics.Reset();
 	purchases.clear();
