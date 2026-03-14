@@ -36,10 +36,16 @@ class StartConditions;
 // storage of information across all save files for the same pilot.
 class PilotProfile {
 public:
+	// Read the save file directory to look for all .ess files that contain pilot profiles.
 	static void LoadProfiles();
 	static std::vector<std::shared_ptr<PilotProfile>> &GetProfiles();
 	static std::map<std::string, std::shared_ptr<PilotProfile>> GetProfileMap();
+	// Get the profile with the given identifier. If no profile exists, a new one will be made
+	// The caller must check IsLoaded and call Load on unloaded profiles to provide them with
+	// their file path if they are new.
 	static std::shared_ptr<PilotProfile> &GetProfile(const std::string &identifier);
+	// Create a new profile for a fresh player. That player must set the file path of the profile
+	// after being named.
 	static std::shared_ptr<PilotProfile> &NewProfile();
 
 
@@ -57,7 +63,7 @@ public:
 	// Load an existing pilot.
 	void Load(const std::filesystem::path &path);
 	bool IsLoaded() const;
-	// Save this pilot's shared information. (Saving an individual save file is done through PlayerInfo.)
+	// Save this pilot's shared information. (Saving individual save files is done through PlayerInfo.)
 	void Save();
 	// Delete this pilot's shared information. (Deleting individual save files is done through LoadPanel.)
 	void Delete();
@@ -80,8 +86,6 @@ public:
 
 
 private:
-	// The base file name for all save files for this pilot. Appending different values to this base path
-	// will point to different safe files.
 	std::string filePath;
 	bool isLoaded = false;
 

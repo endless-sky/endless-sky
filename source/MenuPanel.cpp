@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "MainPanel.h"
 #include "pi.h"
+#include "PilotProfile.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -46,8 +47,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cmath>
 #include <stdexcept>
-
-#include "PilotProfile.h"
 
 using namespace std;
 

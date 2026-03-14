@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollVar.h"
 #include "Tooltip.h"
 
+#include <functional>
 #include <memory>
 #include <string>
 #include <vector>

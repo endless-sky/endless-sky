@@ -37,8 +37,7 @@ void PilotProfile::LoadProfiles()
 		pilot->Files().clear();
 
 	// Look at all the existing save files and assign them to the appropriate pilot.
-	vector<filesystem::path> fileList = Files::List(Files::Saves());
-	for(const auto &path : fileList)
+	for(const filesystem::path &path : Files::List(Files::Saves()))
 	{
 		// Skip any files that aren't text files.
 		if(path.extension() != ".txt")
