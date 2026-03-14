@@ -23,8 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Tooltip.h"
 
 #include <filesystem>
-#include <memory>
 #include <map>
+#include <memory>
 #include <string>
 
 class PilotProfile;
