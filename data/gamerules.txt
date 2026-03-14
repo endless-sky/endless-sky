@@ -33,3 +33,4 @@
 	"lock gamerules" true
 	"disabled fighters avoid projectiles" "all"
 	"universal ammo restocking" true
+	"spawn raid fleets" true

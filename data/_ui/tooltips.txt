@@ -1672,3 +1672,6 @@ tip "Fighters hit when disabled"
 
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
+
+tip "Spawn raid fleets"
+	`Controls whether raid fleets are able to spawn. Raid fleets are hostile fleets that can spawn in some systems if your fleet's cargo attractiveness is much higher than its deterrence. (That is, if you have a lot of cargo space and not a lot of firepower to defend it.) If this rule is active, your fleet's raid fleet spawn chance can be viewed from the player info panel.`

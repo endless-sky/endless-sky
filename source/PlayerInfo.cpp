@@ -3994,7 +3994,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return rff.first - rff.second; });
 	conditions["raid chance in system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> double {
 		const System *system = GameData::Systems().Find(ce.NameWithoutPrefix());
-		if(!system)
+		if(!system || !GameData::GetGamerules().SpawnRaidFleets())
 			return 0.;
 
 		// This variable represents the probability of no raid fleets spawning.
