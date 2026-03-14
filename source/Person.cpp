@@ -65,7 +65,7 @@ void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 
 bool Person::IsValid() const
 {
-	if(!isLoaded || !government || government->TrueName().empty())
+	if(!isLoaded || !government || !government->IsDefined())
 		return false;
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsValid())
