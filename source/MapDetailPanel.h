@@ -47,6 +47,7 @@ public:
 
 	double GetScroll() const;
 
+
 public:
 	static double PlanetPanelHeight();
 
@@ -68,9 +69,7 @@ private:
 	void InitTextArea();
 	void ResizeTextArea();
 	void GeneratePlanetCards(const System &system);
-	void DrawKey();
 	void DrawInfo();
-	void DrawOrbits();
 
 	// Set the commodity coloring, and update the player info as well.
 	void SetCommodity(int index);
@@ -87,16 +86,11 @@ private:
 	ScrollVar<double> scroll;
 	ScrollBar scrollbar;
 
-	// Default display scaling for orbits within the currently displayed system.
-	double scale = .03;
-
 	// The system currently displayed, it should be the same as the system selected at all times.
 	const System *shownSystem = nullptr;
 
 	static double planetPanelHeight;
 	std::vector<MapPlanetCard> planetCards;
-	// Vector offsets from the center of the "orbits" UI.
-	std::map<const Planet *, Point> planets;
 
 	std::shared_ptr<TextArea> description = nullptr;
 	bool descriptionVisible = false;

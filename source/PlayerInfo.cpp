@@ -57,6 +57,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 #include <iterator>
 #include <limits>
+#include <ranges>
 #include <sstream>
 #include <stdexcept>
 
@@ -152,6 +153,154 @@ namespace {
 			}
 		}
 	}
+}
+
+
+
+PlayerInfo::StorylineProgress::StorylineProgress(const StorylineEntry &entry, BookEntry log, const Date &start)
+	: entry(&entry), level(entry.GetLevel()), trueName(entry.TrueName()), log(std::move(log)), start(start)
+{
+}
+
+
+
+PlayerInfo::StorylineProgress::StorylineProgress(const DataNode &node, StorylineEntry::Level level,
+	const StorylineEntry *entry)
+	: entry(entry), level(level), trueName(node.Token(1))
+{
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		auto AddChild = [this, &child, entry](StorylineEntry::Level nextLevel) -> void {
+			const string &nextName = child.Token(1);
+			const StorylineEntry *nextEntry = nullptr;
+			if(entry)
+			{
+				auto it = entry->Children().find(nextName);
+				if(it != entry->Children().end())
+					nextEntry = &it->second;
+			}
+			children[nextName] = StorylineProgress(child, nextLevel, nextEntry);
+		};
+
+		if(key == "log")
+			log.Load(child, 1);
+		else if(key == "start" && child.Size() >= 4)
+			start = Date(child.Value(1), child.Value(2), child.Value(3));
+		else if(key == "end" && child.Size() >= 4)
+			end = Date(child.Value(1), child.Value(2), child.Value(3));
+		else if(level == StorylineEntry::Level::STORYLINE && key == "book" && hasValue)
+			AddChild(StorylineEntry::Level::BOOK);
+		else if(level == StorylineEntry::Level::BOOK && key == "arc" && hasValue)
+			AddChild(StorylineEntry::Level::ARC);
+		else if(level == StorylineEntry::Level::ARC && key == "chapter" && hasValue)
+			AddChild(StorylineEntry::Level::CHAPTER);
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+}
+
+
+
+void PlayerInfo::StorylineProgress::Save(DataWriter &out) const
+{
+	if(level == StorylineEntry::Level::STORYLINE)
+		out.Write("storyline", trueName);
+	else if(level == StorylineEntry::Level::BOOK)
+		out.Write("book", trueName);
+	else if(level == StorylineEntry::Level::ARC)
+		out.Write("arc", trueName);
+	else if(level == StorylineEntry::Level::CHAPTER)
+		out.Write("chapter", trueName);
+	out.BeginChild();
+	{
+		if(start)
+			out.Write("start", start.Day(), start.Month(), start.Year());
+		if(end)
+			out.Write("end", end.Day(), end.Month(), end.Year());
+		if(!log.IsEmpty())
+		{
+			out.Write("log");
+			log.Save(out);
+		}
+		for(const auto &child : children)
+			child.second.Save(out);
+	}
+	out.EndChild();
+}
+
+
+
+const StorylineEntry *PlayerInfo::StorylineProgress::BackingEntry() const
+{
+	return entry;
+}
+
+
+
+StorylineEntry::Level PlayerInfo::StorylineProgress::Level() const
+{
+	return level;
+}
+
+
+
+const string &PlayerInfo::StorylineProgress::SectionName() const
+{
+	static const string EMPTY;
+	return entry ? entry->SectionName() : EMPTY;
+}
+
+
+
+const string &PlayerInfo::StorylineProgress::Heading() const
+{
+	static const string EMPTY;
+	return entry ? entry->Heading() : EMPTY;
+}
+
+
+
+std::string PlayerInfo::StorylineProgress::Subheading() const
+{
+	string result;
+	// If the start and end date are equal, just display a single date.
+	if(start == end)
+		result = start.ToString();
+	else
+	{
+		// Display a start date with a hyphen to show that the event is ongoing.
+		result = start.ToString() + " - ";
+		// Append the end date if this part of the storyline has ended.
+		if(end)
+			result += end.ToString();
+		else
+			result += "Ongoing";
+	}
+	return result;
+}
+
+
+
+const BookEntry &PlayerInfo::StorylineProgress::GetBookEntry() const
+{
+	return log;
+}
+
+
+
+void PlayerInfo::StorylineProgress::AddLog(const BookEntry &entry)
+{
+	log.Add(entry);
+}
+
+
+
+const std::map<std::string, PlayerInfo::StorylineProgress> &PlayerInfo::StorylineProgress::Children() const
+{
+	return children;
 }
 
 
@@ -477,15 +626,17 @@ void PlayerInfo::Load(const filesystem::path &path)
 				if(grand.Size() >= 3)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
-					for(const DataNode &great : grand)
-						logbook[date].Load(great);
+					logbook[date].Load(grand);
 				}
 				else if(grand.Size() >= 2)
-				{
-					for(const DataNode &great : grand)
-						specialLogs[grand.Token(0)][grand.Token(1)].Load(great);
-				}
+					specialLogs[grand.Token(0)][grand.Token(1)].Load(grand);
 			}
+		}
+		else if(key == "storyline" && hasValue)
+		{
+			const string &storylineName = child.Token(1);
+			const StorylineEntry *storyline = GameData::Storylines().Find(storylineName);
+			storylineProgress[storylineName] = StorylineProgress(child, StorylineEntry::Level::STORYLINE, storyline);
 		}
 		else if(key == "gamerules" && hasValue)
 		{
@@ -888,6 +1039,22 @@ void PlayerInfo::AdvanceDate(int amount)
 	// just reducing the cached values by 1 because the player may have
 	// explored new systems that change the DistanceMap calculations.
 	CacheMissionInformation(true);
+}
+
+
+
+void PlayerInfo::CheckStorylineProgress()
+{
+	map<string, string> substitutions = GetSubstitutions();
+	for(const auto &storyline : GameData::Storylines())
+		EvaluateStoryline(storylineProgress, storyline.second, substitutions);
+}
+
+
+
+const map<string, PlayerInfo::StorylineProgress> &PlayerInfo::GetStorylineProgress() const
+{
+	return storylineProgress;
 }
 
 
@@ -2051,7 +2218,11 @@ const map<Date, BookEntry> &PlayerInfo::Logbook() const
 
 void PlayerInfo::AddLogEntry(const BookEntry &logbookEntry)
 {
-	logbook[date].Add(logbookEntry);
+	BookEntry &dateEntry = logbook[date];
+	dateEntry.Add(logbookEntry);
+	// If this entry hasn't already marked a system, mark it with the system it was written in.
+	if(!dateEntry.SourceSystem())
+		dateEntry.SetSourceSystem(system);
 }
 
 
@@ -2094,7 +2265,7 @@ void PlayerInfo::RemoveSpecialLog(const string &type)
 
 bool PlayerInfo::HasLogs() const
 {
-	return !logbook.empty() || !specialLogs.empty();
+	return !logbook.empty() || !specialLogs.empty() || !storylineProgress.empty();
 }
 
 
@@ -2891,7 +3062,7 @@ int64_t PlayerInfo::GetTributeTotal() const
 
 // Check if the player knows the location of the given system (whether or not
 // they have actually visited it).
-bool PlayerInfo::HasSeen(const System &system) const
+bool PlayerInfo::HasSeen(const System &system, bool excludeMissions) const
 {
 	if(&system == this->system)
 		return true;
@@ -2901,23 +3072,26 @@ bool PlayerInfo::HasSeen(const System &system) const
 	if(!shrouded && seen.contains(&system))
 		return true;
 
-	auto usesSystem = [&system](const Mission &m) noexcept -> bool
+	if(!excludeMissions)
 	{
-		if(!m.IsVisible())
-			return false;
-		if(m.Waypoints().contains(&system))
-			return true;
-		if(m.MarkedSystems().contains(&system))
-			return true;
-		for(auto &&p : m.Stopovers())
-			if(p->IsInSystem(&system))
+		auto usesSystem = [&system](const Mission &m) noexcept -> bool
+		{
+			if(!m.IsVisible())
+				return false;
+			if(m.Waypoints().contains(&system))
 				return true;
-		return m.Destination()->IsInSystem(&system);
-	};
-	if(any_of(availableJobs.begin(), availableJobs.end(), usesSystem))
-		return true;
-	if(any_of(missions.begin(), missions.end(), usesSystem))
-		return true;
+			if(m.MarkedSystems().contains(&system))
+				return true;
+			for(auto &&p : m.Stopovers())
+				if(p->IsInSystem(&system))
+					return true;
+			return m.Destination()->IsInSystem(&system);
+		};
+		if(any_of(availableJobs.begin(), availableJobs.end(), usesSystem))
+			return true;
+		if(any_of(missions.begin(), missions.end(), usesSystem))
+			return true;
+	}
 
 	if(shrouded)
 	{
@@ -2965,18 +3139,21 @@ bool PlayerInfo::HasVisited(const Planet &planet) const
 
 // Check if the player knows the name of a system, either from visiting there or
 // because a job or active mission includes the name of that system.
-bool PlayerInfo::KnowsName(const System &system) const
+bool PlayerInfo::KnowsName(const System &system, bool excludeMissions) const
 {
 	if(CanView(system))
 		return true;
 
-	for(const Mission &mission : availableJobs)
-		if(mission.Destination()->IsInSystem(&system))
-			return true;
+	if(!excludeMissions)
+	{
+		for(const Mission &mission : availableJobs)
+			if(mission.Destination()->IsInSystem(&system))
+				return true;
 
-	for(const Mission &mission : missions)
-		if(mission.IsVisible() && mission.Destination()->IsInSystem(&system))
-			return true;
+		for(const Mission &mission : missions)
+			if(mission.IsVisible() && mission.Destination()->IsInSystem(&system))
+				return true;
+	}
 
 	return false;
 }
@@ -5015,6 +5192,8 @@ void PlayerInfo::Save(DataWriter &out) const
 				}
 	}
 	out.EndChild();
+	for(const auto &progress : storylineProgress)
+		progress.second.Save(out);
 
 	out.Write();
 	out.WriteComment("How you began:");
@@ -5282,4 +5461,33 @@ bool PlayerInfo::HasClearance() const
 		[this](const Mission &mission) -> bool {
 			return mission.HasClearance(planet);
 		});
+}
+
+
+
+void PlayerInfo::EvaluateStoryline(map<string, StorylineProgress> &progress, const StorylineEntry &storylineEntry,
+	const map<string, string> &substitutions)
+{
+	// If the player hasn't already started this storyline and
+	// they meet the conditions to start it, create a new progress entry.
+	const string &name = storylineEntry.TrueName();
+	if(!progress.contains(name))
+	{
+		if(!storylineEntry.IsStarted())
+			return;
+		BookEntry log = storylineEntry.InitialEntry().Instantiate(substitutions);
+		log.SetSourceSystem(system);
+		progress[name] = StorylineProgress(storylineEntry, std::move(log), date);
+	}
+	StorylineProgress &progressEntry = progress.at(name);
+
+	// If this storyline has just ended, set its end date.
+	if(!progressEntry.end && storylineEntry.IsComplete())
+	{
+		progressEntry.end = date;
+		progressEntry.AddLog(storylineEntry.InitialEntry().Instantiate(substitutions));
+	}
+	// Check for the progress of any child entries.
+	for(const auto &child : storylineEntry.Children() | views::values)
+		EvaluateStoryline(progressEntry.children, child, substitutions);
 }

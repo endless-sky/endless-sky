@@ -60,7 +60,7 @@ private:
 	// CenterOnSystem will either pan to the system or immediately jump to it.
 	void SetSelectedScrollAndCenter(bool immediate = false);
 	// Display and explain the various pointers that may appear on the map.
-	void DrawKey() const;
+	void DrawKey() const override;
 	// Draw rings around systems that need to be visited for the given mission.
 	void DrawMissionSystem(const Mission &mission, const Color &color) const;
 	// Draw the backgrounds for the "available jobs" and accepted missions/jobs lists.
