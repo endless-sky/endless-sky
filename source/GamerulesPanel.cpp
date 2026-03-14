@@ -61,6 +61,10 @@ namespace {
 	const string LOCK_GAMERULES = "Lock gamerules";
 	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
 	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
+	const string FLEET_SIZE_LIMITATION = "Fleet size limitation";
+	const string MAX_ESCORT_COUNT = "Default max escort count";
+	const string MAX_ESCORT_CREW = "Default max escort crew";
+	const string ADMIN_CAP = "Default admin cap";
 
 	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
 
@@ -80,6 +84,10 @@ namespace {
 		{LOCK_GAMERULES, "lock gamerules"},
 		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
 		{UNIVERSAL_AMMO_STOCKING, AMMO_RESTOCKING_NAME},
+		{FLEET_SIZE_LIMITATION, "fleet size limitation"},
+		{MAX_ESCORT_COUNT, "default max escort count"},
+		{MAX_ESCORT_CREW, "default max escort crew"},
+		{ADMIN_CAP, "default admin cap"},
 	};
 
 	const int GAMERULES_PAGE_COUNT = 1;
@@ -382,6 +390,12 @@ void GamerulesPanel::DrawGamerules()
 		"NPC Behavior",
 		NPC_MAX_MINING_TIME,
 		UNIVERSAL_FRUGAL_THRESHOLD,
+		"",
+		"Player Fleet Size Limit",
+		FLEET_SIZE_LIMITATION,
+		MAX_ESCORT_COUNT,
+		MAX_ESCORT_CREW,
+		ADMIN_CAP,
 		"\t",
 		"System Behavior",
 		UNIVERSAL_RAMSCOOP,
@@ -490,6 +504,39 @@ void GamerulesPanel::DrawGamerules()
 		}
 		else if(gamerule == UNIVERSAL_AMMO_STOCKING)
 			text = gamerules.GetValue(AMMO_RESTOCKING_NAME) ? "true" : "false";
+		else if(gamerule == FLEET_SIZE_LIMITATION)
+		{
+			switch(gamerules.GetFleetSizeLimitation())
+			{
+				case Gamerules::FleetSizeLimitation::NONE:
+					text = "none";
+					break;
+				case Gamerules::FleetSizeLimitation::SHIP_CAP:
+					text = "ship cap";
+					break;
+				case Gamerules::FleetSizeLimitation::CREW_CAP:
+					text = "crew cap";
+					break;
+				case Gamerules::FleetSizeLimitation::ADMIN_CAP:
+					text = "admin cap";
+					break;
+			}
+		}
+		else if(gamerule == MAX_ESCORT_COUNT)
+		{
+			text = Format::AbbreviatedNumber(gamerules.GetDefaultMaxEscortCount());
+			isOn = gamerules.GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::SHIP_CAP;
+		}
+		else if(gamerule == MAX_ESCORT_CREW)
+		{
+			text = Format::AbbreviatedNumber(gamerules.GetDefaultMaxEscortCrew());
+			isOn = gamerules.GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::CREW_CAP;
+		}
+		else if(gamerule == ADMIN_CAP)
+		{
+			text = Format::AbbreviatedNumber(gamerules.GetDefaultAdminCap());
+			isOn = gamerules.GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::ADMIN_CAP;
+		}
 
 		if(gamerule == hoverItem)
 		{
@@ -817,6 +864,41 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 	}
 	else if(str == UNIVERSAL_AMMO_STOCKING)
 		gamerules.SetMiscValue(AMMO_RESTOCKING_NAME, !gamerules.GetValue(AMMO_RESTOCKING_NAME));
+	else if(str == FLEET_SIZE_LIMITATION)
+	{
+		Gamerules::FleetSizeLimitation value = gamerules.GetFleetSizeLimitation();
+		if(value == Gamerules::FleetSizeLimitation::NONE)
+			value = Gamerules::FleetSizeLimitation::SHIP_CAP;
+		else if(value == Gamerules::FleetSizeLimitation::SHIP_CAP)
+			value = Gamerules::FleetSizeLimitation::CREW_CAP;
+		else if(value == Gamerules::FleetSizeLimitation::CREW_CAP)
+			value = Gamerules::FleetSizeLimitation::ADMIN_CAP;
+		else if(value == Gamerules::FleetSizeLimitation::ADMIN_CAP)
+			value = Gamerules::FleetSizeLimitation::NONE;
+		gamerules.SetFleetSizeLimitation(value);
+	}
+	else if(str == MAX_ESCORT_COUNT)
+	{
+		string message = "Set the default max escort count. (Integer value greater than or equal to 0.)";
+		auto validate = [](int value) -> bool { return value >= 0; };
+		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDefaultMaxEscortCount, validate,
+			message, gamerules.GetDefaultMaxEscortCount()));
+	}
+	else if(str == MAX_ESCORT_CREW)
+	{
+		string message = "Set the default max escort crew. (Integer value greater than or equal to 0.)";
+		auto validate = [](int value) -> bool { return value >= 0; };
+		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDefaultMaxEscortCrew, validate,
+			message, gamerules.GetDefaultMaxEscortCrew()));
+	}
+	else if(str == ADMIN_CAP)
+	{
+		string message = "Set the default administrative capacity. (Integer value greater than or equal to 0.)";
+		auto validate = [](int value) -> bool { return value >= 0; };
+		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDefaultAdminCap, validate,
+			message, gamerules.GetDefaultAdminCap()));
+	}
+
 }
 
 
