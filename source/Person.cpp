@@ -63,6 +63,18 @@ void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 
 
 
+bool Person::IsValid() const
+{
+	if(!isLoaded || !government || government->TrueName().empty())
+		return false;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsValid())
+			return false;
+	return true;
+}
+
+
+
 // Finish loading all the ships in this person specification.
 void Person::FinishLoading()
 {
@@ -72,13 +84,6 @@ void Person::FinishLoading()
 		if(formationPattern)
 			ship->SetFormationPattern(formationPattern);
 	}
-}
-
-
-
-bool Person::IsLoaded() const
-{
-	return isLoaded;
 }
 
 
@@ -97,7 +102,7 @@ int Person::Frequency(const System *system) const
 {
 	// Because persons always enter a system via one of the regular hyperspace
 	// links, don't create them in systems with no links.
-	if(!system || IsDestroyed() || IsPlaced() || system->Links().empty())
+	if(!system || !frequency || system->Links().empty() || !IsValid() || IsDestroyed() || IsPlaced())
 		return 0;
 
 	return (location.IsEmpty() || location.Matches(system)) ? frequency : 0;
