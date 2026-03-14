@@ -39,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shift.h"
 #include "Ship.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "UI.h"
@@ -106,6 +107,21 @@ ConversationPanel::~ConversationPanel()
 void ConversationPanel::SetCallback(function<void(int)> fun)
 {
 	callback = std::move(fun);
+}
+
+
+
+void ConversationPanel::Step()
+{
+	// Load any and deferred scenes that may appear in the conversation.
+	// This is done here instead of in the constructor because the constructor
+	// does not have access to the UI stack.
+	if(!hasLoadedScenes)
+	{
+		hasLoadedScenes = true;
+		for(const Sprite *scene : conversation.Scenes())
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), scene);
+	}
 }
 
 

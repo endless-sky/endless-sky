@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "image/SpriteLoadManager.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -671,6 +672,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 {
 	bool changedPlanets = false;
 	bool changedSystems = false;
+	bool changedShops = false;
 	for(const DataNode &change : changes)
 	{
 		const string &key = change.Token(0);
@@ -679,10 +681,13 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 			continue;
 		changedPlanets |= (key == "planet" || key == "wormhole");
 		changedSystems |= (key == "system" || key == "link" || key == "unlink");
+		changedShops |= (key == "outfitter" || key == "shipyard");
 		GameData::Change(change, *this);
 	}
 	if(changedPlanets)
 		GameData::RecomputeWormholeRequirements();
+	if((changedPlanets || changedShops) && planet && instantChanges)
+		SpriteLoadManager::RecheckThumbnails();
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
@@ -698,7 +703,10 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		// Update the deadline calculations for missions in case the system
 		// changes resulted in a change in DistanceMap calculations.
 		if(instantChanges)
+		{
 			CacheMissionInformation(true);
+			SpriteLoadManager::RecheckStellarObjects();
+		}
 	}
 	recacheJumpRoutes = instantChanges && (changedPlanets || changedSystems);
 }
@@ -2470,12 +2478,12 @@ void PlayerInfo::CreateEnteringMissions()
 				availableEnteringMissions.pop_back();
 			else
 			{
-				hasPriorityMissions |= missions.back().HasPriority();
-				nonBlockingMissions += missions.back().IsNonBlocking();
+				hasPriorityMissions |= availableEnteringMissions.back().HasPriority();
+				nonBlockingMissions += availableEnteringMissions.back().IsNonBlocking();
 			}
 		}
 
-	SortMissions(availableMissions, hasPriorityMissions, nonBlockingMissions);
+	SortMissions(availableEnteringMissions, hasPriorityMissions, nonBlockingMissions);
 }
 
 
@@ -2494,12 +2502,12 @@ void PlayerInfo::CreateTransitionMissions()
 				availableTransitionMissions.pop_back();
 			else
 			{
-				hasPriorityMissions |= missions.back().HasPriority();
-				nonBlockingMissions += missions.back().IsNonBlocking();
+				hasPriorityMissions |= availableTransitionMissions.back().HasPriority();
+				nonBlockingMissions += availableTransitionMissions.back().IsNonBlocking();
 			}
 		}
 
-	SortMissions(availableMissions, hasPriorityMissions, nonBlockingMissions);
+	SortMissions(availableTransitionMissions, hasPriorityMissions, nonBlockingMissions);
 }
 
 
@@ -3558,6 +3566,7 @@ void PlayerInfo::ApplyChanges()
 	reputationChanges.clear();
 	AddChanges(dataChanges);
 	GameData::UpdateSystems();
+	GameData::RecomputeWormholeRequirements();
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 
@@ -3565,7 +3574,12 @@ void PlayerInfo::ApplyChanges()
 	// If the player's gamerules were never loaded, then this is an
 	// old pilot that was implicitly using the default gamerules before.
 	if(gamerules.Name().empty())
+	{
 		gamerules.Replace(GameData::DefaultGamerules());
+		// Unlock the gamerules for old pilots that never had the option
+		// to have them unlocked in the first place.
+		gamerules.SetLockGamerules(false);
+	}
 	GameData::SetGamerules(&gamerules);
 
 	// Make sure all stellar objects are correctly positioned. This is needed

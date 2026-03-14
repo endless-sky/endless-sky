@@ -633,23 +633,17 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	result.toSpawn = toSpawn;
 	result.toDespawn = toDespawn;
 
-	// Instantiate the actions.
-	string reason;
-	auto ait = npcActions.begin();
-	for( ; ait != npcActions.end(); ++ait)
+	// Validate the actions.
+	for(const auto &[trigger, action] : npcActions)
 	{
-		reason = ait->second.Validate();
+		string reason = action.Validate();
 		if(!reason.empty())
-			break;
+		{
+			Logger::Log("Instantiation Error: Action \"" + TriggerToText(trigger) +
+				"\" in NPC uses invalid " + std::move(reason), Logger::Level::WARNING);
+			return result;
+		}
 	}
-	if(ait != npcActions.end())
-	{
-		Logger::Log("Instantiation Error: Action \"" + TriggerToText(ait->first) +
-			"\" in NPC uses invalid " + std::move(reason), Logger::Level::WARNING);
-		return result;
-	}
-	for(const auto &it : npcActions)
-		result.npcActions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
 
 	// Pick the system for this NPC to start out in.
 	result.system = system;
@@ -716,6 +710,10 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	result.dialog = dialog.Instantiate(subs);
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));
+
+	// Instantiate the actions.
+	for(const auto &it : npcActions)
+		result.npcActions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
 
 	return result;
 }

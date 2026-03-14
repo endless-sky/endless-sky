@@ -735,6 +735,7 @@ outfit "Orchid Magazine"
 	description "This large ammunition storage loads new Orchid Missiles into the launch tubes with little more than a few cables, actuators, and solenoids. Designed to be as minimalistic as possible, the sheer size of each Orchid nonetheless makes this magazine rather bulky for the number of missiles it stores."
 
 outfit `Z-3600 "Beam" Amat Torch`
+	plural `Z-3600 "Beam" Amat Torches`
 	category "Engines"
 	series "Engines"
 	index 07080

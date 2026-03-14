@@ -87,8 +87,8 @@ namespace {
 
 
 
-GamerulesPanel::GamerulesPanel(Gamerules &gamerules)
-	: gamerules(gamerules),
+GamerulesPanel::GamerulesPanel(Gamerules &gamerules, bool existingPilot)
+	: gamerules(gamerules), existingPilot(existingPilot),
 	gamerulesUi(GameData::Interfaces().Get("gamerules")),
 	presetUi(GameData::Interfaces().Get("gamerules presets")),
 	tooltip(270, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
@@ -157,7 +157,14 @@ bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	else if(key == SDLK_RETURN)
 		HandleConfirm();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI().Pop(this);
+	{
+		if(existingPilot && gamerules.LockGamerules())
+			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() -> void { GetUI().Pop(this); },
+				"You have set \"Lock Gamerules\" to true, which means that you will not be able "
+				"to return to this panel to make further edits after leaving. Continue anyway?", false));
+		else
+			GetUI().Pop(this);
+	}
 	else if(key == 'g' || key == 'p')
 	{
 		page = key;
