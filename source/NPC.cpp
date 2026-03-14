@@ -345,7 +345,7 @@ string NPC::Validate(bool asTemplate) const
 	if(!asTemplate && !government)
 		return "government (missing)";
 	// If a government is provided, it must be defined.
-	if(government && government->TrueName().empty())
+	if(government && !government->IsDefined())
 		return "government (undefined)";
 
 	// NPC templates have certain fields to validate that instantiated NPCs do not:
