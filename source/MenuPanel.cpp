@@ -47,6 +47,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <stdexcept>
 
+#include "PilotProfile.h"
+
 using namespace std;
 
 namespace {
@@ -145,8 +147,6 @@ void MenuPanel::Draw()
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");
-		if(!player.GetGamerules().LockGamerules())
-			info.SetCondition("gamerules unlocked");
 		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		if(player.Flagship())
 		{
@@ -173,6 +173,8 @@ void MenuPanel::Draw()
 		info.SetCondition("no pilot loaded");
 		info.SetString("pilot", "No Pilot Loaded");
 	}
+	if(!player.Pilot()->GetGamerules().LockGamerules())
+		info.SetCondition("gamerules unlocked");
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	mainMenuUi->Draw(info, this);
@@ -218,8 +220,12 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// StartConditionsPanel also handles the case where there's no scenarios.
 		GetUI().Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
 	}
-	else if(key == 'g' && player.IsLoaded() && !player.IsDead() && !player.GetGamerules().LockGamerules())
-		GetUI().Push(new GamerulesPanel(player.GetGamerules(), true));
+	else if(key == 'g' && !player.Pilot()->GetGamerules().LockGamerules())
+	{
+		GamerulesPanel *panel = new GamerulesPanel(player.Pilot()->GetGamerules(), true);
+		panel->SetCallback(player.Pilot().get(), &PilotProfile::Save);
+		GetUI().Push(panel);
+	}
 	else if(key == 'q')
 	{
 		GetUI().Quit();

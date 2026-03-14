@@ -243,6 +243,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Personality.h
 	Phrase.cpp
 	Phrase.h
+	PilotProfile.cpp
+	PilotProfile.h
 	Planet.cpp
 	Planet.h
 	PlanetLabel.cpp

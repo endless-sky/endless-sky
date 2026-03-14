@@ -39,6 +39,9 @@ public:
 	GamerulesPanel(Gamerules &gamerules, bool existingPilot);
 	virtual ~GamerulesPanel() override;
 
+	template<class T>
+	void SetCallback(T *t, void (T::*fun)());
+
 	// Draw this panel.
 	virtual void Draw() override;
 
@@ -79,6 +82,7 @@ private:
 	// The gamerules being modified.
 	Gamerules &gamerules;
 	bool existingPilot;
+	std::function<void()> callback = nullptr;
 
 	const Interface *gamerulesUi;
 	const Interface *presetUi;
@@ -108,3 +112,11 @@ private:
 	ScrollVar<double> presetListScroll;
 	ScrollVar<double> presetDescriptionScroll;
 };
+
+
+
+template<class T>
+void GamerulesPanel::SetCallback(T *t, void (T::*fun)())
+{
+	callback = std::bind(fun, t);
+}
