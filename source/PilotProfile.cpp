@@ -140,7 +140,7 @@ void PilotProfile::New(const Gamerules &gamerules)
 
 
 
-void PilotProfile::Load(const string &path)
+void PilotProfile::Load(const filesystem::path &path)
 {
 	if(isLoaded)
 		return;
@@ -226,9 +226,9 @@ const string &PilotProfile::Path() const
 
 
 
-void PilotProfile::SetPath(const string &path)
+void PilotProfile::SetPath(const filesystem::path &path)
 {
-	string root = path;
+	string root = path.string();
 	size_t pos = root.find('~');
 	if(pos != string::npos)
 		root = root.substr(0, pos) + ".txt";

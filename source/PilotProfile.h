@@ -55,7 +55,7 @@ public:
 	// Make a new pilot.
 	void New(const Gamerules &gamerules);
 	// Load an existing pilot.
-	void Load(const std::string &path);
+	void Load(const std::filesystem::path &path);
 	bool IsLoaded() const;
 	// Save this pilot's shared information. (Saving an individual save file is done through PlayerInfo.)
 	void Save();
@@ -63,7 +63,7 @@ public:
 	void Delete();
 
 	const std::string &Path() const;
-	void SetPath(const std::string &path);
+	void SetPath(const std::filesystem::path &path);
 	std::string Identifier() const;
 
 	// Get the individual save files of this pilot.
