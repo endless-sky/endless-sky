@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Messages.h"
 #include "Outfit.h"
 #include "Person.h"
+#include "PilotProfile.h"
 #include "Planet.h"
 #include "Plugins.h"
 #include "Politics.h"
@@ -221,16 +222,17 @@ void PlayerInfo::Clear()
 // Check if a player has been loaded.
 bool PlayerInfo::IsLoaded() const
 {
-	return !firstName.empty();
+	return !filePath.empty();
 }
 
 
 
 // Make a new player.
-void PlayerInfo::New(const StartConditions &start, const Gamerules &gamerules)
+void PlayerInfo::New(const StartConditions &start, shared_ptr<PilotProfile> &pilot)
 {
 	// Clear any previously loaded data.
 	Clear();
+	this->pilot = pilot;
 
 	// Copy the core information from the full starting scenario.
 	startData = start;
@@ -257,8 +259,6 @@ void PlayerInfo::New(const StartConditions &start, const Gamerules &gamerules)
 	accounts = start.GetAccounts();
 	RegisterDerivedConditions();
 	start.GetConditions().Apply();
-	this->gamerules.Replace(gamerules);
-	GameData::SetGamerules(&this->gamerules);
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -272,10 +272,12 @@ void PlayerInfo::New(const StartConditions &start, const Gamerules &gamerules)
 
 
 // Load player information from a saved game file.
-void PlayerInfo::Load(const filesystem::path &path)
+void PlayerInfo::Load(const filesystem::path &path, shared_ptr<PilotProfile> &pilot)
 {
 	// Make sure any previously loaded data is cleared.
 	Clear();
+	this->pilot = pilot;
+	this->pilot->Load(path);
 
 	// A listing of missions and the ships where their cargo or passengers were when the game was saved.
 	// Missions and ships are referred to by string UUIDs.
@@ -309,6 +311,11 @@ void PlayerInfo::Load(const filesystem::path &path)
 		{
 			firstName = child.Token(1);
 			lastName = child.Token(2);
+		}
+		else if(key == "original name" && child.Size() >= 3)
+		{
+			originalFirstName = child.Token(1);
+			originalLastName = child.Token(2);
 		}
 		else if(key == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
@@ -487,22 +494,6 @@ void PlayerInfo::Load(const filesystem::path &path)
 				}
 			}
 		}
-		else if(key == "gamerules" && hasValue)
-		{
-			const string &presetName = child.Token(1);
-			const Gamerules *preset = GameData::GamerulesPresets().Find(presetName);
-			if(!preset)
-			{
-				child.PrintTrace("The gamerule preset \"" + presetName + "\" does not exist. "
-					"Falling back to the default gamerules.");
-				preset = &GameData::DefaultGamerules();
-			}
-			// Set the player's gamerules to be an exact copy of the selected preset,
-			// then load any stored customizations on top of that.
-			gamerules.Replace(*preset);
-			if(child.HasChildren())
-				gamerules.Load(child);
-		}
 		else if(key == "start")
 			startData.Load(child);
 		else if(key == "message log")
@@ -564,6 +555,12 @@ void PlayerInfo::Load(const filesystem::path &path)
 	// will count as non-depreciated.
 	if(!depreciation.IsLoaded())
 		depreciation.Init(ships, date.DaysSinceEpoch());
+	// If the original name of this player wasn't stored, assume that the
+	// current name is the original name.
+	if(originalFirstName.empty())
+		originalFirstName = firstName;
+	if(originalLastName.empty())
+		originalLastName = lastName;
 }
 
 
@@ -571,7 +568,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 // Reload from the same file from which the current pilot was loaded.
 void PlayerInfo::Reload()
 {
-	Load(filePath);
+	Load(filePath, pilot);
 }
 
 
@@ -590,7 +587,7 @@ bool PlayerInfo::LoadRecent()
 		return false;
 	}
 
-	Load(recentPath);
+	Load(recentPath, PilotProfile::GetProfile(recentPath));
 	return true;
 }
 
@@ -630,9 +627,18 @@ void PlayerInfo::Save() const
 
 	Save(filePath);
 
+	// Save pilot data:
+	pilot->Save();
 	// Save global conditions:
 	DataWriter globalConditions(Files::Config() / "global conditions.txt");
 	GameData::GlobalConditions().Save(globalConditions);
+}
+
+
+
+shared_ptr<PilotProfile> &PlayerInfo::Pilot()
+{
+	return pilot;
 }
 
 
@@ -814,6 +820,11 @@ void PlayerInfo::SetName(const string &first, const string &last)
 {
 	firstName = first;
 	lastName = last;
+	// The path for a particular pilot uses only the original name of the pilot.
+	if(!originalFirstName.empty())
+		return;
+	originalFirstName = firstName;
+	originalLastName = lastName;
 
 	string fileName = first + " " + last;
 
@@ -834,6 +845,7 @@ void PlayerInfo::SetName(const string &first, const string &last)
 			break;
 		}
 	}
+	pilot->SetPath(filePath);
 }
 
 
@@ -2789,13 +2801,6 @@ const ConditionsStore &PlayerInfo::Conditions() const
 
 
 
-Gamerules &PlayerInfo::GetGamerules()
-{
-	return gamerules;
-}
-
-
-
 // Uuid for the gifted ships, with the ship class follow by the names they had when they were gifted to the player.
 const map<string, EsUuid> &PlayerInfo::GiftedShips() const
 {
@@ -2816,8 +2821,10 @@ map<string, string> PlayerInfo::GetSubstitutions() const
 
 void PlayerInfo::AddPlayerSubstitutions(map<string, string> &subs) const
 {
-	subs["<first>"] = FirstName();
-	subs["<last>"] = LastName();
+	subs["<first>"] = firstName;
+	subs["<last>"] = lastName;
+	subs["<original first>"] = originalFirstName;
+	subs["<original last>"] = originalLastName;
 	const Ship *flag = Flagship();
 	if(flag)
 	{
@@ -3569,18 +3576,7 @@ void PlayerInfo::ApplyChanges()
 	GameData::RecomputeWormholeRequirements();
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
-
-	// Set the active gamerules to the rules from this player.
-	// If the player's gamerules were never loaded, then this is an
-	// old pilot that was implicitly using the default gamerules before.
-	if(gamerules.Name().empty())
-	{
-		gamerules.Replace(GameData::DefaultGamerules());
-		// Unlock the gamerules for old pilots that never had the option
-		// to have them unlocked in the first place.
-		gamerules.SetLockGamerules(false);
-	}
-	GameData::SetGamerules(&gamerules);
+	pilot->ApplyGamerules();
 
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
@@ -3983,6 +3979,13 @@ void PlayerInfo::RegisterDerivedConditions()
 		return !ce.NameWithoutPrefix().compare(firstName); });
 	conditions["last name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		return !ce.NameWithoutPrefix().compare(lastName); });
+
+	conditions["original name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		return !ce.NameWithoutPrefix().compare(originalFirstName + " " + originalLastName); });
+	conditions["original first name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		return !ce.NameWithoutPrefix().compare(originalFirstName); });
+	conditions["original last name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		return !ce.NameWithoutPrefix().compare(originalLastName); });
 
 	// Conditions for your fleet's attractiveness to pirates.
 	conditions["cargo attractiveness"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
@@ -4455,13 +4458,20 @@ void PlayerInfo::RegisterDerivedConditions()
 		return GameData::GetGamerules().GetValue(ce.NameWithoutPrefix());
 	});
 
-	// Global conditions setters and getters:
+	// Global and pilot-level condition setters and getters:
 	conditions["global: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
 		string globalCondition = ce.NameWithoutPrefix();
 		return GameData::GlobalConditions().Get(globalCondition);
 	}, [](ConditionEntry &ce, int64_t value)
 	{
 		GameData::GlobalConditions().Set(ce.NameWithoutPrefix(), value);
+	});
+	conditions["pilot: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		string pilotCondition = ce.NameWithoutPrefix();
+		return pilot->Conditions().Get(pilotCondition);
+	}, [this](ConditionEntry &ce, int64_t value)
+	{
+		pilot->Conditions().Set(ce.NameWithoutPrefix(), value);
 	});
 }
 
@@ -4566,7 +4576,9 @@ void PlayerInfo::StepMissions(UI &ui)
 	int missionVisits = 0;
 	auto substitutions = map<string, string>{
 		{"<first>", firstName},
-		{"<last>", lastName}
+		{"<last>", lastName},
+		{"<original first>", originalFirstName},
+		{"<original last>", originalLastName},
 	};
 	const Ship *flag = Flagship();
 	if(flag)
@@ -4696,6 +4708,7 @@ void PlayerInfo::Save(DataWriter &out) const
 
 	// Pilot information:
 	out.Write("pilot", firstName, lastName);
+	out.Write("original name", originalFirstName, originalLastName);
 	out.Write("date", date.Day(), date.Month(), date.Year());
 	if(markedChangesToday)
 		out.Write("marked event changes today");
@@ -5020,16 +5033,6 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.WriteComment("How you began:");
 	startData.Save(out);
 
-	out.Write();
-	out.WriteComment("The rules you play by:");
-	// Only save gamerules that were customized to be different from the defaults of the chosen preset.
-	// If the chosen preset that the gamerules refer to doesn't exist, compare against the default
-	// gamerules. A warning will have already been printed for this when the save file was loaded.
-	const Gamerules *preset = GameData::GamerulesPresets().Find(gamerules.Name());
-	if(!preset)
-		preset = &GameData::DefaultGamerules();
-	gamerules.Save(out, *preset);
-
 	// Write plugins to player's save file for debugging.
 	out.Write();
 	out.WriteComment("Installed plugins:");
@@ -5207,7 +5210,7 @@ void PlayerInfo::ForgetGiftedShip(const Ship &oldShip, bool failsMissions)
 // Check that this player's current state can be saved.
 bool PlayerInfo::CanBeSaved() const
 {
-	return (!isDead && planet && system && !firstName.empty() && !lastName.empty());
+	return (!isDead && planet && system && !filePath.empty());
 }
 
 

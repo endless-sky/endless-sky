@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Date.h"
+#include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Planet.h"
@@ -100,6 +101,17 @@ void SavedGame::Load(const filesystem::path &path)
 const filesystem::path &SavedGame::Path() const
 {
 	return path;
+}
+
+
+
+string SavedGame::Identifier() const
+{
+	string name = Files::Name(path);
+	size_t pos = name.find('~');
+	if(pos != string::npos)
+		name = name.substr(0, pos) + ".txt";
+	return (name.length() < 4) ? "" : name.substr(0, name.length() - 4);
 }
 
 
