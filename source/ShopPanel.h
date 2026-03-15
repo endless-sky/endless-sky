@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "Dropdown.h"
 #include "LoadingCircle.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
@@ -201,6 +202,8 @@ protected:
 	Tooltip buttonsTooltip;
 	LoadingCircle loadingCircle;
 
+	std::shared_ptr<Dropdown> selected_quantity;
+	bool quantity_is_modifier = false;
 
 private:
 	void DrawShipsSidebar();

@@ -103,6 +103,16 @@ void Panel::AddZone(const Rectangle &rect, const function<void()> &fun)
 
 
 
+// Add a clickable zone to the panel.
+void Panel::AddZone(const Rectangle &rect, const function<void(const Event&)> &fun)
+{
+	// The most recently added zone will typically correspond to what was drawn
+	// most recently, so it should be on top.
+	zones.emplace_front(rect, fun);
+}
+
+
+
 void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 {
 	AddZone(rect, [this, key](){ this->KeyDown(key, 0, Command(), true); });
@@ -153,8 +163,13 @@ void Panel::UpdateTooltipActivation()
 void Panel::AddOrRemove()
 {
 	for(auto &panel : childrenToAdd)
+	{
 		if(panel)
+		{
+			panel->parent = this;
 			children.emplace_back(std::move(panel));
+		}
+	}
 	childrenToAdd.clear();
 
 	for(auto *panel : childrenToRemove)
@@ -163,6 +178,7 @@ void Panel::AddOrRemove()
 		{
 			if(it->get() == panel)
 			{
+				(*it)->parent = nullptr;
 				children.erase(it);
 				break;
 			}
@@ -321,8 +337,8 @@ void Panel::DrawBackdrop() const
 
 UI &Panel::GetUI() const noexcept
 {
-	assert(ui && "Panel::GetUI cannot be called until after the Panel has been pushed onto the UI stack.");
-	return *ui;
+	assert((parent || ui) && "Panel::GetUI cannot be called until after the Panel has been pushed onto the UI stack.");
+	return parent ? parent->GetUI() : *ui;
 }
 
 
