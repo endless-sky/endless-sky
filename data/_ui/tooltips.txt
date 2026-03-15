@@ -195,6 +195,9 @@ tip "corrosion resistance heat:"
 tip "cost:"
 	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
 
+tip "rewiring cost:"
+	`The cost of rewiring this ship, based on the empty hull's original worth.`
+
 tip "discharge protection:"
 	`Protection provided against shield discharge damage. Increases by the given factor how much discharge damage a ship can withstand before it loses as much shielding as an unprotected ship.`
 
@@ -878,13 +881,16 @@ tip "shipyard: s"
 	`Sell the selected ships and their outfits.`
 
 tip "shipyard: r"
+	`Rewire the selected ships, unlocking their onboard computers.`
+
+tip "shipyard: u"
 	`Sell the hulls of the selected ships, but retain the outfits in storage.`
 
 
 
 # Sale labels:
 tip "empty hull:"
-	`Price the ship itself would sell for without any outfits installed.`
+	`Price the ship itself would sell for without any outfits installed, reduced by depreciation and if the ship's computer is locked.`
 
 tip "  + outfits:"
 	`Price that all this ship's outfits would sell for.`
@@ -1260,6 +1266,9 @@ tip "no thruster!"
 
 tip "no steering!"
 	`This ship is unable to turn. You must install steering systems.`
+
+tip "locked systems"
+	`You do not have access to this ship's computer systems. Until you rewire the ship at a shipyard, its capabilities will be limited and it cannot be your flagship.`
 
 tip "insufficient bunks?"
 	`This ship does not have enough bunks for its crew. It could become unresponsive at random times.`
@@ -1651,6 +1660,15 @@ tip "NPC max mining time"
 
 tip "Universal frugal threshold"
 	`Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their health (shields + hull - the hull level when they become disabled) is at or below this percentage, or if the hostiles in the system are considerably stronger than them.`
+
+tip "Ships lock when captured"
+	`Determines whether a ship's computers are "locked" when captured, disabling some of their abilities. Ships can have their locks removed by rewiring them at a shipyard.`
+
+tip "Rewiring cost multiplier"
+	`How much rewiring a ship will cost, relative to the empty hull's original cost before depreciation.`
+
+tip "Locked hull value multiplier"
+	`How much the hull of a ship will sell for if its computer systems are locked. This stacks multiplicatively with depreciation.`
 
 tip "Universal ramscoop"
 	`Determines whether the "universal ramscoop" is active on all ships. This ramscoop provides a very small amount of fuel to every ship regardless of whether it has an actual ramscoop installed. The strength of this ramscoop falls off much more strongly than normal ramscoops, requiring you to be as close to a star as possible to have any real gain in fuel. Having this enabled prevents needing to reload your save file if you run out of fuel and no NPCs spawn in the system that you can get fuel from.`

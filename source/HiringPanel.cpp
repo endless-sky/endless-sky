@@ -74,7 +74,7 @@ void HiringPanel::Draw()
 	int fleetBunks = 0;
 	int fleetRequired = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
-		if(!ship->IsParked())
+		if(!ship->IsParked() && !ship->IsLocked())
 		{
 			fleetBunks += static_cast<int>(ship->Attributes().Get("bunks"));
 			fleetRequired += ship->RequiredCrew();
