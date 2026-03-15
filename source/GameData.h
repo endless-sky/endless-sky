@@ -36,6 +36,7 @@ class Conversation;
 class DataNode;
 class DataWriter;
 class Date;
+class Drawable;
 class Effect;
 class Fleet;
 class FormationPattern;
@@ -178,7 +179,7 @@ public:
 	static void StepBackground(const Point &vel, double zoom = 1.);
 	static const Point &GetBackgroundPosition();
 	static void SetBackgroundPosition(const Point &position);
-	static void SetHaze(const Sprite *sprite, bool allowAnimation);
+	static void SetHaze(const Drawable &sprite, bool allowAnimation);
 
 	static const std::string &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);

@@ -847,7 +847,7 @@ void GameData::SetBackgroundPosition(const Point &position)
 
 
 
-void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
+void GameData::SetHaze(const Drawable &sprite, bool allowAnimation)
 {
 	background.SetHaze(sprite, allowAnimation);
 }
