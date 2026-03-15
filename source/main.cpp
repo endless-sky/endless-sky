@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 #include "Files.h"
 #include "text/Font.h"
-#include "text/FontSet.h"
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
@@ -54,6 +53,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "windows/WinVersion.h"
 #endif
 
+#include <curl/curl.h>
+
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -64,10 +65,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 #ifdef _WIN32
-#define STRICT
 #define WIN32_LEAN_AND_MEAN
 #define NOGDI
 #include <windows.h>
+#undef ERROR
+#undef NORMAL
+#undef PlaySound
 
 #define PSAPI_VERSION 1
 #include <processthreadsapi.h>
@@ -155,6 +158,8 @@ int main(int argc, char *argv[])
 	bool isConsoleOnly = loadOnly || printTests || printData;
 
 	Logger::Session logSession{isConsoleOnly || isTesting};
+
+	curl_global_init(CURL_GLOBAL_DEFAULT);
 
 	try {
 		// Load plugin settings and preferences before game data.
@@ -262,6 +267,7 @@ int main(int argc, char *argv[])
 	{
 		Audio::Quit();
 		GameWindow::ExitWithError(error.what(), !isTesting);
+		curl_global_cleanup();
 		return 1;
 	}
 
@@ -274,6 +280,7 @@ int main(int argc, char *argv[])
 
 	Audio::Quit();
 	GameWindow::Quit();
+	curl_global_cleanup();
 
 	return 0;
 }
