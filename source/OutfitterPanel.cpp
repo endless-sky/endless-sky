@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weapon.h"
 
 #include <algorithm>
+#include <cmath>
 #include <limits>
 #include <memory>
 
