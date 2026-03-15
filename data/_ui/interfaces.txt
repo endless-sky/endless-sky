@@ -1875,110 +1875,128 @@ interface "news (small screen)"
 
 
 interface "boarding"
-	sprite "ui/boarding dialog"
-	
+	sprite "ui/boarding dialog wide"
+
+	box "plunder list"
+		center -15 -60
+		dimensions 360 250
+		# from -325 -185 to 165 65
+	point "plunder list outer padding"
+		center 5 5
+		# from -320 -180 to 160 60
+	point "plunder list inner padding"
+		center 0 10
+		# from -320 -170 to 160 50
+
+	box "outfit description pane"
+		center -350 14.5
+		dimensions 253 346
+
+	box "capture pane"
+		from 180 -100 to 470 80
+
 	label "item"
-		from -320 -189
+		from -180 -189
 		align left
 	label "value"
-		from -60 -189
+		from 80 -189
 		align right
 	label "size"
-		from 10 -189
+		from 150 -189
 		align right
 	
 	label "cargo space free:"
-		from -320 75
+		from -180 75
 		align left
 	string "cargo space"
-		from 10 75
+		from 150 75
 		align right
 	
 	label "crew"
-		from 190 -112
+		from 330 -112
 		align right
 	label "attack"
-		from 260 -112
+		from 400 -112
 		align right
 	label "defense"
-		from 330 -112
+		from 470 -112
 		align right
 	
 	label "your ship:"
-		from 50 -92
+		from 190 -92
 		align left
 	string "your crew"
-		from 190 -92
+		from 330 -92
 		align right
 	string "your attack"
-		from 260 -92
+		from 400 -92
 		align right
 	string "your defense"
-		from 330 -92
+		from 470 -92
 		align right
 	
 	label "enemy ship:"
-		from 50 -72
+		from 190 -72
 		align left
 	string "enemy crew"
-		from 190 -72
+		from 330 -72
 		align right
 	string "enemy attack"
-		from 260 -72
+		from 400 -72
 		align right
 	string "enemy defense"
-		from 330 -72
+		from 470 -72
 		align right
 	
 	label "capture odds (attacking):"
-		from 50 -42
+		from 190 -42
 		align left
 	string "attack odds"
-		from 330 -42
+		from 470 -42
 		align right
 	label "expected casualties:"
-		from 50 -22
+		from 190 -22
 		align left
 	string "attack casualties"
-		from 330 -22
+		from 470 -22
 		align right
 	
 	label "survival odds (defending):"
-		from 50 8
+		from 190 8
 		align left
 	string "defense odds"
-		from 330 8
+		from 470 8
 		align right
 	label "expected casualties:"
-		from 50 28
+		from 190 28
 		align left
 	string "defense casualties"
-		from 330 28
+		from 470 28
 		align right
 	
 	active if "can take"
 	button t "_Take"
-		center -235 115
+		center -95 115
 		dimensions 70 30
 	
 	active if "can exit"
 	button x "_Done"
-		center -155 115
+		center -15 115
 		dimensions 70 30
 	
 	active if "can capture"
 	button c "Attempt _Capture"
-		center -40 115
+		center 95 115
 		dimensions 140 30
 	
 	active if "can attack"
 	button a "_Attack"
-		center 120 185
+		center 260 185
 		dimensions 80 30
 	
 	active if "can defend"
 	button D "_Defend"
-		center 210 185
+		center 350 185
 		dimensions 80 30
 
 
