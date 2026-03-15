@@ -2578,7 +2578,7 @@ interface "info panel"
 	button s
 		center -300 -305
 		dimensions 120 30
-	
+
 	visible
 	button d "_Done"
 		center 455 305
@@ -2662,6 +2662,34 @@ interface "info panel"
 	button v "Sa_ve Order"
 		center -195 305
 		dimensions 90 30
+
+
+
+interface "columns menu"
+	sprite "ui/popup"
+		center 478 -315
+		dimensions 40 40
+	sprite "ui/sort descending"
+		center 478 -315
+		dimensions 15 15
+	button n
+		center 478 -315
+		dimensions 24 24
+
+	visible if "columns menu open"
+	sprite "ui/dialog top"
+		center 380 -280
+	sprite "ui/dialog middle"
+		center 380 -235
+	sprite "ui/dialog middle"
+		center 380 -195
+	sprite "ui/dialog middle"
+		center 380 -155
+	sprite "ui/dialog bottom"
+		center 380 -90
+	button a _Apply
+		center 470 -70
+		dimensions 71 31
 
 
 
