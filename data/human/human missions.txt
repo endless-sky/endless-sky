@@ -2517,6 +2517,142 @@ event "terraforming follow-up"
 
 
 
+mission "Terraforming Field Trip 1"
+	minor
+	name "Field Trip"
+	description "Amy, whom you helped terraform Rand and Tundra, seems to share some of her terraforming philosophy with the Wanderers. Bring her to <destination> to visit them."
+	source "Tundra"
+	destination "Desi Seledrak"
+	passengers 1
+	to offer
+		has "event: terraforming follow-up"
+		has "wanderers sestor done"
+	on offer
+		conversation
+			branch repeat
+				has "terraforming field trip: deferred later"
+			`As you walk through the spaceport, you notice a poster featuring Amy, whom you previously helped terraform this world and Rand. The poster describes that terraforming action, and the long-term goal to restore the warmer climate Tundra had millions of years ago. Amy's work on "equilibrium mapping," the idea that planets naturally "want" to support more complex and varied life, seems similar to the Wanderer philosophy that each planet has its own "will," and that the best way to terraform it is to work with that "will." Amy may be interested in learning about the Wanderers and their techniques. Would you like to find her and tell her about them?`
+			choice
+				`	(Yes.)`
+				`	(Not right now.)`
+					defer
+				`	(No.)`
+					decline
+			`	The poster includes small writing with contact instructions for inquiries about the terraforming process and Tundra's climate. The person you reach first is initially reluctant to put you through to anyone directly involved with the terraforming, but after verifying that you worked with them to get the process started, you are connected to Amy.`
+			`	"I've met aliens with an approach to terraforming that matches your theories from when you were at the Academy of Planetary Sciences," you say. She seems interested in learning more and agrees to meet you in the spaceport bar.`
+			`	Once she arrives, you tell her about the Wanderers: that the work of their civilization is to repair worlds left in ruin by their previous inhabitants. You explain their view that those worlds have their own identities that they must collaborate with in order for terraforming to be successful.`
+			`	She has a slew of questions ranging from how the Wanderers determine a planet's identity to how often asteroids are used in their work. Unfortunately, you are not able to offer much information about the specific details of how the Wanderers go about their terraforming work. Disappointed, but not defeated, Amy asks with renewed eagerness, "Could you take me to visit these aliens?"`
+			`	Now that the Kor Mereti drones are peaceful, and the Kor Sestor drones have been eliminated, there is no longer an immediate threat to the Wanderers, and they will be focused much more on their work to repair the former Korath worlds. They would probably be happy to discuss some of that work with someone as enthused by the prospect as Amy.`
+			choice
+				`	"Alright. I'll prepare a bunk for you."`
+					goto end
+				`	"Sorry, that's too far out of my way."`
+			action
+				set "terraforming field trip: deferred later"
+			`	Amy's disappointment returns, but before leaving, she gives you her contact information, saying, "Well, I'd still love to come along the next time you are traveling that way."`
+				defer
+			label end
+			`	She is delighted and explains that she will meet you at your ship later today, before leaving to attend to her work in preparation for her absence.`
+				accept
+			label repeat
+			`You've returned to Tundra. Amy, the terraforming researcher who wants to visit the Wanderers, works here. Would you like to contact her to offer her the trip now?`
+			choice
+				`	(Yes.)`
+				`	(Not today.)`
+					defer
+				`	(No.)`
+					decline
+			`	You contact Amy with the information she gave you on your previous meeting, telling her you're ready for the journey now.`
+			`	"I just need to tend to a few things here in preparation for my absence, and I'll be at your ship in a few hours," she says.`
+			`	Once she arrives, you show her to her bunk and she settles in for the journey.`
+				accept
+	on complete
+		conversation
+			`As you approach <planet>, Amy is astounded by the magnitude of volcanic ash in the air, far exceeding what was released by the volcano you triggered on Tundra. "This place makes Tundra seem temperate," she remarks after observing the glaciers that occupy most of the planet's polar regions.`
+			`	Her fascination with the state of this world is temporarily forgotten when she exits your ship and sees the Wanderers for the first time. "I don't know what I expected them to be like, but it wasn't birds," she mumbles, staring at them from head to toe. However, she quickly returns to the reason for coming here. "Do you know how we can find someone who can answer my questions?"`
+			`	Approaching one of the nearby Wanderers, you ask if they could direct you to Tema'a Iriket, the terraforming director. While they don't appear to understand the Hai language from your translator, they seem to recognize the name and gesture for you to wait in the spaceport, before flying off into the distance, presumably to fetch Iriket for you.`
+
+
+
+mission "Terraforming Field Trip 2"
+	name "Field Trip"
+	description "Take Tema'a Iriket and Amy to <destination> to show her a world where the Wanderers have finished their work."
+	source "Desi Seledrak"
+	destination "Var' Kayi"
+	passengers 2
+	blocked "You need <capacity> in order to take on this mission."
+	to offer
+		has "Terraforming Field Trip 1: done"
+	on offer
+		conversation
+			`It is not long before Iriket arrives. You introduce Amy to her, and explain why you have brought her here. "I would be [glad, honored] to answer any questions about our work," she agrees.`
+			`	What follows is an extensive discussion about how the Wanderers go about planning the terraforming process for a world. Topics range from the earliest considerations as to what the goal for each planet should be to the role of their artificial minds in helping to monitor and guide the process in the long term. Your translator has some difficulty with the more technical aspects of the discussion, which leads Iriket to rephrase some things many times. Throughout it all, Amy is taking copious notes.`
+			`	Iriket also explains some of what they have been doing to improve the climate on this world. "The gases [released, produced] by the factories will help the atmosphere retain more heat, which will in turn begin to melt the glaciers and return water to the [ecosystem, environment]. Over time, this will [mix, interact] with the abundant ash, helping to [restore, rejuvenate] the soils all over this world. In time, it will become [fruitful, bountiful] again."`
+			`	"Won't that take hundreds or thousands of years?" Amy asks.`
+			`	"Indeed," says Iriket. "But, to attempt to [accelerate, advance] the process by more [direct?] means would [harm, deteriorate] the product. While some worlds may [benefit from, require] a more [extreme, radical] change to begin their restoration, we do not believe it is [necessary, appropriate] here. It is [important, our goal] that a world at the conclusion of our work not only be [pristine, healthy] in that moment, but that it be [sustainable?] without additional [intervention, support]."`
+			`	Eventually, Amy asks, "Are there any worlds where you have completed your work that I could see?" Iriket suggests <destination>, and asks you to take them there.`
+				accept
+
+
+
+mission "Terraforming Field Trip 3"
+	landing
+	name "Field Trip"
+	description "Take Tema'a Iriket and Amy to <destination> to retrieve records of Wanderer terraforming for Amy to study."
+	source "Var' Kayi"
+	destination "Vara K'chrai"
+	passengers 2
+	to offer
+		has "Terraforming Field Trip 2: done"
+	on offer
+		conversation
+			`You fly across large swaths of the planet's surface, giving Amy a view of all the greenery and the oceans here. Meanwhile, Tema'a Iriket describes the condition of this world when the Wanderers first began working on it. "The atmosphere was [close to, nearing] a [runaway, uncontrolled] greenhouse effect. Many species had recently gone extinct, or were very close to it. The oceans were also quite toxic. Now, the atmosphere is [stable, sustainable], and many of the species that were [on the brink?] of extinction now flourish."`
+			`	Amy also explains about her recent experimental terraforming. "We believe the planet used to be temperate, or even tropical millions of years ago. We used an asteroid impact to trigger a supervolcano that was close to eruption. The greenhouse gases from the eruption have already begun to warm the climate."`
+			`	Iriket thinks for a moment before responding. "Using the planet's [features, assets] to restore more habitable conditions is an [admirable?] approach." The approval buoys Amy, but she is somewhat deflated by what comes next. "However, an asteroid would not be our [preferred, first] approach."`
+			`	As you conclude your sightseeing, Tema'a Iriket says your next stop should be <planet>, where she will provide Amy with more detailed records of their terraforming activities than she can provide orally.`
+			`	Once Iriket has returned to her bunk, Amy turns to you and says, "I wonder if any of this would change my professor's mind about the merits of 'anthropomorphizing planets'," before heading to her bunk, too.`
+				accept
+	on complete
+		dialog "When you arrive on <planet>, Tema'a Iriket tells you to meet her in the spaceport in a few hours before heading off to prepare the data for Amy."
+
+
+
+mission "Terraforming Field Trip 4"
+	name "Field Trip"
+	description "Return Amy to <destination> after her trip to meet the Wanderers and learn about how they go about terraforming."
+	source "Vara K'chrai"
+	destination "Tundra"
+	passengers 1
+	to offer
+		has "Terraforming Field Trip 3: done"
+	on offer
+		conversation
+			`Tema'a Iriket meets you in the spaceport and hands Amy a tablet, explaining, "I have stored [records, histories] of over a hundred worlds from our archive here. I hope the translation is [adequate, acceptable]. There has not been much opportunity to test our translation systems for the human language."`
+			`	Amy has already begun browsing the data; Iriket's concerns about the quality of the translation seem to go unheard. "This is incredible. Thank you so much."`
+			`	"Explaining our work to an outsider has been [gratifying, novel]. I must thank you for the opportunity, Captain <last>." Iriket bids you goodbye.`
+			`	Amy returns to her bunk, beginning to organize the notes she has made on this trip. It seems it's time to return her to <planet>.`
+				accept
+	on complete
+		log `Took Amy on a "field trip" to Wanderer space to learn about their approach to terraforming. Tema'a Iriket provided great insight and showed Amy both the Wanderers' ongoing and complete work, as well as providing an extensive library of records that should keep Amy busy for a very long time.`
+		conversation
+			`Most of Amy's time on the return journey was spent with the Wanderer data. Even still, she claims to have barely scratched the surface of what the Wanderers have done.`
+			choice
+				`	"I'll leave you to your work here."`
+					goto done
+				`	"What did you think of the Wanderers?"`
+			`	"Terraforming for the sake of improving ecosystems, providing a place for future inhabitants, whoever they may be, is very different to most of what I saw in the Paradise Worlds," she replies. "Many of the people there are only interested in terraforming for the economic opportunities for themselves, and they have little regard for anything that doesn't directly increase the planet's value for themselves or their clients. Even the gardens or 'natural' areas are artificial; they force the whims and desires of the rich onto nature.`
+			`	"I've heard about a project in the Free Worlds working on affordable terraforming as well. Perhaps we should look into working with them. The Republic might not be too happy about that, though."`
+			choice
+				`	"I'm glad you had a good time."`
+					goto done
+				# TODO: when alternatives to the Free Worlds are available, this will need to be conditional.
+				`	"I actually worked with the founder of the Conservatory. I'm sure I could introduce you."`
+			`	She thanks you for the offer but declines. "You've done more than enough for now. Besides, I'm going to be busy studying for the foreseeable future."`
+			label done
+			`	Amy thanks you for the "field trip" before departing your ship.`
+
+
+
 mission "A wolf, a goat, and a cabbage"
 	job
 	description "Transport a wolf, a goat, and a cabbage to <destination>. Payment will be <payment>."
