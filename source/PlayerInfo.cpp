@@ -577,6 +577,13 @@ void PlayerInfo::Reload()
 
 
 
+bool PlayerInfo::CanReload() const
+{
+	return isDead && (!gamerules.DeleteSavesOnDeath() || !gamerules.DeleteSaveOnTakeoff() || planet);
+}
+
+
+
 // Load the most recently saved player (if any). Returns false when no save was loaded.
 bool PlayerInfo::LoadRecent()
 {
@@ -607,7 +614,7 @@ void PlayerInfo::Save() const
 	// Remember that this was the most recently saved player.
 	Files::Write(Files::Config() / "recent.txt", filePath + '\n');
 
-	if(GameData::GetGamerules().SingleSaveFile() && filePath.rfind(".txt") == filePath.length() - 4)
+	if(gamerules.SingleSaveFile() && filePath.rfind(".txt") == filePath.length() - 4)
 	{
 		// Only update the backups if this save will have a newer date.
 		SavedGame saved(filePath);
@@ -746,7 +753,7 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 {
 	isDead = true;
-	if(GameData::GetGamerules().Permadeath())
+	if(gamerules.DeleteSavesOnDeath())
 		DeleteAllSaves();
 	// The player loses access to all their ships if they die on a planet.
 	if(GetPlanet() || !flagship)
@@ -4679,7 +4686,7 @@ bool PlayerInfo::RecacheJumpRoutes()
 
 void PlayerInfo::Autosave() const
 {
-	if(!CanBeSaved() || filePath.length() < 4 || GameData::GetGamerules().SingleSaveFile())
+	if(!CanBeSaved() || filePath.length() < 4 || gamerules.SingleSaveFile())
 		return;
 
 	string path = filePath.substr(0, filePath.length() - 4) + "~autosave.txt";

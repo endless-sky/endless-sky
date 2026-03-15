@@ -34,7 +34,7 @@
 	"disabled fighters avoid projectiles" "all"
 	"universal ammo restocking" true
 	
-	"permadeath" false
+	"delete saves on death" false
 	"single save file" false
 	"restricted save loading" false
 	"delete save on takeoff" false

@@ -61,7 +61,7 @@ namespace {
 	const string LOCK_GAMERULES = "Lock gamerules";
 	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
 	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
-	const string PERMADEATH = "Delete saves on death";
+	const string DELETE_SAVES_ON_DEATH = "Delete saves on death";
 	const string SINGLE_SAVE_FILE = "Single save file";
 	const string RESTRICTED_SAVE_LOADING = "Restricted save loading";
 	const string DELETE_SAVE_ON_TAKEOFF = "Delete save on takeoff";
@@ -84,7 +84,7 @@ namespace {
 		{LOCK_GAMERULES, "lock gamerules"},
 		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
 		{UNIVERSAL_AMMO_STOCKING, AMMO_RESTOCKING_NAME},
-		{PERMADEATH, "permadeath"},
+		{DELETE_SAVES_ON_DEATH, "delete saves on death"},
 		{SINGLE_SAVE_FILE, "single save file"},
 		{RESTRICTED_SAVE_LOADING, "restricted save loading"},
 		{DELETE_SAVE_ON_TAKEOFF, "delete save on takeoff"},
@@ -398,7 +398,7 @@ void GamerulesPanel::DrawGamerules()
 		FLEET_MULTIPLIER,
 		"",
 		"Hardcore Settings",
-		PERMADEATH,
+		DELETE_SAVES_ON_DEATH,
 		SINGLE_SAVE_FILE,
 		RESTRICTED_SAVE_LOADING,
 		DELETE_SAVE_ON_TAKEOFF,
@@ -504,8 +504,8 @@ void GamerulesPanel::DrawGamerules()
 		}
 		else if(gamerule == UNIVERSAL_AMMO_STOCKING)
 			text = gamerules.GetValue(AMMO_RESTOCKING_NAME) ? "true" : "false";
-		else if(gamerule == PERMADEATH)
-			text = gamerules.Permadeath() ? "true" : "false";
+		else if(gamerule == DELETE_SAVES_ON_DEATH)
+			text = gamerules.DeleteSavesOnDeath() ? "true" : "false";
 		else if(gamerule == SINGLE_SAVE_FILE)
 			text = gamerules.SingleSaveFile() ? "true" : "false";
 		else if(gamerule == RESTRICTED_SAVE_LOADING)
@@ -839,8 +839,8 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 	}
 	else if(str == UNIVERSAL_AMMO_STOCKING)
 		gamerules.SetMiscValue(AMMO_RESTOCKING_NAME, !gamerules.GetValue(AMMO_RESTOCKING_NAME));
-	else if(str == PERMADEATH)
-		gamerules.SetPermadeath(!gamerules.Permadeath());
+	else if(str == DELETE_SAVES_ON_DEATH)
+		gamerules.SetDeleteSavesOnDeath(!gamerules.DeleteSavesOnDeath());
 	else if(str == SINGLE_SAVE_FILE)
 	{
 		gamerules.SetSingleSaveFile(!gamerules.SingleSaveFile());

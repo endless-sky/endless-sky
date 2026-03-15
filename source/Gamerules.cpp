@@ -89,8 +89,8 @@ void Gamerules::Load(const DataNode &node)
 		}
 		else if(key == "fleet multiplier")
 			storage.fleetMultiplier = max<double>(0., child.Value(1));
-		else if(key == "permadeath")
-			storage.permadeath = child.BoolValue(1);
+		else if(key == "delete saves on death")
+			storage.deleteSavesOnDeath = child.BoolValue(1);
 		else if(key == "single save file")
 			storage.singleSaveFile = child.BoolValue(1);
 		else if(key == "restricted save loading")
@@ -149,8 +149,8 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 		}
 		if(storage.fleetMultiplier != preset.storage.fleetMultiplier)
 			out.Write("fleet multiplier", storage.fleetMultiplier);
-		if(storage.permadeath != preset.storage.permadeath)
-			out.Write("permadeath", storage.permadeath ? 1 : 0);
+		if(storage.deleteSavesOnDeath != preset.storage.deleteSavesOnDeath)
+			out.Write("delete saves on death", storage.deleteSavesOnDeath ? 1 : 0);
 		if(storage.singleSaveFile != preset.storage.singleSaveFile)
 			out.Write("single save file", storage.singleSaveFile ? 1 : 0);
 		if(storage.restrictedSaveLoading != preset.storage.restrictedSaveLoading)
@@ -209,8 +209,8 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.systemArrivalMin = preset.storage.systemArrivalMin;
 	else if(rule == "fleet multiplier")
 		storage.fleetMultiplier = preset.storage.fleetMultiplier;
-	else if(rule == "permadeath")
-		storage.permadeath = preset.storage.permadeath;
+	else if(rule == "delete saves on death")
+		storage.deleteSavesOnDeath = preset.storage.deleteSavesOnDeath;
 	else if(rule == "single save file")
 		storage.singleSaveFile = preset.storage.singleSaveFile;
 	else if(rule == "restricted save loading")
@@ -346,9 +346,9 @@ void Gamerules::SetFleetMultiplier(double value)
 
 
 
-void Gamerules::SetPermadeath(bool value)
+void Gamerules::SetDeleteSavesOnDeath(bool value)
 {
-	storage.permadeath = value;
+	storage.deleteSavesOnDeath = value;
 }
 
 
@@ -411,8 +411,8 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.systemArrivalMin.value_or(0.) * 1000;
 	if(rule == "fleet multiplier")
 		return storage.fleetMultiplier * 1000;
-	if(rule == "permadeath")
-		return storage.permadeath;
+	if(rule == "delete saves on death")
+		return storage.deleteSavesOnDeath;
 	if(rule == "single save file")
 		return storage.singleSaveFile;
 	if(rule == "restricted save loading")
@@ -526,9 +526,9 @@ double Gamerules::FleetMultiplier() const
 
 
 
-bool Gamerules::Permadeath() const
+bool Gamerules::DeleteSavesOnDeath() const
 {
-	return storage.permadeath;
+	return storage.deleteSavesOnDeath;
 }
 
 

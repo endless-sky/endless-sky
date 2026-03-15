@@ -71,7 +71,7 @@ public:
 	void SetSystemDepartureMin(double value);
 	void SetSystemArrivalMin(std::optional<double> value);
 	void SetFleetMultiplier(double value);
-	void SetPermadeath(bool value);
+	void SetDeleteSavesOnDeath(bool value);
 	void SetSingleSaveFile(bool value);
 	void SetRestrictedSaveLoading(bool value);
 	void SetDeleteSaveOnTakeoff(bool value);
@@ -93,7 +93,7 @@ public:
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
 	double FleetMultiplier() const;
-	bool Permadeath() const;
+	bool DeleteSavesOnDeath() const;
 	bool SingleSaveFile() const;
 	bool RestrictedSaveLoading() const;
 	bool DeleteSaveOnTakeoff() const;
@@ -123,7 +123,7 @@ private:
 		double systemDepartureMin = 0.;
 		std::optional<double> systemArrivalMin;
 		double fleetMultiplier = 1.;
-		bool permadeath = false;
+		bool deleteSavesOnDeath = false;
 		bool singleSaveFile = false;
 		bool restrictedSaveLoading = false;
 		bool deleteSaveOnTakeoff = false;
