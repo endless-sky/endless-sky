@@ -33,3 +33,8 @@
 	"lock gamerules" true
 	"disabled fighters avoid projectiles" "all"
 	"universal ammo restocking" true
+	
+	"delete saves on death" false
+	"single save file" false
+	"restricted save loading" false
+	"delete save on takeoff" false

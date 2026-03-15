@@ -34,7 +34,7 @@ public:
 	{
 		NONE = 0,
 		ONLY_PLAYER = 1,
-		ALL = 2
+		ALL = 2,
 	};
 
 
@@ -71,6 +71,10 @@ public:
 	void SetSystemDepartureMin(double value);
 	void SetSystemArrivalMin(std::optional<double> value);
 	void SetFleetMultiplier(double value);
+	void SetDeleteSavesOnDeath(bool value);
+	void SetSingleSaveFile(bool value);
+	void SetRestrictedSaveLoading(bool value);
+	void SetDeleteSaveOnTakeoff(bool value);
 	void SetMiscValue(const std::string &rule, int value);
 
 	int GetValue(const std::string &rule) const;
@@ -89,6 +93,10 @@ public:
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
 	double FleetMultiplier() const;
+	bool DeleteSavesOnDeath() const;
+	bool SingleSaveFile() const;
+	bool RestrictedSaveLoading() const;
+	bool DeleteSaveOnTakeoff() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -115,6 +123,10 @@ private:
 		double systemDepartureMin = 0.;
 		std::optional<double> systemArrivalMin;
 		double fleetMultiplier = 1.;
+		bool deleteSavesOnDeath = false;
+		bool singleSaveFile = false;
+		bool restrictedSaveLoading = false;
+		bool deleteSaveOnTakeoff = false;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;

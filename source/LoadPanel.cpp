@@ -73,6 +73,62 @@ namespace {
 			}
 		return date;
 	}
+
+	void GetSaveFiles(map<string, vector<pair<string, filesystem::file_time_type>>> &files)
+	{
+		vector<filesystem::path> fileList = Files::List(Files::Saves());
+		for(const auto &path : fileList)
+		{
+			// Skip any files that aren't text files.
+			if(path.extension() != ".txt")
+				continue;
+
+			string fileName = Files::Name(path);
+			// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
+			size_t pos = fileName.find('~');
+			const bool isSnapshot = (pos != string::npos);
+			if(!isSnapshot)
+				pos = fileName.size() - 4;
+
+			string pilotName = fileName.substr(0, pos);
+			auto &savesList = files[pilotName];
+			savesList.emplace_back(fileName, Files::Timestamp(path));
+			// Ensure that the main save for this pilot, not a snapshot, is first in the list.
+			if(!isSnapshot)
+				swap(savesList.front(), savesList.back());
+		}
+
+		for(auto &it : files)
+		{
+			// Don't include the first item in the sort if this pilot has a non-snapshot save.
+			auto start = it.second.begin();
+			if(start->first.find('~') == string::npos)
+				++start;
+			sort(start, it.second.end(),
+				[](const pair<string, filesystem::file_time_type> &a, const pair<string, filesystem::file_time_type> &b) -> bool
+				{
+					return a.second > b.second || (a.second == b.second && a.first < b.first);
+				}
+			);
+		}
+	}
+}
+
+
+
+std::vector<std::string> LoadPanel::GetPlayerSaves(const std::string &playerName)
+{
+	vector<string> saveFiles;
+	std::map<std::string, std::vector<std::pair<std::string, std::filesystem::file_time_type>>> files;
+	GetSaveFiles(files);
+
+	auto it = files.find(playerName);
+	if(it == files.end())
+		return saveFiles;
+
+	for(const auto &fit : it->second)
+		saveFiles.push_back(fit.first);
+	return saveFiles;
 }
 
 
@@ -126,7 +182,11 @@ void LoadPanel::Draw()
 	if(!selectedPilot.empty())
 		info.SetCondition("pilot selected");
 	if(!player.IsDead() && player.IsLoaded() && !selectedPilot.empty())
+	{
 		info.SetCondition("pilot alive");
+		if(!GameData::GetGamerules().SingleSaveFile())
+			info.SetCondition("can add snapshot");
+	}
 	if(selectedFile.find('~') != string::npos)
 		info.SetCondition("snapshot selected");
 	if(loadedInfo.IsLoaded())
@@ -260,7 +320,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
 				+ "Confirm the name of the pilot you want to delete."));
 	}
-	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
+	else if(key == 'a' && !player.IsDead() && player.IsLoaded() && !GameData::GetGamerules().SingleSaveFile())
 	{
 		auto it = files.find(selectedPilot);
 		if(it == files.end() || it->second.empty() || it->second.front().first.size() < 4)
@@ -286,7 +346,25 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		// Is the selected file a snapshot or the pilot's main file?
 		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
-		if(fileName == selectedPilot + ".txt")
+		// Determine if the player is capable of loading another save file or should be warned for doing so
+		// if the currently loaded pilot is playing with hardcore settings.
+		bool isActive = !player.IsDead() && player.IsLoaded() && !player.GetPlanet();
+
+		if(isActive && GameData::GetGamerules().RestrictedSaveLoading())
+		{
+			sound = UI::UISound::NONE;
+			GetUI().Push(DialogPanel::Info("The pilot you currently have loaded is playing with restricted save "
+				"loading. You cannot load another save unless you are landed."));
+		}
+		else if(isActive && GameData::GetGamerules().DeleteSaveOnTakeoff())
+		{
+			sound = UI::UISound::NONE;
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &LoadPanel::LoadCallback,
+				"The pilot you currently have loaded is playing with the \"delete save on takeoff\" gamerule. "
+				"If you load this save file while the current pilot is not landed, you will not be"
+				"able to return to it. Are you sure you want to do that?"));
+		}
+		else if(fileName == selectedPilot + ".txt")
 			LoadCallback();
 		else
 		{
@@ -481,42 +559,7 @@ bool LoadPanel::Scroll(double dx, double dy)
 void LoadPanel::UpdateLists()
 {
 	files.clear();
-
-	vector<filesystem::path> fileList = Files::List(Files::Saves());
-	for(const auto &path : fileList)
-	{
-		// Skip any files that aren't text files.
-		if(path.extension() != ".txt")
-			continue;
-
-		string fileName = Files::Name(path);
-		// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
-		size_t pos = fileName.find('~');
-		const bool isSnapshot = (pos != string::npos);
-		if(!isSnapshot)
-			pos = fileName.size() - 4;
-
-		string pilotName = fileName.substr(0, pos);
-		auto &savesList = files[pilotName];
-		savesList.emplace_back(fileName, Files::Timestamp(path));
-		// Ensure that the main save for this pilot, not a snapshot, is first in the list.
-		if(!isSnapshot)
-			swap(savesList.front(), savesList.back());
-	}
-
-	for(auto &it : files)
-	{
-		// Don't include the first item in the sort if this pilot has a non-snapshot save.
-		auto start = it.second.begin();
-		if(start->first.find('~') == string::npos)
-			++start;
-		sort(start, it.second.end(),
-			[](const pair<string, filesystem::file_time_type> &a, const pair<string, filesystem::file_time_type> &b) -> bool
-			{
-				return a.second > b.second || (a.second == b.second && a.first < b.first);
-			}
-		);
-	}
+	GetSaveFiles(files);
 
 	if(!files.empty())
 	{
