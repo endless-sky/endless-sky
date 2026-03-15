@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "FormationPattern.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "JumpType.h"
 #include "Logger.h"
@@ -1369,7 +1370,7 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
 			checks.emplace_back("reverse only?");
-		if(energy <= battery)
+		if(energy <= battery && !canBeCarried)
 			checks.emplace_back("battery only?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
@@ -1395,6 +1396,9 @@ vector<string> Ship::FlightCheck() const
 				break;
 			}
 		}
+		if(canBeCarried && GetSecondsToEmpty() < 10.
+				&& (attributes.Get("energy capacity") / max(0.0001, GetIdleEnergyPerFrame() * 60.)) > 10.)
+			checks.emplace_back("low battery?");
 	}
 
 	return checks;
@@ -1788,14 +1792,27 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 				if(maxFuel)
 				{
 					double spareFuel = fuel - navigation.JumpFuel();
-					if(spareFuel > 0.)
-						TransferFuel(spareFuel, bay.ship.get());
-					// If still low or out-of-fuel, re-stock the carrier and don't
-					// launch, except if some ammo was taken (since we can fight).
-					if(!tookAmmo && bay.ship->fuel < .25 * maxFuel)
+					bool isRamscoopFighter = bay.ship->Attributes().Get("ramscoop") >= 1.;
+					bool fleetLogistics = isYours && Preferences::Has("Fighter fleet logistics");
+					if(fleetLogistics && isRamscoopFighter)
 					{
-						TransferFuel(bay.ship->fuel, this);
-						continue;
+						// Ramscoop fighters deploy empty so they collect fuel via
+						// ramscoop rather than shuttling the carrier's own reserves.
+						// Deposit any existing fuel back into the carrier.
+						if(bay.ship->fuel > 0.)
+							TransferFuel(bay.ship->fuel, this);
+					}
+					else
+					{
+						if(spareFuel > 0.)
+							TransferFuel(spareFuel, bay.ship.get());
+						// If still low or out-of-fuel, re-stock the carrier and don't
+						// launch, except if some ammo was taken (since we can fight).
+						if(!tookAmmo && bay.ship->fuel < .25 * maxFuel)
+						{
+							TransferFuel(bay.ship->fuel, this);
+							continue;
+						}
 					}
 				}
 			}
@@ -1851,14 +1868,37 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	{
 		SetShipToAssist(weak_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
+		if(attributes.Get("cannot repair other"))
+			return victim;
 		bool helped = victim->isDisabled;
 		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->MaxHull());
 		victim->isDisabled = false;
-		// Transfer some fuel if needed.
-		if(victim->NeedsFuel() && CanRefuel(*victim))
+		// Transfer fuel based on the fleet's tiered refueling priority.
+		// In the one-jump phase, only give enough for one jump. In the
+		// full-fuel phase, transfer all available fuel. Ramscoop fighters
+		// collect their own fuel and should not be refueled by the fleet.
+		bool fleetLogistics = isYours && Preferences::Has("Fighter fleet logistics");
+		bool isRamscoopFighter = victim->CanBeCarried()
+				&& victim->Attributes().Get("ramscoop") >= 1.;
+		bool inOneJumpPhase = false;
+		if(fleetLogistics)
+		{
+			auto parentPtr = GetParent();
+			const Ship *fleetLeader = parentPtr ? parentPtr.get() : this;
+			inOneJumpPhase = !fleetLeader->PlayerEscortsHaveOneJump()
+					|| !fleetLeader->NpcEscortsHaveOneJump()
+					|| (!fleetLeader->IsTankerCarrier() && fleetLeader->NeedsFuel());
+		}
+		bool shouldRefuelToFull = fleetLogistics && !inOneJumpPhase
+				&& CanRefuel(*victim) && !isRamscoopFighter;
+		if(!victim->JumpsRemaining() || shouldRefuelToFull)
 		{
 			helped = true;
-			double fuelTransferred = TransferFuel(victim->JumpFuelMissing(), victim.get());
+			double fuelTransferred = 0.;
+			if(victim->JumpFuelMissing())
+				fuelTransferred = TransferFuel(victim->JumpFuelMissing(), victim.get());
+			else if(!inOneJumpPhase)
+				fuelTransferred = TransferFuel(fuel, victim.get());
 			if(fuelTransferred >= 1.)
 			{
 				if(isYours)
@@ -3014,6 +3054,240 @@ bool Ship::NeedsEnergy() const
 {
 	return attributes.Get("energy capacity") && !energy && !attributes.Get("energy generation")
 			&& !attributes.Get("fuel energy") && !attributes.Get("solar collection");
+}
+
+
+
+bool Ship::MayRequestHelp() const
+{
+	return NeedsFuel() || NeedsEnergy() || IsDisabled();
+}
+
+
+
+double Ship::GetIdleEnergyPerFrame() const
+{
+	return attributes.Get("energy generation") - attributes.Get("energy consumption")
+		+ attributes.Get("fuel energy") + attributes.Get("solar collection");
+}
+
+
+
+double Ship::GetSecondsToEmpty() const
+{
+	double idleEnergy = GetIdleEnergyPerFrame();
+	if(idleEnergy >= 0.)
+		return 1e6;
+	return energy / max(0.0001, -idleEnergy) / 60.;
+}
+
+
+
+bool Ship::IsEnergyLow() const
+{
+	static const double LOW_OPERATING_TIME = 10.;
+	return canBeCarried && GetSecondsToEmpty() < LOW_OPERATING_TIME;
+}
+
+
+
+bool Ship::IsArmed(bool includeAntiMissile) const
+{
+	for(const Hardpoint &hardpoint : Weapons())
+	{
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(!weapon)
+			continue;
+		if(hardpoint.IsSpecial())
+		{
+			if(includeAntiMissile && weapon->AntiMissile())
+				return true;
+			continue;
+		}
+		const Outfit *ammo = weapon->Ammo();
+		if(ammo && !OutfitCount(ammo))
+			continue;
+		return true;
+	}
+	return false;
+}
+
+
+
+bool Ship::HasFlameWeapon() const
+{
+	for(const Hardpoint &hardpoint : Weapons())
+	{
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(weapon && weapon->ConsumesFuel())
+			return true;
+	}
+	return false;
+}
+
+
+
+bool Ship::IsEnemyInEscortSystem() const
+{
+	return isEnemyInEscortSystem;
+}
+
+
+
+void Ship::SetEnemyInEscortSystem(bool hasEnemy)
+{
+	isEnemyInEscortSystem = hasEnemy;
+}
+
+
+
+void Ship::UpdateEscortsFuelState(const shared_ptr<Ship> &flagship)
+{
+	bool playerOneJump = true;
+	bool npcOneJump = true;
+	bool playerFull = true;
+	bool npcFull = true;
+	bool needRefuelNpc = false;
+	bool carriersNeedFuel = false;
+
+	for(const weak_ptr<Ship> &escortPtr : escorts)
+	{
+		shared_ptr<Ship> escort = escortPtr.lock();
+		if(!escort || escort->GetSystem() != GetSystem() || escort->IsDisabled())
+			continue;
+
+		// Fighters are fuel collectors, not consumers in the priority system.
+		if(escort->CanBeCarried())
+			continue;
+
+		double fuelCap = escort->attributes.Get("fuel capacity");
+		if(fuelCap <= 0.)
+			continue;
+
+		double jumpFuel = escort->navigation.JumpFuel(escort->GetTargetSystem());
+		bool needsOneJump = (jumpFuel > 0. && escort->fuel < jumpFuel);
+		bool needsMoreFuel = (escort->fuel < fuelCap - .01);
+
+		if(escort->IsYours())
+		{
+			if(needsOneJump)
+				playerOneJump = false;
+			if(needsMoreFuel)
+				playerFull = false;
+		}
+		else
+		{
+			if(needsOneJump)
+				npcOneJump = false;
+			if(needsMoreFuel)
+			{
+				npcFull = false;
+				needRefuelNpc = true;
+			}
+		}
+
+		if(needsMoreFuel && escort->HasBays())
+			carriersNeedFuel = true;
+	}
+
+	playerEscortsHaveOneJump = playerOneJump;
+	npcEscortsHaveOneJump = npcOneJump;
+	playerEscortsFullFuel = playerFull;
+	npcEscortsFullFuel = npcFull;
+	escortsHaveOneJump = playerOneJump && npcOneJump;
+	isEscortsFullOfFuel = playerFull && npcFull;
+	refuelMissionNpcEscort = needRefuelNpc;
+	otherCarriersNeedFuel = carriersNeedFuel;
+
+	// Detect if this ship is a tanker carrier: has bays, fleet logistics enabled,
+	// and at least one carried or deployed fighter with ramscoop and fuel capacity.
+	bool isTanker = false;
+	if(HasBays() && Preferences::Has("Fighter fleet logistics"))
+	{
+		for(const Bay &bay : bays)
+			if(bay.ship && bay.ship->attributes.Get("ramscoop") >= 1.
+					&& bay.ship->attributes.Get("fuel capacity") > 0.)
+			{
+				isTanker = true;
+				break;
+			}
+		if(!isTanker)
+			for(const weak_ptr<Ship> &escortPtr : escorts)
+			{
+				shared_ptr<Ship> escort = escortPtr.lock();
+				if(escort && escort->CanBeCarried()
+						&& escort->attributes.Get("ramscoop") >= 1.
+						&& escort->attributes.Get("fuel capacity") > 0.)
+				{
+					isTanker = true;
+					break;
+				}
+			}
+	}
+	flagshipIsTankerCarrier = isTanker;
+}
+
+
+
+bool Ship::EscortsHaveOneJump() const
+{
+	return escortsHaveOneJump;
+}
+
+
+
+bool Ship::IsEscortsFullOfFuel() const
+{
+	return isEscortsFullOfFuel;
+}
+
+
+
+bool Ship::ShouldRefuelMissionNpcEscort() const
+{
+	return refuelMissionNpcEscort;
+}
+
+
+
+bool Ship::PlayerEscortsHaveOneJump() const
+{
+	return playerEscortsHaveOneJump;
+}
+
+
+
+bool Ship::NpcEscortsHaveOneJump() const
+{
+	return npcEscortsHaveOneJump;
+}
+
+
+
+bool Ship::PlayerEscortsFullFuel() const
+{
+	return playerEscortsFullFuel;
+}
+
+
+
+bool Ship::NpcEscortsFullFuel() const
+{
+	return npcEscortsFullFuel;
+}
+
+
+
+bool Ship::IsTankerCarrier() const
+{
+	return flagshipIsTankerCarrier;
+}
+
+
+
+bool Ship::OtherCarriersNeedFuel() const
+{
+	return otherCarriersNeedFuel;
 }
 
 
@@ -4458,6 +4732,13 @@ void Ship::DoGeneration()
 	hull = min(hull, maxHull);
 
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
+
+	// Battery-powered fighters become disabled when energy is fully depleted
+	// and they have no way to self-recharge. They recover once recharged.
+	if(!isDisabled && canBeCarried && energy <= 0.
+			&& attributes.Get("energy capacity") > 0.
+			&& GetIdleEnergyPerFrame() <= 0.)
+		isDisabled = true;
 
 	// Update ship supply levels.
 	if(isDisabled)

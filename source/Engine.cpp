@@ -1998,7 +1998,10 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// Boarding:
 	bool autoPlunder = !ship->IsYours();
 	// The player should not become a docked passenger on some other ship, but AI ships may.
-	shared_ptr<Ship> victim = ship->Board(autoPlunder, isFlagship);
+	// When a carried ship is assisting another ship (e.g. refueling an escort),
+	// it should board for assistance rather than dock into the victim's bays.
+	bool nonDocking = isFlagship || (ship->CanBeCarried() && ship->GetShipToAssist());
+	shared_ptr<Ship> victim = ship->Board(autoPlunder, nonDocking);
 	if(victim)
 		eventQueue.emplace_back(ship, victim,
 			ship->GetGovernment()->IsEnemy(victim->GetGovernment()) ?
