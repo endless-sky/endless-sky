@@ -107,11 +107,11 @@ const filesystem::path &SavedGame::Path() const
 
 string SavedGame::Identifier() const
 {
-	string name = Files::Name(path);
+	string name = Files::NameNoExtension(path);
 	size_t pos = name.find('~');
 	if(pos != string::npos)
-		name = name.substr(0, pos) + ".txt";
-	return (name.length() < 4) ? "" : name.substr(0, name.length() - 4);
+		return name.substr(0, pos);
+	return name;
 }
 
 

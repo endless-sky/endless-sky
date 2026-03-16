@@ -401,6 +401,14 @@ string Files::Name(const filesystem::path &path)
 
 
 
+std::string Files::NameNoExtension(const std::filesystem::path &path)
+{
+	string name = path.filename().string();
+	return name.substr(0, name.length() - path.extension().string().length());
+}
+
+
+
 bool Files::IsParent(const filesystem::path &parent, const filesystem::path &child)
 {
 	if(distance(child.begin(), child.end()) < distance(parent.begin(), parent.end()))

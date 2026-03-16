@@ -48,8 +48,7 @@ void PilotProfile::LoadProfiles()
 		if(path.extension() != ".txt")
 			continue;
 
-		string fileName = Files::Name(path);
-		string pilotName = fileName.substr(0, fileName.length() - 4);
+		string pilotName = Files::NameNoExtension(path);
 		GetProfile(pilotName)->Load();
 	}
 
@@ -284,8 +283,7 @@ const string &PilotProfile::Path() const
 
 string PilotProfile::Identifier() const
 {
-	string name = Files::Name(filePath);
-	return (name.length() < 4) ? "" : name.substr(0, name.length() - 4);
+	return Files::NameNoExtension(filePath);
 }
 
 

@@ -587,7 +587,8 @@ bool PlayerInfo::LoadRecent()
 		return false;
 	}
 
-	Load(recentPath, PilotProfile::GetProfile(recentPath));
+	string identifier = Files::NameNoExtension(recentPath);
+	Load(recentPath, PilotProfile::GetProfile(identifier));
 	return true;
 }
 
@@ -648,8 +649,7 @@ shared_ptr<PilotProfile> &PlayerInfo::Pilot()
 // exist with the same name, in which case a number is appended.
 string PlayerInfo::Identifier() const
 {
-	string name = Files::Name(filePath);
-	return (name.length() < 4) ? "" : name.substr(0, name.length() - 4);
+	return Files::NameNoExtension(filePath);
 }
 
 
