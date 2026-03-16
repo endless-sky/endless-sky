@@ -39,6 +39,7 @@ public:
 	static const std::filesystem::path &Images();
 	static const std::filesystem::path &Sounds();
 	static const std::filesystem::path &Saves();
+	static const std::filesystem::path &Profiles();
 	static const std::filesystem::path &UserPlugins();
 	static const std::filesystem::path &GlobalPlugins();
 	static const std::filesystem::path &Tests();

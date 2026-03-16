@@ -28,6 +28,7 @@ class DataNode;
 class DataWriter;
 class PlayerInfo;
 class StartConditions;
+class UI;
 
 
 
@@ -36,17 +37,24 @@ class StartConditions;
 // storage of information across all save files for the same pilot.
 class PilotProfile {
 public:
-	// Read the save file directory to look for all .ess files that contain pilot profiles.
+	// Read the profiles and saves directories to construct all known PilotProfiles.
 	static void LoadProfiles();
 	static std::vector<std::shared_ptr<PilotProfile>> &GetProfiles();
-	static std::map<std::string, std::shared_ptr<PilotProfile>> GetProfileMap();
+	// Get a map of identifier to pilot profile, optionally excluding pilots with no save files.
+	static std::map<std::string, std::shared_ptr<PilotProfile>> GetProfileMap(bool excludeEmpty = true);
 	// Get the profile with the given identifier. If no profile exists, a new one will be made
-	// The caller must check IsLoaded and call Load on unloaded profiles to provide them with
-	// their file path if they are new.
+	// The caller must check IsLoaded and call Load on unloaded profiles.
 	static std::shared_ptr<PilotProfile> &GetProfile(const std::string &identifier);
-	// Create a new profile for a fresh player. That player must set the file path of the profile
-	// after being named.
+	// Create a new profile for a fresh player. That player must set the identifier of the profile
+	// after the player has been named.
 	static std::shared_ptr<PilotProfile> &NewProfile();
+	// Given a pilot's name, return the identifier that should be used for its save files.
+	// If there are multiple pilots with the same name, append a number to the
+	// pilot name to generate a unique file name.
+	static std::string GetIdentifier(const std::string &pilotName);
+	// Delete the given pilot profile, deleting all its associated files and removing it from the
+	// list of known profiles. If the UI is provided, inform the player if save file deletion failed.
+	static void DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI *ui);
 
 
 public:
@@ -60,17 +68,16 @@ public:
 
 	// Make a new pilot.
 	void New(const Gamerules &gamerules);
-	// Load an existing pilot.
-	void Load(const std::filesystem::path &path);
+	// Load an existing pilot. The pilot's identifier must have been set before this can be called,
+	// as the identifier is what determines the file path to the pilot profile.
+	void Load();
 	bool IsLoaded() const;
 	// Save this pilot's shared information. (Saving individual save files is done through PlayerInfo.)
 	void Save();
-	// Delete this pilot's shared information. (Deleting individual save files is done through LoadPanel.)
-	void Delete();
 
 	const std::string &Path() const;
-	void SetPath(const std::filesystem::path &path);
 	std::string Identifier() const;
+	void SetIdentifier(const std::string &pilotName);
 
 	// Get the individual save files of this pilot.
 	std::vector<std::pair<std::string, std::filesystem::file_time_type>> &Files();
@@ -82,6 +89,7 @@ public:
 	// The gamerules that this pilot plays by.
 	Gamerules &GetGamerules();
 	const Gamerules &GetGamerules() const;
+	// Update GameData to use the gamerules from this pilot.
 	void ApplyGamerules() const;
 
 

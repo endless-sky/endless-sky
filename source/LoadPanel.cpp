@@ -580,17 +580,8 @@ void LoadPanel::DeletePilot(const string &)
 	if(!selectedPilot)
 		return;
 
-	bool failed = false;
-	for(const auto &file : selectedPilot->Files() | views::keys)
-	{
-		filesystem::path path = Files::Saves() / file;
-		Files::Delete(path);
-		failed |= Files::Exists(path);
-	}
-	if(failed)
-		GetUI().Push(DialogPanel::Info("Deleting pilot files failed."));
-
 	sideHasFocus = true;
+	PilotProfile::DeleteProfile(selectedPilot, &GetUI());
 	selectedPilot.reset();
 	selectedFile.clear();
 	UpdateLists();

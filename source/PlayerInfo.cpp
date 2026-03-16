@@ -277,7 +277,7 @@ void PlayerInfo::Load(const filesystem::path &path, shared_ptr<PilotProfile> &pi
 	// Make sure any previously loaded data is cleared.
 	Clear();
 	this->pilot = pilot;
-	this->pilot->Load(path);
+	this->pilot->Load();
 
 	// A listing of missions and the ships where their cargo or passengers were when the game was saved.
 	// Missions and ships are referred to by string UUIDs.
@@ -603,7 +603,7 @@ void PlayerInfo::Save() const
 	// Remember that this was the most recently saved player.
 	Files::Write(Files::Config() / "recent.txt", filePath + '\n');
 
-	if(filePath.rfind(".txt") == filePath.length() - 4)
+	if(filePath.ends_with(".txt"))
 	{
 		// Only update the backups if this save will have a newer date.
 		SavedGame saved(filePath);
@@ -826,26 +826,9 @@ void PlayerInfo::SetName(const string &first, const string &last)
 	originalFirstName = firstName;
 	originalLastName = lastName;
 
-	string fileName = first + " " + last;
-
-	// If there are multiple pilots with the same name, append a number to the
-	// pilot name to generate a unique file name.
-	filePath = (Files::Saves() / fileName).string();
-	int index = 0;
-	while(true)
-	{
-		string path = filePath;
-		if(index++)
-			path += " " + to_string(index);
-		path += ".txt";
-
-		if(!Files::Exists(path))
-		{
-			filePath.swap(path);
-			break;
-		}
-	}
-	pilot->SetPath(filePath);
+	string identifier = PilotProfile::GetIdentifier(first + " " + last);
+	filePath = (Files::Saves() / (identifier + ".txt")).string();
+	pilot->SetIdentifier(identifier);
 }
 
 

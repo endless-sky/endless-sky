@@ -18,9 +18,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "DialogPanel.h"
 #include "Files.h"
 #include "GameData.h"
 #include "PlayerInfo.h"
+#include "UI.h"
+
+#include <cassert>
+#include <ranges>
 
 using namespace std;
 
@@ -35,6 +40,18 @@ void PilotProfile::LoadProfiles()
 	// Clear all existing save file memory from the pilot profiles.
 	for(auto &pilot : pilots)
 		pilot->Files().clear();
+
+	// Look for all existing pilot profiles.
+	for(const filesystem::path &path : Files::List(Files::Profiles()))
+	{
+		// Skip any files that aren't text files.
+		if(path.extension() != ".txt")
+			continue;
+
+		string fileName = Files::Name(path);
+		string pilotName = fileName.substr(0, fileName.length() - 4);
+		GetProfile(pilotName)->Load();
+	}
 
 	// Look at all the existing save files and assign them to the appropriate pilot.
 	for(const filesystem::path &path : Files::List(Files::Saves()))
@@ -53,8 +70,10 @@ void PilotProfile::LoadProfiles()
 		string pilotName = fileName.substr(0, pos);
 		shared_ptr<PilotProfile> &pilot = GetProfile(pilotName);
 		// If this pilot profile hasn't been seen before, load it.
-		if(!pilot->IsLoaded())
-			pilot->Load(path);
+		// We need to do this again here since save files may exist that
+		// didn't have a corresponding pilot file, in which case GetProfile
+		// will return a new pilot.
+		pilot->Load();
 		auto &savesList = pilot->Files();
 		savesList.emplace_back(fileName, Files::Timestamp(path));
 		// Ensure that the main save for this pilot, not a snapshot, is first in the list.
@@ -62,23 +81,12 @@ void PilotProfile::LoadProfiles()
 			swap(savesList.front(), savesList.back());
 	}
 
-	// Discard any profiles that no longer have an associated save file.
-	for(auto it = pilots.begin(); it != pilots.end(); )
-	{
-		shared_ptr<PilotProfile> &profile = *it;
-		if(profile->Files().empty())
-		{
-			// Ensure that the persistent storage file is deleted.
-			profile->Delete();
-			it = pilots.erase(it);
-		}
-		else
-			++it;
-	}
-
 	// Sort the snapshots by timestamp and name. (The main save file was already sorted to the top earlier.)
 	for(shared_ptr<PilotProfile> &pilot : pilots)
 	{
+		// Skip pilots with no save files.
+		if(pilot->Files().empty())
+			continue;
 		// Don't include the first item in the sort if this pilot has a non-snapshot save.
 		auto start = pilot->Files().begin();
 		if(start->first.find('~') == string::npos)
@@ -102,11 +110,15 @@ vector<shared_ptr<PilotProfile> > &PilotProfile::GetProfiles()
 
 
 
-map<string, shared_ptr<PilotProfile>> PilotProfile::GetProfileMap()
+map<string, shared_ptr<PilotProfile>> PilotProfile::GetProfileMap(bool excludeEmpty)
 {
 	map<string, shared_ptr<PilotProfile>> profileMap;
 	for(const auto &pilot : pilots)
+	{
+		if(excludeEmpty && pilot->Files().empty())
+			continue;
 		profileMap[pilot->Identifier()] = pilot;
+	}
 	return profileMap;
 }
 
@@ -118,7 +130,11 @@ shared_ptr<PilotProfile> &PilotProfile::GetProfile(const string &identifier)
 		return pilot->Identifier() == identifier;
 	});
 	if(it == pilots.end())
-		return NewProfile();
+	{
+		shared_ptr<PilotProfile> &pilot = NewProfile();
+		pilot->SetIdentifier(identifier);
+		return pilot;
+	}
 	return *it;
 }
 
@@ -131,21 +147,69 @@ shared_ptr<PilotProfile> &PilotProfile::NewProfile()
 
 
 
-void PilotProfile::New(const Gamerules &gamerules)
+std::string PilotProfile::GetIdentifier(const std::string &pilotName)
 {
-	this->gamerules.Replace(gamerules);
-	GameData::SetGamerules(&this->gamerules);
+	string name = pilotName;
+	string basePath = (Files::Profiles() / name).string();
+	int index = 0;
+	while(true)
+	{
+		string path = basePath;
+		if(index++)
+		{
+			string suffix = " " + to_string(index);
+			path += suffix;
+			name = pilotName + suffix;
+		}
+		path += ".txt";
+
+		if(!Files::Exists(path))
+			break;
+	}
+
+	return name;
 }
 
 
 
-void PilotProfile::Load(const filesystem::path &path)
+void PilotProfile::DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI *ui)
+{
+	bool failed = false;
+	for(const std::string &file : pilot->Files() | views::keys)
+	{
+		filesystem::path path = Files::Saves() / file;
+		Files::Delete(path);
+		failed |= Files::Exists(path);
+	}
+	Files::Delete(pilot->Path());
+	failed |= Files::Exists(pilot->Path());
+	if(!failed)
+	{
+		auto it = ranges::find(pilots, pilot);
+		if(it != pilots.end())
+			pilots.erase(it);
+	}
+	else if(ui)
+		ui->Push(DialogPanel::Info("Deleting pilot files failed."));
+}
+
+
+
+void PilotProfile::New(const Gamerules &gamerules)
+{
+	this->gamerules.Replace(gamerules);
+	ApplyGamerules();
+}
+
+
+
+void PilotProfile::Load()
 {
 	if(isLoaded)
 		return;
 	isLoaded = true;
+	assert(filePath.empty() && "should call SetIdentifier before calling Load");
 
-	SetPath(path);
 	DataFile file(filePath);
 	for(const DataNode &child : file)
 	{
@@ -211,30 +275,9 @@ void PilotProfile::Save()
 
 
 
-void PilotProfile::Delete()
-{
-	Files::Delete(filePath);
-}
-
-
-
 const string &PilotProfile::Path() const
 {
 	return filePath;
-}
-
-
-
-void PilotProfile::SetPath(const filesystem::path &path)
-{
-	string root = path.string();
-	size_t pos = root.find('~');
-	if(pos != string::npos)
-		root = root.substr(0, pos) + ".txt";
-	root = (root.length() < 4) ? "" : root.substr(0, root.length() - 4);
-	if(root.empty())
-		return;
-	filePath = root + ".ess";
 }
 
 
@@ -243,6 +286,13 @@ string PilotProfile::Identifier() const
 {
 	string name = Files::Name(filePath);
 	return (name.length() < 4) ? "" : name.substr(0, name.length() - 4);
+}
+
+
+
+void PilotProfile::SetIdentifier(const string &pilotName)
+{
+	filePath = (Files::Profiles() / (pilotName + ".txt")).string();
 }
 
 
