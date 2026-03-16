@@ -42,7 +42,7 @@ void PilotProfile::LoadProfiles()
 		pilot->Files().clear();
 
 	// Look for all existing pilot profiles.
-	for(const filesystem::path &path : Files::List(Files::Profiles()))
+	for(const filesystem::path &path : Files::List(Files::Pilots()))
 	{
 		// Skip any files that aren't text files.
 		if(path.extension() != ".txt")
@@ -149,7 +149,7 @@ shared_ptr<PilotProfile> &PilotProfile::NewProfile()
 std::string PilotProfile::GetIdentifier(const std::string &pilotName)
 {
 	string name = pilotName;
-	string basePath = (Files::Profiles() / name).string();
+	string basePath = (Files::Pilots() / name).string();
 	int index = 0;
 	while(true)
 	{
@@ -290,7 +290,7 @@ string PilotProfile::Identifier() const
 
 void PilotProfile::SetIdentifier(const string &pilotName)
 {
-	filePath = (Files::Profiles() / (pilotName + ".txt")).string();
+	filePath = (Files::Pilots() / (pilotName + ".txt")).string();
 }
 
 

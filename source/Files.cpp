@@ -38,7 +38,7 @@ namespace {
 	filesystem::path imagePath;
 	filesystem::path soundPath;
 	filesystem::path savePath;
-	filesystem::path profilePath;
+	filesystem::path pilotPath;
 	filesystem::path userPluginPath;
 	filesystem::path globalPluginPath;
 	filesystem::path testPath;
@@ -168,8 +168,8 @@ void Files::Init(const char *const *argv)
 
 	savePath = config / "saves";
 	CreateFolder(savePath);
-	profilePath = config / "profiles";
-	CreateFolder(profilePath);
+	pilotPath = config / "pilots";
+	CreateFolder(pilotPath);
 
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
@@ -181,8 +181,8 @@ void Files::Init(const char *const *argv)
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(savePath))
 		throw runtime_error("Unable to create saves directory!");
-	if(!Exists(profilePath))
-		throw runtime_error("Unable to create profiles directory!");
+	if(!Exists(pilotPath))
+		throw runtime_error("Unable to create pilots directory!");
 	if(!Exists(userPluginPath))
 		throw runtime_error("Unable to create plugins directory!");
 }
@@ -231,9 +231,9 @@ const filesystem::path &Files::Saves()
 
 
 
-const filesystem::path &Files::Profiles()
+const filesystem::path &Files::Pilots()
 {
-	return profilePath;
+	return pilotPath;
 }
 
 
