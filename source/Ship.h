@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Body.h"
+#include "Entity.h"
 
 #include "Angle.h"
 #include "Armament.h"
@@ -24,12 +24,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "FireCommand.h"
 #include "Outfit.h"
+#include "Paragraphs.h"
 #include "Personality.h"
 #include "Point.h"
 #include "Port.h"
 #include "ship/ShipAICache.h"
+#include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 
+#include <array>
 #include <list>
 #include <map>
 #include <memory>
@@ -37,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DamageDealt;
 class DataNode;
 class DataWriter;
@@ -50,6 +54,7 @@ class Planet;
 class PlayerInfo;
 class Projectile;
 class StellarObject;
+class Swizzle;
 class System;
 class Visual;
 
@@ -60,7 +65,7 @@ class Visual;
 // in exactly the same state. The same class is used for the player's ship as
 // for all other ships, so their capabilities are exactly the same  within the
 // limits of what the AI knows how to command them to do.
-class Ship : public Body, public std::enable_shared_from_this<Ship> {
+class Ship : public Entity, public std::enable_shared_from_this<Ship> {
 public:
 	class Bay {
 	public:
@@ -92,7 +97,7 @@ public:
 
 	class EnginePoint : public Point {
 	public:
-		EnginePoint(double x, double y, double zoom) : Point(x, y), zoom(zoom) {}
+		EnginePoint(Point pos, double zoom) : Point(pos), zoom(zoom) {}
 
 		uint8_t side = 0;
 		static const uint8_t UNDER = 0;
@@ -108,8 +113,14 @@ public:
 		Angle gimbal;
 	};
 
+	enum class ThrustKind {
+		LEFT = 0,
+		RIGHT = 1,
+		FORWARD = 2,
+		REVERSE = 3,
+	};
+
 	enum class CanFireResult {
-		INVALID,
 		NO_AMMO,
 		NO_ENERGY,
 		NO_FUEL,
@@ -140,10 +151,10 @@ public:
 
 	Ship() = default;
 	// Construct and Load() at the same time.
-	Ship(const DataNode &node);
+	Ship(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Load data for a type of ship:
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading(bool isNewInstance);
@@ -157,7 +168,8 @@ public:
 	void SetUUID(const EsUuid &id);
 
 	// Get the name of this particular ship.
-	const std::string &Name() const;
+	const std::string &GivenName() const;
+	void SetGivenName(const std::string &name);
 
 	// Set / Get the name of this model of ship.
 	void SetTrueModelName(const std::string &model);
@@ -171,7 +183,7 @@ public:
 	// Get the generic noun (e.g. "ship") to be used when describing this ship.
 	const std::string &Noun() const;
 	// Get this ship's description.
-	const std::string &Description() const;
+	std::string Description() const;
 	// Get the shipyard thumbnail for this ship.
 	const Sprite *Thumbnail() const;
 	// Get this ship's cost.
@@ -191,7 +203,6 @@ public:
 	void SetVelocity(Point velocity);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
-	void SetName(const std::string &name);
 	void SetSystem(const System *system);
 	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
@@ -270,6 +281,7 @@ public:
 	bool IsCapturable() const;
 	bool IsTargetable() const;
 	bool IsOverheated() const;
+	bool IsIonized() const;
 	bool IsDisabled() const;
 	bool IsBoarding() const;
 	bool IsLanding() const;
@@ -303,7 +315,8 @@ public:
 	// Check if this ship is allowed to enter this system, accounting for its personality.
 	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
-	int CustomSwizzle() const;
+	const Swizzle *CustomSwizzle() const;
+	const std::string &CustomSwizzleName() const;
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -339,15 +352,15 @@ public:
 	int WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Clear all orders and targets this ship has (after capture or transfer of control).
 	void ClearTargetsAndOrders();
+	// Return events that happened recently, but haven't been handled by the Engine yet.
+	// Events should be removed from the given list after they are handled.
+	std::list<ShipEvent> &HandleEvents();
 
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
 	double Hull() const;
 	double Fuel() const;
 	double Energy() const;
-	// A ship's heat is generally between 0 and 1, but if it receives
-	// heat damage the value can increase above 1.
-	double Heat() const;
 	// Get the ship's "health," where <=0 is disabled and 1 means full health.
 	double Health() const;
 	// Get the hull fraction at which this ship is disabled.
@@ -355,8 +368,10 @@ public:
 	// Get the maximum shield and hull values of the ship, accounting for multipliers.
 	double MaxShields() const;
 	double MaxHull() const;
-	// Get the actual shield level of the ship.
+	// Get the absolute shield, hull, and fuel levels of the ship.
 	double ShieldLevel() const;
+	double HullLevel() const;
+	double FuelLevel() const;
 	// Get how disrupted this ship's shields are.
 	double DisruptionLevel() const;
 	// Get the (absolute) amount of hull that needs to be damaged until the
@@ -384,7 +399,7 @@ public:
 	// Get the heat dissipation, in heat units per heat unit per frame.
 	double HeatDissipation() const;
 	// Get the maximum heat level, in heat units (not temperature).
-	double MaximumHeat() const;
+	double MaximumHeat() const override;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
 	// Calculate the drag on this ship. The drag can be no greater than the mass.
@@ -404,7 +419,7 @@ public:
 	bool CanBeFlagship() const;
 
 	// Get this ship's movement characteristics.
-	double Mass() const;
+	double Mass() const override;
 	double InertialMass() const;
 	double TurnRate() const;
 	double Acceleration() const;
@@ -414,8 +429,15 @@ public:
 	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
 	double TrueAcceleration() const;
 	double TrueTurnRate() const;
+	// These two values are the ship's effective maximum acceleration and turn rate,
+	// accounting for the effects of insufficient crew.
+	double CrewAcceleration() const;
+	double CrewTurnRate() const;
 	// The ship's current speed right now
 	double CurrentSpeed() const;
+
+	double ThrustHeldFraction(ThrustKind kind) const;
+	uint8_t ThrustHeldFrames(ThrustKind kind) const;
 
 	// This ship just got hit by a weapon. Take damage according to the
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
@@ -457,8 +479,6 @@ public:
 	void Jettison(const std::string &commodity, int tons, bool wasAppeasing = false);
 	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false);
 
-	// Get the current attributes of this ship.
-	const Outfit &Attributes() const;
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
 	// Get the list of all outfits installed in this ship.
@@ -473,6 +493,7 @@ public:
 	const std::vector<Hardpoint> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
+	// Assume the weapon is valid.
 	CanFireResult CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates). Assume that CanFire() is true.
@@ -492,12 +513,18 @@ public:
 	// Pattern to use when flying in a formation.
 	const FormationPattern *GetFormationPattern() const;
 
+	// Get a list of ships targeting this one.
+	const std::vector<std::weak_ptr<Ship>> &GetShipsTargetingThis() const;
+	// Get and update the total ship strength targeting this ship.
+	double GetTargeterStrength() const;
+	void UpdateTargeterStrength();
+
 	// Mark this ship as fleeing.
 	void SetFleeing(bool fleeing = true);
 
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
-	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
+	void SetShipToAssist(const std::weak_ptr<Ship> &ship);
 	void SetTargetStellar(const StellarObject *object);
 	// Set ship's target system (it should always be one jump / wormhole pass away).
 	void SetTargetSystem(const System *system);
@@ -522,7 +549,7 @@ public:
 	void Linger();
 
 	// Check if this ship looks the same as another, based on model display names and outfits.
-	bool Immitates(const Ship &other) const;
+	bool Imitates(const Ship &other) const;
 
 
 private:
@@ -568,6 +595,9 @@ private:
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
 
+	// Increment the duration a thruster direction has been held.
+	void IncrementThrusterHeld(ThrustKind kind);
+
 	// Helper function for jettisoning flotsam.
 	void Jettison(std::shared_ptr<Flotsam> toJettison);
 
@@ -590,11 +620,11 @@ private:
 	std::string variantName;
 	std::string variantMapShopName;
 	std::string noun;
-	std::string description;
+	Paragraphs description;
 	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
 	EsUuid uuid;
-	std::string name;
+	std::string givenName;
 	bool canBeCarried = false;
 
 	int forget = 0;
@@ -617,7 +647,8 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
-	int customSwizzle = -1;
+	const Swizzle *customSwizzle = nullptr;
+	std::string customSwizzleName;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missiles or tractor beams are in range.
@@ -642,10 +673,9 @@ private:
 	ShipAICache aiCache;
 
 	// Installed outfits, cargo, etc.:
-	Outfit attributes;
 	Outfit baseAttributes;
 	bool addAttributes = false;
-	const Outfit *explosionWeapon = nullptr;
+	const Weapon *explosionWeapon = nullptr;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
@@ -665,7 +695,6 @@ private:
 	double hull = 0.;
 	double fuel = 0.;
 	double energy = 0.;
-	double heat = 0.;
 	// Accrued "ion damage" that will affect this ship's energy over time.
 	double ionization = 0.;
 	// Accrued "scrambling damage" that will affect this ship's weaponry over time.
@@ -691,6 +720,8 @@ private:
 	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
+	// The amount of time in frames that an engine has been on for.
+	std::array<uint8_t, 4> thrustHeldFrames = {};
 
 	int crew = 0;
 	int pilotError = 0;
@@ -745,5 +776,14 @@ private:
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
 
+	// List of enemy ships targeting this one.
+	std::vector<std::weak_ptr<Ship>> targetingList;
+	double targeterStrength;
+
 	bool removeBays = false;
+
+	// If this ship is disabled or dies as a result of something like corrosion damage,
+	// attribute the event to the last government that hit this ship.
+	const Government *lastHitBy = nullptr;
+	std::list<ShipEvent> unhandledEvents;
 };

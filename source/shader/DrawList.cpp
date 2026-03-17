@@ -33,7 +33,6 @@ void DrawList::Clear(int step, double zoom)
 	items.clear();
 	this->step = step;
 	this->zoom = zoom;
-	isHighDPI = (Screen::IsHighResolution() ? zoom > .5 : zoom > 1.);
 }
 
 
@@ -80,7 +79,7 @@ bool DrawList::AddUnblurred(const Body &body)
 
 
 
-bool DrawList::AddSwizzled(const Body &body, int swizzle, double cloak)
+bool DrawList::AddSwizzled(const Body &body, const Swizzle *swizzle, double cloak)
 {
 	Point position = body.Position() - center;
 	Point blur = body.Velocity() - centerVelocity;
@@ -130,14 +129,15 @@ bool DrawList::Cull(const Body &body, const Point &position, const Point &blur) 
 
 
 
-void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int swizzle)
+void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, const Swizzle *swizzle)
 {
 	SpriteShader::Item item;
 
-	item.texture = body.GetSprite()->Texture(isHighDPI);
-	item.swizzleMask = body.GetSprite()->SwizzleMask(isHighDPI);
+	item.texture = body.GetSprite()->Texture();
+	item.swizzleMask = body.GetSprite()->SwizzleMask();
 	item.frame = body.GetFrame(step);
 	item.frameCount = body.GetSprite()->Frames();
+	item.uniqueSwizzleMaskFrames = body.GetSprite()->SwizzleMaskFrames() > 1;
 
 	item.position[0] = static_cast<float>(pos.X() * zoom);
 	item.position[1] = static_cast<float>(pos.Y() * zoom);

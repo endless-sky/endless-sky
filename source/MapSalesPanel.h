@@ -17,17 +17,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPanel.h"
 
-#include "CategoryList.h"
 #include "ClickZone.h"
+#include "LoadingCircle.h"
 
 #include <set>
 #include <string>
 #include <vector>
 
+class CategoryList;
+class Information;
 class ItemInfoDisplay;
 class PlayerInfo;
 class Point;
 class Sprite;
+class Swizzle;
 
 
 
@@ -37,23 +40,25 @@ public:
 	MapSalesPanel(PlayerInfo &player, bool isOutfitters);
 	MapSalesPanel(const MapPanel &panel, bool isOutfitters);
 
+	virtual void Step() override;
 	virtual void Draw() override;
 
 
 protected:
+	virtual void LoadCatalogThumbnails() const = 0;
+
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
 	virtual const Sprite *SelectedSprite() const = 0;
 	virtual const Sprite *CompareSprite() const = 0;
-	virtual int SelectedSpriteSwizzle() const;
-	virtual int CompareSpriteSwizzle() const;
+	virtual const Swizzle *SelectedSpriteSwizzle() const;
+	virtual const Swizzle *CompareSpriteSwizzle() const;
 	virtual const ItemInfoDisplay &SelectedInfo() const = 0;
 	virtual const ItemInfoDisplay &CompareInfo() const = 0;
-	virtual const std::string &KeyLabel(int index) const = 0;
 
 	virtual void Select(int index) = 0;
 	virtual void Compare(int index) = 0;
@@ -62,13 +67,13 @@ protected:
 
 	virtual void DrawItems() = 0;
 
-	void DrawKey() const;
+	virtual void DrawKey(Information &info) const;
 	void DrawPanel() const;
 	void DrawInfo() const;
 
 	bool DrawHeader(Point &corner, const std::string &category);
-	void DrawSprite(const Point &corner, const Sprite *sprite, int swizzle) const;
-	void Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale, bool isSelected,
+	void DrawSprite(const Point &corner, const Sprite *sprite, const Swizzle * swizzle) const;
+	void Draw(Point &corner, const Sprite *sprite, const Swizzle *swizzle, bool isForSale, bool isSelected,
 		const std::string &name, const std::string &variantName, const std::string &price,
 		const std::string &info, const std::string &storage);
 
@@ -87,9 +92,12 @@ protected:
 	double scroll = 0.;
 	double maxScroll = 0.;
 
+	std::map<std::string, std::vector<std::string>> catalog;
 	const CategoryList &categories;
 	bool onlyShowSoldHere = false;
 	bool onlyShowStorageHere = false;
+	// Whether this panel has preloaded the thumbnails from the catalog yet.
+	bool hasLoadedThumbnails = false;
 
 
 private:
@@ -102,4 +110,6 @@ private:
 	std::vector<ClickZone<int>> zones;
 	int selected = -1;
 	int compare = -1;
+
+	LoadingCircle loadingCircle;
 };

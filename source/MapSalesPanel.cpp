@@ -15,17 +15,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapSalesPanel.h"
 
-#include "CategoryTypes.h"
+#include "audio/Audio.h"
+#include "CategoryList.h"
+#include "CategoryType.h"
 #include "Command.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Information.h"
+#include "Interface.h"
 #include "ItemInfoDisplay.h"
-#include "text/layout.hpp"
+#include "text/Layout.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "shader/PointerShader.h"
@@ -35,8 +39,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
+#include "Swizzle.h"
 #include "System.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -53,7 +58,8 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	: MapPanel(player, SHOW_SPECIAL),
 	categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
-	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
+	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map")),
+	loadingCircle(30.f, 10, 2.)
 {
 }
 
@@ -63,9 +69,29 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	: MapPanel(panel),
 	categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
-	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
+	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map")),
+	loadingCircle(30.f, 10, 2.)
 {
+	Audio::Pause();
+
 	commodity = SHOW_SPECIAL;
+}
+
+
+
+void MapSalesPanel::Step()
+{
+	MapPanel::Step();
+
+	loadingCircle.Step();
+	// Load any and deferred thumbnails that appear in the sales.
+	// This is done here instead of in the constructor because the constructor
+	// does not have access to the UI stack.
+	if(!hasLoadedThumbnails)
+	{
+		hasLoadedThumbnails = true;
+		LoadCatalogThumbnails();
+	}
 }
 
 
@@ -81,7 +107,8 @@ void MapSalesPanel::Draw()
 	// that no items are visible.
 	scroll = min(0., max(-maxScroll, scroll));
 
-	DrawKey();
+	Information info;
+	DrawKey(info);
 	DrawPanel();
 	DrawItems();
 	DrawInfo();
@@ -92,6 +119,7 @@ void MapSalesPanel::Draw()
 
 bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NONE;
 	if(command.Has(Command::HELP))
 		DoHelp("map advanced shops", true);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
@@ -105,6 +133,7 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		scroll = -maxScroll;
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !zones.empty())
 	{
+		sound = UI::UISound::NORMAL;
 		selected += (key == SDLK_DOWN) - (key == SDLK_UP);
 		if(selected < 0)
 			selected = zones.size() - 1;
@@ -116,18 +145,23 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		ScrollTo(selected);
 	}
 	else if(key == 'f')
-		GetUI()->Push(new Dialog(
-			this, &MapSalesPanel::DoFind, "Search for:"));
+		GetUI().Push(DialogPanel::RequestString(this, &MapSalesPanel::DoFind, "Search for:"));
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
 
+	UI::PlaySound(sound);
 	return true;
 }
 
 
 
-bool MapSalesPanel::Click(int x, int y, int clicks)
+bool MapSalesPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return MapPanel::Click(x, y, button, clicks);
+
+	const Interface *keyInterface = GameData::Interfaces().Get("map: sales key");
+	const Rectangle keyContentBox = keyInterface->GetBox("content");
 	if(x < Screen::Left() + WIDTH)
 	{
 		const Point point(x, y);
@@ -138,36 +172,46 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 		{
 			Select(selected = -1);
 			Compare(compare = -1);
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 		else if((SDL_GetModState() & KMOD_SHIFT) == 0)
 		{
 			Select(selected = zone->Value());
 			Compare(compare = -1);
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 		else if(zone->Value() != selected)
-			Compare(compare = zone->Value());
-	}
-	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 90)
-	{
-		// This click was in the map key.
-		if(y < Screen::Top() + 42 || y >= Screen::Top() + 82)
 		{
-			onlyShowSoldHere = false;
-			onlyShowStorageHere = false;
+			Compare(compare = zone->Value());
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
-		else if(y < Screen::Top() + 62)
+	}
+	else if(keyContentBox.Contains(Point(x, y)))
+	{
+		int clickRow = (y - keyContentBox.Top()) / 20;
+
+		// This click was in the map key.
+		if(clickRow == 2)
 		{
 			onlyShowSoldHere = !onlyShowSoldHere;
 			onlyShowStorageHere = false;
+			UI::PlaySound(UI::UISound::NORMAL);
+		}
+		else if(clickRow == 3)
+		{
+			onlyShowSoldHere = false;
+			onlyShowStorageHere = !onlyShowStorageHere;
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 		else
 		{
 			onlyShowSoldHere = false;
-			onlyShowStorageHere = !onlyShowStorageHere;
+			onlyShowStorageHere = false;
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 	}
 	else
-		return MapPanel::Click(x, y, clicks);
+		return MapPanel::Click(x, y, button, clicks);
 
 	return true;
 }
@@ -208,52 +252,29 @@ bool MapSalesPanel::Scroll(double dx, double dy)
 
 
 
-int MapSalesPanel::SelectedSpriteSwizzle() const
+const Swizzle *MapSalesPanel::SelectedSpriteSwizzle() const
 {
-	return 0;
+	return Swizzle::None();
 }
 
 
 
-int MapSalesPanel::CompareSpriteSwizzle() const
+const Swizzle *MapSalesPanel::CompareSpriteSwizzle() const
 {
-	return 0;
+	return Swizzle::None();
 }
 
 
 
-void MapSalesPanel::DrawKey() const
+void MapSalesPanel::DrawKey(Information &info) const
 {
-	const Sprite *back = SpriteSet::Get("ui/sales key");
-	SpriteShader::Draw(back, Screen::TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
+	info.SetBar("full", 1.);
+	if(onlyShowSoldHere)
+		info.SetCondition("only sold here");
+	else if(onlyShowStorageHere)
+		info.SetCondition("only stored here");
 
-	Color bright(.6f, .6f);
-	Color dim(.3f, .3f);
-	const Font &font = FontSet::Get(14);
-
-	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
-	Point textOff(10., -.5 * font.Height());
-
-	static const double VALUE[] = {
-		-1.,
-		0.,
-		1.,
-		.5
-	};
-
-	double selectedValue = SystemValue(selectedSystem);
-	for(int i = 0; i < 4; ++i)
-	{
-		bool isSelected = (VALUE[i] == selectedValue);
-		RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
-		font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
-		// If we're filtering out items not sold/stored here, draw a pointer.
-		if(onlyShowSoldHere && i == 2)
-			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
-		else if(onlyShowStorageHere && i == 3)
-			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
-		pos.Y() += 20.;
-	}
+	GameData::Interfaces().Get("map: sales key")->Draw(info);
 }
 
 
@@ -292,7 +313,7 @@ void MapSalesPanel::DrawInfo() const
 		const Color &back = *GameData::Colors().Get("map side panel background");
 		Point size(width, height);
 		Point topLeft(Screen::Right() - size.X(), Screen::Top());
-		FillShader::Fill(topLeft + .5 * size, size, back);
+		FillShader::Fill(Rectangle::FromCorner(topLeft, size), back);
 
 		Point leftPos = topLeft + Point(
 			-.5 * left->Width(),
@@ -346,25 +367,29 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 
 
 
-void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int swizzle) const
+void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, const Swizzle *swizzle) const
 {
-	if(sprite)
+	if(!sprite)
+		return;
+	Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
+	if(sprite->IsLoaded())
 	{
-		Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
 		double scale = min(.5, min((ICON_HEIGHT - 2.) / sprite->Height(), (ICON_HEIGHT - 2.) / sprite->Width()));
 
 		// No swizzle was specified, so default to the player swizzle.
-		if(swizzle == -1)
+		if(!swizzle)
 			swizzle = GameData::PlayerGovernment()->GetSwizzle();
 		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
 	}
+	else
+		loadingCircle.Draw(corner + iconOffset);
 }
 
 
 
-void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale,
+void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, const Swizzle *swizzle, bool isForSale,
 		bool isSelected, const string &name, const string &variantName,
-		const string &price, const string &info, const std::string &storage)
+		const string &price, const string &info, const string &storage)
 {
 	const Font &font = FontSet::Get(14);
 	const Color &selectionColor = *GameData::Colors().Get("item selected");
@@ -388,7 +413,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool 
 	if(corner.Y() < Screen::Bottom() && corner.Y() + ICON_HEIGHT >= Screen::Top())
 	{
 		if(isSelected)
-			FillShader::Fill(corner + .5 * blockSize, blockSize, selectionColor);
+			FillShader::Fill(Rectangle::FromCorner(corner, blockSize), selectionColor);
 
 		DrawSprite(corner, sprite, swizzle);
 

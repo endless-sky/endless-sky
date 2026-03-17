@@ -18,16 +18,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Command.h"
 #include "Conversation.h"
-#include "ConversationPanel.h"
+#include "CustomEvents.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Engine.h"
 #include "Files.h"
 #include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameLoadingPanel.h"
+#include "GameVersion.h"
 #include "GameWindow.h"
+#include "Interface.h"
 #include "Logger.h"
 #include "MainPanel.h"
 #include "MenuPanel.h"
@@ -44,6 +48,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "test/TestContext.h"
 #include "UI.h"
 
+#ifdef _WIN32
+#include "windows/TimerResolutionGuard.h"
+#include "windows/WinConsole.h"
+#include "windows/WinVersion.h"
+#endif
+
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -56,10 +66,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifdef _WIN32
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
+#define NOGDI
 #include <windows.h>
-#include <mmsystem.h>
-#endif
 
+#define PSAPI_VERSION 1
+#include <processthreadsapi.h>
+#include <psapi.h>
+#elif defined(__APPLE__)
+#include <mach/mach.h>
+#include <mach/task_info.h>
+#else
+#include <fstream>
+#include <unistd.h>
+#endif
 
 using namespace std;
 
@@ -67,22 +86,21 @@ void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
 	const string &testToRun, bool debugMode);
-Conversation LoadConversation();
+Conversation LoadConversation(const PlayerInfo &player);
 void PrintTestsTable();
-#ifdef _WIN32
-void InitConsole();
-#endif
 
 
 
 // Entry point for the EndlessSky executable
 int main(int argc, char *argv[])
 {
-	// Handle command-line arguments
 #ifdef _WIN32
+	WinVersion::Init();
+	// Handle command-line arguments
 	if(argc > 1)
-		InitConsole();
+		WinConsole::Init();
 #endif
+	PlayerInfo player;
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
@@ -95,10 +113,9 @@ int main(int argc, char *argv[])
 	// Whether the game has encountered errors while loading.
 	bool hasErrors = false;
 	// Ensure that we log errors to the errors.txt file.
-	Logger::SetLogErrorCallback([&hasErrors](const string &errorMessage) {
-		static const string PARSING_PREFIX = "Parsing: ";
-		if(errorMessage.substr(0, PARSING_PREFIX.length()) != PARSING_PREFIX)
-			hasErrors = true;
+	Logger::SetLogCallback([&hasErrors](const string &errorMessage, Logger::Level level)
+	{
+		hasErrors |= level != Logger::Level::INFO;
 		Files::LogErrorToFile(errorMessage);
 	});
 
@@ -116,7 +133,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		else if(arg == "-t" || arg == "--talk")
-			conversation = LoadConversation();
+			conversation = LoadConversation(player);
 		else if(arg == "-d" || arg == "--debug")
 			debugMode = true;
 		else if(arg == "-p" || arg == "--parse-save")
@@ -135,15 +152,19 @@ int main(int argc, char *argv[])
 
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
+	bool isConsoleOnly = loadOnly || printTests || printData;
+
+	Logger::Session logSession{isConsoleOnly || isTesting};
+
 	try {
-		// Load plugin preferences before game data if any.
+		// Load plugin settings and preferences before game data.
+		Preferences::Load();
 		Plugins::LoadSettings();
 
 		TaskQueue queue;
 
 		// Begin loading the game data.
-		bool isConsoleOnly = loadOnly || printTests || printData;
-		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode,
+		auto dataFuture = GameData::BeginLoad(queue, player, isConsoleOnly, debugMode,
 			isConsoleOnly || checkAssets || (isTesting && !debugMode));
 
 		// If we are not using the UI, or performing some automated task, we should load
@@ -153,13 +174,13 @@ int main(int argc, char *argv[])
 
 		if(isTesting && !GameData::Tests().Has(testToRunName))
 		{
-			Logger::LogError("Test \"" + testToRunName + "\" not found.");
+			Logger::Log("Test \"" + testToRunName + "\" not found.", Logger::Level::ERROR);
 			return 1;
 		}
 
 		if(printData)
 		{
-			PrintData::Print(argv);
+			PrintData::Print(argv, player);
 			return 0;
 		}
 		if(printTests)
@@ -168,7 +189,6 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 
-		PlayerInfo player;
 		if(loadOnly || checkAssets)
 		{
 			if(checkAssets)
@@ -177,7 +197,7 @@ int main(int argc, char *argv[])
 				while(GameData::GetProgress() < 1.)
 				{
 					queue.ProcessSyncTasks();
-					std::this_thread::yield();
+					this_thread::yield();
 				}
 				if(GameData::IsLoaded())
 				{
@@ -202,14 +222,6 @@ int main(int argc, char *argv[])
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
 
-		// On Windows, make sure that the sleep timer has at least 1 ms resolution
-		// to avoid irregular frame rates.
-#ifdef _WIN32
-		timeBeginPeriod(1);
-#endif
-
-		Preferences::Load();
-
 		// Load global conditions:
 		DataFile globalConditions(Files::Config() / "global conditions.txt");
 		for(const DataNode &node : globalConditions)
@@ -220,6 +232,10 @@ int main(int argc, char *argv[])
 			return 1;
 
 		GameData::LoadSettings();
+
+#ifdef _WIN32
+		TimerResolutionGuard windowsTimerGuard;
+#endif
 
 		if(!isTesting || debugMode)
 		{
@@ -234,6 +250,7 @@ int main(int argc, char *argv[])
 		if(isTesting && !noTestMute)
 			Audio::SetVolume(0, SoundCategory::MASTER);
 
+		CustomEvents::Init();
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
 	}
@@ -251,7 +268,7 @@ int main(int argc, char *argv[])
 	// Remember the window state and preferences if quitting normally.
 	Preferences::Set("maximized", GameWindow::IsMaximized());
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
-	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
+	Screen::SetRaw(GameWindow::Width(), GameWindow::Height(), true);
 	Preferences::Save();
 	Plugins::Save();
 
@@ -288,9 +305,6 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	FrameTimer timer(frameRate);
 	bool isDebugPaused = false;
 	bool isFastForward = false;
-
-	// If fast forwarding, keep track of whether the current frame should be drawn.
-	int skipFrame = 0;
 
 	// Limit how quickly full-screen mode can be toggled.
 	int toggleTimeout = 0;
@@ -329,14 +343,17 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				// User pressed the Menu key.
 				menuPanels.Push(shared_ptr<Panel>(
 					new MenuPanel(player, gamePanels)));
+				UI::PlaySound(UI::UISound::NORMAL);
 			}
 			else if(event.type == SDL_QUIT)
 				menuPanels.Quit();
 			else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
-			{
-				// The window has been resized. Adjust the raw screen size
-				// and the OpenGL viewport to match.
+				// The window has been resized. Adjust the raw screen size and the OpenGL viewport to match.
 				GameWindow::AdjustViewport();
+			else if(event.type == CustomEvents::GetResize())
+			{
+				menuPanels.AdjustViewport();
+				gamePanels.AdjustViewport();
 			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
@@ -345,6 +362,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				toggleTimeout = 30;
 				Preferences::ToggleScreenMode();
 			}
+			else if(event.type == SDL_KEYDOWN && Command(event.key.keysym.sym).Has(Command::PERFORMANCE_DISPLAY))
+				Preferences::Set("Show CPU / GPU load", !Preferences::Has("Show CPU / GPU load"));
 			else if(activeUI.Handle(event))
 			{
 				// The UI handled the event.
@@ -366,8 +385,21 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	// Game loop when running the game normally.
 	if(!testContext.CurrentTest())
 	{
+		// How much time in total was spent on calculations and drawing since the last
+		// load cache update (every 60 drawing frames; usually 1 second).
+		chrono::steady_clock::duration cpuLoadSum{};
+		string cpuLoadString;
+		chrono::steady_clock::duration gpuLoadSum{};
+		string gpuLoadString;
+		string memoryString;
+		bool isPerformanceDisplayReady = false;
+		int step = 0;
+		int drawStep = 0;
+
 		while(!menuPanels.IsDone())
 		{
+			if(++step == 60)
+				step = 0;
 			if(toggleTimeout)
 				--toggleTimeout;
 			chrono::steady_clock::time_point start = chrono::steady_clock::now();
@@ -416,15 +448,18 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 					timer.SetFrameRate(frameRate);
 				}
 
-				if(isFastForward && inFlight)
+				if(isFastForward && inFlight && step % 3)
 				{
-					skipFrame = (skipFrame + 1) % 3;
-					if(skipFrame)
-						continue;
+					cpuLoadSum += chrono::steady_clock::now() - start;
+					continue;
 				}
 			}
 
 			Audio::Step(isFastForward);
+
+			cpuLoadSum += chrono::steady_clock::now() - start;
+			++drawStep;
+			chrono::steady_clock::time_point drawStart = chrono::steady_clock::now();
 
 			// Events in this frame may have cleared out the menu, in which case
 			// we should draw the game panels instead:
@@ -435,6 +470,65 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				SpriteShader::Draw(SpriteSet::Get("ui/paused"), Screen::TopLeft() + Point(10., 10.));
 			else if(isFastForward)
 				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
+
+			gpuLoadSum += chrono::steady_clock::now() - drawStart;
+
+			if(Preferences::Has("Show CPU / GPU load"))
+			{
+				Information performanceInfo;
+				performanceInfo.SetString("cpu", cpuLoadString);
+				performanceInfo.SetString("gpu", gpuLoadString);
+				performanceInfo.SetString("mem", memoryString);
+				if(isPerformanceDisplayReady)
+					performanceInfo.SetCondition("ready");
+				static const Interface &performanceDisplay = *GameData::Interfaces().Get("performance info");
+				performanceDisplay.Draw(performanceInfo);
+				if(drawStep == 60)
+				{
+					drawStep = 0;
+					// The load sums are in nanoseconds, accumulated throughout the last second, so divide
+					// by 10^6 to get milliseconds, then by 60 (or 180 with fast-forward for the CPU load)
+					// to get the average milliseconds per step.
+					// Percentages are the percentage of a second that was required for the calculations and drawing,
+					// so divide by the number of nanoseconds in a second (10^9).
+					auto cpuNano = chrono::duration_cast<chrono::nanoseconds>(cpuLoadSum).count();
+					cpuLoadString = "CPU: " + Format::Number(cpuNano / (isFastForward && inFlight ? 1.8e8 : 6e7), 2, false)
+						+ " ms (" + Format::Percentage(cpuNano / 1e9, 0) + ")";
+					cpuLoadSum = {};
+					auto gpuNano = chrono::duration_cast<chrono::nanoseconds>(gpuLoadSum).count();
+					gpuLoadString = "GPU: " + Format::Number(gpuNano / 6e7, 2, false)
+						+ " ms (" + Format::Percentage(gpuNano / 1e9, 0) + ")";
+					gpuLoadSum = {};
+					// Get how much memory we have (in bytes).
+					static size_t virtualMemoryUse;
+#ifdef _WIN32
+					static PROCESS_MEMORY_COUNTERS info;
+					GetProcessMemoryInfo(GetCurrentProcess(), &info, sizeof(info));
+					virtualMemoryUse = info.PagefileUsage;
+#elif defined(__APPLE__)
+					static mach_task_basic_info_data_t info;
+					static mach_msg_type_number_t infoSize = MACH_TASK_BASIC_INFO_COUNT;
+					task_info(mach_task_self(), MACH_TASK_BASIC_INFO, reinterpret_cast<task_info_t>(&info), &infoSize);
+					virtualMemoryUse = info.virtual_size;
+#else
+					static string statmStr;
+					ifstream statm{"/proc/self/statm"};
+					getline(statm, statmStr, ' ');
+					virtualMemoryUse = stoul(statmStr) * getpagesize();
+#endif
+					// bytes / (1024 * 1024) = megabytes
+					memoryString = "MEM: " + Format::Number(virtualMemoryUse / 1048576., 2, false) + " MB";
+					isPerformanceDisplayReady = true;
+				}
+			}
+			else
+			{
+				// Clear the values to avoid reading old data when the player re-enables the display.
+				drawStep = 0;
+				cpuLoadSum = {};
+				gpuLoadSum = {};
+				isPerformanceDisplayReady = false;
+			}
 
 			GameWindow::Step();
 
@@ -538,7 +632,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.13-alpha" << endl;
+	cerr << "Endless Sky ver. " << GameVersion::Running().ToString() << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -549,14 +643,15 @@ void PrintVersion()
 
 
 
-Conversation LoadConversation()
+Conversation LoadConversation(const PlayerInfo &player)
 {
+	const ConditionsStore *conditions = &player.Conditions();
 	Conversation conversation;
 	DataFile file(cin);
 	for(const DataNode &node : file)
 		if(node.Token(0) == "conversation")
 		{
-			conversation.Load(node);
+			conversation.Load(node, conditions);
 			break;
 		}
 
@@ -575,6 +670,8 @@ Conversation LoadConversation()
 		{"<planet>", "[Planet]"},
 		{"<ship>", "[Ship]"},
 		{"<model>", "[Ship Model]"},
+		{"<flagship>", "[Flagship]"},
+		{"<flagship model>", "[Flagship Model]"},
 		{"<system>", "[Star]"},
 		{"<tons>", "[N tons]"}
 	};
@@ -593,46 +690,3 @@ void PrintTestsTable()
 			cout << it.second.Name() << '\n';
 	cout.flush();
 }
-
-
-
-#ifdef _WIN32
-void InitConsole()
-{
-	const int UNINITIALIZED = -2;
-	bool redirectStdout = _fileno(stdout) == UNINITIALIZED;
-	bool redirectStderr = _fileno(stderr) == UNINITIALIZED;
-	bool redirectStdin = _fileno(stdin) == UNINITIALIZED;
-
-	// Bail if stdin, stdout, and stderr are already initialized (e.g. writing to a file)
-	if(!redirectStdout && !redirectStderr && !redirectStdin)
-		return;
-
-	// Bail if we fail to attach to the console
-	if(!AttachConsole(ATTACH_PARENT_PROCESS) && !AllocConsole())
-		return;
-
-	// Perform console redirection.
-	if(redirectStdout)
-	{
-		FILE *fstdout = nullptr;
-		freopen_s(&fstdout, "CONOUT$", "w", stdout);
-		if(fstdout)
-			setvbuf(stdout, nullptr, _IOFBF, 4096);
-	}
-	if(redirectStderr)
-	{
-		FILE *fstderr = nullptr;
-		freopen_s(&fstderr, "CONOUT$", "w", stderr);
-		if(fstderr)
-			setvbuf(stderr, nullptr, _IOLBF, 1024);
-	}
-	if(redirectStdin)
-	{
-		FILE *fstdin = nullptr;
-		freopen_s(&fstdin, "CONIN$", "r", stdin);
-		if(fstdin)
-			setvbuf(stdin, nullptr, _IONBF, 0);
-	}
-}
-#endif

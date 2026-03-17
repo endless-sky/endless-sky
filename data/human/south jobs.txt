@@ -238,6 +238,7 @@ mission "Delta V Shipment [0]"
 	source
 		near Pherkad 2 15
 		attributes factory
+		not government "Pirate"
 	destination Solace
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -257,6 +258,7 @@ mission "Delta V Shipment [1]"
 	source
 		near Pherkad 2 15
 		attributes factory
+		not government "Pirate"
 	destination Solace
 	on visit
 		dialog phrase "generic cargo on visit"

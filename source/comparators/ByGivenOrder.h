@@ -25,28 +25,28 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 template<class T>
 class ByGivenOrder {
 public:
-	explicit ByGivenOrder(const std::vector<T>& order_)
-		: order(order_)
+	explicit ByGivenOrder(const std::vector<T> &order)
+		: order(order)
 	{}
 
 	bool operator()(const T &a, const T &b) const
 	{
-		const auto find_a = std::find(order.begin(), order.end(), a);
-		const auto find_b = std::find(order.begin(), order.end(), b);
+		const auto findA = std::find(order.begin(), order.end(), a);
+		const auto findB = std::find(order.begin(), order.end(), b);
 
-		if(find_a == order.end() && find_b == order.end())
+		if(findA == order.end() && findB == order.end())
 		{
 			// Neither a nor b is a known value. Fall back to default comparison.
-			return (a < b);
+			return a < b;
 		}
 		else
 		{
 			// Whichever is first in the array is considered smaller.
-			return (find_a < find_b);
+			return findA < findB;
 		}
 	}
 
 
 private:
-	const std::vector<T>& order;
+	const std::vector<T> &order;
 };

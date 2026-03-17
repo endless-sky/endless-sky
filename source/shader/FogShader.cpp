@@ -43,12 +43,13 @@ namespace {
 	const int PAD = LIMIT / ORTH;
 
 	// OpenGL objects:
-	Shader shader;
+	const Shader *shader;
 	GLuint cornerI;
 	GLuint dimensionsI;
 	GLuint vao;
 	GLuint vbo;
 	GLuint texture = 0;
+	GLint vertI;
 
 	// Keep track of the previous frame's view so that if it is unchanged we can
 	// skip regenerating the mask.
@@ -58,52 +59,36 @@ namespace {
 	int previousColumns = 0;
 	int previousRows = 0;
 	Point previousCenter;
+
+	void EnableAttribArrays()
+	{
+		glEnableVertexAttribArray(vertI);
+		glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	}
 }
 
 
 
 void FogShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex fog shader\n"
-		"uniform vec2 corner;\n"
-		"uniform vec2 dimensions;\n"
-
-		"in vec2 vert;\n"
-		"out vec2 fragTexCoord;\n"
-
-		"void main() {\n"
-		"  gl_Position = vec4(corner + vert * dimensions, 0, 1);\n"
-		"  fragTexCoord = vert;\n"
-		"}\n";
-
-	static const char *fragmentCode =
-		"// fragment fog shader\n"
-#ifdef ES_GLES
-		"precision mediump sampler2D;\n"
-#endif
-		"precision mediump float;\n"
-		"uniform sampler2D tex;\n"
-
-		"in vec2 fragTexCoord;\n"
-		"out vec4 finalColor;\n"
-
-		"void main() {\n"
-		"  finalColor = vec4(0, 0, 0, texture(tex, fragTexCoord).r);\n"
-		"}\n";
-
 	// Compile the shader and store indices to its variables.
-	shader = Shader(vertexCode, fragmentCode);
-	cornerI = shader.Uniform("corner");
-	dimensionsI = shader.Uniform("dimensions");
+	shader = GameData::Shaders().Get("fog");
+	if(!shader->Object())
+		throw runtime_error("Could not find fog shader!");
+	cornerI = shader->Uniform("corner");
+	dimensionsI = shader->Uniform("dimensions");
+	vertI = shader->Attrib("vert");
 
-	glUseProgram(shader.Object());
-	glUniform1i(shader.Uniform("tex"), 0);
+	glUseProgram(shader->Object());
+	glUniform1i(shader->Uniform("tex"), 0);
 	glUseProgram(0);
 
 	// Generate the vertex data for drawing sprites.
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+	{
+		glGenVertexArrays(1, &vao);
+		glBindVertexArray(vao);
+	}
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -117,13 +102,13 @@ void FogShader::Init()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	GLuint vertI = shader.Attrib("vert");
-	glEnableVertexAttribArray(vertI);
-	glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	if(OpenGL::HasVaoSupport())
+		EnableAttribArrays();
 
 	// Unbind the VBO and VAO.
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
 }
 
 
@@ -231,8 +216,14 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		glBindTexture(GL_TEXTURE_2D, texture);
 
 	// Set up to draw the image.
-	glUseProgram(shader.Object());
-	glBindVertexArray(vao);
+	glUseProgram(shader->Object());
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(vao);
+	else
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		EnableAttribArrays();
+	}
 
 	GLfloat corner[2] = {
 		static_cast<float>(left - .5 * GRID * zoom) / (.5f * Screen::Width()),
@@ -247,7 +238,13 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 	// Clean up.
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
+	else
+	{
+		glDisableVertexAttribArray(vertI);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
 	glUseProgram(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }

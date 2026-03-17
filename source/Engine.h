@@ -20,12 +20,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AmmoDisplay.h"
 #include "AsteroidField.h"
 #include "shader/BatchDrawList.h"
+#include "Camera.h"
 #include "CollisionSet.h"
 #include "Color.h"
 #include "Command.h"
 #include "shader/DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
+#include "MiniMap.h"
+#include "MouseButton.h"
 #include "PlanetLabel.h"
 #include "Point.h"
 #include "Preferences.h"
@@ -49,6 +52,7 @@ class PlayerInfo;
 class Ship;
 class ShipEvent;
 class Sprite;
+class Swizzle;
 class Visual;
 class Weather;
 
@@ -92,7 +96,7 @@ public:
 
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl);
-	void RClick(const Point &point);
+	void RightOrMiddleClick(const Point &point, MouseButton button);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 
 	// Break targeting on all projectiles between the player and the given
@@ -104,7 +108,7 @@ public:
 private:
 	class Outline {
 	public:
-		constexpr Outline(const Sprite *sprite, const Point &position, const Point &unit,
+		Outline(const Sprite *sprite, const Point &position, const Point &unit,
 			const float frame, const Color &color)
 			: sprite(sprite), position(position), unit(unit), frame(frame), color(color)
 		{
@@ -152,6 +156,14 @@ private:
 		Type type;
 		float alpha;
 		double angle;
+	};
+
+	class TurretOverlay {
+	public:
+		Point position;
+		Point angle;
+		double scale;
+		bool isBlind;
 	};
 
 	class Zoom {
@@ -225,6 +237,7 @@ private:
 	AI ai;
 
 	TaskQueue queue;
+	TaskQueue asyncQueue;
 
 	// ES uses a technique called double buffering to calculate the next frame and render the current one simultaneously.
 	// To facilitate this, it uses two buffers for each list of things to draw - one for the next frame's calculations and
@@ -240,15 +253,14 @@ private:
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;
 
-	// Viewport position and velocity.
-	Point center;
-	Point centerVelocity;
+	// Viewport camera.
+	Camera camera;
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
 	Point targetVector;
 	Point targetUnit;
-	int targetSwizzle = -1;
+	const Swizzle *targetSwizzle = nullptr;
 	// Represents the state of the currently targeted ship when it was last seen,
 	// so the target display does not show updates to its state the player should not be aware of.
 	int lastTargetType = 0;
@@ -258,13 +270,16 @@ private:
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
+	std::vector<TurretOverlay> turretOverlays;
 	std::vector<std::pair<const Outfit *, int>> ammo;
-	int jumpCount = 0;
-	const System *jumpInProgress[2] = {nullptr, nullptr};
 	// Flagship's hyperspace percentage converted to a [0, 1] double.
 	double hyperspacePercentage = 0.;
 
+	MiniMap minimap;
+
 	int step = 0;
+	// Count steps for UI elements separately, because they shouldn't be affected by pausing.
+	mutable int uiStep = 0;
 	bool timePaused = false;
 
 	std::list<ShipEvent> eventQueue;
@@ -276,6 +291,7 @@ private:
 	CollisionSet shipCollisions;
 
 	int alarmTime = 0;
+	int nukeAlarmTime = 0;
 	double flash = 0.;
 	bool doFlash = false;
 	bool doEnterLabels = false;
@@ -298,7 +314,7 @@ private:
 	bool doClick = false;
 	bool hasShift = false;
 	bool hasControl = false;
-	bool isRightClick = false;
+	MouseButton mouseButton = MouseButton::NONE;
 	bool isRadarClick = false;
 	Point clickPoint;
 	Rectangle uiClickBox;
@@ -312,8 +328,4 @@ private:
 	Zoom zoom;
 	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
 	Zoom nextZoom;
-
-	double load = 0.;
-	int loadCount = 0;
-	double loadSum = 0.;
 };

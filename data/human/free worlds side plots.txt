@@ -95,6 +95,7 @@ mission "FW Zug Expansion: Assisted"
 mission "FW Zug Expansion: Unassisted"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "FW Diplomacy 1: done"
 		not "FW Zug Expansion: Assisted: done"
@@ -315,10 +316,10 @@ mission "FW Deep Memorial"
 	on offer
 		conversation
 			`As you disembark, you hear the sounds of warning sirens and heavy machinery coming from the edge of <planet>'s spaceport. It doesn't take long to find the source of the noise: several large construction vehicles are paving a large clearing at the edge of a cliff. At its center are nine large walls covered in letters, with spaces reserved for an additional fourteen walls. The largest wall is emblazoned with the text "Free Worlds War Memorial." Already, there are friends and family paying their respects to the ever-growing number of fallen.`
-			branch browerdeath end
+			branch "brower death" end
 				has "FW Pirates: Attack 2: done"
 				has "Care Package to South 1: done"
-			label browerdeath
+			label "brower death"
 			`	As you inspect the walls, you recognize one of the names:`
 			``
 			`		MSGT IRENE BROWER`
@@ -858,7 +859,7 @@ mission "FW Greenrock Lost Announcement"
 						has "FW Pirates: Attack 3: done"
 				`	"It was probably going to happen sooner or later."`
 				`	"We shouldn't have wasted the resources on it at all."`
-			`	"I suppose, but things should have gone differently. The Free Worlds, and the Pact before that, was founded to eliminate piracy from the South, so I thought it was the right thing to do. We really put the pirates on the wire when we went straight for their guts.`
+			`	"I suppose, but things should have gone differently. The Free Worlds, and the Pact before that, was founded to eliminate piracy from the South, so I thought it was the right thing to do."`
 			choice
 				`	"Well, the most obvious threat to the Free Worlds' sovereignty is the Navy. Attacking Greenrock hasn't helped in that regard."`
 					goto challenge

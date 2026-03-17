@@ -151,3 +151,11 @@ phrase "generic completed pirate slave mission"
 phrase "generic aborted pirate slave mission"
 	word
 		`Your slaves never arrived at <destination>. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
+
+phrase "free worlds failed"
+	word
+		`You have failed or aborted an essential Free Worlds mission. If you want to continue the story line, revert to the autosave or another earlier snapshot of your pilot.`
+
+phrase "free worlds declined"
+	word
+		`You have declined an essential Free Worlds mission. If you want to continue the story line, revert to the autosave or another earlier snapshot of your pilot.`

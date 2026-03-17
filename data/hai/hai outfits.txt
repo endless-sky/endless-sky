@@ -306,6 +306,9 @@ outfit "Railgun"
 		"submunition" "rslug" 1
 	description "The Hai designed this weapon to best complement their Flea drones. Each Skipper Railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
 	description "	Flea drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships. There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "rslug"
 	weapon
@@ -316,7 +319,8 @@ outfit "rslug"
 		"acceleration" 2.2
 		"drag" .05
 		"turn" .6
-		"homing" 1
+		"homing"
+			"blindspot"
 		"optical tracking" .4
 		"shield damage" 4.2
 		"hull damage" 8.4
@@ -333,6 +337,17 @@ effect "rail sparks"
 	"random angle" 360
 	"random spin" 30
 	"velocity scale" 1.2
+
+outfitter "Railgun Slug Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		or
+			has "outfit: Railgun"
+			has "outfit: Railgun Slug Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Railgun Slug"
 
 
 outfit "Hai Tracker"
@@ -388,7 +403,9 @@ outfit "Hai Tracker Pod"
 		"acceleration" .7
 		"drag" .05
 		"turn" 1.2
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"optical tracking" .8
 		"infrared tracking" .4
 		"shield damage" 200
@@ -396,6 +413,9 @@ outfit "Hai Tracker Pod"
 		"hit force" 525
 		"missile strength" 16
 	description "Trackers are fast and accurate homing weapons. Although not as powerful as most human missiles, Trackers boast a significant hit force, helping to prevent the escape of whoever is unfortunate enough to be on the receiving end. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "tracker fire"
 	sprite "effect/tracker fire"
@@ -427,6 +447,17 @@ effect "tracker cloud"
 	"random velocity" 1
 	"random frame rate" 2
 	"velocity scale" -.1
+
+outfitter "Hai Tracker Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		or
+			has "outfit: Hai Tracker Pod"
+			has "outfit: Tracker Storage Pod"
+	location
+		attributes "outfitter"
+	stock
+		"Hai Tracker"
 
 
 outfit "Bullfrog Anti-Missile"
@@ -486,7 +517,7 @@ outfit "Hai Cuttlefish Jammer"
 	thumbnail "outfit/hai jammer"
 	"mass" 10
 	"outfit space" -7
-	"optical jamming" 15
+	"optical jamming" 1.5
 	"energy consumption" .8
 	description "When the Hai first started fighting each other, the need for a counter to Trackers quickly became apparent. The Cuttlefish Jammer can noticeably disturb a Tracker's lock to the ship by presenting it with a seemingly better, albeit illusory, target. This jammer is most effective on larger ships that cannot field enough anti-missiles to effectively counter missiles from all directions."
 
@@ -498,7 +529,7 @@ outfit "Hai Octopus Jammer"
 	thumbnail "outfit/hai jammer overclocked"
 	"mass" 10
 	"outfit space" -7
-	"optical jamming" 20
+	"optical jamming" 2
 	"energy consumption" 1.2
 	description "The Octopus Jammer is a more aggressive adaptation of the Cuttlefish Jammer, intended for short raids by the Unfettered. With several safety circuits bypassed, it is able to more effectively deceive incoming Trackers, but the much higher associated energy cost makes any ship carrying this even more vulnerable to ion weaponry."
 
@@ -710,9 +741,11 @@ outfit `"Baellie" Atomic Engines`
 	"turning heat" 1.28
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
+		"scale" 0.8
 	"flare sound" "atomic tiny"
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
+		"scale" 0.8
 	"steering flare sound" "atomic tiny"
 	description `While the Hai were designing the Flea, it quickly became apparent that even the "Basrem" engine set was too large for the purpose. As a result, a combined thruster steering set was created: "Baellie."`
 
@@ -730,6 +763,7 @@ outfit `"Basrem" Atomic Thruster`
 	"thrusting heat" 2.8
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
+		"scale" 0.8
 	"flare sound" "atomic tiny"
 	description "Unbeknownst to the scientists of the Deep, the Hai have been using atomic engine technology for many millennia. Hai atomic engines are still much more energy hungry than other engines, but exhibit greater efficiency than their human counterparts."
 
@@ -815,6 +849,7 @@ outfit `"Basrem" Reverse Thruster`
 	"reverse thrusting heat" 2.8
 	"reverse flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
+		"scale" 0.8
 	"reverse flare sound" "atomic tiny"
 	description `The tiny "Basrem" Reverse Thrusters allow even the smallest of Hai ships additional maneuverability beyond normal steering. Many young Hai find these an invaluable investment when first setting out on their own.`
 
@@ -866,6 +901,7 @@ outfit `"Basrem" Atomic Steering`
 	"turning heat" 1.5
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
+		"scale" 0.8
 	"steering flare sound" "atomic tiny"
 	description "Hai atomic engines are too expensive to buy for most humans. All but the smallest of the engines are worth more than many of the most common ships flown in human space."
 
@@ -984,15 +1020,3 @@ outfit "Shield Beetle Pendant"
 	"unique" 1
 	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
 	description "	It comes with a finely crafted lit shadowbox so it can be installed and displayed with pride. A trio of mounting brackets - miniatures of those used on Quantum Keystones - provide a secure anchor to keep the pendant safe."
-
-
-outfit "Failed Control System"
-	category "Systems"
-	series "Special Systems"
-	index 02010
-	cost 0
-	thumbnail "outfit/control transceiver"
-	"mass" 1
-	"unplunderable" 1
-	"integrated control systems" 1
-	description "This was meant to control some sort of experimental system, but it appears to have failed. Unfortunately it doesn't appear to be safely removable."

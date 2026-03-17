@@ -22,9 +22,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataNode;
 class Planet;
 class Sprite;
+class System;
 
 
 
@@ -32,15 +34,16 @@ class Sprite;
 // news. One specification can contain many possible portraits and messages.
 class News {
 public:
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
 	// Check whether this news item has anything to say.
 	bool IsEmpty() const;
-	// Check if this news item is available given the player's planet and conditions.
-	bool Matches(const Planet *planet, const ConditionsStore &conditions) const;
+	// Check if this news item is available given the player's planet.
+	bool Matches(const Planet *planet) const;
 
 	// Get the speaker's name.
-	std::string Name() const;
+	std::string SpeakerName() const;
 	// Pick a portrait at random out of the possible options.
 	const Sprite *Portrait() const;
 	// Get the speaker's message, chosen randomly.
@@ -51,7 +54,7 @@ private:
 	LocationFilter location;
 	ConditionSet toShow;
 
-	Phrase names;
+	Phrase speakerNames;
 	std::vector<const Sprite *> portraits;
 	Phrase messages;
 };

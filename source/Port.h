@@ -19,10 +19,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "ConditionSet.h"
 #include "Paragraphs.h"
 
+#include <map>
 #include <string>
 
+class ConditionsStore;
 class DataNode;
 
 
@@ -60,29 +63,33 @@ public:
 
 public:
 	// Load a port's description from a node.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	void LoadDefaultSpaceport();
 	void LoadUninhabitedSpaceport();
 
 	// Load a port's description text paragraphs from the planet spaceport description.
-	void LoadDescription(const DataNode &node);
+	void LoadDescription(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Whether this port was loaded from the Load function.
 	bool CustomLoaded() const;
 
-	// Whether this port has any services available.
-	bool HasServices() const;
-
-	// Get all the possible sources that can get recharged at this port.
-	int GetRecharges() const;
-
-	const std::string &Name() const;
+	const std::string &DisplayName() const;
 	const Paragraphs &Description() const;
 
+	// Whether the player is required to bribe before landing due to their conditions.
+	bool RequiresBribe() const;
+	// Whether the player is able to access this port after landing.
+	bool CanAccess() const;
+
+	// Get all the possible sources that can get recharged at this port.
+	int GetRecharges(bool isPlayer = true) const;
 	// Check whether the given recharging is possible.
-	bool CanRecharge(int type) const;
+	bool CanRecharge(int type, bool isPlayer = true) const;
+
+	// Whether this port has any services available.
+	bool HasServices(bool isPlayer = true) const;
 	// Check whether the given service is available.
-	bool HasService(int type) const;
+	bool HasService(int type, bool isPlayer = true) const;
 
 	bool HasNews() const;
 
@@ -92,7 +99,7 @@ private:
 	bool loaded = false;
 
 	// The name of this port.
-	std::string name;
+	std::string displayName;
 
 	// The description of this port. Shown when clicking on the
 	// port button on the planet panel.
@@ -103,6 +110,12 @@ private:
 
 	// What services are available on this port.
 	int services = ServicesType::None;
+
+	// Conditions that determine how the player is allowed to interact with this port.
+	ConditionSet toRequireBribe;
+	ConditionSet toAccess;
+	std::map<int, ConditionSet> toRecharge;
+	std::map<int, ConditionSet> toService;
 
 	// Whether this port has news.
 	bool hasNews = false;

@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <string>
 
+class Conversation;
 class DataNode;
 class DataWriter;
 class Government;
@@ -109,8 +110,8 @@ public:
 	// be charged for any illegal outfits plus the sum of the fines for all
 	// missions. If the returned value is negative, you are carrying something
 	// or someone that warrants a death sentence for you.
-	int IllegalCargoFine(const Government *government, const PlayerInfo &player) const;
-	int IllegalPassengersFine(const Government *government, const PlayerInfo &player) const;
+	std::pair<int, const Conversation *> IllegalCargoFine(const Government *government) const;
+	int IllegalPassengersFine(const Government *government) const;
 
 	// Returns the amount tons of illegal cargo.
 	int IllegalCargoAmount() const;
