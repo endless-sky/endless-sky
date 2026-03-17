@@ -2840,21 +2840,21 @@ interface "outfitter loadouts panel"
 
 	visible if "row1"
 	sprite "ui/loadout row 1"
-		center 5 -343
+		center 4 -343
 	box "ships1"
 		from -500 -355 to 500 -290
 	visible
 
 	visible if "row2"
 	sprite "ui/loadout row 2"
-		center 5 -374
+		center 4 -374
 	box "ships2"
 		from -500 -417 to 500 -290
 	visible
 
 	visible if "row3"
 	sprite "ui/loadout row 3"
-		center 5 -411
+		center 4 -411
 	box "ships3"
 		from -500 -480 to 500 -290
 	visible
@@ -2909,7 +2909,7 @@ interface "outfitter loadouts panel"
 
 interface "outfitter loadouts overlay"
 	sprite "ui/loadout overlay"
-		center 1 -12
+		center 0 -12
 	label "Loadouts"
 		from -480 -265
 		align left
