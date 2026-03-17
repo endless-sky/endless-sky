@@ -295,7 +295,7 @@ mission "Hai Legacy 3"
 			`	Her eyes light up as she focuses more on your ship. "I even see weapons that we fought valiantly to obtain from the savage Korath!"`
 				to display
 					has "outfit (flagship installed): Thermal Repeater Turret"
-			`	All of a sudden, she raises her voice for everyone to hear. "I, Mera, challenge you! The winner will earn the right to own this honorable relic and its mighty weapons!"`
+			`	All of a sudden, she raises her voice for everyone to hear. "I, Mera, challenge you! It will be a one-on-one duel; you in the Anomalocaris against my own champion. The winner will earn the right to own this honorable relic and its mighty weapons!"`
 			choice
 				`	"What do I get if I win?"`
 					goto win
@@ -304,7 +304,7 @@ mission "Hai Legacy 3"
 					goto fleeing
 			`	"No, because in the eyes of my brethren that would mean I, too, did not deserve this ship. They would then challenge me for it."`
 			label win
-			`	Mera turns around, talking to other Unfettered for a bit before addressing you again. "If you win the challenge captaining the Anomalocaris, you will win the right to access our worlds. But, in order to keep our respect, you must keep the relic in good condition until you prove yourself another way. It is a priceless artifact. Should you refuse to prove your worth, you will no longer be allowed to land here."`
+			`	Mera turns around, talking to other Unfettered for a bit before addressing you again. "You will win the right to access our worlds. But, in order to keep our respect, you must keep this Anomalocaris in good condition until you prove yourself another way. It is a priceless artifact. Should you refuse to prove your worth, you will no longer be allowed to land here."`
 			`	She then glares at you. "Beware, for although there are no official rules, you must use only the Anomalocaris. So, will you take to the skies, or are you too afraid?"`
 			choice
 				`	"I accept."`
@@ -372,7 +372,7 @@ mission "Hai Legacy 3"
 			`As you arrive with your fleet in this system, you receive a hail from the Unfettered. "If you can't even count how many ships you have, you're not worthy of our time, monkey! Dishonor will get you nowhere with us True Hai! Leave."`
 				goto failed
 			label anomaly
-			`You are hailed by the Unfettered as you enter the system. "Monkey! What did we just say? You need to prove yourself worthy of flying the relic by beating us in a dual at its helm, not with another ship! Leave, we will not waste anymore of our time with the likes of you."`
+			`You are hailed by the Unfettered as you enter the system. "Monkey! Why do you refuse to use the relic? Only by winning with the relic can you prove yourself worthy of it. Leave, we will not waste anymore of our time with the likes of you."`
 			label failed
 			action
 				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
