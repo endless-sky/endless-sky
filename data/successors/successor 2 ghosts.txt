@@ -64,7 +64,7 @@ mission "Successors: Ghosts Prelude Incident"
 		log "Learned of an incident on a moon controlled by House Kaatrij that revealed portions of a hidden base."
 		conversation
 			`The usual orderly structure of the spaceport's activity lies in pieces. Throngs of merchants, travelers, and military officers alike crowd around displays in the port, their shops and vessels left behind. It is uncomfortably quiet - the only voice you hear above a whisper is that of a news announcer, writhing in your ears as the translation device rearranges the sound, word by word.`
-			`	"... incident has laid bare aught what noble House Kaatrij hath labor'd t'leave concealed. The moon, long though lifeless, barren, raw, now show'th the spill-ed guts of some long-conceal'd base. View, fellows! See it seethe beneath the light!"`
+			`	"... incident has laid bare aught what noble House Kaatrij hath labor'd t'leave concealed. The moon, long thought lifeless, barren, raw, now show'th the spill-ed guts of some long-conceal'd base. View, fellows! See it seethe beneath the light!"`
 			`	The display changes to show an overhead view of a sandy moon. Tucked in a valley between rust-colored dunes is a bloom of distorted metal and intermittent light, the shape of a long arc stretching for maybe a kilometer across the surface. Near the ends, the image shimmers and warps before the whole thing is obscured by a Kaatrij warship flying into view - it's not clear whether the distortion is actually present or just a fault of the transmission.`
 			branch "seen this before"
 				has "event: war begins"
@@ -142,8 +142,8 @@ mission "Successors: Ghosts QSI 2"
 		not "successors: ghosts restriction lifted"
 	on offer
 		conversation
-			`Though the Kaatrij spaceport is usually quiet, its patrons speaking in hushed whispers, today it is utterly soundless. The very few Successors who go about their business inside do so without a word and stick to only the most filmily-hydrated pathways such that they leave only the most minute of splashes in their wake.`
-			`	Near the center of the landing wing is a concierge of sorts; a tall, burnt orange Successor splayed atop a seat of sculpted rocks before a collection of panels.`
+			`Though the Kaatrij spaceport is usually quiet, its patrons speaking in hushed whispers, today it is utterly soundless. The very few Successors who go about their business inside do so without a word and stick to only the most thinly-hydrated pathways such that they leave only the most minute of splashes in their wake.`
+			`	Near the center of the landing wing is a concierge of sorts: a tall, burnt orange Successor splayed atop a seat of sculpted rocks before a collection of panels.`
 			choice
 				`	(Go to them.)`
 				`	(Go about your business as usual.)`
@@ -201,7 +201,7 @@ mission "Successors: Ghosts QSI 2"
 			action
 				log "Attempted to get in contact with Saajret, of Somber Sejra. Received a data-sphere from a House Kaatrij spaceport concierge and was informed that Saajret will make contact on their own time, if at all."
 				event "successors: ghosts saajret contact" 9
-			`	The concierge rolls the sphere around at the tip of two of their arms for a little while, then proffer it to you. You feel gentle ripples on the surface of the metal, like fingerprints. The concierge then slowly returns to their prior position atop the stone seat, slithering over the wet rocks and draping themself atop them.`
+			`	The concierge rolls the sphere around at the tip of two of their arms for a little while, then proffers it to you. You feel gentle ripples on the surface of the metal, like fingerprints. The concierge then slowly returns to their prior position atop the stone seat, slithering over the wet rocks and draping themself atop them.`
 				decline
 
 			label impatient
@@ -733,7 +733,7 @@ mission "Successors: Ghosts 6"
 			label "killed riiria"
 			action
 				"successors: ghosts suspicion" ++
-			`	You check over the <ship>'s various internal systems, even discovering a mysterious anomaly in one of the power consumption logs, though it's hard to track down what caused it or where it was located. Regardless, the anomaly resolved itself some time ago.`
+			`	You check over the <ship>'s various internal systems, and discover a mysterious anomaly in one of the power consumption logs, though it's hard to track down what caused it or where it was located. Regardless, the anomaly resolved itself some time ago.`
 
 			label saajret
 			`	Saajret soon returns as they promised, apparently unharmed. They unload their equipment in the quarters you set aside for them before returning to you in the cockpit. "It went without incident," they say, a shade of satisfaction on their skin. As they turn to go away, they catch themself, turning back around with a bit of trepidation. "I may never get this chance again, so I'll speak now: I've a personal request to beg of thee. There's another world within the Shroud where in past my ancestors resided. 'Fore we return to Kaatrij, I'd long to see it for myself. I'd pay thee for the diversion, of course."`
@@ -997,7 +997,7 @@ mission "Successors: Ghosts 10"
 			`	The Successor looks over you with a curious gaze. "Intriguing," they say. "'Tis no matter; we shall consult our records of thy craft."`
 
 			label cloaks
-			`	After a moment passes, your interrogator leans over you and the guards in the back stand, attentive. "Now we must decide what is to be done with thee," they say. "Now that thou hast learned of our arrangement with the Quarg. Thou should'st understand we do not wish that information to be avail'ble to all. Not all the Houses nor their members regard the Quarg with amity."`
+			`	After a moment passes, your interrogator leans over you and the guards in the back stand, attentive. "Now we must decide what is to be done with thee," they say, "now that thou hast learned of our arrangement with the Quarg. Thou should'st understand we do not wish that information to be avail'ble to all. Not all the Houses nor their members regard the Quarg with amity."`
 			choice
 				`	"I have no intention of spilling your secret."`
 					goto discreet
