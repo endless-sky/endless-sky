@@ -405,7 +405,15 @@ mission "Hai Legacy 3"
 			dialog `You receive a hail from Mera, who sounds quite angry. "Destroying the ship can only be due to either incompetence or evil intent, and we will not tolerate either!"`
 			"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 			fail
-		dialog `You receive a message from the Unfettered ship. "We surrender. Land on Firelode to receive your reward."`
+		conversation
+			branch cheat
+				"total ships" > 1
+			`You receive a message from the Unfettered ship. "We surrender. Land on Firelode to receive your reward."`
+				accept
+			label cheat
+			`You come here with a fleet and have the audacity to disable my ship? Your dishonor knows no bound, monkey!`
+			action
+				fail
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
@@ -419,7 +427,15 @@ mission "Hai Legacy 3"
 			dialog `You receive a hail from Mera, who sounds quite angry. "Destroying the ship can only be due to either incompetence or evil intent, and we will not tolerate either!"`
 			"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 			fail
-		dialog `You have managed to defeat the Unfettered challenger. Now it's time to land on Firelode and claim your reward.`
+		conversation
+			branch cheat
+				"total ships" > 1
+			`You have managed to defeat the Unfettered challenger. Now it's time to land on Firelode and claim your reward.`
+				accept
+			label cheat
+			`You come here with a fleet and have the audacity to disable my ship? Your dishonor knows no bound, monkey!`
+			action
+				fail
 	npc
 		government "Hai (Unfettered)"
 		to spawn
