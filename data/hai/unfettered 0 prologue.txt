@@ -576,7 +576,7 @@ mission "Unfettered 0: Bring Hai"
 			has "language: Hai"
 		<fourthgroup> "This one is also requesting something, but they do not seem to be malnourished at all. The Chiefs seem bothered by this request."
 			not "language: Hai"
-		<fourthgroup> `"My cousins would like to join me, but they lack the funds to [easily pay, afford] the transport. Would you allow more to join us, and become [True, authentic, unfettered]?" This seems to bother the Chiefs, and they answer briefly, "We will pass along this request to [True, unaltered] ship captains, but I fear they are indeed [busy, overworked, too few] these days. That can explain why the prices have gone up."`
+		<fourthgroup> `"My cousins would like to join me, but they lack the funds to [easily pay, afford] the transport. Would you allow more to join us, and become [True, authentic, Unfettered]?" This seems to bother the Chiefs, and they answer briefly, "We will pass along this request to [True, unaltered] ship captains, but I fear they are indeed [busy, overworked, too few] these days. That can explain why the prices have gone up."`
 			has "language: Hai"
 		<closing> "He speaks with a conclusive and conciliatory tone to the many Hai still waiting in line for the stage."
 			not "language: Hai"
@@ -635,7 +635,7 @@ mission "Unfettered 0: Bring Hai"
 				`	"Could you help me translate again some time?"`
 				`	(Let her leave.)`
 					goto leave
-			`	She looks down with a light smile, "I am not even sure I will stay in Unfettered space, but if we meet again, I will try, although I cannot promise you more. Some among us are not too fond of humans; it may be hard to prove your worth here, and, if I do stay, I will not want to lose any status I have acquired by speaking with you if you have not yet earned the respect of the Unfettered."`
+			`	She looks down with a light smile, "I am not even sure I will stay in Unfettered space, but if we meet again, I will try, although I cannot promise you more. Some among us are not too fond of humans; it may be hard to prove your worth here, and if I do stay, I will not want to lose any status I have acquired by speaking with you if you have not yet earned the respect of the Unfettered."`
 			branch leave
 				not "Unfettered Jump Drive 1: offered"
 			choice
@@ -647,10 +647,10 @@ mission "Unfettered 0: Bring Hai"
 			`	Merora leaves and joins with the rest of the departing crowd, but on stage, the Chiefs linger until the crowd has mostly dispersed. It seems one has noticed you now that the crowd has thinned; he is watching you pensively as he comes your way.`
 				goto next
 			label continue
-			`	A child, younger, or at least smaller, than any other you've seen on stage so far, approaches the Chiefs. All alone, the child seems scared and perhaps even lost as they speak, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting them as they speak quietly to each other. The Chief rises, <thirdgroup> Progressively, most Hai stand up and speak, the message from each of them clear. He designates one of the first to stand, and gently sends the child walking over to them.`
+			`	A child, younger, or at least smaller, than any other you've seen on stage so far, approaches the Chiefs. All alone, the child seems scared and perhaps even lost as they speak, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting them as they speak quietly to each other. The Chief rises<thirdgroup> Progressively, most Hai stand up and speak, the message from each of them clear. He designates one of the first to stand, and gently sends the child walking over to them.`
 			`	The sun has almost set, and you can see that the Chiefs are beginning to grow impatient as the next Hai approaches and speaks to them. <fourthgroup> The Chiefs speak amongst themselves briefly, then one moves forward to address the crowd. <closing> At this, the crowd, including the young girl who offered to translate for you, leaves, but the Chiefs linger until the crowd has mostly dispersed. It seems one has noticed you now that the crowd has thinned; he is watching you pensively as he comes your way.`
 			label next
-			`	As he grows closer, you can tell he is mumbling, presumably to himself, but in your language. "We do not get human visitors often here. There has to be a reason for your presence..." Once he has closed the rest of the distance, he speaks again, directly to you and with more focus. "Sorry, I was just organizing my thoughts into your language. Well, what matters is that you are here, and so maybe could help us.`
+			`	As he grows closer, you can tell he is mumbling, presumably to himself, but in your language. "We do not get human visitors often here. There has to be a reason for your presence..." Once he has closed the rest of the distance, he speaks again, directly to you and with more focus. "Sorry, I was just organizing my thoughts into your language. Well, what matters is that you are here, and so maybe you could help us.`
 			`	"We have friends outside of our space, civilians and others. You see, we would do anything to help those who are True, and a few Hai want to join us. I can only hope you are willing to help us reunite with our brothers and sisters from Hai space," he explains, apparently a bit desperate.`
 			choice
 				`	"Of course. What do you need me to do?"`
@@ -877,7 +877,7 @@ mission "Unfettered 2: Prove Your Strength"
 				`	"You dare insult the <ship>?"`
 				`	"I have no need to prove myself to a rodent."`
 					goto provoke
-				`	(Go. He's not worth it.)`
+				`	(Go. This is not worth fighting over.)`
 					goto run
 			`	"Sink me! That flotsam really be your ship? Given the hornswoggle of your reputation, I pegged you for a fancier type. Your prowess is no lie, indeed then, if you land in such a scow, but can ye truly fight in it?" he asks, before turning to address the crowd once again. "I wonder if it can even launch again. Perhaps we should scuttle it right here."`
 				goto lesson
@@ -949,7 +949,7 @@ mission "Unfettered 2: Prove Your Strength"
 				fail "Unfettered 2: Prove Your Strength"
 				fine 25000
 	on disabled
-		dialog `The Captain hails you. "Full of holes so soon, matey? No matter, I get me fee of 250 thousand credits! When ye're ready to fight like a Heshi, come to the 'port to see if I'm on the deck! In the meantime I can repair ye for a lil' purse's worth, but be sure to give it in a private hail and then hail me ship again to ask for help, for me first mate must not know about it or I could have a mutiny on my hands for not sharing!"`
+		dialog `The Captain hails you. "Full of holes so soon, matey? No matter, I get me fee of 250 thousand credits! When yer ready to fight like a Heshi, come to the 'port to see if I'm on the deck! In the meantime I can repair ye for a lil' purse's worth, but be sure to give it in a private hail and then hail me ship again to ask for help, for me first mate must not know about it or I could have a mutiny on my hands for not sharing!"`
 		fine 250000
 	# if you have a heavy warship/two mediums or you pissed him off, he'll bring "friends"
 	npc disable
@@ -1276,7 +1276,7 @@ mission "Unfettered 3: Jump Drive Vault"
 				`	"Is everything alright?"`
 				`	"There is no need to be worried, that cache must be well hidden, right?"`
 			action
-				"unfettered rep: Si-Ra" -= 2
+				"unfettered rep: Si-Ra" -= 3
 			`	He makes some kind of sign you do not understand, but it seems pretty clear he wants you to keep quiet. Looking around, you notice the two of you have attracted quite a bit of attention from the impoverished locals. While they all seem to have nothing to lose, the vast majority of them are very young and probably not the hardened criminals you had expected.`
 			label discreet
 			action
@@ -1319,7 +1319,7 @@ mission "Unfettered 3: Jump Drive Vault"
 			`	After searching through the vault to eliminate any other surprises, the Hai declares the area cleared. Any other stalkers have probably run off after seeing the firepower your Unfettered friend carries. You then inspect the jump drives to the best of your ability with a device he quickly instructed you how to use, while he finishes taking care of the security systems. Once you are done and waiting for his return, you look around and notice a small symbol in the lower corner of a nearby wall: a dog with multiple heads. You double-check the Jump Drives as you continue to wait, and when the Hai captain comes back, he conveniently places his gun over the symbol.`
 			`	He switches a lever, and the electric humming you've been hearing suddenly stops. "I have disabled the holographic field generator, so yer ship can come to pick up the drives. Best have it come quickly, so that it reaches us before the intruders return in force," he suggests. You immediately order the <ship> to dock with the vault.`
 			choice
-				`	(Wait for the ship to arrive.)`
+				`	(Wait for the <ship> to arrive.)`
 					goto ship
 				`	"We could have just come into the vault swarming with ground forces instead of risking our lives..."`
 				`	"Is this holographic field the reason we had to go into the vault in person, instead of just flying here in our ship?"`
@@ -1522,7 +1522,7 @@ mission "Unfettered 4: Scan Geocoris"
 			label "didn't listen"
 			`You have scanned the Geocoris, but you did not use a Value Detector to do so. The scans will be of no value to Mera. You have failed the mission.`
 			action
-				fail "Unfettered 4: Scan Geocoris"
+				fail
 	npc
 		government "Hai"
 		to spawn
