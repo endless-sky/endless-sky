@@ -488,7 +488,7 @@ outfit "Antigrav Glass"
 	index 99020
 	plural "Antigrav Glasses"
 	cost 25
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/antigrav glass"
 	"capture attack" .2
 	"unique" 1
 	"unplunderable" 1
