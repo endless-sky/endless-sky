@@ -988,7 +988,7 @@ mission "Unfettered 2: Prove Your Strength"
 				goto fire
 			label "wanderer first"
 			`	"Well<, unfettered title>, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in parrot space up north! Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
-			`	"Since I knew you I made sure to allow you to prove yerself pretty fast, but if you want to continue doing business with us, jump drives are always appreciated..."`
+			`	"Since I knew you I made sure to allow you to prove yerself smartly, but if you want to continue doing business with us, jump drives are always appreciated..."`
 				to display
 					not "Unfettered Jump Drive 1: offered"
 			label fire
@@ -1065,7 +1065,7 @@ mission "Unfettered 2: Prove Your Strength"
 			label poisoned
 			`	You hear voices around you - one of them screams for help, but you recognize another as your recent opponent, who is speaking calmly. "There is no cure for humans," you hear as you sink deeper and deeper, down to the edge of unconsciousness, "there is nothing to be done. This is a fight they will have to win on their own."`
 			`	Suddenly the world darkens, and you fall. When you open your eyes again, all is vivid, as if you had never seen before. You see the scorpion-like creature that attacked you, clearer than ever, in all its might and with a deep spark of intelligence in its eyes, before it swiftly moves away.`
-			`	Then you are taken far away by a beam of pure light. You see collapsed civilizations, fighting to reclaim their forgotten glory as they struggle to feed their own people. You see a planet, once beautiful, now being bombarded until not a single trace of life is left. You see stars, seemingly eternal, blasted away with all surrounding space. You see automated ships, repairing wounds.`
+			`	Then you are taken far away by a beam of pure light. You see collapsed civilizations, fighting to reclaim their forgotten glory as they struggle to feed their own people. You see a planet, once beautiful, now being bombarded until not a single trace of life is left. You see stars, seemingly eternal, blasted away with all surrounding space. You see automated ships repairing wounds.`
 			action
 				set "unfettered: heshi trip"
 				"unfettered rep: Si-Ra" ++
@@ -1283,7 +1283,7 @@ mission "Unfettered 3: Jump Drive Vault"
 				"unfettered rep: Si-Ra" ++
 			`	After skirting the outskirts of the shanty town, you head further into the mountains, and eventually you spot what appears to be a local in the distance. Though he does not seem to be following you, something seems odd about him, but you cannot pinpoint what.`
 			`	Continuing up the mountain, you get the impression that this vault is no simple, small depot. This is confirmed when you pass several security turrets, and, while it is safe to assume that even more defenses are concealed from view, you wonder why any would be left in plain sight around a "hidden" depot. Crossing a ridge, you begin to notice that some of your surroundings look strange, as the mountain has only been affected by the elements in some places and not others. Suddenly, the armored Hai stops and raises a hand high, palm open. Recognizing the sign, you stop as well.`
-			`	The Hai reaches for some kind of device in his pocket and enters what you assume to be access codes. By the look on his face, it doesn't seem to be working very well. "Blimey, someone else has accessed the vault. This was not expected," he hisses as his grip tightens on his weapon, and he dons his helmet. "Stay here. I will take care of this."`
+			`	The Hai reaches for some kind of device in his pocket and enters what you assume to be access codes. By the look on his face, it doesn't seem to be working very well. "Some swab has accessed the vault. A grim turn of events," he hisses as his grip tightens on his weapon and he dons his helmet. "Stay here. I be taking care of this."`
 			choice
 				`	"Don't you want one extra gun?"`
 					goto wannafight
@@ -1298,7 +1298,7 @@ mission "Unfettered 3: Jump Drive Vault"
 				`	(Stay outside.)`
 					goto outside
 			`	He sighs. "As ye wish, but I do hope ye can hold yer own on the ground as well as in space. I have disabled the automated defenses, in case they have been hijacked. We just have to go in, make sure they recognize us as friendlies, and then reactivate them." You really wonder where the vault could be, until you see the Hai walk right through part of the mountain in front of you. It must be a hologram, disguising the entry! You hurry to catch up to him.`
-			`	At first, you don't notice anything particularly suspicious, but you do hear the low hum of running electronics and machinery in the distance. Though the vault is clearly alien in origin, you cannot pinpoint its origin; instead, it seems to be a mix of many different species' architectural styles. All of it appears ancient, and there is no illumination, possibly because your friend cut all power. Even without light, you can tell there is clearly space to move around - enough for an armored vehicle, in fact. As you acclimate to the darkness inside the vault, you notice a flash of green light, far away on your left.`
+			`	At first, you don't notice anything particularly suspicious, but you do hear the low hum of running electronics and machinery in the distance. Though the vault is clearly alien, you cannot pinpoint its origin; instead, it seems to be a mix of many different species' architectural styles. All of it appears ancient, and there is no illumination, possibly because your friend cut all power. Even without light, you can tell there is clearly space to move around - enough for an armored vehicle, in fact. As you acclimate to the darkness inside the vault, you notice a flash of green light, far away on your left.`
 			choice
 				`	(It's just a light flickering. No need to worry.)`
 				`	"GET DOWN!"`
@@ -1333,7 +1333,7 @@ mission "Unfettered 3: Jump Drive Vault"
 			`	"We needed to act discreetly, so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and been more targets for the vault's defenses. As ye have probably noticed, we have not accessed this vault for quite some time. Some Unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets." You have a hunch that there could be more to all this than what he's admitting.`
 				goto ship
 			label vault
-			`	"Yes and no. It be not only a holographic generator, but also a set of jammers, meaning your ship would not be able to pinpoint the exact location and would have to land blindly. We also needed to make sure the jump drives were not sabotaged and that the vault defenses were not compromised; they could probably have taken yer ship down. Needless to say, even monkeys could rig the drives to blow when used. Checking that takes time." He takes some time to think before continuing. "Besides, we want to be using this vault later, so may as well ensure its safety. That said, it seems we left it sit too long, and it be too compromised for further use." You have a hunch that there could be more to all this than what he's admitting.`
+			`	"Yes and no. It be not only a holographic generator, but also a set of jammers, meaning your ship would have to land blind. We also needed to make sure the jump drives were not sabotaged and that the vault defenses were not compromised; they could probably have taken yer ship down. Needless to say, even monkeys could rig the drives to blow when used. Checking that takes time." He looks thoughtful for a moment before continuing. "Besides, we want to be using this vault later, so may as well ensure its safety. That said, it seems we left it sitting too long, and it be too compromised for further use." You have a hunch that there could be more to all this than what he's admitting.`
 			choice
 				`	(Go back to the ship.)`
 					goto ship
@@ -1431,7 +1431,7 @@ mission "Unfettered 4: Scan Geocoris"
 			label JD
 			`	"Someone who brings us something as precious as a jump drive is not quickly forgotten! Now back to our business, if you don't mind.`
 			label job
-			`	"As you probably already know, the other Hai do not think like us. They believe in trading with all the galaxy in harmony forever, without seeing how it softens them. As such, they have wasted time designing a ship for the sole purpose of transporting goods in great quantities: the Geocoris. The biggest upside is being more competitive than humans in terms of the biggest cargo ship, but that would not have been an issue had they not opened trade so much in the first place! Or at least that is how we used to view it. The design appears to be more... interesting than we initially thought, so we want you to scan it." She seems frustrated, or perhaps she simply always speaks this quickly.`
+			`	"As you probably already know, the other Hai do not think like us. They believe in trading with all the galaxy in harmony forever, without seeing how it softens them. As such, they have wasted time designing a ship for the sole purpose of transporting goods in great quantities: the Geocoris. The main upside is being more competitive than humans in terms of the biggest cargo ship, but that would not have been an issue had they not opened trade so much in the first place! Or at least that is how we used to view it. The design appears to be more... interesting than we initially thought, so we want you to scan it." She seems frustrated, or perhaps she simply always speaks this quickly.`
 			`	"It is pretty much guaranteed there will be one such ship at all times around their home system, Ya Hai, the center of their trade. For obvious reasons we cannot scan that ship ourselves, and we would prefer that the Hai be ignorant of our interest in that design. Bring us the full scanner logs and you will be well rewarded."`
 			label choose
 			choice
@@ -1465,7 +1465,7 @@ mission "Unfettered 4: Scan Geocoris"
 			label trouble
 			action
 				"unfettered: hesitant question" ++
-			`	"That should not be a problem. The Hai will not bothered about you scanning their ship, if they even notice it," she says with a quick sniffing.`
+			`	"That should not be a problem. The Hai will not be bothered about you scanning their ship, if they even notice it," she says with a quick sniffing.`
 				goto choose
 			label design
 			action
@@ -1475,7 +1475,7 @@ mission "Unfettered 4: Scan Geocoris"
 			label scan
 			action
 				set "unfettered: scan question"
-			`	"You need to use at least one of our Value Detectors. The information provided by it should be sufficient, as it goes beyond a simple cargo scan. If you don't have one, you can install one here. You may want to get multiple scanners so you can scan the ship from a longer range, and faster. Please do actively scan it. Passive intel gathered on the fly will not do."`
+			`	"You need to use one of our Value Detectors. The information provided by it should be sufficient, as it goes beyond a simple cargo scan. If you don't have one, you can install one here. You may want to get multiple scanners so you can scan the ship from a longer range, and faster. Please do actively scan it. Passive intel gathered on the fly will not do."`
 				goto choose
 			label agree
 			`	On the way back to your ship, Mera runs up to you. "One... last... thing!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you two of our scanners. They will be placed in your cargo hold if there is no space on your ship, but do go to the lab's outfitter to make sure they are installed properly.`
