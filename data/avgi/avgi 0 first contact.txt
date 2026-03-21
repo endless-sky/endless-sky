@@ -374,7 +374,7 @@ mission "Avgi: Humans From the Deep"
 
 			`	"Regret. Then the situation is most unfortunate," she says.`
 			label confident
-			` "Commitment. We will offer you what help we can, but I did not wish to lie to you about their predicament, or provide you with false hope."`
+			`	"Commitment. We will offer you what help we can, but I did not wish to lie to you about their predicament, or provide you with false hope."`
 			`	"Reservation. Perhaps Captain <last> will be able to find a solution." says Galano. "I would not dismiss the possibility too quickly."`
 			choice
 				`	"While I'm here, can I buy your technology?"`
