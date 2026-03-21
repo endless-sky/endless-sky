@@ -617,17 +617,30 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 				// Handle other attributes more generically, if none of the above are the problem.
 				if(errors.empty())
-					for(const pair<const char *, double> &it : selectedOutfit->Attributes())
+				{
+					for(const auto &[name, count] : selectedOutfit->Attributes())
 					{
+						// Positive attributes can't be the cause of attribute errors.
+						if(count > 0)
+							continue;
+						optional<double> minimum = Outfit::LowerLimit(name);
+						// Nor can attributes with no lower limit.
+						if(!minimum.has_value())
+							continue;
 						// If playerShip has fewer of this attribute available than required by the selectedOutfit, add
 						// this attribute to the list of deficiencies.
-						double shipAvailable = playerShip->Attributes().Get(it.first);
-						double outfitRequires = -it.second;
+						double shipAvailable = playerShip->Attributes().Get(name) - minimum.value();
+						double outfitRequires = -count;
 						if(shipAvailable < outfitRequires)
 							errors.push_back("You cannot install this outfit, because it requires "
-								+ Format::SimplePluralization(outfitRequires, '\'' + string(it.first) + '\'')
-								+ ", and this ship has " + Format::Number(shipAvailable) + " free.");
+								+ OutfitInfoDisplay::Format(name, outfitRequires) + " \"" + name + "\""
+								+ " and this ship has " + OutfitInfoDisplay::Format(name, shipAvailable) + " free.");
 					}
+				}
+
+				// For unhandled outfit requirements, show a catch-all error message.
+				if(errors.empty())
+					errors.push_back("You cannot install this outfit in your ship.");
 
 				// Return the errors in the appropriate format.
 				if(errors.empty())

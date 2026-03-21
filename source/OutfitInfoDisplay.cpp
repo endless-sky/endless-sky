@@ -253,6 +253,17 @@ namespace {
 
 
 
+std::string OutfitInfoDisplay::Format(const std::string &attribute, double value)
+{
+	auto sit = SCALE.find(attribute);
+	double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
+	string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
+
+	return Format::Number(value * scale) + units;
+}
+
+
+
 OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
 		bool canSell, bool descriptionCollapsed)
 {
@@ -454,10 +465,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		else if(it.second < 0 && !IsNotRequirement(it.first))
 			continue;
 
-		auto sit = SCALE.find(it.first);
-		double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
-		string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
-
 		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
 		if(bit != BOOLEAN_ATTRIBUTES.end())
 		{
@@ -468,7 +475,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		else
 		{
 			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
-			attributeValues.emplace_back(Format::Number(it.second * scale) + units);
+			attributeValues.emplace_back(Format(it.first, it.second));
 			attributesHeight += 20;
 		}
 		hasNormalAttributes = true;

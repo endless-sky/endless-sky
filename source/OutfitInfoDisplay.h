@@ -31,6 +31,11 @@ class Point;
 // install it, and one shows other attributes of the outfit.
 class OutfitInfoDisplay : public ItemInfoDisplay {
 public:
+	// Given an attribute name and value, return the string that should be used to display that attribute.
+	static std::string Format(const std::string &attribute, double value);
+
+
+public:
 	OutfitInfoDisplay() = default;
 	OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
 			bool canSell = false, bool descriptionCollapsed = true);
