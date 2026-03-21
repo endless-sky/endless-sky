@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weapon.h"
 
 #include <algorithm>
+#include <cmath>
 #include <limits>
 #include <memory>
 
@@ -308,7 +309,12 @@ double OutfitterPanel::DrawDetails(const Point &center)
 		const Sprite *background = SpriteSet::Get("ui/outfitter unselected");
 		SpriteShader::Draw(background, thumbnailCenter);
 		if(thumbnail)
-			SpriteShader::Draw(thumbnail, thumbnailCenter);
+		{
+			if(thumbnail->IsLoaded())
+				SpriteShader::Draw(thumbnail, thumbnailCenter);
+			else
+				loadingCircle.Draw(thumbnailCenter);
+		}
 
 		const bool hasDescription = outfitInfo.DescriptionHeight();
 
@@ -742,6 +748,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 					// Pay for it and remove it from available stock.
 					player.Accounts().AddCredits(-cost);
 					player.AddStock(selectedOutfit, -1);
+					cost = player.StockDepreciation().Value(selectedOutfit, day);
 
 					// Install it on this ship.
 					ship->AddOutfit(selectedOutfit, 1);
@@ -1051,13 +1058,19 @@ bool OutfitterPanel::ShipCanRemove(const Ship *ship, const Outfit *outfit)
 
 
 
-void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned)
+void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned) const
 {
 	const Sprite *thumbnail = outfit.Thumbnail();
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
 	SpriteShader::Draw(back, center);
-	SpriteShader::Draw(thumbnail, center);
+	if(thumbnail)
+	{
+		if(thumbnail->IsLoaded())
+			SpriteShader::Draw(thumbnail, center);
+		else
+			loadingCircle.Draw(center);
+	}
 
 	// Draw the outfit name.
 	const string &name = outfit.DisplayName();

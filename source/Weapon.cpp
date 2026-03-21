@@ -117,6 +117,8 @@ void Weapon::Load(const DataNode &node)
 		}
 		else if(key == "triggers nuke alert")
 			triggersNukeAlert = true;
+		else if(key == "exclude submunition damage")
+			includeSubmunitionDamage = false;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -622,8 +624,9 @@ double Weapon::TotalDamage(int index) const
 		calculatedDamage = true;
 		for(int i = 0; i < DAMAGE_TYPES; ++i)
 		{
-			for(const auto &it : submunitions)
-				damage[i] += it.weapon ? it.weapon->TotalDamage(i) * it.count : 0.;
+			if(includeSubmunitionDamage)
+				for(const auto &it : submunitions)
+					damage[i] += it.weapon ? it.weapon->TotalDamage(i) * it.count : 0.;
 			doesDamage |= (damage[i] > 0.);
 		}
 	}
