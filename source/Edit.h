@@ -89,7 +89,7 @@ private:
 	Rectangle position;
 	Rectangle text_bounds;
 	Color bg_color;
-	
+
 	std::vector<std::pair<std::string, size_t>> text_history;
 	size_t history_pos = 0;
 
