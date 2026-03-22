@@ -12,6 +12,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
+
 #ifndef CARET_H
 #define CARET_H
 
@@ -27,7 +28,7 @@ public:
    void Draw();
    void BlinkOn();
 
-   void SetColor(const Color& c) { color = c; }
+   void SetColor(const Color &c) { color = c; }
 
    void SetHeight(int h) { height = h; }
    void SetX(int x) { pos.X() = x; }

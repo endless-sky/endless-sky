@@ -1,4 +1,4 @@
-/* Dropdown.cpp
+/* Edit.cpp
 Copyright (c) 2026 by thewierdnut
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -26,8 +26,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "UI.h"
 
-#include <SDL2/SDL.h>
 #include <cassert>
+
+#include <SDL2/SDL.h>
 
 namespace
 {
@@ -137,26 +138,29 @@ void Edit::SetPadding(int p)
 
 bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if (!is_editable)
+	if(!is_editable)
 		return false;
 
 	// Force the caret blink cycle to on after any keypress.
 	caret.BlinkOn();
 
 	bool shift = (mod & KMOD_SHIFT) != 0;
-	bool ctrl =  (mod & KMOD_CTRL) != 0;
+	bool ctrl = (mod & KMOD_CTRL) != 0;
 
 	switch(key)
 	{
-	case SDLK_RETURN: /* Done editing? */       break;
 	case SDLK_TAB:
 		if(shift)
 			FocusPrev();
 		else
 			FocusNext();
 		break;
-	case SDLK_HOME:   MoveCaret(0);             break;
-	case SDLK_END:    MoveCaret(Text().size()); break;
+	case SDLK_HOME:
+		MoveCaret(0);
+		break;
+	case SDLK_END:
+		MoveCaret(Text().size());
+		break;
 	case SDLK_LEFT:
 		if(caret_pos > 0)
 			MoveCaret(caret_pos - 1);
@@ -166,28 +170,28 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			MoveCaret(caret_pos + 1);
 		break;
 	case SDLK_BACKSPACE:
-		if (highlight_pos != INVALID_POS)
+		if(highlight_pos != INVALID_POS)
 		{
 			int left = highlight_pos;
 			int right = caret_pos;
-			if (left > right)
+			if(left > right)
 				std::swap(left, right);
 			UpdateText(Text().substr(0, left) + Text().substr(right), left);
 			highlight_pos = INVALID_POS;
 		}
-		else if (caret_pos > 0)
+		else if(caret_pos > 0)
 		{
 			UpdateText(Text().substr(0, caret_pos - 1) + Text().substr(caret_pos), caret_pos - 1);
 		}
 		break;
 	case SDLK_DELETE:
-		if (highlight_pos != INVALID_POS)
+		if(highlight_pos != INVALID_POS)
 		{
 			int left = highlight_pos;
 			int right = caret_pos;
-			if (left > right)
+			if(left > right)
 				std::swap(left, right);
-			if (shift)
+			if(shift)
 			{
 				// shift-del, treat as cut
 				SDL_SetClipboardText(Text().substr(left, right - left).c_str());
@@ -195,13 +199,13 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			UpdateText(Text().substr(0, left) + Text().substr(right), left);
 			highlight_pos = INVALID_POS;
 		}
-		else if (caret_pos < Text().size())
+		else if(caret_pos < Text().size())
 		{
 			UpdateText(Text().substr(0, caret_pos) + Text().substr(caret_pos + 1), caret_pos);
 		}
 		break;
 	case SDLK_c:
-		if (ctrl)
+		if(ctrl)
 		{
 			// ctrl-c copy
 			Copy();
@@ -210,7 +214,7 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 		return false;
 		break;
 	case SDLK_x:
-		if (ctrl)
+		if(ctrl)
 		{
 			// ctrl-x cut
 			Cut();
@@ -219,7 +223,7 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 		return false;
 		break;
 	case SDLK_v:
-		if (ctrl)
+		if(ctrl)
 		{
 			// ctrl-v paste
 			Paste();
@@ -228,9 +232,9 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 		return false;
 		break;
 	case SDLK_z:
-		if (ctrl)
+		if(ctrl)
 		{
-			if (shift)
+			if(shift)
 			{
 					// ctrl-shift-z Redo
 					Redo();
@@ -245,13 +249,13 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 		return false;
 		break;
 	case SDLK_INSERT:
-		if (shift)
+		if(shift)
 		{
 			// shift-insert, paste
 			Paste();
 			break;
 		}
-		else if (ctrl)
+		else if(ctrl)
 		{
 			// ctrl-insert, copy
 			Copy();
@@ -282,7 +286,7 @@ bool Edit::Click(int x, int y, MouseButton button, int clicks)
 
 	SetFocus(true);
 
-	const auto& s = Text();
+	const std::string &s = Text();
 	size_t newpos = 0;
 	for(; newpos < s.size(); ++newpos)
 	{
@@ -306,7 +310,7 @@ bool Edit::Drag(double dx, double dy)
 		drag_pos.X() += dx;
 		drag_pos.Y() += dy;
 
-		const auto& s = Text();
+		const std::string &s = Text();
 		size_t newpos = 0;
 		for(; newpos < s.size(); ++newpos)
 		{
@@ -375,7 +379,7 @@ bool Edit::TextInput(const std::string& s)
 	}
 	// Someday, we should make the text scroll and clip if we type something too
 	// long, but for now, just ignore input if it is too big to fit.
-	auto& font = FontSet::Get(font_size);
+	auto &font = FontSet::Get(font_size);
 	if(font.Width(new_text) > text_bounds.Width())
 		return true;
 
@@ -483,7 +487,7 @@ void Edit::Copy()
 void Edit::Paste()
 {
 	std::shared_ptr<const char> text(SDL_GetClipboardText(), SDL_free);
-	if (highlight_pos == INVALID_POS)
+	if(highlight_pos == INVALID_POS)
 	{
 		// insert text at caret position
 		UpdateText(
@@ -496,7 +500,7 @@ void Edit::Paste()
 		// replace highlighted text
 		int left = highlight_pos;
 		int right = caret_pos;
-		if (left > right)
+		if(left > right)
 			std::swap(left, right);
 		UpdateText(
 			Text().substr(0, left) + text.get() + Text().substr(right),
@@ -513,7 +517,7 @@ void Edit::Undo()
 {
 	// The first entry is the initial string set by the
 	// constructor. Don't go past it.
-	if (history_pos > 1)
+	if(history_pos > 1)
 	{
 		--history_pos;
 		UpdateCaret(text_history[history_pos - 1].second);
@@ -524,7 +528,7 @@ void Edit::Undo()
 
 void Edit::Redo()
 {
-	if (history_pos < text_history.size())
+	if(history_pos < text_history.size())
 	{
 		++history_pos;
 		UpdateCaret(text_history[history_pos - 1].second);
@@ -534,8 +538,8 @@ void Edit::Redo()
 
 Point Edit::AlignedOffset(size_t offset)
 {
-	auto& font = FontSet::Get(font_size);
-	auto& s = Text();
+	const Font &font = FontSet::Get(font_size);
+	const std::string &s = Text();
 	Point ret{};
 	switch(alignment)
 	{

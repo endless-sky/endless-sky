@@ -108,7 +108,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	selected_quantity->SetCallback([](std::string& s)
 	{
 		// Restrict input to digits.
-		for(char c: s)
+		for(char c : s)
 		{
 			if(!isdigit(c))
 				return false;

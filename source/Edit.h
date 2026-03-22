@@ -1,4 +1,4 @@
-/* Dropdown.h
+/* Edit.h
 Copyright (c) 2026 by thewierdnut
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -12,6 +12,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
+
 #ifndef EDIT_H
 #define EDIT_H
 
@@ -34,7 +35,7 @@ public:
 	void SetFontSize(int f);
    int FontSize() const { return font_size; }
 	void SetPosition(const Rectangle &position);
-   const Rectangle& Position() const { return position; }
+   const Rectangle &Position() const { return position; }
    void SetEnabled(bool e) { is_editable = e; }
    bool Enabled() const { return is_editable; }
 
@@ -53,7 +54,7 @@ public:
 	void SetVisible(bool v) { visible = v; }
    bool Visible() const { return visible; }
 	void SetBgColor(const Color &color) { bg_color = color; }
-   const Color& BgColor() const { return bg_color; }
+   const Color &BgColor() const { return bg_color; }
 
 	typedef std::function<bool(std::string &)> ChangedCallback;
 	void SetCallback(ChangedCallback cb) { changed_callback = cb; }
