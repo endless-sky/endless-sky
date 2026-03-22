@@ -366,7 +366,7 @@ bool Edit::TextInput(const std::string& s)
 		int right = caret_pos;
 		if(left > right)
 			std::swap(left, right);
-		
+
 		new_text = Text().substr(0, left) + s + Text().substr(right);
 		new_pos = left + s.size();
 
@@ -399,7 +399,7 @@ void Edit::MoveCaret(size_t pos)
 
 	auto mod = SDL_GetModState();
 	bool shift = (mod & KMOD_SHIFT) != 0;
-	
+
 	if(highlight_pos == INVALID_POS && shift)
 		highlight_pos = caret_pos;
 	else if(highlight_pos != INVALID_POS && !shift)

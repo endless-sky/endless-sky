@@ -25,23 +25,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Caret final
 {
 public:
-   void Draw();
-   void BlinkOn();
+	void Draw();
+	void BlinkOn();
 
-   void SetColor(const Color &c) { color = c; }
+	void SetColor(const Color &c) { color = c; }
 
-   void SetHeight(int h) { height = h; }
-   void SetX(int x) { pos.X() = x; }
-   void SetY(int y) { pos.Y() = y; }
+	void SetHeight(int h) { height = h; }
+	void SetX(int x) { pos.X() = x; }
+	void SetY(int y) { pos.Y() = y; }
 
 private:
-   uint32_t interval = 500;
-   uint32_t next_blink = 0;
-   Color color{1.0, 1.0, 1.0, .75};
-   bool blink_on = true;
+	uint32_t interval = 500;
+	uint32_t next_blink = 0;
+	Color color{1.0, 1.0, 1.0, .75};
+	bool blink_on = true;
 
-   int height = 14;
-   Point pos{0, 0};
+	int height = 14;
+	Point pos{0, 0};
 };
 
 
