@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 #include "Color.h"
+#include "Edit.h"
 #include "Panel.h"
 #include "Rectangle.h"
 
@@ -28,33 +29,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Implements a dropdown control.
-class Dropdown : public Panel
+class Dropdown : public Edit
 {
 public:
+	Dropdown();
 	virtual ~Dropdown() = default;
 
-	void SetFontSize(int f) { font_size = f; }
-	void SetPosition(const Rectangle &position) { this->position = position; }
 	void SetOptions(const std::vector<std::string> &options);
-	void SetSelected(const std::string &s);
+	void SetText(const std::string &s);
 	void SetSelectedIndex(int idx);
-	const std::string& GetSelected() const { return selected_string; }
 	int GetSelectedIndex() const { return selected_index; }
 
 	virtual void Draw() override;
 
-	enum ALIGN { LEFT, CENTER, RIGHT };
-	void SetAlign(ALIGN a) { alignment = a; }
-	void SetPadding(int p) { padding = p;}
-
-	void SetEnabled(bool e) { enabled = e; }
-	void SetVisible(bool v) { visible = v; }
-	void SetBgColor(const Color &color) { bg_color = color; }
 	void ShowDropIcon(bool s) { showDropIcon = s; }
 
-	typedef std::function<void(int, const std::string &)> ChangedCallback;
+	void SetTypeable(bool t);
+	void SetEnabled(bool e);
+	bool Enabled() const { return enabled; }
 
-	void SetCallback(ChangedCallback cb) { changed_callback = cb; }
 
 protected:
 	void DoDropdown(const Point &pos);
@@ -62,25 +55,11 @@ protected:
 private:
 	int IdxFromPoint(int x, int y) const;
 
-
-	Rectangle position;
 	std::vector<std::string> options;
-	std::string selected_string;
 	int selected_index = -1;
-	Color bg_color;
 
-	bool is_hover = false;
-	bool is_active = true;
-
-	int font_size = 18;
-	ALIGN alignment = LEFT;
-	int padding = 5;
-
-	bool enabled = true;
-	bool visible = true;
 	bool showDropIcon = false;
-
-	std::function<void(int, const std::string &)> changed_callback;
+	bool enabled = true;
 
 	class DroppedPanel;
 };

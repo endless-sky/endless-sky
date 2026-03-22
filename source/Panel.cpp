@@ -29,6 +29,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <cassert>
+#include <deque>
+#include <vector>
 
 using namespace std;
 
@@ -235,14 +237,163 @@ bool Panel::Release(int x, int y, MouseButton button)
 
 
 
+bool Panel::TextInput(const std::string& text)
+{
+	return false;
+}
+
+
+
 void Panel::Resize()
 {
 }
 
 
 
+bool Panel::SetFocus(bool new_focus)
+{
+	if (new_focus)
+	{
+		if (!focus)
+		{
+			// Remove it from anybody else that might have it in our panel tree.
+			// We intentionally do this first because we want the old panel to
+			// relinquish control of the keyboard before the new panel accepts it.
+			// Otherwise, you might have a panel asking for the keyboard while
+			// another panel immediately discards it.
+			Panel* p = this;
+			while (p->parent)
+				p = parent;
+			p->SetFocus(false);
+
+			focus = OnFocus(true);
+			return focus;
+		}
+		else // We already had focus.
+		{
+			return true;
+		}
+	}
+	else
+	{
+		if (focus)
+			OnFocus(false);
+		focus = false;
+		for (auto& c: children)
+			c->SetFocus(false);
+		return true;
+	}
+}
+
+
+
+bool Panel::HasFocus()
+{
+	return focus;
+}
+
+
+
+bool Panel::FocusNext()
+{
+
+	int current_focus_idx = -1;
+	std::vector<Panel*> all_descendants;
+	std::deque<Panel*> q;
+	Panel* p = this;
+	while(p->parent)
+		p = p->parent;
+	q.push_back(p);
+
+	while(!q.empty())
+	{
+		Panel* p = q.front();
+		if(p->HasFocus())
+			current_focus_idx = all_descendants.size();
+		all_descendants.push_back(p);
+		q.pop_front();
+
+		for(auto& c: p->children)
+			q.push_back(c.get());
+	}
+
+	int descendant_idx = current_focus_idx + 1;
+	if(descendant_idx >= static_cast<int>(all_descendants.size()))
+		descendant_idx = 0;
+	while(current_focus_idx != descendant_idx)
+	{
+		Panel* p = all_descendants[descendant_idx];
+		if(p->SetFocus(true))
+			return true;
+
+		++descendant_idx;
+		if(descendant_idx >= static_cast<int>(all_descendants.size()))
+		{
+			if (current_focus_idx == -1)
+				break;
+			descendant_idx = 0;
+		}
+	}
+
+	return false;
+}
+
+
+
+bool Panel::FocusPrev()
+{
+	int current_focus_idx = -1;
+	std::vector<Panel*> all_descendants;
+	std::deque<Panel*> q;
+	Panel* p = this;
+	while(p->parent)
+		p = p->parent;
+	q.push_back(p);
+	while(!q.empty())
+	{
+		Panel* p = q.front();
+		if(p->HasFocus())
+			current_focus_idx = all_descendants.size();
+		all_descendants.push_back(p);
+		q.pop_front();
+		for(auto& c: p->children)
+			q.push_back(c.get());
+	}
+
+	int descendant_idx = current_focus_idx - 1;
+	if (descendant_idx < 0)
+		descendant_idx = all_descendants.size() - 1;
+	while(current_focus_idx != descendant_idx)
+	{
+		Panel* p = all_descendants[descendant_idx];
+		if(p->SetFocus(true))
+			return true;
+
+		--descendant_idx;
+		if(descendant_idx < 0)
+		{
+			if (current_focus_idx == -1)
+				break;
+			descendant_idx = all_descendants.size() - 1;
+		}
+	}
+
+	return false;
+}
+
+
+
 bool Panel::DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	// If a child has focus, don't let anybody else see the keystroke.
+	for(auto& c : children)
+	{
+		if(c->HasFocus())
+		{
+			return c->KeyDown(key, mod, command, isNewPress);
+		}
+	}
+
 	return EventVisit(&Panel::KeyDown, key, mod, command, isNewPress);
 }
 
@@ -279,6 +430,21 @@ bool Panel::DoRelease(int x, int y, MouseButton button)
 bool Panel::DoScroll(double dx, double dy)
 {
 	return EventVisit(&Panel::Scroll, dx, dy);
+}
+
+
+
+bool Panel::DoTextInput(const std::string& text)
+{
+	// If a child has focus, don't let anybody else see the text.
+	for(auto& c : children)
+	{
+		if(c->HasFocus())
+		{
+			return c->TextInput(text);
+		}
+	}
+	return EventVisit(&Panel::TextInput, text);
 }
 
 

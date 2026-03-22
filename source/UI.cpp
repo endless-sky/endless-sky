@@ -75,6 +75,10 @@ bool UI::Handle(const SDL_Event &event)
 			Command command(event.key.keysym.sym);
 			handled = (*it)->DoKeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
 		}
+		else if(event.type == SDL_TEXTINPUT)
+		{
+			handled = (*it)->DoTextInput(event.text.text);
+		}
 
 		// If this panel does not want anything below it to receive events, do
 		// not let this event trickle further down the stack.

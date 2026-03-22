@@ -87,6 +87,14 @@ public:
 
 	virtual void UpdateTooltipActivation();
 
+	// Apply focus to this panel and remove it from any others in this tree.
+	bool SetFocus(bool focus);
+	// Returns true if this panel has the keyboard focus.
+	bool HasFocus();
+	// Move focus to the next panel that wants it.
+	bool FocusNext();
+	// Move focus to the previous panel that wants it.
+	bool FocusPrev();
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -96,12 +104,15 @@ protected:
 	virtual bool Drag(double dx, double dy);
 	virtual bool Release(int x, int y, MouseButton button);
 	virtual bool Scroll(double dx, double dy);
+	virtual bool TextInput(const std::string& text);
 
 	virtual void Resize();
 
 	// If a clickable zone is clicked while editing is happening, the panel may
 	// need to know to exit editing mode before handling the click.
 	virtual void EndEditing() {}
+	// Focus is being given to us. Return true to accept, false to reject.
+	virtual bool OnFocus(bool focus) { return false; }
 
 	void SetIsFullScreen(bool set);
 	void SetTrapAllEvents(bool set);
@@ -169,6 +180,7 @@ private:
 	bool DoDrag(double dx, double dy);
 	bool DoRelease(int x, int y, MouseButton button);
 	bool DoScroll(double dx, double dy);
+	bool DoTextInput(const std::string& text);
 
 	void DoDraw();
 
@@ -193,6 +205,7 @@ private:
 	std::vector<std::shared_ptr<Panel>> childrenToAdd;
 	std::vector<const Panel *> childrenToRemove;
 	Panel *parent = nullptr;
+	bool focus = false;
 
 	friend class UI;
 };

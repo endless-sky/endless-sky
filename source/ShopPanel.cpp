@@ -104,6 +104,19 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	selected_quantity->SetFontSize(14);
 	selected_quantity->SetPadding(0);
 	selected_quantity->SetOptions({"1", "10", "100", "1000"});
+	selected_quantity->SetTypeable(true);
+	selected_quantity->SetCallback([](std::string& s)
+	{
+		// Restrict input to digits.
+		for(char c: s)
+		{
+			if(!isdigit(c))
+				return false;
+		}
+		if(s.empty())
+			s = "0";
+		return true;
+	});
 
 	AddChild(selected_quantity);
 }
@@ -148,13 +161,13 @@ void ShopPanel::Draw()
 	int modifier = Modifier();
 	if(modifier > 1)
 	{
-		selected_quantity->SetSelected(to_string(modifier));
+		selected_quantity->SetText(to_string(modifier));
 		quantity_is_modifier = true;
 	}
 	else if(quantity_is_modifier)
 	{
 		// User has released modifier keys. Reset quantity dropdown to 1x
-		selected_quantity->SetSelected("1");
+		selected_quantity->SetText("1");
 		quantity_is_modifier = false;
 	}
 
