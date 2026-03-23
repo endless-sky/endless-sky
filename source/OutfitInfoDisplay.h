@@ -32,7 +32,7 @@ class Point;
 class OutfitInfoDisplay : public ItemInfoDisplay {
 public:
 	// Given an attribute name and value, return the string that should be used to display that attribute.
-	static std::string Format(const std::string &attribute, double value);
+	static std::string FormatAttribute(const std::string &attribute, double value);
 
 
 public:

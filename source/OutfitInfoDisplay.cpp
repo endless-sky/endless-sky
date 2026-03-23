@@ -253,7 +253,7 @@ namespace {
 
 
 
-std::string OutfitInfoDisplay::Format(const std::string &attribute, double value)
+std::string OutfitInfoDisplay::FormatAttribute(const std::string &attribute, double value)
 {
 	auto sit = SCALE.find(attribute);
 	double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
@@ -475,7 +475,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		else
 		{
 			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
-			attributeValues.emplace_back(Format(it.first, it.second));
+			attributeValues.emplace_back(FormatAttribute(it.first, it.second));
 			attributesHeight += 20;
 		}
 		hasNormalAttributes = true;

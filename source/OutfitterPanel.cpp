@@ -618,10 +618,10 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				// Handle other attributes more generically, if none of the above are the problem.
 				if(errors.empty())
 				{
-					for(const auto &[name, count] : selectedOutfit->Attributes())
+					for(const auto &[name, value] : selectedOutfit->Attributes())
 					{
 						// Positive attributes can't be the cause of attribute errors.
-						if(count > 0)
+						if(value >= 0)
 							continue;
 						optional<double> minimum = Outfit::LowerLimit(name);
 						// Nor can attributes with no lower limit.
@@ -630,11 +630,12 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 						// If playerShip has fewer of this attribute available than required by the selectedOutfit, add
 						// this attribute to the list of deficiencies.
 						double shipAvailable = playerShip->Attributes().Get(name) - minimum.value();
-						double outfitRequires = -count;
+						double outfitRequires = -value;
 						if(shipAvailable < outfitRequires)
 							errors.push_back("You cannot install this outfit, because it requires "
-								+ OutfitInfoDisplay::Format(name, outfitRequires) + " \"" + name + "\""
-								+ " and this ship has " + OutfitInfoDisplay::Format(name, shipAvailable) + " free.");
+								+ OutfitInfoDisplay::FormatAttribute(name, outfitRequires) + " \"" + name + '"'
+								+ " and this ship has " + OutfitInfoDisplay::FormatAttribute(name, shipAvailable)
+								+ " free.");
 					}
 				}
 
@@ -643,17 +644,12 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 					errors.push_back("You cannot install this outfit in your ship.");
 
 				// Return the errors in the appropriate format.
-				if(errors.empty())
-					canPlace = true;
-				else if(errors.size() == 1)
+				if(errors.size() == 1)
 					return errors[0];
-				else
-				{
-					string errorMessage = "There are several reasons why you cannot " + actionName + " this outfit:\n";
-					for(const string &error : errors)
-						errorMessage += "- " + error + '\n';
-					return errorMessage;
-				}
+				string errorMessage = "There are several reasons why you cannot " + actionName + " this outfit:\n";
+				for(const string &error : errors)
+					errorMessage += "- " + error + '\n';
+				return errorMessage;
 			}
 			break;
 		}
