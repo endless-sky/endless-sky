@@ -230,7 +230,6 @@ bool DialogPanel::AllowsFastForward() const noexcept
 
 
 
-
 DialogPanel::DialogPanel(DialogInit &init)
 	: voidFun(std::move(init.voidFun)),
 	boolFun(std::move(init.boolFun)),
