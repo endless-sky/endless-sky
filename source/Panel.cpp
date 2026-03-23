@@ -370,7 +370,7 @@ bool Panel::DoHelp(const string &name, bool force) const
 		return false;
 
 	Preferences::Set(preference);
-	ui->Push(new DialogPanel(Format::Capitalize(name) + ":\n\n" + message));
+	ui->Push(DialogPanel::Info(Format::Capitalize(name) + ":\n\n" + message));
 
 	return true;
 }

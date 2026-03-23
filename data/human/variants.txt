@@ -870,10 +870,10 @@ ship "Carrier" "Carrier (Mark II)"
 
 ship "Clipper" "Clipper (Heavy)"
 	outfits
-		"Heavy Rocket Pod" 2
-		"Heavy Rocket" 4
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 40
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		"RT-I Radiothermal"
 		"Supercapacitor"
 		"D67-TM Shield Generator"
@@ -2031,11 +2031,11 @@ ship "Hawk" "Hawk (Plasma)"
 
 ship "Hawk" "Hawk (Rocket)"
 	outfits
-		"Heavy Rocket Pod" 2
-		"Heavy Rocket" 4
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 40
 		"RT-I Radiothermal"
 		"Supercapacitor" 2
-		"D41-HY Shield Generator"
+		"D14-RN Shield Generator"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"

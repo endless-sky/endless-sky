@@ -98,6 +98,7 @@ mission "First Contact: Hai"
 mission "Discovered Hai Space"
 	landing
 	invisible
+	non-blocking
 	source
 		government "Hai" "Hai (Unfettered)"
 	on offer
@@ -110,6 +111,7 @@ event "label hai space"
 
 mission "Discovered Wormhole Alpha"
 	invisible
+	non-blocking
 	entering
 	source
 		system "Ultima Thule"
@@ -188,6 +190,7 @@ mission "Ask the Hai about the Unfettered"
 mission "Hai Waypoint Warning"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "hai space start"
 	to complete
@@ -409,6 +412,7 @@ mission "Returning Home"
 
 mission "Unwanted Cargo Trigger"
 	invisible
+	non-blocking
 	landing
 	source
 		government "Hai"
@@ -670,6 +674,7 @@ event "outfitter on greenwater"
 mission "Expanding Business: outfitter complete"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: outfitter on greenwater"
 	on offer
@@ -877,6 +882,7 @@ event "shipyard on greenwater"
 mission "Expanding Business: shipyard complete"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: shipyard on greenwater"
 	on offer
@@ -1981,6 +1987,7 @@ event "pond strider mass production"
 mission "Pond Strider Patch for v2"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: pond strider mass production"
 	on offer

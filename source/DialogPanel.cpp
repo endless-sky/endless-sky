@@ -122,41 +122,52 @@ namespace {
 
 
 
-DialogPanel::DialogPanel(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel,
-	int activeButton)
-	: voidFun(std::move(okFunction))
-{
-	Init(message, truncate, canCancel, false);
-	this->activeButton = activeButton;
-}
-
-
-
-// Dialog that has no callback (information only). In this form, there is
-// only an "ok" button, not a "cancel" button.
-DialogPanel::DialogPanel(const string &text, Truncate truncate, bool allowsFastForward)
-	: allowsFastForward(allowsFastForward)
-{
-	Init(text, truncate, false);
-}
-
-
-
-// Mission accept / decline dialog.
-DialogPanel::DialogPanel(const string &text, PlayerInfo &player, const System *system, Truncate truncate,
-	bool allowsFastForward)
-	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
-	allowsFastForward(allowsFastForward),
-	system(system), player(&player)
-{
-	Init(text, truncate, true, true);
-}
-
-
-
 DialogPanel::~DialogPanel()
 {
 	Audio::Resume();
+}
+
+
+
+DialogPanel *DialogPanel::Info(std::string message, Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.message = std::move(message);
+	init.canCancel = false;
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new DialogPanel(init);
+}
+
+
+
+DialogPanel *DialogPanel::CallFunctionIfOk(std::function<void()> okFunction, std::string message, int activeButton,
+	Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.voidFun = std::move(okFunction);
+	init.message = std::move(message);
+	init.activeButton = activeButton;
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new DialogPanel(init);
+}
+
+
+
+DialogPanel *DialogPanel::MissionOfferDialog(std::string message, PlayerInfo &player, const System *system,
+	Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.message = std::move(message);
+	init.intFun = bind(&PlayerInfo::MissionCallback, &player, placeholders::_1);
+	init.system = system;
+	init.player = &player;
+	init.canCancel = true;
+	init.isMission = true;
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new DialogPanel(init);
 }
 
 
@@ -249,6 +260,114 @@ void DialogPanel::Draw()
 bool DialogPanel::AllowsFastForward() const noexcept
 {
 	return allowsFastForward;
+}
+
+
+
+DialogPanel::DialogPanel(DialogInit &init)
+	: voidFun(std::move(init.voidFun)),
+	boolFun(std::move(init.boolFun)),
+	intFun(std::move(init.intFun)),
+	doubleFun(std::move(init.doubleFun)),
+	stringFun(std::move(init.stringFun)),
+	validateIntFun(std::move(init.validateIntFun)),
+	validateDoubleFun(std::move(init.validateDoubleFun)),
+	validateStringFun(std::move(init.validateStringFun)),
+	canCancel(init.canCancel),
+	activeButton(init.activeButton),
+	isMission(init.isMission),
+	allowsFastForward(init.allowsFastForward),
+	input(std::move(init.initialValue)),
+	buttonOne(init.buttonOne),
+	buttonThree(init.buttonThree),
+	system(init.system),
+	player(init.player)
+{
+	Audio::Pause();
+	SetInterruptible(isMission);
+
+	isWide = false;
+	numButtons = canCancel ? (!buttonThree.buttonLabel.empty() ? 3 : 2) : 1;
+
+	if(buttonOne.buttonLabel.empty())
+		okText = isMission ? "Accept" : "OK";
+	else
+	{
+		okText = buttonOne.buttonLabel;
+		stringFun = buttonOne.buttonAction;
+	}
+	cancelText = isMission ? "Decline" : "Cancel";
+
+	text = make_shared<TextArea>();
+	text->SetAlignment(Alignment::JUSTIFIED);
+	text->SetFont(FontSet::Get(14));
+	text->SetTruncate(init.truncate);
+	text->SetText(init.message);
+	extensionCount = 0;
+	AddChild(text);
+
+	isOkDisabled = !ValidateInput();
+}
+
+
+
+void DialogPanel::Resize()
+{
+	isWide = false;
+	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
+	text->SetRect(Rectangle(Point(), textRectSize));
+	const Sprite *top = SpriteSet::Get("ui/dialog top");
+	// If the dialog is too tall, then switch to wide mode.
+	int maxHeight = Screen::Height() * 3 / 4;
+	if(text->GetTextHeight(false) > maxHeight)
+	{
+		textRectSize.Y() = maxHeight;
+		isWide = true;
+		// Re-wrap with the new width
+		textRectSize.X() = Width() - HORIZONTAL_PADDING;
+		text->SetRect(Rectangle(Point{}, textRectSize));
+
+		if(text->GetLongestLineWidth() <= top->Width() - HORIZONTAL_MARGIN - HORIZONTAL_PADDING)
+		{
+			// Formatted text is long and skinny (e.g. scan result dialog). Go back
+			// to using the default width, since the wide width doesn't help.
+			isWide = false;
+			textRectSize.X() = Width() - HORIZONTAL_PADDING;
+			text->SetRect(Rectangle(Point{}, textRectSize));
+		}
+	}
+	else
+		textRectSize.Y() = text->GetTextHeight(false);
+
+	top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
+	const Sprite *middle = SpriteSet::Get(isWide ? "ui/dialog middle wide" : "ui/dialog middle");
+	const Sprite *bottom = SpriteSet::Get(isWide ? "ui/dialog bottom wide" : "ui/dialog bottom");
+	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
+	// The height of the bottom sprite without the included button's height.
+	const int realBottomHeight = bottom->Height() - cancel->Height();
+
+	int height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
+			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
+	// Determine how many extension panels we need.
+	if(height <= realBottomHeight + top->Height())
+		extensionCount = 0;
+	else
+		extensionCount = (height - middle->Height()) / middle->Height();
+
+	// Now that we know how big we want to render the text, position the text
+	// area and add it to the UI.
+
+	// Get the position of the top of this dialog, and of the text and input.
+	Point pos(0., (top->Height() + extensionCount * middle->Height() + bottom->Height()) * -.5f);
+	Point textPos(Width() * -.5 + LEFT_PADDING, pos.Y() + VERTICAL_PADDING);
+	// Resize textRectSize to match the visual height of the dialog, which will
+	// be rounded up from the actual text height by the number of panels that
+	// were added. This helps correctly position the TextArea scroll buttons.
+	textRectSize.Y() = (top->Height() + realBottomHeight - VERTICAL_PADDING) + extensionCount * middle->Height() -
+			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
+
+	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
+	text->SetRect(textRect);
 }
 
 
@@ -391,101 +510,6 @@ bool DialogPanel::Click(int x, int y, MouseButton button, int clicks)
 	}
 
 	return true;
-}
-
-
-
-void DialogPanel::Resize()
-{
-	isWide = false;
-	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
-	text->SetRect(Rectangle(Point(), textRectSize));
-	const Sprite *top = SpriteSet::Get("ui/dialog top");
-	// If the dialog is too tall, then switch to wide mode.
-	int maxHeight = Screen::Height() * 3 / 4;
-	if(text->GetTextHeight(false) > maxHeight)
-	{
-		textRectSize.Y() = maxHeight;
-		isWide = true;
-		// Re-wrap with the new width
-		textRectSize.X() = Width() - HORIZONTAL_PADDING;
-		text->SetRect(Rectangle(Point{}, textRectSize));
-
-		if(text->GetLongestLineWidth() <= top->Width() - HORIZONTAL_MARGIN - HORIZONTAL_PADDING)
-		{
-			// Formatted text is long and skinny (e.g. scan result dialog). Go back
-			// to using the default width, since the wide width doesn't help.
-			isWide = false;
-			textRectSize.X() = Width() - HORIZONTAL_PADDING;
-			text->SetRect(Rectangle(Point{}, textRectSize));
-		}
-	}
-	else
-		textRectSize.Y() = text->GetTextHeight(false);
-
-	top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
-	const Sprite *middle = SpriteSet::Get(isWide ? "ui/dialog middle wide" : "ui/dialog middle");
-	const Sprite *bottom = SpriteSet::Get(isWide ? "ui/dialog bottom wide" : "ui/dialog bottom");
-	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
-	// The height of the bottom sprite without the included button's height.
-	const int realBottomHeight = bottom->Height() - cancel->Height();
-
-	int height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
-			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
-	// Determine how many extension panels we need.
-	if(height <= realBottomHeight + top->Height())
-		extensionCount = 0;
-	else
-		extensionCount = (height - middle->Height()) / middle->Height();
-
-	// Now that we know how big we want to render the text, position the text
-	// area and add it to the UI.
-
-	// Get the position of the top of this dialog, and of the text and input.
-	Point pos(0., (top->Height() + extensionCount * middle->Height() + bottom->Height()) * -.5f);
-	Point textPos(Width() * -.5 + LEFT_PADDING, pos.Y() + VERTICAL_PADDING);
-	// Resize textRectSize to match the visual height of the dialog, which will
-	// be rounded up from the actual text height by the number of panels that
-	// were added. This helps correctly position the TextArea scroll buttons.
-	textRectSize.Y() = (top->Height() + realBottomHeight - VERTICAL_PADDING) + extensionCount * middle->Height() -
-			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
-
-	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
-	text->SetRect(textRect);
-}
-
-
-
-// Common code from all three constructors:
-void DialogPanel::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
-{
-	Audio::Pause();
-	SetInterruptible(isMission);
-
-	this->isMission = isMission;
-	this->canCancel = canCancel;
-	activeButton = 1;
-	isWide = false;
-	numButtons = canCancel ? (!buttonThree.buttonLabel.empty() ? 3 : 2) : 1;
-
-	if(buttonOne.buttonLabel.empty())
-		okText = isMission ? "Accept" : "OK";
-	else
-	{
-		okText = buttonOne.buttonLabel;
-		stringFun = buttonOne.buttonAction;
-	}
-	cancelText = isMission ? "Decline" : "Cancel";
-
-	text = make_shared<TextArea>();
-	text->SetAlignment(Alignment::JUSTIFIED);
-	text->SetFont(FontSet::Get(14));
-	text->SetTruncate(truncate);
-	text->SetText(message);
-	Resize();
-	AddChild(text);
-
-	isOkDisabled = !ValidateInput();
 }
 
 

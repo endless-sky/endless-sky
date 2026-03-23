@@ -258,16 +258,16 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'm' && player.Cargo().MinablesSizePrecise())
 	{
 		if(Preferences::Has("Confirm 'Sell Minables' button"))
-			GetUI().Push(new DialogPanel([this]() { SellOutfitsOrMinables(true); },
-				OutfitSalesMessage(true), Truncate::NONE, true, false));
+			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SellOutfitsOrMinables(true); },
+				OutfitSalesMessage(true), 2, Truncate::NONE, true));
 		else
 			SellOutfitsOrMinables(true);
 	}
 	else if(key == 'f' && canSellOutfits)
 	{
 		if(Preferences::Has("Confirm 'Sell Outfits' button"))
-			GetUI().Push(new DialogPanel([this]() { SellOutfitsOrMinables(false); },
-				OutfitSalesMessage(false), Truncate::NONE, true, false));
+			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SellOutfitsOrMinables(false); },
+				OutfitSalesMessage(false), 2, Truncate::NONE, true));
 		else
 			SellOutfitsOrMinables(false);
 	}
