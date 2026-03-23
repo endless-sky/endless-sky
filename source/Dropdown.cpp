@@ -136,7 +136,7 @@ void Dropdown::Draw()
 	{
 		Point dropIconPos = Position().Center();
 		dropIconPos.X() += Position().Width() / 2 - Position().Height() / 2;
-		SpriteShader::Draw(SpriteSet::Get("ui/sort descending"), dropIconPos);
+		SpriteShader::Draw(SpriteSet::Get("ui/sort descending"), dropIconPos, FontSize() / 24.0);
 	}
 
 	if(Enabled())
