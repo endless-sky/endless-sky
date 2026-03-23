@@ -1,4 +1,4 @@
-/* ControlsListDialogPanel.cpp
+/* ListDialogPanel.cpp
 Copyright (c) 2026 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "ControlsListDialogPanel.h"
+#include "ListDialogPanel.h"
 
 #include "DialogPanel.h"
 #include "shader/FillShader.h"
@@ -33,7 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 
-ControlsListDialogPanel::ControlsListDialogPanel(DialogInit &init, ListDialogInit &init2)
+ListDialogPanel::ListDialogPanel(DialogInit &init, ListDialogInit &init2)
 	: DialogPanel(init),
 	title(init2.title),
 	// options(init2.options),
@@ -41,13 +41,13 @@ ControlsListDialogPanel::ControlsListDialogPanel(DialogInit &init, ListDialogIni
 	hoverFun(init2.hoverFun),
 	tooltip(init2.tooltip)
 {
-	ControlsListDialogPanel::Resize();
+	ListDialogPanel::Resize();
 	UpdateList(init2.options);
 }
 
 
 
-void ControlsListDialogPanel::UpdateList(std::vector<std::string> newOptions) {
+void ListDialogPanel::UpdateList(std::vector<std::string> newOptions) {
 	options.clear();
 	options.assign(newOptions.begin(), newOptions.end());
 	bool found = false;
@@ -76,14 +76,14 @@ void ControlsListDialogPanel::UpdateList(std::vector<std::string> newOptions) {
 
 
 
-bool ControlsListDialogPanel::AcceptsInput() const
+bool ListDialogPanel::AcceptsInput() const
 {
 	return false;
 }
 
 
 
-void ControlsListDialogPanel::Draw()
+void ListDialogPanel::Draw()
 {
 	ClearZones();
 	optionZones.clear();
@@ -177,7 +177,7 @@ void ControlsListDialogPanel::Draw()
 
 
 
-bool ControlsListDialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool ListDialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	UI::UISound sound = UI::UISound::NORMAL;
 
@@ -254,7 +254,7 @@ bool ControlsListDialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command
 
 
 
-void ControlsListDialogPanel::Resize()
+void ListDialogPanel::Resize()
 {
 	DialogPanel::Resize(height);
 	selectionListBox = Rectangle::FromCorner(textRect.TopLeft() + Point(0, 30), textRect.Dimensions() - Point(0, 32));
@@ -267,7 +267,7 @@ void ControlsListDialogPanel::Resize()
 
 
 
-bool ControlsListDialogPanel::Hover(int x, int y)
+bool ListDialogPanel::Hover(int x, int y)
 {
 	hoverPoint = Point(x, y);
 
@@ -286,7 +286,7 @@ bool ControlsListDialogPanel::Hover(int x, int y)
 
 
 
-bool ControlsListDialogPanel::Drag(double dx, double dy)
+bool ListDialogPanel::Drag(double dx, double dy)
 {
 	// Steps is zero so that we don't animate mouse drags.
 	listScroll.Scroll(-dy, 0);
@@ -295,7 +295,7 @@ bool ControlsListDialogPanel::Drag(double dx, double dy)
 
 
 
-bool ControlsListDialogPanel::Scroll(double dx, double dy)
+bool ListDialogPanel::Scroll(double dx, double dy)
 {
 	listScroll.Scroll(-dy * Preferences::ScrollSpeed());
 	return true;
@@ -303,7 +303,7 @@ bool ControlsListDialogPanel::Scroll(double dx, double dy)
 
 
 
-void ControlsListDialogPanel::ScrollToSelection()
+void ListDialogPanel::ScrollToSelection()
 {
 	while(selectedIndex * 20 - listScroll < 0)
 		listScroll.Scroll(-Preferences::ScrollSpeed());
@@ -313,7 +313,7 @@ void ControlsListDialogPanel::ScrollToSelection()
 
 
 
-bool ControlsListDialogPanel::DoCallback() const
+bool ListDialogPanel::DoCallback() const
 {
 	bool closeDialog = false;
 	if(activeButton == 1)
@@ -327,7 +327,7 @@ bool ControlsListDialogPanel::DoCallback() const
 
 
 
-void ControlsListDialogPanel::DrawTooltips()
+void ListDialogPanel::DrawTooltips()
 {
 	if(hoverItem.empty())
 	{

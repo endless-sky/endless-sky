@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "Command.h"
-#include "ControlsListDialogPanel.h"
+#include "ListDialogPanel.h"
 #include "Point.h"
 #include "ScrollVar.h"
 #include "Tooltip.h"
@@ -117,7 +117,7 @@ private:
 	int currentControlsPage = 0;
 	int currentSettingsPage = 0;
 
-	ControlsListDialogPanel *modalListDialog;
+	ListDialogPanel *modalListDialog;
 	SDL_Keycode postDialogAction;
 
 	// These should probably be `set` not `vector`

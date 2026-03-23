@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
-#include "ControlsListDialogPanel.h"
+#include "ListDialogPanel.h"
 #include "DialogPanel.h"
 #include "Files.h"
 #include "shader/FillShader.h"
@@ -1636,7 +1636,7 @@ void PreferencesPanel::UpdateAvailableProfiles()
 void PreferencesPanel::SelectProfile()
 {
 	UpdateAvailableProfiles();
-	modalListDialog = ControlsListDialogPanel::ShowList(this,
+	modalListDialog = ListDialogPanel::ShowList(this,
 		"Select a saved controls profile:",
 		availableProfiles,
 		Command::Name(),

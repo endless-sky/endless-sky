@@ -1,4 +1,4 @@
-/* ControlsListDialogPanel.h
+/* ListDialogPanel.h
 Copyright (c) 2026 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -39,10 +39,10 @@ public:
 
 
 // A special version of Dialog for listing the command profiles.
-class ControlsListDialogPanel : public DialogPanel {
+class ListDialogPanel : public DialogPanel {
 public:
 	template<class T>
-	static ControlsListDialogPanel *ShowList(T *t, const std::string &title,
+	static ListDialogPanel *ShowList(T *t, const std::string &title,
 		const std::vector<std::string> &options, const std::string &initialSelection,
 		DialogPanel::FunctionButton buttonOne, DialogPanel::FunctionButton buttonThree,
 		std::string (T::*hoverFun)(const std::string&));
@@ -53,7 +53,7 @@ public:
 
 	virtual void Draw() override;
 
-	explicit ControlsListDialogPanel(DialogInit &init, ListDialogInit &init2);
+	explicit ListDialogPanel(DialogInit &init, ListDialogInit &init2);
 
 
 protected:
@@ -97,7 +97,7 @@ private:
 
 
 template<class T>
-ControlsListDialogPanel *ControlsListDialogPanel::ShowList(
+ListDialogPanel *ListDialogPanel::ShowList(
 	T *t,
 	const std::string &title,
 	const std::vector<std::string> &options,
@@ -120,5 +120,5 @@ ControlsListDialogPanel *ControlsListDialogPanel::ShowList(
 			GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")}
 	};
 
-	return new ControlsListDialogPanel(init, init2);
+	return new ListDialogPanel(init, init2);
 }
