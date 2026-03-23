@@ -1,5 +1,5 @@
 /* ControlsListDialogPanel.h
-Copyright (c) 2024 by xobes
+Copyright (c) 2026 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -27,21 +27,33 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class RenderBuffer;
 
 
+class ListDialogInit {
+public:
+	std::string title;
+	std::vector<std::string> options;
+	std::function<std::string (const std::string &)> hoverFun;
+	std::string selectedItem;
+	// Note: tooltip must be fully initialized as it has no default constructor.
+	Tooltip tooltip;
+};
+
 
 // A special version of Dialog for listing the command profiles.
 class ControlsListDialogPanel : public DialogPanel {
 public:
 	template<class T>
-	ControlsListDialogPanel(T *panel,
-		const std::string &title,
-		const std::vector<std::string> &options,
-		const std::string &initialSelection,
-		DialogPanel::FunctionButton buttonOne,
-		DialogPanel::FunctionButton buttonThree,
-		std::string (T::*hoverFun)(const std::string &) = nullptr);
+	static ControlsListDialogPanel *ShowList(T *t, const std::string &title,
+		const std::vector<std::string> &options, const std::string &initialSelection,
+		DialogPanel::FunctionButton buttonOne, DialogPanel::FunctionButton buttonThree,
+		std::string (T::*hoverFun)(const std::string&));
 
 	void UpdateList(std::vector<std::string> newOptions);
+
+	bool AcceptsInput() const;
+
 	virtual void Draw() override;
+
+	explicit ControlsListDialogPanel(DialogInit &init, ListDialogInit &init2);
 
 
 protected:
@@ -85,24 +97,28 @@ private:
 
 
 template<class T>
-ControlsListDialogPanel::ControlsListDialogPanel(T *panel,
+ControlsListDialogPanel *ControlsListDialogPanel::ShowList(
+	T *t,
 	const std::string &title,
 	const std::vector<std::string> &options,
 	const std::string &initialSelection,
-	const DialogPanel::FunctionButton buttonOne,
-	const DialogPanel::FunctionButton buttonThree,
-	std::string(T::*hoverFun)(const std::string &))
-	: DialogPanel(panel, "", "", buttonOne, buttonThree, nullptr),
-	title(title),
-	selectedItem(initialSelection),
-	hoverFun(std::bind(hoverFun, panel, std::placeholders::_1)),
-	tooltip(130, Alignment::CENTER, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
-		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
+	DialogPanel::FunctionButton buttonOne,
+	DialogPanel::FunctionButton buttonThree,
+	std::string(T::*hoverFun)(const std::string &)
+	)
 {
-	isMission = false;
-	intFun = nullptr;
-	stringFun = nullptr;
-	validateStringFun = nullptr;
-	ControlsListDialogPanel::Resize();
-	UpdateList(options);
+	DialogInit init;
+	init.buttonOne = buttonOne;
+	init.buttonThree = buttonThree;
+
+	ListDialogInit init2 = {
+		std::move(title),
+		std::move(options),
+		std::bind(hoverFun, t, std::placeholders::_1),
+		std::move(initialSelection),
+		{130, Alignment::CENTER, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+			GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")}
+	};
+
+	return new ControlsListDialogPanel(init, init2);
 }

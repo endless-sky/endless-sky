@@ -28,7 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // be completely platform-agnostic.
 class Files {
 public:
-	static void Init(const char * const *argv);
+	static void Init(const char *const *argv);
 
 	// The game's installation directory, or whichever directory was passed on the command line via `--resources`
 	static const std::filesystem::path &Resources();

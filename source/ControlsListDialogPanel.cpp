@@ -1,5 +1,5 @@
 /* ControlsListDialogPanel.cpp
-Copyright (c) 2024 by xobes
+Copyright (c) 2026 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -33,6 +33,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 
+ControlsListDialogPanel::ControlsListDialogPanel(DialogInit &init, ListDialogInit &init2)
+	: DialogPanel(init),
+	title(init2.title),
+	// options(init2.options),
+	selectedItem(init2.selectedItem),
+	hoverFun(init2.hoverFun),
+	tooltip(init2.tooltip)
+{
+	ControlsListDialogPanel::Resize();
+	UpdateList(init2.options);
+}
+
+
 
 void ControlsListDialogPanel::UpdateList(std::vector<std::string> newOptions) {
 	options.clear();
@@ -59,6 +72,13 @@ void ControlsListDialogPanel::UpdateList(std::vector<std::string> newOptions) {
 	listScroll.SetMaxValue(20 * options.size());
 
 	ScrollToSelection();
+}
+
+
+
+bool ControlsListDialogPanel::AcceptsInput() const
+{
+	return false;
 }
 
 
@@ -100,9 +120,6 @@ void ControlsListDialogPanel::Draw()
 	int index = 0;
 	for(const string &display : options)
 	{
-		// Add selectionListBox.Center() for absolute coordinates.
-		optionZones.emplace_back(selectionListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), display);
-
 		bool isSelectedIndex = (display == selectedItem);
 		if(isSelectedIndex || display == hoverItem)
 			table.DrawHighlight(faint);
@@ -113,9 +130,15 @@ void ControlsListDialogPanel::Draw()
 		bool displayed = table.GetPoint().Y() > listClip->Top() - 20 &&
 			table.GetPoint().Y() < listClip->Bottom() - table.GetRowBounds().Height() + 20;
 		if(displayed)
+		{
 			// Add selectionListBox.Center() for absolute coordinates.
+			// Generate list of Click zones.
 			AddZone({selectionListBox.Center() + zoneBounds.Center(), zoneBounds.Dimensions()},
 					[&]() { selectedItem = display; selectedIndex = index; });
+			// Generate list of Hover zones.
+			optionZones.emplace_back(selectionListBox.Center() + table.GetCenterPoint(),
+				table.GetRowSize(), display);
+		}
 		table.Draw(display, isSelectedIndex ? bright : medium);
 
 		++index;

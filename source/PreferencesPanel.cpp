@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ControlsListDialogPanel.h"
 #include "DialogPanel.h"
 #include "Files.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -99,11 +100,7 @@ namespace {
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
-#ifdef _WIN32
 	const int SETTINGS_PAGE_COUNT = 3;
-#else
-	const int SETTINGS_PAGE_COUNT = 2;
-#endif
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -345,13 +342,12 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 		if(zones[index].Contains(point))
 		{
 			if(zones[index].Value().Has(Command::MENU))
-				GetUI().Push(new DialogPanel([this, index]()
+				GetUI().Push(DialogPanel::CallFunctionIfOk([this, index]()
 					{
 						this->editing = this->selected = index;
 					},
 					"Rebinding this key will change the keypress you need to access this menu. "
-					"You really shouldn't rebind this unless needed.",
-					Truncate::NONE, true, true));
+					"You really shouldn't rebind this unless needed.", true));
 			else
 				editing = selected = index;
 		}
@@ -792,25 +788,34 @@ void PreferencesPanel::DrawSettings()
 		"Performance",
 		"Show CPU / GPU load",
 		LARGE_GRAPHICS_REDUCTION,
+		"Defer loading images",
 		SHIP_OUTLINES,
 		HUD_SHIP_OUTLINES,
 		"",
-		"Gameplay",
+		"Map",
+		"Deadline blink by distance",
+		"Hide unexplored map regions",
+		"Show escort systems on map",
+		"Show stored outfits on map",
+		"\n",
+		"Flagship Behavior",
 		"Control ship with mouse",
 		"Aim turrets with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
-		TURRET_TRACKING,
 		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
+		"Rehire extra crew when lost",
+		"Automatically unpark flagship",
+		FLAGSHIP_SPACE_PRIORITY,
+		"",
+		"Fleet Behavior",
+		TURRET_TRACKING,
 		EXPEND_AMMO,
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
-		"Rehire extra crew when lost",
-		"Automatically unpark flagship",
-		FLAGSHIP_SPACE_PRIORITY,
-		"\n",
+		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
 		STATUS_OVERLAYS_FLAGSHIP,
@@ -827,14 +832,7 @@ void PreferencesPanel::DrawSettings()
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
-		"\t",
-		"Map",
-		"Deadline blink by distance",
-		"Hide unexplored map regions",
-		"Show escort systems on map",
-		"Show stored outfits on map",
-		"System map sends move orders",
-		"",
+		"\n",
 		"Other",
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
@@ -847,7 +845,7 @@ void PreferencesPanel::DrawSettings()
 		NOTIFY_ON_DEST,
 		"Save message log",
 #ifdef _WIN32
-		"\n",
+		"\t",
 		"Windows Options",
 		TITLE_BAR_THEME,
 		WINDOW_ROUNDING
@@ -1350,14 +1348,14 @@ bool PreferencesPanel::CheckExit(SDL_Keycode nextAction)
 		else
 			message = "Select \"Save\" to activate this controls profile and save it.\n";
 
-		GetUI().Push(new DialogPanel(this,
-			message +
+		GetUI().Push(DialogPanel::ThreeButtonValidateString(this, message +
 			"\"Discard\" will revert to the previous active control profile.\n" +
 			"\"Cancel\" to go back and make further changes.",
 			Command::Name(),
 			DialogPanel::FunctionButton(this, "Save", 's', &PreferencesPanel::SaveControls),
 			DialogPanel::FunctionButton(this, "Discard", 'd', &PreferencesPanel::DiscardControlChanges),
 			[](const string &profileName) { return CanChange(profileName); }));
+
 
 		// Note: While this dialog is modal, this code is non-blocking, need to prime the next action.
 		postDialogAction = nextAction;
@@ -1382,7 +1380,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			// Only show this if it's not possible to zoom the view at all, as
 			// otherwise the dialog will show every time, which is annoying.
 			if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
-				GetUI().Push(new DialogPanel(
+				GetUI().Push(DialogPanel::Info(
 					"Your screen resolution is too low to support a zoom level above 100%."));
 			Screen::SetZoom(ZOOM_FACTOR_MIN);
 		}
@@ -1409,7 +1407,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	else if(str == VSYNC_SETTING)
 	{
 		if(!Preferences::ToggleVSync())
-			GetUI().Push(new DialogPanel(
+			GetUI().Push(DialogPanel::Info(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
 	else if(str == CAMERA_ACCELERATION)
@@ -1638,7 +1636,7 @@ void PreferencesPanel::UpdateAvailableProfiles()
 void PreferencesPanel::SelectProfile()
 {
 	UpdateAvailableProfiles();
-	modalListDialog = new ControlsListDialogPanel(this,
+	modalListDialog = ControlsListDialogPanel::ShowList(this,
 		"Select a saved controls profile:",
 		availableProfiles,
 		Command::Name(),
@@ -1685,24 +1683,26 @@ bool PreferencesPanel::DeleteProfile(const string &profileName)
 			return false;
 		}
 
-	GetUI().Push(new DialogPanel([this, profileName]()
-		{
-			// Delete user profile:
-			auto search = profilePaths.find(profileName);
-			if(search != profilePaths.end())
-			{
-				// If the current active profile is deleted, make it a working copy
-				// so that a prompt to save is issued.
-				if(profileName == Command::Name())
-					Command::MakeWorkingCopy();
+	selectedItem = profileName;
+	GetUI().Push(DialogPanel::CallFunctionIfOk([this]() -> void {
+				// Delete user profile:
+				auto search = profilePaths.find(this->selectedItem);
+				if(search != profilePaths.end())
+				{
+					// If the current active profile is deleted, make it a working copy
+					// so that a prompt to save is issued.
+					if(this->selectedItem == Command::Name())
+						Command::MakeWorkingCopy();
 
-				Files::Delete(search->second);
+					Files::Delete(search->second);
 
-				UpdateAvailableProfiles();
-				modalListDialog->UpdateList(availableProfiles);
-			}
-		}, "Are you sure you want to delete '" + profileName + "'?",
-		Truncate::NONE, true, 1));
+					UpdateAvailableProfiles();
+					modalListDialog->UpdateList(availableProfiles);
+				}
+			},
+			"Are you sure you want to delete '" + profileName + "'?",
+			1, Truncate::NONE, true)
+		);
 
 	// Keep the dialog open.
 	return false;

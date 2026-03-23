@@ -25,6 +25,7 @@ mission "Ruin: Landing"
 mission "Pug Cease Hostilities"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "main plot completed"
 	on offer

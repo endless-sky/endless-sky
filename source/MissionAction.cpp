@@ -338,9 +338,9 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 			// missions active with the same destination (e.g. in the case of
 			// stacking bounty jobs).
 			if(isOffer)
-				ui->Push(new DialogPanel(text, player, destination));
+				ui->Push(DialogPanel::MissionOfferDialog(text, player, destination));
 			else if(isUnique || trigger != "visit")
-				ui->Push(new DialogPanel(text));
+				ui->Push(DialogPanel::Info(text));
 		}
 		else if(isOffer)
 			player.MissionCallback(Endpoint::ACCEPT);

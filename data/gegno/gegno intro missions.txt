@@ -265,6 +265,7 @@ mission "Visit Quarg in Gegno Space"
 
 mission "Discover Hostile Quarg"
 	invisible
+	non-blocking
 	landing
 	source "Dueyu Eitch"
 	to offer
@@ -740,6 +741,7 @@ mission "Gegno Exploration Nudge Remover"
 
 mission "Vi Augen"
 	invisible
+	non-blocking
 	transition
 	source
 		system "Kiluit"
@@ -854,6 +856,7 @@ mission "Gegno Unwelcoming"
 mission "Gegno Hunter Fleets"
 	landing
 	invisible
+	non-blocking
 	repeat
 	to offer
 		has "Gegno Genocide Defense: offered"
