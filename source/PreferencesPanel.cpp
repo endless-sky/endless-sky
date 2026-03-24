@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "DialogPanel.h"
 #include "Files.h"
-#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -769,6 +768,12 @@ void PreferencesPanel::DrawSettings()
 		"Hide unexplored map regions",
 		"Show escort systems on map",
 		"Show stored outfits on map",
+		"",
+		"Trading",
+		"'Sell Outfits' without outfitter",
+		"Confirm 'Sell Outfits' button",
+		"Confirm 'Sell MInables' button",
+		"Show parenthesis",
 		"\n",
 		"Flagship Behavior",
 		"Control ship with mouse",
@@ -813,7 +818,6 @@ void PreferencesPanel::DrawSettings()
 		SCROLL_SPEED,
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
-		"Show parenthesis",
 		NOTIFY_ON_DEST,
 		"Save message log",
 #ifdef _WIN32
