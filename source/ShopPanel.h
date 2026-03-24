@@ -60,7 +60,6 @@ protected:
 	// indicates failure, but no need to pop up a message about it.
 	class TransactionResult {
 	public:
-		TransactionResult(const char *error) : success(false), message(error) {}
 		TransactionResult(std::string error) : success(false), message(std::move(error)) {}
 		TransactionResult(bool canSource, bool canPlace, std::string error)
 			: canSource(canSource), canPlace(canPlace), success(false), message(std::move(error)) {}
@@ -72,7 +71,7 @@ protected:
 		const std::string &Message() const noexcept { return message; }
 
 	public:
-		// Meta-data that maybe used along with the overall success/message in order to
+		// Metadata that may be used along with the overall success/message in order to
 		// better decide the course of action when dealing with the failure reason.
 		bool canSource = true;
 		bool canPlace = true;
