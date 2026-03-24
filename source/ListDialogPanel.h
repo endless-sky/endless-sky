@@ -49,7 +49,7 @@ public:
 
 	void UpdateList(std::vector<std::string> newOptions);
 
-	bool AcceptsInput() const;
+	bool AcceptsInput() const override;
 
 	virtual void Draw() override;
 
