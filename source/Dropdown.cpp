@@ -143,8 +143,8 @@ void Dropdown::Draw()
 	{
 		if(Edit::Enabled())
 		{
-			// Only use the drop icon as the click zone, so that we can still
-			// click and highlight text.
+			// Only use the drop icon as the click zone, so that the user can
+			// still click and highlight text.
 			Point dropIconPos = Position().Center();
 			dropIconPos.X() += Position().Width() / 2 - Position().Height() / 2;
 			Rectangle pz(dropIconPos, Point(Position().Height(), Position().Height()));
@@ -192,8 +192,8 @@ void Dropdown::DoDropdown(const Point &pos)
 int Dropdown::IdxFromPoint(int x, int y) const
 {
 	Point bg_size{Position().Width(), Position().Height() * options.size()};
-	// if we are close to the bottom of the screen, they will be drawn down
-	// instead of up
+	// If the Dropdown is too close to the bottom, then display the DroppedPanel
+	// above the Dropdown instead of below it.
 	bool is_drawn_down = !(Position().Bottom() + bg_size.Y() > Screen::Bottom());
 
 	const Rectangle opt_rect = is_drawn_down
@@ -202,8 +202,8 @@ int Dropdown::IdxFromPoint(int x, int y) const
 	if(opt_rect.Contains(Point(x, y)))
 	{
 		int idx = static_cast<int>(y - opt_rect.Top()) / Position().Height();
-		// We have validated that we are within the dropdown, but floating point
-		// errors still mean idx is occasionally out of bounds. Clamp it.
+		// Clamp the idx so that floating point errors don't force it out of
+		// bounds.
 		if(idx < 0) idx = 0;
 		if(idx >= static_cast<int>(options.size())) idx = options.size() - 1;
 		return idx;
@@ -288,8 +288,8 @@ void Dropdown::DroppedPanel::Draw()
 	const Color &dim = *GameData::Colors().Get("dim");
 
 	Point bg_size{dd->Position().Width(), dd->Position().Height() * dd->options.size()};
-	// if we are close to the bottom of the screen, draw the options above
-	// instead of below;
+	// If the Dropdown is close to the bottom of the screen, then draw the
+	// DroppedPanel above the Dropdown instead of below it.
 	bool is_drawn_down = !(dd->Position().Bottom() + bg_size.Y() > Screen::Bottom());
 
 	const Rectangle bg_rect = is_drawn_down
