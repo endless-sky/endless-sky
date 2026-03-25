@@ -318,7 +318,7 @@ mission "Ka'het: Death in the Graveyard 1"
 			`	Your ship's proximity alert breaks the silence, then falls quiet before you reach the control panel. A quick glance out the window confirms you're still fairly high up, and the ship's radar reveals nothing of interest - at least not currently. You press a couple of buttons to check what your ship recorded, and see what looks like a large mass flicker for a few seconds a hundred meters away from your ship during the alarm.`
 			choice
 				`	(Continue the descent.)`
-				`	(Stop mu ship and prepare for a fight.)`
+				`	(Stop my ship and prepare for a fight.)`
 				`	(Turn around and leave.)`
 					depart
 			`	A few seconds pass before the proximity alert sounds again. And this time, you see it. You shine your ship's floodlights at it, revealing the translucent figure of a partly cloaked Maeri'het. It flickers, its various sections becoming more and less transparent seemingly at random.`
