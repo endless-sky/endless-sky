@@ -2841,7 +2841,7 @@ mission "Ka'het: Patir Mystery 26A"
 				goto cables
 			label hole
 			`	"I did not say black hole - I said star, and a black hole is not a star. All of these figures are very simplified, but they are very clearly representing a star there in the center of the system." He shows you and Dusk some of the graphics, and you cannot help but agree with the conclusion. "At some point in the past, the Chanai star became a supernova, which collapsed into the black hole we see today. How long ago it was is impossible to say: black holes have the unfortunate peculiarity that none of their features allow a direct estimation of their age, and we do not know nearly enough about this place to use external clues."`
-			`	"Still, the question of its purpose," intervenes Dusk. "Perhaps this laser was used to accelerate the reactions inside the star, making it burn brighter even at the cost of dying sooner; it would not be the first species to attempt something so destructive. But surviving a supernova with no damage is almost inconceivable to me."`
+			`	"Still, the question of its purpose," intervenes Dusk. "Perhaps this laser was used to accelerate the reactions inside the star, making it burn brighter even at the cost of turning into a supernova - and then a black hole - sooner. It would not be the first species to attempt something so destructive. But surviving stellar events of this magnitude with no damage is almost inconceivable to me."`
 			label cables
 			`	You help the Remnant lift a screen from the floor, allowing it to float away into the room. Below it, you find nothing of note: no cabling, no connectors, not even a single panel. You try again with the one next to it, and again you end up with the same result. "After this, I would say that we have explored this facility enough for today. Let's get back to <system> and gather our findings; we have more than enough to think about for the time being."`
 				accept
@@ -3650,7 +3650,7 @@ mission "Ka'het: Patir Mystery 34"
 				`	(Wait and see.)`
 				`	(Sit in the pilot's seat and fly away.)`
 				`	(Show it your hand, like in that video you saw once.)`
-			`	In an instant, the asteroid sprints out of the room. You follow it on your console as it launches out of your ship from the cargo bay, passing through the same hole it had made when coming in. With the engines still firing, you take back control of your ship and leave the sphere of influence of the planetoid...`
+			`	In an instant, the asteroid sprints out of the room. You follow it on your console: it breaches through an emergency vent to launch out of your ship, and automated systems seal it off immediately. With the engines still firing, you take back control of your ship and leave the sphere of influence of the planetoid...`
 				launch
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -3799,7 +3799,7 @@ mission "Ka'het: Patir Mystery 36"
 	on complete
 		event "patir mystery 3 timer" 20
 		conversation
-			`Once again, Chilia's coordinates point you toward a half-hidden outpost in the middle of the desert. While the local crew unloads the machinery, you catch a glimpse of the floor below: dozens of workers wearing special suits, quickly moving what looks like one of the parts of the creatures beyond Patir.`
+			`Once again, Chilia's coordinates point you toward a half-hidden outpost in the middle of the desert. While the local crew unloads the machinery, you catch a glimpse of the lower floor through the stairway: dozens of workers wearing special suits, quickly moving what looks like one of the parts of the creatures beyond Patir.`
 			`	This time, however, nobody tries to stop you. The opposite, in fact: when they recognize you, the workers accompany you on an hour-long tour of the structure. Walking down the floors, you pass through a dozen different rooms, half of which are dedicated to studying - and testing - the parts of the asteroid that you have recovered. In some of the rooms, giant, eerie machines are immersed into strange fogs, with only a few meters and a strongly vibrating layer of glass separating you from them.`
 			`	Once they have emptied your payload bay, they wave goodbye as you depart for the main starport. Based on their gestures, you reckon that they don't expect this to be the last time they see you here.`
 
