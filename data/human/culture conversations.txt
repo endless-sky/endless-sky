@@ -1034,26 +1034,26 @@ mission "Exotic Life: Ada"
 		"Exotic Life: Delve" declined
 	on offer
 		conversation
-		`A loud commotion draws your attention as you make your way through the spaceport and you look up to see three large Lovelace Labs security guards surrounding an irate pilot.`
-		`	"But I've got to unload my cargo!" the pilot is shouting right into the face of a guard who looks completely unfazed.`
-		`	"Not here you're not," she says in a bored manner, as though she deals with this kind of situation twenty times a day. "Not until you get your ship decontaminated."`
-		`	You are just one of a whole crowd of onlookers surrounding the group in a big circle now. The pilot seems to notice that he is the center of attention and decides to appeal to the crowd.`
-		`	"You see what they're doing?" he yells. "This is... this is overreach! I'm being harassed!"`
-		`	The guard is unimpressed, poking at a datapad as she talks.`
-		`	"Rules are rules and you gotta follow them just like everyone else." She looks up, eyes narrowed. "It says here your cargo is miniature figurines. What exactly are they made out of?"`
-		`	The pilot looks suddenly sheepish, throwing his hands up in defeat.`
-		`	"Alright, alright," he says, "I'll get the decon procedure done. Okay? You win."`
-		`	"What. Are. They. Made of?"`
-		`	"Stainless steel."`
-		`	"Ouch," she says, but the bored expression is gone now and she seems to be enjoying herself. "Twelve tons of miniature figurines, and we are gonna have to scan every single one to make sure they're not contaminated. That could take a while."`
-		`	With a scattering of chuckles and a few sympathetic groans the crowd starts to disperse, and the two other guards lead the pilot back towards his ship leaving the main guard tapping happily at her datapad. After a few moments she looks up, noticing you watching her.`
-		choice
-			`	"Delvan shipworms?"`
-				goto shipworms
-			`	"That seemed a bit harsh."`
-			`	"That was fun."`
-		`	She shrugs. "Just doing my job."`
-			decline
-				label shipworms
-				`	"Uh-huh," she says. "Only we're now seeing them on ships that haven't been near Delve. Seem to be spreading."`
+	    	`A loud commotion draws your attention as you make your way through the spaceport and you look up to see three large Lovelace Labs security guards surrounding an irate pilot.`
+		    `	"But I've got to unload my cargo!" the pilot is shouting right into the face of a guard who looks completely unfazed.`
+	    	`	"Not here you're not," she says in a bored manner, as though she deals with this kind of situation twenty times a day. "Not until you get your ship decontaminated."`
+		    `	You are just one of a whole crowd of onlookers surrounding the group in a big circle now. The pilot seems to notice that he is the center of attention and decides to appeal to the crowd.`
+	    	`	"You see what they're doing?" he yells. "This is... this is overreach! I'm being harassed!"`
+	    	`	The guard is unimpressed, poking at a datapad as she talks.`
+		    `	"Rules are rules and you gotta follow them just like everyone else." She looks up, eyes narrowed. "It says here your cargo is miniature figurines. What exactly are they made out of?"`
+		    `	The pilot looks suddenly sheepish, throwing his hands up in defeat.`
+		    `	"Alright, alright," he says, "I'll get the decon procedure done. Okay? You win."`
+		    `	"What. Are. They. Made of?"`
+	    	`	"Stainless steel."`
+	    	`	"Ouch," she says, but the bored expression is gone now and she seems to be enjoying herself. "Twelve tons of miniature figurines, and we are gonna have to scan every single one to make sure they're not contaminated. That could take a while."`
+	    	`	With a scattering of chuckles and a few sympathetic groans the crowd starts to disperse, and the two other guards lead the pilot back towards his ship leaving the main guard tapping happily at her datapad. After a few moments she looks up, noticing you watching her.`
+	    	choice
+		    	`	"Delvan shipworms?"`
+			    	goto shipworms
+	    		`	"That seemed a bit harsh."`
+		    	`	"That was fun."`
+	    	`	She shrugs. "Just doing my job."`
+		    	decline
+			label shipworms
+			`	"Uh-huh," she says. "Only we're now seeing them on ships that haven't been near Delve. Seem to be spreading."`
 				decline
