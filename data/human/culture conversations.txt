@@ -996,7 +996,7 @@ mission "Exotic Life: Delve"
 		random < 20
 	on offer
 		conversation
-            	`The mountain air tastes cool and fresh after so long breathing the constantly recycled air on the <ship>, so you take a moment to get a good lungful and enjoy the view. Just off to your right, ground technicians wearing thin coveralls and breathing gear are spraying some kind of chemical on the port superstructure of a parked Sunder. The fine mist reflects a bright rainbow which contrasts strikingly with the dull grey metal of the hull.`
+            	`The mountain air tastes cool and fresh after breathing the constantly recycled air on the <ship> for so long, so you take a moment to get a good lungful and enjoy the view. Just off to your right, ground technicians wearing thin coveralls and breathing gear are spraying some kind of chemical on the hull of a parked Sunder. The fine mist reflects a bright rainbow which contrasts strikingly with the dull gray metal of the hull.`
 		`	You wander over, careful not to get too close to the spray which you have to assume is toxic. One of the technicians climbs down a ladder attached to the hull as you approach then turns to you, pulling the mask off to reveal a man in his early twenties with dark skin and hair plastered with sweat to his forehead.`
 		`	"This your ship?" He asks with a professionally neutral expression.`
 		choice
