@@ -654,8 +654,8 @@ ship "Heron"
 		"fuel capacity" 2500
 		"ramscoop" 10.75
 		"cargo space" 1110
-		"outfit space" 2150
-		"weapon capacity" 470
+		"outfit space" 2200
+		"weapon capacity" 560
 		"engine capacity" 800
 		"shield generation" 15
 		"shield energy" 1.8
@@ -1689,8 +1689,8 @@ ship "Swan"
 		"heat dissipation" 0.32
 		"fuel capacity" 6400
 		"ramscoop" 6.5
-		"outfit space" 644
-		"weapon capacity" 207
+		"outfit space" 674
+		"weapon capacity" 237
 		"engine capacity" 157
 		"shield generation" 4.8
 		"shield energy" 3.9
