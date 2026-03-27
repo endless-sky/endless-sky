@@ -1004,7 +1004,7 @@ mission "Exotic Life: Delve"
 				goto curious
 			`	"Yes. How is the work coming along?"`
 		`	The technician shakes his head morosely.`
-		`	"It's confirmed. Shipworm. Bad case too, I'm surprised your hull was still holding atmo." He looks back at the Sunder, measuring her up with his eyes. "We should be finished the decontamination in a couple hours, but then we'll need to go over her with sealant. Probably two coats. We'll be finished tomorrow afternoon, earliest."`
+		`	"It's confirmed. Shipworm. Bad case too, I'm surprised your hull was still holding atmo." He looks back at the Sunder, measuring her up with his eyes. "We should be finished with the decontamination in a couple hours, but then we'll need to go over her with sealant. Probably two coats. We'll be finished tomorrow afternoon, earliest."`
 		choice
 			`	"Shipworm? How could this happen?"`
 			goto whatisshipworm
