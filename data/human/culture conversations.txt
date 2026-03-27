@@ -1012,7 +1012,7 @@ mission "Exotic Life: Delve"
 				decline
 			label curious
 				`	He looks you up and down, perhaps wondering if he will get in trouble for telling you about another captain's ship, but then he shrugs and opens up.`
-				`	"Shipworm infestation. Third one this week." He pushes his hood back and runs his hand through his greasy hair. "Honestly, I'm surprised the media hasn't been covering it yet. Maybe they're waiting for the first spontaneous depressurisation so they have something really juicy to talk about."
+				`	"Shipworm infestation. Third one this week." He pushes his hood back and runs his hand through his greasy hair. "Honestly, I'm surprised the media hasn't been covering it yet. Maybe they're waiting for the first spontaneous depressurization so they have something really juicy to talk about."
 		choice
 			`	"Shipworm? What is that?"`
 			`	"You think it is a cover-up?"`
