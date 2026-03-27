@@ -1055,5 +1055,5 @@ mission "Exotic Life: Ada"
 		`	She shrugs. "Just doing my job."`
 			decline
 				label shipworms
-				`	"Uh-huh," she says. "Only we're seeing them on ships that haven't been near Delve now. Seem to be spreading."`
+				`	"Uh-huh," she says. "Only we're now seeing them on ships that haven't been near Delve. Seem to be spreading."`
 				decline
