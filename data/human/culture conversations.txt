@@ -988,3 +988,65 @@ mission "Struggling Author Gone Missing"
 			`	MISSING:`
 			`		Anna Fangvin, a young author whose books have been shared throughout the planet. Please report any news to the Coalition of Book Enjoyers, address 5662 Myrtle Lane, Sizertown, Zug.`
 				decline
+
+mission "Exotic Life: Bloodsea"
+	minor
+	source Bloodsea
+	to offer
+		random < 10
+	on offer
+		conversation
+			branch formerpirates
+				or
+					has "event: bloodsea independent"
+					has "event: bloodsea joins free worlds"
+			`You slowly thread your way through the dirty makeshift spaceport. It is packed with vendors and pirates haggling over illegal goods. In the distance, the sun is setting over the blood-red sea that gives Bloodsea its name.`
+			`	In the shadow behind a run-down shack, over which a sign advertises "the cheapest nerve gas this side o' Sol," you see a man coughing. He does not stop for a while, and when he finally recovers, you notice his lips are stained with blood. As you turn away, you catch the eye of a wizened old man in the next stall.`
+				goto restofhello
+			label formerpirates
+			`You slowly thread your way through the dirty spaceport. It is packed with vendors and shady persons haggling over goods of dubious origin. In the distance, the sun is setting over the blood-red sea that gives Bloodsea its name.`
+			`	In the shadow behind a run-down shack, over which a sign advertises "the cheapest 'nades this side o' Sol," you see a man coughing. He does not stop for a while, and when he finally recovers, you notice his lips are stained with blood. As you turn away, you catch the eye of a wizened old man in the next stall.`
+			label restofhello
+			`	"He's got the Bloom," the old man pronounces solemnly. "He'll be dead in a few weeks. It's the blood tide that does it, the fools."`
+			choice
+				`	"What is it?"`
+				`	"Is it dangerous?"`
+				`	(Walk away.)`
+					decline
+			`	He laughs scornfully. "The sea sprays poison. No one goes there except spacers and fools. Bloody sea and bloody fools."`
+			`	"First your eyes itch, then your throat, then your lungs. By then it's too late, too late. But there are always those who never learn."`
+			`	He grins with derision. "Well, I'll chop you up and throw you to the Bloom if you don't buy some fish from me. Three barrels." He reaches in and pulls a fish out. "Still fresh. 1000 credits each."`
+			choice
+				`	(Buy three barrels of fish from him.)`
+					to display
+						credits >= 3000
+					goto three
+				`	(Buy two barrels of fish from him.)`
+					to display
+						credits >= 2000
+					goto two
+				`	(Buy one barrel of fish from him.)`
+					to display
+						credits >= 1000
+					goto one
+				`	(Make a run for it.)`
+			`	You turn right around and walk quickly the other way. You can still hear the cursing in your ears by the time you get to your ship.`
+				decline
+			label three
+			action
+				payment -3000
+				outfit "Barrel of Fish" 3
+			`	You fish out the money and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrels to your ship.`
+				decline
+			label three
+			action
+				payment -2000
+				outfit "Barrel of Fish" 2
+			`	You fish out the money and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrels to your ship.`
+				decline
+			label three
+			action
+				payment -1000
+				outfit "Barrel of Fish" 1
+			`	You fish out the money and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrel to your ship.`
+				decline
