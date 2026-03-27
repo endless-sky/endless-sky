@@ -508,6 +508,7 @@ outfit "Old Man's Sword"
 	description "While swords are seen today as being old curios and commemorative objects, rendered useless when gunpowder became dominant on the battlefield thousands of years ago, this sword is unlike any you have seen before. Despite how heavy it looks, it is remarkably light, and there are inscriptions on the blade itself that don't appear to be in any human language."
 
 outfit "Barrel of Fish"
+	plural "Barrels of Fish"
 	category "Hand to Hand"
 	series "H2H"
 	index 99040
