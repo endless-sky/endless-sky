@@ -94,7 +94,8 @@ outfit "Inhibitor Turret"
 		"hit force" 58.5
 		"slowing damage" .5
 	description `While cannons that can interfere with a ship's engines are useful in any situation, the Remnant quickly decided that it would be even more useful as a turret that their ships could use to impede those chasing after them. These small Inhibitor Turrets are typically found primarily on Pelicans trying to outrun opponents rather than defeat them.`
-	description `Although these turrets are unremarkable in terms of performance, the comparatively recent perfection of a technique of installing the bulk of the weapon itself externally on the turret mount instead of under the base has resulted in a weapon that takes comparatively little outfit space. It does, however, still add quite a bit more to the mass of the ship.`
+description `While cannons that can interfere with a ship's engines are useful in any situation, the Remnant have long desired a turret that their ships could use to impede those chasing after them. These versatile Inhibitor Turrets are typically found on ships trying to outrun opponents rather than defeat them.`
+description `Although these turrets are unremarkable in terms of performance, the comparatively recent refinement of the interference effect dampens the strong torques that previously made the use of a swiveling mount unfeasible, making these turrets a true engineering achievement.`
 
 
 outfit "Thrasher Cannon"
