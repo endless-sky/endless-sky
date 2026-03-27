@@ -1030,7 +1030,7 @@ mission "Exotic Life: Bloodsea"
 						credits >= 1000
 					goto one
 				`	(Make a run for it.)`
-			`	You turn right around and walk quickly the other way. You can still hear the cursing in your ears by the time you get to your ship.`
+			`	You turn right around and walk quickly the other way. You can still hear the cursing in your ears when you get to your ship.`
 				decline
 			label three
 			action
