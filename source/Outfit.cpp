@@ -198,8 +198,8 @@ namespace {
 
 	// Used to add the contents of one outfit's map to another, while also
 	// erasing any key with a value of zero.
-	template<class T>
-	void MergeMaps(map<const T *, int> &thisMap, const map<const T *, int> &otherMap, int count)
+	template<class T, class N>
+	void MergeMaps(map<const T *, N> &thisMap, const map<const T *, N> &otherMap, int count)
 	{
 		for(const auto &it : otherMap)
 		{
@@ -309,7 +309,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "afterburner effect" && hasValue)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
 		else if(key == "jump effect" && hasValue)
-			++jumpEffects[GameData::Effects().Get(child.Token(1))];
+			jumpEffects[GameData::Effects().Get(child.Token(1))] += child.Size() >= 3 ? child.Value(2) : 1.;
 		else if(key == "hyperdrive sound" && hasValue)
 			++hyperSounds[Audio::Get(child.Token(1))];
 		else if(key == "hyperdrive in sound" && hasValue)
@@ -373,15 +373,17 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		displayName = trueName;
 
 	// If no plural name has been defined, append an 's' to the name and use that.
-	// If the name ends in an 's' or 'z', and no plural name has been defined, print a
-	// warning since an explicit plural name is always required in this case.
-	// Unless this outfit definition isn't declared with the `outfit` keyword,
+	// If the name ends in an 's', 'x', 'z', 'ch', or 'sh', and no plural name has been defined,
+	// print a warning since an irregular plural is usually required in this case.
+	// Unless this outfit definition isn't declared with a category,
 	// because then this is probably being done in `add attributes` on a ship,
-	// so the name doesn't matter.
+	// or it's a pseudo-outfit like submunitions, so the name doesn't matter.
 	if(!displayName.empty() && pluralName.empty())
 	{
 		pluralName = displayName + 's';
-		if((displayName.back() == 's' || displayName.back() == 'z') && node.Token(0) == "outfit")
+		const char &last = displayName.back();
+		if(!category.empty() && (last == 's' || last == 'x' || last == 'z'
+				|| displayName.ends_with("ch") || displayName.ends_with("sh")))
 			node.PrintTrace("Explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralName + "\".");
 	}
@@ -739,7 +741,7 @@ const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 
 
 // Get this outfit's jump effects and sounds, if any.
-const map<const Effect *, int> &Outfit::JumpEffects() const
+const map<const Effect *, double> &Outfit::JumpEffects() const
 {
 	return jumpEffects;
 }

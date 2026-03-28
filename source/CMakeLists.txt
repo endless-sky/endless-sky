@@ -85,8 +85,10 @@ target_sources(EndlessSkyLib PRIVATE
 	Date.h
 	Depreciation.cpp
 	Depreciation.h
-	Dialog.cpp
-	Dialog.h
+	DialogPanel.cpp
+	DialogPanel.h
+	DialogSettings.cpp
+	DialogSettings.h
 	Dictionary.cpp
 	Dictionary.h
 	DistanceCalculationSettings.h
@@ -95,10 +97,16 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	Distribution.cpp
 	Distribution.h
+	Drawable.cpp
+	Drawable.h
+	Endpoint.cpp
+	Endpoint.h
 	Effect.cpp
 	Effect.h
 	Engine.cpp
 	Engine.h
+	Entity.cpp
+	Entity.h
 	EsUuid.cpp
 	EsUuid.h
 	EscortDisplay.cpp
@@ -133,6 +141,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameLoadingPanel.h
 	Gamerules.cpp
 	Gamerules.h
+	GamerulesPanel.cpp
+	GamerulesPanel.h
 	GameVersion.cpp
 	GameVersion.h
 	GameWindow.cpp
@@ -143,6 +153,7 @@ target_sources(EndlessSkyLib PRIVATE
 	HailPanel.h
 	Hardpoint.cpp
 	Hardpoint.h
+	Hasher.h
 	Hazard.cpp
 	Hazard.h
 	HiringPanel.cpp
@@ -158,6 +169,8 @@ target_sources(EndlessSkyLib PRIVATE
 	JumpType.h
 	Logger.cpp
 	Logger.h
+	LoadingCircle.cpp
+	LoadingCircle.h
 	LoadPanel.cpp
 	LoadPanel.h
 	LocationFilter.cpp
@@ -212,6 +225,8 @@ target_sources(EndlessSkyLib PRIVATE
 	NPCAction.h
 	News.cpp
 	News.h
+	OptionalInputDialogPanel.cpp
+	OptionalInputDialogPanel.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp
@@ -291,8 +306,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipJumpNavigation.h
 	ShipManager.cpp
 	ShipManager.h
-	ShipNameDialog.cpp
-	ShipNameDialog.h
+	ShipNameDialogPanel.cpp
+	ShipNameDialogPanel.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp
@@ -393,6 +408,8 @@ target_sources(EndlessSkyLib PRIVATE
 	image/MaskManager.h
 	image/Sprite.cpp
 	image/Sprite.h
+	image/SpriteLoadManager.cpp
+	image/SpriteLoadManager.h
 	image/SpriteSet.cpp
 	image/SpriteSet.h
 	shader/BatchDrawList.cpp

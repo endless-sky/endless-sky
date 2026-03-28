@@ -281,6 +281,7 @@ mission "FW Southern Recon 1B"
 mission "FW Southern Recon 1B (Turret)"
 	landing
 	invisible
+	non-blocking
 	source Trinket
 	destination Trinket
 	to offer
@@ -1052,6 +1053,9 @@ mission "FW Northern 3B"
 				goto leave
 			label home
 			`	"I grew up on Earth," she says, "deep in the bowels of one of the major cities. Even as a kid I hated that dirty old planet and knew my only shot of leaving there was to be smarter than everyone else. It wasn't until years later, when I came back to visit with some money in my pocket and a bit more perspective, that I was able to travel to the few parts of Earth that are still pretty, and realize how precious our home world is."`
+			`	You tell Freya about your own upbringing on Earth, and the two of you share stories. It turns out you both grew up in North America; Freya along the Pacific coast, while you lived closer to the eastern seaboard.`
+				to display
+					has "start: syndicate"
 				goto leave
 			label dreadnoughts
 			`	"Ugh," she says, "let's not talk about work while we're busy relaxing." You refrain from commenting that all her talk about starship design sounded a lot more like work than like a fun relaxing topic of conversation.`
@@ -1695,6 +1699,7 @@ mission "FW Bloodsea 1.2A"
 mission "Pirates Use Cutthroats"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "fw bloodsea done"
 	on offer
@@ -2286,16 +2291,12 @@ mission "FW Liberate Delta Sagittarii"
 	to offer
 		has "FW Rand 1B: done"
 		not "FW Defend New Tibet: done"
+	to accept
+		has "fw did not rescue defector"
 	
 	on offer
 		event "fwc southern battle"
 		conversation
-			branch surrender
-				has "fw did not rescue defector"
-			`A few of the Free Worlds crew members are still milling around the spaceport in confusion. You help to gather them together and explain that you are headed out on a very important mission to New Tibet.`
-				decline
-			
-			label surrender
 			`When you and Freya enter the spaceport bar, JJ is talking with someone on his communicator. "The code word is 'havoc,'" he says. "Yes, I'm certain. It's the only option we have left. Good luck."`
 			`	"What was that about?" asks Freya.`
 			`	JJ says, "I was calling in some reinforcements," he says. "A group of ex-militia folks and bounty hunters who want to further the cause of the Free Worlds, but want to do it freelance instead of taking orders from us or the Senate. They call themselves the 'Wolf Pack.' Have you heard of them?"`

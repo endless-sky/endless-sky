@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../text/Format.h"
 #include "../GameData.h"
 #include "ImageBuffer.h"
+#include "ImageFileData.h"
 #include "../Logger.h"
 #include "Mask.h"
 #include "MaskManager.h"
@@ -84,17 +85,6 @@ bool ImageSet::IsImage(const filesystem::path &path)
 {
 	filesystem::path ext = path.extension();
 	return ImageBuffer::ImageExtensions().contains(Format::LowerCase(ext.string()));
-}
-
-
-
-// Determine whether the given path or name is for a sprite whose loading
-// should be deferred until needed.
-bool ImageSet::IsDeferred(const filesystem::path &path)
-{
-	if(path.empty())
-		return false;
-	return *path.begin() == "land";
 }
 
 
@@ -166,8 +156,12 @@ void ImageSet::ValidateFrames() noexcept(false)
 	{
 		if(toResize.size() > paths[0].size())
 		{
-			Logger::Log(prefix + to_string(toResize.size() - paths[0].size())
-				+ " extra frames for the " + specifier + " sprite will be ignored.", Logger::Level::WARNING);
+			if(paths[0].empty())
+				Logger::Log(prefix + "all frames for the " + specifier + " sprite will be ignored, "
+					"as it has no corresponding normal resolution frame(s).", Logger::Level::WARNING);
+			else
+				Logger::Log(prefix + to_string(toResize.size() - paths[0].size())
+					+ " extra frame(s) for the " + specifier + " sprite will be ignored.", Logger::Level::WARNING);
 			toResize.resize(paths[0].size());
 		}
 	};
@@ -190,6 +184,15 @@ void ImageSet::Load() noexcept(false)
 	// not actually be allocated until the first image is loaded (at which point
 	// the sprite's dimensions will be known).
 	size_t frames = paths[0].size();
+	// If there are fewer frames of swizzle mask than base image, only use the
+	// first swizzle mask frame. Send a warning if any are discarded.
+	size_t swizzleMaskFrames = paths[2].size();
+	if(swizzleMaskFrames > 1 && swizzleMaskFrames < frames)
+	{
+		Logger::Log("Discarding " + to_string(swizzleMaskFrames - 1) + " frames of swizzle mask because there"
+			" are more frames of animation. Only the first swizzle mask frame will be used.", Logger::Level::WARNING);
+		swizzleMaskFrames = 1;
+	}
 
 	// Check whether we need to generate collision masks.
 	bool makeMasks = IsMasked(name);
@@ -197,8 +200,8 @@ void ImageSet::Load() noexcept(false)
 	const auto UpdateFrameCount = [&]()
 	{
 		buffer[1].Clear(frames);
-		buffer[2].Clear(frames);
-		buffer[3].Clear(frames);
+		buffer[2].Clear(swizzleMaskFrames);
+		buffer[3].Clear(swizzleMaskFrames);
 
 		if(makeMasks)
 			masks.resize(frames);
@@ -215,7 +218,7 @@ void ImageSet::Load() noexcept(false)
 		const string fileName = "\"" + name + "\" frame #" + to_string(i);
 		if(!loadedFrames)
 		{
-			Logger::Log("Failed to read image data for \"" + fileName, Logger::Level::WARNING);
+			Logger::Log("Failed to read image data for " + fileName, Logger::Level::WARNING);
 			continue;
 		}
 		// If we loaded an image sequence, clear all other buffers.
@@ -232,18 +235,6 @@ void ImageSet::Load() noexcept(false)
 				Logger::Log("Failed to create collision mask for " + fileName, Logger::Level::WARNING);
 		}
 	}
-
-	auto FillSwizzleMasks = [&](vector<filesystem::path> &toFill, unsigned int intendedSize)
-	{
-		if(toFill.size() == 1 && intendedSize > 1)
-			for(unsigned int i = toFill.size(); i < intendedSize; i++)
-				toFill.emplace_back(toFill.back());
-	};
-	// If there is only a swizzle-mask defined for the first frame fill up the swizzle-masks
-	// with this mask.
-	FillSwizzleMasks(paths[2], paths[0].size());
-	FillSwizzleMasks(paths[3], paths[0].size());
-
 
 	auto LoadSprites = [&](const vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier)
 	{
@@ -271,6 +262,30 @@ void ImageSet::Load() noexcept(false)
 
 
 
+void ImageSet::LoadDimensions(Sprite *sprite) noexcept(false)
+{
+	assert(framePaths[0].empty() && "should call ValidateFrames before calling LoadDimensions");
+
+	// Read only the first frame of the 1x resolution image in order to determine the dimensions of the sprite.
+	// (All frames are expected to have the same dimensions.)
+	size_t frames = paths[0].size();
+	// An ImageSet might exist for a sprite that only had 2x images defined, in which case it will have no frames.
+	if(!frames)
+		return;
+	buffer[0].Clear(frames);
+	int loadedFrames = buffer[0].Read(paths[0][0], 0, true);
+	if(!loadedFrames)
+	{
+		Logger::Log("Failed to read image data for \"" + name + "\" frame #0.", Logger::Level::WARNING);
+		return;
+	}
+	sprite->LoadDimensions(buffer[0]);
+	// Clear the buffer since no image data was actually uploaded.
+	buffer[0].Clear();
+}
+
+
+
 // Create the sprite and optionally upload the image data to the GPU. After this is
 // called, the internal image buffers and mask vector will be cleared, but
 // the paths are saved in case the sprite needs to be loaded again.
@@ -282,10 +297,8 @@ void ImageSet::Upload(Sprite *sprite, bool enableUpload)
 			it.Clear();
 
 	// Load the frames (this will clear the buffers).
-	sprite->AddFrames(buffer[0], false, noReduction);
-	sprite->AddFrames(buffer[1], true, noReduction);
-	sprite->AddSwizzleMaskFrames(buffer[2], false, noReduction);
-	sprite->AddSwizzleMaskFrames(buffer[3], true, noReduction);
+	sprite->AddFrames(buffer[0], buffer[1], noReduction);
+	sprite->AddSwizzleMaskFrames(buffer[2], buffer[3], noReduction);
 
 	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
 	masks.clear();

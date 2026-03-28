@@ -89,6 +89,7 @@ mission "Coalition: First Contact"
 mission "Discovered Coalition Space"
 	landing
 	invisible
+	non-blocking
 	source
 		government "Heliarch"
 	on offer
@@ -142,6 +143,7 @@ mission "Coalition: Contributor"
 # For pre-0.9.7 compatibility
 mission "Coalition License Patch"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Coalition: Contributor: done"
@@ -155,6 +157,7 @@ mission "Coalition License Patch"
 mission "lost in coalition"
 	landing
 	invisible
+	non-blocking
 	source
 		government "Coalition" "Heliarch"
 	to offer
@@ -1610,7 +1613,6 @@ mission "Saryd University Lecture"
 					goto hai
 					to display
 						has "First Contact: Hai: offered"
-						not "event: hai-human resolution announced"
 				`	"Humans have official contact with the Quarg, but the Quarg don't trade technology with humanity."`
 				`	"Humans have official contact with the Quarg, but humans and Quarg don't really intermix."`
 				`	"Humans know about the Quarg, but most people know little about them."`
@@ -2171,6 +2173,7 @@ mission "Coalition: Council of Ahr: Chamgar"
 
 mission "Coalition: Council of Ahr: Drama"
 	invisible
+	non-blocking
 	landing
 	to offer
 		or
@@ -2717,6 +2720,7 @@ mission "Coalition: Expeditions Past 7"
 
 mission "Coalition: Expeditions Past 7B"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Coalition: Expeditions Past 6: done"
@@ -2789,7 +2793,7 @@ mission "Coalition: Expeditions Past 8"
 mission "Coalition: Expeditions Past 9"
 	landing
 	name "Escape Route"
-	description "Travel southwest of <system>, on a route to the Ablub system, so that Sedlitaris may look for a signal frequency of the expedition."
+	description "Explore the systems southwest of <system>, on possible routes to the Ablub system, so that Sedlitaris may look for a signal frequency of the expedition."
 	passengers 1
 	to offer
 		has "Coalition: Expeditions Past 8: active"
@@ -2804,8 +2808,8 @@ mission "Coalition: Expeditions Past 9"
 				`	"Are you alright?"`
 				`	"He said they were going back immediately, but they never made it. You think that was the last pylon?"`
 				`	(Stay quiet.)`
-			`	She goes without a word for a while still. "Set a route for Ablub, could you, Captain? If follow the same route they used, we do, and if any more to find, there is, pick up the signals, I will."`
-			`	You agree, and look to set a route straight to Ablub.`
+			`	She goes without a word for a while still. "Visit the systems between here and Ablub, could you, Captain? If follow the same route they used, we do, and if any more to find, there is, pick up the signals, I will."`
+			`	You agree, and look to set a route southwest, in the direction of Ablub.`
 				accept
 	on enter "Girtab"
 		dialog `While Sedlitaris remained in her bunk since you left for Ablub, you can hear her shouting from her bunk as you enter the system. She comes running to you, bringing along the pylon. "Picked up a signal, it has!" She says, pointing at the machine's panel, where some message is repeatedly beeping in and out. "Land on that planet we must, Captain!" You tell her you'll land soon, and she remains with you to figure out the pylon's location on Harmony once you've landed.`
@@ -3054,7 +3058,7 @@ mission "Coalition: Long Lost Property 3"
 	on enter "Persian"
 		dialog `Entering the system, your scanners catch a trio of heavily modified Quicksilvers. They also inform you that the probe is in the system, though it fails at giving you its exact location, as if something is causing interference. The Quicksilvers notice you and ready their guns.`
 	npc board
-		personality staying nemesis target
+		personality staying marked target
 		government "Bounty"
 		system "Persian"
 		ship "Marauder Quicksilver (Engines) (Safe)" "Cohen"
@@ -3076,13 +3080,14 @@ mission "Coalition: Long Lost Property 3"
 # Replace the below two missions once some sort of "on board" child of "npc" exists.
 mission "Coalition: Long Lost Property 3A"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Coalition: Long Lost Property 2: active"
 		"credits" > 1000000
 	source "Greenrock"
 	npc board
-		personality staying nemesis target
+		personality staying marked target
 		government "Bounty"
 		system "Persian"
 		ship "Marauder Quicksilver (Safe)" "Coven"
@@ -3096,13 +3101,14 @@ mission "Coalition: Long Lost Property 3A"
 
 mission "Coalition: Long Lost Property 3B"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Coalition: Long Lost Property 2: active"
 		"credits" > 1000000
 	source "Greenrock"
 	npc board
-		personality staying nemesis target
+		personality staying marked target
 		government "Bounty"
 		system "Persian"
 		ship "Marauder Quicksilver (Weapons) (Safe)" "Conan"
@@ -3767,6 +3773,7 @@ event "beyond the hyperdrive is published"
 mission "Coalition: Beyond the Hyperdrive Fail Book Discovered 2"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: beyond the hyperdrive is published"
 	on offer

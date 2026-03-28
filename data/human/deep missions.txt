@@ -27,6 +27,8 @@ mission "Deep: Syndicate Convoy"
 		or
 			not "chosen sides"
 			has "main plot completed"
+		not "Deep: Tarazed Convoy: active"
+		not "Deep: Kraz Convoy: active"
 		
 	on offer
 		conversation
@@ -117,6 +119,8 @@ mission "Deep: Tarazed Convoy"
 		or
 			not "chosen sides"
 			has "main plot completed"
+		not "Deep: Syndicate Convoy: active"
+		not "Deep: Kraz Convoy: active"
 	
 	on offer
 		conversation
@@ -210,6 +214,8 @@ mission "Deep: Kraz Convoy"
 		or
 			not "chosen sides"
 			has "main plot completed"
+		not "Deep: Syndicate Convoy: active"
+		not "Deep: Tarazed Convoy: active"
 	
 	on offer
 		conversation
@@ -466,6 +472,7 @@ mission "Deep: Mystery Cubes 2"
 mission "Deep: Mystery Cubes 3: Escorts"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Mystery Cubes 2: done"
 	to fail
@@ -771,13 +778,7 @@ mission "Deep: TMBR 1"
 			`	While the band intermixes crowd favorites and some new songs clearly inspired by their time in Hai space, you make your way to the side of the makeshift stage. Once the concert ends, Ulrich notices you and approaches.`
 			`	"Captain <last>, it's been a while! We've been having a great time with the peaceful squirrels ever since you dropped us off. It's the craziest experience we've ever had." He regales you with a number of adventures the band has been on since they came to Hai space, and how they were all surprised that even in such an idyllic place war was still a reality. "Say, what brings you here?"`
 			`	He listens intently to your story of the scientists on <planet>, but his brow furrows when you mention the rumor of imprisonment by the Republic.`
-			branch public
-				has "event: hai-human resolution announced"
 			`	"Maybe we've been away long enough. I thought there would be some rumors or recordings that made it back to the Republic from here, but this place is a pretty well-kept secret, so perhaps not. Maybe it's time to go back to the land of the humans."`
-				goto return
-			label public
-			`	"Maybe we've been away long enough. With recent events, I suppose it's only a matter of time until our presence here becomes known more widely to the Republic anyway, so we don't exactly gain much by staying. Maybe it's time to go back to the land of the humans."`
-			label return
 			`	Ulrich gathers up the rest of the band and they pack up their supplies. You chart a course for <destination> as they load their musical equipment on your ship and get ready for the long ride back to human space.`
 				accept
 	on visit
@@ -885,11 +886,24 @@ conversation "deep: questioning"
 	
 	label foster
 	`	"My first question to you: what exactly were you doing with Albert Foster?"`
+	label first
 	choice
+		`	"You can't interrogate me. I'm a citizen of the Deep."`
+			to display
+				has "start: deep"
+				not "questioning: citizen"
 		`	"We were scanning Midgard with gravitational field mapping equipment and spotted an artificial singularity before we fled."`
 			goto honest
 		`	"He told me he was researching the Deep and he needed help conducting his research."`
+			goto work
 	
+	action
+		set "questioning: citizen"
+	`	She frowns. "That does not give you immunity from our investigation.`
+	`	"Now again: what exactly were you doing with Albert Foster?"`
+		goto first
+	
+	label work
 	`	"And why do you think he needed someone else to do the work for him?"`
 	choice
 		`	"Because he wanted something illegal done."`
@@ -921,6 +935,8 @@ conversation "deep: questioning"
 	`	"See? That wasn't so hard to admit, now was it?"`
 	
 	label honest
+	action
+		clear "questioning: citizen"
 	branch helped
 		has "Deep: Mystery Cubes 4: done"
 	
@@ -1246,13 +1262,34 @@ mission "Deep: Project Hawking: Prime"
 			`	"Let me answer that question with a short story of my life." Pierre clears his throat and puffs up his chest a little, as if preparing himself to tell a great epic. He may enjoy talking about himself a little too much...`
 			`	"I was born on Windblain in the Regor system. It's a small, quiet world of little galactic importance, but you should give it a visit sometime. My family wasn't the most well off, so I needed to work hard in my studies, which paid off immensely. Thanks to my exceptional grades in university, I was offered a government job even before graduation. I've been working directly for the Deep for the past 35 years and counting, and I've loved every minute of it! My younger sister though... well, let's just say she wasn't so focused on being successful in school and ended up on the wrong side of the law.`
 			`	"How about you?"`
-			`	You tell Pierre about your life on <starting planet>, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars.`
+
+			`	You tell Pierre about your life on <home planet>, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars.`
 				to display
-					has "human space start"
-			`	Making sure to not bring up <starting planet> or the Hai by name, you tell Pierre about your life, and how you did your best at a travel agency to get to the stars as soon as you could.`
+					has "start: default"
+			`	You tell Pierre about your life on <home planet>, and how you graduated with high enough grades to apply for the Deep's starship loan program.`
 				to display
-					has "hai space start"
+					has "start: deep"
+			`	You tell Pierre about your life on <home planet>, and how you've always dreamed of becoming a starship captain, and finally got your wish when you were given a pilot's license on your eighteenth birthday.`
+				to display
+					has "start: paradise"
+			`	You tell Pierre about your life moving around the galaxy, and how you worked on a Syndicate factory world for five years before you took a loan and began your life as a merchant captain.`
+				to display
+					has "start: syndicate"
+			`	Making sure to not bring up <home planet> or the Hai by name, you tell Pierre about your life, and how you did your best at a travel agency to get to the stars as soon as you could.`
+				to display
+					has "start: hai"
+
 			`	"We aren't too different then," Pierre remarks. "We both worked hard to get where we are today. Thanks for sharing, <first>."`
+				to display
+					not "start: deep"
+					not "start: paradise"
+			`	"So you're from the Deep too," Pierre grins. "That loan program's tough - well done. Back in my university days, we helped build some of the subsystems for those loaned ships in an applied engineering class. You have to admire the Deep's meritocracy. Thanks for sharing, <first>."`
+				to display
+					has "start: deep"
+			`	"So you're from the Paradise Worlds," Pierre remarks. "Most people from there choose to settle down and take up their parents' businesses. Very few go out on their own as a merchant. Thanks for sharing, <first>."`
+				to display
+					has "start: paradise"
+
 			`	"The cargo is all in, Captain!" Garrison yells down from the platform above. "We're ready when you are!"`
 				accept
 
@@ -1689,6 +1726,7 @@ mission "Deep: Remnant Research"
 mission "deep: player revealed remnant"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Remnant Research: offered"
 		not "deep: did reveal remnant"
@@ -1701,6 +1739,7 @@ mission "deep: player revealed remnant"
 mission "deep: remnant: rest period"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Remnant Research: offered"
 	on offer
@@ -1932,6 +1971,7 @@ mission "Deep: Remnant Surveillance - Aventine"
 mission "remnant: clear deep surveillance"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Remnant Research: offered"
 	on offer
@@ -1941,6 +1981,7 @@ mission "remnant: clear deep surveillance"
 mission "Deep: Scientist Rescue Timer"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Project Hawking: done"
 	on offer
@@ -2042,6 +2083,7 @@ mission "Deep: Scientist Rescue 0: Farpoint"
 
 mission "Deep: Scientist Rescue 0: Pirates"
 	invisible
+	non-blocking
 	landing
 	destination "Haven"
 	to offer
@@ -2075,6 +2117,7 @@ mission "Deep: Scientist Rescue 0: Haven"
 mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
 	landing
 	invisible
+	non-blocking
 	source "Haven"
 	destination "Valhalla"
 	to offer
@@ -2155,6 +2198,7 @@ event "battle in arneb"
 
 mission "Deep: Scientist Rescue 1: Pirates"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Deep: Scientist Rescue 0: done"
@@ -2340,6 +2384,7 @@ ship "Bactrian" "Bactrian (Cosmic Devil)"
 mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 	landing
 	invisible
+	non-blocking
 	destination "Valhalla"
 	to offer
 		has "Deep: Scientist Rescue 1: done"
@@ -2359,6 +2404,7 @@ mission "Deep: Scientist Rescue 2: Pirate Bactrian"
 mission "Deep: Scientist Rescue 2: More Pirates"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Deep: Scientist Rescue 1: done"
 	to fail

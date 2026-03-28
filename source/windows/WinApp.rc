@@ -3,8 +3,8 @@
 AppIcon ICON "../../icons/WinApp.ico"
 
 VS_VERSION_INFO VERSIONINFO
-	FILEVERSION 0,10,17,0
-	PRODUCTVERSION 0,10,17,0
+	FILEVERSION 0,11,1,0
+	PRODUCTVERSION 0,11,1,0
 {
 	BLOCK "StringFileInfo"
 	{
@@ -13,11 +13,11 @@ VS_VERSION_INFO VERSIONINFO
 		{
 			VALUE "CompanyName", "\0"
 			VALUE "FileDescription", "Endless Sky\0"
-			VALUE "FileVersion", "0.10.17-alpha\0"
+			VALUE "FileVersion", "0.11.1-alpha\0"
 			VALUE "InternalName", "Endless Sky\0"
 			VALUE "OriginalFilename", "Endless Sky.exe\0"
 			VALUE "ProductName", "Endless Sky\0"
-			VALUE "ProductVersion", "0.10.17-alpha\0"
+			VALUE "ProductVersion", "0.11.1-alpha\0"
 		}
 	}
 	BLOCK "VarFileInfo"

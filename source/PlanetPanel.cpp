@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BankPanel.h"
 #include "Command.h"
 #include "ConversationPanel.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -41,49 +41,51 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipyardPanel.h"
 #include "Shop.h"
 #include "SpaceportPanel.h"
+#include "image/SpriteLoadManager.h"
 #include "System.h"
 #include "TaskQueue.h"
 #include "TextArea.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
+#include <memory>
 #include <sstream>
+#include <utility>
 
 using namespace std;
 
 
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
-	: player(player), callback(callback),
+	: player(player), callback(std::move(callback)),
 	planet(*player.GetPlanet()), system(*player.GetSystem())
 {
-	trading.reset(new TradingPanel(player));
-	bank.reset(new BankPanel(player));
-	spaceport.reset(new SpaceportPanel(player));
-	hiring.reset(new HiringPanel(player));
+	trading = make_shared<TradingPanel>(player);
+	bank = make_shared<BankPanel>(player);
+	spaceport = make_shared<SpaceportPanel>(player);
+	hiring = make_shared<HiringPanel>(player);
 
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
-	Resize();
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
 	TaskQueue queue;
-	GameData::Preload(queue, planet.Landscape());
+	SpriteLoadManager::LoadDeferred(queue, planet.Landscape());
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
-	Audio::BlockPausing();
+	Audio::Pause();
 }
 
 
 
 PlanetPanel::~PlanetPanel()
 {
-	Audio::UnblockPausing();
+	Audio::Resume();
 }
 
 
@@ -97,8 +99,8 @@ void PlanetPanel::Step()
 		if(callback)
 			callback();
 		if(selectedPanel)
-			GetUI()->Pop(selectedPanel);
-		GetUI()->Pop(this);
+			GetUI().Pop(selectedPanel);
+		GetUI().Pop(this);
 		return;
 	}
 
@@ -130,17 +132,61 @@ void PlanetPanel::Step()
 			outfitterStock.Add(shop->Stock());
 		}
 	}
+	// Load the thumbnails of all outfits and ships that the player could see while landed here
+	// if they haven't been loaded before or a mission action has just completed and we should
+	// re-check what's available in case the mission added something to the planet or player's
+	// inventory.
+	if(!hasLoadedThumbnails || SpriteLoadManager::RecheckThumbnails())
+	{
+		hasLoadedThumbnails = true;
+		TaskQueue &queue = GetUI().AsyncQueue();
+		// Load the thumbnails for any ships and outfits sold in the shop.
+		for(const Ship *ship : shipyardStock)
+			SpriteLoadManager::LoadDeferred(queue, ship->Thumbnail());
+		for(const Outfit *outfit : outfitterStock)
+			SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
+		// Also load the thumbnails of anything in storage on this planet or from the player's fleet.
+		if(hasShipyard || hasOutfitter)
+		{
+			for(const auto &ship : player.Ships())
+			{
+				// Ships in the same system but on a different planet can still appear in the shops,
+				// so only skip over ships in a different system.
+				if(!ship || !ship->GetPlanet() || ship->GetSystem() != &system)
+					continue;
+				// Ship thumbnails are visible in both the outfitter and the shipyard, but outfit
+				// thumbnails are only visible in the outfitter.
+				SpriteLoadManager::LoadDeferred(queue, ship->Thumbnail());
+				if(hasOutfitter)
+					for(const auto &outfit : ship->Outfits())
+						SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			}
+		}
+		if(hasOutfitter)
+		{
+			for(const auto &outfit : player.Storage().Outfits())
+				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			for(const auto &outfit : player.Cargo().Outfits())
+				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			for(const auto &license : player.Licenses())
+			{
+				const Outfit *outfit = GameData::Outfits().Find(license + " License");
+				if(outfit)
+					SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
+			}
+		}
+	}
 
 	// Handle missions for locations that aren't handled separately,
 	// treating them all as the landing location. This is mainly to
 	// handle the intro mission in the event the player moves away
 	// from the landing before buying a ship.
 	const Panel *activePanel = selectedPanel ? selectedPanel : this;
-	if(activePanel != spaceport.get() && GetUI()->IsTop(activePanel))
+	if(activePanel != spaceport.get() && GetUI().IsTop(activePanel))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
+			mission->Do(Mission::OFFER, player, &GetUI());
 		else
 			player.HandleBlockedMissions(Mission::LANDING, GetUI());
 	}
@@ -206,19 +252,19 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	bool hasAccess = planet.CanUseServices();
 	if(command.Has(Command::MAP))
 	{
-		GetUI()->Push(new MapDetailPanel(player));
+		GetUI().Push(new MapDetailPanel(player));
 		return true;
 	}
 	else if(command.Has(Command::MESSAGE_LOG))
 	{
 		UI::PlaySound(UI::UISound::NORMAL);
-		GetUI()->Push(new MessageLogPanel());
+		GetUI().Push(new MessageLogPanel());
 		return true;
 	}
 	else if(command.Has(Command::INFO) || key == 'i')
 	{
 		UI::PlaySound(UI::UISound::NORMAL);
-		GetUI()->Push(new PlayerInfoPanel(player));
+		GetUI().Push(new PlayerInfoPanel(player));
 		return true;
 	}
 	else if(key == 'd' && flagship && flagship->CanBeFlagship())
@@ -235,41 +281,41 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
 	{
 		selectedPanel = trading.get();
-		GetUI()->Push(trading);
+		GetUI().Push(trading);
 	}
 	else if(key == 'b' && hasAccess && planet.GetPort().HasService(Port::ServicesType::Bank))
 	{
 		selectedPanel = bank.get();
-		GetUI()->Push(bank);
+		GetUI().Push(bank);
 	}
 	else if(key == 'p' && hasAccess && planet.HasNamedPort())
 	{
 		selectedPanel = spaceport.get();
 		if(isNewPress)
 			spaceport->UpdateNews();
-		GetUI()->Push(spaceport);
+		GetUI().Push(spaceport);
 	}
 	else if(key == 's' && hasAccess && hasShipyard)
 	{
 		UI::PlaySound(UI::UISound::NORMAL);
-		GetUI()->Push(new ShipyardPanel(player, shipyardStock));
+		GetUI().Push(new ShipyardPanel(player, shipyardStock));
 		return true;
 	}
 	else if(key == 'o' && hasAccess && hasOutfitter)
 	{
 		UI::PlaySound(UI::UISound::NORMAL);
-		GetUI()->Push(new OutfitterPanel(player, outfitterStock));
+		GetUI().Push(new OutfitterPanel(player, outfitterStock));
 		return true;
 	}
 	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
 	{
-		GetUI()->Push(new MissionPanel(player));
+		GetUI().Push(new MissionPanel(player));
 		return true;
 	}
 	else if(key == 'h' && hasAccess && planet.GetPort().HasService(Port::ServicesType::HireCrew))
 	{
 		selectedPanel = hiring.get();
-		GetUI()->Push(hiring);
+		GetUI().Push(hiring);
 	}
 	else
 		return false;
@@ -277,7 +323,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	// If we are here, it is because something happened to change the selected
 	// planet UI panel. So, we need to pop the old selected panel:
 	if(oldPanel)
-		GetUI()->Pop(oldPanel);
+		GetUI().Pop(oldPanel);
 
 	UI::PlaySound(sound);
 
@@ -303,8 +349,8 @@ void PlanetPanel::Resize()
 void PlanetPanel::TakeOffIfReady()
 {
 	// If we're currently showing a conversation or dialog, wait for it to close.
-	if(!GetUI()->IsTop(this) && !GetUI()->IsTop(trading.get()) && !GetUI()->IsTop(bank.get())
-			&& !GetUI()->IsTop(spaceport.get()) && !GetUI()->IsTop(hiring.get()))
+	if(!GetUI().IsTop(this) && !GetUI().IsTop(trading.get()) && !GetUI().IsTop(bank.get())
+			&& !GetUI().IsTop(spaceport.get()) && !GetUI().IsTop(hiring.get()))
 		return;
 
 	// If something happens here that cancels the order to take off, don't try
@@ -317,7 +363,7 @@ void PlanetPanel::TakeOffIfReady()
 	Mission *mission = player.MissionToOffer(Mission::LANDING);
 	if(mission)
 	{
-		mission->Do(Mission::OFFER, player, GetUI());
+		mission->Do(Mission::OFFER, player, &GetUI());
 		return;
 	}
 
@@ -351,7 +397,7 @@ void PlanetPanel::TakeOffIfReady()
 				}
 				else
 				{
-					GetUI()->Push(new ConversationPanel(player,
+					GetUI().Push(new ConversationPanel(player,
 						*GameData::Conversations().Get("flight check: " + check), nullptr, nullptr, result.first));
 					return;
 				}
@@ -363,7 +409,7 @@ void PlanetPanel::TakeOffIfReady()
 			// Pop back the last ", " in the string.
 			shipNames.pop_back();
 			shipNames.pop_back();
-			GetUI()->Push(new Dialog(this, &PlanetPanel::CheckWarningsAndTakeOff,
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &PlanetPanel::CheckWarningsAndTakeOff,
 				"Some of your ships in other systems are not able to fly:\n" + shipNames +
 				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
 			return;
@@ -502,7 +548,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		// Pool cargo together, so that the cargo number on the trading panel
 		// is still accurate while the popup is active.
 		player.PoolCargo();
-		GetUI()->Push(new Dialog(this, &PlanetPanel::WarningsDialogCallback, out.str()));
+		GetUI().Push(DialogPanel::CallFunctionOnExit(this, &PlanetPanel::WarningsDialogCallback, out.str()));
 		return;
 	}
 
@@ -530,7 +576,7 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 		if(callback)
 			callback();
 		if(selectedPanel)
-			GetUI()->Pop(selectedPanel);
-		GetUI()->Pop(this);
+			GetUI().Pop(selectedPanel);
+		GetUI().Pop(this);
 	}
 }

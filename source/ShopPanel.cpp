@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CategoryList.h"
 #include "CategoryType.h"
 #include "Color.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
@@ -88,6 +88,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
 	buttonsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+	loadingCircle(30.f, 10, 2.),
 	hover(*GameData::Colors().Get("hover")),
 	active(*GameData::Colors().Get("active")),
 	inactive(*GameData::Colors().Get("inactive")),
@@ -103,7 +104,8 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 
 void ShopPanel::Step()
 {
-	if(!checkedHelp && GetUI()->IsTop(this) && player.Ships().size() > 1)
+	loadingCircle.Step();
+	if(!checkedHelp && GetUI().IsTop(this) && player.Ships().size() > 1)
 	{
 		if(DoHelp("multiple ships"))
 		{
@@ -212,7 +214,12 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	const Sprite *sprite = ship.GetSprite();
 	const Swizzle *swizzle = ship.CustomSwizzle() ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 	if(thumbnail)
-		SpriteShader::Draw(thumbnail, center + Point(0., 10.), 1., swizzle);
+	{
+		if(thumbnail->IsLoaded())
+			SpriteShader::Draw(thumbnail, center + Point(0., 10.), 1., swizzle);
+		else
+			loadingCircle.Draw(center);
+	}
 	else if(sprite)
 	{
 		// Make sure the ship sprite leaves 10 pixels padding all around.
@@ -233,14 +240,45 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 void ShopPanel::CheckForMissions(Mission::Location location) const
 {
-	if(!GetUI()->IsTop(this))
+	if(!GetUI().IsTop(this))
 		return;
 
 	Mission *mission = player.MissionToOffer(location);
 	if(mission)
-		mission->Do(Mission::OFFER, player, GetUI());
+		mission->Do(Mission::OFFER, player, &GetUI());
 	else
 		player.HandleBlockedMissions(location, GetUI());
+}
+
+
+
+void ShopPanel::ValidateSelectedShips()
+{
+	// Verify that the player's selection is still valid.
+	// A mission action may have taken a ship away from the player,
+	// therefore invalidating its pointer.
+	set<Ship *> shipPtrs;
+	for(const shared_ptr<Ship> &ship : player.Ships())
+		shipPtrs.insert(ship.get());
+	set<Ship *> stillValid;
+	ranges::set_intersection(shipPtrs, playerShips, inserter(stillValid, stillValid.begin()));
+	playerShips = stillValid;
+	if(playerShip && !playerShips.contains(playerShip))
+	{
+		playerShip = nullptr;
+		if(!playerShips.empty())
+			playerShip = *playerShips.begin();
+		else
+		{
+			for(const shared_ptr<Ship> &ship : player.Ships())
+				if(CanShowInSidebar(*ship, player.GetPlanet()))
+				{
+					playerShip = ship.get();
+					playerShips.insert(playerShip);
+					break;
+				}
+		}
+	}
 }
 
 
@@ -254,7 +292,7 @@ int ShopPanel::VisibilityCheckboxesSize() const
 
 bool ShopPanel::ShouldHighlight(const Ship *ship)
 {
-	return (hoverButton == 's');
+	return (hoverButton == 's' || hoverButton == 'r');
 }
 
 
@@ -267,7 +305,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		if(!isOutfitter)
 			player.UpdateCargoCapacities();
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		UI::PlaySound(UI::UISound::NORMAL);
 	}
 	else if(command.Has(Command::HELP))
@@ -302,9 +340,9 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(command.Has(Command::MAP))
 	{
 		if(isOutfitter)
-			GetUI()->Push(new MapOutfitterPanel(player));
+			GetUI().Push(new MapOutfitterPanel(player));
 		else
-			GetUI()->Push(new MapShipyardPanel(player));
+			GetUI().Push(new MapShipyardPanel(player));
 	}
 	else if(key == SDLK_LEFT)
 	{
@@ -398,12 +436,12 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == SDLK_TAB)
 		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
 	else if(key == 'f')
-		GetUI()->Push(new Dialog(this, &ShopPanel::DoFind, "Search for:"));
+		GetUI().Push(DialogPanel::RequestString(this, &ShopPanel::DoFind, "Search for:"));
 	else
 	{
 		TransactionResult result = HandleShortcuts(key);
 		if(result.HasMessage())
-			GetUI()->Push(new Dialog(result.Message()));
+			GetUI().Push(DialogPanel::Info(result.Message()));
 		else if(isOutfitter)
 		{
 			// Ship-based updates to cargo are handled when leaving.

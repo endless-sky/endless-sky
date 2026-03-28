@@ -18,9 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "Files.h"
-#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -99,11 +98,7 @@ namespace {
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
-#ifdef _WIN32
 	const int SETTINGS_PAGE_COUNT = 3;
-#else
-	const int SETTINGS_PAGE_COUNT = 2;
-#endif
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -318,13 +313,12 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 		if(zones[index].Contains(point))
 		{
 			if(zones[index].Value().Has(Command::MENU))
-				GetUI()->Push(new Dialog([this, index]()
+				GetUI().Push(DialogPanel::CallFunctionIfOk([this, index]()
 					{
 						this->editing = this->selected = index;
 					},
 					"Rebinding this key will change the keypress you need to access this menu. "
-					"You really shouldn't rebind this unless needed.",
-					Truncate::NONE, true, true));
+					"You really shouldn't rebind this unless needed.", true));
 			else
 				editing = selected = index;
 		}
@@ -468,7 +462,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			else
 				steps = min(120, steps + 20);
 			Preferences::SetTooltipActivation(steps);
-			for(auto &panel : GetUI()->Stack())
+			for(auto &panel : GetUI().Stack())
 				panel->UpdateTooltipActivation();
 		}
 		return true;
@@ -631,7 +625,8 @@ void PreferencesPanel::DrawControls()
 		Command::FASTFORWARD,
 		Command::PAUSE,
 		Command::HELP,
-		Command::MESSAGE_LOG
+		Command::MESSAGE_LOG,
+		Command::PERFORMANCE_DISPLAY
 	};
 
 	int page = 0;
@@ -764,25 +759,40 @@ void PreferencesPanel::DrawSettings()
 		"Performance",
 		"Show CPU / GPU load",
 		LARGE_GRAPHICS_REDUCTION,
+		"Defer loading images",
 		SHIP_OUTLINES,
 		HUD_SHIP_OUTLINES,
 		"",
-		"Gameplay",
+		"Map",
+		"Deadline blink by distance",
+		"Hide unexplored map regions",
+		"Show escort systems on map",
+		"Show stored outfits on map",
+		"",
+		"Trading",
+		"'Sell Outfits' without outfitter",
+		"Confirm 'Sell Outfits' button",
+		"Confirm 'Sell MInables' button",
+		"Show parenthesis",
+		"\n",
+		"Flagship Behavior",
 		"Control ship with mouse",
 		"Aim turrets with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
-		TURRET_TRACKING,
 		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
+		"Rehire extra crew when lost",
+		"Automatically unpark flagship",
+		FLAGSHIP_SPACE_PRIORITY,
+		"",
+		"Fleet Behavior",
+		TURRET_TRACKING,
 		EXPEND_AMMO,
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
-		"Rehire extra crew when lost",
-		"Automatically unpark flagship",
-		FLAGSHIP_SPACE_PRIORITY,
-		"\n",
+		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
 		STATUS_OVERLAYS_FLAGSHIP,
@@ -799,14 +809,7 @@ void PreferencesPanel::DrawSettings()
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
-		"\t",
-		"Map",
-		"Deadline blink by distance",
-		"Hide unexplored map regions",
-		"Show escort systems on map",
-		"Show stored outfits on map",
-		"System map sends move orders",
-		"",
+		"\n",
 		"Other",
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
@@ -815,11 +818,10 @@ void PreferencesPanel::DrawSettings()
 		SCROLL_SPEED,
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
-		"Show parenthesis",
 		NOTIFY_ON_DEST,
 		"Save message log",
 #ifdef _WIN32
-		"\n",
+		"\t",
 		"Windows Options",
 		TITLE_BAR_THEME,
 		WINDOW_ROUNDING
@@ -1305,7 +1307,7 @@ void PreferencesPanel::Exit()
 {
 	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
 	{
-		GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
+		GetUI().Push(DialogPanel::Info("Menu keybind is not bound or has conflicts."));
 		return;
 	}
 
@@ -1314,7 +1316,7 @@ void PreferencesPanel::Exit()
 	if(recacheDeadlines)
 		player.CacheMissionInformation(true);
 
-	GetUI()->Pop(this);
+	GetUI().Pop(this);
 }
 
 
@@ -1333,7 +1335,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			// Only show this if it's not possible to zoom the view at all, as
 			// otherwise the dialog will show every time, which is annoying.
 			if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
-				GetUI()->Push(new Dialog(
+				GetUI().Push(DialogPanel::Info(
 					"Your screen resolution is too low to support a zoom level above 100%."));
 			Screen::SetZoom(ZOOM_FACTOR_MIN);
 		}
@@ -1360,7 +1362,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	else if(str == VSYNC_SETTING)
 	{
 		if(!Preferences::ToggleVSync())
-			GetUI()->Push(new Dialog(
+			GetUI().Push(DialogPanel::Info(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
 	else if(str == CAMERA_ACCELERATION)
@@ -1408,7 +1410,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		if(steps > 120)
 			steps = 0;
 		Preferences::SetTooltipActivation(steps);
-		for(auto &panel : GetUI()->Stack())
+		for(auto &panel : GetUI().Stack())
 			panel->UpdateTooltipActivation();
 	}
 	else if(str == FLAGSHIP_SPACE_PRIORITY)

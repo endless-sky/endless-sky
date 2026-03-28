@@ -75,6 +75,7 @@ help "map advanced"
 help "map advanced ports"
 	`The ports panel shows you where systems with spaceports are, as well as a plethora of other information. Clicking on the name of the system, the government of the system, the lines under the name of each planet, or any trade commodity will color the map differently, the key to which can be seen on the right side of the screen.`
 	`Clicking the name of a planet, or clicking on a planet in the orbit map on the right side of the screen, will show that planet's description if you have visited it already. Clicking a planet on the orbit map will also tell your autopilot to land on that planet after you have arrived at that system at the end of your jump path.`
+	`Right-clicking on a location in the orbit map will send your escorts to that location in the selected system.`
 
 help "map advanced shops"
 	`The shipyard and outfitter map panels respectively display the ships and outfits sold on any planets that you have seen. Ships and outfits are displayed in categories which can be collapsed by clicking on the category name. Using Shift+click on a category name will collapse or uncollapse all the categories at once.`
@@ -195,6 +196,7 @@ help "stranded"
 help "trading"
 	`This is the trading panel. Earn money by buying commodities at a low price in one system, and selling at a higher price elsewhere. To view your map of commodity prices in other systems, press <View star map>. To buy or sell, click on [buy] or [sell], or select a line with the up and down arrows and press "+" or "-" (or Enter and Delete).`
 	`You can buy 5 tons at once by holding down Shift, 20 by holding down Control, 500 by holding down Alt, or larger amounts at a time by holding down two keys at once, or even all three.`
+	`Sell other items in your cargo hold with the buttons to the left. "Sell Minables" sells materials mined from asteroids and other space debris. "Sell Outfits" sells all the other outfits present in cargo hold.`
 
 help "friendly disabled"
 	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`

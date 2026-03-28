@@ -201,7 +201,7 @@ outfit "Quark Reactor"
 	"reactor upgrades" 6
 #	ammo "Reactor Overclocker"
 #	ammo "Reactor Limiter"
-	description "Bunrodean reactors appear to be named after types of exotic stars that either once were or still are considered theoretical to humanity. A quark star was first discovered by humanity near the Shangri-La system during the 28th century, a star with core temperatures and pressures so extreme that quark matter is produced."
+	description "Bunrodean reactors appear to be named after types of exotic stars that either once were or still are considered theoretical to humanity. A quark star was first discovered by humanity near the Polaris system during the 28th century, a star with core temperatures and pressures so extreme that quark matter is produced."
 	description "	Bunrodean reactors are able to be upgraded by installing Reactor Overclockers or Limiters, which alter the performance of the reactor. Each reactor only has a limited number of slots for these upgrades, though."
 
 outfit "Electroweak Reactor"

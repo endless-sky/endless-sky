@@ -155,7 +155,7 @@ void Messages::SaveLog(DataWriter &out)
 	out.BeginChild();
 	{
 		for(auto it = logged.rbegin(); it != logged.rend(); ++it)
-			out.Write(it->second->Name(), it->first);
+			out.Write(it->second->TrueName(), it->first);
 	}
 	out.EndChild();
 }

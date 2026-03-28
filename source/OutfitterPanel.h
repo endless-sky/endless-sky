@@ -59,19 +59,19 @@ protected:
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point) override;
 	virtual double DrawDetails(const Point &center) override;
-	virtual TransactionResult CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation,
+	TransactionResult CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation,
 		const std::string &actionName = "no action specified") const;
-	virtual TransactionResult MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation,
+	TransactionResult MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation,
 		const std::string &actionName = "no action specified") const;
-	virtual bool ButtonActive(char key, bool shipRelatedOnly = false);
+	bool ButtonActive(char key, bool shipRelatedOnly = false);
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
 
 	// Toggles for the display filters.
-	virtual void ToggleForSale();
-	virtual void ToggleInstalled();
-	virtual void ToggleStorage();
-	virtual void ToggleCargo();
+	void ToggleForSale();
+	void ToggleInstalled();
+	void ToggleStorage();
+	void ToggleCargo();
 
 	virtual int FindItem(const std::string &text) const override;
 
@@ -83,7 +83,7 @@ protected:
 private:
 	static bool ShipCanAdd(const Ship *ship, const Outfit *outfit);
 	static bool ShipCanRemove(const Ship *ship, const Outfit *outfit);
-	static void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned);
+	void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned) const;
 	bool HasLicense(const std::string &name) const;
 	void CheckRefill();
 	void Refill();

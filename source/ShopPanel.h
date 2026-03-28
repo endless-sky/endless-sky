@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "LoadingCircle.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
@@ -59,8 +60,9 @@ protected:
 	// indicates failure, but no need to pop up a message about it.
 	class TransactionResult {
 	public:
-		TransactionResult(const char *error) : success(false), message(error) {}
 		TransactionResult(std::string error) : success(false), message(std::move(error)) {}
+		TransactionResult(bool canSource, bool canPlace, std::string error)
+			: canSource(canSource), canPlace(canPlace), success(false), message(std::move(error)) {}
 		TransactionResult(bool result) : success(result), message() {}
 
 		explicit operator bool() const noexcept { return success; }
@@ -68,6 +70,11 @@ protected:
 		bool HasMessage() const noexcept { return !message.empty(); }
 		const std::string &Message() const noexcept { return message; }
 
+	public:
+		// Metadata that may be used along with the overall success/message in order to
+		// better decide the course of action when dealing with the failure reason.
+		bool canSource = true;
+		bool canPlace = true;
 
 	private:
 		bool success = true;
@@ -79,6 +86,7 @@ protected:
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
 	void CheckForMissions(Mission::Location location) const;
+	void ValidateSelectedShips();
 
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
@@ -197,6 +205,7 @@ protected:
 	Tooltip shipsTooltip;
 	Tooltip creditsTooltip;
 	Tooltip buttonsTooltip;
+	LoadingCircle loadingCircle;
 
 
 private:

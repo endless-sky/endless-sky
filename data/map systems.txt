@@ -13,7 +13,7 @@
 
 galaxy "Milky Way"
 	pos 112 22
-	sprite "map/milky way"
+	sprite "ui/milky way"
 
 galaxy "label arachi"
 	pos -750 615
@@ -3293,52 +3293,6 @@ system "Al Dhanab"
 		distance 2298.15
 		period 1340.95
 
-system "Al Hurr"
-	hidden
-	pos -432 -491
-	government Uninhabited
-	arrival 1715
-	habitable 1715
-	belt 1312
-	haze _menu/haze-brown
-	trade Clothing 201
-	trade Electronics 658
-	trade Equipment 484
-	trade Food 280
-	trade "Heavy Metals" 850
-	trade Industrial 621
-	trade "Luxury Goods" 1134
-	trade Medical 582
-	trade Metal 339
-	trade Plastic 353
-	object
-		sprite star/f5
-		period 10
-	object
-		sprite planet/rock15
-		distance 382
-		period 72.1145
-	object
-		sprite planet/rock6
-		distance 686
-		period 173.545
-	object Aspiration
-		sprite planet/ice8-b
-		distance 980
-		period 296.324
-	object
-		sprite planet/dust6
-		distance 1299
-		period 452.211
-	object
-		sprite planet/gas1
-		distance 1706.99
-		period 681.199
-		object
-			sprite planet/dust1
-			distance 216
-			period 11.1964
-
 system Albaldah
 	pos -350 484
 	government Republic
@@ -4196,7 +4150,7 @@ system Alhena
 	minables lead 1 14.4573
 	minables uranium 2 7.51131
 	trade Clothing 315
-	trade Electronics 788
+	trade Electronics 738
 	trade Equipment 654
 	trade Food 455
 	trade "Heavy Metals" 1071
@@ -4451,8 +4405,8 @@ system Almach
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
-	fleet "Korath Large Raid" 50000
-	fleet "Korath Miners" 25000
+	fleet "Korath Large Raid" 60000
+	fleet "Korath Miners" 30000
 	object
 		sprite star/k8
 		period 10
@@ -7167,7 +7121,7 @@ system Atik
 	fleet "Small Core Pirates" 10000
 	fleet "Large Core Pirates" 18000
 	fleet "Human Miners" 5000
-	fleet "Korath Miners" 15000
+	fleet "Korath Miners" 25000
 	fleet "Derelict Pirate" 10000
 	object
 		sprite star/b-giant
@@ -11802,599 +11756,6 @@ system Decet
 			"rewind"
 		period 1
 
-system "Deep Space 19K12"
-	pos -1113 -747
-	government Uninhabited
-	attributes "inaccessible" "notable star" "proto-system"
-	arrival 500
-	habitable 135
-	belt 1977
-	haze _menu/haze-black
-	link "Deep Space 19M5"
-	link Devil-Hide
-	asteroids "small rock" 15 1.974
-	asteroids "medium rock" 9 1.484
-	minables copper 13 2.79327
-	trade Clothing 252
-	trade Electronics 861
-	trade Equipment 361
-	trade Food 174
-	trade "Heavy Metals" 1187
-	trade Industrial 853
-	trade "Luxury Goods" 998
-	trade Medical 528
-	trade Metal 284
-	trade Plastic 350
-	object
-		sprite star/protostar-yellow
-		period 10
-	object
-		sprite planet/ice8-b
-		distance 285.47
-		period 166.048
-
-system "Deep Space 19M1"
-	pos -895 -745
-	government Uninhabited
-	attributes "giant star" "inaccessible" "notable star"
-	arrival 4050
-	habitable 4050
-	belt 2115
-	haze _menu/haze-black
-	link "Deep Space 19M2"
-	link "Deep Space 1Q"
-	link "Deep Space 1X"
-	asteroids "small rock" 7 7.3606
-	asteroids "medium rock" 40 4.5942
-	asteroids "large rock" 17 4.199
-	asteroids "small metal" 19 5.3352
-	asteroids "medium metal" 81 5.0388
-	asteroids "large metal" 2 5.2858
-	minables aluminum 62 6.16545
-	minables uranium 3 5.36309
-	trade Clothing 252
-	trade Electronics 861
-	trade Equipment 361
-	trade Food 174
-	trade "Heavy Metals" 1187
-	trade Industrial 853
-	trade "Luxury Goods" 998
-	trade Medical 528
-	trade Metal 284
-	trade Plastic 350
-	fleet "Pincer Beast" 5000
-	object
-		sprite star/g-giant
-		period 10
-	object
-		sprite planet/gas0-b
-		distance 1549.84
-		period 383.497
-		object
-			sprite planet/dust1-b
-			distance 253
-			period 11.7934
-		object
-			sprite planet/miranda
-			distance 340
-			period 18.3728
-		object
-			sprite planet/rock14
-			distance 464
-			period 29.291
-	object
-		sprite planet/gas16
-		distance 2193.3
-		period 645.623
-	object
-		sprite planet/gas13-b
-		distance 3145.85
-		period 1109.02
-	object
-		sprite planet/gas3-b
-		distance 8021.02
-		period 4515.19
-		object
-			sprite planet/rock7-b
-			distance 294
-			period 12.8761
-		object
-			sprite planet/ice7
-			distance 390
-			period 19.6726
-		object
-			sprite planet/rock17-b
-			distance 492
-			period 27.8748
-
-system "Deep Space 19M2"
-	pos -960 -777
-	government Uninhabited
-	attributes "inaccessible"
-	arrival 3430
-	habitable 3430
-	belt 1977
-	haze _menu/haze-black
-	link "Deep Space 19M1"
-	asteroids "small rock" 32 1.974
-	asteroids "medium rock" 45 1.484
-	asteroids "large rock" 20 1.75
-	asteroids "small metal" 18 1.75
-	asteroids "medium metal" 186 1.638
-	asteroids "large metal" 24 1.092
-	minables iron 104 2.79327
-	minables silicon 50 1.77981
-	trade Clothing 252
-	trade Electronics 861
-	trade Equipment 361
-	trade Food 174
-	trade "Heavy Metals" 1187
-	trade Industrial 853
-	trade "Luxury Goods" 998
-	trade Medical 528
-	trade Metal 284
-	trade Plastic 350
-	fleet "Pincer Beast" 5000
-	object
-		sprite star/f5-old
-		period 10
-	object
-		sprite planet/gas1
-		distance 1169.47
-		period 273.147
-	object
-		sprite planet/gas15-b
-		distance 3139.51
-		period 1201.45
-		object
-			sprite planet/lava2-b
-			distance 241
-			period 18.4411
-		object
-			sprite planet/dust0-b
-			distance 366
-			period 34.5131
-		object
-			sprite planet/ganymede-b
-			distance 471
-			period 50.3841
-		object
-			sprite planet/dust5-b
-			distance 577
-			period 68.3166
-
-system "Deep Space 19M5"
-	pos -1133 -828
-	government Uninhabited
-	attributes "inaccessible" "notable star" "proto-system"
-	arrival 500
-	habitable 370
-	belt 1977
-	haze _menu/haze-black
-	link "Deep Space 19K12"
-	link Devil-Hide
-	asteroids "small rock" 52 1.974
-	asteroids "medium rock" 55 1.484
-	asteroids "large rock" 40 1.75
-	asteroids "small metal" 68 1.75
-	asteroids "medium metal" 186 1.638
-	asteroids "large metal" 124 1.092
-	minables iron 104 2.79327
-	minables platinum 64 2.79327
-	minables silicon 50 1.77981
-	trade Clothing 252
-	trade Electronics 861
-	trade Equipment 361
-	trade Food 174
-	trade "Heavy Metals" 1187
-	trade Industrial 853
-	trade "Luxury Goods" 998
-	trade Medical 528
-	trade Metal 284
-	trade Plastic 350
-	object
-		sprite star/protostar-orange
-		period 10
-	object
-		sprite planet/rock10-b
-		distance 1169.47
-		period 831.654
-	object
-		sprite planet/gas1-b
-		distance 3139.51
-		period 3658.06
-		object
-			sprite planet/lava0
-			distance 241
-			period 18.4411
-		object
-			sprite planet/dust1-b
-			distance 366
-			period 34.5131
-		object
-			sprite planet/titan-b
-			distance 471
-			period 50.3841
-		object
-			sprite planet/dust5-b
-			distance 577
-			period 68.3166
-
-system "Deep Space 1Q"
-	pos -920 -668
-	government Uninhabited
-	attributes "bright star" "inaccessible" "notable star"
-	arrival 3650
-	habitable 3650
-	belt 2577
-	haze _menu/haze-black
-	link "Deep Space 19M1"
-	link "Deep Space 1X"
-	link "Deep Space 5T"
-	asteroids "small rock" 182 3.2
-	asteroids "medium rock" 57 6.95
-	asteroids "large rock" 40 3.75
-	asteroids "small metal" 17 6.85
-	asteroids "medium metal" 40 2.7
-	asteroids "large metal" 5 5.55
-	minables lead 41 5.68365
-	minables silicon 72 4.34737
-	minables titanium 39 5.28035
-	trade Clothing 252
-	trade Electronics 861
-	trade Equipment 361
-	trade Food 174
-	trade "Heavy Metals" 1187
-	trade Industrial 853
-	trade "Luxury Goods" 998
-	trade Medical 528
-	trade Metal 284
-	trade Plastic 350
-	fleet "Pincer Beast" 5000
-	object
-		sprite star/a0
-		period 10
-	object
-		sprite planet/gas15
-		distance 1673.12
-		period 453.110
-		object
-			sprite planet/rock14-b
-			distance 231
-			period 17.3053
-		object
-			sprite planet/desert4-b
-			distance 367
-			period 34.6546
-		object
-			sprite planet/ice8-b
-			distance 467
-			period 49.7436
-		object
-			sprite planet/dust2
-			distance 575
-			period 67.9617
-	object
-		sprite planet/gas3-b
-		distance 3916.97
-		period 1623.07
-		object
-			sprite planet/rhea
-			distance 274
-			period 11.5849
-		object
-			sprite planet/dust3
-			distance 429
-			period 22.6961
-		object
-			sprite planet/dust5-b
-			distance 540
-			period 32.052
-
-system "Deep Space 1X"
-	pos -935 -695
-	government Uninhabited
-	attributes "inaccessible" "notable star" "nova"
-	arrival 500
-	habitable 100
-	belt 1751
-	link "Deep Space 19M1"
-	link "Deep Space 1Q"
-	asteroids "medium rock" 1 9.801
-	asteroids "small metal" 2 9.234
-	trade Clothing 252
-	trade Electronics 861
-	trade Equipment 361
-	trade Food 174
-	trade "Heavy Metals" 1187
-	trade Industrial 853
-	trade "Luxury Goods" 998
-	trade Medical 528
-	trade Metal 284
-	trade Plastic 350
-	fleet "Pincer Beast" 20000
-	object
-		sprite star/nova
-		period 10
-
-system "Deep Space 5J"
-	pos -890 -532
-	government Uninhabited
-	attributes "inaccessible"
-	arrival 1715
-	habitable 1715
-	belt 1869
-	haze _menu/haze-black
-	link "Deep Space 5N"
-	link "Deep Space 7F"
-	asteroids "small rock" 27 1.44
-	asteroids "medium rock" 2 2.6304
-	asteroids "large rock" 146 1.7088
-	asteroids "small metal" 139 1.44
-	asteroids "large metal" 27 0.9792
-	minables copper 41 2.00322
-	minables lead 63 1.96636
-	trade Clothing 252
-	trade Electronics 861
-	trade Equipment 361
-	trade Food 174
-	trade "Heavy Metals" 1187
-	trade Industrial 853
-	trade "Luxury Goods" 998
-	trade Medical 528
-	trade Metal 284
-	trade Plastic 350
-	fleet "Pincer Beast" 5000
-	object
-		sprite star/f5
-		period 10
-	object
-		sprite planet/gas11-b
-		distance 1449.31
-		period 532.929
-		object
-			sprite planet/rock7-b
-			distance 235
-			period 11.8817
-		object
-			sprite planet/ice0-b
-			distance 332
-			period 19.9519
-		object
-			sprite planet/rock3-b
-			distance 438
-			period 30.2335
-	object
-		sprite planet/gas8-b
-		distance 3382.55
-		period 1900.17
-		object
-			sprite planet/rhea
-			distance 230
-			period 18.5682
-		object
-			sprite planet/dust3
-			distance 335
-			period 32.6395
-		object
-			sprite planet/ice0
-			distance 490
-			period 57.7392
-
-system "Deep Space 5N"
-	pos -895 -584
-	government Uninhabited
-	attributes "inaccessible"
-	arrival 980
-	habitable 980
-	belt 1236
-	haze _menu/haze-black
-	link "Deep Space 1Q"
-	link "Deep Space 5J"
-	link "Deep Space 5T"
-	asteroids "small rock" 23 4.48
-	asteroids "medium rock" 1 6.496
-	asteroids "large rock" 74 2.5088
-	asteroids "small metal" 7 3.136
-	asteroids "medium metal" 29 5.6
-	asteroids "large metal" 3 4.48
-	minables iron 27 6.81922
-	minables lead 11 3.63334
-	minables uranium 39 4.87538
-	trade Clothing 252
-	trade Electronics 861
-	trade Equipment 361
-	trade Food 174
-	trade "Heavy Metals" 1187
-	trade Industrial 853
-	trade "Luxury Goods" 998
-	trade Medical 528
-	trade Metal 284
-	trade Plastic 350
-	fleet "Pincer Beast" 5000
-	object
-		sprite star/k0-old
-		period 10
-	object
-		sprite planet/gas1-b
-		distance 536.616
-		period 158.833
-		object
-			sprite planet/ice8
-			distance 223
-			period 13.3098
-		object
-			sprite planet/dust0-b
-			distance 310
-			period 21.8151
-	object
-		sprite planet/gas14
-		distance 2557.67
-		period 1652.77
-
-system "Deep Space 5T"
-	pos -863 -615
-	government Uninhabited
-	attributes "inaccessible"
-	arrival 500
-	habitable 320
-	belt 1302
-	haze _menu/haze-black
-	link "Deep Space 1Q"
-	link "Deep Space 5N"
-	asteroids "small rock" 99 1.403
-	asteroids "medium rock" 15 2.185
-	asteroids "large rock" 21 1.541
-	asteroids "small metal" 49 2.438
-	asteroids "medium metal" 14 3.197
-	asteroids "large metal" 15 3.22
-	minables aluminum 15 2.45602
-	minables iron 22 2.26908
-	trade Clothing 252
-	trade Electronics 861
-	trade Equipment 361
-	trade Food 174
-	trade "Heavy Metals" 1187
-	trade Industrial 853
-	trade "Luxury Goods" 998
-	trade Medical 528
-	trade Metal 284
-	trade Plastic 350
-	fleet "Pincer Beast" 5000
-	object
-		sprite star/m0
-		period 10
-	object
-		sprite planet/gas14-b
-		distance 1034.31
-		period 743.808
-	object
-		sprite planet/gas12
-		distance 2339.35
-		period 2530.04
-		object
-			sprite planet/europa-b
-			distance 276
-			period 12.0434
-		object
-			sprite planet/rock14
-			distance 419
-			period 22.5271
-		object
-			sprite planet/dust7
-			distance 536
-			period 32.5936
-
-system "Deep Space 7C"
-	pos -774 -450
-	government Uninhabited
-	attributes "inaccessible"
-	arrival 500
-	habitable 425
-	belt 2309
-	haze _menu/haze-black
-	link "Deep Space 7F"
-	asteroids "small rock" 121 1.9558
-	asteroids "medium rock" 14 1.9096
-	asteroids "large rock" 28 1.4784
-	asteroids "small metal" 8 1.8326
-	asteroids "medium metal" 77 2.2946
-	asteroids "large metal" 19 1.7094
-	minables copper 46 2.98163
-	minables iron 82 3.78094
-	minables titanium 31 2.67322
-	trade Clothing 252
-	trade Electronics 861
-	trade Equipment 361
-	trade Food 174
-	trade "Heavy Metals" 1187
-	trade Industrial 853
-	trade "Luxury Goods" 998
-	trade Medical 528
-	trade Metal 284
-	trade Plastic 350
-	fleet "Pincer Beast" 5000
-	object
-		sprite star/k5
-		period 10
-	object
-		sprite planet/gas11-b
-		distance 1449.31
-		period 1070.55
-		object
-			sprite planet/rock7-b
-			distance 235
-			period 11.8817
-		object
-			sprite planet/ice0-b
-			distance 332
-			period 19.9519
-		object
-			sprite planet/rock3-b
-			distance 438
-			period 30.2335
-	object
-		sprite planet/gas14
-		distance 2557.67
-		period 2509.76
-	object "Devil-Run Wormhole"
-		sprite planet/wormhole
-		distance 4106.27
-		period 5105.48
-
-system "Deep Space 7F"
-	pos -814 -472
-	government Uninhabited
-	attributes "inaccessible"
-	arrival 1080
-	habitable 1080
-	belt 1319
-	link "Deep Space 5J"
-	link "Deep Space 7C"
-	asteroids "small rock" 22 3.99
-	asteroids "medium rock" 34 3.57
-	asteroids "large rock" 2 4.08
-	asteroids "small metal" 26 4.26
-	asteroids "medium metal" 45 1.92
-	asteroids "large metal" 4 4.35
-	minables platinum 19 4.40315
-	minables tungsten 36 5.42935
-	minables gold 28 4.7943
-	trade Clothing 252
-	trade Electronics 861
-	trade Equipment 361
-	trade Food 174
-	trade "Heavy Metals" 1187
-	trade Industrial 853
-	trade "Luxury Goods" 998
-	trade Medical 528
-	trade Metal 284
-	trade Plastic 350
-	fleet "Pincer Beast" 5000
-	object
-		sprite star/g0
-		period 10
-	object
-		sprite planet/gas16
-		distance 1649.46
-		period 815.381
-	object
-		sprite planet/gas17-b
-		distance 2828.56
-		period 1831.03
-		object
-			sprite planet/callisto
-			distance 232
-			period 15.0975
-		object
-			sprite planet/tethys
-			distance 350
-			period 27.9753
-		object
-			sprite planet/dust1-b
-			distance 498
-			period 47.4807
-
 system Delia
 	pos -41 757
 	government Uninhabited
@@ -12862,78 +12223,10 @@ system Denebola
 		distance 2927.23
 		period 2677.01
 
-system Devil-Hide
-	hidden
-	pos -1047 -775
-	government "Pirate (Devil-Run Gang)"
-	attributes "inaccessible"
-	arrival 500
-	habitable 10
-	belt 5000
-	haze _menu/haze-black
-	link "Deep Space 19K12"
-	link "Deep Space 19M5"
-	asteroids "small rock" 2 4.4226
-	asteroids "medium rock" 16 2.7594
-	asteroids "large rock" 19 4.4604
-	asteroids "small metal" 11 2.9862
-	asteroids "medium metal" 12 2.6838
-	asteroids "large metal" 5 4.347
-	minables iron 71 5.11549
-	minables silicon 57 4.13794
-	trade Clothing 316
-	trade Electronics 685
-	trade Equipment 566
-	trade Food 475
-	trade "Heavy Metals" 904
-	trade Industrial 670
-	trade "Luxury Goods" 1319
-	trade Medical 784
-	trade Metal 345
-	trade Plastic 481
-	fleet "Devil-Run Warships" 600
-	fleet "Devil-Run Miners" 5000
-	object Devil-Eye
-		sprite planet/rogue-radiating
-		object Elenchus
-			sprite "planet/asteroid base"
-			distance 251
-			period 18.5791
-
-system Devil-Run
-	hidden
-	pos -148 162
-	government Uninhabited
-	attributes "inaccessible"
-	arrival 1080
-	habitable 1080
-	haze _menu/haze-brown
-	trade Clothing 271
-	trade Electronics 722
-	trade Equipment 623
-	trade Food 236
-	trade "Heavy Metals" 755
-	trade Industrial 689
-	trade "Luxury Goods" 951
-	trade Medical 801
-	trade Metal 273
-	trade Plastic 394
-	object
-		sprite star/g0
-		period 10
-	object
-		sprite planet/dust3-b
-		distance 351.97
-		period 80.3723
-	object "Devil-Run Wormhole"
-		sprite planet/wormhole
-		distance 1805.33
-		period 933.647
-
 system Diespiter
 	pos 332 210
 	government Uninhabited
-	attributes "ember waste" "inaccessible"
+	attributes "ember waste"
 	arrival 950
 	ramscoop
 		universal 0
@@ -13574,8 +12867,8 @@ system Durax
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
-	fleet "Korath Raid" 7000
-	fleet "Korath Miners" 17000
+	fleet "Korath Raid" 35000
+	fleet "Korath Miners" 45000
 	fleet "Derelict Pirate" 30000
 	object
 		sprite star/g0-old
@@ -13952,7 +13245,7 @@ system Eebu
 system Egeria
 	pos 288 146
 	government Uninhabited
-	attributes "ember waste" "inaccessible"
+	attributes "ember waste"
 	arrival 2030
 	ramscoop
 		universal 0
@@ -27968,11 +27261,11 @@ system Misam
 	trade Plastic 368
 	fleet "Small Core Pirates" 750
 	fleet "Large Core Pirates" 2000
-	fleet "Korath Raid" 5000
-	fleet "Korath Large Raid" 11000
+	fleet "Korath Raid" 65000
+	fleet "Korath Large Raid" 40000
 	fleet "Human Miners" 10000
 	fleet "Large Syndicate" 20000
-	fleet "Korath Miners" 15000
+	fleet "Korath Miners" 70000
 	object
 		sprite star/f5-old
 		distance 50
@@ -28779,7 +28072,7 @@ system Naos
 	minables copper 21 5.05288
 	minables silicon 12 6.77871
 	minables titanium 35 4.05452
-	trade Clothing 272
+	trade Clothing 322
 	trade Electronics 694
 	trade Equipment 427
 	trade Food 386
@@ -31699,7 +30992,6 @@ system Phurad
 	fleet "Large Northern Merchants" 1500
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 5000
-	fleet "Small Northern Pirates" 9000
 	object
 		sprite star/g0
 		period 10
@@ -32273,7 +31565,7 @@ system Postverta
 	hidden
 	pos 297 269
 	government Uninhabited
-	attributes "ember waste" "inaccessible"
+	attributes "ember waste"
 	arrival 500
 	ramscoop
 		universal 0
@@ -32528,7 +31820,7 @@ system Procyon
 system Prosa
 	pos 303 194
 	government Uninhabited
-	attributes "bright star" "ember waste" "giant star" "inaccessible" "notable star"
+	attributes "bright star" "ember waste" "giant star" "notable star"
 	arrival 5000
 	ramscoop
 		universal 0
@@ -36229,7 +35521,7 @@ system Sheratan
 	fleet "Large Core Merchants" 1800
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
-	fleet "Korath Large Raid" 40000
+	fleet "Korath Large Raid" 60000
 	object
 		sprite star/f5
 		distance 21.0246
@@ -37909,7 +37201,7 @@ system Spica
 system Statina
 	pos 385 198
 	government Uninhabited
-	attributes "ember waste" "inaccessible" "wormhole"
+	attributes "ember waste" "wormhole"
 	arrival 500
 	ramscoop
 		universal 0
@@ -41119,7 +40411,7 @@ system Vasa-Oorua
 system Vaticanus
 	pos 324 112
 	government Uninhabited
-	attributes "ember waste" "inaccessible"
+	attributes "ember waste"
 	arrival 500
 	ramscoop
 		universal 0
@@ -42073,7 +41365,7 @@ system Wazn
 	minables iron 2 4.91227
 	minables silicon 4 2.82661
 	trade Clothing 286
-	trade Electronics 800
+	trade Electronics 830
 	trade Equipment 662
 	trade Food 479
 	trade "Heavy Metals" 941
