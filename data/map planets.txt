@@ -1444,7 +1444,7 @@ planet "Eeu Mnai"
 
 planet "Ef Aourtdye"
 	attributes gegno mining factory
-	landscape land/desert18
+	landscape land/desert19
 	description `Ef Aourtdye is primarily a factory world where a large portion of mined materials are refined, processed, and re-distributed across parts of Gegno space. Large factory and refinery structures can be seen engraved into the mountainous surfaces of the planet, with some cities found in less crowded valleys. Once home to a much larger population, a major portion of the cities are now desolate as efforts have been pushed to either more distant planets, or pulled back to the ever-growing homeworld of the Gegno.`
 	description `	A majority of the mining, cargo, and refinery vessel shipyards in Gegno space are also found here, newly constructed out of the freshly processed materials and quickly prepared to be put into service.`
 	spaceport `The Gegno here are much too busy to pay any attention to you, as this spaceport is part of a larger refinery site. The largest Gegno heave around big metallic containers of either processed materials or various structural parts, while the Gegno closer to your own height are working with machinery. At the far end of the spaceport you can see rugged vehicles of varying sizes leaving or entering the site along paths that branch out to several more factories in the distance.`

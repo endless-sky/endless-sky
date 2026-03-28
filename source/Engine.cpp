@@ -61,6 +61,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
@@ -241,7 +242,6 @@ namespace {
 		return *GameData::Colors().Get("minable target pointer unselected");
 	}
 
-	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 3000.;
 }
 
@@ -257,11 +257,17 @@ Engine::Engine(PlayerInfo &player)
 	if(!player.IsLoaded() || !player.GetSystem())
 		return;
 
-	// Preload any landscapes for this system.
+	// Preload any landscapes and objects for this system.
 	for(const StellarObject &object : player.GetSystem()->Objects())
-		if(object.HasSprite() && object.HasValidPlanet())
-			GameData::Preload(queue, object.GetPlanet()->Landscape());
+	{
+		if(!object.HasSprite())
+			continue;
+		SpriteLoadManager::LoadDeferred(queue, object.GetSprite());
+		if(object.HasValidPlanet())
+			SpriteLoadManager::LoadDeferred(queue, object.GetPlanet()->Landscape());
+	}
 	queue.Wait();
+	queue.ProcessSyncTasks();
 
 	// Figure out what planet the player is landed on, if any.
 	const StellarObject *object = player.GetStellarObject();
@@ -395,7 +401,12 @@ void Engine::Place()
 	// that all special ships have been repositioned.
 	ships.splice(ships.end(), newShips);
 
-	camera.SnapTo(flagship->Center());
+	if(flagship)
+		camera.SnapTo(flagship->Center());
+	else if(object)
+		camera.SnapTo(planetPos);
+	else
+		camera.SnapTo(camera.Center());
 
 	player.SetPlanet(nullptr);
 }
@@ -498,6 +509,14 @@ void Engine::Step(bool isActive)
 
 	// Process any outstanding sprites that need to be uploaded to the GPU.
 	queue.ProcessSyncTasks();
+	asyncQueue.ProcessSyncTasks();
+
+	// A recently triggered event may have caused new objects to appear in the current system.
+	// Ensure that they are loaded.
+	if(SpriteLoadManager::RecheckStellarObjects())
+		for(const StellarObject &object : player.GetSystem()->Objects())
+			if(object.HasSprite())
+				SpriteLoadManager::LoadDeferred(asyncQueue, object.GetSprite());
 
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
@@ -759,13 +778,16 @@ void Engine::Step(bool isActive)
 			nukeAlarmTime = 300;
 			Audio::Play(Audio::Get("nuke alarm"), SoundCategory::ALERT);
 		}
-		if(nukeAlert)
+		if(wasActive)
 		{
-			if(uiStep / 12 % 2)
-				info.SetCondition("nuke alert");
+			if(nukeAlert)
+			{
+				if(uiStep / 12 % 2)
+					info.SetCondition("nuke alert");
+			}
+			else if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
+				info.SetCondition("red alert");
 		}
-		else if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
-			info.SetCondition("red alert");
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every 100 units of fuel.
@@ -780,7 +802,7 @@ void Engine::Step(bool isActive)
 		// total heat level.
 		if(heat > 1.)
 			info.SetBar("overheat", min(1., heat - 1.));
-		if(flagship->IsOverheated() && (uiStep / 20) % 2)
+		if(wasActive && flagship->IsOverheated() && (uiStep / 20) % 2)
 			info.SetBar("overheat blink", min(1., heat));
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
@@ -877,7 +899,7 @@ void Engine::Step(bool isActive)
 
 		// Only update the "active" state shown for the target if it is
 		// in the current system and targetable, or owned by the player.
-		int targetType = RadarType(*target, uiStep);
+		int targetType = RadarType(*target, wasActive ? uiStep : 0);
 		const bool blinking = targetType == Radar::BLINK;
 		if(!blinking && ((target->GetSystem() == player.GetSystem() && target->IsTargetable()) || target->IsYours()))
 			lastTargetType = targetType;
@@ -1051,7 +1073,10 @@ void Engine::Step(bool isActive)
 				doClick = false;
 			}
 			else
-				clickPoint /= isRadarClick ? RADAR_SCALE : zoom;
+			{
+				const Interface *hud = GameData::Interfaces().Get("hud");
+				clickPoint /= isRadarClick ? hud->GetValue("radar scale") : zoom;
+			}
 		}
 	}
 
@@ -1329,7 +1354,7 @@ void Engine::Draw() const
 	{
 		radar[currentDrawBuffer].Draw(
 			hud->GetPoint("radar"),
-			RADAR_SCALE,
+			hud->GetValue("radar scale"),
 			hud->GetValue("radar radius"),
 			hud->GetValue("radar pointer radius"));
 	}
@@ -1388,9 +1413,12 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 	clickPoint = isRadarClick ? from - radarCenter : from;
 	uiClickBox = Rectangle::WithCorners(from, to);
 	if(isRadarClick)
+	{
+		double radarScale = hud->GetValue("radar scale");
 		clickBox = Rectangle::WithCorners(
-			(from - radarCenter) / RADAR_SCALE + camera.Center(),
-			(to - radarCenter) / RADAR_SCALE + camera.Center());
+			(from - radarCenter) / radarScale + camera.Center(),
+			(to - radarCenter) / radarScale + camera.Center());
+	}
 	else
 		clickBox = Rectangle::WithCorners(from / zoom + camera.Center(), to / zoom + camera.Center());
 }
@@ -1408,7 +1436,10 @@ void Engine::RightOrMiddleClick(const Point &point, MouseButton button)
 	Point radarCenter = hud->GetPoint("radar");
 	double radarRadius = hud->GetValue("radar radius");
 	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= radarRadius)
-		clickPoint = (point - radarCenter) / RADAR_SCALE;
+	{
+		double radarScale = hud->GetValue("radar scale");
+		clickPoint = (point - radarCenter) / radarScale;
+	}
 	else
 		clickPoint = point / zoom;
 }
@@ -1468,13 +1499,19 @@ void Engine::EnterSystem()
 	// (It is allowed for a wormhole's exit point to have no sprite.)
 	const StellarObject *usedWormhole = nullptr;
 	for(const StellarObject &object : system->Objects())
+	{
+		if(object.HasSprite())
+			SpriteLoadManager::LoadDeferred(asyncQueue, object.GetSprite());
 		if(object.HasValidPlanet())
 		{
-			GameData::Preload(queue, object.GetPlanet()->Landscape());
+			SpriteLoadManager::LoadDeferred(asyncQueue, object.GetPlanet()->Landscape());
 			if(object.GetPlanet()->IsWormhole() && !usedWormhole
 					&& flagship->Position().Distance(object.Position()) < 1.)
 				usedWormhole = &object;
 		}
+	}
+	// Cull images that haven't been seen in a while.
+	SpriteLoadManager::CullOldImages(asyncQueue);
 
 	// Advance the positions of every StellarObject and update politics.
 	// Remove expired bribes, clearance, and grace periods from past fines.
@@ -1526,10 +1563,11 @@ void Engine::EnterSystem()
 	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
 	for(int i = 0; i < 5; ++i)
 	{
-		for(const auto &fleet : system->Fleets())
-			if(fleetMultiplier ? fleet.Get()->GetGovernment() && Random::Int(fleet.Period() / fleetMultiplier) < 60
-				&& fleet.CanTrigger() : false)
-				fleet.Get()->Place(*system, newShips);
+		if(fleetMultiplier)
+			for(const auto &fleet : system->Fleets())
+				if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period() / fleetMultiplier) < 60
+						&& fleet.CanTrigger())
+					fleet.Get()->Place(*system, newShips);
 
 		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 		{
@@ -1782,6 +1820,10 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 		else
 			for(const auto &sound : jumpSounds)
 				Audio::Play(sound.first, SoundCategory::JUMP);
+		// Begin loading the sprites in the next system.
+		for(const StellarObject &object : flagship->GetTargetSystem()->Objects())
+			if(object.HasSprite())
+				SpriteLoadManager::LoadDeferred(asyncQueue, object.GetSprite());
 	}
 	// Check if the flagship just entered a new system.
 	if(flagship && playerSystem != flagship->GetSystem())
@@ -2010,8 +2052,10 @@ void Engine::SpawnFleets()
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
 	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
+	if(!fleetMultiplier)
+		return;
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(fleetMultiplier ? !Random::Int(fleet.Period() / fleetMultiplier) && fleet.CanTrigger() : false)
+		if(!Random::Int(fleet.Period() / fleetMultiplier) && fleet.CanTrigger())
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
@@ -2398,7 +2442,8 @@ void Engine::DoCollisions(Projectile &projectile)
 			Point offset = projectile.Position() - target->Position();
 			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
 			if(range < 1.)
-				collisions.emplace_back(target.get(), CollisionType::SHIP, range);
+				collisions.emplace_back(target.get(),
+					projectile.IsTargetingShip() ? CollisionType::SHIP : CollisionType::MINABLE, range);
 		}
 	}
 	else
@@ -2761,7 +2806,7 @@ void Engine::FillRadar()
 
 			// Figure out what radar color should be used for this ship.
 			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
-			int type = isYourTarget ? Radar::SPECIAL : RadarType(*ship, uiStep);
+			int type = isYourTarget ? Radar::SPECIAL : RadarType(*ship, wasActive ? uiStep : 0);
 			// Calculate how big the radar dot should be.
 			double size = sqrt(ship->Width() + ship->Height()) * .14 + .5;
 

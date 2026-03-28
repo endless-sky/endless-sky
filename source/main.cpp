@@ -160,8 +160,8 @@ int main(int argc, char *argv[])
 	Logger::Session logSession{isConsoleOnly || isTesting};
 
 	try {
-
-		// Load plugin preferences before game data if any.
+		// Load plugin settings and preferences before game data.
+		Preferences::Load();
 		Plugins::LoadSettings();
 
 		TaskQueue queue;
@@ -224,8 +224,6 @@ int main(int argc, char *argv[])
 			return hasErrors;
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
-
-		Preferences::Load();
 
 		// Load global conditions:
 		DataFile globalConditions(Files::Config() / "global conditions.txt");

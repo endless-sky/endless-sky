@@ -91,9 +91,6 @@ public:
 	static double GetProgress();
 	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
-	// Begin loading a sprite that was previously deferred. Currently this is
-	// done with all landscapes to speed up the program's startup.
-	static void Preload(TaskQueue &queue, const Sprite *sprite);
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::filesystem::path> &Sources();

@@ -52,6 +52,7 @@ public:
 	void SetCallback(T *t, void (T::*fun)(int));
 	void SetCallback(std::function<void(int)> fun);
 
+	virtual void Step() override;
 	// Draw this panel.
 	virtual void Draw() override;
 
@@ -125,6 +126,9 @@ private:
 
 	// Current scroll position.
 	double scroll = 0.;
+
+	// Whether the scenes from the conversation have been preloaded yet.
+	bool hasLoadedScenes = false;
 
 	// The "history" of the conversation up to this point:
 	std::list<Paragraph> text;
