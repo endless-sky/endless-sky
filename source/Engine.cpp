@@ -609,9 +609,20 @@ void Engine::Step(bool isActive)
 			outlines.emplace_back(ship->GetSprite(), (ship->Position() - camera.Center()) * zoom, ship->Unit() * zoom,
 				ship->GetFrame(), Color::Multiply(ship->Cloaking(), cloakColor));
 		}
+	bool highlightFlag = Preferences::Has("Highlight player's flagship");
+	if(Preferences::Has("Highlight all ships"))
+		for(const auto &ship : ships)
+		{
+			if(ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 1. || (highlightFlag && ship == flagship))
+				continue;
+
+			const Color &color = GetTargetOutlineColor(RadarType(*ship, wasActive ? uiStep : 0));
+			outlines.emplace_back(ship->GetSprite(), (ship->Position() - camera.Center()) * zoom, ship->Unit() * zoom,
+				ship->GetFrame(), Color::Multiply(1. - ship->Cloaking(), color));
+		}
 
 	// Add the flagship outline last to distinguish the flagship from other ships.
-	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
+	if(flagship && !flagship->IsDestroyed() && highlightFlag)
 	{
 		outlines.emplace_back(flagship->GetSprite(),
 			(flagship->Center() - camera.Center()) * zoom,

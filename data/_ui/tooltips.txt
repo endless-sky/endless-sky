@@ -1514,6 +1514,9 @@ tip "Show asteroid scanner overlay"
 tip "Highlight player's flagship"
 	`Apply a green highlight to your flagship.`
 
+tip "Highlight all ships"
+	`Apply a highlight to all ships matching their color on the radar.`
+
 tip "Rotate flagship in HUD"
 	`Rotate the icon for your flagship in the HUD to match your flagship's actual rotation.`
 

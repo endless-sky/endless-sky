@@ -803,6 +803,7 @@ void PreferencesPanel::DrawSettings()
 		TURRET_OVERLAYS,
 		"Show asteroid scanner overlay",
 		"Highlight player's flagship",
+		"Highlight all ships",
 		"Rotate flagship in HUD",
 		"Show planet labels",
 		MINIMAP_DISPLAY,
