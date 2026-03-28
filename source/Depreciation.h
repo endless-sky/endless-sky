@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DEPRECIATION_H_
-#define DEPRECIATION_H_
+#pragma once
 
 #include <cstdint>
 #include <map>
@@ -87,7 +86,3 @@ private:
 	std::map<const Ship *, std::map<int, int>> ships;
 	std::map<const Outfit *, std::map<int, int>> outfits;
 };
-
-
-
-#endif

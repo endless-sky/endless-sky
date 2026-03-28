@@ -15,6 +15,8 @@
 outfit "Generator (Candle Class)"
 	plural "Generators (Candle Class)"
 	category "Power"
+	series "Generators"
+	index 04010
 	cost 493000
 	thumbnail "outfit/small korath generator"
 	"mass" 23
@@ -26,6 +28,8 @@ outfit "Generator (Candle Class)"
 outfit "Generator (Furnace Class)"
 	plural "Generators (Furnace Class)"
 	category "Power"
+	series "Generators"
+	index 04020
 	cost 925000
 	thumbnail "outfit/medium korath generator"
 	"mass" 39
@@ -37,6 +41,8 @@ outfit "Generator (Furnace Class)"
 outfit "Generator (Inferno Class)"
 	plural "Generators (Inferno Class)"
 	category "Power"
+	series "Generators"
+	index 04030
 	cost 1877000
 	thumbnail "outfit/large korath generator"
 	"mass" 71
@@ -47,6 +53,8 @@ outfit "Generator (Inferno Class)"
 
 outfit "Plasma Core"
 	category "Power"
+	series "Generators"
+	index 04040
 	cost 4188000
 	thumbnail "outfit/plasma core"
 	"mass" 54
@@ -57,6 +65,8 @@ outfit "Plasma Core"
 
 outfit "Double Plasma Core"
 	category "Power"
+	series "Generators"
+	index 04050
 	cost 9321000
 	thumbnail "outfit/double plasma core"
 	"mass" 93
@@ -67,6 +77,8 @@ outfit "Double Plasma Core"
 
 outfit "Triple Plasma Core"
 	category "Power"
+	series "Generators"
+	index 04060
 	cost 20460000
 	thumbnail "outfit/triple plasma core"
 	"mass" 169
@@ -79,6 +91,8 @@ outfit "Triple Plasma Core"
 
 outfit "Small Heat Shunt"
 	category "Systems"
+	series "Cooling"
+	index 04010
 	cost 180000
 	thumbnail "outfit/small heat shunt"
 	"mass" 7
@@ -88,6 +102,8 @@ outfit "Small Heat Shunt"
 
 outfit "Large Heat Shunt"
 	category "Systems"
+	series "Cooling"
+	index 04020
 	cost 790000
 	thumbnail "outfit/large heat shunt"
 	"mass" 24
@@ -97,6 +113,8 @@ outfit "Large Heat Shunt"
 
 outfit "Liquid Sodium Cooler"
 	category "Systems"
+	series "Cooling"
+	index 04030
 	cost 1660000
 	thumbnail "outfit/liquid sodium"
 	"mass" 34
@@ -111,6 +129,8 @@ outfit "Liquid Sodium Cooler"
 outfit "Systems Core (Tiny)"
 	plural "Systems Cores (Tiny)"
 	category "Systems"
+	series "Shields"
+	index 04010
 	cost 621000
 	thumbnail "outfit/tiny systems core"
 	"mass" 17
@@ -126,6 +146,8 @@ outfit "Systems Core (Tiny)"
 outfit "Systems Core (Small)"
 	plural "Systems Cores (Small)"
 	category "Systems"
+	series "Shields"
+	index 04020
 	cost 1452000
 	thumbnail "outfit/small systems core"
 	"mass" 31
@@ -141,6 +163,8 @@ outfit "Systems Core (Small)"
 outfit "Systems Core (Medium)"
 	plural "Systems Cores (Medium)"
 	category "Systems"
+	series "Shields"
+	index 04030
 	cost 3630000
 	thumbnail "outfit/medium systems core"
 	"mass" 53
@@ -156,6 +180,8 @@ outfit "Systems Core (Medium)"
 outfit "Systems Core (Large)"
 	plural "Systems Cores (Large)"
 	category "Systems"
+	series "Shields"
+	index 04040
 	cost 9075000
 	thumbnail "outfit/large systems core"
 	"mass" 91
@@ -171,6 +197,8 @@ outfit "Systems Core (Large)"
 
 outfit "Fuel Processor"
 	category "Systems"
+	series "Ramscoops"
+	index 04010
 	cost 400000
 	thumbnail "outfit/korath fuel processor"
 	"mass" 14
@@ -182,6 +210,8 @@ outfit "Fuel Processor"
 
 outfit "Command Center"
 	category "Systems"
+	series "Passenger"
+	index 50
 	cost 437000
 	thumbnail "outfit/command center"
 	"mass" 8
@@ -194,6 +224,8 @@ outfit "Command Center"
 
 outfit "Reasoning Node"
 	category "Systems"
+	series "Special Systems"
+	index 04010
 	cost "23000"
 	thumbnail "outfit/reasoning node"
 	"mass" 1
@@ -202,6 +234,8 @@ outfit "Reasoning Node"
 
 outfit "Control Transceiver"
 	category "Systems"
+	series "Special Systems"
+	index 04020
 	cost "7000"
 	thumbnail "outfit/control transceiver"
 	"mass" 1
@@ -212,6 +246,8 @@ outfit "Control Transceiver"
 outfit "Afterburner (Asteroid Class)"
 	plural "Afterburners (Asteroid Class)"
 	category "Engines"
+	series "Afterburners"
+	index 04010
 	"cost" 136000
 	thumbnail "outfit/tiny korath afterburner"
 	"mass" 9
@@ -219,10 +255,10 @@ outfit "Afterburner (Asteroid Class)"
 	"engine capacity" -5
 	"fuel capacity" 100
 	"ramscoop" 0.25
-	"afterburner thrust" 23.1
+	"afterburner thrust" 20.6
 	"afterburner energy" 0.6
 	"afterburner heat" 6.25
-	"afterburner fuel" 0.0375
+	"afterburner fuel" 0.075
 	"afterburner effect" "korath afterburner tiny"
 	description "The smallest of afterburners is as much Fuel Processor as it is afterburner. It allows Korath small craft operators to squeeze a hyperdrive into otherwise intrasystem ships and dispense with conventional thrusters entirely."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that may nearly melt the thruster."
@@ -230,15 +266,17 @@ outfit "Afterburner (Asteroid Class)"
 outfit "Afterburner (Comet Class)"
 	plural "Afterburners (Comet Class)"
 	category "Engines"
+	series "Afterburners"
+	index 04020
 	"cost" 299000
 	thumbnail "outfit/small korath afterburner"
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"afterburner thrust" 93.6
+	"afterburner thrust" 84.3
 	"afterburner energy" 2.25
 	"afterburner heat" 22.75
-	"afterburner fuel" 0.125
+	"afterburner fuel" 0.25
 	"afterburner effect" "korath afterburner small"
 	description "Adding these afterburners to an interceptor allows it to reach absurd speeds; however, the heat produced ensures that running them for any substantial period of time will require some serious cooling."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
@@ -246,15 +284,17 @@ outfit "Afterburner (Comet Class)"
 outfit "Afterburner (Lunar Class)"
 	plural "Afterburners (Lunar Class)"
 	category "Engines"
+	series "Afterburners"
+	index 04030
 	"cost" 647000
 	thumbnail "outfit/medium korath afterburner"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"afterburner thrust" 178.5
+	"afterburner thrust" 148.5
 	"afterburner energy" 3.9
 	"afterburner heat" 41.65
-	"afterburner fuel" 0.225
+	"afterburner fuel" 0.45
 	"afterburner effect" "korath afterburner medium"
 	description "Although these afterburners produce an incredible amount of thrust for their fuel usage, the prospect of installing one brings to mind many safety concerns."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
@@ -262,15 +302,17 @@ outfit "Afterburner (Lunar Class)"
 outfit "Afterburner (Planetary Class)"
 	plural "Afterburners (Planetary Class)"
 	category "Engines"
+	series "Afterburners"
+	index 04040
 	"cost" 1459000
 	thumbnail "outfit/large korath afterburner"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"afterburner thrust" 345.6
+	"afterburner thrust" 265.5
 	"afterburner energy" 7.1
 	"afterburner heat" 79.45
-	"afterburner fuel" 0.4
+	"afterburner fuel" 0.8
 	"afterburner effect" "korath afterburner large"
 	"heat capacity" 150
 	description "These enormous afterburners have dedicated reaction chambers with cooling vents to keep the fuel-plasma explosion from destroying the thruster."
@@ -279,15 +321,17 @@ outfit "Afterburner (Planetary Class)"
 outfit "Afterburner (Stellar Class)"
 	plural "Afterburners (Stellar Class)"
 	category "Engines"
+	series "Afterburners"
+	index 04060
 	"cost" 3280000
 	thumbnail "outfit/huge korath afterburner"
 	"mass" 94
 	"outfit space" -94
 	"engine capacity" -94
-	"afterburner thrust" 662.4
+	"afterburner thrust" 474.3
 	"afterburner energy" 12.65
 	"afterburner heat" 148
-	"afterburner fuel" 0.725
+	"afterburner fuel" 1.45
 	"afterburner effect" "korath afterburner huge"
 	"active cooling" 8
 	"cooling energy" 0.4
@@ -301,6 +345,7 @@ effect "korath afterburner tiny"
 		"no repeat"
 		"frame rate" 90
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 7
 	"random angle" 15
 	"random spin" 360
@@ -313,6 +358,7 @@ effect "korath afterburner small"
 		"no repeat"
 		"frame rate" 60
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 10
 	"random angle" 15
 	"random spin" 360
@@ -326,6 +372,7 @@ effect "korath afterburner medium"
 		"no repeat"
 		"frame rate" 45
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 12
 	"random angle" 15
 	"random spin" 360
@@ -339,6 +386,7 @@ effect "korath afterburner large"
 		"no repeat"
 		"frame rate" 30
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 14
 	"random angle" 15
 	"random spin" 360
@@ -352,6 +400,7 @@ effect "korath afterburner huge"
 		"no repeat"
 		"frame rate" 20
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 16
 	"random angle" 15
 	"random spin" 360
@@ -363,6 +412,8 @@ effect "korath afterburner huge"
 outfit "Engine (Meteor Class)"
 	plural "Engines (Meteor Class)"
 	category "Engines"
+	series "Engines"
+	index 04010
 	"cost" 187000
 	thumbnail "outfit/tiny korath engine"
 	"mass" 18
@@ -385,6 +436,8 @@ outfit "Engine (Meteor Class)"
 outfit "Bow Drive (Meteor Class)"
 	plural "Bow Drives (Meteor Class)"
 	category "Engines"
+	series "Engines"
+	index 04011
 	"cost" 187000
 	thumbnail "outfit/korath bow drive"
 	"mass" 18
@@ -408,6 +461,8 @@ outfit "Bow Drive (Meteor Class)"
 outfit "Reverser (Asteroid Class)"
 	plural "Reversers (Asteroid Class)"
 	category "Engines"
+	series "Engines"
+	index 04022
 	"cost" 113000
 	thumbnail "outfit/tiny korath reverser"
 	"mass" 14
@@ -426,6 +481,8 @@ outfit "Reverser (Asteroid Class)"
 outfit "Reverser (Comet Class)"
 	plural "Reversers (Comet Class)"
 	category "Engines"
+	series "Engines"
+	index 04032
 	"cost" 249000
 	thumbnail "outfit/small korath reverser"
 	"mass" 24
@@ -444,6 +501,8 @@ outfit "Reverser (Comet Class)"
 outfit "Reverser (Lunar Class)"
 	plural "Reversers (Lunar Class)"
 	category "Engines"
+	series "Engines"
+	index 04042
 	"cost" 539000
 	thumbnail "outfit/medium korath reverser"
 	"mass" 40
@@ -462,6 +521,8 @@ outfit "Reverser (Lunar Class)"
 outfit "Reverser (Planetary Class)"
 	plural "Reversers (Planetary Class)"
 	category "Engines"
+	series "Engines"
+	index 04052
 	"cost" 1216000
 	thumbnail "outfit/large korath reverser"
 	"mass" 68
@@ -480,6 +541,8 @@ outfit "Reverser (Planetary Class)"
 outfit "Reverser (Stellar Class)"
 	plural "Reversers (Stellar Class)"
 	category "Engines"
+	series "Engines"
+	index 04062
 	"cost" 2733000
 	thumbnail "outfit/huge korath reverser"
 	"mass" 118
@@ -499,6 +562,8 @@ outfit "Reverser (Stellar Class)"
 outfit "Thruster (Asteroid Class)"
 	plural "Thrusters (Asteroid Class)"
 	category "Engines"
+	series "Engines"
+	index 04021
 	"cost" 113000
 	thumbnail "outfit/tiny korath thruster"
 	"mass" 14
@@ -515,6 +580,8 @@ outfit "Thruster (Asteroid Class)"
 outfit "Thruster (Comet Class)"
 	plural "Thrusters (Comet Class)"
 	category "Engines"
+	series "Engines"
+	index 04031
 	"cost" 249000
 	thumbnail "outfit/small korath thruster"
 	"mass" 24
@@ -531,6 +598,8 @@ outfit "Thruster (Comet Class)"
 outfit "Thruster (Lunar Class)"
 	plural "Thrusters (Lunar Class)"
 	category "Engines"
+	series "Engines"
+	index 04041
 	"cost" 539000
 	thumbnail "outfit/medium korath thruster"
 	"mass" 40
@@ -547,6 +616,8 @@ outfit "Thruster (Lunar Class)"
 outfit "Thruster (Planetary Class)"
 	plural "Thrusters (Planetary Class)"
 	category "Engines"
+	series "Engines"
+	index 04051
 	"cost" 1216000
 	thumbnail "outfit/large korath thruster"
 	"mass" 68
@@ -563,6 +634,8 @@ outfit "Thruster (Planetary Class)"
 outfit "Thruster (Stellar Class)"
 	plural "Thrusters (Stellar Class)"
 	category "Engines"
+	series "Engines"
+	index 04061
 	"cost" 2733000
 	thumbnail "outfit/huge korath thruster"
 	"mass" 118
@@ -579,6 +652,8 @@ outfit "Thruster (Stellar Class)"
 outfit "Steering (Asteroid Class)"
 	plural "Steerings (Asteroid Class)"
 	category "Engines"
+	series "Engines"
+	index 04020
 	"cost" 95000
 	thumbnail "outfit/tiny korath steering"
 	"mass" 10
@@ -595,6 +670,8 @@ outfit "Steering (Asteroid Class)"
 outfit "Steering (Comet Class)"
 	plural "Steerings (Comet Class)"
 	category "Engines"
+	series "Engines"
+	index 04030
 	"cost" 221000
 	thumbnail "outfit/small korath steering"
 	"mass" 18
@@ -611,6 +688,8 @@ outfit "Steering (Comet Class)"
 outfit "Steering (Lunar Class)"
 	plural "Steerings (Lunar Class)"
 	category "Engines"
+	series "Engines"
+	index 04040
 	"cost" 473000
 	thumbnail "outfit/medium korath steering"
 	"mass" 30
@@ -627,6 +706,8 @@ outfit "Steering (Lunar Class)"
 outfit "Steering (Planetary Class)"
 	plural "Steerings (Planetary Class)"
 	category "Engines"
+	series "Engines"
+	index 04050
 	"cost" 1077000
 	thumbnail "outfit/large korath steering"
 	"mass" 52
@@ -643,6 +724,8 @@ outfit "Steering (Planetary Class)"
 outfit "Steering (Stellar Class)"
 	plural "Steerings (Stellar Class)"
 	category "Engines"
+	series "Engines"
+	index 04060
 	"cost" 2435000
 	thumbnail "outfit/huge korath steering"
 	"mass" 89
@@ -658,6 +741,8 @@ outfit "Steering (Stellar Class)"
 
 outfit "Arkrof GP Hybrid Thruster"
 	category "Engines"
+	series "Engines"
+	index 04071
 	"cost" 165000
 	thumbnail "outfit/tiny efreti thruster"
 	"mass" 19
@@ -673,6 +758,8 @@ outfit "Arkrof GP Hybrid Thruster"
 
 outfit "Farves GP Hybrid Thruster"
 	category "Engines"
+	series "Engines"
+	index 04081
 	"cost" 405000
 	thumbnail "outfit/small efreti thruster"
 	"mass" 33
@@ -688,6 +775,8 @@ outfit "Farves GP Hybrid Thruster"
 
 outfit "Gaktem GP Hybrid Thruster"
 	category "Engines"
+	series "Engines"
+	index 04091
 	"cost" 883000
 	thumbnail "outfit/medium efreti thruster"
 	"mass" 57
@@ -703,6 +792,8 @@ outfit "Gaktem GP Hybrid Thruster"
 
 outfit "Nelmeb GP Hybrid Thruster"
 	category "Engines"
+	series "Engines"
+	index 04101
 	"cost" 1649000
 	thumbnail "outfit/large efreti thruster"
 	"mass" 86
@@ -719,6 +810,8 @@ outfit "Nelmeb GP Hybrid Thruster"
 
 outfit "Arkrof GP Hybrid Steering"
 	category "Engines"
+	series "Engines"
+	index 04070
 	"cost" 131000
 	thumbnail "outfit/tiny efreti steering"
 	"mass" 12
@@ -734,6 +827,8 @@ outfit "Arkrof GP Hybrid Steering"
 
 outfit "Farves GP Hybrid Steering"
 	category "Engines"
+	series "Engines"
+	index 04080
 	"cost" 413000
 	thumbnail "outfit/small efreti steering"
 	"mass" 24
@@ -750,6 +845,8 @@ outfit "Farves GP Hybrid Steering"
 
 outfit "Gaktem GP Hybrid Steering"
 	category "Engines"
+	series "Engines"
+	index 04090
 	"cost" 833000
 	thumbnail "outfit/medium efreti steering"
 	"mass" 42
@@ -766,6 +863,8 @@ outfit "Gaktem GP Hybrid Steering"
 
 outfit "Nelmeb GP Hybrid Steering"
 	category "Engines"
+	series "Engines"
+	index 04100
 	"cost" 1439000
 	thumbnail "outfit/large efreti steering"
 	"mass" 67
@@ -782,6 +881,8 @@ outfit "Nelmeb GP Hybrid Steering"
 
 outfit "Thermal Repeater Rifle"
 	category "Hand to Hand"
+	series "H2H"
+	index 04010
 	cost 53000
 	thumbnail "outfit/korath rifle"
 	"capture attack" 1.6
@@ -791,11 +892,13 @@ outfit "Thermal Repeater Rifle"
 
 outfit "Microbot Defense Station"
 	category "Hand to Hand"
+	series "Fortifications"
+	index 04010
 	cost 53000
 	thumbnail "outfit/microbot defense station"
 	mass 2
 	"outfit space" -3
-	"capture defense" 45
+	"capture defense" 18
 	illegal 10000000
 	"energy consumption" 0.01
 	"heat generation" 0.1

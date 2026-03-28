@@ -11,9 +11,59 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+# 01xxx : Human
+# 02xxx : Hai
+# 03xxx : Remnant
+# 04xxx : Korath
+# 05xxx : Ka'het
+# 06xxx : Gegno
+# 07xxx : Avgi
+# 08xxx : Coalition
+# 09xxx : Wanderers
+# 10xxx : Bunrodea
+# 11xxx : Successors
+# 12xxx : Incipias
+# 13xxx : Sheragi
+# 90xxx : Pug
+# 91xxx : Quarg
+# 92xxx : Spaceborne life
+# 99xxx : Other
+
 category "series"
+	# Guns
+	"Guns" 100
+	# Turrets
+	"Turrets" 100
+	"Anti-Missile" 200
+	"Tractor Beams" 300
+	# Secondary Weapons
+	"Secondary Weapons" 100
+	# Ammunition
+	"Ammunition" 100
+	# Systems
+	"Drives" 100
+	"Shields" 200
+	"Repair" 300
+	"Cooling" 400
+	"Scanners" 500
+	"Jammers" 600
+	"Special Systems" 700
+	"Ramscoops" 800
+	"Fuel" 900
+	"Passenger" 1000
+	"Expansions" 9999
+	# Power
+	"Generators" 100
+	"Batteries" 200
+	"Solar" 300
 	# Engines
-	"Human: Ion" 110
-	"Human: Plasma" 120
-	"Human: Atomic" 130
-	"Human: Afterburners" 140
+	"Engines" 100
+	"Afterburners" 200
+	# Hand to Hand
+	"H2H" 100
+	"Fortifications" 200
+	# Unique
+	"Functional Unique" 100
+	"Non-Functional Unique" 200
+	# Licenses
+	"Licenses" 100

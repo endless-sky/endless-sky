@@ -84,12 +84,12 @@ test-data "To Accept Blocks Accept Save"
 test-data "To Accept Blocks Accept Mission"
 	category mission
 	contents
-		mission "%TEST%: TO ACCEPT BLOCKED MISSION"
+		mission "TEST: TO ACCEPT BLOCKED MISSION"
 			source "Prime"
 			destination "Earth"
 			blocked "There mission is blocked because you are not in the right type of ship."
 			to offer
-				has "%TEST%: TO ACCEPT BLOCKED MISSION OFFER"
+				has "TEST: TO ACCEPT BLOCKED MISSION OFFER"
 			to accept
 				has "flagship model: Shuttle"
 			on offer
@@ -101,15 +101,15 @@ test-data "To Accept Blocks Accept Mission"
 
 test "To Accept Blocks Accepts When Conditions Fail"
 	status active
-	description "Test the the to accept block successfully blocks the mission if the conditions fail."
+	description `Test that the "to accept" block successfully blocks the mission if the conditions fail.`
 	sequence
 		inject "To Accept Blocks Accept Mission"
 		# Create/inject the savegame and load it.
 		inject "To Accept Blocks Accept Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: TO ACCEPT BLOCKED MISSION OFFER" = 1
+			"TEST: TO ACCEPT BLOCKED MISSION OFFER" = 1
 		call "Trigger Prime Spaceport Mission"
-		call "Skip Spaceport Mission"
+		call "Skip Mission"
 		assert
 			"fail test" != 1

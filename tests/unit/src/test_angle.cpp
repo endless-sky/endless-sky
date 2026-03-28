@@ -30,58 +30,58 @@ namespace { // test namespace
 // #region unit tests
 TEST_CASE( "Angle::Angle", "[angle]") {
 	Angle defaultAngle;
-	CHECK( defaultAngle.Degrees() == Approx(0.) );
+	CHECK_THAT( defaultAngle.Degrees(), Catch::Matchers::WithinAbs(0., 0.0001) );
 	Point defaultUnit = defaultAngle.Unit();
-	CHECK( defaultUnit.X() == Approx(0.) );
-	CHECK( defaultUnit.Y() == Approx(-1.) );
-	CHECK( Angle(defaultUnit).Degrees() == Approx(defaultAngle.Degrees()) );
+	CHECK_THAT( defaultUnit.X(), Catch::Matchers::WithinAbs(0., 0.0001) );
+	CHECK_THAT( defaultUnit.Y(), Catch::Matchers::WithinAbs(-1., 0.0001) );
+	CHECK_THAT( Angle(defaultUnit).Degrees(), Catch::Matchers::WithinAbs(defaultAngle.Degrees(), 0.0001) );
 
 	Angle halfAngle = 180.;
-	CHECK( halfAngle.Degrees() == Approx(-180.) );
+	CHECK_THAT( halfAngle.Degrees(), Catch::Matchers::WithinAbs(-180., 0.0001) );
 	Point halfUnit = halfAngle.Unit();
-	CHECK( halfUnit.X() == Approx(0.).margin(0.01) );
-	CHECK( halfUnit.Y() == Approx(1.) );
-	CHECK( Angle(halfUnit).Degrees() == Approx(halfAngle.Degrees()) );
+	CHECK_THAT( halfUnit.X(), Catch::Matchers::WithinAbs(0., 0.01) || Catch::Matchers::WithinRel(0.0001) );
+	CHECK_THAT( halfUnit.Y(), Catch::Matchers::WithinAbs(1., 0.0001) );
+	CHECK_THAT( Angle(halfUnit).Degrees(), Catch::Matchers::WithinAbs(halfAngle.Degrees(), 0.0001) );
 
 	Angle fullAngle = 360.;
-	CHECK( fullAngle.Degrees() == Approx(0.) );
+	CHECK_THAT( fullAngle.Degrees(), Catch::Matchers::WithinAbs(0., 0.0001) );
 	Point fullUnit = fullAngle.Unit();
-	CHECK( fullUnit.X() == Approx(0.) );
-	CHECK( fullUnit.Y() == Approx(-1.) );
-	CHECK( Angle(fullUnit).Degrees() == Approx(fullAngle.Degrees()) );
+	CHECK_THAT( fullUnit.X(), Catch::Matchers::WithinAbs(0., 0.0001) );
+	CHECK_THAT( fullUnit.Y(), Catch::Matchers::WithinAbs(-1., 0.0001) );
+	CHECK_THAT( Angle(fullUnit).Degrees(), Catch::Matchers::WithinAbs(fullAngle.Degrees(), 0.0001) );
 }
 
 TEST_CASE( "Angle::Rotate", "[angle][rotate]" ) {
 	Angle angle = 180.;
-	REQUIRE( angle.Degrees() == Approx(-180.) );
+	REQUIRE_THAT( angle.Degrees(), Catch::Matchers::WithinAbs(-180., 0.0001) );
 
 	auto rotate1 = angle.Rotate(Point(0., 1.));
-	CHECK( rotate1.X() == Approx(0.).margin(0.01) );
-	CHECK( rotate1.Y() == Approx(-1.) );
+	CHECK_THAT( rotate1.X(), Catch::Matchers::WithinAbs(0., 0.01) || Catch::Matchers::WithinRel(0.0001) );
+	CHECK_THAT( rotate1.Y(), Catch::Matchers::WithinAbs(-1., 0.0001) );
 
 	auto rotate2 = angle.Rotate(Point(1., -1.));
-	CHECK( rotate2.X() == Approx(-1.) );
-	CHECK( rotate2.Y() == Approx(1.) );
+	CHECK_THAT( rotate2.X(), Catch::Matchers::WithinAbs(-1., 0.0001) );
+	CHECK_THAT( rotate2.Y(), Catch::Matchers::WithinAbs(1., 0.0001) );
 }
 
 TEST_CASE( "Angle arithmetic", "[angle][arithmetic]") {
 	Angle angle = 60.;
-	REQUIRE( angle.Degrees() == Approx(60.).margin(0.05) );
+	REQUIRE_THAT( angle.Degrees(), Catch::Matchers::WithinAbs(60., 0.05) || Catch::Matchers::WithinRel(0.0001) );
 
 	angle += 45.;
-	REQUIRE( angle.Degrees() == Approx(105.).margin(0.05) );
+	REQUIRE_THAT( angle.Degrees(), Catch::Matchers::WithinAbs(105., 0.05) || Catch::Matchers::WithinRel(0.0001) );
 
 	angle = angle + 100.;
-	REQUIRE( angle.Degrees() == Approx(-155.).margin(0.05) );
+	REQUIRE_THAT( angle.Degrees(), Catch::Matchers::WithinAbs(-155., 0.05) || Catch::Matchers::WithinRel(0.0001) );
 
 	angle -= 50.;
-	REQUIRE( angle.Degrees() == Approx(155.).margin(0.05) );
+	REQUIRE_THAT( angle.Degrees(), Catch::Matchers::WithinAbs(155., 0.05) || Catch::Matchers::WithinRel(0.0001) );
 
 	angle = angle - 25.;
-	REQUIRE( angle.Degrees() == Approx(130.).margin(0.05) );
+	REQUIRE_THAT( angle.Degrees(), Catch::Matchers::WithinAbs(130., 0.05) || Catch::Matchers::WithinRel(0.0001) );
 
 	angle = -angle;
-	REQUIRE( angle.Degrees() == Approx(-130.).margin(0.05) );
+	REQUIRE_THAT( angle.Degrees(), Catch::Matchers::WithinAbs(-130., 0.05) || Catch::Matchers::WithinRel(0.0001) );
 }
 
 TEST_CASE( "Angle::Random", "[angle][random]") {
@@ -90,14 +90,11 @@ TEST_CASE( "Angle::Random", "[angle][random]") {
 	for(int i = 0; i < 10; ++i)
 	{
 		auto random = Angle::Random(value);
-		CHECK( random.Degrees() >= Approx(-180.).margin(0.05));
-		CHECK( random.Degrees() <= Approx(180.).margin(0.05));
+		CHECK_THAT( random.Degrees(), Catch::Matchers::WithinAbs(0, 180) );
 
 		auto unit = random.Unit();
-		CHECK( unit.X() >= Approx(-1.) );
-		CHECK( unit.X() <= Approx(1.) );
-		CHECK( unit.Y() >= Approx(-1.) );
-		CHECK( unit.Y() <= Approx(1.) );
+		CHECK_THAT( unit.X(), Catch::Matchers::WithinAbs(0, 1) );
+		CHECK_THAT( unit.Y(), Catch::Matchers::WithinAbs(0, 1) );
 	}
 }
 

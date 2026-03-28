@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 
 #include "DataNode.h"
+#include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Ship.h"
@@ -25,28 +26,35 @@ using namespace std;
 
 
 
-void Person::Load(const DataNode &node)
+void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
+	isLoaded = true;
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "system")
-			location.Load(child);
-		else if(child.Token(0) == "frequency" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		if(key == "system")
+			location.Load(child, visitedSystems, visitedPlanets);
+		else if(key == "frequency" && hasValue)
 			frequency = child.Value(1);
-		else if(child.Token(0) == "ship" && child.Size() >= 2)
+		else if(key == "formation" && hasValue)
+			formationPattern = GameData::Formations().Get(child.Token(1));
+		else if(key == "ship" && hasValue)
 		{
 			// Name ships that are not the flagship with the name provided, if any.
 			// The flagship, and any unnamed fleet members, will be given the name of the Person.
 			bool setName = !ships.empty() && child.Size() >= 3;
-			ships.emplace_back(make_shared<Ship>(child));
+			ships.emplace_back(make_shared<Ship>(child, playerConditions));
 			if(setName)
-				ships.back()->SetName(child.Token(2));
+				ships.back()->SetGivenName(child.Token(2));
 		}
-		else if(child.Token(0) == "government" && child.Size() >= 2)
+		else if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
-		else if(child.Token(0) == "personality")
+		else if(key == "personality")
 			personality.Load(child);
-		else if(child.Token(0) == "phrase")
+		else if(key == "phrase")
 			hail.Load(child);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -55,11 +63,27 @@ void Person::Load(const DataNode &node)
 
 
 
+bool Person::IsValid() const
+{
+	if(!isLoaded || !government || !government->IsDefined())
+		return false;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsValid())
+			return false;
+	return true;
+}
+
+
+
 // Finish loading all the ships in this person specification.
 void Person::FinishLoading()
 {
 	for(const shared_ptr<Ship> &ship : ships)
+	{
 		ship->FinishLoading(true);
+		if(formationPattern)
+			ship->SetFormationPattern(formationPattern);
+	}
 }
 
 
@@ -78,7 +102,7 @@ int Person::Frequency(const System *system) const
 {
 	// Because persons always enter a system via one of the regular hyperspace
 	// links, don't create them in systems with no links.
-	if(!system || IsDestroyed() || IsPlaced() || system->Links().empty())
+	if(!system || !frequency || system->Links().empty() || !IsValid() || IsDestroyed() || IsPlaced())
 		return 0;
 
 	return (location.IsEmpty() || location.Matches(system)) ? frequency : 0;

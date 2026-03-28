@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_SHIPYARD_PANEL_H_
-#define MAP_SHIPYARD_PANEL_H_
+#pragma once
 
 #include "MapSalesPanel.h"
 
@@ -25,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class PlayerInfo;
 class Ship;
 class Sprite;
+class Swizzle;
 
 
 
@@ -38,19 +38,21 @@ public:
 
 
 protected:
+	virtual void LoadCatalogThumbnails() const override;
+
 	virtual const Sprite *SelectedSprite() const override;
 	virtual const Sprite *CompareSprite() const override;
-	virtual int SelectedSpriteSwizzle() const override;
-	virtual int CompareSpriteSwizzle() const override;
+	virtual const Swizzle *SelectedSpriteSwizzle() const override;
+	virtual const Swizzle *CompareSpriteSwizzle() const override;
 	virtual const ItemInfoDisplay &SelectedInfo() const override;
 	virtual const ItemInfoDisplay &CompareInfo() const override;
-	virtual const std::string &KeyLabel(int index) const override;
 
 	virtual void Select(int index) override;
 	virtual void Compare(int index) override;
 	virtual double SystemValue(const System *system) const override;
 	virtual int FindItem(const std::string &text) const override;
 
+	virtual void DrawKey(Information &info) const override;
 	virtual void DrawItems() override;
 
 
@@ -59,7 +61,6 @@ private:
 
 
 private:
-	std::map<std::string, std::vector<const Ship *>> catalog;
 	std::vector<const Ship *> list;
 	std::map<const System *, std::map<const Ship *, int>> parkedShips;
 
@@ -69,7 +70,3 @@ private:
 	ShipInfoDisplay selectedInfo;
 	ShipInfoDisplay compareInfo;
 };
-
-
-
-#endif

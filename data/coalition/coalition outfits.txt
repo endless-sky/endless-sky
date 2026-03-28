@@ -13,6 +13,8 @@
 
 outfit "Small Collector Module"
 	category "Power"
+	series "Solar"
+	index 08010
 	licenses
 		Coalition
 	cost 60000
@@ -25,6 +27,8 @@ outfit "Small Collector Module"
 
 outfit "Large Collector Module"
 	category "Power"
+	series "Solar"
+	index 08020
 	licenses
 		Coalition
 	cost 300000
@@ -37,6 +41,8 @@ outfit "Large Collector Module"
 
 outfit "Small Reactor Module"
 	category "Power"
+	series "Generators"
+	index 08030
 	licenses
 		Heliarch
 	cost 5497000
@@ -50,6 +56,8 @@ outfit "Small Reactor Module"
 
 outfit "Large Reactor Module"
 	category "Power"
+	series "Generators"
+	index 08040
 	licenses
 		Heliarch
 	cost 17754000
@@ -63,6 +71,8 @@ outfit "Large Reactor Module"
 
 outfit "Small Cogeneration Module"
 	category "Power"
+	series "Generators"
+	index 08010
 	licenses
 		Coalition
 	cost 176000
@@ -76,6 +86,8 @@ outfit "Small Cogeneration Module"
 
 outfit "Large Cogeneration Module"
 	category "Power"
+	series "Generators"
+	index 08020
 	licenses
 		Coalition
 	cost 799000
@@ -88,6 +100,8 @@ outfit "Large Cogeneration Module"
 
 outfit "Small Battery Module"
 	category "Power"
+	series "Batteries"
+	index 08010
 	licenses
 		Coalition
 	cost 22000
@@ -99,6 +113,8 @@ outfit "Small Battery Module"
 
 outfit "Large Battery Module"
 	category "Power"
+	series "Batteries"
+	index 08020
 	licenses
 		Coalition
 	cost 170000
@@ -111,6 +127,8 @@ outfit "Large Battery Module"
 
 outfit "Small Shield Module"
 	category "Systems"
+	series "Shields"
+	index 08010
 	licenses
 		Coalition
 	cost 84000
@@ -124,6 +142,8 @@ outfit "Small Shield Module"
 
 outfit "Large Shield Module"
 	category "Systems"
+	series "Shields"
+	index 08020
 	licenses
 		Coalition
 	cost 553000
@@ -137,6 +157,8 @@ outfit "Large Shield Module"
 
 outfit "Overcharged Shield Module"
 	category "Systems"
+	series "Shields"
+	index 08030
 	licenses
 		Heliarch
 	cost 1216000
@@ -151,6 +173,8 @@ outfit "Overcharged Shield Module"
 
 outfit "Small Repair Module"
 	category "Systems"
+	series "Repair"
+	index 08010
 	licenses
 		Coalition
 	cost 64000
@@ -164,6 +188,8 @@ outfit "Small Repair Module"
 
 outfit "Large Repair Module"
 	category "Systems"
+	series "Repair"
+	index 08020
 	licenses
 		Coalition
 	cost 553000
@@ -177,6 +203,8 @@ outfit "Large Repair Module"
 
 outfit "Overclocked Repair Module"
 	category "Systems"
+	series "Repair"
+	index 08030
 	licenses
 		Heliarch
 	cost 1126000
@@ -191,6 +219,8 @@ outfit "Overclocked Repair Module"
 
 outfit "Cooling Module"
 	category "Systems"
+	series "Cooling"
+	index 08010
 	licenses
 		Coalition
 	cost 160000
@@ -203,6 +233,8 @@ outfit "Cooling Module"
 
 outfit "Fuel Module"
 	category "Systems"
+	series "Fuel"
+	index 08020
 	licenses
 		Coalition
 	cost 270000
@@ -216,6 +248,8 @@ outfit "Fuel Module"
 
 outfit "Decoy Plating"
 	category "Systems"
+	series "Jammers"
+	index 08010
 	cost 93000
 	thumbnail "outfit/decoy plating"
 	"mass" 7
@@ -227,6 +261,8 @@ outfit "Decoy Plating"
 
 outfit "Refueling Module"
 	category "Systems"
+	series "Fuel"
+	index 08030
 	cost 822000
 	thumbnail "outfit/refueling module"
 	"mass" 10
@@ -239,6 +275,8 @@ outfit "Refueling Module"
 
 outfit "Shield Refactor Module"
 	category "Systems"
+	series "Shields"
+	index 08040
 	cost 3248000
 	thumbnail "outfit/shield refactor module"
 	"mass" 7
@@ -253,6 +291,8 @@ outfit "Shield Refactor Module"
 
 outfit "Small Recovery Module"
 	category "Systems"
+	series "Shields"
+	index 08050
 	cost 625000
 	thumbnail "outfit/small recovery module"
 	"mass" 25
@@ -267,6 +307,8 @@ outfit "Small Recovery Module"
 
 outfit "Scanning Module"
 	category "Systems"
+	series "Scanners"
+	index 08010
 	licenses
 		Heliarch
 	cost 453600
@@ -282,6 +324,8 @@ outfit "Scanning Module"
 
 outfit "Outskirts Gauger"
 	category "Systems"
+	series "Scanners"
+	index 08020
 	cost 1406000
 	thumbnail "outfit/outskirts gauger"
 	"mass" 8
@@ -294,6 +338,8 @@ outfit "Outskirts Gauger"
 
 outfit "Small Thrust Module"
 	category "Engines"
+	series "Engines"
+	index 08011
 	licenses
 		Coalition
 	"cost" 66000
@@ -311,6 +357,8 @@ outfit "Small Thrust Module"
 
 outfit "Large Thrust Module"
 	category "Engines"
+	series "Engines"
+	index 08021
 	licenses
 		Coalition
 	"cost" 292000
@@ -328,6 +376,8 @@ outfit "Large Thrust Module"
 
 outfit "Small Reverse Module"
 	category "Engines"
+	series "Engines"
+	index 08012
 	licenses
 		Coalition
 	"cost" 66000
@@ -346,6 +396,8 @@ outfit "Small Reverse Module"
 
 outfit "Large Reverse Module"
 	category "Engines"
+	series "Engines"
+	index 08022
 	licenses
 		Coalition
 	"cost" 292000
@@ -364,6 +416,8 @@ outfit "Large Reverse Module"
 
 outfit "Small Steering Module"
 	category "Engines"
+	series "Engines"
+	index 08010
 	licenses
 		Coalition
 	"cost" 60000
@@ -371,7 +425,7 @@ outfit "Small Steering Module"
 	"mass" 7
 	"outfit space" -7
 	"engine capacity" -7
-	"turn" 214.2
+	"turn" 268.2
 	"turning energy" 0.26
 	"turning heat" 1.8
 	"steering flare sprite" "effect/coalition flare/small"
@@ -381,6 +435,8 @@ outfit "Small Steering Module"
 
 outfit "Large Steering Module"
 	category "Engines"
+	series "Engines"
+	index 08020
 	licenses
 		Coalition
 	"cost" 269000
@@ -398,6 +454,8 @@ outfit "Large Steering Module"
 
 outfit "Enforcer Confrontation Gear"
 	category "Hand to Hand"
+	series "H2H"
+	index 08020
 	licenses
 		Heliarch
 	cost 369000
@@ -409,6 +467,8 @@ outfit "Enforcer Confrontation Gear"
 
 outfit "Enforcer Riot Staff"
 	category "Hand to Hand"
+	series "H2H"
+	index 08010
 	licenses
 		Heliarch
 	cost 97000
@@ -418,8 +478,26 @@ outfit "Enforcer Riot Staff"
 	"unplunderable" 1
 	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non-lethal manner, these weapons see minimal use in shipbound combat, but are carried anyway in the event a dissident gets aboard."
 
+outfit "Guardian Turret"
+	category "Hand to Hand"
+	series "Fortifications"
+	index 08025
+	licenses
+		Heliarch
+	cost 876000
+	thumbnail "outfit/guardian turret"
+	"mass" 1
+	"outfit space" -1
+	"capture defense" 19
+	"unplunderable" 1
+	description "Useful for protecting both buildings and ships, these compact automated turrets were designed and built by the Heliarchs based on the Quarg's own anti-boarder equipment. Active, razor-thin beams of light connect the turret and its target, however many times necessary for execution to be confirmed."
+	description "	Each turret also comes with a compact emitter, designed to provide shielding in a small area around the turret's base. While tricky to develop at first, this technology has not only preserved most turrets from sniping attacks, but also ensured the survival of many Heliarchs who would otherwise have met grievously painful ends."
+	description "	The only downside is the relatively tedious process of registering every member of the crew with the turrets' systems, so that it can recognize and avoid firing at allies during boarding encounters."
+
 outfit "Anti-Materiel Gun"
 	category "Hand to Hand"
+	series "H2H"
+	index 08030
 	cost 257200
 	thumbnail "outfit/anti-materiel gun"
 	"capture attack" 3.4
@@ -429,10 +507,24 @@ outfit "Anti-Materiel Gun"
 
 outfit "Coalition License"
 	category "Licenses"
+	series "Licenses"
+	index 08010
 	thumbnail "outfit/coalition license"
-	description "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."
+	description "A digital chip in the form of a stylized badge, this document signifies the permission of the owner to browse, employ and deal in transactions involving civilian Coalition technology."
+	description "	There is a history of controversy surrounding this license, as throughout the millennia several Heliarch laws have been in a back and forth regarding the conditions that need to be met for someone to obtain a license. This argument started with the third Civil Goods and Fares Act, created just a few decades after the War of Independence. It has continued all the way to the relatively recent twenty-sixth addendum to the second article of the Ninth Rectification on Commerce and Traffic, passed two hundred years ago, which made the acquisition requirements much more flexible."
 
 outfit "Heliarch License"
 	category "Licenses"
+	series "Licenses"
+	index 08020
 	thumbnail "outfit/heliarch license"
 	description "An ornate circlet of gold and platinum, it serves as both a symbol of rank and as a license to access exclusive Heliarch facilities. Custom-made to fit a human's head, it's surprisingly light and comfortable."
+
+outfit "Beyond the Hyperdrive"
+	category "Unique"
+	series "Non-Functional Unique"
+	index 11
+	thumbnail "outfit/beyond the hyperdrive"
+	"unique" 1
+	description "A book gifted to you by Anna Fangvin, a struggling author who found success in Coalition space. It is a signed copy."
+	description "	The story follows a human captain who steals a jump drive from the Quarg and travels beyond the hyperlanes, learning new things about the aliens of the galaxy."

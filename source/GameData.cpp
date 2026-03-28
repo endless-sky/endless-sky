@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameData.h"
 
-#include "Audio.h"
-#include "BatchShader.h"
+#include "audio/Audio.h"
+#include "shader/BatchShader.h"
 #include "CategoryList.h"
 #include "Color.h"
 #include "Command.h"
@@ -26,47 +26,49 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Effect.h"
 #include "Files.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "Fleet.h"
-#include "FogShader.h"
+#include "shader/FogShader.h"
 #include "text/FontSet.h"
 #include "FormationPattern.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"
 #include "Hazard.h"
-#include "ImageSet.h"
+#include "image/ImageFileData.h"
+#include "image/ImageSet.h"
 #include "Interface.h"
-#include "LineShader.h"
-#include "MaskManager.h"
+#include "shader/LineShader.h"
+#include "image/MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
-#include "Music.h"
+#include "audio/Music.h"
 #include "News.h"
 #include "Outfit.h"
-#include "OutlineShader.h"
+#include "shader/OutlineShader.h"
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "Plugins.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Politics.h"
 #include "RenderBuffer.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
-#include "StarField.h"
+#include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
+#include "shader/SpriteShader.h"
+#include "shader/StarField.h"
 #include "StartConditions.h"
 #include "System.h"
 #include "TaskQueue.h"
-#include "Test.h"
-#include "TestData.h"
+#include "test/Test.h"
+#include "test/TestData.h"
 #include "UniverseObjects.h"
 
 #include <algorithm>
-#include <atomic>
+#include <cassert>
+#include <filesystem>
 #include <iostream>
 #include <queue>
 #include <utility>
@@ -81,18 +83,19 @@ namespace {
 	Set<Planet> defaultPlanets;
 	Set<System> defaultSystems;
 	Set<Galaxy> defaultGalaxies;
-	Set<Sale<Ship>> defaultShipSales;
-	Set<Sale<Outfit>> defaultOutfitSales;
+	Set<Shop<Ship>> defaultShipSales;
+	Set<Shop<Outfit>> defaultOutfitSales;
 	Set<Wormhole> defaultWormholes;
+	Set<Person> defaultPersons;
 	TextReplacements defaultSubstitutions;
+
+	const Gamerules *activeGamerules = nullptr;
 
 	Politics politics;
 
 	StarField background;
 
-	vector<string> sources;
-	map<const Sprite *, shared_ptr<ImageSet>> deferred;
-	map<const Sprite *, int> preloaded;
+	vector<filesystem::path> sources;
 
 	MaskManager maskManager;
 
@@ -101,53 +104,7 @@ namespace {
 
 	ConditionsStore globalConditions;
 
-	bool preventSpriteUpload = false;
-
-	// Tracks the progress of loading the sprites when the game starts.
-	int spriteLoadingProgress = 0;
-	std::atomic<int> totalSprites = 0;
-
-	// List of image sets that are waiting to be uploaded to the GPU.
-	mutex imageQueueMutex;
-	queue<shared_ptr<ImageSet>> imageQueue;
-
-	// Loads a sprite and queues it for upload to the GPU.
-	void LoadSprite(TaskQueue &queue, const shared_ptr<ImageSet> &image)
-	{
-		queue.Run([image] { image->Load(); },
-			[image] { image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload); });
-	}
-
-	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image);
-	// Loads a sprite from the image queue, recursively.
-	void LoadSpriteQueued(TaskQueue &queue)
-	{
-		if(imageQueue.empty())
-			return;
-
-		// Start loading the next image in the list.
-		// This is done to save memory on startup.
-		LoadSpriteQueued(queue, imageQueue.front());
-		imageQueue.pop();
-	}
-
-	// Loads a sprite from the given image, with progress tracking.
-	// Recursively loads the next image in the queue, if any.
-	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image)
-	{
-		queue.Run([image] { image->Load(); },
-			[image, &queue]
-			{
-				image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
-				++spriteLoadingProgress;
-
-				// Start loading the next image in the queue, if any.
-				lock_guard lock(imageQueueMutex);
-				LoadSpriteQueued(queue);
-			});
-	}
-
-	void LoadPlugin(TaskQueue &queue, const string &path)
+	void LoadPlugin(TaskQueue &queue, const filesystem::path &path)
 	{
 		const auto *plugin = Plugins::Load(path);
 		if(!plugin)
@@ -160,29 +117,41 @@ namespace {
 		auto icon = make_shared<ImageSet>(plugin->name);
 
 		// Try adding all the possible icon variants.
-		if(Files::Exists(path + "icon.png"))
-			icon->Add(path + "icon.png");
-		else if(Files::Exists(path + "icon.jpg"))
-			icon->Add(path + "icon.jpg");
-
-		if(Files::Exists(path + "icon@2x.png"))
-			icon->Add(path + "icon@2x.png");
-		else if(Files::Exists(path + "icon@2x.jpg"))
-			icon->Add(path + "icon@2x.jpg");
+		for(const string &extension : ImageBuffer::ImageExtensions())
+		{
+			filesystem::path iconPath = path / ("icon" + extension);
+			if(Files::Exists(iconPath))
+			{
+				icon->Add(iconPath);
+				break;
+			}
+		}
+		for(const string &extension : ImageBuffer::ImageExtensions())
+		{
+			filesystem::path iconPath = path / ("icon@2x" + extension);
+			if(Files::Exists(iconPath))
+			{
+				icon->Add(iconPath);
+				break;
+			}
+		}
 
 		if(!icon->IsEmpty())
 		{
 			icon->ValidateFrames();
-			LoadSprite(queue, icon);
+			SpriteLoadManager::LoadSprite(queue, icon);
 		}
 	}
 }
 
 
 
-shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload)
+shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &player,
+		bool onlyLoadData, bool debugMode, bool preventUpload)
 {
-	preventSpriteUpload = preventUpload;
+	if(preventUpload)
+		SpriteLoadManager::PreventSpriteUpload();
+	SpriteLoadManager::FindDeferredFolders();
 
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources(queue);
@@ -190,45 +159,13 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 	if(!onlyLoadData)
 	{
 		queue.Run([&queue] {
-			// Now, read all the images in all the path directories. For each unique
-			// name, only remember one instance, letting things on the higher priority
-			// paths override the default images.
-			map<string, shared_ptr<ImageSet>> images = FindImages();
-
-			// From the name, strip out any frame number, plus the extension.
-			for(auto &it : images)
-			{
-				// This should never happen, but just in case:
-				if(!it.second)
-					continue;
-
-				// Reduce the set of images to those that are valid.
-				it.second->ValidateFrames();
-				// For landscapes, remember all the source files but don't load them yet.
-				if(ImageSet::IsDeferred(it.first))
-					deferred[SpriteSet::Get(it.first)] = std::move(it.second);
-				else
-				{
-					lock_guard lock(imageQueueMutex);
-					imageQueue.push(std::move(std::move(it.second)));
-					++totalSprites;
-				}
-			}
-
-			// Launch the tasks to actually load the images, making sure not to exceed the amount
-			// of tasks the main thread can handle in a single frame to limit peak memory usage.
-			{
-				lock_guard lock(imageQueueMutex);
-				for(int i = 0; i < TaskQueue::MAX_SYNC_TASKS; ++i)
-					LoadSpriteQueued(queue);
-			}
-
+			SpriteLoadManager::Init(queue, FindImages());
 			// Generate a catalog of music files.
 			Music::Init(sources);
 		});
 	}
 
-	return objects.Load(queue, sources, debugMode);
+	return objects.Load(queue, sources, player, &globalConditions, debugMode);
 }
 
 
@@ -243,11 +180,15 @@ void GameData::FinishLoading()
 	defaultGalaxies = objects.galaxies;
 	defaultShipSales = objects.shipSales;
 	defaultOutfitSales = objects.outfitSales;
-	defaultSubstitutions = objects.substitutions;
 	defaultWormholes = objects.wormholes;
+	defaultPersons = objects.persons;
+	defaultSubstitutions = objects.substitutions;
+
+	activeGamerules = objects.gamerulesPresets.Get("Default");
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
+	background.FinishLoading();
 }
 
 
@@ -262,16 +203,46 @@ void GameData::CheckReferences()
 void GameData::LoadSettings()
 {
 	// Load the key settings.
-	Command::LoadSettings(Files::Resources() + "keys.txt");
-	Command::LoadSettings(Files::Config() + "keys.txt");
+	Command::LoadSettings(Files::Resources() / "keys.txt");
+	Command::LoadSettings(Files::Config() / "keys.txt");
 }
 
 
 
 void GameData::LoadShaders()
 {
-	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
-	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
+	// The found shader files. The first element is the vertex shader,
+	// the second is the fragment shader.
+	map<string, pair<string, string>> loaded;
+	for(const filesystem::path &source : sources)
+	{
+		filesystem::path base = source / "shaders";
+		if(Files::Exists(base))
+			for(filesystem::path shaderFile : Files::RecursiveList(base))
+			{
+				filesystem::path shader = shaderFile;
+#ifdef ES_GLES
+				// Allow specifying different shaders for GL and GLES.
+				// In this case, only the appropriate shader is loaded.
+				if(shaderFile.extension() == ".gles")
+					shader = shader.parent_path() / shader.stem();
+#else
+				if(shaderFile.extension() == ".gl")
+					shader = shader.parent_path() / shader.stem();
+#endif
+				string name = (shader.parent_path() / shader.stem()).lexically_relative(base).generic_string();
+				if(shader.extension() == ".vert")
+					loaded[name].first = shaderFile.string();
+				else if(shader.extension() == ".frag")
+					loaded[name].second = shaderFile.string();
+			}
+	}
+
+	// If there is both a fragment and a vertex shader available,
+	// it can be turned into a shader object.
+	for(const auto &[key, s] : loaded)
+		if(!s.first.empty() && !s.second.empty())
+			objects.shaders.Get(key)->Load(Files::Read(s.first).c_str(), Files::Read(s.second).c_str());
 
 	FillShader::Init();
 	FogShader::Init();
@@ -283,6 +254,9 @@ void GameData::LoadShaders()
 	BatchShader::Init();
 	RenderBuffer::Init();
 
+	FontSet::Add(Files::Images() / "font/ubuntu14r.png", 14);
+	FontSet::Add(Files::Images() / "font/ubuntu18r.png", 18);
+
 	background.Init(16384, 4096);
 }
 
@@ -290,8 +264,7 @@ void GameData::LoadShaders()
 
 double GameData::GetProgress()
 {
-	double spriteProgress = static_cast<double>(spriteLoadingProgress) / totalSprites;
-	return min({spriteProgress, Audio::GetProgress(), objects.GetProgress()});
+	return min({SpriteLoadManager::Progress(), Audio::GetProgress(), objects.GetProgress()});
 }
 
 
@@ -303,55 +276,8 @@ bool GameData::IsLoaded()
 
 
 
-// Begin loading a sprite that was previously deferred. Currently this is
-// done with all landscapes to speed up the program's startup.
-void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
-{
-	// Make sure this sprite actually is one that uses deferred loading.
-	auto dit = deferred.find(sprite);
-	if(!sprite || dit == deferred.end())
-		return;
-
-	// If this sprite is one of the currently loaded ones, there is no need to
-	// load it again. But, make note of the fact that it is the most recently
-	// asked-for sprite.
-	map<const Sprite *, int>::iterator pit = preloaded.find(sprite);
-	if(pit != preloaded.end())
-	{
-		for(pair<const Sprite * const, int> &it : preloaded)
-			if(it.second < pit->second)
-				++it.second;
-
-		pit->second = 0;
-		return;
-	}
-
-	// This sprite is not currently preloaded. Check to see whether we already
-	// have the maximum number of sprites loaded, in which case the oldest one
-	// must be unloaded to make room for this one.
-	pit = preloaded.begin();
-	while(pit != preloaded.end())
-	{
-		++pit->second;
-		if(pit->second >= 20)
-		{
-			// Unloading needs to be queued on the main thread.
-			queue.Run({}, [name = pit->first->Name()] { SpriteSet::Modify(name)->Unload(); });
-			pit = preloaded.erase(pit);
-		}
-		else
-			++pit;
-	}
-
-	// Now, load all the files for this sprite.
-	preloaded[sprite] = 0;
-	LoadSprite(queue, dit->second);
-}
-
-
-
 // Get the list of resource sources (i.e. plugin folders).
-const vector<string> &GameData::Sources()
+const vector<filesystem::path> &GameData::Sources()
 {
 	return sources;
 }
@@ -376,8 +302,12 @@ void GameData::Revert()
 	objects.galaxies.Revert(defaultGalaxies);
 	objects.shipSales.Revert(defaultShipSales);
 	objects.outfitSales.Revert(defaultOutfitSales);
-	objects.substitutions.Revert(defaultSubstitutions);
 	objects.wormholes.Revert(defaultWormholes);
+	objects.persons.Revert(defaultPersons);
+	objects.substitutions.Revert(defaultSubstitutions);
+
+	activeGamerules = objects.gamerulesPresets.Get("Default");
+
 	for(auto &it : objects.persons)
 		it.second.Restore();
 
@@ -404,13 +334,14 @@ void GameData::ReadEconomy(const DataNode &node)
 	vector<string> headings;
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "purchases")
+		const string &key = child.Token(0);
+		if(key == "purchases")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 3 && grand.Value(2))
 					purchases[Systems().Get(grand.Token(0))][grand.Token(1)] += grand.Value(2);
 		}
-		else if(child.Token(0) == "system")
+		else if(key == "system")
 		{
 			headings.clear();
 			for(int index = 1; index < child.Size(); ++index)
@@ -418,7 +349,7 @@ void GameData::ReadEconomy(const DataNode &node)
 		}
 		else
 		{
-			System &system = *objects.systems.Get(child.Token(0));
+			System &system = *objects.systems.Get(key);
 
 			int index = 0;
 			for(const string &commodity : headings)
@@ -442,12 +373,12 @@ void GameData::WriteEconomy(DataWriter &out)
 			using Purchase = pair<const System *const, map<string, int>>;
 			WriteSorted(purchases,
 				[](const Purchase *lhs, const Purchase *rhs)
-					{ return lhs->first->Name() < rhs->first->Name(); },
+					{ return lhs->first->TrueName() < rhs->first->TrueName(); },
 				[&out](const Purchase &pit)
 				{
 					// Write purchases for all systems, even ones from removed plugins.
 					for(const auto &cit : pit.second)
-						out.Write(pit.first->Name(), cit.first, cit.second);
+						out.Write(pit.first->TrueName(), cit.first, cit.second);
 				});
 			out.EndChild();
 		}
@@ -463,7 +394,7 @@ void GameData::WriteEconomy(DataWriter &out)
 			if(!sit.second.IsValid() && !sit.second.HasTrade())
 				continue;
 
-			out.WriteToken(sit.second.Name());
+			out.WriteToken(sit.second.TrueName());
 			for(const auto &cit : GameData::Commodities())
 				out.WriteToken(static_cast<int>(sit.second.Supply(cit.name)));
 			out.Write();
@@ -522,9 +453,9 @@ void GameData::AddPurchase(const System &system, const string &commodity, int to
 
 
 // Apply the given change to the universe.
-void GameData::Change(const DataNode &node)
+void GameData::Change(const DataNode &node, PlayerInfo &player)
 {
-	objects.Change(node);
+	objects.Change(node, player);
 }
 
 
@@ -534,6 +465,13 @@ void GameData::Change(const DataNode &node)
 void GameData::UpdateSystems()
 {
 	objects.UpdateSystems();
+}
+
+
+
+void GameData::RecomputeWormholeRequirements()
+{
+	objects.RecomputeWormholeRequirements();
 }
 
 
@@ -567,6 +505,13 @@ void GameData::DestroyPersons(vector<string> &names)
 const Set<Color> &GameData::Colors()
 {
 	return objects.colors;
+}
+
+
+
+const Set<Swizzle> &GameData::Swizzles()
+{
+	return objects.swizzles;
 }
 
 
@@ -634,6 +579,20 @@ const Set<Interface> &GameData::Interfaces()
 
 
 
+const Set<Message::Category> &GameData::MessageCategories()
+{
+	return objects.messageCategories;
+}
+
+
+
+const Set<Message> &GameData::Messages()
+{
+	return objects.messages;
+}
+
+
+
 const Set<Minable> &GameData::Minables()
 {
 	return objects.minables;
@@ -662,7 +621,7 @@ const Set<Outfit> &GameData::Outfits()
 
 
 
-const Set<Sale<Outfit>> &GameData::Outfitters()
+const Set<Shop<Outfit>> &GameData::Outfitters()
 {
 	return objects.outfitSales;
 }
@@ -686,6 +645,13 @@ const Set<Phrase> &GameData::Phrases()
 const Set<Planet> &GameData::Planets()
 {
 	return objects.planets;
+}
+
+
+
+const Set<Shader> &GameData::Shaders()
+{
+	return objects.shaders;
 }
 
 
@@ -718,7 +684,7 @@ ConditionsStore &GameData::GlobalConditions()
 
 
 
-const Set<Sale<Ship>> &GameData::Shipyards()
+const Set<Shop<Ship>> &GameData::Shipyards()
 {
 	return objects.shipSales;
 }
@@ -735,6 +701,20 @@ const Set<System> &GameData::Systems()
 const Set<Wormhole> &GameData::Wormholes()
 {
 	return objects.wormholes;
+}
+
+
+
+const Set<Gamerules> &GameData::GamerulesPresets()
+{
+	return objects.gamerulesPresets;
+}
+
+
+
+const std::set<std::string> &GameData::UniverseWormholeRequirements()
+{
+	return objects.universeWormholeRequirements;
 }
 
 
@@ -777,7 +757,7 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 // Custom messages to be shown when trying to land on certain stellar objects.
 bool GameData::HasLandingMessage(const Sprite *sprite)
 {
-	return objects.landingMessages.count(sprite);
+	return objects.landingMessages.contains(sprite);
 }
 
 
@@ -804,6 +784,15 @@ double GameData::SolarWind(const Sprite *sprite)
 {
 	auto it = objects.solarWind.find(sprite);
 	return (it == objects.solarWind.end() ? 0. : it->second);
+}
+
+
+
+// Get the map icon of the given stellar object sprite.
+const Sprite *GameData::StarIcon(const Sprite *sprite)
+{
+	const auto it = objects.starIcons.find(sprite);
+	return (it == objects.starIcons.end() ? nullptr : it->second);
 }
 
 
@@ -837,6 +826,27 @@ const StarField &GameData::Background()
 
 
 
+void GameData::StepBackground(const Point &vel, double zoom)
+{
+	background.Step(vel, zoom);
+}
+
+
+
+const Point &GameData::GetBackgroundPosition()
+{
+	return background.Position();
+}
+
+
+
+void GameData::SetBackgroundPosition(const Point &position)
+{
+	background.SetPosition(position);
+}
+
+
+
 void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
 	background.SetHaze(sprite, allowAnimation);
@@ -850,9 +860,9 @@ const string &GameData::Tooltip(const string &label)
 	auto it = objects.tooltips.find(label);
 	// Special case: the "cost" and "sells for" labels include the percentage of
 	// the full price, so they will not match exactly.
-	if(it == objects.tooltips.end() && !label.compare(0, 4, "cost"))
+	if(it == objects.tooltips.end() && label.starts_with("cost"))
 		it = objects.tooltips.find("cost:");
-	if(it == objects.tooltips.end() && !label.compare(0, 9, "sells for"))
+	if(it == objects.tooltips.end() && label.starts_with("sells for"))
 		it = objects.tooltips.find("sells for:");
 	return (it == objects.tooltips.end() ? EMPTY : it->second);
 }
@@ -891,7 +901,24 @@ const TextReplacements &GameData::GetTextReplacements()
 
 const Gamerules &GameData::GetGamerules()
 {
-	return objects.gamerules;
+	if(!activeGamerules)
+		activeGamerules = objects.gamerulesPresets.Get("Default");
+
+	return *activeGamerules;
+}
+
+
+
+void GameData::SetGamerules(const Gamerules *gamerules)
+{
+	activeGamerules = gamerules;
+}
+
+
+
+const Gamerules &GameData::DefaultGamerules()
+{
+	return *(objects.gamerulesPresets.Get("Default"));
 }
 
 
@@ -901,14 +928,23 @@ void GameData::LoadSources(TaskQueue &queue)
 	sources.clear();
 	sources.push_back(Files::Resources());
 
-	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
-	for(const string &path : globalPlugins)
+	vector<filesystem::path> globalPlugins = Files::ListDirectories(Files::GlobalPlugins());
+	for(const auto &path : globalPlugins)
 		if(Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
+	// Load unzipped plugins first to give them precedence, then load the zipped plugins.
+	globalPlugins = Files::List(Files::GlobalPlugins());
+	for(const auto &path : globalPlugins)
+		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+			LoadPlugin(queue, path);
 
-	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
-	for(const string &path : localPlugins)
+	vector<filesystem::path> localPlugins = Files::ListDirectories(Files::UserPlugins());
+	for(const auto &path : localPlugins)
 		if(Plugins::IsPlugin(path))
+			LoadPlugin(queue, path);
+	localPlugins = Files::List(Files::UserPlugins());
+	for(const auto &path : localPlugins)
+		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
 }
 
@@ -917,23 +953,22 @@ void GameData::LoadSources(TaskQueue &queue)
 map<string, shared_ptr<ImageSet>> GameData::FindImages()
 {
 	map<string, shared_ptr<ImageSet>> images;
-	for(const string &source : sources)
+	for(const auto &source : sources)
 	{
 		// All names will only include the portion of the path that comes after
 		// this directory prefix.
-		string directoryPath = source + "images/";
-		size_t start = directoryPath.size();
+		filesystem::path directoryPath = source / "images";
 
-		vector<string> imageFiles = Files::RecursiveList(directoryPath);
-		for(string &path : imageFiles)
+		vector<filesystem::path> imageFiles = Files::RecursiveList(directoryPath);
+		for(auto &path : imageFiles)
 			if(ImageSet::IsImage(path))
 			{
-				string name = ImageSet::Name(path.substr(start));
+				ImageFileData data(path, directoryPath);
 
-				shared_ptr<ImageSet> &imageSet = images[name];
+				shared_ptr<ImageSet> &imageSet = images[data.name];
 				if(!imageSet)
-					imageSet.reset(new ImageSet(name));
-				imageSet->Add(std::move(path));
+					imageSet.reset(new ImageSet(data.name));
+				imageSet->Add(std::move(data));
 			}
 	}
 	return images;

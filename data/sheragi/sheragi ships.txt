@@ -180,8 +180,8 @@ ship "Black Diamond"
 		"outfit space" 152
 		"weapon capacity" 35
 		"engine capacity" 38
-		"hull repair rate" 1
-		"hull delay" 60
+		"delayed hull repair rate" 1
+		"repair delay" 60
 		weapon
 			"blast radius" 24
 			"shield damage" 240

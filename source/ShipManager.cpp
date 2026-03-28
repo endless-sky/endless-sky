@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "EsUuid.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Messages.h"
 #include "PlayerInfo.h"
@@ -33,7 +34,7 @@ void ShipManager::Load(const DataNode &node)
 {
 	if(node.Size() < 3 || node.Token(1) != "ship")
 	{
-		node.PrintTrace("Error: Skipping unrecognized node.");
+		node.PrintTrace("Skipping unrecognized node.");
 		return;
 	}
 	taking = node.Token(0) == "take";
@@ -44,7 +45,7 @@ void ShipManager::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
-		bool hasValue = child.Size() > 1;
+		bool hasValue = child.Size() >= 2;
 
 		if(key == "id" && hasValue)
 			id = child.Token(1);
@@ -52,7 +53,7 @@ void ShipManager::Load(const DataNode &node)
 		{
 			int val = child.Value(1);
 			if(val <= 0)
-				child.PrintTrace("Error: \"count\" must be a non-zero, positive number.");
+				child.PrintTrace("\"count\" must be a non-zero, positive number.");
 			else
 				count = val;
 		}
@@ -65,14 +66,14 @@ void ShipManager::Load(const DataNode &node)
 			else if(key == "require outfits")
 				requireOutfits = true;
 			else
-				child.PrintTrace("Error: Skipping unrecognized token.");
+				child.PrintTrace("Skipping unrecognized token.");
 		}
 		else
-			child.PrintTrace("Error: Skipping unrecognized token.");
+			child.PrintTrace("Skipping unrecognized token.");
 	}
 
 	if(taking && !id.empty() && count > 1)
-		node.PrintTrace("Error: Use of \"id\" to refer to the ship is only supported when \"count\" is equal to 1.");
+		node.PrintTrace("Use of \"id\" to refer to the ship is only supported when \"count\" is equal to 1.");
 }
 
 
@@ -114,21 +115,31 @@ void ShipManager::Do(PlayerInfo &player) const
 	if(Giving())
 	{
 		for(int i = 0; i < count; ++i)
-			shipName = player.GiftShip(model, name, id)->Name();
+			shipName = player.GiftShip(model, name, id)->GivenName();
 	}
 	else
 	{
 		auto toTake = SatisfyingShips(player);
 		if(toTake.size() == 1)
-			shipName = toTake.begin()->get()->Name();
+			shipName = toTake.begin()->get()->GivenName();
 		for(const auto &ship : toTake)
 			player.TakeShip(ship.get(), model, takeOutfits);
 	}
-	Messages::Add((count == 1 ? "The " + model->DisplayModelName() + " \"" + shipName + "\" was " :
+	Messages::Add({(count == 1 ? "The " + model->DisplayModelName() + " \"" + shipName + "\" was " :
 		to_string(count) + " " + model->PluralModelName() + " were ") +
-		(Giving() ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
+		(Giving() ? "added to" : "removed from") + " your fleet.",
+		GameData::MessageCategories().Get("normal")});
 }
 
+
+
+// Expands phrases and substitutions in the ship name, into a new copy of this ShipManager
+ShipManager ShipManager::Instantiate(const map<string, string> &subs) const
+{
+	ShipManager result = *this;
+	result.name = Format::Replace(Phrase::ExpandPhrases(name), subs);
+	return result;
+}
 
 
 const Ship *ShipManager::ShipModel() const
@@ -179,7 +190,7 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 			if(ship->UUID() != shipToTakeId->second)
 				continue;
 		}
-		if(!name.empty() && name != ship->Name())
+		if(!name.empty() && name != ship->GivenName())
 			continue;
 		bool hasRequiredOutfits = true;
 		// If "with outfits" or "requires outfits" is specified,

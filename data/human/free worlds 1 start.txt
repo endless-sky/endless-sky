@@ -20,7 +20,7 @@ mission "Liberate Kornephoros"
 	to offer
 		has "Defend Sabik: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "prepare for battle of Kornephoros"
@@ -53,7 +53,8 @@ mission "Liberate Kornephoros"
 			names "free worlds capital"
 			variant
 				"Falcon"
-				"Osprey" 2
+				"Osprey"
+				"Osprey (Missile)"
 	npc
 		government "Free Worlds"
 		personality heroic disables
@@ -61,6 +62,7 @@ mission "Liberate Kornephoros"
 		fleet
 			names "free worlds capital"
 			variant
+				"Osprey"
 				"Falcon (Heavy)"
 				"Hawk" 2
 		fleet
@@ -76,22 +78,17 @@ mission "Liberate Kornephoros"
 		fleet
 			names "free worlds capital"
 			variant
-				"Osprey"
-				"Osprey (Missile)"
-		fleet
-			names "free worlds capital"
-			variant
 				"Falcon"
-				"Osprey"
 				"Osprey (Laser)"
-				"Hawk" 3
-				"Sparrow" 5
+				"Hawk"
+				"Hawk (Rocket)"
+				"Sparrow" 3
 		fleet
 			names "free worlds capital"
 			variant
 				"Bastion (Heavy)" 2
-				"Argosy (Blaster)" 4
-				"Fury" 6
+				"Argosy (Blaster)" 3
+				"Fury" 3
 	npc evade
 		government "Republic"
 		personality staying heroic
@@ -103,7 +100,6 @@ mission "Liberate Kornephoros"
 			variant
 				"Cruiser (Heavy)" 2
 				"Combat Drone" 8
-				"Frigate" 2
 				"Rainmaker" 2
 		fleet
 			names "republic capital"
@@ -112,18 +108,16 @@ mission "Liberate Kornephoros"
 			variant
 				"Cruiser (Heavy)"
 				"Combat Drone" 4
-				"Frigate" 2
+				"Frigate"
 				"Gunboat" 2
 		fleet
 			names "republic capital"
 			fighters
 				names "republic fighter"
 			variant
-				"Cruiser (Heavy)"
-				"Combat Drone" 4
 				"Gunboat" 2
-				"Frigate" 2
-				"Rainmaker" 2
+				"Frigate"
+				"Rainmaker"
 	
 	on visit
 		dialog `There are still Navy ships patrolling overhead. Staying on <planet> while your allies are dying in orbit would be a very bad idea.`
@@ -171,7 +165,7 @@ mission "FW Prisoner Parole"
 	to offer
 		has "Liberate Kornephoros: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"reputation: Republic" = 1
@@ -216,7 +210,7 @@ mission "FW Prisoner Parole 2"
 	to offer
 		has "FW Prisoner Parole: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	npc accompany save
 		government "Free Worlds"
@@ -279,7 +273,7 @@ mission "FW Syndicate Diplomacy 1"
 	to offer
 		has "FW Prisoner Parole 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -334,7 +328,7 @@ mission "FW Syndicate Diplomacy 1B"
 	to offer
 		has "FW Syndicate Diplomacy 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		set "met remington"
@@ -439,10 +433,10 @@ mission "FW Syndicate Diplomacy 1C"
 	to offer
 		has "FW Syndicate Diplomacy 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
-		event "Tarazed neutrality"
+		event "Tarazed neutrality" 0
 		log "The extra Syndicate supplies have begun arriving at Tarazed, and they include weaponry and outfits not normally shipped to the South. Spoke with Emily Lane, the CEO of the Tarazed Corporation. She is suspicious of this supposed gesture of good will from the Syndicate, and suggests remaining vigilant of the Syndicate's actions."
 		conversation
 			`When you arrive at <origin>, you find that there are already some Syndicate ships here unloading cargo that must have been sent ahead of you. You catch a glimpse of some of the crates and see large amounts of ship materials, as well as crates of blasters, Proton Guns, and other Syndicate products.`
@@ -484,7 +478,7 @@ mission "FW Syndicate Diplomacy 1D"
 	to offer
 		has "FW Syndicate Diplomacy 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Tried to convince Poisonwood, a world adjacent to Free Worlds territory, to switch sides. But, they are fiercely loyal to the Republic because the Navy freed them from being dominated by Alpha warlords decades ago."
@@ -590,7 +584,7 @@ mission "FW Hope Recon 1"
 	to offer
 		has "FW Syndicate Diplomacy 1D: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -615,7 +609,7 @@ mission "FW Hope Recon 1B"
 	to offer
 		has "FW Hope Recon 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 
 
 
@@ -758,7 +752,7 @@ mission "FW Plasma Testing 1"
 	to offer
 		has "FW Hope Recon 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 
 
 
@@ -766,13 +760,13 @@ mission "FW Plasma Testing 1B"
 	autosave
 	landing
 	name "Weapons Testing"
-	description "As a test for the new Plasma Turret, assist the Walloping Window-Blind in destroying the Red Nile, a pirate ship that is probably in the <waypoints> system. Then return to <planet>."
+	description "As a test for the new Plasma Turret, assist the Walloping Window-Blind in destroying the Red Nile, a pirate ship that is probably in the <marks> system. Then return to <planet>."
 	source "Rust"
-	waypoint "Ildaria"
+	mark "Ildaria"
 	to offer
 		has "FW Plasma Testing 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "People" "Edward Tivrusky" `Barmy Edward is the Chief Offensive Engineer at Kraz Cybernetics, known for his inventive and sometimes impractical weapon designs. Supposedly, his engineers gave him the "Barmy" sobriquet after an incident where an experimental epoxy cannon he was working on exploded and glued him to the ceiling.`
@@ -817,8 +811,8 @@ mission "FW Plasma Testing 1B"
 			
 			label plan
 			`	"So, where do I come in?" you ask.`
-			`	"Well, the Council says no testing against the Navy... yet. No point in provoking a fight just to try out an untested weapon. So I asked them what other target they could suggest, and they mentioned this pirate ship by the name of Red Nile that's been haunting the <waypoints> system, sniping on merchants that take a wrong turn and end up there."`
-			`	With a grand gesture, he indicates an aging Tarazed Falcon parked in the far corner of the hangar. It's a little rusty, and the paint is flaking, but a Falcon is an impressive ship under any circumstances. "We packed four of our prototypes into our department's very own test ship, the Walloping Window-Blind. We can't let you fly her, of course," he says, "on account of she's dearer to us than our own children. So the plan is, the Window-Blind will accompany you to <waypoints>, and you fight the pirates together, taking careful note of how the guns perform. Sound like fun?"`
+			`	"Well, the Council says no testing against the Navy... yet. No point in provoking a fight just to try out an untested weapon. So I asked them what other target they could suggest, and they mentioned this pirate ship by the name of Red Nile that's been haunting the <marks> system, sniping on merchants that take a wrong turn and end up there."`
+			`	With a grand gesture, he indicates an aging Tarazed Falcon parked in the far corner of the hangar. It's a little rusty, and the paint is flaking, but a Falcon is an impressive ship under any circumstances. "We packed four of our prototypes into our department's very own test ship, the Walloping Window-Blind. We can't let you fly her, of course," he says, "on account of she's dearer to us than our own children. So the plan is, the Window-Blind will accompany you to <marks>, and you fight the pirates together, taking careful note of how the guns perform. Sound like fun?"`
 			choice
 				`	"You bet!"`
 					accept
@@ -836,7 +830,9 @@ mission "FW Plasma Testing 1B"
 		personality plunders staying target
 		system "Ildaria"
 		ship "Leviathan (Heavy)" "Red Nile"
-		dialog `The <npc> has been eliminated. Time to return to <destination> and report to Barmy Edward.`
+		on kill
+			unmark "Ildaria"
+			dialog `The <npc> has been eliminated. Time to return to <destination> and report to Barmy Edward.`
 	
 	on visit
 		dialog `You have returned to <planet>, but your mission is not complete - either the Red Nile is not destroyed, or you have left the Walloping Window-Blind behind.`
@@ -906,7 +902,7 @@ mission "FW Supply Convoy 1"
 	to offer
 		has "FW Plasma Testing 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -961,7 +957,7 @@ mission "FW Pirates 1"
 	to offer
 		has "FW Supply Convoy 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"salary: Free Worlds" = 2100
@@ -1012,7 +1008,7 @@ mission "FW Senate 1"
 	to offer
 		has "FW Pirates 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Free Worlds have finally elected a Senate, which will be convening for the first time soon on Bourne."
@@ -1033,7 +1029,7 @@ mission "FW Senate 1B"
 	to offer
 		has "FW Senate 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fw senate timer" 8
@@ -1113,7 +1109,7 @@ mission "FW Pirates 2"
 	to offer
 		has "FW Senate 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1278,7 +1274,7 @@ mission "FW Pirates: Attack 1"
 			
 			label senate
 			`	JJ puts a hand on his shoulder and says, a little more firmly than Alondo did, "Calm down, Tomek. We're obeying the orders of the Senate. We have to honor the democratic process even when we don't like the decisions they make."`
-			`	"Oh, the Senate. Of course. The Senate this, the Senate that," Tomek says mockingly while throwing his head back. "The Senate is in no position to be commanding this war. They do not have the military experience that I have, or that you have JJ. Do you think the Republic Parliament is busying themselves voting on every little fleet movement, or do you think they've put this in the hands of the Navy and told them to win this war? I made my reasons clear to you all many times why I didn't want to convene the Senate, because they would only hinder and handicap us from winning this war, and that's exactly what they're already doing!"`
+			`	"Oh, the Senate. Of course. The Senate this, the Senate that," Tomek says mockingly while throwing his head back. "The Senate is in no position to be commanding this war. They do not have the military experience of JJ or myself. Do you think the Republic Parliament is busying themselves voting on every little fleet movement, or do you think they've put this in the hands of the Navy and told them to win this war? I made my reasons clear to you all many times why I didn't want to convene the Senate, because they would only hinder and handicap us from winning this war, and that's exactly what they're already doing!"`
 			`	"Tomek! That's enough!" JJ yells, which seems to draw even more surprise and attention than when Tomek yelled. "The Council decided that the Senate would convene, and so it did. It is only by the grace of the Senate that the Council even still exists."`
 			`	"And it'll be by the grace of God that we don't all end up dead because of it," Tomek responds.`
 			`	JJ turns to you and Alondo. "<first>. Alondo. I pray your mission to Thule is a success."`
@@ -1310,11 +1306,11 @@ mission "FW Pirates: Attack 2"
 	to offer
 		has "FW Pirates: Attack 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
-			`When you land on <origin>, you find the fleet that Tomek mentioned: a few militia heavy and medium warships, a couple of carriers, three squadrons of interceptors, and even four merchant ships of varying sizes. In total the fleet is nearly as large as one of the fleets that defended Sabik or Kornephoros, but as you survey the motley mix of grizzled militia veterans, young, naive interceptor pilots, and eager merchant captains, you can't help but wonder if a fleet of this size has a good chance against the strongest pirate world in Southern space.`
+			`When you land on <origin>, you find the fleet that Tomek mentioned: a few militia heavy and medium warships, a carrier, three squadrons of interceptors, and even four merchant ships of varying sizes. In total the fleet is nearly as large as one of the fleets that defended Sabik or Kornephoros, but as you survey the motley mix of grizzled militia veterans, young, naive interceptor pilots, and eager merchant captains, you can't help but wonder if a fleet of this size has a good chance against the strongest pirate world in Southern space.`
 			`	The Navy failed to conquer Longjump. Why would a fleet of a similar size be capable of conquering Greenrock? Perhaps the Senate was right in suggesting a diplomatic solution. Or perhaps luck will be in your favor.`
 			choice
 				`	(Go ahead and attack Greenrock, disobeying the Senate's orders regardless of the consequences.)`
@@ -1333,27 +1329,20 @@ mission "FW Pirates: Attack 2"
 		fleet
 			names "free worlds capital"
 			variant
-				"Falcon (Laser)" 2
+				"Falcon (Laser)"
 				"Bastion (Laser)"
 		fleet
 			names "free worlds capital"
 			variant
-				"Falcon (Laser)"
-				"Bastion (Heavy)"
 				"Osprey"
-		fleet
-			names "free worlds capital"
-			variant
-				"Osprey (Laser)"
-				"Osprey (Missile)" 2
+				"Osprey (Missile)"
 		fleet
 			names "free worlds capital"
 			fighters
 				names "free worlds fighters"
 			variant
 				"Skein"
-				"Roost"
-				"Finch" 10
+				"Finch" 6
 		fleet
 			names "free worlds small"
 			variant
@@ -1365,7 +1354,7 @@ mission "FW Pirates: Attack 2"
 			names "free worlds small"
 			variant
 				"Fury (Missile)" 2
-				"Fury (Bomber)" 2
+				"Fury (Bomber)"
 		fleet
 			names "free worlds small"
 			variant
@@ -1376,7 +1365,7 @@ mission "FW Pirates: Attack 2"
 		fleet
 			names "civilian"
 			variant
-				"Leviathan"
+				"Firebird"
 				"Behemoth"
 				"Modified Argosy"
 				"Clipper (Speedy)"
@@ -1390,53 +1379,43 @@ mission "FW Pirates: Attack 2"
 			variant
 				"Falcon (Heavy)"
 				"Clipper (Heavy)"
-		fleet
-			government "Pirate"
-			names "pirate"
-			variant
-				"Bastion"
 				"Modified Argosy"
 		fleet
 			government "Pirate"
 			names "pirate"
 			variant
-				"Sparrow (Gatling)" 5
+				"Bastion"
+				"Modified Argosy" 2
 		fleet
 			government "Pirate"
 			names "pirate"
 			variant
-				"Protector (Proton)"
-				"Headhunter (Particle)"
+				"Bastion"
+				"Sparrow (Gatling)" 3
 		fleet
 			government "Pirate"
 			names "pirate"
 			variant
-				"Splinter (Proton)" 2
-				"Quicksilver (Proton)"
-		fleet
-			government "Pirate"
-			names "pirate"
-			variant
-				"Vanguard (Particle)"
+				"Splinter (Proton)"
 		fleet
 			government "Pirate"
 			names "pirate"
 			variant
 				"Firebird (Plasma)"
 				"Corvette (Speedy)"
-		fleet
-			government "Pirate"
-			names "pirate"
-			variant
-				"Raven (Afterburner)" 2
 				"Scout (Speedy)"
 		fleet
 			government "Pirate"
 			names "pirate"
 			variant
-				"Aerie" 2
+				"Hawk"
+				"Hawk (Rocket)"
+		fleet
+			government "Pirate"
+			names "pirate"
+			variant
 				"Mule (Heavy)"
-				"Dagger" 5
+				"Dagger"
 	
 	on visit
 		dialog `You've landed on <planet>, but there are still pirates defending the system. All pirates in the system must be eliminated before <planet> can be taken.`
@@ -1476,7 +1455,7 @@ mission "FW Pirates: Attack 3"
 	to offer
 		has "FW Pirates: Attack 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1543,7 +1522,7 @@ mission "FW Pirates: Diplomacy 1"
 		not "fw first chapter done"
 		not "FW Refinery 1: offered"
 	to fail
-		has "FW Pirates: Attack 1: done"
+		has "event: battle for Greenrock"
 	
 	npc accompany save
 		government "Free Worlds"
@@ -1567,7 +1546,7 @@ mission "FW Pirates: Diplomacy 2"
 	to offer
 		has "FW Pirates: Diplomacy 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "battle for Thule"
@@ -1632,7 +1611,7 @@ mission "FW Pirates: Diplomacy 3"
 	to offer
 		has "FW Pirates: Diplomacy 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"reputation: Independent" >?= 10
@@ -1673,7 +1652,7 @@ mission "FW Pirates: Diplomacy 4"
 	to offer
 		has "FW Pirates: Diplomacy 3: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fw suppressed Greenrock"
@@ -1729,7 +1708,7 @@ mission "FW Early Warning 1"
 			has "FW Pirates: Attack 3: done"
 			has "FW Pirates: Diplomacy 4: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1772,34 +1751,56 @@ mission "FW Early Warning 1"
 		government "Republic"
 		personality staying heroic
 		system "Wei"
-		fleet "Small Republic" 2
+		fleet
+			names "republic capital"
+			variant
+				"Frigate"
+				"Gunboat" 3
+				"Rainmaker"
 	npc
 		government "Republic"
 		personality staying heroic
 		system "Seginus"
-		fleet "Large Republic"
-		fleet "Small Republic"
+		fleet
+			names "republic capital"
+			variant
+				"Frigate" 2
+				"Gunboat" 2
+				"Rainmaker"
+		fleet
+			names "republic capital"
+			variant
+				"Protector (Quad Blaster)"
+	npc
+		government "Republic"
+		personality staying heroic
+		system "Alphecca"
+		fleet
+			names "republic capital"
+			variant
+				"Frigate" 2
+				"Gunboat" 2
+				"Rainmaker"
+		fleet
+			names "republic capital"
+			variant
+				"Frigate"
+				"Gunboat" 2
+
+	npc
+		government "Republic"
+		personality staying heroic
+		system "Alioth"
+		fleet
+			names "republic capital"
+			variant
+				"Gunboat"
+				"Rainmaker" 2
 		fleet
 			names "republic capital"
 			variant
 				"Protector (Quad Blaster)"
 				"Protector"
-	npc
-		government "Republic"
-		personality staying heroic
-		system "Alphecca"
-		fleet "Large Republic" 2
-		fleet "Small Republic" 2
-	npc
-		government "Republic"
-		personality staying heroic
-		system "Alioth"
-		fleet "Large Republic"
-		fleet "Small Republic" 2
-		fleet
-			names "republic capital"
-			variant
-				"Protector (Quad Blaster)"
 	
 	on visit
 		dialog phrase "generic waypoint on visit"
@@ -1817,7 +1818,7 @@ mission "FW Early Warning 2"
 	to offer
 		has "FW Early Warning 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	on offer
 		conversation
 			`When you return, you find Tomek and JJ speaking with captains of the eastern patrols. The rest of the Council has been moved off-world in case the Navy retakes Kornephoros.`
@@ -1870,7 +1871,7 @@ mission "FW Early Warning 3"
 	to offer
 		has "FW Early Warning 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "People" "Ranulph Hines" "Ranulph Hines is a commander within the Republic Navy. While a competent leader, he has a reputation for disregarding many of the Navy's old traditions, instead preferring to do things his own way."
@@ -1887,7 +1888,7 @@ mission "FW Early Warning 3"
 			`	"Lieutenant Commander Jean-Jacques Soleau, in the flesh before my very eyes," Hines says, wiping the edges of his mouth. "I never imagined I'd be seeing you again after you so unceremoniously left the Navy."`
 			`	"I'm not here to discuss the past, Commander," JJ responds. "I'm here to prevent more bloodshed in this pointless war."`
 			`	"As am I, Soleau, as am I. Although I might ask, were the lives lost in your attacks on Geminus and Martini pointless, or were those necessary losses."`
-			`	"The Free Worlds is not responsible for those bombings," says JJ, sounding somewhat shaken. "We maintain our innocence, and were seeking to uncover who was responsible before the Republic ordered the Navy to take Kornephoros from us."`
+			`	"The Free Worlds are not responsible for those bombings," says JJ, sounding somewhat shaken. "We maintain our innocence, and were seeking to uncover who was responsible before the Republic ordered the Navy to take Kornephoros from us."`
 			`	"There was no 'taking,' Soleau. Kornephoros is rightfully Republic territory. We were simply enacting a police action on one of our own worlds, and arresting the terrorists who-"`
 			`	"So did you only come here to insult me and the Free Worlds or are you here to discuss peace as I asked?" JJ says, cutting Hines off. "As I said, I'm here to prevent more bloodshed. The deaths of those on Geminus and Martini as well as those in Kornephoros and Sabik were enough already. Continued bloodshed will not satisfy either side in this war."`
 			`	"Continued bloodshed like what occurred on Greenrock only days ago?" Hines quips. "I'm sure you are aware that the Navy cannot bring its full force upon the 'Free Worlds.' We have borders to patrol and piracy to tend to. You, on the other hand, have just shattered the biggest hub of piracy in the region, and I have no doubt that this has freed up many resources. It would appear to me that you yourselves are consolidating your forces for an offensive and further bloodshed despite your insistence to the opposite."`
@@ -1969,7 +1970,7 @@ mission "FW Early Warning 4"
 	to offer
 		has "FW Early Warning 3: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "battle in Wei"
@@ -1986,7 +1987,7 @@ mission "FW Early Warning 4"
 			names "free worlds capital"
 			variant
 				"Falcon"
-				"Osprey" 2
+				"Osprey"
 		fleet
 			names "free worlds capital"
 			variant
@@ -2004,16 +2005,15 @@ mission "FW Early Warning 4"
 			names "free worlds capital"
 			variant
 				"Falcon"
-				"Osprey"
 				"Osprey (Laser)"
 				"Hawk" 3
 				"Sparrow" 5
 		fleet
 			names "free worlds capital"
 			variant
-				"Bastion (Heavy)" 2
-				"Argosy (Blaster)" 4
-				"Fury" 6
+				"Bastion (Heavy)"
+				"Argosy (Blaster)" 3
+				"Fury" 4
 	npc
 		government "Free Worlds"
 		personality heroic disables entering escort
@@ -2043,19 +2043,19 @@ mission "FW Early Warning 4"
 			variant
 				"Cruiser (Heavy)" 2
 				"Combat Drone" 8
-				"Frigate" 2
+				"Frigate"
 				"Rainmaker" 2
 		fleet
 			names "republic capital"
 			variant
-				"Protector (Quad Blaster)" 2
+				"Protector (Quad Blaster)"
 				"Frigate" 2
 				"Gunboat"
 		fleet
 			names "republic capital"
 			variant
 				"Protector (Quad Blaster)" 2
-				"Frigate" 2
+				"Frigate"
 				"Rainmaker" 2
 	
 	on visit
@@ -2090,7 +2090,7 @@ mission "FW Early Warning 5"
 	to offer
 		has "FW Early Warning 4: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 
 
 
@@ -2106,7 +2106,7 @@ mission "FW Senate Hearing"
 		has "FW Early Warning 5: done"
 		has "FW Pirates: Attack 3: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		clear "salary: Free Worlds"
@@ -2127,7 +2127,7 @@ mission "FW Senate Hearing"
 		event "wolf pack reveal" 30
 		event "fw stripped of service"
 		set "fw first chapter done"
-		log "Officially censured by the Free Worlds Senate for launching an attack on a pirate world rather than obeying their instructions to seek a diplomatic solution. It may be a while before any further work for the Free Worlds is available."
+		log "Officially censured by the Free Worlds Senate for launching an attack on a pirate world rather than obeying their instructions to seek a diplomatic solution. It may be a while before any further work for the Free Worlds are available."
 		log "People" "Tomek Voigt" `Tomek was removed from the Council and placed under house arrest by the Senate after he disobeyed their orders and captured the pirate world of Greenrock rather than pursue the diplomatic solution that the Senate preferred.`
 		conversation
 			`With some trepidation, you enter the Senate building and introduce yourself to the receptionist. He says, "Please wait here. Someone will come for you when they are ready."`
@@ -2182,7 +2182,7 @@ mission "FW Refinery 1"
 		has "FW Early Warning 5: done"
 		has "FW Pirates: Diplomacy 4: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -2226,7 +2226,7 @@ mission "FW Refinery 1A"
 	to offer
 		has "FW Refinery 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -2264,7 +2264,7 @@ mission "FW Rogue Elements"
 		event "navy occupying the south" 45
 		event "memorial on Deep"
 		conversation
-			`After you land, you notice that a sizable crowd has gathered around a video screen near the edge of the <origin> spaceport. You approach to find out what's going on. You're about to ask someone what's happening when you overhear Tomek's voice coming from screen. You look up to see a video of Tomek standing atop a Free Worlds warship and addressing an unseen crowd.`
+			`After you land, you notice that a sizable crowd has gathered around a video screen near the edge of the <origin> spaceport. You approach to find out what's going on. You're about to ask someone what's happening when you overhear Tomek's voice coming from the screen. You look up to see a video of Tomek standing atop a Free Worlds warship and addressing an unseen crowd.`
 			`	"For generations we have been neglected by the Republic!" he shouts. "Our grievances were ignored! Our pain and suffering was ignored! Our needs were ignored! We cried out for help, and yet the Republic did nothing, allowing our planets to be ravaged by piracy while continuing to tax our credits for services we were not provided. And as the years have gone on the pirates have only become more and more emboldened.`
 			`	"We tried our best, even with the system stacked against us. Councilor Katya Reynolds and others like her spoke on the behalf of billions within the South, Rim, and Dirt Belt. On behalf of us. On behalf of our brothers and sisters, our fathers and mothers, our sons and daughters. And they spat in her face! And when they did that, they spat in our faces!`
 			`	"And so we banded together. Friends and family locked in arms, doing that which the Republic would not. We looked out for each other, and raised our own defenses against the piracy that we so feared. And then we stood up together and told the Republic that we would take their neglect no longer. We shouted that the system does not work, and so we will create our own! We, with the sweat, blood, and tears of generations, birthed these Free Worlds!`

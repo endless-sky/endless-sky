@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ALERT_LABEL_H_
-#define ALERT_LABEL_H_
+#pragma once
 
 #include "Color.h"
 #include "Point.h"
@@ -41,7 +40,3 @@ private:
 	double radius = 15.;
 	const Color *color;
 };
-
-
-
-#endif

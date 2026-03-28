@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef HARDPOINT_H_
-#define HARDPOINT_H_
+#pragma once
 
 #include "Angle.h"
 #include "Point.h"
@@ -27,6 +26,7 @@ class Outfit;
 class Projectile;
 class Ship;
 class Visual;
+class Weapon;
 
 
 
@@ -34,6 +34,12 @@ class Visual;
 // which may or may not have a weapon installed.
 class Hardpoint {
 public:
+	enum class Side {
+		OVER,
+		INSIDE,
+		UNDER
+	};
+
 	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
 	struct BaseAttributes {
 		// The angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
@@ -43,20 +49,27 @@ public:
 		bool isParallel;
 		// An omnidirectional turret can rotate infinitely.
 		bool isOmnidirectional;
+		// Whether the hardpoint should be drawn over the ship, under it, or not at all.
+		Side side = Side::OVER;
 		// Range over which the turret can turn, from leftmost position to rightmost position.
 		// (directional turret only)
 		Angle minArc;
 		Angle maxArc;
+		std::vector<std::pair<Angle, Angle>> blindspots;
+		// This attribute is added to the turret turn multiplier of the ship.
+		double turnMultiplier;
 	};
 
 
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
 	Hardpoint(const Point &point, const BaseAttributes &attributes,
-		bool isTurret, bool isUnder, const Outfit *outfit = nullptr);
+		bool isTurret, const Outfit *outfit = nullptr);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
+	// The Outfit is guaranteed to have a Weapon after GameData::FinishLoading.
 	const Outfit *GetOutfit() const;
+	const Weapon *GetWeapon() const;
 	// Get the location, relative to the center of the ship, from which
 	// projectiles of this weapon should originate. This point must be
 	// rotated to take the ship's current facing direction into account.
@@ -72,17 +85,21 @@ public:
 	const Angle &GetMaxArc() const;
 	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
+	// Get the turret turn rate of this hardpoint, considering all applicable multipliers.
+	double TurnRate(const Ship &ship) const;
 	// Shortcuts for querying weapon characteristics.
 	bool IsTurret() const;
 	bool IsParallel() const;
 	bool IsOmnidirectional() const;
-	bool IsUnder() const;
+	Side GetSide() const;
 	bool IsHoming() const;
 	bool IsSpecial() const;
-	bool CanAim() const;
+	bool CanAim(const Ship &ship) const;
 
 	// Check if this weapon is ready to fire.
 	bool IsReady() const;
+	// Check if this weapon can't fire because of its blindspots.
+	bool IsBlind() const;
 	// Check if this weapon was firing in the previous step.
 	bool WasFiring() const;
 	// If this is a burst weapon, get the number of shots left in the burst.
@@ -92,7 +109,7 @@ public:
 
 	// Adjust this weapon's aim by the given amount, relative to its maximum
 	// "turret turn" rate.
-	void Aim(double amount);
+	void Aim(const Ship &ship, double amount);
 	// Fire this weapon. If it is a turret, it automatically points toward
 	// the given ship's target. If the weapon requires ammunition, it will
 	// be subtracted from the given ship.
@@ -124,11 +141,11 @@ private:
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
 
 	// The arc depends on both the base hardpoint and the installed outfit.
-	void UpdateArc();
+	void UpdateArc(bool isNewlyConstructed = false);
 
 
 private:
-	// The weapon installed in this hardpoint.
+	// The Outfit installed in this hardpoint is guaranteed to have a Weapon after GameData::FinishLoading.
 	const Outfit *outfit = nullptr;
 	// Hardpoint location, in world coordinates relative to the ship's center.
 	Point point;
@@ -146,8 +163,6 @@ private:
 	bool isParallel = false;
 	// Indicates if this hardpoint is omnidirectional (turret only).
 	bool isOmnidirectional = true;
-	// Indicates whether the hardpoint sprite is drawn under the ship.
-	bool isUnder = false;
 
 	// Angle adjustment for convergence.
 	Angle angle;
@@ -158,7 +173,3 @@ private:
 	bool isFiring = false;
 	bool wasFiring = false;
 };
-
-
-
-#endif

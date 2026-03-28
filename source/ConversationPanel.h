@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONVERSATION_PANEL_H_
-#define CONVERSATION_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -47,10 +46,13 @@ public:
 		const Mission *caller = nullptr, const System *system = nullptr,
 		const std::shared_ptr<Ship> &ship = nullptr, bool useTransactions = false);
 
-template <class T>
+	virtual ~ConversationPanel() override;
+
+	template<class T>
 	void SetCallback(T *t, void (T::*fun)(int));
 	void SetCallback(std::function<void(int)> fun);
 
+	virtual void Step() override;
 	// Draw this panel.
 	virtual void Draw() override;
 
@@ -125,6 +127,9 @@ private:
 	// Current scroll position.
 	double scroll = 0.;
 
+	// Whether the scenes from the conversation have been preloaded yet.
+	bool hasLoadedScenes = false;
+
 	// The "history" of the conversation up to this point:
 	std::list<Paragraph> text;
 	// The current choices being presented to you, and their indices:
@@ -158,12 +163,8 @@ private:
 
 
 // Allow the callback function to be a member of any class.
-template <class T>
+template<class T>
 void ConversationPanel::SetCallback(T *t, void (T::*fun)(int))
 {
 	callback = std::bind(fun, t, std::placeholders::_1);
 }
-
-
-
-#endif

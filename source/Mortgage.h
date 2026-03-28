@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MORTGAGE_H_
-#define MORTGAGE_H_
+#pragma once
 
 #include <cstdint>
 #include <string>
@@ -86,7 +85,3 @@ private:
 	std::string interestString;
 	int term = 365;
 };
-
-
-
-#endif

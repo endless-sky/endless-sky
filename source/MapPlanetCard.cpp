@@ -16,7 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapPlanetCard.h"
 
 #include "Color.h"
-#include "FillShader.h"
+#include "text/DisplayText.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -25,12 +26,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "Planet.h"
 #include "Point.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Screen.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
-#include "text/WrappedText.h"
 
 using namespace std;
 
@@ -40,15 +41,17 @@ namespace {
 
 
 
-MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited)
-	: number(number), hasVisited(hasVisited), planetName(object.Name())
+MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited,
+		const MapDetailPanel *parent)
+	: parent(parent), number(number), hasVisited(hasVisited), loadingCircle(30.f, 10, 2.),
+		planetName(object.DisplayName())
 {
 	planet = object.GetPlanet();
 	hasSpaceport = planet->HasServices();
 	hasShipyard = planet->HasShipyard();
 	hasOutfitter = planet->HasOutfitter();
-	governmentName = planet->GetGovernment()->GetName();
-	string systemGovernmentName = planet->GetSystem()->GetGovernment()->GetName();
+	governmentName = planet->GetGovernment()->DisplayName();
+	string systemGovernmentName = planet->GetSystem()->GetGovernment()->DisplayName();
 	if(governmentName != "Uninhabited" && governmentName != systemGovernmentName)
 		hasGovernments = true;
 
@@ -131,6 +134,7 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 
 bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 {
+	loadingCircle.Step();
 	// Need to update this before checking if the element fits.
 	yCoordinate = uiPoint.Y();
 	isShown = IsShown();
@@ -143,8 +147,8 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 
 		const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 		// The maximum possible size for the sprite of the planet.
-		const double planetIconMaxSize = planetCardInterface->GetValue("planet icon max size");
-		const auto alignLeft = Layout(planetCardInterface->GetValue("width") - planetIconMaxSize, Truncate::BACK);
+		const double iconMaxSize = planetCardInterface->GetValue("planet icon max size");
+		const auto alignLeft = Layout(planetCardInterface->GetValue("width") - iconMaxSize, Truncate::BACK);
 
 		// Height of one MapPlanetCard element.
 		const double height = Height();
@@ -161,26 +165,32 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		// The top part goes out of the screen so we can draw there. The bottom would go out of this panel.
 		const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 
-		auto spriteItem = SpriteShader::Prepare(sprite, Point(Screen::Left() + planetIconMaxSize / 2.,
-			uiPoint.Y() + height / 2.), spriteScale);
+		// Wait until the sprite is loaded fully before attempting to draw it.
+		Point iconPos = Point(Screen::Left() + iconMaxSize / 2., uiPoint.Y() + height / 2.);
+		if(sprite->IsLoaded())
+		{
+			auto spriteItem = SpriteShader::Prepare(sprite, iconPos, spriteScale);
 
-		float clip = 1.f;
-		// Lowest point of the planet sprite.
-		double planetBottomY = height / 2. + spriteScale * sprite->Height() / 2.;
-		// Calculate the correct clip on the bottom of the sprite if necessary.
-		// It is done by looking at how much space is available,
-		// and the difference between that and the lowest point of the sprite.
-		// Of course, the clipping needs to be done relative to the size of the sprite.
-		if(availableBottomSpace <= planetBottomY)
-			clip = 1.f + (availableBottomSpace - planetBottomY) / (spriteScale * sprite->Height());
+			float clip = 1.f;
+			// Lowest point of the planet sprite.
+			double planetBottomY = height / 2. + spriteScale * sprite->Height() / 2.;
+			// Calculate the correct clip on the bottom of the sprite if necessary.
+			// It is done by looking at how much space is available,
+			// and the difference between that and the lowest point of the sprite.
+			// Of course, the clipping needs to be done relative to the size of the sprite.
+			if(availableBottomSpace <= planetBottomY)
+				clip = 1.f + (availableBottomSpace - planetBottomY) / (spriteScale * sprite->Height());
 
-		spriteItem.clip = clip;
-		spriteItem.position[1] -= (sprite->Height() * ((1.f - clip) * .5f)) * spriteScale;
-		spriteItem.transform[3] *= clip;
+			spriteItem.clip = clip;
+			spriteItem.position[1] -= (sprite->Height() * ((1.f - clip) * .5f)) * spriteScale;
+			spriteItem.transform[3] *= clip;
 
-		SpriteShader::Bind();
-		SpriteShader::Add(spriteItem);
-		SpriteShader::Unbind();
+			SpriteShader::Bind();
+			SpriteShader::Add(spriteItem);
+			SpriteShader::Unbind();
+		}
+		else
+			loadingCircle.Draw(iconPos);
 
 		// Check if drawing a category would not go out of the panel.
 		const auto FitsCategory = [availableBottomSpace, categorySize, height]
@@ -284,8 +294,8 @@ void MapPlanetCard::Highlight(double availableSpace) const
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double width = planetCardInterface->GetValue("width");
 
-	FillShader::Fill(Point(Screen::Left() + width / 2., yCoordinate + availableSpace / 2.),
-		Point(width, availableSpace), *GameData::Colors().Get("item selected"));
+	Rectangle highlightRegion = Rectangle::FromCorner(Point(Screen::Left(), yCoordinate), Point(width, availableSpace));
+	FillShader::Fill(highlightRegion, *GameData::Colors().Get("item selected"));
 }
 
 
@@ -293,7 +303,7 @@ void MapPlanetCard::Highlight(double availableSpace) const
 double MapPlanetCard::AvailableTopSpace() const
 {
 	const double height = Height();
-	return min(height, max(0., (number + 1) * height - MapDetailPanel::GetScroll()));
+	return min(height, max(0., (number + 1) * height - parent->GetScroll()));
 }
 
 

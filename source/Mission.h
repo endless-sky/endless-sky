@@ -13,15 +13,17 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MISSION_H_
-#define MISSION_H_
+#pragma once
 
+#include "Color.h"
 #include "ConditionSet.h"
 #include "Date.h"
 #include "DistanceCalculationSettings.h"
 #include "EsUuid.h"
+#include "ExclusiveItem.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
+#include "MissionTimer.h"
 #include "NPC.h"
 #include "TextReplacements.h"
 
@@ -31,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 
+class ConditionsStore;
 class DataNode;
 class DataWriter;
 class Planet;
@@ -58,10 +61,12 @@ public:
 	~Mission() noexcept = default;
 
 	// Construct and Load() at the same time.
-	explicit Mission(const DataNode &node);
+	explicit Mission(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
 	// Load a mission, either from the game data or from a saved game.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Save a mission. It is safe to assume that any mission that is being saved
 	// is already "instantiated," so only a subset of the data must be saved.
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
@@ -70,24 +75,37 @@ public:
 
 	// Basic mission information.
 	const EsUuid &UUID() const noexcept;
-	const std::string &Name() const;
+	// Get the internal name used for this mission. This name is unique and is
+	// never modified by string substitution, so it can be used in condition
+	// variables, etc.
+	const std::string &TrueName() const;
+	const std::string &DisplayName() const;
 	const std::string &Description() const;
 	// Check if this mission should be shown in your mission list. If not, the
 	// player will not know this mission exists (which is sometimes useful).
 	bool IsVisible() const;
+	// The colors that should be used to display the mission name if it is shown
+	// in your mission list.
+	const Color &Unavailable() const;
+	const Color &Unselected() const;
+	const Color &Selected() const;
 	// Check if this mission should be quarantined due to requiring currently-
 	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
 	bool IsValid() const;
-	// Check if this mission has high priority. If any high-priority missions
-	// are available, no others will be shown at landing or in the spaceport.
-	// This is to be used for missions that are part of a series.
+	// Check if this mission has high priority. If any priority missions
+	// are available, only other priority missions and non-blocking ones can offer alongside it.
 	bool HasPriority() const;
+	// Check if this mission is a "non-blocking" mission.
+	// Such missions will not prevent minor missions from being offered alongside them,
+	// and will not be prevented from offering by priority missions.
+	bool IsNonBlocking() const;
 	// Check if this mission is a "minor" mission. Minor missions will only be
-	// offered if no other missions (minor or otherwise) are being offered.
+	// offered if no other non-blocking missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
+	int OfferPrecedence() const;
 
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER};
+	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD, ENTERING, TRANSITION};
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.
@@ -99,12 +117,14 @@ public:
 	const std::set<const Planet *> &VisitedStopovers() const;
 	const std::set<const System *> &MarkedSystems() const;
 	const std::set<const System *> &UnmarkedSystems() const;
-	void Mark(const System *system) const;
-	void Unmark(const System *system) const;
+	const std::set<const System *> &TrackedSystems() const;
+	void RecalculateTrackedSystems();
+	void Mark(const std::set<const System *> &systems) const;
+	void Unmark(const std::set<const System *> &system) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
-	int IllegalCargoFine() const;
-	std::string IllegalCargoMessage() const;
+	int Fine() const;
+	std::string FineMessage() const;
 	bool FailIfDiscovered() const;
 	int Passengers() const;
 	int64_t DisplayedPayment() const;
@@ -136,7 +156,7 @@ public:
 	bool HasSpace(const Ship &ship) const;
 	bool CanComplete(const PlayerInfo &player) const;
 	bool IsSatisfied(const PlayerInfo &player) const;
-	bool IsFailed(const PlayerInfo &player) const;
+	bool IsFailed() const;
 	bool OverridesCapture() const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
@@ -157,25 +177,30 @@ public:
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
+	// The UI is passed by pointer since certain actions aren't allowed to generate new panels,
+	// and will therefore receive nullptr for the UI. These cases include:
+	// - OFFER if it is for a job that was just accepted. (This call will be immediately followed up with an ACCEPT
+	// action that does pass the UI pointer.)
+	// - ACCEPT, DECLINE, and DEFER if it is from PlayerInfo::MissionCallback(), as in this case the mission already
+	// used the UI to create a conversation or dialog that triggered the callback.
+	// - DAILY is called in PlayerInfo::AdvanceDate and never has access to the UI.
 	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY, DISABLED};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
 	const std::list<NPC> &NPCs() const;
+	// Iterate through the timers and progress them if applicable.
+	void StepTimers(PlayerInfo &player, UI &ui);
 	// Update which NPCs are active based on their spawn and despawn conditions.
 	void UpdateNPCs(const PlayerInfo &player);
 	// Checks if the given ship belongs to one of the mission's NPCs.
 	bool HasShip(const std::shared_ptr<Ship> &ship) const;
 	// If any event occurs between two ships, check to see if this mission cares
 	// about it. This may affect the mission status or display a message.
-	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
+	void Do(const ShipEvent &event, PlayerInfo &player, UI &ui);
 	bool RequiresGiftedShip(const std::string &shipId) const;
 
-	// Get the internal name used for this mission. This name is unique and is
-	// never modified by string substitution, so it can be used in condition
-	// variables, etc.
-	const std::string &Identifier() const;
 	// Get a specific mission action from this mission.
 	// If the mission action is not found for the given trigger, returns an empty
 	// mission action.
@@ -187,25 +212,38 @@ public:
 
 
 private:
-	bool Enter(const System *system, PlayerInfo &player, UI *ui);
+	bool Enter(const System *system, PlayerInfo &player, UI &ui);
+	bool Land(const Planet *planet, PlayerInfo &player, UI &ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);
 
 
 private:
-	std::string name;
+	std::string trueName;
 	std::string displayName;
 	std::string description;
 	std::string blocked;
 	Location location = SPACEPORT;
+
+	// Colors that determine how this mission displays in the MissionPanel.
+	ExclusiveItem<Color> unavailable;
+	ExclusiveItem<Color> unselected;
+	ExclusiveItem<Color> selected;
 
 	EsUuid uuid;
 
 	bool hasFailed = false;
 	bool isVisible = true;
 	bool hasPriority = false;
+	bool isNonBlocking = false;
 	bool isMinor = false;
+	// By default, missions are offered in alphabetical order.
+	// Using a non-zero offer precedence changes the order that missions are offered in.
+	// Missions with a higher offer precedence are offered before missions with a lower
+	// precedence. Where two missions have the same offer precedence, they continue to
+	// offer in alphabetical order.
+	int offerPrecedence = 0;
 	bool autosave = false;
 	bool overridesCapture = false;
 	Date deadline;
@@ -217,6 +255,7 @@ private:
 	bool ignoreClearance = false;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
+	LocationFilter completionFilter;
 
 	int repeat = 1;
 	std::string cargo;
@@ -224,8 +263,8 @@ private:
 	// Parameters for generating random cargo amounts:
 	int cargoLimit = 0;
 	double cargoProb = 0.;
-	int illegalCargoFine = 0;
-	std::string illegalCargoMessage;
+	int fine = 0;
+	std::string fineMessage;
 	bool failIfDiscovered = false;
 	int passengers = 0;
 	// Parameters for generating random passenger amounts:
@@ -255,23 +294,28 @@ private:
 	// wants to highlight for the player.
 	mutable std::set<const System *> markedSystems;
 	mutable std::set<const System *> unmarkedSystems;
+	// Systems that are marked because a "tracked" mission NPC is in them.
+	bool hasTrackedNpcs = false;
+	std::set<const System *> trackedSystems;
 
 	// User-defined text replacements unique to this mission:
 	TextReplacements substitutions;
 
 	// NPCs:
 	std::list<NPC> npcs;
+	// Timers:
+	std::list<MissionTimer> timers;
 
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;
-	// "on enter" actions may name a specific system, or rely on matching a
-	// LocationFilter in order to designate the matched system.
+	// "on enter" and "on land" actions may name a specific system or planet,
+	// or rely on matching a LocationFilter in order to designate the matched
+	// system or planet.
 	std::map<const System *, MissionAction> onEnter;
 	std::list<MissionAction> genericOnEnter;
-	// Track which `on enter` MissionActions have triggered.
+	std::map<const Planet *, MissionAction> onLand;
+	std::list<MissionAction> genericOnLand;
+	// Track which `on enter` and `on land` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
+	std::set<const MissionAction *> didLand;
 };
-
-
-
-#endif

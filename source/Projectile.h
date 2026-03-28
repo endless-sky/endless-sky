@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PROJECTILE_H_
-#define PROJECTILE_H_
+#pragma once
 
 #include "Body.h"
 
@@ -26,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <vector>
 
+class Entity;
 class Government;
 class Ship;
 class Visual;
@@ -86,16 +86,18 @@ public:
 	// Get information on how this projectile impacted a ship.
 	ImpactInfo GetInfo(double intersection) const;
 
-	// Find out which ship or government this projectile is targeting. Note:
+	// Find out which entity or government this projectile is targeting. Note:
 	// this pointer is not guaranteed to be dereferenceable, so only use it
 	// for comparing.
-	const Ship *Target() const;
+	const Entity *Target() const;
 	const Government *TargetGovernment() const;
 	// This function is much more costly, so use it only if you need to get a
-	// non-const shared pointer to the target ship.
-	std::shared_ptr<Ship> TargetPtr() const;
+	// non-const shared pointer to the target entity.
+	std::shared_ptr<Entity> TargetPtr() const;
 	// Clear the targeting information on this projectile.
 	void BreakTarget();
+	// Whether the target of this projectile is a ship.
+	bool IsTargetingShip() const;
 
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;
@@ -112,14 +114,16 @@ public:
 
 
 private:
-	void CheckLock(const Ship &target);
+	void CheckLock(const Entity *target, bool targetIsShip);
+	void CheckConfused(const Entity &target);
 
 
 private:
 	const Weapon *weapon = nullptr;
 
-	std::weak_ptr<Ship> targetShip;
-	const Ship *cachedTarget = nullptr;
+	bool targetIsShip = false;
+	std::weak_ptr<Entity> target;
+	const Entity *cachedTarget = nullptr;
 	bool targetDisabled = false;
 	const Government *targetGovernment = nullptr;
 
@@ -127,16 +131,18 @@ private:
 	// relative to the firing ship.
 	Point dV;
 	double clip = 1.;
+	// A positive value means the projectile is alive, -100 means it was killed
+	// by an anti-missile system, and -1000 means it exploded in a collision.
 	int lifetime = 0;
 	double distanceTraveled = 0.;
 	uint16_t hitsRemaining = 1U;
 	bool hasLock = true;
+	bool isConfused = false;
+	// A positive value means this projectile will turn to the right;
+	// a negative value means this projectile will turn left.
+	int confusionDirection = 0;
 
 	// This is safe to keep even if the ships die, because we don't actually call the ship,
 	// we just compare this pointer to other ship pointers.
-	const Ship *phasedShip;
+	const Ship *phasedShip = nullptr;
 };
-
-
-
-#endif

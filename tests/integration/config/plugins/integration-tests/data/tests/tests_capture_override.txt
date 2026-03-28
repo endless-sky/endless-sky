@@ -62,12 +62,12 @@ test-data "Capture Uncapturable With Capturable Override Save"
 		"visited planet" Ruin
 		changes
 			system "Terra Incognita"
-				fleet "%TEST%: derelicts" 5
+				fleet "TEST: derelicts" 5
 		conditions
-			"%TEST%: ILLEGAL CAPTURE"
+			"TEST: ILLEGAL CAPTURE"
 			"Ruin: Landing: offered"
 
-ship "%TEST%: outfitless wardragon"
+ship "TEST: outfitless wardragon"
 	uncapturable
 	sprite "ship/wardragon"
 	thumbnail "thumbnail/wardragon"
@@ -86,20 +86,20 @@ ship "%TEST%: outfitless wardragon"
 		"energy generation" 10
 		shields 160000
 
-fleet "%TEST%: derelicts"
+fleet "TEST: derelicts"
 	personality derelict
 	government "Quarg"
 	variant
-		"%TEST%: outfitless wardragon"
+		"TEST: outfitless wardragon"
 
 test-data "Capture Uncapturable With Capturable Override Mission"
 	category mission
 	contents
-		mission "%TEST%: Capture That Quarg!"
+		mission "TEST: Capture That Quarg!"
 			boarding
 				"override capture"
 			to offer
-				has "%TEST%: ILLEGAL CAPTURE"
+				has "TEST: ILLEGAL CAPTURE"
 			destination "Earth"
 
 
@@ -118,7 +118,7 @@ test "Capture Uncapturable With Capturable Override"
 			command board
 		label "floating"
 		branch "floating"
-			not "%TEST%: Capture That Quarg!: offered"
+			not "TEST: Capture That Quarg!: offered"
 		# attempt capture and attack, then close the panel and land
 		input
 			key c
@@ -130,5 +130,5 @@ test "Capture Uncapturable With Capturable Override"
 			"travel destination" Ruin
 		call "Land"
 		assert
-			"ship model: %TEST%: outfitless wardragon" == 1
-			"%TEST%: Capture That Quarg!: declined" == 0
+			"ship model: TEST: outfitless wardragon" == 1
+			"TEST: Capture That Quarg!: declined" == 0

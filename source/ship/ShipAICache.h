@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_AI_CACHE_H_
-#define SHIP_AI_CACHE_H_
+#pragma once
 
 class Ship;
 
@@ -34,7 +33,10 @@ public:
 	// Accessors for AI data.
 	bool IsArtilleryAI() const;
 	double ShortestRange() const;
+	double LongestRange() const;
 	double ShortestArtillery() const;
+	double GunRange() const;
+	double TurretRange() const;
 	double MinSafeDistance() const;
 	bool NeedsAmmo() const;
 
@@ -44,9 +46,12 @@ private:
 
 	bool useArtilleryAI = false;
 	double shortestRange = 1000.;
+	double longestRange = 0.;
 	double shortestArtillery = 4000.;
 	double minSafeDistance = 0.;
 	double maxTurningRadius = 200.;
+	double turretRange = 0.;
+	double gunRange = 0.;
 	bool hasWeapons = false;
 	bool canFight = false;
 };
@@ -56,10 +61,9 @@ private:
 // Inline the accessors and setters because they get called so frequently.
 inline bool ShipAICache::IsArtilleryAI() const { return useArtilleryAI; }
 inline double ShipAICache::ShortestRange() const { return shortestRange; }
+inline double ShipAICache::LongestRange() const { return longestRange; }
 inline double ShipAICache::ShortestArtillery() const { return shortestArtillery; }
+inline double ShipAICache::GunRange() const { return gunRange; }
+inline double ShipAICache::TurretRange() const { return turretRange; }
 inline double ShipAICache::MinSafeDistance() const { return minSafeDistance; }
 inline bool ShipAICache::NeedsAmmo() const { return hasWeapons != canFight; }
-
-
-
-#endif

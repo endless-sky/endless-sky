@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEST_HELPER_DATANODE_FACTORY_H_
-#define ES_TEST_HELPER_DATANODE_FACTORY_H_
+#pragma once
 
 #include "../../../source/DataNode.h"
 
@@ -27,7 +26,3 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 std::vector<DataNode> AsDataNodes(const std::string &text);
 // Convert the text to a list of nodes, and return the first node.
 const DataNode AsDataNode(std::string text);
-
-
-
-#endif

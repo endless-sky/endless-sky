@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RECTANGLE_H_
-#define RECTANGLE_H_
+#pragma once
 
 #include "Point.h"
 
@@ -56,6 +55,8 @@ public:
 	double Right() const;
 	double Bottom() const;
 	Point TopLeft() const;
+	Point TopRight() const;
+	Point BottomLeft() const;
 	Point BottomRight() const;
 
 	// Check if a point is inside this rectangle.
@@ -73,7 +74,3 @@ private:
 	Point center;
 	Point dimensions;
 };
-
-
-
-#endif

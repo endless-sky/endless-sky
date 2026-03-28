@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SCREEN_H_
-#define SCREEN_H_
+#pragma once
 
 #include "Point.h"
 
@@ -44,18 +43,13 @@ public:
 
 
 public:
-	static void SetRaw(int width, int height);
+	static void SetRaw(int width, int height, bool noResizeEvent = false);
 
 	// Zoom level as specified by the user.
 	static int UserZoom();
 	// Effective zoom level, as restricted by the current resolution / window size.
 	static int Zoom();
-	static void SetZoom(int percent);
-
-	// Specify that this is a high-DPI window.
-	static void SetHighDPI(bool isHighDPI = true);
-	// This is true if the screen is high DPI, or if the zoom is above 100%.
-	static bool IsHighResolution();
+	static void SetZoom(int percent, bool noEvent = false);
 
 	static Point Dimensions();
 	static int Width();
@@ -75,7 +69,3 @@ public:
 	static Point BottomLeft();
 	static Point BottomRight();
 };
-
-
-
-#endif

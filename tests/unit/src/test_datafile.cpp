@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Include a helper functions.
 #include "datanode-factory.h"
 #include "../../../source/text/Format.h"
+#include "logger-output.h"
 #include "output-capture.hpp"
 
 // ... and any system includes needed for the test file.
@@ -36,9 +37,9 @@ namespace { // test namespace
 
 // Insert file-local data here, e.g. classes, structs, or fixtures that will be useful
 // to help test this class/method.
-const std::string missingQuoteWarning = "Warning: Closing quotation mark is missing:";
-const std::string mixedCommentWarning = "Warning: Mixed whitespace usage for comment at line";
-const std::string mixedNodeWarning = "Warning: Mixed whitespace usage at line";
+const std::string missingQuoteWarning = "Closing quotation mark is missing:";
+const std::string mixedCommentWarning = "Mixed whitespace usage for comment at line";
+const std::string mixedNodeWarning = "Mixed whitespace usage at line";
 
 std::vector<std::string> Split(const std::string &str)
 {
@@ -89,7 +90,7 @@ node2 hi
 			std::set<std::string> children{"foo", "something"};
 			for(const auto &parent : root)
 				for(const auto &child : parent)
-					REQUIRE(children.count(child.Token(0)));
+					REQUIRE(children.contains(child.Token(0)));
 		}
 		AND_THEN( "iterating child nodes visits their child nodes" ) {
 			for(const auto &parent : root)
@@ -111,7 +112,7 @@ SCENARIO( "Loading a DataFile with missing quotes", "[DataFile]" ) {
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
-			const auto warnings = Split(sink.Flush());
+			const auto warnings = Split(IgnoreLogHeaders(sink.Flush()));
 
 			REQUIRE( warnings.size() == 2 );
 			CHECK( warnings[0] == missingQuoteWarning );
@@ -127,7 +128,7 @@ system Test
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
-			const auto warnings = Split(sink.Flush());
+			const auto warnings = Split(IgnoreLogHeaders(sink.Flush()));
 
 			REQUIRE( warnings.size() == 3 );
 			CHECK( warnings[0] == missingQuoteWarning );
@@ -144,7 +145,7 @@ system" f
 		const DataFile root(stream);
 
 		THEN( "No warnings are issued" ) {
-			const auto warnings = Split(sink.Flush());
+			const auto warnings = Split(IgnoreLogHeaders(sink.Flush()));
 
 			CHECK( warnings.empty() );
 		}
@@ -155,7 +156,7 @@ system" f
 		const DataFile root(stream);
 
 		THEN( "No warnings are issued" ) {
-			const auto warnings = Split(sink.Flush());
+			const auto warnings = Split(IgnoreLogHeaders(sink.Flush()));
 
 			CHECK( warnings.empty() );
 		}
@@ -174,7 +175,7 @@ system foo
 		const DataFile root(stream);
 
 		THEN( "No warnings are issued" ) {
-			const auto warnings = Split(sink.Flush());
+			const auto warnings = Split(IgnoreLogHeaders(sink.Flush()));
 
 			CHECK( warnings.empty() );
 		}
@@ -189,7 +190,7 @@ system foo
 		const DataFile root(stream);
 
 		THEN( "No warnings are issued" ) {
-			const auto warnings = Split(sink.Flush());
+			const auto warnings = Split(IgnoreLogHeaders(sink.Flush()));
 
 			CHECK( warnings.empty() );
 		}
@@ -206,7 +207,7 @@ now with
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
-			const auto warnings = Split(sink.Flush());
+			const auto warnings = Split(IgnoreLogHeaders(sink.Flush()));
 
 			REQUIRE( warnings.size() == 3 );
 			CHECK( warnings[0] == mixedNodeWarning );
@@ -226,7 +227,7 @@ now with
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
-			const auto warnings = Split(sink.Flush());
+			const auto warnings = Split(IgnoreLogHeaders(sink.Flush()));
 
 			REQUIRE( warnings.size() == 3 );
 			CHECK( warnings[0] == mixedNodeWarning );
@@ -243,7 +244,7 @@ system test
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
-			const auto warnings = Split(sink.Flush());
+			const auto warnings = Split(IgnoreLogHeaders(sink.Flush()));
 
 			REQUIRE( warnings.size() == 3 );
 			CHECK( warnings[0] == mixedNodeWarning );
@@ -263,7 +264,7 @@ now with
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
-			const auto warnings = Split(sink.Flush());
+			const auto warnings = Split(IgnoreLogHeaders(sink.Flush()));
 
 			REQUIRE( warnings.size() == 1 );
 			CHECK( warnings[0] == mixedCommentWarning + " 6" );
@@ -281,7 +282,7 @@ now with
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
-			const auto warnings = Split(sink.Flush());
+			const auto warnings = Split(IgnoreLogHeaders(sink.Flush()));
 
 			REQUIRE( warnings.size() == 1 );
 			CHECK( warnings[0] == mixedCommentWarning + " 6" );

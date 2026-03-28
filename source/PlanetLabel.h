@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLANET_LABEL_H_
-#define PLANET_LABEL_H_
+#pragma once
 
 #include "Color.h"
 #include "Point.h"
@@ -32,12 +31,13 @@ class PlanetLabel {
 public:
 	PlanetLabel(const std::vector<PlanetLabel> &labels, const System &system, const StellarObject &object);
 
-	void Update(const Point &center, double zoom);
+	void Update(const Point &center, double zoom, const std::vector<PlanetLabel> &labels, const System &system);
 
 	void Draw() const;
 
 
 private:
+	void UpdateData(const std::vector<PlanetLabel> &labels, const System &system);
 	// Overlap detection.
 	void SetBoundingBox(const Point &labelDimensions, double angle);
 	Rectangle GetBoundingBox(double zoom) const;
@@ -46,8 +46,9 @@ private:
 
 
 private:
-	Point objectPosition;
-	double objectRadius = 0.;
+	const StellarObject *object;
+
+	Point drawCenter;
 
 	// Used for overlap detection during label creation.
 	Rectangle box;
@@ -65,7 +66,3 @@ private:
 	int hostility = 0;
 	double innerAngle = -1.;
 };
-
-
-
-#endif

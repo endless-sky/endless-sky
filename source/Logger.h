@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_LOGGER_H_
-#define ES_LOGGER_H_
+#pragma once
 
 #include <functional>
 #include <string>
@@ -26,10 +25,30 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // program should register its preferred logging facility when starting up.
 class Logger {
 public:
-	static void SetLogErrorCallback(std::function<void(const std::string &message)> callback);
-	static void LogError(const std::string &message);
+	enum class Level : char {
+		// Messages that don't indicate any failure, for example standard
+		// logger session information.
+		INFO = 'I',
+		// Messages about problems that might affect the game in a non-critical way,
+		// for example data errors.
+		WARNING = 'W',
+		// Messages about most important problems, including game startup errors.
+		ERROR = 'E'
+	};
+
+	// Print additional control messages when a session begins or ends.
+	class Session {
+	public:
+		Session(bool quiet);
+		~Session();
+
+
+	private:
+		bool quiet;
+	};
+
+
+public:
+	static void SetLogCallback(std::function<void(const std::string &message, Level)> callback);
+	static void Log(const std::string &message, Level level);
 };
-
-
-
-#endif

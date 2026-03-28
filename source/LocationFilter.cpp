@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 
 #include "CategoryList.h"
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "DistanceMap.h"
@@ -104,7 +104,7 @@ namespace {
 			);
 		}
 		// If the distance is greater than the maximum, this is not a match.
-		int d = distance.Days(system);
+		int d = distance.Days(*system);
 		return (d > maximum) ? -1 : d;
 	}
 
@@ -128,7 +128,7 @@ namespace {
 	}
 
 	// Validity check for this filter's sets. Only one element must be valid.
-	template <class T>
+	template<class T>
 	bool CheckValidity(const set<const T *> &c)
 	{
 		return c.empty() || any_of(c.begin(), c.end(),
@@ -162,14 +162,16 @@ namespace {
 
 
 // Construct and Load() at the same time.
-LocationFilter::LocationFilter(const DataNode &node)
+LocationFilter::LocationFilter(const DataNode &node, const set<const System *> *visitedSystems,
+	const set<const Planet *> *visitedPlanets)
 {
-	Load(node);
+	Load(node, visitedSystems, visitedPlanets);
 }
 
 
 
-void LocationFilter::Load(const DataNode &node)
+void LocationFilter::Load(const DataNode &node, const set<const System *> *visitedSystems,
+	const set<const Planet *> *visitedPlanets)
 {
 	for(const DataNode &child : node)
 	{
@@ -177,22 +179,23 @@ void LocationFilter::Load(const DataNode &node)
 		// neighboring system. If the token is alone on a line, it
 		// introduces many lines of this type of filter. Otherwise, this
 		// child is a normal LocationFilter line.
-		if(child.Token(0) == "not" || child.Token(0) == "neighbor")
+		const string &key = child.Token(0);
+		if(key == "not" || key == "neighbor")
 		{
-			list<LocationFilter> &filters = ((child.Token(0) == "not") ? notFilters : neighborFilters);
+			list<LocationFilter> &filters = ((key == "not") ? notFilters : neighborFilters);
 			filters.emplace_back();
 			if(child.Size() == 1)
-				filters.back().Load(child);
+				filters.back().Load(child, visitedSystems, visitedPlanets);
 			else
-				filters.back().LoadChild(child);
+				filters.back().LoadChild(child, visitedSystems, visitedPlanets);
 		}
 		else
-			LoadChild(child);
+			LoadChild(child, visitedSystems, visitedPlanets);
 	}
 
 	isEmpty = planets.empty() && attributes.empty() && systems.empty() && governments.empty()
 		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
-		&& outfits.empty() && shipCategory.empty();
+		&& outfits.empty() && shipCategory.empty() && !systemIsVisited && !planetIsVisited;
 }
 
 
@@ -227,7 +230,7 @@ void LocationFilter::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				for(const System *system : systems)
-					out.Write(system->Name());
+					out.Write(system->TrueName());
 			}
 			out.EndChild();
 		}
@@ -237,7 +240,7 @@ void LocationFilter::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				for(const Government *government : governments)
-					out.Write(government->GetTrueName());
+					out.Write(government->TrueName());
 			}
 			out.EndChild();
 		}
@@ -272,7 +275,11 @@ void LocationFilter::Save(DataWriter &out) const
 			out.EndChild();
 		}
 		if(center)
-			out.Write("near", center->Name(), centerMinDistance, centerMaxDistance);
+			out.Write("near", center->TrueName(), centerMinDistance, centerMaxDistance);
+		if(planetIsVisited)
+			out.Write("visited", "planet");
+		else if(systemIsVisited)
+			out.Write("visited");
 	}
 	out.EndChild();
 }
@@ -338,15 +345,22 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 {
 	if(!planet || !planet->IsValid())
 		return false;
+	if(planetIsVisited)
+	{
+		if(!visitedPlanets)
+			throw runtime_error("LocationFilter::Matches called with a null pointer to the player's visited planets!");
+		if(!visitedPlanets->contains(planet))
+			return false;
+	}
 
 	// If a ship class was given, do not match planets.
 	if(!shipCategory.empty())
 		return false;
 
-	if(!governments.empty() && !governments.count(planet->GetGovernment()))
+	if(!governments.empty() && !governments.contains(planet->GetGovernment()))
 		return false;
 
-	if(!planets.empty() && !planets.count(planet))
+	if(!planets.empty() && !planets.contains(planet))
 		return false;
 	for(const set<string> &attr : attributes)
 		if(!SetsIntersect(attr, planet->Attributes()))
@@ -358,7 +372,7 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 
 	// If outfits are specified, make sure they can be bought here.
 	for(const set<const Outfit *> &outfitList : outfits)
-		if(!SetsIntersect(outfitList, planet->Outfitter()))
+		if(!SetsIntersect(outfitList, planet->OutfitterStock()))
 			return false;
 
 	return Matches(planet->GetSystem(), origin, true);
@@ -382,12 +396,12 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 bool LocationFilter::Matches(const Ship &ship) const
 {
 	const System *origin = ship.GetSystem();
-	if(!systems.empty() && !systems.count(origin))
+	if(!systems.empty() && !systems.contains(origin))
 		return false;
-	if(!governments.empty() && !governments.count(ship.GetGovernment()))
+	if(!governments.empty() && !governments.contains(ship.GetGovernment()))
 		return false;
 
-	if(!shipCategory.empty() && !shipCategory.count(ship.Attributes().Category()))
+	if(!shipCategory.empty() && !shipCategory.contains(ship.Attributes().Category()))
 		return false;
 
 	if(!attributes.empty())
@@ -497,7 +511,7 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 		if(planet.IsWormhole()
 				|| (requireSpaceport && !planet.GetPort().HasService(Port::ServicesType::OffersMissions))
 				|| (!hasClearance && !planet.CanLand()))
-			if(planets.empty() || !planets.count(&planet))
+			if(planets.empty() || !planets.contains(&planet))
 				continue;
 		if(Matches(&planet, origin))
 			options.push_back(&planet);
@@ -508,13 +522,19 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 
 
 // Load one particular line of conditions.
-void LocationFilter::LoadChild(const DataNode &child)
+void LocationFilter::LoadChild(const DataNode &child, const set<const System *> *visitedSystems,
+	const set<const Planet *> *visitedPlanets)
 {
+	if(!visitedSystems || !visitedPlanets)
+		throw runtime_error("LocationFilters must be provided pointers to the player's visited systems and planets.");
+	this->visitedSystems = visitedSystems;
+	this->visitedPlanets = visitedPlanets;
+
 	bool isNot = (child.Token(0) == "not" || child.Token(0) == "neighbor");
 	int valueIndex = 1 + isNot;
 	const string &key = child.Token(valueIndex - 1);
 	if(key == "not" || key == "neighbor")
-		child.PrintTrace("Error: Skipping unsupported use of 'not' and 'neighbor'."
+		child.PrintTrace("Skipping unsupported use of 'not' and 'neighbor'."
 			" These keywords must be nested if used together.");
 	else if(key == "planet")
 	{
@@ -599,6 +619,12 @@ void LocationFilter::LoadChild(const DataNode &child)
 		if(outfits.back().empty())
 			outfits.pop_back();
 	}
+	else if(key == "visited")
+	{
+		systemIsVisited = true;
+		if(child.Size() >= 2 + isNot && child.Token(valueIndex) == "planet")
+			planetIsVisited = true;
+	}
 	else
 		child.PrintTrace("Skipping unrecognized attribute:");
 }
@@ -609,14 +635,21 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 {
 	if(!system || !system->IsValid())
 		return false;
-	if(!systems.empty() && !systems.count(system))
+	if(!systems.empty() && !systems.contains(system))
 		return false;
+	if(systemIsVisited)
+	{
+		if(!visitedSystems)
+			throw runtime_error("LocationFilter::Matches called with a null pointer to the player's visited systems!");
+		if(!visitedSystems->contains(system))
+			return false;
+	}
 
 	// Don't check these filters again if they were already checked as a part of
 	// checking if a planet matches.
 	if(!didPlanet)
 	{
-		if(!governments.empty() && !governments.count(system->GetGovernment()))
+		if(!governments.empty() && !governments.contains(system->GetGovernment()))
 			return false;
 
 		// This filter is being applied to a system, not a planet.

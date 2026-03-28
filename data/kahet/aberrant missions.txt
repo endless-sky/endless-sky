@@ -1,0 +1,34 @@
+# Copyright (c) 2025 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+mission "Disabled Aberrant"
+	boarding
+	invisible
+	source
+		government "Aberrant"
+	destination "Earth"
+	on offer
+		conversation
+			branch "boarded ka'het"
+				has "Disabled Ka'het: offered"
+			action
+				log `Successfully boarded an Aberrant. A strange presence seemed to watch during the investigation, one that gave a sense of foreboding. It appears to be a single, ship-sized organism that can travel in space using a special exoskeleton.`
+			`You draw the <flagship> alongside this strange entity, which, despite its lack of motion, seems to exude an ominous presence. Something feels fundamentally wrong with this ship as you approach a hole in a vulnerable part of its hull, which seems to be some kind of shell encasing a large, slug-like creature. Exposed to weapons fire, the creature seems to be dead, but you feel almost as if something is watching you.`
+			`	You have no trouble docking with what seems to be its "exoskeleton," trying to decide what to do next. While the Aberrant is too different from a normal ship for you to command it, it's safe to say that you can now loot some of its outfits. The rest appear to be embedded in some kind of hard, glassy tissue; perhaps destroying the ship could release them.`
+				decline
+			label "boarded ka'het"
+			action
+				log `Successfully boarded an Aberrant. It appears to strongly resemble a Ka'het, yet one that has been twisted into a new form, one that feels fundamentally wrong.`
+			`You draw the <flagship> alongside this strange, yet almost-familiar entity, which, despite its lack of motion, seems to exude an ominous presence. Something feels fundamentally wrong with this ship, which superficially resembles a Ka'het, yet is clearly not one - perhaps a distant relation, or a Ka'het that has been irrevocably changed by something else. You approach a hole in a vulnerable part of its hull, where a 'het slug appears dead, but you feel almost as if it still watches you.`
+			`	You have no trouble docking with its "exoskeleton," trying to decide what to do next. While the Aberrant is too different from a normal ship for you to command it, it's safe to say that you can now loot some of its outfits. The rest appear to be embedded in some kind of hard, glassy tissue; perhaps destroying the ship could release them.`

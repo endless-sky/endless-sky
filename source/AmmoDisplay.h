@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef AMMO_DISPLAY_H_
-#define AMMO_DISPLAY_H_
+#pragma once
 
 #include "ClickZone.h"
 
@@ -44,7 +43,3 @@ private:
 	mutable std::vector<ClickZone<const Outfit *>> ammoIconZones;
 	PlayerInfo &player;
 };
-
-
-
-#endif

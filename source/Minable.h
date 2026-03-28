@@ -13,10 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MINABLE_H_
-#define MINABLE_H_
+#pragma once
 
-#include "Body.h"
+#include "Entity.h"
 
 #include "Angle.h"
 
@@ -29,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class Effect;
 class Flotsam;
+class MinableDamageDealt;
 class Outfit;
 class Projectile;
 class Visual;
@@ -37,7 +37,7 @@ class Visual;
 
 // Class representing an asteroid or other minable object that orbits in an
 // ellipse around the system center.
-class Minable : public Body {
+class Minable : public Entity {
 public:
 	class Payload {
 	public:
@@ -63,7 +63,7 @@ public:
 	// Point Unit() const;
 
 	// Load a definition of a minable object.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Calculate the expected payload value of this Minable after all outfits have been fully loaded.
 	void FinishLoading();
 	const std::string &TrueName() const;
@@ -80,7 +80,7 @@ public:
 	bool Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 
 	// Damage this object (because a projectile collided with it).
-	void TakeDamage(const Projectile &projectile);
+	void TakeDamage(const MinableDamageDealt &damage);
 
 	// Determine what flotsam this asteroid will create.
 	const std::vector<Payload> &GetPayload() const;
@@ -90,6 +90,25 @@ public:
 
 	// Get hull remaining of this asteroid, as a fraction between 0 and 1.
 	double Hull() const;
+	// Get the maximum hull value of this asteroid.
+	double MaxHull() const;
+
+	double Mass() const override;
+	double MaximumHeat() const override;
+
+
+private:
+	class LiveEffect {
+	public:
+		LiveEffect(const DataNode &node);
+
+		const Effect *effect;
+		// Average interval between instances of the effect, in frames.
+		unsigned interval = 1;
+		// If set to true, the effect behaves like a comet tail,
+		// always facing away from the system center.
+		bool relativeToSystem = false;
+	};
 
 
 private:
@@ -127,12 +146,10 @@ private:
 	double prospecting = 0.;
 	// Material released when this object is destroyed.
 	std::vector<Payload> payload;
+	std::vector<LiveEffect> liveEffects;
 	// Explosion effects created when this object is destroyed.
 	std::map<const Effect *, int> explosions;
 	// The expected value of the payload of this minable.
 	int64_t value = 0.;
+	bool useRandomFrameRate = true;
 };
-
-
-
-#endif

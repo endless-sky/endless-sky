@@ -47,7 +47,7 @@ fleet "Wanderer Freight"
 	names "wanderer"
 	cargo 3
 	personality
-		timid
+		appeasing timid
 	variant
 		"Deep River 0"
 	variant
@@ -779,8 +779,33 @@ event "wanderers: unfettered invasion starts"
 		spaceport `The Unfettered are using the few jump drives they have to ferry more and more of their people into Wanderer space. When each wave of ships arrives here in the spaceport, technicians carefully remove the jump drives from all but a few of them. A few well guarded jump-capable ships then carry those spare jump drives back to Unfettered space, where they are used to bring more ships and people.`
 		shipyard clear
 		outfitter clear
+		tribute clear
 	planet "Varu Mer'ek"
 		add attributes "evacuation"
+
+event "wanderers: heavy gust mass production"
+	shipyard "Wanderer Advanced"
+		"Heavy Gust"
+	fleet "Wanderer Defense"
+		add variant 2
+			"Heavy Gust"
+			"Autumn Leaf"
+		add variant 3
+			"Heavy Gust"
+			"Autumn Leaf" 2
+		add variant 2
+			"Heavy Gust" 2
+		add variant 1
+			"Heavy Gust" 3
+		add variant 1
+			"Strong Wind"
+			"Heavy Gust"
+		remove variant
+			"Strong Wind"
+			"Summer Leaf"
+		remove variant
+			"Strong Wind"
+			"Summer Leaf" 3
 
 event "wanderers: riptide mass production"
 	fleet "Wanderer Freight"
@@ -805,7 +830,10 @@ event "wanderers: tempest mass production"
 			"Tempest"
 			"Summer Leaf"
 			"Autumn Leaf"
-		add variant 4
+		add variant 3
+			"Tempest (Heavy)"
+			"Heavy Gust"
+		add variant 1
 			"Tempest (Heavy)"
 			"Strong Wind"
 		add variant 1
@@ -818,20 +846,11 @@ event "wanderers: tempest mass production"
 		add variant 1
 			"Tempest (Missile)" 2
 		add variant 2
-			"Strong Wind"
-			"Autumn Leaf"
-		add variant 2
 			"Autumn Leaf" 3
 		add variant 1
 			"Summer Leaf" 4
 		remove variant
 			"Summer Leaf" 5
-		remove variant
-			"Strong Wind"
-			"Summer Leaf"
-		remove variant
-			"Strong Wind"
-			"Summer Leaf" 3
 		remove variant
 			"Autumn Leaf" 2
 		remove variant
@@ -865,16 +884,19 @@ event "wanderers: more systems lost"
 		description `	Now that the Unfettered have taken over control of the planet, it may be only a matter of time before the deserts dominate it once again.`
 		spaceport `The spaceport is in a forest village near the planet's north pole. The landing pads are massive stone monoliths laid on the ground in a nearby clearing. But aside from a few large warehouses at ground level, the village itself is entirely made of tree-houses. Although they are very different from Hai architecture, the Unfettered seem to be quite at home living in the tree-houses, and have not built many of their own structures yet.`
 		outfitter clear
+		tribute clear
 	planet "Var' Kar'i'i"
 		attributes "unfettered" "urban" "farming"
 		description `Of all the worlds that the Unfettered have captured, this is surely the one that the Wanderers will miss the most: a heavily forested planet that was once home to countless small villages and even a few cities. The Unfettered are clearly doing their best to tend the farms here, but they operate on a permaculture system that relies heavily on maintaining a delicate ecological balance, rather than on machines and pesticides.`
 		spaceport `A large number of Unfettered settlers have already arrived here and begun setting up a spaceport village, complete with markets, taverns, and military barracks. To the Unfettered, who have lived their whole lives on worlds where the local ecology is in shambles, this planet must seem like a paradise.`
-		shipyard clear
 		outfitter clear
+		shipyard clear
+		tribute clear
 	planet "Vara Ke'sok"
 		attributes "unfettered" "fishing"
 		description `The surface of this world is almost entirely ocean. The Wanderer settlements were built on massive floating algae mats, some of them the size of a small city. Engines are attached to some of these floating villages, allowing them to be slowly propelled from one part of the planet's surface to another, and the only native industries are fishing and seaweed farming.`
 		spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. Now that this world has been captured by the Unfettered, nearly all the buildings are empty; it appears that the Hai are not too fond of the idea of inhabiting a water world, so they are using it mostly as a military base.`
+		remove tribute
 
 planet "The Eye"
 	spaceport ""
@@ -954,7 +976,8 @@ event "wanderers: derecho mass production"
 			"Tempest (Heavy)"
 		add variant 4
 			"Derecho"
-			"Strong Wind" 2
+			"Heavy Gust"
+			"Strong Wind"
 		add variant 3
 			"Derecho (Tough)"
 			"Autumn Leaf"
@@ -981,6 +1004,9 @@ event "wanderers: spera anatrusk colony"
 		spaceport `The Wanderers have hollowed out hangars and caves in the soft sandstone walls of this canyon and have begun to build a military base where they can store supplies and repair their ships while trying to decide how best to deal with the new challenges that face them in Korath space.`
 		spaceport `	Oddly enough, they have also found enough time to plant a large garden on a terrace near the base of the canyon, where they are experimenting to find out which plant species will best grow in this arid environment. The Wanderer drive to understand and transform the local ecology is strong, indeed.`
 		outfitter "Wanderer Basics"
+		tribute 600
+			threshold 1200
+			fleet "Wanderer Defense" 2
 
 event "wanderers: hurricane mass production"
 	fleet "Wanderer Defense"
@@ -1004,6 +1030,9 @@ event "wanderers: hurricane mass production"
 		add variant 2
 			"Hurricane (Tough)"
 			"Tempest (Missile)" 2
+		add variant 2
+			"Hurricane"
+			"Heavy Gust" 2
 	shipyard "Wanderer Advanced"
 		"Hurricane"
 
@@ -1015,6 +1044,9 @@ event "wanderers: desi seledrak"
 		description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles.`
 		description `	With some help from the Mereti drones, the Wanderers have set up factories here that are pumping out carbon dioxide and methane to warm the atmosphere. In a few decades, the glaciers may start to recede.`
 		spaceport `This odd settlement was built half by the Wanderers and half by the Mereti drones. The layout of the streets is completely chaotic, and they have planted rows of trees and bushes everywhere: some inside greenhouses, and some hardier species out in the open air. The settlement is near the equator, but it is still not particularly warm.`
+		tribute 500
+			threshold 1100
+			fleet "Wanderer Defense" 2
 
 event "wanderers: moonbeam mass production"
 	fleet "Wanderer Defense"
@@ -1033,6 +1065,34 @@ event "wanderers: moonbeam mass production"
 		add variant
 			"Derecho"
 			"Autumn Leaf (Heavy)" 2
+		add variant 2
+			"Heavy Gust"
+			"Heavy Gust (Moonbeam)" 2
 	outfitter "Wanderer Advanced"
 		"Moonbeam"
 		"Moonbeam Turret"
+
+event "wanderer tribute patch"
+	planet "Varu K'est"
+		tribute clear
+	planet "Vara Ke'stai"
+		tribute clear
+	planet "Var' Kar'i'i"
+		tribute clear
+	planet "Spera Anatrusk"
+		tribute 600
+			threshold 1200
+			fleet "Wanderer Defense" 2
+	planet "Desi Seledrak"
+		tribute 500
+			threshold 1100
+			fleet "Wanderer Defense" 2
+
+mission "Wanderer Tribute Patch"
+	invisible
+	landing
+	to offer
+		has "event: wanderers: desi seledrak"
+	on offer
+		event "wanderer tribute patch"
+		fail

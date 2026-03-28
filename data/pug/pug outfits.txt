@@ -13,6 +13,8 @@
 
 outfit "Pug Zapper"
 	category "Guns"
+	series "Guns"
+	index 90020
 	cost 290000
 	thumbnail "outfit/pug zapper"
 	"mass" 25
@@ -38,6 +40,8 @@ outfit "Pug Zapper"
 
 outfit "Pug Zapper Turret"
 	category "Turrets"
+	series "Turrets"
+	index 90010
 	cost 860000
 	thumbnail "outfit/pug zapper turret"
 	"mass" 66
@@ -54,7 +58,7 @@ outfit "Pug Zapper Turret"
 		sound "zapper"
 		"hit effect" "zapper impact"
 		"inaccuracy" .3
-		"turret turn" 2.5
+		"turret turn" 1.6
 		"velocity" 320
 		"lifetime" 1
 		"reload" 1
@@ -75,6 +79,8 @@ effect "zapper impact"
 
 outfit "Pug Seeker"
 	category "Guns"
+	series "Guns"
+	index 90010
 	cost 540000
 	thumbnail "outfit/pug seeker"
 	"mass" 34
@@ -97,12 +103,14 @@ outfit "Pug Seeker"
 		"acceleration" 1.3
 		"drag" .1
 		"turn" 4
-		"homing" 5
+		"homing"
+			"leading"
+			"throttle control"
 		"tracking" .5
 		"shield damage" 24
 		"hull damage" 13
 		"hit force" 3
-		"missile strength" 40
+		"missile strength" 10
 	description "You have no idea how this weapon works. It requires no ammunition, but its energy-based projectiles have the ability to home in on a target ship."
 
 effect "seeker impact"
@@ -117,6 +125,8 @@ effect "seeker impact"
 
 outfit "Pug Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 90010
 	cost 350000
 	thumbnail "outfit/pug anti-missile"
 	"mass" 41
@@ -140,12 +150,15 @@ effect "pug anti-missile"
 		"no repeat"
 		"frame rate" 6
 	sound "pug anti-missile"
+	"sound category" "anti-missile"
 	"lifetime" 11
 	"velocity scale" 1
 
 
 outfit "Tier 3 Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 90020
 	cost 12000000
 	thumbnail "outfit/t3 anti missile"
 	"mass" 67
@@ -160,8 +173,8 @@ outfit "Tier 3 Anti-Missile"
 		"anti-missile" 100
 		"velocity" 570
 		"lifetime" 1
-		"reload" 6
-		"firing energy" 80
+		"reload" 8
+		"firing energy" 60
 		"firing heat" 10
 	description "This powerful anti-missile turret is capable of destroying even the strongest of missiles."
 
@@ -184,6 +197,8 @@ effect "tier 3 anti-missile die"
 
 outfit "Pug Gridfire Turret"
 	category "Turrets"
+	series "Turrets"
+	index 90020
 	cost 24000000
 	thumbnail "outfit/pug gridfire turret"
 	"mass" 83
@@ -202,11 +217,10 @@ outfit "Pug Gridfire Turret"
 		"lifetime" 1
 		"reload" 20
 		"turret turn" 20
-		"firing energy" 800
-		"firing heat" 400
-		"firing force" 225
-		"shield damage" 600
-		"hull damage" 600
+		"firing energy" 400
+		"firing heat" 200
+		"shield damage" 300
+		"hull damage" 300
 		"blast radius" 40
 		"piercing" .3
 	description "No one understands how the Gridfire Turret works, and the Pug aren't interested in explaining."
@@ -241,6 +255,8 @@ effect "gridfire cloud"
 
 outfit "Pug Akfar Thruster"
 	category "Engines"
+	series "Engines"
+	index 90011
 	"cost" 608000
 	thumbnail "outfit/pug akfar thruster"
 	"mass" 43
@@ -256,6 +272,8 @@ outfit "Pug Akfar Thruster"
 
 outfit "Pug Akfar Steering"
 	category "Engines"
+	series "Engines"
+	index 90010
 	"cost" 472000
 	thumbnail "outfit/pug akfar steering"
 	"mass" 33
@@ -271,6 +289,8 @@ outfit "Pug Akfar Steering"
 
 outfit "Pug Cormet Thruster"
 	category "Engines"
+	series "Engines"
+	index 90021
 	"cost" 1050000
 	thumbnail "outfit/pug cormet thruster"
 	"mass" 60
@@ -286,6 +306,8 @@ outfit "Pug Cormet Thruster"
 
 outfit "Pug Cormet Steering"
 	category "Engines"
+	series "Engines"
+	index 90020
 	"cost" 880000
 	thumbnail "outfit/pug cormet steering"
 	"mass" 46
@@ -301,6 +323,8 @@ outfit "Pug Cormet Steering"
 
 outfit "Pug Lohmar Thruster"
 	category "Engines"
+	series "Engines"
+	index 90031
 	"cost" 1740000
 	thumbnail "outfit/pug lohmar thruster"
 	"mass" 84
@@ -316,6 +340,8 @@ outfit "Pug Lohmar Thruster"
 
 outfit "Pug Lohmar Steering"
 	category "Engines"
+	series "Engines"
+	index 90030
 	"cost" 1580000
 	thumbnail "outfit/pug lohmar steering"
 	"mass" 64
@@ -334,15 +360,19 @@ outfit "Pug Lohmar Steering"
 outfit "Pug Biodefenses"
 	plural "Pug Biodefenses"
 	category "Hand to Hand"
+	series "Fortifications"
+	index 90020
 	cost 100000
 	thumbnail "outfit/pug biodefenses"
-	"capture defense" 250
+	"capture defense" 100
 	"unplunderable" 1
 	description "This semi-organic defense system is designed to release a highly lethal bioengineered virus capable of rapidly infecting any foreign entities present on the ship that it is installed on while leaving the crew of the ship unharmed. The virus, when combined with the defense system itself, is highly accurate at automatically determining friend from foe."
 
 outfit "Pug Peacekeeping Staff"
 	plural "Pug Peacekeeping Staves"
 	category "Hand to Hand"
+	series "H2H"
+	index 90010
 	cost 123456
 	thumbnail "outfit/pug staff"
 	"capture attack" 2.3

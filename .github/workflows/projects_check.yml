@@ -23,7 +23,7 @@ jobs:
     if: ${{ needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - name: Validate CMake project files
@@ -36,11 +36,14 @@ jobs:
     if: ${{ needs.changed.outputs.copyright == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
     - name: Install dependencies
-      run: python3 -m pip install --user python-debian
+      run: pip install --break-system-packages python-debian
     - name: Validate copyright file with python-debian
       run: python3 ./utils/check_copyright.py
     - name: Validate copyright file with debian-control-linter
@@ -58,9 +61,8 @@ jobs:
     if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' || needs.changed.outputs.changelog == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
-        ref: ${{ github.event.pull_request.head.sha }}
         show-progress: false
     - uses: codespell-project/actions-codespell@master
       with:
@@ -76,7 +78,7 @@ jobs:
     if: ${{ needs.changed.outputs.editorconfig_files == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - uses: editorconfig-checker/action-editorconfig-checker@main
@@ -89,14 +91,14 @@ jobs:
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.code_style_check == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - uses: actions/setup-python@v5
       with:
         python-version: '3.x'
     - name: Install dependencies
-      run: pip install regex
+      run: pip install --break-system-packages regex
     - name: Run style checker
       run: python ./utils/check_code_style.py
 
@@ -107,13 +109,27 @@ jobs:
     if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.content_style_check == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.content_style_script == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - uses: actions/setup-python@v5
       with:
         python-version: '3.x'
     - name: Install dependencies
-      run: pip install regex
+      run: pip install --break-system-packages regex
     - name: Run style checker
       run: python ./utils/check_content_style.py
+
+
+  check_shaders:
+    name: Shader Compatibility
+    needs: changed
+    if: ${{ needs.changed.outputs.shaders == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v5
+      with:
+        show-progress: false
+    - run: sudo apt-get install -y --no-install-recommends glslang-tools
+    - run: utils/check_shaders.sh
+

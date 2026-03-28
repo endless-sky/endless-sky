@@ -22,9 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // We require SEH for Windows builds, so we test with SEH support too.
 #define CATCH_CONFIG_WINDOWS_SEH
 // Check for memory leaks from test code.
-// TODO: enable after patching upstream issue
-// #define CATCH_CONFIG_WINDOWS_CRTDBG
+#define CATCH_CONFIG_WINDOWS_CRTDBG
 #endif
 
-#define CATCH_CONFIG_NO_CPP17_UNCAUGHT_EXCEPTIONS
-#include "catch.hpp"
+#include <catch2/catch_all.hpp>

@@ -368,6 +368,66 @@ effect "pug huge explosion"
 	"random velocity" 1
 	"velocity scale" .4
 
+effect "quarg tiny explosion"
+	sprite "effect/explosion/quarg/tiny"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion tiny"
+	"lifetime" 18
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 0
+	"random velocity" .2
+	"velocity scale" .4
+
+effect "quarg small explosion"
+	sprite "effect/explosion/quarg/small"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion small"
+	"lifetime" 18
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 0
+	"random velocity" .4
+	"velocity scale" .4
+
+effect "quarg medium explosion"
+	sprite "effect/explosion/quarg/medium"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion medium"
+	"lifetime" 18
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 0
+	"random velocity" .6
+	"velocity scale" .4
+
+effect "quarg large explosion"
+	sprite "effect/explosion/quarg/large"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion large"
+	"lifetime" 18
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 0
+	"random velocity" .8
+	"velocity scale" .4
+
+effect "quarg huge explosion"
+	sprite "effect/explosion/quarg/huge"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion huge"
+	"lifetime" 18
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 0
+	"random velocity" 1
+	"velocity scale" .4
+
 # Fighter launch effects/sounds.
 
 effect "basic launch"
@@ -382,6 +442,7 @@ effect "basic launch"
 
 effect "human external"
 	sound "human launch external"
+	"sound category" "engine"
 
 effect "human internal"
 	sprite "effect/smoke"
@@ -393,6 +454,7 @@ effect "human internal"
 	"random spin" 360
 	"random velocity" 3
 	sound "human launch"
+	"sound category" "engine"
 
 effect "hai launch"
 	sprite "effect/smoke"
@@ -404,9 +466,11 @@ effect "hai launch"
 	"random spin" 360
 	"random velocity" 3
 	sound "hai launch"
+	"sound category" "engine"
 	
 effect "remnant external"
 	sound "remnant launch external"
+	"sound category" "engine"
 	
 effect "remnant internal"
 	sprite "effect/smoke"
@@ -418,9 +482,11 @@ effect "remnant internal"
 	"random spin" 360
 	"random velocity" 3
 	sound "remnant launch"
+	"sound category" "engine"
 
 effect "korath external"
 	sound "korath launch external"
+	"sound category" "engine"
 
 effect "korath internal"
 	sprite "effect/smoke"
@@ -432,6 +498,7 @@ effect "korath internal"
 	"random spin" 360
 	"random velocity" 3
 	sound "korath launch"
+	"sound category" "engine"
 
 effect "coalition launch"
 	sprite "effect/smoke"
@@ -443,6 +510,7 @@ effect "coalition launch"
 	"random spin" 360
 	"random velocity" 3
 	sound "coalition launch"
+	"sound category" "engine"
 
 effect "sheragi launch"
 	sprite "effect/smoke"
@@ -454,6 +522,48 @@ effect "sheragi launch"
 	"random spin" 360
 	"random velocity" 3
 	sound "sheragi launch"
+	"sound category" "engine"
 
 effect "scin launch"
 	sound "scin launch"
+	"sound category" "engine"
+
+effect "avgi external"
+	sound "avgi launch external"
+	"sound category" "engine"
+
+effect "avgi internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "avgi launch internal"
+	"sound category" "engine"
+
+
+effect "spatial hazard"
+	sprite "effect/jump drive"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.05
+
+effect "void spark"
+	sprite "effect/void spark"
+		"rewind"
+		"frame rate" 6
+		"random start frame"
+		scale 10.0
+	"lifetime" 36
+
+effect "void spark tiny"
+	sprite "effect/void spark"
+		"rewind"
+		"frame rate" 6
+		"random start frame"
+	"lifetime" 36

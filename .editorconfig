@@ -2,6 +2,7 @@
 root = true
 
 [*]
+charset = ascii
 end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
@@ -12,19 +13,23 @@ trim_trailing_whitespace = false
 indent_style = tab
 
 # Code files
-[{*.{cpp,h,rc,hpp}, SConstruct, SConscript}]
+[*.{cpp,h,rc,hpp}]
 indent_style = tab
-# Except any third-party libraries
-[catch.hpp]
-indent_style = unset
+cpp_space_pointer_reference_alignment = right
+cpp_space_after_keywords_in_control_flow_statements = false
+
+[**/CMakeLists.txt]
+indent_style = tab
 
 # Changelog file
 [changelog]
+charset = UTF-8
 indent_style = space
 indent_size = 2
 
 # Copyright file
 [copyright]
+charset = UTF-8
 indent_style = space
 indent_size = 1
 
@@ -42,6 +47,13 @@ trim_trailing_whitespace = false
 indent_style = space
 indent_size = 2
 
+# OpenGL shaders
+[*.{frag,vert}]
+indent_style = tab
+
+[*.py]
+indent_style = tab
+
 [*.xml]
 indent_style = space
 indent_size = 2
@@ -49,3 +61,9 @@ indent_size = 2
 [*.{yml,yaml}]
 indent_size = 2
 indent_style = space
+
+[*.json]
+indent_style = tab
+
+[{io.github.endless_sky.endless_sky.appdata.xml,io.github.endless_sky.endless_sky.desktop}]
+charset = UTF-8

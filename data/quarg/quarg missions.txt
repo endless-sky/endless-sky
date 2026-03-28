@@ -14,8 +14,7 @@
 mission "First Contact: Quarg"
 	landing
 	source
-		attributes "quarg"
-		not attributes "gegno quarg"
+		attributes "hai quarg" "human quarg"
 	on offer
 		log "Factions" "Quarg" `The Quarg are tall, thin, inscrutable aliens who evolved on a very small planet and can live comfortably on worlds with atmosphere so thin that a human being could not breathe it. They discovered spaceflight millions of years ago. Many of them live on artificially constructed ringworlds, including one in human space. They live at peace with most sentient species and claim to be in communication with an even older species named the Drak.`
 		log "Factions" "Drak" `The Drak are supposedly the oldest living species in the galaxy. The Quarg say that the Drak act as something like galactic peacekeepers or police, and will intervene if a species invents a weapon so terrible that it could drive that species to extinction.`
@@ -181,7 +180,7 @@ mission "Quarg Satellites"
 mission "Lagrange Ring: Cargo"
 	minor
 	name "Human Construction Materials"
-	description "Head to <stopovers> to pick up <cargo>, then bring it all to <destination>, where the Quarg are preparing to open the first section of their ringworld for human visit."
+	description "Head to <stopovers> to pick up <cargo>, then bring it all to <destination>, where the Quarg are preparing to open the first section of their ringworld for human visitors."
 	cargo "construction materials" 254
 	source
 		near "Enif" 1
@@ -225,6 +224,31 @@ mission "Lagrange Ring: Cargo"
 			`	About halfway through the unloading of your own cargo, a Quarg comes up to you and hands you <payment>.`
 
 
+mission "Lagrange Ring: Cargo Job"
+	name "Human Construction Materials"
+	description "Head to <stopovers> to pick up <cargo>, then bring it all to <destination>, where the Quarg are preparing to open the first section of their ringworld for human visitors."
+	job
+	repeat
+	cargo "construction materials" 98
+	source
+		near "Enif" 1
+		government "Quarg"
+		not planet "Humanika"
+	stopover
+		near "Alpha Centauri" 0 1
+	destination "Lagrange"
+	to offer
+		has "Lagrange Ring: Cargo: done"
+		random < 1
+	on stopover
+		dialog `The <cargo> is loaded into your ship under strict supervision, each crate carefully accounted for.`
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on complete
+		payment 341000
+		dialog `About halfway through the meticulous unloading of the cargo, a Quarg comes up to you and hands you <payment>.`
+
+
 
 mission "Ask Quarg About Coalition Early"
 	landing
@@ -234,9 +258,8 @@ mission "Ask Quarg About Coalition Early"
 		not "joined the lunarium"
 		not "joined the heliarchs"
 	source
-		attributes "quarg"
+		attributes "hai quarg" "human quarg"
 		attributes "station"
-		not attributes "gegno quarg"
 	on offer
 		conversation
 			`You've met the Coalition, and the Heliarchs that rule their space from within the ringworlds the Quarg built there who claim that they "defeated the Quarg oppressors." Would you like to look for some Quarg here and ask for their side of the story?`
@@ -267,9 +290,8 @@ mission "Quarg Pug Arfecta Warning"
 	minor
 	landing
 	source
-		attributes "quarg"
+		attributes "hai quarg" "human quarg"
 		attributes "ringworld"
-		not attributes "gegno quarg"
 	to offer
 		has "First Contact: Quarg: offered"
 		has "ship model: Pug Arfecta"
@@ -440,15 +462,33 @@ mission "Ask Quarg About Coalition Late"
 				clear "ask quarg coalition late: aid"
 			`	You get up and are just about to leave when it says, "<first> <last>." The Quarg's gaze pierces you, its eye on the same level as your own. "Where is your home?"`
 			choice
-				`	"I come from New Boston, on the Dirt Belt."`
-					goto planet
+				`	"I come from New Boston, in the Dirt Belt."`
+					to display
+						has "start: default"
+				`	"I come from Midgard, in the Deep."`
+					to display
+						has "start: deep"
+				`	"I come from Mainsail of the Paradise Worlds."`
+					to display
+						has "start: paradise"
+				`	"I come from Greenwater, in Hai space."`
+					to display
+						has "start: hai"
+				`	"I was born on Earth."`
+					to display
+						has "start: syndicate"
+					goto homeworld
 				`	"My ship is my home."`
 					goto ship
 				`	"I don't really have a home."`
-			`	Your response seems to have struck something in it, as it brings one hand over its scar, glancing downwards. "A harrowing sensation, is it not?"`
-				goto name
-			label planet
+					goto homeless
 			`	It acknowledges your answer with the faintest of nods. "Sparse were my own visits to the rocky worlds inhabited by other species. They are unlike our own. So different, so... complete." Its eye darts around, looking at your surroundings, other Quarg here, then finally its own hands and arms. "But us Quarg must make do."`
+				goto name
+			label homeworld
+			`	Though it is the faintest of movements, you swear the Quarg turns ever so slightly away from you. "It is perhaps only natural that a species ends up venerating their own homeworld, as the cradle that supported them until they could claim the stars." Then it leans in close and whispers, "But many still consider the birthplace of their kind as nothing more than a relic of a bygone age."`
+				goto name
+			label homeless
+			`	Your words seem to stir something within it, as it brings one hand over its scar, gaze dropping. "A harrowing sensation, is it not?"`
 				goto name
 			label ship
 			`	After staring you down for a few seconds, it fixates upon the ceiling again. "I suppose others such as you may imagine that our own lives in our ringworlds are similar to your own within a ship or simple space station." It pauses again, for nearly a minute this time. "Considering the circumstances, that may be a reasonable conclusion on your part."`

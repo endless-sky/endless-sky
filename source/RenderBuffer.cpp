@@ -15,14 +15,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "RenderBuffer.h"
 
+#include "GameData.h"
+#include "GameWindow.h"
 #include "Logger.h"
 #include "Screen.h"
-#include "Shader.h"
+#include "shader/Shader.h"
 
 #include "opengl.h"
 
+using namespace std;
+
 namespace {
-	Shader shader;
+	const Shader *shader;
 	GLint sizeI = -1;
 	GLint positionI = -1;
 	GLint scaleI = -1;
@@ -30,8 +34,16 @@ namespace {
 	GLint srcscaleI = -1;
 	GLint fadeI = -1;
 
+	GLint vertI;
+
 	GLuint vao = -1;
 	GLuint vbo = -1;
+
+	void EnableAttribArrays()
+	{
+		glEnableVertexAttribArray(vertI);
+		glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	}
 }
 
 
@@ -39,70 +51,23 @@ namespace {
 // Initialize the shaders.
 void RenderBuffer::Init()
 {
-	static const char *vertexCode =
-		"// vertex blit shader\n"
-		"precision mediump float;\n"
-		"uniform vec2 size;\n"
-		"uniform vec2 position;\n"
-		"uniform vec2 scale;\n"
-
-		"uniform vec2 srcposition;\n"
-		"uniform vec2 srcscale;\n"
-
-		"in vec2 vert;\n"
-		"out vec2 tpos;\n"
-		"out vec2 vpos;\n"
-
-		"void main() \n"
-		"{\n"
-		"  gl_Position = vec4((position + vert * size) * scale, 0, 1);\n"
-		"  vpos = vert + vec2(.5, .5);\n"         // Convert from vertex to texture coordinates.
-		"  vec2 tsize = size * srcscale;\n"       // Convert from screen to texture coordinates.
-		"  vec2 tsrc = srcposition * srcscale;\n" // Convert from screen to texture coordinates.
-		"  tpos = vpos * tsize + tsrc;\n"
-		"  tpos.y = 1.0 - tpos.y;\n"              // Negative is up.
-		"}\n";
-
-	static const char *fragmentCode =
-		"// fragment blit shader\n"
-		"precision mediump float;\n"
-#ifdef ES_GLES
-		"precision mediump sampler2D;\n"
-#endif
-		"uniform sampler2D tex;\n"
-		"uniform vec4 fade;\n"
-
-		"in vec2 tpos;\n"
-		"in vec2 vpos;\n"
-		"out vec4 finalColor;\n"
-
-		"void main() {\n"
-		// Using epsilon here to prevent dividing by zero, which breaks the
-		// shader on nvidia cards.
-		"  float epsilon = .001;"
-		"  float weightTop = clamp((vpos.y + epsilon) / (fade[0] + epsilon), 0.0, 1.0);\n"
-		"  float weightBottom = clamp(((1.0 - vpos.y) + epsilon) / (fade[1] + epsilon), 0.0, 1.0);\n"
-		"  float weightLeft = clamp((vpos.x + epsilon) / (fade[2] + epsilon), 0.0, 1.0);\n"
-		"  float weightRight = clamp(((1.0 - vpos.x) + epsilon) / (fade[3] + epsilon), 0.0, 1.0);\n"
-		"  float weight = min(min(min(weightTop, weightBottom), weightLeft), weightRight);\n"
-		"  if(tpos.x > 0.0 && tpos.y > 0.0 &&\n"
-		"      tpos.x < 1.0 && tpos.y < 1.0 )\n"
-		"    finalColor = texture(tex, tpos) * weight;\n"
-		"  else\n"
-		"    discard;\n"
-		"}\n";
-
-	shader = Shader(vertexCode, fragmentCode);
-	sizeI = shader.Uniform("size");
-	positionI = shader.Uniform("position");
-	scaleI = shader.Uniform("scale");
-	srcpositionI = shader.Uniform("srcposition");
-	srcscaleI = shader.Uniform("srcscale");
-	fadeI = shader.Uniform("fade");
+	shader = GameData::Shaders().Get("renderBuffer");
+	if(!shader->Object())
+		throw runtime_error("Could not find render buffer shader!");
+	sizeI = shader->Uniform("size");
+	positionI = shader->Uniform("position");
+	scaleI = shader->Uniform("scale");
+	srcpositionI = shader->Uniform("srcposition");
+	srcscaleI = shader->Uniform("srcscale");
+	fadeI = shader->Uniform("fade");
+	vertI = shader->Attrib("vert");
 
 	// Generate the vertex data for drawing sprites.
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+	{
+		glGenVertexArrays(1, &vao);
+		glBindVertexArray(vao);
+	}
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -115,12 +80,13 @@ void RenderBuffer::Init()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	if(OpenGL::HasVaoSupport())
+		EnableAttribArrays();
 
 	// Unbind the VBO and VAO.
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
 }
 
 
@@ -165,8 +131,10 @@ RenderBuffer::RenderBuffer(const Point &dimensions)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
+	multiplier = Point(GameWindow::DrawWidth() / Screen::RawWidth(), GameWindow::DrawHeight() / Screen::RawHeight());
+
 	// Attach a blank image to the texture.
-	const Point scaledSize = size * Screen::Zoom() / 100.0;
+	const Point scaledSize = size * multiplier * Screen::Zoom() / 100.0;
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, scaledSize.X(), scaledSize.Y(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
 	// Attach the texture to the frame buffer.
@@ -175,7 +143,7 @@ RenderBuffer::RenderBuffer(const Point &dimensions)
 	glDrawBuffers(1, draw_buffers);
 
 	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-		Logger::LogError("Failed to initialize framebuffer for RenderBuffer");
+		Logger::Log("Failed to initialize framebuffer for RenderBuffer.", Logger::Level::WARNING);
 
 
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -209,11 +177,19 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 	glGetIntegerv(GL_VIEWPORT, lastViewport);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
-	const Point scaledSize = size * Screen::Zoom() / 100.0;
+	const Point scaledSize = size * multiplier * Screen::Zoom() / 100.0;
 	glViewport(0, 0, scaledSize.X(), scaledSize.Y());
 
 	static const float CLEAR[] = {0, 0, 0, 0};
-	glClearBufferfv(GL_COLOR, 0, CLEAR);
+	if(OpenGL::HasClearBufferSupport())
+		glClearBufferfv(GL_COLOR, 0, CLEAR);
+	else
+	{
+		GLenum drawBuffers = GL_COLOR_ATTACHMENT0;
+		glDrawBuffers(1, &drawBuffers);
+		glClearColor(CLEAR[0], CLEAR[1], CLEAR[2], CLEAR[3]);
+		glClear(GL_COLOR_BUFFER_BIT);
+	}
 
 	return RenderTargetGuard(*this, size.X(), size.Y());
 }
@@ -240,8 +216,14 @@ void RenderBuffer::Draw(const Point &position)
 // Draw the contents of this buffer at the specified position.
 void RenderBuffer::Draw(const Point &position, const Point &clipsize, const Point &srcposition)
 {
-	glUseProgram(shader.Object());
-	glBindVertexArray(vao);
+	glUseProgram(shader->Object());
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(vao);
+	else
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		EnableAttribArrays();
+	}
 
 	glBindTexture(GL_TEXTURE_2D, texid);
 
@@ -261,7 +243,13 @@ void RenderBuffer::Draw(const Point &position, const Point &clipsize, const Poin
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
+	else
+	{
+		glDisableVertexAttribArray(vertI);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
 	glUseProgram(0);
 }
 

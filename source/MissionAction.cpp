@@ -19,7 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
+#include "Endpoint.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
@@ -58,53 +59,38 @@ namespace {
 
 
 // Construct and Load() at the same time.
-MissionAction::MissionAction(const DataNode &node)
+MissionAction::MissionAction(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
-	Load(node);
+	Load(node, playerConditions, visitedSystems, visitedPlanets);
 }
 
 
 
-void MissionAction::Load(const DataNode &node)
+void MissionAction::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
 	if(node.Size() >= 3)
-		system = node.Token(2);
+		location = node.Token(2);
 
 	for(const DataNode &child : node)
-		LoadSingle(child);
+		LoadSingle(child, playerConditions, visitedSystems, visitedPlanets);
 }
 
 
 
-void MissionAction::LoadSingle(const DataNode &child)
+void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	const string &key = child.Token(0);
-	bool hasValue = (child.Size() >= 2);
+	bool hasValue = child.Size() >= 2;
 
 	if(key == "dialog")
-	{
-		if(hasValue && child.Token(1) == "phrase")
-		{
-			if(!child.HasChildren() && child.Size() == 3)
-				dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2)));
-			else
-				child.PrintTrace("Skipping unsupported dialog phrase syntax:");
-		}
-		else if(!hasValue && child.HasChildren() && (*child.begin()).Token(0) == "phrase")
-		{
-			const DataNode &firstGrand = (*child.begin());
-			if(firstGrand.Size() == 1 && firstGrand.HasChildren())
-				dialogPhrase = ExclusiveItem<Phrase>(Phrase(firstGrand));
-			else
-				firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
-		}
-		else
-			Dialog::ParseTextNode(child, 1, dialogText);
-	}
+		dialog.Load(child, playerConditions);
 	else if(key == "conversation" && child.HasChildren())
-		conversation = ExclusiveItem<Conversation>(Conversation(child));
+		conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
 	else if(key == "conversation" && hasValue)
 		conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
 	else if(key == "require" && hasValue)
@@ -113,23 +99,32 @@ void MissionAction::LoadSingle(const DataNode &child)
 		if(count >= 0)
 			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 		else
-			child.PrintTrace("Error: Skipping invalid \"require\" count:");
+			child.PrintTrace("Skipping invalid \"require\" count:");
 	}
 	// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 	else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 	{
-		child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
+		child.PrintTrace("Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
 		requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
 	}
 	else if(key == "system")
 	{
-		if(system.empty() && child.HasChildren())
-			systemFilter.Load(child);
+		if(location.empty() && child.HasChildren())
+			systemFilter.Load(child, visitedSystems, visitedPlanets);
 		else
-			child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
+			child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
 	}
+	else if(key == "planet")
+	{
+		if(location.empty() && child.HasChildren())
+			planetFilter.Load(child, visitedSystems, visitedPlanets);
+		else
+			child.PrintTrace("Error: Unsupported use of \"planet\" LocationFilter:");
+	}
+	else if(key == "can trigger after failure")
+		runsWhenFailed = true;
 	else
-		action.LoadSingle(child);
+		action.LoadSingle(child, playerConditions);
 }
 
 
@@ -138,10 +133,10 @@ void MissionAction::LoadSingle(const DataNode &child)
 // a template, so it only has to save a subset of the data.
 void MissionAction::Save(DataWriter &out) const
 {
-	if(system.empty())
+	if(location.empty())
 		out.Write("on", trigger);
 	else
-		out.Write("on", trigger, system);
+		out.Write("on", trigger, location);
 	out.BeginChild();
 	{
 		SaveBody(out);
@@ -159,17 +154,16 @@ void MissionAction::SaveBody(DataWriter &out) const
 		// LocationFilter indentation is handled by its Save method.
 		systemFilter.Save(out);
 	}
-	if(!dialogText.empty())
+	if(!planetFilter.IsEmpty())
 	{
-		out.Write("dialog");
-		out.BeginChild();
-		{
-			// Break the text up into paragraphs.
-			for(const string &line : Format::Split(dialogText, "\n\t"))
-				out.Write(line);
-		}
-		out.EndChild();
+		out.Write("planet");
+		// LocationFilter indentation is handled by its Save method.
+		planetFilter.Save(out);
 	}
+	if(runsWhenFailed)
+		out.Write("can trigger after failure");
+	if(!dialog.IsEmpty())
+		dialog.Save(out);
 	if(!conversation->IsEmpty())
 		conversation->Save(out);
 	for(const auto &it : requiredOutfits)
@@ -187,11 +181,12 @@ string MissionAction::Validate() const
 	// Any filter used to control where this action triggers must be valid.
 	if(!systemFilter.IsValid())
 		return "system location filter";
+	if(!planetFilter.IsValid())
+		return "planet location filter";
 
-	// Stock phrases that generate text must be defined.
-	if(dialogPhrase.IsStock() && dialogPhrase->IsEmpty())
-		return "stock phrase";
-
+	// Dialogs must contain valid phrases.
+	if(!dialog.Validate())
+		return "stock phrase in dialog";
 	// Stock conversations must be defined.
 	if(conversation.IsStock() && conversation->IsEmpty())
 		return "stock conversation";
@@ -213,15 +208,17 @@ string MissionAction::Validate() const
 
 const string &MissionAction::DialogText() const
 {
-	return dialogText;
+	return dialog.Text();
 }
 
 
 
 // Check if this action can be completed right now. It cannot be completed
 // if it takes away money or outfits that the player does not have.
-bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
+bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const shared_ptr<Ship> &boardingShip) const
 {
+	if(isFailed && !runsWhenFailed && trigger != "fail")
+		return false;
 	if(player.Accounts().Credits() < -Payment())
 		return false;
 
@@ -257,7 +254,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 			bool needsUnmapped = it.second == 0;
 			// This action can't be done if it requires an unmapped region, but the region is
 			// mapped, or if it requires a mapped region but the region is not mapped.
-			if(needsUnmapped == player.HasMapped(mapSize))
+			if(needsUnmapped == player.HasMapped(mapSize, false))
 				return false;
 			continue;
 		}
@@ -288,9 +285,11 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		}
 	}
 
-	// An `on enter` MissionAction may have defined a LocationFilter that
-	// specifies the systems in which it can occur.
+	// An `on enter` or `on land` MissionAction may have defined a LocationFilter
+	// that specifies the systems or planets in which it can occur.
 	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
+		return false;
+	if(!planetFilter.IsEmpty() && !planetFilter.Matches(player.GetPlanet()))
 		return false;
 	return true;
 }
@@ -310,42 +309,42 @@ bool MissionAction::RequiresGiftedShip(const string &shipId) const
 void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
-	bool isOffer = (trigger == "offer");
-	if(!conversation->IsEmpty() && ui)
+	if(ui)
 	{
-		// Conversations offered while boarding or assisting reference a ship,
-		// which may be destroyed depending on the player's choices.
-		ConversationPanel *panel = new ConversationPanel(player, *conversation, caller, destination, ship, isOffer);
-		if(isOffer)
-			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
-		// Use a basic callback to handle forced departure outside of `on offer`
-		// conversations.
-		else
-			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
-		ui->Push(panel);
-	}
-	else if(!dialogText.empty() && ui)
-	{
-		map<string, string> subs;
-		GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
-		subs["<first>"] = player.FirstName();
-		subs["<last>"] = player.LastName();
-		if(player.Flagship())
-			subs["<ship>"] = player.Flagship()->Name();
-		string text = Format::Replace(dialogText, subs);
+		bool isOffer = (trigger == "offer");
+		if(!conversation->IsEmpty())
+		{
+			// Conversations offered while boarding or assisting reference a ship,
+			// which may be destroyed depending on the player's choices.
+			ConversationPanel *panel = new ConversationPanel(player, *conversation, caller, destination, ship, isOffer);
+			if(isOffer)
+				panel->SetCallback(&player, &PlayerInfo::MissionCallback);
+			// Use a basic callback to handle forced departure outside of `on offer`
+			// conversations.
+			else
+				panel->SetCallback(&player, &PlayerInfo::BasicCallback);
+			ui->Push(panel);
+		}
+		else if(!dialog.IsEmpty())
+		{
+			map<string, string> subs;
+			GameData::GetTextReplacements().Substitutions(subs);
+			player.AddPlayerSubstitutions(subs);
+			string text = Format::Replace(dialog.Text(), subs);
 
-		// Don't push the dialog text if this is a visit action on a nonunique
-		// mission; on visit, nonunique dialogs are handled by PlayerInfo as to
-		// avoid the player being spammed by dialogs if they have multiple
-		// missions active with the same destination (e.g. in the case of
-		// stacking bounty jobs).
-		if(isOffer)
-			ui->Push(new Dialog(text, player, destination));
-		else if(isUnique || trigger != "visit")
-			ui->Push(new Dialog(text));
+			// Don't push the dialog text if this is a visit action on a nonunique
+			// mission; on visit, nonunique dialogs are handled by PlayerInfo as to
+			// avoid the player being spammed by dialogs if they have multiple
+			// missions active with the same destination (e.g. in the case of
+			// stacking bounty jobs).
+			if(isOffer)
+				ui->Push(DialogPanel::MissionOfferDialog(text, player, destination));
+			else if(isUnique || trigger != "visit")
+				ui->Push(DialogPanel::Info(text));
+		}
+		else if(isOffer)
+			player.MissionCallback(Endpoint::ACCEPT);
 	}
-	else if(isOffer && ui)
-		player.MissionCallback(Conversation::ACCEPT);
 
 	action.Do(player, ui, caller);
 }
@@ -358,9 +357,10 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 {
 	MissionAction result;
 	result.trigger = trigger;
-	result.system = system;
+	result.location = location;
 	// Convert any "distance" specifiers into "near <system>" specifiers.
 	result.systemFilter = systemFilter.SetOrigin(origin);
+	result.planetFilter = planetFilter.SetOrigin(origin);
 
 	result.requiredOutfits = requiredOutfits;
 
@@ -369,9 +369,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.action = action.Instantiate(subs, jumps, payload);
 
 	// Create any associated dialog text from phrases, or use the directly specified text.
-	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
-	if(!dialogText.empty())
-		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
+	result.dialog = dialog.Instantiate(subs);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));

@@ -1,7 +1,8 @@
 {
-  "default-registry": {
-    "kind": "builtin",
-    "baseline": "2cf957350da28ad032178a974607f59f961217d9"
-  },
-  "overlay-triplets": [ "./overlays" ]
+	"default-registry": {
+		"kind": "builtin",
+		"baseline": "a3476c776ee5604e46bc6f71845a5e35026e1865"
+	},
+	"overlay-triplets": ["./overlays"],
+	"overlay-ports": ["./overlays/openal-soft-gcc-15-fix"]
 }

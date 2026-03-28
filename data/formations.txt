@@ -1,0 +1,300 @@
+# Copyright (c) 2019-2024 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+# Atomic formation that doesn't rotate with the lead ship.
+formation "Atomic"
+	rotatable 120
+	# Section in front of the lead ship.
+	arc
+		start -75 -129.9
+		angle 60
+		positions 2
+		repeat
+			start -75 -129.9
+			positions 1
+	# Side sections.
+	arc
+		start 150 0
+		angle 60
+		positions 2
+		repeat
+			start 150 0
+			positions 1
+	arc
+		start -150 0
+		angle -60
+		positions 2
+		repeat
+			start -150 0
+			positions 1
+
+
+# A filled circle around the lead ship.
+# Built in six segment sections using the same layouting as the hexagon shape.
+# Using rotatable 1 instead of 0 to avoid aligning circles perfectly with the screen direction.
+formation "Circle"
+	rotatable 1
+	arc
+		start 200 0
+		angle 360
+		# Start and end positions overlap, so we need to specify 7 instead of 6 and use skip first or skip last.
+		# No anchor point specified, since the flagship (position 0,0) is the anchor point (and that is the default).
+		skip last
+		positions 7
+		repeat
+			start 200 0
+			positions 6
+
+
+# Triangle forming behind the formation leader.
+formation "Delta (tailing)"
+	flippable y
+	line
+		start -75 129.9
+		end 75 129.9
+		positions 2
+		repeat
+			start -75 129.9
+			end 75 129.9
+			positions 1
+
+
+formation "Diamond"
+	flippable x y
+	rotatable 90
+	# Segment below, right of lead ship. Growing in down/right direction.
+	line
+		start 100 100
+		end 0 200
+		positions 2
+		repeat
+			start 200 0
+			end 0 200
+			positions 2
+	# Segment left, below of lead ship. Growing in left/down direction.
+	line
+		start -100 100
+		end -200 0
+		positions 2
+		repeat
+			start 0 200
+			end -200 0
+			positions 2
+	# Segment above, left of lead ship. Growing in above/left direction.
+	line
+		start -100 -100
+		end 0 -200
+		positions 2
+		repeat
+			start -200 0
+			end 0 -200
+			positions 2
+	# Segment right, above of lead ship. Growing in right/above direction.
+	line
+		start 100 -100
+		end 200 0
+		positions 2
+		repeat
+			start 0 -200
+			end 200 0
+			positions 2
+
+
+# Formation where ships fly in a diagonal line left behind the formation leader.
+formation "Echelon (left)"
+	position -150 150
+		repeat -150 150
+
+
+# Formation where ships fly in a diagonal line right behind the formation leader.
+formation "Echelon (right)"
+	position 150 150
+		repeat 150 150
+
+
+formation "Hexagon"
+	flippable y
+	rotatable 60
+	# Section lower-right.
+	line
+		start 75 150
+		end 75 150
+		positions 1
+		repeat
+			start 150 0
+			end 75 150
+			positions 1
+	# Section lower-left.
+	line
+		start -75 150
+		end -75 150
+		positions 1
+		repeat
+			start 75 150
+			end -75 150
+			positions 1
+	# Section left.
+	line
+		start -150 0
+		end -150 0
+		positions 1
+		repeat
+			start -75 150
+			end -150 0
+			positions 1
+	# Section upper-left.
+	line
+		start -75 -150
+		end -75 -150
+		positions 1
+		repeat
+			start -150 0
+			end -75 -150
+			positions 1
+	# Section upper-right.
+	line
+		start 75 -150
+		end 75 -150
+		positions 1
+		repeat
+			start -75 -150
+			end 75 -150
+			positions 1
+	# Section right.
+	line
+		start 150 0
+		end 150 0
+		positions 1
+		repeat
+			start 75 -150
+			end 150 0
+			positions 1
+
+
+# Formation where ships form a line right and left of the formation leader.
+formation "Line (sides)"
+	flippable x y
+	rotatable 180
+	position -200 0
+		repeat -200 0
+	position 200 0
+		repeat 200 0
+
+
+# Formation where ships form a line behind the formation leader.
+formation "Line (trailing)"
+	flippable y
+	position 0 200
+		repeat 0 200
+
+
+# Regular triangle with the formation leader in the center at the front and the point of the triangle facing backwards.
+formation "Nabla (trailing)"
+	flippable y
+	line
+		start -150 0
+		end -75 129.9
+		positions 2
+		repeat
+			start -150 0
+			end 0 259.8
+			positions 2
+	line
+		start 150 0
+		end 0 259.8
+		positions 3
+		repeat
+			start 150 0
+			end 0 259.8
+			positions 2
+
+
+# Square with lead ship in the center.
+# Order of the segments is important; to make it grow nicely line by line without gaps.
+# Direction of the lines (start and end) is also important to avoid gaps.
+formation "Square"
+	flippable x y
+	rotatable 90
+	# Segment ahead of the lead-ship, growing forward, a bit offset to right.
+	line
+		start 0 -200
+		end 200 -200
+		positions 2
+		repeat
+			start -200 -200
+			end 200 -200
+			positions 2
+	# Segment right of the lead-ship, growing right, a bit offset to the back.
+	line
+		start 200 0
+		end 200 200
+		positions 2
+		repeat
+			start 200 -200
+			end 200 200
+			positions 2
+	# Segment behind of the lead-ship, growing backward, a bit offset to left.
+	line
+		start 0 200
+		end -200 200
+		positions 2
+		repeat
+			start 200 200
+			end -200 200
+			positions 2
+	# Segment left of the lead-ship, growing left, a bit offset to the front.
+	line
+		start -200 0
+		end -200 -200
+		positions 2
+		repeat
+			start -200 200
+			end -200 -200
+			positions 2
+
+
+# Formation with two legs extending on a 30 degree angle behind the lead ship.
+formation "Vic"
+	flippable y
+	position -150 87
+		repeat -150 87
+	position 150 87
+		repeat 150 87
+
+
+# X shaped formation that rotates with the flagship.
+formation "X"
+	flippable x y
+	rotatable 90
+	position -150 150
+		repeat -150 150
+	position 150 150
+		repeat 150 150
+	position 150 -150
+		repeat 150 -150
+	position -150 -150
+		repeat -150 -150
+
+
+# Stable X or + shaped formation that doesn't rotate with the flagship.
+formation "X stable"
+	rotatable 0
+	position -150 150
+		repeat -150 150
+	position 150 150
+		repeat 150 150
+	position 150 -150
+		repeat 150 -150
+	position -150 -150
+		repeat -150 -150

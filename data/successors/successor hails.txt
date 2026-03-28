@@ -1,0 +1,1181 @@
+# Copyright (c) 2024 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Successor civilian
+
+phrase "successor friendly hail" # Wary
+	word
+		`Art thou the "noble visitor" of whom the Houses speak?`
+		`Art thou the "honored guest" the Houses do parade?`
+		"Art thou the eerie creature that hails from distant lands?"
+		"Art thou the strange-ish traveler that hails from distant stars?"
+		"Art thou the alien visitor within our noble lands?"
+		"Art thou the creature'f history, returned to seek the present?"
+		"Thy ship and countenance seem strange-ish and bizarre,"
+	word
+		" / "
+	word
+		"I note thy presence but remain'f thee wary."
+		"If corrupted be thy soul, then prithee keep thy distance."
+		"If thou art friend to me, so I shall be to thee."
+		"What is thy goal within these stars? To wander in delight?"
+		"To whom and what thou does thou lend thy own strength?"
+		"What is thy goal within these stars? To observe or interfere?"
+		"What is thy goal within these stars? Be a trader or a traitor?"
+
+
+phrase "successor friendly hail" # Equipment
+	word
+		"I never fly without"
+		"I never travel 'thout"
+		"T'would be foolish t'fly without"
+	word
+		" "
+	word
+		"a trusty scanner"
+		"my trusty scanner"
+		"a larger fuel tank"
+		"communications"
+		"some conversation"
+		"a stock of crab-cubes"
+		"a stock of kelp-packs"
+		"a week's supply-cache"
+	word
+		", / "
+	word
+		"I suggest thou dost the same in thine best interest."
+		"It makes the many hours pass by quickly."
+		"The dark of space is lightened by its presence."
+		"There's little point in taking off without it."
+
+
+phrase "successor friendly hail" # Basic greeting
+	word
+		"Hail"
+		"Hark"
+	word
+		", "
+	word
+		"fellow captain"
+		"fellow pilot"
+		"star treader"
+		"captain"
+		"visitor"
+	word
+		"." 3
+		"!" 3
+		", strange as thou might be."
+
+
+phrase "successor friendly hail" # Regretful
+	word
+		"I was"
+	word
+		" "
+	word
+		"meant"
+		"trained"
+		"taught"
+	word
+		" "
+	word
+		"to be a"
+	word
+		" "
+	phrase
+		"successor occupation"
+	word
+		", "
+	word
+		"truly"
+		"really"
+		"yes"
+		"true"
+	word
+		", / "
+	word
+		"not"
+	word
+		" "
+	word
+		"some"
+		"this"
+		"a"
+	word
+		" "
+	word
+		"meager"
+		"lowly"
+		"wretched"
+		"somber"
+		"pit'ful"
+		"lonely"
+	word
+		" "
+	word
+		"pilot"
+	word
+		"."
+		"!"
+
+
+phrase "successor friendly hail" # Media
+	word
+		"Hast thou"
+	word
+		" "
+	word
+		"enjoyed"
+		"seen"
+		"experienced"
+		"taken'n"
+	word
+		" "
+	phrase
+		"successor media name"
+	word
+		"? / "
+	word
+		"Truly, I've naught t'compare it with that's equal"
+		"'Tis my favorite of its kind, without discussion"
+		"Such truth in art is truly rare to find"
+		"If not, then thou art poorer for it"
+		"'Tis perfect to enjoy while on the starlanes"
+		"More relevant today than aught before"
+	word
+		"."
+		"!"
+
+
+phrase "successor friendly hail" # Cargo
+	word
+		"T'was hired t'bring"
+		"I'm transporting"
+	word
+		" "
+	word
+		"a"
+	word
+		" "
+	word
+		"load" 2
+		"box"
+		"crate"
+	word
+		" "
+	word
+		"of pricy"
+		"containing"
+		"of gilded"
+	word
+		" "
+	phrase
+		"successor commodities (2-syllable)"
+	word
+		". / "
+		"! / "
+	word
+		"I'll see it"
+		"It shall be"
+	word
+		" "
+	word
+		"delivered"
+		"offered"
+		"unloaded"
+	word
+		" "
+	word
+		"quickly"
+		"safely"
+		"shortly"
+		"caref'ly"
+	word
+		" and with conviction"
+		", as is my standard"
+		" and on time"
+	word
+		"."
+		"!"
+
+
+phrase "successor friendly hail" # Proverbs
+	word
+		"We swim in the water that we salt ourselves."
+		"One is blind, two are foolish, but three bend not to whims or fancy."
+		"Trust to an arm's-tip."
+		"Eyes open, arms wide."
+		"The eggs of suspicion are the scions of prudence."
+		"Better the dry House to the wet rage."
+		"First name for the past, second for the present, third for the future."
+		"Honor is the offspring of safety."
+		"Is there in truth no beauty? Is there in virtue no joy?"
+
+
+phrase "successor friendly hail" # Relation
+	word
+		"My"
+	word
+		" "
+	phrase
+		"successor relation"
+	word
+		" "
+	word
+		"always told me: be a"
+		"has just earned the title:"
+		"used to know a friendly"
+		"helped me find a friendly"
+		"just got married to a"
+		"told me: never trust a"
+		"used to be a skillful"
+	word
+		" "
+	phrase
+		"successor occupation"
+	word
+		", / "
+	word
+		"With these long days, I wish that they were me."
+		"A noble job, and yet not one for me."
+		"It's not my place to give critique, and yet..."
+		"I hope that I will see them soon again."
+		"Hast thou met them? Do they carry any news?"
+
+
+phrase "successor friendly hail" # Conspiracy
+	word
+		"I hope that thou will keep this thought between us:"
+		"A friend of mine hath told me once in secret:"
+		"I have heard from well reputed, honest lips that:"
+		"The High Houses try to hide it, but I know that:"
+		"I've learned in many years of honest pil'ting:"
+		"If thou art willing to believe me:"
+		"Doubt my words if knave'ry is thy goal, but:"
+	word
+		" / "
+	word
+		"T'was the scheming Drak who brought ruin to our empire."
+		"The treach'rous Quarg's who caused the end of the old empire."
+		"That jealous Coalition brought the end of the old empire."
+		"The canny Korath caused the end of the old empire."
+		"The High Houses by themselves destroyed our empire."
+		"The best trade routes are ones not prone to scanning." 5
+		"The best trade routes are those that make thee money." 5
+		"The best trade routes are hidden from thy sensors." 2
+		"There are nightmares in the void that the Houses fear."
+		"The empty systems here are prone to strangeness."
+
+
+phrase "successor friendly hail" # Compliance
+	word
+		"If thou'rt scanned by"
+		"When thou'rt scanned by"
+	word
+		" "
+	word
+		"a Houses ship"
+		"the local House"
+		"a House warship"
+		"a House patrol"
+	word
+		", / "
+	word
+		"Make haste to stop"
+		"Don't try to flee"
+		"Make still thy craft"
+	word
+		" and don't resist"
+		", unfold thyself"
+		", explain thy route"
+		", present thy writ"
+	word
+		"."
+		"!"
+
+
+phrase "successor friendly hail" # Careful
+	word
+		"Let not thy"
+	word
+		" "
+	word
+		"voyage"
+		"journey"
+		"travel"
+		"mission"
+		"effort"
+	word
+		" "
+	word
+		"be for naught"
+		"be undone"
+		"turn to ash"
+		"make for naught"
+	word
+		"! / "
+		"; / "
+	word
+		"Keep thy craft pristine"
+		"Stow thy cargo'th care"
+		"Watch thy sensors caref'ly"
+		"Read thy writ with care"
+	word
+		" and keep thine eyes alight"
+		", thine eyes alight"
+		" for secur'ty's sake"
+		" for thy whole crew's sake"
+		" and thy wit a razor"
+		" and thine arms adroit"
+	word
+		"."
+		"!"
+
+
+phrase "successor hostile hail"
+	word
+		"Thou hast betrayed our trust and for what purpose!?"
+		"Our foolishness it was, we see, to trust thee;"
+		"Cruel, malignant, violent, petty creature."
+		"Vile! Thy deception is exposed now."
+		"Your death will leave no absence on the cosmos."
+		"Our friendship now, you find, has been retracted."
+	word
+		" / "
+	word
+		"So sorry thou shalt meet a violent end."
+		"The Houses will unburden thee of life."
+		"Prepare to shuffle off thy mortal coil."
+		"The gentle hand of Death doth close thine eye."
+		"No satisfaction lives in our reprisal."
+
+
+phrase "successor friendly disabled hail"
+	word
+		"A prompt assist would honor thee,"
+		"Alas, our vessel's lay'en low,"
+		`"Help!" we ask, fair visitor,`
+		"Our valiant craft's been stricken, friend,"
+	word
+		" / "
+	word
+		"Make haste, we thee implore."
+		"Lend aid if 'tis in reach."
+		"Thy help would make us whole."
+		"'Tis noble to be kind and wise to help."
+
+
+phrase "successor hostile disabled hail"
+	word
+		"Ruinous creature, see now thy bitter handiwork!"
+		"Thy deceit's laid low our fairest vessel!"
+		"Bitter knave, thoughtless in kind and action!"
+		"Cruel deceiver, we observe our fault 'twas trusting thee,"
+	word
+		" / "
+	word
+		"The Houses shall bring thy bitter self to justice!"
+		"Spare us but our lives if not our ship!"
+		"Thou art cursed, foolish, cruel, and sure to die."
+		"Our families shall avenge us, no matter how!"
+
+# High Houses: Generic
+
+phrase "high houses friendly hail"
+	word
+		"We welcome thee to join us in our space"
+		"Thy presence in our lovely space is welcome"
+		"We note thy visitation and accept"
+		`"Noble friend," thou art by our decree`
+		`"Honored guest," within our skies thou art`
+		`"Regal sojourner," thy name shall be with us`
+	word
+		", / "
+	word
+		"So that thou"
+	word
+		" "
+	word
+		"might"
+		"may"
+		"shalt"
+		"can'st"
+	word
+		" "
+	word
+		"enjoy our pleasant worlds"
+		"enjoy our verdant worlds"
+		"make note of our advance"
+		"find joy in our success"
+		"bear witness to our joy"
+		"appreciate our lands"
+		"learn well of our success"
+		"feel awe at our success"
+	word
+		"." 3
+		"!"
+
+
+phrase "high houses friendly hail"
+	word
+		"By noble lineage do we exalt us all,"
+		"With joyful strength and honest might we fly,"
+		"No evil shall impede our noble goal:"
+		"Our goal's a true and simple thing:"
+		"With watching eyes and gallant hearts,"
+	word
+		" / "
+	word
+		"To build for all a great and lasting peace."
+		"To make for all a true and joyful peace."
+		"To keep us all secure and bright in peace."
+		"To promote the joy and welfare of us all."
+
+
+phrase "high houses friendly hail"
+	word
+		"Hark"
+		"Hail"
+	word
+		", "
+	word
+		"traveler"
+		"guest"
+		"alien"
+		"captain"
+		"pilot"
+	word
+		"!"
+	word
+		" / "
+	word
+		"Our"
+	word
+		" "
+	word
+		"House"
+		"fleet"
+		"ship"
+		"craft"
+	word
+		" "
+	word
+		"patrols"
+		"maintains"
+		"observes"
+		"doth grace"
+	word
+		" "
+	word
+		"this space"
+		"these worlds"
+	word
+		"."
+		"!"
+
+
+phrase "high houses friendly hail"
+	word
+		"Let those with"
+		"May those with"
+	word
+		" "
+	word
+		"evil"
+		"rancor"
+		"fury"
+		"knave'ry"
+		"cruelty"
+		"terror"
+		"violence"
+		"mock'ry"
+	word
+		" "
+	word
+		"in their hearts"
+		"as their guide"
+		"as intent"
+	word
+		" "
+	word
+		"quake"
+		"fright"
+		"flee"
+		"begone"
+	word
+		" "
+	word
+		"and blanch in fear"
+		"before our might"
+		"as we arrive"
+	word
+		". / "
+		"! / "
+	word
+		"Your House is here"
+		"Your House arrives"
+	word
+		"."
+		"!"
+
+
+phrase "high houses friendly hail"
+	word
+		"Make naked not the"
+		"Loose not the wicked"
+	word
+		" "
+	word
+		"blade"
+		"spear"
+		"claw"
+	word
+		" of "
+	word
+		"evil"
+		"rancor"
+		"fury"
+		"cruelty"
+		"terror"
+		"violence"
+		"mock'ry"
+	word
+		" "
+	word
+		"'fore our gaze"
+		"'thin our sight"
+		"while we yet breathe"
+		"among our worlds"
+		"upon our people"
+	word
+		". / "
+		"! / "
+	word
+		"All knaves shall meet their bitter end"
+		"Our wrath stands equal to our love"
+		"Our might exceeds the basest foe"
+		"Our duty 'mplores us to defend"
+		"We shan't abide a violent foe"
+	word
+		"."
+		"!"
+
+
+phrase "high houses friendly hail"
+	word
+		"Justice"
+		"Strength"
+		"Sight"
+		"Might"
+		"Care"
+	word
+		", "
+	word
+		"honor"
+		"passion"
+		"valor"
+	word
+		", "
+	word
+		"integrity"
+		"fidelity"
+		"precision"
+		"nobility"
+		"honesty"
+		"clarity"
+		"swiftness"
+		"bravery"
+	word
+		": "
+	word
+		"these"
+		"such"
+	word
+		" "
+	word
+		"are the virtues of"
+	word
+		" "
+	word
+		"our"
+	word
+		" "
+	word
+		"noble"
+		"regal"
+	word
+		" "
+	word
+		"House."
+
+
+phrase "high houses friendly hail"
+	word
+		"Travel"
+		"Visit"
+	word
+		" "
+	word
+		"planetside"
+		"onworld"
+	word
+		" "
+	word
+		"to see"
+		"to touch"
+	word
+		" "
+	word
+		"an Aaulqra"
+		"a Seiitej"
+		"a Veusade"
+		"an Ojet"
+		"a coilgun"
+	word
+		" "
+	word
+		"in person"
+		"up close"
+		"with thine own arms"
+	word
+		"."
+		"!"
+
+
+phrase "high houses hostile hail"
+	word
+		"Thy deception marks the apex of thine ill,"
+		"Thy cowardice is the basis of thy fame,"
+		"Our foolishness it was, we see, to trust thee;"
+		"A knave and coward thou hast clearly proved thyself;"
+		"Cowards die many times before their deaths,"
+	word
+		" / "
+	word
+		"Our duty shalt relieve thee of thy life."
+		"May thou in death find the peace thou lacked in life."
+		"May thy death be valorous and quick."
+		"May, in death, thou recognize thy wrongs."
+		"Enlightened now, we are to thy malignity."
+		"May thy knavish and deceptive heart now cease."
+		"The valiant never taste of death but once."
+
+
+phrase "high houses hostile hail"
+	word
+		"We take no pleasure in this graven duty,"
+		"Thy venom shall be met with our resolve:"
+		"Our graven duty 'tis to end thy cruelty:"
+	word
+		" / "
+	word
+		"We'll make thy death a quick and painless thing."
+		"Our thorns shall sprout in thy rebellious flesh."
+		"May thy death be valorous and quick."
+		"May thy pain be consuming and quick."
+
+
+phrase "high houses hostile disabled hail" 2
+	word
+		"Ruinous cur, our vengeance shall yet find thee!"
+		"Revenge is a dish best served cold,"
+		"Thou might break our ship but shall never break our spirit!"
+		"Putrefy and fester, knave deceiver!"
+		"Board us and we shall fight to the last!"
+	word
+		" / "
+	word
+		"Our friends shall avenge thy bitter cruelty!"
+		"Let thy rotten flesh be consumed in flame!"
+		"Our friends shall yet let thee know fear."
+		"Thine only noble act shall be to perish."
+
+
+phrase "high houses hostile disabled hail"
+	word
+		"From void's heart, we stab at thee! / For the good of hate, we spit our last breaths at thee!" # Moby-Dick
+		"Cowards die many times before their deaths, / But the valiant never taste of death but once!" # Julius Caesar, Act 2, Scene 2
+		"Woe, destruction, ruin and decay; / The worst is death, and death will have its day." # Richard II, Act 3, Scene 2
+		"Cur, keep back, or else embrace thy death; / Come not within the measure of my wrath." # The Two Gentlemen of Verona, Act 5, Scene 4
+		"And by a sleep we say to end / The heartache, and the thousand natural shocks / That flesh is heir to." # Hamlet, Act 3, Scene 1
+
+# High Houses: Old Houses
+
+phrase "old houses friendly hail" # Boast hails
+	word
+		"The"
+	word
+		" "
+	word
+		"arm of"
+		"spear of"
+		"sword of"
+		"shield of"
+		"prime of"
+		"best of"
+	word
+		" "
+	word
+		"the Old Houses"
+	word
+		" "
+	word
+		"in"
+		"with"
+	word
+		" "
+	word
+		"joy"
+		"pride"
+		"strength"
+		"glory"
+	word
+		" "
+	word
+		"we are;"
+	word
+		" / "
+	word
+		"A simple truth in which we take our pride."
+		"An honest fact 'tis plain for all to see."
+		"A simple truth in which we take our joy."
+		"A truth that we wear on our sleeves."
+		"A position that we hold with utmost glee."
+		"An honor that we never shall deny."
+		"A joy in word and action, purely said."
+
+
+phrase "old houses friendly hail" 10
+	phrase
+		"high houses friendly hail"
+
+
+phrase "chydiyi friendly hail" 7
+	phrase
+		"old houses friendly hail"
+
+
+phrase "chydiyi friendly hail"
+	word
+		"Share in House Chydiyi's Barred Sky"
+		"Fly by grace of the Barred Sky"
+	word
+		", / "
+	word
+		"Its"
+		"Our"
+	word
+		" "
+	word
+		"fleet"
+		"ships"
+		"craft"
+	word
+		" "
+	word
+		"the clouds within it"
+		"the wreath of stars"
+		"a storm within't"
+	word
+		"."
+		"!"
+
+
+phrase "myurej friendly hail" 6
+	phrase
+		"old houses friendly hail"
+
+
+phrase "myurej friendly hail"
+	word
+		"Endure not"
+	word
+		" "
+	word
+		"the rise and fall"
+		"the in and out"
+		"the breath of waves"
+		"the pain of yore"
+	word
+		", "
+	word
+		"the ebb and play"
+		"the draw of fear"
+		"the ghost of past"
+	word
+		", / "
+	word
+		"make thine eyes aflutter"
+		"lift thy head with pride"
+		"stretch thine arms afront"
+		"push thy spirit forth"
+		"grant thy spirit flight"
+	word
+		", "
+	word
+		"breathe in the noble day"
+		"make merry of the day"
+		"find success in thine 'deavors"
+		"take pleasure in thy role"
+	word
+		"."
+		"!"
+
+
+phrase "myurej friendly hail"
+	word
+		"The Blossoming Arm of "
+	word
+		"House"
+		"grand"
+		"sweet"
+	word
+		" Myurej "
+	word
+		"extends to thee"
+		"'s offered to thee"
+	word
+		" in "
+	word
+		"friendship"
+		"peace"
+		"aid"
+		"am'ty"
+	word
+		". / "
+	word
+		"Thou may'st accept as thou requires."
+		"Do naught but hail t'invoke assistance."
+		"Such is our promise, nobly made."
+	
+
+phrase "sioeora friendly hail" 7
+	phrase
+		"old houses friendly hail"
+
+
+phrase "sioeora friendly hail"
+	word
+		"The"
+	word
+		" "
+	word
+		"gleaming"
+		"brilliant"
+		"faultless"
+		"clever"
+	word
+		" "
+	word
+		"ships"
+		"craft"
+		"tools"
+		"arms"
+	word
+		" of "
+	word
+		"our noble House"
+		"bright Sioeora"
+		"the Twin-Moon House"
+	word
+		" / "
+	word
+		"Stand ready to assist"
+		"Are well-known as the best of all"
+		"Shall not endure the evil-hearted"
+		"Are our pleasure to employ"
+	word
+		"."
+		"!"
+
+# High Houses: New Houses
+
+phrase "new houses friendly hail" # Boast hails
+	word
+		"The"
+	word
+		" "
+	word
+		"arm of"
+		"spear of"
+		"sword of"
+		"shield of"
+		"prime of"
+		"best of"
+	word
+		" "
+	word
+		"the New Houses"
+	word
+		" "
+	word
+		"in joy"
+		"with pride"
+		"with joy"
+	word
+		" "
+	word
+		"we are;"
+	word
+		" / "
+	word
+		"A simple truth in which we take our pride."
+		"An honest fact 'tis plain for all to see."
+		"A simple truth in which we take our joy."
+
+
+phrase "new houses friendly hail" 10
+	phrase
+		"high houses friendly hail"
+
+
+phrase "kaatrij friendly hail" 6
+	phrase
+		"new houses friendly hail"
+
+
+phrase "kaatrij friendly hail"
+	word
+		"We art on gossamer wings with fang'ed claws."
+		"May thou recognize thine own multitudes;"
+		"Remember the fallen, new and old."
+		"We endure together, then and now."
+		"Pry not, seek not, now and always."
+		"We watch, we maintain, never resting;"
+	word
+		" / "
+	word
+		"Our noble house thus flies unhindered."
+		"In our unity we find our strength."
+		"May thou be watchful as thy virtue."
+
+
+phrase "kaatrij friendly hail"
+	word
+		"The"
+	word
+		" "
+	word
+		"Kijran"
+		"Composite"
+		"Wing'ed"
+		"Winged-Eye"
+	word
+		" House "
+	word
+		"doth greet"
+		"observes"
+		"observes and notes"
+		"salutes"
+	word
+		" thee, "
+	word
+		"traveler"
+		"captain"
+		"alien"
+		"pilot"
+		"guest"
+	word
+		". / "
+	word
+		"May thou have"
+		"Let thou have"
+	word
+		" "
+	word
+		"clarity"
+		"prudence"
+		"success"
+		"integrity"
+	word
+		" "
+	word
+		"in thy travels."
+		"on thy journey."
+
+
+phrase "seineq friendly hail"
+	phrase
+		"new houses friendly hail" 7
+
+
+phrase "seineq friendly hail"
+	word
+		"In"
+	word
+		" "
+	word
+		"verdant"
+		"lasting"
+		"brilliant"
+		"gleaming"
+	word
+		" "
+	word
+		"peace"
+	word
+		" "
+	word
+		"and"
+		"with"
+	word
+		" "
+	word
+		"glowing"
+		"passioned"
+		"clear-eyed"
+	word
+		" "
+	word
+		"pride"
+	word
+		", / "
+	word
+		"the Houses, New"
+		"our noble House"
+		"grand Seineq's House"
+		"the Lum'nary party"
+		"the Twice-Wrapped Ring"
+	word
+		" "
+	word
+		"doth"
+	word
+		" "
+	word
+		"endure and thrive"
+		"proclaim success"
+		"invoke our skill"
+	word
+		"."
+		"!"
+
+
+phrase "aqrabe friendly hail" 6
+	phrase
+		"new houses friendly hail"
+
+
+phrase "aqrabe friendly hail"
+	word
+		"Heed the words of"
+		"Keep close the words'f"
+		"Ignore not"
+		"Discount not"
+	word
+		" "
+	word
+		"the"
+		"our"
+	word
+		" "
+	word
+		"noble"
+		"regal"
+		"thoughtful"
+	word
+		" saint of "
+		" paragon o'"
+	word
+		"Clarity"
+		"Cleverness"
+		"Cognizance"
+		"Family"
+		"Honesty"
+		"Humility"
+		"Industry"
+		"Unity"
+		"Wealth"
+	word
+		": / "
+	word
+		`"Feed not the yawning maw of idleness."`
+		`"Prosperity enacts its own virtues."`
+		`"Strength is the enabler of virtue."`
+		`"Resilience is the egg of success."`
+		`"Ostentation is the skin of the false."`
+		`"Security enables prosperity."`
+		`"Betterment is not wrought without well-built tools."`
+		`"Let thy gold be thread, not statue."`
+
+
+phrase "aqrabe friendly hail"
+	word
+		"We are Aqrabe"
+		"Noble House Aqrabe"
+	word
+		", "
+	word
+		"The Tower of Ij"
+		"Devoted Party to the New Houses"
+	word
+		": no "
+	word
+		"evildoer"
+		"malevolent"
+		"miscreant"
+	word
+		" "
+	word
+		"shall"
+		"can"
+		"could"
+	word
+		" "
+	word
+		"escape"
+		"evade"
+		"avoid"
+	word
+		" our "
+	word
+		"wrath"
+		"gaze"
+		"purview"
+		"might"
+	word
+		"."
+		"!"
+
+# People's Houses
+
+phrase "people's houses friendly hail"
+	word
+		"Revel in thy freedom and endurance."
+		"I intend to thee no harm nor malfeasance."
+		"We fly the flag of freedom from oppression."
+		"The People's Houses offer true equality."
+	word
+		" / "
+	word
+		"Live without the chains of aristocracy."
+		"Remain unshackled from the listless norm."
+		"The People's Houses are ready to assist."
+
+phrase "people's houses hostile hail"
+	word
+		"Art thou a knave in title same as action!?"
+		"Thou art nothing but a foolish slave to power!"
+		"Art thou blind and deaf to suff'ring or just evil?"
+		"If thou wouldst drop thy cargo, we'll be going."
+		"No harm shall come to those who drop their cargo."
+		"Thou art knavish in thy friendships and thine action."
+	word
+		" / "
+	word
+		"Thy blood shall grace the inside of thy starship."
+		"Resistance shall be met with execution."
+		"I hope thy pain is great and everlasting."
+		"Allow me to unburden thee of mortality."
+		"Prepare to shuffle off thy mortal coil."
+		"The sudden hand of Death shalt close thine eye."

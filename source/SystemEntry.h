@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SYSTEM_ENTRY_H_
-#define SYSTEM_ENTRY_H_
+#pragma once
 
 
 
@@ -25,7 +24,3 @@ enum class SystemEntry {
 	JUMP,
 	WORMHOLE
 };
-
-
-
-#endif
