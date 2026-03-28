@@ -609,11 +609,12 @@ void Engine::Step(bool isActive)
 			outlines.emplace_back(ship->GetSprite(), (ship->Position() - camera.Center()) * zoom, ship->Unit() * zoom,
 				ship->GetFrame(), Color::Multiply(ship->Cloaking(), cloakColor));
 		}
-	bool highlightFlag = Preferences::Has("Highlight player's flagship");
-	if(Preferences::Has("Highlight all ships"))
+	Preferences::HighlightShips highlight = Preferences::GetHighlightShips();
+	bool highlightFlag = highlight != Preferences::HighlightShips::OFF;
+	if(highlight == Preferences::HighlightShips::ALL)
 		for(const auto &ship : ships)
 		{
-			if(ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 1. || (highlightFlag && ship == flagship))
+			if(ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 1. || ship == flagship)
 				continue;
 
 			const Color &color = GetTargetOutlineColor(RadarType(*ship, wasActive ? uiStep : 0));
