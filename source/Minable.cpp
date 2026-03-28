@@ -72,7 +72,9 @@ void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
-		if(!hasValue)
+		if(key == "attributes")
+			attributes.Load(child, playerConditions);
+		else if(!hasValue)
 			child.PrintTrace("Expected key to have a value:");
 		else if(key == "display name")
 			displayName = child.Token(1);
@@ -98,8 +100,6 @@ void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions
 			int count = (child.Size() == 2 ? 1 : child.Value(2));
 			explosions[GameData::Effects().Get(child.Token(1))] += count;
 		}
-		else if(key == "attributes")
-			attributes.Load(child, playerConditions);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}

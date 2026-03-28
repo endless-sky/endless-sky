@@ -367,6 +367,7 @@ outfit `A-3600 "Beam" Amat Drive`
 
 
 outfit `Z-333 "Spark" Fusion Torch`
+	plural `Z-333 "Spark" Fusion Torches`
 	category "Engines"
 	series "Engines"
 	index 07050
@@ -393,6 +394,7 @@ outfit `Z-333 "Spark" Fusion Torch`
 
 
 outfit `Z-666 "Zap" Fusion Torch`
+	plural `Z-666 "Zap" Fusion Torches`
 	category "Engines"
 	series "Engines"
 	index 07060
@@ -418,6 +420,7 @@ outfit `Z-666 "Zap" Fusion Torch`
 
 
 outfit `Z-999 "Arc" Fusion Torch`
+	plural `Z-999 "Arc" Fusion Torches`
 	category "Engines"
 	series "Engines"
 	index 07070
