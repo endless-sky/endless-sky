@@ -318,18 +318,18 @@ mission "Ka'het: Death in the Graveyard 1"
 			`	Your ship's proximity alert breaks the silence, then falls quiet before you reach the control panel. A quick glance out the window confirms you're still fairly high up, and the ship's radar reveals nothing of interest - at least not currently. You press a couple of buttons to check what your ship recorded, and see what looks like a large mass flicker for a few seconds a hundred meters away from your ship during the alarm.`
 			choice
 				`	(Continue the descent.)`
-				`	(Stop your ship and prepare for a fight.)`
+				`	(Stop my ship and prepare for a fight.)`
 				`	(Turn around and leave.)`
 					depart
 			`	A few seconds pass before the proximity alert sounds again. And this time, you see it. You shine your ship's floodlights at it, revealing the translucent figure of a partly cloaked Maeri'het. It flickers, its various sections becoming more and less transparent seemingly at random.`
 			`	Even stranger, it isn't facing toward you, nor does it appear to have reacted in any way. It is simply floating next to you, slowly descending as it puffs clouds of vapor from its upper body. There is nothing indicating that it might be ready to attack, though that could change in a matter of seconds.`
 			choice
-				`	(Take your chance and attack it.)`
+				`	(Take my chance and attack it.)`
 					to display
 						"armament deterrence" > 0
 					goto attack
 				`	(Move closer, carefully.)`
-				`	(Keep your distance.)`
+				`	(Keep my distance.)`
 				`	(Turn around and leave.)`
 					depart
 			`	Minutes pass, and the Maeri'het continues to show no reaction of any kind to your presence. By the time you complete a fly-around, you both have almost reached the ground; a few metallic panels detach from the Ka'het's shell just as it touches down, and balloons start inflating out of the resulting holes.`
@@ -350,7 +350,7 @@ mission "Ka'het: Death in the Graveyard 1"
 					to display
 						"armament deterrence" > 0
 					goto blow
-				`	(Land next to it and don your EVA suit.)`
+				`	(Land next to it and don my EVA suit.)`
 			`	You instinctively check your sidearm while walking down the stairway, despite knowing how futile it would be. Despite being the smallest type of Ka'het you have seen, the Maeri'het is still intimidatingly large. No longer cloaked, you notice a fluid coming down from its sides that originates from the slug itself. It covers the entire landing zone, and some of it has almost reached your ship.`
 			`	For an instant, you entertain the thought of looting its outfits. But as if it was reading your mind, the Maeri'het hits you with another cloud of warm, pale vapor, triggering your suit's overheat warning. Defeated, you turn around and climb back to your cockpit.`
 			label report
