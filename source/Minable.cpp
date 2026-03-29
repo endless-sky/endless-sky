@@ -61,7 +61,7 @@ Minable::Payload::Payload(const DataNode &node)
 
 
 // Load a definition of a minable object.
-void Minable::Load(const DataNode &node)
+void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	// Set the name of this minable, so we know it has been loaded.
 	if(node.Size() >= 2)
@@ -72,7 +72,9 @@ void Minable::Load(const DataNode &node)
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
-		if(!hasValue)
+		if(key == "attributes")
+			attributes.Load(child, playerConditions);
+		else if(!hasValue)
 			child.PrintTrace("Expected key to have a value:");
 		else if(key == "display name")
 			displayName = child.Token(1);
@@ -283,6 +285,20 @@ double Minable::Hull() const
 double Minable::MaxHull() const
 {
 	return maxHull;
+}
+
+
+
+double Minable::Mass() const
+{
+	return attributes.Mass();
+}
+
+
+
+double Minable::MaximumHeat() const
+{
+	return MAXIMUM_TEMPERATURE * (attributes.Mass() + attributes.Get("heat capacity"));
 }
 
 

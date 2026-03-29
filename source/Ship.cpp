@@ -65,8 +65,6 @@ namespace {
 	const vector<string> ENGINE_SIDE = {"under", "over"};
 	const vector<string> STEERING_FACING = {"none", "left", "right"};
 
-	const double MAXIMUM_TEMPERATURE = 100.;
-
 	// Scanning takes up to 10 seconds (SCAN_TIME / MIN_SCAN_STEPS)
 	// dependent on the range from the ship (among other factors).
 	// The scan speed uses a gaussian drop-off with the reported scan radius as the standard deviation.
@@ -643,7 +641,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(base && base != this)
 	{
 		if(!GetSprite())
-			reinterpret_cast<Body &>(*this) = *base;
+			static_cast<Body &>(*this) = *base;
 		if(customSwizzleName.empty())
 			customSwizzleName = base->CustomSwizzleName();
 		if(baseAttributes.Attributes().empty())
@@ -1860,14 +1858,36 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		if(victim->NeedsFuel() && CanRefuel(*victim))
 		{
 			helped = true;
-			TransferFuel(victim->JumpFuelMissing(), victim.get());
+			double fuelTransferred = TransferFuel(victim->JumpFuelMissing(), victim.get());
+			if(fuelTransferred >= 1.)
+			{
+				if(isYours)
+					Messages::Add({Format::Number(fuelTransferred, 0) + " fuel transferred from your "
+						+ GivenName() + " to the " + victim->GivenName() + ".",
+						GameData::MessageCategories().Get("normal")});
+				else if(victim->IsYours())
+					Messages::Add({Format::Number(fuelTransferred, 0) + " fuel transferred from the "
+						+ GivenName() + " to your " + victim->GivenName() + ".",
+						GameData::MessageCategories().Get("normal")});
+			}
 		}
 		// Transfer some energy, if needed.
 		if(victim->Attributes().Get("energy capacity") > 0 && victim->energy < 200.)
 		{
 			helped = true;
 			double toGive = max(attributes.Get("energy capacity") * 0.1, victim->Attributes().Get("energy capacity") * 0.2);
-			TransferEnergy(max(200., toGive), victim.get());
+			double energyTransferred = TransferEnergy(max(200., toGive), victim.get());
+			if(energyTransferred >= 1.)
+			{
+				if(isYours)
+					Messages::Add({Format::Number(energyTransferred, 0) + " energy transferred from your "
+						+ GivenName() + " to the " + victim->GivenName() + ".",
+						GameData::MessageCategories().Get("normal")});
+				else if(victim->IsYours())
+					Messages::Add({Format::Number(energyTransferred, 0) + " energy transferred from the "
+						+ GivenName() + " to your " + victim->GivenName() + ".",
+						GameData::MessageCategories().Get("normal")});
+			}
 		}
 		if(helped)
 		{
@@ -1881,8 +1901,30 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 	// If the boarding ship is the player, they will choose what to plunder.
 	// Always take fuel and energy if you can.
-	victim->TransferFuel(victim->fuel, this);
-	victim->TransferEnergy(victim->energy, this);
+	double fuelTransferred = victim->TransferFuel(victim->fuel, this);
+	if(fuelTransferred >= 1.)
+	{
+		if(isYours)
+			Messages::Add({Format::Number(fuelTransferred, 0) + " fuel siphoned from the "
+				+ victim->GivenName() + " to your " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+		else if(victim->IsYours())
+			Messages::Add({Format::Number(fuelTransferred, 0) + " fuel siphoned from your "
+				+ victim->GivenName() + " to the " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+	}
+	double energyTransferred = victim->TransferEnergy(victim->energy, this);
+	if(energyTransferred >= 1.)
+	{
+		if(isYours)
+			Messages::Add({Format::Number(energyTransferred, 0) + " energy siphoned from the "
+				+ victim->GivenName() + " to your " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+		else if(victim->IsYours())
+			Messages::Add({Format::Number(energyTransferred, 0) + " energy siphoned from your "
+				+ victim->GivenName() + " to the " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+	}
 	if(autoPlunder)
 	{
 		// Take any commodities that fit.
@@ -2691,6 +2733,8 @@ double Ship::TransferFuel(double amount, Ship *to)
 	if(to)
 	{
 		amount = min(to->attributes.Get("fuel capacity") - to->fuel, amount);
+		if(amount <= 0.)
+			return 0.;
 		to->fuel += amount;
 	}
 	fuel -= amount;
@@ -2705,6 +2749,8 @@ double Ship::TransferEnergy(double amount, Ship *to)
 	if(to)
 	{
 		amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
+		if(amount <= 0.)
+			return 0.;
 		to->energy += amount;
 	}
 	energy -= amount;
@@ -2820,16 +2866,6 @@ double Ship::Energy() const
 {
 	double maximum = attributes.Get("energy capacity");
 	return maximum ? min(1., energy / maximum) : (hull > 0.) ? 1. : 0.;
-}
-
-
-
-// Allow returning a heat value greater than 1 (i.e. conveying how overheated
-// this ship has become).
-double Ship::Heat() const
-{
-	double maximum = MaximumHeat();
-	return maximum ? heat / maximum : 1.;
 }
 
 
@@ -3616,13 +3652,6 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 			? perBox : count, notForGov));
 		count -= perBox;
 	}
-}
-
-
-
-const Outfit &Ship::Attributes() const
-{
-	return attributes;
 }
 
 

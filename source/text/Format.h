@@ -40,6 +40,7 @@ public:
 	// "M" for million, "B" for billion, or "T" for trillion. Any number
 	// above 1 quadrillion is instead shown in scientific notation.
 	static std::string AbbreviatedNumber(int64_t value);
+	static std::string AbbreviatedNumber(double value, std::optional<int> decimalPlaces, bool trimTrailingZeros = true);
 	// Convert the given number into abbreviated format as described in Format::AbbreviatedNumber,
 	// then attach the ' credit' or ' credits' suffix to it.
 	// If abbreviated is false, then the full numeric value is outputted.

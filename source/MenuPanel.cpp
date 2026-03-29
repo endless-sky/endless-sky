@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GamerulesPanel.h"
 #include "Information.h"
 #include "Interface.h"
 #include "LoadPanel.h"
@@ -144,6 +145,8 @@ void MenuPanel::Draw()
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");
+		if(!player.GetGamerules().LockGamerules())
+			info.SetCondition("gamerules unlocked");
 		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		if(player.Flagship())
 		{
@@ -215,6 +218,8 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// StartConditionsPanel also handles the case where there's no scenarios.
 		GetUI().Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
 	}
+	else if(key == 'g' && player.IsLoaded() && !player.IsDead() && !player.GetGamerules().LockGamerules())
+		GetUI().Push(new GamerulesPanel(player.GetGamerules(), true));
 	else if(key == 'q')
 	{
 		GetUI().Quit();

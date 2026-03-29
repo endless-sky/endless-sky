@@ -15,14 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Drawable.h"
+
 #include "Angle.h"
 #include "Point.h"
-#include "Swizzle.h"
 
-#include <string>
-
-class DataNode;
-class DataWriter;
 class Government;
 class Mask;
 class Sprite;
@@ -31,39 +28,24 @@ class Sprite;
 
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
-class Body {
+class Body : public Drawable {
 public:
 	// Constructors.
 	Body() = default;
 	Body(const Sprite *sprite, Point position, Point velocity = Point(), Angle facing = Angle(),
 		double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
-	Body(const Body &sprite, Point position, Point velocity = Point(), Angle facing = Angle(),
+	Body(const Body &other, Point position, Point velocity = Point(), Angle facing = Angle(),
 		double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
 
-	// Check that this Body has a sprite and that the sprite has at least one frame.
-	bool HasSprite() const;
-	// Access the underlying Sprite object.
-	const Sprite *GetSprite() const;
-	// Get the dimensions of the sprite.
-	double Width() const;
-	double Height() const;
-	// Get the farthest a part of this sprite can be from its center.
-	double Radius() const;
-	// Which color swizzle should be applied to the sprite?
-	const Swizzle *GetSwizzle() const;
-	bool InheritsParentSwizzle() const;
-	// Get the sprite frame and mask for the given time step.
-	float GetFrame(int step = -1) const;
+	// Get the sprite mask for the given time step.
 	const Mask &GetMask(int step = -1) const;
 
 	// Positional attributes.
 	const Point &Position() const;
 	const Point &Velocity() const;
-	const Point Center() const;
+	Point Center() const;
 	const Angle &Facing() const;
 	Point Unit() const;
-	double Zoom() const;
-	Point Scale() const;
 
 	// Check if this object is marked for removal from the game.
 	bool ShouldBeRemoved() const;
@@ -71,14 +53,6 @@ public:
 	// Store the government here too, so that collision detection that is based
 	// on the Body class can figure out which objects will collide.
 	const Government *GetGovernment() const;
-
-	// Sprite serialization.
-	void LoadSprite(const DataNode &node);
-	void SaveSprite(DataWriter &out, const std::string &tag = "sprite") const;
-	// Set the sprite.
-	void SetSprite(const Sprite *sprite);
-	// Set the color swizzle.
-	void SetSwizzle(const Swizzle *swizzle);
 
 	// Functions determining the current alpha value of the body,
 	// dependent on the position of the body relative to the center of the screen.
@@ -88,10 +62,6 @@ public:
 
 
 protected:
-	// Adjust the frame rate.
-	void SetFrameRate(float framesPerSecond);
-	void AddFrameRate(float framesPerSecond);
-	void PauseAnimation();
 	// Mark this object to be removed from the game.
 	void MarkForRemoval();
 	// Mark that this object should not be removed (e.g. a launched fighter).
@@ -106,14 +76,8 @@ protected:
 	Point position;
 	Point velocity;
 	Angle angle;
-	Point scale = Point(1., 1.);
-	Point center;
 	Point rotatedCenter;
-	// A zoom of 1 means the sprite should be drawn at half size. For objects
-	// whose sprites should be full size, use zoom = 2.
-	float zoom = 1.f;
 
-	double alpha = 1.;
 	// The maximum distance at which the body is visible, and at which it becomes invisible again.
 	double distanceVisible = 0.;
 	double distanceInvisible = 0.;
@@ -123,33 +87,6 @@ protected:
 
 
 private:
-	// Set what animation step we're on. This affects future calls to GetMask()
-	// and GetFrame().
-	void SetStep(int step) const;
-
-
-private:
-	// Animation parameters.
-	const Sprite *sprite = nullptr;
-	// Allow objects based on this one to adjust their frame rate and swizzle.
-	const Swizzle *swizzle = Swizzle::None();
-	bool inheritsParentSwizzle = false;
-
-	float frameRate = 2.f / 60.f;
-	int delay = 0;
-	// The chosen frame will be (step * frameRate) + frameOffset.
-	mutable float frameOffset = 0.f;
-	mutable bool startAtZero = false;
-	mutable bool randomize = false;
-	bool repeat = true;
-	bool rewind = false;
-	int pause = 0;
-
 	// Record when this object is marked for removal from the game.
 	bool shouldBeRemoved = false;
-
-	// Cache the frame calculation so it doesn't have to be repeated if given
-	// the same step over and over again.
-	mutable int currentStep = -1;
-	mutable float frame = 0.f;
 };
