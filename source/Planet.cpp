@@ -65,7 +65,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 
 	// If this planet has been loaded before, these sets of items should be
 	// reset instead of appending to them:
-	set<string> shouldOverwrite = {"attributes", "description", "spaceport", "port"};
+	set<string> shouldOverwrite = {"attributes", "description", "spaceport", "port", "landscape"};
 
 	for(const DataNode &child : node)
 	{
@@ -119,6 +119,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				shipSales.clear();
 			else if(key == "outfitter")
 				outfitSales.clear();
+			else if(key == "landscape")
+				landscapes.clear();
 			else if(key == "government")
 				government = nullptr;
 			else if(key == "required reputation")
@@ -135,6 +137,15 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				defenseThreshold = 4000;
 				defenseFleets.clear();
 				ResetDefense();
+			}
+			else if(key == "tribute hails")
+			{
+				tributeAlreadyPaying = nullptr;
+				tributeUndefined = nullptr;
+				tributeUnworthy = nullptr;
+				tributeFleetUndefeated = nullptr;
+				tributeFleetLaunching = nullptr;
+				tributeSurrendered = nullptr;
 			}
 			else if(key == "wormhole")
 				wormhole = nullptr;
@@ -163,6 +174,26 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 
 		if(key == "port")
 			port.Load(child, playerConditions);
+		else if(key == "landscape" && (hasValue || child.HasChildren()))
+		{
+			if(remove)
+			{
+				if(child.HasChildren())
+					child.PrintTrace("\"remove\" cannot be used with child nodes of \"landscape\":");
+				for(int i = valueIndex; i < child.Size(); ++i)
+					erase_if(landscapes, [&](const auto &choice) { return choice == SpriteSet::Get(child.Token(i)); });
+			}
+			else
+			{
+				for(int i = valueIndex; i < child.Size(); ++i)
+					landscapes.emplace_back(1, SpriteSet::Get(child.Token(i)));
+				for(const DataNode &grand : child)
+				{
+					int weight = grand.Size() > 1 ? grand.Value(1) : 1;
+					landscapes.emplace_back(weight, SpriteSet::Get(grand.Token(0)));
+				}
+			}
+		}
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
@@ -200,8 +231,6 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		}
 		else if(key == "display name")
 			displayName = value;
-		else if(key == "landscape")
-			landscape = SpriteSet::Get(value);
 		else if(key == "music")
 			music = value;
 		else if(key == "description")
@@ -256,6 +285,33 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 					dailyTributePenalty = grand.Value(1);
 				else
 					grand.PrintTrace("Skipping unrecognized tribute attribute:");
+			}
+		}
+		else if(key == "tribute hails" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() != 2)
+				{
+					grand.PrintTrace("Skipping unrecognized attribute:");
+					continue;
+				}
+				bool removeTributePhrase = grand.Token(0) == "remove";
+				const string &grandKey = grand.Token(remove);
+				if(grandKey == "already paying")
+					tributeAlreadyPaying = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "undefined")
+					tributeUndefined = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "unworthy")
+					tributeUnworthy = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet launching")
+					tributeFleetLaunching = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet undefeated")
+					tributeFleetUndefeated = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "surrendered")
+					tributeSurrendered = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(key == "wormhole")
@@ -339,6 +395,10 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			attributes.erase(AUTO_ATTRIBUTES[i]);
 	}
 
+	// Pick an initial weighted value for landscape.
+	if(!landscapes.empty())
+		landscape = landscapes.Get();
+
 	// Precalculate commonly used values that can only change due to Load().
 	inhabited = (HasServices(false) || requiredReputation || !defenseFleets.empty())
 			&& !attributes.contains("uninhabited");
@@ -414,8 +474,10 @@ const Paragraphs &Planet::Description() const
 
 
 // Get the landscape sprite.
-const Sprite *Planet::Landscape() const
+const Sprite *Planet::Landscape(bool refresh) const
 {
+	if(refresh && landscapes.size() >= 2)
+		landscape = landscapes.Get();
 	return landscape;
 }
 
@@ -763,13 +825,34 @@ void Planet::Bribe(bool fullAccess) const
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {
+	const Government *government = GetGovernment();
+	if(!government)
+		return "Somehow, this planet does not have a government.";
 	const auto &playerTribute = player.GetTribute();
 	if(playerTribute.find(this) != playerTribute.end())
+	{
+		if(tributeAlreadyPaying)
+			return tributeAlreadyPaying->Get();
+		else if(government->TributeAlreadyPaying())
+			return government->TributeAlreadyPaying()->Get();
 		return "We are already paying you as much as we can afford.";
+	}
 	if(!tribute || defenseFleets.empty())
+	{
+		if(tributeUndefined)
+			return tributeUndefined->Get();
+		else if(government->TributeUndefined())
+			return government->TributeUndefined()->Get();
 		return "Please don't joke about that sort of thing.";
+	}
 	if(player.Conditions().Get("combat rating") < defenseThreshold)
+	{
+		if(tributeUnworthy)
+			return tributeUnworthy->Get();
+		else if(government->TributeUnworthy())
+			return government->TributeUnworthy()->Get();
 		return "You're not worthy of our time.";
+	}
 
 	// The player is scary enough for this planet to take notice. Check whether
 	// this is the first demand for tribute, or not.
@@ -786,7 +869,11 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		// TODO: Use a distinct event type for the domination system and
 		// expose syntax for controlling its impact on the targeted government
 		// and those that know it.
-		GetGovernment()->Offend(ShipEvent::ATROCITY);
+		government->Offend(ShipEvent::ATROCITY);
+		if(tributeFleetLaunching)
+			return tributeFleetLaunching->Get();
+		else if(government->TributeFleetLaunching())
+			return government->TributeFleetLaunching()->Get();
 		return "Our defense fleet will make short work of you.";
 	}
 
@@ -800,10 +887,23 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		}
 
 	if(!isDefeated)
+	{
+		if(tributeFleetUndefeated)
+			return tributeFleetUndefeated->Get();
+		else if(government->TributeFleetUndefeated())
+			return government->TributeFleetUndefeated()->Get();
 		return "We're not ready to surrender yet.";
+	}
 
 	player.SetTribute(this, tribute);
-	return "We surrender. We will pay you " + Format::CreditString(tribute) + " per day to leave us alone.";
+	string surrenderMessage;
+	if(tributeSurrendered)
+		surrenderMessage = tributeSurrendered->Get();
+	else if(government->TributeSurrendered())
+		surrenderMessage = government->TributeSurrendered()->Get();
+	else
+		surrenderMessage = "We surrender. We will pay you <credits> per day to leave us alone.";
+	return Format::Replace(surrenderMessage, {{"<credits>", Format::CreditString(tribute)}});
 }
 
 

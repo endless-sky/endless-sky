@@ -230,6 +230,8 @@ public:
 	// Return the ranges at which the weapon's damage dropoff begins and ends.
 	const std::pair<double, double> &DropoffRanges() const;
 
+	bool TriggersNukeAlert() const;
+
 
 private:
 	double TotalDamage(int index) const;
@@ -252,6 +254,10 @@ private:
 	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::vector<Submunition> submunitions;
+	// Whether the damage dealt by this weapon's submunitions are
+	// included in the damage of its projectiles when colliding
+	// with a target.
+	bool includeSubmunitionDamage = true;
 
 	bool isStreamed = false;
 	bool isSafe = false;
@@ -383,6 +389,8 @@ private:
 	mutable bool calculatedDamage = true;
 	mutable bool doesDamage = false;
 	mutable double totalLifetime = -1.;
+
+	bool triggersNukeAlert = false;
 };
 
 
@@ -497,3 +505,5 @@ inline bool Weapon::ConsumesDisruption() const { return FiringDisruption() < 0.;
 inline bool Weapon::ConsumesSlowing() const { return FiringSlowing() < 0.; }
 
 inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
+
+inline bool Weapon::TriggersNukeAlert() const { return triggersNukeAlert; }

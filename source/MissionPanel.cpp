@@ -340,7 +340,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
 	{
 		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
-			GetUI().Push(new DialogPanel(this, &MissionPanel::AbortMission,
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &MissionPanel::AbortMission,
 				"Abort mission \"" + acceptedIt->DisplayName() + "\"?"));
 		return true;
 	}
@@ -1045,7 +1045,7 @@ void MissionPanel::Accept(bool force)
 		else
 			out << "You must sell " << Format::CargoString(cargoToSell, "ordinary commodities")
 				<< " to make room for this mission. Continue?";
-		GetUI().Push(new DialogPanel(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
+		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
 		return;
 	}
 

@@ -11,6 +11,22 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+ship "Gunboat" "Gunboat (Raven)"
+	outfits
+		"Electron Beam" 2
+		"Electron Turret"
+		"Fission Reactor"
+		"Supercapacitor" 3
+		"D14-RN Shield Generator"
+		"Cooling Ducts"
+		"Fuel Pod" 3
+		"Outfits Expansion" 2
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Scram Drive"
+
+
+
 mission "FW Reconciliation 1"
 	name "Pick up Ijs from <planet>"
 	description "Bring Katya and Sawyer to <destination>, along with Raven's ship (the Eye of Horus), and pick up Ijs and his equipment for detecting atomic testing."
@@ -26,7 +42,7 @@ mission "FW Reconciliation 1"
 	npc accompany save
 		personality escort timid
 		government "Navy Intelligence"
-		ship "Gunboat (Mark II)" "Eye of Horus"
+		ship "Gunboat (Raven)" "Eye of Horus"
 	
 	on visit
 		dialog `You land on <planet>, but realize that Katya, Sawyer, and Raven have not all arrived. Better depart and wait for the ships they are aboard.`
@@ -128,17 +144,54 @@ mission "FW Reconciliation 1B"
 			`	Back at the spaceport, you meet up with Raven. "Here's the deal," she says. "We need to get to <planet>, destroy any Syndicate ships that are watching, and then land and hope we have time to collect evidence before more of them arrive. Unless you've got a ramscoop, we may need to bribe our way onto a few Syndicate worlds to refuel. And of course, I'll be counting on you to help keep my ship safe. Any questions?"`
 			choice
 				`	"No, I'm ready to go!"`
-					accept
+					goto leaving
 				`	"Won't they have destroyed any evidence long before we get there?"`
 			`	"Probably," she says, "but if they did any testing there, we should be able to pick up the residue. Or at least, my people will be able to, because they've got military grade Navy equipment."`
 			`	"So do we," says Ijs, sheepishly.`
 			`	Raven looks surprised for a moment, then says, "Never mind, I'm sure there's a good story of how you got your hands on that equipment, but it can wait for another time. Let's get moving."`
+			label leaving
+			branch scram
+				or
+					has "flagship attribute: scram drive"
+					has "flagship attribute: jump drive"
+			`	As you and the others start walking to the landing pads, Raven approaches you. "Captain, are you sure you're ready to head to <planet>?"`
+			choice
+				`	"Absolutely. I could blow up a thousand Syndicate fleets in my sleep."`
+				`	"I'm worried about fighting Syndicate ships on the way there."`
+					goto worried
+			`	Raven smirks. "It would be nice to strongarm our way through Syndicate space. But, in case Syndicate forces prove to be too much and we're forced to flee, I'd suggest swapping out your hyperdrive for a scram drive. Syndicate Quicksilvers are notoriously agile, and their Proton Guns make it nearly impossible to jump with a regular hyperdrive.`
+				goto scanning
+			label worried
+			`	"That is indeed a danger. Syndicate Quicksilvers are notoriously agile, and if they swarm us, their Proton Guns will push you around and prevent regular hyperdrives from jumping."`
+			choice
+				`	"Is there any way to outspeed their Quicksilvers?"`
+				`	"Do we have to destroy every Quicksilver we encounter, then?"`
+					goto destroy
+			`	"In a larger warship? That would be unlikely," Raven replies, "but there's another method of escaping them that's much easier."`
+				goto explanation
+			label destroy
+			`	"Not necessarily. Just because a regular hyperdrive wouldn't be able to jump doesn't mean there's no way to escape a Quicksilver."`
+			label explanation
+			`	You ask, "What do you mean?"`
+			`	Raven says, "I suggest you swap your hyperdrive for a scram drive. Unlike a hyperdrive, you don't need to be perfectly still when using a scram drive, letting you jump even if you're getting shoved by weapons fire."`
+			label scanning
+			choice
+				`	"Thanks for the advice."`
+				`	"Wait, how did you know that I don't have a scram drive?"`
+					goto secrets
+			`	"Don't thank me," says Raven. "I'm just looking out for myself. After all, if you get blown up, they're probably going to try and kill me next." She winks before heading towards her Gunboat.`
+				accept
+			label secrets
+			`	Raven puts a finger to her mouth and winks as she turns towards her own Gunboat.`
+				accept
+			label scram
+			`	You guide Ijs and the others back to your ship and prepare to set course for <planet>.`
 				accept
 	
 	npc accompany save
 		personality escort timid
 		government "Navy Intelligence"
-		ship "Gunboat (Mark II)" "Eye of Horus"
+		ship "Gunboat (Raven)" "Eye of Horus"
 	
 	on visit
 		dialog "You have reached <planet>, but you've either left Raven's ship behind, or failed to destroy some of the Syndicate ships watching you."
@@ -182,7 +235,7 @@ mission "FW Reconciliation 1C"
 	npc accompany save
 		personality escort timid
 		government "Navy Intelligence"
-		ship "Gunboat (Mark II)" "Eye of Horus"
+		ship "Gunboat (Raven)" "Eye of Horus"
 	
 	on visit
 		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
@@ -227,7 +280,7 @@ mission "FW Reconciliation 2"
 	npc accompany save
 		personality escort timid
 		government "Navy Intelligence"
-		ship "Gunboat (Mark II)" "Eye of Horus"
+		ship "Gunboat (Raven)" "Eye of Horus"
 	
 	on visit
 		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
@@ -279,6 +332,7 @@ mission "FW Navy Out Of Rastaban"
 mission "fw tarazed joins"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "FW Reconciliation 2: done"
 		not "FW Reconciliation 2A: done"
@@ -339,7 +393,7 @@ mission "FW Reconciliation 2A"
 	npc accompany save
 		personality escort timid
 		government "Navy Intelligence"
-		ship "Gunboat (Mark II)" "Eye of Horus"
+		ship "Gunboat (Raven)" "Eye of Horus"
 	
 	on visit
 		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
@@ -1754,6 +1808,7 @@ mission "FW Pug 3C (Extra)"
 mission "FW Pug 4: Escorts"
 	landing
 	invisible
+	non-blocking
 	source Hephaestus
 	to offer
 		has "FW Pug 3C: done"
@@ -1812,6 +1867,7 @@ mission "FW Pug 4: Escorts"
 mission "FW Pug 4: Escorts (Extra)"
 	landing
 	invisible
+	non-blocking
 	source Hephaestus
 	to offer
 		has "FW Pug 3C: done"
@@ -1990,6 +2046,7 @@ mission "FW Pug 4B"
 mission "FW Pug 4B: Enemies"
 	landing
 	invisible
+	non-blocking
 	source Maker
 	to offer
 		has "FW Pug 4A: done"
@@ -2012,6 +2069,7 @@ mission "FW Pug 4B: Enemies"
 mission "FW Pug 4B: Reinforcements"
 	landing
 	invisible
+	non-blocking
 	source Maker
 	to offer
 		has "FW Pug 4A: done"
@@ -2115,6 +2173,7 @@ mission "FW Pug 5"
 mission "FW Pug 5A: Enemies"
 	landing
 	invisible
+	non-blocking
 	source Shiver
 	to offer
 		has "FW Pug 5: done"
@@ -2666,6 +2725,7 @@ mission "FW Syndicate Extremists 1C"
 mission "FW Navy Out Of Rastaban (Bad Karma)"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "FW Syndicate Extremists 1C: done"
 		not "event: navy out of rastaban"

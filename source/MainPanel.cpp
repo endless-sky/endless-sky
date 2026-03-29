@@ -101,14 +101,16 @@ void MainPanel::Step()
 		isActive = false;
 	}
 
-	// Offer the next available entering mission.
-	if(isActive && player.HasAvailableEnteringMissions() && player.Flagship())
+	// Offer the next available in-flight mission.
+	if(isActive && player.HasAvailableInflightMissions() && player.Flagship())
 	{
-		Mission *mission = player.EnteringMission();
+		Mission *mission = player.TransitionMission();
+		if(!mission)
+			mission = player.EnteringMission();
 		if(mission)
 			mission->Do(Mission::OFFER, player, &GetUI());
 		else
-			player.HandleBlockedEnteringMissions(GetUI());
+			player.HandleBlockedInflightMissions(GetUI());
 		// Determine if a Dialog or ConversationPanel is being drawn next frame.
 		isActive = (GetUI().Top().get() == this);
 	}
@@ -411,7 +413,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "\t" << it.second << " " << it.first << "\n";
 		}
 	}
-	GetUI().Push(new DialogPanel(out.str()));
+	GetUI().Push(DialogPanel::Info(out.str()));
 }
 
 
@@ -679,7 +681,7 @@ void MainPanel::StepEvents(bool &isActive)
 				string message = actor->Fine(player, event.Type(), &*event.Target()).second;
 				if(!message.empty())
 				{
-					GetUI().Push(new DialogPanel(message));
+					GetUI().Push(DialogPanel::Info(message));
 					isActive = false;
 				}
 			}

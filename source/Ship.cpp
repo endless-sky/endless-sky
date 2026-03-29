@@ -65,8 +65,6 @@ namespace {
 	const vector<string> ENGINE_SIDE = {"under", "over"};
 	const vector<string> STEERING_FACING = {"none", "left", "right"};
 
-	const double MAXIMUM_TEMPERATURE = 100.;
-
 	// Scanning takes up to 10 seconds (SCAN_TIME / MIN_SCAN_STEPS)
 	// dependent on the range from the ship (among other factors).
 	// The scan speed uses a gaussian drop-off with the reported scan radius as the standard deviation.
@@ -643,7 +641,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(base && base != this)
 	{
 		if(!GetSprite())
-			reinterpret_cast<Body &>(*this) = *base;
+			static_cast<Body &>(*this) = *base;
 		if(customSwizzleName.empty())
 			customSwizzleName = base->CustomSwizzleName();
 		if(baseAttributes.Attributes().empty())
@@ -1436,6 +1434,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	else
 		zoom = 1.;
 	// Make sure various special status values are reset.
+	lastHitBy = nullptr;
 	heat = IdleHeat();
 	ionization = 0.;
 	scrambling = 0.;
@@ -1850,7 +1849,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	// Board a friendly ship, to repair or refuel it.
 	if(!government->IsEnemy(victim->GetGovernment()))
 	{
-		SetShipToAssist(shared_ptr<Ship>());
+		SetShipToAssist(weak_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
 		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->MaxHull());
@@ -1859,14 +1858,36 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		if(victim->NeedsFuel() && CanRefuel(*victim))
 		{
 			helped = true;
-			TransferFuel(victim->JumpFuelMissing(), victim.get());
+			double fuelTransferred = TransferFuel(victim->JumpFuelMissing(), victim.get());
+			if(fuelTransferred >= 1.)
+			{
+				if(isYours)
+					Messages::Add({Format::Number(fuelTransferred, 0) + " fuel transferred from your "
+						+ GivenName() + " to the " + victim->GivenName() + ".",
+						GameData::MessageCategories().Get("normal")});
+				else if(victim->IsYours())
+					Messages::Add({Format::Number(fuelTransferred, 0) + " fuel transferred from the "
+						+ GivenName() + " to your " + victim->GivenName() + ".",
+						GameData::MessageCategories().Get("normal")});
+			}
 		}
 		// Transfer some energy, if needed.
 		if(victim->Attributes().Get("energy capacity") > 0 && victim->energy < 200.)
 		{
 			helped = true;
 			double toGive = max(attributes.Get("energy capacity") * 0.1, victim->Attributes().Get("energy capacity") * 0.2);
-			TransferEnergy(max(200., toGive), victim.get());
+			double energyTransferred = TransferEnergy(max(200., toGive), victim.get());
+			if(energyTransferred >= 1.)
+			{
+				if(isYours)
+					Messages::Add({Format::Number(energyTransferred, 0) + " energy transferred from your "
+						+ GivenName() + " to the " + victim->GivenName() + ".",
+						GameData::MessageCategories().Get("normal")});
+				else if(victim->IsYours())
+					Messages::Add({Format::Number(energyTransferred, 0) + " energy transferred from the "
+						+ GivenName() + " to your " + victim->GivenName() + ".",
+						GameData::MessageCategories().Get("normal")});
+			}
 		}
 		if(helped)
 		{
@@ -1880,8 +1901,30 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 	// If the boarding ship is the player, they will choose what to plunder.
 	// Always take fuel and energy if you can.
-	victim->TransferFuel(victim->fuel, this);
-	victim->TransferEnergy(victim->energy, this);
+	double fuelTransferred = victim->TransferFuel(victim->fuel, this);
+	if(fuelTransferred >= 1.)
+	{
+		if(isYours)
+			Messages::Add({Format::Number(fuelTransferred, 0) + " fuel siphoned from the "
+				+ victim->GivenName() + " to your " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+		else if(victim->IsYours())
+			Messages::Add({Format::Number(fuelTransferred, 0) + " fuel siphoned from your "
+				+ victim->GivenName() + " to the " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+	}
+	double energyTransferred = victim->TransferEnergy(victim->energy, this);
+	if(energyTransferred >= 1.)
+	{
+		if(isYours)
+			Messages::Add({Format::Number(energyTransferred, 0) + " energy siphoned from the "
+				+ victim->GivenName() + " to your " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+		else if(victim->IsYours())
+			Messages::Add({Format::Number(energyTransferred, 0) + " energy siphoned from your "
+				+ victim->GivenName() + " to the " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+	}
 	if(autoPlunder)
 	{
 		// Take any commodities that fit.
@@ -2591,6 +2634,7 @@ void Ship::Disable()
 void Ship::Destroy()
 {
 	hull = -1.;
+	unhandledEvents.emplace_back(nullptr, shared_from_this(), ShipEvent::DESTROY);
 }
 
 
@@ -2651,6 +2695,7 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 	if((rechargeType & Port::RechargeType::Fuel) || attributes.Get("fuel generation"))
 		fuel = attributes.Get("fuel capacity");
 
+	lastHitBy = nullptr;
 	heat = IdleHeat();
 	ionization = 0.;
 	scrambling = 0.;
@@ -2688,6 +2733,8 @@ double Ship::TransferFuel(double amount, Ship *to)
 	if(to)
 	{
 		amount = min(to->attributes.Get("fuel capacity") - to->fuel, amount);
+		if(amount <= 0.)
+			return 0.;
 		to->fuel += amount;
 	}
 	fuel -= amount;
@@ -2702,6 +2749,8 @@ double Ship::TransferEnergy(double amount, Ship *to)
 	if(to)
 	{
 		amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
+		if(amount <= 0.)
+			return 0.;
 		to->energy += amount;
 	}
 	energy -= amount;
@@ -2781,6 +2830,13 @@ void Ship::ClearTargetsAndOrders()
 
 
 
+list<ShipEvent> &Ship::HandleEvents()
+{
+	return unhandledEvents;
+}
+
+
+
 // Get characteristics of this ship, as a fraction between 0 and 1.
 double Ship::Shields() const
 {
@@ -2810,16 +2866,6 @@ double Ship::Energy() const
 {
 	double maximum = attributes.Get("energy capacity");
 	return maximum ? min(1., energy / maximum) : (hull > 0.) ? 1. : 0.;
-}
-
-
-
-// Allow returning a heat value greater than 1 (i.e. conveying how overheated
-// this ship has become).
-double Ship::Heat() const
-{
-	double maximum = MaximumHeat();
-	return maximum ? heat / maximum : 1.;
 }
 
 
@@ -3253,6 +3299,13 @@ double Ship::CurrentSpeed() const
 // Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
+	// If the damage source government deals a DoT effect to this ship that
+	// disables or kills it outside of this function call, that event should
+	// still be attributed to this government.
+	// Don't record hazards as having dealt the last hit (which have a nullptr
+	// source government).
+	if(sourceGovernment)
+		lastHitBy = sourceGovernment;
 	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
 
 	bool wasDisabled = IsDisabled();
@@ -3316,7 +3369,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				GameData::MessageCategories().Get("high duplicating")});
 	}
 
-	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
+	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event by itself.
 	if(heat > MaximumHeat())
 	{
 		isOverheated = true;
@@ -3415,10 +3468,10 @@ bool Ship::CanCarry(const Ship &ship) const
 
 	for(const auto &it : escorts)
 	{
-		auto escort = it.lock();
+		shared_ptr<Ship> escort = it.lock();
 		if(!escort)
 			continue;
-		if(escort == ship.shared_from_this())
+		if(escort.get() == &ship)
 			break;
 		if(escort->attributes.Category() == category && !escort->IsDestroyed() &&
 				(!IsYours() || (IsYours() && escort->IsYours())))
@@ -3599,13 +3652,6 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 			? perBox : count, notForGov));
 		count -= perBox;
 	}
-}
-
-
-
-const Outfit &Ship::Attributes() const
-{
-	return attributes;
 }
 
 
@@ -3850,9 +3896,21 @@ void Ship::SetFleeing(bool fleeing)
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
-	if(ship != GetTargetShip())
+	const shared_ptr<Ship> oldTarget = GetTargetShip();
+	if(ship != oldTarget)
 	{
+		// Remove this ship from the list of ships targeting the previous target.
+		if(oldTarget)
+			erase_if(oldTarget->targetingList, [this](const weak_ptr<Ship> &s) -> bool {
+				return s.lock().get() == this;
+			});
+
 		targetShip = ship;
+
+		// Add this ship to the list of ships targeting the target if it is an enemy.
+		if(ship && government->IsEnemy(ship->government))
+			ship->targetingList.push_back(weak_from_this());
+
 		// When you change targets, clear your scanning records.
 		cargoScan = 0.;
 		outfitScan = 0.;
@@ -3862,7 +3920,7 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 
 
 
-void Ship::SetShipToAssist(const shared_ptr<Ship> &ship)
+void Ship::SetShipToAssist(const weak_ptr<Ship> &ship)
 {
 	shipToAssist = ship;
 }
@@ -3915,6 +3973,39 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 void Ship::SetFormationPattern(const FormationPattern *formationToSet)
 {
 	formationPattern = formationToSet;
+}
+
+
+
+const vector<weak_ptr<Ship>> &Ship::GetShipsTargetingThis() const
+{
+	return targetingList;
+}
+
+
+
+double Ship::GetTargeterStrength() const
+{
+	return targeterStrength;
+}
+
+
+
+void Ship::UpdateTargeterStrength()
+{
+	// Steady state is achieved by adding the strength of ships targeting this one and then decaying it.
+	targeterStrength = targeterStrength < 1. ? 0 : targeterStrength / 1.05;
+	for(auto it = targetingList.begin(); it != targetingList.end(); )
+	{
+		const shared_ptr<Ship> targeter = it->lock();
+		if(!targeter || targeter->IsDestroyed())
+		{
+			it = targetingList.erase(it);
+			continue;
+		}
+		targeterStrength += targeter->Strength();
+		++it;
+	}
 }
 
 
@@ -4115,6 +4206,8 @@ void Ship::DoGeneration()
 		if(bay.ship)
 			bay.ship->DoGeneration();
 
+	double minHull = MinimumHull();
+
 	// Shield and hull recharge. This uses whatever energy is left over from the
 	// previous frame, so that it will not steal energy from movement, etc.
 	if(!isDisabled)
@@ -4241,7 +4334,7 @@ void Ship::DoGeneration()
 			burning += attributes.Get("disabled recovery burning");
 
 			disabledRecoveryCounter = 0;
-			hull = min(max(hull, MinimumHull() * 1.5), MaxHull());
+			hull = min(max(hull, minHull * 1.5), MaxHull());
 			isDisabled = false;
 		}
 
@@ -4249,6 +4342,8 @@ void Ship::DoGeneration()
 
 	// Handle ionization effects, etc.
 	shields -= discharge;
+	bool wasDisabled = hull < minHull;
+	bool wasDestroyed = IsDestroyed();
 	hull -= corrosion;
 	energy -= ionization;
 	fuel -= leakage;
@@ -4351,6 +4446,11 @@ void Ship::DoGeneration()
 	}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
+
+	if(!wasDisabled && hull < minHull)
+		unhandledEvents.emplace_back(lastHitBy, shared_from_this(), ShipEvent::DISABLE);
+	if(!wasDestroyed && IsDestroyed())
+		unhandledEvents.emplace_back(lastHitBy, shared_from_this(), ShipEvent::DESTROY);
 
 	double maxShields = MaxShields();
 	shields = min(shields, maxShields);
@@ -4558,6 +4658,9 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 
 	if(hyperspaceCount == HYPER_C)
 	{
+		// Track the movements of mission NPCs.
+		if(isSpecial && !isYours)
+			unhandledEvents.emplace_back(nullptr, shared_from_this(), ShipEvent::JUMP);
 		SetSystem(hyperspaceSystem);
 		hyperspaceSystem = nullptr;
 		targetSystem = nullptr;
@@ -5111,7 +5214,7 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
 {
-	escorts.push_back(ship.shared_from_this());
+	escorts.push_back(ship.weak_from_this());
 }
 
 

@@ -87,8 +87,9 @@ private:
 	bool runsWhenFailed = false;
 
 	std::string trigger;
-	std::string system;
+	std::string location;
 	LocationFilter systemFilter;
+	LocationFilter planetFilter;
 
 	DialogSettings dialog;
 	ExclusiveItem<Conversation> conversation;

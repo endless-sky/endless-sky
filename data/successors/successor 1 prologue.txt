@@ -13,29 +13,29 @@
 
 mission "Successors: Entering the Scar"
 	invisible
-	landing
-	to complete
-		never
-	to fail
-		has "Successors: Safe at Last: failed"
-	on enter
-		system
-			attributes "predecessor"
-		fail
-		dialog
+	entering
+	source
+		attributes "predecessor"
+	destination "Earth"
+	to offer
+		not "Successors: Safe at Last: failed"
+	on offer
+		conversation
 			`Shortly after you enter this system, your ship's sensors begin to register small but progressive damage to the hull and internal systems, despite there being no other ships around. Equally confusing, your jump drive seems to still be partially active.`
+				decline
 
 mission "Successors: Safe at Last"
 	invisible
-	landing
-	to complete
-		never
-	to fail
-		has "Successors: First Contact 1: offered"
-	on enter "Myruet-Kvelq"
-		fail
-		dialog
+	entering
+	source
+		system "Myruet-Kvelq"
+	destination "Earth"
+	to offer
+		not "Successors: First Contact 1: offered"
+	on offer
+		conversation
 			`The system on the other side of the wormhole is the first one in days that your sensors have not responded to with alarms. Apart from the presence of the wormhole, the space here appears entirely normal.`
+				decline
 
 mission "Successors: First Contact 1"
 	landing
