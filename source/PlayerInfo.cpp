@@ -1226,13 +1226,14 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 
 
 // Add a captured ship to your fleet.
-void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
+void PlayerInfo::CaptureShip(const shared_ptr<Ship> &ship)
 {
 	ships.push_back(ship);
 	ship->SetIsSpecial();
 	ship->SetIsYours();
 	if(ship->HasBays())
 		displayCarrierHelp = true;
+	CalculateScanners(ship);
 }
 
 
@@ -1973,6 +1974,9 @@ bool PlayerInfo::TakeOff(UI &ui, const bool distributeCargo)
 		out << ".";
 		Messages::Add({out.str(), GameData::MessageCategories().Get("normal")});
 	}
+
+	// Determine the scanners available to the player's fleet.
+	CalculateScanners();
 
 	return true;
 }
@@ -3496,6 +3500,68 @@ void PlayerInfo::Harvest(const Outfit *type)
 const set<pair<const System *, const Outfit *>> &PlayerInfo::Harvested() const
 {
 	return harvested;
+}
+
+
+
+bool PlayerInfo::HasScanner(ScanType type) const
+{
+	for(const auto &[ship, capabilities] : scanners)
+	{
+		if(ship->GetSystem() != system || ship->IsDestroyed() || ship->CannotAct(Ship::ActionType::SCAN))
+			continue;
+		if(capabilities.contains(type))
+			return true;
+	}
+	return false;
+}
+
+
+
+ScanOptions PlayerInfo::CanScan(const shared_ptr<const Ship> &target) const
+{
+	static const vector<ScanType> SHIP_SCAN_TYPES = {
+		ScanType::CARGO, ScanType::OUTFIT, ScanType::TACTICAL, ScanType::STRATEGIC, ScanType::CREW,
+		ScanType::FUEL, ScanType::ENERGY, ScanType::THERMAL, ScanType::MANEUVER, ScanType::ACCELERATION,
+		ScanType::VELOCITY, ScanType::WEAPON, ScanType::RANGE
+	};
+	ScanOptions options;
+	for(const auto &[ship, capabilities] : scanners)
+	{
+		if(ship->GetSystem() != system || ship->IsDestroyed() || ship->CannotAct(Ship::ActionType::SCAN))
+			continue;
+		double distanceSquared = ship->Position().DistanceSquared(target->Position());
+		for(ScanType type : SHIP_SCAN_TYPES)
+		{
+			auto it = capabilities.find(type);
+			if(it != capabilities.end() && (it->second >= distanceSquared || type == ScanType::RANGE))
+				options.AddOption(type, ship, distanceSquared);
+		}
+	}
+	return options;
+}
+
+
+
+ScanOptions PlayerInfo::CanScan(const shared_ptr<const Minable> &target) const
+{
+	static const vector<ScanType> MINABLE_SCAN_TYPES = {
+		ScanType::ASTEROID, ScanType::TACTICAL, ScanType::RANGE
+	};
+	ScanOptions options;
+	for(const auto &[ship, capabilities] : scanners)
+	{
+		if(ship->GetSystem() != system || ship->IsDestroyed() || ship->CannotAct(Ship::ActionType::SCAN))
+			continue;
+		double distanceSquared = ship->Position().DistanceSquared(target->Position());
+		for(ScanType type : MINABLE_SCAN_TYPES)
+		{
+			auto it = capabilities.find(type);
+			if(it != capabilities.end() && it->second >= distanceSquared)
+				options.AddOption(type, ship, distanceSquared);
+		}
+	}
+	return options;
 }
 
 
@@ -5213,6 +5279,67 @@ void PlayerInfo::ForgetGiftedShip(const Ship &oldShip, bool failsMissions)
 					mission.Fail();
 		giftedShips.erase(shipToForget);
 	}
+}
+
+
+
+void PlayerInfo::CalculateScanners()
+{
+	scanners.clear();
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsParked() && !ship->IsDestroyed())
+			CalculateScanners(ship);
+}
+
+
+
+void PlayerInfo::CalculateScanners(const shared_ptr<Ship> &ship)
+{
+	const Outfit &attributes = ship->Attributes();
+	double cargo = attributes.Get("cargo scan power") * 10000.;
+	double outfit = attributes.Get("outfit scan power") * 10000.;
+	double asteroid = attributes.Get("asteroid scan power") * 10000.;
+	double tactical = attributes.Get("tactical scan power") * 10000.;
+	double strategic = attributes.Get("strategic scan power") * 10000.;
+
+	double crew = tactical + attributes.Get("crew scan power") * 10000.;
+	double fuel = tactical + attributes.Get("fuel scan power") * 10000.;
+	double energy = tactical + attributes.Get("energy scan power") * 10000.;
+	double thermal = tactical + attributes.Get("thermal scan power") * 10000.;
+	double maneuver = strategic + attributes.Get("maneuver scan power") * 10000.;
+	double acceleration = strategic + attributes.Get("acceleration scan power") * 10000.;
+	double velocity = strategic + attributes.Get("velocity scan power") * 10000.;
+	double weapon = strategic + attributes.Get("weapon scan power") * 10000.;
+	bool range = attributes.Get("range finder power") > 0.;
+
+	if(cargo)
+		scanners[ship][ScanType::CARGO] = cargo;
+	if(outfit)
+		scanners[ship][ScanType::OUTFIT] = outfit;
+	if(asteroid)
+		scanners[ship][ScanType::ASTEROID] = asteroid;
+	if(tactical)
+		scanners[ship][ScanType::TACTICAL] = tactical;
+	if(strategic)
+		scanners[ship][ScanType::STRATEGIC] = strategic;
+	if(crew)
+		scanners[ship][ScanType::CREW] = crew;
+	if(fuel)
+		scanners[ship][ScanType::FUEL] = fuel;
+	if(energy)
+		scanners[ship][ScanType::ENERGY] = energy;
+	if(thermal)
+		scanners[ship][ScanType::THERMAL] = thermal;
+	if(maneuver)
+		scanners[ship][ScanType::MANEUVER] = maneuver;
+	if(acceleration)
+		scanners[ship][ScanType::ACCELERATION] = acceleration;
+	if(velocity)
+		scanners[ship][ScanType::VELOCITY] = velocity;
+	if(weapon)
+		scanners[ship][ScanType::WEAPON] = weapon;
+	if(tactical || strategic || range)
+		scanners[ship][ScanType::RANGE] = 1.;
 }
 
 

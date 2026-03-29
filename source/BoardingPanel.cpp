@@ -469,11 +469,11 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					if(fuelTransferred >= 1.)
 						messages.push_back(Format::Number(fuelTransferred, 0) + " fuel has been transferred.");
 				}
-				player.AddShip(victim);
+				player.CaptureShip(victim);
 				for(const Ship::Bay &bay : victim->Bays())
 					if(bay.ship)
 					{
-						player.AddShip(bay.ship);
+						player.CaptureShip(bay.ship);
 						player.HandleEvent(ShipEvent(you, bay.ship, ShipEvent::CAPTURE), GetUI());
 					}
 				isCapturing = false;
