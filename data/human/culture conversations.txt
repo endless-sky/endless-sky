@@ -997,7 +997,7 @@ mission "Exotic Life: Delve"
 	on offer
 		conversation
 			`The mountain air tastes cool and fresh after breathing the constantly recycled air on the <ship> for so long, so you take a moment to get a good lungful and enjoy the view. Just off to your right, ground technicians wearing thin coveralls and breathing gear are spraying some kind of chemical on the hull of a parked Sunder. The fine mist reflects a bright rainbow which contrasts strikingly with the dull gray metal of the hull.`
-		`	You wander over, careful not to get too close to the spray which you have to assume is toxic. One of the technicians climbs down a ladder attached to the hull as you approach, then turns to you, pulling their mask off to reveal a man in his early twenties, with dark skin and hair plastered with sweat to his forehead.`
+			`	You wander over, careful not to get too close to the spray which you have to assume is toxic. One of the technicians climbs down a ladder attached to the hull as you approach, then turns to you, pulling their mask off to reveal a man in his early twenties, with dark skin and hair plastered with sweat to his forehead.`
 			`	"This your ship?" he asks with a professionally neutral expression.`
 			choice
 				`	"No, I'm just curious. What are you doing to it?"`
@@ -1006,13 +1006,13 @@ mission "Exotic Life: Delve"
 			`	The technician shakes his head morosely.`
 			`	"It's confirmed. Shipworm. Bad case too, I'm surprised your hull was still holding atmo." He looks back at the Sunder, measuring her up with his eyes. "We should be finished with the decontamination in a couple hours, but then we'll need to go over her with sealant. Probably two coats. We'll be finished tomorrow afternoon, earliest."`
 			choice
-	    		`	"Shipworm? How could this happen?"`
+				`	"Shipworm? How could this happen?"`
 					goto whatisshipworm
-			`	"Oh. Okay, carry on."`
-				decline
+				`	"Oh. Okay, carry on."`
+					decline
 			label curious
 			`	He looks you up and down, perhaps wondering if he will get in trouble for telling you about another captain's ship, but then he shrugs and opens up.`
-			`	"Shipworm infestation. Third one this week." He pushes his hood back and runs his hand through his greasy hair. "Honestly, I'm surprised the media hasn't been covering it yet. Maybe they're waiting for the first spontaneous depressurization so they have something really juicy to talk about."
+			`	"Shipworm infestation. Third one this week." He pushes his hood back and runs his hand through his greasy hair. "Honestly, I'm surprised the media hasn't been covering it yet. Maybe they're waiting for the first spontaneous depressurization so they have something really juicy to talk about."`
 			choice
 				`	"Shipworm? What is that?"`
 				`	"You think it is a cover-up?"`
@@ -1031,7 +1031,7 @@ mission "Exotic Life: Ada"
 	source Ada
 	to offer
 		random < 20
-		"Exotic Life: Delve" declined
+		has "Exotic Life: Delve: declined"
 	on offer
 		conversation
 			`A loud commotion draws your attention as you make your way through the spaceport and you look up to see three large Lovelace Labs security guards surrounding an irate pilot.`
