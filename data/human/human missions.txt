@@ -12196,8 +12196,6 @@ mission "Tavish and Kormak 4"
 					goto payup
 					to display
 						credits > 20000
-					to display
-						credits > 20000
 				`	"I am not paying 20,000. I am out."`
 					goto giveup
 					to display
