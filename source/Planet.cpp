@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "image/SpriteSet.h"
 #include "System.h"
-#include "WeightedList.h"
 #include "Wormhole.h"
 
 #include <algorithm>
@@ -175,31 +174,24 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 
 		if(key == "port")
 			port.Load(child, playerConditions);
-		else if(key == "landscape")
+		else if(key == "landscape" && (hasValue || child.HasChildren()))
 		{
-			auto addLandscape = [&](const DataNode &node) {
-				int weight = 1;
-				if(node.Size() > 1 && node.Value(1) >= 1.)
-					weight = node.Value(1);
-				landscapes.emplace_back(weight, SpriteSet::Get(node.Token(0)));
-			};
-
 			if(remove)
+			{
+				if(child.HasChildren())
+					child.PrintTrace("\"remove\" cannot be used with child nodes of \"landscape\":");
 				for(int i = valueIndex; i < child.Size(); ++i)
 					erase_if(landscapes, [&](const auto &choice) { return choice == SpriteSet::Get(child.Token(i)); });
+			}
 			else
 			{
-				if(hasValue)
-					for(int i = valueIndex; i < child.Size(); ++i)
-						landscapes.emplace_back(1, SpriteSet::Get(child.Token(i)));
+				for(int i = valueIndex; i < child.Size(); ++i)
+					landscapes.emplace_back(1, SpriteSet::Get(child.Token(i)));
 				for(const DataNode &grand : child)
-					addLandscape(grand);
-			}
-
-			if(!landscapes.size())
-			{
-				child.PrintTrace("Expected key to have a value:");
-				continue;
+				{
+					int weight = grand.Size() > 1 ? grand.Value(1) : 1;
+					landscapes.emplace_back(weight, SpriteSet::Get(grand.Token(0)));
+				}
 			}
 		}
 		// Handle the attributes which can be "removed."
