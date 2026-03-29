@@ -102,7 +102,7 @@ namespace {
 
 	string ShipToString(const Ship &ship)
 	{
-		string description = "name: " + ship.Name();
+		string description = "name: " + ship.GivenName();
 		const System *system = ship.GetSystem();
 		const Planet *planet = ship.GetPlanet();
 		description += ", system: " + (system ? system->TrueName() : "<not set>");
@@ -129,43 +129,46 @@ void Test::TestStep::LoadInput(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "key")
+		const string &key = child.Token(0);
+		if(key == "key")
 		{
 			for(int i = 1; i < child.Size(); ++i)
 				inputKeys.insert(child.Token(i));
 
 			for(const DataNode &grand : child)
 			{
-				if(grand.Token(0) == "shift")
+				const string &grandKey = grand.Token(0);
+				if(grandKey == "shift")
 					modKeys |= KMOD_SHIFT;
-				else if(grand.Token(0) == "alt")
+				else if(grandKey == "alt")
 					modKeys |= KMOD_ALT;
-				else if(grand.Token(0) == "control")
+				else if(grandKey == "control")
 					modKeys |= KMOD_CTRL;
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
-		else if(child.Token(0) == "pointer")
+		else if(key == "pointer")
 		{
 			for(const DataNode &grand : child)
 			{
-				static const string BAD_AXIS_INPUT = "Error: Pointer axis input without coordinate:";
-				if(grand.Token(0) == "X")
+				const string &grandKey = grand.Token(0);
+				static const string BAD_AXIS_INPUT = "Pointer axis input without coordinate:";
+				if(grandKey == "X")
 				{
 					if(grand.Size() < 2)
 						grand.PrintTrace(BAD_AXIS_INPUT);
 					else
 						XValue = grand.Value(1);
 				}
-				else if(grand.Token(0) == "Y")
+				else if(grandKey == "Y")
 				{
 					if(grand.Size() < 2)
 						grand.PrintTrace(BAD_AXIS_INPUT);
 					else
 						YValue = grand.Value(1);
 				}
-				else if(grand.Token(0) == "click")
+				else if(grandKey == "click")
 					for(int i = 1; i < grand.Size(); ++i)
 					{
 						if(grand.Token(i) == "left")
@@ -175,13 +178,13 @@ void Test::TestStep::LoadInput(const DataNode &node)
 						else if(grand.Token(i) == "middle")
 							clickMiddle = true;
 						else
-							grand.PrintTrace("Warning: Unknown click/button \"" + grand.Token(i) + "\":");
+							grand.PrintTrace("Unknown click/button \"" + grand.Token(i) + "\":");
 					}
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
-		else if(child.Token(0) == "command")
+		else if(key == "command")
 			command.Load(child);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -190,12 +193,12 @@ void Test::TestStep::LoadInput(const DataNode &node)
 
 
 
-void Test::LoadSequence(const DataNode &node)
+void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(!steps.empty())
 	{
 		status = Status::BROKEN;
-		node.PrintTrace("Error: duplicate sequence keyword");
+		node.PrintTrace("Duplicate sequence keyword");
 		return;
 	}
 
@@ -203,13 +206,13 @@ void Test::LoadSequence(const DataNode &node)
 	{
 		const string &typeName = child.Token(0);
 		auto it = find_if(STEPTYPE_TO_TEXT.begin(), STEPTYPE_TO_TEXT.end(),
-			[&typeName](const std::pair<TestStep::Type, const string> &e) {
+			[&typeName](const pair<TestStep::Type, const string> &e) {
 				return e.second == typeName;
 			});
 		if(it == STEPTYPE_TO_TEXT.end())
 		{
 			status = Status::BROKEN;
-			child.PrintTrace("Error: Unsupported step type (" + ExpectedOptions(STEPTYPE_TO_TEXT) + "):");
+			child.PrintTrace("Unsupported step type (" + ExpectedOptions(STEPTYPE_TO_TEXT) + "):");
 			// Don't bother loading more steps once broken.
 			return;
 		}
@@ -219,28 +222,28 @@ void Test::LoadSequence(const DataNode &node)
 		switch(step.stepType)
 		{
 			case TestStep::Type::APPLY:
-				step.assignConditions.Load(child);
+				step.assignConditions.Load(child, playerConditions);
 				break;
 			case TestStep::Type::ASSERT:
-				step.checkConditions.Load(child);
+				step.checkConditions.Load(child, playerConditions);
 				break;
 			case TestStep::Type::BRANCH:
 				if(child.Size() < 2)
 				{
 					status = Status::BROKEN;
-					child.PrintTrace("Error: Invalid use of \"branch\" without target label:");
+					child.PrintTrace("Invalid use of \"branch\" without target label:");
 					return;
 				}
 				step.jumpOnTrueTarget = child.Token(1);
 				if(child.Size() > 2)
 					step.jumpOnFalseTarget = child.Token(2);
-				step.checkConditions.Load(child);
+				step.checkConditions.Load(child, playerConditions);
 				break;
 			case TestStep::Type::CALL:
 				if(child.Size() < 2)
 				{
 					status = Status::BROKEN;
-					child.PrintTrace("Error: Invalid use of \"call\" without name of called (sub)test:");
+					child.PrintTrace("Invalid use of \"call\" without name of called (sub)test:");
 					return;
 				}
 				else
@@ -250,7 +253,7 @@ void Test::LoadSequence(const DataNode &node)
 				if(child.Size() < 2)
 				{
 					status = Status::BROKEN;
-					child.PrintTrace("Error: Invalid use of \"debug\" without an actual message to print:");
+					child.PrintTrace("Invalid use of \"debug\" without an actual message to print:");
 					return;
 				}
 				else
@@ -260,7 +263,7 @@ void Test::LoadSequence(const DataNode &node)
 				if(child.Size() < 2)
 				{
 					status = Status::BROKEN;
-					child.PrintTrace("Error: Invalid use of \"inject\" without data identifier:");
+					child.PrintTrace("Invalid use of \"inject\" without data identifier:");
 					return;
 				}
 				else
@@ -277,7 +280,7 @@ void Test::LoadSequence(const DataNode &node)
 					step.nameOrLabel = child.Token(1);
 					if(jumpTable.find(step.nameOrLabel) != jumpTable.end())
 					{
-						child.PrintTrace("Error: duplicate label");
+						child.PrintTrace("Duplicate label");
 						status = Status::BROKEN;
 						return;
 					}
@@ -288,19 +291,21 @@ void Test::LoadSequence(const DataNode &node)
 			case TestStep::Type::NAVIGATE:
 				for(const DataNode &grand : child)
 				{
-					if(grand.Token(0) == "travel" && grand.Size() >= 2)
+					const string &grandKey = grand.Token(0);
+					bool grandHasValue = grand.Size() >= 2;
+					if(grandKey == "travel" && grandHasValue)
 						step.travelPlan.push_back(GameData::Systems().Get(grand.Token(1)));
-					else if(grand.Token(0) == "travel destination" && grand.Size() >= 2)
+					else if(grandKey == "travel destination" && grandHasValue)
 						step.travelDestination = GameData::Planets().Get(grand.Token(1));
 					else
 					{
-						grand.PrintTrace("Error: Invalid or incomplete keywords for navigation");
+						grand.PrintTrace("Invalid or incomplete keywords for navigation");
 						status = Status::BROKEN;
 					}
 				}
 				break;
 			default:
-				child.PrintTrace("Error: unknown step type in test");
+				child.PrintTrace("Unknown step type in test");
 				status = Status::BROKEN;
 				return;
 		}
@@ -311,13 +316,13 @@ void Test::LoadSequence(const DataNode &node)
 	{
 		if(!step.jumpOnTrueTarget.empty() && jumpTable.find(step.jumpOnTrueTarget) == jumpTable.end())
 		{
-			node.PrintTrace("Error: missing label " + step.jumpOnTrueTarget);
+			node.PrintTrace("Missing label " + step.jumpOnTrueTarget);
 			status = Status::BROKEN;
 			return;
 		}
 		if(!step.jumpOnFalseTarget.empty() && jumpTable.find(step.jumpOnFalseTarget) == jumpTable.end())
 		{
-			node.PrintTrace("Error: missing label " + step.jumpOnFalseTarget);
+			node.PrintTrace("Missing label " + step.jumpOnFalseTarget);
 			status = Status::BROKEN;
 			return;
 		}
@@ -326,11 +331,11 @@ void Test::LoadSequence(const DataNode &node)
 
 
 
-void Test::Load(const DataNode &node)
+void Test::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() < 2)
 	{
-		node.PrintTrace("Error: Unnamed test:");
+		node.PrintTrace("Unnamed test:");
 		return;
 	}
 	// If a test object is "loaded" twice, that is most likely an error (e.g.
@@ -338,25 +343,26 @@ void Test::Load(const DataNode &node)
 	// or another plugin). Tests should be globally unique.
 	if(!name.empty())
 	{
-		node.PrintTrace("Error: Duplicate test definition:");
+		node.PrintTrace("Duplicate test definition:");
 		return;
 	}
 	// Validate if the testname contains valid characters.
 	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-")
-		!= std::string::npos)
+		!= string::npos)
 	{
-		node.PrintTrace("Error: Unsupported character(s) in test name:");
+		node.PrintTrace("Unsupported character(s) in test name:");
 		return;
 	}
 	name = node.Token(1);
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "status" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		if(key == "status" && child.Size() >= 2)
 		{
 			const string &statusText = child.Token(1);
 			auto it = find_if(STATUS_TO_TEXT.begin(), STATUS_TO_TEXT.end(),
-				[&statusText](const std::pair<Status, const string> &e) {
+				[&statusText](const pair<Status, const string> &e) {
 					return e.second == statusText;
 				});
 			if(it != STATUS_TO_TEXT.end())
@@ -370,17 +376,17 @@ void Test::Load(const DataNode &node)
 			else
 			{
 				status = Status::BROKEN;
-				child.PrintTrace("Error: Unsupported status (" + ExpectedOptions(STATUS_TO_TEXT) + "):");
+				child.PrintTrace("Unsupported status (" + ExpectedOptions(STATUS_TO_TEXT) + "):");
 			}
 		}
-		else if(child.Token(0) == "sequence")
-			LoadSequence(child);
-		else if(child.Token(0) == "description")
+		else if(key == "sequence")
+			LoadSequence(child, playerConditions);
+		else if(key == "description")
 		{
 			// Provides a human friendly description of the test, but it is not used internally.
 		}
 		else
-			child.PrintTrace("Error: Skipping unrecognized attribute:");
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
@@ -441,17 +447,20 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 	// All processing was done just before this step started.
 	context.branchesSinceGameStep.clear();
 
+	const ConditionsStore *playerConditions = &player.Conditions();
+	const set<const System *> *visitedSystems = &player.VisitedSystems();
+	const set<const Planet *> *visitedPlanets = &player.VisitedPlanets();
 	while(context.callstack.back().step < steps.size() && !continueGameLoop)
 	{
 		const TestStep &stepToRun = steps[context.callstack.back().step];
 		switch(stepToRun.stepType)
 		{
 			case TestStep::Type::APPLY:
-				stepToRun.assignConditions.Apply(player.Conditions());
+				stepToRun.assignConditions.Apply();
 				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::ASSERT:
-				if(!stepToRun.checkConditions.Test(player.Conditions()))
+				if(!stepToRun.checkConditions.Test())
 					Fail(context, player, "asserted false");
 				++(context.callstack.back().step);
 				break;
@@ -465,7 +474,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					break;
 				}
 				context.branchesSinceGameStep.emplace(context.callstack.back());
-				if(stepToRun.checkConditions.Test(player.Conditions()))
+				if(stepToRun.checkConditions.Test())
 					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
 				else if(!stepToRun.jumpOnFalseTarget.empty())
 					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
@@ -493,7 +502,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 				{
 					// Lookup the data and inject it in the game or into the environment.
 					const TestData *testData = GameData::TestDataSets().Get(stepToRun.nameOrLabel);
-					if(!testData->Inject())
+					if(!testData->Inject(playerConditions, visitedSystems, visitedPlanets))
 						Fail(context, player, "injecting data failed");
 				}
 				++(context.callstack.back().step);
@@ -540,7 +549,7 @@ const string &Test::StatusText() const
 
 
 // Get the names of the conditions relevant for this test.
-std::set<std::string> Test::RelevantConditions() const
+set<string> Test::RelevantConditions() const
 {
 	set<string> conditionNames;
 	for(const auto &step : steps)
@@ -586,7 +595,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		message += ": " + testFailReason;
 	message += "\n";
 
-	Logger::LogError(message);
+	Logger::Log(message, Logger::Level::ERROR);
 
 	// Print the callstack if we have any.
 	string stackMessage = "Call-stack:\n";
@@ -600,12 +609,12 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 			stackMessage += " (" + STEPTYPE_TO_TEXT.at(((i->test->steps)[i->step]).stepType) + ")";
 		stackMessage += "\n";
 	}
-	Logger::LogError(stackMessage);
+	Logger::Log(stackMessage, Logger::Level::ERROR);
 
 	// Print some debug information about the flagship and the first 5 escorts.
 	const Ship *flagship = player.Flagship();
 	if(!flagship)
-		Logger::LogError("No flagship at the moment of failure.");
+		Logger::Log("No flagship at the moment of failure.", Logger::Level::INFO);
 	else
 	{
 		string shipsOverview = "flagship " + ShipToString(*flagship) + "\n";
@@ -623,7 +632,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		}
 		if(escortsNotPrinted > 0)
 			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)\n";
-		Logger::LogError(shipsOverview);
+		Logger::Log(shipsOverview, Logger::Level::INFO);
 	}
 
 	// Print all conditions that are used in the test.
@@ -635,9 +644,9 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	}
 
 	if(!conditions.empty())
-		Logger::LogError(conditions);
+		Logger::Log(conditions, Logger::Level::INFO);
 	else
-		Logger::LogError("No conditions to display at the moment of failure.");
+		Logger::Log("No conditions to display at the moment of failure.", Logger::Level::INFO);
 
 	// If this test was expected to fail, then return a success exitcode from the program
 	// because the test did what it was expected to do.

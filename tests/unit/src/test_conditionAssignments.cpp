@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Include a helper for creating well-formed DataNodes (to enable creating non-empty ConditionSets).
 #include "datanode-factory.h"
+// Include a helper for handling logger output.
+#include "logger-output.h"
 // Include a helper for capturing & asserting on logged output.
 #include "output-capture.hpp"
 
@@ -52,7 +54,7 @@ SCENARIO( "Creating ConditionAssignments" , "[ConditionAssignments][Creation]" )
 }
 
 SCENARIO( "Extending ConditionAssignments", "[ConditionAssignments][Creation]" ) {
-
+	ConditionsStore store;
 	OutputSink warnings(std::cerr);
 
 	GIVEN( "empty ConditionAssignments" ) {
@@ -60,27 +62,27 @@ SCENARIO( "Extending ConditionAssignments", "[ConditionAssignments][Creation]" )
 		REQUIRE( set.IsEmpty() );
 
 		THEN( "no assignments are added from empty nodes" ) {
-			const std::string validationWarning = "Error: Loading empty set of assignments\ntoplevel\n\n";
-			set.Load(AsDataNode("toplevel"));
+			const std::string validationWarning = "Loading empty set of assignments\ntoplevel\n\n";
+			set.Load(AsDataNode("toplevel"), &store);
 			REQUIRE( set.IsEmpty() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning );
+				REQUIRE( IgnoreLogHeaders(warnings.Flush()) == validationWarning );
 			}
 		}
 		THEN( "no assignments are added from invalid nodes" ) {
-			const std::string validationWarning = "Error: Incomplete assignment\n";
+			const std::string validationWarning = "Incomplete assignment.\n";
 			const std::string invalidNodeText = "apply\n\thas";
 			const std::string invalidNodeTextInWarning = "apply\nL2:   has";
-			set.Load(AsDataNode(invalidNodeText));
+			set.Load(AsDataNode(invalidNodeText), &store);
 			REQUIRE( set.IsEmpty() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == "" + validationWarning + invalidNodeTextInWarning + '\n' + '\n');
+				REQUIRE( IgnoreLogHeaders(warnings.Flush()) == "" + validationWarning + invalidNodeTextInWarning + '\n' + '\n');
 			}
 		}
 		THEN( "new assignments can be added from valid nodes" ) {
-			set.Load(AsDataNode("apply\n\tsomeCondition = 5"));
+			set.Load(AsDataNode("apply\n\tsomeCondition = 5"), &store);
 			REQUIRE_FALSE( set.IsEmpty() );
-			REQUIRE( warnings.Flush() == "" );
+			REQUIRE( IgnoreLogHeaders(warnings.Flush()) == "" );
 		}
 	}
 }
@@ -96,21 +98,21 @@ SCENARIO( "Applying changes to conditions", "[ConditionAssignments][Usage]" ) {
 		REQUIRE( emptySet.IsEmpty() );
 
 		THEN( "no conditions are added via Apply" ) {
-			emptySet.Apply(store);
+			emptySet.Apply();
 			REQUIRE( store.PrimariesSize() == 0 );
 
 			store.Set("event: war begins", 1);
 			REQUIRE( store.PrimariesSize() == 1 );
-			emptySet.Apply(store);
+			emptySet.Apply();
 			REQUIRE( store.PrimariesSize() == 1 );
 		}
 	}
 	GIVEN( "ConditionAssignments with an assignable expression" ) {
-		const auto applySet = ConditionAssignments{AsDataNode("and\n\tyear = 3013")};
+		const auto applySet = ConditionAssignments{AsDataNode("and\n\tyear = 3013"), &store};
 		REQUIRE_FALSE( applySet.IsEmpty() );
 
 		THEN( "the condition list is updated via Apply" ) {
-			applySet.Apply(store);
+			applySet.Apply();
 			REQUIRE_FALSE( store.PrimariesSize() == 0 );
 			REQUIRE( store.Get("year") );
 			CHECK( store["year"] == 3013 );
@@ -134,9 +136,10 @@ SCENARIO( "Applying changes to conditions", "[ConditionAssignments][Usage]" ) {
 			{"someData /= 50", "someData", 2},
 		}));
 
-		const auto applySet = ConditionAssignments{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndOutcome))};
+		const auto applySet = ConditionAssignments{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndOutcome)),
+			&storeWithData};
 		THEN( "The expression \'" + std::get<0>(expressionAndOutcome) + "\' assigns the expected number" ) {
-			applySet.Apply(storeWithData);
+			applySet.Apply();
 			REQUIRE( storeWithData[std::get<1>(expressionAndOutcome)] == std::get<2>(expressionAndOutcome) );
 		}
 	}

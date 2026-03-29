@@ -1,0 +1,72 @@
+# Copyright (c) 2023 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test-data "Timer Test Mission"
+	category mission
+	contents
+		mission "short timer"
+			landing
+			repeat
+			complete at
+				system "Sol"
+			timer 60
+				on timeup
+					set "test: 1 second timer"
+		mission "long timer"
+			landing
+			repeat
+			complete at
+				system "Sol"
+			timer 36000
+				on timeup
+					set "test: 10 minute timer"
+		mission "optional long timer"
+			landing
+			repeat
+			complete at
+				system "Sol"
+			timer 36000
+				optional
+				on timeup
+					set "test: optional 10 minute timer"
+
+
+test "Timer - Simple 1 second timer"
+	status active
+	description "Tests if a timer will trigger a mission event in one second as planned."
+	sequence
+		inject "Three Earthly Barges Save"
+		inject "Timer Test Mission"
+		call "Load First Savegame"
+		# Trigger the mission
+		call "Depart"
+		call "Land"
+		call "Depart"
+		apply
+			"test: steps to wait" = 2 * 60
+		label "floating"
+		# An empty input to make two seconds pass.
+		input
+		apply
+			"test: steps to wait" -= 1
+		branch "floating"
+			has "test: steps to wait"
+		assert
+			has "test: 1 second timer"
+			not "test: 10 minute timer"
+			not "test: optional 10 minute timer"
+		call "Land"
+		assert
+			has "short timer: done"
+			not "long timer: done"
+			has "optional long timer: done"

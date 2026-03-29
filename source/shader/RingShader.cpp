@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 
 #include "../Color.h"
+#include "../GameData.h"
 #include "../pi.h"
 #include "../Point.h"
 #include "../Screen.h"
@@ -26,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	Shader shader;
+	const Shader *shader;
 	GLint scaleI;
 	GLint positionI;
 	GLint radiusI;
@@ -36,71 +37,41 @@ namespace {
 	GLint dashI;
 	GLint colorI;
 
+	GLint vertI;
+
 	GLuint vao;
 	GLuint vbo;
+
+	void EnableAttribArrays()
+	{
+		glEnableVertexAttribArray(vertI);
+		glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	}
 }
 
 
 
 void RingShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex ring shader\n"
-		"precision mediump float;\n"
-		"uniform vec2 scale;\n"
-		"uniform vec2 position;\n"
-		"uniform float radius;\n"
-		"uniform float width;\n"
-
-		"in vec2 vert;\n"
-		"out vec2 coord;\n"
-
-		"void main() {\n"
-		"  coord = (radius + width) * vert;\n"
-		"  gl_Position = vec4((coord + position) * scale, 0.f, 1.f);\n"
-		"}\n";
-
-	static const char *fragmentCode =
-		"// fragment ring shader\n"
-		"precision mediump float;\n"
-		"uniform vec4 color;\n"
-		"uniform float radius;\n"
-		"uniform float width;\n"
-		"uniform float angle;\n"
-		"uniform float startAngle;\n"
-		"uniform float dash;\n"
-		"const float pi = 3.1415926535897932384626433832795;\n"
-
-		"in vec2 coord;\n"
-		"out vec4 finalColor;\n"
-
-		"void main() {\n"
-		"  float arc = mod(atan(coord.x, coord.y) + pi + startAngle, 2.f * pi);\n"
-		"  float arcFalloff = 1.f - min(2.f * pi - arc, arc - angle) * radius;\n"
-		"  if(dash != 0.f)\n"
-		"  {\n"
-		"    arc = mod(arc, dash);\n"
-		"    arcFalloff = min(arcFalloff, min(arc, dash - arc) * radius);\n"
-		"  }\n"
-		"  float len = length(coord);\n"
-		"  float lenFalloff = width - abs(len - radius);\n"
-		"  float alpha = clamp(min(arcFalloff, lenFalloff), 0.f, 1.f);\n"
-		"  finalColor = color * alpha;\n"
-		"}\n";
-
-	shader = Shader(vertexCode, fragmentCode);
-	scaleI = shader.Uniform("scale");
-	positionI = shader.Uniform("position");
-	radiusI = shader.Uniform("radius");
-	widthI = shader.Uniform("width");
-	angleI = shader.Uniform("angle");
-	startAngleI = shader.Uniform("startAngle");
-	dashI = shader.Uniform("dash");
-	colorI = shader.Uniform("color");
+	shader = GameData::Shaders().Get("ring");
+	if(!shader->Object())
+		throw runtime_error("Could not find ring shader!");
+	scaleI = shader->Uniform("scale");
+	positionI = shader->Uniform("position");
+	radiusI = shader->Uniform("radius");
+	widthI = shader->Uniform("width");
+	angleI = shader->Uniform("angle");
+	startAngleI = shader->Uniform("startAngle");
+	dashI = shader->Uniform("dash");
+	colorI = shader->Uniform("color");
+	vertI = shader->Attrib("vert");
 
 	// Generate the vertex data for drawing sprites.
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+	{
+		glGenVertexArrays(1, &vao);
+		glBindVertexArray(vao);
+	}
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -113,12 +84,13 @@ void RingShader::Init()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	if(OpenGL::HasVaoSupport())
+		EnableAttribArrays();
 
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
 }
 
 
@@ -145,11 +117,17 @@ void RingShader::Draw(const Point &pos, float radius, float width, float fractio
 
 void RingShader::Bind()
 {
-	if(!shader.Object())
+	if(!shader || !shader->Object())
 		throw runtime_error("RingShader: Bind() called before Init().");
 
-	glUseProgram(shader.Object());
-	glBindVertexArray(vao);
+	glUseProgram(shader->Object());
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(vao);
+	else
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		EnableAttribArrays();
+	}
 
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
 	glUniform2fv(scaleI, 1, scale);
@@ -186,6 +164,12 @@ void RingShader::Add(const Point &pos, float radius, float width, float fraction
 
 void RingShader::Unbind()
 {
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
+	else
+	{
+		glDisableVertexAttribArray(vertI);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	}
 	glUseProgram(0);
 }

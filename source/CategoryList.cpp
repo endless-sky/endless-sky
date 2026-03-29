@@ -49,12 +49,16 @@ void CategoryList::Load(const DataNode &node)
 		if(it != list.end())
 			it->precedence = cat.precedence;
 		else
-		{
 			list.push_back(cat);
-			byName.insert(pair<const string, Category>(cat.name, cat));
-		}
-
 	}
+}
+
+
+
+void CategoryList::Clear()
+{
+	list.clear();
+	currentPrecedence = 0;
 }
 
 
@@ -80,8 +84,9 @@ bool CategoryList::Contains(const string &name) const
 
 const CategoryList::Category CategoryList::GetCategory(const string &name) const
 {
-	auto it = byName.find(name);
-	if(it != byName.end())
-		return it->second;
+	const auto it = find_if(list.begin(), list.end(),
+		[&name](const Category &c) noexcept -> bool { return name == c.name; });
+	if(it != list.end())
+		return *it;
 	return Category("", numeric_limits<int>::max());
 }

@@ -27,6 +27,7 @@ outfit "High Houses License"
 
 
 outfit `"Byiaa" Shield Cortex`
+	plural `"Byiaa" Shield Cortices`
 	category "Systems"
 	series "Shields"
 	index 11010
@@ -38,11 +39,12 @@ outfit `"Byiaa" Shield Cortex`
 	"outfit space" -13
 	"shield generation" 1.9
 	"shield protection" -0.33
-	"shield energy" 2.92
+	"shield energy" 2.53
 	"shield connection point" 1
 	description "At their peak, the Predecessors were feared not by how quickly they could overpower their enemies, but by how effectively they could outlast them. Many generations later, this philosophy is still reflected in modern Successor shield cortices, which are exceptionally powerful for their size but weaken the shield's resistance to incoming fire. This allows Successor ships to recover quickly from sustained damage, even if they are slightly more vulnerable to it."
 
 outfit `"Ej" Shield Cortex`
+	plural `"Ej" Shield Cortices`
 	category "Systems"
 	series "Shields"
 	index 11020
@@ -54,11 +56,12 @@ outfit `"Ej" Shield Cortex`
 	"outfit space" -21
 	"shield generation" 3.0
 	"shield protection" -0.33
-	"shield energy" 4.7
+	"shield energy" 4.0
 	"shield connection point" 1
 	description "Because their bimodal engines draw power from a ship's shield matrix, even non-combat Successor craft can justify equipping powerful shield generators to afford them greater mobility. This is the largest unit the High Houses permit for sale to the general public; even so, it offers substantially faster regeneration than even the largest human shield generators."
 
 outfit `"Jaase" Shield Cortex`
+	plural `"Jaase" Shield Cortices`
 	category "Systems"
 	series "Shields"
 	index 11030
@@ -70,11 +73,12 @@ outfit `"Jaase" Shield Cortex`
 	"outfit space" -30
 	"shield generation" 4.8
 	"shield protection" -0.33
-	"shield energy" 7.4
+	"shield energy" 6.4
 	"shield connection point" 1
 	description "The technology of their Predecessors was not nearly as modular as the modern Successor equivalents, which must be built with more limited resources and comparatively primitive manufacturing techniques. Nonetheless, this medium-sized shield cortex is powerful enough to shrug off the combined damage output of several lesser attackers, and consequently is reserved by the High Houses for use in their private navies."
 
 outfit `"Jorv" Shield Cortex`
+	plural `"Jorv" Shield Cortices`
 	category "Systems"
 	series "Shields"
 	index 11040
@@ -86,7 +90,7 @@ outfit `"Jorv" Shield Cortex`
 	"outfit space" -55
 	"shield generation" 10.5
 	"shield protection" -0.33
-	"shield energy" 16.1
+	"shield energy" 14.0
 	"shield connection point" 1
 	description "Bristling with regeneration nodes, this large Successor shield cortex requires a power budget greater than most human warships in their entirety. Many more traditional members of the High Houses disapprove of its design, arguing that such a powerful piece of their technology deserves a more artful form, but there has ultimately been little desire to invest time and money into a redesign for purely aesthetic reasons."
 
@@ -101,9 +105,8 @@ outfit "Shield Cortex Interface"
 	mass 3
 	"outfit space" -3
 	"shield protection" 0.33
-	"shield generation multiplier" -0.05
 	"shield connection point" -2
-	description "This compact tract of electrical fibers connects two Successor shield cortices to function as a single unit, preventing the shield-softening effect of one of the generators from unduly reducing the durability of the ship's shields at the cost of slightly reducing efficiency. The effect scales poorly past two connected generators."
+	description "This compact tract of electrical fibers connects two Successor shield cortices to function as a single unit, preventing the shield-softening effect of one of the generators from unduly reducing the durability of the ship's shields. The effect scales poorly past two connected generators."
 
 
 outfit `1-"Uurau" Betavoltaic Cell`
@@ -538,18 +541,45 @@ outfit `"Veusa" Inductive Reverser`
 	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
 
 
-outfit "Multimodal Armor: Heavy"
+outfit "Multimodal Armor: Light"
 	category "Systems"
 	series "Special Systems"
 	index 11010
+	thumbnail "outfit/successor armor light"
+	licenses
+		"High Houses"
+	"hull protection" .1
+	"inertia reduction" .15
+	"multimodal armor" -1
+	"unplunderable" 1
+	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
+	description "	This configuration introduces well-ordered nanoscale voids into the armor's structure, reducing a warship's mass without compromising structural integrity."
+
+outfit "Multimodal Armor: Heavy"
+	category "Systems"
+	series "Special Systems"
+	index 11020
 	thumbnail "outfit/successor armor heavy"
 	licenses
 		"High Houses"
-	"hull protection" .20
+	"hull protection" .2
 	"multimodal armor" -1
 	"unplunderable" 1
 	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
 	description "	This configuration strengthens the bonds between the atoms making up the armor, increasing its resistance to direct damage."
+
+outfit "Multimodal Armor: Regen"
+	category "Systems"
+	series "Special Systems"
+	index 11030
+	thumbnail "outfit/successor armor regen"
+	licenses
+		"High Houses"
+	"hull repair multiplier" .75
+	"multimodal armor" -1
+	"unplunderable" 1
+	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
+	description "	This configuration increases the plasticity of the armor, greatly increasing the effectiveness of in-combat repair efforts."
 
 outfit "Multimodal Armor: Keystone"
 	category "Systems"
@@ -565,33 +595,6 @@ outfit "Multimodal Armor: Keystone"
 	"unplunderable" 1
 	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
 	description "	This configuration allows a vessel equipped with it to safely pass through unstable wormholes. As a side effect, it also substantially interferes with external scans of a vessel's cargo or outfits."
-
-outfit "Multimodal Armor: Regen"
-	category "Systems"
-	series "Special Systems"
-	index 11020
-	thumbnail "outfit/successor armor regen"
-	licenses
-		"High Houses"
-	"hull repair multiplier" 0.75
-	"multimodal armor" -1
-	"unplunderable" 1
-	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
-	description "	This configuration increases the plasticity of the armor, greatly increasing the effectiveness of in-combat repair efforts."
-
-outfit "Multimodal Armor: Resilient"
-	category "Systems"
-	series "Special Systems"
-	index 11030
-	thumbnail "outfit/successor armor resilient"
-	licenses
-		"High Houses"
-	"slowing protection" 0.5
-	"corrosion protection" 0.5
-	"multimodal armor" -1
-	"unplunderable" 1
-	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
-	description "	This configuration is designed for exploring hazardous areas, substantially increasing the armor's ability to resist engine-dampening effects and long-term degradation."
 
 
 outfit "Kinetic Rail Rifle"

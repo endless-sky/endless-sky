@@ -2219,8 +2219,8 @@ news "spaceport video advertisement"
 			`You see a video of stuntmen making a jump from the edge of space. The "do not try this at home," "illegal on many planets," and "high risk/deadly" warnings at the end of the video suggest that this might become quite a popular sport.`
 			"A video of fast spaceships racing around a three dimensional course in space is shown on the screen, interwoven with clips of very luxurious ships where people appear to be watching the race."
 			"An action-packed advertisement about joining the Navy is playing on the screen. It shows impressive video-fragments of carriers, gunships, dropships and heroic marines."
-			"Some video is showing Syndicate equipment. The video ends with the slogan, 'Just what's needed to get the job done.'"
-			"Take a cruise of six days to hunt pirates, shoot real pirates for 2000 credits a day. 400 bullets included, for free."
+			`Some video is showing Syndicate equipment. The video ends with the slogan, "Just what's needed to get the job done."`
+			"Take a cruise of six days to hunt pirates, shoot real pirates for 2,000 credits a day. 400 bullets included, for free."
 			"Buy local, buy Southbound Haulers. There is always a dealer close to you."
 
 
@@ -2870,14 +2870,14 @@ news "betelgeuse stolen ship advisory"
 		word
 			"? "
 		word
-			"Ensure that when buying new you do so from a reputable dealer"
-			"Buy your ships direct from a Betelgeuse-affiliated shipyard"
-			"Give yourself peace of mind by purchasing your Betelgeuse ship from a reputable shipyard"
-			"Request the certificate of authenticity from the seller with your purchase"
+			"Buy new from a reputable dealer"
+			"Buy from a Betelgeuse-affiliated shipyard"
+			"Purchase from a reputable shipyard"
+			"Confirm authenticity with your purchase"
 		word
 			". "
 		word
-			"These simple precautions will ensure that"
+			"These precautions will ensure that"
 		word
 			" you're not "
 		word
@@ -2885,8 +2885,7 @@ news "betelgeuse stolen ship advisory"
 			"conned with a counterfeit"
 			"purchasing a"
 		word
-			" ship assembled from refuse by "
-			" ship assembled with inferior materials by "
+			" ship assembled by "
 			" stolen ship from "
 			" hijacked ship from "
 			" patchy ship from "
@@ -2894,7 +2893,7 @@ news "betelgeuse stolen ship advisory"
 			"a gang of "
 			"a bunch of "
 			"some unsavory "
-			"some untrustworthy "
+			"untrustworthy "
 		word
 			"pirates. "
 			"bootleggers. "
