@@ -490,7 +490,7 @@ private:
 	std::map<const Ship *, int> groups;
 	// The different scan capabilities of the player's fleet, storing the ship with each scanner
 	// and its scan range squared (for quicker comparisons).
-	std::map<std::shared_ptr<Ship>, std::map<ScanType, double>> scanners;
+	std::map<ScanType, std::map<std::shared_ptr<Ship>, double>> scanners;
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;

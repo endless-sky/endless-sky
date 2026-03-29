@@ -57,6 +57,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 #include <iterator>
 #include <limits>
+#include <ranges>
 #include <sstream>
 #include <stdexcept>
 
@@ -151,6 +152,27 @@ namespace {
 					++it;
 			}
 		}
+	}
+
+	ScanOptions CanScanTarget(const Point &position, const vector<ScanType> &types, const System *system,
+		const map<ScanType, map<shared_ptr<Ship>, double>> &scanners)
+	{
+		ScanOptions options;
+		for(ScanType type : types)
+		{
+			auto it = scanners.find(type);
+			if(it == scanners.end())
+				continue;
+			for(const auto &[ship, rangeSquared] : it->second)
+			{
+				if(ship->GetSystem() != system || ship->IsDestroyed() || ship->CannotAct(Ship::ActionType::SCAN))
+					continue;
+				double distanceSquared = ship->Position().DistanceSquared(position);
+				if(type == ScanType::RANGE || rangeSquared >= distanceSquared)
+					options.AddOption(type, ship, distanceSquared);
+			}
+		}
+		return options;
 	}
 }
 
@@ -3506,13 +3528,12 @@ const set<pair<const System *, const Outfit *>> &PlayerInfo::Harvested() const
 
 bool PlayerInfo::HasScanner(ScanType type) const
 {
-	for(const auto &[ship, capabilities] : scanners)
-	{
-		if(ship->GetSystem() != system || ship->IsDestroyed() || ship->CannotAct(Ship::ActionType::SCAN))
-			continue;
-		if(capabilities.contains(type))
+	auto it = scanners.find(type);
+	if(it == scanners.end())
+		return false;
+	for(const auto &ship : it->second | views::keys)
+		if(ship->GetSystem() == system && !ship->IsDestroyed() && !ship->CannotAct(Ship::ActionType::SCAN))
 			return true;
-	}
 	return false;
 }
 
@@ -3525,20 +3546,7 @@ ScanOptions PlayerInfo::CanScan(const shared_ptr<const Ship> &target) const
 		ScanType::FUEL, ScanType::ENERGY, ScanType::THERMAL, ScanType::MANEUVER, ScanType::ACCELERATION,
 		ScanType::VELOCITY, ScanType::WEAPON, ScanType::RANGE
 	};
-	ScanOptions options;
-	for(const auto &[ship, capabilities] : scanners)
-	{
-		if(ship->GetSystem() != system || ship->IsDestroyed() || ship->CannotAct(Ship::ActionType::SCAN))
-			continue;
-		double distanceSquared = ship->Position().DistanceSquared(target->Position());
-		for(ScanType type : SHIP_SCAN_TYPES)
-		{
-			auto it = capabilities.find(type);
-			if(it != capabilities.end() && (it->second >= distanceSquared || type == ScanType::RANGE))
-				options.AddOption(type, ship, distanceSquared);
-		}
-	}
-	return options;
+	return CanScanTarget(target->Position(), SHIP_SCAN_TYPES, system, scanners);
 }
 
 
@@ -3548,20 +3556,7 @@ ScanOptions PlayerInfo::CanScan(const shared_ptr<const Minable> &target) const
 	static const vector<ScanType> MINABLE_SCAN_TYPES = {
 		ScanType::ASTEROID, ScanType::TACTICAL, ScanType::RANGE
 	};
-	ScanOptions options;
-	for(const auto &[ship, capabilities] : scanners)
-	{
-		if(ship->GetSystem() != system || ship->IsDestroyed() || ship->CannotAct(Ship::ActionType::SCAN))
-			continue;
-		double distanceSquared = ship->Position().DistanceSquared(target->Position());
-		for(ScanType type : MINABLE_SCAN_TYPES)
-		{
-			auto it = capabilities.find(type);
-			if(it != capabilities.end() && it->second >= distanceSquared)
-				options.AddOption(type, ship, distanceSquared);
-		}
-	}
-	return options;
+	return CanScanTarget(target->Position(), MINABLE_SCAN_TYPES, system, scanners);
 }
 
 
@@ -5313,33 +5308,33 @@ void PlayerInfo::CalculateScanners(const shared_ptr<Ship> &ship)
 	bool range = attributes.Get("range finder power") > 0.;
 
 	if(cargo)
-		scanners[ship][ScanType::CARGO] = cargo;
+		scanners[ScanType::CARGO][ship] = cargo;
 	if(outfit)
-		scanners[ship][ScanType::OUTFIT] = outfit;
+		scanners[ScanType::OUTFIT][ship] = outfit;
 	if(asteroid)
-		scanners[ship][ScanType::ASTEROID] = asteroid;
+		scanners[ScanType::ASTEROID][ship] = asteroid;
 	if(tactical)
-		scanners[ship][ScanType::TACTICAL] = tactical;
+		scanners[ScanType::TACTICAL][ship] = tactical;
 	if(strategic)
-		scanners[ship][ScanType::STRATEGIC] = strategic;
+		scanners[ScanType::STRATEGIC][ship] = strategic;
 	if(crew)
-		scanners[ship][ScanType::CREW] = crew;
+		scanners[ScanType::CREW][ship] = crew;
 	if(fuel)
-		scanners[ship][ScanType::FUEL] = fuel;
+		scanners[ScanType::FUEL][ship] = fuel;
 	if(energy)
-		scanners[ship][ScanType::ENERGY] = energy;
+		scanners[ScanType::ENERGY][ship] = energy;
 	if(thermal)
-		scanners[ship][ScanType::THERMAL] = thermal;
+		scanners[ScanType::THERMAL][ship] = thermal;
 	if(maneuver)
-		scanners[ship][ScanType::MANEUVER] = maneuver;
+		scanners[ScanType::MANEUVER][ship] = maneuver;
 	if(acceleration)
-		scanners[ship][ScanType::ACCELERATION] = acceleration;
+		scanners[ScanType::ACCELERATION][ship] = acceleration;
 	if(velocity)
-		scanners[ship][ScanType::VELOCITY] = velocity;
+		scanners[ScanType::VELOCITY][ship] = velocity;
 	if(weapon)
-		scanners[ship][ScanType::WEAPON] = weapon;
+		scanners[ScanType::WEAPON][ship] = weapon;
 	if(tactical || strategic || range)
-		scanners[ship][ScanType::RANGE] = 1.;
+		scanners[ScanType::RANGE][ship] = 1.;
 }
 
 
