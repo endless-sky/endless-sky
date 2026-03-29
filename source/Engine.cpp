@@ -2318,7 +2318,7 @@ void Engine::HandleMouseClicks()
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == playerSystem && &*ship != flagship && ship->IsTargetable())
 		{
-			Point position = ship->Position() - flagship->Position();
+			Point position = ship->Position() - camera.Center();
 			const Mask &mask = ship->GetMask(step);
 			double range = mask.Range(clickPoint - position, ship->Facing());
 			if(range <= clickRange)
@@ -2357,10 +2357,10 @@ void Engine::HandleMouseClicks()
 		// If the click was not on any ship, check if it was on a minable.
 		for(const shared_ptr<Minable> &minable : asteroids.Minables())
 		{
-			if(player.CanScan(minable).HasOption(ScanType::ASTEROID))
+			if(!player.CanScan(minable).HasOption(ScanType::ASTEROID))
 				continue;
 
-			Point position = minable->Position() - flagship->Position();
+			Point position = minable->Position() - camera.Center();
 			double range = clickPoint.Distance(position) - minable->Radius();
 			if(range <= clickRange)
 			{
