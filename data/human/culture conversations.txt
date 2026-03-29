@@ -1023,7 +1023,6 @@ mission "Exotic Life: Delve"
 				`	"As a model Syndicate employee," he says sardonically, "I can tell you that the rumors that the shipworm is indigenous to this planet are untrue, and that the miners are categorically not hauling them out of the ground along with the ore. In fact, if you even use the term 'Delvan Shipworm' there is a good chance that you'll have Syndicate lawyers suing you for defamation."`
 			`	You thank the technician for his time and turn back toward the <ship>, wondering if maybe you should park her a bit further away.`
 			decline
-		log "Heard about some tiny creatures called 'Delvan Shipworms' which can eat through a ship's hull. Apparently infestations are getting more frequent."
 
 
 mission "Exotic Life: Ada"
