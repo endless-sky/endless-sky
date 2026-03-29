@@ -53,7 +53,7 @@ public:
 
 	virtual void Draw() override;
 
-	explicit ListDialogPanel(DialogInit &init, ListDialogInit &init2);
+	explicit ListDialogPanel(DialogInit &init, ListDialogInit &listInit);
 
 
 protected:
@@ -97,15 +97,9 @@ private:
 
 
 template<class T>
-ListDialogPanel *ListDialogPanel::ShowList(
-	T *t,
-	const std::string &title,
-	const std::vector<std::string> &options,
-	const std::string &initialSelection,
-	DialogPanel::FunctionButton buttonOne,
-	DialogPanel::FunctionButton buttonThree,
+ListDialogPanel *ListDialogPanel::ShowList(T *t, const std::string &title, const std::vector<std::string> &options,
+	const std::string &initialSelection, DialogPanel::FunctionButton buttonOne, DialogPanel::FunctionButton buttonThree,
 	std::string(T::*hoverFun)(const std::string &)
-	)
 {
 	DialogInit init;
 	init.buttonOne = buttonOne;

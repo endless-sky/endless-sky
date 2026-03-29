@@ -451,11 +451,8 @@ DialogPanel *DialogPanel::RequestPositiveInteger(T *t, void (T::*fun)(int), std:
 
 
 template<class T>
-DialogPanel *DialogPanel::ThreeButtonValidateString(T *t,
-	std::string message,
-	std::string initialValue,
-	DialogPanel::FunctionButton buttonOne,
-	DialogPanel::FunctionButton buttonThree,
+DialogPanel *DialogPanel::ThreeButtonValidateString(T *t, std::string message, std::string initialValue,
+	DialogPanel::FunctionButton buttonOne, DialogPanel::FunctionButton buttonThree,
 	std::function<bool(const std::string &)> validate)
 {
 	DialogInit init;

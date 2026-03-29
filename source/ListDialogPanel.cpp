@@ -33,16 +33,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 
-ListDialogPanel::ListDialogPanel(DialogInit &init, ListDialogInit &init2)
-	: DialogPanel(init),
-	title(init2.title),
-	// options(init2.options),
-	selectedItem(init2.selectedItem),
-	hoverFun(init2.hoverFun),
-	tooltip(init2.tooltip)
+
+ListDialogPanel::ListDialogPanel(DialogInit &init, ListDialogInit &listInit)
+	: DialogPanel(init), title(listInit.title), selectedItem(listInit.selectedItem),
+	hoverFun(listInit.hoverFun), tooltip(listInit.tooltip)
 {
 	ListDialogPanel::Resize();
-	UpdateList(init2.options);
+	UpdateList(listInit.options);
 }
 
 
