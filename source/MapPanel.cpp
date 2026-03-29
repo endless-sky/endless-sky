@@ -20,9 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "shader/BatchDrawList.h"
 #include "CargoHold.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
-#include "shader/FillShader.h"
 #include "shader/FogShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -38,7 +37,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "MissionPanel.h"
-#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "shader/PointerShader.h"
@@ -218,7 +216,7 @@ pair<bool, bool> MapPanel::BlinkMissionIndicator(const PlayerInfo &player, const
 {
 	bool blink = false;
 	int daysLeft = 1;
-	if(mission.Deadline())
+	if(mission.Deadline() && !mission.IsFailed())
 	{
 		daysLeft = player.RemainingDeadline(mission);
 		int blinkFactor = min(6, max(1, daysLeft));
@@ -478,41 +476,40 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	};
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	else if(key == 's' && buttonCondition != "is shipyards")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MapShipyardPanel(*this));
+		GetUI().Push(new MapShipyardPanel(*this));
 	}
 	else if(key == 'o' && buttonCondition != "is outfitters")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MapOutfitterPanel(*this));
+		GetUI().Push(new MapOutfitterPanel(*this));
 	}
 	else if(key == 'i' && buttonCondition != "is missions")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MissionPanel(*this));
+		GetUI().Push(new MissionPanel(*this));
 	}
 	else if(key == 'p' && buttonCondition != "is ports")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MapDetailPanel(*this, false));
+		GetUI().Push(new MapDetailPanel(*this, false));
 	}
 	else if(key == 't' && buttonCondition != "is stars")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MapDetailPanel(*this, true));
+		GetUI().Push(new MapDetailPanel(*this, true));
 	}
 	else if(key == 'f')
 	{
-		GetUI()->Push(new Dialog(
-			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
+		GetUI().Push(DialogPanel::RequestString(this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)

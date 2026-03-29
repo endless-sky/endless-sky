@@ -98,6 +98,7 @@ mission "Hunted Warning"
 
 mission "Hunted"
 	invisible
+	non-blocking
 	landing
 	repeat
 	deadline 30
@@ -138,7 +139,7 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		fleet "Marauder fleet I"
+		fleet "Marauder fleet II"
 	npc save
 		to despawn
 			or
@@ -168,7 +169,7 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		fleet "Marauder fleet X"
+		fleet "Marauder fleet VIII"
 	# For stronger players, all attacking NPCs must be killed before the mission will be completed.
 	npc kill
 		to despawn
@@ -177,7 +178,7 @@ mission "Hunted"
 		personality heroic unconstrained waiting nemesis plunders harvests
 		system
 			distance 5 5
-		fleet "Marauder fleet X" 2
+		fleet "Marauder fleet VIII" 2
 	npc kill
 		to despawn
 			"armament deterrence" < 64
@@ -500,11 +501,20 @@ mission "Pookie, Part 5"
 			`	You pick up Puny and show her to the lady. When she makes eye contact with the poodle, her face contorts with anger. "What do you take me for, some kind of Dirt Belter?"`
 			choice
 				`	"Hey, I'm from the Dirt Belt!"`
+					to display
+						has "start: default"
+				`	"I would never in a million years, ma'am."`
+					to display
+						has "start: paradise"
+					goto paradise
 				`	"What do you mean?"`
 					goto explain
 				`	"I'm sorry?"`
 					goto sorry
 			`	She tosses her head to the side. "Then I mean it twice as much!"`
+				goto explain
+			label paradise
+			`	She scoffs. "Flattery will get you nowhere!"`
 				goto explain
 			label sorry
 			`	She hisses. "If you wanted to be sorry, then you should never have tried to trick me in the first place!"`
@@ -818,11 +828,18 @@ mission "Transport Workers B"
 				`	"I'd be glad to take you there."`
 					goto thanks
 				`	"Are you sure about that? I've heard some bad things about the Syndicate's company towns."`
-					goto towns
+					to display
+						not "start: syndicate"
+				`	"Just because there's jobs doesn't mean it's going to be easy pay. Trust me, I've been there before."`
+					to display
+						has "start: syndicate"
+					goto "towns syndicate"
 				`	"Do you really think she's going to wait around for you?"`
 					goto wait
-			label towns
 			`	"Me too," he says, "but it's a lifetime of steady work, and you know how hard that is to come by in this part of the galaxy. Can you help me out?"`
+				goto choice
+			label "towns syndicate"
+			`	"I know," he says, "but it's still better than trying to find work in this part of the galaxy. Can you help me out?"`
 				goto choice
 			label wait
 			`	"She'll be true to me," he says, with absolute confidence.`
@@ -1020,11 +1037,6 @@ mission "There Might Be Riots part 2"
 				`	"What do you mean, 'beyond' human space?"`
 				`	"Well, I'll look forward to the next time we meet."`
 					accept
-			branch "not public"
-				not "event: hai-human resolution announced"
-			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Of course, these days that story isn't half as interesting as it once was."`
-				goto revealed
-			label "not public"
 			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Never did find anyone who could take us back there, though."`
 			branch known
 				has "First Contact: Hai: offered"
@@ -1034,12 +1046,6 @@ mission "There Might Be Riots part 2"
 			action
 				set "met hai before TMBR"
 			`	"It sounds like you were visiting Hai space," you say, and you describe the aliens who live beyond the wormhole. "Yeah, that would be them," says Ulrich. "I'd love to go back there some time, but for now we have commitments closer to home." You help them to unload their stuff, and say goodbye for now.`
-				accept
-			label revealed
-			action
-				set "met hai before TMBR"
-			`	"Well, now that they're not hiding away anymore, seems like you might have a new market you could go back to," you say.`
-			`	"I'd love to go back there some time," says Ulrich, "but for now we have commitments closer to home." You help them to unload their stuff, and say goodbye for now.`
 				accept
 
 
@@ -1095,14 +1101,6 @@ mission "There Might Be Riots part 3A"
 			`	"Yes," you say, "they're called the Hai. They live in a whole big region to the north."`
 				goto end
 			label known
-			branch "not public"
-				not "event: hai-human resolution announced"
-			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down."`
-			`	"Didn't you say the Hai really liked you before?" you ask. "I think now might be the perfect opportunity to go back to the Hai."`
-			`	"Aww yeah!" he exclaims, "those squirrel people were rad cool. We go thumb our noses at the military industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
-			`	Once more, they begin loading their stuff onto your ship, while you chart a course to <destination>.`
-				accept
-			label "not public"
 			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down. I was thinking it'd be a great chance for our band to reconnect with the squirrel people - what did you call them?"`
 			`	"The Hai," you say.`
 			label end
@@ -2703,7 +2701,7 @@ mission "Lost Boy 2"
 		dialog `You've landed on <planet>, but you haven't yet found Tod. Keep looking for the <npc> and then board the ship; it can't be far from Deadman's Cove.`
 	
 	npc board
-		personality staying nemesis target plunders
+		personality staying marked target plunders
 		government "Bounty"
 		system
 			distance 2 4
@@ -2792,9 +2790,6 @@ mission "Paradise Fortune 1"
 	to offer
 		random < 50
 		has "main plot completed"
-		or
-			not "hr: secret leaks"
-			has "event: hai-human resolution announced"
 	
 	on offer
 		conversation
@@ -2832,6 +2827,9 @@ mission "Paradise Fortune 2"
 		conversation
 			`"You need to explain what is going on here," you say just after setting your ship down.`
 			`	"Alright, alright, I'll explain." You notice that the girl has a strange mix between a posh Paradise World accent and a Dirt Belt or possibly even Rim accent. "My name is Diana Howl. My father is the CEO of a large marketing firm. And this," Diana opens her backpack, revealing its full contents of thousands of credit chips, "this is part of my family fortune, about half a billion credits of it. Don't worry, my father should be able to make this back in a few months' time."`
+			`	You faintly recall the name "Howl" as belonging to the owners of a large island on Mainsail.`
+				to display
+					has "start: paradise"
 			choice
 				`	"Why have you stolen all this?"`
 					goto story
@@ -2856,11 +2854,69 @@ mission "Paradise Fortune 2"
 					goto decline
 			
 			label accept
+			branch "paradise accept"
+				has "start: paradise"
+				has "event: joined the free worlds"
 			`	"Excellent!" Diana yells out. She drops the bag of credits on the floor and gives you a hug. "We'll have to leave immediately, for I fear that the spaceport authorities here might be searching for us."`
+				launch
+
+			label "paradise accept"
+			`	"Excellent!" Diana yells out. She drops the bag of credits on the floor and gives you a hug. "Thank you so much, Captain <last>."`
+			choice
+				`	"No need to thank me."`
+					goto leave
+				`	"Wait, how do you know my name?"`
+			`	"I saw you on the news," Diana replies. "They said that, even though you were born on Mainsail, you decided to join the Free Worlds and fight against the Paradise Planets."`
+			label leave
+			`	Eventually, Diana pulls herself away and says, "We'll have to leave immediately, for I fear that the spaceport authorities here might be searching for us."`
 				launch
 			
 			label decline
+			branch paradise
+				has "start: paradise"
+				has "event: joined the free worlds"
 			`	You call the spaceport authorities and tell them that Diana Howl is on your ship. Moments later when they arrive, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer 150,000 credits to your account.`
+				decline
+			
+			label paradise
+			`	You move to re-enter your cockpit and call the authorities, but Diana thrusts her arms out, blocking your way. "Wait! You're <first> <last>, aren't you? The war hero who fought and defeated the Pug?"`
+			choice
+				`	"Yes, I am."`
+					goto plead
+				`	"Sorry, but you have the wrong person."`
+			`	"No, I know you're <first>! You look just like the videos in all the news reports!"`
+			`	"And what of it?" you reply.`
+			
+			label plead
+			`	"The news said that, even though you were born and raised on Mainsail, you decided to join the Free Worlds and fight the Republic for the sake of the people!" Diana balls her hands into fists. "When I first heard about you, I thought that, maybe, I could make my own difference in the galaxy, and use my privilege for good instead of evil. But now you're acting like that never happened! Like the Republic is suddenly the best thing ever, and that everyone in poverty deserves to be that way!"`
+			choice
+				`	"Yes, I fought against the Republic, and I almost died several times because of that. I don't want to put you in danger."`
+					goto danger
+				`	"That's because I was fighting a war of independence. What you're doing is a random, poorly planned robbery."`
+					goto robbery
+				`	"I was only ever in the Free Worlds for the fame and glory. I'm not about to have that ruined by helping some wannabe Robin Hood."`
+			
+			`	Diana is left stunned by your bitter words, giving you an opportunity to push her aside and flick on your ship's speakers to call for help. Moments later, when the spaceport authorities arrive, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer 150,000 credits to your account.`
+				decline
+			
+			label danger
+			`	She grits her teeth. "And what if I don't care? If risking my life means bettering the lives of thousands more, then why shouldn't I take that risk?"`
+				goto final
+			
+			label robbery
+			`	Diana stutters. "S-so what? Every change needs to start from somewhere, and even if things aren't going well right now, this could eventually lead to a real difference! Please, just give me a chance."`
+			
+			label final
+			choice
+				`	"Okay, you've convinced me. I'll take you to <planet>."`
+				`	"That's not good enough. I'm turning you in."`
+					goto "final decline"
+
+			`	Diana turns her face in a poor attempt to hide her relief. "We'll have to leave immediately," she says, "for I fear that the spaceport authorities here might be searching for us."`
+				launch
+			
+			label "final decline"
+			`	You push Diana aside and call the spaceport authorities. Moments later, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer 150,000 credits to your account.`
 				decline
 			
 	on decline
@@ -3887,7 +3943,6 @@ mission "Human to Hai Space - No Contact"
 	to offer
 		random < 2
 		not "First Contact: Hai: offered"
-		not "event: hai-human resolution announced"
 	on offer
 		conversation
 			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
@@ -3914,9 +3969,7 @@ mission "Human to Hai Space"
 	destination "Greenwater"
 	to offer
 		random < 10
-		or
-			has "First Contact: Hai: offered"
-			has "event: hai-human resolution announced"
+		has "First Contact: Hai: offered"
 		not "Human to Hai Space - No Contact: offered"
 	on offer
 		conversation
@@ -3924,15 +3977,13 @@ mission "Human to Hai Space"
 			choice
 				`	"'Heard tell'? I'm from Hai space!"`
 					to display
-						has "hai space start"
+						has "start: hai"
 					goto origin
 				`	"You mean the Hai? You'll have to go up north for that."`
 					goto hai
 				`	"Ah, I think I know of some large squirrels to the north of here."`
 					goto hai
 				`	"What are you talking about?"`
-					to display
-						not "event: hai-human resolution announced"
 			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in human space. Better safe than sorry.`
 				decline
 			
@@ -3945,7 +3996,7 @@ mission "Human to Hai Space"
 			choice
 				`	"Actually, I'm from <planet>."`
 					to display
-						has "hai space start"
+						has "start: hai"
 				`	"Alright, I'll take you there."`
 					accept
 				`	"Sorry, I'm too busy right now."`
@@ -3982,11 +4033,11 @@ mission "Human to Hai Space"
 					decline
 				`	(Approach them.)`
 					to display
-						has "hai space start"
+						has "start: hai"
 					goto "hai start"
 				`	"That's your family?"`
 					to display
-						not "hai space start"
+						not "start: hai"
 			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our son safely."`
 			choice
 				`	"I didn't mean to be rude, I just didn't know that Hai adopted humans here."`
@@ -4354,6 +4405,7 @@ mission "Thrall Emigration"
 mission "Spaceport Reminder Setter"
 	landing
 	invisible
+	non-blocking
 	on offer
 		"spaceport reminder year" = "year"
 		"spaceport reminder month" = "month"
@@ -4418,6 +4470,7 @@ mission "Spaceport Reminder"
 mission "Fumbling Mugger Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Transport Workers B: done"
 	on offer
@@ -4665,6 +4718,7 @@ mission "Laborer Payment"
 mission "Block Hai Wormhole Warning"
 	landing
 	invisible
+	non-blocking
 	to offer
 		or
 			has "First Contact: Hai: offered"
@@ -4685,8 +4739,7 @@ mission "Hai Wormhole Warning"
 			has "First Contact: Unfettered: offered"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
-		not "hr: meet the team"
-		not "hai space start"
+		not "start: hai"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
 		conversation
@@ -4775,6 +4828,11 @@ mission "Saving Artifacts 1"
 			`As you wander around the spaceport, a harried-looking academic approaches you. "You're a captain, right? Can you take a transport mission to <planet>? A local museum can't care for some priceless historical artifacts anymore due to budget cuts, so they need to be transported somewhere that they can be properly cared for. We can pay you <payment>."`
 			choice
 				`	"Why can't you just bring them to another Earth museum?"`
+					to display
+						not "start: syndicate"
+				`	"Isn't there some other place planetside that'll take them in?"`
+					to display
+						has "start: syndicate"
 				`	"Sorry, I can't take on this job right now. Ask someone else."`
 					decline
 				`	"Sure, I'll take them there."`
@@ -4935,6 +4993,7 @@ mission "Dangerous Games 1"
 	source
 		attributes "frontier" "pirate"
 		near "Hadar" 1 100
+	clearance "Karengo grabs the intercom and gives the traffic controllers a piece of his mind. They grovel in apology, claiming not to know he was aboard, and grant you landing clearance."
 	stopover "Skymoot"
 	to offer
 		random < 15
@@ -5050,6 +5109,9 @@ mission "Dangerous Games 2"
 				`	"Sorry, mate. You'll have to find another pilot."`
 					decline
 			`	Karengo laughs. "If they can handle space, I think they can handle some water. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own subpods, so how's about we load up and head out in the next few hours. Good? Good."`
+			`	You spot someone behind Karengo working on one of the subpods; your time on the aquatic world of <home planet> lets you identify the sub's manufacturer as one more well known for scandal than reliability.`
+				to display
+					has "start: paradise"
 			`	"Oh, nearly forgot. We're headed to <destination>, and you'll get <payment> for taking us there. Ain't sure if those in charge are gonna like what I'm doing, so we might need to grease some palms. Best to keep your eyes open and your shields up. We leave at noon!"`
 				accept
 	on complete
@@ -5960,7 +6022,7 @@ mission "Quicksilver Mixup 3"
 		dialog `You have reached <planet>, but your escort carrying the misposted mail has not arrived. Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 100000
-		dialog `The same manager from before is waiting with the unloading crew, and thanks you for covering for the other pilot before handing you the credit chip for payment. It's nice to know that captains who get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future."`
+		dialog `The same manager from before is waiting with the unloading crew, and thanks you for covering for the other pilot before handing you the credit chip for payment. It's nice to know that captains who get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future.`
 
 
 
@@ -6751,18 +6813,26 @@ mission "Lost Racer 3"
 				`	"I'll leave the questions to your father."`
 					goto noquestions
 			label crash
+			action
+				set "asked artemis about crash"
 			`	"I really do not know. We checked everything before launch, everything, and yet during the jump the Moonfox's hyperdrive malfunctioned, knocking me out. When I woke up, I was in the wrong system and the Flivver was hurtling away from the star. Luckily, the engines hadn't been harmed too much, so I was able to turn around and thrust in the direction of <origin>, but then the batteries gave out and the generator stopped working. So I ended up stranded on a planet with no way of calling for help - the flares had triggered when I crashed, being unable to slow down without thrusters. Well, now you know. Is there anything else?"`
 			`	August asks, "Do you think someone could have sabotaged the hyperdrive? Any suspicious Syndicate employees hanging around? Any anything out of the ordinary?"`
 			`	"Not that I remember," replies Artemis. "This rarely happens in spaceship racing, but it's still happened. A one-in-a-million chance, perhaps. I wouldn't worry about it too much."`
 			choice
 				`	"That was a beautiful ship you had there. I've never seen a Flivver quite like that."`
+					to display
+						not "asked artemis about flivver"
 				`	"Alright."`
 					goto noquestions
 			label beautiful
+			action
+				set "asked artemis about flivver"
 			`	"You have good taste, Captain. It's modified for racing: lighter hull plating, no weapon mounts, ample engines, of course. We've got a dozen for all the different races, but that one was a personal favorite."`
 			choice
 				`	"Why did you crash?`
 					goto crash
+					to display
+						not "asked artemis about crash"
 				`	"I have no more questions."`
 			label noquestions
 			`	Artemis nods. "Well, could we head back to <planet> now? It'll be nice to get home after all this commotion and discomfort."`
@@ -6958,6 +7028,7 @@ mission "Moving House 1"
 
 mission "Moving House Timer"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Moving House 1: done"
@@ -7030,7 +7101,7 @@ mission "Moving House 3"
 mission "Stranded In Paradise 1"
 	minor
 	name "Transport Burnbecks to <planet>"
-	description "The Burnbeck family was stranded by the bombings, and needs <bunks> free for transport back home to <destination>. Payment is <payment>."
+	description "The Burnbeck family was stranded by the bombings, and needs <bunks> bunks free for transport back home to <destination>. Payment is <payment>."
 	source
 		attributes "paradise"
 	destination
@@ -7303,7 +7374,7 @@ mission "Derelict Family Investment 2"
 				`	"I don't know what happened to him personally, but I found this case of credits and a log explaining how he was trying to invest in a better life for his family."`
 				`	"I believe he died before he was able to bring back his business investment to your family. Here's his personal log, it explains everything."`
 			`	She takes the log from you and quickly scrolls through it, emotion washing over her features as she reads. Eventually she looks up, and with all the anger towards her father gone, she speaks. "Thank you for this. All these years I had believed he had just taken our money and run off. But knowing he had been trying to help is worth more than all the credits in the galaxy. Take them and then some as a reward for bringing me this last piece of him."`
-			`	You leave the building with a total of <payment> credits from both the case and Ms. Sawyer.`
+			`	You leave the building with a total of <payment> from both the case and Ms. Sawyer.`
 
 
 mission "Returning to Paradise"
@@ -7577,6 +7648,8 @@ mission "Adelita 1"
 			choice
 				`	"Not much at all."`
 				`	"I come from the Dirt Belt, but I really don't know too much about what happened on Hope."`
+					to display
+						has "start: default"
 				`	"I've been there myself and know what happened, but other than that I don't know."`
 					goto "been to hope"
 					to display
@@ -8115,6 +8188,7 @@ ship "Emergency Shuttle"
 	explode "tiny explosion" 5
 	explode "small explosion" 1
 	description "This Emergency Shuttle is custom-built, designed to be attached to a larger ship and to serve as a lifeboat if the need arises. It is intentionally designed to maximize the number of people it can carry to safety, but has very little space for outfits."
+
 
 
 mission "Syndicate Business 2"
@@ -8687,896 +8761,9 @@ mission "Syndicate Business 5"
 
 event "syndicate business 10m investment done"
 
-
-mission "Syndicate Business 5.1 A 10m Expansion Update"
-	landing
-	to offer
-		has "Syndicate Business 5: done"
-		has "event: syndicate business 10m investment done"
-		or
-			has "Syndicate Business expansion 10m good"
-			has "Syndicate Business expansion 10m neutral"
-			has "Syndicate Business expansion 10m evil"
-	source
-		near Ruchbah 0 20
-	on offer
-		conversation
-			`As you are landing your <model>, you see a message from Howard, the Megaparsec salesman who sold you two investments. The message says:`
-			branch "mean opening"
-				"syndicate business: mean to Howard" > 0
-			`	"Hey <first>,`
-			`		"I hope all is well. I'm excited to send you this interim Megaparsec report! I'm sharing because it's the first one with your investment included - check out Section 3, Part C, Paragraph 6 for the details.`
-				goto "opening choice"
-			label "mean opening"
-			`	"Captain <first> <last>,`
-			`		"Here's the interim Megaparsec report, sent because your investment is included for the first time. You can find the relevant information in Section 3, Part C, Paragraph 6.`
-			label "opening choice"
-			branch "good choice"
-				has "Syndicate Business expansion 10m good"
-			branch "evil choice"
-				has "Syndicate Business expansion 10m evil"
-			# neutral
-			`		"Nothing major to flag, just routine updates. Steady progress and business as usual. Just like I predicted, we're seeing some solid returns that aren't making headlines. And the higher ups like the consistency - keeps me in their good graces.`
-				goto "howard bye"
-			label "good choice"
-			`		"Returns are about what we projected, a little slow, but here's the kicker: we're saving a chunk in provisions for expected environmental lawsuits and employee morale at the expansion is through the roof. Looks like we're building more than just profits. My bosses are thrilled - they think I'm working magic here.`
-				goto "howard bye"
-			label "evil choice"
-			`		"There was a... noteworthy incident involving some employees, so it might draw more attention than we'd like. Nothing that'll derail the returns, though, just some bad press to manage. Everything's still on track, and either way, no one can argue with the numbers.`
-			label "howard bye"
-			branch "already rich"
-				"credits" >= 300000000
-			`		"Anyway, here's the mentioned area of that report. I have another investment opportunity coming up, but if my bank contact is correct you have some hustling to do if you want in. Maybe three or four hundred million credits ought to do it. Keep in touch."`
-				goto signoff
-			label "already rich"
-			`		"Anyway, here's the mentioned area of that report. As long as you stay rich I'll have another investment opportunity for you soon. Keep in touch."`
-			label signoff
-			`			Howard Vendeur`
-			`			Investor Relations Manager, Megaparsec Incorporated`
-			choice
-				`	(Open Section 3, Part C, Paragraph 6 of the attached report.)`
-					goto "section marked"
-				`	(Take a look at the main report.)`
-				`	(Close the message.)`
-					decline
-			# This report has 2 purposes beyond being a peek behind the curtain of Megaparsec's operations.
-			# 1. This should be dull and impersonal enough that a reader could easily gloss over Megaparsec's morally questionable actions listed in the report and to be a stark contrast to the human aspect of the other culture mission.
-			# 2. This should be long enough that Megaparsec feels overwhelming in size and scope, and that the player's actions/investments feels like a footnote in comparison.
-
-			`	Megaparsec Incorporated is a leading multi-sector company specializing in shipbuilding, performance vehicles, industrial solutions and exacting systems, and financial services. With a commitment to innovation and customer satisfaction, we aim to provide top-tier products and services across various markets. Our workforce comprises millions of skilled employees across the Republic. Established over 60 years ago in 2953, Megaparsec has quickly positioned itself as a key player in the aerospace and transportation industries. References to "Megaparsec Inc.," the "Company," "we," "our," and "us" in this report refer to Megaparsec Incorporated and its consolidated subsidiaries.`
-			`	Our operations are organized into four distinct operating segments: Megaparsec Shipyards, Megaparsec Performance Vehicles, Megaparsec Industrial & Systems, which represent our manufacturing businesses, and Megaparsec Finance, which represents our finance business. Our business segments include operations that are unincorporated divisions of Megaparsec Inc. and others that are separately incorporated subsidiaries. Public sector and other non-corporate activities are not required to be disclosed in interim financial reports, and as such are not covered within this report. Each segment plays a crucial role in driving our growth and profitability, and a description of the business of each of our segments is set forth below. Financial performance and information by segment can be found in Note 5 of the Consolidated Financial Statements on pages 20 through 22 of this report. Readers are encouraged to review this information in conjunction with "Management's Discussion and Analysis of Financial Condition and Results of Operations" on pages 10 through 18.`
-			choice
-				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
-					goto "section marked"
-				`	(Try to get through the report's overview of business segments.)`
-				`	(That's enough financial reports for one day.)`
-					decline
-			`	Megaparsec Shipyards Segment`
-			`		Megaparsec Shipyards is at the forefront of advanced shipbuilding, focusing on designing and constructing lightweight, high-performance vessels for commercial and military applications. Megaparsec Shipyards is a leading shipyard based on unit sales with two principal lines of business: spacecraft sales and aftermarket services. Spacecraft sales include a diverse portfolio of ships such as the Quicksilver, Bounder, Manta, and Splinter, as well as the Hauler and Hauler II designs. Aftermarket services include outfitting, parts, maintenance, inspection and repair services. Our shipyards leverage cutting-edge technology and innovative design principles to enhance efficiency and reduce costs. Revenue in this segment accounted for approximately 45% of our total revenue in the last fiscal year, showcasing our strong market position.`
-			`		Megaparsec Shipyards' aggressive cost-cutting measures and streamlined workplace safety protocols allow us to maintain superior margins. We maintain a close relationship with Parliament to better anticipate and shape legislative actions to be beneficial to the Company.`
-			`		Megaparsec Shipyards markets its products galaxy-wide through its own sales force, as well as through a network of authorized independent sales representatives, depending upon the product line. Megaparsec Shipyards has several competitors within the Syndicate and across Republic space in various market segments. Megaparsec Shipyards' spacecraft compete with other spacecraft that vary in size, speed, range, capacity and handling characteristics on the basis of price, product quality and reliability, product support and reputation.`
-			choice
-				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
-					goto "section marked"
-				`	(Continue through the report to the Megaparsec Performance Vehicles Segment.)`
-				`	(Now that's definitely enough financial report for one day.)`
-					decline
-			`	Megaparsec Performance Vehicles Segment`
-			`		Megaparsec Performance Vehicles is one of the leading suppliers of military and commercial aviation and repulsor solutions in all of Syndicate and Republic space. This segment includes Megaparsec jets, racing hovercraft, utility vehicles, and various repulsor solutions tailored for personal, commercial, and military use. Through its commercial business, Megaparsec Performance Vehicles is a leading supplier of commercially certified aviation and hovercraft support to corporate, on-world petroleum exploration and development, utility, charter, police, fire, rescue, and emergency medical hovercraft operators. Our commitment to the development of high-performance, lightweight vehicles that maximize efficiency and agility while delivering superior speed and operational excellence drives innovation within this segment, allowing us to capture a growing market of discerning consumers. Revenues from this segment contributed approximately 30% of our total revenue, reflecting our success in attracting new customers.`
-			`		For both its military programs and its commercial products, Megaparsec Performance Vehicles provides post-sale support and service for its installed base of millions of vehicles. This is accomplished through a network of Megaparsec Performance Vehicles-owned service sites, service and parts facilities co-located with Megaparsec Shipyards, thousands of independent service centers and sixteen logistics hubs that are located across the galaxy. Collectively, these service sites offer a complete range of logistics support, including parts, support equipment, technical data, training devices, pilot and maintenance training, component repair and overhaul, engine repair and overhaul, aircraft modifications, aircraft customizing, accessory manufacturing, contractor maintenance, field service and product support engineering.`
-			`		Megaparsec is able to leverage its specialization to control a majority of several of the aforementioned markets with relatively inelastic demand, providing significantly higher margins in the police, fire, rescue, and emergency medical segments.`
-			`		Megaparsec Performance Vehicles competes against a number of competitors based in the Syndicate and the Republic for its performance vehicles business, and its parts and support business competes against numerous other companies. Competition is based primarily on price, product quality and reliability, product support, performance, and reputation.`
-			choice
-				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
-					goto "section marked"
-				`	(Continue through the report to the Megaparsec Industrial & Systems Segment.)`
-				`	(Half of the business segments is enough.)`
-					decline
-			`	Megaparsec Industrial and Systems Segment`
-			`		Megaparsec Industrial and Systems focuses on providing comprehensive solutions for various industries, including energy, construction, and logistics. We manufacture industrial equipment, fuel systems, functional components, and other systems designed to enhance productivity and reduce operational costs. This segment also covers miscellaneous lines such as Megaparsec's external refueling sales, logistics services, mission support, and others. This segment has seen steady growth, contributing around 20% of our overall revenue as we continue to expand our market presence and capitalize on emerging opportunities.`
-			`		Our strategic partnerships with external regions that have favorable regulatory environments help minimize disruption from labor or environmental concerns, enabling us to maximize productivity at the lowest possible cost.`
-			`		Our Industrial and Systems Segment has a number of competitors across the galaxy. Competition typically is based on a number of factors including price, product quality and reliability, prior experience, and available manufacturing capacity.`
-			choice
-				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
-					goto "section marked"
-				`	(Finish the business segment overview with Megaparsec Finance.)`
-				`	(Finally close this report.)`
-					decline
-			`	Megaparsec Finance Segment`
-			`		Megaparsec Finance offers a range of financial services, including investment and leasing solutions tailored to the needs of our customers across all segments of the marketplace. This division supports our operational growth by providing essential capital and financial expertise, allowing us to navigate market fluctuations effectively. The Finance segment accounted for about 5% of our total revenue, highlighting our commitment to delivering integrated financial solutions.`
-			`		Megaparsec Finance maximizes returns by strategically navigating complex financial regulations and directly engaging with investors and customers. By leveraging aggressive financial instruments while staying within legal boundaries, we ensure strong profits with minimal regulatory interference.`
-			`		The commercial finance business traditionally is extremely competitive. Our Finance segment is subject to competition from various types of financing institutions, including banks, leasing companies, commercial finance companies and finance operations of equipment vendors. Competition within the commercial finance industry primarily is focused on price, term, structure and service.`
-			`		Megaparsec's diverse portfolio and commitment to innovation position us well for future growth, and we remain dedicated to enhancing value for our shareholders while serving our customers' needs.`
-			`	You've finally gotten through the report's opening statements. That's more than enough of the main report to go through.`
-			choice
-				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
-				`	(Close the report now that I've gone through the main overview.)`
-					decline
-			label "section marked"
-			`	You open the attached report to the area indicated by Howard:`
-			branch "good choice sec 2"
-				has "Syndicate Business expansion 10m good"
-			branch "evil choice sec 2"
-				has "Syndicate Business expansion 10m evil"
-			# neutral 2
-			`	Crossroads refueling station investments continue to meet projections, with healthy margins and steady returns. Following several modest investments in operational efficiency, returns are tracking slightly above baseline forecasts, ensuring a consistent annualized return to investors. The station's strategic position on the centrally located planet continues to generate strong traffic, further solidifying its long-term profitability.`
-				goto "report end"
-			label "good choice sec 2"
-			`	Investment returns from the Crossroads refueling station are currently below comparable benchmarks. However, environmental-related legal actions have been significantly lower than anticipated, resulting in reduced provisions for legal fees. Additionally, localized employee turnover has halved during this period, contributing to enhanced operational stability and providing a favorable outlook for the coming quarters.`
-				goto "report end"
-			label "evil choice sec 2"
-			`	A serious accident at the Crossroads refueling station resulted in injuries to two dozen employees and one fatality. While the legal ramifications are being addressed, the station's outsized returns have more than compensated for the legal fees incurred due to this unfortunate and unpredictable occurrence. Financial projections remain strong, with returns far exceeding expectations.`
-			label "report end"
-			`	That marks the end of where the report covers your investment.`
-				decline
-
-
-mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
-	to offer
-		has "Syndicate Business 5: done"
-		has "event: syndicate business 10m investment done"
-		or
-			has "Syndicate Business expansion 10m good"
-			has "Syndicate Business expansion 10m neutral"
-			has "Syndicate Business expansion 10m evil"
-		random < 85
-	source "Crossroads"
-	on offer
-		conversation
-			`As you are walking around the low stone buildings of the spaceport, you remember that you invested in a refueling station expansion at Megaparsec's logistics hub on Crossroads.`
-			choice
-				`	(Check it out.)`
-				`	(Maybe later.)`
-					defer
-				`	(Skip visiting the refueling station.)`
-					decline
-			`	You make your way towards the refueling station on a bulky vehicle closed off from the radioactive air. Nevertheless, you still feel a faint metallic taste in the back of your throat as you see blue and purple tumbleweeds drift with the sand out the window. Eventually you pull up to the depot and refueling station.`
-			`	The structure looms in front of you - sleek, modular, and distinctly industrial. The station is built for efficient refueling, with segmented docking areas for various freighter sizes, fuel lines tangled overhead like mechanical vines snaking down to heavy looking hoses attached to repulsors, and a series of elevated walkways crisscrossing the area.`
-			choice
-				`	(Get out of the bulky vehicle.)`
-				`	(Turn around and go back to my ship.)`
-					decline
-			`	While still outside the main area, you exit the vehicle and hear the fueling systems hum, punctuated by the occasional clicks of the fuel pumps. There's a faint sulfuric tang in the air intermixed with the radioactive metallic dust. Large screens display fuel prices and tank levels, while cargo repulsors zip around, transporting supplies to waiting ships. You begin to make your way through narrow steps and low guardrails leading up to a platform overlooking the main fueling bay.`
-			branch "good choice"
-				has "Syndicate Business expansion 10m good"
-			branch "evil choice"
-				has "Syndicate Business expansion 10m evil"
-			# neutral
-			`	As you start to approach the platform, you notice a worker sitting on the edge of a low retaining wall, just outside the main operation zone. He's leaned back, catching his breath and wiping the sweat from his brow. The worker looks up as you near, his expression neutral but open, perhaps surprised to see someone from management on-site. His break seems brief, but he's got a minute or two before heading back to work - giving you the option to engage in conversation or simply move on.`
-				goto "hello there"
-			label "good choice"
-			`	As your approach to the platform begins, you notice a worker sitting on the edge of a low retaining wall, just outside the bustling refueling zone. He's leaned back with a relaxed smile on his face as he whistles a cheerful tune, clearly enjoying a well-earned break. The worker's uniform is crisp, and his overall demeanor suggests high morale. He glances up as you near, offering a friendly nod, clearly at ease. With a few minutes left in his break, you have the chance to strike up a conversation or continue on your way.`
-				goto "hello there"
-			label "evil choice"
-			`	As you start your approach towards the platform, you notice a worker sitting on the edge of a low retaining wall, staring at a small memorial plaque embedded in the ground just outside the main refueling zone. Next to the plaque, two small, unmarked rocks have been carefully placed side by side.`
-			`	The worker seems lost in thought, occasionally wiping the sweat from his brow. He shifts slightly as you draw nearer, offering a subtle nod of acknowledgment, giving you the chance to either continue on or start a conversation with him. The reasons behind the plaque and the stones remain unclear, though their presence feels somber. You think back to Howard's message about your aggressive investment choice causing a "noteworthy incident."`
-			label "hello there"
-			choice
-				`	(Say hello.)`
-				`	(Let the moment pass and continue on towards the platform.)`
-					goto "facility tour"
-			branch "good choice 2"
-				has "Syndicate Business expansion 10m good"
-			branch "evil choice 2"
-				has "Syndicate Business expansion 10m evil"
-			# neutral 2
-			`	You decide to strike up a conversation, and after a brief exchange, the worker relaxes when you clarify that you're not from management. His face softens as he shares his story. He grew up poor in the Dirt Belt, and came to Crossroads hoping for something better.`
-			`	"I've been working hard, trying to give my kid a life I didn't have."`
-			`	He shrugs as he says, "Sure, the hours are long and it's tough sometimes, but it beats what you hear about some Syndicate jobs - unsafe, grueling work. At least here, the work's steady and it puts food on the table. That's more than I ever had growing up in the Dirt Belt." He checks the time and stands, dusting off his uniform.`
-			`	"Thanks for the chat, but I've got a long night ahead. It's my kid's birthday, and I'm putting in extra hours so I can get them a cake. They're gonna love it."`
-			`	With a tired but determined smile, he heads back to work, leaving you with a glimpse of the reality behind the "conventional" station's daily grind.`
-				goto "hello there 2"
-			label "good choice 2"
-			`	You decide to strike up a conversation, and as you exchange pleasantries, the worker mentions how he grew up in the Dirt Belt. He talks about how tough life was back then, scraping by with whatever work he could find before coming to Crossroads in search of something better.`
-			`	"I've been incredibly lucky," he says with a genuine smile. "This job - good pay, safe working conditions, benefits for my family - it's more than I ever imagined. I've heard stories about jobs in the Syndicate, how unsafe and grueling they can be. Heck, I've heard of other refueling stations at this very same logistics hub where people get injured and they're left to starve - can you imagine? I count my blessings every day."`
-			`	He glances at his datapad and stands up, brushing off his uniform. "Thanks for the chat," he says warmly. "I've got to head back in. Calling it an early day today - need to grab a cake and set up a surprise birthday party for my kid. They're going to be thrilled!"`
-			`	With a quick wave, he heads back toward the fueling bay, whistling his tune once again.`
-				goto "hello there 2"
-			label "evil choice 2"
-			`	You decide to say hello and ask about the plaque, and the worker lets out a sharp, bitter scoff. "Management put it up after a fuel explosion killed someone," he says in a cold tone. "Injured dozens more, too. They have us handling some incredibly dangerous fuel, no safety gear, and quotas that are impossible to meet. We all knew it was a disaster waiting to happen. But management?" He pauses to wipe his brow.`
-			`	"They didn't care. They just wanted the job done fast." He glances at the two small rocks, then shifts his gaze to the plaque again beside them. "He was one of the lucky ones."`
-			choice
-				`	"How so?"`
-				`	(Say nothing.)`
-			`	He nods toward the rocks. "Some of the others weren't so lucky to die immediately. They got hurt bad enough that they couldn't keep working, and the burns covering their bodies left them in agony for days. Megaparsec didn't lift a finger to help, no medicine, no credits, nothing. We tried, but they didn't make it.`
-			`	"Management won't admit they had anything to do with it, won't help their families or put their names on a plaque or anything. So a few of us put those stones there. Our own little way of remembering."`
-			`	You take in his words, the weight of them heavy in the air.`
-			choice
-				`	(Try to change the subject and ask if he has any family.)`
-				`	(Say nothing.)`
-					goto "evil choice 2 worker leaves"
-			`	The worker turns back to the stones, staring at them for a long, uncomfortable silence. Finally, he shakes his head, his voice barely above a whisper.`
-			`	"No."`
-			label "evil choice 2 worker leaves"
-			`	With that, he pushes himself to his feet and heads back to work without another word.`
-			label "hello there 2"
-			choice
-				`	(Continue on towards the platform.)`
-				`	(Return to my <model> to leave.)`
-					decline
-			label "facility tour"
-			`	You continue on through the narrow steps leading to get to the platform overlooking the main fueling bay, and go through the doors at the top of the steps to enter the main facility.`
-			branch "good choice 3"
-				has "Syndicate Business expansion 10m good"
-			branch "evil choice 3"
-				has "Syndicate Business expansion 10m evil"
-			# neutral 3
-			`	At the top of platform, you take in the sight below of hurried workers and a massive Container Transport docking, its intermodal containers likely full of Particle Cannons destined for Megaparsec Quicksilvers.`
-			`	Fueling crews move quickly but with a certain impatience, functional but clearly worn gear clanking as they connect the repulsor-mounted refueling hoses to the Container Transport's ports. There's a faint tension in the air, an unspoken acknowledgment that time is money, as the fueling process proceeds with the workers more focused on speed than safety.`
-			`	You take a breath of air that feels thick and grimy, carrying the faint stench of fuel. The environmental controls seem poorly maintained, leaving the atmosphere heavy and uncomfortable. The hum of machinery blends with the occasional cough from workers, who seem used to the less-than-ideal conditions. You see the worker from outside, who gives you a short nod before coughing into his arm and rushing to the next fueling hose.`
-				goto "hello there 3"
-			label "good choice 3"
-			`	At the top of platform, the sight below is one of smooth coordination and efficiency. A massive Container Transport docks relatively gracefully, its intermodal containers full of Particle Cannons likely destined for Megaparsec Quicksilvers.`
-			`	Workers outfitted in sleek safety gear move with precision, guiding repulsor-mounted refueling hoses to the Container Transport's ports. There's an air of confidence here - a clear, practiced rhythm, as the fueling process proceeds with checks and double-checks.`
-			`	You take a deep breath of clean, crisp air. Even the environmental controls seem well-maintained, keeping the air cleaner than you'd expect in a station of this size. It's almost serene, the hum of machinery blending with the low chatter of workers who seem genuinely at ease, knowing they're well-protected. You catch the eye of the worker you saw earlier outside, and he gives you a wave before turning his attention back to the fueling hoses.`
-				goto "hello there 3"
-			label "evil choice 3"
-			`	The air is thick with tension as you look down at the fueling bay. A massive Container Transport lurches to dock, overloaded with Particle Cannons, as workers scramble like their lives depend on it.`
-			`	What little safety gear you see appears to be an afterthought - you can't imagine the few cracked helmets or thin gloves doing much of anything. The workers frantically pull the volatile fuel hoses forward, the heavy tubes attached to worn repulsors that barely handle their weight. Workers shout over the roar of pumps, rushing to refuel, their movements hurried and desperate.`
-			`	As you inhale, the air sears your lungs, almost choking you into a coughing fit. It's suffocating, laden with the sharp, toxic stench of volatile fuel. The entire platform feels like it's teetering on the edge of catastrophe. Every second here feels dangerous, the air thick with the threat of a disaster waiting to happen. The hum of machinery feels ominous against the gasping breaths of workers, whose tense, hurried movements suggest they're all too aware of the dangerous conditions around them. Everyone here appears equally broken and sullen, and you can't make out the worker you saw earlier from the crowd.`
-			label "hello there 3"
-			choice
-				`	(Take in the scene.)`
-				`	(Walk back to the vehicle.)`
-					goto ending
-			`	You take in the scene for another moment, the sounds of the station filling the air as you stand on the platform. You give the area one last glance before heading back down to return to the spaceport in the bulky vehicle that took you here. The faint metallic taste of the radioactive air returns as you leave the refueling station, blending with the steady hum of the vehicle's repulsor engine.`
-			label ending
-			`	The long journey back to the spaceport proceeds in silence, leaving your decision behind to echo through the lives of the people left here.`
-
-
-mission "Syndicate Business 6"
-	name "Visit Howard on <planet>"
-	description "Howard wants to tell you about yet another investment opportunity."
-	minor
-	to offer
-		has "Syndicate Business 5: done"
-		has "Syndicate Business 5.1 A 10m Expansion Update: offered"
-		has "event: syndicate business 10m investment done"
-		random < 50
-		or
-			credits > 300000000
-			"net worth" > 600000000
-	source
-		government "Syndicate"
-		not planet "Sunracer"
-	destination "Sunracer"
-	on offer
-		conversation
-			branch deferred
-				has "Syndicate Business 6: deferred"
-			`After an uneventful walk through the spaceport, you return to the <ship> to see a message from Howard, the Megaparsec salesman who sold you two investments. The message says:`
-				goto message
-			label deferred
-			`	After an uneventful trip through the spaceport, you remember saving a message from Howard, the Megaparsec salesman you've already invested with twice. The message says:`
-			label message
-			branch meanopening
-				"syndicate business: mean to Howard" > 0
-			`	"Dear <first>,`
-			`	"I trust that all is well with you. I am pleased to share that the investment opportunity I mentioned in my last message has now arrived. I truly value our partnership and the trust you've placed in me, and I'm confident this next venture will be a great fit for your ambitions.`
-			`	"Please meet me on Sunracer at your earliest convenience so we can review the details together. I look forward to catching up and discussing our next steps."`
-			`		Howard Vendeur`
-			`		Investor Relations Manager, Megaparsec Incorporated`
-				goto openingchoice
-			label meanopening
-			`	"Captain <last>,`
-			`	"I trust you've reviewed the interim Megaparsec report I last sent you. The investment opportunity I previously mentioned is now available. I expect you to meet me on Sunracer at your earliest convenience to finalize the details. I look forward to discussing next steps to close this deal promptly."`
-			`		Howard Vendeur`
-			`		Investor Relations Manager, Megaparsec Incorporated`
-			label openingchoice
-			choice
-				`	(Message him back that I'm on the way.)`
-				`	(Save the message to look at later.)`
-					defer
-				`	(Ignore and delete the message.)`
-					decline
-			`	You immediately receive an automated response:`
-			`	"Dear Valued Contact,`
-			`	"Thank you for reaching out. I am currently out of the office and will respond to your message as soon as possible.`
-			`	"For urgent matters, please contact our support team."`
-			`		Howard Vendeur`
-			`		Investor Relations Manager, Megaparsec Incorporated`
-				accept
-	on defer
-		set "Syndicate Business 6: deferred"
-	on accept
-		clear "Syndicate Business 6: deferred"
-	on complete
-		conversation
-			`Howard sends you a reminder of his address near the spaceport as you land your <model> on <planet> - curiously on the ninth floor of the Megaparsec corporate office, rather than the eighth floor you met him on last time. He must still be reserving conference rooms for these meetings.`
-
-
-mission "Syndicate Business 7"
-	name "Kicking a Hornet's Nest"
-	description `Howard needs you to upload "evidence" to an automated Quicksilver in <waypoints>, destroy it, and meet up on <destination> by <date>.`
-	priority
-	to offer
-		has "Syndicate Business 6: done"
-	source "Sunracer"
-	waypoint "Oblate"
-	destination "Canyon"
-	deadline 7
-	on offer
-		conversation
-			`After a short walk through the bustling spaceport, you reach Megaparsec's sky-scraping corporate office. The sleek and modern lobby evokes the fast, light ships they're known for, with polished surfaces, elegant furniture, and subtle lighting coming together seamlessly.`
-			`	The receptionist greets you with a nod and a warm smile, either remembering you from your prior visits or merely being polite. The elevator ride up to the ninth floor is smooth, the soft hum of machinery fading away as you walk through the elevator doors. Howard's office is modern yet modest, featuring a central smart desk, a few sleek chairs, and large windows overlooking the busy shipyards. Howard himself stands at one of the expansive windows, looking out at Megaparsec's shipyards below.`
-			branch meanhello
-				"syndicate business: mean to Howard" > 0
-			`	"Glad you could make it," he says, his voice cordial and confident. "This investment opportunity for you is ten times larger than our last deal - but first I need a small favor."`
-				goto restofhello
-			label meanhello
-			`	Howard's gaze doesn't shift from the glass as he says, "You're here. Good. This investment opportunity is ten times larger than the last one - but first I need a small favor."`
-			label restofhello
-			`	He turns to face you. "We're on the cusp of greatness."`
-			choice
-				`	"You didn't mention any favor in your message."`
-				`	"Am I going to have to jump through hoops for every investment you offer?"`
-				`	"The cusp of greatness?"`
-					goto great
-				`	"That's a bit dramatic with the window, no?"`
-					goto great
-			`	Howard raises an amused eyebrow and remarks, "Relax, it's nothing you can't handle. Just a minor detour on this road to greatness."`
-			label great
-			`	He turns back towards the window. "Greatness. My own corner office, a luxurious company ship, not to mention a sizable bonus. Director... all I need from you is to help nudge a small event in our favor."`
-			choice
-				`	"What kind of nudge?"`
-					goto nextsteps
-				`	"The 'greatness' you're talking about is just another promotion?"`
-			`	Yet again he briefly turns from the window to face you.`
-			`	"Of course.`
-			label nextsteps
-			`	"Said nudge entails a certain degree of discretion and precision. You've demonstrated that during our Marauder acquisition; now we need it for an excision. I need you to plant some evidence onto a ship in <waypoints> to bait the pirates there into attacking a research convoy. Then, regroup on <planet> before the convoy comes through next week, and that should definitively shut down the Marauder project. After the anticipated response by the pirates, we confirm on <planet> that there's no loose ends."`
-			`	Howard continues to watch the shipyards below for a long moment before turning from the window with a deliberate finality, and strides to his desk at the center of the room. Planting both hands firmly on the smooth surface, he meets your gaze with an unusual intensity and says, "I need you to kick a hornets' nest and to make sure those hornets sting."`
-			choice
-				`	"Stinging hornets and nest kicking. You got it."`
-					goto restofplan
-				`	"Last time I helped you start your Marauder project, and now you want me to end it? What's going on, Howard?"`
-			branch meanplan
-				"syndicate business: mean to Howard" > 0
-			`	Howard exhales, shaking his head with a knowing smile. "Starting the Marauder project got me here, but keeping it alive? That won't help me get to the next level." Howard leans casually against the desk, his tone becoming more familiar but still businesslike. "The engineers are whispering that mass production doesn't look feasible. That's bad news for me if the higher-ups catch wind of it before we can control the narrative."`
-				goto restofplan
-			label meanplan
-			`	Howard exhales sharply as his eyes narrow in irritation. "Starting the Marauder project served its purpose, but now? It's a liability." At the last word, his gaze flicks over you. "Let's just say it's run its course; I need it shut down before anyone starts asking questions that I can't answer."`
-			label restofplan
-			`	Howard's tone remains measured, but there's a calculated edge to it now. "So, we make sure the Marauder project dies for the right reasons before anyone starts asking the wrong questions. If, say, an unfortunate pirate attack conveniently wipes out key research and a few critical components, the whole project becomes unsalvageable. Lightspeed Logistics is responsible for security, not me, so if the whole thing goes up in flames, my reputation remains intact - just another casualty of circumstance. Then there'll be nothing standing in the way of my promotion, and I get a new corner office."`
-			branch meancloser
-				"syndicate business: mean to Howard" > 0
-			`	He spreads his hands in a benevolent gesture. "It's the perfect exit strategy. No loose ends. And if there's anyone I trust to make this happen, it's you."`
-				goto restofcloser
-			label meancloser
-			`	He spreads his hands, as if the whole thing is just another transaction. "It's a clean exit. No loose ends. All I need is for you to make it happen."`
-			label restofcloser
-			choice
-				`	"Sounds good."`
-					goto askitself
-				`	"This all seems a bit more... cutthroat than before."`
-				`	"This is too underhanded for me. I'm not working with you anymore."`
-					decline
-			branch meancutthroat
-				"syndicate business: mean to Howard" > 0
-			`	Howard's eyes soften as he meets your gaze, a fond smile playing on his lips. "Cutthroat? How far we've come since you saved me from that pirate in Moktar. Every hard move has been a stepping stone as we climb to the peak of this ruthless world. And when I reach the top, I won't forget the loyalty that got me there."`
-				goto goldenjewelaround
-			label meancutthroat
-			`	"Me? Cutthroat?" Howard maintains a hard gaze as he gives you an exaggerated wink, "Don't you forget it. I appreciate what you did on Moktar, but business is business. It's a ruthless world, and all we can do is climb to the top or be trampled beneath." Begrudgingly, he adds, "And I don't forget those who help me get there."`
-			label goldenjewelaround
-			branch piratearound
-				has "syndicate business: golden jewel dead"
-			`	Wistfully, Howard adds, "Moktar. The Golden Jewel. I wonder if that ship's still flying out there...`
-				goto askitself
-			label piratearound
-			`	Wistfully, Howard adds, "Moktar. The Golden Jewel. Almost a shame that pirate captain isn't flying around anymore...`
-			label askitself
-			`	"Anyway, back to the ask. Think you can plant evidence on a Quicksilver in <waypoints>, then make sure it turns into wreckage, and get to <planet> before <day>? Once you're on <planet>, I might need you to tie off any loose ends... but then we can move along to talking about that nine-figure investment. What do you say?"`
-			choice
-				`	"I'm in, let's do it."`
-					goto ending
-				`	"How can I possibly plant evidence on a crewed ship without anyone knowing?"`
-				`	"I'm out; we're through."`
-					decline
-			branch seendummy
-				( "Syndicate target practice [0]: done" + "Syndicate target practice [1]: done" + "Syndicate target practice [2]: done" + "Syndicate target practice [3]: done" ) > 0
-			`	"That's the neat part, you won't have to. You'll be planting the evidence on an automated prototype vessel. The technology's under wraps, and still in the testing phases. Anyway, there's no one on the ship. And I want you to load it up with this file." He holds up a data disk. "It contains the real timing and defenses of the convoy that's moving that vital Marauder research in a few days, as well as fake data indicating untold riches aboard to entice the pirates."`
-				goto postdummy
-			label seendummy
-			`	"That's the neat part, you won't have to. You'll be planting the evidence on an automated prototype vessel. Funnily enough, records indicate that you've even been offered to test them before, so you know that technology is still very much in the testing phases. Anyway, there's no one on the ship. And I want you to load it up with this file." He holds up a data disk. "It contains the real timing and defenses of the convoy that's moving that vital Marauder research in a few days, as well as fake data indicating untold riches aboard to entice the pirates."`
-			label postdummy
-			choice
-				`	"Okay, great. Makes sense to me."`
-					goto ending
-				`	"Why don't I just blow up the ship while I'm still on board?"`
-			`	"Blowing it up from the inside wouldn't do - we need it to look like a proper pirate attack. The wreckage signatures would betray an internal explosion rather than an external assault, and such a sabotage would look laughably amateur. Then I'd be drowning in a thorough investigation neither of us can afford."`
-			choice
-				`	"I'm in."`
-				`	"Not interested. I'm done with these tasks."`
-					decline
-			label ending
-			`	He hands you a data disk containing the evidence. "I knew you'd make the right decision. Remember, we really want to kick the hornet's nest here. I've disabled the Quicksilver in <waypoints>, so it should be a cinch for you to upload this evidence onto the ship and ensure its destruction. Remember, first board, then blast. Meet me on <planet> afterwards for any follow-ups. See you in a week."`
-				accept
-	on enter "Moktar"
-		"reputation: Independent (Killable)" = -1000
-	npc
-		government "Independent (Killable)"
-		personality heroic staying vindictive
-			confusion 20
-		system "Moktar"
-		ship "Vanguard" "Golden Jewel"
-		to despawn
-			has "syndicate business: golden jewel dead"
-		on encounter
-			conversation
-				`When you enter Moktar, your sensors detect a familiar pirate Vanguard. Your ship is immediately hailed, and the pirate opens communication.`
-				`	"If it isn't a pitiful, perplexing parasite, popping up to plague my peace once more!"`
-				choice
-					`	"We can't keep meeting like this."`
-					`	"Uhhh... who are you again?"`
-						goto whomst
-				`	"Our paths are as powerfully painful as the pestilence - your persistent presence has provoked my peevishness!"`
-					goto power
-				label whomst
-				`	"I am the relentless, raging rapscallion who revels in ripping apart feeble, fumbling fiends!"`
-				label power
-				`	You can't help feeling a sense of deja vu as the Vanguard's engines roar to life and you see a baker's half-dozen guns take aim at your ship, ready to fire.`
-		on kill
-			set "syndicate business: golden jewel dead"
-			dialog "The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby."
-
-	on enter "Oblate"
-		"reputation: Test Dummy" = 10
-
-	npc assist kill
-		government "Test Dummy"
-		personality derelict disables heroic staying target
-			confusion 120
-		system "Oblate"
-		ship "Quicksilver Test Dummy" "Syndicate Test Vessel"
-		on encounter
-			conversation
-				`You receive a message from Howard almost immediately upon entering the system:`
-				`	"Alright, you're here. Get aboard the Quicksilver to upload the file, make sure it doesn't leave the system in one piece, and finally meet back on <destination>. Remember, no loose ends here."`
-				`		Howard Vendeur`
-				`		Investor Relations Manager, Megaparsec Incorporated`
-		on assist
-			dialog "You step into the Syndicate Test Vessel, eerily quiet, the empty ship amplifying every footstep. You hurry to upload Howard's evidence file to the ship. The file uploads in seconds, and you return to the <ship> to leave this ghostly vessel behind."
-		on kill
-			dialog "With the Quicksilver destroyed, it's time to get to <destination>."
-
-	npc
-		government "Pirate"
-		personality nemesis staying
-		system "Oblate"
-		ship "Manta" "Rum Ray"
-		on kill
-			dialog `You receive a brief hail as the Manta explodes: "Consider this an open tab with the Rumrunners - the next round is on you, and we collect in blood!"`
-			log "Destroyed a Manta called the Rum Ray, causing the Rumrunners to promise vengeance."
-	
-	npc
-		government "Pirate"
-		personality nemesis staying
-		system "Oblate"
-		ship "Wasp" "Swig and Sting"
-		ship "Scrapper" "Quick Shot"
-		ship "Scrapper" "Bottom of the Barrel"
-		
-	on visit
-		conversation
-			`Howard sends you a message as your <model> descends to the planet:`
-			`	"What are you doing? Get back up there, board the Quicksilver, and finish the job. We're running out of time and we can't afford mistakes."`
-			`		Howard Vendeur`
-			`		Investor Relations Manager, Megaparsec Incorporated`
-
-	on complete
-		"reputation: Independent (Killable)" = 0
-		"reputation: Test Dummy" = -1000
-		conversation
-			`As you maneuver your <model> onto the flat, ancient mesa that's considered spaceport parking, your ship's comms light up with a message:`
-			branch meancanyonopening
-				"syndicate business: mean to Howard" > 0
-			`	"Excellent work, Captain. My Shuttle's waiting just outside the spaceport - please meet me there immediately. I appreciate your swift action on this.`
-				goto restofcanyonopening
-			label meancanyonopening
-			`	"Good work. My Shuttle is parked just outside the spaceport - meet me there immediately so we can proceed without further delay. No time to waste."`
-			label restofcanyonopening
-			`		Howard Vendeur`
-			`		Investor Relations Manager, Megaparsec Incorporated`
-
-
-mission "Syndicate Business 8"
-	name "Escort Howard to <planet>"
-	description "Escort Howard to <destination> so that he can shore up support for his promotion."
-	priority
-	to offer
-		has "Syndicate Business 7: done"
-	source "Canyon"
-	destination "Hephaestus"
-	on offer
-		conversation
-			`You step out on the stone field surrounding Canyon's spaceport and quickly locate Howard's Shuttle in an open patch with a wide berth. Climbing aboard, you find Howard waiting, and he greets you with a measured nod.`
-			branch meancanyonopening
-				"syndicate business: mean to Howard" > 0
-			`	"Again, outstanding work, <first>," he says with a satisfied tone.`
-				goto restofcanyonopening
-			label meancanyonopening
-			`	"Job's done," he states flatly.`
-			label restofcanyonopening
-			`	"The pirates hit the convoy exactly as planned - the Marauder Project's vital components are all lost, with no loose ends left behind. They'll have no choice but to axe the project, and my bosses don't suspect a thing.`
-			`	"One last step for that promotion - I need you to escort me to Hephaestus so I can secure a few formal promotion recommendations from Syndicate leadership, then we finalize that investment. Ready to go?"`
-			choice
-				`	"Ready as ever."`
-					accept
-				`	"Another favor?"`
-					goto favor
-				`	"Why do you need an escort?"`
-				`	"I'm through with your needs. I'm done with this."`
-					goto refused
-			`	"Because this stunt's painted a target on my back. My bosses suspect nothing - but I'm sure Lightspeed Logistics already smells foul play and is less than pleased about the embarrassment. They have plenty of pirate contacts willing to collect a bounty. I need you as a deterrent until I can clinch the promotion with those endorsements.`
-			label favor
-			`	"Escort me to <planet> to secure my promotion and guide me back to Sunracer, then we can talk through and finalize that investment. Perhaps it's two favors then.`
-			branch meancanyoncloser
-				"syndicate business: mean to Howard" > 0
-			`	"We get that done, then we pen in that investment and both walk away richer than ever. All part of the grand plan - what do you say?"`
-				goto restofcanyoncloser
-			label meancanyoncloser
-			`	"Get it done and we both profit. Ready?"`
-			label restofcanyoncloser
-			choice
-				`	"I'm in."`
-					accept
-				`	"I'm out."`
-			label refused
-			action
-				"syndicate business: mean to Howard" += 3
-			`	Howard stares at you, dumbfounded. After a long moment, he scoffs, then laughs - sharp and nervous. "You're out? You can't be out - not after this! You think Lightspeed won't come for me - won't come for you? I'll tell them any..." Howard pauses, takes a deep breath, and straightens his collar.`
-			`	"Look. Just get me to <planet>, I'll lock in that promotion, and back to Sunracer - then we talk investments. You've already done the hard part, don't you want to reap the rewards of your efforts? It's right there."`
-			`	He leans in, voice low and persuasive, "You've come this far - don't walk away with the finish line in sight."`
-			choice
-				`	"Okay, I'll do it."`
-					accept
-				`	"I told you, we're through. I'm leaving."`
-					decline
-	npc accompany save
-		government "Syndicate"
-		personality escort timid
-		ship "Shuttle" "Gallant Knight"
-		on kill
-			dialog "You watch as Howard's Shuttle explodes into a cloud of debris along with any hope of his promotion."
-	npc
-		government "Pirate"
-		personality harvests nemesis plunders staying
-		system destination
-		ship "Quicksilver" "Severance Package"
-	npc
-		government "Pirate"
-		personality harvests nemesis plunders
-		system destination
-		ship "Quicksilver" "Hostile Takeover"
-
-	on complete
-		conversation
-			`Your ship arrives amidst the sprawling metropolis of the Syndicate. You lose sight of Howard's Shuttle as you land your <model>, but nevertheless get a parting message from him:`
-			`	"Captain <last>, I'll be in touch in a few days for the investment once some schmoozing has secured my promotion. Stay sharp."`
-			`		Howard Vendeur`
-			`		Investor Relations Manager, Megaparsec Incorporated`
-			action
-				event "syndicate business Howard schmoozing" 2 4
-
-event "syndicate business Howard schmoozing"
-
-
-mission "Syndicate Business 9"
-	name "Meet Howard on <planet>"
-	description "Meet Howard on <destination> to escort him back to Sunracer."
-	landing
-	to offer
-		has "Syndicate Business 8: done"
-		has "event: syndicate business Howard schmoozing"
-	source
-		near "Sol" 0 100
-		not planet "Hephaestus"
-	destination "Hephaestus"
-	on offer
-		clear "event: syndicate business Howard schmoozing"
-		conversation
-			`After a few days, you get a triumphant message from Howard:`
-			`	"<first> <last>,`
-			`	"Promotion secured. Meet me here on <destination> to escort me back to Sunracer - I've got a new ship and office to show you. And of course plans to finalize our nine-figure credit investment."`
-			`		Howard Vendeur`
-			`		Director of Investor Relations & External Projects, Megaparsec Incorporated`
-			choice
-				`	(Message back a heartfelt congratulations and that I'm on my way.)`
-				`	(Respond that nobody cares about his promotion, but I'll be there soon.)`
-					goto rude
-			`	You immediately receive a response:`
-			`	"<first>,`
-			`	"Appreciate that. Thank you for the kind words. Looking forward to seeing you soon."`
-			`		Howard Vendeur`
-			`		Director of Investor Relations & External Projects, Megaparsec Incorporated`
-			`	It would seem Howard's responses aren't all automated messages.`
-			action
-				"syndicate business: mean to Howard" --
-			``
-				goto end
-			label rude
-			`	You immediately receive a response:`
-			`	"<first>,`
-			`	"You tihnk I care what you care abuot? Get here. Now."`
-			`		Howard Vendeur`
-			`		Director of Investor Relations & External Projects, Megaparsec Incorporated`
-			`	Howard must be seething to miss typos.`
-			action
-				"syndicate business: mean to Howard" ++
-			label end
-			``
-				accept
-
-	on complete
-		conversation
-			`Like clockwork, you get a message from Howard as the <ship> lands on <destination>:`
-			branch meanpromo
-				"syndicate business: mean to Howard" > 0
-			`	"<first>,`
-			`	"Welcome back. Meet me at the spaceport so we can get back to Sunracer. And take a moment to check out my new ship - I think you'll be impressed."`
-				goto restofhello
-			label meanpromo
-			`	"I see you've arrived. Meet me at the spaceport to escort me back to Sunracer. I have an impressive new ship - get here as soon as possible."`
-			label restofhello
-			`		Howard Vendeur`
-			`		Director of Investor Relations & External Projects, Megaparsec Incorporated`
-
-
-mission "Syndicate Business 10"
-	name "Escort Howard to <planet>"
-	description "Escort Howard back to <destination> to finalize your 100M credit investment."
-	priority
-	to offer
-		has "Syndicate Business 9: done"
-	source "Hephaestus"
-	destination "Sunracer"
-	on offer
-		conversation
-			`You step into Hephaestus' bustling spaceport, where the flash of arc welders and the clamor of robotic gantries set the relentless, industrial rhythm of the Syndicate. Amid the busy hangars, you spot Howard standing beside a brand-new Bounder - the sleek vessel cutting a striking figure against the hangar's harsh backdrop of chrome and concrete.`
-			`	Howard flashes you a proud smile as he beckons you closer. "Take a good look - what do you think?"`
-			choice
-				`	"It's alright, I suppose. Gets the job done."`
-				`	"This ship is a stunner - it really shines above the rest."`
-					goto verynice
-				`	"Just another pathetic piece of scrap."`
-					goto verynotnice
-			`	Howard nods, a slight edge of disappoint in his voice. "Fine, let's move on."`
-				goto restofhello
-			label verynice
-			action
-				"syndicate business: mean to Howard" --
-			`	Howard's grin widens, his tone warm. "Glad you see it that way. I knew it'd catch your eye."`
-				goto restofhello
-			label verynotnice
-			`	Howard's face darkens, hurt barely concealed as he snaps, "I thought you'd have better taste. But we have work to do."`
-			action
-				"syndicate business: mean to Howard" ++
-			label restofhello
-			`	Without missing a beat, Howard adds, "Enough talk. No time to waste, let's get to Sunracer." He strides inside his Bounder, and with a roar of engines he takes off for the journey ahead, with your ship behind him.`
-				launch
-	
-	npc accompany save
-		government "Syndicate"
-		personality escort timid
-		ship "Bounder" "Knight So Bold"
-		on kill
-			dialog "You watch as Howard's Bounder explodes into a cloud of debris along with any hope of that investment opportunity."
-	npc
-		government "Pirate"
-		personality harvests nemesis plunders staying
-		system destination
-		ship "Quicksilver" "Enforced Compliance"
-	npc
-		government "Pirate"
-		personality harvests nemesis plunders
-		system destination
-		ship "Quicksilver" "The Noncompete"
-	on complete
-		event "syndicate business 100m investment done" 730
-		event "syndicate business vip eligible" 90
-		conversation
-			`As you land on Sunracer, Howard's Bounder touches down out of view. His office is still at Megaparsec's main building, but now on the 42nd floor rather than the eighth or ninth floors.`
-			`	You make your way through Sunracer's now-familiar terminals to the towering Megaparsec corporate office. Inside, the lobby exudes tasteful sophistication, polished surfaces accented by subtle, ambient lighting and a quiet hum of high-end technology. You are waved in by the receptionist and step into the elevator, and it takes noticeably longer than your previous rides - a deliberate and steady ascent.`
-			`	The elevator doors finally part to reveal the 42nd floor, a realm of refined elegance. Howard's corner office is a far cry from his modest reservable offices he had before. A custom-built smart desk commands the center, flanked by designer seating and accented by carefully curated art that whispers of ambition. Expansive windows frame a dynamic vista of the shipyards below - a living testament to the relentless innovation of Megaparsec. Standing at the window with quiet authority, Howard meets your gaze, a man unmistakably on his own deliberate ascent through the ranks of Megaparsec.`
-			`	He nods in acknowledgment as you step forward, the promise of new ventures electrifying the air.`
-			choice
-				`	"Howard."`
-				`	"Howard! This new office - magnificent. The view, the art, the power. Quite the upgrade. Well done."`
-					goto complimentary
-				`	"Still dramatic with the window I see, like some tragic corporate philosopher."`
-					goto rude
-			`	"<first>. Quite the ride up, wasn't it? Deliberate. Measured. An inevitable accession.`
-				goto restofhello
-			label complimentary
-			action
-				"syndicate business: mean to Howard" --
-			`	Howard looks visibly pleased. "Ah, you have an eye for refinement."`
-				goto restofhello
-			label rude
-			action
-				"syndicate business: mean to Howard" ++
-			`	Howard's expression momentarily tightens, before putting on a practiced smile. "Ah, your charm remains... distinct. I find a view helps with perspective."`
-			label restofhello
-			`	Howard walks from the window towards the room's premier art piece, a canvas covered in bold, sweeping strokes of silver and blue. Howard gazes at the lines, "They evoke a rush of light and momentum, symbolizing Megaparsec's drive ever upwards towards uncharted horizons.`
-			`	"But we aren't here for an art tour. We're here to discuss your chance to invest in Megaparsec's new CRUCIBLE Facility."`
-			choice
-				`	"Crucible?"`
-				`	"Of course."`
-					goto skipcrucible
-			`	"'Crossroads Rugged Undertaking, Critically Innovative Benchmarking & Launch Evaluation' Facility. CRUCIBLE.`
-			label skipcrucible
-			`	"This isn't just another investment, it's a chance to push our high-performance vehicles to their absolute limits in one of the galaxy's harshest environments. Out on Crossroads, Mother Nature herself runs a full battery of tests: natural sandstorms, searing radiation, rugged terrain - conditions so extreme they would cost a fortune to simulate in a lab anywhere else.`
-			`	"By leveraging Crossroads' environment, our prototypes can be exposed to real-world, relentless conditions that will let us rapidly validate a design's durability and performance. It's the ultimate trial by radioactive fire - our very best vehicles battle-tested against nature's worst.`
-			`	"Your investment isn't just a stake in a facility. As is typical for these types of grand investments, a new business entity will be set up to construct and manage the property, while Megaparsec signs an indefinite lease. That means you'll enjoy a steady income from those leasing fees regardless of the ups and downs of vehicle sales. You're not just fueling innovation, you'll be securing reliable returns while we revolutionize performance testing.`
-			branch goodsweetner
-				has "Syndicate Business expansion 10m good"
-			branch evilsweetner
-				has "Syndicate Business expansion 10m evil"
-			# neutral
-			`	"I know that you're a solid, by-the-book investor. This project plays to our strengths and ensures steady, proven returns through rigorous, real-world testing. No surprises.`
-				goto youin
-			label goodsweetner
-			`	"Given your last investment, I know that you care about things beyond profits. This is a chance to commit to eco-friendly innovation and safer work practices. Here, we can set new standards for performance and for doing good.`
-				goto youin
-			label evilsweetner
-			`	"Given your last foray into unregulated fuel sources, I know that you're looking for sky-high returns here. There's options here to cut through red tape and to make this facility a real profit multiplier.`
-			label youin
-			branch upcharge
-				"syndicate business: mean to Howard" > 0
-			`	"Now, the price for this investment is one hundred million credits for a robust 27,400 credits per day. And just like last time, no need to pull out your wallet - I can still pull a few strings with our friends at the bank and our Finance Division. For you, I've even talked them down to half interest. You'll just need to sign a few documents to get things moving."`
-			`	He slides a document over to you, with a sleek pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of the documents before signing."`
-			choice
-				`	(Sign the loan.)`
-					goto nextynice
-				`	"I'm done with these deals. I'm leaving."`
-					goto imleaving
-			label upcharge
-			`	Howard's tone carries a hint of impatience. "Now, the price for this investment is one hundred and eleven million credits for a 27,400 credit per day return. I've arranged a loan for you at the bank and through our Finance Division, so you won't need to come up with the investment immediately. I've talked down the loan's interest to be half as high as your prior loan. Just sign these documents to formalize the arrangement."`
-			`	He shoves a document over to you, with a flimsy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of the documents before signing."`
-			choice
-				`	(Sign the loan.)`
-					goto nextymean
-				`	"I'm done with these deals. I'm leaving."`
-			label imleaving
-			`	Howard lets out a sharp breath, shaking his head in disbelief. "So that's it, then?" His expression hardens. "It's your right, of course, to walk away from the opportunity of a lifetime - one I promise you won't see again. But perhaps I misheard you... are you truly done with this deal?"`
-			choice
-				`	"You must have misheard - I said, 'I'm stunned by these deals, I'm agreeing.'" (Sign the loan.)`
-				`	"I'm done signing these dumpy deals with your bargain-bin pens. Goodbye, Howard."`
-					decline
-			branch nextymean
-				"syndicate business: mean to Howard" > 0
-			label nextynice
-			action
-				debt 100000000
-					interest 0.04
-					term 7300
-			`	He takes the document from you and you see the loan terms on the screen behind him: 100M credits, 20 years, 16% rate.`
-				goto nexty
-			label nextymean
-			action
-				debt 111000000
-					interest 0.05
-					term 7300
-			`	He snatches the document from you with a wicked smile and you see the loan terms on the screen behind him: 111M credits, 20 years, 20% rate.`
-			label nexty
-			`	Howard leans back in his chair. "Well done. You're now a significant, valuable partner to Megaparsec's business interests. We're considering a conventional launch of our testing facility on Crossroads - a balanced, by-the-book approach that promises steady, reliable returns."`
-			`	He eyes you carefully, gauging your reaction. "Of course, that's just one framework - there's always room to tweak the plan. What direction excites you more: unbridled profit, sticking with stability, or making a positive impact?`
-			branch goodcloser
-				has "Syndicate Business expansion 10m good"
-			branch evilcloser
-				has "Syndicate Business expansion 10m evil"
-			# neutral
-			`	After a moment, Howard adds, "Knowing you, I'd imagine we want to stick with stability, am I right?"`
-				goto closer
-			label goodcloser
-			`	After a moment, Howard adds, "Knowing you, I could voice over the plan that goes beyond profits towards more public good?"`
-				goto closer
-			label evilcloser
-			`	After a moment, Howard adds, "Knowing you, I could dive right into how we can cut red tape for that unbridled profit."`
-			label closer
-			`	Howard pauses, waiting on your reaction.`
-			choice
-				`	"I'll stick with stability, that's the choice for me."`
-					goto choseplana
-				`	"What would that 'unbridled profit' entail?"`
-					goto planb
-				`	"Tell me about how this can make a positive impact?"`
-					goto planc
-			label plana
-			`	"The conventional facility delivers a solid, balanced approach. We use well-established testing protocols that meet regulatory standards while delivering steady, respectable returns. It's a safe, time-tested strategy that rewards disciplined execution without unnecessary risks, offering about 27,400 credits a day, or roughly 10% annually."`
-			choice
-				`	"Sounds like a good plan to me."`
-					goto choseplana
-				`	"What would it take to boost profits even more?"`
-					goto planb
-					to display
-						not "heardplanb"
-				`	"And if I have concerns about making a positive impact?"`
-					goto planc
-					to display
-						not "heardplanc"
-				`	"Could you remind me about the more profitable option?"`
-					goto planb
-					to display
-						has "heardplanb"
-				`	"Explain the 'genuine good' choice once more."`
-					goto planc
-					to display
-						has "heardplanc"
-			label planb
-			`	"There's a certain allure to uncompromising profit - a no-holds-barred, red-tape-free approach. We cut every corner on labor, safety, and the environment to unlock some explosive returns. It's the high-stakes, high-return option for those unafraid of a little controversy for rapid gains of 41,000 credits a day, or around 14% a year."`
-			`	He grins. "And as for those little controversies? Don't worry about it - they didn't matter last time, and the odds of another cropping up with this project are probably slim."`
-				to display
-					has "Syndicate Business expansion 10m evil"
-			action
-				set "heardplanb"
-			choice
-				`	"Bring on the profits, this uncompromising option is the one for me."`
-					goto choseplanb
-				`	"Tell me about the conventional facility again."`
-					goto plana
-				`	"And if I have concerns about the environmental or labor impact?"`
-					goto planc
-					to display
-						not "heardplanc"
-				`	"Explain the 'positive good' choice once more."`
-					goto planc
-					to display
-						has "heardplanc"
-			label planc
-			`	"You could opt for a more 'genuine good' approach with an eco-friendly, people-first facility. We invest in green technologies and world-class safety protocols, nurturing a work environment with better conditions and community integration - though of course at the cost of profit, returning 20,400 credits a day, or just around 7% a year."`
-			action
-				set "heardplanc"
-			choice
-				`	"This people-first facility is the one for me."`
-					goto choseplanc
-				`	"Tell me about the conventional expansion again."`
-					goto plana
-				`	"What would it take to boost profits even more?"`
-					goto planb
-					to display
-						not "heardplanb"
-				`	"Could you remind me about the maximum profit option?"`
-					goto planb
-					to display
-						has "heardplanb"
-			label choseplana
-			action
-				"salary: Syndicate Business" += 27400
-				set "Syndicate Business expansion 100m neutral"
-				log "Was able to make another investment with Megaparsec, this time one hundred million credits, after planting evidence on a Syndicate ship for Howard. Out of three investment options, ended up choosing the conventional approach."
-			`	Howard nods appreciatively, his tone businesslike. "Congratulations - your choice reinforces Megaparsec's commitment to steady, risk-mitigated growth. This approach will deliver reliable performance and predictable returns, all while maintaining rigorous quality and safety standards. It's not always about flashy headlines; it's about long-term profitability with minimal surprises."`
-				goto ending
-			label choseplanb
-			action
-				"salary: Syndicate Business" += 41000
-				set "Syndicate Business expansion 100m evil"
-				log "Was able to make another investment with Megaparsec, this time one hundred million credits, after planting evidence on a Syndicate ship for Howard. Out of three investment options, ended up choosing the profitable approach."
-			`	Howard leans forward with a calculated gleam in his eye. "Excellent choice - it's a high-octane approach where we push every boundary to extract maximum profit. Think of your high returns, while Megaparsec gets rapid product cycles and a clear market edge. Minor bumps in the PR and labor front are just part of the cost of being a true trailblazer."`
-				goto ending
-			label choseplanc
-			action
-				"salary: Syndicate Business" += 20400
-				set "Syndicate Business expansion 100m good"
-				log "Was able to make another investment with Megaparsec, this time one hundred million credits, after planting evidence on a Syndicate ship for Howard. Out of three investment options, ended up choosing the positive impact approach."
-			`	Howard's expression softens as he speaks. "Well done - your choice speaks volumes about your commitment to ethical standards, sustainability, and worker well-being. While the monetary returns are unquestionably the worst offered to you, I'm sure it'll still build lasting value for Megaparsec through the more intangible benefits of enhanced community goodwill, reduced environmental liabilities, and robust employee loyalty."`
-			label ending
-			`	He smiles. "Great, now that we've locked in your investment, let's get the remaining paperwork squared away." He slides a stack of documents across the desk. "These include the last of the remaining loan terms, the investment agreement for the testing facility, and the standard legal fine print. At this point, you know the drill - just a few signatures to seal the deal." He hands you a sleek pen, his gaze businesslike. "Once this is done, you'll be a stakeholder in one of Megaparsec's most innovative projects to redefine performance testing on Crossroads."`
-			choice
-				`	(Sign the paperwork.)`
-			`	With the last signature in place, Howard nods in approval. "Congratulations. You've made an excellent decision today. I'll certainly keep you in mind for future opportunities. You know me, and I know who to call to invest when the next groundbreaking project comes around." He offers a firm handshake and a confident smile. "Until next time. Keep in touch."`
-			`	After that last goodbye, you leave Howard's office. The quiet within gives way to the steady hum of machinery as you walk through the elevator doors, beginning your long descent back to the ground - and to your next opportunity.`
-			action
-				clear "heardplanb"
-				clear "heardplanc"
-
-event "syndicate business 100m investment done"
-
-event "syndicate business vip eligible"
-
-
 mission "Timothy Radrickson 1: Stowaway"
 	invisible
+	non-blocking
 	landing
 	source
 		near "Zeta Aquilae" 3 10
@@ -9687,6 +8874,7 @@ event "timothy radrickson: mummy"
 mission "Timothy Radrickson 2: mummy"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 1: Stowaway: failed"
 		has "event: timothy radrickson: mummy"
@@ -9817,7 +9005,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 			`	He pours the brown liquid in the cups and pushes one to you. "Things have gone well for me, and are only going to get better from here on out."`
 			`	He takes a sip and says, "We've just launched our largest freighter fleet to date." He sits back in his desk, relaxed, and gets a dreamy look in his eyes. "When it returns from Wayfarer, the government of Rand will finally have enough credits to make some real changes around here. Give something back to the working man."`
 			choice
-				`	"Congratulations Timothy. You're really outdone yourself."`
+				`	"Congratulations Timothy. You've really outdone yourself."`
 				`	(Take a sip from my glass.)`
 				`	"Don't forget your humble beginnings, Timothy. The workers here seem to be suffering, while the rich thrive."`
 				`	"You're proof that hard work is all it takes to succeed. I don't know how you can stand living on a world filled with lazy workers all demanding hand outs."`
@@ -10394,7 +9582,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	Union-Colonel Wynnafrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinizes it.`
 			`	"Ya know, to us he's still the Governor. Don't believe what the company-bosses and their paid politicians tell you. He was a good man." She wipes her eyes for a moment. "All he was trying to do was improve the conditions for workers here on Rand. He'd come up from the mines and he knew what it was like."`
 			`	Her free hand tightens into a ball. "The big men didn't like that. But what about the profit margins? They tried to bribe him, to offer him anything he wanted, to just leave things well enough alone. To let the exploitation continue." She says the last words through clenched teeth.`
-			`	"Sure, he made some mistakes. No one becomes governor here without getting a little dirt on their hands. But in the end he refused to give into the company-bosses' demands, and throughout it all he was laboring for the common man." Wynnafirth looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
+			`	"Sure, he made some mistakes. No one becomes governor here without getting a little dirt on their hands. But in the end he refused to give into the company-bosses' demands, and throughout it all he was laboring for the common man." Wynnafrith looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
 			`	"And when he wouldn't budge they finally got him on trumped up charges and threw him to Oblivion to disappear and die." She shakes her head. "There was nothing we could do. We're still in a..." she hesitates, "... a rebuilding phase."`
 			`	She reads the list again. "A few weeks, you say? Well, we already thought he was dead, so if there's a chance we save the Governor then we're in.`
 			`	"We have a few left over explosives and detonators from when this mine was active. That should take care of the bomb he was hoping for." She then unholsters her sidearm and hands it to you.`
@@ -11117,7 +10305,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 				`	"Of course I did."`
 				`	"Yep, but you owe me big."`
 
-			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnafirth's gun and bomb, and how highly she still thinks of him.`
+			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnafrith's gun and bomb, and how highly she still thinks of him.`
 			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
 			branch unprepared
 				"timothy radrickson zpreparedness" < 6
@@ -11424,6 +10612,7 @@ mission "Timothy Radrickson 7: Grave"
 mission "Timothy Radrickson: Log Fix 1"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 1: Stowaway: done"
 		not "Timothy Radrickson 2: Good Interlude: offered"
@@ -11436,6 +10625,7 @@ mission "Timothy Radrickson: Log Fix 1"
 mission "Timothy Radrickson: Log Fix 2"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 2: Good Interlude: offered"
 		not "Timothy Radrickson 3d: Return to Rand: done"
@@ -11450,6 +10640,7 @@ mission "Timothy Radrickson: Log Fix 2"
 mission "Timothy Radrickson: Log Fix 3"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 3d: Return to Rand: done"
 		not "Timothy Radrickson 4: Imprisoned: done"
@@ -11465,6 +10656,7 @@ mission "Timothy Radrickson: Log Fix 3"
 mission "Timothy Radrickson: Log Fix 4"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 4: Imprisoned: done"
 		not "Timothy Radrickson 5a: Timshank Redemption: offered"
@@ -11481,6 +10673,7 @@ mission "Timothy Radrickson: Log Fix 4"
 mission "Timothy Radrickson: Log Fix 6"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Timothy Radrickson 5a: Timshank Redemption: offered"
 		not "timothy radrickson 6 log entry correct"
@@ -12164,7 +11357,7 @@ mission "Ice Queen 8"
 
 	npc kill
 		government "Bounty"
-		personality heroic nemesis staying target
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Marauder fleet IV"
@@ -12349,6 +11542,7 @@ mission "Stone to Hope: Thanks"
 mission "Patch Stone Waiting"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Stone of our Fathers 5: done"
 		not "stone waiting most: triggered"

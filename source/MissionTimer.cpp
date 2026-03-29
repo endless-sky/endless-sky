@@ -278,7 +278,7 @@ bool MissionTimer::IsComplete() const
 
 
 
-void MissionTimer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
+void MissionTimer::Step(PlayerInfo &player, UI &ui, const Mission &mission)
 {
 	if(isComplete)
 		return;
@@ -305,7 +305,7 @@ void MissionTimer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 	{
 		auto it = actions.find(TimerTrigger::TIMEUP);
 		if(it != actions.end())
-			it->second.Do(player, ui, &mission);
+			it->second.Do(player, &ui, &mission);
 		isComplete = true;
 	}
 }
@@ -371,7 +371,7 @@ bool MissionTimer::CanActivate(const Ship *flagship, const PlayerInfo &player) c
 
 
 
-void MissionTimer::Deactivate(PlayerInfo &player, UI *ui, const Mission &mission)
+void MissionTimer::Deactivate(PlayerInfo &player, UI &ui, const Mission &mission)
 {
 	// If the timer wasn't active the frame before, don't do anything.
 	if(!isActive)
@@ -387,6 +387,6 @@ void MissionTimer::Deactivate(PlayerInfo &player, UI *ui, const Mission &mission
 	{
 		auto it = actions.find(TimerTrigger::DEACTIVATION);
 		if(it != actions.end())
-			it->second.Do(player, ui, &mission);
+			it->second.Do(player, &ui, &mission);
 	}
 }

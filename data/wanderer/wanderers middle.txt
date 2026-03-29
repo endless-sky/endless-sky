@@ -474,6 +474,7 @@ mission "Wanderers: Quarg Assistance 2"
 mission "Wanderers: Quarg Defenders"
 	landing
 	invisible
+	non-blocking
 	source "Spera Anatrusk"
 	to offer
 		has "Wanderers: Quarg Assistance 2: done"
@@ -990,6 +991,7 @@ mission "Wanderers: Mind 3"
 
 mission "Wanderers: Mind Escorts"
 	invisible
+	non-blocking
 	landing
 	source "Vara K'chrai"
 	to offer
@@ -1097,6 +1099,7 @@ event "wanderers: kor mereti language"
 mission "Wanderers: Kor Mereti Language"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Wanderers: Mind 5: done"
 	on offer
@@ -1152,6 +1155,7 @@ mission "Wanderers: Mind 6"
 mission "Wanderers: Kor Mereti Quarg Attitude Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: wanderers: kor mereti friendly"
 	on offer
@@ -1825,6 +1829,7 @@ mission "Wanderers: Sestor Search"
 mission "Wanderers: Sestor: Alnilam Fleet 1"
 	landing
 	invisible
+	non-blocking
 	destination "Farpoint"
 	to offer
 		has "Wanderers: Sestor Attack: done"
@@ -2167,6 +2172,7 @@ mission "Wanderers: Sestor: Quarg Help 2"
 mission "Wanderers: Sestor: Alnilam Fleet 2"
 	landing
 	invisible
+	non-blocking
 	source "Farpoint"
 	to offer
 		has "Wanderers: Sestor: Quarg Help 2: done"
@@ -2233,6 +2239,7 @@ mission "Wanderers: Sestor: Bomb Zenith 1"
 mission "Wanderers: Sestor: Farpoint Attack 2"
 	landing
 	invisible
+	non-blocking
 	source "Farpoint"
 	to offer
 		has "Wanderers: Sestor: Quarg Help 2: done"
@@ -2984,6 +2991,7 @@ event "liberated zenith"
 mission "Wanderers: Sestor Alt: Zenith Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Wanderers: Sestor Alt: Alnilam 2: done"
 	on offer
@@ -3266,6 +3274,7 @@ mission "Wanderers: Sestor: Factory 1"
 mission "Wanderers: Sestor: Factory Escorts"
 	landing
 	invisible
+	non-blocking
 	source "Desi Seledrak"
 	to offer
 		has "Wanderers: Sestor: Exiles 3: done"
@@ -3554,6 +3563,7 @@ mission "Wanderers: Sestor: Final: Patched"
 mission "Wanderers: Sestor: Combined Patch 1"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Wanderers: Sestor: Final: done"
 	to fail

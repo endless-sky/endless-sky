@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "GamerulesPanel.h"
 #include "Information.h"
 #include "Interface.h"
 #include "MainPanel.h"
@@ -33,9 +34,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Shop.h"
+#include "image/SpriteLoadManager.h"
 #include "shader/StarField.h"
 #include "StartConditions.h"
 #include "System.h"
+#include "TaskQueue.h"
 #include "text/Truncate.h"
 #include "UI.h"
 
@@ -47,7 +50,7 @@ using namespace std;
 
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 	const StartConditionsList &allScenarios, const Panel *parent)
-	: player(player), gamePanels(gamePanels), parent(parent),
+	: player(player), gamePanels(gamePanels), parent(parent), gamerules(GameData::DefaultGamerules()),
 	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
 	selectedBackground(*GameData::Colors().Get("faint")),
 	description(FontSet::Get(14))
@@ -84,6 +87,12 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 	description.SetWrapWidth(descriptionBox.Width());
 
 	Select(startIt);
+
+	TaskQueue queue;
+	for(const StartConditions &scenario : scenarios)
+		SpriteLoadManager::LoadDeferred(queue, scenario.GetThumbnail());
+	queue.Wait();
+	queue.ProcessSyncTasks();
 }
 
 
@@ -135,7 +144,9 @@ void StartConditionsPanel::Draw()
 bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
 {
 	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
+	else if(key == 'g')
+		GetUI().Push(new GamerulesPanel(gamerules, false));
 	else if(!scenarios.empty() && (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
 	{
 		// Move up / down an entry, or a page. If at the bottom / top, wrap around.
@@ -161,11 +172,11 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN)
 		&& info.HasCondition("unlocked start"))
 	{
-		player.New(*startIt);
+		player.New(*startIt, gamerules);
 
 		ConversationPanel *panel = new ConversationPanel(
 			player, startIt->GetConversation());
-		GetUI()->Push(panel);
+		GetUI().Push(panel);
 		panel->SetCallback(this, &StartConditionsPanel::OnConversationEnd);
 		return true;
 	}
@@ -259,10 +270,10 @@ void StartConditionsPanel::OnConversationEnd(int)
 		gamePanels.StepAll();
 	}
 	if(parent)
-		GetUI()->Pop(parent);
+		GetUI().Pop(parent);
 
-	GetUI()->Pop(GetUI()->Root().get());
-	GetUI()->Pop(this);
+	GetUI().Pop(GetUI().Root().get());
+	GetUI().Pop(this);
 }
 
 

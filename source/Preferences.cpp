@@ -63,7 +63,7 @@ namespace {
 	int vsyncIndex = 1;
 
 	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
-	int cameraAccelerationIndex = 1;
+	int cameraAccelerationIndex = 0;
 
 	const map<string, SoundCategory> VOLUME_SETTINGS = {
 		{"volume", SoundCategory::MASTER},
@@ -178,6 +178,8 @@ namespace {
 	const vector<string> LARGE_GRAPHICS_REDUCTION_SETTINGS = {"off", "largest only", "all"};
 	int largeGraphicsReductionIndex = 0;
 
+	const string BLOCK_SCREEN_SAVER = "Block screen saver";
+
 	int previousSaveCount = 3;
 
 #ifdef _WIN32
@@ -195,7 +197,6 @@ void Preferences::Load()
 {
 	// These settings should be on by default. There is no need to specify
 	// values for settings that are off by default.
-	settings["Landing zoom"] = true;
 	settings["Render motion blur"] = true;
 	settings["Cloaked ship outlines"] = true;
 	settings[FRUGAL_ESCORTS] = true;
@@ -205,7 +206,6 @@ void Preferences::Load()
 	settings["Show stored outfits on map"] = true;
 	settings["Show planet labels"] = true;
 	settings["Show asteroid scanner overlay"] = true;
-	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
 	settings["Animate main menu background"] = true;
@@ -216,6 +216,9 @@ void Preferences::Load()
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
 	settings["Deadline blink by distance"] = true;
+	settings["Confirm 'Sell Outfits' button"] = true;
+	settings["Confirm 'Sell Minables' button"] = true;
+	settings["'Sell Outfits' without outfitter"] = true;
 
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
@@ -931,6 +934,14 @@ Preferences::LargeGraphicsReduction Preferences::GetLargeGraphicsReduction()
 const string &Preferences::LargeGraphicsReductionSetting()
 {
 	return LARGE_GRAPHICS_REDUCTION_SETTINGS[largeGraphicsReductionIndex];
+}
+
+
+
+void Preferences::ToggleBlockScreenSaver()
+{
+	GameWindow::ToggleBlockScreenSaver();
+	Set(BLOCK_SCREEN_SAVER, !Has(BLOCK_SCREEN_SAVER));
 }
 
 

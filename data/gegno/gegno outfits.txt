@@ -946,6 +946,7 @@ effect "burrow"
 
 
 outfit "Ion Torch"
+	plural "Ion Torches"
 	category "Guns"
 	series "Guns"
 	index 06080

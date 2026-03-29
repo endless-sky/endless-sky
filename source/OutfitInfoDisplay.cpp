@@ -321,7 +321,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		out << "cost (" << (100 * buyValue) / cost << "%):";
 		requirementLabels.push_back(out.str());
 	}
-	requirementValues.push_back(buyValue ? Format::Credits(buyValue) : "free");
+	requirementValues.push_back(buyValue ? Format::AbbreviatedNumber(buyValue) : "free");
 	requirementsHeight += 20;
 
 	if(canSell && sellValue != buyValue)
@@ -334,7 +334,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 			out << "sells for (" << (100 * sellValue) / cost << "%):";
 			requirementLabels.push_back(out.str());
 		}
-		requirementValues.push_back(Format::Credits(sellValue));
+		requirementValues.push_back(Format::AbbreviatedNumber(sellValue));
 		requirementsHeight += 20;
 	}
 
@@ -517,7 +517,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(fullDropoff != 1.)
 	{
 		attributeLabels.emplace_back("dropoff modifier:");
-		attributeValues.emplace_back(Format::Number(100. * fullDropoff) + "%");
+		attributeValues.emplace_back(Format::Percentage(fullDropoff));
 		attributesHeight += 20;
 		// Identify the ranges between which the dropoff takes place.
 		attributeLabels.emplace_back("dropoff range:");
@@ -630,7 +630,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(isContinuous)
 		attributeValues.emplace_back("continuous");
 	else if(isContinuousBurst)
-		attributeValues.emplace_back("continuous (" + Format::Number(lround(weapon->BurstReload() * 100. / reload)) + "%)");
+	{
+		int value = static_cast<int>(lround(weapon->BurstReload() * 100. / reload));
+		attributeValues.emplace_back("continuous (" + Format::Number(value) + "%)");
+	}
 	else
 		attributeValues.emplace_back(Format::Number(60. / reload));
 	attributesHeight += 20;
@@ -672,9 +675,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	for(unsigned i = 0; i < PERCENT_NAMES.size(); ++i)
 		if(percentValues[i])
 		{
-			int percent = lround(100. * percentValues[i]);
 			attributeLabels.push_back(PERCENT_NAMES[i]);
-			attributeValues.push_back(Format::Number(percent) + "%");
+			attributeValues.push_back(Format::Percentage(percentValues[i]));
 			attributesHeight += 20;
 		}
 	if(weapon->ThrottleControl())

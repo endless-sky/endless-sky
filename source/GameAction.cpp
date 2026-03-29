@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
+#include "image/SpriteLoadManager.h"
 #include "System.h"
 #include "UI.h"
 
@@ -110,7 +111,7 @@ namespace {
 				special += " put in your cargo hold because there is not enough space to install ";
 				special += (isSingle ? "it" : "them");
 				special += " in your ship.";
-				ui->Push(new Dialog(special));
+				ui->Push(DialogPanel::Info(special));
 			}
 		}
 		if(didCargo && didShip)
@@ -365,6 +366,10 @@ string GameAction::Validate() const
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
 
+	for(const auto &message : messages)
+		if(!message->IsLoaded())
+			return "message \"" + message->TrueName() + "\"";
+
 	return "";
 }
 
@@ -430,12 +435,21 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(auto &&it : giftOutfits)
 		if(it.second < 0)
 			DoGift(player, it.first, it.second, ui);
+	bool giftedItem = false;
 	for(auto &&it : giftOutfits)
 		if(it.second > 0)
+		{
 			DoGift(player, it.first, it.second, ui);
+			giftedItem = true;
+		}
 	for(auto &&it : giftShips)
 		if(it.Giving())
+		{
 			it.Do(player);
+			giftedItem = true;
+		}
+	if(giftedItem && player.GetPlanet())
+		SpriteLoadManager::SetRecheckThumbnails();
 
 	if(payment)
 	{

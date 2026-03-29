@@ -46,6 +46,7 @@ public:
 	static bool IsMaximized();
 	static bool IsFullscreen();
 	static void ToggleFullscreen();
+	static void ToggleBlockScreenSaver();
 
 	// Print the error message in the terminal, error file, and message box.
 	// Checks for video system errors and records those as well.

@@ -41,7 +41,6 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
-	Resize();
 	AddChild(description);
 
 	newsMessage.SetFont(FontSet::Get(14));
@@ -80,7 +79,7 @@ void SpaceportPanel::UpdateNews()
 
 void SpaceportPanel::Step()
 {
-	if(GetUI()->IsTop(this) && port.HasService(Port::ServicesType::OffersMissions))
+	if(GetUI().IsTop(this) && port.HasService(Port::ServicesType::OffersMissions))
 	{
 		Mission *mission = player.MissionToOffer(Mission::SPACEPORT);
 		// Special case: if the player somehow got to the spaceport before all
@@ -88,7 +87,7 @@ void SpaceportPanel::Step()
 		if(!mission)
 			mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
+			mission->Do(Mission::OFFER, player, &GetUI());
 		else
 			player.HandleBlockedMissions(Mission::SPACEPORT, GetUI());
 	}
@@ -104,6 +103,15 @@ void SpaceportPanel::Draw()
 	// The description text needs to be updated, because player conditions can be changed
 	// in the meantime, for example if the player accepts a mission on the Job Board.
 	description->SetText(port.Description().ToString());
+
+	if(port.Landscape())
+	{
+		Information info;
+		info.SetSprite("port", port.Landscape());
+		const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ?
+			"spaceport (small screen)" : "spaceport");
+		ui->Draw(info);
+	}
 
 	if(hasNews)
 	{

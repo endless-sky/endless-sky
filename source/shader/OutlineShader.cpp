@@ -141,8 +141,7 @@ void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &si
 
 	glUniform4fv(colorI, 1, color.Get());
 
-	glBindTexture(OpenGL::HasTexture2DArraySupport() ? GL_TEXTURE_2D_ARRAY : GL_TEXTURE_3D,
-		sprite->Texture(unit.Length() * Screen::Zoom() > 50.));
+	glBindTexture(OpenGL::HasTexture2DArraySupport() ? GL_TEXTURE_2D_ARRAY : GL_TEXTURE_3D, sprite->Texture());
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 

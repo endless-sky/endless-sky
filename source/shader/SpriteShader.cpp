@@ -31,6 +31,7 @@ namespace {
 	GLint useSwizzleMaskI;
 	GLint frameI;
 	GLint frameCountI;
+	GLint uniqueSwizzleMaskFramesI;
 	GLint positionI;
 	GLint transformI;
 	GLint blurI;
@@ -61,6 +62,7 @@ void SpriteShader::Init()
 	texI = shader->Uniform("tex");
 	frameI = shader->Uniform("frame");
 	frameCountI = shader->Uniform("frameCount");
+	uniqueSwizzleMaskFramesI = shader->Uniform("uniqueSwizzleMaskFrames");
 	positionI = shader->Uniform("position");
 	transformI = shader->Uniform("transform");
 	blurI = shader->Uniform("blur");
@@ -125,6 +127,7 @@ SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &posi
 	item.swizzleMask = sprite->SwizzleMask();
 	item.frame = frame;
 	item.frameCount = sprite->Frames();
+	item.uniqueSwizzleMaskFrames = sprite->SwizzleMaskFrames() > 1;
 	// Position.
 	item.position[0] = static_cast<float>(position.X());
 	item.position[1] = static_cast<float>(position.Y());
@@ -186,6 +189,7 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 
 	glUniform1f(frameI, item.frame);
 	glUniform1f(frameCountI, item.frameCount);
+	glUniform1i(uniqueSwizzleMaskFramesI, item.uniqueSwizzleMaskFrames);
 	glUniform2fv(positionI, 1, item.position);
 	glUniformMatrix2fv(transformI, 1, false, item.transform);
 	// Special case: check if the blur should be applied or not.
