@@ -1042,7 +1042,7 @@ mission "Exotic Life: Ada"
 			`	The guard is unimpressed, poking at a datapad as she talks.`
 			`	"Rules are rules and you gotta follow them just like everyone else." She looks up, eyes narrowed. "It says here your cargo is miniature figurines. What exactly are they made out of?"`
 			`	The pilot looks suddenly sheepish, throwing his hands up in defeat.`
-			`	"Alright, alright," he says, "I'll get the decon procedure done. Okay? You win."`
+			`	"Alright, alright," he says. "I'll get the decon procedure done. Okay? You win."`
 			`	"What. Are. They. Made of?"`
 			`	"Stainless steel."`
 			`	"Ouch," she says, but the bored expression is gone now and she seems to be enjoying herself. "Twelve tons of miniature figurines, and we are gonna have to scan every single one to make sure they're not contaminated. That could take a while."`
