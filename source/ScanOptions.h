@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-
 #include <map>
 #include <memory>
 
@@ -25,8 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Stores the player ships that are within range of a target for each scan type.
-class ScanOptions
-{
+class ScanOptions {
 public:
 	// Add the given ship as a scanning option for this scan type. If a closer ship
 	// was already added, then it will remain as the option for that scan type.

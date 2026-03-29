@@ -5291,6 +5291,7 @@ void PlayerInfo::CalculateScanners()
 void PlayerInfo::CalculateScanners(const shared_ptr<Ship> &ship)
 {
 	const Outfit &attributes = ship->Attributes();
+
 	double cargo = attributes.Get("cargo scan power") * 10000.;
 	double outfit = attributes.Get("outfit scan power") * 10000.;
 	double asteroid = attributes.Get("asteroid scan power") * 10000.;
