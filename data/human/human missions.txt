@@ -12996,10 +12996,10 @@ mission "Weland"
 	source "Wayfarer"
 	minor
 	to offer
-		"Weland: offered" < 4	
+		"Weland: offered" < 4
 	minor
 	to offer
-		"Weland: offered" < 4	
+		"Weland: offered" < 4
 	on offer
 		require "Salvaged Artifact"
 		conversation
