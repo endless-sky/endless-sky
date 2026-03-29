@@ -26,7 +26,8 @@ outfit "Small EM Battery"
 	"shield generation" 0.14
 	"shield energy" 0.14
 	"shield heat" 0.14
-	"energy capacity" 3600
+	"heat generation" 0.8
+	"energy capacity" 8300
 	description "This small superconductive inductor stores just enough power to keep a fighter running, and the electromagnetic field it generates helps to maintain the shield matrix."
 
 outfit "Large EM Battery"
@@ -42,7 +43,8 @@ outfit "Large EM Battery"
 	"shield generation" 0.8
 	"shield energy" 0.8
 	"shield heat" 0.8
-	"energy capacity" 40000
+	"heat generation" 6.5
+	"energy capacity" 100000
 	description "This is a massive superconductive coil, capable of storing large amounts of energy in an electromagnetic field and discharging all of it in a fraction of a second. The magnetic field also provides a small boost to the shield regeneration of the ship, which is otherwise very underdeveloped."
 
 outfit "Small Hybrid Cooling"
@@ -348,7 +350,9 @@ outfit "Shard Fabricator"
 		"acceleration" 1.5
 		"drag" .1
 		"turn" 8
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"radar tracking" .8
 		"missile strength" 1
 	description "To reduce reliance on supply chains during prolonged war time, this outfit contains specialized fabricators that produce simple kinetic missiles from stock materials and a small amount of stored fuel; their guidance system merely receives data from the shipboard radar. The missiles are fired in volleys of six at a time from each launcher, making them very effective at overwhelming point defenses despite their fragility. However, the low amount of fuel they carry means they can only home in on the target for about a second before they turn into unguided ammunition. Because they are manufactured on the spot, it takes a long time to reload."

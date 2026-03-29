@@ -15,13 +15,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConversationPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "BoardingPanel.h"
+#include "text/Clipboard.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "text/DisplayText.h"
+#include "Endpoint.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -36,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shift.h"
 #include "Ship.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "UI.h"
@@ -44,6 +47,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #endif
 
+#include <array>
 #include <iterator>
 
 using namespace std;
@@ -71,18 +75,24 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 #endif
 	Audio::Pause();
 	// These substitutions need to be applied on the fly as each paragraph of
-	// text is prepared for display.
-	subs["<first>"] = player.FirstName();
-	subs["<last>"] = player.LastName();
+	// text is prepared for display. Some substitutions already in the map
+	// should not be overwritten.
+	static const array<string, 3> subsToSave = {"<system>", "<date>", "<day>"};
+	map<string, string> savedSubs;
+	for(const auto &sub : subsToSave)
+	{
+		const auto it = subs.find(sub);
+		if(it != subs.end() && !it->second.empty())
+			savedSubs.emplace(*it);
+	}
+	player.AddPlayerSubstitutions(subs);
+	// Restore substitutions that need to be preserved.
+	for(auto &it : savedSubs)
+		subs[it.first].swap(it.second);
 	if(ship)
 	{
-		subs["<ship>"] = ship->Name();
+		subs["<ship>"] = ship->GivenName();
 		subs["<model>"] = ship->DisplayModelName();
-	}
-	else if(player.Flagship())
-	{
-		subs["<ship>"] = player.Flagship()->Name();
-		subs["<model>"] = player.Flagship()->DisplayModelName();
 	}
 
 	// Start a PlayerInfo transaction to prevent saves during the conversation
@@ -106,6 +116,21 @@ ConversationPanel::~ConversationPanel()
 void ConversationPanel::SetCallback(function<void(int)> fun)
 {
 	callback = std::move(fun);
+}
+
+
+
+void ConversationPanel::Step()
+{
+	// Load any and deferred scenes that may appear in the conversation.
+	// This is done here instead of in the constructor because the constructor
+	// does not have access to the UI stack.
+	if(!hasLoadedScenes)
+	{
+		hasLoadedScenes = true;
+		for(const Sprite *scene : conversation.Scenes())
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), scene);
+	}
 }
 
 
@@ -221,10 +246,11 @@ void ConversationPanel::Draw()
 			if(index == choice)
 				FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
 			AddZone(zone, [this, index](){ this->ClickChoice(index); });
-			++index;
 
 			font.Draw(label, point + Point(-15, 0), dim);
-			point = paragraph.Draw(point, bright);
+			point = paragraph.Draw(point, conversation.ChoiceIsActive(node, MapChoice(index)) ? bright : dim);
+
+			++index;
 		}
 	}
 	// Store the total height of the text.
@@ -239,11 +265,15 @@ void ConversationPanel::Draw()
 // Handle key presses.
 bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NORMAL;
 	// Map popup happens when you press the map key, unless the name text entry
 	// fields are currently active. The name text entry fields are active if
 	// choices is empty and we aren't at the end of the conversation.
 	if(command.Has(Command::MAP) && (!choices.empty() || node < 0))
-		GetUI()->Push(new MapDetailPanel(player, system, true));
+	{
+		sound = UI::UISound::NONE;
+		GetUI().Push(new MapDetailPanel(player, system, true));
+	}
 	if(node < 0)
 	{
 		// If the conversation has ended, the only possible action is to exit.
@@ -256,26 +286,31 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	}
 	if(choices.empty())
 	{
+		// Don't allow characters that can't be used in a file name.
+		static const string FORBIDDEN = "/\\?*:|\"<>~";
+		// Prevent the name from being so large that it cannot be saved.
+		// Most path components can be at most 255 bytes.
+		size_t MAX_NAME_LENGTH = 250;
+#if defined _WIN32
+		MAX_NAME_LENGTH -= PATH_LENGTH;
+#endif
+
 		// Right now we're asking the player to enter their name.
 		string &name = (choice ? lastName : firstName);
 		string &otherName = (choice ? firstName : lastName);
 		// Allow editing the text. The tab key toggles to the other entry field,
 		// as does the return key if the other field is still empty.
-		if(key >= ' ' && key <= '~')
+		if(Clipboard::KeyDown(name, key, mod, MAX_NAME_LENGTH, FORBIDDEN))
+		{
+			// Input handled by Clipboard.
+		}
+		else if(key >= ' ' && key <= '~')
 		{
 			// Apply the shift or caps lock key.
 			char c = ((mod & KMOD_SHIFT) ? SHIFT[key] : key);
 			// Caps lock should shift letters, but not any other keys.
 			if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
 				c += 'A' - 'a';
-			// Don't allow characters that can't be used in a file name.
-			static const string FORBIDDEN = "/\\?*:|\"<>~";
-			// Prevent the name from being so large that it cannot be saved.
-			// Most path components can be at most 255 bytes.
-			size_t MAX_NAME_LENGTH = 250;
-#if defined _WIN32
-			MAX_NAME_LENGTH -= PATH_LENGTH;
-#endif
 			if(FORBIDDEN.find(c) == string::npos && (name.size() + otherName.size()) < MAX_NAME_LENGTH)
 				name += c;
 			else
@@ -312,14 +347,30 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	else if(key == SDLK_DOWN && choice + 1 < static_cast<int>(choices.size()))
 		++choice;
 	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && isNewPress && choice < static_cast<int>(choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
+	{
+		if(conversation.ChoiceIsActive(node, MapChoice(choice)))
+			Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
+		else
+			sound = UI::UISound::FAILURE;
+	}
 	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
+	{
+		if(conversation.ChoiceIsActive(node, MapChoice(key - '1')))
+			Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
+		else
+			sound = UI::UISound::FAILURE;
+	}
 	else if(key >= SDLK_KP_1 && key < static_cast<SDL_Keycode>(SDLK_KP_1 + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), key - SDLK_KP_1);
+	{
+		if(conversation.ChoiceIsActive(node, MapChoice(key - SDLK_KP_1)))
+			Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), key - SDLK_KP_1);
+		else
+			sound = UI::UISound::FAILURE;
+	}
 	else
 		return false;
 
+	UI::PlaySound(sound);
 	return true;
 }
 
@@ -357,7 +408,7 @@ bool ConversationPanel::Hover(int x, int y)
 void ConversationPanel::Goto(int index, int selectedChoice)
 {
 	const ConditionsStore &conditions = player.Conditions();
-	Format::ConditionGetter getter = [&conditions](const std::string &str, size_t start, size_t length) -> int64_t
+	Format::ConditionGetter getter = [&conditions](const string &str, size_t start, size_t length) -> int64_t
 	{
 		return conditions.Get(str.substr(start, length));
 	};
@@ -382,7 +433,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	node = index;
 	// Not every conversation node allows a choice. Move forward through the
 	// nodes until we encounter one that does, or the conversation ends.
-	while(node >= 0 && !conversation.HasAnyChoices(player.Conditions(), node))
+	while(node >= 0 && !conversation.HasAnyChoices(node))
 	{
 		int choice = 0;
 
@@ -397,7 +448,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		{
 			// Branch nodes change the flow of the conversation based on the
 			// player's condition variables rather than player input.
-			choice = !conversation.Conditions(node).Test(player.Conditions());
+			choice = !conversation.Conditions(node).Test();
 		}
 		else if(conversation.IsAction(node))
 		{
@@ -406,7 +457,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// and more. They are not allowed to spawn additional UI elements.
 			conversation.GetAction(node).Do(player, nullptr, caller);
 		}
-		else if(conversation.ShouldDisplayNode(player.Conditions(), node))
+		else if(conversation.ShouldDisplayNode(node))
 		{
 			// This is an ordinary conversation node which should be displayed.
 			// Perform any necessary text replacement, and add the text to the display.
@@ -424,7 +475,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	}
 	// Display whatever choices are being offered to the player.
 	for(int i = 0; i < conversation.Choices(node); ++i)
-		if(conversation.ShouldDisplayNode(player.Conditions(), node, i))
+		if(conversation.ShouldDisplayNode(node, i))
 		{
 			string altered = Format::ExpandConditions(Format::Replace(conversation.Text(node, i), subs), getter);
 			choices.emplace_back(Paragraph(altered), i);
@@ -432,7 +483,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	// This is a safeguard in case of logic errors, to ensure we don't set the player name.
 	if(choices.empty() && conversation.Choices(node) != 0)
 	{
-		node = Conversation::DECLINE;
+		node = Endpoint::DECLINE;
 	}
 	this->choice = 0;
 }
@@ -446,24 +497,24 @@ void ConversationPanel::Exit()
 	if(useTransactions)
 		player.FinishTransaction();
 
-	GetUI()->Pop(this);
+	GetUI().Pop(this);
 	// Some conversations may be offered from an NPC, e.g. an assisting or
 	// boarding mission's `on offer`, or from completing a mission's NPC
 	// block (e.g. scanning or boarding or killing all required targets).
-	if(node == Conversation::DIE || node == Conversation::EXPLODE)
+	if(node == Endpoint::DIE || node == Endpoint::EXPLODE)
 		player.Die(node, ship);
 	else if(ship)
 	{
 		// A forced-launch ending (LAUNCH, FLEE, or DEPART) destroys any NPC.
-		if(Conversation::RequiresLaunch(node))
+		if(Endpoint::RequiresLaunch(node))
 			ship->Destroy();
 		// Only show the BoardingPanel for a hostile NPC that is being boarded.
 		// (NPC completion conversations can result from non-boarding events.)
 		// TODO: Is there a better / more robust boarding check than relative position?
-		else if((node != Conversation::ACCEPT || player.CaptureOverriden(ship)) && ship->GetGovernment()->IsEnemy()
+		else if((node != Endpoint::ACCEPT || player.CaptureOverriden(ship)) && ship->GetGovernment()->IsEnemy()
 				&& !ship->IsDestroyed() && ship->IsDisabled()
 				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
-			GetUI()->Push(new BoardingPanel(player, ship));
+			GetUI().Push(new BoardingPanel(player, ship));
 	}
 	// Call the exit response handler to manage the conversation's effect
 	// on the player's missions, or force takeoff from a planet.
@@ -484,7 +535,10 @@ void ConversationPanel::ClickName(int side)
 // The player just clicked on a conversation choice.
 void ConversationPanel::ClickChoice(int index)
 {
-	Goto(conversation.NextNodeForChoice(node, MapChoice(index)), index);
+	if(conversation.ChoiceIsActive(node, MapChoice(index)))
+		Goto(conversation.NextNodeForChoice(node, MapChoice(index)), index);
+	else
+		UI::PlaySound(UI::UISound::FAILURE);
 }
 
 

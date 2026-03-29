@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipJumpNavigation.h"
 
+#include "Hasher.h"
 #include "Outfit.h"
 #include "Ship.h"
 #include "System.h"
@@ -170,6 +171,13 @@ bool ShipJumpNavigation::CanJump(const System *from, const System *to) const
 
 
 // Check what jump methods this ship has.
+bool ShipJumpNavigation::HasAnyDrive() const
+{
+	return hasHyperdrive || hasJumpDrive;
+}
+
+
+
 bool ShipJumpNavigation::HasHyperdrive() const
 {
 	return hasHyperdrive;
@@ -187,6 +195,32 @@ bool ShipJumpNavigation::HasScramDrive() const
 bool ShipJumpNavigation::HasJumpDrive() const
 {
 	return hasJumpDrive;
+}
+
+
+
+size_t ShipJumpNavigation::Hash() const
+{
+	// Include in the hash only that information that can influence pathfinding.
+	size_t hash = 0;
+
+	Hasher::Hash(hash, currentSystem);
+
+	// Whether the hyperdrive is a scram drive doesn't change pathfinding.
+	Hasher::Hash(hash, hasHyperdrive);
+	Hasher::Hash(hash, hasJumpDrive);
+
+	// Max jump range information is contained within the jump drive costs.
+	// The jump cost also contains information about the mass of the ship,
+	// if its mass influences its jump cost.
+	Hasher::Hash(hash, hyperdriveCost);
+	for(const auto &[range, cost] : jumpDriveCosts)
+	{
+		Hasher::Hash(hash, range);
+		Hasher::Hash(hash, cost);
+	}
+
+	return hash;
 }
 
 
@@ -250,7 +284,7 @@ void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, double cost)
 		// cheaper jump cost already covers this range. We don't need to check
 		// any other distances in this case because the rest of the map will
 		// already be properly sorted.
-		auto nit = std::next(it);
+		auto nit = next(it);
 		if(nit != jumpDriveCosts.end() && it->second > nit->second)
 			it->second = nit->second;
 		else

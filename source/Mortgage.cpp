@@ -89,15 +89,17 @@ void Mortgage::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "principal" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "principal" && hasValue)
 			principal = child.Value(1);
-		else if(child.Token(0) == "interest" && child.Size() >= 2)
+		else if(key == "interest" && hasValue)
 		{
 			interest = child.Value(1);
 			int f = 100000. * interest;
 			interestString = "0." + to_string(f) + "%";
 		}
-		else if(child.Token(0) == "term" && child.Size() >= 2)
+		else if(key == "term" && hasValue)
 			term = max(1., child.Value(1));
 	}
 }

@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 
+class Conversation;
 class Government;
 class Planet;
 class PlayerInfo;
@@ -49,6 +50,9 @@ public:
 	bool CanLand(const Ship &ship, const Planet *planet) const;
 	// Check if the player can land on the given planet.
 	bool CanLand(const Planet *planet) const;
+	// Check if the player has been granted clearance to land on this planet, either
+	// through bribes or domination.
+	bool HasClearance(const Planet *planet) const;
 	bool CanUseServices(const Planet *planet) const;
 	// Bribe a planet to let the player's ships land there.
 	void BribePlanet(const Planet *planet, bool fullAccess);
@@ -57,7 +61,8 @@ public:
 
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
-	std::string Fine(PlayerInfo &player, const Government *gov, int scan, const Ship *target, double security);
+	std::pair<const Conversation *, std::string> Fine(PlayerInfo &player,
+		const Government *gov, int scan, const Ship *target, double security);
 
 	// Get or set your reputation with the given government.
 	double Reputation(const Government *gov) const;

@@ -16,8 +16,8 @@ test-data "Flagship Attribute Autoconditions Save"
 	contents
 		pilot Bobbi Bughunter
 		date 11 7 3014
-		system Pantica
-		planet Aventine
+		system Sol
+		planet Earth
 		clearance
 		# What you own:
 		ship Peregrine
@@ -49,7 +49,6 @@ test-data "Flagship Attribute Autoconditions Save"
 				"outfit scan power" 18
 				"outfit scan efficiency" 22
 				"outfit space" 552
-				ramscoop 2.5
 				"remnant node" 5
 				"required crew" 9
 				"shield energy" 3
@@ -112,14 +111,17 @@ test-data "Flagship Attribute Autoconditions Save"
 			explode "small explosion" 25
 			explode "tiny explosion" 10
 			"final explode" "final explosion medium" 1
-			system Pantica
-			planet Aventine
+			system Sol
+			planet Earth
+		cargo
+			outfits
+				"Heavy Laser" 1
 		account
 			credits 131000
 			score 400
 			history
-		visited Pantica
-		"visited planet" Aventine
+		visited Sol
+		"visited planet" Earth
 
 
 test "Flagship Attribute Autoconditions"
@@ -150,7 +152,7 @@ test "Flagship Attribute Autoconditions"
 			"flagship base attribute: outfit scan power" == 18000
 			"flagship base attribute: outfit scan efficiency" == 22000
 			"flagship base attribute: outfit space" == 552000
-			"flagship base attribute: ramscoop" == 2500
+			"flagship base attribute: ramscoop" == 0
 			"flagship base attribute: remnant node" == 5000
 			"flagship base attribute: required crew" == 9000
 			"flagship base attribute: shield energy" == 3000
@@ -169,3 +171,19 @@ test "Flagship Attribute Autoconditions"
 			"flagship attribute: heat generation" == 32300
 			"flagship attribute: outfit space" == 16000
 			"flagship attribute: weapon capacity" == 58000
+		call "Depart"
+		assert
+			"flagship shields" == 16400
+			"flagship hull" == 10600
+			"flagship fuel" == 1100
+			"flagship mass" - 15 == "flagship attribute: mass" / 1000
+		navigate
+			travel Vega
+		input
+			command jump
+		label "not vega"
+		branch "not vega"
+			not "flagship system: Vega"
+		assert
+			"flagship fuel" == 900
+

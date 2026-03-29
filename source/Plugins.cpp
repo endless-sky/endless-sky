@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Files.h"
 #include "Logger.h"
+#include "Set.h"
 
 #include <algorithm>
 #include <map>
@@ -81,8 +82,9 @@ bool Plugin::PluginDependencies::IsValid() const
 	{
 		dependencyCollisions.pop_back();
 		dependencyCollisions.pop_back();
-		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
-			+ " were found in both the required dependencies list and the optional dependencies list.");
+		Logger::Log("Dependencies named " + dependencyCollisions
+			+ " were found in both the required dependencies list and the optional dependencies list.",
+			Logger::Level::WARNING);
 		dependencyCollisions.clear();
 	}
 
@@ -99,8 +101,9 @@ bool Plugin::PluginDependencies::IsValid() const
 	{
 		dependencyCollisions.pop_back();
 		dependencyCollisions.pop_back();
-		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
-			+ " were found in both the conflicting dependencies list and the required dependencies list.");
+		Logger::Log("Dependencies named " + dependencyCollisions
+			+ " were found in both the conflicting dependencies list and the required dependencies list.",
+			Logger::Level::WARNING);
 		dependencyCollisions.clear();
 	}
 
@@ -117,8 +120,9 @@ bool Plugin::PluginDependencies::IsValid() const
 	{
 		dependencyCollisions.pop_back();
 		dependencyCollisions.pop_back();
-		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
-			+ " were found in both the optional dependencies list and the conflicting dependencies list.");
+		Logger::Log("Dependencies named " + dependencyCollisions
+			+ " were found in both the optional dependencies list and the conflicting dependencies list.",
+			Logger::Level::WARNING);
 		dependencyCollisions.clear();
 	}
 
@@ -209,34 +213,38 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 	bool hasName = false;
 	for(const DataNode &child : DataFile(pluginFile))
 	{
-		if(child.Token(0) == "name" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "name" && hasValue)
 		{
 			name = child.Token(1);
 			hasName = true;
 		}
-		else if(child.Token(0) == "about" && child.Size() >= 2)
+		else if(key == "about" && hasValue)
 			aboutText += child.Token(1) + '\n';
-		else if(child.Token(0) == "version" && child.Size() >= 2)
+		else if(key == "version" && hasValue)
 			version = child.Token(1);
-		else if(child.Token(0) == "authors" && child.HasChildren())
+		else if(key == "authors")
 			for(const DataNode &grand : child)
 				authors.insert(grand.Token(0));
-		else if(child.Token(0) == "tags" && child.HasChildren())
+		else if(key == "tags")
 			for(const DataNode &grand : child)
 				tags.insert(grand.Token(0));
-		else if(child.Token(0) == "dependencies" && child.HasChildren())
+		else if(key == "dependencies")
 		{
 			for(const DataNode &grand : child)
 			{
-				if(grand.Token(0) == "game version")
+				const string &grandKey = grand.Token(0);
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "game version" && grandHasValue)
 					dependencies.gameVersion = grand.Token(1);
-				else if(grand.Token(0) == "requires" && grand.HasChildren())
+				else if(grandKey == "requires")
 					for(const DataNode &great : grand)
 						dependencies.required.insert(great.Token(0));
-				else if(grand.Token(0) == "optional" && grand.HasChildren())
+				else if(grandKey == "optional")
 					for(const DataNode &great : grand)
 						dependencies.optional.insert(great.Token(0));
-				else if(grand.Token(0) == "conflicts" && grand.HasChildren())
+				else if(grandKey == "conflicts")
 					for(const DataNode &great : grand)
 						dependencies.conflicted.insert(great.Token(0));
 				else
@@ -249,23 +257,23 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 
 	// 'name' is a required field for plugins with a plugin description file.
 	if(Files::Exists(pluginFile) && !hasName)
-		Logger::LogError("Warning: Missing required \"name\" field inside plugin.txt");
+		Logger::Log("Missing required \"name\" field inside plugin.txt.", Logger::Level::WARNING);
 
 	// Plugin names should be unique.
 	auto *plugin = plugins.Get(name);
 	if(plugin && plugin->IsValid())
 	{
-		Logger::LogError("Warning: Skipping plugin located at \"" + path.string()
-			+ "\" because another plugin with the same name has already been loaded from: \""
-			+ plugin->path.string() + "\".");
+		Logger::Log("Skipping plugin located at \"" + path.string()
+			+ "\", because another plugin with the same name has already been loaded from: \""
+			+ plugin->path.string() + "\".", Logger::Level::WARNING);
 		return nullptr;
 	}
 
 	// Skip the plugin if the dependencies aren't valid.
 	if(!dependencies.IsValid())
 	{
-		Logger::LogError("Warning: Skipping plugin located at \"" + path.string()
-			+ "\" because plugin has errors in its dependencies.");
+		Logger::Log("Skipping plugin located at \"" + path.string() + "\", because it has errors in its dependencies.",
+			Logger::Level::WARNING);
 		return nullptr;
 	}
 
@@ -316,7 +324,8 @@ bool Plugins::IsPlugin(const filesystem::path &path)
 {
 	// A folder is a valid plugin if it contains one (or more) of the assets folders.
 	// (They can be empty too).
-	return Files::Exists(path / "data") || Files::Exists(path / "images") || Files::Exists(path / "sounds");
+	return Files::Exists(path / "data") || Files::Exists(path / "images")
+		|| Files::Exists(path / "shaders") || Files::Exists(path / "sounds");
 }
 
 

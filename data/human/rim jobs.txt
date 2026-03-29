@@ -19,6 +19,7 @@ mission "Southbound Shipment [0]"
 	cargo "weapons" 5 2 .1
 	to offer
 		random < 10
+		has "landing access: Zug"
 	source
 		not government "Pirate"
 		near "Zubeneschamali" 2 10
@@ -42,6 +43,7 @@ mission "Southbound Shipment [1]"
 	cargo "Ship Alloys" 5 2 .1
 	to offer
 		random < 10
+		has "landing access: Zug"
 	source
 		not government "Pirate"
 		near "Zubeneschamali" 2 10
@@ -66,6 +68,7 @@ mission "Kraz Shipment [0]"
 	cargo "weapons parts" 5 2 .1
 	to offer
 		random < 10
+		has "landing access: Rust"
 	source
 		not government "Pirate"
 		near "Kraz" 2 10
@@ -89,6 +92,7 @@ mission "Kraz Shipment [1]"
 	cargo Electronics 5 2 .1
 	to offer
 		random < 10
+		has "landing access: Rust"
 	source
 		not government "Pirate"
 		near "Kraz" 2 10
@@ -230,3 +234,45 @@ mission "Han Sizer Month [3]"
 	on complete
 		payment 150000 110
 		dialog `Your passengers are excited to have completed their journey around the Rim and pay you the agreed fee of <payment>. One is already uploading a travelogue to someone <on Longjump> as they start walking away.`
+
+mission "Delta V Hovercraft Racer Transport"
+	name "Transport racer to <planet>"
+	description "Deliver a pilot and their hovercraft to <destination> to attend a race by <date>."
+	passengers 1
+	cargo "Delta V hovercraft" 1
+	job
+	repeat
+	deadline
+	deadline 8
+	to offer
+		random < 40
+		has "landing access: Sunracer"
+	source Solace
+	destination Sunracer
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		payment 11000
+		dialog `You drop off the pilot with their hovercraft and collect your payment of <payment>.`
+
+mission "Delta V Hovercraft Large Racer Transport"
+	name "Transport team to <planet>"
+	description "Deliver this <passengers>-member racing team and their set of <cargo> to <destination> to attend a race by <date>."
+	passengers 50 100 .9
+	cargo "Delta V hovercraft" 50
+	job
+	repeat
+	deadline
+	deadline 8
+	to offer
+		random < 7
+		has "landing access: Sunracer"
+	source Solace
+	destination Sunracer
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		payment 23000
+		dialog `You drop off the racing team with their hovercraft and collect your payment of <payment>.`

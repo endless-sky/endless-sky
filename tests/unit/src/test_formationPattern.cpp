@@ -75,7 +75,7 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		auto emptyNode = AsDataNode(formation_empty);
 		FormationPattern emptyFormation;
 		emptyFormation.Load(emptyNode);
-		REQUIRE( emptyFormation.Name() == "Empty");
+		REQUIRE( emptyFormation.TrueName() == "Empty");
 		double centerBodyRadius = 0.;
 		WHEN( "positions are requested") {
 			auto it = emptyFormation.begin(centerBodyRadius);
@@ -94,7 +94,7 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		auto tailNode = AsDataNode(formation_tail_px_point);
 		FormationPattern tailFormation;
 		tailFormation.Load(tailNode);
-		REQUIRE( tailFormation.Name() == "Tail (px point)");
+		REQUIRE( tailFormation.TrueName() == "Tail (px point)");
 		WHEN( "positions are requested") {
 			double centerBodyRadius = 0.;
 			auto it = tailFormation.begin(centerBodyRadius);
@@ -140,7 +140,7 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		FormationPattern delta_px;
 		delta_px.Load(delta_pxNode);
 		double centerBodyRadius = 0.;
-		REQUIRE( delta_px.Name() == "Delta Tail (px)" );
+		REQUIRE( delta_px.TrueName() == "Delta Tail (px)" );
 		WHEN( "positions are requested") {
 			THEN ( "the correct positions are calculated" ) {
 				// No exact comparisons due to doubles, but we check if

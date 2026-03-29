@@ -23,8 +23,11 @@
 "View message log" 47
 "Toggle fullscreen" 1073741892
 "Toggle fast-forward" 1073741881
+"Pause" 112
+"Toggle performance info" 1073741884
 "Show help" 1073741882
 "Fleet: Fight my target" 102
+"Fleet: Toggle hold fire" 121
 "Fleet: Gather around me" 103
 "Fleet: Hold position" 104
 "Fleet: Toggle ammo usage" 117
