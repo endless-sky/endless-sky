@@ -1037,7 +1037,7 @@ mission "Exotic Life: Ada"
 			`A loud commotion draws your attention as you make your way through the spaceport and you look up to see three large Lovelace Labs security guards surrounding an irate pilot.`
 			`	"But I've got to unload my cargo!" the pilot is shouting right into the face of a guard who looks completely unfazed.`
 			`	"Not here you're not," she says in a bored manner, as though she deals with this kind of situation twenty times a day. "Not until you get your ship decontaminated."`
-			`	You are just one of a whole crowd of onlookers surrounding the group in a big circle now. The pilot seems to notice that he is the center of attention and decides to appeal to the crowd.`
+			`	You are now just one of a whole crowd of onlookers surrounding the group in a big circle. The pilot seems to notice that he is the center of attention and decides to appeal to the crowd.`
 			`	"You see what they're doing?" he yells. "This is... this is overreach! I'm being harassed!"`
 			`	The guard is unimpressed, poking at a datapad as she talks.`
 			`	"Rules are rules and you gotta follow them just like everyone else." She looks up, eyes narrowed. "It says here your cargo is miniature figurines. What exactly are they made out of?"`
