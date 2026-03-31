@@ -12046,7 +12046,7 @@ mission "Tavish and Kormak 3"
 	on accept
 		clear "kormak1"
 	npc board
-		government "Bounty (Disguised)"
+		government "Merchant (Hostile)"
 		system "Persian"
 		personality entering staying target timid uninterested
 		ship "Modified Argosy" "Broken Record"
