@@ -12843,6 +12843,7 @@ mission "Tavish and Kormak Reminder"
 	invisible
 	to offer
 		has "event: Tavish and Kormak Late"
+		not "Tavish and Kormak 7: offered"
 	on enter
 	on enter
 	on enter
@@ -12857,7 +12858,7 @@ mission "Tavish and Kormak Late"
 	to offer
 		has "event: Tavish and Kormak Expedition"
 		not "event: Tavish and Kormak Abandoned"
-		has "event: Tavish and Kormak Late"
+		has "Tavish and Kormak Reminder: offered"
 	source "New India"
 	destination "Alexandria"
 	passengers 2
@@ -12961,6 +12962,8 @@ mission "Tavish and Kormak dead"
 	landing
 	to offer
 		has "event: Tavish and Kormak Abandoned"
+		not "Tavish and Kormak Late: offered"
+		not "Tavish and Kormak 7: offered"
 	source "New India"
 	on offer
 		log "People" "Tavish and Kormak" `Tavish and Kormak appear lost to the wilds of New India.`
