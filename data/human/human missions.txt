@@ -12227,9 +12227,9 @@ mission "Tavish and Kormak 4"
 			`	"Captain <last>," Tavish begins with a note of pleading, but then stops and shakes his head.`
 			`	"I suppose that is equitable. You have been a most agreeable gentleperson, and have taken us further than anyone else."`
 			`	"Gentle." Kormak affirms.`
-			`	"Rest assured, we will take it from here, Captain," Tavish attempts to say with false cheer.`
+			`	"Rest assured, we will take it from here, Captain," Tavish says with false cheer.`
 			`	"Find own way." Kormak says.`
-			`	You leave them at the kiosk and head back your ship.`
+			`	You leave them at the kiosk and head back to your ship.`
 				decline
 				
 			label payup
@@ -12237,7 +12237,7 @@ mission "Tavish and Kormak 4"
 				clear "kor"
 				clear "tav"
 				payment -20000
-			`	You lean down and pick up the form. It's rather rudimentary and after a few moments you've successfully filled it out. You also attach the account information for a 20,000 credit transfer. You place the form in a tray that beneath the window that promptly swallows it up.`
+			`	You lean down and pick up the form. It's rather rudimentary and after a few moments you've successfully filled it out. You also attach the account information for a 20,000 credit transfer. You place the form in a tray beneath the window that promptly swallows it up.`
 			`	The agent reads over the form and works at their keypad for a while before finally looking back up, "Thank you. The form and fee has been processed. I am now allowed to release the following information to you."`
 			`	They pause, as if for dramatic effect, and then continue, "Chiron Campus Oxford-Harvard Research Office. Department of Oddities. Doctor-Professor Dylan Hullen-Freeze. That is all the information I have. Good day."`
 			`	The window suddenly goes opaque.`
@@ -12274,8 +12274,8 @@ mission "Tavish and Kormak 4"
 				decline
 
 			label talk
-			`	Tavish removes his bowler cap and holds it in his hands, "If we're going to confront Dr. Hullen-Freeze, then there are a few things you should be made aware of."`
-			`	Tavish fidgets with his hat, "We are former... acquaintances, and we did not leave things on the best of terms. Whatever he says, whatever he may say about me, I just want to assure you, Captain, that I have been forthright with you, at least where it counts."`
+			`	Tavish removes his bowler cap and holds it in his hands, "If we're going to confront Dr. Hullen-Freeze, then there are a few complications you should be made aware of."`
+			`	Tavish fidgets with his hat, "He and I are former... acquaintances, and we did not leave matters on the best of terms. Whatever he says, whatever he may say about me, I just want to assure you, Captain, that I have been forthright with you, at least where it counts."`
 			`	He pauses then says, "I am a member of the Society of Gentlemanly Exemplary Exploration, and Kormak and I are on the hunt for Xeno-Cryptids. I have not tried to con you on that matter, and I do believe our work is vital to science and exploration."`
 			label options
 			choice
@@ -12299,13 +12299,13 @@ mission "Tavish and Kormak 4"
 				clear "soggy"
 				clear "relation"
 				clear "honesty"
-			`	"Thank you, Captain. I appreciate you hearing me out." Tavish puts his hat back on and leaves the bridge.`
+			`	"Thank you, Captain. I appreciate your prudence in hearing me out." Tavish puts his hat back on and leaves the bridge.`
 				decline
 
 			label honesty
 			action
 				set "honesty"
-			`	Tavish swallows. "I made mistakes in my youth, and I don't want you conflating the man I was before with the one I am now. I am your companion, not your conman."`
+			`	Tavish swallows. "I made mistakes in my adolescence, and I don't want you conflating the man I was before with the one I am now. I am your companion, not your conman."`
 				goto options
 	
 			label relation
@@ -12330,8 +12330,8 @@ mission "Tavish and Kormak 4"
 			`	"Dr. Henry Forsyth saved millions, maybe billions of lives, by ignoring the academic consensus of the day, and putting his life on the line by leading a daring expedition into the frozen wastes of a desolate world. There he discovered the barbaric Ice-Witches of Nifel, and seduced their wild and beautiful leader, the Ornery-dress. She would unwittingly lead him to the cure of the Rigellian Plague, and secure his position as a preeminent scholar, explorer, and hero of his time."`
 
 			label henry2
-			`	He seems to inflate as he speaks, "That's the legacy of SOGEE, of the Society of Gentlemanly Exemplary Explorers, and I may not ever live up to Dr. Forsyth, but I still believe in the spirit of his actions and am committed to following his footsteps."`
-			`	Tavish pauses. "Although, don't repeat that story to Kormak. It upsets him. I think the Ice-Witches of Nifel may be distant cousins of his."`
+			`	He seems to inflate as he speaks, "That's the legacy of SOGEE, of the Society of Gentlemanly Exemplary Explorers, and I may not ever live up to Dr. Forsyth, but I still believe in the spirit of his actions and am committed to following in his footsteps."`
+			`	Tavish pauses. "Although, please don't repeat that story to Kormak. It upsets him. I think the Ice-Witches of Nifel may be distant cousins of his."`
 				goto options
 
 	on complete
@@ -12352,14 +12352,14 @@ mission "Tavish and Kormak 5"
 		has "Tavish and Kormak 4: done"
 	on offer
 		conversation
-			`The three of you ride the rail in silence as it slithers through Chiron's bright and beautiful landscape. Some minutes into the trip the obvious signs of the city give way to university campus scenery.`
+			`The three of you ride the rail in silence as it slithers through Chiron's bright and beautiful landscape. Some minutes into the trip the obvious signs of the city give way to university campus.`
 			`	For an hour you pass one educational building after another, only broken up by the occasional lacrosse field or dormitory, until finally Tavish stands up.`
 			`	"Next stop is us," he says.`
 			choice
 				`	"How big exactly is this campus?"`
 			`	Tavish manages a chuckle. "You think this is big? You should see the Academy of Planetary Sciences campus on Glory."`
 			`	He steps off the train as it stops. "Follow me, chaps. It'll still be a bit of a trek."`
-			`	The three of you wind past, through, under, and on one occasion over various academic buildings with obscure names and opaque functions. Constantly you're working your way around flocks of students and gaggles of professors as they migrate incessantly from one building to another.`
+			`	The three of you wind past, through, under, and on one occasion over various academic buildings with obscure names and opaque functions. Constantly you're working to avoid flocks of students and gaggles of professors as they migrate incessantly from one building to another.`
 			`	Finally, as Chiron's twin suns Rigil Kentaurus and Toliman begin to set, you arrive at a tall, wide, well-kept building with all the pomp of a campus administrative facility.`
 			`	Tavish leads you in until you're standing in front of a mousy receptionist in a red sweater with various bookish pins and a plaque that says "Starla" on it.`
 			`	"Can I help you?" She tries to maintain a professional demeanor, but her eyes keep straying to Kormak.`
@@ -12367,7 +12367,7 @@ mission "Tavish and Kormak 5"
 				`	"We're here to see Dr. Hullen-Freeze."`
 				`	"Where can we find Dr. Hullen-Freeze?"`
 
-			`	"The Doctor-Professor has no appointments scheduled for this evening. He's a very busy and important man and I am afraid he has no time for drop-ins. If you'd like you can leave your contact info with me and I'll see if he's willing to schedule something with you in the next couple of months?"`
+			`	"The Doctor-Professor has no appointments scheduled for this evening. He's a very busy and important man and I am afraid he has no time for drop-ins. If you'd like you can leave your contact info with me and I'll see if he's willing to schedule something with you in the next couple of months."`
 			`	She gives you an apologetic look. "Sorry."`
 			label talk
 			choice
