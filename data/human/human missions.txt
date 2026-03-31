@@ -11586,7 +11586,7 @@ mission "Weland: Dragon Tech"
 			action
 				outfit "Retrofitted Fusion Afterburner" 1
 			`	"Ah, well, was worth a shot. Still, had 6 months to study it, so it's not a total bust. I'll have it dropped off at your ship, assumin' you have the space." He hobbles over to you and shakes your hand.`
-			`	"I'll miss having it around. Made the place feel mysterious." He shrugs.`
+			`	"I'll miss having it around. Made the place feel mysterious. In a cozy sort of way." He shrugs.`
 
 			branch bloodkeep
 				has "outfit: Blood of Surtr"
@@ -11631,7 +11631,7 @@ mission "Weland: Dragon Tech"
 				payment -6000000
 				event "welandstone" 90
 			`	"Ah, well, was worth a shot. Still, had 6 months to study it, so it's not a total bust. I'll have it dropped off at your ship, assumin' you have the space." He hobbles over to you, and shakes your hand.`
-			`	"I'll miss having it around. Made the place feel mysterious." You say your goodbyes, and head back to your ship.`
+			`	"I'll miss having it around. Made the place feel mysterious. Real cozy like." You say your goodbyes, and head back to your ship.`
 				decline
 			
 			label bloodkeep
@@ -11698,7 +11698,7 @@ mission "Weland: Dragon Tech"
 					goto studysurtr
 				`	(Refuse him.)`
 			`	Crestfallen, Weland turns away from you. "They're your stones, your call."`
-			`	He says nothing more and limps off into some back room, chains dragging after him. You show yourself out.`
+			`	He says nothing more and limps off into some back room. You show yourself out.`
 				decline
 			
 			label studyskade
@@ -11729,7 +11729,7 @@ mission "Weland: Dragon Tech"
 					goto studyskade
 				`	(Refuse him.)`
 			`	Crestfallen, Weland turns away from you. "It's your stone, your call."`
-			`	He says nothing more and limps away into some back room, chains dragging after him. You show yourself out.`
+			`	He says nothing more and limps away into some back room. You show yourself out.`
 				decline
 
 			label studysurtr
@@ -11760,7 +11760,7 @@ mission "Weland: Dragon Tech"
 					goto studysurtr
 				`	(Refuse him.)`
 			`	Crestfallen, Weland turns away from you. "It's your stone, your call."`
-			`	He says nothing more and limps away into some back room, chains dragging after him. You show yourself out.`
+			`	He says nothing more and limps away into some back room. You show yourself out.`
 				decline
 
 event "welandstone"
@@ -11788,7 +11788,7 @@ mission "Weland: Stone Harmonization"
 	on complete
 		conversation
 			`You find Weland tinkering away in his shop. He puts his inscrutable tools down and waves to you as you enter.`
-			`	"Ah, there you are. I am sure you're wonderin' yourself sick trying to divine why I called ya." He grins, and limps toward you, dragging metal chains behind his feet.`
+			`	"Ah, there you are. I am sure you're wonderin' yourself sick trying to divine why I called ya." He grins, and limps toward you.`
 			`	"I heard word, from someone who's done crew work on your ship, that you're in possession of a couple of Deep Stones." He nearly whispers the last the two words.`
 			`	"I've been told you call 'em the 'Tear of Skade' and the 'Blood of Surtr.'". He watches your eyes carefully as he names off the stones. "Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few have ever been found, and those the government holds under lock and key.`
 			`	"But, here you are, flying free with not one, but two, on your ship, doin' whatever it is these strange stones do. I'd offer to buy one of 'em off ya, but I don't have anywhere near enough cash for one of those.`
@@ -11800,7 +11800,7 @@ mission "Weland: Stone Harmonization"
 					goto studysurtr
 				`	(Refuse him.)`
 			`	Crestfallen, Weland turns away from you. "It's your stone, your call."`
-			`	He says nothing more, and limps off into some back room, chains dragging after him. You show yourself out.`
+			`	He says nothing more, and limps off into some back room. You show yourself out.`
 				decline
 			label studyskade
 			action
@@ -11841,7 +11841,7 @@ mission "Weland: Stone Stolen"
 	on complete
 		conversation
 			`Weland's laboratory is in shambles. Ruined equipment litters the floor, terminals have been smashed, and the workbench has been broken in two.`
-			`	A beaten and battered Weland is waiting for you in a wheelchair. His bloody leg chains, with what may be bone fragments, are heaped in a corner. A shadow haunts his face. "We cannot speak freely here. Meet me in the spaceport."`
+			`	A beaten and battered Weland is waiting for you in a wheelchair. The black cynderical objects, with what may be bone fragments, are discarded in a corner. A shadow haunts his face. "We cannot speak freely here. Meet me in the spaceport."`
 
 
 mission "Weland: Retrieve Skade"
@@ -11856,11 +11856,11 @@ mission "Weland: Retrieve Skade"
 	on offer
 		conversation
 			`Weland is waiting for you outside a nearly empty eatery. He turns his wheelchair to face you as you approach.`
-			`	"Well, as you may have surmised," he nods toward his covered feet, that were, until recently, chained, "I am someone else's property."`
-			`	The injured man sighs and looks away from you. "They let me do my own work, follow my own interests, pretend to be my own man, so long as I stay put, and do whatever they ask, when they ask it.`
+			`	"Well, as you may have surmised," he nods toward his covered feet, "I am someone else's property."`
+			`	The injured man sighs and looks away from you. "They let me do my own work, follow my own interests, pretend to be my own man, so long as I stay put, and do whatever they ask, when they ask.`
 			`	"I shoulda known. Shoulda seen it. They weren't going to just let me give you back somethin' as valuable as a Deep Stone. Once I was done, once I had... uncovered... what I did, they swooped in. Demanded I give it up." He turns back to you, his eyes blazing.`
 			`	"But, I did not comply. My word is my bond. I tried to stop 'em, used means they were unaware I had." He flashes his teeth in a feral grin.`
-			`	"Still, they had their ways, the things they've implanted. Those who survived rendered me immobile, beat me like a dog." He shakes his head.`
+			`	"Still, they had their ways, the things they've implanted." He glances down at his covered legs. "Those who survived rendered me immobile, beat me like a dog." He shakes his head.`
 			`	"They took it. Took your stone. And this very minute they are hustling to get as far from Wayfarer as they can."`
 			`	He looks into your eyes, and says with firm resolve, "But, I know where they are, where they lay low. And if you're the sorta fella who doesn't shy from a fight, you can take back what is yours. So whatd'ya say?"`
 			choice
@@ -11895,14 +11895,14 @@ mission "Weland: Retrieve Skade"
 	npc board
 		government "Bounty (Disguised)"
 		system "Naper"
-		personality entering target timid staying uninterested
+		personality entering target timid staying uninterested marked
 		ship "Falcon" "Falcon (Gwesklin Variant)" "C.M.C.S. Aotrou"
 		dialog `It looks like Captain Gwesklin took an escape pod and abandoned the ship earlier in the battle. The stone is still here, though. You should take it.`
 	on visit
 		dialog `You haven't dealt with the Aotrou.`
 	on complete
 		conversation
-			`Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
+			`Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking much better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to meet him at his shop with your reclaimed stone.`
 
 
 mission "Weland: Retrieve Surtr"
@@ -11917,11 +11917,11 @@ mission "Weland: Retrieve Surtr"
 	on offer
 		conversation
 			`Weland is waiting for you outside a nearly empty eatery. He turns his wheelchair to face you as you approach.`
-			`	"Well, as you may have surmised," he nods toward his covered feet that were, until recently, chained, "I am someone else's property."`
+			`	"Well, as you may have surmised," he nods toward his covered feet, "I am someone else's property."`
 			`	The injured man sighs and looks away from you. "They let me do my own work, follow my own interests, pretend to be my own man, so long as I stay put, and do whatever they ask, when they ask it.`
 			`	"I shoulda known. Shoulda seen it. They weren't going to just let me give you back somethin' as valuable as a Deep Stone. Once I was done, once I had... uncovered... what I did, they swooped in. Demanded I give it up." He turns back to you, his eyes blazing.`
 			`	"But, I did not comply. My word is my bond. I tried to stop 'em, used means they were unaware I had." He flashes his teeth in a feral grin.`
-			`	"Still, they had their ways, the things they've implanted. Those who survived rendered me immobile, beat me like a dog." He shakes his head.`
+			`	"Still, they had their ways, the things they've implanted." He glances down at his covered legs. "Those who survived rendered me immobile, beat me like a dog." He shakes his head.`
 			`	"They took it. Took your stone. And this very minute they are hustling to get as far from Wayfarer as they can."`
 			`	He looks into your eyes, and says with firm resolve, "But, I know where they are, where they lay low. And if you're the sorta fella who doesn't shy from a fight, you can take back what is yours. So whatd'ya say?"`
 			choice
@@ -11963,7 +11963,7 @@ mission "Weland: Retrieve Surtr"
 		dialog `You haven't dealt with the Aotrou.`
 	on complete
 		conversation
-			`Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
+			`Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to meet him at his shop with your reclaimed stone.`
 
 
 mission "Weland: Stone Retrieved Harmonization"
@@ -11998,13 +11998,13 @@ mission "Weland: Stone Retrieved Harmonization"
 			branch skade2
 				not "outfit: Blood of Surtr"
 				has "outfit: Tear of Skade"
-			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of crackling energized air.`
+			`	He hits a button, and for just a second it feels like the air is sucked out of the room into the stone, followed by a forceful gust of crackling energized air exploding out from the stone.`
 			`	"Ah ha! Hot damn, it worked!" He studies the stone for a second, taking some readings, than hands it back to you.`
 			`	"See for yourself, it's more energetic than it used to be, more powerful. Harmonized." Weland laughs to himself, and then muses. "Crystalline tonal architecture, ha, who woulda thought, alright."`
 			`	Weland opens up a keypad, and begins tapping it. "I do believe I still owe you three million credits, which I have just transferred to your account. Also, consider your newly harmonized stone as a bonus for unfortunate circumstances.`
 				goto questions
 			label skade2
-			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of cold air.`
+			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of cold air exploding out from the stone.`
 			`	"Ah ha! Cold damn, it worked!" He studies the stone for a second, taking some readings, than hands it back to you.`
 			`	"See for yourself, it's colder than it used to be, more powerful. Harmonized." Weland laughs to himself, and then muses. "Crystal tonal architecture, ha, who woulda thought, alright."`
 			`	Weland opens up a keypad, and begins tapping it. "I do believe I still owe you three million credits, which I have just transferred to your account. Also, consider your newly harmonized stone as a bonus for unfortunate circumstances.`
@@ -12019,7 +12019,7 @@ mission "Weland: Stone Retrieved Harmonization"
 				`	"Thanks for all you've done. I hope we meet again."`
 				`	"So long."`
 			label bye
-			`	"I appreciate you comin' down here, and standin' for somethin'. I always thought there was somethin' right uncommon 'bout you. And you proved in spades. Take care now, and hopefully we'll meet again."`
+			`	"I appreciate you comin' down here, and standin' for somethin'. I always thought there was somethin' right uncommon 'bout you. And you proved it in spades. Take care now, and hopefully we'll meet again."`
 				decline
 			label next
 			`	The injured man gets a distant look in his eyes, "Well, I figure I'll just get back to doin' what I am doin'. Lots of things to figure, lots of cords to sell. Always work, and excitement for someone in my boots. I wager one of these days I'll shake loose of my masters. But until then I'll abide."`
