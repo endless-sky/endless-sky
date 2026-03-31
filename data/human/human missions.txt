@@ -12048,7 +12048,7 @@ mission "Tavish and Kormak 3"
 	npc board
 		government "Merchant (Hostile)"
 		system "Persian"
-		personality entering staying target timid uninterested
+		personality entering staying target timid uninterested marked
 		ship "Modified Argosy" "Broken Record"
 
 		conversation
