@@ -12409,11 +12409,11 @@ mission "Tavish and Kormak 5"
 			`	Tavish audibly gulps and then pushes through the door and into the office. Kormak follows behind him.`
 			choice
 				`	(Enter the office.)`
-			`	The office is large and filled with trophies, awards, certificates, and books. Behind a thick wooden desk sits an older cleanshaven man with gray hair, in a felty sweatervest.`
+			`	The office is large and filled with trophies, awards, certificates, and books. Behind a thick wooden desk sits an older cleanshaven man with gray hair in a felty sweatervest.`
 			`	"What? Who are you? What is the... oh, it's you." The surprise in his voice quickly gives way to amusement.`
 			`	"I knew it would only be a matter of time before you slithered your way back in here. Given up on your dreams, eh? No grand adventures for you? No Ice-Princesses or whatever? Ready to beg for my magnamonious scraps?"`
 			`	Tavish withers beneath Hullen-Freeze's barrage. "I... no..." he stammers.`
-			`	"Oh, Julian. Who would have believed you once were so eloquent. Normally I'd just have you tossed out like the trash you are, but you caught me in a good mood. Get down on all fours, crawl to me in contrition, and I'll consider letting you back into my light."`
+			`	"Oh, Julian. Who would have believed you were once so eloquent. Normally I'd just have you tossed out like the trash you are, but you caught me in a good mood. Get down on all fours, crawl to me in contrition, and I'll consider letting you back into the fold."`
 			`	Kormak steps in front of Tavish as though he is shielding him from the verbal torrent, and rumbles, "Enough! Swallow your tongue, nithling."`
 			`	Hullen-Freeze flinches, clearly taken aback. It's as though he hadn't realized Tavish was not alone. He adjusts his purely cosmetic spectacles, and clears his throat.`
 			`	"Ni-Nithling, eh? W-what are you? One of those atavistic stone-agers from the Deep? I swear I heard they took care of all your kind." Hullen-Freeze's voice steadies as he speaks, though he still eyes Kormak warily.`
@@ -12423,7 +12423,7 @@ mission "Tavish and Kormak 5"
 				`	"I don't care about you and whatever this thing you have going on with Tavish is. We're just here for the confiscated equipment from Hephaestus."`
 			`	Hullen-Freeze narrows his eyes to peer at you as he continues to wipe his glasses. "What? Oh, that ecletic junk?"`
 			`	He laughs, "Of course! Only Julian and his uncouth associates would have use for such nonsensical tools. A metal ring that blazes fire? Really? This is too good.`
-			`	"You don't know who you're really working with, do you? I bet he told you he was some sort of hot-shot Chiron professor? He's not. He's street-garbage. A common thief and a conman. He thinks if he says a few big words and calls everyone 'chap,' they'll think he's important. But the only reason he isn't trash is because of me!"`
+			`	"You don't know who you're really working with, do you? I bet he told you he was some sort of hot-shot Chiron professor? He's not. He's street-garbage. A common thief and a conman. He's saddled with the juvenile delusion if he says a few big words and calls everyone 'chap,' they'll think he's important. But the only reason he isn't trash is because of me!"`
 			label dothething
 			choice
 				`	"Street-garbage? Yet you weren't too good to work with him!"`
@@ -12432,7 +12432,7 @@ mission "Tavish and Kormak 5"
 						not "streetgarbage"
 				`	"I don't care where Tavish came from, he's my friend. Now tell me where the equipment is!"`
 				`	"Look. I am just here for the equipment. Tell me where it is and we'll go."`
-			`	"Fine. Why not? I don't need your worthless trinkets. But I do want something. A small thing really, almost nothing all, I just want Julian's misplaced and out-sized self-respect."`
+			`	"Fine. Why not? I don't need your worthless trinkets. But I do want something. A small thing really, almost nothing at all, I just want Julian's misplaced and out-sized self-respect."`
 			`	Hullen-Freeze gives you a feral grin. "A little debasement, that's all. Make him crawl to me on all fours, and admit he's trash. Then I'll tell you where it's stored and you can be on your way." He holds up his palms. "Everyone wins."`
 			label gotime
 			choice
@@ -12498,15 +12498,17 @@ mission "Tavish and Kormak 5"
 			`	With one wide swipe Kormak knocks all of Hullen-Freeze's trophies and awards to the floor. He then crushes them beneath his feet.`
 			`	Hullen-Freeze has his arms up with his back against the wall. "You'll-you'll pay for this."`
 			`	Just then four armed security guards with electric batons burst into the room. "Finally, you laggards!" Hullen-Freeze shouts. "Subdue the madman! Now!"`
-			`	Kormak flows like water. The security guards' batons flail uselessly in the air as with an uncanny ease Kormak incapacitates each of them one at a time. A heartbeat later all four of them lie unmoving at his feet.`
+			`	Kormak flows like water. The security guards' batons flail uselessly in the air as Kormak incapacitates each of them one at a time with an uncanny ease. A heartbeat later all four of them lie unmoving at his feet.`
 			`	He turns his attention back to Hullen-Freeze who is now groveling, "Yes. Yes! I'll give you what you want." He starts digging through the ruins of his desk until he finds a keycard and with a shaking arm holds it out.`
 			`	"Here it is. The storage unit is in the spaceport. Take it! Take it, and go. It's what you wanted!"`
 			choice
+				`	"Enough! Just grab the card and let's get out of here!."`
+					goto thatsenough
 				`	(Say nothing.)`
 				`	(Nod to Kormak.)`
 			`	Kormak ignores the keycard and instead grabs the man by his gray hair and forces him to the floor.`
 			`	"Crawl to Tavish. Tell Tavish who is garbage," Kormak growls in the horrified man's ear.`
-			`	"Yes, of course, anything," Hullen-Freeze whimpers as he proceeds to drag himself across to floor to Tavish's feet.`
+			`	"Yes-yes, of course, anything," Hullen-Freeze whimpers as he proceeds to drag himself across to floor to Tavish's feet.`
 			`	"I am garbage. I am trash. I-I am trash. Please, please forgive me," he says tearfully into Tavish's shoes.`
 			`	Kormak picks up the keycard, and turns his attention back to you. "Done?"`
 			choice
@@ -12524,19 +12526,23 @@ mission "Tavish and Kormak 5"
 			`	The three of you leave together and head back to the spaceport. Once there, you finally pick up the scientific research equipment for the New India expedition.`
 				accept
 
+			label thatsenough
+			`	Kormak's body shakes as he struggles to keep himself from doing violence. Slowly he picks up the keycard and steps away from a sniveling incoherent Hullen-Freeze.`
+				goto timetogo
+
 			label timetogo
 			action
 				clear "tavtalk"
 				clear "payme"
 				clear "tavgirl"
 				clear "streetgarbage"
-			`	Kormak grabs his jacket and finds Starla waiting for him just outside the office. She'd seen the whole thing.`
+			`	Kormak grabs his jacket and finds Starla waiting for him just outside the office. Her eyes wide after witnessing the altercation.`
 			`	"Wh-what's that smell?" she asks quietly.`
 			`	Kormak looks back, sniffs, and then shrugs, "He wet himself."`
 			`	Starla gasps, but it's unclear if she's horrified or impressed. She then presses something small in Kormak's hand.`
 			`	"If you're ever on Chiron, give me a call." She then turns and hurries away.`
-			`	Tavish, who has been silent up until now, suddenly bursts out in laughter. Long uproarious belly laughter.`
-			`	The three of you leave together and Tavish laughs the entire way back to the spaceport. Once there you finally pick up the scientific research equipment for the New India expedition.`
+			`	Tavish, who has been silent up until now, suddenly bursts out laughing. Long uproarious belly laughter.`
+			`	The three of you leave together and Tavish laughs the entire way back to the spaceport. Once there you finally pick up the scientific research equipment for the New India expedition. With the equipment safely aboard your ship it is time to return to New India.`
 				accept
 
 	on visit
