@@ -12844,6 +12844,7 @@ mission "Tavish and Kormak Reminder"
 	to offer
 		has "event: Tavish and Kormak Late"
 		not "Tavish and Kormak 7: offered"
+		not "Tavish and Kormak Reminder: declined"
 	on enter
 	on enter
 	on enter
@@ -13018,12 +13019,12 @@ mission "Weland"
 				`	(Enter the store.)`
 					goto enterstore
 				`	(Don't enter the store.)`
-			`	It's doubtful the run-down store has anything to offer you. You walk past it, and find your way back to the main spaceport.`
+			`	It's doubtful the run-down store has anything to offer. You walk past it, and find your way back to the main spaceport.`
 				defer
 			label enterstore
 			`	The dingy run-down shop is filled with clutter, piles of unrecognizable technology, and miles of tangled cords.`
 			`	"Don't mind the mess," a gravelly voice interjects from somewhere deeper in the store.`
-			`	A few moments later, a well-built, graying man painfully hobbles into the front. "Name's Weland, what can I do for you?"`
+			`	A few moments later, a well-built, graying man painfully hobbles forward. "Name's Weland, what can I do for you?"`
 			choice
 				`	(Tell him about the Salvaged Artifact.)`
 					goto AA
@@ -13041,23 +13042,35 @@ mission "Weland"
 				`	(Tell him about the Salvaged Artifact.)`
 			label AA
 			`	Weland nods slowly as he listens to you recount Tavish and Kormak's expedition.`
-			`	"Well, isn't that somethin'. Knew those boys would make it big one of these days. Sounds like they found dragon tech. That's a rare sight, alright."`
+			`	"Well, isn't that somethin'. Knew those boys would make it big one of these days. Sounds like they found Dragon tech. That's a rare sight, alright."`
 			`	Weland strokes his beard for a moment, and then says, "Listen here. Maybe I can help. I'll need to take a look at it. Stories are great and all, but I gotta put eyeball to metal to know if what you're talking about is wortha damn, and then even if it is valuable and if there is anything I can do about it."`
 			choice
 				`	(Agree to leave the artifact with Weland.)`
 					goto agreetoweland
 				`	(Refuse to leave the artifact with Weland.)`
-			`	Weland holds up his hands. "Alright, now, just hold up, you really want to keep dragging around some useless cargo from port to port? I'm not going nowhere." Weland lifts up one of his mangled feet, where there's some sort of chain directly embedded into his ruined achilles heel. "Not as if I could run, even if I wanted to.`
+			`	Weland holds up his hands. "Alright, now, just hold up, you really want to keep dragging around some useless cargo from port to port? I'm not going nowhere." Weland points to one of his mangled feet, you can see a shiny black cylindrical object embedded into his ruined achilles heel. "Not as if I could run, even if I wanted to.`
 			`	"So, you sure you want to pass up on this? That you can't give me a few days to look at your artifact?"`
+			label lend
 			choice
 				`	(Agree to leave the artifact with Weland.)`
 					goto agreetoweland
+				`	"What happened to your feet? What is that thing?"`
+					goto whathappened
+					to display
+						not "feetquestion"
 				`	(Refuse to leave the artifact with Weland.)`
 			`	Weland shrugs. "If that's how you feel. Well, before you go, any chance I could offer you some premium cords at crazy discount prices?"`
 			`	Weland then launches into another sales pitch on the utility of many of his useless cords. You politely nod, edge toward the door after promising him you'll come to him first should you ever need a cord, and promptly leave.`
-				decline
-			label agreetoweland
 			action
+				clear "feetquestion"
+				decline
+
+			label whathappened
+			action
+				set "feetquestion"
+			`	Weland rolls his back in a slow shrug. "Nothing you needs be worrin' about. Just some old business. But what I am keen to discuss with you is new business. Now what do you say?"`
+				goto lend
+			label agreetoweland
 				event "welandwait1" 6
 			`	The old man grins brightly. "Good. Good. I 'spect it'll take me about a week to get my bearings on this artifact of yours. I'll also be needing your ship's schematics, it'll help me figure out how it can be installed, assumin' you want that."`
 			`	With the deal completed, you head back to the spaceport. You send the pertinent information about your ship to Weland, and have the outfit transferred to him as well. Hopefully, he and your artifact are still here when you return after a week.`
@@ -13092,7 +13105,7 @@ mission "Weland 2"
 			`	The building, which on the outside looks like an abandoned warehouse, is in fact a sprawling laboratory.`
 			`	Exotic technology and strange artifacts fill the room and at its center is Weland, leaning over a sophisticated workbench.`
 			`	"Well, look what the cat dragged in. 'Bout time you showed up." Weland flicks his red-tinted goggles off his head and slowly stands.`
-			`	Weland nods toward a mass of technology that you realize is encasing your artifact, and limps over to it. As he's walking you notice thick surgically connected chains dragging behind his feet.`
+			`	Weland nods toward a mass of technology that you realize is encasing your artifact, and limps over to it. The dull red light of the room reflecting off the black cylindrical objects embedded in his heels.`
 			`	The graying man pats your artifact. "She's seen better days, but beneath the dented casing and corroded cords enough of her was still intact to save. I dare say she's some of the best Dragon tech I've ever seen. Usually folks, well, they bring me the ruined guts of half a Dragon toaster they dug up in their backyard. But, this, well, this is the real McCoy, alright."`
 			label questions
 			choice
@@ -13103,23 +13116,33 @@ mission "Weland 2"
 				`	"Dragon tech?"`
 					goto dragon
 				`	"What happened to your feet?"`
+					to display
+						not "feettime"
 			`	Weland's eyes narrow, and then he sighs. "Supposin' its too obvious not to ask. Let's just say I ran afoul some nefarious individuals. Kinda folk that take what they want, even when what they want is people. They'd as tell ya that I work for them now, and that may be true, but I still work for me, too. So, don't you worry none. Our business is between you and me."`
+			action
+				set "feettime"
 			choice
+				`	"Do you need help? Should I call the authorities?"`
+					goto authorities
 				`	"Okay, I trust you."`
 					goto questions
 				`	"Fine, but you better not screw me over."`
 					goto questions
-				`	"Why not just cut the chains and leave? There's plenty of tools here."`
-			`	The large man shakes his head sadly. "These chains aren't what keep me here. They have other ways to watch me, to stop me, to own me. These are just a symbol, a reminder, a cruel jest. I could cut them easy as cuttin' bread, but before I left the door they'd be all over me, and who knows what they'd do to me next."`
-			`	He gives you a pained smile. "I know what you're thinking. Be a hero, help the old man, some such nonsense. This isn't that story, and you aren't that person. So, let it rest. These are my chains, and this is my problem, and one way, or another, I'll deal with it. So, is your curiosity sated? Can we return to the matter at hand?"`
+				`	"Why not just leave? Plenty of ships to hitch a ride on and get away from here."`
+			`	The large man shakes his head sadly. "Don't take chains to bind a man. They have other ways to watch me, to stop me, to own me." He jestures at the black objects in his heels. "These are just a symbol, a reminder, a cruel jest. I could cut them easy as cuttin' bread, but before I left the door they'd be all over me, and who knows what they'd do to me next."`
+			`	He gives you a pained smile. "I know what you're thinking. Be a hero, help the old man, some such nonsense. This isn't that story, and you aren't that person. So, let it rest. This is my problem, and one way, or another, I'll deal with it. So, is your curiosity sated? Can we return to the matter at hand?"`
+			choice
+				"I am satisfied."
 				goto questions
+				"Let me call the authorities! This is clearly illegal!"
+				goto authorities
 			label dragon
 			`	"Yep, Dragons. Well, not the kind from Earth stories, or, at least, Earth, probably. We find 'em in the Rim, the South, the Dirt Belt, bits and pieces of them, that is. Reckon they must have lived here more than a hundred thousand years ago. Most their tech is in ruins, broken, dilapidated, hard to piece much of it together. Suffice to say, they were big brutes, they had big space ships, and they've been dead for a helluva long time."`
 			`	He looks over at your artifact. "And you, well, you found somethin' of theirs."`
 				goto questions
 			label next
 			`	"Getting somethin' like this up, and running, well, it's not quick, it's not easy, and it won't be cheap."`
-			`	He holds his hand up. "'Fore you say anythin', what I did was run a preliminary check. Had to make sure it wasn't trash, or useless, and waste both our time. You'd be surprised the nonsense folk drag in here. I still don't know it functions, let alone how to integrate it with your ship. But, with time, I will.`
+			`	He holds his hand up. "'Fore you say anythin', what I did was run a preliminary check. Had to make sure it wasn't trash, or useless, and waste both our time. You'd be surprised the nonsense folk drag in here. I still don't know if it functions, let alone how to integrate it with your ship. But, with time, I will.`
 			`	"So, here's what I can offer you. Give me 6 months. You might think that's long, but you won't find anybody who can do it faster. I got a few ideas, seen a few things, and am confident I can unravel this here little mystery. Now, my fee will be a million credits a month, which should come out to 6 million credits total. That may sound steep, but you will only have to pay if I get it workin'. So, whatd'ya say? You in?"`
 			choice
 				`	(Agree to his terms.)`
@@ -13138,9 +13161,16 @@ mission "Weland 2"
 				decline
 			label agree
 			action
+				clear "feettime"
 				event "welandwait2" 160 180
 			`	Weland beams. "That's the spirit, now. Figurin' things out, well, that's what it means to be human, isn't it? Now, as I said, I reckon it'll take me near about 6 months to get this beauty figured out. I realize, being a fancy space hero an' all, you probably will need a little reminder, so when I am done I'll send you a message. As I promised, if I can't get it to work, you don't have to pay me a penny. But, well, I wouldn't be betting on that happening; I haven't yet met a machine I couldn't crack."`
 				decline
+
+			label authorities
+			`	Weland barks a rough throaty laugh. "Well, you've got spunk, I'll give you that. No, all the right papers have been signed by all the right people. They'd come to the conclusion righ quick that the only crime here is me not spending enough time in sanitarium."`
+			`	He shakes his head. "Enough of this melancholy moaning. Let's get back to business."`
+			`	Weland directs your attention back to the artifact you brought in.`
+				goto questions
 
 event "welandwait2"
 
