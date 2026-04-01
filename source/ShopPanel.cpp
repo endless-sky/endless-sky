@@ -99,13 +99,13 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	SetIsFullScreen(true);
 	SetInterruptible(false);
 
-	selected_quantity = std::make_shared<Dropdown>();
-	selected_quantity->SetAlign(Dropdown::LEFT);
-	selected_quantity->SetFontSize(14);
-	selected_quantity->SetPadding(0);
-	selected_quantity->SetOptions({"1", "10", "100", "1000"});
-	selected_quantity->SetTypeable(true);
-	selected_quantity->SetCallback([](std::string& s)
+	selectedQuantity = std::make_shared<Dropdown>();
+	selectedQuantity->SetAlign(Dropdown::LEFT);
+	selectedQuantity->SetFontSize(14);
+	selectedQuantity->SetPadding(0);
+	selectedQuantity->SetOptions({"1", "10", "100", "1000"});
+	selectedQuantity->SetTypeable(true);
+	selectedQuantity->SetCallback([](std::string& s)
 	{
 		// Restrict input to digits.
 		for(char c : s)
@@ -118,7 +118,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 		return true;
 	});
 
-	AddChild(selected_quantity);
+	AddChild(selectedQuantity);
 }
 
 
@@ -161,14 +161,14 @@ void ShopPanel::Draw()
 	int modifier = Modifier();
 	if(modifier > 1)
 	{
-		selected_quantity->SetText(to_string(modifier));
-		quantity_is_modifier = true;
+		selectedQuantity->SetText(to_string(modifier));
+		quantityIsModifier = true;
 	}
-	else if(quantity_is_modifier)
+	else if(quantityIsModifier)
 	{
 		// User has released modifier keys. Reset quantity dropdown to 1x
-		selected_quantity->SetText("1");
-		quantity_is_modifier = false;
+		selectedQuantity->SetText("1");
+		quantityIsModifier = false;
 	}
 
 	// These get added by both DrawMain and DrawDetailsSidebar, so clear them here.

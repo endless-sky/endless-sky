@@ -17,28 +17,36 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "shader/FillShader.h"
 
-#include <SDL2/SDL.h>
+
+
+namespace
+{
+	// In units of frames at 60fps, so half a second.
+	uint32_t BLINK_INTERVAL = 30;
+}
+
+
 
 void Caret::Draw()
 {
-	auto now = SDL_GetTicks();
-	if(now > next_blink)
-	{
-		blink_on = !blink_on;
-		next_blink = next_blink ? next_blink + interval : now + interval;
-	}
+	++blinkCounter;
 
-	if(blink_on)
+	if(blinkCounter < BLINK_INTERVAL)
 	{
 		Point p2 = pos;
 		p2.Y() += height;
 		p2.X() += 1;
 		FillShader::Fill(Rectangle::WithCorners(pos, p2), color);
 	}
+	else if(blinkCounter >= BLINK_INTERVAL * 2)
+	{
+		blinkCounter = 0;
+	}
 }
+
+
 
 void Caret::BlinkOn()
 {
-	blink_on = true;
-	next_blink = SDL_GetTicks() + interval;
+	blinkCounter = 0;
 }

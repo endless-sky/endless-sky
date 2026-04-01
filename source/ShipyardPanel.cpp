@@ -237,7 +237,7 @@ void ShipyardPanel::DrawButtons()
 	font.Draw("Quantity:", Screen::BottomRight() - Point(SIDEBAR_WIDTH - 10, 33), dim);
 
 	const Point sqCenter = Screen::BottomRight() - Point(150, 25);
-	selected_quantity->SetPosition(Rectangle(sqCenter, {55, 20}));
+	selectedQuantity->SetPosition(Rectangle(sqCenter, {55, 20}));
 
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("shipyard: ") + hoverButton);
@@ -349,7 +349,7 @@ void ShipyardPanel::DoBuyButton()
 	if(licenseCost < 0)
 		return;
 
-	modifier = stoi(selected_quantity->Text());
+	modifier = stoi(selectedQuantity->Text());
 	string message;
 	if(licenseCost)
 		message = "Note: you will need to pay " + Format::CreditString(licenseCost)

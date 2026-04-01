@@ -40,15 +40,15 @@ namespace
 Edit::Edit()
 {
 	Clear();
-	caret.SetHeight(font_size);
+	caret.SetHeight(fontSize);
 }
 
 
 
 void Edit::SetFontSize(int f)
 {
-	font_size = f;
-	caret.SetHeight(font_size);
+	fontSize = f;
+	caret.SetHeight(fontSize);
 	ComputeTextBounds();
 }
 
@@ -64,8 +64,8 @@ void Edit::SetPosition(const Rectangle& p)
 
 const std::string& Edit::Text() const
 {
-	assert(history_pos > 0);
-	return text_history[history_pos - 1].first;
+	assert(historyPos > 0);
+	return textHistory[historyPos - 1].first;
 }
 
 
@@ -80,11 +80,11 @@ void Edit::SetText(const std::string& s)
 
 void Edit::Clear()
 {
-	history_pos = 0;
-	text_history.clear();
+	historyPos = 0;
+	textHistory.clear();
 	UpdateText("", 0); // Make sure the history is not empty.
-	caret_pos = 0;
-	highlight_pos = INVALID_POS;
+	caretPos = 0;
+	highlightPos = INVALID_POS;
 }
 
 
@@ -97,32 +97,32 @@ void Edit::Draw()
 	// const Font &font = FontSet::Get(14);
 	// const Color &bright = *GameData::Colors().Get("bright");
 	// const Color &dim = *GameData::Colors().Get("medium");
-	if(bg_color == Color())
+	if(bgColor == Color())
 	{
-		bg_color = *GameData::Colors().Get("panel background");
+		bgColor = *GameData::Colors().Get("panel background");
 	}
-	const Font &font = FontSet::Get(font_size);
+	const Font &font = FontSet::Get(fontSize);
 	const Color &hover = *GameData::Colors().Get("hover");
 	const Color &active = *GameData::Colors().Get("active");
 	const Color &inactive = *GameData::Colors().Get("inactive");
 
-	FillShader::Fill(position.Center(), position.Dimensions(), bg_color);
+	FillShader::Fill(position.Center(), position.Dimensions(), bgColor);
 
 	if(HasFocus())
 	{
 		caret.Draw();
 
-		if(highlight_pos != INVALID_POS)
+		if(highlightPos != INVALID_POS)
 		{
-			Color highlight_color = active.Transparent(.25);
+			Color highlightColor = active.Transparent(.25);
 
-			FillShader::Fill(highlight, highlight_color);
+			FillShader::Fill(highlight, highlightColor);
 		}
 	}
 
 	font.Draw(Text(),
 		AlignedOffset(0),
-		is_active ? (is_hover ? hover : active) : inactive);
+		isActive ? (isHover ? hover : active) : inactive);
 }
 
 
@@ -138,7 +138,7 @@ void Edit::SetPadding(int p)
 
 bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(!is_editable)
+	if(!isEditable)
 		return false;
 
 	// Force the caret blink cycle to on after any keypress.
@@ -162,33 +162,33 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 		MoveCaret(Text().size());
 		break;
 	case SDLK_LEFT:
-		if(caret_pos > 0)
-			MoveCaret(caret_pos - 1);
+		if(caretPos > 0)
+			MoveCaret(caretPos - 1);
 		break;
 	case SDLK_RIGHT:
-		if(caret_pos < Text().size())
-			MoveCaret(caret_pos + 1);
+		if(caretPos < Text().size())
+			MoveCaret(caretPos + 1);
 		break;
 	case SDLK_BACKSPACE:
-		if(highlight_pos != INVALID_POS)
+		if(highlightPos != INVALID_POS)
 		{
-			int left = highlight_pos;
-			int right = caret_pos;
+			int left = highlightPos;
+			int right = caretPos;
 			if(left > right)
 				std::swap(left, right);
 			UpdateText(Text().substr(0, left) + Text().substr(right), left);
-			highlight_pos = INVALID_POS;
+			highlightPos = INVALID_POS;
 		}
-		else if(caret_pos > 0)
+		else if(caretPos > 0)
 		{
-			UpdateText(Text().substr(0, caret_pos - 1) + Text().substr(caret_pos), caret_pos - 1);
+			UpdateText(Text().substr(0, caretPos - 1) + Text().substr(caretPos), caretPos - 1);
 		}
 		break;
 	case SDLK_DELETE:
-		if(highlight_pos != INVALID_POS)
+		if(highlightPos != INVALID_POS)
 		{
-			int left = highlight_pos;
-			int right = caret_pos;
+			int left = highlightPos;
+			int right = caretPos;
 			if(left > right)
 				std::swap(left, right);
 			if(shift)
@@ -197,11 +197,11 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 				SDL_SetClipboardText(Text().substr(left, right - left).c_str());
 			}
 			UpdateText(Text().substr(0, left) + Text().substr(right), left);
-			highlight_pos = INVALID_POS;
+			highlightPos = INVALID_POS;
 		}
-		else if(caret_pos < Text().size())
+		else if(caretPos < Text().size())
 		{
-			UpdateText(Text().substr(0, caret_pos) + Text().substr(caret_pos + 1), caret_pos);
+			UpdateText(Text().substr(0, caretPos) + Text().substr(caretPos + 1), caretPos);
 		}
 		break;
 	case SDLK_c:
@@ -282,7 +282,7 @@ bool Edit::Click(int x, int y, MouseButton button, int clicks)
 		return false;
 	}
 
-	drag_pos = Point(x, y);
+	dragPos = Point(x, y);
 
 	SetFocus(true);
 
@@ -303,22 +303,22 @@ bool Edit::Click(int x, int y, MouseButton button, int clicks)
 
 bool Edit::Drag(double dx, double dy)
 {
-	if(drag_pos != Point())
+	if(dragPos != Point())
 	{
-		if(highlight_pos == INVALID_POS)
-			highlight_pos = caret_pos;
-		drag_pos.X() += dx;
-		drag_pos.Y() += dy;
+		if(highlightPos == INVALID_POS)
+			highlightPos = caretPos;
+		dragPos.X() += dx;
+		dragPos.Y() += dy;
 
 		const std::string &s = Text();
 		size_t newpos = 0;
 		for(; newpos < s.size(); ++newpos)
 		{
-			if(AlignedOffset(newpos + 1).X() > drag_pos.X())
+			if(AlignedOffset(newpos + 1).X() > dragPos.X())
 				break;
 		}
 
-		UpdateHighlightRect(newpos, highlight_pos);
+		UpdateHighlightRect(newpos, highlightPos);
 
 		UpdateCaret(newpos);
 		return true;
@@ -330,7 +330,7 @@ bool Edit::Drag(double dx, double dy)
 
 bool Edit::Release(int x, int y, MouseButton button)
 {
-	drag_pos = Point();
+	dragPos = Point();
 	return false;
 }
 
@@ -340,11 +340,11 @@ bool Edit::OnFocus(bool f)
 {
 	if(f)
 	{
-		if(!is_editable)
+		if(!isEditable)
 			return false;
 		SDL_StartTextInput();
-		highlight_pos = INVALID_POS;
-		UpdateCaret(text_history.back().second);
+		highlightPos = INVALID_POS;
+		UpdateCaret(textHistory.back().second);
 	}
 	else
 		SDL_StopTextInput();
@@ -358,32 +358,32 @@ bool Edit::TextInput(const std::string& s)
 	if(!HasFocus())
 		return false;
 
-	std::string new_text;
-	size_t new_pos = INVALID_POS;
-	if(highlight_pos != INVALID_POS)
+	std::string newText;
+	size_t newPos = INVALID_POS;
+	if(highlightPos != INVALID_POS)
 	{
-		int left = highlight_pos;
-		int right = caret_pos;
+		int left = highlightPos;
+		int right = caretPos;
 		if(left > right)
 			std::swap(left, right);
 
-		new_text = Text().substr(0, left) + s + Text().substr(right);
-		new_pos = left + s.size();
+		newText = Text().substr(0, left) + s + Text().substr(right);
+		newPos = left + s.size();
 
-		highlight_pos = INVALID_POS;
+		highlightPos = INVALID_POS;
 	}
 	else
 	{
-		new_text = Text().substr(0, caret_pos) + s + Text().substr(caret_pos);
-		new_pos = caret_pos + s.size();
+		newText = Text().substr(0, caretPos) + s + Text().substr(caretPos);
+		newPos = caretPos + s.size();
 	}
 	// Someday, we should make the text scroll and clip if we type something too
 	// long, but for now, just ignore input if it is too big to fit.
-	auto &font = FontSet::Get(font_size);
-	if(font.Width(new_text) > text_bounds.Width())
+	auto &font = FontSet::Get(fontSize);
+	if(font.Width(newText) > textBounds.Width())
 		return true;
 
-	UpdateText(new_text, new_pos);
+	UpdateText(newText, newPos);
 	return true;
 }
 
@@ -400,12 +400,12 @@ void Edit::MoveCaret(size_t pos)
 	auto mod = SDL_GetModState();
 	bool shift = (mod & KMOD_SHIFT) != 0;
 
-	if(highlight_pos == INVALID_POS && shift)
-		highlight_pos = caret_pos;
-	else if(highlight_pos != INVALID_POS && !shift)
-		highlight_pos = INVALID_POS;
-	if(highlight_pos != INVALID_POS)
-		UpdateHighlightRect(pos, highlight_pos);
+	if(highlightPos == INVALID_POS && shift)
+		highlightPos = caretPos;
+	else if(highlightPos != INVALID_POS && !shift)
+		highlightPos = INVALID_POS;
+	if(highlightPos != INVALID_POS)
+		UpdateHighlightRect(pos, highlightPos);
 
 	UpdateCaret(pos);
 }
@@ -415,67 +415,67 @@ void Edit::MoveCaret(size_t pos)
 void Edit::UpdateCaret(size_t pos)
 {
 	caret.SetX(AlignedOffset(pos).X());
-	caret_pos = pos;
+	caretPos = pos;
 }
 
 
 
-void Edit::UpdateText(const std::string& text, size_t caret_pos)
+void Edit::UpdateText(const std::string& text, size_t caretPos)
 {
-	std::string mutable_text = text;
-	if(changed_callback)
+	std::string mutableText = text;
+	if(changedCallback)
 	{
-		if(changed_callback(mutable_text))
+		if(changedCallback(mutableText))
 		{
 			// The callback accepted the change, but may have modified it.
-			if(caret_pos > text.size())
-				caret_pos = text.size();
+			if(caretPos > text.size())
+				caretPos = text.size();
 		}
 		else
 		{
 			// Callback rejected the change.
-			caret_pos = text_history.back().second;
+			caretPos = textHistory.back().second;
 			return;
 		}
 	}
 
 
-	text_history.resize(history_pos++);
-	text_history.emplace_back(mutable_text, caret_pos);
-	UpdateCaret(caret_pos);
+	textHistory.resize(historyPos++);
+	textHistory.emplace_back(mutableText, caretPos);
+	UpdateCaret(caretPos);
 }
 
 
 
 void Edit::Cut()
 {
-	if(highlight_pos == INVALID_POS)
+	if(highlightPos == INVALID_POS)
 	{
 		SDL_SetClipboardText(Text().c_str());
 		UpdateText("", 0);
 	}
 	else
 	{
-		int left = highlight_pos;
-		int right = caret_pos;
+		int left = highlightPos;
+		int right = caretPos;
 		if(left > right)
 			std::swap(left, right);
 		SDL_SetClipboardText(Text().substr(left, right - left).c_str());
 		UpdateText(Text().substr(0, left) + Text().substr(right), left);
 	}
-	highlight_pos = INVALID_POS;
+	highlightPos = INVALID_POS;
 }
 
 
 
 void Edit::Copy()
 {
-	if(highlight_pos == INVALID_POS)
+	if(highlightPos == INVALID_POS)
 		SDL_SetClipboardText(Text().c_str());
 	else
 	{
-		int left = highlight_pos;
-		int right = caret_pos;
+		int left = highlightPos;
+		int right = caretPos;
 		if(left > right)
 			std::swap(left, right);
 		SDL_SetClipboardText(Text().substr(left, right - left).c_str());
@@ -487,19 +487,19 @@ void Edit::Copy()
 void Edit::Paste()
 {
 	std::shared_ptr<const char> text(SDL_GetClipboardText(), SDL_free);
-	if(highlight_pos == INVALID_POS)
+	if(highlightPos == INVALID_POS)
 	{
 		// insert text at caret position
 		UpdateText(
-			Text().substr(0, caret_pos) + text.get() + Text().substr(caret_pos),
-			caret_pos + strlen(text.get())
+			Text().substr(0, caretPos) + text.get() + Text().substr(caretPos),
+			caretPos + strlen(text.get())
 		);
 	}
 	else
 	{
 		// replace highlighted text
-		int left = highlight_pos;
-		int right = caret_pos;
+		int left = highlightPos;
+		int right = caretPos;
 		if(left > right)
 			std::swap(left, right);
 		UpdateText(
@@ -508,7 +508,7 @@ void Edit::Paste()
 		);
 	}
 
-	highlight_pos = INVALID_POS;
+	highlightPos = INVALID_POS;
 }
 
 
@@ -517,10 +517,10 @@ void Edit::Undo()
 {
 	// The first entry is the initial string set by the
 	// constructor. Don't go past it.
-	if(history_pos > 1)
+	if(historyPos > 1)
 	{
-		--history_pos;
-		UpdateCaret(text_history[history_pos - 1].second);
+		--historyPos;
+		UpdateCaret(textHistory[historyPos - 1].second);
 	}
 }
 
@@ -528,29 +528,29 @@ void Edit::Undo()
 
 void Edit::Redo()
 {
-	if(history_pos < text_history.size())
+	if(historyPos < textHistory.size())
 	{
-		++history_pos;
-		UpdateCaret(text_history[history_pos - 1].second);
+		++historyPos;
+		UpdateCaret(textHistory[historyPos - 1].second);
 	}
 }
 
 
 Point Edit::AlignedOffset(size_t offset)
 {
-	const Font &font = FontSet::Get(font_size);
+	const Font &font = FontSet::Get(fontSize);
 	const std::string &s = Text();
 	Point ret{};
 	switch(alignment)
 	{
 	case Edit::LEFT:
-		ret = Point(text_bounds.Left(), text_bounds.Center().Y() - font.Height() / 2.0);
+		ret = Point(textBounds.Left(), textBounds.Center().Y() - font.Height() / 2.0);
 		break;
 	case Edit::RIGHT:
-		ret = Point(text_bounds.Right() - font.Width(s), text_bounds.Center().Y() - font.Height() / 2.0);
+		ret = Point(textBounds.Right() - font.Width(s), textBounds.Center().Y() - font.Height() / 2.0);
 		break;
 	default: // CENTER
-		ret = text_bounds.Center() - Point(font.Width(s) / 2.0, font.Height() / 2.0);
+		ret = textBounds.Center() - Point(font.Width(s) / 2.0, font.Height() / 2.0);
 		break;
 	}
 
@@ -565,14 +565,14 @@ void Edit::UpdateHighlightRect(size_t o1, size_t o2)
 {
 	assert(o1 != INVALID_POS);
 	assert(o2 != INVALID_POS);
-	int highlight_left = AlignedOffset(o1).X();
-	int highlight_right = AlignedOffset(o2).X();
-	if(highlight_left > highlight_right)
-		std::swap(highlight_left, highlight_right);
-	Point tl(highlight_left, text_bounds.Center().Y() - font_size / 2.0);
+	int highlightLeft = AlignedOffset(o1).X();
+	int highlightRight = AlignedOffset(o2).X();
+	if(highlightLeft > highlightRight)
+		std::swap(highlightLeft, highlightRight);
+	Point tl(highlightLeft, textBounds.Center().Y() - fontSize / 2.0);
 	Point br = tl;
-	br.X() = highlight_right;
-	br.Y() += font_size;
+	br.X() = highlightRight;
+	br.Y() += fontSize;
 	highlight = Rectangle::WithCorners(tl, br);
 }
 
@@ -580,6 +580,6 @@ void Edit::UpdateHighlightRect(size_t o1, size_t o2)
 
 void Edit::ComputeTextBounds()
 {
-	text_bounds = Rectangle(position.Center(), position.Dimensions() - Point(padding * 2, padding * 2));
-	caret.SetY(text_bounds.Center().Y() - font_size / 2.0);
+	textBounds = Rectangle(position.Center(), position.Dimensions() - Point(padding * 2, padding * 2));
+	caret.SetY(textBounds.Center().Y() - fontSize / 2.0);
 }

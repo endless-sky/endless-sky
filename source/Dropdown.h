@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DROPDOWN_H_
-#define DROPDOWN_H_
+#pragma once
 
 
 #include "Color.h"
@@ -38,7 +37,7 @@ public:
 	void SetOptions(const std::vector<std::string> &options);
 	void SetText(const std::string &s);
 	void SetSelectedIndex(int idx);
-	int GetSelectedIndex() const { return selected_index; }
+	int GetSelectedIndex() const { return selectedIndex; }
 
 	virtual void Draw() override;
 
@@ -56,12 +55,10 @@ private:
 	int IdxFromPoint(int x, int y) const;
 
 	std::vector<std::string> options;
-	int selected_index = -1;
+	int selectedIndex = -1;
 
 	bool showDropIcon = false;
 	bool enabled = true;
 
 	class DroppedPanel;
 };
-
-#endif

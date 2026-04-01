@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CARET_H
-#define CARET_H
+#pragma once
 
 #include "Color.h"
 #include "Rectangle.h"
@@ -35,14 +34,9 @@ public:
 	void SetY(int y) { pos.Y() = y; }
 
 private:
-	uint32_t interval = 500;
-	uint32_t next_blink = 0;
+	uint32_t blinkCounter = 0;
 	Color color{1.0, 1.0, 1.0, .75};
-	bool blink_on = true;
 
 	int height = 14;
 	Point pos{0, 0};
 };
-
-
-#endif // CARET_H

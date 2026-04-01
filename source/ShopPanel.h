@@ -208,8 +208,8 @@ protected:
 	Tooltip buttonsTooltip;
 	LoadingCircle loadingCircle;
 
-	std::shared_ptr<Dropdown> selected_quantity;
-	bool quantity_is_modifier = false;
+	std::shared_ptr<Dropdown> selectedQuantity;
+	bool quantityIsModifier = false;
 
 private:
 	void DrawShipsSidebar();

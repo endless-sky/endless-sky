@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef EDIT_H
-#define EDIT_H
+#pragma once
 
 #include "Caret.h"
 #include "Color.h"
@@ -33,11 +32,11 @@ public:
 	virtual ~Edit() = default;
 
 	void SetFontSize(int f);
-	int FontSize() const { return font_size; }
+	int FontSize() const { return fontSize; }
 	void SetPosition(const Rectangle &position);
 	const Rectangle &Position() const { return position; }
-	void SetEnabled(bool e) { is_editable = e; }
-	bool Enabled() const { return is_editable; }
+	void SetEnabled(bool e) { isEditable = e; }
+	bool Enabled() const { return isEditable; }
 
 	const std::string& Text() const;
 	void SetText(const std::string& s);
@@ -53,11 +52,11 @@ public:
 
 	void SetVisible(bool v) { visible = v; }
 	bool Visible() const { return visible; }
-	void SetBgColor(const Color &color) { bg_color = color; }
-	const Color &BgColor() const { return bg_color; }
+	void SetBgColor(const Color &color) { bgColor = color; }
+	const Color &BgColor() const { return bgColor; }
 
 	typedef std::function<bool(std::string &)> ChangedCallback;
-	void SetCallback(ChangedCallback cb) { changed_callback = cb; }
+	void SetCallback(ChangedCallback cb) { changedCallback = cb; }
 
 protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
@@ -87,32 +86,29 @@ protected:
 
 private:
 	Rectangle position;
-	Rectangle text_bounds;
-	Color bg_color;
+	Rectangle textBounds;
+	Color bgColor;
 
-	std::vector<std::pair<std::string, size_t>> text_history;
-	size_t history_pos = 0;
+	std::vector<std::pair<std::string, size_t>> textHistory;
+	size_t historyPos = 0;
 
 	Caret caret;
-	size_t caret_pos = 0;
+	size_t caretPos = 0;
 
 	Rectangle highlight{};
-	size_t highlight_pos = -1;
+	size_t highlightPos = -1;
 
-	bool is_active = true;
-	bool is_editable = true;
-	bool is_hover = false;
+	bool isActive = true;
+	bool isEditable = true;
+	bool isHover = false;
 
-	int font_size = 18;
+	int fontSize = 18;
 	ALIGN alignment = LEFT;
 	int padding = 5;
 
 	bool visible = true;
 
-	Point drag_pos{};
+	Point dragPos{};
 
-	ChangedCallback changed_callback;
+	ChangedCallback changedCallback;
 };
-
-
-#endif
