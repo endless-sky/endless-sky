@@ -11561,7 +11561,7 @@ mission "Weland: Dragon Tech"
 	on offer
 		conversation
 			`Your inbox blinks with a new message from Weland on <planet>.`
-			`	<name>, this is Weland. Just letting you know your artifact is ready.`
+			`	<last>, this is Weland. Just letting you know your artifact is ready.`
 			`	Come pick it up and pay for it at your earliest convenience.`
 			`				- Xeno-Smith`
 			`					Weland`
@@ -11779,9 +11779,9 @@ mission "Weland: Stone Harmonization"
 	on offer
 		require "Tear of Skade"
 		require "Blood of Surtr"
-		dialog
+		con
 			`Your inbox blinks with a new message from Weland on Wayfarer.`
-			`	<name>, I was wanting to speak with you about something.`
+			`	<last>, I was wanting to speak with you about something.`
 			`	Please stop by my shop on Wayfarer at your earliest convenience.`
 			`				- Xeno-Smith`
 			`					Weland`
@@ -11835,7 +11835,7 @@ mission "Weland: Stone Stolen"
 	on offer
 		conversation
 			`Your inbox blinks with a new message from Weland on Wayfarer.`
-			`	<name>, we have a problem. Get back here ASAP.`
+			`	<last>, we have a problem. Get back here ASAP.`
 			`				-Weland`
 				accept
 	on complete
