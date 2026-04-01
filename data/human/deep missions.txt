@@ -9118,11 +9118,11 @@ mission "Patch Transport Union"
 
 # For compatibility with saves that did Home for Skadenga 10, but didn't get the new event connected to it.
 mission "Patch for Hroars Waiting Event"
-		landing
-			invisible
-			to offer
-				has "Home for Skadenga 10: offered"
-				not "hroars deal: triggered"
-			on offer
-			event "hroars deal" 14
-			fail
+	landing
+	invisible
+	to offer
+		has "Home for Skadenga 10: offered"
+		not "hroars deal: triggered"
+	on offer
+		event "hroars deal" 14
+		fail
