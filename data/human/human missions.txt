@@ -11779,7 +11779,7 @@ mission "Weland: Stone Harmonization"
 	on offer
 		require "Tear of Skade"
 		require "Blood of Surtr"
-		con
+		dialog
 			`Your inbox blinks with a new message from Weland on Wayfarer.`
 			`	<last>, I was wanting to speak with you about something.`
 			`	Please stop by my shop on Wayfarer at your earliest convenience.`
