@@ -3322,16 +3322,16 @@ mission "Ka'het: Lightning in a bottle 4"
 				accept
 
 			label "ka'het killed for the cloud probe"
-			`Like two enormous birds of prey, the Peregrines have captured the Builder probe with a set of claws mounted right beneath their bodies. You receive the communications of a group of Remnant in the middle of a extravehicular activity. Half of them works on securing the lower section of the craft, seemingly having cooled down; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash: the balloon flies away free, while the payload stays into the clamps of the Peregrines.`
+			`Like two enormous birds of prey, the Peregrines have captured the Builder probe with a set of claws mounted right beneath their bodies. You receive the communications of a group of Remnant in the middle of an extravehicular activity. Half of them works on securing the lower section of the craft, seemingly having cooled down; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash: the balloon flies away free, while the payload stays into the clamps of the Peregrines.`
 			`	"Thank you for getting them off our tail, <first>," Taely states through the ship's radio. "We have what we needed. Plus, while I don't know how long our Tern will keep it together, it seems to have survived." The Swan makes a reappearance in your tracking screen, standing well above you in the atmosphere.`
 			`	"Oddly enough, we have just recorded the Builder balloon implode, rather than burst, once it was free. We were able to catch a few fragments before it fell too deeply into the atmosphere for later study." Soon enough, the Peregrines signal that they are ready to leave for <planet>.`
 				accept
 
-			branch "ka'het killed early"
+			label "ka'het killed early"
 			`Gusts only somewhat less violent than the ones you encountered previously surround the Builder vehicle. You notice that the chosen Builder satellite is still in the same area as the Remnant probe, though higher in the atmosphere.`
 			scene "scene/builder cloud probe"
 			`	Soon enough one of the Peregrines takes the initiative to approach the alien spacecraft. It pitches up to reveal two enormous claws mounted beneath its body. It closes the distance with the target bit by bit, then makes a swift movement to catch its prey before the wind changes. It succeeds.`
-			`	You receive the communications of a group of Remnant in the middle of a extravehicular activity. Half of them works on securing the lower section of the craft, seemingly having cooled down; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash: the balloon flies away free, while the payload stays into the clamps of the Peregrines.`
+			`	You receive the communications of a group of Remnant in the middle of an extravehicular activity. Half of them works on securing the lower section of the craft, seemingly having cooled down; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash: the balloon flies away free, while the payload stays into the clamps of the Peregrines.`
 			`	"We have what we needed, <first>," Taely states through the ship's radio. "Oddly enough, we have just recorded the Builder balloon implode, rather than burst, once it was free. We were able to catch a few fragments before it fell too deeply into the atmosphere for later study." Soon enough, the Peregrines signal that they are ready to leave for <planet>.`
 				accept
 	on complete
@@ -3368,15 +3368,16 @@ mission "Ka'het: Lightning in a bottle 4"
 		ship "Peregrine" "Black Song"
 		personality escort unconstrained launching
 
-
 mission "Ka'het: Lightning in a bottle Epilogue 1"
 	invisible
 	to offer
 		has "Ka'het: Lightning in a bottle 4: done"
 		has "Ka'het: Voice From The Past 4: done"
 	on offer
-		event "Lightning in a bottle epilogue" 30
+		event "lightning in a bottle epilogue" 30
 		fail
+
+event "lightning in a bottle epilogue"
 
 mission "Ka'het: Lightning in a bottle Epilogue 2"
 	invisible
@@ -3386,5 +3387,5 @@ mission "Ka'het: Lightning in a bottle Epilogue 2"
 		has "event: Lightning in a bottle epilogue"
 	on offer
 		outfit "Ka'het Ion Trap" 1
-		dialog 'A message from Taely appears on your commlink. "Captain," it begins, "we have successfully identified the mechanisms capable of generating energy from ion storms in both the the cloud probe and the Builder satellite you have helped recover. We have since recovered more examples of this technology; in order to thank you for your efforts, we want to gift you the outfit that was once used by the Fereti warning satellite." A few minutes later, an hurried Tern unloads a compact, spiky-looking device and bolts away.'
+		dialog 'A message from Taely appears on your commlink. "Captain," it begins, "we have successfully identified the mechanisms capable of generating energy from ion storms in both the cloud probe and the Builder satellite you have helped recover. We have since recovered more examples of this technology; in order to thank you for your efforts, we want to gift you the outfit that was once used by the Fereti warning satellite." A few minutes later, an hurried Tern unloads a compact, spiky-looking device and bolts away.'
 		fail
