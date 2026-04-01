@@ -13077,7 +13077,7 @@ mission "Weland"
 				accept
 	to complete
 		has "event: welandwait1"
-		has "Weland 2: active"
+		has "Weland 2: offered"
 
 
 event "welandwait1"
