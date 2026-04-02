@@ -3007,9 +3007,13 @@ mission "Ka'het: Cloud Probe 1"
 			`	"But if we cannot make them undetectable, perhaps we can make them unreachable. We have recently learned how to replicate extremely precise trackers," she states, "enough to record orbital vehicles from deep inside an atmosphere. The idea became to take a Tern, mount these optics inside of it, and leave it permanently inside a Graveyard gas giant."`
 			choice
 				`	"Will that hide them from the Ka'het?"`
+				`	"Why was that not a concern previously?"`
+					goto concern
 				`	"Why the Swan?"`
 					goto swan
 			`	"In our experience, it will not," Torza replies, sharing a somber glance with the other prefect. "But the Ka'het cannot visit gas planets, as far as we can tell. If they study them, they will learn of the Terns, but the ships should be far beyond their reach."`
+				goto swan
+			`	"It has been a point of concern for decades now." Torza looks slightly miffed by your question. "If this information gap is still unresolved, it is only because our attempts at filling it have failed."`
 			label swan
 			`	Taely continues the conversation. "You might have noticed that neither of our carriers are capable of cloaking. Even if filled with propellant, an Ibis would have to stop, vulnerable, to refuel in the middle of the Graveyard; the Swan is inherently capable of doing the round trip without a ramscoop, using a Scram drive, and leaving some fuel for an escort. Which would be you, in this case."`
 			choice
@@ -3024,10 +3028,10 @@ mission "Ka'het: Cloud Probe 1"
 	npc accompany save
 		government "Remnant"
 		ship "Swan" "Serene Pillar Lost"
-		ship "Petrel" "Sunlit Song Remade"
-		ship "Petrel" "Sharp Sky Restored"
-		ship "Petrel" "Starlit Spire Renewed"
-		ship "Petrel" "Shadow Storm Reborn"
+		ship "Tern" "Sunlit Song Remade"
+		ship "Tern" "Sharp Sky Restored"
+		ship "Tern" "Starlit Spire Renewed"
+		ship "Tern" "Shadow Storm Reborn"
 		personality escort unconstrained launching
 
 mission "Ka'het: Cloud Probe 2"
@@ -3039,13 +3043,13 @@ mission "Ka'het: Cloud Probe 2"
 	to offer
 		has "Ka'het: Cloud Probe 1: done"
 	on complete
-		dialog "The second Tern detaches from the Swan, leaving one of its wings empty. You follow the Tern as it falls: slowly, you see it turn upside down as a number of barrel-shaped instruments emerge from its belly. Once a set of what you presume to be antennae antennae pop out of its aft, the map places the next target on Baliesa in the Gerenus system."
+		dialog "The second Tern detaches from the Swan. You follow the it as it falls: slowly, you see it turn upside down as a number of barrel-shaped instruments emerge from its belly. Once a set of what you presume to be antennae antennae pop out of its aft, the map places the next target on Baliesa in the Gerenus system."
 	npc accompany save
 		government "Remnant"
 		ship "Swan" "Serene Pillar Lost"
-		ship "Petrel" "Sunlit Song Remade"
-		ship "Petrel" "Sharp Sky Restored"
-		ship "Petrel" "Starlit Spire Renewed"
+		ship "Tern" "Sunlit Song Remade"
+		ship "Tern" "Sharp Sky Restored"
+		ship "Tern" "Starlit Spire Renewed"
 		personality escort unconstrained launching
 
 mission "Ka'het: Cloud Probe 3"
@@ -3061,8 +3065,8 @@ mission "Ka'het: Cloud Probe 3"
 	npc accompany save
 		government "Remnant"
 		ship "Swan" "Serene Pillar Lost"
-		ship "Petrel" "Sunlit Song Remade"
-		ship "Petrel" "Sharp Sky Restored"
+		ship "Tern" "Sunlit Song Remade"
+		ship "Tern" "Sharp Sky Restored"
 		personality escort unconstrained launching
 	npc
 		government "Ka'het"
@@ -3082,11 +3086,11 @@ mission "Ka'het: Cloud Probe 4"
 	to offer
 		has "Ka'het: Cloud Probe 3: done"
 	on complete
-		dialog "While the final Tern disappears beyond your sight, you receive a message from the Swan captain. With this task complete, they ask you to escort them to Seraglio - a small planet of the Arculus system - before you part ways. When you inquire further, she simply states that they have been requested there next."
+		dialog "While the final Tern disappears beyond your sight, you receive a message from the Swan captain. With this task complete, they ask you to escort them to Seraglio - a small planet of the Arculus system - before you part ways. When you inquire further, she simply states that they have been assigned there next."
 	npc accompany save
 		government "Remnant"
 		ship "Swan" "Serene Pillar Lost"
-		ship "Petrel" "Sunlit Song Remade"
+		ship "Tern" "Sunlit Song Remade"
 		personality escort unconstrained launching
 
 mission "Ka'het: Cloud Probe 5"
@@ -3115,7 +3119,7 @@ mission "Ka'het: Cloud Probe 5"
 				decline
 			label mission
 			`	You are surprised to hear a loud, triumphant chant come out of your radio. It describes the bliss of finding life in unexpected places, beyond what one would consider possible. While the chorus has a very pleasing rhythm, you are oblivious to most of the events described in the song, excluding the discovery of past life in the Sol system.`
-			`	By the time the song comes to an end, the Swan has completed the landing, and a flexible tube is coming out of its wings. You bid the crew farewell and go your own way. Soon enough, the screen in front of you informs you of the transfer of <payment> from Remnant Logistics, coupled with a short message of appreciation.`
+			`	By the time the song comes to an end, the Swan has completed the landing, and a flexible, puffy-looking tube is injecting a colorless liquid into its wings. You bid the crew farewell and go your own way. Soon enough, the screen in front of you informs you of the transfer of <payment> from Remnant Logistics, coupled with a short message of appreciation.`
 	npc accompany save
 		government "Remnant"
 		ship "Swan" "Serene Pillar Lost"
@@ -3129,9 +3133,10 @@ mission "Ka'het: Lightning in a bottle 1"
 	landing
 	name "Hear from Taely on <planet>"
 	description "Meet up with Taely on <destination> for an unknown reason."
+	deadline
+	deadline 2
 	source
 		government "Remnant"
-		attributes "remnant primary"
 	destination "Aventine"
 	to offer
 		has "event: ka'het: gaslining probe storm"
@@ -3155,7 +3160,7 @@ mission "Ka'het: Lightning in a bottle 1"
 			`	"This has multiple uses. As in this case, we can stay awake for as long as it takes for an emergency to get under control without excess fatigue. Alternatively, we can use it to adapt to different planets, where the length of the day-night is sometimes wildly different. I recall from your records that there are medicines used for similar purpose, but we prefer this approach. Though," she smiles, "I have been told that it can give a tendency to digress."`
 			label meaning
 			`	Taely walks toward one of your screens, eventually making it show the data of one of the Terns you recently deployed. "Ever since the first ion storm, the probe stationed in Meligara has become useless. Every tracker returns vast amounts of noise, so much that it is impossible to distinguish a Ka'het in that mess. If, as we suspect, there is a gap in its ion shielding, it is only a matter of time until we lose it. Today marks the fifth day we have spent trying to identify the issue."`
-			`	She starts tracing lines by hand around a few sections of the Tern. "Each of these areas could be the cause of the problem. If you make a section of these parts with your equipment, we should, at least, prevent the other probes from falling to the same issue."`
+			`	She starts tracing lines by hand around a few sections of the Tern. "Each of these areas could be the cause of the problem. If you dissect these parts with your equipment, we should, at least, prevent the other probes from falling to the same issue."`
 			choice
 				`	"Is there any chance of saving this Tern?"`
 				`	"How do I do that?"`
@@ -3306,7 +3311,7 @@ mission "Ka'het: Lightning in a bottle 4"
 			choice
 				`	"Is that one of yours?"`
 				`	(Warm up my weapons.)`
-			`	Right as the object disappears, a three-letter reply finally reaches you through the radio: "E. M. P."`
+			`	Right as the object disappears, a three-letter message finally reaches you through the radio: "E. M. P."`
 			`	The electric burst hits you a few seconds later; it seems to have dissipated somewhat, but it is enough to temporarily garble your communicator. A check of the tracking screen shows the Tern unscathed by the strike, but the aft of the Builder probe is now showing a worrying red glow.`
 			`	You try to contact the Remnant, but the arrival of another EMP prevents you from doing so. For their part, one of the Peregrines has taken the initiative to approach the alien spacecraft.`
 			choice
