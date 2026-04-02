@@ -3044,7 +3044,7 @@ mission "Ka'het: Cloud Probe 2"
 	to offer
 		has "Ka'het: Cloud Probe 1: done"
 	on complete
-		dialog "The second Tern detaches from the Swan. You follow the it as it falls: slowly, you see it turn upside down as a number of barrel-shaped instruments emerge from its belly. Once a set of what you presume to be antennae antennae pop out of its aft, the map places the next target on Baliesa in the Gerenus system."
+		dialog "The second Tern detaches from the Swan. You follow it as it falls: slowly, you see it turn upside down as a number of barrel-shaped instruments emerge from its belly. Once a set of what you presume to be antennae antennae pop out of its aft, the map places the next target on Baliesa in the Gerenus system."
 	npc accompany save
 		government "Remnant"
 		ship "Swan" "Serene Pillar Lost"
