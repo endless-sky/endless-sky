@@ -3013,6 +3013,7 @@ mission "Ka'het: Cloud Probe 1"
 					goto swan
 			`	"In our experience, it will not," Torza replies, sharing a somber glance with the other prefect. "But the Ka'het cannot visit gas planets, as far as we can tell. If they study them, they will learn of the Terns, but the ships should be far beyond their reach."`
 				goto swan
+			label concern
 			`	"It has been a point of concern for decades now." Torza looks slightly miffed by your question. "If this information gap is still unresolved, it is only because our attempts at filling it have failed."`
 			label swan
 			`	Taely continues the conversation. "You might have noticed that neither of our carriers are capable of cloaking. Even if filled with propellant, an Ibis would have to stop, vulnerable, to refuel in the middle of the Graveyard; the Swan is inherently capable of doing the round trip without a ramscoop, using a Scram drive, and leaving some fuel for an escort. Which would be you, in this case."`
@@ -3129,7 +3130,7 @@ mission "Ka'het: Cloud Probe 5"
 event "ka'het: gaslining probe storm"
 
 
-mission "Ka'het: Lightning in a bottle 1"
+mission "Ka'het: Lightning in a Bottle 1"
 	landing
 	name "Hear from Taely on <planet>"
 	description "Meet up with Taely on <destination> for an unknown reason."
@@ -3169,14 +3170,14 @@ mission "Ka'het: Lightning in a bottle 1"
 			label how
 			`	She hands you a checklist. "I have written down a simple enough sampling procedure for the ion shielding. Still, you will have to send it a command to resurface higher once you are in the system - at the altitude it is staying now, the winds would leave you no chance of rendezvous. And be quick: we cannot know for how long that poor Tern can keep it together in this state."`
 
-mission "Ka'het: Lightning in a bottle 2"
+mission "Ka'het: Lightning in a Bottle 2"
 	landing
 	name "Check out the probe in <system>"
 	description "Return to <stopover> to take samples from the Tern stationed there."
 	source "Aventine"
 	stopover "Meligara"
 	to offer
-		has "Ka'het: Lightning in a bottle 1: done"
+		has "Ka'het: Lightning in a Bottle 1: done"
 	on stopover
 		conversation
 			`Sitting atop the cloud layer, it takes you a dozen attempts before your signal finally reaches the Tern through the complex atmosphere. Far above, the violet swirl of the wormhole peeks just above the horizon. You wait for the probe to raise through the darkness, wondering how the Remnant can talk with it from so far away.`
@@ -3234,13 +3235,13 @@ mission "Ka'het: Lightning in a bottle 2"
 			`	"Well," she replies with some trepidation, "they seem to be fine, after all. If nothing new comes up, we can just leave them be on their own mission."`
 				decline
 
-mission "Ka'het: Lightning in a bottle 3A"
+mission "Ka'het: Lightning in a Bottle 3A"
 	name "Builder balloon"
 	description "Escort the Remnant to <destination> to try to capture at least one of the Builder probes deep inside the gas giant."
 	source "Aventine"
 	destination "Meligara"
 	to offer
-		has "Ka'het: Lightning in a bottle 2: done"
+		has "Ka'het: Lightning in a Bottle 2: done"
 	on offer
 		event "Ka'het don't spawn in Ritilas"
 		conversation
@@ -3269,12 +3270,12 @@ event "Ka'het spawn in Ritilas"
 		add fleet Ka'het 2700
 		add fleet "Ka'het Aggressive" 9600
 
-mission "Ka'het: Lightning in a bottle 3B"
+mission "Ka'het: Lightning in a Bottle 3B"
 	invisible
 	source "Aventine"
 	destination "Meligara"
 	to offer
-		has "Ka'het: Lightning in a bottle 2: done"
+		has "Ka'het: Lightning in a Bottle 2: done"
 	npc kill
 		government "Ka'het"
 		system "Ritilas"
@@ -3285,25 +3286,25 @@ mission "Ka'het: Lightning in a bottle 3B"
 				"Telis'het (Guns)"
 				"Maeri'het (EMP)"
 
-mission "Ka'het: Lightning in a bottle 4"
+mission "Ka'het: Lightning in a Bottle 4"
 	name "Success"
 	description "Try to capture at least one of the Builder probes deep inside <destination>, with the help of the Remnant."
 	source "Meligara"
 	destination "Aventine"
 	to offer
-		has "Ka'het: Lightning in a bottle 3A: done"
+		has "Ka'het: Lightning in a Bottle 3A: done"
 		or
 			not "ka'het: fighting for the cloud probe"
-			has "Ka'het: Lightning in a bottle 3B: done"
+			has "Ka'het: Lightning in a Bottle 3B: done"
 	on defer
 		set "ka'het: fighting for the cloud probe"
 	on offer
 		conversation
 			branch "ka'het killed for the cloud probe"
 				has "ka'het: fighting for the cloud probe"
-				has "Ka'het: Lightning in a bottle 3B: done"
+				has "Ka'het: Lightning in a Bottle 3B: done"
 			branch "ka'het killed early"
-				has "Ka'het: Lightning in a bottle 3B: done"
+				has "Ka'het: Lightning in a Bottle 3B: done"
 			`The fleet's descent into the upper atmosphere of Meligara is accompanied at a short distance by a raging Ka'het. The pressure eventually forces it to abandon the pursuit, as expected, and the Swan follows suit shortly after.`
 			`	Gusts only somewhat less violent than the ones you encountered previously surround the Builder vehicle. You notice that the chosen Builder satellite is still in the same area as the Remnant probe, though higher in the atmosphere.`
 			scene "scene/builder cloud probe"
@@ -3341,7 +3342,7 @@ mission "Ka'het: Lightning in a bottle 4"
 				accept
 	on complete
 		event "Ka'het spawn in Ritilas"
-		fail "Ka'het: Lightning in a bottle 3B"
+		fail "Ka'het: Lightning in a Bottle 3B"
 		payment 600000
 		conversation
 			`Two pairs of camels come out of the Peregrine's payload bay, followed by the well-wrapped sections of the Builder craft. Taely and her team follow the march ceremoniously, standing at the sides of the convoy for the duration of the walk. For its part, the Swan has already taken flight for a new destination.`
@@ -3373,23 +3374,23 @@ mission "Ka'het: Lightning in a bottle 4"
 		ship "Peregrine" "Black Song"
 		personality escort unconstrained launching
 
-mission "Ka'het: Lightning in a bottle Epilogue 1"
+mission "Ka'het: Lightning in a Bottle Epilogue 1"
 	invisible
 	to offer
-		has "Ka'het: Lightning in a bottle 4: done"
+		has "Ka'het: Lightning in a Bottle 4: done"
 		has "Ka'het: Voice From The Past 4: done"
 	on offer
-		event "lightning in a bottle epilogue" 30
+		event "Lightning in a Bottle epilogue" 30
 		fail
 
-event "lightning in a bottle epilogue"
+event "Lightning in a Bottle epilogue"
 
-mission "Ka'het: Lightning in a bottle Epilogue 2"
+mission "Ka'het: Lightning in a Bottle Epilogue 2"
 	invisible
 	source
 		government "Remnant"
 	to offer
-		has "event: Lightning in a bottle epilogue"
+		has "event: Lightning in a Bottle epilogue"
 	on offer
 		outfit "Ka'het Ion Trap" 1
 		dialog `A message from Taely appears on your commlink. "Captain," it begins, "we have successfully identified the mechanisms capable of generating energy from ion storms in both the cloud probe and the Builder satellite you have helped recover. We have since recovered more examples of this technology; in order to thank you for your efforts, we want to gift you the outfit that was once used by the Fereti warning satellite." A few minutes later, a hurried Tern unloads a compact, spiky-looking device and bolts away.`
