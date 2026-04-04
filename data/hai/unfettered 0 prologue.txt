@@ -1057,7 +1057,6 @@ mission "Unfettered 2: Prove Your Strength"
 				log `Defeated an Unfettered Captain in a duel, and took part in a surprisingly scary Unfettered martial ceremony.`
 				event "unfettered: JD raid plan ready" 5 15
 				set "unfettered: duel ready"
-				"unfettered: took Si-Ra' stuff" = "outfit (all): Gold Bars" + "outfit (all): Ionic Blaster Prototype" * 2
 			`	As he passes near you he quickly speaks, "It'll be a few weeks before I'm ready for more action."`
 				accept
 			label stay
@@ -1215,7 +1214,7 @@ mission "Unfettered 3: Recover Jump Drives"
 			action
 				outfit "Jump Drive"
 			branch "good boy!"
-				"unfettered: took Si-Ra' stuff" <= 4
+				"outfit (all): Ionic Blaster Prototype" < 3
 			action
 				payment -1500000
 				"unfettered rep: Si-Ra" --
@@ -1234,7 +1233,6 @@ mission "Unfettered 3: Recover Jump Drives"
 				event "cerberus revealed"
 			label leave
 			action
-				clear "unfettered: took Si-Ra' stuff"
 				"unfettered rep: Si-Ra" ++
 			`	"<first> was also the name of my mentor, ye know. Always flying a Sparrow, that one. Told him it'd get him in trouble one day, but he never listened... t'was a cheerful lad, and I wonder what happened to him."`
 				to display
