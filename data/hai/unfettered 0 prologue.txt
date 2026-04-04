@@ -621,7 +621,7 @@ mission "Unfettered 0: Bring Hai"
 			label translate
 			action
 				"unfettered: Merora translate" ++
-				log "Minor People" "Merora" `A young adolescent Hai that came to Unfettered space after losing her parents to pirates. She is handling the loss very well, at least on the surface.`
+				log "Minor People" "Merora" `A young adolescent Hai that came to Unfettered and helped me translate Hai.`
 			`	"Great! I am Merora, by the way." She looks around, noticing the way some people are staring at you. Surprisingly they seem to be staring at her almost as much as they do at you. She explains, "I came to Unfettered space just a few weeks ago. What about you?" she asks.`
 			`	You begin to introduce yourself to her, but barely get your name out before you are both distracted as the proceedings resume. A child, younger - or at least smaller - than any other you've seen on stage so far, approaches the Chiefs. Also alone, the child seems scared and perhaps even lost as he speaks, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting him as they speak quietly to each other.`
 			`	The Chief rises and turns to those watching to share the child's words, and Merora then translates it to you. "The child wishes to return home, to Hai space. However, he cannot do that alone, and the Chief is asking for someone to escort him, or find him a suitable transport. All Hai captains, even those who do not otherwise sympathize with our cause, would easily accept taking a child back to Hai space, without ever asking for anything in return. It only needs to be arranged by someone, as the child does not know who to turn to."`
@@ -826,7 +826,7 @@ mission "Unfettered 1: Bring Medicine"
 			`	"I do not view any of the Hai as 'soldiers' or otherwise separate. We are all Hai and all deserve to be saved; we do not designate supplies to help some before others."`
 				goto leave
 			label raiders
-			`	"A few eclipses ago they came, in great ships and with superior technology. We, the Hai, had to defend ourselves, so some of us became more military-focused. A lot of those you see here are among those who wanted to repay the raiders in kind once they stopped. Even if our brothers do, we cannot lay down our arms. If these raiders returned, someone has to protect all of us."`
+			`	"A few generations ago they came, in great ships and with superior technology. We, the Hai, had to defend ourselves, so some of us became more military-focused. A lot of those you see here are among those who wanted to repay the raiders in kind once they stopped. Even if our brothers do, we cannot lay down our arms. If these raiders returned, someone has to protect all of us."`
 			label leave
 			`	Someone then calls upon Sookootow in Hai, and he is forced to leave.`
 
@@ -1028,7 +1028,7 @@ mission "Unfettered 2: Prove Your Strength"
 	on complete
 		conversation
 			`You land and the Captain joins you once he is done with repairs. He presents what looks like an aquarium as a reward for the duel.`
-			`	As you move closer to inspect it you are taken aback by a huge scorpion-like creature which suddenly begins rushing towards you.`
+			`	As you move closer to inspect it you are taken aback by a huge scorpion-like creature which suddenly begins rushing towards you, with a look of malice in its eyes.`
 			`	There is little time to think as the huge creature gets closer and closer.`
 			choice
 				`	(Run far away in case it escapes.)`
@@ -1499,7 +1499,7 @@ mission "Unfettered 4: Scan Geocoris"
 	on decline
 		event "unfettered: analyzed the scans" 30 60
 	on abort
-		dialog `Mera hails you when she learns of you aborting this mission. "How dare you abort?! Now I'll have to find another way to get those scans! This will slow us down significantly, by a month at least."`
+		dialog `You receive a message from Mera upon landing. "How dare you abort?! Now I'll have to find another way to get those scans! This will slow us down significantly, by a month at least."`
 		"unfettered rep: Mera" -= 2
 		event "unfettered: analyzed the scans" 30 60
 	on waypoint
