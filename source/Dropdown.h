@@ -57,7 +57,7 @@ private:
 	std::vector<std::string> options;
 	int selectedIndex = -1;
 
-	bool showDropIcon = false;
+	bool showDropIcon = true;
 	bool enabled = true;
 
 	class DroppedPanel;

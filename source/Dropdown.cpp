@@ -285,7 +285,7 @@ void Dropdown::DroppedPanel::Draw()
 	const Font &font = FontSet::Get(dd->FontSize());
 	const Color &active = *GameData::Colors().Get("active");
 	const Color &inactive = *GameData::Colors().Get("inactive");
-	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &outline = *GameData::Colors().Get("panel outline");
 
 	Point bgSize{dd->Position().Width(), dd->Position().Height() * dd->options.size()};
 	// If the Dropdown is close to the bottom of the screen, then draw the
@@ -297,7 +297,7 @@ void Dropdown::DroppedPanel::Draw()
 		: Rectangle::FromCorner({dd->Position().Left(), dd->Position().Top() - bgSize.Y()}, bgSize);
 
 	// Draw outline
-	FillShader::Fill(bgRect.Center(), bgRect.Dimensions() + Point(2, 2), dim);
+	FillShader::Fill(bgRect.Center(), bgRect.Dimensions() + Point(2, 2), outline);
 	// Draw background
 	FillShader::Fill(bgRect.Center(), bgRect.Dimensions(), dd->BgColor());
 	// Draw a highlight
