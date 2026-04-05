@@ -262,6 +262,8 @@ void Preferences::Load()
 			turretOverlaysIndex = clamp<int>(node.Value(1), 0, TURRET_OVERLAYS_SETTINGS.size() - 1);
 		else if(key == "Highlight ships")
 			highlightShipsIndex = clamp<int>(node.Value(1), 0, HIGHLIGHT_SHIPS_SETTINGS.size() - 1);
+		else if(key == "Highlight player's flagship" && (node.Size() == 1 || node.Value(1)))
+			highlightShipsIndex = static_cast<int>(HighlightShips::FLAGSHIP);
 		else if(key == "Automatic aiming")
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
 		else if(key == "Automatic firing")
