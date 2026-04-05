@@ -136,6 +136,7 @@ public:
 	enum class HighlightShips : int_fast8_t {
 		OFF,
 		FLAGSHIP,
+		OWNED_SHIPS,
 		ALL
 	};
 

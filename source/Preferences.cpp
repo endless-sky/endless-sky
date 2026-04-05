@@ -147,7 +147,7 @@ namespace {
 	const vector<string> TURRET_OVERLAYS_SETTINGS = {"off", "always on", "blindspots only"};
 	int turretOverlaysIndex = 2;
 
-	const vector<string> HIGHLIGHT_SHIPS_SETTINGS = {"off", "flagship", "all"};
+	const vector<string> HIGHLIGHT_SHIPS_SETTINGS = {"off", "flagship", "owned ships", "all"};
 	int highlightShipsIndex = 0;
 
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};

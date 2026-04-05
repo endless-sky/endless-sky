@@ -599,6 +599,22 @@ void Engine::Step(bool isActive)
 	}
 
 	outlines.clear();
+
+	auto CreateOutline = [this](const shared_ptr<Ship> &ship, const Color &color) -> void {
+		outlines.emplace_back(ship->GetSprite(),
+			(ship->Center() - camera.Center()) * zoom,
+			ship->Unit() * zoom * ship->Scale(),
+			ship->GetFrame(),
+			color);
+	};
+	auto HighlightShip = [this, flagship, CreateOutline](const shared_ptr<Ship> &ship) -> void {
+		if(ship->GetSystem() != player.GetSystem() || ship->IsDestroyed() || ship->Cloaking() == 1. || ship == flagship)
+			return;
+
+		const Color &color = GetTargetOutlineColor(RadarType(*ship, wasActive ? uiStep : 0));
+		CreateOutline(ship, Color::Multiply(1. - ship->Cloaking(), color));
+	};
+
 	const Color &cloakColor = *GameData::Colors().Get("cloak highlight");
 	if(Preferences::Has("Cloaked ship outlines"))
 		for(const auto &ship : player.Ships())
@@ -606,31 +622,19 @@ void Engine::Step(bool isActive)
 			if(ship->IsParked() || ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 0.)
 				continue;
 
-			outlines.emplace_back(ship->GetSprite(), (ship->Position() - camera.Center()) * zoom, ship->Unit() * zoom,
-				ship->GetFrame(), Color::Multiply(ship->Cloaking(), cloakColor));
+			CreateOutline(ship, Color::Multiply(ship->Cloaking(), cloakColor));
 		}
+
 	Preferences::HighlightShips highlight = Preferences::GetHighlightShips();
-	bool highlightFlag = highlight != Preferences::HighlightShips::OFF;
 	if(highlight == Preferences::HighlightShips::ALL)
 		for(const auto &ship : ships)
-		{
-			if(ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 1. || ship == flagship)
-				continue;
-
-			const Color &color = GetTargetOutlineColor(RadarType(*ship, wasActive ? uiStep : 0));
-			outlines.emplace_back(ship->GetSprite(), (ship->Position() - camera.Center()) * zoom, ship->Unit() * zoom,
-				ship->GetFrame(), Color::Multiply(1. - ship->Cloaking(), color));
-		}
-
+			HighlightShip(ship);
+	else if(highlight == Preferences::HighlightShips::OWNED_SHIPS)
+		for(const auto &ship : player.Ships())
+			HighlightShip(ship);
 	// Add the flagship outline last to distinguish the flagship from other ships.
-	if(flagship && !flagship->IsDestroyed() && highlightFlag)
-	{
-		outlines.emplace_back(flagship->GetSprite(),
-			(flagship->Center() - camera.Center()) * zoom,
-			flagship->Unit() * zoom * flagship->Scale(),
-			flagship->GetFrame(),
-			*GameData::Colors().Get("flagship highlight"));
-	}
+	if(flagship && !flagship->IsDestroyed() && highlight != Preferences::HighlightShips::OFF)
+		CreateOutline(flagship, *GameData::Colors().Get("flagship highlight"));
 
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
