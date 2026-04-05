@@ -212,7 +212,7 @@ public:
 	static TurretOverlays GetTurretOverlays();
 	static const std::string &TurretOverlaysSetting();
 
-	/// Turret overlays setting, either "off", "flagship", or "all".
+	/// Highlight ships setting, either "off", "flagship", "owned ships", or "all".
 	static void ToggleHighlightShips();
 	static HighlightShips GetHighlightShips();
 	static const std::string &HighlightShipsSetting();
