@@ -152,12 +152,13 @@ void OrderSet::Validate(const Ship *ship, const System *playerSystem, const Play
 			|| (!tShip->IsTargetable() && tShip->GetGovernment() != ship->GetGovernment())
 			|| (tShip->IsDisabled() && Has(Types::ATTACK))
 			|| (ship->GetSystem() && tShip->GetSystem() != ship->GetSystem() && tShip->GetSystem() != playerSystem);
+		// A target is also invalid if it has a scan order against it but is done being scanned.
 		if(!targetShipInvalid && Has(Types::SCAN))
 		{
 			bool cargo = ship->Attributes().Get("cargo scan power");
 			bool outfit = ship->Attributes().Get("outfit scan power");
-			targetShipInvalid |= (!cargo || player.CargoScanFraction(tShip) == 1.)
-				&& (!outfit || player.OutfitScanFraction(tShip) == 1.);
+			targetShipInvalid |= (!cargo || player.CargoScanFraction(tShip) >= 1.)
+				&& (!outfit || player.OutfitScanFraction(tShip) >= 1.);
 		}
 	}
 	if((types & (HAS_TARGET_ASTEROID | HAS_TARGET_SHIP_OR_ASTEROID)).any())

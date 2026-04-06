@@ -846,9 +846,9 @@ void AI::Step(Command &activeCommands)
 				&& !target->GetGovernment()->IsEnemy(gov) && target->GetGovernment() != gov)
 			{
 				++scanTime[&*it];
-				if(it->CargoScanFraction() == 1.)
+				if(it->CargoScanFraction() >= 1.)
 					cargoScans[&*it].insert(&*target);
-				if(it->OutfitScanFraction() == 1.)
+				if(it->OutfitScanFraction() >= 1.)
 					outfitScans[&*it].insert(&*target);
 			}
 		}
