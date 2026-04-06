@@ -121,7 +121,7 @@ DialogPanel *DialogPanel::CallFunctionOnExit(std::function<void(bool)> exitFunct
 
 
 DialogPanel *DialogPanel::CallFunctionIfOk(std::function<void()> okFunction, std::string message, int activeButton,
-                                           Truncate truncate, bool allowsFastForward)
+	Truncate truncate, bool allowsFastForward)
 {
 	DialogInit init;
 	init.voidFun = std::move(okFunction);
