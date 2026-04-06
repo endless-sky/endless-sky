@@ -377,6 +377,9 @@ public:
 	// Whether the player's fleet is capable of scanning the given target.
 	ScanOptions CanScan(const std::shared_ptr<const Ship> &target) const;
 	ScanOptions CanScan(const std::shared_ptr<const Minable> &target) const;
+	// The highest progress of any ship in the player's fleet for scanning a target.
+	double CargoScanFraction() const;
+	double OutfitScanFraction() const;
 
 	// Get or set the travel destination for selected escorts via the map.
 	const std::pair<const System *, Point> &GetEscortDestination() const;

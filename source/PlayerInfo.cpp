@@ -3561,6 +3561,32 @@ ScanOptions PlayerInfo::CanScan(const shared_ptr<const Minable> &target) const
 
 
 
+double PlayerInfo::CargoScanFraction() const
+{
+	if(ships.empty())
+		return 0.;
+	return (*ranges::max_element(ships,
+		[](const shared_ptr<Ship> &a, const shared_ptr<Ship> &b) {
+			return a->CargoScanFraction() < b->CargoScanFraction();
+		}
+	))->CargoScanFraction();
+}
+
+
+
+double PlayerInfo::OutfitScanFraction() const
+{
+	if(ships.empty())
+		return 0.;
+	return (*ranges::max_element(ships,
+		[](const shared_ptr<Ship> &a, const shared_ptr<Ship> &b) {
+			return a->OutfitScanFraction() < b->OutfitScanFraction();
+		}
+	))->OutfitScanFraction();
+}
+
+
+
 const pair<const System *, Point> &PlayerInfo::GetEscortDestination() const
 {
 	return interstellarEscortDestination;

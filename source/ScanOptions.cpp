@@ -60,8 +60,8 @@ shared_ptr<Ship> ScanOptions::GetStrongest(ScanType type) const
 	auto strongest = ranges::max_element(it->second,
 		[](const Option &a, const Option &b) {
 			if(a.speed == b.speed)
-				return a.distance < b.distance;
-			return a.speed > b.speed;
+				return a.distance > b.distance;
+			return a.speed < b.speed;
 		}
 	);
 	return strongest->ship;

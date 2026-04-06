@@ -1024,19 +1024,22 @@ void Engine::Step(bool isActive)
 	}
 	if(!Preferences::Has("Ship outlines in HUD"))
 		info.SetCondition("fast hud sprites");
-	if(target && target->IsTargetable() && target->GetSystem() == currentSystem
-		&& (flagship->CargoScanFraction() || flagship->OutfitScanFraction()))
+	if(target && target->IsTargetable() && target->GetSystem() == currentSystem)
 	{
-		double width = max(target->Width(), target->Height());
-		Point pos = target->Position() - camera.Center();
-		const bool outfitInRange = pos.LengthSquared() <= (flagship->Attributes().Get("outfit scan power") * 10000);
-		const Status::Type outfitOverlayType = outfitInRange ? Status::Type::SCAN : Status::Type::SCAN_OUT_OF_RANGE;
-		statuses.emplace_back(pos, flagship->OutfitScanFraction(), 0.,
-			0., 10. + max(20., width * .5), outfitOverlayType, 1.f, Angle(pos).Degrees() + 180.);
-		const bool cargoInRange = pos.LengthSquared() <= (flagship->Attributes().Get("cargo scan power") * 10000);
-		const Status::Type cargoOverlayType = cargoInRange ? Status::Type::SCAN : Status::Type::SCAN_OUT_OF_RANGE;
-		statuses.emplace_back(pos, 0., flagship->CargoScanFraction(),
-			0., 10. + max(20., width * .5), cargoOverlayType, 1.f, Angle(pos).Degrees() + 180.);
+		double outfitScan = player.OutfitScanFraction();
+		double cargoScan = player.CargoScanFraction();
+		if(outfitScan || cargoScan)
+		{
+			double width = max(target->Width(), target->Height());
+			Point pos = target->Position() - camera.Center();
+			ScanOptions scan = player.CanScan(target);
+			statuses.emplace_back(pos, outfitScan, 0., 0., 10. + max(20., width * .5),
+				scan.HasOption(ScanType::OUTFIT) ? Status::Type::SCAN : Status::Type::SCAN_OUT_OF_RANGE,
+				1.f, Angle(pos).Degrees() + 180.);
+			statuses.emplace_back(pos, 0., cargoScan, 0., 10. + max(20., width * .5),
+				scan.HasOption(ScanType::CARGO) ? Status::Type::SCAN : Status::Type::SCAN_OUT_OF_RANGE,
+				1.f, Angle(pos).Degrees() + 180.);
+		}
 	}
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
