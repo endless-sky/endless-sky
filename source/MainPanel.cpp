@@ -131,19 +131,6 @@ void MainPanel::Step()
 	// and updating the isActive flag).
 	StepEvents(isActive);
 
-	// Ships that were recently scanned shouldn't show a new scan dialog for 10 seconds.
-	auto StepRecentScans = [](map<shared_ptr<Ship>, int> &recentScans) -> void {
-		for(auto it = recentScans.begin() ; it != recentScans.end() ; )
-		{
-			if(++(it->second) > 600)
-				it = recentScans.erase(it);
-			else
-				++it;
-		}
-	};
-	StepRecentScans(recentCargoScans);
-	StepRecentScans(recentOutfitScans);
-
 	if(isActive)
 		engine.Go();
 	else
@@ -685,22 +672,12 @@ void MainPanel::StepEvents(bool &isActive)
 		}
 
 		// Handle scan events of or by the player.
-		bool cargoScan = event.Type() & ShipEvent::SCAN_CARGO;
-		bool outfitScan = event.Type() & ShipEvent::SCAN_OUTFITS;
-		if(cargoScan || outfitScan)
+		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))
 		{
 			if(actor->IsPlayer())
 			{
-				const shared_ptr<Ship> &target = event.Target();
-				if((cargoScan && !recentCargoScans.contains(target)) || (outfitScan && !recentOutfitScans.contains(target)))
-				{
-					if(cargoScan)
-						recentCargoScans[target] = 0;
-					if(outfitScan)
-						recentOutfitScans[target] = 0;
-					ShowScanDialog(event);
-					isActive = false;
-				}
+				ShowScanDialog(event);
+				isActive = false;
 			}
 			else if(event.TargetGovernment() && event.TargetGovernment()->IsPlayer())
 			{

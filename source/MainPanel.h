@@ -74,10 +74,6 @@ private:
 	// These are the pending ShipEvents that have yet to be processed.
 	std::list<ShipEvent> eventQueue;
 	bool handledFront = false;
-	// Ships that the player recently scanned. New events for scanning these ships
-	// should be ignored as to not give the player a repeat dialog.
-	std::map<std::shared_ptr<Ship>, int> recentCargoScans;
-	std::map<std::shared_ptr<Ship>, int> recentOutfitScans;
 
 	Command show;
 
