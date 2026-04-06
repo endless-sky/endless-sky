@@ -54,14 +54,18 @@ public:
 		FunctionButton() = default;
 		~FunctionButton() = default;
 
+		template <class T>
+		FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
+		               bool (T::*buttonAction)(const std::string&));
 		template<class T>
-		FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey = '\0',
-			bool (T::*buttonAction)(const std::string&) = nullptr);
+		FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
+			bool (T::*buttonAction)(const std::string&), bool (T::*verifyFun)(const std::string&));
 
 	public:
 		std::string buttonLabel;
 		SDL_Keycode buttonKey{};
-		std::function<bool(const std::string &)> buttonAction;
+		std::function<bool(const std::string &)> buttonAction = nullptr;
+		std::function<bool(const std::string &)> validateFun = nullptr;
 	};
 
 
@@ -75,6 +79,10 @@ public:
 	// The callback is always called with the value of what button the user clicked (ok == true, cancel == false).
 	template<class T>
 	static DialogPanel *CallFunctionOnExit(T *t, void (T::*fun)(bool),
+		std::string message,
+		Truncate truncate = Truncate::NONE,
+		bool allowsFastForward = false);
+	static DialogPanel *CallFunctionOnExit(std::function<void(bool)> exitFunction,
 		std::string message,
 		Truncate truncate = Truncate::NONE,
 		bool allowsFastForward = false);
@@ -158,8 +166,8 @@ public:
 	static DialogPanel *ThreeButtonValidateString(T *t,
 		std::string message,
 		std::string initialValue,
-		DialogPanel::FunctionButton buttonOne,
-		DialogPanel::FunctionButton buttonThree,
+		const DialogPanel::FunctionButton& buttonOne,
+		const DialogPanel::FunctionButton& buttonThree,
 		std::function<bool(const std::string &)> validate);
 
 	// Draw this panel.
@@ -211,51 +219,49 @@ protected:
 	void Resize(int height);
 	// The width of the dialog, excluding margins.
 	int Width() const;
-
-
-protected:
-	// The width of the margin on the right/left sides of the dialog. This area is part of the sprite,
-	// but shouldn't have any text or other graphics rendered over it. (It's mostly transparent.)
-	double LEFT_MARGIN = 20;
-	double RIGHT_MARGIN = 20;
-	double HORIZONTAL_MARGIN = LEFT_MARGIN + RIGHT_MARGIN;
-	// The margin on the right/left sides of the button sprite. The bottom segment also includes a button
-	// that uses the same value.
-	double BUTTON_LEFT_MARGIN = 10;
-	double BUTTON_RIGHT_MARGIN = 10;
-	double BUTTON_HORIZONTAL_MARGIN = BUTTON_LEFT_MARGIN + BUTTON_RIGHT_MARGIN;
-	// The margin on the top/bottom sides of the button sprite. The bottom segment also includes a button
-	// that uses the same value.
-	double BUTTON_TOP_MARGIN = 10;
-	double BUTTON_BOTTOM_MARGIN = 10;
-	double BUTTON_VERTICAL_MARGIN = BUTTON_TOP_MARGIN + BUTTON_BOTTOM_MARGIN;
-	// The width of the padding used on the left/right sides of each segment, in pixels.
-	double LEFT_PADDING = 10;
-	double RIGHT_PADDING = 10;
-	double HORIZONTAL_PADDING = RIGHT_PADDING + LEFT_PADDING;
-	// The height of the padding used by the top/bottom segment, in pixels.
-	double TOP_PADDING = 10;
-	double BOTTOM_PADDING = 10;
-	double VERTICAL_PADDING = TOP_PADDING + BOTTOM_PADDING;
-	// The width of the padding at the beginning/end of an input field.
-	double INPUT_LEFT_PADDING = 5;
-	double INPUT_RIGHT_PADDING = 5;
-	double INPUT_HORIZONTAL_PADDING = INPUT_LEFT_PADDING + INPUT_RIGHT_PADDING;
-	// The height of the padding at the top/bottom of an input field.
-	double INPUT_TOP_PADDING = 2;
-	double INPUT_BOTTOM_PADDING = 2;
-	double INPUT_VERTICAL_PADDING = INPUT_TOP_PADDING + INPUT_BOTTOM_PADDING;
-	// The height of an input field in pixels.
-	double INPUT_HEIGHT = 20;
-
-
-private:
 	void DoCallback(bool isOk = true) const;
 	// Whether this dialog accepts typed input from the player.
 	virtual bool AcceptsInput() const;
 	// Return true if the validation function passes when given the current input,
 	// or if there is no validation function.
 	bool ValidateInput() const;
+	void OnInputChange();
+
+
+protected:
+	// The width of the margin on the right/left sides of the dialog. This area is part of the sprite,
+	// but shouldn't have any text or other graphics rendered over it. (It's mostly transparent.)
+	const double LEFT_MARGIN = 20;
+	const double RIGHT_MARGIN = 20;
+	const double HORIZONTAL_MARGIN = LEFT_MARGIN + RIGHT_MARGIN;
+	// The margin on the right/left sides of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	const double BUTTON_LEFT_MARGIN = 10;
+	const double BUTTON_RIGHT_MARGIN = 10;
+	const double BUTTON_HORIZONTAL_MARGIN = BUTTON_LEFT_MARGIN + BUTTON_RIGHT_MARGIN;
+	// The margin on the top/bottom sides of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	const double BUTTON_TOP_MARGIN = 10;
+	const double BUTTON_BOTTOM_MARGIN = 10;
+	const double BUTTON_VERTICAL_MARGIN = BUTTON_TOP_MARGIN + BUTTON_BOTTOM_MARGIN;
+	// The width of the padding used on the left/right sides of each segment, in pixels.
+	const double LEFT_PADDING = 10;
+	const double RIGHT_PADDING = 10;
+	const double HORIZONTAL_PADDING = RIGHT_PADDING + LEFT_PADDING;
+	// The height of the padding used by the top/bottom segment, in pixels.
+	const double TOP_PADDING = 10;
+	const double BOTTOM_PADDING = 10;
+	const double VERTICAL_PADDING = TOP_PADDING + BOTTOM_PADDING;
+	// The width of the padding at the beginning/end of an input field.
+	const double INPUT_LEFT_PADDING = 5;
+	const double INPUT_RIGHT_PADDING = 5;
+	const double INPUT_HORIZONTAL_PADDING = INPUT_LEFT_PADDING + INPUT_RIGHT_PADDING;
+	// The height of the padding at the top/bottom of an input field.
+	const double INPUT_TOP_PADDING = 2;
+	const double INPUT_BOTTOM_PADDING = 2;
+	const double INPUT_VERTICAL_PADDING = INPUT_TOP_PADDING + INPUT_BOTTOM_PADDING;
+	// The height of an input field in pixels.
+	const double INPUT_HEIGHT = 20;
 
 
 protected:
@@ -277,6 +283,7 @@ protected:
 	int activeButton;
 	bool isMission;
 	bool isOkDisabled;
+	bool isButtonThreeDisabled;
 	bool allowsFastForward;
 	bool isWide;
 	Rectangle textRect;
@@ -301,11 +308,22 @@ protected:
 
 
 
-template<class T>
+template <class T>
 DialogPanel::FunctionButton::FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
-	bool(T::*buttonAction)(const std::string &))
+	bool(T:: *buttonAction)(const std::string &))
 	: buttonLabel(buttonLabel), buttonKey(buttonKey),
 	buttonAction(std::bind(buttonAction, panel, std::placeholders::_1))
+{
+}
+
+
+
+template <class T>
+DialogPanel::FunctionButton::FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
+	bool(T:: *buttonAction)(const std::string &), bool(T:: *validateFun)(const std::string &))
+	: buttonLabel(buttonLabel), buttonKey(buttonKey),
+	buttonAction(std::bind(buttonAction, panel, std::placeholders::_1)),
+	validateFun(std::bind(validateFun, panel, std::placeholders::_1))
 {
 }
 
@@ -452,7 +470,7 @@ DialogPanel *DialogPanel::RequestPositiveInteger(T *t, void (T::*fun)(int), std:
 
 template<class T>
 DialogPanel *DialogPanel::ThreeButtonValidateString(T *t, std::string message, std::string initialValue,
-	DialogPanel::FunctionButton buttonOne, DialogPanel::FunctionButton buttonThree,
+	const DialogPanel::FunctionButton &buttonOne, const DialogPanel::FunctionButton &buttonThree,
 	std::function<bool(const std::string &)> validate)
 {
 	DialogInit init;

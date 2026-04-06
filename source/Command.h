@@ -119,6 +119,7 @@ public:
 
 	// Get/set information about the current inUse profile.
 	static std::string GetProfileType();
+	static bool HasUnsavedChanges();
 	static std::string Name();
 	static void RenameProfile(const std::string &name);
 

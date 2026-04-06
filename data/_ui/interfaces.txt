@@ -223,9 +223,7 @@ color "wormholes: beyond Patir" .19 .27 .69
 color "plugin reload required" .75 .1 .1 0.
 
 # Colors used in Preferences panel:
-color "controls text" .5 .5 .5 1.
 color "controls warning text" 0.67 0.33 0.33 1.
-color "controls text shadow" 0. 0. 0. 1.
 
 interface "performance info"
 	anchor top left
@@ -608,41 +606,20 @@ interface "controls"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
-
 	active
-	label "Controls Profile:"
-		from 40 -277
-		align left
-		color bright
 
-	# shadow, one px down from text
-	string "selected controls profile"
-		from 40 -259
-		align left
-		width 140
-		truncate middle
-		color "controls text shadow"
 	visible if "show controls changed"
-	string "selected controls profile"
-		from 40 -260
-		align left
-		width 140
-		truncate middle
-		color "controls warning text"
-	visible if "!show controls changed"
-	string "selected controls profile"
-		from 40 -260
-		align left
-		width 140
-		truncate middle
-		color "controls text"
+	label "Controls have changed."
+		alignment center
+		center 125 165
+		color bright
 	visible
 
-	sprite "ui/dialog cancel"
-		center 221 -270
-	button e "Chang_e"
-		center 221 -270
-		dimensions 70 30
+	sprite "ui/wide button"
+		center 75 210
+	button e "S_elect"
+		center 75 210
+		dimensions 120 30
 
 
 

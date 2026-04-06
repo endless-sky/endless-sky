@@ -107,8 +107,21 @@ DialogPanel *DialogPanel::Info(std::string message, Truncate truncate, bool allo
 
 
 
-DialogPanel *DialogPanel::CallFunctionIfOk(std::function<void()> okFunction, std::string message, int activeButton,
+DialogPanel *DialogPanel::CallFunctionOnExit(std::function<void(bool)> exitFunction,std::string message,
 	Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.boolFun = std::move(exitFunction);
+	init.message = std::move(message);
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new DialogPanel(init);
+}
+
+
+
+DialogPanel *DialogPanel::CallFunctionIfOk(std::function<void()> okFunction, std::string message, int activeButton,
+                                           Truncate truncate, bool allowsFastForward)
 {
 	DialogInit init;
 	init.voidFun = std::move(okFunction);
@@ -200,7 +213,9 @@ void DialogPanel::Draw()
 			labelPos = {
 				thirdPos.X() - .5 * font.Width(buttonThree.buttonLabel),
 				thirdPos.Y() - .5 * font.Height()};
-			font.Draw(buttonThree.buttonLabel, labelPos, activeButton == 3 ? bright : dim);
+
+			font.Draw(buttonThree.buttonLabel, labelPos,
+				isButtonThreeDisabled ? inactive : (activeButton == 3 ? bright : dim));
 		}
 	}
 
@@ -272,7 +287,7 @@ DialogPanel::DialogPanel(DialogInit &init)
 	extensionCount = 0;
 	AddChild(text);
 
-	isOkDisabled = !ValidateInput();
+	OnInputChange();
 }
 
 
@@ -305,12 +320,12 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		else if(doubleFun && c == '.' && !std::count(input.begin(), input.end(), '.'))
 			input += c;
 
-		isOkDisabled = !ValidateInput();
+		OnInputChange();
 	}
 	else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !input.empty())
 	{
 		input.erase(input.length() - 1);
-		isOkDisabled = !ValidateInput();
+		OnInputChange();
 	}
 	else if(key == SDLK_TAB)
 		// Round-robin to the right, 3->2->1->3
@@ -354,12 +369,22 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 				DoCallback();
 				GetUI().Pop(this);
 			}
+			else
+			{
+				UI::PlaySound(UI::UISound::FAILURE);
+				return false;
+			}
 		}
 		else if(activeButton == 3)
 		{
 			// Do third button callback. If this returns true, also close the dialog.
-			if(buttonThree.buttonAction && buttonThree.buttonAction(input))
+			if(!isButtonThreeDisabled && buttonThree.buttonAction && buttonThree.buttonAction(input))
 				GetUI().Pop(this);
+			else
+			{
+				UI::PlaySound(UI::UISound::FAILURE);
+				return false;
+			}
 		}
 		else
 			GetUI().Pop(this);
@@ -566,4 +591,16 @@ bool DialogPanel::ValidateInput() const
 	}
 
 	return true;
+}
+
+
+
+void DialogPanel::OnInputChange()
+{
+	isOkDisabled = !ValidateInput();
+	if(numButtons > 2)
+	{
+		// the recalc should only happen onInputChange
+		isButtonThreeDisabled = buttonThree.validateFun && !buttonThree.validateFun(input);
+	}
 }

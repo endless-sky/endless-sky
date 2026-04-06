@@ -26,6 +26,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <map>
 
+#include "Interface.h"
+#include "Logger.h"
+#include "test/Test.h"
+
 using namespace std;
 
 namespace {
@@ -150,7 +154,8 @@ void Command::ReadKeyboard()
 // Load the keyboard preferences into the working copy.
 void Command::LoadSettings(const filesystem::path &path, const string &name)
 {
-	MakeWorkingCopy();
+	if(inUse == ProfileType::ACTIVE)
+		MakeWorkingCopy();
 
 	profileName[inUse] = name;
 
@@ -158,8 +163,12 @@ void Command::LoadSettings(const filesystem::path &path, const string &name)
 
 	// Create a map of command names to Command objects in the enumeration above.
 	map<string, Command> commands;
+
 	for(const auto &it : description)
 		commands[it.second] = it.first;
+
+	keycodeForCommand[inUse].clear();
+	keyName[inUse].clear();
 
 	// Each command can only have one keycode, one keycode can be assigned
 	// to multiple commands.
@@ -205,7 +214,8 @@ void Command::SaveSettings(const filesystem::path &path)
 // Set the key that is mapped to the given command in the WORKING profile.
 void Command::SetKey(Command command, int keycode)
 {
-	MakeWorkingCopy();
+	if(inUse == ProfileType::ACTIVE)
+		MakeWorkingCopy();
 
 	// Always reset *all* the mappings when one is set. That way, if two commands
 	// are mapped to the same key and you change one of them, the other stays mapped.
@@ -258,8 +268,8 @@ void Command::CopyProfile(ProfileType from, ProfileType to)
 
 		// Regenerate the lookup tables.
 		keyName[to].clear();
-		commandForKeycode[to].clear();
 		keycodeForCommand[to].clear();
+		commandForKeycode[to].clear();
 		keycodeCount[to].clear();
 		for(const auto &[command, keycode] : keycodeForCommand[from])
 		{
@@ -276,6 +286,25 @@ void Command::CopyProfile(ProfileType from, ProfileType to)
 string Command::GetProfileType()
 {
 	return (inUse == ProfileType::WORKING) ? "Working" : "Active";
+}
+
+
+
+bool Command::HasUnsavedChanges()
+{
+	if(inUse == ProfileType::ACTIVE)
+		return false;
+	bool hasUnsavedChanges = false;
+	// Return true if any controls are different between active and working copy (ignoring profile name):
+	for(const auto &[command, keycode] : keycodeForCommand[ProfileType::ACTIVE])
+	{
+		hasUnsavedChanges |= keyName[inUse][command] != keyName[ProfileType::ACTIVE][command];
+		hasUnsavedChanges |= keycodeForCommand[inUse][command] != keycodeForCommand[ProfileType::ACTIVE][command];
+		hasUnsavedChanges |= commandForKeycode[inUse][keycode].state != \
+			commandForKeycode[ProfileType::ACTIVE][keycode].state;
+		hasUnsavedChanges |= keycodeCount[inUse][keycode] != keycodeCount[ProfileType::ACTIVE][keycode];
+	}
+	return hasUnsavedChanges;
 }
 
 

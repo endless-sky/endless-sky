@@ -27,17 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class RenderBuffer;
 
 
-class ListDialogInit {
-public:
-	std::string title;
-	std::vector<std::string> options;
-	std::function<std::string (const std::string &)> hoverFun;
-	std::string selectedItem;
-	// Note: tooltip must be fully initialized as it has no default constructor.
-	Tooltip tooltip;
-};
-
-
 // A special version of Dialog for listing the command profiles.
 class ListDialogPanel : public DialogPanel {
 public:
@@ -47,19 +36,30 @@ public:
 		DialogPanel::FunctionButton buttonOne, DialogPanel::FunctionButton buttonThree,
 		std::string (T::*hoverFun)(const std::string&));
 
-	void UpdateList(std::vector<std::string> newOptions);
+	void UpdateList(const std::vector<std::string> &newOptions);
 
 	bool AcceptsInput() const override;
 
 	virtual void Draw() override;
 
-	explicit ListDialogPanel(DialogInit &init, ListDialogInit &listInit);
+
+protected:
+	class ListDialogInit {
+	public:
+		std::string title;
+		std::vector<std::string> options;
+		std::function<std::string (const std::string &)> hoverFun;
+		// Note: tooltip must be fully initialized as it has no default constructor.
+		Tooltip tooltip;
+	};
 
 
 protected:
+	explicit ListDialogPanel(DialogInit &init, ListDialogInit &listInit);
+
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	// virtual bool Click(int x, int y, MouseButton button, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual void Resize() override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
@@ -81,8 +81,7 @@ private:
 
 	Rectangle selectionListBox;
 
-	int selectedIndex = 0;
-	std::string selectedItem;
+	int inputIndex = 0;
 	std::string hoverItem;
 	std::function<std::string (const std::string &)> hoverFun;
 
@@ -99,20 +98,20 @@ private:
 template<class T>
 ListDialogPanel *ListDialogPanel::ShowList(T *t, const std::string &title, const std::vector<std::string> &options,
 	const std::string &initialSelection, DialogPanel::FunctionButton buttonOne, DialogPanel::FunctionButton buttonThree,
-	std::string(T::*hoverFun)(const std::string &)
+	std::string(T::*hoverFun)(const std::string &))
 {
 	DialogInit init;
 	init.buttonOne = buttonOne;
 	init.buttonThree = buttonThree;
+	init.initialValue = std::move(initialSelection);
 
-	ListDialogInit init2 = {
+	ListDialogInit listInit = {
 		std::move(title),
 		std::move(options),
 		std::bind(hoverFun, t, std::placeholders::_1),
-		std::move(initialSelection),
 		{130, Alignment::CENTER, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 			GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")}
 	};
 
-	return new ListDialogPanel(init, init2);
+	return new ListDialogPanel(init, listInit);
 }

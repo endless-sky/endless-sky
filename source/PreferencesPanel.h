@@ -82,12 +82,14 @@ private:
 	void ScrollSelectedPlugin();
 
 	// Callbacks related to managing controls profiles.
-	bool SaveControls(const std::string &profileName);
+	void SaveControls(const std::string &profileName);
+	bool RequestSaveControls(const std::string& profileName);
 	bool DiscardControlChanges(const std::string &profileName);
 
 	void UpdateAvailableProfiles();
 	void SelectProfile();
 	bool LoadProfile(const std::string &profileName);
+	bool IsUserProfile(const std::string& profileName);
 	std::string HoverProfile(const std::string &profileName);
 	bool DeleteProfile(const std::string &profileName);
 

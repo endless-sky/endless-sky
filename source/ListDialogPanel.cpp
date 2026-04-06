@@ -35,7 +35,7 @@ using namespace std;
 
 
 ListDialogPanel::ListDialogPanel(DialogInit &init, ListDialogInit &listInit)
-	: DialogPanel(init), title(listInit.title), selectedItem(listInit.selectedItem),
+	: DialogPanel(init), title(listInit.title),
 	hoverFun(listInit.hoverFun), tooltip(listInit.tooltip)
 {
 	ListDialogPanel::Resize();
@@ -44,16 +44,17 @@ ListDialogPanel::ListDialogPanel(DialogInit &init, ListDialogInit &listInit)
 
 
 
-void ListDialogPanel::UpdateList(std::vector<std::string> newOptions) {
+void ListDialogPanel::UpdateList(const std::vector<std::string> &newOptions)
+{
 	options.clear();
 	options.assign(newOptions.begin(), newOptions.end());
 	bool found = false;
 	int index = 0;
 	for(auto &it : options)
 	{
-		if(it == selectedItem)
+		if(it == input)
 		{
-			selectedIndex = index;
+			inputIndex = index;
 			found = true;
 			break;
 		}
@@ -61,8 +62,8 @@ void ListDialogPanel::UpdateList(std::vector<std::string> newOptions) {
 	}
 	if(!found)
 	{
-		selectedItem = options.front();
-		selectedIndex = 0;
+		input = options.front();
+		inputIndex = 0;
 	}
 
 	// Set the new list scroll range.
@@ -117,7 +118,7 @@ void ListDialogPanel::Draw()
 	int index = 0;
 	for(const string &display : options)
 	{
-		bool isSelectedIndex = (display == selectedItem);
+		bool isSelectedIndex = (display == input);
 		if(isSelectedIndex || display == hoverItem)
 			table.DrawHighlight(faint);
 
@@ -131,7 +132,12 @@ void ListDialogPanel::Draw()
 			// Add selectionListBox.Center() for absolute coordinates.
 			// Generate list of Click zones.
 			AddZone({selectionListBox.Center() + zoneBounds.Center(), zoneBounds.Dimensions()},
-					[&]() { selectedItem = display; selectedIndex = index; });
+					[&]()
+					{
+						input = display;
+						inputIndex = index;
+						OnInputChange();
+					});
 			// Generate list of Hover zones.
 			optionZones.emplace_back(selectionListBox.Center() + table.GetCenterPoint(),
 				table.GetRowSize(), display);
@@ -210,7 +216,7 @@ bool ListDialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	}
 	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || key == SDLK_SPACE)
 	{
-		// Now that we know what button was selectedIndex, process the button press
+		// Now that we know what button was inputIndex, process the button press
 		if(DoCallback())
 			GetUI().Pop(this);
 	}
@@ -220,23 +226,23 @@ bool ListDialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	{
 		if(key == SDLK_DOWN)
 		{
-			++selectedIndex;
-			if(static_cast<unsigned>(selectedIndex) >= options.size())
-				selectedIndex = 0;
+			++inputIndex;
+			if(static_cast<unsigned>(inputIndex) >= options.size())
+				inputIndex = 0;
 		}
 		else
 		{
-			--selectedIndex;
-			if(selectedIndex < 0)
-				selectedIndex = options.size() - 1;
+			--inputIndex;
+			if(inputIndex < 0)
+				inputIndex = options.size() - 1;
 		}
 
 		auto it = options.begin();
 		int index = 0;
 		for( ; it != options.end(); ++it, ++index)
-			if(index == selectedIndex)
+			if(index == inputIndex)
 			{
-				selectedItem = *it;
+				input = *it;
 				break;
 			}
 
@@ -249,6 +255,12 @@ bool ListDialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	return true;
 }
 
+bool ListDialogPanel::Click(int x, int y, MouseButton button, int clicks)
+{
+	auto retVal = DialogPanel::Click(x, y, button, clicks);
+	OnInputChange();
+	return retVal;
+}
 
 
 void ListDialogPanel::Resize()
@@ -302,10 +314,11 @@ bool ListDialogPanel::Scroll(double dx, double dy)
 
 void ListDialogPanel::ScrollToSelection()
 {
-	while(selectedIndex * 20 - listScroll < 0)
+	while(inputIndex * 20 - listScroll < 0)
 		listScroll.Scroll(-Preferences::ScrollSpeed());
-	while((selectedIndex + 1) * 20 - listScroll > listClip->Height())
+	while((inputIndex + 1) * 20 - listScroll > listClip->Height())
 		listScroll.Scroll(Preferences::ScrollSpeed());
+	DialogPanel::OnInputChange();
 }
 
 
@@ -313,12 +326,16 @@ void ListDialogPanel::ScrollToSelection()
 bool ListDialogPanel::DoCallback() const
 {
 	bool closeDialog = false;
-	if(activeButton == 1)
-		closeDialog = buttonOne.buttonAction(selectedItem);
+	if(activeButton == 1 && !isOkDisabled)
+		closeDialog = buttonOne.buttonAction(input);
 	else if(activeButton == 2)
 		closeDialog = true;
-	else if(activeButton == 3 && buttonThree.buttonAction)
-		closeDialog = buttonThree.buttonAction(selectedItem);
+	else if(activeButton == 3 && !isButtonThreeDisabled && buttonThree.buttonAction)
+		closeDialog = buttonThree.buttonAction(input);
+	else
+	{
+		UI::PlaySound(UI::UISound::FAILURE);
+	}
 	return closeDialog;
 }
 

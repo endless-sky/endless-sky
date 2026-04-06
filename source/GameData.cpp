@@ -202,7 +202,7 @@ void GameData::CheckReferences()
 void GameData::SaveSettings()
 {
 	string profileName = Command::Name();
-	filesystem::path currentProfilePath = Files::Config() / ("keys_" + profileName + ".txt");
+	filesystem::path currentProfilePath = Files::Config() / "controls" / (profileName + ".txt");
 
 	// Save the active profile to the provided path.
 	Command::SaveSettings(currentProfilePath);
@@ -216,7 +216,7 @@ void GameData::SaveSettings()
 void GameData::LoadSettings()
 {
 	// Start with the default key settings as the foundation. This can get updated with new default keys over time.
-	Command::LoadSettings(Files::Resources() / "keys_default.txt", "Game_Default");
+	Command::LoadSettings(Files::Resources() / "controls" / "default.txt", "Game_Default");
 	Command::ActivateWorkingCopy();
 
 	// Identify current settings profile.
@@ -226,12 +226,12 @@ void GameData::LoadSettings()
 		currentProfileName.pop_back();
 
 	// Load the current settings profile if it can be found.
-	filesystem::path currentProfilePath = Files::Config() / ("keys_" + currentProfileName + ".txt");
+	filesystem::path currentProfilePath = Files::Config() / "controls" / (currentProfileName + ".txt");
 
 	if(currentProfileName.empty() || !Files::Exists(currentProfilePath))
 	{
 		// Make a new profile, name it "Current" for lack of a better name.
-		currentProfileName = "Current";
+		currentProfileName = "User";
 		Command::RenameProfile(currentProfileName);
 
 		// Consider if this is a migration from the old keys.txt or a fresh installation.
