@@ -489,8 +489,8 @@ private:
 	std::vector<std::weak_ptr<Ship>> selectedEscorts;
 	std::map<const Ship *, int> groups;
 	// The different scan capabilities of the player's fleet, storing the ship with each scanner
-	// and its scan range squared (for quicker comparisons).
-	std::map<ScanType, std::map<std::shared_ptr<Ship>, double>> scanners;
+	// and its scan range squared (for quicker comparisons) and scan speed.
+	std::map<ScanType, std::map<std::shared_ptr<Ship>, std::pair<double, double>>> scanners;
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;

@@ -155,7 +155,7 @@ namespace {
 	}
 
 	ScanOptions CanScanTarget(const Point &position, const vector<ScanType> &types, const System *system,
-		const map<ScanType, map<shared_ptr<Ship>, double>> &scanners)
+		const map<ScanType, map<shared_ptr<Ship>, pair<double, double>>> &scanners)
 	{
 		ScanOptions options;
 		for(ScanType type : types)
@@ -163,13 +163,13 @@ namespace {
 			auto it = scanners.find(type);
 			if(it == scanners.end())
 				continue;
-			for(const auto &[ship, rangeSquared] : it->second)
+			for(const auto &[ship, scanStats] : it->second)
 			{
 				if(ship->GetSystem() != system || ship->IsDestroyed() || ship->CannotAct(Ship::ActionType::SCAN))
 					continue;
 				double distanceSquared = ship->Position().DistanceSquared(position);
-				if(type == ScanType::RANGE || rangeSquared >= distanceSquared)
-					options.AddOption(type, ship, distanceSquared);
+				if(type == ScanType::RANGE || scanStats.first >= distanceSquared)
+					options.AddOption(type, ship, scanStats.first, scanStats.second);
 			}
 		}
 		return options;
@@ -5293,7 +5293,15 @@ void PlayerInfo::CalculateScanners(const shared_ptr<Ship> &ship)
 	const Outfit &attributes = ship->Attributes();
 
 	double cargo = attributes.Get("cargo scan power") * 10000.;
+	double cargoSpeed = attributes.Get("cargo scan efficiency");
+	if(!cargoSpeed)
+		cargoSpeed = cargo;
+
 	double outfit = attributes.Get("outfit scan power") * 10000.;
+	double outfitSpeed = attributes.Get("outfit scan efficiency");
+	if(!outfitSpeed)
+		outfitSpeed = outfit;
+
 	double asteroid = attributes.Get("asteroid scan power") * 10000.;
 	double tactical = attributes.Get("tactical scan power") * 10000.;
 	double strategic = attributes.Get("strategic scan power") * 10000.;
@@ -5309,33 +5317,33 @@ void PlayerInfo::CalculateScanners(const shared_ptr<Ship> &ship)
 	bool range = attributes.Get("range finder power") > 0.;
 
 	if(cargo)
-		scanners[ScanType::CARGO][ship] = cargo;
+		scanners[ScanType::CARGO][ship] = make_pair(cargo, cargoSpeed);
 	if(outfit)
-		scanners[ScanType::OUTFIT][ship] = outfit;
+		scanners[ScanType::OUTFIT][ship] = make_pair(outfit, outfitSpeed);
 	if(asteroid)
-		scanners[ScanType::ASTEROID][ship] = asteroid;
+		scanners[ScanType::ASTEROID][ship] = make_pair(asteroid, 0.);
 	if(tactical)
-		scanners[ScanType::TACTICAL][ship] = tactical;
+		scanners[ScanType::TACTICAL][ship] = make_pair(tactical, 0.);
 	if(strategic)
-		scanners[ScanType::STRATEGIC][ship] = strategic;
+		scanners[ScanType::STRATEGIC][ship] = make_pair(strategic, 0.);
 	if(crew)
-		scanners[ScanType::CREW][ship] = crew;
+		scanners[ScanType::CREW][ship] = make_pair(crew, 0.);
 	if(fuel)
-		scanners[ScanType::FUEL][ship] = fuel;
+		scanners[ScanType::FUEL][ship] = make_pair(fuel, 0.);
 	if(energy)
-		scanners[ScanType::ENERGY][ship] = energy;
+		scanners[ScanType::ENERGY][ship] = make_pair(energy, 0.);
 	if(thermal)
-		scanners[ScanType::THERMAL][ship] = thermal;
+		scanners[ScanType::THERMAL][ship] = make_pair(thermal, 0.);
 	if(maneuver)
-		scanners[ScanType::MANEUVER][ship] = maneuver;
+		scanners[ScanType::MANEUVER][ship] = make_pair(maneuver, 0.);
 	if(acceleration)
-		scanners[ScanType::ACCELERATION][ship] = acceleration;
+		scanners[ScanType::ACCELERATION][ship] = make_pair(acceleration, 0.);
 	if(velocity)
-		scanners[ScanType::VELOCITY][ship] = velocity;
+		scanners[ScanType::VELOCITY][ship] = make_pair(velocity, 0.);
 	if(weapon)
-		scanners[ScanType::WEAPON][ship] = weapon;
+		scanners[ScanType::WEAPON][ship] = make_pair(weapon, 0.);
 	if(tactical || strategic || range)
-		scanners[ScanType::RANGE][ship] = 1.;
+		scanners[ScanType::RANGE][ship] = make_pair(0., 0.);
 }
 
 

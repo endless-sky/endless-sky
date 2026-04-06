@@ -26,15 +26,30 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Stores the player ships that are within range of a target for each scan type.
 class ScanOptions {
 public:
-	// Add the given ship as a scanning option for this scan type. If a closer ship
-	// was already added, then it will remain as the option for that scan type.
-	void AddOption(ScanType type, const std::shared_ptr<Ship> &ship, double distance);
+	class Option {
+	public:
+		Option(const std::shared_ptr<Ship> &ship, double distance, double speed)
+			: ship(ship), distance(distance), speed(speed) {};
+
+		std::shared_ptr<Ship> ship;
+		double distance;
+		double speed;
+	};
+
+
+public:
+	// Add the given ship as a scanning option for this scan type.
+	void AddOption(ScanType type, const std::shared_ptr<Ship> &ship, double distance, double speed);
 	// Whether the player has a ship for the given scan type.
 	bool HasOption(ScanType type) const;
 	// The closest ship that the player has for the given scan type.
-	std::shared_ptr<Ship> GetOption(ScanType type) const;
+	std::shared_ptr<Ship> GetClosest(ScanType type) const;
+	// The ship with the strongest scanners for the given scan type.
+	std::shared_ptr<Ship> GetStrongest(ScanType type) const;
+	// All ships capable of scanning the target with the given scan type.
+	const std::vector<Option> &GetOptions(ScanType type) const;
 
 
 private:
-	std::map<ScanType, std::pair<std::shared_ptr<Ship>, double>> closest;
+	std::map<ScanType, std::vector<Option>> options;
 };
