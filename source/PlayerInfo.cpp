@@ -3561,28 +3561,24 @@ ScanOptions PlayerInfo::CanScan(const shared_ptr<const Minable> &target) const
 
 
 
-double PlayerInfo::CargoScanFraction() const
+double PlayerInfo::CargoScanFraction(const shared_ptr<const Ship> &target) const
 {
-	if(ships.empty())
-		return 0.;
-	return (*ranges::max_element(ships,
-		[](const shared_ptr<Ship> &a, const shared_ptr<Ship> &b) {
-			return a->CargoScanFraction() < b->CargoScanFraction();
-		}
-	))->CargoScanFraction();
+	double max = 0.;
+	for(const auto &ship : ships)
+		if(ship->GetTargetShip() == target && ship->CargoScanFraction() > max)
+			max = ship->CargoScanFraction();
+	return max;
 }
 
 
 
-double PlayerInfo::OutfitScanFraction() const
+double PlayerInfo::OutfitScanFraction(const shared_ptr<const Ship> &target) const
 {
-	if(ships.empty())
-		return 0.;
-	return (*ranges::max_element(ships,
-		[](const shared_ptr<Ship> &a, const shared_ptr<Ship> &b) {
-			return a->OutfitScanFraction() < b->OutfitScanFraction();
-		}
-	))->OutfitScanFraction();
+	double max = 0.;
+	for(const auto &ship : ships)
+		if(ship->GetTargetShip() == target && ship->OutfitScanFraction() > max)
+			max = ship->OutfitScanFraction();
+	return max;
 }
 
 

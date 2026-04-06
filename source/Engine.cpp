@@ -1026,8 +1026,8 @@ void Engine::Step(bool isActive)
 		info.SetCondition("fast hud sprites");
 	if(target && target->IsTargetable() && target->GetSystem() == currentSystem)
 	{
-		double outfitScan = player.OutfitScanFraction();
-		double cargoScan = player.CargoScanFraction();
+		double outfitScan = player.OutfitScanFraction(target);
+		double cargoScan = player.CargoScanFraction(target);
 		if(outfitScan || cargoScan)
 		{
 			double width = max(target->Width(), target->Height());
