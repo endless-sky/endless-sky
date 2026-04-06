@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "OrderSet.h"
 
+#include "../PlayerInfo.h"
 #include "../Ship.h"
 
 #include <array>
@@ -25,7 +26,8 @@ namespace {
 	constexpr bitset<static_cast<size_t>(Orders::Types::TYPES_COUNT)> HAS_TARGET_SHIP{
 		(1 << static_cast<int>(Orders::Types::KEEP_STATION)) +
 		(1 << static_cast<int>(Orders::Types::GATHER)) +
-		(1 << static_cast<int>(Orders::Types::FINISH_OFF))
+		(1 << static_cast<int>(Orders::Types::FINISH_OFF)) +
+		(1 << static_cast<int>(Orders::Types::SCAN))
 	};
 
 	constexpr bitset<static_cast<size_t>(Orders::Types::TYPES_COUNT)> HAS_TARGET_ASTEROID{
@@ -60,6 +62,7 @@ namespace {
 		}, // HOLD_FIRE
 		{}, // MINE
 		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // HARVEST
+		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // SCAN
 	}};
 }
 
@@ -128,7 +131,7 @@ void OrderSet::Add(const OrderSingle &newOrder, bool *hasMismatch, bool *already
 
 
 
-void OrderSet::Validate(const Ship *ship, const System *playerSystem)
+void OrderSet::Validate(const Ship *ship, const System *playerSystem, const PlayerInfo &player)
 {
 	if(Has(Types::MINE) && ship->Cargo().Free() && targetAsteroid.expired())
 	{
@@ -149,6 +152,13 @@ void OrderSet::Validate(const Ship *ship, const System *playerSystem)
 			|| (!tShip->IsTargetable() && tShip->GetGovernment() != ship->GetGovernment())
 			|| (tShip->IsDisabled() && Has(Types::ATTACK))
 			|| (ship->GetSystem() && tShip->GetSystem() != ship->GetSystem() && tShip->GetSystem() != playerSystem);
+		if(!targetShipInvalid && Has(Types::SCAN))
+		{
+			bool cargo = ship->Attributes().Get("cargo scan power");
+			bool outfit = ship->Attributes().Get("outfit scan power");
+			targetShipInvalid |= (!cargo || player.CargoScanFraction(tShip) == 1.)
+				&& (!outfit || player.OutfitScanFraction(tShip) == 1.);
+		}
 	}
 	if((types & (HAS_TARGET_ASTEROID | HAS_TARGET_SHIP_OR_ASTEROID)).any())
 	{

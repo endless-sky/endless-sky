@@ -574,6 +574,13 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	}
 	else if(activeCommands.Has(Command::FIGHT) && !shift && targetAsteroid)
 		IssueAsteroidTarget(targetAsteroid);
+	if(activeCommands.Has(Command::SCAN_ORDER) && target && !target->IsYours() && !shift
+		&& (player.HasScanner(ScanType::CARGO) || player.HasScanner(ScanType::OUTFIT)))
+	{
+		OrderSingle newOrder{Orders::Types::SCAN};
+		newOrder.SetTargetShip(target);
+		IssueOrder(newOrder, "scanning \"" + target->GivenName() + "\".");
+	}
 	if(activeCommands.Has(Command::HOLD_FIRE) && !shift)
 	{
 		OrderSingle newOrder{Orders::Types::HOLD_FIRE};
@@ -594,7 +601,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
-		it->second.Validate(it->first, flagship->GetSystem());
+		it->second.Validate(it->first, flagship->GetSystem(), player);
 		if(it->second.Empty())
 		{
 			it = orders.erase(it);
@@ -1518,7 +1525,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		auto it = orders.find(&ship);
 		if(it != orders.end())
 		{
-			if(it->second.Has(Orders::Types::ATTACK) || it->second.Has(Orders::Types::FINISH_OFF))
+			if(it->second.Has(Orders::Types::ATTACK) || it->second.Has(Orders::Types::FINISH_OFF)
+					|| it->second.Has(Orders::Types::SCAN))
 				return it->second.GetTargetShip();
 			if(it->second.Has(Orders::Types::HOLD_FIRE))
 				return target;
@@ -1876,6 +1884,14 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		// Note: in AI::UpdateKeys() we already made sure that if a set of orders
 		// has a target, the target is in-system and targetable. But, to be sure:
 		return false;
+	}
+	else if(shipOrders.Has(Orders::Types::SCAN))
+	{
+		if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
+			CircleAround(ship, command, *target);
+		else
+			MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
+		command |= Command::SCAN;
 	}
 	else if(shipOrders.Has(Orders::Types::KEEP_STATION))
 		KeepStation(ship, command, *target);
