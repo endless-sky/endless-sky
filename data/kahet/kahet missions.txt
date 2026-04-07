@@ -3341,9 +3341,9 @@ mission "Ka'het: Patir Mystery 24"
 				accept
 
 			label late
-			`You find the five Remnant waiting for you at the edge of the starport, noticeably showing their trepidation. "Welcome back, <first>. Is your fleet ready for our new Patir trip now?"`
+			`You find the five Remnant waiting for you at the edge of the starport, noticeably showing their trepidation. "Welcome back, <first>. Do you have enough cargo space for our next Patir expedition now?"`
 			choice
-				`	"It is."`
+				`	"I do."`
 					goto accept
 				`	"Sorry, I need a few more days still."`
 			`	Their disappointment is clear. "We will be here when your ships come."`
