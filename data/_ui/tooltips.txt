@@ -1302,6 +1302,18 @@ tip "insufficient energy to fire?"
 
 
 
+# Map
+tip "flux:"
+	`Combined stellar flux (photonic emissions) from all bodies in the system.`
+tip "wind:"
+	`Combined stellar wind (baryonic emissions) from all bodies in the system.`
+tip "energy:"
+	`Energy collection per second with your current flagship at the system center.`
+tip "fuel:"
+	`Fuel collection per second with your current flagship at the system center.`
+
+
+
 # Boolean attributes:
 tip "This outfit is considered an atrocity."
 	`Governments that scan for illegal goods will attack you upon discovering this item in your possession in space, or arrest you if found when landed.`
