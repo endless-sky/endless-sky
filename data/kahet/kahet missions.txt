@@ -3300,10 +3300,10 @@ mission "Ka'het: Patir Mystery 23"
 		conversation
 			`The Remnant leave the ship in a joyful mood, despite the effort and the complications along the way. While a carriage leaves with the cargo you brought back from Patir, Dusk informs you that the next step will depend on the review of this test flight directly by the Prefects. "If all goes well, you will find us at a table of the nearby cafeteria as soon as we have taken some rest," he concludes with a hopeful bow.`
 
-mission "Ka'het: Patir Mystery 24A"
+mission "Ka'het: Patir Mystery 24"
 	name "Beyond <system> again"
 	description "Return to <system> again with the same research team, this time with the intention of exploring the systems that lie beyond it. Be there exactly on <date>."
-	deadline 7
+	deadline 6
 	blocked `The cargo for the next expedition is ready, but you do not have enough free space. Come back when you have <tons> free.`
 	source "Caelian"
 	destination "Builder Settlement"
@@ -3313,6 +3313,8 @@ mission "Ka'het: Patir Mystery 24A"
 		has "Ka'het: Patir Mystery 23: done"
 	on offer
 		conversation
+			branch late
+				has "ka'het: patir 24 deferred"
 			`The spaceport cafeteria is brimming with excitement. You take a seat at the table of the Remnant who were in your expedition, who seem to be almost done with their meal. "The first expedition into a new land is always something that deserves celebration," signs one of them, offering you a bowl with a mix of their food. "Granted, only after going there already by accident. Still, this is going to be the first proper exploration, bringing scientific equipment to determine what it is actually like."`
 			choice
 				`	"What kind of equipment?"`
@@ -3326,39 +3328,28 @@ mission "Ka'het: Patir Mystery 24A"
 			`	"This time, the payload is going to be very large," Dusk intervenes. "Even larger than the outpost set up in Patir, though it will not be removed from your ship this time. We will stay in your payload bay for our research as you fly toward our destination, trying to make the best use of our time."`
 			`	"What destination?" you ask while he takes the last bite off of his plate.`
 			`	"Our first target, after landing in Patir to wait for the system to move, will be the station in Chanai. This will be what we defined as a Medium Endurance trip - a week-long stay in the space beyond Patir, enough to reach the lower cluster but not to make a full tour of it before Ssil Vida's signal reaches Patir again and brings it back. The Long Endurance trips will be what allows us to reach Lathia again, hopefully a couple months from now.`
-			`	"I need to know if you have a fleet that can carry a 135 ton payload to Patir stationed on this very planet. If you do, I will call Postverta to send the signal and begin the countdown; if you do not, we can wait for a couple days for you to gather it here before we start. As you have seen, we do not have the time to stop anywhere if we want to be in Patir when it moves away."`
+			`	"I need to know if you are able to carry a 135 ton payload to Patir stationed on this very planet. If you can, I will call Postverta to send the signal and begin the countdown; if you cannot, we can wait for a couple days for you to obtain the space before we begin the mission."`
 			choice
-				`	"I do."`
-					accept
+				`	"I can."`
+					goto accept
 				`	"It will be here within a few days."`
 			`	He nods. "We will wait then. When you are ready, you know where to find us."`
-				decline
-	on visit
-		dialog phrase "generic cargo and passenger on visit"
-	on accept
-		event "Patir moves" 6
-		event "Patir returns" 13
+				defer
 
-mission "Ka'het: Patir Mystery 24B"
-	name "Beyond <system> again"
-	description "Return to <system> again with the same research team, this time with the intention of exploring neighboring systems. Be there exactly on <date>."
-	deadline 6
-	source "Caelian"
-	destination "Builder Settlement"
-	passengers 5
-	cargo "scientific payload" 135
-	blocked `The cargo for the next expedition is ready, but you do not have enough free space. Come back when you have <tons> free.`
-	to offer
-		has "Ka'het: Patir Mystery 24A: declined"
-	on offer
-		conversation
+			label accept
+			`	"As you have seen, we do not have the time to stop anywhere if we want to be in Patir when it moves away. If you have any escorts, see that they make the jump with you - Patir won't wait for them."`
+				accept
+
+			label late
 			`You find the five Remnant waiting for you at the edge of the starport, noticeably showing their trepidation. "Welcome back, <first>. Is your fleet ready for our new Patir trip now?"`
 			choice
 				`	"It is."`
-					accept
+					goto accept
 				`	"Sorry, I need a few more days still."`
 			`	Their disappointment is clear. "We will be here when your ships come."`
 				defer
+	on defer
+		set "ka'het: patir 24 deferred"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on accept
@@ -3376,9 +3367,7 @@ mission "Ka'het: Patir Mystery 25"
 	passengers 5
 	cargo "scientific payload" 135
 	to offer
-		or
-			has "Ka'het: Patir Mystery 24A: done"
-			has "Ka'het: Patir Mystery 24B: done"
+		has "Ka'het: Patir Mystery 24: done"
 	on offer
 		conversation
 			`For once, your ship's bridge is unusually quiet. The same cannot be said about the laboratory in the back of your ship - the Remnant have all moved there already, in order to activate the equipment for the mission. Each of them stands at their console setting up small computers and strange pieces of machinery, like a well-oiled machine where everyone knows exactly what to do.`
