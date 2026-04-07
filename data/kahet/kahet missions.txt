@@ -3180,7 +3180,7 @@ mission "Ka'het: Patir Mystery 22"
 		conversation
 			branch hit
 				has "Remnant: Patir Mystery 21 hit"
-			`You meet up with the <npc> just above the uppermost cloud layer of <planet>. "<first>, what happened to your weapons? We did not record any of them hitting us on the way here," questions Dusk through the radio. The chanting tone makes you unsure of whether it was a taunt or a genuine inquiry about your weaponry.`
+			`You meet up with the <npc> just above the uppermost cloud layer of Pacili. "<first>, what happened to your weapons? We did not record any of them hitting us on the way here," questions Dusk through the radio. The chanting tone makes you unsure of whether it was a taunt or a genuine inquiry about your weaponry.`
 			choice
 				`	"I was not prepared well."`
 					goto prepared
@@ -3212,8 +3212,9 @@ mission "Ka'het: Patir Mystery 22"
 			`	"It would not have been as fun if the attack was not simulated," he replies. It takes a minute for the next transmission to come. "We are almost ready for our descent now. We should be back in about an hour."`
 			label descent
 			`	The Petrel leaves your wing and falls like a stone through the cloud layer. Irregular updates from the crew reassure you that their test is continuing, and that their ship is holding up well. You follow their trip on your radar screen until they move beyond the range of your instruments.`
-			`	The stars above you are barely visible in the atmosphere of <planet>; it's for this reason that you only figure out Patir is moving halfway through the process. There is no way that the other Remnant can see it from deep below, and the ones who remained at the Builder settlement are probably too busy with their experiments to watch it. Chances are that, this time, you are the only person who can stop and take a look at the spectacle. You recline your seat to watch through your cockpit the faint dance above the planet, for once all by yourself.`
-			`	The sequence you have now seen twice repeats at the reverse: most of the show now sees the number of stars grow continuously, spinning or moving erratically left and right. In the last few seconds most of those lights condense into a shrinking mass of light, until it appears to have become just another star. Still, you can confidently say that you can see far more stars around you than before Patir started moving. Soon enough, the fruitful return of their lifeboat puts an end to your thoughts. Now that you are back in the Milky Way, it's time to pack things up in the Remnant laboratory and make the trip back to the Ember Wastes.`
+			`	The stars above you are barely visible through the atmosphere of <origin>, which at first seems normal. It is not until they begin flickering more that you realize Patir is in the process of moving again! There is no way that the Remnant can see it from deep below, and those who remained at the Builder settlement are probably too busy with their experiments to notice it. Chances are that, this time, you are the only person who can stop and take a look at the spectacle. You recline your seat to watch through your cockpit the faint dance above the planet, for once all by yourself.`
+			`	The sequence you have now seen twice repeats in reverse: the number of stars now grows continuously, spinning or moving erratically left and right. In the last few seconds, most condense into a mass of light that shrinks until it appears as simply another star. Still, you can confidently say that you can see far more stars around you than before Patir started moving.`
+			`	Soon enough, the fruitful return of their lifeboat puts an end to your thoughts. Now that you are back in the Milky Way, it's time to pack things up in the Remnant laboratory and make the trip back to the Ember Wastes.`
 				accept
 	npc save
 		government "Remnant"
@@ -3223,7 +3224,7 @@ mission "Ka'het: Patir Mystery 22"
 		conversation
 			`You precede the Petrel to the outpost and stand next to your ship, watching it make a fairly decent landing right next to the facility. Despite the imprecision, a tunnel grows out of the habitat and toward the ship's hatch, locking the two of them together. When you enter the laboratory, the three Remnant are giving a rundown of their results to the other two, and vice versa. Both groups seem satisfied, though you feel the pair who stayed in the lab are more so than the other three.`
 			`	"We will be ready to leave soon," announces Dusk at last. "After a few hours of sleep, and a couple more to finish setting up the lab. I suggest you take the chance to sleep a bit as well, <first>." He hands you a small crystal, enclosed in a metallic container.`
-			`	"But first, make sure to transmit back to Ssil Vida the contents of this chip. You can think of it as a passphrase: if they do not receive it, it will be a sign that we have been stuck in the other galaxy, and they will move Patir back there as soon as possible for a few days so that we can catch the ride." You nod, and leave them to their rest in the outpost.`
+			`	"But first, make sure to transmit back to Ssil Vida the contents of this chip. You can think of it as a passphrase - in the event Patir moves without us and we become stranded in the other galaxy, they will move Patir again as soon as possible if they don't receive the passphrase." You nod, and leave them to their rest in the outpost.`
 
 
 event "Patir unland on Pacili"
@@ -3259,9 +3260,9 @@ mission "Ka'het: Patir Mystery 23"
 			`	Half an hour passes before the airlock opens and the first Remnant comes in. They are carrying with them dozens of heavy-looking containers, certainly containing artifacts found inside the facility. To make their life easier, and to expedite the process, you go back outside and fly your ship closer to the entrance. After helping them some more, and with their thanks, you move back to the bridge at last and prepare for your flight back to <destination>.`
 				accept
 			label inside
-			`	The space inside the settlement has changed remarkably since your first encounter with the Ka'sei. Much like on the outside of the outpost, an army of small, autonomous scientific stations have been scattered all over the floor, each with its own generator and control system. Near them, you find that a section of the floor has been opened, and a makeshift tent has been erected over it.`
-			`	In the general mess, you try to contact the Remnant with your commlink, and soon enough one of the researchers replies with indications on how to reach their position. A lift of clear Remnant design takes you down a couple floors, and in front of a second map. A stroke of luck: some translations have been taped next to the original Builder writing!`
-			`	'Branch of Leaf,' 'Water Moon (?)', 'Exit Lane (?)', and 'Blue To Orange (??)' appear prominently on the map. A thick line labeled 'Safe Hull' surrounds the floor: it appears that despite its appearance, the complex was well protected. You compare the message of the Remnant with the rooms shown in front of you. Based on the indications, it appears that your destination is the 'Exit Lane'. It takes you a few minutes to reach it - the spaces here are far larger than before, including the higher and much wider doors connecting them.`
+			`	The space inside the settlement has changed remarkably since your first encounter with the Ka'sei. Much like around the outpost, an army of small, autonomous scientific stations have been scattered all over the floor, each with its own generator and control system. Near them, you find that a section of the floor has been opened, and a makeshift tent has been erected over it.`
+			`	You try to contact the Remnant with your commlink, and soon enough one of the researchers replies with indications on how to reach their position. A lift of clear Remnant design takes you down a couple floors, and in front of a second map. A stroke of luck: some translations have been taped next to the original Builder writing!`
+			`	'Branch of Leaf,' 'Water Moon (?)', 'Exit Lane (?)', and 'Blue To Orange (??)' appear prominently on the map. A thick line labeled 'Safe Hull' surrounds the floor: it appears that despite its appearance, the complex is well protected. You compare the message of the Remnant with the rooms shown in front of you. Based on the indications, it appears that your destination is the 'Exit Lane'. It takes you a few minutes to reach it - the spaces here are far larger than before, including the higher and much wider doors connecting them.`
 			`	"Captain!" comes the voice of one of the Remnant, "come help us!" You join them in towing a pile of metallic containers, held together inside something best described as an incredibly thin fishing net. Despite the low gravity, the effort exhausts you before you have even passed the gate of the 'Exit Lane'; the load certainly weighs multiple tons. The Remnant explain you that it contains the many archeological artifacts gathered here during your past trip beyond Patir, which were left behind in the hurry after the return to the Milky Way. "Amusingly enough," concludes one of them, "most of this mass is not in the samples themselves - it is in the padding to keep them safe."`
 			choice
 				`	"What is this room?"`
@@ -3272,17 +3273,17 @@ mission "Ka'het: Patir Mystery 23"
 			`	Your reply makes him grin briefly. "We really ought to bring some trailers with us the next time. Perhaps even a camel, or three..."`
 				goto lift
 			label place
-			`	"Just a telecommunication center," replies Dusk. "Pristine, much like the rest of the settlement, and for us mainly of interest for its electronics - as well as for being an open, spacious room where we could amass our equipment." You look around the room in search of any identifiable feature. Besides pavement-mounted screens and sets of clearly recognizable speakers, both on top and at the bottom of the room's walls - each at least twice as tall as the ones in the first floor - you cannot see anything that could give information on the Builders' appearance.`
+			`	"Just a telecommunication center," replies Dusk. "Pristine, much like the rest of the settlement, and for us mainly of interest for its electronics - as well as for being an open, spacious room where we could amass our equipment." You look around the room in search of any identifiable feature. Besides pavement-mounted screens and sets of clearly recognizable speakers, both on top and at the bottom of the room's walls - each at least twice as tall as the ones in the first floor. Other than that, you cannot see anything that could give information on the Builders' appearance.`
 			label lift
 			`	After much hard work and a short break, the mass of containers sits atop the lift. Four Remnant climb with the equipment back to the surface in order to unload it. Dusk instead waits with you at the bottom of the lift, ready to intervene if it were to malfunction while carrying such a heavy mass.`
 			`	Dusk, after glancing at his data pad for some time, breaks the silence. "<first>, has anybody taught you the Builder written language?" You shake your head, and he shows you a picture on his pad. It shows a room with a series of circular mattresses, with a curtain separating each other. You recognize the sign above them: it was the one marked as Water Moon in the map. "In the context here, what do you believe the sign is about?"`
 			choice
-				`	"I feel that it says 'Water Moon.'"`
+				`	"I believe it says 'Water Moon.'"`
 					goto loud_error_buzzer
 				`	"Something about bunks?"`
 					goto loud_error_buzzer_2
 				`	"What is this about?"`
-			`	"Oh, it is nothing of particular importance," he replies slightly flustered. "Just some bits of information that I find interesting, but really do not help much compose the bigger picture."`
+			`	"Oh, it is nothing of particular importance," he replies slightly flustered. "Just some bits of information that I find interesting, but they really do not help much compose the bigger picture."`
 				goto focus
 			label loud_error_buzzer
 			`	He smiles broadly. "I see that you have stopped to read the map on the way here. Yes, literally that is the correct translation. But what does Water Moon have to do with what is clearly a bunk room - and, in fact, the only one we have encountered in the complex? Neither this, nor most other signs around this floor, seem to make any sense based on our understanding of Builder. It is far from the first time this happens, especially with texts longer than a phrase or two. Some rules or characteristics of their language are still far beyond our understanding, it seems."`
@@ -3297,12 +3298,13 @@ mission "Ka'het: Patir Mystery 23"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		conversation
-			`The Remnant leave the ship in a joyful mood, despite the effort and the complications along the way. While a carriage leaves with the cargo you bought back from Patir, Dusk informs you that the next step will depend on the review of this test flight directly by the Prefects. "If all goes well, you will find us at a table of the nearby cafeteria as soon as we have taken some rest," he concludes with a hopeful bow.`
+			`The Remnant leave the ship in a joyful mood, despite the effort and the complications along the way. While a carriage leaves with the cargo you brought back from Patir, Dusk informs you that the next step will depend on the review of this test flight directly by the Prefects. "If all goes well, you will find us at a table of the nearby cafeteria as soon as we have taken some rest," he concludes with a hopeful bow.`
 
 mission "Ka'het: Patir Mystery 24A"
 	name "Beyond <system> again"
 	description "Return to <system> again with the same research team, this time with the intention of exploring the systems that lie beyond it. Be there exactly on <date>."
-	deadline 6
+	deadline 7
+	blocked `The cargo for the next expedition is ready, but you do not have enough free space. Come back when you have <tons> free.`
 	source "Caelian"
 	destination "Builder Settlement"
 	passengers 5
@@ -3323,7 +3325,7 @@ mission "Ka'het: Patir Mystery 24A"
 			label payload
 			`	"This time, the payload is going to be very large," Dusk intervenes. "Even larger than the outpost set up in Patir, though it will not be removed from your ship this time. We will stay in your payload bay for our research as you fly toward our destination, trying to make the best use of our time."`
 			`	"What destination?" you ask while he takes the last bite off of his plate.`
-			`	"Our first target will be the station in Chanai. This will be what we defined as a Medium Endurance trip - a week-long stay in the space beyond Patir, enough to reach the lower cluster but not to make a full tour of it before Ssil Vida's signal reaches Patir again and brings it back. The Long Endurance trips will be what allows us to reach Lathia again, hopefully a couple months from now.`
+			`	"Our first target, after landing in Patir to wait for the system to move, will be the station in Chanai. This will be what we defined as a Medium Endurance trip - a week-long stay in the space beyond Patir, enough to reach the lower cluster but not to make a full tour of it before Ssil Vida's signal reaches Patir again and brings it back. The Long Endurance trips will be what allows us to reach Lathia again, hopefully a couple months from now.`
 			`	"I need to know if you have a fleet that can carry a 135 ton payload to Patir stationed on this very planet. If you do, I will call Postverta to send the signal and begin the countdown; if you do not, we can wait for a couple days for you to gather it here before we start. As you have seen, we do not have the time to stop anywhere if we want to be in Patir when it moves away."`
 			choice
 				`	"I do."`
@@ -3345,6 +3347,7 @@ mission "Ka'het: Patir Mystery 24B"
 	destination "Builder Settlement"
 	passengers 5
 	cargo "scientific payload" 135
+	blocked `The cargo for the next expedition is ready, but you do not have enough free space. Come back when you have <tons> free.`
 	to offer
 		has "Ka'het: Patir Mystery 24A: declined"
 	on offer
@@ -3378,7 +3381,7 @@ mission "Ka'het: Patir Mystery 25"
 			has "Ka'het: Patir Mystery 24B: done"
 	on offer
 		conversation
-			`For once, your ship's bridge is unusually quiet. The same cannot be said about the laboratory in the back of your ship: the Remnant have all moved there already, in order to activate the equipment for the mission. Each of them stands at their console setting up small computers and strange pieces of machinery, like a well-oiled machine where everyone knows exactly what to do.`
+			`For once, your ship's bridge is unusually quiet. The same cannot be said about the laboratory in the back of your ship - the Remnant have all moved there already, in order to activate the equipment for the mission. Each of them stands at their console setting up small computers and strange pieces of machinery, like a well-oiled machine where everyone knows exactly what to do.`
 			`	By the time you reach the Builder settlement, the light show has come to an end. After briefly consulting with the crew, you decide to save some time by launching back to orbit straight away while they finish their preparations. After all, a new countdown has begun: in seven days, Patir will move back to the Milky Way, with or without you.`
 				launch
 	on visit
@@ -3499,7 +3502,7 @@ mission "Ka'het: Patir Mystery 26B"
 			label alone
 			`	He smiles. "We will remain in radio contact for the entire time, if we can. Plus, we have seen first hand the experience you have gained lately. It would be foolish of us not to make use of your expertise when we can."`
 			label enter
-			`	You watch the Remnant move to the aft end, where a circular half-open hatch seems to be waiting for their arrival; however, as they all come together to try pulling it open, it does not move. "There is something very strange with the mechanism," notes one of the researchers on the radio. "Somehow, it seems to be attached to the wall by three pieces of solid metal, rather than with hinges."`
+			`	You watch the Remnant move to the aft end of the station, where a circular half-open hatch seems to be waiting for their arrival; however, as they all come together to try pulling it open, it does not move. "There is something very strange with the mechanism," notes one of the researchers on the radio. "Somehow, it seems to be attached to the wall by three pieces of solid metal, rather than with hinges."`
 			`	"We will have to use a little more brute force here to move inside the complex," states Dusk calmly. "The only way for us to get through is by melting the attachments of this hatch. If you are ready, feel free to get going: it is going to take us the better part of an hour."`
 			choice
 				`	"I prefer to wait until you are inside."`
@@ -3509,7 +3512,7 @@ mission "Ka'het: Patir Mystery 26B"
 				`	"I bet I could shoot it away from here much quicker."`
 			action
 				set "remnant: want to fire on Chanai"
-			`	"That is really not the way to go!" he replies alarmed. "It would be just as likely to be ineffective as it would to compromise the structure of the station." Some seconds of silence pass. "If you really want to help, just shine the lights on your ship around us at low power."`
+			`	"That is really not the way to go!" he replies alarmed. "It would be just as likely to be ineffective as it would to compromise the structure of the station." Some seconds of silence pass. "The best way to help us, if that is your intention, is to focus on your own mission."`
 				goto fly
 			label inside
 			`	The flash of their blowtorches is small from your distance, but you quickly discover that it becomes irritating over time. As Dusk promised, a little over half an hour after they arrived you see them tossing the hatch away from the door, and one by one they disappear in the darkness of the structure.`
@@ -3521,34 +3524,32 @@ mission "Ka'het: Patir Mystery 26B"
 				`	(Go on with the list while the Snipe is working.)`
 					goto list
 			`	It was hard to make estimates from afar, but as you come closer you quickly find the <ship> is far too large to pass through. Still, what you can see is quite unusual. Shining a light through the large, mostly open hatch shows you an intricate canvas, attached between various carvings, composed of a series of points in a line with every color of the rainbow. While the lines are near the bottom of the mural, above them all shines what looks like a red sun, sending rays of light down to each of the colorful dots and surrounding them all in a crimson halo.`
-			`	A glance at the scanners you have reveals that each part is made of a different metal, smoother and more refined than the walls around it. Curious, you take a photograph and send the data to the Remnant while you continue going through the assignments. After flying over an unusual variety of constructions with your scanners and some more Snipes, you finally reach the barrel that composes the core of this structure.`
+			`	A glance at your scanners reveals that each part of the canvas is made of a different metal, smoother and more refined than the walls around it. Curious, you take a photograph and send the data to the Remnant while you continue going through the assignments. After flying over an unusual variety of constructions with your instruments and some more Snipes, you finally reach the barrel that composes the core of this structure.`
 				goto barrel
 
 			label list
 			`	You take your ship over an unusual variety of constructions, scanning each as best as you can and releasing another pair of Snipes. When you have a break, however, you take a look through the feed from the first pair you released. Searching through its photographs shows you a series of carvings, most of which are unintelligible to you.`
-			`	Eventually, however, you stumble upon an intricate canvas, composed of a series of points in a line with every color of the rainbow. While the lines are near the bottom of the mural, above them all shines what looks like a red sun, sending rays of light down to each of the colorful dots and surrounding them all in a crimson halo. A glance at the other feeds you have reveals that each part is made of a different metal, smoother and more refined than the walls around it. Curious, you mark it for later attention just as you reach the barrel that composes the core of this structure.`
+			`	Eventually, however, you stumble upon an intricate canvas, composed of a series of points in a line with every color of the rainbow. While the lines are near the bottom of the mural, above them all shines what looks like a red sun, sending rays of light down to each of the colorful dots and surrounding them all in a crimson halo. A glance at the other feeds you have reveals that each part of the canvas is made of a different metal, smoother and more refined than the walls around it. Curious, you mark it for later attention just as you reach the barrel that composes the core of this structure.`
 			label barrel
-			`	Looking through the empty spots in the structure, you notice some movement near the bottom: the Remnant are over there, waving as you fly upside down a hundred meters above them. "Nice flying there, Captain. If you have gotten here already, I gather your tasks must be going fairly well!"`
+			`	Looking through the empty spots in the structure, you notice some movement near the bottom - the Remnant are over there, waving as you fly upside down a hundred meters above them. Dusk contacts you shortly after. "Nice flying there, Captain, If you have gotten here already, I gather your tasks must be going fairly well!"`
 			choice
 				`	"I sent you my findings earlier. What about yours?"`
 				`	"What is this place?"`
 					goto place
 				`	"I have not seen anything worth mentioning."`
-			`	He takes note. "For our part, I have to say that most what we have seen was, for a lack of a better word... nonsensical. Doors that cannot be physically opened, screens not connected with anything, lights without any cabling or electronic. In some cases, one might even say they were fake. But this place, at least, seems truly special." Though from high up he does not look much bigger than an ant, you see him walking around the room, gesturing toward the barrel.`
+			`	He takes note. "For our part, I have to say that most what we have seen was, for a lack of a better word... nonsensical. Doors that cannot be physically opened, screens not connected with anything, lights without any cabling or electronics. In some cases, one might even say they were fake. But this place, at least, seems truly special." Though from high up he does not look much bigger than an ant, you see him walking around the room, gesturing toward the barrel.`
 				goto size
 			label place
 			`	"The room you see us in is, most likely, part of the exhaust chamber of this station's laser system. It is impossible to say for certain what its purpose was - hopefully, it was not purely a military system." Though from high up he does not look much bigger than an ant, you see him walking around the room, gesturing toward the barrel.`
 			label size
 			`	The sheer size of the frame is rather impressive: as you walk toward it, you measure it to be over a kilometer and a half from one side to the opposite. At the very end, an enormous lens is attached to the last ring of the barrel; four holes near its center give it a slight resemblance to a cloth button.`
-			`	"You know, <first>," he explains in an excited rhythm, "we have found some engravings nearby that tell an interesting story. As far as we could tell, in all of them this barrel is pointed right at the center of this system, toward what looks to be a star. Perhaps this laser was used to accelerate the reactions inside of it, making it burn brighter even at the cost of dying sooner; it would not be the first species to attempt something so destructive. But surviving a supernova with no damage is almost inconceivable to me."`
+			`	"You know, <first>," he explains in an excited rhythm, "we have found some engravings nearby that tell an interesting story. As far as we could tell, in all of them, this barrel is pointed right at the center of this system, toward what looks to be a star. Perhaps this laser was used to accelerate the reactions inside of it, making it burn brighter even at the cost of dying sooner; it would not be the first species to attempt something so destructive. But surviving a supernova with no damage is almost inconceivable to me."`
 			`	Soon enough, the Remnant start the trip back to the hangar, and you follow. At last, a rose light catches your eye, flying at high speed out of the hangar and disappearing behind the station. You are taken aback when you find that, somehow, the entrance hatch is back in place! As far as you can tell, there appears to be no sign of the cuts made by the Remnant to pass through, nor of any soldering to attach it back. A quick call to the Remnant reveals nothing else, except for how they seem to be as startled as you are.`
 			choice
 				`	(Wait for them to arrive.)`
 					goto wait
 				`	(Try to follow the rose light.)`
 					goto light
-				`	(Exit your ship to come closer to the hatch.)`
-					goto wait
 				`	(Blow it up with your ship's weapons, so as to accelerate their exit.)`
 			branch "blown up"
 				has "remnant: want to fire on Chanai"
