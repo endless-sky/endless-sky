@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
+#include "Command.h"
 #include "DialogPanel.h"
 #include "Files.h"
 #include "text/Font.h"
@@ -592,6 +593,7 @@ void PreferencesPanel::DrawControls()
 		Command::AUTOSTEER,
 		Command::LAND,
 		Command::JUMP,
+		Command::SHIFT,
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
@@ -1296,7 +1298,7 @@ void PreferencesPanel::DrawTooltips()
 		return;
 
 	if(!tooltip.HasText())
-		tooltip.SetText(GameData::Tooltip(hoverItem));
+		tooltip.SetText(Command::ReplaceNamesWithKeys(GameData::Tooltip(hoverItem)));
 
 	tooltip.Draw();
 }
