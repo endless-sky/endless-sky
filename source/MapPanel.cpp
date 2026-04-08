@@ -46,6 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RoutePlan.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ship/ShipAttributeHandler.h"
 #include "ShipJumpNavigation.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
@@ -1096,7 +1097,7 @@ void MapPanel::DrawTravelPlan()
 				continue;
 			}
 
-			fuel[it.get()] = it->Fuel() * it->Attributes().Get("fuel capacity");
+			fuel[it.get()] = it->FuelLevel();
 			hasEscort |= (it.get() != flagship);
 		}
 	stranded |= !hasEscort;
