@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <ctime>
 #include <filesystem>
 #include <map>
+#include <optional>
 #include <string>
 #include <utility>
 #include <vector>
@@ -58,7 +59,9 @@ protected:
 private:
 	void UpdateLists();
 
-	// Snapshot name callback.
+	std::optional<std::filesystem::path> SnapshotPathBase();
+	// Snapshot name callbacks.
+	bool SnapshotNameFilter(const std::string &name, char ch);
 	void SnapshotCallback(const std::string &name);
 	void WriteSnapshot(const std::filesystem::path &sourceFile, const std::filesystem::path &snapshotName);
 	// Load snapshot callback.
