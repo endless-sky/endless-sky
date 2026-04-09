@@ -126,7 +126,6 @@ protected:
 	// Handle deferred add/remove child operations.
 	void AddOrRemove();
 
-private:
 	class Zone : public Rectangle {
 	public:
 		Zone(const Rectangle &rect, const std::function<void()> &fun) : Rectangle(rect), fun(fun) {}
@@ -137,6 +136,7 @@ private:
 		std::function<void()> fun;
 	};
 
+private:
 	// The UI class will not directly call the virtual methods, but will call
 	// these instead. These methods will recursively allow child panels to
 	// handle the event first, before calling the virtual method for the derived
