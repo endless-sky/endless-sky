@@ -1035,18 +1035,15 @@ mission "Exotic Life: Bloodsea"
 			label three
 			action
 				payment -3000
-				outfit "Barrel of Fish" 3
 			`	You fish out the money and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrels to your ship.`
 				decline
 			label two
 			action
 				payment -2000
-				outfit "Barrel of Fish" 2
 			`	You fish out the money and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrels to your ship.`
 				decline
 			label one
 			action
 				payment -1000
-				outfit "Barrel of Fish" 1
 			`	You fish out the money and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrel to your ship.`
 				decline

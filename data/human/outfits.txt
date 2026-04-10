@@ -507,19 +507,6 @@ outfit "Old Man's Sword"
 	"unique" 1
 	description "While swords are seen today as being old curios and commemorative objects, rendered useless when gunpowder became dominant on the battlefield thousands of years ago, this sword is unlike any you have seen before. Despite how heavy it looks, it is remarkably light, and there are inscriptions on the blade itself that don't appear to be in any human language."
 
-outfit "Barrel of Fish"
-	plural "Barrels of Fish"
-	category "Hand to Hand"
-	series "H2H"
-	index 99040
-	cost 1000
-	thumbnail "outfit/unknown"
-	"capture defense" .2
-	"unique" 1
-	"unplunderable" 1
-	description `A barrel of fish you bought from a vendor on Bloodsea. You've never been able to finish all of it.`
-	description `	You can probably use it to barricade a door in case of attack.`
-
 outfit "Puny"
 	category "Unique"
 	series "Non-Functional Unique"
