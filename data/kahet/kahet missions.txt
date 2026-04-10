@@ -4690,6 +4690,14 @@ mission "Ka'het: Voice From The Past 0"
 			dialog
 				`You make a close pass above this lifeless satellite, abandoned in a graveyard orbit for who knows how long. All of a sudden, your commlink emits a weak, garbled, whistle-like sound, as if receiving a communication from the Builder spacecraft. While you can't understand it, it might be worth paying another visit to the Remnant.`
 			set "builder signal"
+		to spawn
+			or
+				not "Ka'het: Patir Mystery 14: done"
+				has "Ka'het: Patir Mystery 36: done"
+		to despawn
+			and
+				has "Ka'het: Patir Mystery 14: done"
+				not "Ka'het: Patir Mystery 36: done"
 		on kill
 			dialog
 				`A glance at the radar screen reveals that the nearby Builder satellite exploded, presumably due to the damage incurred. A wasted opportunity.`
