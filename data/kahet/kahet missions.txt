@@ -2841,7 +2841,6 @@ event "Ka'het spawn in Fereti and Lire"
 # The Ka'sei jumps straight away thanks to its personalities (uninterested, no mining/harvest/scanning, enemy with uninhabited so it can't land)
 # It is forced to jump to Fereti because of the artificial limitation of its jump range (it's the only system within 50 units of Patir)
 # This jump, as all jumps, removes 200 fuel from it; this means it will start regenerating it right after, which leads to the very high fuel heat and consequent overheating, which leads to the overheat damage. The overheat damage is large enough that a single hit will disable it straight away, avoiding the risk of killing it accidentally.
-# It also gives some interesting possibilities: the player can either fight the Ka'sei and then board it, or it can assist it once it has jumped to Fereti and see it jump to a safer system (Patir or Lire)
 
 ship "Fetri'sei" "Fetri'sei (Patir 18)"
 	add attributes
@@ -2850,6 +2849,7 @@ ship "Fetri'sei" "Fetri'sei (Patir 18)"
 		"asteroid mount jd" 1
 		"fuel heat" 150
 		"overheat damage rate" 500
+		"overheat damage threshold" -0.2
 		"threshold percentage" 0.9
 	outfits
 		"Ka'het Ravager Beam" 2
@@ -2932,14 +2932,11 @@ mission "Ka'het: Patir Mystery 18"
 	on enter
 		event "Patir spaceport returns and Fetri spawn"
 		dialog "As soon as you give him the go-ahead, Chilia calmly sits at his console and starts fiddling with the controls. The antenna atop your ship moves to track the chosen Fetri'sei, and the signal starts; but right after, instead of cargo being ejected, you detect an energy spike coming from the Ka'sei. It's activating a Jump Drive! Taken aback, Chilia signs you to try to follow it."
+		"reputation: Ka'sei (Patir 18)" <?= -1
 	npc board
 		government "Ka'sei (Patir 18)"
 		personality coward waiting pacifist uninterested fleeing target
 		ship "Fetri'sei (Patir 18)" "Faii-rii'het"
-		on assist
-			"reputation: Ka'sei (Patir 18)" <?= -1
-			dialog
-				`Now that the Ka'sei is a few meters away from you, your ship detects it has completely run out of hyperspace fuel. Following Chilia's advice, you try to give it some - chances are that it will jump to a safer system than this one.`
 		dialog
 			`You dock with the stranded Ka'sei, and Chilia signals you to take the foreign outfits in it - or at least, the ones that have not been fully digested yet. "The Fetri appears to have overheated beyond what it could survive," he signs. "Realistically, there is nothing we can do for it. Take the unknown outfits into your cargo hold, and we will figure out the next move back on the <planet>."`
 	npc
