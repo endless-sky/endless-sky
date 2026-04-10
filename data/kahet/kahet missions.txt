@@ -4490,7 +4490,8 @@ mission "Ka'het: Patir Mystery Safety Net Early"
 		event "Patir moves" 6
 		event "Patir returns" 9
 		conversation
-			`The unthinkable has happened: Patir has moved back, but without you! Trying to keep your calm, you check out the flight plans. It seems that for cases like this, Ssil Vida will send Patir back here for a 3-day stay as soon as they see you are not there, eventually returning to the Milky Way on <date>. Hopefully the Remnant will not mind the unexpected delay too much.`
+			`The unthinkable has happened: Patir has moved back, but without you! Trying to keep your calm, you check out the flight plans. It seems that for cases like this, Ssil Vida will send Patir back here for a 3-day stay as soon as they see you are not there, eventually returning to the Milky Way on <date>.`
+			`	Though you should be able to return, the Remnant will stop relying on you to explore Patir after this detour.`
 				accept
 	to complete
 		not "ka'het: beyond Patir"
@@ -4514,7 +4515,8 @@ mission "Ka'het: Patir Mystery Safety Net Dusk"
 		event "Patir moves" 6
 		event "Patir returns" 9
 		conversation
-			`The unthinkable has happened: Patir has moved back, but without you! The Remnant crew, clearly disappointed, illustrate you the flight plan. It seems that for cases like this, Ssil Vida will send Patir back here for a 3-day stay as soon as they see you are not there, eventually returning to the Milky Way on <date>. This time, you better make it.`
+			`The unthinkable has happened: Patir has moved back, but without you! The Remnant crew, clearly disappointed, illustrate you the flight plan. It seems that for cases like this, Ssil Vida will send Patir back here for a 3-day stay as soon as they see you are not there, eventually returning to the Milky Way on <date>.`
+			`	Though you should be able to return, the Remnant will stop relying on you to explore Patir after this detour.`
 				accept
 	to complete
 		not "ka'het: beyond Patir"
