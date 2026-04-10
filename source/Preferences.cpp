@@ -147,6 +147,9 @@ namespace {
 	const vector<string> TURRET_OVERLAYS_SETTINGS = {"off", "always on", "blindspots only"};
 	int turretOverlaysIndex = 2;
 
+	const vector<string> HIGHLIGHT_SHIPS_SETTINGS = {"off", "flagship", "owned ships", "all"};
+	int highlightShipsIndex = 0;
+
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
 
@@ -216,6 +219,9 @@ void Preferences::Load()
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
 	settings["Deadline blink by distance"] = true;
+	settings["Confirm 'Sell Outfits' button"] = true;
+	settings["Confirm 'Sell Minables' button"] = true;
+	settings["'Sell Outfits' without outfitter"] = true;
 
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
@@ -254,6 +260,8 @@ void Preferences::Load()
 			statusOverlaySettings[OverlayType::NEUTRAL].SetState(node.Value(1));
 		else if(key == "Turret overlays")
 			turretOverlaysIndex = clamp<int>(node.Value(1), 0, TURRET_OVERLAYS_SETTINGS.size() - 1);
+		else if(key == "Highlight ships")
+			highlightShipsIndex = clamp<int>(node.Value(1), 0, HIGHLIGHT_SHIPS_SETTINGS.size() - 1);
 		else if(key == "Automatic aiming")
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
 		else if(key == "Automatic firing")
@@ -319,6 +327,16 @@ void Preferences::Load()
 			flotsamIndex = static_cast<int>(FlotsamCollection::ESCORT);
 		settings.erase(it);
 	}
+
+	// For people updating from a version before 0.11.1,
+	// where "Highlight player's ship" was replaced with "Highlight ships".
+	it = settings.find("Highlight player's flagship");
+	if(it != settings.end())
+	{
+		if(it->second)
+			highlightShipsIndex = static_cast<int>(HighlightShips::FLAGSHIP);
+		settings.erase(it);
+	}
 }
 
 
@@ -346,6 +364,7 @@ void Preferences::Save()
 	out.Write("Show enemy overlays", statusOverlaySettings[OverlayType::ENEMY].ToInt());
 	out.Write("Show neutral overlays", statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
 	out.Write("Turret overlays", turretOverlaysIndex);
+	out.Write("Highlight ships", highlightShipsIndex);
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Automatic firing", autoFireIndex);
 	out.Write("Parallax background", parallaxIndex);
@@ -723,6 +742,27 @@ Preferences::TurretOverlays Preferences::GetTurretOverlays()
 const string &Preferences::TurretOverlaysSetting()
 {
 	return TURRET_OVERLAYS_SETTINGS[turretOverlaysIndex];
+}
+
+
+
+void Preferences::ToggleHighlightShips()
+{
+	highlightShipsIndex = (highlightShipsIndex + 1) % HIGHLIGHT_SHIPS_SETTINGS.size();
+}
+
+
+
+Preferences::HighlightShips Preferences::GetHighlightShips()
+{
+	return static_cast<HighlightShips>(highlightShipsIndex);
+}
+
+
+
+const string &Preferences::HighlightShipsSetting()
+{
+	return HIGHLIGHT_SHIPS_SETTINGS[highlightShipsIndex];
 }
 
 

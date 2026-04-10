@@ -133,6 +133,13 @@ public:
 		ALL
 	};
 
+	enum class HighlightShips : int_fast8_t {
+		OFF,
+		FLAGSHIP,
+		OWNED_SHIPS,
+		ALL
+	};
+
 #ifdef _WIN32
 	enum class TitleBarTheme : int_fast8_t {
 		DEFAULT,
@@ -204,6 +211,11 @@ public:
 	static void ToggleTurretOverlays();
 	static TurretOverlays GetTurretOverlays();
 	static const std::string &TurretOverlaysSetting();
+
+	/// Highlight ships setting, either "off", "flagship", "owned ships", or "all".
+	static void ToggleHighlightShips();
+	static HighlightShips GetHighlightShips();
+	static const std::string &HighlightShipsSetting();
 
 	/// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();
