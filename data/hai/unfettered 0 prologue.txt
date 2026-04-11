@@ -1185,7 +1185,7 @@ mission "Unfettered 3: Recover Jump Drives"
 		outfit "Jump Drive" -4
 		payment 2000000
 		set "midas: tracker relay"
-		log `Helped an Unfettered Captain to bring jump drives from a pirate world.`
+		log `Helped an Unfettered captain to bring jump drives from a pirate world.`
 		log "People" "Si-Ra" `A young, impetuous Unfettered captain with a unique, if eccentric, grasp of your language, who seems to grow wiser by the day. He has impressive leadership and combat skills, yet always seeks to refine his tactics. He seems to also be a fan of acquiring bigger and bigger ships.`
 		conversation
 			`"Here be yer share: <payment>. Ye have saved me life<, unfettered title> <first>, and I shall never forget it. For this, ye have earned the right to know my name: 'Si-Ra.' It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
@@ -1429,7 +1429,7 @@ mission "Unfettered 4: Scan Geocoris"
 			label JD
 			`	"Someone who brings us something as precious as a jump drive is not quickly forgotten! Now back to our business, if you don't mind.`
 			label job
-			`	"As you probably already know, the other Hai do not think like us. They believe in trading with all the galaxy in harmony forever, without seeing how it softens them. As such, they have wasted time designing a ship for the sole purpose of transporting goods in great quantities: the Geocoris. The main upside is being more competitive than humans in terms of the biggest cargo ship, but that would not have been an issue had they not opened trade so much in the first place! Or at least that is how we used to view it. The design appears to be more... interesting than we initially thought, so we want you to scan it." She seems frustrated, or perhaps she simply always speaks this quickly.`
+			`	"As you probably already know, the other Hai do not think like us. They believe in trading with all the galaxy in harmony forever, without seeing how it softens them. As such, they have wasted time designing a ship for the sole purpose of transporting goods in great quantities: the Geocoris. The main upside is being more competitive than humans in terms of cargo, but that would not have been an issue had they not opened trade so much in the first place! Or at least that is how we used to view it. The design appears to be more... interesting than we initially thought, so we want you to scan it." She seems frustrated, or perhaps she simply always speaks this quickly.`
 			`	"It is pretty much guaranteed there will be one such ship at all times around their home system, Ya Hai, the center of their trade. For obvious reasons we cannot scan that ship ourselves, and we would prefer that the Hai be ignorant of our interest in that design. Bring us the full scanner logs and you will be well rewarded."`
 			label choose
 			choice
@@ -1503,7 +1503,7 @@ mission "Unfettered 4: Scan Geocoris"
 		"unfettered rep: Mera" -= 2
 		event "unfettered: analyzed the scans" 30 60
 	on waypoint
-		dialog `You do not see the Geocoris that Mera mentioned; it's probably in a system nearby. You should land and depart when it arrives.`
+		dialog `You do not see the Geocoris that Mera mentioned; it's probably in a system nearby. You should land now and then depart when it arrives.`
 		set "unfettered: entered Ya Hai"
 	npc "scan cargo"
 		government "Hai"
