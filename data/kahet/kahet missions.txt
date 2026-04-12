@@ -2992,7 +2992,7 @@ event "ka'het: alix discoveries"
 
 mission "Ka'het: Cloud Probe 1"
 	name "In the deep"
-	description "Escort a Swan with four modified Terns through a number of gas giants, starting from <destination>."
+	description "Escort a Swan with four modified Terns from <destination> through a number of gas giants."
 	source
 		government "Remnant"
 		attributes "remnant primary"
@@ -3002,9 +3002,9 @@ mission "Ka'het: Cloud Probe 1"
 		random < 30
 	on offer
 		conversation
-			`A glance around the landing zone spots two Remnant walking at a fast pace toward your ship; eventually, you recognize them as Taely, still wearing her flight helmet, and Torza. "We have been looking for you, Captain," he begins. He gestures toward the ship they arrived from: a Swan, carrying four Terns below its massive wings. "Have you been in the Graveyard recently?"`
+			`Glancing around the landing zone, you spot two Remnant walking at a fast pace toward your ship; eventually, you recognize them as Taely, still wearing her flight helmet, and Torza. "We have been looking for you, Captain," he begins. He gestures toward the ship they arrived from: a Swan, carrying four Terns below its massive wings. "Have you been in the Graveyard recently?"`
 			`	The three of you take a seat in a starport bench. Torza seems to be concerned about the amount of data that they possess on the inhabitants in the Graveyard. "Our current surveillance methods are limited," he continues, "especially around the Ka'het. One must stay cloaked at all times in order to survive." Taely intervenes with some technical details - of the compromises between ramscoop requirements and designing for optimal cloaking, and how running them continuously will inevitably clog them over time. While you do not recognize every sign she makes, the exploding motion she makes with her hands makes the consequences clear.`
-			`	"But if we cannot make them undetectable, perhaps we can make them unreachable. We have recently learned how to replicate extremely precise trackers," she states, "enough to record orbital vehicles from deep inside an atmosphere. The idea became to take a Tern, mount these optics inside of it, and leave it permanently inside a Graveyard gas giant."`
+			`	"But if we cannot make them undetectable, perhaps we can make them unreachable. We have recently learned how to replicate extremely precise trackers," she states, "enough to record orbital vehicles from deep inside an atmosphere. The idea was raised to take a Tern, mount these optics inside of it, and leave it permanently inside a Graveyard gas giant."`
 			choice
 				`	"Will that hide them from the Ka'het?"`
 				`	"Why was that not a concern previously?"`
@@ -3016,7 +3016,7 @@ mission "Ka'het: Cloud Probe 1"
 			label concern
 			`	"It has been a point of concern for decades now." Torza looks slightly miffed by your question. "If this information gap is still unresolved, it is only because our attempts at filling it have failed."`
 			label swan
-			`	Taely continues the conversation. "You might have noticed that neither of our carriers are capable of cloaking. Even if filled with propellant, an Ibis would have to stop, vulnerable, to refuel in the middle of the Graveyard; the Swan is inherently capable of doing the round trip without a ramscoop, using a Scram drive, and leaving some fuel for an escort. Which would be you, in this case."`
+			`	Taely continues the conversation. "You might have noticed that neither of our carriers are capable of cloaking. Even if filled with propellant, an Ibis would have to stop, vulnerable, to refuel in the middle of the Graveyard; the Swan is inherently capable of doing the round trip without a ramscoop, using a Scram drive and leaving some fuel for an escort. Which would be you, in this case."`
 			choice
 				`	"I would be happy to."`
 				`	"Sorry, but I am too busy right now."`
@@ -3107,7 +3107,7 @@ mission "Ka'het: Cloud Probe 5"
 		event "ka'het: gaslining probe storm" 3
 		conversation
 			`Despite the improved safety of the Remnant cluster, the now-empty Swan silently stays on your wing during the descent. As you fly in the direction of the equator, the ice fields below you leave space for some patches of peculiar, deep red terrain. Occasionally, a dark Remnant outpost adorns the scene, surrounded by a perfect circle of melted ice. They are far too small, and you are moving far too fast, to make out any detail.`
-			`	You start to decelerate near your destination, but the Swan passes in front of you without appearing to slow down. Only when it is right above the target - another outpost, seemingly identical to every other one around here - it finally pitches up its nose, flexing its wings to maintain the balance and rotating its nose at the same time. If it is really less 'alive' than other recent Remnant vehicles, you are having a hard time finding differences.`
+			`	You start to decelerate near your destination, but the Swan passes in front of you without appearing to slow down. Only when it is right above the target - another outpost, seemingly identical to every other one around here - it finally pitches up its nose, flexing its wings to maintain the balance and rotating its nose at the same time. If it is really less "alive" than other recent Remnant vehicles, you are having a hard time finding differences.`
 			`	"Thanks for the company, Captain," buzzes your radio. "We can handle this from here; logistics should authorize a payment shortly. May the Embers guide your efforts."`
 			choice
 				`	"What is your mission here?"`
@@ -3142,7 +3142,7 @@ mission "Ka'het: Lightning in a Bottle 1"
 	to offer
 		has "event: ka'het: gaslining probe storm"
 	on enter
-		dialog "To your surprise, you hear your commlink chirping once again. It is a message from Taely, asking you to meet up with her in <planet>'s starport as soon as you can. Though she does not specify the reason, the subject of the communication reads 'Gas probe trouble'."
+		dialog `To your surprise, you hear your commlink chirping once again. It is a message from Taely, asking you to meet up with her in <planet>'s starport as soon as you can. Though she does not specify the reason, the subject of the communication reads "Gas probe trouble."`
 	on complete
 		conversation
 			`"We have made a grave mistake," Taely begins, stepping into the <ship>'s hatch. When she turns around, you notice a large, swollen leathery mass peeking behind her neck, almost like an unworn hood. You realize that her movements are slightly jittery, though barely enough to be perceivable. "I am glad you were in this region already, <first>, because we need to act. Evidently, somewhere in our construction process - or even in the design - something slipped beyond our watch."`
@@ -3157,7 +3157,7 @@ mission "Ka'het: Lightning in a Bottle 1"
 			label okay
 			`	"Ah, fairly well," she replies with a hint of perplexity. "Given the issues with the mission, we are all making best use of our flexible hours. More than usual, I admit, but it is a necessity right now."`
 			`	"What do you mean by flexible hours?" you ask.`
-			`	"Sleeping hours." She puts her hand on the back of her head, almost instinctively, before explaining. "One of the more common benefits of our symbionts is the capacity to control better our sleep cycle. Once one stays awake for more than expected in the Circadian rhythm, their body starts being in excess of a number of chemicals, and in deficit of others. Our symbionts are capable of storing the former and administering the latter, at least for a time; then, at the right moment, the process is reversed and we go through the entire sleep we had put off for the previous days.`
+			`	"Sleeping hours." She puts her hand on the back of her head, almost instinctively, before explaining. "One of the more common benefits of our symbionts is the capacity to control better our sleep cycle. Once one stays awake for longer than expected by the Circadian rhythm, their body starts being in excess of a number of chemicals, and in deficit of others. Our symbionts are capable of storing the former and administering the latter, at least for a time; then, at the right moment, the process is reversed and we go through the entire sleep we had put off for the previous days.`
 			`	"This has multiple uses. As in this case, we can stay awake for as long as it takes for an emergency to get under control without excess fatigue. Alternatively, we can use it to adapt to different planets, where the length of the day-night is sometimes wildly different. I recall from your records that there are medicines used for similar purpose, but we prefer this approach. Though," she smiles, "I have been told that it can give a tendency to digress."`
 			label meaning
 			`	Taely walks toward one of your screens, eventually making it show the data of one of the Terns you recently deployed. "Ever since the first ion storm, the probe stationed in Meligara has become useless. Every tracker returns vast amounts of noise, so much that it is impossible to distinguish a Ka'het in that mess. If, as we suspect, there is a gap in its ion shielding, it is only a matter of time until we lose it. Today marks the fifth day we have spent trying to identify the issue."`
@@ -3180,16 +3180,16 @@ mission "Ka'het: Lightning in a Bottle 2"
 		has "Ka'het: Lightning in a Bottle 1: done"
 	on stopover
 		conversation
-			`Sitting atop the cloud layer, it takes you a dozen attempts before your signal finally reaches the Tern through the complex atmosphere. Far above, the violet swirl of the wormhole peeks just above the horizon. You wait for the probe to raise through the darkness, wondering how the Remnant can talk with it from so far away.`
+			`Sitting atop the cloud layer, it takes you a dozen attempts before your signal finally reaches the Tern through the chaotic atmosphere. Far above, the violet swirl of the wormhole peeks just above the horizon. You wait for the probe to raise through the darkness, wondering how the Remnant can talk with it from so far away.`
 			`	The vehicle appears upside down, its barrels independently pointing somewhere in the sky. Just as you try an approach, an impressive gust nearly smashes you against the Tern. At the last second its systems take over, swooshing it away from the impact trajectory. Eventually, you can start going through the tasks Taely gave you.`
 			choice
 				`	(Use the opportunity to take a closer look at its sensor array.)`
 				`	(Go through the checklist and leave.)`
 					goto leave
-			`	The belly of the Tern is adorned with hundreds of small electronic boxes, slightly different from one another but all showing a clear Remnant origin. The dozen or so larger instruments are more interesting. It takes you a while to find an appropriate descriptor of their design language; eventually, you have to settle on 'suspiciously Korath.'`
+			`	The belly of the Tern is adorned with hundreds of small electronic boxes, slightly different from one another but all showing a clear Remnant origin. The dozen or so larger instruments are more interesting. It takes you a while to find an appropriate descriptor of their design language; eventually, you have to settle on "suspiciously Korath."`
 			label leave
 			`	Though Taely's handwriting turns out to be uniquely hard to understand, you make it to the end, eventually. A cracking sound from the hull signals you that an ion storm is starting. After a brief moment, you decide to leave the Tern to its fate and watch what happens. You spot tiny blue sparkles all around the atmosphere, briefly illuminating the dark scene. Deep below you, far brighter bolts are barely visible through the clouds. Among them a dark, solid outline suddenly becomes visible.`
-			`	Your ship's tracker starts whining a desperate whistle. Thousands of signals appear in a matter of seconds, beyond the range of your radar. Their communication is garbled, but your ship tentatively classifies it as 'Builder'. As the storm rages on, you notice on one of your screens the tracking data from the Tern: the pattern of what the Remnant classified as noise is remarkably similar to that of the signals now reaching you.`
+			`	Your ship's tracker starts whining a desperate whistle. Thousands of signals appear in a matter of seconds, beyond the range of your radar. Their communication is garbled, but your ship tentatively classifies it as "Builder." As the storm rages on, you notice on one of your screens the tracking data from the Tern: the pattern of what the Remnant classified as noise is remarkably similar to that of the signals now reaching you.`
 			choice
 				`	(Staying was a bad idea. Move out and return to Remnant space.)`
 					goto end
@@ -3346,7 +3346,7 @@ mission "Ka'het: Lightning in a Bottle 4"
 		payment 600000
 		conversation
 			`Two pairs of camels come out of the Peregrine's payload bay, pulling well-wrapped sections of the Builder craft. Taely and her team follow ceremoniously, staying at the sides of the convoy for the duration of the walk. For its part, the Swan has already taken flight for a new destination.`
-			`	"I think we can classify this as an overall success." Based on the strange devices in her tool belt, Taely looks ready to start working on the alien vehicle. "I have received communication that all Terns are under attack of the Ka'het EMPs, and most have already faltered. Though the project was not able to complete its original objective, one might say that this discovery is interesting enough to make up for it."`
+			`	"I think we can classify this as an overall success." Based on the strange devices in her tool belt, Taely looks ready to start working on the alien vehicle. "I have received communication that all Terns are under attack by Ka'het EMPs, and most have already faltered. Though the project was not able to complete its original objective, one might say that this discovery is interesting enough to make up for it."`
 			choice
 				`	"I can agree with that."`
 					goto probe
