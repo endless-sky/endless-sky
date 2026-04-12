@@ -1034,16 +1034,16 @@ mission "Exotic Life: Bloodsea"
 				decline
 			label three
 			action
-				payment -3000
-			`	You fish out the money and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrels to your ship.`
+				payment -900
+			`	You fish out the money for three barrels and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrels back to the spaceport. You manage to sell it at the spaceport trading panel for 2100 credits.`
 				decline
 			label two
 			action
-				payment -2000
-			`	You fish out the money and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrels to your ship.`
+				payment -600
+			`	You fish out the money for two barrels and hand it to him. He feels it suspiciously, and grumbles something about the one remaining barrel. You roll the barrels back to the spaceport, and manage to sell it at the spaceport trading panel for 1400 credits.`
 				decline
 			label one
 			action
-				payment -1000
-			`	You fish out the money and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrel to your ship.`
+				payment -294
+			`	You fish out the money and hand it to him. He rubs it, then explodes in rage. "Get out!" he shouts, throwing your money in your face. You make a dash for it, and once you get to your ship, you realize that you lost 294 credits.`
 				decline
