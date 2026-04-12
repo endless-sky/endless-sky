@@ -612,15 +612,15 @@ event "remnant: ssil vida activation"
 		hazard "Ember Waste Base Storm" 15000
 		object
 			sprite star/m8
-			period 19
+			period 10
 		object
 			sprite planet/desert7
 			distance 439
-			period 143
+			period 316.657
 		object Fertriery
 			sprite planet/nebula1
 			distance 814
-			period 362
+			period 799.520
 			object
 				sprite planet/dust4
 				distance 202
@@ -633,7 +633,7 @@ event "remnant: ssil vida activation"
 			sprite planet/sheragi_postverta
 				scale 0.5
 			distance 1408
-			period 554
+			period 1818.85
 	system Prosa
 		pos 303 194
 		government Uninhabited
