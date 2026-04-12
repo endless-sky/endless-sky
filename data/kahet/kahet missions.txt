@@ -3106,7 +3106,7 @@ mission "Ka'het: Cloud Probe 5"
 		payment 350000
 		event "ka'het: gaslining probe storm" 3
 		conversation
-			`Despite the improved safety of the Remnant cluster, the now-empty Swan silently stays on your wing during the descent. As you fly in the direction of the equator, the ice fields below you leave space to some patches of peculiar, deep red terrain. Occasionally, a dark Remnant outpost adorns the scene, surrounded by a perfect circle of melted ice. They are far too small, and you are moving far too fast, to make out any detail.`
+			`Despite the improved safety of the Remnant cluster, the now-empty Swan silently stays on your wing during the descent. As you fly in the direction of the equator, the ice fields below you leave space for some patches of peculiar, deep red terrain. Occasionally, a dark Remnant outpost adorns the scene, surrounded by a perfect circle of melted ice. They are far too small, and you are moving far too fast, to make out any detail.`
 			`	You start to decelerate near your destination, but the Swan passes in front of you without appearing to slow down. Only when it is right above the target - another outpost, seemingly identical to every other one around here - it finally pitches up its nose, flexing its wings to maintain the balance and rotating its nose at the same time. If it is really less 'alive' than other recent Remnant vehicles, you are having a hard time finding differences.`
 			`	"Thanks for the company, Captain," buzzes your radio. "We can handle this from here; logistics should authorize a payment shortly. May the Embers guide your efforts."`
 			choice
@@ -3306,7 +3306,7 @@ mission "Ka'het: Lightning in a Bottle 4"
 			branch "ka'het killed early"
 				has "Ka'het: Lightning in a Bottle 3B: done"
 			`The fleet's descent into the upper atmosphere of Meligara is accompanied at a short distance by a raging Ka'het. The pressure eventually forces it to abandon the pursuit, as expected, and the Swan follows suit shortly after.`
-			`	Gusts only somewhat less violent than the ones you encountered previously surround the Builder vehicle. You notice that the chosen satellite is still in the same area as the Remnant probe, though higher in the atmosphere.`
+			`	Gusts only somewhat less violent than the ones you encountered previously surround the Builder vehicle. You notice that the chosen probe is still in the same area as the Tern, though higher in the atmosphere.`
 			scene "scene/builder cloud probe"
 			`	Before the capture can begin, however, your attention is caught by a dot on your radar screen. A new object is falling at high speed through the atmosphere, showing a cross section far smaller than that of a spacecraft. It appears to be steering roughly in the direction of the Tern.`
 			choice
