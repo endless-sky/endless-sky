@@ -71,6 +71,7 @@ namespace {
 	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
 	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
 	const string TURRET_OVERLAYS = "Turret overlays";
+	const string HIGHLIGHT_SHIPS = "Highlight ships";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
@@ -802,7 +803,7 @@ void PreferencesPanel::DrawSettings()
 		"Show missile overlays",
 		TURRET_OVERLAYS,
 		"Show asteroid scanner overlay",
-		"Highlight player's flagship",
+		HIGHLIGHT_SHIPS,
 		"Rotate flagship in HUD",
 		"Show planet labels",
 		MINIMAP_DISPLAY,
@@ -934,6 +935,11 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == TURRET_OVERLAYS)
 		{
 			text = Preferences::TurretOverlaysSetting();
+			isOn = text != "off";
+		}
+		else if(setting == HIGHLIGHT_SHIPS)
+		{
+			text = Preferences::HighlightShipsSetting();
 			isOn = text != "off";
 		}
 		else if(setting == CLOAK_OUTLINE)
@@ -1381,6 +1387,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 	else if(str == TURRET_OVERLAYS)
 		Preferences::ToggleTurretOverlays();
+	else if(str == HIGHLIGHT_SHIPS)
+		Preferences::ToggleHighlightShips();
 	else if(str == AUTO_AIM_SETTING)
 		Preferences::ToggleAutoAim();
 	else if(str == AUTO_FIRE_SETTING)
