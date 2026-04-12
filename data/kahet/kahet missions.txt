@@ -3044,7 +3044,7 @@ mission "Ka'het: Cloud Probe 2"
 	to offer
 		has "Ka'het: Cloud Probe 1: done"
 	on complete
-		dialog "The second Tern detaches from the Swan. You follow it as it falls: slowly, you see it turn upside down as a number of barrel-shaped instruments emerge from its belly. Once a set of what you presume to be antennae antennae pop out of its aft, the map places the next target on Baliesa in the Gerenus system."
+		dialog "The second Tern detaches from the Swan. You follow it as it falls: slowly, you see it turn upside down as a number of barrel-shaped instruments emerge from its belly. Once a set of what you presume to be antennae pop out of its aft, the map places the next target on Baliesa in the Gerenus system."
 	npc accompany save
 		government "Remnant"
 		ship "Swan" "Serene Pillar Lost"
@@ -3106,7 +3106,7 @@ mission "Ka'het: Cloud Probe 5"
 		payment 350000
 		event "ka'het: gaslining probe storm" 3
 		conversation
-			`Despite the improved safety of the Remnant cluster, the now-empty Swan silently stays on your wing during the descent. As you fly in the direction of the equator, the ice fields below you leave space to some patches of peculiar, deep red terrain. Occasionally, a dark Remnant outpost adorns the scene, surrounded by a perfect circle of melted ice. It is far too small, and you are moving far too fast, to make out any detail.`
+			`Despite the improved safety of the Remnant cluster, the now-empty Swan silently stays on your wing during the descent. As you fly in the direction of the equator, the ice fields below you leave space to some patches of peculiar, deep red terrain. Occasionally, a dark Remnant outpost adorns the scene, surrounded by a perfect circle of melted ice. They are far too small, and you are moving far too fast, to make out any detail.`
 			`	You start to decelerate near your destination, but the Swan passes in front of you without appearing to slow down. Only when it is right above the target - another outpost, seemingly identical to every other one around here - it finally pitches up its nose, flexing its wings to maintain the balance and rotating its nose at the same time. If it is really less 'alive' than other recent Remnant vehicles, you are having a hard time finding differences.`
 			`	"Thanks for the company, Captain," buzzes your radio. "We can handle this from here; logistics should authorize a payment shortly. May the Embers guide your efforts."`
 			choice
@@ -3156,7 +3156,7 @@ mission "Ka'het: Lightning in a Bottle 1"
 				goto meaning
 			label okay
 			`	"Ah, fairly well," she replies with a hint of perplexity. "Given the issues with the mission, we are all making best use of our flexible hours. More than usual, I admit, but it is a necessity right now."`
-			`	"What do you mean with flexible hours?" you ask.`
+			`	"What do you mean by flexible hours?" you ask.`
 			`	"Sleeping hours." She puts her hand on the back of her head, almost instinctively, before explaining. "One of the more common benefits of our symbionts is the capacity to control better our sleep cycle. Once one stays awake for more than expected in the Circadian rhythm, their body starts being in excess of a number of chemicals, and in deficit of others. Our symbionts are capable of storing the former and administering the latter, at least for a time; then, at the right moment, the process is reversed and we go through the entire sleep we had put off for the previous days.`
 			`	"This has multiple uses. As in this case, we can stay awake for as long as it takes for an emergency to get under control without excess fatigue. Alternatively, we can use it to adapt to different planets, where the length of the day-night is sometimes wildly different. I recall from your records that there are medicines used for similar purpose, but we prefer this approach. Though," she smiles, "I have been told that it can give a tendency to digress."`
 			label meaning
@@ -3166,7 +3166,7 @@ mission "Ka'het: Lightning in a Bottle 1"
 				`	"Is there any chance of saving this Tern?"`
 				`	"How do I do that?"`
 					goto how
-			`	"Maybe. If is still able to float in the atmosphere after you are done with it, it might be able to survive through a few more storms before its avionics arc and short-circuit."`
+			`	"Maybe. If it is still able to float in the atmosphere after you are done with it, it might be able to survive through a few more storms before its avionics arc and short-circuit."`
 			label how
 			`	She hands you a checklist. "I have written down a simple enough sampling procedure for the ion shielding. Still, you will have to send it a command to resurface higher once you are in the system - at the altitude it is staying now, the winds would leave you no chance of rendezvous. And be quick: we cannot know for how long that poor Tern can keep it together in this state."`
 
@@ -3181,9 +3181,9 @@ mission "Ka'het: Lightning in a Bottle 2"
 	on stopover
 		conversation
 			`Sitting atop the cloud layer, it takes you a dozen attempts before your signal finally reaches the Tern through the complex atmosphere. Far above, the violet swirl of the wormhole peeks just above the horizon. You wait for the probe to raise through the darkness, wondering how the Remnant can talk with it from so far away.`
-			`	The vehicle shows up upside down, its barrels independently pointing somewhere in the sky. Just as you try an approach, an impressive gust nearly makes you crash; only at the last second the Tern's systems take over, swooshing away from the impact trajectory. Eventually, you can start going through the tasks Taely gave you.`
+			`	The vehicle appears upside down, its barrels independently pointing somewhere in the sky. Just as you try an approach, an impressive gust nearly smashes you against the Tern. At the last second its systems take over, swooshing it away from the impact trajectory. Eventually, you can start going through the tasks Taely gave you.`
 			choice
-				`	(Catch the opportunity to take a closer look to its sensor array.)`
+				`	(Use the opportunity to take a closer look at its sensor array.)`
 				`	(Go through the checklist and leave.)`
 					goto leave
 			`	The belly of the Tern is adorned with hundreds of small electronic boxes, slightly different from one another but all showing a clear Remnant origin. The dozen or so larger instruments are more interesting. It takes you a while to find an appropriate descriptor of their design language; eventually, you have to settle on 'suspiciously Korath.'`
@@ -3202,7 +3202,7 @@ mission "Ka'het: Lightning in a Bottle 2"
 				`	(Wait for the storm to end, then leave.)`
 					goto end
 				`	(Try to snatch some parts of it.)`
-			`	Tremendous gusts move you and your target in every direction, more than once almost sending you into a spin. The first time you arrive next to it, another current arrives to split you apart. The event repeats a second, and a third time. At last, on the fourth attempted approach, the air throws the vessel right into the nose of your ship, crashing before you get the chance to react. Instantly, the balloon pops, and what is left of the machine plunges into the depths of the gas giant.`
+			`	Tremendous gusts move you and your target in every direction, more than once almost sending you into a spin. The first time you get close to it, another current arrives to split you apart. The same happens a second, and a third time. At last, on the fourth attempted approach, the air throws the vessel right into the nose of your ship, crashing before you get the chance to react. Instantly, the balloon pops, and what is left of the machine plunges into the depths of the gas giant.`
 			label end
 			`	While your ship climbs back toward orbit, you detect a Ka'het attempting to make some runs into the high atmosphere of the gas giant. Though it never descends below the upper layers, it seems to be trying to find a way to reach the Tern.`
 	npc
@@ -3215,7 +3215,7 @@ mission "Ka'het: Lightning in a Bottle 2"
 				"Telis'het (Guns, Disable-able)"
 	on complete
 		conversation
-			`Just as you begin to go through the post-landing checks, a light on the console informs you that Taely has already climbed into the cargo bay. Another light soon indicates you that she has opened the mission storage; she seems to have finished going through what you have gathered by the time you reach her.`
+			`Just as you begin to go through the post-landing checks, a light on the console informs you that Taely has already climbed into the cargo bay. Another light soon indicates that she has opened the mission storage; she seems to have finished going through what you have gathered by the time you reach her.`
 			`	"This is odd," she signs. "We were sure one or more of these samples would show signs of damage, but, as far as I can tell, the shielding is applied correctly enough. Right now, I have a hard time theorizing what is actually happening."`
 			choice
 				`	(Tell her about your encounter.)`
@@ -3224,9 +3224,9 @@ mission "Ka'het: Lightning in a Bottle 2"
 			choice
 				`	"What is so special about appearing during the ion storm?"`
 				`	"What are you planning?"`
-			`	"There are two reasons I can think of that would make a probe start talking during a storm," she replies. "One is that it is about to run out of energy and wants to call home, which is possible. But there is also a particular piece of technology could cause this - a generator that captures useful energy from the ion storm. We believe the Builders possessed it, though we have found no hard evidence yet." She steps down into the spaceport, seemingly looking for someone.`
+			`	"There are two reasons I can think of that would make a probe start talking during a storm," she replies. "One is that it is about to run out of energy and wants to call home, which is possible. But there is also a particular piece of technology which could cause this - a generator that captures useful energy from the ion storm. We believe the Builders possessed it, though we have found no hard evidence yet." She steps down into the spaceport, seemingly looking for someone.`
 			`	"Why do you believe that?" you ask, following her.`
-			`	"Hundreds of sizable military hold points were once stationed in every Builder system. Though they have long become worthless debris, if that, we found and translated some of their inventory. Understanding an extinct, alien language is only reliable to a point, of course. All more reasons to capture one of those Builder crafts."`
+			`	"Hundreds of sizable military hold points were once stationed in every Builder system. Though they have long become worthless debris, if that, we found and translated some of their inventory. Understanding an extinct, alien language is only reliable to a point, of course. All the more reason to capture one of those Builder crafts."`
 			`	She calls the attention of a spaceport worker to ask for a list of expected traffic. She quickly scrolls through the datapad, then turns to you again. "I can ready two Peregrines in the spaceport in a few hours with a soft capture kit. Offhand, I do not believe we can outfit them with quite enough propellant for a round trip to Meligara - at least, not without stopping to ramscoop in the Graveyard. A Swan tanker should solve this, however." After some more napkin math, she signs that she has to go now to be ready in time.`
 			choice
 				`	"See you in a few hours then."`
@@ -3246,7 +3246,7 @@ mission "Ka'het: Lightning in a Bottle 3A"
 		event "Ka'het don't spawn in Ritilas"
 		conversation
 			`At the time you arrive, the fleet appears to be made only of two ships - a Peregrine, the back of which is encased in a confusing amount of scaffolding, and a Swan. You are almost hit by a Remnant descending on a rope: once you take a few steps back and glance around, you notice the temporary structure has an extensive pulley system, letting them move easily between different floors. You find Taely busy managing the rest of the Peregrine team.`
-			`	"<first>, we are almost ready to go," she signs at last. "After searching through the thousands of Builder probes in your data, we found a few which have drifted into a less turbulent part of <planet>'s atmosphere. Calm is relative, but it should be enough for our tools to capture it." Another Remnant calls her attention, and you gather she has to return to the preparations. "The other Peregrine will return from her previous mission in a matter of seconds now, already equipped for the job. Are you ready, <first>?"`
+			`	"<first>, we are almost ready to go," she signs at last. "After searching through the thousands of Builder probes in your data, we found a few which have drifted into a less turbulent part of <planet>'s atmosphere. Calm is relative, but it should be enough for our tools to capture it." Another Remnant calls for her attention, and you gather she has to return to the preparations. "The other Peregrine will return from her previous mission in a matter of seconds now, already equipped for the job. Are you ready, <first>?"`
 			choice
 				`	"Of course."`
 					accept
@@ -3306,7 +3306,7 @@ mission "Ka'het: Lightning in a Bottle 4"
 			branch "ka'het killed early"
 				has "Ka'het: Lightning in a Bottle 3B: done"
 			`The fleet's descent into the upper atmosphere of Meligara is accompanied at a short distance by a raging Ka'het. The pressure eventually forces it to abandon the pursuit, as expected, and the Swan follows suit shortly after.`
-			`	Gusts only somewhat less violent than the ones you encountered previously surround the Builder vehicle. You notice that the chosen Builder satellite is still in the same area as the Remnant probe, though higher in the atmosphere.`
+			`	Gusts only somewhat less violent than the ones you encountered previously surround the Builder vehicle. You notice that the chosen satellite is still in the same area as the Remnant probe, though higher in the atmosphere.`
 			scene "scene/builder cloud probe"
 			`	Before the capture can begin, however, your attention is caught by a dot on your radar screen. A new object is falling at high speed through the atmosphere, showing a cross section far smaller than that of a spacecraft. It appears to be steering roughly in the direction of the Tern.`
 			choice
@@ -3321,23 +3321,23 @@ mission "Ka'het: Lightning in a Bottle 4"
 				`	(Keep trying to speak with the Remnant.)`
 			action
 				set "ka'het: cloud probe electronics burnt"
-			`	The Peregrine pitches up to reveal two enormous claws mounted beneath its body. It closes the distance with the target bit by bit, then makes a swift movement to catch its prey before the wind changes. It succeeds, despite the continuous lightnings that now surround you.`
-			`	Once the second Peregrine repeats the movement, a group of Remnant in extravehicular attire comes out of their payload bays. Half of them work on securing the lower section of the craft, most of which is now a bright, yellow hue; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash: the balloon flies away free, while the payload stays in the clamps of the Peregrines.`
+			`	The Peregrine pitches up to reveal two enormous claws mounted beneath its body. It closes the distance with the target bit by bit, then makes a swift movement to catch its prey before the wind changes. It succeeds, despite the continuous lightning that now surrounds you.`
+			`	Once the second Peregrine repeats the movement, a group of Remnant in extravehicular suits come out of their payload bays. Half of them work on securing the lower section of the craft, most of which is now a bright, yellow hue; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash: the balloon flies away free, while the payload stays in the clamps of the Peregrines.`
 			`	"Are you there, <first>?" The radio is working again: you realize the rain of EMPs has ceased. You reply affirmatively. "We have what we needed. The Ka'het seems to have succeeded in bringing our Tern down, but we can worry about that from a safer place."`
 			`	While you prepare to leave, you give a final look to the tracking screen. At the top, the Ka'het is about to go out of your instruments' range. At the bottom, two sets of debris are falling through the atmosphere: one from the burst balloon, and the other from the Tern.`
 				accept
 
 			label "ka'het killed for the cloud probe"
 			`Like two enormous birds of prey, the Peregrines have captured the Builder probe with a set of claws mounted beneath their bodies. You receive the communications of a group of Remnant in the middle of an extravehicular activity. Half of them work on securing the lower section of the craft, seemingly having cooled down; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash: the balloon flies away free, while the payload stays in the clamps of the Peregrines.`
-			`	"Thank you for getting them off our tail, <first>," Taely radios. "We have what we needed. Plus, while I don't know how long our Tern will keep together, it seems to have survived." The Swan makes a reappearance in your tracking screen, standing well above you in the atmosphere.`
+			`	"Thank you for getting them off our tail, <first>," Taely radios. "We have what we needed. Plus, while I don't know how long our Tern will keep together, it seems to have survived." The Swan makes a reappearance in your tracking screen, holding well above you in the atmosphere.`
 			`	"Oddly enough, we have just recorded the Builder balloon implode, rather than burst, once it was free. We were able to catch a few fragments for later study before it fell too deeply into the atmosphere." Soon, the Peregrines signal that they are ready to leave for <planet>.`
 				accept
 
 			label "ka'het killed early"
-			`Gusts only somewhat less violent than the ones you encountered previously surround the Builder vehicle. You notice that the chosen Builder satellite is still in the same area as the Remnant probe, though higher in the atmosphere.`
+			`Gusts only somewhat less violent than the ones you encountered previously surround the Builder vehicle. You notice that the chosen Builder probe is still in the same area as the Remnant one, though higher in the atmosphere.`
 			scene "scene/builder cloud probe"
 			`	Soon enough one of the Peregrines takes the initiative to approach the alien spacecraft. It pitches up to reveal two enormous claws mounted beneath its body. It closes the distance with the target bit by bit, then makes a swift movement to catch its prey before the wind changes. It succeeds.`
-			`	You receive the communications of a group of Remnant in the middle of an extravehicular activity. Half of them work on securing the lower section of the craft, seemingly having cooled down; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash: the balloon flies away free, while the payload stays in the clamps of the Peregrines.`
+			`	You receive the communications of a group of Remnant in the middle of an extravehicular activity. Half of them work on securing the lower section of the craft, it seemingly having cooled down; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash: the balloon flies away free, while the payload stays in the clamps of the Peregrines.`
 			`	"We have what we needed, <first>," Taely states through the ship's radio. "Oddly enough, we have just recorded the Builder balloon implode, rather than burst, once it was free. We were able to catch a few fragments for later study before it fell too deeply into the atmosphere." Soon, the Peregrines signal that they are ready to leave for <planet>.`
 				accept
 	on complete
@@ -3345,15 +3345,15 @@ mission "Ka'het: Lightning in a Bottle 4"
 		fail "Ka'het: Lightning in a Bottle 3B"
 		payment 600000
 		conversation
-			`Two pairs of camels come out of the Peregrine's payload bay, followed by the well-wrapped sections of the Builder craft. Taely and her team follow the march ceremoniously, standing at the sides of the convoy for the duration of the walk. For its part, the Swan has already taken flight for a new destination.`
+			`Two pairs of camels come out of the Peregrine's payload bay, pulling well-wrapped sections of the Builder craft. Taely and her team follow ceremoniously, staying at the sides of the convoy for the duration of the walk. For its part, the Swan has already taken flight for a new destination.`
 			`	"I think we can classify this as an overall success." Based on the strange devices in her tool belt, Taely looks ready to start working on the alien vehicle. "I have received communication that all Terns are under attack of the Ka'het EMPs, and most have already faltered. Though the project was not able to complete its original objective, one might say that this discovery is interesting enough to make up for it."`
 			choice
 				`	"I can agree with that."`
 					goto probe
-				`	"Depends from what you can get out of this, I guess."`
+				`	"Depends on what you can get out of this, I guess."`
 					goto probe
 				`	"What is going to happen with the program?"`
-			`	"Evidently, our original premise - that the Ka'het would not be able to reach a gaslining probe - was flawed from the start. If there is one field where the Ka'het show a minimum of inventive, it is direct combat. Arming one of these vehicles with a Point Defense system would have limited benefits, especially compared to starting over with a new idea."`
+			`	"Evidently, our original premise - that the Ka'het would not be able to reach a gaslining probe - was flawed from the start. If there is one field where the Ka'het show a modicum of inventiveness, it is direct combat. Arming one of these vehicles with a Point Defense system would have limited benefits, especially compared to starting over with a new idea."`
 			`	"What kind of idea?" you ask.`
 			`	She stops for a bit, then shakes her head. "We will inform you when we get a good one.`
 			label probe
@@ -3366,7 +3366,7 @@ mission "Ka'het: Lightning in a Bottle 4"
 			label "burnt electronics"
 			`	"For now, I can tell you that our hopes for this Builder vehicle look promising. Though most of its avionics show extensive damage, it was not caused by discharge: rather, the electronics appear to have been overcharged in the recent past."`
 			label bye
-			`	Soon enough, the transport stops and Taely's personnel begin unwrapping the previous cargo. "If you find yourself in the southern Graveyard," she says, taking a few steps toward the rest of the team, "I suggest that you keep your eyes open for anything of interest. Our short-lived project could only afford to reach the northern half, after all!" After a farewell, a promise to keep you updated, and the handover of a credit chip, she returns to her own work once again.`
+			`	Soon enough, the transport stops and Taely's personnel begin unwrapping the cargo. "If you find yourself in the southern Graveyard," she says, taking a few steps toward the rest of the team, "I suggest that you keep your eyes open for anything of interest. Our short-lived project could only afford to reach the northern half, after all!" After a farewell, a promise to keep you updated, and the handover of a credit chip, she returns to her own work once again.`
 	npc accompany save
 		government "Remnant"
 		ship "Swan" "Serene Pillar Lost"
@@ -3393,5 +3393,5 @@ mission "Ka'het: Lightning in a Bottle Epilogue 2"
 		has "event: Lightning in a Bottle epilogue"
 	on offer
 		outfit "Ka'het Ion Trap" 1
-		dialog `A message from Taely appears on your commlink. "Captain," it begins, "we have successfully identified the mechanisms capable of generating energy from ion storms in both the cloud probe and the Builder satellite you have helped recover. We have since recovered more examples of this technology; in order to thank you for your efforts, we want to gift you the outfit that was once used by the Fereti warning satellite." A few minutes later, a hurried Tern unloads a compact, spiky-looking device and bolts away.`
+		dialog `A message from Taely appears on your commlink. "Captain," it begins, "we have successfully identified the mechanisms capable of generating energy from ion storms in both the cloud probe and the Builder satellite you helped recover, and we have since recovered more examples of this technology. In order to thank you for your efforts, we want to gift you the outfit that was once used by the Fereti warning satellite." A few minutes later, a hurried Tern unloads a compact, spiky-looking device and bolts away.`
 		fail
