@@ -3168,7 +3168,7 @@ event "Patir land on Pacili"
 mission "Ka'het: Patir Mystery 22"
 	landing
 	name "End of the tests"
-	description `Return to the <destination> with the the Petrel "<npc>".`
+	description `Return to the <destination> with the Petrel "<npc>".`
 	source "Pacili"
 	destination "Builder Settlement"
 	to offer
