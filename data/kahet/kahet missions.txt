@@ -2653,7 +2653,7 @@ mission "Ka'het: Patir Mystery Flicker"
 
 mission "Ka'het: Patir Mystery 14"
 	name "Back in action"
-	description "Now that the situation in <waypoints> is again under control, return there to gather additional data for Prefect Chilia, then return to <destination>."
+	description "The situation in <waypoints> is again under control. Return there to gather additional data from the Remnant satellite for Prefect Chilia, then return to <destination>."
 	source
 		government "Remnant"
 		attributes "remnant primary"
@@ -2843,6 +2843,7 @@ event "Ka'het spawn in Fereti and Lire"
 # This jump, as all jumps, removes 200 fuel from it; this means it will start regenerating it right after, which leads to the very high fuel heat and consequent overheating, which leads to the overheat damage. The overheat damage is large enough that a single hit will disable it straight away, avoiding the risk of killing it accidentally.
 
 ship "Fetri'sei" "Fetri'sei (Patir 18)"
+	uncapturable
 	add attributes
 		"weapon capacity" 13
 		"fuel capacity" 150
