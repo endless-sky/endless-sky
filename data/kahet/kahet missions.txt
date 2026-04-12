@@ -3012,7 +3012,7 @@ mission "Ka'het: Patir Mystery 19"
 			`	"About the same as you, I imagine. Right now, you and I have the same level of authorization, at least for what concerns Patir and the related systems. Prefect Chilia, of course, is going to be far more involved than us in the matters related to its military potential."`
 			label chat
 			`	Your chat with Dusk goes on for some time, discussing with him the details of your previous trips. For his part, he describes his progress over the past months: his focus expanded from Patir itself to the worlds that lie beyond it, and on how to use Ssil Vida to reach them.`
-			`	"Given our progress, we now feel ready for a new expedition. At first, a short, single-day one, to test our systems in a practical scenario. If all goes well, after that we will be able to progressively increase our stay to any length of time," he asserts. You follow him out of your ship as he prepares to leave. "Before we can start, I need you to prepare a ship capable of carrying a fighter, and to outfit it with one of your Jump Drives. One of our Ibises should more than suffice, if you do not have one already.`
+			`	"Given our progress, we now feel ready for a new expedition. At first, a short, single-day one, to test our systems in a practical scenario. If all goes well, after that we will be able to progressively increase our stay to any length of time," he asserts. You follow him out of your ship as he prepares to leave. "I need you to prepare a ship capable of carrying a fighter to Patir. One of our Ibises should more than suffice, if you do not have one already.`
 			`	"We will be fairly time-limited once we depart, so feel free to wait until you are ready for the mission before you search for me in this planet's spaceport. It is more important to do things right than to do them quickly," he concludes stoically.`
 
 mission "Ka'het: Patir Mystery 20"
@@ -3168,7 +3168,7 @@ event "Patir land on Pacili"
 mission "Ka'het: Patir Mystery 22"
 	landing
 	name "End of the tests"
-	description `Return the Petrel "<npc>" to the <destination> safely.`
+	description `Return to the <destination> with the the Petrel "<npc>".`
 	source "Pacili"
 	destination "Builder Settlement"
 	to offer
@@ -3302,7 +3302,7 @@ mission "Ka'het: Patir Mystery 24"
 	name "Beyond <system> again"
 	description "Return to <system> again with the same research team, this time with the intention of exploring the systems that lie beyond it. Be there exactly on <date>."
 	deadline 6
-	blocked `The cargo for the next expedition is ready, but you do not have enough free space. Come back when you have <tons> free.`
+	blocked `The cargo for the next expedition to Patir is ready, but you do not have enough free space. Come back when you have <tons> free.`
 	source "Caelian"
 	destination "Builder Settlement"
 	passengers 5
@@ -3311,8 +3311,6 @@ mission "Ka'het: Patir Mystery 24"
 		has "Ka'het: Patir Mystery 23: done"
 	on offer
 		conversation
-			branch late
-				has "ka'het: patir 24 deferred"
 			`The spaceport cafeteria is brimming with excitement. You take a seat at the table of the Remnant who were in your expedition, who seem to be almost done with their meal. "The first expedition into a new land is always something that deserves celebration," signs one of them, offering you a bowl with a mix of their food. "Granted, only after going there already by accident. Still, this is going to be the first proper exploration, bringing scientific equipment to determine what it is actually like."`
 			choice
 				`	"What kind of equipment?"`
@@ -3326,28 +3324,8 @@ mission "Ka'het: Patir Mystery 24"
 			`	"This time, the payload is going to be very large," Dusk intervenes. "Even larger than the outpost set up in Patir, though it will not be removed from your ship this time. We will stay in your payload bay for our research as you fly toward our destination, trying to make the best use of our time."`
 			`	"What destination?" you ask while he takes the last bite off of his plate.`
 			`	"Our first target, after landing in Patir to wait for the system to move, will be the station in Chanai. This will be what we defined as a Medium Endurance trip - a week-long stay in the space beyond Patir, enough to reach the lower cluster but not to make a full tour of it before Ssil Vida's signal reaches Patir again and brings it back. The Long Endurance trips will be what allows us to reach Lathia again, hopefully a couple months from now.`
-			`	"I need to know if you are able to carry a 135 ton payload to Patir stationed on this very planet. If you can, I will call Postverta to send the signal and begin the countdown; if you cannot, we can wait for a couple days for you to obtain the space before we begin the mission."`
-			choice
-				`	"I can."`
-					goto accept
-				`	"It will be here within a few days."`
-			`	He nods. "We will wait then. When you are ready, you know where to find us."`
-				defer
-
-			label accept
-			`	"As you have seen, we do not have the time to stop anywhere if we want to be in Patir when it moves away. If you have any escorts, see that they make the jump with you - Patir won't wait for them."`
+			`	"I need you to carry a 135 ton payload to Patir stationed on this very planet. If you can, I will call Postverta to send the signal and begin the countdown shortly; if you cannot, we can wait for a couple days for you to obtain the space before we begin the mission. As you have seen, we do not have the time to stop anywhere if we want to be in Patir when it moves away. If you have any escorts, see that they make the jump with you - Patir won't wait for them."`
 				accept
-
-			label late
-			`You find the five Remnant waiting for you at the edge of the starport, noticeably showing their trepidation. "Welcome back, <first>. Do you have enough cargo space for our next Patir expedition now?"`
-			choice
-				`	"I do."`
-					goto accept
-				`	"Sorry, I need a few more days still."`
-			`	Their disappointment is clear. "We will be here when your ships come."`
-				defer
-	on defer
-		set "ka'het: patir 24 deferred"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on accept
@@ -3436,15 +3414,15 @@ mission "Ka'het: Patir Mystery 26A"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		conversation
-			`By the time your ship has been safed, the Remnant have unloaded many of the instruments they have used on this trip. "It would be a waste to bring them back home after all the effort to get them here," they explain as you join them. "Once these are connected to our grid, they will use all of the available power and then some. We will have to take turns, at least until we bring some additional power stations." While they finish the setup, you take the chance to cover the machines with some regolith to help them conserve their heat in the night of the asteroid. You almost trip on one of their cables: with the recent trips, the exterior of the laboratory is quickly becoming as messy as its interior.`
+			`By the time your ship has been safed, the Remnant have unloaded many of the instruments they have used on this trip. "It would be a waste to take them back home after all the effort to get them here," they explain as you join them. "Once these are connected to our grid, they will use all of the available power and then some. We will have to take turns, at least until we bring some additional power stations." While they finish the setup, you take the chance to cover the machines with some regolith to help them conserve their heat in the night of the asteroid. You almost trip on one of their cables: with the recent trips, the exterior of the laboratory is quickly becoming as messy as its interior.`
 			scene "scene/lab scene2"
 			`	Sitting around the table in the outpost, and sharing a hot drink, the discussions continue. "By our calculations, Patir should be moving back to the Milky Way within the next few hours. For our part, we will be ready to depart by next morning and conclude our expedition."`
 			choice
 				`	"What did you discover about Chanai?"`
 				`	"What about our findings aboard the station?"`
-			`	They share a pensive look before replying. "Based on the various, contradictory, and sometimes nonsensical things we have discovered, we have developed a theory. Based on the point of view, one could describe it both as simple and as incredibly complex."`
+			`	They share a pensive look before replying. "Based on the various, contradictory, and - apparently - nonsensical things we have discovered, we have developed a theory. One that could be described it both as simple and as incredibly complex."`
 			`	"Which is?"`
-			`	"That the station is an imperfect replica of something that was there long ago, before the Chanai star became a black hole - perhaps before any of the stars of this cluster became black holes, if they did not have a natural cause. A duplicate which is presumably maintained in its pristine state to this day." He searches through some notes on his data pad. "It makes no sense that a hatch would be built half-open, held in that position by solid blocks of metal. But perhaps that hatch was half open when the creators of that duplicate saw it, and they did not create hinges because of the low fidelity of the replica - and perhaps, because they did not understand them."`
+			`	"That the station is an imperfect replica of something that was there long ago, before the Chanai star became a black hole - perhaps before any of the stars of this cluster became black holes, if that had not a natural cause. A duplicate which is presumably maintained in its pristine state to this day." He searches through some notes on his data pad. "It makes no sense that a hatch would be built half-open, held in that position by solid blocks of metal. But perhaps that hatch was half open when the creators of that duplicate saw it, and they did not create hinges because of the low fidelity of the replica - and perhaps, because they did not understand them."`
 			`	"I would take that low fidelity with an asterisk," adds one of the Remnant, "given the immense size of the construction. If you look at it from the full picture, a door's hinges would be such a minuscule detail to forgo!"`
 			`	"Right. And a similar reasoning can be made for the propellant: such a bubble of deuterium must have been in the tanks of the station at the time, and whoever maintains the replica must perhaps be keeping it together to this day, in order to keep it identical to that moment."`
 			choice
@@ -3452,7 +3430,7 @@ mission "Ka'het: Patir Mystery 26A"
 					goto whom
 				`	"That sounds crazy."`
 					goto crazy
-				`	"Are the asteroids here involved?"`
+				`	"Are those asteroid creatures involved?"`
 			`	"Given the regolith we have found, we theorize that it was them who made it and kept it together to this day. Admittedly, it is not a very bold theory - they are the only species we have encountered here at this time. It is, on the other hand, essentially impossible to understand the reason behind it. A memory? A threat? A monument? A taunt, perhaps?"`
 				goto patir
 			label crazy
@@ -3460,7 +3438,7 @@ mission "Ka'het: Patir Mystery 26A"
 			label whom
 			`	"Our theory is that, given the regolith we have found, the creatures in this region are the origin of this imitation. Admittedly, it is not a very bold theory - they are the only species we have encountered here at this time. It is, on the other hand, essentially impossible to understand the reason behind it. A memory? A threat? A monument? A taunt, perhaps?"`
 			label patir
-			`	The discussion goes on and on, almost in a loop, and the sun has almost set over the asteroid by the time you leave the outpost. Soon enough, the stellar dance begins once again. You reason that, in the time it will take you to walk to your ship, Patir will have jumped all the way back to the Milky Way.`
+			`	The discussion goes on and on, almost in a loop, and the black hole has almost set over the asteroid by the time you leave the outpost. Soon enough, the stellar dance begins once again. You reason that, in the time it will take you to walk to your ship, Patir will have jumped all the way back to the Milky Way.`
 
 mission "Ka'het: Patir Mystery 26B"
 	landing
@@ -3560,12 +3538,12 @@ mission "Ka'het: Patir Mystery 26B"
 	on complete
 		event "Patir Lathia landable"
 		conversation
-			`By the time your ship has been safed, the Remnant have unloaded many of the instruments they have used on this trip. "It would be a waste to bring them back home after all the effort to launch them here," they explain as you join them. "Once these are connected to our grid, they will use all of the available power and then some. We will have to take turns, at least until we bring some additional power stations." While they finish the setup, you take the chance to cover the machines with some regolith to help them conserve their heat in the night of the asteroid. You almost trip on one of their cables: with the recent trips, the exterior of the laboratory is quickly becoming as messy as its interior.`
+			`By the time your ship has been safed, the Remnant have unloaded many of the instruments they have used on this trip. "It would be a waste to bring them back home after all the effort to launch them here," they explain as you join them. "Once these are connected to our grid, they will use all of the available power and then some. We will have to take turns, at least until we bring some additional power stations." While they finish the setup, you take the chance to cover the machines outside with some regolith to help them conserve their heat in the night of the asteroid. You almost trip on one of their cables: with the recent expeditions, the exterior of the laboratory is quickly becoming as messy as its interior.`
 			scene "scene/lab scene2"
-			`	Sitting around the table in the outpost, and sharing a hot drink, the discussions continue. "By our calculations, Patir should be moving back to the Milky Way within the next few hours. For our part, we will be ready to depart by next morning and conclude our expedition."`
+			`	Sitting around the table inside the outpost, and sharing a hot drink, the discussions continue. "By our calculations, Patir should be moving back to the Milky Way within the next few hours. For our part, we will be ready to depart by next morning and conclude our expedition."`
 			choice
 				`	"What did you discover about Chanai?"`
-				`	"What about our findings aboard the station?"`
+				`	"Was there anything important in your findings?"`
 			`	They share a pensive look before replying. "Based on the various, contradictory, and - apparently - nonsensical things we have discovered, we have developed a theory. Based on the point of view, one could describe it both as simple and as incredibly complex."`
 			`	"Which is?"`
 			`	"That the station is an imperfect replica of something that was there long ago, before the Chanai star became a black hole - perhaps before all of the stars of this cluster became black holes, if it had not a natural cause. A duplicate which is presumably maintained in its pristine state to this day." He searches through some notes on his data pad. "It makes no sense that a hatch would be built half-open, held in that position by solid blocks of metal. But perhaps that hatch was half open when the creators of that duplicate saw it, and they did not create hinges because of the low fidelity of the replica - and perhaps, because they did not understand them."`
@@ -3611,7 +3589,7 @@ mission "Ka'het: Patir Mystery 27"
 			has "Ka'het: Patir Mystery 26B: done"
 	on offer
 		conversation
-			`The Remnant walk to your ship - late, as you are becoming accustomed to - with an excited stride. "One of those creatures was in the system when Patir moved back! We have recorded it as it turned inactive, floating aimlessly around the system. If you are quick enough, perhaps we can get to board it before the Ka'sei mine it. We can afford to make a stop before our return to <planet> - after all, Patir is not moving away any time soon."`
+			`The Remnant walk to your ship - late, as you are becoming accustomed to - with an excited stride. "One of those creatures was in the system when Patir moved back! We have recorded it as it turned inactive, floating around aimlessly. If you are quick enough, perhaps we can get to board it before the Ka'sei mine it. We can afford to make a stop before our return to <planet> - after all, Patir is not moving away any time soon."`
 			`	He shows you a map of the system, marking the asteroid in a color blinking red and white. Two Fetri'sei are already on the way: you push the engines at the maximum power, hoping to make it in time...`
 				launch
 	npc board
@@ -3619,7 +3597,7 @@ mission "Ka'het: Patir Mystery 27"
 		system "Patir"
 		ship "Asteroid Young 2" "???"
 		personality derelict target waiting
-		dialog "You stare at the enormous rock, still emitting a low hue all around it. Doing their best with the equipment on hand, the Remnant quickly mark a number of sections inside the asteroid for you to loot. Your computer tells you that they are respectively 20, 29 and 31 tons each."
+		dialog "You stare at the enormous rock, still emitting a low glow all around it. Doing their best with the equipment on hand, the Remnant quickly mark a number of sections inside the asteroid for you to loot. Your computer tells you that they are respectively 20, 29 and 31 tons each."
 	npc
 		government "Ka'sei"
 		personality harvests mining staying vindictive waiting
@@ -3636,8 +3614,8 @@ mission "Ka'het: Patir Mystery 27"
 		outfit "Asteroid Weapon Small" -1
 		outfit "Asteroid Jump Drive" -1
 		conversation
-			`Before you are ready to enter the final descent, a communication from Chilia gives you new coordinates for your cargo. You pilot your ship to the new location in the middle of the desert - much like the one you had first met him in - and land your ship on the only landing pad you can see. As if trying to maintain great secrecy, groups of Remnant come marching out of the hangar, cover your cargo as best as they can with reflective, metallic-looking sheets, and silently take it away down an unmarked tunnel.`
-			`	As the sun sets over the mountain ranges in the distance, Dusk signs you to return to the main starport, so that they can unload their own experiments and get back to work. "As you might imagine, it is time for another project debriefing. Independently from how it goes, we will be in the closest cafeteria tomorrow morning; if you pass by, we will make sure to give you an update," he concludes ominously.`
+			`As you descend to the surface of <planet>, a communication from Chilia gives you new coordinates for your cargo. You pilot your ship to the new location in the middle of the desert - much like the one you had first met him in - and land your ship on the only landing pad you can see. As if trying to maintain great secrecy, groups of Remnant come marching out of the hangar, cover your cargo as best as they can with reflective, metallic-looking sheets, and silently take it away down an unmarked tunnel.`
+			`	As the sun sets over the mountain ranges in the distance, Dusk signs you to return to the main starport, so that they can unload their own equipment and get back to work. "As you might imagine, it is time for another project debriefing. Independently from how it goes, we will be in the closest cafeteria tomorrow morning; if you pass by, we will make sure to give you an update," he concludes ominously.`
 
 mission "Ka'het: Patir Mystery 28"
 	name "Tanker fleet"
@@ -3665,7 +3643,7 @@ mission "Ka'het: Patir Mystery 28"
 			`	"Alright then," he replies disappointed. "We will be here when you have time for us again, if you do not take too long."`
 				defer
 			label someone
-			`	Your conversation is interrupted by Taely's arrival. She returns a gesture of greeting with one hand, carrying her communicator in the other. "Our fleet is ready. We need some more time to carry them to the pad, but as far as we are concerned there are no blockers of any kind." She signs to follow her to the hangar, and you hurry up to keep pace with her and Dusk.`
+			`	Your conversation is interrupted by Taely's arrival. She returns a gesture of greeting with one hand, carrying her communicator in the other. "Our fleet is almost ready. We need some more time to move it to the pad, but as far as we are concerned there are no issues of any kind." She signs to follow her to the hangar, and you hurry up to keep pace with her and Dusk.`
 			`	"You might not know that, on top of the energy required, Ssil Vida uses significant amounts of hyperspace fuel in its operations," she explains. "It is able to ramscoop a limited amount of propellant from Postverta, but we had to add more on our own in order to keep up with our needs. I have helped coordinate the fueling fleets used for your recent expeditions, and I assure you that the logistics are becoming exceedingly complex over time. At last, we have become convinced that we need a specialized vehicle for such a role."`
 			`	Three identical Remnant ships are queuing out of the local shipyard, each towed by two rows of camels and hovering barely a meter above the ground. Trying to pass through the crowds that have gathered to watch their passage, you notice that their wingspan is among the largest and thickest you ever had a chance to see. The wingtips are sometimes just a few centimeters from buildings at the sides of the road, though the convoy is moving faster than you would expect with such tight gaps. Its structure reminds you of that of a large and heavy bird, with oversized wings and a thick neck.`
 			choice
