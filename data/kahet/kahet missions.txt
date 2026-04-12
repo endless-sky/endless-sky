@@ -3133,7 +3133,7 @@ event "ka'het: gaslining probe storm"
 mission "Ka'het: Lightning in a Bottle 1"
 	landing
 	name "Hear from Taely on <planet>"
-	description "Meet up with Taely on <destination> for an unknown reason."
+	description "Meet up with Taely on <destination> as her message requested. There appears to be some trouble with their gaslining probes."
 	deadline
 	deadline 2
 	source
@@ -3197,7 +3197,7 @@ mission "Ka'het: Lightning in a Bottle 2"
 					goto end
 				`	(Investigate further.)`
 			`	A chaotic mix of winds hits the <ship> on the way down, forcing continuous corrections to the descent trajectory. You count three distinct lightning bolts hitting you during these maneuvers, seemingly without ill effects. By the time you are within visual range of one of the mysterious craft, the air is changing so rapidly that the maneuvering engines are essentially always active.`
-			`	The near-constant lightnings allow you to snap a few low-quality pictures of the strange machine. What appears to be a large balloon sits at the top, its surface often broken up by smaller spikes. A number of tethers hang below it, each holding up machinery of unclear design.`
+			`	The incessant lightning flashes allow you to snap a few low-quality pictures of the strange machine. What appears to be a large balloon sits at the top, its surface often broken up by smaller spikes. A number of tethers hang below it, each holding up machinery of unclear design.`
 			choice
 				`	(Wait for the storm to end, then leave.)`
 					goto end
@@ -3245,7 +3245,7 @@ mission "Ka'het: Lightning in a Bottle 3A"
 	on offer
 		event "Ka'het don't spawn in Ritilas"
 		conversation
-			`At the time you arrive, the fleet appears to be made only of two ships - a Peregrine, the back of which is encased in a confusing amount of scaffolding, and a Swan. You are almost hit by a Remnant descending on a rope: once you take a few steps back and glance around, you notice the temporary structure has an extensive pulley system, letting them move easily between different floors. You find Taely busy managing the rest of the Peregrine team.`
+			`At the time you arrive, the fleet appears to be made only of two ships - a Peregrine, the back of which is encased in a confusingly high amount of scaffolding, and a Swan. You are almost hit by a Remnant descending on a rope: once you take a few steps back and glance around, you notice the temporary structure has an extensive pulley system, letting them move easily between different floors. You find Taely busy managing the rest of the Peregrine team.`
 			`	"<first>, we are almost ready to go," she signs at last. "After searching through the thousands of Builder probes in your data, we found a few which have drifted into a less turbulent part of <planet>'s atmosphere. Calm is relative, but it should be enough for our tools to capture it." Another Remnant calls for her attention, and you gather she has to return to the preparations. "The other Peregrine will return from her previous mission in a matter of seconds now, already equipped for the job. Are you ready, <first>?"`
 			choice
 				`	"Of course."`
@@ -3287,8 +3287,8 @@ mission "Ka'het: Lightning in a Bottle 3B"
 				"Maeri'het (EMP)"
 
 mission "Ka'het: Lightning in a Bottle 4"
-	name "Success"
-	description "Try to capture at least one of the Builder probes deep inside <destination>, with the help of the Remnant."
+	name "Builder technology to <planet>"
+	description "Escort the Remnant ships back to <destination> with the hardware taken from the Builder gas probe."
 	source "Meligara"
 	destination "Aventine"
 	to offer
@@ -3322,13 +3322,13 @@ mission "Ka'het: Lightning in a Bottle 4"
 			action
 				set "ka'het: cloud probe electronics burnt"
 			`	The Peregrine pitches up to reveal two enormous claws mounted beneath its body. It closes the distance with the target bit by bit, then makes a swift movement to catch its prey before the wind changes. It succeeds, despite the continuous lightning that now surrounds you.`
-			`	Once the second Peregrine repeats the movement, a group of Remnant in extravehicular suits come out of their payload bays. Half of them work on securing the lower section of the craft, most of which is now a bright, yellow hue; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash: the balloon flies away free, while the payload stays in the clamps of the Peregrines.`
+			`	Once the second Peregrine repeats the movement, a group of Remnant in extravehicular suits come out of their payload bays. Half of them work on securing the lower section of the craft, most of which is now a bright, yellow hue; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash. The balloon soars upward while its payload remains in the clamps of the Peregrine.`
 			`	"Are you there, <first>?" The radio is working again: you realize the rain of EMPs has ceased. You reply affirmatively. "We have what we needed. The Ka'het seems to have succeeded in bringing our Tern down, but we can worry about that from a safer place."`
 			`	While you prepare to leave, you give a final look to the tracking screen. At the top, the Ka'het is about to go out of your instruments' range. At the bottom, two sets of debris are falling through the atmosphere: one from the burst balloon, and the other from the Tern.`
 				accept
 
 			label "ka'het killed for the cloud probe"
-			`Like two enormous birds of prey, the Peregrines have captured the Builder probe with a set of claws mounted beneath their bodies. You receive the communications of a group of Remnant in the middle of an extravehicular activity. Half of them work on securing the lower section of the craft, seemingly having cooled down; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash: the balloon flies away free, while the payload stays in the clamps of the Peregrines.`
+			`Like two enormous birds of prey, the Peregrines have captured the Builder probe with a set of claws mounted beneath their bodies. You receive the communications of a group of Remnant in the middle of an extravehicular activity. Half of them work on securing the lower section of the craft, seemingly having cooled down; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash. The balloon soars upward while its payload remains in the clamps of the Peregrine.`
 			`	"Thank you for getting them off our tail, <first>," Taely radios. "We have what we needed. Plus, while I don't know how long our Tern will keep together, it seems to have survived." The Swan makes a reappearance in your tracking screen, holding well above you in the atmosphere.`
 			`	"Oddly enough, we have just recorded the Builder balloon implode, rather than burst, once it was free. We were able to catch a few fragments for later study before it fell too deeply into the atmosphere." Soon, the Peregrines signal that they are ready to leave for <planet>.`
 				accept
