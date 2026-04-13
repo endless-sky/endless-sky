@@ -1040,7 +1040,7 @@ mission "Exotic Life: Bloodsea"
 			label two
 			action
 				payment -600
-			`	You fish out the money for two barrels and hand it to him. He feels it suspiciously, and grumbles something about the one remaining barrel. You roll the barrels back to the spaceport, and manage to sell it at the spaceport trading panel for 1400 credits.`
+			`	You fish out the money for two barrels and hand it to him. He feels it suspiciously, and grumbles something about the one remaining barrel. You roll the barrels back to the spaceport, and manage to sell them at the spaceport trading panel for 1400 credits.`
 				decline
 			label one
 			action
