@@ -1030,20 +1030,20 @@ mission "Exotic Life: Bloodsea"
 						credits >= 1000
 					goto one
 				`	(Make a run for it.)`
-			`	You turn right around and walk quickly the other way. You can still hear the cursing in your ears when you get to your ship.`
+			`	You whirl around and walk quickly the other way. You can still hear the cursing in your ears when you get to your ship.`
 				decline
 			label three
 			action
 				payment -900
-			`	You fish out the money for three barrels and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrels back to the spaceport. You manage to sell them at the spaceport trading panel for 2100 credits.`
+			`	You fish out the money for three barrels and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrels back to the spaceport. After an exhausting few hours of one price dispute after another, you manage to sell them at the spaceport trading panel for 2100 credits.`
 				decline
 			label two
 			action
 				payment -600
-			`	You fish out the money for two barrels and hand it to him. He feels it suspiciously, and grumbles something about the one remaining barrel. You roll the barrels back to the spaceport, and manage to sell them at the spaceport trading panel for 1400 credits.`
+			`	You fish out the money for two barrels and hand it to him. He feels it suspiciously, and grumbles something about the one remaining barrel. You roll the barrels back to the spaceport and, after an hour of hard work, manage to sell them at the spaceport trading panel for 1400 credits.`
 				decline
 			label one
 			action
 				payment -294
-			`	You fish out the money and hand it to him. He rubs it, then explodes in rage. "Get out!" he shouts, throwing your money in your face. You make a dash for it, and once you get to your ship, you realize that you lost 294 credits in your hurry to escape.`
+			`	You fish out the money and hand it to him. He rubs it, then explodes in rage. "Get out!" he shouts, throwing the credit chips at your face. You make a run for it, and by the time you get to your ship, you realize that you left 294 credits with the old man in your hurry to escape.`
 				decline
