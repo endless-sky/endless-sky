@@ -1045,5 +1045,5 @@ mission "Exotic Life: Bloodsea"
 			label one
 			action
 				payment -294
-			`	You fish out the money and hand it to him. He rubs it, then explodes in rage. "Get out!" he shouts, throwing your money in your face. You make a dash for it, and once you get to your ship, you realize that you lost 294 credits.`
+			`	You fish out the money and hand it to him. He rubs it, then explodes in rage. "Get out!" he shouts, throwing your money in your face. You make a dash for it, and once you get to your ship, you realize that you lost 294 credits in your hurry to escape.`
 				decline
