@@ -3708,7 +3708,7 @@ mission "Ka'het: Patir Mystery 29"
 	to offer
 		has "Ka'het: Patir Mystery 28: done"
 	on offer
-		event "remnant: ssil vida activation"
+		event "remnant: ssil vida activation patir 3"
 		set "remnant: tubfalet hunt"
 		conversation
 			`Taely comes looking for you shortly after the Swans have docked with Ssil Vida, with a fast step and crystal in her hand. "Captain, another task for you has just come up. I have been informed that the Korath we met on the way here have been raiding the system for a few days - in fact, since just before Ssil Vida activated. During the trouble of moving between the two realities, it appears that a ship in the attacking fleet was able to jump beyond Ssil Vida's range, and has remained inside that universe since. It is not acceptable to leave it there any longer."`
@@ -3747,7 +3747,7 @@ mission "Ka'het: Patir Mystery 29"
 	on complete
 		payment 350000
 		clear "remnant: tubfalet hunt"
-		event "remnant: ssil vida deactivation"
+		event "remnant: ssil vida deactivation patir 3"
 		conversation
 			`The data Taely gave you included information on who to give the crystal to. Thanks to Ssil Vida's limited population, it only takes you a few minutes to identify her; based on your vague memories, she was likely one of the researchers you helped transport here.`
 			`	"We appreciate your support, Captain. Postverta is for us like a window into this region of space before it turned into the Ember Waste; we must do everything we can to keep it as pristine as it is now." While she disappears into a hallway with the crystal, a notification appears on your communicator of a deposit of <payment> under the caption "Korath Bounty." With it, a message: Taely will meet you in the local spaceport.`
