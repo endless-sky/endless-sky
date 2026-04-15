@@ -97,7 +97,11 @@ public:
 	Command() = default;
 	// Create a command representing whatever command is mapped to the given
 	// keycode (if any).
+#ifdef ES_USE_SDL3
+	explicit Command(uint32_t keycode);
+#else
 	explicit Command(int keycode);
+#endif
 
 	// Read the current keyboard state and set this object to reflect it.
 	void ReadKeyboard();

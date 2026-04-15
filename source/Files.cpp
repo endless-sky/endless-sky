@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "ZipFile.h"
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 
 #include <algorithm>
 #include <fstream>
@@ -112,11 +112,18 @@ void Files::Init(const char *const *argv)
 	{
 		// Find the path to the resource directory. This will depend on the
 		// operating system, and can be overridden by a command line argument.
+#ifdef ES_USE_SDL3
+		// This path is cached in SDL3, but not in SDL2.
+		const char *basePath = SDL_GetBasePath();
+#else
 		char *basePath = SDL_GetBasePath();
+#endif
 		if(!basePath)
 			throw runtime_error("Unable to get path to resource directory!");
 		resources = basePath;
+#ifndef ES_USE_SDL3
 		SDL_free(basePath);
+#endif
 
 		if(Exists(resources))
 			resources = filesystem::canonical(resources);

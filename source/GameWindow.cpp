@@ -22,8 +22,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "windows/WinWindow.h"
 #endif
 
+#include "SDL.h"
+
 #include "opengl.h"
-#include <SDL2/SDL.h>
 
 #include <cstring>
 #include <sstream>
@@ -57,12 +58,43 @@ namespace {
 
 		return false;
 	}
+
+	// Checks if the SDL call succeeded. Wrapper for SDL2/3 compatibility for non-C APIs.
+	// Returns true on success.
+#ifdef ES_USE_SDL3
+	bool checkSDL(bool result)
+	{
+		if(!result)
+			checkSDLerror();
+		return result;
+	}
+#else
+	bool checkSDL(int result)
+	{
+		if(result != 0)
+		{
+			checkSDLerror();
+			return false;
+		}
+		return true;
+	}
+#endif
 }
 
 
 
 string GameWindow::SDLVersions()
 {
+#ifdef ES_USE_SDL3
+	int built = SDL_VERSION;
+	int linked = SDL_GetVersion();
+
+	auto toString = [](int v) -> string
+	{
+		return to_string(SDL_VERSIONNUM_MAJOR(v)) + "." + to_string(SDL_VERSIONNUM_MINOR(v)) + "." +
+			to_string(SDL_VERSIONNUM_MICRO(v));
+	};
+#else
 	SDL_version built;
 	SDL_version linked;
 	SDL_VERSION(&built);
@@ -72,6 +104,7 @@ string GameWindow::SDLVersions()
 	{
 		return to_string(v.major) + "." + to_string(v.minor) + "." + to_string(v.patch);
 	};
+#endif
 	return "Compiled against SDL v" + toString(built) + "\nUsing SDL v" + toString(linked);
 }
 
@@ -98,19 +131,36 @@ bool GameWindow::Init(bool headless)
 	}
 
 	// This needs to be called before any other SDL commands.
-	if(SDL_Init(SDL_INIT_VIDEO) != 0)
+	if(!checkSDL(SDL_Init(SDL_INIT_VIDEO)))
 	{
-		checkSDLerror();
 		return false;
 	}
 
 	// Get details about the current display.
+#ifdef ES_USE_SDL3
+	SDL_DisplayID primaryDisplay = SDL_GetPrimaryDisplay();
+	if(primaryDisplay == 0)
+	{
+		checkSDLerror();
+		ExitWithError("Unable to query primary display!");
+		return false;
+	}
+	const SDL_DisplayMode* modePtr = SDL_GetCurrentDisplayMode(primaryDisplay);
+	if(!modePtr)
+	{
+		checkSDLerror();
+		ExitWithError("Unable to query monitor resolution!");
+		return false;
+	}
+	const SDL_DisplayMode& mode = *modePtr;
+#else
 	SDL_DisplayMode mode;
 	if(SDL_GetCurrentDisplayMode(0, &mode))
 	{
 		ExitWithError("Unable to query monitor resolution!");
 		return false;
 	}
+#endif
 	if(mode.refresh_rate && mode.refresh_rate < 60)
 		Logger::Log("Low monitor frame rate detected (" + to_string(mode.refresh_rate) + ")."
 			" The game will run more slowly.", Logger::Level::WARNING);
@@ -147,8 +197,12 @@ bool GameWindow::Init(bool headless)
 		flags |= SDL_WINDOW_MAXIMIZED;
 
 	// The main window spawns visibly at this point.
+#ifdef ES_USE_SDL3
+	mainWindow = SDL_CreateWindow("Endless Sky", windowWidth, windowHeight, headless ? 0 : flags);
+#else
 	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, headless ? 0 : flags);
+#endif
 
 	if(!mainWindow)
 	{
@@ -200,7 +254,7 @@ bool GameWindow::Init(bool headless)
 		return false;
 	}
 
-	if(SDL_GL_MakeCurrent(mainWindow, context))
+	if(!checkSDL(SDL_GL_MakeCurrent(mainWindow, context)))
 	{
 		ExitWithError("Unable to set the current OpenGL context!");
 		return false;
@@ -286,7 +340,11 @@ bool GameWindow::Init(bool headless)
 void GameWindow::Quit()
 {
 	// Make sure the cursor is visible.
+#ifdef ES_USE_SDL3
+	SDL_ShowCursor();
+#else
 	SDL_ShowCursor(true);
+#endif
 
 	// Clean up in the reverse order that everything is launched.
 	if(context)
@@ -348,7 +406,16 @@ bool GameWindow::SetVSync(Preferences::VSync state)
 	if(!context)
 		return false;
 
+#ifdef ES_USE_SDL3
+	int originalState = 1;
+	if(!SDL_GL_GetSwapInterval(&originalState))
+	{
+		checkSDLerror();
+		return false;
+	}
+#else
 	const int originalState = SDL_GL_GetSwapInterval();
+#endif
 	int interval = 1;
 	switch(state)
 	{
@@ -369,13 +436,17 @@ bool GameWindow::SetVSync(Preferences::VSync state)
 	if(interval == -1 && !supportsAdaptiveVSync)
 		return false;
 
-	if(SDL_GL_SetSwapInterval(interval) == -1)
+	if(!checkSDL(SDL_GL_SetSwapInterval(interval)))
 	{
-		checkSDLerror();
 		SDL_GL_SetSwapInterval(originalState);
 		return false;
 	}
+#ifdef ES_USE_SDL3
+	SDL_GL_GetSwapInterval(&originalState);
+	return originalState == interval;
+#else
 	return SDL_GL_GetSwapInterval() == interval;
+#endif
 }
 
 
@@ -467,7 +538,11 @@ void GameWindow::ExitWithError(const string &message, bool doPopUp)
 
 		SDL_MessageBoxButtonData button;
 		button.flags = SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT;
+#ifdef ES_USE_SDL3
+		button.buttonID = 0;
+#else
 		button.buttonid = 0;
+#endif
 		button.text = "OK";
 		box.numbuttons = 1;
 		box.buttons = &button;

@@ -18,7 +18,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Preferences.h"
 #include "WinVersion.h"
 
+#ifdef ES_USE_SDL3
+#include <SDL3/SDL_syswm.h>
+#else
 #include <SDL2/SDL_syswm.h>
+#endif
 
 #include <dwmapi.h>
 

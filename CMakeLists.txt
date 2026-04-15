@@ -7,6 +7,7 @@ else()
 	option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
 endif()
 cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
+cmake_dependent_option(ES_USE_SDL3 "Use the newer SDL3 libraries instead of SDL2" OFF "NOT APPLE" OFF)
 cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON "APPLE OR ES_STEAM" OFF)
 cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executable. Not suitable for development purposes." OFF APPLE OFF)
@@ -67,7 +68,13 @@ project("Endless Sky" VERSION 0.11.1
 	LANGUAGES CXX)
 
 # Find the needed library dependencies.
-find_package(SDL2 CONFIG REQUIRED)
+if(ES_USE_SDL3)
+	find_package(SDL3 REQUIRED CONFIG REQUIRED COMPONENTS SDL3)
+	set(SDL_LIBRARIES ${SDL3_LIBRARIES})
+else()
+	find_package(SDL2 CONFIG REQUIRED)
+	set(SDL_LIBRARIES ${SDL2_LIBRARIES})
+endif()
 find_package(PNG REQUIRED)
 find_package(JPEG REQUIRED)
 find_package(libavif REQUIRED)
@@ -164,13 +171,17 @@ endif()
 target_compile_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
 target_link_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
 
+if(ES_USE_SDL3)
+	target_compile_definitions(EndlessSkyLib PUBLIC ES_USE_SDL3)
+endif()
+
 # The 'mingw32' lib needs to be linked first.
 if(MINGW)
 	target_link_libraries(ExternalLibraries INTERFACE mingw32)
 endif()
 
 # Link with the general libraries.
-target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG avif
+target_link_libraries(ExternalLibraries INTERFACE ${SDL_LIBRARIES} PNG::PNG JPEG::JPEG avif
 	OpenAL::OpenAL ${MINIZIP_LIBRARIES} FLAC::FLAC++ "$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 
 # Link the needed OS-specific dependencies, if any.

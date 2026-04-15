@@ -19,9 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Preferences.h"
 #include "../Screen.h"
 
-#include "../opengl.h"
+#include "../SDL.h"
 
-#include <SDL2/SDL.h>
+#include "../opengl.h"
 
 #include <algorithm>
 
