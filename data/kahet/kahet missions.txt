@@ -3635,7 +3635,7 @@ mission "Ka'het: Patir Mystery 28"
 				`	"Are you waiting for someone?"`
 					goto someone
 				`	"Actually, I have other commitments right now."`
-			`	He looks surprised, though he tries to hide it. "Oh. Is there any chance you might delay them? We have a fairly important job here, and your help have been invaluable during our past expeditions." He makes some mental calculations. "Judging by on our plans, you might be free to go your own way in a little over a month."`
+			`	He looks surprised, though he tries to hide it. "Oh. Is there any chance you might delay them? We have a fairly important job here, and your help has been invaluable during our past expeditions." He makes some mental calculations. "Judging by on our plans, you might be free to go your own way in a little over a month."`
 			choice
 				`	"Alright, they can wait."`
 					goto someone
