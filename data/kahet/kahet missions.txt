@@ -3690,15 +3690,15 @@ mission "Ka'het: Patir Mystery 28"
 		dialog `You land on <planet>, but realize that you left Taely on one of your escorts that hasn't entered the system. Better depart and wait for it to arrive.`
 	on complete
 		conversation
-			`As you make a hard-dock to <planet>, the three Swans go their own way toward the local gas giant. Taely explains that she will check them up from here: the inhabitants of Ssil Vida have been kind enough to set up a console for this test. "This one will be more or less a rehearsal," she informs you. "Strange and hard to explain things happen around that world when Ssil Vida gets engaged, and to avoid complications we intend to send them to scoop from the nearby systems once operational."`
-			`	She looks at them with admiration. "The work on them has been remarkably smooth, but they spent so many years in my folders - and it took so much of my time recently - that I cannot help but have mixed feelings watching them fly away."`
+			`As you make a hard-dock to <planet>, the three Swans go their own way toward the local gas giant. Taely explains that she will check on them from here on Ssil Vida, as the inhabitants have been kind enough to set up a console for the test. "This one will be more or less a rehearsal," she informs you. "Strange and hard to explain things happen around that world when Ssil Vida is engaged, and to avoid complications we intend to send the Swans to instead scoop from the nearby systems once operational."`
+			`	She looks at them with admiration. "The work on them has been remarkably smooth, but they spent so many years in my folders - it took so much of my time recently, that I cannot help but have mixed feelings watching them fly away."`
 			choice
 				`	"It is natural to feel that way."`
 					goto natural
 				`	"What about the work on the Peregrine?"`
-			`	She smiles. "I sense a practical purpose behind your question. Unfortunately, progress has not been as fast as we hoped for: liveships are still a very new concept for us, and to get production and training to the rates we wanted is proving complex. It will be at least a few months before you find them in our shipyards, I fear. Our security needs have to take precedence, but I will make sure to notify you as soon as they are available."`
+			`	She smiles. "I sense a practical purpose behind your question. Unfortunately, progress has not been as fast as we hoped for. Liveships are still a very new concept for us, and to get production and training to the rates we wanted is proving complex. It will be at least a few months before you find them in our shipyards, I fear. Our security needs have to take precedence, but I will make sure to notify you as soon as they are available."`
 			label natural
-			`	By the time you have accompanied Taely to her workstation, the Swans are barely another star in the sky. "It will be just a matter of hours before the Swans are on the way back here. It should not be hard to meet up in the local starport hub once I am done: after all, it is still quite small."`
+			`	By the time you have accompanied Taely to her workstation, the Swans are barely another point of light in the sky. "It will be just a matter of hours before the Swans are on their way back here. It should not be hard for us to meet up in the local starport hub once I am done - after all, it is still quite small."`
 
 
 mission "Ka'het: Patir Mystery 29"
@@ -3711,14 +3711,11 @@ mission "Ka'het: Patir Mystery 29"
 		event "remnant: ssil vida activation"
 		set "remnant: tubfalet hunt"
 		conversation
-			`Taely comes looking for you shortly after the Swans have docked with Ssil Vida, with a fast step and crystal in her hand. "Captain, another task for you has just come up. I have been informed that the Korath raid we met on the way here had been ongoing for a few days - in fact, since just before Ssil Vida activated its special systems. During the trouble of moving between the two realities, it appears that a ship in the attacking fleet was able to jump beyond Ssil Vida's range, and has remained inside that universe since. It is not acceptable to leave it there any longer."`
-			`	A quiver down your spine suggests to you that Ssil Vida has activated again, filling Postverta with beings of all kinds. She hands you the crystal, small and sharp. "We have loaded here the information we have on it, as well as a program to record what your ship sees during the encounter. Given the location, we want to understand as much as we can about any damage they might have caused." She stops, as if preparing to leave; however, she changes her mind.`
-			`	"Our Swans have not been designed for front line combat, but rather to fill a support role. Staying in Ssil Vida, however, will eventually subject them to direct attacks - Korath, or perhaps worse. What do you think about taking one with you to test its combat prowess?"`
+			`Taely comes looking for you shortly after the Swans have docked with Ssil Vida, with a fast step and crystal in her hand. "Captain, another task for you has just come up. I have been informed that the Korath we met on the way here have been raiding the system for a few days - in fact, since just before Ssil Vida activated. During the trouble of moving between the two realities, it appears that a ship in the attacking fleet was able to jump beyond Ssil Vida's range, and has remained inside that universe since. It is not acceptable to leave it there any longer."`
+			`	A quiver down your spine suggests to you that Ssil Vida has activated again, filling Postverta with beings of all kinds. She hands you the crystal, small and sharp. "On this is the information we have on the ship, as well as a program to record what you sees during your search. Given the location, we want to understand as much as we can about any damage they might have caused." She stops, as if preparing to leave; however, she changes her mind.`
+			`	"Our Swans have not been designed for front line combat, but rather to fill a support role. Staying in Ssil Vida, however, will eventually subject them to direct attacks - be it from Korath, or perhaps worse. I would like to let one get some combat experience, if you can."`
 			choice
 				`	"I would be happy to."`
-					accept
-				`	"They are large and unwieldy. I do not want them to get in the way."`
-			`	She looks at you with some frustration. "Given their speed, it will not take much effort for you to overtake them to the target, if you wish to do so. I would rather let them get some combat experience, but the choice is yours."`
 				accept
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -3733,7 +3730,7 @@ mission "Ka'het: Patir Mystery 29"
 		fleet
 			names "korath"
 			variant
-				"'olofez (Crew Destroyed)" 3
+				"'olofez (Crew Destroyed)" 1
 		on board
 			dialog "The crew quarters lie in a disastrous state, ravaged by bite signs and bizarre slime. While the rest of the ship has held up together, there is no way to actually take control of it."
 	npc disable
@@ -3742,15 +3739,17 @@ mission "Ka'het: Patir Mystery 29"
 		ship "Tubfalet (Crew Destroyed)" "Grak Perak"
 		personality disables plunders target staying waiting
 		on board
-			dialog "A scan reveals that a series of increasingly large holes has replaced what used to be the crew quarters. Most of the personnel seem to have died before you arrived here, and the rest of the crew has locked themselves in the few still-airtight compartments."
+			dialog "A scan reveals that a series of increasingly large holes has replaced what used to be the crew quarters. Most of the personnel seem to have died days ago, and much of the remaining crew has locked themselves in the few still-airtight compartments."
 		
 # this is where I would put my crew damage weapon...
 # If I had one!
 
 	on complete
 		payment 350000
+		clear "remnant: tubfalet hunt"
+		event "remnant: ssil vida deactivation"
 		conversation
-			`The data Taely gave you included information on who to give the crystal to. Thanks to Ssil Vida's limited population, it only takes you a few minutes to identify her: based on your vague memories, she was likely one of the researchers you helped transport here.`
+			`The data Taely gave you included information on who to give the crystal to. Thanks to Ssil Vida's limited population, it only takes you a few minutes to identify her; based on your vague memories, she was likely one of the researchers you helped transport here.`
 			`	"We appreciate your support, Captain. Postverta is for us like a window into this region of space before it turned into the Ember Waste; we must do everything we can to keep it as pristine as it is now." While she disappears into a hallway with the crystal, a notification appears on your communicator of a deposit of <payment> under the caption "Korath Bounty." With it, a message: Taely will meet you in the local spaceport.`
 
 ship "'olofez" "'olofez (Crew Destroyed)"
@@ -3773,24 +3772,23 @@ mission "Ka'het: Patir Mystery 30"
 	to offer
 		has "Ka'het: Patir Mystery 29: done"
 	on offer
-		clear "remnant: tubfalet hunt"
-		event "remnant: ssil vida deactivation"
 		conversation
-			`While trying to remember the original appearance of this environment, you notice that a large display has been installed by the Remnant recently. As far as you can tell, it shows a clock of some sort, but every number on the display is 'F'. "We have installed timers to mark the time Patir disappears, and when it returns," explains Taely, noticing your gaze. "Given the gap between Ssil Vida's activation and the events taking place, it is easy to lose track of our current status and the actions to take. Of course, the timers have not yet started.`
-			`	"But onto our mission, I can happily report that our Swans behaved as expected. This fleet, made of pre-production models - thus heavier and slightly less capable than the actual product - will stay here in Postverta to become its tanker flotilla. And on that topic, how would you say it fared in combat?"`
+			`While trying to remember the original appearance of this environment, you notice that a large display has been installed by the Remnant recently. As far as you can tell, it shows a clock of some sort, but every number on the display is 'F'. "We have installed timers to mark the moment Patir disappears, and when it returns," explains Taely, noticing your gaze. "Given the gap between Ssil Vida's activation and the events taking place, it is easy to lose track of our current status and the actions to take. Of course, the timers have not yet started.`
+			`	"But onto our mission, I can happily report that our Swans behaved as expected. This fleet, made of pre-production models - thus heavier and slightly less capable than the actual product - will stay here in Postverta to become its tanker flotilla. And on that topic, how would you say one fared in combat?"`
 			choice
 				`	"Acceptably."`
 				`	"It was easily outmatched by the Tubfalet."`
 				`	"It did not really see much combat."`
-			`	"I will take note. Its Inhibitor Turrets are meant to support other ships in fleet brawls, not face the enemy directly - a doctrine similar to that of some Korath ships, I might add. It should not be long before you see them appear in most of our aging Pelicans, so that they have better chances to escape the ever changing Korath ploys."`
-			`	"When are they going to be available?" you ask.`
-			`	"A month or two is to be expected, given our needs. Although..." She stops just as you feel Ssil Vida's deactivation, the space around you changing almost imperceptibly. "Much of our understanding of Ssil Vida depends on the human technology you shared with us. As a gesture of gratitude, other than the price we paid them, I might be able to give you access to it fairly soon. After all, the Inhibitor Turret is not a high priority project for us: if it was, we would have made it long ago."`
+			`	"I will take note. You might have noticed they are armed with a turreted form of its Inhibitor Cannons, meant to support other ships in brawls and not face the enemy directly. A doctrine, I might add, similar to that of a number of Korath vessels. It should not be long before you see them appear on most of our aging Pelicans, so that they have better chances to escape the ever changing Korath ploys."`
+			choice
+				`	"Will they ever become available for general purchase?" You ask.`
+			`	"They are not a high priority project for us, otherwise, we would have developed them much earlier. Given our needs, a month or two is to be expected before full production. Although..." She stops to think for a moment. "Much of our understanding of Ssil Vida depends on the human technology you shared with us. As a gesture of gratitude, I might be able to give you access to the Inhibitor Turret fairly soon."`
 			choice
 				`	"What do the human outfits have to do with Ssil Vida?"`
 				`	"Thank you."`
 					goto leave
-			`	"We have had some issues understanding Ssil Vida's technology at first, at least beyond the most basic power distribution and control systems. However, some of us who worked on the human technology projects soon noticed the similarity in technology: studying the principles behind one improved our understanding of the other, despite not being exact matches in reality. When you bought and took to us those outfits, you unknowingly saved us months or years of work; their technological level is really fairly similar."`
-			`	"But how could such a species build something like this?" you ask in response.`
+			`	"We have had some issues understanding Ssil Vida's technology at first, at least beyond the most basic power distribution and control systems. However, some of us who worked on the human technology projects soon noticed the similarity in technology - studying the principles behind one improved our understanding of the other, despite not being exact matches in reality. When you brought us those outfits, you unknowingly saved us months or years of work; their technological level is really fairly similar."`
+			`	"How could such a species build something like this station?" you ask in response.`
 			`	"If you want to know the specific mechanism, I have no way of knowing. But I can tell you that when a civilization is nearing its end, much of the logic you and I work with no longer applies: the strangest plans are put into motion, almost always with terrible results, but occasionally with more interesting endings.`
 			label leave
 			`	"That being said, we should get going. The Swans may stay here, but I need a ride to <planet>'s shipyards to get back to my work."`
