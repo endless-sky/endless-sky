@@ -145,14 +145,14 @@ bool GameWindow::Init(bool headless)
 		ExitWithError("Unable to query primary display!");
 		return false;
 	}
-	const SDL_DisplayMode* modePtr = SDL_GetCurrentDisplayMode(primaryDisplay);
+	const SDL_DisplayMode *modePtr = SDL_GetCurrentDisplayMode(primaryDisplay);
 	if(!modePtr)
 	{
 		checkSDLerror();
 		ExitWithError("Unable to query monitor resolution!");
 		return false;
 	}
-	const SDL_DisplayMode& mode = *modePtr;
+	const SDL_DisplayMode &mode = *modePtr;
 #else
 	SDL_DisplayMode mode;
 	if(SDL_GetCurrentDisplayMode(0, &mode))
