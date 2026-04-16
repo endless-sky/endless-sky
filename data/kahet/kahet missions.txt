@@ -3595,7 +3595,7 @@ mission "Ka'het: Patir Mystery 27"
 	npc board
 		government "Magic Asteroid (Disabled)"
 		system "Patir"
-		ship "Asteroid Adult 2" "???"
+		ship "Asteroid Large 2" "???"
 		personality derelict target waiting
 		dialog "You stare at the enormous rock, still emitting a low glow all around it. Doing their best with the equipment on hand, the Remnant quickly mark a number of sections inside the asteroid for you to loot. Your computer tells you that they are respectively 20, 29 and 31 tons each."
 	npc
@@ -3964,7 +3964,7 @@ mission "Ka'het: Patir Mystery 32 - Patir fleet"
 mission "Ka'het: Patir Mystery 33"
 	landing
 	name "First contact"
-	description "Conduct a first contact with the largest asteroid in <planet> by landing on its surface exactly on <date>."
+	description "Conduct a first contact with the largest asteroid in <system> by landing on its surface exactly on <date>."
 	deadline 6
 	source "Builder Settlement"
 	destination "Magic Asteroid Planet"
