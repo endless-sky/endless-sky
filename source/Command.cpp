@@ -300,9 +300,6 @@ bool Command::HasUnsavedChanges()
 	{
 		hasUnsavedChanges |= keyName[inUse][command] != keyName[ProfileType::ACTIVE][command];
 		hasUnsavedChanges |= keycodeForCommand[inUse][command] != keycodeForCommand[ProfileType::ACTIVE][command];
-		hasUnsavedChanges |= commandForKeycode[inUse][keycode].state != \
-			commandForKeycode[ProfileType::ACTIVE][keycode].state;
-		hasUnsavedChanges |= keycodeCount[inUse][keycode] != keycodeCount[ProfileType::ACTIVE][keycode];
 	}
 	return hasUnsavedChanges;
 }
