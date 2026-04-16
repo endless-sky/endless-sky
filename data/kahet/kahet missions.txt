@@ -3595,7 +3595,7 @@ mission "Ka'het: Patir Mystery 27"
 	npc board
 		government "Magic Asteroid (Disabled)"
 		system "Patir"
-		ship "Asteroid Young 2" "???"
+		ship "Asteroid Adult 2" "???"
 		personality derelict target waiting
 		dialog "You stare at the enormous rock, still emitting a low glow all around it. Doing their best with the equipment on hand, the Remnant quickly mark a number of sections inside the asteroid for you to loot. Your computer tells you that they are respectively 20, 29 and 31 tons each."
 	npc
@@ -3650,13 +3650,11 @@ mission "Ka'het: Patir Mystery 28"
 				`	"What can I call them?"`
 					goto name
 				`	"How did you make them this quickly?"`
-					goto alive
-				`	"Are they alive?"`
-					goto alive
+					goto quickly
 				`	"They look beautiful."`
 			`	"I like them more for what they represent," she replies. "The history of the Swan is old, and fairly complicated. They were about ready to enter production several decades ago, however, the design exercise was not able to make a reasonable use case for them. They had to stay in limbo for all this time, watching newer and more innovative designs come out. Their style is considered fairly retro by now, and these first builds are heavier than we would like them to be. But to me, these equate an end of an era for our shipyards." She looks at them nostalgically. "Chances are that the Swan will be the last design we do not produce as a liveship. At least, not a complete one."`
 				goto continue
-			label alive
+			label quickly
 			`	"Their design predates liveships, though we have added some of their systems. In fact, chances are that the Swan will be the last design we produce not to be alive." She looks at them nostalgically. "The history of the Swan is old, and fairly complicated. They were about ready to enter production several decades ago, however, the design exercise was not able to make a reasonable use case for them. They had to stay in a limbo for all this time, watching newer and more innovative designs come out. Their style is considered fairly retro by now, and these first builds are heavier than we would like them to be. But to me, these equate an end of an era for our shipyards."`
 				goto continue
 			label name
@@ -3703,7 +3701,7 @@ mission "Ka'het: Patir Mystery 28"
 
 mission "Ka'het: Patir Mystery 29"
 	name "Korath Beyond"
-	description "Find the Korath ships in the Postverta cluster (with Ssil Vida active) and destroy them so that they do not cause further damage."
+	description "Find and take care of the Korath ships in the Postverta cluster (with Ssil Vida active) so that they do not cause further damage."
 	source "Ssil Vida"
 	to offer
 		has "Ka'het: Patir Mystery 28: done"
@@ -3716,6 +3714,9 @@ mission "Ka'het: Patir Mystery 29"
 			`	"Our Swans have not been designed for front line combat, but rather to fill a support role. Staying in Ssil Vida, however, will eventually subject them to direct attacks - be it from Korath, or perhaps worse. I would like to let one get some combat experience, if you can."`
 			choice
 				`	"I would be happy to."`
+					accept
+				`	"They are large and unwieldy. I do not want them to get in the way."`
+			`	She looks at you with some frustration. "Given their speed, it will not take much effort for you to overtake them to the target, if you wish to do so. I would rather let them get some combat experience."`
 				accept
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -3773,7 +3774,7 @@ mission "Ka'het: Patir Mystery 30"
 		has "Ka'het: Patir Mystery 29: done"
 	on offer
 		conversation
-			`While trying to remember the original appearance of this environment, you notice that a large display has been installed by the Remnant recently. As far as you can tell, it shows a clock of some sort, but every number on the display is 'F'. "We have installed timers to mark the moment Patir disappears, and when it returns," explains Taely, noticing your gaze. "Given the gap between Ssil Vida's activation and the events taking place, it is easy to lose track of our current status and the actions to take. Of course, the timers have not yet started.`
+			`While trying to remember the appearance of this room, you notice that a large display has been installed by the Remnant recently. As far as you can tell, it shows a clock of some sort, but every number on the display is 'F'. "We have installed timers to mark the moment Patir disappears, and when it returns," explains Taely, noticing your gaze. "Given the gap between Ssil Vida's activation and the events taking place, it is easy to lose track of our current status and the actions to take. Of course, the timers have not yet started.`
 			`	"But onto our mission, I can happily report that our Swans behaved as expected. This fleet, made of pre-production models - thus heavier and slightly less capable than the actual product - will stay here in Postverta to become its tanker flotilla. And on that topic, how would you say one fared in combat?"`
 			choice
 				`	"Acceptably."`
@@ -3781,8 +3782,8 @@ mission "Ka'het: Patir Mystery 30"
 				`	"It did not really see much combat."`
 			`	"I will take note. You might have noticed they are armed with a turreted form of its Inhibitor Cannons, meant to support other ships in brawls and not face the enemy directly. A doctrine, I might add, similar to that of a number of Korath vessels. It should not be long before you see them appear on most of our aging Pelicans, so that they have better chances to escape the ever changing Korath ploys."`
 			choice
-				`	"Will they ever become available for general purchase?" You ask.`
-			`	"They are not a high priority project for us, otherwise, we would have developed them much earlier. Given our needs, a month or two is to be expected before full production. Although..." She stops to think for a moment. "Much of our understanding of Ssil Vida depends on the human technology you shared with us. As a gesture of gratitude, I might be able to give you access to the Inhibitor Turret fairly soon."`
+				`	"Will they ever become available for general purchase?"`
+			`	"They are not a high priority project for us, otherwise, we would have developed them much earlier. Given our needs, several months before full production is expected. Although..." She stops to think for a moment. "Much of our understanding of Ssil Vida depends on the human technology you shared with us. As a gesture of gratitude, I might be able to give you access to the Inhibitor Turret sooner than that."`
 			choice
 				`	"What do the human outfits have to do with Ssil Vida?"`
 				`	"Thank you."`
@@ -3824,44 +3825,44 @@ mission "Ka'het: Patir Mystery 31"
 	on offer
 		event "remnant: inhibitor turret available" 6
 		conversation
-			`Taely has been hard at work on your your ship during the past day, assembling a contraption with a few spare parts roughly the size of a fist. At last, she connects it with your console, and a stone atop it lights up in a bright blue color. "Given your continued involvement in the exploration of Patir, I imagined it would be useful for you to know Patir's state whenever you need. Thanks to the stations mounted in Patir and the telemetry sent by Ssil Vida - both of which your ship already receives - all I needed was to put them together: this crystal will shine blue if Patir is stable in the Milky Way, yellow if it is about to leave it, and red if it is no longer here."`
-			`	You thank her, and accompany her down the ramp. A group of people is already waiting for her arrival. "I will give you access to our Inhibitor Turrets as soon as possible. Our outfitters should have a stash for you within days; just the time to prepare the shipment and check them out." Your communicator beeps: Dusk and his team will meet up with you for another expedition in the shipyard of <planet>.`
-			`	Seeing the message, she smirks. "I can give you a preview of your next mission, if you wish."`
+			`Taely has been hard at work on your your ship during the trip, assembling a contraption with a few spare parts roughly the size of a fist. At last, she connects it with your console, and a stone atop it lights up in a bright blue color. "Given your continued involvement in the exploration of Patir, I imagined it would be useful for you to know Patir's state whenever you need. Thanks to the stations mounted in Patir and the telemetry sent by Ssil Vida - both of which your ship already receives - all I needed to do was to put them together. This crystal will shine blue if Patir is stable in the Milky Way, yellow if it is about to leave it, and red if it is no longer here."`
+			`	You thank her, and accompany her down the ramp. A group of Remnant is already waiting for her arrival. "Our outfitters are receiving a shipment of Inhibitor Turrets within a few days. I have arranged for you to have access to them once they arrive."`
+			`	Your communicator beeps: Dusk and his team will meet up with you for another expedition in the shipyard of <planet>. Seeing the message, she smirks. "I can give you a preview of your next mission, if you wish."`
 			choice
 				`	"How do you know about it?"`
 					goto spoiler
 				`	"Well, sure."`
 					goto spoiler
 				`	"I never liked spoilers much."`
-			`	She laughs. "All right then. If you prefer this way, I hope you will enjoy the surprise!" She disappears in the crowd of her colleagues, certainly already moving onto another project.`
+			`	She laughs. "All right then. If you prefer it this way, I hope you will enjoy the surprise!" She disappears in the crowd of her colleagues, certainly already moving onto another project.`
 				accept
 			label spoiler
 			`	"We had to prepare a shipment of specialized Terns just a few weeks ago, the specifics of which were authorized by Dusk. Given that their destination was unmarked, I can tell you with near certainty that they have been destined to go to Patir. Especially because by this point, shipments to Ssil Vida come marked with their actual destination."`
 			`	"What kind of specialization?" you ask.`
-			`	"We modified them to be easier to maintain, at the expense of some of their mass and structural integrity. I believe they are also going to be carrying some kind of outboard cargo - something Terns are already well capable of, but given that the specifics made it clear that our modifications should not impact that capability it is likely they have something in mind. You will have to ask Dusk for something more specific than this, however."`
+			`	"We modified them to be easier to maintain, at the expense of some of their mass and structural integrity. I believe they are also going to be carrying some kind of outboard cargo, so that functionality was not affected by our changes. You will have to ask Dusk for something more specific than this, however."`
 			choice
 				`	"Good to know."`
 					accept
 				`	"What is the reason behind all this secrecy?"`
-			`	"Oh, do not get the wrong idea," she scrambles to clarify. "If I had asked directly, they would have certainly told me what they were for. The confidentiality in these messages is as much directed toward us as it is toward anyone trying to intercept them: we do not want the Korath to get too much unintended info on the programs that show the most potential." After a brief goodbye, she disappears in the crowd of her colleagues, certainly already moving onto another project.`
+			`	"Oh, do not get the wrong idea," she scrambles to clarify. "If I had asked directly, they would have certainly told me what they were for. The confidentiality in these messages is as much directed toward us as it is toward anyone trying to intercept them. We do not want the Korath to get too much unintended information on our programs that show the most potential." After a brief goodbye, she disappears in the crowd of her colleagues, certainly already moving onto another project.`
 				accept
 	on complete
 		payment 1200000
 		conversation
-			`After following Dusk through the busy starport, you reach a flock of Terns flying in circles at the outskirts of the landing zone. You count six of them, none of which seems to present any distinctive feature. "After we returned from the lifeboat test, we have started preparing this small fleet to join us around Patir. We think of them as having two functions: scientific, of course, but in case of emergency, they will do their best to act as decoys to allow the Petrel to escape safely into the depth of the gas giant. As you know, this will be our first - intentional - extended expedition into that region of space, as well as the first in which we leave a second team at the laboratory.`
-			`	"What you do not know, however, is our objective. After our findings, the prefects have at last approved a direct exploration of the planetoid in Lathia: if it is indeed sapient, and if we succeed in communicating with it, this would be our first true contact with the asteroid-like species inhabiting that region.`
-			`	"All of which means a very heavy payload, unfortunately." He scribbles something on his datapad, then reads from it. "Our expedition is going to need... at least 110 tons of equipment, including some allowance for samples of that planetoid. On top of this, the team in Patir will need another 105 tons of scientific payload, for a total of 215. And to top it all, you need to carry our six Terns as well before we can begin."`
+			`After following Dusk through the busy starport, you reach a flock of Terns flying in circles at the outskirts of the landing zone. You count four of them, none of which seems to present any distinctive feature. "After we returned from the lifeboat test, we have started preparing this small fleet to join us around Patir. We think of them as fulfilling two functions: research, of course, and in case of emergency, distraction. They will do their best to act as decoys to allow the Petrel to escape safely into the depth of the gas giant. As you know, this will be our first - intentional - extended expedition into that region of space, as well as the first in which we leave a second team at the laboratory.`
+			`	"What you do not know, however, is our objective. After our findings, the prefects have at last approved a direct exploration of the planetoid in Lathia - if it is indeed sapient, and if we succeed in communicating with it, this would be our first true contact with the asteroid-like species inhabiting that region.`
+			`	"All of which means a very heavy payload, unfortunately." He scribbles something on his datapad, then reads from it. "Our expedition is going to need... at least 110 tons of equipment, including some allowance for samples of that planetoid. On top of this, the team in Patir will need another 105 tons of scientific payload, for a total of 215. And to top it all, you need to carry our four Terns before we can begin."`
 			choice
 				`	"What does the exploration entail?"`
 					goto exploration
 				`	"That is a lot of cargo."`
-			`	"Look on the bright side: at least you do not need to carry it cloaked," he quips. "Yes, it certainly is. During that time, your ship is going to temporarily become one of our most capable research vehicles, at least on the side of planetary science." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after, given these needs. It contains <payment> credits.`
+			`	"Look on the bright side: at least you do not need to carry it cloaked," he quips. "Yes, it certainly is. During that time, your ship is going to temporarily become one of our most capable research vehicles, at least on the side of planetary science." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after, given these needs. It contains <payment>.`
 				goto end
 			label exploration
 			`	"It depends on what we see there," he replies stoically. "We are going to try to communicate through every medium we have available before approaching; if that fails, we may proceed with a brief EVA on the surface to find something to work on." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after, given these needs. It contains <payment> credits.`
 			label end
 			`	"We do not get a chance for a proper first contact often - most of our exploration of the galaxy has been strictly from orbit, far from any living being and safely hidden behind an active cloak. Given the circumstances, I was able to convince the Prefects of the tremendous potential such an encounter could have, if it were to go as we hope." He smiles. "And I trust that you are going to do everything in your power to make it so, just like us.`
-			`	"I want to remind you to have everything you need on hand before we begin the expedition: once Ssil Vida has been started, and until we are back in the Milky Way, we are not going to have even a day or two to waste. Give us a call when you are ready, Captain, and you will find us all here - a crew of 5 for the Lathia mission, and 5 more staying in Patir - together with the mission payload. "`
+			`	"I want to remind you to have everything you need on hand before we begin the expedition. Once Ssil Vida has been started, and until we are back in the Milky Way, there is not a day to waste. Give us a call when you are ready, Captain, and you will find us all here - a crew of 5 for the Lathia mission, and 5 more staying in Patir - together with the mission payload. "`
 
 mission "Ka'het: Patir Mystery 32"
 	name "Logistics of a first contact"
@@ -3871,17 +3872,18 @@ mission "Ka'het: Patir Mystery 32"
 	destination "Builder Settlement"
 	passengers 10
 	cargo "scientific payload" 215
+	blocked `The cargo for the next expedition to Patir is ready, but you do not have enough free space. Come back when you have <tons> free.`
 	to offer
 		has "Ka'het: Patir Mystery 31: done"
 	on offer
 		conversation
-			`Although standing in a rather isolated part of the starport, the mission personnel alone make a significant crowd. You count the ten people for your crew, plus at least two dozen more workers waiting for the order to load the payload onto your fleet. "So, <first>." Dusk approaches you, hiding the apprehension in his movements. "Do you have everything I asked you to bring?"`
+			`Although standing in a rather isolated part of the starport, the mission personnel alone make a significant crowd. You count the ten people for your crew, plus at least two dozen more workers waiting for the order to load the payload. "So, <first>." Dusk approaches you, hiding the apprehension in his movements. "Do you have everything I asked you to bring?"`
 			choice
 				`	"Of course I do."`
 				`	"Sorry, but I need some more time to prepare."`
 					defer
-			`	"Perfect!" He makes a gesture and the crowd splits into smaller, selected groups, each busy with a specific function. Their coordinated movements almost remind you of a dance, like a well oiled machine that just sprung into motion. You notice the researchers themselves assisting in the operations, making sure that each instrument is operational and correctly set up.`
-			`	Among them, some familiar faces make an appearance: while the Remnant that will accompany you to Lathia seem new, you notice some of the Remnant from your original expedition among the group assigned to Patir. And near your payload bay, checking out one of the more voluminous machines, you are surprised to find Dawn.`
+			`	"Perfect!" He makes a gesture and the crowd splits into smaller, selected groups, each busy with a specific function. Their coordinated movements almost remind you of a dance, like a well-oiled machine that just sprung into motion. You notice the researchers themselves assisting in the operations, making sure that each instrument is operational and correctly set up.`
+			`	Among them, some familiar faces make an appearance: while the Remnant that will accompany you to Lathia seem new, you notice some of the researchers from your original expedition among the group assigned to Patir. And near your payload bay, checking out one of the more voluminous machines, you are surprised to find Dawn.`
 			`	"I am almost done here, <first>," she signs you when you come closer. "I want to run just a couple more integrated tests, and then I can trust it to work when it is meant to."`
 			choice
 				`	"I did not know you were part of the crew."`
@@ -3889,18 +3891,18 @@ mission "Ka'het: Patir Mystery 32"
 					goto what
 				`	"You are coming with us too?"`
 					goto what
-			`	"I wish! Maybe when flights become more frequent, and more routine. No, I am part of the ground crew of one of the instruments you will add to our grid near the Builder settlement. Still, it is a serious responsibility: I have co-handled its definition a few months back, and I will also manage some of its data once we have the first light.`
+			`	"I wish! Maybe when flights become more frequent, and more routine. No, I am part of the ground crew of one of the instruments you will add to our grid near the Builder settlement. Still, it is a serious responsibility - I have co-handled its definition a few months back, and I will also manage some of its data once we have the first light.`
 			`	"You see, this is a very-long-baseline interferometer: an antenna will be put atop our Patir outpost, and another on your ship. As you move further away their processor will compare the results of each to form an enormous, virtual telescope studying the space nearby. Nothing new, of course," she decides to clarify. "The main difference is the galaxy from where these observations are made."`
 				goto choice
 			label what
-			`	"What you see here is a very-long-baseline interferometer: an antenna will be put atop our Patir outpost, and another on your ship. As you move further away their processor will compare the results of each to form an enormous, virtual telescope studying the space nearby.`
-			`	"Nothing new, of course," she decides to clarify. "The main difference is the galaxy from where these observations are made. Maybe I will come with you to see it with my eyes at some point; for now, I am part of the ground crew here, managing its data once Patir is back and we have the first light."`
+			`	"What you see here is a very-long-baseline interferometer: an antenna will be put atop our Patir outpost, and another on your ship. As you move further away their processors will compare the results to form an enormous, virtual telescope studying the space nearby.`
+			`	"Nothing new, of course," she decides to clarify. "The main difference is the galaxy from where these observations are made. Maybe I will come with you to see it with my own eyes at some point. For now, I am part of the ground crew here, managing its data once Patir is back and we have the first light."`
 			label choice
 			choice
 				`	"I see."`
 					goto leave
 				`	"What are you hoping to find?"`
-			`	"Well, every stellar object there is interesting in its own way. My own study is on the largest singularity we have access to, Balnii. We believe it to be a merging of two or more supermassive black holes, but it is something impossible under our laws of physics: once they reached a distance of one parsec, it would take far, far longer than the age of the universe for them to decay enough to merge.`
+			`	"Well, every stellar object there is interesting in its own way. My own study is on the largest singularity we have access to, Balnii. We believe it to be a merging of two or more supermassive black holes, but it is something impossible under our laws of physics. Once they reached a distance of one parsec, it would take far, far longer than the age of the universe for them to decay enough to merge.`
 			`	"Now, this is not exactly unique to that region of space. We have had some rare occurrences in our own Milky Way, which in the end were explained by another black hole entering the picture and pushing them together. It is possible this is true for Balnii as well, but we must know more in order to verify it."`
 			label leave
 			`	Soon enough, she shuts down her terminal and gives the okay to the rest of the team. She stands aside as the spaceport workers close out the payload bay once again, and the crew of ten climbs aboard into their own crew quarters. "You know, <first>," she signs at last, "How is it to stay in Patir when it moves between our galaxies?"`
@@ -3922,12 +3924,8 @@ mission "Ka'het: Patir Mystery 32"
 			id 23032003
 		give ship "Tern" "Far Sky Dancing"
 			id 23032004
-		give ship "Tern" "Late Sky Dancing"
-			id 23032005
-		give ship "Tern" "Wide Sky Dancing"
-			id 23032006
 	on visit
-		dialog "You've arrived at <planet>, but either your passengers, your cargo, or the six Terns are not with you!"
+		dialog "You've arrived at <planet>, but either your passengers, your cargo, or the four Terns are not with you!"
 	on complete
 		take ship "Tern" "Great Sky Dancing"
 			id 23032001
@@ -3943,14 +3941,6 @@ mission "Ka'het: Patir Mystery 32"
 			"with outfits"
 		take ship "Tern" "Far Sky Dancing"
 			id 23032004
-			"require outfits"
-			"with outfits"
-		take ship "Tern" "Late Sky Dancing"
-			id 23032005
-			"require outfits"
-			"with outfits"
-		take ship "Tern" "Wide Sky Dancing"
-			id 23032006
 			"require outfits"
 			"with outfits"
 
@@ -3969,8 +3959,6 @@ mission "Ka'het: Patir Mystery 32 - Patir fleet"
 		ship "Tern" "Low Sky Dancing"
 		ship "Tern" "Dusky Sky Dancing"
 		ship "Tern" "Far Sky Dancing"
-		ship "Tern" "Late Sky Dancing"
-		ship "Tern" "Wide Sky Dancing"
 		personality mining harvests plunders swarming
 
 mission "Ka'het: Patir Mystery 33"
