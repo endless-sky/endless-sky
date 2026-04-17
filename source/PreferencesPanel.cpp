@@ -58,6 +58,7 @@ namespace {
 	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string FONT_SIZE = "UI font size";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
@@ -225,6 +226,13 @@ void PreferencesPanel::Draw()
 void PreferencesPanel::UpdateTooltipActivation()
 {
 	tooltip.UpdateActivationCount();
+}
+
+
+
+void PreferencesPanel::UpdateFontSize()
+{
+	tooltip.UpdateFontSize();
 }
 
 
@@ -741,6 +749,7 @@ void PreferencesPanel::DrawSettings()
 		"Display",
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
+		FONT_SIZE,
 		SCREEN_MODE_SETTING,
 		BLOCK_SCREEN_SAVER,
 		VSYNC_SETTING,
@@ -886,6 +895,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
+		}
+		else if(setting == FONT_SIZE)
+		{
+			isOn = true;
+			text = to_string(Preferences::GetFontSize());
 		}
 		else if(setting == SCREEN_MODE_SETTING)
 		{
@@ -1362,6 +1376,12 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		// case, cycle around to the lowest zoom factor.
 		if(!Preferences::ZoomViewIn())
 			while(Preferences::ZoomViewOut()) {}
+	}
+	else if(str == FONT_SIZE)
+	{
+		Preferences::ToggleFontSize();
+		for(auto &panel : GetUI().Stack())
+			panel->UpdateFontSize();
 	}
 	else if(str == SCREEN_MODE_SETTING)
 		Preferences::ToggleScreenMode();

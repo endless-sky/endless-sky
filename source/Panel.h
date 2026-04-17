@@ -78,6 +78,7 @@ public:
 	virtual bool AllowsFastForward() const noexcept;
 
 	virtual void UpdateTooltipActivation();
+	virtual void UpdateFontSize();
 
 
 protected:

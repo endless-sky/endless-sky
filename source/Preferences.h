@@ -269,6 +269,9 @@ public:
 	static LargeGraphicsReduction GetLargeGraphicsReduction();
 	static const std::string &LargeGraphicsReductionSetting();
 
+	static void ToggleFontSize();
+	static int GetFontSize();
+
 	static void ToggleBlockScreenSaver();
 
 	static int GetPreviousSaveCount();

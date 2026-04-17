@@ -240,6 +240,13 @@ void LoadPanel::UpdateTooltipActivation()
 
 
 
+void LoadPanel::UpdateFontSize()
+{
+	tooltip.UpdateFontSize();
+}
+
+
+
 bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	UI::UISound sound = UI::UISound::NORMAL;

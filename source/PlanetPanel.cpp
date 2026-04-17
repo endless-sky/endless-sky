@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Port.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
@@ -66,7 +67,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	hiring = make_shared<HiringPanel>(player);
 
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
 	AddChild(description);

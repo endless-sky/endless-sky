@@ -69,6 +69,7 @@ public:
 	void Draw(bool forceDraw = false) const;
 
 	void UpdateActivationCount();
+	void UpdateFontSize();
 
 
 private:

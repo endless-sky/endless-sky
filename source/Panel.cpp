@@ -150,6 +150,12 @@ void Panel::UpdateTooltipActivation()
 
 
 
+void Panel::UpdateFontSize()
+{
+}
+
+
+
 void Panel::AddOrRemove()
 {
 	for(auto &panel : childrenToAdd)

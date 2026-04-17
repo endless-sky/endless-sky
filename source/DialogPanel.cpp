@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "shift.h"
 #include "image/Sprite.h"
@@ -201,7 +202,7 @@ void DialogPanel::Draw()
 	}
 
 	// Draw the bottom section.
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	pos.Y() += bottom->Height() * .5;
 	SpriteShader::Draw(bottom, pos);
 	pos.Y() += (bottom->Height() - cancel->Height()) * .5;
@@ -300,7 +301,7 @@ DialogPanel::DialogPanel(DialogInit &init)
 
 	text = make_shared<TextArea>();
 	text->SetAlignment(Alignment::JUSTIFIED);
-	text->SetFont(FontSet::Get(14));
+	text->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	text->SetTruncate(init.truncate);
 	text->SetText(init.message);
 	extensionCount = 0;

@@ -143,7 +143,7 @@ Tooltip::Tooltip(int width, Alignment alignment, Direction direction, Corner cor
 		const Color *backColor, const Color *fontColor)
 	: width(width), direction(direction), corner(corner), backColor(backColor), fontColor(fontColor)
 {
-	text.SetFont(FontSet::Get(14));
+	text.SetFont(FontSet::Get(Preferences::GetFontSize()));
 	// 10 pixels of padding will be left on either side of the tooltip box.
 	text.SetWrapWidth(width - 20);
 	text.SetAlignment(alignment);
@@ -263,4 +263,11 @@ void Tooltip::Draw(bool forceDraw) const
 void Tooltip::UpdateActivationCount()
 {
 	activationHover = Preferences::TooltipActivation();
+}
+
+
+
+void Tooltip::UpdateFontSize()
+{
+	text.SetFont(FontSet::Get(Preferences::GetFontSize()));
 }

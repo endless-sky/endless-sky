@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "News.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "Screen.h"
 #include "TextArea.h"
@@ -38,7 +39,7 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	SetTrapAllEvents(false);
 
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
 	AddChild(description);

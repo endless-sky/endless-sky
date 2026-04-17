@@ -513,7 +513,7 @@ void MapDetailPanel::Resize()
 void MapDetailPanel::InitTextArea()
 {
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetColor(*GameData::Colors().Get("medium"));
 	description->SetAlignment(Alignment::JUSTIFIED);
 	ResizeTextArea();
@@ -802,7 +802,8 @@ void MapDetailPanel::DrawInfo()
 	// Draw the information for the government of this system at the top of the trade sprite.
 	SpriteShader::Draw(systemSprite, uiPoint + Point(systemSprite->Width() / 2. - textMargin, 0.));
 
-	const Font &font = FontSet::Get(14);
+	// TODO: This one might need split.
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	const Sprite *alertSprite = SpriteSet::Get(commodity == SHOW_DANGER ? "ui/red alert" : "ui/red alert grayed");
 	const float alertScale = min<float>(1.f, min<double>(textMargin,
 		font.Height()) / max(alertSprite->Width(), alertSprite->Height()));
