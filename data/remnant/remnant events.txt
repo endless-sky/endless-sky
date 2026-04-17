@@ -348,7 +348,6 @@ event "remnant: ssil vida activation"
 		pos 162.87 343.242
 		government Uninhabited
 		attributes "ember waste"
-		arrival 625
 		habitable 320
 		belt 1797
 		haze _menu/haze-red
@@ -419,7 +418,6 @@ event "remnant: ssil vida activation"
 		pos 288 146
 		government Uninhabited
 		attributes "ember waste"
-		arrival 2030
 		belt 2000
 		habitable 1505.92
 		haze _menu/haze-red
@@ -468,7 +466,6 @@ event "remnant: ssil vida activation"
 		pos 332 210
 		government Uninhabited
 		attributes "ember waste"
-		arrival 950
 		belt 2000
 		habitable 534.375
 		haze _menu/haze-red
@@ -516,7 +513,6 @@ event "remnant: ssil vida activation"
 		pos 203.504 247.389
 		government Uninhabited
 		attributes "ember waste"
-		arrival 5000
 		habitable 2798.68
 		belt 1202
 		haze _menu/haze-red
@@ -587,7 +583,6 @@ event "remnant: ssil vida activation"
 		pos 297 269
 		government Remnant
 		attributes "ember waste"
-		arrival 500
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
@@ -638,7 +633,6 @@ event "remnant: ssil vida activation"
 		pos 303 194
 		government Uninhabited
 		attributes "ember waste"
-		arrival 5000
 		habitable 2372.76
 		belt 2000
 		haze _menu/haze-red
@@ -693,7 +687,6 @@ event "remnant: ssil vida activation"
 		pos 385 198
 		government Uninhabited
 		attributes "ember waste" "wormhole"
-		arrival 500
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
@@ -750,7 +743,6 @@ event "remnant: ssil vida activation"
 		pos 324 112
 		government Uninhabited
 		attributes "ember waste"
-		arrival 500
 		belt 2000
 		habitable 320
 		haze _menu/haze-red
@@ -825,7 +817,6 @@ event "remnant: ssil vida deactivation"
 		pos 288 146
 		government Uninhabited
 		attributes "ember waste"
-		arrival 2030
 		belt 2000
 		habitable 1505.92
 		haze _menu/haze-red
@@ -873,7 +864,6 @@ event "remnant: ssil vida deactivation"
 		pos 332 210
 		government Uninhabited
 		attributes "ember waste"
-		arrival 950
 		belt 2000
 		habitable 534.375
 		haze _menu/haze-red
@@ -927,7 +917,6 @@ event "remnant: ssil vida deactivation"
 		pos 297 269
 		government Remnant
 		attributes "ember waste"
-		arrival 500
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
@@ -972,7 +961,6 @@ event "remnant: ssil vida deactivation"
 		pos 303 194
 		government Uninhabited
 		attributes "ember waste"
-		arrival 5000
 		habitable 2372.76
 		belt 2000
 		haze _menu/haze-red
@@ -1026,7 +1014,6 @@ event "remnant: ssil vida deactivation"
 		pos 385 198
 		government Uninhabited
 		attributes "ember waste" "wormhole"
-		arrival 500
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
@@ -1077,7 +1064,6 @@ event "remnant: ssil vida deactivation"
 		pos 324 112
 		government Uninhabited
 		attributes "ember waste"
-		arrival 500
 		belt 2000
 		habitable 320
 		haze _menu/haze-red
