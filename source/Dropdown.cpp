@@ -183,7 +183,8 @@ void Dropdown::SetEnabled(bool e)
 void Dropdown::DoDropdown(const Point &pos)
 {
 	auto p = std::make_shared<DroppedPanel>(this);
-	GetUI().Push(p);
+	// GetUI().Push(p);
+	AddChild(p);
 	p->SetMousePos(pos);
 }
 
@@ -231,8 +232,7 @@ bool Dropdown::DroppedPanel::Click(int x, int y, MouseButton, int clicks)
 	if(idx >= 0)
 		dd->SetSelectedIndex(idx);
 
-	GetUI().Pop(this);
-	// this pointer no longer safe to access.
+	dd->RemoveChild(this);
 
 	return true;
 }
@@ -264,8 +264,7 @@ bool Dropdown::DroppedPanel::Release(int x, int y, MouseButton)
 		{
 			dd->SetSelectedIndex(idx);
 		}
-		GetUI().Pop(this);
-		// this pointer no longer safe to access.
+		dd->RemoveChild(this);
 	}
 	return true;
 }
@@ -275,7 +274,7 @@ bool Dropdown::DroppedPanel::Release(int x, int y, MouseButton)
 bool Dropdown::DroppedPanel::Hover(int x, int y)
 {
 	highlightIndex = dd->IdxFromPoint(x, y);
-	return highlightIndex >= 0;
+	return true;
 }
 
 
