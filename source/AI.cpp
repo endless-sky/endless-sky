@@ -1071,8 +1071,11 @@ void AI::Step(Command &activeCommands)
 				parentChoices.reserve(ships.size() * .1);
 				auto getParentFrom = [&it, &gov, &parentChoices](const list<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
 				{
+					// Fighters with the staying personality should only dock with carriers that are also staying.
+					bool isStaying = it->GetPersonality().IsStaying();
 					for(const auto &other : otherShips)
-						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
+						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem()
+							&& (!isStaying || other->GetPersonality().IsStaying()) && !other->CanBeCarried())
 						{
 							if(!other->IsDisabled() && other->CanCarry(*it))
 								return other;
