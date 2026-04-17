@@ -4244,7 +4244,7 @@ mission "Ka'het: Patir Mystery 35"
 	on offer
 		conversation
 			`The pilgrimage of the Remnant and their payloads toward your ship takes the better part of an hour, again helped by the Tern flock. "We are a fair bit lighter than we thought we would be, given that we have next to no sample from the planetoid." Dusk has taken seat in the cockpit, watching out of the window as the last few payloads climb atop the ramp. In the horizon, the sea of iridium shines at just the right angle to hit your eyes.`
-			`	"One of those creatures was in Patir again when it moved. Again it turned motionless, and is now orbiting over us with the appearance of doing nothing at all. It would be best if you could board it and use the leftover space in the cargo bay to plunder what you can reach, much like last time."`
+			`	"One of those creatures was in Patir again when it moved. Again it turned motionless, and is now orbiting over us with the appearance of doing nothing at all. It would be best if you could board it and use the leftover space in the cargo bay to plunder what you can reach, much like last time. Unfortunately, our Swan is filled to the brim with the cargo taken from this settlement right now."`
 			choice
 				`	"Is it not a sapient being?"`
 				`	"I do not think I want to harvest the organs of a living creature, if that is what they are."`
