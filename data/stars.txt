@@ -23,312 +23,470 @@ star "star/o0"
 	power 4.2
 	wind 0.46
 	icon "map/o-large-star"
+	habitable 13720
+	mass 85750
 star "star/o3"
 	power 3.9
 	wind 0.46
 	icon "map/o-large-star"
+	habitable 11500
+	mass 71875
 star "star/o5"
 	power 3.6
 	wind 0.47
 	icon "map/o-large-star"
+	habitable 10000
+	mass 62500
 star "star/o8"
 	power 3.3
 	wind 0.48
 	icon "map/o-large-star"
+	habitable 8650
+	mass 54062.5
 star "star/b0"
 	power 3.1
 	wind 0.49
 	icon "map/b-large-star"
+	habitable 7000
+	mass 43750
 star "star/b3"
 	power 2.8
 	wind 0.5
 	icon "map/b-large-star"
+	habitable 6300
+	mass 39375
 star "star/b5"
 	power 2.5
 	wind 0.51
 	icon "map/b-large-star"
+	habitable 5600
+	mass 35000
 star "star/b8"
 	power 2.2
 	wind 0.52
 	icon "map/b-large-star"
+	habitable 5000
+	mass 31250
 star "star/a0"
 	power 2
 	wind 0.53
 	icon "map/a-star"
+	habitable 3650
+	mass 22812.5
 star "star/a3"
 	power 1.85
 	wind 0.54
 	icon "map/a-star"
+	habitable 3400
+	mass 21250
 star "star/a5"
 	power 1.7
 	wind 0.55
 	icon "map/a-star"
+	habitable 3200
+	mass 20000
 star "star/a8"
 	power 1.5
 	wind 0.56
 	icon "map/a-star"
+	habitable 3000
+	mass 18750
 star "star/f0"
 	power 1.4
 	wind 0.57
 	icon "map/f-star"
+	habitable 2560
+	mass 16000
 star "star/f3"
 	power 1.3
 	wind 0.59
 	icon "map/f-star"
+	habitable 2200
+	mass 13750
 star "star/f5"
 	power 1.2
 	wind 0.60
 	icon "map/f-star"
+	habitable 1715
+	mass 10718.75
 star "star/f8"
 	power 1.1
 	wind 0.62
 	icon "map/f-star"
+	habitable 1310
+	mass 8187.5
 star "star/g0"
 	power 1
 	wind 0.64
 	icon "map/g-star"
+	habitable 1080
+	mass 6750
 star "star/g3"
 	power 0.95
 	wind 0.66
 	icon "map/g-star"
+	habitable 700
+	mass 4375
 star "star/g5"
 	power 0.9
 	wind 0.69
 	icon "map/g-star"
+	habitable 625
+	mass 3906.25
 star "star/g8"
 	power 0.85
 	wind 0.72
 	icon "map/g-star"
+	habitable 550
+	mass 3437.5
 star "star/k0"
 	power 0.8
 	wind 0.75
 	icon "map/k-small-star"
+	habitable 490
+	mass 3062.5
 star "star/k3"
 	power 0.76
 	wind 0.78
 	icon "map/k-small-star"
+	habitable 450
+	mass 2812.5
 star "star/k5"
 	power 0.72
 	wind 0.82
 	icon "map/k-small-star"
+	habitable 425
+	mass 2656.25
 star "star/k8"
 	power 0.7
 	wind 0.86
 	icon "map/k-small-star"
+	habitable 370
+	mass 2312.5
 star "star/m0"
 	power 0.66
 	wind 0.90
 	icon "map/m-dwarf-star"
+	habitable 320
+	mass 2000
 star "star/m3"
 	power 0.64
 	wind 0.95
 	icon "map/m-dwarf-star"
+	habitable 230
+	mass 1437.5
 star "star/m5"
 	power 0.61
 	wind 1.05
 	icon "map/m-dwarf-star"
+	habitable 160
+	mass 1000
 star "star/m8"
 	power 0.60
 	wind 1.10
 	icon "map/m-dwarf-star"
+	habitable 135
+	mass 843.75
 
 # Old main sequence stars.
 star "star/f5-old"
 	power 0.80
 	wind 0.9
 	icon "map/f-old-star"
+	habitable 3430
+	mass 10718.75
 star "star/g0-old"
 	power 0.70
 	wind 1.0
 	icon "map/g-old-star"
+	habitable 2160
+	mass 6750
 star "star/g5-old"
 	power 0.65
 	wind 1.1
 	icon "map/g-old-star"
+	habitable 1250
+	mass 3906.25
 star "star/k0-old"
 	power 0.62
 	wind 1.3
 	icon "map/k-old-star"
+	habitable 980
+	mass 3062.5
 star "star/k5-old"
 	power 0.60
 	wind 1.5
 	icon "map/k-old-star"
+	habitable 950
+	mass 2656.25
 
 # Giant and supergiant stars.
 star "star/o-giant"
 	power 4.8
 	wind 1.5
 	icon "map/o-giant-star"
+	habitable 22300
+	mass 139375
 star "star/b-giant"
 	power 3.7
 	wind 1.6
 	icon "map/b-giant-star"
+	habitable 11350
+	mass 70937.5
 star "star/a-giant"
 	power 2.6
 	wind 1.7
 	icon "map/a-giant-star"
+	habitable 7900
+	mass 49375
 star "star/f-giant"
 	power 2.0
 	wind 1.8
 	icon "map/f-giant-star"
+	habitable 5600
+	mass 35000
 star "star/g-giant"
 	power 1.6
 	wind 1.9
 	icon "map/g-giant-star"
+	habitable 4050
+	mass 25312.5
 star "star/k-giant"
 	power 1.4
 	wind 2
 	icon "map/k-giant-star"
+	habitable 3000
+	mass 18750
 star "star/m-giant"
 	power 1.2
 	wind 2.1
 	icon "map/m-giant-star"
+	habitable 2300
+	mass 14375
 star "star/o-supergiant"
 	power 5.2
 	wind 2.5
 	icon "map/o-supergiant-star"
+	habitable 33450
+	mass 209062.5
 star "star/b-supergiant"
 	power 4.1
 	wind 2.6
 	icon "map/b-supergiant-star"
+	habitable 17025
+	mass 106406.25
 star "star/a-supergiant"
 	power 3
 	wind 2.7
 	icon "map/a-supergiant-star"
+	habitable 11850
+	mass 74062.5
 star "star/f-supergiant"
 	power 2.4
 	wind 2.8
 	icon "map/f-supergiant-star"
+	habitable 8400
+	mass 52500
 star "star/g-supergiant"
 	power 2
 	wind 2.9
 	icon "map/g-supergiant-star"
+	habitable 6075
+	mass 37968.75
 star "star/k-supergiant"
 	power 1.8
 	wind 3
 	icon "map/k-supergiant-star"
+	habitable 4500
+	mass 28125
 star "star/m-supergiant"
 	power 1.6
 	wind 3.1
 	icon "map/m-supergiant-star"
+	habitable 3450
+	mass 21562.5
 
 # Special stars.
 star "star/a-eater"
 	power 1.84
 	wind 0.45
 	icon "map/a-star"
+	habitable 3000
+	mass 18750
 star "star/carbon"
 	power 0.1
 	wind 10
 	icon "map/carbon-star"
+	habitable 3000
+	mass 18750
 star "star/nova"
 	power 0.2
 	wind 8
 	icon "map/nova-star"
+	habitable 10
+	mass 31250
 star "star/nova-old"
 	power 0.3
 	wind 6
 	icon "map/nova-old-star"
+	habitable 10
+	mass 31250
 star "star/nova-small"
 	power 0.2
 	wind 4
 	icon "map/nova-small-star"
+	habitable 10
+	mass 25000
 star "star/wr"
 	power 5
 	wind 4
 	icon "map/wr-star"
+	habitable 50000
+	mass 31250
 star "star/protostar-orange"
 	power 0.5
 	wind 3
 	icon "map/k-small-star"
+	habitable 550
+	mass 3437.5
 star "star/protostar-yellow"
 	power 0.4
 	wind 5
 	icon "map/g-small-star"
+	habitable 370
+	mass 2312.5
 star "star/patir"
 	power 0.2
 	wind 8
 	icon "map/patir-star"
+	habitable 10
+	mass 31250
 
 # Compact stellar objects.
 star "star/neutron"
 	power 4
 	wind 0.4
 	icon "map/neutron-star"
+	habitable 10
+	mass 31250
 star "star/neutron-small"
 	power 2
 	wind 0.2
 	icon "map/small-neutron-star"
+	habitable 10
+	mass 31250
 star "star/magnetar"
 	power 4
 	wind 0.8
 	icon "map/magnetar-star"
+	habitable 10
+	mass 31250
 star "star/black-hole"
 	power 0
 	wind 0
 	icon "map/black-hole-star"
+	habitable 10000
+	mass 62500
 star "star/small-black-hole"
 	power 0
 	wind 0
 	icon "map/small-black-hole-star"
+	habitable 10000
+	mass 35000
 star "star/coal-black-hole"
 	power 0
 	wind 0
 	icon "map/coal-black-hole-star"
+	habitable 10000
+	mass 62500
 star "star/twilight-black-hole"
 	power 2.4
 	wind 0.3
 	icon "map/twilight-black-hole-star"
+	habitable 10000
+	mass 62500
 star "star/big black hole"
 	icon "map/big black hole"
+	habitable 10000
+	mass 625000
 star "star/black hole 3"
 	icon "map/black hole 3"
+	habitable 10000
+	mass 62500
 star "star/black hole 4"
 	icon "map/black hole 4"
+	habitable 10000
+	mass 62500
 star "star/black hole 5"
 	icon "map/black hole 5"
+	habitable 10000
+	mass 62500
 star "star/black hole 6"
 	icon "map/black hole 6"
+	habitable 10000
+	mass 62500
 star "star/black hole corona"
 	icon "map/black hole corona"
+	habitable 10000
+	mass 62500
 star "star/black hole star"
 	icon "map/black hole star"
+	habitable 10000
+	mass 62500
 star "star/black-hole-still"
 	icon "map/black-hole-still"
+	habitable 10000
+	mass 62500
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"
 	power 1.1
 	wind 0.5
 	icon "map/o-small-star"
+	habitable 1325
+	mass 8281.25
 star "star/b-dwarf"
 	power 1
 	wind 0.6
 	icon "map/b-small-star"
+	habitable 1125
+	mass 7031.25
 star "star/a-dwarf"
 	power 0.9
 	wind 0.7
 	icon "map/a-small-star"
+	habitable 750
+	mass 4687.5
 star "star/f-dwarf"
 	power 0.8
 	wind 0.8
 	icon "map/f-small-star"
+	habitable 355
+	mass 2218.75
 star "star/g-dwarf"
 	power 0.7
 	wind 0.9
 	icon "map/g-small-star"
+	habitable 150
+	mass 937.5
 star "star/k-dwarf"
 	power 0.6
 	wind 1
 	icon "map/k-small-star"
+	habitable 100
+	mass 625
 star "star/m-dwarf"
 	power 0.5
 	wind 1.2
 	icon "map/m-small-star"
+	habitable 35
+	mass 218.75
 star "star/l-dwarf"
 	power 0.4
 	wind 1.3
 	icon "map/brown-dwarf-star"
+	habitable 30
+	mass 187.5
 
 # Brown Dwarves
 # Because these look like planets, they reverse the trend of increasing solar wind
@@ -336,24 +494,36 @@ star "star/l-dwarf"
 star "planet/browndwarf-l"
 	power 0.4
 	wind 0.5
+	habitable 10
+	mass 125
 star "planet/browndwarf-l-rogue"
 	power 0.4
 	wind 0.5
 	icon "map/brown-dwarf-star"
+	habitable 10
+	mass 125
 star "planet/browndwarf-t"
 	power 0.3
 	wind 0.4
+	habitable 10
+	mass 125
 star "planet/browndwarf-t-rogue"
 	power 0.3
 	wind 0.4
 	icon "map/brown-dwarf-star"
+	habitable 10
+	mass 125
 star "planet/browndwarf-y"
 	power 0.1
 	wind 0.3
+	habitable 10
+	mass 125
 star "planet/browndwarf-y-rogue"
 	power 0.1
 	wind 0.3
 	icon "map/brown-dwarf-star"
+	habitable 10
+	mass 125
 
 # Extra stars kept for backwards compatibility.
 star "star/m4"
@@ -364,3 +534,446 @@ star "star/giant"
 	power 1.4
 	wind 2
 	icon "map/m-star"
+
+# Planetary objects. Mass = radius^3 * 0.015
+"planet mass" 120.0
+	planet/ringworld
+	planet/ringworld left
+	planet/ringworld right
+
+"planet mass" 329.28
+	planet/dust0
+	planet/dust0-b
+	planet/oberon
+	planet/oberon-b
+	planet/rock17
+	planet/rock17-b
+	planet/tethys
+	planet/tethys-b
+
+"planet mass" 405.0
+	planet/station0
+	planet/station1
+
+"planet mass" 446.865
+	planet/europa
+	planet/europa-b
+
+"planet mass" 491.52
+	planet/rock7
+	planet/rock7-b
+
+"planet mass" 539.055
+	planet/desert4
+	planet/desert4-b
+	planet/miranda
+	planet/miranda-b
+
+"planet mass" 643.125
+	planet/station1k
+	planet/station1kd
+	planet/station2
+	planet/station3
+
+"planet mass" 699.84
+	planet/io
+	planet/io-b
+
+"planet mass" 759.795
+	planet/dust3
+	planet/dust3-b
+	planet/dust7
+	planet/dust7-b
+	planet/ice0
+	planet/ice0-b
+	planet/ice8
+	planet/ice8-b
+	planet/rock0
+	planet/rock0-b
+	planet/rock3
+	planet/rock3-b
+
+"planet mass" 823.08
+	planet/luna
+	planet/luna-b
+	planet/rock20
+
+"planet mass" 1111.32
+	planet/dust1
+	planet/dust1-b
+	planet/dust4
+	planet/dust4-b
+
+"planet mass" 1192.605
+	planet/rhea
+	planet/rhea-b
+
+"planet mass" 1366.875
+	planet/station2k
+	planet/station2kd
+	planet/station4
+	planet/station7
+
+"planet mass" 1460.04
+	planet/rock14
+	planet/rock14-b
+	planet/vesvi
+
+"planet mass" 1557.345
+	planet/callisto
+	planet/callisto-b
+	planet/dust5
+	planet/dust5-b
+	planet/ice7
+	planet/ice7-b
+
+"planet mass" 1658.88
+	planet/lava0
+	planet/lava0-b
+
+"planet mass" 1875.0
+	planet/lava2
+	planet/lava2-b
+
+"planet mass" 1989.765
+	planet/dust2
+	planet/dust2-b
+
+"planet mass" 2109.12
+	planet/ganymede
+	planet/ganymede-b
+
+"planet mass" 2233.155
+	planet/lava1
+	planet/lava1-b
+	planet/mercury
+	planet/mercury-b
+
+"planet mass" 2361.96
+	planet/titan
+	planet/titan-b
+
+"planet mass" 2495.625
+	planet/rock11
+	planet/rock11-b
+	planet/station3k
+	planet/station3kd
+	planet/station5
+
+"planet mass" 2634.24
+	planet/lava6
+	planet/lava6-b
+	planet/rock15
+	planet/rock15-b
+	planet/water0
+	planet/water0-b
+
+"planet mass" 2777.895
+	planet/dust6
+	planet/dust6-b
+
+"planet mass" 3240.0
+	planet/lava7
+	planet/lava7-b
+	planet/rock5
+	planet/rock5-b
+
+"planet mass" 3932.16
+	planet/desert7
+	planet/desert7-b
+	planet/lava3
+	planet/lava3-b
+
+"planet mass" 4119.375
+	planet/rock8
+	planet/rock8-b
+	planet/station6
+
+"planet mass" 4312.44
+	planet/desert9
+	planet/desert9-b
+	planet/lava5
+	planet/lava5-b
+
+"planet mass" 4927.635
+	planet/forest6
+	planet/forest6-b
+
+"planet mass" 5145.0
+	planet/cloud7
+	planet/cloud7-b
+
+"planet mass" 5368.665
+	planet/forest3
+	planet/forest3-b
+	planet/rock16
+	planet/rock16-b
+
+"planet mass" 5598.72
+	planet/mars
+	planet/mars-b
+	planet/rock19
+	planet/rock19-b
+
+"planet mass" 6078.36
+	planet/desert8
+	planet/desert8-b
+	planet/lava4
+	planet/lava4-b
+	planet/rock9
+	planet/rock9-b
+
+"planet mass" 6328.125
+	planet/desert0
+	planet/desert0-b
+	planet/ice2
+	planet/ice2-b
+	planet/ice4
+	planet/ice4-b
+	planet/ice6
+	planet/ice6-b
+	planet/rock13
+	planet/rock13-b
+	planet/rock18
+	planet/rock18-b
+	planet/rock6
+	planet/rock6-b
+
+"planet mass" 6584.64
+	planet/cloud0
+	planet/cloud0-b
+
+"planet mass" 6847.995
+	planet/cloud8
+	planet/cloud8-b
+	planet/ocean0
+	planet/ocean0-b
+	planet/ocean5
+	planet/ocean5-b
+
+"planet mass" 7395.585
+	planet/rock1
+	planet/rock1-b
+	"planet/yniu eiu"
+
+"planet mass" 7680.0
+	planet/venus
+	planet/venus-b
+	planet/forest10
+
+"planet mass" 7971.615
+	planet/desert2
+	planet/desert2-b
+	planet/forest1
+	planet/forest1-b
+	planet/ocean3
+	planet/ocean3-b
+
+"planet mass" 8270.52
+	planet/cloud3
+	planet/cloud3-b
+	planet/desert5
+	planet/desert5-b
+	planet/ocean7
+	planet/ocean7-b
+
+"planet mass" 8576.805
+	planet/forest5
+	planet/forest5-b
+	planet/rock2
+	planet/rock2-b
+
+"planet mass" 9211.875
+	planet/desert3
+	planet/desert3-b
+	planet/desert6
+	planet/desert6-b
+	planet/rock12
+	planet/rock12-b
+	planet/wisp
+
+"planet mass" 9540.84
+	planet/cloud6
+	planet/cloud6-b
+	planet/desert10
+	planet/desert10-b
+	planet/earth
+	planet/earth-b
+	planet/ocean9
+	planet/ocean9-b
+
+"planet mass" 9877.545
+	planet/ocean1
+	planet/ocean1-b
+
+"planet mass" 10222.08
+	planet/ice5
+	planet/ice5-b
+
+"planet mass" 10935.0
+	planet/forest2
+	planet/forest2-b
+	planet/ice3
+	planet/ice3-b
+
+"planet mass" 11303.565
+	planet/cloud4
+	planet/cloud4-b
+
+"planet mass" 12065.355
+	planet/ocean4
+	planet/ocean4-b
+	planet/rock4
+	planet/rock4-b
+
+"planet mass" 12458.76
+	planet/forest4
+	planet/forest4-b
+
+"planet mass" 12860.625
+	planet/ocean8
+	planet/ocean8-b
+	planet/ice11
+	planet/redias
+
+"planet mass" 13271.04
+	planet/desert1
+	planet/desert1-b
+	planet/desert13
+	planet/ocean2
+	planet/ocean2-b
+	planet/water1
+	planet/water1-b
+
+"planet mass" 13690.095
+	planet/forest0
+	planet/forest0-b
+	planet/ice1
+	planet/ice1-b
+	planet/aviskir
+
+"planet mass" 14117.88
+	planet/rock10
+	planet/rock10-b
+	planet/desert11
+
+"planet mass" 15000.0
+	planet/cloud1
+	planet/cloud1-b
+
+"planet mass" 15454.515
+	planet/cloud2
+	planet/cloud2-b
+	planet/ocean6
+	planet/ocean6-b
+	planet/ocean10
+
+"planet mass" 17364.375
+	planet/gas7-r
+
+"planet mass" 18375.645
+	planet/fog0
+	planet/fog0-b
+
+"planet mass" 23413.44
+	planet/cloud5
+	planet/cloud5-b
+
+"planet mass" 27237.72
+	planet/gas2
+	planet/gas2-hot
+	planet/gas2-b
+
+"planet mass" 35289.555
+	planet/gas8
+	planet/gas8-hot
+	planet/gas8-b
+
+"planet mass" 36091.56
+	planet/gas10
+	planet/gas10-hot
+	planet/gas10-b
+	planet/gas15
+	planet/gas15-b
+	planet/gas16
+	planet/gas16-b
+
+"planet mass" 40284.285
+	planet/neptune
+	planet/neptune-b
+
+"planet mass" 54783.96
+	planet/gas17
+	planet/gas17-b
+	planet/uranus
+	planet/uranus-b
+
+"planet mass" 60295.185
+	planet/gas14
+	planet/gas14-b
+
+"planet mass" 62599.215
+	planet/gas1
+	planet/gas1-hot
+	planet/gas1-b
+
+"planet mass" 71124.48
+	planet/gas9
+	planet/gas9-hot
+	planet/gas9-b
+
+"planet mass" 79020.36
+	planet/gas7
+	planet/gas7-hot
+	planet/gas7-b
+
+"planet mass" 80390.625
+	planet/gas4
+	planet/gas4-hot
+	planet/gas4-b
+
+"planet mass" 90428.52
+	planet/gas5
+	planet/gas5-hot
+	planet/gas5-b
+	planet/saturn
+
+"planet mass" 91927.305
+	planet/gas11
+	planet/gas11-b
+
+"planet mass" 101269.035
+	planet/jupiter
+	planet/jupiter-b
+
+"planet mass" 106168.32
+	planet/gliese
+
+"planet mass" 111223.125
+	planet/wormhole
+	planet/wormhole-red
+
+"planet mass" 116435.88
+	planet/gas0
+	planet/gas0-hot
+	planet/gas0-b
+
+"planet mass" 125481.405
+	planet/gas13
+	planet/gas13-b
+
+"planet mass" 144953.955
+	planet/gas12
+	planet/gas12-b
+
+"planet mass" 151165.44
+	planet/vulpa
+	planet/aera
+
+"planet mass" 153274.695
+	planet/gas3
+	planet/gas3-hot
+	planet/gas3-b
+	planet/gas6
+	planet/gas6-hot
+	planet/gas6-b
