@@ -61,6 +61,10 @@ namespace {
 	const string LOCK_GAMERULES = "Lock gamerules";
 	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
 	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
+	const string DELETE_SAVES_ON_DEATH = "Delete saves on death";
+	const string SINGLE_SAVE_FILE = "Single save file";
+	const string RESTRICTED_SAVE_LOADING = "Restricted save loading";
+	const string DELETE_SAVE_ON_TAKEOFF = "Delete save on takeoff";
 
 	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
 
@@ -80,6 +84,10 @@ namespace {
 		{LOCK_GAMERULES, "lock gamerules"},
 		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
 		{UNIVERSAL_AMMO_STOCKING, AMMO_RESTOCKING_NAME},
+		{DELETE_SAVES_ON_DEATH, "delete saves on death"},
+		{SINGLE_SAVE_FILE, "single save file"},
+		{RESTRICTED_SAVE_LOADING, "restricted save loading"},
+		{DELETE_SAVE_ON_TAKEOFF, "delete save on takeoff"},
 	};
 
 	const int GAMERULES_PAGE_COUNT = 1;
@@ -389,10 +397,16 @@ void GamerulesPanel::DrawGamerules()
 		SYSTEM_DEPARTURE_MIN,
 		FLEET_MULTIPLIER,
 		"",
+		"Hardcore Settings",
+		DELETE_SAVES_ON_DEATH,
+		SINGLE_SAVE_FILE,
+		RESTRICTED_SAVE_LOADING,
+		DELETE_SAVE_ON_TAKEOFF,
+		"",
 		"Miscellaneous",
 		LOCK_GAMERULES,
 		FIGHTERS_HIT_WHEN_DISABLED,
-		UNIVERSAL_AMMO_STOCKING
+		UNIVERSAL_AMMO_STOCKING,
 	};
 
 	bool isCategory = true;
@@ -490,6 +504,14 @@ void GamerulesPanel::DrawGamerules()
 		}
 		else if(gamerule == UNIVERSAL_AMMO_STOCKING)
 			text = gamerules.GetValue(AMMO_RESTOCKING_NAME) ? "true" : "false";
+		else if(gamerule == DELETE_SAVES_ON_DEATH)
+			text = gamerules.DeleteSavesOnDeath() ? "true" : "false";
+		else if(gamerule == SINGLE_SAVE_FILE)
+			text = gamerules.SingleSaveFile() ? "true" : "false";
+		else if(gamerule == RESTRICTED_SAVE_LOADING)
+			text = gamerules.RestrictedSaveLoading() ? "true" : "false";
+		else if(gamerule == DELETE_SAVE_ON_TAKEOFF)
+			text = gamerules.DeleteSaveOnTakeoff() ? "true" : "false";
 
 		if(gamerule == hoverItem)
 		{
@@ -817,6 +839,22 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 	}
 	else if(str == UNIVERSAL_AMMO_STOCKING)
 		gamerules.SetMiscValue(AMMO_RESTOCKING_NAME, !gamerules.GetValue(AMMO_RESTOCKING_NAME));
+	else if(str == DELETE_SAVES_ON_DEATH)
+		gamerules.SetDeleteSavesOnDeath(!gamerules.DeleteSavesOnDeath());
+	else if(str == SINGLE_SAVE_FILE)
+	{
+		gamerules.SetSingleSaveFile(!gamerules.SingleSaveFile());
+		if(!gamerules.SingleSaveFile())
+			gamerules.SetDeleteSaveOnTakeoff(false);
+	}
+	else if(str == RESTRICTED_SAVE_LOADING)
+		gamerules.SetRestrictedSaveLoading(!gamerules.RestrictedSaveLoading());
+	else if(str == DELETE_SAVE_ON_TAKEOFF)
+	{
+		gamerules.SetDeleteSaveOnTakeoff(!gamerules.DeleteSaveOnTakeoff());
+		if(gamerules.DeleteSaveOnTakeoff())
+			gamerules.SetSingleSaveFile(true);
+	}
 }
 
 
