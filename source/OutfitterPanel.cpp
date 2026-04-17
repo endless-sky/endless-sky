@@ -1390,7 +1390,7 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 	else if(key == 'i')
 	{
 		// Install up to <modifier> outfits from already owned equipment into each selected ship.
-		result = MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship);
+		result = MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship, "install");
 		if(!result && !result.canSource)
 			result = MoveOutfit(OutfitLocation::Storage, OutfitLocation::Ship, "install");
 	}

@@ -1514,8 +1514,8 @@ tip "Turret overlays"
 tip "Show asteroid scanner overlay"
 	`If an asteroid scanner is installed on your flagship, display an overlay for nearby asteroids.`
 
-tip "Highlight player's flagship"
-	`Apply a green highlight to your flagship.`
+tip "Highlight ships"
+	`Control whether ships should be highlighted while in flight. If set to "flagship," then a green highlight is applied to your flagship. If set to "owned ships," then your flagship and all the escorts you own will be highlighted. If set to "all," then all ships will have a highlight matching their color on the radar.`
 
 tip "Rotate flagship in HUD"
 	`Rotate the icon for your flagship in the HUD to match your flagship's actual rotation.`
