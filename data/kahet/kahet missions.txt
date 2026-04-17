@@ -3851,38 +3851,34 @@ mission "Ka'het: Patir Mystery 31"
 		conversation
 			`After following Dusk through the busy starport, you reach a flock of Terns flying in circles at the outskirts of the landing zone. You count four of them, none of which seems to present any distinctive feature. "After we returned from the lifeboat test, we have started preparing this small fleet to join us around Patir. We think of them as fulfilling two functions: research, of course, and in case of emergency, distraction. They will do their best to act as decoys to allow the Petrel to escape safely into the depth of the gas giant. As you know, this will be our first - intentional - extended expedition into that region of space, as well as the first in which we leave a second team at the laboratory.`
 			`	"What you do not know, however, is our objective. After our findings, the prefects have at last approved a direct exploration of the planetoid in Lathia - if it is indeed sapient, and if we succeed in communicating with it, this would be our first true contact with the asteroid-like species inhabiting that region.`
-			`	"All of which means a very heavy payload, unfortunately." He scribbles something on his datapad, then reads from it. "Our expedition is going to need... at least 110 tons of equipment, including some allowance for samples of that planetoid. On top of this, the team in Patir will need another 105 tons of scientific payload, for a total of 215. And to top it all, you need to carry our four Terns before we can begin."`
+			`	"All of which means a very heavy payload, unfortunately." He scribbles something on his datapad, then reads from it. "Our expedition is going to need... at least 110 tons of equipment, including some allowance for samples of that planetoid. Along with this, the team in Patir will need another 105 tons of scientific payload, some of which to be mounted on the Builder settlement. To top it all, we need to carry our four Terns before we can begin. We will take care of the drones and the Patir-based machinery on one of our Swans, which leaves around 130 tons for you to take."`
 			choice
 				`	"What does the exploration entail?"`
 					goto exploration
 				`	"That is a lot of cargo."`
-			`	"Look on the bright side: at least you do not need to carry it cloaked," he quips. "Yes, it certainly is. During that time, your ship is going to temporarily become one of our most capable research vehicles, at least on the side of planetary science." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after, given these needs. It contains <payment>.`
+			`	"Look on the bright side: at least we do not need to carry it cloaked," he quips. "Yes, it certainly is. During that time, your ship is going to temporarily become one of our most capable research vehicles, at least on the side of planetary science." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after, given these needs. It contains <payment>.`
 				goto end
 			label exploration
 			`	"It depends on what we see there," he replies stoically. "We are going to try to communicate through every medium we have available before approaching; if that fails, we may proceed with a brief EVA on the surface to find something to work on." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after, given these needs. It contains <payment> credits.`
 			label end
 			`	"We do not get a chance for a proper first contact often - most of our exploration of the galaxy has been strictly from orbit, far from any living being and safely hidden behind an active cloak. Given the circumstances, I was able to convince the Prefects of the tremendous potential such an encounter could have, if it were to go as we hope." He smiles. "And I trust that you are going to do everything in your power to make it so, just like us.`
-			`	"I want to remind you to have everything you need on hand before we begin the expedition. Once Ssil Vida has been started, and until we are back in the Milky Way, there is not a day to waste. Give us a call when you are ready, Captain, and you will find us all here - a crew of 5 for the Lathia mission, and 5 more staying in Patir - together with the mission payload. "`
+			`	"Give us a call when you are ready, Captain, and you will find us all here - a crew of 5 for the Lathia mission, and 5 more staying in Patir - together with the mission payload."`
 
 mission "Ka'het: Patir Mystery 32"
 	name "Logistics of a first contact"
-	description "Accompany the Remnant team to <system> exactly on <date>. Together with them will come <cargo> and 6 Terns."
+	description "Accompany the Remnant team and to <system> exactly on <date>. Together with them will come <cargo> and a Swan."
 	deadline 6
 	source "Caelian"
 	destination "Builder Settlement"
 	passengers 10
-	cargo "scientific payload" 215
+	cargo "scientific payload" 130
 	blocked `The cargo for the next expedition to Patir is ready, but you do not have enough free space. Come back when you have <tons> free.`
 	to offer
 		has "Ka'het: Patir Mystery 31: done"
 	on offer
 		conversation
-			`Although standing in a rather isolated part of the starport, the mission personnel alone make a significant crowd. You count the ten people for your crew, plus at least two dozen more workers waiting for the order to load the payload. "So, <first>." Dusk approaches you, hiding the apprehension in his movements. "Do you have everything I asked you to bring?"`
-			choice
-				`	"Of course I do."`
-				`	"Sorry, but I need some more time to prepare."`
-					defer
-			`	"Perfect!" He makes a gesture and the crowd splits into smaller, selected groups, each busy with a specific function. Their coordinated movements almost remind you of a dance, like a well-oiled machine that just sprung into motion. You notice the researchers themselves assisting in the operations, making sure that each instrument is operational and correctly set up.`
+			`Although standing in a rather isolated part of the starport, the mission personnel alone make a significant crowd. You count the ten people for your crew, plus at least two dozen more workers waiting for the order to load the payload.`
+			`	When you approach them, Dusk makes a gesture and the crowd splits into smaller, selected groups, each busy with a specific function. Their coordinated movements almost remind you of a dance, like a well-oiled machine that just sprung into motion. You notice the researchers themselves assisting in the operations, making sure that each instrument is operational and correctly set up.`
 			`	Among them, some familiar faces make an appearance: while the Remnant that will accompany you to Lathia seem new, you notice some of the researchers from your original expedition among the group assigned to Patir. And near your payload bay, checking out one of the more voluminous machines, you are surprised to find Dawn.`
 			`	"I am almost done here, <first>," she signs you when you come closer. "I want to run just a couple more integrated tests, and then I can trust it to work when it is meant to."`
 			choice
@@ -3911,38 +3907,39 @@ mission "Ka'het: Patir Mystery 32"
 				`	"It is like watching a strange dance, with each star knowing its exact role."`
 				`	"Not too unlike a hyperjump, I guess."`
 				`	"When it happens, you cannot help but stare at it until it is over."`
-			`	She smiles. "May the Embers bring you fortune, Captain." With the Terns now in your control, you join the rest of the crew and prepare for liftoff. You glance over the cockpit board: as Taely promised, the crystal she gave you has turned into a dim yellow, eerily shining over the controls all around it.`
+			`	She smiles. "May the Embers bring you fortune, Captain." Once the Swan gives you a sign, you join the rest of the crew and prepare for liftoff. You glance over the cockpit board: as Taely promised, the crystal she gave you has turned into a dim yellow, eerily shining over the controls all around it.`
 				accept
 	on accept
 		event "Patir moves" 6
 		event "Patir returns" 20
-		give ship "Tern" "Great Sky Dancing"
-			id 23032001
-		give ship "Tern" "Low Sky Dancing"
-			id 23032002
-		give ship "Tern" "Dusky Sky Dancing"
-			id 23032003
-		give ship "Tern" "Far Sky Dancing"
-			id 23032004
 	on visit
-		dialog "You've arrived at <planet>, but either your passengers, your cargo, or the four Terns are not with you!"
-	on complete
-		take ship "Tern" "Great Sky Dancing"
-			id 23032001
-			"require outfits"
-			"with outfits"
-		take ship "Tern" "Low Sky Dancing"
-			id 23032002
-			"require outfits"
-			"with outfits"
-		take ship "Tern" "Dusky Sky Dancing"
-			id 23032003
-			"require outfits"
-			"with outfits"
-		take ship "Tern" "Far Sky Dancing"
-			id 23032004
-			"require outfits"
-			"with outfits"
+		dialog "You've arrived at <planet>, but either your escort, your passengers or your cargo are not with you!"
+	npc save
+		government "Remnant"
+		ship "Swan (Jump)" "Serene Pillar Lost"
+		ship "Tern" "Great Sky Dancing"
+		ship "Tern" "Low Sky Dancing"
+		ship "Tern" "Dusky Sky Dancing"
+		ship "Tern" "Far Sky Dancing"
+		personality escort launching unconstrained
+
+ship "Swan" "Swan (Jump)"
+	outfits
+		"Inhibitor Cannon" 2
+		"Teciimach Bay"
+		"Inhibitor Turret" 3
+		"Point Defense Turret" 2
+		"Teciimach Canister" 9
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Jump Drive"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
 
 mission "Ka'het: Patir Mystery 32 - Patir fleet"
 	invisible
@@ -3974,7 +3971,7 @@ mission "Ka'het: Patir Mystery 33"
 		has "Ka'het: Patir Mystery 32: done"
 	on offer
 		conversation
-			`Once you have closed out the landing, you hand the controls of the Terns back to the Remnant. You watch them cheerfully separate from their carrier and leap toward an unknown destination in a different direction: evidently, their mission has already begun. The researchers immediately begin unloading the surface payloads from your ship, using the help of a couple of the Terns to carry the more massive loads.`
+			`Once the Swan has closed out the landing, barely fitting within the makeshift pad next to the Remnant outpost, the Terns start to deploy. You watch them cheerfully separate from their carrier and leap toward an unknown destination in a different direction: evidently, their mission has already begun. The researchers immediately begin unloading the surface payloads from your ship, using the help of a couple of the Terns to carry the more massive loads.`
 			`	While the new members of the crew stand at the windows to watch the light show, you sit with Dusk at the table. "We have tested our equipment for the flight on the way here, and most of them work perfectly. A couple instruments have proven strangely unresponsive, but they are all minor; if they start working again during the trip all the better, but we do not have time to repair, let alone replace them. That is to say," he concludes emphatically, "if you are ready to go, so are we."`
 				accept
 	npc
@@ -4279,6 +4276,10 @@ mission "Ka'het: Patir Mystery 35"
 		system "Patir"
 		ship "Asteroid Medium" "???"
 		personality derelict waiting
+	npc save
+		government "Remnant"
+		ship "Swan (Jump)" "Serene Pillar Lost"
+		personality escort launching unconstrained
 	npc
 		government "Ka'sei"
 		personality waiting staying vindictive mining harvests
