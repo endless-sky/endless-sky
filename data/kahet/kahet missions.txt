@@ -3033,7 +3033,7 @@ mission "Ka'het: Cloud Probe 1"
 		ship "Tern" "Sharp Sky Restored"
 		ship "Tern" "Starlit Spire Renewed"
 		ship "Tern" "Shadow Storm Reborn"
-		personality escort unconstrained launching
+		personality escort unconstrained launching pacifist
 
 mission "Ka'het: Cloud Probe 2"
 	landing
@@ -3051,7 +3051,7 @@ mission "Ka'het: Cloud Probe 2"
 		ship "Tern" "Sunlit Song Remade"
 		ship "Tern" "Sharp Sky Restored"
 		ship "Tern" "Starlit Spire Renewed"
-		personality escort unconstrained launching
+		personality escort unconstrained launching pacifist
 
 mission "Ka'het: Cloud Probe 3"
 	landing
@@ -3068,7 +3068,7 @@ mission "Ka'het: Cloud Probe 3"
 		ship "Swan" "Serene Pillar Lost"
 		ship "Tern" "Sunlit Song Remade"
 		ship "Tern" "Sharp Sky Restored"
-		personality escort unconstrained launching
+		personality escort unconstrained launching pacifist
 	npc
 		government "Ka'het"
 		system "Gerenus"
@@ -3092,7 +3092,7 @@ mission "Ka'het: Cloud Probe 4"
 		government "Remnant"
 		ship "Swan" "Serene Pillar Lost"
 		ship "Tern" "Sunlit Song Remade"
-		personality escort unconstrained launching
+		personality escort unconstrained launching pacifist
 
 mission "Ka'het: Cloud Probe 5"
 	landing
