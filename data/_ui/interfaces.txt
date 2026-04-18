@@ -2847,3 +2847,111 @@ interface "map: sales key"
 		color bright
 		dimensions 10 10
 		"orientation vector" 1 0
+
+
+
+interface "outfitter loadouts panel"
+	sprite "ui/loadout panel"
+		center 1 12
+
+	visible if "row1"
+	sprite "ui/loadout row 1"
+		center 4 -343
+	box "ships1"
+		from -500 -355 to 500 -290
+	visible
+
+	visible if "row2"
+	sprite "ui/loadout row 2"
+		center 4 -374
+	box "ships2"
+		from -500 -417 to 500 -290
+	visible
+
+	visible if "row3"
+	sprite "ui/loadout row 3"
+		center 4 -411
+	box "ships3"
+		from -500 -480 to 500 -290
+	visible
+
+	box "loadouts"
+		from -490 -250 to -320 190
+	box "selected"
+		from -310 -250 to 280 190
+	box "removed"
+		from 290 -250 to 490 190
+
+	box "settings"
+		from -490 200 to 70 270
+	box "cargo"
+		from 80 200 to 280 270
+	box "credits"
+		from 290 200 to 490 270
+
+	box "tooltip"
+		from -189 280 to 300 380
+
+	active if "can delete"
+	button e "D_elete"
+		center -455 305
+		dimensions 90 30
+	active if "can save"
+	button s "_Save"
+		center -355 305
+		dimensions 90 30
+	active
+	button o "_Open Folder"
+		center -244 305
+		dimensions 90 30
+
+	active if "can apply"
+	button a "_Apply"
+		center 355 305
+		dimensions 90 30
+	active
+	button d "_Done"
+		center 455 305
+		dimensions 90 30
+
+	box "delete"
+		from -500 290 to -410 320
+	box "save"
+		from -400 290 to -310 320
+	box "open"
+		from -289 290 to -199 320
+	box "apply"
+		from 310 290 to 400 320
+
+interface "outfitter loadouts overlay"
+	sprite "ui/loadout overlay"
+		center 0 -12
+	label "Loadouts"
+		from -480 -265
+		align left
+
+	label "Outfit"
+		from -300 -265
+		align left
+	label "On Loadout"
+		from -80 -265
+		align right
+	label "Equipped"
+		from -10 -265
+		align right
+	label "Cargo"
+		from 60 -265
+		align right
+	label "Stored"
+		from 130 -265
+		align right
+	label "Purchase"
+		from 200 -265
+		align right
+	label "Missing"
+		from 270 -265
+		align right
+
+	label "To Be Removed"
+		from 300 -265
+		align left

@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Hardpoint.h"
+#include "LoadoutsPanel.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "Planet.h"
@@ -940,6 +941,9 @@ bool OutfitterPanel::ButtonActive(char key, bool shipRelatedOnly)
 
 bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 {
+	if(hoverButton == 'o')
+		return true;
+
 	if(!selectedOutfit)
 		return false;
 
@@ -1321,6 +1325,15 @@ void OutfitterPanel::DrawButtons()
 				+ Point(-.5 * modWidth, 10.), dim);
 	}
 
+	// Draw the Loadouts button.
+	const Point buttonCenter = Screen::BottomRight() - Point(644, 20);
+	const string buttonPath = hoverButton == 'o' ? "ui/loadouts selected" : "ui/loadouts unselected";
+	const Sprite *loadoutIcon = SpriteSet::Get(buttonPath);
+	SpriteShader::Draw(loadoutIcon, buttonCenter);
+	buttonZones.emplace_back(Rectangle(buttonCenter, {loadoutIcon->Width(), loadoutIcon->Height()}), 'o');
+	font.Draw(DisplayText("L_oadouts", Layout(Alignment::LEFT)),
+		buttonCenter - Point(41, font.Height() * .5), hoverButton == 'o' ? bright : dim);
+
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
 	if(!tooltip.empty())
@@ -1403,6 +1416,16 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 		result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage, "uninstall");
 		if(!result && MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))
 			result = true;
+	}
+	else if(key == 'o')
+	{
+		// Open the loadouts panel
+		GetUI().Push(new LoadoutsPanel(player, playerShips, outfitter, day));
+		// This problem is only visible with a button that has a tooltip and opens a panel. The tooltip will be made
+		// visible at all times that the panel is open. Setting the hover button to default value prevents this.
+		hoverButton = '\0';
+		UI::PlaySound(UI::UISound::NORMAL);
+		result = true;
 	}
 
 	return result;

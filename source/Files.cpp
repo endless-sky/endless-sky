@@ -38,6 +38,7 @@ namespace {
 	filesystem::path imagePath;
 	filesystem::path soundPath;
 	filesystem::path savePath;
+	filesystem::path loadoutPath;
 	filesystem::path userPluginPath;
 	filesystem::path globalPluginPath;
 	filesystem::path testPath;
@@ -168,6 +169,9 @@ void Files::Init(const char *const *argv)
 	savePath = config / "saves";
 	CreateFolder(savePath);
 
+	loadoutPath = config / "loadouts";
+	CreateFolder(loadoutPath);
+
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
 	userPluginPath = config / "plugins";
@@ -178,6 +182,8 @@ void Files::Init(const char *const *argv)
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(savePath))
 		throw runtime_error("Unable to create save directory!");
+	if(!Exists(loadoutPath))
+		throw runtime_error("Unable to create loadout directory!");
 	if(!Exists(userPluginPath))
 		throw runtime_error("Unable to create plugins directory!");
 }
@@ -222,6 +228,13 @@ const filesystem::path &Files::Sounds()
 const filesystem::path &Files::Saves()
 {
 	return savePath;
+}
+
+
+
+const filesystem::path &Files::Loadouts()
+{
+	return loadoutPath;
 }
 
 
@@ -478,6 +491,14 @@ void Files::OpenUserPluginFolder()
 void Files::OpenUserSavesFolder()
 {
 	OpenFolder(savePath);
+}
+
+
+
+// Open this user's loadouts file directory in their native file explorer.
+void Files::OpenUserLoadoutsFolder()
+{
+	OpenFolder(loadoutPath);
 }
 
 
