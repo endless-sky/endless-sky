@@ -210,6 +210,22 @@ namespace {
 
 
 
+optional<double> Outfit::LowerLimit(const string &attribute)
+{
+	auto it = MINIMUM_OVERRIDES.find(attribute);
+	if(it != MINIMUM_OVERRIDES.end())
+	{
+		// An override of exactly 0 means the attribute may have any value.
+		if(!it->second)
+			return nullopt;
+		return it->second;
+	}
+	// No minimum override means a minimum of 0.
+	return 0.;
+}
+
+
+
 void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() >= 2)
@@ -522,15 +538,9 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 		// The minimum allowed value of most attributes is 0. Some attributes
 		// have special functionality when negative, though, and are therefore
 		// allowed to have values less than 0.
-		double minimum = 0.;
-		auto it = MINIMUM_OVERRIDES.find(at.first);
-		if(it != MINIMUM_OVERRIDES.end())
-		{
-			minimum = it->second;
-			// An override of exactly 0 means the attribute may have any value.
-			if(!minimum)
-				continue;
-		}
+		optional<double> minimum = LowerLimit(at.first);
+		if(!minimum.has_value())
+			continue;
 
 		// Only automatons may have a "required crew" of 0.
 		if(!strcmp(at.first, "required crew"))
@@ -538,8 +548,8 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 
 		double value = Get(at.first);
 		// Allow for rounding errors:
-		if(value + at.second * count < minimum - EPS)
-			count = (value - minimum) / -at.second + EPS;
+		if(value + at.second * count < *minimum - EPS)
+			count = (value - *minimum) / -at.second + EPS;
 	}
 
 	return count;
