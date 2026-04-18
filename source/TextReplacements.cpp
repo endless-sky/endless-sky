@@ -34,9 +34,10 @@ void TextReplacements::Load(const DataNode &node, const ConditionsStore *playerC
 		"<first>", "<last>",
 		"<ship>", "<model>",
 		"<flagship>", "<flagship model>",
+		"<previous system>", "<previous planet>", "<current system>", "<current planet>",
 		"<start planet>", "<start system>",
 		"<start date>", "<start long date>",
-		"<start credits>", "<start credit score>", "<start debt>"
+		"<start credits>", "<start credit score>", "<start debt>",
 	};
 
 	for(const DataNode &child : node)
