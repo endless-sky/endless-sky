@@ -31,7 +31,7 @@ void TextReplacements::Load(const DataNode &node, const ConditionsStore *playerC
 	// reserved, as these ones are done on the fly after all other replacements
 	// have been done.
 	const set<string> reserved = {
-		"<first>", "<last>",
+		"<first>", "<last>", "<original first>", "<original last>",
 		"<ship>", "<model>",
 		"<flagship>", "<flagship model>",
 		"<previous system>", "<previous planet>", "<current system>", "<current planet>",
