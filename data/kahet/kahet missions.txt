@@ -3900,13 +3900,15 @@ mission "Ka'het: Patir Mystery 31"
 				`	"What does the exploration entail?"`
 					goto exploration
 				`	"That is a lot of cargo."`
-			`	"Look on the bright side: at least we do not need to carry it cloaked," he quips. "Yes, it certainly is. During that time, your ship is going to temporarily become one of our most capable research vehicles, at least on the side of planetary science." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after, given these needs. It contains <payment>.`
+			`	"Look on the bright side: at least we do not need to carry it cloaked," he quips. "Yes, it certainly is. During that time, your ship is going to temporarily become one of our most capable research vehicles, at least on the side of planetary science." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after. It contains <payment>.`
 				goto end
 			label swan
-			`	He glances toward ""`
+			`	"It was another special allocation to our project," he replies. "One that we have to return at the end of this mission, and which will not follow us beyond Patir. I imagine that fleet movements in the Milky Way is going to be complicated enough already." He hands you a credit chip. "Partly because of this, we have decided to give you the payment before the mission, rather than after. It contains <payment> credits.`
+				goto end
 			label exploration
-			`	"It depends on what we see there," he replies stoically. "We are going to try to communicate through every medium we have available before approaching; if that fails, we may proceed with a brief EVA on the surface to find something to work on." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after, given these needs. It contains <payment> credits.`
+			`	"It depends on what we see there," he replies stoically. "We are going to try to communicate through every medium we have available before approaching; if that fails, we may proceed with a brief EVA on the surface to find something to work on." He hands you a credit chip. "Partly because of this, we have decided to give you the payment before the mission, rather than after. It contains <payment> credits.`
 			label end
+			`	He glances toward the lower section of the starport, enclosed by a small rope. "Our policy is one of limiting our Jump Drive usage as much as possible - and when we do use them, our preference is to mount a large fleet so as to minimize risk. As you will have understood, this mission is complicated and important enough to warrant a breach of our protocols.`
 			`	"We do not get a chance for a proper first contact often - most of our exploration of the galaxy has been strictly from orbit, far from any living being and safely hidden behind an active cloak. Given the circumstances, I was able to convince the Prefects of the tremendous potential such an encounter could have, if it were to go as we hope." He smiles. "And I trust that you are going to do everything in your power to make it so, just like us.`
 			`	"Give us a call when you are ready, Captain, and you will find us all here - a crew of 5 for the Lathia mission, and 5 more staying in Patir - together with the mission payload."`
 
@@ -3967,7 +3969,7 @@ mission "Ka'het: Patir Mystery 32"
 		ship "Tern" "Low Sky Dancing"
 		ship "Tern" "Dusky Sky Dancing"
 		ship "Tern" "Far Sky Dancing"
-		personality escort launching unconstrained
+		personality escort launching unconstrained pacifist
 
 ship "Swan" "Swan (Jump)"
 	outfits
