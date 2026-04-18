@@ -3955,7 +3955,8 @@ mission "Ka'het: Patir Mystery 32"
 				`	"It is like watching a strange dance, with each star knowing its exact role."`
 				`	"Not too unlike a hyperjump, I guess."`
 				`	"When it happens, you cannot help but stare at it until it is over."`
-			`	She smiles. "May the Embers bring you fortune, Captain." Once the Swan gives you a sign, you join the rest of the crew and prepare for liftoff. You glance over the cockpit board: as Taely promised, the crystal she gave you has turned into a dim yellow, eerily shining over the controls all around it.`
+			`	She smiles. "May the Embers bring you fortune, Captain."`
+			`	Once the Swan is ready for departure, you join the rest of the crew and prepare for liftoff. You glance over the cockpit board: as Taely promised, the crystal she gave you has turned into a dim yellow, eerily shining over the controls all around it.`
 				accept
 	on accept
 		event "Patir moves" 6
