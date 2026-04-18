@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <map>
+#include <optional>
 #include <set>
 #include <string>
 #include <variant>
@@ -26,6 +27,7 @@ class DataNode;
 class DataWriter;
 class Point;
 class Sprite;
+class System;
 class WrappedText;
 
 
@@ -38,7 +40,7 @@ public:
 
 public:
 	bool IsEmpty() const;
-	void Load(const DataNode &node, int startAt = 0);
+	void Load(const DataNode &node, std::optional<int> startAt = std::nullopt);
 	void Add(const BookEntry &other);
 
 	// When a GameAction is instantiated, substitutions are performed.
@@ -51,6 +53,12 @@ public:
 	// Returns height.
 	int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
 
+	const System *SourceSystem() const;
+	void SetSourceSystem(const System *system);
+	const std::set<const System *> &MarkSystems() const;
+	const std::set<const System *> &CircleSystems() const;
+	bool HasSystems() const;
+
 
 private:
 	void LoadSingle(const DataNode &node, int startAt = 0);
@@ -59,4 +67,9 @@ private:
 private:
 	std::vector<Item> items;
 	std::set<const Sprite *> scenes;
+
+	// The source of a book entry is the system it was written in.
+	const System *source = nullptr;
+	std::set<const System *> markSystems;
+	std::set<const System *> circleSystems;
 };

@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameEvent.h"
 #include "Gamerules.h"
 #include "Mission.h"
+#include "StorylineEntry.h"
 #include "SystemEntry.h"
 
 #include <chrono>
@@ -71,6 +72,35 @@ public:
 		PAY,
 		SPEED,
 		CONVENIENT
+	};
+
+	class StorylineProgress {
+	public:
+		StorylineProgress() = default;
+		StorylineProgress(const StorylineEntry &entry, BookEntry log, const Date &start);
+		StorylineProgress(const DataNode &node, StorylineEntry::Level level, const StorylineEntry *entry);
+		void Save(DataWriter &out) const;
+
+		const StorylineEntry *BackingEntry() const;
+		StorylineEntry::Level Level() const;
+
+		const std::string &SectionName() const;
+		const std::string &Heading() const;
+		std::string Subheading() const;
+		const BookEntry &GetBookEntry() const;
+		void AddLog(const BookEntry &entry);
+		const std::map<std::string, StorylineProgress> &Children() const;
+
+	private:
+		friend class PlayerInfo;
+
+		const StorylineEntry *entry = nullptr;
+		StorylineEntry::Level level = StorylineEntry::Level::STORYLINE;
+		std::string trueName;
+		BookEntry log;
+		Date start;
+		Date end;
+		std::map<std::string, StorylineProgress> children;
 	};
 
 
@@ -126,6 +156,10 @@ public:
 	// Get or change the current date.
 	const Date &GetDate() const;
 	void AdvanceDate(int amount = 1);
+
+	// Determine if the player has made new progress on any storylines.
+	void CheckStorylineProgress();
+	const std::map<std::string, StorylineProgress> &GetStorylineProgress() const;
 
 	// Get basic data about the player's starting scenario.
 	const CoreStartData &StartData() const noexcept;
@@ -305,11 +339,11 @@ public:
 	int64_t GetTributeTotal() const;
 
 	// Check what the player knows about the given system or planet.
-	bool HasSeen(const System &system) const;
+	bool HasSeen(const System &system, bool excludeMission = false) const;
 	bool CanView(const System &system) const;
 	bool HasVisited(const System &system) const;
 	bool HasVisited(const Planet &planet) const;
-	bool KnowsName(const System &system) const;
+	bool KnowsName(const System &system, bool excludeMission = false) const;
 	// Marking a system as visited also "sees" its neighbors.
 	void Visit(const System &system);
 	void Visit(const Planet &planet);
@@ -448,6 +482,9 @@ private:
 
 	bool HasClearance() const;
 
+	void EvaluateStoryline(std::map<std::string, StorylineProgress> &progress, const StorylineEntry &storylineEntry,
+		const std::map<std::string, std::string> &substitutions);
+
 
 private:
 	std::string firstName;
@@ -480,6 +517,7 @@ private:
 
 	std::map<Date, BookEntry> logbook;
 	std::map<std::string, std::map<std::string, BookEntry>> specialLogs;
+	std::map<std::string, StorylineProgress> storylineProgress;
 
 	// A list of the player's active, accepted missions.
 	std::list<Mission> missions;

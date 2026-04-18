@@ -190,11 +190,11 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 
 
-void MapShipyardPanel::DrawKey(Information &info) const
+void MapShipyardPanel::DrawSalesKey(Information &info) const
 {
 	info.SetCondition("is shipyards");
 
-	MapSalesPanel::DrawKey(info);
+	MapSalesPanel::DrawSalesKey(info);
 }
 
 
