@@ -91,6 +91,7 @@ namespace {
 	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
+	const string TRIBUTE_CONFIRMATION = "Tribute confirmation";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
 	const string WINDOW_ROUNDING = "Window rounding";
@@ -774,6 +775,9 @@ void PreferencesPanel::DrawSettings()
 		"Confirm 'Sell Outfits' button",
 		"Confirm 'Sell MInables' button",
 		"Show parenthesis",
+		"",
+		"Gameplay",
+		TRIBUTE_CONFIRMATION,
 		"\n",
 		"Flagship Behavior",
 		"Control ship with mouse",
@@ -1068,6 +1072,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetMinimapDisplay() != Preferences::MinimapDisplay::OFF;
 			text = Preferences::MinimapSetting();
+		}
+		else if(setting == TRIBUTE_CONFIRMATION)
+		{
+			isOn = Preferences::GetTributeConfirmation() != Preferences::TributeConfirmation::OFF;
+			text = Preferences::TributeConfirmationSetting();
 		}
 #ifdef _WIN32
 		else if(setting == TITLE_BAR_THEME)
@@ -1432,6 +1441,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleMinimapDisplay();
 	else if(str == BLOCK_SCREEN_SAVER)
 		Preferences::ToggleBlockScreenSaver();
+	else if(str == TRIBUTE_CONFIRMATION)
+		Preferences::ToggleTributeConfirmation();
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
 		Preferences::ToggleTitleBarTheme();

@@ -140,6 +140,12 @@ public:
 		ALL
 	};
 
+	enum class TributeConfirmation : int_fast8_t {
+		OFF = 0,
+		FRIENDLY_ONLY,
+		ALWAYS
+	};
+
 #ifdef _WIN32
 	enum class TitleBarTheme : int_fast8_t {
 		DEFAULT,
@@ -268,6 +274,11 @@ public:
 	static void ToggleLargeGraphicsReduction();
 	static LargeGraphicsReduction GetLargeGraphicsReduction();
 	static const std::string &LargeGraphicsReductionSetting();
+
+	/// Tribute confirmation dialog setting.
+	static void ToggleTributeConfirmation();
+	static TributeConfirmation GetTributeConfirmation();
+	static const std::string &TributeConfirmationSetting();
 
 	static void ToggleBlockScreenSaver();
 
