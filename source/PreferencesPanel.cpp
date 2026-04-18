@@ -55,7 +55,6 @@ namespace {
 	// Settings that require special handling.
 	const string ZOOM_FACTOR = "Main zoom factor";
 	const int ZOOM_FACTOR_MIN = 100;
-	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
@@ -427,7 +426,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			int zoom = Screen::UserZoom();
 			if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
 				zoom -= ZOOM_FACTOR_INCREMENT;
-			if(dy > 0. && zoom < ZOOM_FACTOR_MAX)
+			if(dy > 0.)
 				zoom += ZOOM_FACTOR_INCREMENT;
 
 			Screen::SetZoom(zoom);
@@ -1335,7 +1334,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	{
 		int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
 		Screen::SetZoom(newZoom);
-		if(newZoom > ZOOM_FACTOR_MAX || Screen::Zoom() != newZoom)
+		if(Screen::Zoom() != newZoom)
 		{
 			// Notify the user why setting the zoom any higher isn't permitted.
 			// Only show this if it's not possible to zoom the view at all, as
