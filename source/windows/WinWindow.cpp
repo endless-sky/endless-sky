@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "WinVersion.h"
 
 #ifdef ES_USE_SDL3
-#include <SDL3/SDL_syswm.h>
+#include "../SDL.h"
 #else
 #include <SDL2/SDL_syswm.h>
 #endif
@@ -33,9 +33,15 @@ void WinWindow::UpdateTitleBarTheme(SDL_Window *window)
 	if(!WinVersion::SupportsDarkTheme())
 		return;
 
+#ifdef ES_USE_SDL3
+	HWND hwnd = reinterpret_cast<HWND>(SDL_GetPointerProperty(SDL_GetWindowProperties(window),
+		SDL_PROP_WINDOW_WIN32_HWND_POINTER, NULL));
+#else
 	SDL_SysWMinfo windowInfo;
 	SDL_VERSION(&windowInfo.version);
 	SDL_GetWindowWMInfo(window, &windowInfo);
+	HWND hwnd = windowInfo.info.win.window;
+#endif
 
 	BOOL value;
 	Preferences::TitleBarTheme themePreference = Preferences::GetTitleBarTheme();
@@ -64,7 +70,7 @@ void WinWindow::UpdateTitleBarTheme(SDL_Window *window)
 	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
 	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
 		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
-	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
+	dwmSetWindowAttribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
 	FreeLibrary(dwmapi);
 }
 
@@ -75,15 +81,21 @@ void WinWindow::UpdateWindowRounding(SDL_Window *window)
 	if(!WinVersion::SupportsWindowRounding())
 		return;
 
+#ifdef ES_USE_SDL3
+	HWND hwnd = reinterpret_cast<HWND>(SDL_GetPointerProperty(SDL_GetWindowProperties(window),
+		SDL_PROP_WINDOW_WIN32_HWND_POINTER, NULL));
+#else
 	SDL_SysWMinfo windowInfo;
 	SDL_VERSION(&windowInfo.version);
 	SDL_GetWindowWMInfo(window, &windowInfo);
+	HWND hwnd = windowInfo.info.win.window;
+#endif
 
 	auto value = static_cast<DWM_WINDOW_CORNER_PREFERENCE>(Preferences::GetWindowRounding());
 
 	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
 	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
 		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
-	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_WINDOW_CORNER_PREFERENCE, &value, sizeof(value));
+	dwmSetWindowAttribute(hwnd, DWMWA_WINDOW_CORNER_PREFERENCE, &value, sizeof(value));
 	FreeLibrary(dwmapi);
 }
