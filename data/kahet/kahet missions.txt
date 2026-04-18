@@ -3447,6 +3447,7 @@ mission "Ka'het: Patir Mystery 26A"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
+		event "Patir Lathia landable"
 		conversation
 			`By the time your ship has been safed, the Remnant have unloaded many of the instruments they have used on this trip. "It would be a waste to take them back home after all the effort to get them here," they explain as you join them. "Once these are connected to our grid, they will use all of the available power and then some. We will have to take turns, at least until we bring some additional power stations." While they finish the setup, you take the chance to cover the machines with some regolith to help them conserve their heat in the night of the asteroid. You almost trip on one of their cables: with the recent trips, the exterior of the laboratory is quickly becoming as messy as its interior.`
 			scene "scene/lab scene2"
@@ -3902,7 +3903,7 @@ mission "Ka'het: Patir Mystery 31"
 			`	"Look on the bright side: at least we do not need to carry it cloaked," he quips. "Yes, it certainly is. During that time, your ship is going to temporarily become one of our most capable research vehicles, at least on the side of planetary science." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after, given these needs. It contains <payment>.`
 				goto end
 			label swan
-			`	""
+			`	He glances toward ""`
 			label exploration
 			`	"It depends on what we see there," he replies stoically. "We are going to try to communicate through every medium we have available before approaching; if that fails, we may proceed with a brief EVA on the surface to find something to work on." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after, given these needs. It contains <payment> credits.`
 			label end
