@@ -1626,7 +1626,7 @@ mission "Remnant: Cognizance 36"
 		has "Remnant: Cognizance 35: done"
 		has "remnant: ssil vida active"
 		not "remnant: tubfalet hunt"
-		not "Ka'het: Patir Mystery 29: done"
+		not "Ka'het: Patir Mystery 14: offered"
 	on accept
 		event "remnant: ssil vida deactivation"
 		conversation
@@ -1646,7 +1646,7 @@ mission "Remnant: Cognizance 36 Patir 3"
 		has "Remnant: Cognizance 35: done"
 		has "remnant: ssil vida active"
 		not "remnant: tubfalet hunt"
-		has "Ka'het: Patir Mystery 29: done"
+		has "Ka'het: Patir Mystery 14: offered"
 	on accept
 		event "remnant: ssil vida deactivation patir 3"
 		conversation
@@ -1666,7 +1666,7 @@ mission "Remnant: Cognizance 37"
 		has "Remnant: Cognizance 35: done"
 		not "remnant: ssil vida active"
 		not "remnant: tubfalet hunt"
-		not "Ka'het: Patir Mystery 29: done"
+		not "Ka'het: Patir Mystery 14: offered"
 	on accept
 		event "remnant: ssil vida activation"
 		conversation
@@ -1686,7 +1686,7 @@ mission "Remnant: Cognizance 37 Patir 3"
 		has "Remnant: Cognizance 35: done"
 		not "remnant: ssil vida active"
 		not "remnant: tubfalet hunt"
-		has "Ka'het: Patir Mystery 29: done"
+		has "Ka'het: Patir Mystery 14: offered"
 	on accept
 		event "remnant: ssil vida activation patir 3"
 		conversation
