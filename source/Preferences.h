@@ -133,6 +133,19 @@ public:
 		ALL
 	};
 
+	enum class HighlightShips : int_fast8_t {
+		OFF,
+		FLAGSHIP,
+		OWNED_SHIPS,
+		ALL
+	};
+
+	enum class TributeConfirmation : int_fast8_t {
+		OFF = 0,
+		FRIENDLY_ONLY,
+		ALWAYS
+	};
+
 	enum class AmmoRefill : int_fast8_t {
 		NEVER,
 		ASK,
@@ -211,6 +224,11 @@ public:
 	static TurretOverlays GetTurretOverlays();
 	static const std::string &TurretOverlaysSetting();
 
+	/// Highlight ships setting, either "off", "flagship", "owned ships", or "all".
+	static void ToggleHighlightShips();
+	static HighlightShips GetHighlightShips();
+	static const std::string &HighlightShipsSetting();
+
 	/// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();
 	static AutoAim GetAutoAim();
@@ -263,6 +281,11 @@ public:
 	static void ToggleLargeGraphicsReduction();
 	static LargeGraphicsReduction GetLargeGraphicsReduction();
 	static const std::string &LargeGraphicsReductionSetting();
+
+	/// Tribute confirmation dialog setting.
+	static void ToggleTributeConfirmation();
+	static TributeConfirmation GetTributeConfirmation();
+	static const std::string &TributeConfirmationSetting();
 
 	/// Outfitter ammo refill confirmation setting.
 	static void ToggleAmmoRefill();
