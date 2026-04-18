@@ -45,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DistanceMap;
 class Outfit;
+class PilotProfile;
 class Planet;
 class RaidFleet;
 class Rectangle;
@@ -92,15 +93,18 @@ public:
 	// Check if any player's information is loaded.
 	bool IsLoaded() const;
 	// Make a new player.
-	void New(const StartConditions &start, const Gamerules &gamerules);
+	void New(const StartConditions &start, std::shared_ptr<PilotProfile> &pilot);
 	// Load an existing player.
-	void Load(const std::filesystem::path &path);
+	void Load(const std::filesystem::path &path, std::shared_ptr<PilotProfile> &pilot);
 	// Reload from the same file from which the current pilot was loaded.
 	void Reload();
 	// Load the most recently saved player. If no save could be loaded, returns false.
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
+
+	// Get the pilot profile that this player is from.
+	std::shared_ptr<PilotProfile> &Pilot();
 
 	// Get the root filename used for this player's saved game files. (If there
 	// are multiple pilots with the same name it may have a digit appended.)
@@ -145,6 +149,7 @@ public:
 	// Set what planet the player is on (or nullptr, if taking off).
 	void SetPlanet(const Planet *planet);
 	const Planet *GetPlanet() const;
+	const Planet *GetPreviousPlanet() const;
 	// If the player is landed, return the stellar object they are on.
 	const StellarObject *GetStellarObject() const;
 	// Check whether a mission conversation has raised a flag that the player
@@ -294,8 +299,6 @@ public:
 	// Access the "condition" flags for this player.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
-	// Access mutable gamerules for modification by a GamerulesPanel.
-	Gamerules &GetGamerules();
 	// Maps defined names for gifted ships to UUIDs for the ship instances.
 	const std::map<std::string, EsUuid> &GiftedShips() const;
 	std::map<std::string, std::string> GetSubstitutions() const;
@@ -469,11 +472,15 @@ private:
 private:
 	std::string firstName;
 	std::string lastName;
+	std::string originalFirstName;
+	std::string originalLastName;
 	std::string filePath;
+	std::shared_ptr<PilotProfile> pilot;
 
 	Date date;
 	SystemEntry entry = SystemEntry::TAKE_OFF;
 	const System *previousSystem = nullptr;
+	const Planet *previousPlanet = nullptr;
 	const System *system = nullptr;
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
@@ -544,7 +551,6 @@ private:
 	bool sortSeparatePossible = false;
 
 	ConditionsStore conditions;
-	Gamerules gamerules;
 	std::map<std::string, EsUuid> giftedShips;
 
 	std::set<const System *> seen;

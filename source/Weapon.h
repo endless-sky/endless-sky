@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 #include "Distribution.h"
 #include "Point.h"
+#include "Projectile.h"
 
 #include <cstddef>
 #include <cstdint>
@@ -54,8 +55,7 @@ public:
 		// The base offset from the source projectile's position, relative to its current facing.
 		Point offset;
 
-		bool spawnOnNaturalDeath = true;
-		bool spawnOnAntiMissileDeath = false;
+		int spawnOn = Projectile::DeathType::NATURAL;
 	};
 
 

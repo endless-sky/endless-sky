@@ -2447,7 +2447,7 @@ void Engine::DoCollisions(Projectile &projectile)
 	const Weapon &weapon = projectile.GetWeapon();
 
 	if(projectile.ShouldExplode())
-		collisions.emplace_back(nullptr, CollisionType::NONE, 0.);
+		collisions.emplace_back(nullptr, CollisionType::EXPLOSION, 0.);
 	else if(weapon.IsPhasing() && projectile.Target())
 	{
 		// "Phasing" projectiles that have a target will never hit any other ship.
@@ -2476,10 +2476,10 @@ void Engine::DoCollisions(Projectile &projectile)
 			{
 				const Ship *ship = static_cast<const Ship *>(body);
 				// Don't trigger off of carried ships that are disabled and not directly targeted.
-				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
+				if(body == projectile.Target() || ((!gov || gov->IsEnemy(body->GetGovernment()))
 						&& !ship->IsCloaked() && FighterHitHelper::IsValidTarget(ship)))
 				{
-					collisions.emplace_back(nullptr, CollisionType::NONE, 0.);
+					collisions.emplace_back(nullptr, CollisionType::EXPLOSION, 0.);
 					break;
 				}
 			}
@@ -2520,9 +2520,9 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(shipHit && shipHit->Phases(projectile))
 			continue;
 
-		// Create the explosion the given distance along the projectile's
-		// motion path for this step.
-		projectile.Explode(visuals, range, hit ? hit->Velocity() : Point());
+		// A collision has actually occurred, and the projectile should be informed
+		// that it hit something.
+		projectile.Collide(visuals, collision);
 
 		const DamageProfile damage(projectile.GetInfo(range));
 
@@ -2543,7 +2543,7 @@ void Engine::DoCollisions(Projectile &projectile)
 				Ship *ship = static_cast<Ship *>(body);
 				bool targeted = (projectile.Target() == ship);
 				// Phasing cloaked ship will have a chance to ignore the effects of the explosion.
-				if((isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment())) || ship->Phases(projectile))
+				if((isSafe && !targeted && gov && !gov->IsEnemy(ship->GetGovernment())) || ship->Phases(projectile))
 					continue;
 
 				// Only directly targeted ships get provoked by blast weapons.
@@ -2575,7 +2575,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			}
 		}
 
-		if(shipHit)
+		if(shipHit && gov)
 			DoGrudge(shipHit, gov);
 		if(projectile.IsDead())
 			break;
@@ -2585,7 +2585,7 @@ void Engine::DoCollisions(Projectile &projectile)
 	if(!projectile.IsDead() && projectile.MissileStrength())
 	{
 		for(Ship *ship : hasAntiMissile)
-			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
+			if(ship == projectile.Target() || !gov || gov->IsEnemy(ship->GetGovernment()))
 				if(ship->FireAntiMissile(projectile, visuals))
 				{
 					projectile.Kill();
