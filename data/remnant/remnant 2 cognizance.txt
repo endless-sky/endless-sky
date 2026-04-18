@@ -1665,6 +1665,7 @@ mission "Remnant: Cognizance 37"
 	to offer
 		has "Remnant: Cognizance 35: done"
 		not "remnant: ssil vida active"
+		not "remnant: tubfalet hunt"
 		not "Ka'het: Patir Mystery 29: done"
 	on accept
 		event "remnant: ssil vida activation"
@@ -1684,6 +1685,7 @@ mission "Remnant: Cognizance 37 Patir 3"
 	to offer
 		has "Remnant: Cognizance 35: done"
 		not "remnant: ssil vida active"
+		not "remnant: tubfalet hunt"
 		has "Ka'het: Patir Mystery 29: done"
 	on accept
 		event "remnant: ssil vida activation patir 3"

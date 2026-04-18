@@ -3668,6 +3668,7 @@ mission "Ka'het: Patir Mystery 28"
 		has "Ka'het: Patir Mystery 27: done"
 	on offer
 		payment 850000
+		set "remnant: tubfalet hunt"
 		conversation
 			`You find Dusk alone, sipping from a short, colorful glass, lost in his thoughts. "<first>, the review is going to take a while still. Given the wealth of data we have gathered, and that most of the crew by necessity do not have symbionts, we have agreed to split the analysis over a few days. A week, perhaps." He looks at his clock, then checks his communicator for any message. "Do not worry, though: I am not going to leave you without work during this wait."`
 			choice
@@ -3747,8 +3748,7 @@ mission "Ka'het: Patir Mystery 29"
 	to offer
 		has "Ka'het: Patir Mystery 28: done"
 	on offer
-		event "remnant: ssil vida activation patir 3"
-		set "remnant: tubfalet hunt"
+		event "remnant: ssil vida activation patir 3" 0
 		conversation
 			`Taely comes looking for you shortly after the Swans have docked with Ssil Vida, with a fast step and crystal in her hand. "Captain, another task for you has just come up. I have been informed that the Korath we met on the way here have been raiding the system for a few days - in fact, since just before Ssil Vida activated. During the trouble of moving between the two realities, it appears that a ship in the attacking fleet was able to jump beyond Ssil Vida's range, and has remained inside that universe since. It is not acceptable to leave it there any longer."`
 			`	A quiver down your spine suggests to you that Ssil Vida has activated again, filling Postverta with beings of all kinds. She hands you the crystal, small and sharp. "On this is the information we have on the ship, as well as a program to record what you sees during your search. Given the location, we want to understand as much as we can about any damage they might have caused." She stops, as if preparing to leave; however, she changes her mind.`
@@ -3894,11 +3894,15 @@ mission "Ka'het: Patir Mystery 31"
 			`	"What you do not know, however, is our objective. After our findings, the prefects have at last approved a direct exploration of the planetoid in Lathia - if it is indeed sapient, and if we succeed in communicating with it, this would be our first true contact with the asteroid-like species inhabiting that region.`
 			`	"All of which means a very heavy payload, unfortunately." He scribbles something on his datapad, then reads from it. "Our expedition is going to need... at least 110 tons of equipment, including some allowance for samples of that planetoid. Along with this, the team in Patir will need another 105 tons of scientific payload, some of which to be mounted on the Builder settlement. To top it all, we need to carry our four Terns before we can begin. We will take care of the drones and the Patir-based machinery on one of our Swans, which leaves around 130 tons for you to take."`
 			choice
+				`	"Wait, a Swan is coming with us?"`
+					goto swan
 				`	"What does the exploration entail?"`
 					goto exploration
 				`	"That is a lot of cargo."`
 			`	"Look on the bright side: at least we do not need to carry it cloaked," he quips. "Yes, it certainly is. During that time, your ship is going to temporarily become one of our most capable research vehicles, at least on the side of planetary science." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after, given these needs. It contains <payment>.`
 				goto end
+			label swan
+			`	""
 			label exploration
 			`	"It depends on what we see there," he replies stoically. "We are going to try to communicate through every medium we have available before approaching; if that fails, we may proceed with a brief EVA on the surface to find something to work on." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after, given these needs. It contains <payment> credits.`
 			label end
