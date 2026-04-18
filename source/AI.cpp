@@ -1071,8 +1071,11 @@ void AI::Step(Command &activeCommands)
 				parentChoices.reserve(ships.size() * .1);
 				auto getParentFrom = [&it, &gov, &parentChoices](const list<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
 				{
+					// Fighters with the staying personality should only dock with carriers that are also staying.
+					bool isStaying = it->GetPersonality().IsStaying();
 					for(const auto &other : otherShips)
-						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
+						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem()
+							&& (!isStaying || other->GetPersonality().IsStaying()) && !other->CanBeCarried())
 						{
 							if(!other->IsDisabled() && other->CanCarry(*it))
 								return other;
@@ -1383,7 +1386,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 		const Government *gov = ship.GetGovernment();
 		bool hasEnemy = false;
 
-		vector<Ship *> canHelp;
+		WeightedList<Ship *> canHelp;
 		canHelp.reserve(ships.size());
 		for(const auto &helper : ships)
 		{
@@ -1431,12 +1434,14 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 				continue;
 
 			// Prefer fast ships over slow ones.
-			canHelp.insert(canHelp.end(), 1 + .3 * helper->MaxVelocity(), helper.get());
+			// Cap the velocity we care about to 1000 units per frame to guard against plugin ships with
+			// ludicrous speeds.
+			canHelp.emplace_back(clamp<int>(1. + .3 * helper->MaxVelocity(), 1, 1000), helper.get());
 		}
 
 		if(!hasEnemy && !canHelp.empty())
 		{
-			Ship *helper = canHelp[Random::Int(canHelp.size())];
+			Ship *helper = canHelp.Get();
 			helper->SetShipToAssist(ship.weak_from_this());
 			helperList[&ship] = helper->weak_from_this();
 			isStranded = true;

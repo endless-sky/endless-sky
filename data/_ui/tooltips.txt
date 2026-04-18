@@ -1431,7 +1431,7 @@ tip "Fleet: Harvest flotsam"
 
 # Settings
 tip "Main zoom factor"
-	`Increase the main zoom factor (the size of the UI and gameplay). Wraps back to 100 if the zoom exceeds your screen's limits. If the zoom factor is greater than 100, activates high DPI images if they are available.`
+	`Increase the main zoom factor (the size of the UI and gameplay). Wraps back to 100 if the zoom exceeds your screen's limits.`
 
 tip "View zoom factor"
 	`Increase the zoom factor of the gameplay view when in flight. Can also be changed by the + and - keys and the scroll wheel.`
@@ -1511,8 +1511,8 @@ tip "Turret overlays"
 tip "Show asteroid scanner overlay"
 	`If an asteroid scanner is installed on your flagship, display an overlay for nearby asteroids.`
 
-tip "Highlight player's flagship"
-	`Apply a green highlight to your flagship.`
+tip "Highlight ships"
+	`Control whether ships should be highlighted while in flight. If set to "flagship," then a green highlight is applied to your flagship. If set to "owned ships," then your flagship and all the escorts you own will be highlighted. If set to "all," then all ships will have a highlight matching their color on the radar.`
 
 tip "Rotate flagship in HUD"
 	`Rotate the icon for your flagship in the HUD to match your flagship's actual rotation.`
@@ -1573,7 +1573,7 @@ tip "Automatically unpark flagship"
 
 tip "Prioritize flagship use"
 	`When distributing cargo and passengers among your ships on takeoff, prioritize the flagship over your escorts. (When your flagship does not have enough space, some mission cargo or passengers may still be moved to your other ships.)`
-	
+
 tip "Deadline blink by distance"
 	`For rush missions, subtract the distance to the destination from the deadline to determine how fast to blink the map marker.`
 
@@ -1594,6 +1594,15 @@ tip "Reactivate first-time help"
 
 tip "Interrupt fast-forward"
 	`Disable fast-forward whenever you land or when a conversation, dialog, or other panel appears while in flight.`
+
+tip "'Sell Outfits' without outfitter"
+	`In the Trading panel, controls whether the 'Sell Outfits' button will allow selling outfits even when there is no Outfitter at which to buy them back.`
+
+tip "Confirm 'Sell Outfits' button"
+	`In the Trading panel, controls whether or not to confirm sales of all outfits in cargo.`
+
+tip "Confirm 'Sell Minables' button"
+	`In the Trading panel, controls whether or not to confirm sales of mineables, specials and other flotsam that may have been picked up.`
 
 tip "Landing zoom"
 	`Apply a cinematic zoom in and out when you are landing and taking off.`

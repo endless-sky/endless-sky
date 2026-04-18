@@ -210,6 +210,22 @@ namespace {
 
 
 
+optional<double> Outfit::LowerLimit(const string &attribute)
+{
+	auto it = MINIMUM_OVERRIDES.find(attribute);
+	if(it != MINIMUM_OVERRIDES.end())
+	{
+		// An override of exactly 0 means the attribute may have any value.
+		if(!it->second)
+			return nullopt;
+		return it->second;
+	}
+	// No minimum override means a minimum of 0.
+	return 0.;
+}
+
+
+
 void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() >= 2)
@@ -320,15 +336,17 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		displayName = trueName;
 
 	// If no plural name has been defined, append an 's' to the name and use that.
-	// If the name ends in an 's' or 'z', and no plural name has been defined, print a
-	// warning since an explicit plural name is always required in this case.
-	// Unless this outfit definition isn't declared with the `outfit` keyword,
+	// If the name ends in an 's', 'x', 'z', 'ch', or 'sh', and no plural name has been defined,
+	// print a warning since an irregular plural is usually required in this case.
+	// Unless this outfit definition isn't declared with a category,
 	// because then this is probably being done in `add attributes` on a ship,
-	// so the name doesn't matter.
+	// or it's a pseudo-outfit like submunitions, so the name doesn't matter.
 	if(!displayName.empty() && pluralName.empty())
 	{
 		pluralName = displayName + 's';
-		if((displayName.back() == 's' || displayName.back() == 'z') && node.Token(0) == "outfit")
+		const char &last = displayName.back();
+		if(!category.empty() && (last == 's' || last == 'x' || last == 'z'
+				|| displayName.ends_with("ch") || displayName.ends_with("sh")))
 			node.PrintTrace("Explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralName + "\".");
 	}
@@ -520,15 +538,9 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 		// The minimum allowed value of most attributes is 0. Some attributes
 		// have special functionality when negative, though, and are therefore
 		// allowed to have values less than 0.
-		double minimum = 0.;
-		auto it = MINIMUM_OVERRIDES.find(at.first);
-		if(it != MINIMUM_OVERRIDES.end())
-		{
-			minimum = it->second;
-			// An override of exactly 0 means the attribute may have any value.
-			if(!minimum)
-				continue;
-		}
+		optional<double> minimum = LowerLimit(at.first);
+		if(!minimum.has_value())
+			continue;
 
 		// Only automatons may have a "required crew" of 0.
 		if(!strcmp(at.first, "required crew"))
@@ -536,8 +548,8 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 
 		double value = Get(at.first);
 		// Allow for rounding errors:
-		if(value + at.second * count < minimum - EPS)
-			count = (value - minimum) / -at.second + EPS;
+		if(value + at.second * count < *minimum - EPS)
+			count = (value - *minimum) / -at.second + EPS;
 	}
 
 	return count;

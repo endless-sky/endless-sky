@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weapon.h"
 
 #include <algorithm>
+#include <cmath>
 #include <limits>
 #include <memory>
 
@@ -401,6 +402,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 	}
 
 	bool canSource = false;
+	bool canPlace = false;
 
 	// Handle reasons why the outfit may not be moved from fromLocation.
 	switch(fromLocation)
@@ -459,7 +461,8 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 			// The outfit cannot be installed from any ship.
 			if(!foundOutfit)
-				return "You don't have any " + selectedOutfit->PluralName() + " to " + actionName + ".";
+				return {canSource, canPlace,
+					"You don't have any " + selectedOutfit->PluralName() + " to " + actionName + "."};
 
 			// Return the errors in the appropriate format.
 			if(!dependentOutfitErrors.empty())
@@ -477,7 +480,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 					for(const string &error : errors)
 						errorMessage += "- " + error + '\n';
 				}
-				return errorMessage;
+				return {canSource, canPlace, errorMessage};
 			}
 
 			break;
@@ -487,8 +490,9 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			// If outfit is not available in the Outfitter, respond that it can't be bought here.
 			if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0))
 			{
-				return "You cannot buy this outfit here. It is only being shown in the list because you already have one, "
-					"but this " + planet->Noun() + " does not sell them.";
+				return {canSource, canPlace,
+					"You cannot buy this outfit here. It is only being shown in the list because you already "
+					"have one, but this " + planet->Noun() + " does not sell them."};
 			}
 
 			// Check special unique outfits, if you already have them.
@@ -497,30 +501,35 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			{
 				bool mapMinables = selectedOutfit->Get("map minables");
 				if(mapSize > 0 && player.HasMapped(mapSize, mapMinables))
-					return "You have already mapped all the systems shown by this map, "
-						"so there is no reason to buy another.";
+					return {canSource, canPlace,
+						"You have already mapped all the systems shown by this map, "
+						"so there is no reason to buy another."};
 
 				if(HasLicense(selectedOutfit->TrueName()))
-					return "You already have one of these licenses, so there is no reason to buy another.";
+					return {canSource, canPlace,
+						"You already have one of these licenses, so there is no reason to buy another."};
 			}
 
 			// Determine what you will have to pay to buy this outfit.
 			int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
 			int64_t credits = player.Accounts().Credits();
 			if(cost > credits)
-				return "You don't have enough money to buy this outfit. You need a further " +
-					Format::CreditString(cost - credits);
+				return {canSource, canPlace,
+					"You don't have enough money to buy this outfit. You need a further " +
+					Format::CreditString(cost - credits)};
 
 			// Add the cost to buy the required license.
 			int64_t licenseCost = LicenseCost(selectedOutfit, false);
 			if(cost + licenseCost > credits)
-				return "You don't have enough money to buy this outfit because you also need to buy a "
+				return {canSource, canPlace,
+					"You don't have enough money to buy this outfit because you also need to buy a "
 					"license for it. You need a further " +
-					Format::CreditString(cost + licenseCost - credits);
+					Format::CreditString(cost + licenseCost - credits)};
 
 			// Check that the player has any necessary licenses.
 			if(licenseCost < 0)
-				return "You cannot buy this outfit, because it requires a license that you don't have.";
+				return {canSource, canPlace,
+					"You cannot buy this outfit, because it requires a license that you don't have."};
 
 			// The outfit can be purchased (available in the outfitter, licensed and affordable).
 			canSource = true;
@@ -530,7 +539,8 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 		{
 			// Do we have any in cargo?
 			if(!player.Cargo().Get(selectedOutfit))
-				return "You don't have any " + selectedOutfit->PluralName() + " in cargo to " + actionName + ".";
+				return {canSource, canPlace,
+					"You don't have any " + selectedOutfit->PluralName() + " in cargo to " + actionName + "."};
 			canSource = true;
 			break;
 		}
@@ -538,7 +548,8 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 		{
 			// Do we have any in storage?
 			if(!player.Storage().Get(selectedOutfit))
-				return "You don't have any " + selectedOutfit->PluralName() + " in storage to " + actionName + ".";
+				return {canSource, canPlace,
+					"You don't have any " + selectedOutfit->PluralName() + " in storage to " + actionName + "."};
 			canSource = true;
 			break;
 		}
@@ -548,7 +559,6 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 	// Collect relevant errors.
 	vector<string> errors;
-	bool canPlace = false;
 
 	// Handle reasons why the outfit may not be moved to toLocation.
 	switch(toLocation)
@@ -616,30 +626,39 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 				// Handle other attributes more generically, if none of the above are the problem.
 				if(errors.empty())
-					for(const pair<const char *, double> &it : selectedOutfit->Attributes())
+				{
+					for(const auto &[name, value] : selectedOutfit->Attributes())
 					{
+						// Positive attributes can't be the cause of attribute errors.
+						if(value >= 0)
+							continue;
+						optional<double> minimum = Outfit::LowerLimit(name);
+						// Nor can attributes with no lower limit.
+						if(!minimum.has_value())
+							continue;
 						// If playerShip has fewer of this attribute available than required by the selectedOutfit, add
 						// this attribute to the list of deficiencies.
-						double shipAvailable = playerShip->Attributes().Get(it.first);
-						double outfitRequires = -it.second;
+						double shipAvailable = playerShip->Attributes().Get(name) - minimum.value();
+						double outfitRequires = -value;
 						if(shipAvailable < outfitRequires)
 							errors.push_back("You cannot install this outfit, because it requires "
-								+ Format::SimplePluralization(outfitRequires, '\'' + string(it.first) + '\'')
-								+ ", and this ship has " + Format::Number(shipAvailable) + " free.");
+								+ OutfitInfoDisplay::FormatAttribute(name, outfitRequires) + " \"" + name + '"'
+								+ " and this ship has " + OutfitInfoDisplay::FormatAttribute(name, shipAvailable)
+								+ " free.");
 					}
+				}
+
+				// For unhandled outfit requirements, show a catch-all error message.
+				if(errors.empty())
+					errors.push_back("You cannot install this outfit in your ship.");
 
 				// Return the errors in the appropriate format.
-				if(errors.empty())
-					canPlace = true;
-				else if(errors.size() == 1)
-					return errors[0];
-				else
-				{
-					string errorMessage = "There are several reasons why you cannot " + actionName + " this outfit:\n";
-					for(const string &error : errors)
-						errorMessage += "- " + error + '\n';
-					return errorMessage;
-				}
+				if(errors.size() == 1)
+					return {canSource, canPlace, errors[0]};
+				string errorMessage = "There are several reasons why you cannot " + actionName + " this outfit:\n";
+				for(const string &error : errors)
+					errorMessage += "- " + error + '\n';
+				return {canSource, canPlace, errorMessage};
 			}
 			break;
 		}
@@ -657,9 +676,10 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			if(!mass || freeCargo >= mass)
 				canPlace = true;
 			else
-				return "You cannot load this outfit into cargo, because it takes up "
+				return {canSource, canPlace,
+					"You cannot load this outfit into cargo, because it takes up "
 					+ Format::CargoString(mass, "mass") + " and your fleet has "
-					+ Format::CargoString(freeCargo, "cargo space") + " free.";
+					+ Format::CargoString(freeCargo, "cargo space") + " free."};
 			break;
 		}
 		case OutfitLocation::Storage:
@@ -747,6 +767,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 					// Pay for it and remove it from available stock.
 					player.Accounts().AddCredits(-cost);
 					player.AddStock(selectedOutfit, -1);
+					cost = player.StockDepreciation().Value(selectedOutfit, day);
 
 					// Install it on this ship.
 					ship->AddOutfit(selectedOutfit, 1);
@@ -1378,7 +1399,8 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 	else if(key == 'i')
 	{
 		// Install up to <modifier> outfits from already owned equipment into each selected ship.
-		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship))
+		result = MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship, "install");
+		if(!result && !result.canSource)
 			result = MoveOutfit(OutfitLocation::Storage, OutfitLocation::Ship, "install");
 	}
 	else if(key == 'u')

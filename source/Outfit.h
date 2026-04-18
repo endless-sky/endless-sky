@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <map>
 #include <memory>
+#include <optional>
 #include <string>
 #include <utility>
 #include <vector>
@@ -48,6 +49,12 @@ public:
 	static constexpr double DEFAULT_HYPERDRIVE_COST = 100.;
 	static constexpr double DEFAULT_SCRAM_DRIVE_COST = 150.;
 	static constexpr double DEFAULT_JUMP_DRIVE_COST = 200.;
+
+
+public:
+	// Get the limit to how low an attribute is allowed to go on a ship when installing outfits.
+	// An empty optional means that there is no lower limit.
+	static std::optional<double> LowerLimit(const std::string &attribute);
 
 
 public:
