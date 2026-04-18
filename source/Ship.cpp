@@ -2137,7 +2137,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 	// A ship that is about to die creates a special single-turn "projectile"
 	// representing its death explosion.
 	if(IsDestroyed() && explosionCount == explosionTotal && explosionWeapon)
-		projectiles.emplace_back(position, explosionWeapon);
+		projectiles.emplace_back(position, angle, explosionWeapon);
 
 	if(CannotAct(Ship::ActionType::FIRE))
 		return;
