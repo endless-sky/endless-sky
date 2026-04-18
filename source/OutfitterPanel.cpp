@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Rectangle.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -1119,6 +1120,9 @@ void OutfitterPanel::CheckRefill()
 	if(checkedRefill)
 		return;
 	checkedRefill = true;
+	Preferences::AmmoRefill refillPref = Preferences::GetAmmoRefill();
+	if(refillPref == Preferences::AmmoRefill::NEVER)
+		return;
 
 	int count = 0;
 	map<const Outfit *, int> needed;
@@ -1154,11 +1158,16 @@ void OutfitterPanel::CheckRefill()
 	}
 	if(!needed.empty() && cost < player.Accounts().Credits())
 	{
-		string message = "Do you want to reload all the ammunition for your ship";
-		message += (count == 1) ? "?" : "s?";
-		if(cost)
-			message += " It will cost " + Format::CreditString(cost) + ".";
-		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &OutfitterPanel::Refill, message));
+		if(refillPref == Preferences::AmmoRefill::ASK || (cost && refillPref == Preferences::AmmoRefill::WHEN_FREE))
+		{
+			string message = "Do you want to reload all the ammunition for your ship";
+			message += (count == 1) ? "?" : "s?";
+			if(cost)
+				message += " It will cost " + Format::CreditString(cost) + ".";
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &OutfitterPanel::Refill, message));
+		}
+		else
+			Refill();
 	}
 }
 
