@@ -1048,8 +1048,11 @@ bool OutfitterPanel::ShipCanRemove(const Ship *ship, const Outfit *outfit)
 	{
 		Outfit attributes = ship->Attributes();
 		for(const Outfit *linked : outfit->LinkedOutfits())
-			if(ship->OutfitCount(linked))
-				attributes.Add(*linked, -ship->OutfitCount(linked));
+		{
+			int available = ship->OutfitCount(linked);
+			if(available)
+				attributes.Add(*linked, -available);
+		}
 		return attributes.CanAdd(*outfit, -1);
 	}
 
