@@ -3903,7 +3903,7 @@ mission "Ka'het: Patir Mystery 31"
 			`	"Look on the bright side: at least we do not need to carry it cloaked," he quips. "Yes, it certainly is. During that time, your ship is going to temporarily become one of our most capable research vehicles, at least on the side of planetary science." He hands you a credit chip. "We have decided to give you the payment before the mission, rather than after. It contains <payment>.`
 				goto end
 			label swan
-			`	"It was another special allocation to our project," he replies. "One that we have to return at the end of this mission, and which will not follow us beyond Patir. I imagine that fleet movements in the Milky Way are going to be complicated enough already." He hands you a credit chip. "Partly because of this, we have decided to give you the payment before the mission, rather than after. It contains <payment> credits.`
+			`	"It was another special allocation to our project," he replies. "One that we have to return at the end of this mission, and which will not follow us beyond Patir. I imagine that fleet movements in the Milky Way are complicated enough as is." He hands you a credit chip. "Partly because of this, we have decided to give you the payment before the mission, rather than after. It contains <payment> credits.`
 				goto end
 			label exploration
 			`	"It depends on what we see there," he replies stoically. "We are going to try to communicate through every medium we have available before approaching; if that fails, we may proceed with a brief EVA on the surface to find something to work on." He hands you a credit chip. "Partly because of this, we have decided to give you the payment before the mission, rather than after. It contains <payment> credits.`
