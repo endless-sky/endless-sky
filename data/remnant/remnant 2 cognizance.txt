@@ -1757,13 +1757,3 @@ mission "Remnant: Cognizance 39"
 	on offer
 		event "remnant: cognizance calm" 5
 		fail
-
-mission "Remnant: Ssil Vida Compatibility"
-	invisible
-	to offer
-		not "remnant: ssil vida active"
-		has "event: remnant: ssil vida deactivation"
-	on offer
-		event "remnant: ssil vida activation"
-		event "remnant: ssil vida deactivation"
-		fail
