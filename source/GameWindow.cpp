@@ -134,9 +134,7 @@ bool GameWindow::Init(bool headless)
 
 	// This needs to be called before any other SDL commands.
 	if(!checkSDL(SDL_Init(SDL_INIT_VIDEO)))
-	{
 		return false;
-	}
 
 	// Get details about the current display.
 #ifdef ES_USE_SDL3

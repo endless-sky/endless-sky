@@ -133,7 +133,7 @@ void Command::ReadKeyboard()
 	// than one key can be held down at once.
 	for(const auto &it : keycodeForCommand)
 #ifdef ES_USE_SDL3
-		// use no modifiers for the scancode
+		// Use no modifiers for the scancode.
 		if(keyDown[SDL_GetScancodeFromKey(it.second, 0)])
 #else
 		if(keyDown[SDL_GetScancodeFromKey(it.second)])
