@@ -43,7 +43,7 @@ public:
 	// Get a map of identifier to pilot profile, optionally excluding pilots with no save files.
 	static std::map<std::string, std::shared_ptr<PilotProfile>> GetProfileMap(bool excludeEmpty = true);
 	// Get the profile with the given identifier. If no profile exists, a new one will be made
-	// The caller must check IsLoaded and call Load on unloaded profiles.
+	// The caller should call Load to ensure that the profile is loaded before use.
 	static std::shared_ptr<PilotProfile> &GetProfile(const std::string &identifier);
 	// Create a new profile for a fresh player. That player must set the identifier of the profile
 	// after the player has been named.
@@ -71,7 +71,6 @@ public:
 	// Load an existing pilot. The pilot's identifier must have been set before this can be called,
 	// as the identifier is what determines the file path to the pilot profile.
 	void Load();
-	bool IsLoaded() const;
 	// Save this pilot's shared information. (Saving individual save files is done through PlayerInfo.)
 	void Save();
 

@@ -589,8 +589,7 @@ bool PlayerInfo::LoadRecent()
 		return false;
 	}
 
-	string identifier = Files::NameNoExtension(recentPath);
-	Load(recentPath, PilotProfile::GetProfile(identifier));
+	Load(recentPath, PilotProfile::GetProfile(Files::NameNoExtension(recentPath)));
 	return true;
 }
 

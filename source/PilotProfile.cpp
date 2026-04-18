@@ -48,8 +48,7 @@ void PilotProfile::LoadProfiles()
 		if(path.extension() != ".txt")
 			continue;
 
-		string pilotName = Files::NameNoExtension(path);
-		GetProfile(pilotName)->Load();
+		GetProfile(Files::NameNoExtension(path))->Load();
 	}
 
 	// Look at all the existing save files and assign them to the appropriate pilot.
@@ -68,8 +67,7 @@ void PilotProfile::LoadProfiles()
 
 		string pilotName = fileName.substr(0, pos);
 		shared_ptr<PilotProfile> &pilot = GetProfile(pilotName);
-		// If this pilot profile hasn't been seen before, load it.
-		// We need to do this again here since save files may exist that
+		// We need to call load again here since save files may exist that
 		// didn't have a corresponding pilot file, in which case GetProfile
 		// will return a new pilot.
 		pilot->Load();
@@ -244,13 +242,6 @@ void PilotProfile::Load()
 		// to have them unlocked in the first place.
 		gamerules.SetLockGamerules(false);
 	}
-}
-
-
-
-bool PilotProfile::IsLoaded() const
-{
-	return isLoaded;
 }
 
 
