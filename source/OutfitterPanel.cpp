@@ -75,8 +75,9 @@ namespace {
 		for(auto &&it : ship.Outfits())
 		{
 			const Outfit *outfit = it.first;
-			if(!outfit->GetWeapon() && outfit->AmmoStored())
-				toRefill.emplace(outfit->AmmoStored());
+			const set<const Outfit *> &ammo = outfit->AmmoStored();
+			if(!outfit->GetWeapon() && !ammo.empty())
+				toRefill.insert(ammo.begin(), ammo.end());
 		}
 		return toRefill;
 	}
@@ -421,13 +422,12 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				{
 					foundOutfit = true;
 					Outfit attributes = ship->Attributes();
-					// If this outfit requires ammo, check if we could sell it if we sold all the ammo for it first.
-					const Outfit *ammo = selectedOutfit->AmmoStoredOrUsed();
-					if(ammo && ship->OutfitCount(ammo))
-					{
-						attributes.Add(*ammo, -ship->OutfitCount(ammo));
-					}
-					// Ammo is not a factor (now), check whether this ship can uninstall this outfit.
+					// If this outfit has linked outfits, check if we could sell it
+					// if we sold all the linked outfits first.
+					for(const Outfit *linked : selectedOutfit->LinkedOutfits())
+						if(ship->OutfitCount(linked))
+							attributes.Add(*linked, -ship->OutfitCount(linked));
+					// Linked outfits are not a factor (now), check whether this ship can uninstall this outfit.
 					canSource = attributes.CanAdd(*selectedOutfit, -1);
 
 					// If we have an outfit that can be sourced, break out, otherwise return an appropriate error.
@@ -845,32 +845,33 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 				// Note: It would be easy to add conditional statements above to also support uninstall into cargo,
 				// this is not supported in the outfitter at this time.
 
-				// Move ammo to storage.
-				// Since some outfits have ammo, remove any ammo that must also be moved as there
-				// aren't enough supporting slots for said ammo once this outfit is removed.
-				const Outfit *ammo = selectedOutfit->AmmoStoredOrUsed();
-				if(ammo && ship->OutfitCount(ammo))
+				// Move linked outfits to storage.
+				// Since some outfits have linked outfits, remove any that must also be moved as there
+				// aren't enough supporting slots for said outfits once this outfit is removed.
+				for(const Outfit *linked : selectedOutfit->LinkedOutfits())
 				{
-					// Determine how many of this ammo we must uninstall to also uninstall the launcher.
+					if(!ship->OutfitCount(linked))
+						continue;
+					// Determine how many of this outfit we must uninstall to also uninstall the primary outfit.
 					int mustUninstall = 0;
 					for(const pair<const char *, double> &it : ship->Attributes().Attributes())
 						if(it.second < 0.)
-							mustUninstall = max<int>(mustUninstall, ceil(it.second / ammo->Get(it.first)));
+							mustUninstall = max<int>(mustUninstall, ceil(it.second / linked->Get(it.first)));
 
 					if(mustUninstall)
 					{
-						ship->AddOutfit(ammo, -mustUninstall);
+						ship->AddOutfit(linked, -mustUninstall);
 
 						if(toLocation == OutfitLocation::Shop)
 						{
-							// Do the sale of the outfit's ammo.
-							int64_t price = player.FleetDepreciation().Value(ammo, day, mustUninstall);
+							// Do the sale of the outfit's linked outfit.
+							int64_t price = player.FleetDepreciation().Value(linked, day, mustUninstall);
 							player.Accounts().AddCredits(price);
-							player.AddStock(ammo, mustUninstall);
+							player.AddStock(linked, mustUninstall);
 						}
-						// If the context is uninstalling, move the outfit's ammo into Storage.
+						// If the context is uninstalling, move the outfit's linked outfit into Storage.
 						else if(toLocation == OutfitLocation::Storage)
-							player.Storage().Add(ammo, mustUninstall);
+							player.Storage().Add(linked, mustUninstall);
 						// Note: It would be easy to add conditional statements above to also support uninstall into
 						// cargo, this is not supported in the outfitter at this time.
 					}
@@ -1061,13 +1062,18 @@ bool OutfitterPanel::ShipCanRemove(const Ship *ship, const Outfit *outfit)
 	if(!ship->OutfitCount(outfit))
 		return false;
 
-	// If this outfit requires ammo, check if we could sell it if we sold all
-	// the ammo for it first.
-	const Outfit *ammo = outfit->AmmoStoredOrUsed();
-	if(ammo && ship->OutfitCount(ammo))
+	// If this outfit has linked outfits, check if we could sell it if we sold all
+	// the linked outfits for it first.
+	const set<const Outfit *> &linkedOutfits = outfit->LinkedOutfits();
+	if(!linkedOutfits.empty())
 	{
 		Outfit attributes = ship->Attributes();
-		attributes.Add(*ammo, -ship->OutfitCount(ammo));
+		for(const Outfit *linked : outfit->LinkedOutfits())
+		{
+			int available = ship->OutfitCount(linked);
+			if(available)
+				attributes.Add(*linked, -available);
+		}
 		return attributes.CanAdd(*outfit, -1);
 	}
 
