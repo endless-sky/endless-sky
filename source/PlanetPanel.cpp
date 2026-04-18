@@ -74,7 +74,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
 	TaskQueue queue;
-	SpriteLoadManager::PreloadLandscape(queue, planet.Landscape());
+	SpriteLoadManager::LoadDeferred(queue, planet.Landscape());
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
@@ -142,9 +142,9 @@ void PlanetPanel::Step()
 		TaskQueue &queue = GetUI().AsyncQueue();
 		// Load the thumbnails for any ships and outfits sold in the shop.
 		for(const Ship *ship : shipyardStock)
-			SpriteLoadManager::LoadThumbnail(queue, ship->Thumbnail());
+			SpriteLoadManager::LoadDeferred(queue, ship->Thumbnail());
 		for(const Outfit *outfit : outfitterStock)
-			SpriteLoadManager::LoadThumbnail(queue, outfit->Thumbnail());
+			SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
 		// Also load the thumbnails of anything in storage on this planet or from the player's fleet.
 		if(hasShipyard || hasOutfitter)
 		{
@@ -156,23 +156,23 @@ void PlanetPanel::Step()
 					continue;
 				// Ship thumbnails are visible in both the outfitter and the shipyard, but outfit
 				// thumbnails are only visible in the outfitter.
-				SpriteLoadManager::LoadThumbnail(queue, ship->Thumbnail());
+				SpriteLoadManager::LoadDeferred(queue, ship->Thumbnail());
 				if(hasOutfitter)
 					for(const auto &outfit : ship->Outfits())
-						SpriteLoadManager::LoadThumbnail(queue, outfit.first->Thumbnail());
+						SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
 			}
 		}
 		if(hasOutfitter)
 		{
 			for(const auto &outfit : player.Storage().Outfits())
-				SpriteLoadManager::LoadThumbnail(queue, outfit.first->Thumbnail());
+				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
 			for(const auto &outfit : player.Cargo().Outfits())
-				SpriteLoadManager::LoadThumbnail(queue, outfit.first->Thumbnail());
+				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
 			for(const auto &license : player.Licenses())
 			{
 				const Outfit *outfit = GameData::Outfits().Find(license + " License");
 				if(outfit)
-					SpriteLoadManager::LoadThumbnail(queue, outfit->Thumbnail());
+					SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
 			}
 		}
 	}

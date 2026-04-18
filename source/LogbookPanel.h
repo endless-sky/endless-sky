@@ -34,7 +34,6 @@ class PlayerInfo;
 class LogbookPanel : public Panel {
 public:
 	explicit LogbookPanel(PlayerInfo &player);
-	~LogbookPanel() override;
 
 	virtual void Step() override;
 	// Draw this panel.

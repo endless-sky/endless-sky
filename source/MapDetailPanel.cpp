@@ -552,7 +552,7 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 				continue;
 
 			// Make sure that the sprite for this planet is loaded.
-			SpriteLoadManager::LoadStellarObject(GetUI().AsyncQueue(), object.GetSprite());
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), object.GetSprite());
 			planetCards.emplace_back(object, number, player.HasVisited(*planet), this);
 			shown.insert(planet);
 			++number;

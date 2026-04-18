@@ -42,21 +42,27 @@ public:
 	static bool IsDeferred(const Sprite *sprite);
 	// Begin loading a sprite that was previously deferred. This is done for various images to speed up
 	// the program's startup and reduce VRAM usage.
-	// Preload a landscape image. If 20 landscape images have already been preloaded
-	// previously, unload the least recently seen image.
-	static void PreloadLandscape(TaskQueue &queue, const Sprite *sprite);
-	// Load a stellar object.
-	static void LoadStellarObject(TaskQueue &queue, const Sprite *sprite);
-	// Load a ship or outfit thumbnail.
-	static void LoadThumbnail(TaskQueue &queue, const Sprite *sprite);
+	static void LoadDeferred(TaskQueue &queue, const Sprite *sprite);
 	// Cull old stellar objects and thumbnails that haven't been seen in a while.
 	static void CullOldImages(TaskQueue &queue);
-	// Load a starting scenario, conversation, or logbook scene, or unload all scenes.
-	static void LoadScene(TaskQueue &queue, const Sprite *sprite);
-	static void UnloadScenes(TaskQueue &queue);
 
+	// Changes can be made by missions or events that cause new assets to appear.
+	// When this happens, a class can signal to the SpriteLoadManager than a panel
+	// needs to re-request that sprites be loaded.
 	static void SetRecheckThumbnails();
 	static bool RecheckThumbnails();
 	static void SetRecheckStellarObjects();
 	static bool RecheckStellarObjects();
+
+
+private:
+	// Preload a landscape image. If 20 landscape images have already been preloaded
+	// previously, unload the least recently seen image.
+	static void LoadLandscape(TaskQueue &queue, const Sprite *sprite, const std::shared_ptr<ImageSet> &image);
+	// Load a stellar object. Stellar objects remain loaded for 100 in-game days.
+	static void LoadStellarObject(TaskQueue &queue, const Sprite *sprite, const std::shared_ptr<ImageSet> &image);
+	// Load a ship or outfit thumbnail. Stellar objects remain loaded for 100 in-game days.
+	static void LoadThumbnail(TaskQueue &queue, const Sprite *sprite, const std::shared_ptr<ImageSet> &image);
+	// Load a starting scenario, conversation, or logbook scene.
+	static void LoadScene(TaskQueue &queue, const Sprite *sprite, const std::shared_ptr<ImageSet> &image);
 };

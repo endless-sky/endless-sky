@@ -185,15 +185,18 @@ void BoardingPanel::Draw()
 
 	// This should always be true, but double check.
 	int crew = 0;
-	if(you && canCapture)
+	if(you)
 	{
-		crew = you->Crew();
 		info.SetString("cargo space", to_string(you->Cargo().Free()));
-		info.SetString("your crew", to_string(crew));
-		info.SetString("your attack",
-			Format::Number(attackOdds.AttackerPower(crew), 1, false));
-		info.SetString("your defense",
-			Format::Number(defenseOdds.DefenderPower(crew), 1, false));
+		if(canCapture)
+		{
+			crew = you->Crew();
+			info.SetString("your crew", to_string(crew));
+			info.SetString("your attack",
+				Format::Number(attackOdds.AttackerPower(crew), 1, false));
+			info.SetString("your defense",
+				Format::Number(defenseOdds.DefenderPower(crew), 1, false));
+		}
 	}
 	int vCrew = victim ? victim->Crew() : 0;
 	if(victim && (canCapture || victim->IsYours()))
@@ -283,7 +286,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			// Keep track of how many you actually took.
 			count = 0;
 			for(const auto &it : you->Outfits())
-				if(it.first != outfit && it.first->AmmoStoredOrUsed() == outfit)
+				if(it.first != outfit && it.first->AmmoStoredOrUsed().contains(outfit))
 				{
 					// Figure out how many of these outfits you can install.
 					count = you->Attributes().CanAdd(*outfit, available);
@@ -461,7 +464,11 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					messages.push_back(transferMessage);
 				}
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
-					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
+				{
+					double fuelTransferred = you->TransferFuel(victim->JumpFuelMissing(), &*victim);
+					if(fuelTransferred >= 1.)
+						messages.push_back(Format::Number(fuelTransferred, 0) + " fuel has been transferred.");
+				}
 				player.AddShip(victim);
 				for(const Ship::Bay &bay : victim->Bays())
 					if(bay.ship)
@@ -631,7 +638,7 @@ bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
 	// you can install it as an outfit.
 	if(outfit)
 		for(const auto &it : ship.Outfits())
-			if(it.first != outfit && it.first->AmmoStoredOrUsed() == outfit && ship.Attributes().CanAdd(*outfit))
+			if(it.first != outfit && it.first->AmmoStoredOrUsed().contains(outfit) && ship.Attributes().CanAdd(*outfit))
 				return true;
 
 	return false;

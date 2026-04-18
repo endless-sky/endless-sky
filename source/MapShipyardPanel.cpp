@@ -62,7 +62,7 @@ void MapShipyardPanel::LoadCatalogThumbnails() const
 {
 	for(const auto &category : catalog)
 		for(const string &entry : category.second)
-			SpriteLoadManager::LoadThumbnail(GetUI().AsyncQueue(), GameData::Ships().Get(entry)->Thumbnail());
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), GameData::Ships().Get(entry)->Thumbnail());
 }
 
 
