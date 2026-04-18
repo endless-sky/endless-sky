@@ -1158,7 +1158,7 @@ void OutfitterPanel::CheckRefill()
 	}
 	if(!needed.empty() && cost < player.Accounts().Credits())
 	{
-		if(refillPref == Preferences::AmmoRefill::ASK)
+		if(refillPref == Preferences::AmmoRefill::ASK || (cost && refillPref == Preferences::AmmoRefill::WHEN_FREE))
 		{
 			string message = "Do you want to reload all the ammunition for your ship";
 			message += (count == 1) ? "?" : "s?";

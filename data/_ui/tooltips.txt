@@ -1628,8 +1628,12 @@ tip "Save message log"
 tip "Block screen saver"
 	`Whether your monitor should be able to dim and turn off or change to the screen saver while the game is open.`
 
-tip "Auto refill ammo in outfitter"
-	`Controls the ammo refill behavior when you enter the outfitter. If "always," ammo will be automatically refilled if you have the credits for it. If "ask," you will be prompted to refill any missing ammunition upon entering the outfitter. If "never," you will have to manually refill your ammunition.`
+tip "Auto refill ammo"
+	`Controls the ammo refill behavior when you enter the outfitter.`
+	`- "always": ammo will be automatically refilled if you have the credits for it.`
+	`- "when free": ammo will be automatically refill only if it doesn't cost you anything, such as when you have spare ammo in cargo or storage.`
+	`- "ask": you will be prompted to refill any missing ammunition upon entering the outfitter.`
+	`- "never": you will have to manually refill your ammunition.`
 
 tip "Title bar theme"
 	`Choose the theme of the title bar, or leave "system default" to use system settings. (Available on Windows 10 or newer; on Windows 10, the game window must be resized or restarted in order for the change to take effect.)`

@@ -147,8 +147,9 @@ public:
 	};
 
 	enum class AmmoRefill : int_fast8_t {
-		NEVER,
+		NEVER = 0,
 		ASK,
+		WHEN_FREE,
 		ALWAYS
 	};
 

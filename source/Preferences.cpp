@@ -184,7 +184,7 @@ namespace {
 	const vector<string> TRIBUTE_CONFIRMATION_SETTINGS = {"off", "friendly only", "always"};
 	int tributeConfirmationIndex = 1;
 
-	const vector<string> AMMO_REFILL_SETTINGS = {"always", "ask", "never"};
+	const vector<string> AMMO_REFILL_SETTINGS = {"never", "ask", "when free", "always"};
 	int ammoRefillIndex = 1;
 
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";

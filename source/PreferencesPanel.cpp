@@ -92,7 +92,7 @@ namespace {
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 	const string TRIBUTE_CONFIRMATION = "Tribute confirmation";
-	const string AMMO_REFILL = "Auto refill ammo in outfitter";
+	const string AMMO_REFILL = "Auto refill ammo";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
 	const string WINDOW_ROUNDING = "Window rounding";
