@@ -3578,10 +3578,16 @@ int PlayerInfo::CanScan(const shared_ptr<const Minable> &target) const
 
 double PlayerInfo::CargoScanFraction(const shared_ptr<const Ship> &target) const
 {
+	auto it = scanners.find(ScanType::CARGO);
+	if(it == scanners.end())
+		return 0.;
 	double max = 0.;
-	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetTargetShip() == target && ship->CargoScanFraction() > max)
-			max = ship->CargoScanFraction();
+	for(const weak_ptr<Ship> &ship : it->second | views::keys)
+	{
+		const shared_ptr<Ship> shipPtr = ship.lock();
+		if(shipPtr && shipPtr->GetTargetShip() == target && shipPtr->CargoScanFraction() > max)
+			max = shipPtr->CargoScanFraction();
+	}
 	return max;
 }
 
@@ -3589,10 +3595,16 @@ double PlayerInfo::CargoScanFraction(const shared_ptr<const Ship> &target) const
 
 double PlayerInfo::OutfitScanFraction(const shared_ptr<const Ship> &target) const
 {
+	auto it = scanners.find(ScanType::OUTFIT);
+	if(it == scanners.end())
+		return 0.;
 	double max = 0.;
-	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetTargetShip() == target && ship->OutfitScanFraction() > max)
-			max = ship->OutfitScanFraction();
+	for(const weak_ptr<Ship> &ship : it->second | views::keys)
+	{
+		const shared_ptr<Ship> shipPtr = ship.lock();
+		if(shipPtr && shipPtr->GetTargetShip() == target && shipPtr->OutfitScanFraction() > max)
+			max = shipPtr->OutfitScanFraction();
+	}
 	return max;
 }
 
