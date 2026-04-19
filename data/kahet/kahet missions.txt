@@ -3712,7 +3712,7 @@ mission "Ka'het: Patir Mystery 28"
 			`	"Still, we took the chance to repay you for your expenses, and to help you prepare for the future. You should find <payment> in your account shortly." You exchange bows, and he disappears in the crowd.`
 			`	"I will take his bunk on your ship, if it is alright with you," adds Taely. "Make sure to escort the Swans closely to <planet>: they may be armed, but this is still their first proper spaceflight."`
 				accept
-	npc save
+	npc save accompany
 		government "Remnant"
 		ship "Swan" "Sharp Song Spoken"
 		ship "Swan" "Dark Dream Discovering"
@@ -3762,7 +3762,7 @@ mission "Ka'het: Patir Mystery 29"
 				accept
 	on visit
 		dialog phrase "generic bounty hunting on visit"
-	npc save
+	npc save accompany
 		government "Remnant"
 		ship "Swan" "Sharp Song Spoken"
 		personality escort launching unconstrained
@@ -3963,7 +3963,7 @@ mission "Ka'het: Patir Mystery 32"
 		event "Patir returns" 20
 	on visit
 		dialog "You've arrived at <planet>, but either your escort, your passengers or your cargo are not with you!"
-	npc save
+	npc save accompany
 		government "Remnant"
 		ship "Swan (Jump)" "Serene Pillar Lost"
 		ship "Tern" "Great Sky Dancing"
