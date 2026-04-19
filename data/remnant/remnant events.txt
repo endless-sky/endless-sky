@@ -2011,6 +2011,7 @@ event "remnant: teciimach bay deployment"
 ## Compatibility patch for pre-0.11.1 saves to revert Teciimach Canisters back to EMP Torpedoes.
 mission "Remnant: Teciimach Compatibility"
 	non-blocking
+	invisible
 	landing
 	to offer
 		has "event: remnant: teciimach deployment"
