@@ -2017,6 +2017,7 @@ mission "Remnant: Teciimach Compatibility"
 		has "event: remnant: teciimach deployment"
 	on offer
 		event "remnant: teciimach compatibility"
+		fail
 
 event "remnant: teciimach compatibility"
 	outfitter "Remnant"
