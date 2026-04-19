@@ -874,9 +874,9 @@ mission "Unfettered 2: Prove Your Strength"
 					goto run
 			branch haiship
 				or
-					"<flagship model>" == "Sea Scorpion"
-					"<flagship model>" == "Anomalocaris"
-					"<flagship model>" == "Shield Beetle"
+					has "flagship model: Sea Scorpion"
+					has "flagship model: Anomalocaris"
+					has "flagship model: Shield Beetle"
 			`	"See? The lily-livered monkey dares not even speak! This scallywag be no more than shark bait! Even our 'umble clipper would be sending ye straight to Davy Jones' locker! We be ready to prove it, too, yet we dare not, lest we lose our dancing monkey to the briny deep! But mateys, there be no shame if it dance away, with a dinghy looking like that!"`
 			choice
 				`	"You dare insult the <ship>?"`
@@ -893,9 +893,9 @@ mission "Unfettered 2: Prove Your Strength"
 			`	He looks at you in the eye for a moment before continuing, "I saw your ship, human, it may be Hai - as it should be - but can ye pilot it like a true Hai? I have doubts!" he says, before turning to address the crowd once again. "I be sank if this human can beat us in one of our own ships!"`
 				to display
 					or
-						"<flagship model>" == "Sea Scorpion"
-						"<flagship model>" == "Anomalocaris"
-						"<flagship model>" == "Shield Beetle"
+						has "flagship model: Sea Scorpion"
+						has "flagship model: Anomalocaris"
+						has "flagship model: Shield Beetle"
 			`	After a cheering from his crowd, the Hai then speaks to you directly. "Ye and me then, a battle of flagships. Face me far above the tallest trees, whenever ye find the courage. But rest assured, monkey, I have the skill to humiliate ye without feeding ye to the fishes!"`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
@@ -1277,7 +1277,6 @@ mission "Unfettered 3: Jump Drive Vault"
 					goto moremen
 			`	"Arrr, I cannot be telling anyone that, not even ye after bringing me, and especially not here. I dare not risk bringing danger to their door or their ire to mine. At least while we still need their supply of jump drives. For now, just think of them as more pirates, like me and the rest of the scallywags on this bilgewater planet here, and know that we be ready to face them in battle, should it come to that."`
 				goto outsideship
-				goto outside
 			label moremen
 			action
 				set "unfettered: dumb Si-Ra question"
