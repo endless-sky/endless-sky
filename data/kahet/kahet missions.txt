@@ -2727,9 +2727,6 @@ event "ssil vida changes"
 		asteroids "large rock" 4 3
 		asteroids "medium metal" 52 1
 		asteroids "large metal" 9 3
-		remove fleet "Void Sprites (Ember Waste)"
-		remove fleet "Subsidurial (Ember Waste)"
-		remove fleet "Embersylphs"
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -4244,7 +4241,7 @@ mission "Ka'het: Patir Mystery 34"
 			choice
 				`	(Wait and see.)`
 				`	(Sit in the pilot's seat and fly away.)`
-				`	(Show it your hand, like in that video you saw once.)`
+				`	(Show it my hand, like in that video I saw once.)`
 			`	In an instant, the asteroid sprints out of the room. You follow it on your console: it breaches through an emergency vent to launch out of your ship, and automated systems seal it off immediately. With the engines still firing, you take back control of your ship and leave the sphere of influence of the planetoid...`
 				launch
 	on visit
@@ -4394,20 +4391,20 @@ mission "Ka'het: Patir Mystery 37A"
 	job
 	repeat
 	deadline 6
-	name "Move Patir (Short Endurance)"
-	description "Begin an expedition of short duration beyond Patir, disappearing on <date> and returning the day after."
+	name "Move Patir (Medium Endurance)"
+	description "Begin an expedition of medium duration beyond Patir, disappearing on <date> and returning 7 days after"
 	source "Caelian"
 	destination "Builder Settlement"
 	to offer
 		has "Ka'het: Patir Mystery 35: done"
 	on accept
 		event "Patir moves" 6
-		event "Patir returns" 7
+		event "Patir returns" 13
 
 mission "Ka'het: Patir Mystery 37B"
 	repeat
 	entering
-	deadline 1
+	deadline 7
 	name "Patir Returns"
 	description "Patir will move back to the Milky Way on <date>, with or without you."
 	source
@@ -4422,34 +4419,6 @@ mission "Ka'het: Patir Mystery 38A"
 	job
 	repeat
 	deadline 6
-	name "Move Patir (Medium Endurance)"
-	description "Begin an expedition of medium duration beyond Patir, disappearing on <date> and returning 7 days after"
-	source "Caelian"
-	destination "Builder Settlement"
-	to offer
-		has "Ka'het: Patir Mystery 35: done"
-	on accept
-		event "Patir moves" 6
-		event "Patir returns" 13
-
-mission "Ka'het: Patir Mystery 38B"
-	repeat
-	entering
-	deadline 7
-	name "Patir Returns"
-	description "Patir will move back to the Milky Way on <date>, with or without you."
-	source
-		system "Patir"
-	to offer
-		has "Ka'het: Patir Mystery 38A: active"
-		not "Ka'het: Patir Mystery 38B: active"
-	to complete
-		not "ka'het: beyond Patir"
-
-mission "Ka'het: Patir Mystery 39A"
-	job
-	repeat
-	deadline 6
 	name "Move Patir (Long Endurance)"
 	description "Begin an expedition of long duration beyond Patir, disappearing on <date> and returning 14 days after."
 	source "Caelian"
@@ -4460,7 +4429,7 @@ mission "Ka'het: Patir Mystery 39A"
 		event "Patir moves" 6
 		event "Patir returns" 20
 
-mission "Ka'het: Patir Mystery 39B"
+mission "Ka'het: Patir Mystery 38B"
 	repeat
 	entering
 	deadline 14
@@ -4469,8 +4438,8 @@ mission "Ka'het: Patir Mystery 39B"
 	source
 		system "Patir"
 	to offer
-		has "Ka'het: Patir Mystery 39A: active"
-		not "Ka'het: Patir Mystery 39B: active"
+		has "Ka'het: Patir Mystery 38A: active"
+		not "Ka'het: Patir Mystery 38B: active"
 	to complete
 		not "ka'het: beyond Patir"
 
@@ -4572,89 +4541,6 @@ mission "Ka'het: Patir Mystery Crew job"
 		payment 500000
 		"reputation: Remnant" ++
 		dialog "The arrays of instruments are soon unloaded from your ship, and the researchers disembark excitedly. Before leaving, they make sure to hand you a chip with <payment>."
-
-
-
-mission "Ka'het: Patir Mystery Magic Asteroid Derelict"
-	invisible
-	entering
-	repeat
-	source
-		system "Patir"
-	to offer
-		has "Ka'het: Patir Mystery 35: done"
-		has "ka'het: beyond Patir"
-		random < 20 * ( 5 - "ka'het: magic asteroid derelict" )
-	npc
-		government "Ka'sei"
-		personality harvests mining staying vindictive waiting
-		system "Patir"
-		fleet
-			names "ka'sei"
-			cargo 1
-			variant
-				"Fetri'sei" 2
-	npc
-		government "Magic Asteroid (Disabled)"
-		personality derelict waiting
-		system "Patir"
-		fleet
-			names "magic asteroid"
-			cargo 0
-			variant 11
-				"Asteroid Large 1"
-			variant 11
-				"Asteroid Large 2"
-			variant 11
-				"Asteroid Large 3"
-			variant 11
-				"Asteroid Large 4"
-			variant 11
-				"Asteroid Large 5"
-			variant 12
-				"Asteroid Medium"
-			variant 13
-				"Asteroid Young 1"
-			variant 13
-				"Asteroid Young 2"
-			variant 13
-				"Asteroid Young 3"
-			variant 13
-				"Asteroid Young 4"
-		to spawn
-			not "ka'het: beyond Patir"
-		on encounter
-			dialog "Glancing at the scan, you notice that another one of those creatures was in Patir when it moved. It is still there, motionless."
-		on board
-			"ka'het: magic asteroid derelict" ++
-
-mission "Ka'het: Patir Mystery Magic Asteroid Derelict failing"
-	invisible
-	landing
-	repeat
-	source
-		not planet "Builder Settlement"
-	to offer
-		has "Ka'het: Patir Mystery Magic Asteroid Derelict: active"
-		not "ka'het: beyond Patir"
-	on offer
-		fail "Ka'het: Patir Mystery Magic Asteroid Derelict"
-		fail
-
-
-
-mission "Ka'het: Patir Mystery Aeolus message"
-	invisible
-	outfitter
-	source
-		government "Remnant"
-	to offer
-		has "Ka'het: Patir Mystery 35: done"
-	on offer
-		require "Asteroid Jump Drive"
-		conversation
-			`As soon as you take a step into the local outfitter, your communicator starts buzzing desperately. It is a message from Aeolus: they are aware of the precious cargo you are carrying, and on behalf of Chilia, would be happy to take care of it as soon as you sell it to them.`
-				decline
 
 
 
