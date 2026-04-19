@@ -568,12 +568,24 @@ bool MainPanel::ShowHelp(bool force)
 			forced.push_back("try out fighters transfer cargo");
 		else if(DoHelp("try out fighters transfer cargo"))
 			return true;
+
+		if(force)
+			forced.push_back("try out fighter fleet logistics");
+		else if(DoHelp("try out fighter fleet logistics"))
+			return true;
 	}
 	if(Preferences::Has("Fighters transfer cargo"))
 	{
 		if(force)
 			forced.push_back("fighters transfer cargo");
 		else if(DoHelp("fighters transfer cargo"))
+			return true;
+	}
+	if(Preferences::Has("Fighter fleet logistics"))
+	{
+		if(force)
+			forced.push_back("fighter fleet logistics");
+		else if(DoHelp("fighter fleet logistics"))
 			return true;
 	}
 	if(!flagship->IsHyperspacing() && flagship->Position().Length() > 10000.

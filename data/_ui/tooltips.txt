@@ -1694,3 +1694,9 @@ tip "Fighters hit when disabled"
 
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
+
+tip "cannot repair other"
+	`Prevents this ship from repairing or recharging other ships when boarding them. The ship can still dock with its carrier normally.`
+
+tip "Fighter return to carrier on low fuel"
+	`The minimum fuel a fighter must reserve to safely return to its carrier. Fighters with fuel levels below this threshold will automatically return to dock. This does not apply to fighters with flame weapons and normal (non-afterburner) thrust, since their fuel is ammunition rather than propulsion.`

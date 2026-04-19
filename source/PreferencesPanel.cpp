@@ -797,6 +797,7 @@ void PreferencesPanel::DrawSettings()
 		EXPEND_AMMO,
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
+		"Fighter fleet logistics",
 		"Fighters transfer cargo",
 		AMMO_REFILL,
 		"\t",

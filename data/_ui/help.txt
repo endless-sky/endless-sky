@@ -201,6 +201,18 @@ help "trading"
 help "friendly disabled"
 	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`
 
+help "low battery fighters"
+	`One or more of your fighters or drones has low battery power. They will automatically return to their carrier for recharging when their energy runs low.`
+	`Fighters powered only by batteries are effective in combat but must periodically dock with their carrier to recharge.`
+
+help "fighter fleet logistics"
+	`Fighter fleet logistics has been enabled. This enables carriers and fighters to support your escorted fleet. The following logistics are supported.`
+	``
+	`	Fleet refueling if your fighters have fuel and ramscoop.`
+
+help "try out fighter fleet logistics"
+	`You have a carrier which can support your fleet through logistics. In Preferences and Settings under the AI section, turn on "Fighter fleet logistics" to learn more.`
+
 help "control ship with mouse"
 	`You've enabled controlling your ship with your mouse.`
 	``
