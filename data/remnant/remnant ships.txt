@@ -1689,8 +1689,8 @@ ship "Swan"
 		"heat dissipation" 0.32
 		"fuel capacity" 6400
 		"ramscoop" 6.5
-		"outfit space" 674
-		"weapon capacity" 237
+		"outfit space" 678
+		"weapon capacity" 242
 		"engine capacity" 157
 		"shield generation" 4.8
 		"shield energy" 3.9
