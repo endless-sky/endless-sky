@@ -424,6 +424,20 @@ outfit "Ka'het Reserve Accumulator"
 	"energy capacity" 2400
 	description "This tiny battery was developed for use by the Ka'mar drones as an emergency energy storage, in case their generators can't quite suffice for the high power demand of most Builder systems."
 
+outfit "Ka'het Ion Trap"
+	category "Power"
+	series "Generators"
+	index 05010
+	cost 376000
+	thumbnail "outfit/ka'het ion trap"
+	"mass" 2
+	"outfit space" -3
+	"ion resistance" 0.05
+	"ion resistance energy" -3
+	"heat generation" 0.8
+	"energy capacity" 600
+	description "The unique function of this generator is that of deflecting and slowing incoming ions, creating a significant amount of energy in the process. A powerful, correctly shaped magnetic field appears to be the key, as long as a powerful enough ion storm (or an equivalent phenomena) is nearby."
+
 # Engines:
 
 outfit "Maeri Engine Nacelles"

@@ -1626,6 +1626,7 @@ Files:
  images/outfit/ka'het?nullifier*
  images/outfit/ka'het?mhd?deployer*
  images/outfit/ka'het?taser*
+ images/outfit/ka'het?ion?trap*
  images/outfit/mouthparts*
  images/outfit/excavator*
  images/outfit/fuel?pod*
@@ -1725,6 +1726,7 @@ Files:
  images/scene/remnant?station*
  images/scene/asteroid?scene*
  images/scene/lab?scene*
+ images/scene/builder?cloud?probe*
  images/planet/debris0*
  images/planet/debris1*
  images/planet/desert11*
