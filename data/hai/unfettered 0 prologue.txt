@@ -1180,7 +1180,7 @@ mission "Unfettered 3: Recover Jump Drives"
 			`	You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
 				to display
 					not "outfit (installed): Luxury Accommodations"
-			`	You accompany him to your ship, at first he seems impressed but then he sees the luxury accomodations. "What be this? Is this a warship or a cruise liner? Ye be bringing me on a joyride? I thought I was recruiting a warrior, not a pampered landlubber!"`
+			`	You accompany him to your ship, at first he seems impressed but then he sees the luxury accommodations. "What be this? Is this a warship or a cruise liner? Ye be bringing me on a joyride? I thought I was recruiting a warrior, not a pampered landlubber!"`
 				to display
 					has "outfit (installed): Luxury Accommodations"
 			`	He looks at your ship' schematics and reacts, "Hold up right there matey, the sea sooner be purple than I'd see ye can fit four drives in yer holds! Ya better make some space!"`
