@@ -1125,8 +1125,7 @@ void Engine::Step(bool isActive)
 	bool shouldCatalogAsteroids = (!isAsteroidCatalogComplete && !Random::Int(20));
 	if(shouldShowAsteroidOverlay || shouldCatalogAsteroids)
 	{
-		bool hasAsteroidScanners = player.HasScanner(ScanType::ASTEROID);
-		if(flagship && hasAsteroidScanners && !flagship->IsHyperspacing())
+		if(flagship && !flagship->IsHyperspacing() && player.HasScanner(ScanType::ASTEROID))
 		{
 			bool scanComplete = true;
 			for(const shared_ptr<Minable> &minable : asteroids.Minables())

@@ -157,7 +157,7 @@ namespace {
 	}
 
 	int CanScanTarget(const Point &position, const vector<int> &types, const System *system,
-		const map<int, map<shared_ptr<Ship>, double>> &scanners)
+		const map<int, map<weak_ptr<Ship>, double, owner_less<weak_ptr<const Ship>>>> &scanners)
 	{
 		int options = 0;
 		for(int type : types)
@@ -167,9 +167,11 @@ namespace {
 				continue;
 			for(const auto &[ship, rangeSquared] : it->second)
 			{
-				if(ship->GetSystem() != system || ship->IsDestroyed() || ship->CannotAct(Ship::ActionType::SCAN))
+				const shared_ptr<Ship> shipPtr = ship.lock();
+				if(!shipPtr || shipPtr->GetSystem() != system || shipPtr->IsDestroyed()
+						|| shipPtr->CannotAct(Ship::ActionType::SCAN))
 					continue;
-				if(type == ScanType::RANGE || rangeSquared >= ship->Position().DistanceSquared(position))
+				if(type == ScanType::RANGE || rangeSquared >= shipPtr->Position().DistanceSquared(position))
 				{
 					options |= type;
 					break;
@@ -3540,9 +3542,13 @@ bool PlayerInfo::HasScanner(int type) const
 	auto it = scanners.find(type);
 	if(it == scanners.end())
 		return false;
-	for(const auto &ship : it->second | views::keys)
-		if(ship->GetSystem() == system && !ship->IsDestroyed() && !ship->CannotAct(Ship::ActionType::SCAN))
+	for(const weak_ptr<Ship> &ship : it->second | views::keys)
+	{
+		const shared_ptr<Ship> shipPtr = ship.lock();
+		if(shipPtr && shipPtr->GetSystem() == system && !shipPtr->IsDestroyed()
+				&& !shipPtr->CannotAct(Ship::ActionType::SCAN))
 			return true;
+	}
 	return false;
 }
 
@@ -3573,7 +3579,7 @@ int PlayerInfo::CanScan(const shared_ptr<const Minable> &target) const
 double PlayerInfo::CargoScanFraction(const shared_ptr<const Ship> &target) const
 {
 	double max = 0.;
-	for(const auto &ship : ships)
+	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetTargetShip() == target && ship->CargoScanFraction() > max)
 			max = ship->CargoScanFraction();
 	return max;
@@ -3584,7 +3590,7 @@ double PlayerInfo::CargoScanFraction(const shared_ptr<const Ship> &target) const
 double PlayerInfo::OutfitScanFraction(const shared_ptr<const Ship> &target) const
 {
 	double max = 0.;
-	for(const auto &ship : ships)
+	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetTargetShip() == target && ship->OutfitScanFraction() > max)
 			max = ship->OutfitScanFraction();
 	return max;
