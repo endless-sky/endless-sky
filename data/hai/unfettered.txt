@@ -65,6 +65,7 @@ phrase "cerberus hails"
 
 
 phrase "unfettered challenger"
+	word
 		"Do not" 2
 		"The rules of the duel are clear: do not"
 		"You have asked for a time out, now do not"
