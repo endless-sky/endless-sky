@@ -205,7 +205,7 @@ void PilotProfile::Load()
 	if(isLoaded)
 		return;
 	isLoaded = true;
-	assert(filePath.empty() && "should call SetIdentifier before calling Load");
+	assert(!filePath.empty() && "should call SetIdentifier before calling Load");
 
 	DataFile file(filePath);
 	for(const DataNode &child : file)
