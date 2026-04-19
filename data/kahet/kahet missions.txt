@@ -4517,7 +4517,7 @@ mission "Ka'het: Patir Mystery Safety Net Dusk"
 		event "Patir returns" 9
 		conversation
 			`The unthinkable has happened: Patir has moved back, but without you! The Remnant crew, clearly disappointed, illustrate you the flight plan. It seems that for cases like this, Ssil Vida will send Patir back here for a 3-day stay as soon as they see you are not there, eventually returning to the Milky Way on <date>.`
-			`	Though you should be able to return, the Remnant will stop relying on you to explore Patir after this detour.`
+			`	Though you should be able to return, you have failed an essential Remnant mission. If you wish to continue Patir content, you may wish to reload.`
 				accept
 	to complete
 		not "ka'het: beyond Patir"
