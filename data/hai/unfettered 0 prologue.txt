@@ -872,6 +872,11 @@ mission "Unfettered 2: Prove Your Strength"
 				`	(Say nothing.)`
 				`	(Run away.)`
 					goto run
+			branch haiship
+				or
+					"<flagship model>" == "Sea Scorpion"
+					"<flagship model>" == "Anomalocaris"
+					"<flagship model>" == "Shield Beetle"
 			`	"See? The lily-livered monkey dares not even speak! This scallywag be no more than shark bait! Even our 'umble clipper would be sending ye straight to Davy Jones' locker! We be ready to prove it, too, yet we dare not, lest we lose our dancing monkey to the briny deep! But mateys, there be no shame if it dance away, with a dinghy looking like that!"`
 			choice
 				`	"You dare insult the <ship>?"`
@@ -884,6 +889,13 @@ mission "Unfettered 2: Prove Your Strength"
 			label provoke
 			`	"So the space-monkey can speak? Let us see if it can fight as well," he says with a provocative tone.`
 			label lesson
+			label haiship
+			`	He looks at you in the eye for a moment before continuing, "I saw your ship, human, it may be Hai - as it should be - but can ye pilot it like a true Hai? I have doubts!" he says, before turning to address the crowd once again. "I be sank if this human can beat us in one of our own ships!"`
+				to display
+					or
+						"<flagship model>" == "Sea Scorpion"
+						"<flagship model>" == "Anomalocaris"
+						"<flagship model>" == "Shield Beetle"
 			`	After a cheering from his crowd, the Hai then speaks to you directly. "Ye and me then, a battle of flagships. Face me far above the tallest trees, whenever ye find the courage. But rest assured, monkey, I have the skill to humiliate ye without feeding ye to the fishes!"`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
@@ -1166,7 +1178,12 @@ mission "Unfettered 3: Recover Jump Drives"
 			`	"The aliens we be raiding, ye swab! And don't be joining that party until we tell ya so!"`
 			label ship
 			`	You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
-			`	"But hold up right there matey, the sea sooner be purple than I'd see ye can fit four drives in yer holds! Ya better make some space!"`
+				to display
+					not "outfit (installed): Luxury Accommodations"
+			`	You accompany him to your ship, at first he seems impressed but then he sees the luxury accomodations. "What be this? Is this a warship or a cruise liner? Ye be bringing me on a joyride? I thought I was recruiting a warrior, not a pampered landlubber!"`
+				to display
+					has "outfit (installed): Luxury Accommodations"
+			`	He looks at your ship' schematics and reacts, "Hold up right there matey, the sea sooner be purple than I'd see ye can fit four drives in yer holds! Ya better make some space!"`
 				to display
 					"cargo space" < 80
 			`	You show him to his bunk but he refuses to go there. "Where ye be sending me? Ye need me on the helm, you scabby sea bass!" You have no choice but to let him sit on the bridge.`
@@ -1260,13 +1277,14 @@ mission "Unfettered 3: Jump Drive Vault"
 					goto moremen
 			`	"Arrr, I cannot be telling anyone that, not even ye after bringing me, and especially not here. I dare not risk bringing danger to their door or their ire to mine. At least while we still need their supply of jump drives. For now, just think of them as more pirates, like me and the rest of the scallywags on this bilgewater planet here, and know that we be ready to face them in battle, should it come to that."`
 				goto outsideship
+				goto outside
 			label moremen
 			action
 				set "unfettered: dumb Si-Ra question"
 			`	"We be needing discretion here, not to draw attention! The larger our group is, the more suspicion we attract. The more suspicion we attract, the more likely someone fits us for a hempen halter. We be wanting them to think we hold no loot, not that we be hunting treasure, savvy?" Judging from his tone, he probably thinks that was a stupid question.`
 			label outsideship
 			`	Before exiting, he warns you, "Whatever be happening, do not try anything foolish and stay behind me at all times."`
-			`	Once outside, he moves at a quick pace, and you have difficulties following him, especially with the terrain as you head into the mountains. He seems worried and keeps looking around furtively. All things considered, he is impressively stealthy; the suit must have been crafted specifically for him. He presses a switch every so often which pops out a mirror, allowing him to peer cautiously around corners and obstacles in your path in case of an ambush.`
+			`	Once outside, he moves at a quick pace, and you have difficulties following him, especially with the terrain as you head into the mountains. He seems worried and keeps looking around furtively. All things considered, he is impressively stealthy; the suit must have been crafted specifically for him. He presses a button and a small and almost silent drone flies out from his back, lifting high above to scout the area.`
 			`	Before long, you arrive at a small shanty town constructed with metal and other scraps the builders could gather nearby. Even considering what it is, it appears recently constructed and especially ramshackle.`
 			choice
 				`	(Keep walking, ready to reach for your gun.)`
@@ -1289,7 +1307,7 @@ mission "Unfettered 3: Jump Drive Vault"
 			`	"Those bilge-sucking scum? They would never dare attack a well-equipped swashbuckler like meself. Furthermore, there shouldn't be any around these parts, so far from those hovels." He steps forward, then glances back at you, unprotected and armed only with a laser that seems like a toy in comparison to his. "But maybe ye should come with me, after all."`
 				goto choose
 			label wannafight
-			`	"If the vault indeed be compromised, 'twas not by landlubbers. Those inside will be more dangerous and well-armed than the lily-livered locals. Still, I do not be having to guarantee yer safety to secure me loot, so ye be free to do as ye wish. The defense mechanisms be offline for the moment, so ye would have to fend for yerself. These locals be so young and frail and malnourished that even ye can surely handle yerself against them." The disdain in the last words is palpable.`
+			`	"If the vault indeed be compromised, 'twas not by landlubbers. Those inside will be more dangerous and well-armed than the lily-livered locals. Still, I do not need be guaranteeing yer safety to secure me loot, so ye be free to do as ye wish. The defense mechanisms be offline for the moment, so ye would have to fend for yerself. These locals be so young and frail and malnourished that even ye can surely handle yerself against them." The disdain in the last words is palpable.`
 			label choose
 			choice
 				`	"I'll come in."`
@@ -1315,7 +1333,7 @@ mission "Unfettered 3: Jump Drive Vault"
 				"unfettered rep: Si-Ra" ++
 			`	You get down yourself as you give the warning, then turn to see if it was heeded. The Unfettered was evidently well trained for this, as he is already on the ground and sighting his rifle. You're impressed by the precision of his weapon; the sniper is quite clearly taken out with the first shot, but your armored companion fires three more times.`
 			`	After searching through the vault to eliminate any other surprises, the Hai declares the area cleared. Any other stalkers have probably run off after seeing the firepower your Unfettered friend carries. You then inspect the jump drives to the best of your ability with a device he quickly instructed you how to use, while he finishes taking care of the security systems. Once you are done and waiting for his return, you look around and notice a small symbol in the lower corner of a nearby wall: a dog with multiple heads. You double-check the Jump Drives as you continue to wait, and when the Hai captain comes back, he conveniently places his gun over the symbol.`
-			`	He switches a lever, and the electric humming you've been hearing suddenly stops. "I have disabled the holographic field generator, so yer ship can come to pick up the drives. Best have it come quickly, so that it reaches us before the intruders return in force," he suggests. You immediately order the <ship> to dock with the vault.`
+			`	He switches a lever, and the electric humming you've been hearing suddenly stops. "I have disabled the holographic field generator, so yer ship can come to pick up the drives. I also made sure to disable the remaining defense turrets that weren't sabotaged, but tell your crew to keep their shields on to be safe. Best have your ship come quickly, so that it reaches us before the intruders return in force," he suggests. You immediately order the <ship> to dock with the vault and make sure the shields stay on.`
 			choice
 				`	(Wait for the <ship> to arrive.)`
 					goto ship
