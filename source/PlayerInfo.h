@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
 #include "GameEvent.h"
-#include "Gamerules.h"
+#include "Minable.h"
 #include "Mission.h"
 #include "SystemEntry.h"
 
@@ -178,7 +178,7 @@ public:
 	// determine which ships cannot travel with the group.
 	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> FlightCheck() const;
 	// Add a captured ship to your fleet.
-	void AddShip(const std::shared_ptr<Ship> &ship);
+	void CaptureShip(const std::shared_ptr<Ship> &ship);
 	// Buy, receive or sell a ship.
 	// In the case of a gift, return a pointer to the newly instantiated ship.
 	void BuyShip(const Ship *model, const std::string &name);
@@ -372,6 +372,15 @@ public:
 	void Harvest(const Outfit *type);
 	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
 
+	// Whether the player's fleet has any scanners of the given type.
+	bool HasScanner(int type) const;
+	// Which scanning capabilities the player's fleet has against the given target.
+	int CanScan(const std::shared_ptr<const Ship> &target) const;
+	int CanScan(const std::shared_ptr<const Minable> &target) const;
+	// The highest progress of any ship in the player's fleet for scanning a target.
+	double CargoScanFraction(const std::shared_ptr<const Ship> &target) const;
+	double OutfitScanFraction(const std::shared_ptr<const Ship> &target) const;
+
 	// Get or set the travel destination for selected escorts via the map.
 	const std::pair<const System *, Point> &GetEscortDestination() const;
 	void SetEscortDestination(const System *system = nullptr, Point pos = Point());
@@ -444,6 +453,11 @@ private:
 	// When we remove a ship, forget it's stored Uuid.
 	void ForgetGiftedShip(const Ship &oldShip, bool failsMissions = true);
 
+	// Calculate the scanning capabilities of the player's fleet.
+	void CalculateScanners();
+	// Calculate the scanning capabilities of a single ship.
+	void CalculateScanners(const std::shared_ptr<Ship> &ship);
+
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;
 	// Handle the daily salaries and payments.
@@ -481,6 +495,9 @@ private:
 	std::vector<std::shared_ptr<Ship>> ships;
 	std::vector<std::weak_ptr<Ship>> selectedEscorts;
 	std::map<const Ship *, int> groups;
+	// The different scan capabilities of the player's fleet, storing the ship with each scanner
+	// and its scan range squared (for quicker comparisons).
+	std::map<int, std::map<std::weak_ptr<Ship>, double, std::owner_less<std::weak_ptr<const Ship>>>> scanners;
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;

@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RaidFleet.h"
 #include "Random.h"
 #include "SavedGame.h"
+#include "ScanType.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "image/SpriteLoadManager.h"
@@ -58,6 +59,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 #include <iterator>
 #include <limits>
+#include <ranges>
 #include <sstream>
 #include <stdexcept>
 
@@ -152,6 +154,31 @@ namespace {
 					++it;
 			}
 		}
+	}
+
+	int CanScanTarget(const Point &position, const vector<int> &types, const System *system,
+		const map<int, map<weak_ptr<Ship>, double, owner_less<weak_ptr<const Ship>>>> &scanners)
+	{
+		int options = 0;
+		for(int type : types)
+		{
+			auto it = scanners.find(type);
+			if(it == scanners.end())
+				continue;
+			for(const auto &[ship, rangeSquared] : it->second)
+			{
+				const shared_ptr<Ship> shipPtr = ship.lock();
+				if(!shipPtr || shipPtr->GetSystem() != system || shipPtr->IsDestroyed()
+						|| shipPtr->CannotAct(Ship::ActionType::SCAN))
+					continue;
+				if(type == ScanType::RANGE || rangeSquared >= shipPtr->Position().DistanceSquared(position))
+				{
+					options |= type;
+					break;
+				}
+			}
+		}
+		return options;
 	}
 }
 
@@ -1229,13 +1256,14 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 
 
 // Add a captured ship to your fleet.
-void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
+void PlayerInfo::CaptureShip(const shared_ptr<Ship> &ship)
 {
 	ships.push_back(ship);
 	ship->SetIsSpecial();
 	ship->SetIsYours();
 	if(ship->HasBays())
 		displayCarrierHelp = true;
+	CalculateScanners(ship);
 }
 
 
@@ -1976,6 +2004,9 @@ bool PlayerInfo::TakeOff(UI &ui, const bool distributeCargo)
 		out << ".";
 		Messages::Add({out.str(), GameData::MessageCategories().Get("normal")});
 	}
+
+	// Determine the scanners available to the player's fleet.
+	CalculateScanners();
 
 	this->previousPlanet = planet;
 	return true;
@@ -3502,6 +3533,79 @@ void PlayerInfo::Harvest(const Outfit *type)
 const set<pair<const System *, const Outfit *>> &PlayerInfo::Harvested() const
 {
 	return harvested;
+}
+
+
+
+bool PlayerInfo::HasScanner(int type) const
+{
+	auto it = scanners.find(type);
+	if(it == scanners.end())
+		return false;
+	for(const weak_ptr<Ship> &ship : it->second | views::keys)
+	{
+		const shared_ptr<Ship> shipPtr = ship.lock();
+		if(shipPtr && shipPtr->GetSystem() == system && !shipPtr->IsDestroyed()
+				&& !shipPtr->CannotAct(Ship::ActionType::SCAN))
+			return true;
+	}
+	return false;
+}
+
+
+
+int PlayerInfo::CanScan(const shared_ptr<const Ship> &target) const
+{
+	static const vector<int> SHIP_SCAN_TYPES = {
+		ScanType::CARGO, ScanType::OUTFIT, ScanType::TACTICAL, ScanType::STRATEGIC, ScanType::CREW,
+		ScanType::FUEL, ScanType::ENERGY, ScanType::THERMAL, ScanType::MANEUVER, ScanType::ACCELERATION,
+		ScanType::VELOCITY, ScanType::WEAPON, ScanType::RANGE
+	};
+	return CanScanTarget(target->Position(), SHIP_SCAN_TYPES, system, scanners);
+}
+
+
+
+int PlayerInfo::CanScan(const shared_ptr<const Minable> &target) const
+{
+	static const vector<int> MINABLE_SCAN_TYPES = {
+		ScanType::ASTEROID, ScanType::TACTICAL, ScanType::RANGE
+	};
+	return CanScanTarget(target->Position(), MINABLE_SCAN_TYPES, system, scanners);
+}
+
+
+
+double PlayerInfo::CargoScanFraction(const shared_ptr<const Ship> &target) const
+{
+	auto it = scanners.find(ScanType::CARGO);
+	if(it == scanners.end())
+		return 0.;
+	double max = 0.;
+	for(const weak_ptr<Ship> &ship : it->second | views::keys)
+	{
+		const shared_ptr<Ship> shipPtr = ship.lock();
+		if(shipPtr && shipPtr->GetTargetShip() == target && shipPtr->CargoScanFraction() > max)
+			max = shipPtr->CargoScanFraction();
+	}
+	return max;
+}
+
+
+
+double PlayerInfo::OutfitScanFraction(const shared_ptr<const Ship> &target) const
+{
+	auto it = scanners.find(ScanType::OUTFIT);
+	if(it == scanners.end())
+		return 0.;
+	double max = 0.;
+	for(const weak_ptr<Ship> &ship : it->second | views::keys)
+	{
+		const shared_ptr<Ship> shipPtr = ship.lock();
+		if(shipPtr && shipPtr->GetTargetShip() == target && shipPtr->OutfitScanFraction() > max)
+			max = shipPtr->OutfitScanFraction();
+	}
+	return max;
 }
 
 
@@ -5251,6 +5355,76 @@ void PlayerInfo::ForgetGiftedShip(const Ship &oldShip, bool failsMissions)
 					mission.Fail();
 		giftedShips.erase(shipToForget);
 	}
+}
+
+
+
+void PlayerInfo::CalculateScanners()
+{
+	scanners.clear();
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsParked() && !ship->IsDestroyed())
+			CalculateScanners(ship);
+}
+
+
+
+void PlayerInfo::CalculateScanners(const shared_ptr<Ship> &ship)
+{
+	const Outfit &attributes = ship->Attributes();
+
+	double cargo = attributes.Get("cargo scan power") * 10000.;
+	double cargoSpeed = attributes.Get("cargo scan efficiency");
+	if(!cargoSpeed)
+		cargoSpeed = cargo;
+
+	double outfit = attributes.Get("outfit scan power") * 10000.;
+	double outfitSpeed = attributes.Get("outfit scan efficiency");
+	if(!outfitSpeed)
+		outfitSpeed = outfit;
+
+	double asteroid = attributes.Get("asteroid scan power") * 10000.;
+	double tactical = attributes.Get("tactical scan power") * 10000.;
+	double strategic = attributes.Get("strategic scan power") * 10000.;
+
+	double crew = tactical + attributes.Get("crew scan power") * 10000.;
+	double fuel = tactical + attributes.Get("fuel scan power") * 10000.;
+	double energy = tactical + attributes.Get("energy scan power") * 10000.;
+	double thermal = tactical + attributes.Get("thermal scan power") * 10000.;
+	double maneuver = strategic + attributes.Get("maneuver scan power") * 10000.;
+	double acceleration = strategic + attributes.Get("acceleration scan power") * 10000.;
+	double velocity = strategic + attributes.Get("velocity scan power") * 10000.;
+	double weapon = strategic + attributes.Get("weapon scan power") * 10000.;
+	bool range = attributes.Get("range finder power") > 0.;
+
+	if(cargo)
+		scanners[ScanType::CARGO][ship] = cargo;
+	if(outfit)
+		scanners[ScanType::OUTFIT][ship] = outfit;
+	if(asteroid)
+		scanners[ScanType::ASTEROID][ship] = asteroid;
+	if(tactical)
+		scanners[ScanType::TACTICAL][ship] = tactical;
+	if(strategic)
+		scanners[ScanType::STRATEGIC][ship] = strategic;
+	if(crew)
+		scanners[ScanType::CREW][ship] = crew;
+	if(fuel)
+		scanners[ScanType::FUEL][ship] = fuel;
+	if(energy)
+		scanners[ScanType::ENERGY][ship] = energy;
+	if(thermal)
+		scanners[ScanType::THERMAL][ship] = thermal;
+	if(maneuver)
+		scanners[ScanType::MANEUVER][ship] = maneuver;
+	if(acceleration)
+		scanners[ScanType::ACCELERATION][ship] = acceleration;
+	if(velocity)
+		scanners[ScanType::VELOCITY][ship] = velocity;
+	if(weapon)
+		scanners[ScanType::WEAPON][ship] = weapon;
+	if(tactical || strategic || range)
+		scanners[ScanType::RANGE][ship] = 0.;
 }
 
 

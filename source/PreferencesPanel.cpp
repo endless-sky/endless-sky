@@ -602,6 +602,7 @@ void PreferencesPanel::DrawControls()
 		Command::HOLD_POSITION,
 		Command::AMMO,
 		Command::HARVEST,
+		Command::SCAN_ORDER,
 		Command::NONE,
 		Command::NONE,
 		Command::NEAREST,
