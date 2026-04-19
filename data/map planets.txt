@@ -1798,8 +1798,8 @@ planet Farpoint
 planet "Kennecott"
 	attributes frontier north
 	landscape land/badlands9-harro
-	description `Kennecott can best be described as a world well past its prime. The planet was originally colonized for its lackluster but easily accessible natural resources, which where a requirement for the compact, primitive mining machines available at the dawn of the hyperdrive. For a time, Kennecott was a booming center for industrial goods and technological developments. However, the miniaturization and cost reduction of hyperdrive technology soon saw Kennecott's offerings dwarfed by higher quality imported metals.`
-	description `	While a few businesses remain, mostly providing basic goods and tools, all major industries have long since pulled out of Kennecott. Most locals argue that the Syndicate was responsible for this decline, providing cheaper metals to customers like Betelgeuse at a loss to starve out native competition. The remaining population resents the megacorperation, now chained to this dying world by poverty and closed doors.
+	description `Kennecott is a world well past its prime. The planet was originally colonized for its lackluster but easily accessible natural resources, which were a requirement for the compact, primitive mining machines available at the dawn of the hyperdrive. For a time, Kennecott was a booming center for industrial goods and technological developments. However, the miniaturization and cost reduction of hyperdrive technology soon saw Kennecott's offerings dwarfed by higher quality imported metals.`
+	description `	While a few businesses remain, mostly providing basic goods and tools, all major industries have long since pulled out of Kennecott. Most locals argue that the Syndicate was responsible for this decline, providing cheaper metals to customers like Betelgeuse at a loss to starve out native competition. The remaining population resents the megacorporation, now chained to this dying world by poverty and closed doors.
 	spaceport `The atmosphere of the last remaining space port can best be described as a dead mall. The wide hallways and extensive landing pads carry a lonely aura, once designed to service hundreds of merchant ships at a time. Dozens of aging stores and facilities line the promenade, most now locked behind heavy metal shutters, cobwebs and rust inching up the desolate metal bars. Still, a few local business still operate, their warm store lights overpowering the dim, tinged sun from dirty skylights above.`
 	spaceport `	While it's no secret that a large portion of remaining exports go up to the pirates in the north, the Republic seems seldom interested in policing the planet. The only Navy presence here is a single munitions depot, resupplying patrols passing through the area and maintaining a weak perimeter around the spaceport itself.`
 	"required reputation" 2
@@ -6802,9 +6802,9 @@ planet "Midas Station"
 	attributes frontier north "north pirate" pirate mining
 	landscape land/loc2
 	description `The original founders of Midas Station have long since been forgotten to time. While the citizens of the paradise worlds believe pirate space is nothing more than backstabbing chaos, Midas Station stands in defiance of this idea. Despite not being run by any government or corperation, the orbital refinery has stayed in opperation for decades. The entire workfore is volunteers, taking a small cut of any refined goods to keep the station running.`
-	description `	The hallways are tight and claustrophobic, hissing machinery and rumbling droans echo through the dimly lit corridors. Despite the huge, deafening climate control units hanging down above you, the temprature inside is enough to make you break a sweat.`
+	description `	The hallways are tight and claustrophobic, with hissing machinery and rumbling drones echoing through the dimly lit corridors. Despite the huge, deafening climate control units hanging down above you, the temperature inside is enough to make you break a sweat.`
 	spaceport `The spaceport walls are grimy and worn, leaving little room to maneuver a ship inside the cramped hangar. Beneath the grated floor, humming conveyor belts pump a stream of crushed ore towards the station's core, occasionally kicking up small pebbles at passerby. The centeral refinery itself radiates a sinister orange glow, water dripping out of leaky pipes and vaporizing on contact.`
-	spaceport `	Overlooking it all is a large balcony, bustling with activity. It's here that patient miners await their refined goods, large bricks of questionably pure metals and packaged plates rolled out on conveyor belts akin to a baggage claim, branded with names and weights. Huge overhead gantrys swing by scarily close to the floor, having little space to move, depositing shipments on small self-propelled wagons.`
+	spaceport `	Overlooking it all is a large balcony, bustling with activity. It's here that patient miners await their refined goods: large bricks of questionably pure metals and packaged plates rolled out on conveyor belts akin to a baggage claim, branded with names and weights. Huge overhead gantries swing by scarily close to the floor, having little space to move, depositing shipments on small self-propelled wagons.`
 	"required reputation" -10
 	bribe 0.1
 	security 0
@@ -6833,7 +6833,7 @@ planet Dot
 	attributes uninhabited
 	landscape land/canyon05a
 	description `While space is limited in the northern pirate kingdom, and Dot is just as inhabitable as any other moon, not a soul has ever set foot on the surface of this dwarf planet with plans on staying. With days as dark as night and a thin atmosphere of near pure nitrogen, the planet has little to offer. Without any strategic importance or valuable materials, Dot is seldom visited by any party.`
-	description `	The surface of the planet is unremarkable, save for occasional asteroid impacts or debree from combat overhead. It's believed Dot was flung out of its orbit by a rogue planet long ago, now slowly drifting away from Hatysa until it leaves the system and is cast into eternal darkness between the stars.`
+	description `	The surface of the planet is unremarkable, save for occasional asteroid impacts or debris from combat overhead. It's believed Dot was flung out of its orbit by a rogue planet long ago, now slowly drifting away from Hatysa until it leaves the system and is cast into eternal darkness between the stars.`
 	government Uninhabited
 	security 0
 
@@ -6890,7 +6890,7 @@ planet "Caribbean"
 	landscape land/occupas
 	government Uninhabited
 	description `Caribbean, often called "The Gulf of Montego" by the locals, is a calm and temprate gas giant. Monolithic clouds of dense ammonia gas lazily float through the atmosphere, their puffy whites tinted with a heavy teal accent as the sun shines down through the methane-rich atmosphere.`
-	description `	Back during the caravan era, scientific probes of all sort where dropped into the core of Caribbean. Scans from this time revealed the presence of  seemingly solid massive objects deep within the core, far past the pressure rating of any probe avalible. While little research has been done since, it is believed to be the result of temprature inversions, trapped pockets of cold air that can result in false returns.`
+	description `	Back during the caravan era, scientific probes of all sort were dropped into the core of Caribbean. Scans from this time revealed the presence of seemingly solid massive objects deep within the core, far past the pressure rating of any probe available. While little research has been done since, it is believed to be the result of temperature inversions, trapped pockets of cold air that can result in false returns.`
 
 planet "Anago"
 	attributes frontier north "north pirate" pirate mining
@@ -6903,8 +6903,8 @@ planet "Dissipation"
 	landscape land/mercury1
 	government Uninhabited
 	description `Back during the caravan era, Dissipation was a vital source of helium-3, an important component of early fusion and hyperspace fuels. The dense sand-like surface and very low gravity meant some large mining and tanker vessels could descend to the surface under their own power, which was a rare feat before the invention of modern gravity-repulsor technology.`
-	description `	However, following the advent of sophisticated ramscoops and collecting stations, helium-3 from Dissipation slowly decreased in demand. In due time, the dirt-cheap prices of fuels forced any remaining opperations out of business.`
-	description `	While a few of the empty mines have been transformed into secret hideouts by crime groups and affluent pirates, most industries have long since been broken down an abandoned, dozens of ghost ports now dotting the planet.`
+	description `	However, following the advent of sophisticated ramscoops and collecting stations, helium-3 from Dissipation slowly decreased in demand. In due time, the dirt-cheap prices of fuels forced any remaining operations out of business.`
+	description `	While a few of the empty mines have been transformed into secret hideouts by crime groups and affluent pirates, most industries have long since been abandoned, with dozens of ghost ports now dotting the planet.`
 
 planet "Boneyard"
 	attributes uninhabited
