@@ -2580,7 +2580,7 @@ event "Patir returns"
 	system Patir
 		pos -38 553
 		haze _menu/haze-red
-	"ka'het: beyond Patir" --
+	"ka'het: beyond Patir" = 0
 
 
 conversation "end of Patir 2 - on enter"
