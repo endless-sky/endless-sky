@@ -4324,6 +4324,7 @@ mission "Ka'het: Patir Mystery 35"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
+		event "patir mystery 3 timer" 20
 		log `Visited the space beyond Patir a few times with the Remnant. They are now going to let me go in and out of it on my own.`
 		log `It is not clear what the creatures in that space are, what their purpose is, or how intelligent they are.`
 		conversation
@@ -4332,58 +4333,8 @@ mission "Ka'het: Patir Mystery 35"
 			`	He taps on one of your ship's screens that displays the nearby job board. "When you are here on <planet>, you will be able to connect directly with Ssil Vida to control Patir's state. As usual, the timing is going to be predefined, and if you miss your return window they will do their best to send it back as soon as possible. After our last trip, I suggest you to keep your cloak active at all times, especially if you have to pass through Lathia."`
 			choice
 				`	"Thank you."`
-					goto bow
 				`	"What are you going to do now?"`
-			`	"I want to get back up to date with the Builder research, at least while I see how things trend with Patir. In the meanwhile, keep your eyes open for anyone who needs a ride there - I have no doubt that as long as you keep helping our efforts, our roads will cross again. Embers bless your path, <first>!"`
-			label bow
-			`	You copy his bow in farewell. Right as you get back in your ship, however, you find an unread message from Chilia: he asks you to pay him a visit in the starport cafeteria, so as to celebrate your 'current status'.`
-
-
-mission "Ka'het: Patir Mystery 36"
-	name "The far site"
-	description "Visit a hidden listening post in <waypoints>, retrieve its data, and return to <destination>."
-	source "Caelian"
-	waypoint "Equus"
-	cargo "localizer and decryption equipment" 5
-	to offer
-		has "Ka'het: Patir Mystery 35: done"
-	on offer
-		conversation
-			`"A seat, <first>!" In the busy cafeteria, you finally see Chilia, accompanied by Torza, gesturing to recall your attention. "We are endlessly impressed by the number of times your name keeps coming up in our records," the latter states. "If it is our trust that you are trying to gain, you are doing a tremendous job at it."`
-			choice
-				`	"I was just doing my job."`
-				`	"I liked to help."`
-				`	"It was not a problem."`
-					goto chilia
-			`	They smile. "And we want you to keep doing it."`
-			label chilia
-			`	Chilia starts. "<first>, you must be familiar with the concept of light-delayed observations. A telescope located a light-year away from its target will see it as it was a year earlier, rather than how it is now." You nod. "A simple enough concept, used even hundreds of years ago by humanity to see how space evolved over time. With it, comes the concept of stellar lensing - observing the same space through the distortion of another star, which, by the nature of taking a longer path, will allow you to see a bit earlier in time.`
-			`	"The difference, for us, is where we could put those scopes with our own cloaking devices. Ever since your arrival informed us of Humanity's survival, we have set up observation posts further and further away from us. All of which, of course, look toward the Ember Waste." He smiles. "Out of sheer bad luck, we are just a few millennia too late to see our space at the time of the Builders - our Milky Way is, unfortunately, only around 100,000 light years wide. Through stellar lensing, at least, our posts can occasionally gather some more information on that bygone era."`
-			`	He points his finger at a neutron star located at the very edge of the galaxy. "To show you our trust, we are now revealing to you the location of one such post - one of our most recent creations, as well as the one most at risk. In this case, we chose the very post that we saw when Postverta and Patir appeared and disappeared, a hundred thousand years ago. As a symbolic gesture, we would like you to visit that system, to see it with your eyes and to update our own data."`
-			choice
-				`	"What an honor!"`
-					goto ship
-				`	"That is all?"`
-				`	"How could you get that far?"`
-					goto far
-			`	"There is nothing we value more than our own survival, <first>. Something that depends on our defensive forces as much as it does on our secrecy. With this gesture, we are trusting you not only not to reveal our existence, but also the location of some of our most important technology - one that we cannot properly defend, given the distance. I hope you understand the importance of it - this is nothing short of a celebration of your progress among our ranks."`
-				goto ship
-			label far
-			`	"I do not need to tell you that with a cloak and a jump drive, the only limit is the lifetime, and the capacity of your ramscoops," intervenes Torza.`
-			`	Chilia nods. "Unfortunately, scouting goes beyond the capability to go very far. Given the constraints we have to put for our own safety, our knowledge of this galaxy is growing steadily, but slowly and not too in-depth. But this is not the time for complaints - we are here to celebrate your progress, not our limitations."`
-			label ship
-			`	Eventually, you walk back to your ship under the night sky. On it, you find a rather crude machine masked by a standard container. Reading through the notes, you discover that it is a decryption machine, built to locate and communicate with the hidden outpost.`
-				accept
-	on enter Equus
-		dialog "The analog screen of the decryption machine points you toward the gas giant Methuselah. On the screen, the neon outline of a small cloaked outpost appears in front of you: behind it, a tiny and just as invisible ship of unknown design swoops up and down the gas giant in a mesmerizing pattern. You activate the data transfer, and a progress bar fills to completion over the next few minutes."
-	on visit
-		dialog phrase "generic cargo on visit"
-	on complete
-		event "patir mystery 3 timer" 20
-		conversation
-			`Once again, Chilia's coordinates point you toward a half-hidden outpost in the middle of the desert. While the local crew unloads the machinery, you catch a glimpse of the lower floor through the stairway. Dozens of workers wearing special suits are quickly moving what looks like one of the parts of the creatures beyond Patir.`
-			`	This time, however, nobody tries to stop you. The opposite, in fact: when they recognize you, the workers accompany you on an hour-long tour of the structure. Walking down the floors, you pass through a dozen different rooms, half of which are dedicated to studying - and testing - the parts of the asteroid that you have recovered. In some of the rooms, giant, eerie machines are immersed into strange fogs, with only a few meters and a strongly vibrating layer of glass separating you from them.`
-			`	Once they have emptied your payload bay of the decryption equipment, they wave their goodbyes. Based on their gestures, you reckon that they expect to see you again sometime soon.`
+			`	"I want to get back up to date with the Builder research, at least while I see how things trend with Patir. In the meanwhile, keep your eyes open for anyone who needs a ride there - I have no doubt that as long as you keep helping our efforts, our roads will cross again. Embers bless your path, <first>!" You copy his bow in farewell.`
 
 event "patir mystery 3 timer"
 
