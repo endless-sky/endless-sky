@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MainPanel.h"
 #include "MenuPanel.h"
 #include "Panel.h"
+#include "PilotProfile.h"
 #include "PlayerInfo.h"
 #include "Plugins.h"
 #include "Preferences.h"
@@ -210,6 +211,9 @@ int main(int argc, char *argv[])
 
 			// Set the game's initial internal state.
 			GameData::FinishLoading();
+
+			// Now load all pilot profiles, which may rely on game data.
+			PilotProfile::LoadProfiles();
 
 			// Reference check the universe, as known to the player. If no player found,
 			// then check the default state of the universe.
@@ -665,6 +669,8 @@ Conversation LoadConversation(const PlayerInfo &player)
 		{"<fare>", "[N passengers]"},
 		{"<first>", "[First]"},
 		{"<last>", "[Last]"},
+		{"<original first>", "[Original First]"},
+		{"<original last>", "[Original Last]"},
 		{"<origin>", "[Origin Planet]"},
 		{"<passengers>", "[your passengers]"},
 		{"<planet>", "[Planet]"},
