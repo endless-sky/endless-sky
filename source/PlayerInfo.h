@@ -26,11 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
 #include "GameEvent.h"
-#include "Gamerules.h"
 #include "Minable.h"
 #include "Mission.h"
-#include "ScanOptions.h"
-#include "ScanType.h"
 #include "SystemEntry.h"
 
 #include <chrono>
@@ -376,10 +373,10 @@ public:
 	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
 
 	// Whether the player has any scanners of the given type.
-	bool HasScanner(ScanType type) const;
+	bool HasScanner(int type) const;
 	// Whether the player's fleet is capable of scanning the given target.
-	ScanOptions CanScan(const std::shared_ptr<const Ship> &target) const;
-	ScanOptions CanScan(const std::shared_ptr<const Minable> &target) const;
+	int CanScan(const std::shared_ptr<const Ship> &target) const;
+	int CanScan(const std::shared_ptr<const Minable> &target) const;
 	// The highest progress of any ship in the player's fleet for scanning a target.
 	double CargoScanFraction(const std::shared_ptr<const Ship> &target) const;
 	double OutfitScanFraction(const std::shared_ptr<const Ship> &target) const;
@@ -499,8 +496,8 @@ private:
 	std::vector<std::weak_ptr<Ship>> selectedEscorts;
 	std::map<const Ship *, int> groups;
 	// The different scan capabilities of the player's fleet, storing the ship with each scanner
-	// and its scan range squared (for quicker comparisons) and scan speed.
-	std::map<ScanType, std::map<std::shared_ptr<Ship>, std::pair<double, double>>> scanners;
+	// and its scan range squared (for quicker comparisons).
+	std::map<int, std::map<std::shared_ptr<Ship>, double>> scanners;
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;

@@ -55,6 +55,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 #include "Random.h"
 #include "shader/RingShader.h"
+#include "ScanType.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ship/ShipAICache.h"
@@ -891,14 +892,14 @@ void Engine::Step(bool isActive)
 
 		targetVector = targetAsteroid->Position() - camera.Center();
 
-		ScanOptions option = player.CanScan(targetAsteroid);
-		if(option.HasOption(ScanType::RANGE))
+		int options = player.CanScan(targetAsteroid);
+		if(options & ScanType::RANGE)
 		{
 			info.SetCondition("range display");
 			int targetRange = round(targetAsteroid->Position().Distance(flagship->Position()));
 			info.SetString("target range", to_string(targetRange));
 		}
-		if(option.HasOption(ScanType::TACTICAL) || option.HasOption(ScanType::STRATEGIC))
+		if(options & ScanType::TACTICAL || options & ScanType::STRATEGIC)
 			info.SetBar("target hull", targetAsteroid->Hull(), 20.);
 	}
 	else
@@ -944,18 +945,18 @@ void Engine::Step(bool isActive)
 
 			targetVector = target->Position() - camera.Center();
 
-			ScanOptions options = player.CanScan(target);
-			bool hasTactical = options.HasOption(ScanType::TACTICAL);
-			bool hasStrategic = options.HasOption(ScanType::STRATEGIC);
-			bool hasCrew = options.HasOption(ScanType::CREW);
-			bool hasFuel = options.HasOption(ScanType::FUEL);
-			bool hasEnergy = options.HasOption(ScanType::ENERGY);
-			bool hasThermal = options.HasOption(ScanType::THERMAL);
-			bool hasManeuver = options.HasOption(ScanType::MANEUVER);
-			bool hasAcceleration = options.HasOption(ScanType::ACCELERATION);
-			bool hasVelocity = options.HasOption(ScanType::VELOCITY);
-			bool hasWeapon = options.HasOption(ScanType::WEAPON);
-			bool hasRange = options.HasOption(ScanType::RANGE);
+			int options = player.CanScan(target);
+			bool hasTactical = options & ScanType::TACTICAL;
+			bool hasStrategic = options & ScanType::STRATEGIC;
+			bool hasCrew = options & ScanType::CREW;
+			bool hasFuel = options & ScanType::FUEL;
+			bool hasEnergy = options & ScanType::ENERGY;
+			bool hasThermal = options & ScanType::THERMAL;
+			bool hasManeuver = options & ScanType::MANEUVER;
+			bool hasAcceleration = options & ScanType::ACCELERATION;
+			bool hasVelocity = options & ScanType::VELOCITY;
+			bool hasWeapon = options & ScanType::WEAPON;
+			bool hasRange = options & ScanType::RANGE;
 
 			// Range information. If the player has any range finding,
 			// then calculate the range and store it. If they do not
@@ -1048,12 +1049,12 @@ void Engine::Step(bool isActive)
 		{
 			double width = max(target->Width(), target->Height());
 			Point pos = target->Position() - camera.Center();
-			ScanOptions scan = player.CanScan(target);
+			int options = player.CanScan(target);
 			statuses.emplace_back(pos, outfitScan, 0., 0., 10. + max(20., width * .5),
-				scan.HasOption(ScanType::OUTFIT) ? Status::Type::SCAN : Status::Type::SCAN_OUT_OF_RANGE,
+				options & ScanType::OUTFIT ? Status::Type::SCAN : Status::Type::SCAN_OUT_OF_RANGE,
 				1.f, Angle(pos).Degrees() + 180.);
 			statuses.emplace_back(pos, 0., cargoScan, 0., 10. + max(20., width * .5),
-				scan.HasOption(ScanType::CARGO) ? Status::Type::SCAN : Status::Type::SCAN_OUT_OF_RANGE,
+				options & ScanType::CARGO ? Status::Type::SCAN : Status::Type::SCAN_OUT_OF_RANGE,
 				1.f, Angle(pos).Degrees() + 180.);
 		}
 	}
@@ -1130,7 +1131,7 @@ void Engine::Step(bool isActive)
 			bool scanComplete = true;
 			for(const shared_ptr<Minable> &minable : asteroids.Minables())
 			{
-				bool inRange = player.CanScan(minable).HasOption(ScanType::ASTEROID);
+				bool inRange = player.CanScan(minable) & ScanType::ASTEROID;
 
 				// Autocatalog asteroid: Record that the player knows this type of asteroid is available here.
 				if(shouldCatalogAsteroids && !asteroidsScanned.contains(minable->DisplayName()))
@@ -2376,7 +2377,7 @@ void Engine::HandleMouseClicks()
 		// If the click was not on any ship, check if it was on a minable.
 		for(const shared_ptr<Minable> &minable : asteroids.Minables())
 		{
-			if(!player.CanScan(minable).HasOption(ScanType::ASTEROID))
+			if(!(player.CanScan(minable) & ScanType::ASTEROID))
 				continue;
 
 			Point position = minable->Position() - camera.Center();

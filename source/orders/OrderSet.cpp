@@ -131,7 +131,7 @@ void OrderSet::Add(const OrderSingle &newOrder, bool *hasMismatch, bool *already
 
 
 
-void OrderSet::Validate(const Ship *ship, const System *playerSystem, const PlayerInfo &player)
+void OrderSet::Validate(const Ship *ship, const PlayerInfo &player)
 {
 	if(Has(Types::MINE) && ship->Cargo().Free() && targetAsteroid.expired())
 	{
@@ -143,6 +143,7 @@ void OrderSet::Validate(const Ship *ship, const System *playerSystem, const Play
 	bool targetAsteroidInvalid = false;
 	if((types & (HAS_TARGET_SHIP | HAS_TARGET_SHIP_OR_ASTEROID)).any())
 	{
+		const System *playerSystem = player.GetSystem();
 		shared_ptr<Ship> tShip = GetTargetShip();
 		// Check if the target ship itself is targetable, or if it is one of your ship that you targeted.
 		// If there's an attack order, make sure its type is correct.
@@ -152,7 +153,8 @@ void OrderSet::Validate(const Ship *ship, const System *playerSystem, const Play
 			|| (!tShip->IsTargetable() && tShip->GetGovernment() != ship->GetGovernment())
 			|| (tShip->IsDisabled() && Has(Types::ATTACK))
 			|| (ship->GetSystem() && tShip->GetSystem() != ship->GetSystem() && tShip->GetSystem() != playerSystem);
-		// A target is also invalid if it has a scan order against it but is done being scanned.
+		// A target is also invalid if it has a scan order against it, but
+		// this ship doesn't have scanners or the target is done being scanned.
 		if(!targetShipInvalid && Has(Types::SCAN))
 		{
 			bool cargo = ship->Attributes().Get("cargo scan power");

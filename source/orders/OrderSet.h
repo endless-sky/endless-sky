@@ -33,7 +33,7 @@ public:
 	// Add a single new order to this set.
 	void Add(const OrderSingle &newOrder, bool *hasMismatch = nullptr, bool *alreadyHarvesting = nullptr);
 	// Remove orders that need a ship/asteroid target if the current target is invalid.
-	void Validate(const Ship *ship, const System *playerSystem, const PlayerInfo &player);
+	void Validate(const Ship *ship, const PlayerInfo &player);
 	// Update the internal variants of the "hold position" order.
 	void Update(const Ship &ship);
 

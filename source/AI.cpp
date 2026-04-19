@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "Random.h"
 #include "RoutePlan.h"
+#include "ScanType.h"
 #include "Ship.h"
 #include "ship/ShipAICache.h"
 #include "ShipEvent.h"
@@ -601,7 +602,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
-		it->second.Validate(it->first, flagship->GetSystem(), player);
+		it->second.Validate(it->first, player);
 		if(it->second.Empty())
 		{
 			it = orders.erase(it);

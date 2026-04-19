@@ -289,8 +289,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Sale.h
 	SavedGame.cpp
 	SavedGame.h
-	ScanOptions.cpp
-	ScanOptions.h
 	ScanType.h
 	Screen.cpp
 	Screen.h

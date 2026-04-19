@@ -1428,7 +1428,7 @@ tip "Fleet: Harvest flotsam"
 	`Command your fleet to harvest nearby flotsam (e.g. dropped cargo). The "Flotsam collection" setting must allow your escorts to pick up flotsam in order to harvest it.`
 
 tip "Fleet: Scan my target"
-	`Command your fleet to scan a target. Requires your escorts have cargo or outfit scanners installed. If only some escorts are selected, only sends the command to those escorts.`
+	`Command your fleet to scan a target. Requires your escorts to have cargo or outfit scanners installed. If only some escorts are selected, only sends the command to those escorts.`
 
 
 

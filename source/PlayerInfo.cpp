@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RaidFleet.h"
 #include "Random.h"
 #include "SavedGame.h"
+#include "ScanType.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "image/SpriteLoadManager.h"
@@ -155,22 +156,24 @@ namespace {
 		}
 	}
 
-	ScanOptions CanScanTarget(const Point &position, const vector<ScanType> &types, const System *system,
-		const map<ScanType, map<shared_ptr<Ship>, pair<double, double>>> &scanners)
+	int CanScanTarget(const Point &position, const vector<int> &types, const System *system,
+		const map<int, map<shared_ptr<Ship>, double>> &scanners)
 	{
-		ScanOptions options;
-		for(ScanType type : types)
+		int options = 0;
+		for(int type : types)
 		{
 			auto it = scanners.find(type);
 			if(it == scanners.end())
 				continue;
-			for(const auto &[ship, scanStats] : it->second)
+			for(const auto &[ship, rangeSquared] : it->second)
 			{
 				if(ship->GetSystem() != system || ship->IsDestroyed() || ship->CannotAct(Ship::ActionType::SCAN))
 					continue;
-				double distanceSquared = ship->Position().DistanceSquared(position);
-				if(type == ScanType::RANGE || scanStats.first >= distanceSquared)
-					options.AddOption(type, ship, scanStats.first, scanStats.second);
+				if(type == ScanType::RANGE || rangeSquared >= ship->Position().DistanceSquared(position))
+				{
+					options |= type;
+					break;
+				}
 			}
 		}
 		return options;
@@ -3532,7 +3535,7 @@ const set<pair<const System *, const Outfit *>> &PlayerInfo::Harvested() const
 
 
 
-bool PlayerInfo::HasScanner(ScanType type) const
+bool PlayerInfo::HasScanner(int type) const
 {
 	auto it = scanners.find(type);
 	if(it == scanners.end())
@@ -3545,9 +3548,9 @@ bool PlayerInfo::HasScanner(ScanType type) const
 
 
 
-ScanOptions PlayerInfo::CanScan(const shared_ptr<const Ship> &target) const
+int PlayerInfo::CanScan(const shared_ptr<const Ship> &target) const
 {
-	static const vector<ScanType> SHIP_SCAN_TYPES = {
+	static const vector<int> SHIP_SCAN_TYPES = {
 		ScanType::CARGO, ScanType::OUTFIT, ScanType::TACTICAL, ScanType::STRATEGIC, ScanType::CREW,
 		ScanType::FUEL, ScanType::ENERGY, ScanType::THERMAL, ScanType::MANEUVER, ScanType::ACCELERATION,
 		ScanType::VELOCITY, ScanType::WEAPON, ScanType::RANGE
@@ -3557,9 +3560,9 @@ ScanOptions PlayerInfo::CanScan(const shared_ptr<const Ship> &target) const
 
 
 
-ScanOptions PlayerInfo::CanScan(const shared_ptr<const Minable> &target) const
+int PlayerInfo::CanScan(const shared_ptr<const Minable> &target) const
 {
-	static const vector<ScanType> MINABLE_SCAN_TYPES = {
+	static const vector<int> MINABLE_SCAN_TYPES = {
 		ScanType::ASTEROID, ScanType::TACTICAL, ScanType::RANGE
 	};
 	return CanScanTarget(target->Position(), MINABLE_SCAN_TYPES, system, scanners);
@@ -5377,33 +5380,33 @@ void PlayerInfo::CalculateScanners(const shared_ptr<Ship> &ship)
 	bool range = attributes.Get("range finder power") > 0.;
 
 	if(cargo)
-		scanners[ScanType::CARGO][ship] = make_pair(cargo, cargoSpeed);
+		scanners[ScanType::CARGO][ship] = cargo;
 	if(outfit)
-		scanners[ScanType::OUTFIT][ship] = make_pair(outfit, outfitSpeed);
+		scanners[ScanType::OUTFIT][ship] = outfit;
 	if(asteroid)
-		scanners[ScanType::ASTEROID][ship] = make_pair(asteroid, 0.);
+		scanners[ScanType::ASTEROID][ship] = asteroid;
 	if(tactical)
-		scanners[ScanType::TACTICAL][ship] = make_pair(tactical, 0.);
+		scanners[ScanType::TACTICAL][ship] = tactical;
 	if(strategic)
-		scanners[ScanType::STRATEGIC][ship] = make_pair(strategic, 0.);
+		scanners[ScanType::STRATEGIC][ship] = strategic;
 	if(crew)
-		scanners[ScanType::CREW][ship] = make_pair(crew, 0.);
+		scanners[ScanType::CREW][ship] = crew;
 	if(fuel)
-		scanners[ScanType::FUEL][ship] = make_pair(fuel, 0.);
+		scanners[ScanType::FUEL][ship] = fuel;
 	if(energy)
-		scanners[ScanType::ENERGY][ship] = make_pair(energy, 0.);
+		scanners[ScanType::ENERGY][ship] = energy;
 	if(thermal)
-		scanners[ScanType::THERMAL][ship] = make_pair(thermal, 0.);
+		scanners[ScanType::THERMAL][ship] = thermal;
 	if(maneuver)
-		scanners[ScanType::MANEUVER][ship] = make_pair(maneuver, 0.);
+		scanners[ScanType::MANEUVER][ship] = maneuver;
 	if(acceleration)
-		scanners[ScanType::ACCELERATION][ship] = make_pair(acceleration, 0.);
+		scanners[ScanType::ACCELERATION][ship] = acceleration;
 	if(velocity)
-		scanners[ScanType::VELOCITY][ship] = make_pair(velocity, 0.);
+		scanners[ScanType::VELOCITY][ship] = velocity;
 	if(weapon)
-		scanners[ScanType::WEAPON][ship] = make_pair(weapon, 0.);
+		scanners[ScanType::WEAPON][ship] = weapon;
 	if(tactical || strategic || range)
-		scanners[ScanType::RANGE][ship] = make_pair(0., 0.);
+		scanners[ScanType::RANGE][ship] = 0.;
 }
 
 
