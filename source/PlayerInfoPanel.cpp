@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "InfoPanelState.h"
 #include "Information.h"
 #include "Interface.h"
