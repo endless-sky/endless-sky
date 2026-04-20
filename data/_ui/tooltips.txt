@@ -1634,9 +1634,9 @@ tip "Block screen saver"
 tip "Auto refill ammo"
 	`Controls the ammo refill behavior when you enter the outfitter.`
 	`- "always": ammo will be automatically refilled if you have the credits for it.`
-	`- "when free": ammo will be automatically refill only if it doesn't cost you anything, such as when you have spare ammo in cargo or storage.`
+	`- "when free": ammo will be automatically refilled only if it doesn't cost you anything, such as when you have spare ammo in cargo or storage.`
 	`- "ask": you will be prompted to refill any missing ammunition upon entering the outfitter.`
-	`- "never": you will have to manually refill your ammunition.`
+	`- "never": you will always have to manually refill your ammunition.`
 
 tip "Title bar theme"
 	`Choose the theme of the title bar, or leave "system default" to use system settings. (Available on Windows 10 or newer; on Windows 10, the game window must be resized or restarted in order for the change to take effect.)`
@@ -1694,3 +1694,6 @@ tip "Fighters hit when disabled"
 
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
+
+tip "Spawn raid fleets"
+	`Controls whether raid fleets are able to spawn. Raid fleets are hostile fleets that can spawn in some systems if your fleet's cargo attractiveness is much higher than its deterrence. (That is, if you have a lot of cargo space and not a lot of firepower to defend it.) If this rule is active, your fleet's raid fleet spawn chance can be viewed from the player info panel.`
