@@ -286,6 +286,9 @@ void PlayerInfo::New(const StartConditions &start, shared_ptr<PilotProfile> &pil
 	accounts = start.GetAccounts();
 	RegisterDerivedConditions();
 	start.GetConditions().Apply();
+	maxEscortCount = pilot->GetGamerules().GetDefaultMaxEscortCount();
+	maxEscortCrew = pilot->GetGamerules().GetDefaultMaxEscortCrew();
+	adminCap = pilot->GetGamerules().GetDefaultAdminCap();
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -390,6 +393,12 @@ void PlayerInfo::Load(const filesystem::path &path, shared_ptr<PilotProfile> &pi
 				if(grand.Size() >= 2)
 					tributeReceived[GameData::Planets().Get(grand.Token(0))] = grand.Value(1);
 		}
+		else if(key == "max escort count" && hasValue)
+			maxEscortCount = max<int>(0, child.Value(1));
+		else if(key == "max escort crew" && hasValue)
+			maxEscortCrew = max<int>(0, child.Value(1));
+		else if(key == "admin cap" && hasValue)
+			adminCap = max<int>(0, child.Value(1));
 		// Records of things you own:
 		else if(key == "ship")
 		{
@@ -590,6 +599,13 @@ void PlayerInfo::Load(const filesystem::path &path, shared_ptr<PilotProfile> &pi
 		originalFirstName = firstName;
 	if(originalLastName.empty())
 		originalLastName = lastName;
+	// If no fleet capacity attributes were loaded, then use the default from the active gamerules.
+	if(!maxEscortCrew.has_value())
+		maxEscortCount = pilot->GetGamerules().GetDefaultMaxEscortCount();
+	if(!maxEscortCrew.has_value())
+		maxEscortCrew = pilot->GetGamerules().GetDefaultMaxEscortCrew();
+	if(!adminCap.has_value())
+		adminCap = pilot->GetGamerules().GetDefaultAdminCap();
 }
 
 
@@ -1269,27 +1285,28 @@ void PlayerInfo::CaptureShip(const shared_ptr<Ship> &ship)
 
 
 // Adds a ship of the given model with the given name to the player's fleet.
-void PlayerInfo::BuyShip(const Ship *model, const string &name)
+bool PlayerInfo::BuyShip(const Ship *model, const string &name)
 {
 	if(!model)
-		return;
+		return false;
 
 	int day = date.DaysSinceEpoch();
 	int64_t cost = stockDepreciation.Value(*model, day);
-	if(accounts.Credits() >= cost)
-	{
-		AddStockShip(model, name);
+	if(accounts.Credits() < cost)
+		return false;
 
-		accounts.AddCredits(-cost);
-		flagship.reset();
+	AddStockShip(model, name);
 
-		depreciation.Buy(*model, day, &stockDepreciation);
-		for(const auto &it : model->Outfits())
-			stock[it.first] -= it.second;
+	accounts.AddCredits(-cost);
+	flagship.reset();
 
-		if(ships.back()->HasBays())
-			displayCarrierHelp = true;
-	}
+	depreciation.Buy(*model, day, &stockDepreciation);
+	for(const auto &[outfit, count] : model->Outfits())
+		stock[outfit] -= count;
+
+	if(ships.back()->HasBays())
+		displayCarrierHelp = true;
+	return true;
 }
 
 
@@ -1528,6 +1545,36 @@ double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *syst
 			}
 	}
 	return max(0., min(1., attraction));
+}
+
+
+
+int PlayerInfo::FleetCapacity() const
+{
+	Gamerules::FleetSizeLimitation behavior = GameData::GetGamerules().GetFleetSizeLimitation();
+	if(behavior == Gamerules::FleetSizeLimitation::NONE)
+		return 0;
+	if(behavior == Gamerules::FleetSizeLimitation::SHIP_CAP)
+		return maxEscortCount.value_or(0);
+	if(behavior == Gamerules::FleetSizeLimitation::CREW_CAP)
+		return maxEscortCrew.value_or(0);
+	return adminCap.value_or(0);
+}
+
+
+
+int PlayerInfo::FleetCost() const
+{
+	if(GameData::GetGamerules().GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::NONE)
+		return 0;
+	int cost = 0;
+	for(const auto &ship : ships)
+	{
+		if(!ship || ship->IsParked() || ship->IsDestroyed() || ship == flagship)
+			continue;
+		cost += ship->FleetCost();
+	}
+	return cost;
 }
 
 
@@ -3940,6 +3987,22 @@ void PlayerInfo::RegisterDerivedConditions()
 			AddLicense(ce.NameWithoutPrefix());
 	});
 
+	conditions["max escort count"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return maxEscortCount.value_or(0);
+	}, [this](ConditionEntry &ce, int64_t value) -> void {
+		maxEscortCount = max<int>(0, value);
+	});
+	conditions["max escort crew"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return maxEscortCrew.value_or(0);
+	}, [this](ConditionEntry &ce, int64_t value) -> void {
+		maxEscortCrew = max<int>(0, value);
+	});
+	conditions["admin cap"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return adminCap.value_or(0);
+	}, [this](ConditionEntry &ce, int64_t value) -> void {
+		adminCap = max<int>(0, value);
+	});
+
 	// Read-only flagship conditions.
 	conditions["flagship crew"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		return flagship ? flagship->Crew() : 0; });
@@ -4931,6 +4994,13 @@ void PlayerInfo::Save(DataWriter &out) const
 				out.Write((it.first)->TrueName(), it.second);
 	}
 	out.EndChild();
+
+	if(maxEscortCount.has_value())
+		out.Write("max escort count", *maxEscortCount);
+	if(maxEscortCrew.has_value())
+		out.Write("max escort crew", *maxEscortCrew);
+	if(adminCap.has_value())
+		out.Write("admin cap", *adminCap);
 
 	// Records of things you own:
 	out.Write();

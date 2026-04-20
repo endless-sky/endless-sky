@@ -100,6 +100,12 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!canCapture)
 		messages.emplace_back("This is not a ship that you can capture.");
+	else if(player.FleetCost() + victim->FleetCost() > player.FleetCapacity())
+	{
+		canCapture = false;
+		messages.emplace_back("You cannot capture this ship as doing so");
+		messages.emplace_back("would put you over your fleet capacity.");
+	}
 	else
 	{
 		attackOdds.Calculate();
