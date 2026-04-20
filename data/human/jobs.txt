@@ -4024,7 +4024,7 @@ mission "Bounty Hunting (Marauder X)"
 		fleet "Marauder fleet X"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 5000000
+			payment 10000000
 			fail
 
 

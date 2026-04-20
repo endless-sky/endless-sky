@@ -108,6 +108,8 @@ GamerulesPanel::GamerulesPanel(Gamerules &gamerules, bool existingPilot)
 
 GamerulesPanel::~GamerulesPanel()
 {
+	if(callback)
+		callback();
 }
 
 
