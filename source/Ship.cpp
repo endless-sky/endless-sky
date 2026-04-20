@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "FormationPattern.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "JumpType.h"
 #include "Logger.h"
