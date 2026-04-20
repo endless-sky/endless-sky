@@ -2033,8 +2033,12 @@ int Ship::Scan(const PlayerInfo &player)
 		if(elapsed >= SCAN_TIME)
 			result |= event;
 	};
-	doScan(cargoScan, cargoSpeed, cargoDistanceSquared, cargo, ShipEvent::SCAN_CARGO);
-	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
+	// If multiple ships in the player's fleet are scanning a ship, stop scanning if
+	// one of the escorts has already completed as scan.
+	if(!isYours || player.CargoScanFraction(target) < 1.)
+		doScan(cargoScan, cargoSpeed, cargoDistanceSquared, cargo, ShipEvent::SCAN_CARGO);
+	if(!isYours || player.OutfitScanFraction(target) < 1.)
+		doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
 
 	// Play the scanning sound if the actor or the target is the player's ship.
 	auto playScanSounds = [](const map<const Sound *, int> &sounds, const Point &position)
@@ -2139,7 +2143,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 	// A ship that is about to die creates a special single-turn "projectile"
 	// representing its death explosion.
 	if(IsDestroyed() && explosionCount == explosionTotal && explosionWeapon)
-		projectiles.emplace_back(position, explosionWeapon);
+		projectiles.emplace_back(position, angle, explosionWeapon);
 
 	if(CannotAct(Ship::ActionType::FIRE))
 		return;

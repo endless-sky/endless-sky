@@ -61,6 +61,7 @@ namespace {
 	const string LOCK_GAMERULES = "Lock gamerules";
 	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
 	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
+	const string SPAWN_RAID_FLEETS = "Spawn raid fleets";
 	const string FLEET_SIZE_LIMITATION = "Fleet size limitation";
 	const string MAX_ESCORT_COUNT = "Default max escort count";
 	const string MAX_ESCORT_CREW = "Default max escort crew";
@@ -84,6 +85,7 @@ namespace {
 		{LOCK_GAMERULES, "lock gamerules"},
 		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
 		{UNIVERSAL_AMMO_STOCKING, AMMO_RESTOCKING_NAME},
+		{SPAWN_RAID_FLEETS, "spawn raid fleets"},
 		{FLEET_SIZE_LIMITATION, "fleet size limitation"},
 		{MAX_ESCORT_COUNT, "default max escort count"},
 		{MAX_ESCORT_CREW, "default max escort crew"},
@@ -114,6 +116,8 @@ GamerulesPanel::GamerulesPanel(Gamerules &gamerules, bool existingPilot)
 
 GamerulesPanel::~GamerulesPanel()
 {
+	if(callback)
+		callback();
 }
 
 
@@ -406,7 +410,8 @@ void GamerulesPanel::DrawGamerules()
 		"Miscellaneous",
 		LOCK_GAMERULES,
 		FIGHTERS_HIT_WHEN_DISABLED,
-		UNIVERSAL_AMMO_STOCKING
+		UNIVERSAL_AMMO_STOCKING,
+		SPAWN_RAID_FLEETS,
 	};
 
 	bool isCategory = true;
@@ -504,6 +509,8 @@ void GamerulesPanel::DrawGamerules()
 		}
 		else if(gamerule == UNIVERSAL_AMMO_STOCKING)
 			text = gamerules.GetValue(AMMO_RESTOCKING_NAME) ? "true" : "false";
+		else if(gamerule == SPAWN_RAID_FLEETS)
+			text = gamerules.SpawnRaidFleets() ? "true" : "false";
 		else if(gamerule == FLEET_SIZE_LIMITATION)
 		{
 			switch(gamerules.GetFleetSizeLimitation())
@@ -864,6 +871,8 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 	}
 	else if(str == UNIVERSAL_AMMO_STOCKING)
 		gamerules.SetMiscValue(AMMO_RESTOCKING_NAME, !gamerules.GetValue(AMMO_RESTOCKING_NAME));
+	else if(str == SPAWN_RAID_FLEETS)
+		gamerules.SetSpawnRaidFleets(!gamerules.SpawnRaidFleets());
 	else if(str == FLEET_SIZE_LIMITATION)
 	{
 		Gamerules::FleetSizeLimitation value = gamerules.GetFleetSizeLimitation();

@@ -89,6 +89,7 @@ public:
 	void SetSystemDepartureMin(double value);
 	void SetSystemArrivalMin(std::optional<double> value);
 	void SetFleetMultiplier(double value);
+	void SetSpawnRaidFleets(bool value);
 	void SetFleetSizeLimitation(FleetSizeLimitation value);
 	void SetDefaultMaxEscortCount(int value);
 	void SetDefaultMaxEscortCrew(int value);
@@ -111,6 +112,7 @@ public:
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
 	double FleetMultiplier() const;
+	bool SpawnRaidFleets() const;
 	FleetSizeLimitation GetFleetSizeLimitation() const;
 	int GetDefaultMaxEscortCount() const;
 	int GetDefaultMaxEscortCrew() const;
@@ -141,6 +143,7 @@ private:
 		double systemDepartureMin = 0.;
 		std::optional<double> systemArrivalMin;
 		double fleetMultiplier = 1.;
+		bool spawnRaidFleets = true;
 		FleetSizeLimitation fleetSizeLimitation = FleetSizeLimitation::NONE;
 		// The player can only have up to this many escorts active at once. Carried ships are excluded.
 		// This value can be increased for a pilot through gameplay.

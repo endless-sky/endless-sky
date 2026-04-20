@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
 #include "GameEvent.h"
-#include "Gamerules.h"
+#include "Minable.h"
 #include "Mission.h"
 #include "SystemEntry.h"
 
@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DistanceMap;
 class Outfit;
+class PilotProfile;
 class Planet;
 class RaidFleet;
 class Rectangle;
@@ -89,15 +90,18 @@ public:
 	// Check if any player's information is loaded.
 	bool IsLoaded() const;
 	// Make a new player.
-	void New(const StartConditions &start, const Gamerules &gamerules);
+	void New(const StartConditions &start, std::shared_ptr<PilotProfile> &pilot);
 	// Load an existing player.
-	void Load(const std::filesystem::path &path);
+	void Load(const std::filesystem::path &path, std::shared_ptr<PilotProfile> &pilot);
 	// Reload from the same file from which the current pilot was loaded.
 	void Reload();
 	// Load the most recently saved player. If no save could be loaded, returns false.
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
+
+	// Get the pilot profile that this player is from.
+	std::shared_ptr<PilotProfile> &Pilot();
 
 	// Get the root filename used for this player's saved game files. (If there
 	// are multiple pilots with the same name it may have a digit appended.)
@@ -142,6 +146,7 @@ public:
 	// Set what planet the player is on (or nullptr, if taking off).
 	void SetPlanet(const Planet *planet);
 	const Planet *GetPlanet() const;
+	const Planet *GetPreviousPlanet() const;
 	// If the player is landed, return the stellar object they are on.
 	const StellarObject *GetStellarObject() const;
 	// Check whether a mission conversation has raised a flag that the player
@@ -173,7 +178,7 @@ public:
 	// determine which ships cannot travel with the group.
 	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> FlightCheck() const;
 	// Add a captured ship to your fleet.
-	void AddShip(const std::shared_ptr<Ship> &ship);
+	void CaptureShip(const std::shared_ptr<Ship> &ship);
 	// Buy, receive or sell a ship.
 	// In the case of buying, return whether the ship could be purchased.
 	// In the case of a gift, return a pointer to the newly instantiated ship.
@@ -295,8 +300,6 @@ public:
 	// Access the "condition" flags for this player.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
-	// Access mutable gamerules for modification by a GamerulesPanel.
-	Gamerules &GetGamerules();
 	// Maps defined names for gifted ships to UUIDs for the ship instances.
 	const std::map<std::string, EsUuid> &GiftedShips() const;
 	std::map<std::string, std::string> GetSubstitutions() const;
@@ -373,6 +376,15 @@ public:
 	void Harvest(const Outfit *type);
 	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
 
+	// Whether the player's fleet has any scanners of the given type.
+	bool HasScanner(int type) const;
+	// Which scanning capabilities the player's fleet has against the given target.
+	int CanScan(const std::shared_ptr<const Ship> &target) const;
+	int CanScan(const std::shared_ptr<const Minable> &target) const;
+	// The highest progress of any ship in the player's fleet for scanning a target.
+	double CargoScanFraction(const std::shared_ptr<const Ship> &target) const;
+	double OutfitScanFraction(const std::shared_ptr<const Ship> &target) const;
+
 	// Get or set the travel destination for selected escorts via the map.
 	const std::pair<const System *, Point> &GetEscortDestination() const;
 	void SetEscortDestination(const System *system = nullptr, Point pos = Point());
@@ -445,6 +457,11 @@ private:
 	// When we remove a ship, forget it's stored Uuid.
 	void ForgetGiftedShip(const Ship &oldShip, bool failsMissions = true);
 
+	// Calculate the scanning capabilities of the player's fleet.
+	void CalculateScanners();
+	// Calculate the scanning capabilities of a single ship.
+	void CalculateScanners(const std::shared_ptr<Ship> &ship);
+
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;
 	// Handle the daily salaries and payments.
@@ -456,11 +473,15 @@ private:
 private:
 	std::string firstName;
 	std::string lastName;
+	std::string originalFirstName;
+	std::string originalLastName;
 	std::string filePath;
+	std::shared_ptr<PilotProfile> pilot;
 
 	Date date;
 	SystemEntry entry = SystemEntry::TAKE_OFF;
 	const System *previousSystem = nullptr;
+	const Planet *previousPlanet = nullptr;
 	const System *system = nullptr;
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
@@ -478,6 +499,9 @@ private:
 	std::vector<std::shared_ptr<Ship>> ships;
 	std::vector<std::weak_ptr<Ship>> selectedEscorts;
 	std::map<const Ship *, int> groups;
+	// The different scan capabilities of the player's fleet, storing the ship with each scanner
+	// and its scan range squared (for quicker comparisons).
+	std::map<int, std::map<std::weak_ptr<Ship>, double, std::owner_less<std::weak_ptr<const Ship>>>> scanners;
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
@@ -531,7 +555,6 @@ private:
 	bool sortSeparatePossible = false;
 
 	ConditionsStore conditions;
-	Gamerules gamerules;
 	std::map<std::string, EsUuid> giftedShips;
 
 	std::set<const System *> seen;

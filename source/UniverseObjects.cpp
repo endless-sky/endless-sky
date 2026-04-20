@@ -101,7 +101,8 @@ void UniverseObjects::FinishLoading()
 		if(it.second.IsValid())
 			it.second.FinishLoading(true);
 	for(auto &&it : persons)
-		it.second.FinishLoading();
+		if(it.second.IsValid())
+			it.second.FinishLoading();
 
 	// Calculate minable values.
 	for(auto &&it : minables)
@@ -343,9 +344,9 @@ void UniverseObjects::CheckReferences()
 	for(auto &it : messages)
 		if(!it.second.IsLoaded())
 			NameAndWarn("message", it);
-	// Persons can be referred to when marking them as destroyed.
+	// Persons can be referred to when marking them as destroyed, or contain invalid ships.
 	for(const auto &it : persons)
-		if(!it.second.IsLoaded())
+		if(!it.second.IsValid())
 			Warn("person", it.first);
 }
 

@@ -152,6 +152,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		if(displayName.empty())
 			displayName = trueName;
 	}
+	isDefined = true;
 
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
@@ -528,6 +529,13 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 	if(reputationMin > reputationMax)
 		reputationMin = reputationMax;
 	SetReputation(Reputation());
+}
+
+
+
+bool Government::IsDefined() const
+{
+	return isDefined;
 }
 
 
