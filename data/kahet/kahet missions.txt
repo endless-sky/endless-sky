@@ -3912,7 +3912,7 @@ mission "Ka'het: Patir Mystery 31"
 
 mission "Ka'het: Patir Mystery 32"
 	name "Logistics of a first contact"
-	description "Accompany the Remnant team and to <system> exactly on <date>. Together with them will come <cargo> and a Swan."
+	description "Accompany the Remnant team and their cargo to <system> exactly on <date>, making sure nobody is left behind on the jump in."
 	deadline 6
 	source "Caelian"
 	destination "Builder Settlement"
