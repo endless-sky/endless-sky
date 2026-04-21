@@ -195,6 +195,9 @@ tip "corrosion resistance heat:"
 tip "cost:"
 	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
 
+tip "fleet cost:"
+	`How much this ship costs toward your fleet capacity. Your flagship and parked escorts do not count toward the capacity. You may exceed your capacity while landed, but will not be able to depart if you go over your capacity.`
+
 tip "discharge protection:"
 	`Protection provided against shield discharge damage. Increases by the given factor how much discharge damage a ship can withstand before it loses as much shielding as an unprotected ship.`
 
@@ -1427,11 +1430,14 @@ tip "Fleet: Toggle ammo usage"
 tip "Fleet: Harvest flotsam"
 	`Command your fleet to harvest nearby flotsam (e.g. dropped cargo). The "Flotsam collection" setting must allow your escorts to pick up flotsam in order to harvest it.`
 
+tip "Fleet: Scan my target"
+	`Command your fleet to scan a target. Requires your escorts to have cargo or outfit scanners installed. If only some escorts are selected, only sends the command to those escorts.`
+
 
 
 # Settings
 tip "Main zoom factor"
-	`Increase the main zoom factor (the size of the UI and gameplay). Wraps back to 100 if the zoom exceeds your screen's limits. If the zoom factor is greater than 100, activates high DPI images if they are available.`
+	`Increase the main zoom factor (the size of the UI and gameplay). Wraps back to 100 if the zoom exceeds your screen's limits.`
 
 tip "View zoom factor"
 	`Increase the zoom factor of the gameplay view when in flight. Can also be changed by the + and - keys and the scroll wheel.`
@@ -1628,11 +1634,21 @@ tip "Save message log"
 tip "Block screen saver"
 	`Whether your monitor should be able to dim and turn off or change to the screen saver while the game is open.`
 
+tip "Auto refill ammo"
+	`Controls the ammo refill behavior when you enter the outfitter.`
+	`- "always": ammo will be automatically refilled if you have the credits for it.`
+	`- "when free": ammo will be automatically refilled only if it doesn't cost you anything, such as when you have spare ammo in cargo or storage.`
+	`- "ask": you will be prompted to refill any missing ammunition upon entering the outfitter.`
+	`- "never": you will always have to manually refill your ammunition.`
+
 tip "Title bar theme"
 	`Choose the theme of the title bar, or leave "system default" to use system settings. (Available on Windows 10 or newer; on Windows 10, the game window must be resized or restarted in order for the change to take effect.)`
 
 tip "Window rounding"
 	`Control the appearance of window corners. (Available on Windows 11.)`
+
+tip "Tribute confirmation"
+	`Whether a confirmation dialog will be displayed when you attempt to demand tribute from a planet. Either it always appears, never appears, or only appears if the target planet is friendly to you.`
 
 
 
@@ -1681,3 +1697,22 @@ tip "Fighters hit when disabled"
 
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
+
+tip "Spawn raid fleets"
+	`Controls whether raid fleets are able to spawn. Raid fleets are hostile fleets that can spawn in some systems if your fleet's cargo attractiveness is much higher than its deterrence. (That is, if you have a lot of cargo space and not a lot of firepower to defend it.) If this rule is active, your fleet's raid fleet spawn chance can be viewed from the player info panel.`
+
+tip "Fleet size limitation"
+	`Determines whether the player can only have a limited number of escorts active at once. If active, your flagship, parked ships, and carried ships (fighters and drones) are excluded from your fleet capacity, and you will not be able to capture ships that would put you over your capacity or take off from a planet if your capacity has been reached.`
+	`- "none": you can have as many escorts as you want.`
+	`- "ship cap": you can only command up to a certain number of escorts.`
+	`- "crew cap": the base crew requirement of your active escorts may not exceed a certain limit.`
+	`- "admin cap": the limit is tied to an "administrative cost" that every ship has, with larger ships having a higher cost.`
+
+tip "Default max escort count"
+	`If the fleet size limitation is "ship cap," then this is the default maximum number of escorts that you can have active at once. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
+
+tip "Default max escort crew"
+	`If the fleet size limitation is "crew cap," then this is the default maximum sum of the base required crew (i.e. excluding required crew added by outfits like turrets) across all your escorts that you can have at once. Automated ships will use a crew-equivalent value. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
+
+tip `Default admin cap`
+	`If the fleet size limitation is "admin cap," then this is the default maximum administrative capacity. Ships will have individual administrative costs that count toward your capacity. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`

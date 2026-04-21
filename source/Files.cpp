@@ -39,6 +39,7 @@ namespace {
 	filesystem::path soundPath;
 	filesystem::path savePath;
 	filesystem::path controlsPath;
+	filesystem::path pilotPath;
 	filesystem::path userPluginPath;
 	filesystem::path globalPluginPath;
 	filesystem::path testPath;
@@ -171,6 +172,8 @@ void Files::Init(const char *const *argv)
 
 	savePath = config / "saves";
 	CreateFolder(savePath);
+	pilotPath = config / "pilots";
+	CreateFolder(pilotPath);
 
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
@@ -181,9 +184,11 @@ void Files::Init(const char *const *argv)
 	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(savePath))
-		throw runtime_error("Unable to create save directory!");
+		throw runtime_error("Unable to create saves directory!");
 	if(!Exists(controlsPath))
 		throw runtime_error("Unable to create controls directory!");
+	if(!Exists(pilotPath))
+		throw runtime_error("Unable to create pilots directory!");
 	if(!Exists(userPluginPath))
 		throw runtime_error("Unable to create plugins directory!");
 }
@@ -228,6 +233,13 @@ const filesystem::path &Files::Sounds()
 const filesystem::path &Files::Saves()
 {
 	return savePath;
+}
+
+
+
+const filesystem::path &Files::Pilots()
+{
+	return pilotPath;
 }
 
 
@@ -391,6 +403,14 @@ void Files::Delete(const filesystem::path &filePath)
 string Files::Name(const filesystem::path &path)
 {
 	return path.filename().string();
+}
+
+
+
+std::string Files::NameNoExtension(const std::filesystem::path &path)
+{
+	string name = path.filename().string();
+	return name.substr(0, name.length() - path.extension().string().length());
 }
 
 

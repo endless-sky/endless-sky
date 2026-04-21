@@ -96,15 +96,16 @@ const Command Command::HOLD_FIRE(ONE << 32, "Fleet: Toggle hold fire");
 const Command Command::GATHER(ONE << 33, "Fleet: Gather around me");
 const Command Command::HOLD_POSITION(ONE << 34, "Fleet: Hold position");
 const Command Command::HARVEST(ONE << 35, "Fleet: Harvest flotsam");
-const Command Command::AMMO(ONE << 36, "Fleet: Toggle ammo usage");
-const Command Command::AUTOSTEER(ONE << 37, "Auto steer");
+const Command Command::SCAN_ORDER(ONE << 36, "Fleet: Scan my target");
+const Command Command::AMMO(ONE << 37, "Fleet: Toggle ammo usage");
+const Command Command::AUTOSTEER(ONE << 38, "Auto steer");
 
 // These commands are not in the preferences panel, and do not have keys
 // assigned to them, but may have descriptions as needed to facilitate
 // assignments in downstream ports like endless-mobile.
-const Command Command::WAIT(ONE << 38, "");
-const Command Command::STOP(ONE << 39, "Stop your ship");
-const Command Command::SHIFT(ONE << 40, "");
+const Command Command::WAIT(ONE << 39, "");
+const Command Command::STOP(ONE << 40, "Stop your ship");
+const Command Command::SHIFT(ONE << 41, "");
 
 
 
@@ -406,6 +407,7 @@ void Command::Load(const DataNode &node)
 			{"hold fire", Command::HOLD_FIRE},
 			{"gather", Command::GATHER},
 			{"hold", Command::HOLD_POSITION},
+			{"scan order", Command::SCAN_ORDER},
 			{"ammo", Command::AMMO},
 			{"nearest asteroid", Command::NEAREST_ASTEROID},
 			{"wait", Command::WAIT},
