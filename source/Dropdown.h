@@ -41,7 +41,10 @@ public:
 
 	virtual void Draw() override;
 
-	void ShowDropIcon(bool s) { showDropIcon = s; }
+	void ShowDropIcon(bool s);
+	void SetPadding(int p);
+	void SetRightPadding(int p);
+	int RightPadding() const { return rightPaddingWithoutDrop; }
 
 	void SetTypeable(bool t);
 	void SetEnabled(bool e);
@@ -51,14 +54,41 @@ public:
 protected:
 	void DoDropdown(const Point &pos);
 
+
+private:
+	class DroppedPanel: public Panel
+	{
+	public:
+		DroppedPanel(Dropdown *parent);
+		virtual ~DroppedPanel() = default;
+
+		void SetMousePos(const Point &p) { mousePos = p; }
+
+	protected:
+		virtual bool Click(int x, int y, MouseButton button, int clicks) override;
+		virtual bool Drag(double dx, double dy) override;
+		virtual bool Release(int x, int y, MouseButton button) override;
+		virtual bool Hover(int x, int y) override;
+
+		virtual void Draw() override;
+
+	private:
+		Dropdown *dd = nullptr;
+
+		uint32_t clickStamp = 0;
+		Point mousePos;
+
+		int highlightIndex = -1;
+	};
+
+
 private:
 	int IdxFromPoint(int x, int y) const;
 
 	std::vector<std::string> options;
 	int selectedIndex = -1;
 
+	int rightPaddingWithoutDrop = 5;
 	bool showDropIcon = true;
 	bool enabled = true;
-
-	class DroppedPanel;
 };

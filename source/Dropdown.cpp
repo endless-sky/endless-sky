@@ -28,42 +28,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <SDL2/SDL.h>
 
-
-class Dropdown::DroppedPanel: public Panel
-{
-public:
-	DroppedPanel(Dropdown *parent);
-	virtual ~DroppedPanel() = default;
-
-	void SetMousePos(const Point &p) { mousePos = p; }
-
-protected:
-	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
-	virtual bool Drag(double dx, double dy) override;
-	virtual bool Release(int x, int y, MouseButton button) override;
-	virtual bool Hover(int x, int y) override;
-
-	virtual void Draw() override;
-
-private:
-	Dropdown *dd = nullptr;
-
-	uint32_t clickStamp = 0;
-	Point mousePos;
-
-	int highlightIndex = -1;
-};
+using namespace std;
 
 
 
 Dropdown::Dropdown()
 {
 	SetTypeable(false);
+	SetRightPadding(Edit::RightPadding());
 }
 
 
 
-void Dropdown::SetText(const std::string &s)
+void Dropdown::SetText(const string &s)
 {
 	Edit::SetText(s);
 	selectedIndex = -1;
@@ -95,7 +72,7 @@ void Dropdown::SetSelectedIndex(int idx)
 
 
 
-void Dropdown::SetOptions(const std::vector<std::string> &options)
+void Dropdown::SetOptions(const vector<string> &options)
 {
 	this->options = options;
 	if(!Text().empty())
@@ -110,7 +87,7 @@ void Dropdown::SetOptions(const std::vector<std::string> &options)
 
 
 
-Point AlignText(Dropdown::ALIGN alignment, const Font &font, const Rectangle &pos, const std::string &s)
+Point AlignText(Dropdown::ALIGN alignment, const Font &font, const Rectangle &pos, const string &s)
 {
 	switch(alignment)
 	{
@@ -165,6 +142,33 @@ void Dropdown::Draw()
 
 
 
+void Dropdown::ShowDropIcon(bool s)
+{
+	showDropIcon = true;
+	SetRightPadding(rightPaddingWithoutDrop);
+}
+
+
+
+void Dropdown::SetPadding(int p)
+{
+	Edit::SetPadding(p);
+	SetRightPadding(p);
+}
+
+
+
+void Dropdown::SetRightPadding(int p)
+{
+	rightPaddingWithoutDrop = p;
+	int iconPadding = 0;
+	if(showDropIcon || Edit::Enabled())
+		iconPadding = FontSize();
+	Edit::SetRightPadding(p + iconPadding);
+}
+
+
+
 void Dropdown::SetTypeable(bool t)
 {
 	Edit::SetEnabled(t);
@@ -182,7 +186,7 @@ void Dropdown::SetEnabled(bool e)
 
 void Dropdown::DoDropdown(const Point &pos)
 {
-	auto p = std::make_shared<DroppedPanel>(this);
+	auto p = make_shared<DroppedPanel>(this);
 	// GetUI().Push(p);
 	AddChild(p);
 	p->SetMousePos(pos);
@@ -205,8 +209,10 @@ int Dropdown::IdxFromPoint(int x, int y) const
 		int idx = static_cast<int>(y - optRect.Top()) / Position().Height();
 		// Clamp the idx so that floating point errors don't force it out of
 		// bounds.
-		if(idx < 0) idx = 0;
-		if(idx >= static_cast<int>(options.size())) idx = options.size() - 1;
+		if(idx < 0)
+			idx = 0;
+		if(idx >= static_cast<int>(options.size()))
+			idx = options.size() - 1;
 		return idx;
 	}
 	return -1;
@@ -214,9 +220,8 @@ int Dropdown::IdxFromPoint(int x, int y) const
 
 
 
-Dropdown::DroppedPanel::DroppedPanel(Dropdown *parent):
-	dd(parent),
-	clickStamp(SDL_GetTicks())
+Dropdown::DroppedPanel::DroppedPanel(Dropdown *parent)
+	:	dd(parent),	clickStamp(SDL_GetTicks())
 {
 	SetTrapAllEvents(true);
 	SetInterruptible(false);

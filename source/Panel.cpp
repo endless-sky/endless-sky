@@ -237,7 +237,7 @@ bool Panel::Release(int x, int y, MouseButton button)
 
 
 
-bool Panel::TextInput(const std::string& text)
+bool Panel::TextInput(const std::string &text)
 {
 	return false;
 }
@@ -269,8 +269,9 @@ bool Panel::SetFocus(bool new_focus)
 			focus = OnFocus(true);
 			return focus;
 		}
-		else // We already had focus.
+		else
 		{
+			// We already had focus.
 			return true;
 		}
 	}
@@ -293,12 +294,9 @@ bool Panel::HasFocus()
 }
 
 
-
-bool Panel::FocusNext()
+int Panel::EnumerateTreeAndFindActivePanel(std::vector<Panel *>& all)
 {
-
 	int current_focus_idx = -1;
-	std::vector<Panel*> all_descendants;
 	std::deque<Panel*> q;
 	Panel *p = this;
 	while(p->parent)
@@ -309,29 +307,37 @@ bool Panel::FocusNext()
 	{
 		Panel *p = q.front();
 		if(p->HasFocus())
-			current_focus_idx = all_descendants.size();
-		all_descendants.push_back(p);
+			current_focus_idx = all.size();
+		all.push_back(p);
 		q.pop_front();
 
 		for(auto &c : p->children)
 			q.push_back(c.get());
 	}
+	return current_focus_idx;
+}
 
-	int descendant_idx = current_focus_idx + 1;
-	if(descendant_idx >= static_cast<int>(all_descendants.size()))
-		descendant_idx = 0;
-	while(current_focus_idx != descendant_idx)
+
+bool Panel::FocusNext()
+{
+	std::vector<Panel*> all;
+	int currentFocusIdx = EnumerateTreeAndFindActivePanel(all);
+
+	int idx = currentFocusIdx + 1;
+	if(idx >= static_cast<int>(all.size()))
+		idx = 0;
+	while(currentFocusIdx != idx)
 	{
-		Panel *p = all_descendants[descendant_idx];
+		Panel *p = all[idx];
 		if(p->SetFocus(true))
 			return true;
 
-		++descendant_idx;
-		if(descendant_idx >= static_cast<int>(all_descendants.size()))
+		++idx;
+		if(idx >= static_cast<int>(all.size()))
 		{
-			if(current_focus_idx == -1)
+			if(currentFocusIdx == -1)
 				break;
-			descendant_idx = 0;
+			idx = 0;
 		}
 	}
 
@@ -342,39 +348,24 @@ bool Panel::FocusNext()
 
 bool Panel::FocusPrev()
 {
-	int current_focus_idx = -1;
-	std::vector<Panel*> all_descendants;
-	std::deque<Panel*> q;
-	Panel *p = this;
-	while(p->parent)
-		p = p->parent;
-	q.push_back(p);
-	while(!q.empty())
-	{
-		Panel *p = q.front();
-		if(p->HasFocus())
-			current_focus_idx = all_descendants.size();
-		all_descendants.push_back(p);
-		q.pop_front();
-		for(auto &c : p->children)
-			q.push_back(c.get());
-	}
+	std::vector<Panel*> all;
+	int currentFocusIndex = EnumerateTreeAndFindActivePanel(all);
 
-	int descendant_idx = current_focus_idx - 1;
-	if(descendant_idx < 0)
-		descendant_idx = all_descendants.size() - 1;
-	while(current_focus_idx != descendant_idx)
+	int idx = currentFocusIndex - 1;
+	if(idx < 0)
+		idx = all.size() - 1;
+	while(currentFocusIndex != idx)
 	{
-		Panel *p = all_descendants[descendant_idx];
+		Panel *p = all[idx];
 		if(p->SetFocus(true))
 			return true;
 
-		--descendant_idx;
-		if(descendant_idx < 0)
+		--idx;
+		if(idx < 0)
 		{
-			if(current_focus_idx == -1)
+			if(currentFocusIndex == -1)
 				break;
-			descendant_idx = all_descendants.size() - 1;
+			idx = all.size() - 1;
 		}
 	}
 
@@ -434,7 +425,7 @@ bool Panel::DoScroll(double dx, double dy)
 
 
 
-bool Panel::DoTextInput(const std::string& text)
+bool Panel::DoTextInput(const std::string &text)
 {
 	// If a child has focus, don't let anybody else see the text.
 	for(auto &c : children)

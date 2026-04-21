@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 
+
+
 // Draws a caret at the given position
 class Caret final
 {
@@ -32,6 +34,7 @@ public:
 	void SetHeight(int h) { height = h; }
 	void SetX(int x) { pos.X() = x; }
 	void SetY(int y) { pos.Y() = y; }
+
 
 private:
 	uint32_t blinkCounter = 0;

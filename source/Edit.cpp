@@ -30,6 +30,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <SDL2/SDL.h>
 
+using namespace std;
+
 namespace
 {
 	constexpr size_t INVALID_POS = -1;
@@ -47,22 +49,28 @@ Edit::Edit()
 
 void Edit::SetFontSize(int f)
 {
-	fontSize = f;
-	caret.SetHeight(fontSize);
-	ComputeTextBounds();
+	if (f != fontSize)
+	{
+		fontSize = f;
+		caret.SetHeight(fontSize);
+		ComputeTextBounds();
+	}
 }
 
 
 
-void Edit::SetPosition(const Rectangle& p)
+void Edit::SetPosition(const Rectangle &p)
 {
-	position = p;
-	ComputeTextBounds();
+	if (p != position)
+	{
+		position = p;
+		ComputeTextBounds();
+	}
 }
 
 
 
-const std::string& Edit::Text() const
+const string &Edit::Text() const
 {
 	assert(historyPos > 0);
 	return textHistory[historyPos - 1].first;
@@ -70,7 +78,7 @@ const std::string& Edit::Text() const
 
 
 
-void Edit::SetText(const std::string& s)
+void Edit::SetText(const string &s)
 {
 	Clear();
 	UpdateText(s, s.size());
@@ -129,10 +137,44 @@ void Edit::Draw()
 
 void Edit::SetPadding(int p)
 {
-	padding = p;
+	leftPadding = p;
+	rightPadding = p;
+	topPadding = p;
+	bottomPadding = p;
 	ComputeTextBounds();
 }
 
+
+
+void Edit::SetLeftPadding(int p)
+{
+	leftPadding = p;
+	ComputeTextBounds();
+}
+
+
+
+void Edit::SetRightPadding(int p)
+{
+	rightPadding = p;
+	ComputeTextBounds();
+}
+
+
+
+void Edit::SetTopPadding(int p)
+{
+	topPadding = p;
+	ComputeTextBounds();
+}
+
+
+
+void Edit::SetBottomPadding(int p)
+{
+	bottomPadding = p;
+	ComputeTextBounds();
+}
 
 
 
@@ -175,7 +217,7 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			int left = highlightPos;
 			int right = caretPos;
 			if(left > right)
-				std::swap(left, right);
+				swap(left, right);
 			UpdateText(Text().substr(0, left) + Text().substr(right), left);
 			highlightPos = INVALID_POS;
 		}
@@ -190,7 +232,7 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			int left = highlightPos;
 			int right = caretPos;
 			if(left > right)
-				std::swap(left, right);
+				swap(left, right);
 			if(shift)
 			{
 				// shift-del, treat as cut
@@ -286,7 +328,7 @@ bool Edit::Click(int x, int y, MouseButton button, int clicks)
 
 	SetFocus(true);
 
-	const std::string &s = Text();
+	const string &s = Text();
 	size_t newpos = 0;
 	for(; newpos < s.size(); ++newpos)
 	{
@@ -310,7 +352,7 @@ bool Edit::Drag(double dx, double dy)
 		dragPos.X() += dx;
 		dragPos.Y() += dy;
 
-		const std::string &s = Text();
+		const string &s = Text();
 		size_t newpos = 0;
 		for(; newpos < s.size(); ++newpos)
 		{
@@ -353,19 +395,19 @@ bool Edit::OnFocus(bool f)
 
 
 
-bool Edit::TextInput(const std::string& s)
+bool Edit::TextInput(const string &s)
 {
 	if(!HasFocus())
 		return false;
 
-	std::string newText;
+	string newText;
 	size_t newPos = INVALID_POS;
 	if(highlightPos != INVALID_POS)
 	{
 		int left = highlightPos;
 		int right = caretPos;
 		if(left > right)
-			std::swap(left, right);
+			swap(left, right);
 
 		newText = Text().substr(0, left) + s + Text().substr(right);
 		newPos = left + s.size();
@@ -420,9 +462,9 @@ void Edit::UpdateCaret(size_t pos)
 
 
 
-void Edit::UpdateText(const std::string& text, size_t caretPos)
+void Edit::UpdateText(const string &text, size_t caretPos)
 {
-	std::string mutableText = text;
+	string mutableText = text;
 	if(changedCallback)
 	{
 		if(changedCallback(mutableText))
@@ -459,7 +501,7 @@ void Edit::Cut()
 		int left = highlightPos;
 		int right = caretPos;
 		if(left > right)
-			std::swap(left, right);
+			swap(left, right);
 		SDL_SetClipboardText(Text().substr(left, right - left).c_str());
 		UpdateText(Text().substr(0, left) + Text().substr(right), left);
 	}
@@ -477,7 +519,7 @@ void Edit::Copy()
 		int left = highlightPos;
 		int right = caretPos;
 		if(left > right)
-			std::swap(left, right);
+			swap(left, right);
 		SDL_SetClipboardText(Text().substr(left, right - left).c_str());
 	}
 }
@@ -486,7 +528,7 @@ void Edit::Copy()
 
 void Edit::Paste()
 {
-	std::shared_ptr<const char> text(SDL_GetClipboardText(), SDL_free);
+	shared_ptr<const char> text(SDL_GetClipboardText(), SDL_free);
 	if(highlightPos == INVALID_POS)
 	{
 		// insert text at caret position
@@ -501,7 +543,7 @@ void Edit::Paste()
 		int left = highlightPos;
 		int right = caretPos;
 		if(left > right)
-			std::swap(left, right);
+			swap(left, right);
 		UpdateText(
 			Text().substr(0, left) + text.get() + Text().substr(right),
 			left + strlen(text.get())
@@ -539,7 +581,7 @@ void Edit::Redo()
 Point Edit::AlignedOffset(size_t offset)
 {
 	const Font &font = FontSet::Get(fontSize);
-	const std::string &s = Text();
+	const string &s = Text();
 	Point ret{};
 	switch(alignment)
 	{
@@ -568,7 +610,7 @@ void Edit::UpdateHighlightRect(size_t o1, size_t o2)
 	int highlightLeft = AlignedOffset(o1).X();
 	int highlightRight = AlignedOffset(o2).X();
 	if(highlightLeft > highlightRight)
-		std::swap(highlightLeft, highlightRight);
+		swap(highlightLeft, highlightRight);
 	Point tl(highlightLeft, textBounds.Center().Y() - fontSize / 2.0);
 	Point br = tl;
 	br.X() = highlightRight;
@@ -580,6 +622,9 @@ void Edit::UpdateHighlightRect(size_t o1, size_t o2)
 
 void Edit::ComputeTextBounds()
 {
-	textBounds = Rectangle(position.Center(), position.Dimensions() - Point(padding * 2, padding * 2));
+	textBounds = Rectangle::WithCorners(
+		position.TopLeft() + Point(leftPadding, topPadding),
+		position.BottomRight() - Point(rightPadding, bottomPadding)
+	);
 	caret.SetY(textBounds.Center().Y() - fontSize / 2.0);
 }

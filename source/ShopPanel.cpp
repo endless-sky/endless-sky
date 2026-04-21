@@ -113,8 +113,6 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 			if(!isdigit(c))
 				return false;
 		}
-		if(s.empty())
-			s = "0";
 		return true;
 	});
 

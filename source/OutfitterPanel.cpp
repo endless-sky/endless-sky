@@ -702,7 +702,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 
 	// The count of how many outfits will be moved will be per ship when ships are involved, otherwise simply per hold.
 	// Hence, the concept of how many "per" rather than how many in total.
-	int howManyPer = stoi(selectedQuantity->Text());
+	int howManyPer = std::max(1, stoi(selectedQuantity->Text()));
 
 	// Purchases are handled here.
 	if(fromLocation == OutfitLocation::Shop)
@@ -1309,8 +1309,8 @@ void OutfitterPanel::DrawButtons()
 
 	font.Draw("Quantity:", Screen::BottomRight() - Point(SIDEBAR_WIDTH - 10, 33), dim);
 
-	const Point sqCenter = Screen::BottomRight() - Point(150, 25);
-	selectedQuantity->SetPosition(Rectangle(sqCenter, {55, 20}));
+	const Point sqCenter = Screen::BottomRight() - Point(135, 25);
+	selectedQuantity->SetPosition(Rectangle(sqCenter, {86, 20}));
 
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);

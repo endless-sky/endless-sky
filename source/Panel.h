@@ -42,11 +42,6 @@ class UI;
 // allow them to receive any events that it does not know how to handle.
 class Panel {
 public:
-	// Draw a sprite repeatedly to make a vertical edge.
-	static void DrawEdgeSprite(const Sprite *edgeSprite, int posX);
-
-
-public:
 	struct Event
 	{
 		Point pos;
@@ -54,6 +49,13 @@ public:
 		enum {MOUSE, TOUCH, BUTTON, AXIS} type;
 	};
 
+
+public:
+	// Draw a sprite repeatedly to make a vertical edge.
+	static void DrawEdgeSprite(const Sprite *edgeSprite, int posX);
+
+
+public:
 	// Make the destructor virtual just in case any derived class needs it.
 	virtual ~Panel() = default;
 
@@ -96,6 +98,7 @@ public:
 	// Move focus to the previous panel that wants it.
 	bool FocusPrev();
 
+
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress);
@@ -104,7 +107,7 @@ protected:
 	virtual bool Drag(double dx, double dy);
 	virtual bool Release(int x, int y, MouseButton button);
 	virtual bool Scroll(double dx, double dy);
-	virtual bool TextInput(const std::string& text);
+	virtual bool TextInput(const std::string &text);
 
 	virtual void Resize();
 
@@ -145,6 +148,7 @@ protected:
 	// Handle deferred add/remove child operations.
 	void AddOrRemove();
 
+
 private:
 	class Zone : public Rectangle {
 	public:
@@ -180,7 +184,7 @@ private:
 	bool DoDrag(double dx, double dy);
 	bool DoRelease(int x, int y, MouseButton button);
 	bool DoScroll(double dx, double dy);
-	bool DoTextInput(const std::string& text);
+	bool DoTextInput(const std::string &text);
 
 	void DoDraw();
 
@@ -190,6 +194,8 @@ private:
 	// object. Recursion stops as soon as any child returns true.
 	template<typename...FARGS, typename...ARGS>
 	bool EventVisit(bool(Panel::*f)(FARGS ...args), ARGS ...args);
+
+	int EnumerateTreeAndFindActivePanel(std::vector<Panel *>& descendants);
 
 
 private:

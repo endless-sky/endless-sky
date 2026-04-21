@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 
+
 // Implements an edit control.
 class Edit : public Panel
 {
@@ -48,7 +49,15 @@ public:
 	void SetAlign(ALIGN a) { alignment = a; }
 	ALIGN Align() const { return alignment; }
 	void SetPadding(int p);
-	int Padding() const { return padding; }
+	void SetLeftPadding(int p);
+	void SetRightPadding(int p);
+	void SetTopPadding(int p);
+	void SetBottomPadding(int p);
+	int Padding() const { return leftPadding; }
+	int LeftPadding() const { return leftPadding; }
+	int RightPadding() const { return rightPadding; }
+	int TopPadding() const { return topPadding; }
+	int BottomPadding() const { return bottomPadding; }
 
 	void SetVisible(bool v) { visible = v; }
 	bool Visible() const { return visible; }
@@ -58,18 +67,18 @@ public:
 	typedef std::function<bool(std::string &)> ChangedCallback;
 	void SetCallback(ChangedCallback cb) { changedCallback = cb; }
 
+
 protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y, MouseButton button) override;
 	virtual bool OnFocus(bool f) override;
-	virtual bool TextInput(const std::string& s) override;
+	virtual bool TextInput(const std::string &s) override;
 
 	void MoveCaret(size_t pos);
 	void UpdateCaret(size_t pos);
-	void UpdateText(const std::string& text, size_t caretpos);
-
+	void UpdateText(const std::string &text, size_t caretpos);
 
 	void Cut();
 	void Copy();
@@ -83,6 +92,7 @@ protected:
 	void UpdateHighlightRect(size_t o1, size_t o2);
 
 	void ComputeTextBounds();
+
 
 private:
 	Rectangle position;
@@ -104,7 +114,10 @@ private:
 
 	int fontSize = 18;
 	ALIGN alignment = LEFT;
-	int padding = 5;
+	int leftPadding = 5;
+	int rightPadding = 5;
+	int topPadding = 5;
+	int bottomPadding = 5;
 
 	bool visible = true;
 
