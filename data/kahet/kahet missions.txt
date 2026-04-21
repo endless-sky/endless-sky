@@ -3960,7 +3960,7 @@ mission "Ka'het: Patir Mystery 32"
 		event "Patir moves" 6
 		event "Patir returns" 20
 	on visit
-		dialog "You've arrived at <planet>, but either your escort, your passengers or your cargo have been left behind in the Milky Way!"
+		dialog "Your escort, your passengers or your cargo have been left behind in the Milky Way, and the mission is a failure. If you wish to continue Patir content, you may wish to reload."
 	npc save accompany
 		government "Remnant"
 		ship "Swan (Jump)" "Serene Pillar Lost"
