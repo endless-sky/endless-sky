@@ -2665,6 +2665,7 @@ mission "Ka'het: Patir Mystery 14"
 		not "ka'het: beyond Patir"
 	on offer
 		event "ssil vida changes"
+		fail "Ka'het: Voice From The Past 0"
 		conversation
 			`Although its architecture still feels wildly alien, time has helped you become familiar with the way <planet>'s main starport is organized. By now, it's not difficult for you to notice when something changes. Some are subtler than others - it wasn't long ago that additional barriers were placed between the rows of landing pads, much to your displeasure.`
 			`	Passing the arch that connects to the northern shipyards reveals a curious sight. A group of hangars that, until now, were marked as off-limits are now open, and crowds of construction workers are walking in and out of the area. Among the crowd, pairs of camels tow sections of Remnant spacecraft of all kinds; you step aside to let a convoy pass with some of the longest wings you have ever seen.`
@@ -3959,7 +3960,7 @@ mission "Ka'het: Patir Mystery 32"
 		event "Patir moves" 6
 		event "Patir returns" 20
 	on visit
-		dialog "You've arrived at <planet>, but either your escort, your passengers or your cargo are not with you!"
+		dialog "You've arrived at <planet>, but either your escort, your passengers or your cargo have been left behind in the Milky Way!"
 	npc save accompany
 		government "Remnant"
 		ship "Swan (Jump)" "Serene Pillar Lost"
@@ -4527,14 +4528,28 @@ mission "Ka'het: Voice From The Past 0"
 			dialog
 				`You make a close pass above this lifeless satellite, abandoned in a graveyard orbit for who knows how long. All of a sudden, your commlink emits a weak, garbled, whistle-like sound, as if receiving a communication from the Builder spacecraft. While you can't understand it, it might be worth paying another visit to the Remnant.`
 			set "builder signal"
-		to spawn
-			or
-				not "Ka'het: Patir Mystery 14: done"
-				has "Ka'het: Patir Mystery 36: done"
-		to despawn
-			and
-				has "Ka'het: Patir Mystery 14: done"
-				not "Ka'het: Patir Mystery 36: done"
+		on kill
+			dialog
+				`A glance at the radar screen reveals that the nearby Builder satellite exploded, presumably due to the damage incurred. A wasted opportunity.`
+			clear "builder signal"
+
+mission "Ka'het: Voice From The Past 0 Patir 3"
+	landing
+	invisible
+	non-blocking
+	to offer
+		has "Ka'het: Patir Mystery 35: done"
+	to complete
+		never
+	npc assist save
+		government "Builder"
+		system "Fereti"
+		personality derelict waiting
+		ship "Builder Satellite 2" "Valii'sei"
+		on assist
+			dialog
+				`You make a close pass above this lifeless satellite, abandoned in a graveyard orbit for who knows how long. All of a sudden, your commlink emits a weak, garbled, whistle-like sound, as if receiving a communication from the Builder spacecraft. While you can't understand it, it might be worth paying another visit to the Remnant.`
+			set "builder signal"
 		on kill
 			dialog
 				`A glance at the radar screen reveals that the nearby Builder satellite exploded, presumably due to the damage incurred. A wasted opportunity.`
