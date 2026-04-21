@@ -15,9 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Panel.h"
+
 #include "Caret.h"
 #include "Color.h"
-#include "Panel.h"
 #include "Rectangle.h"
 
 #include <functional>
@@ -26,8 +27,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Implements an edit control.
-class Edit : public Panel
-{
+class Edit : public Panel {
+public:
+	enum ALIGN { LEFT, CENTER, RIGHT };
+
+	
 public:
 	Edit();
 	virtual ~Edit() = default;
@@ -45,7 +49,6 @@ public:
 
 	virtual void Draw() override;
 
-	enum ALIGN { LEFT, CENTER, RIGHT };
 	void SetAlign(ALIGN a) { alignment = a; }
 	ALIGN Align() const { return alignment; }
 	void SetPadding(int p);

@@ -42,8 +42,7 @@ class UI;
 // allow them to receive any events that it does not know how to handle.
 class Panel {
 public:
-	struct Event
-	{
+	struct Event {
 		Point pos;
 		int id;
 		enum {MOUSE, TOUCH, BUTTON, AXIS} type;
@@ -153,17 +152,16 @@ private:
 	class Zone : public Rectangle {
 	public:
 		Zone(const Rectangle &rect, const std::function<void()> &fun) : Rectangle(rect), fun(fun) {}
-		Zone(const Rectangle &rect, const std::function<void(const Event&)> &fun):
-			Rectangle(rect),
-			fun_down_event(fun)
+		Zone(const Rectangle &rect, const std::function<void(const Event&)> &fun)
+			: Rectangle(rect), funDownEvent(fun)
 		{}
 
 		void Click() const
 		{
-			if(fun_down_event)
+			if(funDownEvent)
 			{
 				Event e{{}, 0, Event::MOUSE};
-				fun_down_event(e);
+				funDownEvent(e);
 			}
 			else
 				fun();
@@ -171,7 +169,7 @@ private:
 
 	private:
 		std::function<void()> fun;
-		std::function<void(const Event&)> fun_down_event;
+		std::function<void(const Event &)> funDownEvent;
 	};
 
 	// The UI class will not directly call the virtual methods, but will call
@@ -195,7 +193,7 @@ private:
 	template<typename...FARGS, typename...ARGS>
 	bool EventVisit(bool(Panel::*f)(FARGS ...args), ARGS ...args);
 
-	int EnumerateTreeAndFindActivePanel(std::vector<Panel *>& descendants);
+	int EnumerateTreeAndFindActivePanel(std::vector<Panel *> &descendants);
 
 
 private:

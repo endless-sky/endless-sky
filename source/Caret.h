@@ -23,8 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Draws a caret at the given position
-class Caret final
-{
+class Caret final {
 public:
 	void Draw();
 	void BlinkOn();

@@ -105,7 +105,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	selectedQuantity->SetPadding(0);
 	selectedQuantity->SetOptions({"1", "10", "100", "1000"});
 	selectedQuantity->SetTypeable(true);
-	selectedQuantity->SetCallback([](std::string& s)
+	selectedQuantity->SetCallback([](std::string &s)
 	{
 		// Restrict input to digits.
 		for(char c : s)

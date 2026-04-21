@@ -19,8 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-namespace
-{
+namespace {
 	// In units of frames at 60fps, so half a second.
 	uint32_t BLINK_INTERVAL = 30;
 }

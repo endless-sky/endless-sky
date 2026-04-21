@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Edit.h"
 
 #include "Color.h"
-#include "Edit.h"
 #include "Panel.h"
 #include "Rectangle.h"
 
@@ -28,8 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Implements a dropdown control.
-class Dropdown : public Edit
-{
+class Dropdown : public Edit {
 public:
 	Dropdown();
 	virtual ~Dropdown() = default;
@@ -56,8 +55,7 @@ protected:
 
 
 private:
-	class DroppedPanel: public Panel
-	{
+	class DroppedPanel : public Panel {
 	public:
 		DroppedPanel(Dropdown *parent);
 		virtual ~DroppedPanel() = default;
@@ -85,6 +83,8 @@ private:
 private:
 	int IdxFromPoint(int x, int y) const;
 
+
+private:
 	std::vector<std::string> options;
 	int selectedIndex = -1;
 

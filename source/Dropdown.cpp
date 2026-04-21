@@ -221,7 +221,7 @@ int Dropdown::IdxFromPoint(int x, int y) const
 
 
 Dropdown::DroppedPanel::DroppedPanel(Dropdown *parent)
-	:	dd(parent),	clickStamp(SDL_GetTicks())
+	: dd(parent), clickStamp(SDL_GetTicks())
 {
 	SetTrapAllEvents(true);
 	SetInterruptible(false);

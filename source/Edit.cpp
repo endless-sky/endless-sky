@@ -32,8 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-namespace
-{
+namespace {
 	constexpr size_t INVALID_POS = -1;
 }
 
@@ -49,7 +48,7 @@ Edit::Edit()
 
 void Edit::SetFontSize(int f)
 {
-	if (f != fontSize)
+	if(f != fontSize)
 	{
 		fontSize = f;
 		caret.SetHeight(fontSize);
@@ -61,7 +60,7 @@ void Edit::SetFontSize(int f)
 
 void Edit::SetPosition(const Rectangle &p)
 {
-	if (p != position)
+	if(p != position)
 	{
 		position = p;
 		ComputeTextBounds();

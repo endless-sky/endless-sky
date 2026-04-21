@@ -106,7 +106,7 @@ void Panel::AddZone(const Rectangle &rect, const function<void()> &fun)
 
 
 // Add a clickable zone to the panel.
-void Panel::AddZone(const Rectangle &rect, const function<void(const Event&)> &fun)
+void Panel::AddZone(const Rectangle &rect, const function<void(const Event &)> &fun)
 {
 	// The most recently added zone will typically correspond to what was drawn
 	// most recently, so it should be on top.
@@ -294,33 +294,10 @@ bool Panel::HasFocus()
 }
 
 
-int Panel::EnumerateTreeAndFindActivePanel(std::vector<Panel *>& all)
-{
-	int current_focus_idx = -1;
-	std::deque<Panel*> q;
-	Panel *p = this;
-	while(p->parent)
-		p = p->parent;
-	q.push_back(p);
-
-	while(!q.empty())
-	{
-		Panel *p = q.front();
-		if(p->HasFocus())
-			current_focus_idx = all.size();
-		all.push_back(p);
-		q.pop_front();
-
-		for(auto &c : p->children)
-			q.push_back(c.get());
-	}
-	return current_focus_idx;
-}
-
 
 bool Panel::FocusNext()
 {
-	std::vector<Panel*> all;
+	std::vector<Panel *> all;
 	int currentFocusIdx = EnumerateTreeAndFindActivePanel(all);
 
 	int idx = currentFocusIdx + 1;
@@ -348,7 +325,7 @@ bool Panel::FocusNext()
 
 bool Panel::FocusPrev()
 {
-	std::vector<Panel*> all;
+	std::vector<Panel *> all;
 	int currentFocusIndex = EnumerateTreeAndFindActivePanel(all);
 
 	int idx = currentFocusIndex - 1;
@@ -574,4 +551,29 @@ void Panel::AddChild(const shared_ptr<Panel> &panel)
 void Panel::RemoveChild(const Panel *panel)
 {
 	childrenToRemove.push_back(panel);
+}
+
+
+
+int Panel::EnumerateTreeAndFindActivePanel(std::vector<Panel *> &all)
+{
+	int current_focus_idx = -1;
+	std::deque<Panel *> q;
+	Panel *p = this;
+	while(p->parent)
+		p = p->parent;
+	q.push_back(p);
+
+	while(!q.empty())
+	{
+		Panel *p = q.front();
+		if(p->HasFocus())
+			current_focus_idx = all.size();
+		all.push_back(p);
+		q.pop_front();
+
+		for(auto &c : p->children)
+			q.push_back(c.get());
+	}
+	return current_focus_idx;
 }
