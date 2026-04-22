@@ -55,10 +55,14 @@ namespace {
 	constexpr int COLUMN_WIDTH = static_cast<int>(WIDTH) - 20;
 }
 
+
+
 ShipInfoPanel::ShipInfoPanel(PlayerInfo &player)
 	: ShipInfoPanel(player, InfoPanelState(player))
 {
 }
+
+
 
 ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
 	: player(player), panelState(std::move(state))

@@ -61,6 +61,7 @@ protected:
 	class TransactionResult {
 	public:
 		TransactionResult(std::string error) : success(false), message(std::move(error)) {}
+		TransactionResult(const char *error) : success(false), message(error) {}
 		TransactionResult(bool canSource, bool canPlace, std::string error)
 			: canSource(canSource), canPlace(canPlace), success(false), message(std::move(error)) {}
 		TransactionResult(bool result) : success(result), message() {}
@@ -195,6 +196,7 @@ protected:
 	std::map<std::string, std::vector<std::string>> catalog;
 	const CategoryList &categories;
 	std::set<std::string> &collapsed;
+	bool hasFleetCapacity;
 
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
