@@ -31,7 +31,7 @@ class Edit : public Panel {
 public:
 	enum ALIGN { LEFT, CENTER, RIGHT };
 
-	
+
 public:
 	Edit();
 	virtual ~Edit() = default;
