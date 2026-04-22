@@ -471,14 +471,16 @@ def check_copyright(lines, file):
 		while index_begin < len(lines) - len(copyright_end):
 			index = index_begin
 			for [copyright, is_regex] in copyright_end:
-				if is_regex and not re.search(copyright, lines[index]):
-					error_line = index
-					failed_check = copyright
-					break
-				elif copyright != lines[index]:
-					error_line = index
-					failed_check = copyright
-					break
+				if is_regex:
+					if not re.search(copyright, lines[index]):
+						error_line = index
+						failed_check = copyright
+						break
+				else:
+					if copyright != lines[index]:
+						error_line = index
+						failed_check = copyright
+						break
 				index += 1
 			if index - index_begin > 0:
 				found_copyright_end = True
