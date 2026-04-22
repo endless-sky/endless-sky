@@ -4539,6 +4539,7 @@ mission "Ka'het: Voice From The Past 0 Patir 3"
 	non-blocking
 	to offer
 		has "Ka'het: Patir Mystery 35: done"
+		not "builder signal"
 	to complete
 		never
 	npc assist save
