@@ -617,7 +617,7 @@ interface "controls"
 
 	visible if "show controls changed"
 	label "Controls have changed."
-		alignment center
+		align center
 		center 125 165
 		color bright
 	visible
