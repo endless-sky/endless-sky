@@ -18864,7 +18864,7 @@ system Hatysa
 	fleet "Northern Priate Miners" 2000
 	fleet "Northern Pirate Merchants" 6000
 	fleet "Small Priate Traffic" 400
-	fleet "Small Republic" 5000
+	fleet "Small Republic" 6000
 	fleet "Small Northern Merchants (Corrupt)" 8000
 	fleet "Large Northern Merchants (Corrupt)" 12000
 	fleet "Human Miners (Corrupt)" 9000
@@ -39012,6 +39012,7 @@ system Tortor
 	fleet "Republic Logistics" 8000
 	fleet "Human Miners" 3000
 	fleet "Small Northern Merchants" 2000
+	fleet "Large Northern Merchants" 8000
 	fleet "Small Northern Merchants (Corrupt)" 4000
 	fleet "Large Northern Merchants (Corrupt)" 8000
 	fleet "Derelict Pirate" 10000
@@ -39803,7 +39804,7 @@ system Unagi
 	fleet "Derelict Pirate" 30000
 	fleet "Northern Priate Miners" 4000
 	fleet "Northern Pirate Merchants" 6000
-	fleet "Small Republic" 8000
+	fleet "Small Republic" 6000
 	fleet "Small Northern Merchants (Corrupt)" 8000
 	fleet "Large Northern Merchants (Corrupt)" 12000
 	fleet "Human Miners (Corrupt)" 9000
@@ -43086,7 +43087,7 @@ system "FU Orionis"
 	fleet "Large Northern Pirates" 3500
 	fleet "Small Priate Miners" 6000
 	fleet "Human Miners (Corrupt)" 9000
-	fleet "Small Republic" 7000
+	fleet "Small Republic" 8000
 	object
 		sprite star/g-giant
 		period 10
