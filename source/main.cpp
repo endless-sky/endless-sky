@@ -48,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "test/Test.h"
 #include "test/TestContext.h"
 #include "UI.h"
+#include "UniverseObjects.h"
 
 #ifdef _WIN32
 #include "windows/TimerResolutionGuard.h"
@@ -102,6 +103,8 @@ int main(int argc, char *argv[])
 		WinConsole::Init();
 #endif
 	PlayerInfo player;
+	UniverseObjects universe;
+	GameData::SetUniverse(universe);
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
