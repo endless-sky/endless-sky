@@ -1001,19 +1001,24 @@ mission "Exotic Life: Bloodsea"
 					has "event: bloodsea independent"
 					has "event: bloodsea joins free worlds"
 			`You slowly thread your way through the dirty makeshift spaceport. It is packed with vendors and pirates haggling over illegal goods. In the distance, the sun is setting over the blood-red ocean that gives Bloodsea its name.`
-			`	In the shadow behind a run-down shack, over which a sign advertises "the cheapest nerve gas this side o' Sol," you see a man coughing. He does not stop for a while, and when he finally recovers, you notice his lips are stained with blood. As you turn away, you catch the eye of a wizened old man in the next stall.`
+			`	In the shadow behind a run-down shack, over which a sign advertises "the cheapest nerve gas this side o' Sol," you see a man coughing. He hacks and splutters for a while, and when he finally recovers, you notice his lips are stained with blood. As you turn away, you catch the eye of a wizened old man in the next stall.`
 				goto restofhello
 			label formerpirates
 			`You slowly thread your way through the dirty spaceport. It is packed with vendors and shady persons haggling over goods of dubious origin. In the distance, the sun is setting over the blood-red ocean that gives Bloodsea its name.`
-			`	In the shadow behind a run-down shack, over which a sign advertises "the cheapest 'nades this side o' Sol," you see a man coughing. He does not stop for a while, and when he finally recovers, you notice his lips are stained with blood. As you turn away, you catch the eye of a wizened old man in the next stall.`
+			`	In the shadow behind a run-down shack, over which a sign advertises "the cheapest 'nades this side o' Sol," you see a man coughing. He hacks and splutters for a while, and when he finally recovers, you notice his lips are stained with blood. As you turn away, you catch the eye of a wizened old man in the next stall.`
 			label restofhello
 			`	"He's got the Bloom," the old man pronounces solemnly. "He'll be dead in a few weeks. It's the blood tide that does it, the fools."`
 			choice
 				`	"What is it?"`
-				`	"Is it dangerous?"`
+				`	"Is it contagious?"`
+					goto contagious
 				`	(Walk away.)`
 					decline
 			`	He laughs scornfully. "The sea sprays poison. No one goes there except spacers and fools. Bloody sea and bloody fools.`
+				goto next
+			label contagious
+			`	"Yes," he says simply. You automatically recoil from the coughing man.`
+			label next
 			`	"First your eyes itch, then your throat, then your lungs. By then it's too late, too late. But there are always those who never learn."`
 			`	He grins with derision. "Well, I'll chop you up and throw you to the Bloom if you don't buy some fish from me. Three barrels." He reaches in and pulls a fish out. "Still fresh. 1000 credits each."`
 			choice
