@@ -2665,7 +2665,6 @@ mission "Ka'het: Patir Mystery 14"
 		not "ka'het: beyond Patir"
 	on offer
 		event "ssil vida changes"
-		fail "Ka'het: Voice From The Past 0"
 		conversation
 			`Although its architecture still feels wildly alien, time has helped you become familiar with the way <planet>'s main starport is organized. By now, it's not difficult for you to notice when something changes. Some are subtler than others - it wasn't long ago that additional barriers were placed between the rows of landing pads, much to your displeasure.`
 			`	Passing the arch that connects to the northern shipyards reveals a curious sight. A group of hangars that, until now, were marked as off-limits are now open, and crowds of construction workers are walking in and out of the area. Among the crowd, pairs of camels tow sections of Remnant spacecraft of all kinds; you step aside to let a convoy pass with some of the longest wings you have ever seen.`
@@ -2697,8 +2696,16 @@ mission "Ka'het: Patir Mystery 14"
 				`	"Sorry, but I cannot return there after what happened last time."`
 					decline
 			label go
+			branch VFTP
+				not "builder signal"
 			`	"I would come with you if I could," he signs with trepidation, "but I am required here at the moment, and it is a task that can be easily done by a single person. Follow the procedure Dusk showed you, and you will be done in no time."`
 				accept
+			label VFTP
+			action
+				fail "Ka'het: Voice From The Past 0"
+			`	"I would come with you if I could," he signs with trepidation, "but I am required here at the moment, and it is a task that can be easily done by a single person. Follow the procedure Dusk showed you, and you will be done in no time."`
+				accept
+
 	npc assist save
 		system "Patir"
 		government "Remnant"
