@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include "Random.h"
 #include "audio/Audio.h"
 #include "Command.h"
 #include "Conversation.h"
@@ -147,6 +148,8 @@ int main(int argc, char *argv[])
 			printTests = true;
 		else if(arg == "--nomute")
 			noTestMute = true;
+		else if(arg == "--rngseed" && *++it)
+			Random::SetFixedSeed(std::stoull(*it));
 	}
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
