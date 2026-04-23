@@ -349,7 +349,7 @@ void ShipyardPanel::DoBuyButton()
 	if(licenseCost < 0)
 		return;
 
-	const string& quantity = selectedQuantity->Text();
+	const string &quantity = selectedQuantity->Text();
 	modifier = quantity.empty() ? 1 : stoi(quantity);
 	string message;
 	if(licenseCost)

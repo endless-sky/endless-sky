@@ -702,7 +702,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 
 	// The count of how many outfits will be moved will be per ship when ships are involved, otherwise simply per hold.
 	// Hence, the concept of how many "per" rather than how many in total.
-	const string& quantity = selectedQuantity->Text();
+	const string &quantity = selectedQuantity->Text();
 	int howManyPer = quantity.empty() ? 1 : stoi(quantity);
 
 	// Purchases are handled here.
