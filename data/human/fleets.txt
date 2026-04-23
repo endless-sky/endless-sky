@@ -4004,7 +4004,7 @@ fleet "Small Priate Traffic"
 # This is a weird hack to get this to work, it would be nice to get official support for this so we don't need MORE fleets with just, like, one changed attribute
 
 fleet "Small Northern Merchants (Corrupt)"
-	government "Merchant (Corrupt)"
+	government "Bounty (Disguised)"
 	names "civilian"
 	cargo 3
 	personality
@@ -4065,7 +4065,7 @@ fleet "Small Northern Merchants (Corrupt)"
 		"Scrapper"
 
 fleet "Large Northern Merchants (Corrupt)"
-	government "Merchant (Corrupt)"
+	government "Bounty (Disguised)"
 	names "civilian"
 	cargo 4
 	personality
@@ -4233,7 +4233,7 @@ fleet "Large Northern Merchants (Corrupt)"
 		"Sparrow" 4
 
 fleet "Human Miners (Corrupt)"
-	government "Merchant (Corrupt)"
+	government "Bounty (Disguised)"
 	names "civilian"
 	cargo 0
 	personality
