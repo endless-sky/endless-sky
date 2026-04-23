@@ -1,3 +1,120 @@
+Version 0.11.1:
+  * Big changes:
+    * (Todo: elaborate) In game gamerule customisation. (@Amazinite)
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@Amazinite, @Anarchist2, @Jan-Braaksma, @kaiboyjiang)
+      * Message buoys referring to the bombings of Geminus and Martini will now only appear after those events occur. (@bene-dictator)
+      * Corrected 'olofez engine flare locations. (@kaiboyjiang)
+      * Increased the payment from "Bounty Hunting (Marauder X)" to match the listed value. (@Anarchist2)
+    * Engine bugs:
+      * Fixed a crash that could occur when capturing mission NPCs. (@warp-core)
+      * Fixed a past-the-end iterator dereference. (@warp-core)
+      * Shop tooltips no longer get stuck when using a zero second activation delay. (@Amazinite)
+      * Homing weapon haywire chances are no longer related to the range of the first stage, so it is no longer broken when the first stage has a range of zero. (@Anarchist2)
+      * Panels are resized when pushed to the stack, fixing an issue where planetside panels were not accounting for window size changes. (@Amazinite)
+      * Fixed a crash when generating entering/transition missions when there are no active missions. (@Amazinite)
+      * Minable "attribute" nodes will now be correctly loaded and are no longer expected to have a value. (@TomGoodIdea)
+      * Fixed an issue where the requirements of known wormholes were not correctly updated when loading a save with event changes. (@Amazinite)
+      * Fixed zooming in the map shipyard and outfitter views. (@TomGoodIdea)
+      * Flagship cargo space free on the boarding panel will no longer be hidden when boarding uncapturable ships. (@TomGoodIdea)
+      * Text in NPC actions will now use the correct "<npc>" substitution. (@Amazinite)
+      * Fixed an issue where the impact locations for some projectiles were not being calculated correctly, affecting where . (@Amazinite)
+      * Fixed a crash when a "phasing" weapon hits a minable. (@Amazinite)
+      * Fixed a crash in some cases when there is no flagship. (@Amazinite)
+      * Correctly calculate cost when buying multiple outfits at once when some are depreciated. (@NellyDevo)
+      * FinishLoading is no longer run for undefined ships and planets. (@Amazinite)
+      * AI::AskForHelp now stores potential helpers in a WeightedList instead of duplicating elements in a vector, preventing a possible crash due to too many elements. (@Amazinite)
+      * Invalid Persons will no longer be spawned. (@Amazinite)
+      * An invalid government on a mission NPC will now mark the entire mission as invalid. (@Amazinite)
+  * Game content:
+    * Mission changes:
+      * Invisible missions that do not create a dialog or conversation are now "non-blocking". (@Nova1422)
+      * The Deep Convoy missions will no longer offer while another is active. (@Amazinite)
+    * Artwork:
+      * Added unique explosion effects for Quarg ships. (@GefullteTaubenbrust2)
+      * Created new sprites for the Tangled Shroud haze. (@Daeridanii1)
+    * Balance:
+      * Reduced all sources of optical jamming by 90%. (@Anarchist2)
+      * Various changes around the Heavy Rocket. (@Anarchist2)
+        * The Heavy Rocket Launcher now fires as a stream, instead of clustered.
+        * Increased missile strangth for both Launcher and Pod: 16 -> 24.
+        * Changes to Clipper (Heavy) armament:
+          * Replaced Heavy Rocket Pods with Heavy Rocket Launchers.
+          * Replaced Meteor Missile Launchers with Meteor Missile Pods.
+        * Changes to Hawk (Rocket):
+          * Replaced Heavy Rocket Pods with Heavy Rocket Launchers.
+          * Replaced D41-HY Shield Generator with D14-RN Shield Generator.
+      * Various changes to Successor outfits and ships. (@Daeridanii1)
+        * Reduced shield energy:
+          * "Byiaa" Shield Cortex: 2.92 -> 2.53
+          * "Ej" Shield Cortex: 4.7 -> 4.0
+          * "Jaase" Shield Cortex: 7.4 -> 6.4
+          * "Jorv" Shield Cortex: 16.1 -> 14.0
+        * Removed the -0.05 shield generation multiplier from the Shield Cortex Interface and updated the description accordingly.
+        * Reduced the hull damage of the "Ojet" Bimodal Coilgun (and Turret) submunitions from 20 to 14. The total hull damage from the first stage is unchanged.
+        * Reduced the shield damage of the "Sjeja" Kinetic Lance from 1336 to 1069.
+        * Added missing firing force of 25 to the "Ojet" Bimodal Coilgun.
+        * Aaulqra:
+          * Hull energy and heat: 4.0 -> 3.025
+        * Kaskhorade:
+          * Hull repair rate: 3.25 -> 2.225
+          * Hull energy and heat: 3.26 -> 2.4475
+        * Nnaatej:
+          * Hull energy: 0.2 -> 0.11
+          * Hull heat: 0.25 -> 0.11
+        * Seiitej:
+        	* Hull repair rate: 1.2 -> 0.95
+		      * Hull energy and heat: 1.74 -> 1.045
+        * Stolsaqra:
+          * Hull energy and heat: 0.4 -> 0.33
+        * Veusade:
+          * Hull energy and heat: 2.1 -> 1.595
+        * Vujlet:
+          * Hull energy and heat: 1.27 -> 0.9625
+    * Other:
+      * Raven now has a unique Gunboat variant with a Scram Drive, and, in "FW Reconciliation 1B", recommends the player install on if they don't already have one, as well. (@Anarchist2)
+      * Expanded the description of the Incipias in their first contact conversation. (@Eatswind)
+      * Added text directing the player towards post-bombing jobs to the conversations for the bombings if they are on Geminus or Martini. (@RedTecGamer236, @TheGiraffe3, @Anarchist2)
+  * Graphics and artwork:
+    * The hyperspace flash, camera acceleration, and landing zoom settings are now off by default. (@warp-core)
+    * HUD elements no longer blink while landed. (@TomGoodIdea)
+  * Game mechanics:
+    * New mechanics:
+      * The messages a planet responds with when tribute is demanded can be customized at the government and planet level. (@TheGiraffe3)
+      * Weapons can now be given the "exclude submunition damage" property so they do not apply the damage of their submunitions if they hit a target. (@Amazinite)
+    * Mechanics changes:
+      * NPCs will deprioritize hostile ships that are already targeted by overwhelming firepower. (@Azure3141)
+      * A ship becoming disabled by corrosion will now be attributed to the last ship that dealt damage to it. (@TomGoodIdea)
+      * Optical jamming now affects a target's effective mass instead of the lock chance, so very massive ships will require more jamming than smaller, but still massive ships to achieve the same reduction in lock chance when starting from near 100%. (@Anarchist2)
+      * Homing weapon projectiles can now target minables. (@TomGoodIdea)
+      * In entering/transition missions, the "<origin>" text substitution will now be replaced by the name of the system the mission was offered in. (@Amazinite)
+      * Expanded the missing plural name check. (@ThrawnCA)
+  * User interface:
+    * Move orders issues from the map can now be canelled. (@TomGoodIdea)
+    * Added a visual indicator for incoming nuclear missiles to the HUD. (@TomGoodIdea)
+    * Pausing the game now plays a sound. (@Terin)
+    * An offering mission will now include markers for tracked NPCs as well as the destination on the map. (@Amazinite)
+    * The map marker for the destination of a mission that has already failed will no longer blink. (@Amazinite)
+    * Updated the help message about help messages to account for the help message reset setting moving page. (@TomGoodIdea)
+    * Added a message about transferred fuel and energy when boarding a ship. (@Amazinite)
+    * Added separate buttons for selling outfits and minables to the trading panel, with optional confirmation dialogs. (@xobes, @UnorderedSigh)
+  * Performance:
+    * Enabled optional deferred loading for scene, thumbnail, planet, and star sprites. (@Amazinite)
+    * Fleets assigned to a system are no longer looped over when the fleet multiplier gamerule is zero. (@Amazinite)
+  * Under the hood:
+    * The map sales key is now defined by an interface. (@nickshanks)
+    * Replaced various different constructors of hte Dialog class with static methods. (@Amazinite)
+    * Moved sprite and animation properties of the Body class into a new parent: Drawable. (@nickshanks)
+    * Standardized the style of const pointer declarations. (@TomGoodIdea)
+    * The radar scale is now controlled by an interface value. (@Amazinite)
+    * Added a unique error message for when an @2x image is ignored because no corresponding standard size image exists. (@Amazinite)
+    * Include cmath header for some gcc implementations. (@carlo-bramini)
+  * Documentation:
+  * CI/CD and development environment:
+    * Disabled sanitizers when compiling on cygwin. (@carlo-bramini)
+    * GitHub Actions workflows now use lukka/get-cmake v4.2.3 instead of the latest version, to avoid issues when using some newer versions. (@TomGoodIdea)
+
 Version 0.11.0:
   * Breaking changes:
     * The Hai Reveal storyline has been removed from the game. Only about a dozen missions were ever available, they conflict with the plot of other storylines, and no progress has been made on the storyline in several years, so we've opted to remove it for now. (@Amazinite)
