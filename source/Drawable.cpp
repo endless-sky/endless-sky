@@ -117,6 +117,13 @@ float Drawable::GetFrame(int step) const
 
 
 
+void Drawable::PauseAnimation()
+{
+	++pause;
+}
+
+
+
 // Zoom factor. This controls how big the sprite should be drawn.
 double Drawable::Zoom() const
 {
@@ -253,13 +260,6 @@ void Drawable::SetFrameRate(float framesPerSecond)
 void Drawable::AddFrameRate(float framesPerSecond)
 {
 	frameRate += framesPerSecond / 60.f;
-}
-
-
-
-void Drawable::PauseAnimation()
-{
-	++pause;
 }
 
 
