@@ -99,13 +99,13 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	SetIsFullScreen(true);
 	SetInterruptible(false);
 
-	selectedQuantity = std::make_shared<Dropdown>();
+	selectedQuantity = make_shared<Dropdown>();
 	selectedQuantity->SetAlign(Dropdown::LEFT);
 	selectedQuantity->SetFontSize(14);
 	selectedQuantity->SetPadding(0);
 	selectedQuantity->SetOptions({"1", "10", "100", "1000"});
 	selectedQuantity->SetTypeable(true);
-	selectedQuantity->SetCallback([](std::string &s)
+	selectedQuantity->SetCallback([](string &s)
 	{
 		// Restrict input to digits.
 		for(char c : s)

@@ -237,7 +237,7 @@ bool Panel::Release(int x, int y, MouseButton button)
 
 
 
-bool Panel::TextInput(const std::string &text)
+bool Panel::TextInput(const string &text)
 {
 	return false;
 }
@@ -250,9 +250,9 @@ void Panel::Resize()
 
 
 
-bool Panel::SetFocus(bool new_focus)
+bool Panel::SetFocus(bool newFocus)
 {
-	if(new_focus)
+	if(newFocus)
 	{
 		if(!focus)
 		{
@@ -297,7 +297,7 @@ bool Panel::HasFocus()
 
 bool Panel::FocusNext()
 {
-	std::vector<Panel *> all;
+	vector<Panel *> all;
 	int currentFocusIdx = EnumerateTreeAndFindActivePanel(all);
 
 	int idx = currentFocusIdx + 1;
@@ -325,7 +325,7 @@ bool Panel::FocusNext()
 
 bool Panel::FocusPrev()
 {
-	std::vector<Panel *> all;
+	vector<Panel *> all;
 	int currentFocusIndex = EnumerateTreeAndFindActivePanel(all);
 
 	int idx = currentFocusIndex - 1;
@@ -357,9 +357,7 @@ bool Panel::DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool 
 	for(auto &c : children)
 	{
 		if(c->HasFocus())
-		{
 			return c->KeyDown(key, mod, command, isNewPress);
-		}
 	}
 
 	return EventVisit(&Panel::KeyDown, key, mod, command, isNewPress);
@@ -402,15 +400,13 @@ bool Panel::DoScroll(double dx, double dy)
 
 
 
-bool Panel::DoTextInput(const std::string &text)
+bool Panel::DoTextInput(const string &text)
 {
 	// If a child has focus, don't let anybody else see the text.
 	for(auto &c : children)
 	{
 		if(c->HasFocus())
-		{
 			return c->TextInput(text);
-		}
 	}
 	return EventVisit(&Panel::TextInput, text);
 }
@@ -555,10 +551,10 @@ void Panel::RemoveChild(const Panel *panel)
 
 
 
-int Panel::EnumerateTreeAndFindActivePanel(std::vector<Panel *> &all)
+int Panel::EnumerateTreeAndFindActivePanel(vector<Panel *> &all)
 {
-	int current_focus_idx = -1;
-	std::deque<Panel *> q;
+	int currentFocusIdx = -1;
+	deque<Panel *> q;
 	Panel *p = this;
 	while(p->parent)
 		p = p->parent;
@@ -568,12 +564,12 @@ int Panel::EnumerateTreeAndFindActivePanel(std::vector<Panel *> &all)
 	{
 		Panel *p = q.front();
 		if(p->HasFocus())
-			current_focus_idx = all.size();
+			currentFocusIdx = all.size();
 		all.push_back(p);
 		q.pop_front();
 
 		for(auto &c : p->children)
 			q.push_back(c.get());
 	}
-	return current_focus_idx;
+	return currentFocusIdx;
 }

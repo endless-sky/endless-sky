@@ -89,7 +89,7 @@ public:
 	virtual void UpdateTooltipActivation();
 
 	// Apply focus to this panel and remove it from any others in this tree.
-	bool SetFocus(bool focus);
+	bool SetFocus(bool newFocus);
 	// Returns true if this panel has the keyboard focus.
 	bool HasFocus();
 	// Move focus to the next panel that wants it.

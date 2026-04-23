@@ -349,7 +349,8 @@ void ShipyardPanel::DoBuyButton()
 	if(licenseCost < 0)
 		return;
 
-	modifier = max(1, stoi(selectedQuantity->Text()));
+	const string& quantity = selectedQuantity->Text();
+	modifier = quantity.empty() ? 1 : stoi(quantity);
 	string message;
 	if(licenseCost)
 		message = "Note: you will need to pay " + Format::CreditString(licenseCost)
