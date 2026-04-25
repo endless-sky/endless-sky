@@ -436,10 +436,8 @@ bool Edit::TextInput(const string &s)
 
 void Edit::MoveCaret(size_t pos)
 {
-	assert(pos >= 0 && pos <= Text().size());
-	if(pos < 0)
-		pos = 0;
-	else if(pos > Text().size())
+	assert(pos <= Text().size());
+	if(pos > Text().size())
 		pos = Text().size();
 
 	auto mod = SDL_GetModState();
@@ -479,7 +477,6 @@ void Edit::UpdateText(const string &text, size_t caretPos)
 		else
 		{
 			// Callback rejected the change.
-			caretPos = textHistory.back().second;
 			return;
 		}
 	}

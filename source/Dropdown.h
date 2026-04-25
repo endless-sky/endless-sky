@@ -58,9 +58,10 @@ private:
 	class DroppedPanel : public Panel {
 	public:
 		DroppedPanel(Dropdown *parent);
-		virtual ~DroppedPanel() = default;
 
 		void SetMousePos(const Point &p) { mousePos = p; }
+		virtual void Draw() override;
+
 
 	protected:
 		virtual bool Click(int x, int y, MouseButton button, int clicks) override;
@@ -68,7 +69,6 @@ private:
 		virtual bool Release(int x, int y, MouseButton button) override;
 		virtual bool Hover(int x, int y) override;
 
-		virtual void Draw() override;
 
 	private:
 		Dropdown *dd = nullptr;

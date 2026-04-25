@@ -34,7 +34,6 @@ public:
 
 public:
 	Edit();
-	virtual ~Edit() = default;
 
 	void SetFontSize(int f);
 	int FontSize() const { return fontSize; }

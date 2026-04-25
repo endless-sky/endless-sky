@@ -370,7 +370,7 @@ bool Panel::DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool 
 			return c->KeyDown(key, mod, command, isNewPress);
 	}
 
-	return EventVisit(&Panel::KeyDown, key, mod, command, isNewPress);
+	return KeyDown(key, mod, command, isNewPress);
 }
 
 
