@@ -86,8 +86,8 @@ Version 0.11.1:
           * Hull energy and heat: 1.27 -> 0.9625
       * Added more Quarg ships as reinforcements in "Wanderers: Kor Efret 3" to account for reduced capabilities of individual Quarg ships following the Quarg ship and outfit rework. (@Saugia)
         * One Quarg Hydra, three Quarg Wyverns, and two Quarg Wardragons, instead of two Wyverns and one Wardragon, travelling from Host.
-        * Two Hydras, instead of one Hydra nad three Wardragons, travelling from Masuket.
-        * Three Wardragons, instead of one, entering the Kashikt system (where hte mission takes place).
+        * Two Hydras, instead of one Hydra and three Wardragons, travelling from Mesuket.
+        * Three Wardragons, instead of one, entering the Kashikt system (where the mission takes place).
       * Rebalanced various alien secondary weapons. (@Anarchist2)
         * Hai Tracker:
           * Tracker Storage Pod:
@@ -250,7 +250,7 @@ Version 0.11.1:
       * Added various new text replacements relating to the pilot's starting scenario. (@nickshanks)
       * Projectiles can now spawn submunitions upon exploding or colliding. (@Amazinite)
       * Added conditions and text replacements for the player's current and previous planet and system. (@Amazinite)
-      * Any outfit can now defined "linked" outfits that should be uninstalled alongside it, similar to the "ammo" property. (@Amazinite)
+      * Any outfit can now define "linked" outfits that should be uninstalled alongside it, similar to the "ammo" property. (@Amazinite)
     * Mechanics changes:
       * NPCs will deprioritize hostile ships that are already targeted by overwhelming firepower. (@Azure3141)
       * A ship becoming disabled by corrosion will now be attributed to the last ship that dealt damage to it. (@TomGoodIdea)
@@ -268,7 +268,7 @@ Version 0.11.1:
     * Added an option to highlight all ships, in addition to just the flagship. (@Amazinite)
     * The main zoom factor no longer has an upper limit of 200. The exact limit depends on window size. (@Amazinite)
   * User interface:
-    * Move orders issues from the map can now be canelled. (@TomGoodIdea)
+    * Move orders issues from the map can now be cancelled. (@TomGoodIdea)
     * Added a visual indicator for incoming nuclear missiles to the HUD. (@TomGoodIdea)
     * Pausing the game now plays a sound. (@Terin)
     * An offering mission will now include markers for tracked NPCs as well as the destination on the map. (@Amazinite)
