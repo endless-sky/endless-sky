@@ -1,6 +1,6 @@
 Version 0.11.1:
   * Big changes:
-    * (Todo: elaborate) In game gamerule customisation. (@Amazinite)
+    * (Todo: elaborate) In game gamerule customization. (@Amazinite)
     * If Patir 2 is so good, why is there no Patir 3??? (@beccabunny)
     * Gamerule for limiting player escort count. (@Amazinite)
   * Bug fixes:
@@ -164,7 +164,7 @@ Version 0.11.1:
             * "emp torpedo capacity": 9 -> 15
             * "infrared tracking": 0.7 -> 0.2
         * Remnant Teciimach:
-          * No longer uses Teciimach Canister as ammunition, now uses the EMP Torpedo instead. Updated descriptions, conversations, and events as apropriate.
+          * No longer uses Teciimach Canister as ammunition, now uses the EMP Torpedo instead. Updated descriptions, conversations, and events as appropriate.
           * Teciimach Canister and Teciimach Canister Rack:
             * Deprecated.
           * Teciimach Bay:
@@ -268,7 +268,7 @@ Version 0.11.1:
     * Added an option to highlight all ships, in addition to just the flagship. (@Amazinite)
     * The main zoom factor no longer has an upper limit of 200. The exact limit depends on window size. (@Amazinite)
   * User interface:
-    * Move orders issues from the map can now be cancelled. (@TomGoodIdea)
+    * Move orders issues from the map can now be canceled. (@TomGoodIdea)
     * Added a visual indicator for incoming nuclear missiles to the HUD. (@TomGoodIdea)
     * Pausing the game now plays a sound. (@Terin)
     * An offering mission will now include markers for tracked NPCs as well as the destination on the map. (@Amazinite)
@@ -277,13 +277,13 @@ Version 0.11.1:
     * Added a message about transferred fuel and energy when boarding a ship. (@Amazinite)
     * Added separate buttons for selling outfits and minables to the trading panel, with optional confirmation dialogs. (@xobes, @UnorderedSigh)
     * Added a setting to disable the demand tribute confirmation dialog. (@Amazinite)
-    * The behaviour of the ammunition refill dialog can now be customized. (@Amazinite)
+    * The behavior of the ammunition refill dialog can now be customized. (@Amazinite)
   * Performance:
     * Enabled optional deferred loading for scene, thumbnail, planet, and star sprites. (@Amazinite)
     * Fleets assigned to a system are no longer looped over when the fleet multiplier gamerule is zero. (@Amazinite)
   * Under the hood:
     * The map sales key is now defined by an interface. (@nickshanks)
-    * Replaced various different constructors of hte Dialog class with static methods. (@Amazinite)
+    * Replaced various different constructors of the Dialog class with static methods. (@Amazinite)
     * Moved sprite and animation properties of the Body class into a new parent: Drawable. (@nickshanks)
     * Standardized the style of const pointer declarations. (@TomGoodIdea)
     * The radar scale is now controlled by an interface value. (@Amazinite)
@@ -1054,13 +1054,13 @@ Version 0.10.12
         * Bastion:
           * Shields: 7500 -> 8600
           * Hull: 4700 -> 5300
-          * "mass": 1210 -> 1100
+          * Mass: 1210 -> 1100
           * Drag: 16.5 -> 15.5
           * Heat dissipation: 0.32 -> 0.34
         * Bulwark:
           * Shields: 7000 -> 8000
           * Hull: 5600 -> 6500
-          * "mass": 1722 -> 1582
+          * Mass: 1722 -> 1582
           * Drag: 21 -> 20.1
           * Heat dissipation: 0.27 -> 0.28
       * Korath ships raiding human space now have the "frugal" personality. (@Quantumshark)
@@ -2696,9 +2696,9 @@ Version 0.10.0
       * Made the Unfettered Hai attacking Wah Ki cowards and the Hai defending the system merciful, so fewer Unfettered get disabled or die there. (@Hurleveur)
       * Slightly buffed the Berserker and Hawk. (@Zitchas)
         * Berserker:
-          * "mass": 110 -> 90
+          * Mass: 110 -> 90
         * Hawk:
-          * "mass": 150 -> 110
+          * Mass: 150 -> 110
           * Required crew: 2 -> 1
       * Reduced the lifetime of the Hai Tracker from 600 to 475 (range reduced from 8400 to 6650). (@Zitchas)
       * Buffed the Hai Wiliwaw Cooling. 570 -> 660 cooling. (@Zitchas)
