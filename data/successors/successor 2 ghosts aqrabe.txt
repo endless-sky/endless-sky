@@ -58,7 +58,7 @@ mission "Successors: Ghosts Aqrabe 1"
 			`	"They're saints, or relics," they say. "Fragments of unliving minds, free of pain and death, surviving in parts. Each one once a mind of renown, one worth t'be preserved even as a memory. They're intrigued by thee. Only one of them ever saw something of your kind, and it did not expect to ever see one of you again - not even in eternity."`
 			`	"And who are you?" you ask.`
 			label identity
-			`	They splay their arms, a little more subtly than most of the Successors you've seen. "Aqrabe Ia Sola. And you are Captain <first> <last>. How queer an introduction is to thee, for thou art the only one here for whom 't'would be needed." They make a noise you're sure is chuckling. "A scion of Aqrabe's House - by marriage, not by blood. But only just. But no, tell me, how is it that our wormhole grants thee passage 'thout a well-equipped ship of ours?"`
+			`	They splay their arms, a little more subtly than most of the Successors you've seen. "Aqrabe Ia Sola. And you are Captain <first> <last>. How queer an introduction is to thee, for thou art the only one here for whom 'twould be needed." They make a noise you're sure is chuckling. "A scion of Aqrabe's House - by marriage, not by blood. But only just. But no, tell me, how is it that our wormhole grants thee passage without a well-equipped ship of ours?"`
 			choice
 				`	"I carry a quantum keystone on my ship that lets me pass through all sorts of unstable wormholes."`
 					goto keystone
@@ -90,7 +90,7 @@ conversation "successor keystone delivery"
 	`	You ask around at the spaceport, and you are soon directed to a side outfitting bay that seems to be the domain of some of House Aqrabe's more unorthodox efforts - the walls are draped with strange-looking fabrics, and a couple of unusual, abstract statues dot the facility. In the center, a ship-mounted scanner is in the midst of being deconstructed; as you walk in, a Successor pops their head around from behind it.`
 	`	"Captain <last>?" they ask.`
 	`	"Yes?"`
-	`	They slither forward towards you and splay their arms in the traditional gesture. "Tiliia," they offer as an introduction. "I was told to expect thine arrival. Thou'st brought," and they pause to pronounce the word, "keystones, yes?"`
+	`	They slither forward towards you and splay their arms in the traditional gesture. "Tiliia," they offer as an introduction. "I was told to expect thine arrival. Thou hast brought," and they pause to pronounce the word, "keystones, yes?"`
 	`	"I have," you say. "Fifty keystones, as was requested." Tiliia joins you in walking back to the <ship> to examine the cargo; when they're sufficiently satisfied that you've brought the proper amount, they pull out a data-pad and enter a couple of values. Though their eyes widen when you provide them with your receipts, they nonetheless confirm a few moments later that House Aqrabe has credited you to offset the purchase price of the keystones, plus a three hundred thousand-credit bonus.`
 	`	As they begin directing ground crews to offload the keystones, Tiliia turns to you for a moment and requests that you meet them back at the spaceport by the end of the day: "thine assistance might be a boon to us in the next part of this journey," they say.`
 		decline
@@ -134,7 +134,7 @@ mission "Successors: Ghosts Aqrabe 2"
 	on offer
 		log "People" "Tiliia" "Tiliia is an engineer belonging to the Successor House Aqrabe."
 		conversation
-			`Tiliia meets you in a tucked-away part of the spaceport that's filled with strange statuary, where they stand in conversation with a small group of Successors. They brighten as they see you approach and offer a perfunctory splay of the arms. "Captain, captain," they say. "Thou returneth with no time to squander. We mean to ply a journey of understanding cross the wormhole; one fellow captain here means to use one of thy keystones, the other, our weft-weaving armor. Thy own craft would be valuable as a place to gather data from the other two, to see how they perform across the rift."`
+			`Tiliia meets you in a tucked-away part of the spaceport that's filled with strange statuary, where they stand in conversation with a small group of Successors. They brighten as they see you approach and offer a perfunctory splay of the arms. "Captain, captain," they say. "Thou returnest with no time to squander. We mean to ply a journey of understanding cross the wormhole; one fellow captain here means to use one of thy keystones, the other, our weft-weaving armor. Thy own craft would be valuable as a place to gather data from the other two, to see how they perform across the rift."`
 			choice
 				`	"Couldn't you do that without me?"`
 				`	"Where exactly are we going?"`
@@ -168,7 +168,7 @@ mission "Successors: Ghosts Aqrabe 3"
 	on offer
 		event "successors: ghosts star unrestrict"
 		conversation
-			`You meet Tiliia at their workshop, where they wave you inside. The scanner on their table has now been replaced by a collection of quantum keystones suspended in a variety of machines that prod and scan the stones incessantly. "Good news for thee, Captain, for all of us," Tiliia says. "The data from our expedition hath revealed some measure of the mystery of thy stones. They're oscillators of a sort, ones that sing in tune with the wavers of the wormhole..." Tiliia stops for a moment. "But we will have time to discuss that later. For now, what thou needs know is this: with the right materials, we may be able to magnify their effect. Hast thou visited the system Kasii-Cavaasa before, with'n the Tangles?"`
+			`You meet Tiliia at their workshop, where they wave you inside. The scanner on their table has now been replaced by a collection of quantum keystones suspended in a variety of machines that prod and scan the stones incessantly. "Good news for thee, Captain, for all of us," Tiliia says. "The data from our expedition hath revealed some measure of the mystery of thy stones. They're oscillators of a sort, ones that sing in tune with the wavers of the wormhole..." Tiliia stops for a moment. "But we will have time to discuss that later. For now, what thou needest know is this: with the right materials, we may be able to magnify their effect. Hast thou visited the system Kasii-Cavaasa before, within the Tangles?"`
 			choice
 				`	"I have."`
 				`	"Where are you going with this?"`
@@ -308,7 +308,7 @@ mission "Successors: Ghosts Aqrabe 5"
 			label experienced
 			`	Tiliia ripples with an emotion that's difficult to place, one tinted with shades of pride.`
 			label next
-			`	The re-armoring process begins soon after, massive metallic arms folding down from the top of the bay to scan over the surface of the ship. At certain points, flying drones emerge from the sides of the hangar to dispense some additional material onto the vessel or to perform scans, projecting shape after shape onto the warbling hull in many-colored laser light. After a while of watching, Tiliia leans over to you. "The process will take some more hours," they say. "The armor to cross the wormhole is a more complicated kind than the others. I'll leave thee to thine own pursuits for now - though, I plan to go among the statue garden for a while, and if it pleases thee, thou may'st join me there."`
+			`	The re-armoring process begins soon after, massive metallic arms folding down from the top of the bay to scan over the surface of the ship. At certain points, flying drones emerge from the sides of the hangar to dispense some additional material onto the vessel or to perform scans, projecting shape after shape onto the warbling hull in many-colored laser light. After a while of watching, Tiliia leans over to you. "The process will take some more hours," they say. "The armor to cross the wormhole is a more complicated kind than the others. I'll leave thee to thine own pursuits for now - though, I plan to go among the statue garden for a while, and if it pleases thee, thou mayst join me there."`
 			choice
 				`	"I'd be happy to."`
 				`	"Thanks, but I have my own preparations to make."`
@@ -316,7 +316,7 @@ mission "Successors: Ghosts Aqrabe 5"
 			action
 				log "People" "Tiliia" "Tiliia sees their role in current events as offering them the opportunity to make their mark on future generations."
 			`	The statue garden isn't very far from the outfitting bay where the Vujlet is parked. It's a circular area, cut out of the structure of the spaceport and exposed to the elements - the early-morning light shines through the light snowfall and glitters on the eerie metallic forms of the statues. Most of them are purely abstract, but one in every ten or so has some organic form emerging from the smooth metal as if it were trapped behind a sheet: leaves of plants, faces of animals, or even what look like Successor body parts.`
-			`	"I'm curious, captain," Tiliia says. "What motivates thee to do this? Flying into a star, I mean to say. Last we visited, 'twas on thine own ship that thou knowest well - now, thou placeth thy life in alien engineering thou'st never seen perform. Why consider it?"`
+			`	"I'm curious, captain," Tiliia says. "What motivates thee to do this? Flying into a star, I mean to say. Last we visited, 'twas on thine own ship that thou knowest well - now, thou placest thy life in alien engineering thou hast never seen perform. Why consider it?"`
 			choice
 				`	"I've done other dangerous things before and they've always worked out."`
 					goto lucky
@@ -355,13 +355,13 @@ mission "Successors: Ghosts Aqrabe 5"
 			`	A spark of anger flashes over Tiliia's face, but only briefly, and they seem to push their skin back to its most neutral color. "There's no undoing what's already wrought," they say. "Sad as it might be." They pause for a moment. "I'll hope to see thee in the spaceport nonetheless, captain."`
 				goto end
 			label far-fetched
-			`	Mirth once again sparkles Tiliia's skin. "Probably so," they say, and after a pause, "my thanks to thee for joining me, captain. Thou should'st prepare now - join us back at the spaceport when thou'rt ready."`
+			`	Mirth once again sparkles Tiliia's skin. "Probably so," they say, and after a pause, "my thanks to thee for joining me, captain. Thou shouldst prepare now - join us back at the spaceport when thou'rt ready."`
 				goto end
 			label egoist
-			`	Tiliia keeps a contemplative look on their face. "Somehow I suspected that," they say, and after a pause, "my thanks to thee for joining me, captain. Thou should'st prepare now - join us back at the spaceport when thou'rt ready."`
+			`	Tiliia keeps a contemplative look on their face. "Somehow I suspected that," they say, and after a pause, "my thanks to thee for joining me, captain. Thou shouldst prepare now - join us back at the spaceport when thou'rt ready."`
 				goto end
 			label difference
-			`	"It's quite a feeling," they say, "isn't it?" They pause for a short while, looking up at the sky. The clouds overhead are starting to part and the snowfall is thinning. You notice for the first time that the ground is slightly heated - none of the snow that's falling has accumulated, instead just melting away into tiny channels in the rock. "My thanks to thee for joining me, captain," says Tiliia. "Thou should'st prepare now - join us back at the spaceport when thou'rt ready."`
+			`	"It's quite a feeling," they say, "isn't it?" They pause for a short while, looking up at the sky. The clouds overhead are starting to part and the snowfall is thinning. You notice for the first time that the ground is slightly heated - none of the snow that's falling has accumulated, instead just melting away into tiny channels in the rock. "My thanks to thee for joining me, captain," says Tiliia. "Thou shouldst prepare now - join us back at the spaceport when thou'rt ready."`
 				goto end
 			label alone
 			`	"Of course. Join me back here in the spaceport, then, four hours hence."`
@@ -451,11 +451,11 @@ mission "Successors: Ghosts Aqrabe 7"
 			choice
 				`	"What about this ship? Do I get to keep it?`
 			label ship
-			`	Tiliia nods. "Before we left, I heard from our fleet liaison with Kaatrij. The ship lacks weapons or anything too perilous for thou to keep, and Kaatrij has no doubt already started removing their device. Thou might'st consider it a bonus to thy fee, a favor from the House to thee."`
+			`	Tiliia nods. "Before we left, I heard from our fleet liaison with Kaatrij. The ship lacks weapons or anything too perilous for thee to keep, and Kaatrij has no doubt already started removing their device. Thou mightst consider it a bonus to thy fee, a favor from the House to thee."`
 			branch "not confronted"
 				not "successors confronted tiliia"
 			label confronted
-			`	Tiliia turns to go away but stops themself. "I've an apology to offer thee 'fore we part, captain," they say. "I showed thee some disrespect when we spoke before leaving. 'Tis strange to be accused by one so foreign to our ways. But we've been cut off a long time now, I think, hearing only from ourselves and the ghosts of others. Greater things are moving than either of us now, but thou may'st trust that I'll be careful with our treasure. I can promise thee nothing more, but thou'rt right to remind me of that, at least."`
+			`	Tiliia turns to go away but stops themself. "I've an apology to offer thee 'fore we part, captain," they say. "I showed thee some disrespect when we spoke before leaving. 'Tis strange to be accused by one so foreign to our ways. But we've been cut off a long time now, I think, hearing only from ourselves and the ghosts of others. Greater things are moving than either of us now, but thou mayst trust that I'll be careful with our treasure. I can promise thee nothing more, but thou'rt right to remind me of that, at least."`
 			label "not confronted"
 			`	The two of you are interrupted by Kaatrij's observer, who informs the two of you that the metal offloading is complete. Tiliia, ready to get started on the next phase of their project, leaves with them, offering you a quick bow and courteous "goodbye."`
 			`	A few minutes later, you are notified that you have received a payment of <payment> credits from House Aqrabe.`
