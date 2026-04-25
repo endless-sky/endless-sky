@@ -236,7 +236,7 @@ Version 0.11.1:
         * "Sjeje" Kinetic Lance:
           * "mass": 60 -> 54
         * Updated ship installed outfit lists to account for ammunition and ammunition capacity changes.
-		  * Increased the cargo space on some Successor ships. (@solardawning)
+      * Increased the cargo space on some Successor ships. (@solardawning)
         * Aaulqra: 15 -> 25
         * Kaskhorade: 140 -> 240
     * Other:
