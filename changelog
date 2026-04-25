@@ -1,8 +1,8 @@
 Version 0.11.1:
   * Big changes:
-    * (Todo: elaborate) In game gamerule customization. (@Amazinite)
-    * If Patir 2 is so good, why is there no Patir 3??? (@beccabunny)
-    * Gamerule for limiting player escort count. (@Amazinite)
+    * Gamerules are now specific to individual pilots and can be modified from within the game through a new button on the main menu. Old save files will automatically have this button available to them, while new save files will have to edit their gamerules to set the "Lock gamerules" value to false from the start scenario menu. This can also be used to disable the button on old save files, if you don't want to be able to change the gamerules for your existing saves. (@Amazinite)
+    * Added a new gamerule that allows you to limit the number of ships that you can have in your fleet based off of various factors. (@Amazinite)
+    * Added a continuation of the Patir Mystery storyline, further investigating the Patir system with the help of the Remnant. (@beccabunny)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Amazinite, @Anarchist2, @Jan-Braaksma, @kaiboyjiang, @TheGiraffe3)
@@ -22,7 +22,6 @@ Version 0.11.1:
       * Homing weapon haywire chances are no longer related to the range of the first stage, so it is no longer broken when the first stage has a range of zero. (@Anarchist2)
       * Panels are resized when pushed to the stack, fixing an issue where planetside panels were not accounting for window size changes. (@Amazinite)
       * Fixed a crash when generating entering/transition missions when there are no active missions. (@Amazinite)
-      * Minable "attribute" nodes will now be correctly loaded and are no longer expected to have a value. (@TomGoodIdea)
       * Fixed an issue where the requirements of known wormholes were not correctly updated when loading a save with event changes. (@Amazinite)
       * Fixed zooming in the map shipyard and outfitter views. (@TomGoodIdea)
       * Flagship cargo space free on the boarding panel will no longer be hidden when boarding uncapturable ships. (@TomGoodIdea)
@@ -33,7 +32,7 @@ Version 0.11.1:
       * Correctly calculate cost when buying multiple outfits at once when some are depreciated. (@NellyDevo)
       * FinishLoading is no longer run for undefined ships and planets. (@Amazinite)
       * AI::AskForHelp now stores potential helpers in a WeightedList instead of duplicating elements in a vector, preventing a possible crash due to too many elements. (@Amazinite)
-      * Invalid Persons will no longer be spawned. (@Amazinite)
+      * Invalid person ships will no longer be spawned. (@Amazinite)
       * An invalid government on a mission NPC will now mark the entire mission as invalid. (@Amazinite)
       * Fixed some cases where an incorrect message was given when an outfit could not be installed. (@xobes)
       * Carriable ships with the "staying" personality will now only dock with carriers that are also "staying" and so can no longer be removed from the system while docked. (@Amazinite)
@@ -240,7 +239,7 @@ Version 0.11.1:
         * Aaulqra: 15 -> 25
         * Kaskhorade: 140 -> 240
     * Other:
-      * Raven now has a unique Gunboat variant with a Scram Drive, and, in "FW Reconciliation 1B", recommends the player install on if they don't already have one, as well. (@Anarchist2)
+      * Raven now has a unique Gunboat variant with a Scram Drive, and, in "FW Reconciliation 1B", recommends the player install one if they don't already have one, as well. (@Anarchist2)
       * Expanded the description of the Incipias in their first contact conversation. (@Eatswind)
       * Added text directing the player towards post-bombing jobs to the conversations for the bombings if they are on Geminus or Martini. (@RedTechGamer236, @TheGiraffe3, @Anarchist2)
   * Game mechanics:
@@ -250,14 +249,14 @@ Version 0.11.1:
       * Added various new text replacements relating to the pilot's starting scenario. (@nickshanks)
       * Projectiles can now spawn submunitions upon exploding or colliding. (@Amazinite)
       * Added conditions and text replacements for the player's current and previous planet and system. (@Amazinite)
-      * Any outfit can now define "linked" outfits that should be uninstalled alongside it, similar to the "ammo" property. (@Amazinite)
+      * Any outfit can now define "linked" outfits that should be uninstalled alongside it, similar to the "ammo" property, but without the prompt to purchase the outfit when you have space. (@Amazinite)
     * Mechanics changes:
       * NPCs will deprioritize hostile ships that are already targeted by overwhelming firepower. (@Azure3141)
-      * A ship becoming disabled by corrosion will now be attributed to the last ship that dealt damage to it. (@TomGoodIdea)
+      * A ship becoming disabled or destroyed by corrosion will now have that event be attributed to the last ship that dealt damage to it. (@TomGoodIdea)
       * Optical jamming now affects a target's effective mass instead of the lock chance, so very massive ships will require more jamming than smaller, but still massive ships to achieve the same reduction in lock chance when starting from near 100%. (@Anarchist2)
       * Homing weapon projectiles can now target minables. (@TomGoodIdea)
       * In entering/transition missions, the "<origin>" text substitution will now be replaced by the name of the system the mission was offered in. (@Amazinite)
-      * Expanded the missing plural name check. (@ThrawnCA)
+      * Expanded the missing plural name check for outfits and ships. (@ThrawnCA)
       * The player can now receive information from scanners on escorts, instead of only the flagship. (@Amazinite)
       * Raid fleets can now be disabled with a gamerule. (@Amazinite)
   * Graphics:
@@ -265,8 +264,8 @@ Version 0.11.1:
     * HUD elements no longer blink while landed. (@TomGoodIdea)
     * Spaceports can now have their own landscape image, distinct from the planet landscape. (@nickshanks)
     * Planets can now list multiple landscapes; one will be chosen at random on each landing. (@nickshanks)
-    * Added an option to highlight all ships, in addition to just the flagship. (@Amazinite)
-    * The main zoom factor no longer has an upper limit of 200. The exact limit depends on window size. (@Amazinite)
+    * Added a preference to highlight all ships or only your escorts, in addition to the existing preference to highlight just your flagship. (@Amazinite)
+    * The main zoom factor no longer has an upper limit of 200%. The exact limit now only depends on the game window size. (@Amazinite)
   * User interface:
     * Move orders issues from the map can now be canceled. (@TomGoodIdea)
     * Added a visual indicator for incoming nuclear missiles to the HUD. (@TomGoodIdea)
@@ -279,7 +278,7 @@ Version 0.11.1:
     * Added a setting to disable the demand tribute confirmation dialog. (@Amazinite)
     * The behavior of the ammunition refill dialog can now be customized. (@Amazinite)
   * Performance:
-    * Enabled optional deferred loading for scene, thumbnail, planet, and star sprites. (@Amazinite)
+    * Enabled optional deferred loading for scene, thumbnail, planet, and star sprites. Intended for use on systems with low VRAM. (@Amazinite)
     * Fleets assigned to a system are no longer looped over when the fleet multiplier gamerule is zero. (@Amazinite)
   * Under the hood:
     * The map sales key is now defined by an interface. (@nickshanks)
