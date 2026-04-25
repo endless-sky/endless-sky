@@ -27,7 +27,7 @@ Version 0.11.1:
       * Fixed zooming in the map shipyard and outfitter views. (@TomGoodIdea)
       * Flagship cargo space free on the boarding panel will no longer be hidden when boarding uncapturable ships. (@TomGoodIdea)
       * Text in NPC actions will now use the correct "<npc>" substitution. (@Amazinite)
-      * Fixed an issue where the impact locations for some projectiles were not being calculated correctly, affecting where . (@Amazinite)
+      * Fixed an issue where the impact locations for some projectiles were not being calculated correctly, affecting where effects were drawn. (@Amazinite)
       * Fixed a crash when a "phasing" weapon hits a minable. (@Amazinite)
       * Fixed a crash in some cases when there is no flagship. (@Amazinite)
       * Correctly calculate cost when buying multiple outfits at once when some are depreciated. (@NellyDevo)
