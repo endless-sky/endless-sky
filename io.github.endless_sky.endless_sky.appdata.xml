@@ -83,6 +83,7 @@
           <li>Fixed various crashes, including ones that could occur when capturing mission NPCs, by encountering message buoys while having no active missions, or when using a gridfire to mine asteroids.</li>
           <li>Message buoys referring to the bombings of Geminus and Martini will now only appear after those events occur.</li>
           <li>Fixed an infinite money glitch, and various other fixes to the outfitter and shipyard caused by the recent shop UI improvements.</li>
+        </ul>
         <p>You can find out more in the changelog.</p>
         <p>A special thanks to the 26 people who contributed to this release!</p>
       </description>
