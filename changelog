@@ -1,9 +1,11 @@
 Version 0.11.1:
   * Big changes:
     * (Todo: elaborate) In game gamerule customisation. (@Amazinite)
+    * If Patir 2 is so good, why is there no Patir 3??? (@beccabunny)
+    * Gamerule for limiting player escort count. (@Amazinite)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@Amazinite, @Anarchist2, @Jan-Braaksma, @kaiboyjiang)
+      * Typo fixes. (@Amazinite, @Anarchist2, @Jan-Braaksma, @kaiboyjiang, @TheGiraffe3)
       * Message buoys referring to the bombings of Geminus and Martini will now only appear after those events occur. (@bene-dictator)
       * Corrected 'olofez engine flare locations. (@kaiboyjiang)
       * Increased the payment from "Bounty Hunting (Marauder X)" to match the listed value. (@Anarchist2)
@@ -12,6 +14,7 @@ Version 0.11.1:
       * Updated the text of various choices where an action is performed to be first person. (@Amazinite, @Anarchist2)
       * Removed an NPC that was incorrectly included in "Coalition: Struggling Author 1". (@acolden-IAS)
       * The Hai start now also gives the player a Pilot's License. (@TheGiraffe3)
+      * Rotated the image for Ssil Vida by 180° so it is lit from the correct direction. (@beccabunny)
     * Engine bugs:
       * Fixed a crash that could occur when capturing mission NPCs. (@warp-core)
       * Fixed a past-the-end iterator dereference. (@warp-core)
@@ -73,8 +76,8 @@ Version 0.11.1:
           * Hull energy: 0.2 -> 0.11
           * Hull heat: 0.25 -> 0.11
         * Seiitej:
-        	* Hull repair rate: 1.2 -> 0.95
-		      * Hull energy and heat: 1.74 -> 1.045
+          * Hull repair rate: 1.2 -> 0.95
+          * Hull energy and heat: 1.74 -> 1.045
         * Stolsaqra:
           * Hull energy and heat: 0.4 -> 0.33
         * Veusade:
@@ -85,6 +88,157 @@ Version 0.11.1:
         * One Quarg Hydra, three Quarg Wyverns, and two Quarg Wardragons, instead of two Wyverns and one Wardragon, travelling from Host.
         * Two Hydras, instead of one Hydra nad three Wardragons, travelling from Masuket.
         * Three Wardragons, instead of one, entering the Kashikt system (where hte mission takes place).
+      * Rebalanced various alien secondary weapons. (@Anarchist2)
+        * Hai Tracker:
+          * Tracker Storage Pod:
+            * "mass": 4.4 -> 2.4
+            * "outfit space" needed: 10 -> 8
+          * Hai Tracker Pod:
+            * "mass": 8 -> 5
+            * "outfit space" needed: 19 -> 16
+            * "infrared tracking": 0.4 -> 0.2
+        * Korath Piercer:
+          * Piercer Missile:
+            * "cost": 3500 -> 830
+            * "mass": 3 -> 0.07
+          * Piercer Missile Rack:
+            * "mass": 2.2 -> 0.1
+            * "piercer capacity": 16 -> 98
+          * Piercer Missile Launcher:
+            * Removed homing, turning, acceleration, and drag, making the Piercer a ballistic, straight line weapon.
+            * "mass": 18 -> 7
+            * "outfit space" needed: 27 -> 21
+            * "weapon capacity" needed: 27 -> 21
+            * "piercer capacity": 31 -> 197
+            * "inaccuracy": 3 -> 1.5
+            * "lifetime": 200 -> 47
+            * "reload": 72 -> 23
+            * "firing energy": 29 -> 9
+            * "firing heat": 144 -> 46
+            * "shield damage": 290 -> 130
+            * "hull damage": 440 -> 197
+            * Created a death effect that is different to the explosion effect.
+        * Korath Cluster Mine:
+          * Cluster Mine:
+            * "mass": 0.7 -> 0.4
+          * Cluster Mine Rack:
+            * "mass": 2.7 -> 0.8
+            * "minelayer capacity": 9 -> 20
+          * Cluster Minelayer:
+            * "mass": 36 -> 15
+            * "outfit space" needed: 48 -> 27
+            * "weapon capacity" needed: 48 -> 27
+            * "minelayer capacity": 17 -> 41
+        * Korath Firelight:
+          * Firelight Missile:
+            * "mass": 0.3 -> 0.8
+          * Firelight Storage Rack:
+            * "mass": 3 -> 3.2
+            * "outfit space needed": 6 -> 8
+            * "firelight missile capacity": 10 -> 6
+          * Firelight Missile Bank:
+            * "mass": 22 -> 13
+            * "firelight missile capacity": 20 -> 18
+            * "blast radius": 48 -> 0 (all stages, trigger radii also removed)
+            * "Turning" stage:
+              * "tracking" replaced with "optical tracking".
+              * "leading" and "throttle control" homing capabilities removed.
+            * "Activated" stage:
+              * "corrosion damage" 2 -> 0
+        * Korath Firestorm:
+          * Firestorm Torpedo:
+            * "mass": 1 -> 2
+          * Firestorm Torpedo Rack:
+            * "mass": 7 -> 8
+            * "firestorm torpedo capacity": 13 -> 6
+          * Firestorm Battery:
+            * "mass": 35 -> 22
+            * "corrosion damage": 5 -> 0
+        * Remnant EMP:
+          * EMP Torpedo:
+            * "mass": 1 -> 0.6
+          * EMP Torpedo Storage Tube:
+            * "mass": 5 -> 4.8
+            * "emp torpedo capacity": 7 -> 12
+          * EMP Torpedo Bay:
+            * "emp torpedo capacity": 9 -> 15
+            * "infrared tracking": 0.7 -> 0.2
+        * Remnant Teciimach:
+          * No longer uses Teciimach Canister as ammunition, now uses the EMP Torpedo instead. Updated descriptions, conversations, and events as apropriate.
+          * Teciimach Canister and Teciimach Canister Rack:
+            * Deprecated.
+          * Teciimach Bay:
+            * "mass": 9 -> 6
+            * "outfit space" needed: 13 -> 18
+            * "weapon space" needed: 13 -> 18
+            * Ammunition capacity: 9 -> 20
+            * "reload": 310 -> 330
+            * Firing mode: cluster -> stream
+            * "velocity": 8 -> 7
+            * "turn": 2.5 -> 2
+            * "infrared tracking": 0.8 -> 0.2
+            * "radar tracking": 0.9 -> 0.8
+            * "shield damage": 900 -> 700
+            * "hull damage": 125 -> 100
+            * "disabled damage": 60 -> 0
+            * "ion damage": 65 -> 48
+            * "scrambling damage": 65 -> 48
+            * "energy damage": 2000 -> 0
+            * "missile strength": 95 -> 80
+          * Teciimach Pod:
+            * "mass": 3 -> 4
+            * Removed "cluster"
+            * "burst reload": 110 -> 330
+            * "reload": 620 -> 660
+            * "firing energy": 350 -> 400
+            * "firing heat": 16 -> 18
+            * "velocity": 8 -> 7
+            * "turn": 2.5 -> 2
+            * "shield damage": 900 -> 700
+            * "hull damage": 125 -> 100
+            * "disabled damage": 60 -> 0
+            * "ion damage": 60 -> 48
+            * "scrambling damage": 60 ->
+            * "energy damage": 2000 -> 0
+            * "missile strength": 95 -> 80
+        * Ka'het EMP Deployer:
+          * "mass": 18 -> 10
+          * "emp torpedo capacity": 16 -> 27
+          * "infrared tracking": 0.7 -> 0.2
+        * Wanderer Thunderhead:
+          * Thunderhead Missile:
+            * "mass": 0.3 -> 0.27
+          * Thunderhead Storage Array:
+            * "mass": 2 -> 0.4
+            * "thunderhead capacity": 20 -> 28
+          * Thunderhead Launcher:
+            * "mass": 14 -> 11
+            * "thunderhead capacity": 40 -> 56
+            * First stage:
+              * "radar tracking": 0.9 -> 0.1
+              * "infrared tracking": 0.6 -> 0.3
+            * Second stage (split):
+              * "optical tracking": 0.9 -> 0
+              * "infrared tracking": 0 -> 0.1
+              * "radar tracking": 0.6 -> 0.3
+        * Bunrodea Swarm:
+          * Swarm Missile:
+            * "mass": 0.04 -> 0.03
+          * Swarm Clip:
+            * "mass": 2 -> 1
+            * "outfit space" needed: 10 -> 7
+          * Swarm Pod:
+            * "mass": 5 -> 3
+            * "outfit space" needed: 21 -> 15
+            * "weapon capacity" needed: 21 -> 15
+            * "radar tracking": 0.5 -> 0.2
+            * "optical tracking": 0.5 -> 0.6
+        * "Sjeje" Kinetic Lance:
+          * "mass": 60 -> 54
+        * Updated ship installed outfit lists to account for ammunition and ammunition capacity changes.
+		  * Increased the cargo space on some Successor ships. (@solardawning)
+        * Aaulqra: 15 -> 25
+        * Kaskhorade: 140 -> 240
     * Other:
       * Raven now has a unique Gunboat variant with a Scram Drive, and, in "FW Reconciliation 1B", recommends the player install on if they don't already have one, as well. (@Anarchist2)
       * Expanded the description of the Incipias in their first contact conversation. (@Eatswind)
@@ -104,6 +258,8 @@ Version 0.11.1:
       * Homing weapon projectiles can now target minables. (@TomGoodIdea)
       * In entering/transition missions, the "<origin>" text substitution will now be replaced by the name of the system the mission was offered in. (@Amazinite)
       * Expanded the missing plural name check. (@ThrawnCA)
+      * The player can now receive information from scanners on escorts, instead of only the flagship. (@Amazinite)
+      * Raid fleets can now be disabled with a gamerule. (@Amazinite)
   * Graphics:
     * The hyperspace flash, camera acceleration, and landing zoom settings are now off by default. (@warp-core)
     * HUD elements no longer blink while landed. (@TomGoodIdea)
@@ -133,12 +289,14 @@ Version 0.11.1:
     * The radar scale is now controlled by an interface value. (@Amazinite)
     * Added a unique error message for when an @2x image is ignored because no corresponding standard size image exists. (@Amazinite)
     * Include cmath header for some gcc implementations. (@carlo-bramini)
+    * Created a PilotProfile class for tracking properties of a pilot which are the same across all of it's snapshots. (@Amazinite)
   * Documentation:
     * Updated the version of gcc listed in the build instructions. (@TomGoodIdea)
   * CI/CD and development environment:
     * Disabled sanitizers when compiling on cygwin. (@carlo-bramini)
     * GitHub Actions workflows now use lukka/get-cmake v4.2.3 instead of the latest version, to avoid issues when using some newer versions. (@TomGoodIdea)
     * Updated some SDL adjacent code to fix integration tests in the Steam Linux environment. (@tibetiroka)
+    * Improved the code style checker's ability to detect incorrectly formatted copyright headers and fixed some issues it had previously missed. (@xobes)
 
 Version 0.11.0:
   * Breaking changes:
@@ -896,13 +1054,13 @@ Version 0.10.12
         * Bastion:
           * Shields: 7500 -> 8600
           * Hull: 4700 -> 5300
-          * Mass: 1210 -> 1100
+          * "mass": 1210 -> 1100
           * Drag: 16.5 -> 15.5
           * Heat dissipation: 0.32 -> 0.34
         * Bulwark:
           * Shields: 7000 -> 8000
           * Hull: 5600 -> 6500
-          * Mass: 1722 -> 1582
+          * "mass": 1722 -> 1582
           * Drag: 21 -> 20.1
           * Heat dissipation: 0.27 -> 0.28
       * Korath ships raiding human space now have the "frugal" personality. (@Quantumshark)
@@ -2538,9 +2696,9 @@ Version 0.10.0
       * Made the Unfettered Hai attacking Wah Ki cowards and the Hai defending the system merciful, so fewer Unfettered get disabled or die there. (@Hurleveur)
       * Slightly buffed the Berserker and Hawk. (@Zitchas)
         * Berserker:
-          * Mass: 110 -> 90
+          * "mass": 110 -> 90
         * Hawk:
-          * Mass: 150 -> 110
+          * "mass": 150 -> 110
           * Required crew: 2 -> 1
       * Reduced the lifetime of the Hai Tracker from 600 to 475 (range reduced from 8400 to 6650). (@Zitchas)
       * Buffed the Hai Wiliwaw Cooling. 570 -> 660 cooling. (@Zitchas)
