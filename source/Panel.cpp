@@ -263,7 +263,7 @@ bool Panel::SetFocus(bool newFocus)
 			// another panel immediately discards it.
 			Panel *p = this;
 			while(p->parent)
-				p = parent;
+				p = p->parent;
 			p->SetFocus(false);
 
 			focus = OnFocus(true);
@@ -318,6 +318,11 @@ bool Panel::FocusNext()
 		}
 	}
 
+	// If we made it here, no other panel accepted focus. Put it back on
+	// whatever panel originally had it.
+	if (currentFocusIdx != -1)
+		all[idx]->SetFocus(true);
+
 	return false;
 }
 
@@ -326,12 +331,12 @@ bool Panel::FocusNext()
 bool Panel::FocusPrev()
 {
 	vector<Panel *> all;
-	int currentFocusIndex = EnumerateTreeAndFindActivePanel(all);
+	int currentFocusIdx = EnumerateTreeAndFindActivePanel(all);
 
-	int idx = currentFocusIndex - 1;
+	int idx = currentFocusIdx - 1;
 	if(idx < 0)
 		idx = all.size() - 1;
-	while(currentFocusIndex != idx)
+	while(currentFocusIdx != idx)
 	{
 		Panel *p = all[idx];
 		if(p->SetFocus(true))
@@ -340,11 +345,16 @@ bool Panel::FocusPrev()
 		--idx;
 		if(idx < 0)
 		{
-			if(currentFocusIndex == -1)
+			if(currentFocusIdx == -1)
 				break;
 			idx = all.size() - 1;
 		}
 	}
+
+	// If we made it here, no other panel accepted focus. Put it back on
+	// whatever panel originally had it.
+	if (currentFocusIdx != -1)
+		all[idx]->SetFocus(true);
 
 	return false;
 }

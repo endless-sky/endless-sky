@@ -304,6 +304,10 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 		}
 		return false;
 		break;
+	case SDLK_AC_BACK:
+	case SDLK_ESCAPE:
+		SetFocus(false);
+		break;
 	default:
 		return false;
 	}

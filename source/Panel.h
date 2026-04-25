@@ -152,7 +152,7 @@ private:
 	class Zone : public Rectangle {
 	public:
 		Zone(const Rectangle &rect, const std::function<void()> &fun) : Rectangle(rect), fun(fun) {}
-		Zone(const Rectangle &rect, const std::function<void(const Event&)> &fun)
+		Zone(const Rectangle &rect, const std::function<void(const Event &)> &fun)
 			: Rectangle(rect), funDownEvent(fun)
 		{}
 

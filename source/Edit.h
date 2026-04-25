@@ -43,8 +43,8 @@ public:
 	void SetEnabled(bool e) { isEditable = e; }
 	bool Enabled() const { return isEditable; }
 
-	const std::string& Text() const;
-	void SetText(const std::string& s);
+	const std::string &Text() const;
+	void SetText(const std::string &s);
 	void Clear();
 
 	virtual void Draw() override;
