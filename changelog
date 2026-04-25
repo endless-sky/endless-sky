@@ -197,7 +197,7 @@ Version 0.11.1:
             * "hull damage": 125 -> 100
             * "disabled damage": 60 -> 0
             * "ion damage": 60 -> 48
-            * "scrambling damage": 60 ->
+            * "scrambling damage": 60 -> 48
             * "energy damage": 2000 -> 0
             * "missile strength": 95 -> 80
         * Ka'het EMP Deployer:
