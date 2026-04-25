@@ -988,3 +988,72 @@ mission "Struggling Author Gone Missing"
 			`	MISSING:`
 			`		Anna Fangvin, a young author whose books have been shared throughout the planet. Please report any news to the Coalition of Book Enjoyers, address 5662 Myrtle Lane, Sizertown, Zug.`
 				decline
+
+mission "Exotic Life: Delve"
+	minor
+	source Delve
+	to offer
+		random < 20
+	on offer
+		log `Heard about some tiny creatures called "Delvan Shipworms" which can eat through a ship's hull. Apparently infestations are getting more frequent.`
+		conversation
+			`The mountain air tastes cool and fresh after breathing the constantly recycled air on the <ship> for so long, so you take a moment to get a good lungful and enjoy the view. Just off to your right, ground technicians wearing thin coveralls and breathing gear are spraying some kind of chemical on the hull of a parked Sunder. The fine mist reflects a bright rainbow which contrasts strikingly with the dull gray metal of the hull.`
+			`	You wander over, careful not to get too close to the spray, which you assume is toxic. One of the technicians climbs down a ladder attached to the hull as you approach, then turns to you, pulling their mask off to reveal a man in his early twenties, with dark skin and hair plastered with sweat to his forehead.`
+			`	"This your ship?" he asks with a professionally neutral expression.`
+			choice
+				`	"No, I'm just curious. What are you doing to it?"`
+					goto curious
+				`	"Yes. How is the work coming along?"`
+			`	The technician shakes his head morosely.`
+			`	"It's confirmed. Shipworm. Bad case too, I'm surprised your hull was still holding atmo." He looks back at the Sunder, measuring her up with his eyes. "We should be finished with the decontamination in a couple hours, but then we'll need to go over her with sealant. Probably two coats. We'll be finished tomorrow afternoon, earliest."`
+			choice
+				`	"Shipworm? How could this happen?"`
+					goto whatisshipworm
+				`	"Oh. Okay, carry on."`
+					decline
+			label curious
+			`	He looks you up and down, perhaps wondering if he will get in trouble for telling you about another captain's ship, but then he shrugs and opens up.`
+			`	"Shipworm infestation. Third one this week." He pushes his hood back and runs his hand through his greasy hair. "Honestly, I'm surprised the media hasn't been covering it yet. Maybe they're waiting for the first spontaneous depressurization so they have something really juicy to talk about."`
+			choice
+				`	"Shipworm? What is that?"`
+				`	"You think it is a cover-up?"`
+					goto coverup
+			label whatisshipworm
+			`	"They're tiny little creatures, about the size of a pinhead, and they get everywhere if you're not careful. They feed on a whole load of different metals, it has the science geeks blowing their tops. So far they haven't found an alloy that these guys can't digest."`
+			label coverup
+				`	"As a model Syndicate employee," he says sardonically, "I can tell you that the rumors that the shipworm is indigenous to this planet are untrue, and that the miners are categorically not hauling them out of the ground along with the ore. In fact, if you even use the term 'Delvan Shipworm' there is a good chance that you'll have Syndicate lawyers suing you for defamation."`
+			`	You thank the technician for his time and turn back toward the <ship>, wondering if maybe you should park her a bit further away.`
+			decline
+
+
+mission "Exotic Life: Ada"
+	minor
+	source Ada
+	to offer
+		random < 20
+		has "Exotic Life: Delve: declined"
+	on offer
+		conversation
+			`A loud commotion draws your attention as you make your way through the spaceport and you look up to see three large Lovelace Labs security guards surrounding an irate pilot.`
+			`	"But I've got to unload my cargo!" the pilot is shouting right into the face of a guard who looks completely unfazed.`
+			`	"Not here you're not," she says in a bored manner, as though she deals with this kind of situation twenty times a day. "Not until you get your ship decontaminated."`
+			`	You are now just one of a whole crowd of onlookers surrounding the group in a big circle. The pilot seems to notice that he is the center of attention and decides to appeal to the crowd.`
+			`	"You see what they're doing?" he yells. "This is... this is overreach! I'm being harassed!"`
+			`	The guard is unimpressed, poking at a datapad as she talks.`
+			`	"Rules are rules and you gotta follow them just like everyone else." She looks up, eyes narrowed. "It says here your cargo is miniature figurines. What exactly are they made out of?"`
+			`	The pilot looks suddenly sheepish, throwing his hands up in defeat.`
+			`	"Alright, alright," he says. "I'll get the decon procedure done. Okay? You win."`
+			`	"What. Are. They. Made of?"`
+			`	"Stainless steel."`
+			`	"Ouch," she says, but the bored expression is gone now and she seems to be enjoying herself. "Twelve tons of miniature figurines, and we are gonna have to scan every single one to make sure they're not contaminated. That could take a while."`
+			`	With a scattering of chuckles and a few sympathetic groans the crowd starts to disperse, and the two other guards lead the pilot back towards his ship leaving the main guard tapping happily at her datapad. After a few moments she looks up, noticing you watching her.`
+			choice
+				`	"Delvan shipworms?"`
+					goto shipworms
+				`	"That seemed a bit harsh."`
+				`	"That was fun."`
+			`	She shrugs. "Just doing my job."`
+				decline
+			label shipworms
+			`	"Uh-huh," she says. "Only we're now seeing them on ships that haven't been near Delve. They seem to be spreading."`
+				decline
