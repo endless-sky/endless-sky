@@ -320,7 +320,7 @@ bool Panel::FocusNext()
 
 	// If we made it here, no other panel accepted focus. Put it back on
 	// whatever panel originally had it.
-	if (currentFocusIdx != -1)
+	if(currentFocusIdx != -1)
 		all[idx]->SetFocus(true);
 
 	return false;
@@ -353,7 +353,7 @@ bool Panel::FocusPrev()
 
 	// If we made it here, no other panel accepted focus. Put it back on
 	// whatever panel originally had it.
-	if (currentFocusIdx != -1)
+	if(currentFocusIdx != -1)
 		all[idx]->SetFocus(true);
 
 	return false;
