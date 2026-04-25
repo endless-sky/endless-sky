@@ -7,6 +7,11 @@ Version 0.11.1:
       * Message buoys referring to the bombings of Geminus and Martini will now only appear after those events occur. (@bene-dictator)
       * Corrected 'olofez engine flare locations. (@kaiboyjiang)
       * Increased the payment from "Bounty Hunting (Marauder X)" to match the listed value. (@Anarchist2)
+      * Increased the price of the Tiny VLS from 36000 to 54000 to bring it more in line with the other VLS weapons. (@kaiboyjiang)
+      * Removed various missions with LLM generated content. (@Anarchist2)
+      * Updated the text of various choices where an action is performed to be first person. (@Amazinite, @Anarchist2)
+      * Removed an NPC that was incorrectly included in "Coalition: Struggling Author 1". (@acolden-IAS)
+      * The Hai start now also gives the player a Pilot's License. (@TheGiraffe3)
     * Engine bugs:
       * Fixed a crash that could occur when capturing mission NPCs. (@warp-core)
       * Fixed a past-the-end iterator dereference. (@warp-core)
@@ -27,6 +32,10 @@ Version 0.11.1:
       * AI::AskForHelp now stores potential helpers in a WeightedList instead of duplicating elements in a vector, preventing a possible crash due to too many elements. (@Amazinite)
       * Invalid Persons will no longer be spawned. (@Amazinite)
       * An invalid government on a mission NPC will now mark the entire mission as invalid. (@Amazinite)
+      * Fixed some cases where an incorrect message was given when an outfit could not be installed. (@xobes)
+      * Carriable ships with the "staying" personality will now only dock with carriers that are also "staying" and so can no longer be removed from the system while docked. (@Amazinite)
+      * Properly disable shop buttons when the selected item cannot be purchased. (@Amazinite)
+      * Correct and improved the error message when attempting to install an outfit that would cause an attribute to go out of bounds. (@Amazinite)
   * Game content:
     * Mission changes:
       * Invisible missions that do not create a dialog or conversation are now "non-blocking". (@Nova1422)
@@ -72,17 +81,22 @@ Version 0.11.1:
           * Hull energy and heat: 2.1 -> 1.595
         * Vujlet:
           * Hull energy and heat: 1.27 -> 0.9625
+      * Added more Quarg ships as reinforcements in "Wanderers: Kor Efret 3" to account for reduced capabilities of individual Quarg ships following the Quarg ship and outfit rework. (@Saugia)
+        * One Quarg Hydra, three Quarg Wyverns, and two Quarg Wardragons, instead of two Wyverns and one Wardragon, travelling from Host.
+        * Two Hydras, instead of one Hydra nad three Wardragons, travelling from Masuket.
+        * Three Wardragons, instead of one, entering the Kashikt system (where hte mission takes place).
     * Other:
       * Raven now has a unique Gunboat variant with a Scram Drive, and, in "FW Reconciliation 1B", recommends the player install on if they don't already have one, as well. (@Anarchist2)
       * Expanded the description of the Incipias in their first contact conversation. (@Eatswind)
       * Added text directing the player towards post-bombing jobs to the conversations for the bombings if they are on Geminus or Martini. (@RedTecGamer236, @TheGiraffe3, @Anarchist2)
-  * Graphics and artwork:
-    * The hyperspace flash, camera acceleration, and landing zoom settings are now off by default. (@warp-core)
-    * HUD elements no longer blink while landed. (@TomGoodIdea)
   * Game mechanics:
     * New mechanics:
       * The messages a planet responds with when tribute is demanded can be customized at the government and planet level. (@TheGiraffe3)
       * Weapons can now be given the "exclude submunition damage" property so they do not apply the damage of their submunitions if they hit a target. (@Amazinite)
+      * Added various new text replacements relating to the pilot's starting scenario. (@nickshanks)
+      * Projectiles can now spawn submunitions upon exploding or colliding. (@Amazinite)
+      * Added conditions and text replacements for the player's current and previous planet and system. (@Amazinite)
+      * Any outfit can now defined "linked" outfits that should be uninstalled alongside it, similar to the "ammo" property. (@Amazinite)
     * Mechanics changes:
       * NPCs will deprioritize hostile ships that are already targeted by overwhelming firepower. (@Azure3141)
       * A ship becoming disabled by corrosion will now be attributed to the last ship that dealt damage to it. (@TomGoodIdea)
@@ -90,6 +104,13 @@ Version 0.11.1:
       * Homing weapon projectiles can now target minables. (@TomGoodIdea)
       * In entering/transition missions, the "<origin>" text substitution will now be replaced by the name of the system the mission was offered in. (@Amazinite)
       * Expanded the missing plural name check. (@ThrawnCA)
+  * Graphics:
+    * The hyperspace flash, camera acceleration, and landing zoom settings are now off by default. (@warp-core)
+    * HUD elements no longer blink while landed. (@TomGoodIdea)
+    * Spaceports can now have their own landscape image, distinct from the planet landscape. (@nickshanks)
+    * Planets can now list multiple landscapes; one will be chosen at random on each landing. (@nickshanks)
+    * Added an option to highlight all ships, in addition to just the flagship. (@Amazinite)
+    * The main zoom factor no longer has an upper limit of 200. The exact limit depends on window size. (@Amazinite)
   * User interface:
     * Move orders issues from the map can now be canelled. (@TomGoodIdea)
     * Added a visual indicator for incoming nuclear missiles to the HUD. (@TomGoodIdea)
@@ -99,6 +120,8 @@ Version 0.11.1:
     * Updated the help message about help messages to account for the help message reset setting moving page. (@TomGoodIdea)
     * Added a message about transferred fuel and energy when boarding a ship. (@Amazinite)
     * Added separate buttons for selling outfits and minables to the trading panel, with optional confirmation dialogs. (@xobes, @UnorderedSigh)
+    * Added a setting to disable the demand tribute confirmation dialog. (@Amazinite)
+    * The behaviour of the ammunition refill dialog can now be customized. (@Amazinite)
   * Performance:
     * Enabled optional deferred loading for scene, thumbnail, planet, and star sprites. (@Amazinite)
     * Fleets assigned to a system are no longer looped over when the fleet multiplier gamerule is zero. (@Amazinite)
@@ -111,9 +134,11 @@ Version 0.11.1:
     * Added a unique error message for when an @2x image is ignored because no corresponding standard size image exists. (@Amazinite)
     * Include cmath header for some gcc implementations. (@carlo-bramini)
   * Documentation:
+    * Updated the version of gcc listed in the build instructions. (@TomGoodIdea)
   * CI/CD and development environment:
     * Disabled sanitizers when compiling on cygwin. (@carlo-bramini)
     * GitHub Actions workflows now use lukka/get-cmake v4.2.3 instead of the latest version, to avoid issues when using some newer versions. (@TomGoodIdea)
+    * Updated some SDL adjacent code to fix integration tests in the Steam Linux environment. (@tibetiroka)
 
 Version 0.11.0:
   * Breaking changes:
