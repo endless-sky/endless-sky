@@ -2286,21 +2286,3 @@ government "Northern Anarchists"
 	"friendly disabled hail" "friendly disabled pirate"
 	"hostile hail" "hostile pirate"
 	"hostile disabled hail" "hostile disabled pirate"
-
-# Not to be confused with above, this government makes corrupt traders show up in pirate systems. You can't shoot these guys, it breaks one of the very few rules to being a pirate, so you'll get punished!
-
-government "Merchant (Corrupt)"
-	"display name" "Merchant"
-	swizzle 5
-	
-	"player reputation" 10
-	"attitude toward"
-		"Pirate" 10
-		"Priate Heimdall" 10
-		"Northern Anarchist" 10
-	"bribe" .05
-	"fine" 0
-	"friendly hail" "friendly civilian"
-	"friendly disabled hail" "friendly disabled"
-	"hostile hail" "hostile civilian"
-	"hostile disabled hail" "hostile disabled"

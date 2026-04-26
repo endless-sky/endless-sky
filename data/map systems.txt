@@ -4363,9 +4363,6 @@ system Almaaz
 	fleet "Large Republic" 6000
 	fleet "Northern Priate Miners" 2400
 	fleet "Small Northern Merchants" 16000
-	fleet "Small Northern Merchants (Corrupt)" 12000
-	fleet "Large Northern Merchants (Corrupt)" 16000
-	fleet "Human Miners (Corrupt)" 14000
 	object
 		sprite star/f-giant
 			scale 1.5
@@ -4654,9 +4651,6 @@ system Alnilam
 	fleet "Northern Priate Miners" 2500
 	fleet "Northern Pirate Merchants" 4000
 	fleet "Small Republic" 8000
-	fleet "Small Northern Merchants (Corrupt)" 8000
-	fleet "Large Northern Merchants (Corrupt)" 12000
-	fleet "Small Priate Traffic" 400
 	object
 		sprite star/f5
 		period 10
@@ -6854,8 +6848,6 @@ system Arneb
 	fleet "Northern Priate Miners" 1600
 	fleet "Northern Pirate Merchants" 4000
 	fleet "Small Republic" 8000
-	fleet "Small Northern Merchants (Corrupt)" 8000
-	fleet "Large Northern Merchants (Corrupt)" 12000
 	object
 		sprite star/f5
 		period 10
@@ -18863,11 +18855,7 @@ system Hatysa
 	fleet "Derelict Pirate" 30000
 	fleet "Northern Priate Miners" 2000
 	fleet "Northern Pirate Merchants" 6000
-	fleet "Small Priate Traffic" 400
 	fleet "Small Republic" 6000
-	fleet "Small Northern Merchants (Corrupt)" 8000
-	fleet "Large Northern Merchants (Corrupt)" 12000
-	fleet "Human Miners (Corrupt)" 9000
 	object
 		sprite star/k0
 		distance 5.3
@@ -39013,8 +39001,6 @@ system Tortor
 	fleet "Human Miners" 3000
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 8000
-	fleet "Small Northern Merchants (Corrupt)" 4000
-	fleet "Large Northern Merchants (Corrupt)" 8000
 	fleet "Derelict Pirate" 10000
 	object
 		sprite star/k3
@@ -39805,9 +39791,6 @@ system Unagi
 	fleet "Northern Priate Miners" 4000
 	fleet "Northern Pirate Merchants" 6000
 	fleet "Small Republic" 6000
-	fleet "Small Northern Merchants (Corrupt)" 8000
-	fleet "Large Northern Merchants (Corrupt)" 12000
-	fleet "Human Miners (Corrupt)" 9000
 	object
 		sprite star/g3
 		distance 1200
@@ -43086,7 +43069,6 @@ system "FU Orionis"
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 3500
 	fleet "Small Priate Miners" 6000
-	fleet "Human Miners (Corrupt)" 9000
 	fleet "Small Republic" 8000
 	object
 		sprite star/g-giant
@@ -43206,7 +43188,6 @@ system Remina
 	fleet "Small Northern Pirates" 4000
 	fleet "Small Republic" 8000
 	fleet "Small Priate Miners" 6000
-	fleet "Human Miners (Corrupt)" 12000
 	fleet "Large Northern Pirates" 12000
 	object
 		sprite star/k-supergiant
@@ -43275,7 +43256,6 @@ system Neshmet
 	minables iron 15 0.25
 	minables lead 10 0.25
 	fleet "Small Priate Miners" 8000
-	fleet "Human Miners (Corrupt)" 12000
 	fleet "Small Northern Pirates" 6000
 	fleet "Small Republic" 12000
 	fleet "Large Northern Pirates" 24000
