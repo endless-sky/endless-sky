@@ -188,7 +188,6 @@ namespace {
 					raidFleet.GetFleet()->Strength();
 		return danger;
 	}
-
 }
 
 const unsigned MapPanel::MAX_MISSION_POINTERS_DRAWN = 12;
