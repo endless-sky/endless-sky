@@ -36,7 +36,7 @@ mission "Successors: Ghosts Prelude Wedding"
 	on offer
 		log "Learned of an upcoming wedding between some of the scions of Houses Chydiyi and Myurej."
 		conversation
-			`	The crowds of Successors in this spaceport are unusually active today, many animatedly chatting to each other while others sit splayed around displays, watching a news broadcast. It's not long after you step off your ship that one particularly excited-looking Successor approaches you, their skin aburst with splashes of pink and green. "Hast though heard the recent news, Captain?"`
+			`	The crowds of Successors in this spaceport are unusually active today, many animatedly chatting to each other while others sit splayed around displays, watching a news broadcast. It's not long after you step off your ship that one particularly excited-looking Successor approaches you, their skin aburst with splashes of pink and green. "Hast thou heard the recent news, Captain?"`
 			choice
 				`	"No."`
 				`	"I try to avoid it when I can."`
@@ -186,7 +186,7 @@ mission "Successors: Ghosts QSI 2"
 					decline
 
 			label "saajret of somber sejra"
-			`	"Ah." Their skin shifts to a deep pink, but only for a moment. They pull a long column of metal from the panel in front of them, examining it closely for a time before returning their attention to you. "If thou know'th them well enough to speak of, then 'tis sure thou can'st appreciate the stresses on their time. But," they say, glittering, "I shall notify them of thy desire to meet, and I shall give them thy name and this," they say producing a data-sphere of the sort you've seen the Successors use before. "And if they wish to engage thee, then they may."`
+			`	"Ah." Their skin shifts to a deep pink, but only for a moment. They pull a long column of metal from the panel in front of them, examining it closely for a time before returning their attention to you. "If thou know'st them well enough to speak of, then 'tis sure thou canst appreciate the stresses on their time. But," they say, glittering, "I shall notify them of thy desire to meet, and I shall give them thy name and this," they say producing a data-sphere of the sort you've seen the Successors use before. "And if they wish to engage thee, then they may."`
 			choice
 				`	"My name is <first> <last>."`
 					goto end
@@ -223,7 +223,7 @@ mission "Successors: Ghosts QSI 3"
 	on offer
 		conversation
 			`Shortly after you land on <origin>, the Successor data-sphere you received from the House Kaatrij concierge springs to life. It displays a short message, text-only:`
-			`	'Tis good of thee, captain, that thou sought me out upon learning of this recent incident. Thine instincts do thee justice. Nonetheless, I've naught to give thee. The matter underway is of Kaatrij and does not pertain to thee nor the other Houses. If thou well-regards this House, keep clear of this. Enjoy our fruitful world, assist our grateful citizens, be regaled by what gifts we yet may give. Do not pry. This I beseech you, for our sake and for thine: do not be tempted by our secrets' jaws.`
+			`	'Tis good of thee, captain, that thou soughtest me out upon learning of this recent incident. Thine instincts do thee justice. Nonetheless, I've naught to give thee. The matter underway is of Kaatrij and does not pertain to thee nor the other Houses. If well thou regardest this House, keep clear of this. Enjoy our fruitful world, assist our grateful citizens, be regaled by what gifts we yet may give. Do not pry. This I beseech you, for our sake and for thine: do not be tempted by our secrets' jaws.`
 			`	This I myself attest as K- I- Saajret, of Somber Sejra.`
 				decline
 
@@ -263,7 +263,7 @@ mission "Successors: Ghosts 1"
 				`	"What sort of aid?"`
 					goto aid
 				`	"What's in it for me?"`
-			`	"Naturally," says the lead officer, their skin bristling a little, "thou can expect payment for thy services. The details shall be discussed with thee upon arrival." They hand over a data-sphere which highlights the <system> system and leave you to your business with a curt goodbye.`
+			`	"Naturally," says the lead officer, their skin bristling a little, "thou canst expect payment for thy services. The details shall be discussed with thee upon arrival." They hand over a data-sphere which highlights the <system> system and leave you to your business with a curt goodbye.`
 				accept
 			label here
 			`	"Indeed," says the lead officer, "but Kaatrij is presently understandably reluctant to permit the other Houses even temporary constructions on their homeworld. Details shall be provided upon thine arrival." They hand over a data-sphere which highlights the <system> system and leave you to your business with a curt but expectant goodbye.`
@@ -303,11 +303,11 @@ mission "Successors: Ghosts 2"
 			label task
 			`	"Our ally, Kaatrij," says Sijra, "has ceased their internal messages to us, and the rest of the New. But even if they do not wish to share, we can derive our own answers well enough."`
 			`	"This was an attack," says Rijatet. Their voice is low and rumbly, like rocks rolling down a hill. "Kaatrij would not close up otherwise. They do not trust the other Houses. They never have. They think another House has wounded them."`
-			`	"And thou, captain, thou'rt a... free element. Thy place in this can't be eas'ly divined. We can handle one alien, and their host, but cans't be sure thyself is all we have to reckon with." Waves of color run over Sijra's body, and one of their legs twitches gently against the floor.`
+			`	"And thou, captain, thou'rt a... free element. Thy place in this can't be eas'ly divined. We can handle one alien, and their host, but canst not be sure thyself is all we have to reckon with." Waves of color run over Sijra's body, and one of their legs twitches gently against the floor.`
 			choice
 				`	"Are you saying you think this is some prelude to alien invasion?"`
 				`	"Are you saying you think that another House attacked Kaatrij?"`
-			`	Sijra wriggles. "No. Not necessarily. Just that we are in need of information and wish to ensure that thou cans't be relied upon to provide it. So," says Sijra, "we have for thee a task. We will load sensors onto thy craft that can be deployed'n the other side of the wormhole, 'round the disconnected stars where our ships can't travel. If this is the work of some meddling alien force thinking cloaks and a jump drive make them gods, then we will know it, and we will show them their folly.`
+			`	Sijra wriggles. "No. Not necessarily. Just that we are in need of information and wish to ensure that thou canst be relied upon to provide it. So," says Sijra, "we have for thee a task. We will load sensors onto thy craft that can be deployed'n the other side of the wormhole, 'round the disconnected stars where our ships can't travel. If this is the work of some meddling alien force thinking cloaks and a jump drive make them gods, then we will know it, and we will show them their folly.`
 			choice
 				`	"And what if it isn't?"`
 					goto "isn't"
@@ -348,7 +348,7 @@ mission "Successors: Ghosts 2"
 				decline
 
 			label suspicious
-			`	Rijatet makes a noise sort of like chuckling. "Peril and opportunity oft travel arm-in-arm," they say. "Can'st thou blame us for keeping our objects of suspicion close, that they might one day become our allies?"`
+			`	Rijatet makes a noise sort of like chuckling. "Peril and opportunity oft travel arm-in-arm," they say. "Canst thou blame us for keeping our objects of suspicion close, that they might one day become our allies?"`
 			choice
 				`	"All right, I'll do it."`
 					goto yes
@@ -376,7 +376,7 @@ mission "Successors: Ghosts 2"
 	on complete
 		conversation
 			`Docking control at the <planet> spaceport directs the <ship> to a protected, fabric-shrouded hangar on the western side of the new facility. A pair of Successor ground crew supervise the automated refueling and maintenance processes, and one of them waves you down from the cockpit, where they hand you a data-sphere. A few seconds after it touches your skin, it plays a message from Rijatet:`
-			`	"Our thanks to thee for setting the sensors, Captain. We saw their first reports only shortly after as thy own craft jumped away, and nothing since. We shall remain as watchful as we ought to be. For thine efforts, Seineq's credited thee the agreed payment of <payment>. If thou wish't for further, join us at the port here tonight for another task."`
+			`	"Our thanks to thee for setting the sensors, Captain. We saw their first reports only shortly after as thy own craft jumped away, and nothing since. We shall remain as watchful as we ought to be. For thine efforts, Seineq's credited thee the agreed payment of <payment>. If thou wishest for further, join us at the port here tonight for another task."`
 			`	I attest this, A- T- Rijatet.`
 		payment 223000
 		log "Deployed Successor sensor drones throughout Predecessor space to scan for ships using jump drives, cloaked or not."
@@ -422,7 +422,7 @@ mission "Successors: Ghosts 3b Kaatrij"
 	on complete
 		conversation
 			`Once you have landed, your ship's communications system chirps with a new message delivered from House Kaatrij:`
-			`	<first> <last>, our thanks for thy contact. It has been received amicably. Because of a recent accident on a territorial possession of House Kaatrij, many missives we receive currently go unanswered. Should thou not receive further contact on this matter, we implore thee to stay thy disappointment.`
+			`	<first> <last>, our thanks for thy contact. It has been received amicably. Because of a recent accident on a territorial possession of House Kaatrij, many missives we receive currently go unanswered. Shouldst thou not receive further contact on this matter, we implore thee to stay thy disappointment.`
 
 
 conversation "successor house contact"
@@ -449,12 +449,12 @@ mission "Successors: Ghosts 4"
 			`Soon after you re-enter the spaceport, a Successor there directs you to the same room in which you met with Sijra and Rijatet before, and just as before, the two of them enter a few minutes later.`
 			`	"A pleasure t'see thee again after thy fruitful voyage, Captain," says Sijra. They wriggle under one of the mist generators. "We've a second task for thee. Thou art, as we explained before, a more neutral being here. If another House were to contact thee and ask for help as we have-"`
 			`	"Perhaps they already have," notes Rijatet.`
-			`	"Then in providing it, thou may'st see things our forces might not be privy to."`
+			`	"Then in providing it, thou mayst see things our forces might not be privy to."`
 			choice
 				`	"Are you asking me to spy for you?"`
 					goto spy
 				`	"Get to the point, please."`
-			`	Sirja moves their head a little closer to you. "If and when another House contracts thee for some purpose that thou suspects in any way, make note of it. Tell us and we shall pay thee a fair sum for thy time and effort."`
+			`	Sirja moves their head a little closer to you. "If and when another House contracts thee for some purpose that thou suspectest in any way, make note of it. Tell us and we shall pay thee a fair sum for thy time and effort."`
 				goto decision
 
 			label spy
