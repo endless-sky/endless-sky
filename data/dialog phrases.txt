@@ -159,3 +159,14 @@ phrase "free worlds failed"
 phrase "free worlds declined"
 	word
 		`You have declined an essential Free Worlds mission. If you want to continue the story line, revert to the autosave or another earlier snapshot of your pilot.`
+
+phrase "tribute pacifist undefined"
+	word
+		`This system is too small for wars and violence.`
+		`Why do you wish to engage in pointless bloodshed?`
+		`We will not fight. Join us in peace instead.`
+		`We cannot fight you, nor would we choose to. Have peace.`
+		`Peace be with you, captain. There is no need to rend the skies with your guns.`
+		`We will not fight you. We will not kill you. But neither will we pay a single cent of tribute.`
+		`Why should we fight over a piddling sum when it would cause so much death and horror to do so?`
+		`We beg you reconsider this rash decision.`
