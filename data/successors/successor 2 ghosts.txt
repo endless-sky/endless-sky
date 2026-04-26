@@ -1053,7 +1053,7 @@ mission "Successors: Ghosts 10"
 			choice
 				`	"All right, I'll do it."`
 					goto yes
-				`	"No."`
+				`	"No, I don't want to get any more tangled up in this than I already am."`
 					goto no
 
 			label details
@@ -1061,7 +1061,7 @@ mission "Successors: Ghosts 10"
 			choice
 				`	"All right, I accept."`
 					goto yes
-				`	"No."`
+				`	"No, I don't want to get any more tangled up in this than I already am."`
 					goto no
 
 			label yes
@@ -1080,9 +1080,15 @@ mission "Successors: Ghosts 10"
 				die
 
 			label "was discreet"
+			`	Your interrogator regards you thoughtfully for a moment. "Consider thy choice carefully, Captain," they say. "Among us, there is little way forward for a 'free agent,' as thou namest it. An offer such as this one shall not come again."`
+			choice
+				`	"All right, then, if it's the only way forward for me."`
+					goto yes
+				`	"No, I've made my decision. I won't join you."`
+
 			action
 				set "successors free agent" # This doesn't do anything now, but if Ghosts is ever expanded to let the player character ally with other Houses, this tag would be useful to have.
-			`	"A shame," the Successor says. "So long as thou does not give up what thou hast learned or otherwise make thyself an enemy of this House, Kaatrij shall not impede thee. Do not make us regret this leniency."`
+			`	"A shame," the Successor says. "But so long as thou does not give up what thou hast learned or otherwise make thyself an enemy of this House, Kaatrij shall not impede thee." They pause and their skin blossoms with intense color. "Do not make us regret this leniency."`
 			`	They gesture towards the door and the guards move to the side, allowing you to leave. As you walk back to your ship, the Seiitej takes off, leaving you alone but free.`
 				decline
 
