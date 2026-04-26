@@ -255,7 +255,7 @@ bool PlayerInfo::IsLoaded() const
 
 
 // Make a new player.
-void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile>& pilot)
+void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile> &pilot)
 {
 	// Clear any previously loaded data.
 	Clear();

@@ -90,7 +90,7 @@ public:
 	// Check if any player's information is loaded.
 	bool IsLoaded() const;
 	// Make a new player.
-	void New(const StartConditions &start, const std::shared_ptr<PilotProfile>& pilot);
+	void New(const StartConditions &start, const std::shared_ptr<PilotProfile> &pilot);
 	// Load an existing player.
 	void Load(const std::filesystem::path &path, const std::shared_ptr<PilotProfile> &pilot);
 	// Reload from the same file from which the current pilot was loaded.
