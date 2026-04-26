@@ -98,7 +98,7 @@ mission "Successors: Ghosts Myurej 1"
 			`	"Fine," you say. "Captain <first> <last>. Myurej sent me."`
 			label introduce
 			`	A wave of red and black bristles over their skin. "Of course," they say. "I should've guessed. Come to send me on some wild quest for some bit of finery, is it? Some golden child lost their favorite jewel?"`
-			`	"Well, sort of," you say. "All I need from you is the location of Riiria. They stole something from the House that they want back."`
+			`	"Well, sort of," you say. "All I need from you is the location of Riiria. They stole something from Myurej that the House wants back."`
 			`	"Predictable," they say. "Some blow to pride and they get a knave like thee to crawl in the mud."`
 			choice
 				`	"Just get to the point."`

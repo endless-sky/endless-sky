@@ -64,7 +64,7 @@ mission "Successors: Ghosts Prelude Incident"
 		log "Learned of an incident on a moon controlled by House Kaatrij that revealed portions of a hidden base."
 		conversation
 			`The usual orderly structure of the spaceport's activity lies in pieces. Throngs of merchants, travelers, and military officers alike crowd around displays in the port, their shops and vessels left behind. It is uncomfortably quiet - the only voice you hear above a whisper is that of a news announcer, writhing in your ears as the translation device rearranges the sound, word by word.`
-			`	"... incident has laid bare aught what noble House Kaatrij hath labor'd t'leave concealed. The moon, long thought lifeless, barren, raw, now show'th the spill-ed guts of some long-conceal'd base. View, fellows! See it seethe beneath the light!"`
+			`	"... incident has laid bare aught what noble House Kaatrij hath labor'd t'leave concealed. The moon, long thought lifeless, barren, raw, now show'th the spilt guts of some long-conceal'd base. View, fellows! See it seethe beneath the light!"`
 			`	The display changes to show an overhead view of a sandy moon. Tucked in a valley between rust-colored dunes is a bloom of distorted metal and intermittent light, the shape of a long arc stretching for maybe a kilometer across the surface. Near the ends, the image shimmers and warps before the whole thing is obscured by a Kaatrij warship flying into view - it's not clear whether the distortion is actually present or just a fault of the transmission.`
 			branch "seen this before"
 				has "event: war begins"
@@ -115,7 +115,7 @@ mission "Successors: Ghosts QSI 1"
 				die
 
 			label ally
-			`	"Thou art denied, for thou lack authorization writ. Converse with thy superior if this is in error, and return only when thou can'st present it. Now return to orbit, on pain of death, ally or no."`
+			`	"Thou art denied, for thou'rt without a writ of authorization. Converse with thy superior if this is in error, and return only when thou canst present it. Now return to orbit, on pain of death, ally or no."`
 			action
 				set "successors: ghosts ally referred"
 				log "Attempted to land on Qasa-Sija-Iri but was denied for lack of authorization. Instructed to converse with a superior to acquire authorization to land."
@@ -400,7 +400,7 @@ mission "Successors: Ghosts 3a Sioeora"
 	on complete
 		conversation
 			`Once you have landed, your ship's communications system chirps with a new message delivered from House Sioeora:`
-			`	Honored captain <first> <last>, Sioeora one again calls thee 'ally' with pride and confidence for thy discretion and fair judgment. Thou may'st proceed as thou pleasest with Seineq's scheme - it concerns us little what they plan to do in sealed-off space, so long's they recognize Sioeora and the rest shall keep our eyes upon their actions. Should Seineq, in foolishness, resolve to some act of aggression, they shall find we and our allies eager to correct their errant course.`
+			`	Honored captain <first> <last>, Sioeora once again calls thee 'ally' with pride and confidence in thy discretion and fair judgment. Thou mayst proceed as thou pleasest with Seineq's scheme - it concerns us little what they plan to do in sealed-off space, so long as they recognize that Sioeora and the rest shall keep our eyes upon their actions. Should Seineq, in foolishness, resolve to some act of aggression, they shall find we and our allies eager to correct their errant course.`
 			`	In confirmation of this message, I do myself attest: I- C- N-, on behalf of honored scion Riijaaora E- Sioeora of their noble House.`
 
 
@@ -678,7 +678,7 @@ mission "Successors: Ghosts 6"
 				accept
 
 			label scared
-			`	"Indeed not," Saajret says, humming. "Thou shalt not be expected to face them again, if that concerns thee. The scans I mean to take are not invasive and would not arouse the fury of the Kijran-Khora, but thour't needed for naught but transportation there and back."`
+			`	"Indeed not," Saajret says, humming. "Thou shalt not be expected to face them again, if that concerns thee. The scans I mean to take are not invasive and would not arouse the fury of the Kijran-Khora, but thou'rt needed for naught but transportation there and back."`
 				goto "final choice"
 
 			label suspicious
