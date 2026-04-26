@@ -1148,11 +1148,25 @@ mission "Successors: Ghosts 10"
 						has "Successors: drone"
 						has "Successors: seineq"
 						has "Successors: cloak"
+						has "Successors: quarg"
 					goto end
 				`	"Do you know who attacked your base?"`
 					to display
 						not "Successors: attack"
 					goto attack
+				`	"Are you behind the drone ships in Predecessor space?"`
+					to display
+						not "Successors: drone"
+					goto drone
+				`	"What exactly is this arrangement with the Quarg that you have?"`
+					to display
+						not "Successors: quarg"
+					goto quarg
+				`	"How much cloaking technology do you actually have?"`
+					to display
+						not "Successors: cloak"
+						has "Successors: attack"
+					goto cloak
 				`	"Did you attack House Seineq?"`
 					to display
 						has "Successors: attack"
@@ -1160,15 +1174,6 @@ mission "Successors: Ghosts 10"
 						has "Successors: cloak"
 						not "Successors: seineq"
 					goto seineq
-				`	"Are you behind the drone ships in Predecessor space?"`
-					to display
-						not "Successors: drone"
-					goto drone
-				`	"How much cloaking technology do you actually have?"`
-					to display
-						not "Successors: cloak"
-						has "Successors: attack"
-					goto cloak
 
 			label attack
 			action
@@ -1193,6 +1198,12 @@ mission "Successors: Ghosts 10"
 				set "Successors: cloak"
 			`	"I shan't tell thee exactly," Kampa says. "Thy retrieval of the stellar metal for Aqrabe has been a boon to us in that, though."`
 				goto questions
+			
+			label quarg
+			action
+				set "Successors: quarg"
+			`	"We do not claim to be the equals of the Quarg in wisdom or grace," says Kampa, "but we share an affection for our species, and we would not see ourselves destroyed. The Quarg benefit from our cloaks and these dusty lands of ours; in turn, we have their counsel and consideration and, as 'tis necessary, some small material support."`
+				goto questions
 
 			label next
 			action
@@ -1200,6 +1211,7 @@ mission "Successors: Ghosts 10"
 				clear "Successors: drone"
 				clear "Successors: seineq"
 				clear "Successors: cloak"
+				clear "Successors: quarg"
 
 			label end
 			`	With that said, Kampa leaves the room, as does a distracted-looking Saajret soon after. As you also turn to go and explore the facility, the Quarg, still watching, stops you as it starts to speak. "Do you believe that the threads of the universe must tend to constrict?" it says in your own language. "Perhaps there is something inherent in separation that existence abhors." It hums, a deep and organic rumble. "You may go. Saajret waits for you in the spaceport."`
