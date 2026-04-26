@@ -1185,7 +1185,7 @@ mission "Successors: Ghosts 10"
 			label drone
 			action
 				set "Successors: drone"
-			`	Kampa's skin ripples with hollow mirth. "Not exactly," they say. "'Twere creations of an ally of the old House Kaatrij during the last great inter-Houses war, a bold engineer of Aqrabe. Autonomous as they were, they could - when stripp'd of 'twas most noxious to our victory - remain to ward off plund'rers of our cities and hidden vaults."`
+			`	Kampa's skin ripples with hollow mirth. "Not exactly," they say. "'Twere creations of an ally of the old House Kaatrij during the last great inter-Houses war, a bold engineer of Aqrabe. Autonomous as they were, they could - when stripp'd of those drives that spoiled the savor of our victory - remain to ward off plund'rers of our cities and hidden vaults."`
 				goto questions
 
 			label cloak
