@@ -12686,7 +12686,7 @@ mission "Northern Anarchist Knowledge"
 
 event "Anarchist Knowledge"
 	government "Northern Anarchist"
-		"display name" "N. Anarchist"
+		"display name" "N.A.S.A."
 		color "governments: Northern Anarchist"
 	government "True Anarchist"
 		"display name" "True Anarchist"

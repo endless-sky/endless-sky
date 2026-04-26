@@ -2220,7 +2220,7 @@ government "Pirate Heimdall"
 	"attitude toward"
 		"Pirate" 2
 		"Pirate (Merchant)" 2
-		"Northern Anarchists" 2
+		"Northern Anarchist" 2
 		"True Anarchist" 2
 	"bribe" .05
 	"fine" 0
@@ -2229,7 +2229,7 @@ government "Pirate Heimdall"
 	"hostile hail" "hostile pirate"
 	"hostile disabled hail" "hostile disabled pirate"
 
-government "Northern Anarchists"
+government "Northern Anarchist"
 	"display name" "Pirate"
 	swizzle 6
 	color "governments: Pirate"
@@ -2257,7 +2257,7 @@ government "True Anarchist"
 		"Pirate" 2
 		"Pirate Heimdall" 2
 		"Pirate (Merchant)" 2
-		"Northern Anarchists" 2
+		"Northern Anarchist" 2
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
