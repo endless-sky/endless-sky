@@ -91,7 +91,7 @@ public:
 	// Apply focus to this panel and remove it from any others in this tree.
 	bool SetFocus(bool newFocus);
 	// Returns true if this panel has the keyboard focus.
-	bool HasFocus();
+	bool HasFocus() const;
 	// Move focus to the next panel that wants it.
 	bool FocusNext();
 	// Move focus to the previous panel that wants it.
@@ -190,7 +190,7 @@ private:
 
 	// Call a method on all the children in reverse order, and then on this
 	// object. Recursion stops as soon as any child returns true.
-	template<typename...FARGS, typename...ARGS>
+	template<typename ...FARGS, typename ...ARGS>
 	bool EventVisit(bool(Panel::*f)(FARGS ...args), ARGS ...args);
 
 	int EnumerateTreeAndFindActivePanel(std::vector<Panel *> &descendants);

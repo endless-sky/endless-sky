@@ -39,25 +39,25 @@ public:
 	int FontSize() const { return fontSize; }
 	void SetPosition(const Rectangle &position);
 	const Rectangle &Position() const { return position; }
-	void SetEnabled(bool e) { isEditable = e; }
-	bool Enabled() const { return isEditable; }
+	virtual void SetEnabled(bool e) { isEditable = e; }
+	virtual bool Enabled() const { return isEditable; }
 
 	const std::string &Text() const;
-	void SetText(const std::string &s);
+	virtual void SetText(const std::string &s);
 	void Clear();
 
 	virtual void Draw() override;
 
 	void SetAlign(ALIGN a) { alignment = a; }
 	ALIGN Align() const { return alignment; }
-	void SetPadding(int p);
+	virtual void SetPadding(int p);
 	void SetLeftPadding(int p);
-	void SetRightPadding(int p);
+	virtual void SetRightPadding(int p);
 	void SetTopPadding(int p);
 	void SetBottomPadding(int p);
 	int Padding() const { return leftPadding; }
 	int LeftPadding() const { return leftPadding; }
-	int RightPadding() const { return rightPadding; }
+	virtual int RightPadding() const { return rightPadding; }
 	int TopPadding() const { return topPadding; }
 	int BottomPadding() const { return bottomPadding; }
 
@@ -80,10 +80,10 @@ protected:
 
 	void MoveCaret(size_t pos);
 	void UpdateCaret(size_t pos);
-	void UpdateText(const std::string &text, size_t caretpos);
+	void UpdateText(const std::string &text, size_t caretPos);
 
 	void Cut();
-	void Copy();
+	void Copy() const;
 	void Paste();
 	void Undo();
 	void Redo();

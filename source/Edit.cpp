@@ -22,8 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Rectangle.h"
 #include "Screen.h"
-#include "image/SpriteSet.h"
-#include "shader/SpriteShader.h"
 #include "UI.h"
 
 #include <cassert>
@@ -332,14 +330,14 @@ bool Edit::Click(int x, int y, MouseButton button, int clicks)
 	SetFocus(true);
 
 	const string &s = Text();
-	size_t newpos = 0;
-	for(; newpos < s.size(); ++newpos)
+	size_t newPos = 0;
+	for( ; newPos < s.size(); ++newPos)
 	{
-		if(AlignedOffset(newpos + 1).X() > x)
+		if(AlignedOffset(newPos + 1).X() > x)
 			break;
 	}
 
-	MoveCaret(newpos);
+	MoveCaret(newPos);
 
 	return true;
 }
@@ -356,16 +354,16 @@ bool Edit::Drag(double dx, double dy)
 		dragPos.Y() += dy;
 
 		const string &s = Text();
-		size_t newpos = 0;
-		for(; newpos < s.size(); ++newpos)
+		size_t newPos = 0;
+		for( ; newPos < s.size(); ++newPos)
 		{
-			if(AlignedOffset(newpos + 1).X() > dragPos.X())
+			if(AlignedOffset(newPos + 1).X() > dragPos.X())
 				break;
 		}
 
-		UpdateHighlightRect(newpos, highlightPos);
+		UpdateHighlightRect(newPos, highlightPos);
 
-		UpdateCaret(newpos);
+		UpdateCaret(newPos);
 		return true;
 	}
 	return false;
@@ -404,7 +402,7 @@ bool Edit::TextInput(const string &s)
 		return false;
 
 	string newText;
-	size_t newPos = INVALID_POS;
+	size_t newPos;
 	if(highlightPos != INVALID_POS)
 	{
 		int left = highlightPos;
@@ -510,7 +508,7 @@ void Edit::Cut()
 
 
 
-void Edit::Copy()
+void Edit::Copy() const
 {
 	if(highlightPos == INVALID_POS)
 		SDL_SetClipboardText(Text().c_str());

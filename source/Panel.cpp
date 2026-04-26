@@ -288,7 +288,7 @@ bool Panel::SetFocus(bool newFocus)
 
 
 
-bool Panel::HasFocus()
+bool Panel::HasFocus() const
 {
 	return focus;
 }
@@ -561,7 +561,7 @@ void Panel::RemoveChild(const Panel *panel)
 
 
 
-int Panel::EnumerateTreeAndFindActivePanel(vector<Panel *> &all)
+int Panel::EnumerateTreeAndFindActivePanel(vector<Panel *> &descendants)
 {
 	int currentFocusIdx = -1;
 	deque<Panel *> q;
@@ -574,8 +574,8 @@ int Panel::EnumerateTreeAndFindActivePanel(vector<Panel *> &all)
 	{
 		Panel *p = q.front();
 		if(p->HasFocus())
-			currentFocusIdx = all.size();
-		all.push_back(p);
+			currentFocusIdx = descendants.size();
+		descendants.push_back(p);
 		q.pop_front();
 
 		for(auto &c : p->children)

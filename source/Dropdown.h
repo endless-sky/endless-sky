@@ -34,20 +34,20 @@ public:
 	virtual ~Dropdown() = default;
 
 	void SetOptions(const std::vector<std::string> &options);
-	void SetText(const std::string &s);
+	void SetText(const std::string &s) override;
 	void SetSelectedIndex(int idx);
 	int GetSelectedIndex() const { return selectedIndex; }
 
 	virtual void Draw() override;
 
 	void ShowDropIcon(bool s);
-	void SetPadding(int p);
-	void SetRightPadding(int p);
-	int RightPadding() const { return rightPaddingWithoutDrop; }
+	void SetPadding(int p) override;
+	void SetRightPadding(int p) override;
+	int RightPadding() const override { return rightPaddingWithoutDrop; }
 
 	void SetTypeable(bool t);
-	void SetEnabled(bool e);
-	bool Enabled() const { return enabled; }
+	void SetEnabled(bool e) override;
+	bool Enabled() const override { return enabled; }
 
 
 protected:
@@ -57,18 +57,17 @@ protected:
 private:
 	class DroppedPanel : public Panel {
 	public:
-		DroppedPanel(Dropdown *parent);
+		explicit DroppedPanel(Dropdown *parent);
 
-		void SetMousePos(const Point &p) { mousePos = p; }
 		virtual void Draw() override;
 
+		void SetMousePos(const Point &p) { mousePos = p; }
 
 	protected:
 		virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 		virtual bool Drag(double dx, double dy) override;
 		virtual bool Release(int x, int y, MouseButton button) override;
 		virtual bool Hover(int x, int y) override;
-
 
 	private:
 		Dropdown *dd = nullptr;
