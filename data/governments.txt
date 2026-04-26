@@ -2215,71 +2215,49 @@ government "Wormhole Alpha"
 government "Pirate Heimdall"
 	swizzle 6
 	color "governments: Pirate"
-	
+	"default attitude" -.01
 	"player reputation" -10
 	"attitude toward"
-		"Pirate" 10
-		"Pirate (Merchant)" 10
-		"Author" -.01
-		"Hai" -.01
-		"Hai (Wormhole Access)" -.01
-		"Korath" -.01
-		"Merchant" 0
-		"Syndicate" -.01
-		"Deep Security" -.01
-		"Free Worlds" -.01
-		"Independent" -.01
-		"Militia" -.01
-		"Navy Intelligence" -.01
-		"Navy (Oathkeeper)" -.01
-		"Neutral" -.01
-		"Quarg" -.01
-		"Quarg (Hai)" -.01
-		"Republic" -.01
-		"Republic Intelligence" -.01
-		"Republic (Friendly)" -.01
-		"Syndicate" -.01
-		"Uninhabited" -.01
+		"Pirate" 2
+		"Pirate (Merchant)" 2
+		"Northern Anarchists" 2
+		"True Anarchist" 2
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
 	"friendly disabled hail" "friendly disabled pirate"
 	"hostile hail" "hostile pirate"
 	"hostile disabled hail" "hostile disabled pirate"
-# There's probably a lot of things that don't need to be on here, but I didn't want to run into an edge case!
-# Also, they SHOULD be hostile to Uninhabited, it stops them from landing on those planets.
-
-# Anarchists should have a distinct personality, and government, for lore stuff. Here it is!
 
 government "Northern Anarchists"
 	"display name" "Pirate"
 	swizzle 6
 	color "governments: Pirate"
-	
+	"default attitude" -.01
 	"player reputation" -10
 	"attitude toward"
-		"Pirate" 10
-		"Pirate Heimdall" 10
-		"Author" -.01
-		"Hai" -.01
-		"Hai (Wormhole Access)" -.01
-		"Korath" -.01
-		"Merchant" -.1
-		"Syndicate" -.01
-		"Deep Security" -.01
-		"Free Worlds" -.01
-		"Independent" .2
-		"Militia" -.01
-		"Navy Intelligence" -.01
-		"Navy (Oathkeeper)" -.01
-		"Neutral" -.01
-		"Quarg" -.01
-		"Quarg (Hai)" -.01
-		"Republic" -.01
-		"Republic Intelligence" -.01
-		"Republic (Friendly)" -.01
-		"Syndicate" -.01
-		"Uninhabited" -.01
+		"Pirate" 2
+		"Pirate Heimdall" 2
+		"Pirate (Merchant)" 2
+		"True Anarchist" 2
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled pirate"
+	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled pirate"
+
+government "True Anarchist"
+	"display name" "Pirate"
+	swizzle 6
+	color "governments: Pirate"
+	"default attitude" -.01
+	"player reputation" -10
+	"attitude toward"
+		"Pirate" 2
+		"Pirate Heimdall" 2
+		"Pirate (Merchant)" 2
+		"Northern Anarchists" 2
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
