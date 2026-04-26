@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/MaskManager.h"
 #include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
+#include "PilotProfile.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "image/SpriteSet.h"
@@ -56,6 +57,8 @@ void GameLoadingPanel::Step()
 		Audio::CheckReferences();
 		// Set the game's initial internal state.
 		GameData::FinishLoading();
+		// Ensure that all pilot profiles are loaded.
+		PilotProfile::LoadProfiles();
 
 		player.LoadRecent();
 
