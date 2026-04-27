@@ -50,6 +50,23 @@ namespace {
 		return box;
 	}
 
+	Point Nudge(const Rectangle &box)
+	{
+		double x = 0.;
+		if(box.Left() < Screen::Left())
+			x = Screen::Left() - box.Left();
+		else if(box.Right() > Screen::Right())
+			x = Screen::Right() - box.Right();
+
+		double y = 0.;
+		if(box.Top() < Screen::Top())
+			y = Screen::Top() - box.Top();
+		else if(box.Bottom() > Screen::Bottom())
+			y = Screen::Bottom() - box.Bottom();
+
+		return Point(x, y);
+	}
+
 	// Determine where this tooltip should be positioned. Account for whether the
 	// default settings would generate a tooltip that goes off screen, and create
 	// an adjusted tooltip position if this occurs.
@@ -59,13 +76,17 @@ namespace {
 		// Generate a tooltip box from the given parameters.
 		Rectangle box = CreateBox(zone, boxSize, direction, corner);
 
-		// If the tooltip goes off one of the edges of the screen, swap the draw
-		// direction to go the other way. Also swap the corner that the tooltip
-		// is being drawn from as to not overlap the hover zone.
-		bool onScreen = true;
+		// If the tooltip goes off one of the edges of the screen, nudge its position
+		// to no longer go off screen.
+		Rectangle nudged = box + Nudge(box);
+
+		if(!zone.Overlaps(nudged))
+			return nudged;
+
+		// If the nudged box overlaps with the zone that we're trying to display a
+		// tooltip for, swap the draw direction to go the other way.
 		if(box.Left() < Screen::Left())
 		{
-			onScreen = false;
 			if(direction == Tooltip::Direction::UP_LEFT)
 			{
 				direction = Tooltip::Direction::UP_RIGHT;
@@ -81,7 +102,6 @@ namespace {
 		}
 		else if(box.Right() > Screen::Right())
 		{
-			onScreen = false;
 			if(direction == Tooltip::Direction::UP_RIGHT)
 			{
 				direction = Tooltip::Direction::UP_LEFT;
@@ -98,7 +118,6 @@ namespace {
 
 		if(box.Top() < Screen::Top())
 		{
-			onScreen = false;
 			if(direction == Tooltip::Direction::UP_RIGHT)
 			{
 				direction = Tooltip::Direction::DOWN_RIGHT;
@@ -114,7 +133,6 @@ namespace {
 		}
 		else if(box.Bottom() > Screen::Bottom())
 		{
-			onScreen = false;
 			if(direction == Tooltip::Direction::DOWN_RIGHT)
 			{
 				direction = Tooltip::Direction::UP_RIGHT;
@@ -129,11 +147,11 @@ namespace {
 			}
 		}
 
-		// If the initial box doesn't fit on screen, generate a new one with
-		// a different draw location. Don't bother checking if this second box
-		// fits on screen, because if it doesn't, that means that the screen
-		// is simply too small to fit this box.
-		return onScreen ? box : CreateBox(zone, boxSize, direction, corner);
+		// Don't bother checking if this second box overlaps, because if it doesn't,
+		// that means that the screen is simply too small to fit this box and not overlap
+		// the zone at the same time.
+		box = CreateBox(zone, boxSize, direction, corner);
+		return box + Nudge(box);
 	}
 }
 
