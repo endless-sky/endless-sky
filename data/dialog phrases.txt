@@ -169,4 +169,4 @@ phrase "tribute pacifist undefined"
 		`Peace be with you, captain. There is no need to rend the skies with your guns.`
 		`We will not fight you. We will not kill you. But neither will we pay a single cent of tribute.`
 		`Why should we fight over a piddling sum when it would cause so much death and horror to do so?`
-		`We beg you reconsider this rash decision.`
+		`We beg that you reconsider this rash decision.`
