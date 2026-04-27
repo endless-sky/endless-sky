@@ -147,7 +147,7 @@ namespace {
 			}
 		}
 
-		// Don't bother checking if this second box overlaps, because if it doesn't,
+		// Don't bother checking if this second box overlaps, because if it does,
 		// that means that the screen is simply too small to fit this box and not overlap
 		// the zone at the same time.
 		box = CreateBox(zone, boxSize, direction, corner);
