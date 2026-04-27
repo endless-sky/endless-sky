@@ -772,7 +772,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 
 					// Install it on this ship.
 					ship->AddOutfit(selectedOutfit, 1);
-					int required = selectedOutfit->Get("required crew");
+					int required = selectedOutfit->Get("required crew") + selectedOutfit->Get("mandatory crew");
 					if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
 						ship->AddCrew(required);
 					ship->Recharge();
@@ -827,7 +827,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 			{
 				// Uninstall the outfit.
 				ship->AddOutfit(selectedOutfit, -1);
-				int required = selectedOutfit->Get("required crew");
+				int required = selectedOutfit->Get("required crew") + selectedOutfit->Get("mandatory crew");
 				if(required)
 					ship->AddCrew(-required);
 				// Adjust hired crew counts.
@@ -910,7 +910,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 
 					// Install it on this ship.
 					ship->AddOutfit(selectedOutfit, 1);
-					int required = selectedOutfit->Get("required crew");
+					int required = selectedOutfit->Get("required crew") + selectedOutfit->Get("mandatory crew");
 					if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
 						ship->AddCrew(required);
 					ship->Recharge();
