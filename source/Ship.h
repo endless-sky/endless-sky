@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <list>
 #include <map>
 #include <memory>
+#include <optional>
 #include <set>
 #include <string>
 #include <vector>
@@ -408,6 +409,8 @@ public:
 	// divided by the mass, up to a value of 1.
 	double DragForce() const;
 
+	// How much this ship counts toward the player's fleet capacity.
+	int FleetCost() const;
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
 	int RequiredCrew() const;
@@ -723,6 +726,7 @@ private:
 	// The amount of time in frames that an engine has been on for.
 	std::array<uint8_t, 4> thrustHeldFrames = {};
 
+	std::optional<int> administrativeCost;
 	int crew = 0;
 	int pilotError = 0;
 	int pilotOkay = 0;
