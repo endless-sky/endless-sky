@@ -1631,6 +1631,14 @@ tip "Notify on destination"
 tip "Save message log"
 	`Include message logs in pilot files so they are not lost when closing the game or reloading the save file. This will increase save file sizes and may increase load times. The stored log history can be cleared from the message log panel.`
 
+tip "Alignment override"
+	`If enabled, aligns text paragraphs horizontally with the chosen strategy.`
+	`- "left": align to the left.`
+	`- "right: align to the right.`
+	`- "center": center the text.`
+	`- "justified": stretch the text, adding more space between words.`
+
+
 tip "Block screen saver"
 	`Whether your monitor should be able to dim and turn off or change to the screen saver while the game is open.`
 
