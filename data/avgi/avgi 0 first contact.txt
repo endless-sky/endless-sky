@@ -1109,16 +1109,20 @@ mission "Avgi: Twilight Escape 3"
 		dialog `You land on <planet>, but realize that your escort carrying Darius hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
-mission "Discovery of Decet Magnetar"
+event "avgi: discovered magnetar"
+	system "Decet"
+		"jump range" 180
+
+
+mission "Avgi: Discovery of Decet Magnetar"
 	invisible
 	entering
 	source
 		system "Decet"
 	destination "Earth"
 	on offer
+		event "avgi: discovered magnetar" 0
 		log `Discovered a magnetar in the Decet system that can boost the range of my jump drive in an apparent inversion of the mysterious effect that trapped me here.`
 		conversation
-			action
-				set "avgi: discovered magnetar"
 			`Just as your jump drive reacted strangely when you first entered Avgi space, it does so again, but this time the effect is inverted. The plasma from your jump lingers unnaturally, as though energized by something outside. Your instrumentation tells you your jump drive is much warmer than it should be just after a jump, almost hot enough to be dangerous. Perhaps your jump drive's range has changed as well?`
 				decline
