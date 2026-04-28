@@ -469,6 +469,21 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					transferMessage += " been transferred.";
 					messages.push_back(transferMessage);
 				}
+				// Warn the player if outfits exist that are widely illegal.
+				bool foundIllegal = false;
+				for(const auto &it : victim->Outfits())
+					if(it.first->Get("illegal") || it.first->Get("atrocity") > 0.)
+					{
+						messages.push_back("Found " + to_string(it.second) + " "
+							+ (it.second == 1 ? it.first->DisplayName() : it.first->PluralName())
+							+ "!");
+						foundIllegal = true;
+					}
+				if(foundIllegal)
+				{
+					messages.push_back("You may wish to avoid law enforcement!");
+				}
+
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 				{
 					double fuelTransferred = you->TransferFuel(victim->JumpFuelMissing(), &*victim);
