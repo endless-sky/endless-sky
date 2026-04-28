@@ -596,6 +596,21 @@ ship "Berserker" "Berserker (CCOR)"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
+ship Berserker "Berserker (Gatling)"
+	outfits
+		"Bullet Boxes"
+		"Cargo Expansion"
+		"D23-QP Shield Generator"
+		"Gatling Gun" 4
+		"Gatling Gun Ammo" 13500
+		"Greyhound Plasma Steering"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"KP-6 Photovoltaic Panel" 2
+		"Small Radar Jammer"
+		Supercapacitor
+		"nGVF-BB Fuel Cell"
+
 
 
 ship "Blackbird" "Blackbird (Prisoner Transport)"
@@ -2052,6 +2067,49 @@ ship "Hawk" "Hawk (Speedy)"
 		"Hyperdrive"
 
 
+ship Hawk "Hawk (Heimdall)"
+	outfits
+		"D23-QP Shield Generator"
+		"Large Radar Jammer"
+		"Sidewinder Missile" 91
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile Rack" 3
+		"Meteor Missile" 90
+		"Meteor Missile Launcher"
+		"Meteor Missile Box" 4
+		Supercapacitor
+		"Tactical Scanner"
+		"Volcano Afterburner"
+		"Water Coolant System"
+		"X2200 Ion Steering"
+		"X2700 Ion Thruster"
+		"nGVF-BB Fuel Cell"
+		"Laser Rifle"
+	gun "Sidewinder Missile Launcher"
+	gun "Meteor Missile Launcher"
+
+
+ship Hawk "Hawk (Heimdall Bomber)"
+	outfits
+		"D23-QP Shield Generator"
+		"Large Radar Jammer"
+		"Sidewinder Missile" 91
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile Rack" 3
+		"Torpedo" 30
+		"Torpedo Launcher"
+		Supercapacitor
+		"Tactical Scanner"
+		"Volcano Afterburner"
+		"Water Coolant System"
+		"X2200 Ion Steering"
+		"X2700 Ion Thruster"
+		"nGVF-BB Fuel Cell"
+		"KP-6 Photovoltaic Panel"
+		"Laser Rifle"
+	gun "Sidewinder Missile Launcher"
+	gun "Torpedo Launcher"
+
 
 ship "Headhunter" "Headhunter (Hai)"
 	outfits
@@ -2144,6 +2202,21 @@ ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+
+ship "Heavy Shuttle" "Heavy Shuttle (Pirate Traffic)"
+	outfits
+		Brig
+		"Bunk Room" 3
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"LP036a Battery Pack"
+		"Laser Rifle"
+		"Meteor Missile" 29
+		"Meteor Missile Box"
+		"Meteor Missile Pod" 2
+		"Outfits Expansion"
+		"Small Radar Jammer"
+		"nGVF-AA Fuel Cell"
 
 
 
@@ -2549,6 +2622,36 @@ ship "Modified Argosy" "Modified Argosy (Smuggler)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
+
+
+
+ship "Monitor" "Monitor (Heimdall)"
+	outfits
+		"Heavy Blaster" 2
+		"Heavy Rocket Pod"
+		"Heavy Rocket" 12
+		"Heavy Rocket Rack"
+		"Heavy Anti-Missile Turret" 2
+		"Gatling Turret"
+		"Gatling Gun Ammo" 6000
+		"KP-6 Photovoltaic Array" 3
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 21
+		"Fragmentation Grenades" 8
+		"X3700 Ion Thruster"
+		"Greyhound Plasma Steering"
+		"Security Station" 2
+		"Volcano Afterburner"
+		
+	gun 0 -94.5 "Heavy Rocket Pod"
+	gun -11 -86 "Heavy Blaster"
+	gun 11 -86 "Heavy Blaster"
+	turret -17.5 -19.5 "Heavy Anti-Missile Turret"
+	turret 17.5 -19.5 "Heavy Anti-Missile Turret"
+	turret 0 17 "Gatling Turret"
 
 
 
@@ -3020,6 +3123,44 @@ ship "Scrapper" "Scrapper (Mod Blaster)"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 
+ship Scrapper "Scrapper (Miner)"
+	outfits
+		"Mining Laser"
+
+		"Asteroid Scanner"
+		"Cargo Expansion"
+		Hyperdrive
+		"KP-6 Photovoltaic Panel" 4
+		"LP072a Battery Pack"
+		"Small Radar Jammer"
+
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+
+ship Scrapper "Scrapper (Pirate Traffic) (Cargo)"
+	outfits
+		"Cargo Expansion" 3
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"KP-6 Photovoltaic Array"
+		"LP036a Battery Pack"
+		"Meteor Missile" 7
+		"Meteor Missile Pod"
+
+
+
+ship Shuttle "Shuttle (Pirate Traffic)"
+	outfits
+		"Bunk Room" 2
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"Laser Rifle"
+		"Meteor Missile" 7
+		"Meteor Missile Pod"
+		"Small Bunk Room"
+		"nGVF-AA Fuel Cell"
+
+
 
 
 ship "Skein" "Skein (Sidewinder)"
@@ -3175,6 +3316,17 @@ ship "Star Barge" "Star Barge (Miner)"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		"Hyperdrive"
+
+ship "Star Barge" "Star Barge (Pirate Traffic)"
+	outfits
+		"Anti-Missile Turret"
+		"Cargo Expansion" 2
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"LP036a Battery Pack"
+		"Laser Rifle"
+		"Small Radar Jammer"
+		"nGVF-AA Fuel Cell"
 
 
 
@@ -3341,3 +3493,18 @@ ship "Wasp" "Wasp (Proton)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
+
+ship Dagger "Dagger (Heimdall)"
+	outfits
+		"A120 Atomic Thruster"
+		"D14-RN Shield Generator"
+		"Gatling Gun" 2
+		"Gatling Gun Ammo" 6000
+		"Meteor Missile" 14
+		"Meteor Missile Pod"
+		Supercapacitor
+		"X1200 Ion Steering"
+		"nGVF-AA Fuel Cell"
+	gun "Gatling Gun"
+	gun "Meteor Missile Pod"
+	gun "Gatling Gun"
