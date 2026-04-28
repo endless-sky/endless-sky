@@ -462,11 +462,7 @@ mission "Avgi: Defend Ensemble 1"
 			`	"...What? You're kidding, right? How the hell did you defeat a Quarg ship?" He looks worried for a second, taking a step back. "Do I even want to be seen associating with you?" He laughs nervously.`
 
 			label next
-			`	Darius shakes his head for a moment, then looks back at you. "Well, since you're still here, I'm assuming your jump drive couldn't get you out of here?" You tell him about how you were unable to jump back to human space, and he nods along.`
-
-			branch wayout
-				not "avgi: discovered magnetar"
-			`	You consider telling him about the anomaly you found in Decet, but not knowing how he'll react after being trapped for so long, you keep quiet about it for now and let him talk.`
+			`	Darius shakes his head for a moment, then looks back at you. "So, if you have that kind of technology, are you just visiting here? Or did something happen?" You tell him about how you were unable to jump back to human space, and he nods along.`
 
 			label wayout
 			`	"There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes." He sounds frustrated.`
