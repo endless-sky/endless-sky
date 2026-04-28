@@ -187,6 +187,9 @@ namespace {
 	const vector<string> AMMO_REFILL_SETTINGS = {"never", "ask", "when free", "always"};
 	int ammoRefillIndex = 1;
 
+	const vector<string> ALIGNMENT_OVERRIDE_SETTINGS = {"off", "left", "center", "right", "justified"};
+	int alignmentOverrideIndex = 0;
+
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 
 	int previousSaveCount = 3;
@@ -298,6 +301,8 @@ void Preferences::Load()
 			tributeConfirmationIndex = max<int>(0, min<int>(node.Value(1), TRIBUTE_CONFIRMATION_SETTINGS.size() - 1));
 		else if(key == "Ammo refill")
 			ammoRefillIndex = clamp<int>(node.Value(1), 0, AMMO_REFILL_SETTINGS.size() - 1);
+		else if(key == "Alignment override")
+			alignmentOverrideIndex = clamp<int>(node.Value(1), 0, ALIGNMENT_OVERRIDE_SETTINGS.size() - 1);
 #ifdef _WIN32
 		else if(key == "Title bar theme")
 			titleBarThemeIndex = clamp<int>(node.Value(1), 0, TITLE_BAR_THEME_SETTINGS.size() - 1);
@@ -385,6 +390,7 @@ void Preferences::Save()
 	out.Write("Reduce large graphics", largeGraphicsReductionIndex);
 	out.Write("Tribute confirmation", tributeConfirmationIndex);
 	out.Write("Ammo refill", ammoRefillIndex);
+	out.Write("Alignment override", alignmentOverrideIndex);
 	out.Write("previous saves", previousSaveCount);
 #ifdef _WIN32
 	if(WinVersion::SupportsDarkTheme())
@@ -1027,6 +1033,28 @@ Preferences::AmmoRefill Preferences::GetAmmoRefill()
 const std::string &Preferences::AmmoRefillSetting()
 {
 	return AMMO_REFILL_SETTINGS[ammoRefillIndex];
+}
+
+
+
+void Preferences::ToggleAlignmentOverride()
+{
+	if(++alignmentOverrideIndex >= static_cast<int>(ALIGNMENT_OVERRIDE_SETTINGS.size()))
+		alignmentOverrideIndex = 0;
+}
+
+
+
+Preferences::AlignmentOverride Preferences::GetAlignmentOverride()
+{
+	return static_cast<AlignmentOverride>(alignmentOverrideIndex);
+}
+
+
+
+const string &Preferences::AlignmentOverrideSetting()
+{
+	return ALIGNMENT_OVERRIDE_SETTINGS[alignmentOverrideIndex];
 }
 
 

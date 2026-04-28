@@ -93,6 +93,7 @@ namespace {
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 	const string TRIBUTE_CONFIRMATION = "Tribute confirmation";
 	const string AMMO_REFILL = "Auto refill ammo";
+	const string ALIGNMENT_OVERRIDE = "Alignment override";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
 	const string WINDOW_ROUNDING = "Window rounding";
@@ -827,6 +828,7 @@ void PreferencesPanel::DrawSettings()
 		DATE_FORMAT,
 		NOTIFY_ON_DEST,
 		"Save message log",
+		ALIGNMENT_OVERRIDE,
 #ifdef _WIN32
 		"\t",
 		"Windows Options",
@@ -1085,6 +1087,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::NEVER;
 			text = Preferences::AmmoRefillSetting();
+		}
+		else if(setting == ALIGNMENT_OVERRIDE)
+		{
+			isOn = Preferences::GetAlignmentOverride() != Preferences::AlignmentOverride::OFF;
+			text = Preferences::AlignmentOverrideSetting();
 		}
 #ifdef _WIN32
 		else if(setting == TITLE_BAR_THEME)
@@ -1453,6 +1460,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleTributeConfirmation();
 	else if(str == AMMO_REFILL)
 		Preferences::ToggleAmmoRefill();
+	else if(str == ALIGNMENT_OVERRIDE)
+		Preferences::ToggleAlignmentOverride();
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
 		Preferences::ToggleTitleBarTheme();

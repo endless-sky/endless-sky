@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DisplayText.h"
 #include "Font.h"
+#include "../Preferences.h"
 
 #include <cstring>
 
@@ -331,18 +332,30 @@ void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 	if(lineWidth > longestLineWidth)
 		longestLineWidth = lineWidth;
 
+	Alignment finalAlignment;
+	Preferences::AlignmentOverride alignmentOverride = Preferences::GetAlignmentOverride();
+	if(alignmentOverride == Preferences::AlignmentOverride::LEFT)
+		finalAlignment = Alignment::LEFT;
+	else if(alignmentOverride == Preferences::AlignmentOverride::CENTER)
+		finalAlignment = Alignment::CENTER;
+	else if(alignmentOverride == Preferences::AlignmentOverride::RIGHT)
+		finalAlignment = Alignment::RIGHT;
+	else if(alignmentOverride == Preferences::AlignmentOverride::JUSTIFIED)
+		finalAlignment = Alignment::JUSTIFIED;
+	else
+		finalAlignment = alignment;
 	// Figure out how much space is left over. Depending on the alignment, we
 	// will add that space to the left, to the right, to both sides, or to the
 	// space in between the words. Exception: the last line of a "justified"
 	// paragraph is left aligned, not justified.
-	if(alignment == Alignment::JUSTIFIED && !isEnd && wordCount > 1)
+	if(finalAlignment == Alignment::JUSTIFIED && !isEnd && wordCount > 1)
 	{
 		for(int i = 0; i < wordCount; ++i)
 			words[lineBegin + i].x += extraSpace * i / (wordCount - 1);
 	}
-	else if(alignment == Alignment::CENTER || alignment == Alignment::RIGHT)
+	else if(finalAlignment == Alignment::CENTER || finalAlignment == Alignment::RIGHT)
 	{
-		int shift = (alignment == Alignment::CENTER) ? extraSpace / 2 : extraSpace;
+		int shift = (finalAlignment == Alignment::CENTER) ? extraSpace / 2 : extraSpace;
 		for(int i = 0; i < wordCount; ++i)
 			words[lineBegin + i].x += shift;
 	}

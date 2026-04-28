@@ -153,6 +153,14 @@ public:
 		ALWAYS
 	};
 
+	enum class AlignmentOverride : int_fast8_t {
+		OFF = 0,
+		LEFT,
+		CENTER,
+		RIGHT,
+		JUSTIFIED
+	};
+
 #ifdef _WIN32
 	enum class TitleBarTheme : int_fast8_t {
 		DEFAULT,
@@ -292,6 +300,11 @@ public:
 	static void ToggleAmmoRefill();
 	static AmmoRefill GetAmmoRefill();
 	static const std::string &AmmoRefillSetting();
+
+	/// Text alignment override setting.
+	static void ToggleAlignmentOverride();
+	static AlignmentOverride GetAlignmentOverride();
+	static const std::string &AlignmentOverrideSetting();
 
 	static void ToggleBlockScreenSaver();
 
