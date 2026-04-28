@@ -167,6 +167,6 @@ phrase "tribute pacifist undefined"
 		`We will not fight. Join us in peace instead.`
 		`We cannot fight you, nor would we choose to. Have peace.`
 		`Peace be with you, captain. There is no need to rend the skies with your guns.`
-		`We will not fight you. We will not kill you. But neither will we pay a single cent of tribute.`
+		`We will not fight you. We will not kill you. But neither will we pay a single credit of tribute.`
 		`Why should we fight over a piddling sum when it would cause so much death and horror to do so?`
 		`We beg that you reconsider this rash decision.`
