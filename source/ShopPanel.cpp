@@ -100,6 +100,25 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 		playerShips.insert(playerShip);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
+
+	selectedQuantity = make_shared<Dropdown>();
+	selectedQuantity->SetAlign(Dropdown::LEFT);
+	selectedQuantity->SetFontSize(14);
+	selectedQuantity->SetPadding(0);
+	selectedQuantity->SetOptions({"1", "10", "100", "1000"});
+	selectedQuantity->SetTypeable(true);
+	selectedQuantity->SetCallback([](string &s)
+	{
+		// Restrict input to digits.
+		for(char c : s)
+		{
+			if(!isdigit(c))
+				return false;
+		}
+		return true;
+	});
+
+	AddChild(selectedQuantity);
 }
 
 
@@ -137,6 +156,20 @@ void ShopPanel::Step()
 void ShopPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+
+	// If the modifier is set, then change the quantity in the dropdown.
+	int modifier = Modifier();
+	if(modifier > 1)
+	{
+		selectedQuantity->SetText(to_string(modifier));
+		quantityIsModifier = true;
+	}
+	else if(quantityIsModifier)
+	{
+		// User has released modifier keys. Reset quantity dropdown to 1x
+		selectedQuantity->SetText("1");
+		quantityIsModifier = false;
+	}
 
 	// These get added by both DrawMain and DrawDetailsSidebar, so clear them here.
 	categoryZones.clear();
