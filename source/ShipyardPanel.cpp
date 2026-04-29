@@ -236,8 +236,8 @@ void ShipyardPanel::DrawButtons()
 
 	font.Draw("Quantity:", Screen::BottomRight() - Point(SIDEBAR_WIDTH - 10, 33), dim);
 
-	const Point sqCenter = Screen::BottomRight() - Point(150, 25);
-	selectedQuantity->SetPosition(Rectangle(sqCenter, {55, 20}));
+	const Point sqCenter = Screen::BottomRight() - Point(135, 25);
+	selectedQuantity->SetPosition(Rectangle(sqCenter, {86, 20}));
 
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("shipyard: ") + hoverButton);

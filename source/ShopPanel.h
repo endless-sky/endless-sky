@@ -211,6 +211,7 @@ protected:
 	std::shared_ptr<Dropdown> selectedQuantity;
 	bool quantityIsModifier = false;
 
+
 private:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
