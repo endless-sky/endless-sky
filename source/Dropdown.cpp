@@ -1,0 +1,328 @@
+/* Dropdown.cpp
+Copyright (c) 2023 by thewierdnut
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+#include "Dropdown.h"
+
+#include "Color.h"
+#include "shader/FillShader.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "GameData.h"
+#include "Rectangle.h"
+#include "Screen.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
+#include "UI.h"
+
+#include <SDL2/SDL.h>
+
+using namespace std;
+
+
+
+Dropdown::Dropdown()
+{
+	SetTypeable(false);
+	SetRightPadding(Edit::RightPadding());
+}
+
+
+
+void Dropdown::SetText(const string &s)
+{
+	Edit::SetText(s);
+	selectedIndex = -1;
+	for(size_t i = 0; i < options.size(); ++i)
+	{
+		if(options[i] == s)
+		{
+			selectedIndex = i;
+			break;
+		}
+	}
+}
+
+
+
+void Dropdown::SetSelectedIndex(int idx)
+{
+	if(idx >= static_cast<int>(options.size()) || idx < 0)
+	{
+		selectedIndex = -1;
+		Clear();
+	}
+	else
+	{
+		selectedIndex = idx;
+		SetText(options[idx]);
+	}
+}
+
+
+
+void Dropdown::SetOptions(const vector<string> &options)
+{
+	this->options = options;
+	if(!Text().empty())
+	{
+		SetText(Text());
+	}
+	else if(!options.empty())
+	{
+		SetSelectedIndex(0);
+	}
+}
+
+
+
+Point AlignText(Dropdown::ALIGN alignment, const Font &font, const Rectangle &pos, const string &s)
+{
+	switch(alignment)
+	{
+	case Dropdown::LEFT:
+		return Point(pos.Left(), pos.Center().Y() - font.Height() / 2.0);
+	case Dropdown::RIGHT:
+		return Point(pos.Right() - font.Width(s), pos.Center().Y() - font.Height() / 2.0);
+	default:
+		return pos.Center() - Point(font.Width(s) / 2.0, font.Height() / 2.0);
+	}
+}
+
+
+
+void Dropdown::Draw()
+{
+	Edit::Draw();
+	ClearZones();
+	if(!Visible())
+		return;
+
+	if(showDropIcon || Edit::Enabled())
+	{
+		Point dropIconPos = Position().Center();
+		dropIconPos.X() += Position().Width() / 2 - Position().Height() / 2;
+		SpriteShader::Draw(SpriteSet::Get("ui/sort descending"), dropIconPos, FontSize() / 24.0);
+	}
+
+	if(Enabled())
+	{
+		if(Edit::Enabled())
+		{
+			// Only use the drop icon as the click zone, so that the user can
+			// still click and highlight text.
+			Point dropIconPos = Position().Center();
+			dropIconPos.X() += Position().Width() / 2 - Position().Height() / 2;
+			Rectangle pz(dropIconPos, Point(Position().Height(), Position().Height()));
+			AddZone(pz, [this](const Panel::Event &e) {
+				DoDropdown(e.pos);
+			});
+		}
+		else
+		{
+			// Use the whole control.
+			AddZone(Position(), [this](const Panel::Event &e) {
+				DoDropdown(e.pos);
+			});
+		}
+
+	}
+}
+
+
+
+void Dropdown::ShowDropIcon(bool s)
+{
+	showDropIcon = true;
+	SetRightPadding(rightPaddingWithoutDrop);
+}
+
+
+
+void Dropdown::SetPadding(int p)
+{
+	Edit::SetPadding(p);
+	SetRightPadding(p);
+}
+
+
+
+void Dropdown::SetRightPadding(int p)
+{
+	rightPaddingWithoutDrop = p;
+	int iconPadding = 0;
+	if(showDropIcon || Edit::Enabled())
+		iconPadding = FontSize();
+	Edit::SetRightPadding(p + iconPadding);
+}
+
+
+
+void Dropdown::SetTypeable(bool t)
+{
+	Edit::SetEnabled(t);
+}
+
+
+
+void Dropdown::SetEnabled(bool e)
+{
+	// This defintion is intentionally masking the definition in the base class.
+	enabled = e;
+}
+
+
+
+void Dropdown::DoDropdown(const Point &pos)
+{
+	auto p = make_shared<DroppedPanel>(this);
+	// GetUI().Push(p);
+	AddChild(p);
+	p->SetMousePos(pos);
+}
+
+
+
+int Dropdown::IdxFromPoint(int x, int y) const
+{
+	Point bgSize{Position().Width(), Position().Height() * options.size()};
+	// If the Dropdown is too close to the bottom, then display the DroppedPanel
+	// above the Dropdown instead of below it.
+	bool isDrawnDown = (Position().Bottom() + bgSize.Y() <= Screen::Bottom());
+
+	const Rectangle optRect = isDrawnDown
+		? Rectangle::FromCorner({Position().Left(), Position().Bottom()}, bgSize)
+		: Rectangle::FromCorner({Position().Left(), Position().Top() - bgSize.Y()}, bgSize);
+	if(optRect.Contains(Point(x, y)))
+	{
+		int idx = static_cast<int>(y - optRect.Top()) / Position().Height();
+		// Clamp the idx so that floating point errors don't force it out of
+		// bounds.
+		if(idx < 0)
+			idx = 0;
+		if(idx >= static_cast<int>(options.size()))
+			idx = options.size() - 1;
+		return idx;
+	}
+	return -1;
+}
+
+
+
+Dropdown::DroppedPanel::DroppedPanel(Dropdown *parent)
+	: dd(parent), clickStamp(SDL_GetTicks())
+{
+	SetTrapAllEvents(true);
+	SetInterruptible(false);
+}
+
+
+
+void Dropdown::DroppedPanel::Draw()
+{
+	const Font &font = FontSet::Get(dd->FontSize());
+	const Color &active = *GameData::Colors().Get("active");
+	const Color &inactive = *GameData::Colors().Get("inactive");
+	const Color &outline = *GameData::Colors().Get("panel outline");
+
+	Point bgSize{dd->Position().Width(), dd->Position().Height() * dd->options.size()};
+	// If the Dropdown is close to the bottom of the screen, then draw the
+	// DroppedPanel above the Dropdown instead of below it.
+	bool isDrawnDown = (dd->Position().Bottom() + bgSize.Y() <= Screen::Bottom());
+
+	const Rectangle bgRect = isDrawnDown
+		? Rectangle::FromCorner({dd->Position().Left(), dd->Position().Bottom()}, bgSize)
+		: Rectangle::FromCorner({dd->Position().Left(), dd->Position().Top() - bgSize.Y()}, bgSize);
+
+	// Draw outline
+	FillShader::Fill(bgRect.Center(), bgRect.Dimensions() + Point(2, 2), outline);
+	// Draw background
+	FillShader::Fill(bgRect.Center(), bgRect.Dimensions(), dd->BgColor());
+	// Draw a highlight
+	if(highlightIndex >= 0)
+	{
+		const Rectangle highlightRect = Rectangle::FromCorner(
+			bgRect.TopLeft() + Point(0, dd->Position().Height() * highlightIndex),
+			dd->Position().Dimensions());
+		FillShader::Fill(highlightRect.Center(), highlightRect.Dimensions(),
+			*GameData::Colors().Get("shop side panel background"));
+	}
+	Rectangle optPos(
+		bgRect.TopLeft() + dd->Position().Dimensions() * .5,
+		dd->Position().Dimensions() - Point(dd->Padding() * 2, dd->Padding() * 2)
+	);
+
+	for(size_t i = 0; i < dd->options.size(); ++i)
+	{
+		font.Draw(dd->options[i],
+			AlignText(dd->Align(), font, optPos, dd->options[i]),
+			static_cast<int>(i) == dd->selectedIndex ? active : inactive);
+		optPos += Point(0, dd->Position().Height());
+	}
+}
+
+
+
+bool Dropdown::DroppedPanel::Click(int x, int y, MouseButton, int clicks)
+{
+	mousePos = Point(x, y);
+
+	int idx = dd->IdxFromPoint(x, y);
+	if(idx >= 0)
+		dd->SetSelectedIndex(idx);
+
+	dd->RemoveChild(this);
+
+	return true;
+}
+
+
+
+bool Dropdown::DroppedPanel::Drag(double dx, double dy)
+{
+	mousePos += Point(dx, dy);
+	highlightIndex = dd->IdxFromPoint(mousePos.X(), mousePos.Y());
+
+	return true;
+}
+
+
+
+bool Dropdown::DroppedPanel::Release(int x, int y, MouseButton)
+{
+	// short click, leave it up. Long click, see what they selected
+	if(SDL_GetTicks() - clickStamp < 500)
+	{
+		// short click... leave the popup up
+	}
+	else
+	{
+		// long click and drag.
+		int idx = dd->IdxFromPoint(x, y);
+		if(idx >= 0)
+		{
+			dd->SetSelectedIndex(idx);
+		}
+		dd->RemoveChild(this);
+	}
+	return true;
+}
+
+
+
+bool Dropdown::DroppedPanel::Hover(int x, int y)
+{
+	highlightIndex = dd->IdxFromPoint(x, y);
+	return true;
+}
