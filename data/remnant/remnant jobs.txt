@@ -125,6 +125,35 @@ mission "Remnant: Expanded Horizons Astral job"
 		visited
 	to offer
 		has "Remnant: Expanded Horizons Astral 2: done"
+		not "Ka'het: Patir Mystery 35: done"
+		random < 50
+	on offer
+		require "Research Laboratory"
+	on waypoint
+		dialog "Your scientist unpacks the laboratory and takes the requested observations. A short while later, they have the data compiled on a set of data crystals and inform you that everything is ready for departure."
+	on complete
+		payment 500000
+		"reputation: Remnant" ++
+		dialog "When you land, a researcher quickly retrieves the data crystals with the information about the surveyed system and hands you the logistics allotment of <payment>."
+
+
+
+mission "Remnant: Expanded Horizons Astral job late"
+	job
+	repeat
+	name "Research Expedition to <waypoints>"
+	description "Travel to <waypoints> with a Research Laboratory to collect data, then return to <destination>."
+	source
+		government "Remnant"
+	waypoint
+		not attributes "pleiades"
+		not attributes "inaccessible"
+		not attributes "tangled shroud"
+		not attributes "twilight"
+		not attributes "outer limits"
+	to offer
+		has "Remnant: Expanded Horizons Astral 2: done"
+		has "Ka'het: Patir Mystery 35: done"
 		random < 50
 	on offer
 		require "Research Laboratory"

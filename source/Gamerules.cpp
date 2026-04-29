@@ -89,6 +89,28 @@ void Gamerules::Load(const DataNode &node)
 		}
 		else if(key == "fleet multiplier")
 			storage.fleetMultiplier = max<double>(0., child.Value(1));
+		else if(key == "spawn raid fleets")
+			storage.spawnRaidFleets = child.BoolValue(1);
+		else if(key == "fleet size limitation")
+		{
+			const string &value = child.Token(1);
+			if(value == "none")
+				storage.fleetSizeLimitation = FleetSizeLimitation::NONE;
+			else if(value == "ship capacity")
+				storage.fleetSizeLimitation = FleetSizeLimitation::SHIP_CAP;
+			else if(value == "crew capacity")
+				storage.fleetSizeLimitation = FleetSizeLimitation::CREW_CAP;
+			else if(value == "administrative capacity")
+				storage.fleetSizeLimitation = FleetSizeLimitation::ADMIN_CAP;
+			else
+				child.PrintTrace("Skipping unrecognized value for gamerule:");
+		}
+		else if(key == "default max escort count")
+			storage.defaultMaxEscortCount = max<int>(0, child.Value(1));
+		else if(key == "default max escort crew")
+			storage.defaultMaxEscortCrew = max<int>(0, child.Value(1));
+		else if(key == "default admin cap")
+			storage.defaultAdminCap = max<int>(0, child.Value(1));
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
@@ -141,6 +163,25 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 		}
 		if(storage.fleetMultiplier != preset.storage.fleetMultiplier)
 			out.Write("fleet multiplier", storage.fleetMultiplier);
+		if(storage.spawnRaidFleets != preset.storage.spawnRaidFleets)
+			out.Write("spawn raid fleets", storage.spawnRaidFleets ? 1 : 0);
+		if(storage.fleetSizeLimitation != preset.storage.fleetSizeLimitation)
+		{
+			if(storage.fleetSizeLimitation == FleetSizeLimitation::NONE)
+				out.Write("fleet size limitation", "none");
+			else if(storage.fleetSizeLimitation == FleetSizeLimitation::SHIP_CAP)
+				out.Write("fleet size limitation", "ship capacity");
+			else if(storage.fleetSizeLimitation == FleetSizeLimitation::CREW_CAP)
+				out.Write("fleet size limitation", "crew capacity");
+			else
+				out.Write("fleet size limitation", "administrative capacity");
+		}
+		if(storage.defaultMaxEscortCount != preset.storage.defaultMaxEscortCount)
+			out.Write("default max escort count", storage.defaultMaxEscortCount);
+		if(storage.defaultMaxEscortCrew != preset.storage.defaultMaxEscortCrew)
+			out.Write("default max escort crew", storage.defaultMaxEscortCrew);
+		if(storage.defaultAdminCap != preset.storage.defaultAdminCap)
+			out.Write("default admin cap", storage.defaultAdminCap);
 
 		const map<string, int> &otherMiscRules = preset.storage.miscRules;
 		for(const auto &[rule, value] : storage.miscRules)
@@ -193,6 +234,16 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.systemArrivalMin = preset.storage.systemArrivalMin;
 	else if(rule == "fleet multiplier")
 		storage.fleetMultiplier = preset.storage.fleetMultiplier;
+	else if(rule == "spawn raid fleets")
+		storage.spawnRaidFleets = preset.storage.spawnRaidFleets;
+	else if(rule == "fleet size limitation")
+		storage.fleetSizeLimitation = preset.storage.fleetSizeLimitation;
+	else if(rule == "default max escort count")
+		storage.defaultMaxEscortCount = preset.storage.defaultMaxEscortCount;
+	else if(rule == "default max escort crew")
+		storage.defaultMaxEscortCrew = preset.storage.defaultMaxEscortCrew;
+	else if(rule == "default admin cap")
+		storage.defaultAdminCap = preset.storage.defaultAdminCap;
 	else
 	{
 		auto it = preset.storage.miscRules.find(rule);
@@ -322,6 +373,41 @@ void Gamerules::SetFleetMultiplier(double value)
 
 
 
+void Gamerules::SetSpawnRaidFleets(bool value)
+{
+	storage.spawnRaidFleets = value;
+}
+
+
+
+void Gamerules::SetFleetSizeLimitation(FleetSizeLimitation value)
+{
+	storage.fleetSizeLimitation = value;
+}
+
+
+
+void Gamerules::SetDefaultMaxEscortCount(int value)
+{
+	storage.defaultMaxEscortCount = max(0, value);
+}
+
+
+
+void Gamerules::SetDefaultMaxEscortCrew(int value)
+{
+	storage.defaultMaxEscortCrew = max(0, value);
+}
+
+
+
+void Gamerules::SetDefaultAdminCap(int value)
+{
+	storage.defaultAdminCap = value;
+}
+
+
+
 void Gamerules::SetMiscValue(const string &rule, int value)
 {
 	storage.miscRules[rule] = value;
@@ -359,6 +445,16 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.systemArrivalMin.value_or(0.) * 1000;
 	if(rule == "fleet multiplier")
 		return storage.fleetMultiplier * 1000;
+	if(rule == "spawn raid fleets")
+		return storage.spawnRaidFleets;
+	if(rule == "fleet size limitation")
+		return static_cast<int>(storage.fleetSizeLimitation);
+	if(rule == "default max escort count")
+		return storage.defaultMaxEscortCount;
+	if(rule == "default max escort crew")
+		return storage.defaultMaxEscortCrew;
+	if(rule == "default admin cap")
+		return storage.defaultAdminCap;
 
 	auto it = storage.miscRules.find(rule);
 	if(it == storage.miscRules.end())
@@ -462,6 +558,41 @@ optional<double> Gamerules::SystemArrivalMin() const
 double Gamerules::FleetMultiplier() const
 {
 	return storage.fleetMultiplier;
+}
+
+
+
+bool Gamerules::SpawnRaidFleets() const
+{
+	return storage.spawnRaidFleets;
+}
+
+
+
+Gamerules::FleetSizeLimitation Gamerules::GetFleetSizeLimitation() const
+{
+	return storage.fleetSizeLimitation;
+}
+
+
+
+int Gamerules::GetDefaultMaxEscortCount() const
+{
+	return storage.defaultMaxEscortCount;
+}
+
+
+
+int Gamerules::GetDefaultMaxEscortCrew() const
+{
+	return storage.defaultMaxEscortCrew;
+}
+
+
+
+int Gamerules::GetDefaultAdminCap() const
+{
+	return storage.defaultAdminCap;
 }
 
 

@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Rectangle.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -75,8 +76,9 @@ namespace {
 		for(auto &&it : ship.Outfits())
 		{
 			const Outfit *outfit = it.first;
-			if(!outfit->GetWeapon() && outfit->AmmoStored())
-				toRefill.emplace(outfit->AmmoStored());
+			const set<const Outfit *> &ammo = outfit->AmmoStored();
+			if(!outfit->GetWeapon() && !ammo.empty())
+				toRefill.insert(ammo.begin(), ammo.end());
 		}
 		return toRefill;
 	}
@@ -421,13 +423,12 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				{
 					foundOutfit = true;
 					Outfit attributes = ship->Attributes();
-					// If this outfit requires ammo, check if we could sell it if we sold all the ammo for it first.
-					const Outfit *ammo = selectedOutfit->AmmoStoredOrUsed();
-					if(ammo && ship->OutfitCount(ammo))
-					{
-						attributes.Add(*ammo, -ship->OutfitCount(ammo));
-					}
-					// Ammo is not a factor (now), check whether this ship can uninstall this outfit.
+					// If this outfit has linked outfits, check if we could sell it
+					// if we sold all the linked outfits first.
+					for(const Outfit *linked : selectedOutfit->LinkedOutfits())
+						if(ship->OutfitCount(linked))
+							attributes.Add(*linked, -ship->OutfitCount(linked));
+					// Linked outfits are not a factor (now), check whether this ship can uninstall this outfit.
 					canSource = attributes.CanAdd(*selectedOutfit, -1);
 
 					// If we have an outfit that can be sourced, break out, otherwise return an appropriate error.
@@ -626,30 +627,39 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 				// Handle other attributes more generically, if none of the above are the problem.
 				if(errors.empty())
-					for(const pair<const char *, double> &it : selectedOutfit->Attributes())
+				{
+					for(const auto &[name, value] : selectedOutfit->Attributes())
 					{
+						// Positive attributes can't be the cause of attribute errors.
+						if(value >= 0)
+							continue;
+						optional<double> minimum = Outfit::LowerLimit(name);
+						// Nor can attributes with no lower limit.
+						if(!minimum.has_value())
+							continue;
 						// If playerShip has fewer of this attribute available than required by the selectedOutfit, add
 						// this attribute to the list of deficiencies.
-						double shipAvailable = playerShip->Attributes().Get(it.first);
-						double outfitRequires = -it.second;
+						double shipAvailable = playerShip->Attributes().Get(name) - minimum.value();
+						double outfitRequires = -value;
 						if(shipAvailable < outfitRequires)
 							errors.push_back("You cannot install this outfit, because it requires "
-								+ Format::SimplePluralization(outfitRequires, '\'' + string(it.first) + '\'')
-								+ ", and this ship has " + Format::Number(shipAvailable) + " free.");
+								+ OutfitInfoDisplay::FormatAttribute(name, outfitRequires) + " \"" + name + '"'
+								+ " and this ship has " + OutfitInfoDisplay::FormatAttribute(name, shipAvailable)
+								+ " free.");
 					}
+				}
+
+				// For unhandled outfit requirements, show a catch-all error message.
+				if(errors.empty())
+					errors.push_back("You cannot install this outfit in your ship.");
 
 				// Return the errors in the appropriate format.
-				if(errors.empty())
-					canPlace = true;
-				else if(errors.size() == 1)
+				if(errors.size() == 1)
 					return {canSource, canPlace, errors[0]};
-				else
-				{
-					string errorMessage = "There are several reasons why you cannot " + actionName + " this outfit:\n";
-					for(const string &error : errors)
-						errorMessage += "- " + error + '\n';
-					return {canSource, canPlace, errorMessage};
-				}
+				string errorMessage = "There are several reasons why you cannot " + actionName + " this outfit:\n";
+				for(const string &error : errors)
+					errorMessage += "- " + error + '\n';
+				return {canSource, canPlace, errorMessage};
 			}
 			break;
 		}
@@ -837,32 +847,33 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 				// Note: It would be easy to add conditional statements above to also support uninstall into cargo,
 				// this is not supported in the outfitter at this time.
 
-				// Move ammo to storage.
-				// Since some outfits have ammo, remove any ammo that must also be moved as there
-				// aren't enough supporting slots for said ammo once this outfit is removed.
-				const Outfit *ammo = selectedOutfit->AmmoStoredOrUsed();
-				if(ammo && ship->OutfitCount(ammo))
+				// Move linked outfits to storage.
+				// Since some outfits have linked outfits, remove any that must also be moved as there
+				// aren't enough supporting slots for said outfits once this outfit is removed.
+				for(const Outfit *linked : selectedOutfit->LinkedOutfits())
 				{
-					// Determine how many of this ammo we must uninstall to also uninstall the launcher.
+					if(!ship->OutfitCount(linked))
+						continue;
+					// Determine how many of this outfit we must uninstall to also uninstall the primary outfit.
 					int mustUninstall = 0;
 					for(const pair<const char *, double> &it : ship->Attributes().Attributes())
 						if(it.second < 0.)
-							mustUninstall = max<int>(mustUninstall, ceil(it.second / ammo->Get(it.first)));
+							mustUninstall = max<int>(mustUninstall, ceil(it.second / linked->Get(it.first)));
 
 					if(mustUninstall)
 					{
-						ship->AddOutfit(ammo, -mustUninstall);
+						ship->AddOutfit(linked, -mustUninstall);
 
 						if(toLocation == OutfitLocation::Shop)
 						{
-							// Do the sale of the outfit's ammo.
-							int64_t price = player.FleetDepreciation().Value(ammo, day, mustUninstall);
+							// Do the sale of the outfit's linked outfit.
+							int64_t price = player.FleetDepreciation().Value(linked, day, mustUninstall);
 							player.Accounts().AddCredits(price);
-							player.AddStock(ammo, mustUninstall);
+							player.AddStock(linked, mustUninstall);
 						}
-						// If the context is uninstalling, move the outfit's ammo into Storage.
+						// If the context is uninstalling, move the outfit's linked outfit into Storage.
 						else if(toLocation == OutfitLocation::Storage)
-							player.Storage().Add(ammo, mustUninstall);
+							player.Storage().Add(linked, mustUninstall);
 						// Note: It would be easy to add conditional statements above to also support uninstall into
 						// cargo, this is not supported in the outfitter at this time.
 					}
@@ -1053,13 +1064,18 @@ bool OutfitterPanel::ShipCanRemove(const Ship *ship, const Outfit *outfit)
 	if(!ship->OutfitCount(outfit))
 		return false;
 
-	// If this outfit requires ammo, check if we could sell it if we sold all
-	// the ammo for it first.
-	const Outfit *ammo = outfit->AmmoStoredOrUsed();
-	if(ammo && ship->OutfitCount(ammo))
+	// If this outfit has linked outfits, check if we could sell it if we sold all
+	// the linked outfits for it first.
+	const set<const Outfit *> &linkedOutfits = outfit->LinkedOutfits();
+	if(!linkedOutfits.empty())
 	{
 		Outfit attributes = ship->Attributes();
-		attributes.Add(*ammo, -ship->OutfitCount(ammo));
+		for(const Outfit *linked : outfit->LinkedOutfits())
+		{
+			int available = ship->OutfitCount(linked);
+			if(available)
+				attributes.Add(*linked, -available);
+		}
 		return attributes.CanAdd(*outfit, -1);
 	}
 
@@ -1105,6 +1121,9 @@ void OutfitterPanel::CheckRefill()
 	if(checkedRefill)
 		return;
 	checkedRefill = true;
+	Preferences::AmmoRefill refillPref = Preferences::GetAmmoRefill();
+	if(refillPref == Preferences::AmmoRefill::NEVER)
+		return;
 
 	int count = 0;
 	map<const Outfit *, int> needed;
@@ -1140,11 +1159,16 @@ void OutfitterPanel::CheckRefill()
 	}
 	if(!needed.empty() && cost < player.Accounts().Credits())
 	{
-		string message = "Do you want to reload all the ammunition for your ship";
-		message += (count == 1) ? "?" : "s?";
-		if(cost)
-			message += " It will cost " + Format::CreditString(cost) + ".";
-		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &OutfitterPanel::Refill, message));
+		if(refillPref == Preferences::AmmoRefill::ASK || (cost && refillPref == Preferences::AmmoRefill::WHEN_FREE))
+		{
+			string message = "Do you want to reload all the ammunition for your ship";
+			message += (count == 1) ? "?" : "s?";
+			if(cost)
+				message += " It will cost " + Format::CreditString(cost) + ".";
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &OutfitterPanel::Refill, message));
+		}
+		else
+			Refill();
 	}
 }
 
@@ -1382,7 +1406,7 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 	else if(key == 'i')
 	{
 		// Install up to <modifier> outfits from already owned equipment into each selected ship.
-		result = MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship);
+		result = MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship, "install");
 		if(!result && !result.canSource)
 			result = MoveOutfit(OutfitLocation::Storage, OutfitLocation::Ship, "install");
 	}

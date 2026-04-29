@@ -249,6 +249,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Personality.h
 	Phrase.cpp
 	Phrase.h
+	PilotProfile.cpp
+	PilotProfile.h
 	Planet.cpp
 	Planet.h
 	PlanetLabel.cpp
@@ -293,6 +295,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Sale.h
 	SavedGame.cpp
 	SavedGame.h
+	ScanType.h
 	Screen.cpp
 	Screen.h
 	ScrollBar.cpp
