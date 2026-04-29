@@ -47,8 +47,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Truncate.h"
 #include "UI.h"
 
+#include "SDL.h"
+
 #include "opengl.h"
-#include <SDL2/SDL.h>
 
 #include <algorithm>
 
