@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Logger.h"
 #include "PlayerInfo.h"
+#include "Plugins.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "TaskQueue.h"
@@ -32,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <utility>
 #include <vector>
+
 
 using namespace std;
 
@@ -727,6 +729,11 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			}
 			else
 				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
+		}
+		else if(key == "plugin list url" && hasValue)
+		{
+			// Note: As currently implemented, plugins can add their own repositories.
+			Plugins::AddLibraryUrl(node.Token(1));
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");

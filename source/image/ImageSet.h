@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "ImageBuffer.h"
+#include "Mask.h"
 
 #include <filesystem>
 #include <map>
@@ -23,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class ImageFileData;
-class Mask;
 class Sprite;
 
 
