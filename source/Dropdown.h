@@ -1,0 +1,93 @@
+/* Dropdown.h
+Copyright (c) 2023 by thewierdnut
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+#pragma once
+
+#include "Edit.h"
+
+#include "Color.h"
+#include "Panel.h"
+#include "Rectangle.h"
+
+#include <functional>
+#include <string>
+#include <vector>
+
+
+
+// Implements a dropdown control.
+class Dropdown : public Edit {
+public:
+	Dropdown();
+	virtual ~Dropdown() = default;
+
+	void SetOptions(const std::vector<std::string> &options);
+	void SetText(const std::string &s) override;
+	void SetSelectedIndex(int idx);
+	int GetSelectedIndex() const { return selectedIndex; }
+
+	virtual void Draw() override;
+
+	void ShowDropIcon(bool s);
+	void SetPadding(int p) override;
+	void SetRightPadding(int p) override;
+	int RightPadding() const override { return rightPaddingWithoutDrop; }
+
+	void SetTypeable(bool t);
+	void SetEnabled(bool e) override;
+	bool Enabled() const override { return enabled; }
+
+
+protected:
+	void DoDropdown(const Point &pos);
+
+
+private:
+	class DroppedPanel : public Panel {
+	public:
+		explicit DroppedPanel(Dropdown *parent);
+
+		virtual void Draw() override;
+
+		void SetMousePos(const Point &p) { mousePos = p; }
+
+	protected:
+		virtual bool Click(int x, int y, MouseButton button, int clicks) override;
+		virtual bool Drag(double dx, double dy) override;
+		virtual bool Release(int x, int y, MouseButton button) override;
+		virtual bool Hover(int x, int y) override;
+
+	private:
+		Dropdown *dd = nullptr;
+
+		uint32_t clickStamp = 0;
+		Point mousePos;
+
+		int highlightIndex = -1;
+	};
+
+
+private:
+	int IdxFromPoint(int x, int y) const;
+
+
+private:
+	std::vector<std::string> options;
+	int selectedIndex = -1;
+
+	int rightPaddingWithoutDrop = 5;
+	bool showDropIcon = true;
+	bool enabled = true;
+};
