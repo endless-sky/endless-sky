@@ -527,7 +527,7 @@ void MapDetailPanel::ResizeTextArea()
 	descriptionXOffset = mapInterface->GetValue("description x offset");
 	int descriptionWidth = mapInterface->GetValue("description width");
 	description->SetRect(Rectangle::FromCorner(
-		Point(Screen::Right() - descriptionXOffset - descriptionWidth, Screen::Top() + 20),
+		Point(Screen::Right() - descriptionXOffset - descriptionWidth, Screen::Top() + 50.),
 		Point(descriptionWidth - 20, mapInterface->GetValue("description height"))
 	));
 }
@@ -950,7 +950,7 @@ void MapDetailPanel::DrawInfo()
 	{
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
 		Point pos(Screen::Right() - descriptionXOffset - .5f * panelSprite->Width(),
-			Screen::Top() + .5f * panelSprite->Height());
+			Screen::Top() + 30. + .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 
 		description->SetText(selectedPlanet->Description().ToString());
@@ -959,8 +959,6 @@ void MapDetailPanel::DrawInfo()
 			AddChild(description);
 			descriptionVisible = true;
 		}
-
-		selectedSystemOffset = -150;
 	}
 	else
 	{
