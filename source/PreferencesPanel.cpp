@@ -758,6 +758,7 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		CLOAK_OUTLINE,
+		"Linear filter",
 		"\t",
 		"Performance",
 		"Show CPU / GPU load",
