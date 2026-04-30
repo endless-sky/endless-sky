@@ -803,7 +803,7 @@ void PreferencesPanel::DrawSettings()
 		"Trading",
 		"'Sell Outfits' without outfitter",
 		"Confirm 'Sell Outfits' button",
-		"Confirm 'Sell MInables' button",
+		"Confirm 'Sell Minables' button",
 		"Show parenthesis",
 		"",
 		"Gameplay",
