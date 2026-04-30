@@ -988,3 +988,67 @@ mission "Struggling Author Gone Missing"
 			`	MISSING:`
 			`		Anna Fangvin, a young author whose books have been shared throughout the planet. Please report any news to the Coalition of Book Enjoyers, address 5662 Myrtle Lane, Sizertown, Zug.`
 				decline
+
+mission "Exotic Life: Bloodsea"
+	minor
+	source Bloodsea
+	to offer
+		random < 10
+	on offer
+		conversation
+			branch formerpirates
+				or
+					has "event: bloodsea independent"
+					has "event: bloodsea joins free worlds"
+			`You slowly thread your way through the dirty makeshift spaceport. It is packed with vendors and pirates haggling over illegal goods. In the distance, the sun is setting over the blood-red ocean that gives Bloodsea its name.`
+			`	In the shadow behind a run-down shack, over which a sign advertises "the cheapest nerve gas this side o' Sol," you see a man coughing. He hacks and splutters for a while, and when he finally recovers, you notice his lips are stained with blood. As you turn away, you catch the eye of a wizened old man in the next stall.`
+				goto restofhello
+			label formerpirates
+			`You slowly thread your way through the dirty spaceport. It is packed with vendors and shady persons haggling over goods of dubious origin. In the distance, the sun is setting over the blood-red ocean that gives Bloodsea its name.`
+			`	In the shadow behind a run-down shack, over which a sign advertises "the cheapest 'nades this side o' Sol," you see a man coughing. He hacks and splutters for a while, and when he finally recovers, you notice his lips are stained with blood. As you turn away, you catch the eye of a wizened old man in the next stall.`
+			label restofhello
+			`	"He's got the Bloom," the old man pronounces solemnly. "He'll be dead in a few weeks. It's the blood tide that does it, the fools."`
+			choice
+				`	"What is it?"`
+				`	"Is it contagious?"`
+					goto contagious
+				`	(Walk away.)`
+					decline
+			`	He laughs scornfully. "The sea sprays poison. No one goes there except spacers and fools. Bloody sea and bloody fools.`
+				goto next
+			label contagious
+			`	"Yes," he says simply. You automatically recoil from the coughing man.`
+			label next
+			`	"First your eyes itch, then your throat, then your lungs. By then it's too late, too late. But there are always those who never learn."`
+			`	He grins with derision. "Well, I'll chop you up and throw you to the Bloom if you don't buy some fish from me. Three barrels." He reaches in and pulls a fish out. "Still fresh. 1000 credits each."`
+			choice
+				`	(Buy three barrels of fish from him.)`
+					to display
+						credits >= 3000
+					goto three
+				`	(Buy two barrels of fish from him.)`
+					to display
+						credits >= 2000
+					goto two
+				`	(Buy one barrel of fish from him.)`
+					to display
+						credits >= 1000
+					goto one
+				`	(Make a run for it.)`
+			`	You whirl around and walk quickly the other way. You can still hear the cursing in your ears when you get to your ship.`
+				decline
+			label three
+			action
+				payment -900
+			`	You fish out the money for three barrels and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrels back to the spaceport. After an exhausting few hours of one price dispute after another, you manage to sell them at the spaceport trading panel for 2100 credits.`
+				decline
+			label two
+			action
+				payment -600
+			`	You fish out the money for two barrels and hand it to him. He feels it suspiciously, and grumbles something about the one remaining barrel. You roll the barrels back to the spaceport and, after an hour of hard work, manage to sell them at the spaceport trading panel for 1400 credits.`
+				decline
+			label one
+			action
+				payment -294
+			`	You fish out the money and hand it to him. He rubs it, then explodes in rage. "Get out!" he shouts, throwing the credit chips at your face. You make a run for it, and by the time you get to your ship, you realize that you left 294 credits with the old man in your hurry to escape.`
+				decline
