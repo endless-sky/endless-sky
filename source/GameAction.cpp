@@ -176,40 +176,92 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	}
 	else if(key == "outfit" && hasValue)
 	{
-		int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
-		if(count)
-			giftOutfits[GameData::Outfits().Get(child.Token(1))] = count;
+		if(child.Size() < 3)
+			giftOutfitsCondition[GameData::Outfits().Get(child.Token(1))] = ConditionSet(1, playerConditions);
+		else if(!child.IsNumber(2) || child.Value(2))
+		{
+			int tokenNr = 2;
+			giftOutfitsCondition[GameData::Outfits().Get(child.Token(1))] = ConditionSet(playerConditions);
+			giftOutfitsCondition[GameData::Outfits().Get(child.Token(1))].ParseSingleToken(child, tokenNr);
+		}
 		else
 			child.PrintTrace("Skipping invalid outfit quantity:");
 	}
 	else if(key == "payment")
 	{
 		if(child.Size() == 1)
-			paymentMultiplier += 150;
+		{
+			paymentMultiplier = ConditionSet(150, playerConditions);
+		}
 		if(child.Size() >= 2)
-			payment += child.Value(1);
+		{
+			int tokenNr = 1;
+			if(child.IsNumber(tokenNr))
+				payment = child.Value(tokenNr);
+			else
+			{
+				paymentBase = ConditionSet(playerConditions);
+				paymentBase.ParseSingleToken(child, tokenNr);
+			}
+		}
 		if(child.Size() >= 3)
-			paymentMultiplier += child.Value(2);
+		{
+			int tokenNr = 2;
+			paymentMultiplier = ConditionSet(playerConditions);
+			paymentMultiplier.ParseSingleToken(child, tokenNr);
+		}
 	}
 	else if(key == "fine" && hasValue)
 	{
-		int64_t value = child.Value(1);
-		if(value > 0)
-			fine += value;
+		int tokenNr = 1;
+		if(child.IsNumber(tokenNr) && child.Value(tokenNr) > 0)
+			fine = child.Value(tokenNr);
+		else if(!child.IsNumber(tokenNr))
+		{
+			fineBase = ConditionSet(playerConditions);
+			fineBase.ParseSingleToken(child, tokenNr);
+		}
 		else
+			// preserve non-positive value check
 			child.PrintTrace("Skipping invalid \"fine\" with non-positive value:");
 	}
 	else if(key == "debt" && hasValue)
 	{
-		GameAction::Debt &debtEntry = debt.emplace_back(max<int64_t>(0, child.Value(1)));
+		int tokenNr = 1;
+		GameAction::Debt &debtEntry = debt.emplace_back();
+		if(child.IsNumber(tokenNr))
+			debtEntry.amount = child.Value(tokenNr);
+		else
+		{
+			debtEntry.amountCondition = ConditionSet(playerConditions);
+			debtEntry.amountCondition.ParseSingleToken(child, tokenNr);
+		}
 		for(const DataNode &grand : child)
 		{
 			const string &grandKey = grand.Token(0);
 			bool grandHasValue = grand.Size() >= 2;
 			if(grandKey == "term" && grandHasValue)
-				debtEntry.term = max<int>(1, grand.Value(1));
+			{
+				tokenNr = 1;
+				if(grand.IsNumber(tokenNr))
+					debtEntry.term = grand.Value(tokenNr);
+				else
+				{
+					debtEntry.termCondition = ConditionSet(playerConditions);
+					debtEntry.termCondition.ParseSingleToken(grand, tokenNr);
+				}
+			}
 			else if(grandKey == "interest" && grandHasValue)
-				debtEntry.interest = clamp(grand.Value(1), 0., 0.999);
+			{
+				tokenNr = 1;
+				if(grand.IsNumber(tokenNr))
+					debtEntry.interest = grand.Value(tokenNr);
+				else
+				{
+					debtEntry.interestCondition = ConditionSet(playerConditions);
+					debtEntry.interestCondition.ParseSingleToken(grand, tokenNr);
+				}
+			}
 			else
 				grand.PrintTrace("Skipping unrecognized \"debt\" attribute:");
 		}
@@ -543,19 +595,41 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	for(auto &&it : giftShips)
 		result.giftShips.push_back(it.Instantiate(subs));
-	result.giftOutfits = giftOutfits;
+	result.giftOutfitsCondition = giftOutfitsCondition;
+	for(auto &cit : result.giftOutfitsCondition)
+	{
+		result.giftOutfits[cit.first] = cit.second.Evaluate();
+	}
 
 	result.music = music;
 
-	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
+	// evaluate payment amount
+	result.payment = payment;
+	if(!paymentBase.IsEmpty())
+		result.payment += paymentBase.Evaluate();
+	if(!paymentMultiplier.IsEmpty())
+		result.payment += (jumps + 1) * payload * paymentMultiplier.Evaluate();
 	if(result.payment)
 		subs["<payment>"] = Format::CreditString(abs(result.payment));
 
 	result.fine = fine;
+	if(!fineBase.IsEmpty())
+		result.fine += fineBase.Evaluate();
 	if(result.fine)
 		subs["<fine>"] = Format::CreditString(result.fine);
 
 	result.debt = debt;
+	for(auto &debtEntry : result.debt)
+	{
+		if(!debtEntry.amountCondition.IsEmpty())
+			debtEntry.amount = max<int64_t>(0, debtEntry.amountCondition.Evaluate());
+
+		if(!debtEntry.termCondition.IsEmpty())
+			debtEntry.term = max<int>(1, debtEntry.termCondition.Evaluate());
+
+		if(!debtEntry.interestCondition.IsEmpty())
+			debtEntry.interest = clamp(debtEntry.interestCondition.Evaluate() * 0.001, 0., 0.999);
+	}
 
 	result.logEntries = logEntries.Instantiate(subs);
 	for(const auto &[category, headings] : specialLogEntries)
