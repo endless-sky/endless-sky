@@ -3158,8 +3158,9 @@ int Ship::FleetCost() const
 			return crewEquivalent;
 		// Only the base crew counts toward the fleet capacity, as otherwise installing turrets
 		// could cause a ship to go over the fleet capacity.
+		int mandatory = baseAttributes.Get("mandatory crew");
 		int required = attributes.Get("automaton") ? 0 : baseAttributes.Get("required crew");
-		return required + crewEquivalent;
+		return required + mandatory + crewEquivalent;
 	}
 	return administrativeCost.value_or(!canBeCarried);
 }
@@ -3179,11 +3180,13 @@ double Ship::DragForce() const
 
 int Ship::RequiredCrew() const
 {
+	// Mandatory crew cannot be replaced by automation.
+	int mandatory = attributes.Get("mandatory crew");
 	if(attributes.Get("automaton"))
-		return 0;
+		return mandatory;
 
 	// Drones do not need crew, but all other ships need at least one.
-	return max<int>(1, attributes.Get("required crew"));
+	return max<int>(1, attributes.Get("required crew")) + mandatory;
 }
 
 
@@ -3208,7 +3211,7 @@ void Ship::AddCrew(int count)
 // Check if this is a ship that can be used as a flagship.
 bool Ship::CanBeFlagship() const
 {
-	return RequiredCrew() && Crew() && !IsDisabled();
+	return !attributes.Get("automaton") && Crew() && !IsDisabled();
 }
 
 
