@@ -369,8 +369,12 @@ mission "Avgi: Humans From the Deep"
 			choice
 				`	"I have a jump drive that lets me travel beyond the hyperlanes, but it won't let me jump back to human space."`
 				`	"I have a device that lets me go where I please, but it isn't working at the moment."`
+				`	"Something about this area of space is interfering with my ship's drive, but I'm confident that I can find my way out."`
+					goto confident
 
-			`	"Regret. Then the situation is most unfortunate," she says. "Commitment. We will offer you what help we can, but I did not wish to lie to you about their predicament, or provide you with false hope."`
+			`	"Regret. Then the situation is most unfortunate," she says.`
+			label confident
+			`	"Commitment. We will offer you what help we can, but I did not wish to lie to you about their predicament, or provide you with false hope."`
 			`	"Reservation. Perhaps Captain <last> will be able to find a solution." says Galano. "I would not dismiss the possibility too quickly."`
 			choice
 				`	"While I'm here, can I buy your technology?"`
@@ -458,7 +462,9 @@ mission "Avgi: Defend Ensemble 1"
 			`	"...What? You're kidding, right? How the hell did you defeat a Quarg ship?" He looks worried for a second, taking a step back. "Do I even want to be seen associating with you?" He laughs nervously.`
 
 			label next
-			`	Darius shakes his head for a moment, then looks back at you. "Well, since you're still here, I'm assuming your jump drive couldn't get you out of here?" You tell him about how you were unable to jump back to human space, and he nods along.`
+			`	Darius shakes his head for a moment, then looks back at you. "So, if you have that kind of technology, are you just visiting here? Or did something happen?" You tell him about how you were unable to jump back to human space, and he nods along.`
+
+			label wayout
 			`	"There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes." He sounds frustrated.`
 			choice
 				`	"Don't worry, I'm sure we'll find a way back home."`
@@ -644,7 +650,8 @@ mission "Avgi: Defend Ensemble 2"
 			`	"Amazing. So, your jump drive can get us out of here then?"`
 			choice
 				`	"I'm afraid not. It can't return to human space for some reason."`
-				`	"No, but I'm not giving up on finding a different way out."`
+				`	"It can't take us back the same way I came in. But if you want to join me in finding another way, you're welcome."`
+					goto yes
 				`	"Nope!"`
 			`	"Damn. That would be too easy, I guess. But it's been too long since I've seen a fresh human face. I've been working for the Twilight Guard here for months, trying to build up a second line of defenses in case that station in Arche falls. At least today's battle shows those defenses, together with a supporting fleet, can hold. You mind if I tag along with you, in case you do manage to find a way out?"`
 			choice
@@ -963,12 +970,12 @@ mission "Avgi: Twilight Escape 1"
 			`	"Can it take us back to human space?" asks Leon, to which you nod.`
 
 			label "unknown ember waste"
-			`	"There's no point in waiting, then. If there's a chance, even a small one, it's worth checking on," says Darius, looking hopeful for the first time since you've met him. You just hope his hope isn't a false one, for both of your sakes.`
+			`	"There's no point in waiting, then. If there's a chance, even a small one, it's worth checking on," says Darius, looking hopeful for the first time since you've met him.`
+			branch end
+				has "avgi: discovered magnetar"
+			`	You just hope his hope isn't a false one, for both of your sakes.`
+			label end
 				accept
-	on enter "Decet"
-		log `Discovered a magnetar in the Decet system that can boost the range of my jump drive in an apparent inversion of the mysterious effect that trapped me here.`
-		conversation
-			`Just as your jump drive reacted strangely when you first entered Avgi space, it does so again, but this time the effect is inverted. The plasma from your jump lingers unnaturally, as though energized by something outside. Your instrumentation tell you your jump drive is much warmer than it should be just after a jump, almost hot enough to be dangerous. Perhaps your jump drive's range has changed as well?`
 	on enter
 		system
 			attributes "core" "deep" "dirt belt" "near earth" "rim" "south"
@@ -1096,3 +1103,22 @@ mission "Avgi: Twilight Escape 3"
 			`	As the pair move to the door, you say your goodbyes, and Darius promises he will keep in touch with you about the Avgi. Neither of you have forgotten the aliens fighting to survive at the edge of the galaxy, and now that you know of a safe way in and out of their space, you can go back without fear of becoming trapped.`
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Darius hasn't entered the system yet. Better depart and wait for it to arrive.`
+
+
+event "avgi: discovered magnetar"
+	system "Decet"
+		"jump range" 180
+
+
+mission "Avgi: Discovery of Decet Magnetar"
+	invisible
+	entering
+	source
+		system "Decet"
+	destination "Earth"
+	on offer
+		event "avgi: discovered magnetar" 0
+		log `Discovered a magnetar in the Decet system that can boost the range of my jump drive in an apparent inversion of the mysterious effect that trapped me here.`
+		conversation
+			`Just as your jump drive reacted strangely when you first entered Avgi space, it does so again, but this time the effect is inverted. The plasma from your jump lingers unnaturally, as though energized by something outside. Your instrumentation tells you your jump drive is much warmer than it should be just after a jump, almost hot enough to be dangerous. Perhaps your jump drive's range has changed as well?`
+				decline
