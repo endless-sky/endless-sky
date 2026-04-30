@@ -84,40 +84,6 @@ namespace {
 		{SDLK_KP_SPACE, ' '},
 		{SDLK_KP_VERTICALBAR, '|'}
 	};
-
-	// The width of the margin on the right/left sides of the dialog. This area is part of the sprite,
-	// but shouldn't have any text or other graphics rendered over it. (It's mostly transparent.)
-	constexpr double LEFT_MARGIN = 20;
-	constexpr double RIGHT_MARGIN = 20;
-	constexpr double HORIZONTAL_MARGIN = LEFT_MARGIN + RIGHT_MARGIN;
-	// The margin on the right/left sides of the button sprite. The bottom segment also includes a button
-	// that uses the same value.
-	constexpr double BUTTON_LEFT_MARGIN = 10;
-	constexpr double BUTTON_RIGHT_MARGIN = 10;
-	constexpr double BUTTON_HORIZONTAL_MARGIN = BUTTON_LEFT_MARGIN + BUTTON_RIGHT_MARGIN;
-	// The margin on the top/bottom sides of the button sprite. The bottom segment also includes a button
-	// that uses the same value.
-	constexpr double BUTTON_TOP_MARGIN = 10;
-	constexpr double BUTTON_BOTTOM_MARGIN = 10;
-	constexpr double BUTTON_VERTICAL_MARGIN = BUTTON_TOP_MARGIN + BUTTON_BOTTOM_MARGIN;
-	// The width of the padding used on the left/right sides of each segment, in pixels.
-	constexpr double LEFT_PADDING = 10;
-	constexpr double RIGHT_PADDING = 10;
-	constexpr double HORIZONTAL_PADDING = RIGHT_PADDING + LEFT_PADDING;
-	// The height of the padding used by the top/bottom segment, in pixels.
-	constexpr double TOP_PADDING = 10;
-	constexpr double BOTTOM_PADDING = 10;
-	constexpr double VERTICAL_PADDING = TOP_PADDING + BOTTOM_PADDING;
-	// The width of the padding at the beginning/end of an input field.
-	constexpr double INPUT_LEFT_PADDING = 5;
-	constexpr double INPUT_RIGHT_PADDING = 5;
-	constexpr double INPUT_HORIZONTAL_PADDING = INPUT_LEFT_PADDING + INPUT_RIGHT_PADDING;
-	// The height of the padding at the top/bottom of an input field.
-	constexpr double INPUT_TOP_PADDING = 2;
-	constexpr double INPUT_BOTTOM_PADDING = 2;
-	constexpr double INPUT_VERTICAL_PADDING = INPUT_TOP_PADDING + INPUT_BOTTOM_PADDING;
-	// The height of an input field in pixels.
-	constexpr double INPUT_HEIGHT = 20;
 }
 
 
@@ -134,6 +100,19 @@ DialogPanel *DialogPanel::Info(std::string message, Truncate truncate, bool allo
 	DialogInit init;
 	init.message = std::move(message);
 	init.canCancel = false;
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new DialogPanel(init);
+}
+
+
+
+DialogPanel *DialogPanel::CallFunctionOnExit(std::function<void(bool)> exitFunction,std::string message,
+	Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.boolFun = std::move(exitFunction);
+	init.message = std::move(message);
 	init.truncate = truncate;
 	init.allowsFastForward = allowsFastForward;
 	return new DialogPanel(init);
@@ -234,7 +213,9 @@ void DialogPanel::Draw()
 			labelPos = {
 				thirdPos.X() - .5 * font.Width(buttonThree.buttonLabel),
 				thirdPos.Y() - .5 * font.Height()};
-			font.Draw(buttonThree.buttonLabel, labelPos, activeButton == 3 ? bright : dim);
+
+			font.Draw(buttonThree.buttonLabel, labelPos,
+				isButtonThreeDisabled ? inactive : (activeButton == 3 ? bright : dim));
 		}
 	}
 
@@ -306,68 +287,7 @@ DialogPanel::DialogPanel(DialogInit &init)
 	extensionCount = 0;
 	AddChild(text);
 
-	isOkDisabled = !ValidateInput();
-}
-
-
-
-void DialogPanel::Resize()
-{
-	isWide = false;
-	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
-	text->SetRect(Rectangle(Point(), textRectSize));
-	const Sprite *top = SpriteSet::Get("ui/dialog top");
-	// If the dialog is too tall, then switch to wide mode.
-	int maxHeight = Screen::Height() * 3 / 4;
-	if(text->GetTextHeight(false) > maxHeight)
-	{
-		textRectSize.Y() = maxHeight;
-		isWide = true;
-		// Re-wrap with the new width
-		textRectSize.X() = Width() - HORIZONTAL_PADDING;
-		text->SetRect(Rectangle(Point{}, textRectSize));
-
-		if(text->GetLongestLineWidth() <= top->Width() - HORIZONTAL_MARGIN - HORIZONTAL_PADDING)
-		{
-			// Formatted text is long and skinny (e.g. scan result dialog). Go back
-			// to using the default width, since the wide width doesn't help.
-			isWide = false;
-			textRectSize.X() = Width() - HORIZONTAL_PADDING;
-			text->SetRect(Rectangle(Point{}, textRectSize));
-		}
-	}
-	else
-		textRectSize.Y() = text->GetTextHeight(false);
-
-	top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
-	const Sprite *middle = SpriteSet::Get(isWide ? "ui/dialog middle wide" : "ui/dialog middle");
-	const Sprite *bottom = SpriteSet::Get(isWide ? "ui/dialog bottom wide" : "ui/dialog bottom");
-	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
-	// The height of the bottom sprite without the included button's height.
-	const int realBottomHeight = bottom->Height() - cancel->Height();
-
-	int height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
-			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
-	// Determine how many extension panels we need.
-	if(height <= realBottomHeight + top->Height())
-		extensionCount = 0;
-	else
-		extensionCount = (height - middle->Height()) / middle->Height();
-
-	// Now that we know how big we want to render the text, position the text
-	// area and add it to the UI.
-
-	// Get the position of the top of this dialog, and of the text and input.
-	Point pos(0., (top->Height() + extensionCount * middle->Height() + bottom->Height()) * -.5f);
-	Point textPos(Width() * -.5 + LEFT_PADDING, pos.Y() + VERTICAL_PADDING);
-	// Resize textRectSize to match the visual height of the dialog, which will
-	// be rounded up from the actual text height by the number of panels that
-	// were added. This helps correctly position the TextArea scroll buttons.
-	textRectSize.Y() = (top->Height() + realBottomHeight - VERTICAL_PADDING) + extensionCount * middle->Height() -
-			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
-
-	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
-	text->SetRect(textRect);
+	OnInputChange();
 }
 
 
@@ -400,12 +320,12 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		else if(doubleFun && c == '.' && !std::count(input.begin(), input.end(), '.'))
 			input += c;
 
-		isOkDisabled = !ValidateInput();
+		OnInputChange();
 	}
 	else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !input.empty())
 	{
 		input.erase(input.length() - 1);
-		isOkDisabled = !ValidateInput();
+		OnInputChange();
 	}
 	else if(key == SDLK_TAB)
 		// Round-robin to the right, 3->2->1->3
@@ -449,12 +369,22 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 				DoCallback();
 				GetUI().Pop(this);
 			}
+			else
+			{
+				UI::PlaySound(UI::UISound::FAILURE);
+				return false;
+			}
 		}
 		else if(activeButton == 3)
 		{
 			// Do third button callback. If this returns true, also close the dialog.
-			if(buttonThree.buttonAction && buttonThree.buttonAction(input))
+			if(!isButtonThreeDisabled && buttonThree.buttonAction && buttonThree.buttonAction(input))
 				GetUI().Pop(this);
+			else
+			{
+				UI::PlaySound(UI::UISound::FAILURE);
+				return false;
+			}
 		}
 		else
 			GetUI().Pop(this);
@@ -513,6 +443,83 @@ bool DialogPanel::Click(int x, int y, MouseButton button, int clicks)
 }
 
 
+void DialogPanel::Resize()
+{
+	Resize(-1);
+}
+
+
+
+void DialogPanel::Resize(int height)
+{
+	isWide = false;
+	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
+	text->SetRect(Rectangle(Point(), textRectSize));
+	const Sprite *top = SpriteSet::Get("ui/dialog top");
+	// If the dialog is too tall, then switch to wide mode.
+	int maxHeight = Screen::Height() * 3 / 4;
+	if(text->GetTextHeight(false) > maxHeight)
+	{
+		textRectSize.Y() = maxHeight;
+		isWide = true;
+		// Re-wrap with the new width
+		textRectSize.X() = Width() - HORIZONTAL_PADDING;
+		text->SetRect(Rectangle(Point{}, textRectSize));
+
+		if(text->GetLongestLineWidth() <= top->Width() - HORIZONTAL_MARGIN - HORIZONTAL_PADDING)
+		{
+			// Formatted text is long and skinny (e.g. scan result dialog). Go back
+			// to using the default width, since the wide width doesn't help.
+			isWide = false;
+			textRectSize.X() = Width() - HORIZONTAL_PADDING;
+			text->SetRect(Rectangle(Point{}, textRectSize));
+		}
+	}
+	else
+		textRectSize.Y() = text->GetTextHeight(false);
+
+	top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
+	const Sprite *middle = SpriteSet::Get(isWide ? "ui/dialog middle wide" : "ui/dialog middle");
+	const Sprite *bottom = SpriteSet::Get(isWide ? "ui/dialog bottom wide" : "ui/dialog bottom");
+	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
+	// The height of the bottom sprite without the included button's height.
+	const int realBottomHeight = bottom->Height() - cancel->Height();
+
+	// A negative height (default) will allow dynamic sizing.
+	if(height < 0)
+		height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
+			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
+	// Determine how many extension panels we need.
+	if(height <= realBottomHeight + top->Height())
+		extensionCount = 0;
+	else
+		extensionCount = (height - middle->Height()) / middle->Height();
+
+	// Now that we know how big we want to render the text, position the text
+	// area and add it to the UI.
+
+	// Get the position of the top of this dialog, and of the text and input.
+	Point pos(0., (top->Height() + extensionCount * middle->Height() + bottom->Height()) * -.5f);
+	Point textPos(Width() * -.5 + LEFT_PADDING, pos.Y() + VERTICAL_PADDING);
+	// Resize textRectSize to match the visual height of the dialog, which will
+	// be rounded up from the actual text height by the number of panels that
+	// were added. This helps correctly position the TextArea scroll buttons.
+	textRectSize.Y() = (top->Height() + realBottomHeight - VERTICAL_PADDING) + extensionCount * middle->Height() -
+			realBottomHeight * AcceptsInput() - BOTTOM_PADDING;
+
+	textRect = Rectangle::FromCorner(textPos, textRectSize);
+	text->SetRect(textRect);
+}
+
+
+
+int DialogPanel::Width() const
+{
+	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
+	return top->Width() - HORIZONTAL_MARGIN;
+}
+
+
 
 void DialogPanel::DoCallback(const bool isOk) const
 {
@@ -560,14 +567,6 @@ void DialogPanel::DoCallback(const bool isOk) const
 
 
 
-int DialogPanel::Width() const
-{
-	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
-	return top->Width() - HORIZONTAL_MARGIN;
-}
-
-
-
 bool DialogPanel::AcceptsInput() const
 {
 	return !isMission && (intFun || doubleFun || stringFun);
@@ -592,4 +591,16 @@ bool DialogPanel::ValidateInput() const
 	}
 
 	return true;
+}
+
+
+
+void DialogPanel::OnInputChange()
+{
+	isOkDisabled = !ValidateInput();
+	if(numButtons > 2)
+	{
+		// the recalc should only happen onInputChange
+		isButtonThreeDisabled = buttonThree.validateFun && !buttonThree.validateFun(input);
+	}
 }

@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "ListDialogPanel.h"
 #include "PlayerInfo.h"
 #include "Plugins.h"
 #include "shader/PointerShader.h"
@@ -116,6 +117,17 @@ namespace {
 		{"environment volume", SoundCategory::ENVIRONMENT},
 		{"alert volume", SoundCategory::ALERT}
 	};
+
+	// Prevent changing controls profiles that are shipped with the game resources.
+	bool CanChange(const string &profileName) {
+		// Return false if the profileName matches a profile found in the game resources.
+		if(profileName.empty() || Files::Exists(Files::Resources() / "controls" / (profileName + ".txt")))
+			return false;
+		// Prevent saving control profile with a conflict or missing binding for the MENU key.
+		if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
+			return false;
+		return true;
+	}
 }
 
 
@@ -181,6 +193,13 @@ void PreferencesPanel::Draw()
 			info.SetCondition(bar + " none");
 	}
 
+	if(page == 'c')
+	{
+		info.SetString("selected controls profile", Command::Name());
+		if(Command::HasUnsavedChanges())
+			info.SetCondition("show controls changed");
+	}
+
 	if(Plugins::HasChanged())
 		info.SetCondition("show plugins changed");
 	if(CONTROLS_PAGE_COUNT > 1)
@@ -232,6 +251,8 @@ void PreferencesPanel::UpdateTooltipActivation()
 
 bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	postDialogAction = '\0';
+
 	if(static_cast<unsigned>(editing) < zones.size())
 	{
 		Command::SetKey(zones[editing].Value(), key);
@@ -246,10 +267,15 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else if(key == SDLK_RETURN)
 		HandleConfirm();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		Exit();
+	{
+		if(page != 'c' || CheckExit(key))
+			Exit();
+	}
 	else if(key == 'c' || key == 's' || key == 'p' || key == 'a')
 	{
-		page = key;
+		if(page != 'c' || CheckExit(key))
+			page = key;
+
 		hoverItem.clear();
 		selected = 0;
 
@@ -284,6 +310,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		if(!zones[latest].Value().Has(Command::MENU))
 			Command::SetKey(zones[latest].Value(), 0);
 	}
+	else if(key == 'e' && page == 'c')
+		SelectProfile();
 	else
 		return false;
 
@@ -1327,18 +1355,38 @@ void PreferencesPanel::DrawTooltips()
 
 void PreferencesPanel::Exit()
 {
-	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
-	{
-		GetUI().Push(DialogPanel::Info("Menu keybind is not bound or has conflicts."));
-		return;
-	}
-
-	Command::SaveSettings(Files::Config() / "keys.txt");
-
 	if(recacheDeadlines)
 		player.CacheMissionInformation(true);
 
 	GetUI().Pop(this);
+}
+
+
+
+// Return if able to exit.
+bool PreferencesPanel::CheckExit(SDL_Keycode nextAction)
+{
+	if(Command::HasUnsavedChanges())
+	{
+		string message;
+		if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
+			message = "Menu keybind is not bound or has conflicts.\n";
+		else
+			message = "Select \"Save\" to activate this controls profile and save it.\n";
+
+		GetUI().Push(DialogPanel::ThreeButtonValidateString(this, message +
+			"\"Discard\" will revert to the previous active control profile.\n" +
+			"\"Cancel\" to go back and make further changes.",
+			Command::Name(),
+			DialogPanel::FunctionButton(this, "Save", 's', &PreferencesPanel::RequestSaveControls),
+			DialogPanel::FunctionButton(this, "Discard", 'd', &PreferencesPanel::DiscardControlChanges),
+			[](const string &profileName) { return CanChange(profileName); }));
+
+		// Note: While this dialog is modal, this code is non-blocking, need to prime the next action.
+		postDialogAction = nextAction;
+		return false;
+	}
+	return true;
 }
 
 
@@ -1544,4 +1592,180 @@ void PreferencesPanel::ScrollSelectedPlugin()
 		pluginListScroll.Scroll(-Preferences::ScrollSpeed());
 	while(selected * 20 - pluginListScroll > pluginListClip->Height())
 		pluginListScroll.Scroll(Preferences::ScrollSpeed());
+}
+
+
+
+void PreferencesPanel::SaveControls(const std::string &profileName)
+{
+	Command::RenameProfile(profileName);
+	Command::ActivateWorkingCopy();
+	GameData::SaveSettings();
+	this->DoKey(this->postDialogAction);
+	this->postDialogAction = '\0';
+}
+
+
+
+bool PreferencesPanel::RequestSaveControls(const std::string &profileName)
+{
+	// Don't allow saving unnamed or to game resources
+	if(profileName.empty() || Files::Exists(Files::Resources() / "controls" / (profileName + ".txt")))
+		return false;
+
+	// Double-check if the file already exist before overwriting
+	if(Files::Exists(Files::Config() / "controls" / (profileName + ".txt")))
+	{
+		GetUI().Push(DialogPanel::CallFunctionOnExit(
+			[this, profileName](bool yes) -> void
+			{
+				if(yes)
+					SaveControls(profileName);
+			},
+			"Are you sure you want to save over top of the selected controls profile file, \""
+			+ profileName + "\"?", Truncate::NONE, true));
+		return false;
+	}
+	else
+	{
+		SaveControls(profileName);
+		// Close dialog.
+		return true;
+	}
+}
+
+
+
+bool PreferencesPanel::DiscardControlChanges(const string &profileName)
+{
+	Command::DiscardWorkingCopy();
+	// Always save the active profile at this point, handles some potential oddities with discard after delete.
+	GameData::SaveSettings();
+	DoKey(postDialogAction);
+	postDialogAction = '\0';
+
+	// Close dialog.
+	return true;
+}
+
+
+
+void PreferencesPanel::UpdateAvailableProfiles()
+{
+	immutableProfiles.clear();
+	availableProfiles.clear();
+	profilePaths.clear();
+
+	auto GetProfileName = [&](string &fileName)
+	{
+		size_t pos = fileName.find('_') + 1;
+		// Note, we know that ".txt" is 4 characters, hence the 4.
+		return fileName.substr(pos, fileName.size() - pos - 4);
+	};
+
+	for(const auto &path : Files::List(Files::Resources() / "controls"))
+	{
+		string fileName = Files::Name(path);
+		// Skip any files that aren't text files.
+		if(path.extension() != ".txt")
+			continue;
+
+		string profileName = GetProfileName(fileName);
+		immutableProfiles.emplace_back(profileName);
+		availableProfiles.emplace_back(profileName);
+		profilePaths.emplace(profileName, path);
+	}
+	for(const auto &path : Files::List(Files::Config() / "controls"))
+	{
+		string fileName = Files::Name(path);
+		// Skip any files that aren't text files.
+		if(path.extension() != ".txt")
+			continue;
+
+		string profileName = GetProfileName(fileName);
+		availableProfiles.emplace_back(profileName);
+		profilePaths.emplace(profileName, path);
+	}
+}
+
+
+
+void PreferencesPanel::SelectProfile()
+{
+	UpdateAvailableProfiles();
+	modalListDialog = ListDialogPanel::ShowList(this,
+		"Select a saved controls profile:",
+		availableProfiles,
+		Command::Name(),
+		DialogPanel::FunctionButton(this, "Load", 'l', &PreferencesPanel::LoadProfile),
+		DialogPanel::FunctionButton(this, "Delete", SDLK_DELETE,
+			&PreferencesPanel::DeleteProfile, &PreferencesPanel::IsUserProfile),
+		&PreferencesPanel::HoverProfile);
+	GetUI().Push(modalListDialog);
+}
+
+
+
+bool PreferencesPanel::LoadProfile(const string &profileName)
+{
+	auto search = profilePaths.find(profileName);
+	if(search != profilePaths.end())
+		Command::LoadSettings(search->second, profileName);
+	else
+		// Unable to load, leave dialog open.
+		return false;
+
+	// Close the dialog.
+	return true;
+}
+
+
+
+bool PreferencesPanel::IsUserProfile(const string &profileName)
+{
+	for(const string &name : immutableProfiles)
+		if(name == profileName)
+			return false;
+	return true;
+}
+
+
+
+string PreferencesPanel::HoverProfile(const string &profileName)
+{
+	return IsUserProfile(profileName) ? "User profile" : "Game resource";
+}
+
+
+
+bool PreferencesPanel::DeleteProfile(const string &profileName)
+{
+	selectedItem = profileName;
+	GetUI().Push(DialogPanel::CallFunctionIfOk([this]() -> void {
+			// Delete user profile:
+			auto search = profilePaths.find(this->selectedItem);
+			if(search != profilePaths.end())
+			{
+				// If the current active profile is deleted, make it a working copy
+				// so that a prompt to save is issued.
+				if(this->selectedItem == Command::Name())
+					Command::MakeWorkingCopy();
+
+				bool failed = false;
+				Files::Delete(search->second);
+				failed |= Files::Exists(search->second);
+
+				if(failed)
+					GetUI().Push(DialogPanel::Info("Deleting pilot files failed."));
+
+				UpdateAvailableProfiles();
+				modalListDialog->UpdateList(availableProfiles);
+			}
+		},
+		"Are you sure you want to delete the selected controls profile file, \""
+		+ profileName + "\"?", 1, Truncate::NONE, true));
+
+	// Keep the dialog open.
+	return false;
+
 }
