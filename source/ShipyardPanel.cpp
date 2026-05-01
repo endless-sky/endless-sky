@@ -201,7 +201,7 @@ void ShipyardPanel::DrawButtons()
 {
 	// There will be two rows of buttons:
 	//  [    Buy    ] [    Sell    ] [ Sell Hull ]
-	//                               [   Leave   ]
+	//    Quantity [Dropdown]        [   Leave   ]
 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
 	const double rowBaseY = Screen::BottomRight().Y() - rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
@@ -259,16 +259,10 @@ void ShipyardPanel::DrawButtons()
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
 		true, hoverButton == 'l', 'l');
 
-	// Draw the Modifier hover text that appears below the buttons when a modifier
-	// is being applied.
-	int modifier = Modifier();
-	if(modifier > 1)
-	{
-		string mod = "x " + to_string(modifier);
-		int modWidth = font.Width(mod);
-		font.Draw(mod, Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0)
-		+ Point(-.5 * modWidth, 10.), dim);
-	}
+	font.Draw("Quantity:", Screen::BottomRight() - Point(SIDEBAR_WIDTH - 10, 33), dim);
+
+	const Point sqCenter = Screen::BottomRight() - Point(135, 25);
+	selectedQuantity->SetPosition(Rectangle(sqCenter, {86, 20}));
 
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("shipyard: ") + hoverButton);
@@ -385,7 +379,8 @@ void ShipyardPanel::DoBuyButton()
 	if(licenseCost < 0)
 		return;
 
-	modifier = Modifier();
+	const string &quantity = selectedQuantity->Text();
+	modifier = quantity.empty() ? 1 : stoi(quantity);
 	string message;
 	if(licenseCost)
 		message = "Note: you will need to pay " + Format::CreditString(licenseCost)
