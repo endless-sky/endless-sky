@@ -252,7 +252,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	{
 		if(thumbnail->IsLoaded())
 			SpriteShader::Draw(thumbnail, center + Point(0., 10.), 1., swizzle);
-		else
+		else if(thumbnail->HasDimensions())
 			loadingCircle.Draw(center);
 	}
 	else if(sprite)
