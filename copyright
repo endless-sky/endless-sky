@@ -3893,6 +3893,12 @@ License: CC-BY-SA-4.0
 Comment: Sound effects generated with Labchirp v1.60 (https://labbed.net/software/labchirp/).
 
 Files:
+  sounds/harmonic?jump*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC0
+Comment: Derived from public domain sounds taken from freesound.org.
+
+Files:
  images/star/void-scar*
 Copyright: Daeridanii (https://github.com/Daeridanii1)
 License: CC0
