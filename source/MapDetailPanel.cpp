@@ -897,12 +897,12 @@ void MapDetailPanel::DrawInfo()
 			else
 			{
 				value -= localValue;
-				if(Preferences::Has("Show parenthesis"))
+				if(Preferences::Has("Show parentheses"))
 					price += "(";
 				if(value > 0)
 					price += '+';
 				price += to_string(value);
-				if(Preferences::Has("Show parenthesis"))
+				if(Preferences::Has("Show parentheses"))
 					price += ")";
 			}
 

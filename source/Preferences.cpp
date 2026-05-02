@@ -226,9 +226,9 @@ void Preferences::Load()
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
 	settings["Deadline blink by distance"] = true;
-	settings["Confirm 'Sell Outfits' button"] = true;
-	settings["Confirm 'Sell Minables' button"] = true;
-	settings["'Sell Outfits' without outfitter"] = true;
+	settings["Confirm selling outfits"] = true;
+	settings["Confirm selling minables"] = true;
+	settings["Sell outfits without outfitter"] = true;
 
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
