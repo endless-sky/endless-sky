@@ -7471,7 +7471,7 @@ mission "Silver Talon 1"
 		"combat rating" >= 80
 	on offer
 		conversation
-			`Walking through the spaceport, you are flagged down by a very short woman sitting on a box labelled "Explosive! Corrosive! Flammable! Extremely Toxic! Handle With Car!" and holding the largest bazooka you've ever seen.`
+			`Walking through the spaceport, you are flagged down by a very short woman sitting on a box labelled "Explosive! Corrosive! Flammable! Extremely Toxic! Handle With Car!" and holding the largest bazooka you've ever seen and wearing a pin displaying a small silver eagle talon.`
 			choice
 				`	(See what she wants.)`
 				`	(Ignore her.)`
@@ -7580,7 +7580,7 @@ mission "Silver Talon 2"
 	destination "Dancer"
 	to offer
 		has "Silver Talon 1: done"
-	
+
 	on offer
 		conversation
 			`	Time passes slowly. First one hour flicks by, then a second, then a third. Just as you're beginning to give up hope, you hear a large explosion in the distance. A minute later, a speck appears on the horizon, a speck which soon resolves itself into the outline of a very old truck doing far more than what the speed limit would be on any civilized planet.`
@@ -7677,7 +7677,7 @@ mission "Silver Talon 2"
 				`	"I can't take this."`
 			`	Cerridwyn becomes much firmer "You can, and will, <first> <last>. If you hadn't flown us out of there like that - or, if you had left an hour earlier - we'd all be dead. It's the least we can do."`
 			label thanks
-			`	She bows her head, picks up her bazooka, and wanders off into the spaceport. Klaus and Pict follow close behind, carrying the rest of the bounty hunters' gear.`
+			`	The payment made, Cerridwyn suddenly seems to collapse in front of your eyes. Picking up her bazooka, she slings it silently over her shoulder and wanders off aimlessly into the spaceport. Klaus and Pict follow close behind, carrying the rest of the bounty hunters' gear.`
 			`	Dagger, a crutch under his arm, stumbles after his companions but stops when he sees you watching. "Y'know, cap'n," he mutters, obviously very drunk and speaking slowly, "This ain't over. We'll see Vlad Blaire ded yet for 'is crimes. And I tell yuh, we cud shure use yur 'elp. Whaddayuh say yuh join us a'the spacepurt bahr in an hour?"`
 			`	With that, the wounded veteran turns and thumps off your ship, joining the other bounty hunters.`
 		payment 35000
@@ -7723,6 +7723,12 @@ mission "Silver Talon 3"
 			label pict
 			`	"Poisonwood. '85. Our platoon was supposed to be a mobile reserve for a strike against a missile battery. Only problem is they got the position of the battery off by seventy kilometres, and we dropped right into a barrage of Meteors. Fairweather, Grange, Perkins, Yanovik... the entire front half of our shuttle was gone before we could blow the plates and bail.`
 			`	"Some things never change, Captain, some things never change."`
+			choice
+				`	"Some things do change, though."`
+				`	(Stay silent.)`
+					goto commotion
+			
+			`	"Of course. Everything you do changes something. A laser on target, a bullet, a rocket, and it's their name on the cenotaph instead of yours. A word in the right place, and maybe they don't need to build that monument at all. But we snakes forget that sometimes, don't we. It's so much easier to live with ourselves if we can ignore the consequences of our actions, the children gone with the pirate ships, the troopers dead because we messed up, the enemies we never needed to kill. But we can't ignore it, can we, or else we're just like them."`
 				goto commotion
 
 			label cerridwyn
@@ -7856,7 +7862,7 @@ mission "Silver Talon 4"
 
 	on offer
 		conversation
-			`	As you walk into the spaceport bar, you are met by a small crowd of sailors. The four bounty hunters are at the centre of the group, talking in a low murmur with one of the better-off spacefarers. Upon seeing you, Pict walks over to greet you.`
+			`As you walk into the spaceport bar, you are met by a small crowd of sailors. The four bounty hunters are at the centre of the group, talking in a low murmur with one of the better-off spacefarers. Upon seeing you, Pict walks over to greet you.`
 			`	"Cerridwyn's friends," she says, gesturing to the crowd. Damn fools, if you ask me, but she's got them fired up. With any luck, some of them will even help us out."`
 			`	You watch as Cerridwyn and Klaus continue to speak to the spacers. One by one, they wander off, leaving empty glasses on the table. Finally, three captains remain.`
 			`	"Captain <last>, I'd like you to meet captains John Smith, Norma Down, and Yven Stieber. Captains, <first> <last>."`
@@ -7866,7 +7872,7 @@ mission "Silver Talon 4"
 			`	There's a murmur of assent, and you file out of the bar, as ready as you're going to be for what comes next.`
 				accept
 	
-	npc disable save
+	npc board
 		government "Pirate"
 		personality
 			"hunting"
@@ -7878,6 +7884,12 @@ mission "Silver Talon 4"
 			"nemesis"
 			confusion 5
 		ship "Leviathan" "Baron's Cave"
+		conversation
+			`The hull of the <ship> rings like a gong as you come in to dock slightly too quickly. Or perhaps not too quickly, since Cerridwyn, Pict, and Dagger are already in the airlock waiting for the doors to slide open.`
+			`	Suddenly, the airlock opens with a hiss and the three bounty hunters are off, gutting the inside of Blaire's ship. Cerridwyn fires shot after shot from her bazooka, until you can almost see straight through to the cockpit of the Crimson Horde from where you're standing.`
+			`	A couple pirates show their heads, but Klaus quickly sends them ducking for cover once more with a couple shots from his pistol.`
+			`	Then, as quickly as it began, it's over. All four bounty hunters pile into your ship, grim-faced but satisfied. Now, you only have to get back to <planet> in one piece.`
+				launch
 
 	npc
 		government "Pirate"
@@ -7923,3 +7935,79 @@ mission "Silver Talon 4"
 		ship "Corvette" "Steam Hammer"
 		ship "Fury" "Luck's Eyebrows"
 		ship "Sparrow" "Iceheart"
+
+	on complete
+		event "Pict Trigger" 1500
+		payment 445000
+		conversation
+			`Back on <planet>, the survivors of the battle gather around in the spaceport bar. Cerridwyn says some congratulations and starts handing out credit chips. You receive one for <payment>; it seems that either the bounty on Blaire's head went up since you took the job or else Cerridwyn has chosen to pay you more than your 15% cut.`
+			`	Gradually, the crowd disperses, until looking back you see only the four bounty hunters...`
+			`	Dagger, drunk out of his mind, passed out on a table.`
+			`	Klaus, hand on his pistol holster as if afraid the weapon will dissolve the moment he lets it be.`
+			`	Pict, silent and steely-eyed but hurting within.`
+			`	And Cerridwyn, proud Cerridwyn, gleaming rocket launcher at her feet and silver talon pinned to her chest, her facade of poise crumbling as you turn to leave.`
+
+
+mission "Pict's Legacy 1"
+	name "Find Pict's Killer"
+	source "Hermes"
+	to offer
+		has "event: Pict Trigger"
+		has "main plot completed"
+	on offer
+		conversation
+			`You're sitting at the spaceport bar watching some hovercraft racing, when all of a sudden you receive a voice message.`
+			`	"Captain <last>, I can't tell you how glad I am that you're here on Hermes. I need you to meet me at 45 Impala Street, as fast as you can. Please, captain, my life depends on it."`
+			`	The voice is unfamiliar at first, but it doesn't take long to remember it: it is the voice of Pict, the enigmatic soldier who helped Cerridwyn Morgan hunt down and kill Vlad Blaire.`
+			choice
+				`	(Head to 45 Impala Street.)`
+					goto trap
+				`	(Ignore the message.)`
+			
+			`	With no good reason to believe the message is genuine or urgent, you ignore it and go back to watching the race. About ten minutes pass before you hear sirens, and in only another five the news makes its way to your eyes: Compassion "Pict" Macdonald, SgtMaj, Republic Navy, found dead. Murdered, at 45 Impala Street.`
+				decline
+			
+			label trap
+			`	It doesn't take long to find 45 Impala Street, certainly no longer than fifteen minutes. The building is a slab of concrete built in the timeless style: modern four decades ago, hopelessly ugly today. The door stands ajar, and you reach for your gun as you cross the threshold into the house. The lights inside are off, and it is pitch black.`
+			choice
+				`	"Is anyone home?"`
+				`	(Turn on the lights.)`
+					goto lights
+				`	(Continue with the lights off.)`
+					goto unlit
+
+			`	The only reply you receive is the distant hum of a generator, punctuated by your own heartbeat.`
+			choice
+				`	(Turn on the lights.)`
+				`	(Continue with the lights off..)`
+					goto unlit
+			
+			label lights
+			`	You flick the lights on, and stare. In front of you is what was clearly once a living room, now torn to shambles. In the corner, clearly dead, is Pict's corpse, her mouth open in a snarl and no fewer than thirteen flechette holes in her chest. Suddenly, you can't move, and when the police arrive three minutes later they find you standing there, hand on the light switch, staring.`
+				goto police
+			
+			label unlit
+			`	Without turning the lights on, you take three steps into the house, trip, and fall. As your eyes slowly become accustomed to the dark shadows, you begin to make out shapes in the gloom. Gradually, the shapes solidify into objects: an overturned chair, an empty flechette gun, and Pict's corpse. So shocked are you that you do not hear the sirens until the lights are flicked on and the police have you under gunpoint.`
+
+			label police
+			`	All things considered, the cops are reasonable enough. You find yourself locked in a holding cell, but at least it's clean. They take your pilot's license, but at least you receive food and water.`
+			`	A few hours later, you're hauled out for questioning. A burly cop reads you your rights, warns you that you have the right to legal counsel and don't have to answer the questions you're about to be asked, but that he's sure - you being an upstanding citizen and so forth - you'll answer them anyways.`
+			`	Then he clears his throat, and begins the questioning.`
+			`	"Are you Captain <first> <last>?"`
+			choice
+				`	"Yes, that's me."`
+					goto q1ok
+				`	"No, sir."`
+					goto q1bad
+				`	(Keep silent.)`
+			
+			`	"I see you're determined to make things difficult, aren't you, captain? Very well, then."`
+				goto q2
+			
+			label q1bad
+			`	"So, in fact, the ID we took from you is falsified? Or is it stolen?"`
+			# CONTINUE
+
+			label q1ok
+
+			label q2
