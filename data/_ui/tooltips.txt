@@ -1625,8 +1625,8 @@ tip "Tooltip activation time"
 tip "Date format"
 	`The format that dates in the game are displayed in.`
 
-tip "Show parentheses"
-	`Toggle whether parentheses are shown around the trade prices in the ports map mode.`
+tip "Parenthesize trade profits"
+	`Toggle whether parentheses are shown around potential profits and losses in the ports map mode.`
 
 tip "Notify on destination"
 	`If you enter a system with a planet you must land on for a mission, plays a notification sound.`

@@ -348,6 +348,28 @@ void Preferences::Load()
 			highlightShipsIndex = static_cast<int>(HighlightShips::FLAGSHIP);
 		settings.erase(it);
 	}
+
+
+	// For people updating from a version before 0.11.2,
+	// where:
+	// - "'Sell Outfits' without outfitter" was replaced with "Sell outfits without outfitter"
+	// - "Confirm 'Sell Outfits' button" was replaced with "Confirm selling outfits"
+	// - "Confirm 'Sell Minables' button" was replaced with "Confirm selling minables"
+	// - "Show parenthesis" was replaced with "Parenthesize trade profits"
+	array<pair<string, string>,4> RENAMED_SETTINGS = {
+		{"'Sell Outfits' without outfitter", "Sell outfits without outfitter"},
+		{"Confirm 'Sell Outfits' button", "Confirm selling outfits"},
+		{"Confirm 'Sell Minables' button", "Confirm selling minables"},
+		{"Show parenthesis", "Parenthesize trade profits"}};
+	for(const auto &[oldName, newName] : RENAMED_SETTINGS)
+	{
+	    it = settings.find(oldName);
+	    if(it != settings.end())
+	    {
+	        settings[newName] = it->second;
+	        settings.erase(it);
+	    }
+	}
 }
 
 

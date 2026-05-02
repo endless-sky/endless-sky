@@ -897,12 +897,12 @@ void MapDetailPanel::DrawInfo()
 			else
 			{
 				value -= localValue;
-				if(Preferences::Has("Show parentheses"))
+				if(Preferences::Has("Parenthesize trade profits"))
 					price += "(";
 				if(value > 0)
 					price += '+';
 				price += to_string(value);
-				if(Preferences::Has("Show parentheses"))
+				if(Preferences::Has("Parenthesize trade profits"))
 					price += ")";
 			}
 
