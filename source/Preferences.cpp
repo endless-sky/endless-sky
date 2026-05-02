@@ -363,12 +363,12 @@ void Preferences::Load()
 		{"Show parenthesis", "Parenthesize trade profits"}};
 	for(const auto &[oldName, newName] : RENAMED_SETTINGS)
 	{
-	    it = settings.find(oldName);
-	    if(it != settings.end())
-	    {
-	        settings[newName] = it->second;
-	        settings.erase(it);
-	    }
+		it = settings.find(oldName);
+		if(it != settings.end())
+		{
+			settings[newName] = it->second;
+			settings.erase(it);
+		}
 	}
 }
 
