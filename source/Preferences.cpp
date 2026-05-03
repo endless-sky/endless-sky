@@ -358,7 +358,7 @@ void Preferences::Load()
 		{"Confirm 'Sell Minables' button", "Confirm selling minables"},
 		{"Show parenthesis", "Parenthesize trade profits"}
 	}};
-	for(auto const&[oldName, newName] : RENAMED_BOOLEAN_SETTINGS)
+	for(auto const &[oldName, newName] : RENAMED_BOOLEAN_SETTINGS)
 	{
 		it = settings.find(oldName);
 		if(it != settings.end())
