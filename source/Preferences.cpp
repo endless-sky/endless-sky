@@ -356,12 +356,13 @@ void Preferences::Load()
 	// - "Confirm 'Sell Outfits' button" was replaced with "Confirm selling outfits"
 	// - "Confirm 'Sell Minables' button" was replaced with "Confirm selling minables"
 	// - "Show parenthesis" was replaced with "Parenthesize trade profits"
-	array<pair<string, string>,4> RENAMED_SETTINGS = {
-		pair<string, string>("'Sell Outfits' without outfitter", "Sell outfits without outfitter"),
-		pair<string, string>("Confirm 'Sell Outfits' button", "Confirm selling outfits"),
-		pair<string, string>("Confirm 'Sell Minables' button", "Confirm selling minables"),
-		pair<string, string>("Show parenthesis", "Parenthesize trade profits")};
-	for(const auto &[oldName, newName] : RENAMED_SETTINGS)
+	map<string, string> RENAMED_BOOLEAN_SETTINGS = {
+		{"'Sell Outfits' without outfitter", "Sell outfits without outfitter"},
+		{"Confirm 'Sell Outfits' button", "Confirm selling outfits"},
+		{"Confirm 'Sell Minables' button", "Confirm selling minables"},
+		{"Show parenthesis", "Parenthesize trade profits"}
+	};
+	for(auto const&[oldName, newName] : RENAMED_BOOLEAN_SETTINGS)
 	{
 		it = settings.find(oldName);
 		if(it != settings.end())
