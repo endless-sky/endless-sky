@@ -350,12 +350,8 @@ void Preferences::Load()
 	}
 
 
-	// For people updating from a version before 0.11.2,
-	// where:
-	// - "'Sell Outfits' without outfitter" was replaced with "Sell outfits without outfitter"
-	// - "Confirm 'Sell Outfits' button" was replaced with "Confirm selling outfits"
-	// - "Confirm 'Sell Minables' button" was replaced with "Confirm selling minables"
-	// - "Show parenthesis" was replaced with "Parenthesize trade profits"
+	// Some settings have been renamed. If the preferences file contains the old names,
+	// load the state from them, then erase them so only the new names are written back when saving settings.
 	map<string, string> RENAMED_BOOLEAN_SETTINGS = {
 		{"'Sell Outfits' without outfitter", "Sell outfits without outfitter"},
 		{"Confirm 'Sell Outfits' button", "Confirm selling outfits"},
