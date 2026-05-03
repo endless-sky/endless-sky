@@ -352,12 +352,12 @@ void Preferences::Load()
 
 	// Some settings have been renamed. If the preferences file contains the old names,
 	// load the state from them, then erase them so only the new names are written back when saving settings.
-	map<string, string> RENAMED_BOOLEAN_SETTINGS = {
+	array<pair<string, string>, 4> RENAMED_BOOLEAN_SETTINGS = {{
 		{"'Sell Outfits' without outfitter", "Sell outfits without outfitter"},
 		{"Confirm 'Sell Outfits' button", "Confirm selling outfits"},
 		{"Confirm 'Sell Minables' button", "Confirm selling minables"},
 		{"Show parenthesis", "Parenthesize trade profits"}
-	};
+	}};
 	for(auto const&[oldName, newName] : RENAMED_BOOLEAN_SETTINGS)
 	{
 		it = settings.find(oldName);
