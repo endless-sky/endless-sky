@@ -314,7 +314,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 		{
 			if(thumbnail->IsLoaded())
 				SpriteShader::Draw(thumbnail, thumbnailCenter);
-			else
+			else if(thumbnail->HasDimensions())
 				loadingCircle.Draw(thumbnailCenter);
 		}
 
@@ -1095,7 +1095,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	{
 		if(thumbnail->IsLoaded())
 			SpriteShader::Draw(thumbnail, center);
-		else
+		else if(thumbnail->HasDimensions())
 			loadingCircle.Draw(center);
 	}
 
