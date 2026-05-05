@@ -57,8 +57,6 @@ void GameLoadingPanel::Step()
 		Audio::CheckReferences();
 		// Set the game's initial internal state.
 		GameData::FinishLoading();
-		// Ensure that all pilot profiles are loaded.
-		PilotProfile::LoadProfiles();
 
 		player.LoadRecent();
 
