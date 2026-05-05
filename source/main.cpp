@@ -36,7 +36,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MainPanel.h"
 #include "MenuPanel.h"
 #include "Panel.h"
-#include "PilotProfile.h"
 #include "PlayerInfo.h"
 #include "Plugins.h"
 #include "Preferences.h"

@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/MaskManager.h"
 #include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
-#include "PilotProfile.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "image/SpriteSet.h"
