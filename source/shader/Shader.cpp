@@ -98,8 +98,8 @@ GLuint Shader::Compile(const char *str, GLenum type)
 
 	string contents(str);
 	if(contents.find("\n//autoversion off\n") == string::npos
-		&& !contents.starts_with("//autoversion off")
-		&& !contents.ends_with("//autoversion off"))
+		&& !contents.starts_with("//autoversion off\n")
+		&& !contents.ends_with("\n//autoversion off"))
 	{
 		static string version;
 		if(version.empty())
