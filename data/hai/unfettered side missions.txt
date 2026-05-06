@@ -433,7 +433,7 @@ mission "Hai Legacy 3"
 			`You have managed to defeat the Unfettered challenger. Now it's time to land on Firelode and claim your reward.`
 				accept
 			label cheat
-			`You come here with a fleet and have the audacity to disable my ship? Your dishonor knows no bound, monkey!`
+			`"You come here with a fleet and have the audacity to disable my ship? Your dishonor knows no bound, monkey!"`
 			action
 				fail
 	npc
