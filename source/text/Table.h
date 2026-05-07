@@ -84,6 +84,10 @@ public:
 	void DrawUnderline() const;
 	void DrawUnderline(const Color &color) const;
 
+	// Draw a strikethrough mid-way through the text for the current row.
+	void DrawStrikethrough() const;
+	void DrawStrikethrough(const Color &color) const;
+
 	// Highlight the current row.
 	void DrawHighlight() const;
 	void DrawHighlight(const Color &color) const;

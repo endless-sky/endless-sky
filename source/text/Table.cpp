@@ -243,6 +243,21 @@ void Table::DrawUnderline(const Color &color) const
 
 
 
+// Draw a strikethrough mid-way through the text for the current row.
+void Table::DrawStrikethrough() const
+{
+	DrawStrikethrough(color);
+}
+
+
+
+void Table::DrawStrikethrough(const Color &color) const
+{
+	FillShader::Fill(point + Point(lineOff.X(), lineOff.Y() / 2. - rowSize.Y()), lineSize, color);
+}
+
+
+
 // Highlight the current row.
 void Table::DrawHighlight() const
 {

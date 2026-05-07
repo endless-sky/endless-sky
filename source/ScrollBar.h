@@ -15,8 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Color.h"
 #include "Panel.h"
+
+#include "Color.h"
 #include "ScrollVar.h"
 
 
