@@ -5752,7 +5752,7 @@ planet "Stronghold of Flugbu"
 	security 0.5
 
 planet "Successor Wormhole"
-	attributes "requires: quantum keystone"
+	attributes "requires: quantum keystone" uninhabited
 	spaceport ``
 	wormhole "Successor Wormhole"
 
