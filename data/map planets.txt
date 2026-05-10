@@ -6149,7 +6149,7 @@ planet "Ut Divitas"
 
 planet Uuoru-Veldt-Stir
 	attributes successor uninhabited
-	landscape land/hills0
+	landscape land/tundra1
 	description `The landscape on this planet is marked by gently rolling hills and the occasional pond. Your sensors remark that the atmosphere outside, while oxygen-rich, is too thin to safely breathe, and while you see a preponderance of hardy plant life, there are no animals to be seen.`
 	government Uninhabited
 
