@@ -2696,8 +2696,16 @@ mission "Ka'het: Patir Mystery 14"
 				`	"Sorry, but I cannot return there after what happened last time."`
 					decline
 			label go
+			branch VFTP
+				not "builder signal"
 			`	"I would come with you if I could," he signs with trepidation, "but I am required here at the moment, and it is a task that can be easily done by a single person. Follow the procedure Dusk showed you, and you will be done in no time."`
 				accept
+			label VFTP
+			action
+				fail "Ka'het: Voice From The Past 0"
+			`	"I would come with you if I could," he signs with trepidation, "but I am required here at the moment, and it is a task that can be easily done by a single person. Follow the procedure Dusk showed you, and you will be done in no time."`
+				accept
+
 	npc assist save
 		system "Patir"
 		government "Remnant"
@@ -3911,7 +3919,7 @@ mission "Ka'het: Patir Mystery 31"
 
 mission "Ka'het: Patir Mystery 32"
 	name "Logistics of a first contact"
-	description "Accompany the Remnant team and to <system> exactly on <date>. Together with them will come <cargo> and a Swan."
+	description "Accompany the Remnant team and their cargo to <system> exactly on <date>, making sure nobody is left behind on the jump in."
 	deadline 6
 	source "Caelian"
 	destination "Builder Settlement"
@@ -3931,7 +3939,6 @@ mission "Ka'het: Patir Mystery 32"
 				`	"What is that?"`
 					goto what
 				`	"You are coming with us too?"`
-					goto what
 			`	"I wish! Maybe when flights become more frequent, and more routine. No, I am part of the ground crew of one of the instruments you will add to our grid near the Builder settlement. Still, it is a serious responsibility - I have co-handled its definition a few months back, and I will also manage some of its data once we have the first light.`
 			`	"You see, this is a very-long-baseline interferometer: an antenna will be put atop our Patir outpost, and another on your ship. As you move further away their processor will compare the results of each to form an enormous, virtual telescope studying the space nearby. Nothing new, of course," she decides to clarify. "The main difference is the galaxy from where these observations are made."`
 				goto choice
@@ -3959,7 +3966,7 @@ mission "Ka'het: Patir Mystery 32"
 		event "Patir moves" 6
 		event "Patir returns" 20
 	on visit
-		dialog "You've arrived at <planet>, but either your escort, your passengers or your cargo are not with you!"
+		dialog "Your escort, your passengers or your cargo have been left behind in the Milky Way, and the mission is a failure. If you wish to continue Patir content, you may wish to reload."
 	npc save accompany
 		government "Remnant"
 		ship "Swan (Jump)" "Serene Pillar Lost"
@@ -4527,14 +4534,29 @@ mission "Ka'het: Voice From The Past 0"
 			dialog
 				`You make a close pass above this lifeless satellite, abandoned in a graveyard orbit for who knows how long. All of a sudden, your commlink emits a weak, garbled, whistle-like sound, as if receiving a communication from the Builder spacecraft. While you can't understand it, it might be worth paying another visit to the Remnant.`
 			set "builder signal"
-		to spawn
-			or
-				not "Ka'het: Patir Mystery 14: done"
-				has "Ka'het: Patir Mystery 36: done"
-		to despawn
-			and
-				has "Ka'het: Patir Mystery 14: done"
-				not "Ka'het: Patir Mystery 36: done"
+		on kill
+			dialog
+				`A glance at the radar screen reveals that the nearby Builder satellite exploded, presumably due to the damage incurred. A wasted opportunity.`
+			clear "builder signal"
+
+mission "Ka'het: Voice From The Past 0 Patir 3"
+	landing
+	invisible
+	non-blocking
+	to offer
+		has "Ka'het: Patir Mystery 35: done"
+		not "builder signal"
+	to complete
+		never
+	npc assist save
+		government "Builder"
+		system "Fereti"
+		personality derelict waiting
+		ship "Builder Satellite 2" "Valii'sei"
+		on assist
+			dialog
+				`You make a close pass above this lifeless satellite, abandoned in a graveyard orbit for who knows how long. All of a sudden, your commlink emits a weak, garbled, whistle-like sound, as if receiving a communication from the Builder spacecraft. While you can't understand it, it might be worth paying another visit to the Remnant.`
+			set "builder signal"
 		on kill
 			dialog
 				`A glance at the radar screen reveals that the nearby Builder satellite exploded, presumably due to the damage incurred. A wasted opportunity.`
