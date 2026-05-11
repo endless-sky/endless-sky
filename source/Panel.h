@@ -77,7 +77,12 @@ public:
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowsFastForward() const noexcept;
 
+	// Functions for updating Tooltip or WrappedText/TextArea objects within a panel
+	// based off of changes made to the preferences. Some panels that contain these
+	// objects may not implement these functions because the panel can't be in the
+	// UI stack when the preference is changed.
 	virtual void UpdateTooltipActivation();
+	virtual void UpdateTextDisplay();
 
 
 protected:
