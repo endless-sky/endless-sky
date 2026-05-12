@@ -558,7 +558,7 @@ mission "Successors: Ghosts 5"
 			branch kaatrij
 				has "successors kaatrij patron"
 
-			`Waiting in the spaceport here as you arrive are a trio of Successors; two guards and one other individual who wears a black, cocoon-like outfit with lots of pockets. Both of the guards bear the insignia of House Kaatrij.`
+			`Waiting in the spaceport here as you arrive is a trio of Successors comprising two guards and one other individual who wears a black, cocoon-like outfit with lots of pockets. Both of the guards bear the insignia of House Kaatrij.`
 			`	The black-draped individual bows gently to you as green sparkles dot their skin. "Captain <first> <last>?" they say. When you indicate affirmatively, they continue. "I am Saajret, of Somber Sejra, an envoy of the noble scions of House Kaatrij. Kaatrij hopes that thou mightst do us a boon."`
 				goto questions
 
@@ -792,7 +792,7 @@ mission "Successors: Ghosts 7a"
 				`	"Are you ready to return?"`
 				`	"What did you get?"`
 					goto nosy
-			`	They hum. "Yes," they say. "I have what I came for. Thanks to thine indulgence of me."`
+			`	They hum. "Yes, I have what I came for," they say, "thanks to thine indulgence of me. I shan't forget that."`
 				goto end
 
 			label nosy
