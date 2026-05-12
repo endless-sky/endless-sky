@@ -636,7 +636,7 @@ mission "Successors: Ghosts 6"
 	on offer
 		conversation
 			`The black-shrouded Saajret meets you back at the spaceport as the sun is setting, joining you in a lobby area looking out on a landing pad for Kaatrij's military ships. As they start to speak, a pair of Veusaden hover to the ground in the distance, their repulsor thrusters kicking into the air drops of the everpresent rain.`
-			`	"I've managed to convince Kaatrij that thou might be helpful to us in one more task," they say. "As the situation develops, they now agree thou'rt too substantive to deny all dialog. Dost thou remember thy prior visit to <planet>, when thou faced the Kijran?"`
+			`	"I've managed to convince Kaatrij that thou mightst be helpful to us in one more task," they say. "As the situation develops, they now agree thou'rt too substantive to deny all dialog. Dost thou remember thy prior visit to <planet>, wherein thou didst confront the Kijran?"`
 			choice
 				`	"Yes."`
 				`	"It was hard to forget."`
