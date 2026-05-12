@@ -2666,7 +2666,7 @@ mission "Ka'het: Patir Mystery 14"
 	on offer
 		event "ssil vida changes"
 		conversation
-			`Although its architecture still feels wildly alien, time has helped you become familiar with the way <planet>'s main starport is organized. By now, it's not difficult for you to notice when something changes. Some are subtler than others - it wasn't long ago that additional barriers were placed between the rows of landing pads, much to your displeasure.`
+			`Although its architecture still feels wildly alien, time has helped you become familiar with the way <planet>'s main starport is organized. By now, it's not difficult for you to notice when something changes. Some are subtler than others - it wasn't long ago that additional barriers were placed between the rows of landing pads, much to your inconvenience.`
 			`	Passing the arch that connects to the northern shipyards reveals a curious sight. A group of hangars that, until now, were marked as off-limits are now open, and crowds of construction workers are walking in and out of the area. Among the crowd, pairs of camels tow sections of Remnant spacecraft of all kinds; you step aside to let a convoy pass with some of the longest wings you have ever seen.`
 			`	"What a show, don't you think?" a familiar voice chants as you turn around. Taely smiles, making a gesture of welcome with her hands. "If you were looking for Prefect Chilia, he should be upstairs right now."`
 			choice
