@@ -559,11 +559,11 @@ mission "Successors: Ghosts 5"
 				has "successors kaatrij patron"
 
 			`Waiting in the spaceport here as you arrive are a trio of Successors; two guards and one other individual who wears a black, cocoon-like outfit with lots of pockets. Both of the guards bear the insignia of House Kaatrij.`
-			`	The black-draped individual bows gently to you as green sparkles dot their skin. "Captain <first> <last>?" they say. When you indicate affirmatively, they continue. "I am Saajret, of Somber Sejra, an envoy of the noble scions of House Kaatrij. Kaatrij hopes that thou might'st do us a boon."`
+			`	The black-draped individual bows gently to you as green sparkles dot their skin. "Captain <first> <last>?" they say. When you indicate affirmatively, they continue. "I am Saajret, of Somber Sejra, an envoy of the noble scions of House Kaatrij. Kaatrij hopes that thou mightst do us a boon."`
 				goto questions
 
 			label kaatrij
-			`Waiting in spaceport here as you arrive are a trio of Successors; two guards and one other individual who you recognize as Saajret, of Somber Sejra. Kaatrij's archivist looks different from the last time you saw them; their outfit is wrapped up more tightly and the colors of their face seem muted and subdued.`
+			`Waiting in the spaceport here as you arrive are a trio of Successors, two guards and one other individual who you recognize as Saajret, of Somber Sejra. Kaatrij's archivist looks different from the last time you saw them; their outfit is wrapped up more tightly and the colors of their face seem muted and subdued.`
 			`	Saajret bows to you gently, green and reddish tones swirling on their skin. "Captain <first> <last>," they say, "whose patience I have tested thoroughly, it would seem. Kaatrij sends me to ask of thee a boon to us."`
 
 			label questions
@@ -577,15 +577,15 @@ mission "Successors: Ghosts 5"
 				`	"Why me?"`
 
 			label me
-			`	"Thou'rt earning thyself a reputation for efficiency and discretion," Saajret says. "And Kaatrij has need of both. Some scientific equipment here must return to the homeworld, ideally with haste. Can'st thy craft serve?"`
+			`	"Thou'rt earning thyself a reputation for efficiency and discretion," Saajret says. "And Kaatrij has need of both. Some scientific equipment here must return to the homeworld, ideally with haste. Canst thy craft serve?"`
 				goto offer
 
 			label boon
-			`	"Thy reputation for professionalism seems well-earned, Captain," they say. "Some scientific equipment stored here must return to the homeworld with haste. Can'st thy craft serve?"`
+			`	"Thy reputation for professionalism seems well-earned, Captain," they say. "Some scientific equipment stored here must return to the homeworld with haste. Canst thy craft serve?"`
 				goto offer
 
 			label silence
-			`	Saajret hums, colors continuing to swim over their body. Eventually, they speak. "In the wake of Kaatrij's wound, our suspicion of others was great and wide. And thou were't included in this, for these incidents came only soon after thy arrival. Some believe thou play'd some part in this, some do not." They pause for a moment, running their eyes over you. "'Tis the latter faction that offers thee this opportunity: some equipment here must return to the homeworld. A chance to demonstrate thy benevolence, mayhaps?"`
+			`	Saajret hums, colors continuing to swim over their body. Eventually, they speak. "In the wake of Kaatrij's wound, our suspicion of others was great and wide. And thou wert included in this, for these incidents came only soon after thy arrival. Some believe thou play'd some part in this, some do not." They pause for a moment, running their eyes over you. "'Tis the latter faction that offers thee this opportunity: some equipment here must return to the homeworld. A chance to demonstrate thy benevolence, mayhaps?"`
 
 			label offer
 			choice
@@ -645,11 +645,11 @@ mission "Successors: Ghosts 6"
 
 			action
 				log "People" "Saajret, of Somber Sejra" "Saajret, of Somber Sejra is an archivist, among other things, for the Successor High House Kaatrij. They are a member of the noble lineage of the now-defunct House Sejra, some of whose citizens were absorbed into House Kaatrij during the partial collapse of their Predecessors' society."
-			`	"My role here is... something of an archivist," Saajret says, "collecting and ordering information, items, records, of our Predecessors 'fore we left that period behind. Kaatrij believes certain data about the creatures on the old homeworld would be of use to them, and since thou now provides them the opportunity," they say, spreading their arms in a wide gesture, "Kaatrij is willing to compensate thee for taking me there to scan them."`
+			`	"My role here is... something of an archivist," Saajret says, "collecting and ordering information, items, records, of our Predecessors 'fore we left that period behind. Kaatrij believes certain data about the creatures on the old homeworld would be of use to them, and since thou now providest them the opportunity," they say, spreading their arms in a wide gesture, "Kaatrij is willing to compensate thee for taking me there to scan them."`
 				goto choices
 
 			label kaatrij
-			`	"I'm an archivist, as I told thee before," Saajret continues. "Kaatrij believes certain data about the creatures there would be of use to them and, since thou now provides them the opportunity, shall compensate thee for taking me there to scan them."`
+			`	"I'm an archivist, as I told thee before," Saajret continues. "Kaatrij believes certain data about the creatures there would be of use to them and, since thou now providest them the opportunity, shall compensate thee for taking me there to scan them."`
 
 			label choices
 			choice
@@ -736,7 +736,7 @@ mission "Successors: Ghosts 6"
 			`	You check over the <ship>'s various internal systems, and discover a mysterious anomaly in one of the power consumption logs, though it's hard to track down what caused it or where it was located. Regardless, the anomaly resolved itself some time ago.`
 
 			label saajret
-			`	Saajret soon returns as they promised, apparently unharmed. They unload their equipment in the quarters you set aside for them before returning to you in the cockpit. "It went without incident," they say, a shade of satisfaction on their skin. As they turn to go away, they catch themself, turning back around with a bit of trepidation. "I may never get this chance again, so I'll speak now: I've a personal request to beg of thee. There's another world within the Shroud where in past my ancestors resided. 'Fore we return to Kaatrij, I'd long to see it for myself. I'd pay thee for the diversion, of course."`
+			`	Saajret soon returns as they promised, apparently unharmed. They unload their equipment in the quarters you set aside for them before returning to you in the cockpit. "It went without incident," they say, a shade of satisfaction on their skin. As they turn to go away, they catch themself, turning back around with a bit of trepidation. "I may never get this chance again, so I'll speak now: I've a personal request to beg of thee. There's another world within the Shroud where in the past my ancestors resided. 'Fore we return to Kaatrij, I'd long to see it for myself. I'd pay thee for the diversion, of course."`
 			choice
 				`	"Sure, I'll take you."`
 					goto helped
@@ -766,19 +766,19 @@ mission "Successors: Ghosts 7a"
 		has "Successors: Ghosts 6: done"
 		has "Successors: Ghosts Helped Saajret"
 	on stopover
-		log "Took Saajret to the Predecessor planet Osolaa-Val-Mavra. They visited an abandoned city on the surface where an ancestor of theirs once lived, retrieving from it a data-sphere and small wooden box."
+		log "Took Saajret to the Predecessor planet Osolaa-Val-Mavra. They visited an abandoned city on the surface where an ancestor of theirs once lived, retrieving from it a data-sphere and a small wooden box."
 		conversation
 			`You set the <ship> on one of the landing terraces of the planet's equatorial trench, near a location that Saajret indicates. The spot provides a dizzying view: snowflakes from a cloud overhead drift over ledges and deserted balconies before falling kilometers down into the abyss below. Saajret joins you by the airlock, now wrapped warmly in a shiny silver outfit with a collar of small ribbons that stream in the breeze.`
 			`	"What is this place?" you ask.`
-			`	A blue tone makes its way over Saajret's face. "'Twas an arc of homes and shops before they were abandoned," they say. A couple of snowflakes land on their skin and their arms wriggle against the white ground. "Thou may'st join me if thou desirith. Kaatrij demands no secrecy from us here."`
+			`	A blue tone makes its way over Saajret's face. "'Twas an arc of homes and shops before they were abandoned," they say. A couple of snowflakes land on their skin and their arms wriggle against the white ground. "Thou may'st join me if thou desirest. Kaatrij demands no secrecy from us here."`
 			choice
 				`	(Go with them.)`
 				`	(Stay.)`
 					goto stay
 			`	The two of you make your way through the abandoned streets. You are struck by how well-preserved everything is; more than those of any other Predecessor world, the buildings here seem only temporarily vacant, as if the two of you had merely caught the city on a day with everyone missing. A trio of little cleaning robots run around the rim of a fountain, polishing away the snow before it even has time to melt in the sun.`
-			`	Saajret follows their own path, periodically checking what must be a map on a datapad they carry. Occasionally their skin will erupt in color as they see something that interests them, but they never stay distracted for long. Eventually the two of you arrive in an elegant square of organic buildings; Saajret checks their map a few times before declaring, "here we are."`
+			`	Saajret follows their own path, periodically checking what must be a map on a datapad they carry. Occasionally their skin will erupt in color as they see something that interests them, but they never stay distracted for long. Eventually the two of you arrive in an elegant square of organic buildings; Saajret checks their map a few times before declaring, "Here we are."`
 			choice
-				`	"And where is 'here?'"`
+				`	"And where is 'here'?"`
 				`	"It's a pretty spot."`
 				`	(Stay silent.)`
 					goto building
