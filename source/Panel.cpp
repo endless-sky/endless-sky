@@ -291,6 +291,15 @@ void Panel::DoResize()
 
 
 
+void Panel::DoUpdateTextDisplay()
+{
+	UpdateTextDisplay();
+	for(auto &child : children)
+		child->DoUpdateTextDisplay();
+}
+
+
+
 void Panel::SetIsFullScreen(bool set)
 {
 	isFullScreen = set;

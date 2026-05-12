@@ -1463,8 +1463,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	else if(str == TEXT_ALIGNMENT)
 	{
 		Preferences::ToggleTextAlignment();
-		for(auto &panel : GetUI().Stack())
-			panel->UpdateTextDisplay();
+		GetUI().AdjustTextDisplay();
 	}
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
