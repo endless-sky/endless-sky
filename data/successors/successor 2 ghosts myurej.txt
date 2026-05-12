@@ -394,6 +394,7 @@ mission "Successors: Ghosts Myurej 5"
 				`	(Radio for your ship to come pick you up.)`
 					to display
 						has "flagship attribute: shields"
+						has "flagship crew"
 			`	You quickly transmit new landing coordinates for the <ship> and its repulsors kick up the dust as another building in the city is leveled. As it nears the columned area, the orbital weapon fires again, this time targeting your ship. Its shields flash as they shatter the projectile, the shards of which tear through a swath of columns to your left. As you dash aboard the landing ramp with the Successors right behind you, another impact knocks your vessel to the side and you prepare to fly into orbit while your ship's shields still hold.`
 				launch
 			label run

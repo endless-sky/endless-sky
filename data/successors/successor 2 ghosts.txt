@@ -201,7 +201,7 @@ mission "Successors: Ghosts QSI 2"
 			action
 				log "Attempted to get in contact with Saajret, of Somber Sejra. Received a data-sphere from a House Kaatrij spaceport concierge and was informed that Saajret will make contact on their own time, if at all."
 				event "successors: ghosts saajret contact" 9
-			`	The concierge rolls the sphere around at the tip of two of their arms for a little while, then proffers it to you. You feel gentle ripples on the surface of the metal, like fingerprints. The concierge then slowly returns to their prior position atop the stone seat, slithering over the wet rocks and draping themself atop them.`
+			`	The concierge rolls the sphere around at the tip of two of their arms for a little while, then offers it to you. As you take it, you can feel gentle ripples on the surface of the metal, almost like fingerprints. The concierge then slowly returns to their prior position atop the stone seat, their body slithering over the wet rocks along the way.`
 				decline
 
 			label impatient
