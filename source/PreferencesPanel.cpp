@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
+#include "CustomEvents.h"
 #include "DialogPanel.h"
 #include "Files.h"
 #include "text/Font.h"
@@ -1463,7 +1464,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	else if(str == TEXT_ALIGNMENT)
 	{
 		Preferences::ToggleTextAlignment();
-		GetUI().AdjustTextDisplay();
+		CustomEvents::SendAdjustText();
 	}
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
