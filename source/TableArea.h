@@ -1,5 +1,5 @@
-/* TextArea.h
-Copyright (c) 2024 by thewierdnut
+/* TableArea.h
+Copyright (c) 2026 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -18,9 +18,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollArea.h"
 
 #include "Color.h"
-#include "text/WrappedText.h"
+#include "text/Table.h"
 
-class Font;
+#include <utility>
+#include <vector>
+
 class Point;
 class Rectangle;
 
@@ -29,24 +31,21 @@ class Rectangle;
 // Represents a rect on the screen that needs to display text. The text can be
 // larger than the display area, in which case the class will allow the text
 // to scroll in response to use input.
-class TextArea : public ScrollArea
+class TableArea : public ScrollArea
 {
 public:
-	TextArea();
-	explicit TextArea(const Rectangle &r);
-	virtual ~TextArea() override;
+	TableArea();
+	explicit TableArea(const Rectangle &r);
+	virtual ~TableArea() override;
 
 	void SetRect(const Rectangle &r) override;
 
-	void SetText(const std::string &s);
-	void SetFont(const Font &f);
-	void SetLineHeight(int height);
+	void AddRows(const std::vector<std::pair<std::string, int64_t>> &list);
+	void AddRow(const std::string &name, int64_t value);
+	void AddRow(const std::string &name);
 	void SetColor(const Color &c);
-	void SetAlignment(Alignment a);
-	void SetTruncate(Truncate t);
-
-	int GetTextHeight(bool trailingBreak = true);
-	int GetLongestLineWidth();
+	void SetFontSize(int size);
+	void SetDrawValues(bool drawValues);
 
 
 protected:
@@ -56,7 +55,8 @@ protected:
 
 
 private:
-	WrappedText wrappedText;
-	std::string text;
+	std::vector<std::pair<std::string, int64_t>> rows;
+	bool drawValues = true;
+	Table table;
 	Color color;
 };
