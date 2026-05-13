@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Ways in which text may be aligned.
 enum class Alignment : int {
-	LEFT,
+	LEFT = 0,
 	CENTER,
 	RIGHT,
 	JUSTIFIED,

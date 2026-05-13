@@ -359,6 +359,11 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				menuPanels.AdjustViewport();
 				gamePanels.AdjustViewport();
 			}
+			else if(event.type == CustomEvents::GetAdjustText())
+			{
+				menuPanels.AdjustTextDisplay();
+				gamePanels.AdjustTextDisplay();
+			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
