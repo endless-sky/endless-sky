@@ -74,6 +74,28 @@ void ScrollArea::SetPointerOffset(int offset)
 
 
 
+void ScrollArea::SnapToTop()
+{
+	scroll.Set(0., 0);
+	SyncScroll(false);
+}
+
+
+
+void ScrollArea::SnapToBottom()
+{
+	scroll.Set(scroll.MaxValue(), 0);
+	SyncScroll(false);
+}
+
+
+
+void ScrollArea::Validate(bool trailingBreak)
+{
+}
+
+
+
 void ScrollArea::Draw()
 {
 	if(!buffer)
@@ -99,10 +121,8 @@ void ScrollArea::Draw()
 
 	if(scroll.Scrollable())
 	{
-		Point topRight(position + Point(buffer->Right() + scrollbarOffset, buffer->Top() + pointerOffset));
-		Point bottomRight(position + Point(buffer->Right() + scrollbarOffset, buffer->Bottom() - pointerOffset));
-
-		scrollBar.SyncDraw(scroll, topRight, bottomRight);
+		SyncScroll();
+		scrollBar.Draw();
 	}
 }
 
@@ -188,14 +208,18 @@ bool ScrollArea::Scroll(double dx, double dy)
 
 
 
-void ScrollArea::Invalidate()
+void ScrollArea::SyncScroll(bool animated)
 {
-	bufferIsValid = false;
-	contentsIsValid = false;
+	Point topRight(position + Point(buffer->Right() + scrollbarOffset, buffer->Top() + pointerOffset));
+	Point bottomRight(position + Point(buffer->Right() + scrollbarOffset, buffer->Bottom() - pointerOffset));
+
+	scrollBar.SyncFrom(scroll, topRight, bottomRight, animated);
 }
 
 
 
-void ScrollArea::Validate(bool trailingBreak)
+void ScrollArea::Invalidate()
 {
+	bufferIsValid = false;
+	contentsIsValid = false;
 }

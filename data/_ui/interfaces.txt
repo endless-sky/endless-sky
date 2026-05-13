@@ -1968,6 +1968,10 @@ interface "boarding"
 		from 330 28
 		align right
 	
+	box "messages"
+		from 45 45
+		to 330 160
+	
 	active if "can take"
 	button t "_Take"
 		center -235 115

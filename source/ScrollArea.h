@@ -42,6 +42,11 @@ public:
 	void SetScrollbarOffset(int offset);
 	void SetPointerOffset(int offset);
 
+	void SnapToTop();
+	void SnapToBottom();
+
+	virtual void Validate(bool trailingBreak);
+
 
 protected:
 	virtual void Draw() override;
@@ -52,8 +57,8 @@ protected:
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+	void SyncScroll(bool animated = true);
 	void Invalidate();
-	virtual void Validate(bool trailingBreak);
 
 
 protected:

@@ -75,9 +75,9 @@ void TextArea::SetFont(const Font &f)
 
 
 
-void TextArea::SetLineHeight(int height)
+void TextArea::SetParagraphBreak(int height)
 {
-	wrappedText.SetLineHeight(height);
+	wrappedText.SetParagraphBreak(height);
 	Invalidate();
 }
 
@@ -123,13 +123,6 @@ int TextArea::GetLongestLineWidth()
 
 
 
-void TextArea::DrawText(const Point &topLeft)
-{
-	wrappedText.Draw(topLeft, color);
-}
-
-
-
 void TextArea::Validate(bool trailingBreak)
 {
 	if(!contentsIsValid || trailingBreak != scrollHeightIncludesTrailingBreak)
@@ -139,4 +132,11 @@ void TextArea::Validate(bool trailingBreak)
 		scrollHeightIncludesTrailingBreak = trailingBreak;
 		contentsIsValid = true;
 	}
+}
+
+
+
+void TextArea::DrawText(const Point &topLeft)
+{
+	wrappedText.Draw(topLeft, color);
 }

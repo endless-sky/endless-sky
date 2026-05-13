@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Outfit;
 class PlayerInfo;
 class Ship;
+class TextArea;
 
 
 
@@ -121,6 +122,8 @@ private:
 	// Handle the keyboard scrolling and selection in the panel list.
 	void DoKeyboardNavigation(const SDL_Keycode key);
 
+	void AddMessage(const std::string &message);
+
 
 private:
 	PlayerInfo &player;
@@ -141,7 +144,8 @@ private:
 	CaptureOdds attackOdds;
 	CaptureOdds defenseOdds;
 	// These messages are shown to report the results of hand to hand combat.
-	std::vector<std::string> messages;
+	std::string messages;
+	std::shared_ptr<TextArea> messageDisplay;
 
 	// Whether or not the ship can be captured.
 	bool canCapture = false;

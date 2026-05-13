@@ -44,11 +44,11 @@ public:
 
 	void SetFontSize(int size);
 
+	virtual void Validate(bool trailingBreak) override;
+
 
 protected:
 	virtual void DrawText(const Point &topLeft) override;
-
-	virtual void Validate(bool trailingBreak) override;
 
 
 private:

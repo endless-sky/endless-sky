@@ -38,7 +38,7 @@ public:
 
 	void SetText(const std::string &s);
 	void SetFont(const Font &f);
-	void SetLineHeight(int height);
+	void SetParagraphBreak(int height);
 	void SetColor(const Color &c);
 	void SetAlignment(Alignment a);
 	void SetTruncate(Truncate t);
@@ -46,11 +46,11 @@ public:
 	int GetTextHeight(bool trailingBreak = true);
 	int GetLongestLineWidth();
 
+	virtual void Validate(bool trailingBreak) override;
+
 
 protected:
 	virtual void DrawText(const Point &topLeft) override;
-
-	virtual void Validate(bool trailingBreak) override;
 
 
 private:

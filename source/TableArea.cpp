@@ -109,6 +109,18 @@ void TableArea::SetFontSize(int size)
 
 
 
+void TableArea::Validate(bool trailingBreak)
+{
+	if(!contentsIsValid || trailingBreak != scrollHeightIncludesTrailingBreak)
+	{
+		scroll.SetMaxValue(table.GetRowSize().Y() * rows.size());
+		scrollHeightIncludesTrailingBreak = trailingBreak;
+		contentsIsValid = true;
+	}
+}
+
+
+
 void TableArea::DrawText(const Point &topLeft)
 {
 	table.DrawAt(topLeft);
@@ -120,17 +132,5 @@ void TableArea::DrawText(const Point &topLeft)
 			table.Draw(row[i], *colors[i]);
 		if(row.size() != columnCount)
 			table.Advance();
-	}
-}
-
-
-
-void TableArea::Validate(bool trailingBreak)
-{
-	if(!contentsIsValid || trailingBreak != scrollHeightIncludesTrailingBreak)
-	{
-		scroll.SetMaxValue(table.GetRowSize().Y() * rows.size());
-		scrollHeightIncludesTrailingBreak = trailingBreak;
-		contentsIsValid = true;
 	}
 }
