@@ -97,6 +97,15 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 			plunder.emplace_back(outfit, count);
 	}
 
+	const Interface *boarding = GameData::Interfaces().Get("boarding");
+	messageDisplay = make_shared<TextArea>();
+	messageDisplay->SetFont(FontSet::Get(14));
+	messageDisplay->SetParagraphBreak(0);
+	messageDisplay->SetColor(*GameData::Colors().Get("bright"));
+	messageDisplay->SetAlignment(Preferences::GetTextAlignment());
+	messageDisplay->SetRect(boarding->GetBox("messages"));
+	AddChild(messageDisplay);
+
 	canCapture = victim->IsCapturable() || player.CaptureOverriden(victim);
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!canCapture)
@@ -120,15 +129,6 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// and the bottom, so:
 	scroll.SetDisplaySize(220.);
 	scroll.SetMaxValue(max(0., 20. * plunder.size()));
-
-	const Interface *boarding = GameData::Interfaces().Get("boarding");
-	messageDisplay = make_shared<TextArea>();
-	messageDisplay->SetFont(FontSet::Get(14));
-	messageDisplay->SetParagraphBreak(0);
-	messageDisplay->SetColor(*GameData::Colors().Get("bright"));
-	messageDisplay->SetAlignment(Preferences::GetTextAlignment());
-	messageDisplay->SetRect(boarding->GetBox("messages"));
-	AddChild(messageDisplay);
 }
 
 
