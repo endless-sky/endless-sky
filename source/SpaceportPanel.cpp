@@ -120,7 +120,8 @@ void SpaceportPanel::Draw()
 void SpaceportPanel::UpdateTextDisplay()
 {
 	description->SetAlignment(Preferences::GetTextAlignment());
-	newsMessage->SetAlignment(Preferences::GetTextAlignment());
+	if(newsMessage)
+		newsMessage->SetAlignment(Preferences::GetTextAlignment());
 }
 
 
