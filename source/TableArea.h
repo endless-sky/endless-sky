@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "text/Table.h"
 
-#include <utility>
 #include <vector>
 
 class Point;
@@ -36,14 +35,14 @@ public:
 	explicit TableArea(const Rectangle &r);
 	virtual ~TableArea() override;
 
-	void SetRect(const Rectangle &r) override;
+	void AddColumn(int offset, Layout layout, const Color &color);
+	void AddRow(const std::vector<std::string> &row);
+	void AddCell(const std::string &cell);
+	void AddCell(double cell);
+	void AddCell(int64_t cell);
+	void NextRow();
 
-	void AddRows(const std::vector<std::pair<std::string, int64_t>> &list);
-	void AddRow(const std::string &name, int64_t value);
-	void AddRow(const std::string &name);
-	void SetColor(const Color &c);
 	void SetFontSize(int size);
-	void SetDrawValues(bool drawValues);
 
 
 protected:
@@ -53,8 +52,9 @@ protected:
 
 
 private:
-	std::vector<std::pair<std::string, int64_t>> rows;
-	bool drawValues = true;
+	std::vector<std::vector<std::string>> rows;
+	std::vector<const Color *> colors;
+	size_t currentRowIndex = 0;
+
 	Table table;
-	Color color;
 };

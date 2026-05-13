@@ -831,10 +831,17 @@ void PlayerInfoPanel::DrawList(const vector<pair<string, int64_t>> &list, shared
 	{
 		area = make_shared<TableArea>();
 		area->SetFontSize(14);
-		area->SetColor(dim);
 		area->SetRect(Rectangle::FromCorner(topLeft, Point(width, height)));
-		area->AddRows(list);
-		area->SetDrawValues(drawValues);
+		area->AddColumn(0, {width, Alignment::LEFT}, dim);
+		area->AddColumn(width, {width, Alignment::RIGHT}, bright);
+		for(const auto &[name, value] : list)
+		{
+			area->AddCell(name);
+			if(drawValues)
+				area->AddCell(value);
+			else
+				area->NextRow();
+		}
 		AddChild(area);
 	}
 

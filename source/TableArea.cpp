@@ -15,9 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "TableArea.h"
 
-#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "ScrollBar.h"
+
+#include <cassert>
 
 using namespace std;
 
@@ -26,7 +28,6 @@ using namespace std;
 TableArea::TableArea()
 {
 	SetFontSize(14);
-	SetColor(*GameData::Colors().Get("medium"));
 }
 
 
@@ -46,35 +47,56 @@ TableArea::~TableArea()
 
 
 
-void TableArea::SetRect(const Rectangle &r)
+void TableArea::AddColumn(int offset, Layout layout, const Color &color)
 {
-	ScrollArea::SetRect(r);
-	int width = r.Width();
-	table.AddColumn(0, {width, Alignment::LEFT});
-	table.AddColumn(width, {width, Alignment::RIGHT});
-}
-
-
-
-void TableArea::AddRows(const vector<pair<string, int64_t>> &list)
-{
-	rows.insert(rows.end(), list.begin(), list.end());
-}
-
-
-
-void TableArea::AddRow(const string &name, int64_t value)
-{
-	rows.push_back({name, value});
+	table.AddColumn(offset, layout);
+	colors.push_back(&color);
 	Invalidate();
 }
 
 
 
-void TableArea::AddRow(const string &name)
+void TableArea::AddRow(const vector<string> &row)
 {
-	rows.push_back({name, 1});
+	assert(row.size() <= colors.size() && ("Unable to add row of size " + to_string(row.size()) + " to table with "
+		+ to_string(colors.size()) + " column(s)").c_str());
+	rows.push_back(row);
+	currentRowIndex = rows.size();
 	Invalidate();
+}
+
+
+
+void TableArea::AddCell(const string &cell)
+{
+	while(rows.size() <= currentRowIndex)
+		rows.push_back({});
+	vector<string> &currentRow = rows[currentRowIndex];
+	currentRow.push_back(cell);
+	if(currentRow.size() == colors.size())
+		++currentRowIndex;
+	Invalidate();
+}
+
+
+
+void TableArea::AddCell(double cell)
+{
+	AddCell(Format::Number(cell));
+}
+
+
+
+void TableArea::AddCell(int64_t cell)
+{
+	AddCell(Format::Number(cell));
+}
+
+
+
+void TableArea::NextRow()
+{
+	++currentRowIndex;
 }
 
 
@@ -87,30 +109,16 @@ void TableArea::SetFontSize(int size)
 
 
 
-void TableArea::SetColor(const Color &c)
-{
-	color = c;
-	Invalidate();
-}
-
-
-
-void TableArea::SetDrawValues(bool drawValues)
-{
-	this->drawValues = drawValues;
-}
-
-
-
 void TableArea::DrawText(const Point &topLeft)
 {
 	table.DrawAt(topLeft);
-	for(const auto &[name, value] : rows)
+
+	size_t columnCount = colors.size();
+	for(const vector<string> &row : rows)
 	{
-		table.Draw(name, color);
-		if(drawValues)
-			table.Draw(value);
-		else
+		for(size_t i = 0; i < row.size(); ++i)
+			table.Draw(row[i], *colors[i]);
+		if(row.size() != columnCount)
 			table.Advance();
 	}
 }
