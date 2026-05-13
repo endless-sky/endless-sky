@@ -162,6 +162,7 @@ void UI::Push(const shared_ptr<Panel> &panel)
 	toPush.push_back(panel);
 	panel->SetUI(this);
 	panel->DoResize();
+	panel->DoUpdateTextDisplay();
 }
 
 
@@ -287,6 +288,14 @@ void UI::AdjustViewport() const
 {
 	for(auto &it : stack)
 		it->DoResize();
+}
+
+
+
+void UI::AdjustTextDisplay() const
+{
+	for(auto &it : stack)
+		it->DoUpdateTextDisplay();
 }
 
 

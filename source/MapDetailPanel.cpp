@@ -515,7 +515,7 @@ void MapDetailPanel::InitTextArea()
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("medium"));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetAlignment(Preferences::GetTextAlignment());
 	ResizeTextArea();
 }
 

@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+enum class Alignment;
+
 
 
 class Preferences {
@@ -151,14 +153,6 @@ public:
 		ASK,
 		WHEN_FREE,
 		ALWAYS
-	};
-
-	enum class AlignmentOverride : int_fast8_t {
-		OFF = 0,
-		LEFT,
-		CENTER,
-		RIGHT,
-		JUSTIFIED
 	};
 
 #ifdef _WIN32
@@ -302,9 +296,9 @@ public:
 	static const std::string &AmmoRefillSetting();
 
 	/// Text alignment override setting.
-	static void ToggleAlignmentOverride();
-	static AlignmentOverride GetAlignmentOverride();
-	static const std::string &AlignmentOverrideSetting();
+	static void ToggleTextAlignment();
+	static Alignment GetTextAlignment();
+	static const std::string &TextAlignmentSetting();
 
 	static void ToggleBlockScreenSaver();
 

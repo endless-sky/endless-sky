@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "News.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "Screen.h"
 #include "TextArea.h"
@@ -40,10 +41,11 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
 
 	newsMessage.SetFont(FontSet::Get(14));
+	newsMessage.SetAlignment(Preferences::GetTextAlignment());
 }
 
 
@@ -123,6 +125,14 @@ void SpaceportPanel::Draw()
 		newsMessage.Draw(newsUi->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
 			*GameData::Colors().Get("medium"));
 	}
+}
+
+
+
+void SpaceportPanel::UpdateTextDisplay()
+{
+	description->SetAlignment(Preferences::GetTextAlignment());
+	newsMessage.SetAlignment(Preferences::GetTextAlignment());
 }
 
 

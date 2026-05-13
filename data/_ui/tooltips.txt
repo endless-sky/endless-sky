@@ -1631,11 +1631,10 @@ tip "Notify on destination"
 tip "Save message log"
 	`Include message logs in pilot files so they are not lost when closing the game or reloading the save file. This will increase save file sizes and may increase load times. The stored log history can be cleared from the message log panel.`
 
-tip "Alignment override"
-	`Sets the horizontal alignment of text paragraphs across the UI.`
-	`- "off": a default will be used that can differ for each location in the UI. Most locations use justified text by default, with some using left alignment.`
+tip "Text alignment"
+	`Sets the horizontal text alignment of paragraphs across the UI.`
 	`- "left": align to the left.`
-	`- "right: align to the right.`
+	`- "right": align to the right.`
 	`- "center": center the text.`
 	`- "justified": add extra space between words to align with both margins.`
 

@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Preferences.h"
 
+#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "DataFile.h"
 #include "DataNode.h"
@@ -187,8 +188,8 @@ namespace {
 	const vector<string> AMMO_REFILL_SETTINGS = {"never", "ask", "when free", "always"};
 	int ammoRefillIndex = 1;
 
-	const vector<string> ALIGNMENT_OVERRIDE_SETTINGS = {"off", "left", "center", "right", "justified"};
-	int alignmentOverrideIndex = 0;
+	const vector<string> TEXT_ALIGNMENT_SETTINGS = {"left", "center", "right", "justified"};
+	int textAlignmentIndex = 3;
 
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 
@@ -301,8 +302,8 @@ void Preferences::Load()
 			tributeConfirmationIndex = max<int>(0, min<int>(node.Value(1), TRIBUTE_CONFIRMATION_SETTINGS.size() - 1));
 		else if(key == "Ammo refill")
 			ammoRefillIndex = clamp<int>(node.Value(1), 0, AMMO_REFILL_SETTINGS.size() - 1);
-		else if(key == "Alignment override")
-			alignmentOverrideIndex = clamp<int>(node.Value(1), 0, ALIGNMENT_OVERRIDE_SETTINGS.size() - 1);
+		else if(key == "Text alignment")
+			textAlignmentIndex = clamp<int>(node.Value(1), 0, TEXT_ALIGNMENT_SETTINGS.size() - 1);
 #ifdef _WIN32
 		else if(key == "Title bar theme")
 			titleBarThemeIndex = clamp<int>(node.Value(1), 0, TITLE_BAR_THEME_SETTINGS.size() - 1);
@@ -390,7 +391,7 @@ void Preferences::Save()
 	out.Write("Reduce large graphics", largeGraphicsReductionIndex);
 	out.Write("Tribute confirmation", tributeConfirmationIndex);
 	out.Write("Ammo refill", ammoRefillIndex);
-	out.Write("Alignment override", alignmentOverrideIndex);
+	out.Write("Text alignment", textAlignmentIndex);
 	out.Write("previous saves", previousSaveCount);
 #ifdef _WIN32
 	if(WinVersion::SupportsDarkTheme())
@@ -1037,24 +1038,24 @@ const std::string &Preferences::AmmoRefillSetting()
 
 
 
-void Preferences::ToggleAlignmentOverride()
+void Preferences::ToggleTextAlignment()
 {
-	if(++alignmentOverrideIndex >= static_cast<int>(ALIGNMENT_OVERRIDE_SETTINGS.size()))
-		alignmentOverrideIndex = 0;
+	if(++textAlignmentIndex >= static_cast<int>(TEXT_ALIGNMENT_SETTINGS.size()))
+		textAlignmentIndex = 0;
 }
 
 
 
-Preferences::AlignmentOverride Preferences::GetAlignmentOverride()
+Alignment Preferences::GetTextAlignment()
 {
-	return static_cast<AlignmentOverride>(alignmentOverrideIndex);
+	return static_cast<Alignment>(textAlignmentIndex);
 }
 
 
 
-const string &Preferences::AlignmentOverrideSetting()
+const string &Preferences::TextAlignmentSetting()
 {
-	return ALIGNMENT_OVERRIDE_SETTINGS[alignmentOverrideIndex];
+	return TEXT_ALIGNMENT_SETTINGS[textAlignmentIndex];
 }
 
 
