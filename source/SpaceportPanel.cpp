@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "News.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "Screen.h"
 #include "TextArea.h"
@@ -40,7 +41,7 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
 }
 
@@ -116,6 +117,14 @@ void SpaceportPanel::Draw()
 
 
 
+void SpaceportPanel::UpdateTextDisplay()
+{
+	description->SetAlignment(Preferences::GetTextAlignment());
+	newsMessage.SetAlignment(Preferences::GetTextAlignment());
+}
+
+
+
 void SpaceportPanel::Resize()
 {
 	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ?
@@ -132,7 +141,7 @@ void SpaceportPanel::InitNewsTextArea()
 	newsMessage = make_shared<TextArea>();
 	newsMessage->SetFont(FontSet::Get(14));
 	newsMessage->SetColor(*GameData::Colors().Get("bright"));
-	newsMessage->SetAlignment(Alignment::JUSTIFIED);
+	newsMessage->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(newsMessage);
 
 	ResizeNewsTextArea();
