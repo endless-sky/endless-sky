@@ -1479,7 +1479,7 @@ tip "Fixed starfield zoom"
 	`Draw the background starfield with a fixed zoom level instead of changing with the view zoom level.`
 
 tip "Parallax background"
-	`Add parallax to objects in the background (haze and starfield).`
+	`Add parallax to objects in the background, which includes the haze and starfield.`
 	`- "fancy": three layers of parallax.`
 	`- "fast": one layer of parallax.`
 	`- "off": no parallax.`
@@ -1495,12 +1495,12 @@ tip "Extended jump effects"
 
 tip "Ship outlines in shops"
 	`Controls the display of your fleet ship icons when in the shipyard or outfitter.`
-	`- "fancy": applies a sobel filter to all ships (this can result in high GPU load for large fleets).`
+	`- "fancy": applies a sobel filter to all ships. This can result in high GPU load for large fleets and/or on low performance computers.`
 	`- "fast": just uses the ship's sprite.`
 
 tip "Ship outlines in HUD"
 	`Controls the display of your flagship and target ship icons in the HUD.`
-	`- "fancy": applies a sobel filter to the sprites (this can result in high GPU load for some ships on very old or low performance computers).`
+	`- "fancy": applies a sobel filter to the sprites. This can result in high GPU load for some ships on very old or low performance computers.`
 	`- "fast": just uses the ship's sprite.`
 
 tip "Cloaked ship outlines"
@@ -1554,17 +1554,19 @@ tip "Show planet labels"
 
 tip "Show mini-map"
 	`Control the display of a mini-map of nearby systems.`
+	`- "off": the mini-map is never shown.`
 	`- "when jumping": the mini-map only appears when initiating a hyperspace jump.`
 	`- "always on": the mini-map is always present when in flight.`
-	`- "off": the mini-map is never shown.`
 
 tip "Clickable radar display"
 	`Activate the ability to send commands to your escorts using the in-system radar mini-map.`
 
 tip "Alert indicator"
-	`Indicate when hostile ships enter your current system.`
-	`- "audio" plays a siren.`
-	`- "visual" displays an alert icon by the in-system radar.`
+	`Control an indicator that occurs when hostile ships enter your current system.`
+	`- "off": no indicator occurs.`
+	`- "audio": plays a siren.`
+	`- "visual": displays an alert icon by the in-system radar.`
+	`- "both": both audio and visual indicators occur.`
 
 tip "Extra fleet status messages"
 	`Display extra status messages about escorts in your fleet, such as when they are under-crewed or collect flotsam.`
@@ -1594,15 +1596,21 @@ tip "Target asteroid based on"
 tip "Boarding target priority"
 	`The strategy that the "Board selected ship" control uses for selecting ships when you have none targeted.`
 	`- "proximity": selects the nearest ship.`
-	`- "value": selects the highest value ship (with the value being estimated if you haven't scanned the outfits of the ship).`
+	`- "value": selects the highest value ship, with the value being estimated if you haven't scanned the outfits of the ship.`
 	`- "mixed": accounts for the value divided by the distance to the ship.`
 
 tip "Escorts expend ammo"
 	`The strategy that your escorts use for determining when to fire their secondary weapons. Able to be toggled by the "Fleet: Toggle ammo usage" control.`
-	`The "frugal" setting only fires secondary weapons when your escort's HP is low or the hostiles in the system are stronger than your fleet and friendlies.`
+	`- "never": your escorts will never use their secondary weapons.`
+	`- "frugal": your escorts will only fire their secondary weapons when their HP is low or the hostiles in the system are stronger than your fleet and friendlies.`
+	`- "always": your escorts will always use their secondary weapons when firing.`
 
 tip "Flotsam collection"
-	`Control which of your ships can pick up cargo floating in space.`
+	`Control which of your ships can pick up flotsam (cargo floating in space). Flotsam is picked up automatically when your ships overlap it.`
+	`- "off": your ships will never pick up flotsam.`
+	`- "flagship only": only your flagship will pick up flotsam.`
+	`- "escorts only": only your escorts will pick up flotsam.`
+	`- "on": your entire fleet will pick up flotsam.`
 
 tip "Repair fighters in"
 	`The strategy used for repairing carried ships (e.g. fighters, drones) in your fleet while they are docked with their carrier.`
@@ -1667,7 +1675,7 @@ tip "Parenthesize trade profits"
 	`Toggle whether parentheses are shown around potential profits and losses in the ports map mode.`
 
 tip "Notify on destination"
-	`Indicate when you enter a system with a planet you must land on for a mission.`
+	`Control an indicator that occurs when you enter a system with a planet you must land on for a mission.`
 	`- "off": no indication given.`
 	`- "message": displays a message with the planets you must land on.`
 	`- "both": displays the message and plays a notification sound.`
@@ -1692,7 +1700,10 @@ tip "Window rounding"
 	`Control the appearance of window corners. (Available on Windows 11.)`
 
 tip "Tribute confirmation"
-	`Whether a confirmation dialog will be displayed when you attempt to demand tribute from a planet. Either it always appears, never appears, or only appears if the target planet is friendly to you.`
+	`Whether a confirmation dialog will be displayed when you attempt to demand tribute from a planet.`
+	`- "off": you will never be asked for confirmation.`
+	`- "friendly only": you will only be asked for confirmation against planets that you are friendly toward.`
+	`- "always": you will always be asked for confirmation.`
 
 
 
