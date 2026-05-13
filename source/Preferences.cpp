@@ -222,6 +222,7 @@ void Preferences::Load()
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
 	settings["Animate main menu background"] = true;
+	settings["Linear filter"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
@@ -229,9 +230,9 @@ void Preferences::Load()
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
 	settings["Deadline blink by distance"] = true;
-	settings["Confirm 'Sell Outfits' button"] = true;
-	settings["Confirm 'Sell Minables' button"] = true;
-	settings["'Sell Outfits' without outfitter"] = true;
+	settings["Confirm selling outfits"] = true;
+	settings["Confirm selling minables"] = true;
+	settings["Sell outfits without outfitter"] = true;
 
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
@@ -352,6 +353,25 @@ void Preferences::Load()
 		if(it->second)
 			highlightShipsIndex = static_cast<int>(HighlightShips::FLAGSHIP);
 		settings.erase(it);
+	}
+
+
+	// Some settings have been renamed. If the preferences file contains the old names,
+	// load the state from them, then erase them so only the new names are written back when saving settings.
+	const array<pair<string, string>, 4> RENAMED_BOOLEAN_SETTINGS = {{
+		{"'Sell Outfits' without outfitter", "Sell outfits without outfitter"},
+		{"Confirm 'Sell Outfits' button", "Confirm selling outfits"},
+		{"Confirm 'Sell Minables' button", "Confirm selling minables"},
+		{"Show parenthesis", "Parenthesize trade profits"}
+	}};
+	for(auto const &[oldName, newName] : RENAMED_BOOLEAN_SETTINGS)
+	{
+		it = settings.find(oldName);
+		if(it != settings.end())
+		{
+			settings[newName] = it->second;
+			settings.erase(it);
+		}
 	}
 }
 
