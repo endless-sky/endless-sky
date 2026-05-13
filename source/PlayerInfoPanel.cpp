@@ -18,6 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Command.h"
+#include "text/DisplayText.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -37,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipInfoPanel.h"
 #include "System.h"
 #include "text/Table.h"
+#include "TableArea.h"
 #include "text/Truncate.h"
 #include "UI.h"
 
@@ -49,42 +52,6 @@ using namespace std;
 namespace {
 	// Number of lines per page of the fleet listing.
 	const int LINES_PER_PAGE = 26;
-
-	// Draw a list of (string, value) pairs.
-	void DrawList(vector<pair<int64_t, string>> &list, const Table &table, const string &title,
-		int64_t titleValue, int maxCount = 0, bool drawValues = true)
-	{
-		if(list.empty())
-			return;
-
-		int otherCount = list.size() - maxCount;
-
-		if(otherCount > 0 && maxCount > 0)
-		{
-			list[maxCount - 1].second = "(" + to_string(otherCount + 1) + " others)";
-			while(otherCount--)
-			{
-				list[maxCount - 1].first += list.back().first;
-				list.pop_back();
-			}
-		}
-
-		const Color &dim = *GameData::Colors().Get("medium");
-		table.DrawGap(10);
-		table.DrawUnderline(dim);
-		table.Draw(title, *GameData::Colors().Get("bright"));
-		table.Draw(titleValue, dim);
-		table.DrawGap(5);
-
-		for(const auto &it : list)
-		{
-			table.Draw(it.second, dim);
-			if(drawValues)
-				table.Draw(it.first);
-			else
-				table.Advance();
-		}
-	}
 
 	bool CompareName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
@@ -691,24 +658,27 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 				"(-" + Format::Number(deterrenceLevel, 1, false) + ")", dim, Truncate::MIDDLE, false);
 		}
 	}
+
 	// Other special information:
-	vector<pair<int64_t, string>> salary;
-	for(const auto &it : player.Accounts().SalariesIncome())
-		salary.emplace_back(it.second, it.first);
+	Point start = table.GetRowBounds().BottomLeft();
+	start.Y() -= 10.;
+	vector<pair<string, int64_t>> salary;
+	for(const auto &[name, value] : player.Accounts().SalariesIncome())
+		salary.emplace_back(name, value);
 	sort(salary.begin(), salary.end(), std::greater<>());
-	DrawList(salary, table, "salary:", player.Accounts().SalariesIncomeTotal(), 4);
+	DrawList(salary, salaryArea, start, columnWidth, "salary:", player.Accounts().SalariesIncomeTotal(), 5);
 
-	vector<pair<int64_t, string>> tribute;
-	for(const auto &it : player.GetTribute())
-		tribute.emplace_back(it.second, it.first->TrueName());
+	vector<pair<string, int64_t>> tribute;
+	for(const auto &[planet, value] : player.GetTribute())
+		tribute.emplace_back(planet->TrueName(), value);
 	sort(tribute.begin(), tribute.end(), std::greater<>());
-	DrawList(tribute, table, "tribute:", player.GetTributeTotal(), 4);
+	DrawList(tribute, tributeArea, start, columnWidth, "tribute:", player.GetTributeTotal(), 5);
 
-	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
-	vector<pair<int64_t, string>> licenses;
-	for(const auto &it : player.Licenses())
-		licenses.emplace_back(1, it);
-	DrawList(licenses, table, "licenses:", licenses.size(), maxRows, false);
+	int maxRows = static_cast<int>(260. - start.Y()) / 20;
+	vector<pair<string, int64_t>> licenses;
+	for(const string &it : player.Licenses())
+		licenses.emplace_back(it, 1);
+	DrawList(licenses, licenseArea, start, columnWidth, "licenses:", licenses.size(), maxRows, false);
 }
 
 
@@ -836,6 +806,39 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 			pos.Y() += 20.;
 		}
 	}
+}
+
+
+
+void PlayerInfoPanel::DrawList(const vector<pair<string, int64_t>> &list, shared_ptr<TableArea> &area, Point &topLeft,
+	int width, const string &title, int64_t titleValue, int maxRows, bool drawValues)
+{
+	if(list.empty())
+		return;
+
+	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+
+	font.Draw({title, {width, Alignment::LEFT}}, topLeft, bright);
+	font.Draw({Format::Number(titleValue), {width, Alignment::RIGHT}}, topLeft, dim);
+	FillShader::Fill(Rectangle::FromCorner(topLeft + Point(0., font.Height() - 2.), Point(width, 1.)), dim);
+	topLeft.Y() += 25.;
+
+	int height = min<int>(list.size(), maxRows) * 20;
+
+	if(!area)
+	{
+		area = make_shared<TableArea>();
+		area->SetFontSize(14);
+		area->SetColor(dim);
+		area->SetRect(Rectangle::FromCorner(topLeft, Point(width, height)));
+		area->AddRows(list);
+		area->SetDrawValues(drawValues);
+		AddChild(area);
+	}
+
+	topLeft.Y() += height + 5;
 }
 
 
