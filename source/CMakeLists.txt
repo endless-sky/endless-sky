@@ -300,8 +300,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Screen.h
 	ScrollBar.cpp
 	ScrollBar.h
-    ScrollArea.cpp
-    ScrollArea.h
+	ScrollArea.cpp
+	ScrollArea.h
 	ScrollVar.h
 	Set.h
 	Ship.cpp
@@ -338,8 +338,8 @@ target_sources(EndlessSkyLib PRIVATE
 	System.cpp
 	System.h
 	SystemEntry.h
-    TableArea.cpp
-    TableArea.h
+	TableArea.cpp
+	TableArea.h
 	TaskQueue.cpp
 	TaskQueue.h
 	TextArea.cpp
