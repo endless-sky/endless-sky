@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+enum class Alignment;
+
 
 
 class Preferences {
@@ -292,6 +294,11 @@ public:
 	static void ToggleAmmoRefill();
 	static AmmoRefill GetAmmoRefill();
 	static const std::string &AmmoRefillSetting();
+
+	/// Text alignment override setting.
+	static void ToggleTextAlignment();
+	static Alignment GetTextAlignment();
+	static const std::string &TextAlignmentSetting();
 
 	static void ToggleBlockScreenSaver();
 

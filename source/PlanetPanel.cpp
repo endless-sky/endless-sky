@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Port.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
@@ -69,7 +70,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
@@ -236,6 +237,13 @@ void PlanetPanel::Draw()
 	// after the panel's creation, such as the player accepting a mission on the Job Board.
 	if(!selectedPanel)
 		description->SetText(planet.Description().ToString());
+}
+
+
+
+void PlanetPanel::UpdateTextDisplay()
+{
+	description->SetAlignment(Preferences::GetTextAlignment());
 }
 
 

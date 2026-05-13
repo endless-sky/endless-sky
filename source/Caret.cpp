@@ -1,5 +1,5 @@
-/* CustomEvents.h
-Copyright (c) 2025 by TomGoodIdea
+/* Caret.cpp
+Copyright (c) 2026 by thewierdnut
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,24 +13,39 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#pragma once
+#include "Caret.h"
 
-#include <SDL2/SDL_events.h>
+#include "shader/FillShader.h"
 
 
 
-// A class containing all custom events we register in SDL.
-class CustomEvents {
-public:
-	static void Init();
+namespace {
+	// In units of frames at 60fps, so half a second.
+	uint32_t BLINK_INTERVAL = 30;
+}
 
-	// Get the registered ID of the custom resize event.
-	static Uint32 GetResize();
-	// Send the custom resize event.
-	static void SendResize();
 
-	// Get the registered ID of the custom adjust text event.
-	static Uint32 GetAdjustText();
-	// Send the custom adjust text event.
-	static void SendAdjustText();
-};
+
+void Caret::Draw()
+{
+	++blinkCounter;
+
+	if(blinkCounter < BLINK_INTERVAL)
+	{
+		Point p2 = pos;
+		p2.Y() += height;
+		p2.X() += 1;
+		FillShader::Fill(Rectangle::WithCorners(pos, p2), color);
+	}
+	else if(blinkCounter >= BLINK_INTERVAL * 2)
+	{
+		blinkCounter = 0;
+	}
+}
+
+
+
+void Caret::BlinkOn()
+{
+	blinkCounter = 0;
+}

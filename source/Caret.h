@@ -1,5 +1,5 @@
-/* CustomEvents.h
-Copyright (c) 2025 by TomGoodIdea
+/* Caret.h
+Copyright (c) 2026 by thewierdnut
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,22 +15,30 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <SDL2/SDL_events.h>
+#include "Color.h"
+#include "Rectangle.h"
+
+#include <cstdint>
 
 
 
-// A class containing all custom events we register in SDL.
-class CustomEvents {
+// Draws a caret at the given position
+class Caret final {
 public:
-	static void Init();
+	void Draw();
+	void BlinkOn();
 
-	// Get the registered ID of the custom resize event.
-	static Uint32 GetResize();
-	// Send the custom resize event.
-	static void SendResize();
+	void SetColor(const Color &c) { color = c; }
 
-	// Get the registered ID of the custom adjust text event.
-	static Uint32 GetAdjustText();
-	// Send the custom adjust text event.
-	static void SendAdjustText();
+	void SetHeight(int h) { height = h; }
+	void SetX(int x) { pos.X() = x; }
+	void SetY(int y) { pos.Y() = y; }
+
+
+private:
+	uint32_t blinkCounter = 0;
+	Color color{1.0, 1.0, 1.0, .75};
+
+	int height = 14;
+	Point pos{0, 0};
 };
