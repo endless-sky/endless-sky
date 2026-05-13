@@ -90,6 +90,8 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 	description->SetColor(*GameData::Colors().Get("medium"));
 	description->SetAlignment(Alignment::JUSTIFIED);
 	description->SetRect(descriptionBox);
+	description->SetScrollbarOffset(10);
+	description->SetPointerOffset(10);
 	AddChild(description);
 
 	Select(startIt);

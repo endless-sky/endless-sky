@@ -60,6 +60,20 @@ void ScrollArea::SetRect(const Rectangle &r)
 
 
 
+void ScrollArea::SetScrollbarOffset(int offset)
+{
+	scrollbarOffset = offset;
+}
+
+
+
+void ScrollArea::SetPointerOffset(int offset)
+{
+	pointerOffset = offset;
+}
+
+
+
 void ScrollArea::Draw()
 {
 	if(!buffer)
@@ -83,12 +97,10 @@ void ScrollArea::Draw()
 	}
 	buffer->Draw(position);
 
-	const float SCROLLBAR_OFFSET = 5;
-	const float POINTER_OFFSET = 5;
 	if(scroll.Scrollable())
 	{
-		Point topRight(position + Point(buffer->Right() + SCROLLBAR_OFFSET, buffer->Top() + POINTER_OFFSET));
-		Point bottomRight(position + Point(buffer->Right() + SCROLLBAR_OFFSET, buffer->Bottom() - POINTER_OFFSET));
+		Point topRight(position + Point(buffer->Right() + scrollbarOffset, buffer->Top() + pointerOffset));
+		Point bottomRight(position + Point(buffer->Right() + scrollbarOffset, buffer->Bottom() - pointerOffset));
 
 		scrollBar.SyncDraw(scroll, topRight, bottomRight);
 	}

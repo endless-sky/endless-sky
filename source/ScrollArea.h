@@ -39,6 +39,8 @@ public:
 	virtual ~ScrollArea() override;
 
 	virtual void SetRect(const Rectangle &r);
+	void SetScrollbarOffset(int offset);
+	void SetPointerOffset(int offset);
 
 
 protected:
@@ -66,5 +68,7 @@ protected:
 	bool hovering = false;
 
 	ScrollBar scrollBar;
+	int scrollbarOffset = 5;
+	int pointerOffset = 5;
 	bool scrollHeightIncludesTrailingBreak = false;
 };
