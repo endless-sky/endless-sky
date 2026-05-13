@@ -28,9 +28,7 @@ class Rectangle;
 
 
 
-// Represents a rect on the screen that needs to display text. The text can be
-// larger than the display area, in which case the class will allow the text
-// to scroll in response to use input.
+// A ScrollArea that renders text using the Table class.
 class TableArea : public ScrollArea
 {
 public:
