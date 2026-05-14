@@ -754,6 +754,7 @@ void PreferencesPanel::DrawSettings()
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
 		FONT_SIZE,
+		TEXT_ALIGNMENT,
 		SCREEN_MODE_SETTING,
 		BLOCK_SCREEN_SAVER,
 		VSYNC_SETTING,
@@ -839,7 +840,6 @@ void PreferencesPanel::DrawSettings()
 		DATE_FORMAT,
 		NOTIFY_ON_DEST,
 		"Save message log",
-		TEXT_ALIGNMENT,
 #ifdef _WIN32
 		"\t",
 		"Windows Options",
