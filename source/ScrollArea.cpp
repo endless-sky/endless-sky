@@ -210,6 +210,8 @@ bool ScrollArea::Scroll(double dx, double dy)
 
 void ScrollArea::SyncScroll(bool animated)
 {
+	if(!buffer)
+		return;
 	Point topRight(position + Point(buffer->Right() + scrollbarOffset, buffer->Top() + pointerOffset));
 	Point bottomRight(position + Point(buffer->Right() + scrollbarOffset, buffer->Bottom() - pointerOffset));
 
