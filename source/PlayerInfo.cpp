@@ -255,7 +255,7 @@ bool PlayerInfo::IsLoaded() const
 
 
 // Make a new player.
-void PlayerInfo::New(const StartConditions &start, shared_ptr<PilotProfile> &pilot)
+void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile> &pilot)
 {
 	// Clear any previously loaded data.
 	Clear();
@@ -302,7 +302,7 @@ void PlayerInfo::New(const StartConditions &start, shared_ptr<PilotProfile> &pil
 
 
 // Load player information from a saved game file.
-void PlayerInfo::Load(const filesystem::path &path, shared_ptr<PilotProfile> &pilot)
+void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfile> &pilot)
 {
 	// Make sure any previously loaded data is cleared.
 	Clear();
@@ -613,7 +613,9 @@ void PlayerInfo::Load(const filesystem::path &path, shared_ptr<PilotProfile> &pi
 // Reload from the same file from which the current pilot was loaded.
 void PlayerInfo::Reload()
 {
-	Load(filePath, pilot);
+	// Copy the pointer to the current pilot, as the first thing
+	// that Load does is call Clear, which resets the pilot attribute.
+	Load(filePath, shared_ptr<PilotProfile>(pilot));
 }
 
 
