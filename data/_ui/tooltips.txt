@@ -1756,8 +1756,8 @@ tip "Lock gamerules"
 
 tip "Fighter crossfire immunity"
 	`Controls which carried ships (fighters and drones), when disabled, will not be hit by projectiles unless they are directly targeted. Fighters and drones are fragile ships that can be difficult and/or tedious to replace for the player, so this gamerule is a means of increasing their survivability without increasing their combat effectiveness. Disabled carried ships can still be hit by explosions, whether from weapons or exploding ships.`
-	`- "off": no carried ships are affected.`
-	`- "only player": only ships owned by the player are affected.`
+	`- "none": no carried ships are affected.`
+	`- "player": only ships owned by the player are affected.`
 	`- "all": all carried ships are affected.`
 
 tip "Universal ammo stocking"
