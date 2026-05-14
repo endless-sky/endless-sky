@@ -809,6 +809,7 @@ mission "Successors: Ghosts 7a"
 		log "Saajret told a story about the hunting practices of the elusive self-camouflaging Kijran-Khora. These infiltrated House Kaatrij's bases long in the past. They suggested someone might do something similar."
 		payment 220000
 		conversation "saajret returns"
+		event "successors: ghosts cloak prompt delay" 30
 		"Successors: Ghosts Saajret Forgiveness" -- # Decreases as Saajret learns more about their personal past.
 
 
@@ -827,6 +828,7 @@ mission "Successors: Ghosts 7b"
 		log "Saajret told a story about the hunting practices of the elusive self-camouflaging Kijran-Khora. These infiltrated House Kaatrij's bases long in the past. They suggested someone might do something similar."
 		payment 140000
 		conversation "saajret returns"
+		event "successors: ghosts cloak prompt delay" 30
 		"Successors: Ghosts Saajret Forgiveness" ++
 		"Successors: Ghosts Saajret Openness" --
 
@@ -860,6 +862,26 @@ conversation "saajret returns"
 
 	label end
 	`	They look over at the spaceport again. "Till again we meet, <first> <last>."`
+
+
+
+mission "Successors: Ghosts Cloak Prompt"
+	landing
+	name "Investigate <planet>"
+	description "Saajret's cryptic message may have been suggesting a way to more closely investigate House Kaatrij's hidden base on <planet>. Try to bypass the blockade by using a ship that can cloak."
+	destination "Qasa-Sija-Iri"
+	source
+		attributes successor
+		not attributes uninhabited crime
+	to offer
+		has "event: successors: ghosts cloak prompt delay"
+		not "Successors: Ghosts 8: offered"
+	on offer
+		conversation
+			`You spend a little while stretching your legs here on the <origin> spaceport, watching the various ships come in and go out and looking over the wide variety of Successors that mill about them. In many ways it's not unlike human space, though the elegance and efficiency with which the Successors build and operate their spaceports gives some hint about the much greater experience they have as an interstellar species.`
+			`	Some things are just the same, though, like the news display that you realize is right above you as it lets out a particularly noticeable warble. It catches your eye for a moment; the program is presenting a visualization of what the attack on House Seineq's base could have plausibly looked like, a well of morphic metal unspooling from the display to form small simulated Vujleten flying in formation, firing their weapons, and even cloaking themselves once they've delivered their payloads, their forms growing indistinct and wavy as the liquid metal returns to its origin.`
+			`	As the narrator intones something about historical uses of cloaking technology, a spark of understanding suddenly lights in your mind: you recall your last conversation with Saajret and their story about the camouflaging Kijran-Khora, and in light of House Kaatrij's blockade over <planet>, how they might have been offering you a way that you could investigate Kaatrij's base for yourself. The moon's atmosphere is thin enough that a cloaked ship could probably approach the surface totally undetected, even considering the no-doubt advanced scanners House Kaatrij is using to detect intruders.`
+				accept
 
 
 

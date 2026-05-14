@@ -132,6 +132,8 @@ event "successors: ghosts seineq attacked"
 
 event "successors: ghosts seineq memorial"
 
+event "successors: ghosts cloak prompt delay"
+
 event "successors: ghosts star unrestrict"
 	planet "Exotic Metal Garden"
 		remove attributes "requires: starlining"
