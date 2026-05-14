@@ -139,7 +139,7 @@ void LogbookPanel::Draw()
 
 	// Parameters for drawing the main text:
 	WrappedText wrap(mainFont);
-	wrap.SetAlignment(Alignment::JUSTIFIED);
+	wrap.SetAlignment(Preferences::GetTextAlignment());
 	wrap.SetWrapWidth(TEXT_WIDTH - 2. * PAD);
 
 	// Draw the main text.

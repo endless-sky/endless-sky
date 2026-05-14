@@ -265,6 +265,13 @@ bool DialogPanel::AllowsFastForward() const noexcept
 
 
 
+void DialogPanel::UpdateTextDisplay()
+{
+	text->SetAlignment(Preferences::GetTextAlignment());
+}
+
+
+
 DialogPanel::DialogPanel(DialogInit &init)
 	: voidFun(std::move(init.voidFun)),
 	boolFun(std::move(init.boolFun)),
@@ -300,7 +307,7 @@ DialogPanel::DialogPanel(DialogInit &init)
 	cancelText = isMission ? "Decline" : "Cancel";
 
 	text = make_shared<TextArea>();
-	text->SetAlignment(Alignment::JUSTIFIED);
+	text->SetAlignment(Preferences::GetTextAlignment());
 	text->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	text->SetTruncate(init.truncate);
 	text->SetText(init.message);

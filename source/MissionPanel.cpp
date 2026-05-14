@@ -322,14 +322,6 @@ void MissionPanel::UpdateTooltipActivation()
 
 
 
-void MissionPanel::UpdateFontSize()
-{
-	MapPanel::UpdateFontSize();
-	tooltip.UpdateFontSize();
-}
-
-
-
 // Only override the ones you need; the default action is to return false.
 bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
@@ -682,7 +674,7 @@ void MissionPanel::InitTextArea()
 {
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetAlignment(Preferences::GetTextAlignment());
 	description->SetColor(*GameData::Colors().Get("bright"));
 	ResizeTextArea();
 }

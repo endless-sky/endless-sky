@@ -29,6 +29,8 @@ public:
 	// The Body that was hit for this collision. May be a nullptr if nothing
 	// was directly hit.
 	Body *HitBody();
+	const Body *HitBody() const;
+	Point HitVelocity() const;
 	// The type of Body that was hit.
 	CollisionType GetCollisionType() const;
 	// The intersection range at which the collision occurred with the Body.
@@ -39,7 +41,7 @@ public:
 
 
 private:
-	Body *hit = nullptr;
-	CollisionType collisionType = CollisionType::NONE;
+	Body *hit;
+	CollisionType collisionType;
 	double range;
 };

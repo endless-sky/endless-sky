@@ -17,6 +17,7 @@ mission "Raid Warning"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		"pirate attraction" >= 5
+		has "gamerule: spawn raid fleets"
 	on offer
 		conversation
 			`When you enter the <origin> spaceport, you're almost immediately stopped by a grizzled old man. "You some kinda rookie, or you asking for a death wish?" he asks.`

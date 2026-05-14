@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "Dropdown.h"
 #include "LoadingCircle.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
@@ -197,6 +198,7 @@ protected:
 	std::map<std::string, std::vector<std::string>> catalog;
 	const CategoryList &categories;
 	std::set<std::string> &collapsed;
+	bool hasFleetCapacity;
 
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
@@ -208,6 +210,9 @@ protected:
 	Tooltip creditsTooltip;
 	Tooltip buttonsTooltip;
 	LoadingCircle loadingCircle;
+
+	std::shared_ptr<Dropdown> selectedQuantity;
+	bool quantityIsModifier = false;
 
 
 private:

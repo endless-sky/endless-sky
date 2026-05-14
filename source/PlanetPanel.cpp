@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "HiringPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
@@ -69,7 +70,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetColor(*GameData::Colors().Get("bright"));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
@@ -236,6 +237,13 @@ void PlanetPanel::Draw()
 	// after the panel's creation, such as the player accepting a mission on the Job Board.
 	if(!selectedPanel)
 		description->SetText(planet.Description().ToString());
+}
+
+
+
+void PlanetPanel::UpdateTextDisplay()
+{
+	description->SetAlignment(Preferences::GetTextAlignment());
 }
 
 
@@ -415,6 +423,14 @@ void PlanetPanel::TakeOffIfReady()
 				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
 			return;
 		}
+	}
+	if(player.FleetCost() > player.FleetCapacity())
+	{
+		bool shipCap = GameData::GetGamerules().GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::SHIP_CAP;
+		GetUI().Push(DialogPanel::Info("The escorts that you currently have active put you over your fleet capacity. "
+			"Park or sell your escorts to make room"s + (shipCap ? "." : ", or change your flagship to a ship with a "
+			"higher cost toward your limit, as your flagship does not count toward the fleet capacity.")));
+		return;
 	}
 
 	CheckWarningsAndTakeOff();
