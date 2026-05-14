@@ -304,6 +304,7 @@ void HailPanel::Draw()
 	draw.Draw();
 
 	// Draw the current message.
+	// TODO: Make this a TextArea and pull the font size from the preferences.
 	WrappedText wrap;
 	wrap.SetAlignment(Preferences::GetTextAlignment());
 	wrap.SetWrapWidth(330);

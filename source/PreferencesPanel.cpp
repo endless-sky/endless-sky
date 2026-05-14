@@ -233,7 +233,7 @@ void PreferencesPanel::UpdateTooltipActivation()
 
 
 
-void PreferencesPanel::UpdateFontSize()
+void PreferencesPanel::UpdateTextDisplay()
 {
 	tooltip.UpdateFontSize();
 }
@@ -1405,8 +1405,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	else if(str == FONT_SIZE)
 	{
 		Preferences::ToggleFontSize();
-		for(auto &panel : GetUI().Stack())
-			panel->UpdateFontSize();
+		CustomEvents::SendAdjustText();
 	}
 	else if(str == SCREEN_MODE_SETTING)
 		Preferences::ToggleScreenMode();

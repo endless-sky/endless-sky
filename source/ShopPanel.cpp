@@ -239,15 +239,6 @@ void ShopPanel::UpdateTooltipActivation()
 
 
 
-void ShopPanel::UpdateFontSize()
-{
-	shipsTooltip.UpdateFontSize();
-	creditsTooltip.UpdateFontSize();
-	buttonsTooltip.UpdateFontSize();
-}
-
-
-
 void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 {
 	const Sprite *back = SpriteSet::Get(

@@ -160,13 +160,6 @@ void GamerulesPanel::UpdateTooltipActivation()
 
 
 
-void GamerulesPanel::UpdateFontSize()
-{
-	tooltip.UpdateFontSize();
-}
-
-
-
 bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(key == SDLK_DOWN)

@@ -268,6 +268,7 @@ bool DialogPanel::AllowsFastForward() const noexcept
 void DialogPanel::UpdateTextDisplay()
 {
 	text->SetAlignment(Preferences::GetTextAlignment());
+	text->SetFont(FontSet::Get(Preferences::GetFontSize()));
 }
 
 

@@ -244,7 +244,7 @@ void LoadPanel::UpdateTooltipActivation()
 
 
 
-void LoadPanel::UpdateFontSize()
+void LoadPanel::UpdateTextDisplay()
 {
 	tooltip.UpdateFontSize();
 }

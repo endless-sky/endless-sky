@@ -244,6 +244,7 @@ void PlanetPanel::Draw()
 void PlanetPanel::UpdateTextDisplay()
 {
 	description->SetAlignment(Preferences::GetTextAlignment());
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 }
 
 

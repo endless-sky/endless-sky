@@ -100,6 +100,7 @@ private:
 		// next paragraph below this one should be drawn at.
 		Point Draw(Point point, const Color &color) const;
 		void SetAlignment(Alignment alignment);
+		void SetFontSize(int size);
 
 	private:
 		const Sprite *scene = nullptr;

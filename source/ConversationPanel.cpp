@@ -265,7 +265,10 @@ void ConversationPanel::Draw()
 void ConversationPanel::UpdateTextDisplay()
 {
 	for(auto &paragraph : text)
+	{
 		paragraph.SetAlignment(Preferences::GetTextAlignment());
+		paragraph.SetFontSize(Preferences::GetFontSize());
+	}
 }
 
 
@@ -615,4 +618,11 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 void ConversationPanel::Paragraph::SetAlignment(Alignment alignment)
 {
 	wrap.SetAlignment(alignment);
+}
+
+
+
+void ConversationPanel::Paragraph::SetFontSize(int size)
+{
+	wrap.SetFont(FontSet::Get(size));
 }

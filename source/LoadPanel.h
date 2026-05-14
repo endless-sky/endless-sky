@@ -43,7 +43,7 @@ public:
 	virtual void Draw() override;
 
 	virtual void UpdateTooltipActivation() override;
-	virtual void UpdateFontSize() override;
+	virtual void UpdateTextDisplay() override;
 
 
 protected:
