@@ -49,6 +49,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <array>
 #include <iterator>
+#include <ranges>
 
 using namespace std;
 
@@ -265,10 +266,9 @@ void ConversationPanel::Draw()
 void ConversationPanel::UpdateTextDisplay()
 {
 	for(auto &paragraph : text)
-	{
-		paragraph.SetAlignment(Preferences::GetTextAlignment());
-		paragraph.SetFontSize(Preferences::GetFontSize());
-	}
+		paragraph.UpdateTextDisplay();
+	for(auto &paragraph : choices | views::keys)
+		paragraph.UpdateTextDisplay();
 }
 
 
@@ -615,14 +615,9 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 
 
 
-void ConversationPanel::Paragraph::SetAlignment(Alignment alignment)
+void ConversationPanel::Paragraph::UpdateTextDisplay()
 {
-	wrap.SetAlignment(alignment);
-}
-
-
-
-void ConversationPanel::Paragraph::SetFontSize(int size)
-{
-	wrap.SetFont(FontSet::Get(size));
+	wrap.SetAlignment(Preferences::GetTextAlignment());
+	wrap.SetFont(FontSet::Get(Preferences::GetFontSize()));
+	wrap.Rewrap();
 }

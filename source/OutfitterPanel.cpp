@@ -1345,7 +1345,7 @@ void OutfitterPanel::DrawButtons()
 		if(buttonsTooltip.ShouldDraw())
 		{
 			buttonsTooltip.SetZone(buttonsFooter);
-			buttonsTooltip.SetText(tooltip, true);
+			buttonsTooltip.SetText(tooltip);
 			buttonsTooltip.Draw();
 		}
 	}
@@ -1362,7 +1362,7 @@ void OutfitterPanel::DrawButtons()
 			creditsTooltip.SetZone(creditsBox);
 			creditsTooltip.SetText(Format::CreditString(player.Accounts().Credits(), false) + '\n' +
 				Format::MassString(player.Cargo().Free()) + " free out of " +
-				Format::MassString(player.Cargo().Size()) + " total capacity", true);
+				Format::MassString(player.Cargo().Size()) + " total capacity");
 			creditsTooltip.Draw();
 		}
 	}
