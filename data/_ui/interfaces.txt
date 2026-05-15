@@ -2741,6 +2741,10 @@ interface "hail panel"
 		align left
 		width 330
 		truncate back
+	
+	box "message"
+		from -50 -50
+		to 280 90
 
 	button d "_Done"
 		center 250 115
