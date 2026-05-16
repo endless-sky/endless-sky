@@ -365,6 +365,8 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 			hasFullClearance = true;
 		else if(key == "launching")
 			shouldLaunch = true;
+		else if(key == "cloaked")
+			isCloaking = true;
 		else if(key == "playtime" && hasValue)
 			playTime = child.Value(1);
 		else if(key == "travel" && hasValue)
@@ -1033,6 +1035,20 @@ const StellarObject *PlayerInfo::GetStellarObject() const
 bool PlayerInfo::ShouldLaunch() const
 {
 	return shouldLaunch;
+}
+
+
+
+bool PlayerInfo::IsCloaking() const
+{
+	return isCloaking;
+}
+
+
+
+void PlayerInfo::SetCloaking(bool isCloaking)
+{
+	this->isCloaking = isCloaking;
 }
 
 
@@ -1865,6 +1881,8 @@ bool PlayerInfo::TakeOff(UI &ui, const bool distributeCargo)
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
+			if(isCloaking)
+				ship->SetCloaked();
 			// Recalculate the weapon cache in case a mass-less change had an effect.
 			ship->UpdateCaches(true);
 			if(ship->GetSystem() != system)
@@ -4943,6 +4961,10 @@ void PlayerInfo::Save(DataWriter &out) const
 	// entering their ship (i.e. because a mission forced them to take off).
 	if(shouldLaunch)
 		out.Write("launching");
+	// This flag is set if the player landed on the current planet while cloaked,
+	// meaning that they should take off while cloaked upon reloading this save.
+	if(isCloaking)
+		out.Write("cloaked");
 	for(const System *system : travelPlan)
 		out.Write("travel", system->TrueName());
 	if(travelDestination)

@@ -298,6 +298,8 @@ public:
 	// Depending on its "cloaking ..." attributes the ship will be unable to shoot, will not be seen on radar...
 	double Cloaking() const;
 	bool IsCloaked() const;
+	// If this ship is capable of cloaking, make it fully cloaked.
+	void SetCloaked();
 	// The amount of cloaking this ship can do, per frame.
 	double CloakingSpeed() const;
 	// If this ship should be immune to the next damage caused.
