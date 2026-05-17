@@ -72,14 +72,10 @@ bool Person::IsValid() const
 void Person::FinishLoading()
 {
 	shipFactory.Instantiate(ships);
-	bool first = true;
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		if(first || ship->GivenName().empty())
-		{
+		if(ship->GivenName().empty())
 			ship->SetGivenName(name);
-			first = false;
-		}
 		if(formationPattern)
 			ship->SetFormationPattern(formationPattern);
 	}
