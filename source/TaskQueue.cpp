@@ -32,15 +32,11 @@ namespace {
 
 	// Worker threads for executing tasks.
 	struct WorkerThreads {
-		WorkerThreads() noexcept
+		WorkerThreads(uint64_t threadCount = 0) noexcept
 		{
-			threads.resize(max(4u, thread::hardware_concurrency()));
-			for(thread &t : threads)
-				t = thread(&TaskQueue::ThreadLoop);
-		}
-		WorkerThreads(uint64_t nWorkerThreads) noexcept
-		{
-			threads.resize(nWorkerThreads);
+			if(!threadCount)
+				threadCount = max(4u, thread::hardware_concurrency());
+			threads.resize(threadCount);
 			for(thread &t : threads)
 				t = thread(&TaskQueue::ThreadLoop);
 		}
@@ -59,16 +55,19 @@ namespace {
 	} threads;
 }
 
-TaskQueue::TaskQueue(uint64_t nWorkerThreads)
+
+
+void TaskQueue::SetWorkerThreadCount(uint64_t count)
 {
-	if(nWorkerThreads > 0 && threads.threads.size() != nWorkerThreads)
-	{
-		threads.~WorkerThreads();
-		lock_guard<mutex> lock(asyncMutex);
-		shouldQuit = false;
-		new(&threads) WorkerThreads(nWorkerThreads);
-	}
+	if(count == 0 || threads.threads.size() == count)
+		return;
+
+	threads.~WorkerThreads();
+	lock_guard<mutex> lock(asyncMutex);
+	shouldQuit = false;
+	new(&threads) WorkerThreads(count);
 }
+
 
 
 TaskQueue::~TaskQueue()

@@ -150,6 +150,9 @@ int main(int argc, char *argv[])
 		else if(arg == "--tq-threads" && *++it)
 			nWorkerThreads = std::stoull(*it);
 	}
+
+	if(nWorkerThreads)
+		TaskQueue::SetWorkerThreadCount(nWorkerThreads);
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
@@ -164,7 +167,7 @@ int main(int argc, char *argv[])
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();
 
-		TaskQueue queue(nWorkerThreads);
+		TaskQueue queue;
 
 		// Begin loading the game data.
 		auto dataFuture = GameData::BeginLoad(queue, player, isConsoleOnly, debugMode,
