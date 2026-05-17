@@ -15,7 +15,6 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Random.h"
 #include "audio/Audio.h"
 #include "Command.h"
 #include "Conversation.h"
@@ -41,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Plugins.h"
 #include "Preferences.h"
 #include "PrintData.h"
+#include "Random.h"
 #include "Screen.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
