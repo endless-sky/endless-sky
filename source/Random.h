@@ -24,13 +24,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // random number generation is not thread-safe.)
 class Random {
 public:
-	// Used to override any seed, especially also to always set a seed;
-	// to make runs reproducible (always get the same random numbers)
+	// After this method runs, Seed will discard its argument and reseed the prng with the value given here.
 	static void SetFixedSeed(uint64_t seed);
 	// Seed the generator (e.g. to make it produce exactly the same random
 	// numbers it produced previously).
 	static void Seed(uint64_t seed);
-	Random();
 
 	static uint32_t Int();
 	static uint32_t Int(uint32_t modulus);

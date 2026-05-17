@@ -50,8 +50,8 @@ prints (to STDOUT) a list of available tests, usable for automatic test runs. Th
 .IP \fB\-\-nomute
 prevents muting the game when running tests.
 
-.IP \fB\-c,\ \-\-rngseed\ <number>
-seeds the pseudo random number generators with the given seed. This should only be used for debugging and profiling and is meant to increase repeatability during those activities. This will likely not help repeatability in between different systems and environments, and thus, not help reproducing someone else's bug.
+.IP \fB\-c,\ \-\-rngseed\ <seed>
+every time the pseudo-random number generator is seeded, it will be given this value.
 
 .IP \fB\-s,\ \-\-ships
 prints (to STDOUT) a table of ship stats (just the base stats, not considering any stored outfits). This option prevents the game from launching.
