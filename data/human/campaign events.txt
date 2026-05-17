@@ -238,7 +238,8 @@ mission "event: war begins"
 				flee
 			
 			label help
-			`	"Yes. You can take off like I asked you to." The officer pauses. "Sorry, Captain, I'm sure you have the best of intentions, but that's the truth. The Navy has personnel trained for responding to nuclear disasters, and all you'd be doing here is taking up extra space." The officer turns around, interrupted by the shrieks of a panicked Paradisian. You re-enter the <ship>, and prepare to take off.`
+			`	"Yes. You can take off like I asked you to." The officer pauses. "Sorry, Captain, but that's the truth. The Navy has personnel trained for responding to nuclear disasters, and all you'd be doing here right now is taking up space. If you really want to help, you're better off waiting a day for us to properly coordinate a disaster response plan with the neighboring planets and their job boards."`
+			`	The officer turns around, interrupted by the shrieks of a panicked Paradisian. You re-enter the <ship>, and prepare to take off.`
 				flee
 
 event "initial deployment 1"
@@ -535,6 +536,7 @@ event "remove pirates from Ildaria"
 
 mission "Ildaria Pirates Compatibility"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "event: initial deployment 2"
@@ -631,6 +633,7 @@ event "initial deployment 3"
 mission "Central Outfitters Expansion Trigger"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: initial deployment 2"
 	on offer
@@ -691,6 +694,7 @@ mission "Central Outfitters Expansion"
 mission "Southern Carriers Trigger"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: initial deployment 3"
 	on offer
@@ -865,7 +869,7 @@ event "initial deployment 4"
 		fleet "Large Southern Pirates" 5000
 		fleet "Small Free Worlds" 1000
 		fleet "Large Free Worlds" 1500
-		fleet "Navy Surveillance" 800
+		fleet "Navy Surveillance" 2000
 	system "Dschubba"
 		fleet "Small Southern Merchants" 800
 		fleet "Large Southern Merchants" 2600
@@ -873,7 +877,7 @@ event "initial deployment 4"
 		fleet "Large Southern Pirates" 6000
 		fleet "Small Free Worlds" 2000
 		fleet "Large Free Worlds" 3000
-		fleet "Navy Surveillance" 800
+		fleet "Navy Surveillance" 2000
 	system "Lesath"
 		fleet "Small Southern Merchants" 800
 		fleet "Large Southern Merchants" 1600
@@ -882,7 +886,7 @@ event "initial deployment 4"
 		fleet "Small Free Worlds" 800
 		fleet "Large Free Worlds" 1100
 		fleet "Derelict Southern" 30000
-		fleet "Navy Surveillance" 800
+		fleet "Navy Surveillance" 2000
 	system "Atria"
 		fleet "Small Southern Merchants" 700
 		fleet "Large Southern Merchants" 2600
@@ -940,13 +944,13 @@ event "initial deployment 4"
 		fleet "Large Southern Pirates" 8000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 700
-		fleet "Navy Surveillance" 1200
+		fleet "Navy Surveillance" 3000
 	system "Sabik"
 		fleet "Small Southern Merchants" 600
 		fleet "Large Southern Merchants" 800
 		fleet "Small Free Worlds" 800
 		fleet "Large Free Worlds" 1200
-		fleet "Navy Surveillance" 800
+		fleet "Navy Surveillance" 2000
 	system "Aldhibain"
 		fleet "Small Southern Merchants" 600
 		fleet "Large Southern Merchants" 800
@@ -954,14 +958,14 @@ event "initial deployment 4"
 		fleet "Large Free Worlds" 600
 		fleet "Small Southern Pirates" 1400
 		fleet "Large Southern Pirates" 3000
-		fleet "Navy Surveillance" 800
+		fleet "Navy Surveillance" 2000
 	system "Kornephoros"
 		fleet "Small Southern Merchants" 800
 		fleet "Large Southern Merchants" 1000
 		fleet "Small Southern Pirates" 5000
 		fleet "Small Free Worlds" 900
 		fleet "Large Free Worlds" 1700
-		fleet "Navy Surveillance" 800
+		fleet "Navy Surveillance" 2000
 		fleet "Human Miners" 3000
 
 
@@ -1767,6 +1771,7 @@ event "fw prison on Clink closes"
 mission "FW Clink Prison Closes"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: fw prison on Clink"
 		or
@@ -2094,6 +2099,7 @@ event "navy expand typhoon sales"
 
 mission "Navy expands typhoon sales"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "event: deep sky tech available"
@@ -3314,6 +3320,7 @@ event "Deep memorial completed"
 mission "Deep Memorial Finished"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "main plot completed"
 	on offer
@@ -3341,6 +3348,7 @@ event "geminus rebuilt"
 mission "Geminus Rebuilt"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "main plot completed"
 	on offer
@@ -3357,6 +3365,7 @@ event "martini recovers"
 mission "Martini Recovers"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "main plot completed"
 	on offer

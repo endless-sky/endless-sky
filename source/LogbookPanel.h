@@ -35,6 +35,7 @@ class LogbookPanel : public Panel {
 public:
 	explicit LogbookPanel(PlayerInfo &player);
 
+	virtual void Step() override;
 	// Draw this panel.
 	virtual void Draw() override;
 
@@ -55,6 +56,9 @@ private:
 private:
 	// Reference to the player, to apply any changes to them.
 	PlayerInfo &player;
+
+	// Whether the scenes shown by logbook entries have been preloaded yet.
+	bool hasLoadedScenes = false;
 
 	// Current month being displayed:
 	Date selectedDate;

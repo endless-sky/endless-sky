@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.17-alpha
+version 0.11.2-alpha
 
 The player's manual and other
 resources are available at:
@@ -164,6 +164,8 @@ contributed to Endless Sky:
   a4358
   abenkovskii
   AdamKauffman
+  acolden-IAS
+  AdrianBunk
   akien-mga
   AlbertNewton
   AlekSeaLion
@@ -203,15 +205,20 @@ contributed to Endless Sky:
   bojidar-bg
   brendanjones
   Brick63
+  Canned-Seagull
   captain0xff
+  carlo-bramini
   CasparKielwein
+  CelestialHoney
   ChamEV
   chrisandreae
   Cherrio01
+  ciphell
   comnom
   corecontingency
   Corraban2
   cresslank
+  CrispySummers
   CyberShadow
   czartrak
   Daeridanii1
@@ -241,6 +248,7 @@ contributed to Endless Sky:
   dseomn
   dufferzafar
   dzhu
+  Eatswind
   Ebreus
   eebop
   eflyon
@@ -293,6 +301,7 @@ contributed to Endless Sky:
   ItsNickBarry
   jafdy
   Jamibaraki
+  Jan-Braaksma
   Janaszar
   JanErikAhrens
   janisozaur
@@ -311,6 +320,7 @@ contributed to Endless Sky:
   Just-Existing
   justinnhli
   justinw1320
+  kaiboyjiang
   kaol
   Karirawri
   kepler-69c
@@ -347,10 +357,13 @@ contributed to Endless Sky:
   MasterOfGrey
   Matteo Mazzitti
   mattsoulanille
+  MauriceTaniel
   maxrd2
   mbartlett21
   McloughlinGuy
   MCOfficer
+  Mdvanner
+  MereDecade
   MessyMix
   michel-slm
   mike-f1
@@ -365,6 +378,7 @@ contributed to Endless Sky:
   Nams-2
   NateEag
   nathan-b
+  NellyDevo
   Nescio0
   neurotrope
   nickshanks
@@ -372,9 +386,11 @@ contributed to Endless Sky:
   nobodywasishere
   NomadicVolcano
   nothing-but-the-rain
+  Nova1422
   NRK4
   ntabris
   OcelotWalrus
+  oliv3r
   oo13
   opusforlife2
   Ornok
@@ -411,6 +427,7 @@ contributed to Endless Sky:
   Red-57
   RedDeadUndead
   redschalken
+  RedTechGamer236
   ReimeiSky
   reizbar
   RestingImmortal

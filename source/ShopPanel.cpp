@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
@@ -82,12 +83,14 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	planet(player.GetPlanet()), isOutfitter(isOutfitter), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard")),
+	hasFleetCapacity(GameData::GetGamerules().GetFleetSizeLimitation() != Gamerules::FleetSizeLimitation::NONE),
 	shipsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
 	creditsTooltip(250, Alignment::LEFT, Tooltip::Direction::UP_LEFT, Tooltip::Corner::TOP_RIGHT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
 	buttonsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+	loadingCircle(30.f, 10, 2.),
 	hover(*GameData::Colors().Get("hover")),
 	active(*GameData::Colors().Get("active")),
 	inactive(*GameData::Colors().Get("inactive")),
@@ -97,12 +100,32 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 		playerShips.insert(playerShip);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
+
+	selectedQuantity = make_shared<Dropdown>();
+	selectedQuantity->SetAlign(Dropdown::LEFT);
+	selectedQuantity->SetFontSize(14);
+	selectedQuantity->SetPadding(0);
+	selectedQuantity->SetOptions({"1", "10", "100", "1000"});
+	selectedQuantity->SetTypeable(true);
+	selectedQuantity->SetCallback([](string &s)
+	{
+		// Restrict input to digits.
+		for(char c : s)
+		{
+			if(!isdigit(c))
+				return false;
+		}
+		return true;
+	});
+
+	AddChild(selectedQuantity);
 }
 
 
 
 void ShopPanel::Step()
 {
+	loadingCircle.Step();
 	if(!checkedHelp && GetUI().IsTop(this) && player.Ships().size() > 1)
 	{
 		if(DoHelp("multiple ships"))
@@ -133,6 +156,20 @@ void ShopPanel::Step()
 void ShopPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+
+	// If the modifier is set, then change the quantity in the dropdown.
+	int modifier = Modifier();
+	if(modifier > 1)
+	{
+		selectedQuantity->SetText(to_string(modifier));
+		quantityIsModifier = true;
+	}
+	else if(quantityIsModifier)
+	{
+		// User has released modifier keys. Reset quantity dropdown to 1x
+		selectedQuantity->SetText("1");
+		quantityIsModifier = false;
+	}
 
 	// These get added by both DrawMain and DrawDetailsSidebar, so clear them here.
 	categoryZones.clear();
@@ -212,7 +249,12 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	const Sprite *sprite = ship.GetSprite();
 	const Swizzle *swizzle = ship.CustomSwizzle() ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 	if(thumbnail)
-		SpriteShader::Draw(thumbnail, center + Point(0., 10.), 1., swizzle);
+	{
+		if(thumbnail->IsLoaded())
+			SpriteShader::Draw(thumbnail, center + Point(0., 10.), 1., swizzle);
+		else if(thumbnail->HasDimensions())
+			loadingCircle.Draw(center);
+	}
 	else if(sprite)
 	{
 		// Make sure the ship sprite leaves 10 pixels padding all around.
@@ -429,12 +471,12 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == SDLK_TAB)
 		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
 	else if(key == 'f')
-		GetUI().Push(new DialogPanel(this, &ShopPanel::DoFind, "Search for:"));
+		GetUI().Push(DialogPanel::RequestString(this, &ShopPanel::DoFind, "Search for:"));
 	else
 	{
 		TransactionResult result = HandleShortcuts(key);
 		if(result.HasMessage())
-			GetUI().Push(new DialogPanel(result.Message()));
+			GetUI().Push(DialogPanel::Info(result.Message()));
 		else if(isOutfitter)
 		{
 			// Ship-based updates to cargo are handled when leaving.
@@ -997,7 +1039,7 @@ void ShopPanel::DrawMain()
 
 int ShopPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player, collapsed.contains("description"), true);
+	shipInfo.Update(*playerShip, player, hasFleetCapacity, collapsed.contains("description"), true);
 	shipInfo.DrawAttributes(point, !isOutfitter);
 	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter);
 	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));

@@ -91,9 +91,6 @@ public:
 	static double GetProgress();
 	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
-	// Begin loading a sprite that was previously deferred. Currently this is
-	// done with all landscapes to speed up the program's startup.
-	static void Preload(TaskQueue &queue, const Sprite *sprite);
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::filesystem::path> &Sources();
@@ -151,6 +148,7 @@ public:
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
+	static const Set<Gamerules> &GamerulesPresets();
 
 	static const std::set<std::string> &UniverseWormholeRequirements();
 
@@ -191,6 +189,8 @@ public:
 	static const TextReplacements &GetTextReplacements();
 
 	static const Gamerules &GetGamerules();
+	static void SetGamerules(const Gamerules *gamerules);
+	static const Gamerules &DefaultGamerules();
 
 	// Thread-safe way to draw the menu background.
 	static void DrawMenuBackground(Panel *panel);

@@ -26,6 +26,7 @@ using namespace std;
 FlacSupplier::FlacSupplier(shared_ptr<iostream> data, bool looping)
 	: AsyncAudioSupplier(std::move(data), looping)
 {
+	StartAudioThread();
 }
 
 

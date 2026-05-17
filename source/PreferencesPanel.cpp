@@ -18,9 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
+#include "CustomEvents.h"
 #include "DialogPanel.h"
 #include "Files.h"
-#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -56,7 +56,6 @@ namespace {
 	// Settings that require special handling.
 	const string ZOOM_FACTOR = "Main zoom factor";
 	const int ZOOM_FACTOR_MIN = 100;
-	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
@@ -72,6 +71,7 @@ namespace {
 	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
 	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
 	const string TURRET_OVERLAYS = "Turret overlays";
+	const string HIGHLIGHT_SHIPS = "Highlight ships";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
@@ -92,6 +92,9 @@ namespace {
 	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
+	const string TRIBUTE_CONFIRMATION = "Tribute confirmation";
+	const string AMMO_REFILL = "Auto refill ammo";
+	const string TEXT_ALIGNMENT = "Text alignment";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
 	const string WINDOW_ROUNDING = "Window rounding";
@@ -99,11 +102,7 @@ namespace {
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
-#ifdef _WIN32
 	const int SETTINGS_PAGE_COUNT = 3;
-#else
-	const int SETTINGS_PAGE_COUNT = 2;
-#endif
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -318,13 +317,12 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 		if(zones[index].Contains(point))
 		{
 			if(zones[index].Value().Has(Command::MENU))
-				GetUI().Push(new DialogPanel([this, index]()
+				GetUI().Push(DialogPanel::CallFunctionIfOk([this, index]()
 					{
 						this->editing = this->selected = index;
 					},
 					"Rebinding this key will change the keypress you need to access this menu. "
-					"You really shouldn't rebind this unless needed.",
-					Truncate::NONE, true, true));
+					"You really shouldn't rebind this unless needed.", true));
 			else
 				editing = selected = index;
 		}
@@ -432,7 +430,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			int zoom = Screen::UserZoom();
 			if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
 				zoom -= ZOOM_FACTOR_INCREMENT;
-			if(dy > 0. && zoom < ZOOM_FACTOR_MAX)
+			if(dy > 0.)
 				zoom += ZOOM_FACTOR_INCREMENT;
 
 			Screen::SetZoom(zoom);
@@ -606,6 +604,7 @@ void PreferencesPanel::DrawControls()
 		Command::HOLD_POSITION,
 		Command::AMMO,
 		Command::HARVEST,
+		Command::SCAN_ORDER,
 		Command::NONE,
 		Command::NONE,
 		Command::NEAREST,
@@ -761,29 +760,49 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		CLOAK_OUTLINE,
+		"Linear filter",
 		"\t",
 		"Performance",
 		"Show CPU / GPU load",
 		LARGE_GRAPHICS_REDUCTION,
+		"Defer loading images",
 		SHIP_OUTLINES,
 		HUD_SHIP_OUTLINES,
 		"",
+		"Map",
+		"Deadline blink by distance",
+		"Hide unexplored map regions",
+		"Show escort systems on map",
+		"Show stored outfits on map",
+		"Parenthesize trade profits",
+		"",
+		"Trading",
+		"Sell outfits without outfitter",
+		"Confirm selling outfits",
+		"Confirm selling minables",
+		"",
 		"Gameplay",
+		TRIBUTE_CONFIRMATION,
+		"\n",
+		"Flagship Behavior",
 		"Control ship with mouse",
 		"Aim turrets with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
-		TURRET_TRACKING,
 		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
+		"Rehire extra crew when lost",
+		"Automatically unpark flagship",
+		FLAGSHIP_SPACE_PRIORITY,
+		"",
+		"Fleet Behavior",
+		TURRET_TRACKING,
 		EXPEND_AMMO,
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
-		"Rehire extra crew when lost",
-		"Automatically unpark flagship",
-		FLAGSHIP_SPACE_PRIORITY,
-		"\n",
+		AMMO_REFILL,
+		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
 		STATUS_OVERLAYS_FLAGSHIP,
@@ -793,21 +812,14 @@ void PreferencesPanel::DrawSettings()
 		"Show missile overlays",
 		TURRET_OVERLAYS,
 		"Show asteroid scanner overlay",
-		"Highlight player's flagship",
+		HIGHLIGHT_SHIPS,
 		"Rotate flagship in HUD",
 		"Show planet labels",
 		MINIMAP_DISPLAY,
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
-		"\t",
-		"Map",
-		"Deadline blink by distance",
-		"Hide unexplored map regions",
-		"Show escort systems on map",
-		"Show stored outfits on map",
-		"System map sends move orders",
-		"",
+		"\n",
 		"Other",
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
@@ -816,11 +828,11 @@ void PreferencesPanel::DrawSettings()
 		SCROLL_SPEED,
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
-		"Show parenthesis",
 		NOTIFY_ON_DEST,
 		"Save message log",
+		TEXT_ALIGNMENT,
 #ifdef _WIN32
-		"\n",
+		"\t",
 		"Windows Options",
 		TITLE_BAR_THEME,
 		WINDOW_ROUNDING
@@ -933,6 +945,11 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == TURRET_OVERLAYS)
 		{
 			text = Preferences::TurretOverlaysSetting();
+			isOn = text != "off";
+		}
+		else if(setting == HIGHLIGHT_SHIPS)
+		{
+			text = Preferences::HighlightShipsSetting();
 			isOn = text != "off";
 		}
 		else if(setting == CLOAK_OUTLINE)
@@ -1062,6 +1079,21 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetMinimapDisplay() != Preferences::MinimapDisplay::OFF;
 			text = Preferences::MinimapSetting();
+		}
+		else if(setting == TRIBUTE_CONFIRMATION)
+		{
+			isOn = Preferences::GetTributeConfirmation() != Preferences::TributeConfirmation::OFF;
+			text = Preferences::TributeConfirmationSetting();
+		}
+		else if(setting == AMMO_REFILL)
+		{
+			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::NEVER;
+			text = Preferences::AmmoRefillSetting();
+		}
+		else if(setting == TEXT_ALIGNMENT)
+		{
+			isOn = true;
+			text = Preferences::TextAlignmentSetting();
 		}
 #ifdef _WIN32
 		else if(setting == TITLE_BAR_THEME)
@@ -1306,7 +1338,7 @@ void PreferencesPanel::Exit()
 {
 	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
 	{
-		GetUI().Push(new DialogPanel("Menu keybind is not bound or has conflicts."));
+		GetUI().Push(DialogPanel::Info("Menu keybind is not bound or has conflicts."));
 		return;
 	}
 
@@ -1328,13 +1360,13 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	{
 		int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
 		Screen::SetZoom(newZoom);
-		if(newZoom > ZOOM_FACTOR_MAX || Screen::Zoom() != newZoom)
+		if(Screen::Zoom() != newZoom)
 		{
 			// Notify the user why setting the zoom any higher isn't permitted.
 			// Only show this if it's not possible to zoom the view at all, as
 			// otherwise the dialog will show every time, which is annoying.
 			if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
-				GetUI().Push(new DialogPanel(
+				GetUI().Push(DialogPanel::Info(
 					"Your screen resolution is too low to support a zoom level above 100%."));
 			Screen::SetZoom(ZOOM_FACTOR_MIN);
 		}
@@ -1361,7 +1393,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	else if(str == VSYNC_SETTING)
 	{
 		if(!Preferences::ToggleVSync())
-			GetUI().Push(new DialogPanel(
+			GetUI().Push(DialogPanel::Info(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
 	else if(str == CAMERA_ACCELERATION)
@@ -1380,6 +1412,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 	else if(str == TURRET_OVERLAYS)
 		Preferences::ToggleTurretOverlays();
+	else if(str == HIGHLIGHT_SHIPS)
+		Preferences::ToggleHighlightShips();
 	else if(str == AUTO_AIM_SETTING)
 		Preferences::ToggleAutoAim();
 	else if(str == AUTO_FIRE_SETTING)
@@ -1424,6 +1458,15 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleMinimapDisplay();
 	else if(str == BLOCK_SCREEN_SAVER)
 		Preferences::ToggleBlockScreenSaver();
+	else if(str == TRIBUTE_CONFIRMATION)
+		Preferences::ToggleTributeConfirmation();
+	else if(str == AMMO_REFILL)
+		Preferences::ToggleAmmoRefill();
+	else if(str == TEXT_ALIGNMENT)
+	{
+		Preferences::ToggleTextAlignment();
+		CustomEvents::SendAdjustText();
+	}
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
 		Preferences::ToggleTitleBarTheme();

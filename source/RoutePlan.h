@@ -34,9 +34,6 @@ public:
 	RoutePlan(const System &center, const System &destination, const PlayerInfo *player = nullptr);
 	RoutePlan(const Ship &ship, const System &destination, const PlayerInfo *player = nullptr);
 
-	// Copy constructor, used with caching.
-	RoutePlan(const RoutePlan &other);
-
 	// Find out if the destination is reachable.
 	bool HasRoute() const;
 	// Get the first step on the route from center to the destination.

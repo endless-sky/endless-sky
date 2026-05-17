@@ -22,12 +22,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GamerulesPanel.h"
 #include "Information.h"
 #include "Interface.h"
 #include "LoadPanel.h"
 #include "Logger.h"
 #include "MainPanel.h"
 #include "pi.h"
+#include "PilotProfile.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -155,7 +157,7 @@ void MenuPanel::Draw()
 			info.SetString("system", player.GetSystem()->DisplayName());
 		if(player.GetPlanet())
 			info.SetString("planet", player.GetPlanet()->DisplayName());
-		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
+		info.SetString("credits", Format::AbbreviatedNumber(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 		info.SetString("playtime", Format::PlayTime(player.GetPlayTime()));
 	}
@@ -170,6 +172,8 @@ void MenuPanel::Draw()
 		info.SetCondition("no pilot loaded");
 		info.SetString("pilot", "No Pilot Loaded");
 	}
+	if(player.Pilot() && !player.Pilot()->GetGamerules().LockGamerules())
+		info.SetCondition("gamerules unlocked");
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	mainMenuUi->Draw(info, this);
@@ -191,6 +195,10 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'r' && player.IsLoaded() && player.IsDead())
 	{
+		// First, make sure the previous MainPanel has been deleted.
+		gamePanels.Reset();
+		gamePanels.CanSave(true);
+
 		player.Reload();
 
 		GetUI().PopThrough(GetUI().Root().get());
@@ -210,6 +218,12 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// Request that the player chooses a start scenario.
 		// StartConditionsPanel also handles the case where there's no scenarios.
 		GetUI().Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
+	}
+	else if(key == 'g' && player.Pilot() && !player.Pilot()->GetGamerules().LockGamerules())
+	{
+		GamerulesPanel *panel = new GamerulesPanel(player.Pilot()->GetGamerules(), true);
+		panel->SetCallback(player.Pilot().get(), &PilotProfile::Save);
+		GetUI().Push(panel);
 	}
 	else if(key == 'q')
 	{

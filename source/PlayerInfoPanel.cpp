@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "InfoPanelState.h"
 #include "Information.h"
 #include "Interface.h"
@@ -664,28 +665,31 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	}
 
 	// Display the factors affecting piracy targeting the player.
-	auto factors = player.RaidFleetFactors();
-	double attractionLevel = max(0., log2(max(factors.first, 0.)));
-	double deterrenceLevel = max(0., log2(max(factors.second, 0.)));
-	string attractionRating = GameData::Rating("cargo attractiveness", attractionLevel);
-	string deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
-	if(!attractionRating.empty() && !deterrenceRating.empty())
+	if(GameData::GetGamerules().SpawnRaidFleets())
 	{
-		double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
-		double prob = 1. - pow(1. - attraction, 10.);
+		auto factors = player.RaidFleetFactors();
+		double attractionLevel = max(0., log2(max(factors.first, 0.)));
+		double deterrenceLevel = max(0., log2(max(factors.second, 0.)));
+		string attractionRating = GameData::Rating("cargo attractiveness", attractionLevel);
+		string deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
+		if(!attractionRating.empty() && !deterrenceRating.empty())
+		{
+			double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
+			double prob = 1. - pow(1. - attraction, 10.);
 
-		table.DrawGap(10);
-		table.DrawUnderline(dim);
-		table.Draw("piracy threat:", bright);
-		table.Draw(to_string(lround(100 * prob)) + "%", dim);
-		table.DrawGap(5);
+			table.DrawGap(10);
+			table.DrawUnderline(dim);
+			table.Draw("piracy threat:", bright);
+			table.Draw(Format::Percentage(prob, 0), dim);
+			table.DrawGap(5);
 
-		// Format the attraction and deterrence levels with tens places, so it
-		// is clear which is higher even if they round to the same level.
-		table.DrawTruncatedPair("cargo: " + attractionRating, dim,
-			"(+" + Format::Decimal(attractionLevel, 1) + ")", dim, Truncate::MIDDLE, false);
-		table.DrawTruncatedPair("fleet: " + deterrenceRating, dim,
-			"(-" + Format::Decimal(deterrenceLevel, 1) + ")", dim, Truncate::MIDDLE, false);
+			// Format the attraction and deterrence levels with tens places, so it
+			// is clear which is higher even if they round to the same level.
+			table.DrawTruncatedPair("cargo: " + attractionRating, dim,
+				"(+" + Format::Number(attractionLevel, 1, false) + ")", dim, Truncate::MIDDLE, false);
+			table.DrawTruncatedPair("fleet: " + deterrenceRating, dim,
+				"(-" + Format::Number(deterrenceLevel, 1, false) + ")", dim, Truncate::MIDDLE, false);
+		}
 	}
 	// Other special information:
 	vector<pair<int64_t, string>> salary;
@@ -800,11 +804,9 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		const System *system = ship.GetSystem();
 		table.Draw(system ? (player.KnowsName(*system) ? system->DisplayName() : "???") : "");
 
-		string shields = to_string(static_cast<int>(100. * max(0., ship.Shields()))) + "%";
-		table.Draw(shields);
+		table.Draw(Format::Percentage(max(0., ship.Shields()), 0));
 
-		string hull = to_string(static_cast<int>(100. * max(0., ship.Hull()))) + "%";
-		table.Draw(hull);
+		table.Draw(Format::Percentage(max(0., ship.Hull()), 0));
 
 		string fuel = to_string(static_cast<int>(
 			ship.Attributes().Get("fuel capacity") * ship.Fuel()));

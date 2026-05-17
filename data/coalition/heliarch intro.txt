@@ -1534,7 +1534,7 @@ mission "Heliarch Containment 4-B"
 	on offer
 		conversation
 			`Hundreds of Heliarch agents pour out of the three Kimek transports, rushing in groups to separate parts of the city. They march in unison, weapons in hand. From the reactions of the locals, it's clear they were neither expecting such a thing, nor are they happy with the agents going about the city in that manner.`
-			`	When the last of the Heliarchs leave the transports, one of the Kimek captains inform you that you should now head to <destination> to meet with Consul Plortub collect your payment of <payment>, and to "avoid getting caught in any potential retaliation."`
+			`	When the last of the Heliarchs leave the transports, one of the Kimek captains informs you that you should now head to <destination> to meet with Consul Plortub, collect your payment of <payment>, and "avoid getting caught in any potential retaliation."`
 				accept
 	on accept
 		"assisting heliarchy" ++

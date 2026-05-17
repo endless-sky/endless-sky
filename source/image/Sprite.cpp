@@ -17,13 +17,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageBuffer.h"
 #include "../Preferences.h"
-#include "../Screen.h"
 
 #include "../opengl.h"
 
 #include <SDL2/SDL.h>
-
-#include <algorithm>
 
 using namespace std;
 
@@ -42,9 +39,10 @@ namespace {
 		glGenTextures(1, target);
 		glBindTexture(type, *target);
 
-		// Use linear interpolation and no wrapping.
-		glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		// Use linear interpolation (if not disabled in preferences) and no wrapping.
+		int filter = Preferences::Has("Linear filter") ? GL_LINEAR : GL_NEAREST;
+		glTexParameteri(type, GL_TEXTURE_MIN_FILTER, filter);
+		glTexParameteri(type, GL_TEXTURE_MAG_FILTER, filter);
 		glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		if(type == GL_TEXTURE_3D)
@@ -79,9 +77,27 @@ const string &Sprite::Name() const
 
 
 
+void Sprite::LoadDimensions(const ImageBuffer &buffer)
+{
+	width = buffer.Width();
+	height = buffer.Height();
+	frames = buffer.Frames();
+}
+
+
+
+bool Sprite::HasDimensions() const
+{
+	return width != 0 && height != 0 && frames != 0;
+}
+
+
+
+
 // Add the given frames, optionally uploading them. The given buffers will be cleared afterwards.
 void Sprite::AddFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noReduction)
 {
+	isLoaded = true;
 	// The 1x image determines the dimensions of the sprite's size.
 	width = buffer1x.Width();
 	height = buffer1x.Height();
@@ -129,6 +145,13 @@ void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, 
 
 
 
+bool Sprite::IsLoaded() const
+{
+	return isLoaded;
+}
+
+
+
 // Free up all textures loaded for this sprite.
 void Sprite::Unload()
 {
@@ -137,17 +160,13 @@ void Sprite::Unload()
 		glDeleteTextures(1, &texture);
 		texture = 0;
 	}
-
 	if(swizzleMask)
 	{
 		glDeleteTextures(1, &swizzleMask);
 		swizzleMask = 0;
 	}
-
-	width = 0.f;
-	height = 0.f;
-	frames = 0;
-	swizzleMaskFrames = 0;
+	isLoaded = false;
+	// Dimension and frame information is retained.
 }
 
 

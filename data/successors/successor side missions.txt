@@ -384,6 +384,7 @@ mission "Successors: People's Houses: First Contact"
 mission "Successors: Unified Defense"
 	invisible
 	landing
+	non-blocking
 	infiltrating
 	source
 		attributes "successor"

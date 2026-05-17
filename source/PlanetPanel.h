@@ -42,10 +42,12 @@ class TextArea;
 class PlanetPanel : public Panel {
 public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
-	~PlanetPanel();
+	virtual ~PlanetPanel() override;
 
 	virtual void Step() override;
 	virtual void Draw() override;
+
+	virtual void UpdateTextDisplay() override;
 
 
 protected:
@@ -77,6 +79,10 @@ private:
 	bool hasOutfitter = false;
 	Sale<Ship> shipyardStock;
 	Sale<Outfit> outfitterStock;
+	// Whether the thumbnails for the ships and outfits visible in the shops have been loaded.
+	// May be set back to false if a mission could have gifted the player a ship or outfit, or
+	// added new items to the shop.
+	bool hasLoadedThumbnails = false;
 
 	std::shared_ptr<Panel> trading;
 	std::shared_ptr<Panel> bank;

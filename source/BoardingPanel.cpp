@@ -100,6 +100,12 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!canCapture)
 		messages.emplace_back("This is not a ship that you can capture.");
+	else if(player.FleetCost() + victim->FleetCost() > player.FleetCapacity())
+	{
+		canCapture = false;
+		messages.emplace_back("You cannot capture this ship as doing so");
+		messages.emplace_back("would put you over your fleet capacity.");
+	}
 	else
 	{
 		attackOdds.Calculate();
@@ -185,24 +191,27 @@ void BoardingPanel::Draw()
 
 	// This should always be true, but double check.
 	int crew = 0;
-	if(you && canCapture)
+	if(you)
 	{
-		crew = you->Crew();
 		info.SetString("cargo space", to_string(you->Cargo().Free()));
-		info.SetString("your crew", to_string(crew));
-		info.SetString("your attack",
-			Format::Decimal(attackOdds.AttackerPower(crew), 1));
-		info.SetString("your defense",
-			Format::Decimal(defenseOdds.DefenderPower(crew), 1));
+		if(canCapture)
+		{
+			crew = you->Crew();
+			info.SetString("your crew", to_string(crew));
+			info.SetString("your attack",
+				Format::Number(attackOdds.AttackerPower(crew), 1, false));
+			info.SetString("your defense",
+				Format::Number(defenseOdds.DefenderPower(crew), 1, false));
+		}
 	}
 	int vCrew = victim ? victim->Crew() : 0;
 	if(victim && (canCapture || victim->IsYours()))
 	{
 		info.SetString("enemy crew", to_string(vCrew));
 		info.SetString("enemy attack",
-			Format::Decimal(defenseOdds.AttackerPower(vCrew), 1));
+			Format::Number(defenseOdds.AttackerPower(vCrew), 1, false));
 		info.SetString("enemy defense",
-			Format::Decimal(attackOdds.DefenderPower(vCrew), 1));
+			Format::Number(attackOdds.DefenderPower(vCrew), 1, false));
 	}
 	if(victim && canCapture && !victim->IsYours())
 	{
@@ -213,13 +222,13 @@ void BoardingPanel::Draw()
 		if(!isCapturing)
 			odds *= (1. - victim->Attributes().Get("self destruct"));
 		info.SetString("attack odds",
-			Format::Decimal(100. * odds, 1) + "%");
+			Format::Percentage(odds, 1, false));
 		info.SetString("attack casualties",
-			Format::Decimal(attackOdds.AttackerCasualties(crew, vCrew), 1));
+			Format::Number(attackOdds.AttackerCasualties(crew, vCrew), 1, false));
 		info.SetString("defense odds",
-			Format::Decimal(100. * (1. - defenseOdds.Odds(vCrew, crew)), 1) + "%");
+			Format::Percentage(1. - defenseOdds.Odds(vCrew, crew), 1, false));
 		info.SetString("defense casualties",
-			Format::Decimal(defenseOdds.DefenderCasualties(vCrew, crew), 1));
+			Format::Number(defenseOdds.DefenderCasualties(vCrew, crew), 1, false));
 	}
 
 	const Interface *boarding = GameData::Interfaces().Get("boarding");
@@ -267,7 +276,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			else
 				message = "You cannot plunder now.";
 
-			GetUI().Push(new DialogPanel{message});
+			GetUI().Push(DialogPanel::Info(message));
 			return true;
 		}
 
@@ -283,7 +292,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			// Keep track of how many you actually took.
 			count = 0;
 			for(const auto &it : you->Outfits())
-				if(it.first != outfit && it.first->AmmoStoredOrUsed() == outfit)
+				if(it.first != outfit && it.first->AmmoStoredOrUsed().contains(outfit))
 				{
 					// Figure out how many of these outfits you can install.
 					count = you->Attributes().CanAdd(*outfit, available);
@@ -325,8 +334,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		{
 			victim->SelfDestruct();
 			GetUI().Pop(this);
-			GetUI().Push(new DialogPanel("The moment you blast through the airlock, a series of explosions rocks the "
-				"enemy ship. They appear to have set off their self-destruct sequence..."));
+			GetUI().Push(DialogPanel::Info("The moment you blast through the airlock, a series of explosions "
+				"rocks the enemy ship. They appear to have set off their self-destruct sequence..."));
 			return true;
 		}
 		isCapturing = true;
@@ -461,12 +470,16 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					messages.push_back(transferMessage);
 				}
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
-					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
-				player.AddShip(victim);
+				{
+					double fuelTransferred = you->TransferFuel(victim->JumpFuelMissing(), &*victim);
+					if(fuelTransferred >= 1.)
+						messages.push_back(Format::Number(fuelTransferred, 0) + " fuel has been transferred.");
+				}
+				player.CaptureShip(victim);
 				for(const Ship::Bay &bay : victim->Bays())
 					if(bay.ship)
 					{
-						player.AddShip(bay.ship);
+						player.CaptureShip(bay.ship);
 						player.HandleEvent(ShipEvent(you, bay.ship, ShipEvent::CAPTURE), GetUI());
 					}
 				isCapturing = false;
@@ -631,7 +644,7 @@ bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
 	// you can install it as an outfit.
 	if(outfit)
 		for(const auto &it : ship.Outfits())
-			if(it.first != outfit && it.first->AmmoStoredOrUsed() == outfit && ship.Attributes().CanAdd(*outfit))
+			if(it.first != outfit && it.first->AmmoStoredOrUsed().contains(outfit) && ship.Attributes().CanAdd(*outfit))
 				return true;
 
 	return false;
@@ -657,7 +670,7 @@ void BoardingPanel::Plunder::UpdateStrings()
 	else
 		size = to_string(count) + " x " + Format::Number(mass);
 
-	value = Format::Credits(unitValue * count);
+	value = Format::AbbreviatedNumber(unitValue * count);
 }
 
 

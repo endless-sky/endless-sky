@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "Color.h"
+#include "Gamerules.h"
 #include "Information.h"
 #include "Point.h"
 #include "Rectangle.h"
@@ -65,6 +66,8 @@ private:
 	StartConditionsList scenarios;
 	// The currently selected starting scenario.
 	StartConditionsList::iterator startIt;
+	// The currently selected gamerules.
+	Gamerules gamerules;
 	// Colors with which to draw text.
 	const Color &bright;
 	const Color &medium;

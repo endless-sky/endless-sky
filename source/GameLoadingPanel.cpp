@@ -15,9 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameLoadingPanel.h"
 
-#include "Angle.h"
 #include "audio/Audio.h"
-#include "Color.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
 #include "GameData.h"
@@ -26,11 +24,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MenuPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "shader/PointerShader.h"
-#include "Ship.h"
 #include "image/SpriteSet.h"
 #include "shader/StarField.h"
-#include "System.h"
 #include "TaskQueue.h"
 #include "UI.h"
 
@@ -41,7 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
 	UI &gamePanels, bool &finishedLoading)
 	: player(player), queue(queue), conversation(conversation), gamePanels(gamePanels),
-		finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
+		finishedLoading(finishedLoading), loadingCircle(140.f, 60)
 {
 	SetIsFullScreen(true);
 }
@@ -50,7 +45,7 @@ GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, TaskQueue &queue, const C
 
 void GameLoadingPanel::Step()
 {
-	progress = static_cast<int>(GameData::GetProgress() * MAX_TICKS);
+	progress = GameData::GetProgress();
 
 	queue.ProcessSyncTasks();
 	if(GameData::IsLoaded())
@@ -99,13 +94,5 @@ void GameLoadingPanel::Draw()
 	GameData::DrawMenuBackground(this);
 
 	// Draw the loading circle.
-	Angle da(ANGLE_OFFSET);
-	Angle a(0.);
-	PointerShader::Bind();
-	for(int i = 0; i < progress; ++i)
-	{
-		PointerShader::Add(Point(), a.Unit(), 8.f, 20.f, 140.f, Color(.5f, 0.f));
-		a += da;
-	}
-	PointerShader::Unbind();
+	loadingCircle.Draw(Point(), progress);
 }
