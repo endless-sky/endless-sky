@@ -231,6 +231,8 @@ void StartConditions::InstantiateShips(const PlayerInfo &player, vector<shared_p
 	ships.Instantiate(playerShips, &subs);
 	for(shared_ptr<Ship> &ship : playerShips)
 	{
+		if(ship->GivenName().empty())
+			ship->SetGivenName(GameData::Phrases().Get("civilian")->Get());
 		ship->SetSystem(system);
 		ship->SetPlanet(planet);
 		ship->SetIsSpecial();
