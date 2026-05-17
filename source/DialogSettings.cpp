@@ -59,9 +59,9 @@ void DialogSettings::Save(DataWriter &out) const
 		for(const DialogLine &line : lines)
 		{
 			out.Write(line.text);
-			out.BeginChild();
+			if(!line.condition.IsEmpty())
 			{
-				if(!line.condition.IsEmpty())
+				out.BeginChild();
 				{
 					out.Write("to", "display");
 					out.BeginChild();
@@ -70,8 +70,8 @@ void DialogSettings::Save(DataWriter &out) const
 					}
 					out.EndChild();
 				}
+				out.EndChild();
 			}
-			out.EndChild();
 		}
 	}
 	out.EndChild();
