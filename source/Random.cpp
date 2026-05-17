@@ -42,11 +42,7 @@ namespace {
 	uint64_t fixedSeed = 0;
 }
 
-void Random::SetFixedSeed(uint64_t seed)
-{
-	useFixedSeed = true;
-	fixedSeed = seed;
-}
+
 
 // Seed the generator (e.g. to make it produce exactly the same random
 // numbers it produced previously).
@@ -60,10 +56,10 @@ void Random::Seed(uint64_t seed)
 
 
 
-Random::Random()
+void Random::SetFixedSeed(uint64_t seed)
 {
-	if(useFixedSeed)
-		Seed(fixedSeed);
+	useFixedSeed = true;
+	fixedSeed = seed;
 }
 
 
