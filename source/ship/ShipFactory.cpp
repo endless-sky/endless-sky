@@ -16,10 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipFactory.h"
 
 #include "../DataNode.h"
-#include "../text/Format.h"
 #include "../GameData.h"
-#include "../Phrase.h"
-#include "../Ship.h"
 
 #include <algorithm>
 #include <ranges>
