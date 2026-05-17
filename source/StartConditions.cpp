@@ -19,13 +19,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Logger.h"
+#include "Phrase.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Ship.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "System.h"
 
 #include <algorithm>
+#include <ranges>
 #include <sstream>
 
 using namespace std;
@@ -86,11 +89,9 @@ void StartConditions::Load(const DataNode &node, const ConditionsStore *globalCo
 			else if(key == "thumbnail")
 				unlocked.thumbnail = nullptr;
 			else if(key == "ships")
-				ships.clear();
+				ships.Clear();
 			else if(key == "ship" && hasValue)
-				ships.erase(remove_if(ships.begin(), ships.end(),
-					[&value](const Ship &s) noexcept -> bool { return s.TrueModelName() == value; }),
-					ships.end());
+				ships.RemoveModel(value);
 			else if(key == "conversation")
 				conversation = ExclusiveItem<Conversation>();
 			else if(key == "to" && hasValue)
@@ -110,18 +111,7 @@ void StartConditions::Load(const DataNode &node, const ConditionsStore *globalCo
 				child.PrintTrace("Skipping unsupported use of \"remove\":");
 		}
 		else if(key == "ship" && hasValue)
-		{
-			// TODO: support named stock ships.
-			// Assume that child nodes introduce a full ship definition. Even without child nodes,
-			// Ship::Load + Ship::FinishLoading will create the expected ship instance if there is
-			// a 3rd token (i.e. this will be treated as though it were a ship variant definition,
-			// without making the variant available to the rest of GameData).
-			if(child.HasChildren() || child.Size() >= add + 3)
-				ships.emplace_back(child, playerConditions);
-			// If there's only 2 tokens & there's no child nodes, the created instance would be ill-formed.
-			else
-				child.PrintTrace("Skipping unsupported use of a \"stock\" ship (a full definition is required):");
-		}
+			ships.Load(node, playerConditions);
 		else if(key == "conversation" && child.HasChildren() && !add)
 			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
 		else if(key == "conversation" && hasValue && !child.HasChildren())
@@ -182,8 +172,7 @@ void StartConditions::Load(const DataNode &node, const ConditionsStore *globalCo
 // Finish loading the ship definitions.
 void StartConditions::FinishLoading()
 {
-	for(Ship &ship : ships)
-		ship.FinishLoading(true);
+	ships.FinishLoading();
 
 	// The UNLOCKED StartInfo should always display the correct information. Therefore, we get the
 	// planet and system names now. If we had gotten these during Load, the planet and system provided
@@ -220,7 +209,7 @@ bool StartConditions::IsValid() const
 		return false;
 
 	// All ship models must be valid.
-	if(any_of(ships.begin(), ships.end(), [](const Ship &it) noexcept -> bool { return !it.IsValid(); }))
+	if(!ships.IsValid())
 		return false;
 
 	return true;
@@ -235,9 +224,19 @@ const ConditionAssignments &StartConditions::GetConditions() const noexcept
 
 
 
-const vector<Ship> &StartConditions::Ships() const noexcept
+void StartConditions::InstantiateShips(const PlayerInfo &player, vector<shared_ptr<Ship>> &playerShips) const noexcept
 {
-	return ships;
+	map<string, string> subs;
+	player.AddPlayerSubstitutions(subs);
+	ships.Instantiate(playerShips, &subs);
+	for(shared_ptr<Ship> &ship : playerShips)
+	{
+		ship->SetSystem(system);
+		ship->SetPlanet(planet);
+		ship->SetIsSpecial();
+		ship->SetIsYours();
+		ship->SetGovernment(GameData::PlayerGovernment());
+	}
 }
 
 

@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 #include "Personality.h"
 #include "Phrase.h"
+#include "ship/ShipFactory.h"
 
 #include <list>
 #include <memory>
@@ -66,9 +67,11 @@ public:
 
 private:
 	bool isLoaded = false;
+	std::string name;
 	LocationFilter location;
 	int frequency = 100;
 
+	ShipFactory shipFactory;
 	std::list<std::shared_ptr<Ship>> ships;
 	const FormationPattern *formationPattern = nullptr;
 	const Government *government = nullptr;
