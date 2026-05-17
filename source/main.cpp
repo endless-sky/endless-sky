@@ -148,9 +148,7 @@ int main(int argc, char *argv[])
 		else if(arg == "--nomute")
 			noTestMute = true;
 		else if(arg == "--tq-threads" && *++it)
-		{
 			nWorkerThreads = std::stoull(*it);
-		}
 	}
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
