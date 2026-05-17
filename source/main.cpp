@@ -40,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Plugins.h"
 #include "Preferences.h"
 #include "PrintData.h"
+#include "Random.h"
 #include "Screen.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
@@ -146,6 +147,8 @@ int main(int argc, char *argv[])
 			printTests = true;
 		else if(arg == "--nomute")
 			noTestMute = true;
+		else if(arg == "--rngseed" && *++it)
+			Random::SetFixedSeed(std::stoull(*it));
 	}
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
@@ -625,6 +628,8 @@ void PrintHelp()
 	cerr << "    --tests: print table of available tests, then exit." << endl;
 	cerr << "    --test <name>: run given test from resources directory." << endl;
 	cerr << "    --nomute: don't mute the game while running tests." << endl;
+	cerr << "    --rng-seed <seed>: every time the pseudo-random number generator is seeded,"
+		" it will be given this value." << endl;
 	PrintData::Help();
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
