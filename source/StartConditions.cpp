@@ -111,7 +111,7 @@ void StartConditions::Load(const DataNode &node, const ConditionsStore *globalCo
 				child.PrintTrace("Skipping unsupported use of \"remove\":");
 		}
 		else if(key == "ship" && hasValue)
-			ships.Load(node, playerConditions);
+			ships.Load(child, playerConditions);
 		else if(key == "conversation" && child.HasChildren() && !add)
 			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
 		else if(key == "conversation" && hasValue && !child.HasChildren())

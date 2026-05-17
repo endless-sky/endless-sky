@@ -43,7 +43,7 @@ void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		else if(key == "formation" && hasValue)
 			formationPattern = GameData::Formations().Get(child.Token(1));
 		else if(key == "ship" && hasValue)
-			shipFactory.Load(node, playerConditions);
+			shipFactory.Load(child, playerConditions);
 		else if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(key == "personality")
