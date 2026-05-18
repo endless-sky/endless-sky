@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "CategoryType.h"
+#include "Message.h"
 #include "Set.h"
 #include "Shop.h"
 #include "Swizzle.h"
@@ -90,9 +91,6 @@ public:
 	static double GetProgress();
 	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
-	// Begin loading a sprite that was previously deferred. Currently this is
-	// done with all landscapes to speed up the program's startup.
-	static void Preload(TaskQueue &queue, const Sprite *sprite);
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::filesystem::path> &Sources();
@@ -109,10 +107,11 @@ public:
 	static void StepEconomy();
 	static void AddPurchase(const System &system, const std::string &commodity, int tons);
 	// Apply the given change to the universe.
-	static void Change(const DataNode &node, const PlayerInfo &player);
+	static void Change(const DataNode &node, PlayerInfo &player);
 	// Update the neighbor lists and other information for all the systems.
 	// This must be done any time that a change creates or moves a system.
 	static void UpdateSystems();
+	static void RecomputeWormholeRequirements();
 	static void AddJumpRange(double neighborDistance);
 
 	// Re-activate any special persons that were created previously but that are
@@ -132,6 +131,8 @@ public:
 	static const Set<Government> &Governments();
 	static const Set<Hazard> &Hazards();
 	static const Set<Interface> &Interfaces();
+	static const Set<Message::Category> &MessageCategories();
+	static const Set<Message> &Messages();
 	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
 	static const Set<News> &SpaceportNews();
@@ -147,6 +148,9 @@ public:
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
+	static const Set<Gamerules> &GamerulesPresets();
+
+	static const std::set<std::string> &UniverseWormholeRequirements();
 
 	static ConditionsStore &GlobalConditions();
 
@@ -185,6 +189,8 @@ public:
 	static const TextReplacements &GetTextReplacements();
 
 	static const Gamerules &GetGamerules();
+	static void SetGamerules(const Gamerules *gamerules);
+	static const Gamerules &DefaultGamerules();
 
 	// Thread-safe way to draw the menu background.
 	static void DrawMenuBackground(Panel *panel);

@@ -78,15 +78,23 @@ const Command Command::FULLSCREEN(ONE << 27, "Toggle fullscreen");
 const Command Command::FASTFORWARD(ONE << 28, "Toggle fast-forward");
 const Command Command::HELP(ONE << 29, "Show help");
 const Command Command::PAUSE(ONE << 30, "Pause");
-const Command Command::FIGHT(ONE << 31, "Fleet: Fight my target");
-const Command Command::GATHER(ONE << 32, "Fleet: Gather around me");
-const Command Command::HOLD(ONE << 33, "Fleet: Hold position");
-const Command Command::HARVEST(ONE << 34, "Fleet: Harvest flotsam");
-const Command Command::AMMO(ONE << 35, "Fleet: Toggle ammo usage");
-const Command Command::AUTOSTEER(ONE << 36, "Auto steer");
-const Command Command::WAIT(ONE << 37, "");
-const Command Command::STOP(ONE << 38, "");
-const Command Command::SHIFT(ONE << 39, "");
+const Command Command::PERFORMANCE_DISPLAY(ONE << 31, "Toggle performance info");
+const Command Command::FIGHT(ONE << 32, "Fleet: Fight my target");
+const Command Command::HOLD_FIRE(ONE << 33, "Fleet: Toggle hold fire");
+const Command Command::GATHER(ONE << 34, "Fleet: Gather around me");
+const Command Command::HOLD_POSITION(ONE << 35, "Fleet: Hold position");
+const Command Command::HARVEST(ONE << 36, "Fleet: Harvest flotsam");
+const Command Command::SCAN_ORDER(ONE << 37, "Fleet: Scan my target");
+const Command Command::AMMO(ONE << 38, "Fleet: Toggle ammo usage");
+const Command Command::AUTOSTEER(ONE << 39, "Auto steer");
+
+// These commands are not in the preferences panel, and do not have keys
+// assigned to them, but may have descriptions as needed to facilitate
+// assignments in downstream ports like endless-mobile.
+const Command Command::WAIT(ONE << 41, "");
+const Command Command::STOP(ONE << 41, "Stop your ship");
+const Command Command::SHIFT(ONE << 42, "");
+
 
 
 
@@ -288,8 +296,10 @@ void Command::Load(const DataNode &node)
 			{"fullscreen", Command::FULLSCREEN},
 			{"fastforward", Command::FASTFORWARD},
 			{"fight", Command::FIGHT},
+			{"hold fire", Command::HOLD_FIRE},
 			{"gather", Command::GATHER},
-			{"hold", Command::HOLD},
+			{"hold", Command::HOLD_POSITION},
+			{"scan order", Command::SCAN_ORDER},
 			{"ammo", Command::AMMO},
 			{"nearest asteroid", Command::NEAREST_ASTEROID},
 			{"wait", Command::WAIT},
@@ -301,7 +311,7 @@ void Command::Load(const DataNode &node)
 		if(it != lookup.end())
 			Set(it->second);
 		else
-			node.PrintTrace("Warning: Skipping unrecognized command \"" + node.Token(i) + "\":");
+			node.PrintTrace("Skipping unrecognized command \"" + node.Token(i) + "\":");
 	}
 }
 

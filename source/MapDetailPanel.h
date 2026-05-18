@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPanel.h"
 
+#include "ClickZone.h"
 #include "MapPlanetCard.h"
 #include "Point.h"
 #include "ScrollBar.h"
@@ -58,13 +59,14 @@ protected:
 
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	// Handle single & double-clicks on commodities, planet information, or objects in the "orbits" display.
-	virtual bool Click(int x, int y, int clicks) override;
-	// Handle right-clicks within the "orbits" display.
-	virtual bool RClick(int x, int y) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
+
+	virtual void Resize() override;
 
 
 private:
 	void InitTextArea();
+	void ResizeTextArea();
 	void GeneratePlanetCards(const System &system);
 	void DrawKey();
 	void DrawInfo();
@@ -99,4 +101,6 @@ private:
 	std::shared_ptr<TextArea> description = nullptr;
 	bool descriptionVisible = false;
 	int descriptionXOffset;
+
+	std::vector<ClickZone<int>> clickZones;
 };

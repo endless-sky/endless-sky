@@ -36,6 +36,7 @@ class Person {
 public:
 	void Load(const DataNode &node, const ConditionsStore *playerConditions,
 		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
+	bool IsValid() const;
 	// Finish loading all the ships in this person specification.
 	void FinishLoading();
 	// Prevent this person from being spawned in any system.
@@ -64,6 +65,7 @@ public:
 
 
 private:
+	bool isLoaded = false;
 	LocationFilter location;
 	int frequency = 100;
 

@@ -255,10 +255,10 @@ outfit "Afterburner (Asteroid Class)"
 	"engine capacity" -5
 	"fuel capacity" 100
 	"ramscoop" 0.25
-	"afterburner thrust" 23.1
+	"afterburner thrust" 20.6
 	"afterburner energy" 0.6
 	"afterburner heat" 6.25
-	"afterburner fuel" 0.0375
+	"afterburner fuel" 0.075
 	"afterburner effect" "korath afterburner tiny"
 	description "The smallest of afterburners is as much Fuel Processor as it is afterburner. It allows Korath small craft operators to squeeze a hyperdrive into otherwise intrasystem ships and dispense with conventional thrusters entirely."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that may nearly melt the thruster."
@@ -273,10 +273,10 @@ outfit "Afterburner (Comet Class)"
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"afterburner thrust" 93.6
+	"afterburner thrust" 84.3
 	"afterburner energy" 2.25
 	"afterburner heat" 22.75
-	"afterburner fuel" 0.125
+	"afterburner fuel" 0.25
 	"afterburner effect" "korath afterburner small"
 	description "Adding these afterburners to an interceptor allows it to reach absurd speeds; however, the heat produced ensures that running them for any substantial period of time will require some serious cooling."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
@@ -291,10 +291,10 @@ outfit "Afterburner (Lunar Class)"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"afterburner thrust" 178.5
+	"afterburner thrust" 148.5
 	"afterburner energy" 3.9
 	"afterburner heat" 41.65
-	"afterburner fuel" 0.225
+	"afterburner fuel" 0.45
 	"afterburner effect" "korath afterburner medium"
 	description "Although these afterburners produce an incredible amount of thrust for their fuel usage, the prospect of installing one brings to mind many safety concerns."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
@@ -309,10 +309,10 @@ outfit "Afterburner (Planetary Class)"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"afterburner thrust" 345.6
+	"afterburner thrust" 265.5
 	"afterburner energy" 7.1
 	"afterburner heat" 79.45
-	"afterburner fuel" 0.4
+	"afterburner fuel" 0.8
 	"afterburner effect" "korath afterburner large"
 	"heat capacity" 150
 	description "These enormous afterburners have dedicated reaction chambers with cooling vents to keep the fuel-plasma explosion from destroying the thruster."
@@ -328,10 +328,10 @@ outfit "Afterburner (Stellar Class)"
 	"mass" 94
 	"outfit space" -94
 	"engine capacity" -94
-	"afterburner thrust" 662.4
+	"afterburner thrust" 474.3
 	"afterburner energy" 12.65
 	"afterburner heat" 148
-	"afterburner fuel" 0.725
+	"afterburner fuel" 1.45
 	"afterburner effect" "korath afterburner huge"
 	"active cooling" 8
 	"cooling energy" 0.4

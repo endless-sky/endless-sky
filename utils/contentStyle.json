@@ -101,14 +101,14 @@
 					},
 					{
 						"description": "non-ASCII apostrophe",
-						"regex": "[’‘]",
+						"regex": "[\\u2018\\u2019]",
 						"correction": {
 							"replaceWith": "'"
 						}
 					},
 					{
 						"description": "non-ASCII quotation mark",
-						"regex": "[“”]",
+						"regex": "[\\u201c\\u201d]",
 						"correction": {
 							"replaceWith": "\""
 						}

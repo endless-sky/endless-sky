@@ -48,12 +48,15 @@ public:
 
 	virtual ~ConversationPanel() override;
 
-template <class T>
+	template<class T>
 	void SetCallback(T *t, void (T::*fun)(int));
 	void SetCallback(std::function<void(int)> fun);
 
+	virtual void Step() override;
 	// Draw this panel.
 	virtual void Draw() override;
+
+	virtual void UpdateTextDisplay() override;
 
 
 protected:
@@ -96,6 +99,7 @@ private:
 		// Draw this paragraph at the given point, and return the point that the
 		// next paragraph below this one should be drawn at.
 		Point Draw(Point point, const Color &color) const;
+		void SetAlignment(Alignment alignment);
 
 	private:
 		const Sprite *scene = nullptr;
@@ -125,6 +129,9 @@ private:
 
 	// Current scroll position.
 	double scroll = 0.;
+
+	// Whether the scenes from the conversation have been preloaded yet.
+	bool hasLoadedScenes = false;
 
 	// The "history" of the conversation up to this point:
 	std::list<Paragraph> text;
@@ -159,7 +166,7 @@ private:
 
 
 // Allow the callback function to be a member of any class.
-template <class T>
+template<class T>
 void ConversationPanel::SetCallback(T *t, void (T::*fun)(int))
 {
 	callback = std::bind(fun, t, std::placeholders::_1);

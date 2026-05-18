@@ -47,6 +47,21 @@ namespace {
 	GLint glyphI = 0;
 	GLint aspectI = 0;
 	GLint positionI = 0;
+
+	GLint vertI;
+	GLint cornerI;
+
+	void EnableAttribArrays()
+	{
+		// Connect the xy to the "vert" attribute of the vertex shader.
+		constexpr auto stride = 4 * sizeof(GLfloat);
+		glEnableVertexAttribArray(vertI);
+		glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, stride, nullptr);
+
+		glEnableVertexAttribArray(cornerI);
+		glVertexAttribPointer(cornerI, 2, GL_FLOAT, GL_FALSE,
+			stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
+	}
 }
 
 
@@ -108,7 +123,13 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 {
 	glUseProgram(shader->Object());
 	glBindTexture(GL_TEXTURE_2D, texture);
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(vao);
+	else
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		EnableAttribArrays();
+	}
 
 	glUniform4fv(colorI, 1, color.Get());
 
@@ -171,7 +192,14 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 		previous = glyph;
 	}
 
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
+	else
+	{
+		glDisableVertexAttribArray(vertI);
+		glDisableVertexAttribArray(cornerI);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	}
 	glUseProgram(0);
 }
 
@@ -312,15 +340,21 @@ void Font::SetUpShader(float glyphW, float glyphH)
 
 	shader = GameData::Shaders().Get("font");
 	// Initialize the shared parameters only once
-	if(!vao)
+	if(!vbo)
 	{
+		vertI = shader->Attrib("vert");
+		cornerI = shader->Attrib("corner");
+
 		glUseProgram(shader->Object());
 		glUniform1i(shader->Uniform("tex"), 0);
 		glUseProgram(0);
 
 		// Create the VAO and VBO.
-		glGenVertexArrays(1, &vao);
-		glBindVertexArray(vao);
+		if(OpenGL::HasVaoSupport())
+		{
+			glGenVertexArrays(1, &vao);
+			glBindVertexArray(vao);
+		}
 
 		glGenBuffers(1, &vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -333,17 +367,12 @@ void Font::SetUpShader(float glyphW, float glyphH)
 		};
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-		// Connect the xy to the "vert" attribute of the vertex shader.
-		constexpr auto stride = 4 * sizeof(GLfloat);
-		glEnableVertexAttribArray(shader->Attrib("vert"));
-		glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
-
-		glEnableVertexAttribArray(shader->Attrib("corner"));
-		glVertexAttribPointer(shader->Attrib("corner"), 2, GL_FLOAT, GL_FALSE,
-				stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
+		if(OpenGL::HasVaoSupport())
+			EnableAttribArrays();
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glBindVertexArray(0);
+		if(OpenGL::HasVaoSupport())
+			glBindVertexArray(0);
 
 		colorI = shader->Uniform("color");
 		scaleI = shader->Uniform("scale");

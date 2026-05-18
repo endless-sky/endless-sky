@@ -32,9 +32,11 @@ namespace {
 
 	// Worker threads for executing tasks.
 	struct WorkerThreads {
-		WorkerThreads() noexcept
+		WorkerThreads(uint64_t threadCount = 0) noexcept
 		{
-			threads.resize(max(4u, thread::hardware_concurrency()));
+			if(!threadCount)
+				threadCount = max(4u, thread::hardware_concurrency());
+			threads.resize(threadCount);
 			for(thread &t : threads)
 				t = thread(&TaskQueue::ThreadLoop);
 		}
@@ -55,6 +57,19 @@ namespace {
 
 
 
+void TaskQueue::SetWorkerThreadCount(uint64_t count)
+{
+	if(count == 0 || threads.threads.size() == count)
+		return;
+
+	threads.~WorkerThreads();
+	lock_guard<mutex> lock(asyncMutex);
+	shouldQuit = false;
+	new(&threads) WorkerThreads(count);
+}
+
+
+
 TaskQueue::~TaskQueue()
 {
 	// Make sure every task that belongs to this queue is finished.
@@ -67,9 +82,9 @@ TaskQueue::~TaskQueue()
 // will get executed on the main thread after the first function finishes.
 // Returns a future representing the future result of the async call. Ignores
 // any main thread task that still need to be executed!
-std::shared_future<void> TaskQueue::Run(function<void()> asyncTask, function<void()> syncTask)
+shared_future<void> TaskQueue::Run(function<void()> asyncTask, function<void()> syncTask)
 {
-	std::shared_future<void> result;
+	shared_future<void> result;
 	{
 		lock_guard<mutex> lock(asyncMutex);
 		// Do nothing if we are destroying the queue already.
@@ -79,7 +94,7 @@ std::shared_future<void> TaskQueue::Run(function<void()> asyncTask, function<voi
 		// Queue this task for execution and create a future to track its state.
 		tasks.push(Task{this, std::move(asyncTask), std::move(syncTask)});
 		result = futures.emplace_back(tasks.back().futurePromise.get_future());
-		tasks.back().futureIt = std::prev(futures.end());
+		tasks.back().futureIt = prev(futures.end());
 	}
 	asyncCondition.notify_one();
 	return result;

@@ -29,6 +29,7 @@ using namespace std;
 void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
+	isLoaded = true;
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -47,7 +48,7 @@ void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			bool setName = !ships.empty() && child.Size() >= 3;
 			ships.emplace_back(make_shared<Ship>(child, playerConditions));
 			if(setName)
-				ships.back()->SetName(child.Token(2));
+				ships.back()->SetGivenName(child.Token(2));
 		}
 		else if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
@@ -58,6 +59,18 @@ void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+}
+
+
+
+bool Person::IsValid() const
+{
+	if(!isLoaded || !government || !government->IsDefined())
+		return false;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsValid())
+			return false;
+	return true;
 }
 
 
@@ -89,7 +102,7 @@ int Person::Frequency(const System *system) const
 {
 	// Because persons always enter a system via one of the regular hyperspace
 	// links, don't create them in systems with no links.
-	if(!system || IsDestroyed() || IsPlaced() || system->Links().empty())
+	if(!system || !frequency || system->Links().empty() || !IsValid() || IsDestroyed() || IsPlaced())
 		return 0;
 
 	return (location.IsEmpty() || location.Matches(system)) ? frequency : 0;

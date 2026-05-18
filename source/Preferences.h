@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+enum class Alignment;
+
 
 
 class Preferences {
@@ -120,6 +122,54 @@ public:
 		ALWAYS_ON
 	};
 
+	enum class FlagshipSpacePriority : int_fast8_t {
+		NONE = 0,
+		PASSENGERS,
+		CARGO,
+		BOTH
+	};
+
+	enum class LargeGraphicsReduction : int_fast8_t {
+		OFF,
+		LARGEST_ONLY,
+		ALL
+	};
+
+	enum class HighlightShips : int_fast8_t {
+		OFF,
+		FLAGSHIP,
+		OWNED_SHIPS,
+		ALL
+	};
+
+	enum class TributeConfirmation : int_fast8_t {
+		OFF = 0,
+		FRIENDLY_ONLY,
+		ALWAYS
+	};
+
+	enum class AmmoRefill : int_fast8_t {
+		NEVER = 0,
+		ASK,
+		WHEN_FREE,
+		ALWAYS
+	};
+
+#ifdef _WIN32
+	enum class TitleBarTheme : int_fast8_t {
+		DEFAULT,
+		LIGHT,
+		DARK
+	};
+
+	enum class WindowRounding : int_fast8_t {
+		DEFAULT,
+		OFF,
+		LARGE,
+		SMALL
+	};
+#endif
+
 
 public:
 	static void Load();
@@ -145,6 +195,9 @@ public:
 	// Scroll speed preference.
 	static int ScrollSpeed();
 	static void SetScrollSpeed(int speed);
+
+	static int TooltipActivation();
+	static void SetTooltipActivation(int steps);
 
 	static double ViewZoom();
 	static bool ZoomViewIn();
@@ -173,6 +226,11 @@ public:
 	static void ToggleTurretOverlays();
 	static TurretOverlays GetTurretOverlays();
 	static const std::string &TurretOverlaysSetting();
+
+	/// Highlight ships setting, either "off", "flagship", "owned ships", or "all".
+	static void ToggleHighlightShips();
+	static HighlightShips GetHighlightShips();
+	static const std::string &HighlightShipsSetting();
 
 	/// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();
@@ -217,5 +275,42 @@ public:
 	static MinimapDisplay GetMinimapDisplay();
 	static const std::string &MinimapSetting();
 
+	/// Flagship space priority setting.
+	static void ToggleFlagshipSpacePriority();
+	static FlagshipSpacePriority GetFlagshipSpacePriority();
+	static const std::string &FlagshipSpacePrioritySetting();
+
+	/// Large graphics reduction setting.
+	static void ToggleLargeGraphicsReduction();
+	static LargeGraphicsReduction GetLargeGraphicsReduction();
+	static const std::string &LargeGraphicsReductionSetting();
+
+	/// Tribute confirmation dialog setting.
+	static void ToggleTributeConfirmation();
+	static TributeConfirmation GetTributeConfirmation();
+	static const std::string &TributeConfirmationSetting();
+
+	/// Outfitter ammo refill confirmation setting.
+	static void ToggleAmmoRefill();
+	static AmmoRefill GetAmmoRefill();
+	static const std::string &AmmoRefillSetting();
+
+	/// Text alignment override setting.
+	static void ToggleTextAlignment();
+	static Alignment GetTextAlignment();
+	static const std::string &TextAlignmentSetting();
+
+	static void ToggleBlockScreenSaver();
+
 	static int GetPreviousSaveCount();
+
+#ifdef _WIN32
+	static void ToggleTitleBarTheme();
+	static TitleBarTheme GetTitleBarTheme();
+	static const std::string &TitleBarThemeSetting();
+
+	static void ToggleWindowRounding();
+	static WindowRounding GetWindowRounding();
+	static const std::string &WindowRoundingSetting();
+#endif
 };

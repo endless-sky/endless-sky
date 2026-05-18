@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Effect.h"
 #include "GameData.h"
 #include "image/SpriteSet.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -195,8 +196,8 @@ namespace {
 
 	// Used to add the contents of one outfit's map to another, while also
 	// erasing any key with a value of zero.
-	template <class T>
-	void MergeMaps(map<const T *, int> &thisMap, const map<const T *, int> &otherMap, int count)
+	template<class T, class N>
+	void MergeMaps(map<const T *, N> &thisMap, const map<const T *, N> &otherMap, int count)
 	{
 		for(const auto &it : otherMap)
 		{
@@ -205,6 +206,22 @@ namespace {
 				thisMap.erase(it.first);
 		}
 	}
+}
+
+
+
+optional<double> Outfit::LowerLimit(const string &attribute)
+{
+	auto it = MINIMUM_OVERRIDES.find(attribute);
+	if(it != MINIMUM_OVERRIDES.end())
+	{
+		// An override of exactly 0 means the attribute may have any value.
+		if(!it->second)
+			return nullopt;
+		return it->second;
+	}
+	// No minimum override means a minimum of 0.
+	return 0.;
 }
 
 
@@ -255,7 +272,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "afterburner effect" && hasValue)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
 		else if(key == "jump effect" && hasValue)
-			++jumpEffects[GameData::Effects().Get(child.Token(1))];
+			jumpEffects[GameData::Effects().Get(child.Token(1))] += child.Size() >= 3 ? child.Value(2) : 1.;
 		else if(key == "hyperdrive sound" && hasValue)
 			++hyperSounds[Audio::Get(child.Token(1))];
 		else if(key == "hyperdrive in sound" && hasValue)
@@ -277,14 +294,23 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "weapon")
-			LoadWeapon(child);
+		{
+			if(!weapon)
+				weapon = make_shared<Weapon>();
+			Weapon newWeapon = *weapon;
+			newWeapon.Load(child);
+			weapon = make_shared<Weapon>(std::move(newWeapon));
+			if(weapon->Ammo())
+				linkedOutfits.insert(weapon->Ammo());
+		}
 		else if(key == "ammo" && hasValue)
 		{
-			// Non-weapon outfits can have ammo so that storage outfits
-			// properly remove excess ammo when the storage is sold, instead
-			// of blocking the sale of the outfit until the ammo is sold first.
-			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), 0);
+			const Outfit *ammo = GameData::Outfits().Get(child.Token(1));
+			ammoStored.insert(ammo);
+			linkedOutfits.insert(ammo);
 		}
+		else if(key == "linked" && hasValue)
+			linkedOutfits.insert(GameData::Outfits().Get(child.Token(1)));
 		else if(key == "description" && hasValue)
 			description.Load(child, playerConditions);
 		else if(key == "cost" && hasValue)
@@ -318,16 +344,18 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		displayName = trueName;
 
 	// If no plural name has been defined, append an 's' to the name and use that.
-	// If the name ends in an 's' or 'z', and no plural name has been defined, print a
-	// warning since an explicit plural name is always required in this case.
-	// Unless this outfit definition isn't declared with the `outfit` keyword,
+	// If the name ends in an 's', 'x', 'z', 'ch', or 'sh', and no plural name has been defined,
+	// print a warning since an irregular plural is usually required in this case.
+	// Unless this outfit definition isn't declared with a category,
 	// because then this is probably being done in `add attributes` on a ship,
-	// so the name doesn't matter.
+	// or it's a pseudo-outfit like submunitions, so the name doesn't matter.
 	if(!displayName.empty() && pluralName.empty())
 	{
 		pluralName = displayName + 's';
-		if((displayName.back() == 's' || displayName.back() == 'z') && node.Token(0) == "outfit")
-			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
+		const char &last = displayName.back();
+		if(!category.empty() && (last == 's' || last == 'x' || last == 'z'
+				|| displayName.ends_with("ch") || displayName.ends_with("sh")))
+			node.PrintTrace("Explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralName + "\".");
 	}
 
@@ -356,12 +384,15 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		GameData::AddJumpRange(attributes.Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
-	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn()
-		&& !AntiMissile() && !TractorBeam())
+	if(weapon && attributes.Get("turret mounts") && !weapon->TurretTurn()
+		&& !weapon->AntiMissile() && !weapon->TractorBeam())
 	{
-		SetTurretTurn(4.);
-		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
+		Weapon newWeapon = *weapon;
+		newWeapon.turretTurn = 4.;
+		weapon = make_shared<Weapon>(std::move(newWeapon));
+		node.PrintTrace("Deprecated use of a turret without specified \"turret turn\":");
 	}
+
 	// Convert any legacy cargo / outfit scan definitions into power & speed,
 	// so no runtime code has to check for both.
 	auto convertScan = [&](string &&kind) -> void
@@ -371,7 +402,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		if(initial)
 		{
 			attributes[label] = 0.;
-			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+			node.PrintTrace("Deprecated use of \"" + label + "\" instead of \""
 					+ label + " power\" and \"" + label + " speed\":");
 
 			// A scan value of 300 is equivalent to a scan power of 9.
@@ -388,7 +419,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		if(initial)
 		{
 			attributes[label] = 0.;
-			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+			node.PrintTrace("Deprecated use of \"" + label + "\" instead of \""
 					+ kind + " scan efficiency\":");
 			// A reasonable update is 15x the previous value, as the base scan time
 			// is 10x what it was before scan efficiency was introduced, along with
@@ -419,16 +450,16 @@ const string &Outfit::TrueName() const
 
 
 
-const string &Outfit::DisplayName() const
+void Outfit::SetTrueName(const string &name)
 {
-	return displayName;
+	this->trueName = name;
 }
 
 
 
-void Outfit::SetName(const string &name)
+const string &Outfit::DisplayName() const
 {
-	this->trueName = name;
+	return displayName;
 }
 
 
@@ -515,15 +546,9 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 		// The minimum allowed value of most attributes is 0. Some attributes
 		// have special functionality when negative, though, and are therefore
 		// allowed to have values less than 0.
-		double minimum = 0.;
-		auto it = MINIMUM_OVERRIDES.find(at.first);
-		if(it != MINIMUM_OVERRIDES.end())
-		{
-			minimum = it->second;
-			// An override of exactly 0 means the attribute may have any value.
-			if(!minimum)
-				continue;
-		}
+		optional<double> minimum = LowerLimit(at.first);
+		if(!minimum.has_value())
+			continue;
 
 		// Only automatons may have a "required crew" of 0.
 		if(!strcmp(at.first, "required crew"))
@@ -531,8 +556,8 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 
 		double value = Get(at.first);
 		// Allow for rounding errors:
-		if(value + at.second * count < minimum - EPS)
-			count = (value - minimum) / -at.second + EPS;
+		if(value + at.second * count < *minimum - EPS)
+			count = (value - *minimum) / -at.second + EPS;
 	}
 
 	return count;
@@ -592,6 +617,30 @@ void Outfit::Set(const char *attribute, double value)
 
 
 
+const set<const Outfit *> &Outfit::AmmoStored() const
+{
+	return ammoStored;
+}
+
+
+
+const set<const Outfit *> &Outfit::AmmoStoredOrUsed() const
+{
+	static set<const Outfit *> weaponAmmo;
+	if(weapon && weapon->Ammo() && weaponAmmo.empty())
+		weaponAmmo.insert(weapon->Ammo());
+	return weapon ? weaponAmmo : ammoStored;
+}
+
+
+
+const set<const Outfit *> &Outfit::LinkedOutfits() const
+{
+	return linkedOutfits;
+}
+
+
+
 // Get this outfit's engine flare sprite, if any.
 const vector<pair<Body, int>> &Outfit::FlareSprites() const
 {
@@ -644,7 +693,7 @@ const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 
 
 // Get this outfit's jump effects and sounds, if any.
-const map<const Effect *, int> &Outfit::JumpEffects() const
+const map<const Effect *, double> &Outfit::JumpEffects() const
 {
 	return jumpEffects;
 }

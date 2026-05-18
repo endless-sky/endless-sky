@@ -62,7 +62,6 @@ private:
 private:
 	int step = 0;
 	double zoom = 1.;
-	bool isHighDPI = false;
 	std::vector<SpriteShader::Item> items;
 
 	Point center;

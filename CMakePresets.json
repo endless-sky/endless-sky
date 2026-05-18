@@ -13,7 +13,8 @@
 			},
 			"cacheVariables": {
 				"CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-				"CMAKE_COLOR_DIAGNOSTICS": "ON"
+				"CMAKE_COLOR_DIAGNOSTICS": "ON",
+				"CMAKE_POLICY_VERSION_MINIMUM": "3.5"
 			}
 		},
 		{
@@ -31,7 +32,8 @@
 				"CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
 				"CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
 				"ES_USE_VCPKG": "ON",
-				"ES_USE_SYSTEM_LIBRARIES": "OFF"
+				"ES_USE_SYSTEM_LIBRARIES": "OFF",
+				"CMAKE_POLICY_VERSION_MINIMUM": "3.5"
 			},
 			"condition": {
 				"type": "equals",
@@ -54,7 +56,8 @@
 				"CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
 				"ES_USE_VCPKG": "ON",
 				"ES_USE_SYSTEM_LIBRARIES": "OFF",
-				"BUILD_TESTING": "OFF"
+				"BUILD_TESTING": "OFF",
+				"CMAKE_POLICY_VERSION_MINIMUM": "3.5"
 			},
 			"condition": {
 				"type": "equals",
@@ -188,7 +191,8 @@
 				"CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
 				"CMAKE_RC_COMPILER": "windres",
 				"VCPKG_HOST_TRIPLET": "x86-mingw-dynamic",
-				"VCPKG_TARGET_TRIPLET": "x86-mingw-dynamic"
+				"VCPKG_TARGET_TRIPLET": "x86-mingw-dynamic",
+				"ES_LARGE_ADDRESS_AWARE": true
 			},
 			"condition": {
 				"type": "equals",
@@ -228,7 +232,7 @@
 				"VCPKG_HOST_TRIPLET": "macos64-ci",
 				"VCPKG_TARGET_TRIPLET": "macos64-ci",
 				"CMAKE_OSX_ARCHITECTURES": "x86_64",
-				"CMAKE_OSX_DEPLOYMENT_TARGET": "10.13"
+				"CMAKE_OSX_DEPLOYMENT_TARGET": "10.12"
 			}
 		},
 		{
@@ -244,7 +248,7 @@
 				"VCPKG_HOST_TRIPLET": "macos-arm64-ci",
 				"VCPKG_TARGET_TRIPLET": "macos-arm64-ci",
 				"CMAKE_OSX_ARCHITECTURES": "arm64",
-				"CMAKE_OSX_DEPLOYMENT_TARGET": "11"
+				"CMAKE_OSX_DEPLOYMENT_TARGET": "10.12"
 			}
 		},
 		{
@@ -279,7 +283,8 @@
 				"CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
 				"CMAKE_RC_COMPILER": "windres",
 				"VCPKG_HOST_TRIPLET": "win32-release",
-				"VCPKG_TARGET_TRIPLET": "win32-release"
+				"VCPKG_TARGET_TRIPLET": "win32-release",
+				"ES_LARGE_ADDRESS_AWARE": true
 			}
 		},
 		{
@@ -304,7 +309,7 @@
 				"VCPKG_HOST_TRIPLET": "macos64-release",
 				"VCPKG_TARGET_TRIPLET": "macos64-release",
 				"CMAKE_OSX_ARCHITECTURES": "x86_64",
-				"CMAKE_OSX_DEPLOYMENT_TARGET": "10.13"
+				"CMAKE_OSX_DEPLOYMENT_TARGET": "10.7"
 			}
 		},
 		{
@@ -322,7 +327,7 @@
 				"VCPKG_HOST_TRIPLET": "macos-arm64-release",
 				"VCPKG_TARGET_TRIPLET": "macos-arm64-release",
 				"CMAKE_OSX_ARCHITECTURES": "arm64",
-				"CMAKE_OSX_DEPLOYMENT_TARGET": "11"
+				"CMAKE_OSX_DEPLOYMENT_TARGET": "10.7"
 			}
 		},
 		{
@@ -349,7 +354,8 @@
 				"CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
 				"CMAKE_RC_COMPILER": "windres",
 				"VCPKG_HOST_TRIPLET": "win32-release",
-				"VCPKG_TARGET_TRIPLET": "win32-release"
+				"VCPKG_TARGET_TRIPLET": "win32-release",
+				"ES_LARGE_ADDRESS_AWARE": true
 			}
 		}
 	],

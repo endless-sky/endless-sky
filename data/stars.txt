@@ -250,11 +250,6 @@ star "star/patir"
 	wind 8
 	icon "map/patir-star"
 
-# Rogue planet with unusual properties
-star "planet/rogue-radiating"
-	power .2
-	wind .6
-
 # Compact stellar objects.
 star "star/neutron"
 	power 4

@@ -15,7 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "supplier/AudioSupplier.h"
+
 #include <filesystem>
+#include <memory>
 #include <string>
 
 
@@ -28,14 +31,16 @@ public:
 
 	const std::string &Name() const;
 
-	unsigned Buffer() const;
-	unsigned Buffer3x() const;
+	const std::vector<AudioSupplier::sample_t> &Buffer() const;
+	const std::vector<AudioSupplier::sample_t> &Buffer3x() const;
 	bool IsLooping() const;
+
+	std::unique_ptr<AudioSupplier> CreateSupplier() const;
 
 
 private:
 	std::string name;
-	unsigned buffer = 0;
-	unsigned buffer3x = 0;
+	std::vector<AudioSupplier::sample_t> buffer;
+	std::vector<AudioSupplier::sample_t> buffer3x;
 	bool isLooped = false;
 };

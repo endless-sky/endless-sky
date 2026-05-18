@@ -49,7 +49,7 @@ public:
 	class StartInfo {
 	public:
 		const Sprite *thumbnail = nullptr;
-		std::string name;
+		std::string displayName;
 		std::string description;
 		// StartInfo stores the name of the provided system and planet instead of a pointer to them
 		// so that the names don't need to be actual systems or planets in the game for the VISIBLE

@@ -117,7 +117,7 @@ outfit "Boomerang Organ"
 	"mass" 10
 	"outfit space" 10
 	"radar jamming" 30
-	"optical jamming" 20
+	"optical jamming" 2
 	"energy capacity" 100
 	"energy generation" 1
 	"heat generation" 0.5

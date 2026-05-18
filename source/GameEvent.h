@@ -52,12 +52,15 @@ public:
 	explicit GameEvent(const DataNode &node, const ConditionsStore *playerConditions);
 
 	void Load(const DataNode &node, const ConditionsStore *playerConditions);
+	// Save a scheduled version of this event. This will only be called if the event is unnamed and has a scheduled
+	// date. Otherwise, PlayerInfo saves the event's name and scheduled date instead of saving the full list of
+	// data changes.
 	void Save(DataWriter &out) const;
 	// If disabled, an event will not Apply() or Save().
 	void Disable();
 
-	const std::string &Name() const;
-	void SetName(const std::string &name);
+	const std::string &TrueName() const;
+	void SetTrueName(const std::string &name);
 
 	// Check if this GameEvent has been loaded (vs. simply referred to) and
 	// if it references any items that have not been defined.
@@ -69,18 +72,22 @@ public:
 
 	// Apply this event's changes to the player. Returns a list of data changes that need to
 	// be applied in a batch with other events that are applied at the same time.
-	std::list<DataNode> Apply(PlayerInfo &player);
+	std::list<DataNode> Apply(PlayerInfo &player, bool onlyDataChanges = false);
 
+	const ConditionAssignments &Conditions() const;
 	const std::list<DataNode> &Changes() const;
+
+	bool SaveRawChanges() const;
 
 	// Comparison operator, based on the date of the event.
 	bool operator<(const GameEvent &other) const;
 
 private:
 	Date date;
-	std::string name;
+	std::string trueName;
 	bool isDisabled = false;
 	bool isDefined = false;
+	bool saveRawChanges = false;
 
 	ConditionAssignments conditionsToApply;
 	std::list<DataNode> changes;

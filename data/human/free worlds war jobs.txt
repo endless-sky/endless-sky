@@ -62,12 +62,10 @@ mission "FW Scout Run [0]"
 		government "Republic"
 		not system "Graffias"
 	on visit
-		dialog phrase "generic waypoint on visit"
+		dialog `You have landed on <planet>, but you have yet to scout out all the marked systems. Visit all the systems marked on your map before returning.`
 	on complete
 		payment 10000 180
 		dialog phrase "free worlds scanner payment"
-	on visit
-		dialog `You have landed on <planet>, but you have yet to scout out all the marked systems. Visit all the systems marked on your map before returning.`
 
 mission "FW Scout Run [1]"
 	job
@@ -92,12 +90,10 @@ mission "FW Scout Run [1]"
 		government "Republic"
 		not system "Graffias"
 	on visit
-		dialog phrase "generic waypoint on visit"
+		dialog `You have landed on <planet>, but you have yet to scout out all the marked systems. Visit all the systems marked on your map before returning.`
 	on complete
 		payment 20000 180
 		dialog phrase "free worlds scanner payment"
-	on visit
-		dialog `You have landed on <planet>, but you have yet to scout out all the marked systems. Visit all the systems marked on your map before returning.`
 
 mission "FW Scout Run [2]"
 	job
@@ -122,12 +118,10 @@ mission "FW Scout Run [2]"
 		government "Republic"
 		not system "Graffias"
 	on visit
-		dialog phrase "generic waypoint on visit"
+		dialog `You have landed on <planet>, but you have yet to scout out all the marked systems. Visit all the systems marked on your map before returning.`
 	on complete
 		payment 30000 180
 		dialog phrase "free worlds scanner payment"
-	on visit
-		dialog `You have landed on <planet>, but you have yet to scout out all the marked systems. Visit all the systems marked on your map before returning.`
 
 
 

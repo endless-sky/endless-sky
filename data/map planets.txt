@@ -256,7 +256,21 @@ planet Antipode
 	attributes core frontier frozen mining
 	landscape land/snow17
 	description `Antipode is a world of creeping glaciers and year-round snow, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
+		to display
+			not "start: syndicate"
 	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile that they have had very little success.`
+		to display
+			not "start: syndicate"
+
+	description `Antipode is a frozen, unforgiving world, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
+		to display
+			has "start: syndicate"
+	description `	What little amenities are available for the people living here are of subpar quality; a third of the houses lack a dedicated heating system, and it can take months before a store is able to restock its goods.`
+		to display
+			has "start: syndicate"
+	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile, and living conditions so squalid, that they have had very little success.`
+		to display
+			has "start: syndicate"
 	spaceport `The spaceport consists of a single enormous warehouse. The air inside is cold, but you are glad to get out of the howling wind. In one corner is a counter advertising skiing adventures, but no one is staffing it; they must be out to lunch or taking the day off.`
 	spaceport `	As with many of these small spaceports, it seems that the only option for food is a pub, but the smells coming from it are enticing; for once, you may have found a spaceport bar whose chef actually knows how to cook.`
 	security 0.1
@@ -270,9 +284,9 @@ planet "Antivli Station"
 	description `Once one of many, this was an enormous synchrotron particle accelerator several kilometers in diameter, dedicated towards the industrial production of large quantities of antimatter. With beamed power provided by the thousands of solar collection satellites around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts. The discovery of the hyperdrive nearly wiped the antimatter economy out overnight, with interstellar travel now almost trivial.`
 	description `	Combined, the amat farms around Anax once produced several tons of antimatter each year. The economic crash caused by the hyperdrive brought production to its knees, but the final death of Antivli Station appears to have come at the hands of the Aberrant.`
 	port "Amat _Plant"
+		recharges energy
 		description `The docks once used by specialized antimatter transport ships are wrecked beyond recognition, with only a small trickle of energy available. Beyond this, the beamlines once used to produce antimatter are broken and shattered - the antimatter plant is certainly beyond recovery.`
 		description `	The station's stockpile of antimatter, hundreds of tons held in reserve as antihydrogen ice plated with a thin layer of antilithium, appears to have likewise been lost to the Incursion. Whatever happened to the antimatter, it is at least certain that it did not breach its magnetic levitation containment tanks, as otherwise nothing of the station would be left but vapor.`
-		recharges energy
 	government Uninhabited
 
 planet Aqra-Kvel-Taaq
@@ -315,7 +329,7 @@ planet "Arachne Station"
 		fleet "Large Militia" 14
 
 planet Araio
-	attributes "aberrant siege" avgi farming frontier rich
+	attributes "aberrant siege" avgi farming frontier wealthy
 	landscape land/canyon3
 	description `Araio is a relatively small world dominated by a single supercontinent. Continental uplift has made much of the land characterized by mountainous highland, scattered with numerous springs and lakes. Though the air is thin and the soil is rocky, hardy plants and woody trees cling to life, breaking up the landscape of rocky mountains with colorful meadows and bountiful forests.`
 	description `	Araio garnered a reputation as a frontier world ripe for plucky pioneers, reminiscent of an oft-romanticized era on Aviskir. While rich in gemstones, natural stones have not been competitive with nanofabricated alternatives since long before the planet was settled, and thus the economy on the surface is almost completely dominated by homesteads and small frontier towns.`
@@ -345,12 +359,23 @@ planet Arroharg
 	security 0.9
 
 planet Asgard
-	attributes deep education factory research rich urban
+	attributes deep education factory research urban wealthy
 	landscape land/city13-sfiera
 	description `Asgard was one of the first worlds to be settled in the Deep. It is now home to many crowded cities, with soaring skyscrapers that are made of lightweight composite materials rather than the steel and concrete so commonly used elsewhere.`
 	description `	This is also the home of Deep Sky, a manufacturing firm that produces a wide variety of expensive and useful starship equipment.`
 	spaceport `As with many of the worlds here in the Deep, walking around this spaceport feels like making a visit to the future. Everything is immaculately clean. The port is a single building reminiscent of a sand castle or termite mound: a jumble of spires, each a slightly different shape, all piled on top of each other. Docking bays open on various sides of the spires in a haphazard arrangement. It feels like this building is an organic thing, rather than the work of human hands.`
+		to display
+			not "start: deep"
 	spaceport `	The locals hurry by, seemingly oblivious to your presence; the only people who meet your gaze are your fellow wide-eyed visitors.`
+		to display
+			not "start: deep"
+	
+	spaceport `Everything is immaculately clean. The port is a single building reminiscent of a sand castle or termite mound: a jumble of spires, each a slightly different shape, all piled on top of each other. Docking bays open on various sides of the spires in a haphazard arrangement. The liberal use of flowing shapes and earthen colors makes the building look almost organic, rather than the work of human hands.`
+		to display
+			has "start: deep"
+	spaceport `	The locals hurry by in a mesmerising, yet purposeful, manner. You spot some stragglers in the crowd, seemingly enraptured by the people around them.`
+		to display
+			has "start: deep"
 	shipyard "Lionheart Basics"
 	shipyard "Lionheart Advanced"
 	outfitter "Deep Sky Advanced"
@@ -391,12 +416,6 @@ planet Asphodel
 	description `Despite being nominally in the habitable zone, this planet's surface is continually scorched by the stars of Gacrux and their solar flares, steadily blasting away its atmosphere. A joint venture of three major universities from Chiron has placed some small research stations in orbit around Asphodel, and while they provide valuable insights into the nature and behavior of flare stars, the researchers generally avoid descending to the planet's surface unnecessarily. None of the stations appear to have the facilities to service your ship, however.`
 	government Uninhabited
 
-planet Aspiration
-	attributes pirate
-	landscape land/sea17-harro
-	description `The world of Aspiration appears to be a mild, habitable world, but one currently in an advanced ice age now slowly retreating. The equatorial region of the planet is warm and comfortable, a cool temperate at the present time. The native biosphere seems to be mostly grasses and something resembling pine trees. In a few thousand years, it might look similar to Earth before it was paved over. For now, it's a sparse world with a single major town built on a promontory, overlooking a wide river mouth which carries runoff from continental scale glaciers to the sea.`
-	spaceport `The spaceport on Aspiration is a spaceport in the same way that an airport at a regional town is an airport. It has the most minimal facilities to handle a ship landing without disturbance to the nearby town, and that is it. There are no shops or stalls. Aspiration is not on any trade routes and it does not expect visitors. A lone freighter is parked permanently on the outskirts.`
-
 planet Asterus
 	attributes moon uninhabited
 	landscape land/snow23
@@ -430,7 +449,7 @@ planet Aventine
 		fleet "Heavy Remnant Defense" 30
 
 planet Aviskir
-	attributes "aberrant siege" avgi "avgi core" rich urban
+	attributes "aberrant siege" avgi "avgi core" urban wealthy
 	landscape land/water32
 	description `Aviskir is a world of sweeping mountains and sparkling oceans. It also happens to be the Avgi homeworld, bustling with nine billion members of the species. Civilization has concentrated largely around bountiful mountain valleys and fjords, many warmed by hot springs and geothermal heat. The largest cities are built around the smaller peaks, laced with slender bridges and bright skyscrapers. They stand in contrast to the rural valley settlements below, which are said to offer simpler, more traditional lives.`
 	description `	The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Aberrant sometimes make on the surface.`
@@ -506,6 +525,14 @@ planet Beryl
 	landscape land/station16
 	description `Beryl is a small space telescope deployed by the Gegno Scin to observe a nearby section of space home to mysterious dark nebulae and black holes. Only select Scin scientists are allowed to acquire research data from Beryl, which is otherwise not publicly accessible.`
 	government "Gegno Scin"
+	bribe 0
+	security 0
+
+planet Byigii
+	attributes gegno uninhabited
+	landscape land/haze1
+	description `Although there is no evidence of a civilization on this barren, dry planet, there are many signs of haphazard mining and excavation by the Gegno, presumably for resources to construct the large station that orbits above. Among the several dig sites across the surface are also mountainous piles of scrap metals, junk, and other trash heaps, quite literally forming wastelands.`
+	government Uninhabited
 	bribe 0
 	security 0
 
@@ -745,7 +772,7 @@ planet Caelian
 		fleet "Heavy Remnant Defense" 25
 
 planet Calda
-	attributes paradise rich tourism
+	attributes paradise tourism wealthy
 	landscape land/lava4
 	description `Calda is a tropical resort world, a pleasant place to unwind after a few days skiing on its sister planet, Vail. The most popular tourist destination is the hot springs, and the spa complexes that have been built up around them. Constant pesticide use has nearly eliminated insect pests. Because of the uncomfortably warm and humid summer months, the very rich view Calda more as a tourist destination than as a place to live.`
 	description `	In Calda's early days as a spa planet, a nearly silent eruption of carbon dioxide filled a resort valley and suffocated the whole population. This incident shocked the Paradise Worlds and led to a very large drop in tourism here. Fortunately for Calda's economy, this effect ceased within six months, which was about how long it took for most potential tourists to forget about the incident.`
@@ -759,7 +786,7 @@ planet Calda
 
 planet Calesi
 	attributes lava uninhabited volcanic
-	landscape land/lava14
+	landscape land/lava15
 	description `Calesi is a binary planet, orbiting a common barycenter with its sister world, Pelesi. While Calesi is a molten world, heated by tidal forces, Pelesi remains cold enough for its surface to be covered in a thin layer of ice.`
 	description `	Despite this, Calesi remains the more hospitable of the pair, as the powerful magnetic field generated by its molten core focuses charged particles from Soar onto all parts of Pelesi's surface, painting it with a deadly flood of ionizing radiation.`
 	government Uninhabited
@@ -1237,21 +1264,6 @@ planet "Desi Seledrak"
 	description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles. It may be centuries before the skies clear and this world begins to thaw.`
 	security 0
 
-planet Devil-Eye
-	attributes "whispering void"
-	landscape land/badlands6
-	description `There are a few sturdy mesas on which to land, but most of this planet is rough rock and dirt. Despite the lack of sunlight, the surface is warm. There must be internal processes in the planet generating heat. The scanners on your computer show a network of caves reaching deep below ground. There's high radiation in the caves, too much to support human life. Crystalline formations that coat the cave walls block detailed scans. Advanced geological scanners might enlighten you further.`
-	description `	There are automated deuterium refineries on this planet, siphoning deuterium from cave walls. The refinery equipment looks Hai in origin. Some mesas have fuel pumps, filling containers with fuel for later transport to the planet's moon.`
-
-planet "Devil-Run Wormhole"
-	spaceport ``
-	wormhole "Devil-Run Wormhole"
-
-wormhole "Devil-Run Wormhole"
-	mappable
-	link "Deep Space 7C" Devil-Run
-	link Devil-Run "Deep Space 7C"
-
 planet "Devru Kaska"
 	attributes korath sestor station
 	landscape land/station27
@@ -1343,7 +1355,7 @@ planet "Dueyu Eitch"
 	shipyard "Gegno Intermediate"
 	outfitter "Gegno Basic"
 	outfitter "Gegno Intermediate"
-	"required reputation" 3
+	"required reputation" 5
 	bribe 0
 	security 0
 
@@ -1391,7 +1403,12 @@ planet Earth
 	attributes education factory "near earth" research tourism urban
 	landscape land/city20
 	description `The ancestral home world of humanity, Earth has a population twice that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
-	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, settlements of less than a million are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
+		to display
+			not "start: syndicate"
+	description `The ancestral home world of humanity, as well as your own birthplace, Earth has a population twice that of any other planet. Sprawling cities cover its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
+		to display
+			has "start: syndicate"
+	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, smaller settlements are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
 	spaceport `Earth's spaceport is a series of massive buildings; the gaps between them form narrow concrete canyons a hundred stories deep. From a distance it has the appearance of a bustling termite mound.`
 	spaceport `	Inside the towers is a warren of dim hallways and dingy shops. Hitchhikers sleep in the corners of unused docking bays under old army blankets, a few uniformed cleaners try to keep the litter and dust in check, and rich tourists from other stars cling tightly to their expensive cameras.`
 	outfitter "Common Outfits"
@@ -1426,16 +1443,13 @@ planet "Eeu Mnai"
 	government Uninhabited
 
 planet "Ef Aourtdye"
-	attributes gegno
-	landscape land/lava10
+	attributes gegno mining factory
+	landscape land/desert19
 	description `Ef Aourtdye is primarily a factory world where a large portion of mined materials are refined, processed, and re-distributed across parts of Gegno space. Large factory and refinery structures can be seen engraved into the mountainous surfaces of the planet, with some cities found in less crowded valleys. Once home to a much larger population, a major portion of the cities are now desolate as efforts have been pushed to either more distant planets, or pulled back to the ever-growing homeworld of the Gegno.`
 	description `	A majority of the mining, cargo, and refinery vessel shipyards in Gegno space are also found here, newly constructed out of the freshly processed materials and quickly prepared to be put into service.`
-	spaceport `The Gegno here are much too busy to pay any attention to you as it seems this spaceport is part of a larger refinery site. The largest Gegno heave around big metallic containers of either processed materials or various structural parts, while the Gegno closer to your own height are working with machinery. At the far end of the spaceport you can see large rugged vehicles leaving or entering the site on paths that branch out to several more factories in the distance.`
-	shipyard "Gegno Intermediate"
-	shipyard "Gegno Advanced"
-	outfitter "Gegno Basic"
-	outfitter "Gegno Intermediate"
+	spaceport `The Gegno here are much too busy to pay any attention to you, as this spaceport is part of a larger refinery site. The largest Gegno heave around big metallic containers of either processed materials or various structural parts, while the Gegno closer to your own height are working with machinery. At the far end of the spaceport you can see rugged vehicles of varying sizes leaving or entering the site along paths that branch out to several more factories in the distance.`
 	"required reputation" 2
+	shipyard "Gegno Intermediate"
 	bribe 0
 	security 0
 
@@ -1467,13 +1481,6 @@ planet "Elek Kartanu"
 	landscape land/lava2
 	description `You have no idea what has happened to this planet, and you are not sure you want to know. The atmosphere is unusually hot and wet for a planet this distance from its sun, and the ocean levels seem to have dropped significantly in the recent past, leaving barnacles and bleached coral exposed to the air all around the shorelines. The wind is frenzied and full of wild energy, and the fog moves like a living creature.`
 	security 0
-
-planet Elenchus
-	attributes "whispering void"
-	landscape land/space2
-	description `Beneath the surface of this small moon, there is a network of corridors and large rooms. The architecture looks mostly human, but with a hint of Hai. Most are blocked off by sturdy doors with keycard access and plentiful security cameras. Frequently, you see a symbol similar to the Syndicate logo. Everywhere you walk, a security camera turns to track your movement. You get the feeling that you're not welcome here.`
-	"required reputation" 10
-	bribe 0
 
 planet Elthe
 	attributes avgi frontier mining moon shipping
@@ -1587,9 +1594,9 @@ planet Entantel
 	landscape land/snow39
 	description `Entantel is notable in that it is almost entirely comprised of water ice. With a diminutive rocky core, its low average density results in a very low gravitational acceleration for its size.`
 	description `	Because of its shallow gravity well and abundance of volatiles, Entantel was one of the biggest exporters of water ice in the outer Anax system, where it was largely used as cheap propellant or to fill the numerous cylinder habitats with artificial lakes and rivers.`
-		description `The spaceport here launched most upmass via a space elevator that was destroyed in the Incursion. Enormous blocks of ice would often be shipped wholesale, with little refining done on-site, and so despite the abundance of water, there is barely enough deuterium fuel stockpiled here to fill a few large tankers.`
 	port "Fuel De_pot"
 		recharges fuel
+		description `The spaceport here launched most upmass via a space elevator that was destroyed in the Incursion. Enormous blocks of ice would often be shipped wholesale, with little refining done on-site, and so despite the abundance of water, there is barely enough deuterium fuel stockpiled here to fill a few large tankers.`
 	government Uninhabited
 
 planet Erabuthro
@@ -1692,7 +1699,7 @@ planet Essime
 planet Esstch
 	attributes gegno uninhabited
 	landscape land/badlands2
-	description `This hot desert world is the first world the Gegno left their imprint on outside of their home. Littered about with various recording instruments of times past, Esstch represents a historical stepping stone for the Gegno. However, due to the proximity of the system's star, it is too hot to be colonized.`
+	description `This desert world is the first world the Gegno left their imprint on outside of their home. Littered about with various recording instruments of times past, Esstch represents a historical stepping stone for the Gegno. However, due to the proximity of the system's star, it is too hot to be colonized.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -1789,7 +1796,7 @@ planet Farpoint
 		fleet "Large Republic" 6
 
 planet Farseer
-	attributes paradise rich tourism
+	attributes paradise tourism wealthy
 	landscape land/sea8
 	description `With enough money, you can buy a sunny day. Farseer is an ocean resort world, where much of the local tax revenue is spent on the terraforming equipment that moderates the weather. Real estate prices fluctuate wildly in times of political anxiety, because the idyllic climate exists only by government fiat.`
 	description `	Industry here mostly takes the form of executive offices for interplanetary banks, law firms, and software companies. Strict zoning laws limit construction of skyscrapers or factories to the continents that are in the less pleasant polar regions.`
@@ -2133,6 +2140,16 @@ planet Ghneoe
 	description `Ghneoe's orbital period is dominated by a very long dry season due to the binary stars at the system's center. However, during a short portion of the year, Ghneoe experiences an intense water cycle that results in a boom of greenery and wildlife activity, developing a short-lived but flourishing ecosystem. Much of the flora and fauna have adapted to such drastic shifts in climate, and return to a dormant state once the intense heat cycle returns.`
 	description `	Unlike its moon, Ghneoe has yet to see any sort of colonization efforts by the nearby Gegno Scin, perhaps due to the abnormal weather cycles, system warfare, or a combination of both.`
 
+planet "Gi Tiures"
+	attributes gegno
+	landscape land/mountain9
+	description "Because of the closeness of this planet to its parent star, most daytime hours are characterized by intense heat and almost blindingly bright sunlight. However, a significant axial tilt results in much longer nights than days. During these nights, heat levels are acceptable, and it is these periods that are considered the populace's active hours."
+	description "	The Gegno of this planet live in a singular, expansive village cluster. At the core of it are three tall spires that appear as though they were once one, separated into thirds and pushed apart into a triangle formation."
+	spaceport "While the Gegno civilization on this planet is stagnant, similarly to their core worlds, their culture has significant differences. Many wear lengthy robe-like clothing, and often travel in tightly-packed groups. Others keep to themselves in a comparatively eerie silence."
+	"required reputation" 3
+	bribe 0
+	security 0
+
 planet "Giaru Gegno"
 	attributes "gegno quarg" quarg ringworld station
 	landscape land/station2
@@ -2318,6 +2335,18 @@ planet Greenwater
 	attributes farming fishing hai "hai: human presence" "human tourism"
 	landscape land/myrabella2
 	description `Greenwater is one of the few worlds in Hai space that is home to a sizable human population. The temperature on most of the planet's surface is too warm for the Hai, but tolerable for human beings. Close to the equator are scattered human settlements for farming or fishing, which trade with the Hai cities closer to the poles for technology and equipment.`
+		to display
+			not "start: hai"
+	
+	description `Greenwater is unique among Hai worlds, not only in that it is home to a sizable human population, but also because it happens to be the world where you grew up.`
+		to display
+			has "start: hai"
+	description `	Most of the humans here live as fishers and farmers on islands and archipelagoes across the equator of Greenwater, where the Hai seldom visit on account of their heavy fur coats. According to those from beyond the wormhole, the climate here is like a Paradise Planet, even though it lacks the extensive terraforming common to those worlds.`
+		to display
+			has "start: hai"
+	description `	Thanks to its high human population, the human language is dominant on Greenwater, with the Hai language limited to the poles of the planet where Hai merchants are more frequent.`
+		to display
+			has "start: hai"
 	spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
 	spaceport `	Like many other Hai planets, the spaceport signs and menus for the largest restaurants are written in both Hai and human. What is unusual, however, is how some shops don't use any Hai text, perhaps due to Greenwater's larger human population.`
 	shipyard "Imo Loo Mer Basics"
@@ -2400,6 +2429,8 @@ planet Harmony
 	spaceport `The spaceport is on the outskirts of one of the larger cities, with a few medium-sized skyscrapers and many tall smokestacks for factories and oil refineries. The starship hangars here are shaped like oversized barns, and close to the hangars, grain is stored in silos. The spaceport police are on horseback.`
 	spaceport `	Inside the building at the center of the port is a large cafeteria, with food of the simple "meat and potatoes" variety. You notice a few children and teenagers in rough, homemade clothing staring out the windows at the ships taking off and landing.`
 	security 0
+	"tribute hails"
+		undefined "tribute pacifist undefined"
 
 planet Haven
 	attributes frontier mining north "north pirate" pirate
@@ -2467,6 +2498,13 @@ planet Heartvalley
 	outfitter "Hai Basics"
 	security 0.1
 
+planet "Heavenly Halls"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa31
+	description `This solitary gas giant was given its name due to a phenomenon shared by no other planet in Coalition space. The icy rings surrounding it grow denser the closer they are to the planetary surface; just a few kilometers into the sea of clouds, the small frozen specks are replaced by sizable, frigid asteroids. Curiously, most of these larger asteroids have tunnels cutting through their interiors, inspiring some of the bolder Saryd explorers to try and colonize these "frozen palaces."`
+	government Uninhabited
+	security 0
+
 planet Helheim
 	attributes deep mining volcanic
 	landscape land/lava1
@@ -2522,7 +2560,7 @@ planet Hespair
 	description `	However, during their exploration of the planet, the Avgi accidentally, if inevitably, introduced bacteria from their own ships to Hespair's oceans. These motes of life are still sparse, but even if the Avgi refrain from terraforming this world, they will form the seeds of a new biosphere at some point in the distant future.`
 
 planet Hestia
-	attributes paradise rich
+	attributes paradise wealthy
 	landscape land/sky5
 	description `In the distant past, Hestia was a nearly lifeless ice world. It is now a subtropical paradise, one of the great victories from the heyday of planetary engineering back when the galactic economy had more money to spare for terraforming.`
 	description `	Today it is mostly a retirement community for those who can afford it, although most of the population consists of young service workers in rented housing who take care of the retirees.`
@@ -2543,8 +2581,9 @@ planet Hilothire
 	description `While Hilothire contains an oxygen-rich atmosphere, it is almost entirely covered in icy oceans. At the poles, massive ice caps stretch nearly to the tropics. Pristine icebergs often float down to the equator, where they accumulate around the few rocky islands that peek above the waves.`
 	description `	A large research outpost was once set up on one of the larger islands to study the possibility of terraforming the world and warming its climate, but after the Incursion it has since gone uncrewed. The fueling station still contains a significant amount of stored fuel, however, which could be used by a passing ship to refuel.`
 	port "Space_port"
-		description `The landing pads are thick slabs of frigid steel sunk deep into the island's gravely terrain. A thin layer of ice slicks the surface, making it hazardous to walk about, but you are able to find a working fuel pump half-buried in snow, powered by a small radioisotope power source.`
 		recharges fuel
+		description `The landing pads are thick slabs of frigid steel sunk deep into the island's gravelly terrain. A thin layer of ice slicks the surface, making it hazardous to walk about, but you are able to find a working fuel pump half-buried in snow, powered by a small radioisotope power source.`
+	government Uninhabited
 	security 0
 
 planet Hippocrates
@@ -2672,7 +2711,7 @@ planet "Iemn Eitch"
 	landscape land/desert2
 	description `Although too cold for a proper civilization, Iemn Eitch has been extensively used in the past as an outpost for the growing Gegno space race. As one of their first few explored worlds, antique-looking architecture is scattered about the surface and looks significantly different to structures found on Dueyu Eitch, perhaps due to the nature of construction in an unfamiliar environment. A few large shipyard-esque platforms continue to service a small number of still active Gegno generation vessels from times past, presumably at a much slower pace than during the earliest days of their space colonization.`
 	spaceport `	Rather than a traditional spaceport, a large and extensive shipyard engulfs a portion of the moon's surface, cluttered with numerous structures from an early colonial period. Several immense hangars, mostly reduced to their bare metal frames, house various archaic spacecraft of times past, with a few of them still servicing the remaining active vessels.`
-	"required reputation" 2
+	"required reputation" 3
 	bribe 0
 	security 0
 
@@ -3101,7 +3140,7 @@ planet Kuj-Sol-Nnesa
 planet Kumkapi
 	attributes moon uninhabited
 	landscape land/mars0
-	description `While this moon's minerals aren't particularly rare or exotic, its closeness to Viminal has made it the subject of many mining projects over the centuries - efforts to find traces of the valuable Key Stones which permit travel through this region of space. None of them were successful, and most Remnant scientists believe that Kumkapi formed somewhere else and was captured by Vimnal's gravitational pull at some time during its formation.`
+	description `While this moon's minerals aren't particularly rare or exotic, its closeness to Viminal has made it the subject of many mining projects over the centuries - efforts to find traces of the valuable Key Stones which permit travel through this region of space. None of them were successful, and most Remnant scientists believe that Kumkapi formed somewhere else and was captured by Viminal's gravitational pull at some time during its formation.`
 	description `	When the absence of Key Stones became clear, most scientific and mining interests faded away, and today the surface is scattered with abandoned outposts whose somber tunnels are thousand-kilometer labyrinths.`
 	government Uninhabited
 	security 0
@@ -3180,7 +3219,7 @@ planet Limejog
 	security 0
 
 planet Livolua
-	attributes "aberrant siege" avgi "avgi core" rich urban
+	attributes "aberrant siege" avgi "avgi core" urban wealthy
 	landscape land/forest13
 	description `Livolua was the first extrasolar planet to be colonized by the Avgi, through the use of multiple waves of slower than light starships over two hundred years ago. With its wide range of climates ideal for life, it boasts a population two thirds as large as Aviskir itself, and an equally impressive number of independent polities.`
 	description `	While perhaps not as wealthy or comfortable as Aviskir itself, Livolua is full of younger, ambitious polities with their eyes set on growth, a dynamic that has produced a vibrant independent civilization capable of rivaling the homeworld.`
@@ -3249,8 +3288,9 @@ planet Mabatham
 	description `Mabatham teeters on the line between ocean planet and hothouse world. With a surface largely covered with water, broken only by a handful of volcanic islands, its atmosphere is thick and humid, saturated with water vapor that works to trap the heat from its two parent stars. While temperate near the poles, the equator is inhospitably warm, with constant hurricanes dwarfing anything seen on either Earth or Aviskir raging in the tropics.`
 	description `	Despite the constant rains and frequent storms, the planet's bountiful oceanic ecosystem is able to sustain a small community of particularly stubborn Avgi, who managed to eke out a life on a rocky island chain. They refused to be evacuated in the wake of the Incursion, and their outpost remains, weathering the wind and sea.`
 	port "Space_port"
-		description `The 'spaceport' is nothing more than a stony island mostly cleared of boulders and debris, where spaceplanes could take off and land. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visitor, but there are otherwise no permanent structures.`
 		recharges fuel
+		services trading "offers missions"
+		description `The "spaceport" is nothing more than a stony island mostly cleared of boulders and debris, where spaceplanes can take off and land. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visitor, but there are otherwise no permanent structures.`
 	government Avgi
 	security 0
 
@@ -3281,14 +3321,20 @@ planet Mahoganybox
 	security 1
 
 planet Mainsail
-	attributes paradise rich
+	attributes paradise wealthy
 	landscape land/water13
 	description `Mainsail is a water world: although there are some settlements on dry land, the largest cities are floating, artificial islands, which travel between hemispheres over the course of the year pursuing the most ideal weather. Other, smaller islands are privately owned by single families or corporations. Mainsail is a prohibitively expensive place to live.`
+		to display
+			not "start: paradise"
+	description `Mainsail is a water world: although there are some settlements on dry land, the largest cities are floating, artificial islands, which travel between hemispheres over the course of the year pursuing the most ideal weather. Other, smaller islands are privately owned by single families or corporations, such as your own family. Mainsail is a prohibitively expensive place to live.`
+		to display
+			has "start: paradise"
 	description `	Centuries ago Mainsail was home to pirates of the old-fashioned variety, fleets of motor boats or even old-fashioned sailing vessels that would launch raids against the city-ships.`
 	spaceport `The spaceport is on its own city-ship floating some distance away from the others, so that the locals need not deal with the noise and uncouth manners of spacefarers. Surrounding the port is a ring of docks where barges are moored; on platforms farther "inland," starships land.`
 	spaceport `	Few goods are produced here; most of the people rich enough to live on Mainsail are connected with interplanetary corporations whose physical business takes place elsewhere.`
 	shipyard "Basic Ships"
 	shipyard "Betelgeuse Basics"
+	shipyard "Luxury Ships"
 	outfitter "Basic Outfits"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
@@ -3330,6 +3376,11 @@ planet Mani
 	description `	The native plant life mostly consists of pale-colored lichens and a few species of grass. The only animals are insects.`
 	spaceport `The spaceport is shaped like a wheel with no rim: a series of spokes jutting out from a central hub, where each spoke is a docking tunnel that can connect to any ship that lands beside it.`
 	spaceport `	Inside are about a dozen people and a couple hundred robots. The people and robots alike seem uninterested in any interactions with you. It is a strange sort of aloofness that you have heard is common to all the worlds in the Deep.`
+		to display
+			not "start: deep"
+	spaceport `	Inside are about a dozen people and a couple hundred robots. Everyone appears to be busy; you decide not to interrupt their work.`
+		to display
+			has "start: deep"
 	outfitter "Ammo North"
 	security 0.6
 	tribute 500
@@ -3359,7 +3410,7 @@ planet Mars
 		fleet "Small Republic" 64
 
 planet Martini
-	attributes paradise rich tourism
+	attributes paradise tourism wealthy
 	landscape land/myrabella4
 	description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the Galactic Stock Exchange are headquartered here, and so much money flows through this world's economy every day that the cost of utterly controlling its weather and climate is only a drop in the bucket. Not surprisingly, real estate prices here are astronomical; a small condo in one of Martini's main cities costs more than a capital starship.`
 	spaceport `The spaceport is a set of four skyscrapers joined by bridges and platforms at various levels. Hangars are built directly into the towers themselves, with deflector shield generators set up to ensure that ships do not crash, intentionally or otherwise, while approaching the towers to dock. Inside, all the floors and walls are gleaming granite, with teams of workers constantly polishing everything to ensure that not even so much as a fingerprint smudge is visible.`
@@ -3508,7 +3559,18 @@ planet Midgard
 	attributes deep factory mining urban
 	landscape land/city5
 	description `Midgard is a world with as much geographic diversity as Earth itself: mountains, tundra, desert, oceans, marshes, plains. It was the second world in the Deep to be settled, seven centuries ago. It is now home to dozens of major metropolitan areas and a population of over four billion. Although a select few live outside the cities and work in farming or ranching, the vast majority of people here have jobs in manufacturing.`
+		to display
+			not "start: deep"
 	description `	Food, fashion, and entertainment here all strike you as out of pace with broader galactic culture. The deep independent history of the planet makes it less likely to simply follow the latest Earth trends as the more recent colonies do.`
+		to display
+			not "start: deep"
+	
+	description `Midgard is a world with as much geographic diversity as Earth itself: mountains, tundra, desert, oceans, marshes, plains. It was the second world in the Deep to be settled, seven centuries ago. It is now home to dozens of major metropolitan areas and a population of over four billion, and is where you were born. Although a select few live outside the cities and work in farming or ranching, the vast majority of people here have jobs in manufacturing.`
+		to display
+			has "start: deep"
+	description `	The long, independent history of the planet and region as a whole has separated its culture from the broader galaxy. An example of this is the tradition of "tributation." Certain nights every year, the citizens of the Deep leave out saucers of milk and sweet bread as an offering to the 'elves:' pale, delicate beings said to protect the Deep.`
+		to display
+			has "start: deep"
 	spaceport `The spaceport is located in the center of the city of New Reykjavik, a bustling metropolis which is also Midgard's center of government. The port was built five hundred years ago, and its architecture is much more conservative than other ports in the Deep: instead of domes and rounded, wavy surfaces, it is a collection of tall, square granite towers, connected by bridges at various levels. Most of the hotels and restaurants are in a central tower, slightly higher than the others.`
 	spaceport `	There is no central marketplace; instead, you can just buy or sell cargo from a computer terminal and a robotic forklift will arrive at your docking bay to carry it.`
 	shipyard "Basic Ships"
@@ -3522,6 +3584,14 @@ planet Midgard
 	tribute 3000
 		threshold 6000
 		fleet "Large Deep Security" 30
+
+planet "Midnight Diamond"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa26
+	description `When the Kimek first discovered the diamond rains that occur in the upper levels of this planet's atmosphere, their mining industry went wild, procuring hundreds of millions of the gems and selecting the best of them for usage in planetside drilling efforts.`
+	description `	From the outer limits of the system, this planet shines brightly in tones that contrast with the local star's light, earning the gas giant the nickname "Midnight Star."`
+	government Uninhabited
+	security 0
 
 planet "Midway Emerald"
 	attributes kimek shipping urban wealthy
@@ -3645,7 +3715,13 @@ planet Muspel
 	landscape land/canyon9
 	description `Muspel is a hot world of deserts, canyons, and warm-water oceans. It is mostly a mining and manufacturing planet, and as a result there are few lifelong inhabitants; most of the people here are migrant workers who are just trying to save up enough money to settle down somewhere more hospitable.`
 	description `	Some tourists also come here, to walk through the sandstone canyons where the wind and rain has carved the rock into tall pillars and spires. A few particularly beautiful canyons are protected against strip mining by local law.`
-	spaceport `The spaceport here is rudimentary: a collection of concrete landing pads clustered around a single large building. The building is designed with layers of color and rounded spires that mimic the canyonlands. From a distance, it would be indistinguishable from the natural rock outcroppings if it were not for the glitter of sunlight off the windows. Inside, people move at a slower and calmer pace than you have seen elsewhere in the Deep.`
+	spaceport `The spaceport here is rudimentary: a collection of concrete landing pads clustered around a single large building. The building is designed with layers of color and rounded spires that mimic the canyonlands. From a distance, it would be indistinguishable from the natural rock outcroppings if it were not for the glitter of sunlight off the windows.`
+	spaceport `	Inside, people move at a slower and calmer pace than you have seen elsewhere in the Deep.`
+		to display
+			not "start: deep"
+	spaceport `	Inside, people move at a slower and calmer pace, something which appears friendlier to tourists than other parts of the Deep.`
+		to display
+			has "start: deep"
 	bribe 0.03
 	security 0.6
 	tribute 600
@@ -3798,9 +3874,23 @@ planet "New Austria"
 planet "New Boston"
 	attributes "dirt belt" farming textiles
 	landscape land/water2
+	description `New Boston is a completely unremarkable world. Most of its land is wet and marshy, and the coastal regions are prone to flooding. The planet's economy is largely agricultural; some of the farms here grow food for export to Earth and elsewhere, but most farmland is dedicated to fiber crops, destined for processing in the textile mills of the spaceport city.`
+		to display
+			not "start: default"
+
 	description `New Boston is a completely unremarkable world... except, of course, for the fact that you happen to have been born here.`
+		to display
+			has "start: default"
 	description `	Most of the land is wet and marshy, and the coastal regions are prone to flooding. Some food crops are grown here, but most of the farmers instead plant flax and jute, which grow well in wet soil and are used to make linen and burlap cloth. The textile mills are hot and poorly ventilated, but they offer higher and more reliable income than farming.`
+		to display
+			has "start: default"
+	
 	spaceport `Someday New Boston may be a prosperous enough planet to afford a better spaceport, but not yet. Many of the concrete landing pads have sunk into the muddy soil over the years since they were poured, and are now tilted and uneven.`
+		to display
+			has "start: default"
+	spaceport `New Boston's shabby spaceport is about as basic as a spaceport can be. Many of the concrete landing pads are tilted and uneven, sunken into the muddy soil over time, and you have to be careful when touching down.`
+		to display
+			not "start: default"
 	spaceport `	The market where ship captains buy and sell cargo is a large tent rather than a permanent building, but it is sturdy enough to keep off the rain. Loads are brought in and out by trucks and the occasional hovercraft. Here some enterprising local mechanics have set up not only a repair shop and outfitter, but also a shipyard with several small, refurbished ships for sale.`
 	spaceport `	A smaller tent has been set up beside the market. Inside are various pamphlets for Remembrance Day events occurring on New Boston.`
 		to display
@@ -3838,7 +3928,7 @@ planet "New Britain"
 
 planet "New China"
 	attributes "near earth" urban
-	landscape land/city22
+	landscape land/city3
 	description `In the very early days of hyperspace travel, most settlers chose to put down roots within a few jumps of Earth, because until more fuel depots were built, colonies farther out would seldom be visited by cargo ships. As a result, a lot of effort was put into terraforming and developing worlds that would have been passed over by most colonists today.`
 	description `	New China is one such world, and it is now overpopulated, and poor enough that maintaining the terraforming equipment and climate requires almost a third of the planetary government's tax income.`
 	spaceport `The "new port" here was built several centuries ago, when the grand but impractical spaceport built by the original settlers had deteriorated to the point where it was no longer usable. This port is much simpler by comparison: just a ring of landing pads of various sizes around a large central building with ten levels of warehouse space accessible by freight elevator.`
@@ -4002,6 +4092,8 @@ planet "New Tibet"
 			"days since year start" > 35
 			"days since year start" < 55
 	security 0.1
+	"tribute hails"
+		undefined "tribute pacifist undefined"
 
 planet "New Tortuga"
 	attributes core "core pirate" factory pirate religious
@@ -4210,6 +4302,13 @@ planet Ochrescoop
 	bribe 0.1
 	security 0.5
 
+planet Ogmur
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa35
+	description `Beneath Ogmur's oppressive gravity, churning blue and yellow cyclones weave, merge, and split in an eternal dance, violent green flashes illuminating turbulent depths. The planet is dominated by a titan storm that spans a third of the visible globe, the most intense in all of Coalition space - and the reason why Coalition activity is concentrated on the planet's other, much calmer hemisphere.`
+	government Uninhabited
+	security 0
+
 planet "Ogmur's Siphon"
 	attributes arach "coalition station" research
 	landscape land/station36
@@ -4379,6 +4478,13 @@ planet "Outpost Tekis"
 		threshold 4500
 		fleet "Small Dissonance Pirates" 9
 		fleet "Large Dissonance Pirates" 6
+
+planet Pacili
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa22
+	description `Although on the smaller end of the known gas giants, Pacili is a calm, unremarkable ice giant. At such a distance from Patir, no part of its atmosphere has pressures and temperatures compatible with human life; coupled with its scarcity of oxygen, this world is undoubtedly uninhabitable.`
+	government Uninhabited
+	security 0
 
 planet Palarei
 	attributes ka'het uninhabited
@@ -4963,6 +5069,14 @@ planet Sandsnap
 	bribe 0
 	security 0
 
+planet Sandswell
+	attributes uninhabited
+	landscape land/desert15
+	description "The close orbit of this sandy moon to its parent gas giant stirs up strong sandstorms on the surface. Combined with its low surface gravity, this results in the air here being filled with a constant haze of grit. It is unsurprising no attempts at permanent habitation have been made here."
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet "Sandy Two"
 	attributes factory farming folklore kimek urban
 	landscape land/badlands1
@@ -5207,7 +5321,7 @@ planet "Shadowed Valley"
 	security 0.25
 
 planet Shangri-La
-	attributes core frontier rich urban
+	attributes core frontier urban wealthy
 	landscape land/sea6
 	description `Named after a mythical paradise, Shangri-La is an almost ideal planet, with a mixture of advanced, developed cities and uninhabited mountains. It is a rich and prosperous world, and nearly self-sufficient, but the cost of living here is prohibitively high for anyone from off-world. Because Polaris is on the very fringe of human space, and because of the wealth of its economy, piracy is a constant threat. Although recently the Syndicate has provided good protection, in past centuries it was not unheard of for raiding parties of starships to attack major port cities here, carrying off valuable cargo and sometimes also human slaves.`
 	spaceport `The spaceport is state-of-the-art. So are the laser turrets and missile silos spaced out along its periphery. But somehow, instead of making you feel more secure, the defenses only serve to remind you of how far on the fringes of civilization you are, and of how rich this planet is compared to some of its neighbors. Everyone walking through the port is moving at a brisk, purposeful pace; loitering and sightseeing are not encouraged here.`
@@ -5274,7 +5388,7 @@ planet Shorebreak
 		fleet "Large Militia" 8
 
 planet Shroud
-	attributes frontier north rich textiles
+	attributes frontier north textiles wealthy
 	landscape land/mountain1
 	description `Shroud is a world of castles in the clouds and slums in the valleys below. High on the mountain peaks, above the clouds, the planet's few elites live in splendid mansions. Below them, the people work mostly in textiles: farming cotton, raising sheep, working at looms and sewing machines in dimly lit factories.`
 	description `	The level of intrigue and dalliance between the bored gentry could easily compete with the most lurid and unrealistic of Victorian fiction.`
@@ -5332,7 +5446,7 @@ planet Silver
 
 planet Silwan
 	attributes antecessor forest uninhabited
-	landscape land/fog12
+	landscape land/fog15
 	description `Silwan is a wet, misty world shrouded in a permanent blanket of fog, which covers the entire planet year-round. The little light that makes it to the surface reveals a bleak landscape, eroded to a nearly uniform flatness from the eons of constant rains. Only at the equator is the layer of fog burned off by sunlight, feeding humid forests of fern-like trees.`
 	description `	Even less evidence of the Antecessors has survived here than usual, thanks to the rains, but this world is one of the few in this region to still host a substantial ecosystem, stubbornly clinging to life. Mossy plants and small, lizard-like scavengers are common across the entire planet, while large apex predators thrive deep in the world's oceans.`
 
@@ -5484,6 +5598,13 @@ planet "Spera Anatrusk"
 	landscape land/badlands11
 	description `This is a relatively dry planet, and the only Korath cities were close to the poles where the temperatures are more mild and the lifeless deserts give way to grasslands and even a few scattered forests. The largest city was clearly destroyed by orbital bombardment. The other cities seem to have been done in by rioting or looting, leaving smashed windows and burned-out buildings behind. Some of the damage is very recent; the Korath survivors here held out for a long time.`
 
+planet "Spiraling Indigo"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa38
+	description `Spiraling Indigo is the heaviest gas giant in Coalition space, exceeded only by stars and ringworlds. While the Kimek certainly didn't shy away from harvesting the plentiful resources to be found here, the planet has had much more of a cultural footprint than an economic one. The perpetual storms surrounding the poles here have inspired many Kimek artists, be they writers, stylists, musicians, or painters. The world's popularity in Kimek media has even prompted some religious institutions to claim its beauty as a divine signal.`
+	government Uninhabited
+	security 0
+
 planet Splashdown
 	attributes farming north
 	landscape land/water12
@@ -5577,7 +5698,7 @@ planet Steli
 	description `	Frequent hot spots trickle lava and heat through the otherwise lethargic crust, and Steli has one of the highest counts of hot springs in all the habitable planets of the Twilight. Only its distance from the core of Avgi space precluded its widespread settlement, though it is rumored that hidden villages and nomadic groups live scattered across the surface.`
 
 planet Stilacrest
-	attributes "aberrant siege" avgi "avgi core" fishing religious rich
+	attributes "aberrant siege" avgi "avgi core" fishing religious wealthy
 	landscape land/myrabella4
 	description `Stilacrest is a warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs making it an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse.`
 	description `	The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid-back sort of personality.`
@@ -5631,7 +5752,7 @@ planet "Stronghold of Flugbu"
 	security 0.5
 
 planet "Successor Wormhole"
-	attributes "requires: quantum keystone"
+	attributes "requires: quantum keystone" uninhabited
 	spaceport ``
 	wormhole "Successor Wormhole"
 
@@ -5924,7 +6045,7 @@ planet Truklar
 	security 0.9
 
 planet Tschyss
-	attributes gegno station
+	attributes gegno mining station
 	landscape land/sivael6
 	music ambient/machinery
 	description `This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticeably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all more expansive than those in human space, and the outside is enveloped in many docking bays of various sizes.`

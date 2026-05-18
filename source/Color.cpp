@@ -73,16 +73,16 @@ bool Color::IsLoaded() const
 
 
 
-void Color::SetName(const string &name)
+void Color::SetTrueName(const string &name)
 {
-	this->name = name;
+	this->trueName = name;
 }
 
 
 
-const string &Color::Name() const
+const string &Color::TrueName() const
 {
-	return name;
+	return trueName;
 }
 
 

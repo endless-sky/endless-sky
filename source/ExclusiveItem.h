@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // This class provides "data template" classes with abstracted access to an object that
 // is either a reference to a shared, "stock" data or is a locally customized instance.
-template <class Type>
+template<class Type>
 class ExclusiveItem {
 public:
 	ExclusiveItem() = default;
@@ -30,10 +30,10 @@ public:
 	explicit ExclusiveItem(const Type *item) : stockItem(item) {}
 	explicit ExclusiveItem(Type &&item) : item(std::move(item)) {}
 
-	ExclusiveItem(ExclusiveItem&&) = default;
-	ExclusiveItem &operator=(ExclusiveItem&&) = default;
-	ExclusiveItem(const ExclusiveItem&) = default;
-	ExclusiveItem &operator=(const ExclusiveItem&) = default;
+	ExclusiveItem(ExclusiveItem &&) = default;
+	ExclusiveItem &operator=(ExclusiveItem &&) = default;
+	ExclusiveItem(const ExclusiveItem &) = default;
+	ExclusiveItem &operator=(const ExclusiveItem &) = default;
 
 	bool IsStock() const noexcept { return stockItem; }
 

@@ -14,6 +14,7 @@
 mission "Main Plot Completed Date"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "main plot completed"
 	on offer

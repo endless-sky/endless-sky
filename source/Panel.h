@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "MouseButton.h"
 #include "Rectangle.h"
 
 #include <functional>
@@ -40,6 +41,14 @@ class UI;
 // default, a panel allows the panels under it to show through, but does not
 // allow them to receive any events that it does not know how to handle.
 class Panel {
+public:
+	struct Event {
+		Point pos;
+		int id;
+		enum {MOUSE, TOUCH, BUTTON, AXIS} type;
+	};
+
+
 public:
 	// Draw a sprite repeatedly to make a vertical edge.
 	static void DrawEdgeSprite(const Sprite *edgeSprite, int posX);
@@ -68,6 +77,7 @@ public:
 	void ClearZones();
 	// Add a clickable zone to the panel.
 	void AddZone(const Rectangle &rect, const std::function<void()> &fun);
+	void AddZone(const Rectangle &rect, const std::function<void(const Event &)> &fun);
 	void AddZone(const Rectangle &rect, SDL_Keycode key);
 	// Check if a click at the given coordinates triggers a clickable zone. If
 	// so, apply that zone's action and return true.
@@ -76,19 +86,40 @@ public:
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowsFastForward() const noexcept;
 
+	// Functions for updating Tooltip or WrappedText/TextArea objects within a panel
+	// based off of changes made to the preferences. Some panels that contain these
+	// objects may not implement these functions because the panel can't be in the
+	// UI stack when the preference is changed.
+	virtual void UpdateTooltipActivation();
+	virtual void UpdateTextDisplay();
+
+	// Apply focus to this panel and remove it from any others in this tree.
+	bool SetFocus(bool newFocus);
+	// Returns true if this panel has the keyboard focus.
+	bool HasFocus() const;
+	// Move focus to the next panel that wants it.
+	bool FocusNext();
+	// Move focus to the previous panel that wants it.
+	bool FocusPrev();
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress);
-	virtual bool Click(int x, int y, int clicks);
-	virtual bool RClick(int x, int y);
+	virtual bool Click(int x, int y, MouseButton button, int clicks);
 	virtual bool Hover(int x, int y);
 	virtual bool Drag(double dx, double dy);
-	virtual bool Release(int x, int y);
+	virtual bool Release(int x, int y, MouseButton button);
 	virtual bool Scroll(double dx, double dy);
+	virtual bool TextInput(const std::string &text);
+
+	virtual void Resize();
+
 	// If a clickable zone is clicked while editing is happening, the panel may
 	// need to know to exit editing mode before handling the click.
 	virtual void EndEditing() {}
+	// Focus is being given to us. Return true to accept, false to reject.
+	virtual bool OnFocus(bool focus) { return false; }
 
 	void SetIsFullScreen(bool set);
 	void SetTrapAllEvents(bool set);
@@ -97,7 +128,7 @@ protected:
 	// Dim the background of this panel.
 	void DrawBackdrop() const;
 
-	UI *GetUI() const noexcept;
+	UI &GetUI() const noexcept;
 	void SetUI(UI *ui);
 
 	// This is not for overriding, but for calling KeyDown with only one or two
@@ -121,15 +152,29 @@ protected:
 	// Handle deferred add/remove child operations.
 	void AddOrRemove();
 
+
 private:
 	class Zone : public Rectangle {
 	public:
 		Zone(const Rectangle &rect, const std::function<void()> &fun) : Rectangle(rect), fun(fun) {}
+		Zone(const Rectangle &rect, const std::function<void(const Event &)> &fun)
+			: Rectangle(rect), funDownEvent(fun)
+		{}
 
-		void Click() const { fun(); }
+		void Click() const
+		{
+			if(funDownEvent)
+			{
+				Event e{{}, 0, Event::MOUSE};
+				funDownEvent(e);
+			}
+			else
+				fun();
+		}
 
 	private:
 		std::function<void()> fun;
+		std::function<void(const Event &)> funDownEvent;
 	};
 
 	// The UI class will not directly call the virtual methods, but will call
@@ -137,19 +182,24 @@ private:
 	// handle the event first, before calling the virtual method for the derived
 	// class to handle it.
 	bool DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress);
-	bool DoClick(int x, int y, int clicks);
-	bool DoRClick(int x, int y);
+	bool DoClick(int x, int y, MouseButton button, int clicks);
 	bool DoHover(int x, int y);
 	bool DoDrag(double dx, double dy);
-	bool DoRelease(int x, int y);
+	bool DoRelease(int x, int y, MouseButton button);
 	bool DoScroll(double dx, double dy);
+	bool DoTextInput(const std::string &text);
 
 	void DoDraw();
 
+	void DoResize();
+	void DoUpdateTextDisplay();
+
 	// Call a method on all the children in reverse order, and then on this
 	// object. Recursion stops as soon as any child returns true.
-	template<typename...FARGS, typename...ARGS>
+	template<typename ...FARGS, typename ...ARGS>
 	bool EventVisit(bool(Panel::*f)(FARGS ...args), ARGS ...args);
+
+	int EnumerateTreeAndFindActivePanel(std::vector<Panel *> &descendants);
 
 
 private:
@@ -164,6 +214,8 @@ private:
 	std::vector<std::shared_ptr<Panel>> children;
 	std::vector<std::shared_ptr<Panel>> childrenToAdd;
 	std::vector<const Panel *> childrenToRemove;
+	Panel *parent = nullptr;
+	bool focus = false;
 
 	friend class UI;
 };

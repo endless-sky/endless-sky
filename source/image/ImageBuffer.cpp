@@ -19,10 +19,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageFileData.h"
 #include "../Logger.h"
 
+#include <avif/avif.h>
 #include <jpeglib.h>
 #include <png.h>
 
-#include <cstdio>
+#include <cmath>
+#include <memory>
 #include <set>
 #include <stdexcept>
 #include <vector>
@@ -32,15 +34,20 @@ using namespace std;
 namespace {
 	const set<string> PNG_EXTENSIONS{".png"};
 	const set<string> JPG_EXTENSIONS{".jpg", ".jpeg", ".jpe"};
+	const set<string> AVIF_EXTENSIONS{".avif", ".avifs"};
 	const set<string> IMAGE_EXTENSIONS = []()
 	{
 		set<string> extensions(PNG_EXTENSIONS);
 		extensions.insert(JPG_EXTENSIONS.begin(), JPG_EXTENSIONS.end());
+		extensions.insert(AVIF_EXTENSIONS.begin(), AVIF_EXTENSIONS.end());
 		return extensions;
 	}();
+	const set<string> IMAGE_SEQUENCE_EXTENSIONS = AVIF_EXTENSIONS;
 
-	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame);
-	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame);
+	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame, bool onlyDimensions);
+	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame, bool onlyDimensions);
+	int ReadAVIF(const filesystem::path &path, ImageBuffer &buffer, int frame, bool alphaPreMultiplied,
+		bool onlyDimensions);
 	void Premultiply(ImageBuffer &buffer, int frame, BlendingMode additive);
 }
 
@@ -49,6 +56,13 @@ namespace {
 const set<string> &ImageBuffer::ImageExtensions()
 {
 	return IMAGE_EXTENSIONS;
+}
+
+
+
+const set<string> &ImageBuffer::ImageSequenceExtensions()
+{
+	return IMAGE_SEQUENCE_EXTENSIONS;
 }
 
 
@@ -169,26 +183,36 @@ void ImageBuffer::ShrinkToHalfSize()
 
 
 
-bool ImageBuffer::Read(const ImageFileData &data, int frame)
+int ImageBuffer::Read(const ImageFileData &data, int frame, bool onlyDimensions)
 {
 	// First, make sure this is a supported file.
 	bool isPNG = PNG_EXTENSIONS.contains(data.extension);
 	bool isJPG = JPG_EXTENSIONS.contains(data.extension);
+	bool isAVIF = AVIF_EXTENSIONS.contains(data.extension);
 
-	if(!isPNG && !isJPG)
+	if(!isPNG && !isJPG && !isAVIF)
 		return false;
 
-	if(isPNG && !ReadPNG(data.path, *this, frame))
-		return false;
-	if(isJPG && !ReadJPG(data.path, *this, frame))
-		return false;
+	bool isAlphaPreMultiplied = data.blendingMode == BlendingMode::PREMULTIPLIED_ALPHA;
+	int loaded;
+	if(isPNG)
+		loaded = ReadPNG(data.path, *this, frame, onlyDimensions);
+	else if(isJPG)
+		loaded = ReadJPG(data.path, *this, frame, onlyDimensions);
+	else
+		loaded = ReadAVIF(data.path, *this, frame, isAlphaPreMultiplied, onlyDimensions);
 
-	if(data.blendingMode != BlendingMode::PREMULTIPLIED_ALPHA)
+	if(loaded <= 0)
+		return 0;
+	if(onlyDimensions)
+		return loaded;
+
+	if(!isAlphaPreMultiplied)
 	{
 		if(isPNG || (isJPG && data.blendingMode == BlendingMode::ADDITIVE))
 			Premultiply(*this, frame, data.blendingMode);
 	}
-	return true;
+	return loaded;
 }
 
 
@@ -199,7 +223,7 @@ namespace {
 		static_cast<iostream *>(png_get_io_ptr(pngStruct))->read(reinterpret_cast<char *>(outBytes), byteCountToRead);
 	}
 
-	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame)
+	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame, bool onlyDimensions)
 	{
 		// Open the file, and make sure it really is a PNG.
 		shared_ptr<iostream> file = Files::Open(path.string());
@@ -238,7 +262,7 @@ namespace {
 		{
 			png_destroy_read_struct(&png, &info, nullptr);
 			const string message = "Failed to allocate contiguous memory for \"" + path.string() + "\"";
-			Logger::LogError(message);
+			Logger::Log(message, Logger::Level::ERROR);
 			throw runtime_error(message);
 		}
 		// Make sure this frame's dimensions are valid.
@@ -247,10 +271,18 @@ namespace {
 			png_destroy_read_struct(&png, &info, nullptr);
 			string message = "Skipped processing \"" + path.string() + "\":\n\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
-				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+				Logger::Log(message + "width: expected " + to_string(buffer.Width())
+					+ " but was " + to_string(width), Logger::Level::WARNING);
 			if(height && height != buffer.Height())
-				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
+				Logger::Log(message + "height: expected " + to_string(buffer.Height())
+					+ " but was " + to_string(height), Logger::Level::WARNING);
 			return false;
+		}
+		if(onlyDimensions)
+		{
+			// Clean up. The file will be closed automatically.
+			png_destroy_read_struct(&png, &info, nullptr);
+			return true;
 		}
 
 		// Adjust settings to make sure the result will be an RGBA file.
@@ -297,7 +329,7 @@ namespace {
 
 
 
-	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame)
+	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame, bool onlyDimensions)
 	{
 		string data = Files::Read(path);
 		if(data.empty())
@@ -328,7 +360,7 @@ namespace {
 		{
 			jpeg_destroy_decompress(&cinfo);
 			const string message = "Failed to allocate contiguous memory for \"" + path.string() + "\"";
-			Logger::LogError(message);
+			Logger::Log(message, Logger::Level::ERROR);
 			throw runtime_error(message);
 		}
 		// Make sure this frame's dimensions are valid.
@@ -337,10 +369,17 @@ namespace {
 			jpeg_destroy_decompress(&cinfo);
 			string message = "Skipped processing \"" + path.string() + "\":\t\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
-				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+				Logger::Log(message + "width: expected " + to_string(buffer.Width())
+					+ " but was " + to_string(width), Logger::Level::WARNING);
 			if(height && height != buffer.Height())
-				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
+				Logger::Log(message + "height: expected " + to_string(buffer.Height())
+					+ " but was " + to_string(height), Logger::Level::WARNING);
 			return false;
+		}
+		if(onlyDimensions)
+		{
+			jpeg_destroy_decompress(&cinfo);
+			return true;
 		}
 
 		// Read the file.
@@ -355,6 +394,141 @@ namespace {
 		jpeg_destroy_decompress(&cinfo);
 
 		return true;
+	}
+
+
+
+	// Read an AVIF file, and return the number of frames. This might be
+	// greater than the number of frames in the file due to frame time corrections.
+	// Since sprite animation properties are not visible here, we take the shortest frame
+	// duration, and treat that as our time unit. Every other frame is repeated
+	// based on how much longer its duration is compared to this unit.
+	// TODO: If animation properties are exposed here, we can have custom presentation
+	// logic that avoids duplicating the frames.
+	int ReadAVIF(const filesystem::path &path, ImageBuffer &buffer, int frame, bool alphaPreMultiplied,
+		bool onlyDimensions)
+	{
+		unique_ptr<avifDecoder, void(*)(avifDecoder *)> decoder(avifDecoderCreate(), avifDecoderDestroy);
+		if(!decoder)
+		{
+			Logger::Log("Could not create avif decoder.", Logger::Level::WARNING);
+			return 0;
+		}
+		// Maintenance note: this is where decoder defaults should be overwritten (codec, exif/xmp, etc.)
+
+		string data = Files::Read(path);
+		avifResult result = avifDecoderSetIOMemory(decoder.get(), reinterpret_cast<const uint8_t *>(data.c_str()),
+			data.size());
+		if(result != AVIF_RESULT_OK)
+		{
+			Logger::Log("Could not read file: " + path.generic_string(), Logger::Level::WARNING);
+			return 0;
+		}
+
+		result = avifDecoderParse(decoder.get());
+		if(result != AVIF_RESULT_OK)
+		{
+			Logger::Log(string("Failed to decode image: ") + avifResultToString(result), Logger::Level::WARNING);
+			return 0;
+		}
+		// Generic image information is now available (width, height, depth, color profile, metadata, alpha, etc.),
+		// as well as image count and frame timings.
+		if(!decoder->imageCount)
+			return 0;
+
+		// Find the shortest frame duration.
+		double frameTimeUnit = -1;
+		avifImageTiming timing;
+		for(int i = 0; i < decoder->imageCount; ++i)
+		{
+			result = avifDecoderNthImageTiming(decoder.get(), i, &timing);
+			if(result != AVIF_RESULT_OK)
+			{
+				Logger::Log("Could not get image timing for '" + path.generic_string() + "': "
+					+ avifResultToString(result), Logger::Level::WARNING);
+				return 0;
+			}
+			if(frameTimeUnit < 0 || (frameTimeUnit > timing.duration && timing.duration))
+				frameTimeUnit = timing.duration;
+		}
+		// Based on this unit, we can calculate how many times each frame is repeated.
+		vector<size_t> repeats(decoder->imageCount);
+		size_t bufferFrameCount = 0;
+		for(size_t i = 0; i < static_cast<size_t>(decoder->imageCount); ++i)
+		{
+			result = avifDecoderNthImageTiming(decoder.get(), i, &timing);
+			if(result != AVIF_RESULT_OK)
+			{
+				Logger::Log("Could not get image timing for \"" + path.generic_string() + "\": "
+					+ avifResultToString(result), Logger::Level::WARNING);
+				return 0;
+			}
+			repeats[i] = round(timing.duration / frameTimeUnit);
+			bufferFrameCount += repeats[i];
+		}
+
+		// Now that we know the buffer's frame count, we can allocate the memory for it.
+		// If this is an image sequence, the preconfigured frame count is wrong.
+		try {
+			if(bufferFrameCount > 1)
+				buffer.Clear(bufferFrameCount);
+			buffer.Allocate(decoder->image->width, decoder->image->height);
+		}
+		catch(const bad_alloc &)
+		{
+			const string message = "Failed to allocate contiguous memory for \"" + path.generic_string() + "\"";
+			Logger::Log(message, Logger::Level::ERROR);
+			throw runtime_error(message);
+		}
+		if(static_cast<unsigned>(buffer.Width()) != decoder->image->width
+			|| static_cast<unsigned>(buffer.Height()) != decoder->image->height)
+		{
+			Logger::Log("Invalid dimensions for \"" + path.generic_string() + "\"", Logger::Level::WARNING);
+			return 0;
+		}
+		if(onlyDimensions)
+			return bufferFrameCount;
+
+		// Load each image in the sequence.
+		int avifFrameIndex = 0;
+		size_t bufferFrame = 0;
+		while(avifDecoderNextImage(decoder.get()) == AVIF_RESULT_OK)
+		{
+			// Ignore frames with insufficient duration.
+			if(!repeats[avifFrameIndex])
+				continue;
+
+			avifRGBImage image;
+			avifRGBImageSetDefaults(&image, decoder->image);
+			image.depth = 8; // Force 8-bit color depth.
+			image.alphaPremultiplied = alphaPreMultiplied;
+			image.rowBytes = image.width * avifRGBImagePixelSize(&image);
+			image.pixels = reinterpret_cast<uint8_t *>(buffer.Begin(0, frame + bufferFrame));
+
+			result = avifImageYUVToRGB(decoder->image, &image);
+			if(result != AVIF_RESULT_OK)
+			{
+				Logger::Log("Conversion from YUV failed for \"" + path.generic_string() + "\": "
+					+ avifResultToString(result), Logger::Level::WARNING);
+				return bufferFrame;
+			}
+
+			// Now copy the image in the buffer to match frame timings.
+			for(size_t i = 1; i < repeats[avifFrameIndex]; ++i)
+			{
+				uint8_t *end = reinterpret_cast<uint8_t *>(buffer.Begin(0, frame + bufferFrame + 1));
+				uint8_t *dest = reinterpret_cast<uint8_t *>(buffer.Begin(0, frame + bufferFrame + i));
+				copy(image.pixels, end, dest);
+			}
+			bufferFrame += repeats[avifFrameIndex];
+
+			++avifFrameIndex;
+		}
+
+		if(avifFrameIndex != decoder->imageCount || bufferFrame != bufferFrameCount)
+			Logger::Log("Skipped corrupted frames for \"" + path.generic_string() + "\"", Logger::Level::WARNING);
+
+		return bufferFrameCount;
 	}
 
 

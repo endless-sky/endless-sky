@@ -39,16 +39,16 @@ namespace {
 
 
 
-const string &Effect::Name() const
+const string &Effect::TrueName() const
 {
-	return name;
+	return trueName;
 }
 
 
 
-void Effect::SetName(const string &name)
+void Effect::SetTrueName(const string &name)
 {
-	this->name = name;
+	this->trueName = name;
 }
 
 
@@ -56,7 +56,7 @@ void Effect::SetName(const string &name)
 void Effect::Load(const DataNode &node)
 {
 	if(node.Size() > 1)
-		name = node.Token(1);
+		trueName = node.Token(1);
 
 	for(const DataNode &child : node)
 	{

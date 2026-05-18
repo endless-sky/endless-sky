@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Conversation.h"
 #include "text/DisplayText.h"
+#include "Endpoint.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -37,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shift.h"
 #include "Ship.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "UI.h"
@@ -89,7 +91,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 		subs[it.first].swap(it.second);
 	if(ship)
 	{
-		subs["<ship>"] = ship->Name();
+		subs["<ship>"] = ship->GivenName();
 		subs["<model>"] = ship->DisplayModelName();
 	}
 
@@ -114,6 +116,21 @@ ConversationPanel::~ConversationPanel()
 void ConversationPanel::SetCallback(function<void(int)> fun)
 {
 	callback = std::move(fun);
+}
+
+
+
+void ConversationPanel::Step()
+{
+	// Load any and deferred scenes that may appear in the conversation.
+	// This is done here instead of in the constructor because the constructor
+	// does not have access to the UI stack.
+	if(!hasLoadedScenes)
+	{
+		hasLoadedScenes = true;
+		for(const Sprite *scene : conversation.Scenes())
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), scene);
+	}
 }
 
 
@@ -229,10 +246,11 @@ void ConversationPanel::Draw()
 			if(index == choice)
 				FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
 			AddZone(zone, [this, index](){ this->ClickChoice(index); });
-			++index;
 
 			font.Draw(label, point + Point(-15, 0), dim);
-			point = paragraph.Draw(point, bright);
+			point = paragraph.Draw(point, conversation.ChoiceIsActive(node, MapChoice(index)) ? bright : dim);
+
+			++index;
 		}
 	}
 	// Store the total height of the text.
@@ -240,6 +258,14 @@ void ConversationPanel::Draw()
 
 	// Reset the hover flag. If the mouse is still moving than the flag will be set in the next frame.
 	isHovering = false;
+}
+
+
+
+void ConversationPanel::UpdateTextDisplay()
+{
+	for(auto &paragraph : text)
+		paragraph.SetAlignment(Preferences::GetTextAlignment());
 }
 
 
@@ -254,7 +280,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	if(command.Has(Command::MAP) && (!choices.empty() || node < 0))
 	{
 		sound = UI::UISound::NONE;
-		GetUI()->Push(new MapDetailPanel(player, system, true));
+		GetUI().Push(new MapDetailPanel(player, system, true));
 	}
 	if(node < 0)
 	{
@@ -329,11 +355,26 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	else if(key == SDLK_DOWN && choice + 1 < static_cast<int>(choices.size()))
 		++choice;
 	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && isNewPress && choice < static_cast<int>(choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
+	{
+		if(conversation.ChoiceIsActive(node, MapChoice(choice)))
+			Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
+		else
+			sound = UI::UISound::FAILURE;
+	}
 	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
+	{
+		if(conversation.ChoiceIsActive(node, MapChoice(key - '1')))
+			Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
+		else
+			sound = UI::UISound::FAILURE;
+	}
 	else if(key >= SDLK_KP_1 && key < static_cast<SDL_Keycode>(SDLK_KP_1 + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), key - SDLK_KP_1);
+	{
+		if(conversation.ChoiceIsActive(node, MapChoice(key - SDLK_KP_1)))
+			Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), key - SDLK_KP_1);
+		else
+			sound = UI::UISound::FAILURE;
+	}
 	else
 		return false;
 
@@ -375,7 +416,7 @@ bool ConversationPanel::Hover(int x, int y)
 void ConversationPanel::Goto(int index, int selectedChoice)
 {
 	const ConditionsStore &conditions = player.Conditions();
-	Format::ConditionGetter getter = [&conditions](const std::string &str, size_t start, size_t length) -> int64_t
+	Format::ConditionGetter getter = [&conditions](const string &str, size_t start, size_t length) -> int64_t
 	{
 		return conditions.Get(str.substr(start, length));
 	};
@@ -450,7 +491,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	// This is a safeguard in case of logic errors, to ensure we don't set the player name.
 	if(choices.empty() && conversation.Choices(node) != 0)
 	{
-		node = Conversation::DECLINE;
+		node = Endpoint::DECLINE;
 	}
 	this->choice = 0;
 }
@@ -464,24 +505,24 @@ void ConversationPanel::Exit()
 	if(useTransactions)
 		player.FinishTransaction();
 
-	GetUI()->Pop(this);
+	GetUI().Pop(this);
 	// Some conversations may be offered from an NPC, e.g. an assisting or
 	// boarding mission's `on offer`, or from completing a mission's NPC
 	// block (e.g. scanning or boarding or killing all required targets).
-	if(node == Conversation::DIE || node == Conversation::EXPLODE)
+	if(node == Endpoint::DIE || node == Endpoint::EXPLODE)
 		player.Die(node, ship);
 	else if(ship)
 	{
 		// A forced-launch ending (LAUNCH, FLEE, or DEPART) destroys any NPC.
-		if(Conversation::RequiresLaunch(node))
+		if(Endpoint::RequiresLaunch(node))
 			ship->Destroy();
 		// Only show the BoardingPanel for a hostile NPC that is being boarded.
 		// (NPC completion conversations can result from non-boarding events.)
 		// TODO: Is there a better / more robust boarding check than relative position?
-		else if((node != Conversation::ACCEPT || player.CaptureOverriden(ship)) && ship->GetGovernment()->IsEnemy()
+		else if((node != Endpoint::ACCEPT || player.CaptureOverriden(ship)) && ship->GetGovernment()->IsEnemy()
 				&& !ship->IsDestroyed() && ship->IsDisabled()
 				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
-			GetUI()->Push(new BoardingPanel(player, ship));
+			GetUI().Push(new BoardingPanel(player, ship));
 	}
 	// Call the exit response handler to manage the conversation's effect
 	// on the player's missions, or force takeoff from a planet.
@@ -502,7 +543,10 @@ void ConversationPanel::ClickName(int side)
 // The player just clicked on a conversation choice.
 void ConversationPanel::ClickChoice(int index)
 {
-	Goto(conversation.NextNodeForChoice(node, MapChoice(index)), index);
+	if(conversation.ChoiceIsActive(node, MapChoice(index)))
+		Goto(conversation.NextNodeForChoice(node, MapChoice(index)), index);
+	else
+		UI::PlaySound(UI::UISound::FAILURE);
 }
 
 
@@ -523,7 +567,7 @@ int ConversationPanel::MapChoice(int n) const
 ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene, bool isFirst)
 	: scene(scene), isFirst(isFirst)
 {
-	wrap.SetAlignment(Alignment::JUSTIFIED);
+	wrap.SetAlignment(Preferences::GetTextAlignment());
 	wrap.SetWrapWidth(WIDTH);
 	wrap.SetFont(FontSet::Get(14));
 
@@ -564,4 +608,11 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 	wrap.Draw(point, color);
 	point.Y() += wrap.Height();
 	return point;
+}
+
+
+
+void ConversationPanel::Paragraph::SetAlignment(Alignment alignment)
+{
+	wrap.SetAlignment(alignment);
 }

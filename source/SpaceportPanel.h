@@ -40,6 +40,12 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
+	virtual void UpdateTextDisplay() override;
+
+
+protected:
+	virtual void Resize() override;
+
 
 private:
 	const News *PickNews() const;

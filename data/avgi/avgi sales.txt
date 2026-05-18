@@ -124,6 +124,7 @@ outfitter "Avgi Superconductors"
 
 outfitter "Avgi Propulsion"
 	"Magnetoplasma Drive"
+	"Vapor Nuclear Rocket"
 	`Z-333 "Spark" Fusion Torch`
 	"R-180 RCS Thrusters"
 	"R-360 RCS Thrusters"
@@ -133,7 +134,6 @@ outfitter "Avgi Propulsion"
 outfitter "Avgi Torches"
 	`Z-333 "Spark" Fusion Torch`
 	`Z-666 "Zap" Fusion Torch`
-	`Z-999 "Arc" Fusion Torch`
 	"R-360 RCS Thrusters"
 	"R-720 RCS Thrusters"
 	"Inductive Extractor"
@@ -144,6 +144,8 @@ outfitter "Avgi Militia Surplus"
 	"Speckle Turret"
 	"Speck Round"
 	"Speck Magazine"
+	"Tiny VLS"
+	"Small VLS"
 	`"Nettle" KKV`
 	"Optical Lasing Generator"
 	"Green Optical Laser"
@@ -156,9 +158,10 @@ outfitter "Avgi Twilight Guard"
 	"Speckle Turret"
 	"Speck Round"
 	"Speck Magazine"
+	"Tiny VLS"
+	"Small VLS"
 	"Medium VLS"
 	`"Nettle" KKV`
-	"Nettle Magazine"
 	"Optical Lasing Generator"
 	"Green Optical Laser"
 	"Blue Optical Laser"
@@ -169,12 +172,13 @@ outfitter "Avgi Atomics"
 	`"Ophrys" Nuclear Torpedo`
 	"Ophrys Stockpile"
 	`"Orchid" Nuclear Missile`
-	"Orchid Magazine"
 
 outfitter "Avgi Dissonance Smuggling"
 	"Speckle Coilgun"
 	"Speckle Turret"
 	"Speck Round"
+	"Tiny VLS"
+	"Small VLS"
 	"Medium VLS"
 	`"Nettle" KKV`
 	"Optical Lasing Generator"

@@ -46,12 +46,12 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		if(tag == "location")
 		{
 			if(add && !location.IsEmpty())
-				child.PrintTrace("Error: Cannot \"add\" to an existing location filter:");
+				child.PrintTrace("Cannot \"add\" to an existing location filter:");
 			else if(remove)
 			{
 				location = LocationFilter{};
 				if(child.HasChildren())
-					child.PrintTrace("Warning: Removing full location filter; partial removal is not supported:");
+					child.PrintTrace("Removing full location filter; partial removal is not supported:");
 			}
 			else
 				location.Load(child, visitedSystems, visitedPlanets);
@@ -60,12 +60,12 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		{
 			if(remove)
 			{
-				names = Phrase{};
+				speakerNames = Phrase{};
 				if(child.HasChildren())
-					child.PrintTrace("Warning: Removing all names; removal of individual names is not supported:");
+					child.PrintTrace("Removing all names; removal of individual names is not supported:");
 			}
 			else
-				names.Load(child);
+				speakerNames.Load(child);
 		}
 		else if(tag == "portrait")
 		{
@@ -97,7 +97,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			{
 				messages = Phrase{};
 				if(child.HasChildren())
-					child.PrintTrace("Warning: Removing all messages; removal of single messages is not supported:");
+					child.PrintTrace("Removing all messages; removal of single messages is not supported:");
 			}
 			else
 				messages.Load(child);
@@ -105,12 +105,12 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		else if(tag == "to" && hasValue && child.Token(valueIndex) == "show")
 		{
 			if(add && !toShow.IsEmpty())
-				child.PrintTrace("Error: Cannot \"add\" to an existing condition set:");
+				child.PrintTrace("Cannot \"add\" to an existing condition set:");
 			else if(remove)
 			{
 				toShow = ConditionSet{};
 				if(child.HasChildren())
-					child.PrintTrace("Warning: Removing all conditions; removal of condition subsets is not supported:");
+					child.PrintTrace("Removing all conditions; removal of condition subsets is not supported:");
 
 			}
 			else
@@ -125,7 +125,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions,
 
 bool News::IsEmpty() const
 {
-	return messages.IsEmpty() || names.IsEmpty();
+	return messages.IsEmpty() || speakerNames.IsEmpty();
 }
 
 
@@ -143,9 +143,9 @@ bool News::Matches(const Planet *planet) const
 
 
 // Get the speaker's name.
-string News::Name() const
+string News::SpeakerName() const
 {
-	return names.Get();
+	return speakerNames.Get();
 }
 
 

@@ -23,6 +23,6 @@ class PlayerInfo;
 class PrintData {
 public:
 	static bool IsPrintDataArgument(const char *const *argv);
-	static void Print(const char *const *argv, const PlayerInfo &player);
+	static void Print(const char *const *argv, PlayerInfo &player);
 	static void Help();
 };

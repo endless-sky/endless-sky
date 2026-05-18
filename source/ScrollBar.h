@@ -46,7 +46,7 @@ public:
 	void DrawAt(const Point &from);
 	bool Hover(int x, int y) override;
 	bool Drag(double dx, double dy) override;
-	bool Click(int x, int y, int clicks) override;
+	bool Click(int x, int y, MouseButton button, int clicks) override;
 
 	// Match the state of this scrollbar with the state from the ScrollVar.
 	template<typename T>
@@ -59,7 +59,7 @@ public:
 	void SyncDraw(const ScrollVar<T> &scroll, const Point &from, const Point &to, bool animated = true);
 	// Handle a click event, automatically syncing into the given ScrollVar if anything changed.
 	template<typename T>
-	bool SyncClick(ScrollVar<T> &scroll, int x, int y, int clicks);
+	bool SyncClick(ScrollVar<T> &scroll, int x, int y, MouseButton button, int clicks);
 	// Handle a drag event, automatically syncing into the given ScrollVar if anything changed.
 	template<typename T>
 	bool SyncDrag(ScrollVar<T> &scroll, double dx, double dy);
@@ -109,9 +109,9 @@ void ScrollBar::SyncDraw(const ScrollVar<T> &scroll, const Point &from, const Po
 
 
 template<typename T>
-bool ScrollBar::SyncClick(ScrollVar<T> &scroll, int x, int y, int clicks)
+bool ScrollBar::SyncClick(ScrollVar<T> &scroll, int x, int y, MouseButton button, int clicks)
 {
-	if(Click(x, y, clicks))
+	if(Click(x, y, button, clicks))
 	{
 		SyncInto(scroll);
 		return true;

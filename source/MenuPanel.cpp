@@ -22,12 +22,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GamerulesPanel.h"
 #include "Information.h"
 #include "Interface.h"
 #include "LoadPanel.h"
 #include "Logger.h"
 #include "MainPanel.h"
 #include "pi.h"
+#include "PilotProfile.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -78,7 +80,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	}
 	else if(showCreditsWarning)
 	{
-		Logger::LogError("Warning: interface \"main menu\" does not contain a box for \"credits\"");
+		Logger::Log("Interface \"main menu\" does not contain a box for \"credits\".", Logger::Level::WARNING);
 		showCreditsWarning = false;
 	}
 
@@ -90,9 +92,6 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 		gamePanels.StepAll();
 		gamePanels.StepAll();
 	}
-
-	if(player.GetPlanet())
-		Audio::PlayMusic(player.GetPlanet()->MusicName());
 
 	if(!scrollSpeed)
 		scrollSpeed = 1;
@@ -126,7 +125,7 @@ void MenuPanel::Step()
 	}
 	else
 		GameData::StepBackground(Point());
-	if(GetUI()->IsTop(this) && !scrollingPaused)
+	if(GetUI().IsTop(this) && !scrollingPaused)
 	{
 		scroll += scrollSpeed;
 		if(scroll < 0)
@@ -152,19 +151,19 @@ void MenuPanel::Draw()
 		{
 			const Ship &flagship = *player.Flagship();
 			info.SetSprite("ship sprite", flagship.GetSprite());
-			info.SetString("ship", flagship.Name());
+			info.SetString("ship", flagship.GivenName());
 		}
 		if(player.GetSystem())
 			info.SetString("system", player.GetSystem()->DisplayName());
 		if(player.GetPlanet())
 			info.SetString("planet", player.GetPlanet()->DisplayName());
-		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
+		info.SetString("credits", Format::AbbreviatedNumber(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 		info.SetString("playtime", Format::PlayTime(player.GetPlayTime()));
 	}
 	else if(player.IsLoaded())
 	{
-		info.SetCondition("no pilot loaded");
+		info.SetCondition("pilot dead");
 		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		info.SetString("ship", "You have died.");
 	}
@@ -173,6 +172,8 @@ void MenuPanel::Draw()
 		info.SetCondition("no pilot loaded");
 		info.SetString("pilot", "No Pilot Loaded");
 	}
+	if(player.Pilot() && !player.Pilot()->GetGamerules().LockGamerules())
+		info.SetCondition("gamerules unlocked");
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	mainMenuUi->Draw(info, this);
@@ -189,23 +190,44 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
 	{
 		gamePanels.CanSave(true);
-		GetUI()->PopThrough(this);
+		GetUI().PopThrough(this);
 		return true;
 	}
+	else if(key == 'r' && player.IsLoaded() && player.IsDead())
+	{
+		// First, make sure the previous MainPanel has been deleted.
+		gamePanels.Reset();
+		gamePanels.CanSave(true);
+
+		player.Reload();
+
+		GetUI().PopThrough(GetUI().Root().get());
+		gamePanels.Push(new MainPanel(player));
+		// It takes one step to figure out the planet panel should be created, and
+		// another step to actually place it. So, take two steps to avoid a flicker.
+		gamePanels.StepAll();
+		gamePanels.StepAll();
+	}
 	else if(key == 'p')
-		GetUI()->Push(new PreferencesPanel(player));
+		GetUI().Push(new PreferencesPanel(player));
 	else if(key == 'l' || key == 'm')
-		GetUI()->Push(new LoadPanel(player, gamePanels));
-	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
+		GetUI().Push(new LoadPanel(player, gamePanels));
+	else if(key == 'n' && !player.IsLoaded())
 	{
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		// Request that the player chooses a start scenario.
 		// StartConditionsPanel also handles the case where there's no scenarios.
-		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
+		GetUI().Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
+	}
+	else if(key == 'g' && player.Pilot() && !player.Pilot()->GetGamerules().LockGamerules())
+	{
+		GamerulesPanel *panel = new GamerulesPanel(player.Pilot()->GetGamerules(), true);
+		panel->SetCallback(player.Pilot().get(), &PilotProfile::Save);
+		GetUI().Push(panel);
 	}
 	else if(key == 'q')
 	{
-		GetUI()->Quit();
+		GetUI().Quit();
 		return true;
 	}
 	else if(key == ' ')
@@ -223,8 +245,11 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool MenuPanel::Click(int x, int y, int clicks)
+bool MenuPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	// Double clicking on the credits pauses/resumes the credits scroll.
 	if(clicks == 2 && mainMenuUi->GetBox("credits").Contains(Point(x, y)))
 	{

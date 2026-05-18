@@ -56,15 +56,15 @@ mission "Avgi Culture: Park Politics"
 			`	You delicately take a seat on the rail. It's at least only a little worse than a park bench, and you're thankful for the lower gravity on Peripheria.`
 			choice
 				`	"But there's three sides and only two of us."`
-			`	"Approving. An astute observation. The third color can be played by a third person, in some variations, but in our case we take turns moving for it. It - the Third - is an external actor, under our influence yet outside our absolute control, often used as a pawn to block the other player's moves when opportune. Now, would you like to make the first move, question? Players generally either focus on either evacuating their own pieces or moving to block their opponent's path to escape."`
+			`	"Approving. An astute observation. The third color can be played by a third person, in some variations, but in our case we take turns moving for it. It - the Foil - is an external actor, under our influence yet outside our absolute control, often used as a pawn to block the other player's moves when opportune. Now, would you like to make the first move, question? Players generally either focus on either evacuating their own pieces or moving to block their opponent's path to escape."`
 
 			choice
 				`	(Focus on getting my stones out. Move a stone towards my color's escape.)`
 					goto escape1
 				`	(Focus on blocking Wisteria. Move a stone towards his triangle.)`
-					goto blockwisteria1
-				`	(Focus on blocking the third color. Move a stone towards its triangle.)`
-					goto blockthird1
+					goto "block wisteria 1"
+				`	(Focus on blocking the Foil. Move a stone towards its triangle.)`
+					goto "block foil 1"
 
 			label escape1
 			action
@@ -72,27 +72,27 @@ mission "Avgi Culture: Park Politics"
 			`	"Approving. A good approach. That is the classical move to make at the start of the game, especially for a beginner."`
 				goto next1
 
-			label blockwisteria1
+			label "block wisteria 1"
 			action
 				"avgi: trefoil aggressive" ++
 			`	"Amusement. Ah, already moving to block me, I see. That is often an approach taken by more advanced players, but I must warn you, executing it successfully is difficult."`
 				goto next1
 
-			label blockthird1
+			label "block foil 1"
 			action
 				"avgi: trefoil chaotic" ++
-			`	"Interest. I do not often see players prioritize blocking the Third, especially as their first move. But perhaps you will surprise me."`
+			`	"Interest. I do not often see players prioritize blocking the Foil, especially as their first move. But perhaps you will surprise me."`
 				goto next1
 
 			label next1
-			`	Slightly adjusting his position on the bench, the Avgi continues. "Now, after each of our turns, we shall move one of the Third's pieces. You should focus on moving them to your advantage, whether that be by blocking my pieces or keeping them out of the way of your own."`
+			`	Slightly adjusting his position on the bench, the Avgi continues. "Now, after each of our turns, we shall move one of the Foil's pieces. You should focus on moving them to your advantage, whether that be by blocking my pieces or keeping them out of the way of your own."`
 			choice
-				`	(Move one of the Third's stones towards my own side, to start building a link.)`
+				`	(Move one of the Foil's stones towards my own side, to start building a link.)`
 					goto escape2
-				`	(Move one of the Third's stones towards Wisteria's side, to block him in the future.)`
-					goto blockwisteria2
-				`	(Move one of the Third's stones towards its own exit. Why not?)`
-					goto escapethird2
+				`	(Move one of the Foil's stones towards Wisteria's side, to block him in the future.)`
+					goto "block wisteria 2"
+				`	(Move one of the Foil's stones towards its own exit. Why not?)`
+					goto "escape foil 2"
 
 			label escape2
 			action
@@ -100,25 +100,25 @@ mission "Avgi Culture: Park Politics"
 			`	"Approving. A wise approach, to prepare to build bridges in the future. It is more complex, and can be difficult, but is often well-rewarded in the end. Of course, you must take care not to accidentally box yourself in, and create a chain that lacks endpoints closer to your exit."`
 				goto next2
 
-			label blockwisteria2
+			label "block wisteria 2"
 			action
 				"avgi: trefoil aggressive" ++
 			`	"Interest. It is a good move, to try and build a wall I cannot jump over, but you must take care not to accidentally create a chain with an endpoint placed to my advantage."`
 				goto next2
 
-			label escapethird2
+			label "escape foil 2"
 			action
 				"avgi: trefoil chaotic" ++
-			`	"Surprise. I have not seen that done before. The Third cannot win, of course, so you have nothing to gain by removing its pieces from the board aside from denying them to the opposing player."`
+			`	"Surprise. I have not seen that done before. The Foil cannot win, of course, so you have nothing to gain by removing its pieces from the board aside from denying them to the opposing player."`
 				goto next2
 
 			label next2
-			`	Wisteria studies the board for a brief moment before moving one of his pieces towards his exit, then quickly moving a Third piece towards his triangle. "Curiosity. I must confess, I wonder what our civilization looks like to an outsider, in the state it is in."`
+			`	Wisteria studies the board for a brief moment before moving one of his pieces towards his exit, then quickly moving a Foil piece towards his triangle. "Curiosity. I must confess, I wonder what our civilization looks like to an outsider, in the state it is in."`
 			choice
 				`	"It's impressive that you've been able to keep on fighting, even out here."`
 					goto fighting
 				`	"It seems like everyone lives a hard life out here."`
-					goto hardlife
+					goto "hard life"
 				`	"I don't think I've seen enough of it to say anything, to be honest."`
 					goto safe
 
@@ -126,7 +126,7 @@ mission "Avgi Culture: Park Politics"
 			`	"Contemplation. Yes. Fighting. A vice we have never quite been able to escape, and yet some would say we should be grateful for that now. For without the long millennia to sharpen the spear of war, how much worse would we have fared against the Aberrant, question? And yet my old bones grow weary with every failed expedition to reclaim Aviskir, and I hear the voices crying out that enough is enough, and to give up on our old worlds and build a new life out here."`
 				goto next3
 
-			label hardlife
+			label "hard life"
 			`	"Agreement. Yes, we do, and it grows harder the longer our war with the Aberrant goes on. We build our defenses up and they knock them down, we send armadas to retake Aviskir and they are routed or never return. It seems that all of our energies must go into this war, and little of our wealth is spent elsewhere. It is little wonder that some say we should seek to truly build a new life here, rather than waste our lives and efforts on reclaiming the old."`
 				goto next3
 
@@ -150,19 +150,19 @@ mission "Avgi Culture: Park Politics"
 					to display
 						has "avgi: trefoil classical"
 				`	(Prepare to block Wisteria. Move a stone towards his triangle.)`
-					goto blockwisteria3a
+					goto "block wisteria 3a"
 					to display
 						not "avgi: trefoil aggressive"
 				`	(Further block Wisteria. Move a new stone towards his side)`
-					goto blockwisteria3b
+					goto "block wisteria 3b"
 					to display
 						has "avgi: trefoil aggressive"
 				`	(Move my blocking stone further towards Wisteria's side)`
-					goto blockwisteria3c
+					goto "block wisteria 3c"
 					to display
 						has "avgi: trefoil aggressive"
-				`	(Move a stone towards the Third triangle. Why not?)`
-					goto blockthird3
+				`	(Move a stone towards the Foil triangle. Why not?)`
+					goto "block foil 3"
 
 			label escape3a
 			action
@@ -182,40 +182,40 @@ mission "Avgi Culture: Park Politics"
 			`	"Consideration. You are focused on fleeing with that single piece, without having moved your other pieces. A good strategy for the first few moves if your goal is to set up a formation for use later, but you must be careful to avoid leaving the rest of your pieces behind."`
 				goto next4
 
-			label blockwisteria3a
+			label "block wisteria 3a"
 			action
 				"avgi: trefoil aggressive" ++
 			`	"Approving. Balancing your movements between hindering me and evacuating your own pieces is the key to victory, and keeping multiple pieces in play is critical to achieving that balance, especially as you may use your pieces to skip towards me."`
 				goto next4
 
-			label blockwisteria3b
+			label "block wisteria 3b"
 			action
 				"avgi: trefoil aggressive" ++
 			`	"Approving. Your efforts thus far are focused on reacting to me, but you are making good use of multiple pieces that may later be arranged into a wall."`
 				goto next4
 
-			label blockwisteria3c
+			label "block wisteria 3c"
 			action
 				"avgi: trefoil aggressive" += 2
 			`	"Consideration. Your efforts thus far are focused on reacting to me, but you should keep in mind that a single stone will not do much to block me, and may in fact be exploited to form a chain for my own use, should you not use your own pieces to constrain its endpoint."`
 				goto next4
 
-			label blockthird3
+			label "block foil 3"
 			action
 				"avgi: trefoil chaotic" ++
 			`	"Bemusement. I am not sure if you are tricking me with some plan, but that is certainly an unusual move."`
 				goto next4
 
 			label next4
-			`	Wisteria quickly completes his own move, as well as his movement of the Third. Now he seems to be moving a piece in your direction, perhaps to block you. After a few more back-and-forth moves between the two of you, he asks you another question.`
-			`	"So, Captain <last>. I am curious. If you found yourself in our place, an invincible enemy placed between yourself, armed with the last dregs of your people's spacefaring strength, and the bulk of your people, held hostage on their very planets but otherwise unharmed, what would you do, question? Would you abandon them to their fate to build a new life out amongst the stars, or gamble your remaining strength on a bet to liberate them?"`
+			`	Wisteria quickly completes his own move, as well as his movement of the Foil. Now he seems to be moving a piece in your direction, perhaps to block you. After a few more back-and-forth moves between the two of you, he asks you another question.`
+			`	"So, Captain <last>. I am curious. If you found yourself in our place, an invincible enemy placed between yourself, armed with the last dregs of your people's spacefaring strength, and the bulk of your people held hostage on their very planets but otherwise unharmed, what would you do, question? Would you abandon them to their fate to build a new life out amongst the stars, or gamble your remaining strength on a bet to liberate them?"`
 			choice
 				`	"You can't just abandon everyone on your planets. Surely there's a way to win against the Aberrant, even if it takes sacrifice."`
 					goto liberate
 				`	"If the Aberrant aren't attacking the surfaces of the Avgi worlds, maybe you should focus on making life better out here first. After all, you have people out here to take care of too."`
 					goto abandon
 				`	"I would find another way. Communicating with the Aberrant maybe, or finding a way to both fight the war and help the people out here."`
-					goto anotherway
+					goto "another way"
 
 			label liberate
 			`	"Appreciation. Such is the opinion of most of us, those who feel lucky to have escaped in the first place and feel a certain obligation to help the rest of our people. But the way forward is unclear. If we build our strength, our military might, perhaps we will have a chance in the future to truly drive the Aberrant from our homes, but just how far we can drive the free Avgi of the Consonance, I do not know. Perhaps it will break us, and leave us with no victory at all."`
@@ -224,7 +224,7 @@ mission "Avgi Culture: Park Politics"
 			label abandon
 			`	"Contemplation. That view would have been anathema to us only a short few years ago, but it is one that is steadily gaining ground. With each defeat and failed expedition back to the Twilight, the calls grow to focus on preserving what we have, not reaching to reclaim the old. And many say that those on the old worlds are safe, for now, and may even be able to build a fleet to liberate themselves, if they can but reclaim their orbital shipyards and asteroid mines. If that truly is the case, they say, then we should build ourselves up as a bastion first, with the living space and abundance to support our population."`
 
-			label anotherway
+			label "another way"
 			`	"Amusement. Always in search of another way, everyone is. Perhaps because the choice we are left with is so abhorrent, that seeking another way provides a means of relieving them of it. We have attempted communication with the Aberrant, to no avail, and it seems likely they are not an intelligent species to begin with. They do not appear to coordinate with each other, and examining their debris in the rare instances we have managed to destroy one reveals no crew, just a strange mixture of machine and flesh. Perhaps they are some forgotten living weapon, engineered by a race long gone, or the mere servants of some ancient race far beyond us in power, the equivalents of our mining drones and service robots."`
 			`	He splays his arms. "But no, a choice must be made in the end, even if it is only one of degree. Even should we attempt to both build new homes in the Outer Limits and protract our conflict with the Aberrant, the resources allocated to each still remain to be divided up. And there, the conflict between the Consonance and Dissonance lies."`
 
@@ -244,7 +244,7 @@ mission "Avgi Culture: Park Politics"
 
 			`	"Explanation. The Assembly of Polities, as it is formally named, is a rather complicated institution. As its name suggests, it is, well, an assembly of polities. Polities being... associations, or identities. I have read of your human histories, and you could perhaps consider them an analog of nations, but with two key differences."`
 			`	Wisteria raises a sharp finger. "One, they are not geographically bounded. Oh, many will perhaps have ownership over various pieces of land and space stations, but that is in constant flux, and they are rarely joined into a contiguous whole. And two, an individual Avgi can belong to any number of polities at the same time. Citizenship, you may think of it, is shared - and diluted - between as many polities as an Avgi wishes to belong to. Religion, ethnic heritage, economic sector, and even common interests are the most common lines by which polities might base themselves around, but there is one for almost any group imaginable. Even major corporations, or industries that have banded together."`
-			`	He spreads his arms out as if presenting a great circle. "The Assembly was an attempt at securing harmony between these polities, to prevent conflicts, and when that became impossible, to set the rules and limits of war. One representative, an Elector, per polity, with a vote weighted by the number of Avgi belonging to it, and by how those Avgi had chosen to dilute their own membership among the various polities. And from they select three Speakers, a Trirumvirate to lead the leaders."`
+			`	He spreads his arms out as if presenting a great circle. "The Assembly was an attempt at securing harmony between these polities, to prevent conflicts, and when that became impossible, to set the rules and limits of war. One representative, an Elector, per polity, with a vote weighted by the number of Avgi belonging to it, and by how those Avgi had chosen to dilute their own membership among the various polities. And from them they select three Speakers, a Triumvirate to lead the leaders."`
 			choice
 				`	"Do the Avgi in a polity elect their Elector?"`
 				`	"Corporations are part of the government? I've seen that one before."`
@@ -254,12 +254,12 @@ mission "Avgi Culture: Park Politics"
 
 			`	He shrugs, an oddly human gesture. "It depends. Many polities do not even elect their own leadership, and they are free to select their representative however they wish. For some it is an elected position, for others it is one appointed by their leadership. A few even have their head of government serve as their Elector, though that is quite the time commitment to make."`
 			`	Wisteria looks up. "But yes, most of the polities use some form of democracy. An Avgi might find themselves voting in several elections, one for each polity they claim membership to, with their vote diluted by how many polities they belong to."`
-				goto nextassembly
+				goto "next assembly"
 
 			label syndicate
 			`	Wisteria thrums in laughter. "Amusement. Yes, I've heard of your Syndicate. It was strange to me, to hear of a corporation that wished for the burden of true governance, instead of leaving that to your Republic. It seems to me that the industrial polities here try their best to avoid any responsibility, while still reaping the benefits of representation."`
 
-			label nextassembly
+			label "next assembly"
 			`	"Amusement. And of course there are internal factions within the Assembly, as likeminded polities work together to advance their agendas, then just as quickly abandon each other. A harsh world, the Assembly is."`
 
 			choice
@@ -283,30 +283,30 @@ mission "Avgi Culture: Park Politics"
 			`	"The Financiers, the old money types with their fingers in everything, they represented many of the more urbanized regions of the core worlds, and their influence has come with them. Disdained by everyone in public, and beloved by all who would seek to benefit from their influence, I would credit them for being half the reason for the present unity between polities that would normally refuse to cooperate with each other," he says with an amused flick of his wings.`
 			`	"There are more, of course, with lesser influence. The Nationalists, who resent the decline of their polities' power, and especially the subsumption of their militaries into the Twilight Guard, are an ever-present thorn in the side of the Centralists, but they at least are quick to point out authoritarianism when they see it. The Ecologists want but a single thing, the complete settlement of Weledos, and the refocusing of resources on colonization and construction rather than shipbuilding. And there is a loose coalition, the Freelancers, who agree on nothing except that taxes and price controls should be relaxed."`
 			`	He sits back. "And of course the Twilight Guard is its own faction, as much as they will emphasize their neutrality. They have their supporters and detractors, but none can oppose them entirely, for they are all that stands between us and the Aberrant."`
-			`	With that, he deftly moves a Third piece, trapping a cluster of your stones behind a wall.`
+			`	With that, he deftly moves a Foil piece, trapping a cluster of your stones behind a wall.`
 			choice
 				`	(Try to break the wall and turn it into a chain.)`
-					goto breakwall4a
+					goto "break wall 4a"
 					to display
 						"avgi: trefoil classical" >= 2
 				`	(Try to break the wall and turn it into a chain.)`
-					goto breakwall4b
+					goto "break wall 4b"
 					to display
 						"avgi: trefoil classical" < 2
 				`	(Evacuate my other stones.)`
 					goto escape4
 				`	(Retaliate by trapping the rest of Wisteria's stones.)`
-					goto blockwisteria4
+					goto "block wisteria 4"
 					to display
 						"avgi: trefoil aggressive" >= 1
 
-			label breakwall4a
+			label "break wall 4a"
 			action
 				"avgi: trefoil classical" ++
 			`	"Approving. Excellent, you have broken my blockade and turned it to your advantage instead. A good skill for an experienced player to have."`
 				goto next6
 
-			label breakwall4b
+			label "break wall 4b"
 			action
 				"avgi: trefoil classical" ++
 			`	"Instructing. Ah, you see how you were unable to break the blockade, question? Your formation was not organized well enough for it with the stones you have available, and you would have been better served by ignoring those pieces and making moves elsewhere."`
@@ -318,7 +318,7 @@ mission "Avgi Culture: Park Politics"
 			`	"Interest. You seem to be abandoning the pieces I have trapped in order to move the rest while I am distracted. A clever strategy, and one that is non-obvious."`
 				goto next6
 
-			label blockwisteria4
+			label "block wisteria 4"
 			action
 				"avgi: trefoil aggressive" ++
 			`	"Approving. Instead of trying to break my blockade, which would be difficult, you choose to instead take the opportunity to block in my own pieces, which forces me to respond."`
@@ -376,11 +376,11 @@ mission "Avgi Culture: Park Politics"
 					goto end2
 					to display
 						"avgi: trefoil aggressive" >= 2
-				`(Try to completely block Wisteria in with the Third's stones.)`
+				`(Try to completely block Wisteria in with the Foil's stones.)`
 					goto end3
 					to display
 						"avgi: trefoil aggressive" >= 1
-				`(Try to undo the blockades Wisteria has created for me with the Third's stones.)`
+				`(Try to undo the blockades Wisteria has created for me with the Foil's stones.)`
 					goto end4
 					to display
 						"avgi: trefoil classical" >= 2
@@ -480,7 +480,7 @@ mission "Avgi Culture: Zapchannel Energy"
 				`	"Alright, I'll give it a shot."`
 
 			branch superpowers
-				random < 3
+				random < 1
 			`	You take the vial, warm to the touch, and uncork it. Nikkio gives you an expectant look, and gestures at you before you carefully tip the drink back. You feel a little tingly as the drink trickles down your throat, tasting vaguely of lemon and metal. This quickly intensifies into pins and needles in your chest, spreading as your body starts to go numb. As your vision darkens, punctuated by flashes of light in the corners of your eyes, your last thought is that perhaps you shouldn't have drunk a mysterious glowing liquid given to you by a seedy alien you just met in the spaceport.`
 				die
 
@@ -536,7 +536,7 @@ mission "Avgi: Cylinder Construction"
 			label questions
 			choice
 				`	"How long until the cylinder is done?"`
-					goto whenupdate
+					goto "when update"
 					to display
 						not "avgi: asked about whenupdate"
 				`	"What kind of station design is this?"`
@@ -550,7 +550,7 @@ mission "Avgi: Cylinder Construction"
 				`	"That's all the questions I have, thank you."`
 					goto conclusion
 
-			label whenupdate
+			label "when update"
 			action
 				set "avgi: asked about whenupdate"
 			`	He thrums with laughter. "The trillion credit question, is it not, amusement? The answer I give the Assembly is that it will be finished when they supply us with the requisite materials and workforce to do so. But the War takes precedence, as it must, and so the steel and nanofibers and ceramics that we must have before we can fill this cylinder with atmosphere are instead used to build warships, and the engineers and workers with any shred of experience are sent to the Navigeo Yards instead of here."`
@@ -711,13 +711,13 @@ mission "Avgi Culture: Twilight Tavern Guard"
 			`	He gives you a look. "Amusement. You're no regular so I'll start you off with a Quis Nectar. On the house." He turns around, deftly snatching up something close to a cocktail glass, and pulls out a big, dangerous-looking glass pipette from somewhere under the bar. Smoothly dipping it into something that looks like a large pitcher plant, he draws out a clear, slightly pink-tinged liquid before depositing it in the glass. "Enjoy, amusement."`
 			choice
 				`	(Gulp it down.) "Bottoms up."`
-					goto toomuch
+					goto "too much"
 				`	(Take a sip.) "Thanks."`
 
 			`	The liquid is pleasantly light and sweet, with a bit of bitterness behind it. It doesn't taste anything like alcohol, but you can feel the lights in the room become a little sharper and brighter.`
 				goto claret
 
-			label toomuch
+			label "too much"
 			`	You toss back your glass in a swift movement, swallowing the alien liquid in one smooth gulp. It's pleasantly light, and quite sweet. You can't taste any alcohol, but the room seems to light up as every detail becomes crisp and defined.`
 
 			label claret
@@ -852,7 +852,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 				goto shields
 
 			label technology
-				`	"Oh, yes, appreciation. But they don't use it to its full extent, probably because they aren't intelligent beings in their own right. They just make more of each other, without any changes other than occasional mistakes. And their weapons don't seem like they were meant to be weapons, if that makes sense. More of a cutting beam than a true weaponized laser."`
+			`	"Oh, yes, appreciation. But they don't use it to its full extent, probably because they aren't intelligent beings in their own right. They just make more of each other, without any changes other than occasional mistakes. And their weapons don't seem like they were meant to be weapons, if that makes sense. More of a cutting beam than a true weaponized laser."`
 
 			label shields
 			`	"That's why things really were desperate, until you humans came around. That changed everything, knowing there was a non-hostile, if not outright friendly, alien power nearby. Even though it sounds like your government isn't able to help directly, given the lack of connecting starways, technological support from a more advanced species could be enough for us to win. Shields, shared by your people, were already a game changer by themselves."`
@@ -912,12 +912,12 @@ mission "Avgi: Atomics Testing 1"
 				`	"Nuclear weapons? I'm not a fan honestly."`
 
 			`	"Ah, well. Not everyone can appreciate art. But you'll see the light, heh heh, when the Aberrant come knocking. Nothing else hits 'em the same way, appreciation."`
-				goto wannasee
+				goto "wanna see"
 
 			label cool
 			`	"Enthusiasm. They are! I wish there was time to explain the fine art of weapons design, but alas, I have an appointment in less than an hour... Consideration. Actually, I've just had an idea," she says, looking thoughtful.`
 
-			label wannasee
+			label "wanna see"
 			`	"Hey, you've been vetted by the Assembly itself, right? You wanna see an atomics test? We've got one scheduled for today, and I heard you aliens are scared of nukes, so you've probably never seen one before."`
 			choice
 				`	"Sure, why not?"`
@@ -1073,7 +1073,7 @@ mission "Avgi: Atomics Testing 2"
 		log "Minor People" "Yinmn" `Yinmn is a security specialist working to keep nuclear materials secure and out of the wrong hands. He is apparently quite successful at this.`
 		conversation
 			`	You drop off Aliza near the same place you met her, in the main concourse. It's rather more full than last time, with a veritable crowd moving through the room, probably fresh off a transport ship. Aliza seems to spot someone she recognizes. Waving, she drags you over to a dark blue Avgi in dark, steel gray clothing.`
-			`	"This is my colleague, Yinmn," she says. And this is Captain <first> <last>.`
+			`	"This is my colleague, Yinmn," she says. "And this is Captain <first> <last>."`
 			`	"Greetings. Hey there. I work in the accounting section for Ergastirio. And you're of course Captain <last>, the alien everyone's been talking about."`
 			choice
 				`	"Huh, what do you do there?"`
@@ -1087,7 +1087,7 @@ mission "Avgi: Atomics Testing 2"
 			`	"Explanation. I account for nuclear materials, not credits. We have to make sure every last drop of fissiles that could be used to make a bomb is kept secure. Not only for security reasons, but because it's extremely valuable out here in the Outer Limits. Not many of the heavier elements out here, sadly, and we've been having issues with shortages lately. It only takes a few kilos to make a bomb, but we do go through a lot of them..."`
 
 			label dissonance
-			`	Aliza chimes in. "And a lot of people, especially the Dissonance, would like to get their hands on some of our stockpile of fissile materials. We do quite a bit of mining, and have an impressive amount of breeder reactors running on fusion neutrons, so the amount of material being circulated at any given moment is quite high. Yinmn could tell you a lot of stories about the piracy that goes on with that supply chain."`
+			`	Aliza chimes in. "And a lot of people, especially certain elements in the Dissonance, would like to get their hands on some of our stockpile of fissile materials. We do quite a bit of mining, and have an impressive amount of breeder reactors running on fusion neutrons, so the amount of material being circulated at any given moment is quite high. Yinmn could tell you a lot of stories about the piracy that goes on with that supply chain."`
 			`	Yinmn taps his arms together. "Heh, but we'd be here for days, amusement. I'll just leave it at this: our convoys are often trailed by 'merchants' apparently making supply runs to secure facilities. Those are the worst, not the members of the Dissonance themselves, but the ones who hide their sympathies and feign loyalty to the Consonance."`
 			choice
 				`	"Wait, so do they have nukes too?"`

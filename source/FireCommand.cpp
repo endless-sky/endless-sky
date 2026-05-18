@@ -22,8 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	template <typename T>
-	void SubsetAssign(std::vector<T> &lhs, const std::vector<T> &rhs) noexcept
+	template<typename T>
+	void SubsetAssign(vector<T> &lhs, const vector<T> &rhs) noexcept
 	{
 		const auto size = lhs.size() < rhs.size() ? lhs.size() : rhs.size();
 		for(size_t i = 0; i < size; ++i)

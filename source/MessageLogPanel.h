@@ -38,7 +38,7 @@ protected:
 
 
 private:
-	const std::deque<std::pair<std::string, Messages::Importance>> &messages;
+	const std::deque<std::pair<std::string, const Message::Category *>> &messages;
 
 	const double width;
 	bool importantOnly = false;

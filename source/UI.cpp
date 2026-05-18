@@ -57,20 +57,16 @@ bool UI::Handle(const SDL_Event &event)
 		{
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
-			if(event.button.button == 1)
-			{
+			if(event.button.button == SDL_BUTTON_LEFT)
 				handled = (*it)->ZoneClick(Point(x, y));
-				if(!handled)
-					handled = (*it)->DoClick(x, y, event.button.clicks);
-			}
-			else if(event.button.button == 3)
-				handled = (*it)->DoRClick(x, y);
+			if(!handled)
+				handled = (*it)->DoClick(x, y, static_cast<MouseButton>(event.button.button), event.button.clicks);
 		}
 		else if(event.type == SDL_MOUSEBUTTONUP)
 		{
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
-			handled = (*it)->DoRelease(x, y);
+			handled = (*it)->DoRelease(x, y, static_cast<MouseButton>(event.button.button));
 		}
 		else if(event.type == SDL_MOUSEWHEEL)
 			handled = (*it)->DoScroll(event.wheel.x, event.wheel.y);
@@ -79,6 +75,8 @@ bool UI::Handle(const SDL_Event &event)
 			Command command(event.key.keysym.sym);
 			handled = (*it)->DoKeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
 		}
+		else if(event.type == SDL_TEXTINPUT)
+			handled = (*it)->DoTextInput(event.text.text);
 
 		// If this panel does not want anything below it to receive events, do
 		// not let this event trickle further down the stack.
@@ -103,6 +101,11 @@ void UI::StepAll()
 	// Step all the panels.
 	for(shared_ptr<Panel> &panel : stack)
 		panel->Step();
+
+	// Process any tasks queued up by the panels.
+	syncQueue.Wait();
+	syncQueue.ProcessSyncTasks();
+	asyncQueue.ProcessSyncTasks();
 }
 
 
@@ -127,6 +130,27 @@ void UI::DrawAll()
 
 
 
+TaskQueue &UI::SyncQueue()
+{
+	return syncQueue;
+}
+
+
+
+TaskQueue &UI::AsyncQueue()
+{
+	return asyncQueue;
+}
+
+
+
+const vector<shared_ptr<Panel>> &UI::Stack() const
+{
+	return stack;
+}
+
+
+
 // Add the given panel to the stack. UI is responsible for deleting it.
 void UI::Push(Panel *panel)
 {
@@ -139,6 +163,8 @@ void UI::Push(const shared_ptr<Panel> &panel)
 {
 	toPush.push_back(panel);
 	panel->SetUI(this);
+	panel->DoResize();
+	panel->DoUpdateTextDisplay();
 }
 
 
@@ -256,6 +282,22 @@ bool UI::IsDone() const
 bool UI::IsEmpty() const
 {
 	return stack.empty() && toPush.empty();
+}
+
+
+
+void UI::AdjustViewport() const
+{
+	for(auto &it : stack)
+		it->DoResize();
+}
+
+
+
+void UI::AdjustTextDisplay() const
+{
+	for(auto &it : stack)
+		it->DoUpdateTextDisplay();
 }
 
 

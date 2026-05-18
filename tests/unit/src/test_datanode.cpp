@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Include a helper for creating well-formed DataNodes.
 #include "datanode-factory.h"
+#include "logger-output.h"
 #include "output-capture.hpp"
 
 // ... and any system includes needed for the test file.
@@ -132,11 +133,11 @@ SCENARIO( "Creating a DataNode", "[DataNode]") {
 
 				AND_THEN( "The copied children print correct traces" ) {
 					CHECK( partner.PrintTrace() == 0 );
-					CHECK( traces.Flush() == "parent\n" );
+					CHECK( IgnoreLogHeaders(traces.Flush()) == "parent\n" );
 					CHECK( child.PrintTrace() == 2 );
-					CHECK( traces.Flush() == "parent\nL2:   child\n");
+					CHECK( IgnoreLogHeaders(traces.Flush()) == "parent\nL2:   child\n");
 					CHECK( grand.PrintTrace() == 4 );
-					CHECK( traces.Flush() == "parent\nL2:   child\nL3:     grand\n");
+					CHECK( IgnoreLogHeaders(traces.Flush()) == "parent\nL2:   child\nL3:     grand\n");
 				}
 			}
 		}
@@ -161,11 +162,11 @@ SCENARIO( "Creating a DataNode", "[DataNode]") {
 
 				AND_THEN( "The copied children print correct traces" ) {
 					CHECK( partner.PrintTrace() == 0 );
-					CHECK( traces.Flush() == "parent\n" );
+					CHECK( IgnoreLogHeaders(traces.Flush()) == "parent\n" );
 					CHECK( child.PrintTrace() == 2 );
-					CHECK( traces.Flush() == "parent\nL2:   child\n");
+					CHECK( IgnoreLogHeaders(traces.Flush()) == "parent\nL2:   child\n");
 					CHECK( grand.PrintTrace() == 4 );
-					CHECK( traces.Flush() == "parent\nL2:   child\nL3:     grand\n");
+					CHECK( IgnoreLogHeaders(traces.Flush()) == "parent\nL2:   child\nL3:     grand\n");
 				}
 			}
 		}
@@ -191,11 +192,11 @@ SCENARIO( "Creating a DataNode", "[DataNode]") {
 
 				AND_THEN( "The moved children print correct traces" ) {
 					CHECK( moved.PrintTrace() == 0 );
-					CHECK( traces.Flush() == "parent\n" );
+					CHECK( IgnoreLogHeaders(traces.Flush()) == "parent\n" );
 					CHECK( child.PrintTrace() == 2 );
-					CHECK( traces.Flush() == "parent\nL2:   child\n");
+					CHECK( IgnoreLogHeaders(traces.Flush()) == "parent\nL2:   child\n");
 					CHECK( grand.PrintTrace() == 4 );
-					CHECK( traces.Flush() == "parent\nL2:   child\nL3:     grand\n");
+					CHECK( IgnoreLogHeaders(traces.Flush()) == "parent\nL2:   child\nL3:     grand\n");
 				}
 			}
 		}
@@ -220,11 +221,11 @@ SCENARIO( "Creating a DataNode", "[DataNode]") {
 
 				AND_THEN( "The moved children print correct traces" ) {
 					CHECK( moved.PrintTrace() == 0 );
-					CHECK( traces.Flush() == "parent\n" );
+					CHECK( IgnoreLogHeaders(traces.Flush()) == "parent\n" );
 					CHECK( child.PrintTrace() == 2 );
-					CHECK( traces.Flush() == "parent\nL2:   child\n");
+					CHECK( IgnoreLogHeaders(traces.Flush()) == "parent\nL2:   child\n");
 					CHECK( grand.PrintTrace() == 4 );
-					CHECK( traces.Flush() == "parent\nL2:   child\nL3:     grand\n");
+					CHECK( IgnoreLogHeaders(traces.Flush()) == "parent\nL2:   child\nL3:     grand\n");
 				}
 			}
 		}
