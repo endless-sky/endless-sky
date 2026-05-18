@@ -2016,7 +2016,7 @@ mission "Remnant: Teciimach Compatibility"
 	to offer
 		has "event: remnant: teciimach deployment"
 	on offer
-		event "remnant: teciimach compatibility"
+		event "remnant: teciimach compatibility" 0
 		fail
 
 event "remnant: teciimach compatibility"

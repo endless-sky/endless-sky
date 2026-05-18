@@ -405,7 +405,7 @@ mission "Wanderer Hail Patch"
 	to offer
 		has "event: wanderer technology available"
 	on offer
-		event "wanderer technology available"
+		event "wanderer technology available" 0
 		fail
 
 
@@ -485,7 +485,7 @@ mission "Wanderers: Vara K'Chrai Facilities Patch"
 	to offer
 		has "Wanderers Conversation: offered"
 	on offer
-		event "wanderers: vara k'chrai facilities"
+		event "wanderers: vara k'chrai facilities" 0
 		fail
 
 
@@ -1659,7 +1659,7 @@ mission "Wanderers: Unfettered Invasion Patch"
 	to offer
 		has "event: wanderers: unfettered invasion"
 	on offer
-		event "wanderers: unfettered invasion starts"
+		event "wanderers: unfettered invasion starts" 0
 		fail
 
 # Giving Heavy Gust to old saves:
@@ -1671,7 +1671,7 @@ mission "Wanderers: Heavy Gust Patch"
 		has "event: wanderers: unfettered invasion starts"
 		not "event: wanderers: heavy gust mass production"
 	on offer
-		event "wanderers: heavy gust mass production"
+		event "wanderers: heavy gust mass production" 0
 		fail
 
 mission "Wanderers Invaded 0"
@@ -2136,7 +2136,7 @@ mission "Wanderers Hai Assistance Fleet patch"
 		has "Wanderers Hai Assistance Fleet: offered"
 		not "event: hai blockade"
 	on offer
-		event "hai blockade"
+		event "hai blockade" 0
 		fail
 
 
@@ -2353,7 +2353,7 @@ mission "eastern evacuation"
 			has "Wanderers Solifuge Recon 2: done"
 			has "Wanderers Pond Strider Recon 2: done"
 	on offer
-		event "eastern evacuation"
+		event "eastern evacuation" 0
 		fail
 
 mission "Wanderers Evacuation 1"
@@ -2555,7 +2555,7 @@ mission "Solifuge Shipyards Patch"
 		has "event: battle for sich'ka'ara ends"
 		not "event: solifuge deployment"
 	on offer
-		event "solifuge deployment"
+		event "solifuge deployment" 0
 		fail
 
 event "battle for sich'ka'ara ends"
@@ -2586,7 +2586,7 @@ mission "Wanderers: Kort Vek'kri Tribute Patch"
 	to offer
 		has "event: battle for sich'ka'ara ends"
 	on offer
-		event "kort vek'kri tribute clear"
+		event "kort vek'kri tribute clear" 0
 		fail
 
 event "kort vek'kri tribute clear"
