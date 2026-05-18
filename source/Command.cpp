@@ -91,7 +91,7 @@ const Command Command::AUTOSTEER(ONE << 39, "Auto steer");
 // These commands are not in the preferences panel, and do not have keys
 // assigned to them, but may have descriptions as needed to facilitate
 // assignments in downstream ports like endless-mobile.
-const Command Command::WAIT(ONE << 41, "");
+const Command Command::WAIT(ONE << 40, "");
 const Command Command::STOP(ONE << 41, "Stop your ship");
 const Command Command::SHIFT(ONE << 42, "");
 
