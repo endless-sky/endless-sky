@@ -226,7 +226,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		bool newValue = !Preferences::Has("Show gunsights");
 		Preferences::Set("Show gunsights", newValue);
-		Messages::Add(*GameData::Messages().Get("Gunsights " + string(newValue ? "shown" : "hidden") + "."));
+		Messages::Add(*GameData::Messages().Get(newValue ?
+			"Gunsights shown" : "Gunsights hidden"));
 	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
