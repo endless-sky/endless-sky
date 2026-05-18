@@ -392,8 +392,8 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
-				if(grand.Size() == 1)
-					atrocityOutfits[GameData::Outfits().Get(grandKey)] = {true, deathSentenceForBlock};
+				if(grandKey == "ignore universal")
+					ignoreUniversalAtrocities = true;
 				else if(grandKey == "remove")
 				{
 					if(grand.Token(1) == "ignore universal")
@@ -406,8 +406,6 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 					else if(!atrocityOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
 						grand.PrintTrace("Invalid remove, outfit not found in existing atrocities:");
 				}
-				else if(grandKey == "ignore universal")
-						ignoreUniversalAtrocities = true;
 				else if(grandKey == "ignore")
 				{
 					if(grand.Token(1) == "ship" && grand.Size() >= 3)
@@ -417,6 +415,8 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				}
 				else if(grandKey == "ship")
 					atrocityShips[grand.Token(1)] = {true, deathSentenceForBlock};
+				else
+					atrocityOutfits[GameData::Outfits().Get(grandKey)] = {true, deathSentenceForBlock};
 			}
 		}
 		else if(key == "enforces" && child.HasChildren())
