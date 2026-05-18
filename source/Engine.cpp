@@ -1202,8 +1202,8 @@ void Engine::Step(bool isActive)
 				{
 					Point gunsightStart = ship->Position() - camera.Center() + (ship->Facing().Rotate(hardpoint.GetPoint()));
 					Angle gunsightAngle = hardpoint.GetAngle() + ship->Facing();
-					double gunsightRange = hardpoint.GetOutfit()->Range();
-					double gunsightSpread = gunsightRange * tan(hardpoint.GetOutfit()->Inaccuracy() * PI / 180);
+					double gunsightRange = hardpoint.GetWeapon()->Range();
+					double gunsightSpread = gunsightRange * tan(hardpoint.GetWeapon()->Inaccuracy() * PI / 180);
 
 					gunsights.push_back({
 						gunsightAngle,
