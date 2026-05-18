@@ -4689,7 +4689,7 @@ void PlayerInfo::RegisterDerivedConditions()
 			if(scheduled.event->TrueName() == event)
 				return scheduled.event->GetDate() - date;
 		return 0;
-	})
+	});
 
 	// Gamerule condition getter:
 	conditions["gamerule: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
