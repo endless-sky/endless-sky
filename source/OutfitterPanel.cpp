@@ -1354,15 +1354,6 @@ void OutfitterPanel::DrawButtons()
 	font.Draw(DisplayText("L_oadouts", Layout(Alignment::LEFT)),
 		buttonCenter - Point(41, font.Height() * .5), hoverButton == 'o' ? bright : dim);
 
-	// Draw the Loadouts button.
-	const Point buttonCenter = Screen::BottomRight() - Point(644, 20);
-	const string buttonPath = hoverButton == 'o' ? "ui/loadouts selected" : "ui/loadouts unselected";
-	const Sprite *loadoutIcon = SpriteSet::Get(buttonPath);
-	SpriteShader::Draw(loadoutIcon, buttonCenter);
-	buttonZones.emplace_back(Rectangle(buttonCenter, {loadoutIcon->Width(), loadoutIcon->Height()}), 'o');
-	font.Draw(DisplayText("L_oadouts", Layout(Alignment::LEFT)),
-		buttonCenter - Point(41, font.Height() * .5), hoverButton == 'o' ? bright : dim);
-
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
 	if(!tooltip.empty())
