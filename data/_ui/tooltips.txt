@@ -872,7 +872,7 @@ tip "outfitter: r"
 	`Move the outfit from cargo or the currently selected ship(s) into planetary storage, in that order. Hold Shift, Control, or Alt to store 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
 
 tip "outfitter: o"
-	`Open the loadouts menu. Ship outfit loadouts, or "loadouts", are managed here. Save and Apply loadouts on your ships to quickly change your ship loadouts.`
+	`Open the loadouts menu. Predefined ship equipment sets, or "loadouts", are managed here. Save and Apply loadouts on your ships to quickly change your ship outfits to match.`
 
 tip "shipyard: b"
 	`Buy this ship. Hold Shift, Control, or Alt to buy 5, 20, or 500 ships at once. Hold a combination of these keys for larger amounts.`
@@ -884,7 +884,7 @@ tip "shipyard: r"
 	`Sell the hulls of the selected ships, but retain the outfits in storage.`
 
 tip "loadout: loadouts"
-	`All of your saved loadout files are displayed here, filtered down to match your selected ship(s) model if "Strict Ship Match" is selected.`
+	`All of your saved loadout files are displayed here. These have been filtered down to match your selected ship model(s) if "Strict Ship Match" is selected.`
 
 tip "loadout: selected"
 	`The outfits to be installed by the selected loadout are displayed here, along with where those outfits would be sourced if you were to click "Apply".`

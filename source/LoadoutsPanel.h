@@ -34,7 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class LoadoutsPanel : public Panel {
 public:
 	explicit LoadoutsPanel(PlayerInfo &player, std::set<Ship*> &playerShips, Sale<Outfit> &outfitter, int day);
-	~LoadoutsPanel() override;
+	~LoadoutsPanel() override = default;
 
 	void Step() override;
 	void Draw() override;
@@ -80,6 +80,7 @@ private:
 	void DrawScrollbars();
 	bool ShouldHighlight(const Ship *ship, Point mouse, bool shipIsSelected) const;
 	void ShipSelect(Ship *ship, int clicks);
+
 
 private:
 	// Some code wants to rotate through the LoadoutDestination enum, so the index is recorded here.
@@ -183,5 +184,4 @@ private:
 	Tooltip shipsTooltip;
 	std::string shipName;
 	std::string warningType;
-
 };

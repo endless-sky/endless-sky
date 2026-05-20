@@ -30,7 +30,7 @@ public:
 
 	// Attempt to create a loadout from a given file. Will return nullptr if a loadout could not be created.
 	static Loadout *Load(const std::filesystem::path &path);
-	static bool Exists(const std::string & name);
+	static bool Exists(const std::string &name);
 
 	std::string ShipModel() const;
 	std::map<const Outfit*, int> Outfits();
