@@ -102,16 +102,9 @@ LoadoutsPanel::LoadoutsPanel(PlayerInfo &player, set<Ship*> &playerShips, Sale<O
 	// Calculate the number of ship rows ahead of time to determine what extension and whether to use a scrollbar.
 	const Planet *planet = player.GetPlanet();
 	int count = 0;
-	rows = 1;
 	for(const shared_ptr<Ship> &ship : player.Ships())
-	{
 		count += IsShipPresent(ship, planet);
-		if(count > ROW_SIZE)
-		{
-			count -= ROW_SIZE;
-			rows++;
-		}
-	}
+	rows = (count + ROW_SIZE - 1) / ROW_SIZE;
 	shipsBox = loadoutPanelUi->GetBox("ships" + (rows > 3 ? "3" : to_string(rows)));
 	if(rows > 3)
 	{
@@ -190,11 +183,6 @@ LoadoutsPanel::LoadoutsPanel(PlayerInfo &player, set<Ship*> &playerShips, Sale<O
 
 
 
-LoadoutsPanel::~LoadoutsPanel()
-= default;
-
-
-
 void LoadoutsPanel::Step()
 {
 	loadoutScroll.Step();
@@ -247,6 +235,7 @@ void LoadoutsPanel::Draw()
 	else
 		tooltip.DecrementCount();
 
+	// Draw ships being dragged.
 	if(draggedShip && isDraggingShip && draggedShip->GetSprite())
 	{
 		const Sprite *sprite = draggedShip->GetSprite();
@@ -571,20 +560,15 @@ void LoadoutsPanel::RefreshLoadoutsBox()
 	visibleLoadouts.clear();
 	vector<string> selectedModels;
 	if(enforceShipTypes)
-	{
 		for(const Ship *ship : *playerShips)
-		{
 			if(ranges::find(selectedModels, ship->TrueModelName()) == selectedModels.end())
-			{
 				selectedModels.push_back(ship->TrueModelName());
-			}
-		}
-	}
 
 	for(Loadout *loadout : loadouts)
 	{
 		// Filter mismatched loadouts if setting enabled.
-		if(enforceShipTypes && ranges::find(selectedModels, loadout->ShipModel()) == selectedModels.end()) continue;
+		if(enforceShipTypes && ranges::find(selectedModels, loadout->ShipModel()) == selectedModels.end())
+			continue;
 
 		visibleLoadouts.push_back(loadout);
 	}
@@ -608,13 +592,13 @@ void LoadoutsPanel::RefreshLoadoutData()
 
 	if(selectedLoadout)
 	{
-
 		vector<Ship*> filteredShips;
 		for(Ship *ship : *playerShips)
 		{
 
 			// Filter mismatched ships if setting enabled.
-			if(enforceShipTypes && ship->TrueModelName() != selectedLoadout->ShipModel()) continue;
+			if(enforceShipTypes && ship->TrueModelName() != selectedLoadout->ShipModel())
+				continue;
 
 			filteredShips.push_back(ship);
 		}
@@ -623,17 +607,18 @@ void LoadoutsPanel::RefreshLoadoutData()
 			if(outfit->IsDefined() && !outfit->Category().empty() && !outfit->DisplayName().empty())
 			{
 				// Filter unique outfits if setting is set.
-				if(!includeUnique && outfit->Category() == "Unique") continue;
+				if(!includeUnique && outfit->Category() == "Unique")
+					continue;
 
 				// Filter hand-to-hand outfits if setting is set.
-				if(!includeHandToHand && outfit->Category() == "Hand to Hand") continue;
+				if(!includeHandToHand && outfit->Category() == "Hand to Hand")
+					continue;
 
 				const int amountToSource = amount * filteredShips.size();
 				int stillNeeded = amountToSource;
 				int equipped = 0;
 				for(const Ship *ship : filteredShips)
 				{
-
 					const int onShip = ship->OutfitCount(outfit);
 					if(onShip >= stillNeeded)
 					{
@@ -651,7 +636,8 @@ void LoadoutsPanel::RefreshLoadoutData()
 					cargo = stillNeeded;
 					stillNeeded = 0;
 				}
-				else {
+				else
+				{
 					cargo = inCargo;
 					stillNeeded -= inCargo;
 				}
@@ -663,7 +649,8 @@ void LoadoutsPanel::RefreshLoadoutData()
 					storage = stillNeeded;
 					stillNeeded = 0;
 				}
-				else {
+				else
+				{
 					storage = inStorage;
 					stillNeeded -= inStorage;
 				}
@@ -697,10 +684,12 @@ void LoadoutsPanel::RefreshLoadoutData()
 			for(pair<const Outfit*, int> outfit : ship->Outfits())
 			{
 				// Filter unique outfits if setting is set,
-				if(!includeUnique && outfit.first->Category() == "Unique") continue;
+				if(!includeUnique && outfit.first->Category() == "Unique")
+					continue;
 
 				// Filter hand-to-hand outfits if setting is set.
-				if(!includeHandToHand && outfit.first->Category() == "Hand to Hand") continue;
+				if(!includeHandToHand && outfit.first->Category() == "Hand to Hand")
+					continue;
 
 				toRemove[outfit.first] += outfit.second;
 			}
@@ -747,7 +736,6 @@ void LoadoutsPanel::SaveLoadout(const string &name)
 {
 	if(!playerShips->empty())
 	{
-
 		const Ship *ship = *playerShips->begin();
 		if(Loadout::Exists(name) && name != nameToConfirm)
 		{
@@ -755,15 +743,18 @@ void LoadoutsPanel::SaveLoadout(const string &name)
 			GetUI().Push(DialogPanel::RequestString(this, &LoadoutsPanel::SaveLoadout, "Warning: \"" + name
 			+ "\" is being used for an existing snapshot.\nOverwrite it?", name));
 		}
-		else {
+		else
+		{
 			map<const Outfit*, int> outfits;
 			for(auto [outfit, amount] : ship->Outfits())
 			{
 				// Filter unique outfits if setting is set.
-				if(!includeUnique && outfit->Category() == "Unique") continue;
+				if(!includeUnique && outfit->Category() == "Unique")
+					continue;
 
 				// Filter hand-to-hand outfits if setting is set.
-				if(!includeHandToHand && outfit->Category() == "Hand to Hand") continue;
+				if(!includeHandToHand && outfit->Category() == "Hand to Hand")
+					continue;
 
 				outfits[outfit] = amount;
 			}
@@ -783,7 +774,8 @@ void LoadoutsPanel::SaveLoadout(const string &name)
 				GetUI().Push(DialogPanel::Info("Could not create a file for the loadout \"" + name + "\"."));
 		}
 	}
-	else {
+	else
+	{
 		// This shouldn't be reachable.
 		GetUI().Push(DialogPanel::Info("You do not have any ships selected."));
 	}
@@ -825,7 +817,8 @@ void LoadoutsPanel::ApplyLoadout()
 	{
 
 		// Skip ships not belonging to the loadout if the enforce option is toggled.
-		if(enforceShipTypes && ship->TrueModelName() != selectedLoadout->ShipModel()) continue;
+		if(enforceShipTypes && ship->TrueModelName() != selectedLoadout->ShipModel())
+			continue;
 
 		// Because outfits must be removed from a ship using AddOutfit to keep attributes correct,
 		// Copy over a list of outfits to remove manually to bypass possible concurrent modification issues.
@@ -833,10 +826,12 @@ void LoadoutsPanel::ApplyLoadout()
 		for(pair<const Outfit*, int> outfit : ship->Outfits())
 		{
 			// Filter unique outfits if setting is set
-			if(!includeUnique && outfit.first->Category() == "Unique") continue;
+			if(!includeUnique && outfit.first->Category() == "Unique")
+				continue;
 
 			// Filter hand-to-hand outfits if setting is set.
-			if(!includeHandToHand && outfit.first->Category() == "Hand to Hand") continue;
+			if(!includeHandToHand && outfit.first->Category() == "Hand to Hand")
+				continue;
 
 			installed.push_back(outfit.first);
 		}
@@ -855,8 +850,10 @@ void LoadoutsPanel::ApplyLoadout()
 		{
 			const bool leftAmmo = lhs->Category() == "Ammunition";
 			const bool rightAmmo = rhs->Category() == "Ammunition";
-			if(leftAmmo && !rightAmmo) return true;
-			if(!leftAmmo && rightAmmo) return false;
+			if(leftAmmo && !rightAmmo)
+				return true;
+			if(!leftAmmo && rightAmmo)
+				return false;
 			if(leftAmmo)
 				return lhs->Get("outfit space") > rhs->Get("outfit space");
 			return false;
@@ -912,7 +909,8 @@ void LoadoutsPanel::ApplyLoadout()
 	{
 
 		// Skip ships not belonging to the loadout if the enforce option is toggled
-		if(enforceShipTypes && ship->TrueModelName() != selectedLoadout->ShipModel()) continue;
+		if(enforceShipTypes && ship->TrueModelName() != selectedLoadout->ShipModel())
+			continue;
 
 		// Just in case the loadout, for whatever reason, can't be fully applied, apply some sorts to the list.
 		// Convert the map to a list of vectors so arbitrary sorts and filters can be used.
@@ -921,10 +919,12 @@ void LoadoutsPanel::ApplyLoadout()
 		{
 
 			// Filter unique outfits if setting is set
-			if(!includeUnique && outfit.first->Category() == "Unique") continue;
+			if(!includeUnique && outfit.first->Category() == "Unique")
+				continue;
 
 			// Filter hand-to-hand outfits if setting is set
-			if(!includeHandToHand && outfit.first->Category() == "Hand to Hand") continue;
+			if(!includeHandToHand && outfit.first->Category() == "Hand to Hand")
+				continue;
 
 			outfits.push_back(outfit);
 		}
@@ -940,10 +940,14 @@ void LoadoutsPanel::ApplyLoadout()
 		enum SortCategory {Systems, Power, Engines, Weapons, Other};
 		auto getSort = [](const string &category)
 		{
-			if(category == "Systems") return Systems;
-			if(category == "Power") return Power;
-			if(category == "Engines") return Engines;
-			if(category == "Guns" || category == "Turrets" || category == "Secondary Weapons") return Weapons;
+			if(category == "Systems")
+				return Systems;
+			if(category == "Power")
+				return Power;
+			if(category == "Engines")
+				return Engines;
+			if(category == "Guns" || category == "Turrets" || category == "Secondary Weapons")
+				return Weapons;
 			return Other;
 		};
 		ranges::stable_sort(outfits, [&getSort](const pair<const Outfit*, int> &lhs,
@@ -958,8 +962,10 @@ void LoadoutsPanel::ApplyLoadout()
 		{
 			const bool leftAmmo = lhs.first->Category() == "Ammunition";
 			const bool rightAmmo = rhs.first->Category() == "Ammunition";
-			if(leftAmmo && !rightAmmo) return false;
-			if(!leftAmmo && rightAmmo) return true;
+			if(leftAmmo && !rightAmmo)
+				return false;
+			if(!leftAmmo && rightAmmo)
+				return true;
 			if(leftAmmo)
 				return lhs.first->Get("outfit space") < rhs.first->Get("outfit space");
 			return false;
@@ -1030,7 +1036,6 @@ void LoadoutsPanel::ApplyLoadout()
 		}
 	}
 
-
 	// Finally, send any outfits needed to cargo until capacity is reached, and the rest to storage.
 	for(auto [outfit, amount] : toCargo)
 	{
@@ -1038,7 +1043,6 @@ void LoadoutsPanel::ApplyLoadout()
 		if(amount > 0)
 			player.Storage().Add(outfit, amount);
 	}
-
 
 	// Describe errors, if any, to the player.
 	if(errors.empty())
@@ -1057,6 +1061,8 @@ void LoadoutsPanel::ApplyLoadout()
 
 	RefreshLoadoutData();
 }
+
+
 
 void LoadoutsPanel::DrawShipsModule()
 {
@@ -1211,15 +1217,16 @@ void LoadoutsPanel::DrawSelectedModule()
 
 		for(const auto &[category, content] : loadoutListings)
 		{
-			if(currentY >= bottomCutoff) break;
+			if(currentY >= bottomCutoff)
+				break;
+
+			// Empty rows between categories.
 			if(firstDraw && currentY >= topCutoff)
-			{
-				// Empty rows between categories.
 				table.DrawGap(10);
-			}
 			addProgress(10.);
 
-			if(currentY >= bottomCutoff) break;
+			if(currentY >= bottomCutoff)
+				break;
 			if(currentY >= topCutoff)
 			{
 				// Category listings.
@@ -1270,63 +1277,63 @@ void LoadoutsPanel::DrawSelectedModule()
 
 void LoadoutsPanel::DrawRemovingModule()
 {
-	if(selectedLoadout)
-	{
-		Table table;
+	if(!selectedLoadout)
+		return;
 
-		// Use 10-pixel margins on both sides, then split the box by 90% for text, then 10% for the number
-		const int available = removedBox.Width() - 20;
-		table.AddColumn(10, Layout(available * .9));
-		table.AddColumn(removedBox.Width() - 10, Layout(available * 0.1, Alignment::RIGHT));
+	Table table;
 
-		table.SetHighlight(0, removedBox.Width());
-		const int topCutoff = removedBox.Top() - 15;
-		table.DrawAt(Point(removedBox.Left(), topCutoff));
-		double currentY = selectedBox.Top() - removeScroll.AnimatedValue();
-		const int bottomCutoff = removedBox.Bottom() - 5;
+	// Use 10-pixel margins on both sides, then split the box by 90% for text, then 10% for the number
+	const int available = removedBox.Width() - 20;
+	table.AddColumn(10, Layout(available * .9));
+	table.AddColumn(removedBox.Width() - 10, Layout(available * 0.1, Alignment::RIGHT));
 
-		// Align with the scroll bar progress by creating a table gap proportional to animated value.
-		bool firstDraw = false;
-		auto addProgress = [&](const double amount) -> void {
-			currentY += amount;
-			if(!firstDraw && currentY >= topCutoff)
-			{
-				table.DrawGap(currentY - topCutoff);
-				firstDraw = true;
-			}
-		};
+	table.SetHighlight(0, removedBox.Width());
+	const int topCutoff = removedBox.Top() - 15;
+	table.DrawAt(Point(removedBox.Left(), topCutoff));
+	double currentY = selectedBox.Top() - removeScroll.AnimatedValue();
+	const int bottomCutoff = removedBox.Bottom() - 5;
 
-		for(const auto &[category, content] : removalListings)
+	// Align with the scroll bar progress by creating a table gap proportional to animated value.
+	bool firstDraw = false;
+	auto addProgress = [&](const double amount) -> void {
+		currentY += amount;
+		if(!firstDraw && currentY >= topCutoff)
 		{
+			table.DrawGap(currentY - topCutoff);
+			firstDraw = true;
+		}
+	};
 
-			if(currentY >= bottomCutoff) break;
-			if(firstDraw && currentY >= topCutoff)
-			{
-				// 10px margin between categories.
-				table.DrawGap(10);
-			}
-			addProgress(10.);
+	for(const auto &[category, content] : removalListings)
+	{
 
+		if(currentY >= bottomCutoff) break;
+		if(firstDraw && currentY >= topCutoff)
+		{
+			// 10px margin between categories.
+			table.DrawGap(10);
+		}
+		addProgress(10.);
+
+		if(currentY >= bottomCutoff) break;
+		if(currentY >= topCutoff)
+		{
+			// Category listings.
+			table.Draw(category + ":", mediumColor);
+			table.Draw("");
+		}
+		addProgress(20.);
+
+		// All outfits in the category.
+		for(auto [outfit, amount] : content)
+		{
 			if(currentY >= bottomCutoff) break;
 			if(currentY >= topCutoff)
 			{
-				// Category listings.
-				table.Draw(category + ":", mediumColor);
-				table.Draw("");
+				table.Draw(outfit->DisplayName(), mediumColor);
+				table.Draw(*amount, brightColor);
 			}
 			addProgress(20.);
-
-			// All outfits in the category.
-			for(auto [outfit, amount] : content)
-			{
-				if(currentY >= bottomCutoff) break;
-				if(currentY >= topCutoff)
-				{
-					table.Draw(outfit->DisplayName(), mediumColor);
-					table.Draw(*amount, brightColor);
-				}
-				addProgress(20.);
-			}
 		}
 	}
 }

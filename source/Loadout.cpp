@@ -31,7 +31,7 @@ namespace {
 
 
 
-Loadout::Loadout(string name, string shipModel, map<const Outfit*, int>& outfits)
+Loadout::Loadout(string name, string shipModel, map<const Outfit*, int> &outfits)
 	: name(std::move(name)),
 	shipModel(std::move(shipModel)),
 	outfits(std::move(outfits))
@@ -49,9 +49,7 @@ Loadout *Loadout::Load(const filesystem::path &path)
 	for(const DataNode &node : file)
 	{
 		if(const string &key = node.Token(0); key == "ship model")
-		{
 			shipModel = node.Token(1);
-		}
 		else if(key == "outfits")
 		{
 			for(const DataNode &child : node)
@@ -67,18 +65,18 @@ Loadout *Loadout::Load(const filesystem::path &path)
 				{
 					// TODO: test outfit... legality? obtainability? whether player can interact?
 					int amount;
-					try {
-						if(child.Size() >= 2)
+					if(child.Size() >= 2)
+						try {
 							amount = stoi(child.Token(1));
-						else
-							// If no amount specified, assume 1.
+						}
+						catch(...)
+						{
+							// Non-number and other erroneous values can probably just default to 1.
 							amount = 1;
-					}
-					catch(...)
-					{
-						// Non-number and other erroneous values can probably just default to 1.
+						}
+					else
+						// If no amount specified, assume 1.
 						amount = 1;
-					}
 					// Discard non-positive values. Should this default to 1?
 					if(amount > 0)
 						outfits[outfit] = amount;
