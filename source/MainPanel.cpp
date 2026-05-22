@@ -695,11 +695,6 @@ void MainPanel::StepEvents(bool &isActive)
 		if((event.Type() & ShipEvent::JUMP) && flagship && event.Actor().get() == flagship)
 			player.CreateEnteringMissions();
 
-		// Handle actions taken against person ships.
-		// Currently, only capture events can have any effect on person ships.
-		if(event.Type() & ShipEvent::CAPTURE)
-			GameData::HandleEvent(event);
-
 		// Remove the fully-handled event.
 		eventQueue.pop_front();
 		handledFront = false;
