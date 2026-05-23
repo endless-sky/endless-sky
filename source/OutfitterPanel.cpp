@@ -400,6 +400,10 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				return "You cannot place licenses into " + LocationName(toLocation) + ".";
 			return "You already have one of these licenses, so there is no reason to buy another.";
 		}
+		if(fromLocation != OutfitLocation::Shop)
+			return "You cannot " + actionName + " licenses.";
+		if(toLocation != OutfitLocation::Ship)
+			return "You cannot place licenses into " + LocationName(toLocation) + ".";
 		return true;
 	}
 

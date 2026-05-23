@@ -305,7 +305,7 @@ void HailPanel::Draw()
 
 	// Draw the current message.
 	WrappedText wrap;
-	wrap.SetAlignment(Alignment::JUSTIFIED);
+	wrap.SetAlignment(Preferences::GetTextAlignment());
 	wrap.SetWrapWidth(330);
 	wrap.SetFont(FontSet::Get(14));
 	wrap.Wrap(message);

@@ -255,7 +255,7 @@ bool PlayerInfo::IsLoaded() const
 
 
 // Make a new player.
-void PlayerInfo::New(const StartConditions &start, shared_ptr<PilotProfile> &pilot)
+void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile> &pilot)
 {
 	// Clear any previously loaded data.
 	Clear();
@@ -302,7 +302,7 @@ void PlayerInfo::New(const StartConditions &start, shared_ptr<PilotProfile> &pil
 
 
 // Load player information from a saved game file.
-void PlayerInfo::Load(const filesystem::path &path, shared_ptr<PilotProfile> &pilot)
+void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfile> &pilot)
 {
 	// Make sure any previously loaded data is cleared.
 	Clear();
@@ -365,6 +365,8 @@ void PlayerInfo::Load(const filesystem::path &path, shared_ptr<PilotProfile> &pi
 			hasFullClearance = true;
 		else if(key == "launching")
 			shouldLaunch = true;
+		else if(key == "cloaked")
+			isCloaking = true;
 		else if(key == "playtime" && hasValue)
 			playTime = child.Value(1);
 		else if(key == "travel" && hasValue)
@@ -613,7 +615,9 @@ void PlayerInfo::Load(const filesystem::path &path, shared_ptr<PilotProfile> &pi
 // Reload from the same file from which the current pilot was loaded.
 void PlayerInfo::Reload()
 {
-	Load(filePath, pilot);
+	// Copy the pointer to the current pilot, as the first thing
+	// that Load does is call Clear, which resets the pilot attribute.
+	Load(filePath, shared_ptr<PilotProfile>(pilot));
 }
 
 
@@ -1031,6 +1035,20 @@ const StellarObject *PlayerInfo::GetStellarObject() const
 bool PlayerInfo::ShouldLaunch() const
 {
 	return shouldLaunch;
+}
+
+
+
+bool PlayerInfo::IsCloaking() const
+{
+	return isCloaking;
+}
+
+
+
+void PlayerInfo::SetCloaking(bool isCloaking)
+{
+	this->isCloaking = isCloaking;
 }
 
 
@@ -1863,6 +1881,8 @@ bool PlayerInfo::TakeOff(UI &ui, const bool distributeCargo)
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
+			if(isCloaking)
+				ship->SetCloaked();
 			// Recalculate the weapon cache in case a mass-less change had an effect.
 			ship->UpdateCaches(true);
 			if(ship->GetSystem() != system)
@@ -4941,6 +4961,10 @@ void PlayerInfo::Save(DataWriter &out) const
 	// entering their ship (i.e. because a mission forced them to take off).
 	if(shouldLaunch)
 		out.Write("launching");
+	// This flag is set if the player landed on the current planet while cloaked,
+	// meaning that they should take off while cloaked upon reloading this save.
+	if(isCloaking)
+		out.Write("cloaked");
 	for(const System *system : travelPlan)
 		out.Write("travel", system->TrueName());
 	if(travelDestination)
