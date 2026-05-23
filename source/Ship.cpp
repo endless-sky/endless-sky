@@ -3081,6 +3081,23 @@ bool Ship::IsCloaked() const
 
 
 
+void Ship::SetCloaked()
+{
+	const double cloakingSpeed = CloakingSpeed();
+	const double cloakingFuel = attributes.Get("cloaking fuel");
+	const double cloakingEnergy = attributes.Get("cloaking energy");
+	const double cloakingHull = attributes.Get("cloaking hull");
+	const double cloakingShield = attributes.Get("cloaking shields");
+	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
+		&& fuel >= cloakingFuel && energy >= cloakingEnergy
+		&& MinimumHull() < hull - cloakingHull && shields >= cloakingShield);
+
+	if(canCloak)
+		cloak = 1.;
+}
+
+
+
 double Ship::CloakingSpeed() const
 {
 	return attributes.Get("cloak") + attributes.Get("cloak by mass") * 1000. / Mass();
