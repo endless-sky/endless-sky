@@ -142,7 +142,7 @@ mission "Successors: Ghosts QSI 2"
 		not "successors: ghosts restriction lifted"
 	on offer
 		conversation
-			`Though the Kaatrij spaceport is usually quiet, its patrons speaking in hushed whispers, today it is utterly soundless. The very few Successors who go about their business inside do so without a word and stick to only the most thinly-hydrated pathways such that they leave only the most minute of splashes in their wake.`
+			`Though the Kaatrij spaceport is usually quiet, its patrons speaking in hushed whispers, today it is utterly soundless. The very few Successors who go about their business inside do so without a word and stick to only the most thinly-hydrated pathways such that they leave only the smallest of splashes in their wake.`
 			`	Near the center of the landing wing is a concierge of sorts: a tall, burnt orange Successor splayed atop a seat of sculpted rocks before a collection of panels.`
 			choice
 				`	(Go to them.)`
@@ -375,8 +375,8 @@ mission "Successors: Ghosts 2"
 
 	on complete
 		conversation
-			`Docking control at the <planet> spaceport directs the <ship> to a protected, fabric-shrouded hangar on the western side of the new facility. A pair of Successor ground crew supervise the automated refueling and maintenance processes, and one of them waves you down from the cockpit, where they hand you a data-sphere. A few seconds after it touches your skin, it plays a message from Rijatet:`
-			`	"Our thanks to thee for setting the sensors, Captain. We saw their first reports only shortly after as thy own craft jumped away, and nothing since. We shall remain as watchful as we ought to be. For thine efforts, Seineq's credited thee the agreed payment of <payment>. If thou wishest for further, join us at the port here tonight for another task."`
+			`Docking control at the <planet> spaceport directs the <ship> to a protected, fabric-shrouded hangar on the western side of the new facility. A pair of Successor ground crews supervise the automated refueling and maintenance processes, and one of them waves you down from the cockpit, where they hand you a data-sphere. A few seconds after it touches your skin, it plays a message from Rijatet:`
+			`	"Our thanks to thee for setting the sensors, Captain. We saw their first reports only shortly after thy own craft jumped away, and nothing since. We shall remain as watchful as we ought to be. For thine efforts, Seineq's credited thee the agreed payment of <payment>. If thou wishest for further, join us at the port here tonight for another task."`
 			`	I attest this, A- T- Rijatet.`
 		payment 223000
 		log "Deployed Successor sensor drones throughout Predecessor space to scan for ships using jump drives, cloaked or not."
@@ -614,11 +614,11 @@ mission "Successors: Ghosts 5"
 					has "successors kaatrij patron"
 					has "visited planet: Raaqa-Puan-Uuoru"
 
-			`You've heard <planet> described by outsiders as an insular and well-guarded world, but neither of those prepared you for how strikingly quiet it is. The rainy spaceport seems almost deserted, the loudest sound almost always the pattering of heavy drops on the sail-like projections overhead, only occasionally interrupted by a soft-spoken announcement about an incoming ship landing or departure. None of the Successors you transported give any indication about whether this is typical or just a result of Kaatrij's recent incidents.`
+			`You've heard <planet> described by outsiders as an insular and well-guarded world, but neither of those prepared you for how strikingly quiet it is. The rainy spaceport seems almost deserted, the loudest sound almost always the pattering of heavy drops on the sail-like projections overhead, only occasionally interrupted by a soft-spoken announcement about an incoming ship landing or departing. None of the Successors you transported give any indication about whether this is typical or just a result of Kaatrij's recent incidents.`
 				goto paid
 
 			label "visited before"
-			`The <planet> spaceport is caught in the midst of a gentle rainstorm and the loudest sound you hear during the time you spend there is the patter of the heavy drops overhead and the occasional whirring of the machinery the dockworkers use to unload your cargo.`
+			`The <planet> spaceport is caught in the midst of a gentle rainstorm. The loudest sound you hear during the time you spend there is the patter of the heavy drops overhead and the occasional whirring of the machinery the dockworkers use to unload your cargo.`
 
 			label paid
 			`	Saajret meets with you on the landing pad, informing you that you've been credited <payment> by the House for your services. Before leaving, they ask you to return to the spaceport this evening to meet with them.`
@@ -704,7 +704,7 @@ mission "Successors: Ghosts 6"
 	on complete
 		conversation
 			`	You land your ship on the outskirts of the same facility you visited with Sieasej in the past; it looks much the same, though now many of the green plants have turned various shades of yellow and orange as the seasons have changed. Saajret meets you in your ship's cockpit, now dressed in a slightly different black, well-pocketed outfit. They carry a device with a rotating drum in one of their arms, probably some sort of scanner.`
-			`	"I shall keep in contact with thy craft," they say, "though I expect no problems in my expedition. Expect me back about three hours hence."`
+			`	"I shall keep in contact with thy craft," they say, "though I forsee no problems in my expedition. Expect me back about three hours hence."`
 			`	As they leave, you are left with little to do but wait.`
 			choice
 				`	(Assess your ship's systems.)`
@@ -962,7 +962,7 @@ mission "Successors: Ghosts 9"
 				`	"How did you keep yourself hidden from them for so long?"`
 
 			label hiding
-			`	"Hiding indeed does not come naturally to us," the Quarg says. "With no other have we had need to conceal ourselves. One of their houses, when it knew what they had done, agreed to work with us to preserve their species. They were most skilled in matters of illusion, and shared their cloaks with us to obscure our presence."`
+			`	"Hiding indeed does not come naturally to us," the Quarg says. "With no other have we had need to conceal ourselves. One of their Houses, when it knew what they had done, agreed to work with us to preserve their species. They were most skilled in matters of illusion, and shared their cloaks with us to obscure our presence."`
 				goto end
 
 			label end
@@ -1003,14 +1003,14 @@ mission "Successors: Ghosts 10"
 
 			label interrogation
 			`	With apparently no choice, you accompany the officers back to their ship; they remove your sidearm and take you to a room inside. Two stand guard over you while the rest attend to other things outside, and it's only after the better part of an hour that someone else finally enters, a tall Successor who looks over you with an incisive glare.`
-			`	"Captain <first> <last>," they say. "How did'st thou acquire cloaking technology?"`
+			`	"Captain <first> <last>," they say. "How didst thou acquire cloaking technology?"`
 			choice
 				`	"It comes from another society, far away from here."`
 				`	"I was given it by a human government; they found it in an alien cargo hold."`
 					to display
 						has "outfit (all): Cloaking Device"
 			`	"So it was not given to thee by a faction here, among the Successors?"`
-			`	"No," you say. The Successor relaxes, if only a little. "We will search thy ship t'confirm this," they say. "But I do not believe thou lieth."`
+			`	"No," you say. The Successor relaxes, if only a little. "We will search thy ship t'confirm this," they say. "But I do not believe thou liest."`
 			branch "cloaks"
 				has "flagship attribute: cloak"
 
@@ -1019,7 +1019,7 @@ mission "Successors: Ghosts 10"
 			`	The Successor looks over you with a curious gaze. "Intriguing," they say. "'Tis no matter; we shall consult our records of thy craft."`
 
 			label cloaks
-			`	After a moment passes, your interrogator leans over you and the guards in the back stand, attentive. "Now we must decide what is to be done with thee," they say, "now that thou hast learned of our arrangement with the Quarg. Thou should'st understand we do not wish that information to be avail'ble to all. Not all the Houses nor their members regard the Quarg with amity."`
+			`	After a moment passes, your interrogator leans over you and the guards in the back stand, attentive. "Now we must decide what is to be done with thee," they say, "now that thou hast learned of our arrangement with the Quarg. Thou shouldst understand we do not wish that information to be avail'ble to all. Not all the Houses nor their members regard the Quarg with amity."`
 			choice
 				`	"I have no intention of spilling your secret."`
 					goto discreet
@@ -1027,7 +1027,7 @@ mission "Successors: Ghosts 10"
 					goto blackmail
 				`	"The people deserve to know about this."`
 
-			`	"Perhaps they shall one day, but neither thee nor I should decide that now. 'Tis a time far too fraught to bring such a thing to light. No," they say, one of their arms moving toward you, "but Kaatrij would be willing to offer thee an alternative: a formal relation with the House, that thou might be brought into our circle of knowledge and receive our boons. And, of course, be subject to our directives, including those of silence."`
+			`	"Perhaps they shall one day, but neither thee nor I should decide that now. 'Tis a time far too fraught to bring such a thing to light. No," they say, one of their arms moving toward you, "but Kaatrij would be willing to offer thee an alternative: a formal relation with the House, that thou mightst be brought into our circle of knowledge and receive our boons. And, of course, be subject to our directives, including those of silence."`
 			choice
 				`	"And what would House Sioeora think of this?"`
 					to display
@@ -1041,7 +1041,7 @@ mission "Successors: Ghosts 10"
 					goto no
 
 			label blackmail
-			`	"Thou should'st be careful with such propositions, Captain," they say. Their skin remains a murky, ashen blue. "Kaatrij would be willing to offer thee an alternative, however: a formal relation with the House, that thou might be brought into our circle of knowledge and receive our boons. Of course, thou woulds't also be subject to our directives, including those of silence. Would'st that be sufficient reward for thine efforts?"`
+			`	"Thou shouldst be careful with such propositions, Captain," they say. Their skin remains a murky, ashen blue. "Kaatrij would be willing to offer thee an alternative, however: a formal relation with the House, that thou mightst be brought into our circle of knowledge and receive our boons. Of course, thou wouldst also be subject to our directives, including those of silence. Wouldst that be sufficient reward for thine efforts?"`
 			choice
 				`	"And what would House Sioeora think of this?"`
 					to display
@@ -1057,7 +1057,7 @@ mission "Successors: Ghosts 10"
 			label discreet
 			action
 				set "Successors: Ghosts: discreet"
-			`	"Most discreet, Captain," they say. "But forgive me for not taking thy word alone. To that, Kaatrij is willing to make thee an offer: a formal relation with our House, that thou might be brought into our circle of knoweldge and receive our boons. And in turn, thou would'st also be subject to our directives, including those of silence. An arrangement, Kaatrij believes, of mutual benefit."`
+			`	"Most discreet, Captain," they say. "But forgive me for not taking thy word alone. To that, Kaatrij is willing to make thee an offer: a formal relation with our House, that thou mightst be brought into our circle of knoweldge and receive our boons. And in turn, thou wouldst also be subject to our directives, including those of silence. An arrangement, Kaatrij believes, of mutual benefit."`
 			choice
 				`	"And what would House Sioeora think of this?"`
 					to display
@@ -1079,7 +1079,7 @@ mission "Successors: Ghosts 10"
 					goto no
 
 			label details
-			`	"Thou would'st be counted as an alien vassal of House Kaatrij, thus granted access to our facilities, subject to our rules and directives, and empowered to fight our enemies on our behalf under a commission of war. Thou would retain thy freedom of movement, thine ability to go elsewhere in the galaxy. But when thou dost travel 'tween the stars of the Successors, 'tis House Kaatrij that thou shalt call thy home."`
+			`	"Thou wouldst be counted as an alien vassal of House Kaatrij, thus granted access to our facilities, subject to our rules and directives, and empowered to fight our enemies on our behalf under a commission of war. Thou wouldst retain thy freedom of movement, thine ability to go elsewhere in the galaxy. But when thou dost travel 'tween the stars of the Successors, 'tis House Kaatrij that thou shalt call thy home."`
 			choice
 				`	"All right, I accept."`
 					goto yes
@@ -1110,7 +1110,7 @@ mission "Successors: Ghosts 10"
 
 			action
 				set "successors free agent" # This doesn't do anything now, but if Ghosts is ever expanded to let the player character ally with other Houses, this tag would be useful to have.
-			`	"A shame," the Successor says. "But so long as thou does not give up what thou hast learned or otherwise make thyself an enemy of this House, Kaatrij shall not impede thee." They pause and their skin blossoms with intense color. "Do not make us regret this leniency."`
+			`	"A shame," the Successor says. "But so long as thou dost not give up what thou hast learned or otherwise make thyself an enemy of this House, Kaatrij shall not impede thee." They pause and their skin blossoms with intense color. "Do not make us regret this leniency."`
 			`	They gesture towards the door and the guards move to the side, allowing you to leave. As you walk back to your ship, the Seiitej takes off, leaving you alone but free.`
 				decline
 
@@ -1155,7 +1155,7 @@ mission "Successors: Ghosts 10"
 				`	"I suppose I am."`
 
 			label yes
-			`	The data-sphere flares with color, registering your assent. "'Tis done then," Kampa says. "Welcome to House Kaatrij." Both Kampa and Saajret bow again, the Quarg the only one in the room remaining motionless. "Thou shalt have access to much of our works, which now thou might'st explore at thy leisure. When thou'rt ready, thou should'st meet Saajret at the spaceport here for thy first official task for us."`
+			`	The data-sphere flares with color, registering your assent. "'Tis done then," Kampa says. "Welcome to House Kaatrij." Both Kampa and Saajret bow again, the Quarg the only one in the room remaining motionless. "Thou shalt have access to much of our works, which now thou mightst explore at thy leisure. When thou'rt ready, thou shouldst meet Saajret at the spaceport here for thy first official task for us."`
 			choice
 				`	"You said you would answer my questions."`
 				`	(Stay silent.)`
@@ -1206,7 +1206,7 @@ mission "Successors: Ghosts 10"
 			label seineq
 			action
 				set "Successors: seineq"
-			`	There's a pause as Kampa looks at you with incisive eyes. "Thou'rt fair to ask it," they say. "No," they say, "'twas not Kaatrij that struck them. Once our cloak was stolen, our 'lusive foe had all 'twas needed t'frame us of that trait'rous blow: t'let themselves been seen with signs that we alone had once posses'd."`
+			`	There's a pause as Kampa looks at you with incisive eyes. "Thou'rt fair to ask it," they say. "No," they say, "'twas not Kaatrij that struck them. Once our cloak was stolen, our 'lusive foe had all 'twas needed t'frame us of that trait'rous blow: t'let themselves be seen with signs that we alone had once posses'd."`
 				goto questions
 
 			label drone
@@ -1307,7 +1307,7 @@ mission "Successors: Ghosts 11"
 			action
 				"Successors: Ghosts Saajret Forgiveness" -= 2
 				set "successors: ghosts resja biography"
-				log "People" "Resja" "Resja was a noted Myiaran engineer and shipwright who worked soon before the collapse of the empire of the Myiaran Predecessors circa 1600. They are responsible for designing the originally-crewed drone ships that linger in Predecessor space, later retrofitted as self-guided craft after Resja's death by poisoning."
+				log "People" "Resja" "Resja was a noted Myiaran engineer and shipwright who worked soon before the collapse of the empire of the Myiaran Predecessors, circa 1600. They are responsible for designing the originally-crewed drone ships that linger in Predecessor space, later retrofitted as self-guided craft after Resja's death by poisoning."
 
 			label end
 			`	With Saajret satisfied that the two of you have gleaned what information you can, you both return to the <ship> outside.`
@@ -1548,7 +1548,7 @@ mission "Successors: Ghosts 16"
 			action
 				clear "Successors: security"
 				clear "Successors: revealed"
-			`	"Secondly," says Saajret, "'tis clear we must end this flitting about in shadow of our foe. While thou and I breach the citadel, Kaatrij and the Quarg here plan a trap to snare an heirloom warship. To destroy such a craft would be a great wound to our attacker, and would, if we are fortunate, give us some measure of their identity.`
+			`	"Secondly," says Saajret, "'tis clear we must end this flitting about in the shadow of our foe. While thou and I breach the citadel, Kaatrij and the Quarg here plan a trap to snare an heirloom warship. To destroy such a craft would be a great wound to our attacker, and would, if we are fortunate, give us some measure of their identity.`
 			choice
 				`	"How do you plan to catch it if it's cloaked?"`
 				`	"All right, what's next?"`
@@ -1599,7 +1599,7 @@ mission "Successors: Ghosts 16"
 				`	"What about Saajret?"`
 			`	The rage of the artificial voice chills. "Insignificant," it shouts, and as something else begins to interleave with the sound, something sharp and painful, there comes a quiet final phrase: "I missed thee," the voice says. "I missed thee."`
 			`	And all of a sudden it stops; the pain, the voice. The pressure fades away from your head and Saajret looks down at you, the translation device plucked from your body and held in their arm. They help you to your feet and return it to you; you store it in a pocket, deactivated.`
-			`	Saajret confers with their guards for a moment, their words a mess of unintelligible sound. One of them interacts with the elevator controls and the carriage starts to move upwards again, the station's com system shrieking to no avail. Saajret comes to speak to you, gently poking your chest with the tip of one of their arms; they say something that sounds a bit like your name. Suddenly the elevator is shaken by an impact from outside and soon after, dozens more. The four of you are deposited back in the landing bay just as you catch a glimpse of a ship in the distance firing on the station. You dash back to your own craft and prepare to flee or fight.`
+			`	Saajret confers with their guards for a moment, their words a mess of unintelligible sound. One of them interacts with the elevator controls and the carriage starts to move upwards again, the station's com system shrieking to no avail. Saajret comes to speak to you, gently poking your chest with the tip of one of their arms; they say something that sounds a bit like your name. Suddenly the elevator is shaken by an impact from outside, and soon after dozens more follow. The four of you are deposited back in the landing bay just as you catch a glimpse of a ship in the distance firing on the station. You dash back to your own craft and prepare to flee or fight.`
 				launch
 
 	on fail
@@ -1743,7 +1743,7 @@ mission "Successors: Ghosts 18"
 
 	on complete
 		conversation
-			`Once the rest of House Kaatrij's fleet has deployed their own cloak detectors, the fleet of Vujleten follow you into <planet>'s atmosphere, bedding down in the shadow of an ancient weather control tower to shield them from the dust. Several of the Successors inside exit to inspect the tower's functioning and after a few minutes return. They bring long fuel hoses out of their ships and connect them to ports on the tower's side; one by one, the flock of Vujleten shimmer and then disappear as their own cloaks engage.`
+			`Once the rest of House Kaatrij's fleet has deployed their own cloak detectors, the fleet of Vujleten follow you into <planet>'s atmosphere, bedding down in the shadow of an ancient weather control tower to shield them from the dust. Several of the Successors inside exit to inspect the tower's functioning, and return after a few minutes. They bring long fuel hoses out of their ships and connect them to ports on the tower's side; one by one, the flock of Vujleten shimmer and then disappear as their own cloaks engage.`
 			`	As one of the crew of the Kaatrij ships links the <ship>'s own fuel tank to the tower's reserves, Saajret slithers onto the bridge and greets you. "Now, it seems, we wait," they say. Black and white patterns of dots dance across their face, whirling around each other and occasionally splashing apart.`
 			choice
 				`	"What makes you think they'll even come back this way?"`
@@ -1879,10 +1879,10 @@ mission "Successors: Ghosts 20"
 
 			label waterlining
 			`Traffic control gives you coordinates to the deepwater complex where the wedding is to take place, and you plunge the <ship> into the planet's ocean, its hull wrapped around by one of the "Ribbons of Iret," enormous and colorful. The farther down you travel, the more intense the bioluminescent plume grows, until it feels almost as if you are traveling through a nebula in space rather than an underwater bloom.`
-			`	You reach the complex and dock at it, disembarking through a complex airlock and taking an elevator the final short distance.`
+			`	You reach the complex and dock at it, disembarking through an airlock and taking an elevator for the final short distance.`
 
 			label complex
-			`	You soon arrive at a similar complex to the one you visited the last time you were here, though this one is even larger and more richly decorated, the walls a riot of color and form that is as ostentatious as it is impressive. A gentle mist issues from apertures on the vaulted ceiling and long golden threads trail downwards, writhing around particular Successors and eventually, you.`
+			`	You soon enter a similar room to the one you visited the last time you were here, though this one is even larger and more richly decorated, the walls a riot of color and form that is as ostentatious as it is impressive. A gentle mist issues from apertures on the vaulted ceiling and long golden threads trail downwards, writhing around particular Successors and eventually, you.`
 			`	The thread inspects your face and clothing for a short time before it speaks in a soft, synthesized voice. "Greetings, Captain <first> <last>! Thou'rt authorized to attend the ceremony this afternoon and, following, a special meeting of the locally-gathered Houses." The voice continues for a while, providing you with information on which rooms to visit and how you are to find your way there.`
 			`	Soon after, you catch sight of Khiajsore, the Myurej scion you spoke with before. They catch sight of you as well and slither towards you, batting away one of the threads with a bejeweled arm. "Captain, captain, delightful Captain," they say. "How pleasant of thee to accept our invitation."`
 			choice
@@ -1901,14 +1901,14 @@ mission "Successors: Ghosts 20"
 				`	"I'm happy to help, so long as it doesn't conflict with my other responsibilities."`
 				`	"I'm not sure I like where this is going."`
 			`	Khiajsore laughs. "Of course, of course," they say. "Thou hast already helped us greatly. Now please excuse me."`
-			`	They leave and two members of the crowd break off the follow them, which you notice carry small weapons strapped to their outfits. One of the golden threads makes its way back to you, informing you that the wedding ceremony will be beginning soon.`
+			`	They leave and two members of the crowd break off to follow them, which you notice carry small weapons strapped to their outfits. One of the golden threads makes its way back to you, informing you that the wedding ceremony will be beginning soon.`
 			choice
 				`	(Attend the wedding.)`
 				`	(Wait around until the later meeting.)`
 					goto skipped
 			`	While most Successors are waiting outside the entrance to what must be a massive room, you are instead guided to an inconspicuous and out-of-the-way door, guarded by a pair of Successor soldiers. Neither one reacts to your attempt to pass, and as you step behind the door, it becomes clear why you aren't lining up with the general public: that massive room is entirely filled with water, a gigantic sphere with lights, platforms, and countless seats all built within it. A few small rooms like the one you now stand in are built into the walls like little transparent air bubbles at the shore of a great sea.`
 			`	You are joined by three other Successors after a few minutes, each of whom takes their place in the little room. The ceremony begins shortly after. From apertures in the bottom of the sphere, legions of soldiers emerge, half wearing the colors of House Chydiyi and the other half of House Myurej. The two small armies swim around each other, interleaving their lines of bodies like the Ribbons themselves that you saw outside.`
-			`	Only after a half hour of this acrobatics do the couple finally appear, rising up from the same apertures and joined by a flanking group of what must be the scions of their respective houses. You spy Khiajsore among them. There is a further intertwining, a display of gold and colors, and then a collective hum rises from the crowd.`
+			`	Only after a half hour of this acrobatics does the couple finally appear, rising up from the same apertures and joined by a flanking group of what must be the scions of their respective houses. You spy Khiajsore among them. There is a further intertwining, a display of gold and colors, and then a collective hum rises from the crowd.`
 			choice
 				`	(Hum also.)`
 				`	(Remain silent.)`
@@ -1973,7 +1973,7 @@ mission "Successors: Ghosts 20"
 			action
 				set "Successors: collaboration"
 
-			`	"'T'would be fruitful, doubtless," Tiliia says. "And now Kaatrij opens up a little for the first time since their wound, perhaps 'tis not beyond the realm of possibility."`
+			`	"'T'would be fruitful, doubtless," Tiliia says. "And now that Kaatrij opens up a little for the first time since their wound, perhaps 'tis not beyond the realm of possibility."`
 			branch "low openness"
 				"Successors: Ghosts Saajret Openness" < 0
 
