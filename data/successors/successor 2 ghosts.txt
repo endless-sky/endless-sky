@@ -704,7 +704,7 @@ mission "Successors: Ghosts 6"
 	on complete
 		conversation
 			`	You land your ship on the outskirts of the same facility you visited with Sieasej in the past; it looks much the same, though now many of the green plants have turned various shades of yellow and orange as the seasons have changed. Saajret meets you in your ship's cockpit, now dressed in a slightly different black, well-pocketed outfit. They carry a device with a rotating drum in one of their arms, probably some sort of scanner.`
-			`	"I shall keep in contact with thy craft," they say, "though I forsee no problems in my expedition. Expect me back about three hours hence."`
+			`	"I shall keep in contact with thy craft," they say, "though I foresee no problems in my expedition. Expect me back about three hours hence."`
 			`	As they leave, you are left with little to do but wait.`
 			choice
 				`	(Assess your ship's systems.)`
