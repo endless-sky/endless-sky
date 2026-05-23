@@ -329,7 +329,7 @@ planet "Arachne Station"
 		fleet "Large Militia" 14
 
 planet Araio
-	attributes "aberrant siege" avgi farming frontier rich
+	attributes "aberrant siege" avgi farming frontier wealthy
 	landscape land/canyon3
 	description `Araio is a relatively small world dominated by a single supercontinent. Continental uplift has made much of the land characterized by mountainous highland, scattered with numerous springs and lakes. Though the air is thin and the soil is rocky, hardy plants and woody trees cling to life, breaking up the landscape of rocky mountains with colorful meadows and bountiful forests.`
 	description `	Araio garnered a reputation as a frontier world ripe for plucky pioneers, reminiscent of an oft-romanticized era on Aviskir. While rich in gemstones, natural stones have not been competitive with nanofabricated alternatives since long before the planet was settled, and thus the economy on the surface is almost completely dominated by homesteads and small frontier towns.`
@@ -359,7 +359,7 @@ planet Arroharg
 	security 0.9
 
 planet Asgard
-	attributes deep education factory research rich urban
+	attributes deep education factory research urban wealthy
 	landscape land/city13-sfiera
 	description `Asgard was one of the first worlds to be settled in the Deep. It is now home to many crowded cities, with soaring skyscrapers that are made of lightweight composite materials rather than the steel and concrete so commonly used elsewhere.`
 	description `	This is also the home of Deep Sky, a manufacturing firm that produces a wide variety of expensive and useful starship equipment.`
@@ -449,7 +449,7 @@ planet Aventine
 		fleet "Heavy Remnant Defense" 30
 
 planet Aviskir
-	attributes "aberrant siege" avgi "avgi core" rich urban
+	attributes "aberrant siege" avgi "avgi core" urban wealthy
 	landscape land/water32
 	description `Aviskir is a world of sweeping mountains and sparkling oceans. It also happens to be the Avgi homeworld, bustling with nine billion members of the species. Civilization has concentrated largely around bountiful mountain valleys and fjords, many warmed by hot springs and geothermal heat. The largest cities are built around the smaller peaks, laced with slender bridges and bright skyscrapers. They stand in contrast to the rural valley settlements below, which are said to offer simpler, more traditional lives.`
 	description `	The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Aberrant sometimes make on the surface.`
@@ -772,7 +772,7 @@ planet Caelian
 		fleet "Heavy Remnant Defense" 25
 
 planet Calda
-	attributes paradise rich tourism
+	attributes paradise tourism wealthy
 	landscape land/lava4
 	description `Calda is a tropical resort world, a pleasant place to unwind after a few days skiing on its sister planet, Vail. The most popular tourist destination is the hot springs, and the spa complexes that have been built up around them. Constant pesticide use has nearly eliminated insect pests. Because of the uncomfortably warm and humid summer months, the very rich view Calda more as a tourist destination than as a place to live.`
 	description `	In Calda's early days as a spa planet, a nearly silent eruption of carbon dioxide filled a resort valley and suffocated the whole population. This incident shocked the Paradise Worlds and led to a very large drop in tourism here. Fortunately for Calda's economy, this effect ceased within six months, which was about how long it took for most potential tourists to forget about the incident.`
@@ -1801,7 +1801,7 @@ planet Farpoint
 		fleet "Large Republic" 6
 
 planet Farseer
-	attributes paradise rich tourism
+	attributes paradise tourism wealthy
 	landscape land/sea8
 	description `With enough money, you can buy a sunny day. Farseer is an ocean resort world, where much of the local tax revenue is spent on the terraforming equipment that moderates the weather. Real estate prices fluctuate wildly in times of political anxiety, because the idyllic climate exists only by government fiat.`
 	description `	Industry here mostly takes the form of executive offices for interplanetary banks, law firms, and software companies. Strict zoning laws limit construction of skyscrapers or factories to the continents that are in the less pleasant polar regions.`
@@ -2565,7 +2565,7 @@ planet Hespair
 	description `	However, during their exploration of the planet, the Avgi accidentally, if inevitably, introduced bacteria from their own ships to Hespair's oceans. These motes of life are still sparse, but even if the Avgi refrain from terraforming this world, they will form the seeds of a new biosphere at some point in the distant future.`
 
 planet Hestia
-	attributes paradise rich
+	attributes paradise wealthy
 	landscape land/sky5
 	description `In the distant past, Hestia was a nearly lifeless ice world. It is now a subtropical paradise, one of the great victories from the heyday of planetary engineering back when the galactic economy had more money to spare for terraforming.`
 	description `	Today it is mostly a retirement community for those who can afford it, although most of the population consists of young service workers in rented housing who take care of the retirees.`
@@ -3232,7 +3232,7 @@ planet Limejog
 	security 0
 
 planet Livolua
-	attributes "aberrant siege" avgi "avgi core" rich urban
+	attributes "aberrant siege" avgi "avgi core" urban wealthy
 	landscape land/forest13
 	description `Livolua was the first extrasolar planet to be colonized by the Avgi, through the use of multiple waves of slower than light starships over two hundred years ago. With its wide range of climates ideal for life, it boasts a population two thirds as large as Aviskir itself, and an equally impressive number of independent polities.`
 	description `	While perhaps not as wealthy or comfortable as Aviskir itself, Livolua is full of younger, ambitious polities with their eyes set on growth, a dynamic that has produced a vibrant independent civilization capable of rivaling the homeworld.`
@@ -3334,7 +3334,7 @@ planet Mahoganybox
 	security 1
 
 planet Mainsail
-	attributes paradise rich
+	attributes paradise wealthy
 	landscape land/water13
 	description `Mainsail is a water world: although there are some settlements on dry land, the largest cities are floating, artificial islands, which travel between hemispheres over the course of the year pursuing the most ideal weather. Other, smaller islands are privately owned by single families or corporations. Mainsail is a prohibitively expensive place to live.`
 		to display
@@ -3423,7 +3423,7 @@ planet Mars
 		fleet "Small Republic" 64
 
 planet Martini
-	attributes paradise rich tourism
+	attributes paradise tourism wealthy
 	landscape land/myrabella4
 	description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the Galactic Stock Exchange are headquartered here, and so much money flows through this world's economy every day that the cost of utterly controlling its weather and climate is only a drop in the bucket. Not surprisingly, real estate prices here are astronomical; a small condo in one of Martini's main cities costs more than a capital starship.`
 	spaceport `The spaceport is a set of four skyscrapers joined by bridges and platforms at various levels. Hangars are built directly into the towers themselves, with deflector shield generators set up to ensure that ships do not crash, intentionally or otherwise, while approaching the towers to dock. Inside, all the floors and walls are gleaming granite, with teams of workers constantly polishing everything to ensure that not even so much as a fingerprint smudge is visible.`
@@ -5334,7 +5334,7 @@ planet "Shadowed Valley"
 	security 0.25
 
 planet Shangri-La
-	attributes core frontier rich urban
+	attributes core frontier urban wealthy
 	landscape land/sea6
 	description `Named after a mythical paradise, Shangri-La is an almost ideal planet, with a mixture of advanced, developed cities and uninhabited mountains. It is a rich and prosperous world, and nearly self-sufficient, but the cost of living here is prohibitively high for anyone from off-world. Because Polaris is on the very fringe of human space, and because of the wealth of its economy, piracy is a constant threat. Although recently the Syndicate has provided good protection, in past centuries it was not unheard of for raiding parties of starships to attack major port cities here, carrying off valuable cargo and sometimes also human slaves.`
 	spaceport `The spaceport is state-of-the-art. So are the laser turrets and missile silos spaced out along its periphery. But somehow, instead of making you feel more secure, the defenses only serve to remind you of how far on the fringes of civilization you are, and of how rich this planet is compared to some of its neighbors. Everyone walking through the port is moving at a brisk, purposeful pace; loitering and sightseeing are not encouraged here.`
@@ -5401,7 +5401,7 @@ planet Shorebreak
 		fleet "Large Militia" 8
 
 planet Shroud
-	attributes frontier north rich textiles
+	attributes frontier north textiles wealthy
 	landscape land/mountain1
 	description `Shroud is a world of castles in the clouds and slums in the valleys below. High on the mountain peaks, above the clouds, the planet's few elites live in splendid mansions. Below them, the people work mostly in textiles: farming cotton, raising sheep, working at looms and sewing machines in dimly lit factories.`
 	description `	The level of intrigue and dalliance between the bored gentry could easily compete with the most lurid and unrealistic of Victorian fiction.`
@@ -5711,7 +5711,7 @@ planet Steli
 	description `	Frequent hot spots trickle lava and heat through the otherwise lethargic crust, and Steli has one of the highest counts of hot springs in all the habitable planets of the Twilight. Only its distance from the core of Avgi space precluded its widespread settlement, though it is rumored that hidden villages and nomadic groups live scattered across the surface.`
 
 planet Stilacrest
-	attributes "aberrant siege" avgi "avgi core" fishing religious rich
+	attributes "aberrant siege" avgi "avgi core" fishing religious wealthy
 	landscape land/myrabella4
 	description `Stilacrest is a warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs making it an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse.`
 	description `	The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid-back sort of personality.`
