@@ -36,11 +36,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MainPanel.h"
 #include "MenuPanel.h"
 #include "Panel.h"
-#include "PilotProfile.h"
 #include "PlayerInfo.h"
 #include "Plugins.h"
 #include "Preferences.h"
 #include "PrintData.h"
+#include "Random.h"
 #include "Screen.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
@@ -109,6 +109,7 @@ int main(int argc, char *argv[])
 	bool printTests = false;
 	bool printData = false;
 	bool noTestMute = false;
+	uint64_t nWorkerThreads = 0;
 	string testToRunName;
 
 	// Whether the game has encountered errors while loading.
@@ -147,7 +148,14 @@ int main(int argc, char *argv[])
 			printTests = true;
 		else if(arg == "--nomute")
 			noTestMute = true;
+		else if(arg == "--rngseed" && *++it)
+			Random::SetFixedSeed(std::stoull(*it));
+		else if(arg == "--tq-threads" && *++it)
+			nWorkerThreads = std::stoull(*it);
 	}
+
+	if(nWorkerThreads)
+		TaskQueue::SetWorkerThreadCount(nWorkerThreads);
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
@@ -211,9 +219,6 @@ int main(int argc, char *argv[])
 
 			// Set the game's initial internal state.
 			GameData::FinishLoading();
-
-			// Now load all pilot profiles, which may rely on game data.
-			PilotProfile::LoadProfiles();
 
 			// Reference check the universe, as known to the player. If no player found,
 			// then check the default state of the universe.
@@ -358,6 +363,11 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			{
 				menuPanels.AdjustViewport();
 				gamePanels.AdjustViewport();
+			}
+			else if(event.type == CustomEvents::GetAdjustText())
+			{
+				menuPanels.AdjustTextDisplay();
+				gamePanels.AdjustTextDisplay();
 			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
@@ -624,6 +634,11 @@ void PrintHelp()
 	cerr << "    --tests: print table of available tests, then exit." << endl;
 	cerr << "    --test <name>: run given test from resources directory." << endl;
 	cerr << "    --nomute: don't mute the game while running tests." << endl;
+	cerr << "    --rng-seed <seed>: every time the pseudo-random number generator is seeded,"
+		" it will be given this value." << endl;
+	cerr << "    --tq-threads: sets the number of threads used for the internal queue of tasks."
+		" Not specifying this will use a default depending on your system. This is only useful for debugging."
+		" Has to be at least 1." << endl;
 	PrintData::Help();
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;

@@ -357,7 +357,7 @@ news "grifter"
 news "company psychologist"
 	location
 		government "Syndicate"
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 	name
 		word
 			"Company psychologist"
@@ -384,7 +384,7 @@ news "company psychologist"
 news "genetic counselor"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 	name
 		word
 			"Genetic counselor"
@@ -406,7 +406,7 @@ news "genetic counselor"
 news "investigator"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 	name
 		word
 			"Detective"
@@ -427,7 +427,7 @@ news "investigator"
 news "parent"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 	name
 		word
 			"Parent"
@@ -579,7 +579,7 @@ news "dock worker"
 news "housekeeper"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "paradise"
+		attributes "wealthy" "paradise"
 	name
 		word
 			"Housekeeper"
@@ -605,7 +605,7 @@ news "housekeeper"
 news "groundskeeper"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "paradise"
+		attributes "wealthy" "paradise"
 	name
 		word
 			"Groundskeeper"
@@ -629,7 +629,7 @@ news "groundskeeper"
 news "hair stylist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "urban" "paradise"
+		attributes "wealthy" "urban" "paradise"
 	name
 		word
 			"Hair stylist"
@@ -783,7 +783,7 @@ news "human resources worker"
 news "loan officer"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich"
+		attributes "wealthy"
 	name
 		word
 			"Loan officer"
@@ -955,7 +955,7 @@ news "athlete"
 news "dentist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "paradise" "rich" "urban"
+		attributes "paradise" "wealthy" "urban"
 	name
 		word
 			"Dentist"
@@ -1018,7 +1018,7 @@ news "epidemiologist on quarg world"
 news "economist"
 	location
 		government "Syndicate"
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 	name
 		word
 			"Economist"
@@ -1159,7 +1159,7 @@ news "substance abuse counselor"
 news "reporter"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
-		attributes "rich" "urban" "frontier" "tourism"
+		attributes "wealthy" "urban" "frontier" "tourism"
 		not
 			government "Quarg"
 			not attributes "human"
@@ -1214,7 +1214,7 @@ news "public relations worker"
 news "museum curator"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "tourism" "near earth" "paradise" "rich"
+		attributes "tourism" "near earth" "paradise" "wealthy"
 	name
 		word
 			"Museum curator"
@@ -1310,7 +1310,7 @@ news "technical writer"
 news "dietitian"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "paradise" "rim" "near earth"
+		attributes "wealthy" "paradise" "rim" "near earth"
 	name
 		word
 			"Dietitian"
@@ -1330,7 +1330,7 @@ news "dietitian"
 news "chef"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "paradise"
+		attributes "wealthy" "paradise"
 	name
 		word
 			"Chef"
@@ -1359,7 +1359,7 @@ news "chef"
 news "insurance agent"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "urban" "paradise" "near earth"
+		attributes "wealthy" "urban" "paradise" "near earth"
 	name
 		word
 			"Insurance agent"
@@ -1408,7 +1408,7 @@ news "excavation specialist"
 news "chauffeur"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "paradise"
+		attributes "wealthy" "paradise"
 	name
 		word
 			"Chauffeur"
@@ -1654,7 +1654,7 @@ news "religious"
 news "tourist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "deep" "rich" "paradise" "tourism"
+		attributes "deep" "wealthy" "paradise" "tourism"
 		not attributes "station"
 	name
 		word
@@ -1737,7 +1737,7 @@ news "protester"
 news "diplomat"
 	location
 		government "Republic" "Free Worlds" "Syndicate"
-		attributes "rich"
+		attributes "wealthy"
 	name
 		word
 			"Diplomat"
@@ -2299,7 +2299,7 @@ phrase "platform number"
 news "tourist pa system"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "deep" "rich" "paradise" "tourism"
+		attributes "deep" "wealthy" "paradise" "tourism"
 	name
 		word
 			"Public announcement system"
