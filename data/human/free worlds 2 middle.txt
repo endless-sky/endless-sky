@@ -266,6 +266,7 @@ mission "FW Southern Recon 1B"
 		unmark "Wei"
 	to complete
 		not "FW Southern Recon 1B (Turret): done"
+		has "outfit: Electron Beam"
 	to fail
 		has "FW Southern Recon 1B (Turret): done"
 	on visit
