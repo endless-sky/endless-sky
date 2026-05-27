@@ -192,7 +192,14 @@ outfitter "Unfettered Basics"
 	"Asteroid Scanner"
 	"Outfit Scanner"
 	"Phantom Pallet"
+	"Scram Drive"
 
+	outfitter "Hai Advanced"
+	"Pulse Cannon"
+	"Outfit Scanner"
+	"Cargo Scanner"
+	"Sand Cell"
+	"Scram Drive"
 # For ships, stations, or corporations.
 phrase "hai"
 	word
