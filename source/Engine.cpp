@@ -2353,11 +2353,12 @@ void Engine::HandleMouseClicks()
 			}
 		}
 
+	MouseButton secondaryMouseButton = isMouseTurningEnabled ? MouseButton::MIDDLE : MouseButton::RIGHT;
 	bool clickedAsteroid = false;
 	if(clickTarget)
 	{
 		UI::PlaySound(UI::UISound::TARGET);
-		if(mouseButton == MouseButton::RIGHT)
+		if(mouseButton == secondaryMouseButton)
 			ai.IssueShipTarget(clickTarget);
 		else
 		{
@@ -2387,13 +2388,12 @@ void Engine::HandleMouseClicks()
 				clickedAsteroid = true;
 				clickRange = range;
 				flagship->SetTargetAsteroid(minable);
-				if(mouseButton == MouseButton::RIGHT)
+				if(mouseButton == secondaryMouseButton)
 					ai.IssueAsteroidTarget(minable);
 			}
 		}
 	}
-	if(!clickTarget && !clickedAsteroid
-		&& mouseButton == (isMouseTurningEnabled ? MouseButton::MIDDLE : MouseButton::RIGHT))
+	if(!clickTarget && !clickedAsteroid && mouseButton == secondaryMouseButton)
 	{
 		UI::PlaySound(UI::UISound::TARGET);
 		ai.IssueMoveTarget(clickPoint + camera.Center(), playerSystem);
