@@ -2393,8 +2393,7 @@ void Engine::HandleMouseClicks()
 			}
 		}
 	}
-	if(!clickTarget && !clickedAsteroid
-		&& mouseButton == secondaryMouseButton)
+	if(!clickTarget && !clickedAsteroid && mouseButton == secondaryMouseButton)
 	{
 		UI::PlaySound(UI::UISound::TARGET);
 		ai.IssueMoveTarget(clickPoint + camera.Center(), playerSystem);
