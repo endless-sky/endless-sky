@@ -354,9 +354,6 @@ mission "Hai Legacy 3"
 				decline
 			label anomaly
 			`You are hailed by the Unfettered as soon as you reach orbit. "You think us blind, monkey? You are not flying the relic as your flagship! You're not even worth a launch sequence; the duel is forfeit," they say angrily.`
-			`	"You also need to only have one ship, although we can tolerate you leaving your fleet on hold in this system."`
-				to display
-					"total ships" > 1
 			action
 				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 				fail
