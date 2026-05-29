@@ -170,6 +170,9 @@ void PlanetPanel::Step()
 				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
 			for(const auto &outfit : player.Cargo().Outfits())
 				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			for(const auto &[outfit, count] : player.GetStock())
+				if(count > 0)
+					SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
 			for(const auto &license : player.Licenses())
 			{
 				const Outfit *outfit = GameData::Outfits().Find(license + " License");
