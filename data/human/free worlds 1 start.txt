@@ -1415,8 +1415,6 @@ mission "FW Pirates: Invasion Fleet"
 	npc save
 		to despawn
 			has "FW Pirates: Attack 2: declined"
-		to complete
-			has "FW Pirates: Attack 2: done"
 		government "Free Worlds"
 		personality heroic escort
 		fleet
