@@ -2189,6 +2189,7 @@ mission "FW Senate Hearing"
 				`	"I knew my fleet could subdue the planet without suffering serious losses."`
 					to display
 						or
+							"has FW Pirates: Invasion Fleet: done"
 							"combat rating" >= 8103
 							"armament deterrence" >= 8
 					goto losses
