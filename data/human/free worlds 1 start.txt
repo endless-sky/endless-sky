@@ -498,6 +498,12 @@ mission "FW Syndicate Diplomacy 1D"
 					goto anarchy
 				`	"Alien invasion."`
 					goto aliens
+				`	"Me."`
+					to display
+						or
+							"combat rating" >= 22026
+							"armament deterrence" >= 10
+					goto player
 			
 			`	She laughs. "A typical Free Worlds answer. I will confess, I am none too fond of Parliament, ordering the Navy to spend its time up in the paradise sector assisting snobby rich pilots who've run out of fuel instead of down here defending against the very real threats that lurk on the pirate worlds."`
 				goto threat
@@ -518,6 +524,9 @@ mission "FW Syndicate Diplomacy 1D"
 			label aliens
 			`	She laughs. "You must watch far too many videos. The most powerful species in this galaxy are also the most peace-loving. Trust me, I should know. Here on the edge of human space, we receive... visitors, on occasion. They do not interfere in human events, but they came seeking information on a threat that concerns us both."`
 				goto threat
+			
+			label me
+			`	She frowns. "That's in rather poor taste, don't you think? You certainly do have a certain... reputation, I'll admit. You might be the greatest threat the Republic faces today, but humanity? There are far greater threats to humanity than any single captain, no matter how powerful their fleet is."`
 			
 			label threat
 			`	"What sort of threat?" you ask.`
@@ -1322,53 +1331,7 @@ mission "FW Pirates: Attack 2"
 	
 	on accept
 		event "battle for Greenrock"
-	
-	npc
-		government "Free Worlds"
-		personality heroic escort
-		fleet
-			names "free worlds capital"
-			variant
-				"Falcon (Laser)"
-				"Bastion (Laser)"
-		fleet
-			names "free worlds capital"
-			variant
-				"Osprey"
-				"Osprey (Missile)"
-		fleet
-			names "free worlds capital"
-			fighters
-				names "free worlds fighters"
-			variant
-				"Skein"
-				"Finch" 6
-		fleet
-			names "free worlds small"
-			variant
-				"Hawk"
-				"Hawk (Speedy)"
-				"Hawk (Plasma)"
-				"Hawk (Bomber)"
-		fleet
-			names "free worlds small"
-			variant
-				"Fury (Missile)" 2
-				"Fury (Bomber)"
-		fleet
-			names "free worlds small"
-			variant
-				"Sparrow" 5
-	npc
-		government "Merchant"
-		personality heroic escort
-		fleet
-			names "civilian"
-			variant
-				"Firebird"
-				"Behemoth"
-				"Modified Argosy"
-				"Clipper (Speedy)"
+
 	npc evade
 		government "Pirate"
 		personality plunders staying
@@ -1439,6 +1402,68 @@ mission "FW Pirates: Attack 2"
 			`	"No good deed goes unpunished, I suppose," Tomek says. "Despite the great opportunity we've created for the Free Worlds, I have no doubt that the Senate will not be happy with the actions we took here. Should they attempt to punish us, let me take full responsibility for what was done here. They need me, so my punishment will not be too severe, and any punishment that is placed upon you should hopefully be minor by comparison. If asked, you were simply following the orders of a superior."`
 			`	Just then, you hear another ship coming in for a landing. You both look up to see a Falcon landing in the spaceport: Alondo's Falcon that you were supposed to escort to Thule. Tomek has a somber look on his face. "Let me speak with them first," he says to you. "Meet with us in the spaceport later. Hopefully I'll have smoothed things over by then."`
 
+
+mission "FW Pirates: Invasion Fleet"
+	invisible
+	landing
+	source "Trinket"
+	to offer
+		has "FW Pirates: Attack 1: done"
+	to complete
+		has "FW Pirates: Attack 2: done"
+
+	npc save
+		to despawn
+			has "FW Pirates: Attack 2: declined"
+		to complete
+			has "FW Pirates: Attack 2: done"
+		government "Free Worlds"
+		personality heroic escort
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon (Laser)"
+				"Bastion (Laser)"
+		fleet
+			names "free worlds capital"
+			variant
+				"Osprey"
+				"Osprey (Missile)"
+		fleet
+			names "free worlds capital"
+			fighters
+				names "free worlds fighters"
+			variant
+				"Skein"
+				"Finch" 6
+		fleet
+			names "free worlds small"
+			variant
+				"Hawk"
+				"Hawk (Speedy)"
+				"Hawk (Plasma)"
+				"Hawk (Bomber)"
+		fleet
+			names "free worlds small"
+			variant
+				"Fury (Missile)" 2
+				"Fury (Bomber)"
+		fleet
+			names "free worlds small"
+			variant
+				"Sparrow" 5
+	npc save
+		to despawn
+			has "FW Pirates: Attack 2: declined"
+		government "Merchant"
+		personality heroic escort
+		fleet
+			names "civilian"
+			variant
+				"Firebird"
+				"Behemoth"
+				"Modified Argosy"
+				"Clipper (Speedy)"
 
 
 event "battle for Greenrock"
@@ -1743,7 +1768,16 @@ mission "FW Early Warning 1"
 			`	"Distracting us from what?" Alondo asks.`
 			`	Tomek thinks for a moment. "Have any of the eastern patrols returned yet?"`
 			`	"None," says an officer. "Most of our patrols have been sticking close to Tarazed to stay out of reach of the Navy. It'll take a few more days for them to begin arriving."`
+			branch "no casualties"
+				has "FW Pirates: Invasion Fleet: done"
+			
 			`	"We could sure use those ships that were lost attacking Greenrock," Freya snips.`
+				goto task
+
+			label "no casualties"
+			`	"Pulling our fleets out of position to attack Greenrock sure helped our patrol schedule," Freya snips.`
+
+			label task
 			`	Tomek ignores her. "Alright, Captain <last>, I want you to scout <waypoints>. Simply enter the systems, look at what forces the Navy has there, then leave as soon as possible. We need to know what we're up against, if the Navy truly are moving to attack from Wei. If it turns out this is a distraction, hopefully we'll have intel from the returning patrol fleets by then."`
 				accept
 	
@@ -2152,10 +2186,25 @@ mission "FW Senate Hearing"
 				`	"I trusted that Tomek would know the best strategy."`
 				`	"I guess I got too caught up in trying to be a hero."`
 					goto hero
+				`	"I knew my fleet could subdue the planet without suffering serious losses."`
+					to display
+						or
+							"combat rating" >= 8103
+							"armament deterrence" >= 8
+					goto losses
 			`	"And how did that work out?" says the old man. "Shortly after your attack on Greenrock, the Navy made moves to invade us once again, a plan that was no doubt helped by your actions."`
 				goto sentence
 			label hero
 			`	"Indeed," says the senator. "And I bet it wasn't long after the battle that you realized saving the galaxy isn't that easy."`
+				goto sentence
+			label losses
+			branch intact
+				"has FW Pirates: Invasion Fleet: done"
+			`	"And yet the fleet did suffer losses," says the senator. "Not to mention that you took your ships, which are among the strongest in the whole of the Free Worlds, and tied them up an a meaningless battle that risked opening up an entirely new front of the war. Are you saying you did all of this without permission, without even considering the reasons the Free Worlds had decided not to launch an assault, just because you thought you could get away with it?`
+				goto sentence
+			label intact
+			`	"Captain," replies the senator, "can't you realize this isn't about casualties? It doesn't matter that you managed the invasion flawlessly - we can all agree on that. What matters is that there wasn't supposed to be an invasion in the first place. Can't you see how your actions disrupted the Free Worlds' entire military and diplomatic strategy?"`
+
 			label sentence
 			`	"I suppose so," you admit.`
 			`	A third senator speaks up, a woman whose name card identifies her as Sara, from Skymoot. "That will be all, Captain <last>. The Senate will confer and decide whether we want your continued services."`
