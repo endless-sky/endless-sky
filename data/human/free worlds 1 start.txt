@@ -503,7 +503,7 @@ mission "FW Syndicate Diplomacy 1D"
 						or
 							"combat rating" >= 22026
 							"armament deterrence" >= 10
-					goto player
+					goto me
 			
 			`	She laughs. "A typical Free Worlds answer. I will confess, I am none too fond of Parliament, ordering the Navy to spend its time up in the paradise sector assisting snobby rich pilots who've run out of fuel instead of down here defending against the very real threats that lurk on the pirate worlds."`
 				goto threat
