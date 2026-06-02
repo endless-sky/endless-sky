@@ -1407,6 +1407,9 @@ mission "FW Pirates: Invasion Fleet"
 	invisible
 	landing
 	source "Trinket"
+	# The fleet despawns immediately, but the mission persists until it gets "completed" alongside
+	# the next visible mission in the chain and so can be used as a condition in later missions.
+	destination "Deep"
 	to offer
 		has "FW Pirates: Attack 1: done"
 	to complete
