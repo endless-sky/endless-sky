@@ -4580,6 +4580,12 @@ planet Peripheria
 		fleet "Avgi Orbital Defense" 6
 		fleet "Avgi Strike Group" 6
 		fleet "Avgi Fleetgroup" 6
+	landing
+		condition !"Avgi: First Contact: done"
+		dialog
+			`As you land on Peripheria, planetary security contacts your ship immediately. "Unidentified vessel, you have entered an Avgi sovereignty zone without diplomatic clearance. You are ordered to depart immediately."`
+			`Before you can even open your ship's main hatch, automated systems lock your controls and initiate an immediate launch sequence.`
+		takeoff
 
 planet "Phoenix Station"
 	attributes deep station
