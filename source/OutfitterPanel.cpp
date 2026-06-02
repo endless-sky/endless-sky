@@ -277,7 +277,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 		Point pos = point + Point(
             OUTFIT_SIZE / 2 - 20 - font.Width(message),
             OUTFIT_SIZE / 2 - 24);
-        font.Draw(message, pos + Point(1, 1), Color(0., 1.)); // Μαύρη σκιά
+        font.Draw(message, pos + Point(1, 1), Color(0., 1.)); // Black shadow
         font.Draw(message, pos, bright);
 	}
 }
