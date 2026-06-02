@@ -11740,7 +11740,7 @@ system Decet
 		multiplier 1.5
 	habitable 100
 	belt 8211
-	"jump range" 180
+	"jump range" 60
 	haze _menu/haze-twilit-embers
 	link Nonet
 	minables tungsten 48 6.199
