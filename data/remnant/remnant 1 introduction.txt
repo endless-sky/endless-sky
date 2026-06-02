@@ -3375,7 +3375,6 @@ mission "Remnant: Keystone Research 5"
 
 
 mission "Remnant: Keystone Research 6"
-	landing
 	name "Scan the <npc>"
 	description `Go scan the <npc> in <waypoints> to record the Key Stone post-wormhole.`
 	waypoint "Peragenor"
