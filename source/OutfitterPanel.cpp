@@ -243,7 +243,8 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 			}
 
 			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
-			font.Draw(label, labelPos, color);
+            font.Draw(label, labelPos + Point(1, 1), Color(0., 1.)); // Μαύρη σκιά
+            font.Draw(label, labelPos, color);
 		}
 	}
 
@@ -274,9 +275,10 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 	if(!message.empty())
 	{
 		Point pos = point + Point(
-			OUTFIT_SIZE / 2 - 20 - font.Width(message),
-			OUTFIT_SIZE / 2 - 24);
-		font.Draw(message, pos, bright);
+            OUTFIT_SIZE / 2 - 20 - font.Width(message),
+            OUTFIT_SIZE / 2 - 24);
+        font.Draw(message, pos + Point(1, 1), Color(0., 1.)); // Μαύρη σκιά
+        font.Draw(message, pos, bright);
 	}
 }
 
