@@ -1414,7 +1414,9 @@ mission "FW Pirates: Invasion Fleet"
 
 	npc save
 		to despawn
-			has "FW Pirates: Attack 2: declined"
+			or
+				has "FW Pirates: Attack 2: done"
+				has "FW Pirates: Attack 2: declined"
 		government "Free Worlds"
 		personality heroic escort
 		fleet
@@ -1452,7 +1454,9 @@ mission "FW Pirates: Invasion Fleet"
 				"Sparrow" 5
 	npc save
 		to despawn
-			has "FW Pirates: Attack 2: declined"
+			or
+				has "FW Pirates: Attack 2: done"
+				has "FW Pirates: Attack 2: declined"
 		government "Merchant"
 		personality heroic escort
 		fleet
