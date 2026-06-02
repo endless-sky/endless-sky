@@ -55,6 +55,8 @@ TextArea::~TextArea()
 
 void TextArea::SetText(const string &s)
 {
+	if (text == s)
+        return;    //ADDED: Stops the endless loop if the text hasn't changed!
 	text = s;
 	Invalidate();
 }
@@ -249,11 +251,15 @@ void TextArea::Invalidate()
 
 void TextArea::Validate(bool trailingBreak)
 {
-	if(!textIsValid || trailingBreak != scrollHeightIncludesTrailingBreak)
-	{
-		wrappedText.Wrap(text);
-		scroll.SetMaxValue(wrappedText.Height(trailingBreak));
-		scrollHeightIncludesTrailingBreak = trailingBreak;
-		textIsValid = true;
-	}
+    if(!textIsValid || trailingBreak != scrollHeightIncludesTrailingBreak)
+    {
+        wrappedText.Wrap(text);
+        scroll.SetMaxValue(wrappedText.Height(trailingBreak));
+        
+        // ADDED: Correctly updates the scrollbar with the new size
+        scrollBar.displaySizeFraction = scroll.DisplaySize() / scroll.MaxValue(); 
+        
+        scrollHeightIncludesTrailingBreak = trailingBreak;
+        textIsValid = true;
+    }
 }
