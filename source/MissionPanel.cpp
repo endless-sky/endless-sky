@@ -860,7 +860,6 @@ Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const 
 	const Color &selected = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Sprite *fast = SpriteSet::Get("ui/fast forward");
-	bool separated = false;
 
 	for(auto it = missionList.begin(); it != missionList.end(); ++it)
 	{
@@ -868,14 +867,7 @@ Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const 
 			continue;
 
 		pos.Y() += 20.;
-		if(separateDeadlineOrPossible && !separated
-				&& ((player.ShouldSortSeparateDeadline() && it->Deadline())
-						|| (player.ShouldSortSeparatePossible() && !it->CanAccept(player))))
-		{
-			pos.Y() += 8.;
-			separated = true;
-		}
-
+		
 		bool isSelected = it == selectIt;
 		if(isSelected)
 			FillShader::Fill(
