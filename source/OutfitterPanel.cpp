@@ -243,7 +243,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 			}
 
 			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
-            font.Draw(label, labelPos + Point(1, 1), Color(0., 1.)); // Μαύρη σκιά
+            font.Draw(label, labelPos + Point(1, 1), Color(0., 1.)); // Black shadow
             font.Draw(label, labelPos, color);
 		}
 	}
