@@ -2206,7 +2206,7 @@ mission "FW Senate Hearing"
 			label losses
 			branch intact
 				"has FW Pirates: Invasion Fleet: done"
-			`	"And yet the fleet did suffer losses," says the senator. "Not to mention that you took your ships, which are among the strongest in the whole of the Free Worlds, and tied them up an a meaningless battle that risked opening up an entirely new front of the war. Are you saying you did all of this without permission, without even considering the reasons the Free Worlds had decided not to launch an assault, just because you thought you could get away with it?`
+			`	"And yet the fleet did suffer losses," says the senator. "Not to mention that you took your ships, which are among the strongest in the whole of the Free Worlds, and tied them up an a meaningless battle that risked opening up an entirely new front of the war. Are you saying you did all of this without permission, without even considering the reasons the Free Worlds had decided not to launch an assault, just because you thought you could get away with it?"`
 				goto sentence
 
 			label intact
