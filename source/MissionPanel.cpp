@@ -596,7 +596,6 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 
 bool MissionPanel::Drag(double dx, double dy)
 {
-    // If the mouse is dragging on the left or right panel, scroll that panel. Otherwise, pan the map as normal.
     double availableGap = (player.ShouldSortSeparateDeadline() || player.ShouldSortSeparatePossible()) ? 8. : 0.;
     double acceptedGap = player.ShouldSortSeparateDeadline() ? 8. : 0.;
 
