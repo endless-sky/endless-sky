@@ -25,7 +25,7 @@ ship "Emerald Sword"
 		"mass" 4360
 		"drag" 41
 		"heat dissipation" 0.22
-		"fuel capacity" 1000
+		"fuel capacity" 900
 		"cargo space" 169
 		"outfit space" 1190
 		"weapon capacity" 512
