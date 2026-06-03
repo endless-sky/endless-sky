@@ -657,7 +657,7 @@ bool MissionPanel::Hover(int x, int y)
 
     if(x < Screen::Left() + SIDE_WIDTH)
     {
-        // Υπολογισμός index για τις Available Missions
+        // Calculate index for available missions
         int relativeY = y + static_cast<int>(availableScroll) - 36 - Screen::Top();
         unsigned index = 0;
         if (relativeY > 0) {
@@ -691,7 +691,7 @@ bool MissionPanel::Hover(int x, int y)
     }
     else if(x >= Screen::Right() - SIDE_WIDTH)
     {
-        // Υπολογισμός index για τις Accepted Missions
+        // Calculate index for accepted missions
         int relativeY = y + static_cast<int>(acceptedScroll) - 36 - Screen::Top();
         int index = 0;
         if (relativeY > 0) {
