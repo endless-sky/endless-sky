@@ -596,24 +596,27 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 
 bool MissionPanel::Drag(double dx, double dy)
 {
-	if(dragSide < 0)
-	{
-		availableScroll = max(0.,
-			min(available.size() * 20. + 190. - Screen::Height(),
-				availableScroll - dy));
-	}
-	else if(dragSide > 0)
-	{
-		acceptedScroll = max(0.,
-			min(accepted.size() * 20. + 160. - Screen::Height(),
-				acceptedScroll - dy));
-	}
-	else if(canDrag)
-		MapPanel::Drag(dx, dy);
+    // If the mouse is dragging on the left or right panel, scroll that panel. Otherwise, pan the map as normal.
+    double availableGap = (player.ShouldSortSeparateDeadline() || player.ShouldSortSeparatePossible()) ? 8. : 0.;
+    double acceptedGap = player.ShouldSortSeparateDeadline() ? 8. : 0.;
 
-	return true;
+    if(dragSide < 0)
+    {
+        availableScroll = max(0.,
+            min(available.size() * 20. + 190. + availableGap - Screen::Height(),
+                availableScroll - dy));
+    }
+    else if(dragSide > 0)
+    {
+        acceptedScroll = max(0.,
+            min(accepted.size() * 20. + 160. + acceptedGap - Screen::Height(),
+                acceptedScroll - dy));
+    }
+    else if(canDrag)
+        MapPanel::Drag(dx, dy);
+
+    return true;
 }
-
 
 
 // Check to see if the mouse is over either of the mission lists.
