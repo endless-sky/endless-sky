@@ -454,7 +454,22 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 			return false;
 		}
 		// Available missions
-		unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
+        int relativeY = y + static_cast<int>(availableScroll) - 36 - Screen::Top();
+        unsigned index = 0;
+        if (relativeY > 0) {
+            int currentY = 0;
+            bool separated = false;
+            for (const auto &it : available) {
+                currentY += 20;
+                if (!separated && ((player.ShouldSortSeparateDeadline() && it.Deadline())
+                        || (player.ShouldSortSeparatePossible() && !it.CanAccept(player)))) {
+                    currentY += 8;
+                    separated = true;
+                }
+                if (relativeY < currentY) break;
+                index++;
+            }
+        }
 		if(index < available.size())
 		{
 			const auto lastAvailableIt = availableIt;
@@ -475,7 +490,22 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 	else if(x >= Screen::Right() - SIDE_WIDTH)
 	{
 		// Accepted missions
-		int index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - Screen::Top()) / 20);
+        int relativeY = y + static_cast<int>(acceptedScroll) - 36 - Screen::Top();
+        int index = 0;
+        if (relativeY > 0) {
+            int currentY = 0;
+            bool separated = false;
+            for (const auto &it : accepted) {
+                if (!it.IsVisible()) continue;
+                currentY += 20;
+                if (!separated && player.ShouldSortSeparateDeadline() && it.Deadline()) {
+                    currentY += 8;
+                    separated = true;
+                }
+                if (relativeY < currentY) break;
+                index++;
+            }
+        }
 		if(index < AcceptedVisible())
 		{
 			const auto lastAcceptedIt = acceptedIt;
@@ -621,36 +651,72 @@ bool MissionPanel::Drag(double dx, double dy)
 // Check to see if the mouse is over either of the mission lists.
 bool MissionPanel::Hover(int x, int y)
 {
-	dragSide = 0;
-	int oldSort = hoverSort;
-	hoverSort = -1;
-	unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
-	if(x < Screen::Left() + SIDE_WIDTH)
-	{
-		if(index < available.size())
-		{
-			dragSide = -1;
+    dragSide = 0;
+    int oldSort = hoverSort;
+    hoverSort = -1;
 
-			// Hovering over sort buttons
-			if(y + static_cast<int>(availableScroll) < Screen::Top() + 30 && y >= Screen::Top() + 10
-				&& x >= Screen::Left() + SIDE_WIDTH - 110)
-			{
-				hoverSort = (x - Screen::Left() - SIDE_WIDTH + 110) / 30;
-				if(hoverSort > 3)
-					hoverSort = -1;
-			}
-		}
-	}
-	else if(x >= Screen::Right() - SIDE_WIDTH)
-	{
-		if(static_cast<int>(index) < AcceptedVisible())
-			dragSide = 1;
-	}
+    if(x < Screen::Left() + SIDE_WIDTH)
+    {
+        // Υπολογισμός index για τις Available Missions
+        int relativeY = y + static_cast<int>(availableScroll) - 36 - Screen::Top();
+        unsigned index = 0;
+        if (relativeY > 0) {
+            int currentY = 0;
+            bool separated = false;
+            for (const auto &it : available) {
+                currentY += 20;
+                if (!separated && ((player.ShouldSortSeparateDeadline() && it.Deadline())
+                        || (player.ShouldSortSeparatePossible() && !it.CanAccept(player)))) {
+                    currentY += 8;
+                    separated = true;
+                }
+                if (relativeY < currentY) break;
+                index++;
+            }
+        }
 
-	if(oldSort != hoverSort)
-		tooltip.Clear();
+        if(index < available.size())
+        {
+            dragSide = -1;
 
-	return dragSide || MapPanel::Hover(x, y);
+            // Hovering over sort buttons
+            if(y + static_cast<int>(availableScroll) < Screen::Top() + 30 && y >= Screen::Top() + 10
+                && x >= Screen::Left() + SIDE_WIDTH - 110)
+            {
+                hoverSort = (x - Screen::Left() - SIDE_WIDTH + 110) / 30;
+                if(hoverSort > 3)
+                    hoverSort = -1;
+            }
+        }
+    }
+    else if(x >= Screen::Right() - SIDE_WIDTH)
+    {
+        // Υπολογισμός index για τις Accepted Missions
+        int relativeY = y + static_cast<int>(acceptedScroll) - 36 - Screen::Top();
+        int index = 0;
+        if (relativeY > 0) {
+            int currentY = 0;
+            bool separated = false;
+            for (const auto &it : accepted) {
+                if (!it.IsVisible()) continue;
+                currentY += 20;
+                if (!separated && player.ShouldSortSeparateDeadline() && it.Deadline()) {
+                    currentY += 8;
+                    separated = true;
+                }
+                if (relativeY < currentY) break;
+                index++;
+            }
+        }
+
+        if(index < AcceptedVisible())
+            dragSide = 1;
+    }
+
+    if(oldSort != hoverSort)
+        tooltip.Clear();
+
+    return dragSide || MapPanel::Hover(x, y);
 }
 
 
