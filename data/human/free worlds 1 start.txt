@@ -2208,8 +2208,13 @@ mission "FW Senate Hearing"
 				"has FW Pirates: Invasion Fleet: done"
 			`	"And yet the fleet did suffer losses," says the senator. "Not to mention that you took your ships, which are among the strongest in the whole of the Free Worlds, and tied them up an a meaningless battle that risked opening up an entirely new front of the war. Are you saying you did all of this without permission, without even considering the reasons the Free Worlds had decided not to launch an assault, just because you thought you could get away with it?`
 				goto sentence
+
 			label intact
 			`	"Captain," replies the senator, "can't you realize this isn't about casualties? It doesn't matter that you managed the invasion flawlessly - we can all agree on that. What matters is that there wasn't supposed to be an invasion in the first place. Can't you see how your actions disrupted the Free Worlds' entire military and diplomatic strategy?"`
+			`	"I suppose so," you admit.`
+			`	A third senator speaks up, a woman whose name card identifies her as Sara, from Skymoot. "That will be all, Captain <last>. The Senate will confer and decide whether we want your continued services."`			`	You are led back out to the lobby, where you wait for what feels like another hour. During that time, you speak with someone else and learn that Tomek has been removed from the Council and put under house arrest. Although interestingly, despite Tomek disobeying orders, the Senate has decided to continue the occupation of Greenrock, at least for now, because leaving the planet so quickly would only foment greater chaos in the region.`
+			`	Finally, a messenger comes and hands you a small slip of paper. You open it. The message reads: "We have decided that you will be suspended without pay and stripped of your rank. When we are in need of your services again, we will contact you, and your rank will be reinstated as the Senate or Council sees fit." It looks like for now, you are back to being a simple merchant captain.`
+				decline
 
 			label sentence
 			`	"I suppose so," you admit.`
