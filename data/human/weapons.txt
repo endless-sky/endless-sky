@@ -849,7 +849,6 @@ outfit "Flamethrower Projectile"
 		"hull damage" .7
 		"heat damage" 160
 
-
 effect "flamethrower die"
 	sprite "effect/explosion/small"
 		"no repeat"
