@@ -435,24 +435,24 @@ ship "Bastion" "Bastion (Scanner)"
 
 ship "Bastion" "Bastion (Flamethrower)"
 	outfits
-		"Anti-Missile Turret"
-		"Breeder Reactor"
-		"Catalytic Ramscoop"
-		"Chipmunk Plasma Steering"
-		"D67-TM Shield Generator"
 		Flamethrower 2
-		"Fuel Pod"
-		Hyperdrive
-		"Impala Plasma Steering"
-		"Impala Plasma Thruster"
+		"Plasma Cannon" 2
+		"Anti-Missile Turret"
+		"Quad Blaster Turret" 2
+		"Breeder Reactor"
 		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Water Coolant System"
+		"Catalytic Ramscoop"
+		"Fuel Pod"
 		"Large Radar Jammer"
 		"Laser Rifle" 8
-		"Liquid Nitrogen Cooler"
 		"Outfits Expansion"
-		"Plasma Cannon" 2
-		"Quad Blaster Turret" 2
-		"Water Coolant System"
+		"Impala Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Impala Plasma Steering"
+		Hyperdrive
 	gun Flamethrower
 	gun Flamethrower
 	gun "Plasma Cannon"
@@ -460,6 +460,40 @@ ship "Bastion" "Bastion (Flamethrower)"
 	turret "Anti-Missile Turret"
 	turret "Quad Blaster Turret"
 	turret "Quad Blaster Turret"
+
+
+ship "Bastion" "Bastion (Flamethrower Pirate)"
+	outfits
+		Flamethrower 2
+		"Plasma Cannon" 2
+		"Anti-Missile Turret"
+		"Gatling Turret"
+		"Javelin Turret"
+		"Breeder Reactor"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"D67-TM Shield Generator"
+		"Cooling Ducts"
+		"Liquid Nitrogen Cooler"
+		"Fuel Pod" 2
+		"Gatling Gun Ammo" 6000
+		Javelin 500
+		"Javelin Storage Crate"
+		"Laser Rifle" 8
+		"Outfits Expansion"
+		Ramscoop
+		"Small Radar Jammer"
+		"Impala Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Impala Plasma Steering"
+		Hyperdrive
+	gun "Plasma Cannon"
+	gun Flamethrower
+	gun Flamethrower
+	gun "Plasma Cannon"
+	turret "Anti-Missile Turret"
+	turret "Javelin Turret"
+	turret "Gatling Turret"
 
 
 
@@ -1425,25 +1459,25 @@ ship "Falcon" "Falcon (Plasma)"
 
 ship "Falcon" "Falcon (Flamethrower)"
 	outfits
-		"Anti-Missile Turret"
-		"Breeder Reactor"
-		"Catalytic Ramscoop"
-		"D14-RN Shield Generator"
-		"D67-TM Shield Generator"
 		Flamethrower 2
-		"Fuel Pod"
-		Hyperdrive
-		"Impala Plasma Thruster"
+		"Plasma Cannon" 2
+		"Anti-Missile Turret"
+		"Quad Blaster Turret" 3
+		"Breeder Reactor"
 		"LP036a Battery Pack"
 		"LP072a Battery Pack"
-		"Laser Rifle" 15
+		"D14-RN Shield Generator"
+		"D67-TM Shield Generator"
 		"Liquid Nitrogen Cooler"
-		"Orca Plasma Steering"
-		"Plasma Cannon" 2
-		"Quad Blaster Turret" 3
-		"Small Radar Jammer" 2
 		"Water Coolant System"
+		"Catalytic Ramscoop"
+		"Fuel Pod"
+		"Laser Rifle" 15
+		"Small Radar Jammer" 2
+		"Impala Plasma Thruster"
 		"X1700 Ion Thruster"
+		"Orca Plasma Steering"
+		Hyperdrive
 	gun Flamethrower
 	gun Flamethrower
 	gun "Plasma Cannon"
@@ -1452,6 +1486,39 @@ ship "Falcon" "Falcon (Flamethrower)"
 	turret "Quad Blaster Turret"
 	turret "Quad Blaster Turret"
 	turret "Quad Blaster Turret"
+
+
+ship "Falcon" "Falcon (Flamethrower Pirate)"
+	outfits
+		Flamethrower 2
+		"Plasma Cannon" 2
+		"Anti-Missile Turret"
+		"Gatling Turret" 2
+		"Javelin Turret"
+		"Breeder Reactor"
+		"LP036a Battery Pack"
+		"D41-HY Shield Generator"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Fuel Pod" 2
+		"Gatling Gun Ammo" 12000
+		Javelin 600
+		"Javelin Storage Crate" 2
+		"Laser Rifle" 15
+		Ramscoop
+		"Small Radar Jammer" 2
+		"Impala Plasma Thruster"
+		"X1700 Ion Thruster"
+		"Orca Plasma Steering"
+		Hyperdrive
+	gun Flamethrower
+	gun Flamethrower
+	gun "Plasma Cannon"
+	gun "Plasma Cannon"
+	turret "Gatling Turret"
+	turret "Gatling Turret"
+	turret "Anti-Missile Turret"
+	turret "Javelin Turret"
 
 
 ship "Falcon" "Falcon (Tractor Beam)"
@@ -1597,35 +1664,6 @@ ship "Firebird" "Firebird (Plasma)"
 		"Hyperdrive"
 
 
-ship "Firebird" "Firebird (Flamethrower)"
-	outfits
-		"Anti-Missile Turret"
-		"Catalytic Ramscoop"
-		"D14-RN Shield Generator"
-		"D67-TM Shield Generator"
-		Flamethrower 2
-		"Fuel Pod" 3
-		"Greyhound Plasma Thruster"
-		Hyperdrive
-		"Impala Plasma Steering"
-		"LP036a Battery Pack"
-		"LP072a Battery Pack"
-		"Large Radar Jammer"
-		"Liquid Nitrogen Cooler"
-		"Outfits Expansion" 2
-		"Plasma Cannon" 2
-		"Pulse Rifle" 2
-		"Quad Blaster Turret"
-		"S3 Thermionic"
-		Supercapacitor 2
-	gun Flamethrower
-	gun Flamethrower
-	gun "Plasma Cannon"
-	gun "Plasma Cannon"
-	turret "Anti-Missile Turret"
-	turret "Quad Blaster Turret"
-
-
 ship "Firebird" "Firebird (Heavy Blaster)"
 	outfits
 		"Heavy Blaster" 4
@@ -1661,6 +1699,37 @@ ship "Firebird" "Firebird (CCOR)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
+
+
+ship "Firebird" "Firebird (CCOR Flamethrower)"
+	outfits
+		Flamethrower 2
+		"Plasma Cannon" 2
+		"Anti-Missile Turret"
+		"Javelin Turret"
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Cooling Ducts"
+		"Fuel Pod" 4
+		Javelin 500
+		"Javelin Storage Crate"
+		"Outfits Expansion" 2
+		"Laser Rifle" 10
+		Ramscoop
+		"Small Radar Jammer"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		Hyperdrive
+	gun Flamethrower
+	gun Flamethrower
+	gun "Plasma Cannon"
+	gun "Plasma Cannon"
+	turret "Anti-Missile Turret"
+	turret "Javelin Turret"
+
 
 
 
@@ -1884,22 +1953,42 @@ ship "Fury" "Fury (Flamethrower)"
 
 ship "Fury" "Fury (Flamethrower Blaster)"
 	outfits
-		"D14-RN Shield Generator"
 		"Energy Blaster" 4
 		Flamethrower 2
-		"Fuel Pod"
-		Hyperdrive
+		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		Supercapacitor
-		"X2200 Ion Steering"
+		"D14-RN Shield Generator"
+		"Fuel Pod"
 		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		Hyperdrive
+	gun Flamethrower
+	gun Flamethrower
+	gun "Energy Blaster"
+	gun "Energy Blaster"
+	gun "Energy Blaster"
+	gun "Energy Blaster"
+
+
+ship "Fury" "Fury (Flamethrower Pirate)"
+	outfits
+		Flamethrower 2
+		"Gatling Gun" 2
 		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		Supercapacitor
+		"D14-RN Shield Generator"
+		"Fuel Pod"
+		"Gatling Gun Ammo" 6000
+		"Small Radar Jammer"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		Hyperdrive
 	gun Flamethrower
 	gun Flamethrower
-	gun "Energy Blaster"
-	gun "Energy Blaster"
-	gun "Energy Blaster"
-	gun "Energy Blaster"
+	gun "Gatling Gun"
+	gun "Gatling Gun"
 
 
 ship "Fury" "Fury (Gatling)"
@@ -2308,6 +2397,37 @@ ship "Leviathan" "Leviathan (CCOR)"
 		"Impala Plasma Steering"
 		"Chipmunk Plasma Steering"
 		"Scram Drive"
+
+
+ship "Leviathan" "Leviathan (CCOR Flamethrower)"
+	outfits
+		Flamethrower 2
+		"Plasma Cannon" 2
+		"Anti-Missile Turret"
+		"Javelin Turret" 3
+		"S3 Thermionic"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"D67-TM Shield Generator" 2
+		"Liquid Nitrogen Cooler"
+		"Fuel Pod" 3
+		Javelin 1500
+		"Javelin Storage Crate" 3
+		"Laser Rifle" 64
+		Ramscoop 2
+		"Small Radar Jammer" 2
+		"Impala Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Impala Plasma Steering"
+		Hyperdrive
+	gun Flamethrower
+	gun Flamethrower
+	gun "Plasma Cannon"
+	gun "Plasma Cannon"
+	turret "Javelin Turret"
+	turret "Javelin Turret"
+	turret "Javelin Turret"
+	turret "Anti-Missile Turret"
 
 
 ship "Leviathan" "Leviathan (Hai Engines)"
@@ -2844,28 +2964,57 @@ ship "Osprey" "Osprey (Missile)"
 
 ship "Osprey" "Osprey (Flamethrower)"
 	outfits
+		Flamethrower 2
+		"Plasma Cannon" 2
+		"Heavy Anti-Missile Turret"
+		"Quad Blaster Turret"
 		"Breeder Reactor"
-		"Catalytic Ramscoop"
+		Supercapacitor 4
 		"D14-RN Shield Generator"
 		"D67-TM Shield Generator"
-		Flamethrower 2
+		"Liquid Nitrogen Cooler"
+		"Catalytic Ramscoop"
 		"Fuel Pod"
-		"Heavy Anti-Missile Turret"
-		Hyperdrive
-		"Impala Plasma Steering"
-		"Impala Plasma Thruster"
 		"Large Radar Jammer"
 		"Laser Rifle" 3
-		"Liquid Nitrogen Cooler"
-		"Plasma Cannon" 2
-		"Quad Blaster Turret"
-		Supercapacitor 4
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		Hyperdrive
 	gun Flamethrower
 	gun Flamethrower
 	gun "Plasma Cannon"
 	gun "Plasma Cannon"
 	turret "Quad Blaster Turret"
 	turret "Heavy Anti-Missile Turret"
+
+
+ship "Osprey" "Osprey (Flamethrower Pirate)"
+	outfits
+		Flamethrower 2
+		"Plasma Cannon" 2
+		"Anti-Missile Turret"
+		"Javelin Turret"
+		"Breeder Reactor"
+		Supercapacitor 3
+		"D23-QP Shield Generator"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Fuel Pod" 2
+		Javelin 500
+		"Javelin Storage Crate"
+		"Laser Rifle" 3
+		Ramscoop
+		"Small Radar Jammer" 2
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		Hyperdrive
+	gun Flamethrower
+	gun Flamethrower
+	gun "Plasma Cannon"
+	gun "Plasma Cannon"
+	turret "Javelin Turret"
+	turret "Anti-Missile Turret"
+
 
 
 
@@ -3102,6 +3251,29 @@ ship "Saber" "Saber (CCOR Javelin)"
 		"Greyhound Plasma Steering"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+
+
+ship "Saber" "Saber (CCOR Flamethrower)"
+	outfits
+		Flamethrower 4
+		"Twin Blaster"
+		"Anti-Missile Turret"
+		"nGVF-CC Fuel Cell"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Fuel Pod" 2
+		"Laser Rifle" 12
+		Ramscoop
+		"Security Station"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		Hyperdrive
+	gun Flamethrower
+	gun "Twin Blaster"
+	gun Flamethrower
+	gun Flamethrower
+	gun Flamethrower
+	turret "Anti-Missile Turret"
 
 
 
