@@ -526,7 +526,7 @@ mission "FW Syndicate Diplomacy 1D"
 				goto threat
 			
 			label me
-			`	She frowns. "That's in rather poor taste, don't you think? You certainly do have a certain... reputation, I'll admit. You might be the greatest threat the Republic faces today, but humanity? There are far greater threats to humanity than any single captain, no matter how powerful their fleet is."`
+			`	She frowns. "That's in rather poor taste, don't you think? You certainly do have a certain... reputation, I'll admit. You might be the greatest threat the Republic faces today, but humanity? The threat I worry about is far greater than any single captain, no matter how powerful their fleet is."`
 			
 			label threat
 			`	"What sort of threat?" you ask.`
