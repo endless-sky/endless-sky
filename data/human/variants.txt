@@ -3582,6 +3582,33 @@ ship "Vanguard" "Vanguard (Particle)"
 	gun "Particle Cannon"
 
 
+ship "Vanguard" "Vanguard (Flamethrower)"
+	outfits
+		Flamethrower 6
+		"Plasma Cannon"
+		"Heavy Anti-Missile Turret"
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Water Coolant System" 2
+		"Fuel Pod" 14
+		"Laser Rifle" 11
+		Ramscoop 2
+		"Small Radar Jammer" 2
+		"Impala Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Impala Plasma Steering"
+		"Scram Drive"
+	gun "Plasma Cannon"
+	gun Flamethrower
+	gun Flamethrower
+	gun Flamethrower
+	gun Flamethrower
+	gun Flamethrower
+	gun Flamethrower
+	turret "Heavy Anti-Missile Turret"
+
+
 
 ship "Wasp" "Wasp (Gatling)"
 	outfits
