@@ -1469,6 +1469,7 @@ event "catalytic ramscoop available"
 event "fw gets catalytic ramscoop"
 	outfitter "Delta V Advanced"
 		"Catalytic Ramscoop"
+	# FW starts to use flamethrowers after CR makes it a reasonable choice
 	fleet "Small Free Worlds"
 		add variant 2
 			"Hawk"
@@ -1509,6 +1510,61 @@ event "fw gets catalytic ramscoop"
 			"Falcon (Flamethrower)"
 			"Fury (Flamethrower Blaster)" 2
 			"Sparrow" 4
+	# Pirates don't use CRs, but we simulate a delay in adoption here
+	fleet "Small Southern Pirates"
+		add variant 1
+			"Fury (Flamethrower Pirate)"
+		add variant 1
+			"Hawk (Rocket)"
+			"Fury (Flamethrower Pirate)"
+			"Sparrow"
+		add variant 1
+			"Fury (Flamethrower Pirate)" 3
+		add variant 1
+			"Fury (Flamethrower Pirate)"
+			"Sparrow"
+	fleet "Large Southern Pirates"
+		add variant 1
+			"Osprey (Flamethrower Pirate)"
+		add variant 2
+			"Fury (Flamethrower Pirate)"
+			"Sparrow" 3
+		add variant 1
+			"Fury (Bomber)"
+			"Fury (Flamethrower Pirate)" 2
+		add variant 2
+			"Bastion (Flamethrower Pirate)"
+		add variant 1
+			"Falcon (Flamethrower Pirate)"
+			"Sparrow" 3
+		add variant 1
+			"Falcon (Flamethrower Pirate)"
+	fleet "Small CCOR"
+		add variant 1
+			"Saber (CCOR Flamethrower)"
+		add variant 1
+			"Saber (CCOR Flamethrower)"
+			"Berserker (CCOR)"
+	fleet "Large CCOR"
+		add variant 3
+			"Firebird (CCOR Flamethrower)"
+		add variant 1
+			"Firebird (CCOR Flamethrower)"
+			"Enforcer"
+		add variant 1
+			"Saber (CCOR Flamethrower)"
+			"Enforcer (CCOR)"
+		add variant 1
+			"Leviathan (CCOR Flamethrower)"
+		add variant 1
+			"Leviathan (CCOR Flamethrower)"
+			"Saber (CCOR Flamethrower)"
+			"Enforcer (CCOR)"
+			"Berserker (CCOR)"
+	# rare curiosity, otherwise the flamethrower is only used in the South
+	fleet "Large Core Pirates"
+		variant 1
+			"Vanguard (Flamethrower)"
 
 
 
