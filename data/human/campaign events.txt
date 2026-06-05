@@ -1480,17 +1480,12 @@ event "fw gets catalytic ramscoop"
 		add variant 1
 			"Osprey (Flamethrower)"
 	fleet "Large Free Worlds"
-		add variant 5
-			"Bastion (Flamethrower)"
 		add variant 4
 			"Osprey (Flamethrower)"
 			"Fury (Flamethrower Blaster)"
 		add variant 3
-			"Bastion (Flamethrower)"
+			"Bastion (Heavy)"
 			"Osprey (Flamethrower)"
-		add variant 2
-			"Bastion (Flamethrower)"
-			"Sparrow" 2
 		add variant 1
 			"Falcon (Flamethrower)"
 		add variant 1
@@ -1500,10 +1495,10 @@ event "fw gets catalytic ramscoop"
 			"Sparrow" 3
 		add variant 2
 			"Falcon (Flamethrower)"
-			"Bastion (Flamethrower)"
+			"Bastion (Heavy)"
 			"Hawk (Rocket)"
 		add variant 2
-			"Bastion (Flamethrower)"
+			"Bastion (Heavy)"
 			"Fury (Flamethrower Blaster)" 2
 			"Sparrow" 2
 		add variant 2
@@ -1519,6 +1514,8 @@ event "fw gets catalytic ramscoop"
 			"Fury (Flamethrower Pirate)"
 			"Sparrow"
 		add variant 1
+			"Clipper (Flamethrower)"
+		add variant 1
 			"Fury (Flamethrower Pirate)" 3
 		add variant 1
 			"Fury (Flamethrower Pirate)"
@@ -1529,42 +1526,21 @@ event "fw gets catalytic ramscoop"
 		add variant 2
 			"Fury (Flamethrower Pirate)"
 			"Sparrow" 3
+		add variant 2
+			"Clipper (Flamethrower)"
+			"Hawk (Bomber)"
+		add variant 1
+			"Clipper (Flamethrower)"
+			"Clipper (Heavy)"
+			"Clipper (Speedy)"
 		add variant 1
 			"Fury (Bomber)"
 			"Fury (Flamethrower Pirate)" 2
-		add variant 2
-			"Bastion (Flamethrower Pirate)"
 		add variant 1
 			"Falcon (Flamethrower Pirate)"
 			"Sparrow" 3
 		add variant 1
 			"Falcon (Flamethrower Pirate)"
-	fleet "Small CCOR"
-		add variant 1
-			"Saber (CCOR Flamethrower)"
-		add variant 1
-			"Saber (CCOR Flamethrower)"
-			"Berserker (CCOR)"
-	fleet "Large CCOR"
-		add variant 3
-			"Firebird (CCOR Flamethrower)"
-		add variant 1
-			"Firebird (CCOR Flamethrower)"
-			"Enforcer"
-		add variant 1
-			"Saber (CCOR Flamethrower)"
-			"Enforcer (CCOR)"
-		add variant 1
-			"Leviathan (CCOR Flamethrower)"
-		add variant 1
-			"Leviathan (CCOR Flamethrower)"
-			"Saber (CCOR Flamethrower)"
-			"Enforcer (CCOR)"
-			"Berserker (CCOR)"
-	# rare curiosity, otherwise the flamethrower is only used in the South
-	fleet "Large Core Pirates"
-		variant 1
-			"Vanguard (Flamethrower)"
 
 
 
