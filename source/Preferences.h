@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+enum class Alignment;
+
 
 
 class Preferences {
@@ -138,6 +140,19 @@ public:
 		FLAGSHIP,
 		OWNED_SHIPS,
 		ALL
+	};
+
+	enum class TributeConfirmation : int_fast8_t {
+		OFF = 0,
+		FRIENDLY_ONLY,
+		ALWAYS
+	};
+
+	enum class AmmoRefill : int_fast8_t {
+		NEVER = 0,
+		ASK,
+		WHEN_FREE,
+		ALWAYS
 	};
 
 #ifdef _WIN32
@@ -265,9 +280,25 @@ public:
 	static FlagshipSpacePriority GetFlagshipSpacePriority();
 	static const std::string &FlagshipSpacePrioritySetting();
 
+	/// Large graphics reduction setting.
 	static void ToggleLargeGraphicsReduction();
 	static LargeGraphicsReduction GetLargeGraphicsReduction();
 	static const std::string &LargeGraphicsReductionSetting();
+
+	/// Tribute confirmation dialog setting.
+	static void ToggleTributeConfirmation();
+	static TributeConfirmation GetTributeConfirmation();
+	static const std::string &TributeConfirmationSetting();
+
+	/// Outfitter ammo refill confirmation setting.
+	static void ToggleAmmoRefill();
+	static AmmoRefill GetAmmoRefill();
+	static const std::string &AmmoRefillSetting();
+
+	/// Text alignment override setting.
+	static void ToggleTextAlignment();
+	static Alignment GetTextAlignment();
+	static const std::string &TextAlignmentSetting();
 
 	static void ToggleBlockScreenSaver();
 
