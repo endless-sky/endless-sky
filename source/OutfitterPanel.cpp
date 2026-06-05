@@ -314,7 +314,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 		{
 			if(thumbnail->IsLoaded())
 				SpriteShader::Draw(thumbnail, thumbnailCenter);
-			else
+			else if(thumbnail->HasDimensions())
 				loadingCircle.Draw(thumbnailCenter);
 		}
 
@@ -400,6 +400,10 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				return "You cannot place licenses into " + LocationName(toLocation) + ".";
 			return "You already have one of these licenses, so there is no reason to buy another.";
 		}
+		if(fromLocation != OutfitLocation::Shop)
+			return "You cannot " + actionName + " licenses.";
+		if(toLocation != OutfitLocation::Ship)
+			return "You cannot place licenses into " + LocationName(toLocation) + ".";
 		return true;
 	}
 
@@ -773,7 +777,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 
 					// Install it on this ship.
 					ship->AddOutfit(selectedOutfit, 1);
-					int required = selectedOutfit->Get("required crew");
+					int required = selectedOutfit->Get("required crew") + selectedOutfit->Get("mandatory crew");
 					if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
 						ship->AddCrew(required);
 					ship->Recharge();
@@ -828,7 +832,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 			{
 				// Uninstall the outfit.
 				ship->AddOutfit(selectedOutfit, -1);
-				int required = selectedOutfit->Get("required crew");
+				int required = selectedOutfit->Get("required crew") + selectedOutfit->Get("mandatory crew");
 				if(required)
 					ship->AddCrew(-required);
 				// Adjust hired crew counts.
@@ -911,7 +915,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 
 					// Install it on this ship.
 					ship->AddOutfit(selectedOutfit, 1);
-					int required = selectedOutfit->Get("required crew");
+					int required = selectedOutfit->Get("required crew") + selectedOutfit->Get("mandatory crew");
 					if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
 						ship->AddCrew(required);
 					ship->Recharge();
@@ -1095,7 +1099,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	{
 		if(thumbnail->IsLoaded())
 			SpriteShader::Draw(thumbnail, center);
-		else
+		else if(thumbnail->HasDimensions())
 			loadingCircle.Draw(center);
 	}
 

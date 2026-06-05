@@ -252,7 +252,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	{
 		if(thumbnail->IsLoaded())
 			SpriteShader::Draw(thumbnail, center + Point(0., 10.), 1., swizzle);
-		else
+		else if(thumbnail->HasDimensions())
 			loadingCircle.Draw(center);
 	}
 	else if(sprite)
@@ -882,7 +882,7 @@ void ShopPanel::DrawShipsSidebar()
 	if(sidebarScroll.Scrollable())
 	{
 		Point top(Screen::Right() - 3, Screen::Top() + 10);
-		Point bottom(Screen::Right() - 3, Screen::Bottom() - 80);
+		Point bottom(Screen::Right() - 3, Screen::Bottom() - ButtonPanelHeight() - 10);
 
 		sidebarScrollbar.SyncDraw(sidebarScroll, top, bottom);
 	}

@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "shift.h"
 #include "image/Sprite.h"
@@ -245,6 +246,13 @@ bool DialogPanel::AllowsFastForward() const noexcept
 
 
 
+void DialogPanel::UpdateTextDisplay()
+{
+	text->SetAlignment(Preferences::GetTextAlignment());
+}
+
+
+
 DialogPanel::DialogPanel(DialogInit &init)
 	: voidFun(std::move(init.voidFun)),
 	boolFun(std::move(init.boolFun)),
@@ -280,7 +288,7 @@ DialogPanel::DialogPanel(DialogInit &init)
 	cancelText = isMission ? "Decline" : "Cancel";
 
 	text = make_shared<TextArea>();
-	text->SetAlignment(Alignment::JUSTIFIED);
+	text->SetAlignment(Preferences::GetTextAlignment());
 	text->SetFont(FontSet::Get(14));
 	text->SetTruncate(init.truncate);
 	text->SetText(init.message);

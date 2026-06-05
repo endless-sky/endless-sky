@@ -86,6 +86,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), scenarios.begin() + i);
 
 	description.SetWrapWidth(descriptionBox.Width());
+	description.SetAlignment(Preferences::GetTextAlignment());
 
 	Select(startIt);
 

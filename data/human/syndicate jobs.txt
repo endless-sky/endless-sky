@@ -27,7 +27,7 @@ mission "Transport executive to <planet>"
 	destination
 		distance 3 15
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
-		attributes "paradise" "rich" "core" "near earth"
+		attributes "paradise" "wealthy" "core" "near earth"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -374,7 +374,7 @@ mission "Syndicate Prisoner Transport [0]"
 	destination
 		distance 2 10
 		government "Syndicate"
-		attributes "rich"
+		attributes "wealthy"
 		attributes "frontier"
 	to offer
 		random < 5
@@ -494,7 +494,7 @@ mission "Return Syndicate Prisoners [0]"
 	passengers 3 10 .56
 	source
 		government "Syndicate"
-		attributes "rich"
+		attributes "wealthy"
 		attributes "frontier"
 	destination
 		distance 2 10
