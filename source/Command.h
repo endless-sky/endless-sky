@@ -86,6 +86,8 @@ public:
 	// Modifier command, usually triggered by shift-key. Changes behavior of
 	// other commands like NEAREST, TARGET, HAIL and BOARD.
 	static const Command SHIFT;
+	// This command exists to force the reload of the displayed interface for debugging.
+	static const Command DEBUG_INTERFACES;
 
 
 public:

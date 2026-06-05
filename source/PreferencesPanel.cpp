@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "text/Layout.h"
+#include "ListDialogPanel.h"
 #include "PlayerInfo.h"
 #include "Plugins.h"
 #include "shader/PointerShader.h"
@@ -117,11 +118,7 @@ namespace {
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
-#ifdef _WIN32
 	const int SETTINGS_PAGE_COUNT = 3;
-#else
-	const int SETTINGS_PAGE_COUNT = 2;
-#endif
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -156,6 +153,9 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	pluginListScroll.SetDisplaySize(pluginListBox.Height());
 	Rectangle pluginDescriptionBox = pluginUi->GetBox("plugin description");
 	pluginDescriptionScroll.SetDisplaySize(pluginDescriptionBox.Height());
+
+	// Read the list from disk, don't download anything yet.
+	Plugins::LoadUrlList();
 }
 
 
@@ -205,6 +205,7 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show next settings");
 	if(hoverFind)
 		info.SetCondition("hover find");
+	if(page == PLUGINS || page == LIBRARY)
 	{
 		auto iPlugins = Plugins::GetPluginsLocked();
 		auto *iPlugin = iPlugins->Find(selectedPlugin);
@@ -285,12 +286,12 @@ void PreferencesPanel::Step()
 				{
 					string url = error.substr(error.find(':') + 1);
 					if(error.starts_with("redownload:"))
-						Plugins::AddLibraryUrl(url, Plugins::Status::FAILED_DOWNLOAD);
+						Plugins::UpdateUrlStatus(url, Plugins::Status::FAILED_DOWNLOAD);
 					else if(error.starts_with("downloaded:"))
 					{
 						// If any of the urls are downloaded, then we have a library to show.
 						downloadedPluginIndex = true;
-						Plugins::AddLibraryUrl(url, Plugins::Status::DOWNLOADED);
+						Plugins::UpdateUrlStatus(url, Plugins::Status::DOWNLOADED);
 
 						{
 							// Upon completion of downloading the plugins (and icons) for a given plugin library,
@@ -321,13 +322,11 @@ void PreferencesPanel::Step()
 					}
 
 					string message;
-					for(auto it : Plugins::GetPluginLibraryUrls())
-						if(it.second == Plugins::Status::FAILED_DOWNLOAD)
-							message += "\n" + it.first + "...";
+					for(const auto &[u, props] : Plugins::GetPluginLibraryUrls())
+						if(props.second == Plugins::Status::FAILED_DOWNLOAD)
+							message += "\n" + u + "...";
 					if(!message.empty())
 					{
-						// Note: by using the same dialog handle, we'll re-pop the in-progress dialog later, even if
-						// it had been dismissed; but there are bigger problems.
 						downloadInProgressDialog = DialogPanel::CallFunctionIfOk(this,
 							&PreferencesPanel::ProcessPluginIndex,
 							"Failed to download plugin index:" + message + "\n\nWould you like to try again?");
@@ -459,12 +458,13 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		selectedPlugin = GetPluginNameByIndex(selected);
 
 		if(page == LIBRARY && !downloadedPluginIndex)
-			// Reminder: this is async.
-			ProcessPluginIndex();
+			AskToDownloadPluginLists({});
 
 		// Make sure the render buffers are initialized and are aware of the current UI scale.
 		Resize();
 	}
+	else if(key == 'r' && page == LIBRARY)
+		ShowPluginLibraryUrls();
 	else
 		return false;
 
@@ -971,7 +971,7 @@ void PreferencesPanel::DrawSettings()
 		"Trading",
 		"'Sell Outfits' without outfitter",
 		"Confirm 'Sell Outfits' button",
-		"Confirm 'Sell MInables' button",
+		"Confirm 'Sell Minables' button",
 		"Show parenthesis",
 		"\n",
 		"Flagship Behavior",
@@ -1472,9 +1472,6 @@ void PreferencesPanel::DrawPlugins()
 
 void PreferencesPanel::DrawPluginInstalls()
 {
-	if(!downloadedPluginIndex)
-		return;
-
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
@@ -1959,13 +1956,194 @@ void PreferencesPanel::HandleConfirm()
 
 
 
+bool PreferencesPanel::IsUserPluginIndex(const string &selectedUrl)
+{
+	auto pluginUrls = Plugins::GetPluginLibraryUrls();
+	int count = 0;
+	for(const auto &[url, props] : pluginUrls)
+	{
+		if(url == selectedUrl && props.first == Plugins::Source::GAME_RESOURCE)
+			return false;
+		if(props.second != Plugins::Status::DELETED)
+			++count;
+	}
+	return count ? true : false;
+}
+
+
+
+bool PreferencesPanel::CanDeletePluginIndexUrl(const string &)
+{
+	for(const auto &[url, props] : Plugins::GetPluginLibraryUrls())
+		if(props.second != Plugins::Status::DELETED)
+			return true;
+	return false;
+}
+
+
+
+string PreferencesPanel::HoverPluginIndex(const string &url)
+{
+	return (IsUserPluginIndex(url) ? "User profile" : "Game resource") + ("\n" + url);
+}
+
+
+
+void PreferencesPanel::ShowPluginLibraryUrls()
+{
+	vector<string> pluginLibraryList;
+	for(const auto &[url, props] : Plugins::GetPluginLibraryUrls())
+		if (props.second != Plugins::Status::DELETED)
+			pluginLibraryList.emplace_back(url);
+	// In order to leave this dialog open and update the list, we need to keep a handle for it in memory
+	// and also make sure that we don't try to open more than one of it.
+	string defaultSelection = pluginLibraryList.empty() ? "" : pluginLibraryList.front();
+	editUrlListDialog = ListDialogPanel::ShowList(this,
+		"Plugin Library URLs:", pluginLibraryList, defaultSelection,
+		DialogPanel::FunctionButton(this, "Done", 's', &PreferencesPanel::AskToDownloadPluginLists),
+		DialogPanel::FunctionButton(this, "Add", 'a', &PreferencesPanel::AskAddPluginIndexUrl),
+		DialogPanel::FunctionButton(this, "Edit", 'e',
+			&PreferencesPanel::AskEditPluginIndexUrl, &PreferencesPanel::IsUserPluginIndex),
+		DialogPanel::FunctionButton(this, "Delete", 'd',
+			&PreferencesPanel::AskDeletePluginIndexUrl, &PreferencesPanel::CanDeletePluginIndexUrl),
+		&PreferencesPanel::HoverPluginIndex, 100, true);
+	GetUI().Push(editUrlListDialog);
+}
+
+
+
+void PreferencesPanel::RefreshPluginIndexUrls() const
+{
+	vector<string> pluginLibraryList;
+	for(const auto &[u, props] : Plugins::GetPluginLibraryUrls())
+		if (props.second != Plugins::Status::DELETED)
+			pluginLibraryList.emplace_back(u);
+	editUrlListDialog->UpdateList(pluginLibraryList);
+}
+
+
+
+void PreferencesPanel::DeleteSelectedPluginIndexUrl()
+{
+	if(Plugins::DeleteLibraryUrl(selectedItem))
+		RefreshPluginIndexUrls();
+	else
+		UI::PlaySound(UI::UISound::FAILURE);
+}
+
+
+
+bool PreferencesPanel::AddPluginIndexUrl(const string &url)
+{
+	Plugins::Source src = Plugins::Source::USER;
+	// handle the case of re-adding game resource by retaining the source type for existng urls:
+	for(const auto &[u, props] : Plugins::GetPluginLibraryUrls())
+		if(u == url)
+		{
+			src = props.first;
+			break;
+		}
+	Plugins::AddLibraryUrl(url, src);
+	selectedItem = url;
+	RefreshPluginIndexUrls();
+	return true;
+}
+
+
+bool PreferencesPanel::UpdatePluginIndexUrl(const string &url)
+{
+	// delete selected (different from the new value: url) and then add the url (new url, new status)
+	// Note: don't call DeleteLibraryUrl on a GameResource and expect this to work!
+	if(Plugins::DeleteLibraryUrl(selectedItem))
+	{
+		AddPluginIndexUrl(url);
+
+		selectedItem = url;
+		RefreshPluginIndexUrls();
+	}
+	return true;
+}
+
+
+
+bool PreferencesPanel::AskDeletePluginIndexUrl(const string &url)
+{
+	selectedItem = url;  // we will need this in a moment and it's not otherwise used
+	GetUI().Push(DialogPanel::CallFunctionIfOk(this, &PreferencesPanel::DeleteSelectedPluginIndexUrl,
+		"Do you really want to delete this url?\n" + url,
+		Truncate::NONE, false, 50, true // wide
+	));
+	return false;
+}
+
+
+
+bool PreferencesPanel::AskAddPluginIndexUrl(const string &/*notUsed*/)
+{
+	string editUrl = "https://<your library>.json";
+	// Suggest the first DELETED Game Resource if applicable:
+	for(const auto &[u, props] : Plugins::GetPluginLibraryUrls())
+		if (props.second == Plugins::Status::DELETED)
+		{
+			editUrl = u;
+			break;
+		}
+	return AskForPluginIndexUrl(editUrl, [&](const string &s) -> bool {return AddPluginIndexUrl(s);});
+}
+
+
+
+bool PreferencesPanel::AskEditPluginIndexUrl(const string &url)
+{
+	selectedItem = url;
+	return AskForPluginIndexUrl(url, [&](const string &s) -> bool {return UpdatePluginIndexUrl(s);});
+}
+
+
+
+bool PreferencesPanel::AskForPluginIndexUrl(const string &url, std::function<bool(const std::string &)> buttonAction)
+{
+	string editUrl = url;
+	GetUI().Push(DialogPanel::MultiButtonDialog(this,
+		"This should start with \"http\" and end with \".json\"", editUrl,
+		DialogPanel::FunctionButton("OK", 's', buttonAction,
+			// Validate: http ... .json
+			[](const string &s) -> bool
+			{
+				return s.starts_with("http") && s.ends_with(".json");
+			}),
+		DialogPanel::CANCEL_BUTTON,
+		nullopt, // DialogPanel::CLEAR_BUTTON,
+		nullopt, -1, true
+	));
+	return false;
+}
+
+
+
+// This accepts a string so that the function's signature matches that of a FunctionButton.buttonAction
+bool PreferencesPanel::AskToDownloadPluginLists(const string &)
+{
+	GetUI().Push(DialogPanel::MultiButtonDialog(this,
+		"Press \"Download\" to retrieve the plugin library URLs. Or \"Skip\" and review the list.", "",
+		DialogPanel::FunctionButton("_Skip", 's', [](const std::string &) -> bool{return true;}),
+		DialogPanel::FunctionButton("_", 'r', [](const std::string &) -> bool{return true;}),
+		DialogPanel::FunctionButton("_Download", 'd',
+			[this](const std::string &) -> bool { ProcessPluginIndex(); return true; }),
+		nullopt, -1, false, DialogPanel::InputType::NONE
+	));
+	return true;
+}
+
+
+
 string PreferencesPanel::GenerateDownloadMessage()
 {
 	string message;
-	for(auto it : Plugins::GetPluginLibraryUrls())
+	for(const auto &[url, props] : Plugins::GetPluginLibraryUrls())
 	{
-		if(it.second != Plugins::Status::DOWNLOADED)
-			message += "\n" + it.first + "...";
+		if(props.second != Plugins::Status::DOWNLOADED && props.second != Plugins::Status::DELETED)
+			message += "\n" + url + "...";
 	}
 	if(!message.empty())
 		return "Downloading plugin index:" + message + "\nPlease wait...";
@@ -1976,25 +2154,39 @@ string PreferencesPanel::GenerateDownloadMessage()
 
 void PreferencesPanel::ProcessPluginIndex()
 {
+	// This location for this action is opportunistic. Rather than adding another 2-line function.
+	Plugins::SaveUrlList();
+
 	int libraryIdx = 0;
-	for(auto it : Plugins::GetPluginLibraryUrls())
+	for(const auto &[url, props] : Plugins::GetPluginLibraryUrls())
 	{
-		// If this index has not already been fetched, download it. This allows us to call
-		// ProcessPluginIndex multiple times, e.g. if prompted to redownload
-		string url = it.first;
-		installFeedbacks.emplace_back(
-			// Note: async, cannot work with fonts (or GUI), or the loop variable in a writable fashion
-			async(launch::async, [&, url, libraryIdx, installed = it.second]() noexcept -> string
-			{
-				string filename = "plugins" + to_string(libraryIdx) + ".json";
-				auto path = Files::Config() / filename;
-				if(installed != Plugins::Status::DOWNLOADED)
-					if(!Plugins::Download(url, path))
-						return "redownload:" + url;
-				Plugins::LoadAvailablePlugins(queue, path);
-				return "downloaded:" + url;
-			})
-		);
+		if(props.second != Plugins::Status::DELETED)
+			// If this index has not already been fetched, download it. This allows us to call
+			// ProcessPluginIndex multiple times, e.g. if prompted to redownload
+			installFeedbacks.emplace_back(
+				// Note: async, cannot work with fonts (or GUI), or the loop variable in a writable fashion
+				async(launch::async, [&, url, libraryIdx, installed = props.second]() noexcept -> string
+				{
+					string filename = "plugins" + to_string(libraryIdx) + ".json";
+					auto path = Files::Config() / filename;
+					if(installed != Plugins::Status::DOWNLOADED && installed != Plugins::Status::DELETED)
+						if(!Plugins::Download(url, path))
+							return "redownload:" + url;
+					// Crashed after testing with value: `https://asdf`
+					// TODO: handle this better than crashing // add a test
+					// 2026-04-15 20:44:35 | E | curl_easy_perform() failed: Could not resolve hostname
+					// terminate called after throwing an instance of 'nlohmann::json_abi_v3_12_0::detail::parse_error'
+					//   what():  [json.exception.parse_error.101] parse error at line 1, column 1:
+					//   attempting to parse an empty input; check that your input string or stream contains
+					//   the expected JSON
+					// 2026-04-15 20:44:35 | E | curl_easy_perform() failed: Could not resolve hostname
+					// terminate called recursively
+					// Signal: SIGABRT (Aborted)
+
+					Plugins::LoadAvailablePlugins(queue, path);
+					return "downloaded:" + url;
+				})
+			);
 		++libraryIdx;
 	}
 

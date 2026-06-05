@@ -125,9 +125,16 @@ protected:
 class Plugins {
 public:
 	enum class Status {
+		DELETED,
 		NOT_DOWNLOADED,
 		FAILED_DOWNLOAD,
 		DOWNLOADED,
+	};
+
+
+	enum class Source {
+		GAME_RESOURCE,
+		USER,
 	};
 
 
@@ -138,8 +145,17 @@ public:
 	static void LoadSettings();
 	static void Save();
 
-	static void AddLibraryUrl(const std::string & url, Status installed = Status::NOT_DOWNLOADED);
-	static std::map<std::string, Status> &GetPluginLibraryUrls();
+	static void LoadUrlList();
+
+	static void SaveUrlList();
+
+	static void UpdateUrlStatus(const std::string & url, Status installed);
+	static void AddLibraryUrl(const std::string & url, Source source = Source::GAME_RESOURCE,
+		Status installed = Status::NOT_DOWNLOADED);
+
+	static bool DeleteLibraryUrl(const std::string &url);
+
+	static OrderedSet<std::pair<Source, Status>> GetPluginLibraryUrls();
 
 	// Whether the path points to a valid plugin.
 	static bool IsPlugin(const std::filesystem::path &path);
@@ -169,5 +185,4 @@ public:
 	static std::string DeletePlugin(const std::string &name);
 
 	static bool Download(const std::string &url, const std::filesystem::path &location);
-
 };

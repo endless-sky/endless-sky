@@ -52,7 +52,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	map<string, Plugins::Status> pluginListUrls;
+	OrderedSet<pair<Plugins::Source, Plugins::Status>> pluginListUrls;
 
 	// These are the installed and available plugins, not all of which will be enabled for use.
 	mutex pluginsMutex;
@@ -451,59 +451,53 @@ string Plugins::Load(const filesystem::path &path)
 
 
 
-void Plugins::AddLibraryUrl(const string &url, const Status installed)
-{
-	pluginListUrls[url] = installed;
-}
-
-
-
-map<string, Plugins::Status> &Plugins::GetPluginLibraryUrls()
-{
-	return pluginListUrls;
-}
-
-
-
 void Plugins::LoadAvailablePlugins(TaskQueue &queue, const filesystem::path &pluginsJsonPath)
 {
 	ifstream pluginlistFile(pluginsJsonPath);
-	nlohmann::json pluginInstallList = nlohmann::json::parse(pluginlistFile);
-	for(const auto &pluginInstall : pluginInstallList)
+	try
 	{
-		string pluginName = pluginInstall.value("name", "");
-		auto iPlugins = GetPluginsLocked();
-		auto *installedPlugin = iPlugins->Find(pluginName);
-		bool isInstalled = installedPlugin && !installedPlugin->removed;
-		string pluginVersion = pluginInstall.value("version", "");
-		vector<string> authors;
-		if(pluginInstall.contains("authors"))
-			for(const auto &author : pluginInstall["authors"])
-				authors.emplace_back(author);
-		auto aPlugins = GetAvailablePluginsLocked();
-		Plugin *plugin = aPlugins->Get(pluginName);
-		plugin->name = pluginName;
-		plugin->url = pluginInstall.value("url", "");
-		plugin->version = pluginVersion;
-		plugin->description = pluginInstall.value("description", "");
-		plugin->authors = authors;
-		plugin->homepage = pluginInstall.value("homepage", "");
-		plugin->license = pluginInstall.value("license", "");
-		bool isOutdated = isInstalled && installedPlugin->version != pluginVersion;
-		plugin->outdated = isOutdated;
-		plugin->installedVersion = installedPlugin ? installedPlugin->version : "";
+		// Can throw nlohmann::json_abi_v3_12_0::detail::parse_error
+		nlohmann::json pluginInstallList = nlohmann::json::parse(pluginlistFile);
+		for(const auto &pluginInstall : pluginInstallList)
+		{
+			string pluginName = pluginInstall.value("name", "");
+			auto iPlugins = GetPluginsLocked();
+			auto *installedPlugin = iPlugins->Find(pluginName);
+			bool isInstalled = installedPlugin && !installedPlugin->removed;
+			string pluginVersion = pluginInstall.value("version", "");
+			vector<string> authors;
+			if(pluginInstall.contains("authors"))
+				for(const auto &author : pluginInstall["authors"])
+					authors.emplace_back(author);
+			auto aPlugins = GetAvailablePluginsLocked();
+			Plugin *plugin = aPlugins->Get(pluginName);
+			plugin->name = pluginName;
+			plugin->url = pluginInstall.value("url", "");
+			plugin->version = pluginVersion;
+			plugin->description = pluginInstall.value("description", "");
+			plugin->authors = authors;
+			plugin->homepage = pluginInstall.value("homepage", "");
+			plugin->license = pluginInstall.value("license", "");
+			bool isOutdated = isInstalled && installedPlugin->version != pluginVersion;
+			plugin->outdated = isOutdated;
+			plugin->installedVersion = installedPlugin ? installedPlugin->version : "";
 
-		Files::CreateFolder(Files::Config() / "icons");
-		string iconPath = (Files::Config() / "icons" / (pluginName + ".png")).string();
+			Files::CreateFolder(Files::Config() / "icons");
+			string iconPath = (Files::Config() / "icons" / (pluginName + ".png")).string();
 
-		if((!Files::Exists(iconPath) || isOutdated) && pluginInstall.contains("iconUrl"))
-			Download(pluginInstall.value("iconUrl", ""), iconPath);
+			if((!Files::Exists(iconPath) || isOutdated) && pluginInstall.contains("iconUrl"))
+				Download(pluginInstall.value("iconUrl", ""), iconPath);
+		}
+		// And finally, we must sort.
+		{
+			auto aPlugins = GetAvailablePluginsLocked();
+			aPlugins->Sort();
+		}
 	}
-	// And finally, because we are using the same (sorted) OrderedSet to better share common code, we must sort.
+	catch (...)
 	{
-		auto aPlugins = GetAvailablePluginsLocked();
-		aPlugins->Sort();
-	}
+		// There is nothing more we can do.
+	};
 }
 
 
@@ -533,6 +527,82 @@ void Plugins::Save()
 				out.Write(it.first, it.second.desiredState, it.second.version);
 	}
 	out.EndChild();
+}
+
+
+
+// Read the list from disk, don't download anything yet.
+void Plugins::LoadUrlList()
+{
+	DataFile urls(Files::Resources() / "plugin libraries.txt");
+	for(const DataNode &node : urls)
+		if(node.Size() == 1)
+			AddLibraryUrl(node.Token(0), Source::GAME_RESOURCE);
+
+	DataFile urlsUser(Files::Config() / "plugin libraries.txt");
+	for(const DataNode &node : urlsUser)
+		if(node.Size() == 1)
+			AddLibraryUrl(node.Token(0), Source::USER);
+}
+
+
+
+void Plugins::SaveUrlList()
+{
+	// Only user urls can be modified (and thus saved)
+	DataWriter urls(Files::Config() / "plugin libraries.txt");
+	for(const auto &[url, props] : pluginListUrls)
+		if(props.first == Source::USER)
+			urls.Write(url);
+}
+
+
+
+void Plugins::UpdateUrlStatus(const std::string &url, const Status installed)
+{
+	if(pluginListUrls.Has(url))
+	{
+		auto *x = pluginListUrls.Get(url);
+		x->second = installed;
+	}
+}
+
+
+
+void Plugins::AddLibraryUrl(const string &url, const Source source, const Status installed)
+{
+	auto *x = pluginListUrls.Get(url);
+	x->first = source;
+	x->second = installed;
+}
+
+
+
+bool Plugins::DeleteLibraryUrl(const string &url)
+{
+	// Note: Get will return a writable value, create the url record to do it, so we have to check first
+	if(pluginListUrls.Has(url))
+	{
+		auto it = pluginListUrls.Get(url);
+
+		if(it->first == Source::USER)
+		{
+			pluginListUrls.erase(url);
+			return !pluginListUrls.Has(url);
+		}
+
+		it->second = Status::DELETED;
+		return true;
+	}
+
+	return false; // cannot delete what cannot be found
+}
+
+
+
+OrderedSet<pair<Plugins::Source, Plugins::Status>> Plugins::GetPluginLibraryUrls()
+{
+	return pluginListUrls;
 }
 
 
@@ -648,7 +718,7 @@ future<string> Plugins::InstallOrUpdate(const string &name)
 			auto aPlugins = GetAvailablePluginsLocked();
 			const Plugin *installData = aPlugins->Find(name);
 
-			// Check for malicous paths and bail out if there is one.
+			// Check for malicious paths and bail out if there is one.
 			if(installData->name.find("..") != string::npos || installData->name.find('/') != string::npos ||
 					installData->name.find('\\') != string::npos)
 			{
@@ -810,6 +880,8 @@ bool Plugins::Download(const string &url, const filesystem::path &location)
 		else if(code != 200)
 		{
 			Logger::Log("The url " + url + " returned HTTP Response Code " + to_string(code), Logger::Level::WARNING);
+			// In the case where there is bad response, it is likely that there was still a document body that has
+			// been downloaded by curl that we need to clean up.
 			keep = false;
 		}
 	}

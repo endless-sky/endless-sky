@@ -93,6 +93,8 @@ const Command Command::WAIT(ONE << 38, "");
 const Command Command::STOP(ONE << 39, "Stop your ship");
 const Command Command::SHIFT(ONE << 40, "");
 
+// Hidden Debug
+const Command Command::DEBUG_INTERFACES(ONE << 41, "Debug Interfaces");
 
 
 // In the given text, replace any instances of command names (in angle brackets)

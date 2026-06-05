@@ -195,6 +195,7 @@ public:
 	// Thread-safe way to draw the menu background.
 	static void DrawMenuBackground(Panel *panel);
 
+	static void ReloadInterface(const std::string & string);
 
 private:
 	static void LoadSources(TaskQueue &queue);

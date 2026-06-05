@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "text/Truncate.h"
 
+#include <array>
 #include <functional>
 #include <optional>
 #include <string>
@@ -49,21 +50,69 @@ class TextArea;
 // [Button 3] [Button 2] [Button 1]
 class DialogPanel : public Panel {
 public:
+	// The functions are all used in DialogPanel::DoCallback
 	class FunctionButton {
 	public:
 		FunctionButton() = default;
 		~FunctionButton() = default;
 
+		FunctionButton(const std::string &buttonLabel, SDL_Keycode buttonKey,
+			std::function<bool(const std::string &)> buttonAction,
+			std::function<bool(const std::string &)> validateFun);
+		FunctionButton(const std::string &buttonLabel, SDL_Keycode buttonKey,
+			std::function<bool(const std::string &)> buttonAction);
+		FunctionButton(const std::string &buttonLabel, SDL_Keycode buttonKey,
+			std::function<bool(std::string *input, int *activeButton)> buttonActionPtr);
+
 		template<class T>
-		FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey = '\0',
-			bool (T::*buttonAction)(const std::string&) = nullptr);
+		FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
+			bool (T::*buttonAction)(const std::string &),
+			bool (T::*validateFun)(const std::string &));
+		template <class T>
+		FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
+			bool (T::*buttonAction)(const std::string &));
+		// template <class T>
+		// FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
+		// 	bool (T::*buttonActionPtr)(std::string *));
+
 
 	public:
 		std::string buttonLabel;
 		SDL_Keycode buttonKey{};
+
+		std::function<void()> voidFun;
+		std::function<void(bool)> boolFun;
+		std::function<void(int)> intFun;
+		std::function<void(double)> doubleFun;
+		std::function<void(const std::string &)> stringFun;
 		std::function<bool(const std::string &)> buttonAction;
+		std::function<bool(std::string *input, int *activeButton)> buttonActionPtr;
+
+		std::function<bool(int)> validateIntFun;
+		std::function<bool(double)> validateDoubleFun;
+		std::function<bool(const std::string &)> validateStringFun;
 	};
 
+	enum InputType {
+		NONE,
+		STRING,
+		INTEGER,
+		DOUBLE
+	};
+
+
+public:
+	// Clear the input. Reset to default activeButton so that <Enter> does the expected thing.
+	// static inline FunctionButton CLEAR_BUTTON = {"Clear", '_',
+	// 	[](std::string *input, int *activeButton) -> bool
+	// 	{
+	// 		// *input = "";
+	// 		// *activeButton = 1;
+	// 		// Don't close the Dialog.
+	// 		return false;
+	// 	}};
+	// Cancel Button: Get Out.
+	static inline FunctionButton CANCEL_BUTTON = {"Cancel", SDLK_ESCAPE, [](const std::string &) -> bool{return true;}};
 
 public:
 	virtual ~DialogPanel() override;
@@ -84,7 +133,8 @@ public:
 	static DialogPanel *CallFunctionIfOk(T *t, void (T::*fun)(),
 		std::string message,
 		Truncate truncate = Truncate::NONE,
-		bool allowsFastForward = false);
+		bool allowsFastForward = false,
+		int minHeight = -1, bool forceWide = false);
 	static DialogPanel *CallFunctionIfOk(std::function<void()> okFunction,
 		std::string message,
 		int activeButton,
@@ -129,7 +179,8 @@ public:
 		std::string message,
 		std::string initialValue = "",
 		Truncate truncate = Truncate::NONE,
-		bool allowsFastForward = false);
+		bool allowsFastForward = false,
+		int minHeight = -1, bool forceWide = false);
 	template<class T>
 	static DialogPanel *RequestIntegerWithValidation(T *t, void (T::*fun)(int),
 		std::function<bool(int)> validate,
@@ -153,7 +204,15 @@ public:
 		Truncate truncate = Truncate::NONE,
 		bool allowsFastForward = false);
 
-	// Draw this panel.
+	// An OK / Cancel / Third / ... dialog that requests the user input a string, OK button provided as FunctionButton
+	template<class T>
+	static DialogPanel *MultiButtonDialog(T *t, std::string message, std::string initialValue,
+		const FunctionButton &buttonOne,
+		const std::optional<FunctionButton> &buttonTwo = std::nullopt,
+		const std::optional<FunctionButton> &buttonThree = std::nullopt,
+		const std::optional<FunctionButton> &buttonFour = std::nullopt,
+		int minHeight = -1, bool forceWide = false, InputType hasInputType = STRING);
+
 	virtual void Draw() override;
 
 	// Some dialogs allow fast-forward to stay active.
@@ -163,27 +222,29 @@ public:
 protected:
 	class DialogInit {
 	public:
+		void Ready();
+
+
+	public:
 		std::string message;
 		std::string initialValue;
 		Truncate truncate = Truncate::NONE;
 
-		std::function<void()> voidFun;
-		std::function<void(bool)> boolFun;
-		std::function<void(int)> intFun;
-		std::function<void(double)> doubleFun;
-		std::function<void(const std::string &)> stringFun;
+		InputType hasInputType = STRING;
 
-		std::function<bool(int)> validateIntFun;
-		std::function<bool(double)> validateDoubleFun;
-		std::function<bool(const std::string &)> validateStringFun;
-
-		bool canCancel = true;
+		int numButtons = 2;
+		int closeButton = 2;
 		int activeButton = 1;
-		bool isMission = false;
 		bool allowsFastForward = false;
 
+		bool isInterruptable = false;
+		bool forceWide = false;
+		int minHeight = -1;
+
 		DialogPanel::FunctionButton buttonOne;
+		DialogPanel::FunctionButton buttonTwo;
 		DialogPanel::FunctionButton buttonThree;
+		DialogPanel::FunctionButton buttonFour;
 
 		const System *system = nullptr;
 		PlayerInfo *player = nullptr;
@@ -193,59 +254,80 @@ protected:
 protected:
 	explicit DialogPanel(DialogInit &init);
 
-	virtual void Resize() override;
-
 	// The user can click "ok" or "cancel", or use the tab key to toggle which
 	// button is highlighted and the enter key to select it.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 
+	bool HasAction(int buttonNum) const;
+	bool DoCallback(int buttonNum);
 
-private:
-	void DoCallback(bool isOk = true) const;
+	virtual void Resize() override;
 	// The width of the dialog, excluding margins.
 	int Width() const;
 	// Whether this dialog accepts typed input from the player.
-	bool AcceptsInput() const;
+	virtual bool AcceptsInput() const;
 	// Return true if the validation function passes when given the current input,
 	// or if there is no validation function.
-	bool ValidateInput() const;
+	bool ValidateInput(int buttonNum) const;
+	void OnInputChange();
+
+
+protected:
+	// The width of the margin on the right/left sides of the dialog. This area is part of the sprite,
+	// but shouldn't have any text or other graphics rendered over it. (It's mostly transparent.)
+	const double LEFT_MARGIN = 20;
+	const double RIGHT_MARGIN = 20;
+	const double HORIZONTAL_MARGIN = LEFT_MARGIN + RIGHT_MARGIN;
+	// The margin on the right/left sides of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	const double BUTTON_LEFT_MARGIN = 10;
+	const double BUTTON_RIGHT_MARGIN = 10;
+	const double BUTTON_HORIZONTAL_MARGIN = BUTTON_LEFT_MARGIN + BUTTON_RIGHT_MARGIN;
+	// The margin on the top/bottom sides of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	const double BUTTON_TOP_MARGIN = 10;
+	const double BUTTON_BOTTOM_MARGIN = 10;
+	const double BUTTON_VERTICAL_MARGIN = BUTTON_TOP_MARGIN + BUTTON_BOTTOM_MARGIN;
+	// The width of the padding used on the left/right sides of each segment, in pixels.
+	const double LEFT_PADDING = 10;
+	const double RIGHT_PADDING = 10;
+	const double HORIZONTAL_PADDING = RIGHT_PADDING + LEFT_PADDING;
+	// The height of the padding used by the top/bottom segment, in pixels.
+	const double TOP_PADDING = 10;
+	const double BOTTOM_PADDING = 10;
+	const double VERTICAL_PADDING = TOP_PADDING + BOTTOM_PADDING;
+	// The width of the padding at the beginning/end of an input field.
+	const double INPUT_LEFT_PADDING = 5;
+	const double INPUT_RIGHT_PADDING = 5;
+	const double INPUT_HORIZONTAL_PADDING = INPUT_LEFT_PADDING + INPUT_RIGHT_PADDING;
+	// The height of the padding at the top/bottom of an input field.
+	const double INPUT_TOP_PADDING = 2;
+	const double INPUT_BOTTOM_PADDING = 2;
+	const double INPUT_VERTICAL_PADDING = INPUT_TOP_PADDING + INPUT_BOTTOM_PADDING;
+	// The height of an input field in pixels.
+	const double INPUT_HEIGHT = 20;
 
 
 protected:
 	std::shared_ptr<TextArea> text;
+	int minHeight;
 	// The number of extra segments in this dialog.
 	int extensionCount;
 
-	std::function<void()> voidFun;
-	std::function<void(bool)> boolFun;
-	std::function<void(int)> intFun;
-	std::function<void(double)> doubleFun;
-	std::function<void(const std::string &)> stringFun;
-
-	std::function<bool(int)> validateIntFun;
-	std::function<bool(double)> validateDoubleFun;
-	std::function<bool(const std::string &)> validateStringFun;
-
-	bool canCancel;
-	int activeButton;
-	bool isMission;
-	bool isOkDisabled;
 	bool allowsFastForward;
+	bool forceWide;
 	bool isWide;
 
+	Rectangle textRect;
 	std::string input;
+	InputType hasTextEntry;
 
-	std::string okText;
-	std::string cancelText;
-
-	Point okPos;
-	Point cancelPos;
-	Point thirdPos;
-
-	DialogPanel::FunctionButton buttonOne;
-	DialogPanel::FunctionButton buttonThree;
-
+	std::array<bool, 4> isButtonDisabled{};
+	std::array<FunctionButton, 4> buttonList;
+	std::array<Point, 4> buttonPos;
+	int activeButton;
+	int closeButton;
 	int numButtons;
 
 	const System *system = nullptr;
@@ -254,13 +336,34 @@ protected:
 
 
 
-template<class T>
+template <class T>
 DialogPanel::FunctionButton::FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
-	bool(T::*buttonAction)(const std::string &))
+	bool(T:: *buttonAction)(const std::string &), bool(T:: *validateFun)(const std::string &))
+	: buttonLabel(buttonLabel), buttonKey(buttonKey),
+	buttonAction(std::bind(buttonAction, panel, std::placeholders::_1)),
+	validateStringFun(std::bind(validateFun, panel, std::placeholders::_1))
+{
+}
+
+
+
+template <class T>
+DialogPanel::FunctionButton::FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
+	bool(T:: *buttonAction)(const std::string &))
 	: buttonLabel(buttonLabel), buttonKey(buttonKey),
 	buttonAction(std::bind(buttonAction, panel, std::placeholders::_1))
 {
 }
+
+//
+//
+// template <class T>
+// DialogPanel::FunctionButton::FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
+// 	bool(T:: *buttonActionPtr)(std::string *))
+// 	: buttonLabel(buttonLabel), buttonKey(buttonKey),
+// 	buttonActionPtr(std::bind(buttonActionPtr, panel, std::placeholders::_1))
+// {
+// }
 
 
 
@@ -270,7 +373,7 @@ DialogPanel *DialogPanel::CallFunctionOnExit(T *t, void (T::*fun)(bool), std::st
 {
 	DialogInit init;
 	init.message = std::move(message);
-	init.boolFun = std::bind(fun, t, std::placeholders::_1);
+	init.buttonOne.boolFun = std::bind(fun, t, std::placeholders::_1);
 	init.truncate = truncate;
 	init.allowsFastForward = allowsFastForward;
 	return new DialogPanel(init);
@@ -280,13 +383,16 @@ DialogPanel *DialogPanel::CallFunctionOnExit(T *t, void (T::*fun)(bool), std::st
 
 template<class T>
 DialogPanel *DialogPanel::CallFunctionIfOk(T *t, void (T::*fun)(), std::string message,
-	Truncate truncate, bool allowsFastForward)
+	Truncate truncate, bool allowsFastForward, int minHeight, bool forceWide)
 {
 	DialogInit init;
 	init.message = std::move(message);
-	init.voidFun = std::bind(fun, t);
+	init.buttonOne.voidFun = std::bind(fun, t);
 	init.truncate = truncate;
 	init.allowsFastForward = allowsFastForward;
+	init.hasInputType = NONE;
+	init.minHeight = minHeight;
+	init.forceWide = forceWide;
 	return new DialogPanel(init);
 }
 
@@ -299,7 +405,7 @@ DialogPanel *DialogPanel::RequestString(T *t, void (T::*fun)(const std::string &
 	DialogInit init;
 	init.message = std::move(message);
 	init.initialValue = std::move(initialValue);
-	init.stringFun = std::bind(fun, t, std::placeholders::_1);
+	init.buttonOne.stringFun = std::bind(fun, t, std::placeholders::_1);
 	init.truncate = truncate;
 	init.allowsFastForward = allowsFastForward;
 	return new DialogPanel(init);
@@ -315,7 +421,7 @@ DialogPanel *DialogPanel::RequestInteger(T *t, void (T::*fun)(int), std::string 
 	init.message = std::move(message);
 	if(initialValue.has_value())
 		init.initialValue = std::to_string(initialValue.value());
-	init.intFun = std::bind(fun, t, std::placeholders::_1);
+	init.buttonOne.intFun = std::bind(fun, t, std::placeholders::_1);
 	init.truncate = truncate;
 	init.allowsFastForward = allowsFastForward;
 	return new DialogPanel(init);
@@ -332,7 +438,7 @@ DialogPanel *DialogPanel::RequestDouble(T *t, void (T::*fun)(double), std::strin
 	init.message = std::move(message);
 	if(initialValue.has_value())
 		init.initialValue = Format::StripCommas(Format::Number(initialValue.value(), 5));
-	init.doubleFun = std::bind(fun, t, std::placeholders::_1);
+	init.buttonOne.doubleFun = std::bind(fun, t, std::placeholders::_1);
 	init.truncate = truncate;
 	init.allowsFastForward = allowsFastForward;
 	return new DialogPanel(init);
@@ -343,15 +449,18 @@ DialogPanel *DialogPanel::RequestDouble(T *t, void (T::*fun)(double), std::strin
 template<class T>
 DialogPanel *DialogPanel::RequestStringWithValidation(T *t, void (T::*fun)(const std::string &),
 	std::function<bool(const std::string &)> validate, std::string message, std::string initialValue,
-	Truncate truncate, bool allowsFastForward)
+	Truncate truncate, bool allowsFastForward, int minHeight, bool forceWide)
 {
 	DialogInit init;
 	init.message = std::move(message);
 	init.initialValue = std::move(initialValue);
-	init.stringFun = std::bind(fun, t, std::placeholders::_1);
-	init.validateStringFun = std::move(validate);
+	init.hasInputType = STRING;
+	init.buttonOne.stringFun = std::bind(fun, t, std::placeholders::_1);
+	init.buttonOne.validateStringFun = std::move(validate);
 	init.truncate = truncate;
 	init.allowsFastForward = allowsFastForward;
+	init.minHeight = minHeight;
+	init.forceWide = forceWide;
 	return new DialogPanel(init);
 }
 
@@ -366,8 +475,9 @@ DialogPanel *DialogPanel::RequestIntegerWithValidation(T *t, void (T::*fun)(int)
 	init.message = std::move(message);
 	if(initialValue.has_value())
 		init.initialValue = std::to_string(initialValue.value());
-	init.intFun = std::bind(fun, t, std::placeholders::_1);
-	init.validateIntFun = std::move(validate);
+	init.hasInputType = INTEGER;
+	init.buttonOne.intFun = std::bind(fun, t, std::placeholders::_1);
+	init.buttonOne.validateIntFun = std::move(validate);
 	init.truncate = truncate;
 	init.allowsFastForward = allowsFastForward;
 	return new DialogPanel(init);
@@ -384,8 +494,9 @@ DialogPanel *DialogPanel::RequestDoubleWithValidation(T *t, void (T::*fun)(doubl
 	init.message = std::move(message);
 	if(initialValue.has_value())
 		init.initialValue = Format::StripCommas(Format::Number(initialValue.value(), 5));
-	init.doubleFun = std::bind(fun, t, std::placeholders::_1);
-	init.validateDoubleFun = std::move(validate);
+	init.hasInputType = DOUBLE;
+	init.buttonOne.doubleFun = std::bind(fun, t, std::placeholders::_1);
+	init.buttonOne.validateDoubleFun = std::move(validate);
 	init.truncate = truncate;
 	init.allowsFastForward = allowsFastForward;
 	return new DialogPanel(init);
@@ -400,3 +511,26 @@ DialogPanel *DialogPanel::RequestPositiveInteger(T *t, void (T::*fun)(int), std:
 	return DialogPanel::RequestIntegerWithValidation(t, fun, [](int value) -> bool { return value > 0; },
 		message, initialValue, truncate, allowsFastForward);
 }
+
+template <class T>
+DialogPanel *DialogPanel::MultiButtonDialog(T *t, std::string message, std::string initialValue,
+	const FunctionButton &buttonOne, const std::optional<FunctionButton> &buttonTwo,
+	const std::optional<FunctionButton> &buttonThree, const std::optional<FunctionButton> &buttonFour,
+	int minHeight, bool forceWide, InputType inputType)
+{
+	DialogInit init;
+	init.message = std::move(message);
+	init.initialValue = std::move(initialValue);
+	init.hasInputType = inputType;
+	init.buttonOne = buttonOne;
+	if(buttonTwo.has_value())
+		init.buttonTwo = buttonTwo.value();
+	if(buttonThree.has_value())
+		init.buttonThree = buttonThree.value();
+	if(buttonFour.has_value())
+		init.buttonFour = buttonFour.value();
+	init.minHeight = minHeight;
+	init.forceWide = forceWide;
+	return new DialogPanel(init);
+}
+

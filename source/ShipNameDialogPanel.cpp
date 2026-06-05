@@ -36,7 +36,7 @@ ShipNameDialogPanel *ShipNameDialogPanel::Create(const FunctionButton &buttonOne
 ShipNameDialogPanel::ShipNameDialogPanel(DialogInit &init)
 	: DialogPanel(init)
 {
-	buttonThree = FunctionButton(this, "Random", 'r', &ShipNameDialogPanel::RandomName);
+	buttonList[2] = FunctionButton(this, "Random", 'r', &ShipNameDialogPanel::RandomName);
 	numButtons = 3;
 }
 

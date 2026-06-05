@@ -85,6 +85,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Date.h
 	Depreciation.cpp
 	Depreciation.h
+	DebugPanel.cpp
+	DebugPanel.h
 	DialogPanel.cpp
 	DialogPanel.h
 	DialogSettings.cpp
@@ -167,6 +169,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ItemInfoDisplay.cpp
 	ItemInfoDisplay.h
 	JumpType.h
+	ListDialogPanel.cpp
+	ListDialogPanel.h
 	Logger.cpp
 	Logger.h
 	LoadingCircle.cpp

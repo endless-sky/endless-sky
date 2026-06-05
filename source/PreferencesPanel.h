@@ -30,6 +30,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
+#include "ListDialogPanel.h"
+
 class Command;
 class DialogPanel;
 class PlayerInfo;
@@ -81,9 +83,26 @@ private:
 	void HandleUp(Uint16 mod);
 	void HandleDown(Uint16 mod);
 	void HandleConfirm();
-	static std::string GenerateDownloadMessage();
 
+	// Plugin Url Index List functions
+	bool IsUserPluginIndex(const std::string &selectedUrl);
+	bool CanDeletePluginIndexUrl(const std::string &selectedUrl);
+	std::string HoverPluginIndex(const std::string &url);
+	void ShowPluginLibraryUrls();
+
+	void RefreshPluginIndexUrls() const;
+	void DeleteSelectedPluginIndexUrl();
+	bool AddPluginIndexUrl(const std::string &url);
+	bool UpdatePluginIndexUrl(const std::string &url);
+	bool AskDeletePluginIndexUrl(const std::string &url);
+	bool AskAddPluginIndexUrl(const std::string &notUsed);
+	bool AskEditPluginIndexUrl(const std::string &url);
+	bool AskForPluginIndexUrl(const std::string &url, std::function<bool(const std::string &)> buttonAction);
+	bool AskToDownloadPluginLists(const std::string &);
+
+	static std::string GenerateDownloadMessage();
 	void ProcessPluginIndex();
+
 	// Scroll the plugin list until the selected plugin is visible.
 	void ScrollSelectedPlugin();
 	void DoSearch(const std::string &text);
@@ -121,6 +140,7 @@ private:
 	// If the plugin index was already downloaded.
 	bool downloadedPluginIndex = false;
 	DialogPanel *downloadInProgressDialog = nullptr;
+	ListDialogPanel *editUrlListDialog = nullptr;
 
 	// Vector to store the feedback of the async tasks from downloading/installing/updating/deleting.
 	std::vector<std::future<std::string>> installFeedbacks;

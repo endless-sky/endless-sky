@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
+#include "DebugPanel.h"
 #include "GameData.h"
 #include "image/MaskManager.h"
 #include "MenuAnimationPanel.h"
@@ -67,6 +68,7 @@ void GameLoadingPanel::Step()
 		if(conversation.IsEmpty())
 		{
 			GetUI().Push(new MenuPanel(player, gamePanels));
+			// GetUI().Push(new DebugPanel(player, gamePanels));
 			GetUI().Push(new MenuAnimationPanel());
 		}
 		else

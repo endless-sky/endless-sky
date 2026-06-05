@@ -1007,3 +1007,9 @@ void GameData::DrawMenuBackground(Panel *panel)
 {
 	objects.DrawMenuBackground(panel);
 }
+
+
+
+void GameData::ReloadInterface(const std::string &name) {
+	objects.interfaces.Get(name)->Reload();
+}

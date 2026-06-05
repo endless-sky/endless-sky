@@ -371,6 +371,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			}
 			else if(event.type == SDL_KEYDOWN && Command(event.key.keysym.sym).Has(Command::PERFORMANCE_DISPLAY))
 				Preferences::Set("Show CPU / GPU load", !Preferences::Has("Show CPU / GPU load"));
+			else if(event.type == SDL_KEYDOWN && Command(event.key.keysym.sym).Has(Command::DEBUG_INTERFACES))
+				Preferences::Set("Debug Interfaces", !Preferences::Has("Debug Interfaces"));
 			else if(activeUI.Handle(event))
 			{
 				// The UI handled the event.

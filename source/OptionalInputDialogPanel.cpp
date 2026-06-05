@@ -25,17 +25,17 @@ OptionalInputDialogPanel::OptionalInputDialogPanel(DialogInit &init,
 {
 	if(optionalIntFun)
 	{
-		this->intFun = [this](int value) -> void {
+		buttonList[0].intFun = [this](int value) -> void {
 			optionalIntFun(value);
 		};
 	}
 	if(optionalDoubleFun)
 	{
-		this->doubleFun = [this](double value) -> void {
+		buttonList[0].doubleFun = [this](double value) -> void {
 			optionalDoubleFun(value);
 		};
 	}
-	buttonThree = FunctionButton(this, "Unset", 'u', &OptionalInputDialogPanel::Unset);
+	buttonList[2] = FunctionButton(this, "Unset", 'u', &OptionalInputDialogPanel::Unset);
 	numButtons = 3;
 	DialogPanel::Resize();
 }

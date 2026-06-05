@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Truncate.h"
 #include "text/WrappedText.h"
 
+#include <filesystem>
 #include <map>
 #include <memory>
 #include <string>
@@ -38,7 +39,10 @@ class Sprite;
 // the contents of an Information object.
 class Interface {
 public:
+	void Load(const DataNode &node, const std::filesystem::path &path);
 	void Load(const DataNode &node);
+
+	void Reload();
 
 	// Draw this interface. If the given panel is not null, also register any
 	// buttons in this interface with the panel's list of clickable zones.
@@ -271,6 +275,8 @@ private:
 
 
 private:
+	std::string name;
+	std::filesystem::path path;
 	std::vector<std::unique_ptr<Element>> elements;
 	std::map<std::string, Element> points;
 	std::map<std::string, double> values;
