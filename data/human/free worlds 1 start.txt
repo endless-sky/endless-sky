@@ -1414,6 +1414,8 @@ mission "FW Pirates: Invasion Fleet"
 		has "FW Pirates: Attack 1: done"
 	to complete
 		has "FW Pirates: Attack 2: done"
+	to fail
+		has "FW Pirates: Attack 2: declined"
 
 	npc save
 		to despawn
