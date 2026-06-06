@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "shift.h"
 #include "image/Sprite.h"
@@ -280,6 +281,13 @@ bool DialogPanel::AllowsFastForward() const noexcept
 
 
 
+void DialogPanel::UpdateTextDisplay()
+{
+	text->SetAlignment(Preferences::GetTextAlignment());
+}
+
+
+
 void DialogPanel::DialogInit::Ready() {
 	// Re-implement legacy Dialog Button behaviors in the function buttons
 
@@ -333,7 +341,7 @@ DialogPanel::DialogPanel(DialogInit &init)
 	isWide = forceWide = init.forceWide || numButtons > 3;
 
 	text = make_shared<TextArea>();
-	text->SetAlignment(Alignment::JUSTIFIED);
+	text->SetAlignment(Preferences::GetTextAlignment());
 	text->SetFont(FontSet::Get(14));
 	text->SetTruncate(init.truncate);
 	text->SetText(init.message);

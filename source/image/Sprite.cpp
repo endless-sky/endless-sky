@@ -17,13 +17,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageBuffer.h"
 #include "../Preferences.h"
-#include "../Screen.h"
 
 #include "../opengl.h"
 
 #include <SDL2/SDL.h>
-
-#include <algorithm>
 
 using namespace std;
 
@@ -42,9 +39,10 @@ namespace {
 		glGenTextures(1, target);
 		glBindTexture(type, *target);
 
-		// Use linear interpolation and no wrapping.
-		glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		// Use linear interpolation (if not disabled in preferences) and no wrapping.
+		int filter = Preferences::Has("Linear filter") ? GL_LINEAR : GL_NEAREST;
+		glTexParameteri(type, GL_TEXTURE_MIN_FILTER, filter);
+		glTexParameteri(type, GL_TEXTURE_MAG_FILTER, filter);
 		glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		if(type == GL_TEXTURE_3D)

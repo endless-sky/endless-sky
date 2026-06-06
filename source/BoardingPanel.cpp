@@ -100,6 +100,12 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!canCapture)
 		messages.emplace_back("This is not a ship that you can capture.");
+	else if(player.FleetCost() + victim->FleetCost() > player.FleetCapacity())
+	{
+		canCapture = false;
+		messages.emplace_back("You cannot capture this ship as doing so");
+		messages.emplace_back("would put you over your fleet capacity.");
+	}
 	else
 	{
 		attackOdds.Calculate();
@@ -286,7 +292,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			// Keep track of how many you actually took.
 			count = 0;
 			for(const auto &it : you->Outfits())
-				if(it.first != outfit && it.first->AmmoStoredOrUsed() == outfit)
+				if(it.first != outfit && it.first->AmmoStoredOrUsed().contains(outfit))
 				{
 					// Figure out how many of these outfits you can install.
 					count = you->Attributes().CanAdd(*outfit, available);
@@ -469,11 +475,11 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					if(fuelTransferred >= 1.)
 						messages.push_back(Format::Number(fuelTransferred, 0) + " fuel has been transferred.");
 				}
-				player.AddShip(victim);
+				player.CaptureShip(victim);
 				for(const Ship::Bay &bay : victim->Bays())
 					if(bay.ship)
 					{
-						player.AddShip(bay.ship);
+						player.CaptureShip(bay.ship);
 						player.HandleEvent(ShipEvent(you, bay.ship, ShipEvent::CAPTURE), GetUI());
 					}
 				isCapturing = false;
@@ -638,7 +644,7 @@ bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
 	// you can install it as an outfit.
 	if(outfit)
 		for(const auto &it : ship.Outfits())
-			if(it.first != outfit && it.first->AmmoStoredOrUsed() == outfit && ship.Attributes().CanAdd(*outfit))
+			if(it.first != outfit && it.first->AmmoStoredOrUsed().contains(outfit) && ship.Attributes().CanAdd(*outfit))
 				return true;
 
 	return false;

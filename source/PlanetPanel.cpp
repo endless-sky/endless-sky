@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "HiringPanel.h"
 #include "Information.h"
 #include "Interface.h"
@@ -35,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Port.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
@@ -67,7 +69,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
@@ -167,6 +169,9 @@ void PlanetPanel::Step()
 				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
 			for(const auto &outfit : player.Cargo().Outfits())
 				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			for(const auto &[outfit, count] : player.GetStock())
+				if(count > 0)
+					SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
 			for(const auto &license : player.Licenses())
 			{
 				const Outfit *outfit = GameData::Outfits().Find(license + " License");
@@ -234,6 +239,13 @@ void PlanetPanel::Draw()
 	// after the panel's creation, such as the player accepting a mission on the Job Board.
 	if(!selectedPanel)
 		description->SetText(planet.Description().ToString());
+}
+
+
+
+void PlanetPanel::UpdateTextDisplay()
+{
+	description->SetAlignment(Preferences::GetTextAlignment());
 }
 
 
@@ -413,6 +425,14 @@ void PlanetPanel::TakeOffIfReady()
 				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
 			return;
 		}
+	}
+	if(player.FleetCost() > player.FleetCapacity())
+	{
+		bool shipCap = GameData::GetGamerules().GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::SHIP_CAP;
+		GetUI().Push(DialogPanel::Info("The escorts that you currently have active put you over your fleet capacity. "
+			"Park or sell your escorts to make room"s + (shipCap ? "." : ", or change your flagship to a ship with a "
+			"higher cost toward your limit, as your flagship does not count toward the fleet capacity.")));
+		return;
 	}
 
 	CheckWarningsAndTakeOff();

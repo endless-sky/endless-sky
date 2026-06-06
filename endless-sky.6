@@ -1,4 +1,4 @@
-.TH endless\-sky 6 "31 Jan 2026" "ver. 0.11.1-alpha" "Endless Sky"
+.TH endless\-sky 6 "25 Apr 2026" "ver. 0.11.2-alpha" "Endless Sky"
 
 .SH NAME
 endless\-sky \- a space exploration and combat game.
@@ -49,6 +49,12 @@ prints (to STDOUT) a list of available tests, usable for automatic test runs. Th
 
 .IP \fB\-\-nomute
 prevents muting the game when running tests.
+
+.IP \fB\-c,\ \-\-rngseed\ <seed>
+every time the pseudo-random number generator is seeded, it will be given this value.
+
+.IP \fB\-c,\ \-\-tq-threads\ <number of threads>
+sets the number of threads used for the internal queue of tasks. Not specifying this will use a default depending on your system. This is only useful for debugging. Has to be at least 1.
 
 .IP \fB\-s,\ \-\-ships
 prints (to STDOUT) a table of ship stats (just the base stats, not considering any stored outfits). This option prevents the game from launching.

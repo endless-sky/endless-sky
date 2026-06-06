@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
+#include "CustomEvents.h"
 #include "DialogPanel.h"
 #include "Files.h"
 #include "text/Font.h"
@@ -75,7 +76,6 @@ namespace {
 	// Settings that require special handling.
 	const string ZOOM_FACTOR = "Main zoom factor";
 	const int ZOOM_FACTOR_MIN = 100;
-	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
@@ -91,6 +91,7 @@ namespace {
 	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
 	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
 	const string TURRET_OVERLAYS = "Turret overlays";
+	const string HIGHLIGHT_SHIPS = "Highlight ships";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
@@ -111,6 +112,9 @@ namespace {
 	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
+	const string TRIBUTE_CONFIRMATION = "Tribute confirmation";
+	const string AMMO_REFILL = "Auto refill ammo";
+	const string TEXT_ALIGNMENT = "Text alignment";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
 	const string WINDOW_ROUNDING = "Window rounding";
@@ -623,7 +627,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			int zoom = Screen::UserZoom();
 			if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
 				zoom -= ZOOM_FACTOR_INCREMENT;
-			if(dy > 0. && zoom < ZOOM_FACTOR_MAX)
+			if(dy > 0.)
 				zoom += ZOOM_FACTOR_INCREMENT;
 
 			Screen::SetZoom(zoom);
@@ -967,12 +971,15 @@ void PreferencesPanel::DrawSettings()
 		"Hide unexplored map regions",
 		"Show escort systems on map",
 		"Show stored outfits on map",
+		"Parenthesize trade profits",
 		"",
 		"Trading",
-		"'Sell Outfits' without outfitter",
-		"Confirm 'Sell Outfits' button",
-		"Confirm 'Sell Minables' button",
-		"Show parenthesis",
+		"Sell outfits without outfitter",
+		"Confirm selling outfits",
+		"Confirm selling minables",
+		"",
+		"Gameplay",
+		TRIBUTE_CONFIRMATION,
 		"\n",
 		"Flagship Behavior",
 		"Control ship with mouse",
@@ -991,6 +998,7 @@ void PreferencesPanel::DrawSettings()
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
+		AMMO_REFILL,
 		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
@@ -1001,7 +1009,7 @@ void PreferencesPanel::DrawSettings()
 		"Show missile overlays",
 		TURRET_OVERLAYS,
 		"Show asteroid scanner overlay",
-		"Highlight player's flagship",
+		HIGHLIGHT_SHIPS,
 		"Rotate flagship in HUD",
 		"Show planet labels",
 		MINIMAP_DISPLAY,
@@ -1019,6 +1027,7 @@ void PreferencesPanel::DrawSettings()
 		DATE_FORMAT,
 		NOTIFY_ON_DEST,
 		"Save message log",
+		TEXT_ALIGNMENT,
 #ifdef _WIN32
 		"\t",
 		"Windows Options",
@@ -1762,7 +1771,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	{
 		int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
 		Screen::SetZoom(newZoom);
-		if(newZoom > ZOOM_FACTOR_MAX || Screen::Zoom() != newZoom)
+		if(Screen::Zoom() != newZoom)
 		{
 			// Notify the user why setting the zoom any higher isn't permitted.
 			// Only show this if it's not possible to zoom the view at all, as

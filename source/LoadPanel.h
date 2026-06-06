@@ -22,13 +22,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 #include "Tooltip.h"
 
-#include <ctime>
 #include <filesystem>
 #include <map>
+#include <memory>
 #include <string>
-#include <utility>
-#include <vector>
 
+class PilotProfile;
 class PlayerInfo;
 class UI;
 
@@ -73,8 +72,8 @@ private:
 	SavedGame loadedInfo;
 	UI &gamePanels;
 
-	std::map<std::string, std::vector<std::pair<std::string, std::filesystem::file_time_type>>> files;
-	std::string selectedPilot;
+	std::map<std::string, std::shared_ptr<PilotProfile>> pilots;
+	std::shared_ptr<PilotProfile> selectedPilot;
 	std::string selectedFile;
 	// If the player enters a filename that exists, prompt before overwriting it.
 	std::string nameToConfirm;
