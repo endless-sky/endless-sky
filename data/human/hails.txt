@@ -7124,7 +7124,7 @@ phrase "hostile bounty"
 		"wrong."
 		"mistaken."
 		"off beam."
-		"mislead."
+		"misled."
 
 
 phrase "hostile bounty hunter"

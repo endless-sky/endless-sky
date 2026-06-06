@@ -250,8 +250,6 @@ private:
 	// each ship.
 	FireCommand firingCommands;
 
-	bool isCloaking = false;
-
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
 

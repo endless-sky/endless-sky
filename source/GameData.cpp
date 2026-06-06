@@ -142,6 +142,9 @@ namespace {
 			SpriteLoadManager::LoadSprite(queue, icon);
 		}
 	}
+
+	const char *const FONT_14_NAME = "font/ubuntu14r.png";
+	const char *const FONT_18_NAME = "font/ubuntu18r.png";
 }
 
 
@@ -214,6 +217,9 @@ void GameData::LoadShaders()
 	// The found shader files. The first element is the vertex shader,
 	// the second is the fragment shader.
 	map<string, pair<string, string>> loaded;
+	// The paths to standard fonts, possibly overridden by plugins.
+	filesystem::path font14Path = Files::Images() / FONT_14_NAME;
+	filesystem::path font18Path = Files::Images() / FONT_18_NAME;
 	for(const filesystem::path &source : sources)
 	{
 		filesystem::path base = source / "shaders";
@@ -236,6 +242,12 @@ void GameData::LoadShaders()
 				else if(shader.extension() == ".frag")
 					loaded[name].second = shaderFile.string();
 			}
+		filesystem::path fontCandidate = source / "images" / FONT_14_NAME;
+		if(Files::Exists(fontCandidate))
+			font14Path = fontCandidate;
+		fontCandidate = source / "images" / FONT_18_NAME;
+		if(Files::Exists(fontCandidate))
+			font18Path = fontCandidate;
 	}
 
 	// If there is both a fragment and a vertex shader available,
@@ -254,8 +266,8 @@ void GameData::LoadShaders()
 	BatchShader::Init();
 	RenderBuffer::Init();
 
-	FontSet::Add(Files::Images() / "font/ubuntu14r.png", 14);
-	FontSet::Add(Files::Images() / "font/ubuntu18r.png", 18);
+	FontSet::Add(font14Path, 14);
+	FontSet::Add(font18Path, 18);
 
 	background.Init(16384, 4096);
 }
