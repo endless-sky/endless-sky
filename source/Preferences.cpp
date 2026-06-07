@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Preferences.h"
 
+#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "DataFile.h"
 #include "DataNode.h"
@@ -187,6 +188,9 @@ namespace {
 	const vector<string> AMMO_REFILL_SETTINGS = {"never", "ask", "when free", "always"};
 	int ammoRefillIndex = 1;
 
+	const vector<string> TEXT_ALIGNMENT_SETTINGS = {"left", "center", "right", "justified"};
+	int textAlignmentIndex = 3;
+
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 
 	int previousSaveCount = 3;
@@ -218,6 +222,7 @@ void Preferences::Load()
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
 	settings["Animate main menu background"] = true;
+	settings["Linear filter"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
@@ -225,9 +230,9 @@ void Preferences::Load()
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
 	settings["Deadline blink by distance"] = true;
-	settings["Confirm 'Sell Outfits' button"] = true;
-	settings["Confirm 'Sell Minables' button"] = true;
-	settings["'Sell Outfits' without outfitter"] = true;
+	settings["Confirm selling outfits"] = true;
+	settings["Confirm selling minables"] = true;
+	settings["Sell outfits without outfitter"] = true;
 
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
@@ -298,6 +303,8 @@ void Preferences::Load()
 			tributeConfirmationIndex = max<int>(0, min<int>(node.Value(1), TRIBUTE_CONFIRMATION_SETTINGS.size() - 1));
 		else if(key == "Ammo refill")
 			ammoRefillIndex = clamp<int>(node.Value(1), 0, AMMO_REFILL_SETTINGS.size() - 1);
+		else if(key == "Text alignment")
+			textAlignmentIndex = clamp<int>(node.Value(1), 0, TEXT_ALIGNMENT_SETTINGS.size() - 1);
 #ifdef _WIN32
 		else if(key == "Title bar theme")
 			titleBarThemeIndex = clamp<int>(node.Value(1), 0, TITLE_BAR_THEME_SETTINGS.size() - 1);
@@ -347,6 +354,25 @@ void Preferences::Load()
 			highlightShipsIndex = static_cast<int>(HighlightShips::FLAGSHIP);
 		settings.erase(it);
 	}
+
+
+	// Some settings have been renamed. If the preferences file contains the old names,
+	// load the state from them, then erase them so only the new names are written back when saving settings.
+	const array<pair<string, string>, 4> RENAMED_BOOLEAN_SETTINGS = {{
+		{"'Sell Outfits' without outfitter", "Sell outfits without outfitter"},
+		{"Confirm 'Sell Outfits' button", "Confirm selling outfits"},
+		{"Confirm 'Sell Minables' button", "Confirm selling minables"},
+		{"Show parenthesis", "Parenthesize trade profits"}
+	}};
+	for(auto const &[oldName, newName] : RENAMED_BOOLEAN_SETTINGS)
+	{
+		it = settings.find(oldName);
+		if(it != settings.end())
+		{
+			settings[newName] = it->second;
+			settings.erase(it);
+		}
+	}
 }
 
 
@@ -385,6 +411,7 @@ void Preferences::Save()
 	out.Write("Reduce large graphics", largeGraphicsReductionIndex);
 	out.Write("Tribute confirmation", tributeConfirmationIndex);
 	out.Write("Ammo refill", ammoRefillIndex);
+	out.Write("Text alignment", textAlignmentIndex);
 	out.Write("previous saves", previousSaveCount);
 #ifdef _WIN32
 	if(WinVersion::SupportsDarkTheme())
@@ -1027,6 +1054,28 @@ Preferences::AmmoRefill Preferences::GetAmmoRefill()
 const std::string &Preferences::AmmoRefillSetting()
 {
 	return AMMO_REFILL_SETTINGS[ammoRefillIndex];
+}
+
+
+
+void Preferences::ToggleTextAlignment()
+{
+	if(++textAlignmentIndex >= static_cast<int>(TEXT_ALIGNMENT_SETTINGS.size()))
+		textAlignmentIndex = 0;
+}
+
+
+
+Alignment Preferences::GetTextAlignment()
+{
+	return static_cast<Alignment>(textAlignmentIndex);
+}
+
+
+
+const string &Preferences::TextAlignmentSetting()
+{
+	return TEXT_ALIGNMENT_SETTINGS[textAlignmentIndex];
 }
 
 

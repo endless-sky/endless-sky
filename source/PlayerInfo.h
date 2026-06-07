@@ -90,9 +90,9 @@ public:
 	// Check if any player's information is loaded.
 	bool IsLoaded() const;
 	// Make a new player.
-	void New(const StartConditions &start, std::shared_ptr<PilotProfile> &pilot);
+	void New(const StartConditions &start, const std::shared_ptr<PilotProfile> &pilot);
 	// Load an existing player.
-	void Load(const std::filesystem::path &path, std::shared_ptr<PilotProfile> &pilot);
+	void Load(const std::filesystem::path &path, const std::shared_ptr<PilotProfile> &pilot);
 	// Reload from the same file from which the current pilot was loaded.
 	void Reload();
 	// Load the most recently saved player. If no save could be loaded, returns false.
@@ -152,6 +152,9 @@ public:
 	// Check whether a mission conversation has raised a flag that the player
 	// must leave the planet immediately (without time to do anything else).
 	bool ShouldLaunch() const;
+	// Check whether the player has given the command for their fleet to cloak.
+	bool IsCloaking() const;
+	void SetCloaking(bool isCloaking);
 
 	// Access the player's accounting information.
 	const Account &Accounts() const;
@@ -485,6 +488,7 @@ private:
 	const System *system = nullptr;
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
+	bool isCloaking = false;
 	bool isDead = false;
 	bool displayCarrierHelp = false;
 

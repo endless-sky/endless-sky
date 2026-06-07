@@ -41,6 +41,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Camera.h
 	CaptureOdds.cpp
 	CaptureOdds.h
+	Caret.cpp
+	Caret.h
 	CargoHold.cpp
 	CargoHold.h
 	CategoryList.cpp
@@ -99,6 +101,10 @@ target_sources(EndlessSkyLib PRIVATE
 	Distribution.h
 	Drawable.cpp
 	Drawable.h
+	Dropdown.cpp
+	Dropdown.h
+	Edit.cpp
+	Edit.h
 	Endpoint.cpp
 	Endpoint.h
 	Effect.cpp

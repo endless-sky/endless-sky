@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Preferences.h"
 #include "Rectangle.h"
 #include "Screen.h"
 #include "text/Table.h"
@@ -33,10 +34,10 @@ using namespace std;
 
 
 ItemInfoDisplay::ItemInfoDisplay()
-	: tooltip(WIDTH, Alignment::JUSTIFIED, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+	: tooltip(WIDTH, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
-	description.SetAlignment(Alignment::JUSTIFIED);
+	description.SetAlignment(Preferences::GetTextAlignment());
 	description.SetWrapWidth(WIDTH - 20);
 	description.SetFont(FontSet::Get(14));
 }
