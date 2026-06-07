@@ -162,6 +162,12 @@ void Panel::UpdateTooltipActivation()
 
 
 
+void Panel::UpdateTextDisplay()
+{
+}
+
+
+
 void Panel::AddOrRemove()
 {
 	for(auto &panel : childrenToAdd)
@@ -437,6 +443,15 @@ void Panel::DoResize()
 	Resize();
 	for(auto &child : children)
 		child->DoResize();
+}
+
+
+
+void Panel::DoUpdateTextDisplay()
+{
+	UpdateTextDisplay();
+	for(auto &child : children)
+		child->DoUpdateTextDisplay();
 }
 
 

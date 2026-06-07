@@ -13,7 +13,7 @@
 
 planet Aava-Aasa-Khora
 	attributes successor wealthy
-	landscape land/canyon15
+	landscape land/mountain46
 	description `This planet is the collective seat of what are known as the Old Houses, the noble families who held territorial claims to this region of space before the collapse of the Predecessors' empire and the arrival of the so-called New Houses fleeing their crumbling society.`
 	description `	While today the planet is geologically stable, it has experienced major tectonic shifts in the past, folding the planet's surface into a number of visually spectacular canyons and mountain ranges. Since it serves such an important political role, tectonic activity on this planet is closely monitored, and even though there have been no major earthquakes since the Successors settled here, most of the buildings here are built to withstand even large and destructive geological shifts.`
 	spaceport `Unexpectedly small for a planet of this importance, the spaceport on Aava-Aasa-Khora is composed of a number of small buildings made out of surprisingly flexible materials. While the sensation of the landing pad bowing under your ship's weight is unsettling, to say the least, it shows no signs of damage or structural fatigue.`
@@ -329,7 +329,7 @@ planet "Arachne Station"
 		fleet "Large Militia" 14
 
 planet Araio
-	attributes "aberrant siege" avgi farming frontier rich
+	attributes "aberrant siege" avgi farming frontier wealthy
 	landscape land/canyon3
 	description `Araio is a relatively small world dominated by a single supercontinent. Continental uplift has made much of the land characterized by mountainous highland, scattered with numerous springs and lakes. Though the air is thin and the soil is rocky, hardy plants and woody trees cling to life, breaking up the landscape of rocky mountains with colorful meadows and bountiful forests.`
 	description `	Araio garnered a reputation as a frontier world ripe for plucky pioneers, reminiscent of an oft-romanticized era on Aviskir. While rich in gemstones, natural stones have not been competitive with nanofabricated alternatives since long before the planet was settled, and thus the economy on the surface is almost completely dominated by homesteads and small frontier towns.`
@@ -359,7 +359,7 @@ planet Arroharg
 	security 0.9
 
 planet Asgard
-	attributes deep education factory research rich urban
+	attributes deep education factory research urban wealthy
 	landscape land/city13-sfiera
 	description `Asgard was one of the first worlds to be settled in the Deep. It is now home to many crowded cities, with soaring skyscrapers that are made of lightweight composite materials rather than the steel and concrete so commonly used elsewhere.`
 	description `	This is also the home of Deep Sky, a manufacturing firm that produces a wide variety of expensive and useful starship equipment.`
@@ -449,7 +449,7 @@ planet Aventine
 		fleet "Heavy Remnant Defense" 30
 
 planet Aviskir
-	attributes "aberrant siege" avgi "avgi core" rich urban
+	attributes "aberrant siege" avgi "avgi core" urban wealthy
 	landscape land/water32
 	description `Aviskir is a world of sweeping mountains and sparkling oceans. It also happens to be the Avgi homeworld, bustling with nine billion members of the species. Civilization has concentrated largely around bountiful mountain valleys and fjords, many warmed by hot springs and geothermal heat. The largest cities are built around the smaller peaks, laced with slender bridges and bright skyscrapers. They stand in contrast to the rural valley settlements below, which are said to offer simpler, more traditional lives.`
 	description `	The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Aberrant sometimes make on the surface.`
@@ -772,7 +772,7 @@ planet Caelian
 		fleet "Heavy Remnant Defense" 25
 
 planet Calda
-	attributes paradise rich tourism
+	attributes paradise tourism wealthy
 	landscape land/lava4
 	description `Calda is a tropical resort world, a pleasant place to unwind after a few days skiing on its sister planet, Vail. The most popular tourist destination is the hot springs, and the spa complexes that have been built up around them. Constant pesticide use has nearly eliminated insect pests. Because of the uncomfortably warm and humid summer months, the very rich view Calda more as a tourist destination than as a place to live.`
 	description `	In Calda's early days as a spa planet, a nearly silent eruption of carbon dioxide filled a resort valley and suffocated the whole population. This incident shocked the Paradise Worlds and led to a very large drop in tourism here. Fortunately for Calda's economy, this effect ceased within six months, which was about how long it took for most potential tourists to forget about the incident.`
@@ -1796,7 +1796,7 @@ planet Farpoint
 		fleet "Large Republic" 6
 
 planet Farseer
-	attributes paradise rich tourism
+	attributes paradise tourism wealthy
 	landscape land/sea8
 	description `With enough money, you can buy a sunny day. Farseer is an ocean resort world, where much of the local tax revenue is spent on the terraforming equipment that moderates the weather. Real estate prices fluctuate wildly in times of political anxiety, because the idyllic climate exists only by government fiat.`
 	description `	Industry here mostly takes the form of executive offices for interplanetary banks, law firms, and software companies. Strict zoning laws limit construction of skyscrapers or factories to the continents that are in the less pleasant polar regions.`
@@ -2560,7 +2560,7 @@ planet Hespair
 	description `	However, during their exploration of the planet, the Avgi accidentally, if inevitably, introduced bacteria from their own ships to Hespair's oceans. These motes of life are still sparse, but even if the Avgi refrain from terraforming this world, they will form the seeds of a new biosphere at some point in the distant future.`
 
 planet Hestia
-	attributes paradise rich
+	attributes paradise wealthy
 	landscape land/sky5
 	description `In the distant past, Hestia was a nearly lifeless ice world. It is now a subtropical paradise, one of the great victories from the heyday of planetary engineering back when the galactic economy had more money to spare for terraforming.`
 	description `	Today it is mostly a retirement community for those who can afford it, although most of the population consists of young service workers in rented housing who take care of the retirees.`
@@ -2907,7 +2907,7 @@ planet "Karek Fornati"
 
 planet Kasi-Osolaa-Sossa
 	attributes quiet successor
-	landscape land/myrabella8
+	landscape land/hills14
 	description `By far the most isolated and remote planet in Successor space, Kasi-Osolaa-Sossa is populated mainly by those who enjoy the peace and quiet that comes with solitude. For the highly familial Successors, this is a relatively small proportion, and consequently the planet only supports around twenty thousand inhabitants, though it has the highest population growth of any planet in Successor space. Most agree that this is a result of disinterest in the sometimes-painful political division of the larger Successor worlds, but it is commonly joked that it is instead a consequence of supposed especially amorous tendencies among the local population.`
 	spaceport `The mountainside spaceport here is tiny and almost deserted, and the Successors who guide your ship to its dirt landing pad seem to disappear entirely immediately after you touch down. While there are a few small shops and trading posts scattered around the area, none of them make any effort to get your attention, and a few are even completely automated, with nothing more than a few inoffensively blinking lights indicating that they are functional and open for business.`
 	outfitter "Successor Basics"
@@ -2957,7 +2957,7 @@ planet Katkradol
 
 planet Kella-Uuoru-Sossa
 	attributes predecessor uninhabited
-	landscape land/badlands0
+	landscape land/desert21
 	description `This planet is an ecological catastrophe. Its surface has been scoured by radiation and by what must have been an orbital bombardment; no organic life remains. Many large cities dot the surface, several of which have been leveled or damaged by weapon strikes, and far more which are nearly entirely intact. All are equally empty. Persistent clouds of caustic dust choke the atmosphere, and your ship's sensors alert you to the presence of several dust storms at other locations on the planet's surface. It would be wise not to get caught in one.`
 		to display
 			not "trusted by the successors"
@@ -3005,7 +3005,7 @@ planet Khora-Uurau-Uuoru
 
 planet Khora-Vasa-Reyyaa
 	attributes manufacturing military mining successor wealthy
-	landscape land/nasa2
+	landscape land/lava16
 	description `Much of Successor technology relies on advanced composite materials, from their extremely durable ship hulls to their high-performance kinetic weapons. This planet contains rich natural deposits of the raw materials required for the manufacturing of their composites, and consequently, it serves as both a center for the mining of these materials and as the industrial core of Successor space.`
 	description `	Because Khora-Vasa-Reyyaa falls within the sphere of influence of the Old Houses, many in the New Houses are very concerned about the power imbalance this creates, and several treaties are in place ensuring fair and open exports from the planet.`
 	spaceport `The spaceport here is perhaps the most militarized of any you have visited in Successor space. Large industrial buildings rise up around the landing pads, casting them into deep shadow, and several small Successor warships stand ready on fast-launch pads, prepared to enter orbit at a moment's notice. You pass through a security checkpoint on your way into the spaceport proper, and while the security officers have clearly been briefed to expect alien visitors, they still regard you with some degree of scrutiny.`
@@ -3219,7 +3219,7 @@ planet Limejog
 	security 0
 
 planet Livolua
-	attributes "aberrant siege" avgi "avgi core" rich urban
+	attributes "aberrant siege" avgi "avgi core" urban wealthy
 	landscape land/forest13
 	description `Livolua was the first extrasolar planet to be colonized by the Avgi, through the use of multiple waves of slower than light starships over two hundred years ago. With its wide range of climates ideal for life, it boasts a population two thirds as large as Aviskir itself, and an equally impressive number of independent polities.`
 	description `	While perhaps not as wealthy or comfortable as Aviskir itself, Livolua is full of younger, ambitious polities with their eyes set on growth, a dynamic that has produced a vibrant independent civilization capable of rivaling the homeworld.`
@@ -3321,7 +3321,7 @@ planet Mahoganybox
 	security 1
 
 planet Mainsail
-	attributes paradise rich
+	attributes paradise wealthy
 	landscape land/water13
 	description `Mainsail is a water world: although there are some settlements on dry land, the largest cities are floating, artificial islands, which travel between hemispheres over the course of the year pursuing the most ideal weather. Other, smaller islands are privately owned by single families or corporations. Mainsail is a prohibitively expensive place to live.`
 		to display
@@ -3410,7 +3410,7 @@ planet Mars
 		fleet "Small Republic" 64
 
 planet Martini
-	attributes paradise rich tourism
+	attributes paradise tourism wealthy
 	landscape land/myrabella4
 	description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the Galactic Stock Exchange are headquartered here, and so much money flows through this world's economy every day that the cost of utterly controlling its weather and climate is only a drop in the bucket. Not surprisingly, real estate prices here are astronomical; a small condo in one of Martini's main cities costs more than a capital starship.`
 	spaceport `The spaceport is a set of four skyscrapers joined by bridges and platforms at various levels. Hangars are built directly into the towers themselves, with deflector shield generators set up to ensure that ships do not crash, intentionally or otherwise, while approaching the towers to dock. Inside, all the floors and walls are gleaming granite, with teams of workers constantly polishing everything to ensure that not even so much as a fingerprint smudge is visible.`
@@ -3434,7 +3434,7 @@ planet Maspa-Viir-Kella
 
 planet Mavra-Sol-Kvel
 	attributes successor wealthy
-	landscape land/fields14
+	landscape land/hills15
 	description `This green and well-populated moon enjoys a temperate climate and spectacular vistas, both of its own surface and of the gas giant it orbits. The gravity here is quite low, and the Successors you see here tower over you even more noticeably than on other worlds. There are several cities on the surface, most along the equator.`
 		to display
 			not "known to the successors"
@@ -3673,7 +3673,7 @@ planet Mordente-Bridi
 
 planet Mosaa-Oa-Vyret
 	attributes successor
-	landscape land/mountain14-sfiera
+	landscape land/hills16
 	description `This small planet hosts a population of towering octopus-like aliens. They have built several cities across its surface that are highly symmetrical, filled with organic-looking curved buildings draped in colorful fabrics that shimmer in the light. The air is damp and chilly; rainstorms blanket a significant portion of the planet's surface and many of the sleek-looking vessels that set down in the spaceport discharge streams of water upon landing.`
 		to display
 			not "known to the successors"
@@ -3736,7 +3736,7 @@ planet Mutiny
 
 planet Myiara-Aret-Iir
 	attributes predecessor uninhabited
-	landscape land/badlands4
+	landscape land/desert20
 	description `In contrast to the pristine emptiness of the other formerly-inhabited planets in this area of space, this world teems with signs of chaos. The remains of hastily-built weather-control towers dot much of its surface, and the cities upon it are neither majestic nor well-maintained; none are very large, but most are surrounded by vast expanses of fabric and radiation-bleached temporary constructions.`
 		to display
 			not "trusted by the successors"
@@ -4359,7 +4359,7 @@ planet Osaeli
 
 planet Osolaa-Val-Mavra
 	attributes predecessor uninhabited
-	landscape land/dmottl1
+	landscape land/snow40
 	description `This moon is covered in a constant veil of frost that coats the sparse and hardy vegetation on its surface in delicate ice crystals. On the side of the moon that faces its parent gas giant, a massive circular trench, kilometers-deep, has been carved into the earth. Within it, huge terraced complexes have been built into the walls; empty residential areas, shipyards, and public spaces jut into the trench's open air where they are adorned by the constant snowfall.`
 		to display
 			not "trusted by the successors"
@@ -4779,7 +4779,7 @@ planet Quirinal
 
 planet Raaqa-Kvelq-Ryuit
 	attributes education successor urban
-	landscape land/fields6
+	landscape land/water33
 	description `This planet seems to host a larger population than any other world you have seen in Successor space. The weather is mild, and the landscape is dotted with farms both large and small, terrestrial and aquatic. On the tidal shores, massive crops of a long, stringy plant most reminiscent of seaweed grow under the care of swarms of agricultural robots.`
 		to display
 			not "known to the successors"
@@ -4793,7 +4793,7 @@ planet Raaqa-Kvelq-Ryuit
 
 planet Raaqa-Puan-Uuoru
 	attributes quiet successor wealthy
-	landscape land/beach3
+	landscape land/beach20
 	description `After the collapse, many Successors found themselves without a family, or without the knowledge of unbroken lineage that others took comfort in. House Kaatrij, which had lost many of its scions in the collapse, took the previously unprecedented step of welcoming these otherwise-outcasts into its familial order, earning a reputation as the most diverse of the various Houses. Many of its members still pledge a ceremonial allegiance to their defunct Houses under Kaatrij, which remains small but well-supported and a key member of the New Houses alliance.`
 	description `	This, its home planet, is small, rainy, and mostly covered by ocean. Widely regarded as one of the most beautiful planets in Successor space, settlement here is tightly regulated by House Kaatrij.`
 	spaceport `Upon setting down, the landing pad releases a billowing sheet of clear water-repellant material that covers your ship, presumably as some sort of protection against the rain. The spaceport itself is low and small and decorated with strips of the same material that gently ruffle in the wind, almost like the sails of an ancient ocean-going ship. The water collects in carefully-sculpted channels that run all over the surface of the building, occasionally collecting in small pools or spreading out into delicate branch-like networks built into the ground.`
@@ -4810,7 +4810,7 @@ planet Raaqa-Puan-Uuoru
 
 planet Raaqa-Uur-Kaav
 	attributes predecessor uninhabited
-	landscape land/forest3
+	landscape land/forest16
 	description `Unlike most of the planets in this area of space, this moon remains relatively habitable. Large forests have flourished throughout it in the absence of sapient life, and the stark remains of abandoned cities are slowly being reclaimed by the nature that surrounds them. While the materials which compose the buildings have not decayed an iota over the eons, the tender shoots of green life nonetheless adhere to their twisting surfaces and flourish within their unmaintained interiors.`
 		to display
 			not "trusted by the successors"
@@ -5321,7 +5321,7 @@ planet "Shadowed Valley"
 	security 0.25
 
 planet Shangri-La
-	attributes core frontier rich urban
+	attributes core frontier urban wealthy
 	landscape land/sea6
 	description `Named after a mythical paradise, Shangri-La is an almost ideal planet, with a mixture of advanced, developed cities and uninhabited mountains. It is a rich and prosperous world, and nearly self-sufficient, but the cost of living here is prohibitively high for anyone from off-world. Because Polaris is on the very fringe of human space, and because of the wealth of its economy, piracy is a constant threat. Although recently the Syndicate has provided good protection, in past centuries it was not unheard of for raiding parties of starships to attack major port cities here, carrying off valuable cargo and sometimes also human slaves.`
 	spaceport `The spaceport is state-of-the-art. So are the laser turrets and missile silos spaced out along its periphery. But somehow, instead of making you feel more secure, the defenses only serve to remind you of how far on the fringes of civilization you are, and of how rich this planet is compared to some of its neighbors. Everyone walking through the port is moving at a brisk, purposeful pace; loitering and sightseeing are not encouraged here.`
@@ -5339,7 +5339,7 @@ planet Shangri-La
 
 planet Shassa-Wyra-Orrou
 	attributes mining quiet successor tourism
-	landscape land/lava3
+	landscape land/beach19
 	description `Despite its favorable location in Successor space, Shassa-Wyra-Orrou is only sparsely inhabited: the hot stars it orbits make its surface temperature a little too warm for most Successors. Even so, there are some small settlements in the polar regions, mostly populated by mining families taking advantage of the rich mineral wealth of both the planet and the surrounding system.`
 	spaceport `The spaceport is built on a large rock beach in the northern hemisphere, with a number of large fabric shades covering important areas. A substantial portion of the port is devoted to offloading mined items, and surprisingly, there is also a large and healthily-populated tourist section, which is displaying several particularly attractive stones, no doubt locally mined.`
 	outfitter "Successor Basics"
@@ -5388,7 +5388,7 @@ planet Shorebreak
 		fleet "Large Militia" 8
 
 planet Shroud
-	attributes frontier north rich textiles
+	attributes frontier north textiles wealthy
 	landscape land/mountain1
 	description `Shroud is a world of castles in the clouds and slums in the valleys below. High on the mountain peaks, above the clouds, the planet's few elites live in splendid mansions. Below them, the people work mostly in textiles: farming cotton, raising sheep, working at looms and sewing machines in dimly lit factories.`
 	description `	The level of intrigue and dalliance between the bored gentry could easily compete with the most lurid and unrealistic of Victorian fiction.`
@@ -5698,7 +5698,7 @@ planet Steli
 	description `	Frequent hot spots trickle lava and heat through the otherwise lethargic crust, and Steli has one of the highest counts of hot springs in all the habitable planets of the Twilight. Only its distance from the core of Avgi space precluded its widespread settlement, though it is rumored that hidden villages and nomadic groups live scattered across the surface.`
 
 planet Stilacrest
-	attributes "aberrant siege" avgi "avgi core" fishing religious rich
+	attributes "aberrant siege" avgi "avgi core" fishing religious wealthy
 	landscape land/myrabella4
 	description `Stilacrest is a warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs making it an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse.`
 	description `	The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid-back sort of personality.`
@@ -6087,7 +6087,7 @@ planet Turra
 
 planet Tuur-Aasa-Kaska
 	attributes successor
-	landscape land/nasa7
+	landscape land/dune7
 	description `As it was only very recently settled by the Successors, this large and rocky moon supports only a small population, most of whom are military personnel for the Old Houses and who live underground to avoid the powerful electrical storms on the surface. Though an undeniably hostile and uncomfortable place, the location of its star system has made it an ideal staging point for the fleets of the Old Houses to keep an eye on trade in nearby systems, and the persistent electrical storms on the surface serve to mask the energy signatures of their vessels.`
 	spaceport `As a civilian, you are directed to a smaller port off to the side of one of the larger military ones. As soon as your ship touches down, the landing pad is lowered into an underground hangar and sealed off from the violent atmosphere. While this is an effective protection against the storms, you can't help but notice how it also means that you are trapped here until traffic control decides to release you.`
 	shipyard "Successor Basics"
@@ -6149,8 +6149,8 @@ planet "Ut Divitas"
 
 planet Uuoru-Veldt-Stir
 	attributes successor uninhabited
-	landscape land/hills0
-	description `The landscape on this planet is marked by gently rolling hills and the occasional pond. Your sensors remark that the atmosphere outside, while oxygen-rich, is too thin to safely breathe, and while you see a preponderance of hardy plant life, there are no animals to be seen.`
+	landscape land/tundra1
+	description `Tucked into the wide glacial valleys of this planet are marshy lowlands dotted with meltwater ponds. Your ship's sensors remark that the atmosphere outside, while oxygen-rich, is too thin to safely breathe, and although you see a preponderance of hardy plant life, there are no animals to be seen.`
 	government Uninhabited
 
 planet "Uye Mpi"
@@ -6733,7 +6733,7 @@ planet "Yniu Ena"
 
 planet Yoqqa-Vasa-Vasa
 	attributes manufacturing successor tourism
-	landscape land/forest5
+	landscape land/fog16
 	description `Yoqqa-Vasa-Vasa's atmosphere is unusually thick for a planet of its size, and contains a very high concentration of carbon monoxide, which, while harmless to the Successors because of their different biochemistry, is highly toxic to humans. The planet supports a rich and biodiverse planetary ecosystem, with large jungles straddling its equatorial regions that give way to strikingly beautiful mountain ranges near the poles.`
 	description `	It also serves as the planetary bastion of House Seineq, an especially old and noble House from the old empire that immigrated here during the collapse, soon allying with Houses Aqrabe and Kaatrij to assert its claim to the surrounding systems. This alliance between the so-called New Houses persists to the present day, where Seineq is widely considered the first among equals within it.`
 	spaceport `You take care to equip a respirator before exiting your ship.`

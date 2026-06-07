@@ -378,7 +378,7 @@ outfit "Hai Tracker Pod"
 	index 02010
 	cost 150000
 	thumbnail "outfit/hai tracker pod"
-	"mass" 5
+	"mass" 4.8
 	"outfit space" -16
 	"weapon capacity" -16
 	"gun ports" -1
