@@ -1202,7 +1202,7 @@ government "Ka'sei"
 		capture 0
 	"player reputation" 1
 
-# Used only by the Patir Mystery mission in question
+# Used only by the Patir Mystery missions in question
 government "Ka'sei (12.2)"
 	"display name" "Ka'sei"
 	swizzle 0
@@ -1218,6 +1218,20 @@ government "Ka'sei (12.2)"
 	"friendly disabled hail" "friendly disabled ka'het"
 	"hostile hail" "hostile ka'het"
 	"hostile disabled hail" "hostile disabled ka'het"
+
+government "Ka'sei (Patir 18)"
+	"display name" "Ka'sei"
+	swizzle 0
+	language "Ka'het"
+	
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+	"player reputation" 1
+	"attitude toward"
+		"Uninhabited" -.01
 
 government "Kor Efret"
 	swizzle 4
@@ -1350,6 +1364,29 @@ government "Lunarium (Hidden)"
 		"Pirate" -.01
 
 government "Magic Asteroid"
+	"display name" "???"
+	swizzle 0
+	language "Magic Asteroid"
+	
+	"attitude toward"
+		"Ka'sei (12.2)" -.01
+		"Uninhabited" -.01
+
+	"player reputation" 10
+	"travel restrictions"
+		system "Patir"
+
+government "Magic Asteroid (Disabled)"
+	"display name" "???"
+	swizzle 0
+	language "Magic Asteroid"
+	
+	"attitude toward"
+		"Ka'sei" -.01
+
+	"player reputation" -.01
+
+government "Magic Asteroid (Patir 12.2)"
 	"display name" "???"
 	swizzle 0
 	language "Magic Asteroid"
@@ -1903,6 +1940,7 @@ government "Remnant"
 		"Indigenous Lifeform" 0.05
 		"Korath" -.05
 		"Alpha" -.05
+		"Remnant (Postverta)" 1
 		"Remnant (Research)" 1
 	"penalty for"
 		assist -0.25
@@ -1912,6 +1950,7 @@ government "Remnant"
 		destroy 10
 		scan 0.1
 	"foreign penalties for"
+		"Remnant (Postverta)"
 		"Remnant (Research)"
 	"custom penalties for"
 		"Indigenous Lifeform"
@@ -1951,6 +1990,36 @@ government "Remnant (Research)"
 	"hostile disabled hail" "hostile disabled"
 	"travel restrictions"
 		system "Nenia"
+
+government "Remnant (Postverta)"
+	"display name" "Remnant"
+	swizzle 0
+	color "governments: Remnant"
+	"crew defense" 2.2
+	
+	"player reputation" 1
+	"bribe" 0
+	"attitude toward"
+		"Indigenous Lifeform" 0.05
+		"Korath" -.05
+		"Alpha" -.05
+		"Remnant" 1
+	"penalty for"
+		assist -0.25
+		disable 1
+		board 1
+		capture 10
+		destroy 10
+		scan 0.1
+	"foreign penalties for"
+		"Remnant"
+	"friendly hail" "remnant uncontacted"
+	"friendly disabled hail" "friendly disabled"
+	"hostile hail" "remnant uncontacted hostile"
+	"hostile disabled hail" "hostile disabled"
+	"travel restrictions"
+		system "Levana"
+		system "Caeculus"
 
 color "governments: Republic" .91 .42 .09
 

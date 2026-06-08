@@ -381,7 +381,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, const 
 			swizzle = GameData::PlayerGovernment()->GetSwizzle();
 		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
 	}
-	else
+	else if(sprite->HasDimensions())
 		loadingCircle.Draw(corner + iconOffset);
 }
 

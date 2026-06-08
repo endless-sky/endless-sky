@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <map>
 #include <memory>
+#include <optional>
 #include <string>
 #include <utility>
 #include <vector>
@@ -48,6 +49,12 @@ public:
 	static constexpr double DEFAULT_HYPERDRIVE_COST = 100.;
 	static constexpr double DEFAULT_SCRAM_DRIVE_COST = 150.;
 	static constexpr double DEFAULT_JUMP_DRIVE_COST = 200.;
+
+
+public:
+	// Get the limit to how low an attribute is allowed to go on a ship when installing outfits.
+	// An empty optional means that there is no lower limit.
+	static std::optional<double> LowerLimit(const std::string &attribute);
 
 
 public:
@@ -90,9 +97,11 @@ public:
 
 	const std::shared_ptr<const Weapon> &GetWeapon() const;
 	// Get the ammo if this is an ammo storage outfit.
-	const Outfit *AmmoStored() const;
+	const std::set<const Outfit *> &AmmoStored() const;
 	// Get the ammo used if this is a weapon, or stored ammo if this is a storage.
-	const Outfit *AmmoStoredOrUsed() const;
+	const std::set<const Outfit *> &AmmoStoredOrUsed() const;
+	// Outfits that should be sold when this outfit is sold.
+	const std::set<const Outfit *> &LinkedOutfits() const;
 
 	// Get this outfit's engine flare sprites, if any.
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;
@@ -146,7 +155,10 @@ private:
 	// Non-weapon outfits can have ammo so that storage outfits
 	// properly remove excess ammo when the storage is sold, instead
 	// of blocking the sale of the outfit until the ammo is sold first.
-	const Outfit *ammoStored = nullptr;
+	std::set<const Outfit *> ammoStored;
+	// Linked outfits are also sold when this outfit is sold, but you
+	// won't be prompted to fill up on "ammo" when entering the outfitter.
+	std::set<const Outfit *> linkedOutfits;
 
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.

@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "Dropdown.h"
 #include "LoadingCircle.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
@@ -61,6 +62,7 @@ protected:
 	class TransactionResult {
 	public:
 		TransactionResult(std::string error) : success(false), message(std::move(error)) {}
+		TransactionResult(const char *error) : success(false), message(error) {}
 		TransactionResult(bool canSource, bool canPlace, std::string error)
 			: canSource(canSource), canPlace(canPlace), success(false), message(std::move(error)) {}
 		TransactionResult(bool result) : success(result), message() {}
@@ -195,6 +197,7 @@ protected:
 	std::map<std::string, std::vector<std::string>> catalog;
 	const CategoryList &categories;
 	std::set<std::string> &collapsed;
+	bool hasFleetCapacity;
 
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
@@ -206,6 +209,9 @@ protected:
 	Tooltip creditsTooltip;
 	Tooltip buttonsTooltip;
 	LoadingCircle loadingCircle;
+
+	std::shared_ptr<Dropdown> selectedQuantity;
+	bool quantityIsModifier = false;
 
 
 private:

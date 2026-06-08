@@ -1,3 +1,302 @@
+Version 0.11.1:
+  * Big changes:
+    * Gamerules are now specific to individual pilots and can be modified from within the game through a new button on the main menu. Old save files will automatically have this button available to them, while new save files will have to edit their gamerules to set the "Lock gamerules" value to false from the start scenario menu. This can also be used to disable the button on old save files, if you don't want to be able to change the gamerules for your existing saves. (@Amazinite)
+    * Added a new gamerule that allows you to limit the number of ships that you can have in your fleet based off of various factors. (@Amazinite)
+    * Added a continuation of the Patir Mystery storyline, further investigating the Patir system with the help of the Remnant. (@beccabunny)
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@Amazinite, @Anarchist2, @Jan-Braaksma, @kaiboyjiang, @TheGiraffe3)
+      * Message buoys referring to the bombings of Geminus and Martini will now only appear after those events occur. (@bene-dictator)
+      * Corrected 'olofez engine flare locations. (@kaiboyjiang)
+      * Increased the payment from "Bounty Hunting (Marauder X)" to match the listed value. (@Anarchist2)
+      * Increased the price of the Tiny VLS from 36000 to 54000 to bring it more in line with the other VLS weapons. (@kaiboyjiang)
+      * Removed various missions with LLM generated content. (@Anarchist2)
+      * Updated the text of various choices where an action is performed to be first person. (@Amazinite, @Anarchist2)
+      * Removed an NPC that was incorrectly included in "Coalition: Struggling Author 1". (@acolden-IAS)
+      * The Hai start now also gives the player a Pilot's License. (@TheGiraffe3)
+      * Rotated the image for Ssil Vida by 180° so it is lit from the correct direction. (@beccabunny)
+    * Engine bugs:
+      * Fixed a crash that could occur when capturing mission NPCs. (@warp-core)
+      * Fixed a past-the-end iterator dereference. (@warp-core)
+      * Shop tooltips no longer get stuck when using a zero second activation delay. (@Amazinite)
+      * Homing weapon haywire chances are no longer related to the range of the first stage, so it is no longer broken when the first stage has a range of zero. (@Anarchist2)
+      * Panels are resized when pushed to the stack, fixing an issue where planetside panels were not accounting for window size changes. (@Amazinite)
+      * Fixed a crash when generating entering/transition missions when there are no active missions. (@Amazinite)
+      * Fixed an issue where the requirements of known wormholes were not correctly updated when loading a save with event changes. (@Amazinite)
+      * Fixed zooming in the map shipyard and outfitter views. (@TomGoodIdea)
+      * Flagship cargo space free on the boarding panel will no longer be hidden when boarding uncapturable ships. (@TomGoodIdea)
+      * Text in NPC actions will now use the correct "<npc>" substitution. (@Amazinite)
+      * Fixed an issue where the impact locations for some projectiles were not being calculated correctly, affecting where effects were drawn. (@Amazinite)
+      * Fixed a crash when a "phasing" weapon hits a minable. (@Amazinite)
+      * Fixed a crash in some cases when there is no flagship. (@Amazinite)
+      * Correctly calculate cost when buying multiple outfits at once when some are depreciated. (@NellyDevo)
+      * FinishLoading is no longer run for undefined ships and planets. (@Amazinite)
+      * AI::AskForHelp now stores potential helpers in a WeightedList instead of duplicating elements in a vector, preventing a possible crash due to too many elements. (@Amazinite)
+      * Invalid person ships will no longer be spawned. (@Amazinite)
+      * An invalid government on a mission NPC will now mark the entire mission as invalid. (@Amazinite)
+      * Fixed some cases where an incorrect message was given when an outfit could not be installed. (@xobes)
+      * Carriable ships with the "staying" personality will now only dock with carriers that are also "staying" and so can no longer be removed from the system while docked. (@Amazinite)
+      * Properly disable shop buttons when the selected item cannot be purchased. (@Amazinite)
+      * Correct and improved the error message when attempting to install an outfit that would cause an attribute to go out of bounds. (@Amazinite)
+  * Game content:
+    * Mission changes:
+      * Invisible missions that do not create a dialog or conversation are now "non-blocking". (@Nova1422)
+      * The Deep Convoy missions will no longer offer while another is active. (@Amazinite)
+    * Artwork:
+      * Added unique explosion effects for Quarg ships. (@GefullteTaubenbrust2)
+      * Created new sprites for the Tangled Shroud haze. (@Daeridanii1)
+    * Balance:
+      * Reduced all sources of optical jamming by 90%. (@Anarchist2)
+      * Various changes around the Heavy Rocket. (@Anarchist2)
+        * The Heavy Rocket Launcher now fires as a stream, instead of clustered.
+        * Increased missile strangth for both Launcher and Pod: 16 -> 24.
+        * Changes to Clipper (Heavy) armament:
+          * Replaced Heavy Rocket Pods with Heavy Rocket Launchers.
+          * Replaced Meteor Missile Launchers with Meteor Missile Pods.
+        * Changes to Hawk (Rocket):
+          * Replaced Heavy Rocket Pods with Heavy Rocket Launchers.
+          * Replaced D41-HY Shield Generator with D14-RN Shield Generator.
+      * Various changes to Successor outfits and ships. (@Daeridanii1)
+        * Reduced shield energy:
+          * "Byiaa" Shield Cortex: 2.92 -> 2.53
+          * "Ej" Shield Cortex: 4.7 -> 4.0
+          * "Jaase" Shield Cortex: 7.4 -> 6.4
+          * "Jorv" Shield Cortex: 16.1 -> 14.0
+        * Removed the -0.05 shield generation multiplier from the Shield Cortex Interface and updated the description accordingly.
+        * Reduced the hull damage of the "Ojet" Bimodal Coilgun (and Turret) submunitions from 20 to 14. The total hull damage from the first stage is unchanged.
+        * Reduced the shield damage of the "Sjeja" Kinetic Lance from 1336 to 1069.
+        * Added missing firing force of 25 to the "Ojet" Bimodal Coilgun.
+        * Aaulqra:
+          * Hull energy and heat: 4.0 -> 3.025
+        * Kaskhorade:
+          * Hull repair rate: 3.25 -> 2.225
+          * Hull energy and heat: 3.26 -> 2.4475
+        * Nnaatej:
+          * Hull energy: 0.2 -> 0.11
+          * Hull heat: 0.25 -> 0.11
+        * Seiitej:
+          * Hull repair rate: 1.2 -> 0.95
+          * Hull energy and heat: 1.74 -> 1.045
+        * Stolsaqra:
+          * Hull energy and heat: 0.4 -> 0.33
+        * Veusade:
+          * Hull energy and heat: 2.1 -> 1.595
+        * Vujlet:
+          * Hull energy and heat: 1.27 -> 0.9625
+      * Added more Quarg ships as reinforcements in "Wanderers: Kor Efret 3" to account for reduced capabilities of individual Quarg ships following the Quarg ship and outfit rework. (@Saugia)
+        * One Quarg Hydra, three Quarg Wyverns, and two Quarg Wardragons, instead of two Wyverns and one Wardragon, travelling from Host.
+        * Two Hydras, instead of one Hydra and three Wardragons, travelling from Mesuket.
+        * Three Wardragons, instead of one, entering the Kashikt system (where the mission takes place).
+      * Rebalanced various alien secondary weapons. (@Anarchist2)
+        * Hai Tracker:
+          * Tracker Storage Pod:
+            * "mass": 4.4 -> 2.4
+            * "outfit space" needed: 10 -> 8
+          * Hai Tracker Pod:
+            * "mass": 8 -> 5
+            * "outfit space" needed: 19 -> 16
+            * "infrared tracking": 0.4 -> 0.2
+        * Korath Piercer:
+          * Piercer Missile:
+            * "cost": 3500 -> 830
+            * "mass": 3 -> 0.07
+          * Piercer Missile Rack:
+            * "mass": 2.2 -> 0.1
+            * "piercer capacity": 16 -> 98
+          * Piercer Missile Launcher:
+            * Removed homing, turning, acceleration, and drag, making the Piercer a ballistic, straight line weapon.
+            * "mass": 18 -> 7
+            * "outfit space" needed: 27 -> 21
+            * "weapon capacity" needed: 27 -> 21
+            * "piercer capacity": 31 -> 197
+            * "inaccuracy": 3 -> 1.5
+            * "lifetime": 200 -> 47
+            * "reload": 72 -> 23
+            * "firing energy": 29 -> 9
+            * "firing heat": 144 -> 46
+            * "shield damage": 290 -> 130
+            * "hull damage": 440 -> 197
+            * Created a death effect that is different to the explosion effect.
+        * Korath Cluster Mine:
+          * Cluster Mine:
+            * "mass": 0.7 -> 0.4
+          * Cluster Mine Rack:
+            * "mass": 2.7 -> 0.8
+            * "minelayer capacity": 9 -> 20
+          * Cluster Minelayer:
+            * "mass": 36 -> 15
+            * "outfit space" needed: 48 -> 27
+            * "weapon capacity" needed: 48 -> 27
+            * "minelayer capacity": 17 -> 41
+        * Korath Firelight:
+          * Firelight Missile:
+            * "mass": 0.3 -> 0.8
+          * Firelight Storage Rack:
+            * "mass": 3 -> 3.2
+            * "outfit space needed": 6 -> 8
+            * "firelight missile capacity": 10 -> 6
+          * Firelight Missile Bank:
+            * "mass": 22 -> 13
+            * "firelight missile capacity": 20 -> 18
+            * "blast radius": 48 -> 0 (all stages, trigger radii also removed)
+            * "Turning" stage:
+              * "tracking" replaced with "optical tracking".
+              * "leading" and "throttle control" homing capabilities removed.
+            * "Activated" stage:
+              * "corrosion damage" 2 -> 0
+        * Korath Firestorm:
+          * Firestorm Torpedo:
+            * "mass": 1 -> 2
+          * Firestorm Torpedo Rack:
+            * "mass": 7 -> 8
+            * "firestorm torpedo capacity": 13 -> 6
+          * Firestorm Battery:
+            * "mass": 35 -> 22
+            * "corrosion damage": 5 -> 0
+        * Remnant EMP:
+          * EMP Torpedo:
+            * "mass": 1 -> 0.6
+          * EMP Torpedo Storage Tube:
+            * "mass": 5 -> 4.8
+            * "emp torpedo capacity": 7 -> 12
+          * EMP Torpedo Bay:
+            * "emp torpedo capacity": 9 -> 15
+            * "infrared tracking": 0.7 -> 0.2
+        * Remnant Teciimach:
+          * No longer uses Teciimach Canister as ammunition, now uses the EMP Torpedo instead. Updated descriptions, conversations, and events as appropriate.
+          * Teciimach Canister and Teciimach Canister Rack:
+            * Deprecated.
+          * Teciimach Bay:
+            * "mass": 9 -> 6
+            * "outfit space" needed: 13 -> 18
+            * "weapon space" needed: 13 -> 18
+            * Ammunition capacity: 9 -> 20
+            * "reload": 310 -> 330
+            * Firing mode: cluster -> stream
+            * "velocity": 8 -> 7
+            * "turn": 2.5 -> 2
+            * "infrared tracking": 0.8 -> 0.2
+            * "radar tracking": 0.9 -> 0.8
+            * "shield damage": 900 -> 700
+            * "hull damage": 125 -> 100
+            * "disabled damage": 60 -> 0
+            * "ion damage": 65 -> 48
+            * "scrambling damage": 65 -> 48
+            * "energy damage": 2000 -> 0
+            * "missile strength": 95 -> 80
+          * Teciimach Pod:
+            * "mass": 3 -> 4
+            * Removed "cluster"
+            * "burst reload": 110 -> 330
+            * "reload": 620 -> 660
+            * "firing energy": 350 -> 400
+            * "firing heat": 16 -> 18
+            * "velocity": 8 -> 7
+            * "turn": 2.5 -> 2
+            * "shield damage": 900 -> 700
+            * "hull damage": 125 -> 100
+            * "disabled damage": 60 -> 0
+            * "ion damage": 60 -> 48
+            * "scrambling damage": 60 -> 48
+            * "energy damage": 2000 -> 0
+            * "missile strength": 95 -> 80
+        * Ka'het EMP Deployer:
+          * "mass": 18 -> 10
+          * "emp torpedo capacity": 16 -> 27
+          * "infrared tracking": 0.7 -> 0.2
+        * Wanderer Thunderhead:
+          * Thunderhead Missile:
+            * "mass": 0.3 -> 0.27
+          * Thunderhead Storage Array:
+            * "mass": 2 -> 0.4
+            * "thunderhead capacity": 20 -> 28
+          * Thunderhead Launcher:
+            * "mass": 14 -> 11
+            * "thunderhead capacity": 40 -> 56
+            * First stage:
+              * "radar tracking": 0.9 -> 0.1
+              * "infrared tracking": 0.6 -> 0.3
+            * Second stage (split):
+              * "optical tracking": 0.9 -> 0
+              * "infrared tracking": 0 -> 0.1
+              * "radar tracking": 0.6 -> 0.3
+        * Bunrodea Swarm:
+          * Swarm Missile:
+            * "mass": 0.04 -> 0.03
+          * Swarm Clip:
+            * "mass": 2 -> 1
+            * "outfit space" needed: 10 -> 7
+          * Swarm Pod:
+            * "mass": 5 -> 3
+            * "outfit space" needed: 21 -> 15
+            * "weapon capacity" needed: 21 -> 15
+            * "radar tracking": 0.5 -> 0.2
+            * "optical tracking": 0.5 -> 0.6
+        * "Sjeje" Kinetic Lance:
+          * "mass": 60 -> 54
+        * Updated ship installed outfit lists to account for ammunition and ammunition capacity changes.
+      * Increased the cargo space on some Successor ships. (@solardawning)
+        * Aaulqra: 15 -> 25
+        * Kaskhorade: 140 -> 240
+    * Other:
+      * Raven now has a unique Gunboat variant with a Scram Drive, and, in "FW Reconciliation 1B", recommends the player install one if they don't already have one, as well. (@Anarchist2)
+      * Expanded the description of the Incipias in their first contact conversation. (@Eatswind)
+      * Added text directing the player towards post-bombing jobs to the conversations for the bombings if they are on Geminus or Martini. (@RedTechGamer236, @TheGiraffe3, @Anarchist2)
+  * Game mechanics:
+    * New mechanics:
+      * The messages a planet responds with when tribute is demanded can be customized at the government and planet level. (@TheGiraffe3)
+      * Weapons can now be given the "exclude submunition damage" property so they do not apply the damage of their submunitions if they hit a target. (@Amazinite)
+      * Added various new text replacements relating to the pilot's starting scenario. (@nickshanks)
+      * Projectiles can now spawn submunitions upon exploding or colliding. (@Amazinite)
+      * Added conditions and text replacements for the player's current and previous planet and system. (@Amazinite)
+      * Any outfit can now define "linked" outfits that should be uninstalled alongside it, similar to the "ammo" property, but without the prompt to purchase the outfit when you have space. (@Amazinite)
+    * Mechanics changes:
+      * NPCs will deprioritize hostile ships that are already targeted by overwhelming firepower. (@Azure3141)
+      * A ship becoming disabled or destroyed by corrosion will now have that event be attributed to the last ship that dealt damage to it. (@TomGoodIdea)
+      * Optical jamming now affects a target's effective mass instead of the lock chance, so very massive ships will require more jamming than smaller, but still massive ships to achieve the same reduction in lock chance when starting from near 100%. (@Anarchist2)
+      * Homing weapon projectiles can now target minables. (@TomGoodIdea)
+      * In entering/transition missions, the "<origin>" text substitution will now be replaced by the name of the system the mission was offered in. (@Amazinite)
+      * Expanded the missing plural name check for outfits and ships. (@ThrawnCA)
+      * The player can now receive information from scanners on escorts, instead of only the flagship. (@Amazinite)
+      * Raid fleets can now be disabled with a gamerule. (@Amazinite)
+  * Graphics:
+    * The hyperspace flash, camera acceleration, and landing zoom settings are now off by default. (@warp-core)
+    * HUD elements no longer blink while landed. (@TomGoodIdea)
+    * Spaceports can now have their own landscape image, distinct from the planet landscape. (@nickshanks)
+    * Planets can now list multiple landscapes; one will be chosen at random on each landing. (@nickshanks)
+    * Added a preference to highlight all ships or only your escorts, in addition to the existing preference to highlight just your flagship. (@Amazinite)
+    * The main zoom factor no longer has an upper limit of 200%. The exact limit now only depends on the game window size. (@Amazinite)
+  * User interface:
+    * Move orders issues from the map can now be canceled. (@TomGoodIdea)
+    * Added a visual indicator for incoming nuclear missiles to the HUD. (@TomGoodIdea)
+    * Pausing the game now plays a sound. (@Terin)
+    * An offering mission will now include markers for tracked NPCs as well as the destination on the map. (@Amazinite)
+    * The map marker for the destination of a mission that has already failed will no longer blink. (@Amazinite)
+    * Updated the help message about help messages to account for the help message reset setting moving page. (@TomGoodIdea)
+    * Added a message about transferred fuel and energy when boarding a ship. (@Amazinite)
+    * Added separate buttons for selling outfits and minables to the trading panel, with optional confirmation dialogs. (@xobes, @UnorderedSigh)
+    * Added a setting to disable the demand tribute confirmation dialog. (@Amazinite)
+    * The behavior of the ammunition refill dialog can now be customized. (@Amazinite)
+  * Performance:
+    * Enabled optional deferred loading for scene, thumbnail, planet, and star sprites. Intended for use on systems with low VRAM. (@Amazinite)
+    * Fleets assigned to a system are no longer looped over when the fleet multiplier gamerule is zero. (@Amazinite)
+  * Under the hood:
+    * The map sales key is now defined by an interface. (@nickshanks)
+    * Replaced various different constructors of the Dialog class with static methods. (@Amazinite)
+    * Moved sprite and animation properties of the Body class into a new parent: Drawable. (@nickshanks)
+    * Standardized the style of const pointer declarations. (@TomGoodIdea)
+    * The radar scale is now controlled by an interface value. (@Amazinite)
+    * Added a unique error message for when an @2x image is ignored because no corresponding standard size image exists. (@Amazinite)
+    * Include cmath header for some gcc implementations. (@carlo-bramini)
+    * Created a PilotProfile class for tracking properties of a pilot which are the same across all of it's snapshots. (@Amazinite)
+  * Documentation:
+    * Updated the version of gcc listed in the build instructions. (@TomGoodIdea)
+  * CI/CD and development environment:
+    * Disabled sanitizers when compiling on cygwin. (@carlo-bramini)
+    * GitHub Actions workflows now use lukka/get-cmake v4.2.3 instead of the latest version, to avoid issues when using some newer versions. (@TomGoodIdea)
+    * Updated some SDL adjacent code to fix integration tests in the Steam Linux environment. (@tibetiroka)
+    * Improved the code style checker's ability to detect incorrectly formatted copyright headers and fixed some issues it had previously missed. (@xobes)
+
 Version 0.11.0:
   * Breaking changes:
     * The Hai Reveal storyline has been removed from the game. Only about a dozen missions were ever available, they conflict with the plot of other storylines, and no progress has been made on the storyline in several years, so we've opted to remove it for now. (@Amazinite)
