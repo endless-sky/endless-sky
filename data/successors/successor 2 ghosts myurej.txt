@@ -86,7 +86,7 @@ mission "Successors: Ghosts Myurej 1"
 			action
 				"successors: ghosts suspicion" ++
 			`	Exploring the visitor-accessible part of the station is an unusual experience - there's a striking contrast between the presence of all the advanced technologies of the Successors and the fact that so many of them are in such disrepair. You've seen Successor constructions that are hundreds or even thousands of years old in better condition than those here. You try to talk to a few of the Successors around here about Riiria, but they all quickly dismiss you, most without even saying a word.`
-			`	Eventually you find your way to a shop of some sort, what looks like a gutted Myaede bolted to the station's structure and filled with displays of fabric and ship parts, all attended to by about a dozen small robots running on tracks on the ceiling. They follow you around like a school of fish - a couple of them have some ominous-looking apertures on their front. Suddenly, you hear the edited sound of Successor speech behind one of the displays of what looks like engine injectors. A small screen is projecting an image of a speaking Successor:`
+			`	Eventually you find your way to a shop of some sort - what looks like a gutted Myaede bolted to the station's structure and filled with displays of fabric and ship parts, all attended to by about a dozen small robots running on tracks on the ceiling. They follow you around like a school of fish; a couple of them have some ominous-looking apertures on their front. Suddenly, you hear the edited sound of Successor speech behind one of the displays of what looks like engine injectors. A small screen is projecting an image of a speaking Successor:`
 			`	"...violence against Kaatrij is about us, too, siblings! The only one of the Houses who bothers t'give us the cant of an arm! For long the Old've wanted us gone entire, and believe me, this'll be the start'f it! Well, 'f they come for us, Riiria will make them bleed like I always do!" The transmission cuts out there, and with no further leads on Riiria's location, you decide to track down Myurej's contact.`
 			label contact
 			`	The Myurej merchant captain turns out to be almost a kilometer down the station's perimeter among some loading docks that station control apparently doesn't send unfamiliar ships to. They're directing several members of their crew to offload some crates - one of them has been dropped and has spilled out a collection of unfamiliar metal baubles.`
@@ -147,7 +147,7 @@ mission "Successors: Ghosts Myurej 3"
 	on complete
 		conversation
 			`Not longer after you guide the <ship> through this station's docking aperture, you see parked on one of the disused landing pads a clearly unpowered Successor freighter. It's in poor condition; much of the hull armor has been removed and a hole has been bored down through the top right over the generator bay.`
-			`	Fortunately, your ship's scanners are still able to identify its identification number, and you scrabble for House Myurej's data-sphere to check it against the data Myurej provided you. This is the ship you were sent to find, you determine.`
+			`	Fortunately, your ship's scanners are still able to identify its identification number, and you scramble for House Myurej's data-sphere to check it against the data Myurej provided you. This is the ship you were sent to find, you determine.`
 			choice
 				`	(Use your cargo scanner to identify its cargo.)`
 					to display
@@ -375,7 +375,7 @@ mission "Successors: Ghosts Myurej 5"
 			choice
 				`	"Let's just focus on what we're here for."`
 					goto next
-				`	"With the contents of a vault like this, any of the Houses could dominate the others, couldn't it?"`
+				`	"With the contents of a vault like this, any of the Houses could dominate the others, couldn't they?"`
 			`	One of the soldiers says something to Ijaset, loud enough for you to hear, but in a dialect your translation device doesn't pick up. They nod. "Kaatrij wounded, the People's Houses in disarray, even fair Myurej soon to be drawn ever closer to Chydiyi. 'Tis a time of change and the uncertain. With the contents of a vault as this, any of the Houses could make their own certainty."`
 			label next
 			`	Ijaset confers with their datapad and leads the three of you a couple of degrees along the great room's circumference, stopping in front of one of the insets. They produce from a pocket a gilded data-sphere that they press into its face, and you watch as the golden strands encircling it lay themselves out on the front of the surface, forming a fractal web of glittering metal. When they finally stop moving, the whole face of the inset liquefies, gold and all. Behind it lies a deep circular room stacked with elegant wooden boxes. The four of you enter and Ijaset collects a few small items, most no larger than your hand. They give most to the soldiers, but reserve three or four to carry themself.`

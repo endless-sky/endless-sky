@@ -32,7 +32,7 @@ mission "Successors: Ghosts Aqrabe 1"
 				`	"No, thank you."`
 					decline
 			label reliquary
-			`	They lead you through several restricted areas of the spaceport to a thin tower on its periphery. The room you enter into is tremendous and circular; a shallow watery depression in the center is matched by an enormous semicircular tank that bulges down from above, almost touching the floor as it swoops towards the wet floor. What's inside it proves even more striking, however: soon, what look like the severed limbs of Successors begin to writhe downwards in the tank, each suspended by a number of glittering golden threads that snake up into the dark abyss of the overhead water. You look around to ask your guide what's happening, but they have already left. One of the arms rubs up against the glass, its undead suckers making faint popping sounds as they pass over it.`
+			`	They lead you through several restricted areas of the spaceport to a thin tower on its periphery. The room you enter into is tremendous and circular; a shallow watery depression in the center is matched by an enormous semicircular tank that bulges down from above, almost touching the wet floor as it swoops towards it. What's inside it proves even more striking, however: soon, what look like the severed limbs of Successors begin to writhe downwards in the tank, each suspended by a number of glittering golden threads that snake up into the dark abyss of the overhead water. You look around to ask your guide what's happening, but they have already left. One of the arms rubs up against the glass, its undead suckers making faint popping sounds as they pass over it.`
 			choice
 				`	(Reach out to touch it.)`
 				`	(Leave it alone.)`
@@ -218,7 +218,7 @@ mission "Successors: Ghosts Aqrabe 4"
 		has	"Successors: Ghosts Aqrabe 3: done"
 	on offer
 		conversation
-			`Tiliia stands waiting for you in the same statue garden they met you earlier, though this time they are alone, tapping at a metallic pad under an overhanging light. They offer a curt greeting of colors when they see you. "I've news both foul and fair for thee," they say. "Thy craft shall not suit for our task. Perhaps with a year of study it could be adapted to our aims, but Aqrabe and I agree that would not do."`
+			`Tiliia stands waiting for you in the same statue garden where they met you earlier, though this time they are alone, tapping at a metallic pad under an overhanging light. They offer a curt greeting of colors when they see you. "I've news both foul and fair for thee," they say. "Thy craft shall not suit for our task. Perhaps with a year of study it could be adapted to our aims, but Aqrabe and I agree that would not do."`
 			choice
 				`	"So what is the good news?"`
 				`	"So is that it for this?"`
@@ -351,7 +351,7 @@ mission "Successors: Ghosts Aqrabe 5"
 			action
 				set "successors confronted tiliia"
 			`	Tiliia looks down at you with interest. "Perhaps I guess what thou mean'st, but tell me more, if it pleases thee."`
-			`	"Well," you say, "the People's Houses don't seem happy with their lot, nor do the Predecessor planets I've seen look very comfortable. Not that humans don't have our own problems, but it seems like even thousands of years of 'waves upon the bright shore' haven't made the Successors totally enlightened. Supplying you with keystones might help us both right now, but who knows what'll come of it in the future?"`
+			`	"Well," you say, "the People's Houses don't seem happy with their lot, and the Predecessor planets that I've seen don't look very comfortable. Not that humans don't have our own problems, but it seems like even thousands of years of 'waves upon the bright shore' haven't made the Successors totally enlightened. Supplying you with keystones might help us both right now, but who knows what'll come of it in the future?"`
 			`	A spark of anger flashes over Tiliia's face, but only briefly, and they seem to push their skin back to its most neutral color. "There's no undoing what's already wrought," they say. "Sad as it might be." They pause for a moment. "I'll hope to see thee in the spaceport nonetheless, captain."`
 				goto end
 			label far-fetched
@@ -398,7 +398,7 @@ mission "Successors: Ghosts Aqrabe 7"
 	on offer
 		conversation
 			`Several minutes pass after landing before the hull of the <ship> has cooled enough to make it safe for exit - despite Kaatrij's loaned technology, the ship's armor still glows red-hot. The interior of the garden's loading bay is cavernous, the tangled metal strands drawn inside onto giant spools each many meters in diameter.`
-			`	Your crew gets to work under the supervision of Tiliia and Kaatrij's observer, removing small bits of metal from the rolls and carting them, one by one, onto the ship. Soon, Tiliia calls you over to a side section of the facility, and points out one of spools - unlike the others, this one is entirely empty.`
+			`	Your crew gets to work under the supervision of Tiliia and Kaatrij's observer, removing small bits of metal from the rolls and carting them, one by one, onto the ship. Soon, Tiliia calls you over to a side section of the facility, and points out one of the spools - unlike the others, this one is entirely empty.`
 			`	"It would seem to me that our visit here is not the first, Captain," they say.`
 			choice
 				`	"Who might have done this?"`
