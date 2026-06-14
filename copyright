@@ -3932,6 +3932,92 @@ License: public-domain
  government employees while doing work for the government.
 
 Files:
+ images/land/beach19*
+Copyright: Giorgio Galeotti
+License: CC-BY-4.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Plage_de_Kersiguénou_-_Crozon,_Finistère,_France_-_August_17,_2018_02.jpg. Cropped and edited.
+
+Files:
+ images/land/beach20*
+Copyright: kallerna
+License: CC-BY-4.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Saksun_2019_2.jpg. Cropped and edited.
+
+Files:
+ images/land/dune7*
+Copyright: ESO/Gerhard Hüdepohl
+License: CC-BY-4.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Thunderbolts_and_lightning.jpg and cropped.
+
+Files:
+ images/land/hills14*
+Copyright: Daniel Läubli
+License: CC-BY-3.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Green_hills_of_Kamchatka_with_cloud_(179253499).jpg and cropped.
+
+Files:
+ images/land/hills15*
+Copyright: John Muir Fan 86
+License: CC-BY-SA-4.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:At_Valley_of_Flowers.jpg and cropped.
+
+Files:
+ images/land/lava16*
+Copyright: Areuland
+License: CC-BY-4.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Tjarnargígur.jpg and cropped.
+
+Files:
+ images/land/mountain46*
+Copyright: Abel Cerezuela Sanjulián
+License: CC-BY-SA-3.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Pliegues_en_la_zona_alrededor_del_Castillo_de_Acher.jpg and cropped.
+
+Files:
+ images/land/water33*
+Copyright: Simo Räsänen
+License: CC-BY-SA-4.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Fish_farming_on_Øksfjorden_in_Loppa,_Troms_og_Finnmark,_Norway,_2022_August.jpg and cropped.
+
+Files:
+ images/land/fog16*
+Copyright: Matthias Süßen
+License: CC-BY-SA-4.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Jagst-Langenburg-2022_05_msu-9895-.jpg. Cropped and edited.
+
+Files:
+ images/land/hills16*
+Copyright: Michal Klajban
+License: CC-BY-SA-4.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Rain_over_Beinn_Eich,_Luss_Hills,_Scotland.jpg and cropped.
+
+Files:
+ images/land/forest16*
+Copyright: Luis Scheuermann
+License: CC-BY-SA-4.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Schliffkopfblick,_Nationalpark_Schwarzwald.jpg and cropped.
+
+Files:
+ images/land/snow40*
+Copyright: U.S. National Park Service
+License: public-domain
+ From the U.S. National Park Service, and therefore in the public domain because it was created by
+ government employees while doing work for the government.
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Winter_in_the_high_desert_(a31d5dc1-1dd8-b71b-0b46-a59c33d479a2).jpg. Cropped and edited.
+
+Files:
+ images/land/desert20*
+Copyright: Jjm2311
+License: CC-BY-SA-4.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:200428_1500_Dramatic.jpg. Cropped and edited.
+
+Files:
+ images/land/desert21*
+Copyright: Lucash
+License: CC-BY-SA-3.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Salar_Maricunga_Atacama.jpg. Cropped and edited.
+
+Files:
  images/holovid?zone*
  images/phantom?pallet*
 Copyright: None (placed in public domain by an anonymous author)
@@ -4009,6 +4095,12 @@ Comment:
  Unsplash License. They were also most likely uploaded after
  February 2018, so they are subject to an additional restriction
  limiting the sale of unaltered copies.
+
+Files:
+ images/land/tundra1
+Copyright: Martin Cigler
+License: CC-BY-SA-3.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Mug_close_to_the_Kulusuk_airport_-_panoramio.jpg
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

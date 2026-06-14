@@ -259,7 +259,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	{
 		if(Preferences::Has("Confirm selling minables"))
 			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SellOutfitsOrMinables(true); },
-				OutfitSalesMessage(true), 2, Truncate::NONE, true));
+				OutfitSalesMessage(true), 1, Truncate::NONE, true));
 		else
 			SellOutfitsOrMinables(true);
 	}
@@ -267,7 +267,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	{
 		if(Preferences::Has("Confirm selling outfits"))
 			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SellOutfitsOrMinables(false); },
-				OutfitSalesMessage(false), 2, Truncate::NONE, true));
+				OutfitSalesMessage(false), 1, Truncate::NONE, true));
 		else
 			SellOutfitsOrMinables(false);
 	}
