@@ -1443,7 +1443,7 @@ ship "Falcon" "Falcon (Flamethrower)"
 	gun "Plasma Cannon"
 	gun "Plasma Cannon"
 	turret "Anti-Missile Turret"
-	turret "Quad Blaster Turret"
+	turret "Blaster Turret"
 	turret "Quad Blaster Turret"
 	turret "Quad Blaster Turret"
 
