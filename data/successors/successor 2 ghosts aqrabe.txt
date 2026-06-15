@@ -112,7 +112,7 @@ mission "Successors: Ghosts Aqrabe Hai"
 		has "Successors: Ghosts Aqrabe 1: declined"
 	to offer
 		has "Successors: Ghosts 4: offered"
-		#has "First Contact: Hai: offered"
+		has "First Contact: Hai: offered"
 	on complete
 		conversation "successor keystone delivery"
 		outfit "Quantum Keystone" -50
