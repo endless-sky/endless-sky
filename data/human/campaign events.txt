@@ -1343,17 +1343,24 @@ event "memorial on Deep"
 event "flamethrower available"
 	outfitter "Kraz Advanced"
 		"Flamethrower"
+	fleet "Small Free Worlds"
+		variant 3
+			"Fury (Laser)"
+			"Fury (Flamethrower)"
+		variant 2
+			"Hawk"
+			"Fury (Flamethrower)"
+		variant 1
+			"Fury (Flamethrower)"
+			"Sparrow" 2
 	fleet "Large Free Worlds"
-		add variant 1
-			"Falcon (Flamethrower)"
-		add variant 1
-			"Falcon (Flamethrower)"
-			"Hawk" 2
-			"Sparrow" 3
-		add variant 1
-			"Falcon (Flamethrower)"
-			"Bastion (Heavy)"
-			"Hawk (Rocket)"
+		variant 2
+			"Osprey (Laser)"
+			"Fury (Flamethrower)"
+		variant 1
+			"Falcon (Heavy)"
+			"Fury (Flamethrower)" 2
+			"Sparrow" 4
 
 
 
@@ -1483,12 +1490,12 @@ event "fw gets catalytic ramscoop"
 	# The Free Worlds start to use flamethrowers in a significant extent
 	# only after the catalytic ramscoop makes it a reasonable choice.
 	fleet "Small Free Worlds"
+		add variant 3
+			"Fury (Flamethrower Blaster)"
+			"Fury (Missile)"
 		add variant 2
 			"Hawk"
 			"Fury (Flamethrower Blaster)"
-		add variant 2
-			"Fury (Flamethrower Blaster)"
-			"Fury (Missile)"
 		add variant 1
 			"Osprey (Flamethrower)"
 	fleet "Large Free Worlds"
@@ -1499,14 +1506,14 @@ event "fw gets catalytic ramscoop"
 			"Bastion (Heavy)"
 			"Osprey (Flamethrower)"
 		add variant 1
-			"Falcon (Flamethrower Catalytic)"
+			"Falcon (Flamethrower)"
 		add variant 1
-			"Falcon (Flamethrower Catalytic)"
+			"Falcon (Flamethrower)"
 			"Hawk"
 			"Hawk (Plasma)"
 			"Sparrow" 3
 		add variant 2
-			"Falcon (Flamethrower Catalytic)"
+			"Falcon (Flamethrower)"
 			"Bastion (Heavy)"
 			"Hawk (Rocket)"
 		add variant 2
@@ -1514,7 +1521,7 @@ event "fw gets catalytic ramscoop"
 			"Fury (Flamethrower Blaster)" 2
 			"Sparrow" 2
 		add variant 2
-			"Falcon (Flamethrower Catalytic)"
+			"Falcon (Flamethrower)"
 			"Fury (Flamethrower Blaster)" 2
 			"Sparrow" 4
 	# Pirates don't use Catalytic Ramscoops, but we simulate that they adopted the flamethrower
