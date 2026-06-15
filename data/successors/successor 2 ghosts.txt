@@ -479,7 +479,7 @@ mission "Successors: Ghosts Mark Houses"
 	entering
 	destination "Shassa-Wyra-Orrou"
 	name "Investigate the other High Houses"
-	description "House Seineq is interested in what tasks the other Houses might offer a free agent. Their homeworlds would be a good place to find work for them."
+	description "House Seineq is interested in what tasks the other Houses might offer a free agent. Their homeworlds would be a good place to investigate their activities."
 	to offer
 		has "Successors: Ghosts 4: declined"
 	to fail
