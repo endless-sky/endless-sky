@@ -375,6 +375,9 @@ mission "Successors: Ghosts Aqrabe 6"
 	passengers 2
 	to offer
 		has	"Successors: Ghosts Aqrabe 5: done"
+		has "cargo space free" 40
+	blocked
+		"You need to have 40 tons of cargo space free to bring back enough stellar metal from <destination>."
 	on offer
 		conversation
 			`You meet Tiliia and House Kaatrij's observer back in the hangar bay with the specially-equipped Vujlet, which now gleams all over with an oily, iridescent sheen. Tiliia and the observer are in the middle of a heated conversation; you catch a bit of something ending "...foolish to trust an alien," from the observer.`
@@ -394,6 +397,8 @@ mission "Successors: Ghosts Aqrabe 7"
 	passengers 2
 	to offer
 		has	"Successors: Ghosts Aqrabe 6: done"
+	blocked
+		"You will need <capacity> to collect the stellar metal. Return in the modified Vujlet when you have the space free."
 	on offer
 		conversation
 			`Several minutes pass after landing before the hull of the <ship> has cooled enough to make it safe for exit - despite Kaatrij's loaned technology, the ship's armor still glows red-hot. The interior of the garden's loading bay is cavernous, the tangled metal strands drawn inside onto giant spools each many meters in diameter.`
