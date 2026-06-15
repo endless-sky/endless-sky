@@ -171,7 +171,7 @@ mission "Successors: Ghosts Aqrabe 3"
 			choice
 				`	"I have."`
 				`	"Where are you going with this?"`
-			`	Tiliia continues. "The star of that system is borne upon by a number of stellar metal gardens, or at least 'twas fifteen hundred years ago. Their bounty is here the key to our success. Forty tons or so would be enough to subdivide those keystones to supply all of the New Houses. We could render our wormhole-crossing armor obsolete - improve our probes, perform more archaeology." They pause, and a wave of color bounds down their limbs. "It could even help solve this present mystery of ours. So what thinks thou?"`
+			`	Tiliia continues. "The star of that system is borne upon by a number of stellar metal gardens, vast stations to grow in the star's harsh radiation the rare metals necessary to our works. Their bounty is here the key to our success. Forty tons or so would be enough to subdivide those keystones to supply all of the New Houses. We could render our wormhole-crossing armor obsolete - improve our probes, perform more archaeology." They pause, and a wave of color bounds down their limbs. "It could even help solve this present mystery of ours. So what thinks thou?"`
 			choice
 				`	"You want me to fly into a star? Are you crazy?"`
 					goto shocked
@@ -289,7 +289,9 @@ mission "Successors: Ghosts Aqrabe 5"
 			`Both your ship and the Vujlet are directed to an enormous outfitting bay at <planet>'s spaceport, easily large enough for both craft ten times over. As you disembark, you notice several Successors are entering the landed Vujlet with large carts of equipment in tow, much of which is locked away in unmarked metallic cases. Notably, Kaatrij's representative remains onboard, keeping their distance from the Aqrabe ground crews. Tiliia spots you from an overhanging balcony and waves you over.`
 			`	"A lovely craft, is it not, Captain? Thou hast not flown one of our martial craft before, hast thou?."`
 			choice
+				`	"It was fascinating. It must be very efficient to command."`
 				`	"A ship is a ship, really."`
+					goto unimpressed
 				`	"It's not my first Successor craft, you know."`
 					to display
 						or
@@ -302,10 +304,13 @@ mission "Successors: Ghosts Aqrabe 5"
 							has "ship model (all): Ojde"
 							has "ship model (all): Stolsaqra"
 					goto experienced
+			`	Tiliia hums briefly. "Such is the intention for all our warships," they say. "They are perhaps not as artful as they should be, but I suspect thou shalt find this craft as efficient as thou imaginest."`
+				goto next
+			label unimpressed
 			`	Tiliia makes a short humming sound. "Perhaps," they say. "Thou shalt have the opportunity to decide for thyself soon enough."`
 				goto next
 			label experienced
-			`	Tiliia ripples with an emotion that's difficult to place, one tinted with shades of pride.`
+			`	Tiliia ripples with an emotion that's difficult to place; its colors seem to hint of pride and satisfaction.`
 			label next
 			`	The re-armoring process begins soon after, massive metallic arms folding down from the top of the bay to scan over the surface of the ship. At certain points, flying drones emerge from the sides of the hangar to dispense some additional material onto the vessel or to perform scans, projecting shape after shape onto the warbling hull in many-colored laser light. After a while of watching, Tiliia leans over to you. "The process will take some more hours," they say. "The armor to cross the wormhole is a more complicated kind than the others. I'll leave thee to thine own pursuits for now - though, I plan to go among the statue garden for a while, and if it pleases thee, thou mayst join me there."`
 			choice
