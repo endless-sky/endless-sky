@@ -644,7 +644,7 @@ mission "Successors: Ghosts 6"
 				has "successors kaatrij patron"
 
 			action
-				log "People" "Saajret, of Somber Sejra" "Saajret, of Somber Sejra is an archivist, among other things, for the Successor High House Kaatrij. They are a member of the noble lineage of the now-defunct House Sejra, some of whose citizens were absorbed into House Kaatrij during the partial collapse of their Predecessors' society."
+				log "People" "Saajret, of Somber Sejra" "Saajret, of Somber Sejra is an archivist, among other things, for the Successor High House Kaatrij."
 			`	"My role here is... something of an archivist," Saajret says, "collecting and ordering information, items, records, of our Predecessors 'fore we left that period behind. Kaatrij believes certain data about the creatures on the old homeworld would be of use to them, and since thou now providest them the opportunity," they say, spreading their arms in a wide gesture, "Kaatrij is willing to compensate thee for taking me there to scan them."`
 				goto choices
 
@@ -1098,7 +1098,7 @@ mission "Successors: Ghosts 10"
 			branch "was discreet"
 				has "Successors: Ghosts: discreet"
 
-			`	"A shame," your interrogator says, making a motion with one of their arms; behind them, one of the guards raises their rifle. Instinctually, you go to grab your own sidearm, only to remember that it was taken from you minutes ago just as the guard's railgun round pierces your body.`
+			`	"A shame," your interrogator says, making a motion with one of their arms; behind them, one of the guards raises their rifle. Instinctively, you go to grab your own sidearm, only to remember that it was taken from you minutes ago just as the guard's railgun round pierces your body.`
 				die
 
 			label "was discreet"
@@ -1568,7 +1568,7 @@ mission "Successors: Ghosts 16"
 				`	"What's with the Myiara and these massive constructions?"`
 				`	"How far down are we going?"`
 					goto down
-			`	Saajret is speckled with mirth and hums. "Myiara?" they say. "'Twas the Quarg that told thee this, no doubt. Ah, but to answer thy query: for Kaatrij at least, 'twas a simple matter of geometry. To cloak a station is a function of its armor, its surface - the power to feed that cloak is a function of its volume. A larger citadel was more efficient to hide away." They rub the tips of two of their arms over a data-sphere embedded in the elevator pod.`
+			`	Saajret is speckled with mirth and hums. "Myiara?" they say. "'Twas the Quarg that told thee this, no doubt. Ah, but to answer thy query: after the discovery of cloaks, Kaatrij's outposts grew smaller and more independent. This one was simply older, and 'twas no challenge in the day to clad even a citadel such as this in stellar metal. That way, even small generators could cloak it whole." They rub the tips of two of their arms over a data-sphere embedded in the elevator pod.`
 			choice
 				`	"How far down are we going?"`
 
@@ -1792,6 +1792,8 @@ mission "Successors: Ghosts 19"
 		ship "Vujlet-Usaqri (Keystone)" "Siij, of Able Ej"
 		ship "Vujlet-Usaqri (Keystone)" "Luatet, Gentle Song"
 		ship "Vujlet-Usaqri (Keystone)" "Ruu, of Votive Naaq"
+		on kill
+			set "Successors: Ghosts support fleet died"
 	on offer
 		event "successors: ghosts abandoned kaatrij" 3
 	on complete
@@ -1802,19 +1804,33 @@ mission "Successors: Ghosts 19"
 			`	Saajret slithers off almost immediately, only offering a hasty promise of their return and a poorly-concealed tint of satisfaction. You don't have to wait long, though; by the time the spaceport's automated repair arms have folded down to assess the <ship>'s battle damage, you notice Saajret coming back, Kampa and a smattering of Kaatrij officers at their side. Though none of the base's Quarg join them, you notice one watching the scene from one of the rooms overlooking the spaceport.`
 			`	Kampa speaks first as they lead you away from your ship and into a more secluded region of the port. "'Tis good that thou prevail'd," they say, sharing in Saajret's satisfaction. "'Twas a fraught battle, I trust?"`
 			choice
-				`	"Indeed."`
+				`	"Indeed. We were lucky it was just one ship."`
 					goto next
+				`	"It was. I'm sorry none of your own crews survived."`
+					to display
+						has "Successors: Ghosts support fleet died"
+					goto mournful
 				`	"I've fought tougher."`
 
 			`	"Indeed?" Kampa says. "Later thou shalt have to tell us more of this."`
 
+			label mournful
+			`	"As are we," says Kampa. "But their names shall be honored ones for their courage and devotion."`
 			label next
 			`	They produce a data-sphere from their outfit and offer it to you. As you take it, they continue, "I shall enjoy debriefing thee after our conversation here, but for now, Kaatrij has seen fit to offer thee a reward for thy able service. Since thou has yet to receive the ability to purchase our technologies, today 'tis purely monetary. The sphere authorizes the transfer of <payment> to thee."`
 			choice
+				`	"Has this brought us any closer to knowing which House committed the attacks?"`
 				`	"And what about purchasing your technology, since you mention it?"`
+					goto technology
 				`	"Thank you. It's most generous."`
 					goto generous
 
+			`	Kampa nods. "It shall, if fortune favors us. We've dispatched fleets to examine the wreckage left after the fray. There is little chance anything clearly identifying remains, but the wreckage may give valuable context to our intelligence."`
+			`	Saajret interjects. "That wedding 'tween Myurej and Chydiyi, too, offers us an opportunity to observe the other Houses in the wake of this. One there has been wounded now, and we shall see if it shows."`
+			`	"Such a gathering also fulfills the treaty conditions under which we may offer thee our license," says Kampa. "In short, we await it eagerly."`
+				goto "what now"
+
+			label technology
 			`	Saajret nods here. "That wedding 'tween Myurej and Chydiyi is likely to happen soon," they say. "Thy time of shrouded service to Kaatrij has come to its close; with all the Houses there, 'tis a fair opportunity to present thee with our license."`
 			`	"Thou hast done service to other Houses, too," Kampa says, "so it should be 'thout much resistance."`
 				goto "what now"
