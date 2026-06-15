@@ -12,17 +12,12 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Successors: Ghosts Aqrabe 1"
+	invisible
 	landing
-	name "Keystone delivery"
-	description "House Aqrabe wants 50 quantum keystones at <destination>."
 	source "Kasii-Cavasaa-Oa"
 	destination "Kasii-Cavasaa-Oa"
 	to offer
-		or
-			and
-				has "successors: ghosts stage 1"
-				random < 15
-			has "Successors: Ghosts 4: offered"
+		has "Successors: Ghosts 4: offered"
 	on offer
 		conversation
 			`Shortly after landing here, you are approached by a tall Successor in unusual dress; though dark, it shimmers in the light with many little golden flecks. It is unlike any other Successor outfit you've seen. "Greetings, Captain," they say, curiously sonorous. "Noble House Aqrabe kindly requests thy presence in the eastern spaceport reliquary. I've been instructed to take thee there, at thy own discretion, of course."`
@@ -76,45 +71,49 @@ mission "Successors: Ghosts Aqrabe 1"
 				accept
 	to complete
 		or
-			has "Successors: Ghosts Aqrabe Remnant: offered"
-			has "Successors: Ghosts Aqrabe Hai: offered"
+			has "Successors: Ghosts Aqrabe Remnant: done"
+			has "Successors: Ghosts Aqrabe Hai: done"
 	on complete
 		log "Delivered a shipment of quantum keystones to House Aqrabe for study and installation on their ships."
 
 conversation "successor keystone delivery"
-	`(You have collected the fifty keystones requested by House Aqrabe. Would you like to turn them in?)`
-	choice
-		`	(Yes.)`
-		`	(Not right now.)`
-			defer
-	`	You ask around at the spaceport, and you are soon directed to a side outfitting bay that seems to be the domain of some of House Aqrabe's more unorthodox efforts - the walls are draped with strange-looking fabrics, and a couple of unusual, abstract statues dot the facility. In the center, a ship-mounted scanner is in the midst of being deconstructed; as you walk in, a Successor pops their head around from behind it.`
+	`	As soon as you inform traffic control that you are returning with the fifty keystones that House Aqrabe requested, your ship is directed to a side hangar surrounded by multiple small outfitting bays. Most are shuttered, but one is brightly lit and full of activity. It seems to be the domain of some of House Aqrabe's more unorthodox research efforts - the walls are draped with strange-looking fabrics, and a couple of unusual, abstract statues dot its interior. In the center, a ship-mounted scanner is in the midst of being deconstructed; as you walk in, a Successor pops their head around from behind it.`
 	`	"Captain <last>?" they ask.`
 	`	"Yes?"`
 	`	They slither forward towards you and splay their arms in the traditional gesture. "Tiliia," they offer as an introduction. "I was told to expect thine arrival. Thou hast brought," and they pause to pronounce the word, "keystones, yes?"`
 	`	"I have," you say. "Fifty keystones, as was requested." Tiliia joins you in walking back to the <ship> to examine the cargo; when they're sufficiently satisfied that you've brought the proper amount, they pull out a data-pad and enter a couple of values. Though their eyes widen when you provide them with your receipts, they nonetheless confirm a few moments later that House Aqrabe has credited you to offset the purchase price of the keystones, plus a three hundred thousand-credit bonus.`
 	`	As they begin directing ground crews to offload the keystones, Tiliia turns to you for a moment and requests that you meet them back at the spaceport by the end of the day: "thine assistance might be a boon to us in the next part of this journey," they say.`
-		decline
 
 mission "Successors: Ghosts Aqrabe Remnant"
 	landing
+	name "Source keystones from the Remnant"
+	description "House Aqrabe wants a total of 50 Quantum Key Stones at <destination>, which can be obtained in bulk from the Remnant."
 	source "Kasii-Cavasaa-Oa"
+	mark "Pantica"
 	to fail
 		has "Successors: Ghosts Aqrabe Hai: done"
+		has "Successors: Ghosts Aqrabe 1: declined"
 	to offer
-		has "Successors: Ghosts Aqrabe 1: offered"
-	on offer
+		has "Successors: Ghosts 4: offered"
+		has "license: Remnant"
+	on complete
 		conversation "successor keystone delivery"
 		outfit "Quantum Key Stone" -50
 		payment 12300000
 
 mission "Successors: Ghosts Aqrabe Hai"
 	landing
+	name "Source keystones from the Hai"
+	description "House Aqrabe wants a total of 50 Quantum Keystones at <destination>, which can be obtained in bulk from the Hai."
 	source "Kasii-Cavasaa-Oa"
+	mark "Ya Hai"
 	to fail
 		has "Successors: Ghosts Aqrabe Remnant: done"
+		has "Successors: Ghosts Aqrabe 1: declined"
 	to offer
-		has "Successors: Ghosts Aqrabe 1: offered"
-	on offer
+		has "Successors: Ghosts 4: offered"
+		#has "First Contact: Hai: offered"
+	on complete
 		conversation "successor keystone delivery"
 		outfit "Quantum Keystone" -50
 		payment 900000
@@ -129,12 +128,12 @@ mission "Successors: Ghosts Aqrabe 2"
 	passengers 1
 	to offer
 		or
-			has "Successors: Ghosts Aqrabe Remnant: declined"
-			has "Successors: Ghosts Aqrabe Hai: declined"
+			has "Successors: Ghosts Aqrabe Remnant: done"
+			has "Successors: Ghosts Aqrabe Hai: done"
 	on offer
 		log "People" "Tiliia" "Tiliia is an engineer belonging to the Successor House Aqrabe."
 		conversation
-			`Tiliia meets you in a tucked-away part of the spaceport that's filled with strange statuary, where they stand in conversation with a small group of Successors. They brighten as they see you approach and offer a perfunctory splay of the arms. "Captain, captain," they say. "Thou returnest with no time to squander. We mean to ply a journey of understanding cross the wormhole; one fellow captain here means to use one of thy keystones, the other, our weft-weaving armor. Thy own craft would be valuable as a place to gather data from the other two, to see how they perform across the rift."`
+			`Tiliia meets you in another tucked-away part of the spaceport that's filled with strange statuary, where they stand in conversation with a small group of Successors. They brighten as they see you approach and offer a perfunctory splay of the arms. "Captain, captain," they say. "Thou returnest with no time to squander. We mean to ply a journey of understanding cross the wormhole; one fellow captain here means to use one of thy keystones, the other, our weft-weaving armor. Thy own craft would be valuable as a place to gather data from the other two, to see how they perform across the rift."`
 			choice
 				`	"Couldn't you do that without me?"`
 				`	"Where exactly are we going?"`
