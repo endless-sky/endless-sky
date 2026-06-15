@@ -430,10 +430,6 @@ ship "Vujlet" "Vujlet (Stellar)"
 		"Cargo Expansion" 2
 
 		"Radiant Shield Shunt"
-	gun
-	gun
-	gun
-	gun
 
 
 ship "Vujlet" "Vujlet (Stellar Light Armor)"
@@ -453,10 +449,6 @@ ship "Vujlet" "Vujlet (Stellar Light Armor)"
 		"Cargo Expansion" 2
 
 		"Radiant Shield Shunt"
-	gun
-	gun
-	gun
-	gun
 
 
 ship "Vujlet" "Vujlet (Surveillance)"
