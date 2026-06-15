@@ -1518,7 +1518,7 @@ event "fw gets catalytic ramscoop"
 			"Fury (Flamethrower Blaster)" 2
 			"Sparrow" 4
 	# Pirates don't use Catalytic Ramscoops, but we simulate that they adopted the flamethrower
-	# in relevant extent only after it became more popular and could e.g. be looted more oftenly.
+	# in relevant extent only after it became more popular and could e.g. be looted more often.
 	fleet "Small Southern Pirates"
 		add variant 1
 			"Fury (Flamethrower Pirate)"
