@@ -1421,6 +1421,38 @@ ship "Falcon" "Falcon (Flamethrower)"
 		Flamethrower 2
 		"Plasma Cannon" 2
 		"Anti-Missile Turret"
+		"Blaster Turret"
+		"Quad Blaster Turret" 2
+		"Breeder Reactor"
+		"LP036a Battery Pack"
+		"LP072a Battery Pack"
+		"D14-RN Shield Generator"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Water Coolant System"
+		"Ramscoop"
+		"Fuel Pod" 3
+		"Laser Rifle" 15
+		"Small Radar Jammer" 2
+		"Impala Plasma Thruster"
+		"X1700 Ion Thruster"
+		"Orca Plasma Steering"
+		Hyperdrive
+	gun Flamethrower
+	gun Flamethrower
+	gun "Plasma Cannon"
+	gun "Plasma Cannon"
+	turret "Anti-Missile Turret"
+	turret "Quad Blaster Turret"
+	turret "Quad Blaster Turret"
+	turret "Quad Blaster Turret"
+
+
+ship "Falcon" "Falcon (Flamethrower Catalytic)"
+	outfits
+		Flamethrower 2
+		"Plasma Cannon" 2
+		"Anti-Missile Turret"
 		"Quad Blaster Turret" 3
 		"Breeder Reactor"
 		"LP036a Battery Pack"
