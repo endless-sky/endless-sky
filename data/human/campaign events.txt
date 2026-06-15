@@ -1469,7 +1469,8 @@ event "catalytic ramscoop available"
 event "fw gets catalytic ramscoop"
 	outfitter "Delta V Advanced"
 		"Catalytic Ramscoop"
-	# FW starts to use flamethrowers after CR makes it a reasonable choice
+	# The Free Worlds start to use flamethrowers in a significant extent
+	# after the Catalytic Ramscoop makes it a reasonable choice.
 	fleet "Small Free Worlds"
 		add variant 2
 			"Hawk"
@@ -1505,7 +1506,7 @@ event "fw gets catalytic ramscoop"
 			"Falcon (Flamethrower)"
 			"Fury (Flamethrower Blaster)" 2
 			"Sparrow" 4
-	# Pirates don't use CRs, but we simulate a delay in adoption here
+	# Pirates don't use Catalytic Ramscoops, but we simulate a delay in adoption here.
 	fleet "Small Southern Pirates"
 		add variant 1
 			"Fury (Flamethrower Pirate)"
