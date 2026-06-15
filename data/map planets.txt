@@ -2733,7 +2733,7 @@ planet "Ijra-Ea, Shimmering Veil"
 		to display
 			has "Successors: Ghosts 16: done"
 	government Predecessor
-	"to land"
+	to land
 		has "Successors: Ghosts 16: offered"
 
 planet "Illbo Avo"
