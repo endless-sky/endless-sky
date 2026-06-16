@@ -7376,12 +7376,12 @@ system "Avo Chigo"
 	link "Eragaru Le"
 	link "Jentu Le"
 	link "Paru Paru"
-	asteroids "small rock" 13 5.46
-	asteroids "medium rock" 11 7.32
-	asteroids "large rock" 3 7.26
-	asteroids "small metal" 34 6
-	asteroids "medium metal" 8 6.24
-	asteroids "large metal" 30 9
+	asteroids "small rock" 35 6.0
+	asteroids "medium rock" 10 6.2
+	asteroids "large rock" 30 7.0
+	minables iron 20 5.5
+	minables copper 10 7.3
+	minables neodymium 5 7.2
 	trade Clothing 180
 	trade Electronics 850
 	trade Equipment 660
@@ -8632,11 +8632,12 @@ system "Bosuno Le"
 	link "Bunri Lemeta"
 	link "Erabu Lemeta"
 	link "Eragaru Le"
-	asteroids "small rock" 30 4.5724
-	asteroids "medium rock" 20 3.9284
-	asteroids "large rock" 5 4.508
-	asteroids "small metal" 10 5.474
-	asteroids "large metal" 56 8.4364
+	asteroids "small rock" 40 4.6
+	asteroids "medium rock" 25 3.9
+	asteroids "large rock" 10 4.5
+	minables silicon 25 4.4
+	minables aluminum 15 4.4
+	minables iron 5 5.5
 	trade Clothing 360
 	trade Electronics 660
 	trade Equipment 670
@@ -8999,12 +9000,12 @@ system "Bunri Lemeta"
 	link "Bosuno Le"
 	link "Erabu Lemeta"
 	link "Shini Bori"
-	asteroids "small rock" 2 0.8788
-	asteroids "medium rock" 25 1.69
-	asteroids "large rock" 8 1.8928
-	asteroids "small metal" 22 1.5717
-	asteroids "medium metal" 26 0.9295
-	asteroids "large metal" 14 0.9633
+	asteroids "small rock" 15 0.9
+	asteroids "medium rock" 35 1.7
+	asteroids "large rock" 20 1.9
+	minables silicon 20 1.6
+	minables uranium 5 0.9
+	minables neodymium 5 1.0
 	trade Clothing 390
 	trade Electronics 600
 	trade Equipment 620
@@ -13641,12 +13642,12 @@ system "Elabi Choati"
 	belt 1500
 	link "Elo Chigo"
 	link "Thshybo Le"
-	asteroids "small rock" 9 8.7808
-	asteroids "medium rock" 32 9.3296
-	asteroids "large rock" 4 10.4272
-	asteroids "small metal" 2 6.9776
-	asteroids "medium metal" 14 11.4464
-	asteroids "large metal" 20 11.76
+	asteroids "small rock" 10 8.8
+	asteroids "medium rock" 30 9.3
+	asteroids "large rock" 5 10.4
+	minables silicon 15 11.8
+	minables aluminum 10 11.4
+	minables titanium 5 7.0
 	trade Clothing 170
 	trade Electronics 680
 	trade Equipment 620
@@ -13813,10 +13814,10 @@ system "Elo Chigo"
 	link "Elabi Choati"
 	link "Era Natta"
 	link "Thshybo Le"
-	asteroids "medium rock" 28 2.6163
-	asteroids "large rock" 1 4.5144
-	asteroids "small metal" 3 6.3612
-	asteroids "large metal" 2 4.7709
+	asteroids "medium rock" 25 2.6
+	asteroids "large rock" 5 4.5
+	minables copper 10 4.8
+	minables silver 5 6.4
 	trade Clothing 190
 	trade Electronics 710
 	trade Equipment 640
@@ -14078,22 +14079,12 @@ system "Eneva Katta"
 	habitable 4050
 	belt 1500
 	link "Genta Bo"
-	asteroids "small rock" 1 2.431
-	asteroids "medium rock" 5 2.244
-	asteroids "large rock" 8 1.666
-	asteroids "small metal" 17 1.819
-	asteroids "medium metal" 128 2.278
-	asteroids "large metal" 10 0.935
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	asteroids "small metal" 15 1.8
+	asteroids "medium metal" 95 2.3
+	asteroids "large metal" 10 0.9
+	minables copper 25 2.4
+	minables iron 20 2.2
+	minables platinum 15 1.7
 	fleet "Bunrodea Defense" 5000
 	object
 		sprite star/g-giant
@@ -14458,21 +14449,11 @@ system "Era Natta"
 	habitable 2200
 	belt 1500
 	link "Elo Chigo"
-	asteroids "small rock" 5 4.1952
-	asteroids "medium rock" 9 4.9128
-	asteroids "large rock" 3 6.0168
-	asteroids "medium metal" 3 5.0784
-	asteroids "large metal" 1 2.9808
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	asteroids "small rock" 5 4.2
+	asteroids "medium rock" 10 4.9
+	asteroids "large rock" 5 6.0
+	minables uranium 5 5.1
+	minables lead 5 3.0
 	fleet "Bunrodea Defense" 4000
 	object
 		sprite star/f3
@@ -14522,11 +14503,12 @@ system "Erabu Lemeta"
 	link "Jentu Le"
 	link "Shini Bori"
 	link "Thshybo Le"
-	asteroids "small rock" 1 5.382
-	asteroids "medium rock" 16 3.042
-	asteroids "large rock" 60 5.226
-	asteroids "medium metal" 11 5.733
-	asteroids "large metal" 1 2.379
+	asteroids "small rock" 5 5.4
+	asteroids "medium rock" 15 3.0
+	asteroids "large rock" 40 5.2
+	minables iron 15 5.7
+	minables copper 10 5.0
+	minables tungsten 10 2.4
 	trade Clothing 410
 	trade Electronics 740
 	trade Equipment 520
@@ -14591,12 +14573,12 @@ system "Eragaru Le"
 	link "Avo Chigo"
 	link "Bosuno Le"
 	link "Paru Paru"
-	asteroids "small rock" 6 3.9672
-	asteroids "medium rock" 2 2.8044
-	asteroids "large rock" 1 3.0438
-	asteroids "small metal" 2 3.249
-	asteroids "medium metal" 1 4.4118
-	asteroids "large metal" 4 3.8646
+	asteroids "small rock" 5 4.0
+	asteroids "medium rock" 5 2.8
+	asteroids "large rock" 5 3.0
+	minables lead 5 3.2
+	minables silver 5 4.4
+	minables gold 5 3.9
 	trade Clothing 290
 	trade Electronics 720
 	trade Equipment 540
@@ -17328,30 +17310,21 @@ system Ge-73
 system "Genta Bo"
 	pos 185.2 -65.9
 	government Bunrodea
-	attributes "bright star" "notable star" "supergiant star"
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 37100
 	belt 1500
 	link "Eneva Katta"
 	link "Thshybo Le"
-	asteroids "medium rock" 7 11.76
-	asteroids "large rock" 1 11.424
-	asteroids "small metal" 6 10.836
-	asteroids "medium metal" 11 7.728
-	asteroids "large metal" 12 9.912
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	asteroids "small rock" 10 11.6
+	asteroids "medium rock" 5 11.8
+	asteroids "large rock" 5 11.4
+	minables lead 5 10.8
+	minables copper 5 7.7
+	minables silver 5 9.9
 	fleet "Bunrodea Defense" 3500
 	object
-		sprite star/o-supergiant
+		sprite star/o3
 		distance 14.1508
 		period 5.23479
 	object
@@ -17395,21 +17368,12 @@ system "Gento Ah"
 	link "Mego Seo"
 	link Piadenli
 	link "Urba Pest"
-	asteroids "medium rock" 29 1.4144
-	asteroids "large rock" 3 2.1488
-	asteroids "small metal" 28 3.5632
-	asteroids "medium metal" 29 3.9712
-	asteroids "large metal" 17 3.2912
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	asteroids "small rock" 25 2.5
+	asteroids "medium rock" 30 1.4
+	asteroids "large rock" 25 2.1
+	minables aluminum 5 3.3
+	minables titanium 25 3.6
+	minables tungsten 10 4.0
 	fleet "Bunrodea Megasa Freight" 2000
 	fleet "Bunrodea Defense" 1500
 	object
@@ -21288,11 +21252,11 @@ system "Jentu Centi"
 	link "Gento Ah"
 	link "Mego Faro"
 	link "Mego Inito"
-	asteroids "small rock" 7 9.6432
-	asteroids "large rock" 31 9.7216
-	asteroids "small metal" 24 11.6032
-	asteroids "medium metal" 34 4.2336
-	asteroids "large metal" 5 11.5248
+	asteroids "small rock" 50 9.6
+	asteroids "large rock" 15 9.7
+	minables lead 20 8.6
+	minables neodymium 10 9.2
+	minables gold 5 9.5
 	trade Clothing 160
 	trade Electronics 780
 	trade Equipment 580
@@ -21341,12 +21305,15 @@ system "Jentu Le"
 	belt 1500
 	link "Avo Chigo"
 	link "Erabu Lemeta"
-	asteroids "small rock" 5 2.16
-	asteroids "medium rock" 43 2.052
-	asteroids "large rock" 5 2.1384
-	asteroids "small metal" 34 1.6416
-	asteroids "medium metal" 95 1.8792
-	asteroids "large metal" 43 2.4408
+	asteroids "small rock" 95 2.2
+	asteroids "medium rock" 45 2.1
+	asteroids "large rock" 15 2.1
+	minables silicon 15 1.8
+	minables aluminum 15 2.0
+	minables iron 15 1.6
+	minables titanium 15 1.7
+	minables lead 10 2.3
+	minables uranium 5 2.4
 	trade Clothing 250
 	trade Electronics 730
 	trade Equipment 560
@@ -22668,12 +22635,12 @@ system "Kifrana Terberah"
 	link "Mego Inito"
 	link "Ravu Kon"
 	link "Xutluno Fali"
-	asteroids "small rock" 5 3.6432
-	asteroids "medium rock" 13 4.6
-	asteroids "large rock" 5 2.5024
-	asteroids "small metal" 10 5.0048
-	asteroids "medium metal" 1 5.0784
-	asteroids "large metal" 27 2.3552
+	asteroids "small rock" 20 3.6
+	asteroids "medium rock" 15 4.6
+	asteroids "large rock" 5 2.5
+	asteroids iron 10 5.0
+	asteroids tungsten 10 5.1
+	asteroids neodymium 5 2.4
 	trade Clothing 270
 	trade Electronics 750
 	trade Equipment 650
@@ -25850,11 +25817,11 @@ system "Mego Faro"
 	link "Jentu Centi"
 	link "Urba Pest"
 	link "Xutluno Rees"
-	asteroids "medium rock" 4 2.9412
-	asteroids "large rock" 1 2.3028
-	asteroids "small metal" 1 1.5048
-	asteroids "medium metal" 5 2.2116
-	asteroids "large metal" 1 2.7816
+	asteroids "small rock" 10 2.9
+	asteroids "medium rock" 5 2.9
+	asteroids "large rock" 5 2.3
+	minables silicon 5 2.2
+	minables aluminum 5 2.8
 	trade Clothing 160
 	trade Electronics 690
 	trade Equipment 630
@@ -25918,12 +25885,12 @@ system "Mego Inito"
 	link "Ravu Kon"
 	link "Xutluno Fali"
 	link "Xutluno Rees"
-	asteroids "small rock" 2 5.481
-	asteroids "medium rock" 1 5.8058
-	asteroids "large rock" 3 4.1006
-	asteroids "small metal" 5 2.7202
-	asteroids "medium metal" 35 2.8014
-	asteroids "large metal" 91 6.0088
+	asteroids "small rock" 55 5.481
+	asteroids "medium rock" 25 5.8058
+	asteroids "large rock" 15 4.1006
+	minables titanium 30 4.7
+	minables tungsten 15 4.8
+	minables uranium 5 6.0
 	trade Clothing 220
 	trade Electronics 820
 	trade Equipment 560
@@ -25968,9 +25935,12 @@ system "Mego Seo"
 	belt 1500
 	link "Gento Ah"
 	link "Ravu Kon"
-	asteroids "small metal" 1 4.374
-	asteroids "medium metal" 14 5.5404
-	asteroids "large metal" 1 3.5964
+	asteroids "small rock" 15 4.9
+	asteroids "medium rock" 10 5.3
+	asteroids "large rock" 5 4.6
+	minables silicon 5 4.4
+	minables silver 5 5.5
+	minables gold 5 3.6
 	trade Clothing 190
 	trade Electronics 720
 	trade Equipment 680
@@ -29909,22 +29879,15 @@ system "Paru Paru"
 	link "Avo Chigo"
 	link "Eragaru Le"
 	link "Ravu Kon"
-	asteroids "small rock" 59 3.3852
-	asteroids "medium rock" 4 2.184
-	asteroids "large rock" 30 3.5308
-	asteroids "small metal" 8 3.6764
-	asteroids "medium metal" 10 3.4216
-	asteroids "large metal" 11 5.1688
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	asteroids "small rock" 60 3.4
+	asteroids "medium rock" 30 2.2
+	asteroids "large rock" 5 3.5
+	minables iron 5 3.6
+	minables tungsten 5 3.8
+	minables uranium 10 4.2
+	minables lead 5 3.3
+	minables gold 10 3.4
+	minables platinum 5 3.7
 	fleet "Bunrodea Erabu Freight" 900
 	fleet "Bunrodea Defense" 2000
 	hazard "Neutron Star Magnetic Field" 1
@@ -31028,11 +30991,12 @@ system Piadenli
 	habitable 4500
 	belt 1500
 	link "Gento Ah"
-	asteroids "small rock" 12 4.6176
-	asteroids "medium rock" 83 3.3696
-	asteroids "large rock" 6 5.5744
-	asteroids "medium metal" 8 5.7408
-	asteroids "large metal" 4 4.368
+	asteroids "small rock" 15 4.6
+	asteroids "medium rock" 85 3.4
+	asteroids "large rock" 5 5.6
+	minables iron 20 5.7
+	minables tungsten 15 5.2
+	minables neodymium 5 4.4
 	trade Clothing 170
 	trade Electronics 680
 	trade Equipment 670
@@ -32964,12 +32928,12 @@ system "Ravu Kon"
 	link "Mego Inito"
 	link "Mego Seo"
 	link "Paru Paru"
-	asteroids "small rock" 41 1.314
-	asteroids "medium rock" 36 2.484
-	asteroids "large rock" 14 1.098
-	asteroids "small metal" 19 1.332
-	asteroids "medium metal" 46 2.502
-	asteroids "large metal" 7 1.152
+	asteroids "small rock" 60 1.8
+	asteroids "medium rock" 35 2.5
+	asteroids "large rock" 15 1.8
+	minables silicon 35 1.7
+	minables aluminum 15 2.0
+	minables titanium 5 1.9
 	trade Clothing 240
 	trade Electronics 800
 	trade Equipment 620
@@ -35199,30 +35163,20 @@ system Septet
 system "Sera Natta"
 	pos 344.9 -418.3
 	government Bunrodea
-	attributes "bright star" "notable star"
+	attributes "bright star" "notable star" "supergiant star"
 	arrival 3000
 	habitable 3000
 	belt 1500
 	link "Urba Pest"
-	asteroids "small rock" 81 1.7472
-	asteroids "medium rock" 6 1.5561
-	asteroids "large rock" 7 3.0303
-	asteroids "small metal" 8 2.9757
-	asteroids "medium metal" 35 2.3478
-	asteroids "large metal" 8 1.4196
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	asteroids "small rock" 80 1.7
+	asteroids "medium rock" 5 1.6
+	asteroids "large rock" 5 2.5
+	minables lead 10 2.2
+	minables uranium 35 2.3
+	minables gold 5 1.4
 	fleet "Bunrodea Defense" 3000
 	object
-		sprite star/a8
+		sprite star/o-supergiant
 		period 10
 	object
 		sprite planet/desert8-b
@@ -35568,10 +35522,12 @@ system "Shini Bori"
 	belt 1500
 	link "Bunri Lemeta"
 	link "Erabu Lemeta"
-	asteroids "large rock" 2 3.1395
-	asteroids "small metal" 16 1.8837
-	asteroids "medium metal" 12 2.8405
-	asteroids "large metal" 19 3.2292
+	asteroids "small rock" 25 3.0
+	asteroids "medium rock" 5 2.9
+	asteroids "large rock" 5 3.2
+	minables silicon 10 2.9
+	minables titanium 5 2.3
+	minables copper 5 3.2
 	trade Clothing 340
 	trade Electronics 680
 	trade Equipment 650
@@ -38626,10 +38582,13 @@ system "Thshybo Le"
 	link "Elo Chigo"
 	link "Erabu Lemeta"
 	link "Genta Bo"
-	asteroids "medium rock" 131 3.2256
-	asteroids "large rock" 1 2.016
-	asteroids "medium metal" 60 3.6624
-	asteroids "large metal" 4 5.0064
+	asteroids "small rock" 100 2.7
+	asteroids "medium rock" 30 3.2
+	asteroids "large rock" 5 2.0
+	minables iron 30 3.2
+	minables copper 25 3.7
+	minables tungsten 5 4.4
+	minables platinum 5 5.0
 	trade Clothing 220
 	trade Electronics 760
 	trade Equipment 580
@@ -39802,11 +39761,12 @@ system "Urba Pest"
 	link "Gento Ah"
 	link "Mego Faro"
 	link "Sera Natta"
-	asteroids "small rock" 11 10.36
-	asteroids "medium rock" 4 7
-	asteroids "large rock" 24 9.59
-	asteroids "small metal" 1 8.4
-	asteroids "large metal" 1 3.71
+	asteroids "small rock" 10 10.4
+	asteroids "medium rock" 20 7.9
+	asteroids "large rock" 5 9.6
+	minables copper 10 8.0
+	minables silver 5 8.4
+	minables gold 5 7.7
 	trade Clothing 200
 	trade Electronics 720
 	trade Equipment 610
@@ -41814,20 +41774,11 @@ system "Xutluno Fali"
 	belt 1500
 	link "Kifrana Terberah"
 	link "Mego Inito"
-	asteroids "large rock" 1 3.84
-	asteroids "small metal" 1 4.8
-	asteroids "medium metal" 9 4.2
-	asteroids "large metal" 10 4.26
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	asteroids "small rock" 10 4.6
+	asteroids "medium rock" 5 4.3
+	asteroids "large rock" 5 4.7
+	minables silicon 5 4.2
+	minables aluminum 5 4.3
 	fleet "Bunrodea Defense" 2500
 	object
 		sprite star/g3
@@ -41866,22 +41817,12 @@ system "Xutluno Rees"
 	belt 1500
 	link "Mego Faro"
 	link "Mego Inito"
-	asteroids "small rock" 2 2.464
-	asteroids "medium rock" 45 3.724
-	asteroids "large rock" 2 3.108
-	asteroids "small metal" 6 3.64
-	asteroids "medium metal" 1 2.548
-	asteroids "large metal" 1 1.988
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
+	asteroids "small rock" 20 2.5
+	asteroids "medium rock" 25 3.7
+	asteroids "large rock" 5 3.1
+	minables iron 10 3.6
+	minables lead 5 2.5
+	minables uranium 10 2.0
 	fleet "Bunrodea Defense" 3500
 	object
 		sprite star/o8
