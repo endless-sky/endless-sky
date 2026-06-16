@@ -22638,9 +22638,9 @@ system "Kifrana Terberah"
 	asteroids "small rock" 20 3.6
 	asteroids "medium rock" 15 4.6
 	asteroids "large rock" 5 2.5
-	asteroids iron 10 5.0
-	asteroids tungsten 10 5.1
-	asteroids neodymium 5 2.4
+	minables iron 10 5.0
+	minables tungsten 10 5.1
+	minables neodymium 5 2.4
 	trade Clothing 270
 	trade Electronics 750
 	trade Equipment 650
