@@ -3180,7 +3180,7 @@ mission "Ka'het: Lightning in a Bottle 2"
 		has "Ka'het: Lightning in a Bottle 1: done"
 	on stopover
 		conversation
-			`Sitting atop the cloud layer, it takes you a dozen attempts before your signal finally reaches the Tern through the chaotic atmosphere. Far above, the violet swirl of the wormhole peeks just above the horizon. You wait for the probe to raise through the darkness, wondering how the Remnant can talk with it from so far away.`
+			`Sitting atop the cloud layer, it takes you a dozen attempts before your signal finally reaches the Tern through the chaotic atmosphere. Far above, the violet swirl of the wormhole peeks just above the horizon. You wait for the probe to rise through the darkness, wondering how the Remnant can talk with it from so far away.`
 			`	The vehicle appears upside down, its barrels independently pointing somewhere in the sky. Just as you try an approach, an impressive gust nearly smashes you against the Tern. At the last second its systems take over, swooshing it away from the impact trajectory. Eventually, you can start going through the tasks Taely gave you.`
 			choice
 				`	(Use the opportunity to take a closer look at its sensor array.)`
@@ -3322,7 +3322,7 @@ mission "Ka'het: Lightning in a Bottle 4"
 			action
 				set "ka'het: cloud probe electronics burnt"
 			`	The Peregrine pitches up to reveal two enormous claws mounted beneath its body. It closes the distance with the target bit by bit, then makes a swift movement to catch its prey before the wind changes. It succeeds, despite the continuous lightning that now surrounds you.`
-			`	Once the second Peregrine repeats the movement, a group of Remnant in extravehicular suits come out of their payload bays. Half of them work on securing the lower section of the craft, most of which is now a bright, yellow hue; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash. The balloon soars upward while its payload remains in the clamps of the Peregrine.`
+			`	Once the second Peregrine repeats the movement, a group of Remnant in extravehicular suits come out of their payload bays. Half of them work on securing the lower section of the craft, most of which is now a bright yellow hue; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash. The balloon soars upward while its payload remains in the clamps of the Peregrine.`
 			`	"Are you there, <first>?" The radio is working again: you realize the rain of EMPs has ceased. You reply affirmatively. "We have what we needed. The Ka'het seems to have succeeded in bringing our Tern down, but we can worry about that from a safer place."`
 			`	While you prepare to leave, you give a final look to the tracking screen. At the top, the Ka'het is about to go out of your instruments' range. At the bottom, two sets of debris are falling through the atmosphere: one from the burst balloon, and the other from the Tern.`
 				accept

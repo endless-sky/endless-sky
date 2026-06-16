@@ -436,7 +436,7 @@ outfit "Ka'het Ion Trap"
 	"ion resistance energy" -3
 	"heat generation" 0.8
 	"energy capacity" 600
-	description "The unique function of this generator is that of deflecting and slowing incoming ions, creating a significant amount of energy in the process. A powerful, correctly shaped magnetic field appears to be the key, as long as a powerful enough ion storm (or an equivalent phenomena) is nearby."
+	description "The unique function of this generator is that of deflecting and slowing incoming ions, creating a significant amount of energy in the process. A powerful, correctly shaped magnetic field appears to be the key, as long as a powerful enough ion storm (or an equivalent phenomenon) is nearby."
 
 # Engines:
 
