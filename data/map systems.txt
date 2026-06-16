@@ -17324,7 +17324,7 @@ system "Genta Bo"
 	minables silver 5 9.9
 	fleet "Bunrodea Defense" 3500
 	object
-		sprite star/o3
+		sprite star/o-supergiant
 		distance 14.1508
 		period 5.23479
 	object
@@ -22638,9 +22638,9 @@ system "Kifrana Terberah"
 	asteroids "small rock" 20 3.6
 	asteroids "medium rock" 15 4.6
 	asteroids "large rock" 5 2.5
-	minables iron 10 5.0
-	minables tungsten 10 5.1
-	minables neodymium 5 2.4
+	asteroids iron 10 5.0
+	asteroids tungsten 10 5.1
+	asteroids neodymium 5 2.4
 	trade Clothing 270
 	trade Electronics 750
 	trade Equipment 650
@@ -35176,7 +35176,7 @@ system "Sera Natta"
 	minables gold 5 1.4
 	fleet "Bunrodea Defense" 3000
 	object
-		sprite star/o-supergiant
+		sprite star/a8
 		period 10
 	object
 		sprite planet/desert8-b
