@@ -17310,7 +17310,7 @@ system Ge-73
 system "Genta Bo"
 	pos 185.2 -65.9
 	government Bunrodea
-	attributes "bright star" "notable star"
+	attributes "bright star" "notable star" "supergiant star"
 	arrival 5000
 	habitable 37100
 	belt 1500
@@ -35163,7 +35163,7 @@ system Septet
 system "Sera Natta"
 	pos 344.9 -418.3
 	government Bunrodea
-	attributes "bright star" "notable star" "supergiant star"
+	attributes "bright star" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1500
