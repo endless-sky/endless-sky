@@ -17,6 +17,7 @@ mission "Raid Warning"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		"pirate attraction" >= 5
+		has "gamerule: spawn raid fleets"
 	on offer
 		conversation
 			`When you enter the <origin> spaceport, you're almost immediately stopped by a grizzled old man. "You some kinda rookie, or you asking for a death wish?" he asks.`
@@ -1231,7 +1232,7 @@ mission "Drug Running 2"
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
-		attributes "rich"
+		attributes "wealthy"
 		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 	illegal 50000 `In addition to the fine, the illegal drugs are confiscated from your cargo hold.`
@@ -1818,7 +1819,7 @@ mission "Courier 4"
 	destination
 		distance 7 14
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
-		attributes "rich"
+		attributes "wealthy"
 	on offer
 		conversation
 			`A man wearing a very complicated hat waves to you from the other side of a landing pad. "Yoo-hoo, Captain!" he says. "I have a courier mission for you if you're interested."`
