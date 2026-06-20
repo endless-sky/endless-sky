@@ -384,7 +384,14 @@ string TradingPanel::OutfitSalesMessage(bool sellMinables) const
 		tonsSold += static_cast<int>(count * outfit->Mass());
 		// Store a description of the count & item, followed by its value.
 		outfitValue.push_back({{}, count, value});
-		if(count == 1)
+		if(sellMinables)
+		{
+			if(count == 1)
+				outfitValue.back().name = Format::Number(count) + " unit of " + outfit->DisplayName();
+			else
+				outfitValue.back().name = Format::Number(count) + " units of " + outfit->DisplayName();
+		}
+		else if(count == 1)
 			outfitValue.back().name = outfit->DisplayName();
 		else
 			outfitValue.back().name = Format::Number(count) + " " + outfit->PluralName();
