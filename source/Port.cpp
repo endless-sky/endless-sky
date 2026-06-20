@@ -5,10 +5,6 @@ Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later version.
 
-Endless Sky is free software: you can redistribute it and/or modify it under the
-terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later version.
-
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the GNU General Public License for more details.
@@ -112,6 +108,8 @@ void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			if(displayName.empty())
 				displayName = SPACEPORT;
 		}
+		else if(key == "landscape" && hasValue)
+			landscape = SpriteSet::Get(child.Token(1));
 		else if(key == "to" && child.Size() >= 2)
 		{
 			const string &conditional = child.Token(1);
@@ -236,6 +234,13 @@ const string &Port::DisplayName() const
 const Paragraphs &Port::Description() const
 {
 	return description;
+}
+
+
+
+const Sprite *Port::Landscape() const
+{
+	return landscape;
 }
 
 
