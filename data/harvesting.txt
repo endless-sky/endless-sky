@@ -169,7 +169,7 @@ minable "silicon"
 	sprite "asteroid/silicon/spin"
 	hull 360
 	"random hull" 80
-	payload "Silicon" 50
+	payload "Silicon" 1500
 		"toughness" 5000
 	explode "smoke" 40
 	explode "bolide" 40

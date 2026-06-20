@@ -115,8 +115,13 @@ void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions
 // Calculate the expected payload value of this Minable after all outfits have been fully loaded.
 void Minable::FinishLoading()
 {
-	for(const auto &it : payload)
+	for(const Payload &it : payload)
+	{
+		if(!it.maxDrops)
+			continue;
+		highestDropValue = max(highestDropValue, it.outfit->Cost());
 		value += it.outfit->Cost() * it.maxDrops * it.dropRate;
+	}
 }
 
 
@@ -312,9 +317,16 @@ const vector<Minable::Payload> &Minable::GetPayload() const
 
 
 // Get the expected value of the flotsams this minable will create when destroyed.
-const int64_t &Minable::GetValue() const
+int64_t Minable::GetValue() const
 {
 	return value;
+}
+
+
+
+int64_t Minable::GetHighestDropValue() const
+{
+	return highestDropValue;
 }
 
 

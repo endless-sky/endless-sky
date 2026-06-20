@@ -193,6 +193,9 @@ namespace {
 
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 
+	const vector<string> TARGET_ASTEROID_SETTINGS = {"proximity", "expected value", "unit value"};
+	int targetAsteroidIndex = 0;
+
 	int previousSaveCount = 3;
 
 #ifdef _WIN32
@@ -228,7 +231,6 @@ void Preferences::Load()
 	settings["Ship outlines in shops"] = true;
 	settings["Ship outlines in HUD"] = true;
 	settings["Extra fleet status messages"] = true;
-	settings["Target asteroid based on"] = true;
 	settings["Deadline blink by distance"] = true;
 	settings["Confirm selling outfits"] = true;
 	settings["Confirm selling minables"] = true;
@@ -305,6 +307,8 @@ void Preferences::Load()
 			ammoRefillIndex = clamp<int>(node.Value(1), 0, AMMO_REFILL_SETTINGS.size() - 1);
 		else if(key == "Text alignment")
 			textAlignmentIndex = clamp<int>(node.Value(1), 0, TEXT_ALIGNMENT_SETTINGS.size() - 1);
+		else if(key == "Target asteroid based on")
+			targetAsteroidIndex = clamp<int>(node.Value(1), 0, TARGET_ASTEROID_SETTINGS.size() - 1);
 #ifdef _WIN32
 		else if(key == "Title bar theme")
 			titleBarThemeIndex = clamp<int>(node.Value(1), 0, TITLE_BAR_THEME_SETTINGS.size() - 1);
@@ -412,6 +416,7 @@ void Preferences::Save()
 	out.Write("Tribute confirmation", tributeConfirmationIndex);
 	out.Write("Ammo refill", ammoRefillIndex);
 	out.Write("Text alignment", textAlignmentIndex);
+	out.Write("Target asteroid based on", targetAsteroidIndex);
 	out.Write("previous saves", previousSaveCount);
 #ifdef _WIN32
 	if(WinVersion::SupportsDarkTheme())
@@ -1076,6 +1081,28 @@ Alignment Preferences::GetTextAlignment()
 const string &Preferences::TextAlignmentSetting()
 {
 	return TEXT_ALIGNMENT_SETTINGS[textAlignmentIndex];
+}
+
+
+
+void Preferences::ToggleTargetAsteroidStrategy()
+{
+	if(++targetAsteroidIndex >= static_cast<int>(TARGET_ASTEROID_SETTINGS.size()))
+		targetAsteroidIndex = 0;
+}
+
+
+
+Preferences::TargetAsteroidStrategy Preferences::GetTargetAsteroidStrategy()
+{
+	return static_cast<TargetAsteroidStrategy>(targetAsteroidIndex);
+}
+
+
+
+const string &Preferences::TargetAsteroidStrategySetting()
+{
+	return TARGET_ASTEROID_SETTINGS[targetAsteroidIndex];
 }
 
 
