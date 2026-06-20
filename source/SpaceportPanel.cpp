@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "TextArea.h"
 #include "UI.h"
+#include <mutex>
 
 using namespace std;
 
@@ -77,10 +78,11 @@ void SpaceportPanel::UpdateNews()
 	newsMessage.Wrap(Format::Replace(news->Message(), subs));
 }
 
-
+std::mutex SpaceportPanel::spaceportMissionLock;
 
 void SpaceportPanel::Step()
 {
+	spaceportMissionLock.lock();
 	if(GetUI().IsTop(this) && port.HasService(Port::ServicesType::OffersMissions))
 	{
 		Mission *mission = player.MissionToOffer(Mission::SPACEPORT);
@@ -93,6 +95,7 @@ void SpaceportPanel::Step()
 		else
 			player.HandleBlockedMissions(Mission::SPACEPORT, GetUI());
 	}
+	spaceportMissionLock.unlock();
 }
 
 

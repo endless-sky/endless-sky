@@ -55,7 +55,7 @@ private:
 	PlayerInfo &player;
 	std::shared_ptr<TextArea> description;
 	const Port &port;
-
+	static std::mutex spaceportMissionLock;
 	// Current news item (if any):
 	bool hasNews = false;
 	bool hasPortrait = false;
