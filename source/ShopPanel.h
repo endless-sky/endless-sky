@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "Dropdown.h"
 #include "LoadingCircle.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
@@ -60,8 +61,10 @@ protected:
 	// indicates failure, but no need to pop up a message about it.
 	class TransactionResult {
 	public:
-		TransactionResult(const char *error) : success(false), message(error) {}
 		TransactionResult(std::string error) : success(false), message(std::move(error)) {}
+		TransactionResult(const char *error) : success(false), message(error) {}
+		TransactionResult(bool canSource, bool canPlace, std::string error)
+			: canSource(canSource), canPlace(canPlace), success(false), message(std::move(error)) {}
 		TransactionResult(bool result) : success(result), message() {}
 
 		explicit operator bool() const noexcept { return success; }
@@ -69,6 +72,11 @@ protected:
 		bool HasMessage() const noexcept { return !message.empty(); }
 		const std::string &Message() const noexcept { return message; }
 
+	public:
+		// Metadata that may be used along with the overall success/message in order to
+		// better decide the course of action when dealing with the failure reason.
+		bool canSource = true;
+		bool canPlace = true;
 
 	private:
 		bool success = true;
@@ -189,6 +197,7 @@ protected:
 	std::map<std::string, std::vector<std::string>> catalog;
 	const CategoryList &categories;
 	std::set<std::string> &collapsed;
+	bool hasFleetCapacity;
 
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
@@ -200,6 +209,9 @@ protected:
 	Tooltip creditsTooltip;
 	Tooltip buttonsTooltip;
 	LoadingCircle loadingCircle;
+
+	std::shared_ptr<Dropdown> selectedQuantity;
+	bool quantityIsModifier = false;
 
 
 private:
