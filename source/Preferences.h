@@ -158,7 +158,7 @@ public:
 	enum class TargetAsteroidStrategy : int_fast8_t {
 		PROXIMITY = 0,
 		EXPECTED_VALUE,
-		UNIT_VALUE
+		QUALITY
 	};
 
 #ifdef _WIN32

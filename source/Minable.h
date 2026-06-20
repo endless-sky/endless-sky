@@ -86,9 +86,9 @@ public:
 	const std::vector<Payload> &GetPayload() const;
 
 	// Get the expected value of the flotsams this minable will create when destroyed.
-	int64_t GetValue() const;
+	int64_t GetExpectedValue() const;
 	// Get the value of the highest quality item that could drop from this minable when destroyed.
-	int64_t GetHighestDropValue() const;
+	int64_t GetHighestQualityValue() const;
 
 	// Get hull remaining of this asteroid, as a fraction between 0 and 1.
 	double Hull() const;
@@ -152,8 +152,8 @@ private:
 	// Explosion effects created when this object is destroyed.
 	std::map<const Effect *, int> explosions;
 	// The expected value of the payload of this minable.
-	int64_t value = 0.;
+	int64_t expectedValue = 0.;
 	// The value of the highest quality drop from this minable.
-	int64_t highestDropValue = 0.;
+	int64_t highestQuality = 0.;
 	bool useRandomFrameRate = true;
 };

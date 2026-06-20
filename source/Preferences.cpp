@@ -193,7 +193,7 @@ namespace {
 
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 
-	const vector<string> TARGET_ASTEROID_SETTINGS = {"proximity", "expected value", "unit value"};
+	const vector<string> TARGET_ASTEROID_SETTINGS = {"proximity", "expected value", "quality"};
 	int targetAsteroidIndex = 0;
 
 	int previousSaveCount = 3;

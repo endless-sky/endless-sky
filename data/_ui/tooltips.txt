@@ -1591,8 +1591,8 @@ tip "Turret tracking"
 tip "Asteroid targeting"
 	`The strategy that the "Select nearest asteroid" control uses for selecting asteroids.`
 	`- "proximity": selects the nearest asteroid.`
-	`- "expected value": selects the asteroid with the highest expected value across the sum of its drops. This may prefer asteroids that drop a large number of lower quality ore over asteroids that drop a small number of higher quality ore.`
-	`- "unit value": selects the asteroid with the highest value ore. This will prefer asteroids with higher quality ore.`
+	`- "expected value": selects the asteroid with the highest expected value of all drops when destroyed.`
+	`- "quality": selects the asteroid with the highest value ore.`
 
 tip "Boarding target priority"
 	`The strategy that the "Board selected ship" control uses for selecting ships when you have none targeted.`
