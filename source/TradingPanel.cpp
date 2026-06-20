@@ -384,11 +384,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinables) const
 		tonsSold += static_cast<int>(count * outfit->Mass());
 		// Store a description of the count & item, followed by its value.
 		outfitValue.push_back({{}, count, value});
-		if(sellMinables && count == 1)
-			outfitValue.back().name = Format::CargoString(count, outfit->DisplayName());
-		if(sellMinables)
-			outfitValue.back().name = Format::CargoString(count, outfit->PluralName());
-		else if(count == 1)
+		if(count == 1)
 			outfitValue.back().name = outfit->DisplayName();
 		else
 			outfitValue.back().name = Format::Number(count) + " " + outfit->PluralName();
@@ -397,7 +393,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinables) const
 		return "Sell " + outfitValue[0].name + " for " + Format::CreditString(profit) + "?";
 	std::ostringstream out;
 	out << "Sell ";
-	out << Format::CargoString(tonsSold, sellMinables ? "of special commodities" : "of outfits");
+	out << Format::CargoString(tonsSold, sellMinables ? " special commodities" : " outfits");
 	out << " for " << Format::CreditString(profit) << '?' << endl;
 
 	// Sort by decreasing value.
