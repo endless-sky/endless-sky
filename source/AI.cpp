@@ -2177,6 +2177,7 @@ void AI::MoveIndependent(Ship &ship, Command &command)
 				return false;
 			if(!ship.Attributes().Get("fuel capacity") && !targetStellar->GetPlanet()->IsWormhole())
 				return false;
+			return true;
 		}();
 		if(shouldLandOnTarget)
 			command |= Command::LAND;
