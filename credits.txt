@@ -225,6 +225,7 @@ contributed to Endless Sky:
   daggs1
   danaris
   DarcyManoel
+  Daniilik
   dashkal16
   davidarcher
   davidwhitman
@@ -327,6 +328,7 @@ contributed to Endless Sky:
   kestrel1110
   kilobyte
   kkuchta
+  knarrff
   Koranir
   kozbot
   Kryes-Omega
