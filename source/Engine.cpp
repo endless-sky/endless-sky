@@ -2357,11 +2357,14 @@ void Engine::HandleMouseClicks()
 	bool clickedAsteroid = false;
 	if(clickTarget)
 	{
-		UI::PlaySound(UI::UISound::TARGET);
 		if(mouseButton == secondaryMouseButton)
-			ai.IssueShipTarget(clickTarget);
-		else
 		{
+			UI::PlaySound(UI::UISound::TARGET);
+			ai.IssueShipTarget(clickTarget);
+		}
+		else if(mouseButton == MouseButton::LEFT)
+		{
+			UI::PlaySound(UI::UISound::TARGET);
 			// Left click: has your flagship select or board the target.
 			if(clickTarget == flagship->GetTargetShip())
 				activeCommands |= Command::BOARD;
