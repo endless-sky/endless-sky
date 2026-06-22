@@ -2364,12 +2364,18 @@ void Engine::HandleMouseClicks()
 		}
 		else if(mouseButton == MouseButton::LEFT)
 		{
-			UI::PlaySound(UI::UISound::TARGET);
 			// Left click: has your flagship select or board the target.
 			if(clickTarget == flagship->GetTargetShip())
-				activeCommands |= Command::BOARD;
+			{
+				if(clickTarget->IsDisabled())
+				{
+					UI::PlaySound(UI::UISound::TARGET);
+					activeCommands |= Command::BOARD;
+				}
+			}
 			else
 			{
+				UI::PlaySound(UI::UISound::TARGET);
 				flagship->SetTargetShip(clickTarget);
 				if(clickTarget->IsYours())
 					player.SelectEscort(clickTarget.get(), hasShift);
