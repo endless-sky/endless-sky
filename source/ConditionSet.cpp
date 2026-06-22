@@ -555,6 +555,19 @@ bool ConditionSet::ParseNode(const DataNode &node, int &tokenNr)
 
 
 
+bool ConditionSet::ParseSingleToken(const DataNode &node, int &tokenNr)
+{
+	if(!conditions)
+		throw runtime_error("Unable to ParseSingleToken(indexed) for a ConditionSet without a pointer to a ConditionsStore!");
+
+	if(!ParseMini(node, tokenNr))
+		return FailParse();
+
+	return true;
+}
+
+
+
 /// Optimize this node, this optimization also removes intermediate sections that were used for tracking brackets.
 bool ConditionSet::Optimize(const DataNode &node)
 {
