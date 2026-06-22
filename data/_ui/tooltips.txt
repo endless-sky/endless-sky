@@ -1508,8 +1508,10 @@ tip "Cloaked ship outlines"
 	`- "fancy": causes the ship to become transparent and applies a red outline.`
 	`- "fast": simply shifts the ship to being red.`
 
-tip "Linear filter"
-	`Use a standard linear interpolation filter to make sprites look smoother. (Requires game restart.)`
+tip "Texture interpolation"
+	`Choose the interpolation method used when sampling textures. (Requires game restart.)`
+	`- "linear": produces a smoother, fuzzier image.`
+	`- "nearest": produces a sharper, blockier image`
 
 tip "Show status overlays"
 	`Display status overlays over top of all ships when in flight. Status overlays display a ship's shields and hull.`
