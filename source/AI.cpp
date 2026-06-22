@@ -2166,10 +2166,19 @@ void AI::MoveIndependent(Ship &ship, Command &command)
 	{
 		MoveToPlanet(ship, command);
 		const StellarObject *targetStellar = ship.GetTargetStellar();
-		bool shouldLandOnTarget = !shouldStay;
-		shouldLandOnTarget &= targetStellar->HasSprite();
-		shouldLandOnTarget &= targetStellar->GetPlanet() && targetStellar->GetPlanet()->CanLand(ship);
-		shouldLandOnTarget &= (ship.Attributes().Get("fuel capacity") || targetStellar->GetPlanet()->IsWormhole());
+		bool shouldLandOnTarget = [shouldStay, targetStellar, ship]() {
+			if(shouldStay)
+				return false;
+			if(!targetStellar->HasSprite())
+				return false;
+			if(!targetStellar->GetPlanet())
+				return false;
+			if(!targetStellar->GetPlanet()->CanLand(ship))
+				return false;
+			if(!ship.Attributes().Get("fuel capacity") && !targetStellar->GetPlanet()->IsWormhole())
+				return false;
+			return true;
+		}();
 		if(shouldLandOnTarget)
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
