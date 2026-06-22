@@ -222,7 +222,7 @@ void Preferences::Load()
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
 	settings["Animate main menu background"] = true;
-	settings["Linear filter"] = true;
+	settings["Texture interpolation"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
