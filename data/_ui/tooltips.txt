@@ -17,6 +17,12 @@ tip "parked"
 
 
 
+# Player info panel
+tip "crew column"
+	`Crew currently aboard the ship. May be fewer than minimum complement.`
+
+
+
 # Outfit and ship attributes:
 tip "acceleration:"
 	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
