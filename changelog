@@ -17,7 +17,7 @@ Version 0.11.2:
       * Fixed an issue where text input events were being sent to child panels twice, without filtering for only those in focus the second time. (@thewierdnut)
       * Fixed a crash when using the "Reload" button in the main menu after dying. (@Amazinite)
       * Shop buttons other than "Buy" will no longer be active when an unowned license is selected in the outfitter. (@Amazinite)
-      * Fixed parsing of the "ignore universal" child of government illegals and attrocities nodes. (@Amazinite)
+      * Fixed parsing of the "ignore universal" child of government illegals and atrocities nodes. (@Amazinite)
       * Fixed an issue where outfits in stock but not normally sold at an outfitter would not have thumbnails loaded when using deferred sprite loading. (@TomGoodIdea)
       * Corrected the length of the shop sidebar scroll bar. (@TomGoodIdea)
       * Deployed, out of system carriables will now be able to transit wormholes to reach the flagship, instead of getting stuck hovering over them. (@warp-core)
@@ -52,7 +52,7 @@ Version 0.11.2:
     * Setting tooltips now describe the different states in a list instead of a paragraph. (@Daniilik)
     * Improved some gamerule tooltips. (@Amazinite)
     * Improved how the positions of tooltips that would exceed the bounds of the window are adjusted to make the tooltips fit. (@Amazinite)
-    * When using the mouse to control the flagship, the middle mouse button now issues firing orders to escorts, instead of the right mouse button, so escorts can be ordered to fire on a target without firing hte flagship weapons, which are operated by the right mouse button. (@TomGoodIdea)
+    * When using the mouse to control the flagship, the middle mouse button now issues firing orders to escorts, instead of the right mouse button, so escorts can be ordered to fire on a target without firing the flagship weapons, which are operated by the right mouse button. (@TomGoodIdea)
     * The sell minables/outfits confirmation dialogs from the trading panel will now start with the "Ok" button in focus, instead of "Cancel" so hitting enter immediately accepts the sale. (@warp-core)
   * Performance:
   * Under the hood:
