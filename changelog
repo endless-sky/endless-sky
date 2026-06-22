@@ -1,3 +1,67 @@
+Version 0.11.2:
+  * Big changes:
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@Daeridanii1, @kaiboyjiang, @ThrawnCA)
+      * Fixed an issue where the Successor wormhole could not be used when hostile to the Successors. (@Daeridanii1)
+      * Reduced the mass of the Hai Tracker Pod by 0.2 so it's outfit space use matches it's mass combined with the mass of it's ammunition when full. (@Amazinite)
+      * Removed a duplicate choice from a Successor mission. (@Daeridanii1)
+      * Removed an unused fleet left over from Hai Reveal. (@warp-core)
+    * Engine bugs:
+      * Fixed an issue where the settings panel wasn't using the correct name for the trading panel sell minables confirmation setting. (@Daniilik)
+      * Corrected the parsing of the "tribute hails" planet child node so that it doesn't require a value in the same node. (@Amazinite)
+      * Fixed a segfault on 32-bit Windows systems. (@TomGoodIdea)
+      * Moved the planet description in the map panel down a little so it no longer overlaps with the system name when the game window is small. (@TomGoodIdea)
+      * ShipEvents caused by hazards damaging ships are now properly sent. (@TomGoodIdea)
+      * Sprite names that do not match any images will no longer result in an indefinite loading animation. (@Amazinite)
+      * Fixed an issue where text input events were being sent to child panels twice, without filtering for only those in focus the second time. (@thewierdnut)
+      * Fixed a crash when using the "Reload" button in the main menu after dying. (@Amazinite)
+      * Shop buttons other than "Buy" will no longer be active when an unowned license is selected in the outfitter. (@Amazinite)
+      * Fixed parsing of the "ignore universal" child of government illegals and attrocities nodes. (@Amazinite)
+      * Fixed an issue where outfits in stock but not normally sold at an outfitter would not have thumbnails loaded when using deferred sprite loading. (@TomGoodIdea)
+      * Corrected the length of the shop sidebar scroll bar. (@TomGoodIdea)
+      * Deployed, out of system carriables will now be able to transit wormholes to reach the flagship, instead of getting stuck hovering over them. (@warp-core)
+  * Game content:
+    * New content:
+      * Pacifist worlds in human space that do not offer tribute now have their own set of responses when it is demanded. (@mOctave)
+      * Added a rewritten version of the Bloodsea exotic life culture conversation. (@kaiboyjiang)
+      * Added some new options for players with very powerful fleets in some early FW missions. (@mOctave)
+    * Mission changes:
+    * Artwork:
+      * Added unique landscapes for most Successor planets. (@Daeridanii1, @LazerLit)
+    * Balance:
+      * Increased the base required crew of the Skein from 7 to 9. (@kaiboyjiang)
+    * Other:
+      * Improved wording in Patir Mystery 14 and 35. (@kaiboyjiang)
+      * Renamed the "rich" planet attribute to "wealthy". (@Amazinite)
+      * Added a new description to Uuoru-Veldt-Stir. (@Daeridanii1)
+      * Heliarch and Successor outfitters now sell Scram Drives. (@Daeridanii1)
+      * Display the message about the magnetar the first time entering the Decet system. (@ThrawnCA)
+  * Game mechanics:
+    * New mechanics:
+      * Added a "mandatory crew" attribute which works similarly to required crew, but is still required on ships with the "automaton" attribute. (@Amazinite)
+      * The player's cloak state will now persist in the save file. (@Amazinite)
+    * Mechanics changes:
+  * Graphics:
+    * Added a setting to choose between linear and nearest-neighbour interpolation for textures. (@TomGoodIdea)
+    * Plugins can now override the default fonts. (@TomGoodIdea)
+  * User interface:
+    * Added a dropdown menu for quantity to the shop panels. (@thewierdnut)
+    * Improved names and descriptions of some trading related settings. (@mOctave)
+    * Added a setting for globally modifying text alignment in paragraphs. (@TomGoodIdea)
+    * Setting tooltips now describe the different states in a list instead of a paragraph. (@Daniilik)
+    * Improved some gamerule tooltips. (@Amazinite)
+    * Improved how the positions of tooltips that would exceed the bounds of the window are adjusted to make the tooltips fit. (@Amazinite)
+    * When using the mouse to control the flagship, the middle mouse button now issues firing orders to escorts, instead of the right mouse button, so escorts can be ordered to fire on a target without firing hte flagship weapons, which are operated by the right mouse button. (@TomGoodIdea)
+    * The sell minables/outfits confirmation dialogs from the trading panel will now start with the "Ok" button in focus, instead of "Cancel" so hitting enter immediately accepts the sale. (@warp-core)
+  * Performance:
+  * Under the hood:
+    * It is now possible to disable version strings being added to shader files automatically, allowing the shader files to list their own versions. (@TomGoodIdea)
+    * Added command line arguments for manually setting a static prng seed and the number of task queue worker threads. (@knarrff)
+  * Documentation:
+    * Updated the minimum required MacOS version to 10.15 as older versions provide a C++ STL implementation that is missing required features. (@TomGoodIdea)
+  * CI/CD and development environment:
+
 Version 0.11.1:
   * Big changes:
     * Gamerules are now specific to individual pilots and can be modified from within the game through a new button on the main menu. Old save files will automatically have this button available to them, while new save files will have to edit their gamerules to set the "Lock gamerules" value to false from the start scenario menu. This can also be used to disable the button on old save files, if you don't want to be able to change the gamerules for your existing saves. (@Amazinite)
