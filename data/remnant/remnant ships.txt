@@ -1711,7 +1711,7 @@ ship "Swan"
 		"Teciimach Bay"
 		"Inhibitor Turret" 3
 		"Point Defense Turret" 2
-		"EMP Torpedo" 9
+		"EMP Torpedo" 20
 		
 		"Aeon Cell"
 		"Epoch Cell"
