@@ -368,19 +368,19 @@ mission "Avgi: Humans From the Deep"
 			`	"Or, you may find yourself trapped here, just as they are. In any case, we will of course make you as comfortable as we can, as an honored guest, and treat you as we would any foreign dignitary."`
 			choice
 				`	"I have a jump drive that lets me travel beyond the hyperlanes, but it won't let me jump back to human space."`
-					goto hasnojd
+					goto hasnotfoundmagnetar
 					to display
 						not "avgi: discovered magnetar"
 				`	"I have a device that lets me go where I please, but it isn't working at the moment."`
-					goto hasnojd
+					goto hasnotfoundmagnetar
 					to display
 						not "avgi: discovered magnetar"
 				`	"I have a jump drive that lets me travel beyond the hyperlanes and a route back to human space through Decet."`
-					goto hasjd
+					goto hasfoundmagnetar
 					to display
 						has "avgi: discovered magnetar"
 
-			label "hasnojd"
+			label "hasnotfoundmagnetar"
 			`	"Regret. Then the situation is most unfortunate," she says. "Commitment. We will offer you what help we can, but I did not wish to lie to you about their predicament, or provide you with false hope."`
 			`	"Reservation. Perhaps Captain <last> will be able to find a solution." says Galano. "I would not dismiss the possibility too quickly."`
 			choice
@@ -389,7 +389,7 @@ mission "Avgi: Humans From the Deep"
 				`	"Is there anything I can do to help in the meantime?"`
 					goto humanAmongAvgi
 
-			label "hasjd"
+			label "hasfoundmagnetar"
 			`	"Satisfaction. Then the situation is most fortunate," she says. "Commitment. We will offer you what help we can to end their predicament."`
 			choice
 				`	"While I'm here, can I buy your technology?"`
@@ -479,16 +479,50 @@ mission "Avgi: Defend Ensemble 1"
 			`	"...What? You're kidding, right? How the hell did you defeat a Quarg ship?" He looks worried for a second, taking a step back. "Do I even want to be seen associating with you?" He laughs nervously.`
 
 			label next
-			`	Darius shakes his head for a moment, then looks back at you. "Well, since you're still here, I'm assuming your jump drive couldn't get you out of here?" You tell him about how you were unable to jump back to human space, and he nods along.`
+			`	Darius shakes his head for a moment, then looks back at you. "Well, since you're still here, I'm assuming your jump drive couldn't get you out of here?"`
+			choice
+				`	"It can get me out of here.  More to the point, it can get us out of here."`
+					goto nextmagnetardiscovered
+					to display
+						has "avgi: discovered magnetar"
+				`	"Yes, that's the long and short of it."`
+					goto nextnomagnetardiscovered
+					to display
+						not "avgi: discovered magnetar"
+			
+			label nextmagnetardiscovered
+			`    You tell him about how you discovered a magnetar, extending your jump range and allowing you to jump back to human space, and he nods along.`
+			`	"I was certain there has to be a way out! But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes. But that's over now!" He sounds relieved.`
+
+			choice
+				`	"The Avgi are trying to keep you here? That's worrying."`
+					goto avgikeepingushere
+				`	"How'd you end up in Avgi space without a jump drive?"`
+					goto story
+
+			label nextnomagnetardiscovered
+			`    You tell him about how you were unable to jump back to human space, and he nods along.`
 			`	"There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes." He sounds frustrated.`
 			choice
 				`	"Don't worry, I'm sure we'll find a way back home."`
 					goto reassuring
 				`	"The Avgi are trying to keep you here? That's worrying."`
+					goto avgikeepingushere
 				`	"How'd you end up in Avgi space without a jump drive?"`
 					goto story
 
+			label avgikeepingushere
 			`	"I'm probably just paranoid. After all, they're really enthusiastic about trying for an alliance with humanity to help them against these Aberrant, no matter how many times I explain humans aren't really all that technologically advanced. But they think if I can find a way home, we might be able to find a way to open up a connection between human space and Avgi space, especially given the way we got here. Not that I'd want to do that, with the chance of the Aberrant overrunning human space."`
+			choice
+				`	"How'd you end up in Avgi space without a jump drive?"`
+					goto story
+					to display
+						has "avgi: discovered magnetar"
+				`	You nod along sympathetically.`
+					goto reassuring
+					to display
+						not "avgi: discovered magnetar"
+
 
 			label reassuring
 			`	"Sometimes I find it hard to believe that we'll ever make it home, but it helps to tell myself there's hope," he says.`
