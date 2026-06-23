@@ -10619,7 +10619,7 @@ mission "Timothy Radrickson: Log Fix 1"
 		not "Timothy Radrickson 2: Good Interlude: offered"
 		not "timothy radrickson 1 log entry correct"
 	on offer
-		remove log "People" "Timothy Radickson"
+		remove log "People" "Timothy Radrickson"
 		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
 		fail
 
@@ -10633,7 +10633,7 @@ mission "Timothy Radrickson: Log Fix 2"
 		not "timothy radrickson 2 log entry correct"
 		not "Timothy Radrickson: Log Fix 1: offered"
 	on offer
-		remove log "People" "Timothy Radickson"
+		remove log "People" "Timothy Radrickson"
 		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
 		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
 		fail
@@ -10648,7 +10648,7 @@ mission "Timothy Radrickson: Log Fix 3"
 		not "timothy radrickson 3 log entry correct"
 		not "Timothy Radrickson: Log Fix 2: offered"
 	on offer
-		remove log "People" "Timothy Radickson"
+		remove log "People" "Timothy Radrickson"
 		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
 		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
 		log "People" "Timothy Radrickson" `Timothy has since become the governor of Rand.`
@@ -10664,7 +10664,7 @@ mission "Timothy Radrickson: Log Fix 4"
 		not "timothy radrickson 4 log entry correct"
 		not "Timothy Radrickson: Log Fix 3: offered"
 	on offer
-		remove log "People" "Timothy Radickson"
+		remove log "People" "Timothy Radrickson"
 		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
 		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
 		log "People" "Timothy Radrickson" `Timothy has since become the governor of Rand.`
@@ -10680,7 +10680,7 @@ mission "Timothy Radrickson: Log Fix 6"
 		not "timothy radrickson 6 log entry correct"
 		not "Timothy Radrickson: Log Fix 4: offered"
 	on offer
-		remove log "People" "Timothy Radickson"
+		remove log "People" "Timothy Radrickson"
 		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
 		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
 		log "People" "Timothy Radrickson" `Timothy has since become the governor of Rand.`
