@@ -370,15 +370,15 @@ mission "Avgi: Humans From the Deep"
 				`	"I have a jump drive that lets me travel beyond the hyperlanes, but it won't let me jump back to human space."`
 					goto hasnojd
 					to display
-						not "visited Decet"
+						not "avgi: discovered magnetar"
 				`	"I have a device that lets me go where I please, but it isn't working at the moment."`
 					goto hasnojd
 					to display
-						not "visited Decet"
+						not "avgi: discovered magnetar"
 				`	"I have a jump drive that lets me travel beyond the hyperlanes and a route back to human space through Decet."`
 					goto hasjd
 					to display
-						has "visited Decet"
+						has "avgi: discovered magnetar"
 
 			label "hasnojd"
 			`	"Regret. Then the situation is most unfortunate," she says. "Commitment. We will offer you what help we can, but I did not wish to lie to you about their predicament, or provide you with false hope."`
