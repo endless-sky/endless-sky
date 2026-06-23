@@ -10686,7 +10686,7 @@ mission "Timothy Radrickson: Log Fix 6"
 		log "People" "Timothy Radrickson" `Timothy has since become the governor of Rand.`
 		log "People" "Timothy Radrickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
 		log "People" "Timothy Radrickson" `Tried to help Timothy escape from his prison sentence there.`
-		log "Timothy is dead - or at least that is what's being reported in the news. Perhaps the plot to break him free really did work."
+		log "People" "Timothy Radrickson" 'Timothy is dead - or at least that is what's being reported in the news. Perhaps the plot to break him free really did work.'
 		fail
 
 
