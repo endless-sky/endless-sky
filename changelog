@@ -4,7 +4,7 @@ Version 0.11.2:
     * Content bugs:
       * Typo fixes. (@Daeridanii1, @kaiboyjiang, @ThrawnCA)
       * Fixed an issue where the Successor wormhole could not be used when hostile to the Successors. (@Daeridanii1)
-      * Reduced the mass of the Hai Tracker Pod by 0.2 so it's outfit space use matches it's mass combined with the mass of it's ammunition when full. (@Amazinite)
+      * Reduced the mass of the Hai Tracker Pod by 0.2 so its outfit space use matches its mass combined with the mass of its ammunition when full. (@Amazinite)
       * Removed a duplicate choice from a Successor mission. (@Daeridanii1)
       * Removed an unused fleet left over from Hai Reveal. (@warp-core)
     * Engine bugs:
