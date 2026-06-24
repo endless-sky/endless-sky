@@ -1719,7 +1719,7 @@ ship "Swan"
 		"Scram Drive"
 		"Quantum Key Stone"
 		"Thermoelectric Cooler"
-
+		
 		"Smelter-Class Thruster"
 		"Smelter-Class Steering"
 
