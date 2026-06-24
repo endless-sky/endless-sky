@@ -1726,9 +1726,9 @@ Files:
  images/scene/ringworld?debris*
  images/scene/remnant?station*
  images/scene/asteroid?scene*
- images/scene/lab?scene*ì
- images/scene/builder?cloud?probe*ì
- images/scene/lab?scene2*ì
+ images/scene/lab?scene*
+ images/scene/builder?cloud?probe*
+ images/scene/lab?scene2*
  images/planet/debris0*
  images/planet/debris1*
  images/planet/desert11*
