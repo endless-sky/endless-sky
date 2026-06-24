@@ -699,8 +699,23 @@ mission "Avgi: Defend Ensemble 2"
 			`	"Amazing. So, your jump drive can get us out of here then?"`
 			choice
 				`	"I'm afraid not. It can't return to human space for some reason."`
+					goto hasnotfoundmagnetar
+					to display
+						not "avgi: discovered magnetar"
 				`	"No, but I'm not giving up on finding a different way out."`
+					goto hasnotfoundmagnetar
+					to display
+						not "avgi: discovered magnetar"
 				`	"Nope!"`
+					goto hasnotfoundmagnetar
+					to display
+						not "avgi: discovered magnetar"
+				`	"Absolutely!  There's a lone magnetar in the far east of the twilight that will allow us to escape back to human space."`
+					goto hasfoundmagnetar
+					to display
+						has "avgi: discovered magnetar"
+
+			label hasnotfoundmagnetar
 			`	"Damn. That would be too easy, I guess. But it's been too long since I've seen a fresh human face. I've been working for the Twilight Guard here for months, trying to build up a second line of defenses in case that station in Arche falls. At least today's battle shows those defenses, together with a supporting fleet, can hold. You mind if I tag along with you, in case you do manage to find a way out?"`
 			choice
 				`	"Of course."`
@@ -709,6 +724,21 @@ mission "Avgi: Defend Ensemble 2"
 			`	You look over at Darius, who responds after a few seconds of silence. "Of course you can come along, Sora."`
 			label yes
 			`	"Sounds good to me, then. I'll see you around when you're ready to leave." She walks off to collect her belongings.`
+				goto rejoinstory
+
+			label hasnotfoundmagnetar
+			`   You explain about the magnetar in Decet and how it amplifies your jump drive's range.
+			`	"Damn. Who knew it would be so easy! It's just been too long since I've seen a fresh human face. I've been working for the Twilight Guard here for months, trying to build up a second line of defenses in case that station in Arche falls. At least today's battle shows those defenses, together with a supporting fleet, can hold. Now that's done, do you mind if I tag along with you? I'm ready to get out."`
+			choice
+				`	"Of course."`
+					goto yes
+				`	"Sure, as long as Darius doesn't mind."`
+			`	You look over at Darius, who responds after a few seconds of silence. "Of course you can come along, Sora."`
+			label yes
+			`	"Sounds good to me, then. I'll see you around when you're ready to leave." She walks off to collect her belongings.`
+				goto rejoinstory
+
+			label rejoinstory
 			`	A few hours later, an Avgi cruiser, a Refraktos-class Laserstar, settles down on the pad next to yours, and an Avgi officer disembarks.`
 			`	"Salutations. Hello, Captain <first> <last>. My name is Kokkino, Captain of the Spectral Collision. Tell me, is the <ship> a warship, question?"`
 			choice
@@ -738,13 +768,39 @@ mission "Avgi: Defend Ensemble 2"
 			choice
 				`	"It sounds like they'd like my help with something."`
 				`	"I'm going to help them with the war effort."`
-			`	He frowns. "I see. When do you think we'll be able to head up north to look for a way out?"`
+			`	He frowns. "I see. When do you think we'll be able to head up north?"`
 			choice
 				`	"We'll do it soon, I promise."`
+					goto hasnotfoundmagnetar2
+					to display
+						not "avgi: discovered magnetar"
 				`	"I'm not sure."`
+					goto hasnotfoundmagnetar2
+					to display
+						not "avgi: discovered magnetar"
+				`	"We'll do it soon, I promise."`
+					goto hasfoundmagnetar2
+					to display
+						has "avgi: discovered magnetar"
+				`	"I'm not sure."`
+					goto hasfoundmagnetar2
+					to display
+						has "avgi: discovered magnetar"
+
+			label hasnotfoundmagnetar2
 			`	He looks a little disappointed, then collects himself. "Well, I suppose there's no real urgency to it. Though, I've been thinking. If your jump drive wasn't able to let you escape from the north, there might not be a point in looking in that direction."`
 			`	"What do you suggest?" you ask.`
 			`	"I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's a number of hideaways and side branches in the Tangled Shroud, with outposts mostly ran by miners and small-time shipbuilders. Just the kind of people who talk a lot among themselves about rumors and tall tales. The official story of the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I think we should pay my friend a visit after you wrap up this next mission."`
+			goto rejoin2
+
+			label hasfoundmagnetar2
+			`	He looks a little disappointed, then collects himself. "Well, I suppose there's no real urgency to it."`
+			`	"Are you in a rush to leave?" you ask.`
+			`	He considers for a moment.`
+			`   "No, I suppose I should say my goodbyes before I go.  I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's a number of hideaways and side branches in the Tangled Shroud, with outposts mostly ran by miners and small-time shipbuilders. Just the kind of people who talk a lot among themselves about rumors and tall tales. The official story of the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I think we should pay my friend a visit after you wrap up this next mission.  At the least he'll be happy to hear you've found a way out."`
+
+			label rejoin2
+			`   You nod in acknowledgement and make ready to launch the <ship>.`
 
 
 mission "Avgi: Scout Rescue"
