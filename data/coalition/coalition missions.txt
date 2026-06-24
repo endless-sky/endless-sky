@@ -3468,10 +3468,6 @@ mission "Coalition: Struggling Author 1"
 			`	"Wow. I can't believe this is happening!" Anna looks out the window, then turns back.`
 			`	"Can I take a look at your jump drive? I'm interested to see how it works," Anna says. You take her to the engine room of the <ship>, where she begins taking notes and pictures of the drive.`
 			`	"Well, thank you for bringing me here," Anna says when she finishes. "I didn't sleep too well, so I'll see you later. Goodbye!" She heads back into her cabin, and you settle back into the controls.`
-	npc
-		government "Heliarch"
-		personality heroic opportunistic
-		fleet "Heliarch"
 	on complete
 		set "coalition: struggling author - beyond the hyperdrive"
 		conversation

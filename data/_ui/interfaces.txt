@@ -33,6 +33,7 @@ color "dead" .4 0. 0. 0.
 # Colors used for certain UI elements. These elements generally have a variable
 # size (e.g. they may fit to the current screen dimensions).
 color "panel background" .1 .1 .1 1.
+color "panel outline" .45 .45 .45 1.
 color "performance info background" .1 .1 .1 .7
 color "dialog backdrop" 0. 0. 0. .7
 color "conversation background" .125 .125 .125 1.
@@ -547,6 +548,13 @@ interface "load menu"
 	active if "pilot loaded"
 	button l "_Load Game"
 		center 435 155
+		dimensions 90 30
+	active
+	visible if "gamerules unlocked"
+	sprite "ui/wide button"
+		center 435 195
+	button g "_Gamerules"
+		center 435 195
 		dimensions 90 30
 
 
@@ -1274,6 +1282,7 @@ interface "hud"
 	point "radar"
 		center 128 128
 	value "radar radius" 110
+	value "radar scale" .025
 	value "radar pointer radius" 130
 	
 	sprite "ui/navigation"
@@ -1828,12 +1837,16 @@ interface "planet (small screen)"
 interface "spaceport"
 	box "content"
 		from -240 80 to 240 320
+	image "port"
+		center 0 -140
 
 
 
 interface "spaceport (small screen)"
 	box "content"
 		from -300 80 to 180 320
+	image "port"
+		center -60 -140
 
 
 
@@ -2182,27 +2195,33 @@ interface "trade"
 	fill
 		center 0 95
 		dimensions 480 1
-	
+
 	active if "can buy"
 	sprite "ui/dialog cancel"
-		center 100 355
+		center 120 355
 	button u "B_uy All"
-		center 100 355
+		center 120 355
 		dimensions 70 30
-	
-	sprite "ui/wide button"
-		center 190 355
-	
+
 	active if "can sell"
-	visible if "!can sell outfits"
+	sprite "ui/dialog cancel"
+		center 200 355
 	button e "S_ell All"
-		center 190 355
+		center 200 355
+		dimensions 70 30
+
+	active if "can sell minables"
+	sprite "ui/wide button"
+		center -90 355
+	button m "Sell _Minables"
+		center -90 355
 		dimensions 90 30
-	
+
 	active if "can sell outfits"
-	visible if "can sell outfits"
-	button e "S_ell Outfits"
-		center 190 355
+	sprite "ui/wide button"
+		center -190 355
+	button f "Sell Out_fits"
+		center -190 355
 		dimensions 90 30
 
 
@@ -2214,27 +2233,33 @@ interface "trade (small screen)"
 	fill
 		center -60 95
 		dimensions 480 1
-	
+
 	active if "can buy"
 	sprite "ui/dialog cancel"
-		center 40 355
+		center 60 355
 	button u "B_uy All"
-		center 40 355
+		center 60 355
 		dimensions 70 30
-	
-	sprite "ui/wide button"
-		center 130 355
-	
+
 	active if "can sell"
-	visible if "!can sell outfits"
+	sprite "ui/dialog cancel"
+		center 140 355
 	button e "S_ell All"
-		center 130 355
+		center 140 355
+		dimensions 70 30
+
+	active if "can sell minables"
+	sprite "ui/wide button"
+		center -150 355
+	button m "Sell _Minables"
+		center -150 355
 		dimensions 90 30
-	
+
 	active if "can sell outfits"
-	visible if "can sell outfits"
-	button e "S_ell Outfits"
-		center 130 355
+	sprite "ui/wide button"
+		center -250 355
+	button f "Sell Out_fits"
+		center -250 355
 		dimensions 90 30
 
 

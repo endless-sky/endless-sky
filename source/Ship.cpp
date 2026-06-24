@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "FormationPattern.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "JumpType.h"
 #include "Logger.h"
@@ -281,6 +282,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			customSwizzleName = child.Token(1);
 		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
+		else if(key == "administrative cost" && hasValue)
+			administrativeCost = max<int>(0, child.Value(1));
 		else if(key == "attributes" || add)
 		{
 			if(!add)
@@ -1858,14 +1861,36 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		if(victim->NeedsFuel() && CanRefuel(*victim))
 		{
 			helped = true;
-			TransferFuel(victim->JumpFuelMissing(), victim.get());
+			double fuelTransferred = TransferFuel(victim->JumpFuelMissing(), victim.get());
+			if(fuelTransferred >= 1.)
+			{
+				if(isYours)
+					Messages::Add({Format::Number(fuelTransferred, 0) + " fuel transferred from your "
+						+ GivenName() + " to the " + victim->GivenName() + ".",
+						GameData::MessageCategories().Get("normal")});
+				else if(victim->IsYours())
+					Messages::Add({Format::Number(fuelTransferred, 0) + " fuel transferred from the "
+						+ GivenName() + " to your " + victim->GivenName() + ".",
+						GameData::MessageCategories().Get("normal")});
+			}
 		}
 		// Transfer some energy, if needed.
 		if(victim->Attributes().Get("energy capacity") > 0 && victim->energy < 200.)
 		{
 			helped = true;
 			double toGive = max(attributes.Get("energy capacity") * 0.1, victim->Attributes().Get("energy capacity") * 0.2);
-			TransferEnergy(max(200., toGive), victim.get());
+			double energyTransferred = TransferEnergy(max(200., toGive), victim.get());
+			if(energyTransferred >= 1.)
+			{
+				if(isYours)
+					Messages::Add({Format::Number(energyTransferred, 0) + " energy transferred from your "
+						+ GivenName() + " to the " + victim->GivenName() + ".",
+						GameData::MessageCategories().Get("normal")});
+				else if(victim->IsYours())
+					Messages::Add({Format::Number(energyTransferred, 0) + " energy transferred from the "
+						+ GivenName() + " to your " + victim->GivenName() + ".",
+						GameData::MessageCategories().Get("normal")});
+			}
 		}
 		if(helped)
 		{
@@ -1879,8 +1904,30 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 	// If the boarding ship is the player, they will choose what to plunder.
 	// Always take fuel and energy if you can.
-	victim->TransferFuel(victim->fuel, this);
-	victim->TransferEnergy(victim->energy, this);
+	double fuelTransferred = victim->TransferFuel(victim->fuel, this);
+	if(fuelTransferred >= 1.)
+	{
+		if(isYours)
+			Messages::Add({Format::Number(fuelTransferred, 0) + " fuel siphoned from the "
+				+ victim->GivenName() + " to your " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+		else if(victim->IsYours())
+			Messages::Add({Format::Number(fuelTransferred, 0) + " fuel siphoned from your "
+				+ victim->GivenName() + " to the " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+	}
+	double energyTransferred = victim->TransferEnergy(victim->energy, this);
+	if(energyTransferred >= 1.)
+	{
+		if(isYours)
+			Messages::Add({Format::Number(energyTransferred, 0) + " energy siphoned from the "
+				+ victim->GivenName() + " to your " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+		else if(victim->IsYours())
+			Messages::Add({Format::Number(energyTransferred, 0) + " energy siphoned from your "
+				+ victim->GivenName() + " to the " + GivenName() + ".",
+				GameData::MessageCategories().Get("normal")});
+	}
 	if(autoPlunder)
 	{
 		// Take any commodities that fit.
@@ -1987,8 +2034,12 @@ int Ship::Scan(const PlayerInfo &player)
 		if(elapsed >= SCAN_TIME)
 			result |= event;
 	};
-	doScan(cargoScan, cargoSpeed, cargoDistanceSquared, cargo, ShipEvent::SCAN_CARGO);
-	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
+	// If multiple ships in the player's fleet are scanning a ship, stop scanning if
+	// one of the escorts has already completed as scan.
+	if(!isYours || player.CargoScanFraction(target) < 1.)
+		doScan(cargoScan, cargoSpeed, cargoDistanceSquared, cargo, ShipEvent::SCAN_CARGO);
+	if(!isYours || player.OutfitScanFraction(target) < 1.)
+		doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
 
 	// Play the scanning sound if the actor or the target is the player's ship.
 	auto playScanSounds = [](const map<const Sound *, int> &sounds, const Point &position)
@@ -2093,7 +2144,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 	// A ship that is about to die creates a special single-turn "projectile"
 	// representing its death explosion.
 	if(IsDestroyed() && explosionCount == explosionTotal && explosionWeapon)
-		projectiles.emplace_back(position, explosionWeapon);
+		projectiles.emplace_back(position, angle, explosionWeapon);
 
 	if(CannotAct(Ship::ActionType::FIRE))
 		return;
@@ -2689,6 +2740,8 @@ double Ship::TransferFuel(double amount, Ship *to)
 	if(to)
 	{
 		amount = min(to->attributes.Get("fuel capacity") - to->fuel, amount);
+		if(amount <= 0.)
+			return 0.;
 		to->fuel += amount;
 	}
 	fuel -= amount;
@@ -2703,6 +2756,8 @@ double Ship::TransferEnergy(double amount, Ship *to)
 	if(to)
 	{
 		amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
+		if(amount <= 0.)
+			return 0.;
 		to->energy += amount;
 	}
 	energy -= amount;
@@ -3026,6 +3081,23 @@ bool Ship::IsCloaked() const
 
 
 
+void Ship::SetCloaked()
+{
+	const double cloakingSpeed = CloakingSpeed();
+	const double cloakingFuel = attributes.Get("cloaking fuel");
+	const double cloakingEnergy = attributes.Get("cloaking energy");
+	const double cloakingHull = attributes.Get("cloaking hull");
+	const double cloakingShield = attributes.Get("cloaking shields");
+	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
+		&& fuel >= cloakingFuel && energy >= cloakingEnergy
+		&& MinimumHull() < hull - cloakingHull && shields >= cloakingShield);
+
+	if(canCloak)
+		cloak = 1.;
+}
+
+
+
 double Ship::CloakingSpeed() const
 {
 	return attributes.Get("cloak") + attributes.Get("cloak by mass") * 1000. / Mass();
@@ -3087,6 +3159,31 @@ double Ship::Drag() const
 
 
 
+int Ship::FleetCost() const
+{
+	Gamerules::FleetSizeLimitation behavior = GameData::GetGamerules().GetFleetSizeLimitation();
+	if(behavior == Gamerules::FleetSizeLimitation::NONE)
+		return 0;
+	if(behavior == Gamerules::FleetSizeLimitation::SHIP_CAP)
+		return !canBeCarried;
+	if(behavior == Gamerules::FleetSizeLimitation::CREW_CAP)
+	{
+		if(canBeCarried)
+			return 0;
+		int crewEquivalent = attributes.Get("crew equivalent");
+		if(attributes.Get("use crew equivalent as crew"))
+			return crewEquivalent;
+		// Only the base crew counts toward the fleet capacity, as otherwise installing turrets
+		// could cause a ship to go over the fleet capacity.
+		int mandatory = baseAttributes.Get("mandatory crew");
+		int required = attributes.Get("automaton") ? 0 : baseAttributes.Get("required crew");
+		return required + mandatory + crewEquivalent;
+	}
+	return administrativeCost.value_or(!canBeCarried);
+}
+
+
+
 // Calculate the drag force that this ship experiences. The drag force is the drag
 // divided by the mass, up to a value of 1.
 double Ship::DragForce() const
@@ -3100,11 +3197,13 @@ double Ship::DragForce() const
 
 int Ship::RequiredCrew() const
 {
+	// Mandatory crew cannot be replaced by automation.
+	int mandatory = attributes.Get("mandatory crew");
 	if(attributes.Get("automaton"))
-		return 0;
+		return mandatory;
 
 	// Drones do not need crew, but all other ships need at least one.
-	return max<int>(1, attributes.Get("required crew"));
+	return max<int>(1, attributes.Get("required crew")) + mandatory;
 }
 
 
@@ -3129,7 +3228,7 @@ void Ship::AddCrew(int count)
 // Check if this is a ship that can be used as a flagship.
 bool Ship::CanBeFlagship() const
 {
-	return RequiredCrew() && Crew() && !IsDisabled();
+	return !attributes.Get("automaton") && Crew() && !IsDisabled();
 }
 
 

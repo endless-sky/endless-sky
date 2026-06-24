@@ -81,6 +81,8 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 
 void MapSalesPanel::Step()
 {
+	MapPanel::Step();
+
 	loadingCircle.Step();
 	// Load any and deferred thumbnails that appear in the sales.
 	// This is done here instead of in the constructor because the constructor
@@ -379,7 +381,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, const 
 			swizzle = GameData::PlayerGovernment()->GetSwizzle();
 		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
 	}
-	else
+	else if(sprite->HasDimensions())
 		loadingCircle.Draw(corner + iconOffset);
 }
 

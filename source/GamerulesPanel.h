@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollVar.h"
 #include "Tooltip.h"
 
+#include <functional>
 #include <memory>
 #include <string>
 #include <vector>
@@ -36,8 +37,11 @@ class RenderBuffer;
 // UI panel for editing gamerules.
 class GamerulesPanel : public Panel {
 public:
-	explicit GamerulesPanel(Gamerules &gamerules);
+	GamerulesPanel(Gamerules &gamerules, bool existingPilot);
 	virtual ~GamerulesPanel() override;
+
+	template<class T>
+	void SetCallback(T *t, void (T::*fun)());
 
 	// Draw this panel.
 	virtual void Draw() override;
@@ -78,6 +82,8 @@ private:
 private:
 	// The gamerules being modified.
 	Gamerules &gamerules;
+	bool existingPilot;
+	std::function<void()> callback = nullptr;
 
 	const Interface *gamerulesUi;
 	const Interface *presetUi;
@@ -107,3 +113,11 @@ private:
 	ScrollVar<double> presetListScroll;
 	ScrollVar<double> presetDescriptionScroll;
 };
+
+
+
+template<class T>
+void GamerulesPanel::SetCallback(T *t, void (T::*fun)())
+{
+	callback = std::bind(fun, t);
+}

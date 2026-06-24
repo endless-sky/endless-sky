@@ -232,7 +232,7 @@ ship "Strong Wind"
 	outfits
 		"Sunbeam" 4
 		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 100
+		"Thunderhead Missile" 140
 		"Thunderhead Storage Array"
 		
 		"White Sun Reactor"
@@ -288,7 +288,7 @@ ship "Heavy Gust"
 	outfits
 		"Sunbeam" 4
 		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 100
+		"Thunderhead Missile" 140
 		"Thunderhead Storage Array"
 		"Wanderer Anti-Missile"
 		
@@ -357,7 +357,7 @@ ship "Tempest"
 	outfits
 		"Sunbeam" 2
 		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 80
+		"Thunderhead Missile" 112
 		"Dual Sunbeam Turret"
 		"Wanderer Anti-Missile" 2
 		
@@ -408,7 +408,7 @@ ship "Tempest" "Tempest (Heavy)"
 ship "Tempest" "Tempest (Missile)"
 	outfits
 		"Thunderhead Launcher" 4
-		"Thunderhead Missile" 220
+		"Thunderhead Missile" 308
 		"Thunderhead Storage Array" 3
 		"Dual Sunbeam Turret" 2
 		
@@ -480,7 +480,7 @@ ship "Derecho"
 	outfits
 		"Sunbeam" 2
 		"Thunderhead Launcher" 2
-		"Thunderhead Missile" 80
+		"Thunderhead Missile" 112
 		"Dual Sunbeam Turret" 2
 		"Wanderer Anti-Missile" 2
 		
@@ -662,7 +662,7 @@ ship "Hurricane" "Hurricane (Tough)"
 	outfits
 		"Sunbeam" 2
 		"Thunderhead Launcher" 4
-		"Thunderhead Missile" 160
+		"Thunderhead Missile" 224
 		"Dual Sunbeam Turret" 2
 		"Wanderer Anti-Missile" 2
 		
@@ -859,7 +859,7 @@ ship "Winter Gale" "Winter Gale (Heavy)"
 ship "Winter Gale" "Winter Gale (Missile)"
 	outfits
 		"Thunderhead Launcher" 4
-		"Thunderhead Missile" 160
+		"Thunderhead Missile" 224
 		"Moonbeam" 2
 		"Wanderer Anti-Missile"
 		
@@ -909,7 +909,7 @@ ship "Deep River"
 			"hit force" 4200
 	outfits
 		"Thunderhead Launcher" 6
-		"Thunderhead Missile" 320
+		"Thunderhead Missile" 568
 		"Thunderhead Storage Array" 4
 		
 		"Large Biochemical Cell"

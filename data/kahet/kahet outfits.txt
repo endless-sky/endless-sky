@@ -242,11 +242,11 @@ outfit "Ka'het EMP Deployer"
 	index 05010
 	cost 715000
 	thumbnail "outfit/ka'het emp deployer"
-	"mass" 18
+	"mass" 10
 	"outfit space" -26
 	"weapon capacity" -26
 	"gun ports" -1
-	"emp torpedo capacity" 16
+	"emp torpedo capacity" 27
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
@@ -271,7 +271,7 @@ outfit "Ka'het EMP Deployer"
 		"turn" 2
 		"homing"
 			"throttle control"
-		"infrared tracking" .7
+		"infrared tracking" .2
 		"radar tracking" .8
 		"trigger radius" 50
 		"blast radius" 200

@@ -109,7 +109,6 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 ConversationPanel::~ConversationPanel()
 {
 	Audio::Resume();
-	SpriteLoadManager::UnloadScenes(GetUI().AsyncQueue());
 }
 
 
@@ -130,7 +129,7 @@ void ConversationPanel::Step()
 	{
 		hasLoadedScenes = true;
 		for(const Sprite *scene : conversation.Scenes())
-			SpriteLoadManager::LoadScene(GetUI().AsyncQueue(), scene);
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), scene);
 	}
 }
 
@@ -259,6 +258,14 @@ void ConversationPanel::Draw()
 
 	// Reset the hover flag. If the mouse is still moving than the flag will be set in the next frame.
 	isHovering = false;
+}
+
+
+
+void ConversationPanel::UpdateTextDisplay()
+{
+	for(auto &paragraph : text)
+		paragraph.SetAlignment(Preferences::GetTextAlignment());
 }
 
 
@@ -560,7 +567,7 @@ int ConversationPanel::MapChoice(int n) const
 ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene, bool isFirst)
 	: scene(scene), isFirst(isFirst)
 {
-	wrap.SetAlignment(Alignment::JUSTIFIED);
+	wrap.SetAlignment(Preferences::GetTextAlignment());
 	wrap.SetWrapWidth(WIDTH);
 	wrap.SetFont(FontSet::Get(14));
 
@@ -601,4 +608,11 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 	wrap.Draw(point, color);
 	point.Y() += wrap.Height();
 	return point;
+}
+
+
+
+void ConversationPanel::Paragraph::SetAlignment(Alignment alignment)
+{
+	wrap.SetAlignment(alignment);
 }

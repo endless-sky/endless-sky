@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "MainPanel.h"
+#include "PilotProfile.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
@@ -85,12 +86,13 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), scenarios.begin() + i);
 
 	description.SetWrapWidth(descriptionBox.Width());
+	description.SetAlignment(Preferences::GetTextAlignment());
 
 	Select(startIt);
 
 	TaskQueue queue;
 	for(const StartConditions &scenario : scenarios)
-		SpriteLoadManager::LoadScene(queue, scenario.GetThumbnail());
+		SpriteLoadManager::LoadDeferred(queue, scenario.GetThumbnail());
 	queue.Wait();
 	queue.ProcessSyncTasks();
 }
@@ -146,7 +148,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI().Pop(this);
 	else if(key == 'g')
-		GetUI().Push(new GamerulesPanel(gamerules));
+		GetUI().Push(new GamerulesPanel(gamerules, false));
 	else if(!scenarios.empty() && (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
 	{
 		// Move up / down an entry, or a page. If at the bottom / top, wrap around.
@@ -172,10 +174,11 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN)
 		&& info.HasCondition("unlocked start"))
 	{
-		player.New(*startIt, gamerules);
+		shared_ptr<PilotProfile> pilot = PilotProfile::NewProfile();
+		pilot->New(gamerules);
+		player.New(*startIt, pilot);
 
-		ConversationPanel *panel = new ConversationPanel(
-			player, startIt->GetConversation());
+		ConversationPanel *panel = new ConversationPanel(player, startIt->GetConversation());
 		GetUI().Push(panel);
 		panel->SetCallback(this, &StartConditionsPanel::OnConversationEnd);
 		return true;

@@ -27,6 +27,8 @@ mission "Deep: Syndicate Convoy"
 		or
 			not "chosen sides"
 			has "main plot completed"
+		not "Deep: Tarazed Convoy: active"
+		not "Deep: Kraz Convoy: active"
 		
 	on offer
 		conversation
@@ -117,6 +119,8 @@ mission "Deep: Tarazed Convoy"
 		or
 			not "chosen sides"
 			has "main plot completed"
+		not "Deep: Syndicate Convoy: active"
+		not "Deep: Kraz Convoy: active"
 	
 	on offer
 		conversation
@@ -210,6 +214,8 @@ mission "Deep: Kraz Convoy"
 		or
 			not "chosen sides"
 			has "main plot completed"
+		not "Deep: Syndicate Convoy: active"
+		not "Deep: Tarazed Convoy: active"
 	
 	on offer
 		conversation

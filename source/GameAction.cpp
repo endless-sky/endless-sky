@@ -449,7 +449,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 			giftedItem = true;
 		}
 	if(giftedItem && player.GetPlanet())
-		SpriteLoadManager::RecheckThumbnails();
+		SpriteLoadManager::SetRecheckThumbnails();
 
 	if(payment)
 	{

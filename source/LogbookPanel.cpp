@@ -68,13 +68,6 @@ LogbookPanel::LogbookPanel(PlayerInfo &player)
 
 
 
-LogbookPanel::~LogbookPanel()
-{
-	SpriteLoadManager::UnloadScenes(GetUI().AsyncQueue());
-}
-
-
-
 void LogbookPanel::Step()
 {
 	// Load any and deferred scenes that appear in the logbook.
@@ -85,7 +78,7 @@ void LogbookPanel::Step()
 		hasLoadedScenes = true;
 		for(const auto &entry : player.Logbook())
 			for(const Sprite *scene : entry.second.GetScenes())
-				SpriteLoadManager::LoadScene(GetUI().AsyncQueue(), scene);
+				SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), scene);
 	}
 }
 
@@ -145,7 +138,7 @@ void LogbookPanel::Draw()
 
 	// Parameters for drawing the main text:
 	WrappedText wrap(font);
-	wrap.SetAlignment(Alignment::JUSTIFIED);
+	wrap.SetAlignment(Preferences::GetTextAlignment());
 	wrap.SetWrapWidth(TEXT_WIDTH - 2. * PAD);
 
 	// Draw the main text.
