@@ -68,7 +68,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	hiring = make_shared<HiringPanel>(player);
 
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
@@ -247,6 +247,7 @@ void PlanetPanel::Draw()
 void PlanetPanel::UpdateTextDisplay()
 {
 	description->SetAlignment(Preferences::GetTextAlignment());
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 }
 
 

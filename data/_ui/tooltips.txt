@@ -1445,6 +1445,16 @@ tip "Main zoom factor"
 tip "View zoom factor"
 	`Increase the zoom factor of the gameplay view when in flight. Can also be changed by the + and - keys and the scroll wheel.`
 
+tip "Text alignment"
+	`Sets the horizontal text alignment of paragraphs across the UI.`
+	`- "left": align to the left.`
+	`- "right": align to the right.`
+	`- "center": center the text.`
+	`- "justified": add extra space between words to align with both margins.`
+
+tip "UI font size"
+	`Sets the font size to be used by text in various parts of the UI. Note that this only impacts text that is displayed in areas that can expand or scroll to fit a larger font size. If you want to increase the size of all text, you should increase the main zoom factor.`
+
 tip "Screen mode"
 	`Toggle whether the game is in windowed or fullscreen mode. Can also be toggled by the "Toggle fullscreen" control.`
 
@@ -1682,13 +1692,6 @@ tip "Notify on destination"
 
 tip "Save message log"
 	`Include message logs in pilot files so they are not lost when closing the game or reloading the save file. This will increase save file sizes and may increase load times. The stored log history can be cleared from the message log panel.`
-
-tip "Text alignment"
-	`Sets the horizontal text alignment of paragraphs across the UI.`
-	`- "left": align to the left.`
-	`- "right": align to the right.`
-	`- "center": center the text.`
-	`- "justified": add extra space between words to align with both margins.`
 
 tip "Block screen saver"
 	`Whether your monitor should be able to dim and turn off or change to the screen saver while the game is open.`

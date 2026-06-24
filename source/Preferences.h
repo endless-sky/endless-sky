@@ -295,10 +295,14 @@ public:
 	static AmmoRefill GetAmmoRefill();
 	static const std::string &AmmoRefillSetting();
 
-	/// Text alignment override setting.
+	/// Text alignment setting.
 	static void ToggleTextAlignment();
 	static Alignment GetTextAlignment();
 	static const std::string &TextAlignmentSetting();
+
+	/// Font size setting.
+	static void ToggleFontSize();
+	static int GetFontSize();
 
 	static void ToggleBlockScreenSaver();
 

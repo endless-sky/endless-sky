@@ -195,6 +195,10 @@ namespace {
 
 	int previousSaveCount = 3;
 
+	// The font size to be used for various UI panels that can support displaying larger text than the default.
+	const vector<int> FONT_SIZES = {14, 18};
+	int fontSizeIndex = 0;
+
 #ifdef _WIN32
 	const vector<string> TITLE_BAR_THEME_SETTINGS = {"system default", "light", "dark"};
 	int titleBarThemeIndex = 0;
@@ -305,6 +309,8 @@ void Preferences::Load()
 			ammoRefillIndex = clamp<int>(node.Value(1), 0, AMMO_REFILL_SETTINGS.size() - 1);
 		else if(key == "Text alignment")
 			textAlignmentIndex = clamp<int>(node.Value(1), 0, TEXT_ALIGNMENT_SETTINGS.size() - 1);
+		else if(key == "font size")
+			fontSizeIndex = max<int>(0, node.Value(1));
 #ifdef _WIN32
 		else if(key == "Title bar theme")
 			titleBarThemeIndex = clamp<int>(node.Value(1), 0, TITLE_BAR_THEME_SETTINGS.size() - 1);
@@ -413,6 +419,7 @@ void Preferences::Save()
 	out.Write("Ammo refill", ammoRefillIndex);
 	out.Write("Text alignment", textAlignmentIndex);
 	out.Write("previous saves", previousSaveCount);
+	out.Write("font size", fontSizeIndex);
 #ifdef _WIN32
 	if(WinVersion::SupportsDarkTheme())
 		out.Write("Title bar theme", titleBarThemeIndex);
@@ -1076,6 +1083,21 @@ Alignment Preferences::GetTextAlignment()
 const string &Preferences::TextAlignmentSetting()
 {
 	return TEXT_ALIGNMENT_SETTINGS[textAlignmentIndex];
+}
+
+
+
+void Preferences::ToggleFontSize()
+{
+	if(++fontSizeIndex >= static_cast<int>(FONT_SIZES.size()))
+		fontSizeIndex = 0;
+}
+
+
+
+int Preferences::GetFontSize()
+{
+	return FONT_SIZES[fontSizeIndex];
 }
 
 

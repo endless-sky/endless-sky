@@ -708,7 +708,7 @@ void GamerulesPanel::RenderPresetDescription(const string &name)
 void GamerulesPanel::RenderPresetDescription(const Gamerules &preset)
 {
 	const Color &medium = *GameData::Colors().Get("medium");
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	Rectangle box = presetUi->GetBox("preset description");
 
 	// We are resizing and redrawing the description buffer. Reset the scroll

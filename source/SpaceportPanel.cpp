@@ -39,11 +39,12 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	SetTrapAllEvents(false);
 
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
 
+	// TODO: Use the preference to set the font size after this is turned into a TextArea.
 	newsMessage.SetFont(FontSet::Get(14));
 	newsMessage.SetAlignment(Preferences::GetTextAlignment());
 }
@@ -132,7 +133,10 @@ void SpaceportPanel::Draw()
 void SpaceportPanel::UpdateTextDisplay()
 {
 	description->SetAlignment(Preferences::GetTextAlignment());
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	newsMessage.SetAlignment(Preferences::GetTextAlignment());
+	// TODO: Un-comment after newsMessage is made into a TextArea.
+	// newsMessage.SetFont(FontSet::Get(Preferences::GetFontSize()));
 }
 
 
