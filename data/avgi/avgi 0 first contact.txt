@@ -865,9 +865,31 @@ mission "Avgi: Scout Rescue"
 		conversation
 			`You receive a warm welcome back on Peripheria Station, as the former crew of the Silver Albedo disembarks. Some of the more badly injured crew members are carried out on hammock-like stretchers, but most are able to walk or fly out of the <ship> on their own power.`
 			`	After a short celebration and many expressions of deep gratitude toward you, you find Darius and Sora waiting by the <ship> to speak with you.`
+			choice
+				`	Hear what they have to say.`
+					goto hasnotfoundmagnetar
+					to display
+						not "avgi: discovered magnetar"
+				`	Hear what they have to say.`
+					goto hasfoundmagnetar
+					to display
+						has "avgi: discovered magnetar"
+
+			label hasnotfoundmagnetar
 			`	"<first>, I think we have a golden opportunity," Darius says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud."`
 			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
 			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. Meet me in the spaceport in an hour and we'll get this trip sorted out."`
+			goto rejoinstory
+
+			label hasfoundmagnetar
+			`	"<first>, I think we have a golden opportunity," Darius says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud."`
+			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
+			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's perfect since I wanted to visit my friend there anyway."`
+			goto rejoinstory
+
+			label rejoinstory
+			`   "Meet me in the spaceport in an hour and we'll get this trip sorted out."`
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the rescued crew hasn't entered the system yet. Better depart and wait for it to arrive.`
 
