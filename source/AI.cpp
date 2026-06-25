@@ -764,7 +764,7 @@ void AI::Step(Command &activeCommands)
 		bool isPresent = (it->GetSystem() == playerSystem);
 		bool isStranded = IsStranded(*it);
 		bool thisIsLaunching = (isPresent && HasDeployments(*it));
-		if(isStranded || it->IsDisabled())
+		if(isStranded || it->IsDisabled() || it->NeedsEnergy())
 		{
 			// Attempt to find a friendly ship to render assistance.
 			if(!it->GetPersonality().IsDerelict())
