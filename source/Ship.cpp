@@ -2356,7 +2356,7 @@ bool Ship::IsDisabled() const
 
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
-	return (hull < minimumHull || (!crew && needsCrew));
+	return (hull < minimumHull || (!crew && needsCrew) || NeedsEnergy());
 }
 
 
