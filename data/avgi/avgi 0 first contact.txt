@@ -1054,7 +1054,7 @@ mission "Avgi: Dissonance Outreach"
 mission "Avgi: Twilight Escape 1"
 	landing
 	name "Escape the Twilight"
-	description "Find a way out of the Twilight. You may want to look to the far east of the Twilight, where the Incursion first began."
+	description "Deliver Darius and the other humans out of the Twilight. You may want to look to the far east of the Twilight, where the Incursion first began."
 	source "Outpost Tekis"
 	destination "Vinci"
 	passengers 3
@@ -1062,9 +1062,9 @@ mission "Avgi: Twilight Escape 1"
 	to offer
 		has "Avgi: Dissonance Outreach: done"
 	on offer
-		log `Heard of a potential way out of the Twilight. Apparently, the Aberrant invaded through a chain of systems stretching to the East, and while no Avgi ships have been able to explore the area since the Incursion, Leon thinks there could be a way back to human space from there.`
+		log `Apparently, the Aberrant invaded through a chain of systems stretching to the East, and while no Avgi ships have been able to explore the area since the Incursion.`
 		log "Factions" "Avgi Dissonance" `Independent miners, collectives, and corporations alike are unhappy with the price controls the Consonance has placed on minerals mined from asteroids. While the Consonance claims they are necessary due to the austere war economy and the need for raw materials, the artificially low prices make it hard to survive and make a living.`
-		log "People" "Leon Shez" `Leon was a scientist aboard Darius' ship when it became trapped in the Twilight. Unlike Sora, he definitely does blame Darius for having been trapped with the Avgi. While somewhat rude, he appears to have made several valuable connections and could be close to uncovering a way back to human space.`
+		log "People" "Leon Shez" `Leon was a scientist aboard Darius' ship when it became trapped in the Twilight. Unlike Sora, he definitely does blame Darius for having been trapped with the Avgi. While somewhat rude, he appears to have made several valuable connections among the Avgi.`
 		conversation
 			`Outpost Tekis is a large station built into an asteroid several kilometers across, with networks of tubes and habitats crisscrossing the surface. You pull the <ship> into a cramped hangar dug into the rock and disembark with Hriso, who immediately sets out for a prearranged meeting place. You notice many of the Avgi in the outpost stare at you, Darius, and Sora, likely their first glimpse of a human.`
 			`	Together, you enter a large, round conference room with walls of polished rock. Waiting there are a handful of Avgi of various ages, who immediately begin conversing with Hriso in their own language.`
@@ -1075,9 +1075,31 @@ mission "Avgi: Twilight Escape 1"
 
 			`	"Rebuke. Captain <last> is not here on 'my' side, or any other, merely as an observer curious of our ways." Hriso turns to you. "Consideration. I suppose you might be curious about what we are discussing. The local mining guild here says they cannot sustain their operations with the low price on iron mandated by the Consonance, as we are not buying enough rarer metals like titanium to make up for it."`
 			`	"That's stupid," says Sora. "Without cheap steel we wouldn't be able to keep expanding Peripheria or build the Aktina Cylinder."`
-			`	Hriso doesn't translate that, returning to conversing with the miners. Sora pulls out a translator of her own, listening intently to the conversation, but Darius pulls you aside. "I had a talk with a few people on the way here, and they say there's someone who knows more about the first days after the Incursion. Come on."`
+			`	Hriso doesn't translate that, returning to conversing with the miners. Sora pulls out a translator of her own, listening intently to the conversation, but Darius pulls you aside.`
+			choice
+				`	Listen to what Darius has to say.`
+					goto hasnotfoundmagnetar
+					to display
+						not "avgi: discovered magnetar"
+				`	Listen to what Darius has to say.`
+					goto hasfoundmagnetar
+					to display
+						has "avgi: discovered magnetar"
+			
+			label hasnotfoundmagnetar
+			`   "I had a talk with a few people on the way here, and they say there's someone who knows more about the first days after the Incursion. Come on."`
 			`	"What did they say?" you ask.`
 			`	"Apparently it's someone we have to meet in person," he grumbles. "I don't like it, but I don't think it's anything dangerous. Just inconvenient." You excuse yourself and walk along with Darius.`
+			goto rejoinstory
+
+			label hasfoundmagnetar
+			`   "Come on, let's go meet my friend."`
+			`	"Another human?" you ask.`
+			`	"Yes, though calling him a friend may be a stretch these days." You excuse yourself and walk along with Darius.`
+			goto rejoinstory
+
+
+			label rejoinstory
 			`	Before long, you find yourself in some kind of mess hall, dozens of Avgi sipping from colorful drinks. Darius freezes as he spots a short man seated on a crude stool, the only human-style seating in the room, together with a few Avgi.`
 			`	"Darius. I didn't expect to see you here," he says. "And, what's this, another human here in Avgi space?"`
 			`	Darius takes a while to respond. "Leon. It's been a while."`
@@ -1092,8 +1114,31 @@ mission "Avgi: Twilight Escape 1"
 			`	"And who's this?" Leon says, looking at you. "How'd you end up here, of all places?"`
 			choice
 				`	"Captain <last>. I was stranded here, just like you."`
+					goto hasnotfoundmagnetar2
+					to display
+						not "avgi: discovered magnetar"
 				`	"<first>. Pleased to meet you."`
+					goto hasnotfoundmagnetar2
+					to display
+						not "avgi: discovered magnetar"
+				`	"Captain <last>. I was exploring this part of space."`
+					goto hasfoundmagnetar2
+					to display
+						has "avgi: discovered magnetar"
+				`	"I'm just passing through."`
+					goto hasfoundmagnetar2
+					to display
+						has "avgi: discovered magnetar"
 
+			label hasfoundmagnetar2
+			`	You quickly explain how you found yourself in Avgi space, and Leon nods.`
+			`   "I've spent years collecting this information," he mumbles "from hearing the official narrative to dredging the corners of Avgi space for rumors."`
+			`   You lean in - "Is there something you're getting at?"`
+			`	"Not a lot of captains are willing to take their ships out of the Tangled Shroud and through the Aberrant blockade, if you're heading out of here, I want a bunk on your ship. I'll gladly tell you all I know."`
+			'   "Agreed."`
+			goto agreed
+
+			label hasnotfoundmagnetar2
 			`	You quickly explain how you found yourself in Avgi space, and Leon nods. "That explains the questions the good Captain was asking," he says, nodding at Darius. "I've spent years collecting this information, from hearing the official narrative to dredging the corners of Avgi space for rumors."`
 			`	He leans in. "So, before I tell you this, one condition. I've spent months looking for a way to get a ship to take me to... well, you'll see. But not a lot of captains are willing to take their ships out of the Tangled Shroud and through the Aberrant blockade, so if this leads anywhere, I want a bunk on your ship."`
 			choice
@@ -1107,8 +1152,19 @@ mission "Avgi: Twilight Escape 1"
 			`	He pauses, taking a drink of what looks like water. "They said they had found a gateway of sorts, an ancient alien artifact built by an unknown Antecessor species. Somehow, they had activated it, and that's where the first Aberrant came from."`
 			choice
 				`	"And you want to use this gateway as a way out?"`
+					goto hasnotfoundmagnetar3
+					to display
+						not "avgi: discovered magnetar"
 				`	"Where do you think this gateway leads?"`
+					goto hasnotfoundmagnetar3
+					to display
+						not "avgi: discovered magnetar"
+				`	"They must be referring to the magnetar I discovered."`
+					goto hasfoundmagnetar3
+					to display
+						has "avgi: discovered magnetar"
 
+			label hasnotfoundmagnetar3
 			`	"I don't know where it leads, but it'll be somewhere other than Avgi space. Maybe somewhere your jump drive can work, which would let us eventually make our way back to human space. But it's better than sitting here and twiddling our thumbs for another six years."`
 			`	"Where is this gateway?" Darius asks.`
 			`	"The Aberrant came from the East, beyond the furthest reaches of the Twilight. A place the Avgi always had trouble exploring, due to strange energy storms periodically ionizing entire systems. But it's apparently recognizable by the red nebula suffusing it, just as the Twilight is surrounded by a cluster of blue nebulae."`
@@ -1120,10 +1176,16 @@ mission "Avgi: Twilight Escape 1"
 
 			label "unknown ember waste"
 			`	"There's no point in waiting, then. If there's a chance, even a small one, it's worth checking on," says Darius, looking hopeful for the first time since you've met him.`
-			branch accept
-				has "avgi: discovered magnetar"
 			`	You just hope his hope isn't a false one, for both of your sakes.`
 				accept
+
+			label hasfoundmagnetar3
+			`	"As long as it leads somewhere other than Avgi space. I couldn't stand to be here for another six years."`
+			`	"Where is this gateway?" Darius asks.`
+			`   "A system called Decet, not too far from Tarazed" You reply.`
+			`	"There's no point in waiting, then. Everyone is here.  Every one of us who was trapped in Avgi space." says Darius, looking hopeful for the first time since you've met him.`
+			accept
+			
 	on enter
 		system
 			attributes "core" "deep" "dirt belt" "near earth" "rim" "south"
