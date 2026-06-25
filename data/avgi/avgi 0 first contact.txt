@@ -726,15 +726,15 @@ mission "Avgi: Defend Ensemble 2"
 			`	"Sounds good to me, then. I'll see you around when you're ready to leave." She walks off to collect her belongings.`
 				goto rejoinstory
 
-			label hasnotfoundmagnetar
-			`   You explain about the magnetar in Decet and how it amplifies your jump drive's range.
+			label hasfoundmagnetar
+			`   You explain about the magnetar in Decet and how it amplifies your jump drive's range.`
 			`	"Damn. Who knew it would be so easy! It's just been too long since I've seen a fresh human face. I've been working for the Twilight Guard here for months, trying to build up a second line of defenses in case that station in Arche falls. At least today's battle shows those defenses, together with a supporting fleet, can hold. Now that's done, do you mind if I tag along with you? I'm ready to get out."`
 			choice
 				`	"Of course."`
-					goto yes
+					goto yesone
 				`	"Sure, as long as Darius doesn't mind."`
 			`	You look over at Darius, who responds after a few seconds of silence. "Of course you can come along, Sora."`
-			label yes
+			label yesone
 			`	"Sounds good to me, then. I'll see you around when you're ready to leave." She walks off to collect her belongings.`
 				goto rejoinstory
 
@@ -1135,8 +1135,9 @@ mission "Avgi: Twilight Escape 1"
 			`   "I've spent years collecting this information," he mumbles "from hearing the official narrative to dredging the corners of Avgi space for rumors."`
 			`   You lean in - "Is there something you're getting at?"`
 			`	"Not a lot of captains are willing to take their ships out of the Tangled Shroud and through the Aberrant blockade, if you're heading out of here, I want a bunk on your ship. I'll gladly tell you all I know."`
-			'   "Agreed."`
-			goto agreed
+			choice
+				'   "Agreed."`
+					goto agreed
 
 			label hasnotfoundmagnetar2
 			`	You quickly explain how you found yourself in Avgi space, and Leon nods. "That explains the questions the good Captain was asking," he says, nodding at Darius. "I've spent years collecting this information, from hearing the official narrative to dredging the corners of Avgi space for rumors."`
@@ -1184,8 +1185,8 @@ mission "Avgi: Twilight Escape 1"
 			`	"Where is this gateway?" Darius asks.`
 			`   "A system called Decet, not too far from Tarazed" You reply.`
 			`	"There's no point in waiting, then. Everyone is here.  Every one of us who was trapped in Avgi space." says Darius, looking hopeful for the first time since you've met him.`
-			accept
-			
+				accept
+
 	on enter
 		system
 			attributes "core" "deep" "dirt belt" "near earth" "rim" "south"
