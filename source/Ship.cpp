@@ -2752,7 +2752,8 @@ double Ship::TransferFuel(double amount, Ship *to)
 
 double Ship::TransferEnergy(double amount, Ship *to)
 {
-	amount = max(energy - attributes.Get("energy capacity"), amount);
+	// Do not give more energy than the ships current energy reserves.	
+	amount = min(energy, amount);	
 	if(to)
 	{
 		amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
