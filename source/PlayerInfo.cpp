@@ -4915,7 +4915,25 @@ void PlayerInfo::Autosave(std::string autoSaveLabel) const
 {
 	if(!CanBeSaved() || filePath.length() < 4)
 		return;
+	string dirPath = filePath.substr(0, filePath.find_last_of('\\'));
+	filesystem::path newest;
+    filesystem::file_time_type newest_t{};
+    bool found = false;
 
+    for(const auto& e : filesystem::directory_iterator(dirPath)) {
+        if(!e.is_regular_file()) continue;
+		if(e.path().string().find(firstName + " " + lastName) == string::npos) continue;
+        auto t = e.last_write_time();
+        if (!found || t > newest_t) {
+            newest = e.path();
+            newest_t = t;
+            found = true;
+        }
+    }
+	if(found){
+		string lastSafeSavePath = filePath.substr(0, filePath.length() - 4) + "~lastSafeSave" + (autoSaveLabel != "" ? " " + autoSaveLabel : "") + ".txt";
+		filesystem::copy_file(newest,lastSafeSavePath,filesystem::copy_options::overwrite_existing);
+	}
 	string path = filePath.substr(0, filePath.length() - 4) + "~autosave" + (autoSaveLabel != "" ? " " + autoSaveLabel : "") + ".txt";
 	Save(path);
 }

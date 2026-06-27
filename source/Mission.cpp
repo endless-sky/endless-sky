@@ -459,7 +459,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("offer precedence", offerPrecedence);
 		if(autosave){
 			if( autoSaveLabel != ""){
-				out.Write(std::format("autosave \"{}\"",autoSaveLabel));
+				out.Write("autosave",autoSaveLabel);
 			}
 			else
 				out.Write("autosave");
