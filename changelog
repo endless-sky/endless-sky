@@ -46,7 +46,7 @@ Version 0.11.2:
       * Added a "mandatory crew" attribute which works similarly to required crew, but is still required on ships with the "automaton" attribute. (@Amazinite)
       * The player's cloak state will now persist in the save file. (@Amazinite)
   * Graphics:
-    * Added a setting to choose between linear and nearest-neighbour interpolation for textures. (@TomGoodIdea)
+    * Added a setting to choose between linear and nearest-neighbour interpolation for textures. (@TomGoodIdea, @warp-core)
     * Plugins can now override the default fonts. (@TomGoodIdea)
   * User interface:
     * Added a dropdown menu for quantity to the shop panels. (@thewierdnut)
@@ -57,7 +57,6 @@ Version 0.11.2:
     * Improved how the positions of tooltips that would exceed the bounds of the window are adjusted to make the tooltips fit. (@Amazinite)
     * When using the mouse to control the flagship, the middle mouse button now issues firing orders to escorts, instead of the right mouse button, so escorts can be ordered to fire on a target without firing the flagship weapons, which are operated by the right mouse button. (@TomGoodIdea)
     * The sell minables/outfits confirmation dialogs from the trading panel will now start with the "Ok" button in focus, instead of "Cancel" so hitting enter immediately accepts the sale. (@warp-core)
-    * Renamed the "Linear filter" preference to "Texture interpolation" and changed the options from "on"/"off" to "linear"/"nearest". (@warp-core)
   * Under the hood:
     * It is now possible to disable version strings being added to shader files automatically, allowing the shader files to list their own versions. (@TomGoodIdea)
     * Added command line arguments for manually setting a static prng seed and the number of task queue worker threads. (@knarrff)
