@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.11.2-alpha
+version 0.11.2
 
 The player's manual and other
 resources are available at:
@@ -182,6 +182,7 @@ contributed to Endless Sky:
   Anarchist2
   Aneutronic
   AntimatterReactor
+  apttie
   AraCaputDraco
   Arachi-Lover
   aradapilot
@@ -225,6 +226,7 @@ contributed to Endless Sky:
   daggs1
   danaris
   DarcyManoel
+  Daniilik
   dashkal16
   davidarcher
   davidwhitman
@@ -327,6 +329,7 @@ contributed to Endless Sky:
   kestrel1110
   kilobyte
   kkuchta
+  knarrff
   Koranir
   kozbot
   Kryes-Omega
