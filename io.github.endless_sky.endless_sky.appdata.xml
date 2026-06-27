@@ -67,7 +67,7 @@
         <ul>
           <li>Pacifist worlds in human space that do not offer tribute now have their own set of responses when it is demanded, as opposed to responding as if your combat rating is not high enough yet.</li>
           <li>The player's cloak state will now persist in the save file. This means that if you land while cloaked, close, and reopen the game, you will still be cloaked when taking off, which was already the behavior if you landed while cloaked and then departed without having closed the game.</li>
-          <li>The shop UI now has a dropdown for selecting the number of items to buy.</li>
+          <li>The shop UI now has a dropdown for selecting the number of items to buy, sell, or move.</li>
           <li>Added a setting for globally modifying text alignment in paragraphs.</li>
         </ul>
         <p>And some of the bugs fixed are:</p>
