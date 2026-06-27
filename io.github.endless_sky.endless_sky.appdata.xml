@@ -60,6 +60,28 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.11.2" date="2026-6-27">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <p>Some of the notable changes are:</p>
+        <ul>
+          <li>Pacifist worlds in human space that do not offer tribute now have their own set of responses when it is demanded, as opposed to responding as if your combat rating is not high enough yet.</li>
+          <li>The player's cloak state will now persist in the save file. This means that if you land while cloaked, close, and reopen the game, you will still be cloaked when taking off, which was already the behavior if you landed while cloaked and then departed without having closed the game.</li>
+          <li>The shop UI now has a dropdown for selecting the number of items to buy.</li>
+          <li>Added a setting for globally modifying text alignment in paragraphs.</li>
+        </ul>
+        <p>And some of the bugs fixed are:</p>
+        <ul>
+          <li>Using the "Reload" button in the main menu after dying no longer crashes.</li>
+          <li>The Successor wormhole can now be used when hostile to the Successors.</li>
+          <li>Various fixes and improvements to mouse controls when the "Control ship with mouse" preference is on.</li>
+          <li>Moved the planet description in the map panel down a little so it no longer overlaps with the system name when the game window is small.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 13 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.11.2/changelog</url>
+    </release>
     <release version="0.11.1" date="2026-4-25" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
