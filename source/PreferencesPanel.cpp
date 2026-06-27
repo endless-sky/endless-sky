@@ -65,7 +65,7 @@ namespace {
 	const string CAMERA_ACCELERATION = "Camera acceleration";
 	const string LARGE_GRAPHICS_REDUCTION = "Reduce large graphics";
 	const string CLOAK_OUTLINE = "Cloaked ship outlines";
-	const string TEXTURE_INTERPOLATION = "Texture interpolation";
+	const string TEXTURE_FILTERING = "Texture filtering";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
 	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
 	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
@@ -761,7 +761,7 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		CLOAK_OUTLINE,
-		TEXTURE_INTERPOLATION,
+		TEXTURE_FILTERING,
 		"\t",
 		"Performance",
 		"Show CPU / GPU load",
@@ -958,9 +958,9 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::Has(CLOAK_OUTLINE) ? "fancy" : "fast";
 			isOn = true;
 		}
-		else if(setting == TEXTURE_INTERPOLATION)
+		else if(setting == TEXTURE_FILTERING)
 		{
-			text = Preferences::Has("Texture interpolation") ? "linear" : "nearest";
+			text = Preferences::Has("Texture filtering") ? "linear" : "nearest";
 			isOn = true;
 		}
 		else if(setting == AUTO_AIM_SETTING)

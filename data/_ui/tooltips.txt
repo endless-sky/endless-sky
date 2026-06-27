@@ -1508,7 +1508,7 @@ tip "Cloaked ship outlines"
 	`- "fancy": causes the ship to become transparent and applies a red outline.`
 	`- "fast": simply shifts the ship to being red.`
 
-tip "Texture interpolation"
+tip "Texture filtering"
 	`Choose the interpolation method used when sampling textures. (Requires game restart.)`
 	`- "linear": produces a smoother, fuzzier image.`
 	`- "nearest": produces a sharper, blockier image`
