@@ -7,6 +7,8 @@ Version 0.11.2:
       * Reduced the mass of the Hai Tracker Pod by 0.2 so its outfit space use matches its mass combined with the mass of its ammunition when full. (@Amazinite)
       * Removed a duplicate choice from a Successor mission. (@Daeridanii1)
       * Removed an unused fleet left over from Hai Reveal. (@warp-core)
+      * Corrected the type and amount of ammunition installed on the Swan and one of its variants. (@RedTechGamer236)
+      * Corrected the offer conditions of "Timothy Radrickson: Log Fix 6" so it does not duplicate log entries. (@apttie)
     * Engine bugs:
       * Fixed an issue where the settings panel wasn't using the correct name for the trading panel sell minables confirmation setting. (@Daniilik)
       * Corrected the parsing of the "tribute hails" planet child node so that it doesn't require a value in the same node. (@Amazinite)
@@ -21,6 +23,9 @@ Version 0.11.2:
       * Fixed an issue where outfits in stock but not normally sold at an outfitter would not have thumbnails loaded when using deferred sprite loading. (@TomGoodIdea)
       * Corrected the length of the shop sidebar scroll bar. (@TomGoodIdea)
       * Deployed, out of system carriables will now be able to transit wormholes to reach the flagship, instead of getting stuck hovering over them. (@warp-core)
+      * Double-clicking on a non-disabled ship no longer attempts to board the nearest disabled ship if one is present in the system. (@Amazinite)
+      * Clicking on a ship you have already targeted no longer makes the targeting sound effect if no change has occurred. (@Amazinite)
+      * Right mouse button no longer targets ships when the "Control ship with mouse" preference is on. (@Amazinite)
   * Game content:
     * New content:
       * Pacifist worlds in human space that do not offer tribute now have their own set of responses when it is demanded. (@mOctave)
