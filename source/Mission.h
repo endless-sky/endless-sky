@@ -169,6 +169,8 @@ public:
 	// accepted. This should be set for main story line missions that have a
 	// high chance of failing, such as escort missions.
 	bool RecommendsAutosave() const;
+	// For use with named autosaves, descriptive of the save state.
+	std::string AutosaveLabel();
 	// Check if this mission is unique, i.e. not something that will be offered
 	// over and over again in different variants.
 	bool IsUnique() const;
@@ -224,6 +226,7 @@ private:
 	std::string displayName;
 	std::string description;
 	std::string blocked;
+	std::string autoSaveLabel;
 	Location location = SPACEPORT;
 
 	// Colors that determine how this mission displays in the MissionPanel.

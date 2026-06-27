@@ -2785,7 +2785,7 @@ void PlayerInfo::MissionCallback(int response)
 		missions.splice(spliceIt, missionList, missionList.begin());
 		mission.Do(Mission::ACCEPT, *this);
 		if(shouldAutosave)
-			Autosave();
+			Autosave(mission.AutosaveLabel());
 		// If this is a mission offered in-flight, expose a pointer to it
 		// so Engine::SpawnFleets can add its ships without requiring the
 		// player to land.
@@ -4911,12 +4911,12 @@ bool PlayerInfo::RecacheJumpRoutes()
 
 
 
-void PlayerInfo::Autosave() const
+void PlayerInfo::Autosave(std::string autoSaveLabel) const
 {
 	if(!CanBeSaved() || filePath.length() < 4)
 		return;
 
-	string path = filePath.substr(0, filePath.length() - 4) + "~autosave.txt";
+	string path = filePath.substr(0, filePath.length() - 4) + "~autosave" + (autoSaveLabel != "" ? " " + autoSaveLabel : "") + ".txt";
 	Save(path);
 }
 
