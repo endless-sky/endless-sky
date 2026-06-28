@@ -481,6 +481,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					}
 				if(foundIllegal)
 				{
+					messages.push_back("Being found with illegal outfits can result in heavy penalties.");
 					messages.push_back("You may wish to avoid law enforcement!");
 				}
 
