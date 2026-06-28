@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
 
 using namespace std;
 
@@ -115,8 +116,16 @@ void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions
 // Calculate the expected payload value of this Minable after all outfits have been fully loaded.
 void Minable::FinishLoading()
 {
-	for(const auto &it : payload)
-		value += it.outfit->Cost() * it.maxDrops * it.dropRate;
+	for(const Payload &it : payload)
+	{
+		if(!it.maxDrops)
+			continue;
+		if(it.outfit->Mass())
+			highestQuality = max<int64_t>(highestQuality, it.outfit->Cost() / it.outfit->Mass());
+		else
+			highestQuality = numeric_limits<int64_t>::max();
+		expectedValue += it.outfit->Cost() * it.maxDrops * it.dropRate;
+	}
 }
 
 
@@ -312,9 +321,16 @@ const vector<Minable::Payload> &Minable::GetPayload() const
 
 
 // Get the expected value of the flotsams this minable will create when destroyed.
-const int64_t &Minable::GetValue() const
+int64_t Minable::GetExpectedValue() const
 {
-	return value;
+	return expectedValue;
+}
+
+
+
+int64_t Minable::GetHighestQualityValue() const
+{
+	return highestQuality;
 }
 
 
