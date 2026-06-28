@@ -203,6 +203,7 @@ void Minable::Place(double energy, double beltRadius)
 }
 
 
+
 // Apply corrosion damage ticks and decrement corrosion.
 void Minable::DoCorrosionDamage()
 {
