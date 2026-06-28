@@ -472,7 +472,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				// Warn the player if outfits exist that are widely illegal.
 				bool foundIllegal = false;
 				for(const auto &it : victim->Outfits())
-					if(it.first->Get("illegal") || it.first->Get("atrocity") > 0.)
+					if(it.first->Get("illegal") > 0. || it.first->Get("atrocity") > 0.)
 					{
 						messages.push_back("Found " + to_string(it.second) + " "
 							+ (it.second == 1 ? it.first->DisplayName() : it.first->PluralName())
