@@ -204,7 +204,8 @@ void Minable::Place(double energy, double beltRadius)
 
 
 // Apply corrosion damage ticks and decrement corrosion
-void Minable::DoCorrosionDamage(){
+void Minable::DoCorrosionDamage()
+{
 	if(!corrosion)
 		return;
 	hull -= corrosion;
@@ -217,8 +218,7 @@ void Minable::DoCorrosionDamage(){
 // In that case it will return false, meaning it should be deleted.
 bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
-	DoCorrosionDamage();
-	
+	DoCorrosionDamage();	
 	if(hull < 0)
 	{
 		// This object has been destroyed. Create explosions and flotsam.
