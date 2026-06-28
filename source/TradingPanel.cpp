@@ -259,7 +259,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	{
 		if(Preferences::Has("Confirm selling minables"))
 			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SellOutfitsOrMinables(true); },
-				OutfitSalesMessage(true), 2, Truncate::NONE, true));
+				OutfitSalesMessage(true), 1, Truncate::NONE, true));
 		else
 			SellOutfitsOrMinables(true);
 	}
@@ -267,7 +267,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	{
 		if(Preferences::Has("Confirm selling outfits"))
 			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SellOutfitsOrMinables(false); },
-				OutfitSalesMessage(false), 2, Truncate::NONE, true));
+				OutfitSalesMessage(false), 1, Truncate::NONE, true));
 		else
 			SellOutfitsOrMinables(false);
 	}
@@ -384,10 +384,8 @@ string TradingPanel::OutfitSalesMessage(bool sellMinables) const
 		tonsSold += static_cast<int>(count * outfit->Mass());
 		// Store a description of the count & item, followed by its value.
 		outfitValue.push_back({{}, count, value});
-		if(sellMinables && count == 1)
-			outfitValue.back().name = Format::CargoString(count, outfit->DisplayName());
 		if(sellMinables)
-			outfitValue.back().name = Format::CargoString(count, outfit->PluralName());
+			outfitValue.back().name = Format::SimplePluralization(count, "unit") + " of " + outfit->DisplayName();
 		else if(count == 1)
 			outfitValue.back().name = outfit->DisplayName();
 		else
@@ -397,7 +395,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinables) const
 		return "Sell " + outfitValue[0].name + " for " + Format::CreditString(profit) + "?";
 	std::ostringstream out;
 	out << "Sell ";
-	out << Format::CargoString(tonsSold, sellMinables ? "of special commodities" : "of outfits");
+	out << Format::CargoString(tonsSold, sellMinables ? "special commodities" : "outfits");
 	out << " for " << Format::CreditString(profit) << '?' << endl;
 
 	// Sort by decreasing value.

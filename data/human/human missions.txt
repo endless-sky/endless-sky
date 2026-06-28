@@ -10676,7 +10676,7 @@ mission "Timothy Radrickson: Log Fix 6"
 	invisible
 	non-blocking
 	to offer
-		has "Timothy Radrickson 5a: Timshank Redemption: offered"
+		has "Timothy Radrickson 6: News of Death: offered"
 		not "timothy radrickson 6 log entry correct"
 		not "Timothy Radrickson: Log Fix 4: offered"
 	on offer
