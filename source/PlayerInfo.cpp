@@ -4923,12 +4923,12 @@ void PlayerInfo::LastSafeSave(std::string lastSafeSaveLabel)
 	filesystem::file_time_type newest_t{};
 	bool found = false;
 
-	for(const auto& e : filesystem::directory_iterator(dirPath))
+	for(const auto & e : filesystem::directory_iterator(dirPath))
 	{
 		if(!e.is_regular_file()) continue;
 		if(e.path().string().find(firstName + " " + lastName) == string::npos) continue;
 		auto t = e.last_write_time();
-		if (!found || t > newest_t)
+		if(!found || t > newest_t)
 		{
 			newest = e.path();
 			newest_t = t;

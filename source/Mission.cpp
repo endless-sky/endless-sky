@@ -1256,7 +1256,8 @@ bool Mission::RecommendsAutosave() const
 }
 
 // For use with named autosaves, descriptive of the save state.
-std::string Mission::AutosaveLabel(){
+std::string Mission::AutosaveLabel()
+{
 	return autoSaveLabel;
 }
 
@@ -1267,7 +1268,8 @@ bool Mission::RecommendsLastSafeSave() const
 }
 
 // For use with named last safe saves, descriptive of the save state.
-std::string Mission::LastSafeSaveLabel(){
+std::string Mission::LastSafeSaveLabel()
+{
 	return lastSafeSaveLabel;
 }
 
