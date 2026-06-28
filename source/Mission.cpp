@@ -217,15 +217,19 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			isMinor = true;
 		else if(key == "offer precedence" && hasValue)
 			offerPrecedence = child.Value(1);
-		else if(key == "autosave"){
+		else if(key == "autosave")
+		{
 			autosave = true;
-			if(child.Size() > 1){
+			if(child.Size() > 1)
+			{
 				autoSaveLabel = child.Token(1);
 			}
 		}
-		else if(key == "lastsafesave"){
+		else if(key == "lastsafesave")
+		{
 			lastSafeSave = true;
-			if(child.Size() > 1){
+			if(child.Size() > 1)
+			{
 				lastSafeSaveLabel = child.Token(1);
 			}
 		}
@@ -463,16 +467,20 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("minor");
 		if(offerPrecedence)
 			out.Write("offer precedence", offerPrecedence);
-		if(autosave){
-			if( autoSaveLabel != ""){
-				out.Write("autosave",autoSaveLabel);
+		if(autosave)
+		{
+			if(autoSaveLabel != "")
+			{
+				out.Write("autosave", autoSaveLabel);
 			}
 			else
 				out.Write("autosave");
 		}
-		if(lastSafeSave){
-			if( lastSafeSaveLabel != ""){
-				out.Write("lastsafesave",lastSafeSaveLabel);
+		if(lastSafeSave)
+		{
+			if(lastSafeSaveLabel != "")
+			{
+				out.Write("lastsafesave", lastSafeSaveLabel);
 			}
 			else
 				out.Write("lastsafesave");
