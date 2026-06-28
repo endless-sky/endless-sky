@@ -209,7 +209,7 @@ void Minable::DoCorrosionDamage()
 	if(!corrosion)
 		return;
 	hull -= corrosion;
-	corrosion = max(0., .99 *corrosion);
+	corrosion = max(0., .99 * corrosion);
 }
 
 
