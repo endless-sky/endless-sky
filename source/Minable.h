@@ -96,7 +96,7 @@ public:
 	double Mass() const override;
 	double MaximumHeat() const override;
 
-	// Apply corrosion damage ticks and decrement corrosion
+	// Apply corrosion damage ticks and decrement corrosion.
 	void DoCorrosionDamage();
 
 private:
