@@ -214,6 +214,7 @@ void Minable::DoCorrosionDamage()
 }
 
 
+
 // Move the object forward one step. If it has been reduced to zero hull, it
 // will "explode" instead of moving, creating flotsam and explosion effects.
 // In that case it will return false, meaning it should be deleted.
