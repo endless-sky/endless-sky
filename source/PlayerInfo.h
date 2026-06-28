@@ -441,6 +441,7 @@ private:
 	void CreateMissions();
 	void StepMissions(UI &ui);
 	void Autosave(std::string autoSaveLabel) const;
+	void LastSafeSave(std::string lastSafeSaveLabel);
 	void Save(const std::string &path) const;
 	void Save(DataWriter &out) const;
 

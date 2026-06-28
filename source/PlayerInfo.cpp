@@ -2768,6 +2768,7 @@ void PlayerInfo::MissionCallback(int response)
 	if(response == Endpoint::ACCEPT || response == Endpoint::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
+		bool shouldLastSafeSave = mission.RecommendsLastSafeSave();
 		if(planet)
 		{
 			cargo.AddMissionCargo(&mission);
@@ -2784,6 +2785,8 @@ void PlayerInfo::MissionCallback(int response)
 		auto spliceIt = mission.IsUnique() ? missions.begin() : missions.end();
 		missions.splice(spliceIt, missionList, missionList.begin());
 		mission.Do(Mission::ACCEPT, *this);
+		if(shouldLastSafeSave)
+			LastSafeSave(mission.LastSafeSaveLabel());
 		if(shouldAutosave)
 			Autosave(mission.AutosaveLabel());
 		// If this is a mission offered in-flight, expose a pointer to it
@@ -4911,9 +4914,9 @@ bool PlayerInfo::RecacheJumpRoutes()
 
 
 
-void PlayerInfo::Autosave(std::string autoSaveLabel) const
+void PlayerInfo::LastSafeSave(std::string lastSafeSaveLabel)
 {
-	if(!CanBeSaved() || filePath.length() < 4)
+	if(filePath.length() < 4)
 		return;
 	string dirPath = filePath.substr(0, filePath.find_last_of('\\'));
 	filesystem::path newest;
@@ -4931,10 +4934,19 @@ void PlayerInfo::Autosave(std::string autoSaveLabel) const
         }
     }
 	if(found){
-		string lastSafeSavePath = filePath.substr(0, filePath.length() - 4) + "~lastSafeSave" + (autoSaveLabel != "" ? " " + autoSaveLabel : "") + ".txt";
+		string lastSafeSavePath = filePath.substr(0, filePath.length() - 4) + "~lastSafeSave"
+			+ (lastSafeSaveLabel != "" ? " " + lastSafeSaveLabel : "") + ".txt";
 		filesystem::copy_file(newest,lastSafeSavePath,filesystem::copy_options::overwrite_existing);
 	}
-	string path = filePath.substr(0, filePath.length() - 4) + "~autosave" + (autoSaveLabel != "" ? " " + autoSaveLabel : "") + ".txt";
+}
+
+
+void PlayerInfo::Autosave(std::string autoSaveLabel) const
+{
+	if(!CanBeSaved() || filePath.length() < 4)
+		return;
+	string path = filePath.substr(0, filePath.length() - 4) + "~autosave"
+		+ (autoSaveLabel != "" ? " " + autoSaveLabel : "") + ".txt";
 	Save(path);
 }
 
