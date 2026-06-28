@@ -1077,85 +1077,95 @@ event "recapture of Kornephoros"
 
 event "oathkeepers founded"
 	system "Canopus"
-		fleet "Small Northern Merchants" 900
-		fleet "Large Northern Merchants" 700
-		fleet "Small Oathkeeper" 1000
-		fleet "Large Oathkeeper" 2000
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 1000
+		remove fleet "Large Republic"
+		add fleet "Large Oathkeeper" 2000
 	system "Alheka"
-		fleet "Small Northern Merchants" 1000
-		fleet "Large Northern Merchants" 3000
-		fleet "Small Oathkeeper" 1200
-		fleet "Large Oathkeeper" 4000
-		fleet "Small Northern Pirates" 2000
-		fleet "Large Northern Pirates" 2000
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 1200
+		remove fleet "Large Republic"
+		add fleet "Large Oathkeeper" 4000
 	system "Mirzam"
-		fleet "Small Northern Merchants" 2000
-		fleet "Large Northern Merchants" 2000
-		fleet "Small Oathkeeper" 3000
-		fleet "Large Oathkeeper" 4000
-		fleet "Small Northern Pirates" 5000
-		fleet "Large Northern Pirates" 8000
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 3000
+		remove fleet "Large Republic"
+		add fleet "Large Oathkeeper" 4000
 	system "Mebsuta"
-		fleet "Small Northern Merchants" 3000
-		fleet "Large Northern Merchants" 5000
-		fleet "Small Northern Pirates" 4000
-		fleet "Large Northern Pirates" 8000
-		fleet "Small Oathkeeper" 12000
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 12000
 	system "Betelgeuse"
-		fleet "Small Northern Merchants" 2000
-		fleet "Large Northern Merchants" 800
-		fleet "Small Oathkeeper" 1000
-		fleet "Large Oathkeeper" 2000
-		fleet "Republic Logistics" 4900
-		fleet "Large Northern Pirates" 4000
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 1000
+		remove fleet "Large Republic"
+		add fleet "Large Oathkeeper" 2000
 	system "Rigel"
-		fleet "Small Northern Merchants" 2000
-		fleet "Large Northern Merchants" 4000
-		fleet "Small Oathkeeper" 1000
-		fleet "Large Oathkeeper" 2000
-		fleet "Republic Logistics" 5400
-		fleet "Small Northern Pirates" 3000
-		fleet "Large Northern Pirates" 5000
-		fleet "Derelict Northern" 30000
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 1000
+		remove fleet "Large Republic"
+		add fleet "Large Oathkeeper" 2000
 	system "Alnitak"
-		fleet "Small Northern Pirates" 3000
-		fleet "Large Northern Pirates" 5000
-		fleet "Small Oathkeeper" 500
-		fleet "Large Oathkeeper" 1000
-		fleet "Republic Logistics" 6000
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 500
+		remove fleet "Large Republic"
+		add fleet "Large Oathkeeper" 1000
 	system "Saiph"
-		fleet "Small Northern Merchants" 1200
-		fleet "Large Northern Merchants" 2000
-		fleet "Small Northern Pirates" 2000
-		fleet "Large Northern Pirates" 3000
-		fleet "Small Oathkeeper" 1000
-		fleet "Large Oathkeeper" 2000
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 1000
+		remove fleet "Large Republic"
+		add fleet "Large Oathkeeper" 2000
 	system "Mintaka"
-		fleet "Small Northern Pirates" 2000
-		fleet "Large Northern Pirates" 2000
-		fleet "Large Oathkeeper" 2000
-		fleet "Small Northern Merchants" 4000
-		fleet "Derelict Pirate" 30000
+		remove fleet "Large Republic"
+		add fleet "Large Oathkeeper" 2000
 	system "Almaaz"
-		fleet "Small Northern Pirates" 500
-		fleet "Large Northern Pirates" 600
-		fleet "Large Oathkeeper" 4000
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 2000
+		remove fleet "Large Republic"
+		add fleet "Large Oathkeeper" 5000
 	system "Gorvi"
-		fleet "Small Northern Pirates" 1000
-		fleet "Large Northern Pirates" 1000
-		fleet "Large Oathkeeper" 4000
-		fleet "Small Northern Merchants" 8000
-		fleet "Derelict Pirate" 10000
+		remove fleet "Large Republic"
+		add fleet "Large Oathkeeper" 4000
 	system "Tortor"
-		fleet "Small Northern Pirates" 1000
-		fleet "Large Northern Pirates" 1000
-		fleet "Large Oathkeeper" 6000
-		fleet "Small Northern Merchants" 6000
-		fleet "Derelict Pirate" 10000
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 2000
+		remove fleet "Large Republic"
+		add fleet "Large Oathkeeper" 4000
+		remove fleet "Small Northern Merchants (Corrupt)"
+		add fleet "Small Northern Merchants (Corrupt)" 8000
+		remove fleet "Large Northern Merchants (Corrupt)"
+		add fleet "Large Northern Merchants (Corrupt)" 16000
+	system "Unagi"
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 6000
+		add fleet "Large Oathkeeper" 16000
+	system "Hatysa"
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 6000
+		add fleet "Large Oathkeeper" 16000
+	system "FU Orionis"
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 8000
+	system "Remina"
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 8000
+	system "Alnilam"
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 8000
+	system "Alnilam"
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 8000
+	system "Neshmet"
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 12000
+	system "Arneb"
+		remove fleet "Small Republic"
+		add fleet "Small Oathkeeper" 8000
 	planet "Farpoint"
 		description `Farpoint, on the northernmost end of human space, is a rocky desert planet home to a Republic Navy base and not much else. Farming is possible only within greenhouses, and this system is too far from the galactic center to be desirable for trade or industry.`
 		description `	Lately, the Navy base on Farpoint has been growing. It has become the new home of the Navy Oathkeepers, a small branch of the Navy that has sworn to stay uninvolved in the conflict with the Free Worlds.`
-
+	planet "Kennecott"
+		spaceport `The atmosphere of the last remaining space port can best be described as a dead mall. The wide hallways and extensive landing pads carry a lonely aura, once designed to service hundreds of merchant ships at a time. Dozens of aging stores and facilities line the promenade, most now locked behind heavy metal shutters, cobwebs and rust inching up the desolate metal bars. Still, a few local business still operate, their warm store lights overpowering the dim, tinged sun from dirty skylights above.`
+		spaceport `	While originally a large portion of remaining exports went up to the pirates in the north, the increased Republic presence on the planet has tightened security. Workers now sweep the empty floors, a few shops opening their doors again to supply the increased demand for ammo, breathing a bit of life back into Kennecott's economy.`
 
 
 # TODO: Expand this event to other Dirt Belt systems.
