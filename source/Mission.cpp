@@ -218,7 +218,21 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 		else if(key == "offer precedence" && hasValue)
 			offerPrecedence = child.Value(1);
 		else if(key == "autosave")
+		{
 			autosave = true;
+			if(child.Size() > 1)
+			{
+				autoSaveLabel = child.Token(1);
+			}
+		}
+		else if(key == "lastsafesave")
+		{
+			lastSafeSave = true;
+			if(child.Size() > 1)
+			{
+				lastSafeSaveLabel = child.Token(1);
+			}
+		}
 		else if(key == "job")
 			location = JOB;
 		else if(key == "landing")
@@ -454,7 +468,23 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		if(offerPrecedence)
 			out.Write("offer precedence", offerPrecedence);
 		if(autosave)
-			out.Write("autosave");
+		{
+			if(autoSaveLabel != "")
+			{
+				out.Write("autosave", autoSaveLabel);
+			}
+			else
+				out.Write("autosave");
+		}
+		if(lastSafeSave)
+		{
+			if(lastSafeSaveLabel != "")
+			{
+				out.Write("lastsafesave", lastSafeSaveLabel);
+			}
+			else
+				out.Write("lastsafesave");
+		}
 		if(location == LANDING)
 			out.Write("landing");
 		else if(location == SHIPYARD)
@@ -1225,6 +1255,27 @@ bool Mission::RecommendsAutosave() const
 	return autosave;
 }
 
+// For use with named autosaves, descriptive of the save state.
+std::string Mission::AutosaveLabel()
+{
+	return autoSaveLabel;
+}
+
+// Check if this mission recommends that the game create a last safe save.
+bool Mission::RecommendsLastSafeSave() const
+{
+	return lastSafeSave;
+}
+
+// For use with named last safe saves, descriptive of the save state.
+std::string Mission::LastSafeSaveLabel()
+{
+	return lastSafeSaveLabel;
+}
+
+
+
+
 
 
 // Check if this mission is unique, i.e. not something that will be offered
@@ -1496,6 +1547,9 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.isMinor = isMinor;
 	result.offerPrecedence = offerPrecedence;
 	result.autosave = autosave;
+	result.autoSaveLabel = autoSaveLabel;
+	result.lastSafeSave = lastSafeSave;
+	result.lastSafeSaveLabel = lastSafeSaveLabel;
 	result.location = location;
 	result.overridesCapture = overridesCapture;
 	result.sourceShip = boardingShip.get();
