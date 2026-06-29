@@ -142,7 +142,7 @@ mission "graveyard insights compatibility"
 	to offer
 		has "First Contact: Ka'het: Remnant 1B: offered"
 	on offer
-		event "graveyard insights"
+		event "graveyard insights" 0
 		fail
 
 event "graveyard insights"

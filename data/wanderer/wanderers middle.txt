@@ -1159,7 +1159,7 @@ mission "Wanderers: Kor Mereti Quarg Attitude Patch"
 	to offer
 		has "event: wanderers: kor mereti friendly"
 	on offer
-		event "wanderers: kor mereti friendly"
+		event "wanderers: kor mereti friendly" 0
 		fail
 
 
