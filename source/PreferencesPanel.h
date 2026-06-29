@@ -28,8 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class PlayerInfo;
-class RenderBuffer;
 class Plugin;
+class RenderBuffer;
 
 
 
