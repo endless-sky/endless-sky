@@ -46,7 +46,7 @@ void Minable::CreateSparks(vector<Visual> &visuals, const string &name, double a
 
 void Minable::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount)
 {
-	if( amount <= 0.)
+	if(amount <= 0.)
 		return;
 
 	// Limit the number of sparks, depending on the size of the sprite.
@@ -60,7 +60,7 @@ void Minable::CreateSparks(vector<Visual> &visuals, const Effect *effect, double
 		amount -= Random::Real();
 		if(amount <= 0.)
 			break;
-		Point point((Random::Real() - .5) * Width(), (Random::Real() - .5) * Height());		
+		Point point((Random::Real() - .5) * Width(), (Random::Real() - .5) * Height());
 		visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
 	}
 }
