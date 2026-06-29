@@ -69,8 +69,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <filesystem>
-#include <iostream>
 #include <queue>
+#include <ranges>
 #include <utility>
 #include <vector>
 
@@ -510,6 +510,15 @@ void GameData::DestroyPersons(vector<string> &names)
 {
 	for(const string &name : names)
 		objects.persons.Get(name)->Destroy();
+}
+
+
+
+void GameData::HandleEvent(const ShipEvent &event)
+{
+	for(Person &person : objects.persons | views::values)
+		if(person.Do(event))
+			break;
 }
 
 

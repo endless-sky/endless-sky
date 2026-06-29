@@ -60,6 +60,7 @@ class Point;
 class Politics;
 class Shader;
 class Ship;
+class ShipEvent;
 class Sprite;
 class StarField;
 class StartConditions;
@@ -119,6 +120,8 @@ public:
 	static void ResetPersons();
 	// Mark all persons in the given list as dead.
 	static void DestroyPersons(std::vector<std::string> &names);
+	// Handle any events that may have been taken against a Person.
+	static void HandleEvent(const ShipEvent &event);
 
 	static const Set<Color> &Colors();
 	static const Set<Swizzle> &Swizzles();
