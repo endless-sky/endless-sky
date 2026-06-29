@@ -1,5 +1,5 @@
-/* TextArea.h
-Copyright (c) 2024 by thewierdnut
+/* TableArea.h
+Copyright (c) 2026 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -18,33 +18,31 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollArea.h"
 
 #include "Color.h"
-#include "text/WrappedText.h"
+#include "text/Table.h"
 
-class Font;
+#include <vector>
+
 class Point;
 class Rectangle;
 
 
 
-// A ScrollArea that renders text using the WrappedText class.
-class TextArea : public ScrollArea
+// A ScrollArea that renders text using the Table class.
+class TableArea : public ScrollArea
 {
 public:
-	TextArea();
-	explicit TextArea(const Rectangle &r);
-	virtual ~TextArea() override;
+	TableArea();
+	explicit TableArea(const Rectangle &r);
+	virtual ~TableArea() override;
 
-	void SetRect(const Rectangle &r) override;
+	void AddColumn(int offset, Layout layout, const Color &color);
+	void AddRow(const std::vector<std::string> &row);
+	void AddCell(const std::string &cell);
+	void AddCell(double cell);
+	void AddCell(int64_t cell);
+	void NextRow();
 
-	void SetText(const std::string &s);
-	void SetFont(const Font &f);
-	void SetParagraphBreak(int height);
-	void SetColor(const Color &c);
-	void SetAlignment(Alignment a);
-	void SetTruncate(Truncate t);
-
-	int GetTextHeight(bool trailingBreak = true);
-	int GetLongestLineWidth();
+	void SetFontSize(int size);
 
 	virtual void Validate(bool trailingBreak) override;
 
@@ -54,7 +52,9 @@ protected:
 
 
 private:
-	WrappedText wrappedText;
-	std::string text;
-	Color color;
+	std::vector<std::vector<std::string>> rows;
+	std::vector<const Color *> colors;
+	size_t currentRowIndex = 0;
+
+	Table table;
 };
