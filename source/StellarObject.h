@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Body.h"
+#include "Orbit.h"
 #include "RandomEvent.h"
 
 class Hazard;
@@ -80,11 +81,12 @@ public:
 
 
 private:
+	// Let System handle setting all the values of an Object.
+	friend class System;
+
 	const Planet *planet;
 
-	double distance;
-	double speed;
-	double offset;
+	Orbit orbit;
 	std::vector<RandomEvent<Hazard>> hazards;
 	int parent;
 
@@ -92,7 +94,4 @@ private:
 	bool isStar;
 	bool isStation;
 	bool isMoon;
-
-	// Let System handle setting all the values of an Object.
-	friend class System;
 };
