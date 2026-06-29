@@ -280,7 +280,14 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 	plugin->name = std::move(name);
 	plugin->path = path;
 	// Read the deprecated about.txt content if no about text was specified.
-	plugin->aboutText = aboutText.empty() ? Files::Read(path / "about.txt") : std::move(aboutText);
+	if(aboutText.empty())
+	{
+		plugin->aboutText = Files::Read(path / "about.txt");
+		if(!plugin->aboutText.empty())
+			Logger::Log("about.txt is deprecated. Use plugin.txt instead.", Logger::Level::WARNING);
+	}
+	else
+		plugin->aboutText = std::move(aboutText);
 	plugin->version = std::move(version);
 	plugin->authors = std::move(authors);
 	plugin->tags = std::move(tags);
