@@ -447,6 +447,8 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/StarField.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
+	ship/ShipFactory.cpp
+	ship/ShipFactory.h
 	test/Test.cpp
 	test/Test.h
 	test/TestContext.cpp

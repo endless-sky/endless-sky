@@ -264,15 +264,7 @@ void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile
 	// Copy the core information from the full starting scenario.
 	startData = start;
 	// Copy any ships in the start conditions.
-	for(const Ship &ship : start.Ships())
-	{
-		ships.emplace_back(new Ship(ship));
-		ships.back()->SetSystem(&start.GetSystem());
-		ships.back()->SetPlanet(&start.GetPlanet());
-		ships.back()->SetIsSpecial();
-		ships.back()->SetIsYours();
-		ships.back()->SetGovernment(GameData::PlayerGovernment());
-	}
+	start.InstantiateShips(*this, ships);
 	// Load starting conditions from a "start" item in the data files. If no
 	// such item exists, StartConditions defines default values.
 	date = start.GetDate();
