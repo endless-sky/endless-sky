@@ -1,4 +1,4 @@
-/* Plugins.cpp
+/* PluginManager.cpp
 Copyright (c) 2022 by Sam Gleske (samrocketman on GitHub)
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,17 +13,15 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Plugins.h"
+#include "PluginManager.h"
 
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
 #include "Logger.h"
+#include "Plugin.h"
 #include "Set.h"
-
-#include <algorithm>
-#include <map>
 
 using namespace std;
 
@@ -51,153 +49,8 @@ namespace {
 
 
 
-// Checks if there are any dependencies of any kind.
-bool Plugin::PluginDependencies::IsEmpty() const
-{
-	return required.empty() && optional.empty() && conflicted.empty();
-}
-
-
-
-// Checks if there are any duplicate dependencies. E.g. the same dependency in both required and conflicted.
-bool Plugin::PluginDependencies::IsValid() const
-{
-	// We will check every dependency before returning to allow the
-	// plugin developer to see all errors and not just the first.
-	bool isValid = true;
-
-	string dependencyCollisions;
-
-	// Required dependencies will already be valid due to sets not
-	// allowing duplicate values. Therefore we only need to check optional
-	// and conflicts.
-
-	// Check and log collisions between optional and required dependencies.
-	for(const string &dependency : optional)
-	{
-		if(required.contains(dependency))
-			dependencyCollisions += dependency + ", ";
-	}
-	if(!dependencyCollisions.empty())
-	{
-		dependencyCollisions.pop_back();
-		dependencyCollisions.pop_back();
-		Logger::Log("Dependencies named " + dependencyCollisions
-			+ " were found in both the required dependencies list and the optional dependencies list.",
-			Logger::Level::WARNING);
-		dependencyCollisions.clear();
-	}
-
-	// Check and log collisions between conflicted and required dependencies.
-	for(const string &dependency : conflicted)
-	{
-		if(required.contains(dependency))
-		{
-			isValid = false;
-			dependencyCollisions += dependency + ", ";
-		}
-	}
-	if(!dependencyCollisions.empty())
-	{
-		dependencyCollisions.pop_back();
-		dependencyCollisions.pop_back();
-		Logger::Log("Dependencies named " + dependencyCollisions
-			+ " were found in both the conflicting dependencies list and the required dependencies list.",
-			Logger::Level::WARNING);
-		dependencyCollisions.clear();
-	}
-
-	// Check and log collisions between optional and conflicted dependencies.
-	for(const string &dependency : conflicted)
-	{
-		if(optional.contains(dependency))
-		{
-			isValid = false;
-			dependencyCollisions += dependency + ", ";
-		}
-	}
-	if(!dependencyCollisions.empty())
-	{
-		dependencyCollisions.pop_back();
-		dependencyCollisions.pop_back();
-		Logger::Log("Dependencies named " + dependencyCollisions
-			+ " were found in both the optional dependencies list and the conflicting dependencies list.",
-			Logger::Level::WARNING);
-		dependencyCollisions.clear();
-	}
-
-	return isValid;
-}
-
-
-
-// Constructs a description of the plugin from its name, tags, dependencies, etc.
-string Plugin::CreateDescription() const
-{
-	string text;
-	if(!version.empty())
-		text += "Version: " + version + '\n';
-	if(!authors.empty())
-	{
-		text += "Authors: ";
-		for(const string &author : authors)
-			text += author + ", ";
-		text.pop_back();
-		text.pop_back();
-		text += '\n';
-	}
-	if(!tags.empty())
-	{
-		text += "Tags: ";
-		for(const string &tag : tags)
-			text += tag + ", ";
-		text.pop_back();
-		text.pop_back();
-		text += '\n';
-	}
-	if(!dependencies.IsEmpty())
-	{
-		text += "Dependencies:\n";
-		if(!dependencies.gameVersion.empty())
-			text += "  Game Version: " + dependencies.gameVersion + '\n';
-		if(!dependencies.required.empty())
-		{
-			text += "  Requires:\n";
-			for(const string &dependency : dependencies.required)
-				text += "  - " + dependency + '\n';
-		}
-		if(!dependencies.optional.empty())
-		{
-			text += "  Optional:\n";
-			for(const string &dependency : dependencies.optional)
-				text += "  - " + dependency + '\n';
-		}
-		if(!dependencies.conflicted.empty())
-		{
-			text += "  Conflicts:\n";
-			for(const string &dependency : dependencies.conflicted)
-				text += "  - " + dependency + '\n';
-		}
-		text += '\n';
-	}
-	if(!aboutText.empty())
-		text += aboutText;
-
-	return text;
-}
-
-
-
-// Checks whether this plugin is valid, i.e. whether it exists.
-bool Plugin::IsValid() const
-{
-	return !name.empty();
-}
-
-
-
 // Attempt to load a plugin at the given path.
-const Plugin *Plugins::Load(const filesystem::path &path)
+const Plugin *PluginManager::Load(const filesystem::path &path)
 {
 	// Get the name of the folder containing the plugin.
 	string name = path.filename().string();
@@ -291,7 +144,7 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 
 
 
-void Plugins::LoadSettings()
+void PluginManager::LoadSettings()
 {
 	// Global plugin settings
 	LoadSettingsFromFile(Files::Resources() / "plugins.txt");
@@ -301,7 +154,7 @@ void Plugins::LoadSettings()
 
 
 
-void Plugins::Save()
+void PluginManager::Save()
 {
 	if(plugins.empty())
 		return;
@@ -320,7 +173,7 @@ void Plugins::Save()
 
 
 // Whether the path points to a valid plugin.
-bool Plugins::IsPlugin(const filesystem::path &path)
+bool PluginManager::IsPlugin(const filesystem::path &path)
 {
 	// A folder is a valid plugin if it contains one (or more) of the assets folders.
 	// (They can be empty too).
@@ -332,7 +185,7 @@ bool Plugins::IsPlugin(const filesystem::path &path)
 
 // Returns true if any plugin enabled or disabled setting has changed since
 // launched via user preferences.
-bool Plugins::HasChanged()
+bool PluginManager::HasChanged()
 {
 	for(const auto &it : plugins)
 		if(it.second.enabled != it.second.currentState)
@@ -343,7 +196,7 @@ bool Plugins::HasChanged()
 
 
 // Returns the list of plugins that have been identified by the game.
-const Set<Plugin> &Plugins::Get()
+const Set<Plugin> &PluginManager::Get()
 {
 	return plugins;
 }
@@ -351,7 +204,7 @@ const Set<Plugin> &Plugins::Get()
 
 
 // Toggles enabling or disabling a plugin for the next game restart.
-void Plugins::TogglePlugin(const string &name)
+void PluginManager::TogglePlugin(const string &name)
 {
 	auto *plugin = plugins.Get(name);
 	plugin->currentState = !plugin->currentState;

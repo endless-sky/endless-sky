@@ -37,7 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
-#include "Plugins.h"
+#include "PluginManager.h"
 #include "Preferences.h"
 #include "PrintData.h"
 #include "Random.h"
@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
 	try {
 		// Load plugin settings and preferences before game data.
 		Preferences::Load();
-		Plugins::LoadSettings();
+		PluginManager::LoadSettings();
 
 		TaskQueue queue;
 
@@ -279,7 +279,7 @@ int main(int argc, char *argv[])
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height(), true);
 	Preferences::Save();
-	Plugins::Save();
+	PluginManager::Save();
 
 	Audio::Quit();
 	GameWindow::Quit();
