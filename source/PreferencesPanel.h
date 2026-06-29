@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class PlayerInfo;
 class RenderBuffer;
-struct Plugin;
+class Plugin;
 
 
 
