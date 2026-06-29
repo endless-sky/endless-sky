@@ -34,7 +34,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "PilotProfile.h"
 #include "Planet.h"
-#include "Plugins.h"
+#include "Plugin.h"
+#include "PluginManager.h"
 #include "Politics.h"
 #include "Port.h"
 #include "Preferences.h"
@@ -4583,7 +4584,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return (planet && flagship) ? planet->CanLand(*flagship) : false; });
 
 	conditions["installed plugin: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
-		const Plugin *plugin = Plugins::Get().Find(ce.NameWithoutPrefix());
+		const Plugin *plugin = PluginManager::Get().Find(ce.NameWithoutPrefix());
 		return plugin ? plugin->IsValid() && plugin->enabled : false; });
 
 	conditions["person destroyed: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
@@ -5284,7 +5285,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.WriteComment("Installed plugins:");
 	out.Write("plugins");
 	out.BeginChild();
-	for(const auto &it : Plugins::Get())
+	for(const auto &it : PluginManager::Get())
 	{
 		const auto &plugin = it.second;
 		if(plugin.IsValid() && plugin.enabled)
