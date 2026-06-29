@@ -4756,7 +4756,15 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 
 		if(isUsingJumpDrive)
 		{
-			position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
+			if(GetParent())
+			{
+				position = GetParent()->position;
+				position += Angle::Random().Unit() * HYPER_D;
+			}
+			else
+			{
+				position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
+			}
 			return true;
 		}
 
