@@ -4679,6 +4679,18 @@ void PlayerInfo::RegisterDerivedConditions()
 		return Random::Int(value);
 	});
 
+	// A condition for determining if an event is currently scheduled.
+	// Returns the number of days until the scheduled event will occur.
+	// If multiple events of the same name are scheduled, only the earliest
+	// event is considered.
+	conditions["scheduled event: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		string event = ce.NameWithoutPrefix();
+		for(const ScheduledEvent &scheduled : scheduledEvents)
+			if(scheduled.event->TrueName() == event)
+				return scheduled.event->GetDate() - date;
+		return 0;
+	});
+
 	// Gamerule condition getter:
 	conditions["gamerule: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
 		return GameData::GetGamerules().GetValue(ce.NameWithoutPrefix());
