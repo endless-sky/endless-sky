@@ -368,15 +368,36 @@ mission "Avgi: Humans From the Deep"
 			`	"Or, you may find yourself trapped here, just as they are. In any case, we will of course make you as comfortable as we can, as an honored guest, and treat you as we would any foreign dignitary."`
 			choice
 				`	"I have a jump drive that lets me travel beyond the hyperlanes, but it won't let me jump back to human space."`
+					goto hasnotfoundmagnetar
+					to display
+						not "avgi: discovered magnetar"
 				`	"I have a device that lets me go where I please, but it isn't working at the moment."`
+					goto hasnotfoundmagnetar
+					to display
+						not "avgi: discovered magnetar"
+				`	"I have a jump drive that lets me travel beyond the hyperlanes and a route back to human space through Decet."`
+					goto hasfoundmagnetar
+					to display
+						has "avgi: discovered magnetar"
 
+			label "hasnotfoundmagnetar"
 			`	"Regret. Then the situation is most unfortunate," she says. "Commitment. We will offer you what help we can, but I did not wish to lie to you about their predicament, or provide you with false hope."`
 			`	"Reservation. Perhaps Captain <last> will be able to find a solution." says Galano. "I would not dismiss the possibility too quickly."`
 			choice
 				`	"While I'm here, can I buy your technology?"`
 					goto "buy stuff"
 				`	"Is there anything I can do to help in the meantime?"`
+					goto humanAmongAvgi
 
+			label "hasfoundmagnetar"
+			`	"Satisfaction. Then the situation is most fortunate," she says. "Commitment. We will offer you what help we can to end their predicament."`
+			choice
+				`	"While I'm here, can I buy your technology?"`
+					goto "buy stuff"
+				`	"Is there anything I can do to help in the meantime?"`
+					goto humanAmongAvgi
+
+			label "humanAmongAvgi"
 			`	"Consideration. As an alien, you will inevitably be a novelty to most of us, but the existence of humans is well-known among the public enough for you to walk among us without issue. I will speak to others about a more formal role, but until then I am unsure if we can ask anything of you beyond keeping the peace."`
 			label "buy stuff"
 			`	Galano says, "Interest. I would expect human technology to be superior to our own in most aspects, but we will of course allow you to purchase our items with the agreement of the Assembly. In the event that it becomes possible to open trade relations with your human government, we may find it useful to have prior transactions."`
@@ -458,16 +479,50 @@ mission "Avgi: Defend Ensemble 1"
 			`	"...What? You're kidding, right? How the hell did you defeat a Quarg ship?" He looks worried for a second, taking a step back. "Do I even want to be seen associating with you?" He laughs nervously.`
 
 			label next
-			`	Darius shakes his head for a moment, then looks back at you. "Well, since you're still here, I'm assuming your jump drive couldn't get you out of here?" You tell him about how you were unable to jump back to human space, and he nods along.`
+			`	Darius shakes his head for a moment, then looks back at you. "Well, since you're still here, I'm assuming your jump drive couldn't get you out of here?"`
+			choice
+				`	"It can get me out of here.  More to the point, it can get us out of here."`
+					goto nextmagnetardiscovered
+					to display
+						has "avgi: discovered magnetar"
+				`	"Yes, that's the long and short of it."`
+					goto nextnomagnetardiscovered
+					to display
+						not "avgi: discovered magnetar"
+			
+			label nextmagnetardiscovered
+			`    You tell him about how you discovered a magnetar, extending your jump range and allowing you to jump back to human space, and he nods along.`
+			`	"I was certain there has to be a way out! But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes. But that's over now!" He sounds relieved.`
+
+			choice
+				`	"The Avgi are trying to keep you here? That's worrying."`
+					goto avgikeepingushere
+				`	"How'd you end up in Avgi space without a jump drive?"`
+					goto story
+
+			label nextnomagnetardiscovered
+			`    You tell him about how you were unable to jump back to human space, and he nods along.`
 			`	"There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes." He sounds frustrated.`
 			choice
 				`	"Don't worry, I'm sure we'll find a way back home."`
 					goto reassuring
 				`	"The Avgi are trying to keep you here? That's worrying."`
+					goto avgikeepingushere
 				`	"How'd you end up in Avgi space without a jump drive?"`
 					goto story
 
+			label avgikeepingushere
 			`	"I'm probably just paranoid. After all, they're really enthusiastic about trying for an alliance with humanity to help them against these Aberrant, no matter how many times I explain humans aren't really all that technologically advanced. But they think if I can find a way home, we might be able to find a way to open up a connection between human space and Avgi space, especially given the way we got here. Not that I'd want to do that, with the chance of the Aberrant overrunning human space."`
+			choice
+				`	"How'd you end up in Avgi space without a jump drive?"`
+					goto story
+					to display
+						has "avgi: discovered magnetar"
+				`	You nod along sympathetically.`
+					goto reassuring
+					to display
+						not "avgi: discovered magnetar"
+
 
 			label reassuring
 			`	"Sometimes I find it hard to believe that we'll ever make it home, but it helps to tell myself there's hope," he says.`
@@ -644,8 +699,23 @@ mission "Avgi: Defend Ensemble 2"
 			`	"Amazing. So, your jump drive can get us out of here then?"`
 			choice
 				`	"I'm afraid not. It can't return to human space for some reason."`
+					goto hasnotfoundmagnetar
+					to display
+						not "avgi: discovered magnetar"
 				`	"No, but I'm not giving up on finding a different way out."`
+					goto hasnotfoundmagnetar
+					to display
+						not "avgi: discovered magnetar"
 				`	"Nope!"`
+					goto hasnotfoundmagnetar
+					to display
+						not "avgi: discovered magnetar"
+				`	"Absolutely!  There's a lone magnetar in the far east of the twilight that will allow us to escape back to human space."`
+					goto hasfoundmagnetar
+					to display
+						has "avgi: discovered magnetar"
+
+			label hasnotfoundmagnetar
 			`	"Damn. That would be too easy, I guess. But it's been too long since I've seen a fresh human face. I've been working for the Twilight Guard here for months, trying to build up a second line of defenses in case that station in Arche falls. At least today's battle shows those defenses, together with a supporting fleet, can hold. You mind if I tag along with you, in case you do manage to find a way out?"`
 			choice
 				`	"Of course."`
@@ -654,6 +724,21 @@ mission "Avgi: Defend Ensemble 2"
 			`	You look over at Darius, who responds after a few seconds of silence. "Of course you can come along, Sora."`
 			label yes
 			`	"Sounds good to me, then. I'll see you around when you're ready to leave." She walks off to collect her belongings.`
+				goto rejoinstory
+
+			label hasfoundmagnetar
+			`   You explain about the magnetar in Decet and how it amplifies your jump drive's range.`
+			`	"Damn. Who knew it would be so easy! It's just been too long since I've seen a fresh human face. I've been working for the Twilight Guard here for months, trying to build up a second line of defenses in case that station in Arche falls. At least today's battle shows those defenses, together with a supporting fleet, can hold. Now that's done, do you mind if I tag along with you? I'm ready to get out."`
+			choice
+				`	"Of course."`
+					goto yesone
+				`	"Sure, as long as Darius doesn't mind."`
+			`	You look over at Darius, who responds after a few seconds of silence. "Of course you can come along, Sora."`
+			label yesone
+			`	"Sounds good to me, then. I'll see you around when you're ready to leave." She walks off to collect her belongings.`
+				goto rejoinstory
+
+			label rejoinstory
 			`	A few hours later, an Avgi cruiser, a Refraktos-class Laserstar, settles down on the pad next to yours, and an Avgi officer disembarks.`
 			`	"Salutations. Hello, Captain <first> <last>. My name is Kokkino, Captain of the Spectral Collision. Tell me, is the <ship> a warship, question?"`
 			choice
@@ -683,13 +768,39 @@ mission "Avgi: Defend Ensemble 2"
 			choice
 				`	"It sounds like they'd like my help with something."`
 				`	"I'm going to help them with the war effort."`
-			`	He frowns. "I see. When do you think we'll be able to head up north to look for a way out?"`
+			`	He frowns. "I see. When do you think we'll be able to head up north?"`
 			choice
 				`	"We'll do it soon, I promise."`
+					goto hasnotfoundmagnetar2
+					to display
+						not "avgi: discovered magnetar"
 				`	"I'm not sure."`
+					goto hasnotfoundmagnetar2
+					to display
+						not "avgi: discovered magnetar"
+				`	"We'll do it soon, I promise."`
+					goto hasfoundmagnetar2
+					to display
+						has "avgi: discovered magnetar"
+				`	"I'm not sure."`
+					goto hasfoundmagnetar2
+					to display
+						has "avgi: discovered magnetar"
+
+			label hasnotfoundmagnetar2
 			`	He looks a little disappointed, then collects himself. "Well, I suppose there's no real urgency to it. Though, I've been thinking. If your jump drive wasn't able to let you escape from the north, there might not be a point in looking in that direction."`
 			`	"What do you suggest?" you ask.`
 			`	"I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's a number of hideaways and side branches in the Tangled Shroud, with outposts mostly ran by miners and small-time shipbuilders. Just the kind of people who talk a lot among themselves about rumors and tall tales. The official story of the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I think we should pay my friend a visit after you wrap up this next mission."`
+			goto rejoin2
+
+			label hasfoundmagnetar2
+			`	He looks a little disappointed, then collects himself. "Well, I suppose there's no real urgency to it."`
+			`	"Are you in a rush to leave?" you ask.`
+			`	He considers for a moment.`
+			`   "No, I suppose I should say my goodbyes before I go.  I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's a number of hideaways and side branches in the Tangled Shroud, with outposts mostly ran by miners and small-time shipbuilders. Just the kind of people who talk a lot among themselves about rumors and tall tales. The official story of the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I think we should pay my friend a visit after you wrap up this next mission.  At the least he'll be happy to hear you've found a way out."`
+
+			label rejoin2
+			`   You nod in acknowledgement and make ready to launch the <ship>.`
 
 
 mission "Avgi: Scout Rescue"
@@ -754,9 +865,31 @@ mission "Avgi: Scout Rescue"
 		conversation
 			`You receive a warm welcome back on Peripheria Station, as the former crew of the Silver Albedo disembarks. Some of the more badly injured crew members are carried out on hammock-like stretchers, but most are able to walk or fly out of the <ship> on their own power.`
 			`	After a short celebration and many expressions of deep gratitude toward you, you find Darius and Sora waiting by the <ship> to speak with you.`
+			choice
+				`	Hear what they have to say.`
+					goto hasnotfoundmagnetar
+					to display
+						not "avgi: discovered magnetar"
+				`	Hear what they have to say.`
+					goto hasfoundmagnetar
+					to display
+						has "avgi: discovered magnetar"
+
+			label hasnotfoundmagnetar
 			`	"<first>, I think we have a golden opportunity," Darius says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud."`
 			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
 			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. Meet me in the spaceport in an hour and we'll get this trip sorted out."`
+			goto rejoinstory
+
+			label hasfoundmagnetar
+			`	"<first>, I think we have a golden opportunity," Darius says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud."`
+			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
+			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's perfect since I wanted to visit my friend there anyway."`
+			goto rejoinstory
+
+			label rejoinstory
+			`   "Meet me in the spaceport in an hour and we'll get this trip sorted out."`
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the rescued crew hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -848,10 +981,33 @@ mission "Avgi: Dissonance Outreach 0.5"
 	on offer
 		conversation
 			`You receive a hero's welcome back on the Feo Platform from the Twilight Guards stationed there. After a short celebration and many expressions of praise toward you, an alien stranger, you find Darius and Sora waiting by the <ship> to speak with you.`
+			choice
+				`	Hear what they have to say.`
+					goto hasnotfoundmagnetar
+					to display
+						not "avgi: discovered magnetar"
+				`	Hear what they have to say.`
+					goto hasfoundmagnetar
+					to display
+						has "avgi: discovered magnetar"
+
+			label hasnotfoundmagnetar
 			`	"<first>, I think we have a golden opportunity," Darius says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud."`
 			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
 			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. We'll need to head to Peripheria to pick up Hriso and get this trip sorted out."`
 				accept
+			goto rejoinstory
+
+			label hasfoundmagnetar
+			`	"<first>, I think we have a golden opportunity," Darius says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud."`
+			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
+			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's perfect since I wanted to visit my friend there anyway. We'll need to head to Peripheria to pick up Hriso and get this trip sorted out."`
+				accept
+			goto rejoinstory
+
+			label rejoinstory
+			`   You ready the <ship> to depart.`
+
 	on complete
 		dialog
 			`As you take the <ship> in for a landing in one of the hangars, Darius says, "I'll get in contact with Hriso and have him meet us in the spaceport."`
@@ -892,13 +1048,13 @@ mission "Avgi: Dissonance Outreach"
 				accept
 
 	on accept
-		log `Agreed to transport Hriso to a Dissonance mining station in the Tangled Shroud, while Darius and Sora investigate a lead that could potentially help you escape the Twilight.`
+		log `Agreed to transport Hriso to a Dissonance mining station in the Tangled Shroud.`
 
 
 mission "Avgi: Twilight Escape 1"
 	landing
 	name "Escape the Twilight"
-	description "Find a way out of the Twilight. You may want to look to the far east of the Twilight, where the Incursion first began."
+	description "Deliver Darius and the other humans out of the Twilight. You may want to look to the far east of the Twilight, where the Incursion first began."
 	source "Outpost Tekis"
 	destination "Vinci"
 	passengers 3
@@ -906,9 +1062,9 @@ mission "Avgi: Twilight Escape 1"
 	to offer
 		has "Avgi: Dissonance Outreach: done"
 	on offer
-		log `Heard of a potential way out of the Twilight. Apparently, the Aberrant invaded through a chain of systems stretching to the East, and while no Avgi ships have been able to explore the area since the Incursion, Leon thinks there could be a way back to human space from there.`
+		log `Apparently, the Aberrant invaded through a chain of systems stretching to the East, and while no Avgi ships have been able to explore the area since the Incursion.`
 		log "Factions" "Avgi Dissonance" `Independent miners, collectives, and corporations alike are unhappy with the price controls the Consonance has placed on minerals mined from asteroids. While the Consonance claims they are necessary due to the austere war economy and the need for raw materials, the artificially low prices make it hard to survive and make a living.`
-		log "People" "Leon Shez" `Leon was a scientist aboard Darius' ship when it became trapped in the Twilight. Unlike Sora, he definitely does blame Darius for having been trapped with the Avgi. While somewhat rude, he appears to have made several valuable connections and could be close to uncovering a way back to human space.`
+		log "People" "Leon Shez" `Leon was a scientist aboard Darius' ship when it became trapped in the Twilight. Unlike Sora, he definitely does blame Darius for having been trapped with the Avgi. While somewhat rude, he appears to have made several valuable connections among the Avgi.`
 		conversation
 			`Outpost Tekis is a large station built into an asteroid several kilometers across, with networks of tubes and habitats crisscrossing the surface. You pull the <ship> into a cramped hangar dug into the rock and disembark with Hriso, who immediately sets out for a prearranged meeting place. You notice many of the Avgi in the outpost stare at you, Darius, and Sora, likely their first glimpse of a human.`
 			`	Together, you enter a large, round conference room with walls of polished rock. Waiting there are a handful of Avgi of various ages, who immediately begin conversing with Hriso in their own language.`
@@ -919,9 +1075,31 @@ mission "Avgi: Twilight Escape 1"
 
 			`	"Rebuke. Captain <last> is not here on 'my' side, or any other, merely as an observer curious of our ways." Hriso turns to you. "Consideration. I suppose you might be curious about what we are discussing. The local mining guild here says they cannot sustain their operations with the low price on iron mandated by the Consonance, as we are not buying enough rarer metals like titanium to make up for it."`
 			`	"That's stupid," says Sora. "Without cheap steel we wouldn't be able to keep expanding Peripheria or build the Aktina Cylinder."`
-			`	Hriso doesn't translate that, returning to conversing with the miners. Sora pulls out a translator of her own, listening intently to the conversation, but Darius pulls you aside. "I had a talk with a few people on the way here, and they say there's someone who knows more about the first days after the Incursion. Come on."`
+			`	Hriso doesn't translate that, returning to conversing with the miners. Sora pulls out a translator of her own, listening intently to the conversation, but Darius pulls you aside.`
+			choice
+				`	Listen to what Darius has to say.`
+					goto hasnotfoundmagnetar
+					to display
+						not "avgi: discovered magnetar"
+				`	Listen to what Darius has to say.`
+					goto hasfoundmagnetar
+					to display
+						has "avgi: discovered magnetar"
+			
+			label hasnotfoundmagnetar
+			`   "I had a talk with a few people on the way here, and they say there's someone who knows more about the first days after the Incursion. Come on."`
 			`	"What did they say?" you ask.`
 			`	"Apparently it's someone we have to meet in person," he grumbles. "I don't like it, but I don't think it's anything dangerous. Just inconvenient." You excuse yourself and walk along with Darius.`
+			goto rejoinstory
+
+			label hasfoundmagnetar
+			`   "Come on, let's go meet my friend."`
+			`	"Another human?" you ask.`
+			`	"Yes, though calling him a friend may be a stretch these days." You excuse yourself and walk along with Darius.`
+			goto rejoinstory
+
+
+			label rejoinstory
 			`	Before long, you find yourself in some kind of mess hall, dozens of Avgi sipping from colorful drinks. Darius freezes as he spots a short man seated on a crude stool, the only human-style seating in the room, together with a few Avgi.`
 			`	"Darius. I didn't expect to see you here," he says. "And, what's this, another human here in Avgi space?"`
 			`	Darius takes a while to respond. "Leon. It's been a while."`
@@ -936,8 +1114,32 @@ mission "Avgi: Twilight Escape 1"
 			`	"And who's this?" Leon says, looking at you. "How'd you end up here, of all places?"`
 			choice
 				`	"Captain <last>. I was stranded here, just like you."`
+					goto hasnotfoundmagnetar2
+					to display
+						not "avgi: discovered magnetar"
 				`	"<first>. Pleased to meet you."`
+					goto hasnotfoundmagnetar2
+					to display
+						not "avgi: discovered magnetar"
+				`	"Captain <last>. I was exploring this part of space."`
+					goto hasfoundmagnetar2
+					to display
+						has "avgi: discovered magnetar"
+				`	"I'm just passing through."`
+					goto hasfoundmagnetar2
+					to display
+						has "avgi: discovered magnetar"
 
+			label hasfoundmagnetar2
+			`	You quickly explain how you found yourself in Avgi space, and Leon nods.`
+			`   "I've spent years collecting this information," he mumbles "from hearing the official narrative to dredging the corners of Avgi space for rumors."`
+			`   You lean in - "Is there something you're getting at?"`
+			`	"Not a lot of captains are willing to take their ships out of the Tangled Shroud and through the Aberrant blockade, if you're heading out of here, I want a bunk on your ship. I'll gladly tell you all I know."`
+			choice
+				'   "Agreed."`
+					goto agreed
+
+			label hasnotfoundmagnetar2
 			`	You quickly explain how you found yourself in Avgi space, and Leon nods. "That explains the questions the good Captain was asking," he says, nodding at Darius. "I've spent years collecting this information, from hearing the official narrative to dredging the corners of Avgi space for rumors."`
 			`	He leans in. "So, before I tell you this, one condition. I've spent months looking for a way to get a ship to take me to... well, you'll see. But not a lot of captains are willing to take their ships out of the Tangled Shroud and through the Aberrant blockade, so if this leads anywhere, I want a bunk on your ship."`
 			choice
@@ -951,8 +1153,19 @@ mission "Avgi: Twilight Escape 1"
 			`	He pauses, taking a drink of what looks like water. "They said they had found a gateway of sorts, an ancient alien artifact built by an unknown Antecessor species. Somehow, they had activated it, and that's where the first Aberrant came from."`
 			choice
 				`	"And you want to use this gateway as a way out?"`
+					goto hasnotfoundmagnetar3
+					to display
+						not "avgi: discovered magnetar"
 				`	"Where do you think this gateway leads?"`
+					goto hasnotfoundmagnetar3
+					to display
+						not "avgi: discovered magnetar"
+				`	"They must be referring to the magnetar I discovered."`
+					goto hasfoundmagnetar3
+					to display
+						has "avgi: discovered magnetar"
 
+			label hasnotfoundmagnetar3
 			`	"I don't know where it leads, but it'll be somewhere other than Avgi space. Maybe somewhere your jump drive can work, which would let us eventually make our way back to human space. But it's better than sitting here and twiddling our thumbs for another six years."`
 			`	"Where is this gateway?" Darius asks.`
 			`	"The Aberrant came from the East, beyond the furthest reaches of the Twilight. A place the Avgi always had trouble exploring, due to strange energy storms periodically ionizing entire systems. But it's apparently recognizable by the red nebula suffusing it, just as the Twilight is surrounded by a cluster of blue nebulae."`
@@ -964,10 +1177,16 @@ mission "Avgi: Twilight Escape 1"
 
 			label "unknown ember waste"
 			`	"There's no point in waiting, then. If there's a chance, even a small one, it's worth checking on," says Darius, looking hopeful for the first time since you've met him.`
-			branch accept
-				has "avgi: discovered magnetar"
 			`	You just hope his hope isn't a false one, for both of your sakes.`
 				accept
+
+			label hasfoundmagnetar3
+			`	"As long as it leads somewhere other than Avgi space. I couldn't stand to be here for another six years."`
+			`	"Where is this gateway?" Darius asks.`
+			`   "A system called Decet, not too far from Tarazed" You reply.`
+			`	"There's no point in waiting, then. Everyone is here.  Every one of us who was trapped in Avgi space." says Darius, looking hopeful for the first time since you've met him.`
+				accept
+
 	on enter
 		system
 			attributes "core" "deep" "dirt belt" "near earth" "rim" "south"
