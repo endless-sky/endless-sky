@@ -511,8 +511,7 @@ string Format::TimestampString(chrono::time_point<chrono::system_clock> time, bo
 
 string Format::TimestampString(filesystem::file_time_type time)
 {
-	auto sctp = time_point_cast<chrono::system_clock::duration>(time - filesystem::file_time_type::clock::now()
-		+ chrono::system_clock::now());
+	auto sctp = std::chrono::clock_cast<std::chrono::system_clock>(time);
 	return TimestampString(sctp);
 }
 
