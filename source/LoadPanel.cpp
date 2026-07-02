@@ -210,7 +210,11 @@ void LoadPanel::Draw()
 				tooltip.IncrementCount();
 				if(tooltip.ShouldDraw())
 				{
-					tooltip.SetText(Format::TimestampString(time), true);
+					if (hoverFile != file){
+						hoverFile = file;
+						hoverFileTimestamp = Format::TimestampString(time);
+					}
+					tooltip.SetText(hoverFileTimestamp, true);
 					tooltip.SetZone(zone);
 				}
 			}
