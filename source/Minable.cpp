@@ -67,7 +67,6 @@ void Minable::CreateSparks(vector<Visual> &visuals, const Effect *effect, double
 
 
 
-
 Minable::Payload::Payload(const DataNode &node)
 {
 	outfit = GameData::Outfits().Get(node.Token(1));
