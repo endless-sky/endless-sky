@@ -36,37 +36,6 @@ using namespace std;
 
 
 
-// Place a "spark" effect, like ionization or disruption.
-void Minable::CreateSparks(vector<Visual> &visuals, const string &name, double amount)
-{
-	CreateSparks(visuals, GameData::Effects().Get(name), amount);
-}
-
-
-
-void Minable::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount)
-{
-	if(amount <= 0.)
-		return;
-
-	// Limit the number of sparks, depending on the size of the sprite.
-	// The limit needs to be the first argument in case amount is NaN.
-	amount = min(Width() * Height() * .0006, amount);
-	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
-	visuals.reserve(visuals.size() + static_cast<size_t>(amount));
-
-	while(true)
-	{
-		amount -= Random::Real();
-		if(amount <= 0.)
-			break;
-		Point point((Random::Real() - .5) * Width(), (Random::Real() - .5) * Height());
-		visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
-	}
-}
-
-
-
 Minable::Payload::Payload(const DataNode &node)
 {
 	outfit = GameData::Outfits().Get(node.Token(1));
@@ -236,18 +205,6 @@ void Minable::Place(double energy, double beltRadius)
 
 
 
-// Apply corrosion damage ticks and decrement corrosion.
-void Minable::DoCorrosionDamage(vector<Visual> &visuals)
-{
-	if(!corrosion)
-		return;
-	hull -= corrosion;
-	corrosion = max(0., .99 * corrosion);
-	CreateSparks(visuals, "corrosion spark", corrosion * .1);
-}
-
-
-
 // Move the object forward one step. If it has been reduced to zero hull, it
 // will "explode" instead of moving, creating flotsam and explosion effects.
 // In that case it will return false, meaning it should be deleted.
@@ -345,6 +302,49 @@ double Minable::Mass() const
 double Minable::MaximumHeat() const
 {
 	return MAXIMUM_TEMPERATURE * (attributes.Mass() + attributes.Get("heat capacity"));
+}
+
+
+
+// Apply corrosion damage ticks and decrement corrosion.
+void Minable::DoCorrosionDamage(vector<Visual> &visuals)
+{
+	if(!corrosion)
+		return;
+	hull -= corrosion;
+	corrosion = max(0., .99 * corrosion);
+	CreateSparks(visuals, "corrosion spark", corrosion * .1);
+}
+
+
+
+// Place a "spark" effect, like ionization or disruption.
+void Minable::CreateSparks(vector<Visual> &visuals, const string &name, double amount)
+{
+	CreateSparks(visuals, GameData::Effects().Get(name), amount);
+}
+
+
+
+void Minable::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount)
+{
+	if(amount <= 0.)
+		return;
+
+	// Limit the number of sparks, depending on the size of the sprite.
+	// The limit needs to be the first argument in case amount is NaN.
+	amount = min(Width() * Height() * .0006, amount);
+	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
+	visuals.reserve(visuals.size() + static_cast<size_t>(amount));
+
+	while(true)
+	{
+		amount -= Random::Real();
+		if(amount <= 0.)
+			break;
+		Point point((Random::Real() - .5) * Width(), (Random::Real() - .5) * Height());
+		visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
+	}
 }
 
 
