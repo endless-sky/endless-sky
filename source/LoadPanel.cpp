@@ -210,7 +210,8 @@ void LoadPanel::Draw()
 				tooltip.IncrementCount();
 				if(tooltip.ShouldDraw())
 				{
-					if (hoverFile != file){
+					if(hoverFile != file)
+					{
 						hoverFile = file;
 						hoverFileTimestamp = Format::TimestampString(time);
 					}
