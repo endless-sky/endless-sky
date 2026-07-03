@@ -33,7 +33,7 @@ class Outfit;
 class Projectile;
 class Visual;
 
-using namespace std;
+
 
 // Class representing an asteroid or other minable object that orbits in an
 // ellipse around the system center.
@@ -97,11 +97,11 @@ public:
 	double MaximumHeat() const override;
 
 	// Apply corrosion damage ticks and decrement corrosion.
-	void DoCorrosionDamage(vector<Visual> &visuals);
+	void DoCorrosionDamage(std::vector<Visual> &visuals);
 
 	// Add Spark Visual Effects for Corrosion Damage.
-	void CreateSparks(vector<Visual> &visuals, const string &name, double amount);
-	void CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount);
+	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
+	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 
 private:
 	class LiveEffect {
