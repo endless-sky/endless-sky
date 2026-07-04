@@ -48,7 +48,7 @@ public:
 
 public:
 	Tooltip(int width, Alignment alignment, Direction direction, Corner corner,
-		const Color *backColor, const Color *fontColor);
+		const Color *backColor, const Color *fontColor, bool shrinkToFit = false);
 
 	void IncrementCount();
 	void DecrementCount();
@@ -57,7 +57,7 @@ public:
 
 	void SetZone(const Point &center, const Point &dimensions);
 	void SetZone(const Rectangle &zone);
-	void SetText(const std::string &newText, bool shrink = false);
+	void SetText(const std::string &newText);
 	bool HasText() const;
 	void Clear();
 
@@ -69,6 +69,11 @@ public:
 	void Draw(bool forceDraw = false) const;
 
 	void UpdateActivationCount();
+	void UpdateFontSize();
+
+
+private:
+	void Shrink();
 
 
 private:
@@ -81,8 +86,10 @@ private:
 
 	Rectangle zone;
 	WrappedText text;
+	// Whether the background of the tooltip should shrink to fit the text.
+	bool shrinkToFit = false;
 
 	int hoverCount = 0;
 	// The hover value needed to activate the tooltip.
-	int activationHover;
+	int activationHover = 0;
 };

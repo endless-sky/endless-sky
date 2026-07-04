@@ -165,7 +165,7 @@ void MiniMap::Draw(int step) const
 
 	set<const System *> drawnSystems;
 
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	Color lineColor(alpha, 0.f);
 	Color brightColor(.4f * alpha, 0.f);
 

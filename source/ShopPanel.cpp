@@ -85,11 +85,11 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard")),
 	hasFleetCapacity(GameData::GetGamerules().GetFleetSizeLimitation() != Gamerules::FleetSizeLimitation::NONE),
 	shipsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
-		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"), true),
 	creditsTooltip(250, Alignment::LEFT, Tooltip::Direction::UP_LEFT, Tooltip::Corner::TOP_RIGHT,
-		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"), true),
 	buttonsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
-		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"), true),
 	loadingCircle(30.f, 10, 2.),
 	hover(*GameData::Colors().Get("hover")),
 	active(*GameData::Colors().Get("active")),
@@ -194,7 +194,7 @@ void ShopPanel::Draw()
 		string text = shipName;
 		if(!warningType.empty())
 			text += "\n" + GameData::Tooltip(warningType);
-		shipsTooltip.SetText(text, true);
+		shipsTooltip.SetText(text);
 		shipsTooltip.SetBackgroundColor(GameData::Colors().Get(warningType.empty() ? "tooltip background"
 			: (warningType.back() == '!' ? "error back" : "warning back")));
 		shipsTooltip.Draw(true);

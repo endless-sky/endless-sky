@@ -202,7 +202,7 @@ void DialogPanel::Draw()
 	}
 
 	// Draw the bottom section.
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	pos.Y() += bottom->Height() * .5;
 	SpriteShader::Draw(bottom, pos);
 	pos.Y() += (bottom->Height() - cancel->Height()) * .5;
@@ -268,6 +268,7 @@ bool DialogPanel::AllowsFastForward() const noexcept
 void DialogPanel::UpdateTextDisplay()
 {
 	text->SetAlignment(Preferences::GetTextAlignment());
+	text->SetFont(FontSet::Get(Preferences::GetFontSize()));
 }
 
 
@@ -308,7 +309,7 @@ DialogPanel::DialogPanel(DialogInit &init)
 
 	text = make_shared<TextArea>();
 	text->SetAlignment(Preferences::GetTextAlignment());
-	text->SetFont(FontSet::Get(14));
+	text->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	text->SetTruncate(init.truncate);
 	text->SetText(init.message);
 	extensionCount = 0;
