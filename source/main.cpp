@@ -383,20 +383,17 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				// The UI handled the event.
 			}
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
-					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
+					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD))
+					&& !Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
 			{
 				isFastForward = !isFastForward;
 			}
-			// Special case: If fastforward is on capslock, reconcile
-			// on keyup in case button state is out of sync.
-			else if(event.type == SDL_KEYUP
-				&& event.key.keysym.sym == SDLK_CAPSLOCK
-				&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD)
-				&& (SDL_GetModState() & KMOD_CAPS))
-			{
-				isFastForward = true;
-			}
 		}
+
+		// Special case: If fastforward is on capslock, update on mod state and not
+		// on keypress.
+		if(Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
+			isFastForward = SDL_GetModState() & KMOD_CAPS;
 	};
 
 	// Game loop when running the game normally.
