@@ -314,6 +314,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	FrameTimer timer(frameRate);
 	bool isDebugPaused = false;
 	bool isFastForward = false;
+	bool hasSeenCapsLockOn = SDL_GetModState() & KMOD_CAPS;
 
 	// Limit how quickly full-screen mode can be toggled.
 	int toggleTimeout = 0;
@@ -326,7 +327,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	const bool isHeadless = (testContext.CurrentTest() && !debugMode);
 
 	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isDebugPaused,
-			&isFastForward]
+			&isFastForward, &hasSeenCapsLockOn]
 	{
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
@@ -383,17 +384,24 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				// The UI handled the event.
 			}
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
-					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD))
-					&& !Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
+					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
 			{
-				isFastForward = !isFastForward;
+				if(!(Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD) && hasSeenCapsLockOn))
+					isFastForward = !isFastForward;
 			}
 		}
 
-		// Special case: If fastforward is on capslock, update on mod state and not
-		// on keypress.
+		// Special case: If fastforward is on capslock, update on mod state,
+		// but only if we have ever observed capslock as functional
 		if(Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
-			isFastForward = SDL_GetModState() & KMOD_CAPS;
+		{
+			const bool isCapsLockOn = SDL_GetModState() & KMOD_CAPS;
+			if (!hasSeenCapsLockOn && isCapsLockOn)
+				hasSeenCapsLockOn = true;
+
+			if (hasSeenCapsLockOn)
+				isFastForward = isCapsLockOn;
+		}
 	};
 
 	// Game loop when running the game normally.
