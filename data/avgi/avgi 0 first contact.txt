@@ -797,7 +797,7 @@ mission "Avgi: Defend Ensemble 2"
 			`	He looks a little disappointed, then collects himself. "Well, I suppose there's no real urgency to it."`
 			`	"Are you in a rush to leave?" you ask.`
 			`	He considers for a moment.`
-			`	"No, I suppose I should say my goodbyes before I go. I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's a number of hideaways and side branches in the Tangled Shroud, with outposts mostly ran by miners and small-time shipbuilders. Just the kind of people who talk a lot among themselves about rumors and tall tales. The official story of the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I think we should pay my friend a visit after you wrap up this next mission. At the least he'll be happy to hear you've found a way out."`
+			`	"No, I suppose I should say my goodbyes before I go. More importantly, there's another human trapped here in the Twilight. He doesn't frequent the official circles in the Consonance as much. There's a number of hideaways and side branches in the Tangled Shroud, with outposts mostly ran by miners and small-time shipbuilders. Just the kind of people who talk a lot among themselves about rumors and tall tales. The official story of the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I think we should pay my friend a visit after you wrap up this next mission. At the least he'll be happy to hear you've found a way out."`
 
 			label rejoin2
 			`	You nod in acknowledgment and make ready to launch the <ship>.`
@@ -884,7 +884,7 @@ mission "Avgi: Scout Rescue"
 			label hasfoundmagnetar
 			`	"<first>, I think we have a golden opportunity," Darius says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud."`
 			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
-			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's perfect since I wanted to visit my friend there anyway."`
+			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's perfect since we need to visit Leon there anyway."`
 			goto rejoinstory
 
 			label rejoinstory
@@ -1093,8 +1093,8 @@ mission "Avgi: Twilight Escape 1"
 			goto rejoinstory
 
 			label hasfoundmagnetar
-			`	"Come on, let's go meet my friend."`
-			`	"Another human?" you ask.`
+			`	"Come on, let's go meet Leon."`
+			`	"The other human?" you ask.`
 			`	"Yes, though calling him a friend may be a stretch these days." You excuse yourself and walk along with Darius.`
 			goto rejoinstory
 
