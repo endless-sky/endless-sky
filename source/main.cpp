@@ -396,10 +396,10 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 		if(Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
 		{
 			const bool isCapsLockOn = SDL_GetModState() & KMOD_CAPS;
-			if (!hasSeenCapsLockOn && isCapsLockOn)
+			if(!hasSeenCapsLockOn && isCapsLockOn)
 				hasSeenCapsLockOn = true;
 
-			if (hasSeenCapsLockOn)
+			if(hasSeenCapsLockOn)
 				isFastForward = isCapsLockOn;
 		}
 	};
