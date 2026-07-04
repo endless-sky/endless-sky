@@ -481,7 +481,7 @@ mission "Avgi: Defend Ensemble 1"
 			label next
 			`	Darius shakes his head for a moment, then looks back at you. "Well, since you're still here, I'm assuming your jump drive couldn't get you out of here?"`
 			choice
-				`	"It can get me out of here.  More to the point, it can get us out of here."`
+				`	"It can get me out of here. More to the point, it can get us out of here."`
 					goto nextmagnetardiscovered
 					to display
 						has "avgi: discovered magnetar"
@@ -491,7 +491,7 @@ mission "Avgi: Defend Ensemble 1"
 						not "avgi: discovered magnetar"
 			
 			label nextmagnetardiscovered
-			`    You tell him about how you discovered a magnetar, extending your jump range and allowing you to jump back to human space, and he nods along.`
+			`	You tell him about how you discovered a magnetar, extending your jump range and allowing you to jump back to human space, and he nods along.`
 			`	"I was certain there has to be a way out! But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes. But that's over now!" He sounds relieved.`
 
 			choice
@@ -501,7 +501,7 @@ mission "Avgi: Defend Ensemble 1"
 					goto story
 
 			label nextnomagnetardiscovered
-			`    You tell him about how you were unable to jump back to human space, and he nods along.`
+			`	You tell him about how you were unable to jump back to human space, and he nods along.`
 			`	"There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes." He sounds frustrated.`
 			choice
 				`	"Don't worry, I'm sure we'll find a way back home."`
@@ -710,7 +710,7 @@ mission "Avgi: Defend Ensemble 2"
 					goto hasnotfoundmagnetar
 					to display
 						not "avgi: discovered magnetar"
-				`	"Absolutely!  There's a lone magnetar in the far east of the twilight that will allow us to escape back to human space."`
+				`	"Absolutely! There's a lone magnetar in the far east of the twilight that will allow us to escape back to human space."`
 					goto hasfoundmagnetar
 					to display
 						has "avgi: discovered magnetar"
@@ -727,7 +727,7 @@ mission "Avgi: Defend Ensemble 2"
 				goto rejoinstory
 
 			label hasfoundmagnetar
-			`   You explain about the magnetar in Decet and how it amplifies your jump drive's range.`
+			`	You explain about the magnetar in Decet and how it amplifies your jump drive's range.`
 			`	"Damn. Who knew it would be so easy! It's just been too long since I've seen a fresh human face. I've been working for the Twilight Guard here for months, trying to build up a second line of defenses in case that station in Arche falls. At least today's battle shows those defenses, together with a supporting fleet, can hold. Now that's done, do you mind if I tag along with you? I'm ready to get out."`
 			choice
 				`	"Of course."`
@@ -797,10 +797,10 @@ mission "Avgi: Defend Ensemble 2"
 			`	He looks a little disappointed, then collects himself. "Well, I suppose there's no real urgency to it."`
 			`	"Are you in a rush to leave?" you ask.`
 			`	He considers for a moment.`
-			`   "No, I suppose I should say my goodbyes before I go.  I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's a number of hideaways and side branches in the Tangled Shroud, with outposts mostly ran by miners and small-time shipbuilders. Just the kind of people who talk a lot among themselves about rumors and tall tales. The official story of the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I think we should pay my friend a visit after you wrap up this next mission.  At the least he'll be happy to hear you've found a way out."`
+			`	"No, I suppose I should say my goodbyes before I go.  I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's a number of hideaways and side branches in the Tangled Shroud, with outposts mostly ran by miners and small-time shipbuilders. Just the kind of people who talk a lot among themselves about rumors and tall tales. The official story of the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I think we should pay my friend a visit after you wrap up this next mission.  At the least he'll be happy to hear you've found a way out."`
 
 			label rejoin2
-			`   You nod in acknowledgement and make ready to launch the <ship>.`
+			`	You nod in acknowledgment and make ready to launch the <ship>.`
 
 
 mission "Avgi: Scout Rescue"
@@ -888,7 +888,7 @@ mission "Avgi: Scout Rescue"
 			goto rejoinstory
 
 			label rejoinstory
-			`   "Meet me in the spaceport in an hour and we'll get this trip sorted out."`
+			`	"Meet me in the spaceport in an hour and we'll get this trip sorted out."`
 
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the rescued crew hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -1006,7 +1006,7 @@ mission "Avgi: Dissonance Outreach 0.5"
 			goto rejoinstory
 
 			label rejoinstory
-			`   You ready the <ship> to depart.`
+			`	You ready the <ship> to depart.`
 
 	on complete
 		dialog
@@ -1087,13 +1087,13 @@ mission "Avgi: Twilight Escape 1"
 						has "avgi: discovered magnetar"
 			
 			label hasnotfoundmagnetar
-			`   "I had a talk with a few people on the way here, and they say there's someone who knows more about the first days after the Incursion. Come on."`
+			`	"I had a talk with a few people on the way here, and they say there's someone who knows more about the first days after the Incursion. Come on."`
 			`	"What did they say?" you ask.`
 			`	"Apparently it's someone we have to meet in person," he grumbles. "I don't like it, but I don't think it's anything dangerous. Just inconvenient." You excuse yourself and walk along with Darius.`
 			goto rejoinstory
 
 			label hasfoundmagnetar
-			`   "Come on, let's go meet my friend."`
+			`	"Come on, let's go meet my friend."`
 			`	"Another human?" you ask.`
 			`	"Yes, though calling him a friend may be a stretch these days." You excuse yourself and walk along with Darius.`
 			goto rejoinstory
@@ -1132,11 +1132,11 @@ mission "Avgi: Twilight Escape 1"
 
 			label hasfoundmagnetar2
 			`	You quickly explain how you found yourself in Avgi space, and Leon nods.`
-			`   "I've spent years collecting this information," he mumbles "from hearing the official narrative to dredging the corners of Avgi space for rumors."`
-			`   You lean in - "Is there something you're getting at?"`
+			`	"I've spent years collecting this information," he mumbles "from hearing the official narrative to dredging the corners of Avgi space for rumors."`
+			`	You lean in - "Is there something you're getting at?"`
 			`	"Not a lot of captains are willing to take their ships out of the Tangled Shroud and through the Aberrant blockade, if you're heading out of here, I want a bunk on your ship. I'll gladly tell you all I know."`
 			choice
-				'   "Agreed."`
+				`	"Agreed."`
 					goto agreed
 
 			label hasnotfoundmagnetar2
@@ -1183,8 +1183,8 @@ mission "Avgi: Twilight Escape 1"
 			label hasfoundmagnetar3
 			`	"As long as it leads somewhere other than Avgi space. I couldn't stand to be here for another six years."`
 			`	"Where is this gateway?" Darius asks.`
-			`   "A system called Decet, not too far from Tarazed" You reply.`
-			`	"There's no point in waiting, then. Everyone is here.  Every one of us who was trapped in Avgi space." says Darius, looking hopeful for the first time since you've met him.`
+			`	"A system called Decet, not too far from Tarazed" You reply.`
+			`	"There's no point in waiting, then. Everyone is here. Every one of us who was trapped in Avgi space." says Darius, looking hopeful for the first time since you've met him.`
 				accept
 
 	on enter
