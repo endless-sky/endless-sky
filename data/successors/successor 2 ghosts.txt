@@ -1779,7 +1779,7 @@ mission "Successors: Ghosts 19"
 		has "Successors: Ghosts 18: done"
 	npc kill
 		government `High Houses (Unknown)`
-		personality waiting heroic target
+		personality waiting heroic target unconstrained
 		ship "Valkkyiara-Khorasaqra" "Ijahti-Khora"
 		on kill
 			set "Successors: Ghosts killed heirloom"
