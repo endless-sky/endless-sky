@@ -17,6 +17,7 @@ ship "Aaulqra"
 	plural "Aaulqran"
 	sprite "ship/aaulqra"
 	thumbnail "thumbnail/aaulqra"
+	"administrative cost" 6
 	attributes
 		licenses
 			"High Houses"
@@ -112,6 +113,7 @@ ship "Ejniisde"
 	plural "Ejniisden"
 	sprite "ship/ejniisde"
 	thumbnail "thumbnail/ejniisde"
+	"administrative cost" 3
 	attributes
 		licenses
 			"Successor"
@@ -190,6 +192,7 @@ ship "Kaskhorade"
 	plural "Kaskhoraden"
 	sprite "ship/kaskhorade"
 	thumbnail "thumbnail/kaskhorade"
+	"administrative cost" 6
 	attributes
 		licenses
 			"High Houses"
@@ -286,6 +289,7 @@ ship "Kvelqde"
 	plural "Kvelqden"
 	sprite "ship/kvelqde"
 	thumbnail "thumbnail/kvelqde"
+	"administrative cost" 1
 	attributes
 		licenses
 			"Successor"
@@ -367,6 +371,7 @@ ship "Kvelqde-Khora"
 	plural "Kvelqden-Khora"
 	sprite "ship/kvelqde-khora"
 	thumbnail "thumbnail/kvelqde-khora"
+	"administrative cost" 1
 	attributes
 		licenses
 			"Successor"
@@ -448,6 +453,7 @@ ship "Myaede"
 	plural "Myaeden"
 	sprite "ship/myaede"
 	thumbnail "thumbnail/myaede"
+	"administrative cost" 3
 	attributes
 		licenses
 			"Successor"
@@ -531,6 +537,7 @@ ship "Nnaatej"
 	plural "Nnaatejen"
 	sprite "ship/nnaatej"
 	thumbnail "thumbnail/nnaatej"
+	"administrative cost" 3
 	attributes
 		licenses
 			"Successor"
@@ -613,6 +620,7 @@ ship "Nnesaarau"
 	plural "Nnesaaraun"
 	sprite "ship/nnesaarau"
 	thumbnail "thumbnail/nnesaarau"
+	"administrative cost" 1
 	attributes
 		licenses
 			"Successor"
@@ -685,6 +693,7 @@ ship "Ojde"
 	plural "Ojden"
 	sprite "ship/ojde"
 	thumbnail "thumbnail/ojde"
+	"administrative cost" 5
 	attributes
 		licenses
 			"Successor"
@@ -767,6 +776,7 @@ ship "Seiitej"
 	plural "Seiitejen"
 	sprite "ship/seiitej"
 	thumbnail "thumbnail/seiitej"
+	"administrative cost" 4
 	attributes
 		licenses
 			"High Houses"
@@ -852,6 +862,7 @@ ship "Stolsaqra"
 	plural "Stolsaqran"
 	sprite "ship/stolsaqra"
 	thumbnail "thumbnail/stolsaqra"
+	"administrative cost" 1
 	attributes
 		licenses
 			"Successor"
@@ -942,6 +953,7 @@ ship "Veusade"
 	plural "Veusaden"
 	sprite "ship/veusade"
 	thumbnail "thumbnail/veusade"
+	"administrative cost" 4
 	attributes
 		licenses
 			"High Houses"
@@ -1037,6 +1049,7 @@ ship "Vujlet"
 	plural "Vujleten"
 	sprite "ship/vujlet"
 	thumbnail "thumbnail/vujlet"
+	"administrative cost" 3
 	attributes
 		licenses
 			"High Houses"

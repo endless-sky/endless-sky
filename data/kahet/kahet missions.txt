@@ -1908,6 +1908,7 @@ mission "Ka'het: Patir Mystery 10"
 
 ship "Remnant Satellite"
 	sprite "ship/remnant satellite"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		hull 130
@@ -4504,6 +4505,7 @@ mission "Ka'het: Patir Mystery Crew job"
 
 ship "Builder Satellite"
 	sprite "ship/builder satellite"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		"hull" 1500

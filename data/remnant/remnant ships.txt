@@ -17,6 +17,7 @@ ship "Albatross"
 	plural "Albatrosses"
 	sprite "ship/albatross"
 	thumbnail "thumbnail/albatross"
+	"administrative cost" 7
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -273,6 +274,7 @@ ship "Modified Dromedary"
 	plural "Modified Dromedaries"
 	sprite "ship/modified dromedary"
 	thumbnail "thumbnail/modified dromedary"
+	"administrative cost" 7
 	attributes
 		licenses
 			"Remnant Capital"
@@ -477,6 +479,7 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 ship "Gull"
 	sprite "ship/gull"
 	thumbnail "thumbnail/gull"
+	"administrative cost" 2
 	attributes
 		category "Light Freighter"
 		licenses
@@ -639,6 +642,7 @@ ship "Gull" "Gull (Bunks)"
 
 ship "Heron"
 	sprite "ship/heron"
+	"administrative cost" 30
 	attributes
 		category "Superheavy"
 		licenses
@@ -808,6 +812,7 @@ ship "Ibis"
 	plural "Ibises"
 	sprite "ship/ibis"
 	thumbnail "thumbnail/ibis"
+	"administrative cost" 4
 	attributes
 		category "Medium Warship"
 		licenses
@@ -892,6 +897,7 @@ ship "Ibis"
 ship "Merganser"
 	sprite "ship/merganser"
 	thumbnail "thumbnail/merganser"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		licenses
@@ -1002,6 +1008,7 @@ ship "Merganser" "Merganser (II)"
 ship "Pelican"
 	sprite "ship/pelican"
 	thumbnail "thumbnail/pelican"
+	"administrative cost" 4
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -1083,6 +1090,7 @@ ship "Penguin"
 	sprite "ship/penguin/penguin"
 		"frame rate" 3
 	thumbnail "thumbnail/penguin"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		licenses
@@ -1200,6 +1208,7 @@ ship "Peregrine"
 		"frame rate" 3
 		"rewind"
 	thumbnail "thumbnail/peregrine"
+	"administrative cost" 4
 	attributes
 		category "Medium Warship"
 		licenses
@@ -1315,6 +1324,7 @@ ship "Peregrine" "Peregrine (II)"
 ship "Petrel"
 	sprite "ship/petrel"
 	thumbnail "thumbnail/petrel"
+	"administrative cost" 1
 	attributes
 		category "Fighter"
 		licenses
@@ -1374,6 +1384,7 @@ ship "Petrel"
 ship "Puffin"
 	sprite "ship/puffin"
 	thumbnail "thumbnail/puffin"
+	"administrative cost" 1
 	attributes
 		category Transport
 		licenses
@@ -1427,6 +1438,7 @@ ship "Puffin"
 ship "Smew"
 	sprite "ship/smew"
 	thumbnail "thumbnail/smew"
+	"administrative cost" 1
 	attributes
 		category "Fighter"
 		licenses
@@ -1512,6 +1524,7 @@ ship "Smew" "Smew (Teciimach Ferry)"
 ship "Starling"
 	sprite "ship/starling"
 	thumbnail "thumbnail/starling"
+	"administrative cost" 3
 	attributes
 		category "Light Warship"
 		licenses
@@ -1674,6 +1687,7 @@ ship "Swan"
 		"frame rate" 3
 		"rewind"
 	thumbnail "thumbnail/swan"
+	"administrative cost" 7
 	attributes
 		category "Utility"
 		licenses
@@ -1757,6 +1771,7 @@ ship "Swan"
 ship "Tern"
 	sprite "ship/tern"
 	thumbnail "thumbnail/tern"
+	"administrative cost" 1
 	attributes
 		category "Drone"
 		licenses
