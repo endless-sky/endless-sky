@@ -1878,7 +1878,7 @@ mission "Successors: Ghosts Salvage Fleet"
 		ship "Vujlet-Usaqri (Keystone)" "o-Sapi, Brilliant Voice"
 		ship "Vujlet-Usaqri (Keystone)" "Ataa, Elegant Rail"
 		system "Oublaa-Khora"
-		personality staying waiting surveillance uninterested 
+		personality staying waiting surveillance uninterested
 		government "House Kaatrij"
 
 # Intermission
