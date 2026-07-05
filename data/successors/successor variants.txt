@@ -313,6 +313,27 @@ ship "Seiitej" "Seiitej (Armor Keystone)"
 		"Hyperdrive"
 
 
+ship "Seiitej" "Seiitej (Expeditionary)"
+	outfits
+		`"Ojet" Bimodal Coilgun` 4
+
+		`"Ryuit" Fusion Core`
+		"Auxiliary Power Reserve"
+		`"Jaase" Shield Cortex`
+		"Successor Cooling"
+		"Multimodal Armor: Keystone"
+		"Kinetic Rail Rifle" 15
+
+		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive Steering`
+		"Hyperdrive"
+
+		`"Veldt" Combat Scanner`
+		`"Tuur" Scanning Suite`
+
+		"Harmonic Keystone"
+
+
 
 ship "Stolsaqra" "Stolsaqra (Military)"
 	outfits

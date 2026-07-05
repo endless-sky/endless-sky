@@ -1117,7 +1117,7 @@ mission "Successors: Ghosts 10"
 	npc save
 		government `House Kaatrij`
 		personality launching heroic escort
-		ship "Seiitej" "o-Sapi, Brilliant Voice"
+		ship "Seiitej" "Diri, Defiant Nnesa"
 
 	on complete
 		log "Formally inducted as a vassal of House Kaatrij, with all the attendant responsibilities and rewards."
@@ -1860,6 +1860,26 @@ mission "Successors: Ghosts 19"
 
 	on fail
 		dialog phrase "successor ghosts story failed"
+
+
+
+mission "Successors: Ghosts Salvage Fleet"
+	invisible
+	transition
+	deadline 20
+	to complete
+		never
+	to offer
+		has "Successors: Ghosts 19: done"
+	destination "Earth"
+	npc
+		ship "Seiitej (Expeditionary)" "Diri, Defiant Nnesa"
+		ship "Seiitej (Expeditionary)" "Ojet, of Quiet Maaj"
+		ship "Vujlet-Usaqri (Keystone)" "o-Sapi, Brilliant Voice"
+		ship "Vujlet-Usaqri (Keystone)" "Ataa, Elegant Rail"
+		system "Oublaa-Khora"
+		personality staying waiting surveillance uninterested 
+		government "House Kaatrij"
 
 # Intermission
 
