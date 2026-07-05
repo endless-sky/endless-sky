@@ -1301,7 +1301,7 @@ mission "Successors: Ghosts 11"
 					goto end
 
 			`	"A good thought, captain," Saajret says. A difficult-to-identify emotion flits over their skin as they return to the terminal. They download some of the biographical data they were consulting into a portable data-sphere and, once they have tracked down data pertaining to the ships themselves, download that as well.`
-			`	The drone ships themselves were designed by a Myiara named Resja, a noted shipwright for the old House Aqrabe. Initially the craft were designed for small crews but after Resja's death - apparently by poisoning - they were retrofitted with drone cores and robotic maintenance systems, after which they served first as expendable rearguards and finally as the lingering defense systems that you've encountered.`
+			`	The drone ships themselves were designed by a Myiara named Resja, a noted shipwright for the old House Aqrabe. Initially, the craft were designed for small crews, but after Resja's death - apparently by poisoning - they were retrofitted with drone cores and robotic maintenance systems, after which they served first as expendable rearguards and finally as the lingering defense systems that you've encountered.`
 			`	The biographical data is added to your log.`
 
 			action
@@ -1403,7 +1403,7 @@ mission "Successors: Ghosts 14"
 				goto questions
 
 			label direct
-			`	"Kaatrij now seeks that thou undo'th this, with my presence as observer. 'Thout Seineq's control of those, our foe might come to watch them - 'tis a risk Kaatrij is loath to take. For they make note of jumps of the proper sort, as made by thy craft and the Quarg's alike. But the flitting of our foe relies on aught uncanni'r that we think evades their gaze. Thus, they reveal not the comings and goings of the guilty but thee and perhaps our own craft."`
+			`	"Kaatrij now seeks that thou undoeth this, with my presence as observer. 'Thout Seineq's control of those, our foe might come to watch them - 'tis a risk Kaatrij is loath to take. For they make note of jumps of the proper sort, as made by thy craft and the Quarg's alike. But the flitting of our foe relies on aught uncanni'r that we think evades their gaze. Thus, they reveal not the comings and goings of the guilty but thee and perhaps our own craft."`
 
 			label questions
 			choice
@@ -1535,7 +1535,7 @@ mission "Successors: Ghosts 16"
 			label security
 			action
 				set "Successors: security"
-			`	Saajret prods a flower on the floor with the tip of one of the arms. "I've been fashioned with keys to elude the station's own defenses. That which poses the most threat to us are the independent ones; thou hast before met the guardian drone ships? With the citadel reveal'd, no doubt one has already taken up residence there."`
+			`	Saajret prods a flower on the floor with the tip of one of their arms. "I've been fashioned with keys to elude the station's own defenses. That which poses the most threat to us are the independent ones; thou hast before met the guardian drone ships? With the citadel reveal'd, no doubt one has already taken up residence there."`
 				goto "questions 1"
 
 			label revealed
@@ -1556,7 +1556,7 @@ mission "Successors: Ghosts 16"
 			`	The mess of colors dotting Saajret's face resolves into a unified shade of satisfaction. "The Quarg, it seems, have certain ways to uncover such hidden craft. An old foe of theirs used a similar tactic, I'm told. Convincing them to share aught is a lifetime task for the most persuasive of diplomats, but in this instance they may help us for the sake of quieting that ship's space-ripping drive. For that," they say, "they are most eager."`
 
 			label next
-			`	A fine mist is emitted by ports on the ceiling, watering the plants and gathering in tiny spheres on your clothes. "We should prepare for our journey to the citadel. Equip thy craft as thou desirith, then let us depart."`
+			`	A fine mist is emitted by ports on the ceiling, watering the plants and gathering in tiny spheres on your clothes. "We should prepare for our journey to the citadel. Equip thy craft as thou desireth, then let us depart."`
 				accept
 
 	on complete
@@ -1592,7 +1592,7 @@ mission "Successors: Ghosts 16"
 			choice
 				`	(Rip off the translation device.)`
 				`	(Try to block out the sounds.)`
-			`	As soon as you move, something punches against your inner ear and you crumple to the ground. The screaming voice stops, and another one takes its place, less pointed but no less painful. "We recognize thy kind," it says. "And the other with thee, too. Saajret?" As their name is spoken, Saajret stands over you, their words unintelligible. The voice shifts again. "Deceiver!" it screams. "Thou who hast plundered beast and bone from where they should'st forever lie!"`
+			`	As soon as you move, something punches against your inner ear and you crumple to the ground. The screaming voice stops, and another one takes its place, less pointed but no less painful. "We recognize thy kind," it says. "And the other with thee, too. Saajret?" As their name is spoken, Saajret stands over you, their words unintelligible. The voice shifts again. "Deceiver!" it screams. "Thou who hast plundered beast and bone from where they shouldst forever lie!"`
 			choice
 				`	"I'm trying to stop the thieves!"`
 				`	"How are you in my head!?"`
@@ -1723,7 +1723,7 @@ mission "Successors: Ghosts 18"
 			label "no cloak"
 			action
 				set "Successors: Ghosts 18: deferred"
-			`	Kampa considers this for a moment. "The benefit of thou joining us outweighs the loss of a small delay," they say. "We can afford to wait on thee to acquire such a craft if it enables this ambush. Please act quickly if thou wish t'assist."`
+			`	Kampa considers this for a moment. "The benefit of thy joining us outweighs the loss of a small delay," they say. "We can afford to wait on thee to acquire such a craft if it enables this ambush. Please act quickly if thou wish t'assist."`
 				defer
 
 			label deferred
@@ -1817,7 +1817,7 @@ mission "Successors: Ghosts 19"
 			label mournful
 			`	"As are we," says Kampa. "But their names shall be honored ones for their courage and devotion."`
 			label next
-			`	They produce a data-sphere from their outfit and offer it to you. As you take it, they continue, "I shall enjoy debriefing thee after our conversation here, but for now, Kaatrij has seen fit to offer thee a reward for thy able service. Since thou has yet to receive the ability to purchase our technologies, today 'tis purely monetary. The sphere authorizes the transfer of <payment> to thee."`
+			`	They produce a data-sphere from their outfit and offer it to you. As you take it, they continue, "I shall enjoy debriefing thee after our conversation here, but for now, Kaatrij has seen fit to offer thee a reward for thy able service. Since thou hast yet to receive the ability to purchase our technologies, today 'tis purely monetary. The sphere authorizes the transfer of <payment> to thee."`
 			choice
 				`	"Has this brought us any closer to knowing which House committed the attacks?"`
 				`	"And what about purchasing your technology, since you mention it?"`
@@ -1852,11 +1852,11 @@ mission "Successors: Ghosts 19"
 
 			label "wedding preparations"
 
-			`	"On the matter of the forthcoming wedding," Kampa says. "Myurej continues to whine about some absent gifts of theirs. Shoulds't thou need to earn thyself an invitation, that would be a matter to pursue."`
+			`	"On the matter of the forthcoming wedding," Kampa says. "Myurej continues to whine about some absent gifts of theirs. Shouldst thou need to earn thyself an invitation, that would be a matter to pursue."`
 
 			label end
 
-			`	With that said, Kampa bows and leaves. "I expect thee should wish to supervise thy craft's repairs," Saajret says, "or perhaps merely enjoy some rest." Their skin speckles with mirth. "Farewell, Captain. I hope to see thee again soon."`
+			`	With that said, Kampa bows and leaves. "I expect thou shouldst wish to supervise thy craft's repairs," Saajret says, "or perhaps merely enjoy some rest." Their skin speckles with mirth. "Farewell, Captain. I hope to see thee again soon."`
 
 	on fail
 		dialog phrase "successor ghosts story failed"
