@@ -1966,11 +1966,12 @@ mission "Successors: Ghosts 20"
 			`	"Despite Sioeora's generosity to the captain," Riijaaora says, "this alien sees fit to vassalize another House. We shall not recognize this relationship, nor open our outfitters to them."`
 
 			label license
-			`	When they return to the edge, no more is said. Kampa returns to the pool and produces a small box from their outfit, which they give to you.`
+			`	When they return to the edge, no more is said. Kampa returns to the pool and produces a small wooden box from their outfit, which they give to you.`
 			choice
 				`	(Take it.)`
+			`	You open the box to find an elaborate gold brooch nestled among soft folds of velvet.`
 			scene "outfit/high houses license"
-			`	"Let this gift make clear to all thy responsibilities and privileges, and may thou have free access to all our House and allies offer..." Kampa says, "<first> <last>, Honored Knight-Vassal of the High House Kaatrij."`
+			`	"Let this gift make clear to all thy responsibilities and privileges, and may thou have free access to all our House and allies offer..." Kampa says, "<first> <last>, Honored Knight-Vassal of the High House Kaatrij." A colorful display rushes over Kampa's skin and they pick up the brooch with one arm and pin it on your jacket right next to your translation device and the civilian license. The metal must be very dense; it is noticeably heavier than the others.`
 			`	With this, the meeting concludes, the various members exiting in turn - the ones you've met before offering some short words of congratulations. You eventually exit as well, finding your way back through the facility. By a floral display you spy Saajret, apparently deep in conversation with Tiliia, the House Seineq engineer.`
 			choice
 				`	(Go speak with them.)`
