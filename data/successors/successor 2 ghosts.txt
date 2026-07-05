@@ -476,7 +476,7 @@ mission "Successors: Ghosts 4"
 
 
 mission "Successors: Ghosts Mark Houses"
-	entering
+	transition
 	destination "Shassa-Wyra-Orrou"
 	name "Investigate the other High Houses"
 	description "House Seineq is interested in what tasks the other Houses might offer a free agent. Their homeworlds would be a good place to investigate their activities."
@@ -755,7 +755,7 @@ mission "Successors: Ghosts 6"
 
 
 mission "Successors: Ghosts 7a"
-	entering
+	transition
 	clearance
 	name "Detour to Osolaa-Val-Mavra"
 	description "Saajret has asked to visit <stopovers> as a personal favor, before returning home to <planet>."
@@ -815,7 +815,7 @@ mission "Successors: Ghosts 7a"
 
 
 mission "Successors: Ghosts 7b"
-	entering
+	transition
 	clearance
 	name "Return to <planet>"
 	description "Having declined Saajret's request for a detour, return them home to <planet>."
@@ -1452,7 +1452,7 @@ mission "Successors: Ghosts 14"
 
 mission "Successors: Ghosts 15"
 	passengers 1
-	entering
+	transition
 	name "Destroy final sensor probe"
 	description "Having destroyed the other sensor probes, go to <waypoints> to destroy the fourth and final one before returning to <destination>."
 	waypoint "Kasii-Sola"
