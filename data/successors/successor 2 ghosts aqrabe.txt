@@ -428,7 +428,7 @@ mission "Successors: Ghosts Aqrabe 7"
 	npc evade
 		ship "Hasur, Vowsworn" "Hasur-riita 4-1"
 		government "Solitude Enforcer"
-		personality launching heroic nemesis unconstrained
+		personality launching heroic nemesis ramming unconstrained
 		on kill
 			set "Successors: Ghosts Hasur transmission"
 			dialog "As the drone ship explodes it transmits some data to your own vessel. It cannot be deciphered at this time."
