@@ -368,7 +368,8 @@ outfit `"Kis," Lethal Wish`
 		sound "drag cannon"
 		"hit effect" "kis impact" 12
 		"fire effect" "moonbeam fleck" 4
-		"range override" 180
+		"range override" 1350
+		"velocity override" 10
 		"reload" 90
 		"firing energy" 400
 		"firing heat" 600
@@ -383,7 +384,6 @@ outfit "kis short range"
 			"no repeat"
 		"hit effect" "small explosion"
 		"hit effect" "kis impact" 3
-		"range override" 180
 		"inaccuracy" 3
 		"velocity" 10
 		"lifetime" 20
