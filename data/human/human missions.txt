@@ -7949,8 +7949,12 @@ mission "Silver Talon 4"
 
 
 mission "Pict's Legacy 1"
-	name "Find Pict's Killer"
+	name "Chase Pict's Killer"
+	description "The man who killed Pict has fled Hermes and is heading to <destination>. Get Raven there no later than <date> to have a hope of catching him."
 	source "Hermes"
+	destination "Ada"
+	passengers 3
+	deadline 2
 	to offer
 		has "event: Pict Trigger"
 		has "main plot completed"
@@ -7963,10 +7967,10 @@ mission "Pict's Legacy 1"
 				`	(Head to 45 Impala Street.)`
 					goto trap
 				`	(Ignore the message.)`
-			
+
 			`	With no good reason to believe the message is genuine or urgent, you ignore it and go back to watching the race. About ten minutes pass before you hear sirens, and in only another five the news makes its way to your eyes: Compassion "Pict" Macdonald, SgtMaj, Republic Navy, found dead. Murdered, at 45 Impala Street.`
 				decline
-			
+
 			label trap
 			`	It doesn't take long to find 45 Impala Street, certainly no longer than fifteen minutes. The building is a slab of concrete built in the timeless style: modern four decades ago, hopelessly ugly today. The door stands ajar, and you reach for your gun as you cross the threshold into the house. The lights inside are off, and it is pitch black.`
 			choice
@@ -7981,33 +7985,157 @@ mission "Pict's Legacy 1"
 				`	(Turn on the lights.)`
 				`	(Continue with the lights off..)`
 					goto unlit
-			
+
 			label lights
 			`	You flick the lights on, and stare. In front of you is what was clearly once a living room, now torn to shambles. In the corner, clearly dead, is Pict's corpse, her mouth open in a snarl and no fewer than thirteen flechette holes in her chest. Suddenly, you can't move, and when the police arrive three minutes later they find you standing there, hand on the light switch, staring.`
 				goto police
-			
+
 			label unlit
 			`	Without turning the lights on, you take three steps into the house, trip, and fall. As your eyes slowly become accustomed to the dark shadows, you begin to make out shapes in the gloom. Gradually, the shapes solidify into objects: an overturned chair, an empty flechette gun, and Pict's corpse. So shocked are you that you do not hear the sirens until the lights are flicked on and the police have you under gunpoint.`
 
 			label police
-			`	All things considered, the cops are reasonable enough. You find yourself locked in a holding cell, but at least it's clean. They take your pilot's license, but at least you receive food and water.`
+			`	All things considered, the cops are reasonable enough. You find yourself locked in a holding cell, but at least it's clean. In exchange for your pilot's license and photo ID you're given food, water, and a bucket that is empty and smells of bleach rather than human waste.`
 			`	A few hours later, you're hauled out for questioning. A burly cop reads you your rights, warns you that you have the right to legal counsel and don't have to answer the questions you're about to be asked, but that he's sure - you being an upstanding citizen and so forth - you'll answer them anyways.`
 			`	Then he clears his throat, and begins the questioning.`
 			`	"Are you Captain <first> <last>?"`
 			choice
 				`	"Yes, that's me."`
-					goto q1ok
+					goto cooperative
 				`	"No, sir."`
-					goto q1bad
+				`	(Keep silent.)`
+					goto silent
+
+			`	"So, in fact, the ID we took from you is falsified? Or is it stolen?"`
+			choice
+				`	"Okay, okay, I am Captain <last>."`
+					goto reluctant
+				`	"Falsified, of course. Don't you know I'm an transgalactic crime lord?"`
+					to display
+						"reputation: Pirate" > 0
+					goto scumbag
+				`	(Keep silent.)`
+
+			`	The cop gives you a pointed stare as a second officer in the corner of the room jots down something on a notepad. "Let's answer questions truthfully, <last>."`
+				goto second
+
+			label scumbag
+			`	Needless to say, admitting you're a big-time pirate in front of the fuzz doesn't go down too well. Before you know it you're in front of a lawyer, a jury, and then behind bars for the rest of your life.`
+				die
+
+			label silent
+			`	"I see you're determined to make things difficult, aren't you, <last>? Very well, then. We shall have to assume that you haven't magically changed your fingerprints, DNA, blood type, and appearance and acquired fake identification since you last got your license renewed.`
+				goto second
+			
+			label reluctant
+			`	"Learned your lesson?"`
+			`	You nod.`
+			`	"Good, I'm glad. You'd be surprised how many people try to convince us our records are wrong rather than accept that we already know who they are.`
+				goto second
+
+			label cooperative
+			`	"Good, I'm glad you're willing to cooperate. You'd be surprised how many people don't.`
+
+			label second
+			`	"Now, second question: what were you doing at 45 Impala Street?"`
+			`	Outside the interrogation room, a door slams and someone shouts something about protocols.`
+
+			choice
+				`	"I was just going for a walk."`
+					goto walk
+				`	"I got a voice message from someone I used to know. She seemed to think she was in danger."`
+					goto message
 				`	(Keep silent.)`
 			
-			`	"I see you're determined to make things difficult, aren't you, captain? Very well, then."`
-				goto q2
+			`	The police officer sighs. "Look, <last>, I'm being paid to be here, and you're not. If you're innocent, it's in everyone's best interest if you speak up. And if it turns out that you were involved with what happened at 45 Impala Street, we're going to find out eventually."`
+				goto knock
+
+			label walk
+			`	"And you sure chose an interesting place to go walk, didn't you?"`
+				goto knock
+
+			label message
+			`	"Ah. And this person would be Ms. Macdonald?"`
+			`	"You mean Pict?" you reply.`
+
+			label knock
+			`	Suddenly, someone knocks loudly on the door. Your interrogator gestures to the second cop in the room, who stands up and opens it.`
+			`	On the other side of the door stands Raven from Navy Intelligence, flanked by two surly marines and trailed by a vehemently protesting police clerk.`
+			`	"Sorry to interrupt, but I'm here to take custody of Captain <last>." She grins sardonically. "Matters of national security, you understand."`
+			`	Behind her, the clerk continues complaining, but the officer in the room just waves her over to a chair and signs for the transfer. In return, Raven hands over a thin file and a couple of memory chips.`
+			`	Rather than cart you off to another prison, you soon find yourself back at the <ship>.`
+			choice
+				`	"Wait, what are we doing back here?"`
+					goto brief
+				`	"What are you doing on Hermes?"`
 			
-			label q1bad
-			`	"So, in fact, the ID we took from you is falsified? Or is it stolen?"`
-			# CONTINUE
+			`	"Well, what I was doing was supervising Pict," Raven replies. "But seeing as how she's rather dead right about now I thought I might as well manage you instead. I'll explain more later.`
 
-			label q1ok
+			label brief
+			`	"For now, all you need to know is that we know you're innocent. The police here will too, just as soon as they finish looking through the data I gave them. Pict was dead before you landed, and we have photos of her murderer. I can explain how we know later.`
+			`	"About twenty minutes ago, though, Pict's killer fled the planet with my ship in hot pursuit. Since I don't feel like commandeering a posh lawyer's Flivver, that means that you're my ride. By the powers vested in me, I'm commandeering your spacefaring vessel, the <ship>, until such time as it is no longer needed in the service of the Republic, yadda, yadda, yadda, we're leaving now. Understood?"`
+			`	You nod.`
+			`	"Good. Let's get going, then. We don't really have much time to waste if we hope to catch him."`
+				launch
+	on enter "Capella"
+		conversation
+			`You arrive in orbit just in time to watch Raven's Gunboat disappear into hyperspace. The assassin's ship is already gone, but Raven seems unfazed.`
+			`	"He can't have gotten far... with the afterburner thrust he was using there's no way he'll be able to make it any further than <system> without running out of fuel. So that means we're headed for <planet>."`
+			`	As Raven's speaking, you notice a whole flotilla of Navy ships streaking out of the atmosphere behind you.`
+	
+	# CONTINUE:
+	npc
+		government "Republic"
+		personality
+			"heroic"
+			"opportunistic"
+			"launching"
+			"staying"
+			confusion 10
+		fleet "Large Republic"
+		fleet "Small Republic" 3
 
-			label q2
+	on complete
+		conversation
+			`As soon as you land on <planet>, Raven's marines spring to their feet.`
+			`	"It looks like we've got him," she tells you. "We'll know for sure in half an hour, though, so meet us back in the spaceport then."`
+
+
+mission "Pict's Legacy 2"
+	name "Follow Pict's Killer"
+	description "Navy Intelligence has let Pict's killer loose in the hope he'll unwittingly lead them to Alphas. Follow him to <destination> and deal with any threats you find there."
+	source "Ada"
+	destination "Sandswell"
+	deadline 3
+	to offer
+		has "Pict's Legacy 1: done"
+	on offer
+		conversation
+			`You find yourself back in the spaceport with Raven and the crew of her Gunboat.`
+			`	"Thanks to your help, Captain <last>, we've been able to pinpoint the killer. Better yet, we think we might be about to discover where his controllers are hiding."`
+			choice
+				`	"That's great news! Where is he?"`
+				`	"So you don't think he was acting alone?"`
+					goto controllers
+			
+			action
+				set "pict-legacy-2-plan-explained"
+			
+			`	"Right now, he should just be leaving the atmosphere in a fully-fueled Flivver."`
+			`	Raven's pilot chuckles. "Fully-bugged, too."`
+			`	"Exactly," she continues. "That Flivver is emitting more than Chernobyl. The killer might think he's getting away, but all he's going to do is lead us directly to where his bosses are hiding out."`
+			choice
+				`	"What if he realizes he's being followed and slips away?"`
+				`	"So you don't think he was acting alone?"`
+			
+			`	Raven's reply is quick and confident. "He won't. Pict isn't the first person he's killed, and while his plans are always sophisticated his execution rarely is."`
+				goto 
+			`	She passes you four small photos featuring a dark figure. In one, the man is crouched behind the support of a bridge near the mangled wreck of a ground car. In a second, he's sitting in a hospital waiting room. In the third, he's fleeing through an open window. The last picture shows him entering Pict's house at 45 Impala.`
+			`	Raven sighs. "I believe you knew some of his victims, too."`
+			`	She points to the first photo. "Klaus Nilsson: part-time bounty hunter, part-time drag racer. Died in a freak accident last year when his front tires exploded at 300 km/h. Or at least that's what the police report said, but they found it suspicious enough to flag it."`
+			`	Her finger moves to the second photo. "Daniel 'Dagger' Dresden: retired Republic Navy marine undergoing treatment for alcohol-induced hepatitis. Died of sudden multiple organ failure in hospital on Starcross fifteen minutes after the doctors decided he was stable and fit for surgery."`
+			`	Indicating the third photo, she goes on. "Hadija Jumanne: senior Republic defense staffer who organized a bounty program on pirates with suspected connections to the Alphas. Fatally shot in her hotel room on Glory last month.`
+			`	"Then, of course, there's Pict."`
+
+	# Inigo Montoya -> Miyano Tonogi
+	# INIGOMONTOYA
+	# NOONTO
