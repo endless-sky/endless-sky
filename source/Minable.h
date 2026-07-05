@@ -96,6 +96,13 @@ public:
 	double Mass() const override;
 	double MaximumHeat() const override;
 
+	// Apply corrosion damage ticks and decrement corrosion.
+	void DoCorrosionDamage(std::vector<Visual> &visuals);
+
+	// Add Spark Visual Effects for Corrosion Damage.
+	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
+	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+
 
 private:
 	class LiveEffect {
@@ -144,6 +151,8 @@ private:
 	// How much prospecting has been done on this object. Used to increase the
 	// payload drop rate.
 	double prospecting = 0.;
+	// Accrued "corrosion damage" that will affect this asteroid's hull over time.
+	double corrosion = 0.;
 	// Material released when this object is destroyed.
 	std::vector<Payload> payload;
 	std::vector<LiveEffect> liveEffects;
