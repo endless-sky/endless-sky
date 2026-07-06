@@ -1031,7 +1031,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	return true;
 }
 
-#include "Logger.h"
+// #include "Logger.h"
 // Check if it's possible to offer or complete this mission right now.
 tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(const PlayerInfo &player) const
 {	
@@ -1060,7 +1060,7 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(const Play
 	// TODO: Investigate condition test
 	// Hacky but works
 	int offercount = 0;
-	for( int i = 0 ; i < 100 ; i++){
+	for( int i = 0 ; i < 459 ; i++){
 		if(toOffer.Test())
 			offercount++;
 	}
@@ -1069,10 +1069,9 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(const Play
 	}
 
 	bool randomflag = false;
-	if ( offercount != 100)
+	if ( offercount != 459)
 		randomflag = true;
-	
-	
+		
 	bool retflag = false;
 	// check if source is on list of visited systems
 	for(auto &visitedSystem : player.VisitedSystems()){		
@@ -1080,7 +1079,7 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(const Play
 			for(auto &sourceSystem : source->Systems())
 			{
 				if(visitedSystem == sourceSystem){
-					Logger::Log(std::format("{}|match by sourceSystem|{}",missionName,sourceSystem->TrueName()),Logger::Level::INFO);
+					//Logger::Log(std::format("{}|match by sourceSystem|{}",missionName,sourceSystem->TrueName()),Logger::Level::INFO);
 					sourceSystems.push_back(sourceSystem);
 					retflag = true;
 				}
@@ -1097,7 +1096,7 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(const Play
 		{
 			if(planet.second.GetSystem() == visitedSystem)
 				if(sourceFilter.Matches(&planet.second)){
-					Logger::Log(std::format("{}|match by planet|{}",missionName,visitedSystem->TrueName()),Logger::Level::INFO);
+					//Logger::Log(std::format("{}|match by planet|{}",missionName,visitedSystem->TrueName()),Logger::Level::INFO);
 					sourceSystems.push_back(visitedSystem);
 					retflag = true;
 				}

@@ -1395,6 +1395,7 @@ void MapPanel::DrawMissions()
 {
 	// Draw a pointer for each active or available mission.
 	map<const System *, PointerDrawCount> missionCount;
+	static map<const System *, PointerDrawCount> questMissionCache;
 
 	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available job");
@@ -1456,17 +1457,27 @@ void MapPanel::DrawMissions()
 			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
 		for(const System *mark : mission.TrackedSystems())
 			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
-	}	
-	for ( auto &mission : GameData::Missions() ){
-		tuple<bool,bool,vector<const System*>> result = mission.second.CanOfferTheoretically(player);
-		if(get<0>(result)){			
-			for( auto &sourceSystem : get<2>(result)){
-				if(get<1>(result))
-					missionCount[sourceSystem].rngQuest++;
-				else
-					missionCount[sourceSystem].quest++;
-			}
-		}		
+	}
+	// Calculate available quests every time user opens map and cache it
+	if(!cachedQuests){
+		questMissionCache.clear();
+		for(auto &mission : GameData::Missions()){
+			tuple<bool,bool,vector<const System*>> result = mission.second.CanOfferTheoretically(player);
+			if(get<0>(result)){
+				for(auto &sourceSystem : get<2>(result)){
+					if(get<1>(result))
+						questMissionCache[sourceSystem].rngQuest++;
+					else
+						questMissionCache[sourceSystem].quest++;
+				}
+			}	
+		}
+		cachedQuests = true;
+	}
+	// Apply quest cache
+	for(auto &&it : questMissionCache){
+		missionCount[it.first].quest += it.second.quest;
+		missionCount[it.first].rngQuest += it.second.rngQuest;
 	}
 	// Draw the available and unavailable jobs.
 	for(auto &&it : missionCount)

@@ -220,7 +220,8 @@ private:
 private:
 	// This is the coloring mode currently used in the cache.
 	int cachedCommodity = -10;
-
+	bool cachedQuests = false;
+	
 	std::vector<Node> nodes;
 	std::vector<Link> links;
 };
