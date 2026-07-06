@@ -132,22 +132,24 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 	double heightOffset = 20.;
 
-	if(selectedShip)
+	const Ship *detailShip = selectedShip ? selectedShip : playerShip;
+
+	if(detailShip)
 	{
-		shipInfo.Update(*selectedShip, player, hasFleetCapacity, collapsed.contains(DESCRIPTION), true);
-		selectedItem = selectedShip->DisplayModelName();
+		shipInfo.Update(*detailShip, player, hasFleetCapacity, collapsed.contains(DESCRIPTION), true);
+		selectedItem = detailShip->DisplayModelName();
 
 		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
 		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
 		SpriteShader::Draw(background, spriteCenter);
 
-		const Sprite *shipSprite = selectedShip->GetSprite();
+		const Sprite *shipSprite = detailShip->GetSprite();
 		if(shipSprite)
 		{
 			const float spriteScale = min(1.f, (INFOBAR_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()));
-			const Swizzle *swizzle = selectedShip->CustomSwizzle()
-				? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+			const Swizzle *swizzle = detailShip->CustomSwizzle()
+				? detailShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
 		}
 
