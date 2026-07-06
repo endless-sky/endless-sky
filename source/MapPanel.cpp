@@ -87,6 +87,8 @@ namespace {
 		unsigned drawn = 0;
 		unsigned available = 0;
 		unsigned unavailable = 0;
+		unsigned rngQuest = 0;
+		unsigned quest = 0;
 
 	private:
 		unsigned maximumActive = MapPanel::MAX_MISSION_POINTERS_DRAWN;
@@ -1401,6 +1403,7 @@ void MapPanel::DrawMissions()
 	const Color &blockedColor = *colors.Get("blocked mission");
 	const Color &specialColor = *colors.Get("special mission");
 	const Color &waypointColor = *colors.Get("waypoint");
+	const Color &hintColor = *colors.Get("map system ring unexplored");
 	if(specialSystem)
 	{
 		// The special system pointer is larger than the others.
@@ -1453,6 +1456,17 @@ void MapPanel::DrawMissions()
 			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
 		for(const System *mark : mission.TrackedSystems())
 			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
+	}	
+	for ( auto &mission : GameData::Missions() ){
+		tuple<bool,bool,vector<const System*>> result = mission.second.CanOfferTheoretically(player);
+		if(get<0>(result)){			
+			for( auto &sourceSystem : get<2>(result)){
+				if(get<1>(result))
+					missionCount[sourceSystem].rngQuest++;
+				else
+					missionCount[sourceSystem].quest++;
+			}
+		}		
 	}
 	// Draw the available and unavailable jobs.
 	for(auto &&it : missionCount)
@@ -1463,6 +1477,10 @@ void MapPanel::DrawMissions()
 			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, availableColor);
 		for(unsigned i = 0; i < counters.unavailable; ++i)
 			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, unavailableColor);
+		if(it.second.quest > 0)
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, hintColor);
+		if(it.second.rngQuest > 0)
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, Color::Multiply(.6,hintColor));
 	}
 }
 

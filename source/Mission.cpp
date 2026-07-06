@@ -1031,6 +1031,89 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	return true;
 }
 
+#include "Logger.h"
+// Check if it's possible to offer or complete this mission right now.
+tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(const PlayerInfo &player) const
+{	
+	vector<const System*> sourceSystems;
+	// Don't offer boarding or assisting missions for now
+	if(location == BOARDING || location == ASSISTING || location == JOB)
+	{
+		return tuple(false,false,sourceSystems);
+	}
+
+	if(repeat!=1)
+	{
+		return tuple(false,false,sourceSystems);
+	}
+
+	string missionName = this->TrueName();
+	string conditionStoreName = missionName + ": offered";
+	if(player.Conditions().Get(conditionStoreName)){
+		return tuple(false,false,sourceSystems);
+	}
+
+	// Don't show if already offered or failed.
+	if(!toFail.IsEmpty() && toFail.Test())
+		return tuple(false,false,sourceSystems);
+
+	// TODO: Investigate condition test
+	// Hacky but works
+	int offercount = 0;
+	for( int i = 0 ; i < 100 ; i++){
+		if(toOffer.Test())
+			offercount++;
+	}
+	if(offercount == 0){
+		return tuple(false,false,sourceSystems);
+	}
+
+	bool randomflag = false;
+	if ( offercount != 100)
+		randomflag = true;
+	
+	
+	bool retflag = false;
+	// check if source is on list of visited systems
+	for(auto &visitedSystem : player.VisitedSystems()){		
+		if(source)
+			for(auto &sourceSystem : source->Systems())
+			{
+				if(visitedSystem == sourceSystem){
+					Logger::Log(std::format("{}|match by sourceSystem|{}",missionName,sourceSystem->TrueName()),Logger::Level::INFO);
+					sourceSystems.push_back(sourceSystem);
+					retflag = true;
+				}
+			}
+	}
+	if(retflag)
+		return tuple(retflag,randomflag,sourceSystems);	
+
+	if(sourceFilter.IsEmpty())
+		return tuple(retflag,randomflag,sourceSystems);	
+
+	for(auto &visitedSystem : player.VisitedSystems() ){
+		for(auto &planet : GameData::Planets())
+		{
+			if(planet.second.GetSystem() == visitedSystem)
+				if(sourceFilter.Matches(&planet.second)){
+					Logger::Log(std::format("{}|match by planet|{}",missionName,visitedSystem->TrueName()),Logger::Level::INFO);
+					sourceSystems.push_back(visitedSystem);
+					retflag = true;
+				}
+		}
+	}	
+	return tuple(retflag,randomflag,sourceSystems);	
+}
+
+
+vector<const System*> Mission::GetSourceSystems() const{
+	if(source)
+		return source->Systems();
+	vector<const System*> empty;
+	return empty;
+}
+
 
 
 bool Mission::CanAccept(const PlayerInfo &player) const
