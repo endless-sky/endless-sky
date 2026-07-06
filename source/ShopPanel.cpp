@@ -553,8 +553,18 @@ bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 	for(const Zone &zone : zones)
 		if(zone.Contains(clickPoint))
 		{
-			if(zone.GetShip())
-				selectedShip = zone.GetShip();
+			const Ship *zoneShip = zone.GetShip();
+			if(zoneShip)
+			{
+				// Allow deselection if we double click the selected ship
+				if(zoneShip == selectedShip && clicks == 2)
+				{
+					selectedShip = nullptr;
+					return true;
+				}
+
+				selectedShip = zoneShip;
+			}
 			else
 				selectedOutfit = zone.GetOutfit();
 
