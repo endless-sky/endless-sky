@@ -262,7 +262,7 @@ void Preferences::Load()
 			zoomIndex = max(0., node.Value(1));
 		else if(key == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
-		else if(key == "CapsLock controls speedup")
+		else if(key == "Sync FF to CapsLock")
 			capsLockFFBehaviorIndex = max<int>(0, min<int>(node.Value(1), CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS.size() - 1));
 		else if(key == "camera acceleration")
 			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));

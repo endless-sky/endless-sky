@@ -62,7 +62,7 @@ namespace {
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
-	const string CAPSLOCK_FASTFORWARD_BEHAVIOR = "CapsLock controls speedup";
+	const string CAPSLOCK_FASTFORWARD_BEHAVIOR = "Sync FF to CapsLock";
 	const string CAMERA_ACCELERATION = "Camera acceleration";
 	const string LARGE_GRAPHICS_REDUCTION = "Reduce large graphics";
 	const string CLOAK_OUTLINE = "Cloaked ship outlines";
@@ -680,8 +680,10 @@ void PreferencesPanel::DrawControls()
 		{
 			int index = zones.size();
 			// Mark conflicts.
-			bool isConflicted = command.HasConflict();
-			bool isEmpty = !command.HasBinding();
+			bool isCapslockLocksFastForward = command.Has(Command::FASTFORWARD)
+				&& Preferences::GetCapsLockFFBehavior() == Preferences::CapsLockFFBehavior::ALWAYS;
+			bool isConflicted = command.HasConflict() && !isCapslockLocksFastForward;
+			bool isEmpty = !command.HasBinding() && !isCapslockLocksFastForward;
 			bool isEditing = (index == editing);
 			if(isConflicted || isEditing || isEmpty)
 			{
@@ -708,8 +710,11 @@ void PreferencesPanel::DrawControls()
 
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
-			table.Draw(command.Description(), medium);
-			table.Draw(command.KeyName(), isEditing ? bright : medium);
+			const Color &keyColor = isCapslockLocksFastForward ? dim : medium;
+			const Color &descColor = isCapslockLocksFastForward ? dim : bright;
+
+			table.Draw(command.Description(), descColor);
+			table.Draw(command.KeyName(), isEditing ? bright : keyColor);
 		}
 	}
 }
