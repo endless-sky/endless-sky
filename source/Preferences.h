@@ -220,9 +220,9 @@ public:
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
 
-    static void ToggleCapsLockFastForwardLock();
-    static CapsLockFFBehavior GetCapsLockFFBehavior();
-    static const std::string &CapsLockFFBehaviorSetting();
+	static void ToggleCapsLockFastForwardLock();
+	static CapsLockFFBehavior GetCapsLockFFBehavior();
+	static const std::string &CapsLockFFBehaviorSetting();
 
 	static void ToggleCameraAcceleration();
 	static CameraAccel CameraAcceleration();
