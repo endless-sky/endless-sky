@@ -556,8 +556,9 @@ bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 			const Ship *zoneShip = zone.GetShip();
 			if(zoneShip)
 			{
-				// Allow deselection if we double click the selected ship
-				if(zoneShip == selectedShip && clicks == 2)
+				// Allow deselection if we ctrl-click the selected ship
+				bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
+				if(zoneShip == selectedShip && control)
 				{
 					selectedShip = nullptr;
 					return true;
