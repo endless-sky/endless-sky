@@ -398,7 +398,7 @@ void Preferences::Save()
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
-	out.Write("Capslock controls speedup", capsLockFFBehaviorIndex);
+	out.Write("Sync FF to CapsLock", capsLockFFBehaviorIndex);
 	out.Write("camera acceleration", cameraAccelerationIndex);
 	out.Write("date format", dateFormatIndex);
 	out.Write("notification settings", notifOptionsIndex);
