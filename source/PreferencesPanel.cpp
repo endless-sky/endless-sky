@@ -62,6 +62,7 @@ namespace {
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
+	const string CAPSLOCK_FASTFORWARD_BEHAVIOR = "CapsLock controls speedup";
 	const string CAMERA_ACCELERATION = "Camera acceleration";
 	const string LARGE_GRAPHICS_REDUCTION = "Reduce large graphics";
 	const string CLOAK_OUTLINE = "Cloaked ship outlines";
@@ -825,6 +826,7 @@ void PreferencesPanel::DrawSettings()
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
+		CAPSLOCK_FASTFORWARD_BEHAVIOR,
 		"Landing zoom",
 		SCROLL_SPEED,
 		TOOLTIP_ACTIVATION,
@@ -907,6 +909,14 @@ void PreferencesPanel::DrawSettings()
 		{
 			text = Preferences::VSyncSetting();
 			isOn = text != "off";
+		}
+		else if(setting == CAPSLOCK_FASTFORWARD_BEHAVIOR)
+		{
+		const Preferences::CapsLockFFBehavior capslockFFPreference = Preferences::GetCapsLockFFBehavior();
+			isOn = capslockFFPreference == Preferences::CapsLockFFBehavior::ALWAYS
+				|| (capslockFFPreference == Preferences::CapsLockFFBehavior::DEFAULT
+					&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
+			text = Preferences::CapsLockFFBehaviorSetting();
 		}
 		else if(setting == STATUS_OVERLAYS_ALL)
 		{
@@ -1402,6 +1412,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			GetUI().Push(DialogPanel::Info(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
+	else if(str == CAPSLOCK_FASTFORWARD_BEHAVIOR)
+		Preferences::ToggleCapsLockFastForwardLock();
 	else if(str == CAMERA_ACCELERATION)
 		Preferences::ToggleCameraAcceleration();
 	else if(str == LARGE_GRAPHICS_REDUCTION)

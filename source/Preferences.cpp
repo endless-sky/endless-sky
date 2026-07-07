@@ -63,6 +63,11 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
+	const vector<string> CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS = {
+		"default", "never", "always"
+	};
+	int capsLockFFBehaviorIndex = 2;
+
 	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
 	int cameraAccelerationIndex = 0;
 
@@ -257,6 +262,8 @@ void Preferences::Load()
 			zoomIndex = max(0., node.Value(1));
 		else if(key == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(key == "CapsLock controls speedup")
+			capsLockFFBehaviorIndex = max<int>(0, min<int>(node.Value(1), CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS.size() - 1));
 		else if(key == "camera acceleration")
 			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
 		else if(key == "Show all status overlays")
@@ -391,6 +398,7 @@ void Preferences::Save()
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("Capslock controls speedup", capsLockFFBehaviorIndex);
 	out.Write("camera acceleration", cameraAccelerationIndex);
 	out.Write("date format", dateFormatIndex);
 	out.Write("notification settings", notifOptionsIndex);
@@ -702,6 +710,26 @@ const string &Preferences::VSyncSetting()
 	return VSYNC_SETTINGS[vsyncIndex];
 }
 
+
+
+void Preferences::ToggleCapsLockFastForwardLock()
+{
+	capsLockFFBehaviorIndex = (capsLockFFBehaviorIndex + 1) % CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS.size();
+}
+
+
+
+Preferences::CapsLockFFBehavior Preferences::GetCapsLockFFBehavior()
+{
+	return static_cast<CapsLockFFBehavior>(capsLockFFBehaviorIndex);
+}
+
+
+
+const string &Preferences::CapsLockFFBehaviorSetting()
+{
+	return CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS[capsLockFFBehaviorIndex];
+}
 
 
 void Preferences::ToggleCameraAcceleration()

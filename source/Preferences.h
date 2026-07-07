@@ -155,6 +155,12 @@ public:
 		ALWAYS
 	};
 
+	enum class CapsLockFFBehavior : int_fast8_t {
+		DEFAULT = 0,
+		NEVER = 1,
+		ALWAYS = 2
+	};
+
 #ifdef _WIN32
 	enum class TitleBarTheme : int_fast8_t {
 		DEFAULT,
@@ -213,6 +219,10 @@ public:
 	static bool ToggleVSync();
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
+
+    static void ToggleCapsLockFastForwardLock();
+    static CapsLockFFBehavior GetCapsLockFFBehavior();
+    static const std::string &CapsLockFFBehaviorSetting();
 
 	static void ToggleCameraAcceleration();
 	static CameraAccel CameraAcceleration();
