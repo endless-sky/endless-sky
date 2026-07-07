@@ -1737,7 +1737,7 @@ mission "Remnant: Heavy Laser"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"		
-		outfits "Heavy Laser"
+		outfit: "Heavy Laser"
 	on offer
 		conversation
 			`You remember that Taely was interested in seeing examples of technology from human space. Would you like to show her your Heavy Laser?`
@@ -1780,7 +1780,7 @@ mission "Remnant: Plasma Cannon"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
-		outfits "Plasma Cannon"
+		outfit: "Plasma Cannon"
 	on offer
 		conversation
 			`You recall that Taely was interested in examining examples of technology from ancestral space. Would you like to show her the Plasma Cannons you retrieved?`
@@ -1830,7 +1830,7 @@ mission "Remnant: Catalytic Ramscoop"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
-		outfits "Catalytic Ramscoop"
+		outfit: "Catalytic Ramscoop"
 	on offer
 		conversation
 			`You recall that Taely was interested in seeing examples of new human technology, and the Catalytic Ramscoop definitely fits the criteria. Would you like to show her?`
@@ -1871,7 +1871,7 @@ mission "Remnant: Electron Beam"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
-		outfits "Electron Beam"
+		outfit: "Electron Beam"
 	on offer
 		conversation
 			`You recall that Taely was interested in seeing examples of new human technology, and the electron beam certainly fits the criteria. Would you like to show her?`
@@ -1912,7 +1912,7 @@ mission "Remnant: D94-YV Shield Generator"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
-		outfits "D94-YV Shield Generator"
+		outfit: "D94-YV Shield Generator"
 	on offer
 		conversation
 			`You know that Taely was interested in seeing examples of recently developed human technology, and the D94-YV Shield Generator probably fits the criteria. Would you like to show her?`
@@ -1953,7 +1953,7 @@ mission "Remnant: S-970 Regenerator"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
-		outfits "S-970 Regenerator"
+		outfit: "S-970 Regenerator"
 	on offer
 		conversation
 			`You recall that Taely was interested in seeing instances of new human technology, and the S-970 Regenerator is definitely a recent development. Would you like to show her?`
