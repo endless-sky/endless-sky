@@ -1032,44 +1032,57 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 }
 
 #include "Logger.h"
-// Check if it's possible to offer or complete this mission right now.
-tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(const PlayerInfo &player) const
+// Check if it's *possible* to offer this mission right now.
+tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
+	const PlayerInfo &player) const
 {	
 	vector<const System*> sourceSystems;
-	// Don't offer boarding or assisting missions for now
-	if(location == BOARDING || location == ASSISTING || location == JOB)
-	{
-		return tuple(false,false,sourceSystems);
-	}
-
-	if(repeat!=1)
-	{
-		return tuple(false,false,sourceSystems);
-	}
-
 	string missionName = this->TrueName();
 	string conditionStoreName = missionName + ": offered";
+
+	// We're looking for planet or system based missions, not ship based
+	if(location == BOARDING || location == ASSISTING || location == JOB)
+	{
+		return tuple(false, false, sourceSystems);
+	}
+
+	// Not interested in repeatable missions(todo: make this optional?)
+	if(repeat!=1)
+	{
+		return tuple(false, false, sourceSystems);
+	}
+
+	// Exclude previously offered missions
 	if(player.Conditions().Get(conditionStoreName)){
-		return tuple(false,false,sourceSystems);
+		return tuple(false, false, sourceSystems);
 	}
 
 	// Don't show if already offered or failed.
 	if(!toFail.IsEmpty() && toFail.Test())
-		return tuple(false,false,sourceSystems);
+		return tuple(false, false, sourceSystems);
+
+	// Check for additional prerequisites in On Offer set
+	auto it = actions.find(OFFER);
+	bool isFailed = false;
+	const shared_ptr<Ship> boardingShip;
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
+		return tuple(false, false, sourceSystems);
 
 	// TODO: Investigate condition test
 	// Hacky but works
 	int offercount = 0;
-	for( int i = 0 ; i < 459 ; i++){
+	for(int i = 0; i < 459; i++)
+	{
 		if(toOffer.Test())
 			offercount++;
 	}
-	if(offercount == 0){
-		return tuple(false,false,sourceSystems);
+	if(offercount == 0)
+	{
+		return tuple(false, false, sourceSystems);
 	}
 
 	bool randomflag = false;
-	if ( offercount != 459)
+	if (offercount != 459)
 		randomflag = true;
 		
 	bool retflag = false;
@@ -1086,10 +1099,10 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(const Play
 			}
 	}
 	if(retflag)
-		return tuple(retflag,randomflag,sourceSystems);	
+		return tuple(retflag, randomflag, sourceSystems);	
 
 	if(sourceFilter.IsEmpty())
-		return tuple(retflag,randomflag,sourceSystems);	
+		return tuple(retflag, randomflag, sourceSystems);	
 
 	for(auto &visitedSystem : player.VisitedSystems() ){
 		for(auto &planet : GameData::Planets())
@@ -1102,7 +1115,7 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(const Play
 				}
 		}
 	}	
-	return tuple(retflag,randomflag,sourceSystems);	
+	return tuple(retflag, randomflag, sourceSystems);	
 }
 
 
