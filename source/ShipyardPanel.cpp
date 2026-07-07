@@ -132,12 +132,16 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 	double heightOffset = 20.;
 
-	const Ship *detailShip = selectedShip ? selectedShip : playerShip;
+	const Ship *stockShip = GameData::Ships().Get(playerShip->TrueModelName());
+	const Ship *detailShip = selectedShip ? selectedShip : stockShip;
 
 	if(detailShip)
 	{
 		shipInfo.Update(*detailShip, player, hasFleetCapacity, collapsed.contains(DESCRIPTION), true);
 		selectedItem = detailShip->DisplayModelName();
+
+		if(detailShip == stockShip)
+			selectedItem += " (Stock)";
 
 		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
 		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
