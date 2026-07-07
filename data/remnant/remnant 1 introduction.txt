@@ -1736,7 +1736,7 @@ mission "Remnant: Heavy Laser"
 	to offer
 		or
 			has "Remnant: Tech Retrieval: active"
-			has "Remnant: Tech Retrieval: done"		
+			has "Remnant: Tech Retrieval: done"
 		has "outfit: Heavy Laser"
 	on offer
 		conversation
