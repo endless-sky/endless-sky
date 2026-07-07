@@ -89,6 +89,7 @@ namespace {
 		unsigned unavailable = 0;
 		unsigned rngQuest = 0;
 		unsigned quest = 0;
+		unsigned minorQuest = 0;
 
 	private:
 		unsigned maximumActive = MapPanel::MAX_MISSION_POINTERS_DRAWN;
@@ -1465,7 +1466,9 @@ void MapPanel::DrawMissions()
 			tuple<bool,bool,vector<const System*>> result = mission.second.CanOfferTheoretically(player);
 			if(get<0>(result)){
 				for(auto &sourceSystem : get<2>(result)){
-					if(get<1>(result))
+					if(mission.second.IsMinor())
+						questMissionCache[sourceSystem].minorQuest++;
+					else if(get<1>(result))
 						questMissionCache[sourceSystem].rngQuest++;
 					else
 						questMissionCache[sourceSystem].quest++;
@@ -1478,6 +1481,7 @@ void MapPanel::DrawMissions()
 	for(auto &&it : questMissionCache){
 		missionCount[it.first].quest += it.second.quest;
 		missionCount[it.first].rngQuest += it.second.rngQuest;
+		missionCount[it.first].minorQuest += it.second.minorQuest;
 	}
 	// Draw the available and unavailable jobs.
 	for(auto &&it : missionCount)
@@ -1491,7 +1495,9 @@ void MapPanel::DrawMissions()
 		if(it.second.quest > 0)
 			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, hintColor);
 		if(it.second.rngQuest > 0)
-			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, Color::Multiply(.6,hintColor));
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, Color::Multiply(.65,hintColor));
+		if(it.second.minorQuest > 0)
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, Color::Multiply(.25,hintColor));
 	}
 }
 
