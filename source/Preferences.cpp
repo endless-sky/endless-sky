@@ -66,7 +66,7 @@ namespace {
 	const vector<string> CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS = {
 		"default", "never", "always"
 	};
-	int capsLockFFBehaviorIndex = 2;
+	int capsLockFFBehaviorIndex = 0;
 
 	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
 	int cameraAccelerationIndex = 0;
