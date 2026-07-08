@@ -711,7 +711,7 @@ void PreferencesPanel::DrawControls()
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
 			const Color &keyColor = isCapslockLocksFastForward ? dim : medium;
-			const Color &descColor = isCapslockLocksFastForward ? dim : bright;
+			const Color &descColor = isCapslockLocksFastForward ? dim : medium;
 
 			table.Draw(command.Description(), descColor);
 			table.Draw(command.KeyName(), isEditing ? bright : keyColor);
