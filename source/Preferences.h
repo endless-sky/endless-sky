@@ -160,6 +160,12 @@ public:
 		NEVER = 1,
 		ALWAYS = 2
 	};
+  
+	enum class TargetAsteroidStrategy : int_fast8_t {
+		PROXIMITY = 0,
+		EXPECTED_VALUE,
+		QUALITY
+	};
 
 #ifdef _WIN32
 	enum class TitleBarTheme : int_fast8_t {
@@ -309,6 +315,11 @@ public:
 	static void ToggleTextAlignment();
 	static Alignment GetTextAlignment();
 	static const std::string &TextAlignmentSetting();
+
+	/// Target asteroid strategy setting.
+	static void ToggleTargetAsteroidStrategy();
+	static TargetAsteroidStrategy GetTargetAsteroidStrategy();
+	static const std::string &TargetAsteroidStrategySetting();
 
 	static void ToggleBlockScreenSaver();
 

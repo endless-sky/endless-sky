@@ -87,7 +87,7 @@ namespace {
 	const string DATE_FORMAT = "Date format";
 	const string NOTIFY_ON_DEST = "Notify on destination";
 	const string BOARDING_PRIORITY = "Boarding target priority";
-	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
+	const string ASTEROID_TARGETING = "Asteroid targeting";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
@@ -796,7 +796,7 @@ void PreferencesPanel::DrawSettings()
 		"Aim turrets with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
-		TARGET_ASTEROIDS_BASED_ON,
+		ASTEROID_TARGETING,
 		BOARDING_PRIORITY,
 		"Rehire extra crew when lost",
 		"Automatically unpark flagship",
@@ -1035,10 +1035,10 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = Preferences::BoardingSetting();
 		}
-		else if(setting == TARGET_ASTEROIDS_BASED_ON)
+		else if(setting == ASTEROID_TARGETING)
 		{
 			isOn = true;
-			text = Preferences::Has(TARGET_ASTEROIDS_BASED_ON) ? "proximity" : "value";
+			text = Preferences::TargetAsteroidStrategySetting();
 		}
 		else if(setting == BACKGROUND_PARALLAX)
 		{
@@ -1490,6 +1490,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleTextAlignment();
 		CustomEvents::SendAdjustText();
 	}
+	else if(str == ASTEROID_TARGETING)
+		Preferences::ToggleTargetAsteroidStrategy();
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
 		Preferences::ToggleTitleBarTheme();

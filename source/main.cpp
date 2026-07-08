@@ -640,9 +640,8 @@ void PrintHelp()
 	cerr << "    --nomute: don't mute the game while running tests." << endl;
 	cerr << "    --rng-seed <seed>: every time the pseudo-random number generator is seeded,"
 		" it will be given this value." << endl;
-	cerr << "    --tq-threads: sets the number of threads used for the internal queue of tasks."
-		" Not specifying this will use a default depending on your system. This is only useful for debugging."
-		" Has to be at least 1." << endl;
+	cerr << "    --tq-threads <number>: sets the number of threads used for the internal queue of tasks."
+		" Not specifying this will use a default depending on your system. Has to be at least 1." << endl;
 	PrintData::Help();
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;

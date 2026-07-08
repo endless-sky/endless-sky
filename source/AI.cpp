@@ -4285,7 +4285,9 @@ bool AI::TargetMinable(Ship &ship) const
 	double scanRangeMetric = 10000. * ship.Attributes().Get("asteroid scan power");
 	if(!scanRangeMetric)
 		return false;
-	const bool findClosest = Preferences::Has("Target asteroid based on");
+	Preferences::TargetAsteroidStrategy strategy = Preferences::GetTargetAsteroidStrategy();
+	const bool findClosest = strategy == Preferences::TargetAsteroidStrategy::PROXIMITY;
+	const bool highestQuality = strategy == Preferences::TargetAsteroidStrategy::QUALITY;
 	auto bestMinable = ship.GetTargetAsteroid();
 	double bestScore = findClosest ? numeric_limits<double>::max() : 0.;
 	auto GetDistanceMetric = [&ship](const Minable &minable) -> double {
@@ -4295,26 +4297,28 @@ bool AI::TargetMinable(Ship &ship) const
 	{
 		if(findClosest)
 			bestScore = GetDistanceMetric(*bestMinable);
+		else if(highestQuality)
+			bestScore = bestMinable->GetHighestQualityValue();
 		else
-			bestScore = bestMinable->GetValue();
+			bestScore = bestMinable->GetExpectedValue();
 	}
-	auto MinableStrategy = [&findClosest, &bestMinable, &bestScore, &GetDistanceMetric]()
+	auto MinableStrategy = [&highestQuality, &findClosest, &bestMinable, &bestScore, &GetDistanceMetric]()
 			-> function<void(const shared_ptr<Minable> &)>
 	{
 		if(findClosest)
 			return [&bestMinable, &bestScore, &GetDistanceMetric]
 					(const shared_ptr<Minable> &minable) -> void {
 				double newScore = GetDistanceMetric(*minable);
-				if(newScore < bestScore || (newScore == bestScore && minable->GetValue() > bestMinable->GetValue()))
+				if(newScore < bestScore || (newScore == bestScore && minable->GetExpectedValue() > bestMinable->GetExpectedValue()))
 				{
 					bestScore = newScore;
 					bestMinable = minable;
 				}
 			};
 		else
-			return [&bestMinable, &bestScore, &GetDistanceMetric]
+			return [&highestQuality, &bestMinable, &bestScore, &GetDistanceMetric]
 					(const shared_ptr<Minable> &minable) -> void {
-				double newScore = minable->GetValue();
+				double newScore = highestQuality ? minable->GetHighestQualityValue() : minable->GetExpectedValue();
 				if(newScore > bestScore || (newScore == bestScore
 						&& GetDistanceMetric(*minable) < GetDistanceMetric(*bestMinable)))
 				{
