@@ -160,7 +160,7 @@ public:
 		NEVER = 1,
 		ALWAYS = 2
 	};
-  
+
 	enum class TargetAsteroidStrategy : int_fast8_t {
 		PROXIMITY = 0,
 		EXPECTED_VALUE,
