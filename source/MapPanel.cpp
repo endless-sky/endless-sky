@@ -1405,7 +1405,8 @@ void MapPanel::DrawMissions()
 	const Color &blockedColor = *colors.Get("blocked mission");
 	const Color &specialColor = *colors.Get("special mission");
 	const Color &waypointColor = *colors.Get("waypoint");
-	const Color &hintColor = *colors.Get("map system ring unexplored");
+	const Color &hintColor = *colors.Get("map quest hint color");
+	const Color &rngHintColor = *colors.Get("map rng quest hint color");
 	if(specialSystem)
 	{
 		// The special system pointer is larger than the others.
@@ -1460,20 +1461,21 @@ void MapPanel::DrawMissions()
 			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
 	}
 	// Calculate available quests every time user opens map and cache it
+	bool offerMinorMissions = true;
 	if(!cachedQuests){
 		questMissionCache.clear();
 		for(auto &mission : GameData::Missions()){
+			if(!offerMinorMissions && mission.second.IsMinor())
+				continue;
 			tuple<bool,bool,vector<const System*>> result = mission.second.CanOfferTheoretically(player);
 			if(get<0>(result)){
 				for(auto &sourceSystem : get<2>(result)){
-					if(mission.second.IsMinor())
-						questMissionCache[sourceSystem].minorQuest++;
-					else if(get<1>(result))
+					if(get<1>(result))
 						questMissionCache[sourceSystem].rngQuest++;
 					else
 						questMissionCache[sourceSystem].quest++;
 				}
-			}	
+			}
 		}
 		cachedQuests = true;
 	}
@@ -1495,9 +1497,7 @@ void MapPanel::DrawMissions()
 		if(it.second.quest > 0)
 			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, hintColor);
 		if(it.second.rngQuest > 0)
-			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, Color::Multiply(.65,hintColor));
-		if(it.second.minorQuest > 0)
-			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, Color::Multiply(.25,hintColor));
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, rngHintColor);
 	}
 }
 

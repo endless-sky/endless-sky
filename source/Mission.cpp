@@ -1068,6 +1068,7 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
 
 	bool randomflag = toOffer.isRNG();
 	
+	
 	// Check for additional prerequisites in On Offer set
 	auto it = actions.find(OFFER);
 	bool isFailed = false;

@@ -210,6 +210,8 @@ color "map: sale marker: no shop" 0. .12 .6 .4
 color "map: sale marker: has shop" .12 .48 .48 .4
 color "map: sale marker: item sold" .6 .48 0. .4
 color "map: sale marker: item stored" .36 .48 .24 .4
+color "map quest hint color" .933 .208 .867 1.
+color "map rng quest hint color" .639 .208 .933 1.
 
 # Colors used for the routing issue text in the map panel when
 # a route to the selected system cannot be determined.
