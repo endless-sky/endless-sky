@@ -513,7 +513,8 @@ bool ConditionSet::isRNG() const
 	if(conditionName == "random")
 		return true;
 	if(!children.empty())
-	for(auto &child : children){
+	for(auto &child : children)
+	{
 		if(child.isRNG())
 			return true;
 	}

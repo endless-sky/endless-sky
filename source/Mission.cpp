@@ -1035,7 +1035,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 // Check if it's *possible* to offer this mission right now.
 tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
 	const PlayerInfo &player) const
-{	
+{
 	vector<const System*> sourceSystems;
 	string missionName = this->TrueName();
 	string conditionStoreName = missionName + ": offered";
@@ -1047,13 +1047,14 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
 	}
 
 	// Not interested in repeatable missions(todo: make this optional?)
-	if(repeat!=1)
+	if(repeat != 1)
 	{
 		return tuple(false, false, sourceSystems);
 	}
 
 	// Exclude previously offered missions
-	if(player.Conditions().Get(conditionStoreName)){
+	if(player.Conditions().Get(conditionStoreName))
+	{
 		return tuple(false, false, sourceSystems);
 	}
 
@@ -1062,13 +1063,13 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
 		return tuple(false, false, sourceSystems);
 
 	bool result = toOffer.TestNoRNG();
-	if(!result){
+	if(!result)
+	{
 		return tuple(false, false, sourceSystems);
 	}
 
 	bool randomflag = toOffer.isRNG();
-	
-	
+
 	// Check for additional prerequisites in On Offer set
 	auto it = actions.find(OFFER);
 	bool isFailed = false;
@@ -1078,35 +1079,37 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
 
 	bool retflag = false;
 	// check if source is on list of visited systems
-	for(auto &visitedSystem : player.VisitedSystems()){		
+	for(auto &visitedSystem : player.VisitedSystems())
+	{
 		if(source)
 			for(auto &sourceSystem : source->Systems())
 			{
-				if(visitedSystem == sourceSystem){
-					//Logger::Log(std::format("{}|match by sourceSystem|{}",missionName,sourceSystem->TrueName()),Logger::Level::INFO);
+				if(visitedSystem == sourceSystem)
+				{
 					sourceSystems.push_back(sourceSystem);
 					retflag = true;
 				}
 			}
 	}
 	if(retflag)
-		return tuple(retflag, randomflag, sourceSystems);	
+		return tuple(retflag, randomflag, sourceSystems);
 
 	if(sourceFilter.IsEmpty())
-		return tuple(retflag, randomflag, sourceSystems);	
+		return tuple(retflag, randomflag, sourceSystems);
 
-	for(auto &visitedSystem : player.VisitedSystems() ){
+	for(auto &visitedSystem : player.VisitedSystems() )
+	{
 		for(auto &planet : GameData::Planets())
 		{
 			if(planet.second.GetSystem() == visitedSystem)
-				if(sourceFilter.Matches(&planet.second)){
-					//Logger::Log(std::format("{}|match by planet|{}",missionName,visitedSystem->TrueName()),Logger::Level::INFO);
+				if(sourceFilter.Matches(&planet.second))
+				{
 					sourceSystems.push_back(visitedSystem);
 					retflag = true;
 				}
 		}
-	}	
-	return tuple(retflag, randomflag, sourceSystems);	
+	}
+	return tuple(retflag, randomflag, sourceSystems);
 }
 
 

@@ -1462,11 +1462,14 @@ void MapPanel::DrawMissions()
 	}
 	// Calculate available quests every time user opens map and cache it
 	auto pilot = player.Pilot().get();
-	if(pilot->GetGamerules().GetMissionMarkers() || pilot->GetGamerules().GetRNGMissionMarkers()){
+	if(pilot->GetGamerules().GetMissionMarkers() || pilot->GetGamerules().GetRNGMissionMarkers())
+	{
 		bool offerMinorMissions = pilot->GetGamerules().GetMinorMissionMarkers();
-		if(!cachedQuests){
+		if(!cachedQuests)
+		{
 			questMissionCache.clear();
-			for(auto &mission : GameData::Missions()){
+			for(auto &mission : GameData::Missions())
+			{
 				if(!offerMinorMissions && mission.second.IsMinor())
 					continue;
 				tuple<bool,bool,vector<const System*>> result = mission.second.CanOfferTheoretically(player);
@@ -1482,7 +1485,8 @@ void MapPanel::DrawMissions()
 			cachedQuests = true;
 		}
 		// Apply quest cache
-		for(auto &&it : questMissionCache){
+		for(auto &&it : questMissionCache)
+		{
 			missionCount[it.first].quest += it.second.quest;
 			missionCount[it.first].rngQuest += it.second.rngQuest;
 		}

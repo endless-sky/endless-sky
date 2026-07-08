@@ -68,7 +68,7 @@ namespace {
 	const string ADMIN_CAP = "Default admin cap";
 	const string MISSION_MARKERS = "Map markers for missions";
 	const string RNG_MISSION_MARKERS = "Map markers for RNG missions";
-	const string MINOR_MISSION_MARKERS = "Show minor missons markers";
+	const string MINOR_MISSION_MARKERS = "Show minor missions markers";
 
 	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
 
@@ -556,17 +556,14 @@ void GamerulesPanel::DrawGamerules()
 		else if(gamerule == MISSION_MARKERS)
 		{
 			text = gamerules.GetMissionMarkers() ? "true" : "false";
-			//isOn = gamerules.GetValue(MISSION_MARKERS);
 		}
 		else if(gamerule == RNG_MISSION_MARKERS)
 		{
 			text = gamerules.GetRNGMissionMarkers() ? "true" : "false";
-			//isOn = gamerules.GetValue(RNG_MISSION_MARKERS);
 		}
 		else if(gamerule == MINOR_MISSION_MARKERS)
 		{
 			text = gamerules.GetMinorMissionMarkers() ? "true" : "false";
-			//isOn = gamerules.GetValue(MINOR_MISSION_MARKERS);
 		}
 
 		if(gamerule == hoverItem)

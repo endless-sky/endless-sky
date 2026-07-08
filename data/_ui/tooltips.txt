@@ -1790,5 +1790,5 @@ tip "Map markers for missions"
 tip "Map markers for RNG missions"
 	`In the Map screen, a dim purple marker is displayed next to systems with missions that are available but gated behind a random chance check.`
 
-tip "Show minor missons markers"
+tip "Show minor missions markers"
 	`Include missions flagged as minor, typically culture conversations, in the mission marker displays.`
