@@ -62,7 +62,6 @@ namespace {
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
-	const string CAPSLOCK_FASTFORWARD_BEHAVIOR = "Sync FF to CapsLock";
 	const string CAMERA_ACCELERATION = "Camera acceleration";
 	const string LARGE_GRAPHICS_REDUCTION = "Reduce large graphics";
 	const string CLOAK_OUTLINE = "Cloaked ship outlines";
@@ -96,6 +95,7 @@ namespace {
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 	const string TRIBUTE_CONFIRMATION = "Tribute confirmation";
 	const string AMMO_REFILL = "Auto refill ammo";
+	const string FASTFORWARD_CAPSLOCK_SYNC = "Sync FF to CapsLock";
 	const string TEXT_ALIGNMENT = "Text alignment";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
@@ -831,7 +831,7 @@ void PreferencesPanel::DrawSettings()
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
-		CAPSLOCK_FASTFORWARD_BEHAVIOR,
+		FASTFORWARD_CAPSLOCK_SYNC,
 		"Landing zoom",
 		SCROLL_SPEED,
 		TOOLTIP_ACTIVATION,
@@ -914,14 +914,6 @@ void PreferencesPanel::DrawSettings()
 		{
 			text = Preferences::VSyncSetting();
 			isOn = text != "off";
-		}
-		else if(setting == CAPSLOCK_FASTFORWARD_BEHAVIOR)
-		{
-			const Preferences::CapsLockFFBehavior capslockFFPreference = Preferences::GetCapsLockFFBehavior();
-			isOn = capslockFFPreference == Preferences::CapsLockFFBehavior::ALWAYS
-				|| (capslockFFPreference == Preferences::CapsLockFFBehavior::DEFAULT
-					&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
-			text = Preferences::CapsLockFFBehaviorSetting();
 		}
 		else if(setting == STATUS_OVERLAYS_ALL)
 		{
@@ -1110,6 +1102,14 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::NEVER;
 			text = Preferences::AmmoRefillSetting();
+		}
+		else if(setting == FASTFORWARD_CAPSLOCK_SYNC)
+		{
+			const Preferences::CapsLockFFBehavior capslockFFPreference = Preferences::GetCapsLockFFBehavior();
+			isOn = capslockFFPreference == Preferences::CapsLockFFBehavior::ALWAYS
+				|| (capslockFFPreference == Preferences::CapsLockFFBehavior::DEFAULT
+					&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
+			text = Preferences::CapsLockFFBehaviorSetting();
 		}
 		else if(setting == TEXT_ALIGNMENT)
 		{
@@ -1417,8 +1417,6 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			GetUI().Push(DialogPanel::Info(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
-	else if(str == CAPSLOCK_FASTFORWARD_BEHAVIOR)
-		Preferences::ToggleCapsLockFastForwardLock();
 	else if(str == CAMERA_ACCELERATION)
 		Preferences::ToggleCameraAcceleration();
 	else if(str == LARGE_GRAPHICS_REDUCTION)
@@ -1485,6 +1483,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleTributeConfirmation();
 	else if(str == AMMO_REFILL)
 		Preferences::ToggleAmmoRefill();
+	else if(str == FASTFORWARD_CAPSLOCK_SYNC)
+		Preferences::ToggleCapsLockFastForwardLock();
 	else if(str == TEXT_ALIGNMENT)
 	{
 		Preferences::ToggleTextAlignment();
