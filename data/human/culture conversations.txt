@@ -1110,7 +1110,7 @@ mission "Exotic Life: Ada"
 			`	"What. Are. They. Made of?"`
 			`	"Stainless steel."`
 			`	"Ouch," she says, but the bored expression is gone now and she seems to be enjoying herself. "Twelve tons of miniature figurines, and we are gonna have to scan every single one to make sure they're not contaminated. That could take a while."`
-			`	With a scattering of chuckles and a few sympathetic groans the crowd starts to disperse, and the two other guards lead the pilot back towards his ship leaving the main guard tapping happily at her datapad. After a few moments she looks up, noticing you watching her.`
+			`	With a scattering of chuckles and a few sympathetic groans the crowd starts to disperse, and the two other guards lead the pilot back towards his ship, leaving the main guard tapping happily at her datapad. After a few moments she looks up, noticing you watching her.`
 			choice
 				`	"Delvan shipworms?"`
 					goto shipworms
