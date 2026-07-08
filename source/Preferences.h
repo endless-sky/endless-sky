@@ -307,7 +307,7 @@ public:
 	static AmmoRefill GetAmmoRefill();
 	static const std::string &AmmoRefillSetting();
 
-    /// Fast-forward CapsLock sync setting
+	/// Fast-forward CapsLock sync setting
 	static void ToggleFastForwardCapsLockSync();
 	static FastForwardCapsLockSync GetFastForwardCapsLockSync();
 	static const std::string &FastForwardCapsLockSyncSetting();
