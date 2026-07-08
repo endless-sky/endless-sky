@@ -328,9 +328,9 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isDebugPaused,
 			&isFastForward]
 	{
-		const Preferences::CapsLockFFBehavior capslockFFPreference = Preferences::GetCapsLockFFBehavior();
-		const bool capsLockControlsFastforward = capslockFFPreference == Preferences::CapsLockFFBehavior::ALWAYS
-			|| (capslockFFPreference == Preferences::CapsLockFFBehavior::DEFAULT
+		const Preferences::FastForwardCapsLockSync fastforwardCapsLockSync = Preferences::GetFastForwardCapsLockSync();
+		const bool capsLockControlsFastforward = fastforwardCapsLockSync == Preferences::FastForwardCapsLockSync::ALWAYS
+			|| (fastforwardCapsLockSync == Preferences::FastForwardCapsLockSync::DEFAULT
 				&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
 		SDL_Event event;
 		while(SDL_PollEvent(&event))

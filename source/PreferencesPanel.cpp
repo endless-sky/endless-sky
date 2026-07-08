@@ -681,7 +681,7 @@ void PreferencesPanel::DrawControls()
 			int index = zones.size();
 			// Mark conflicts.
 			bool isCapslockLocksFastForward = command.Has(Command::FASTFORWARD)
-				&& Preferences::GetCapsLockFFBehavior() == Preferences::CapsLockFFBehavior::ALWAYS;
+				&& Preferences::GetFastForwardCapsLockSync() == Preferences::FastForwardCapsLockSync::ALWAYS;
 			bool isConflicted = command.HasConflict() && !isCapslockLocksFastForward;
 			bool isEmpty = !command.HasBinding() && !isCapslockLocksFastForward;
 			bool isEditing = (index == editing);
@@ -1105,11 +1105,11 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == FASTFORWARD_CAPSLOCK_SYNC)
 		{
-			const Preferences::CapsLockFFBehavior capslockFFPreference = Preferences::GetCapsLockFFBehavior();
-			isOn = capslockFFPreference == Preferences::CapsLockFFBehavior::ALWAYS
-				|| (capslockFFPreference == Preferences::CapsLockFFBehavior::DEFAULT
+			const Preferences::FastForwardCapsLockSync capslockFFPreference = Preferences::GetFastForwardCapsLockSync();
+			isOn = capslockFFPreference == Preferences::FastForwardCapsLockSync::ALWAYS
+				|| (capslockFFPreference == Preferences::FastForwardCapsLockSync::DEFAULT
 					&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
-			text = Preferences::CapsLockFFBehaviorSetting();
+			text = Preferences::FastForwardCapsLockSyncSetting();
 		}
 		else if(setting == TEXT_ALIGNMENT)
 		{
@@ -1484,7 +1484,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	else if(str == AMMO_REFILL)
 		Preferences::ToggleAmmoRefill();
 	else if(str == FASTFORWARD_CAPSLOCK_SYNC)
-		Preferences::ToggleCapsLockFastForwardLock();
+		Preferences::ToggleFastForwardCapsLockSync();
 	else if(str == TEXT_ALIGNMENT)
 	{
 		Preferences::ToggleTextAlignment();

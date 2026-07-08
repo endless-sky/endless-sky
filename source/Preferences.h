@@ -155,7 +155,7 @@ public:
 		ALWAYS
 	};
 
-	enum class CapsLockFFBehavior : int_fast8_t {
+	enum class FastForwardCapsLockSync : int_fast8_t {
 		DEFAULT = 0,
 		NEVER = 1,
 		ALWAYS = 2
@@ -225,10 +225,6 @@ public:
 	static bool ToggleVSync();
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
-
-	static void ToggleCapsLockFastForwardLock();
-	static CapsLockFFBehavior GetCapsLockFFBehavior();
-	static const std::string &CapsLockFFBehaviorSetting();
 
 	static void ToggleCameraAcceleration();
 	static CameraAccel CameraAcceleration();
@@ -310,6 +306,11 @@ public:
 	static void ToggleAmmoRefill();
 	static AmmoRefill GetAmmoRefill();
 	static const std::string &AmmoRefillSetting();
+
+    /// Fast-forward CapsLock sync setting
+	static void ToggleFastForwardCapsLockSync();
+	static FastForwardCapsLockSync GetFastForwardCapsLockSync();
+	static const std::string &FastForwardCapsLockSyncSetting();
 
 	/// Text alignment override setting.
 	static void ToggleTextAlignment();

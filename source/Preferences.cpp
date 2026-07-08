@@ -63,11 +63,6 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
-	const vector<string> CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS = {
-		"default", "never", "always"
-	};
-	int capsLockFFBehaviorIndex = 0;
-
 	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
 	int cameraAccelerationIndex = 0;
 
@@ -85,6 +80,12 @@ namespace {
 		{"environment volume", SoundCategory::ENVIRONMENT},
 		{"alert volume", SoundCategory::ALERT}
 	};
+
+	const vector<string> CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS = {
+		"default", "never", "always"
+	};
+	int capsLockFFBehaviorIndex = 0;
+
 
 	class OverlaySetting {
 	public:
@@ -264,8 +265,6 @@ void Preferences::Load()
 			zoomIndex = max(0., node.Value(1));
 		else if(key == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
-		else if(key == "Sync FF to CapsLock")
-			capsLockFFBehaviorIndex = max<int>(0, min<int>(node.Value(1), CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS.size() - 1));
 		else if(key == "camera acceleration")
 			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
 		else if(key == "Show all status overlays")
@@ -312,6 +311,8 @@ void Preferences::Load()
 			tributeConfirmationIndex = max<int>(0, min<int>(node.Value(1), TRIBUTE_CONFIRMATION_SETTINGS.size() - 1));
 		else if(key == "Ammo refill")
 			ammoRefillIndex = clamp<int>(node.Value(1), 0, AMMO_REFILL_SETTINGS.size() - 1);
+		else if(key == "Sync FF to CapsLock")
+			capsLockFFBehaviorIndex = max<int>(0, min<int>(node.Value(1), CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS.size() - 1));
 		else if(key == "Text alignment")
 			textAlignmentIndex = clamp<int>(node.Value(1), 0, TEXT_ALIGNMENT_SETTINGS.size() - 1);
 		else if(key == "Target asteroid based on")
@@ -717,21 +718,14 @@ const string &Preferences::VSyncSetting()
 
 
 
-void Preferences::ToggleCapsLockFastForwardLock()
+Preferences::FastForwardCapsLockSync Preferences::GetFastForwardCapsLockSync()
 {
-	capsLockFFBehaviorIndex = (capsLockFFBehaviorIndex + 1) % CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS.size();
+	return static_cast<FastForwardCapsLockSync>(capsLockFFBehaviorIndex);
 }
 
 
 
-Preferences::CapsLockFFBehavior Preferences::GetCapsLockFFBehavior()
-{
-	return static_cast<CapsLockFFBehavior>(capsLockFFBehaviorIndex);
-}
-
-
-
-const string &Preferences::CapsLockFFBehaviorSetting()
+const string &Preferences::FastForwardCapsLockSyncSetting()
 {
 	return CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS[capsLockFFBehaviorIndex];
 }
@@ -1087,6 +1081,13 @@ Preferences::AmmoRefill Preferences::GetAmmoRefill()
 const std::string &Preferences::AmmoRefillSetting()
 {
 	return AMMO_REFILL_SETTINGS[ammoRefillIndex];
+}
+
+
+
+void Preferences::ToggleFastForwardCapsLockSync()
+{
+	capsLockFFBehaviorIndex = (capsLockFFBehaviorIndex + 1) % CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS.size();
 }
 
 
