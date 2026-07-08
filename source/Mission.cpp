@@ -1097,7 +1097,7 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
 	if(sourceFilter.IsEmpty())
 		return tuple(retflag, randomflag, sourceSystems);
 
-	for(auto &visitedSystem : player.VisitedSystems() )
+	for(auto &visitedSystem : player.VisitedSystems())
 	{
 		for(auto &planet : GameData::Planets())
 		{
