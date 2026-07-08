@@ -1031,7 +1031,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	return true;
 }
 
-#include "Logger.h"
+
 // Check if it's *possible* to offer this mission right now.
 tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
 	const PlayerInfo &player) const
@@ -1061,6 +1061,13 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
 	if(!toFail.IsEmpty() && toFail.Test())
 		return tuple(false, false, sourceSystems);
 
+	bool result = toOffer.TestNoRNG();
+	if(!result){
+		return tuple(false, false, sourceSystems);
+	}
+
+	bool randomflag = toOffer.isRNG();
+	
 	// Check for additional prerequisites in On Offer set
 	auto it = actions.find(OFFER);
 	bool isFailed = false;
@@ -1068,23 +1075,6 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
 	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
 		return tuple(false, false, sourceSystems);
 
-	// TODO: Investigate condition test
-	// Hacky but works
-	int offercount = 0;
-	for(int i = 0; i < 459; i++)
-	{
-		if(toOffer.Test())
-			offercount++;
-	}
-	if(offercount == 0)
-	{
-		return tuple(false, false, sourceSystems);
-	}
-
-	bool randomflag = false;
-	if (offercount != 459)
-		randomflag = true;
-		
 	bool retflag = false;
 	// check if source is on list of visited systems
 	for(auto &visitedSystem : player.VisitedSystems()){		
@@ -1092,7 +1082,7 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
 			for(auto &sourceSystem : source->Systems())
 			{
 				if(visitedSystem == sourceSystem){
-					Logger::Log(std::format("{}|match by sourceSystem|{}",missionName,sourceSystem->TrueName()),Logger::Level::INFO);
+					//Logger::Log(std::format("{}|match by sourceSystem|{}",missionName,sourceSystem->TrueName()),Logger::Level::INFO);
 					sourceSystems.push_back(sourceSystem);
 					retflag = true;
 				}
@@ -1109,7 +1099,7 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
 		{
 			if(planet.second.GetSystem() == visitedSystem)
 				if(sourceFilter.Matches(&planet.second)){
-					Logger::Log(std::format("{}|match by planet|{}",missionName,visitedSystem->TrueName()),Logger::Level::INFO);
+					//Logger::Log(std::format("{}|match by planet|{}",missionName,visitedSystem->TrueName()),Logger::Level::INFO);
 					sourceSystems.push_back(visitedSystem);
 					retflag = true;
 				}

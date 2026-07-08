@@ -382,6 +382,12 @@ bool ConditionSet::Test() const
 
 
 
+bool ConditionSet::TestNoRNG() const
+{
+	return EvaluateNoRNG();
+}
+
+
 int64_t ConditionSet::Evaluate() const
 {
 	switch(expressionOperator)
@@ -439,6 +445,80 @@ int64_t ConditionSet::Evaluate() const
 	return 0;
 }
 
+
+
+int64_t ConditionSet::EvaluateNoRNG() const
+{
+	if(conditionName == "random" && children.empty())
+		return 0;
+	switch(expressionOperator)
+	{
+		case ExpressionOp::VAR:
+		{
+			if(!conditions)
+				throw runtime_error("Unable to Evaluate ExpressionOp::VAR with condition name \"" + conditionName
+					+ "\" in ConditionSet without a pointer to a ConditionsStore!");
+			return conditions->Get(conditionName);
+		}
+		case ExpressionOp::LIT:
+			return literal;
+		case ExpressionOp::AND:
+		{
+			// An empty AND section returns true.
+			if(children.empty())
+				return 1;
+
+			int64_t result = 0;
+			for(const ConditionSet &child : children)
+			{
+				int64_t childResult = child.EvaluateNoRNG();
+				if(!childResult)
+					return 0;
+				// Assign the first non-zero result to the result variable.
+				if(!result)
+					result = childResult;
+			}
+			return result;
+		}
+		case ExpressionOp::OR:
+			for(const ConditionSet &child : children)
+			{
+				int64_t childResult = child.EvaluateNoRNG();
+				// Return the first non-zero result.
+				if(childResult)
+					return childResult;
+			}
+			return 0;
+		default:
+			break;
+	}
+
+	// If we have an accumulator function and children, then let's use the accumulator on the children.
+	// MAX and MIN are also handled by the accumulator.
+	BinFun accumulatorOp = Op(expressionOperator);
+	if(accumulatorOp != nullptr && !children.empty())
+		return accumulate(next(children.begin()), children.end(), children[0].EvaluateNoRNG(),
+			[&accumulatorOp](int64_t accumulated, const ConditionSet &b) -> int64_t {
+				return accumulatorOp(accumulated, b.EvaluateNoRNG());
+		});
+
+	// If we don't have an accumulator function, or no children, then return the default value.
+	return 0;
+}
+
+
+
+bool ConditionSet::isRNG() const
+{
+	if(conditionName == "random")
+		return true;
+	if(!children.empty())
+	for(auto &child : children){
+		if(child.isRNG())
+			return true;
+	}
+	return false;
+}
 
 
 set<string> ConditionSet::RelevantConditions() const
