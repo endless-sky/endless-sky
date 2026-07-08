@@ -39,3 +39,7 @@
 	"default max escort count" 6
 	"default max escort crew" 1000
 	"default admin cap" 25
+
+	"missionMarkers" false
+	"rngMissionMarkers" false
+	"minorMissionMarkers" false
