@@ -917,7 +917,7 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == CAPSLOCK_FASTFORWARD_BEHAVIOR)
 		{
-		const Preferences::CapsLockFFBehavior capslockFFPreference = Preferences::GetCapsLockFFBehavior();
+			const Preferences::CapsLockFFBehavior capslockFFPreference = Preferences::GetCapsLockFFBehavior();
 			isOn = capslockFFPreference == Preferences::CapsLockFFBehavior::ALWAYS
 				|| (capslockFFPreference == Preferences::CapsLockFFBehavior::DEFAULT
 					&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
