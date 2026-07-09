@@ -1062,6 +1062,9 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
 	if(!toFail.IsEmpty() && toFail.Test())
 		return tuple(false, false, sourceSystems);
 
+	if(!HasSpace(player))
+		return tuple(false, false, sourceSystems);
+
 	bool result = toOffer.TestNoRNG();
 	if(!result)
 	{
