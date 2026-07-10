@@ -4759,7 +4759,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			if(GetParent())
 			{
 				auto parentPosition = GetParent()->position - target;
-				auto angleoffset = (HYPER_D * 360.)/(2 * 3.141592653589793
+				auto angleoffset = (HYPER_D * 360.) / (2 * 3.141592653589793
 					* parentPosition.Length());
 				position = target + Angle((180 * atan2(parentPosition.Y(),
 					parentPosition.X()) / 3.141592653589793) + 90 - angleoffset
