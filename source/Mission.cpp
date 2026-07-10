@@ -1062,12 +1062,12 @@ tuple<bool,bool,vector<const System*>> Mission::CanOfferTheoretically(
 	if(!toFail.IsEmpty() && toFail.Test())
 		return tuple(false, false, sourceSystems);
 
-	// Don't show if already offered or failed.
-	if(!toFail.IsEmpty() && toFail.Test())
-		return tuple(false, false, sourceSystems);
-
 	// Because of Quarg Lagrange ringworld missions.
 	if(!HasSpace(player))
+		return tuple(false, false, sourceSystems);
+
+	// Because of Hai Jump Drive missions.
+	if(!CanAccept(player))
 		return tuple(false, false, sourceSystems);
 
 	bool result = toOffer.TestNoRNG();
