@@ -4759,14 +4759,14 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			if(GetParent())
 			{
 				auto parentPosition = GetParent()->position - target;
-				auto angleoffset = (HYPER_D * 360.)/(2 * 3.141592653589793 
+				auto angleoffset = (HYPER_D * 360.)/(2 * 3.141592653589793
 					* parentPosition.Length());
 				position = target + Angle((180 * atan2(parentPosition.Y(),
 					parentPosition.X()) / 3.141592653589793) + 90 - angleoffset
 					+ Random::Real() * 2 * angleoffset).Unit() * parentPosition.Length();
 			}
 			else
-				position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) 
+				position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.)
 					+ extraArrivalDistance);
 			return true;
 		}
