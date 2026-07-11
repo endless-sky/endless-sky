@@ -329,7 +329,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			&isFastForward]
 	{
 		const Preferences::FastForwardCapsLockSync fastforwardCapsLockSync = Preferences::GetFastForwardCapsLockSync();
-		const bool fastForwardSyncToCapslock = fastforwardCapsLockSync == Preferences::FastForwardCapsLockSync::ALWAYS
+		const bool fastForwardSyncToCapsLock = fastforwardCapsLockSync == Preferences::FastForwardCapsLockSync::ALWAYS
 			|| (fastforwardCapsLockSync == Preferences::FastForwardCapsLockSync::DEFAULT
 				&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
 		SDL_Event event;
@@ -388,7 +388,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			}
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
 					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD))
-					&& !fastForwardSyncToCapslock)
+					&& !fastForwardSyncToCapsLock)
 			{
 				isFastForward = !isFastForward;
 			}
@@ -396,7 +396,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 		// Special case: If fastforward is on capslock, update on mod state and not
 		// on keypress.
-		if(fastForwardSyncToCapslock)
+		if(fastForwardSyncToCapsLock)
 			isFastForward = SDL_GetModState() & KMOD_CAPS;
 	};
 
