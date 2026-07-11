@@ -81,10 +81,10 @@ namespace {
 		{"alert volume", SoundCategory::ALERT}
 	};
 
-	const vector<string> CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS = {
+	const vector<string> FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS = {
 		"default", "never", "always"
 	};
-	int capsLockFFBehaviorIndex = 0;
+	int fastForwardCapsLockSyncIndex = 0;
 
 
 	class OverlaySetting {
@@ -312,7 +312,7 @@ void Preferences::Load()
 		else if(key == "Ammo refill")
 			ammoRefillIndex = clamp<int>(node.Value(1), 0, AMMO_REFILL_SETTINGS.size() - 1);
 		else if(key == "Sync FF to CapsLock")
-			capsLockFFBehaviorIndex = max<int>(0, min<int>(node.Value(1), CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS.size() - 1));
+			fastForwardCapsLockSyncIndex = max<int>(0, min<int>(node.Value(1), FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS.size() - 1));
 		else if(key == "Text alignment")
 			textAlignmentIndex = clamp<int>(node.Value(1), 0, TEXT_ALIGNMENT_SETTINGS.size() - 1);
 		else if(key == "Target asteroid based on")
@@ -403,7 +403,7 @@ void Preferences::Save()
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
-	out.Write("Sync FF to CapsLock", capsLockFFBehaviorIndex);
+	out.Write("Sync FF to CapsLock", fastForwardCapsLockSyncIndex);
 	out.Write("camera acceleration", cameraAccelerationIndex);
 	out.Write("date format", dateFormatIndex);
 	out.Write("notification settings", notifOptionsIndex);
@@ -720,14 +720,14 @@ const string &Preferences::VSyncSetting()
 
 Preferences::FastForwardCapsLockSync Preferences::GetFastForwardCapsLockSync()
 {
-	return static_cast<FastForwardCapsLockSync>(capsLockFFBehaviorIndex);
+	return static_cast<FastForwardCapsLockSync>(fastForwardCapsLockSyncIndex);
 }
 
 
 
 const string &Preferences::FastForwardCapsLockSyncSetting()
 {
-	return CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS[capsLockFFBehaviorIndex];
+	return FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS[fastForwardCapsLockSyncIndex];
 }
 
 
@@ -1087,7 +1087,7 @@ const std::string &Preferences::AmmoRefillSetting()
 
 void Preferences::ToggleFastForwardCapsLockSync()
 {
-	capsLockFFBehaviorIndex = (capsLockFFBehaviorIndex + 1) % CAPSLOCK_FAST_FORWARD_LOCK_SETTINGS.size();
+	fastForwardCapsLockSyncIndex = (fastForwardCapsLockSyncIndex + 1) % FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS.size();
 }
 
 

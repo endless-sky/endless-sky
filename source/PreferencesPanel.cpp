@@ -1106,9 +1106,9 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == FASTFORWARD_CAPSLOCK_SYNC)
 		{
-			const Preferences::FastForwardCapsLockSync capslockFFPreference = Preferences::GetFastForwardCapsLockSync();
-			isOn = capslockFFPreference == Preferences::FastForwardCapsLockSync::ALWAYS
-				|| (capslockFFPreference == Preferences::FastForwardCapsLockSync::DEFAULT
+			const Preferences::FastForwardCapsLockSync fastForwardCapsLockSyncPreference = Preferences::GetFastForwardCapsLockSync();
+			isOn = fastForwardCapsLockSyncPreference == Preferences::FastForwardCapsLockSync::ALWAYS
+				|| (fastForwardCapsLockSyncPreference == Preferences::FastForwardCapsLockSync::DEFAULT
 					&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
 			text = Preferences::FastForwardCapsLockSyncSetting();
 		}
