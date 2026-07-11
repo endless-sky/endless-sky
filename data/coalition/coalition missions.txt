@@ -1256,10 +1256,10 @@ mission "Longcow Antibiotics 1"
 	to offer
 		has "Coalition: First Contact: done"
 		random < 35
+		"ship attribute: jump drive" > 1
 	source
 		attributes arach
 		not attributes "coalition station"
-		"ship attribute: jump drive" > 1
 	stopover "New Finding"
 	destination "Corral of Meblumem"
 	on offer
