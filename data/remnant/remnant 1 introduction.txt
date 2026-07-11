@@ -3650,7 +3650,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 	waypoint "Sagittarius A*"
 	to offer
 		has "Remnant: Expanded Horizons Astral 1: done"
-		"ship attribute: jump drive" > 1
+		has "ship attribute: jump drive"
 	on offer
 		require "Research Laboratory"
 		conversation

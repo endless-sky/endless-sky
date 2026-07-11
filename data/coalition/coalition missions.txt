@@ -880,7 +880,7 @@ mission "Kimek Gift"
 	deadline 2
 	to offer
 		has "Coalition: First Contact: done"
-		"ship attribute: jump drive" > 1
+		has "ship attribute: jump drive"
 	source "Second Cerulean"
 	destination "Cold Horizon"
 	on offer
@@ -1256,7 +1256,7 @@ mission "Longcow Antibiotics 1"
 	to offer
 		has "Coalition: First Contact: done"
 		random < 35
-		"ship attribute: jump drive" > 1
+		has "ship attribute: jump drive"
 	source
 		attributes arach
 		not attributes "coalition station"
@@ -2399,7 +2399,7 @@ mission "Coalition: Expeditions Past 1"
 	to offer
 		"coalition jobs" >= 40
 		random < 5
-		"ship attribute: jump drive" > 1
+		has "ship attribute: jump drive"
 	source
 		government "Coalition"
 	destination "Ring of Friendship"
