@@ -26,6 +26,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #endif
 #endif
 
+#if defined(__APPLE__) || defined(ES_GLES)
+#define glBindFramebufferEXT glBindFramebuffer
+#define glCheckFramebufferStatusEXT glCheckFramebufferStatus
+#define glDeleteFramebuffersEXT glDeleteFramebuffers
+#define glFramebufferTexture2DEXT glFramebufferTexture2D
+#define glGenFramebuffersEXT glGenFramebuffers
+#endif
+
 
 
 // A helper class for various OpenGL platform specific calls.
