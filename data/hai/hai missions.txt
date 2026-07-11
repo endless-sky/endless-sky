@@ -2392,12 +2392,7 @@ mission "Hai Pilgrimage"
 	passengers 1
 	to offer
 		random < 10
-		or
-			has "outfit: Quantum Keystone"
-			has "outfit: Quantum Key Stone"
-			has "outfit: Shield Beetle Pendant"
-			has "outfit: Tree Skeleton Key Stone"
-			has "ship attribute: quantum keystone"
+		"ship attribute: quantum keystone" > 1
 		has "First Contact: Hai: offered"
 	on offer
 		conversation

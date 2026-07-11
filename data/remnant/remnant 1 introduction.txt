@@ -3650,8 +3650,8 @@ mission "Remnant: Expanded Horizons Astral 2"
 	waypoint "Sagittarius A*"
 	to offer
 		has "Remnant: Expanded Horizons Astral 1: done"
+		"ship attribute: jump drive" > 1
 	on offer
-		require "Jump Drive"
 		require "Research Laboratory"
 		conversation
 			`Dawn is just finishing her meal when you enter the spaceport cafeteria. She stands up as you approach and deposits the tray in a receptacle next to her table. "Well, ready to go?"`
