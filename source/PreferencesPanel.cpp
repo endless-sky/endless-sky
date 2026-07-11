@@ -681,10 +681,10 @@ void PreferencesPanel::DrawControls()
 		{
 			int index = zones.size();
 			// Mark conflicts.
-			bool isCapslockLocksFastForward = command.Has(Command::FASTFORWARD)
+			bool isFastForwardSyncToCapsLock = command.Has(Command::FASTFORWARD)
 				&& Preferences::GetFastForwardCapsLockSync() == Preferences::FastForwardCapsLockSync::ALWAYS;
-			bool isConflicted = command.HasConflict() && !isCapslockLocksFastForward;
-			bool isEmpty = !command.HasBinding() && !isCapslockLocksFastForward;
+			bool isConflicted = command.HasConflict() && !isFastForwardSyncToCapsLock;
+			bool isEmpty = !command.HasBinding() && !isFastForwardSyncToCapsLock;
 			bool isEditing = (index == editing);
 			if(isConflicted || isEditing || isEmpty)
 			{
@@ -711,8 +711,8 @@ void PreferencesPanel::DrawControls()
 
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
-			const Color &keyColor = isCapslockLocksFastForward ? dim : medium;
-			const Color &descColor = isCapslockLocksFastForward ? dim : medium;
+			const Color &keyColor = isFastForwardSyncToCapsLock ? dim : medium;
+			const Color &descColor = isFastForwardSyncToCapsLock ? dim : medium;
 
 			table.Draw(command.Description(), descColor);
 			table.Draw(command.KeyName(), isEditing ? bright : keyColor);
@@ -1106,7 +1106,8 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == FASTFORWARD_CAPSLOCK_SYNC)
 		{
-			const Preferences::FastForwardCapsLockSync fastForwardCapsLockSyncPreference = Preferences::GetFastForwardCapsLockSync();
+			const Preferences::FastForwardCapsLockSync fastForwardCapsLockSyncPreference
+				= Preferences::GetFastForwardCapsLockSync();
 			isOn = fastForwardCapsLockSyncPreference == Preferences::FastForwardCapsLockSync::ALWAYS
 				|| (fastForwardCapsLockSyncPreference == Preferences::FastForwardCapsLockSync::DEFAULT
 					&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
