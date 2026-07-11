@@ -2392,7 +2392,7 @@ mission "Hai Pilgrimage"
 	passengers 1
 	to offer
 		random < 10
-		"ship attribute: quantum keystone" > 1
+		has "ship attribute: quantum keystone"
 		has "First Contact: Hai: offered"
 	on offer
 		conversation
@@ -2405,11 +2405,6 @@ mission "Hai Pilgrimage"
 				has "outfit: Quantum Key Stone"
 			branch huh
 				has "outfit: Tree Skeleton Key Stone"
-			branch normal
-				not "outfit: Shield Beetle Pendant"
-				not "outfit: Quantum Keystone"
-				not "outfit: Quantum Key Stone"
-				not "outfit: Tree Skeleton Key Stone"
 			label normal
 			`	"I see that you are wiser than most humans here," he says, pointing toward your ship. Its hatch is open, prominently displaying your keystone to any potential travelers. "You carry a shield against the tempest of space. Let no one else tell you otherwise." He pauses to take a breath. "Now, onto more worldly things. My name is Hareek. Are you willing and able to take me to <destination> for <payment>?"`
 				goto choice
