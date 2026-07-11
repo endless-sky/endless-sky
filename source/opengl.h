@@ -31,6 +31,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // A helper class for various OpenGL platform specific calls.
 class OpenGL {
 public:
+	enum class FeatureSupport {
+		NONE = 0,
+		EXT,
+		CORE
+	};
+
+
+public:
 #ifndef ES_GLES
 	static void DisableOpenGL3();
 #endif
@@ -39,4 +47,5 @@ public:
 	static bool HasVaoSupport();
 	static bool HasTexture2DArraySupport();
 	static bool HasClearBufferSupport();
+	static FeatureSupport GetFboSupport();
 };
