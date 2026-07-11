@@ -4923,7 +4923,8 @@ void PlayerInfo::LastSafeSave(std::string lastSafeSaveLabel)
 	filesystem::file_time_type newest_t{};
 	bool found = false;
 
-	for(const auto & e : filesystem::directory_iterator(dirPath))
+	// Iterate through all files in path checking for newest timestamp with pilot name.
+	for(const auto &e : filesystem::directory_iterator(dirPath))
 	{
 		if(!e.is_regular_file()) continue;
 		if(e.path().string().find(firstName + " " + lastName) == string::npos) continue;
@@ -4935,6 +4936,8 @@ void PlayerInfo::LastSafeSave(std::string lastSafeSaveLabel)
 			found = true;
 		}
 	}
+
+	// Copy file to last safe save.
 	if(found)
 	{
 		string lastSafeSavePath = filePath.substr(0, filePath.length() - 4) + "~lastSafeSave"
