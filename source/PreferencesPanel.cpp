@@ -28,7 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
-#include "Plugins.h"
+#include "Plugin.h"
+#include "PluginManager.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
@@ -130,7 +131,7 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	// Select the first valid plugin.
-	for(const auto &plugin : Plugins::Get())
+	for(const auto &plugin : PluginManager::Get())
 		if(plugin.second.IsValid())
 		{
 			selectedPlugin = plugin.first;
@@ -144,7 +145,7 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 
 	int pluginListHeight = 0;
-	for(const auto &plugin : Plugins::Get())
+	for(const auto &plugin : PluginManager::Get())
 		if(plugin.second.IsValid())
 			pluginListHeight += 20;
 
@@ -185,7 +186,7 @@ void PreferencesPanel::Draw()
 			info.SetCondition(bar + " none");
 	}
 
-	if(Plugins::HasChanged())
+	if(PluginManager::HasChanged())
 		info.SetCondition("show plugins changed");
 	if(CONTROLS_PAGE_COUNT > 1)
 		info.SetCondition("multiple controls pages");
@@ -1182,7 +1183,7 @@ void PreferencesPanel::DrawPlugins()
 	int firstY = pluginListClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(pluginListScroll.AnimatedValue())));
 
-	for(const auto &it : Plugins::Get())
+	for(const auto &it : PluginManager::Get())
 	{
 		const auto &plugin = it.second;
 		if(!plugin.IsValid())
@@ -1205,7 +1206,7 @@ void PreferencesPanel::DrawPlugins()
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
 			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
 		if(displayed)
-			AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
+			AddZone(zoneBounds, [&]() { PluginManager::TogglePlugin(plugin.name); });
 		if(isSelected)
 			table.Draw(plugin.name, bright);
 		else
@@ -1280,7 +1281,7 @@ void PreferencesPanel::DrawPlugins()
 // Render the named plugin description into the pluginDescriptionBuffer.
 void PreferencesPanel::RenderPluginDescription(const string &pluginName)
 {
-	const Plugin *plugin = Plugins::Get().Find(pluginName);
+	const Plugin *plugin = PluginManager::Get().Find(pluginName);
 	if(plugin)
 		RenderPluginDescription(*plugin);
 	else
@@ -1568,7 +1569,7 @@ void PreferencesPanel::HandleConfirm()
 		HandleSettingsString(selectedItem, Screen::Dimensions() / 2.);
 		break;
 	case 'p':
-		Plugins::TogglePlugin(selectedPlugin);
+		PluginManager::TogglePlugin(selectedPlugin);
 		break;
 	default:
 		break;
