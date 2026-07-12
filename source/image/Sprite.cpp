@@ -49,6 +49,7 @@ namespace {
 		if(type == GL_TEXTURE_3D)
 			glTexParameteri(type, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
+#ifndef ES_GLES
 		// Check if the texture can be uploaded by using a proxy target,
 		// and shrink the buffer if the current texture size is too large.
 		unsigned forcedShrinkCount = 0;
@@ -78,15 +79,18 @@ namespace {
 				+ " to fit within hardware limits. The new dimensions: W = " + to_string(buffer.Width())
 				+ ", H = " + to_string(buffer.Height()) + '.', Logger::Level::INFO);
 
-		// Upload the image data.
 		if(proxySuccess)
+#endif
+			// Upload the image data.
 			glTexImage3D(type, 0, GL_RGBA8, // target, mipmap level, internal format,
 				buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
 				0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+#ifndef ES_GLES
 		else
 			Logger::Log("Sprite \"" + name + "\" could not be uploaded to the GPU. Dimensions: W = "
 				+ to_string(buffer.Width()) + ", H = " + to_string(buffer.Height())
 				+ ", D = " + to_string(buffer.Frames()) + '.', Logger::Level::WARNING);
+#endif
 
 		// Unbind the texture.
 		glBindTexture(type, 0);
