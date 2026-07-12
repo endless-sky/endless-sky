@@ -70,7 +70,8 @@ public:
 	bool RequiresGiftedShip(const std::string &shipId) const;
 	// Perform this action. If a conversation is shown, the given destination
 	// will be highlighted in the map if you bring it up.
-	void Do(PlayerInfo &player, UI *ui, const Mission *caller,
+	// Returns the ActionResult representing the outcome.
+	int Do(PlayerInfo &player, UI *ui, const Mission *caller,
 		const System *destination = nullptr, const std::shared_ptr<Ship> &ship = nullptr,
 		const bool isUnique = true) const;
 
@@ -85,6 +86,8 @@ public:
 private:
 	// Whether this action can be triggered after the mission has failed.
 	bool runsWhenFailed = false;
+	// Whether this action blocks other actions on the same trigger;
+	bool blocking = true;
 
 	std::string trigger;
 	std::string location;
@@ -99,4 +102,6 @@ private:
 
 	// Tasks this mission action performs, such as modifying accounts, inventory, or conditions.
 	GameAction action;
+	// Conditions that must be met in order for this to action to occur.
+	ConditionSet toTrigger;
 };
