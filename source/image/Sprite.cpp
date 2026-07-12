@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 
 #include "ImageBuffer.h"
+#include "../Logger.h"
 #include "../Preferences.h"
 
 #include "../opengl.h"
@@ -25,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	void AddBuffer(ImageBuffer &buffer, uint32_t *target, bool noReduction)
+	void AddBuffer(const string &name, ImageBuffer &buffer, uint32_t *target, bool noReduction)
 	{
 		// Check whether this sprite is large enough to require size reduction.
 		Preferences::LargeGraphicsReduction setting = Preferences::GetLargeGraphicsReduction();
@@ -48,10 +49,44 @@ namespace {
 		if(type == GL_TEXTURE_3D)
 			glTexParameteri(type, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
+		// Check if the texture can be uploaded by using a proxy target,
+		// and shrink the buffer if the current texture size is too large.
+		unsigned forcedShrinkCount = 0;
+		int proxySuccess = 0;
+		int proxyType = type == GL_TEXTURE_3D ? GL_PROXY_TEXTURE_3D : GL_PROXY_TEXTURE_2D_ARRAY;
+		auto doProxyCheck = [&proxySuccess, proxyType, &buffer]() -> void {
+			glTexImage3D(proxyType, 0, GL_RGBA8, // target, mipmap level, internal format,
+				buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
+				0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr); // border, input format, data type, data.
+			glGetTexLevelParameteriv(proxyType, 0, GL_TEXTURE_WIDTH, &proxySuccess);
+		};
+		doProxyCheck();
+		while(!proxySuccess)
+		{
+			// TODO: We can implement a separate algorithm for shrinking by arbitrary factors,
+			// but the main use case is, considering the common sprite sizes in current vanilla data,
+			// weak and old hardware, where highest quality isn't to be expected anyway.
+			if(!buffer.ShrinkToHalfSize())
+				// Since the proxy upload failed and we can't shrink any more, give up.
+				break;
+			++forcedShrinkCount;
+			doProxyCheck();
+		}
+		if(forcedShrinkCount)
+			Logger::Log("Shrank sprite \"" + name + "\" "
+				+ (forcedShrinkCount == 1 ? "1 time" : to_string(forcedShrinkCount) + " times")
+				+ " to fit within hardware limits. The new dimensions: W = " + to_string(buffer.Width())
+				+ ", H = " + to_string(buffer.Height()) + '.', Logger::Level::INFO);
+
 		// Upload the image data.
-		glTexImage3D(type, 0, GL_RGBA8, // target, mipmap level, internal format,
-			buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
-			0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+		if(proxySuccess)
+			glTexImage3D(type, 0, GL_RGBA8, // target, mipmap level, internal format,
+				buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
+				0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+		else
+			Logger::Log("Sprite \"" + name + "\" could not be uploaded to the GPU. Dimensions: W = "
+				+ to_string(buffer.Width()) + ", H = " + to_string(buffer.Height())
+				+ ", D = " + to_string(buffer.Frames()) + '.', Logger::Level::WARNING);
 
 		// Unbind the texture.
 		glBindTexture(type, 0);
@@ -110,11 +145,11 @@ void Sprite::AddFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noRedu
 	// Only use the 2x resolution image if it is provided.
 	if(buffer2x.Pixels())
 	{
-		AddBuffer(buffer2x, &texture, noReduction);
+		AddBuffer(name, buffer2x, &texture, noReduction);
 		buffer1x.Clear();
 	}
 	else
-		AddBuffer(buffer1x, &texture, noReduction);
+		AddBuffer(name, buffer1x, &texture, noReduction);
 }
 
 
@@ -136,11 +171,11 @@ void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, 
 	// Only use the 2x resolution image if it is provided.
 	if(buffer2x.Pixels())
 	{
-		AddBuffer(buffer2x, &swizzleMask, noReduction);
+		AddBuffer(name, buffer2x, &swizzleMask, noReduction);
 		buffer1x.Clear();
 	}
 	else
-		AddBuffer(buffer1x, &swizzleMask, noReduction);
+		AddBuffer(name, buffer1x, &swizzleMask, noReduction);
 }
 
 
