@@ -314,6 +314,8 @@ void Minable::TakeDamage(const MinableDamageDealt &damage)
 	heat += damage.heat;
 	corrosion += damage.corrosion;
 	burn += damage.burn;
+
+	heat = max(0., heat);
 }
 
 
@@ -371,6 +373,8 @@ void Minable::DoDamageOverTime(vector<Visual> &visuals)
 		if(heatRatio > 1.)
 			hull -= attributes.Get("overheat damage rate") * heatRatio;
 	}
+
+	heat = max(0., heat);
 }
 
 
