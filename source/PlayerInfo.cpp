@@ -4918,7 +4918,7 @@ void PlayerInfo::LastSafeSave(string lastSafeSaveLabel)
 {
 	if(filePath.length() < 4)
 		return;
-	string dirPath = filePath.substr(0, filePath.find_last_of('\\'));
+	filesystem::path dirPath = filesystem::path(filePath).remove_filename();
 	filesystem::path newest;
 	filesystem::file_time_type newest_t{};
 	bool found = false;
@@ -4942,7 +4942,7 @@ void PlayerInfo::LastSafeSave(string lastSafeSaveLabel)
 	{
 		string lastSafeSavePath = filePath.substr(0, filePath.length() - 4) + "~last safe save"
 			+ (lastSafeSaveLabel != "" ? " " + lastSafeSaveLabel : "") + ".txt";
-		filesystem::copy_file(newest, lastSafeSavePath, filesystem::copy_options::overwrite_existing);
+		Files::Copy(newest, lastSafeSavePath);				
 	}
 }
 
