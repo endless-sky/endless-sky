@@ -3058,14 +3058,6 @@ double Ship::IdleHeat() const
 
 
 
-// Get the heat dissipation, in heat units per heat unit per frame.
-double Ship::HeatDissipation() const
-{
-	return .001 * attributes.Get("heat dissipation");
-}
-
-
-
 // Get the maximum heat level, in heat units (not temperature).
 double Ship::MaximumHeat() const
 {

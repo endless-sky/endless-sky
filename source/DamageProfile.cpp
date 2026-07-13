@@ -64,8 +64,18 @@ DamageDealt DamageProfile::CalculateDamage(const Ship &ship, bool ignoreBlast) c
 MinableDamageDealt DamageProfile::CalculateDamage(const Minable &minable) const
 {
 	double scale = Scale(inputScaling, minable, isBlast);
-	return {scale * (weapon.MinableDamage() + weapon.RelativeMinableDamage() * minable.MaxHull()),
-		scale * weapon.Prospecting(), scale * weapon.CorrosionDamage()};
+	auto protectedScale = [&](double protection) -> double {
+		return scale / (1. + protection);
+	};
+	return {
+		.hullDamage = protectedScale(minable.Attributes().Get("hull protection"))
+			* (weapon.MinableDamage() + weapon.RelativeMinableDamage() * minable.MaxHull()),
+		.prospecting = scale * weapon.Prospecting(),
+		.heat = protectedScale(minable.Attributes().Get("heat protection"))
+			* (weapon.HeatDamage() + weapon.RelativeHeatDamage() * minable.Heat()),
+		.corrosion = protectedScale(minable.Attributes().Get("corrosion protection")) * weapon.CorrosionDamage(),
+		.burn = protectedScale(minable.Attributes().Get("burn protection")) * weapon.BurnDamage()
+	};
 }
 
 

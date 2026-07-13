@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "pi.h"
 #include "Projectile.h"
 #include "Random.h"
-#include "image/SpriteSet.h"
 #include "Visual.h"
 
 #include <algorithm>
@@ -34,6 +33,36 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 using namespace std;
+
+namespace {
+	// Helper function to reduce a given status effect according
+	// to its resistance, limited by how much energy, fuel, and heat are available.
+	// Updates the stat and the energy, fuel, and heat amounts.
+	void DoStatusEffect(double &stat, double resistance, double &heat, double heatCost)
+	{
+		if(resistance <= 0.)
+		{
+			stat = max(0., .99 * stat);
+			return;
+		}
+
+		// Calculate how much resistance can be used assuming no cost.
+		resistance = .99 * stat - max(0., .99 * stat - resistance);
+
+		// Limit the resistance by the available heat.
+		if(heatCost < 0.)
+			resistance = min(resistance, heat / -heatCost);
+
+		// Update the stat and heat given how much resistance is being used.
+		if(resistance > 0.)
+		{
+			stat = max(0., .99 * stat - resistance);
+			heat += resistance * heatCost;
+		}
+		else
+			stat = max(0., .99 * stat);
+	}
+}
 
 
 
@@ -219,7 +248,7 @@ void Minable::Place(double energy, double beltRadius)
 // In that case it will return false, meaning it should be deleted.
 bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
-	DoCorrosionDamage(visuals);
+	DoDamageOverTime(visuals);
 	if(hull < 0)
 	{
 		// This object has been destroyed. Create explosions and flotsam.
@@ -282,7 +311,9 @@ void Minable::TakeDamage(const MinableDamageDealt &damage)
 {
 	hull -= damage.hullDamage;
 	prospecting += damage.prospecting;
+	heat += damage.heat;
 	corrosion += damage.corrosion;
+	burn += damage.burn;
 }
 
 
@@ -315,14 +346,31 @@ double Minable::MaximumHeat() const
 
 
 
-// Apply corrosion damage ticks and decrement corrosion.
-void Minable::DoCorrosionDamage(vector<Visual> &visuals)
+void Minable::DoDamageOverTime(vector<Visual> &visuals)
 {
-	if(!corrosion)
-		return;
 	hull -= corrosion;
-	corrosion = max(0., .99 * corrosion);
-	CreateSparks(visuals, "corrosion spark", corrosion * .1);
+	heat += burn;
+	if(corrosion)
+	{
+		double corrosionResistance = attributes.Get("corrosion resistance");
+		double corrosionHeat = attributes.Get("corrosion resistance heat") / corrosionResistance;
+		DoStatusEffect(corrosion, corrosionResistance, heat, corrosionHeat);
+		CreateSparks(visuals, "corrosion spark", corrosion * .1);
+	}
+	if(burn)
+	{
+		double burnResistance = attributes.Get("burn resistance");
+		double burnHeat = attributes.Get("burn resistance heat") / burnResistance;
+		DoStatusEffect(corrosion, burnResistance, heat, burnHeat);
+		CreateSparks(visuals, "burning spark", burn * .1);
+	}
+	heat -= heat * HeatDissipation();
+	if(heat > MaximumHeat())
+	{
+		double heatRatio = Heat() / (1. + attributes.Get("overheat damage threshold"));
+		if(heatRatio > 1.)
+			hull -= attributes.Get("overheat damage rate") * heatRatio;
+	}
 }
 
 

@@ -21,5 +21,7 @@ class MinableDamageDealt {
 public:
 	double hullDamage = 0.;
 	double prospecting = 0.;
+	double heat = 0.;
 	double corrosion = 0.;
+	double burn = 0.;
 };
