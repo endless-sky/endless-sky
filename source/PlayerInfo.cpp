@@ -4942,7 +4942,7 @@ void PlayerInfo::LastSafeSave(string lastSafeSaveLabel)
 	{
 		string lastSafeSavePath = filePath.substr(0, filePath.length() - 4) + "~last safe save"
 			+ (lastSafeSaveLabel != "" ? " " + lastSafeSaveLabel : "") + ".txt";
-		Files::Copy(newest, lastSafeSavePath);				
+		Files::Copy(newest, lastSafeSavePath);
 	}
 }
 
