@@ -221,7 +221,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 		{
 			autosave = true;
 			if(child.Size() > 1)
-				autoSaveLabel = child.Token(1);
+				autosaveLabel = child.Token(1);
 		}
 		else if(key == "last safe save")
 		{
@@ -465,8 +465,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("offer precedence", offerPrecedence);
 		if(autosave)
 		{
-			if(!autoSaveLabel.empty())
-				out.Write("autosave", autoSaveLabel);
+			if(!autosaveLabel.empty())
+				out.Write("autosave", autosaveLabel);
 			else
 				out.Write("autosave");
 		}
@@ -1252,7 +1252,7 @@ bool Mission::RecommendsAutosave() const
 // For use with named autosaves, descriptive of the save state.
 string Mission::AutosaveLabel()
 {
-	return autoSaveLabel;
+	return autosaveLabel;
 }
 
 
@@ -1542,7 +1542,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.isMinor = isMinor;
 	result.offerPrecedence = offerPrecedence;
 	result.autosave = autosave;
-	result.autoSaveLabel = autoSaveLabel;
+	result.autosaveLabel = autosaveLabel;
 	result.lastSafeSave = lastSafeSave;
 	result.lastSafeSaveLabel = lastSafeSaveLabel;
 	result.location = location;

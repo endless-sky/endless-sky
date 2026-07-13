@@ -4948,12 +4948,12 @@ void PlayerInfo::LastSafeSave(string lastSafeSaveLabel)
 
 
 
-void PlayerInfo::Autosave(std::string autoSaveLabel) const
+void PlayerInfo::Autosave(std::string autosaveLabel) const
 {
 	if(!CanBeSaved() || filePath.length() < 4)
 		return;
 	string path = filePath.substr(0, filePath.length() - 4) + "~autosave"
-		+ (autoSaveLabel != "" ? " " + autoSaveLabel : "") + ".txt";
+		+ (autosaveLabel != "" ? " " + autosaveLabel : "") + ".txt";
 	Save(path);
 }
 

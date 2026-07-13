@@ -230,7 +230,7 @@ private:
 	std::string displayName;
 	std::string description;
 	std::string blocked;
-	std::string autoSaveLabel;
+	std::string autosaveLabel;
 	std::string lastSafeSaveLabel;
 	Location location = SPACEPORT;
 

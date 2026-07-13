@@ -440,7 +440,7 @@ private:
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
 	void StepMissions(UI &ui);
-	void Autosave(std::string autoSaveLabel) const;
+	void Autosave(std::string autosaveLabel) const;
 	void LastSafeSave(std::string lastSafeSaveLabel);
 	void Save(const std::string &path) const;
 	void Save(DataWriter &out) const;
