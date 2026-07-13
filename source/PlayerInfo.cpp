@@ -4914,7 +4914,7 @@ bool PlayerInfo::RecacheJumpRoutes()
 
 
 
-void PlayerInfo::LastSafeSave(std::string lastSafeSaveLabel)
+void PlayerInfo::LastSafeSave(string lastSafeSaveLabel)
 {
 	if(filePath.length() < 4)
 		return;
@@ -4940,11 +4940,12 @@ void PlayerInfo::LastSafeSave(std::string lastSafeSaveLabel)
 	// Copy file to last safe save.
 	if(found)
 	{
-		string lastSafeSavePath = filePath.substr(0, filePath.length() - 4) + "~lastSafeSave"
+		string lastSafeSavePath = filePath.substr(0, filePath.length() - 4) + "~last safe save"
 			+ (lastSafeSaveLabel != "" ? " " + lastSafeSaveLabel : "") + ".txt";
 		filesystem::copy_file(newest, lastSafeSavePath, filesystem::copy_options::overwrite_existing);
 	}
 }
+
 
 
 void PlayerInfo::Autosave(std::string autoSaveLabel) const

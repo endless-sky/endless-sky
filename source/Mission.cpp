@@ -221,17 +221,13 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 		{
 			autosave = true;
 			if(child.Size() > 1)
-			{
 				autoSaveLabel = child.Token(1);
-			}
 		}
-		else if(key == "lastsafesave")
+		else if(key == "last safe save")
 		{
 			lastSafeSave = true;
 			if(child.Size() > 1)
-			{
 				lastSafeSaveLabel = child.Token(1);
-			}
 		}
 		else if(key == "job")
 			location = JOB;
@@ -469,21 +465,17 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("offer precedence", offerPrecedence);
 		if(autosave)
 		{
-			if(autoSaveLabel != "")
-			{
+			if(!autoSaveLabel.empty())
 				out.Write("autosave", autoSaveLabel);
-			}
 			else
 				out.Write("autosave");
 		}
 		if(lastSafeSave)
 		{
-			if(lastSafeSaveLabel != "")
-			{
-				out.Write("lastsafesave", lastSafeSaveLabel);
-			}
+			if(!lastSafeSaveLabel.empty())
+				out.Write("last safe save", lastSafeSaveLabel);
 			else
-				out.Write("lastsafesave");
+				out.Write("last safe save");
 		}
 		if(location == LANDING)
 			out.Write("landing");
@@ -1255,11 +1247,15 @@ bool Mission::RecommendsAutosave() const
 	return autosave;
 }
 
+
+
 // For use with named autosaves, descriptive of the save state.
-std::string Mission::AutosaveLabel()
+string Mission::AutosaveLabel()
 {
 	return autoSaveLabel;
 }
+
+
 
 // Check if this mission recommends that the game create a last safe save.
 bool Mission::RecommendsLastSafeSave() const
@@ -1267,14 +1263,13 @@ bool Mission::RecommendsLastSafeSave() const
 	return lastSafeSave;
 }
 
+
+
 // For use with named last safe saves, descriptive of the save state.
-std::string Mission::LastSafeSaveLabel()
+string Mission::LastSafeSaveLabel()
 {
 	return lastSafeSaveLabel;
 }
-
-
-
 
 
 
