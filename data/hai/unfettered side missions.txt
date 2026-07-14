@@ -245,8 +245,8 @@ mission "Hai Legacy 2"
 		not "Hai Legacy 1: declined"
 		has "First Contact: Unfettered: offered"
 		"reputation: Hai (Unfettered)" < 0
-		not "Unfettered Jump Drive 2: offered"
-		"credits" >= 10000000
+		not "Unfettered Jump Drive 1: offered"
+		"credits" + "net worth" * ( 1 - "Hai Legacy 1: deferred" ) >= 10000000
 	to accept
 		has "ship model: Anomalocaris"
 	on offer
