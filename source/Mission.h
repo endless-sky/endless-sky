@@ -169,7 +169,7 @@ public:
 	// accepted. This should be set for main story line missions that have a
 	// high chance of failing, such as escort missions.
 	bool RecommendsAutosave() const;
-	// For use with named autosaves, descriptive of the save state.
+	// An optional name for the autosave.
 	std::string AutosaveLabel();
 	// Check if this mission recommends that the game create a last safe save.
 	bool RecommendsLastSafeSave() const;
