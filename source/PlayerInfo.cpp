@@ -2763,12 +2763,14 @@ void PlayerInfo::MissionCallback(int response)
 
 	Mission &mission = missionList.front();
 
+	bool shouldLastSafeSave = mission.RecommendsLastSafeSave();
+	if(shouldLastSafeSave)
+		LastSafeSave(mission.LastSafeSaveLabel());
 	// If landed, this conversation may require the player to immediately depart.
 	shouldLaunch |= (GetPlanet() && Endpoint::RequiresLaunch(response));
 	if(response == Endpoint::ACCEPT || response == Endpoint::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
-		bool shouldLastSafeSave = mission.RecommendsLastSafeSave();
 		if(planet)
 		{
 			cargo.AddMissionCargo(&mission);
@@ -2785,8 +2787,6 @@ void PlayerInfo::MissionCallback(int response)
 		auto spliceIt = mission.IsUnique() ? missions.begin() : missions.end();
 		missions.splice(spliceIt, missionList, missionList.begin());
 		mission.Do(Mission::ACCEPT, *this);
-		if(shouldLastSafeSave)
-			LastSafeSave(mission.LastSafeSaveLabel());
 		if(shouldAutosave)
 			Autosave(mission.AutosaveLabel());
 		// If this is a mission offered in-flight, expose a pointer to it
