@@ -75,7 +75,7 @@ namespace {
 		}
 		if(forcedShrinkCount)
 			Logger::Log("Shrank sprite \"" + name + "\" "
-				+ (forcedShrinkCount == 1 ? "1 time" : to_string(forcedShrinkCount) + " times")
+				+ Format::SimplePluralization(forcedShrinkCount, "time")
 				+ " to fit within hardware limits. The new dimensions: W = " + to_string(buffer.Width())
 				+ ", H = " + to_string(buffer.Height()) + '.', Logger::Level::INFO);
 
