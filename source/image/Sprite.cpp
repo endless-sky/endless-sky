@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Sprite.h"
 
+#include "../text/Format.h"
 #include "ImageBuffer.h"
 #include "../Logger.h"
 #include "../Preferences.h"
@@ -73,19 +74,20 @@ namespace {
 			++forcedShrinkCount;
 			doProxyCheck();
 		}
-		if(forcedShrinkCount)
-			Logger::Log("Shrank sprite \"" + name + "\" "
-				+ Format::SimplePluralization(forcedShrinkCount, "time")
-				+ " to fit within hardware limits. The new dimensions: W = " + to_string(buffer.Width())
-				+ ", H = " + to_string(buffer.Height()) + '.', Logger::Level::INFO);
 
 		if(proxySuccess)
+		{
+			if(forcedShrinkCount)
+				Logger::Log("Shrank sprite \"" + name + "\" " + Format::SimplePluralization(forcedShrinkCount, "time")
+					+ " to fit within hardware limits. The new dimensions: W = " + to_string(buffer.Width())
+					+ ", H = " + to_string(buffer.Height()) + '.', Logger::Level::INFO);
 #endif
 			// Upload the image data.
 			glTexImage3D(type, 0, GL_RGBA8, // target, mipmap level, internal format,
 				buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
 				0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
 #ifndef ES_GLES
+		}
 		else
 			Logger::Log("Sprite \"" + name + "\" could not be uploaded to the GPU. Dimensions: W = "
 				+ to_string(buffer.Width()) + ", H = " + to_string(buffer.Height())
