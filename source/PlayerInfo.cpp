@@ -2872,6 +2872,11 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI &ui)
 	// If the player's flagship was destroyed, the player is dead.
 	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target().get() == Flagship())
 		Die();
+
+	// Handle actions taken against person ships.
+	// Currently, only capture events can have any effect on person ships.
+	if(event.Type() & ShipEvent::CAPTURE)
+		GameData::HandleEvent(event);
 }
 
 
