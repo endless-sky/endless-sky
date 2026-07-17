@@ -260,7 +260,7 @@ bool ShipAttributeHandler::ShouldUseAfterburner() const
 	// Preventing use if the energy needed takes up more than 25% of the remaining energy is a bit odd.
 	if((!neededFuel || remainingFuel - neededFuel > ship->JumpNavigation().JumpFuel())
 			&& (!neededEnergy || neededEnergy / remainingEnergy < 0.25)
-			&& (!outputHeat || ship->Heat() + outputHeat < .9))
+			&& (!outputHeat || ship->HeatFraction() + outputHeat < .9))
 		return true;
 
 	return false;

@@ -1747,7 +1747,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 				}
 			}
 			// Those being ejected may be destroyed if they are already injured.
-			else if(bay.ship->Health() < Random::Real())
+			else if(bay.ship->HealthFraction() < Random::Real())
 				bay.ship->SelfDestruct();
 
 			ships.push_back(bay.ship);
@@ -2053,7 +2053,7 @@ int Ship::Scan(const PlayerInfo &player)
 	// Some governments are provoked when a scan is completed on one of their ships.
 	const Government *gov = target->GetGovernment();
 	if(result && gov && gov->IsProvokedOnScan() && !gov->IsEnemy(government)
-			&& (target->Shields() < .9 || target->Hull() < .9 || !target->GetPersonality().IsForbearing())
+			&& (target->ShieldFraction() < .9 || target->HullFraction() < .9 || !target->GetPersonality().IsForbearing())
 			&& !target->GetPersonality().IsPacifist())
 		result |= ShipEvent::PROVOKE;
 
@@ -2613,7 +2613,7 @@ void Ship::Restore()
 bool Ship::IsDamaged() const
 {
 	// Account for ships with no shields when determining if they're damaged.
-	return (MaxShields() != 0 && Shields() != 1.) || Hull() != 1.;
+	return (MaxShields() != 0 && ShieldFraction() != 1.) || HullFraction() != 1.;
 }
 
 
@@ -2909,7 +2909,7 @@ void Ship::SetCloaked()
 	const double cloakingShield = attributes.Get("cloaking shields");
 	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
 		&& levels.fuel >= cloakingFuel && levels.energy >= cloakingEnergy
-		&& MinimumHull() < levels.hull - cloakingHull && levels.shields >= cloakingShield);
+		&& MinHull() < levels.hull - cloakingHull && levels.shields >= cloakingShield);
 
 	if(canCloak)
 		cloak = 1.;
@@ -3230,10 +3230,10 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	// it is now "provoked" against that government.
 	if(sourceGovernment && !sourceGovernment->IsEnemy(government)
 			&& !personality.IsPacifist() && (!personality.IsForbearing()
-				|| ((damage.Levels().shields || damage.Levels().discharge) && Shields() < .9)
-				|| ((damage.Levels().hull || damage.Levels().corrosion) && Hull() < .9)
+				|| ((damage.Levels().shields || damage.Levels().discharge) && ShieldFraction() < .9)
+				|| ((damage.Levels().hull || damage.Levels().corrosion) && HullFraction() < .9)
 				|| ((damage.Levels().heat || damage.Levels().burning) && isOverheated)
-				|| ((damage.Levels().energy || damage.Levels().ionization) && Energy() < 0.5)
+				|| ((damage.Levels().energy || damage.Levels().ionization) && EnergyFraction() < 0.5)
 				|| ((damage.Levels().fuel || damage.Levels().leakage) && levels.fuel < navigation.JumpFuel() * 2.)
 				|| (damage.Levels().scrambling && CalculateJamChance(levels.scrambling) > 0.1)
 				|| (damage.Levels().slowness && levels.slowness > 10.)
@@ -3461,7 +3461,7 @@ void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
-	levels.heat -= tons * MAXIMUM_TEMPERATURE * Heat();
+	levels.heat -= tons * MAXIMUM_TEMPERATURE * HeatFraction();
 
 	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 
@@ -3488,7 +3488,7 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
 	double mass = outfit->Mass();
-	levels.heat -= count * mass * MAXIMUM_TEMPERATURE * Heat();
+	levels.heat -= count * mass * MAXIMUM_TEMPERATURE * HeatFraction();
 
 	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 
@@ -3637,7 +3637,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	{
 		// Some amount of the ammunition mass to be removed from the ship carries thermal energy.
 		// A realistic fraction applicable to all cases cannot be computed, so assume 50%.
-		levels.heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
+		levels.heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * HeatFraction();
 		AddOutfit(ammo, -weapon.AmmoUsage());
 		// Recalculate the AI to account for the loss of this weapon.
 		if(!OutfitCount(ammo) && ammo->GetWeapon() && ammo->GetWeapon()->AmmoUsage())
@@ -4066,7 +4066,7 @@ void Ship::DoGeneration()
 			vector<pair<double, Ship *>> carried;
 			for(const Bay &bay : bays)
 				if(bay.ship)
-					carried.emplace_back(1. - bay.ship->Health(), bay.ship.get());
+					carried.emplace_back(1. - bay.ship->HealthFraction(), bay.ship.get());
 			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
 				// Players may use a parallel strategy, to launch fighters in waves.
 				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
@@ -4147,7 +4147,7 @@ void Ship::DoGeneration()
 	if(levels.heat > MaxHeat())
 	{
 		isOverheated = true;
-		double heatRatio = Heat() / attrHandler.overheatDamageThreshold;
+		double heatRatio = HeatFraction() / attrHandler.overheatDamageThreshold;
 		if(heatRatio > 1.)
 			levels.hull -= attrHandler.overheatDamageRate * heatRatio;
 	}
@@ -4205,12 +4205,12 @@ void Ship::DoGeneration()
 			double coolingEnergy = attrHandler.coolingEnergy;
 			if(coolingEnergy)
 			{
-				double spentEnergy = min(levels.energy, coolingEnergy * min(1., Heat()));
+				double spentEnergy = min(levels.energy, coolingEnergy * min(1., HeatFraction()));
 				levels.heat -= activeCooling * spentEnergy / coolingEnergy;
 				levels.energy -= spentEnergy;
 			}
 			else
-				levels.heat -= activeCooling * min(1., Heat());
+				levels.heat -= activeCooling * min(1., HeatFraction());
 		}
 	}
 

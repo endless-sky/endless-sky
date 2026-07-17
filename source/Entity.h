@@ -49,11 +49,11 @@ public:
 
 	// Get resource levels of this entity, as a fraction between 0 and 1.
 	// Values can be greater than 1 in certain cases, such as heat when overheated.
-	double Shields() const;
-	double Hull() const;
-	double Fuel() const;
-	double Energy() const;
-	double Heat() const;
+	double ShieldFraction() const;
+	double HullFraction() const;
+	double FuelFraction() const;
+	double EnergyFraction() const;
+	double HeatFraction() const;
 
 	// Get the absolute resource levels of the entity.
 	double ShieldLevel() const;
@@ -74,16 +74,16 @@ public:
 	virtual double MaxHeat() const = 0;
 
 	// Get the hull amount at which this entity is disabled.
-	double MinimumHull() const;
+	double MinHull() const;
 
 	// Get the entity's "health," where <=0 is disabled and 1 means full health.
-	double Health() const;
+	double HealthFraction() const;
 	// Get the hull fraction at which this ship is disabled.
-	double DisabledHull() const;
+	double DisabledHullFraction() const;
 	// Get the (absolute) amount of hull that needs to be damaged until the
 	// entity becomes disabled. Returns 0 if the entity's hull is already below the
 	// disabled threshold.
-	double HullUntilDisabled() const;
+	double HullLevelUntilDisabled() const;
 	// Whether this entity is currently disabled.
 	virtual bool IsDisabled() const;
 

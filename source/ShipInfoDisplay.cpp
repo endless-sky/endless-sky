@@ -243,12 +243,11 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		+ " / " + Format::Number(attributes.Get("bunks")));
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
-	double fuelCapacity = attributes.Get("fuel capacity");
+	double fuelCapacity = ship.MaxFuel();
 	if(isGeneric)
 		attributeValues.push_back(Format::Number(fuelCapacity));
 	else
-		attributeValues.push_back(Format::Number(ship.Fuel() * fuelCapacity)
-			+ " / " + Format::Number(fuelCapacity));
+		attributeValues.push_back(Format::Number(ship.FuelLevel()) + " / " + Format::Number(fuelCapacity));
 	attributesHeight += 20;
 
 	double fullMass = emptyMass + attributes.Get("cargo space");

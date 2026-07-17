@@ -177,7 +177,7 @@ namespace {
 	void Deploy(const Ship &ship, bool includingDamaged)
 	{
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.ship && (includingDamaged || bay.ship->Health() > .75) &&
+			if(bay.ship && (includingDamaged || bay.ship->HealthFraction() > .75) &&
 					(!bay.ship->IsYours() || bay.ship->HasDeployOrder()))
 				bay.ship->SetCommands(Command::DEPLOY);
 	}
@@ -282,7 +282,7 @@ namespace {
 			return false;
 
 		// If the ship is full, no refuel.
-		if(ship.Fuel() == 1.)
+		if(ship.FuelFraction() == 1.)
 			return false;
 
 		// If the ship has nowhere to refuel, no refuel.
@@ -301,7 +301,7 @@ namespace {
 
 		// Now we know it could refuel. But it could also jump along the route
 		// and refuel later. Calculate if it can reach the next refuel.
-		double fuel = fuelCapacity * ship.Fuel();
+		double fuel = fuelCapacity * ship.FuelFraction();
 		const vector<pair<const System *, int>> costs = route.FuelCosts();
 		for(auto it = costs.rbegin(); it != costs.rend(); ++it)
 		{
@@ -328,7 +328,7 @@ namespace {
 		if(personality.IsStaying())
 			return false;
 
-		const bool lowHealth = ship.Health() < RETREAT_HEALTH + .25 * personality.IsCoward();
+		const bool lowHealth = ship.HealthFraction() < RETREAT_HEALTH + .25 * personality.IsCoward();
 		if(!personality.IsDaring() && lowHealth)
 			return true;
 
@@ -761,7 +761,7 @@ void AI::Step(Command &activeCommands)
 
 		const Government *gov = it->GetGovernment();
 		const Personality &personality = it->GetPersonality();
-		double healthRemaining = it->Health();
+		double healthRemaining = it->HealthFraction();
 		bool isPresent = (it->GetSystem() == playerSystem);
 		bool isStranded = IsStranded(*it);
 		bool thisIsLaunching = (isPresent && HasDeployments(*it));
@@ -782,7 +782,7 @@ void AI::Step(Command &activeCommands)
 				// Avoid jettisoning cargo as soon as this ship is repaired.
 				if(personality.IsAppeasing())
 				{
-					double health = .5 * it->Shields() + it->Hull();
+					double health = .5 * it->ShieldFraction() + it->HullFraction();
 					double &threshold = appeasementThreshold[it.get()];
 					threshold = max((1. - health) + .1, threshold);
 				}
@@ -1408,7 +1408,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			if(helper->GetGovernment()->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
 				// Disabled, overheated, or otherwise untargetable ships pose no threat.
-				bool harmless = helper->IsDisabled() || (helper->IsOverheated() && helper->Heat() >= 1.1)
+				bool harmless = helper->IsDisabled() || (helper->IsOverheated() && helper->HeatFraction() >= 1.1)
 						|| !helper->IsTargetable();
 				hasEnemy |= (system == helper->GetSystem() && !harmless);
 				if(hasEnemy)
@@ -1659,10 +1659,10 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		// Targets which have plundered this ship's faction earn extra scorn.
 		range -= 1000 * Has(*foe, gov, ShipEvent::BOARD);
 		// Focus on nearly dead ships.
-		range += 500. * (foe->Shields() + foe->Hull());
+		range += 500. * (foe->ShieldFraction() + foe->HullFraction());
 		// If a target is extremely overheated, focus on ships that can attack back.
 		if(foe->IsOverheated())
-			range += 3000. * (foe->Heat() - .9);
+			range += 3000. * (foe->HeatFraction() - .9);
 		if((isPotentialNemesis && !hasNemesis) || range < closest)
 		{
 			closest = range;
@@ -2247,7 +2247,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 			const Planet *targetPlanet = ship.GetTargetStellar()->GetPlanet();
 			if(!targetPlanet || !targetPlanet->CanLand(ship)
 					|| !ship.GetTargetStellar()->HasSprite()
-					|| (!targetPlanet->IsWormhole() && ship.Fuel() == 1.))
+					|| (!targetPlanet->IsWormhole() && ship.FuelFraction() == 1.))
 				ship.SetTargetStellar(nullptr);
 		}
 
@@ -2274,7 +2274,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 			if(!EscortsReadyToJump(ship))
 				command |= Command::WAIT;
 		}
-		else if(systemHasFuel && ship.Fuel() < 1.)
+		else if(systemHasFuel && ship.FuelFraction() < 1.)
 			// Refuel so that when the parent returns, this ship is ready to rendezvous with it.
 			Refuel(ship, command);
 		else
@@ -2464,7 +2464,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// If a carried ship has repair abilities, avoid having it get stuck oscillating between
 	// retreating and attacking when at exactly 50% health by adding hysteresis to the check.
 	double minHealth = RETREAT_HEALTH + .25 + .25 * !ship.Commands().Has(Command::DEPLOY);
-	if(ship.Health() < minHealth && (!ship.IsYours() || Preferences::Has("Damaged fighters retreat")))
+	if(ship.HealthFraction() < minHealth && (!ship.IsYours() || Preferences::Has("Damaged fighters retreat")))
 		return true;
 
 	// If a fighter is armed with only ammo-using weapons, but no longer has the ammunition
@@ -2493,7 +2493,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.
 	double maxFuel = ship.MaxFuel();
-	if(maxFuel && ship.Fuel() < .005 && parent.JumpNavigation().JumpFuel() < parent.FuelLevel() - maxFuel)
+	if(maxFuel && ship.FuelFraction() < .005 && parent.JumpNavigation().JumpFuel() < parent.FuelLevel() - maxFuel)
 		return true;
 
 	// NPC ships should always transfer cargo. Player ships should only
@@ -3059,7 +3059,7 @@ bool AI::ShouldUseAfterburner(const Ship &ship)
 // "Appeasing" ships will dump cargo after being injured, if they are being targeted.
 void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
 {
-	double health = .5 * ship->Shields() + ship->Hull();
+	double health = .5 * ship->ShieldFraction() + ship->HullFraction();
 	if(1. - health <= *threshold)
 		return;
 
@@ -3463,9 +3463,9 @@ bool AI::DoCloak(const Ship &ship, Command &command) const
 	// then it should cloak while under threat.
 	bool canRecoverShieldsCloaked = attrHandler.CanRecoverShieldsWhileCloaked();
 	bool canRecoverHullCloaked = attrHandler.CanRecoverHullWhileCloaked();
-	bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
-			&& ((ship.Shields() < 1. && canRecoverShieldsCloaked)
-			|| (ship.Hull() < 1. && canRecoverHullCloaked));
+	bool cloakToRepair = (ship.HealthFraction() < RETREAT_HEALTH + hysteresis)
+			&& ((ship.ShieldFraction() < 1. && canRecoverShieldsCloaked)
+			|| (ship.HullFraction() < 1. && canRecoverHullCloaked));
 	if(cloakToRepair && (cloakFreely || range < 2000. * (1. + hysteresis)))
 	{
 		command |= Command::CLOAK;
@@ -3955,7 +3955,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	{
 		// The frugal personality is only active when ships have more than a certain fraction of their total health,
 		// and are not outgunned. The default threshold is 75%.
-		beFrugal = (ship.Health() > GameData::GetGamerules().UniversalFrugalThreshold());
+		beFrugal = (ship.HealthFraction() > GameData::GetGamerules().UniversalFrugalThreshold());
 		if(beFrugal)
 		{
 			auto ait = allyStrength.find(ship.GetGovernment());

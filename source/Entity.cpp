@@ -41,7 +41,7 @@ const Outfit &Entity::Attributes() const
 
 
 
-double Entity::Shields() const
+double Entity::ShieldFraction() const
 {
 	double maximum = MaxShields();
 	return maximum ? min(1., levels.shields / maximum) : 0.;
@@ -49,7 +49,7 @@ double Entity::Shields() const
 
 
 
-double Entity::Hull() const
+double Entity::HullFraction() const
 {
 	double maximum = MaxHull();
 	return maximum ? min(1., levels.hull / maximum) : 1.;
@@ -57,7 +57,7 @@ double Entity::Hull() const
 
 
 
-double Entity::Fuel() const
+double Entity::FuelFraction() const
 {
 	double maximum = capacities.fuel;
 	return maximum ? min(1., levels.fuel / maximum) : 0.;
@@ -65,7 +65,7 @@ double Entity::Fuel() const
 
 
 
-double Entity::Energy() const
+double Entity::EnergyFraction() const
 {
 	double maximum = capacities.energy;
 	return maximum ? min(1., levels.energy / maximum) : (levels.hull > 0.) ? 1. : 0.;
@@ -73,7 +73,7 @@ double Entity::Energy() const
 
 
 
-double Entity::Heat() const
+double Entity::HeatFraction() const
 {
 	double maximum = this->MaxHeat();
 	return maximum ? levels.heat / maximum : 1.;
@@ -175,14 +175,14 @@ double Entity::MaxFuel() const
 
 
 
-double Entity::MinimumHull() const
+double Entity::MinHull() const
 {
 	return minimumHull;
 }
 
 
 
-double Entity::Health() const
+double Entity::HealthFraction() const
 {
 	double hullDivisor = MaxHull() - minimumHull;
 	double divisor = MaxShields() + hullDivisor;
@@ -197,14 +197,14 @@ double Entity::Health() const
 
 
 
-double Entity::DisabledHull() const
+double Entity::DisabledHullFraction() const
 {
 	return (capacities.hull > 0. ? minimumHull / capacities.hull : 0.);
 }
 
 
 
-double Entity::HullUntilDisabled() const
+double Entity::HullLevelUntilDisabled() const
 {
 	// Ships become disabled when they surpass their minimum hull threshold,
 	// not when they are directly on it, so account for this by adding a small amount

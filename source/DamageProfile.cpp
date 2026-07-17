@@ -170,7 +170,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.levels.hull = (weapon.HullDamage()
 		+ weapon.RelativeHullDamage() * ship.MaxHull())
 		* totalHullProtection;
-	double hull = ship.HullUntilDisabled();
+	double hull = ship.HullLevelUntilDisabled();
 	if(damage.levels.hull > hull)
 	{
 		double hullFraction = hull / damage.levels.hull;

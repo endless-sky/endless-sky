@@ -108,18 +108,17 @@ namespace {
 
 	bool CompareShields(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		return lhs->Shields() < rhs->Shields();
+		return lhs->ShieldFraction() < rhs->ShieldFraction();
 	}
 
 	bool CompareHull(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		return lhs->Hull() < rhs->Hull();
+		return lhs->HullFraction() < rhs->HullFraction();
 	}
 
 	bool CompareFuel(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		return lhs->Attributes().Get("fuel capacity") * lhs->Fuel() <
-			rhs->Attributes().Get("fuel capacity") * rhs->Fuel();
+		return lhs->FuelLevel() < rhs->FuelLevel();
 	}
 
 	bool CompareRequiredCrew(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -804,12 +803,11 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		const System *system = ship.GetSystem();
 		table.Draw(system ? (player.KnowsName(*system) ? system->DisplayName() : "???") : "");
 
-		table.Draw(Format::Percentage(max(0., ship.Shields()), 0));
+		table.Draw(Format::Percentage(max(0., ship.ShieldFraction()), 0));
 
-		table.Draw(Format::Percentage(max(0., ship.Hull()), 0));
+		table.Draw(Format::Percentage(max(0., ship.HullFraction()), 0));
 
-		string fuel = to_string(static_cast<int>(
-			ship.Attributes().Get("fuel capacity") * ship.Fuel()));
+		string fuel = to_string(static_cast<int>(ship.FuelLevel()));
 		table.Draw(fuel);
 
 		// If this isn't the flagship, we'll remember how many crew it has, but

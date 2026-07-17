@@ -477,7 +477,7 @@ void Projectile::CheckLock(const Entity &target)
 		double multiplier = 1.;
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
-		double lockChance = weapon->InfraredTracking() * min(1., target.Heat() * multiplier);
+		double lockChance = weapon->InfraredTracking() * min(1., target.HeatFraction() * multiplier);
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}

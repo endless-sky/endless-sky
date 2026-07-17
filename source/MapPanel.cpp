@@ -46,7 +46,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RoutePlan.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "ship/ShipAttributeHandler.h"
 #include "ShipJumpNavigation.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
