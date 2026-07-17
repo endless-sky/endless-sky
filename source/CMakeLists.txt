@@ -447,6 +447,8 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/SpriteShader.h
 	shader/StarField.cpp
 	shader/StarField.h
+	ship/StatusEffects.cpp
+	ship/StatusEffects.h
 	ship/ResourceLevels.cpp
 	ship/ResourceLevels.h
 	ship/ShipAICache.cpp

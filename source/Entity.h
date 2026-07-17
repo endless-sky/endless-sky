@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Outfit.h"
 #include "ship/ResourceLevels.h"
+#include "ship/StatusEffectHandler.h"
 
 #include <vector>
 
@@ -110,6 +111,8 @@ protected:
 
 
 protected:
+	friend class StatusEffectHandler;
+
 	Type entityType = Type::SHIP;
 	Outfit attributes;
 
@@ -127,6 +130,8 @@ protected:
 	ResourceLevels capacities;
 	// The minimum hull of this entity before it is considered disabled.
 	double minimumHull = 0.;
+	// A handler for status effects applied to this entity.
+	StatusEffectHandler status;
 
 	// Whether this entity is allowed to become disabled, and if it is disabled now.
 	bool neverDisabled = false;

@@ -56,15 +56,11 @@ public:
 
 	// Clear all levels and set hull to -1.
 	void Kill() const;
-	// Clear the damage over time levels.
-	void ClearDoT() const;
 
 	// Repair the given stat up to the maximum that the ship is capable of given the cost.
 	// Updates the available variable with the remaining amount of repairs that
 	// can be done.
 	void DoRepair(double &stat, double &available, double maximum, const ResourceLevels &cost) const;
-	// Apply status effects and DoT resistances to the ship.
-	void DoStatusEffects(bool disabled) const;
 
 	// Construct a ResourceLevels object for the firing cost of the given weapon
 	// when fired from the given ship.
@@ -122,15 +118,6 @@ private:
 	void HullRepair();
 	void ShieldRegen();
 	void Recovery();
-
-	void CorrosionResist();
-	void DischargeResist();
-	void IonizationResist();
-	void ScramblingResist();
-	void BurnResist();
-	void LeakageResist();
-	void DisruptionResist();
-	void SlownessResist();
 
 	void Thrust();
 	void Turn();
@@ -197,23 +184,6 @@ private:
 
 	int recoveryTime = 0;
 	ResourceLevels recoveryCost;
-
-	double corrosionResistance = 0.;
-	ResourceLevels corrosionResistCost;
-	double dischargeResistance = 0.;
-	ResourceLevels dischargeResistCost;
-	double ionizationResistance = 0.;
-	ResourceLevels ionizationResistCost;
-	double scramblingResistance = 0.;
-	ResourceLevels scramblingResistCost;
-	double burnResistance = 0.;
-	ResourceLevels burnResistCost;
-	double leakResistance = 0.;
-	ResourceLevels leakageResistCost;
-	double disruptionResistance = 0.;
-	ResourceLevels disruptionResistCost;
-	double slowingResistance = 0.;
-	ResourceLevels slownessResistCost;
 
 	double thrust = 0.;
 	ResourceLevels thrustCost;

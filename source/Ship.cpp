@@ -1388,7 +1388,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	// Make sure various special status values are reset.
 	lastHitBy = nullptr;
 	levels.heat = IdleHeat();
-	attrHandler.ClearDoT();
+	status.Clear();
 	shieldDelay = 0;
 	hullDelay = 0;
 	disabledRecoveryCounter = 0;
@@ -2648,7 +2648,7 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 
 	lastHitBy = nullptr;
 	levels.heat = IdleHeat();
-	attrHandler.ClearDoT();
+	status.Clear();
 	shieldDelay = 0;
 	hullDelay = 0;
 	disabledRecoveryCounter = 0;
@@ -4134,7 +4134,7 @@ void Ship::DoGeneration()
 	// Handle ionization effects, etc.
 	bool wasDisabled = levels.hull < minimumHull;
 	bool wasDestroyed = IsDestroyed();
-	attrHandler.DoStatusEffects(isDisabled);
+	status.Do(isDisabled);
 
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the

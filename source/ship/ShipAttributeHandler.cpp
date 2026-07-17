@@ -30,6 +30,7 @@ void ShipAttributeHandler::Setup(Ship *parent)
 	ship = parent;
 	attributes = &parent->Attributes();
 	shipLevels = &parent->levels;
+	parent->status.Setup(parent);
 }
 
 
@@ -45,16 +46,6 @@ void ShipAttributeHandler::Calibrate()
 	HullRepair();
 	ShieldRegen();
 	Recovery();
-
-	// DoT resistances:
-	CorrosionResist();
-	DischargeResist();
-	IonizationResist();
-	ScramblingResist();
-	BurnResist();
-	LeakageResist();
-	DisruptionResist();
-	SlownessResist();
 
 	// Movement:
 	Thrust();
@@ -80,21 +71,7 @@ void ShipAttributeHandler::Kill() const
 	shipLevels->energy = 0.;
 	shipLevels->heat = 0.;
 	shipLevels->fuel = 0.;
-	ClearDoT();
-}
-
-
-
-void ShipAttributeHandler::ClearDoT() const
-{
-	shipLevels->discharge = 0.;
-	shipLevels->corrosion = 0.;
-	shipLevels->scrambling = 0.;
-	shipLevels->ionization = 0.;
-	shipLevels->leakage = 0.;
-	shipLevels->burning = 0.;
-	shipLevels->disruption = 0.;
-	shipLevels->slowness = 0.;
+	ship->status.Clear();
 }
 
 
@@ -120,61 +97,6 @@ void ShipAttributeHandler::DoRepair(double &stat, double &available, double maxi
 		shipLevels->heat += transfer * cost.heat;
 		shipLevels->fuel -= transfer * cost.fuel;
 	}
-}
-
-
-
-void ShipAttributeHandler::DoStatusEffects(bool disabled) const
-{
-	shipLevels->hull -= shipLevels->corrosion;
-	shipLevels->shields -= shipLevels->discharge;
-	shipLevels->energy -= shipLevels->ionization;
-	shipLevels->heat += shipLevels->burning;
-	shipLevels->fuel -= shipLevels->leakage;
-
-	// TODO: Mothership gives status resistance to carried ships?
-	auto DoResistance = [this, &disabled](double &stat, double resistance, const ResourceLevels &cost)
-	{
-		if(!stat)
-			return;
-
-		if(disabled || resistance <= 0.)
-		{
-			stat = max(0., .99 * stat);
-			return;
-		}
-
-		// Calculate how much resistance can be used assuming no
-		// resource cost.
-		resistance = .99 * stat - max(0., .99 * stat - resistance);
-
-		// Limit the resistance by the available resources.
-		if(cost.energy > 0.)
-			resistance = min(resistance, shipLevels->energy / cost.energy);
-		if(cost.heat < 0.)
-			resistance = min(resistance, shipLevels->heat / -cost.heat);
-		if(cost.fuel > 0.)
-			resistance = min(resistance, shipLevels->fuel / cost.fuel);
-
-		if(resistance > 0.)
-		{
-			stat = max(0., .99 * stat - resistance);
-			shipLevels->energy -= resistance * cost.energy;
-			shipLevels->heat += resistance * cost.heat;
-			shipLevels->fuel -= resistance * cost.fuel;
-		}
-		else
-			stat = max(0., .99 * stat);
-	};
-
-	DoResistance(shipLevels->corrosion, corrosionResistance, corrosionResistCost);
-	DoResistance(shipLevels->discharge, dischargeResistance, dischargeResistCost);
-	DoResistance(shipLevels->ionization, ionizationResistance, ionizationResistCost);
-	DoResistance(shipLevels->scrambling, scramblingResistance, scramblingResistCost);
-	DoResistance(shipLevels->burning, burnResistance, burnResistCost);
-	DoResistance(shipLevels->leakage, leakResistance, leakageResistCost);
-	DoResistance(shipLevels->disruption, disruptionResistance, disruptionResistCost);
-	DoResistance(shipLevels->slowness, slowingResistance, slownessResistCost);
 }
 
 
@@ -620,118 +542,6 @@ void ShipAttributeHandler::Recovery()
 	recoveryCost.corrosion = attributes->Get("disabled recovery corrosion");
 	recoveryCost.leakage = attributes->Get("disabled recovery leak");
 	recoveryCost.burning = attributes->Get("disabled recovery burning");
-}
-
-
-
-void ShipAttributeHandler::CorrosionResist()
-{
-	corrosionResistance = attributes->Get("corrosion resistance");
-	// Save resistance costs as per unit of resistance.
-	if(corrosionResistance)
-	{
-		corrosionResistCost.energy = attributes->Get("corrosion resistance energy") / corrosionResistance;
-		corrosionResistCost.heat = attributes->Get("corrosion resistance heat") / corrosionResistance;
-		corrosionResistCost.fuel = attributes->Get("corrosion resistance fuel") / corrosionResistance;
-	}
-}
-
-
-
-void ShipAttributeHandler::DischargeResist()
-{
-	dischargeResistance = attributes->Get("discharge resistance");
-	// Save resistance costs as per unit of resistance.
-	if(dischargeResistance)
-	{
-		dischargeResistCost.energy = attributes->Get("discharge resistance energy") / dischargeResistance;
-		dischargeResistCost.heat = attributes->Get("discharge resistance heat") / dischargeResistance;
-		dischargeResistCost.fuel = attributes->Get("discharge resistance fuel") / dischargeResistance;
-	}
-}
-
-
-
-void ShipAttributeHandler::IonizationResist()
-{
-	ionizationResistance = attributes->Get("ion resistance");
-	// Save resistance costs as per unit of resistance.
-	if(ionizationResistance)
-	{
-		ionizationResistCost.energy = attributes->Get("ion resistance energy") / ionizationResistance;
-		ionizationResistCost.heat = attributes->Get("ion resistance heat") / ionizationResistance;
-		ionizationResistCost.fuel = attributes->Get("ion resistance fuel") / ionizationResistance;
-	}
-}
-
-
-
-void ShipAttributeHandler::ScramblingResist()
-{
-	scramblingResistance = attributes->Get("scramble resistance");
-	// Save resistance costs as per unit of resistance.
-	if(scramblingResistance)
-	{
-		scramblingResistCost.energy = attributes->Get("scramble resistance energy") / scramblingResistance;
-		scramblingResistCost.heat = attributes->Get("scramble resistance heat") / scramblingResistance;
-		scramblingResistCost.fuel = attributes->Get("scramble resistance fuel") / scramblingResistance;
-	}
-}
-
-
-
-void ShipAttributeHandler::BurnResist()
-{
-	burnResistance = attributes->Get("burn resistance");
-	// Save resistance costs as per unit of resistance.
-	if(burnResistance)
-	{
-		burnResistCost.energy = attributes->Get("burn resistance energy") / burnResistance;
-		burnResistCost.heat = attributes->Get("burn resistance heat") / burnResistance;
-		burnResistCost.fuel = attributes->Get("burn resistance fuel") / burnResistance;
-	}
-}
-
-
-
-void ShipAttributeHandler::LeakageResist()
-{
-	leakResistance = attributes->Get("leak resistance");
-	// Save resistance costs as per unit of resistance.
-	if(leakResistance)
-	{
-		leakageResistCost.energy = attributes->Get("leak resistance energy") / leakResistance;
-		leakageResistCost.heat = attributes->Get("leak resistance heat") / leakResistance;
-		leakageResistCost.fuel = attributes->Get("leak resistance fuel") / leakResistance;
-	}
-}
-
-
-
-void ShipAttributeHandler::DisruptionResist()
-{
-	disruptionResistance = attributes->Get("disruption resistance");
-	// Save resistance costs as per unit of resistance.
-	if(dischargeResistance)
-	{
-		disruptionResistCost.energy = attributes->Get("disruption resistance energy") / disruptionResistance;
-		disruptionResistCost.heat = attributes->Get("disruption resistance heat") / disruptionResistance;
-		disruptionResistCost.fuel = attributes->Get("disruption resistance fuel") / disruptionResistance;
-	}
-}
-
-
-
-void ShipAttributeHandler::SlownessResist()
-{
-	slowingResistance = attributes->Get("slowing resistance");
-	// Save resistance costs as per unit of resistance.
-	if(slowingResistance)
-	{
-		slownessResistCost.energy = attributes->Get("slowing resistance energy") / slowingResistance;
-		slownessResistCost.heat = attributes->Get("slowing resistance heat") / slowingResistance;
-		slownessResistCost.fuel = attributes->Get("slowing resistance fuel") / slowingResistance;
-	}
 }
 
 

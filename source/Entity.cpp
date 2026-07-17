@@ -301,6 +301,8 @@ void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double 
 
 void Entity::CacheAttributes()
 {
+	status.Calibrate();
+
 	opticalJamming = attributes.Get("optical jamming");
 	radarJamming = attributes.Get("radar jamming");
 }

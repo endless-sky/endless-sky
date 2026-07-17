@@ -216,6 +216,8 @@ void Minable::Place(double energy, double beltRadius)
 		levels.hull = 1000;
 	levels.hull += Random::Real() * randomHull;
 	capacities.hull = levels.hull;
+
+	status.Setup(this);
 }
 
 
@@ -225,7 +227,9 @@ void Minable::Place(double energy, double beltRadius)
 // In that case it will return false, meaning it should be deleted.
 bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
-	DoCorrosionDamage(visuals);
+	status.Do();
+	DoStatusSparks(visuals);
+
 	if(levels.hull < 0)
 	{
 		// This object has been destroyed. Create explosions and flotsam.
@@ -303,18 +307,6 @@ double Minable::Mass() const
 double Minable::MaxHeat() const
 {
 	return MAXIMUM_TEMPERATURE * (attributes.Mass() + attributes.Get("heat capacity"));
-}
-
-
-
-// Apply corrosion damage ticks and decrement corrosion.
-void Minable::DoCorrosionDamage(vector<Visual> &visuals)
-{
-	if(!levels.corrosion)
-		return;
-	levels.hull -= levels.corrosion;
-	levels.corrosion = max(0., .99 * levels.corrosion);
-	CreateSparks(visuals, "corrosion spark", levels.corrosion * .1);
 }
 
 

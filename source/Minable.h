@@ -93,9 +93,6 @@ public:
 	double Mass() const override;
 	double MaxHeat() const override;
 
-	// Apply corrosion damage ticks and decrement corrosion.
-	void DoCorrosionDamage(std::vector<Visual> &visuals);
-
 
 private:
 	class LiveEffect {
