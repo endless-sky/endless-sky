@@ -517,9 +517,10 @@ void ShipAttributeHandler::Capacity()
 	cargoSpace = attributes->Get("cargo space");
 	automaton = attributes->Get("automaton");
 	requiredCrew = attributes->Get("required crew");
+	mandatoryCrew = attributes->Get("mandatory crew");
 	bunks = attributes->Get("bunks");
 	crewEquiv = attributes->Get("crew equivalent");
-	onlyUseCreqEquiv = attributes->Get("use crew equivalent as crew");
+	onlyUseCrewEquiv = attributes->Get("use crew equivalent as crew");
 }
 
 

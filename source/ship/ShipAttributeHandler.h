@@ -156,9 +156,10 @@ private:
 	double cargoSpace = 0.;
 	bool automaton = false;
 	int requiredCrew = 0;
+	int mandatoryCrew = 0;
 	int bunks = 0;
 	int crewEquiv = 0;
-	bool onlyUseCreqEquiv = false;
+	bool onlyUseCrewEquiv = false;
 
 	double energyGeneration = 0.;
 	double energyConsumption = 0.;

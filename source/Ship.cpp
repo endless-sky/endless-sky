@@ -3011,7 +3011,7 @@ double Ship::DragForce() const
 int Ship::RequiredCrew() const
 {
 	// Mandatory crew cannot be replaced by automation.
-	int mandatory = attributes.Get("mandatory crew");
+	int mandatory = attrHandler.mandatoryCrew;
 	if(attrHandler.automaton)
 		return mandatory;
 
@@ -3024,7 +3024,7 @@ int Ship::RequiredCrew() const
 int Ship::CrewValue() const
 {
 	int crewEquivalent = attrHandler.crewEquiv;
-	if(attrHandler.onlyUseCreqEquiv)
+	if(attrHandler.onlyUseCrewEquiv)
 		return crewEquivalent;
 	return max(Crew(), RequiredCrew()) + crewEquivalent;
 }
