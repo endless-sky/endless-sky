@@ -538,7 +538,6 @@ private:
 	// destroyed, or 0 otherwise.
 	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoGeneration();
-	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoCloakDecision();
 	// Step hyperspace enter/exit logic. Returns true if ship is hyperspacing in or out.
@@ -558,9 +557,6 @@ private:
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
-	// Place a "spark" effect, like ionization or disruption.
-	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
-	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 
 	// Calculate the attraction and deterrence of this ship, for pirate raids.
 	// This is only useful for the player's ships.
@@ -593,7 +589,6 @@ private:
 	std::string givenName;
 	bool canBeCarried = false;
 
-	int forget = 0;
 	bool isInSystem = true;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
 	// continue to exist and refuel instead of being deleted.

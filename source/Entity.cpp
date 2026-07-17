@@ -15,6 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Entity.h"
 
+#include "Effect.h"
+#include "GameData.h"
+#include "image/Mask.h"
+#include "Random.h"
+#include "Visual.h"
+
 #include <algorithm>
 
 using namespace std;
@@ -235,6 +241,60 @@ double Entity::OpticalJamming() const
 double Entity::RadarJamming() const
 {
 	return radarJamming;
+}
+
+
+
+void Entity::DoStatusSparks(std::vector<Visual> &visuals) const
+{
+	if(levels.ionization)
+		CreateSparks(visuals, "ion spark", levels.ionization * .05);
+	if(levels.scrambling)
+		CreateSparks(visuals, "scramble spark", levels.scrambling * .05);
+	if(levels.disruption)
+		CreateSparks(visuals, "disruption spark", levels.disruption * .1);
+	if(levels.slowness)
+		CreateSparks(visuals, "slowing spark", levels.slowness * .1);
+	if(levels.discharge)
+		CreateSparks(visuals, "discharge spark", levels.discharge * .1);
+	if(levels.corrosion)
+		CreateSparks(visuals, "corrosion spark", levels.corrosion * .1);
+	if(levels.leakage)
+		CreateSparks(visuals, "leakage spark", levels.leakage * .1);
+	if(levels.burning)
+		CreateSparks(visuals, "burning spark", levels.burning * .1);
+}
+
+
+
+void Entity::CreateSparks(vector<Visual> &visuals, const string &name, double amount) const
+{
+	CreateSparks(visuals, GameData::Effects().Get(name), amount);
+}
+
+
+
+void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount) const
+{
+	if(forget || amount <= 0.)
+		return;
+
+	// Limit the number of sparks, depending on the size of the sprite.
+	// The limit needs to be the first argument in case amount is NaN.
+	amount = min(Width() * Height() * .0006, amount);
+	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
+	visuals.reserve(visuals.size() + static_cast<size_t>(amount));
+
+	while(true)
+	{
+		amount -= Random::Real();
+		if(amount <= 0.)
+			break;
+
+		Point point((Random::Real() - .5) * Width(), (Random::Real() - .5) * Height());
+		if(GetMask().Contains(point, Angle()))
+			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
+	}
 }
 
 

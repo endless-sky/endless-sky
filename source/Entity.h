@@ -20,6 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "ship/ResourceLevels.h"
 
+#include <vector>
+
+class Visual;
 
 
 // A class containing common elements for objects like ships and minable asteroids.
@@ -90,6 +93,12 @@ public:
 	double OpticalJamming() const;
 	double RadarJamming() const;
 
+	// Create status spark visuals on the entity based on the current status effect levels.
+	void DoStatusSparks(std::vector<Visual> &visuals) const;
+	// Place a "spark" effect, like ionization or disruption.
+	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount) const;
+	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount) const;
+
 
 protected:
 	// Cache commonly requested attributes into fields on the Entity-level.
@@ -103,6 +112,12 @@ protected:
 protected:
 	Type entityType = Type::SHIP;
 	Outfit attributes;
+
+	// A counter of how many frames this entity has been out of system.
+	// Individual entities may make use of this counter to call MarkForRemoval
+	// if the entity has been away for too long, or entities may be removed
+	// the moment they are out of the system.
+	int forget = 0;
 
 	// The current resource levels of this entity.
 	ResourceLevels levels;

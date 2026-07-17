@@ -96,10 +96,6 @@ public:
 	// Apply corrosion damage ticks and decrement corrosion.
 	void DoCorrosionDamage(std::vector<Visual> &visuals);
 
-	// Add Spark Visual Effects for Corrosion Damage.
-	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
-	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
-
 
 private:
 	class LiveEffect {

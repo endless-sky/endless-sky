@@ -319,37 +319,6 @@ void Minable::DoCorrosionDamage(vector<Visual> &visuals)
 
 
 
-// Place a "spark" effect, like ionization or disruption.
-void Minable::CreateSparks(vector<Visual> &visuals, const string &name, double amount)
-{
-	CreateSparks(visuals, GameData::Effects().Get(name), amount);
-}
-
-
-
-void Minable::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount)
-{
-	if(amount <= 0.)
-		return;
-
-	// Limit the number of sparks, depending on the size of the sprite.
-	// The limit needs to be the first argument in case amount is NaN.
-	amount = min(Width() * Height() * .0006, amount);
-	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
-	visuals.reserve(visuals.size() + static_cast<size_t>(amount));
-
-	while(true)
-	{
-		amount -= Random::Real();
-		if(amount <= 0.)
-			break;
-		Point point((Random::Real() - .5) * Width(), (Random::Real() - .5) * Height());
-		visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
-	}
-}
-
-
-
 // Determine what flotsam this asteroid will create.
 const vector<Minable::Payload> &Minable::GetPayload() const
 {
