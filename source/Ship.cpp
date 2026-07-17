@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "FormationPattern.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "JumpType.h"
 #include "Logger.h"
@@ -219,6 +220,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			customSwizzleName = child.Token(1);
 		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
+		else if(key == "administrative cost" && hasValue)
+			administrativeCost = max<int>(0, child.Value(1));
 		else if(key == "attributes" || add)
 		{
 			if(!add)
@@ -1973,8 +1976,12 @@ int Ship::Scan(const PlayerInfo &player)
 		if(elapsed >= SCAN_TIME)
 			result |= event;
 	};
-	doScan(cargoScan, cargoSpeed, cargoDistanceSquared, cargoDepth, ShipEvent::SCAN_CARGO);
-	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfitDepth, ShipEvent::SCAN_OUTFITS);
+	// If multiple ships in the player's fleet are scanning a ship, stop scanning if
+	// one of the escorts has already completed as scan.
+	if(!isYours || player.CargoScanFraction(target) < 1.)
+		doScan(cargoScan, cargoSpeed, cargoDistanceSquared, cargo, ShipEvent::SCAN_CARGO);
+	if(!isYours || player.OutfitScanFraction(target) < 1.)
+		doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
 
 	// Play the scanning sound if the actor or the target is the player's ship.
 	auto playScanSounds = [](const map<const Sound *, int> &sounds, const Point &position)
@@ -2079,7 +2086,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 	// A ship that is about to die creates a special single-turn "projectile"
 	// representing its death explosion.
 	if(IsDestroyed() && explosionCount == explosionTotal && explosionWeapon)
-		projectiles.emplace_back(position, explosionWeapon);
+		projectiles.emplace_back(position, angle, explosionWeapon);
 
 	if(CannotAct(Ship::ActionType::FIRE))
 		return;
@@ -2891,6 +2898,23 @@ bool Ship::IsCloaked() const
 
 
 
+void Ship::SetCloaked()
+{
+	const double cloakingSpeed = CloakingSpeed();
+	const double cloakingFuel = attributes.Get("cloaking fuel");
+	const double cloakingEnergy = attributes.Get("cloaking energy");
+	const double cloakingHull = attributes.Get("cloaking hull");
+	const double cloakingShield = attributes.Get("cloaking shields");
+	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
+		&& fuel >= cloakingFuel && energy >= cloakingEnergy
+		&& MinimumHull() < hull - cloakingHull && shields >= cloakingShield);
+
+	if(canCloak)
+		cloak = 1.;
+}
+
+
+
 double Ship::CloakingSpeed() const
 {
 	return attrHandler.cloak + attrHandler.cloakByMass * 1000. / Mass();
@@ -2948,6 +2972,31 @@ double Ship::Drag() const
 
 
 
+int Ship::FleetCost() const
+{
+	Gamerules::FleetSizeLimitation behavior = GameData::GetGamerules().GetFleetSizeLimitation();
+	if(behavior == Gamerules::FleetSizeLimitation::NONE)
+		return 0;
+	if(behavior == Gamerules::FleetSizeLimitation::SHIP_CAP)
+		return !canBeCarried;
+	if(behavior == Gamerules::FleetSizeLimitation::CREW_CAP)
+	{
+		if(canBeCarried)
+			return 0;
+		int crewEquivalent = attributes.Get("crew equivalent");
+		if(attributes.Get("use crew equivalent as crew"))
+			return crewEquivalent;
+		// Only the base crew counts toward the fleet capacity, as otherwise installing turrets
+		// could cause a ship to go over the fleet capacity.
+		int mandatory = baseAttributes.Get("mandatory crew");
+		int required = attributes.Get("automaton") ? 0 : baseAttributes.Get("required crew");
+		return required + mandatory + crewEquivalent;
+	}
+	return administrativeCost.value_or(!canBeCarried);
+}
+
+
+
 // Calculate the drag force that this ship experiences. The drag force is the drag
 // divided by the mass, up to a value of 1.
 double Ship::DragForce() const
@@ -2961,11 +3010,13 @@ double Ship::DragForce() const
 
 int Ship::RequiredCrew() const
 {
+	// Mandatory crew cannot be replaced by automation.
+	int mandatory = attributes.Get("mandatory crew");
 	if(attrHandler.automaton)
-		return 0;
+		return mandatory;
 
 	// Drones do not need crew, but all other ships need at least one.
-	return max(1, attrHandler.requiredCrew);
+	return max(1, attrHandler.requiredCrew) + mandatory;
 }
 
 
@@ -2990,7 +3041,7 @@ void Ship::AddCrew(int count)
 // Check if this is a ship that can be used as a flagship.
 bool Ship::CanBeFlagship() const
 {
-	return RequiredCrew() && Crew() && !IsDisabled();
+	return !attributes.Get("automaton") && Crew() && !IsDisabled();
 }
 
 

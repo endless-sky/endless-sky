@@ -880,10 +880,10 @@ mission "Kimek Gift"
 	deadline 2
 	to offer
 		has "Coalition: First Contact: done"
+		has "ship attribute: jump drive"
 	source "Second Cerulean"
 	destination "Cold Horizon"
 	on offer
-		require "Jump Drive"
 		conversation
 			`A Kimek in a lab coat is desperately running around the spaceport here, carrying a small package with some papers attached.`
 			`	As soon as she spots you, she quickly approaches you and says, "Human! The visitor I've heard about, you are! From the outside! A jump drive you have, if our space you've reached, yes?"`
@@ -1256,13 +1256,13 @@ mission "Longcow Antibiotics 1"
 	to offer
 		has "Coalition: First Contact: done"
 		random < 35
+		has "ship attribute: jump drive"
 	source
 		attributes arach
 		not attributes "coalition station"
 	stopover "New Finding"
 	destination "Corral of Meblumem"
 	on offer
-		require "Jump Drive"
 		conversation
 			`You see some Arachi talking among themselves in the spaceport, occasionally glancing at and pointing at you.`
 			`	One of them finally comes to you and says, "Greetings, Captain. Interested in performing a cargo mission for us, are you?"`
@@ -2399,11 +2399,11 @@ mission "Coalition: Expeditions Past 1"
 	to offer
 		"coalition jobs" >= 40
 		random < 5
+		has "ship attribute: jump drive"
 	source
 		government "Coalition"
 	destination "Ring of Friendship"
 	on offer
-		require "Jump Drive"
 		conversation
 			`As you exit your ship and start heading to the spaceport, you hear a rushed galloping getting closer. As you turn you see a Saryd Heliarch coming to you, gesturing for you to wait. She slows down once she sees you're obliging, and slowly walks to you while glancing at your ship.`
 			`	"Apologize for cutting you off, I must, Captain <last>, but in need of extended transport services, I am," she says. "Sedlitaris Quatcid, my name is, and a Heliarch tribune, I am. Brought to <destination>, I must be. A petition to the council, I am to make."`
@@ -3468,10 +3468,6 @@ mission "Coalition: Struggling Author 1"
 			`	"Wow. I can't believe this is happening!" Anna looks out the window, then turns back.`
 			`	"Can I take a look at your jump drive? I'm interested to see how it works," Anna says. You take her to the engine room of the <ship>, where she begins taking notes and pictures of the drive.`
 			`	"Well, thank you for bringing me here," Anna says when she finishes. "I didn't sleep too well, so I'll see you later. Goodbye!" She heads back into her cabin, and you settle back into the controls.`
-	npc
-		government "Heliarch"
-		personality heroic opportunistic
-		fleet "Heliarch"
 	on complete
 		set "coalition: struggling author - beyond the hyperdrive"
 		conversation

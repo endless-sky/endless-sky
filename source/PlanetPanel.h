@@ -47,6 +47,8 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
+	virtual void UpdateTextDisplay() override;
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -86,7 +88,7 @@ private:
 	std::shared_ptr<Panel> bank;
 	std::shared_ptr<SpaceportPanel> spaceport;
 	std::shared_ptr<Panel> hiring;
-	Panel *selectedPanel = nullptr;
+	std::shared_ptr<Panel> selectedPanel;
 
 	std::shared_ptr<TextArea> description;
 

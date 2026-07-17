@@ -47,6 +47,8 @@ public:
 		// HARVEST is related to MINE and is for picking up flotsam after
 		// ATTACK.
 		HARVEST,
+		// SCAN orders your fleet to follow a target while scanning it.
+		SCAN,
 		// The last element needed to determine the size of the enum.
 		TYPES_COUNT
 	};

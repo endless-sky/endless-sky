@@ -18,9 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
+#include "CustomEvents.h"
 #include "DialogPanel.h"
 #include "Files.h"
-#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -28,7 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
-#include "Plugins.h"
+#include "Plugin.h"
+#include "PluginManager.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
@@ -56,7 +57,6 @@ namespace {
 	// Settings that require special handling.
 	const string ZOOM_FACTOR = "Main zoom factor";
 	const int ZOOM_FACTOR_MIN = 100;
-	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
@@ -66,12 +66,14 @@ namespace {
 	const string CAMERA_ACCELERATION = "Camera acceleration";
 	const string LARGE_GRAPHICS_REDUCTION = "Reduce large graphics";
 	const string CLOAK_OUTLINE = "Cloaked ship outlines";
+	const string TEXTURE_FILTERING = "Texture filtering";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
 	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
 	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
 	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
 	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
 	const string TURRET_OVERLAYS = "Turret overlays";
+	const string HIGHLIGHT_SHIPS = "Highlight ships";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
@@ -85,13 +87,16 @@ namespace {
 	const string DATE_FORMAT = "Date format";
 	const string NOTIFY_ON_DEST = "Notify on destination";
 	const string BOARDING_PRIORITY = "Boarding target priority";
-	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
+	const string ASTEROID_TARGETING = "Asteroid targeting";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
+	const string TRIBUTE_CONFIRMATION = "Tribute confirmation";
+	const string AMMO_REFILL = "Auto refill ammo";
+	const string TEXT_ALIGNMENT = "Text alignment";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
 	const string WINDOW_ROUNDING = "Window rounding";
@@ -125,7 +130,7 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	// Select the first valid plugin.
-	for(const auto &plugin : Plugins::Get())
+	for(const auto &plugin : PluginManager::Get())
 		if(plugin.second.IsValid())
 		{
 			selectedPlugin = plugin.first;
@@ -139,7 +144,7 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 
 	int pluginListHeight = 0;
-	for(const auto &plugin : Plugins::Get())
+	for(const auto &plugin : PluginManager::Get())
 		if(plugin.second.IsValid())
 			pluginListHeight += 20;
 
@@ -180,7 +185,7 @@ void PreferencesPanel::Draw()
 			info.SetCondition(bar + " none");
 	}
 
-	if(Plugins::HasChanged())
+	if(PluginManager::HasChanged())
 		info.SetCondition("show plugins changed");
 	if(CONTROLS_PAGE_COUNT > 1)
 		info.SetCondition("multiple controls pages");
@@ -427,7 +432,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			int zoom = Screen::UserZoom();
 			if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
 				zoom -= ZOOM_FACTOR_INCREMENT;
-			if(dy > 0. && zoom < ZOOM_FACTOR_MAX)
+			if(dy > 0.)
 				zoom += ZOOM_FACTOR_INCREMENT;
 
 			Screen::SetZoom(zoom);
@@ -601,6 +606,7 @@ void PreferencesPanel::DrawControls()
 		Command::HOLD_POSITION,
 		Command::AMMO,
 		Command::HARVEST,
+		Command::SCAN_ORDER,
 		Command::NONE,
 		Command::NONE,
 		Command::NEAREST,
@@ -756,6 +762,7 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		CLOAK_OUTLINE,
+		TEXTURE_FILTERING,
 		"\t",
 		"Performance",
 		"Show CPU / GPU load",
@@ -769,13 +776,22 @@ void PreferencesPanel::DrawSettings()
 		"Hide unexplored map regions",
 		"Show escort systems on map",
 		"Show stored outfits on map",
+		"Parenthesize trade profits",
+		"",
+		"Trading",
+		"Sell outfits without outfitter",
+		"Confirm selling outfits",
+		"Confirm selling minables",
+		"",
+		"Gameplay",
+		TRIBUTE_CONFIRMATION,
 		"\n",
 		"Flagship Behavior",
 		"Control ship with mouse",
 		"Aim turrets with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
-		TARGET_ASTEROIDS_BASED_ON,
+		ASTEROID_TARGETING,
 		BOARDING_PRIORITY,
 		"Rehire extra crew when lost",
 		"Automatically unpark flagship",
@@ -787,6 +803,7 @@ void PreferencesPanel::DrawSettings()
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
+		AMMO_REFILL,
 		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
@@ -797,7 +814,7 @@ void PreferencesPanel::DrawSettings()
 		"Show missile overlays",
 		TURRET_OVERLAYS,
 		"Show asteroid scanner overlay",
-		"Highlight player's flagship",
+		HIGHLIGHT_SHIPS,
 		"Rotate flagship in HUD",
 		"Show planet labels",
 		MINIMAP_DISPLAY,
@@ -813,9 +830,9 @@ void PreferencesPanel::DrawSettings()
 		SCROLL_SPEED,
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
-		"Show parenthesis",
 		NOTIFY_ON_DEST,
 		"Save message log",
+		TEXT_ALIGNMENT,
 #ifdef _WIN32
 		"\t",
 		"Windows Options",
@@ -932,9 +949,19 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::TurretOverlaysSetting();
 			isOn = text != "off";
 		}
+		else if(setting == HIGHLIGHT_SHIPS)
+		{
+			text = Preferences::HighlightShipsSetting();
+			isOn = text != "off";
+		}
 		else if(setting == CLOAK_OUTLINE)
 		{
 			text = Preferences::Has(CLOAK_OUTLINE) ? "fancy" : "fast";
+			isOn = true;
+		}
+		else if(setting == TEXTURE_FILTERING)
+		{
+			text = Preferences::Has("Texture filtering") ? "linear" : "nearest";
 			isOn = true;
 		}
 		else if(setting == AUTO_AIM_SETTING)
@@ -994,10 +1021,10 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = Preferences::BoardingSetting();
 		}
-		else if(setting == TARGET_ASTEROIDS_BASED_ON)
+		else if(setting == ASTEROID_TARGETING)
 		{
 			isOn = true;
-			text = Preferences::Has(TARGET_ASTEROIDS_BASED_ON) ? "proximity" : "value";
+			text = Preferences::TargetAsteroidStrategySetting();
 		}
 		else if(setting == BACKGROUND_PARALLAX)
 		{
@@ -1059,6 +1086,21 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetMinimapDisplay() != Preferences::MinimapDisplay::OFF;
 			text = Preferences::MinimapSetting();
+		}
+		else if(setting == TRIBUTE_CONFIRMATION)
+		{
+			isOn = Preferences::GetTributeConfirmation() != Preferences::TributeConfirmation::OFF;
+			text = Preferences::TributeConfirmationSetting();
+		}
+		else if(setting == AMMO_REFILL)
+		{
+			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::NEVER;
+			text = Preferences::AmmoRefillSetting();
+		}
+		else if(setting == TEXT_ALIGNMENT)
+		{
+			isOn = true;
+			text = Preferences::TextAlignmentSetting();
 		}
 #ifdef _WIN32
 		else if(setting == TITLE_BAR_THEME)
@@ -1126,7 +1168,7 @@ void PreferencesPanel::DrawPlugins()
 	int firstY = pluginListClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(pluginListScroll.AnimatedValue())));
 
-	for(const auto &it : Plugins::Get())
+	for(const auto &it : PluginManager::Get())
 	{
 		const auto &plugin = it.second;
 		if(!plugin.IsValid())
@@ -1149,7 +1191,7 @@ void PreferencesPanel::DrawPlugins()
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
 			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
 		if(displayed)
-			AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
+			AddZone(zoneBounds, [&]() { PluginManager::TogglePlugin(plugin.name); });
 		if(isSelected)
 			table.Draw(plugin.name, bright);
 		else
@@ -1224,7 +1266,7 @@ void PreferencesPanel::DrawPlugins()
 // Render the named plugin description into the pluginDescriptionBuffer.
 void PreferencesPanel::RenderPluginDescription(const string &pluginName)
 {
-	const Plugin *plugin = Plugins::Get().Find(pluginName);
+	const Plugin *plugin = PluginManager::Get().Find(pluginName);
 	if(plugin)
 		RenderPluginDescription(*plugin);
 	else
@@ -1325,7 +1367,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	{
 		int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
 		Screen::SetZoom(newZoom);
-		if(newZoom > ZOOM_FACTOR_MAX || Screen::Zoom() != newZoom)
+		if(Screen::Zoom() != newZoom)
 		{
 			// Notify the user why setting the zoom any higher isn't permitted.
 			// Only show this if it's not possible to zoom the view at all, as
@@ -1377,6 +1419,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 	else if(str == TURRET_OVERLAYS)
 		Preferences::ToggleTurretOverlays();
+	else if(str == HIGHLIGHT_SHIPS)
+		Preferences::ToggleHighlightShips();
 	else if(str == AUTO_AIM_SETTING)
 		Preferences::ToggleAutoAim();
 	else if(str == AUTO_FIRE_SETTING)
@@ -1421,6 +1465,17 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleMinimapDisplay();
 	else if(str == BLOCK_SCREEN_SAVER)
 		Preferences::ToggleBlockScreenSaver();
+	else if(str == TRIBUTE_CONFIRMATION)
+		Preferences::ToggleTributeConfirmation();
+	else if(str == AMMO_REFILL)
+		Preferences::ToggleAmmoRefill();
+	else if(str == TEXT_ALIGNMENT)
+	{
+		Preferences::ToggleTextAlignment();
+		CustomEvents::SendAdjustText();
+	}
+	else if(str == ASTEROID_TARGETING)
+		Preferences::ToggleTargetAsteroidStrategy();
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
 		Preferences::ToggleTitleBarTheme();
@@ -1497,7 +1552,7 @@ void PreferencesPanel::HandleConfirm()
 		HandleSettingsString(selectedItem, Screen::Dimensions() / 2.);
 		break;
 	case 'p':
-		Plugins::TogglePlugin(selectedPlugin);
+		PluginManager::TogglePlugin(selectedPlugin);
 		break;
 	default:
 		break;

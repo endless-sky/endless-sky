@@ -87,7 +87,8 @@ double UniverseObjects::GetProgress() const
 void UniverseObjects::FinishLoading()
 {
 	for(auto &&it : planets)
-		it.second.FinishLoading(wormholes);
+		if(it.second.IsValid())
+			it.second.FinishLoading(wormholes);
 
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
@@ -97,9 +98,11 @@ void UniverseObjects::FinishLoading()
 
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &&it : ships)
-		it.second.FinishLoading(true);
+		if(it.second.IsValid())
+			it.second.FinishLoading(true);
 	for(auto &&it : persons)
-		it.second.FinishLoading();
+		if(it.second.IsValid())
+			it.second.FinishLoading();
 
 	// Calculate minable values.
 	for(auto &&it : minables)
@@ -341,9 +344,9 @@ void UniverseObjects::CheckReferences()
 	for(auto &it : messages)
 		if(!it.second.IsLoaded())
 			NameAndWarn("message", it);
-	// Persons can be referred to when marking them as destroyed.
+	// Persons can be referred to when marking them as destroyed, or contain invalid ships.
 	for(const auto &it : persons)
-		if(!it.second.IsLoaded())
+		if(!it.second.IsValid())
 			Warn("person", it.first);
 }
 

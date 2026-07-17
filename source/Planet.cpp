@@ -65,7 +65,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 
 	// If this planet has been loaded before, these sets of items should be
 	// reset instead of appending to them:
-	set<string> shouldOverwrite = {"attributes", "description", "spaceport", "port"};
+	set<string> shouldOverwrite = {"attributes", "description", "spaceport", "port", "landscape"};
 
 	for(const DataNode &child : node)
 	{
@@ -119,6 +119,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				shipSales.clear();
 			else if(key == "outfitter")
 				outfitSales.clear();
+			else if(key == "landscape")
+				landscapes.clear();
 			else if(key == "government")
 				government = nullptr;
 			else if(key == "required reputation")
@@ -172,6 +174,58 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 
 		if(key == "port")
 			port.Load(child, playerConditions);
+		else if(key == "landscape" && (hasValue || child.HasChildren()))
+		{
+			if(remove)
+			{
+				if(child.HasChildren())
+					child.PrintTrace("\"remove\" cannot be used with child nodes of \"landscape\":");
+				for(int i = valueIndex; i < child.Size(); ++i)
+					erase_if(landscapes, [&](const auto &choice) { return choice == SpriteSet::Get(child.Token(i)); });
+			}
+			else
+			{
+				for(int i = valueIndex; i < child.Size(); ++i)
+					landscapes.emplace_back(1, SpriteSet::Get(child.Token(i)));
+				for(const DataNode &grand : child)
+				{
+					int weight = grand.Size() > 1 ? grand.Value(1) : 1;
+					landscapes.emplace_back(weight, SpriteSet::Get(grand.Token(0)));
+				}
+			}
+		}
+		else if(key == "tribute hails" && child.HasChildren())
+		{
+			if(remove)
+			{
+				child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
+				continue;
+			}
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() != 2)
+				{
+					grand.PrintTrace("Skipping unrecognized attribute:");
+					continue;
+				}
+				bool removeTributePhrase = grand.Token(0) == "remove";
+				const string &grandKey = grand.Token(remove);
+				if(grandKey == "already paying")
+					tributeAlreadyPaying = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "undefined")
+					tributeUndefined = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "unworthy")
+					tributeUnworthy = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet launching")
+					tributeFleetLaunching = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet undefeated")
+					tributeFleetUndefeated = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "surrendered")
+					tributeSurrendered = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
@@ -209,8 +263,6 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		}
 		else if(key == "display name")
 			displayName = value;
-		else if(key == "landscape")
-			landscape = SpriteSet::Get(value);
 		else if(key == "music")
 			music = value;
 		else if(key == "description")
@@ -265,33 +317,6 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 					dailyTributePenalty = grand.Value(1);
 				else
 					grand.PrintTrace("Skipping unrecognized tribute attribute:");
-			}
-		}
-		else if(key == "tribute hails" && child.HasChildren())
-		{
-			for(const DataNode &grand : child)
-			{
-				if(grand.Size() != 2)
-				{
-					grand.PrintTrace("Skipping unrecognized attribute:");
-					continue;
-				}
-				bool removeTributePhrase = grand.Token(0) == "remove";
-				const string &grandKey = grand.Token(remove);
-				if(grandKey == "already paying")
-					tributeAlreadyPaying = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "undefined")
-					tributeUndefined = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "unworthy")
-					tributeUnworthy = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "fleet launching")
-					tributeFleetLaunching = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "fleet undefeated")
-					tributeFleetUndefeated = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "surrendered")
-					tributeSurrendered = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else
-					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(key == "wormhole")
@@ -375,6 +400,10 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			attributes.erase(AUTO_ATTRIBUTES[i]);
 	}
 
+	// Pick an initial weighted value for landscape.
+	if(!landscapes.empty())
+		landscape = landscapes.Get();
+
 	// Precalculate commonly used values that can only change due to Load().
 	inhabited = (HasServices(false) || requiredReputation || !defenseFleets.empty())
 			&& !attributes.contains("uninhabited");
@@ -450,8 +479,10 @@ const Paragraphs &Planet::Description() const
 
 
 // Get the landscape sprite.
-const Sprite *Planet::Landscape() const
+const Sprite *Planet::Landscape(bool refresh) const
 {
+	if(refresh && landscapes.size() >= 2)
+		landscape = landscapes.Get();
 	return landscape;
 }
 

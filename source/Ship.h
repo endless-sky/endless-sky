@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <list>
 #include <map>
 #include <memory>
+#include <optional>
 #include <set>
 #include <string>
 #include <vector>
@@ -286,6 +287,8 @@ public:
 	// Depending on its "cloaking ..." attributes the ship will be unable to shoot, will not be seen on radar...
 	double Cloaking() const;
 	bool IsCloaked() const;
+	// If this ship is capable of cloaking, make it fully cloaked.
+	void SetCloaked();
 	// The amount of cloaking this ship can do, per frame.
 	double CloakingSpeed() const;
 	// If this ship should be immune to the next damage caused.
@@ -375,6 +378,8 @@ public:
 	// divided by the mass, up to a value of 1.
 	double DragForce() const;
 
+	// How much this ship counts toward the player's fleet capacity.
+	int FleetCost() const;
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
 	int RequiredCrew() const;
@@ -662,6 +667,7 @@ private:
 	// The amount of time in frames that an engine has been on for.
 	std::array<uint8_t, 4> thrustHeldFrames = {};
 
+	std::optional<int> administrativeCost;
 	int crew = 0;
 	int pilotError = 0;
 	int pilotOkay = 0;

@@ -61,6 +61,8 @@ private:
 
 
 private:
+	bool hasFleetCapacity;
+
 	std::vector<const Ship *> list;
 	std::map<const System *, std::map<const Ship *, int>> parkedShips;
 

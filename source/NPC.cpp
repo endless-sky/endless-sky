@@ -341,7 +341,12 @@ void NPC::Save(DataWriter &out) const
 
 string NPC::Validate(bool asTemplate) const
 {
-	// An NPC with no government will take the player's government
+	// An NPC template with no government will take the player's government.
+	if(!asTemplate && !government)
+		return "government (missing)";
+	// If a government is provided, it must be defined.
+	if(government && !government->IsDefined())
+		return "government (undefined)";
 
 	// NPC templates have certain fields to validate that instantiated NPCs do not:
 	if(asTemplate)

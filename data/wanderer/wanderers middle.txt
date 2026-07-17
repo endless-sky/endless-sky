@@ -779,7 +779,7 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "quarg"
 			variant
-				"Quarg Wardragon" 1
+				"Quarg Wardragon" 3
 	npc
 		government "Quarg (Kor Efret)"
 		personality heroic
@@ -787,8 +787,9 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "quarg"
 			variant
-				"Quarg Wardragon"
-				"Quarg Wyvern" 2
+				"Quarg Wardragon" 2
+				"Quarg Wyvern" 3
+				"Quarg Hydra"
 	npc
 		government "Quarg (Kor Efret)"
 		personality heroic
@@ -796,8 +797,7 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "quarg"
 			variant
-				"Quarg Wardragon" 3
-				"Quarg Hydra"
+				"Quarg Hydra" 2
 
 
 

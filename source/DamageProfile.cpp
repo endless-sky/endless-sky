@@ -66,7 +66,7 @@ MinableDamageDealt DamageProfile::CalculateDamage(const Minable &minable) const
 {
 	double scale = Scale(inputScaling, minable, isBlast);
 	return {scale * (weapon.MinableDamage() + weapon.RelativeMinableDamage() * minable.MaxHull()),
-		scale * weapon.Prospecting()};
+		scale * weapon.Prospecting(), scale * weapon.CorrosionDamage()};
 }
 
 
