@@ -1,4 +1,4 @@
-/* StatusEffects.cpp
+/* StatusEffectHandler.cpp
 Copyright (c) 2026 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "StatusEffectHandler.h"
 
-#include "../Outfit.h"
 #include "../Entity.h"
+#include "../Outfit.h"
 #include "../Weapon.h"
 
 #include <cmath>
