@@ -19,7 +19,7 @@ class DataNode;
 
 
 
-// A class representing the the magnitude of various resources
+// A class representing the magnitude of various resources
 // that a ship has, including a ship's HP, energy, heat, fuel, and
 // the amounts of various DoT applied to the ship. Resources can
 // represent the values currently on a ship or the changes to be
