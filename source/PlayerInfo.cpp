@@ -674,7 +674,7 @@ void PlayerInfo::Save() const
 				Save(rootPrevious + "spaceport.txt");
 		}
 	}
-	
+
 	Save(filePath);
 
 	// Save pilot data:
@@ -686,7 +686,8 @@ void PlayerInfo::Save() const
 
 
 
-void PlayerInfo::UpdateLastSafeSave(){
+void PlayerInfo::UpdateLastSafeSave()
+{
 	lastSafeSavePathTracker = filePath;
 }
 
