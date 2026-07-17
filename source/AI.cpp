@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScanType.h"
 #include "Ship.h"
 #include "ship/ShipAICache.h"
+#include "ship/ShipAttributeHandler.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 #include "StellarObject.h"
@@ -176,7 +177,7 @@ namespace {
 	void Deploy(const Ship &ship, bool includingDamaged)
 	{
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.ship && (includingDamaged || bay.ship->Health() > .75) &&
+			if(bay.ship && (includingDamaged || bay.ship->HealthFraction() > .75) &&
 					(!bay.ship->IsYours() || bay.ship->HasDeployOrder()))
 				bay.ship->SetCommands(Command::DEPLOY);
 	}
@@ -281,7 +282,7 @@ namespace {
 			return false;
 
 		// If the ship is full, no refuel.
-		if(ship.Fuel() == 1.)
+		if(ship.FuelFraction() == 1.)
 			return false;
 
 		// If the ship has nowhere to refuel, no refuel.
@@ -290,7 +291,7 @@ namespace {
 			return false;
 
 		// If the ship doesn't have fuel, no refuel.
-		double fuelCapacity = ship.Attributes().Get("fuel capacity");
+		double fuelCapacity = ship.MaxFuel();
 		if(!fuelCapacity)
 			return false;
 
@@ -300,7 +301,7 @@ namespace {
 
 		// Now we know it could refuel. But it could also jump along the route
 		// and refuel later. Calculate if it can reach the next refuel.
-		double fuel = fuelCapacity * ship.Fuel();
+		double fuel = fuelCapacity * ship.FuelFraction();
 		const vector<pair<const System *, int>> costs = route.FuelCosts();
 		for(auto it = costs.rbegin(); it != costs.rend(); ++it)
 		{
@@ -327,7 +328,7 @@ namespace {
 		if(personality.IsStaying())
 			return false;
 
-		const bool lowHealth = ship.Health() < RETREAT_HEALTH + .25 * personality.IsCoward();
+		const bool lowHealth = ship.HealthFraction() < RETREAT_HEALTH + .25 * personality.IsCoward();
 		if(!personality.IsDaring() && lowHealth)
 			return true;
 
@@ -760,7 +761,7 @@ void AI::Step(Command &activeCommands)
 
 		const Government *gov = it->GetGovernment();
 		const Personality &personality = it->GetPersonality();
-		double healthRemaining = it->Health();
+		double healthRemaining = it->HealthFraction();
 		bool isPresent = (it->GetSystem() == playerSystem);
 		bool isStranded = IsStranded(*it);
 		bool thisIsLaunching = (isPresent && HasDeployments(*it));
@@ -781,7 +782,7 @@ void AI::Step(Command &activeCommands)
 				// Avoid jettisoning cargo as soon as this ship is repaired.
 				if(personality.IsAppeasing())
 				{
-					double health = .5 * it->Shields() + it->Hull();
+					double health = .5 * it->ShieldFraction() + it->HullFraction();
 					double &threshold = appeasementThreshold[it.get()];
 					threshold = max((1. - health) + .1, threshold);
 				}
@@ -841,8 +842,8 @@ void AI::Step(Command &activeCommands)
 			// government to this ship, and this ship has scanning capabilities
 			// then it was attempting to scan the target. This isn't a perfect
 			// assumption, but should be good enough for now.
-			bool cargoScan = it->Attributes().Get("cargo scan power");
-			bool outfitScan = it->Attributes().Get("outfit scan power");
+			bool cargoScan = it->AttributeHandler().CargoScanPower();
+			bool outfitScan = it->AttributeHandler().OutfitScanPower();
 			if((cargoScan || outfitScan) && target && !target->IsDisabled()
 				&& !target->GetGovernment()->IsEnemy(gov) && target->GetGovernment() != gov)
 			{
@@ -1203,7 +1204,7 @@ void AI::Step(Command &activeCommands)
 			MoveIndependent(*it, command);
 		else if(parent->GetSystem() != it->GetSystem())
 		{
-			if(personality.IsStaying() || !it->Attributes().Get("fuel capacity"))
+			if(personality.IsStaying() || !it->MaxFuel())
 				MoveIndependent(*it, command);
 			else
 				MoveEscort(*it, command);
@@ -1407,7 +1408,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			if(helper->GetGovernment()->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
 				// Disabled, overheated, or otherwise untargetable ships pose no threat.
-				bool harmless = helper->IsDisabled() || (helper->IsOverheated() && helper->Heat() >= 1.1)
+				bool harmless = helper->IsDisabled() || (helper->IsOverheated() && helper->HeatFraction() >= 1.1)
 						|| !helper->IsTargetable();
 				hasEnemy |= (system == helper->GetSystem() && !harmless);
 				if(hasEnemy)
@@ -1658,10 +1659,10 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		// Targets which have plundered this ship's faction earn extra scorn.
 		range -= 1000 * Has(*foe, gov, ShipEvent::BOARD);
 		// Focus on nearly dead ships.
-		range += 500. * (foe->Shields() + foe->Hull());
+		range += 500. * (foe->ShieldFraction() + foe->HullFraction());
 		// If a target is extremely overheated, focus on ships that can attack back.
 		if(foe->IsOverheated())
-			range += 3000. * (foe->Heat() - .9);
+			range += 3000. * (foe->HeatFraction() - .9);
 		if((isPotentialNemesis && !hasNemesis) || range < closest)
 		{
 			closest = range;
@@ -1708,8 +1709,8 @@ shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
 	// additional minute.
 	int forfeitTime = searchTime + 3600;
 
-	double cargoScan = ship.Attributes().Get("cargo scan power");
-	double outfitScan = ship.Attributes().Get("outfit scan power");
+	double cargoScan = ship.AttributeHandler().CargoScanPower();
+	double outfitScan = ship.AttributeHandler().OutfitScanPower();
 	auto cargoScansIt = cargoScans.find(&ship);
 	auto outfitScansIt = outfitScans.find(&ship);
 	auto scanTimeIt = scanTime.find(&ship);
@@ -2029,8 +2030,8 @@ void AI::MoveIndependent(Ship &ship, Command &command)
 		if(target)
 		{
 			// An AI ship that is targeting a non-hostile ship should scan it, or move on.
-			bool cargoScan = ship.Attributes().Get("cargo scan power");
-			bool outfitScan = ship.Attributes().Get("outfit scan power");
+			bool cargoScan = ship.AttributeHandler().CargoScanPower();
+			bool outfitScan = ship.AttributeHandler().OutfitScanPower();
 			// De-target if the target left my system.
 			if(ship.GetSystem() != target->GetSystem())
 			{
@@ -2175,7 +2176,7 @@ void AI::MoveIndependent(Ship &ship, Command &command)
 				return false;
 			if(!targetStellar->GetPlanet()->CanLand(ship))
 				return false;
-			if(!ship.Attributes().Get("fuel capacity") && !targetStellar->GetPlanet()->IsWormhole())
+			if(!ship.MaxFuel() && !targetStellar->GetPlanet()->IsWormhole())
 				return false;
 			return true;
 		}();
@@ -2211,7 +2212,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 {
 	const Ship &parent = *ship.GetParent();
 	const System *currentSystem = ship.GetSystem();
-	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity");
+	bool hasFuelCapacity = ship.MaxFuel();
 	bool needsFuel = ship.NeedsFuel();
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (currentSystem == parent.GetSystem());
@@ -2246,7 +2247,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 			const Planet *targetPlanet = ship.GetTargetStellar()->GetPlanet();
 			if(!targetPlanet || !targetPlanet->CanLand(ship)
 					|| !ship.GetTargetStellar()->HasSprite()
-					|| (!targetPlanet->IsWormhole() && ship.Fuel() == 1.))
+					|| (!targetPlanet->IsWormhole() && ship.FuelFraction() == 1.))
 				ship.SetTargetStellar(nullptr);
 		}
 
@@ -2273,7 +2274,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 			if(!EscortsReadyToJump(ship))
 				command |= Command::WAIT;
 		}
-		else if(systemHasFuel && ship.Fuel() < 1.)
+		else if(systemHasFuel && ship.FuelFraction() < 1.)
 			// Refuel so that when the parent returns, this ship is ready to rendezvous with it.
 			Refuel(ship, command);
 		else
@@ -2463,7 +2464,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// If a carried ship has repair abilities, avoid having it get stuck oscillating between
 	// retreating and attacking when at exactly 50% health by adding hysteresis to the check.
 	double minHealth = RETREAT_HEALTH + .25 + .25 * !ship.Commands().Has(Command::DEPLOY);
-	if(ship.Health() < minHealth && (!ship.IsYours() || Preferences::Has("Damaged fighters retreat")))
+	if(ship.HealthFraction() < minHealth && (!ship.IsYours() || Preferences::Has("Damaged fighters retreat")))
 		return true;
 
 	// If a fighter is armed with only ammo-using weapons, but no longer has the ammunition
@@ -2491,9 +2492,8 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 
 	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.
-	double maxFuel = ship.Attributes().Get("fuel capacity");
-	if(maxFuel && ship.Fuel() < .005 && parent.JumpNavigation().JumpFuel() < parent.Fuel() *
-			parent.Attributes().Get("fuel capacity") - maxFuel)
+	double maxFuel = ship.MaxFuel();
+	if(maxFuel && ship.FuelFraction() < .005 && parent.JumpNavigation().JumpFuel() < parent.FuelLevel() - maxFuel)
 		return true;
 
 	// NPC ships should always transfer cargo. Player ships should only
@@ -2658,7 +2658,7 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 
 	// If you have a reverse thruster, figure out whether using it is faster
 	// than turning around and using your main thruster.
-	if(ship.Attributes().Get("reverse thrust"))
+	if(ship.AttributeHandler().ReverseThrust())
 	{
 		// Figure out your stopping time using your main engine:
 		double degreesToTurn = TO_DEG * acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
@@ -2704,7 +2704,7 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 void AI::PrepareForHyperspace(const Ship &ship, Command &command)
 {
 	bool hasHyperdrive = ship.JumpNavigation().HasHyperdrive();
-	double scramThreshold = ship.Attributes().Get("scram drive");
+	double scramThreshold = ship.JumpNavigation().ScramThreshold();
 	bool hasJumpDrive = ship.JumpNavigation().HasJumpDrive();
 	if(!hasHyperdrive && !hasJumpDrive)
 		return;
@@ -2754,9 +2754,9 @@ void AI::PrepareForHyperspace(const Ship &ship, Command &command)
 	}
 	// If we're a jump drive, just stop.
 	else if(isJump)
-		Stop(ship, command, ship.Attributes().Get("jump speed"));
+		Stop(ship, command, ship.JumpNavigation().JumpSpeed());
 	// Else stop in the fastest way to end facing in the right direction
-	else if(Stop(ship, command, ship.Attributes().Get("jump speed"), direction))
+	else if(Stop(ship, command, ship.JumpNavigation().JumpSpeed(), direction))
 		command.SetTurn(TurnToward(ship, direction));
 }
 
@@ -2868,11 +2868,11 @@ void AI::KeepStation(const Ship &ship, Command &command, const Body &target)
 
 	// Determine whether to apply thrust.
 	Point drag = ship.Velocity() * ship.DragForce();
-	if(ship.Attributes().Get("reverse thrust"))
+	if(ship.AttributeHandler().ReverseThrust())
 	{
 		// Don't take drag into account when reverse thrusting, because this
 		// estimate of how it will be applied can be quite inaccurate.
-		Point a = (unit * (-ship.Attributes().Get("reverse thrust") / mass)).Unit();
+		Point a = (unit * (-ship.AttributeHandler().ReverseThrust() / mass)).Unit();
 		double direction = positionWeight * positionDelta.Dot(a) / POSITION_DEADBAND
 			+ velocityWeight * velocityDelta.Dot(a) / VELOCITY_DEADBAND;
 		if(direction > THRUST_DEADBAND)
@@ -2996,7 +2996,7 @@ void AI::MoveToAttack(const Ship &ship, Command &command, const Body &target)
 	const auto facing = ship.Facing().Unit().Dot(direction.Unit());
 	// If the ship has reverse thrusters and the target is behind it, we can
 	// use them to reach the target more quickly.
-	if(facing < -.75 && ship.Attributes().Get("reverse thrust"))
+	if(facing < -.75 && ship.AttributeHandler().ReverseThrust())
 		command |= Command::BACK;
 	// Only apply thrust if either:
 	// This ship is within 90 degrees of facing towards its target and far enough away not to overshoot
@@ -3048,24 +3048,10 @@ void AI::PickUp(const Ship &ship, Command &command, const Body &target)
 // energy strain, or undue thermal loads if almost overheated.
 bool AI::ShouldUseAfterburner(const Ship &ship)
 {
-	if(!ship.Attributes().Get("afterburner thrust"))
+	if(!ship.AttributeHandler().AfterburnerThrust())
 		return false;
 
-	double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
-	double neededFuel = ship.Attributes().Get("afterburner fuel");
-	double energy = ship.Energy() * ship.Attributes().Get("energy capacity");
-	double neededEnergy = ship.Attributes().Get("afterburner energy");
-	if(energy == 0.)
-		energy = ship.Attributes().Get("energy generation")
-				+ 0.2 * ship.Attributes().Get("solar collection")
-				- ship.Attributes().Get("energy consumption");
-	double outputHeat = ship.Attributes().Get("afterburner heat") / (100 * ship.Mass());
-	if((!neededFuel || fuel - neededFuel > ship.JumpNavigation().JumpFuel())
-			&& (!neededEnergy || neededEnergy / energy < 0.25)
-			&& (!outputHeat || ship.Heat() + outputHeat < .9))
-		return true;
-
-	return false;
+	return ship.AttributeHandler().ShouldUseAfterburner();
 }
 
 
@@ -3073,7 +3059,7 @@ bool AI::ShouldUseAfterburner(const Ship &ship)
 // "Appeasing" ships will dump cargo after being injured, if they are being targeted.
 void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
 {
-	double health = .5 * ship->Shields() + ship->Hull();
+	double health = .5 * ship->ShieldFraction() + ship->HullFraction();
 	if(1. - health <= *threshold)
 		return;
 
@@ -3191,7 +3177,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target)
 	{
 		// Approach the planet and "land" on it (i.e. scan it).
 		MoveToPlanet(ship, command);
-		double atmosphereScan = ship.Attributes().Get("atmosphere scan");
+		double atmosphereScan = ship.AttributeHandler().AtmosphereScan();
 		double distance = ship.Position().Distance(ship.GetTargetStellar()->Position());
 		if(distance < atmosphereScan && !Random::Int(100))
 			ship.SetTargetStellar(nullptr);
@@ -3201,8 +3187,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target)
 	else if(target)
 	{
 		// Approach and scan the targeted, friendly ship's cargo or outfits.
-		bool cargoScan = ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan power");
+		bool cargoScan = ship.AttributeHandler().CargoScanPower();
+		bool outfitScan = ship.AttributeHandler().OutfitScanPower();
 		// If the pointer to the target ship exists, it is targetable and in-system.
 		const Government *gov = ship.GetGovernment();
 		bool mustScanCargo = cargoScan && !Has(gov, target, ShipEvent::SCAN_CARGO);
@@ -3230,8 +3216,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target)
 		// ships in high spawn rate systems don't build up over time, as they always have
 		// a new ship they can try to scan.
 		vector<Ship *> targetShips;
-		bool cargoScan = ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan power");
+		bool cargoScan = ship.AttributeHandler().CargoScanPower();
+		bool outfitScan = ship.AttributeHandler().OutfitScanPower();
 		auto cargoScansIt = cargoScans.find(&ship);
 		auto outfitScansIt = outfitScans.find(&ship);
 		auto scanTimeIt = scanTime.find(&ship);
@@ -3255,7 +3241,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target)
 
 		// Consider scanning any planetary object in the system, if able.
 		vector<const StellarObject *> targetPlanets;
-		double atmosphereScan = ship.Attributes().Get("atmosphere scan");
+		double atmosphereScan = ship.AttributeHandler().AtmosphereScan();
 		if(atmosphereScan)
 			for(const StellarObject &object : system->Objects())
 				if(object.HasSprite() && !object.IsStar() && !object.IsStation())
@@ -3424,20 +3410,9 @@ bool AI::DoCloak(const Ship &ship, Command &command) const
 	if(!cloakingSpeed)
 		return false;
 	// Never cloak if it will cause you to be stranded.
-	const Outfit &attributes = ship.Attributes();
-	double cloakingFuel = attributes.Get("cloaking fuel");
-	double fuelCost = cloakingFuel
-		+ attributes.Get("fuel consumption") - attributes.Get("fuel generation");
-	if(cloakingFuel && !attributes.Get("ramscoop"))
-	{
-		double fuel = ship.Fuel() * attributes.Get("fuel capacity");
-		int steps = ceil((1. - ship.Cloaking()) / cloakingSpeed);
-		// Only cloak if you will be able to fully cloak and also maintain it
-		// for as long as it will take you to reach full cloak.
-		fuel -= fuelCost * (1 + 2 * steps);
-		if(fuel < ship.JumpNavigation().JumpFuel())
-			return false;
-	}
+	const ShipAttributeHandler &attrHandler = ship.AttributeHandler();
+	if(!attrHandler.HasFuelForCloak())
+		return false;
 
 	// If your parent has chosen to cloak, cloak and rendezvous with them.
 	const shared_ptr<const Ship> &parent = ship.GetParent();
@@ -3483,28 +3458,14 @@ bool AI::DoCloak(const Ship &ship, Command &command) const
 	double hysteresis = ship.Commands().Has(Command::CLOAK) ? .4 : 0.;
 	// If cloaking costs nothing, and no one has asked you for help, cloak at will.
 	// Player ships should never cloak automatically if they are not in danger.
-	bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist() && !ship.IsYours();
+	bool cloakFreely = !attrHandler.CloakFuelCost() && !ship.GetShipToAssist() && !ship.IsYours();
 	// If this ship is injured and can repair those injuries while cloaked,
 	// then it should cloak while under threat.
-	bool canRecoverShieldsCloaked = false;
-	bool canRecoverHullCloaked = false;
-	if(attributes.Get("cloaked regen multiplier") > -1.)
-	{
-		if(attributes.Get("shield generation") > 0.)
-			canRecoverShieldsCloaked = true;
-		else if(attributes.Get("cloaking shield delay") < 1. && attributes.Get("delayed shield generation") > 0.)
-			canRecoverShieldsCloaked = true;
-	}
-	if(attributes.Get("cloaked repair multiplier") > -1.)
-	{
-		if(attributes.Get("hull repair rate") > 0.)
-			canRecoverHullCloaked = true;
-		else if(attributes.Get("cloaking repair delay") < 1. && attributes.Get("delayed hull repair") > 0.)
-			canRecoverHullCloaked = true;
-	}
-	bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
-			&& ((ship.Shields() < 1. && canRecoverShieldsCloaked)
-			|| (ship.Hull() < 1. && canRecoverHullCloaked));
+	bool canRecoverShieldsCloaked = attrHandler.CanRecoverShieldsWhileCloaked();
+	bool canRecoverHullCloaked = attrHandler.CanRecoverHullWhileCloaked();
+	bool cloakToRepair = (ship.HealthFraction() < RETREAT_HEALTH + hysteresis)
+			&& ((ship.ShieldFraction() < 1. && canRecoverShieldsCloaked)
+			|| (ship.HullFraction() < 1. && canRecoverHullCloaked));
 	if(cloakToRepair && (cloakFreely || range < 2000. * (1. + hysteresis)))
 	{
 		command |= Command::CLOAK;
@@ -3667,8 +3628,8 @@ bool AI::DoSecretive(Ship &ship, Command &command) const
 		Point scanningPos = scanningShip->Position();
 		Point pos = ship.Position();
 
-		double cargoDistance = scanningShip->Attributes().Get("cargo scan power");
-		double outfitDistance = scanningShip->Attributes().Get("outfit scan power");
+		double cargoDistance = scanningShip->AttributeHandler().CargoScanPower();
+		double outfitDistance = scanningShip->AttributeHandler().OutfitScanPower();
 
 		double maxScanRange = max(cargoDistance, outfitDistance);
 		double distance = scanningPos.DistanceSquared(pos) * .0001;
@@ -3725,10 +3686,10 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	// The average term's value will be v / 2. So:
 	stopDistance += .5 * v * v / acceleration;
 
-	if(ship.Attributes().Get("reverse thrust"))
+	if(ship.AttributeHandler().ReverseThrust())
 	{
 		// Figure out your reverse thruster stopping distance:
-		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
+		double reverseAcceleration = ship.AttributeHandler().ReverseThrust() / ship.InertialMass();
 		double reverseDistance = v * (180. - degreesToTurn) / turnRate;
 		reverseDistance += .5 * v * v / reverseAcceleration;
 
@@ -3994,7 +3955,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	{
 		// The frugal personality is only active when ships have more than a certain fraction of their total health,
 		// and are not outgunned. The default threshold is 75%.
-		beFrugal = (ship.Health() > GameData::GetGamerules().UniversalFrugalThreshold());
+		beFrugal = (ship.HealthFraction() > GameData::GetGamerules().UniversalFrugalThreshold());
 		if(beFrugal)
 		{
 			auto ait = allyStrength.find(ship.GetGovernment());
@@ -4098,7 +4059,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		// fuel that you cannot leave the system if necessary.
 		if(weapon->FiringFuel())
 		{
-			double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
+			double fuel = ship.FuelLevel();
 			fuel -= weapon->FiringFuel();
 			// If the ship is not ever leaving this system, it does not need to
 			// reserve any fuel.
@@ -4282,7 +4243,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 // on the player's preferences.
 bool AI::TargetMinable(Ship &ship) const
 {
-	double scanRangeMetric = 10000. * ship.Attributes().Get("asteroid scan power");
+	double scanRangeMetric = 10000. * ship.AttributeHandler().AsteroidScanPower();
 	if(!scanRangeMetric)
 		return false;
 	Preferences::TargetAsteroidStrategy strategy = Preferences::GetTargetAsteroidStrategy();
@@ -4823,7 +4784,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		AutoFire(ship, firingCommands, false, true);
 
 	const bool mouseTurning = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
-	if(mouseTurning && !ship.IsBoarding() && (!ship.IsReversing() || ship.Attributes().Get("reverse thrust")))
+	if(mouseTurning && !ship.IsBoarding() && (!ship.IsReversing() || ship.AttributeHandler().ReverseThrust()))
 		command.SetTurn(TurnToward(ship, mousePosition));
 
 	if(activeCommands)
@@ -4834,7 +4795,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			command.SetTurn(activeCommands.Has(Command::RIGHT) - activeCommands.Has(Command::LEFT));
 		if(activeCommands.Has(Command::BACK))
 		{
-			if(!activeCommands.Has(Command::FORWARD) && ship.Attributes().Get("reverse thrust"))
+			if(!activeCommands.Has(Command::FORWARD) && ship.AttributeHandler().ReverseThrust())
 				command |= Command::BACK;
 			else if(!activeCommands.Has(Command::RIGHT | Command::LEFT | Command::AUTOSTEER))
 				command.SetTurn(TurnBackward(ship));
@@ -5337,8 +5298,8 @@ RoutePlan AI::GetRoutePlan(const Ship &ship, const System *targetSystem)
 	// travel through. Find the intersection of all known wormhole required attributes and the attributes
 	// which this ship satisfies.
 	vector<string> wormholeKeys;
-	const auto &shipAttributes = ship.Attributes();
-	for(const auto &requirement : GameData::UniverseWormholeRequirements())
+	const Outfit &shipAttributes = ship.Attributes();
+	for(const string &requirement : GameData::UniverseWormholeRequirements())
 		if(shipAttributes.Get(requirement))
 			wormholeKeys.emplace_back(requirement);
 
