@@ -144,8 +144,6 @@ private:
 	// How much prospecting has been done on this object. Used to increase the
 	// payload drop rate.
 	double prospecting = 0.;
-	// Accrued "corrosion damage" that will affect this asteroid's hull over time.
-	double corrosion = 0.;
 	// Material released when this object is destroyed.
 	std::vector<Payload> payload;
 	std::vector<LiveEffect> liveEffects;

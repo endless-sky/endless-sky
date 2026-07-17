@@ -1979,9 +1979,9 @@ int Ship::Scan(const PlayerInfo &player)
 	// If multiple ships in the player's fleet are scanning a ship, stop scanning if
 	// one of the escorts has already completed as scan.
 	if(!isYours || player.CargoScanFraction(target) < 1.)
-		doScan(cargoScan, cargoSpeed, cargoDistanceSquared, cargo, ShipEvent::SCAN_CARGO);
+		doScan(cargoScan, cargoSpeed, cargoDistanceSquared, cargoDepth, ShipEvent::SCAN_CARGO);
 	if(!isYours || player.OutfitScanFraction(target) < 1.)
-		doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
+		doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfitDepth, ShipEvent::SCAN_OUTFITS);
 
 	// Play the scanning sound if the actor or the target is the player's ship.
 	auto playScanSounds = [](const map<const Sound *, int> &sounds, const Point &position)
@@ -2906,8 +2906,8 @@ void Ship::SetCloaked()
 	const double cloakingHull = attributes.Get("cloaking hull");
 	const double cloakingShield = attributes.Get("cloaking shields");
 	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
-		&& fuel >= cloakingFuel && energy >= cloakingEnergy
-		&& MinimumHull() < hull - cloakingHull && shields >= cloakingShield);
+		&& levels.fuel >= cloakingFuel && levels.energy >= cloakingEnergy
+		&& MinimumHull() < levels.hull - cloakingHull && levels.shields >= cloakingShield);
 
 	if(canCloak)
 		cloak = 1.;

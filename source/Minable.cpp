@@ -288,7 +288,7 @@ void Minable::TakeDamage(const MinableDamageDealt &damage)
 {
 	levels.hull -= damage.hullDamage;
 	prospecting += damage.prospecting;
-	corrosion += damage.corrosion;
+	levels.corrosion += damage.corrosion;
 }
 
 
@@ -310,11 +310,11 @@ double Minable::MaxHeat() const
 // Apply corrosion damage ticks and decrement corrosion.
 void Minable::DoCorrosionDamage(vector<Visual> &visuals)
 {
-	if(!corrosion)
+	if(!levels.corrosion)
 		return;
-	levels.hull -= corrosion;
-	corrosion = max(0., .99 * corrosion);
-	CreateSparks(visuals, "corrosion spark", corrosion * .1);
+	levels.hull -= levels.corrosion;
+	levels.corrosion = max(0., .99 * levels.corrosion);
+	CreateSparks(visuals, "corrosion spark", levels.corrosion * .1);
 }
 
 
