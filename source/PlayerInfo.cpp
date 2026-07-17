@@ -316,6 +316,7 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 	map<string, map<string, int>> missionCargoToDistribute;
 	map<string, map<string, int>> missionPassengersToDistribute;
 
+	lastSafeSavePathTracker = path.string();
 	filePath = path.string();
 	// Strip anything after the "~" from snapshots, so that the file we save
 	// will be the auto-save, not the snapshot.
@@ -673,7 +674,7 @@ void PlayerInfo::Save() const
 				Save(rootPrevious + "spaceport.txt");
 		}
 	}
-
+	
 	Save(filePath);
 
 	// Save pilot data:
@@ -681,6 +682,12 @@ void PlayerInfo::Save() const
 	// Save global conditions:
 	DataWriter globalConditions(Files::Config() / "global conditions.txt");
 	GameData::GlobalConditions().Save(globalConditions);
+}
+
+
+
+void PlayerInfo::UpdateLastSafeSave(){
+	lastSafeSavePathTracker = filePath;
 }
 
 
@@ -4916,34 +4923,9 @@ bool PlayerInfo::RecacheJumpRoutes()
 
 void PlayerInfo::LastSafeSave(string label)
 {
-	if(filePath.length() < 4)
-		return;
-	filesystem::path dirPath = filesystem::path(filePath).remove_filename();
-	filesystem::path newest;
-	filesystem::file_time_type newest_t{};
-	bool found = false;
-
-	// Iterate through all files in path checking for newest timestamp with pilot name.
-	for(const auto &e : filesystem::directory_iterator(dirPath))
-	{
-		if(!e.is_regular_file()) continue;
-		if(e.path().string().find(firstName + " " + lastName) == string::npos) continue;
-		auto t = e.last_write_time();
-		if(!found || t > newest_t)
-		{
-			newest = e.path();
-			newest_t = t;
-			found = true;
-		}
-	}
-
-	// Copy file to last safe save.
-	if(found)
-	{
-		string lastSafeSavePath = filePath.substr(0, filePath.length() - 4) + "~last safe save"
-			+ (label != "" ? " " + label : "") + ".txt";
-		Files::Copy(newest, lastSafeSavePath);
-	}
+	string lastSafeSavePath = filePath.substr(0, filePath.length() - 4) + "~last safe save"
+		+ (label != "" ? " " + label : "") + ".txt";
+	Files::Copy(lastSafeSavePathTracker, lastSafeSavePath);
 }
 
 

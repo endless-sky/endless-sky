@@ -99,6 +99,8 @@ public:
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
+	// Helper function for updating lastSafeSave info.
+	void UpdateLastSafeSave();
 
 	// Get the pilot profile that this player is from.
 	std::shared_ptr<PilotProfile> &Pilot();
@@ -480,6 +482,7 @@ private:
 	std::string originalFirstName;
 	std::string originalLastName;
 	std::string filePath;
+	std::string lastSafeSavePathTracker;
 	std::shared_ptr<PilotProfile> pilot;
 
 	Date date;
