@@ -275,10 +275,10 @@ namespace {
 				cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << ',';
 				cout << 60. * energyConsumed << ',';
 				cout << attributes.Get("energy capacity") << ',';
-				cout << ship.IdleHeat() / max(1., ship.MaximumHeat()) << ',';
+				cout << ship.IdleHeat() / max(1., ship.MaxHeat()) << ',';
 				cout << 60. * heatProduced << ',';
 				// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000 per 60th of a second, so:
-				cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << ',';
+				cout << 60. * ship.HeatDissipation() * ship.MaxHeat() << ',';
 
 				int numTurrets = 0;
 				int numGuns = 0;
