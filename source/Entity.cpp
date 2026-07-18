@@ -382,13 +382,6 @@ void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double 
 
 void Entity::CacheAttributes()
 {
-	capacities.hull = attributes.Get("hull") * (1 + attributes.Get("hull multiplier"));
-	capacities.shields = attributes.Get("shields") * (1 + attributes.Get("shield multiplier"));
-	capacities.energy = attributes.Get("energy capacity");
-	// Heat capacity is dictated by factors other than attributes
-	// and therefore isn't saved here.
-	capacities.fuel = attributes.Get("fuel capacity");
-
 	opticalJamming = attributes.Get("optical jamming");
 	radarJamming = attributes.Get("radar jamming");
 

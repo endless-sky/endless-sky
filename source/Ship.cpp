@@ -3935,6 +3935,20 @@ bool Ship::Imitates(const Ship &other) const
 
 
 
+void Ship::CacheAttributes()
+{
+	capacities.hull = attributes.Get("hull") * (1 + attributes.Get("hull multiplier"));
+	capacities.shields = attributes.Get("shields") * (1 + attributes.Get("shield multiplier"));
+	capacities.energy = attributes.Get("energy capacity");
+	// Heat capacity is dictated by factors other than attributes
+	// and therefore isn't saved here.
+	capacities.fuel = attributes.Get("fuel capacity");
+
+	Entity::CacheAttributes();
+}
+
+
+
 // Check if this ship has been in a different system from the player for so
 // long that it should be "forgotten." Also eliminate ships that have no
 // system set because they just entered a fighter bay. Clear the hyperspace

@@ -97,7 +97,7 @@ public:
 	void Kill();
 	// Clear all status effects.
 	void ClearStatusEffects();
-	// Step all status effects and damage the parent according to any currently accumulated damage over time.
+	// Step all status effects and damage the entity according to any currently accumulated damage over time.
 	void DoStatusEffects(bool disabled = false);
 
 	// Create status spark visuals on the entity based on the current status effect levels.

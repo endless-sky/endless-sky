@@ -535,6 +535,10 @@ public:
 	bool Imitates(const Ship &other) const;
 
 
+protected:
+	virtual void CacheAttributes() override;
+
+
 private:
 	// Various steps of Ship::Move:
 

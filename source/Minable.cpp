@@ -113,6 +113,8 @@ void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions
 		displayName = Format::Capitalize(name);
 	if(noun.empty())
 		noun = "Asteroid";
+	// A minable's attributes can't be changed outside of what is loaded in,
+	// so we can cache certain attribute values and calculations now.
 	CacheAttributes();
 }
 
@@ -214,10 +216,9 @@ void Minable::Place(double energy, double beltRadius)
 	// Add a random amount of hull value to the object.
 	if(!levels.hull)
 		levels.hull = 1000;
-	levels.hull += Random::Real() * randomHull;
+	if(randomHull)
+		levels.hull += Random::Real() * randomHull;
 	capacities.hull = levels.hull;
-
-	CacheAttributes();
 }
 
 
