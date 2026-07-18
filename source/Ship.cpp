@@ -4209,8 +4209,8 @@ void Ship::DoGeneration()
 			&& levels.energy >= disabledRepairEnergy && levels.fuel >= disabledRepairFuel)
 		{
 			ResourceLevels recoveryCost;
-			recoveryCost.energy = attributes.Get("disabled recovery energy");
-			recoveryCost.fuel = attributes.Get("disabled recovery fuel");
+			recoveryCost.energy = disabledRepairEnergy;
+			recoveryCost.fuel = disabledRepairFuel;
 			recoveryCost.heat = attributes.Get("disabled recovery heat");
 			recoveryCost.ionization = attributes.Get("disabled recovery ionization");
 			recoveryCost.scrambling = attributes.Get("disabled recovery scrambling");
@@ -4364,7 +4364,7 @@ void Ship::DoCloakDecision()
 	cloakCost.hull = attributes.Get("cloaking hull");
 	cloakCost.energy = attributes.Get("cloaking energy");
 	cloakCost.fuel = attributes.Get("cloaking fuel");
-	cloakCost.heat += attributes.Get("cloaking heat");
+	cloakCost.heat = attributes.Get("cloaking heat");
 	if(commands.Has(Command::CLOAK) && !isDisabled && cloakingSpeed > 0. && !cloakDisruption
 		&& AvailableResources().CanExpend(cloakCost))
 	{
