@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
+#include "shader/LineShader.h"
 #include "Logger.h"
 #include "MapPanel.h"
 #include "image/Mask.h"
@@ -47,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "NPC.h"
 #include "shader/OutlineShader.h"
 #include "Person.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
@@ -244,6 +246,16 @@ namespace {
 	}
 
 	const double MAX_FUEL_DISPLAY = 3000.;
+
+	const Color &GetGunsightColor(const Ship &ship)
+	{
+		if(ship.IsYours())
+			return *GameData::Colors().Get("gunsight friendly");
+		else if(ship.GetTargetShip() && (ship.GetTargetShip()->IsYours() || ship.GetGovernment()->IsEnemy()))
+			return *GameData::Colors().Get("gunsight hostile");
+		else
+			return *GameData::Colors().Get("gunsight neutral");
+	}
 }
 
 
@@ -1168,6 +1180,41 @@ void Engine::Step(bool isActive)
 			GetMinablePointerColor(true),
 			3
 		});
+
+	gunsights.clear();
+	if(!Preferences::Has("Show gunsights"))
+		return;
+
+	for(shared_ptr<Ship> &ship : ships)
+	{
+		if(ship->GetSystem() != flagship->GetSystem() || ship->IsDestroyed() || ship->IsDisabled()
+			|| !ship->IsTargetable() || ship->Attributes().Get("inscrutable"))
+			continue;
+
+		bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
+
+		if(ship == flagship || isYourTarget)
+		{
+			const Color &gunsightColor = GetGunsightColor(*ship);
+
+			for(const Hardpoint &hardpoint : ship->Weapons())
+				if(hardpoint.GetOutfit() && !hardpoint.IsSpecial() && !hardpoint.IsHoming())
+				{
+					Point gunsightStart = ship->Position() - camera.Center() + (ship->Facing().Rotate(hardpoint.GetPoint()));
+					Angle gunsightAngle = hardpoint.GetAngle() + ship->Facing();
+					double gunsightRange = hardpoint.GetWeapon()->Range();
+					double gunsightSpread = gunsightRange * tan(hardpoint.GetWeapon()->Inaccuracy() * PI / 180);
+
+					gunsights.push_back({
+						gunsightAngle,
+						gunsightStart,
+						gunsightRange,
+						gunsightSpread,
+						gunsightColor
+						});
+				}
+		}
+	}
 }
 
 
@@ -1236,6 +1283,17 @@ void Engine::Draw() const
 
 	draw[currentDrawBuffer].Draw();
 	batchDraw[currentDrawBuffer].Draw();
+
+	const Color &gunsightTipColor = *GameData::Colors().Get("gunsight tip");
+
+	for(const Gunsight &gunsight : gunsights)
+	{
+		Point end1 = gunsight.start + gunsight.angle.Rotate(Point(gunsight.spread, -gunsight.range));
+		Point end2 = gunsight.start + gunsight.angle.Rotate(Point(-gunsight.spread, -gunsight.range));
+
+		LineShader::DrawGradient(gunsight.start * zoom, end1 * zoom, 1., gunsight.color, gunsightTipColor);
+		LineShader::DrawGradient(gunsight.start * zoom, end2 * zoom, 1., gunsight.color, gunsightTipColor);
+	}
 
 	for(const auto &it : statuses)
 	{
