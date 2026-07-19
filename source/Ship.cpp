@@ -3944,6 +3944,25 @@ void Ship::CacheAttributes()
 	// and therefore isn't saved here.
 	capacities.fuel = attributes.Get("fuel capacity");
 
+	// DoT counters do not have capacities.
+
+	if(neverDisabled)
+		minimumHull = 0.;
+	else
+	{
+		double absoluteThreshold = attributes.Get("absolute threshold");
+		if(absoluteThreshold > 0.)
+			minimumHull = absoluteThreshold;
+		else
+		{
+			double thresholdPercent = attributes.Get("threshold percentage");
+			double transition = 1 / (1 + 0.0005 * capacities.hull);
+			minimumHull = capacities.hull * (thresholdPercent > 0.
+				? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
+			minimumHull = max(0., floor(minimumHull + attributes.Get("hull threshold")));
+		}
+	}
+
 	Entity::CacheAttributes();
 }
 
