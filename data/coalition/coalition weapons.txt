@@ -38,7 +38,7 @@ outfit "Bombardment Cannon"
 		"firing heat" 14
 		"shield damage" 22
 		"hull damage" 25
-	description `The Bombardment Cannon was designed during the original war with the Quarg, in order to give Heliarch civilian ships a way to strike Quarg warships from a safe distance. But now, as with all their weapons, its use is limited to Heliarch warships.`
+	description `The Bombardment Cannon was designed during the original war with the Quarg, in order to give Coalition civilian ships a way to strike Quarg warships from a safe distance. But now, as with all their weapons, its use is limited to Heliarch warships.`
 
 outfit "Bombardment Turret"
 	category "Turrets"
