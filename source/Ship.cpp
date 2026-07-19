@@ -807,11 +807,6 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Allocate enough firing bits for this ship.
 	firingCommands.SetHardpoints(armament.Get().size());
 
-	// If this ship is being instantiated for the first time, make sure its
-	// crew, fuel, etc. are all refilled.
-	if(isNewInstance)
-		Recharge();
-
 	// Ensure that all defined bays are of a valid category. Remove and warn about any
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
 	// this ship is crewed (i.e. pressurized).
@@ -864,15 +859,20 @@ void Ship::FinishLoading(bool isNewInstance)
 		Logger::Log(message + warning + outfitNames.str(), Logger::Level::WARNING);
 	}
 
-	// Ships read from a save file may have non-default shields or hull.
-	// Perform a full IsDisabled calculation.
-	isDisabled = true;
-	isDisabled = IsDisabled();
-
 	// Initialize various caches.
 	CacheAttributes();
 	navigation.Calibrate(*this);
 	aiCache.Calibrate(*this);
+
+	// If this ship is being instantiated for the first time, make sure its
+	// crew, fuel, etc. are all refilled.
+	if(isNewInstance)
+		Recharge();
+
+	// Ships read from a save file may have non-default shields or hull.
+	// Perform a full IsDisabled calculation.
+	isDisabled = true;
+	isDisabled = IsDisabled();
 
 	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
 	// applied at this point, any target system that is not accessible should be cleared. Note: this does not

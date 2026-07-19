@@ -280,20 +280,20 @@ void Entity::DoStatusEffects(bool disabled)
 	levels.fuel -= levels.leakage;
 
 	// TODO: Mothership gives status resistance to carried ships?
-	auto DoResistance = [this, &disabled](double &stat, double resistance, const ResourceLevels &cost)
+	auto DoResistance = [this, &disabled](double &status, double resistance, const ResourceLevels &cost)
 	{
-		if(!stat)
+		if(!status)
 			return;
 
 		if(disabled || resistance <= 0.)
 		{
-			stat = max(0., .99 * stat);
+			status = max(0., .99 * status);
 			return;
 		}
 
 		// Calculate how much resistance can be used assuming no
 		// resource cost.
-		resistance = .99 * stat - max(0., .99 * stat - resistance);
+		resistance = .99 * status - max(0., .99 * status - resistance);
 
 		// Limit the resistance by the available resources.
 		if(cost.energy > 0.)
@@ -305,13 +305,13 @@ void Entity::DoStatusEffects(bool disabled)
 
 		if(resistance > 0.)
 		{
-			stat = max(0., .99 * stat - resistance);
+			status = max(0., .99 * status - resistance);
 			levels.energy -= resistance * cost.energy;
 			levels.heat += resistance * cost.heat;
 			levels.fuel -= resistance * cost.fuel;
 		}
 		else
-			stat = max(0., .99 * stat);
+			status = max(0., .99 * status);
 	};
 
 	DoResistance(levels.corrosion, corrosionResistance, corrosionResistCost);
