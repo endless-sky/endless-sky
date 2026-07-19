@@ -843,10 +843,6 @@ void Ship::FinishLoading(bool isNewInstance)
 		attributes.Set("drag", 100.);
 	}
 
-	// Calculate the values used to determine this ship's value and danger.
-	attraction = CalculateAttraction();
-	deterrence = CalculateDeterrence();
-
 	if(!warning.empty())
 	{
 		// This check is mostly useful for variants and stock ships, which have
@@ -868,6 +864,10 @@ void Ship::FinishLoading(bool isNewInstance)
 	// crew, fuel, etc. are all refilled.
 	if(isNewInstance)
 		Recharge();
+
+	// Calculate the values used to determine this ship's value and danger.
+	attraction = CalculateAttraction();
+	deterrence = CalculateDeterrence();
 
 	// Ships read from a save file may have non-default shields or hull.
 	// Perform a full IsDisabled calculation.
