@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Body.h"
+
 #include "RandomEvent.h"
 
 class Hazard;
