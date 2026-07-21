@@ -242,7 +242,7 @@ mission "Avgi: Humans From the Deep"
 	to offer
 		has "Avgi: First Contact: done"
 	on offer
-		log `Met an alien species calling themselves the Avgi. Their home cluster appears infested with hostile ships from some unknown advanced civilization. Made contact with a scout ship and followed it back through a region south of Avgi space called the Tangled Shroud. Met with members of the Avgi government and made an agreement to let you purchase civilian technology.`
+		log `Met an alien species calling themselves the Avgi. Their home cluster appears infested with hostile ships from some unknown advanced civilization. Made contact with a scout ship and followed it back through a region south of Avgi space called the Tangled Shroud. Met with members of the Avgi government and made an agreement to let me purchase civilian technology.`
 		log "Factions" "Avgi" `The Avgi are a young race of aliens resembling large, colorful dragonflies, which inhabit the Twilight Nebula in this part of the galaxy. After an overwhelming invasion by ships they call the Aberrant, most of their surviving spacecraft fled south through a maze-like region called the Tangled Shroud.`
 		log "Factions" "Avgi Consonance" `The exiled Avgi seem to be led by a central government called the Consonance, but there are many who do not recognize this government.`
 		log "People" "Asime" `Asime is one of the three First Speakers of the Consonance Assembly. While reserved, Asime appears to be defensive about the decisions made by the Consonance in response to the Aberrant incursion.`
