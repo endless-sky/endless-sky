@@ -892,7 +892,7 @@ mission "Avgi: Dissonance Outreach"
 				accept
 
 	on accept
-		log `Agreed to transport Hriso to a Dissonance mining station in the Tangled Shroud, while Darius and Sora investigate a lead that could potentially help you escape the Twilight.`
+		log `Agreed to transport Hriso to a Dissonance mining station in the Tangled Shroud, while Darius and Sora investigate a lead that could potentially help me escape the Twilight.`
 
 
 mission "Avgi: Twilight Escape 1"
@@ -983,7 +983,7 @@ mission "Avgi: Twilight Escape 1"
 			`	"Drop me off on Vinci first," interjects Leon. "I need to get my life in order again, and there's someone there I need to talk to about all this. It's on the way to the Deep, anyway."`
 	on complete
 		log `Successfully escaped the Twilight together with the humans stranded there.`
-		log "People" "Leon Shez" `Leon is extremely grateful to you for helping him return to Avgi space. He wants to tell a contact on Vinci about the Avgi, and asks you to stay in touch.`
+		log "People" "Leon Shez" `Leon is extremely grateful to you for helping him return to Human space. He wants to tell a contact on Vinci about the Avgi, and asks you to stay in touch.`
 		clear "avgi: lost in twilight"
 		"reputation: Avgi (Dissonance Angry)" <?= -10
 		conversation
