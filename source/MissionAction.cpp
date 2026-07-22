@@ -215,7 +215,7 @@ string MissionAction::DialogText() const
 
 // Check if this action can be completed right now. It cannot be completed
 // if it takes away money or outfits that the player does not have.
-bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const shared_ptr<Ship> &boardingShip) const
+bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, bool executeWhenLanded, const shared_ptr<Ship> &boardingShip) const
 {
 	if(isFailed && !runsWhenFailed && trigger != "fail")
 		return false;
@@ -229,12 +229,13 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const sha
 		if(it.second > 0)
 			continue;
 
-		// Outfits may always be taken from the flagship. If landed, they may also be taken from
-		// the collective cargo hold of any in-system, non-disabled escorts (player.Cargo()). If
-		// boarding, consider only the flagship's cargo hold. If in-flight, show mission status
-		// by checking the cargo holds of ships that would contribute to player.Cargo if landed.
+		// Outfits may always be taken from the flagship, either installed or in cargo.
+		// If landed, they may also be taken from the player's pooled cargo.
+		// If in-flight, not boarding, and the action is to be executed while landed,
+		// show mission status by checking the cargo holds of ships that would
+		// contribute to pooled cargo if landed.
 		int available = flagship ? flagship->OutfitCount(it.first) : 0;
-		available += boardingShip ? flagship->Cargo().Get(it.first)
+		available += (boardingShip || !executeWhenLanded) ? flagship->Cargo().Get(it.first)
 				: CountInCargo(it.first, player);
 
 		if(available < -it.second)
