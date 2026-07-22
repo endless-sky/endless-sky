@@ -1012,20 +1012,21 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		return false;
 
 	bool isFailed = IsFailed();
+	bool offersInFlight = (location & (Location::ASSISTING | Location::BOARDING | Location::ENTERING | Location::TRANSITION));
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight, boardingShip))
 		return false;
 
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight, boardingShip))
 		return false;
 
 	it = actions.find(DECLINE);
-	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight, boardingShip))
 		return false;
 
 	it = actions.find(DEFER);
-	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight, boardingShip))
 		return false;
 
 	return true;
@@ -1039,12 +1040,13 @@ bool Mission::CanAccept(const PlayerInfo &player) const
 		return false;
 
 	bool isFailed = IsFailed();
+	bool offersInFlight = (location & (Location::ASSISTING | Location::BOARDING | Location::ENTERING | Location::TRANSITION));
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player, isFailed))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight))
 		return false;
 
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player, isFailed))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, offersInFlight))
 		return false;
 	return HasSpace(player);
 }
@@ -1095,7 +1097,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 
 	// Determine if any fines or outfits that must be transferred, can.
 	auto it = actions.find(COMPLETE);
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed()))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(), true))
 		return false;
 
 	// NPCs which must be accompanied or evaded must be present (or not),
@@ -1291,7 +1293,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	}
 
 	// Don't update any further conditions if this action exists and can't be completed.
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(), boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(), player.GetPlanet(), boardingShip))
 		return false;
 
 	if(trigger == ACCEPT)
@@ -1829,7 +1831,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI &ui)
 {
 	const auto eit = onEnter.find(system);
 	const auto originalSize = didEnter.size();
-	if(eit != onEnter.end() && !didEnter.contains(&eit->second) && eit->second.CanBeDone(player, IsFailed()))
+	if(eit != onEnter.end() && !didEnter.contains(&eit->second) && eit->second.CanBeDone(player, IsFailed(), false))
 	{
 		eit->second.Do(player, &ui, this);
 		didEnter.insert(&eit->second);
@@ -1838,7 +1840,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI &ui)
 	// which may use a LocationFilter to govern which systems it can be performed in.
 	else
 		for(MissionAction &action : genericOnEnter)
-			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed()))
+			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed(), false))
 			{
 				action.Do(player, &ui, this);
 				didEnter.insert(&action);
@@ -1854,14 +1856,14 @@ bool Mission::Land(const Planet *planet, PlayerInfo &player, UI &ui)
 {
 	const auto lit = onLand.find(planet);
 	const auto originalSize = didLand.size();
-	if(lit != onLand.end() && !didLand.contains(&lit->second) && lit->second.CanBeDone(player, IsFailed()))
+	if(lit != onLand.end() && !didLand.contains(&lit->second) && lit->second.CanBeDone(player, IsFailed(), true))
 	{
 		lit->second.Do(player, &ui, this);
 		didLand.insert(&lit->second);
 	}
 	else
 		for(MissionAction &action : genericOnLand)
-			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed()))
+			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed(), true))
 			{
 				action.Do(player, &ui, this);
 				didLand.insert(&action);
