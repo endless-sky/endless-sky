@@ -947,7 +947,7 @@ outfit `"Ophrys" Nuclear Torpedo`
 	"mass" 3
 	"ophrys capacity" -1
 	description "The Ophrys is a minimally-guided nuclear torpedo derived from the Orchid Nuclear Missile. Little more than the Orchid's terminal stage with a layer of ablative armor added to the front, it allows even small drones to pose a credible threat to a capital warship."
-	description "	Unlike other nuclear missiles employed by the Avgi, the Ophrys carries only enough propellant to make small adjustments to its trajectory. It instead relies on the speed of the bomber carrying it, trading an independent propulsive capability for enough armor to improve the odds of surviving antimissile fire during its terminal path."
+	description "	Unlike the other nuclear missiles employed by the Avgi, the Ophrys carries only enough propellant to make small adjustments to its trajectory. It instead relies on the speed of the bomber carrying it, trading an independent propulsive capability for enough armor to improve the odds of surviving antimissile fire during its terminal path."
 	description "	The Ophrys Torpedo is ammunition for the External Launch Rail; without an External Launch Rail or Ophrys Stockpile to store them in you cannot purchase or use Ophrys Torpedoes."
 
 
