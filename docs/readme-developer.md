@@ -95,8 +95,9 @@ pkgconf
 ```
 Additionally, if you want to build unit tests:
 ```
-catch2-devel
+catch2-devel libubsan libasan
 ```
+While sufficient versions of other dependencies are available, Fedora 44 does not provide an up to date version of catch2 (3.0 or newer is required), so this will need to be built from source if unit tests are desired. When using Catch2 built from source, the `Catch2_DIR` environment variable must be set to the installation directory of Catch2 during the configuration step below.
 
 </details>
 
