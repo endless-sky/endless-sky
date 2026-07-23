@@ -81,6 +81,12 @@ namespace {
 		{"alert volume", SoundCategory::ALERT}
 	};
 
+	const vector<string> FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS = {
+		"default", "never", "always"
+	};
+	int fastForwardCapsLockSyncIndex = 0;
+
+
 	class OverlaySetting {
 	public:
 		OverlaySetting() = default;
@@ -305,6 +311,8 @@ void Preferences::Load()
 			tributeConfirmationIndex = max<int>(0, min<int>(node.Value(1), TRIBUTE_CONFIRMATION_SETTINGS.size() - 1));
 		else if(key == "Ammo refill")
 			ammoRefillIndex = clamp<int>(node.Value(1), 0, AMMO_REFILL_SETTINGS.size() - 1);
+		else if(key == "Sync FF to CapsLock")
+			fastForwardCapsLockSyncIndex = max<int>(0, min<int>(node.Value(1), FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS.size() - 1));
 		else if(key == "Text alignment")
 			textAlignmentIndex = clamp<int>(node.Value(1), 0, TEXT_ALIGNMENT_SETTINGS.size() - 1);
 		else if(key == "Target asteroid based on")
@@ -395,6 +403,7 @@ void Preferences::Save()
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("Sync FF to CapsLock", fastForwardCapsLockSyncIndex);
 	out.Write("camera acceleration", cameraAccelerationIndex);
 	out.Write("date format", dateFormatIndex);
 	out.Write("notification settings", notifOptionsIndex);
@@ -707,6 +716,19 @@ const string &Preferences::VSyncSetting()
 	return VSYNC_SETTINGS[vsyncIndex];
 }
 
+
+
+Preferences::FastForwardCapsLockSync Preferences::GetFastForwardCapsLockSync()
+{
+	return static_cast<FastForwardCapsLockSync>(fastForwardCapsLockSyncIndex);
+}
+
+
+
+const string &Preferences::FastForwardCapsLockSyncSetting()
+{
+	return FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS[fastForwardCapsLockSyncIndex];
+}
 
 
 void Preferences::ToggleCameraAcceleration()
@@ -1059,6 +1081,13 @@ Preferences::AmmoRefill Preferences::GetAmmoRefill()
 const std::string &Preferences::AmmoRefillSetting()
 {
 	return AMMO_REFILL_SETTINGS[ammoRefillIndex];
+}
+
+
+
+void Preferences::ToggleFastForwardCapsLockSync()
+{
+	fastForwardCapsLockSyncIndex = (fastForwardCapsLockSyncIndex + 1) % FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS.size();
 }
 
 

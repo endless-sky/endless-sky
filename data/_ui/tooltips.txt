@@ -1662,6 +1662,9 @@ tip "Confirm selling outfits"
 tip "Confirm selling minables"
 	`In the Trading panel, controls whether or not to confirm sales of minables, specials and other flotsam that may have been picked up.`
 
+tip "Sync FF to CapsLock"
+	`Whether fast-forward should be in sync with the state of CapsLock on the system. The default setting keeps them in sync if the fast-forward key is CapsLock.`
+
 tip "Landing zoom"
 	`Apply a cinematic zoom in and out when you are landing and taking off.`
 

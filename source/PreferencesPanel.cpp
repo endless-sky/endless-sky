@@ -96,6 +96,7 @@ namespace {
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 	const string TRIBUTE_CONFIRMATION = "Tribute confirmation";
 	const string AMMO_REFILL = "Auto refill ammo";
+	const string FASTFORWARD_CAPSLOCK_SYNC = "Sync FF to CapsLock";
 	const string TEXT_ALIGNMENT = "Text alignment";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
@@ -680,8 +681,10 @@ void PreferencesPanel::DrawControls()
 		{
 			int index = zones.size();
 			// Mark conflicts.
-			bool isConflicted = command.HasConflict();
-			bool isEmpty = !command.HasBinding();
+			bool isFastForwardSyncToCapsLock = command.Has(Command::FASTFORWARD)
+				&& Preferences::GetFastForwardCapsLockSync() == Preferences::FastForwardCapsLockSync::ALWAYS;
+			bool isConflicted = command.HasConflict() && !isFastForwardSyncToCapsLock;
+			bool isEmpty = !command.HasBinding() && !isFastForwardSyncToCapsLock;
 			bool isEditing = (index == editing);
 			if(isConflicted || isEditing || isEmpty)
 			{
@@ -708,8 +711,11 @@ void PreferencesPanel::DrawControls()
 
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
-			table.Draw(command.Description(), medium);
-			table.Draw(command.KeyName(), isEditing ? bright : medium);
+			const Color &keyColor = isFastForwardSyncToCapsLock ? dim : medium;
+			const Color &descColor = isFastForwardSyncToCapsLock ? dim : medium;
+
+			table.Draw(command.Description(), descColor);
+			table.Draw(command.KeyName(), isEditing ? bright : keyColor);
 		}
 	}
 }
@@ -826,6 +832,7 @@ void PreferencesPanel::DrawSettings()
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
+		FASTFORWARD_CAPSLOCK_SYNC,
 		"Landing zoom",
 		SCROLL_SPEED,
 		TOOLTIP_ACTIVATION,
@@ -1096,6 +1103,15 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::NEVER;
 			text = Preferences::AmmoRefillSetting();
+		}
+		else if(setting == FASTFORWARD_CAPSLOCK_SYNC)
+		{
+			const Preferences::FastForwardCapsLockSync fastForwardCapsLockSyncPreference
+				= Preferences::GetFastForwardCapsLockSync();
+			isOn = fastForwardCapsLockSyncPreference == Preferences::FastForwardCapsLockSync::ALWAYS
+				|| (fastForwardCapsLockSyncPreference == Preferences::FastForwardCapsLockSync::DEFAULT
+					&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
+			text = Preferences::FastForwardCapsLockSyncSetting();
 		}
 		else if(setting == TEXT_ALIGNMENT)
 		{
@@ -1469,6 +1485,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleTributeConfirmation();
 	else if(str == AMMO_REFILL)
 		Preferences::ToggleAmmoRefill();
+	else if(str == FASTFORWARD_CAPSLOCK_SYNC)
+		Preferences::ToggleFastForwardCapsLockSync();
 	else if(str == TEXT_ALIGNMENT)
 	{
 		Preferences::ToggleTextAlignment();
