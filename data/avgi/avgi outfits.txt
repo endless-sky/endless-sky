@@ -249,7 +249,7 @@ outfit "Lantern Fission Core"
 	"energy generation" 6
 	"heat generation" 48
 	"overheat damage rate" 3
-	description "While most Avgi starships either use solar arrays or tap energy from their torch drives, sometimes a more consistent power source is desirable. The Lantern is a compact electrostatic gas core fission reactor, which supplies a stable, reliable flow of power to even smaller ships. With uranium plasma intermixed with hydrogen gas, an applied voltage keeps the ionized uranium fuel contained in the reactor core while the superheated hydrogen is allowed to flow through a compact magnetohydrodynamic generator. The high temperatures involved allow the reactor to achieve a surprisingly high thermodynamic efficiency for its size, at the cost of producing significant amounts of waste heat."
+	description "While most Avgi starships either use solar arrays or tap energy from their torch drives, sometimes a more consistent power source is desirable. The Lantern is a compact electrostatic gas core fission reactor, which supplies a stable, reliable flow of power to even larger ships. With uranium plasma intermixed with hydrogen gas, an applied voltage keeps the ionized uranium fuel contained in the reactor core while the superheated hydrogen is allowed to flow through a compact magnetohydrodynamic generator. The high temperatures involved allow the reactor to achieve a surprisingly high thermodynamic efficiency for its size, at the cost of producing significant amounts of waste heat."
 	description "	Run at the very edge of its thermal limits, the Lantern does not tolerate overheating of its coolant loop, which can cause catastrophic damage if sustained."
 
 
