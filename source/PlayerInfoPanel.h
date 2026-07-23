@@ -45,6 +45,18 @@ public:
 	// The player info panel allow fast-forward to stay active.
 	bool AllowsFastForward() const noexcept final;
 
+	class SortableColumn {
+	public:
+		SortableColumn(std::string name, std::string checkboxLabel, Layout layout, InfoPanelState::ShipComparator *shipSort);
+
+		const std::string &Tooltip() const;
+
+		std::string name;
+		std::string checkboxLabel;
+		Layout layout;
+		InfoPanelState::ShipComparator *shipSort = nullptr;
+	};
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -70,26 +82,16 @@ private:
 
 	void SortShips(InfoPanelState::ShipComparator *shipComparator);
 
-	class SortableColumn {
-	public:
-		SortableColumn(std::string name, double offset, double endX, Layout layout, InfoPanelState::ShipComparator *shipSort);
-
-		std::string name;
-		double offset = 0.;
-		double endX = 0.;
-		Layout layout;
-		InfoPanelState::ShipComparator *shipSort = nullptr;
-	};
 
 private:
 	PlayerInfo &player;
 
-	static const SortableColumn columns[];
+	static const std::vector<SortableColumn> columns;
 
 	InfoPanelState panelState;
 
 	// Column headers that sort ships when clicked.
-	std::vector<ClickZone<InfoPanelState::ShipComparator *>> menuZones;
+	std::vector<ClickZone<const SortableColumn *>> menuZones;
 
 	// Keep track of which ship the mouse is hovering over.
 	int hoverIndex = -1;
