@@ -215,7 +215,8 @@ string MissionAction::DialogText() const
 
 // Check if this action can be completed right now. It cannot be completed
 // if it takes away money or outfits that the player does not have.
-bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, bool executeWhenLanded, const shared_ptr<Ship> &boardingShip) const
+bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed,
+	bool executeWhenLanded, const shared_ptr<Ship> &boardingShip) const
 {
 	if(isFailed && !runsWhenFailed && trigger != "fail")
 		return false;

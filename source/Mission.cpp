@@ -111,6 +111,15 @@ namespace {
 				return "unknown trigger";
 		}
 	}
+
+	bool LocationInFlight(Mission::Location location)
+	{
+		return location & (
+			Mission::Location::ASSISTING |
+			Mission::Location::BOARDING |
+			Mission::Location::ENTERING |
+			Mission::Location::TRANSITION);
+	}
 }
 
 
@@ -1012,7 +1021,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		return false;
 
 	bool isFailed = IsFailed();
-	bool offersInFlight = (location & (Location::ASSISTING | Location::BOARDING | Location::ENTERING | Location::TRANSITION));
+	bool offersInFlight = LocationInFlight(location);
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight, boardingShip))
 		return false;
@@ -1040,7 +1049,7 @@ bool Mission::CanAccept(const PlayerInfo &player) const
 		return false;
 
 	bool isFailed = IsFailed();
-	bool offersInFlight = (location & (Location::ASSISTING | Location::BOARDING | Location::ENTERING | Location::TRANSITION));
+	bool offersInFlight = LocationInFlight(location);
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight))
 		return false;
