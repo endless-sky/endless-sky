@@ -1271,6 +1271,12 @@ const string &Ship::Noun() const
 // Get this ship's description.
 string Ship::Description() const
 {
+	if(description.IsEmpty())
+	{
+		const Ship *model = GameData::Ships().Find(trueModelName);
+		if(model)
+			return model->description.ToString();
+	}
 	return description.ToString();
 }
 
