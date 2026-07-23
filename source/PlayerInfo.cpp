@@ -4523,30 +4523,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
-	// This condition matches the behaviour of the "require <outfit> <count>" mission trigger child.
-	conditions["outfit (require): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
-		if(!flagship)
-			return 0;
-		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
-		if(!outfit)
-			return 0;
-		int64_t retVal = 0;
-		retVal += flagship->OutfitCount(outfit);
-		if(planet)
-			retVal += cargo.Get(outfit);
-		else
-		{
-			for(const auto &ship : ships)
-			{
-				if(ship->IsDisabled() || ship->IsParked())
-					continue;
-				if(ship->GetActualSystem() == system)
-					retVal += ship->Cargo().Get(outfit);
-			}
-		}
-		return retVal;
-	});
-
 	// This condition corresponds to the method by which the flagship entered the current system.
 	conditions["entered system by: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		return !ce.NameWithoutPrefix().compare(EntryToString(entry)); });
