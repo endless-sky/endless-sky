@@ -1580,12 +1580,19 @@ government "People's Houses (Hostile)"
 
 color "governments: Pirate" .78 0. 0.
 
+color "governments: Northern Anarchist" .56 0. 0.15
+
+color "governments: True Anarchist" .74 0.2 0.2
+
 government "Pirate"
 	swizzle 6
 	color "governments: Pirate"
 	
 	"player reputation" -10
 	"attitude toward"
+		"Pirate Heimdall" 10
+		"Northern Anarchist" 10
+		"True Anarchist" 10
 		"Author" -.01
 		"Bounty" 1.
 		"Bounty (Disguised)" 1.
@@ -1625,6 +1632,64 @@ government "Pirate (Rival)"
 	"hostile hail" "hostile pirate"
 	"hostile disabled hail" "hostile disabled pirate"
 	"ship bribe rejection hail" "ship bribe rejection"
+	raid "pirate raid"
+
+government "Northern Anarchist"
+	"display name" "Pirate"
+	swizzle 6
+	color "governments: Pirate"
+	
+	"player reputation" -10
+	"attitude toward"
+		"Pirate" 10
+		"Pirate Heimdall" 10
+		"True Anarchist" 10
+		"Author" -.01
+		"Korath" -.01
+		"Merchant" -.01
+		"Syndicate" -.01
+		"Deep Security" -.01
+		"Free Worlds" -.01
+		"Militia" -.01
+		"Navy Intelligence" -.01
+		"Republic" -.01
+		"Syndicate" -.01
+		"Uninhabited" -.01
+	"bribe" .01
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled pirate"
+	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled pirate"
+	raid "pirate raid"
+
+government "True Anarchist"
+	"display name" "Pirate"
+	swizzle 6
+	color "governments: Pirate"
+	
+	"player reputation" -10
+	"attitude toward"
+		"Pirate" 10
+		"Pirate Heimdall" 10
+		"Northern Anarchist" 10
+		"Author" -.01
+		"Korath" -.01
+		"Merchant" -.01
+		"Syndicate" -.01
+		"Deep Security" -.01
+		"Free Worlds" -.01
+		"Militia" -.01
+		"Navy Intelligence" -.01
+		"Republic" -.01
+		"Syndicate" -.01
+		"Uninhabited" -.01
+	"bribe" .01
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled pirate"
+	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled pirate"
 	raid "pirate raid"
 
 government "Predecessor"
@@ -2215,3 +2280,56 @@ government "Wormhole Alpha"
 		"Hai Merchant (Sympathizers)" -.01
 		"Hai Merchant (Human)" -.01
 		"Hai (Unfettered)" -.01
+
+government "Pirate Heimdall"
+	swizzle 6
+	color "governments: Pirate"
+	"default attitude" -.01
+	"player reputation" -10
+	"attitude toward"
+		"Pirate" 2
+		"Pirate (Merchant)" 2
+		"Northern Anarchist" 2
+		"True Anarchist" 2
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled pirate"
+	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled pirate"
+
+government "Northern Anarchist"
+	"display name" "Pirate"
+	swizzle 6
+	color "governments: Pirate"
+	"default attitude" -.01
+	"player reputation" -10
+	"attitude toward"
+		"Pirate" 2
+		"Pirate Heimdall" 2
+		"Pirate (Merchant)" 2
+		"True Anarchist" 2
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled pirate"
+	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled pirate"
+
+government "True Anarchist"
+	"display name" "Pirate"
+	swizzle 6
+	color "governments: Pirate"
+	"default attitude" -.01
+	"player reputation" -10
+	"attitude toward"
+		"Pirate" 2
+		"Pirate Heimdall" 2
+		"Pirate (Merchant)" 2
+		"Northern Anarchist" 2
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled pirate"
+	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled pirate"
