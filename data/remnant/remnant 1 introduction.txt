@@ -1737,8 +1737,8 @@ mission "Remnant: Heavy Laser"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
+		has "outfit: Heavy Laser"
 	on offer
-		require "Heavy Laser"
 		conversation
 			`You remember that Taely was interested in seeing examples of technology from human space. Would you like to show her your Heavy Laser?`
 			choice
@@ -1780,8 +1780,8 @@ mission "Remnant: Plasma Cannon"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
+		has "outfit: Plasma Cannon"
 	on offer
-		require "Plasma Cannon"
 		conversation
 			`You recall that Taely was interested in examining examples of technology from ancestral space. Would you like to show her the Plasma Cannons you retrieved?`
 			choice
@@ -1830,8 +1830,8 @@ mission "Remnant: Catalytic Ramscoop"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
+		has "outfit: Catalytic Ramscoop"
 	on offer
-		require "Catalytic Ramscoop"
 		conversation
 			`You recall that Taely was interested in seeing examples of new human technology, and the Catalytic Ramscoop definitely fits the criteria. Would you like to show her?`
 			choice
@@ -1871,8 +1871,8 @@ mission "Remnant: Electron Beam"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
+		has "outfit: Electron Beam"
 	on offer
-		require "Electron Beam"
 		conversation
 			`You recall that Taely was interested in seeing examples of new human technology, and the electron beam certainly fits the criteria. Would you like to show her?`
 			choice
@@ -1912,8 +1912,8 @@ mission "Remnant: D94-YV Shield Generator"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
+		has "outfit: D94-YV Shield Generator"
 	on offer
-		require "D94-YV Shield Generator"
 		conversation
 			`You know that Taely was interested in seeing examples of recently developed human technology, and the D94-YV Shield Generator probably fits the criteria. Would you like to show her?`
 			choice
@@ -1953,8 +1953,8 @@ mission "Remnant: S-970 Regenerator"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
+		has "outfit: S-970 Regenerator"
 	on offer
-		require "S-970 Regenerator"
 		conversation
 			`You recall that Taely was interested in seeing instances of new human technology, and the S-970 Regenerator is definitely a recent development. Would you like to show her?`
 			choice
