@@ -158,6 +158,22 @@ void FleetCargo::LoadSingle(const DataNode &node)
 		for(int i = 1; i < node.Size(); ++i)
 			outfitters.insert(GameData::Outfitters().Get(node.Token(i)));
 	}
+	else if(key == "amount")
+	{
+		if(node.Token(1) == "full")
+			minAmount = std::numeric_limits<int>::max();
+		else
+			minAmount = static_cast<int>(node.Value(1));
+		if(node.Size() < 3)
+			maxAmount = minAmount;
+		else
+		{
+			if(node.Token(1) == "full")
+				maxAmount = std::numeric_limits<int>::max();
+			else
+				maxAmount = static_cast<int>(node.Value(2));
+		}
+	}
 	else
 		node.PrintTrace("Skipping unrecognized attribute:");
 }
@@ -174,35 +190,45 @@ void FleetCargo::SetCargo(Ship *ship) const
 {
 	const bool canChooseOutfits = commodities.empty() || !outfitters.empty();
 	const bool canChooseCommodities = outfitters.empty() || !commodities.empty();
+
+	// If a maximum amount is provided, treat that as the available free space
+	int free = std::min(ship->Cargo().Free(), maxAmount);
+	int current = 0;
 	// Populate the possible outfits that may be chosen.
-	int free = ship->Cargo().Free();
 	auto outfits = OutfitChoices(outfitters, ship->GetSystem(), free);
-
-	// Choose random outfits or commodities to transport.
-	for(int i = 0; i < cargo; ++i)
-	{
-		if(free <= 0)
-			break;
-		// Remove any outfits that do not fit into remaining cargo.
-		if(canChooseOutfits && !outfits.empty())
-			outfits.erase(remove_if(outfits.begin(), outfits.end(),
-					[&free](const Outfit *a) { return a->Mass() > free; }),
-				outfits.end());
-
-		if(canChooseCommodities && canChooseOutfits)
+	do {
+		// Choose random outfits or commodities to transport.
+		for(int i = 0; i < cargo; ++i)
 		{
-			if(Random::Real() < .8)
+			if(free <= 0)
+				break;
+			// Remove any outfits that do not fit into remaining cargo.
+			if(canChooseOutfits && !outfits.empty())
+				outfits.erase(remove_if(outfits.begin(), outfits.end(),
+					[&free](const Outfit *a) { return a->Mass() > free; }),
+					outfits.end());
+
+			if(canChooseCommodities && canChooseOutfits)
+			{
+				if(Random::Real() < .8)
+					AddRandomCommodity(*ship, free, commodities);
+				else
+					AddRandomOutfit(*ship, free, outfits);
+			}
+			else if(canChooseCommodities)
 				AddRandomCommodity(*ship, free, commodities);
 			else
 				AddRandomOutfit(*ship, free, outfits);
-		}
-		else if(canChooseCommodities)
-			AddRandomCommodity(*ship, free, commodities);
-		else
-			AddRandomOutfit(*ship, free, outfits);
 
-		free = ship->Cargo().Free();
-	}
+			int previous = free;
+			free = ship->Cargo().Free();
+			current += (previous - free);
+		}
+	// Repeat adding cargo until the minimum amount is reached, or it is not possible to add any more.
+	} while(cargo > 0 && free > 0 &&
+				current <= minAmount &&
+				(canChooseCommodities || outfits.size() > 0));
+
 	int extraCrew = ship->Attributes().Get("bunks") - ship->RequiredCrew();
 	if(extraCrew > 0)
 		ship->AddCrew(Random::Int(extraCrew + 1));
