@@ -2356,7 +2356,7 @@ bool Ship::IsDisabled() const
 
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
-	return (hull < minimumHull || (!crew && needsCrew));
+	return (hull < minimumHull || (!crew && needsCrew) || NeedsEnergy());
 }
 
 
@@ -2752,7 +2752,8 @@ double Ship::TransferFuel(double amount, Ship *to)
 
 double Ship::TransferEnergy(double amount, Ship *to)
 {
-	amount = max(energy - attributes.Get("energy capacity"), amount);
+	// Do not give more energy than the ships current energy reserves.
+	amount = min(energy, amount);
 	if(to)
 	{
 		amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
@@ -3019,8 +3020,24 @@ bool Ship::NeedsFuel(bool followParent) const
 
 bool Ship::NeedsEnergy() const
 {
-	return attributes.Get("energy capacity") && !energy && !attributes.Get("energy generation")
-			&& !attributes.Get("fuel energy") && !attributes.Get("solar collection");
+	// If ship has no energy capacity it does not need energy
+	if(!attributes.Get("energy capacity"))
+		return false;
+
+	// If ship has energy, it does not need energy.
+	if(energy > (attributes.Get("energy capacity") * .01))
+		return false;
+
+	// If ship can regenerate energy it does not need energy.
+	// A ship is considered to be unable to regenerate if it is generating less than 1 energy per second.
+	System::SolarGeneration generation = currentSystem->GetSolarGeneration(position,
+		attributes.Get("ramscoop"), attributes.Get("solar collection"), attributes.Get("solar heat"));
+	if((attributes.Get("energy generation") + attributes.Get("fuel energy")
+		+ generation.energy - attributes.Get("energy consumption")) > 0.016)
+		return false;
+
+	// This ship definitely needs energy
+	return true;
 }
 
 
