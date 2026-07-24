@@ -26,10 +26,26 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #endif
 #endif
 
+#if defined(__APPLE__) || defined(ES_GLES)
+#define glBindFramebufferEXT glBindFramebuffer
+#define glCheckFramebufferStatusEXT glCheckFramebufferStatus
+#define glDeleteFramebuffersEXT glDeleteFramebuffers
+#define glFramebufferTexture2DEXT glFramebufferTexture2D
+#define glGenFramebuffersEXT glGenFramebuffers
+#endif
+
 
 
 // A helper class for various OpenGL platform specific calls.
 class OpenGL {
+public:
+	enum class FeatureSupport {
+		NONE = 0,
+		EXT,
+		CORE
+	};
+
+
 public:
 #ifndef ES_GLES
 	static void DisableOpenGL3();
@@ -39,4 +55,5 @@ public:
 	static bool HasVaoSupport();
 	static bool HasTexture2DArraySupport();
 	static bool HasClearBufferSupport();
+	static FeatureSupport GetFboSupport();
 };
