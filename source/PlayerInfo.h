@@ -99,6 +99,8 @@ public:
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
+	// Helper function for updating lastSafeSave info.
+	void UpdateLastSafeSave();
 
 	// Get the pilot profile that this player is from.
 	std::shared_ptr<PilotProfile> &Pilot();
@@ -440,7 +442,8 @@ private:
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
 	void StepMissions(UI &ui);
-	void Autosave() const;
+	void Autosave(std::string label) const;
+	void LastSafeSave(std::string label);
 	void Save(const std::string &path) const;
 	void Save(DataWriter &out) const;
 
@@ -479,6 +482,7 @@ private:
 	std::string originalFirstName;
 	std::string originalLastName;
 	std::string filePath;
+	std::string lastSafeSavePathTracker;
 	std::shared_ptr<PilotProfile> pilot;
 
 	Date date;
