@@ -769,7 +769,7 @@ void Engine::Step(bool isActive)
 
 	// Clear the HUD information from the previous frame.
 	info = Information();
-	if(flagship && flagship->Hull())
+	if(flagship && flagship->HullFraction())
 	{
 		Point shipFacingUnit(0., -1.);
 		if(Preferences::Has("Rotate flagship in HUD"))
@@ -805,15 +805,15 @@ void Engine::Step(bool isActive)
 			else if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
 				info.SetCondition("red alert");
 		}
-		double fuelCap = flagship->Attributes().Get("fuel capacity");
+		double fuelCap = flagship->MaxFuel();
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every 100 units of fuel.
 		if(fuelCap <= MAX_FUEL_DISPLAY)
-			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
+			info.SetBar("fuel", flagship->FuelFraction(), fuelCap * .01);
 		else
-			info.SetBar("fuel", flagship->Fuel());
-		info.SetBar("energy", flagship->Energy());
-		double heat = flagship->Heat();
+			info.SetBar("fuel", flagship->FuelFraction());
+		info.SetBar("energy", flagship->EnergyFraction());
+		double heat = flagship->HeatFraction();
 		info.SetBar("heat", min(1., heat));
 		// If heat is above 100%, draw a second overlaid bar to indicate the
 		// total heat level.
@@ -821,9 +821,9 @@ void Engine::Step(bool isActive)
 			info.SetBar("overheat", min(1., heat - 1.));
 		if(wasActive && flagship->IsOverheated() && (uiStep / 20) % 2)
 			info.SetBar("overheat blink", min(1., heat));
-		info.SetBar("shields", flagship->Shields());
-		info.SetBar("hull", flagship->Hull(), 20.);
-		info.SetBar("disabled hull", min(flagship->Hull(), flagship->DisabledHull()), 20.);
+		info.SetBar("shields", flagship->ShieldFraction());
+		info.SetBar("hull", flagship->HullFraction(), 20.);
+		info.SetBar("disabled hull", min(flagship->HullFraction(), flagship->DisabledHullFraction()), 20.);
 	}
 	info.SetString("credits",
 		Format::CreditString(player.Accounts().Credits()));
@@ -900,7 +900,7 @@ void Engine::Step(bool isActive)
 			info.SetString("target range", to_string(targetRange));
 		}
 		if(options & ScanType::TACTICAL || options & ScanType::STRATEGIC)
-			info.SetBar("target hull", targetAsteroid->Hull(), 20.);
+			info.SetBar("target hull", targetAsteroid->HullFraction(), 20.);
 	}
 	else
 	{
@@ -929,9 +929,9 @@ void Engine::Step(bool isActive)
 
 		if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
 		{
-			info.SetBar("target shields", target->Shields());
-			info.SetBar("target hull", target->Hull(), 20.);
-			info.SetBar("target disabled hull", min(target->Hull(), target->DisabledHull()), 20.);
+			info.SetBar("target shields", target->ShieldFraction());
+			info.SetBar("target hull", target->HullFraction(), 20.);
+			info.SetBar("target disabled hull", min(target->HullFraction(), target->DisabledHullFraction()), 20.);
 
 			// The target area will be a square, with sides proportional to the average
 			// of the width and the height of the sprite.
@@ -987,19 +987,19 @@ void Engine::Step(bool isActive)
 			if(hasEnergy && (scrutable || target->IsYours()))
 			{
 				info.SetCondition("target energy display");
-				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
+				int energy = round(target->EnergyLevel());
 				info.SetString("target energy", to_string(energy));
 			}
 			if(hasFuel && (scrutable || target->IsYours()))
 			{
 				info.SetCondition("target fuel display");
-				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
+				int fuel = round(target->FuelLevel());
 				info.SetString("target fuel", to_string(fuel));
 			}
 			if(hasThermal && (scrutable || target->IsYours()))
 			{
 				info.SetCondition("target thermal display");
-				info.SetString("target heat", Format::Percentage(target->Heat(), 0));
+				info.SetString("target heat", Format::Percentage(target->HeatFraction(), 0));
 			}
 			if(hasWeapon && (scrutable || target->IsYours()))
 			{
@@ -2463,14 +2463,14 @@ void Engine::DoCollisions(Projectile &projectile)
 		// "Phasing" projectiles that have a target will never hit any other ship.
 		// They also don't care whether the weapon has "no ship collisions" on, as
 		// otherwise a phasing projectile would never hit anything.
-		shared_ptr<Body> target = projectile.TargetPtr();
+		shared_ptr<Entity> target = projectile.TargetPtr();
 		if(target)
 		{
 			Point offset = projectile.Position() - target->Position();
 			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
 			if(range < 1.)
 				collisions.emplace_back(target.get(),
-					projectile.IsTargetingShip() ? CollisionType::SHIP : CollisionType::MINABLE, range);
+					target->EntityType() == Entity::Type::SHIP ? CollisionType::SHIP : CollisionType::MINABLE, range);
 		}
 	}
 	else
@@ -3000,11 +3000,11 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		if(ship->GetGovernment() == attacker && ship->GetTargetShip() == target)
 		{
 			++attackerCount;
-			attackerStrength += (ship->Shields() + ship->Hull()) * ship->Strength();
+			attackerStrength += (ship->ShieldFraction() + ship->HullFraction()) * ship->Strength();
 		}
 
 	// Only ask for help if outmatched.
-	double targetStrength = (target->Shields() + target->Hull()) * target->Strength();
+	double targetStrength = (target->ShieldFraction() + target->HullFraction()) * target->Strength();
 	if(attackerStrength <= targetStrength)
 		return;
 
@@ -3114,6 +3114,6 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 	if(it->IsYours())
 		cloak *= 0.6;
 
-	statuses.emplace_back(it->Position() - camera.Center(), it->Shields(), it->Hull(),
-		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha * (1. - cloak));
+	statuses.emplace_back(it->Position() - camera.Center(), it->ShieldFraction(), it->HullFraction(),
+		min(it->HullFraction(), it->DisabledHullFraction()), max(20., width * .5), type, alpha * (1. - cloak));
 }

@@ -280,10 +280,10 @@ public:
 
 	// Check the status of this ship.
 	bool IsCapturable() const;
-	bool IsTargetable() const;
+	virtual bool IsTargetable() const override;
 	bool IsOverheated() const;
 	bool IsIonized() const;
-	bool IsDisabled() const;
+	virtual bool IsDisabled() const override;
 	bool IsBoarding() const;
 	bool IsLanding() const;
 	bool IsFleeing() const;
@@ -359,28 +359,6 @@ public:
 	// Events should be removed from the given list after they are handled.
 	std::list<ShipEvent> &HandleEvents();
 
-	// Get characteristics of this ship, as a fraction between 0 and 1.
-	double Shields() const;
-	double Hull() const;
-	double Fuel() const;
-	double Energy() const;
-	// Get the ship's "health," where <=0 is disabled and 1 means full health.
-	double Health() const;
-	// Get the hull fraction at which this ship is disabled.
-	double DisabledHull() const;
-	// Get the maximum shield and hull values of the ship, accounting for multipliers.
-	double MaxShields() const;
-	double MaxHull() const;
-	// Get the absolute shield, hull, and fuel levels of the ship.
-	double ShieldLevel() const;
-	double HullLevel() const;
-	double FuelLevel() const;
-	// Get how disrupted this ship's shields are.
-	double DisruptionLevel() const;
-	// Get the (absolute) amount of hull that needs to be damaged until the
-	// ship becomes disabled. Returns 0 if the ships hull is already below the
-	// disabled threshold.
-	double HullUntilDisabled() const;
 	// Returns the remaining damage timer, for the damage overlay.
 	int DamageOverlayTimer() const;
 	// Get this ship's jump navigation, which contains information about how
@@ -402,7 +380,7 @@ public:
 	// Get the heat dissipation, in heat units per heat unit per frame.
 	double HeatDissipation() const;
 	// Get the maximum heat level, in heat units (not temperature).
-	double MaximumHeat() const override;
+	double MaxHeat() const override;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
 	// Calculate the drag on this ship. The drag can be no greater than the mass.
@@ -557,6 +535,10 @@ public:
 	bool Imitates(const Ship &other) const;
 
 
+protected:
+	virtual void CacheAttributes() override;
+
+
 private:
 	// Various steps of Ship::Move:
 
@@ -569,7 +551,6 @@ private:
 	// destroyed, or 0 otherwise.
 	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoGeneration();
-	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoCloakDecision();
 	// Step hyperspace enter/exit logic. Returns true if ship is hyperspacing in or out.
@@ -586,14 +567,9 @@ private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);
-	// Get the hull amount at which this ship is disabled.
-	double MinimumHull() const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
-	// Place a "spark" effect, like ionization or disruption.
-	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
-	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 
 	// Calculate the attraction and deterrence of this ship, for pirate raids.
 	// This is only useful for the player's ships.
@@ -632,7 +608,6 @@ private:
 	std::string givenName;
 	bool canBeCarried = false;
 
-	int forget = 0;
 	bool isInSystem = true;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
 	// continue to exist and refuel instead of being deleted.
@@ -641,7 +616,6 @@ private:
 	bool isParked = false;
 	bool shouldDeploy = false;
 	bool isOverheated = false;
-	bool isDisabled = false;
 	bool isBoarding = false;
 	bool hasBoarded = false;
 	bool isFleeing = false;
@@ -649,7 +623,6 @@ private:
 	bool isReversing = false;
 	bool isSteering = false;
 	double steeringDirection = 0.;
-	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
 	const Swizzle *customSwizzle = nullptr;
@@ -695,27 +668,6 @@ private:
 	std::vector<EnginePoint> steeringEnginePoints;
 	Armament armament;
 
-	// Various energy levels:
-	double shields = 0.;
-	double hull = 0.;
-	double fuel = 0.;
-	double energy = 0.;
-	// Accrued "ion damage" that will affect this ship's energy over time.
-	double ionization = 0.;
-	// Accrued "scrambling damage" that will affect this ship's weaponry over time.
-	double scrambling = 0.;
-	// Accrued "disruption damage" that will affect this ship's shield effectiveness over time.
-	double disruption = 0.;
-	// Accrued "slowing damage" that will affect this ship's movement over time.
-	double slowness = 0.;
-	// Accrued "discharge damage" that will affect this ship's shields over time.
-	double discharge = 0.;
-	// Accrued "corrosion damage" that will affect this ship's hull over time.
-	double corrosion = 0.;
-	// Accrued "leak damage" that will affect this ship's fuel over time.
-	double leakage = 0.;
-	// Accrued "burn damage" that will affect this ship's heat over time.
-	double burning = 0.;
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
