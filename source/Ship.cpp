@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
@@ -4756,7 +4757,16 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 
 		if(isUsingJumpDrive)
 		{
-			position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
+			Angle arrivalAngle;
+			if(parent && parent->GetSystem() == GetSystem())
+			{
+				Point parentPosition = parent->position - target;
+				double maxAngleOffset = HYPER_D / parentPosition.Length() * TO_DEG;
+				arrivalAngle = Angle(parentPosition) + Angle::Random(maxAngleOffset) - maxAngleOffset / 2;
+			}
+			else
+				arrivalAngle = Angle::Random();
+			position = target + arrivalAngle.Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
 			return true;
 		}
 
