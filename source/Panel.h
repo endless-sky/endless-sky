@@ -18,14 +18,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MouseButton.h"
 #include "Rectangle.h"
 
+#include "SDL.h"
+
 #include <functional>
 #include <list>
 #include <memory>
 #include <mutex>
 #include <string>
 #include <vector>
-
-#include <SDL2/SDL.h>
 
 class Command;
 class Point;
