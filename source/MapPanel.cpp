@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "MissionPanel.h"
+#include "PilotProfile.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "shader/PointerShader.h"
@@ -87,6 +88,8 @@ namespace {
 		unsigned drawn = 0;
 		unsigned available = 0;
 		unsigned unavailable = 0;
+		unsigned rngQuest = 0;
+		unsigned quest = 0;
 
 	private:
 		unsigned maximumActive = MapPanel::MAX_MISSION_POINTERS_DRAWN;
@@ -1393,6 +1396,7 @@ void MapPanel::DrawMissions()
 {
 	// Draw a pointer for each active or available mission.
 	map<const System *, PointerDrawCount> missionCount;
+	static map<const System *, PointerDrawCount> questMissionCache;
 
 	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available job");
@@ -1401,6 +1405,8 @@ void MapPanel::DrawMissions()
 	const Color &blockedColor = *colors.Get("blocked mission");
 	const Color &specialColor = *colors.Get("special mission");
 	const Color &waypointColor = *colors.Get("waypoint");
+	const Color &hintColor = *colors.Get("map quest hint color");
+	const Color &rngHintColor = *colors.Get("map rng quest hint color");
 	if(specialSystem)
 	{
 		// The special system pointer is larger than the others.
@@ -1454,6 +1460,37 @@ void MapPanel::DrawMissions()
 		for(const System *mark : mission.TrackedSystems())
 			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
 	}
+	// Calculate available quests every time user opens map and cache it
+	auto pilot = player.Pilot().get();
+	if(pilot->GetGamerules().GetMissionMarkers() || pilot->GetGamerules().GetRNGMissionMarkers())
+	{
+		bool offerMinorMissions = pilot->GetGamerules().GetMinorMissionMarkers();
+		if(!cachedQuests)
+		{
+			questMissionCache.clear();
+			for(auto &mission : GameData::Missions())
+			{
+				if(!offerMinorMissions && mission.second.IsMinor())
+					continue;
+				tuple<bool,bool,vector<const System*>> result = mission.second.CanOfferTheoretically(player);
+				if(get<0>(result)){
+					for(auto &sourceSystem : get<2>(result)){
+						if(get<1>(result))
+							questMissionCache[sourceSystem].rngQuest++;
+						else
+							questMissionCache[sourceSystem].quest++;
+					}
+				}
+			}
+			cachedQuests = true;
+		}
+		// Apply quest cache
+		for(auto &&it : questMissionCache)
+		{
+			missionCount[it.first].quest += it.second.quest;
+			missionCount[it.first].rngQuest += it.second.rngQuest;
+		}
+	}
 	// Draw the available and unavailable jobs.
 	for(auto &&it : missionCount)
 	{
@@ -1463,6 +1500,10 @@ void MapPanel::DrawMissions()
 			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, availableColor);
 		for(unsigned i = 0; i < counters.unavailable; ++i)
 			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, unavailableColor);
+		if(it.second.quest > 0 && pilot->GetGamerules().GetMissionMarkers())
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, hintColor);
+		if(it.second.rngQuest > 0 && pilot->GetGamerules().GetRNGMissionMarkers())
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, rngHintColor);
 	}
 }
 

@@ -94,6 +94,9 @@ public:
 	void SetDefaultMaxEscortCount(int value);
 	void SetDefaultMaxEscortCrew(int value);
 	void SetDefaultAdminCap(int value);
+	void SetMissionMarkers(bool value);
+	void SetRNGMissionMarkers(bool value);
+	void SetMinorMissionMarkers(bool value);
 	void SetMiscValue(const std::string &rule, int value);
 
 	int GetValue(const std::string &rule) const;
@@ -117,6 +120,9 @@ public:
 	int GetDefaultMaxEscortCount() const;
 	int GetDefaultMaxEscortCrew() const;
 	int GetDefaultAdminCap() const;
+	bool GetMissionMarkers() const;
+	bool GetRNGMissionMarkers() const;
+	bool GetMinorMissionMarkers() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -154,7 +160,10 @@ private:
 		// The administrative capacity of the player's fleet. Different ships will have different admin costs.
 		// This value can be increased for a pilot through gameplay.
 		int defaultAdminCap = 25;
-
+		// Mission markers display on map if enabled.
+		bool missionMarkers = false;
+		bool rngMissionMarkers = false;
+		bool minorMissionMarkers = false;
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;
 	};

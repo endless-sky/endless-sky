@@ -151,6 +151,8 @@ public:
 	// into account, so before actually offering a mission you should also check
 	// if the player has enough space.
 	bool CanOffer(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
+	std::tuple<bool,bool,std::vector<const System*>> CanOfferTheoretically(const PlayerInfo &player) const;
+	std::vector<const System*> GetSourceSystems() const;
 	bool CanAccept(const PlayerInfo &player) const;
 	bool HasSpace(const PlayerInfo &player) const;
 	bool HasSpace(const Ship &ship) const;

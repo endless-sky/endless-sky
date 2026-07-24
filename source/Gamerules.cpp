@@ -111,6 +111,12 @@ void Gamerules::Load(const DataNode &node)
 			storage.defaultMaxEscortCrew = max<int>(0, child.Value(1));
 		else if(key == "default admin cap")
 			storage.defaultAdminCap = max<int>(0, child.Value(1));
+		else if(key == "missionMarkers")
+			storage.missionMarkers = child.BoolValue(1);
+		else if(key == "rngMissionMarkers")
+			storage.rngMissionMarkers = child.BoolValue(1);
+			else if(key == "minorMissionMarkers")
+			storage.minorMissionMarkers = child.BoolValue(1);
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
@@ -182,6 +188,12 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write("default max escort crew", storage.defaultMaxEscortCrew);
 		if(storage.defaultAdminCap != preset.storage.defaultAdminCap)
 			out.Write("default admin cap", storage.defaultAdminCap);
+		if(storage.missionMarkers != preset.storage.missionMarkers)
+			out.Write("missionMarkers", storage.missionMarkers);
+		if(storage.rngMissionMarkers != preset.storage.rngMissionMarkers)
+			out.Write("rngMissionMarkers", storage.rngMissionMarkers);
+		if(storage.minorMissionMarkers != preset.storage.minorMissionMarkers)
+			out.Write("minorMissionMarkers", storage.minorMissionMarkers);
 
 		const map<string, int> &otherMiscRules = preset.storage.miscRules;
 		for(const auto &[rule, value] : storage.miscRules)
@@ -408,6 +420,27 @@ void Gamerules::SetDefaultAdminCap(int value)
 
 
 
+void Gamerules::SetMissionMarkers(bool value)
+{
+	storage.missionMarkers = value;
+}
+
+
+
+void Gamerules::SetRNGMissionMarkers(bool value)
+{
+	storage.rngMissionMarkers = value;
+}
+
+
+
+void Gamerules::SetMinorMissionMarkers(bool value)
+{
+	storage.minorMissionMarkers = value;
+}
+
+
+
 void Gamerules::SetMiscValue(const string &rule, int value)
 {
 	storage.miscRules[rule] = value;
@@ -455,6 +488,12 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.defaultMaxEscortCrew;
 	if(rule == "default admin cap")
 		return storage.defaultAdminCap;
+	if(rule == "missionMarkers")
+		return storage.missionMarkers;
+	if(rule == "rngMissionMarkers")
+		return storage.rngMissionMarkers;
+	if(rule == "minorMissionMarkers")
+		return storage.minorMissionMarkers;
 
 	auto it = storage.miscRules.find(rule);
 	if(it == storage.miscRules.end())
@@ -593,6 +632,27 @@ int Gamerules::GetDefaultMaxEscortCrew() const
 int Gamerules::GetDefaultAdminCap() const
 {
 	return storage.defaultAdminCap;
+}
+
+
+
+bool Gamerules::GetMissionMarkers() const
+{
+	return storage.missionMarkers;
+}
+
+
+
+bool Gamerules::GetRNGMissionMarkers() const
+{
+	return storage.rngMissionMarkers;
+}
+
+
+
+bool Gamerules::GetMinorMissionMarkers() const
+{
+	return storage.minorMissionMarkers;
 }
 
 

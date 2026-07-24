@@ -66,6 +66,9 @@ namespace {
 	const string MAX_ESCORT_COUNT = "Default max escort count";
 	const string MAX_ESCORT_CREW = "Default max escort crew";
 	const string ADMIN_CAP = "Default admin cap";
+	const string MISSION_MARKERS = "Map markers for missions";
+	const string RNG_MISSION_MARKERS = "Map markers for RNG missions";
+	const string MINOR_MISSION_MARKERS = "Show minor missions markers";
 
 	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
 
@@ -90,6 +93,9 @@ namespace {
 		{MAX_ESCORT_COUNT, "default max escort count"},
 		{MAX_ESCORT_CREW, "default max escort crew"},
 		{ADMIN_CAP, "default admin cap"},
+		{MISSION_MARKERS, "missionMarkers"},
+		{RNG_MISSION_MARKERS, "rngMissionMarkers"},
+		{MINOR_MISSION_MARKERS, "minorMissionMarkers"},
 	};
 
 	const int GAMERULES_PAGE_COUNT = 1;
@@ -412,6 +418,9 @@ void GamerulesPanel::DrawGamerules()
 		FIGHTERS_HIT_WHEN_DISABLED,
 		UNIVERSAL_AMMO_STOCKING,
 		SPAWN_RAID_FLEETS,
+		MISSION_MARKERS,
+		RNG_MISSION_MARKERS,
+		MINOR_MISSION_MARKERS,
 	};
 
 	bool isCategory = true;
@@ -543,6 +552,18 @@ void GamerulesPanel::DrawGamerules()
 		{
 			text = Format::AbbreviatedNumber(gamerules.GetDefaultAdminCap());
 			isOn = gamerules.GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::ADMIN_CAP;
+		}
+		else if(gamerule == MISSION_MARKERS)
+		{
+			text = gamerules.GetMissionMarkers() ? "true" : "false";
+		}
+		else if(gamerule == RNG_MISSION_MARKERS)
+		{
+			text = gamerules.GetRNGMissionMarkers() ? "true" : "false";
+		}
+		else if(gamerule == MINOR_MISSION_MARKERS)
+		{
+			text = gamerules.GetMinorMissionMarkers() ? "true" : "false";
 		}
 
 		if(gamerule == hoverItem)
@@ -907,6 +928,12 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDefaultAdminCap, validate,
 			message, gamerules.GetDefaultAdminCap()));
 	}
+	else if(str == MISSION_MARKERS)
+		gamerules.SetMissionMarkers(!gamerules.GetMissionMarkers());
+	else if(str == RNG_MISSION_MARKERS)
+		gamerules.SetRNGMissionMarkers(!gamerules.GetRNGMissionMarkers());
+	else if(str == MINOR_MISSION_MARKERS)
+		gamerules.SetMinorMissionMarkers(!gamerules.GetMinorMissionMarkers());
 }
 
 

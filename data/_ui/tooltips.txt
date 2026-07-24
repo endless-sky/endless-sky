@@ -1784,3 +1784,12 @@ tip "Default max escort crew"
 
 tip `Default admin cap`
 	`If the fleet size limitation is "admin cap," then this is the default maximum administrative capacity. Ships will have individual administrative costs that count toward your capacity. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
+
+tip "Map markers for missions"
+	`In the Map screen, a purple marker is displayed next to systems with available missions.`
+
+tip "Map markers for RNG missions"
+	`In the Map screen, a dim purple marker is displayed next to systems with missions that are available but gated behind a random chance check.`
+
+tip "Show minor missions markers"
+	`Include missions flagged as minor, typically culture conversations, in the mission marker displays.`
