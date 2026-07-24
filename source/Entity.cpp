@@ -29,3 +29,10 @@ double Entity::Heat() const
 	double maximum = this->MaximumHeat();
 	return maximum ? heat / maximum : 1.;
 }
+
+
+
+double Entity::HeatDissipation() const
+{
+	return .001 * attributes.Get("heat dissipation");
+}

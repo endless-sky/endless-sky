@@ -32,6 +32,8 @@ public:
 	double Heat() const;
 	// Get the maximum heat level, in heat units (not temperature).
 	virtual double MaximumHeat() const = 0;
+	// Get the heat dissipation, in heat units per heat unit per frame.
+	double HeatDissipation() const;
 
 
 protected:
