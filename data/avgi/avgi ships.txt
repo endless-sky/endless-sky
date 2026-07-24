@@ -18,6 +18,7 @@ ship "Koryfi"
 	sprite "ship/avgi koryfi/koryfi"
 		"frame rate" 24
 	thumbnail "thumbnail/avgi koryfi"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		"cost" 600000
@@ -126,6 +127,7 @@ ship "Melodikos"
 	sprite "ship/avgi melodikos/melodikos"
 		"frame rate" 30
 	thumbnail "thumbnail/avgi melodikos"
+	"administrative cost" 2
 	attributes
 		category "Space Liner"
 		"cost" 1200000
@@ -272,6 +274,7 @@ ship "Avlaki"
 	sprite "ship/avgi avlaki"
 		"frame rate" 30
 	thumbnail "thumbnail/avgi avlaki"
+	"administrative cost" 1
 	attributes
 		category "Light Freighter"
 		"cost" 450000
@@ -379,6 +382,7 @@ ship "Harmonikos"
 	sprite "ship/avgi harmonikos"
 		"frame rate" 30
 	thumbnail "thumbnail/avgi harmonikos"
+	"administrative cost" 2
 	attributes
 		category "Heavy Freighter"
 		"cost" 900000
@@ -522,6 +526,7 @@ ship "Phononos"
 	plural "Phononos"
 	sprite "ship/avgi phononos"
 	thumbnail "thumbnail/avgi phononos"
+	"administrative cost" 1
 	attributes
 		category "Light Freighter"
 		"cost" 180000
@@ -584,6 +589,7 @@ ship "Phononos"
 ship "Frequentia"
 	sprite "ship/avgi frequentia"
 	thumbnail "thumbnail/avgi frequentia"
+	"administrative cost" 1
 	attributes
 		category "Light Freighter"
 		"cost" 1200000
@@ -657,6 +663,7 @@ ship "Frequentia"
 ship "Polari"
 	sprite "ship/avgi polari"
 	thumbnail "thumbnail/avgi polari"
+	"administrative cost" 2
 	attributes
 		category "Utility"
 		"cost" 1800000
@@ -742,6 +749,7 @@ ship "Polari"
 ship "Entasi"
 	sprite "ship/avgi entasi"
 	thumbnail "thumbnail/avgi entasi"
+	"administrative cost" 2
 	attributes
 		category "Utility"
 		"cost" 2400000
@@ -880,6 +888,7 @@ ship "Entasi"
 ship "Undsyni"
 	sprite "ship/avgi undsyni"
 	thumbnail "thumbnail/avgi undsyni"
+	"administrative cost" 5
 	attributes
 		category "Utility"
 		"cost" 12000000
@@ -1049,6 +1058,7 @@ ship "Modified Tachytia"
 	sprite "ship/avgi tachytia/tachytia"
 		"frame rate" 24
 	thumbnail "thumbnail/avgi tachytia"
+	"administrative cost" 12
 	attributes
 		category "Utility"
 		"cost" 99000000
@@ -1184,6 +1194,7 @@ ship "Tremoros"
 	plural "Tremoros"
 	sprite "ship/avgi tremoros"
 	thumbnail "thumbnail/avgi tremoros"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		"cost" 600000
@@ -1259,6 +1270,7 @@ ship "Prismaios"
 	plural "Prismaios"
 	sprite "ship/avgi prismaios"
 	thumbnail "thumbnail/avgi prismaios"
+	"administrative cost" 2
 	attributes
 		category "Light Warship"
 		licenses
@@ -1403,6 +1415,7 @@ ship "Interferos"
 	plural "Interferos"
 	sprite "ship/avgi interferos"
 	thumbnail "thumbnail/avgi interferos"
+	"administrative cost" 1
 	attributes
 		category "Light Warship"
 		"cost" 1500000
@@ -1538,6 +1551,7 @@ ship "Interferos" "Interferos (Orchid)"
 ship "Diaspersi"
 	sprite "ship/avgi diaspersi"
 	thumbnail "thumbnail/avgi diaspersi"
+	"administrative cost" 4
 	attributes
 		category "Medium Warship"
 		licenses
@@ -1718,6 +1732,7 @@ ship "Refraktos"
 	plural "Refraktos"
 	sprite "ship/avgi refraktos"
 	thumbnail "thumbnail/avgi refraktos"
+	"administrative cost" 4
 	attributes
 		category "Medium Warship"
 		licenses
@@ -1879,6 +1894,7 @@ ship "Difraktos"
 	plural "Difraktos"
 	sprite "ship/avgi difraktos"
 	thumbnail "thumbnail/avgi difraktos"
+	"administrative cost" 5
 	attributes
 		category "Medium Warship"
 		licenses
@@ -2127,6 +2143,7 @@ ship "Difraktos" "Difraktos (UREB)"
 ship "Atenuatia"
 	sprite "ship/avgi atenuatia"
 	thumbnail "thumbnail/avgi atenuatia"
+	"administrative cost" 8
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -2341,6 +2358,7 @@ ship "Atenuatia" "Atenuatia (Orchid)"
 ship "Akoustiki"
 	sprite "ship/avgi akoustiki"
 	thumbnail "thumbnail/avgi akoustiki"
+	"administrative cost" 1
 	attributes
 		category "Fighter"
 		"cost" 120000
@@ -2410,6 +2428,7 @@ ship "Akoustiki"
 ship "Photikon"
 	sprite "ship/avgi photikon"
 	thumbnail "thumbnail/avgi photikon"
+	"administrative cost" 1
 	attributes
 		category "Fighter"
 		licenses
@@ -2513,6 +2532,7 @@ ship "Vibratia"
 	plural "Vibratia"
 	sprite "ship/avgi vibratia"
 	thumbnail "thumbnail/avgi vibratia"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		licenses
@@ -2578,6 +2598,7 @@ ship "Vibratia"
 ship "Undulon"
 	sprite "ship/avgi undulon"
 	thumbnail "thumbnail/avgi undulon"
+	"administrative cost" 1
 	attributes
 		category "Drone"
 		licenses
@@ -2649,6 +2670,7 @@ ship "Undulon"
 ship "Optikon"
 	sprite "ship/avgi optikon"
 	thumbnail "thumbnail/avgi optikon"
+	"administrative cost" 1
 	attributes
 		category "Drone"
 		"cost" 54000
@@ -2699,6 +2721,7 @@ ship "Sonikis"
 	plural "Sonikis"
 	sprite "ship/avgi sonikis"
 	thumbnail "thumbnail/avgi sonikis"
+	"administrative cost" 1
 	attributes
 		category "Drone"
 		"cost" 60000

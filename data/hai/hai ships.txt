@@ -15,6 +15,7 @@ ship "Anomalocaris"
 	plural "Anomalocarises"
 	sprite "ship/hai anomalocaris"
 	thumbnail "thumbnail/hai anomalocaris"
+	"administrative cost" 5
 	attributes
 		category "Medium Warship"
 		"cost" 7400000
@@ -100,6 +101,7 @@ ship "Anomalocaris" "Anomalocaris (Venerable)"
 ship "Aphid"
 	sprite "ship/hai aphid"
 	thumbnail "thumbnail/hai aphid"
+	"administrative cost" 1
 	attributes
 		category "Light Freighter"
 		"cost" 570000
@@ -183,6 +185,7 @@ ship "Aphid" "Aphid (Unfettered)"
 ship "Centipede"
 	sprite "ship/hai centipede"
 	thumbnail "thumbnail/hai centipede"
+	"administrative cost" 3
 	attributes
 		category "Space Liner"
 		"cost" 6300000
@@ -276,6 +279,7 @@ ship "Centipede" "Centipede (Pulse)"
 ship "Cicada"
 	sprite "ship/hai cicada"
 	thumbnail "thumbnail/hai cicada"
+	"administrative cost" 2
 	attributes
 		category "Transport"
 		"cost" 3850000
@@ -332,6 +336,7 @@ ship "Cicada"
 ship "Flea"
 	sprite "ship/hai flea"
 	thumbnail "thumbnail/hai flea"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		"cost" 142400
@@ -376,6 +381,7 @@ ship "Geocoris"
 	plural "Geocoris"
 	sprite "ship/hai geocoris"
 	thumbnail "thumbnail/hai geocoris"
+	"administrative cost" 5
 	attributes
 		category "Heavy Freighter"
 		"cost" 12540000
@@ -459,6 +465,7 @@ ship "Geocoris" "Geocoris (Tracker)"
 ship "Grasshopper"
 	sprite "ship/hai grasshopper"
 	thumbnail "thumbnail/hai grasshopper"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		"cost" 684000
@@ -548,6 +555,7 @@ ship "Grasshopper" "Grasshopper (Ion)"
 ship "Lightning Bug"
 	sprite "ship/hai lightning bug"
 	thumbnail "thumbnail/hai lightning bug"
+	"administrative cost" 2
 	attributes
 		category "Light Warship"
 		"cost" 3200000
@@ -663,6 +671,7 @@ ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
 ship "Ladybug"
 	sprite "ship/hai ladybug"
 	thumbnail "thumbnail/hai ladybug"
+	"administrative cost" 3
 	attributes
 		category "Medium Warship"
 		"cost" 8950000
@@ -801,6 +810,7 @@ ship "Ladybug" "Ladybug (Tracker)"
 ship "Pond Strider"
 	sprite "ship/hai pond strider"
 	thumbnail "thumbnail/hai pond strider"
+	"administrative cost" 3
 	attributes
 		category "Medium Warship"
 		"cost" 5250000
@@ -948,6 +958,7 @@ ship "Pond Strider" "Pond Strider (Railgun)"
 ship "Sea Scorpion"
 	sprite "ship/hai sea scorpion"
 	thumbnail "thumbnail/hai sea scorpion"
+	"administrative cost" 4
 	attributes
 		category "Medium Warship"
 		"cost" 5450000
@@ -1088,6 +1099,7 @@ ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 ship "Scarab"
 	sprite "ship/hai scarab"
 	thumbnail "thumbnail/hai scarab"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		"cost" 1620000
@@ -1139,6 +1151,7 @@ ship "Scarab"
 ship "Shield Beetle"
 	sprite "ship/hai shield beetle"
 	thumbnail "thumbnail/hai shield beetle"
+	"administrative cost" 7
 	attributes
 		category "Heavy Warship"
 		"cost" 17900000
@@ -1396,6 +1409,7 @@ ship "Shield Beetle" "Shield Beetle (Tripulse Ionic Turret)"
 ship "Emperor Beetle"
 	sprite "ship/hai emperor beetle"
 	thumbnail "thumbnail/hai emperor beetle"
+	"administrative cost" 8
 	attributes
 		category "Heavy Warship"
 		"cost" 35100000
@@ -1507,6 +1521,7 @@ ship "Emperor Beetle"
 ship "Solifuge"
 	sprite "ship/hai solifuge"
 	thumbnail "thumbnail/hai solifuge"
+	"administrative cost" 8
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -1687,6 +1702,7 @@ ship "Solifuge" "Solifuge (Tracker)"
 ship "Violin Spider"
 	sprite "ship/hai violin spider"
 	thumbnail "thumbnail/hai violin spider"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		"cost" 139000
@@ -1741,6 +1757,7 @@ ship "Violin Spider" "Violin Spider (Pulse)"
 ship "Water Bug"
 	sprite "ship/hai water bug"
 	thumbnail "thumbnail/hai water bug"
+	"administrative cost" 3
 	attributes
 		category "Light Freighter"
 		"cost" 6500000

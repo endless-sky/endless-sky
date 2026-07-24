@@ -458,6 +458,7 @@ ship "Vareti'het" "Vareti'het (Strong, Disable-able)"
 ship "Selii'mar"
 	sprite "ship/selii'mar"
 	thumbnail "thumbnail/selii'mar"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		"cost" 965000
@@ -489,6 +490,7 @@ ship "Selii'mar"
 ship "Faes'mar"
 	sprite "ship/faes'mar"
 	thumbnail "thumbnail/faes'mar"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		"cost" 1180000
