@@ -141,7 +141,7 @@ mission "Remnant: Blood Test Patch v2"
 		not "Remnant: Scanning Tolerances: done"
 	on offer
 		set "remnant: blood test pure"
-		event "remnant: change hail"
+		event "remnant: change hail" 0
 		fail
 
 
@@ -742,7 +742,7 @@ mission "Remnant: Gascraft-Puffin Compatibility"
 	to offer
 		has "event: remnant: gascraft"
 	on offer
-		event "remnant: puffin"
+		event "remnant: puffin" 0
 		clear "event: remnant: gascraft"
 		fail
 
@@ -2893,7 +2893,7 @@ mission "Remnant: remnant research update compatibility"
 	to offer
 		has "event: remnant research update bjd1"
 	on offer
-		event "remnant: research update bjd1"
+		event "remnant: research update bjd1" 0
 		clear "event: remnant research update bjd1"
 		fail
 
