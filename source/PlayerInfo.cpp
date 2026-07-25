@@ -316,7 +316,7 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 	map<string, map<string, int>> missionCargoToDistribute;
 	map<string, map<string, int>> missionPassengersToDistribute;
 
-	lastSafeSavePathTracker = path.string();
+	lastTouchedSavePath = path.string();
 	filePath = path.string();
 	// Strip anything after the "~" from snapshots, so that the file we save
 	// will be the auto-save, not the snapshot.
@@ -646,6 +646,7 @@ bool PlayerInfo::LoadRecent()
 // Save this player. The file name is based on the player's name.
 void PlayerInfo::Save() const
 {
+	ClearLastTouchedSavePath();
 	// Don't save dead players or players that are not fully created.
 	if(!CanBeSaved())
 		return;
@@ -686,9 +687,9 @@ void PlayerInfo::Save() const
 
 
 
-void PlayerInfo::UpdateLastSafeSave()
+void PlayerInfo::ClearLastTouchedSavePath() const
 {
-	lastSafeSavePathTracker = filePath;
+	lastTouchedSavePath = "";
 }
 
 
@@ -2771,9 +2772,9 @@ void PlayerInfo::MissionCallback(int response)
 
 	Mission &mission = missionList.front();
 
-	bool shouldLastSafeSave = mission.RecommendsLastSafeSave();
-	if(shouldLastSafeSave)
-		LastSafeSave(mission.LastSafeSaveLabel());
+	bool shouldCreateCheckpoint = mission.RecommendsCreateCheckpoint();
+	if(shouldCreateCheckpoint)
+		CreateCheckpoint(mission.CheckpointLabel());
 	// If landed, this conversation may require the player to immediately depart.
 	shouldLaunch |= (GetPlanet() && Endpoint::RequiresLaunch(response));
 	if(response == Endpoint::ACCEPT || response == Endpoint::LAUNCH)
@@ -4922,11 +4923,11 @@ bool PlayerInfo::RecacheJumpRoutes()
 
 
 
-void PlayerInfo::LastSafeSave(string label)
+void PlayerInfo::CreateCheckpoint(string label)
 {
-	string lastSafeSavePath = filePath.substr(0, filePath.length() - 4) + "~last safe save"
+	string checkpointPath = filePath.substr(0, filePath.length() - 4) + "~checkpoint"
 		+ (label != "" ? " " + label : "") + ".txt";
-	Files::Copy(lastSafeSavePathTracker, lastSafeSavePath);
+	Files::Copy(lastTouchedSavePath.empty() ? filePath : lastTouchedSavePath, checkpointPath);
 }
 
 

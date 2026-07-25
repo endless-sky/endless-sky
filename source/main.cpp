@@ -613,10 +613,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 	// If player quit while landed on a planet, save the game if there are changes.
 	if(player.GetPlanet() && gamePanels.CanSave())
-	{
-		player.UpdateLastSafeSave();
 		player.Save();
-	}
 }
 
 

@@ -590,7 +590,6 @@ void PlanetPanel::WarningsDialogCallback(const bool isOk)
 void PlanetPanel::TakeOff(const bool distributeCargo)
 {
 	flightChecks.clear();
-	player.UpdateLastSafeSave();
 	player.Save();
 	if(player.TakeOff(GetUI(), distributeCargo))
 	{

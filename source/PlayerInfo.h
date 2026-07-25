@@ -99,8 +99,8 @@ public:
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
-	// Helper function for updating lastSafeSave info.
-	void UpdateLastSafeSave();
+	// Helper function for updating createCheckpoint info.
+	void ClearLastTouchedSavePath() const;
 
 	// Get the pilot profile that this player is from.
 	std::shared_ptr<PilotProfile> &Pilot();
@@ -443,7 +443,7 @@ private:
 	void CreateMissions();
 	void StepMissions(UI &ui);
 	void Autosave(std::string label) const;
-	void LastSafeSave(std::string label);
+	void CreateCheckpoint(std::string label);
 	void Save(const std::string &path) const;
 	void Save(DataWriter &out) const;
 
@@ -482,7 +482,7 @@ private:
 	std::string originalFirstName;
 	std::string originalLastName;
 	std::string filePath;
-	std::string lastSafeSavePathTracker;
+	inline static std::string lastTouchedSavePath = "";
 	std::shared_ptr<PilotProfile> pilot;
 
 	Date date;

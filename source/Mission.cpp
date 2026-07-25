@@ -223,11 +223,11 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			if(child.Size() > 1)
 				autosaveLabel = child.Token(1);
 		}
-		else if(key == "last safe save")
+		else if(key == "create checkpoint")
 		{
-			lastSafeSave = true;
+			createCheckpoint = true;
 			if(child.Size() > 1)
-				lastSafeSaveLabel = child.Token(1);
+				checkpointLabel = child.Token(1);
 		}
 		else if(key == "job")
 			location = JOB;
@@ -470,12 +470,12 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			else
 				out.Write("autosave");
 		}
-		if(lastSafeSave)
+		if(createCheckpoint)
 		{
-			if(!lastSafeSaveLabel.empty())
-				out.Write("last safe save", lastSafeSaveLabel);
+			if(!checkpointLabel.empty())
+				out.Write("create checkpoint", checkpointLabel);
 			else
-				out.Write("last safe save");
+				out.Write("create checkpoint");
 		}
 		if(location == LANDING)
 			out.Write("landing");
@@ -1257,18 +1257,18 @@ string Mission::AutosaveLabel()
 
 
 
-// Check if this mission recommends that the game create a last safe save.
-bool Mission::RecommendsLastSafeSave() const
+// Check if this mission recommends that the game create a checkpoint prior to the mission.
+bool Mission::RecommendsCreateCheckpoint() const
 {
-	return lastSafeSave;
+	return createCheckpoint;
 }
 
 
 
-// For use with named last safe saves, descriptive of the save state.
-string Mission::LastSafeSaveLabel()
+// For use with named checkpoints, descriptive of the save state.
+string Mission::CheckpointLabel()
 {
-	return lastSafeSaveLabel;
+	return checkpointLabel;
 }
 
 
@@ -1543,8 +1543,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.offerPrecedence = offerPrecedence;
 	result.autosave = autosave;
 	result.autosaveLabel = autosaveLabel;
-	result.lastSafeSave = lastSafeSave;
-	result.lastSafeSaveLabel = lastSafeSaveLabel;
+	result.createCheckpoint = createCheckpoint;
+	result.checkpointLabel = checkpointLabel;
 	result.location = location;
 	result.overridesCapture = overridesCapture;
 	result.sourceShip = boardingShip.get();

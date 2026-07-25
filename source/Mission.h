@@ -171,10 +171,10 @@ public:
 	bool RecommendsAutosave() const;
 	// An optional name for the autosave.
 	std::string AutosaveLabel();
-	// Check if this mission recommends that the game create a last safe save.
-	bool RecommendsLastSafeSave() const;
-	// For use with named lastsafesaves, descriptive of the save state.
-	std::string LastSafeSaveLabel();
+	// Check if this mission recommends that the game create a checkpoint prior to the mission.
+	bool RecommendsCreateCheckpoint() const;
+	// For use with named checkpoints, descriptive of the save state.
+	std::string CheckpointLabel();
 	// Check if this mission is unique, i.e. not something that will be offered
 	// over and over again in different variants.
 	bool IsUnique() const;
@@ -231,7 +231,7 @@ private:
 	std::string description;
 	std::string blocked;
 	std::string autosaveLabel;
-	std::string lastSafeSaveLabel;
+	std::string checkpointLabel;
 	Location location = SPACEPORT;
 
 	// Colors that determine how this mission displays in the MissionPanel.
@@ -253,7 +253,7 @@ private:
 	// offer in alphabetical order.
 	int offerPrecedence = 0;
 	bool autosave = false;
-	bool lastSafeSave = false;
+	bool createCheckpoint = false;
 	bool overridesCapture = false;
 	Date deadline;
 	int expectedJumps = 0;
