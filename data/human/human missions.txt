@@ -8081,8 +8081,7 @@ mission "Pict's Legacy 1"
 			`You arrive in orbit just in time to watch Raven's Gunboat disappear into hyperspace. The assassin's ship is already gone, but Raven seems unfazed.`
 			`	"He can't have gotten far... with the afterburner thrust he was using there's no way he'll be able to make it any further than <system> without running out of fuel. So that means we're headed for <planet>."`
 			`	As Raven's speaking, you notice a whole flotilla of Navy ships streaking out of the atmosphere behind you.`
-	
-	# CONTINUE:
+
 	npc
 		government "Republic"
 		personality
@@ -8102,9 +8101,10 @@ mission "Pict's Legacy 1"
 
 mission "Pict's Legacy 2"
 	name "Follow Pict's Killer"
-	description "Navy Intelligence has let Pict's killer loose in the hope he'll unwittingly lead them to Alphas. Follow him to <destination> and deal with any threats you find there."
+	description "Navy Intelligence has let Pict's killer loose in the hope he'll unwittingly lead them to Alphas. Follow him to <destination>, destroying any threats you find there before landing."
 	source "Ada"
 	destination "Sandswell"
+	passengers 3
 	deadline 3
 	to offer
 		has "Pict's Legacy 1: done"
@@ -8115,7 +8115,7 @@ mission "Pict's Legacy 2"
 			choice
 				`	"That's great news! Where is he?"`
 				`	"So you don't think he was acting alone?"`
-					goto controllers
+					goto alone
 			
 			action
 				set "pict-legacy-2-plan-explained"
@@ -8126,16 +8126,142 @@ mission "Pict's Legacy 2"
 			choice
 				`	"What if he realizes he's being followed and slips away?"`
 				`	"So you don't think he was acting alone?"`
+					goto alone
 			
-			`	Raven's reply is quick and confident. "He won't. Pict isn't the first person he's killed, and while his plans are always sophisticated his execution rarely is."`
-				goto 
+			`	Raven's reply is quick and confident. "He won't. Pict isn't the first person he's killed, and, while his plans are always sophisticated, his execution rarely is."`
+				goto photos
+
+			label alone
+			`	Raven smiles sadly. "That would be too easy. We can't prove anything, but we also won't need to. Every time he's killed so far, he's had help: sophisticated, foolproof plans, expensive equipment, unlimited funding. What he hasn't shown is skill."`
+
+			label photos
 			`	She passes you four small photos featuring a dark figure. In one, the man is crouched behind the support of a bridge near the mangled wreck of a ground car. In a second, he's sitting in a hospital waiting room. In the third, he's fleeing through an open window. The last picture shows him entering Pict's house at 45 Impala.`
 			`	Raven sighs. "I believe you knew some of his victims, too."`
 			`	She points to the first photo. "Klaus Nilsson: part-time bounty hunter, part-time drag racer. Died in a freak accident last year when his front tires exploded at 300 km/h. Or at least that's what the police report said, but they found it suspicious enough to flag it."`
 			`	Her finger moves to the second photo. "Daniel 'Dagger' Dresden: retired Republic Navy marine undergoing treatment for alcohol-induced hepatitis. Died of sudden multiple organ failure in hospital on Starcross fifteen minutes after the doctors decided he was stable and fit for surgery."`
 			`	Indicating the third photo, she goes on. "Hadija Jumanne: senior Republic defense staffer who organized a bounty program on pirates with suspected connections to the Alphas. Fatally shot in her hotel room on Glory last month.`
-			`	"Then, of course, there's Pict."`
+			`	"Then, of course, there's Pict. Framing you for her murder was clever on the surface, but even the regular cops would have found enough evidence to clear you eventually. A skilled assassin would never have taken that kind of risk, even for revenge."`
 
-	# Inigo Montoya -> Miyano Tonogi
-	# INIGOMONTOYA
-	# NOONTO
+			choice
+				`	"Revenge? Is that why you think he went after Klaus, Dagger, and Pict?"`
+				`	"Do you think their deaths had anything to do with Vlad Blaire?"`
+					goto blaire
+				`	"What about Cerridwyn? Is she okay?"`
+					goto cerridwyn
+			
+			`	"That was certainly why he agreed to, yes. It seems like his father was killed a number of years ago during an aborted hit on Vlad Blaire... an attack that the three of them were involved in with you unless I'm mistaken.`
+			`	"As for why his bosses would supply and prepare him for such killings, revenge might have played a part there as well. I say might, because no one really understands Alpha psychology."`
+				goto alphas
+			
+			label blaire
+			`	"Absolutely. We believe that these murders were intended as reprisal killings for a number of operations that have been funded by the Navy since 2985. Over the past few years, these attacks have become more and more common - shootings, poisonings, bombings, sudden disappearances, one by one our soliders and operatives are murdered. Nine times out of ten, no one is ever brought to court. It doesn't help that so many of the victims are redlined combat veterans with criminal records, or that the Alphas have gotten so good at covering up their crimes."`
+				goto alphas
+			
+			label cerridwyn
+			`	Raven looks you in the eyes. "I suppose you haven't really kept in touch, have you? Cerridwyn Morgan admitted herself to a mental hospital shortly after the death of Vlad Blaire upon the referral of her psychiatrist, and she's been there ever since. I wouldn't call her okay, but she is still alive. The Alphas only got her soul, not her body."`
+			
+			label alphas
+			`	"Wait, Alphas?" you ask.`
+			`	"Yes, Alphas. We were winning the war for hundreds of years before we took the pressure off to deal with the CCOR. Now, they operate openly again, but the news agencies only notice the flashy battles and not the silent ones.`
+			`	"Alphas killed Tycjan Yanovik. Alphas killed Aaron Nguyen. Alphas killed Pict Macdonald. And, by God, the Alphas will not keep destroying us if I have any say in the matter!"`
+			`	For the first time since you met her, Raven's impassive and professional Questioner mask falls away, replaced by the wrath of a grief-hardened crusader.`
+			`	"We've been talking long enough - the Alphas' weapon is certainly out of the system by now, heading straight toward them like the idiot he is. Get your ship ready for battle, Captain <last>, because we're going to bleed those murdering scum.`
+			`	"Our sensors show that Pict's killer just entered <system> and is heading for <planet>. Our ships are ready to follow with your help, to hunt and destroy any Alphas in the system before landing and arresting the murder weapon. Feng, Isaksen, and I will join you on your ship again."`
+
+	npc
+		government "Republic"
+		personality
+			"heroic"
+			"opportunistic"
+			"launching"
+			confusion 10
+		fleet "Large Republic"
+		fleet "Small Republic"
+
+	# These heavy reinforcements will arrive if the player can hold on for long enough.
+	npc
+		government "Republic"
+		personality
+			"heroic"
+			"opportunistic"
+			confusion 10
+		system "Glory"
+		fleet "Large Republic" 3
+	
+	npc kill
+		government "Alpha"
+		personality
+			"heroic"
+			"staying"
+			"target"
+			"vindictive"
+		system destination
+		ship "Leviathan (Heavy)" "Doomsday"
+		ship "Firebird (Plasma)" "Red Nova"
+		ship "Firebird" "Exterminator"
+		ship "Hauler" "Powder Train"
+		dialog "With the Alphas destroyed, Raven quickly locates the signal emitted by the killer's ship and directs you to land near a large mountain on <planet>."
+	
+	on enter "Kugel"
+		dialog "Entering Kugel, you see no sign of the killer's ship. Instead, the space around <planet> is swarming with Alpha ships"
+
+
+	on visit
+		dialog "You've land on <planet>, but the Alphas are still overhead. It looks like they're going to escape!"
+	
+	on complete
+		payment 45000
+		conversation
+			`Your ship settles down amidst a cloud of dust. The two marines are out of their seats immediately and racing for the door.`
+			`	"He's in the mountain," Raven says. "The map is showing some sort of underground complex."`
+			
+			choice
+				`	"Well, then, let's go get him."`
+				`	"Are you sure this is a good idea?"`
+					goto idea
+			
+			`	Raven only nods before opening the hatch. The four of you are immediately met by a blast of stinging, blinding sand. Covering your eyes and mouths, you trudge toward what seems to be the complex's entrance, the <ship> quickly obscured by the dust clouds behind you.`
+				goto continuation
+			
+			label idea
+			`	"No, but we owe it to them," Raven replies. The marines only nod before opening the hatch and leading the way out into the stinging, blinding sand. Covering your eyes and mouths, the four of you trudge toward what seems to be the complex's entrance, the <ship> quickly obscured by the dust clouds behind you.`
+
+			label continuation
+			`	As you pass into the gaping tunnel, the wind lets up. One of the marines turns on a light, revealing the remains of a hastily abandoned fortress. Crates of food and clothing lie side-by-side with boxes of ammunition and jerrycans of starship fuel, dropped by the Alphas in their mad flight out of there.`
+			`	Heading deeper, the tunnel crosses other, narrower shafts and passageways. Raven mutters something about the tracker before coming to a stop. "I don't get it, first it said he was in front of us, but now he's showing up behind us. But, how is that possible?"`
+			`	The tunnel falls silent as she fiddles with the receiver.`
+			choice
+				`	"Maybe the receiver isn't designed to work under a mountain in a sandstorm?"`
+				`	"What if he managed to sneak around us using a side passage?"`
+					goto ambush
+				
+			`	"No, it should work," Raven replies. "Oh, well, I guess it's time to try the old IT standby." With a loud click, she turns off the receiver.`
+			`	Before she can turn the receiver back on, however, there is another, very distinctive click: the click of a magnet sliding precisely two point eight centimetres through a carbon-fibre chamber before coming to rest up against a steel plate. There are not many things that cause such a click. In fact, there are only two: someone dropping a magnet through a carbon-fibre chamber from a height of two point eight centimetres, and someone releasing the safety on a Type 8 laser pistol.`
+			`	"Don't move, or the captain buys it," growls a rough voice from behind you. The three Navy personnel freeze as a hand grabs you by the shoulder and spins you around to face the gun barrel and the man behind it. His face is masked by shadow and his eyes are as hard as steel, but there is something vaguely familiar about him.`
+			`	"I am Miyano Tonogi," he says, staring intensely into your face, "and my father was Miyano Hiromi, a poor hovercraft pilot. You killed my father. Prepare to die."`
+			`	As his finger moves toward the trigger, he fails to notice three more clicks caused by three more two point eight centimetre magnets. The marines' lasers catch him in the face, blinding him instantly and throwing his aim off. Rather than hitting you square between the eyes the shot grazes your shoulder before the guns clatters out of the dying man's fingers. Blind and dying, he weeps.`
+			`	Raven rushes up to your side. "Are you okay?"`
+			choice
+				`	"I will be."`
+				`	"It would take more than a laser to kill me."`
+					goto macho
+				`	"Physically, or mentally?"`
+					goto mental
+			
+			`	Probing your shoulder, she seems to agree with your self-diagnosis. One of the marines injects the assassin with something and he falls silent except for his ragged breaths. A minute later, those have stopped as well and Miyano Tonogi is dead.`
+				goto denouement
+
+			label macho
+			`	Raven frowns, but says nothing. Clearly, it didn't take more than a laser to kill Miyano Tonogi, as his raspy breathing shudders to a halt.`
+				goto denouement
+
+			label mental
+			`	Raven closes her eyes and says nothing. One of the marines injects the assassin with a shot of analgesic but he continues sobbing. A minute later, he suddenly stops and sits bolt upright. The marines reach for their guns but he does nothing more than look off into the distance at a spot only his blinded eyes can see.`
+			`	"Father," he says, "Father, what have I done?"`
+			`	Slowly, Miyano Tonogi slides back down to the ground. His breathing stops, and the assassin finally dies.`
+
+			label denouement
+			`	The four of you leave the cave as in a trance. Outside, the sandstorm has abated slightly, and you can see your ship parked beside a Navy Frigate. Sailors, marines, and support staff swarm the area. A medic applies some sort of salve to your wounded shoulder and pronounces you fit to fly. A clerk presses a credit chip worth <payment> into your hands in exchange for "services rendered to the Republic." A skinny officer cadet salutes and congratulates you with a grin.`
+			`	Pict is not among them, nor is Klaus or Dagger, Colonel Nguyen or Raven's Tycjan Yanovik.`
+			`	But Miyanoi Tonogi and the Alphas that held his reins are dead, and you are alive. You, and the hundred million people whose only connection with the events of the last week will be an obituary entry and a classified report unsealed fifty years from now.`
+
