@@ -2002,7 +2002,7 @@ void PreferencesPanel::ShowPluginLibraryUrls()
 {
 	vector<string> pluginLibraryList;
 	for(const auto &[url, props] : Plugins::GetPluginLibraryUrls())
-		if (props.second != Plugins::Status::DELETED)
+		if(props.second != Plugins::Status::DELETED)
 			pluginLibraryList.emplace_back(url);
 	// In order to leave this dialog open and update the list, we need to keep a handle for it in memory
 	// and also make sure that we don't try to open more than one of it.
@@ -2025,7 +2025,7 @@ void PreferencesPanel::RefreshPluginIndexUrls() const
 {
 	vector<string> pluginLibraryList;
 	for(const auto &[u, props] : Plugins::GetPluginLibraryUrls())
-		if (props.second != Plugins::Status::DELETED)
+		if(props.second != Plugins::Status::DELETED)
 			pluginLibraryList.emplace_back(u);
 	editUrlListDialog->UpdateList(pluginLibraryList);
 }
@@ -2087,12 +2087,12 @@ bool PreferencesPanel::AskDeletePluginIndexUrl(const string &url)
 
 
 
-bool PreferencesPanel::AskAddPluginIndexUrl(const string &/*notUsed*/)
+bool PreferencesPanel::AskAddPluginIndexUrl(const string & /* notUsed */)
 {
 	string editUrl = "https://<your library>.json";
 	// Suggest the first DELETED Game Resource if applicable:
 	for(const auto &[u, props] : Plugins::GetPluginLibraryUrls())
-		if (props.second == Plugins::Status::DELETED)
+		if(props.second == Plugins::Status::DELETED)
 		{
 			editUrl = u;
 			break;

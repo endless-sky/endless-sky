@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "ListDialogPanel.h"
 #include "Plugins.h"
 #include "Point.h"
 #include "ScrollVar.h"
@@ -30,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
-#include "ListDialogPanel.h"
 
 class Command;
 class DialogPanel;

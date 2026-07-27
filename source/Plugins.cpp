@@ -454,8 +454,7 @@ string Plugins::Load(const filesystem::path &path)
 void Plugins::LoadAvailablePlugins(TaskQueue &queue, const filesystem::path &pluginsJsonPath)
 {
 	ifstream pluginlistFile(pluginsJsonPath);
-	try
-	{
+	try {
 		// Can throw nlohmann::json_abi_v3_12_0::detail::parse_error
 		nlohmann::json pluginInstallList = nlohmann::json::parse(pluginlistFile);
 		for(const auto &pluginInstall : pluginInstallList)
@@ -494,7 +493,7 @@ void Plugins::LoadAvailablePlugins(TaskQueue &queue, const filesystem::path &plu
 			aPlugins->Sort();
 		}
 	}
-	catch (...)
+	catch(...)
 	{
 		// There is nothing more we can do.
 	};

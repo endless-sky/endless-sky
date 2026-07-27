@@ -71,9 +71,6 @@ public:
 		template <class T>
 		FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
 			bool (T::*buttonAction)(const std::string &));
-		// template <class T>
-		// FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
-		// 	bool (T::*buttonActionPtr)(std::string *));
 
 
 	public:
