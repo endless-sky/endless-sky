@@ -101,7 +101,7 @@ void PlanetPanel::Step()
 		if(callback)
 			callback();
 		if(selectedPanel)
-			GetUI().Pop(selectedPanel);
+			GetUI().Pop(selectedPanel.get());
 		GetUI().Pop(this);
 		return;
 	}
@@ -186,7 +186,7 @@ void PlanetPanel::Step()
 	// treating them all as the landing location. This is mainly to
 	// handle the intro mission in the event the player moves away
 	// from the landing before buying a ship.
-	const Panel *activePanel = selectedPanel ? selectedPanel : this;
+	const Panel *activePanel = selectedPanel ? selectedPanel.get() : this;
 	if(activePanel != spaceport.get() && GetUI().IsTop(activePanel))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
@@ -257,7 +257,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	if(player.IsDead())
 		return true;
 
-	Panel *oldPanel = selectedPanel;
+	Panel *oldPanel = selectedPanel.get();
 	const Ship *flagship = player.Flagship();
 
 	UI::UISound sound = UI::UISound::NORMAL;
@@ -291,21 +291,14 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 't' && hasAccess
 			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
-	{
-		selectedPanel = trading.get();
-		GetUI().Push(trading);
-	}
+		selectedPanel = trading;
 	else if(key == 'b' && hasAccess && planet.GetPort().HasService(Port::ServicesType::Bank))
-	{
-		selectedPanel = bank.get();
-		GetUI().Push(bank);
-	}
+		selectedPanel = bank;
 	else if(key == 'p' && hasAccess && planet.HasNamedPort())
 	{
-		selectedPanel = spaceport.get();
+		selectedPanel = spaceport;
 		if(isNewPress)
 			spaceport->UpdateNews();
-		GetUI().Push(spaceport);
 	}
 	else if(key == 's' && hasAccess && hasShipyard)
 	{
@@ -325,17 +318,19 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		return true;
 	}
 	else if(key == 'h' && hasAccess && planet.GetPort().HasService(Port::ServicesType::HireCrew))
-	{
-		selectedPanel = hiring.get();
-		GetUI().Push(hiring);
-	}
+		selectedPanel = hiring;
 	else
 		return false;
 
 	// If we are here, it is because something happened to change the selected
-	// planet UI panel. So, we need to pop the old selected panel:
-	if(oldPanel)
-		GetUI().Pop(oldPanel);
+	// planet UI panel. So, we need to push the new and pop the old selected panel:
+	if(oldPanel != selectedPanel.get())
+	{
+		if(oldPanel)
+			GetUI().Pop(oldPanel);
+		if(selectedPanel)
+			GetUI().Push(selectedPanel);
+	}
 
 	UI::PlaySound(sound);
 
@@ -596,7 +591,7 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 		if(callback)
 			callback();
 		if(selectedPanel)
-			GetUI().Pop(selectedPanel);
+			GetUI().Pop(selectedPanel.get());
 		GetUI().Pop(this);
 	}
 }
