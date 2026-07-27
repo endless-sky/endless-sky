@@ -80,7 +80,7 @@ void MessageLogPanel::Draw()
 
 		// Parameters for drawing messages:
 		WrappedText messageLine(font);
-		messageLine.SetAlignment(Alignment::LEFT);
+		messageLine.SetAlignment(Preferences::GetTextAlignment());
 		messageLine.SetWrapWidth(width - 2. * PAD);
 
 		// Draw messages.
@@ -130,7 +130,7 @@ bool MessageLogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	else if(key == 'i')
 		importantOnly = !importantOnly;
 	else if(key == 'c' && !messages.empty())
-		GetUI().Push(new DialogPanel{&Messages::ClearLog, "Clear the message log?", Truncate::NONE, true, false});
+		GetUI().Push(DialogPanel::CallFunctionIfOk(&Messages::ClearLog, "Clear the message log?", false));
 
 	return true;
 }

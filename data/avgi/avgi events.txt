@@ -56,6 +56,7 @@ event "avgi: siege respite timer"
 
 mission "Avgi: Initial Wandering Fleet"
 	invisible
+	non-blocking
 	transition
 	repeat
 	source

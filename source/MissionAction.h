@@ -59,7 +59,7 @@ public:
 	// Determine if this MissionAction references content that is not fully defined.
 	std::string Validate() const;
 
-	const std::string &DialogText() const;
+	std::string DialogText() const;
 
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have, or should

@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 class DataNode;
+class DataWriter;
+class Sprite;
 
 
 
@@ -35,15 +37,68 @@ public:
 		ALL = 2
 	};
 
+	// Defines how big the player's active fleet can get.
+	// If the player's fleet size is limited, the flagship does not count toward the limit.
+	enum class FleetSizeLimitation
+	{
+		// No limit on how many ships the player can own.
+		NONE = 0,
+		// The player can only have a set number of ships active at once.
+		// Carried ships do not contribute to this limit.
+		SHIP_CAP = 1,
+		// The player can only command up to this many crew at once.
+		// Only the base required crew of ships is taken into account.
+		// Crew equivalent is used where present, such as on automata.
+		CREW_CAP = 2,
+		// The player has an "administration capacity" that limits how many ships
+		// they can have active, with bigger ships having a higher administrative cost.
+		ADMIN_CAP = 3,
+	};
+
 
 public:
 	Gamerules() = default;
 
 	// Load a gamerules node.
 	void Load(const DataNode &node);
+	// Save these gamerules by saving the name and any individual values that differ from the original preset.
+	// By saving only the difference, newly added gamerules or modified default gamerules will be applied to
+	// existing save files, but any customizations that a player made to their gamerules will remain.
+	void Save(DataWriter &out, const Gamerules &preset) const;
+
+	// Replace the name and all the rule values with those of the given gamerules.
+	void Replace(const Gamerules &rules);
+	// Reset a particular value to the value used by the preset.
+	void Reset(const std::string &rule, const Gamerules &preset);
+
+	const std::string &Name() const;
+	const std::string &Description() const;
+	const Sprite *Thumbnail() const;
+
+	void SetLockGamerules(bool value);
+	void SetUniversalRamscoopActive(bool value);
+	void SetPersonSpawnPeriod(int value);
+	void SetNoPersonSpawnWeight(int value);
+	void SetNPCMaxMiningTime(int value);
+	void SetUniversalFrugalThreshold(double value);
+	void SetDepreciationMin(double value);
+	void SetDepreciationDaily(double value);
+	void SetDepreciationGracePeriod(int value);
+	void SetDepreciationMaxAge(int value);
+	void SetFighterDodgePolicy(FighterDodgePolicy value);
+	void SetSystemDepartureMin(double value);
+	void SetSystemArrivalMin(std::optional<double> value);
+	void SetFleetMultiplier(double value);
+	void SetSpawnRaidFleets(bool value);
+	void SetFleetSizeLimitation(FleetSizeLimitation value);
+	void SetDefaultMaxEscortCount(int value);
+	void SetDefaultMaxEscortCrew(int value);
+	void SetDefaultAdminCap(int value);
+	void SetMiscValue(const std::string &rule, int value);
 
 	int GetValue(const std::string &rule) const;
 
+	bool LockGamerules() const;
 	bool UniversalRamscoopActive() const;
 	int PersonSpawnPeriod() const;
 	int NoPersonSpawnWeight() const;
@@ -57,23 +112,57 @@ public:
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
 	double FleetMultiplier() const;
+	bool SpawnRaidFleets() const;
+	FleetSizeLimitation GetFleetSizeLimitation() const;
+	int GetDefaultMaxEscortCount() const;
+	int GetDefaultMaxEscortCrew() const;
+	int GetDefaultAdminCap() const;
+
+	bool operator==(const Gamerules &other) const;
 
 
 private:
-	bool universalRamscoop = true;
-	int personSpawnPeriod = 36000;
-	int noPersonSpawnWeight = 1000;
-	int npcMaxMiningTime = 3600;
-	double universalFrugalThreshold = .75;
-	double depreciationMin = 0.25;
-	double depreciationDaily = 0.997;
-	int depreciationGracePeriod = 7;
-	int depreciationMaxAge = 1000;
-	FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
-	double systemDepartureMin = 0.;
-	std::optional<double> systemArrivalMin;
-	double fleetMultiplier = 1.;
+	// Rule values are stored in this Storage class for easy replacement
+	// and comparison via the default equality operator.
+	class Storage {
+	public:
+		bool operator==(const Storage &other) const = default;
 
-	// Miscellanous rules that are only used by the gamedata and not by the engine.
-	std::map<std::string, int> miscRules;
+	public:
+		bool lockGamerules = true;
+		bool universalRamscoop = true;
+		int personSpawnPeriod = 36000;
+		int noPersonSpawnWeight = 1000;
+		int npcMaxMiningTime = 3600;
+		double universalFrugalThreshold = .75;
+		double depreciationMin = .25;
+		double depreciationDaily = .997;
+		int depreciationGracePeriod = 7;
+		int depreciationMaxAge = 1000;
+		FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
+		double systemDepartureMin = 0.;
+		std::optional<double> systemArrivalMin;
+		double fleetMultiplier = 1.;
+		bool spawnRaidFleets = true;
+		FleetSizeLimitation fleetSizeLimitation = FleetSizeLimitation::NONE;
+		// The player can only have up to this many escorts active at once. Carried ships are excluded.
+		// This value can be increased for a pilot through gameplay.
+		int defaultMaxEscortCount = 6;
+		// The player can only have escorts whose total base required crew (+ crew equivalent) is less than this value.
+		// This value can be increased for a pilot through gameplay.
+		int defaultMaxEscortCrew = 1000;
+		// The administrative capacity of the player's fleet. Different ships will have different admin costs.
+		// This value can be increased for a pilot through gameplay.
+		int defaultAdminCap = 25;
+
+		// Miscellaneous rules that are only used by the game data and not by the engine.
+		std::map<std::string, int> miscRules;
+	};
+
+
+private:
+	std::string name;
+	std::string description;
+	const Sprite *thumbnail = nullptr;
+	Storage storage;
 };
