@@ -7686,6 +7686,7 @@ mission "Silver Talon 3"
 	name "Escape to <planet>"
 	description "With the bounty hunters in tow, flee to <destination> to escape a fleet of enraged and vengeful pirates."
 	passengers 4
+	blocked "You'll need four bunks free to carry the surviving members of the Silver Talon. Return here when you have the required space free."
 	source "Dancer"
 	destination "New Iceland"
 	to offer
@@ -7721,7 +7722,7 @@ mission "Silver Talon 3"
 				goto commotion
 			
 			label pict
-			`	"Poisonwood. '85. Our platoon was supposed to be a mobile reserve for a strike against a missile battery. Only problem is they got the position of the battery off by seventy kilometres, and we dropped right into a barrage of Meteors. Fairweather, Grange, Perkins, Yanovik... the entire front half of our shuttle was gone before we could blow the plates and bail.`
+			`	"Poisonwood. '85. Our platoon was supposed to deploy behind enemy lines to gether intelligence for the main assault. Only problem is they got the position of a missile battery off by seventy kilometres, and we dropped right into a barrage of Meteors. Fairweather, Grange, Perkins, Yanovik... the entire front half of our shuttle was gone before we could blow the plates and bail.`
 			`	"Some things never change, Captain, some things never change."`
 			choice
 				`	"Some things do change, though."`
@@ -7856,6 +7857,7 @@ mission "Silver Talon 4"
 	name "Kill Vlad Blaire"
 	description "Wait for Vlad Blaire's flagship, the Crimson Horde, to enter the system. Then, disable and board it to allow the surviving bounty hunters to confirm his death."
 	passengers 4
+	blocked "You'll need four bunks free to carry the surviving members of the Silver Talon. Return here when you have the required space free."
 	source "New Iceland"
 	to offer
 		has "Silver Talon 3: done"
@@ -7958,6 +7960,7 @@ mission "Pict's Legacy 1"
 	to offer
 		has "event: Pict Trigger"
 		has "main plot completed"
+		has "Silver Talon: Hovercraft kill"
 	on offer
 		conversation
 			`You're sitting at the spaceport bar watching some hovercraft racing, when all of a sudden you receive a voice message.`
@@ -8106,6 +8109,7 @@ mission "Pict's Legacy 2"
 	destination "Sandswell"
 	passengers 3
 	deadline 3
+	blocked "You'll need three bunks if you want to continue searching for Pict's killer. Return here when you have the required space free."
 	to offer
 		has "Pict's Legacy 1: done"
 	on offer
@@ -8210,7 +8214,7 @@ mission "Pict's Legacy 2"
 		dialog "You've land on <planet>, but the Alphas are still overhead. It looks like they're going to escape!"
 	
 	on complete
-		payment 45000
+		payment 145000
 		conversation
 			`Your ship settles down amidst a cloud of dust. The two marines are out of their seats immediately and racing for the door.`
 			`	"He's in the mountain," Raven says. "The map is showing some sort of underground complex."`
@@ -8263,5 +8267,277 @@ mission "Pict's Legacy 2"
 			label denouement
 			`	The four of you leave the cave as in a trance. Outside, the sandstorm has abated slightly, and you can see your ship parked beside a Navy Frigate. Sailors, marines, and support staff swarm the area. A medic applies some sort of salve to your wounded shoulder and pronounces you fit to fly. A clerk presses a credit chip worth <payment> into your hands in exchange for "services rendered to the Republic." A skinny officer cadet salutes and congratulates you with a grin.`
 			`	Pict is not among them, nor is Klaus or Dagger, Colonel Nguyen or Raven's Tycjan Yanovik.`
-			`	But Miyanoi Tonogi and the Alphas that held his reins are dead, and you are alive. You, and the hundred million people whose only connection with the events of the last week will be an obituary entry and a classified report unsealed fifty years from now.`
+			`	But Miyano Tonogi and the Alphas that held his reins are dead, and you are alive. You, and the hundred million people whose only connection with the events of the last week will be an obituary entry and a classified report unsealed fifty years from now.`
 
+# Miyano Tonogi
+
+mission "Pict's Quest 1"
+	name "Transport investigators to Tundra"
+	description "A small party of Alphas has been reported on <destination>. Transport a Navy Intelligence unit there to help track down the Alphas."
+	source "Shiver"
+	destination "Tundra"
+	passengers 4
+	to offer
+		has "event: Pict Trigger"
+		has "main plot completed"
+		not "Silver Talon: Hovercraft kill"
+	on offer
+		conversation
+			`Walking through the spaceport, you notice a group of four Navy personnel huddling in the cold. Hearing you, one of them suddenly raises her head and calls "Hey, <first>, is that you?"`
+			choice
+				`	(Approach the soliders.)`
+				`	(Leave them to freeze.)`
+					goto freeze
+			
+			`	As you approach, the troops solidify from amorphous blobs of cold into a surprising set of faces. The woman who called out turns out to be Pict, one of the members of the Silver Talon who helped kill Vlad Blaire. Beside her stands Raven, the Questioner you met working for the Free Worlds. The other two soldiers introduce themselves as Sergeant Feng and Private Isaksen of the Navy Marine Corps.`
+			`	"Well, we're lucky you showed up, <first>," Pict says. "We were supposed to transfer ships here but our second transport never showed up so we've spent the last day and a half hanging around the spaceport trying to catch a ride."`
+			choice
+				`	"Where are you headed?"`
+				`	"I wish I could help, but I've got places I need to go."`
+					goto unavailable
+			
+			`	It's Raven, rather than Pict, who answers. "We're looking for a ride to <destination>. I'm afraid we'll only able to pay <payment> for this leg of the journey, but it's important work: a small group of Alphas was sighted there not too long ago and we think they might have been involved in a murder case.
+			`	"If everything goes well, we should be able to get you approved for better remuneration for later jobs."`
+
+			choice
+				`	"That sounds like a worthy cause. I'll take you there."`
+				`	"Sorry, but I can't afford to take on a job for so little."`
+					goto unavailable
+			
+			`	You lead the four soldiers over to your ship where they hop in with nothing more than the rucksacks on their backs and start preparing for the trip to <planet>.`
+				accept
+
+			label freeze
+			`	Like the cynical psychopath you are, you ignore the freezing troops and return to the nice warm comfort of your ship.`
+				decline
+
+			label unavailable
+			`	Pict frowns, and it's Raven who responds. "Understandable. At least in the military we get paid per diem instead of per barrel of shrink-wrapped mackarel we transport."`
+			`	You exchange empty pleasentries, hand them a spare reflective thermal blanket of the sort that is inexpicably equipped in vast quantities on civilian spacecraft, and head back to the <ship>.`
+				decline
+	
+	on complete
+		payment 8000
+		conversation
+			`Over the course of the trip to <planet>, Raven and Pict filled you in on the details of the mission. It appears that around a month ago a senior defense staffer named Hadija Jumanne was found dead in her hotel room during a counter-Alpha summit on Glory. Several years ago, Jumanne was responsible for organizing a program of bounties on pirate warlords with ties to the Alphas, including a bounty on the head of Vlad Blaire. Although civil authorities were unable to find a suspect, Navy Intelligence believed that a band of Alphas was behind the attack, and Raven was tasked with organizing a formal search - culminating in the sighting of the group on <planet>.`
+			`	Finally, your ship touches down in the center of one of the largest spaceport domes. Raven presses a credit chip worth <payment> into your hand and turns to leave. Suddenly, she pauses. "Say, Captain <last>, we've got a couple things to handle, but if you'd like to meet us back here in the spaceport in twenty minutes or so, we could sure use your help."`
+
+
+mission "Pict's Quest 2"
+	name "Follow Alphas to Sandswell"
+	description "Raven believes the Alphas were travelling to <destination>. Follow them there, where you will be met with Navy reinforcements."
+	source "Tundra"
+	destination "Sandswell"
+	passengers 4
+	to offer
+		has "Pict's Quest 1: done"
+	
+	on offer
+		conversation
+			`You join the four soldiers near what appears to be a conveyor belt moving into the spaceport city's "downtown" district. Getting on behind Isaksen, you soon pass through first one large glass dome, then another, before finally getting off in what appears to be a business district.`
+			`	Your unusual party attracts some notice, but not much until you end up in front of a tiny shop selling "desert survival gear" - a rather strange sort of store to find on a planet that is essentially an enormous snowball.`
+			`	Stepping into the store behind Raven, you're greeted by the proprietor, a short young man whose face is vaguely familiar but who you certainly haven't seen before.`
+			`	"Hello, there. I suppose you're here about the Alphas?"`
+			choice
+				`	"Yes."`
+				`	(Let the professionals handle it.)`
+					goto professionals
+			
+			`	The man gives you a funny look. "Sorry to ask, but are you some kind of plainclothes detective or something..."`
+			`	Raven shakes her head. "No, Captain <last> is just a friend. Now, if I don't mind, may I ask you a few questions?"`
+				goto questions
+			
+			label professionals
+			`	The man accedes and the two sit down at a small table behind the counter of the shop. Raven holds his hands and launches into a quiet battery of questions about the Alphas. By the time she's done, his face is covered in sweat. Raven stands up, shaking her head, and Sergeant Feng hands him a handkerchief to clean his face.`
+			`	"Well, thank you for your help, Mr. Miyano," Raven says. "I'm sorry to have put you through all that trouble."`
+			`	"No, no trouble at all," he replies. "Glad to do my part to help, that's all." He pauses, then continues. "Say, all of what you did just now - are you a Questioner?"`
+			`	"Yes, I am," she responds.`
+			`	"So you know I was telling the truth?"`
+			`	"Yes."`
+			`	"Do you think you'll be able to catch them?"`
+			`	"Honestly, no." Raven smiles sadly. "We'll try, but they're too long gone. Without any way to track them or any other witnesses, it hardly matters."`
+			`	Pict whistles softly. "This is almost worse than that business with Vlad Blaire, isn't it, <first>?" she asks.`
+			choice
+				`	"Yeah, this is almost worse."`
+					goto father
+				`	"At least no one's been killed yet."`
+			
+			`	"Well, apart from Jumanne, you mean," Pict counters. "But you do have a point."`
+			label father
+			`	The shopkeeper suddenly interrupts. "Wait, you knew Blaire?"`
+			`	Pict eyes him quizzically. "Son, I killed Vlad Blaire. Skinned his ear for a tissue sample, too, so I know it was him. Why?"`
+			`	Suddenly, Mr. Miyano becomes energized, almost frantic. "My father, my father worked for that bloodsucking man. He owed him money on Dune, you see, so he became one of his drivers. One of his best hovercraft drivers - Blaire always gave him the most important jobs and he trusted him because he knew that between his debt, his family, and his honor my father would never betray him."`
+			`	Silently, tears trickle down Miyano's face. "When Blaire died, it was as if we'd been set free. My father rushed home with the news and we were off Greenrock by midnight. You - you saved my family." For a full minute, he sits in silence, crying tears of relief and joy tempered with sorrow and grief. Then, he cocks his head. "Wait a minute -" he turns to Raven "- Raven, right? Did you say there's no way of tracking the Alphas?"`
+			`	"That's right," she replies.`
+			`	"When I was young, I remember one of Blaire's men... he came to our tenement and gave all us kids a lecture about never paying for anything with a bank card; he said the government could track everywhere you went with it. Is that right?"`
+			`	"Well, not quite," Raven responds, somewhat chagrined. "If we have a bank card we can connect it to any pilot's license or other documents you have in your name. But that only works if the vendor keeps a record of the transaction."`
+			`	Mr. Miyano's eyes glow. "Then we've found them! I have a record of the card they used right here!"`
+			choice
+				`	"Wait, you sold them supplies?"`
+				`	"Sorry, does anyone else think it's weird that the Republic can just track you whenever you buy anything?"`
+					goto surveillance
+
+			`	"Why, of course!" he exclaims. "That's how I saw them."`
+			`	"May I see your records?" Raven asks.`
+
+			label surveillance
+			branch surveillance_fw
+				has "event: joined the free worlds"
+			`	"Well, perhaps," Pict replies, "but it's not quite so simple. I thought a Free World bigwig like you would know about that, though, seeing as how one of the south's big objections to pilot's licenses was always the invasion of privacy."`
+			`	"I thought -" you manage to get out before Raven cuts you off.`
+				goto interrupt
+
+			label surveillance_fw
+			`	"It's the Republic, what can I say." Pict replies. "Invasion of privacy? Maybe. But it's useful in times like these."`
+			`	"But -" you interject before Raven cuts you off.`
+
+			label interrupt
+			`	"Let's talk politics later." She turns to Mr. Miyano. "Can I see your records?"`
+
+			label search
+			`	He happily agrees, and it only takes a minute for Raven to get the ID behind the bank card: Joachim Grub, a 58-year-old man born on Crossroads with a pilot's license and a registered Clipper by the name of the Mary Anne. No criminal record, no property deeds, and - vitally - no birth certificate.`
+			`	"There's no way this guy exists," breathes Private Isaksen, looking over Raven's shoulder.`
+			`	Raven only grins and calls in a request to Navy Intelligence HQ for all information regarding the Mary Anne.`
+			`	Even with the hyperspace relays, it takes a good hour for Navy Intelligence to get back. In the intervening time, the five of you chat and Raven asks Mr. Miyano a few more questions without using her Questioner methodologies.`
+			`	Finally, Raven receives a response to her query in the form of several hundred pages of dense notation. Scrolling down to the bottom, she finds what she's looking for: a list of recent ports of call and system entries by the so-called Grub's ship.`
+			`	At the bottom of the list? Stopovers on Tundra and Reunion including full fuel top-ups, and fly-throughs of systems in a straight line from Cebalrai to Acamar.`
+			`	Raven smiles a shark's toothy smile. "Looks like someone screwed up royally... Someone who was on Tundra, and then flew to Acamar and vanished... Someone who bought desert survival gear on a snowball planet... Someone, in other words, who was really going to Sandswell.`
+			`	"Thank you for your help, Mr. Miyano. I do believe we've found our Alphas - either that or a tourist with especially odd taste."`
+			`	With that, the four of your return to your ship, leaving Mr. Miyano to his shopkeeping. Raven stays outside for a minute to take a call before returning to the cockpit.`
+			`	"Right, Captain <last>. We're headed to <system>. If we see signs of Alpha activity, we will go suborbital over <planet> to secure the area and wait for Navy reinforcements. Oh, and the Navy has approved a payment of <payment> for you for your troubles once we set down there."`
+	
+	npc
+		personality
+			"waiting"
+			"staying"
+			"heroic"
+			"opportunistic"
+			confusion 10
+		system "Acamar"
+		government "Republic"
+		fleet "Large Republic" 3
+		fleet "Small Republic" 4
+	
+	on enter "Kugel"
+		conversation
+			`As you enter Kugel, Raven, Feng, and Isaksen start fiddling with what looks like a cross between a steampunk artist's chef d'oeuvre and a giant crocus. Raven barks instructions as Feng twists the knobs? flowerpetals? of the strange machine before she finally sits bolt upright.`
+			`	"We've got them. Oh, have we ever got them."`
+			`	On the side of the machine, a small screen has been filled with hundreds of red dots. Isaksen takes one look at the display and blanches. "How on Earth did we ever miss them?" they ask. No one replies.`
+			`	Finally, Raven breaks the silence. "Take us down as fast as you can, Captain <last>, and be prepared to fight. There's at least a hundred Alphas down there with some serious warships. Thankfully, they don't seem to have any planet-based defenses, but if you let those ships reach orbit they'll blast us to smithereens.`
+			choice
+				`	"I'm on it."`
+					decline
+				`	"I don't think anyone but us is going to be doing any blasting today."`
+				`	"The <ship> doesn't have any weapons. How are we supposed to defend ourselves?"`
+					to display
+						not "armament deterrence"
+					goto unarmed
+			
+			`	"That's the spirit. But hurry."`
+				decline
+			
+			label unarmed
+			`	"In that case, we pray that reinforcements get here in time to save us before those Alphas get their guns online."`
+	
+	on complete
+		payment 60000
+		conversation
+			`Shortly after you enter the atmosphere, Raven calls out. "We've got contact! Firebird, directly below. Looks like a cold start - they don't have any shields."`
+			`	Pict stands by your side, ignoring the lurches of the ship beneath you. "You've ever fought in atmosphere before, <first>?"`
+			choice
+				`	"Sure, I know what I'm doing."`
+					to display
+						has "armament deterrence"
+				`	"No, do you have any tips?"`
+					to display
+						has "armament deterrence"
+					goto tips
+				`	"Sure, but usually I have weapons."`
+					to display
+						not "armament deterrence"
+					goto unarmed
+				`	"What part of 'unarmed' makes you think we're going to be doing any fighting?"`
+					to display
+						not "armament deterrence"
+					goto unarmed
+			
+			`	"In that case, I'll shut up and let you fly."`
+			`	Raven calls out something else, but you can't make it out over the roar of the wind outside. Suddenly, you see a glimpse of metal, far too close. Instinctively, you open fire, but your shots go harmlessly past the wildly jerking Firebird.`
+			`	Metal screams as you throw the <ship> into a tight bank, and Pict staggers but doesn't lose her balance. Using your instruments instead of your eyes, you track the Firebird's caret until it crosses your line of fire and let loose with everything you have. A shockwave and a red flash confirm your kill.`
+			`	Raven yells something else, but you can't hear. On your radar screen you line up on a second target, noting with dismay the sudden swarm of icons. Your finger reaches for the trigger, preparing the fire... but then Pict swats your hand away.`
+			`	"That's a friendly!" she yells in your ear. "The Navy's here, just break off and go to ground."`
+			`	In reply, you level out the <ship> and head for <planet>'s surface.`
+				goto landing
+			
+			label tips
+			`	"Of course. First tip: don't rely on your eyes. If you can see it, you're too close. Second tip: without shields, your best target is a ship's cockpit window. A single hit in this kind of atmosphere will wreck the whole cockpit of even a capital ship, let alone a Firebird. Third tip: don't be afraid to fly this thing like a fighter. It can take some rough treatment, and it's not about to pull enough Gs to make any of us black out."`
+			`	With that sage advice ringing in your ears, you dive in on the Firebird, the tortured metal of your ship screaming in agony. Through a gap in the clouds of sand and grit you catch a glimpse of metal and glass and line up your sights.`
+			`	The result is more devastating than anything you have ever seen before. Your shot catches the Firebird square in the cockpit, instantly pulverizing the reinforced, unshielded glass. The blast continues backward through the ship before the entire thing explodes in a massive gout of deuterium fire.`
+			`	Bringing the <ship> around again, you line up on another target, only for Pict to yell in your ear. "That's a Navy ship!" She pauses to assess the situation. "They've got it handled! Just disengage and go to ground!"`
+			`	Following her guidance, you level out your ship and head for <planet>'s surface.`
+				goto landing
+			
+			label unarmed
+			`	Pict chuckles. "You'll be fine. Raven had half the Navy on standby in Acamar and they'll be here any minute now. Just duck and weave and look threatening."`
+			`	Raven calls out something else, but you can't hear her over the sound of the wind outside. Suddenly, you catch a glint of magenta paint flash by in the distance. Throwing the <ship> into a spiral, you frantically dodge as the Firebird stoops on you. The ship bucks from a glancing plasma hit but holds together.`
+			`	Then, only a minute after the battle begins, it's over. The Firebird suddenly breaks off, only to disintegrate into a billowing cloud of deuterium flame. A Navy warship swoops down, and Pict guides you toward <planet>'s surface.`
+
+			label landing
+			`	Upon touchdown, you are met by a scene of organized chaos. Navy ships are landing left and right, and Raven disembarks immediately to talk to the fleet's commanding officer. Her two marines follow her out, until only Pict is left.`
+			`	"Well," she says, turning to you, "that went a fair sight better than Poisonwood. It looks like we took out a hundred Alphas with no friendly casualties. Medals all round instead of cenotaphs, toasts instead of eulogies, but the war goes on." She sighs. "It's almost too easy."`
+			choice
+				`	"What do you mean?"`
+				`	"I hardly think that was easy."`
+					goto misunderstanding
+				`	"I know what you mean."`
+					goto understanding
+
+			`	She gestures at the Navy personnel disembarking from a nearby warship. "This, all of it. We show up, we offer no quarter, we hand out accolades, and we scrape their strongholds for secrets. They dug out a whole mountain here, you know. It must have taken them years to build this base, and it took us months to find them, but it only took Raven half a second to send the message that doomed them all. All because they're not quite human."`
+			`	She closes her eyes and takes a deep breath before opening them again. "Say, <first>, that's enough about my demons. I'm sure you have lots of questions about all this."`
+				goto questions
+
+			label misunderstanding
+			`	"No, no, that's not what I mean." She gestures at the Navy personnel disembarking from a nearby warship. "This, all of it. We show up, we offer no quarter, we hand out accolades, and we scrape their strongholds for secrets. They dug out a whole mountain here, you know. It must have taken them years to build this base, and it took us months to find them, but it only took Raven half a second to send the message that doomed them all. All because they're not quite human."`
+			`	She closes her eyes and takes a deep breath before opening them again. "It's so easy for all of them, all of them but me... sometimes I think I'm the only one who really realizes how similar we are. Enough about my burdens, though - I'm sure you have lots of questions about all this."`
+				goto questions
+			
+			label understanding
+			`	She looks at you quizzically. "Do you really? Do you see the same unquestioned evils here that I do? How easy it is for us all to show up, offer no quarter, hand out accolades, and scrape their strongholds for secrets? They dug out a whole mountain here, you know. It must have taken them years to build this base, and it took us months to find them, but it only took Raven half a second to send the message that doomed them all. All because they're not quite human."`
+			`	She closes her eyes and takes a deep breath before opening them again. "Maybe you do. And anyhow, me getting all existential on you isn't helping anyone. I'm sure you've got lots of questions about all this."`
+
+			label questions
+			choice
+				`	"How did you go from being a bounty hunter to part of Navy Intelligence?"`
+				`	"How did you meet Raven?"`
+					goto raven
+				`	"Do you know how the rest of the Silver Talon is doing?"`
+					goto talon
+				`	"How could an Alpha stronghold like this go unnoticed for so long?"`
+					goto unnoticed
+				`	"Wait, the Alphas built a fortress underneath a mountain?"`
+					goto mountain
+			
+			`	Pict laughs. "Oh, I was part of Navy Intelligence all along." She grins at the look of surprise on your face. "It was all part of Jumanne's Operation Payback. Little cells of us were sent off to aid the bounty hunters wherever possible. Dagger and I ended up getting 'recruited' by Cerridwyn, and the rest is history. But I reckon I've been part of the Navy since before you were born."`
+				goto calling
+
+			label raven
+			`	Pict smiles sadly. "Poisonwood. It all comes back to Poisonwood. We dropped together, you know. Even as young as she was, Raven was good at her job. Our squad was tasked to guard her and another Questioner - a young man named Tycjan Yanovik while they gathered information behind enemy lines. Then, of course, they fouled up our flight plan and put us right over the Alphas' air defenses.`
+			`	"Before we knew what was happening, half the shuttle was gone. Ten of us started out, but only six survived the drop, and only four of us made it off Poisonwood again: me, Dagger, Black Eye Brian, and Raven. None of us would have made out out alive it weren't for Raven."`
+				goto calling
+			
+			label talon
+			`	"Well, Dagger's an easy one," Pict responds. "The poor fool gave himself alcohol-induced hepatitis and wound up first on medical leave and then stuck with an honorable discharge. I hear he's doing okay for himself, but his doctor told him that his next drink would be the death of him and he's been complaining about so called 'medical malpractice' ever since.`
+			`	"As for Cerridwyn -" she winces. "Cerridwyn never really recovered from Louis' death. Shortly after she got home she checked into a mental hospital with major depressive disorder and has been in and out ever since. I talked to her last year and she seemed to be doing better, but I don't think she'll ever accept that what happened on Greenrock wasn't her fault.`
+			`	"Klaus, on the other hand, I haven't heard anything about. All I know about him is that he's won a couple of drag races on a few frontier planets and no one's published an obituary yet."`
+				goto calling
+			
+			label unnoticed
+			`	Pict gazes off into the distance. "Overconfidence. Arrogance. Incompetence. Insufficient surveillance. You name it, the review board will argue it was the root cause. In reality? All of those were factors, but the biggest one was simply that no one ever suspected the Alphas would build a base here. If it wasn't for a couple of Alphas bungling their security arrangements, we might never have suspected anything at all."`
+				goto calling
+			
+			label mountain
+			`	"Well, expanded at least. Feng thinks that the tunnels were already there, and he has a background in that kind of field, so he might know. But either way, there's no denying they did some pretty heavy work. I don't know how closely you looked at that scanner display while we were in orbit, but there must be several kilometers of passages cut into that mountain." She gestures at the craggy, sandy peak nearby.`
+
+			label calling
+			`	Suddenly, Raven comes jogging back to your ship. "Pict, we need you!" Pict nods and turns to you again. "Thanks, <first>. May we meet again someday in a more peaceful time."`
+			`	Noticing you, Raven walks over and hands you a credit chip worth <payment>. "Thanks for your help, Captain <last>. We'll find our own way off-planet when we're done here; you're welcome to leave whenever you wish."`
