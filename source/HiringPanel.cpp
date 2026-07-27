@@ -48,7 +48,7 @@ void HiringPanel::Step()
 void HiringPanel::Draw()
 {
 	const Ship *flagship = player.Flagship();
-	const Interface *hiring = GameData::Interfaces().Get(Screen::Width() < 1280 ? "hiring (small screen)" : "hiring");
+	const Interface *hiring = GameData::Interfaces().Get("hiring");
 	Information info;
 
 	int flagshipBunks = 0;
