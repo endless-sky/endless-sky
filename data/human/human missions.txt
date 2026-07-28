@@ -7487,7 +7487,7 @@ mission "Silver Talon 1"
 			`	While the woman is talking, Klaus extracts himself from the crate, spraying packing peanuts all over the place and sending the bazooka clattering to the ground. He glowers at the woman before trying to put the lid back on the box, failing, and ending up inside it again. The woman completely ignores him, clearing her throat and peering up at you.`
 			
 			label job
-			`	"Here's the thing, captain. I figure you're a reasonable person, know your business, all that. So I'm not going to sugar-coat. We're bounty hunters, headed out to the Rim right now for, uh, work. Our previous ride bailed on us, so we're stranded here at the moment. What do you say?"`
+			`	"Here's the thing, captain. I figure you're a reasonable person, know your business, all that. So I'm not going to sugar-coat. We're the Silver Talon, a group of bounty hunters headed out to the Rim right now for, uh, work. Our previous ride bailed on us, so we're stranded here at the moment. What do you say?"`
 
 			choice
 				`	"Sorry, but I don't help killers."`
@@ -7556,6 +7556,7 @@ mission "Silver Talon 1"
 		dialog "You arrive on <planet>, setting down some distance from the main spaceport. Unfortunately, not all the bounty hunters are on your flagship, so you're going to have to take off again to see what's taking them so long to get here."
 
 	on complete
+		log "Minor People" "Cerridwyn Morgan" `Cerridwyn Morgan is the bazooka-toting leader of the Silver Talon, an eclectic group of bounty hunters.`
 		conversation
 			`The team of bounty hunters pass the flight to <planet> in relative silence - and with a very strong odor of garlic. As you enter the <system> system, Cerridwyn directs you to land in a secluded minor spaceport well away from the planet's major cities.`
 			`	No sooner do you put down than Dagger cranks the <ship>'s hatch open and jumps out into the scorching heat. Klaus and Pict are close behind, followed by a pile of gear.`
@@ -7564,7 +7565,7 @@ mission "Silver Talon 1"
 				`	"Sounds good."`
 					goto good
 				`	"You don't want me to wait?"`
-			`	"No, I don't. You've done right by us, and we owe you for it. If we're not back in four hours, we'll probably all be dead and there'll be a price on your head too."`
+			`	"No, I don't. You've done right by us, and we owe you for it. If we're not back in four hours, we're probably all be dead and there'll be a price on your head too."`
 			`	Cerridwyn exhales, a long, slow breath.`
 			label good
 			`	"Anyways, good luck, Captain <last>. Stick with your ship, make sure she's ready to lift on a moment's notice, and we'll see you in a few hours."`
@@ -7939,6 +7940,7 @@ mission "Silver Talon 4"
 		ship "Sparrow" "Iceheart"
 
 	on complete
+		log "Parted ways with the Silver Talon following the death of Vlad Blaire. None of the survivors have really recovered from recent events, but some are taking it much better than others."
 		event "Pict Trigger" 1500
 		payment 445000
 		conversation
@@ -8163,6 +8165,8 @@ mission "Pict's Legacy 2"
 			
 			label cerridwyn
 			`	Raven looks you in the eyes. "I suppose you haven't really kept in touch, have you? Cerridwyn Morgan admitted herself to a mental hospital shortly after the death of Vlad Blaire upon the referral of her psychiatrist, and she's been there ever since. I wouldn't call her okay, but she is still alive. The Alphas only got her soul, not her body."`
+			action
+				log "Minor People" "Cerridwyn Morgan" "Following the end of her time with Vlad Blaire, Cerridwyn admitted herself to a mental hospital where she has remained ever since."
 			
 			label alphas
 			`	"Wait, Alphas?" you ask.`
@@ -8214,6 +8218,9 @@ mission "Pict's Legacy 2"
 		dialog "You've land on <planet>, but the Alphas are still overhead. It looks like they're going to escape!"
 	
 	on complete
+		log "Minor People" `Compassion "Pict" Macdonald` `Pict Macdonald was a former member of the Silver Talon and a Sergeant Major in the Republic Navy. She was killed by an Alpha-backed assassin in retaliation for the killing of Vlad Blaire.`
+		log "People" "Raven" "Worked with Raven in tracking down the Alphas on Sandswell; the Alphas' crimes infuriated her in a way that nothing else seems to."
+		log "Tracked down an Alpha-backed assassin who claimed I killed his father, destroying multiple Alpha warships in the process. The killer had previously murdered most of the former members of the Silver Talon - it seems Cerridwyn Morgan and I are the only survivors."
 		payment 145000
 		conversation
 			`Your ship settles down amidst a cloud of dust. The two marines are out of their seats immediately and racing for the door.`
@@ -8268,8 +8275,6 @@ mission "Pict's Legacy 2"
 			`	The four of you leave the cave as in a trance. Outside, the sandstorm has abated slightly, and you can see your ship parked beside a Navy Frigate. Sailors, marines, and support staff swarm the area. A medic applies some sort of salve to your wounded shoulder and pronounces you fit to fly. A clerk presses a credit chip worth <payment> into your hands in exchange for "services rendered to the Republic." A skinny officer cadet salutes and congratulates you with a grin.`
 			`	Pict is not among them, nor is Klaus or Dagger, Colonel Nguyen or Raven's Tycjan Yanovik.`
 			`	But Miyano Tonogi and the Alphas that held his reins are dead, and you are alive. You, and the hundred million people whose only connection with the events of the last week will be an obituary entry and a classified report unsealed fifty years from now.`
-
-# Miyano Tonogi
 
 mission "Pict's Quest 1"
 	name "Transport investigators to Tundra"
@@ -8441,6 +8446,8 @@ mission "Pict's Quest 2"
 	
 	on complete
 		payment 60000
+		log "Minor People" "Pict" "A member of Navy Intelligence and a former member of the Silver Talon, Pict is heavily involved in the ongoing war against the Alphas."
+		log "Helped Pict and Raven track down and destroy a major Alpha base on Sandswell, gaining some experience in atmospheric combat in the process."
 		conversation
 			`Shortly after you enter the atmosphere, Raven calls out. "We've got contact! Firebird, directly below. Looks like a cold start - they don't have any shields."`
 			`	Pict stands by your side, ignoring the lurches of the ship beneath you. "You've ever fought in atmosphere before, <first>?"`
@@ -8522,12 +8529,16 @@ mission "Pict's Quest 2"
 
 			label raven
 			`	Pict smiles sadly. "Poisonwood. It all comes back to Poisonwood. We dropped together, you know. Even as young as she was, Raven was good at her job. Our squad was tasked to guard her and another Questioner - a young man named Tycjan Yanovik while they gathered information behind enemy lines. Then, of course, they fouled up our flight plan and put us right over the Alphas' air defenses.`
+			action
+				log "Minor People" "Pict" "During the assault on Poisonwood, Pict was assigned to protect the Questioner Raven on an intelligence-gathering mission and was one of the few survivors of the operation."
 			`	"Before we knew what was happening, half the shuttle was gone. Ten of us started out, but only six survived the drop, and only four of us made it off Poisonwood again: me, Dagger, Black Eye Brian, and Raven. None of us would have made out out alive it weren't for Raven."`
 				goto calling
 			
 			label talon
 			`	"Well, Dagger's an easy one," Pict responds. "The poor fool gave himself alcohol-induced hepatitis and wound up first on medical leave and then stuck with an honorable discharge. I hear he's doing okay for himself, but his doctor told him that his next drink would be the death of him and he's been complaining about so called 'medical malpractice' ever since.`
 			`	"As for Cerridwyn -" she winces. "Cerridwyn never really recovered from Louis' death. Shortly after she got home she checked into a mental hospital with major depressive disorder and has been in and out ever since. I talked to her last year and she seemed to be doing better, but I don't think she'll ever accept that what happened on Greenrock wasn't her fault.`
+			action
+				log "Minor People" "Cerridwyn Morgan" "Following the end of her time with Vlad Blaire, Cerridwyn admitted herself to a mental hospital with clinical depression. With professional help, her condition has improved, but she has remained striken by survivor's guilt."
 			`	"Klaus, on the other hand, I haven't heard anything about. All I know about him is that he's won a couple of drag races on a few frontier planets and no one's published an obituary yet."`
 				goto calling
 			
