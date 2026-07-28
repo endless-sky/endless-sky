@@ -12180,7 +12180,7 @@ mission "Silver Talon 4"
 
 	on offer
 		conversation
-			`As you walk into the spaceport bar, you are met by a small crowd of sailors. The four bounty hunters are at the centre of the group, talking in a low murmur with one of the better-off spacefarers. Upon seeing you, Pict walks over to greet you.`
+			`As you walk into the spaceport bar, you are met by a small crowd of sailors. The four bounty hunters are at the center of the group, talking in a low murmur with one of the better-off spacefarers. Upon seeing you, Pict walks over to greet you.`
 			`	"Cerridwyn's friends," she says, gesturing to the crowd. Damn fools, if you ask me, but she's got them fired up. With any luck, some of them will even help us out."`
 			`	You watch as Cerridwyn and Klaus continue to speak to the spacers. One by one, they wander off, leaving empty glasses on the table. Finally, three captains remain.`
 			`	"Captain <last>, I'd like you to meet captains John Smith, Norma Down, and Yven Stieber. Captains, <first> <last>."`
@@ -12574,7 +12574,7 @@ mission "Pict's Legacy 2"
 			label miyano
 			`	"Don't move, or the captain buys it," growls a rough voice from behind you. The three Navy personnel freeze as a hand grabs you by the shoulder and spins you around to face the gun barrel and the man behind it. His face is masked by shadow and his eyes are as hard as steel, but there is something vaguely familiar about him.`
 			`	"I am Miyano Tonogi," he says, staring intensely into your face, "and my father was Miyano Hiromi, a poor hovercraft pilot. You killed my father. Prepare to die."`
-			`	As his finger moves toward the trigger, he fails to notice three more clicks caused by three more two point eight centimetre magnets. The marines' lasers catch him in the face, blinding him instantly and throwing his aim off. Rather than hitting you square between the eyes the shot grazes your shoulder before the guns clatters out of the man's fingers. Blind and dying, he weeps.`
+			`	As his finger moves toward the trigger, he fails to notice three more clicks caused by three more two point eight centimeter magnets. The marines' lasers catch him in the face, blinding him instantly and throwing his aim off. Rather than hitting you square between the eyes the shot grazes your shoulder before the guns clatters out of the man's fingers. Blind and dying, he weeps.`
 			`	Raven rushes up to your side. "Are you okay?"`
 			choice
 				`	"I will be."`
