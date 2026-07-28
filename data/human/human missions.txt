@@ -7719,7 +7719,7 @@ mission "Silver Talon 3"
 					goto pict
 				`	"You seem to be holding up well."`
 			
-			`	Pict laughs bitterly. "A veteran like you should know better than that. No one ever holds up well inside after a fight, no matter what happens in the outside world."`
+			`	Pict laughs bitterly. "A veteran like you should know better than that. No one ever holds up well inside after a fight, no matter what it looks like to everyone else."`
 				goto commotion
 			
 			label pict
@@ -7785,6 +7785,7 @@ mission "Silver Talon 3"
 			`	A look passes between the five of you, and you're suddenly running full speed for the <ship>. It's not until you reach orbit that your heart rate returns to normal.`
 				launch
 			
+			label firefight
 			`	Drawing your gun, you soon find that the thugs are much less impressive fighters than their bulging muscles suggest. You take three shots, and two of your assailants collapse to the floor. A round from Klaus' pistol clips the shoulder of a third, knocking him off balance as he drops his weapon.`
 			`	Suddenly, Dagger lunges forward, taking out the fourth man with a quick flurry of blows. The remaining two attackers turn tail and run off into the night.`
 			`	The five of you regroup outside the bar to the sound of distant sirens.`
@@ -7796,6 +7797,7 @@ mission "Silver Talon 3"
 			`	"Vlaid Blaire's employees," Pict replies cooly. "And now we've got to get out of here. The police will be here in twenty minutes or so, and I for one don't want to be caught standing beside a pile of bodies with a bloody knife."`
 				goto objections
 			
+			label flee
 			`	"We leave," Dagger slurs. "Quickly-like befuh there's muhofem.`
 				goto objections
 
@@ -7851,8 +7853,9 @@ mission "Silver Talon 3"
 		dialog `You arrive on <planet>, but somewhere along the way you lost some of the bounty hunters. Better depart and wait for your escorts to enter the system.`
 
 	on complete
-		`As your ship settles into a berth on <planet>, the four surviving bounty hunters are hard-eyed and rearing to go. Klaus checks his small pistol over and over again, and Dagger pops half a dozen painkillers into his mouth.`
-		`	You punch open the hatch, and Cerridwyn turns to face you. "Spaceport bar, half an hour. See you then."`
+		conversation
+			`As your ship settles into a berth on <planet>, the four surviving bounty hunters are hard-eyed and rearing to go. Klaus checks his small pistol over and over again, and Dagger pops half a dozen painkillers into his mouth.`
+			`	You punch open the hatch, and Cerridwyn turns to face you. "Spaceport bar, half an hour. See you then."`
 
 mission "Silver Talon 4"
 	name "Kill Vlad Blaire"
@@ -7884,7 +7887,7 @@ mission "Silver Talon 4"
 			"entering"
 			"staying"
 			"target"
-			"nemesis"
+			"marked"
 			confusion 5
 		ship "Leviathan" "Baron's Cave"
 		conversation
@@ -7951,6 +7954,7 @@ mission "Silver Talon 4"
 			`	Pict, silent and steely-eyed but hurting within.`
 			`	And Cerridwyn, proud Cerridwyn, gleaming rocket launcher at her feet and silver talon pinned to her chest, her facade of poise crumbling as you turn to leave.`
 
+event "Pict Trigger"
 
 mission "Pict's Legacy 1"
 	name "Chase Pict's Killer"
@@ -8175,6 +8179,7 @@ mission "Pict's Legacy 2"
 			`	For the first time since you met her, Raven's impassive and professional Questioner mask falls away, replaced by the wrath of a grief-hardened crusader.`
 			`	"We've been talking long enough - the Alphas' weapon is certainly out of the system by now, heading straight toward them like the idiot he is. Get your ship ready for battle, Captain <last>, because we're going to bleed those murdering scum.`
 			`	"Our sensors show that Pict's killer just entered <system> and is heading for <planet>. Our ships are ready to follow with your help, to hunt and destroy any Alphas in the system before landing and arresting the murder weapon. Feng, Isaksen, and I will join you on your ship again."`
+				accept
 
 	npc
 		government "Republic"
@@ -8193,7 +8198,7 @@ mission "Pict's Legacy 2"
 			"heroic"
 			"opportunistic"
 			confusion 10
-		system "Glory"
+		system "Wazn"
 		fleet "Large Republic" 3
 	
 	npc kill
@@ -8211,7 +8216,7 @@ mission "Pict's Legacy 2"
 		dialog "With the Alphas destroyed, Raven quickly locates the signal emitted by the killer's ship and directs you to land near a large mountain on <planet>."
 	
 	on enter "Kugel"
-		dialog "Entering Kugel, you see no sign of the killer's ship. Instead, the space around <planet> is swarming with Alpha ships"
+		dialog "Entering Kugel, you see no sign of the killer's ship. Instead, the space around <planet> is swarming with Alpha warships."
 
 
 	on visit
@@ -8248,9 +8253,16 @@ mission "Pict's Legacy 2"
 				
 			`	"No, it should work," Raven replies. "Oh, well, I guess it's time to try the old IT standby." With a loud click, she turns off the receiver.`
 			`	Before she can turn the receiver back on, however, there is another, very distinctive click: the click of a magnet sliding precisely two point eight centimetres through a carbon-fibre chamber before coming to rest up against a steel plate. There are not many things that cause such a click. In fact, there are only two: someone dropping a magnet through a carbon-fibre chamber from a height of two point eight centimetres, and someone releasing the safety on a Type 8 laser pistol.`
+				goto miyano
+			
+			label ambush
+			`	Raven turns toward you, frowning. "That shouldn't be possible -" she freezes.`
+			`	There is a very distinctive click: the click of a magnet sliding precisely two point eight centimetres through a carbon-fibre chamber before coming to rest up against a steel plate. There are not many things that cause such a click. In fact, there are only two: someone dropping a magnet through a carbon-fibre chamber from a height of two point eight centimetres, and someone releasing the safety on a Type 8 laser pistol.`
+
+			label miyano
 			`	"Don't move, or the captain buys it," growls a rough voice from behind you. The three Navy personnel freeze as a hand grabs you by the shoulder and spins you around to face the gun barrel and the man behind it. His face is masked by shadow and his eyes are as hard as steel, but there is something vaguely familiar about him.`
 			`	"I am Miyano Tonogi," he says, staring intensely into your face, "and my father was Miyano Hiromi, a poor hovercraft pilot. You killed my father. Prepare to die."`
-			`	As his finger moves toward the trigger, he fails to notice three more clicks caused by three more two point eight centimetre magnets. The marines' lasers catch him in the face, blinding him instantly and throwing his aim off. Rather than hitting you square between the eyes the shot grazes your shoulder before the guns clatters out of the dying man's fingers. Blind and dying, he weeps.`
+			`	As his finger moves toward the trigger, he fails to notice three more clicks caused by three more two point eight centimetre magnets. The marines' lasers catch him in the face, blinding him instantly and throwing his aim off. Rather than hitting you square between the eyes the shot grazes your shoulder before the guns clatters out of the man's fingers. Blind and dying, he weeps.`
 			`	Raven rushes up to your side. "Are you okay?"`
 			choice
 				`	"I will be."`
@@ -8268,7 +8280,7 @@ mission "Pict's Legacy 2"
 
 			label mental
 			`	Raven closes her eyes and says nothing. One of the marines injects the assassin with a shot of analgesic but he continues sobbing. A minute later, he suddenly stops and sits bolt upright. The marines reach for their guns but he does nothing more than look off into the distance at a spot only his blinded eyes can see.`
-			`	"Father," he says, "Father, what have I done?"`
+			`	"Father," he cries, "Father, what have I done?"`
 			`	Slowly, Miyano Tonogi slides back down to the ground. His breathing stops, and the assassin finally dies.`
 
 			label denouement
@@ -8300,8 +8312,8 @@ mission "Pict's Quest 1"
 				`	"Where are you headed?"`
 				`	"I wish I could help, but I've got places I need to go."`
 					goto unavailable
-			
-			`	It's Raven, rather than Pict, who answers. "We're looking for a ride to <destination>. I'm afraid we'll only able to pay <payment> for this leg of the journey, but it's important work: a small group of Alphas was sighted there not too long ago and we think they might have been involved in a murder case.
+
+			`	It's Raven, rather than Pict, who answers. "We're looking for a ride to <destination>. I'm afraid we'll only able to pay <payment> for this leg of the journey, but it's important work: a small group of Alphas was sighted there not too long ago and we think they might have been involved in a murder case.`
 			`	"If everything goes well, we should be able to get you approved for better remuneration for later jobs."`
 
 			choice
@@ -8349,10 +8361,13 @@ mission "Pict's Quest 2"
 					goto professionals
 			
 			`	The man gives you a funny look. "Sorry to ask, but are you some kind of plainclothes detective or something..."`
-			`	Raven shakes her head. "No, Captain <last> is just a friend. Now, if I don't mind, may I ask you a few questions?"`
+			`	Raven shakes her head. "No, Captain <last> is just a friend. Now, if you don't mind, may I ask you a few questions?"`
 				goto questions
 			
 			label professionals
+			`	"Yes, that's why we're here," Raven replies. "Now, if you don't mind, may I ask you a few questions?"`
+			
+			label questions
 			`	The man accedes and the two sit down at a small table behind the counter of the shop. Raven holds his hands and launches into a quiet battery of questions about the Alphas. By the time she's done, his face is covered in sweat. Raven stands up, shaking her head, and Sergeant Feng hands him a handkerchief to clean his face.`
 			`	"Well, thank you for your help, Mr. Miyano," Raven says. "I'm sorry to have put you through all that trouble."`
 			`	"No, no trouble at all," he replies. "Glad to do my part to help, that's all." He pauses, then continues. "Say, all of what you did just now - are you a Questioner?"`
@@ -8370,8 +8385,8 @@ mission "Pict's Quest 2"
 			`	"Well, apart from Jumanne, you mean," Pict counters. "But you do have a point."`
 			label father
 			`	The shopkeeper suddenly interrupts. "Wait, you knew Blaire?"`
-			`	Pict eyes him quizzically. "Son, I killed Vlad Blaire. Skinned his ear for a tissue sample, too, so I know it was him. Why?"`
-			`	Suddenly, Mr. Miyano becomes energized, almost frantic. "My father, my father worked for that bloodsucking man. He owed him money on Dune, you see, so he became one of his drivers. One of his best hovercraft drivers - Blaire always gave him the most important jobs and he trusted him because he knew that between his debt, his family, and his honor my father would never betray him."`
+			`	Pict eyes him quizzically. "Son, I killed Vlad Blaire. Took a gene sample, too, so I know it was him. Why?"`
+			`	Suddenly, Mr. Miyano becomes energized, almost frantic. "My father, my father worked for that bloodsucking man. He owed him money on Dune, you see, so he became one of his drivers. One of his best hovercraft drivers... Blaire always gave him the most important jobs and he trusted him because he knew that between his debt, his family, and his honor, my father would never betray him."`
 			`	Silently, tears trickle down Miyano's face. "When Blaire died, it was as if we'd been set free. My father rushed home with the news and we were off Greenrock by midnight. You - you saved my family." For a full minute, he sits in silence, crying tears of relief and joy tempered with sorrow and grief. Then, he cocks his head. "Wait a minute -" he turns to Raven "- Raven, right? Did you say there's no way of tracking the Alphas?"`
 			`	"That's right," she replies.`
 			`	"When I was young, I remember one of Blaire's men... he came to our tenement and gave all us kids a lecture about never paying for anything with a bank card; he said the government could track everywhere you went with it. Is that right?"`
@@ -8410,6 +8425,7 @@ mission "Pict's Quest 2"
 			`	"Thank you for your help, Mr. Miyano. I do believe we've found our Alphas - either that or a tourist with especially odd taste."`
 			`	With that, the four of your return to your ship, leaving Mr. Miyano to his shopkeeping. Raven stays outside for a minute to take a call before returning to the cockpit.`
 			`	"Right, Captain <last>. We're headed to <system>. If we see signs of Alpha activity, we will go suborbital over <planet> to secure the area and wait for Navy reinforcements. Oh, and the Navy has approved a payment of <payment> for you for your troubles once we set down there."`
+				accept
 	
 	npc
 		personality
