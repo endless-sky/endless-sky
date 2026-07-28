@@ -12093,7 +12093,7 @@ mission "Silver Talon 3"
 				`	(Look for a way out.)`
 			
 			`	It is not hard to find an alternate exit from the bar. The only issue is, every other patron has come to the same conclusion as you have and are now pushing their way toward a very ordinary-sized door.`
-			`	As scorch marks jump into existence around you and Klaus' weapon cracks off shot after shot, your eyes settle on the kitchen door. A door which leads to a room that, according to the galactic fire codes, should have another exit.`
+			`	As lasers scorch the walls around you and Klaus' weapon cracks off shot after shot, your eyes settle on the kitchen door. A door which leads to a room that, according to the galactic fire codes, should have another exit.`
 			`	Bellowing at the bounty hunters to follow, you duck into the kitchen, coming face-to-face with a large, open window and face-to-back with three fleeing cooks. You follow suit, leaping into an alleyway just ahead of Klaus and Dagger. Behind you, Pict hurls her knife through the door and slams it shut before dragging Cerridywn out of the building.`
 			`	A look passes between the five of you, and you're suddenly running full speed for the <ship>. It's not until you reach orbit that your heart rate returns to normal.`
 				launch
@@ -12815,7 +12815,7 @@ mission "Pict's Quest 2"
 			
 			label unarmed
 			`	Pict chuckles. "You'll be fine. Raven had half the Navy on standby in Acamar and they'll be here any minute now. Just duck and weave and look threatening."`
-			`	Raven calls out something else, but you can't hear her over the sound of the wind outside. Suddenly, you catch a glint of magenta paint flash by in the distance. Throwing the <ship> into a spiral, you frantically dodge as the Firebird stoops on you. The ship bucks from a glancing plasma hit but holds together.`
+			`	Raven calls out something else, but you can't hear her over the sound of the wind outside. Suddenly, you catch a glint of magenta paint flash by in the distance. Throwing the <ship> into a spiral, you frantically dodge as the Firebird pounces on you. The ship bucks from a glancing plasma hit but holds together.`
 			`	Then, only a minute after the battle begins, it's over. The Firebird suddenly breaks off, only to disintegrate into a billowing cloud of deuterium flame. A Navy warship swoops down, and Pict guides you toward <planet>'s surface.`
 
 			label landing
