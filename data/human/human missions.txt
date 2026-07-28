@@ -11872,7 +11872,7 @@ mission "Silver Talon 1"
 		conversation
 			`The team of bounty hunters pass the flight to <planet> in relative silence - and with a very strong odor of garlic. As you enter the <system> system, Cerridwyn directs you to land in a secluded minor spaceport well away from the planet's major cities.`
 			`	No sooner do you put down than Dagger cranks the <ship>'s hatch open and jumps out into the scorching heat. Klaus and Pict are close behind, followed by a pile of gear.`
-			`	Cerridwyn hands you a pile of credit chips. "As agreed, here's <payment>," she says. "If all goes well, we'll be back within two hours. If you don't hear back within four, get the heck out of here.`
+			`	Cerridwyn waits a moment longer. "As agreed, a payment of <payment> has been deposited into your account," she says. "If all goes well, we'll be back within two hours. If you don't hear back within four, get the heck out of here.`
 			choice
 				`	"Sounds good."`
 					goto good
@@ -11896,7 +11896,8 @@ mission "Silver Talon 2"
 
 	on offer
 		conversation
-			`	Time passes slowly. First one hour flicks by, then a second, then a third. Just as you're beginning to give up hope, you hear a large explosion in the distance. A minute later, a speck appears on the horizon, a speck which soon resolves itself into the outline of a very old truck doing far more than what the speed limit would be on any civilized planet.`
+			`	Time passes slowly. At first, you settle into your chair, watching the yellow-orange sun inch across the horizon. After about half an hour of silence, you drag yourself to your feet and start sorting through the junk in the <ship>'s maintenance closet. By the end of the second hour, you are elbow deep in a dusty pile of old malfunctioning datapads, most of which you don't remember ever owning. Three hours in, the closet looks almost presentable but the Silver Talon is nowhere to be seen.`
+			`	Just as you're beginning to give up hope, you hear a large explosion in the distance. A minute later, a speck appears on the horizon, a speck which soon resolves itself into the outline of a very old truck doing far more than what the speed limit would be on any civilized planet.`
 			`	Behind the huge billowing cloud of dust raised by the truck, two hovercraft appear. A figure in the back of the truck stands and fires a very large bazooka, and the leading hovercraft vanishes in a fireball. The other swerves into a ditch.`
 			`	Soon, the ATV is back at the spaceport, roaring onto the tarmac at breakneck speeds and coming to a stop in a squeal of brakes at the end of a hundred-metre stripe of rubber. Before the truck has settled, Cerridwyn and Pict are already moving, tossing their weapons and bags over the side of the truckbed and scrambling down. Inside the truck, a sweating Klaus picks up Dagger like a sack of potatoes and hauls him out of the cab.`
 			`	Cerridwyn is the first through the hatch in your ship, preceded only by her rocket launcher. Klaus and Pict haul the wounded Dagger through with the rest of their equipment, and slam the hatch shut.`
@@ -11909,7 +11910,7 @@ mission "Silver Talon 2"
 					goto louis
 				`	"Did you succeed?"`
 					goto failure
-			`	Cerridwyn frowns and glares at you but says nothing.`
+			`	Cerridwyn nods sharply and takes her seat.`
 				goto lift
 			label louis
 			`	Cerridwyn merely shakes her head.`
@@ -11981,7 +11982,7 @@ mission "Silver Talon 2"
 
 	on complete
 		conversation
-			`The <ship>'s hull pockmarked with blaster scars, you land in the spaceport on <planet> just ahead of the pirates. One or two enteprising pilots try to follow you in, but are driven off by a number of missile launchers placed in defensive positions around the spaceport.`
+			`The <ship>'s hull pockmarked with blaster scars, you land in the spaceport on <planet>. Pirates continue to flood into the system, but <planet>'s missile batteries deter them from following you into the atmosphere.`
 			`	Cerridwyn exhales slowly, and turns to you. "Thanks for your help, <first>. I wish it didn't have to end this way, but you stood by us and we'll be forever grateful."`
 			`	Abruptly, she hands you <payment>. "I'm sorry we can't pay you better. The rest is going to Louis' folks, but we owe you this much. If you hadn't gotten us out of there..."`
 			choice
@@ -12444,7 +12445,7 @@ mission "Pict's Legacy 2"
 			
 			`	"Right now, he should just be leaving the atmosphere in a fully-fueled Flivver."`
 			`	Raven's pilot chuckles. "Fully-bugged, too."`
-			`	"Exactly," she continues. "That Flivver is emitting more than Chernobyl. The killer might think he's getting away, but all he's going to do is lead us directly to where his bosses are hiding out."`
+			`	"Exactly," she continues. "That Flivver is emitting more than the Gamshig Reactor. The killer might think he's getting away, but all he's going to do is lead us directly to where his bosses are hiding out."`
 			choice
 				`	"What if he realizes he's being followed and slips away?"`
 				`	"So you don't think he was acting alone?"`
