@@ -11783,7 +11783,7 @@ mission "Silver Talon 1"
 		"combat rating" >= 80
 	on offer
 		conversation
-			`Walking through the spaceport, you are flagged down by a very short woman sitting on a box labelled "Explosive! Corrosive! Flammable! Extremely Toxic! Handle With Car!" and holding the largest bazooka you've ever seen and wearing a pin displaying a small silver eagle talon.`
+			`Walking through the spaceport, you are flagged down by a very short woman sitting on a box labeled "Explosive! Corrosive! Flammable! Extremely Toxic! Handle With Car!" and holding the largest bazooka you've ever seen and wearing a pin displaying a small silver eagle talon.`
 			choice
 				`	(See what she wants.)`
 				`	(Ignore her.)`
@@ -11848,7 +11848,7 @@ mission "Silver Talon 1"
 				`	"Sorry, that's not enough for me to risk my life over."`
 					goto "bad payment"
 			
-			`	"Sorry, captain, but the 15% is non-negotiable, and it's as much as anyone else gets, too, after we take into accoutn the 25% overhead for equipment, failure payments, death benefits, and so forth. You either take it or leave it."`
+			`	"Sorry, captain, but the 15% is non-negotiable, and it's as much as anyone else gets, too, after we take into account the 25% overhead for equipment, failure payments, death benefits, and so forth. You either take it or leave it."`
 			choice
 				`	"If that's the case, I guess 15% is enough."`
 					goto in
@@ -12035,7 +12035,7 @@ mission "Silver Talon 3"
 				goto commotion
 			
 			label pict
-			`	"Poisonwood. '85. Our platoon was supposed to deploy behind enemy lines to gether intelligence for the main assault. Only problem is they got the position of a missile battery off by seventy kilometres, and we dropped right into a barrage of Meteors. Fairweather, Grange, Perkins, Yanovik... the entire front half of our shuttle was gone before we could blow the plates and bail.`
+			`	"Poisonwood. '85. Our platoon was supposed to deploy behind enemy lines to gether intelligence for the main assault. Only problem is they got the position of a missile battery off by seventy kilometers, and we dropped right into a barrage of Meteors. Fairweather, Grange, Perkins, Yanovik... the entire front half of our shuttle was gone before we could blow the plates and bail.`
 			`	"Some things never change, Captain, some things never change."`
 			choice
 				`	"Some things do change, though."`
@@ -12128,7 +12128,7 @@ mission "Silver Talon 3"
 	on enter "Rastaban"
 		conversation
 			`As soon as you're safely out of the atmosphere, Cerridwyn catches your attention.`
-			`	"Captain <last>, I'm afraid you've come too far with us to stop now. If we can make it to <destination>,  we'll be able to plan a killing blow against Vlad Blaire. We've got contacts there who might be able to help, and the police there should be at least semicompetent."`
+			`	"Captain <last>, I'm afraid you've come too far with us to stop now. If we can make it to <destination>, we'll be able to plan a killing blow against Vlad Blaire. We've got contacts there who might be able to help, and the police there should be at least semicompetent."`
 			choice
 				`	"All right, I'll take you there."`
 					decline
@@ -12330,7 +12330,7 @@ mission "Pict's Legacy 1"
 			choice
 				`	"Okay, okay, I am Captain <last>."`
 					goto reluctant
-				`	"Falsified, of course. Don't you know I'm an transgalactic crime lord?"`
+				`	"Falsified, of course. Don't you know I'm a transgalactic crime lord?"`
 					to display
 						"reputation: Pirate" > 0
 					goto scumbag
@@ -12476,7 +12476,7 @@ mission "Pict's Legacy 2"
 				goto alphas
 			
 			label blaire
-			`	"Absolutely. We believe that these murders were intended as reprisal killings for a number of operations that have been funded by the Navy since 2985. Over the past few years, these attacks have become more and more common - shootings, poisonings, bombings, sudden disappearances, one by one our soliders and operatives are murdered. Nine times out of ten, no one is ever brought to court. It doesn't help that so many of the victims are redlined combat veterans with criminal records, or that the Alphas have gotten so good at covering up their crimes."`
+			`	"Absolutely. We believe that these murders were intended as reprisal killings for a number of operations that have been funded by the Navy since 2985. Over the past few years, these attacks have become more and more common - shootings, poisonings, bombings, sudden disappearances, one by one our soldiers and operatives are murdered. Nine times out of ten, no one is ever brought to court. It doesn't help that so many of the victims are redlined combat veterans with criminal records, or that the Alphas have gotten so good at covering up their crimes."`
 				goto alphas
 			
 			label cerridwyn
@@ -12564,12 +12564,12 @@ mission "Pict's Legacy 2"
 					goto ambush
 				
 			`	"No, it should work," Raven replies. "Oh, well, I guess it's time to try the old IT standby." With a loud click, she turns off the receiver.`
-			`	Before she can turn the receiver back on, however, there is another, very distinctive click: the click of a magnet sliding precisely two point eight centimetres through a carbon-fibre chamber before coming to rest up against a steel plate. There are not many things that cause such a click. In fact, there are only two: someone dropping a magnet through a carbon-fibre chamber from a height of two point eight centimetres, and someone releasing the safety on a Type 8 laser pistol.`
+			`	Before she can turn the receiver back on, however, there is another, very distinctive click: the click of a magnet sliding precisely two point eight centimeters through a carbon-fibre chamber before coming to rest up against a steel plate. There are not many things that cause such a click. In fact, there are only two: someone dropping a magnet through a carbon-fibre chamber from a height of two point eight centimeters, and someone releasing the safety on a Type 8 laser pistol.`
 				goto miyano
 			
 			label ambush
 			`	Raven turns toward you, frowning. "That shouldn't be possible -" she freezes.`
-			`	There is a very distinctive click: the click of a magnet sliding precisely two point eight centimetres through a carbon-fibre chamber before coming to rest up against a steel plate. There are not many things that cause such a click. In fact, there are only two: someone dropping a magnet through a carbon-fibre chamber from a height of two point eight centimetres, and someone releasing the safety on a Type 8 laser pistol.`
+			`	There is a very distinctive click: the click of a magnet sliding precisely two point eight centimeters through a carbon-fibre chamber before coming to rest up against a steel plate. There are not many things that cause such a click. In fact, there are only two: someone dropping a magnet through a carbon-fibre chamber from a height of two point eight centimeters, and someone releasing the safety on a Type 8 laser pistol.`
 
 			label miyano
 			`	"Don't move, or the captain buys it," growls a rough voice from behind you. The three Navy personnel freeze as a hand grabs you by the shoulder and spins you around to face the gun barrel and the man behind it. His face is masked by shadow and his eyes are as hard as steel, but there is something vaguely familiar about him.`
@@ -12614,7 +12614,7 @@ mission "Pict's Quest 1"
 		conversation
 			`Walking through the spaceport, you notice a group of four Navy personnel huddling in the cold. Hearing you, one of them suddenly raises her head and calls "Hey, <first>, is that you?"`
 			choice
-				`	(Approach the soliders.)`
+				`	(Approach the soldiers.)`
 				`	(Leave them to freeze.)`
 					goto freeze
 			
@@ -12880,4 +12880,3 @@ mission "Pict's Quest 2"
 			label calling
 			`	Suddenly, Raven comes jogging back to your ship. "Pict, we need you!" Pict nods and turns to you again. "Thanks, <first>. May we meet again someday in a more peaceful time."`
 			`	Noticing you, Raven walks over and hands you a credit chip worth <payment>. "Thanks for your help, Captain <last>. We'll find our own way off-planet when we're done here; you're welcome to leave whenever you wish."`
-      
