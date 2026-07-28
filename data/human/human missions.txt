@@ -7466,7 +7466,7 @@ mission "Silver Talon 1"
 		attributes "near earth"
 	destination "Greenrock"
 	to offer
-		#random < 5
+		random < 5
 		"reputation: Pirate" < -500
 		"combat rating" >= 80
 	on offer
