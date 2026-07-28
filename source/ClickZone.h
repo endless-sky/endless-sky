@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // This is a simple template class defining a rectangular region in the UI that
 // may take action if it is clicked on. The region stores a single data object
 // that identifies it or identifies the action to take.
-template <class Type>
+template<class Type>
 class ClickZone : public Rectangle {
 public:
 	// Constructor. The "dimensions" are the full width and height of the zone.
@@ -42,7 +42,7 @@ private:
 
 
 
-template <class Type>
+template<class Type>
 ClickZone<Type>::ClickZone(Point center, Point dimensions, Type value)
 	: Rectangle(center, dimensions), value(std::move(value))
 {
@@ -50,7 +50,7 @@ ClickZone<Type>::ClickZone(Point center, Point dimensions, Type value)
 
 
 
-template <class Type>
+template<class Type>
 ClickZone<Type>::ClickZone(const Rectangle &rect, Type value)
 	: Rectangle(rect), value(std::move(value))
 {
@@ -58,7 +58,7 @@ ClickZone<Type>::ClickZone(const Rectangle &rect, Type value)
 
 
 
-template <class Type>
+template<class Type>
 Type ClickZone<Type>::Value() const noexcept
 {
 	return value;

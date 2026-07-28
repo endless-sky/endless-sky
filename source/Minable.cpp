@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "MinableDamageDealt.h"
 #include "Outfit.h"
 #include "pi.h"
 #include "Projectile.h"
@@ -29,6 +30,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
+#include <vector>
 
 using namespace std;
 
@@ -45,7 +48,7 @@ Minable::Payload::Payload(const DataNode &node)
 		bool hasValue = child.Size() >= 2;
 
 		if(!hasValue)
-			child.PrintTrace("Error: Expected key to have a value:");
+			child.PrintTrace("Expected key to have a value:");
 		else if(key == "max drops")
 			maxDrops = max<int>(1, child.Value(1));
 		else if(key == "drop rate")
@@ -60,7 +63,7 @@ Minable::Payload::Payload(const DataNode &node)
 
 
 // Load a definition of a minable object.
-void Minable::Load(const DataNode &node)
+void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	// Set the name of this minable, so we know it has been loaded.
 	if(node.Size() >= 2)
@@ -71,22 +74,29 @@ void Minable::Load(const DataNode &node)
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
-		if(!hasValue)
-			child.PrintTrace("Error: Expected key to have a value:");
+		if(key == "attributes")
+			attributes.Load(child, playerConditions);
+		else if(!hasValue)
+			child.PrintTrace("Expected key to have a value:");
 		else if(key == "display name")
 			displayName = child.Token(1);
 		else if(key == "noun")
 			noun = child.Token(1);
-		// A full sprite definition (frame rate, etc.) is not needed, because
-		// the frame rate will be set randomly and it will always be looping.
 		else if(key == "sprite")
-			SetSprite(SpriteSet::Get(child.Token(1)));
+		{
+			LoadSprite(child);
+			for(const DataNode &grand : child)
+				if(grand.Token(0) == "frame rate" || grand.Token(0) == "frame time")
+					useRandomFrameRate = false;
+		}
 		else if(key == "hull")
 			hull = child.Value(1);
 		else if(key == "random hull")
 			randomHull = max(0., child.Value(1));
 		else if(key == "payload")
 			payload.emplace_back(child);
+		else if(key == "live effect")
+			liveEffects.emplace_back(child);
 		else if(key == "explode")
 		{
 			int count = (child.Size() == 2 ? 1 : child.Value(2));
@@ -107,8 +117,16 @@ void Minable::Load(const DataNode &node)
 // Calculate the expected payload value of this Minable after all outfits have been fully loaded.
 void Minable::FinishLoading()
 {
-	for(const auto &it : payload)
-		value += it.outfit->Cost() * it.maxDrops * it.dropRate;
+	for(const Payload &it : payload)
+	{
+		if(!it.maxDrops)
+			continue;
+		if(it.outfit->Mass())
+			highestQuality = max<int64_t>(highestQuality, it.outfit->Cost() / it.outfit->Mass());
+		else
+			highestQuality = numeric_limits<int64_t>::max();
+		expectedValue += it.outfit->Cost() * it.maxDrops * it.dropRate;
+	}
 }
 
 
@@ -180,7 +198,8 @@ void Minable::Place(double energy, double beltRadius)
 	// Start the object off with a random facing angle and spin rate.
 	angle = Angle::Random();
 	spin = Angle::Random(energy) - Angle::Random(energy);
-	SetFrameRate(Random::Real() * 4. * energy + 5.);
+	if(useRandomFrameRate)
+		SetFrameRate(Random::Real() * 4. * energy + 5.);
 	// Choose a random direction for the angle of periapsis.
 	rotation = Random::Real() * 2. * PI;
 
@@ -200,6 +219,7 @@ void Minable::Place(double energy, double beltRadius)
 // In that case it will return false, meaning it should be deleted.
 bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
+	DoCorrosionDamage(visuals);
 	if(hull < 0)
 	{
 		// This object has been destroyed. Create explosions and flotsam.
@@ -234,6 +254,10 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		return false;
 	}
 
+	for(const auto &it : liveEffects)
+		if(!Random::Int(it.interval))
+			visuals.emplace_back(*it.effect, position, velocity, it.relativeToSystem ? Angle{position} : angle);
+
 	// Spin the object.
 	angle += spin;
 
@@ -254,10 +278,11 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 
 // Damage this object (because a projectile collided with it).
-void Minable::TakeDamage(const Projectile &projectile)
+void Minable::TakeDamage(const MinableDamageDealt &damage)
 {
-	hull -= projectile.GetWeapon().MinableDamage() + projectile.GetWeapon().RelativeMinableDamage() * maxHull;
-	prospecting += projectile.GetWeapon().Prospecting();
+	hull -= damage.hullDamage;
+	prospecting += damage.prospecting;
+	corrosion += damage.corrosion;
 }
 
 
@@ -265,6 +290,70 @@ void Minable::TakeDamage(const Projectile &projectile)
 double Minable::Hull() const
 {
 	return min(1., hull / maxHull);
+}
+
+
+
+double Minable::MaxHull() const
+{
+	return maxHull;
+}
+
+
+
+double Minable::Mass() const
+{
+	return attributes.Mass();
+}
+
+
+
+double Minable::MaximumHeat() const
+{
+	return MAXIMUM_TEMPERATURE * (attributes.Mass() + attributes.Get("heat capacity"));
+}
+
+
+
+// Apply corrosion damage ticks and decrement corrosion.
+void Minable::DoCorrosionDamage(vector<Visual> &visuals)
+{
+	if(!corrosion)
+		return;
+	hull -= corrosion;
+	corrosion = max(0., .99 * corrosion);
+	CreateSparks(visuals, "corrosion spark", corrosion * .1);
+}
+
+
+
+// Place a "spark" effect, like ionization or disruption.
+void Minable::CreateSparks(vector<Visual> &visuals, const string &name, double amount)
+{
+	CreateSparks(visuals, GameData::Effects().Get(name), amount);
+}
+
+
+
+void Minable::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount)
+{
+	if(amount <= 0.)
+		return;
+
+	// Limit the number of sparks, depending on the size of the sprite.
+	// The limit needs to be the first argument in case amount is NaN.
+	amount = min(Width() * Height() * .0006, amount);
+	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
+	visuals.reserve(visuals.size() + static_cast<size_t>(amount));
+
+	while(true)
+	{
+		amount -= Random::Real();
+		if(amount <= 0.)
+			break;
+		Point point((Random::Real() - .5) * Width(), (Random::Real() - .5) * Height());
+		visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
+	}
 }
 
 
@@ -278,7 +367,29 @@ const vector<Minable::Payload> &Minable::GetPayload() const
 
 
 // Get the expected value of the flotsams this minable will create when destroyed.
-const int64_t &Minable::GetValue() const
+int64_t Minable::GetExpectedValue() const
 {
-	return value;
+	return expectedValue;
+}
+
+
+
+int64_t Minable::GetHighestQualityValue() const
+{
+	return highestQuality;
+}
+
+
+
+Minable::LiveEffect::LiveEffect(const DataNode &node)
+{
+	interval = (node.Size() == 2 ? 1 : node.Value(2));
+	effect = GameData::Effects().Get(node.Token(1));
+	for(const DataNode &child : node)
+	{
+		if(child.Token(0) == "relative to system center")
+			relativeToSystem = true;
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
 }

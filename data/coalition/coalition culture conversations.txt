@@ -122,6 +122,8 @@ mission "Coalition Folklore: Arach"
 			`	You thank Matlub for inviting you here, and while she doesn't seem to pay you much mind, you can feel the gazes of other Arach patrons on you, whispering among themselves as you leave.`
 				decline
 			label end
+			action
+				set "drak revelations: arachi"
 			`	The theater workers leave one after the other, leaving you and the other guests with an empty stage. After a while, the lights are turned off. A couple minutes later, however, you hear the curtains open, as some violins start to play in unison. Their music doesn't come from where the orchestra was seated, but as if they were all over the theater, behind you and even up on the balconies. A strong light comes from the stage, most of it blocked by a tall, dark figure. It isn't an actor, however, instead seeming to be made out of wooden parts kept up by thin wires you can barely spot when looking at the top of the stage. The violins' song is disrupted by dull, successive drum hits, at which point the figure moves, with its "arms" opening to the sides; it becomes even taller as it stands up. It is a humanoid creature, and it begins to slowly move around the stage, as if dancing in a pendulum. Cellos join in with the violin screams, and are followed by a choir, though you cannot understand their words. You do recognize, however, that it isn't being sung in any language of the Coalition.`
 			`	The creature appears to get closer to the audience, growing in size, and as the choir and instruments become more intense, it swings one of its arms upward and removes the wires. Despite this, it stays upright and continues to move. It brings both arms close and strikes its own head to form two small holes which the background light shines through. Then, it falls to its knees, with one arm reaching for the audience, as the light behind it turns off and the choir and music subside.`
 			`	The lights turn back on, revealing curtains still open, but nothing on the stage. A few workers come in to tidy up the place, and the remaining guests now get up to leave. "Enjoyed the soiree, have you, Captain?" Matlub asks, as she herself gets up to leave. "Come now, actually over, the show now is."`
@@ -152,76 +154,76 @@ mission "Coalition Folklore: Kimek"
 			`	You follow the Kimek for a while longer until he finds you a pairing of camp and fort that have a vacant spot in either side. "Well Captain, choose a side to play as, you must. The hang of it, you will get, once started, the event has, but as a quick summary, take the 'crops' inside the fort before time runs out, the attacking team must. Prevent them from doing that, the defenders must. At the end, rewarded, the victors are."`
 			choice
 				`	"I'll join the attackers."`
-					goto att
+					goto attack
 				`	"I'll join the defenders."`
-					goto def
+					goto defend
 				`	"Hang on, if this is a folk tale, how come you're reenacting it as if any side could win?"`
 			`	He chitters, as if expecting the question. "Witnessed by a minstrel, the battle was. Traveling on fields like these, he was, before the fort and the raider camp, he spotted in the distance. Hid himself in foliage close to the scene, he had, and writing and painting it as it happened, he was. When reached its climax, the battle had, swept up by the wind, many flowers were, and block his vision they did. Once settled down the wind had, over, the battle was. Spring it was, so 'Spring Siege' became the story's title."`
 			`	Seeing you have more questions now, he continues. "Silly and nonsensical at times, the story is. Know that, we do, and that simply looking to entertain a crowd, the minstrel was, but with all forms of classic tales, is that not the case?" He chitters some more, and looks at the group up on the hill and the other in the camp, before continuing. "Foreign as it might seem, participate in it, will you not? Perhaps like it, you might."`
 			choice
 				`	"Alright, I'll join the attackers."`
-					goto att
+					goto attack
 				`	"Alright, I'll join the defenders."`
-			label def
+			label defend
 			`	He brings you to the small fort up the hill. Its gates open as those inside (mostly Kimek as expected, but also a couple Arachi and a lone Saryd) are still getting ready. A small "farm" sits in the middle, with plastic replicas serving as the crops. The walls of the fort are made of various tall logs, densely covered by tufts of vicious, reddish thorns nearly as long as your arm. Inside, you can see that a higher level with battlements is accessible via staircases on either side of the courtyard; you also notice that the defenders are all wearing a green strip of cloth over their clothing. Another Kimek organizer, wearing a rugged leather vest that you assume is the Kimek equivalent of medieval armor, comes to meet you both at the gate. He greets his colleague, who introduces you and says that you have chosen to join the defenders, before heading back down the hill.`
 			`	"Glad to have you as part of the garrison, our fort is," the armored Kimek begins. "Told about the enemy's objective, I assume you have been. Protect our farm, we must, so allow the produce to be stolen, we cannot." He tells you to follow him to the "keep," a shack too small for any non-Kimek, and gives you a long piece of green cloth. He then informs you that it is meant to be worn, so that others can tell what team you are on. As you wrap it around you like a scarf, you notice that, behind the shack, there is a smaller gate that grants entry to the fort. Once you're done, he gives you a brief tour of the rest of the fort, taking you up the battlements and above the main gate, where you see buckets of what at first appears to be water. Your guide informs you that the liquid inside is actually quite slick, and during the re-enactment, it is poured downhill to slow the attackers.`
 			`	Once he's done, he tells you to wait in the courtyard, as the "battle" will begin soon. A few minutes pass before a loud whistle blows, and the Kimek in charge of the fort tells everyone that the other side has begun their attack. The front gate is closed, and some of the defenders begin placing heavy objects behind to barricade it; others are already up by the battlements, waiting for the right time to use the buckets of slippery liquid.`
 			choice
 				`	(Help reinforce the main gate.)`
-					goto defr
+					goto "defend r"
 				`	(Go help slow down the attackers.)`
-					goto defw
-			label defr
+					goto "defend w"
+			label "defend r"
 			`	You join the others in gathering and moving heavy objects, and quickly find some crates behind the small shack, which a couple of Arachi help bring to the gate. Some Kimek take logs they find stashed under a staircase and bring them as well, burying one end in the ground with the other end against the door. The liquid poured on the attackers does slow them down for some minutes, but once you're done, they're already banging at the gate. Most of those inside the fort, particularly the Saryd that has joined in, head to the main gate to try and keep it closed, but a few Kimek head around the back to check on the smaller gate.`
 			choice
 				`	(Help keep the main gate closed.)`
-					goto defrw
+					goto "defend rw"
 				`	(Go with the others and check the back gate.)`
 			`	Once you get to the back gate, you and the Kimek there stay quiet and try to listen for anyone approaching this side of the fort. Sure enough, you hear scuttling Kimek legs swishing through the grass as the attackers come circling around. Fortunately, not many came to this gate, so, with your help, your Kimek teammates don't have much trouble keeping the gate closed. Thanks to the main gate having been reinforced, the group there holds well enough that some more come to the back to help, and after some minutes of struggling with the attackers on the gate, another whistle is sounded. It marks that time has run out and that the defenders have won.`
 				goto won
-			label defrw
+			label "defend rw"
 			`	With the fortifications from earlier helping keep it shut, holding the main gate proves easy enough. After a few minutes pass, however, you hear a commotion from behind the shack. As you and others go there to check, you arrive to see the small gate open, the attackers, wearing blue sashes in place of your team's green, having already made their way inside. The whistle sounds again, marking the end of the battle and the victory of the attackers.`
 				goto lost
-			label defw
+			label "defend w"
 			`	You go up the stairs and are given one of the buckets with the slippery substance. You notice that the others up here are all Kimek and Arachi, however, and they are only pouring the liquid down directly in front of the gate. When you see some of the blue sash wearing attackers advancing from the sides, where the liquid hasn't been poured, you chuck a bucket their way. This leaves a line of the liquid on that side, and those attacking from there lose their footing, tripping and falling again and again. Once your teammates realize what you've done, they begin to egg you on, encouraging you to throw more buckets to cover the sides while they continue to drench the middle. Despite your efforts, however, the attackers do eventually make it up the hill and start banging at the gate. Most of those inside the fort, including the Saryd, head to the main gate to try and keep it closed, but some Kimek instead head around the back to check on the smaller gate.`
 			choice
 				`	(Help keep the main gate closed.)`
-					goto defww
+					goto "defend ww"
 				`	(Go with the others and check the back gate.)`
 			`	Once you get to the back gate, you and the Kimek there stay quiet and try to listen for anyone approaching this side of the fort. Sure enough, you hear scuttling Kimek legs swishing through the grass as the attackers come circling around. Fortunately, not many came to this gate, so, with your help, your Kimek teammates don't have much trouble keeping the gate closed. The group at the front gate isn't so lucky, however, and after a brief minute, the whistle sounds again. Your group comes back to the courtyard to find that the gate has been busted open and that the attackers with their blue sashes have won.`
 				goto lost
-			label defww
+			label "defend ww"
 			`	At first, holding the gate isn't too troublesome, but after a few minutes pass, it starts being pounded by some form of battering ram, and before long the group there can't hold it closed. At the same time, you hear a commotion from behind the shack, and as you and others go there to check, you arrive to see the small gate open. The attackers having made their way inside via both gates, the whistle sounds again, marking the end of the battle and the victory of the other side.`
 				goto lost
-			label att
+			label attack
 			`	He brings you to the nearby camp, where many Kimek, Arachi, and even a few Saryds are gathered for the event. Most of them are waiting in anticipation inside one of the tents, or looking up at the fort; all of them have long, blue strips of cloth over their own clothing. Once she notices you two, another Kimek organizer, donning what looks like a thin gambeson, comes to say hello. She greets her colleague, who then introduces you and tells her you have chosen to join the attackers, before leaving the camp to welcome a family who has come to watch the event.`
 			`	"Honored to have you fight alongside us, our company is," the armored Kimek begins. "Told about our objective, I assume you have been. Break into the fort, we must, before up the time is. Ten minutes, we have, once started, the battle has." She tells you to follow her to the "war tent," one that's slightly larger than the others around it. There she gives you a long piece of blue cloth and informs you that it is meant to be worn so that others can tell what team you are on. Wrapping it around your neck like a scarf while you look around the main tent, you see that there is a stumpy log reinforced with metal bits stored here, which the Kimek tells you will be used as a battering ram to force open the gates. She then has you follow her to the edge of the camp to show you the limits of this "set," which is marked by patches of vegetation meant to indicate the boundaries of the game. "Also, discourage anyone from trying it, the thorns should, but against the rules, it is, to crawl up the walls of the fort, so-" She pauses, looking at you as if just realizing that such a thing is impossible for you. "Sorry, out of habit, I said it. Participate in this event, not many groundlocked people do; few Saryds here I've met. Even fewer humans, as imagine, you can."`
 			`	Once she's done, she says you're free to roam the camp as you wait for the "battle" to begin. A few minutes pass before a loud whistle blows, and the Kimek in charge of the camp tells everyone that the time has come. She leads the charge up the hill, with most of those from the camp following her. Others split into smaller groups and instead move up along the trees that separate the sets, trying to approach the fort from the sides.`
 			choice
 				`	(Charge with the main group.)`
-					goto attw
+					goto "attack w"
 				`	(Take the longer side route.)`
-					goto attr
-			label attw
+					goto "attack r"
+			label "attack w"
 			`	You follow the lead of the Kimek and start to run straight up the hill, directly at the fort. Once you get closer, however, you see the defenders, garbed in strips of green cloth as opposed to your blue, pouring out buckets of what looks like water. As it flows down the hill to meet your steps, though, you immediately lose your balance and your feet slip out from under you, and you slide a short distance back down the hill. You get up, but, try it as you may, you cannot find stable footing in the wet grass, instead having to step on the few tufts that have grown too high for the liquid to cover them. Even with all their legs, the Kimek and Saryds fare no better, and find themselves in similar trouble, losing their balance again and again. Only the Arachi can press onward, digging down into the dirt beneath the grass with half their legs at each step. They slowly but surely help you and the others move up, and eventually you reach the gate, only to find that the groups that came from the sides are already working on busting it open. You can also see what the Kimek meant when she spoke of "thorns;" tufts of vicious, reddish barbs nearly as long as your arm cover the logs that make up the walls.`
 			choice
 				`	(Try and find another way in.)`
-					goto attwr
+					goto "attack wr"
 				`	(Help the others bust the gate open.)`
 			`	You start pushing along with the others, the Saryds joining you from below, and the Kimek and Arachi crawling up to push at the top of the gate. They take turns with each others when one gets tired so that someone is always pushing, even though their attempts aren't the most effective. After a while, you hear a cracking noise, and the gate finally begins budging slightly, as if something barricading it had broken off. As the latecomers of the main force come up, bringing with them the battering ram, everyone makes way for them to begin hammering it against the gate. The gate shudders with each hit and gradually begins to give even more, but even the battering ram team cannot break through fast enough as the whistle from the start of the event sounds again. Evidently this means that time has run out, and the defenders have won.`
 				goto lost
-			label attwr
+			label "attack wr"
 			`	You and a part of the group stick close to the walls and follow along them to the other side, careful not to scratch yourself on the thorns along the fort. You soon find another, smaller gate, and begin pushing. Unlike what you can see of the efforts you left at the main gate, you can feel this one budging immediately, and there is no slick ground to worry about. Once they realize the vulnerability of this gate, the Saryds in the group ask others to move out of the way. You are a bit startled as they suddenly charge it in unison, almost forcing it open with a single concerted effort. More defenders come to hold it, though, and the gate becomes increasingly difficult to move any further. One Arach heads back to the main group to call for more help, but when they arrive, so do more defenders. The struggle continues for many minutes, with the attackers alongside you unable to make a final breakthrough. The whistle sounds again, marking the end of the battle, announcing that the defenders have won.`
 				goto lost
-			label attr
+			label "attack r"
 			`	You follow a group to the edges of this set, losing some time before beginning your run up the hill. Once you finally start making your way up, you turn to see the main group repeatedly tripping and falling back. It seems the defenders, who are wearing green identifiers instead of blue, are pouring some slippery liquid down from the battlements above the gate, slowing those that are coming along a direct path. You reach the top while the main force still struggles, and your group makes its way to the gate. On your way, you see what the Kimek meant when she spoke of "thorns," with closely-spaced tufts of vicious, reddish barbs nearly as long as your arm covering the logs that make up the walls. You reach the gate, but as you push and push, it refuses to budge even the slightest bit, clearly having been barricaded from the inside. The main group eventually catches up to you, but even with many more people pushing now, the gate still holds firm and unmoving.`
 			choice
 				`	(Try and find another way in.)`
-					goto attrr
+					goto "attack rr"
 				`	(Continue trying to bust the gate open.)`
 			`	You start pushing along with the others, the Saryds joining you from below, and the Kimek and Arachi crawling up to push at the top of the gate. They take turns with each others when one gets tired so that someone is always pushing, even though their attempts aren't the most effective. After a while, you hear a cracking noise, and the gate finally begins budging slightly, as if something barricading it had broken off. As the latecomers of the main force come up, bringing with them the battering ram, everyone makes way for them to begin hammering it against the gate. The gate shudders with each hit and gradually begins to give even more, but even the battering ram team cannot break through fast enough as the whistle from the start of the event sounds again. Evidently this means that time has run out, and the defenders have won.`
 				goto lost
-			label attrr
+			label "attack rr"
 			`	You and a part of the group stick close to the walls and follow along them to the other side, careful not to scratch yourself on the thorns along the fort. You soon find another, smaller gate, and begin pushing. Unlike what you can see of the efforts you left at the main gate, you can feel this one budging immediately, and there is no slick ground to worry about. Once they realize the vulnerability of this gate, the Saryds in the group ask others to move out of the way. You are a bit startled as they suddenly charge it in unison, almost forcing it open with a single concerted effort. More defenders come to hold it, though, and the gate becomes increasingly difficult to move any further. One Arach heads back to the main group to call for more help, but when they arrive, so do more defenders. The struggle continues for a while, before you hear loud bangs from the other side of the fort. The Kimek organizer comes around the back to tell everyone to return to the main entrance. As you come to the main gate, you see the battering ram has forced the main gate open, something that must've been made easier with so many leaving it unguarded to instead defend the back gate. With that, the whistle sounds again, marking the end of the battle, announcing that the attackers have won.`
 			label won
 			`	The Kimek organizer in charge of your side starts a cheer, which quickly spreads to the others. After the leaders of both teams meet to greet each other, everyone is asked to return the colored cloth they were given and make their way down the hill. Your group is pointed to a nearby building to wash off any dirt, if needed. Once you're all cleaned up, you head back to the camp, where the Kimek who brought you here is waiting to guide your group to many short tables with plates on them; apparently, the reward for winning is a feast. As most of those who participate are Kimek, almost all of the food comes the way they prefer it: a soupy, half-digested mess. Thankfully there are a few meals prepared the way the other species like them, meaning you can pick one prepared for Saryds; their meals are the closest you can get to human cuisine here.`
@@ -447,7 +449,7 @@ mission "Coalition Incident: Ring of Wisdom"
 	invisible
 	to offer
 		has "Coalition: First Contact: done"
-		random < 1
+		random < 3
 	source "Ring of Wisdom"
 	on offer
 		conversation

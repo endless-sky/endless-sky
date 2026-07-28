@@ -27,6 +27,7 @@ foreach(test ${INTEGRATION_TESTS_LIST})
 		set(SET_TEST_PROPS
 	"set_tests_properties([==[${test}]==] PROPERTIES
 		WORKING_DIRECTORY \"${CMAKE_CURRENT_SOURCE_DIR}\"
+		TIMEOUT 120
 		LABELS integration)")
 
 	# Launches the integration tests in debug mode, so that they can be followed.

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <cstdint>
+#include <filesystem>
 #include <string>
 
 class DataNode;
@@ -39,6 +40,7 @@ public:
 	static const Command AUTOSTEER;
 	static const Command BACK;
 	static const Command MOUSE_TURNING_HOLD;
+	static const Command AIM_TURRET_HOLD;
 	static const Command PRIMARY;
 	static const Command TURRET_TRACKING;
 	static const Command SECONDARY;
@@ -62,13 +64,16 @@ public:
 	static const Command FULLSCREEN;
 	static const Command FASTFORWARD;
 	static const Command HELP;
+	static const Command PAUSE;
+	static const Command PERFORMANCE_DISPLAY;
 	// Escort commands:
 	static const Command FIGHT;
-	static const Command GATHER;
 	static const Command HOLD_FIRE;
+	static const Command GATHER;
 	static const Command HOLD_POSITION;
 	static const Command AMMO;
 	static const Command HARVEST;
+	static const Command SCAN_ORDER;
 	// This command is given in combination with JUMP or LAND and tells a ship
 	// not to jump or land yet even if it is in position to do so. It can be
 	// given from the AI when a ship is waiting for its parent. It can also be
@@ -99,8 +104,8 @@ public:
 	void ReadKeyboard();
 
 	// Load or save the keyboard preferences.
-	static void LoadSettings(const std::string &path);
-	static void SaveSettings(const std::string &path);
+	static void LoadSettings(const std::filesystem::path &path);
+	static void SaveSettings(const std::filesystem::path &path);
 	static void SetKey(Command command, int keycode);
 
 	// Get the description or keycode name for this command. If this command is

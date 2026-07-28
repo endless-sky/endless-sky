@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Angle.h"
 #include "Point.h"
 
 #include <bitset>
@@ -59,6 +58,7 @@ public:
 	bool IsOpportunistic() const;
 	bool IsMerciful() const;
 	bool IsRamming() const;
+	bool IsGetaway() const;
 
 	// Mission NPC states:
 	bool IsStaying() const;
@@ -81,6 +81,7 @@ public:
 	bool IsEscort() const;
 	bool IsTarget() const;
 	bool IsMarked() const;
+	bool IsTracked() const;
 	bool IsMute() const;
 	bool IsDecloaked() const;
 	bool IsQuiet() const;
@@ -101,7 +102,7 @@ private:
 private:
 	// Make sure this matches the number of items in PersonalityTrait,
 	// or the build will fail.
-	static const int PERSONALITY_COUNT = 37;
+	static const int PERSONALITY_COUNT = 39;
 
 	bool isDefined = false;
 

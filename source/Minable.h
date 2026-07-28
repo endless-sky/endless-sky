@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Body.h"
+#include "Entity.h"
 
 #include "Angle.h"
 
@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class Effect;
 class Flotsam;
+class MinableDamageDealt;
 class Outfit;
 class Projectile;
 class Visual;
@@ -36,7 +37,7 @@ class Visual;
 
 // Class representing an asteroid or other minable object that orbits in an
 // ellipse around the system center.
-class Minable : public Body {
+class Minable : public Entity {
 public:
 	class Payload {
 	public:
@@ -62,7 +63,7 @@ public:
 	// Point Unit() const;
 
 	// Load a definition of a minable object.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Calculate the expected payload value of this Minable after all outfits have been fully loaded.
 	void FinishLoading();
 	const std::string &TrueName() const;
@@ -79,16 +80,44 @@ public:
 	bool Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 
 	// Damage this object (because a projectile collided with it).
-	void TakeDamage(const Projectile &projectile);
+	void TakeDamage(const MinableDamageDealt &damage);
 
 	// Determine what flotsam this asteroid will create.
 	const std::vector<Payload> &GetPayload() const;
 
 	// Get the expected value of the flotsams this minable will create when destroyed.
-	const int64_t &GetValue() const;
+	int64_t GetExpectedValue() const;
+	// Get the value of the highest quality item that could drop from this minable when destroyed.
+	int64_t GetHighestQualityValue() const;
 
 	// Get hull remaining of this asteroid, as a fraction between 0 and 1.
 	double Hull() const;
+	// Get the maximum hull value of this asteroid.
+	double MaxHull() const;
+
+	double Mass() const override;
+	double MaximumHeat() const override;
+
+	// Apply corrosion damage ticks and decrement corrosion.
+	void DoCorrosionDamage(std::vector<Visual> &visuals);
+
+	// Add Spark Visual Effects for Corrosion Damage.
+	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
+	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+
+
+private:
+	class LiveEffect {
+	public:
+		LiveEffect(const DataNode &node);
+
+		const Effect *effect;
+		// Average interval between instances of the effect, in frames.
+		unsigned interval = 1;
+		// If set to true, the effect behaves like a comet tail,
+		// always facing away from the system center.
+		bool relativeToSystem = false;
+	};
 
 
 private:
@@ -124,10 +153,16 @@ private:
 	// How much prospecting has been done on this object. Used to increase the
 	// payload drop rate.
 	double prospecting = 0.;
+	// Accrued "corrosion damage" that will affect this asteroid's hull over time.
+	double corrosion = 0.;
 	// Material released when this object is destroyed.
 	std::vector<Payload> payload;
+	std::vector<LiveEffect> liveEffects;
 	// Explosion effects created when this object is destroyed.
 	std::map<const Effect *, int> explosions;
 	// The expected value of the payload of this minable.
-	int64_t value = 0.;
+	int64_t expectedValue = 0.;
+	// The value of the highest quality drop from this minable.
+	int64_t highestQuality = 0.;
+	bool useRandomFrameRate = true;
 };

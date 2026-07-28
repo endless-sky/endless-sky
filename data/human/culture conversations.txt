@@ -17,6 +17,7 @@ mission "Sad Gamblers - Republic"
 		government "Republic"
 		attributes "near earth"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -30,6 +31,7 @@ mission "Sad Gamblers - Syndicate"
 	source
 		government "Syndicate"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -45,6 +47,7 @@ mission "Foiled Kidnapping Witnessed"
 	source
 		government "Syndicate"
 		not attributes "station" "frontier" "urban"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -61,6 +64,7 @@ mission "Gift Store Interaction"
 		government "Republic"
 		attributes "deep"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -93,8 +97,9 @@ mission "Gift Store Interaction"
 mission "New China Mourners"
 	minor
 	source "New China"
+	"offer precedence" 5
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`The skies pour down onto the world below, weeping together with the crowds as a plain but stately coffin is carried slowly from a void deck. Rhythmic wailing blends with the susurrant rain, filling the air as the coffin is followed closely by procession of mourners that look to be an extensive gathering of family. Even as it is placed into the van they do not leave the departed, a number of their hands placed on it as if pushing the person toward their final resting place. The two foremost mourners, a woman and a young man, climb in and take their seats next to it. Somewhere nearby, music begins to play as the vehicle slowly moves off.`
@@ -106,8 +111,9 @@ mission "New China Mourners"
 mission "New Holland Foibles"
 	minor
 	source "New Holland"
+	"offer precedence" 5
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`The smell of burning metal fills the air as you walk down the uncrowded streets of the factory town near the spaceport, keeping away from the arterial supply route directly feeding the port and its hangars.`
@@ -138,6 +144,7 @@ mission "Trash Fire Crops"
 		attributes "dirt belt"
 		attributes "farming"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -162,6 +169,7 @@ mission "Worker's Occasion"
 		government "Republic"
 		attributes "dirt belt"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -191,6 +199,7 @@ mission "Paradise Cleaner Incident"
 		government "Republic"
 		attributes "paradise"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -208,6 +217,7 @@ mission "Curious Waiter"
 		government "Syndicate"
 		attributes "factory"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -235,6 +245,7 @@ mission "Syndicated Security Troops"
 		government "Syndicate"
 		attributes "urban"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -250,6 +261,7 @@ mission "Class Trip to Port"
 	source
 		attributes "south"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -264,6 +276,7 @@ mission "Old Defense Turrets"
 	source
 		attributes "south"
 		not attributes "station" "frontier"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -281,6 +294,7 @@ mission "Blind Landing"
 		government "Free Worlds"
 		attributes "farming"
 		not attributes "station" "frontier"
+	"offer precedence" 5
 	to offer
 		"year" > "bumper crop year" + 2
 		random < 1
@@ -308,6 +322,7 @@ mission "Forest Fire"
 		government "Free Worlds"
 		attributes "frontier"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -340,6 +355,7 @@ mission "Local Politics"
 		attributes "frontier"
 		attributes "south"
 		not attributes "station" "urban" "ex-pirate"
+	"offer precedence" 5
 	to offer
 		or
 			and
@@ -365,6 +381,7 @@ mission "Military Response Test"
 	source
 		government "Free Worlds"
 		not attributes "station" "urban" "frontier"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -381,6 +398,7 @@ mission "Missed Mugging"
 	source
 		government "Free Worlds"
 		not attributes "station" "frontier"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -397,6 +415,7 @@ mission "Sojourn Sunday Sales"
 		government "Free Worlds"
 		attributes "urban"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -410,8 +429,9 @@ mission "Tarazed Ship Christening"
 	minor
 	source "Wayfarer"
 	to offer
-		random < 1
+		random < 10
 		has "main plot completed"
+	"offer precedence" 5
 	on offer
 		conversation
 			`As you walk past a number of ships and crew going about their work in the spaceport, a small gathering in front of a Shuttle catches your attention. A young woman wearing a rather cheesy pilot uniform is in the midst of a little group of people all celebrating together. As you pass by them, a man standing on the top of a ladder breaks a bottle of Champagne on the (clearly not new) ship's hull. A loud cheer erupts from the group, earning an embarrassed blush from the young woman.`
@@ -419,11 +439,11 @@ mission "Tarazed Ship Christening"
 				`	(Take a closer look.)`
 					goto investigate
 				`	(Shout well wishes as I pass by.)`
-					goto passby
+					goto "pass by"
 				`	(Ignore them, I have more important things to do.)`
 			`	You hurry past the rowdy group, annoyed by the disturbance.`
 				decline
-			label passby
+			label "pass by"
 			`	You hurry past the group as they quiet down. Taking advantage of the momentary lull, you shout "Good luck! You've got this!" toward them. They let out another cheer in response, with the exception of the young woman who buries her face in her hands.`
 				decline
 			label investigate
@@ -441,10 +461,10 @@ mission "Tarazed Ship Christening"
 			choice
 				`	(Try to salvage the awkward situation.)`
 				`	(Get out while I can.)`
-					goto getout
+					goto "get out"
 			`	"I'm just messing with you, my psychiatrist doesn't think it's very funny when I do it to him either."`
 			`	"Oh," the woman says quietly, "that's... nice, I guess."`
-			label getout
+			label "get out"
 			`	You realize that you have made this random young lady quite uncomfortable by barging in with your input.`
 			`	"Well, good luck!" you say with a wave as you hurry away. You barely hear the quiet "thank you" over the burning in your ears.`
 				decline
@@ -466,6 +486,7 @@ mission "Masquerade Hanging"
 	source
 		government "Pirate"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -480,6 +501,7 @@ mission "News Reporter - Paradise"
 		government "Republic"
 		attributes "paradise"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 8
 		has "event: war begins"
@@ -536,6 +558,7 @@ mission "Scientists at the Pub after a Conference"
 		government "Republic"
 		attributes "urban"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -593,15 +616,16 @@ mission "Sol-Bound Shuttle"
 	minor
 	source
 		system "Sol"
+	"offer precedence" 5
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`	Upon entering the sprawling spaceport, you notice that a group of factory workers are talking to a captain. As you get closer, you see that the captain's flagship, a Shuttle that has seen better days, lacks a hyperdrive.`
 			choice
 				`	"Where's your hyperdrive?"`
 				`	"How are you going to travel anywhere with that ship?"`
-				`	(Go back to your ship.)`
+				`	(Go back to my ship.)`
 					decline
 			`	The captain laughs. "Most pilots are the adventurous type. Not me. I make a pretty decent haul just flying people from Earth to Mars and back. Occasionally I do trips to the Moon for tourists." You notice that she uses the archaic term for Luna. Must be a local expression.`
 			choice
@@ -628,9 +652,10 @@ mission "Earth Day Blackout"
 	minor
 	landing
 	source "Earth"
+	"offer precedence" 5
 	to offer
 		day == 22
-		month == 5
+		month == 4
 	on offer
 		conversation
 			`As you follow the tracking beacons towards Earth's central spaceport, you realize there's something very off. What was the bustling spaceport city is now completely still, and even though it is near midnight, the supertall buildings and skyscrapers are curiously dark; not a light is on for kilometers.`
@@ -690,25 +715,26 @@ mission "Burthen Triathlon"
 	minor
 	source
 		planet "Burthen"
+	"offer precedence" 5
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`Thanks to the planet's high gravity, Burthen is not a common destination, but today the spaceport seems to have a lot of visitors. Many of the usually empty landing pads are occupied, and you notice a sizable crowd at the edge of the spaceport as you step out onto its rather untarnished apron. Some members of the crowd are obviously from offworld judging by their height, and there's even a few media crews standing by, although it looks like their camera drones are struggling with Burthen's gravity.`
 			choice
 				`	(See what's going on.)`
-				`	(Avoid the commotion and tend to your own business.)`
+				`	(Avoid the commotion and tend to my own business.)`
 					decline
 			`	Each step takes significantly more effort than you're used to, but you eventually reach the crowd. From the signs that have been put up on the way, it looks like the "Burthen Triathlon" is taking place today, and the spaceport has been designated the finishing point. A couple of especially sturdy-looking marquees have been set up; the smaller one appears to be the administration tent, currently only accessible to event staff, while the other one is far larger and is catering food and drinks for the crowd nearby.`
 			choice
 				`	(Walk over to the catering tent.)`
 				`	(Stay outside.)`
 					goto outside
-				`	(Return to your ship.)`
+				`	(Return to my ship.)`
 					decline
 
 			`	Thankfully, the walk to the catering tent is far shorter than the walk from your ship, but nevertheless you're exhausted by the time you drag your feet inside. A lot of effort has been put into this tent: the metal chairs are all sturdily-built to allow offworlders to pull themselves up, but cushioned as to not make it uncomfortable to sit in. A small firepit has been built in the middle of the tent, along with a couple fire extinguishers placed nearby, and the whole place is brightly lit in contrast to Burthen's typically chilly weather. Quite a few people, both Burthenians and offworlders, are mingling about here.`
-			`	There's a counter in the corner with two levels, apparently so that the Burthenian attending it can serve both offwolders and locals. Alongside the typical drinks you've seen in spaceport bars and some local to the southern Core, the counter also offers a local drink called the "Antigrav" that claims to "ease visitors from Burthen's natural pull," and comes in a specially made glass, all for 30 credits.`
+			`	There's a counter in the corner with two levels, apparently so that the Burthenian attending it can serve both offworlders and locals. Alongside the typical drinks you've seen in spaceport bars and some local to the southern Core, the counter also offers a local drink called the "Antigrav" that claims to "ease visitors from Burthen's natural pull," and comes in a specially made glass, all for 30 credits.`
 			branch "no credits"
 				credits < 2
 			choice
@@ -756,15 +782,16 @@ mission "Burthen Triathlon"
 mission "CCOR Guerrilla Standoff"
 	minor
 	source "Gagarin"
+	"offer precedence" 5
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`Every map of human space places Gagarin in the list of seedy, go-at-your-own-risk pirate ports which would bring to mind the likes of Greenrock's fighting pits and Freedom's gear bazaars. Still, it appears much like any other old, slightly run-down Southern spaceport, only at a much grander scale. Being the center of the planet's extensive transportation system, it seems as if you are wading through thousands of Gagarians and offworlders in every atrium and hallway of this spaceport, as they do the same to make their connections on- and off-world.`
 			`	But as you make your way into the central hall, you notice that, where you'd expect the greatest activity, everything has stopped. Even the ever-roving antigrav trolleys of cargo and supplies are backed up and motionless, and everybody's attention is directed at some sort of commotion in the very center of the spaceport.`
 			choice
 				`	(Take a look.)`
-				`	(Go back to your ship.)`
+				`	(Go back to my ship.)`
 					decline
 			`	Stepping through the gaps within the established crowd you end up next to a spaceport gendarme. He appears as if he's meant to be on patrol duty but is too busy watching the distraction to do his job right now. Looking over the banisters beside him, you see first the enormous and oddly empty space in the middle of the hall, then a team of overalls-wearing men armed with drills and brushes. Surrounding them is a cordon of guerrillas in their rosy CCOR uniforms, sizing up the public and the spaceport security around them with their rifles and pistols.`
 			`	The painting guerrillas are busily finishing off the touches of what appears to be a statue of the burgundy and white emblem of the Confederated Councils, while a pile of rubble beside it suggests that a symbol of the local government once stood in its place. As they step away from the statue, a lone man in a much better-kept uniform than the others steps forward in front of their work. You can feel the air chilling as he raises his head to speak.`
@@ -784,10 +811,313 @@ mission "CCOR Guerrilla Standoff"
 
 mission "Raider returning to Mordente-Bridi"
 	source "Mordente-Bridi"
+	"offer precedence" 5
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`Watching the microgravity section of the spaceport from one of the bars in Mordente Cylinder, you observe a Bastion in pirate markings coming nearly too fast for safe approach to the station, its hull covered in gashes and burns from what looks to be Plasma Cannon shots.`
 			`	As it comes to a stop in a maintenance bay, the spaceport's engineering shuttles appear from all over and begin buzzing around the Bastion, assessing the damage and beginning the work on repairs. Meanwhile, its crew disperse from the ship and immediately begin unloading a multitude of busted-up crates and containers from the hold, probably raided from a civilian transport. It looks like their haul was worth the damage.`
 			`	Within the hour the work shuttles scatter from the ship as they finish patching up its battered hull, and the Bastion maneuvers out of the bay almost as haphazardly as it did when it entered.`
+
+mission "Militia returning to Solace"
+	source "Solace"
+	"offer precedence" 5
+	to offer
+		random < 10
+	on offer
+		conversation
+			`Wandering around the main spaceport on Solace, you notice several rows of shiny new landing pads next to the Delta V company offices. A large banner announces that you are witnessing the grand opening of Delta V's new private spaceport, and a crowd of interested spectators has gathered near the perimeter of the fence.`
+			`	Suddenly an Argosy comes streaking out of the sky, almost crashing into several smaller ships in the main spaceport before swerving out of sight behind a hangar in the direction of the new landing pads. There are shouts from the throng of onlookers, who all seem to think this was a stunt. Your more practiced eye, however, tells you that there are bullet marks on the Argosy's hull from a Gatling Gun. It was probably a miscalculation by the pilot's computer that almost caused the collision.`
+			`	Soon afterwards, an announcement is made from a large speaker, telling bystanders that nothing bad happened and that they can go home now. After staying for a while out of curiosity, the crowd finally disperses. However, you stick around and notice the Argosy flying back into view to land in the main spaceport.`
+
+mission "Republic 300 Year Anniversary"
+	landing
+	source
+		government "Republic"
+		not attributes "uninhabited"
+	"offer precedence" 5
+	to offer
+		year == 3030
+	on offer
+		conversation
+			`News headlines bombard your comms as you land on <origin>: today is the three hundredth anniversary of the Republic. A crowd has gathered in the local spaceport in something of a celebration as they tune in to the main news stations, websites, and blogs throughout human space that are commenting on this momentous day. However, you notice many passersby moving about with an air of disdain for the festivities, simply trying to get their business here over quickly, and being frustrated at the inevitable slowness of the local facilities today.`
+			`	Originally formed by Earth and planets close to it, the Rim, and a few Dirt Belt worlds, the Republic went on to gradually expand and incorporate the Syndicate, Paradise Worlds, and the Deep. For three hundred years now, most of humanity has existed under its flag, and through protests and the space renaissance, waves of colonization, expansion, and battles against remnants of the Alphas, that flag remains flying over most human worlds today.`
+			branch "war over"
+				has "main plot completed"
+			branch "war ongoing"
+				has "chosen sides"
+				not "main plot completed"
+			`	Not all is well, of course, as the bombing of Geminus and Martini appears to have set the Republic on the precipice of war with the Free Worlds, in the southern portion of human space. You can't help but feel that much of the cheerfulness about this date has more to do with the national holiday than with a deep-rooted appreciation for the Republic's history and what it stands for.`
+				goto end
+			label "war ongoing"
+			`	The ongoing war with the Free Worlds has greatly diminished what the Republic Department of Arts and Culture no doubt hoped to turn into the public event of the year. Local workers and merchant captains alike whisper among themselves, Navy personnel march to and from warships that come and go at an alarming rate, seemingly unfazed by the historical date, and some bar fights break out between likely inebriated local patriots and those reckless enough to voice their support for the Free Worlds here.`
+				goto end
+			label "war over"
+			`	The recent Free Worlds war seemed to threaten this long history of stability, as battles raged over the skies of dozens of planets, and the threat of an open nuclear war loomed closer as the conflict escalated. The indiscriminate disappearance of many systems close to Earth, followed by the unified human front against the Pug invaders, seems to have knit together the sentiments of many throughout the Republic - for the time being, at least.`
+			branch "zenith bombed"
+				has "Wanderers: Sestor: Return to Wanderers: done"
+			branch "sestor beaten at farpoint" end
+				has "Wanderers: Sestor Alt: Return to Wanderers: done"
+			label "zenith bombed"
+			`	Dimming the mood of the otherwise mostly positive news titles are the comments about a mysterious armada of robotic warships invading the Far North. Having crushed the Navy forces over Farpoint, the fleet was only partially beaten after the detonation of a terrible bomb on Zenith, which wrecked much of the planet. Indeed, it was weeks still before the scattered ships were fully destroyed, and confidence in the Navy's - and, by extension, the Republic's - ability to keep humanity safe seems to have been affected significantly...`
+				goto end
+			label "sestor beaten at farpoint"
+			`	Web comments and news anchors seem to be particularly excited to comment on the recent victory of the Navy over the mysterious armada of robotic warships that invaded the Far North. Though at a great cost to the northern fleet garrisons, the invading fleets were successfully stopped at the Farpoint base, preventing the ships from causing any further harm. Veterans of the Farpoint battle seem to be hoarding the spotlight, giving emotional reports of their memory of the fight, and of the sacrifices they went through to achieve victory.`
+			label end
+			choice
+				`	(Join the celebration of the Republic's 300th anniversary.)`
+					goto celebrate
+				`	(Go on about my day as usual.)`
+			`	You switch your media channels off from the celebrations, and get to your ship's system checks. Once you're done, you prepare for just another day.`
+				decline
+			label celebrate
+			`	You take an hour or two to join in on the festivities, because after all, it's not everyone who can claim to have witnessed a centenary anniversary of a nation. Stepping off the <ship>, you head to the spaceport, have a couple of drinks, speak to some of the locals, and party with a few revelers. Once it's getting late, you head back to your ship and reflect on the meaning of this day throughout human space.`
+				decline
+
+mission "Exotic Life: Buccaneer Bay"
+	minor
+	source "Buccaneer Bay"
+	"offer precedence" 5
+	to offer
+		random < 10
+		credits > 379
+	on offer
+		conversation
+			`You wander the planet's sun-bleached boardwalk, passing dozens of rum-soaked bars. Eventually, you see a cramped restaurant squeezed between a closed souvenir shop and yet another bar. The building is painted coral with a battered tin awning, and a hand-written board dangles above the door with the words "Fresh Delish Dish Fish."`
+			`	A lanky waiter with a braided silver beard and cybernetic left eye aggressively waves you in and gives a practiced yell: "Best Dish Fish in town! Once-in-a-lifetime experience, plus a worlds-renowned souvenir! Try the Dish Fish - the fish that's a dish!"`
+			choice
+				`	"What?"`
+				`	"How much?"`
+					goto price
+				`	"No thanks."`
+					decline
+			`	"Dish Fish! It's a fish that's a dish. Buccaneer Bay's famous for 'em." The waiter glares at you in mild annoyance. "It's a flat fish with a big head. The skull's flat and has three horns so it stands on its own as a plate, and we cook the rest of the fish to serve on it. You can keep the skull as a plate after. Dish. Fish."`
+			label price
+			`	The waiter puts a hand on your shoulder. "Only 99 credits, what a deal! The skull alone'll cost ya 200 credits anywhere else. What'ya say, want the meal of a lifetime?"`
+			choice
+				`	"Sure."`
+				`	"No thanks."`
+					decline
+			action
+				payment -379
+			`	"Great! Service fee's included." The waiter snatches your credits, slaps a laminated menu and receipt into your hands, and shoves you into a cramped booth before hurrying away towards the kitchen. You look at the receipt to find that you've been charged 20 credits for a 'seating fee,' 30 credits for a 'convenience fee,' 50 credits for 'fish cleaning,' 80 credits for 'dish assembly,' and 100 credits for a 'service charge' - a total of 379 credits.`
+			`	Seated inside, the restaurant is even tighter than it looked from outdoors. There's a single row of tiny tables, a low ceiling, and a handful of other patrons who look like clueless tourists. The menu itself covers seafood and sea-adjacent food like Nine-Eye Pie, Hand-Mashed Helmet, Hydrozoan Lasanga, and a suspiciously named 'Captain's Catch.' The top of the menu has a headline dish written in sloppy cursive with a prominent infobox beneath taking up a full third of the menu:`
+			``
+			`		Dish Fish: Natural Wonder and Souvenir - 99 credits`
+			`		(additional fees not included)`
+			`			- The oceans of Buccaneer Bay are full of jawless, fish-like creatures commonly known as Buccaneer Bay Boneheads that have a single, bone-like plate over their head and body, an oversized skull!`
+			`			- Ecologically, they are commonly filter feeders, deposit feeders, and grazers, consuming tiny organisms or detritus from the water, sediment, or ocean floor.`
+			`			- Dish Fish differ from other Buccaneer Bay Boneheads: they have a nearly perfectly circular head-plate, three small horns to fend off predators, and no eyes because they live on deep, low-light ocean floors.`
+			`			- These traits make a Dish Fish head-plate the perfect souvenir dish: round, sealed, with a built-in tripod. Get yours today!`
+			`	The waiter returns, and the plate is distinctive. He brings out a sizable ivory disc, the bone smooth and polished, balanced by three tapering horns on the table. On the plate itself sits a single charred tail, skewered and grilled until the skin crackles. It looks both impressive and appetizing.`
+			choice
+				`	(Take a bite.)`
+				`	(Thank the waiter and leave.)`
+					goto thanks
+			`	You take a bite. The meat is... an awful attempt at food. There's a musty, sulfurous note at the beginning, like wet compost, while beneath it is an almost-rotten tang that belies the visual freshness of the fish. The closest thing to a redeeming flavor is a faint, earthy aftertaste of salty mud.`
+			label thanks
+			`	The waiter comes to flick the Dish Fish clean with a rag, thanks you for patronizing the establishment, and jerks a thumb towards the door - a punctuated close to your 'meal of a lifetime.'`
+				decline
+
+mission "Exotic Life: New Greenland"
+	minor
+	source "New Greenland"
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You step down onto the landing pad and your breath makes a white halo. The spaceport is unusually foggy, and the chilling wind causes a reflexive shiver to run up the base of your neck.`
+			`	A grizzled man emerges from the fog with an easy, unhurried gait, a laser rifle slung over one shoulder. A hulking beast lumbers at his side: a horse-sized hound cloaked in heavy, wooly fur rimmed with frost. Two enormous tusks thrust from its muzzle like pale sabers. Steam billows from its flared nostrils as it turns its head almost lazily toward you. Its eyes carry a grim patience.`
+			`	The man sees you and grunts, "Don't stare at a Mammoth Mastiff."`
+			choice
+				`	"What's a Mammoth Mastiff?"`
+				`	"Don't tell me what to do!"`
+					goto ending
+				`	(Avert my gaze and get back to my ship.)`
+					decline
+			`	"A phantom from harsher times, bred on Hestia when it was still lifeless ice. Now nothing more than a tool of the trade." He pats the creature and it lets out a low rumble.`
+			label ending
+			`	The man bellows a deep laugh as the fog thickens. The creature's eyes are the last things to pierce the haze before man and mastiff alike fade away. You find yourself alone once more.`
+				decline
+
+mission "Exotic Life: Mainsail"
+	minor
+	source Mainsail
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You steady yourself on the floating city-ship as the necklace of barges, docks, and gantries creak and sway under the influence of Mainsail's endless ocean waves. Salt spray stings your face as you head out towards the ring. One barge rocks close, its deck slick with algae, while a local fearlessly walks a four-legged whale-like creature on a leash - a seal-sized mass of compact muscle under slate fur, with webbed paws that click on the planks, a long whiskered snout bristling with needlelike teeth and a broad, flattened tail that wags with anticipation.`
+			`	The local catches you gawking, flashes a salt-creased grin and calls, "Never seen a seadog before?`
+			choice
+				`	"Can't say I have!"`
+				`	"What is that thing?"`
+				`	"Of course I've seen a seadog before!"`
+					goto seen
+				`	(Avert my gaze and get back to my ship.)`
+					decline
+			action
+				set "exotic animals: mainsail seadog known"
+			`	"Ah, that, my friend, is a Mainsail Seadog, the premier water-sporting hound of the Paradise Planets. Bred some four centuries ago in the ateliers of this very planet, they marry old water-dog stock with dolphin and otter blood, with a touch of beaver for the tail, crocodile for the jaws, and barracuda for the strike," he says with a wink. "They'll nose out a school, haul in the finest fish, and lay a damp, grateful head upon your boots - a prized rarity since the Republic put a lid on the gene labs."`
+				goto ending
+			label seen
+			`	"Glad to hear that, my friend! Too few have seen the prized rarity of a Mainsail Seadog nowadays, since the Republic put a lid on the labs."`
+			label ending
+			`	With a practiced motion he hops from the barge into a sleek, unpowered skiff. The seadog slips from the barge like a ribbon, dives cleanly into the sea, and sets its broad tail to the waves. In a spray of salt the steely creature hauls them off, and the boat recedes like a chariot of Poseidon into the harbor haze.`
+				decline
+
+mission "Struggling Author Gone Missing"
+	minor
+	landing
+	source "Zug"
+	to offer
+		random < 88
+		has "event: beyond the hyperdrive is published"
+	on offer
+		conversation
+			`As your ship settles down on landing pad A5B, two young adults approach. One speaks up, "Hello, Captain. Have you seen a woman named Anna Fangvin anywhere? She was last seen in the spaceport, and must have left in someone's spaceship."`
+			`	Around the spaceport you see a few other groups doing the same thing. Anna may have been more popular than she thought.`
+			choice
+				`	"She went to another star system a long ways from here. You won't be able to get to her."`
+				`	"No, I don't know. Sorry."`
+					goto continue
+			`	"If you ever see her again, tell her that the Coalition of Book Enjoyers appreciates her work. It wouldn't be possible for you to bring us to her location?" You respond in the negative, and the two go off to the other groups to spread the news.`
+			label continue
+			`	Posters hang on many of the spaceport's walls - here too, Anna's books must have been famous. The posters read:`
+			`	MISSING:`
+			`		Anna Fangvin, a young author whose books have been shared throughout the planet. Please report any news to the Coalition of Book Enjoyers, address 5662 Myrtle Lane, Sizertown, Zug.`
+				decline
+
+mission "Exotic Life: Bloodsea"
+	minor
+	source Bloodsea
+	to offer
+		random < 10
+	on offer
+		conversation
+			branch formerpirates
+				or
+					has "event: bloodsea independent"
+					has "event: bloodsea joins free worlds"
+			`You slowly thread your way through the dirty makeshift spaceport. It is packed with vendors and pirates haggling over illegal goods. In the distance, the sun is setting over the blood-red ocean that gives Bloodsea its name.`
+			`	In the shadow behind a run-down shack, over which a sign advertises "the cheapest nerve gas this side o' Sol," you see a man coughing. He hacks and splutters for a while, and when he finally recovers, you notice his lips are stained with blood. As you turn away, you catch the eye of a wizened old man in the next stall.`
+				goto restofhello
+			label formerpirates
+			`You slowly thread your way through the dirty spaceport. It is packed with vendors and shady persons haggling over goods of dubious origin. In the distance, the sun is setting over the blood-red ocean that gives Bloodsea its name.`
+			`	In the shadow behind a run-down shack, over which a sign advertises "the cheapest 'nades this side o' Sol," you see a man coughing. He hacks and splutters for a while, and when he finally recovers, you notice his lips are stained with blood. As you turn away, you catch the eye of a wizened old man in the next stall.`
+			label restofhello
+			`	"He's got the Bloom," the old man pronounces solemnly. "He'll be dead in a few weeks. It's the blood tide that does it, the fools."`
+			choice
+				`	"What is it?"`
+				`	"Is it contagious?"`
+					goto contagious
+				`	(Walk away.)`
+					decline
+			`	He laughs scornfully. "The sea sprays poison. No one goes there except spacers and fools. Bloody sea and bloody fools.`
+				goto next
+			label contagious
+			`	"Yes," he says simply. You automatically recoil from the coughing man.`
+			label next
+			`	"First your eyes itch, then your throat, then your lungs. By then it's too late, too late. But there are always those who never learn."`
+			`	He grins with derision. "Well, I'll chop you up and throw you to the Bloom if you don't buy some fish from me. Three barrels." He reaches in and pulls a fish out. "Still fresh. 1000 credits each."`
+			choice
+				`	(Buy three barrels of fish from him.)`
+					to display
+						credits >= 3000
+					goto three
+				`	(Buy two barrels of fish from him.)`
+					to display
+						credits >= 2000
+					goto two
+				`	(Buy one barrel of fish from him.)`
+					to display
+						credits >= 1000
+					goto one
+				`	(Make a run for it.)`
+			`	You whirl around and walk quickly the other way. You can still hear the cursing in your ears when you get to your ship.`
+				decline
+			label three
+			action
+				payment -900
+			`	You fish out the money for three barrels and hand it to him. He feels it suspiciously. Once he's satisfied, you roll the barrels back to the spaceport. After an exhausting few hours of one price dispute after another, you manage to sell them at the spaceport trading panel for 2100 credits.`
+				decline
+			label two
+			action
+				payment -600
+			`	You fish out the money for two barrels and hand it to him. He feels it suspiciously, and grumbles something about the one remaining barrel. You roll the barrels back to the spaceport and, after an hour of hard work, manage to sell them at the spaceport trading panel for 1400 credits.`
+				decline
+			label one
+			action
+				payment -294
+			`	You fish out the money and hand it to him. He rubs it, then explodes in rage. "Get out!" he shouts, throwing the credit chips at your face. You make a run for it, and by the time you get to your ship, you realize that you left 294 credits with the old man in your hurry to escape.`
+				decline
+
+mission "Exotic Life: Delve"
+	minor
+	source Delve
+	to offer
+		random < 20
+	on offer
+		log `Heard about some tiny creatures called "Delvan shipworms" which can eat through a ship's hull. Apparently infestations are getting more frequent.`
+		conversation
+			`The mountain air tastes cool and fresh after breathing the constantly recycled air on the <ship> for so long, so you take a moment to get a good lungful and enjoy the view. Just off to your right, ground technicians wearing thin coveralls and breathing gear are spraying some kind of chemical on the hull of a parked Sunder. The fine mist reflects a bright rainbow which contrasts strikingly with the dull gray metal of the hull.`
+			`	You wander over, careful not to get too close to the spray, which you assume is toxic. One of the technicians climbs down a ladder attached to the hull as you approach, then turns to you, pulling his mask off to reveal a dark-skinned man in his early twenties, his hair plastered to his forehead by copious amounts of sweat.`
+			`	"This your ship?" he asks with a professionally neutral expression.`
+			choice
+				`	"No, I'm just curious. What are you doing to it?"`
+					goto curious
+				`	"Yes. How is the work coming along?"`
+			`	The technician shakes his head morosely.`
+			`	"It's confirmed. Shipworm. Bad case, too - I'm surprised your hull was still holding atmosphere." He looks back at the Sunder, measuring it up with his eyes. "We should be finished with the decontamination in a couple hours, but then we'll need to go over her with sealant. Probably two coats. We'll be finished tomorrow afternoon, earliest."`
+			choice
+				`	"Shipworm? Never heard of it."`
+					goto whatisshipworm
+				`	"Oh. Okay, carry on."`
+					decline
+			label curious
+			`	He looks you up and down, perhaps wondering if he will get in trouble for telling you about another captain's ship, but then he shrugs and opens up.`
+			`	"Shipworm infestation. Third one this week." He pushes his hood back and runs his hand through his greasy hair. "Honestly, I'm surprised the media hasn't been covering it yet. Maybe they're waiting for the first spontaneous depressurization so they have something really juicy to talk about."`
+			choice
+				`	"Shipworm? What is that?"`
+				`	"You think it's a cover-up?"`
+					goto coverup
+			label whatisshipworm
+			`	"They're tiny little creatures, about the size of a pinhead, and they get everywhere if you're not careful. They feed on a whole load of different metals, it has the science geeks blowing their tops. So far they haven't found an alloy that these guys can't digest."`
+			label coverup
+				`	"As a model Syndicate employee," he says sardonically, "I can tell you that the rumors that the shipworm is indigenous to this planet are untrue, and that the miners are categorically not hauling them out of the ground along with the ore. In fact, if you even use the term 'Delvan shipworm' there is a good chance that you'll have Syndicate lawyers suing you for defamation."`
+			`	You thank the technician for his time and turn back toward the <ship>, wondering if maybe you should park it a bit further away.`
+				decline
+
+
+mission "Exotic Life: Ada"
+	minor
+	source Ada
+	to offer
+		random < 20
+		has "Exotic Life: Delve: declined"
+	on offer
+		conversation
+			`A loud commotion draws your attention as you make your way through the spaceport and you look up to see three large Lovelace Labs security guards surrounding an irate pilot.`
+			`	"But I've got to unload my cargo!" the pilot is shouting right into the face of a guard who looks completely unfazed.`
+			`	"Not here you've not," she says in a bored manner, as though she deals with this kind of situation twenty times a day. "Not until you get your ship decontaminated."`
+			`	You are now just one of a whole crowd of onlookers surrounding the group in a big circle. The pilot seems to notice that he is the center of attention and decides to appeal to the crowd.`
+			`	"You see what they're doing?" he yells. "This is... this is overreach! I'm being harassed!"`
+			`	The guard is unimpressed, poking at a datapad as she talks.`
+			`	"Rules are rules and you gotta follow them just like everyone else." She looks up, eyes narrowed. "It says here your cargo is miniature figurines. What exactly are they made out of?"`
+			`	The pilot looks suddenly sheepish, throwing his hands up in defeat.`
+			`	"Alright, alright," he says. "I'll get the decon procedure done. Okay? You win."`
+			`	"What. Are. They. Made of?"`
+			`	"Stainless steel."`
+			`	"Ouch," she says, but the bored expression is gone now and she seems to be enjoying herself. "Twelve tons of miniature figurines, and we are gonna have to scan every single one to make sure they're not contaminated. That could take a while."`
+			`	With a scattering of chuckles and a few sympathetic groans the crowd starts to disperse, and the two other guards lead the pilot back towards his ship, leaving the main guard tapping happily at her datapad. After a few moments she looks up, noticing you watching her.`
+			choice
+				`	"Delvan shipworms?"`
+					goto shipworms
+				`	"That seemed a bit harsh."`
+				`	"That was fun."`
+			`	She shrugs. "Just doing my job."`
+				decline
+			label shipworms
+			`	"Uh-huh," she says. "Only we're now seeing them on ships that haven't been near Delve. They seem to be spreading."`
+				decline

@@ -25,6 +25,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	bool usingMatches = false;
+}
+
+
+
+void StellarObject::UsingMatchesCommand()
+{
+	usingMatches = true;
+}
+
 
 
 // Object default constructor.
@@ -36,6 +47,13 @@ StellarObject::StellarObject()
 	// Unlike ships and projectiles, stellar objects are not drawn shrunk to half size,
 	// because they do not need to be so sharp.
 	zoom = 2.;
+}
+
+
+
+bool StellarObject::HasSprite() const
+{
+	return Body::HasSprite() || usingMatches;
 }
 
 
@@ -72,10 +90,10 @@ const Planet *StellarObject::GetPlanet() const
 
 
 // Only planets that you can land on have names.
-const string &StellarObject::Name() const
+const string &StellarObject::DisplayName() const
 {
 	static const string UNKNOWN = "???";
-	return (planet && !planet->Name().empty()) ? planet->Name() : UNKNOWN;
+	return (planet && !planet->DisplayName().empty()) ? planet->DisplayName() : UNKNOWN;
 }
 
 

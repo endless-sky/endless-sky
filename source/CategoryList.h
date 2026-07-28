@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <iterator>
-#include <map>
 #include <string>
 #include <utility>
 #include <vector>
@@ -40,7 +39,7 @@ public:
 		Category(const std::string &name, int precedence) : name(name), precedence(precedence) {}
 		const std::string &Name() const { return name; }
 		const bool operator<(const Category &other) const { return SortHelper(*this, other); }
-		const bool operator()(Category &a, Category &b) const { return SortHelper(a, b); }
+		const bool operator()(const Category &a, const Category &b) const { return SortHelper(a, b); }
 
 	private:
 		static const bool SortHelper(const Category &a, const Category &b);
@@ -56,6 +55,7 @@ public:
 	CategoryList() = default;
 
 	void Load(const DataNode &node);
+	void Clear();
 
 	// Sort the CategoryList. Categories are sorted by precedence. If multiple Categories
 	// share the same precedence then they are sorted alphabetically.
@@ -74,6 +74,5 @@ public:
 
 private:
 	std::vector<Category> list;
-	std::map<const std::string, Category> byName;
 	int currentPrecedence = 0;
 };

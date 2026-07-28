@@ -118,9 +118,42 @@ mission "Remnant: Expanded Horizons Astral job"
 		government "Remnant"
 	waypoint
 		not attributes "pleiades"
-		not attributes "inaccessible"
+		not attributes "tangled shroud"
+		not attributes "twilight"
+		not attributes "outer limits"
+		not attributes "beyond patir"
+		visited
 	to offer
 		has "Remnant: Expanded Horizons Astral 2: done"
+		not "Ka'het: Patir Mystery 35: done"
+		random < 50
+	on offer
+		require "Research Laboratory"
+	on waypoint
+		dialog "Your scientist unpacks the laboratory and takes the requested observations. A short while later, they have the data compiled on a set of data crystals and inform you that everything is ready for departure."
+	on complete
+		payment 500000
+		"reputation: Remnant" ++
+		dialog "When you land, a researcher quickly retrieves the data crystals with the information about the surveyed system and hands you the logistics allotment of <payment>."
+
+
+
+mission "Remnant: Expanded Horizons Astral job late"
+	job
+	repeat
+	name "Research Expedition to <waypoints>"
+	description "Travel to <waypoints> with a Research Laboratory to collect data, then return to <destination>."
+	source
+		government "Remnant"
+	waypoint
+		not attributes "pleiades"
+		not attributes "inaccessible"
+		not attributes "tangled shroud"
+		not attributes "twilight"
+		not attributes "outer limits"
+	to offer
+		has "Remnant: Expanded Horizons Astral 2: done"
+		has "Ka'het: Patir Mystery 35: done"
 		random < 50
 	on offer
 		require "Research Laboratory"
@@ -216,7 +249,7 @@ mission "Remnant: Bounty 5"
 		system
 			attributes "ember waste"
 			not attributes "graveyard"
-			not attributes "inaccessible"
+			not attributes "twilight"
 		fleet
 			names "korath"
 			cargo 3
@@ -269,7 +302,7 @@ mission "Remnant: Logistics Industrial Delivery"
 	to offer
 		not "remnant: ssil vida active"
 		has "Remnant: Logistics 1: done"
-		has "Remnant: Logistics Civil Engineering: done" >= 9
+		"Remnant: Logistics Civil Engineering: done" >= 9
 		random < 76
 	source
 		government "Remnant"
@@ -297,7 +330,7 @@ mission "Remnant: Logistics Outfitter Delivery"
 		not "remnant: ssil vida active"
 		has "Remnant: Logistics 1: done"
 		has "license: Remnant"
-		has "Remnant: Logistics Industrial Delivery: done" >= 9
+		"Remnant: Logistics Industrial Delivery: done" >= 9
 		random < 30
 	source
 		government "Remnant"
@@ -325,7 +358,7 @@ mission "Remnant: Logistics Salvage Delivery"
 		not "remnant: ssil vida active"
 		has "Remnant: Logistics 1: done"
 		has "license: Remnant Capital"
-		has "Remnant: Logistics Outfitter Delivery: done" >= 9
+		"Remnant: Logistics Outfitter Delivery: done" >= 9
 		random < 11
 	source
 		government "Remnant"
@@ -356,10 +389,11 @@ mission "Remnant: Rescue"
 		system
 			attributes "ember waste"
 			not attributes "ka'het"
-			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -383,6 +417,7 @@ mission "Remnant: Rescue"
 ship "Rescue Dummy"
 	# sprite "ship/behemoth"
 	attributes
+		category "Game Mechanics"
 		"heat dissipation" 1
 		"hull" 1
 		"mass" 10
@@ -396,7 +431,7 @@ ship "Rescue Dummy"
 	gun 0 0
 
 outfit "Suicide Gun"
-	"category" guns
+	category "Guns"
 	thumbnail "outfit/unknown"
 	"gun ports" -1
 	weapon
@@ -423,10 +458,11 @@ mission "Remnant: Rescue 1B"
 		system
 			attributes "ember waste"
 			not attributes "ka'het"
-			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -460,10 +496,11 @@ mission "Remnant: Rescue 2"
 		system
 			attributes "ember waste"
 			not attributes "ka'het"
-			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -499,10 +536,11 @@ mission "Remnant: Rescue 2B"
 		system
 			attributes "ember waste"
 			not attributes "ka'het"
-			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -536,10 +574,11 @@ mission "Remnant: Rescue 3"
 		system
 			attributes "ember waste"
 			not attributes "ka'het"
-			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -573,10 +612,11 @@ mission "Remnant: Rescue 3B"
 		system
 			attributes "ember waste"
 			not attributes "ka'het"
-			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet

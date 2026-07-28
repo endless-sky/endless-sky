@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class MessageLogPanel : public Panel {
 public:
 	MessageLogPanel();
+	virtual ~MessageLogPanel() override;
 
 	virtual void Draw() override;
 
@@ -32,15 +33,15 @@ public:
 protected:
 	// Event handlers.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
 
 private:
-	const std::deque<std::pair<std::string, Messages::Importance>> &messages;
+	const std::deque<std::pair<std::string, const Message::Category *>> &messages;
 
 	const double width;
+	bool importantOnly = false;
 	// Current scroll:
 	double scroll = 0.;
 	double maxScroll = 0.;

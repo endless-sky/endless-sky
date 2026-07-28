@@ -872,7 +872,7 @@ mission "Coalition: Cargo 1"
 	repeat
 	name "Cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 4 6 .3
+	cargo "coalition cargo" 4 6 .3
 	to offer
 		has "known to the heliarchs"
 		random < 80
@@ -894,7 +894,7 @@ mission "Coalition: Cargo 2"
 	repeat
 	name "Cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 4 8 .3
+	cargo "coalition cargo" 4 8 .3
 	to offer
 		has "known to the heliarchs"
 		random < 70
@@ -916,7 +916,7 @@ mission "Coalition: Cargo 3"
 	repeat
 	name "Cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 4 11 .3
+	cargo "coalition cargo" 4 11 .3
 	to offer
 		has "known to the heliarchs"
 		random < 60
@@ -938,7 +938,7 @@ mission "Coalition: Cargo 4"
 	repeat
 	name "Cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo random 4 15 .3
+	cargo "coalition cargo" 4 15 .3
 	to offer
 		has "known to the heliarchs"
 		random < 50
@@ -1786,7 +1786,7 @@ mission "Lunarium: Anti-Missile Delivery"
 	job
 	repeat
 	name "Anti-Missile Delivery"
-	description "The Lunarium is are offering <payment> for you to deliver a Heavy Anti-Missile Turret to <destination>."
+	description "The Lunarium is offering <payment> for you to deliver a Heavy Anti-Missile Turret to <destination>."
 	to offer
 		random < 10
 		has "Lunarium: Smuggling: AM: done"

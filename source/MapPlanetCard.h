@@ -15,13 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "LoadingCircle.h"
 #include "MapPanel.h"
-#include "image/Sprite.h"
 
 #include <string>
 
 class MapDetailPanel;
 class Point;
+class Sprite;
 class StellarObject;
 
 
@@ -90,6 +91,7 @@ private:
 
 	const Sprite *sprite;
 	float spriteScale;
+	LoadingCircle loadingCircle;
 
 	std::string governmentName;
 	std::string reputationLabel;

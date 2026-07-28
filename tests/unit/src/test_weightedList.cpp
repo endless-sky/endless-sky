@@ -349,7 +349,9 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]" ) {
 			THEN( "an informative runtime exception is thrown" ) {
 				CHECK_THROWS_AS( list.Get(), std::runtime_error );
 #ifndef __APPLE__
+#if CATCH_VERSION_MAJOR >= 3
 				CHECK_THROWS_WITH( list.Get(), Catch::Matchers::ContainsSubstring("empty weighted list") );
+#endif
 #endif
 			}
 		}

@@ -15,10 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "alignment.hpp"
-#include "DisplayText.h"
+#include "Alignment.h"
 #include "../Point.h"
-#include "truncate.hpp"
+#include "Truncate.h"
 
 #include <string>
 #include <vector>
@@ -67,8 +66,9 @@ public:
 	void Wrap(const std::string &str);
 	void Wrap(const char *str);
 
-	// Get the height of the wrapped text.
-	int Height() const;
+	/// Get the height of the wrapped text.
+	/// With trailingBreak, include a paragraph break after the text.
+	int Height(bool trailingBreak = true) const;
 
 	// Return the width of the longest line of the wrapped text.
 	int LongestLineWidth() const;

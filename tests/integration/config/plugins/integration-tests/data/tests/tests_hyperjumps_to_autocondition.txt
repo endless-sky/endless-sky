@@ -35,7 +35,7 @@ test "Hyperjumps To Autocondition"
 			"hyperjumps to planet: Spera Anatrusk" == -1
 			# The following three calls should each print an error about the planet not having a system
 			# and the planet/system not existing, respectively.
-			# Planet not yet asigned to a system object.
+			# Planet not yet assigned to a system object.
 			"hyperjumps to planet: Mountaintop" == -1
 			# Non-existent locations
 			"hyperjumps to planet: Csilla" == -1

@@ -209,7 +209,7 @@ mission "Kor Efreti: Settlers"
 	passengers 10 5 .15
 	cargo "supplies" 5 3 .16
 	to offer
-		has "wanderers sestor done"
+		has "event: wanderers: sabira eseskrai colony"
 		random < 90
 	source
 		government "Kor Efret"

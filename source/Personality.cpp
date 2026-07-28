@@ -56,6 +56,7 @@ namespace {
 		MERCIFUL,
 		TARGET,
 		MARKED,
+		TRACKED,
 		LAUNCHING,
 		LINGERING,
 		DARING,
@@ -65,6 +66,7 @@ namespace {
 		RESTRICTED,
 		DECLOAKED,
 		QUIET,
+		GETAWAY,
 
 		// This must be last so it can be used for bounds checking.
 		LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM
@@ -99,6 +101,7 @@ namespace {
 		{"merciful", MERCIFUL},
 		{"target", TARGET},
 		{"marked", MARKED},
+		{"tracked", TRACKED},
 		{"launching", LAUNCHING},
 		{"lingering", LINGERING},
 		{"daring", DARING},
@@ -107,7 +110,8 @@ namespace {
 		{"unrestricted", UNRESTRICTED},
 		{"restricted", RESTRICTED},
 		{"decloaked", DECLOAKED},
-		{"quiet", QUIET}
+		{"quiet", QUIET},
+		{"getaway", GETAWAY}
 	};
 
 	// Tokens that combine two or more flags.
@@ -144,7 +148,7 @@ void Personality::Load(const DataNode &node)
 		if(child.Token(0) == "confusion")
 		{
 			if(add || remove)
-				child.PrintTrace("Error: Cannot \"" + node.Token(0) + "\" a confusion value:");
+				child.PrintTrace("Cannot \"" + node.Token(0) + "\" a confusion value:");
 			else if(child.Size() < 2)
 				child.PrintTrace("Skipping \"confusion\" tag with no value specified:");
 			else
@@ -309,6 +313,13 @@ bool Personality::IsRamming() const
 
 
 
+bool Personality::IsGetaway() const
+{
+	return flags.test(GETAWAY);
+}
+
+
+
 bool Personality::IsStaying() const
 {
 	return flags.test(STAYING);
@@ -421,6 +432,13 @@ bool Personality::IsMarked() const
 
 
 
+bool Personality::IsTracked() const
+{
+	return flags.test(TRACKED);
+}
+
+
+
 bool Personality::IsMute() const
 {
 	return flags.test(MUTE);
@@ -499,7 +517,7 @@ void Personality::Parse(const DataNode &node, int index, bool remove)
 	{
 		auto cit = COMPOSITE_TOKEN.find(token);
 		if(cit == COMPOSITE_TOKEN.end())
-			node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
+			node.PrintTrace("Skipping unrecognized personality \"" + token + "\":");
 		else
 		{
 			if(remove)

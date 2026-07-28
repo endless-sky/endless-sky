@@ -41,6 +41,8 @@ public:
 		std::function<void(const Government *)> bribeCallback);
 	HailPanel(PlayerInfo &player, const StellarObject *object);
 
+	virtual ~HailPanel() override;
+
 	virtual void Draw() override;
 
 

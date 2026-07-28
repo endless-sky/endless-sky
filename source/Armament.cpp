@@ -30,19 +30,17 @@ using namespace std;
 
 
 // Add a gun hardpoint (fixed-direction weapon).
-void Armament::AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes,
-	bool isUnder, const Outfit *outfit)
+void Armament::AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes, const Outfit *outfit)
 {
-	hardpoints.emplace_back(point, attributes, false, isUnder, outfit);
+	hardpoints.emplace_back(point, attributes, false, outfit);
 }
 
 
 
 // Add a turret hardpoint.
-void Armament::AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes,
-	bool isUnder, const Outfit *outfit)
+void Armament::AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes, const Outfit *outfit)
 {
-	hardpoints.emplace_back(point, attributes, true, isUnder, outfit);
+	hardpoints.emplace_back(point, attributes, true, outfit);
 }
 
 
@@ -53,7 +51,10 @@ void Armament::AddTurret(const Point &point, const Hardpoint::BaseAttributes &at
 int Armament::Add(const Outfit *outfit, int count)
 {
 	// Make sure this really is a weapon.
-	if(!count || !outfit || !outfit->IsWeapon())
+	if(!count || !outfit)
+		return 0;
+	const Weapon *weapon = outfit->GetWeapon().get();
+	if(!weapon)
 		return 0;
 
 	int existing = 0;
@@ -62,8 +63,9 @@ int Armament::Add(const Outfit *outfit, int count)
 	// Do not equip weapons that do not define how they are mounted.
 	if(!isTurret && !outfit->Get("gun ports"))
 	{
-		Logger::LogError("Error: Skipping unmountable outfit \"" + outfit->TrueName() + "\"."
-			" Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
+		Logger::Log("Skipping unmountable outfit \"" + outfit->TrueName() + "\"."
+			" Weapon outfits must specify either \"gun ports\" or \"turret mounts\".",
+			Logger::Level::ERROR);
 		return 0;
 	}
 
@@ -107,7 +109,7 @@ int Armament::Add(const Outfit *outfit, int count)
 		// If this weapon is streamed, create a stream counter. If it is not
 		// streamed, or if the last of this weapon has been uninstalled, erase the
 		// stream counter (if there is one).
-		if(added > 0 && outfit->IsStreamed())
+		if(added > 0 && weapon->IsStreamed())
 			streamReload[outfit] = 0;
 		else
 			streamReload.erase(outfit);
@@ -141,7 +143,7 @@ void Armament::ReloadAll()
 
 			// If this weapon is streamed, create a stream counter.
 			const Outfit *outfit = hardpoint.GetOutfit();
-			if(outfit->IsStreamed())
+			if(outfit->GetWeapon()->IsStreamed())
 				streamReload[outfit] = 0;
 		}
 }
@@ -211,11 +213,11 @@ set<const Outfit *> Armament::RestockableAmmo() const
 	auto restockable = set<const Outfit *>{};
 	for(const Hardpoint &hardpoint : hardpoints)
 	{
-		const Weapon *weapon = hardpoint.GetOutfit();
+		const Weapon *weapon = hardpoint.GetWeapon();
 		if(weapon)
 		{
 			const Outfit *ammo = weapon->Ammo();
-			if(ammo && !ammo->IsWeapon())
+			if(ammo && !ammo->GetWeapon())
 				restockable.emplace(ammo);
 		}
 	}
@@ -225,16 +227,15 @@ set<const Outfit *> Armament::RestockableAmmo() const
 
 
 // Adjust the aim of the turrets.
-void Armament::Aim(const FireCommand &command)
+void Armament::Aim(const Ship &ship, const FireCommand &command)
 {
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
-		hardpoints[i].Aim(command.Aim(i));
+		hardpoints[i].Aim(ship, command.Aim(i));
 }
 
 
 
-// Fire the given weapon, if it is ready. If it did not fire because it is
-// not ready, return false.
+// Fire the given weapon, if it is ready.
 void Armament::Fire(unsigned index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
 {
 	// Don't check if the hardpoint jammed here, as the weapon may not even
@@ -250,7 +251,7 @@ void Armament::Fire(unsigned index, Ship &ship, vector<Projectile> &projectiles,
 		{
 			if(it->second > 0)
 				return;
-			it->second += it->first->Reload() * hardpoints[index].BurstRemaining();
+			it->second += it->first->GetWeapon()->Reload() * hardpoints[index].BurstRemaining();
 		}
 	}
 	if(jammed)

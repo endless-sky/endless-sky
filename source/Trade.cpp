@@ -27,7 +27,8 @@ void Trade::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "commodity" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		if(key == "commodity" && child.Size() >= 2)
 		{
 			bool isSpecial = (child.Size() < 4);
 			vector<Commodity> &list = (isSpecial ? specialCommodities : commodities);
@@ -47,7 +48,7 @@ void Trade::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				it->items.push_back(grand.Token(0));
 		}
-		else if(child.Token(0) == "clear")
+		else if(key == "clear")
 			commodities.clear();
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");

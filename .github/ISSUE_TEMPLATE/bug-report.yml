@@ -49,12 +49,20 @@ body:
         (If you are reporting a visual bug, a screenshot is effectively required!)
   - type: textarea
     attributes:
-      label: Link to save file
+      label: Save File
       description: You can either upload your save here, or to e.g. hastebin / GitHub Gists
       placeholder: |
         Windows: %APPDATA%\endless-sky\saves
         Linux: ~/.local/share/endless-sky/saves
         macOS: ~/Library/Application Support/endless-sky/saves
+  - type: textarea
+    attributes:
+      label: Error Log
+      description: You can either upload your log here, or to e.g. hastebin / GitHub Gists
+      placeholder: |
+        Windows: %APPDATA%\endless-sky\errors.txt
+        Linux: ~/.local/share/endless-sky/errors.txt
+        macOS: ~/Library/Application Support/endless-sky/errors.txt
   - type: input
     attributes:
       label: Operating System

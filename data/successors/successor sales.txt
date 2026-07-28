@@ -105,6 +105,7 @@ outfitter "Successor High Tech"
 	`OC-"Mavra" Betavoltaic Cell`
 	`"Tuur" Scanning Suite`
 	`"Niis" Inductive Engines`
+	"Scram Drive"
 
 outfitter "High Houses Light"
 	"Auxiliary Power Reserve"
@@ -127,9 +128,9 @@ outfitter "High Houses Heavy"
 	`"Sjeja" Kinetic Lance`
 	"Bimodal Coilgun Turret"
 	"Multimodal Armor: Heavy"
+	"Multimodal Armor: Light"
 	"Multimodal Armor: Keystone"
 	"Multimodal Armor: Regen"
-	"Multimodal Armor: Resilient"
 	`"Jorv" Shield Cortex`
 
 outfitter "People's Houses"

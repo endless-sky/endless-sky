@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Body.h"
-#include "Hazard.h"
 #include "RandomEvent.h"
 
+class Hazard;
 class Planet;
 class Ship;
 
@@ -31,10 +31,16 @@ class Ship;
 // objects in each system move slightly in their orbits.
 class StellarObject : public Body {
 public:
+	// Disable certain checks that require images to be loaded since they are
+	// never loaded when the "matches" command is in use.
+	static void UsingMatchesCommand();
+
+
+public:
 	StellarObject();
 
 	// Functions provided by the Body base class:
-	// bool HasSprite() const;
+	bool HasSprite() const;
 	// int Width() const;
 	// int Height() const;
 	// Frame GetFrame(int step = -1) const;
@@ -52,7 +58,7 @@ public:
 	const Planet *GetPlanet() const;
 
 	// Only planets that you can land on have names.
-	const std::string &Name() const;
+	const std::string &DisplayName() const;
 	// If it is impossible to land on this planet, get the message
 	// explaining why (e.g. too hot, too cold, etc.).
 	const std::string &LandingMessage() const;

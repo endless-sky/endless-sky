@@ -1,0 +1,131 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+phrase "aberrant names"
+	phrase
+		"builder beginning"
+	word
+		"'si" 6
+		"'se" 6
+		"'sy" 5
+		"'sie" 2
+		"'sei"
+
+fleet "Small Aberrant"
+	government "Aberrant"
+	names "aberrant names"
+	"cargo settings"
+		cargo 0
+	personality
+		confusion 40
+		hunting coward vindictive harvests mining secretive
+	variant 20
+		"Aberrant Latte"
+	variant 5
+		"Aberrant Latte (Disable-able)"
+	variant 20
+		"Aberrant Chomper"
+	variant 5
+		"Aberrant Chomper (Disable-able)"
+	variant 20
+		"Aberrant Pileup"
+	variant 5
+		"Aberrant Pileup (Disable-able)"
+	variant 20
+		"Aberrant Junior"
+	variant 5
+		"Aberrant Junior (Disable-able)"
+	variant 20
+		"Aberrant Icebreaker"
+	variant 5
+		"Aberrant Icebreaker (Disable-able)"
+	variant 20
+		"Aberrant Pike"
+	variant 5
+		"Aberrant Pike (Disable-able)"
+	variant 20
+		"Aberrant Mole"
+	variant 5
+		"Aberrant Mole (Disable-able)"
+	variant 20
+		"Aberrant Whiskers"
+	variant 5
+		"Aberrant Whiskers (Disable-able)"
+	variant 10
+		"Aberrant Latte" 2
+	variant 3
+		"Aberrant Latte"
+		"Aberrant Latte (Disable-able)"
+	variant 10
+		"Aberrant Chomper" 2
+	variant 3
+		"Aberrant Chomper"
+		"Aberrant Chomper (Disable-able)"
+	variant 10
+		"Aberrant Pileup" 2
+	variant 3
+		"Aberrant Pileup"
+		"Aberrant Pileup (Disable-able)"
+	variant 10
+		"Aberrant Junior" 2
+	variant 3
+		"Aberrant Junior"
+		"Aberrant Junior (Disable-able)"
+	variant 10
+		"Aberrant Icebreaker" 2
+	variant 3
+		"Aberrant Icebreaker"
+		"Aberrant Icebreaker (Disable-able)"
+	variant 10
+		"Aberrant Pike" 2
+	variant 3
+		"Aberrant Pike"
+		"Aberrant Pike (Disable-able)"
+	variant 10
+		"Aberrant Mole" 2
+	variant 3
+		"Aberrant Mole"
+		"Aberrant Mole (Disable-able)"
+	variant 10
+		"Aberrant Whiskers" 2
+	variant 3
+		"Aberrant Whiskers"
+		"Aberrant Whiskers (Disable-able)"
+
+fleet "Large Aberrant"
+	government "Aberrant"
+	names "aberrant names"
+	"cargo settings"
+		cargo 0
+	personality
+		confusion 40
+		hunting coward vindictive harvests mining secretive
+	variant 10
+		"Aberrant Hugger" 2
+	variant 5
+		"Aberrant Hugger"
+		"Aberrant Hugger (Disable-able)"
+	variant 10
+		"Aberrant Longfellow" 2
+	variant 5
+		"Aberrant Longfellow"
+		"Aberrant Longfellow (Disable-able)"
+	variant 3
+		"Aberrant Trip"
+	variant 5
+		"Aberrant Trip (Disable-able)"
+	variant 10
+		"Aberrant Triplet"
+	variant 5
+		"Aberrant Triplet (Disable-able)"

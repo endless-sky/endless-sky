@@ -17,17 +17,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "Ship.h"
-#include "text/WrappedText.h"
+#include "Sale.h"
 
 #include <functional>
+#include <map>
 #include <memory>
+#include <string>
+#include <vector>
 
 class Interface;
+class Outfit;
 class Planet;
 class PlayerInfo;
+class Ship;
 class SpaceportPanel;
 class System;
+class TextArea;
 
 
 
@@ -37,14 +42,19 @@ class System;
 class PlanetPanel : public Panel {
 public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
+	virtual ~PlanetPanel() override;
 
 	virtual void Step() override;
 	virtual void Draw() override;
+
+	virtual void UpdateTextDisplay() override;
 
 
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+
+	virtual void Resize() override;
 
 
 private:
@@ -61,15 +71,26 @@ private:
 
 	const Planet &planet;
 	const System &system;
-	const Interface &ui;
+
+	// Whether this planet has a shipyard or outfitter
+	// and the items that are for sale in each shop.
+	bool initializedShops = false;
+	bool hasShipyard = false;
+	bool hasOutfitter = false;
+	Sale<Ship> shipyardStock;
+	Sale<Outfit> outfitterStock;
+	// Whether the thumbnails for the ships and outfits visible in the shops have been loaded.
+	// May be set back to false if a mission could have gifted the player a ship or outfit, or
+	// added new items to the shop.
+	bool hasLoadedThumbnails = false;
 
 	std::shared_ptr<Panel> trading;
 	std::shared_ptr<Panel> bank;
 	std::shared_ptr<SpaceportPanel> spaceport;
 	std::shared_ptr<Panel> hiring;
-	Panel *selectedPanel = nullptr;
+	std::shared_ptr<Panel> selectedPanel;
 
-	WrappedText text;
+	std::shared_ptr<TextArea> description;
 
 	// Out of system (absent) ships that cannot fly for some reason.
 	std::vector<std::shared_ptr<Ship>> absentCannotFly;

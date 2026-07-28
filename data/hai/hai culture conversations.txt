@@ -204,7 +204,7 @@ mission "Gambling Judgment"
 			`	"If you interpret the game as being played for the skill, without the wagering, then you clear the first and third tenet, but you have the issue that the principle skills are bluffing and manipulation, which violates the second tenet. Bluffing isn't a skill seen as having virtue, nor is manipulation."`
 			choice
 				`	"Wait, do the Hai not lie or bluff?"`
-			`	The barkeep chortles with a strange trill and says, "Oh no, the Hai do lie and bluff. We're actually very good at bluffing, evolutionarily advantageous in the wild and all that. It's just seen as very immature and base. An adult should be able to conduct their lives without resorting to such primitive instincts. We learned that the hard way long ago, back before we holed up in our current borders."`
+			`	The barkeep chortles with a strange trill and says, "Oh no, the Hai do lie and bluff. We're actually very good at bluffing, evolutionarily advantageous in the wild and all that. It's just seen as very immature and base. An adult should be able to conduct their life without resorting to such primitive instincts. We learned that the hard way long ago, back before we holed up in our current borders."`
 			`	He looks at you intently before continuing, "You won't hear the tenets brought up very much, but if you look closely you'll see that the first three especially are ingrained in our society very deeply."`
 			`	With a shrug he flips open his order pad and pats his belly. "Of course, my gran always said that any of them after the tenth were more guidelines than actual rules, and I certainly have my share of disagreements with thirteen. Now, before I talk your ears off, what'll I get for you?"`
 			label end
@@ -228,22 +228,22 @@ mission "Academy Motto"
 			choice
 				`	(Play games on my ship.)`
 				`	(Have a look around further afield.)`
-					goto fieldtrip
+					goto "field trip"
 			`	Not interested in getting lost in an expansive Hai city, you simply load up an entertainment console to keep you occupied for the next few hours.`
 				decline
-			label fieldtrip
+			label "field trip"
 			`	The tendency of the Hai to efficiently pack people into vibrant but densely populated spaces is on full display as you navigate through throngs of Hai who mostly make polite efforts to avoid bumping into you. Colorful banners, flags, murals, and even windows all provide brilliant highlights to the oft-utilitarian architectural styles underlying them. Holoprojected welcome signs even grace the entry-ways of several apartment buildings that you pass, with caveats for door-to-door salespeople.`
 			`	One apartment complex's exterior fencing bears a very large sign which your translator informs you says, "No Meme Content Here Please."`
 			`	After some time you find what appears to be a cafe, or equivalent, and sit down where you can get a good view of one of the more impressive building complexes around. After a moment a holoprojection built into the table asks you in human standard whether you'd like to order through the table or converse with a member of staff.`
 			choice
 				`	(Order through the table.)`
-					goto pleasantlunch
+					goto "pleasant lunch"
 				`	(Order through a person.)`
 			`	A friendly Hai emerges to take your order and politely informs you that there's a 10% surcharge for eating on the terrace. Since that's hardly a meaningful sum to a ship's captain you just nod and try and work out what you're eating. Eventually you settle for a sandwich with acorn butter and vegetable slices that appear to be spiced, or pickled, you're not really sure. It was the staff's top recommended item and didn't come with any follow-up questions about Hai food preferences that you couldn't answer.`
-				goto finishingchat
-			label pleasantlunch
+				goto "finishing chat"
+			label "pleasant lunch"
 			`	The interface is rather annoying to work with human-sized hands, but eventually you settle for a sandwich with acorn butter and vegetable slices that appear to be spiced, or pickled, you're not really sure. It was the top recommended item and didn't come with any follow-up questions about Hai food preferences that you couldn't answer.`
-			label finishingchat
+			label "finishing chat"
 			`	As you eat your strange, but actually surprisingly tasty lunch, you take note of the large text written above the gateway into the grounds for the building complex opposite you. After a moment your translator box takes note of where you're looking and reads it aloud for you.`
 			`	"To know is to lead, to study is to know, to serve is to study, to lead is to serve."`
 			`	Naturally, your translator cannot answer questions, so you eat your lunch and leave it be until a staff member emerges to take your plate.`
@@ -329,3 +329,59 @@ mission "Hai Film Release"
 				decline
 			label translator
 			`	You find a movie theater showing Likeet's film, but your translator is of little help here. The movie is sparse on dialog, and the few lines spoken in the movie seem to be cryptic references to Hai literature and philosophy. The most you are able to make out is that the movie is about an unseen monster inhabiting the station that slowly drives those it meets insane. It seems to be a hit with the Hai audience, though, and you leave the theater feeling distinctly unnerved.`
+
+
+
+mission "Sick of Acorn Bread"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+		attributes "hai: human presence" "human tourism"
+	to offer
+		credits > 50
+		random < 2
+	on offer
+		conversation
+			`With some time to kill while your ship is being serviced by the Hai dockhands, you enter the spaceport searching for a bite to eat. Restaurants advertise their menus in bright, attention-grabbing colors on their windows; among the selection, you spot one that promises "authentic Hai cuisine," along with some large text printed in the Hai language. Next to it, you see a human street food vendor offering snacks and ready-made meals.`
+			choice
+				`	(Enter the restaurant.)`
+					goto restaurant
+				`	(Buy something from the human food vendor instead.)`
+				`	(On second thought, I'm not that hungry.)`
+					decline
+			action
+				payment -25
+			`	Food made by humans is certainly the safer option. The vendor sells you a dish comprised of steamed vegetables, along with a fillet of some yellow-tinged fish which she assures you is perfectly edible. The meal is somewhat bland, but the fish is buttery and tender. You dispose of the leftovers in a nearby garbage receptacle, and you watch as it beeps melodically, incinerating the refuse.`
+				decline
+			label restaurant
+			`	A Hai restaurant is sure to provide a more unique experience. The door jingles a short melody as you enter the establishment, and a middle-aged female Hai with her back to you shouts something in the Hai language.`
+			branch translator
+				has "language: Hai"
+			`	You freeze for a second, as it is unclear what the Hai wants from you.`
+				goto order
+			label translator
+			`	Your translator chirps dutifully, "Have a [seat, rest] anywhere you like! I'll be right with you."`
+			label order
+			`	Only a short moment later, the same Hai hostess peers over at you and chitters in what you assume is embarrassment. "I'm so sorry. I didn't realize I would have the pleasure of serving a human today. Please, have a seat anywhere at the bar. I'll come to take your order shortly."`
+			`	You take a look around and note that the restaurant is actually quite crowded. There are Hai dressed in fancy tuxedos, fashionable clothing, casual dress, and even some wearing peculiar overalls with holes in the backs for their tails; there don't seem to be any other humans. With only a few seats available, you select one on the end, next to a rather large Hai wearing green overalls and an orange straw hat. He grunts noncommittally as you sit down on a stool clearly designed for an organism with a tail. Before long, the hostess approaches and asks for your order.`
+			choice
+				`	"I'll have today's special."`
+				`	"I'd like some soup, please."`
+			`	"You're in luck," she says. "Today only, each meal is served with a free side of acorn bread." She scampers off to place and retrieve your order.`
+			`	The Hai next to you grunts again - this time with clear frustration - and turns to speak. "Acorn bread! That's all they serve here anymore. Ever since you humans arrived in our space, that's all we get to eat. Traditional Hai breadmaking has become a lost art."`
+			choice
+				`	"Can you tell me about traditional Hai breadmaking?"`
+				`	"I'm sorry. I didn't mean to offend your culture."`
+					goto offend
+			`	He seems somewhat calmed by your interest.`
+				goto breads
+			label offend
+			`	The look on his face softens. "I should be the one to apologize. It's not your fault that our spaceports' menus have changed in this respect. Humans have also brought new life to many parts of Hai society. It is only a pity that we have to travel far to find the types of bread that we had in years past."`
+			`	"Can you tell me about other types of bread?" you ask.`
+			label breads
+			`	"Oh yes." He shifts his weight on the stool. "I'm old enough to remember hayipp bread, yur ki bread - you name it. Hayipp is a grain, similar to your human 'corn,' which creates a wholesome ruddy brown flour when milled. The bread was hearty, yet exquisite." You note the wistful look on his face. "Yur ki is a milk, sourced from livestock we raise. You may have seen some on Newhome; I'm told your kind has a similar animal called 'sheep.' Bread made from yur ki is rich and decadent. It is among my favorite foods to have for breakfast." He pauses for a moment and looks a bit downcast. "Acorn bread was once a rare sight in Hai cuisine. Far too sweet. But, since humans have joined us on our planets, all they want is acorn bread. The high demand has displaced all of the traditional breads that I grew up with from high traffic areas such as this spaceport restaurant. I miss having them easily available."`
+			action
+				payment -50
+			`	As if on cue, the hostess arrives with both of your meals. The Hai next to you, whose name you still do not know, sighs as he sees his free acorn bread, but he eats it nonetheless. You each finish your meals in silence and leave.`
+				decline

@@ -168,6 +168,7 @@ mission "Kestrel Testing"
 mission "Kestrel: More Weapons"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "kestrel: more weapons"
 	on offer
@@ -179,6 +180,7 @@ mission "Kestrel: More Weapons"
 mission "Kestrel: More Engines"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "kestrel: more engines"
 	on offer
@@ -190,6 +192,7 @@ mission "Kestrel: More Engines"
 mission "Kestrel: More Shields"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "kestrel: more shields"
 	on offer
@@ -201,6 +204,7 @@ mission "Kestrel: More Shields"
 mission "Kestrel: More Bays"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "kestrel: more bays"
 	on offer
@@ -421,22 +425,22 @@ ship "Kestrel" "Kestrel (More Weapons)"
 	thumbnail "thumbnail/kestrelw"
 	add attributes
 		"weapon capacity" 40
-	gun -73.5 46 "Torpedo Launcher"
 	gun -76.5 49
-	gun 73.5 46 "Torpedo Launcher"
 	gun 76.5 49
-	gun -51 49.5 "Particle Cannon"
+	gun -73.5 46 "Torpedo Launcher"
+	gun 73.5 46 "Torpedo Launcher"
 	gun -55.5 52.5
-	gun 51 49.5 "Particle Cannon"
 	gun 55.5 52.5
-	gun -29.5 52 "Particle Cannon"
+	gun -51 49.5 "Particle Cannon"
+	gun 51 49.5 "Particle Cannon"
 	gun -33 55
-	gun 29.5 52 "Particle Cannon"
 	gun 33 55
-	turret -7 -4 "Heavy Laser Turret"
-	turret 7 -4 "Heavy Laser Turret"
-	turret -23 14 "Heavy Laser Turret"
-	turret 23 14 "Heavy Laser Turret"
+	gun -29.5 52 "Particle Cannon"
+	gun 29.5 52 "Particle Cannon"
+	turret -8 -10.5 "Heavy Laser Turret"
+	turret 8 -10.5 "Heavy Laser Turret"
+	turret -20.5 9 "Heavy Laser Turret"
+	turret 20.5 9 "Heavy Laser Turret"
 
 ship "Kestrel" "Kestrel (More Bays)"
 	sprite "ship/kestrelc"

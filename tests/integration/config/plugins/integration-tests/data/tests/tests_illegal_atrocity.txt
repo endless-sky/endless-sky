@@ -58,12 +58,12 @@ test-data "quarg rescue save"
 			history
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		"available mission" "%TEST%: Wardragon Scanning You!"
-			name "%TEST%: Wardragon Scanning You!"
+		"available mission" "TEST: Wardragon Scanning You!"
+			name "TEST: Wardragon Scanning You!"
 			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
 			priority
 			to offer
-				"%TEST%: SCANNING ILLEGALS" != 0
+				"TEST: SCANNING ILLEGALS" != 0
 			destination Ruin
 			npc
 				uuid 01a921d2-b477-4d80-a19e-11aefb2a6464
@@ -99,7 +99,7 @@ test-data "quarg rescue save"
 					"You must be scanned or be killed."
 						accept
 		conditions
-			"%TEST%: SCANNING ILLEGALS"
+			"TEST: SCANNING ILLEGALS"
 
 test-data "quarg scanning save"
 	category "savegame"
@@ -148,7 +148,7 @@ test-data "quarg scanning save"
 			score 400
 			history
 
-		event "illegal stuff"
+		changes
 			government "Quarg"
 				illegals
 					ignore "Nerve Gas"
@@ -157,12 +157,12 @@ test-data "quarg scanning save"
 				remove "enforces"
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		"available mission" "%TEST%: Wardragon Scanning You!"
-			name "%TEST%: Wardragon Scanning You!"
+		"available mission" "TEST: Wardragon Scanning You!"
+			name "TEST: Wardragon Scanning You!"
 			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
 			priority
 			to offer
-				"%TEST%: SCANNING ILLEGALS" != 0
+				"TEST: SCANNING ILLEGALS" != 0
 			destination Ruin
 			npc
 				uuid 01a921d2-b477-4d80-a19e-11aefb2a6464
@@ -198,7 +198,7 @@ test-data "quarg scanning save"
 					"You must be scanned or be killed."
 						accept
 		conditions
-			"%TEST%: SCANNING ILLEGALS"
+			"TEST: SCANNING ILLEGALS"
 
 
 test-data "quarg atrocity save"
@@ -249,7 +249,7 @@ test-data "quarg atrocity save"
 			score 400
 			history
 
-		event "atrocity stuff"
+		changes
 			government "Quarg"
 				atrocities
 					Hyperdrive
@@ -257,12 +257,12 @@ test-data "quarg atrocity save"
 				remove "death sentence"
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		"available mission" "%TEST%: Wardragon Scanning You!"
-			name "%TEST%: Wardragon Scanning You!"
+		"available mission" "TEST: Wardragon Scanning You!"
+			name "TEST: Wardragon Scanning You!"
 			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
 			priority
 			to offer
-				"%TEST%: SCANNING ILLEGALS" != 0
+				"TEST: SCANNING ILLEGALS" != 0
 			destination Ruin
 			npc
 				uuid 01a921d2-b477-4d80-a19e-11aefb2a6464
@@ -298,10 +298,10 @@ test-data "quarg atrocity save"
 					"You must be scanned or be killed."
 						accept
 		conditions
-			"%TEST%: SCANNING ILLEGALS"
+			"TEST: SCANNING ILLEGALS"
 
 # just so the mission actually works
-mission "%TEST%: Wardragon Scanning You!"
+mission "TEST: Wardragon Scanning You!"
 
 test "Launch Quarg Scanning Mission And Board"
 	status partial

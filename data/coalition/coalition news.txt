@@ -436,6 +436,34 @@ news "coalition games crowd"
 			"This is a particularly crowded part of the spaceport today. The lines of people waiting for admission into the Games have started crossing and looping in on themselves. Some even head inside shops and restaurants while others stretch into docking areas. Battalions of Heliarch agents work as hard as they can to bring everyone back into orderly lines."
 			"Several children coming to see the Coalition Games are running and playing simplified versions of the events, sporting different colors and assets for different games. Their parents struggle to get them to settle down while keeping their spots in the waiting lines."
 
+news "fangvin beyond the hyperdrive news"
+	to show
+		has "beyond the hyperdrive news can show now"
+	location
+		government "Coalition" "Heliarch"
+	name
+		word
+			"Spaceport worker"
+			"Passerby"
+			"Local vendor"
+			"Saryd captain"
+			"Kimek captain"
+			"Arach captain"
+			"Saryd"
+			"Kimek"
+			"Arach"
+			"Tourist"
+	message
+		word
+			`"`
+		word
+			`So great, this 'Beyond the Hyperdrive' book is! Read it, I have!`
+			`Read from a human, I never have, but when Anna Fangvin, I found, buy her book I did!`
+			`Very nice, Anna Fangvin was, for sign my book, she did with much joy!`
+			`Read all of 'Beyond the Hyperdrive', I did! Inspired by those who stole from our oppressors, I was!`
+		word
+			`"`
+
 news "lunarium charity"
 	location
 		government "Coalition"

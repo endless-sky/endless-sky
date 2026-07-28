@@ -72,6 +72,7 @@ mission "Hai Vacation [1]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -96,6 +97,7 @@ mission "Hai Vacation [2]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -120,6 +122,7 @@ mission "Hai Vacation [3]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -144,6 +147,7 @@ mission "Hai Vacation [4]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -168,7 +172,7 @@ mission "Wealthy Hai [1]"
 		random < 55
 	to accept
 		has "outfit (installed): Luxury Accommodations"
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -196,7 +200,7 @@ mission "Wealthy Hai [2]"
 		random < 15
 	to accept
 		has "outfit (installed): Luxury Accommodations"
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1510,11 +1514,10 @@ mission "Hai Prisoner Roleplay"
 	name `Hai "prison" cruise to <planet>`
 	job
 	repeat
-	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in a brig. Payment is <payment>."
+	description "A group of Hai want to experience what it's like to be human criminals. Transport the <bunks> of them to <planet> in a brig. Payment is <payment>."
 	passengers 3 20
 	to offer
 		random < 5
-		not "Hai Rescue [A09] Slaver Ships: offered"
 	source
 		government "Hai"
 		not attributes "station"
@@ -1753,7 +1756,7 @@ mission "Superstitious Hai [1]"
 	to offer
 		random < 5
 	to accept
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1780,7 +1783,7 @@ mission "Superstitious Hai [2]"
 	to offer
 		random < 5
 	to accept
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1808,13 +1811,14 @@ mission "Superstitious Hai [3]"
 	to offer
 		random < 5
 	to accept
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 		not attributes "retirement"
 	destination
 		government "Hai"
 		attributes "retirement"
+		distance 4 8
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1837,7 +1841,7 @@ mission "Superstitious Hai [4]"
 	to offer
 		random < 5
 	to accept
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1860,13 +1864,13 @@ mission "Superstitious Hai [5]"
 	name "Superstitious Hai to <planet>"
 	job
 	repeat
-	description "A group of elderly Hai will pay <payment> for a vacation to <destination> on a keystone-equipped ship by <date>. They have requested that their ship have an authentic Hai keystone installed."
+	description "A group of <bunks> elderly Hai will pay <payment> for a vacation to <destination> on a keystone-equipped ship by <date>. They have requested that their ship have an authentic Hai keystone installed."
 	passengers 2 4 .8
 	deadline
 	to offer
 		random < 5
 	to accept
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1895,7 +1899,7 @@ mission "Superstitious Hai [6]"
 	to offer
 		random < 5
 	to accept
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1923,10 +1927,7 @@ mission "Superstitious Hai [7]"
 	to offer
 		random < 5
 	to accept
-		or
-			has "outfit (installed): Quantum Keystone"
-			has "outfit (installed): Shield Beetle Pendant"
-			has "outfit (installed): Tree Skeleton Key Stone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1953,10 +1954,7 @@ mission "Superstitious Hai [8]"
 	to offer
 		random < 5
 	to accept
-		or
-			has "outfit (installed): Quantum Keystone"
-			has "outfit (installed): Shield Beetle Pendant"
-			has "outfit (installed): Tree Skeleton Key Stone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1984,16 +1982,14 @@ mission "Superstitious Hai [9]"
 	to offer
 		random < 5
 	to accept
-		or
-			has "outfit (installed): Quantum Keystone"
-			has "outfit (installed): Shield Beetle Pendant"
-			has "outfit (installed): Tree Skeleton Key Stone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 		not attributes "retirement"
 	destination
 		government "Hai"
 		attributes "retirement"
+		distance 4 8
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2016,10 +2012,7 @@ mission "Superstitious Hai [10]"
 	to offer
 		random < 5
 	to accept
-		or
-			has "outfit (installed): Quantum Keystone"
-			has "outfit (installed): Shield Beetle Pendant"
-			has "outfit (installed): Tree Skeleton Key Stone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -2042,16 +2035,13 @@ mission "Superstitious Hai [11]"
 	name "Superstitious Hai to <planet>"
 	job
 	repeat
-	description "A group of elderly Hai will pay <payment> for a vacation to <destination> on a keystone-equipped ship by <date>."
+	description "A group of <bunks> elderly Hai will pay <payment> for a vacation to <destination> on a keystone-equipped ship by <date>."
 	passengers 2 4 .8
 	deadline
 	to offer
 		random < 5
 	to accept
-		or
-			has "outfit (installed): Quantum Keystone"
-			has "outfit (installed): Shield Beetle Pendant"
-			has "outfit (installed): Tree Skeleton Key Stone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -2080,10 +2070,7 @@ mission "Superstitious Hai [12]"
 	to offer
 		random < 5
 	to accept
-		or
-			has "outfit (installed): Quantum Keystone"
-			has "outfit (installed): Shield Beetle Pendant"
-			has "outfit (installed): Tree Skeleton Key Stone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination

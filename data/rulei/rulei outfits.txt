@@ -13,6 +13,8 @@
 
 outfit "Fate Sealer"
 	category "Guns"
+	series "Guns"
+	index 99020
 	cost 77777777
 	thumbnail "outfit/unknown"
 	"mass" 31
@@ -30,7 +32,7 @@ outfit "Fate Sealer"
 		"firing energy" 800
 		"firing heat" 400
 		"turn" 180
-		"homing" 2
+		"homing"
 		"infrared tracking" 1
 		"radar tracking" 1
 		"optical tracking" 1
@@ -55,6 +57,8 @@ outfit "Fate Sealer Activated"
 
 outfit "Fate Divider"
 	category "Guns"
+	series "Guns"
+	index 99030
 	cost 77777777
 	thumbnail "outfit/unknown"
 	"mass" 31
@@ -72,7 +76,7 @@ outfit "Fate Divider"
 		"firing energy" 800
 		"firing heat" 400
 		"turn" 180
-		"homing" 2
+		"homing"
 		"infrared tracking" 1
 		"radar tracking" 1
 		"optical tracking" 1
@@ -117,6 +121,8 @@ effect "fusion blast"
 
 outfit "Abyssal Composer"
 	category "Guns"
+	series "Guns"
+	index 99040
 	cost 170000000
 	thumbnail "outfit/unknown"
 	"mass" 121
@@ -125,7 +131,7 @@ outfit "Abyssal Composer"
 	"gun ports" -1
 	weapon
 		sound "composer"
-		"ammo" "Abyssal Composer" 0
+		ammo "Abyssal Composer" 0
 		"hit effect" "composed" 2
 		"hit effect" "drained"
 		"inaccuracy" 45

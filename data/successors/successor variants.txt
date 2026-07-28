@@ -22,6 +22,7 @@ ship "Aaulqra" "Aaulqra (Brawler)"
 		`"Uoret" Fusion Core`
 		`3-"Kaska" Betavoltaic Cell`
 		`"Jorv" Shield Cortex`
+		"Multimodal Armor: Regen"
 		"Successor Cooling"
 
 		`"Chyyra" Inductive Thruster`
@@ -47,6 +48,7 @@ ship "Aaulqra" "Aaulqra (Sniper)"
 		`"Uoret" Fusion Core`
 		`3-"Kaska" Betavoltaic Cell`
 		`"Jaase" Shield Cortex`
+		"Multimodal Armor: Light"
 		"Successor Cooling"
 
 		`"Chyyra" Inductive Thruster`
@@ -71,6 +73,7 @@ ship "Kaskhorade" "Kaskhorade (Brawler)"
 		`"Uoret" Fusion Core`
 		`OC-"Mavra" Betavoltaic Cell`
 		`"Jorv" Shield Cortex`
+		"Multimodal Armor: Regen"
 		"Successor Cooling"
 
 		`"Chyyra" Inductive Thruster`
@@ -95,6 +98,7 @@ ship "Kaskhorade" "Kaskhorade (Sniper)"
 
 		`"Uoret" Fusion Core`
 		`"Jaase" Shield Cortex`
+		"Multimodal Armor: Light"
 		"Successor Cooling"
 
 		`"Veusa" Inductive Thruster`
@@ -268,7 +272,7 @@ ship "Stolsaqra" "Stolsaqra (Military)"
 
 		`3-"Kaska" Betavoltaic Cell`
 		`"Byiaa" Shield Cortex`
-		"Multimodal Armor: Heavy"
+		"Multimodal Armor: Light"
 		`"Veldt" Combat Scanner`
 
 		`"Aqra" Inductive Thruster`
@@ -287,7 +291,7 @@ ship "Stolsaqra" "Stolsaqra (Mission Escort)"
 		`3-"Kaska" Betavoltaic Cell`
 		`"Byiaa" Shield Cortex`
 		"Fuel Pod" 3
-		"Multimodal Armor: Heavy"
+		"Multimodal Armor: Light"
 
 		`"Aqra" Inductive Thruster`
 		`"Chyyra" Inductive Steering`
@@ -304,7 +308,7 @@ ship "Stolsaqra" "Stolsaqra (Short-Range)"
 
 		`OC-"Mavra" Betavoltaic Cell` 2
 		`"Byiaa" Shield Cortex`
-		"Multimodal Armor: Heavy"
+		"Multimodal Armor: Light"
 		`"Veldt" Combat Scanner`
 
 		`"Aqra" Inductive Thruster` 2
@@ -325,7 +329,7 @@ ship "Veusade" "Veusade (Surveillance)"
 		"Auxiliary Power Reserve"
 		`"Jaase" Shield Cortex`
 		"Successor Cooling"
-		"Multimodal Armor: Heavy"
+		"Multimodal Armor: Light"
 		`"Veldt" Combat Scanner`
 
 		`"Veusa" Inductive Thruster`
@@ -369,7 +373,7 @@ ship "Vujlet" "Vujlet (Surveillance)"
 		"Primary Power Reserve"
 		`"Jaase" Shield Cortex`
 		"Successor Cooling"
-		"Multimodal Armor: Heavy"
+		"Multimodal Armor: Light"
 		`"Veldt" Combat Scanner`
 
 		`"Chyyra" Inductive Thruster`
