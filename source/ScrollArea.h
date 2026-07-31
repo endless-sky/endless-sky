@@ -30,7 +30,7 @@ class RenderBuffer;
 
 
 // A base class for areas on the screen that display scrollable text.
-// Subclasses will control how this text is populated and formatted.
+// Subclasses will control how this text is rendered.
 class ScrollArea : public Panel
 {
 public:
