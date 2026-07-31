@@ -34,7 +34,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "PilotProfile.h"
 #include "Planet.h"
-#include "Plugins.h"
+#include "Plugin.h"
+#include "PluginManager.h"
 #include "Politics.h"
 #include "Port.h"
 #include "Preferences.h"
@@ -365,6 +366,8 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 			hasFullClearance = true;
 		else if(key == "launching")
 			shouldLaunch = true;
+		else if(key == "cloaked")
+			isCloaking = true;
 		else if(key == "playtime" && hasValue)
 			playTime = child.Value(1);
 		else if(key == "travel" && hasValue)
@@ -1033,6 +1036,20 @@ const StellarObject *PlayerInfo::GetStellarObject() const
 bool PlayerInfo::ShouldLaunch() const
 {
 	return shouldLaunch;
+}
+
+
+
+bool PlayerInfo::IsCloaking() const
+{
+	return isCloaking;
+}
+
+
+
+void PlayerInfo::SetCloaking(bool isCloaking)
+{
+	this->isCloaking = isCloaking;
 }
 
 
@@ -1865,6 +1882,8 @@ bool PlayerInfo::TakeOff(UI &ui, const bool distributeCargo)
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
+			if(isCloaking)
+				ship->SetCloaked();
 			// Recalculate the weapon cache in case a mass-less change had an effect.
 			ship->UpdateCaches(true);
 			if(ship->GetSystem() != system)
@@ -4565,7 +4584,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return (planet && flagship) ? planet->CanLand(*flagship) : false; });
 
 	conditions["installed plugin: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
-		const Plugin *plugin = Plugins::Get().Find(ce.NameWithoutPrefix());
+		const Plugin *plugin = PluginManager::Get().Find(ce.NameWithoutPrefix());
 		return plugin ? plugin->IsValid() && plugin->enabled : false; });
 
 	conditions["person destroyed: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
@@ -4659,6 +4678,18 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(value <= 1)
 			return 0;
 		return Random::Int(value);
+	});
+
+	// A condition for determining if an event is currently scheduled.
+	// Returns the number of days until the scheduled event will occur.
+	// If multiple events of the same name are scheduled, only the earliest
+	// event is considered.
+	conditions["scheduled event: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		string event = ce.NameWithoutPrefix();
+		for(const ScheduledEvent &scheduled : scheduledEvents)
+			if(scheduled.event->TrueName() == event)
+				return scheduled.event->GetDate() - date;
+		return 0;
 	});
 
 	// Gamerule condition getter:
@@ -4828,7 +4859,7 @@ void PlayerInfo::StepMissions(UI &ui)
 			// from the same destination.
 			if(visitText.empty())
 			{
-				const auto &text = mission.GetAction(Mission::VISIT).DialogText();
+				string text = mission.GetAction(Mission::VISIT).DialogText();
 				if(!text.empty())
 					visitText = Format::Replace(text, substitutions);
 			}
@@ -4943,6 +4974,10 @@ void PlayerInfo::Save(DataWriter &out) const
 	// entering their ship (i.e. because a mission forced them to take off).
 	if(shouldLaunch)
 		out.Write("launching");
+	// This flag is set if the player landed on the current planet while cloaked,
+	// meaning that they should take off while cloaked upon reloading this save.
+	if(isCloaking)
+		out.Write("cloaked");
 	for(const System *system : travelPlan)
 		out.Write("travel", system->TrueName());
 	if(travelDestination)
@@ -5262,7 +5297,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.WriteComment("Installed plugins:");
 	out.Write("plugins");
 	out.BeginChild();
-	for(const auto &it : Plugins::Get())
+	for(const auto &it : PluginManager::Get())
 	{
 		const auto &plugin = it.second;
 		if(plugin.IsValid() && plugin.enabled)
