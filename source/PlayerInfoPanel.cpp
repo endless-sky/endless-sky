@@ -666,19 +666,21 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	for(const auto &[name, value] : player.Accounts().SalariesIncome())
 		salary.emplace_back(name, value);
 	sort(salary.begin(), salary.end(), std::greater<>());
-	DrawList(salary, salaryArea, start, columnWidth, "salary:", player.Accounts().SalariesIncomeTotal(), 5);
+	DrawList(salary, salaryArea, start, columnWidth, "salary:", player.Accounts().SalariesIncomeTotal(),
+		min<int>(salary.size(), 4) * 20);
 
 	vector<pair<string, int64_t>> tribute;
 	for(const auto &[planet, value] : player.GetTribute())
 		tribute.emplace_back(planet->TrueName(), value);
 	sort(tribute.begin(), tribute.end(), std::greater<>());
-	DrawList(tribute, tributeArea, start, columnWidth, "tribute:", player.GetTributeTotal(), 5);
+	DrawList(tribute, tributeArea, start, columnWidth, "tribute:", player.GetTributeTotal(),
+		min<int>(tribute.size(), 4) * 20);
 
-	int maxRows = static_cast<int>(260. - start.Y()) / 20;
 	vector<pair<string, int64_t>> licenses;
 	for(const string &it : player.Licenses())
 		licenses.emplace_back(it, 1);
-	DrawList(licenses, licenseArea, start, columnWidth, "licenses:", licenses.size(), maxRows, false);
+	DrawList(licenses, licenseArea, start, columnWidth, "licenses:", licenses.size(),
+		250. - start.Y(), false);
 }
 
 
@@ -811,7 +813,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 
 void PlayerInfoPanel::DrawList(const vector<pair<string, int64_t>> &list, shared_ptr<TableArea> &area, Point &topLeft,
-	int width, const string &title, int64_t titleValue, int maxRows, bool drawValues)
+	int width, const string &title, int64_t titleValue, int height, bool drawValues)
 {
 	if(list.empty())
 		return;
@@ -824,8 +826,6 @@ void PlayerInfoPanel::DrawList(const vector<pair<string, int64_t>> &list, shared
 	font.Draw({Format::Number(titleValue), {width, Alignment::RIGHT}}, topLeft, dim);
 	FillShader::Fill(Rectangle::FromCorner(topLeft + Point(0., font.Height() - 2.), Point(width, 1.)), dim);
 	topLeft.Y() += 25.;
-
-	int height = min<int>(list.size(), maxRows) * 20;
 
 	if(!area)
 	{

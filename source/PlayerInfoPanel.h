@@ -63,7 +63,7 @@ private:
 	void DrawFleet(const Rectangle &bounds);
 	// Draw a list of details about the player, such as the player's licenses or salaries.
 	void DrawList(const std::vector<std::pair<std::string, int64_t>> &list, std::shared_ptr<TableArea> &area,
-		Point &topLeft, int width, const std::string &title, int64_t titleValue, int maxRows, bool drawValues = true);
+		Point &topLeft, int width, const std::string &title, int64_t titleValue, int height, bool drawValues = true);
 
 	// Handle mouse hover (also including hover during drag actions):
 	bool Hover(const Point &point);
