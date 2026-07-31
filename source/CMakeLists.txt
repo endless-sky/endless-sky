@@ -261,8 +261,10 @@ target_sources(EndlessSkyLib PRIVATE
 	PlayerInfo.h
 	PlayerInfoPanel.cpp
 	PlayerInfoPanel.h
-	Plugins.cpp
-	Plugins.h
+	Plugin.cpp
+	Plugin.h
+	PluginManager.cpp
+	PluginManager.h
 	Point.cpp
 	Point.h
 	Politics.cpp
@@ -300,6 +302,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Screen.h
 	ScrollBar.cpp
 	ScrollBar.h
+	ScrollArea.cpp
+	ScrollArea.h
 	ScrollVar.h
 	Set.h
 	Ship.cpp
@@ -336,6 +340,8 @@ target_sources(EndlessSkyLib PRIVATE
 	System.cpp
 	System.h
 	SystemEntry.h
+	TableArea.cpp
+	TableArea.h
 	TaskQueue.cpp
 	TaskQueue.h
 	TextArea.cpp

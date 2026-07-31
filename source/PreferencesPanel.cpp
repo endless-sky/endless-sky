@@ -28,7 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
-#include "Plugins.h"
+#include "Plugin.h"
+#include "PluginManager.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
@@ -86,7 +87,7 @@ namespace {
 	const string DATE_FORMAT = "Date format";
 	const string NOTIFY_ON_DEST = "Notify on destination";
 	const string BOARDING_PRIORITY = "Boarding target priority";
-	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
+	const string ASTEROID_TARGETING = "Asteroid targeting";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
@@ -129,7 +130,7 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	// Select the first valid plugin.
-	for(const auto &plugin : Plugins::Get())
+	for(const auto &plugin : PluginManager::Get())
 		if(plugin.second.IsValid())
 		{
 			selectedPlugin = plugin.first;
@@ -143,7 +144,7 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 
 	int pluginListHeight = 0;
-	for(const auto &plugin : Plugins::Get())
+	for(const auto &plugin : PluginManager::Get())
 		if(plugin.second.IsValid())
 			pluginListHeight += 20;
 
@@ -184,7 +185,7 @@ void PreferencesPanel::Draw()
 			info.SetCondition(bar + " none");
 	}
 
-	if(Plugins::HasChanged())
+	if(PluginManager::HasChanged())
 		info.SetCondition("show plugins changed");
 	if(CONTROLS_PAGE_COUNT > 1)
 		info.SetCondition("multiple controls pages");
@@ -790,7 +791,7 @@ void PreferencesPanel::DrawSettings()
 		"Aim turrets with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
-		TARGET_ASTEROIDS_BASED_ON,
+		ASTEROID_TARGETING,
 		BOARDING_PRIORITY,
 		"Rehire extra crew when lost",
 		"Automatically unpark flagship",
@@ -1020,10 +1021,10 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = Preferences::BoardingSetting();
 		}
-		else if(setting == TARGET_ASTEROIDS_BASED_ON)
+		else if(setting == ASTEROID_TARGETING)
 		{
 			isOn = true;
-			text = Preferences::Has(TARGET_ASTEROIDS_BASED_ON) ? "proximity" : "value";
+			text = Preferences::TargetAsteroidStrategySetting();
 		}
 		else if(setting == BACKGROUND_PARALLAX)
 		{
@@ -1167,7 +1168,7 @@ void PreferencesPanel::DrawPlugins()
 	int firstY = pluginListClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(pluginListScroll.AnimatedValue())));
 
-	for(const auto &it : Plugins::Get())
+	for(const auto &it : PluginManager::Get())
 	{
 		const auto &plugin = it.second;
 		if(!plugin.IsValid())
@@ -1190,7 +1191,7 @@ void PreferencesPanel::DrawPlugins()
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
 			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
 		if(displayed)
-			AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
+			AddZone(zoneBounds, [&]() { PluginManager::TogglePlugin(plugin.name); });
 		if(isSelected)
 			table.Draw(plugin.name, bright);
 		else
@@ -1265,7 +1266,7 @@ void PreferencesPanel::DrawPlugins()
 // Render the named plugin description into the pluginDescriptionBuffer.
 void PreferencesPanel::RenderPluginDescription(const string &pluginName)
 {
-	const Plugin *plugin = Plugins::Get().Find(pluginName);
+	const Plugin *plugin = PluginManager::Get().Find(pluginName);
 	if(plugin)
 		RenderPluginDescription(*plugin);
 	else
@@ -1473,6 +1474,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleTextAlignment();
 		CustomEvents::SendAdjustText();
 	}
+	else if(str == ASTEROID_TARGETING)
+		Preferences::ToggleTargetAsteroidStrategy();
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
 		Preferences::ToggleTitleBarTheme();
@@ -1549,7 +1552,7 @@ void PreferencesPanel::HandleConfirm()
 		HandleSettingsString(selectedItem, Screen::Dimensions() / 2.);
 		break;
 	case 'p':
-		Plugins::TogglePlugin(selectedPlugin);
+		PluginManager::TogglePlugin(selectedPlugin);
 		break;
 	default:
 		break;
