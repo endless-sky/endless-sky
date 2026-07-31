@@ -478,15 +478,15 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				for(const auto &it : victim->Outfits())
 					if(it.first->Get("illegal") > 0. || it.first->Get("atrocity") > 0.)
 					{
-						messages.push_back("Found " + to_string(it.second) + " "
+						AddMessage("Found " + to_string(it.second) + " "
 							+ (it.second == 1 ? it.first->DisplayName() : it.first->PluralName())
 							+ "!");
 						foundIllegal = true;
 					}
 				if(foundIllegal)
 				{
-					messages.push_back("Illegal outfits can attract heavy penalties.");
-					messages.push_back("You may wish to avoid law enforcement!");
+					AddMessage("Illegal outfits can attract heavy penalties.");
+					AddMessage("You may wish to avoid law enforcement!");
 				}
 
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
