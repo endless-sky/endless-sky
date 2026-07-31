@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "OutfitInfoDisplay.h"
 
 #include "Depreciation.h"
+#include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
@@ -731,7 +732,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		weapon->BlastRadius(),
 		static_cast<double>(weapon->MissileStrength()),
 		static_cast<double>(weapon->AntiMissile()),
-		weapon->TractorBeam() * 60.,
+		weapon->TractorBeam() * 60. / Flotsam::TONS_PER_BOX,
 		weapon->Prospecting() && weapon->MinableDamage() ? weapon->Prospecting() / weapon->MinableDamage() : 0.,
 	};
 
