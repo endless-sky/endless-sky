@@ -1241,7 +1241,7 @@ tip "anti-missile:"
 	`The power of the anti-missile shots. Higher values make it easier to destroy stronger projectiles.`
 
 tip "tractor beam:"
-	`The base velocity that this weapon pulls flotsam toward itself. Heavier flotsam is more difficult to pull.`
+	`The velocity that this weapon pulls flotsam toward itself.`
 
 tip "mining precision:"
 	`A measure of how well this weapon prevents damage to valuable materials while mining. Weapons with a positive precision result in higher yields, while a negative precision results in lower yields. Some minable objects are tougher than others, and are therefore less susceptible to having their yields altered.`
