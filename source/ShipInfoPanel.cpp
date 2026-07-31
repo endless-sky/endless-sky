@@ -278,7 +278,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				"Are you sure you want to jettison all of this ship's cargo?"));
 		}
 	}
-	else if(key == 'c' && selectedOutfit && !selectedOutfit->Get("can jettison"))
+	else if(panelState.CanEdit() && key == 'c' && selectedOutfit && !selectedOutfit->Get("can jettison"))
 		GetUI().Push(DialogPanel::Info("This outfit cannot be jettisoned while it is installed."));
 	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI().Push(new MissionPanel(player));
@@ -787,8 +787,9 @@ bool ShipInfoPanel::CanDump() const
 		return false;
 
 	CargoHold &cargo = (*shipIt)->Cargo();
-	return (selectedOutfit && selectedOutfit->Get("can jettison"))
-		|| (selectedPlunder && cargo.Get(selectedPlunder) > 0)
+	if(selectedOutfit)
+		return selectedOutfit->Get("can jettison");
+	return (selectedPlunder && cargo.Get(selectedPlunder) > 0)
 		|| cargo.CommoditiesSize() || cargo.OutfitsSize();
 }
 
