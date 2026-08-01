@@ -1055,7 +1055,7 @@ bool Mission::CanAccept(const PlayerInfo &player) const
 		return false;
 
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, offersInFlight))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight))
 		return false;
 	return HasSpace(player);
 }
