@@ -260,7 +260,7 @@ mission "FW Southern Recon 1B"
 				decline
 			label cargo
 			action
-				set "FW Southern Recon: "
+				set "FW Southern Recon: Alt Needed"
 				fail "FW Southern Recon 1B (Turret)"
 			`	"Oh! That's great to hear. Visit the outfitter here and make sure it's in your cargo, then I'll have my team pick it up. Make sure it's not in your local outfit storage, we won't be able to take it from there."`
 	on accept
