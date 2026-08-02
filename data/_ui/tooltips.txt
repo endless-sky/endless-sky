@@ -1413,7 +1413,7 @@ tip "Toggle performance info"
 
 tip "Deploy / recall fighters"
 	`Deploy or recall carried ships (e.g. fighters, drones) in your fleet. Requires carriers with space to hold the carried ships.`
-	`Carried ships may automatically return to the carrier when damaged based off of the "Damaged fighters retreat" setting.`
+	`Carried ships may automatically return to the carrier when damaged and redeploy when healed based off of the "Damaged fighters retreat" setting.`
 	`With <shift>, fighters will remain deployed until manually recalled.`
 
 tip "Fleet: Fight my target"
@@ -1623,7 +1623,7 @@ tip "Repair fighters in"
 	`- "parallel": repairs the lowest HP ship at all times so that all ships increase in HP together.`
 
 tip "Damaged fighters retreat"
-	`Your fighters will automatically recall themselves to the carrier if their health drops below 75%.`
+	`When deployed, your fighters will automatically recall themselves to the carrier if their health drops below 50%, then automatically deploy again after healing above 75% if a manual recall command has not been sent.`
 	`If your fighters cannot be repaired above this threshold while docked in their carrier, they will not leave the carrier if you send another deploy command without holding <shift>.`
 	`The health of a ship is calculated as its shields plus the amount of hull prior to the ship becoming disabled.`
 
