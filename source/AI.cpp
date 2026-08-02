@@ -245,19 +245,31 @@ namespace {
 		// If any ships were not yet ordered to deploy, deploy them.
 		if(!toDeploy.empty())
 		{
+			bool canRetreat = Preferences::Has("Damaged fighters retreat");
+			int badlyDamaged = 0;
 			for(Ship *ship : toDeploy)
 			{
 				ship->SetDeployOrder(true);
 				ship->SetForceDeploy(shift);
+				if(canRetreat && ship->Health() <= .75)
+					++badlyDamaged;
 			}
-			string ship = (toDeploy.size() == 1 ? "ship" : "ships");
-			string message = "Deployed " + to_string(toDeploy.size()) + " carried " + ship + ".";
-			if(Preferences::Has("Damaged fighters retreat"))
+			int now = toDeploy.size();
+			if(canRetreat && !shift)
+				now -= badlyDamaged;
+			string message = "Deployed " + to_string(now) + " carried " + (now == 1 ? "ship" : "ships") + ".";
+			if(canRetreat)
 			{
 				if(shift)
-					message += " Any damaged ships have been forced to deploy and will remain in combat until recalled.";
-				else
-					message += " Damaged ships will remain docked.";
+				{
+					if(badlyDamaged)
+						message += " " + to_string(badlyDamaged) + " badly damaged "
+							+ (badlyDamaged == 1 ? "ship has" : "ships have") + " been forced to deploy.";
+					message += " Deployed ships will remain in combat until manually recalled.";
+				}
+				else if(badlyDamaged)
+					message += " " + to_string(badlyDamaged) + " badly damaged "
+						+ (badlyDamaged == 1 ? "ship" : "ships") + " will remain docked until repaired.";
 			}
 			Messages::Add({message, GameData::MessageCategories().Get("normal")});
 		}
