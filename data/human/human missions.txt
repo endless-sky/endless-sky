@@ -11931,7 +11931,7 @@ mission "Silver Talon 2"
 			`	Rather than flee, you turn your guns on the hovercraft. For a brief moment, you see the terrified face and upraised arms of a pirate, before a rain of fire sweeps the vehicle and transforms it into a lump of smoldering charcoal.`
 			`	The cockpit is silent as you turn for space, save for the hum of your ship's air conditioner.`
 			action
-				set "Silver Talon: Hovercraft kill"
+				set "strafed hovercraft"
 			label escape
 			`	Suddenly, red flashing dots appear on your radar. Klaus swears loudly into your left ear as the red dots solidify and are joined by a number of smaller specks.`
 			`	"Well, shoot," Cerridwyn mutters. "We should have known that he wouldn't take kindly to us escaping. Better get out of here fast. We've got friends on <destination>, so that's probably the best target."`
@@ -12278,7 +12278,7 @@ mission "Pict's Legacy 1"
 	to offer
 		has "event: Pict Trigger"
 		has "main plot completed"
-		has "Silver Talon: Hovercraft kill"
+		has "strafed hovercraft"
 	on offer
 		conversation
 			`You're sitting at the spaceport bar watching some hovercraft racing, when all of a sudden you receive a voice message.`
@@ -12438,9 +12438,6 @@ mission "Pict's Legacy 2"
 				`	"That's great news! Where is he?"`
 				`	"So you don't think he was acting alone?"`
 					goto alone
-			
-			action
-				set "pict-legacy-2-plan-explained"
 			
 			`	"Right now, he should just be leaving the atmosphere in a fully-fueled Flivver."`
 			`	Raven's pilot chuckles. "Fully-bugged, too."`
@@ -12611,7 +12608,7 @@ mission "Pict's Quest 1"
 	to offer
 		has "event: Pict Trigger"
 		has "main plot completed"
-		not "Silver Talon: Hovercraft kill"
+		not "strafed hovercraft"
 	on offer
 		conversation
 			`Walking through the spaceport, you notice a group of four Navy personnel huddling in the cold. Hearing you, one of them suddenly raises her head and calls "Hey, <first>, is that you?"`
