@@ -644,7 +644,7 @@ private:
 	bool isYours = false;
 	bool isParked = false;
 	bool shouldDeploy = false;
-	bool forceDeployed = true;
+	bool forceDeployed = false;
 	bool isOverheated = false;
 	bool isDisabled = false;
 	bool isBoarding = false;
