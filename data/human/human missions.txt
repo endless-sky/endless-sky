@@ -11770,7 +11770,7 @@ mission "A Dead Man's Path 2"
 
 mission "Silver Talon 1"
 	name "Bounty hunters to <planet>"
-	description "Take these <bunks> to <destination> in exchange for <payment>, then wait until they return to take them off-planet again."
+	description "Take these <bunks> bounty hunters to <destination> in exchange for <payment>, then wait until they return to take them off-planet again."
 	clearance
 	infiltrating
 	passengers 5
@@ -11783,7 +11783,7 @@ mission "Silver Talon 1"
 		"combat rating" >= 80
 	on offer
 		conversation
-			`Walking through the spaceport, you are flagged down by a very short woman sitting on a box labeled "Explosive! Corrosive! Flammable! Extremely Toxic! Handle With Car!" and holding the largest bazooka you've ever seen and wearing a pin displaying a small silver eagle talon.`
+			`Walking through the spaceport, you are flagged down by a very short woman who is sitting on a box labeled "Explosive! Corrosive! Flammable! Extremely Toxic! Handle With Car!" and holding the largest bazooka you've ever seen and wearing a pin displaying a small silver eagle talon.`
 			choice
 				`	(See what she wants.)`
 				`	(Ignore her.)`
@@ -11840,7 +11840,7 @@ mission "Silver Talon 1"
 					goto killers
 			
 			label payment
-			`	"Always the businessperson, I see. Payment is <payment> credits set aside in a numbered transfer account effective immediately upon your acceptance of the job, and automatically delivered to you upon our arrival on <planet>. If our job is successful, you will receive a 15% share in the bounty, or approximately 400 thousand credits. If the job fails, naturally you won't receive that amount but you will earn <payment> for getting us off planet as quickly as possible. Sounds good?"`
+			`	"Always the businessperson, I see. Payment is <payment> credits set aside in a numbered transfer account effective immediately upon your acceptance of the job, and automatically delivered to you upon our arrival on <planet>. If our job is successful, you will receive a 15% share in the bounty, or approximately four hundred thousand credits. If the job fails, naturally you won't receive that amount but you will earn <payment> for getting us off planet as quickly as possible. Sounds good?"`
 			choice
 				`	"Sure! I'm in."`
 					goto in
@@ -11872,7 +11872,7 @@ mission "Silver Talon 1"
 		conversation
 			`The team of bounty hunters pass the flight to <planet> in relative silence - and with a very strong odor of garlic. As you enter the <system> system, Cerridwyn directs you to land in a secluded minor spaceport well away from the planet's major cities.`
 			`	No sooner do you put down than Dagger cranks the <ship>'s hatch open and jumps out into the scorching heat. Klaus and Pict are close behind, followed by a pile of gear.`
-			`	Cerridwyn waits a moment longer. "As agreed, a payment of <payment> has been deposited into your account," she says. "If all goes well, we'll be back within two hours. If you don't hear back within four, get the heck out of here.`
+			`	Cerridwyn waits a moment longer. "As agreed, a payment of <payment> has been deposited into your account," she says. "If all goes well, we'll be back within two hours. If you don't hear back within four, get the heck out of here."`
 			choice
 				`	"Sounds good."`
 					goto good
@@ -11896,10 +11896,10 @@ mission "Silver Talon 2"
 
 	on offer
 		conversation
-			`	Time passes slowly. At first, you settle into your chair, watching the yellow-orange sun inch across the horizon. After about half an hour of silence, you drag yourself to your feet and start sorting through the junk in the <ship>'s maintenance closet. By the end of the second hour, you are elbow deep in a dusty pile of old malfunctioning datapads, most of which you don't remember ever owning. Three hours in, the closet looks almost presentable but the Silver Talon is nowhere to be seen.`
+			`Time passes slowly. At first, you settle into your chair, watching the yellow-orange sun inch across the horizon. After about half an hour of silence, you drag yourself to your feet and start sorting through the junk in the <ship>'s maintenance closet. By the end of the second hour, you are elbow deep in a dusty pile of old malfunctioning datapads, most of which you don't remember ever owning. Three hours in, the closet looks almost presentable but the Silver Talon is nowhere to be seen.`
 			`	Just as you're beginning to give up hope, you hear a large explosion in the distance. A minute later, a speck appears on the horizon, a speck which soon resolves itself into the outline of a very old truck doing far more than what the speed limit would be on any civilized planet.`
 			`	Behind the huge billowing cloud of dust raised by the truck, two hovercraft appear. A figure in the back of the truck stands and fires a very large bazooka, and the leading hovercraft vanishes in a fireball. The other swerves into a ditch.`
-			`	Soon, the ATV is back at the spaceport, roaring onto the tarmac at breakneck speeds and coming to a stop in a squeal of brakes at the end of a hundred-metre stripe of rubber. Before the truck has settled, Cerridwyn and Pict are already moving, tossing their weapons and bags over the side of the truckbed and scrambling down. Inside the truck, a sweating Klaus picks up Dagger like a sack of potatoes and hauls him out of the cab.`
+			`	Soon, the ATV is back at the spaceport, roaring onto the tarmac at breakneck speeds and coming to a stop in a squeal of brakes at the end of a hundred-meter stripe of rubber. Before the truck has settled, Cerridwyn and Pict are already moving, tossing their weapons and bags over the side of the truckbed and scrambling down. Inside the truck, a sweating Klaus picks up Dagger like a sack of potatoes and hauls him out of the cab.`
 			`	Cerridwyn is the first through the hatch in your ship, preceded only by her rocket launcher. Klaus and Pict haul the wounded Dagger through with the rest of their equipment, and slam the hatch shut.`
 			`	"Okay, Captain," Cerridwyn says, "It's time to blow this popsicle stand."`
 			choice
@@ -11923,7 +11923,7 @@ mission "Silver Talon 2"
 				`	(Strafe the hovercraft.)`
 					goto strafe
 					to display
-						"flagship attribute: weapon capacity" != "flagship base attribute: weapon capacity"
+						has "armament deterrence"
 				`	(Get out of here.)`
 			`	Cranking your engines, you blast off, soon escaping the range of the small arms in the hovercraft. As your heartbeat slows, you approach the Karman line and enter space.`
 				goto escape
@@ -11989,7 +11989,7 @@ mission "Silver Talon 2"
 				`	"Thank you."`
 					goto thanks
 				`	"I can't take this."`
-			`	Cerridwyn becomes much firmer "You can, and will, <first> <last>. If you hadn't flown us out of there like that - or, if you had left an hour earlier - we'd all be dead. It's the least we can do."`
+			`	Cerridwyn becomes much firmer. "You can, and will, <first> <last>. If you hadn't flown us out of there like that - or, if you had left an hour earlier - we'd all be dead. It's the least we can do."`
 			label thanks
 			`	The payment made, Cerridwyn suddenly seems to collapse in front of your eyes. Picking up her bazooka, she slings it silently over her shoulder and wanders off aimlessly into the spaceport. Klaus and Pict follow close behind, carrying the rest of the bounty hunters' gear.`
 			`	Dagger, a crutch under his arm, stumbles after his companions but stops when he sees you watching. "Y'know, cap'n," he mutters, obviously very drunk and speaking slowly, "This ain't over. We'll see Vlad Blaire ded yet for 'is crimes. And I tell yuh, we cud shure use yur 'elp. Whaddayuh say yuh join us a'the spacepurt bahr in an hour?"`
@@ -12008,7 +12008,7 @@ mission "Silver Talon 3"
 
 	on offer
 		conversation
-			`You arrive in the bar to find Klaus, Pict, and Dagger seated around a table. Or, In Dagger's case, passed out on the table surrounded by more bottles of cheap beer than the bar has sold to any other customer all evening.`
+			`You arrive in the bar to find Klaus, Pict, and Dagger seated around a table. Or, in Dagger's case, passed out on the table surrounded by more bottles of cheap beer than the bar has sold to any other customer all evening.`
 			`	On the other side of the room, Cerridywn sits alone at the bar, nursing what looks to be a glass of mineral water.`
 			choice
 				`	(Join Klaus, Pict, and Dagger.)`
@@ -12112,7 +12112,6 @@ mission "Silver Talon 3"
 			
 			label flee
 			`	"We leave," Dagger slurs. "Quickly-like befuh there's muhofem.`
-				goto objections
 
 			label objections
 			choice
@@ -12187,7 +12186,7 @@ mission "Silver Talon 4"
 			`	"Captain <last>, I'd like you to meet captains John Smith, Norma Down, and Yven Stieber. Captains, <first> <last>."`
 			`	A round of handshakes ensues.`
 			`	"Look, you all know why you're here. There's no point making a speech, so I'll just go over the plan one more time.`
-			`	"In a few hours, we expect Blaire to enter the system. At that time, we will meet his fleet in orbit. Captains Smith, Down, and Stieber will engage the fleet and try to distract them. Don't take unnecessary risks, but don't hang back and blow hot air at them either. While you're fighting the fleet, Captain <last> will try to take down and disable Blaire's flagship. Once the ship is disabled, <last> will dock with it and we will board and dispatch Blaire. As soon as we're done, we will signal to the you to disengage and you can expect a nice heavy bounty payment in your bank account tomorrow morning. Understood?"`
+			`	"In a few hours, we expect Blaire to enter the system. At that time, we will meet his fleet in orbit. Captains Smith, Down, and Stieber will engage the fleet and try to distract them. Don't take unnecessary risks, but don't hang back and blow hot air at them either. While you're fighting the fleet, Captain <last> will try to take down and disable Blaire's flagship. Once the ship is disabled, <last> will dock with it and we will board and dispatch Blaire. As soon as we're done, we will signal you to disengage and you can expect a nice heavy bounty payment in your bank account tomorrow morning. Understood?"`
 			`	There's a murmur of assent, and you file out of the bar, as ready as you're going to be for what comes next.`
 				accept
 	
@@ -12207,7 +12206,7 @@ mission "Silver Talon 4"
 			`The hull of the <ship> rings like a gong as you come in to dock slightly too quickly. Or perhaps not too quickly, since Cerridwyn, Pict, and Dagger are already in the airlock waiting for the doors to slide open.`
 			`	Suddenly, the airlock opens with a hiss and the three bounty hunters are off, gutting the inside of Blaire's ship. Cerridwyn fires shot after shot from her bazooka, until you can almost see straight through to the cockpit of the Crimson Horde from where you're standing.`
 			`	A couple pirates show their heads, but Klaus quickly sends them ducking for cover once more with a couple shots from his pistol.`
-			`	Then, as quickly as it began, it's over. All four bounty hunters pile into your ship, grim-faced but satisfied. Now, you only have to get back to <planet> in one piece.`
+			`	Then, as quickly as it began, it's over. All four bounty hunters return to their seats, grim-faced but satisfied. Now, you only have to get back to <planet> in one piece.`
 				launch
 
 	npc
@@ -12305,7 +12304,7 @@ mission "Pict's Legacy 1"
 			`	The only reply you receive is the distant hum of a generator, punctuated by your own heartbeat.`
 			choice
 				`	(Turn on the lights.)`
-				`	(Continue with the lights off..)`
+				`	(Continue with the lights off.)`
 					goto unlit
 
 			label lights
@@ -12483,7 +12482,7 @@ mission "Pict's Legacy 2"
 			label cerridwyn
 			`	Raven looks you in the eyes. "I suppose you haven't really kept in touch, have you? Cerridwyn Morgan admitted herself to a mental hospital shortly after the death of Vlad Blaire upon the referral of her psychiatrist, and she's been there ever since. I wouldn't call her okay, but she is still alive. The Alphas only got her soul, not her body."`
 			action
-				log "Minor People" "Cerridwyn Morgan" "Following the end of her time with Vlad Blaire, Cerridwyn admitted herself to a mental hospital where she has remained ever since."
+				log "Minor People" "Cerridwyn Morgan" `Following the end of her time with Vlad Blaire, Cerridwyn admitted herself to a mental hospital where she has remained ever since.`
 			
 			label alphas
 			`	"Wait, Alphas?" you ask.`
@@ -12537,8 +12536,8 @@ mission "Pict's Legacy 2"
 	
 	on complete
 		log "Minor People" `Compassion "Pict" Macdonald` `Pict Macdonald was a former member of the Silver Talon and a Sergeant Major in the Republic Navy. She was killed by an Alpha-backed assassin in retaliation for the killing of Vlad Blaire.`
-		log "People" "Raven" "Worked with Raven in tracking down the Alphas on Sandswell; the Alphas' crimes infuriated her in a way that nothing else seems to."
-		log "Tracked down an Alpha-backed assassin who claimed I killed his father, destroying multiple Alpha warships in the process. The killer had previously murdered most of the former members of the Silver Talon - it seems Cerridwyn Morgan and I are the only survivors."
+		log "People" "Raven" `Worked with Raven in tracking down the Alphas on Sandswell; the Alphas' crimes infuriated her in a way that nothing else seems to.`
+		log "Tracked down an Alpha-backed assassin who claimed I killed his father, destroying multiple Alpha warships in the process. The killer had previously murdered most of the former members of the Silver Talon - it seems Cerridwyn Morgan is the only survivor of the group."
 		payment 145000
 		conversation
 			`Your ship settles down amidst a cloud of dust. The two marines are out of their seats immediately and racing for the door.`
@@ -12556,7 +12555,7 @@ mission "Pict's Legacy 2"
 			`	"No, but we owe it to them," Raven replies. The marines only nod before opening the hatch and leading the way out into the stinging, blinding sand. Covering your eyes and mouths, the four of you trudge toward what seems to be the complex's entrance, the <ship> quickly obscured by the dust clouds behind you.`
 
 			label continuation
-			`	As you pass into the gaping tunnel, the wind lets up. One of the marines turns on a light, revealing the remains of a hastily abandoned fortress. Crates of food and clothing lie side-by-side with boxes of ammunition and jerrycans of starship fuel, dropped by the Alphas in their mad flight out of there.`
+			`	As you pass into the gaping tunnel, the wind lets up. One of the marines turns on a light, revealing the remains of a hastily abandoned fortress. Crates of food and clothing lie side-by-side with boxes of ammunition and jerrycans of starship fuel, dropped by the Alphas in their rushed evacuation.`
 			`	Heading deeper, the tunnel crosses other, narrower shafts and passageways. Raven mutters something about the tracker before coming to a stop. "I don't get it, first it said he was in front of us, but now he's showing up behind us. But, how is that possible?"`
 			`	The tunnel falls silent as she fiddles with the receiver.`
 			choice
@@ -12601,6 +12600,8 @@ mission "Pict's Legacy 2"
 			`	Pict is not among them, nor is Klaus or Dagger, Colonel Nguyen or Raven's Tycjan Yanovik.`
 			`	But Miyano Tonogi and the Alphas that held his reins are dead, and you are alive. You, and the hundred million people whose only connection with the events of the last week will be an obituary entry and a classified report unsealed fifty years from now.`
 
+
+
 mission "Pict's Quest 1"
 	name "Transport investigators to Tundra"
 	description "A small party of Alphas has been reported on <destination>. Transport a Navy Intelligence unit there to help track down the Alphas."
@@ -12643,7 +12644,7 @@ mission "Pict's Quest 1"
 
 			label unavailable
 			`	Pict frowns, and it's Raven who responds. "Understandable. At least in the military we get paid per diem instead of per barrel of shrink-wrapped mackarel we transport."`
-			`	You exchange empty pleasentries, hand them a spare reflective thermal blanket of the sort that is inexpicably equipped in vast quantities on civilian spacecraft, and head back to the <ship>.`
+			`	You exchange empty pleasantries, hand them a spare reflective thermal blanket of the sort that is inexplicably equipped in vast quantities on civilian spacecraft, and head back to the <ship>.`
 				decline
 	
 	on complete
@@ -12716,7 +12717,7 @@ mission "Pict's Quest 2"
 			label surveillance
 			branch surveillance_fw
 				has "event: joined the free worlds"
-			`	"Well, perhaps," Pict replies, "but it's not quite so simple. I thought a Free World bigwig like you would know about that, though, seeing as how one of the south's big objections to pilot's licenses was always the invasion of privacy."`
+			`	"Well, perhaps," Pict replies, "but it's not quite so simple. I thought a Free World bigwig like you would know about that, though, seeing as how one of the South's big objections to pilot's licenses was always the invasion of privacy."`
 			`	"I thought -" you manage to get out before Raven cuts you off.`
 				goto interrupt
 
@@ -12775,11 +12776,11 @@ mission "Pict's Quest 2"
 	
 	on complete
 		payment 60000
-		log "Minor People" "Pict" "A member of Navy Intelligence and a former member of the Silver Talon, Pict is heavily involved in the ongoing war against the Alphas."
+		log "Minor People" "Pict" `A member of Navy Intelligence and a former member of the Silver Talon, Pict is heavily involved in the ongoing war against the Alphas.`
 		log "Helped Pict and Raven track down and destroy a major Alpha base on Sandswell, gaining some experience in atmospheric combat in the process."
 		conversation
 			`Shortly after you enter the atmosphere, Raven calls out. "We've got contact! Firebird, directly below. Looks like a cold start - they don't have any shields."`
-			`	Pict stands by your side, ignoring the lurches of the ship beneath you. "You've ever fought in atmosphere before, <first>?"`
+			`	Pict stands by your side, ignoring the lurches of the ship beneath you. "Ever fought in atmosphere before, <first>?"`
 			choice
 				`	"Sure, I know what I'm doing."`
 					to display
@@ -12800,7 +12801,7 @@ mission "Pict's Quest 2"
 			`	"In that case, I'll shut up and let you fly."`
 			`	Raven calls out something else, but you can't make it out over the roar of the wind outside. Suddenly, you see a glimpse of metal, far too close. Instinctively, you open fire, but your shots go harmlessly past the wildly jerking Firebird.`
 			`	Metal screams as you throw the <ship> into a tight bank, and Pict staggers but doesn't lose her balance. Using your instruments instead of your eyes, you track the Firebird's caret until it crosses your line of fire and let loose with everything you have. A shockwave and a red flash confirm your kill.`
-			`	Raven yells something else, but you can't hear. On your radar screen you line up on a second target, noting with dismay the sudden swarm of icons. Your finger reaches for the trigger, preparing the fire... but then Pict swats your hand away.`
+			`	Raven yells something else, but you can't hear. On your radar screen you line up on a second target, noting with dismay the sudden swarm of icons. Your finger reaches for the trigger, preparing to fire... but then Pict swats your hand away.`
 			`	"That's a friendly!" she yells in your ear. "The Navy's here, just break off and go to ground."`
 			`	In reply, you level out the <ship> and head for <planet>'s surface.`
 				goto landing
@@ -12809,7 +12810,7 @@ mission "Pict's Quest 2"
 			`	"Of course. First tip: don't rely on your eyes. If you can see it, you're too close. Second tip: without shields, your best target is a ship's cockpit window. A single hit in this kind of atmosphere will wreck the whole cockpit of even a capital ship, let alone a Firebird. Third tip: don't be afraid to fly this thing like a fighter. It can take some rough treatment, and it's not about to pull enough Gs to make any of us black out."`
 			`	With that sage advice ringing in your ears, you dive in on the Firebird, the tortured metal of your ship screaming in agony. Through a gap in the clouds of sand and grit you catch a glimpse of metal and glass and line up your sights.`
 			`	The result is more devastating than anything you have ever seen before. Your shot catches the Firebird square in the cockpit, instantly pulverizing the reinforced, unshielded glass. The blast continues backward through the ship before the entire thing explodes in a massive gout of deuterium fire.`
-			`	Bringing the <ship> around again, you line up on another target, only for Pict to yell in your ear. "That's a Navy ship!" She pauses to assess the situation. "They've got it handled! Just disengage and go to ground!"`
+			`	Bringing the <ship> around again, you line up on another target, only for Pict to yell in your ear, "That's a Navy ship!" She pauses to assess the situation. "They've got it handled! Just disengage and go to ground!"`
 			`	Following her guidance, you level out your ship and head for <planet>'s surface.`
 				goto landing
 			
@@ -12819,7 +12820,7 @@ mission "Pict's Quest 2"
 			`	Then, only a minute after the battle begins, it's over. The Firebird suddenly breaks off, only to disintegrate into a billowing cloud of deuterium flame. A Navy warship swoops down, and Pict guides you toward <planet>'s surface.`
 
 			label landing
-			`	Upon touchdown, you are met by a scene of organized chaos. Navy ships are landing left and right, and Raven disembarks immediately to talk to the fleet's commanding officer. Her two marines follow her out, until only Pict is left.`
+			`	Upon touchdown, you are met by a scene of organized chaos. Navy ships are landing left and right, and Raven disembarks immediately to talk to the fleet's commanding officer. Her two marines follow her out, so that only Pict is left.`
 			`	"Well," she says, turning to you, "that went a fair sight better than Poisonwood. It looks like we took out a hundred Alphas with no friendly casualties. Medals all round instead of cenotaphs, toasts instead of eulogies, but the war goes on." She sighs. "It's almost too easy."`
 			choice
 				`	"What do you mean?"`
@@ -12859,15 +12860,15 @@ mission "Pict's Quest 2"
 			label raven
 			`	Pict smiles sadly. "Poisonwood. It all comes back to Poisonwood. We dropped together, you know. Even as young as she was, Raven was good at her job. Our squad was tasked to guard her and another Questioner - a young man named Tycjan Yanovik while they gathered information behind enemy lines. Then, of course, they fouled up our flight plan and put us right over the Alphas' air defenses.`
 			action
-				log "Minor People" "Pict" "During the assault on Poisonwood, Pict was assigned to protect the Questioner Raven on an intelligence-gathering mission and was one of the few survivors of the operation."
+				log "Minor People" "Pict" `During the assault on Poisonwood, Pict was assigned to protect the Questioner Raven on an intelligence-gathering mission and was one of the few survivors of the operation.`
 			`	"Before we knew what was happening, half the shuttle was gone. Ten of us started out, but only six survived the drop, and only four of us made it off Poisonwood again: me, Dagger, Black Eye Brian, and Raven. None of us would have made out out alive it weren't for Raven."`
 				goto calling
 			
 			label talon
-			`	"Well, Dagger's an easy one," Pict responds. "The poor fool gave himself alcohol-induced hepatitis and wound up first on medical leave and then stuck with an honorable discharge. I hear he's doing okay for himself, but his doctor told him that his next drink would be the death of him and he's been complaining about so called 'medical malpractice' ever since.`
+			`	"Well, Dagger's an easy one," Pict responds. "The poor fool gave himself alcohol-induced hepatitis and wound up first on medical leave and then stuck with an honorable discharge. I hear he's doing okay for himself, but his doctor told him that his next drink would be the death of him and he's been complaining about so-called 'medical malpractice' ever since.`
 			`	"As for Cerridwyn -" she winces. "Cerridwyn never really recovered from Louis' death. Shortly after she got home she checked into a mental hospital with major depressive disorder and has been in and out ever since. I talked to her last year and she seemed to be doing better, but I don't think she'll ever accept that what happened on Greenrock wasn't her fault.`
 			action
-				log "Minor People" "Cerridwyn Morgan" "Following the end of her time with Vlad Blaire, Cerridwyn admitted herself to a mental hospital with clinical depression. With professional help, her condition has improved, but she has remained striken by survivor's guilt."
+				log "Minor People" "Cerridwyn Morgan" `Following the end of her time with Vlad Blaire, Cerridwyn admitted herself to a mental hospital with clinical depression. With professional help, her condition has improved, but she has remained stricken by survivor's guilt.`
 			`	"Klaus, on the other hand, I haven't heard anything about. All I know about him is that he's won a couple of drag races on a few frontier planets and no one's published an obituary yet."`
 				goto calling
 			
