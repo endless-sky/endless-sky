@@ -879,7 +879,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 
 					if(mustUninstall)
 					{
-						mustUninstall = ship->AddOutfit(linked, -mustUninstall);
+						mustUninstall = -ship->AddOutfit(linked, -mustUninstall);
 
 						if(toLocation == OutfitLocation::Shop)
 						{
