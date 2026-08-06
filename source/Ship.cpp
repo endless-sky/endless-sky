@@ -3731,50 +3731,61 @@ int Ship::OutfitCount(const Outfit *outfit) const
 
 
 // Add or remove outfits. (To remove, pass a negative number.)
-void Ship::AddOutfit(const Outfit *outfit, int count)
+int Ship::AddOutfit(const Outfit *outfit, int count)
 {
-	if(outfit && count)
-	{
-		auto it = outfits.find(outfit);
-		int before = outfits.count(outfit);
-		if(it == outfits.end())
-			outfits[outfit] = count;
-		else
-		{
-			it->second += count;
-			if(!it->second)
-				outfits.erase(it);
-		}
-		int after = outfits.count(outfit);
-		attributes.Add(*outfit, count);
-		if(outfit->GetWeapon())
-		{
-			armament.Add(outfit, count);
-			// Only the player's ships make use of attraction and deterrence.
-			if(isYours)
-				deterrence = CalculateDeterrence();
-		}
+	if(!outfit || !count)
+		return 0;
 
-		if(outfit->Get("cargo space"))
-		{
-			cargo.SetSize(attributes.Get("cargo space"));
-			// Only the player's ships make use of attraction and deterrence.
-			if(isYours)
-				attraction = CalculateAttraction();
-		}
-		if(outfit->Get("hull"))
-			hull += outfit->Get("hull") * count;
-		// If the added or removed outfit is a hyperdrive or jump drive, recalculate this
-		// ship's jump navigation. Hyperdrives and jump drives of the same type don't stack,
-		// so only do this if the outfit is either completely new or has been completely removed.
-		if((outfit->Get("hyperdrive") || outfit->Get("jump drive")) && (!before || !after))
-			navigation.Calibrate(*this);
-		// Navigation may still need to be recalibrated depending on the drives a ship has.
-		// Only do this for player ships as to display correct information on the map.
-		// Non-player ships will recalibrate before they jump.
-		else if(isYours)
-			navigation.Recalibrate(*this);
+	auto it = outfits.find(outfit);
+	bool hadBefore = it != outfits.end();
+	if(!hadBefore)
+	{
+		if(count < 0)
+			return 0;
+		outfits[outfit] = count;
 	}
+	else
+	{
+		it->second += count;
+		// Never allow the number of outfits to go negative.
+		if(it->second <= 0)
+		{
+			// Adjust the actual count removed.
+			if(it->second < 0)
+				count += it->second;
+			outfits.erase(it);
+		}
+	}
+	bool haveAfter = outfits.contains(outfit);
+	attributes.Add(*outfit, count);
+	if(outfit->GetWeapon())
+	{
+		armament.Add(outfit, count);
+		// Only the player's ships make use of attraction and deterrence.
+		if(isYours)
+			deterrence = CalculateDeterrence();
+	}
+
+	if(outfit->Get("cargo space"))
+	{
+		cargo.SetSize(attributes.Get("cargo space"));
+		// Only the player's ships make use of attraction and deterrence.
+		if(isYours)
+			attraction = CalculateAttraction();
+	}
+	if(outfit->Get("hull"))
+		hull += outfit->Get("hull") * count;
+	// If the added or removed outfit is a hyperdrive or jump drive, recalculate this
+	// ship's jump navigation. Hyperdrives and jump drives of the same type don't stack,
+	// so only do this if the outfit is either completely new or has been completely removed.
+	if((outfit->Get("hyperdrive") || outfit->Get("jump drive")) && (!hadBefore || !haveAfter))
+		navigation.Calibrate(*this);
+	// Navigation may still need to be recalibrated depending on the drives a ship has.
+	// Only do this for player ships as to display correct information on the map.
+	// Non-player ships will recalibrate before they jump.
+	else if(isYours)
+		navigation.Recalibrate(*this);
+	return count;
 }
 
 

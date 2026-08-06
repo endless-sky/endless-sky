@@ -55,6 +55,7 @@ public:
 	// Get the limit to how low an attribute is allowed to go on a ship when installing outfits.
 	// An empty optional means that there is no lower limit.
 	static std::optional<double> LowerLimit(const std::string &attribute);
+	static std::optional<int64_t> LowerLimitPrecise(const std::string &attribute);
 
 
 public:
@@ -107,11 +108,16 @@ public:
 	// Return true if this Outfit's attributes Dictionary is empty. Does not determine
 	// whether this Outfit contains any sprites, effects, sounds, or a weapon.
 	bool Empty() const;
+	// Access to the attribute values.
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
-	// Get an iterator over this Outfit's attribute names and values.
+	int64_t GetPrecise(const char *attribute) const;
+	int64_t GetPrecise(const std::string &attribute) const;
+	// Get an iterator over this Outfit's attribute names and values as doubles.
 	AttributeIterator begin() const;
 	AttributeIterator end() const;
+	// Get the underlying precise values dictionary.
+	const Dictionary<int64_t> &Precise() const;
 
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
