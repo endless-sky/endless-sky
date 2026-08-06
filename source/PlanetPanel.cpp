@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "HiringPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
@@ -36,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Port.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
@@ -68,7 +70,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
@@ -99,7 +101,7 @@ void PlanetPanel::Step()
 		if(callback)
 			callback();
 		if(selectedPanel)
-			GetUI().Pop(selectedPanel);
+			GetUI().Pop(selectedPanel.get());
 		GetUI().Pop(this);
 		return;
 	}
@@ -168,6 +170,9 @@ void PlanetPanel::Step()
 				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
 			for(const auto &outfit : player.Cargo().Outfits())
 				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			for(const auto &[outfit, count] : player.GetStock())
+				if(count > 0)
+					SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
 			for(const auto &license : player.Licenses())
 			{
 				const Outfit *outfit = GameData::Outfits().Find(license + " License");
@@ -181,7 +186,7 @@ void PlanetPanel::Step()
 	// treating them all as the landing location. This is mainly to
 	// handle the intro mission in the event the player moves away
 	// from the landing before buying a ship.
-	const Panel *activePanel = selectedPanel ? selectedPanel : this;
+	const Panel *activePanel = selectedPanel ? selectedPanel.get() : this;
 	if(activePanel != spaceport.get() && GetUI().IsTop(activePanel))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
@@ -239,13 +244,20 @@ void PlanetPanel::Draw()
 
 
 
+void PlanetPanel::UpdateTextDisplay()
+{
+	description->SetAlignment(Preferences::GetTextAlignment());
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(player.IsDead())
 		return true;
 
-	Panel *oldPanel = selectedPanel;
+	Panel *oldPanel = selectedPanel.get();
 	const Ship *flagship = player.Flagship();
 
 	UI::UISound sound = UI::UISound::NORMAL;
@@ -279,21 +291,14 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 't' && hasAccess
 			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
-	{
-		selectedPanel = trading.get();
-		GetUI().Push(trading);
-	}
+		selectedPanel = trading;
 	else if(key == 'b' && hasAccess && planet.GetPort().HasService(Port::ServicesType::Bank))
-	{
-		selectedPanel = bank.get();
-		GetUI().Push(bank);
-	}
+		selectedPanel = bank;
 	else if(key == 'p' && hasAccess && planet.HasNamedPort())
 	{
-		selectedPanel = spaceport.get();
+		selectedPanel = spaceport;
 		if(isNewPress)
 			spaceport->UpdateNews();
-		GetUI().Push(spaceport);
 	}
 	else if(key == 's' && hasAccess && hasShipyard)
 	{
@@ -313,17 +318,19 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		return true;
 	}
 	else if(key == 'h' && hasAccess && planet.GetPort().HasService(Port::ServicesType::HireCrew))
-	{
-		selectedPanel = hiring.get();
-		GetUI().Push(hiring);
-	}
+		selectedPanel = hiring;
 	else
 		return false;
 
 	// If we are here, it is because something happened to change the selected
-	// planet UI panel. So, we need to pop the old selected panel:
-	if(oldPanel)
-		GetUI().Pop(oldPanel);
+	// planet UI panel. So, we need to push the new and pop the old selected panel:
+	if(oldPanel != selectedPanel.get())
+	{
+		if(oldPanel)
+			GetUI().Pop(oldPanel);
+		if(selectedPanel)
+			GetUI().Push(selectedPanel);
+	}
 
 	UI::PlaySound(sound);
 
@@ -414,6 +421,14 @@ void PlanetPanel::TakeOffIfReady()
 				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
 			return;
 		}
+	}
+	if(player.FleetCost() > player.FleetCapacity())
+	{
+		bool shipCap = GameData::GetGamerules().GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::SHIP_CAP;
+		GetUI().Push(DialogPanel::Info("The escorts that you currently have active put you over your fleet capacity. "
+			"Park or sell your escorts to make room"s + (shipCap ? "." : ", or change your flagship to a ship with a "
+			"higher cost toward your limit, as your flagship does not count toward the fleet capacity.")));
+		return;
 	}
 
 	CheckWarningsAndTakeOff();
@@ -576,7 +591,7 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 		if(callback)
 			callback();
 		if(selectedPanel)
-			GetUI().Pop(selectedPanel);
+			GetUI().Pop(selectedPanel.get());
 		GetUI().Pop(this);
 	}
 }

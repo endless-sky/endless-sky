@@ -262,6 +262,14 @@ void ConversationPanel::Draw()
 
 
 
+void ConversationPanel::UpdateTextDisplay()
+{
+	for(auto &paragraph : text)
+		paragraph.SetAlignment(Preferences::GetTextAlignment());
+}
+
+
+
 // Handle key presses.
 bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
@@ -559,7 +567,7 @@ int ConversationPanel::MapChoice(int n) const
 ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene, bool isFirst)
 	: scene(scene), isFirst(isFirst)
 {
-	wrap.SetAlignment(Alignment::JUSTIFIED);
+	wrap.SetAlignment(Preferences::GetTextAlignment());
 	wrap.SetWrapWidth(WIDTH);
 	wrap.SetFont(FontSet::Get(14));
 
@@ -600,4 +608,11 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 	wrap.Draw(point, color);
 	point.Y() += wrap.Height();
 	return point;
+}
+
+
+
+void ConversationPanel::Paragraph::SetAlignment(Alignment alignment)
+{
+	wrap.SetAlignment(alignment);
 }

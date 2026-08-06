@@ -228,7 +228,7 @@ string MissionAction::Validate() const
 
 // DialogText requires a pointer in case dialog text changes, so store an empty string for that purpose.
 static const string EMPTY = "";
-const string &MissionAction::DialogText() const
+string MissionAction::DialogText() const
 {
 	if(toTrigger.Test())
 		return dialog.Text();

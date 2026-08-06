@@ -33,6 +33,7 @@ color "dead" .4 0. 0. 0.
 # Colors used for certain UI elements. These elements generally have a variable
 # size (e.g. they may fit to the current screen dimensions).
 color "panel background" .1 .1 .1 1.
+color "panel outline" .45 .45 .45 1.
 color "performance info background" .1 .1 .1 .7
 color "dialog backdrop" 0. 0. 0. .7
 color "conversation background" .125 .125 .125 1.
@@ -547,6 +548,13 @@ interface "load menu"
 	active if "pilot loaded"
 	button l "_Load Game"
 		center 435 155
+		dimensions 90 30
+	active
+	visible if "gamerules unlocked"
+	sprite "ui/wide button"
+		center 435 195
+	button g "_Gamerules"
+		center 435 195
 		dimensions 90 30
 
 
@@ -1856,7 +1864,7 @@ interface "news"
 		to -50 10
 	box "message"
 		from -340 -80
-		to 80 10
+		to 140 20
 
 
 
@@ -1874,7 +1882,7 @@ interface "news (small screen)"
 		to -50 10
 	box "message"
 		from -400 -80
-		to 80 10
+		to 80 20
 
 
 
@@ -1959,6 +1967,10 @@ interface "boarding"
 	string "defense casualties"
 		from 330 28
 		align right
+	
+	box "messages"
+		from 45 45
+		to 330 160
 	
 	active if "can take"
 	button t "_Take"
@@ -2729,6 +2741,10 @@ interface "hail panel"
 		align left
 		width 330
 		truncate back
+	
+	box "message"
+		from -50 -50
+		to 280 90
 
 	button d "_Done"
 		center 250 115
