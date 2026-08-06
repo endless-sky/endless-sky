@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <vector>
 
+class Collision;
 class Entity;
 class Government;
 class Ship;
@@ -51,12 +52,20 @@ public:
 		double distanceTraveled;
 	};
 
+	enum DeathType {
+		NONE = 0,
+		NATURAL = 1 << 0,
+		COLLISION = 1 << 1,
+		EXPLOSION = 1 << 2,
+		ANTI_MISSILE = 1 << 3,
+	};
+
 
 public:
 	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
 	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon);
 	// Ship explosion.
-	Projectile(Point position, const Weapon *weapon);
+	Projectile(const Point &position, const Angle &angle, const Weapon *weapon);
 
 	// Functions provided by the Body base class:
 	// Frame GetFrame(int step = -1) const;
@@ -68,9 +77,9 @@ public:
 
 	// Move the projectile. It may create effects or submunitions.
 	void Move(std::vector<Visual> &visuals, std::vector<Projectile> &projectiles);
-	// This projectile hit something. Create the explosion, if any. This also
-	// marks the projectile as needing deletion if it has run out of penetrations.
-	void Explode(std::vector<Visual> &visuals, double intersection, Point hitVelocity = Point());
+	// This projectile directly impacted something or exploded. Create hit effect visuals, if any.
+	// This also marks the projectile as needing deletion if it has run out of penetrations.
+	void Collide(std::vector<Visual> &visuals, const Collision &collision);
 	// Get the amount of clipping that should be applied when drawing this projectile.
 	double Clip() const;
 	// Get whether the lifetime on this projectile has run out.
@@ -120,6 +129,7 @@ private:
 
 private:
 	const Weapon *weapon = nullptr;
+	bool isShipExplosion = false;
 
 	bool targetIsShip = false;
 	std::weak_ptr<Entity> target;
@@ -131,9 +141,10 @@ private:
 	// relative to the firing ship.
 	Point dV;
 	double clip = 1.;
-	// A positive value means the projectile is alive, -100 means it was killed
-	// by an anti-missile system, and -1000 means it exploded in a collision.
+	// A non-zero positive value means the projectile is alive.
 	int lifetime = 0;
+	// The manner by which this projectile died.
+	DeathType death = DeathType::NATURAL;
 	double distanceTraveled = 0.;
 	uint16_t hitsRemaining = 1U;
 	bool hasLock = true;

@@ -212,6 +212,22 @@ namespace {
 
 
 
+optional<double> Outfit::LowerLimit(const string &attribute)
+{
+	auto it = MINIMUM_OVERRIDES.find(attribute);
+	if(it != MINIMUM_OVERRIDES.end())
+	{
+		// An override of exactly 0 means the attribute may have any value.
+		if(!it->second)
+			return nullopt;
+		return it->second;
+	}
+	// No minimum override means a minimum of 0.
+	return 0.;
+}
+
+
+
 Outfit::AttributeIterator::AttributeIterator(const Outfit &outfit, Dictionary<int64_t>::const_iterator start)
 	: outfit(outfit), it(start)
 {
@@ -337,9 +353,17 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			Weapon newWeapon = *weapon;
 			newWeapon.Load(child);
 			weapon = make_shared<Weapon>(std::move(newWeapon));
+			if(weapon->Ammo())
+				linkedOutfits.insert(weapon->Ammo());
 		}
 		else if(key == "ammo" && hasValue)
-			ammoStored = GameData::Outfits().Get(child.Token(1));
+		{
+			const Outfit *ammo = GameData::Outfits().Get(child.Token(1));
+			ammoStored.insert(ammo);
+			linkedOutfits.insert(ammo);
+		}
+		else if(key == "linked" && hasValue)
+			linkedOutfits.insert(GameData::Outfits().Get(child.Token(1)));
 		else if(key == "description" && hasValue)
 			description.Load(child, playerConditions);
 		else if(key == "cost" && hasValue)
@@ -596,15 +620,9 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 		// The minimum allowed value of most attributes is 0. Some attributes
 		// have special functionality when negative, though, and are therefore
 		// allowed to have values less than 0.
-		int64_t minimum = 0.;
-		auto it = MINIMUM_OVERRIDES.find(name);
-		if(it != MINIMUM_OVERRIDES.end())
-		{
-			minimum = it->second * ATTRIBUTE_PRECISION;
-			// An override of exactly 0 means the attribute may have any value.
-			if(!minimum)
-				continue;
-		}
+		optional<int64_t> minimum = LowerLimit(name);
+		if(!minimum.has_value())
+			continue;
 
 		// Only automatons may have a "required crew" of 0.
 		if(!strcmp(name, "required crew"))
@@ -675,16 +693,26 @@ void Outfit::Set(const string &attribute, double value)
 
 
 
-const Outfit *Outfit::AmmoStored() const
+const set<const Outfit *> &Outfit::AmmoStored() const
 {
 	return ammoStored;
 }
 
 
 
-const Outfit *Outfit::AmmoStoredOrUsed() const
+const set<const Outfit *> &Outfit::AmmoStoredOrUsed() const
 {
-	return weapon ? weapon->Ammo() : ammoStored;
+	static set<const Outfit *> weaponAmmo;
+	if(weapon && weapon->Ammo() && weaponAmmo.empty())
+		weaponAmmo.insert(weapon->Ammo());
+	return weapon ? weaponAmmo : ammoStored;
+}
+
+
+
+const set<const Outfit *> &Outfit::LinkedOutfits() const
+{
+	return linkedOutfits;
 }
 
 

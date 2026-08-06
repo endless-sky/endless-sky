@@ -3642,7 +3642,7 @@ ship "Skein"
 		"cost" 3500000
 		"shields" 3300
 		"hull" 6700
-		"required crew" 7
+		"required crew" 9
 		"bunks" 18
 		"mass" 850
 		"drag" 11.6

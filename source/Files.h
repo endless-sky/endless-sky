@@ -39,6 +39,7 @@ public:
 	static const std::filesystem::path &Images();
 	static const std::filesystem::path &Sounds();
 	static const std::filesystem::path &Saves();
+	static const std::filesystem::path &Pilots();
 	static const std::filesystem::path &UserPlugins();
 	static const std::filesystem::path &GlobalPlugins();
 	static const std::filesystem::path &Tests();
@@ -59,6 +60,7 @@ public:
 
 	// Get the filename from a path.
 	static std::string Name(const std::filesystem::path &path);
+	static std::string NameNoExtension(const std::filesystem::path &path);
 
 	/// Check whether one path is a parent of another.
 	static bool IsParent(const std::filesystem::path &parent, const std::filesystem::path &child);
