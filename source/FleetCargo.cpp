@@ -76,9 +76,9 @@ namespace {
 						// Also avoid outfits that add space (such as Outfits / Cargo Expansions)
 						// or modify bunks.
 						// TODO: Specify rejection criteria in datafiles as ConditionSets or similar.
-						if(outfit->Get("outfit space") > 0.
-								|| outfit->Get("cargo space") > 0.
-								|| outfit->Get("bunks"))
+						if(outfit->GetPrecise("outfit space") > 0
+								|| outfit->GetPrecise("cargo space") > 0
+								|| outfit->GetPrecise("bunks"))
 							continue;
 
 						outfits.push_back(outfit);

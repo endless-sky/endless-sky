@@ -46,6 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <limits>
 #include <memory>
+#include <ranges>
 
 using namespace std;
 
@@ -444,12 +445,12 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 					// Looping over each ship which has the selected outfit, identify the reasons why it cannot be
 					// <verb>'d. Make a list of ship to errors to assemble into a string afterward.
 					// TODO: when there are multiples of the same better verbiage could be used rather than restating.
-					for(const auto &[name, value] : *selectedOutfit)
-						if(attributes.Get(name) < value)
+					for(const auto &[name, value] : selectedOutfit->Precise())
+						if(attributes.GetPrecise(name) < value)
 						{
-							for(const auto &sit : ship->Outfits())
-								if(sit.first->Get(name) < 0.)
-									errorDetails.emplace_back(string("the \"") + sit.first->DisplayName() + "\" "
+							for(const auto &outfit : ship->Outfits() | views::keys)
+								if(outfit->GetPrecise(name) < 0)
+									errorDetails.emplace_back(string("the \"") + outfit->DisplayName() + "\" "
 										"depends on this outfit and must be uninstalled first");
 							if(errorDetails.empty())
 								errorDetails.emplace_back(
@@ -635,7 +636,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 					for(const auto &[name, value] : *selectedOutfit)
 					{
 						// Positive attributes can't be the cause of attribute errors.
-						if(value >= 0)
+						if(value >= 0.)
 							continue;
 						optional<double> minimum = Outfit::LowerLimit(name);
 						// Nor can attributes with no lower limit.

@@ -468,7 +468,9 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			node.PrintTrace("Deprecated use of \"" + label + "\" instead of \""
 					+ label + " power\" and \"" + label + " speed\":");
 
-			// A scan value of 300 is equivalent to a scan power of 9.
+			// Example: A scan value of 300 is equivalent to a scan power of 9.
+			// 300 * 300 / 10000 = 9. (This 10000 is the scaling factor from the old attribute
+			// to the new one and is not the same constant as ATTRIBUTE_PRECISION.)
 			attributes[label + " power"] += initial * initial / 10000;
 			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
 			// It may have been already specified, and if so, should not be increased.

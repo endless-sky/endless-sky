@@ -106,6 +106,5 @@ void Dictionary<Type>::Clear()
 
 
 
-template class Dictionary<int>;
 template class Dictionary<int64_t>;
 template class Dictionary<double>;
