@@ -12759,7 +12759,12 @@ mission "Pict's Quest 2"
 			choice
 				`	"I'm on it."`
 					decline
-				`	"I don't think anyone but us is going to be doing any blasting today."`
+				`	"Yeah, right. Those punks don't stand a chance against the <ship>."`
+					to display
+						"total ships" == 1
+				`	"Yeah, right. Those punks don't stand a chance against my fleet."`
+					to display
+						"total ships" > 1
 				`	"The <ship> doesn't have any weapons. How are we supposed to defend ourselves?"`
 					to display
 						not "armament deterrence"
