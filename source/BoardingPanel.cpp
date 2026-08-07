@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "ShipInfoPanel.h"
 #include "System.h"
+#include "TextArea.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -96,10 +97,25 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 			plunder.emplace_back(outfit, count);
 	}
 
+	const Interface *boarding = GameData::Interfaces().Get("boarding");
+	messageDisplay = make_shared<TextArea>();
+	messageDisplay->SetFont(FontSet::Get(14));
+	messageDisplay->SetParagraphBreak(0);
+	messageDisplay->SetColor(*GameData::Colors().Get("bright"));
+	messageDisplay->SetAlignment(Preferences::GetTextAlignment());
+	messageDisplay->SetRect(boarding->GetBox("messages"));
+	AddChild(messageDisplay);
+
 	canCapture = victim->IsCapturable() || player.CaptureOverriden(victim);
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!canCapture)
-		messages.emplace_back("This is not a ship that you can capture.");
+		AddMessage("This is not a ship that you can capture.");
+	else if(player.FleetCost() + victim->FleetCost() > player.FleetCapacity())
+	{
+		canCapture = false;
+		AddMessage("You cannot capture this ship as doing so");
+		AddMessage("would put you over your fleet capacity.");
+	}
 	else
 	{
 		attackOdds.Calculate();
@@ -231,14 +247,6 @@ void BoardingPanel::Draw()
 	if(scroll.Scrollable())
 		scrollBar.SyncDraw(scroll,
 			plunderList.TopRight() + Point{0., 10.}, plunderList.BottomRight() - Point{0., 10.});
-
-	// Draw the status messages from hand to hand combat.
-	Point messagePos(50., 55.);
-	for(const string &message : messages)
-	{
-		font.Draw(message, messagePos, bright);
-		messagePos.Y() += 20.;
-	}
 }
 
 
@@ -286,7 +294,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			// Keep track of how many you actually took.
 			count = 0;
 			for(const auto &it : you->Outfits())
-				if(it.first != outfit && it.first->AmmoStoredOrUsed() == outfit)
+				if(it.first != outfit && it.first->AmmoStoredOrUsed().contains(outfit))
 				{
 					// Figure out how many of these outfits you can install.
 					count = you->Attributes().CanAdd(*outfit, available);
@@ -333,8 +341,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			return true;
 		}
 		isCapturing = true;
-		messages.push_back("The airlock blasts open. Combat has begun!");
-		messages.push_back("(It will end if you both choose to \"defend.\")");
+		AddMessage("The airlock blasts open. Combat has begun!");
+		AddMessage("(It will end if you both choose to \"defend.\")");
 	}
 	else if((key == 'a' || key == 'd' || key == 'D') && CanAttack())
 	{
@@ -356,7 +364,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		// If neither side attacks, combat ends.
 		if(!youAttack && !enemyAttacks)
 		{
-			messages.push_back("You retreat to your ships. Combat ends.");
+			AddMessage("You retreat to your ships. Combat ends.");
 			isCapturing = false;
 		}
 		else
@@ -425,32 +433,34 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			}
 
 			// Report what happened and how many casualties each side suffered.
+			string message;
 			if(youAttack && enemyAttacks)
-				messages.push_back("You both attack. ");
+				message = "You both attack. ";
 			else if(youAttack)
-				messages.push_back("You attack. ");
+				message = "You attack. ";
 			else if(enemyAttacks)
-				messages.push_back("They attack. ");
+				message = "They attack. ";
 
 			if(yourCasualties && enemyCasualties)
-				messages.back() += "You lose " + to_string(yourCasualties)
+				message += "You lose " + to_string(yourCasualties)
 					+ " crew; they lose " + to_string(enemyCasualties) + ".";
 			else if(yourCasualties)
-				messages.back() += "You lose " + to_string(yourCasualties) + " crew.";
+				message += "You lose " + to_string(yourCasualties) + " crew.";
 			else if(enemyCasualties)
-				messages.back() += "They lose " + to_string(enemyCasualties) + " crew.";
+				message += "They lose " + to_string(enemyCasualties) + " crew.";
+			AddMessage(message);
 
 			// Check if either ship has been captured.
 			if(!you->Crew())
 			{
-				messages.push_back("You have been killed. Your ship is lost.");
+				AddMessage("You have been killed. Your ship is lost.");
 				you->WasCaptured(victim);
 				playerDied = true;
 				isCapturing = false;
 			}
 			else if(!victim->Crew())
 			{
-				messages.push_back("You have succeeded in capturing this ship.");
+				AddMessage("You have succeeded in capturing this ship.");
 				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->CrewValue());
 				int crewTransferred = victim->WasCaptured(you);
 				if(crewTransferred > 0)
@@ -461,15 +471,35 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					else
 						transferMessage += "s have";
 					transferMessage += " been transferred.";
-					messages.push_back(transferMessage);
+					AddMessage(transferMessage);
 				}
+				// Warn the player if outfits exist that are widely illegal.
+				bool foundIllegal = false;
+				for(const auto &it : victim->Outfits())
+					if(it.first->Get("illegal") > 0. || it.first->Get("atrocity") > 0.)
+					{
+						AddMessage("Found " + to_string(it.second) + " "
+							+ (it.second == 1 ? it.first->DisplayName() : it.first->PluralName())
+							+ "!");
+						foundIllegal = true;
+					}
+				if(foundIllegal)
+				{
+					AddMessage("Illegal outfits can attract heavy penalties.");
+					AddMessage("You may wish to avoid law enforcement!");
+				}
+
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
-					you->TransferFuel(victim->JumpFuelMissing(), &*victim);
-				player.AddShip(victim);
+				{
+					double fuelTransferred = you->TransferFuel(victim->JumpFuelMissing(), &*victim);
+					if(fuelTransferred >= 1.)
+						AddMessage(Format::Number(fuelTransferred, 0) + " fuel has been transferred.");
+				}
+				player.CaptureShip(victim);
 				for(const Ship::Bay &bay : victim->Bays())
 					if(bay.ship)
 					{
-						player.AddShip(bay.ship);
+						player.CaptureShip(bay.ship);
 						player.HandleEvent(ShipEvent(you, bay.ship, ShipEvent::CAPTURE), GetUI());
 					}
 				isCapturing = false;
@@ -482,10 +512,6 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	}
 	else if(command.Has(Command::INFO))
 		GetUI().Push(new ShipInfoPanel(player));
-
-	// Trim the list of status messages.
-	while(messages.size() > 5)
-		messages.erase(messages.begin());
 
 	return true;
 }
@@ -634,7 +660,7 @@ bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
 	// you can install it as an outfit.
 	if(outfit)
 		for(const auto &it : ship.Outfits())
-			if(it.first != outfit && it.first->AmmoStoredOrUsed() == outfit && ship.Attributes().CanAdd(*outfit))
+			if(it.first != outfit && it.first->AmmoStoredOrUsed().contains(outfit) && ship.Attributes().CanAdd(*outfit))
 				return true;
 
 	return false;
@@ -751,4 +777,15 @@ void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
 	double minimumScroll = max(0., 20. * selected - 200.);
 	double maximumScroll = 20. * selected;
 	scroll.Set(clamp<double>(scroll, minimumScroll, maximumScroll));
+}
+
+
+
+void BoardingPanel::AddMessage(const string &message)
+{
+	messages += (messages.empty() ? "" : "\n") + message;
+	messageDisplay->SetText(messages);
+	messageDisplay->Validate(false);
+	// Always scroll to the bottom to bring the newest message into focus.
+	messageDisplay->SnapToBottom();
 }

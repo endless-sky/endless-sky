@@ -117,6 +117,8 @@ void Weapon::Load(const DataNode &node)
 		}
 		else if(key == "triggers nuke alert")
 			triggersNukeAlert = true;
+		else if(key == "exclude submunition damage")
+			includeSubmunitionDamage = false;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -174,13 +176,18 @@ void Weapon::Load(const DataNode &node)
 					submunitions.back().offset = Point(grand.Value(1), grand.Value(2));
 				else if(grandKey == "spawn on" && grandHasValue)
 				{
-					submunitions.back().spawnOnNaturalDeath = false;
+					submunitions.back().spawnOn = Projectile::DeathType::NONE;
 					for(int j = 1; j < grand.Size(); ++j)
 					{
-						if(grand.Token(j) == "natural")
-							submunitions.back().spawnOnNaturalDeath = true;
-						else if(grand.Token(j) == "anti-missile")
-							submunitions.back().spawnOnAntiMissileDeath = true;
+						const string &grandValue = grand.Token(j);
+						if(grandValue == "natural")
+							submunitions.back().spawnOn |= Projectile::DeathType::NATURAL;
+						else if(grandValue == "collision")
+							submunitions.back().spawnOn |= Projectile::DeathType::COLLISION;
+						else if(grandValue == "explosion")
+							submunitions.back().spawnOn |= Projectile::DeathType::EXPLOSION;
+						else if(grandValue == "anti-missile")
+							submunitions.back().spawnOn |= Projectile::DeathType::ANTI_MISSILE;
 					}
 				}
 				else
@@ -622,8 +629,9 @@ double Weapon::TotalDamage(int index) const
 		calculatedDamage = true;
 		for(int i = 0; i < DAMAGE_TYPES; ++i)
 		{
-			for(const auto &it : submunitions)
-				damage[i] += it.weapon ? it.weapon->TotalDamage(i) * it.count : 0.;
+			if(includeSubmunitionDamage)
+				for(const auto &it : submunitions)
+					damage[i] += it.weapon ? it.weapon->TotalDamage(i) * it.count : 0.;
 			doesDamage |= (damage[i] > 0.);
 		}
 	}

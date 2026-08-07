@@ -222,6 +222,7 @@ start "hai space"
 			principal 1431000
 			interest 0.003
 			term 730
+	set "license: Pilot's"
 	set "species: human"
 	set "hai space start"
 	set "start: hai"

@@ -34,6 +34,7 @@ public:
 
 	void Load(const std::filesystem::path &path);
 	const std::filesystem::path &Path() const;
+	std::string Identifier() const;
 	bool IsLoaded() const;
 	void Clear();
 
