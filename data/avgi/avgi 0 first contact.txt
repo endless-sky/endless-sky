@@ -693,7 +693,7 @@ mission "Avgi: Defend Ensemble 2"
 			choice
 				`	"Sure can!"`
 				`	"Something in this region of space interferes with it, but I've found a system where it has enough range to make the crossing."`
-			`	"That's fantastic! You mind if I tag along with you? I've been working for the Twilight Guard here for months, trying to build up a second line of defenses in case that station in Arche falls, but today's battle shows that those defenses, together with a supporting fleet, can hold. They'll be just fine without me."`
+			`	"That's fantastic! You mind if I tag along with you? I've been working for the Twilight Guard here for months, trying to build up a second line of defenses in case that station in Arche falls, but today's battle shows that those defenses, together with a supporting fleet, can hold. They'll be just fine without me. I want to see home again."`
 			label recruit
 			choice
 				`	"Happy to have you."`
@@ -1035,6 +1035,7 @@ mission "Avgi: Twilight Escape 1"
 				`	"The far east? That sounds like the exit that I already found."`
 			label "can leave"
 			`	Leon looks shocked. "You... you what?! You already have a way out?" You explain how a mysterious device expanded your jump drive's range enough to get back to human space, and he wastes no time in asking which bunk is his.`
+			`	Darius turns to you, looking hopeful. "If you're ready, then, please take us home."`
 				accept
 	on enter
 		system
