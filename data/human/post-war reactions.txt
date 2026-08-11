@@ -215,7 +215,7 @@ mission "War Reactions: Syndicate Orphan"
 				`	"That's rough buddy, but I'm in a hurry. You're on your own."`
 					decline
 					to display
-						"WR: Orphan: attacking"
+						has "WR: Orphan: attacking"
 			label attacking
 			action
 				set "WR: Orphan: attacking"
