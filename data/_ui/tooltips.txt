@@ -1414,7 +1414,7 @@ tip "Toggle performance info"
 tip "Deploy / recall fighters"
 	`Deploy or recall carried ships (e.g. fighters, drones) in your fleet. Requires carriers with space to hold the carried ships.`
 	`Carried ships may automatically return to the carrier when damaged and redeploy when healed based off of the "Damaged fighters retreat" setting.`
-	`With <shift>, fighters will remain deployed until manually recalled.`
+	`When used while holding <shift> or with the aforementioned setting disabled, fighters will remain deployed until manually recalled.`
 
 tip "Fleet: Fight my target"
 	`Command your entire fleet to focus fire on the selected target. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on a hostile ship.`
