@@ -11783,7 +11783,7 @@ mission "Silver Talon 1"
 		"combat rating" >= 80
 	on offer
 		conversation
-			`Walking through the spaceport, you are flagged down by a very short woman who is sitting on a box labeled "Explosive! Corrosive! Flammable! Extremely Toxic! Handle With Car!" and holding the largest bazooka you've ever seen and wearing a pin displaying a small silver eagle talon.`
+			`Walking through the spaceport, you are flagged down by a very short woman holding the largest bazooka you've ever seen, who is sitting on a box labeled "Explosive! Corrosive! Flammable! Extremely Toxic! Handle With Car!" and wearing a pin displaying a small silver eagle talon.`
 			choice
 				`	(See what she wants.)`
 				`	(Ignore her.)`
@@ -11795,7 +11795,7 @@ mission "Silver Talon 1"
 				`	"You wanted to talk to me about something?"`
 					goto job
 
-			`	"Oh, yeah, that's Klaus. Wiry fellow, just about translucent, and the best driver you've ever met. Dirtiest mouth this side of Freedom, too, but the box seems to be helping a little."`
+			`	"Oh, yeah, that's Klaus. Wiry fellow, just about translucent, and the best driver you've ever met. Dirtiest mouth this side of Freedom, too, but packing him in a box for a couple hours seems to help with that a little."`
 			`	While the woman is talking, Klaus extracts himself from the crate, spraying packing peanuts all over the place and sending the bazooka clattering to the ground. He glowers at the woman before trying to put the lid back on the box, failing, and ending up inside it again. The woman completely ignores him, clearing her throat and peering up at you.`
 			
 			label job
@@ -11860,7 +11860,7 @@ mission "Silver Talon 1"
 			
 			label in
 			`	"Glad to hear it!" the woman says. "Klaus and I'll get all our gear packed away. I'm sure we can find somewhere to stash it that doesn't eat up your cargo hold. Oh, and by the way, I'm Cerridwyn Morgan."`
-			`	After about an hour, all the bounty hunters' equipment is securely stowed on board the <ship>, and all the aforementioned assassins are present and accounted for. Cerridwyn introduces you to each in turn: the wiry and foul-mouthed driver Klaus, the ex-marine Dagger, the sniper Pict, and the dapper young Louis. Cerridwyn's job, it seems, is to use the bazooka she's spent the last hour lugging around, a weapon she is apparently infamous for using."`
+			`	After about an hour, all the bounty hunters' equipment is securely stowed on board the <ship>, and all the assassins are present and accounted for. Cerridwyn introduces you to each in turn: the wiry and foul-mouthed driver Klaus, the ex-marine Dagger, the sniper Pict, and the dapper young Louis. Cerridwyn's job, it seems, is to use the bazooka she's spent the last hour lugging around, a weapon she is apparently infamous for using."`
 			`	Introductions complete, the bounty hunters all fall into their bunks in preparation for the journey to <planet>.`
 				accept
 	
@@ -11918,7 +11918,7 @@ mission "Silver Talon 2"
 			label failure
 			`	Cerridwyn laughs bitterly. "Does it look like we succeeded? We blew it, and we're going to have Sam Hill to pay if you don't get us off the ground pronto."`
 			label lift
-			`	As you shunt power to your repulsors and begin to lift, you hear the sound of gunfire outside. The remaining hovercraft, back on the dirt road, charges toward your ship. Suddenly, the old truck explodes, spraying the <ship> with flaming olive oil. Bullets hit the hull all around you like a murderous rainstorm.`
+			`	As you shunt power to your repulsors and begin to lift, you hear the sound of gunfire outside. The remaining hovercraft, back on the dirt road, charges toward your ship. Suddenly, the old truck explodes, spraying the <ship> with flaming vegetable oil. Bullets hit the hull all around you like a murderous rainstorm.`
 			choice
 				`	(Strafe the hovercraft.)`
 					goto strafe
@@ -12008,8 +12008,8 @@ mission "Silver Talon 3"
 
 	on offer
 		conversation
-			`You arrive in the bar to find Klaus, Pict, and Dagger seated around a table. Or, in Dagger's case, passed out on the table surrounded by more bottles of cheap beer than the bar has sold to any other customer all evening.`
-			`	On the other side of the room, Cerridywn sits alone at the bar, nursing what looks to be a glass of mineral water.`
+			`You arrive at the bar to find Klaus, Pict, and Dagger seated around a table. Or, in Dagger's case, passed out on the table surrounded by more bottles of cheap beer than the bar has sold to any other customer all evening.`
+			`	On the other side of the room, Cerridwyn sits alone at the bar, nursing what looks to be a glass of mineral water.`
 			choice
 				`	(Join Klaus, Pict, and Dagger.)`
 				`	(Approach Cerridwyn.)`
@@ -12047,7 +12047,7 @@ mission "Silver Talon 3"
 				goto commotion
 
 			label cerridwyn
-			`	You slide onto a stool next to Cerridywn, but it seems like she doesn't realize you're there. For a minute, you sit awkwardly beside her as she stares off into the distance at a darkness only she can see.`
+			`	You slide onto a stool next to Cerridwyn, but it seems like she doesn't realize you're there. For a minute, you sit awkwardly beside her as she stares off into the distance at a darkness only she can see.`
 			choice
 				`	"Are you okay?"`
 				`	(Wait.)`
@@ -12055,12 +12055,12 @@ mission "Silver Talon 3"
 				`	(Order a drink.)`
 					goto drink
 			
-			`	Cerridwyn just stares at you, gets up, and leaves the bar. Looking back to the table previously occupied by the other three bounty hunters you find only Dagger, drooling and unconscious.`
+			`	Cerridwyn just glares at you, gets up, and leaves the bar. Looking back to the table previously occupied by the other three bounty hunters you see only Dagger, drooling and unconscious.`
 			`	You wait around a bit, but neither Klaus nor Pict returns. Eventually, you find yourself heading back to your ship.`
 				decline
 			
 			label drink
-			`	The bar is mostly empty, and it doesn't take long for you to get your drink. While you're sipping it, Cerridwyn finally speaks.`
+			`	The bar is mostly empty, so it doesn't take long for your drink to be prepared. While you're sipping it, Cerridwyn finally speaks.`
 				goto speaks
 			label wait
 			`	You wait at the bar for one minute, then two, until the bartender starts giving you irritated glances. Finally, Cerridwyn speaks.`
@@ -12093,8 +12093,8 @@ mission "Silver Talon 3"
 				`	(Look for a way out.)`
 			
 			`	It is not hard to find an alternate exit from the bar. The only issue is, every other patron has come to the same conclusion as you have and are now pushing their way toward a very ordinary-sized door.`
-			`	As lasers scorch the walls around you and Klaus' weapon cracks off shot after shot, your eyes settle on the kitchen door. A door which leads to a room that, according to the galactic fire codes, should have another exit.`
-			`	Bellowing at the bounty hunters to follow, you duck into the kitchen, coming face-to-face with a large, open window and face-to-back with three fleeing cooks. You follow suit, leaping into an alleyway just ahead of Klaus and Dagger. Behind you, Pict hurls her knife through the door and slams it shut before dragging Cerridywn out of the building.`
+			`	As lasers scorch the walls around you and Klaus' weapon cracks off shot after shot, your eyes settle on the kitchen door. A door which leads to a room that, according to galactic fire codes, should have another exit.`
+			`	Bellowing at the bounty hunters to follow, you duck into the kitchen, coming face-to-face with a large, open window and face-to-back with three fleeing cooks. You follow suit, leaping into an alleyway just ahead of Klaus and Dagger. Behind you, Pict hurls her knife through the door and slams it shut before dragging Cerridwyn out of the building.`
 			`	A look passes between the five of you, and you're suddenly running full speed for the <ship>. It's not until you reach orbit that your heart rate returns to normal.`
 				launch
 			
@@ -12146,7 +12146,6 @@ mission "Silver Talon 3"
 			"entering"
 			"target"
 			confusion 10
-		system "Rastaban"
 		ship "Osprey" "Stiletto"
 		fleet "Small Southern Pirates" 6
 	npc
@@ -12182,7 +12181,7 @@ mission "Silver Talon 4"
 		conversation
 			`As you walk into the spaceport bar, you are met by a small crowd of sailors. The four bounty hunters are at the center of the group, talking in a low murmur with one of the better-off spacefarers. Upon seeing you, Pict walks over to greet you.`
 			`	"Cerridwyn's friends," she says, gesturing to the crowd. "Damn fools, if you ask me, but she's got them fired up. With any luck, some of them will even help us out."`
-			`	You watch as Cerridwyn and Klaus continue to speak to the spacers. One by one, they wander off, leaving empty glasses on the table. Finally, three captains remain.`
+			`	You watch as Cerridwyn and Klaus continue to speak to the spacers. One by one, they wander off, leaving empty glasses on the table. Finally, only three captains remain.`
 			`	"Captain <last>, I'd like you to meet captains John Smith, Norma Down, and Yven Stieber. Captains, <first> <last>."`
 			`	A round of handshakes ensues.`
 			`	"Look, you all know why you're here. There's no point making a speech, so I'll just go over the plan one more time.`
@@ -12205,7 +12204,7 @@ mission "Silver Talon 4"
 		conversation
 			`The hull of the <ship> rings like a gong as you come in to dock slightly too quickly. Or perhaps not too quickly, since Cerridwyn, Pict, and Dagger are already in the airlock waiting for the doors to slide open.`
 			`	Suddenly, the airlock opens with a hiss and the three bounty hunters are off, gutting the inside of Blaire's ship. Cerridwyn fires shot after shot from her bazooka, until you can almost see straight through to the cockpit of the Crimson Horde from where you're standing.`
-			`	A couple pirates show their heads, but Klaus quickly sends them ducking for cover once more with a couple shots from his pistol.`
+			`	A couple pirates show their heads, but Klaus, who is standing guard at the door, quickly sends them ducking for cover once more with a couple shots from his pistol.`
 			`	Then, as quickly as it began, it's over. All four bounty hunters return to their seats, grim-faced but satisfied. Now, you only have to get back to <planet> in one piece.`
 				launch
 
@@ -12283,7 +12282,7 @@ mission "Pict's Legacy 1"
 		conversation
 			`You're sitting at the spaceport bar watching some hovercraft racing, when all of a sudden you receive a voice message.`
 			`	"Captain <last>, I can't tell you how glad I am that you're here on Hermes. I need you to meet me at 45 Impala Street, as fast as you can. Please, captain, my life depends on it."`
-			`	The voice is unfamiliar at first, but it doesn't take long to remember it: it is the voice of Pict, the enigmatic soldier who helped Cerridwyn Morgan hunt down and kill Vlad Blaire.`
+			`	The voice is unfamiliar at first, but it doesn't take long to recognize: it is the voice of Pict, the enigmatic soldier who helped Cerridwyn Morgan hunt down and kill Vlad Blaire.`
 			choice
 				`	(Head to 45 Impala Street.)`
 					goto trap
@@ -12571,7 +12570,7 @@ mission "Pict's Legacy 2"
 			label miyano
 			`	"Don't move, or the captain buys it," growls a rough voice from behind you. The three Navy personnel freeze as a hand grabs you by the shoulder and spins you around to face the gun barrel and the man behind it. His face is masked by shadow and his eyes are as hard as steel, but there is something vaguely familiar about him.`
 			`	"I am Miyano Tonogi," he says, staring intensely into your face, "and my father was Miyano Hiromi, a poor hovercraft pilot. You killed my father. Prepare to die."`
-			`	As his finger moves toward the trigger, he fails to notice three more clicks caused by three more two point eight centimeter magnets. The marines' lasers catch him in the face, blinding him instantly and throwing his aim off. Rather than hitting you square between the eyes the shot grazes your shoulder before the guns clatters out of the man's fingers. Blind and dying, he weeps.`
+			`	As his finger moves toward the trigger, he fails to notice three more clicks caused by three more two point eight centimeter magnets. The marines' lasers catch him in the face, blinding him instantly and throwing his aim off. Rather than hitting you square between the eyes the shot grazes your shoulder before the gun clatters out of the man's fingers. Blind and dying, he weeps.`
 			`	Raven rushes up to your side. "Are you okay?"`
 			choice
 				`	"I will be."`
@@ -12640,7 +12639,7 @@ mission "Pict's Quest 1"
 				decline
 
 			label unavailable
-			`	Pict frowns, and it's Raven who responds. "Understandable. At least in the military we get paid per diem instead of per barrel of shrink-wrapped mackarel we transport."`
+			`	Pict frowns, and it's Raven who responds. "Understandable. At least in the military we get paid per diem instead of per barrel of shrink-wrapped mackerel we transport."`
 			`	You exchange empty pleasantries, hand them a spare reflective thermal blanket of the sort that is inexplicably equipped in vast quantities on civilian spacecraft, and head back to the <ship>.`
 				decline
 	
@@ -12713,7 +12712,7 @@ mission "Pict's Quest 2"
 
 			label surveillance
 			branch surveillance_fw
-				has "event: joined the free worlds"
+				not "event: joined the free worlds"
 			`	"Well, perhaps," Pict replies, "but it's not quite so simple. I thought a Free World bigwig like you would know about that, though, seeing as how one of the South's big objections to pilot's licenses was always the invasion of privacy."`
 			`	"I thought -" you manage to get out before Raven cuts you off.`
 				goto interrupt
@@ -12860,10 +12859,10 @@ mission "Pict's Quest 2"
 				goto calling
 
 			label raven
-			`	Pict smiles sadly. "Poisonwood. It all comes back to Poisonwood. We dropped together, you know. Even as young as she was, Raven was good at her job. Our squad was tasked to guard her and another Questioner - a young man named Tycjan Yanovik while they gathered information behind enemy lines. Then, of course, they fouled up our flight plan and put us right over the Alphas' air defenses.`
+			`	Pict smiles sadly. "Poisonwood. It all comes back to Poisonwood. We dropped together, you know. Even as young as she was, Raven was good at her job. Our squad was tasked to guard her and another Questioner - a young man named Tycjan Yanovik - while they gathered information behind enemy lines. Then, of course, they fouled up our flight plan and put us right over the Alphas' air defenses.`
 			action
 				log "Minor People" "Pict" `During the assault on Poisonwood, Pict was assigned to protect the Questioner Raven on an intelligence-gathering mission and was one of the few survivors of the operation.`
-			`	"Before we knew what was happening, half the shuttle was gone. Ten of us started out, but only six survived the drop, and only four of us made it off Poisonwood again: me, Dagger, Black Eye Brian, and Raven. None of us would have made out out alive it weren't for Raven."`
+			`	"Before we knew what was happening, half the shuttle was gone. Ten of us started out, but only six survived the drop, and only four of us made it off Poisonwood again: me, Dagger, Black Eye Brian, and Raven. None of us would have made it out alive if it weren't for Raven."`
 				goto calling
 			
 			label talon
