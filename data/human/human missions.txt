@@ -11869,9 +11869,10 @@ mission "Silver Talon 1"
 
 	on complete
 		log "Minor People" "Cerridwyn Morgan" `Cerridwyn Morgan is the bazooka-toting leader of the Silver Talon, an eclectic group of bounty hunters.`
+		payment 20000
 		conversation
 			`The team of bounty hunters pass the flight to <planet> in relative silence - and with a very strong odor of garlic. As you enter the <system> system, Cerridwyn directs you to land in a secluded minor spaceport well away from the planet's major cities.`
-			`	No sooner do you put down than Dagger cranks the <ship>'s hatch open and jumps out into the scorching heat. Klaus and Pict are close behind, followed by a pile of gear.`
+			`	No sooner do you put down than Dagger cranks the <ship>'s hatch open and jumps out into the warm sunlight. Klaus and Pict are close behind, followed by a pile of gear.`
 			`	Cerridwyn waits a moment longer. "As agreed, a payment of <payment> has been deposited into your account," she says. "If all goes well, we'll be back within two hours. If you don't hear back within four, get the heck out of here."`
 			choice
 				`	"Sounds good."`
@@ -11882,7 +11883,8 @@ mission "Silver Talon 1"
 			label good
 			`	"Anyways, good luck, Captain <last>. Stick with your ship, make sure she's ready to lift on a moment's notice, and we'll see you in a few hours."`
 			`	With that, Cerridwyn tosses her bazooka through the hatch and jumps down beside it. Louis gives you a jaunty salute and follows more cautiously. As the landing pad cools and the bounty hunters scramble toward a dilapidated ATV, you are left to mull over Cerridwyn's foreboding words.`
-		payment 20000
+
+
 
 mission "Silver Talon 2"
 	name "Escape to <planet>"
@@ -11931,7 +11933,7 @@ mission "Silver Talon 2"
 			`	Rather than flee, you turn your guns on the hovercraft. For a brief moment, you see the terrified face and upraised arms of a pirate, before a rain of fire sweeps the vehicle and transforms it into a lump of smoldering charcoal.`
 			`	The cockpit is silent as you turn for space, save for the hum of your ship's air conditioner.`
 			action
-				set "strafed hovercraft"
+				set "strafed miyano's hovercraft"
 			label escape
 			`	Suddenly, red flashing dots appear on your radar. Klaus swears loudly into your left ear as the red dots solidify and are joined by a number of smaller specks.`
 			`	"Well, shoot," Cerridwyn mutters. "We should have known that he wouldn't take kindly to us escaping. Better get out of here fast. We've got friends on <destination>, so that's probably the best target."`
@@ -11996,6 +11998,8 @@ mission "Silver Talon 2"
 			`	With that, the wounded veteran turns and thumps off your ship, joining the other bounty hunters.`
 		payment 35000
 
+
+
 mission "Silver Talon 3"
 	name "Escape to <planet>"
 	description "With the bounty hunters in tow, flee to <destination> to escape a fleet of enraged and vengeful pirates."
@@ -12036,7 +12040,7 @@ mission "Silver Talon 3"
 				goto commotion
 			
 			label pict
-			`	"Poisonwood. '85. Our platoon was supposed to deploy behind enemy lines to gether intelligence for the main assault. Only problem is they got the position of a missile battery off by seventy kilometers, and we dropped right into a barrage of Meteors. Fairweather, Grange, Perkins, Yanovik... the entire front half of our shuttle was gone before we could blow the plates and bail.`
+			`	"Poisonwood. '85. Our platoon was supposed to deploy behind enemy lines to gether intelligence for the main assault. Only problem is they got the position of a missile battery off by seventy kilometers, and the Alphas ripped us to shreds. Fairweather, Grange, Perkins, Yanovik... the entire front half of our shuttle was gone before we could blow the plates and bail.`
 			`	"Some things never change, Captain, some things never change."`
 			choice
 				`	"Some things do change, though."`
@@ -12111,7 +12115,7 @@ mission "Silver Talon 3"
 				goto objections
 			
 			label flee
-			`	"We leave," Dagger slurs. "Quickly-like befuh there's muhofem.`
+			`	"We leave," Dagger slurs. "Quickly-like befuh there's muhyehm.`
 
 			label objections
 			choice
@@ -12183,8 +12187,17 @@ mission "Silver Talon 4"
 			`	"Cerridwyn's friends," she says, gesturing to the crowd. "Damn fools, if you ask me, but she's got them fired up. With any luck, some of them will even help us out."`
 			`	You watch as Cerridwyn and Klaus continue to speak to the spacers. One by one, they wander off, leaving empty glasses on the table. Finally, only three captains remain.`
 			`	"Captain <last>, I'd like you to meet captains John Smith, Norma Down, and Yven Stieber. Captains, <first> <last>."`
+
+			branch hero
+				has "main plot completed"
+
 			`	A round of handshakes ensues.`
-			`	"Look, you all know why you're here. There's no point making a speech, so I'll just go over the plan one more time.`
+				goto plan
+
+			`	"Wow, you're really Captain <last>?" asks John. "Can I get your..." he spots Cerridwyn's disapproving frown and trails off. "Sorry, not the time."`
+
+			label plan
+			`	"Look, you all know why you're here," she continues. "There's no point making a speech, so I'll just go over the plan one more time.`
 			`	"In a few hours, we expect Blaire to enter the system. At that time, we will meet his fleet in orbit. Captains Smith, Down, and Stieber will engage the fleet and try to distract them. Don't take unnecessary risks, but don't hang back and blow hot air at them either. While you're fighting the fleet, Captain <last> will try to take down and disable Blaire's flagship. Once the ship is disabled, <last> will dock with it and we will board and dispatch Blaire. As soon as we're done, we will signal you to disengage and you can expect a nice heavy bounty payment in your bank account tomorrow morning. Understood?"`
 			`	There's a murmur of assent, and you file out of the bar, as ready as you're going to be for what comes next.`
 				accept
@@ -12277,7 +12290,7 @@ mission "Pict's Legacy 1"
 	to offer
 		has "event: Pict Trigger"
 		has "main plot completed"
-		has "strafed hovercraft"
+		has "strafed miyano's hovercraft"
 	on offer
 		conversation
 			`You're sitting at the spaceport bar watching some hovercraft racing, when all of a sudden you receive a voice message.`
@@ -12307,7 +12320,7 @@ mission "Pict's Legacy 1"
 					goto unlit
 
 			label lights
-			`	You flick the lights on, and stare. In front of you is what was clearly once a living room, now torn to shambles. In the corner, clearly dead, is Pict's corpse, her mouth open in a snarl and no fewer than thirteen flechette holes in her chest. Suddenly, you can't move, and when the police arrive three minutes later they find you standing there, hand on the light switch, staring.`
+			`	You flick the lights on, and stare. In front of you is what was clearly once a living room, now torn to shambles. In the corner, clearly dead, is Pict's corpse, her mouth open in a snarl and no fewer than thirteen flechette holes in her chest. Overcome by the shock, your hand does not move from the light switch until the police arrive three minutes later and cuff you.`
 				goto police
 
 			label unlit
@@ -12607,7 +12620,7 @@ mission "Pict's Quest 1"
 	to offer
 		has "event: Pict Trigger"
 		has "main plot completed"
-		not "strafed hovercraft"
+		not "strafed miyano's hovercraft"
 	on offer
 		conversation
 			`Walking through the spaceport, you notice a group of four Navy personnel huddling in the cold. Hearing you, one of them suddenly raises her head and calls "Hey, <first>, is that you?"`
@@ -12711,13 +12724,13 @@ mission "Pict's Quest 2"
 			`	"May I see your records?" Raven asks.`
 
 			label surveillance
-			branch surveillance_fw
+			branch "non-fw surveillance"
 				not "event: joined the free worlds"
 			`	"Well, perhaps," Pict replies, "but it's not quite so simple. I thought a Free World bigwig like you would know about that, though, seeing as how one of the South's big objections to pilot's licenses was always the invasion of privacy."`
 			`	"I thought -" you manage to get out before Raven cuts you off.`
 				goto interrupt
 
-			label surveillance_fw
+			label "non-fw surveillance"
 			`	"It's the Republic, what can I say." Pict replies. "Invasion of privacy? Maybe. But it's useful in times like these."`
 			`	"But -" you interject before Raven cuts you off.`
 
