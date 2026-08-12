@@ -12194,6 +12194,7 @@ mission "Silver Talon 4"
 			`	A round of handshakes ensues.`
 				goto plan
 
+			label hero
 			`	"Wow, you're really Captain <last>?" asks John. "Can I get your..." he spots Cerridwyn's disapproving frown and trails off. "Sorry, not the time."`
 
 			label plan
