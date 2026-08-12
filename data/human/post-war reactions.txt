@@ -212,7 +212,7 @@ mission "War Reactions: Syndicate Orphan"
 					decline
 					to display
 						not "WR: Orphan: attacking"
-				`	"That's rough buddy, but I'm in a hurry. You're on your own."`
+				`	"That's rough, buddy, but I'm in a hurry. You're on your own."`
 					decline
 					to display
 						has "WR: Orphan: attacking"
