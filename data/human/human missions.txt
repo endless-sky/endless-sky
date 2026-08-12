@@ -12321,7 +12321,7 @@ mission "Pict's Legacy 1"
 					goto unlit
 
 			label lights
-			`	You flick the lights on, and stare. In front of you is what was clearly once a living room, now torn to shambles. In the corner, clearly dead, is Pict's corpse, her mouth open in a snarl and no fewer than thirteen flechette holes in her chest. Overcome by the shock, your hand does not move from the light switch until the police arrive three minutes later and cuff you.`
+			`	You flick the lights on, and stare. In front of you is what was clearly once a living room, now torn to shambles. In the corner, clearly dead, is Pict's corpse, her mouth open in a snarl and no fewer than thirteen flechette holes in her chest. Overcome by shock, your hand does not move from the light switch until the police arrive three minutes later and cuff you.`
 				goto police
 
 			label unlit
