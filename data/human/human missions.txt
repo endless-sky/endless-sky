@@ -12081,7 +12081,7 @@ mission "Silver Talon 3"
 				goto commotion
 
 			label mineral
-			`	Cerridwyn glowers at you and takes a large gulp of mineral water.`
+			`	Cerridwyn glowers at you and takes a large gulp of water.`
 				goto commotion
 
 			label response
