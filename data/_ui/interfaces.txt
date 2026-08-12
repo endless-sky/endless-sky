@@ -223,7 +223,8 @@ color "wormholes: beyond Patir" .19 .27 .69
 # Color of warning message when users enable or disable plugins via in-game UI.
 color "plugin reload required" .75 .1 .1 0.
 
-
+# Colors used in Preferences panel:
+color "controls warning text" 0.67 0.33 0.33 1.
 
 interface "performance info"
 	anchor top left
@@ -524,7 +525,7 @@ interface "load menu"
 	button d "_Delete"
 		center -285 155
 		dimensions 90 30
-
+	
 	sprite "ui/wide button"
 		center -435 195
 	active
@@ -613,6 +614,20 @@ interface "controls"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
+	active
+
+	visible if "show controls changed"
+	label "Controls have changed."
+		align center
+		center 125 165
+		color bright
+	visible
+
+	sprite "ui/wide button"
+		center 75 210
+	button e "S_elect"
+		center 75 210
+		dimensions 120 30
 
 
 

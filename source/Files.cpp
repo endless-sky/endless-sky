@@ -38,6 +38,7 @@ namespace {
 	filesystem::path imagePath;
 	filesystem::path soundPath;
 	filesystem::path savePath;
+	filesystem::path controlsPath;
 	filesystem::path pilotPath;
 	filesystem::path userPluginPath;
 	filesystem::path globalPluginPath;
@@ -166,6 +167,9 @@ void Files::Init(const char *const *argv)
 
 	config = filesystem::canonical(config);
 
+	controlsPath = config / "controls";
+	CreateFolder(controlsPath);
+
 	savePath = config / "saves";
 	CreateFolder(savePath);
 	pilotPath = config / "pilots";
@@ -181,6 +185,8 @@ void Files::Init(const char *const *argv)
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(savePath))
 		throw runtime_error("Unable to create saves directory!");
+	if(!Exists(controlsPath))
+		throw runtime_error("Unable to create controls directory!");
 	if(!Exists(pilotPath))
 		throw runtime_error("Unable to create pilots directory!");
 	if(!Exists(userPluginPath))
