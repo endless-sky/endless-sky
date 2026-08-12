@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "Color.h"
+#include "InfoTag.h"
 #include "Point.h"
 #include "Rectangle.h"
 #include "text/Truncate.h"
@@ -270,7 +271,37 @@ private:
 	};
 
 
+	// This class handles "infotag" elements.
+	class InfoTagElement : public Element {
+	public:
+		InfoTagElement(const DataNode &node, const Point &globalAnchor);
+
+	protected:
+		// Parse the given data line: one that is not recognized by Element
+		// itself. This returns false if it does not recognize the line, either.
+		virtual bool ParseLine(const DataNode &node) override;
+		// Draw this element in the given rectangle.
+		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
+
+	private:
+		std::string text;
+		Point anchor;
+
+		Alignment textAlignment = Alignment::LEFT;
+		InfoTag::Affinity affinity = InfoTag::Affinity::CENTER;
+		InfoTag::Direction facing = InfoTag::Direction::SOUTH;
+		float borderWidth = 1.f;
+		float earLength = 15.f;
+		bool shrink = false;
+
+		const Color *backColor = nullptr;
+		const Color *fontColor = nullptr;
+		const Color *borderColor = nullptr;
+	};
+
+
 private:
+	std::vector<const Interface *> includes;
 	std::vector<std::unique_ptr<Element>> elements;
 	std::map<std::string, Element> points;
 	std::map<std::string, double> values;
