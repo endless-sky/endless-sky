@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Orders.h"
+
 #include "OrderSingle.h"
 
 #include <bitset>
