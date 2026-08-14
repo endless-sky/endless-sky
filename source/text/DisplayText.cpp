@@ -15,6 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DisplayText.h"
 
+#include "../Point.h"
+#include "../image/Sprite.h"
+#include "../image/SpriteSet.h"
+
 using namespace std;
 
 
@@ -43,4 +47,57 @@ const string &DisplayText::GetText() const noexcept
 const Layout &DisplayText::GetLayout() const noexcept
 {
 	return layout;
+}
+
+
+
+
+// Returns the width of the sprites that are included by reference in the string in &width.
+// Don't call this to process sprite references before the sprites are loaded, e.g. GameLoadingPanel, it won't work.
+void DisplayText::UpdateSpriteReferences()
+{
+	if(!spritesLoaded)
+	{
+		string target;
+		target.reserve(text.length());
+
+		inlineSprites.clear();
+
+		size_t start = 0;
+		size_t search = start;
+		while(search < text.length())
+		{
+			size_t left = text.find("<sprite:", search);
+			if(left == string::npos)
+				break;
+
+			size_t right = text.find('>', left);
+			if(right == string::npos)
+				break;
+
+			size_t spriteLeft = left + 8;
+
+			// Gather the path and the (optional) embossed text.
+			string spritePath = text.substr(spriteLeft, right - spriteLeft);
+			string embossedText;
+			size_t embossed = spritePath.find(':', 0);
+			if(embossed != string::npos)
+			{
+				embossedText = spritePath.substr(embossed + 1);
+				spritePath.resize(embossed);
+			}
+
+			inlineSprites.emplace_back(SpriteSet::Get(spritePath), embossedText, Point());
+
+			// target will skip over the entire <sprite> key, and we will leave a placeholder instead.
+			target.append(text, start, left - start);
+			target += SPRITE_PLACEHOLDER;
+			start = ++right;
+			search = start;
+		}
+		target.append(text, start, text.length() - start);
+		spritesLoaded = true;
+
+		this->text = target;
+	}
 }
