@@ -2327,7 +2327,6 @@ ship "Leviathan" "Leviathan (CCOR)"
 		"Scram Drive"
 
 
-
 ship "Leviathan" "Leviathan (Hai Engines)"
 	outfits
 		"Particle Cannon" 4
@@ -2912,7 +2911,6 @@ ship "Osprey" "Osprey (Flamethrower Pirate)"
 	gun "Plasma Cannon"
 	turret "Javelin Turret"
 	turret "Anti-Missile Turret"
-
 
 
 
