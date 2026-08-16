@@ -1932,7 +1932,7 @@ mission "Successors: Ghosts 20"
 			`	"For such a unique and industrious figure, 'twould've been an unbearable snub not to!"`
 
 			label khiajsore
-			`	They rattle one of their arms a little, red gold and sparkling stones swinging through the air. "I just spoke of thee, in fact, with a delegate of House Seineq here, who confirmed what I've heard that thou were't of use to them as well! I think," they say, "thou set a good example for future aliens - benevolent, equitable, humble. Though I hear now Kaatrij has obtained thy vassalage? A boon to them, no doubt." Their face sparkles with color, eyes alight with furtive interest. "Though I hope for our efforts, Myurej has earned some measure of thy favor."`
+			`	They rattle one of their arms a little, red gold and sparkling stones swinging through the air. "I just spoke of thee, in fact, with a delegate of House Seineq here, who confirmed what I've heard that thou wert of use to them as well! I think," they say, "thou didst set a good example for future aliens - benevolent, equitable, humble. Though I hear now Kaatrij has obtained thy vassalage? A boon to them, no doubt." Their face sparkles with color, eyes alight with furtive interest. "Though I hope for our efforts, Myurej has earned some measure of thy favor."`
 			choice
 				`	"I'm happy to help, so long as it doesn't conflict with my other responsibilities."`
 				`	"I'm not sure I like where this is going."`
@@ -1978,8 +1978,8 @@ mission "Successors: Ghosts 20"
 				`	(Leave.)`
 					goto end
 
-			`	Tiliia spots you first, their skin breaking out in colors of excitement. "Saajret tells me of thy assent to Kaatrij's ranks," they say. "Excellent that thou might be a concerted ally to my own House as well."`
-			`	Saajret hums and nods. "The captain is a canny sort," they say. "Capable of surviving our wiles, I believe." Tiliia laughs at that, Saajret continuing. "And Tiliia tells me thou were't of help to them as well, the reason by which our craft now gain an advantage through the wormhole."`
+			`	Tiliia spots you first, their skin breaking out in colors of excitement. "Saajret tells me of thy ascent to Kaatrij's ranks," they say. "Excellent that thou might be a concerted ally to my own House as well."`
+			`	Saajret hums and nods. "The captain is a canny sort," they say. "Capable of surviving our wiles, I believe." Tiliia laughs at that, Saajret continuing. "And Tiliia tells me thou wert of help to them as well, the reason by which our craft now gain an advantage through the wormhole."`
 			label "saajret and tiliia"
 			choice
 				`	"It's good to see you two getting along."`
