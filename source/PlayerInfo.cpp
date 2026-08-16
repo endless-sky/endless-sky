@@ -4509,6 +4509,20 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
+	// This condition checks locations that a GameAction can take outfits from.
+	// That is, outfits installed on the flagship, and in player cargo (when landed) or flagship cargo (when not).
+	conditions["outfit (removable): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		if(!flagship)
+			return 0;
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
+		if(!outfit)
+			return 0;
+		int64_t retVal = 0;
+		retVal += flagship->OutfitCount(outfit);
+		retVal += (planet ? cargo : flagship->Cargo()).Get(outfit);
+		return retVal;
+	});
+
 	// This condition corresponds to the method by which the flagship entered the current system.
 	conditions["entered system by: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		return !ce.NameWithoutPrefix().compare(EntryToString(entry)); });
@@ -4859,7 +4873,7 @@ void PlayerInfo::StepMissions(UI &ui)
 			// from the same destination.
 			if(visitText.empty())
 			{
-				const auto &text = mission.GetAction(Mission::VISIT).DialogText();
+				string text = mission.GetAction(Mission::VISIT).DialogText();
 				if(!text.empty())
 					visitText = Format::Replace(text, substitutions);
 			}
