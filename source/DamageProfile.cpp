@@ -49,6 +49,13 @@ DamageProfile::DamageProfile(Weather::ImpactInfo info)
 
 
 
+DamageProfile::DamageProfile(const Weapon &weapon)
+	: weapon(weapon), position(Point()), isBlast(false)
+{
+}
+
+
+
 // Calculate the damage dealt to the given ship.
 DamageDealt DamageProfile::CalculateDamage(const Ship &ship, bool ignoreBlast) const
 {
@@ -120,7 +127,6 @@ double DamageProfile::Scale(double scale, const Body &body, bool blast) const
 void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 {
 	const Outfit &attributes = ship.Attributes();
-	const Weapon &weapon = damage.GetWeapon();
 	double shieldFraction = 0.;
 
 	// Lambda for returning the damage scale that a damage type should

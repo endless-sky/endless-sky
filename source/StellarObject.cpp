@@ -40,8 +40,7 @@ void StellarObject::UsingMatchesCommand()
 
 // Object default constructor.
 StellarObject::StellarObject()
-	: planet(nullptr),
-	distance(0.), speed(0.), offset(0.), parent(-1),
+	: planet(nullptr), parent(-1),
 	message(nullptr), isStar(false), isStation(false), isMoon(false)
 {
 	// Unlike ships and projectiles, stellar objects are not drawn shrunk to half size,
@@ -168,7 +167,7 @@ int StellarObject::Parent() const
 // Find out how far this object is from its parent.
 double StellarObject::Distance() const
 {
-	return distance;
+	return orbit.distance;
 }
 
 
