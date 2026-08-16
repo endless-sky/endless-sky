@@ -647,6 +647,8 @@ void Ship::FinishLoading(bool isNewInstance)
 			static_cast<Body &>(*this) = *base;
 		if(customSwizzleName.empty())
 			customSwizzleName = base->CustomSwizzleName();
+		if(!administrativeCost.has_value())
+			administrativeCost = base->administrativeCost;
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
 		if(bays.empty() && !base->bays.empty() && !removeBays)
@@ -974,6 +976,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("uncapturable");
 		if(customSwizzle && customSwizzle->IsLoaded())
 			out.Write("swizzle", customSwizzle->Name());
+		if(administrativeCost.has_value())
+			out.Write("administrative cost", administrativeCost.value());
 
 		out.Write("uuid", uuid.ToString());
 
