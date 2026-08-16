@@ -2736,6 +2736,7 @@ bool Ship::CanGiveEnergy(const Ship &other) const
 
 double Ship::TransferFuel(double amount, Ship *to)
 {
+	// Do not give more fuel than the ship's current fuel reserves.
 	amount = min(fuel, amount);
 	if(to)
 	{
@@ -2752,7 +2753,7 @@ double Ship::TransferFuel(double amount, Ship *to)
 
 double Ship::TransferEnergy(double amount, Ship *to)
 {
-	// Do not give more energy than the ships current energy reserves.
+	// Do not give more energy than the ship's current energy reserves.
 	amount = min(energy, amount);
 	if(to)
 	{
@@ -3020,19 +3021,41 @@ bool Ship::NeedsFuel(bool followParent) const
 
 bool Ship::NeedsEnergy() const
 {
-	// If a ship has no energy capacity it does not need energy.
-	if(!attributes.Get("energy capacity"))
+	// If a ship has no energy capacity or already has some energy in reserves,
+	// it does not need energy. Since engines can use fractional thrust/turn,
+	// even a single unit of energy can still have use.
+	if(!attributes.Get("energy capacity") || energy > 1.)
 		return false;
 
-	// If a ship has energy, it does not need energy.
-	if(energy > 1.)
+	// If a ship has energy capacity but is low on energy, check to see if it is capable
+	// of generating its own energy.
+	// Just check standard energy generation first for simplicity. If gaining any energy at all from
+	// energy generation, the ship doesn't need energy.
+	double generation = attributes.Get("energy generation") - attributes.Get("energy consumption");
+	if(generation > 0.)
 		return false;
 
-	// If a ship can regenerate energy, it does not need energy.
-	// A ship is considered to be unable to regenerate if it is generating less than 1 energy per second.
-	double generation = currentSystem->GetSolarGeneration(position,
-		attributes.Get("ramscoop"), attributes.Get("solar collection"), attributes.Get("solar heat")).energy
-		+ attributes.Get("energy generation") + attributes.Get("fuel energy") - attributes.Get("energy consumption");
+	// A ship may be gaining energy from other sources.
+	double solarCollection = attributes.Get("solar collection");
+	double fuelEnergy = attributes.Get("fuel energy");
+	if(!solarCollection && !fuelEnergy)
+		return true;
+	// If other energy sources are available, check how much energy the ship is getting from them.
+	System::SolarGeneration solar = currentSystem->GetSolarGeneration(position,
+		attributes.Get("ramscoop"), solarCollection, attributes.Get("solar heat"));
+	generation += solar.energy;
+	// "fuel energy" only provides energy if there is fuel present to burn.
+	// Due to fuel consumption not being fractional, a ship could theoretically have high fuel energy
+	// and fuel consumption such that it can only generate a large amount of energy on certain
+	// frames after gaining enough fuel. Such a ship might not technically need energy since it
+	// will eventually get it at some later frame, but this is also such an absurd scenario that
+	// it's not worth checking for, and would be better addressed by making fuel consumption
+	// fractional.
+	if(fuelEnergy && attributes.Get("fuel consumption") <= fuel + solar.fuel + attributes.Get("fuel generation"))
+		generation += fuelEnergy;
+	// Consider a ship disabled if it is gaining less than 1 energy per second.
+	// This accounts for ships that may be relying upon solar panels for energy, but are so far
+	// from the system center that the solar panel gains are negligible.
 	return generation < 0.016;
 }
 
