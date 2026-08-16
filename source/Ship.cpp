@@ -1564,6 +1564,20 @@ void Ship::SetDeployOrder(bool shouldDeploy)
 
 
 
+bool Ship::HasForceDeploy() const
+{
+	return forceDeployed;
+}
+
+
+
+void Ship::SetForceDeploy(bool forceDeploy)
+{
+	this->forceDeployed = forceDeploy;
+}
+
+
+
 const Personality &Ship::GetPersonality() const
 {
 	return personality;
