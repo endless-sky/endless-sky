@@ -1973,7 +1973,7 @@ mission "Strider: Coalition 2"
 			choice
 				`	"So are you willing to give or sell one of those outfits to the Hai?"`
 				`	"Would you share the way of mass-producing those outfits with the Hai?"`
-			`	"Much involved in projecting our repair modules, House Chamgar is," the same Arach says. "Contact their representatives in this ring, we will."`
+			`	"Much involved in producing our repair modules, House Chamgar is," the same Arach says. "Contact their representatives in this ring, we will."`
 			`	"Do you desire anything in return?" Yashili asks the agent.`
 			`	"In return, we ask nothing. Helping you extend beyond the limits placed upon you by the Quarg, enough of a reward is," the Arach responds. Yashili looks somewhat puzzled, but does not press the issue any further.`
 			`	A short time later, a group of Arachi representing House Chamgar arrive. They have the Hai describe their ships, using this information to optimize the repair module for Hai ships. They then prepare a copy of the blueprints, handing a data chip containing the schematics for the hull repair modules and their hull-walking robots to the Hai. Some workers then load a crate with two small modules onto your ship for the Hai to use as examples. Yashili thanks the Coalition for their generosity and boards your ship, ready to return to <destination>.`

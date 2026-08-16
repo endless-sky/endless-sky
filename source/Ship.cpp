@@ -647,6 +647,8 @@ void Ship::FinishLoading(bool isNewInstance)
 			static_cast<Body &>(*this) = *base;
 		if(customSwizzleName.empty())
 			customSwizzleName = base->CustomSwizzleName();
+		if(!administrativeCost.has_value())
+			administrativeCost = base->administrativeCost;
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
 		if(bays.empty() && !base->bays.empty() && !removeBays)
@@ -974,6 +976,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("uncapturable");
 		if(customSwizzle && customSwizzle->IsLoaded())
 			out.Write("swizzle", customSwizzle->Name());
+		if(administrativeCost.has_value())
+			out.Write("administrative cost", administrativeCost.value());
 
 		out.Write("uuid", uuid.ToString());
 
@@ -2356,7 +2360,7 @@ bool Ship::IsDisabled() const
 
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
-	return (hull < minimumHull || (!crew && needsCrew));
+	return (hull < minimumHull || (!crew && needsCrew) || NeedsEnergy());
 }
 
 
@@ -2736,7 +2740,8 @@ bool Ship::CanGiveEnergy(const Ship &other) const
 
 double Ship::TransferFuel(double amount, Ship *to)
 {
-	amount = max(fuel - attributes.Get("fuel capacity"), amount);
+	// Do not give more fuel than the ship's current fuel reserves.
+	amount = min(fuel, amount);
 	if(to)
 	{
 		amount = min(to->attributes.Get("fuel capacity") - to->fuel, amount);
@@ -2752,7 +2757,8 @@ double Ship::TransferFuel(double amount, Ship *to)
 
 double Ship::TransferEnergy(double amount, Ship *to)
 {
-	amount = max(energy - attributes.Get("energy capacity"), amount);
+	// Do not give more energy than the ship's current energy reserves.
+	amount = min(energy, amount);
 	if(to)
 	{
 		amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
@@ -3019,8 +3025,42 @@ bool Ship::NeedsFuel(bool followParent) const
 
 bool Ship::NeedsEnergy() const
 {
-	return attributes.Get("energy capacity") && !energy && !attributes.Get("energy generation")
-			&& !attributes.Get("fuel energy") && !attributes.Get("solar collection");
+	// If a ship has no energy capacity or already has some energy in reserves,
+	// it does not need energy. Since engines can use fractional thrust/turn,
+	// even a single unit of energy can still have use.
+	if(!attributes.Get("energy capacity") || energy > 1.)
+		return false;
+
+	// If a ship has energy capacity but is low on energy, check to see if it is capable
+	// of generating its own energy.
+	// Just check standard energy generation first for simplicity. If gaining any energy at all from
+	// energy generation, the ship doesn't need energy.
+	double generation = attributes.Get("energy generation") - attributes.Get("energy consumption");
+	if(generation > 0.)
+		return false;
+
+	// A ship may be gaining energy from other sources.
+	double solarCollection = attributes.Get("solar collection");
+	double fuelEnergy = attributes.Get("fuel energy");
+	if(!solarCollection && !fuelEnergy)
+		return true;
+	// If other energy sources are available, check how much energy the ship is getting from them.
+	System::SolarGeneration solar = currentSystem->GetSolarGeneration(position,
+		attributes.Get("ramscoop"), solarCollection, attributes.Get("solar heat"));
+	generation += solar.energy;
+	// "fuel energy" only provides energy if there is fuel present to burn.
+	// Due to fuel consumption not being fractional, a ship could theoretically have high fuel energy
+	// and fuel consumption such that it can only generate a large amount of energy on certain
+	// frames after gaining enough fuel. Such a ship might not technically need energy since it
+	// will eventually get it at some later frame, but this is also such an absurd scenario that
+	// it's not worth checking for, and would be better addressed by making fuel consumption
+	// fractional.
+	if(fuelEnergy && attributes.Get("fuel consumption") <= fuel + solar.fuel + attributes.Get("fuel generation"))
+		generation += fuelEnergy;
+	// Consider a ship disabled if it is gaining less than 1 energy per second.
+	// This accounts for ships that may be relying upon solar panels for energy, but are so far
+	// from the system center that the solar panel gains are negligible.
+	return generation < 0.016;
 }
 
 
