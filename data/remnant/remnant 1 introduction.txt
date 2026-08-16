@@ -1734,11 +1734,11 @@ mission "Remnant: Heavy Laser"
 		not attributes "requires: gaslining"
 		not distance 0
 	to offer
+		has "outfit: Heavy Laser"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		require "Heavy Laser"
 		conversation
 			`You remember that Taely was interested in seeing examples of technology from human space. Would you like to show her your Heavy Laser?`
 			choice
@@ -1777,11 +1777,11 @@ mission "Remnant: Plasma Cannon"
 		not attributes "requires: gaslining"
 		not distance 0
 	to offer
+		has "outfit: Plasma Cannon"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		require "Plasma Cannon"
 		conversation
 			`You recall that Taely was interested in examining examples of technology from ancestral space. Would you like to show her the Plasma Cannons you retrieved?`
 			choice
@@ -1827,11 +1827,11 @@ mission "Remnant: Catalytic Ramscoop"
 		not attributes "requires: gaslining"
 		not distance 0
 	to offer
+		has "outfit: Catalytic Ramscoop"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		require "Catalytic Ramscoop"
 		conversation
 			`You recall that Taely was interested in seeing examples of new human technology, and the Catalytic Ramscoop definitely fits the criteria. Would you like to show her?`
 			choice
@@ -1868,11 +1868,11 @@ mission "Remnant: Electron Beam"
 		not attributes "requires: gaslining"
 		not distance 0
 	to offer
+		has "outfit: Electron Beam"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		require "Electron Beam"
 		conversation
 			`You recall that Taely was interested in seeing examples of new human technology, and the electron beam certainly fits the criteria. Would you like to show her?`
 			choice
@@ -1909,11 +1909,11 @@ mission "Remnant: D94-YV Shield Generator"
 		not attributes "requires: gaslining"
 		not distance 0
 	to offer
+		has "outfit: D94-YV Shield Generator"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		require "D94-YV Shield Generator"
 		conversation
 			`You know that Taely was interested in seeing examples of recently developed human technology, and the D94-YV Shield Generator probably fits the criteria. Would you like to show her?`
 			choice
@@ -1950,11 +1950,11 @@ mission "Remnant: S-970 Regenerator"
 		not attributes "requires: gaslining"
 		not distance 0
 	to offer
+		has "outfit: S-970 Regenerator"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		require "S-970 Regenerator"
 		conversation
 			`You recall that Taely was interested in seeing instances of new human technology, and the S-970 Regenerator is definitely a recent development. Would you like to show her?`
 			choice
