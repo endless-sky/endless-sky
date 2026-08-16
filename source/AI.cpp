@@ -176,7 +176,7 @@ namespace {
 	void Deploy(const Ship &ship, bool includingDamaged)
 	{
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.ship && (includingDamaged || bay.ship->Health() > .75 || bay.ship->HasForceDeploy()) &&
+			if(bay.ship && (includingDamaged || bay.ship->HasForceDeploy() || bay.ship->Health() > .75) &&
 					(!bay.ship->IsYours() || bay.ship->HasDeployOrder()))
 				bay.ship->SetCommands(Command::DEPLOY);
 	}
