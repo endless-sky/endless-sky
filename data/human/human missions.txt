@@ -1320,6 +1320,7 @@ ship "Hallucination"
 		"frame rate" 1
 		"random start frame"
 	"never disabled"
+	"administrative cost" 1
 	attributes
 		category "Unclassified"
 		"hull" 1000
@@ -2032,6 +2033,7 @@ ship "Asteroid"
 	noun "asteroid"
 	sprite "asteroid/medium rock/spin"
 		"frame rate" 10
+	"administrative cost" 2
 	attributes
 		category "Unclassified"
 		"fuel capacity" 1
@@ -2620,6 +2622,7 @@ mission "Terminus exploration"
 
 ship "Science Drone"
 	sprite "ship/science drone"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		hull 200
@@ -6898,6 +6901,7 @@ mission "Lost Racer Epilogue"
 ship "Racing Flivver"
 	sprite "ship/racing flivver"
 	thumbnail "thumbnail/racing flivver"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		# This Flivver has a high cost so that you can sell it for roughly the same amount as a normal Flivver would cost.
@@ -8154,6 +8158,7 @@ event "end of independent violence"
 # Feel free to change this escape shuttle to a different ship once escape pod mechanics are implemented.
 ship "Emergency Shuttle"
 	sprite "ship/escape shuttle"
+	"administrative cost" 1
 	attributes
 		category "Utility"
 		"cost" 45000
