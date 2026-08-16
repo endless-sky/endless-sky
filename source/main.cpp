@@ -37,7 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
-#include "Plugins.h"
+#include "PluginManager.h"
 #include "Preferences.h"
 #include "PrintData.h"
 #include "Random.h"
@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
 	try {
 		// Load plugin settings and preferences before game data.
 		Preferences::Load();
-		Plugins::LoadSettings();
+		PluginManager::LoadSettings();
 
 		TaskQueue queue;
 
@@ -279,7 +279,7 @@ int main(int argc, char *argv[])
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height(), true);
 	Preferences::Save();
-	Plugins::Save();
+	PluginManager::Save();
 
 	Audio::Quit();
 	GameWindow::Quit();
@@ -636,9 +636,8 @@ void PrintHelp()
 	cerr << "    --nomute: don't mute the game while running tests." << endl;
 	cerr << "    --rng-seed <seed>: every time the pseudo-random number generator is seeded,"
 		" it will be given this value." << endl;
-	cerr << "    --tq-threads: sets the number of threads used for the internal queue of tasks."
-		" Not specifying this will use a default depending on your system. This is only useful for debugging."
-		" Has to be at least 1." << endl;
+	cerr << "    --tq-threads <number>: sets the number of threads used for the internal queue of tasks."
+		" Not specifying this will use a default depending on your system. Has to be at least 1." << endl;
 	PrintData::Help();
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;

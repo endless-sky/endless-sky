@@ -219,6 +219,10 @@ public:
 	// The player can selectively deploy their carried ships, rather than just all / none.
 	void SetDeployOrder(bool shouldDeploy = true);
 	bool HasDeployOrder() const;
+	// Deployed ships may automatically recall themselves when damaged, unless the player
+	// force deploys them.
+	void SetForceDeploy(bool forceDeploy = true);
+	bool HasForceDeploy() const;
 
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
@@ -640,6 +644,7 @@ private:
 	bool isYours = false;
 	bool isParked = false;
 	bool shouldDeploy = false;
+	bool forceDeployed = false;
 	bool isOverheated = false;
 	bool isDisabled = false;
 	bool isBoarding = false;

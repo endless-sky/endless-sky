@@ -1864,7 +1864,7 @@ interface "news"
 		to -50 10
 	box "message"
 		from -340 -80
-		to 80 10
+		to 140 20
 
 
 
@@ -1882,7 +1882,7 @@ interface "news (small screen)"
 		to -50 10
 	box "message"
 		from -400 -80
-		to 80 10
+		to 80 20
 
 
 
@@ -1967,6 +1967,10 @@ interface "boarding"
 	string "defense casualties"
 		from 330 28
 		align right
+	
+	box "messages"
+		from 45 45
+		to 330 160
 	
 	active if "can take"
 	button t "_Take"
@@ -2737,6 +2741,10 @@ interface "hail panel"
 		align left
 		width 330
 		truncate back
+	
+	box "message"
+		from -50 -50
+		to 280 90
 
 	button d "_Done"
 		center 250 115
