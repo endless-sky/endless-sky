@@ -1794,15 +1794,8 @@ void PlayerInfo::Land(UI &ui)
 		{
 			string message = "These active missions or jobs were deactivated due to a missing definition"
 				" - perhaps you recently removed a plugin?\n";
-			auto mit = inactiveMissions.rbegin();
-			int named = 0;
-			while(mit != inactiveMissions.rend() && (++named < 10))
-			{
-				message += "\t\"" + mit->DisplayName() + "\"\n";
-				++mit;
-			}
-			if(mit != inactiveMissions.rend())
-				message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
+			message += Format::IndentedList(inactiveMissions,
+				[](const Mission &mission) -> string { return '"' + mission.DisplayName() + '"'; }, 10) + "\n";
 			message += "They will be reactivated when the necessary plugin is reinstalled.";
 			ui.Push(DialogPanel::Info(message));
 		}
@@ -1810,15 +1803,8 @@ void PlayerInfo::Land(UI &ui)
 		{
 			string message = "These scheduled or past events are undefined or contain undefined data"
 				" - perhaps you recently removed a plugin?\n";
-			auto eit = invalidEvents.rbegin();
-			int named = 0;
-			while(eit != invalidEvents.rend() && (++named < 10))
-			{
-				message += "\t\"" + *eit + "\"\n";
-				++eit;
-			}
-			if(eit != invalidEvents.rend())
-				message += " and " + to_string(distance(eit, invalidEvents.rend())) + " more.\n";
+			message += Format::IndentedList(invalidEvents,
+				[](const string &name) -> string { return '"' + name + '"'; }, 10) + "\n";
 			message += "The universe may not be in the proper state until the necessary plugin is reinstalled.";
 			ui.Push(DialogPanel::Info(message));
 		}
