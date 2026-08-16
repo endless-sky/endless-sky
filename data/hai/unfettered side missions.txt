@@ -195,7 +195,7 @@ mission "Hai Legacy 1"
 				give ship "Anomalocaris (Venerable)" "Good Omen"
 					id "hai legacy"
 				debt 10000000
-			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go through standard means for this sale. We will instead present it as a loan. You'll be charged for carrying technology you had no idea was forbidden, as these Korath weapons are suspicious indeed. However, it will not go on your permanent record."`
+			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go through standard means for this sale."`
 			`	You quickly realize that they are not asking you for your opinion at all. In fact, you receive notice of the debt before they have even finished speaking. "We will need to make some modifications to the ship before you can use it.`
 			choice
 				`	(Go back to the shipyard.)`
