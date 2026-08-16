@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Include whichever header is used for OpenGL on this operating system.
 #ifdef __APPLE__
-#include <OpenGL/GL3.h>
+#include <OpenGL/gl3.h>
 #else
 #ifdef ES_GLES
 #include <GLES3/gl3.h>
