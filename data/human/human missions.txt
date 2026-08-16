@@ -10296,6 +10296,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 
 
 mission "Timothy Radrickson 5e: Back to Oblivion"
+	landing
 	source Oblivion
 	to offer
 		has "Timothy Radrickson 5a: Timshank Redemption: done"

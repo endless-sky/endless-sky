@@ -1343,6 +1343,24 @@ event "memorial on Deep"
 event "flamethrower available"
 	outfitter "Kraz Advanced"
 		"Flamethrower"
+	fleet "Small Free Worlds"
+		variant 3
+			"Fury (Laser)"
+			"Fury (Flamethrower)"
+		variant 2
+			"Hawk"
+			"Fury (Flamethrower)"
+		variant 1
+			"Fury (Flamethrower)"
+			"Sparrow" 2
+	fleet "Large Free Worlds"
+		variant 2
+			"Osprey (Laser)"
+			"Fury (Flamethrower)"
+		variant 1
+			"Falcon (Heavy)"
+			"Fury (Flamethrower)" 2
+			"Sparrow" 4
 
 
 
@@ -1469,6 +1487,80 @@ event "catalytic ramscoop available"
 event "fw gets catalytic ramscoop"
 	outfitter "Delta V Advanced"
 		"Catalytic Ramscoop"
+	# The Free Worlds start to use flamethrowers in a significant extent
+	# only after the catalytic ramscoop makes it a reasonable choice.
+	fleet "Small Free Worlds"
+		add variant 3
+			"Fury (Flamethrower Blaster)"
+			"Fury (Missile)"
+		add variant 2
+			"Hawk"
+			"Fury (Flamethrower Blaster)"
+		add variant 1
+			"Osprey (Flamethrower)"
+	fleet "Large Free Worlds"
+		add variant 4
+			"Osprey (Flamethrower)"
+			"Fury (Flamethrower Blaster)"
+		add variant 3
+			"Bastion (Heavy)"
+			"Osprey (Flamethrower)"
+		add variant 1
+			"Falcon (Flamethrower)"
+		add variant 1
+			"Falcon (Flamethrower)"
+			"Hawk"
+			"Hawk (Plasma)"
+			"Sparrow" 3
+		add variant 2
+			"Falcon (Flamethrower)"
+			"Bastion (Heavy)"
+			"Hawk (Rocket)"
+		add variant 2
+			"Bastion (Heavy)"
+			"Fury (Flamethrower Blaster)" 2
+			"Sparrow" 2
+		add variant 2
+			"Falcon (Flamethrower)"
+			"Fury (Flamethrower Blaster)" 2
+			"Sparrow" 4
+	# Pirates don't use Catalytic Ramscoops, but we simulate that they adopted the flamethrower
+	# in relevant extent only after it became more popular and could e.g. be looted more often.
+	fleet "Small Southern Pirates"
+		add variant 1
+			"Fury (Flamethrower Pirate)"
+		add variant 1
+			"Hawk (Rocket)"
+			"Fury (Flamethrower Pirate)"
+			"Sparrow"
+		add variant 1
+			"Clipper (Flamethrower)"
+		add variant 1
+			"Fury (Flamethrower Pirate)" 3
+		add variant 1
+			"Fury (Flamethrower Pirate)"
+			"Sparrow"
+	fleet "Large Southern Pirates"
+		add variant 1
+			"Osprey (Flamethrower Pirate)"
+		add variant 2
+			"Fury (Flamethrower Pirate)"
+			"Sparrow" 3
+		add variant 2
+			"Clipper (Flamethrower)"
+			"Hawk (Bomber)"
+		add variant 1
+			"Clipper (Flamethrower)"
+			"Clipper (Heavy)"
+			"Clipper (Speedy)"
+		add variant 1
+			"Fury (Bomber)"
+			"Fury (Flamethrower Pirate)" 2
+		add variant 1
+			"Falcon (Flamethrower Pirate)"
+			"Sparrow" 3
+		add variant 1
+			"Falcon (Flamethrower Pirate)"
 
 
 

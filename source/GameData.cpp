@@ -49,7 +49,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
-#include "Plugins.h"
+#include "Plugin.h"
+#include "PluginManager.h"
 #include "shader/PointerShader.h"
 #include "Politics.h"
 #include "RenderBuffer.h"
@@ -106,7 +107,7 @@ namespace {
 
 	void LoadPlugin(TaskQueue &queue, const filesystem::path &path)
 	{
-		const auto *plugin = Plugins::Load(path);
+		const auto *plugin = PluginManager::Load(path);
 		if(!plugin)
 			return;
 
@@ -942,21 +943,21 @@ void GameData::LoadSources(TaskQueue &queue)
 
 	vector<filesystem::path> globalPlugins = Files::ListDirectories(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
-		if(Plugins::IsPlugin(path))
+		if(PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 	// Load unzipped plugins first to give them precedence, then load the zipped plugins.
 	globalPlugins = Files::List(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
-		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+		if(path.extension() == ".zip" && PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 
 	vector<filesystem::path> localPlugins = Files::ListDirectories(Files::UserPlugins());
 	for(const auto &path : localPlugins)
-		if(Plugins::IsPlugin(path))
+		if(PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 	localPlugins = Files::List(Files::UserPlugins());
 	for(const auto &path : localPlugins)
-		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+		if(path.extension() == ".zip" && PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 }
 

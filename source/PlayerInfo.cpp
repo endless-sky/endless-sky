@@ -34,7 +34,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "PilotProfile.h"
 #include "Planet.h"
-#include "Plugins.h"
+#include "Plugin.h"
+#include "PluginManager.h"
 #include "Politics.h"
 #include "Port.h"
 #include "Preferences.h"
@@ -4508,6 +4509,20 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
+	// This condition checks locations that a GameAction can take outfits from.
+	// That is, outfits installed on the flagship, and in player cargo (when landed) or flagship cargo (when not).
+	conditions["outfit (removable): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		if(!flagship)
+			return 0;
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
+		if(!outfit)
+			return 0;
+		int64_t retVal = 0;
+		retVal += flagship->OutfitCount(outfit);
+		retVal += (planet ? cargo : flagship->Cargo()).Get(outfit);
+		return retVal;
+	});
+
 	// This condition corresponds to the method by which the flagship entered the current system.
 	conditions["entered system by: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		return !ce.NameWithoutPrefix().compare(EntryToString(entry)); });
@@ -4583,7 +4598,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return (planet && flagship) ? planet->CanLand(*flagship) : false; });
 
 	conditions["installed plugin: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
-		const Plugin *plugin = Plugins::Get().Find(ce.NameWithoutPrefix());
+		const Plugin *plugin = PluginManager::Get().Find(ce.NameWithoutPrefix());
 		return plugin ? plugin->IsValid() && plugin->enabled : false; });
 
 	conditions["person destroyed: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
@@ -4858,7 +4873,7 @@ void PlayerInfo::StepMissions(UI &ui)
 			// from the same destination.
 			if(visitText.empty())
 			{
-				const auto &text = mission.GetAction(Mission::VISIT).DialogText();
+				string text = mission.GetAction(Mission::VISIT).DialogText();
 				if(!text.empty())
 					visitText = Format::Replace(text, substitutions);
 			}
@@ -5296,7 +5311,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.WriteComment("Installed plugins:");
 	out.Write("plugins");
 	out.BeginChild();
-	for(const auto &it : Plugins::Get())
+	for(const auto &it : PluginManager::Get())
 	{
 		const auto &plugin = it.second;
 		if(plugin.IsValid() && plugin.enabled)
