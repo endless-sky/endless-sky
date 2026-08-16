@@ -1324,7 +1324,7 @@ ship "Peregrine" "Peregrine (II)"
 ship "Petrel"
 	sprite "ship/petrel"
 	thumbnail "thumbnail/petrel"
-	"administrative cost" 1
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		licenses
@@ -1438,7 +1438,7 @@ ship "Puffin"
 ship "Smew"
 	sprite "ship/smew"
 	thumbnail "thumbnail/smew"
-	"administrative cost" 1
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		licenses
@@ -1771,7 +1771,7 @@ ship "Swan"
 ship "Tern"
 	sprite "ship/tern"
 	thumbnail "thumbnail/tern"
-	"administrative cost" 1
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		licenses

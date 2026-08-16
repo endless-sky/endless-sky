@@ -2358,7 +2358,7 @@ ship "Atenuatia" "Atenuatia (Orchid)"
 ship "Akoustiki"
 	sprite "ship/avgi akoustiki"
 	thumbnail "thumbnail/avgi akoustiki"
-	"administrative cost" 1
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		"cost" 120000
@@ -2428,7 +2428,7 @@ ship "Akoustiki"
 ship "Photikon"
 	sprite "ship/avgi photikon"
 	thumbnail "thumbnail/avgi photikon"
-	"administrative cost" 1
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		licenses
@@ -2598,7 +2598,7 @@ ship "Vibratia"
 ship "Undulon"
 	sprite "ship/avgi undulon"
 	thumbnail "thumbnail/avgi undulon"
-	"administrative cost" 1
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		licenses
@@ -2670,7 +2670,7 @@ ship "Undulon"
 ship "Optikon"
 	sprite "ship/avgi optikon"
 	thumbnail "thumbnail/avgi optikon"
-	"administrative cost" 1
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		"cost" 54000
@@ -2721,7 +2721,7 @@ ship "Sonikis"
 	plural "Sonikis"
 	sprite "ship/avgi sonikis"
 	thumbnail "thumbnail/avgi sonikis"
-	"administrative cost" 1
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		"cost" 60000
