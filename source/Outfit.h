@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "DataSchema.h"
 #include "Dictionary.h"
 #include "Paragraphs.h"
 
@@ -58,6 +59,7 @@ public:
 
 
 public:
+	DataSchema Schema();
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
 	void Load(const DataNode &node, const ConditionsStore *playerConditions);

@@ -467,11 +467,11 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		else if(key == "default attitude")
 			defaultAttitude = child.Value(valueIndex);
 		else if(key == "player reputation")
-			initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
+			initialPlayerReputation = child.Value(valueIndex) + (add ? initialPlayerReputation : 0.);
 		else if(key == "crew attack")
-			crewAttack = max(0., add ? child.Value(valueIndex) + crewAttack : child.Value(valueIndex));
+			crewAttack = max(0., child.Value(valueIndex) + (add ? crewAttack : 0.));
 		else if(key == "crew defense")
-			crewDefense = max(0., add ? child.Value(valueIndex) + crewDefense : child.Value(valueIndex));
+			crewDefense = max(0., child.Value(valueIndex) + (add ? crewDefense : 0.));
 		else if(key == "bribe")
 			bribe = child.Value(valueIndex) + (add ? bribe : 0.);
 		else if(key == "bribe threshold")

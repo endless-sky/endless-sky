@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Body.h"
 #include "DataNode.h"
+#include "DataSchema.h"
 #include "Effect.h"
 #include "GameData.h"
 #include "image/SpriteSet.h"
@@ -226,6 +227,22 @@ optional<double> Outfit::LowerLimit(const string &attribute)
 
 
 
+DataSchema Outfit::Schema()
+{
+	return {
+		// list in save file order for later schema writing
+		Field::String("display name", displayName),
+		Field::String("plural", pluralName),
+		Field::String("category", category),
+		Field::String("series", series),
+		Field::Int("index", index),
+		Field::Int64("cost", cost),
+		Field::Double("mass", mass),
+	};
+}
+
+
+
 void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() >= 2)
@@ -233,22 +250,22 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 	isDefined = true;
 
+	DataSchema schema = Schema();
+	ApplySchema(node, schema);
+
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
+
+		// temporary
+		auto it = find_if(schema.begin(), schema.end(),
+			[&](const DataField &f){ return key == f.key; });
+		if(it != schema.end())
+			continue;
+
 		bool hasValue = child.Size() >= 2;
 
-		if(key == "display name" && hasValue)
-			displayName = child.Token(1);
-		else if(key == "category" && hasValue)
-			category = child.Token(1);
-		else if(key == "series" && hasValue)
-			series = child.Token(1);
-		else if(key == "index" && hasValue)
-			index = child.Value(1);
-		else if(key == "plural" && hasValue)
-			pluralName = child.Token(1);
-		else if(key == "flare sprite" && hasValue)
+		if(key == "flare sprite" && hasValue)
 		{
 			flareSprites.emplace_back(Body(), 1);
 			flareSprites.back().first.LoadSprite(child);
@@ -313,10 +330,6 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			linkedOutfits.insert(GameData::Outfits().Get(child.Token(1)));
 		else if(key == "description" && hasValue)
 			description.Load(child, playerConditions);
-		else if(key == "cost" && hasValue)
-			cost = child.Value(1);
-		else if(key == "mass" && hasValue)
-			mass = child.Value(1);
 		else if(key == "licenses" && (child.HasChildren() || hasValue))
 		{
 			// Add any new licenses that were specified "inline".
