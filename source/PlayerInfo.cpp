@@ -317,6 +317,7 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 	map<string, map<string, int>> missionCargoToDistribute;
 	map<string, map<string, int>> missionPassengersToDistribute;
 
+	lastTouchedSavePath = path.string();
 	filePath = path.string();
 	// Strip anything after the "~" from snapshots, so that the file we save
 	// will be the auto-save, not the snapshot.
@@ -646,6 +647,7 @@ bool PlayerInfo::LoadRecent()
 // Save this player. The file name is based on the player's name.
 void PlayerInfo::Save() const
 {
+	ClearLastTouchedSavePath();
 	// Don't save dead players or players that are not fully created.
 	if(!CanBeSaved())
 		return;
@@ -682,6 +684,13 @@ void PlayerInfo::Save() const
 	// Save global conditions:
 	DataWriter globalConditions(Files::Config() / "global conditions.txt");
 	GameData::GlobalConditions().Save(globalConditions);
+}
+
+
+
+void PlayerInfo::ClearLastTouchedSavePath() const
+{
+	lastTouchedSavePath = "";
 }
 
 
@@ -2750,6 +2759,9 @@ void PlayerInfo::MissionCallback(int response)
 
 	Mission &mission = missionList.front();
 
+	bool shouldCreateCheckpoint = mission.RecommendsCreateCheckpoint();
+	if(shouldCreateCheckpoint)
+		CreateCheckpoint(mission.CheckpointLabel());
 	// If landed, this conversation may require the player to immediately depart.
 	shouldLaunch |= (GetPlanet() && Endpoint::RequiresLaunch(response));
 	if(response == Endpoint::ACCEPT || response == Endpoint::LAUNCH)
@@ -2772,7 +2784,7 @@ void PlayerInfo::MissionCallback(int response)
 		missions.splice(spliceIt, missionList, missionList.begin());
 		mission.Do(Mission::ACCEPT, *this);
 		if(shouldAutosave)
-			Autosave();
+			Autosave(mission.AutosaveLabel());
 		// If this is a mission offered in-flight, expose a pointer to it
 		// so Engine::SpawnFleets can add its ships without requiring the
 		// player to land.
@@ -4929,12 +4941,21 @@ bool PlayerInfo::RecacheJumpRoutes()
 
 
 
-void PlayerInfo::Autosave() const
+void PlayerInfo::CreateCheckpoint(string label)
+{
+	string checkpointPath = filePath.substr(0, filePath.length() - 4) + "~checkpoint"
+		+ (label != "" ? " " + label : "") + ".txt";
+	Files::Copy(lastTouchedSavePath.empty() ? filePath : lastTouchedSavePath, checkpointPath);
+}
+
+
+
+void PlayerInfo::Autosave(std::string label) const
 {
 	if(!CanBeSaved() || filePath.length() < 4)
 		return;
-
-	string path = filePath.substr(0, filePath.length() - 4) + "~autosave.txt";
+	string path = filePath.substr(0, filePath.length() - 4) + "~autosave"
+		+ (label != "" ? " " + label : "") + ".txt";
 	Save(path);
 }
 
