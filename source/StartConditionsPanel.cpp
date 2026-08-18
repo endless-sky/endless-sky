@@ -181,7 +181,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		pilot->New(gamerules);
 		player.New(*startIt, pilot);
 
-		ConversationPanel *panel = new ConversationPanel(player, startIt->GetConversation());
+		ConversationPanel *panel = new ConversationPanel(player, *startIt->GetConversation());
 		GetUI().Push(panel);
 		panel->SetCallback(this, &StartConditionsPanel::OnConversationEnd);
 		return true;

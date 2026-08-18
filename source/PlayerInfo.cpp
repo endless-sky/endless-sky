@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AI.h"
 #include "audio/Audio.h"
+#include "Conversation.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataWriter.h"
@@ -24,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DistanceMap.h"
 #include "Endpoint.h"
 #include "Files.h"
+#include "Fleet.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Gamerules.h"
