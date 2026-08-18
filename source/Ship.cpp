@@ -902,8 +902,11 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Ships read from a save file may have non-default shields or hull.
 	// Perform a full IsDisabled calculation.
-	isDisabled = true;
-	isDisabled = IsDisabled();
+	if(!isNewInstance)
+	{
+		isDisabled = true;
+		isDisabled = IsDisabled();
+	}
 
 	// Calculate this ship's jump information, e.g. how much it costs to jump, how far it can jump, how it can jump.
 	navigation.Calibrate(*this);
@@ -3039,10 +3042,16 @@ bool Ship::NeedsFuel(bool followParent) const
 
 bool Ship::NeedsEnergy() const
 {
-	// If a ship has no energy capacity or already has some energy in reserves,
-	// it does not need energy. Since engines can use fractional thrust/turn,
-	// even a single unit of energy can still have use.
-	if(!attributes.Get("energy capacity") || energy > 1.)
+	// If this ship doesn't have a system, then it isn't even spawned in, so it
+	// doesn't need energy.
+	if(!currentSystem)
+		return false;
+
+	// If a ship has no energy capacity, no room for more energy, or already has
+	// some energy in reserves, it does not need energy. Since engines can use
+	// fractional thrust/turn, even a small unit of energy can still have use.
+	double capacity = attributes.Get("energy capacity");
+	if(!capacity || (capacity && energy >= capacity) || energy > 0.25)
 		return false;
 
 	// If a ship has energy capacity but is low on energy, check to see if it is capable
