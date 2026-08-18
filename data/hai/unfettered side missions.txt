@@ -226,7 +226,7 @@ mission "Hai Legacy 1"
 	on accept
 		clear "unfettered: ocean dialog"
 		clear "unfettered: pilot dialog"
-		log "Accepted a somewhat shady deal for an old Hai ship called an Anomalocaris; the transaction could not be conducted through normal channels so a loan was issued in lieu of a conventional purchase. It seems to still be in a good enough state to fly."
+		log "Accepted a somewhat shady deal for an old Hai ship called an Anomalocaris; the transaction could not be conducted through normal channels, so a loan was issued in lieu of a conventional purchase. It seems to still be in a good enough state to fly."
 		fail
 
 
