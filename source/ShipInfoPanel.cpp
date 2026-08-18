@@ -119,9 +119,10 @@ void ShipInfoPanel::Draw()
 	}
 	else if(!panelState.CanEdit())
 	{
-		interfaceInfo.SetCondition("show dump");
+		interfaceInfo.SetCondition("show dump/jettison button");
+		interfaceInfo.SetCondition(selectedOutfit ? "show jettison" : "show dump");
 		if(CanDump())
-			interfaceInfo.SetCondition("enable dump");
+			interfaceInfo.SetCondition("enable dump/jettison");
 	}
 	if(player.Ships().size() > 1)
 		interfaceInfo.SetCondition("five buttons");
@@ -227,7 +228,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Disown, message));
 		}
 	}
-	else if(key == 'c' && CanDump())
+	else if((key == 'c' || key == 'j') && CanDump())
 	{
 		int commodities = (*shipIt)->Cargo().CommoditiesSize();
 		int amount = (*shipIt)->Cargo().Get(selectedCommodity);
@@ -278,7 +279,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				"Are you sure you want to jettison all of this ship's cargo?"));
 		}
 	}
-	else if(panelState.CanEdit() && key == 'c' && selectedOutfit && !selectedOutfit->Get("can jettison"))
+	else if(!panelState.CanEdit() && (key == 'c' || key == 'j') && selectedOutfit && !selectedOutfit->Get("can jettison"))
 		GetUI().Push(DialogPanel::Info("This outfit cannot be jettisoned while it is installed."));
 	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI().Push(new MissionPanel(player));
