@@ -1241,7 +1241,7 @@ tip "anti-missile:"
 	`The power of the anti-missile shots. Higher values make it easier to destroy stronger projectiles.`
 
 tip "tractor beam:"
-	`The base velocity that this weapon pulls flotsam toward itself. Heavier flotsam is more difficult to pull.`
+	`The velocity that this weapon pulls flotsam toward itself.`
 
 tip "mining precision:"
 	`A measure of how well this weapon prevents damage to valuable materials while mining. Weapons with a positive precision result in higher yields, while a negative precision results in lower yields. Some minable objects are tougher than others, and are therefore less susceptible to having their yields altered.`
@@ -1413,6 +1413,8 @@ tip "Toggle performance info"
 
 tip "Deploy / recall fighters"
 	`Deploy or recall carried ships (e.g. fighters, drones) in your fleet. Requires carriers with space to hold the carried ships.`
+	`Carried ships may automatically return to the carrier when damaged and redeploy when healed based off of the "Damaged fighters retreat" setting.`
+	`When used while holding <shift> or with the aforementioned setting disabled, fighters will remain deployed until manually recalled.`
 
 tip "Fleet: Fight my target"
 	`Command your entire fleet to focus fire on the selected target. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on a hostile ship.`
@@ -1619,6 +1621,11 @@ tip "Repair fighters in"
 	`The strategy used for repairing carried ships (e.g. fighters, drones) in your fleet while they are docked with their carrier.`
 	`- "series": repairs the highest HP ship until it is fully repaired, then moves on to the next one.`
 	`- "parallel": repairs the lowest HP ship at all times so that all ships increase in HP together.`
+
+tip "Damaged fighters retreat"
+	`When deployed, your fighters and drones will automatically recall themselves to the carrier if their health drops below 50%, then automatically deploy again after healing above 75% if a manual recall command has not been sent.`
+	`If your fighters cannot be repaired above this threshold while docked in their carrier, they will not leave the carrier if you send another deploy command without holding <shift>.`
+	`The health of a ship is calculated as its shields plus the amount of hull prior to the ship becoming disabled.`
 
 tip "Fighters transfer cargo"
 	`Fighters transfer any cargo that they have to their carried ship when they dock.`

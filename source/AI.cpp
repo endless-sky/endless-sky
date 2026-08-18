@@ -176,7 +176,7 @@ namespace {
 	void Deploy(const Ship &ship, bool includingDamaged)
 	{
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.ship && (includingDamaged || bay.ship->Health() > .75) &&
+			if(bay.ship && (includingDamaged || bay.ship->HasForceDeploy() || bay.ship->Health() > .75) &&
 					(!bay.ship->IsYours() || bay.ship->HasDeployOrder()))
 				bay.ship->SetCommands(Command::DEPLOY);
 	}
@@ -212,7 +212,7 @@ namespace {
 	}
 
 	// Issue deploy orders for the selected ships (or the full fleet if no ships are selected).
-	void IssueDeploy(const PlayerInfo &player)
+	void IssueDeploy(const PlayerInfo &player, bool shift)
 	{
 		// Lay out the rules for what constitutes a deployable ship. (Since player ships are not
 		// deleted from memory until the next landing, check both parked and destroyed states.)
@@ -245,17 +245,42 @@ namespace {
 		// If any ships were not yet ordered to deploy, deploy them.
 		if(!toDeploy.empty())
 		{
+			bool canRetreat = Preferences::Has("Damaged fighters retreat");
+			int badlyDamaged = 0;
 			for(Ship *ship : toDeploy)
+			{
 				ship->SetDeployOrder(true);
-			string ship = (toDeploy.size() == 1 ? "ship" : "ships");
-			Messages::Add({"Deployed " + to_string(toDeploy.size()) + " carried " + ship + ".",
-				GameData::MessageCategories().Get("normal")});
+				ship->SetForceDeploy(shift);
+				if(canRetreat && ship->Health() <= .75)
+					++badlyDamaged;
+			}
+			int now = toDeploy.size();
+			if(canRetreat && !shift)
+				now -= badlyDamaged;
+			string message = "Deployed " + to_string(now) + " carried " + (now == 1 ? "ship" : "ships") + ".";
+			if(canRetreat)
+			{
+				if(shift)
+				{
+					if(badlyDamaged)
+						message += " " + to_string(badlyDamaged) + " badly damaged "
+							+ (badlyDamaged == 1 ? "ship has" : "ships have") + " been forced to deploy.";
+					message += " Deployed ships will remain in combat until manually recalled.";
+				}
+				else if(badlyDamaged)
+					message += " " + to_string(badlyDamaged) + " badly damaged "
+						+ (badlyDamaged == 1 ? "ship" : "ships") + " will remain docked until repaired.";
+			}
+			Messages::Add({message, GameData::MessageCategories().Get("normal")});
 		}
 		// Otherwise, instruct the carried ships to return to their berth.
 		else if(!toRecall.empty())
 		{
 			for(Ship *ship : toRecall)
+			{
 				ship->SetDeployOrder(false);
+				ship->SetForceDeploy(false);
+			}
 			string ship = (toRecall.size() == 1 ? "ship" : "ships");
 			Messages::Add({"Recalled " + to_string(toRecall.size()) + " carried " + ship + ".",
 				GameData::MessageCategories().Get("normal")});
@@ -557,11 +582,11 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 		return;
 
 	// Toggle the "deploy" command for the fleet or selected ships.
+	const bool shift = activeCommands.Has(Command::SHIFT);
 	if(activeCommands.Has(Command::DEPLOY))
-		IssueDeploy(player);
+		IssueDeploy(player, shift);
 
 	// The gather command controls formation flying when combined with shift.
-	const bool shift = activeCommands.Has(Command::SHIFT);
 	if(shift && activeCommands.Has(Command::GATHER))
 		IssueFormationChange(player);
 
@@ -2456,6 +2481,10 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	{
 		if(!ship.HasDeployOrder() || ship.GetSystem() != playerSystem)
 			return true;
+		// Carried ships that were forced to deploy should remain deployed
+		// until manually recalled.
+		if(ship.HasForceDeploy())
+			return false;
 	}
 	else if(!parent.Commands().Has(Command::DEPLOY))
 		return true;

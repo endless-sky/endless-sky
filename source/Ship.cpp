@@ -1564,6 +1564,20 @@ void Ship::SetDeployOrder(bool shouldDeploy)
 
 
 
+bool Ship::HasForceDeploy() const
+{
+	return forceDeployed;
+}
+
+
+
+void Ship::SetForceDeploy(bool forceDeploy)
+{
+	this->forceDeployed = forceDeploy;
+}
+
+
+
 const Personality &Ship::GetPersonality() const
 {
 	return personality;
@@ -2247,7 +2261,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 		return pullVector;
 	if(CannotAct(ActionType::FIRE))
 		return pullVector;
-	// Don't waste energy on flotsams that you can't pick up.
+	// Don't waste energy on flotsam that you can't pick up.
 	if(!CanPickUp(flotsam))
 		return pullVector;
 	if(IsYours())
@@ -2274,12 +2288,13 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
-				// Heavier flotsam are harder to pull.
-				pullVector += (hardpointPos - flotsam.Position()).Unit() * weapon->TractorBeam() / flotsam.Mass();
+				// Tractor beams apply a gravitational force on flotsam, meaning that the mass of
+				// the flotsam does not influence the pull strength.
+				pullVector += (hardpointPos - flotsam.Position()).Unit() * weapon->TractorBeam();
 				// Remember that this flotsam is being pulled by a tractor beam so that this ship
 				// doesn't try to manually collect it.
 				tractorFlotsam.insert(&flotsam);
-				// If this ship is opportunistic, then only fire one tractor beam at each flostam.
+				// If this ship is opportunistic, then only fire one tractor beam at each flotsam.
 				if(personality.IsOpportunistic() || (isYours && opportunisticEscorts))
 					break;
 			}
