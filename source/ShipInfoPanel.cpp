@@ -790,8 +790,7 @@ bool ShipInfoPanel::CanDump() const
 	CargoHold &cargo = (*shipIt)->Cargo();
 	if(selectedOutfit)
 		return selectedOutfit->Get("can jettison");
-	return (selectedPlunder && cargo.Get(selectedPlunder) > 0)
-		|| cargo.CommoditiesSize() || cargo.OutfitsSize();
+	return (selectedPlunder && cargo.Get(selectedPlunder) > 0) || cargo.CommoditiesSize() || cargo.OutfitsSize();
 }
 
 
