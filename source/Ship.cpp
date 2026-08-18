@@ -2374,7 +2374,7 @@ bool Ship::IsDisabled() const
 
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
-	return (hull < minimumHull || (!crew && needsCrew) || NeedsEnergy());
+	return (hull < minimumHull || (!crew && needsCrew));
 }
 
 
@@ -5029,7 +5029,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	double dragForce = DragForce();
 	double slowMultiplier = 1. / (1. + slowness * .05);
 
-	if(isDisabled)
+	// Ships that can't move due to being disabled or a lack of energy should drift to a stop.
+	if(isDisabled || NeedsEnergy())
 		velocity *= 1. - dragForce;
 	else if(!pilotError)
 	{
