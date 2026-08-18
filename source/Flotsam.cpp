@@ -129,6 +129,13 @@ void Flotsam::SetVelocity(const Point &velocity)
 
 
 
+void Flotsam::InTractorBeam()
+{
+	++lifetime;
+}
+
+
+
 // This is the one ship that cannot pick up this flotsam.
 const Ship *Flotsam::Source() const
 {

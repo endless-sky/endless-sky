@@ -2697,6 +2697,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 			// yanking the flotsam away from the slower ship.
 			pullVector += avgShipVelocity / count;
 			flotsam.SetVelocity(pullVector);
+			flotsam.InTractorBeam();
 		}
 		return;
 	}
