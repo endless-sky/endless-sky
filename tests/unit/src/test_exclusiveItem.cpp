@@ -66,6 +66,16 @@ SCENARIO( "Creating an ExclusiveItem" , "[ExclusiveItem][Creation]" ) {
 				CHECK( item->GetValue() == 3 );
 			}
 		}
+
+		WHEN( "constructed with a shared pointer" ) {
+			auto obj = std::make_shared<Object>(2);
+			item = ExclusiveItem<Object>(obj);
+			THEN( "the object is obtainable and the item is nonstock" ) {
+				CHECK( item );
+				CHECK_FALSE( item.IsStock() );
+				CHECK( item->GetValue() == 2 );
+			}
+		}
 	}
 	GIVEN( "two exclusive items" ) {
 		auto firstItem = ExclusiveItem<Object>{};

@@ -32,15 +32,20 @@ public:
 	explicit ExclusiveItem(const Type *item) noexcept;
 	// Initialize with a locally defined item.
 	explicit ExclusiveItem(Type &&item);
+	// Initialize with a shared pointer.
+	explicit ExclusiveItem(const std::shared_ptr<Type> &item) noexcept;
 
 	ExclusiveItem(ExclusiveItem &&) = default;
 	ExclusiveItem &operator=(ExclusiveItem &&) = default;
 	ExclusiveItem(const ExclusiveItem &) = default;
 	ExclusiveItem &operator=(const ExclusiveItem &) = default;
 
+	// Whether this ExclusiveItem contains a raw pointer to a "stock" object,
+	// which is an object that comes directly from GameData.
 	bool IsStock() const noexcept;
 
-	operator bool() const noexcept;
+	// Returns whether anything is contained within the item.
+	explicit operator bool() const noexcept;
 	// Provides access to the underlying pointer. The caller is responsible
 	// for avoiding dereferencing nullptr.
 	const Type *Ptr() const noexcept;
@@ -72,6 +77,14 @@ inline ExclusiveItem<Type>::ExclusiveItem(const Type *item) noexcept
 template<class Type>
 inline ExclusiveItem<Type>::ExclusiveItem(Type &&item)
 	: item{std::shared_ptr<const Type>{new Type{item}}}
+{
+}
+
+
+
+template<class Type>
+inline ExclusiveItem<Type>::ExclusiveItem(const std::shared_ptr<Type> &item) noexcept
+	: item{item}
 {
 }
 
@@ -128,5 +141,5 @@ inline bool ExclusiveItem<Type>::operator==(const ExclusiveItem &other) const no
 template<class Type>
 inline bool ExclusiveItem<Type>::operator!=(const ExclusiveItem &other) const noexcept
 {
-	return *this && other ? **this != *other : static_cast<bool>(*this) != static_cast<bool>(other);
+	return !(*this == other);
 }
