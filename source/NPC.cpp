@@ -437,7 +437,7 @@ const Personality &NPC::GetPersonality() const
 
 
 // Get the ships associated with this set of NPCs.
-const list<shared_ptr<Ship>> NPC::Ships() const
+const list<shared_ptr<Ship>> &NPC::Ships() const
 {
 	return ships;
 }
