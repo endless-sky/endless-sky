@@ -2275,9 +2275,8 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
 				// Tractor beams apply a gravitational force on flotsam, meaning that the mass of
-				// the flotsam does not influence the pull strength. Treat all flotsam as if they are
-				// boxes full of commodities.
-				pullVector += (hardpointPos - flotsam.Position()).Unit() * weapon->TractorBeam() / Flotsam::TONS_PER_BOX;
+				// the flotsam does not influence the pull strength.
+				pullVector += (hardpointPos - flotsam.Position()).Unit() * weapon->TractorBeam();
 				// Remember that this flotsam is being pulled by a tractor beam so that this ship
 				// doesn't try to manually collect it.
 				tractorFlotsam.insert(&flotsam);
