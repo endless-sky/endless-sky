@@ -586,6 +586,8 @@ private:
 	void StepTargeting();
 	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
 
+	// Whether this ship requires energy for movement.
+	bool RequiresMovementEnergy() const;
 
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);

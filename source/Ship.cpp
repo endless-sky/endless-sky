@@ -2357,15 +2357,12 @@ bool Ship::IsIonized() const
 		return false;
 
 	// A ship can only be fully ionized if its engines or weapons require energy.
-	bool usesEnergy = attributes.Get("thrusting energy") > 0
-		|| attributes.Get("reverse thrusting energy") > 0
-		|| attributes.Get("turning energy") > 0
+	bool useEnergy = RequiresMovementEnergy()
 		|| any_of(outfits.begin(), outfits.end(), [](const auto &it) -> bool {
 			const Weapon *weapon = it.first->GetWeapon().get();
-			return weapon && weapon->FiringEnergy() > 0;
+			return weapon && weapon->FiringEnergy() > 0.;
 		});
-
-	return usesEnergy ? ionization > energy : false;
+	return useEnergy ? ionization > energy : false;
 }
 
 
@@ -3047,11 +3044,19 @@ bool Ship::NeedsEnergy() const
 	if(!currentSystem)
 		return false;
 
-	// If a ship has no energy capacity, no room for more energy, or already has
-	// some energy in reserves, it does not need energy. Since engines can use
-	// fractional thrust/turn, even a small unit of energy can still have use.
+	// Ships that don't need energy to move shouldn't ask for energy.
+	if(!RequiresMovementEnergy())
+		return false;
+
+	// If a ship has no energy capacity or no room for more energy, it does not need energy.
 	double capacity = attributes.Get("energy capacity");
-	if(!capacity || (capacity && energy >= capacity) || energy > 0.25)
+	if(!capacity || energy >= capacity)
+		return false;
+
+	// If this ship has even a small amount of energy in reserves, it does not need energy.
+	// Since engines can use fractional thrust/turn, even a small unit of energy can still have use.
+	// Using an epsilon of 1/2^8.
+	if(energy > 0.00390625)
 		return false;
 
 	// If a ship has energy capacity but is low on energy, check to see if it is capable
@@ -5320,6 +5325,17 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle, Point{}, point.zoom);
 		}
 	}
+}
+
+
+
+bool Ship::RequiresMovementEnergy() const
+{
+	bool hasForwardThrust = attributes.Get("thrust");
+	return attributes.Get("thrusting energy") > 0.
+		|| (!hasForwardThrust && attributes.Get("reverse thrusting energy") > 0.)
+		|| attributes.Get("turning energy") > 0.
+		|| (!hasForwardThrust && !attributes.Get("reverse thrust") && attributes.Get("afterburner energy") > 0.);
 }
 
 
