@@ -25,25 +25,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstring>
 
-#if defined(ES_GLES) || defined(_WIN32)
 namespace {
+	bool hasOpenGL3Support = true;
+	OpenGL::FeatureSupport fboSupport = OpenGL::FeatureSupport::NONE;
+
 	bool HasOpenGLExtension(const char *name)
 	{
-#ifndef __APPLE__
 		auto extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
 		return strstr(extensions, name);
-#else
-		bool value = false;
-		GLint extensionCount = 0;
-		glGetIntegerv(GL_NUM_EXTENSIONS, &extensionCount);
-		for(GLint i = 0; i < extensionCount && !value; ++i)
-		{
-			auto extension = reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i));
-			value = (extension && strstr(extension, name));
-		}
-		return value;
-#endif
 	}
+}
+
+
+
+#ifndef ES_GLES
+void OpenGL::DisableOpenGL3()
+{
+	hasOpenGL3Support = false;
 }
 #endif
 
@@ -57,8 +55,45 @@ bool OpenGL::HasAdaptiveVSyncSupport()
 #elif defined(ES_GLES)
 	return HasOpenGLExtension("_swap_control_tear");
 #elif defined(_WIN32)
-	return WGL_EXT_swap_control_tear || HasOpenGLExtension("_swap_control_tear");
+	return WGLEW_EXT_swap_control_tear || HasOpenGLExtension("_swap_control_tear");
 #else
-	return GLX_EXT_swap_control_tear;
+	return true;
 #endif
+}
+
+
+
+bool OpenGL::HasVaoSupport()
+{
+	// TODO: Add an extension check if we want to enable VAOs on more devices.
+	return hasOpenGL3Support;
+}
+
+
+
+bool OpenGL::HasTexture2DArraySupport()
+{
+	// TODO: Add an extension check if we want to enable texture arrays on more devices.
+	return hasOpenGL3Support;
+}
+
+
+
+bool OpenGL::HasClearBufferSupport()
+{
+	return hasOpenGL3Support;
+}
+
+
+
+OpenGL::FeatureSupport OpenGL::GetFboSupport()
+{
+	if(fboSupport == OpenGL::FeatureSupport::NONE)
+	{
+		if(hasOpenGL3Support || HasOpenGLExtension("_ARB_framebuffer_object"))
+			fboSupport = FeatureSupport::CORE;
+		else if(HasOpenGLExtension("_framebuffer_object"))
+			fboSupport = FeatureSupport::EXT;
+	}
+	return fboSupport;
 }

@@ -41,6 +41,12 @@ ImageFileData::ImageFileData(const filesystem::path &path, const filesystem::pat
 	if(name.ends_with("@2x"))
 	{
 		is2x = true;
+		noReduction = true;
+		name.resize(name.size() - 3);
+	}
+	if(name.ends_with("@1x"))
+	{
+		noReduction = true;
 		name.resize(name.size() - 3);
 	}
 	if(name.ends_with("@sw"))
@@ -62,8 +68,9 @@ ImageFileData::ImageFileData(const filesystem::path &path, const filesystem::pat
 		if(blendingMode == BlendingMode::COMPAT_HALF_ADDITIVE)
 		{
 			blendingMode = BlendingMode::HALF_ADDITIVE;
-			Logger::LogError("Warning: file '" + path.string()
-				+ "'uses legacy marker for half-additive blending mode; please use '^' instead of '~'.");
+			Logger::Log("File '" + path.string()
+				+ "'uses legacy marker for half-additive blending mode; please use '^' instead of '~'.",
+				Logger::Level::WARNING);
 		}
 	}
 

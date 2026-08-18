@@ -132,6 +132,9 @@ outfit "Star Tail"
 		"submunition" "Star Tail Projectile" 1
 	description "Little to no information about this weapon has ever been made public. Rumors are that it shoots highly volatile plasma chunks."
 	description "	Captains that have used this weapon say that its projectiles could change direction mid-flight, and were able to follow their targets despite attempts by their victims to dodge the shots."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Star Tail Projectile"
 	weapon
@@ -180,6 +183,7 @@ outfit "Star Tail Storage"
 	"mass" 10
 	"outfit space" -10
 	"star tail capacity" 20
+	ammo "Star Tail Cell"
 	licenses
 		"Hicemus Conflict"
 	description "Because Star Tail Cells are highly volatile, they need a robust storage system. This radial design is able to withstand minor explosions by using a variant of a shield that can be deployed temporarily."
@@ -187,6 +191,7 @@ outfit "Star Tail Storage"
 
 outfitter "Star Tail Cell Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Star Tail"
 			has "outfit: Star Tail Storage"

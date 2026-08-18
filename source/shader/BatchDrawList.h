@@ -52,7 +52,6 @@ private:
 private:
 	int step = 0;
 	double zoom = 1.;
-	bool isHighDPI = false;
 	Point center;
 
 	// Each sprite consists of six vertices (four vertices to form a quad and

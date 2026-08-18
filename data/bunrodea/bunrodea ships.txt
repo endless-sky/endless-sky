@@ -14,6 +14,7 @@
 ship "Kaiken"
 	sprite "ship/kaiken"
 	thumbnail "thumbnail/kaiken"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		"cost" 1199000
@@ -34,6 +35,7 @@ ship "Kaiken"
 			"hit force" 600
 	outfits
 		"Locust Blaster" 3
+		"Lasher Pistol"
 		
 		"Solar Battery"
 		"Solar Cell" 27
@@ -59,6 +61,7 @@ ship "Kaiken"
 ship "Sasumata"
 	sprite "ship/sasumata"
 	thumbnail "thumbnail/sasumata"
+	"administrative cost" 4
 	attributes
 		category "Transport"
 		"cost" 12650000
@@ -89,6 +92,7 @@ ship "Sasumata"
 		"Swarm Missile" 1000
 		"Swarm Clip"
 		"Buzzer Anti-Missile" 2
+		"Lasher Pistol" 41
 		
 		"Quark Reactor"
 		"Reactor Overclocker" 2
@@ -126,6 +130,7 @@ ship "Sasumata"
 ship "Tanto"
 	sprite "ship/tanto"
 	thumbnail "thumbnail/tanto"
+	"administrative cost" 3
 	attributes
 		category "Light Freighter"
 		"cost" 5995000
@@ -148,6 +153,7 @@ ship "Tanto"
 			"hit force" 1800
 	outfits
 		"Buzzer Anti-Missile" 2
+		"Lasher Pistol" 5
 		
 		"Solar Battery" 2
 		"Solar Cell" 42
@@ -178,6 +184,7 @@ ship "Tanto"
 ship "Ararebo"
 	sprite "ship/ararebo"
 	thumbnail "thumbnail/ararebo"
+	"administrative cost" 6
 	attributes
 		category "Utility"
 		"cost" 17565000
@@ -201,6 +208,7 @@ ship "Ararebo"
 	outfits
 		"Locust Turret" 2
 		"Buzzer Anti-Missile" 2
+		"Lasher Pistol" 29
 		
 		"Dark Reactor"
 		"Reactor Overclocker" 8
@@ -245,6 +253,7 @@ ship "Ararebo"
 ship "Tekkan"
 	sprite "ship/tekkan"
 	thumbnail "thumbnail/tekkan"
+	"administrative cost" 4
 	attributes
 		category "Light Warship"
 		"cost" 10119000
@@ -269,6 +278,7 @@ ship "Tekkan"
 		"Locust Blaster" 2
 		"Locust Turret"
 		"Buzzer Anti-Missile" 2
+		"Lasher Pistol" 8
 		
 		"Quark Reactor"
 		"Solar Battery"
@@ -301,6 +311,7 @@ ship "Tekkan"
 ship "Kunai"
 	sprite "ship/kunai"
 	thumbnail "thumbnail/kunai"
+	"administrative cost" 4
 	attributes
 		category "Light Warship"
 		"cost" 12444000
@@ -324,6 +335,7 @@ ship "Kunai"
 	outfits
 		"Mandible Cannon" 4
 		"Locust Blaster" 2
+		"Lasher Pistol" 26
 		
 		"Quark Reactor"
 		"Solar Battery" 2
@@ -359,6 +371,7 @@ ship "Kunai"
 ship "Kama"
 	sprite "ship/kama"
 	thumbnail "thumbnail/kama"
+	"administrative cost" 7
 	attributes
 		category "Medium Warship"
 		"cost" 20580000
@@ -383,6 +396,7 @@ ship "Kama"
 		"Mandible Cannon" 4
 		"Swarm Pod" 6
 		"Swarm Missile" 2400
+		"Lasher Pistol" 41
 		
 		"Electroweak Reactor"
 		"Reactor Overclocker" 2
@@ -426,6 +440,7 @@ ship "Kama"
 ship "Chigiriki"
 	sprite "ship/chigiriki"
 	thumbnail "thumbnail/chigiriki"
+	"administrative cost" 8
 	attributes
 		category "Heavy Warship"
 		"cost" 30876000
@@ -451,6 +466,7 @@ ship "Chigiriki"
 		"Locust Blaster" 6
 		"Swarm Pod" 10
 		"Swarm Missile" 4000
+		"Lasher Pistol" 59
 		
 		"Dark Reactor"
 		"Reactor Limiter" 3

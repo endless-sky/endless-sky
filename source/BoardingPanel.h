@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "CaptureOdds.h"
+#include "ScrollBar.h"
 
 #include <memory>
 #include <string>
@@ -26,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Outfit;
 class PlayerInfo;
 class Ship;
+class TextArea;
 
 
 
@@ -38,6 +40,7 @@ public:
 	BoardingPanel(PlayerInfo &player, const std::shared_ptr<Ship> &victim);
 	virtual ~BoardingPanel() override;
 
+	virtual void Step() override;
 	virtual void Draw() override;
 
 
@@ -45,6 +48,7 @@ protected:
 	// Overrides from Panel.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
+	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
@@ -118,6 +122,8 @@ private:
 	// Handle the keyboard scrolling and selection in the panel list.
 	void DoKeyboardNavigation(const SDL_Keycode key);
 
+	void AddMessage(const std::string &message);
+
 
 private:
 	PlayerInfo &player;
@@ -127,7 +133,8 @@ private:
 	// List of items you can plunder.
 	std::vector<Plunder> plunder;
 	int selected = 0;
-	double scroll = 0.;
+	ScrollVar<double> scroll;
+	ScrollBar scrollBar;
 
 	bool playerDied = false;
 	bool isCapturing = false;
@@ -137,7 +144,8 @@ private:
 	CaptureOdds attackOdds;
 	CaptureOdds defenseOdds;
 	// These messages are shown to report the results of hand to hand combat.
-	std::vector<std::string> messages;
+	std::string messages;
+	std::shared_ptr<TextArea> messageDisplay;
 
 	// Whether or not the ship can be captured.
 	bool canCapture = false;

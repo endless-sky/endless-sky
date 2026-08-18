@@ -81,7 +81,7 @@ void StartConditions::Load(const DataNode &node, const ConditionsStore *globalCo
 		if(remove)
 		{
 			if(key == "name")
-				unlocked.name.clear();
+				unlocked.displayName.clear();
 			else if(key == "description")
 				unlocked.description.clear();
 			else if(key == "thumbnail")
@@ -158,8 +158,8 @@ void StartConditions::Load(const DataNode &node, const ConditionsStore *globalCo
 	// The unlocked state must have at least some information.
 	if(unlocked.description.empty())
 		unlocked.description = "(No description provided.)";
-	if(unlocked.name.empty())
-		unlocked.name = "(Unnamed start)";
+	if(unlocked.displayName.empty())
+		unlocked.displayName = "(Unnamed start)";
 
 	// If the REVEALED or DISPLAYED states are missing information, fill them in with "???".
 	// Also use the UNLOCKED state thumbnail if the other states are missing one.
@@ -173,7 +173,7 @@ void StartConditions::Load(const DataNode &node, const ConditionsStore *globalCo
 	else if(identifier.empty())
 	{
 		stringstream addr;
-		addr << unlocked.name << " " << this;
+		addr << unlocked.displayName << " " << this;
 		identifier = addr.str();
 	}
 }
@@ -194,20 +194,20 @@ void StartConditions::FinishLoading()
 	unlocked.planet = GetPlanet().DisplayName();
 	unlocked.system = GetSystem().DisplayName();
 	unlocked.date = GetDate();
-	unlocked.credits = Format::Credits(GetAccounts().Credits());
-	unlocked.debt = Format::Credits(GetAccounts().TotalDebt());
+	unlocked.credits = Format::AbbreviatedNumber(GetAccounts().Credits());
+	unlocked.debt = Format::AbbreviatedNumber(GetAccounts().TotalDebt());
 
 	if(!conversation)
 	{
-		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
-			+ unlocked.name + "\") does not have a starting conversation.");
+		Logger::Log("The start scenario \"" + Identifier() + "\" (named \""
+			+ unlocked.displayName + "\") does not have a starting conversation.", Logger::Level::WARNING);
 		return;
 	}
 	string reason = conversation->Validate();
 	if(!conversation->IsValidIntro() || !reason.empty())
-		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
-			+ unlocked.name + "\") has an invalid starting conversation."
-			+ (reason.empty() ? "" : "\n\t" + std::move(reason)));
+		Logger::Log("The start scenario \"" + Identifier() + "\" (named \""
+			+ unlocked.displayName + "\") has an invalid starting conversation."
+			+ (reason.empty() ? "" : "\n\t" + std::move(reason)), Logger::Level::WARNING);
 }
 
 
@@ -269,7 +269,7 @@ const Sprite *StartConditions::GetThumbnail() const noexcept
 const string &StartConditions::GetDisplayName() const noexcept
 {
 	auto it = infoByState.find(state);
-	return it == infoByState.end() ? ILLEGAL : it->second.name;
+	return it == infoByState.end() ? ILLEGAL : it->second.displayName;
 }
 
 
@@ -378,7 +378,7 @@ bool StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, boo
 	const string &value = child.Token(hasValue ? valueIndex : 0);
 
 	if(key == "name" && hasValue)
-		info.name = value;
+		info.displayName = value;
 	else if(key == "description" && hasValue)
 	{
 		if(clearDescription)
@@ -402,12 +402,12 @@ bool StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, boo
 	// Format credits and debt where applicable.
 	else if(key == "credits" && hasValue)
 		if(child.IsNumber(value))
-			info.credits = Format::Credits(child.Value(value));
+			info.credits = Format::AbbreviatedNumber(child.Value(value));
 		else
 			info.credits = value;
 	else if(key == "debt" && hasValue)
 		if(child.IsNumber(value))
-			info.debt = Format::Credits(child.Value(value));
+			info.debt = Format::AbbreviatedNumber(child.Value(value));
 		else
 			info.debt = value;
 	else
@@ -422,8 +422,8 @@ void StartConditions::FillState(StartState fillState, const Sprite *thumbnail)
 	StartInfo &fill = infoByState[fillState];
 	if(!fill.thumbnail)
 		fill.thumbnail = thumbnail;
-	if(fill.name.empty())
-		fill.name = "???";
+	if(fill.displayName.empty())
+		fill.displayName = "???";
 	if(fill.description.empty())
 		fill.description = "???";
 	if(fill.system.empty())

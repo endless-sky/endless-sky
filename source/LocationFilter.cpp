@@ -240,7 +240,7 @@ void LocationFilter::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				for(const Government *government : governments)
-					out.Write(government->GetTrueName());
+					out.Write(government->TrueName());
 			}
 			out.EndChild();
 		}
@@ -534,7 +534,7 @@ void LocationFilter::LoadChild(const DataNode &child, const set<const System *> 
 	int valueIndex = 1 + isNot;
 	const string &key = child.Token(valueIndex - 1);
 	if(key == "not" || key == "neighbor")
-		child.PrintTrace("Error: Skipping unsupported use of 'not' and 'neighbor'."
+		child.PrintTrace("Skipping unsupported use of 'not' and 'neighbor'."
 			" These keywords must be nested if used together.");
 	else if(key == "planet")
 	{

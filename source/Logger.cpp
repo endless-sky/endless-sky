@@ -15,31 +15,71 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Logger.h"
 
+#include "text/Format.h"
+#include "GameVersion.h"
+
+#ifdef _WIN32
+#include "windows/WinVersion.h"
+#else
+#include <sys/utsname.h>
+#endif
+
 #include <iostream>
 #include <mutex>
 
 using namespace std;
 
 namespace {
-	function<void(const string &message)> logErrorCallback = nullptr;
-	mutex logErrorMutex;
+	function<void(const string &message, Logger::Level)> logCallback = nullptr;
+	mutex logMutex;
 }
 
 
 
-void Logger::SetLogErrorCallback(function<void(const string &message)> callback)
+Logger::Session::Session(bool quiet)
+	: quiet{quiet}
 {
-	logErrorCallback = std::move(callback);
+	if(quiet)
+		return;
+
+	string message = "Logger session beginning. Game version: " + GameVersion::Running().ToString()
+		+ ". Detected operating system version: ";
+#ifdef _WIN32
+	message += WinVersion::ToString() + '.';
+#else
+	utsname uName;
+	uname(&uName);
+	message += string(uName.sysname) + ' ' + uName.release + ' ' + uName.version + '.';
+#endif
+	Log(message, Level::INFO);
 }
 
 
 
-void Logger::LogError(const string &message)
+Logger::Session::~Session()
 {
-	lock_guard<mutex> lock(logErrorMutex);
-	// Log by default to stderr.
-	cerr << message << endl;
+	if(quiet)
+		return;
+
+	Log("Logger session end.", Level::INFO);
+}
+
+
+
+void Logger::SetLogCallback(function<void(const string &message, Level)> callback)
+{
+	logCallback = std::move(callback);
+}
+
+
+
+void Logger::Log(const string &message, Level level)
+{
+	lock_guard<mutex> lock(logMutex);
+	string formatted = Format::TimestampString(chrono::system_clock::now(), true)
+		+ " | " + static_cast<char>(level) + " | " + message;
+	(level == Level::INFO ? cout : cerr) << formatted << endl;
 	// Perform additional logging through callback if any is registered.
-	if(logErrorCallback)
-		logErrorCallback(message);
+	if(logCallback)
+		logCallback(formatted, level);
 }

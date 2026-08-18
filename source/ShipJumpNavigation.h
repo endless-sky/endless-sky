@@ -62,6 +62,9 @@ public:
 	bool HasScramDrive() const;
 	bool HasJumpDrive() const;
 
+	// Create a hash of the capabilities of this ship, for use in caching pathfinding.
+	std::size_t Hash() const;
+
 
 private:
 	// Parse the given outfit to determine if it has the capability to jump, and update any

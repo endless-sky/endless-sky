@@ -21,12 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../image/Sprite.h"
 #include "../Swizzle.h"
 
-#ifdef ES_GLES
-// ES_GLES always uses the shader, not this, so use a dummy value to compile.
-// (the correct value is usually 0x8E46, so don't use that)
-#define GL_TEXTURE_SWIZZLE_RGBA 0xBEEF
-#endif
-
 using namespace std;
 
 namespace {
@@ -37,6 +31,7 @@ namespace {
 	GLint useSwizzleMaskI;
 	GLint frameI;
 	GLint frameCountI;
+	GLint uniqueSwizzleMaskFramesI;
 	GLint positionI;
 	GLint transformI;
 	GLint blurI;
@@ -45,8 +40,16 @@ namespace {
 	GLint swizzleMatrixI;
 	GLint useSwizzleI;
 
+	GLint vertI;
+
 	GLuint vao;
 	GLuint vbo;
+
+	void EnableAttribArrays()
+	{
+		glEnableVertexAttribArray(vertI);
+		glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	}
 }
 
 // Initialize the shaders.
@@ -54,11 +57,12 @@ void SpriteShader::Init()
 {
 	shader = GameData::Shaders().Get("sprite");
 	if(!shader->Object())
-		throw std::runtime_error("Could not find sprite shader!");
+		throw runtime_error("Could not find sprite shader!");
 	scaleI = shader->Uniform("scale");
 	texI = shader->Uniform("tex");
 	frameI = shader->Uniform("frame");
 	frameCountI = shader->Uniform("frameCount");
+	uniqueSwizzleMaskFramesI = shader->Uniform("uniqueSwizzleMaskFrames");
 	positionI = shader->Uniform("position");
 	transformI = shader->Uniform("transform");
 	blurI = shader->Uniform("blur");
@@ -68,10 +72,14 @@ void SpriteShader::Init()
 	swizzleMaskI = shader->Uniform("swizzleMask");
 	useSwizzleMaskI = shader->Uniform("useSwizzleMask");
 	useSwizzleI = shader->Uniform("useSwizzle");
+	vertI = shader->Attrib("vert");
 
 	// Generate the vertex data for drawing sprites.
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+	{
+		glGenVertexArrays(1, &vao);
+		glBindVertexArray(vao);
+	}
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -84,12 +92,13 @@ void SpriteShader::Init()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	glEnableVertexAttribArray(shader->Attrib("vert"));
-	glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	if(OpenGL::HasVaoSupport())
+		EnableAttribArrays();
 
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
 }
 
 
@@ -118,6 +127,7 @@ SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &posi
 	item.swizzleMask = sprite->SwizzleMask();
 	item.frame = frame;
 	item.frameCount = sprite->Frames();
+	item.uniqueSwizzleMaskFrames = sprite->SwizzleMaskFrames() > 1;
 	// Position.
 	item.position[0] = static_cast<float>(position.X());
 	item.position[1] = static_cast<float>(position.Y());
@@ -140,7 +150,13 @@ SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &posi
 void SpriteShader::Bind()
 {
 	glUseProgram(shader->Object());
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(vao);
+	else
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		EnableAttribArrays();
+	}
 
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
 	glUniform2fv(scaleI, 1, scale);
@@ -164,14 +180,16 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 		glUniform1i(useSwizzleI, 0);
 
 	glUniform1i(texI, 0);
-	glBindTexture(GL_TEXTURE_2D_ARRAY, item.texture);
+	int type = OpenGL::HasTexture2DArraySupport() ? GL_TEXTURE_2D_ARRAY : GL_TEXTURE_3D;
+	glBindTexture(type, item.texture);
 
 	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D_ARRAY, item.swizzleMask);
+	glBindTexture(type, item.swizzleMask);
 	glActiveTexture(GL_TEXTURE0);
 
 	glUniform1f(frameI, item.frame);
 	glUniform1f(frameCountI, item.frameCount);
+	glUniform1i(uniqueSwizzleMaskFramesI, item.uniqueSwizzleMaskFrames);
 	glUniform2fv(positionI, 1, item.position);
 	glUniformMatrix2fv(transformI, 1, false, item.transform);
 	// Special case: check if the blur should be applied or not.
@@ -190,6 +208,12 @@ void SpriteShader::Unbind()
 	// Reset the swizzle.
 	glUniform1i(useSwizzleI, 0);
 
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
+	else
+	{
+		glDisableVertexAttribArray(vertI);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
 	glUseProgram(0);
 }

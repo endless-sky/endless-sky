@@ -44,7 +44,6 @@ void BatchDrawList::Clear(int step, double zoom)
 	data.clear();
 	this->step = step;
 	this->zoom = zoom;
-	isHighDPI = (Screen::IsHighResolution() ? zoom > .5 : zoom > 1.);
 }
 
 
@@ -87,8 +86,8 @@ void BatchDrawList::Draw() const
 {
 	BatchShader::Bind();
 
-	for(const pair<const Sprite * const, vector<float>> &it : data)
-		BatchShader::Add(it.first, isHighDPI, it.second);
+	for(const pair<const Sprite *const, vector<float>> &it : data)
+		BatchShader::Add(it.first, it.second);
 
 	BatchShader::Unbind();
 }

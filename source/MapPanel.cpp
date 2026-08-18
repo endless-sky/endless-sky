@@ -20,9 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "shader/BatchDrawList.h"
 #include "CargoHold.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
-#include "shader/FillShader.h"
 #include "Fleet.h"
 #include "shader/FogShader.h"
 #include "text/Font.h"
@@ -39,7 +38,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "MissionPanel.h"
-#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "shader/PointerShader.h"
@@ -70,8 +68,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const std::string SHOW_ESCORT_SYSTEMS = "Show escort systems on map";
-	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
+	const string SHOW_ESCORT_SYSTEMS = "Show escort systems on map";
+	const string SHOW_STORED_OUTFITS = "Show stored outfits on map";
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
 	const int MAX_STARS = 5;
 
@@ -141,7 +139,7 @@ namespace {
 	}
 
 	// Log how many stored outfits are in a given system.
-	void TallyOutfits(const std::map<const Planet *, CargoHold> &outfits,
+	void TallyOutfits(const map<const Planet *, CargoHold> &outfits,
 		map<const System *, MapPanel::SystemTooltipData> &locations)
 	{
 		for(const auto &hold : outfits)
@@ -162,8 +160,6 @@ namespace {
 
 	const Color black(0.f, 1.f);
 
-	// Hovering an escort pip for this many frames activates the tooltip.
-	const int HOVER_TIME = 60;
 	// Length in frames of the recentering animation.
 	const int RECENTER_TIME = 20;
 
@@ -193,7 +189,6 @@ namespace {
 					raidFleet.GetFleet()->Strength();
 		return danger;
 	}
-
 }
 
 const unsigned MapPanel::MAX_MISSION_POINTERS_DRAWN = 12;
@@ -221,7 +216,7 @@ pair<bool, bool> MapPanel::BlinkMissionIndicator(const PlayerInfo &player, const
 {
 	bool blink = false;
 	int daysLeft = 1;
-	if(mission.Deadline())
+	if(mission.Deadline() && !mission.IsFailed())
 	{
 		daysLeft = player.RemainingDeadline(mission);
 		int blinkFactor = min(6, max(1, daysLeft));
@@ -239,6 +234,8 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	specialSystem(special),
 	playerJumpDistance(System::DEFAULT_NEIGHBOR_DISTANCE),
 	commodity(commodity),
+	tooltip(170, Alignment::LEFT, Tooltip::Direction::DOWN_RIGHT, Tooltip::Corner::BOTTOM_RIGHT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
 	fromMission(fromMission)
 {
 	Audio::Pause();
@@ -262,11 +259,6 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 			TallyOutfits(player.PlanetaryStorage(), escortSystems);
 	}
 
-	// Initialize a centered tooltip.
-	hoverText.SetFont(FontSet::Get(14));
-	hoverText.SetWrapWidth(150);
-	hoverText.SetAlignment(Alignment::LEFT);
-
 	// Find out how far the player is able to jump. The range of the system
 	// takes priority over the range of the player's flagship.
 	double systemRange = playerSystem.JumpRange();
@@ -279,7 +271,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	// If the player is not landed, then the deadlines will have already been
 	// recalculated on the day change.
 	if(player.GetPlanet())
-		player.CalculateRemainingDeadlines();
+		player.CacheMissionInformation(true);
 
 	CenterOnSystem(selectedSystem, true);
 }
@@ -304,7 +296,21 @@ void MapPanel::Step()
 		--recentering;
 	}
 
+	// The mouse should be pointing to the same map position before and after zooming.
+	bool needsRecenter = !zoom.IsAnimationDone();
+	Point mouse, anchor;
+	if(needsRecenter)
+	{
+		mouse = UI::GetMouse();
+		anchor = mouse / Zoom() - center;
+	}
+
 	zoom.Step();
+
+	// Now, Zoom() has changed (unless at one of the limits). But, we still want
+	// anchor to be the same, so:
+	if(needsRecenter)
+		center = mouse / Zoom() - anchor;
 }
 
 
@@ -337,8 +343,11 @@ void MapPanel::Draw()
 
 	// Advance a "blink" timer.
 	++step;
-	// Update the tooltip timer [0-60].
-	hoverCount += hoverSystem ? (hoverCount < HOVER_TIME) : (hoverCount ? -1 : 0);
+	// Update the tooltip timer.
+	if(hoverSystem)
+		tooltip.IncrementCount();
+	else
+		tooltip.DecrementCount();
 
 	DrawWormholes();
 	DrawTravelPlan();
@@ -373,64 +382,51 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 	mapButtonUi->Draw(info, this);
 
 	// Draw the tooltips.
-
-	if(hoverSystem && hoverCount >= HOVER_TIME)
+	if(hoverSystem && tooltip.ShouldDraw())
 	{
 		// Create the tooltip text.
-		if(tooltip.empty())
+		if(!tooltip.HasText())
 		{
 			MapPanel::SystemTooltipData t = escortSystems.at(hoverSystem);
 
+			string text;
 			if(hoverSystem == &playerSystem)
 			{
 				if(player.Flagship())
 					--t.activeShips;
 				if(t.activeShips || t.parkedShips || !t.outfits.empty())
-					tooltip = "You are here, with:\n";
+					text = "You are here, with:\n";
 				else
-					tooltip = "You are here.";
+					text = "You are here.";
 			}
 			// If you have both active and parked escorts, call the active ones
 			// "active escorts." Otherwise, just call them "escorts."
 			if(t.activeShips && t.parkedShips)
-				tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " active escort\n" : " active escorts\n");
+				text += to_string(t.activeShips) + (t.activeShips == 1 ? " active escort\n" : " active escorts\n");
 			else if(t.activeShips)
-				tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " escort" : " escorts");
+				text += to_string(t.activeShips) + (t.activeShips == 1 ? " escort" : " escorts");
 			if(t.parkedShips)
-				tooltip += to_string(t.parkedShips) + (t.parkedShips == 1 ? " parked escort" : " parked escorts");
+				text += to_string(t.parkedShips) + (t.parkedShips == 1 ? " parked escort" : " parked escorts");
 			if(!t.outfits.empty())
 			{
 				if(t.activeShips || t.parkedShips)
-					tooltip += "\n";
+					text += "\n";
 
 				unsigned sum = 0;
 				for(const auto &it : t.outfits)
 					sum += it.second;
 
-				tooltip += to_string(sum) + (sum == 1 ? " stored outfit" : " stored outfits");
+				text += to_string(sum) + (sum == 1 ? " stored outfit" : " stored outfits");
 
 				if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
 					for(const auto &it : t.outfits)
-						tooltip += "\n - " + to_string(it.second) + " on " + it.first->DisplayName();
+						text += "\n - " + to_string(it.second) + " on " + it.first->DisplayName();
 			}
 
-			hoverText.Wrap(tooltip);
+			tooltip.SetText(text);
 		}
-		if(!tooltip.empty())
-		{
-			// Add 10px margin to all sides of the text.
-			Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
-			size += Point(20., 20.);
-			Point topLeft = (hoverSystem->Position() + center) * Zoom();
-			// Do not overflow the screen dimensions.
-			if(topLeft.X() + size.X() > Screen::Right())
-				topLeft.X() -= size.X();
-			if(topLeft.Y() + size.Y() > Screen::Bottom())
-				topLeft.Y() -= size.Y();
-			// Draw the background fill and the tooltip text.
-			FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
-			hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
-		}
+		tooltip.SetZone((hoverSystem->Position() + center) * Zoom(), Point(20., 20.));
+		tooltip.Draw();
 	}
 
 	// Draw a warning if the selected system is not routable.
@@ -463,6 +459,13 @@ bool MapPanel::AllowsFastForward() const noexcept
 
 
 
+void MapPanel::UpdateTooltipActivation()
+{
+	tooltip.UpdateActivationCount();
+}
+
+
+
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	// When changing the map mode, explicitly close all child panels (for example, scrollable text boxes).
@@ -473,41 +476,40 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	};
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	else if(key == 's' && buttonCondition != "is shipyards")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MapShipyardPanel(*this));
+		GetUI().Push(new MapShipyardPanel(*this));
 	}
 	else if(key == 'o' && buttonCondition != "is outfitters")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MapOutfitterPanel(*this));
+		GetUI().Push(new MapOutfitterPanel(*this));
 	}
 	else if(key == 'i' && buttonCondition != "is missions")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MissionPanel(*this));
+		GetUI().Push(new MissionPanel(*this));
 	}
 	else if(key == 'p' && buttonCondition != "is ports")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MapDetailPanel(*this, false));
+		GetUI().Push(new MapDetailPanel(*this, false));
 	}
 	else if(key == 't' && buttonCondition != "is stars")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MapDetailPanel(*this, true));
+		GetUI().Push(new MapDetailPanel(*this, true));
 	}
 	else if(key == 'f')
 	{
-		GetUI()->Push(new Dialog(
-			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
+		GetUI().Push(DialogPanel::RequestString(this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
@@ -564,7 +566,7 @@ bool MapPanel::Hover(int x, int y)
 			return true;
 
 		hoverSystem = nullptr;
-		tooltip.clear();
+		tooltip.Clear();
 	}
 
 	// Check if the new position supports a tooltip.
@@ -596,17 +598,11 @@ bool MapPanel::Drag(double dx, double dy)
 
 bool MapPanel::Scroll(double dx, double dy)
 {
-	// The mouse should be pointing to the same map position before and after zooming.
-	Point mouse = UI::GetMouse();
-	Point anchor = mouse / Zoom() - center;
 	if(dy > 0.)
 		IncrementZoom();
 	else if(dy < 0.)
 		DecrementZoom();
 
-	// Now, Zoom() has changed (unless at one of the limits). But, we still want
-	// anchor to be the same, so:
-	center = mouse / Zoom() - anchor;
 	return true;
 }
 
@@ -1018,10 +1014,11 @@ void MapPanel::UpdateCache()
 					if(object.HasSprite() && object.HasValidPlanet())
 					{
 						const Planet *planet = object.GetPlanet();
-						hasSpaceport |= !planet->IsWormhole() && planet->HasServices();
+						bool hasServices = planet->HasServices();
+						hasSpaceport |= !planet->IsWormhole() && hasServices;
 						if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()))
 							continue;
-						canLand |= planet->CanLand() && planet->HasServices();
+						canLand |= planet->CanLand() && hasServices;
 						isInhabited |= planet->IsInhabited();
 						hasDominated &= (!planet->IsInhabited()
 							|| GameData::GetPolitics().HasDominated(planet));
@@ -1164,7 +1161,7 @@ void MapPanel::DrawTravelPlan()
 void MapPanel::DrawSelectedSystem()
 {
 	const Sprite *sprite = SpriteSet::Get("ui/selected system");
-	SpriteShader::Draw(sprite, Point(0. + selectedSystemOffset, Screen::Top() + .5f * sprite->Height()));
+	SpriteShader::Draw(sprite, Point(0., Screen::Top() + .5f * sprite->Height()));
 
 	string text;
 	if(!player.KnowsName(*selectedSystem))
@@ -1186,13 +1183,9 @@ void MapPanel::DrawSelectedSystem()
 		text += " (" + to_string(jumps) + " jumps away)";
 
 	const Font &font = FontSet::Get(14);
-	Point pos(-175. + selectedSystemOffset, Screen::Top() + .5 * (30. - font.Height()));
+	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
 	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
 		pos, *GameData::Colors().Get("bright"));
-
-	// Reset the position of this UI element. If something is in the way, it will be
-	// moved back before it's drawn the next frame.
-	selectedSystemOffset = 0;
 }
 
 
@@ -1361,7 +1354,7 @@ void MapPanel::DrawSystems()
 			}
 		}
 
-		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
+		if(commodity == SHOW_GOVERNMENT && node.government && node.government->DisplayName() != "Uninhabited")
 		{
 			// For every government that is drawn, keep track of how close it
 			// is to the center of the view. The four closest governments
@@ -1458,6 +1451,8 @@ void MapPanel::DrawMissions()
 			DrawPointer(stopoverSystem, counts.drawn, counts.MaximumActive(), waypointColor);
 		}
 		for(const System *mark : mission.MarkedSystems())
+			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
+		for(const System *mark : mission.TrackedSystems())
 			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
 	}
 	// Draw the available and unavailable jobs.

@@ -30,7 +30,15 @@ void TextReplacements::Load(const DataNode &node, const ConditionsStore *playerC
 	// Check for reserved keys. Only some hardcoded replacement keys are
 	// reserved, as these ones are done on the fly after all other replacements
 	// have been done.
-	const set<string> reserved = {"<first>", "<last>", "<ship>", "<model>", "<flagship>", "<flagship model>"};
+	const set<string> reserved = {
+		"<first>", "<last>", "<original first>", "<original last>",
+		"<ship>", "<model>",
+		"<flagship>", "<flagship model>",
+		"<previous system>", "<previous planet>", "<current system>", "<current planet>",
+		"<start planet>", "<start system>",
+		"<start date>", "<start long date>",
+		"<start credits>", "<start credit score>", "<start debt>",
+	};
 
 	for(const DataNode &child : node)
 	{
@@ -43,18 +51,18 @@ void TextReplacements::Load(const DataNode &node, const ConditionsStore *playerC
 		string key = child.Token(0);
 		if(key.empty())
 		{
-			child.PrintTrace("Error: Cannot replace the empty string:");
+			child.PrintTrace("Cannot replace the empty string:");
 			continue;
 		}
 		if(key.front() != '<')
 		{
 			key = "<" + key;
-			child.PrintTrace("Warning: text replacements must be prefixed by \"<\":");
+			child.PrintTrace("Text replacements must be prefixed by \"<\":");
 		}
 		if(key.back() != '>')
 		{
 			key += ">";
-			child.PrintTrace("Warning: text replacements must be suffixed by \">\":");
+			child.PrintTrace("Text replacements must be suffixed by \">\":");
 		}
 		if(reserved.contains(key))
 		{

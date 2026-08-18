@@ -33,6 +33,8 @@ class ImageBuffer {
 public:
 	// The supported image extensions, in lower case and with a leading period.
 	static const std::set<std::string> &ImageExtensions();
+	// Image extensions that signify image sequences. This is a subset of ImageExtensions().
+	static const std::set<std::string> &ImageSequenceExtensions();
 
 
 public:
@@ -60,11 +62,16 @@ public:
 	const uint32_t *Begin(int y, int frame = 0) const;
 	uint32_t *Begin(int y, int frame = 0);
 
-	void ShrinkToHalfSize();
+	// Attempt to divide the width and height of this buffer by 2.
+	// Return false if either dimension is too small (< 2).
+	bool ShrinkToHalfSize();
 
-	// Read a single frame. Return false if an error is encountered - either the
+	// Read frames from a file. Return the number of frames read,
+	// or 0 if an error is encountered - either the
 	// image is the wrong size, or it is not a supported image format.
-	bool Read(const ImageFileData &data, int frame = 0);
+	// If the file is an image sequence, it overwrites the preconfigured
+	// frame count with the number of frames found in the file.
+	int Read(const ImageFileData &data, int frame = 0, bool onlyDimensions = false);
 
 
 private:

@@ -242,11 +242,11 @@ outfit "Ka'het EMP Deployer"
 	index 05010
 	cost 715000
 	thumbnail "outfit/ka'het emp deployer"
-	"mass" 18
+	"mass" 10
 	"outfit space" -26
 	"weapon capacity" -26
 	"gun ports" -1
-	"emp torpedo capacity" 16
+	"emp torpedo capacity" 27
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
@@ -271,7 +271,7 @@ outfit "Ka'het EMP Deployer"
 		"turn" 2
 		"homing"
 			"throttle control"
-		"infrared tracking" .7
+		"infrared tracking" .2
 		"radar tracking" .8
 		"trigger radius" 50
 		"blast radius" 200
@@ -283,6 +283,8 @@ outfit "Ka'het EMP Deployer"
 		"missile strength" 80
 	description "Eons ago, the Builders were attacked by alien ships which used weapons that ignored their hull and damaged their reactors. Although they never did recover any of these weapons, after years of research they managed to replicate their effects."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Ka'het Emergency Deployer"
 	category "Secondary Weapons"

@@ -14,6 +14,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "es-test.hpp"
+#include "logger-output.h"
 #include "output-capture.hpp"
 
 // Include only the tested classes' headers.
@@ -156,7 +157,7 @@ SCENARIO( "Creating a UUID", "[uuid][creation]") {
 				);
 				auto id = EsUuid::FromString(invalid);
 				auto expected = "Cannot convert \"" + invalid + "\" into a UUID\n";
-				CHECK( warnings.Flush() == expected );
+				CHECK( IgnoreLogHeaders(warnings.Flush()) == expected );
 				AND_THEN( "creates a random-valued ID" ) {
 					CHECK( id.ToString() != invalid );
 				}

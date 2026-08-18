@@ -51,7 +51,7 @@ namespace {
 	const double STAR_ZOOM = 0.70;
 	const double HAZE_ZOOM = 0.90;
 
-	void AddHaze(DrawList &drawList, const std::vector<Body> &haze,
+	void AddHaze(DrawList &drawList, const vector<Body> &haze,
 		const Point &topLeft, const Point &bottomRight, double transparency)
 	{
 		for(auto &&it : haze)
@@ -198,7 +198,13 @@ void StarField::Draw(const Point &blur, const System *system) const
 	if(Preferences::Has("Draw starfield") && density > 0.)
 	{
 		glUseProgram(shader->Object());
-		glBindVertexArray(vao);
+		if(OpenGL::HasVaoSupport())
+			glBindVertexArray(vao);
+		else
+		{
+			glBindBuffer(GL_ARRAY_BUFFER, vbo);
+			EnableAttribArrays();
+		}
 
 		for(int pass = 1; pass <= layers; pass++)
 		{
@@ -254,7 +260,15 @@ void StarField::Draw(const Point &blur, const System *system) const
 				}
 			}
 		}
-		glBindVertexArray(0);
+		if(OpenGL::HasVaoSupport())
+			glBindVertexArray(0);
+		else
+		{
+			glDisableVertexAttribArray(offsetI);
+			glDisableVertexAttribArray(sizeI);
+			glDisableVertexAttribArray(cornerI);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+		}
 		glUseProgram(0);
 	}
 
@@ -289,15 +303,37 @@ void StarField::Draw(const Point &blur, const System *system) const
 
 
 
+void StarField::EnableAttribArrays() const
+{
+	// Connect the xy to the "vert" attribute of the vertex shader.
+	constexpr auto stride = 4 * sizeof(GLfloat);
+	glEnableVertexAttribArray(offsetI);
+	glVertexAttribPointer(offsetI, 2, GL_FLOAT, GL_FALSE,
+		stride, nullptr);
+
+	glEnableVertexAttribArray(sizeI);
+	glVertexAttribPointer(sizeI, 1, GL_FLOAT, GL_FALSE,
+		stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
+
+	glEnableVertexAttribArray(cornerI);
+	glVertexAttribPointer(cornerI, 1, GL_FLOAT, GL_FALSE,
+		stride, reinterpret_cast<const GLvoid *>(3 * sizeof(GLfloat)));
+}
+
+
+
 void StarField::SetUpGraphics()
 {
 	shader = GameData::Shaders().Get("starfield");
 	if(!shader->Object())
-		throw std::runtime_error("Could not find starfield shader!");
+		throw runtime_error("Could not find starfield shader!");
 
 	// make and bind the VAO
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+	{
+		glGenVertexArrays(1, &vao);
+		glBindVertexArray(vao);
+	}
 
 	// make and bind the VBO
 	glGenBuffers(1, &vbo);
@@ -411,21 +447,11 @@ void StarField::MakeStars(int stars, int width)
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(data.front()) * data.size(), data.data(), GL_STATIC_DRAW);
 
-	// Connect the xy to the "vert" attribute of the vertex shader.
-	constexpr auto stride = 4 * sizeof(GLfloat);
-	glEnableVertexAttribArray(offsetI);
-	glVertexAttribPointer(offsetI, 2, GL_FLOAT, GL_FALSE,
-		stride, nullptr);
-
-	glEnableVertexAttribArray(sizeI);
-	glVertexAttribPointer(sizeI, 1, GL_FLOAT, GL_FALSE,
-		stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
-
-	glEnableVertexAttribArray(cornerI);
-	glVertexAttribPointer(cornerI, 1, GL_FLOAT, GL_FALSE,
-		stride, reinterpret_cast<const GLvoid *>(3 * sizeof(GLfloat)));
+	if(OpenGL::HasVaoSupport())
+		EnableAttribArrays();
 
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
 }

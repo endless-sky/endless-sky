@@ -20,14 +20,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Rectangle.h"
 #include "SavedGame.h"
+#include "Tooltip.h"
 
-#include <ctime>
 #include <filesystem>
 #include <map>
+#include <memory>
 #include <string>
-#include <utility>
-#include <vector>
 
+class PilotProfile;
 class PlayerInfo;
 class UI;
 
@@ -41,6 +41,8 @@ public:
 	LoadPanel(PlayerInfo &player, UI &gamePanels);
 
 	virtual void Draw() override;
+
+	virtual void UpdateTooltipActivation() override;
 
 
 protected:
@@ -70,8 +72,8 @@ private:
 	SavedGame loadedInfo;
 	UI &gamePanels;
 
-	std::map<std::string, std::vector<std::pair<std::string, std::filesystem::file_time_type>>> files;
-	std::string selectedPilot;
+	std::map<std::string, std::shared_ptr<PilotProfile>> pilots;
+	std::shared_ptr<PilotProfile> selectedPilot;
 	std::string selectedFile;
 	// If the player enters a filename that exists, prompt before overwriting it.
 	std::string nameToConfirm;
@@ -80,9 +82,12 @@ private:
 	const Rectangle snapshotBox;
 
 	Point hoverPoint;
-	int hoverCount = 0;
+	Tooltip tooltip;
 	bool hasHover = false;
 	bool sideHasFocus = false;
 	double sideScroll = 0;
 	double centerScroll = 0;
+
+	std::string hoverFile;
+	std::string hoverFileTimestamp;
 };

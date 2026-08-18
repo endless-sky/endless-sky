@@ -5,6 +5,12 @@
 			"platform": "osx"
 		}
 	],
+	"overrides": [
+		{
+			"name": "openal-soft",
+			"version": "1.23.1#2"
+		}
+	],
 	"features": {
 		"system-libs": {
 			"description": "System libraries required to build ES.",
@@ -13,6 +19,7 @@
 					"name": "glew",
 					"platform": "!osx"
 				},
+				"libavif",
 				"libpng",
 				"libjpeg-turbo",
 				{
@@ -27,6 +34,7 @@
 					"name": "libuuid",
 					"platform": "linux"
 				},
+				"libflac",
 				"minizip",
 				"openal-soft",
 				{
@@ -43,8 +51,10 @@
 		"steam-libs": {
 			"description": "System libraries not provided in the Steam Sniper Runtime.",
 			"dependencies": [
+				"libavif",
 				"libmad",
 				"catch2",
+				"libflac",
 				"minizip"
 			]
 		},

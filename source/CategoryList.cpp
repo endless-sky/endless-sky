@@ -55,6 +55,14 @@ void CategoryList::Load(const DataNode &node)
 
 
 
+void CategoryList::Clear()
+{
+	list.clear();
+	currentPrecedence = 0;
+}
+
+
+
 // Sort the CategoryList. Categories are sorted by precedence. If multiple categories
 // share the same precedence then they are sorted alphabetically.
 void CategoryList::Sort()

@@ -231,6 +231,24 @@ double CargoHold::OutfitsSizePrecise() const
 
 
 
+int CargoHold::MinablesSize() const
+{
+	return ceil(MinablesSizePrecise());
+}
+
+
+
+double CargoHold::MinablesSizePrecise() const
+{
+	double size = 0.;
+	for(const auto &it : outfits)
+		if(it.first->Get("minable"))
+			size += it.second * it.first->Mass();
+	return size;
+}
+
+
+
 // Check if any outfits are being carried. Note that some outfits may have mass
 // zero, so this check cannot be done by calling OutfitsSize().
 bool CargoHold::HasOutfits() const
@@ -585,7 +603,7 @@ int64_t CargoHold::Value(const System *system) const
 // be charged for any illegal outfits plus the sum of the fines for all
 // missions. If the returned value is negative, you are carrying something so
 // bad that it warrants a death sentence.
-int CargoHold::IllegalCargoFine(const Government *government) const
+pair<int, const Conversation *> CargoHold::IllegalCargoFine(const Government *government) const
 {
 	int totalFine = 0;
 	// Carrying an illegal outfit is only half as bad as having it equipped.
@@ -598,11 +616,12 @@ int CargoHold::IllegalCargoFine(const Government *government) const
 		if(!it.second)
 			continue;
 
+		Government::Atrocity atrocity = government->Condemns(it.first);
+		if(atrocity.isAtrocity)
+			return {-1, atrocity.customDeathSentence};
 		int fine = government->Fines(it.first);
-		if(government->Condemns(it.first))
-			return -1;
 		if(fine < 0)
-			return fine;
+			return {fine, nullptr};
 		totalFine = max(totalFine, fine / 2);
 	}
 
@@ -613,12 +632,12 @@ int CargoHold::IllegalCargoFine(const Government *government) const
 	{
 		int fine = it.first->Fine();
 		if(fine < 0)
-			return fine;
-		if(!it.first->IsFailed())
+			return {-1 * !government->IgnoresUniversalAtrocities(), nullptr};
+		if(!it.first->IsFailed() && !government->IgnoresUniversalIllegals())
 			totalFine += fine;
 	}
 
-	return totalFine;
+	return {totalFine, nullptr};
 }
 
 
@@ -630,8 +649,8 @@ int CargoHold::IllegalPassengersFine(const Government *government) const
 	{
 		int fine = it.first->Fine();
 		if(fine < 0)
-			return fine;
-		if(!it.first->IsFailed())
+			return -1 * !government->IgnoresUniversalAtrocities();
+		if(!it.first->IsFailed() && !government->IgnoresUniversalIllegals())
 			totalFine += fine;
 	}
 

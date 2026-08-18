@@ -223,10 +223,10 @@ mission "Successors: Bold Tourists Round Trip"
 	stopover
 		attributes "bold tourism"
 		distance 5 20
+	on stopover
+		dialog phrase "successor bold tourists stopover"
 	on visit
 		dialog phrase "generic passenger on visit"
-	on visit
-		dialog phrase "successor bold tourists stopover"
 	on complete
 		payment 24000 200
 		dialog phrase "successor tourists in"

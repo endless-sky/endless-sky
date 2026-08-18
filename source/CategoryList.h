@@ -55,6 +55,7 @@ public:
 	CategoryList() = default;
 
 	void Load(const DataNode &node);
+	void Clear();
 
 	// Sort the CategoryList. Categories are sorted by precedence. If multiple Categories
 	// share the same precedence then they are sorted alphabetically.

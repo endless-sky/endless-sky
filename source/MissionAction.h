@@ -16,13 +16,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "ConditionSet.h"
+#include "DialogSettings.h"
 #include "ExclusiveItem.h"
 #include "GameAction.h"
 #include "LocationFilter.h"
 
 #include <map>
 #include <string>
-#include <vector>
 
 class ConditionsStore;
 class Conversation;
@@ -60,7 +60,7 @@ public:
 	// Determine if this MissionAction references content that is not fully defined.
 	std::string Validate() const;
 
-	const std::string &DialogText() const;
+	std::string DialogText() const;
 
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have, or should
@@ -84,37 +84,15 @@ public:
 
 
 private:
-	class MissionDialog {
-	public:
-		MissionDialog(const ExclusiveItem<Phrase> &);
-		MissionDialog(const std::string &);
-		MissionDialog(const DataNode &, const ConditionsStore *);
-
-
-		std::string dialogText;
-		ExclusiveItem<Phrase> dialogPhrase;
-		ConditionSet condition;
-	};
-
-
-private:
-	std::string CollapseDialog(const std::map<std::string, std::string> *subs) const;
-
-
-private:
 	// Whether this action can be triggered after the mission has failed.
 	bool runsWhenFailed = false;
 
 	std::string trigger;
-	std::string system;
+	std::string location;
 	LocationFilter systemFilter;
+	LocationFilter planetFilter;
 
-	// Dialog text of instantiated missions, or missions with pure-text dialog (no conditions or phrase blocks)
-	std::string dialogText;
-
-	// Logic for creating dialog text. Only valid for missions read in from game data files.
-	std::vector<MissionDialog> dialog;
-
+	DialogSettings dialog;
 	ExclusiveItem<Conversation> conversation;
 
 	// Outfits that are required to be owned (or not) for this action to be performable.

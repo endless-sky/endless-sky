@@ -20,7 +20,7 @@ mission "Liberate Kornephoros"
 	to offer
 		has "Defend Sabik: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "prepare for battle of Kornephoros"
@@ -165,7 +165,7 @@ mission "FW Prisoner Parole"
 	to offer
 		has "Liberate Kornephoros: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"reputation: Republic" = 1
@@ -210,7 +210,7 @@ mission "FW Prisoner Parole 2"
 	to offer
 		has "FW Prisoner Parole: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	npc accompany save
 		government "Free Worlds"
@@ -273,7 +273,7 @@ mission "FW Syndicate Diplomacy 1"
 	to offer
 		has "FW Prisoner Parole 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -328,7 +328,7 @@ mission "FW Syndicate Diplomacy 1B"
 	to offer
 		has "FW Syndicate Diplomacy 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		set "met remington"
@@ -433,7 +433,7 @@ mission "FW Syndicate Diplomacy 1C"
 	to offer
 		has "FW Syndicate Diplomacy 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "Tarazed neutrality" 0
@@ -478,7 +478,7 @@ mission "FW Syndicate Diplomacy 1D"
 	to offer
 		has "FW Syndicate Diplomacy 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Tried to convince Poisonwood, a world adjacent to Free Worlds territory, to switch sides. But, they are fiercely loyal to the Republic because the Navy freed them from being dominated by Alpha warlords decades ago."
@@ -498,6 +498,12 @@ mission "FW Syndicate Diplomacy 1D"
 					goto anarchy
 				`	"Alien invasion."`
 					goto aliens
+				`	"Me."`
+					to display
+						or
+							"combat rating" >= 22026
+							"armament deterrence" >= 10
+					goto me
 			
 			`	She laughs. "A typical Free Worlds answer. I will confess, I am none too fond of Parliament, ordering the Navy to spend its time up in the paradise sector assisting snobby rich pilots who've run out of fuel instead of down here defending against the very real threats that lurk on the pirate worlds."`
 				goto threat
@@ -518,6 +524,9 @@ mission "FW Syndicate Diplomacy 1D"
 			label aliens
 			`	She laughs. "You must watch far too many videos. The most powerful species in this galaxy are also the most peace-loving. Trust me, I should know. Here on the edge of human space, we receive... visitors, on occasion. They do not interfere in human events, but they came seeking information on a threat that concerns us both."`
 				goto threat
+			
+			label me
+			`	She frowns. "That's in rather poor taste, don't you think? You certainly do have a certain... reputation, I'll admit. You might be the greatest threat the Republic faces today, but humanity? The threat I worry about is far greater than any single captain, no matter how powerful their fleet is."`
 			
 			label threat
 			`	"What sort of threat?" you ask.`
@@ -584,7 +593,7 @@ mission "FW Hope Recon 1"
 	to offer
 		has "FW Syndicate Diplomacy 1D: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -609,7 +618,7 @@ mission "FW Hope Recon 1B"
 	to offer
 		has "FW Hope Recon 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 
 
 
@@ -752,7 +761,7 @@ mission "FW Plasma Testing 1"
 	to offer
 		has "FW Hope Recon 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 
 
 
@@ -760,13 +769,13 @@ mission "FW Plasma Testing 1B"
 	autosave
 	landing
 	name "Weapons Testing"
-	description "As a test for the new Plasma Turret, assist the Walloping Window-Blind in destroying the Red Nile, a pirate ship that is probably in the <waypoints> system. Then return to <planet>."
+	description "As a test for the new Plasma Turret, assist the Walloping Window-Blind in destroying the Red Nile, a pirate ship that is probably in the <marks> system. Then return to <planet>."
 	source "Rust"
-	waypoint "Ildaria"
+	mark "Ildaria"
 	to offer
 		has "FW Plasma Testing 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "People" "Edward Tivrusky" `Barmy Edward is the Chief Offensive Engineer at Kraz Cybernetics, known for his inventive and sometimes impractical weapon designs. Supposedly, his engineers gave him the "Barmy" sobriquet after an incident where an experimental epoxy cannon he was working on exploded and glued him to the ceiling.`
@@ -811,8 +820,8 @@ mission "FW Plasma Testing 1B"
 			
 			label plan
 			`	"So, where do I come in?" you ask.`
-			`	"Well, the Council says no testing against the Navy... yet. No point in provoking a fight just to try out an untested weapon. So I asked them what other target they could suggest, and they mentioned this pirate ship by the name of Red Nile that's been haunting the <waypoints> system, sniping on merchants that take a wrong turn and end up there."`
-			`	With a grand gesture, he indicates an aging Tarazed Falcon parked in the far corner of the hangar. It's a little rusty, and the paint is flaking, but a Falcon is an impressive ship under any circumstances. "We packed four of our prototypes into our department's very own test ship, the Walloping Window-Blind. We can't let you fly her, of course," he says, "on account of she's dearer to us than our own children. So the plan is, the Window-Blind will accompany you to <waypoints>, and you fight the pirates together, taking careful note of how the guns perform. Sound like fun?"`
+			`	"Well, the Council says no testing against the Navy... yet. No point in provoking a fight just to try out an untested weapon. So I asked them what other target they could suggest, and they mentioned this pirate ship by the name of Red Nile that's been haunting the <marks> system, sniping on merchants that take a wrong turn and end up there."`
+			`	With a grand gesture, he indicates an aging Tarazed Falcon parked in the far corner of the hangar. It's a little rusty, and the paint is flaking, but a Falcon is an impressive ship under any circumstances. "We packed four of our prototypes into our department's very own test ship, the Walloping Window-Blind. We can't let you fly her, of course," he says, "on account of she's dearer to us than our own children. So the plan is, the Window-Blind will accompany you to <marks>, and you fight the pirates together, taking careful note of how the guns perform. Sound like fun?"`
 			choice
 				`	"You bet!"`
 					accept
@@ -830,7 +839,9 @@ mission "FW Plasma Testing 1B"
 		personality plunders staying target
 		system "Ildaria"
 		ship "Leviathan (Heavy)" "Red Nile"
-		dialog `The <npc> has been eliminated. Time to return to <destination> and report to Barmy Edward.`
+		on kill
+			unmark "Ildaria"
+			dialog `The <npc> has been eliminated. Time to return to <destination> and report to Barmy Edward.`
 	
 	on visit
 		dialog `You have returned to <planet>, but your mission is not complete - either the Red Nile is not destroyed, or you have left the Walloping Window-Blind behind.`
@@ -900,7 +911,7 @@ mission "FW Supply Convoy 1"
 	to offer
 		has "FW Plasma Testing 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -955,7 +966,7 @@ mission "FW Pirates 1"
 	to offer
 		has "FW Supply Convoy 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"salary: Free Worlds" = 2100
@@ -1006,7 +1017,7 @@ mission "FW Senate 1"
 	to offer
 		has "FW Pirates 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Free Worlds have finally elected a Senate, which will be convening for the first time soon on Bourne."
@@ -1027,7 +1038,7 @@ mission "FW Senate 1B"
 	to offer
 		has "FW Senate 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fw senate timer" 8
@@ -1107,7 +1118,7 @@ mission "FW Pirates 2"
 	to offer
 		has "FW Senate 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1304,7 +1315,7 @@ mission "FW Pirates: Attack 2"
 	to offer
 		has "FW Pirates: Attack 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1320,53 +1331,7 @@ mission "FW Pirates: Attack 2"
 	
 	on accept
 		event "battle for Greenrock"
-	
-	npc
-		government "Free Worlds"
-		personality heroic escort
-		fleet
-			names "free worlds capital"
-			variant
-				"Falcon (Laser)"
-				"Bastion (Laser)"
-		fleet
-			names "free worlds capital"
-			variant
-				"Osprey"
-				"Osprey (Missile)"
-		fleet
-			names "free worlds capital"
-			fighters
-				names "free worlds fighters"
-			variant
-				"Skein"
-				"Finch" 6
-		fleet
-			names "free worlds small"
-			variant
-				"Hawk"
-				"Hawk (Speedy)"
-				"Hawk (Plasma)"
-				"Hawk (Bomber)"
-		fleet
-			names "free worlds small"
-			variant
-				"Fury (Missile)" 2
-				"Fury (Bomber)"
-		fleet
-			names "free worlds small"
-			variant
-				"Sparrow" 5
-	npc
-		government "Merchant"
-		personality heroic escort
-		fleet
-			names "civilian"
-			variant
-				"Firebird"
-				"Behemoth"
-				"Modified Argosy"
-				"Clipper (Speedy)"
+
 	npc evade
 		government "Pirate"
 		personality plunders staying
@@ -1438,6 +1403,75 @@ mission "FW Pirates: Attack 2"
 			`	Just then, you hear another ship coming in for a landing. You both look up to see a Falcon landing in the spaceport: Alondo's Falcon that you were supposed to escort to Thule. Tomek has a somber look on his face. "Let me speak with them first," he says to you. "Meet with us in the spaceport later. Hopefully I'll have smoothed things over by then."`
 
 
+mission "FW Pirates: Invasion Fleet"
+	invisible
+	landing
+	source "Trinket"
+	# The fleet despawns immediately, but the mission persists until it gets "completed" alongside
+	# the next visible mission in the chain and so can be used as a condition in later missions.
+	destination "Deep"
+	to offer
+		has "FW Pirates: Attack 1: done"
+	to complete
+		has "FW Pirates: Attack 2: done"
+	to fail
+		has "FW Pirates: Attack 2: declined"
+
+	npc save
+		to despawn
+			or
+				has "FW Pirates: Attack 2: done"
+				has "FW Pirates: Attack 2: declined"
+		government "Free Worlds"
+		personality heroic escort
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon (Laser)"
+				"Bastion (Laser)"
+		fleet
+			names "free worlds capital"
+			variant
+				"Osprey"
+				"Osprey (Missile)"
+		fleet
+			names "free worlds capital"
+			fighters
+				names "free worlds fighters"
+			variant
+				"Skein"
+				"Finch" 6
+		fleet
+			names "free worlds small"
+			variant
+				"Hawk"
+				"Hawk (Speedy)"
+				"Hawk (Plasma)"
+				"Hawk (Bomber)"
+		fleet
+			names "free worlds small"
+			variant
+				"Fury (Missile)" 2
+				"Fury (Bomber)"
+		fleet
+			names "free worlds small"
+			variant
+				"Sparrow" 5
+	npc save
+		to despawn
+			or
+				has "FW Pirates: Attack 2: done"
+				has "FW Pirates: Attack 2: declined"
+		government "Merchant"
+		personality heroic escort
+		fleet
+			names "civilian"
+			variant
+				"Firebird"
+				"Behemoth"
+				"Modified Argosy"
+				"Clipper (Speedy)"
+
 
 event "battle for Greenrock"
 	system "Shaula"
@@ -1453,7 +1487,7 @@ mission "FW Pirates: Attack 3"
 	to offer
 		has "FW Pirates: Attack 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1544,7 +1578,7 @@ mission "FW Pirates: Diplomacy 2"
 	to offer
 		has "FW Pirates: Diplomacy 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "battle for Thule"
@@ -1609,7 +1643,7 @@ mission "FW Pirates: Diplomacy 3"
 	to offer
 		has "FW Pirates: Diplomacy 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"reputation: Independent" >?= 10
@@ -1650,7 +1684,7 @@ mission "FW Pirates: Diplomacy 4"
 	to offer
 		has "FW Pirates: Diplomacy 3: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fw suppressed Greenrock"
@@ -1706,7 +1740,7 @@ mission "FW Early Warning 1"
 			has "FW Pirates: Attack 3: done"
 			has "FW Pirates: Diplomacy 4: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1741,7 +1775,16 @@ mission "FW Early Warning 1"
 			`	"Distracting us from what?" Alondo asks.`
 			`	Tomek thinks for a moment. "Have any of the eastern patrols returned yet?"`
 			`	"None," says an officer. "Most of our patrols have been sticking close to Tarazed to stay out of reach of the Navy. It'll take a few more days for them to begin arriving."`
+			branch "no casualties"
+				has "FW Pirates: Invasion Fleet: done"
+			
 			`	"We could sure use those ships that were lost attacking Greenrock," Freya snips.`
+				goto task
+
+			label "no casualties"
+			`	"Pulling our fleets out of position to attack Greenrock sure helped our patrol schedule," Freya snips.`
+
+			label task
 			`	Tomek ignores her. "Alright, Captain <last>, I want you to scout <waypoints>. Simply enter the systems, look at what forces the Navy has there, then leave as soon as possible. We need to know what we're up against, if the Navy truly are moving to attack from Wei. If it turns out this is a distraction, hopefully we'll have intel from the returning patrol fleets by then."`
 				accept
 	
@@ -1816,7 +1859,7 @@ mission "FW Early Warning 2"
 	to offer
 		has "FW Early Warning 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	on offer
 		conversation
 			`When you return, you find Tomek and JJ speaking with captains of the eastern patrols. The rest of the Council has been moved off-world in case the Navy retakes Kornephoros.`
@@ -1869,7 +1912,7 @@ mission "FW Early Warning 3"
 	to offer
 		has "FW Early Warning 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "People" "Ranulph Hines" "Ranulph Hines is a commander within the Republic Navy. While a competent leader, he has a reputation for disregarding many of the Navy's old traditions, instead preferring to do things his own way."
@@ -1968,7 +2011,7 @@ mission "FW Early Warning 4"
 	to offer
 		has "FW Early Warning 3: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "battle in Wei"
@@ -2088,7 +2131,7 @@ mission "FW Early Warning 5"
 	to offer
 		has "FW Early Warning 4: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 
 
 
@@ -2104,7 +2147,7 @@ mission "FW Senate Hearing"
 		has "FW Early Warning 5: done"
 		has "FW Pirates: Attack 3: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		clear "salary: Free Worlds"
@@ -2150,10 +2193,32 @@ mission "FW Senate Hearing"
 				`	"I trusted that Tomek would know the best strategy."`
 				`	"I guess I got too caught up in trying to be a hero."`
 					goto hero
+				`	"I knew my fleet could subdue the planet without suffering serious losses."`
+					to display
+						or
+							"has FW Pirates: Invasion Fleet: done"
+							"combat rating" >= 8103
+							"armament deterrence" >= 8
+					goto losses
 			`	"And how did that work out?" says the old man. "Shortly after your attack on Greenrock, the Navy made moves to invade us once again, a plan that was no doubt helped by your actions."`
 				goto sentence
 			label hero
 			`	"Indeed," says the senator. "And I bet it wasn't long after the battle that you realized saving the galaxy isn't that easy."`
+				goto sentence
+			label losses
+			branch intact
+				"has FW Pirates: Invasion Fleet: done"
+			`	"And yet the fleet did suffer losses," says the senator. "Not to mention that you took your ships, which are among the strongest in the whole of the Free Worlds, and tied them up an a meaningless battle that risked opening up an entirely new front of the war. Are you saying you did all of this without permission, without even considering the reasons the Free Worlds had decided not to launch an assault, just because you thought you could get away with it?"`
+				goto sentence
+
+			label intact
+			`	"Captain," replies the senator, "can't you realize this isn't about casualties? It doesn't matter that you managed the invasion flawlessly - we can all agree on that. What matters is that there wasn't supposed to be an invasion in the first place. Can't you see how your actions disrupted the Free Worlds' entire military and diplomatic strategy?"`
+			`	"I suppose so," you admit.`
+			`	A third senator speaks up, a woman whose name card identifies her as Sara, from Skymoot. "That will be all, Captain <last>. The Senate will confer and decide whether we want your continued services."`
+			`	You are led back out to the lobby, where you wait for what feels like another hour. During that time, you speak with someone else and learn that Tomek has been removed from the Council and put under house arrest. Although interestingly, despite Tomek disobeying orders, the Senate has decided to continue the occupation of Greenrock, at least for now, because leaving the planet so quickly would only foment greater chaos in the region.`
+			`	Finally, a messenger comes and hands you a small slip of paper. You open it. The message reads: "We have decided that you will be suspended without pay and stripped of your rank. When we are in need of your services again, we will contact you, and your rank will be reinstated as the Senate or Council sees fit." It looks like for now, you are back to being a simple merchant captain.`
+				decline
+
 			label sentence
 			`	"I suppose so," you admit.`
 			`	A third senator speaks up, a woman whose name card identifies her as Sara, from Skymoot. "That will be all, Captain <last>. The Senate will confer and decide whether we want your continued services."`
@@ -2180,7 +2245,7 @@ mission "FW Refinery 1"
 		has "FW Early Warning 5: done"
 		has "FW Pirates: Diplomacy 4: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -2224,7 +2289,7 @@ mission "FW Refinery 1A"
 	to offer
 		has "FW Refinery 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation

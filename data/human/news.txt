@@ -357,7 +357,7 @@ news "grifter"
 news "company psychologist"
 	location
 		government "Syndicate"
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 	name
 		word
 			"Company psychologist"
@@ -384,7 +384,7 @@ news "company psychologist"
 news "genetic counselor"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 	name
 		word
 			"Genetic counselor"
@@ -406,7 +406,7 @@ news "genetic counselor"
 news "investigator"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 	name
 		word
 			"Detective"
@@ -427,7 +427,7 @@ news "investigator"
 news "parent"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 	name
 		word
 			"Parent"
@@ -579,7 +579,7 @@ news "dock worker"
 news "housekeeper"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "paradise"
+		attributes "wealthy" "paradise"
 	name
 		word
 			"Housekeeper"
@@ -605,7 +605,7 @@ news "housekeeper"
 news "groundskeeper"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "paradise"
+		attributes "wealthy" "paradise"
 	name
 		word
 			"Groundskeeper"
@@ -629,7 +629,7 @@ news "groundskeeper"
 news "hair stylist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "urban" "paradise"
+		attributes "wealthy" "urban" "paradise"
 	name
 		word
 			"Hair stylist"
@@ -783,7 +783,7 @@ news "human resources worker"
 news "loan officer"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich"
+		attributes "wealthy"
 	name
 		word
 			"Loan officer"
@@ -955,7 +955,7 @@ news "athlete"
 news "dentist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "paradise" "rich" "urban"
+		attributes "paradise" "wealthy" "urban"
 	name
 		word
 			"Dentist"
@@ -1018,7 +1018,7 @@ news "epidemiologist on quarg world"
 news "economist"
 	location
 		government "Syndicate"
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 	name
 		word
 			"Economist"
@@ -1159,7 +1159,7 @@ news "substance abuse counselor"
 news "reporter"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
-		attributes "rich" "urban" "frontier" "tourism"
+		attributes "wealthy" "urban" "frontier" "tourism"
 		not
 			government "Quarg"
 			not attributes "human"
@@ -1214,7 +1214,7 @@ news "public relations worker"
 news "museum curator"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "tourism" "near earth" "paradise" "rich"
+		attributes "tourism" "near earth" "paradise" "wealthy"
 	name
 		word
 			"Museum curator"
@@ -1310,7 +1310,7 @@ news "technical writer"
 news "dietitian"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "paradise" "rim" "near earth"
+		attributes "wealthy" "paradise" "rim" "near earth"
 	name
 		word
 			"Dietitian"
@@ -1330,7 +1330,7 @@ news "dietitian"
 news "chef"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "paradise"
+		attributes "wealthy" "paradise"
 	name
 		word
 			"Chef"
@@ -1359,7 +1359,7 @@ news "chef"
 news "insurance agent"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "urban" "paradise" "near earth"
+		attributes "wealthy" "urban" "paradise" "near earth"
 	name
 		word
 			"Insurance agent"
@@ -1408,7 +1408,7 @@ news "excavation specialist"
 news "chauffeur"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rich" "paradise"
+		attributes "wealthy" "paradise"
 	name
 		word
 			"Chauffeur"
@@ -1654,7 +1654,7 @@ news "religious"
 news "tourist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "deep" "rich" "paradise" "tourism"
+		attributes "deep" "wealthy" "paradise" "tourism"
 		not attributes "station"
 	name
 		word
@@ -1737,7 +1737,7 @@ news "protester"
 news "diplomat"
 	location
 		government "Republic" "Free Worlds" "Syndicate"
-		attributes "rich"
+		attributes "wealthy"
 	name
 		word
 			"Diplomat"
@@ -2219,8 +2219,8 @@ news "spaceport video advertisement"
 			`You see a video of stuntmen making a jump from the edge of space. The "do not try this at home," "illegal on many planets," and "high risk/deadly" warnings at the end of the video suggest that this might become quite a popular sport.`
 			"A video of fast spaceships racing around a three dimensional course in space is shown on the screen, interwoven with clips of very luxurious ships where people appear to be watching the race."
 			"An action-packed advertisement about joining the Navy is playing on the screen. It shows impressive video-fragments of carriers, gunships, dropships and heroic marines."
-			"Some video is showing Syndicate equipment. The video ends with the slogan, 'Just what's needed to get the job done.'"
-			"Take a cruise of six days to hunt pirates, shoot real pirates for 2000 credits a day. 400 bullets included, for free."
+			`Some video is showing Syndicate equipment. The video ends with the slogan, "Just what's needed to get the job done."`
+			"Take a cruise of six days to hunt pirates, shoot real pirates for 2,000 credits a day. 400 bullets included, for free."
 			"Buy local, buy Southbound Haulers. There is always a dealer close to you."
 
 
@@ -2299,7 +2299,7 @@ phrase "platform number"
 news "tourist pa system"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "deep" "rich" "paradise" "tourism"
+		attributes "deep" "wealthy" "paradise" "tourism"
 	name
 		word
 			"Public announcement system"
@@ -2870,14 +2870,14 @@ news "betelgeuse stolen ship advisory"
 		word
 			"? "
 		word
-			"Ensure that when buying new you do so from a reputable dealer"
-			"Buy your ships direct from a Betelgeuse-affiliated shipyard"
-			"Give yourself peace of mind by purchasing your Betelgeuse ship from a reputable shipyard"
-			"Request the certificate of authenticity from the seller with your purchase"
+			"Buy new from a reputable dealer"
+			"Buy from a Betelgeuse-affiliated shipyard"
+			"Purchase from a reputable shipyard"
+			"Confirm authenticity with your purchase"
 		word
 			". "
 		word
-			"These simple precautions will ensure that"
+			"These precautions will ensure that"
 		word
 			" you're not "
 		word
@@ -2885,8 +2885,7 @@ news "betelgeuse stolen ship advisory"
 			"conned with a counterfeit"
 			"purchasing a"
 		word
-			" ship assembled from refuse by "
-			" ship assembled with inferior materials by "
+			" ship assembled by "
 			" stolen ship from "
 			" hijacked ship from "
 			" patchy ship from "
@@ -2894,7 +2893,7 @@ news "betelgeuse stolen ship advisory"
 			"a gang of "
 			"a bunch of "
 			"some unsavory "
-			"some untrustworthy "
+			"untrustworthy "
 		word
 			"pirates. "
 			"bootleggers. "

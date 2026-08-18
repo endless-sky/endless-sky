@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "opengl.h"
 
+using namespace std;
+
 namespace {
 	const Shader *shader;
 	GLint sizeI = -1;
@@ -32,8 +34,16 @@ namespace {
 	GLint srcscaleI = -1;
 	GLint fadeI = -1;
 
+	GLint vertI;
+
 	GLuint vao = -1;
 	GLuint vbo = -1;
+
+	void EnableAttribArrays()
+	{
+		glEnableVertexAttribArray(vertI);
+		glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	}
 }
 
 
@@ -41,19 +51,26 @@ namespace {
 // Initialize the shaders.
 void RenderBuffer::Init()
 {
+	if(OpenGL::GetFboSupport() == OpenGL::FeatureSupport::NONE)
+		throw runtime_error("OpenGL framebuffer object support is required!");
+
 	shader = GameData::Shaders().Get("renderBuffer");
 	if(!shader->Object())
-		throw std::runtime_error("Could not find render buffer shader!");
+		throw runtime_error("Could not find render buffer shader!");
 	sizeI = shader->Uniform("size");
 	positionI = shader->Uniform("position");
 	scaleI = shader->Uniform("scale");
 	srcpositionI = shader->Uniform("srcposition");
 	srcscaleI = shader->Uniform("srcscale");
 	fadeI = shader->Uniform("fade");
+	vertI = shader->Attrib("vert");
 
 	// Generate the vertex data for drawing sprites.
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+	{
+		glGenVertexArrays(1, &vao);
+		glBindVertexArray(vao);
+	}
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -66,12 +83,13 @@ void RenderBuffer::Init()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	glEnableVertexAttribArray(shader->Attrib("vert"));
-	glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	if(OpenGL::HasVaoSupport())
+		EnableAttribArrays();
 
 	// Unbind the VBO and VAO.
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
 }
 
 
@@ -102,9 +120,18 @@ RenderBuffer::RenderTargetGuard::RenderTargetGuard(RenderBuffer &b, int screenWi
 RenderBuffer::RenderBuffer(const Point &dimensions)
 	: size(dimensions)
 {
+	OpenGL::FeatureSupport fboSupport = OpenGL::GetFboSupport();
 	// Generate a framebuffer.
-	glGenFramebuffers(1, &framebuffer);
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+	if(fboSupport == OpenGL::FeatureSupport::CORE)
+	{
+		glGenFramebuffers(1, &framebuffer);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+	}
+	else
+	{
+		glGenFramebuffersEXT(1, &framebuffer);
+		glBindFramebufferEXT(GL_FRAMEBUFFER, framebuffer);
+	}
 
 	// Generate the texture.
 	glGenTextures(1, &texid);
@@ -123,16 +150,24 @@ RenderBuffer::RenderBuffer(const Point &dimensions)
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, scaledSize.X(), scaledSize.Y(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
 	// Attach the texture to the frame buffer.
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texid, 0);
+	if(fboSupport == OpenGL::FeatureSupport::CORE)
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texid, 0);
+	else
+		glFramebufferTexture2DEXT(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texid, 0);
 	GLenum draw_buffers[] = {GL_COLOR_ATTACHMENT0};
 	glDrawBuffers(1, draw_buffers);
 
-	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-		Logger::LogError("Failed to initialize framebuffer for RenderBuffer");
+	if(fboSupport == OpenGL::FeatureSupport::CORE ?
+			glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE
+			: glCheckFramebufferStatusEXT(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		Logger::Log("Failed to initialize framebuffer for RenderBuffer.", Logger::Level::WARNING);
 
 
 	glBindTexture(GL_TEXTURE_2D, 0);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	if(fboSupport == OpenGL::FeatureSupport::CORE)
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	else
+		glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
 
 	// Default to the current viewport size at the time of construction.
 	glGetIntegerv(GL_VIEWPORT, lastViewport);
@@ -144,7 +179,10 @@ RenderBuffer::RenderBuffer(const Point &dimensions)
 RenderBuffer::~RenderBuffer()
 {
 	glDeleteTextures(1, &texid);
-	glDeleteFramebuffers(1, &framebuffer);
+	if(OpenGL::GetFboSupport() == OpenGL::FeatureSupport::CORE)
+		glDeleteFramebuffers(1, &framebuffer);
+	else
+		glDeleteFramebuffersEXT(1, &framebuffer);
 }
 
 
@@ -160,13 +198,24 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 	//       are done.
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING, reinterpret_cast<int*>(&lastFramebuffer));
 	glGetIntegerv(GL_VIEWPORT, lastViewport);
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+	if(OpenGL::GetFboSupport() == OpenGL::FeatureSupport::CORE)
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+	else
+		glBindFramebufferEXT(GL_FRAMEBUFFER, framebuffer);
 
 	const Point scaledSize = size * multiplier * Screen::Zoom() / 100.0;
 	glViewport(0, 0, scaledSize.X(), scaledSize.Y());
 
 	static const float CLEAR[] = {0, 0, 0, 0};
-	glClearBufferfv(GL_COLOR, 0, CLEAR);
+	if(OpenGL::HasClearBufferSupport())
+		glClearBufferfv(GL_COLOR, 0, CLEAR);
+	else
+	{
+		GLenum drawBuffers = GL_COLOR_ATTACHMENT0;
+		glDrawBuffers(1, &drawBuffers);
+		glClearColor(CLEAR[0], CLEAR[1], CLEAR[2], CLEAR[3]);
+		glClear(GL_COLOR_BUFFER_BIT);
+	}
 
 	return RenderTargetGuard(*this, size.X(), size.Y());
 }
@@ -178,7 +227,10 @@ void RenderBuffer::Deactivate()
 {
 	// Restore the old settings.
 	glViewport(lastViewport[0], lastViewport[1], lastViewport[2], lastViewport[3]);
-	glBindFramebuffer(GL_FRAMEBUFFER, lastFramebuffer);
+	if(OpenGL::GetFboSupport() == OpenGL::FeatureSupport::CORE)
+		glBindFramebuffer(GL_FRAMEBUFFER, lastFramebuffer);
+	else
+		glBindFramebufferEXT(GL_FRAMEBUFFER, lastFramebuffer);
 }
 
 
@@ -194,7 +246,13 @@ void RenderBuffer::Draw(const Point &position)
 void RenderBuffer::Draw(const Point &position, const Point &clipsize, const Point &srcposition)
 {
 	glUseProgram(shader->Object());
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(vao);
+	else
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		EnableAttribArrays();
+	}
 
 	glBindTexture(GL_TEXTURE_2D, texid);
 
@@ -214,7 +272,13 @@ void RenderBuffer::Draw(const Point &position, const Point &clipsize, const Poin
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
+	else
+	{
+		glDisableVertexAttribArray(vertI);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
 	glUseProgram(0);
 }
 

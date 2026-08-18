@@ -71,7 +71,9 @@ segment_include = {re.compile(regex): description for regex, description in {
 	# Matches any tabulator characters.
 	"\t": "tabulators should only be used for indentation",
 	# Matches any commas that are not followed by whitespace characters.
-	",\\S": "commas should be followed by whitespaces"
+	",\\S": "commas should be followed by whitespaces",
+	# Matches incorrect structured bindings
+	"&\\s+\\[": "structured bindings should not contain whitespace after the ampersand",
 }.items()}
 # Dict of patterns for selecting potential formatting issues in a single word.
 # Also contains the error description for the patterns.
@@ -412,6 +414,7 @@ def check_global_format(sanitized_lines, original_lines, file):
 	issues = ([], [])
 	if file not in exclude_include_check:
 		join(issues, check_include(sanitized_lines, original_lines, file))
+	join(issues, check_class_forward_declarations(sanitized_lines, original_lines, file))
 	return issues
 
 
@@ -431,7 +434,6 @@ def check_copyright(lines, file):
 		["Copyright \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? by .*", True]
 	]
 	copyright_end = [
-		["", False],
 		["Endless Sky is free software: you can redistribute it and/or modify it under the", False],
 		["terms of the GNU General Public License as published by the Free Software", False],
 		["Foundation, either version 3 of the License, or (at your option) any later version.", False],
@@ -448,17 +450,22 @@ def check_copyright(lines, file):
 	index = 0
 	error_line = -1
 	complete = False
+	failed_check = '{{Undefined}}'
 	for [copyright, is_regex] in copyright_begin:
 		if is_regex:
 			if not re.search(copyright, lines[index]):
 				error_line = index
+				failed_check = copyright
 				break
 		else:
 			if copyright != lines[index]:
 				error_line = index
+				failed_check = copyright
 				break
 		index += 1
+	index += 1 # we know we want a blank line, will check for it later
 	not_found_error_line = index
+	found_copyright_end = False
 	if error_line == -1:
 		index_begin = index
 		while index_begin < len(lines) - len(copyright_end):
@@ -467,22 +474,34 @@ def check_copyright(lines, file):
 				if is_regex:
 					if not re.search(copyright, lines[index]):
 						error_line = index
+						failed_check = copyright
 						break
 				else:
 					if copyright != lines[index]:
 						error_line = index
+						failed_check = copyright
 						break
 				index += 1
+			if index - index_begin > 0:
+				found_copyright_end = True
+				if not lines[index_begin - 1] == "":
+					error_line = index_begin - 1
+					failed_check = "Expected one blank line before main copyright paragraph"
 			if error_line == -1:
 				complete = True
 				break
-			index_begin += 1
-			error_line = -1
+			if not found_copyright_end:
+				# we keep trying, shifting downward looking for the last half
+				index_begin += 1
+				error_line = -1
+			else:
+				break
 	if error_line != -1:
-		errors.append(Error(lines[error_line], error_line + 1, "invalid or missing copyright header"))
+		errors.append(Error(lines[error_line], error_line + 1,
+							f"invalid or missing copyright header [expected: '{failed_check}'"))
 	elif not complete:
 		errors.append(Error(lines[not_found_error_line], not_found_error_line + 1,
-							"invalid or incomplete copyright header"))
+							f"invalid or incomplete copyright header [expected: '{failed_check}']"))
 	return errors, warnings
 
 
@@ -564,6 +583,25 @@ def check_include(sanitized_lines, original_lines, file):
 		for i in range(len(group) - 1):
 			if group_lines[i].lower() > group_lines[i + 1].lower():
 				errors.append(Error(group_lines[i], group[i] + 1, "includes are not in alphabetical order"))
+	return errors, warnings
+
+
+# Checks the class forward declarations within the specified file. Parameters:
+# sanitized_lines: the lines of the file, without the line separators and the contents of strings and comments
+# original_lines: the lines of the file, without the terminating line separators
+# file: the path to the file
+# Returns a tuple of errors and warnings.
+def check_class_forward_declarations(sanitized_lines, original_lines, file):
+	errors = []
+	warnings = []
+
+	class_lines = [(index, line) for index, line in enumerate(sanitized_lines) if line.startswith("class ") and line.endswith(';')]
+	for i in range(len(class_lines) - 1):
+		_, prev_line = class_lines[i]
+		line_num, next_line = class_lines[i + 1]
+		if prev_line.lower() > next_line.lower():
+			errors.append(Error(prev_line, line_num, "class forward declarations are not in alphabetical order"))
+
 	return errors, warnings
 
 
