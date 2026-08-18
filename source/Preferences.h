@@ -155,6 +155,12 @@ public:
 		ALWAYS
 	};
 
+	enum class FastForwardCapsLockSync : int_fast8_t {
+		DEFAULT = 0,
+		NEVER = 1,
+		ALWAYS = 2
+	};
+
 	enum class TargetAsteroidStrategy : int_fast8_t {
 		PROXIMITY = 0,
 		EXPECTED_VALUE,
@@ -300,6 +306,11 @@ public:
 	static void ToggleAmmoRefill();
 	static AmmoRefill GetAmmoRefill();
 	static const std::string &AmmoRefillSetting();
+
+	/// Fast-forward CapsLock sync setting
+	static void ToggleFastForwardCapsLockSync();
+	static FastForwardCapsLockSync GetFastForwardCapsLockSync();
+	static const std::string &FastForwardCapsLockSyncSetting();
 
 	/// Text alignment override setting.
 	static void ToggleTextAlignment();
