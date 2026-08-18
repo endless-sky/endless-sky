@@ -265,18 +265,13 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	isDefined = true;
 
 	DataSchema schema = Schema();
-	ApplySchema(node, schema);
 
 	for(const DataNode &child : node)
 	{
-		const string &key = child.Token(0);
-
-		// temporary
-		auto it = find_if(schema.begin(), schema.end(),
-			[&](const DataField &f){ return key == f.key; });
-		if(it != schema.end())
+		if(ApplyField(child, schema))
 			continue;
 
+		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
 		if(key == "weapon")

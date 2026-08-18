@@ -22,7 +22,7 @@ struct DataField {
 
 using DataSchema = std::vector<DataField>;
 
-void ApplySchema(const DataNode &node, const DataSchema &schema);
+bool ApplyField(const DataNode &node, const DataSchema &schema);
 
 namespace Field {
 	// basic field types that assign to a variable

@@ -13,16 +13,15 @@ using namespace std;
 
 
 
-void ApplySchema(const DataNode &node, const DataSchema &schema)
+bool ApplyField(const DataNode &node, const DataSchema &schema)
 {
-	for(const DataNode &child : node)
-	{
-		const string &key = child.Token(0);
-		auto it = find_if(schema.begin(), schema.end(),
-			[&](const DataField &f){ return key == f.key; });
-		if(it != schema.end())
-			it->apply(child);
-	}
+	const string &key = node.Token(0);
+	auto it = find_if(schema.begin(), schema.end(),
+		[&](const DataField &f){ return key == f.key; });
+	if(it == schema.end())
+		return false;
+	it->apply(node);
+	return true;
 }
 
 
