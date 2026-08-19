@@ -467,7 +467,7 @@ void HailPanel::SetMessage(const string &text)
 	{
 		message = make_shared<TextArea>();
 		message->SetAlignment(Preferences::GetTextAlignment());
-		message->SetFont(FontSet::Get(14));
+		message->SetFont(FontSet::Get(Preferences::GetFontSize()));
 		message->SetColor(*GameData::Colors().Get("medium"));
 		message->SetRect(GameData::Interfaces().Get("hail panel")->GetBox("message"));
 		AddChild(message);
