@@ -14,6 +14,7 @@
 ship "Aerie"
 	sprite "ship/aerie"
 	thumbnail "thumbnail/aerie"
+	"administrative cost" 2
 	attributes
 		category "Medium Warship"
 		"cost" 3500000
@@ -82,6 +83,7 @@ ship "Argosy"
 	plural "Argosies"
 	sprite "ship/argosy"
 	thumbnail "thumbnail/argosy"
+	"administrative cost" 2
 	attributes
 		category "Light Freighter"
 		"cost" 1960000
@@ -143,6 +145,7 @@ ship "Argosy"
 ship "Arrow"
 	sprite "ship/arrow"
 	thumbnail "thumbnail/arrow"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		"cost" 1200000
@@ -196,6 +199,7 @@ ship "Auxiliary"
 	plural "Auxiliaries"
 	sprite "ship/auxiliaryh"
 	thumbnail "thumbnail/auxiliaryh"
+	"administrative cost" 6
 	attributes
 		category "Utility"
 		licenses
@@ -313,6 +317,7 @@ ship "Auxiliary" "Auxiliary (Transport)"
 ship "Bactrian"
 	sprite "ship/bactrian"
 	thumbnail "thumbnail/bactrian"
+	"administrative cost" 7
 	attributes
 		licenses
 			City-Ship
@@ -388,6 +393,7 @@ ship "Bactrian"
 ship "Barb"
 	sprite "ship/barb"
 	thumbnail "thumbnail/barb"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		"cost" 50000
@@ -432,6 +438,7 @@ ship "Barb"
 ship "Bastion"
 	sprite "ship/bastion"
 	thumbnail "thumbnail/bastion"
+	"administrative cost" 4
 	attributes
 		category "Medium Warship"
 		"cost" 3860000
@@ -496,6 +503,7 @@ ship "Bastion"
 ship "Behemoth"
 	sprite "ship/behemoth"
 	thumbnail "thumbnail/behemoth"
+	"administrative cost" 4
 	attributes
 		category "Heavy Freighter"
 		"cost" 10800000
@@ -558,6 +566,7 @@ ship "Behemoth"
 ship "Berserker"
 	sprite "ship/berserker"
 	thumbnail "thumbnail/berserker"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		"cost" 520000
@@ -609,6 +618,7 @@ ship "Berserker"
 ship "Blackbird"
 	sprite "ship/blackbird"
 	thumbnail "thumbnail/blackbird"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		"cost" 2230000
@@ -662,6 +672,7 @@ ship "Blackbird"
 ship "Bounder"
 	sprite "ship/bounder"
 	thumbnail "thumbnail/bounder"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		"cost" 1140000
@@ -710,6 +721,7 @@ ship "Bounder"
 ship "Boxwing"
 	sprite "ship/boxwing"
 	thumbnail "thumbnail/boxwing"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		cost 369000
@@ -748,6 +760,7 @@ ship "Boxwing"
 ship "Bulk Freighter"
 	sprite "ship/bulk freighter"
 	thumbnail "thumbnail/bulk freighter"
+	"administrative cost" 4
 	attributes
 		category "Heavy Freighter"
 		"cost" 11100000
@@ -809,6 +822,7 @@ ship "Bulk Freighter"
 ship "Bulwark"
 	sprite "ship/pirate bulwark"
 	thumbnail "thumbnail/pirate bulwark"
+	"administrative cost" 5
 	attributes
 		category "Medium Warship"
 		"cost" 4360000
@@ -873,6 +887,7 @@ ship "Bulwark"
 ship "Carrier"
 	sprite "ship/carrier"
 	thumbnail "thumbnail/carrier"
+	"administrative cost" 8
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -973,6 +988,7 @@ ship "Carrier"
 ship "Class C Freighter"
 	sprite "ship/bulk freighter"
 	thumbnail "thumbnail/bulk freighter"
+	"administrative cost" 5
 	attributes
 		category "Heavy Warship"
 		"cost" 13400000
@@ -1064,6 +1080,7 @@ ship "Class C Freighter"
 ship "Clipper"
 	sprite "ship/clipper"
 	thumbnail "thumbnail/clipper"
+	"administrative cost" 1
 	attributes
 		category "Light Freighter"
 		"cost" 900000
@@ -1116,6 +1133,7 @@ ship "Clipper"
 ship "Combat Drone"
 	sprite "ship/combat drone"
 	thumbnail "thumbnail/combat drone"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		licenses
@@ -1155,6 +1173,7 @@ ship "Combat Drone"
 ship "Container Transport"
 	sprite "ship/container transport"
 	thumbnail "thumbnail/container transport"
+	"administrative cost" 4
 	attributes
 		category "Heavy Freighter"
 		"cost" 9200000
@@ -1216,6 +1235,7 @@ ship "Container Transport"
 ship "Corvette"
 	sprite "ship/corvette"
 	thumbnail "thumbnail/corvette"
+	"administrative cost" 2
 	attributes
 		category "Medium Warship"
 		"cost" 4400000
@@ -1278,6 +1298,7 @@ ship "Corvette"
 ship "Cruiser"
 	sprite "ship/cruiser"
 	thumbnail "thumbnail/cruiser"
+	"administrative cost" 6
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -1359,6 +1380,7 @@ ship "Cruiser"
 ship "Cutthroat"
 	sprite "ship/pirate cutthroat"
 	thumbnail "thumbnail/pirate cutthroat"
+	"administrative cost" 1
 	attributes
 		category "Light Warship"
 		"cost" 1100000
@@ -1414,6 +1436,7 @@ ship "Cutthroat"
 ship "Dagger"
 	sprite "ship/dagger"
 	thumbnail "thumbnail/dagger"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		"cost" 129000
@@ -1461,6 +1484,7 @@ ship "Dagger"
 ship "Dreadnought"
 	sprite "ship/dreadnought"
 	thumbnail "thumbnail/dreadnought"
+	"administrative cost" 6
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -1528,6 +1552,7 @@ ship "Dreadnought"
 ship "Dropship"
 	sprite "ship/dropship"
 	thumbnail "thumbnail/dropship"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		licenses
@@ -1575,6 +1600,7 @@ ship "Dropship"
 ship "Enforcer"
 	sprite "ship/enforcer"
 	thumbnail "thumbnail/enforcer"
+	"administrative cost" 1
 	attributes
 		category "Light Warship"
 		"cost" 490000
@@ -1626,6 +1652,7 @@ ship "Enforcer"
 ship "Falcon"
 	sprite "ship/falcon"
 	thumbnail "thumbnail/falcon"
+	"administrative cost" 5
 	attributes
 		category "Heavy Warship"
 		"cost" 10900000
@@ -1692,6 +1719,7 @@ ship "Finch"
 	plural "Finches"
 	sprite "ship/finch"
 	thumbnail "thumbnail/finch"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		"cost" 126000
@@ -1739,6 +1767,7 @@ ship "Finch"
 ship "Firebird"
 	sprite "ship/firebird"
 	thumbnail "thumbnail/firebird"
+	"administrative cost" 3
 	attributes
 		category "Medium Warship"
 		"cost" 3700000
@@ -1798,6 +1827,7 @@ ship "Firebird"
 ship "Flivver"
 	sprite "ship/flivver"
 	thumbnail "thumbnail/flivver"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		"cost" 180000
@@ -1844,6 +1874,7 @@ ship "Flivver"
 ship "Freighter"
 	sprite "ship/freighter"
 	thumbnail "thumbnail/freighter"
+	"administrative cost" 1
 	attributes
 		category "Light Freighter"
 		"cost" 730000
@@ -1896,6 +1927,7 @@ ship "Freighter"
 ship "Frigate"
 	sprite "ship/frigate"
 	thumbnail "thumbnail/frigate"
+	"administrative cost" 3
 	attributes
 		category "Medium Warship"
 		licenses
@@ -1963,6 +1995,7 @@ ship "Fury"
 	plural "Furies"
 	sprite "ship/fury"
 	thumbnail "thumbnail/fury"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		"cost" 490000
@@ -2015,6 +2048,7 @@ ship "Fury"
 ship "Gunboat"
 	sprite "ship/gunboat"
 	thumbnail "thumbnail/gunboat"
+	"administrative cost" 2
 	attributes
 		category "Light Warship"
 		licenses
@@ -2072,6 +2106,7 @@ ship "Gunboat"
 ship "Hauler"
 	sprite "ship/hauler i"
 	thumbnail "thumbnail/hauler i"
+	"administrative cost" 1
 	attributes
 		category "Light Freighter"
 		"cost" 1430000
@@ -2131,6 +2166,7 @@ ship "Hauler"
 ship "Hauler II"
 	sprite "ship/hauler ii"
 	thumbnail "thumbnail/hauler ii"
+	"administrative cost" 2
 	attributes
 		category "Heavy Freighter"
 		"cost" 2340000
@@ -2192,6 +2228,7 @@ ship "Hauler II"
 ship "Hauler III"
 	sprite "ship/hauler iii"
 	thumbnail "thumbnail/hauler iii"
+	"administrative cost" 2
 	attributes
 		category "Heavy Freighter"
 		"cost" 3260000
@@ -2253,6 +2290,7 @@ ship "Hauler III"
 ship "Hawk"
 	sprite "ship/hawk"
 	thumbnail "thumbnail/hawk"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		"cost" 670000
@@ -2301,6 +2339,7 @@ ship "Hawk"
 ship "Headhunter"
 	sprite "ship/headhunter"
 	thumbnail "thumbnail/headhunter"
+	"administrative cost" 1
 	attributes
 		category "Light Warship"
 		"cost" 1850000
@@ -2354,6 +2393,7 @@ ship "Headhunter"
 ship "Heavy Shuttle"
 	sprite "ship/heavy shuttle"
 	thumbnail "thumbnail/heavy shuttle"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		"cost" 470000
@@ -2397,6 +2437,7 @@ ship "Heavy Shuttle"
 ship "Hogshead"
 	sprite "ship/hogshead"
 	thumbnail "thumbnail/hogshead"
+	"administrative cost" 2
 	attributes
 		category "Space Liner"
 		"cost" 3150000
@@ -2454,6 +2495,7 @@ ship "Hogshead"
 ship "Jackal"
 	sprite "ship/jackal"
 	thumbnail "thumbnail/jackal"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		"cost" 320000
@@ -2503,6 +2545,7 @@ ship "Jackal"
 ship "Lance"
 	sprite "ship/lance"
 	thumbnail "thumbnail/lance"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		"cost" 93000
@@ -2549,6 +2592,7 @@ ship "Lance"
 ship "Leviathan"
 	sprite "ship/leviathan"
 	thumbnail "thumbnail/leviathan"
+	"administrative cost" 5
 	attributes
 		category "Heavy Warship"
 		"cost" 9800000
@@ -2609,6 +2653,7 @@ ship "Leviathan"
 ship "Mammoth"
 	sprite "ship/pirate mammoth"
 	thumbnail "thumbnail/pirate mammoth"
+	"administrative cost" 4
 	attributes
 		category "Utility"
 		"cost" 18800000
@@ -2682,6 +2727,7 @@ ship "Mammoth"
 ship "Manta"
 	sprite "ship/manta"
 	thumbnail "thumbnail/manta"
+	"administrative cost" 2
 	attributes
 		category "Medium Warship"
 		"cost" 3400000
@@ -2738,6 +2784,7 @@ ship "Manta"
 ship "Mining Drone"
 	sprite "ship/mining drone"
 	thumbnail "thumbnail/mining drone"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		"cost" 58000
@@ -2775,6 +2822,7 @@ ship "Modified Argosy"
 	plural "Modified Argosies"
 	sprite "ship/modified argosy"
 	thumbnail "thumbnail/modified argosy"
+	"administrative cost" 2
 	attributes
 		category "Light Warship"
 		"cost" 1960000
@@ -2837,6 +2885,7 @@ ship "Modified Argosy"
 ship "Monitor"
 	sprite "ship/monitor"
 	thumbnail "thumbnail/monitor"
+	"administrative cost" 2
 	attributes
 		category "Medium Warship"
 		"cost" 2900000
@@ -2897,6 +2946,7 @@ ship "Monitor"
 ship "Mule"
 	sprite "ship/mule"
 	thumbnail "thumbnail/mule"
+	"administrative cost" 3
 	attributes
 		category "Utility"
 		"cost" 4080000
@@ -2961,6 +3011,7 @@ ship "Mule"
 ship "Nest"
 	sprite "ship/nest"
 	thumbnail "thumbnail/nest"
+	"administrative cost" 2
 	attributes
 		category "Utility"
 		"cost" 2500000
@@ -3024,6 +3075,7 @@ ship "Nest"
 ship "Nighthawk"
 	sprite "ship/pirate nighthawk"
 	thumbnail "thumbnail/pirate nighthawk"
+	"administrative cost" 2
 	attributes
 		category "Transport"
 		"cost" 2630000
@@ -3083,6 +3135,7 @@ ship "Nighthawk"
 ship "Osprey"
 	sprite "ship/osprey"
 	thumbnail "thumbnail/osprey"
+	"administrative cost" 3
 	attributes
 		category "Medium Warship"
 		"cost" 4200000
@@ -3144,6 +3197,7 @@ ship "Osprey"
 ship "Protector"
 	sprite "ship/protector"
 	thumbnail "thumbnail/protector"
+	"administrative cost" 5
 	attributes
 		category "Heavy Warship"
 		"cost" 5500000
@@ -3208,6 +3262,7 @@ ship "Protector"
 ship "Quicksilver"
 	sprite "ship/quicksilver"
 	thumbnail "thumbnail/quicksilver"
+	"administrative cost" 1
 	attributes
 		category "Light Warship"
 		"cost" 836000
@@ -3254,6 +3309,7 @@ ship "Quicksilver"
 ship "Rainmaker"
 	sprite "ship/rainmaker"
 	thumbnail "thumbnail/rainmaker"
+	"administrative cost" 1
 	attributes
 		category "Light Warship"
 		licenses
@@ -3312,6 +3368,7 @@ ship "Rainmaker"
 ship "Raven"
 	sprite "ship/raven"
 	thumbnail "thumbnail/raven"
+	"administrative cost" 2
 	attributes
 		category "Light Warship"
 		"cost" 2200000
@@ -3369,6 +3426,7 @@ ship "Raven"
 ship "Roost"
 	sprite "ship/roost"
 	thumbnail "thumbnail/roost"
+	"administrative cost" 2
 	attributes
 		category "Utility"
 		"cost" 3000000
@@ -3437,6 +3495,7 @@ ship "Roost"
 ship "Saber"
 	sprite "ship/saber"
 	thumbnail "thumbnail/saber"
+	"administrative cost" 2
 	attributes
 		category "Medium Warship"
 		"cost" 2200000
@@ -3494,6 +3553,7 @@ ship "Saber"
 ship "Scout"
 	sprite "ship/scout"
 	thumbnail "thumbnail/scout"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		"cost" 850000
@@ -3546,6 +3606,7 @@ ship "Scout"
 ship "Scrapper"
 	sprite "ship/pirate scrapper"
 	thumbnail "thumbnail/pirate scrapper"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		"cost" 60000
@@ -3592,6 +3653,7 @@ ship "Shuttle"
 		"delay" 14
 		"random start frame"
 	thumbnail "thumbnail/shuttle"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		"cost" 180000
@@ -3635,6 +3697,7 @@ ship "Shuttle"
 ship "Skein"
 	sprite "ship/skein"
 	thumbnail "thumbnail/skein"
+	"administrative cost" 3
 	attributes
 		category "Utility"
 		licenses
@@ -3711,6 +3774,7 @@ ship "Skein"
 ship "Sparrow"
 	sprite "ship/sparrow"
 	thumbnail "thumbnail/sparrow"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		"cost" 225000
@@ -3759,6 +3823,7 @@ ship "Sparrow"
 ship "Splinter"
 	sprite "ship/splinter"
 	thumbnail "thumbnail/splinter"
+	"administrative cost" 2
 	attributes
 		category "Medium Warship"
 		"cost" 3100000
@@ -3817,6 +3882,7 @@ ship "Splinter"
 ship "Star Barge"
 	sprite "ship/star barge"
 	thumbnail "thumbnail/star barge"
+	"administrative cost" 1
 	attributes
 		category "Light Freighter"
 		"cost" 190000
@@ -3862,6 +3928,7 @@ ship "Star Barge"
 ship "Star Queen"
 	sprite "ship/star queen"
 	thumbnail "thumbnail/star queen"
+	"administrative cost" 3
 	attributes
 		category "Space Liner"
 		"cost" 4200000
@@ -3924,6 +3991,7 @@ ship "Star Queen"
 ship "Sunder"
 	sprite "ship/sunder"
 	thumbnail "thumbnail/sunder"
+	"administrative cost" 1
 	attributes
 		category "Utility"
 		"cost" 1000000
@@ -3983,6 +4051,7 @@ ship "Sunder"
 ship "Surveillance Drone"
 	sprite "ship/surveillance drone"
 	thumbnail "thumbnail/surveillance drone"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		licenses
@@ -4019,6 +4088,7 @@ ship "Surveillance Drone"
 ship "Valkyrie"
 	sprite "ship/pirate valkyrie"
 	thumbnail "thumbnail/pirate valkyrie"
+	"administrative cost" 2
 	attributes
 		category "Medium Warship"
 		"cost" 3900000
@@ -4082,6 +4152,7 @@ ship "Valkyrie"
 ship "Vanguard"
 	sprite "ship/vanguard"
 	thumbnail "thumbnail/vanguard"
+	"administrative cost" 4
 	attributes
 		category "Heavy Warship"
 		"cost" 7200000
@@ -4147,6 +4218,7 @@ ship "Vanguard"
 ship "Wasp"
 	sprite "ship/wasp"
 	thumbnail "thumbnail/wasp"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		"cost" 400000

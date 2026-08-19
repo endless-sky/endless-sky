@@ -43,6 +43,7 @@ public:
 	virtual void Draw() override;
 
 	virtual void UpdateTooltipActivation() override;
+	virtual void UpdateTextDisplay() override;
 
 
 protected:
@@ -87,4 +88,7 @@ private:
 	bool sideHasFocus = false;
 	double sideScroll = 0;
 	double centerScroll = 0;
+
+	std::string hoverFile;
+	std::string hoverFileTimestamp;
 };
