@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class FireCommand {
 public:
 	// Sets the specified amount of hardpoints desired.
-	void SetHardpoints(size_t count);
+	void SetHardpoints(size_t weaponCount, size_t decorCount);
 
 	// Assigns the subset of other to this class that is no larger than
 	// this command's hardpoint size.
@@ -43,13 +43,16 @@ public:
 	bool IsFiring() const noexcept;
 	// Gets the current turn rate of the turret at the given weapon index.
 	double Aim(int index) const noexcept;
+	double AimDecor(int index) const noexcept;
 	// Set the turn rate of the turret with the given weapon index. A value of
 	// -1 or 1 means to turn at the full speed the turret is capable of.
 	void SetAim(int index, double amount) noexcept;
+	void SetAimDecor(int index, double amount) noexcept;
 
 
 private:
 	bool IsIndexValid(int index) const noexcept;
+	bool IsDecorIndexValid(int index) const noexcept;
 
 
 private:
@@ -57,4 +60,6 @@ private:
 	Bitset weapon;
 	// Turret turn rates, reduced to 8 bits to save space.
 	std::vector<signed char> aim;
+	// Decoration turn rates.
+	std::vector<signed char> aimDecor;
 };
