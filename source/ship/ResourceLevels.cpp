@@ -42,7 +42,10 @@ void ResourceLevels::Load(const DataNode &node)
 void ResourceLevels::LoadSingle(const DataNode &node)
 {
 	if(node.Size() < 2)
+	{
 		node.PrintTrace("Expected key to have a value:");
+		return;
+	}
 	const string &key = node.Token(0);
 	double value = node.Value(1);
 	if(key == "hull")
@@ -72,7 +75,7 @@ void ResourceLevels::LoadSingle(const DataNode &node)
 	else if(key == "burning")
 		burning = value;
 	else
-		node.PrintTrace("Skipping urecognized attribute:");
+		node.PrintTrace("Skipping unrecognized attribute:");
 }
 
 
@@ -159,7 +162,7 @@ double ResourceLevels::MultipleUsage(const ResourceLevels &cost) const
 	double scale = numeric_limits<double>::infinity();
 	auto ScaleOutput = [&scale](double input, double levelCost)
 	{
-		if(levelCost > 0)
+		if(levelCost > 0.)
 			scale = min(scale, input / levelCost);
 	};
 	ScaleOutput(hull, cost.hull);

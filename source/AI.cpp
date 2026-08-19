@@ -3079,9 +3079,9 @@ bool AI::ShouldUseAfterburner(const Ship &ship)
 	if(!ship.Attributes().Get("afterburner thrust"))
 		return false;
 
-	double fuel = ship.FuelFraction() * ship.Attributes().Get("fuel capacity");
+	double fuel = ship.FuelLevel();
 	double neededFuel = ship.Attributes().Get("afterburner fuel");
-	double energy = ship.EnergyFraction() * ship.Attributes().Get("energy capacity");
+	double energy = ship.EnergyLevel();
 	double neededEnergy = ship.Attributes().Get("afterburner energy");
 	if(energy == 0.)
 		energy = ship.Attributes().Get("energy generation")
@@ -3458,7 +3458,7 @@ bool AI::DoCloak(const Ship &ship, Command &command) const
 		+ attributes.Get("fuel consumption") - attributes.Get("fuel generation");
 	if(cloakingFuel && !attributes.Get("ramscoop"))
 	{
-		double fuel = ship.FuelFraction() * attributes.Get("fuel capacity");
+		double fuel = ship.FuelLevel();
 		int steps = ceil((1. - ship.Cloaking()) / cloakingSpeed);
 		// Only cloak if you will be able to fully cloak and also maintain it
 		// for as long as it will take you to reach full cloak.

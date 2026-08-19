@@ -117,8 +117,6 @@ protected:
 
 
 protected:
-	friend class StatusEffectHandler;
-
 	Type entityType = Type::SHIP;
 	Outfit attributes;
 

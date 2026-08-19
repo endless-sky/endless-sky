@@ -2703,7 +2703,7 @@ bool Ship::CanGiveEnergy(const Ship &other) const
 {
 	double energyCap = other.MaxEnergy();
 	double toGive = min(energyCap, max(200., energyCap * 0.2));
-	return levels.energy >= 2 * toGive;
+	return levels.energy >= 2. * toGive;
 }
 
 
@@ -2980,7 +2980,7 @@ void Ship::SetCloaked()
 	const double cloakingShield = attributes.Get("cloaking shields");
 	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
 		&& levels.fuel >= cloakingFuel && levels.energy >= cloakingEnergy
-		&& MinHull() < levels.hull - cloakingHull && levels.shields >= cloakingShield);
+		&& minimumHull < levels.hull - cloakingHull && levels.shields >= cloakingShield);
 
 	if(canCloak)
 		cloak = 1.;
@@ -4426,7 +4426,7 @@ void Ship::DoCloakDecision()
 	// Attempting to cloak when the cloaking device can no longer operate (because of hull damage)
 	// will result in it being uncloaked.
 	const double minimalHullForCloak = attributes.Get("cloak hull threshold");
-	if(minimalHullForCloak && (levels.hull / MaxHull() < minimalHullForCloak))
+	if(minimalHullForCloak && (HullFraction() < minimalHullForCloak))
 		cloakDisruption = 1.;
 
 	const double cloakingSpeed = CloakingSpeed();
