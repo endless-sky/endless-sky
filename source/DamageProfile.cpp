@@ -72,7 +72,7 @@ MinableDamageDealt DamageProfile::CalculateDamage(const Minable &minable) const
 			* (weapon.MinableDamage() + weapon.RelativeMinableDamage() * minable.MaxHull()),
 		.prospecting = scale * weapon.Prospecting(),
 		.heat = protectedScale(minable.Attributes().Get("heat protection"))
-			* (weapon.HeatDamage() + weapon.RelativeHeatDamage() * minable.Heat()),
+			* (weapon.HeatDamage() + weapon.RelativeHeatDamage() * minable.HeatFraction()),
 		.corrosion = protectedScale(minable.Attributes().Get("corrosion protection")) * weapon.CorrosionDamage(),
 		.burn = protectedScale(minable.Attributes().Get("burn protection")) * weapon.BurnDamage()
 	};
