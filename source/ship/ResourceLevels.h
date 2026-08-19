@@ -69,7 +69,7 @@ public:
 	double FractionalUsage(const ResourceLevels &cost, bool includeDoT = false) const;
 	// Return a multiple of how many times these resources could use the given cost.
 	double MultipleUsage(const ResourceLevels &cost, bool includeDoT = false) const;
-	
+
 	// Return the firing cost of this weapon, given that this ResourceLevels contains the
 	// capacities of a ship for use in calculating relative damage values.
 	ResourceLevels FiringCost(const Weapon &weapon) const;
