@@ -144,7 +144,7 @@ void SpaceportPanel::Resize()
 void SpaceportPanel::InitNewsTextArea()
 {
 	newsMessage = make_shared<TextArea>();
-	newsMessage->SetFont(FontSet::Get(14));
+	newsMessage->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	newsMessage->SetColor(*GameData::Colors().Get("bright"));
 	newsMessage->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(newsMessage);

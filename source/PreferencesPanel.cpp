@@ -1294,7 +1294,7 @@ void PreferencesPanel::RenderPluginDescription(const string &pluginName)
 void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 {
 	const Color &medium = *GameData::Colors().Get("medium");
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	Rectangle box = GameData::Interfaces().Get("plugins")->GetBox("plugin description");
 
 	// We are resizing and redrawing the description buffer. Reset the scroll
