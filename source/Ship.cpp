@@ -3703,6 +3703,16 @@ Ship::CanFireResult Ship::CanFire(const Weapon *weapon) const
 	// Repeat this for various effects which shouldn't drop below 0.
 	if(weapon->ConsumesIonization() && levels.ionization < -weapon->FiringIon())
 		return CanFireResult::NO_ION;
+	if(weapon->ConsumesCorrosion() && levels.corrosion < -weapon->FiringCorrosion())
+		return CanFireResult::NO_CORROSION;
+	if(weapon->ConsumesDischarge() && levels.discharge < -weapon->FiringDischarge())
+		return CanFireResult::NO_DISCHARGE;
+	if(weapon->ConsumesBurn() && levels.burning < -weapon->FiringBurn())
+		return CanFireResult::NO_BURN;
+	if(weapon->ConsumesLeak() && levels.leakage < -weapon->FiringLeak())
+		return CanFireResult::NO_LEAK;
+	if(weapon->ConsumesScramble() && levels.scrambling < -weapon->FiringScramble())
+		return CanFireResult::NO_SCRAMBLE;
 	if(weapon->ConsumesDisruption() && levels.disruption < -weapon->FiringDisruption())
 		return CanFireResult::NO_DISRUPTION;
 	if(weapon->ConsumesSlowing() && levels.slowness < -weapon->FiringSlowing())

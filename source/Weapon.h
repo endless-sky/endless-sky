@@ -210,6 +210,11 @@ public:
 	bool ConsumesHeat() const;
 	bool ConsumesEnergy() const;
 	bool ConsumesIonization() const;
+	bool ConsumesCorrosion() const;
+	bool ConsumesDischarge() const;
+	bool ConsumesBurn() const;
+	bool ConsumesLeak() const;
+	bool ConsumesScramble() const;
 	bool ConsumesDisruption() const;
 	bool ConsumesSlowing() const;
 
@@ -501,6 +506,11 @@ inline bool Weapon::ConsumesFuel() const { return FiringFuel() > 0. || RelativeF
 inline bool Weapon::ConsumesHeat() const { return FiringHeat() < 0. || RelativeFiringHeat() > 0.; }
 inline bool Weapon::ConsumesEnergy() const { return FiringEnergy() > 0. || RelativeFiringEnergy() > 0.; }
 inline bool Weapon::ConsumesIonization() const { return FiringIon() < 0.; }
+inline bool Weapon::ConsumesCorrosion() const { return FiringCorrosion() < 0.; }
+inline bool Weapon::ConsumesDischarge() const { return FiringDischarge() < 0.; }
+inline bool Weapon::ConsumesBurn() const { return FiringBurn() < 0.; }
+inline bool Weapon::ConsumesLeak() const { return FiringLeak() < 0.; }
+inline bool Weapon::ConsumesScramble() const { return FiringScramble() < 0.; }
 inline bool Weapon::ConsumesDisruption() const { return FiringDisruption() < 0.; }
 inline bool Weapon::ConsumesSlowing() const { return FiringSlowing() < 0.; }
 
