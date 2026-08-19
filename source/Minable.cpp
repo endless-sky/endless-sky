@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "pi.h"
 #include "Projectile.h"
 #include "Random.h"
-#include "image/SpriteSet.h"
 #include "Visual.h"
 
 #include <algorithm>
@@ -113,6 +112,8 @@ void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions
 		displayName = Format::Capitalize(name);
 	if(noun.empty())
 		noun = "Asteroid";
+	// A minable's attributes can't be changed outside of what is loaded in,
+	// so we can cache certain attribute values and calculations now.
 	CacheAttributes();
 }
 
@@ -214,10 +215,9 @@ void Minable::Place(double energy, double beltRadius)
 	// Add a random amount of hull value to the object.
 	if(!levels.hull)
 		levels.hull = 1000;
-	levels.hull += Random::Real() * randomHull;
+	if(randomHull)
+		levels.hull += Random::Real() * randomHull;
 	capacities.hull = levels.hull;
-
-	status.Setup(this);
 }
 
 
@@ -227,8 +227,17 @@ void Minable::Place(double energy, double beltRadius)
 // In that case it will return false, meaning it should be deleted.
 bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
-	status.Do();
+	DoStatusEffects();
 	DoStatusSparks(visuals);
+
+	levels.heat -= levels.heat * HeatDissipation();
+	if(levels.heat > MaxHeat())
+	{
+		double heatRatio = HeatFraction() / (1. + attributes.Get("overheat damage threshold"));
+		if(heatRatio > 1.)
+			levels.hull -= attributes.Get("overheat damage rate") * heatRatio;
+	}
+	levels.heat = max(0., levels.heat);
 
 	if(levels.hull < 0)
 	{
@@ -292,7 +301,11 @@ void Minable::TakeDamage(const MinableDamageDealt &damage)
 {
 	levels.hull -= damage.hullDamage;
 	prospecting += damage.prospecting;
+	levels.heat += damage.heat;
 	levels.corrosion += damage.corrosion;
+	levels.burning += damage.burn;
+
+	levels.heat = max(0., levels.heat);
 }
 
 

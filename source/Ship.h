@@ -208,6 +208,10 @@ public:
 	// The player can selectively deploy their carried ships, rather than just all / none.
 	void SetDeployOrder(bool shouldDeploy = true);
 	bool HasDeployOrder() const;
+	// Deployed ships may automatically recall themselves when damaged, unless the player
+	// force deploys them.
+	void SetForceDeploy(bool forceDeploy = true);
+	bool HasForceDeploy() const;
 
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
@@ -366,8 +370,6 @@ public:
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
-	// Get the heat dissipation, in heat units per heat unit per frame.
-	double HeatDissipation() const;
 	// Get the maximum heat level, in heat units (not temperature).
 	double MaxHeat() const override;
 	// Calculate the multiplier for cooling efficiency.
@@ -447,9 +449,10 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
-	// Display box effects from jettisoning this much cargo.
+	// Display box effects from jettisoning cargo or installed outfits.
 	void Jettison(const std::string &commodity, int tons, bool wasAppeasing = false);
 	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false);
+	void JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing = false);
 
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
@@ -526,6 +529,10 @@ public:
 	bool Imitates(const Ship &other) const;
 
 
+protected:
+	virtual void CacheAttributes() override;
+
+
 private:
 	// Various steps of Ship::Move:
 
@@ -550,6 +557,8 @@ private:
 	void StepTargeting();
 	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner) const;
 
+	// Whether this ship requires energy for movement.
+	bool RequiresMovementEnergy() const;
 
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
@@ -566,7 +575,8 @@ private:
 	// Increment the duration a thruster direction has been held.
 	void IncrementThrusterHeld(ThrustKind kind);
 
-	// Helper function for jettisoning flotsam.
+	// Helper functions for jettisoning flotsam.
+	void JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing = false);
 	void Jettison(std::shared_ptr<Flotsam> toJettison);
 
 
@@ -596,6 +606,7 @@ private:
 	bool isYours = false;
 	bool isParked = false;
 	bool shouldDeploy = false;
+	bool forceDeployed = false;
 	bool isOverheated = false;
 	bool isBoarding = false;
 	bool hasBoarded = false;

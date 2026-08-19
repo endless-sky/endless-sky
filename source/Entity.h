@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Outfit.h"
 #include "ship/ResourceLevels.h"
-#include "ship/StatusEffectHandler.h"
 
 #include <vector>
 
@@ -72,6 +71,8 @@ public:
 	double MaxFuel() const;
 	// Get the maximum heat level, in heat units (not temperature).
 	virtual double MaxHeat() const = 0;
+	// Get the heat dissipation, in heat units per heat unit per frame.
+	double HeatDissipation() const;
 
 	// Get the hull amount at which this entity is disabled.
 	double MinHull() const;
@@ -94,6 +95,13 @@ public:
 	double OpticalJamming() const;
 	double RadarJamming() const;
 
+	// Kill this entity. Set all of its resource levels to 0 and its hull to -1.
+	void Kill();
+	// Clear all status effects.
+	void ClearStatusEffects();
+	// Step all status effects and damage the entity according to any currently accumulated damage over time.
+	void DoStatusEffects(bool disabled = false);
+
 	// Create status spark visuals on the entity based on the current status effect levels.
 	void DoStatusSparks(std::vector<Visual> &visuals) const;
 	// Place a "spark" effect, like ionization or disruption.
@@ -111,8 +119,6 @@ protected:
 
 
 protected:
-	friend class StatusEffectHandler;
-
 	Type entityType = Type::SHIP;
 	Outfit attributes;
 
@@ -130,8 +136,6 @@ protected:
 	ResourceLevels capacities;
 	// The minimum hull of this entity before it is considered disabled.
 	double minimumHull = 0.;
-	// A handler for status effects applied to this entity.
-	StatusEffectHandler status;
 
 	// Whether this entity is allowed to become disabled, and if it is disabled now.
 	bool neverDisabled = false;
@@ -140,4 +144,22 @@ protected:
 	// Jamming attributes that influence projectiles tracking this entity.
 	double opticalJamming = 0.;
 	double radarJamming = 0.;
+
+	// Cached status effect resistance and cost values.
+	double corrosionResistance = 0.;
+	ResourceLevels corrosionResistCost;
+	double dischargeResistance = 0.;
+	ResourceLevels dischargeResistCost;
+	double ionizationResistance = 0.;
+	ResourceLevels ionizationResistCost;
+	double scramblingResistance = 0.;
+	ResourceLevels scramblingResistCost;
+	double burnResistance = 0.;
+	ResourceLevels burnResistCost;
+	double leakResistance = 0.;
+	ResourceLevels leakageResistCost;
+	double disruptionResistance = 0.;
+	ResourceLevels disruptionResistCost;
+	double slowingResistance = 0.;
+	ResourceLevels slownessResistCost;
 };

@@ -42,7 +42,10 @@ void ResourceLevels::Load(const DataNode &node)
 void ResourceLevels::LoadSingle(const DataNode &node)
 {
 	if(node.Size() < 2)
+	{
 		node.PrintTrace("Expected key to have a value:");
+		return;
+	}
 	const string &key = node.Token(0);
 	double value = node.Value(1);
 	if(key == "hull")
@@ -72,7 +75,131 @@ void ResourceLevels::LoadSingle(const DataNode &node)
 	else if(key == "burning")
 		burning = value;
 	else
-		node.PrintTrace("Skipping urecognized attribute:");
+		node.PrintTrace("Skipping unrecognized attribute:");
+}
+
+
+
+void ResourceLevels::Damage(const ResourceLevels &damage, double scale)
+{
+	hull -= scale * damage.hull;
+	shields -= scale * damage.shields;
+	energy -= scale * damage.energy;
+	heat += scale * damage.heat;
+	fuel -= scale * damage.fuel;
+
+	corrosion += scale * damage.corrosion;
+	discharge += scale * damage.discharge;
+	ionization += scale * damage.ionization;
+	scrambling += scale * damage.scrambling;
+	burning += scale * damage.burning;
+	leakage += scale * damage.leakage;
+	disruption += scale * damage.disruption;
+	slowness += scale * damage.slowness;
+
+	// Prevent various stats from reaching unallowable values.
+	// Hull is allowed to go negative.
+	// Shields, energy, heat, and fuel should have been prevented from going negative elsewhere.
+	corrosion = max(0., corrosion);
+	discharge = max(0., discharge);
+	ionization = max(0., ionization);
+	scrambling = max(0., scrambling);
+	burning = max(0., burning);
+	leakage = max(0., leakage);
+	disruption = max(0., disruption);
+	slowness = max(0., slowness);
+}
+
+
+
+bool ResourceLevels::CanExpend(const ResourceLevels &cost, bool includeDoT) const
+{
+	if(hull < cost.hull)
+		return false;
+	if(shields < cost.shields)
+		return false;
+	if(energy < cost.energy)
+		return false;
+	if(heat < -cost.heat)
+		return false;
+	if(fuel < cost.fuel)
+		return false;
+	if(includeDoT)
+	{
+		if(corrosion < -cost.corrosion)
+			return false;
+		if(discharge < -cost.discharge)
+			return false;
+		if(ionization < -cost.ionization)
+			return false;
+		if(burning < -cost.burning)
+			return false;
+		if(leakage < -cost.leakage)
+			return false;
+		if(disruption < -cost.disruption)
+			return false;
+		if(slowness < -cost.slowness)
+			return false;
+	}
+	return true;
+}
+
+
+
+double ResourceLevels::FractionalUsage(const ResourceLevels &cost, bool includeDoT) const
+{
+	double scale = 1.;
+	auto ScaleOutput = [&scale](double input, double levelCost)
+	{
+		if(input < levelCost * scale)
+			scale = input / levelCost;
+	};
+	ScaleOutput(hull, cost.hull);
+	ScaleOutput(shields, cost.shields);
+	ScaleOutput(energy, cost.energy);
+	ScaleOutput(heat, -cost.heat);
+	ScaleOutput(fuel, cost.fuel);
+	if(includeDoT)
+	{
+		ScaleOutput(corrosion, -cost.corrosion);
+		ScaleOutput(discharge, -cost.discharge);
+		ScaleOutput(ionization, -cost.ionization);
+		ScaleOutput(burning, -cost.burning);
+		ScaleOutput(leakage, -cost.leakage);
+		ScaleOutput(disruption, -cost.disruption);
+		ScaleOutput(slowness, -cost.slowness);
+	}
+
+	return scale;
+}
+
+
+
+double ResourceLevels::MultipleUsage(const ResourceLevels &cost, bool includeDoT) const
+{
+	double scale = numeric_limits<double>::infinity();
+	auto ScaleOutput = [&scale](double input, double levelCost)
+	{
+		if(levelCost > 0.)
+			scale = min(scale, input / levelCost);
+	};
+	ScaleOutput(hull, cost.hull);
+	ScaleOutput(shields, cost.shields);
+	ScaleOutput(energy, cost.energy);
+	ScaleOutput(heat, -cost.heat);
+	ScaleOutput(fuel, cost.fuel);
+	if(includeDoT)
+	{
+		ScaleOutput(corrosion, -cost.corrosion);
+		ScaleOutput(discharge, -cost.discharge);
+		ScaleOutput(ionization, -cost.ionization);
+		ScaleOutput(burning, -cost.burning);
+		ScaleOutput(leakage, -cost.leakage);
+		ScaleOutput(disruption, -cost.disruption);
+		ScaleOutput(slowness, -cost.slowness);
+	}
+
+	return scale;
 }
 
 
@@ -115,87 +242,4 @@ ResourceLevels operator*(double scalar, const ResourceLevels &levels)
 	retVal.leakage = levels.leakage * scalar;
 	retVal.burning = levels.burning * scalar;
 	return retVal;
-}
-
-
-
-bool ResourceLevels::CanExpend(const ResourceLevels &cost) const
-{
-	if(hull < cost.hull)
-		return false;
-	if(shields < cost.shields)
-		return false;
-	if(energy < cost.energy)
-		return false;
-	if(heat < -cost.heat)
-		return false;
-	if(fuel < cost.fuel)
-		return false;
-	if(corrosion < -cost.corrosion)
-		return false;
-	if(discharge < -cost.discharge)
-		return false;
-	if(ionization < -cost.ionization)
-		return false;
-	if(burning < -cost.burning)
-		return false;
-	if(leakage < -cost.leakage)
-		return false;
-	if(disruption < -cost.disruption)
-		return false;
-	if(slowness < -cost.slowness)
-		return false;
-	return true;
-}
-
-
-
-double ResourceLevels::FractionalUsage(const ResourceLevels &cost) const
-{
-	double scale = 1.;
-	auto ScaleOutput = [&scale](double input, double cost)
-	{
-		if(input < cost * scale)
-			scale = input / cost;
-	};
-	ScaleOutput(hull, cost.hull);
-	ScaleOutput(shields, cost.shields);
-	ScaleOutput(energy, cost.energy);
-	ScaleOutput(heat, -cost.heat);
-	ScaleOutput(fuel, cost.fuel);
-	ScaleOutput(corrosion, -cost.corrosion);
-	ScaleOutput(discharge, -cost.discharge);
-	ScaleOutput(ionization, -cost.ionization);
-	ScaleOutput(burning, -cost.burning);
-	ScaleOutput(leakage, -cost.leakage);
-	ScaleOutput(disruption, -cost.disruption);
-	ScaleOutput(slowness, -cost.slowness);
-
-	return scale;
-}
-
-
-
-double ResourceLevels::MultipleUsage(const ResourceLevels &cost) const
-{
-	double scale = numeric_limits<double>::infinity();
-	auto ScaleOutput = [&scale](double input, double cost)
-	{
-		if(cost > 0)
-			scale = min(scale, input / cost);
-	};
-	ScaleOutput(hull, cost.hull);
-	ScaleOutput(shields, cost.shields);
-	ScaleOutput(energy, cost.energy);
-	ScaleOutput(heat, -cost.heat);
-	ScaleOutput(fuel, cost.fuel);
-	ScaleOutput(corrosion, -cost.corrosion);
-	ScaleOutput(discharge, -cost.discharge);
-	ScaleOutput(ionization, -cost.ionization);
-	ScaleOutput(burning, -cost.burning);
-	ScaleOutput(leakage, -cost.leakage);
-	ScaleOutput(disruption, -cost.disruption);
-	ScaleOutput(slowness, -cost.slowness);
-
-	return scale;
 }

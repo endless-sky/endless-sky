@@ -49,6 +49,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <array>
 #include <iterator>
+#include <ranges>
 
 using namespace std;
 
@@ -154,7 +155,7 @@ void ConversationPanel::Draw()
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + boxWidth);
 
 	// Get the font and colors we'll need for drawing everything.
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	const Color &selectionColor = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &gray = *GameData::Colors().Get("medium");
@@ -265,7 +266,9 @@ void ConversationPanel::Draw()
 void ConversationPanel::UpdateTextDisplay()
 {
 	for(auto &paragraph : text)
-		paragraph.SetAlignment(Preferences::GetTextAlignment());
+		paragraph.UpdateTextDisplay();
+	for(auto &paragraph : choices | views::keys)
+		paragraph.UpdateTextDisplay();
 }
 
 
@@ -569,7 +572,7 @@ ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene,
 {
 	wrap.SetAlignment(Preferences::GetTextAlignment());
 	wrap.SetWrapWidth(WIDTH);
-	wrap.SetFont(FontSet::Get(14));
+	wrap.SetFont(FontSet::Get(Preferences::GetFontSize()));
 
 	wrap.Wrap(text);
 }
@@ -612,7 +615,9 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 
 
 
-void ConversationPanel::Paragraph::SetAlignment(Alignment alignment)
+void ConversationPanel::Paragraph::UpdateTextDisplay()
 {
-	wrap.SetAlignment(alignment);
+	wrap.SetAlignment(Preferences::GetTextAlignment());
+	wrap.SetFont(FontSet::Get(Preferences::GetFontSize()));
+	wrap.Rewrap();
 }

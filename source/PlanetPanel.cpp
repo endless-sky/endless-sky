@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "BankPanel.h"
 #include "Command.h"
+#include "Conversation.h"
 #include "ConversationPanel.h"
 #include "DialogPanel.h"
 #include "text/FontSet.h"
@@ -68,7 +69,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	hiring = make_shared<HiringPanel>(player);
 
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
@@ -247,6 +248,7 @@ void PlanetPanel::Draw()
 void PlanetPanel::UpdateTextDisplay()
 {
 	description->SetAlignment(Preferences::GetTextAlignment());
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 }
 
 

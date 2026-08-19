@@ -278,7 +278,7 @@ pair<const Conversation *, string> Politics::Fine(PlayerInfo &player,
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
-				reason = " for carrying illegal passengers.";
+				reason = " for carrying illegal passengers on the " + ship->GivenName() + ".";
 
 				for(const Mission &mission : player.Missions())
 				{
@@ -308,7 +308,7 @@ pair<const Conversation *, string> Politics::Fine(PlayerInfo &player,
 			if((fine.first > maxFine && maxFine >= 0) || fine.first < 0)
 			{
 				maxFine = fine.first;
-				reason = " for carrying illegal cargo.";
+				reason = " for carrying illegal cargo on the " + ship->GivenName() + ".";
 
 				for(const Mission &mission : player.Missions())
 				{
@@ -333,22 +333,29 @@ pair<const Conversation *, string> Politics::Fine(PlayerInfo &player,
 		}
 		if((!scan || (scan & ShipEvent::SCAN_OUTFITS)) && !EvadesOutfitScan(*ship))
 		{
-			for(const auto &it : ship->Outfits())
-				if(it.second)
+			vector<const Outfit *> illegalOutfits;
+			for(const auto &[outfit, count] : ship->Outfits())
+				if(count)
 				{
-					int fine = gov->Fines(it.first);
-					Government::Atrocity atrocity = gov->Condemns(it.first);
+					int fine = gov->Fines(outfit);
+					Government::Atrocity atrocity = gov->Condemns(outfit);
 					if(atrocity.isAtrocity)
 					{
 						deathSentence = atrocity.customDeathSentence;
 						fine = -1;
 					}
-					if((fine > maxFine && maxFine >= 0) || fine < 0)
+					if(fine)
 					{
-						maxFine = fine;
-						reason = " for having illegal outfits installed on your ship.";
+						reason = " for having illegal outfits installed on the " + ship->GivenName() + ":";
+						illegalOutfits.push_back(outfit);
+						if((fine > maxFine && maxFine >= 0) || fine < 0)
+							maxFine = fine;
 					}
 				}
+
+			if(!illegalOutfits.empty())
+				reason += "\n" + Format::IndentedList(illegalOutfits,
+					[](const Outfit *outfit) -> string { return outfit->DisplayName(); }, 5);
 
 			int shipFine = gov->Fines(ship.get());
 			Government::Atrocity atrocity = gov->Condemns(ship.get());
@@ -360,7 +367,7 @@ pair<const Conversation *, string> Politics::Fine(PlayerInfo &player,
 			if((shipFine > maxFine && maxFine >= 0) || shipFine < 0)
 			{
 				maxFine = shipFine;
-				reason = " for flying an illegal ship.";
+				reason = " for flying an illegal ship, the " + ship->GivenName() + ".";
 			}
 		}
 		if(failedMissions && maxFine > 0)

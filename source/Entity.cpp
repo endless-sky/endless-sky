@@ -175,6 +175,13 @@ double Entity::MaxFuel() const
 
 
 
+double Entity::HeatDissipation() const
+{
+	return .001 * attributes.Get("heat dissipation");
+}
+
+
+
 double Entity::MinHull() const
 {
 	return minimumHull;
@@ -245,6 +252,87 @@ double Entity::RadarJamming() const
 
 
 
+void Entity::Kill()
+{
+	levels.hull = -1;
+	levels.shields = 0;
+	levels.energy = 0.;
+	levels.heat = 0.;
+	levels.fuel = 0.;
+	ClearStatusEffects();
+}
+
+
+
+void Entity::ClearStatusEffects()
+{
+	levels.discharge = 0.;
+	levels.corrosion = 0.;
+	levels.scrambling = 0.;
+	levels.ionization = 0.;
+	levels.leakage = 0.;
+	levels.burning = 0.;
+	levels.disruption = 0.;
+	levels.slowness = 0.;
+}
+
+
+
+void Entity::DoStatusEffects(bool disabled)
+{
+	levels.hull -= levels.corrosion;
+	levels.shields -= levels.discharge;
+	levels.energy -= levels.ionization;
+	levels.heat += levels.burning;
+	levels.fuel -= levels.leakage;
+
+	// TODO: Mothership gives status resistance to carried ships?
+	auto DoResistance = [this, &disabled](double &status, double resistance, const ResourceLevels &cost)
+	{
+		if(!status)
+			return;
+
+		if(disabled || resistance <= 0.)
+		{
+			status = max(0., .99 * status);
+			return;
+		}
+
+		// Calculate how much resistance can be used assuming no
+		// resource cost.
+		resistance = .99 * status - max(0., .99 * status - resistance);
+
+		// Limit the resistance by the available resources.
+		if(cost.energy > 0.)
+			resistance = min(resistance, levels.energy / cost.energy);
+		if(cost.heat < 0.)
+			resistance = min(resistance, levels.heat / -cost.heat);
+		if(cost.fuel > 0.)
+			resistance = min(resistance, levels.fuel / cost.fuel);
+
+		if(resistance > 0.)
+		{
+			status = max(0., .99 * status - resistance);
+			levels.energy -= resistance * cost.energy;
+			levels.heat += resistance * cost.heat;
+			levels.fuel -= resistance * cost.fuel;
+		}
+		else
+			status = max(0., .99 * status);
+	};
+
+	DoResistance(levels.corrosion, corrosionResistance, corrosionResistCost);
+	DoResistance(levels.discharge, dischargeResistance, dischargeResistCost);
+	DoResistance(levels.ionization, ionizationResistance, ionizationResistCost);
+	DoResistance(levels.scrambling, scramblingResistance, scramblingResistCost);
+	DoResistance(levels.burning, burnResistance, burnResistCost);
+	DoResistance(levels.leakage, leakResistance, leakageResistCost);
+	DoResistance(levels.disruption, disruptionResistance, disruptionResistCost);
+	DoResistance(levels.slowness, slowingResistance, slownessResistCost);
+}
+
+
+
 void Entity::DoStatusSparks(std::vector<Visual> &visuals) const
 {
 	if(levels.ionization)
@@ -301,8 +389,26 @@ void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double 
 
 void Entity::CacheAttributes()
 {
-	status.Calibrate();
-
 	opticalJamming = attributes.Get("optical jamming");
 	radarJamming = attributes.Get("radar jamming");
+
+	auto CalibrateResistance = [this](const string &name, double &stat, ResourceLevels &cost) -> void {
+		stat = attributes.Get(name + " resistance");
+		// Save resistance costs as per unit of resistance.
+		if(stat)
+		{
+			cost.energy = attributes.Get(name + " resistance energy") / stat;
+			cost.heat = attributes.Get(name + " resistance heat") / stat;
+			cost.fuel = attributes.Get(name + " resistance fuel") / stat;
+		}
+	};
+
+	CalibrateResistance("corrosion", corrosionResistance, corrosionResistCost);
+	CalibrateResistance("discharge", dischargeResistance, dischargeResistCost);
+	CalibrateResistance("ion", ionizationResistance, ionizationResistCost);
+	CalibrateResistance("scramble", scramblingResistance, scramblingResistCost);
+	CalibrateResistance("burn", burnResistance, burnResistCost);
+	CalibrateResistance("leak", leakResistance, leakageResistCost);
+	CalibrateResistance("disruption", disruptionResistance, disruptionResistCost);
+	CalibrateResistance("slowing", slowingResistance, slownessResistCost);
 }

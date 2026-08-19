@@ -32,15 +32,18 @@ public:
 	void Load(const DataNode &node);
 	void LoadSingle(const DataNode &node);
 
-	ResourceLevels operator*(double scalar) const;
-	friend ResourceLevels operator*(double scalar, const ResourceLevels &levels);
+	// Receive damage. Shields, hull, energy, and fuel are subtracted. All other resources are added.
+	void Damage(const ResourceLevels &damage, double scale = 1.);
 
 	// Return true if this object has the resources to expend on the entire cost.
-	bool CanExpend(const ResourceLevels &cost) const;
+	bool CanExpend(const ResourceLevels &cost, bool includeDoT = false) const;
 	// Return the fraction of 100% output that these resources can manage given the cost.
-	double FractionalUsage(const ResourceLevels &cost) const;
+	double FractionalUsage(const ResourceLevels &cost, bool includeDoT = false) const;
 	// Return a multiple of how many times these resources could use the given cost.
-	double MultipleUsage(const ResourceLevels &cost) const;
+	double MultipleUsage(const ResourceLevels &cost, bool includeDoT = false) const;
+
+	ResourceLevels operator*(double scalar) const;
+	friend ResourceLevels operator*(double scalar, const ResourceLevels &levels);
 
 
 public:
