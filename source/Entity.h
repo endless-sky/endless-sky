@@ -71,6 +71,8 @@ public:
 	double MaxFuel() const;
 	// Get the maximum heat level, in heat units (not temperature).
 	virtual double MaxHeat() const = 0;
+	// Get the heat dissipation, in heat units per heat unit per frame.
+	double HeatDissipation() const;
 
 	// Get the hull amount at which this entity is disabled.
 	double MinHull() const;

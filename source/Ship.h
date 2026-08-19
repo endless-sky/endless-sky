@@ -386,8 +386,6 @@ public:
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
-	// Get the heat dissipation, in heat units per heat unit per frame.
-	double HeatDissipation() const;
 	// Get the maximum heat level, in heat units (not temperature).
 	double MaxHeat() const override;
 	// Calculate the multiplier for cooling efficiency.

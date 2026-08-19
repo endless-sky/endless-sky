@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "pi.h"
 #include "Projectile.h"
 #include "Random.h"
-#include "image/SpriteSet.h"
 #include "Visual.h"
 
 #include <algorithm>
@@ -231,6 +230,15 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	DoStatusEffects();
 	DoStatusSparks(visuals);
 
+	levels.heat -= levels.heat * HeatDissipation();
+	if(levels.heat > MaxHeat())
+	{
+		double heatRatio = HeatFraction() / (1. + attributes.Get("overheat damage threshold"));
+		if(heatRatio > 1.)
+			levels.hull -= attributes.Get("overheat damage rate") * heatRatio;
+	}
+	levels.heat = max(0., levels.heat);
+
 	if(levels.hull < 0)
 	{
 		// This object has been destroyed. Create explosions and flotsam.
@@ -293,7 +301,11 @@ void Minable::TakeDamage(const MinableDamageDealt &damage)
 {
 	levels.hull -= damage.hullDamage;
 	prospecting += damage.prospecting;
+	levels.heat += damage.heat;
 	levels.corrosion += damage.corrosion;
+	levels.burning += damage.burn;
+
+	levels.heat = max(0., levels.heat);
 }
 
 

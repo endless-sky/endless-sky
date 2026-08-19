@@ -175,6 +175,13 @@ double Entity::MaxFuel() const
 
 
 
+double Entity::HeatDissipation() const
+{
+	return .001 * attributes.Get("heat dissipation");
+}
+
+
+
 double Entity::MinHull() const
 {
 	return minimumHull;
