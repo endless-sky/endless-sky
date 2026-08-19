@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Outfit.h"
 #include "../Ship.h"
-#include "../Weapon.h"
 
 #include <cmath>
 
@@ -29,8 +28,6 @@ void ShipAttributeHandler::Setup(Ship *parent)
 {
 	ship = parent;
 	attributes = &parent->Attributes();
-	shipLevels = &parent->levels;
-	parent->status.Setup(parent);
 }
 
 
@@ -60,126 +57,6 @@ void ShipAttributeHandler::Calibrate()
 
 	// Entity-level attributes:
 	ship->CacheAttributes();
-}
-
-
-
-void ShipAttributeHandler::Kill() const
-{
-	shipLevels->hull = -1.;
-	shipLevels->shields = 0.;
-	shipLevels->energy = 0.;
-	shipLevels->heat = 0.;
-	shipLevels->fuel = 0.;
-	ship->status.Clear();
-}
-
-
-
-void ShipAttributeHandler::DoRepair(double &stat, double &available, double maximum, const ResourceLevels &cost) const
-{
-	if(available <= 0. || stat >= maximum)
-		return;
-
-	if(cost.energy > 0.)
-		available = min(available, shipLevels->energy / cost.energy);
-	if(cost.heat < 0.)
-		available = min(available, shipLevels->heat / -cost.heat);
-	if(cost.fuel > 0.)
-		available = min(available, shipLevels->fuel / cost.fuel);
-
-	double transfer = min(available, maximum - stat);
-	if(transfer > 0.)
-	{
-		stat += transfer;
-		available -= transfer;
-		shipLevels->energy -= transfer * cost.energy;
-		shipLevels->heat += transfer * cost.heat;
-		shipLevels->fuel -= transfer * cost.fuel;
-	}
-}
-
-
-
-ResourceLevels ShipAttributeHandler::FiringCost(const Weapon &weapon) const
-{
-	ResourceLevels cost;
-
-	cost.hull = weapon.FiringHull() + weapon.RelativeFiringHull() * ship->MaxHull();
-	cost.shields = weapon.FiringShields() + weapon.RelativeFiringShields() * ship->MaxShields();
-	cost.energy = weapon.FiringEnergy() + weapon.RelativeFiringEnergy() * ship->MaxEnergy();
-	cost.heat = weapon.FiringHeat() + weapon.RelativeFiringHeat() * ship->MaxHeat();
-	cost.fuel = weapon.FiringFuel() + weapon.RelativeFiringFuel() * ship->MaxFuel();
-
-	cost.corrosion = weapon.FiringCorrosion();
-	cost.discharge = weapon.FiringDischarge();
-	cost.ionization = weapon.FiringIon();
-	cost.scrambling = weapon.FiringScramble();
-	cost.burning = weapon.FiringBurn();
-	cost.leakage = weapon.FiringLeak();
-	cost.disruption = weapon.FiringDisruption();
-	cost.slowness = weapon.FiringSlowing();
-
-	// Ships aren't allowed to have negative shields, so clamp the firing shield
-	// cost to the ship's shield level.
-	cost.shields = min(cost.shields, shipLevels->shields);
-
-	return cost;
-}
-
-
-
-ShipAttributeHandler::CanFireResult ShipAttributeHandler::CanFire(const Weapon &weapon) const
-{
-	ResourceLevels cost = FiringCost(weapon);
-	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
-	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(shipLevels->hull - ship->minimumHull < cost.hull)
-		return CanFireResult::NO_HULL;
-	if(shipLevels->energy < cost.energy)
-		return CanFireResult::NO_ENERGY;
-	// If a weapon requires heat to fire, (rather than generating heat), we must
-	// have enough heat to spare.
-	if(shipLevels->heat < -cost.heat)
-		return CanFireResult::NO_HEAT;
-	// Repeat this for various effects which shouldn't drop below 0.
-	if(shipLevels->fuel < cost.fuel)
-		return CanFireResult::NO_FUEL;
-	if(shipLevels->corrosion < -cost.corrosion)
-		return CanFireResult::NO_CORROSION;
-	if(shipLevels->discharge < -cost.discharge)
-		return CanFireResult::NO_DISCHARGE;
-	if(shipLevels->ionization < -cost.ionization)
-		return CanFireResult::NO_ION;
-	if(shipLevels->burning < -cost.burning)
-		return CanFireResult::NO_BURNING;
-	if(shipLevels->leakage < -cost.leakage)
-		return CanFireResult::NO_LEAKAGE;
-	if(shipLevels->disruption < -cost.disruption)
-		return CanFireResult::NO_DISRUPTION;
-	if(shipLevels->slowness < -cost.slowness)
-		return CanFireResult::NO_SLOWING;
-	return CanFireResult::CAN_FIRE;
-}
-
-
-
-void ShipAttributeHandler::Damage(const ResourceLevels &damage, double scale) const
-{
-	shipLevels->hull -= scale * damage.hull;
-	shipLevels->shields -= scale * damage.shields;
-	shipLevels->energy -= scale * damage.energy;
-	shipLevels->heat += scale * damage.heat;
-	shipLevels->fuel -= scale * damage.fuel;
-
-	shipLevels->corrosion += scale * damage.corrosion;
-	shipLevels->discharge += scale * damage.discharge;
-	shipLevels->ionization += scale * damage.ionization;
-	shipLevels->scrambling = scale * damage.scrambling;
-	shipLevels->burning += scale * damage.burning;
-	shipLevels->leakage += scale * damage.leakage;
-	shipLevels->disruption += scale * damage.disruption;
-	shipLevels->slowness += scale * damage.slowness;
 }
 
 
@@ -240,11 +117,11 @@ double ShipAttributeHandler::AfterburnerThrust() const
 
 
 
-bool ShipAttributeHandler::ShouldUseAfterburner() const
+bool ShipAttributeHandler::ShouldUseAfterburner(const ResourceLevels &available) const
 {
-	double remainingFuel = shipLevels->fuel;
+	double remainingFuel = available.fuel;
 	double neededFuel = afterburnerThrustCost.fuel;
-	double remainingEnergy = shipLevels->energy;
+	double remainingEnergy = available.energy;
 	double neededEnergy = afterburnerThrustCost.energy;
 	// If there is no battery energy to use, consider how much energy might be produced this frame.
 	// This is a lower-bound calculation that assumes that this ship is far from the system
@@ -286,14 +163,14 @@ double ShipAttributeHandler::CloakFuelCost() const
 
 
 
-bool ShipAttributeHandler::HasFuelForCloak() const
+bool ShipAttributeHandler::HasFuelForCloak(const ResourceLevels &available) const
 {
 	double fuelCost = CloakFuelCost();
 	// Don't cloak if it would result in you becoming stranded.
 	// If the ship has a ramscoop, assume that it won't be stranded due to cloak usage.
 	if(fuelCost && !ramscoop)
 	{
-		double fuel = shipLevels->fuel;
+		double fuel = available.fuel;
 		int steps = ceil((1. - ship->Cloaking()) / ship->CloakingSpeed());
 		// Only cloak if you will be able to fully cloak and also maintain it
 		// for as long as it will take you to reach full cloak.

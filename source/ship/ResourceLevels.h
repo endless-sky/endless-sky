@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 class DataNode;
+class Weapon;
 
 
 
@@ -34,6 +35,10 @@ public:
 
 	// Receive damage. Shields, hull, energy, and fuel are subtracted. All other resources are added.
 	void Damage(const ResourceLevels &damage, double scale = 1.);
+	// Repair the given stat up to the maximum that the ship is capable of given the cost.
+	// Updates the available variable with the remaining amount of repairs that
+	// can be done.
+	void DoRepair(double &stat, double &available, double maximum, const ResourceLevels &cost);
 
 	// Return true if this object has the resources to expend on the entire cost.
 	bool CanExpend(const ResourceLevels &cost, bool includeDoT = false) const;
@@ -41,6 +46,13 @@ public:
 	double FractionalUsage(const ResourceLevels &cost, bool includeDoT = false) const;
 	// Return a multiple of how many times these resources could use the given cost.
 	double MultipleUsage(const ResourceLevels &cost, bool includeDoT = false) const;
+	// Return the firing cost of this weapon, given that this ResourceLevels contains the
+	// capacities of a ship for use in calculating relative damage values.
+	ResourceLevels FiringCost(const Weapon &weapon) const;
+	// Return true if the ship has the resources to expend on the firing cost.
+	// This ignores any shield costs, allowing ships to fire a weapon even with
+	// no shields.
+	bool CanFire(const Weapon &weapon) const;
 
 	ResourceLevels operator*(double scalar) const;
 	friend ResourceLevels operator*(double scalar, const ResourceLevels &levels);

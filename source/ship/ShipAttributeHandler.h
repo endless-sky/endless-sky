@@ -28,52 +28,12 @@ class Weapon;
 // thrust or turn values.
 class ShipAttributeHandler {
 public:
-	enum class CanFireResult {
-		NO_AMMO,
-		NO_ENERGY,
-		NO_FUEL,
-		NO_HULL,
-		NO_HEAT,
-		NO_CORROSION,
-		NO_DISCHARGE,
-		NO_ION,
-		NO_SCRAMBLING,
-		NO_DISRUPTION,
-		NO_SLOWING,
-		NO_BURNING,
-		NO_LEAKAGE,
-		CAN_FIRE
-	};
-
-
-public:
 	// Setup this attribute handler with a pointer to the ship instance that it is handling attributes for.
 	void Setup(Ship *parent);
 
 	// Update the stored ResourceLevels for various actions a
 	// ship can take (e.g. regenerating shields, thrusting).
 	void Calibrate();
-
-	// Clear all levels and set hull to -1.
-	void Kill() const;
-
-	// Repair the given stat up to the maximum that the ship is capable of given the cost.
-	// Updates the available variable with the remaining amount of repairs that
-	// can be done.
-	void DoRepair(double &stat, double &available, double maximum, const ResourceLevels &cost) const;
-
-	// Construct a ResourceLevels object for the firing cost of the given weapon
-	// when fired from the given ship.
-	ResourceLevels FiringCost(const Weapon &weapon) const;
-	// Return true if the ship has the resources to expend on the firing cost.
-	// This ignores any shield costs, allowing ships to fire a weapon even with
-	// no shields. This also prevents a ship from disabling itself as a result
-	// of any firing hull cost.
-	CanFireResult CanFire(const Weapon &weapon) const;
-
-	// Apply damage * scale to the ship. Hull, shields, energy, and fuel
-	// are subtracted from the resources while all other levels are added.
-	void Damage(const ResourceLevels &damage, double scale = 1.) const;
 
 	// Functions for classes outside of Ship to get the cached values
 	// and determine what this ship is capable of.
@@ -86,12 +46,12 @@ public:
 
 	double ReverseThrust() const;
 	double AfterburnerThrust() const;
-	bool ShouldUseAfterburner() const;
+	bool ShouldUseAfterburner(const ResourceLevels &available) const;
 
 	bool SilentJumps() const;
 
 	double CloakFuelCost() const;
-	bool HasFuelForCloak() const;
+	bool HasFuelForCloak(const ResourceLevels &available) const;
 	bool CanRecoverHullWhileCloaked() const;
 	bool CanRecoverShieldsWhileCloaked() const;
 
@@ -135,7 +95,6 @@ private:
 
 	Ship *ship = nullptr;
 	const Outfit *attributes = nullptr;
-	ResourceLevels *shipLevels = nullptr;
 
 	double outfitCapacity = 0.;
 	double weaponCapacity = 0.;

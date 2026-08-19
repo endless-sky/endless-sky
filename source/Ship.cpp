@@ -2121,8 +2121,8 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 		const Weapon *weapon = hardpoints[i].GetWeapon();
 		if(!weapon)
 			continue;
-		ShipAttributeHandler::CanFireResult canFire = CanFire(weapon);
-		if(canFire == ShipAttributeHandler::CanFireResult::CAN_FIRE)
+		CanFireResult canFire = CanFire(weapon);
+		if(canFire == CanFireResult::CAN_FIRE)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
@@ -2141,8 +2141,8 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 			}
 		}
 		else if(emptySoundsTimer && !(*emptySoundsTimer)[i]
-			&& (canFire == ShipAttributeHandler::CanFireResult::NO_AMMO
-				|| canFire == ShipAttributeHandler::CanFireResult::NO_FUEL)
+			&& (canFire == CanFireResult::NO_AMMO
+				|| canFire == CanFireResult::NO_RESOURCES)
 			&& firingCommands.HasFire(i) && hardpoints[i].IsReady())
 		{
 			Audio::Play(weapon->EmptySound(), SoundCategory::WEAPON);
@@ -2185,7 +2185,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 		const Weapon *weapon = hardpoints[i].GetWeapon();
 		if(!weapon)
 			continue;
-		if(CanFire(weapon) == ShipAttributeHandler::CanFireResult::CAN_FIRE)
+		if(CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
 	}
@@ -2227,7 +2227,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 		const Weapon *weapon = hardpoints[i].GetWeapon();
 		if(!weapon)
 			continue;
-		if(CanFire(weapon) == ShipAttributeHandler::CanFireResult::CAN_FIRE)
+		if(CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
@@ -3247,11 +3247,6 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	// Prevent various stats from reaching unallowable values.
 	levels.hull = min(levels.hull, MaxHull());
 	levels.shields = min(levels.shields, MaxShields());
-	// Weapons are allowed to overcharge a ship's energy or fuel, but code in Ship::DoGeneration()
-	// will clamp it to a maximum value at the beginning of the next frame.
-	levels.energy = max(0., levels.energy);
-	levels.fuel = max(0., levels.fuel);
-	levels.heat = max(0., levels.heat);
 
 	// Recalculate the disabled ship check.
 	isDisabled = true;
@@ -3665,16 +3660,18 @@ const vector<Hardpoint> &Ship::Weapons() const
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
 // Assume the weapon is valid.
-ShipAttributeHandler::CanFireResult Ship::CanFire(const Weapon *weapon) const
+Ship::CanFireResult Ship::CanFire(const Weapon *weapon) const
 {
 	if(weapon->Ammo())
 	{
 		auto it = outfits.find(weapon->Ammo());
 		if(it == outfits.end() || it->second < weapon->AmmoUsage())
-			return ShipAttributeHandler::CanFireResult::NO_AMMO;
+			return CanFireResult::NO_AMMO;
 	}
+	if(!levels.CanFire(*weapon))
+		return CanFireResult::NO_RESOURCES;
 
-	return attrHandler.CanFire(*weapon);
+	return CanFireResult::CAN_FIRE;
 }
 
 
@@ -3686,7 +3683,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 {
 	// Compute this ship's initial capacities, in case the consumption of the ammunition outfit(s)
 	// modifies them, so that relative costs are calculated based on the pre-firing state of the ship.
-	ResourceLevels firingCost = attrHandler.FiringCost(weapon);
+	ResourceLevels firingCost = capacities.FiringCost(weapon);
 
 	if(const Outfit *ammo = weapon.Ammo())
 	{
@@ -4132,7 +4129,7 @@ void Ship::DoGeneration()
 			repairLevels.energy /= hullRemaining;
 			repairLevels.fuel /= hullRemaining;
 			repairLevels.hull /= hullRemaining;
-			attrHandler.DoRepair(levels.hull, hullRemaining, MaxHull(), repairLevels);
+			levels.DoRepair(levels.hull, hullRemaining, MaxHull(), repairLevels);
 		}
 
 		ResourceLevels regenLevels = shieldDelay ? attrHandler.shieldRegenWithDelayCost : attrHandler.shieldRegenCost;
@@ -4144,7 +4141,7 @@ void Ship::DoGeneration()
 			regenLevels.energy /= shieldsRemaining;
 			regenLevels.fuel /= shieldsRemaining;
 			regenLevels.hull /= shieldsRemaining;
-			attrHandler.DoRepair(levels.shields, shieldsRemaining, MaxShields(), regenLevels);
+			levels.DoRepair(levels.shields, shieldsRemaining, MaxShields(), regenLevels);
 		}
 
 		if(!bays.empty())
@@ -4169,9 +4166,9 @@ void Ship::DoGeneration()
 			{
 				Ship &ship = *it.second;
 				if(!hullDelay && hullRemaining)
-					attrHandler.DoRepair(ship.levels.hull, hullRemaining, ship.MaxHull(), repairLevels);
+					levels.DoRepair(ship.levels.hull, hullRemaining, ship.MaxHull(), repairLevels);
 				if(!shieldDelay && shieldsRemaining)
-					attrHandler.DoRepair(ship.levels.shields, shieldsRemaining, ship.MaxShields(), regenLevels);
+					levels.DoRepair(ship.levels.shields, shieldsRemaining, ship.MaxShields(), regenLevels);
 			}
 
 			// Now that there is no more need to use energy for hull and shield
@@ -4210,7 +4207,7 @@ void Ship::DoGeneration()
 		// Repair only if the counter has reached the limit and if the ship can meet the energy and fuel costs.
 		if(disabledRecoveryCounter >= attrHandler.recoveryTime && AvailableResources().CanExpend(recoveryCost))
 		{
-			attrHandler.Damage(recoveryCost);
+			levels.Damage(recoveryCost);
 
 			disabledRecoveryCounter = 0;
 			levels.hull = min(max(levels.hull, minimumHull * 1.5), MaxHull());
@@ -4353,7 +4350,7 @@ void Ship::DoCloakDecision()
 	if(commands.Has(Command::CLOAK) && canCloak)
 	{
 		cloak = min(1., max(0., cloak + cloakingSpeed));
-		attrHandler.Damage(cloakCost);
+		levels.Damage(cloakCost);
 		double cloakingShieldDelay = attrHandler.cloakingShieldDelay;
 		double cloakingHullDelay = attrHandler.cloakingHullDelay;
 		cloakingShieldDelay = (cloakingShieldDelay < 1.) ?
@@ -4686,7 +4683,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				// If turning at a fraction of the full rate (either from lack of
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
-				attrHandler.Damage(turnCost, fabs(commands.Turn()));
+				levels.Damage(turnCost, fabs(commands.Turn()));
 				Turn(commands.Turn() * TurnRate() * slowMultiplier);
 			}
 		}
@@ -4708,7 +4705,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				IncrementThrusterHeld(isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD);
 				if(thrust)
 				{
-					attrHandler.Damage(thrustCost, fabs(thrustCommand));
+					levels.Damage(thrustCost, fabs(thrustCommand));
 					acceleration += angle.Unit() * thrustCommand * (isThrusting ? Acceleration() : ReverseAcceleration());
 				}
 			}
@@ -4721,7 +4718,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			thrust = attrHandler.afterburnerThrust;
 			if(thrust && AvailableResources().CanExpend(afterburnerCost))
 			{
-				attrHandler.Damage(afterburnerCost);
+				levels.Damage(afterburnerCost);
 				acceleration += angle.Unit() * attrHandler.accelerationMult * thrust / mass;
 
 				// Only create the afterburner effects if the ship is in the player's system.

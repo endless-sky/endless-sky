@@ -69,6 +69,14 @@ class Visual;
 // limits of what the AI knows how to command them to do.
 class Ship : public Entity, public std::enable_shared_from_this<Ship> {
 public:
+	enum class CanFireResult {
+		NO_AMMO,
+		NO_RESOURCES,
+		CAN_FIRE
+	};
+
+
+public:
 	class Bay {
 	public:
 		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(std::move(category)) {}
@@ -471,7 +479,7 @@ public:
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
 	// Assume the weapon is valid.
-	ShipAttributeHandler::CanFireResult CanFire(const Weapon *weapon) const;
+	CanFireResult CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates). Assume that CanFire() is true.
 	void ExpendAmmo(const Weapon &weapon);

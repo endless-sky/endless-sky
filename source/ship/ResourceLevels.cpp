@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ResourceLevels.h"
 
 #include "../DataNode.h"
+#include "../Weapon.h"
 
 #include <limits>
 #include <string>
@@ -82,32 +83,47 @@ void ResourceLevels::LoadSingle(const DataNode &node)
 
 void ResourceLevels::Damage(const ResourceLevels &damage, double scale)
 {
-	hull -= scale * damage.hull;
-	shields -= scale * damage.shields;
-	energy -= scale * damage.energy;
-	heat += scale * damage.heat;
-	fuel -= scale * damage.fuel;
-
-	corrosion += scale * damage.corrosion;
-	discharge += scale * damage.discharge;
-	ionization += scale * damage.ionization;
-	scrambling += scale * damage.scrambling;
-	burning += scale * damage.burning;
-	leakage += scale * damage.leakage;
-	disruption += scale * damage.disruption;
-	slowness += scale * damage.slowness;
-
 	// Prevent various stats from reaching unallowable values.
 	// Hull is allowed to go negative.
-	// Shields, energy, heat, and fuel should have been prevented from going negative elsewhere.
-	corrosion = max(0., corrosion);
-	discharge = max(0., discharge);
-	ionization = max(0., ionization);
-	scrambling = max(0., scrambling);
-	burning = max(0., burning);
-	leakage = max(0., leakage);
-	disruption = max(0., disruption);
-	slowness = max(0., slowness);
+	hull -= scale * damage.hull;
+	shields = max(0., shields - scale * damage.shields);
+	energy = max(0., energy - scale * damage.energy);
+	heat = max(0., heat + scale * damage.heat);
+	fuel = max(0., fuel - scale * damage.fuel);
+
+	corrosion = max(0., corrosion + scale * damage.corrosion);
+	discharge = max(0., discharge + scale * damage.discharge);
+	ionization = max(0., ionization + scale * damage.ionization);
+	scrambling = max(0., scrambling + scale * damage.scrambling);
+	burning = max(0., burning + scale * damage.burning);
+	leakage = max(0., leakage + scale * damage.leakage);
+	disruption = max(0., disruption + scale * damage.disruption);
+	slowness = max(0., slowness + scale * damage.slowness);
+}
+
+
+
+void ResourceLevels::DoRepair(double &stat, double &available, double maximum, const ResourceLevels &cost)
+{
+	if(available <= 0. || stat >= maximum)
+		return;
+
+	if(cost.energy > 0.)
+		available = min(available, energy / cost.energy);
+	if(cost.heat < 0.)
+		available = min(available, heat / -cost.heat);
+	if(cost.fuel > 0.)
+		available = min(available, fuel / cost.fuel);
+
+	double transfer = min(available, maximum - stat);
+	if(transfer > 0.)
+	{
+		stat += transfer;
+		available -= transfer;
+		energy -= transfer * cost.energy;
+		heat += transfer * cost.heat;
+		fuel -= transfer * cost.fuel;
+	}
 }
 
 
@@ -200,6 +216,64 @@ double ResourceLevels::MultipleUsage(const ResourceLevels &cost, bool includeDoT
 	}
 
 	return scale;
+}
+
+
+
+ResourceLevels ResourceLevels::FiringCost(const Weapon &weapon) const
+{
+	ResourceLevels cost;
+
+	cost.hull = weapon.FiringHull() + weapon.RelativeFiringHull() * hull;
+	cost.shields = weapon.FiringShields() + weapon.RelativeFiringShields() * shields;
+	cost.energy = weapon.FiringEnergy() + weapon.RelativeFiringEnergy() * energy;
+	cost.heat = weapon.FiringHeat() + weapon.RelativeFiringHeat() * heat;
+	cost.fuel = weapon.FiringFuel() + weapon.RelativeFiringFuel() * fuel;
+
+	cost.corrosion = weapon.FiringCorrosion();
+	cost.discharge = weapon.FiringDischarge();
+	cost.ionization = weapon.FiringIon();
+	cost.scrambling = weapon.FiringScramble();
+	cost.burning = weapon.FiringBurn();
+	cost.leakage = weapon.FiringLeak();
+	cost.disruption = weapon.FiringDisruption();
+	cost.slowness = weapon.FiringSlowing();
+
+	return cost;
+}
+
+
+
+bool ResourceLevels::CanFire(const Weapon &weapon) const
+{
+	ResourceLevels cost = FiringCost(weapon);
+	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
+	if(hull < cost.hull)
+		return false;
+	if(energy < cost.energy)
+		return false;
+	// If a weapon requires heat to fire, (rather than generating heat), we must
+	// have enough heat to spare.
+	if(heat < -cost.heat)
+		return false;
+	// Repeat this for various effects which shouldn't drop below 0.
+	if(fuel < cost.fuel)
+		return false;
+	if(corrosion < -cost.corrosion)
+		return false;
+	if(discharge < -cost.discharge)
+		return false;
+	if(ionization < -cost.ionization)
+		return false;
+	if(burning < -cost.burning)
+		return false;
+	if(leakage < -cost.leakage)
+		return false;
+	if(disruption < -cost.disruption)
+		return false;
+	if(slowness < -cost.slowness)
+		return false;
+	return true;
 }
 
 

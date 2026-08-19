@@ -3080,7 +3080,7 @@ bool AI::ShouldUseAfterburner(const Ship &ship)
 	if(!ship.AttributeHandler().AfterburnerThrust())
 		return false;
 
-	return ship.AttributeHandler().ShouldUseAfterburner();
+	return ship.AttributeHandler().ShouldUseAfterburner(ship.AvailableResources());
 }
 
 
@@ -3440,7 +3440,7 @@ bool AI::DoCloak(const Ship &ship, Command &command) const
 		return false;
 	// Never cloak if it will cause you to be stranded.
 	const ShipAttributeHandler &attrHandler = ship.AttributeHandler();
-	if(!attrHandler.HasFuelForCloak())
+	if(!attrHandler.HasFuelForCloak(ship.AvailableResources()))
 		return false;
 
 	// If your parent has chosen to cloak, cloak and rendezvous with them.
