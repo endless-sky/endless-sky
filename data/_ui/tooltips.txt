@@ -919,8 +919,8 @@ tip "charging shields:"
 tip "net change:"
 	`The sum of the energy consumed and heat generated from the above energy and heat values. Represents the worst case scenario when all systems are active at once.`
 
-tip "max:"
-	`Energy storage capacity and maximum safe level for heat generation. Energy capacity allows a ship to temporarily draw more energy than it produces. The heat maximum is the highest your heat generation can be without eventually causing your ship to overheat.`
+tip "capacity:"
+	`Energy storage capacity and heat capacity. Energy capacity allows a ship to temporarily draw more energy than it produces, and can be increased by installing batteries. The heat capacity is the highest your heat generation can be without eventually causing your ship to overheat, and is influenced by the mass of the ship.`
 
 
 
@@ -1241,7 +1241,7 @@ tip "anti-missile:"
 	`The power of the anti-missile shots. Higher values make it easier to destroy stronger projectiles.`
 
 tip "tractor beam:"
-	`The base velocity that this weapon pulls flotsam toward itself. Heavier flotsam is more difficult to pull.`
+	`The velocity that this weapon pulls flotsam toward itself.`
 
 tip "mining precision:"
 	`A measure of how well this weapon prevents damage to valuable materials while mining. Weapons with a positive precision result in higher yields, while a negative precision results in lower yields. Some minable objects are tougher than others, and are therefore less susceptible to having their yields altered.`
@@ -1413,6 +1413,8 @@ tip "Toggle performance info"
 
 tip "Deploy / recall fighters"
 	`Deploy or recall carried ships (e.g. fighters, drones) in your fleet. Requires carriers with space to hold the carried ships.`
+	`Carried ships may automatically return to the carrier when damaged and redeploy when healed based off of the "Damaged fighters retreat" setting.`
+	`When used while holding <shift> or with the aforementioned setting disabled, fighters will remain deployed until manually recalled.`
 
 tip "Fleet: Fight my target"
 	`Command your entire fleet to focus fire on the selected target. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on a hostile ship.`
@@ -1518,8 +1520,10 @@ tip "Cloaked ship outlines"
 	`- "fancy": causes the ship to become transparent and applies a red outline.`
 	`- "fast": simply shifts the ship to being red.`
 
-tip "Linear filter"
-	`Use a standard linear interpolation filter to make sprites look smoother. (Requires game restart.)`
+tip "Texture filtering"
+	`Choose the interpolation method used when sampling textures. (Requires game restart.)`
+	`- "linear": produces a smoother, fuzzier image.`
+	`- "nearest": produces a sharper, blockier image`
 
 tip "Show status overlays"
 	`Display status overlays over top of all ships when in flight. Status overlays display a ship's shields and hull.`
@@ -1598,10 +1602,11 @@ tip "Turret tracking"
 	`- "focused": all turrets will attack the same target.`
 	`- "opportunistic": turrets will target ships that they are nearest to aiming at, allowing multiple hostiles to be engaged at once.`
 
-tip "Target asteroid based on"
+tip "Asteroid targeting"
 	`The strategy that the "Select nearest asteroid" control uses for selecting asteroids.`
 	`- "proximity": selects the nearest asteroid.`
-	`- "value": selects the highest value asteroid.`
+	`- "expected value": selects the asteroid with the highest expected value of all drops when destroyed.`
+	`- "quality": selects the asteroid with the highest value ore.`
 
 tip "Boarding target priority"
 	`The strategy that the "Board selected ship" control uses for selecting ships when you have none targeted.`
@@ -1626,6 +1631,11 @@ tip "Repair fighters in"
 	`The strategy used for repairing carried ships (e.g. fighters, drones) in your fleet while they are docked with their carrier.`
 	`- "series": repairs the highest HP ship until it is fully repaired, then moves on to the next one.`
 	`- "parallel": repairs the lowest HP ship at all times so that all ships increase in HP together.`
+
+tip "Damaged fighters retreat"
+	`When deployed, your fighters and drones will automatically recall themselves to the carrier if their health drops below 50%, then automatically deploy again after healing above 75% if a manual recall command has not been sent.`
+	`If your fighters cannot be repaired above this threshold while docked in their carrier, they will not leave the carrier if you send another deploy command without holding <shift>.`
+	`The health of a ship is calculated as its shields plus the amount of hull prior to the ship becoming disabled.`
 
 tip "Fighters transfer cargo"
 	`Fighters transfer any cargo that they have to their carried ship when they dock.`
@@ -1731,7 +1741,7 @@ tip "Daily depreciation"
 	`The percentage of an item's depreciable value that it maintains day over day. Only impacts the exponential term of the depreciation calculation. If set to 100%, an item will still linearly lose value.`
 
 tip "Spawn attempt period"
-	`The number of frames on average that the game waits before attempting to spawn a person ship. The game rolls a random number between 0 and this value minus one every frame. If the value lands on 0, a person ship spawn attempt is made. There are 60 frames in a second.`
+	`The number of frames on average that the game waits before attempting to spawn a person ship. The game rolls a random number between 0 and this value minus one every frame. (There are 60 frames in a second.) If the value lands on 0, a person ship spawn attempt is made. In other words, higher values result in lower spawn rates of person ships.`
 
 tip "No spawn weight"
 	`When a person ship spawn attempt is made, this is the "weight" of the chance of having the spawn attempt fail. Each person ship has a "weight" associated with it which determines its chance of spawning. The chance of any single person ship spawning is its weight divided by the sum of the weights of all person ships and this value. That means that the chance of a spawn attempt failing is this number over that same sum.`
@@ -1757,8 +1767,11 @@ tip "Fleet multiplier"
 tip "Lock gamerules"
 	`Controls whether gamerules can be altered after a pilot has been created. If true, the gamerules button will not appear on the main menu for this pilot. If you set this to true on an existing pilot, you will not be able to return to this menu after leaving.`
 
-tip "Fighters hit when disabled"
+tip "Fighter crossfire immunity"
 	`Controls which carried ships (fighters and drones), when disabled, will not be hit by projectiles unless they are directly targeted. Fighters and drones are fragile ships that can be difficult and/or tedious to replace for the player, so this gamerule is a means of increasing their survivability without increasing their combat effectiveness. Disabled carried ships can still be hit by explosions, whether from weapons or exploding ships.`
+	`- "none": no carried ships are affected.`
+	`- "player": only ships owned by the player are affected.`
+	`- "all": all carried ships are affected.`
 
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`

@@ -1861,7 +1861,7 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Some times I hear"
+		"Sometimes I hear"
 		"I've heard rumors"
 		"It's a common myth"
 		"I've heard"

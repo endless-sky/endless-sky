@@ -152,6 +152,9 @@ public:
 	// Check whether a mission conversation has raised a flag that the player
 	// must leave the planet immediately (without time to do anything else).
 	bool ShouldLaunch() const;
+	// Check whether the player has given the command for their fleet to cloak.
+	bool IsCloaking() const;
+	void SetCloaking(bool isCloaking);
 
 	// Access the player's accounting information.
 	const Account &Accounts() const;
@@ -485,6 +488,7 @@ private:
 	const System *system = nullptr;
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
+	bool isCloaking = false;
 	bool isDead = false;
 	bool displayCarrierHelp = false;
 

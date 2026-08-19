@@ -59,7 +59,7 @@ namespace {
 	const string SYSTEM_ARRIVAL_MIN = "Minimum arrival distance";
 	const string FLEET_MULTIPLIER = "Fleet multiplier";
 	const string LOCK_GAMERULES = "Lock gamerules";
-	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
+	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighter crossfire immunity";
 	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
 	const string SPAWN_RAID_FLEETS = "Spawn raid fleets";
 	const string FLEET_SIZE_LIMITATION = "Fleet size limitation";

@@ -43,10 +43,6 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
-
-	// TODO: Use the preference to set the font size after this is turned into a TextArea.
-	newsMessage.SetFont(FontSet::Get(14));
-	newsMessage.SetAlignment(Preferences::GetTextAlignment());
 }
 
 
@@ -57,12 +53,8 @@ void SpaceportPanel::UpdateNews()
 	if(!news)
 		return;
 	hasNews = true;
-
-	// Query the news interface to find out the wrap width.
-	// TODO: Allow Interface to handle wrapped text directly.
-	const Interface *newsUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "news (small screen)" : "news");
-	portraitWidth = newsUi->GetBox("message portrait").Width();
-	normalWidth = newsUi->GetBox("message").Width();
+	if(!newsMessage)
+		InitNewsTextArea();
 
 	// Randomly pick which portrait, if any, is to be shown. Depending on if
 	// this news has a portrait, different interface information gets filled in.
@@ -71,11 +63,10 @@ void SpaceportPanel::UpdateNews()
 	hasPortrait = portrait;
 	newsInfo.SetSprite("portrait", portrait);
 	newsInfo.SetString("name", news->SpeakerName() + ':');
-	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs);
 	player.AddPlayerSubstitutions(subs);
-	newsMessage.Wrap(Format::Replace(news->Message(), subs));
+	newsMessage->SetText(Format::Replace(news->Message(), subs));
 }
 
 
@@ -121,10 +112,6 @@ void SpaceportPanel::Draw()
 		const Interface *newsUi = GameData::Interfaces().Get(Screen::Width() < 1280 ?
 			"news (small screen)" : "news");
 		newsUi->Draw(newsInfo);
-		// Depending on if the news has a portrait, the interface box that
-		// gets filled in changes.
-		newsMessage.Draw(newsUi->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
-			*GameData::Colors().Get("medium"));
 	}
 }
 
@@ -134,9 +121,11 @@ void SpaceportPanel::UpdateTextDisplay()
 {
 	description->SetAlignment(Preferences::GetTextAlignment());
 	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
-	newsMessage.SetAlignment(Preferences::GetTextAlignment());
-	// TODO: Un-comment after newsMessage is made into a TextArea.
-	// newsMessage.SetFont(FontSet::Get(Preferences::GetFontSize()));
+	if(newsMessage)
+	{
+		newsMessage->SetAlignment(Preferences::GetTextAlignment());
+		newsMessage->SetFont(FontSet::Get(Preferences::GetFontSize()));
+	}
 }
 
 
@@ -146,6 +135,34 @@ void SpaceportPanel::Resize()
 	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ?
 		"spaceport (small screen)" : "spaceport");
 	description->SetRect(ui->GetBox("content"));
+
+	ResizeNewsTextArea();
+}
+
+
+
+void SpaceportPanel::InitNewsTextArea()
+{
+	newsMessage = make_shared<TextArea>();
+	newsMessage->SetFont(FontSet::Get(14));
+	newsMessage->SetColor(*GameData::Colors().Get("bright"));
+	newsMessage->SetAlignment(Preferences::GetTextAlignment());
+	AddChild(newsMessage);
+
+	ResizeNewsTextArea();
+}
+
+
+
+void SpaceportPanel::ResizeNewsTextArea() const
+{
+	if(!newsMessage)
+		return;
+	// TODO: Allow Interface to handle wrapped text directly.
+	const Interface *newsUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "news (small screen)" : "news");
+	Rectangle portraitWidth = newsUi->GetBox("message portrait");
+	Rectangle normalWidth = newsUi->GetBox("message");
+	newsMessage->SetRect(hasPortrait ? portraitWidth : normalWidth);
 }
 
 

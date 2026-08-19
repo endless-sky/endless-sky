@@ -176,7 +176,7 @@ namespace {
 	void Deploy(const Ship &ship, bool includingDamaged)
 	{
 		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.ship && (includingDamaged || bay.ship->Health() > .75) &&
+			if(bay.ship && (includingDamaged || bay.ship->HasForceDeploy() || bay.ship->Health() > .75) &&
 					(!bay.ship->IsYours() || bay.ship->HasDeployOrder()))
 				bay.ship->SetCommands(Command::DEPLOY);
 	}
@@ -212,7 +212,7 @@ namespace {
 	}
 
 	// Issue deploy orders for the selected ships (or the full fleet if no ships are selected).
-	void IssueDeploy(const PlayerInfo &player)
+	void IssueDeploy(const PlayerInfo &player, bool shift)
 	{
 		// Lay out the rules for what constitutes a deployable ship. (Since player ships are not
 		// deleted from memory until the next landing, check both parked and destroyed states.)
@@ -245,17 +245,42 @@ namespace {
 		// If any ships were not yet ordered to deploy, deploy them.
 		if(!toDeploy.empty())
 		{
+			bool canRetreat = Preferences::Has("Damaged fighters retreat");
+			int badlyDamaged = 0;
 			for(Ship *ship : toDeploy)
+			{
 				ship->SetDeployOrder(true);
-			string ship = (toDeploy.size() == 1 ? "ship" : "ships");
-			Messages::Add({"Deployed " + to_string(toDeploy.size()) + " carried " + ship + ".",
-				GameData::MessageCategories().Get("normal")});
+				ship->SetForceDeploy(shift);
+				if(canRetreat && ship->Health() <= .75)
+					++badlyDamaged;
+			}
+			int now = toDeploy.size();
+			if(canRetreat && !shift)
+				now -= badlyDamaged;
+			string message = "Deployed " + to_string(now) + " carried " + (now == 1 ? "ship" : "ships") + ".";
+			if(canRetreat)
+			{
+				if(shift)
+				{
+					if(badlyDamaged)
+						message += " " + to_string(badlyDamaged) + " badly damaged "
+							+ (badlyDamaged == 1 ? "ship has" : "ships have") + " been forced to deploy.";
+					message += " Deployed ships will remain in combat until manually recalled.";
+				}
+				else if(badlyDamaged)
+					message += " " + to_string(badlyDamaged) + " badly damaged "
+						+ (badlyDamaged == 1 ? "ship" : "ships") + " will remain docked until repaired.";
+			}
+			Messages::Add({message, GameData::MessageCategories().Get("normal")});
 		}
 		// Otherwise, instruct the carried ships to return to their berth.
 		else if(!toRecall.empty())
 		{
 			for(Ship *ship : toRecall)
+			{
 				ship->SetDeployOrder(false);
+				ship->SetForceDeploy(false);
+			}
 			string ship = (toRecall.size() == 1 ? "ship" : "ships");
 			Messages::Add({"Recalled " + to_string(toRecall.size()) + " carried " + ship + ".",
 				GameData::MessageCategories().Get("normal")});
@@ -542,8 +567,8 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 		for(const auto &it : player.Ships())
 			if(!it->IsParked() && it->CloakingSpeed())
 			{
-				isCloaking = !isCloaking;
-				Messages::Add(*GameData::Messages().Get(isCloaking ?
+				player.SetCloaking(!player.IsCloaking());
+				Messages::Add(*GameData::Messages().Get(player.IsCloaking() ?
 					"engaging cloaking device" : "disengaging cloaking device"));
 				break;
 			}
@@ -557,11 +582,11 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 		return;
 
 	// Toggle the "deploy" command for the fleet or selected ships.
+	const bool shift = activeCommands.Has(Command::SHIFT);
 	if(activeCommands.Has(Command::DEPLOY))
-		IssueDeploy(player);
+		IssueDeploy(player, shift);
 
 	// The gather command controls formation flying when combined with shift.
-	const bool shift = activeCommands.Has(Command::SHIFT);
 	if(shift && activeCommands.Has(Command::GATHER))
 		IssueFormationChange(player);
 
@@ -803,12 +828,12 @@ void AI::Step(Command &activeCommands)
 				command |= Command::DEPLOY;
 				Deploy(*it, !fightersRetreat);
 			}
-			if(isCloaking)
+			if(player.IsCloaking())
 				command |= Command::CLOAK;
 		}
 
 		// Cloak if the AI considers it appropriate.
-		if(!it->IsYours() || !isCloaking)
+		if(!it->IsYours() || !player.IsCloaking())
 			if(DoCloak(*it, command))
 			{
 				// The ship chose to retreat from its target, e.g. to repair.
@@ -2165,8 +2190,21 @@ void AI::MoveIndependent(Ship &ship, Command &command)
 	else if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
-		if(!shouldStay && ship.Attributes().Get("fuel capacity") && ship.GetTargetStellar()->HasSprite()
-				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
+		const StellarObject *targetStellar = ship.GetTargetStellar();
+		bool shouldLandOnTarget = [shouldStay, targetStellar, ship]() {
+			if(shouldStay)
+				return false;
+			if(!targetStellar->HasSprite())
+				return false;
+			if(!targetStellar->GetPlanet())
+				return false;
+			if(!targetStellar->GetPlanet()->CanLand(ship))
+				return false;
+			if(!ship.Attributes().Get("fuel capacity") && !targetStellar->GetPlanet()->IsWormhole())
+				return false;
+			return true;
+		}();
+		if(shouldLandOnTarget)
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
 			ship.SetTargetStellar(nullptr);
@@ -2443,6 +2481,10 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	{
 		if(!ship.HasDeployOrder() || ship.GetSystem() != playerSystem)
 			return true;
+		// Carried ships that were forced to deploy should remain deployed
+		// until manually recalled.
+		if(ship.HasForceDeploy())
+			return false;
 	}
 	else if(!parent.Commands().Has(Command::DEPLOY))
 		return true;
@@ -4272,7 +4314,9 @@ bool AI::TargetMinable(Ship &ship) const
 	double scanRangeMetric = 10000. * ship.Attributes().Get("asteroid scan power");
 	if(!scanRangeMetric)
 		return false;
-	const bool findClosest = Preferences::Has("Target asteroid based on");
+	Preferences::TargetAsteroidStrategy strategy = Preferences::GetTargetAsteroidStrategy();
+	const bool findClosest = strategy == Preferences::TargetAsteroidStrategy::PROXIMITY;
+	const bool highestQuality = strategy == Preferences::TargetAsteroidStrategy::QUALITY;
 	auto bestMinable = ship.GetTargetAsteroid();
 	double bestScore = findClosest ? numeric_limits<double>::max() : 0.;
 	auto GetDistanceMetric = [&ship](const Minable &minable) -> double {
@@ -4282,26 +4326,28 @@ bool AI::TargetMinable(Ship &ship) const
 	{
 		if(findClosest)
 			bestScore = GetDistanceMetric(*bestMinable);
+		else if(highestQuality)
+			bestScore = bestMinable->GetHighestQualityValue();
 		else
-			bestScore = bestMinable->GetValue();
+			bestScore = bestMinable->GetExpectedValue();
 	}
-	auto MinableStrategy = [&findClosest, &bestMinable, &bestScore, &GetDistanceMetric]()
+	auto MinableStrategy = [&highestQuality, &findClosest, &bestMinable, &bestScore, &GetDistanceMetric]()
 			-> function<void(const shared_ptr<Minable> &)>
 	{
 		if(findClosest)
 			return [&bestMinable, &bestScore, &GetDistanceMetric]
 					(const shared_ptr<Minable> &minable) -> void {
 				double newScore = GetDistanceMetric(*minable);
-				if(newScore < bestScore || (newScore == bestScore && minable->GetValue() > bestMinable->GetValue()))
+				if(newScore < bestScore || (newScore == bestScore && minable->GetExpectedValue() > bestMinable->GetExpectedValue()))
 				{
 					bestScore = newScore;
 					bestMinable = minable;
 				}
 			};
 		else
-			return [&bestMinable, &bestScore, &GetDistanceMetric]
+			return [&highestQuality, &bestMinable, &bestScore, &GetDistanceMetric]
 					(const shared_ptr<Minable> &minable) -> void {
-				double newScore = minable->GetValue();
+				double newScore = highestQuality ? minable->GetHighestQualityValue() : minable->GetExpectedValue();
 				if(newScore > bestScore || (newScore == bestScore
 						&& GetDistanceMetric(*minable) < GetDistanceMetric(*bestMinable)))
 				{
@@ -4977,7 +5023,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		command |= Command::DEPLOY;
 		Deploy(ship, !Preferences::Has("Damaged fighters retreat"));
 	}
-	if(isCloaking)
+	if(player.IsCloaking())
 		command |= Command::CLOAK;
 
 	ship.SetCommands(command);
