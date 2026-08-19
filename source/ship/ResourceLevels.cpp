@@ -59,22 +59,22 @@ void ResourceLevels::LoadSingle(const DataNode &node)
 		heat = value;
 	else if(key == "fuel")
 		fuel = value;
+	else if(key == "corrosion")
+		corrosion = value;
+	else if(key == "discharge")
+		discharge = value;
 	else if(key == "ionization")
 		ionization = value;
+	else if(key == "burning")
+		burning = value;
+	else if(key == "leakage")
+		leakage = value;
 	else if(key == "scrambling")
 		scrambling = value;
 	else if(key == "disruption")
 		disruption = value;
 	else if(key == "slowness")
 		slowness = value;
-	else if(key == "discharge")
-		discharge = value;
-	else if(key == "corrosion")
-		corrosion = value;
-	else if(key == "leakage")
-		leakage = value;
-	else if(key == "burning")
-		burning = value;
 	else
 		node.PrintTrace("Skipping unrecognized attribute:");
 }
@@ -94,9 +94,10 @@ void ResourceLevels::Damage(const ResourceLevels &damage, double scale)
 	corrosion = max(0., corrosion + scale * damage.corrosion);
 	discharge = max(0., discharge + scale * damage.discharge);
 	ionization = max(0., ionization + scale * damage.ionization);
-	scrambling = max(0., scrambling + scale * damage.scrambling);
 	burning = max(0., burning + scale * damage.burning);
 	leakage = max(0., leakage + scale * damage.leakage);
+
+	scrambling = max(0., scrambling + scale * damage.scrambling);
 	disruption = max(0., disruption + scale * damage.disruption);
 	slowness = max(0., slowness + scale * damage.slowness);
 }
@@ -159,6 +160,9 @@ optional<ResourceLevels::MissingResource> ResourceLevels::IsMissing(const Resour
 			return MissingResource::BURN;
 		if(leakage < -cost.leakage)
 			return MissingResource::LEAK;
+
+		if(scrambling < -cost.scrambling)
+			return MissingResource::SCRAMBLE;
 		if(disruption < -cost.disruption)
 			return MissingResource::DISRUPTION;
 		if(slowness < -cost.slowness)
@@ -189,10 +193,11 @@ double ResourceLevels::FractionalUsage(const ResourceLevels &cost, bool includeD
 		ScaleOutput(ionization, -cost.ionization);
 		ScaleOutput(burning, -cost.burning);
 		ScaleOutput(leakage, -cost.leakage);
+
+		ScaleOutput(scrambling, -cost.scrambling);
 		ScaleOutput(disruption, -cost.disruption);
 		ScaleOutput(slowness, -cost.slowness);
 	}
-
 	return scale;
 }
 
@@ -218,10 +223,11 @@ double ResourceLevels::MultipleUsage(const ResourceLevels &cost, bool includeDoT
 		ScaleOutput(ionization, -cost.ionization);
 		ScaleOutput(burning, -cost.burning);
 		ScaleOutput(leakage, -cost.leakage);
+
+		ScaleOutput(scrambling, -cost.scrambling);
 		ScaleOutput(disruption, -cost.disruption);
 		ScaleOutput(slowness, -cost.slowness);
 	}
-
 	return scale;
 }
 
@@ -230,7 +236,6 @@ double ResourceLevels::MultipleUsage(const ResourceLevels &cost, bool includeDoT
 ResourceLevels ResourceLevels::FiringCost(const Weapon &weapon) const
 {
 	ResourceLevels cost;
-
 	cost.hull = weapon.FiringHull() + weapon.RelativeFiringHull() * hull;
 	cost.shields = weapon.FiringShields() + weapon.RelativeFiringShields() * shields;
 	cost.energy = weapon.FiringEnergy() + weapon.RelativeFiringEnergy() * energy;
@@ -240,12 +245,12 @@ ResourceLevels ResourceLevels::FiringCost(const Weapon &weapon) const
 	cost.corrosion = weapon.FiringCorrosion();
 	cost.discharge = weapon.FiringDischarge();
 	cost.ionization = weapon.FiringIon();
-	cost.scrambling = weapon.FiringScramble();
 	cost.burning = weapon.FiringBurn();
 	cost.leakage = weapon.FiringLeak();
+
+	cost.scrambling = weapon.FiringScramble();
 	cost.disruption = weapon.FiringDisruption();
 	cost.slowness = weapon.FiringSlowing();
-
 	return cost;
 }
 
@@ -255,33 +260,11 @@ optional<ResourceLevels::MissingResource> ResourceLevels::CanFire(const Weapon &
 	const ResourceLevels &capacities) const
 {
 	ResourceLevels cost = capacities.FiringCost(weapon);
-	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
-	if(hull < cost.hull)
-		return MissingResource::HULL;
-	if(energy < cost.energy)
-		return MissingResource::ENERGY;
-	// If a weapon requires heat to fire, (rather than generating heat), we must
-	// have enough heat to spare.
-	if(heat < -cost.heat)
-		return MissingResource::HEAT;
-	// Repeat this for various effects which shouldn't drop below 0.
-	if(fuel < cost.fuel)
-		return MissingResource::FUEL;
-	if(corrosion < -cost.corrosion)
-		return MissingResource::CORROSION;
-	if(discharge < -cost.discharge)
-		return MissingResource::DISCHARGE;
-	if(ionization < -cost.ionization)
-		return MissingResource::ION;
-	if(burning < -cost.burning)
-		return MissingResource::BURN;
-	if(leakage < -cost.leakage)
-		return MissingResource::LEAK;
-	if(disruption < -cost.disruption)
-		return MissingResource::DISRUPTION;
-	if(slowness < -cost.slowness)
-		return MissingResource::SLOWNESS;
-	return std::nullopt;
+	// Weapons are allowed to fully strip the shields of the ship they're on, so treat
+	// them as if they have a firing shield cost of 0.
+	cost.shields = 0.;
+	// Weapons use DoT counters as firing costs.
+	return IsMissing(cost, true);
 }
 
 
@@ -294,14 +277,16 @@ ResourceLevels ResourceLevels::operator*(double scalar) const
 	levels.energy = energy * scalar;
 	levels.heat = heat * scalar;
 	levels.fuel = fuel * scalar;
+
+	levels.corrosion = corrosion * scalar;
+	levels.discharge = discharge * scalar;
 	levels.ionization = ionization * scalar;
+	levels.burning = burning * scalar;
+	levels.leakage = leakage * scalar;
+
 	levels.scrambling = scrambling * scalar;
 	levels.disruption = disruption * scalar;
 	levels.slowness = slowness * scalar;
-	levels.discharge = discharge * scalar;
-	levels.corrosion = corrosion * scalar;
-	levels.leakage = leakage * scalar;
-	levels.burning = burning * scalar;
 	return levels;
 }
 
@@ -315,13 +300,15 @@ ResourceLevels operator*(double scalar, const ResourceLevels &levels)
 	retVal.energy = levels.energy * scalar;
 	retVal.heat = levels.heat * scalar;
 	retVal.fuel = levels.fuel * scalar;
+
+	retVal.corrosion = levels.corrosion * scalar;
+	retVal.discharge = levels.discharge * scalar;
 	retVal.ionization = levels.ionization * scalar;
+	retVal.burning = levels.burning * scalar;
+	retVal.leakage = levels.leakage * scalar;
+
 	retVal.scrambling = levels.scrambling * scalar;
 	retVal.disruption = levels.disruption * scalar;
 	retVal.slowness = levels.slowness * scalar;
-	retVal.discharge = levels.discharge * scalar;
-	retVal.corrosion = levels.corrosion * scalar;
-	retVal.leakage = levels.leakage * scalar;
-	retVal.burning = levels.burning * scalar;
 	return retVal;
 }
