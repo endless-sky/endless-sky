@@ -111,6 +111,7 @@ void LogbookPanel::Draw()
 
 	// Colors to be used for drawing the log.
 	const Font &font = FontSet::Get(14);
+	const Font &mainFont = FontSet::Get(Preferences::GetFontSize());
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
@@ -137,12 +138,12 @@ void LogbookPanel::Draw()
 	maxCategoryScroll = max(0., maxCategoryScroll + pos.Y() - Screen::Bottom());
 
 	// Parameters for drawing the main text:
-	WrappedText wrap(font);
+	WrappedText wrap(mainFont);
 	wrap.SetAlignment(Preferences::GetTextAlignment());
 	wrap.SetWrapWidth(TEXT_WIDTH - 2. * PAD);
 
 	// Draw the main text.
-	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
+	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - mainFont.Height()) - scroll);
 
 	// Branch based on whether this is an ordinary log month or a special page.
 	auto pit = player.SpecialLogs().find(selectedName);
@@ -152,7 +153,7 @@ void LogbookPanel::Draw()
 		for(auto datedEntry = begin; datedEntry != end; ++datedEntry)
 		{
 			string date = datedEntry->first.ToString();
-			font.Draw({date, layout}, pos + Point(0., textOffset.Y()), dim);
+			mainFont.Draw({date, layout}, pos + Point(0., textOffset.Y()), dim);
 			pos.Y() += LINE_HEIGHT;
 
 			pos.Y() += datedEntry->second.Draw(pos, wrap, medium);
@@ -163,7 +164,7 @@ void LogbookPanel::Draw()
 	{
 		for(const auto &[heading, entry] : pit->second)
 		{
-			font.Draw(heading, pos + textOffset, bright);
+			mainFont.Draw(heading, pos + textOffset, bright);
 			pos.Y() += LINE_HEIGHT;
 
 			pos.Y() += entry.Draw(pos, wrap, medium);

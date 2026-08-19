@@ -673,7 +673,7 @@ void MissionPanel::Resize()
 void MissionPanel::InitTextArea()
 {
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetAlignment(Preferences::GetTextAlignment());
 	description->SetColor(*GameData::Colors().Get("bright"));
 	ResizeTextArea();

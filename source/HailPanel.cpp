@@ -363,14 +363,14 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			}
 			else if(player.Flagship()->NeedsFuel(false))
 			{
-				if(ship->Fuel())
+				if(ship->FuelFraction())
 					SetMessage("Sorry, but if we give you fuel we won't have enough to make it to the next system.");
 				else
 					SetMessage("Sorry, we don't have any fuel.");
 			}
 			else if(player.Flagship()->NeedsEnergy())
 			{
-				if(ship->Energy())
+				if(ship->EnergyFraction())
 					SetMessage("Sorry, but if we give you energy we won't have enough for our ship.");
 				else
 					SetMessage("Sorry, we don't have any energy.");
@@ -467,7 +467,7 @@ void HailPanel::SetMessage(const string &text)
 	{
 		message = make_shared<TextArea>();
 		message->SetAlignment(Preferences::GetTextAlignment());
-		message->SetFont(FontSet::Get(14));
+		message->SetFont(FontSet::Get(Preferences::GetFontSize()));
 		message->SetColor(*GameData::Colors().Get("medium"));
 		message->SetRect(GameData::Interfaces().Get("hail panel")->GetBox("message"));
 		AddChild(message);
