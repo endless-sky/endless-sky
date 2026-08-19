@@ -59,7 +59,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ship/ShipAICache.h"
-#include "ship/ShipAttributeHandler.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 #include "image/Sprite.h"
@@ -976,7 +975,7 @@ void Engine::Step(bool isActive)
 			// that is within the relevant scanner range, unless the target
 			// is player owned, in which case information is available regardless
 			// of range and scrutability.
-			bool scrutable = !target->AttributeHandler().Inscrutable();
+			bool scrutable = !target->Inscrutable();
 			if(hasCrew && (scrutable || target->IsYours()))
 			{
 				info.SetString("target crew", to_string(target->Crew()));
@@ -1831,7 +1830,7 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 		bool isJumping = flagship->IsUsingJumpDrive();
 		const map<const Sound *, int> &jumpSounds = isJumping
 			? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
-		if(flagship->AttributeHandler().SilentJumps())
+		if(flagship->SilentJumps())
 		{
 			// No sounds.
 		}
@@ -1987,7 +1986,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump
 				? ship->Attributes().JumpOutSounds() : ship->Attributes().HyperOutSounds();
-			if(ship->AttributeHandler().SilentJumps())
+			if(ship->SilentJumps())
 			{
 				// No sounds.
 			}
@@ -2003,7 +2002,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump
 				? ship->Attributes().JumpInSounds() : ship->Attributes().HyperInSounds();
-			if(ship->AttributeHandler().SilentJumps())
+			if(ship->SilentJumps())
 			{
 				// No sounds.
 			}

@@ -44,7 +44,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScanType.h"
 #include "Ship.h"
 #include "ship/ShipAICache.h"
-#include "ship/ShipAttributeHandler.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 #include "StellarObject.h"
@@ -867,8 +866,8 @@ void AI::Step(Command &activeCommands)
 			// government to this ship, and this ship has scanning capabilities
 			// then it was attempting to scan the target. This isn't a perfect
 			// assumption, but should be good enough for now.
-			bool cargoScan = it->AttributeHandler().CargoScanPower();
-			bool outfitScan = it->AttributeHandler().OutfitScanPower();
+			bool cargoScan = it->CargoScanPower();
+			bool outfitScan = it->OutfitScanPower();
 			if((cargoScan || outfitScan) && target && !target->IsDisabled()
 				&& !target->GetGovernment()->IsEnemy(gov) && target->GetGovernment() != gov)
 			{
@@ -1734,8 +1733,8 @@ shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
 	// additional minute.
 	int forfeitTime = searchTime + 3600;
 
-	double cargoScan = ship.AttributeHandler().CargoScanPower();
-	double outfitScan = ship.AttributeHandler().OutfitScanPower();
+	double cargoScan = ship.CargoScanPower();
+	double outfitScan = ship.OutfitScanPower();
 	auto cargoScansIt = cargoScans.find(&ship);
 	auto outfitScansIt = outfitScans.find(&ship);
 	auto scanTimeIt = scanTime.find(&ship);
@@ -2055,8 +2054,8 @@ void AI::MoveIndependent(Ship &ship, Command &command)
 		if(target)
 		{
 			// An AI ship that is targeting a non-hostile ship should scan it, or move on.
-			bool cargoScan = ship.AttributeHandler().CargoScanPower();
-			bool outfitScan = ship.AttributeHandler().OutfitScanPower();
+			bool cargoScan = ship.CargoScanPower();
+			bool outfitScan = ship.OutfitScanPower();
 			// De-target if the target left my system.
 			if(ship.GetSystem() != target->GetSystem())
 			{
@@ -2643,7 +2642,7 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 	// In order for a ship to use their afterburner, they must also have the forward
 	// command active. Therefore, if this ship should use its afterburner, use the
 	// max velocity with afterburner thrust included.
-	double maxVelocity = ship.MaxVelocity(ShouldUseAfterburner(ship)) * .99;
+	double maxVelocity = ship.MaxVelocity(ship.ShouldUseAfterburner()) * .99;
 	if(isFacing && (velocity.LengthSquared() <= maxVelocity * maxVelocity
 			|| dp.Unit().Dot(velocity.Unit()) < .95))
 	{
@@ -2687,7 +2686,7 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 
 	// If you have a reverse thruster, figure out whether using it is faster
 	// than turning around and using your main thruster.
-	if(ship.AttributeHandler().ReverseThrust())
+	if(ship.ReverseThrust())
 	{
 		// Figure out your stopping time using your main engine:
 		double degreesToTurn = TO_DEG * acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
@@ -2802,7 +2801,7 @@ void AI::CircleAround(const Ship &ship, Command &command, const Body &target)
 		command |= Command::FORWARD;
 
 		// If the ship is far away enough the ship should use the afterburner.
-		if(length > 750. && ShouldUseAfterburner(ship))
+		if(length > 750. && ship.ShouldUseAfterburner())
 			command |= Command::AFTERBURNER;
 	}
 }
@@ -2897,11 +2896,11 @@ void AI::KeepStation(const Ship &ship, Command &command, const Body &target)
 
 	// Determine whether to apply thrust.
 	Point drag = ship.Velocity() * ship.DragForce();
-	if(ship.AttributeHandler().ReverseThrust())
+	if(ship.ReverseThrust())
 	{
 		// Don't take drag into account when reverse thrusting, because this
 		// estimate of how it will be applied can be quite inaccurate.
-		Point a = (unit * (-ship.AttributeHandler().ReverseThrust() / mass)).Unit();
+		Point a = (unit * (-ship.ReverseThrust() / mass)).Unit();
 		double direction = positionWeight * positionDelta.Dot(a) / POSITION_DEADBAND
 			+ velocityWeight * velocityDelta.Dot(a) / VELOCITY_DEADBAND;
 		if(direction > THRUST_DEADBAND)
@@ -3025,7 +3024,7 @@ void AI::MoveToAttack(const Ship &ship, Command &command, const Body &target)
 	const auto facing = ship.Facing().Unit().Dot(direction.Unit());
 	// If the ship has reverse thrusters and the target is behind it, we can
 	// use them to reach the target more quickly.
-	if(facing < -.75 && ship.AttributeHandler().ReverseThrust())
+	if(facing < -.75 && ship.ReverseThrust())
 		command |= Command::BACK;
 	// Only apply thrust if either:
 	// This ship is within 90 degrees of facing towards its target and far enough away not to overshoot
@@ -3036,7 +3035,7 @@ void AI::MoveToAttack(const Ship &ship, Command &command, const Body &target)
 	{
 		command |= Command::FORWARD;
 		// Use afterburner, if applicable.
-		if(direction.Length() > 600. && ShouldUseAfterburner(ship))
+		if(direction.Length() > 600. && ship.ShouldUseAfterburner())
 			command |= Command::AFTERBURNER;
 	}
 }
@@ -3066,21 +3065,9 @@ void AI::PickUp(const Ship &ship, Command &command, const Body &target)
 
 	// Use the afterburner if it will not cause you to miss your target.
 	double squareDistance = p.LengthSquared();
-	if(command.Has(Command::FORWARD) && ShouldUseAfterburner(ship))
+	if(command.Has(Command::FORWARD) && ship.ShouldUseAfterburner())
 		if(dp > max(.9, min(.9999, 1. - squareDistance / 10000000.)))
 			command |= Command::AFTERBURNER;
-}
-
-
-
-// Determine if using an afterburner does not use up reserve fuel, cause undue
-// energy strain, or undue thermal loads if almost overheated.
-bool AI::ShouldUseAfterburner(const Ship &ship)
-{
-	if(!ship.AttributeHandler().AfterburnerThrust())
-		return false;
-
-	return ship.AttributeHandler().ShouldUseAfterburner(ship.AvailableResources());
 }
 
 
@@ -3206,7 +3193,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target)
 	{
 		// Approach the planet and "land" on it (i.e. scan it).
 		MoveToPlanet(ship, command);
-		double atmosphereScan = ship.AttributeHandler().AtmosphereScan();
+		double atmosphereScan = ship.AtmosphereScan();
 		double distance = ship.Position().Distance(ship.GetTargetStellar()->Position());
 		if(distance < atmosphereScan && !Random::Int(100))
 			ship.SetTargetStellar(nullptr);
@@ -3216,8 +3203,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target)
 	else if(target)
 	{
 		// Approach and scan the targeted, friendly ship's cargo or outfits.
-		bool cargoScan = ship.AttributeHandler().CargoScanPower();
-		bool outfitScan = ship.AttributeHandler().OutfitScanPower();
+		bool cargoScan = ship.CargoScanPower();
+		bool outfitScan = ship.OutfitScanPower();
 		// If the pointer to the target ship exists, it is targetable and in-system.
 		const Government *gov = ship.GetGovernment();
 		bool mustScanCargo = cargoScan && !Has(gov, target, ShipEvent::SCAN_CARGO);
@@ -3245,8 +3232,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target)
 		// ships in high spawn rate systems don't build up over time, as they always have
 		// a new ship they can try to scan.
 		vector<Ship *> targetShips;
-		bool cargoScan = ship.AttributeHandler().CargoScanPower();
-		bool outfitScan = ship.AttributeHandler().OutfitScanPower();
+		bool cargoScan = ship.CargoScanPower();
+		bool outfitScan = ship.OutfitScanPower();
 		auto cargoScansIt = cargoScans.find(&ship);
 		auto outfitScansIt = outfitScans.find(&ship);
 		auto scanTimeIt = scanTime.find(&ship);
@@ -3270,7 +3257,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target)
 
 		// Consider scanning any planetary object in the system, if able.
 		vector<const StellarObject *> targetPlanets;
-		double atmosphereScan = ship.AttributeHandler().AtmosphereScan();
+		double atmosphereScan = ship.AtmosphereScan();
 		if(atmosphereScan)
 			for(const StellarObject &object : system->Objects())
 				if(object.HasSprite() && !object.IsStar() && !object.IsStation())
@@ -3439,8 +3426,7 @@ bool AI::DoCloak(const Ship &ship, Command &command) const
 	if(!cloakingSpeed)
 		return false;
 	// Never cloak if it will cause you to be stranded.
-	const ShipAttributeHandler &attrHandler = ship.AttributeHandler();
-	if(!attrHandler.HasFuelForCloak(ship.AvailableResources()))
+	if(!ship.HasFuelForCloak())
 		return false;
 
 	// If your parent has chosen to cloak, cloak and rendezvous with them.
@@ -3487,11 +3473,11 @@ bool AI::DoCloak(const Ship &ship, Command &command) const
 	double hysteresis = ship.Commands().Has(Command::CLOAK) ? .4 : 0.;
 	// If cloaking costs nothing, and no one has asked you for help, cloak at will.
 	// Player ships should never cloak automatically if they are not in danger.
-	bool cloakFreely = !attrHandler.CloakFuelCost() && !ship.GetShipToAssist() && !ship.IsYours();
+	bool cloakFreely = !ship.CloakFuelCost() && !ship.GetShipToAssist() && !ship.IsYours();
 	// If this ship is injured and can repair those injuries while cloaked,
 	// then it should cloak while under threat.
-	bool canRecoverShieldsCloaked = attrHandler.CanRecoverShieldsWhileCloaked();
-	bool canRecoverHullCloaked = attrHandler.CanRecoverHullWhileCloaked();
+	bool canRecoverShieldsCloaked = ship.CanRecoverShieldsWhileCloaked();
+	bool canRecoverHullCloaked = ship.CanRecoverHullWhileCloaked();
 	bool cloakToRepair = (ship.HealthFraction() < RETREAT_HEALTH + hysteresis)
 			&& ((ship.ShieldFraction() < 1. && canRecoverShieldsCloaked)
 			|| (ship.HullFraction() < 1. && canRecoverHullCloaked));
@@ -3657,8 +3643,8 @@ bool AI::DoSecretive(Ship &ship, Command &command) const
 		Point scanningPos = scanningShip->Position();
 		Point pos = ship.Position();
 
-		double cargoDistance = scanningShip->AttributeHandler().CargoScanPower();
-		double outfitDistance = scanningShip->AttributeHandler().OutfitScanPower();
+		double cargoDistance = scanningShip->CargoScanPower();
+		double outfitDistance = scanningShip->OutfitScanPower();
 
 		double maxScanRange = max(cargoDistance, outfitDistance);
 		double distance = scanningPos.DistanceSquared(pos) * .0001;
@@ -3715,10 +3701,10 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	// The average term's value will be v / 2. So:
 	stopDistance += .5 * v * v / acceleration;
 
-	if(ship.AttributeHandler().ReverseThrust())
+	if(ship.ReverseThrust())
 	{
 		// Figure out your reverse thruster stopping distance:
-		double reverseAcceleration = ship.AttributeHandler().ReverseThrust() / ship.InertialMass();
+		double reverseAcceleration = ship.ReverseThrust() / ship.InertialMass();
 		double reverseDistance = v * (180. - degreesToTurn) / turnRate;
 		reverseDistance += .5 * v * v / reverseAcceleration;
 
@@ -4272,7 +4258,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 // on the player's preferences.
 bool AI::TargetMinable(Ship &ship) const
 {
-	double scanRangeMetric = 10000. * ship.AttributeHandler().AsteroidScanPower();
+	double scanRangeMetric = 10000. * ship.AsteroidScanPower();
 	if(!scanRangeMetric)
 		return false;
 	Preferences::TargetAsteroidStrategy strategy = Preferences::GetTargetAsteroidStrategy();
@@ -4805,7 +4791,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
 	auto targetOverride = Preferences::Has("Aim turrets with mouse") ^ activeCommands.Has(Command::AIM_TURRET_HOLD)
-		? optional(mousePosition) : nullopt;
+		? optional(mousePosition) : std::nullopt;
 	AimTurrets(ship, firingCommands, !Preferences::Has("Turrets focus fire"), targetOverride);
 	if(Preferences::GetAutoFire() != Preferences::AutoFire::OFF && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
@@ -4813,7 +4799,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		AutoFire(ship, firingCommands, false, true);
 
 	const bool mouseTurning = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
-	if(mouseTurning && !ship.IsBoarding() && (!ship.IsReversing() || ship.AttributeHandler().ReverseThrust()))
+	if(mouseTurning && !ship.IsBoarding() && (!ship.IsReversing() || ship.ReverseThrust()))
 		command.SetTurn(TurnToward(ship, mousePosition));
 
 	if(activeCommands)
@@ -4824,7 +4810,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			command.SetTurn(activeCommands.Has(Command::RIGHT) - activeCommands.Has(Command::LEFT));
 		if(activeCommands.Has(Command::BACK))
 		{
-			if(!activeCommands.Has(Command::FORWARD) && ship.AttributeHandler().ReverseThrust())
+			if(!activeCommands.Has(Command::FORWARD) && ship.ReverseThrust())
 				command |= Command::BACK;
 			else if(!activeCommands.Has(Command::RIGHT | Command::LEFT | Command::AUTOSTEER))
 				command.SetTurn(TurnBackward(ship));

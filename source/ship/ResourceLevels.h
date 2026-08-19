@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <optional>
+
 class DataNode;
 class Weapon;
 
@@ -27,6 +29,24 @@ class Weapon;
 // applied to a ship, such as an amount of damage to be taken or the
 // resources required for repairs or movement.
 class ResourceLevels {
+public:
+	enum class MissingResource {
+		HULL,
+		SHIELD,
+		ENERGY,
+		HEAT,
+		FUEL,
+		CORROSION,
+		DISCHARGE,
+		ION,
+		BURN,
+		LEAK,
+		SCRAMBLE,
+		DISRUPTION,
+		SLOWNESS,
+	};
+
+
 public:
 	ResourceLevels() = default;
 	explicit ResourceLevels(const DataNode &node);
@@ -42,17 +62,22 @@ public:
 
 	// Return true if this object has the resources to expend on the entire cost.
 	bool CanExpend(const ResourceLevels &cost, bool includeDoT = false) const;
+	// Return nullopt if this object has the resources to expend on the entire cost.
+	// Otherwise, return the first missing resource.
+	std::optional<MissingResource> IsMissing(const ResourceLevels &cost, bool includeDoT = false) const;
 	// Return the fraction of 100% output that these resources can manage given the cost.
 	double FractionalUsage(const ResourceLevels &cost, bool includeDoT = false) const;
 	// Return a multiple of how many times these resources could use the given cost.
 	double MultipleUsage(const ResourceLevels &cost, bool includeDoT = false) const;
+	
 	// Return the firing cost of this weapon, given that this ResourceLevels contains the
 	// capacities of a ship for use in calculating relative damage values.
 	ResourceLevels FiringCost(const Weapon &weapon) const;
-	// Return true if the ship has the resources to expend on the firing cost.
+	// Return nullopt if the ship has the resources to expend on the firing cost.
+	// Otherwise, return the first missing resource.
 	// This ignores any shield costs, allowing ships to fire a weapon even with
 	// no shields.
-	bool CanFire(const Weapon &weapon) const;
+	std::optional<MissingResource> CanFire(const Weapon &weapon) const;
 
 	ResourceLevels operator*(double scalar) const;
 	friend ResourceLevels operator*(double scalar, const ResourceLevels &levels);

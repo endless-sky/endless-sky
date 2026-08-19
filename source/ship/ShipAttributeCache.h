@@ -17,85 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ResourceLevels.h"
 
-class Outfit;
-class Ship;
-class Weapon;
 
 
-
-// A class which handles various aspects of a ship's resource levels,
-// including taking damage, doing repairs, and calculating fractional
-// thrust or turn values.
-class ShipAttributeHandler {
+// A class for caching various commonly accessed attributes in Ship.
+class ShipAttributeCache {
 public:
-	// Setup this attribute handler with a pointer to the ship instance that it is handling attributes for.
-	void Setup(Ship *parent);
-
-	// Update the stored ResourceLevels for various actions a
-	// ship can take (e.g. regenerating shields, thrusting).
-	void Calibrate();
-
-	// Functions for classes outside of Ship to get the cached values
-	// and determine what this ship is capable of.
-	double CargoScanPower() const;
-	double OutfitScanPower() const;
-	double AsteroidScanPower() const;
-	double AtmosphereScan() const;
-	bool Inscrutable() const;
-	bool CanCommunicateWhileCloaked() const;
-
-	double ReverseThrust() const;
-	double AfterburnerThrust() const;
-	bool ShouldUseAfterburner(const ResourceLevels &available) const;
-
-	bool SilentJumps() const;
-
-	double CloakFuelCost() const;
-	bool HasFuelForCloak(const ResourceLevels &available) const;
-	bool CanRecoverHullWhileCloaked() const;
-	bool CanRecoverShieldsWhileCloaked() const;
-
-	double TurretTurnMultiplier() const;
-
-	const ResourceLevels &DamageProtection() const;
-	double PiercingProtection() const;
-	double PiercingResistance() const;
-	double HighShieldPermeability() const;
-	double LowShieldPermeability() const;
-	double CloakedShieldPermeability() const;
-	double CloakedHullProtection() const;
-	double CloakedShieldProtection() const;
-	double ForceProtection() const;
-
-
-private:
-	// Update the stored capacity for various ResourceLevels on a ship.
-	void Capacity();
-	void EnergyAndFuelGeneration();
-	void HeatAndCooling();
-
-	// Update the stored ResourceLevels for each action a ship can take.
-	void HullRepair();
-	void ShieldRegen();
-	void Recovery();
-
-	void Thrust();
-	void Turn();
-	void ReverseThrust();
-	void AfterburnerThrust();
-
-	void Cloaking();
-	void Scanning();
-	void Misc();
-
-
-private:
-	// A ship can freely access the ResourceLevels of its own handler.
-	friend class Ship;
-
-	Ship *ship = nullptr;
-	const Outfit *attributes = nullptr;
-
 	double outfitCapacity = 0.;
 	double weaponCapacity = 0.;
 	double engineCapacity = 0.;
@@ -120,7 +46,6 @@ private:
 	double solarHeat = 0.;
 
 	double heatGeneration = 0.;
-	double heatDissipation = 0.;
 	double heatCapacity = 0.;
 
 	double cooling = 0.;

@@ -177,7 +177,7 @@ double Entity::MaxFuel() const
 
 double Entity::HeatDissipation() const
 {
-	return .001 * attributes.Get("heat dissipation");
+	return .001 * heatDissipation;
 }
 
 
@@ -389,6 +389,7 @@ void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double 
 
 void Entity::CacheAttributes()
 {
+	heatDissipation = attributes.Get("heat dissipation");
 	opticalJamming = attributes.Get("optical jamming");
 	radarJamming = attributes.Get("radar jamming");
 

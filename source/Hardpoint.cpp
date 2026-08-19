@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 #include "Random.h"
 #include "Ship.h"
-#include "ship/ShipAttributeHandler.h"
 #include "Visual.h"
 #include "Weapon.h"
 
@@ -142,7 +141,7 @@ double Hardpoint::TurnRate(const Ship &ship) const
 	if(!outfit)
 		return 0.;
 	return outfit->GetWeapon()->TurretTurn()
-		* (ship.AttributeHandler().TurretTurnMultiplier() + baseAttributes.turnMultiplier);
+		* (ship.TurretTurnMultiplier() + baseAttributes.turnMultiplier);
 }
 
 

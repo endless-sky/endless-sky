@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Port.h"
 #include "ship/ShipAICache.h"
-#include "ship/ShipAttributeHandler.h"
+#include "ship/ShipAttributeCache.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 
@@ -68,14 +68,6 @@ class Visual;
 // for all other ships, so their capabilities are exactly the same  within the
 // limits of what the AI knows how to command them to do.
 class Ship : public Entity, public std::enable_shared_from_this<Ship> {
-public:
-	enum class CanFireResult {
-		NO_AMMO,
-		NO_RESOURCES,
-		CAN_FIRE
-	};
-
-
 public:
 	class Bay {
 	public:
@@ -128,6 +120,15 @@ public:
 		RIGHT = 1,
 		FORWARD = 2,
 		REVERSE = 3,
+	};
+
+	enum class CanFireResult {
+		// Having no ammo or fuel may result in a sound effect being played.
+		NO_AMMO,
+		NO_FUEL,
+		// Any other missing resource has no special effect.
+		NO_RESOURCES,
+		CAN_FIRE,
 	};
 
 
@@ -464,8 +465,6 @@ public:
 
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
-	// Get the attribute handler, which caches commonly-requested attributes and calculations.
-	const ShipAttributeHandler &AttributeHandler() const;
 	// Get the list of all outfits installed in this ship.
 	const std::map<const Outfit *, int> &Outfits() const;
 	// Find out how many outfits of the given type this ship contains.
@@ -536,6 +535,36 @@ public:
 	// Check if this ship looks the same as another, based on model display names and outfits.
 	bool Imitates(const Ship &other) const;
 
+	// Access to various cached attributes
+	double CargoScanPower() const;
+	double OutfitScanPower() const;
+	double AsteroidScanPower() const;
+	double AtmosphereScan() const;
+	bool Inscrutable() const;
+	bool CanCommunicateWhileCloaked() const;
+
+	double ReverseThrust() const;
+	bool ShouldUseAfterburner() const;
+
+	bool SilentJumps() const;
+
+	double CloakFuelCost() const;
+	bool HasFuelForCloak() const;
+	bool CanRecoverHullWhileCloaked() const;
+	bool CanRecoverShieldsWhileCloaked() const;
+
+	double TurretTurnMultiplier() const;
+
+	const ResourceLevels &DamageProtection() const;
+	double PiercingProtection() const;
+	double PiercingResistance() const;
+	double HighShieldPermeability() const;
+	double LowShieldPermeability() const;
+	double CloakedShieldPermeability() const;
+	double CloakedHullProtection() const;
+	double CloakedShieldProtection() const;
+	double ForceProtection() const;
+
 
 protected:
 	virtual void CacheAttributes() override;
@@ -589,8 +618,6 @@ private:
 
 
 private:
-	friend class ShipAttributeHandler;
-
 	// Characteristics of the chassis:
 	bool isDefined = false;
 	const Ship *base = nullptr;
@@ -668,7 +695,7 @@ private:
 	std::vector<EnginePoint> steeringEnginePoints;
 	Armament armament;
 
-	ShipAttributeHandler attrHandler;
+	ShipAttributeCache cache;
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;

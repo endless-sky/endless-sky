@@ -130,34 +130,41 @@ void ResourceLevels::DoRepair(double &stat, double &available, double maximum, c
 
 bool ResourceLevels::CanExpend(const ResourceLevels &cost, bool includeDoT) const
 {
+	return !IsMissing(cost, includeDoT);
+}
+
+
+
+optional<ResourceLevels::MissingResource> ResourceLevels::IsMissing(const ResourceLevels &cost, bool includeDoT) const
+{
 	if(hull < cost.hull)
-		return false;
+		return MissingResource::HULL;
 	if(shields < cost.shields)
-		return false;
+		return MissingResource::SHIELD;
 	if(energy < cost.energy)
-		return false;
+		return MissingResource::ENERGY;
 	if(heat < -cost.heat)
-		return false;
+		return MissingResource::HEAT;
 	if(fuel < cost.fuel)
-		return false;
+		return MissingResource::FUEL;
 	if(includeDoT)
 	{
 		if(corrosion < -cost.corrosion)
-			return false;
+			return MissingResource::CORROSION;
 		if(discharge < -cost.discharge)
-			return false;
+			return MissingResource::DISCHARGE;
 		if(ionization < -cost.ionization)
-			return false;
+			return MissingResource::ION;
 		if(burning < -cost.burning)
-			return false;
+			return MissingResource::BURN;
 		if(leakage < -cost.leakage)
-			return false;
+			return MissingResource::LEAK;
 		if(disruption < -cost.disruption)
-			return false;
+			return MissingResource::DISRUPTION;
 		if(slowness < -cost.slowness)
-			return false;
+			return MissingResource::SLOWNESS;
 	}
-	return true;
+	return std::nullopt;
 }
 
 
@@ -244,36 +251,36 @@ ResourceLevels ResourceLevels::FiringCost(const Weapon &weapon) const
 
 
 
-bool ResourceLevels::CanFire(const Weapon &weapon) const
+optional<ResourceLevels::MissingResource> ResourceLevels::CanFire(const Weapon &weapon) const
 {
 	ResourceLevels cost = FiringCost(weapon);
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	if(hull < cost.hull)
-		return false;
+		return MissingResource::HULL;
 	if(energy < cost.energy)
-		return false;
+		return MissingResource::ENERGY;
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
 	if(heat < -cost.heat)
-		return false;
+		return MissingResource::HEAT;
 	// Repeat this for various effects which shouldn't drop below 0.
 	if(fuel < cost.fuel)
-		return false;
+		return MissingResource::FUEL;
 	if(corrosion < -cost.corrosion)
-		return false;
+		return MissingResource::CORROSION;
 	if(discharge < -cost.discharge)
-		return false;
+		return MissingResource::DISCHARGE;
 	if(ionization < -cost.ionization)
-		return false;
+		return MissingResource::ION;
 	if(burning < -cost.burning)
-		return false;
+		return MissingResource::BURN;
 	if(leakage < -cost.leakage)
-		return false;
+		return MissingResource::LEAK;
 	if(disruption < -cost.disruption)
-		return false;
+		return MissingResource::DISRUPTION;
 	if(slowness < -cost.slowness)
-		return false;
-	return true;
+		return MissingResource::SLOWNESS;
+	return std::nullopt;
 }
 
 

@@ -141,6 +141,8 @@ protected:
 	bool neverDisabled = false;
 	bool isDisabled = false;
 
+	double heatDissipation = 0.;
+
 	// Jamming attributes that influence projectiles tracking this entity.
 	double opticalJamming = 0.;
 	double radarJamming = 0.;
