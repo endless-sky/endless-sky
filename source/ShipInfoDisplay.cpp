@@ -420,7 +420,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributesHeight += 20;
 	const double maxEnergy = attributes.Get("energy capacity");
 	const double maxHeat = 60. * ship.HeatDissipation() * ship.MaxHeat();
-	tableLabels.push_back("max:");
+	tableLabels.push_back("capacity:");
 	energyTable.push_back(Format::Number(maxEnergy));
 	heatTable.push_back(Format::Number(maxHeat));
 	// Pad by 10 pixels on the top and bottom.

@@ -2685,8 +2685,9 @@ void Engine::DoCollection(Flotsam &flotsam)
 			// When dealing with individual ships, this makes tractor beams feel more capable of
 			// dragging flotsam to the ship. Otherwise, a ship could be drifting away from a flotsam
 			// at the same speed that the tractor beam is pulling the flotsam toward the ship,
-			// which looks awkward and makes the tractor beam feel pointless; the whole point of
-			// a tractor beam should be that it collects flotsam for you.
+			// which looks awkward and makes the tractor beam feel pointless. Or, even worse, the pull
+			// force could slingshot the flotsam past your ship and make it impossible to collect.
+			// The whole point of a tractor beam should be that it collects flotsam for you.
 			// This does mean that if you fly toward a flotsam that is in your tractor beam then
 			// you'll be pushing the flotsam away from your ship, but the pull of the tractor beam
 			// will still slowly close the distance between the ship and the flotsam.
@@ -2696,6 +2697,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 			// yanking the flotsam away from the slower ship.
 			pullVector += avgShipVelocity / count;
 			flotsam.SetVelocity(pullVector);
+			flotsam.InTractorBeam();
 		}
 		return;
 	}

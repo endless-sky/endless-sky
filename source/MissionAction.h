@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "ConditionSet.h"
-#include "Conversation.h"
 #include "DialogSettings.h"
 #include "ExclusiveItem.h"
 #include "GameAction.h"
@@ -26,10 +25,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 class ConditionsStore;
+class Conversation;
 class DataNode;
 class DataWriter;
 class Mission;
 class Outfit;
+class Phrase;
 class Planet;
 class PlayerInfo;
 class System;
