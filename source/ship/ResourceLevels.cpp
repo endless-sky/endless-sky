@@ -251,9 +251,10 @@ ResourceLevels ResourceLevels::FiringCost(const Weapon &weapon) const
 
 
 
-optional<ResourceLevels::MissingResource> ResourceLevels::CanFire(const Weapon &weapon) const
+optional<ResourceLevels::MissingResource> ResourceLevels::CanFire(const Weapon &weapon,
+	const ResourceLevels &capacities) const
 {
-	ResourceLevels cost = FiringCost(weapon);
+	ResourceLevels cost = capacities.FiringCost(weapon);
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	if(hull < cost.hull)
 		return MissingResource::HULL;

@@ -17,11 +17,40 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ResourceLevels.h"
 
+class Outfit;
+class Ship;
 
 
 // A class for caching various commonly accessed attributes in Ship.
 class ShipAttributeCache {
 public:
+	void Calibrate(const Ship &ship);
+
+
+private:
+	void Capacity(const Outfit &attributes, const Outfit &baseAttributes);
+	void EnergyAndFuelGeneration(const Outfit &attributes);
+	void HeatAndCooling(const Outfit &attributes);
+
+	void HullRepair(const Outfit &attributes);
+	void ShieldRegen(const Outfit &attributes);
+	void Recovery(const Outfit &attributes);
+
+	void Thrust(const Outfit &attributes);
+	void Turn(const Outfit &attributes);
+	void ReverseThrust(const Outfit &attributes);
+	void AfterburnerThrust(const Outfit &attributes);
+
+	void Cloaking(const Outfit &attributes);
+	void Scanning(const Outfit &attributes);
+	void Damage(const Outfit &attributes);
+	void Misc(const Outfit &attributes);
+
+
+private:
+	// A ship can freely access its own attribute cache.
+	friend class Ship;
+
 	double outfitCapacity = 0.;
 	double weaponCapacity = 0.;
 	double engineCapacity = 0.;

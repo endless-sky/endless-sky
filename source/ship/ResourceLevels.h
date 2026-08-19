@@ -77,7 +77,7 @@ public:
 	// Otherwise, return the first missing resource.
 	// This ignores any shield costs, allowing ships to fire a weapon even with
 	// no shields.
-	std::optional<MissingResource> CanFire(const Weapon &weapon) const;
+	std::optional<MissingResource> CanFire(const Weapon &weapon, const ResourceLevels &capacities) const;
 
 	ResourceLevels operator*(double scalar) const;
 	friend ResourceLevels operator*(double scalar, const ResourceLevels &levels);

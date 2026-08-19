@@ -154,15 +154,13 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 			// Determine what portion of its maximum shields the ship is currently at.
 			// Only do this if there is nonzero permeability involved, otherwise don't.
 			double shieldPortion = shields / ship.MaxShields();
-			permeability += max((highPermeability * shieldPortion) +
-				(lowPermeability * (1. - shieldPortion)), 0.);
+			permeability += max((highPermeability * shieldPortion) + (lowPermeability * (1. - shieldPortion)), 0.);
 		}
 		shieldFraction = (1. - min(piercing + permeability, 1.)) / (1. + ship.DisruptionLevel() * .01);
 
-		damage.levels.shields = (weapon.ShieldDamage()
-			+ weapon.RelativeShieldDamage() * ship.MaxShields())
+		damage.levels.shields = (weapon.ShieldDamage() + weapon.RelativeShieldDamage() * ship.MaxShields())
 			* ScaleType(0., 0., ship.DamageProtection().shields
-				+ (ship.IsCloaked() ? ship.CloakedShieldProtection() : 0.));
+			+ (ship.IsCloaked() ? ship.CloakedShieldProtection() : 0.));
 		if(damage.levels.shields > shields)
 			shieldFraction = min(shieldFraction, shields / damage.levels.shields);
 	}
@@ -174,27 +172,21 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.levels.shields *= shieldFraction;
 	double totalHullProtection = (ScaleType(1., 0., ship.DamageProtection().hull +
 		(ship.IsCloaked() ? ship.CloakedHullProtection() : 0.)));
-	damage.levels.hull = (weapon.HullDamage()
-		+ weapon.RelativeHullDamage() * ship.MaxHull())
+	damage.levels.hull = (weapon.HullDamage() + weapon.RelativeHullDamage() * ship.MaxHull())
 		* totalHullProtection;
 	double hull = ship.HullLevelUntilDisabled();
 	if(damage.levels.hull > hull)
 	{
 		double hullFraction = hull / damage.levels.hull;
 		damage.levels.hull *= hullFraction;
-		damage.levels.hull += (weapon.DisabledDamage()
-			+ weapon.RelativeDisabledDamage() * ship.MaxHull())
-			* totalHullProtection
-			* (1. - hullFraction);
+		damage.levels.hull += (weapon.DisabledDamage() + weapon.RelativeDisabledDamage() * ship.MaxHull())
+			* totalHullProtection * (1. - hullFraction);
 	}
-	damage.levels.energy = (weapon.EnergyDamage()
-		+ weapon.RelativeEnergyDamage() * ship.MaxEnergy())
+	damage.levels.energy = (weapon.EnergyDamage() + weapon.RelativeEnergyDamage() * ship.MaxEnergy())
 		* ScaleType(.5, 0., ship.DamageProtection().energy);
-	damage.levels.heat = (weapon.HeatDamage()
-		+ weapon.RelativeHeatDamage() * ship.MaxHeat())
+	damage.levels.heat = (weapon.HeatDamage() + weapon.RelativeHeatDamage() * ship.MaxHeat())
 		* ScaleType(.5, 0., ship.DamageProtection().heat);
-	damage.levels.fuel = (weapon.FuelDamage()
-		+ weapon.RelativeFuelDamage() * ship.MaxFuel())
+	damage.levels.fuel = (weapon.FuelDamage() + weapon.RelativeFuelDamage() * ship.MaxFuel())
 		* ScaleType(.5, 0., ship.DamageProtection().fuel);
 
 	// DoT damage types with an instantaneous analog.

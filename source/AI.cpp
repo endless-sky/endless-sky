@@ -3476,11 +3476,9 @@ bool AI::DoCloak(const Ship &ship, Command &command) const
 	bool cloakFreely = !ship.CloakFuelCost() && !ship.GetShipToAssist() && !ship.IsYours();
 	// If this ship is injured and can repair those injuries while cloaked,
 	// then it should cloak while under threat.
-	bool canRecoverShieldsCloaked = ship.CanRecoverShieldsWhileCloaked();
-	bool canRecoverHullCloaked = ship.CanRecoverHullWhileCloaked();
 	bool cloakToRepair = (ship.HealthFraction() < RETREAT_HEALTH + hysteresis)
-			&& ((ship.ShieldFraction() < 1. && canRecoverShieldsCloaked)
-			|| (ship.HullFraction() < 1. && canRecoverHullCloaked));
+			&& ((ship.ShieldFraction() < 1. && ship.CanRecoverShieldsWhileCloaked())
+			|| (ship.HullFraction() < 1. && ship.CanRecoverHullWhileCloaked()));
 	if(cloakToRepair && (cloakFreely || range < 2000. * (1. + hysteresis)))
 	{
 		command |= Command::CLOAK;

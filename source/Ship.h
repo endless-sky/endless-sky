@@ -675,7 +675,10 @@ private:
 
 	Personality personality;
 	const Phrase *hail = nullptr;
+
 	ShipAICache aiCache;
+	ShipAttributeCache cache;
+	ShipJumpNavigation navigation;
 
 	// Installed outfits, cargo, etc.:
 	Outfit baseAttributes;
@@ -695,7 +698,6 @@ private:
 	std::vector<EnginePoint> steeringEnginePoints;
 	Armament armament;
 
-	ShipAttributeCache cache;
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
@@ -719,7 +721,6 @@ private:
 	// hyperspacing, and exploding. Each one must track some special counters:
 	const Planet *landingPlanet = nullptr;
 
-	ShipJumpNavigation navigation;
 	int hyperspaceCount = 0;
 	const System *hyperspaceSystem = nullptr;
 	bool isUsingJumpDrive = false;

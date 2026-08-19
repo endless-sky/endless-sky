@@ -233,7 +233,6 @@ double ShipJumpNavigation::ScramThreshold() const
 
 
 
-
 size_t ShipJumpNavigation::Hash() const
 {
 	// Include in the hash only that information that can influence pathfinding.
