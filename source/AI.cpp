@@ -1433,7 +1433,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			{
 				// Disabled, overheated, or otherwise untargetable ships pose no threat.
 				bool harmless = helper->IsDisabled() || (helper->IsOverheated() && helper->HeatFraction() >= 1.1)
-						|| !helper->IsTargetable();
+					|| !helper->IsTargetable() || helper->NeedsEnergy();
 				hasEnemy |= (system == helper->GetSystem() && !harmless);
 				if(hasEnemy)
 					break;
@@ -5094,7 +5094,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 		if(it->GetGovernment() && it->GetSystem() == playerSystem)
 		{
 			governmentRosters[it->GetGovernment()].emplace_back(it.get());
-			if(!it->IsDisabled() && !it->IsOverheated() && !it->IsIonized())
+			if(!it->IsDisabled() && !it->IsOverheated() && !it->IsIonized() && !it->NeedsEnergy())
 				strength[it->GetGovernment()] += it->Strength();
 		}
 

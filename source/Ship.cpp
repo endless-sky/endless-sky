@@ -873,8 +873,11 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Ships read from a save file may have non-default shields or hull.
 	// Perform a full IsDisabled calculation.
-	isDisabled = true;
-	isDisabled = IsDisabled();
+	if(!isNewInstance)
+	{
+		isDisabled = true;
+		isDisabled = IsDisabled();
+	}
 
 	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
 	// applied at this point, any target system that is not accessible should be cleared. Note: this does not
@@ -2317,12 +2320,10 @@ bool Ship::IsIonized() const
 		return false;
 
 	// A ship can only be fully ionized if its engines or weapons require energy.
-	bool usesEnergy = attributes.Get("thrusting energy") > 0
-		|| attributes.Get("reverse thrusting energy") > 0
-		|| attributes.Get("turning energy") > 0
+	bool usesEnergy = RequiresMovementEnergy()
 		|| any_of(outfits.begin(), outfits.end(), [](const auto &it) -> bool {
 			const Weapon *weapon = it.first->GetWeapon().get();
-			return weapon && weapon->FiringEnergy() > 0;
+			return weapon && weapon->FiringEnergy() > 0.;
 		});
 
 	return usesEnergy ? levels.ionization > levels.energy : false;
@@ -2336,7 +2337,7 @@ bool Ship::IsDisabled() const
 		return false;
 
 	bool needsCrew = RequiredCrew() != 0;
-	return (levels.hull < minimumHull || (!crew && needsCrew) || NeedsEnergy());
+	return (levels.hull < minimumHull || (!crew && needsCrew));
 }
 
 
@@ -2875,10 +2876,24 @@ bool Ship::NeedsFuel(bool followParent) const
 
 bool Ship::NeedsEnergy() const
 {
-	// If a ship has no energy capacity or already has some energy in reserves,
-	// it does not need energy. Since engines can use fractional thrust/turn,
-	// even a single unit of energy can still have use.
-	if(!attributes.Get("energy capacity") || levels.energy > 1.)
+	// If this ship doesn't have a system, then it isn't even spawned in, so it
+	// doesn't need energy.
+	if(!currentSystem)
+		return false;
+
+	// Ships that don't need energy to move shouldn't ask for energy.
+	if(!RequiresMovementEnergy())
+		return false;
+
+	// If a ship has no energy capacity or no room for more energy, it does not need energy.
+	double capacity = MaxEnergy();
+	if(!capacity || levels.energy >= capacity)
+		return false;
+
+	// If this ship has even a small amount of energy in reserves, it does not need energy.
+	// Since engines can use fractional thrust/turn, even a small unit of energy can still have use.
+	// Using an epsilon of 1/2^8.
+	if(levels.energy > 0.00390625)
 		return false;
 
 	// If a ship has energy capacity but is low on energy, check to see if it is capable
@@ -4757,7 +4772,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	double dragForce = DragForce();
 	double slowMultiplier = 1. / (1. + levels.slowness * .05);
 
-	if(isDisabled)
+	// Ships that can't move due to being disabled or a lack of energy should drift to a stop.
+	if(isDisabled || NeedsEnergy())
 		velocity *= 1. - dragForce;
 	else if(!pilotError)
 	{
@@ -5020,6 +5036,17 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle, Point{}, point.zoom);
 		}
 	}
+}
+
+
+
+bool Ship::RequiresMovementEnergy() const
+{
+	bool hasForwardThrust = attributes.Get("thrust");
+	return attributes.Get("thrusting energy") > 0.
+		|| (!hasForwardThrust && attributes.Get("reverse thrusting energy") > 0.)
+		|| attributes.Get("turning energy") > 0.
+		|| (!hasForwardThrust && !attributes.Get("reverse thrust") && attributes.Get("afterburner energy") > 0.);
 }
 
 

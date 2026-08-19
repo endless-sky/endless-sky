@@ -84,7 +84,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	else if(ship->IsDisabled())
 	{
 		const Ship *flagship = player.Flagship();
-		if(flagship->NeedsFuel(false) || flagship->IsDisabled())
+		if(flagship->NeedsFuel(false) || flagship->IsDisabled() || flagship->NeedsEnergy())
 			SetMessage("Sorry, we can't help you, because our ship is disabled.");
 	}
 	else
@@ -117,7 +117,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 
 		if(ship->GetShipToAssist() == player.FlagshipPtr())
 			SetMessage("Hang on, we'll be there in a minute.");
-		else if(canGiveFuel || canRepair)
+		else if(canGiveFuel || canGiveEnergy || canRepair)
 		{
 			string helpOffer = "Looks like you've gotten yourself into a bit of trouble. "
 				"Would you like us to ";
