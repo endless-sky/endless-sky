@@ -457,8 +457,6 @@ target_sources(EndlessSkyLib PRIVATE
 	ship/ShipAICache.h
 	ship/ShipAttributeHandler.cpp
 	ship/ShipAttributeHandler.h
-	ship/StatusEffectHandler.cpp
-	ship/StatusEffectHandler.h
 	test/Test.cpp
 	test/Test.h
 	test/TestContext.cpp
