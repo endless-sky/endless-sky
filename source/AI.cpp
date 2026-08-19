@@ -251,7 +251,7 @@ namespace {
 			{
 				ship->SetDeployOrder(true);
 				ship->SetForceDeploy(shift);
-				if(canRetreat && ship->Health() <= .75)
+				if(canRetreat && ship->HealthFraction() <= .75)
 					++badlyDamaged;
 			}
 			int now = toDeploy.size();
