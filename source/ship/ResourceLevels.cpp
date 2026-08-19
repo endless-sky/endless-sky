@@ -91,16 +91,28 @@ void ResourceLevels::Damage(const ResourceLevels &damage, double scale)
 	corrosion += scale * damage.corrosion;
 	discharge += scale * damage.discharge;
 	ionization += scale * damage.ionization;
-	scrambling = scale * damage.scrambling;
+	scrambling += scale * damage.scrambling;
 	burning += scale * damage.burning;
 	leakage += scale * damage.leakage;
 	disruption += scale * damage.disruption;
 	slowness += scale * damage.slowness;
+
+	// Prevent various stats from reaching unallowable values.
+	// Hull is allowed to go negative.
+	// Shields, energy, heat, and fuel should have been prevented from going negative elsewhere.
+	corrosion = max(0., corrosion);
+	discharge = max(0., discharge);
+	ionization = max(0., ionization);
+	scrambling = max(0., scrambling);
+	burning = max(0., burning);
+	leakage = max(0., leakage);
+	disruption = max(0., disruption);
+	slowness = max(0., slowness);
 }
 
 
 
-bool ResourceLevels::CanExpend(const ResourceLevels &cost) const
+bool ResourceLevels::CanExpend(const ResourceLevels &cost, bool includeDoT) const
 {
 	if(hull < cost.hull)
 		return false;
@@ -112,26 +124,29 @@ bool ResourceLevels::CanExpend(const ResourceLevels &cost) const
 		return false;
 	if(fuel < cost.fuel)
 		return false;
-	if(corrosion < -cost.corrosion)
-		return false;
-	if(discharge < -cost.discharge)
-		return false;
-	if(ionization < -cost.ionization)
-		return false;
-	if(burning < -cost.burning)
-		return false;
-	if(leakage < -cost.leakage)
-		return false;
-	if(disruption < -cost.disruption)
-		return false;
-	if(slowness < -cost.slowness)
-		return false;
+	if(includeDoT)
+	{
+		if(corrosion < -cost.corrosion)
+			return false;
+		if(discharge < -cost.discharge)
+			return false;
+		if(ionization < -cost.ionization)
+			return false;
+		if(burning < -cost.burning)
+			return false;
+		if(leakage < -cost.leakage)
+			return false;
+		if(disruption < -cost.disruption)
+			return false;
+		if(slowness < -cost.slowness)
+			return false;
+	}
 	return true;
 }
 
 
 
-double ResourceLevels::FractionalUsage(const ResourceLevels &cost) const
+double ResourceLevels::FractionalUsage(const ResourceLevels &cost, bool includeDoT) const
 {
 	double scale = 1.;
 	auto ScaleOutput = [&scale](double input, double levelCost)
@@ -144,20 +159,23 @@ double ResourceLevels::FractionalUsage(const ResourceLevels &cost) const
 	ScaleOutput(energy, cost.energy);
 	ScaleOutput(heat, -cost.heat);
 	ScaleOutput(fuel, cost.fuel);
-	ScaleOutput(corrosion, -cost.corrosion);
-	ScaleOutput(discharge, -cost.discharge);
-	ScaleOutput(ionization, -cost.ionization);
-	ScaleOutput(burning, -cost.burning);
-	ScaleOutput(leakage, -cost.leakage);
-	ScaleOutput(disruption, -cost.disruption);
-	ScaleOutput(slowness, -cost.slowness);
+	if(includeDoT)
+	{
+		ScaleOutput(corrosion, -cost.corrosion);
+		ScaleOutput(discharge, -cost.discharge);
+		ScaleOutput(ionization, -cost.ionization);
+		ScaleOutput(burning, -cost.burning);
+		ScaleOutput(leakage, -cost.leakage);
+		ScaleOutput(disruption, -cost.disruption);
+		ScaleOutput(slowness, -cost.slowness);
+	}
 
 	return scale;
 }
 
 
 
-double ResourceLevels::MultipleUsage(const ResourceLevels &cost) const
+double ResourceLevels::MultipleUsage(const ResourceLevels &cost, bool includeDoT) const
 {
 	double scale = numeric_limits<double>::infinity();
 	auto ScaleOutput = [&scale](double input, double levelCost)
@@ -170,13 +188,16 @@ double ResourceLevels::MultipleUsage(const ResourceLevels &cost) const
 	ScaleOutput(energy, cost.energy);
 	ScaleOutput(heat, -cost.heat);
 	ScaleOutput(fuel, cost.fuel);
-	ScaleOutput(corrosion, -cost.corrosion);
-	ScaleOutput(discharge, -cost.discharge);
-	ScaleOutput(ionization, -cost.ionization);
-	ScaleOutput(burning, -cost.burning);
-	ScaleOutput(leakage, -cost.leakage);
-	ScaleOutput(disruption, -cost.disruption);
-	ScaleOutput(slowness, -cost.slowness);
+	if(includeDoT)
+	{
+		ScaleOutput(corrosion, -cost.corrosion);
+		ScaleOutput(discharge, -cost.discharge);
+		ScaleOutput(ionization, -cost.ionization);
+		ScaleOutput(burning, -cost.burning);
+		ScaleOutput(leakage, -cost.leakage);
+		ScaleOutput(disruption, -cost.disruption);
+		ScaleOutput(slowness, -cost.slowness);
+	}
 
 	return scale;
 }
