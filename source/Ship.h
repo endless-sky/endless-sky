@@ -484,9 +484,10 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
-	// Display box effects from jettisoning this much cargo.
+	// Display box effects from jettisoning cargo or installed outfits.
 	void Jettison(const std::string &commodity, int tons, bool wasAppeasing = false);
 	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false);
+	void JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing = false);
 
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
@@ -607,7 +608,8 @@ private:
 	// Increment the duration a thruster direction has been held.
 	void IncrementThrusterHeld(ThrustKind kind);
 
-	// Helper function for jettisoning flotsam.
+	// Helper functions for jettisoning flotsam.
+	void JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing = false);
 	void Jettison(std::shared_ptr<Flotsam> toJettison);
 
 

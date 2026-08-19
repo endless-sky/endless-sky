@@ -76,6 +76,7 @@ private:
 	void Dump();
 	void DumpPlunder(int count);
 	void DumpCommodities(int count);
+	void DumpInstalled(int count);
 	void Disown();
 
 
@@ -92,16 +93,21 @@ private:
 	std::vector<ClickZone<int>> zones;
 	std::vector<ClickZone<std::string>> commodityZones;
 	std::vector<ClickZone<const Outfit *>> plunderZones;
+	std::vector<ClickZone<const Outfit *>> outfitZones;
 	// Keep track of which item the mouse is hovering over and which item is
 	// currently being dragged.
 	int hoverIndex = -1;
 	int draggingIndex = -1;
+	std::string hoverCommodity;
+	const Outfit *hoverPlunder = nullptr;
+	const Outfit *hoverOutfit = nullptr;
 
 	InfoPanelState panelState;
 
 	// Track the current mouse location.
 	Point hoverPoint;
-	// Track whether a commodity or plundered outfit is selected to jettison.
+	// Track whether a commodity, plundered outfit, or installed outfit is selected to jettison.
 	std::string selectedCommodity;
 	const Outfit *selectedPlunder = nullptr;
+	const Outfit *selectedOutfit = nullptr;
 };

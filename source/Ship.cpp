@@ -3743,21 +3743,18 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 	if(isYours)
 		navigation.Recalibrate(*this);
 
-	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
-	// jettisoning cargo would increase the ship's temperature.
-	double mass = outfit->Mass();
-	heat -= count * mass * MAXIMUM_TEMPERATURE * Heat();
+	JettisonOutfit(outfit, count, wasAppeasing);
+}
 
-	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 
-	const int perBox = (mass <= 0.) ? count : (mass > Flotsam::TONS_PER_BOX)
-		? 1 : static_cast<int>(Flotsam::TONS_PER_BOX / mass);
-	while(count > 0)
-	{
-		Jettison(make_shared<Flotsam>(outfit, (perBox < count)
-			? perBox : count, notForGov));
-		count -= perBox;
-	}
+
+void Ship::JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing)
+{
+	if(count < 0 || !outfit->Get("can jettison"))
+		return;
+
+	AddOutfit(outfit, -count);
+	JettisonOutfit(outfit, count, wasAppeasing);
 }
 
 
@@ -5497,6 +5494,27 @@ void Ship::IncrementThrusterHeld(Ship::ThrustKind kind)
 {
 	uint8_t &heldFrame = thrustHeldFrames[static_cast<size_t>(kind)];
 	heldFrame = min(MAX_THRUST_HELD_FRAMES, static_cast<uint8_t>(heldFrame + 2));
+}
+
+
+
+void Ship::JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing)
+{
+	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
+	// jettisoning cargo would increase the ship's temperature.
+	double mass = outfit->Mass();
+	heat -= count * mass * MAXIMUM_TEMPERATURE * Heat();
+
+	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
+
+	const int perBox = (mass <= 0.) ? count : (mass > Flotsam::TONS_PER_BOX)
+		? 1 : static_cast<int>(Flotsam::TONS_PER_BOX / mass);
+	while(count > 0)
+	{
+		Jettison(make_shared<Flotsam>(outfit, (perBox < count)
+			? perBox : count, notForGov));
+		count -= perBox;
+	}
 }
 
 
