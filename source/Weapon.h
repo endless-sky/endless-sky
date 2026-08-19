@@ -503,7 +503,7 @@ inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); r
 
 inline bool Weapon::ConsumesHull() const { return FiringHull() > 0. || RelativeFiringHull() > 0.; }
 inline bool Weapon::ConsumesFuel() const { return FiringFuel() > 0. || RelativeFiringFuel() > 0.; }
-inline bool Weapon::ConsumesHeat() const { return FiringHeat() < 0. || RelativeFiringHeat() > 0.; }
+inline bool Weapon::ConsumesHeat() const { return FiringHeat() < 0. || RelativeFiringHeat() < 0.; }
 inline bool Weapon::ConsumesEnergy() const { return FiringEnergy() > 0. || RelativeFiringEnergy() > 0.; }
 inline bool Weapon::ConsumesIonization() const { return FiringIon() < 0.; }
 inline bool Weapon::ConsumesCorrosion() const { return FiringCorrosion() < 0.; }
