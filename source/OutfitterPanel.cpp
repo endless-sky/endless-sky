@@ -866,20 +866,26 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 					const Outfit &attributes = ship->Attributes();
 					// Iterate over the attributes of the linked outfit instead of the attributes of the ship,
 					// since an outfit can never impact attributes it doesn't have.
-					for(const auto [name, other] : linked->Precise())
+					for(const auto &[name, linkedValue] : linked->Precise())
 					{
 						int64_t value = attributes.GetPrecise(name);
-						if(value > 0 || !other)
+						// Only values on the ship that are below their allowed minimum need rectified.
+						// Only attributes on this linked outfit that are negative can bring the attribute
+						// above the minimum when removed.
+						optional<int64_t> limit = Outfit::LowerLimitPrecise(name);
+						if(!limit.has_value() || value >= limit.value() || linkedValue >= 0)
 							continue;
 
+						// Determine how many of this outfit must be uninstalled to get back above the lower limit.
 						// Using integer division, so we need to check the remainder to determine if we should
 						// round up.
-						auto [quotient, remainder] = std::div(value, other);
+						auto [quotient, remainder] = std::div(value - limit.value(), linkedValue);
 						mustUninstall = max<int>(mustUninstall, quotient + (remainder ? 1 : 0));
 					}
 
 					if(mustUninstall)
 					{
+						// AddOutfit ensures that we don't uninstall more than is actually installed.
 						mustUninstall = -ship->AddOutfit(linked, -mustUninstall);
 
 						if(toLocation == OutfitLocation::Shop)

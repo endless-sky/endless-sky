@@ -3578,15 +3578,13 @@ int Ship::AddOutfit(const Outfit *outfit, int count)
 	}
 	else
 	{
-		it->second += count;
 		// Never allow the number of outfits to go negative.
+		// Adjust the actual count removed.
+		if(count < -it->second)
+			count = -it->second;
+		it->second += count;
 		if(it->second <= 0)
-		{
-			// Adjust the actual count removed.
-			if(it->second < 0)
-				count += it->second;
 			outfits.erase(it);
-		}
 	}
 	bool haveAfter = outfits.contains(outfit);
 	attributes.Add(*outfit, count);
