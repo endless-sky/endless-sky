@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Port.h"
 #include "ship/ShipAICache.h"
+#include "ship/ShipAttributeCache.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 
@@ -122,20 +123,12 @@ public:
 	};
 
 	enum class CanFireResult {
+		// Having no ammo or fuel may result in a sound effect being played.
 		NO_AMMO,
-		NO_ENERGY,
 		NO_FUEL,
-		NO_HULL,
-		NO_HEAT,
-		NO_ION,
-		NO_CORROSION,
-		NO_DISCHARGE,
-		NO_LEAK,
-		NO_BURN,
-		NO_SCRAMBLE,
-		NO_DISRUPTION,
-		NO_SLOWING,
-		CAN_FIRE
+		// Any other missing resource has no special effect.
+		NO_RESOURCES,
+		CAN_FIRE,
 	};
 
 
@@ -542,6 +535,36 @@ public:
 	// Check if this ship looks the same as another, based on model display names and outfits.
 	bool Imitates(const Ship &other) const;
 
+	// Access to various cached attributes
+	double CargoScanPower() const;
+	double OutfitScanPower() const;
+	double AsteroidScanPower() const;
+	double AtmosphereScan() const;
+	bool Inscrutable() const;
+	bool CanCommunicateWhileCloaked() const;
+
+	double ReverseThrust() const;
+	bool ShouldUseAfterburner() const;
+
+	bool SilentJumps() const;
+
+	double CloakFuelCost() const;
+	bool HasFuelForCloak() const;
+	bool CanRecoverHullWhileCloaked() const;
+	bool CanRecoverShieldsWhileCloaked() const;
+
+	double TurretTurnMultiplier() const;
+
+	const ResourceLevels &DamageProtection() const;
+	double PiercingProtection() const;
+	double PiercingResistance() const;
+	double HighShieldPermeability() const;
+	double LowShieldPermeability() const;
+	double CloakedShieldPermeability() const;
+	double CloakedHullProtection() const;
+	double CloakedShieldProtection() const;
+	double ForceProtection() const;
+
 
 protected:
 	virtual void CacheAttributes() override;
@@ -569,7 +592,7 @@ private:
 	void StepPilot();
 	void DoMovement(bool &isUsingAfterburner);
 	void StepTargeting();
-	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
+	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner) const;
 
 	// Whether this ship requires energy for movement.
 	bool RequiresMovementEnergy() const;
@@ -595,14 +618,6 @@ private:
 
 
 private:
-	// Protected member variables of the Body class:
-	// Point position;
-	// Point velocity;
-	// Angle angle;
-	// double zoom;
-	// int swizzle;
-	// const Government *government;
-
 	// Characteristics of the chassis:
 	bool isDefined = false;
 	const Ship *base = nullptr;
@@ -660,7 +675,10 @@ private:
 
 	Personality personality;
 	const Phrase *hail = nullptr;
+
 	ShipAICache aiCache;
+	ShipAttributeCache cache;
+	ShipJumpNavigation navigation;
 
 	// Installed outfits, cargo, etc.:
 	Outfit baseAttributes;
@@ -703,7 +721,6 @@ private:
 	// hyperspacing, and exploding. Each one must track some special counters:
 	const Planet *landingPlanet = nullptr;
 
-	ShipJumpNavigation navigation;
 	int hyperspaceCount = 0;
 	const System *hyperspaceSystem = nullptr;
 	bool isUsingJumpDrive = false;

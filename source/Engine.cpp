@@ -975,7 +975,7 @@ void Engine::Step(bool isActive)
 			// that is within the relevant scanner range, unless the target
 			// is player owned, in which case information is available regardless
 			// of range and scrutability.
-			bool scrutable = !target->Attributes().Get("inscrutable");
+			bool scrutable = !target->Inscrutable();
 			if(hasCrew && (scrutable || target->IsYours()))
 			{
 				info.SetString("target crew", to_string(target->Crew()));
@@ -1830,7 +1830,7 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 		bool isJumping = flagship->IsUsingJumpDrive();
 		const map<const Sound *, int> &jumpSounds = isJumping
 			? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
-		if(flagship->Attributes().Get("silent jumps"))
+		if(flagship->SilentJumps())
 		{
 			// No sounds.
 		}
@@ -1986,7 +1986,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump
 				? ship->Attributes().JumpOutSounds() : ship->Attributes().HyperOutSounds();
-			if(ship->Attributes().Get("silent jumps"))
+			if(ship->SilentJumps())
 			{
 				// No sounds.
 			}
@@ -2002,7 +2002,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump
 				? ship->Attributes().JumpInSounds() : ship->Attributes().HyperInSounds();
-			if(ship->Attributes().Get("silent jumps"))
+			if(ship->SilentJumps())
 			{
 				// No sounds.
 			}

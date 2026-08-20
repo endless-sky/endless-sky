@@ -129,8 +129,6 @@ double DamageProfile::Scale(double scale, const Body &body, bool blast) const
 // Populate the given DamageDealt object with values.
 void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 {
-	const Outfit &attributes = ship.Attributes();
-	const Weapon &weapon = damage.GetWeapon();
 	double shieldFraction = 0.;
 
 	// Lambda for returning the damage scale that a damage type should
@@ -139,7 +137,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	auto ScaleType = [&](double shieldBlocked, double hullBlocked, double protection)
 	{
 		double blocked = (1. - shieldBlocked) * (shieldFraction) + (1. - hullBlocked) * (1. - shieldFraction);
-		return damage.scaling * blocked / (1. + protection);
+		return damage.scaling * blocked / protection;
 	};
 
 	// Determine the shieldFraction, which dictates how much damage
@@ -147,26 +145,22 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	double shields = ship.ShieldLevel();
 	if(shields > 0.)
 	{
-		double piercing = max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection"))
-			- attributes.Get("piercing resistance")));
-		double highPermeability = attributes.Get("high shield permeability");
-		double lowPermeability = attributes.Get("low shield permeability");
-		double permeability = ship.Cloaking() * attributes.Get("cloaked shield permeability");
+		double piercing = max(0., min(1., (weapon.Piercing() / ship.PiercingProtection()) - ship.PiercingResistance()));
+		double highPermeability = ship.HighShieldPermeability();
+		double lowPermeability = ship.LowShieldPermeability();
+		double permeability = ship.Cloaking() * ship.CloakedShieldPermeability();
 		if(highPermeability || lowPermeability)
 		{
 			// Determine what portion of its maximum shields the ship is currently at.
 			// Only do this if there is nonzero permeability involved, otherwise don't.
 			double shieldPortion = shields / ship.MaxShields();
-			permeability += max((highPermeability * shieldPortion) +
-				(lowPermeability * (1. - shieldPortion)), 0.);
+			permeability += max((highPermeability * shieldPortion) + (lowPermeability * (1. - shieldPortion)), 0.);
 		}
-		shieldFraction = (1. - min(piercing + permeability, 1.)) /
-			(1. + ship.DisruptionLevel() * .01);
+		shieldFraction = (1. - min(piercing + permeability, 1.)) / (1. + ship.DisruptionLevel() * .01);
 
-		damage.levels.shields = (weapon.ShieldDamage()
-			+ weapon.RelativeShieldDamage() * ship.MaxShields())
-			* ScaleType(0., 0., attributes.Get("shield protection")
-			+ (ship.IsCloaked() ? attributes.Get("cloak shield protection") : 0.));
+		damage.levels.shields = (weapon.ShieldDamage() + weapon.RelativeShieldDamage() * ship.MaxShields())
+			* ScaleType(0., 0., ship.DamageProtection().shields
+			+ (ship.IsCloaked() ? ship.CloakedShieldProtection() : 0.));
 		if(damage.levels.shields > shields)
 			shieldFraction = min(shieldFraction, shields / damage.levels.shields);
 	}
@@ -176,50 +170,44 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	// Hull damage is blocked 100%.
 	// Shield damage is blocked 0%.
 	damage.levels.shields *= shieldFraction;
-	double totalHullProtection = (ScaleType(1., 0., attributes.Get("hull protection") +
-		(ship.IsCloaked() ? attributes.Get("cloak hull protection") : 0.)));
-	damage.levels.hull = (weapon.HullDamage()
-		+ weapon.RelativeHullDamage() * ship.MaxHull())
+	double totalHullProtection = (ScaleType(1., 0., ship.DamageProtection().hull +
+		(ship.IsCloaked() ? ship.CloakedHullProtection() : 0.)));
+	damage.levels.hull = (weapon.HullDamage() + weapon.RelativeHullDamage() * ship.MaxHull())
 		* totalHullProtection;
 	double hull = ship.HullLevelUntilDisabled();
 	if(damage.levels.hull > hull)
 	{
 		double hullFraction = hull / damage.levels.hull;
 		damage.levels.hull *= hullFraction;
-		damage.levels.hull += (weapon.DisabledDamage()
-			+ weapon.RelativeDisabledDamage() * ship.MaxHull())
-			* totalHullProtection
-			* (1. - hullFraction);
+		damage.levels.hull += (weapon.DisabledDamage() + weapon.RelativeDisabledDamage() * ship.MaxHull())
+			* totalHullProtection * (1. - hullFraction);
 	}
-	damage.levels.energy = (weapon.EnergyDamage()
-		+ weapon.RelativeEnergyDamage() * ship.MaxEnergy())
-		* ScaleType(.5, 0., attributes.Get("energy protection"));
-	damage.levels.heat = (weapon.HeatDamage()
-		+ weapon.RelativeHeatDamage() * ship.MaxHeat())
-		* ScaleType(.5, 0., attributes.Get("heat protection"));
-	damage.levels.fuel = (weapon.FuelDamage()
-		+ weapon.RelativeFuelDamage() * ship.MaxFuel())
-		* ScaleType(.5, 0., attributes.Get("fuel protection"));
+	damage.levels.energy = (weapon.EnergyDamage() + weapon.RelativeEnergyDamage() * ship.MaxEnergy())
+		* ScaleType(.5, 0., ship.DamageProtection().energy);
+	damage.levels.heat = (weapon.HeatDamage() + weapon.RelativeHeatDamage() * ship.MaxHeat())
+		* ScaleType(.5, 0., ship.DamageProtection().heat);
+	damage.levels.fuel = (weapon.FuelDamage() + weapon.RelativeFuelDamage() * ship.MaxFuel())
+		* ScaleType(.5, 0., ship.DamageProtection().fuel);
 
 	// DoT damage types with an instantaneous analog.
 	// Ion and burn damage are blocked 50% by shields.
 	// Corrosion and leak damage are blocked 100%.
 	// Discharge damage is blocked 50% by the absence of shields.
-	damage.levels.discharge = weapon.DischargeDamage() * ScaleType(0., .5, attributes.Get("discharge protection"));
-	damage.levels.corrosion = weapon.CorrosionDamage() * ScaleType(1., 0., attributes.Get("corrosion protection"));
-	damage.levels.ionization = weapon.IonDamage() * ScaleType(.5, 0., attributes.Get("ion protection"));
-	damage.levels.burning = weapon.BurnDamage() * ScaleType(.5, 0., attributes.Get("burn protection"));
-	damage.levels.leakage = weapon.LeakDamage() * ScaleType(1., 0., attributes.Get("leak protection"));
+	damage.levels.discharge = weapon.DischargeDamage() * ScaleType(0., .5, ship.DamageProtection().discharge);
+	damage.levels.corrosion = weapon.CorrosionDamage() * ScaleType(1., 0., ship.DamageProtection().corrosion);
+	damage.levels.ionization = weapon.IonDamage() * ScaleType(.5, 0., ship.DamageProtection().ionization);
+	damage.levels.burning = weapon.BurnDamage() * ScaleType(.5, 0., ship.DamageProtection().burning);
+	damage.levels.leakage = weapon.LeakDamage() * ScaleType(1., 0., ship.DamageProtection().leakage);
 
 	// Unique special damage types.
 	// Slowing and scrambling are blocked 50% by shields.
 	// Disruption is blocked 50% by the absence of shields.
-	damage.levels.slowness = weapon.SlowingDamage() * ScaleType(.5, 0., attributes.Get("slowing protection"));
-	damage.levels.scrambling = weapon.ScramblingDamage() * ScaleType(.5, 0., attributes.Get("scramble protection"));
-	damage.levels.disruption = weapon.DisruptionDamage() * ScaleType(0., .5, attributes.Get("disruption protection"));
+	damage.levels.slowness = weapon.SlowingDamage() * ScaleType(.5, 0., ship.DamageProtection().slowness);
+	damage.levels.scrambling = weapon.ScramblingDamage() * ScaleType(.5, 0., ship.DamageProtection().scrambling);
+	damage.levels.disruption = weapon.DisruptionDamage() * ScaleType(0., .5, ship.DamageProtection().disruption);
 
 	// Hit force is unaffected by shields.
-	double hitForce = weapon.HitForce() * ScaleType(0., 0., attributes.Get("force protection"));
+	double hitForce = weapon.HitForce() * ScaleType(0., 0., ship.ForceProtection());
 	if(hitForce)
 	{
 		Point d = ship.Position() - position;

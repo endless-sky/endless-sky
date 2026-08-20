@@ -217,7 +217,7 @@ optional<double> Outfit::LowerLimit(const string &attribute)
 	{
 		// An override of exactly 0 means the attribute may have any value.
 		if(!it->second)
-			return nullopt;
+			return std::nullopt;
 		return it->second;
 	}
 	// No minimum override means a minimum of 0.
