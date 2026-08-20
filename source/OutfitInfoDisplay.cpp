@@ -240,7 +240,8 @@ namespace {
 		{"cloaked communication", "You may make hails while cloaked."},
 		{"cloaked deployment", "You may deploy from bays while cloaked."},
 		{"cloaked pickup", "You may pick up flotsam while cloaked."},
-		{"cloaked scanning", "You may scan other ships while cloaked."}
+		{"cloaked scanning", "You may scan other ships while cloaked."},
+		{"can jettison", "Can be jettisoned while installed."},
 	};
 
 	bool IsNotRequirement(const string &label)
@@ -249,6 +250,17 @@ namespace {
 			SCALE.find(label) != SCALE.end() ||
 			BOOLEAN_ATTRIBUTES.find(label) != BOOLEAN_ATTRIBUTES.end();
 	}
+}
+
+
+
+std::string OutfitInfoDisplay::FormatAttribute(const std::string &attribute, double value)
+{
+	auto sit = SCALE.find(attribute);
+	double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
+	string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
+
+	return Format::Number(value * scale) + units;
 }
 
 
@@ -454,10 +466,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		else if(it.second < 0 && !IsNotRequirement(it.first))
 			continue;
 
-		auto sit = SCALE.find(it.first);
-		double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
-		string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
-
 		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
 		if(bit != BOOLEAN_ATTRIBUTES.end())
 		{
@@ -468,7 +476,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		else
 		{
 			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
-			attributeValues.emplace_back(Format::Number(it.second * scale) + units);
+			attributeValues.emplace_back(FormatAttribute(it.first, it.second));
 			attributesHeight += 20;
 		}
 		hasNormalAttributes = true;

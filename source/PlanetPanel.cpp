@@ -21,11 +21,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "BankPanel.h"
 #include "Command.h"
+#include "Conversation.h"
 #include "ConversationPanel.h"
 #include "DialogPanel.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "HiringPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
@@ -36,42 +38,46 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Port.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Shop.h"
 #include "SpaceportPanel.h"
+#include "image/SpriteLoadManager.h"
 #include "System.h"
 #include "TaskQueue.h"
 #include "TextArea.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
+#include <memory>
 #include <sstream>
+#include <utility>
 
 using namespace std;
 
 
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
-	: player(player), callback(callback),
+	: player(player), callback(std::move(callback)),
 	planet(*player.GetPlanet()), system(*player.GetSystem())
 {
-	trading.reset(new TradingPanel(player));
-	bank.reset(new BankPanel(player));
-	spaceport.reset(new SpaceportPanel(player));
-	hiring.reset(new HiringPanel(player));
+	trading = make_shared<TradingPanel>(player);
+	bank = make_shared<BankPanel>(player);
+	spaceport = make_shared<SpaceportPanel>(player);
+	hiring = make_shared<HiringPanel>(player);
 
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetColor(*GameData::Colors().Get("bright"));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
 	TaskQueue queue;
-	GameData::Preload(queue, planet.Landscape());
+	SpriteLoadManager::LoadDeferred(queue, planet.Landscape());
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
@@ -96,7 +102,7 @@ void PlanetPanel::Step()
 		if(callback)
 			callback();
 		if(selectedPanel)
-			GetUI().Pop(selectedPanel);
+			GetUI().Pop(selectedPanel.get());
 		GetUI().Pop(this);
 		return;
 	}
@@ -129,12 +135,59 @@ void PlanetPanel::Step()
 			outfitterStock.Add(shop->Stock());
 		}
 	}
+	// Load the thumbnails of all outfits and ships that the player could see while landed here
+	// if they haven't been loaded before or a mission action has just completed and we should
+	// re-check what's available in case the mission added something to the planet or player's
+	// inventory.
+	if(!hasLoadedThumbnails || SpriteLoadManager::RecheckThumbnails())
+	{
+		hasLoadedThumbnails = true;
+		TaskQueue &queue = GetUI().AsyncQueue();
+		// Load the thumbnails for any ships and outfits sold in the shop.
+		for(const Ship *ship : shipyardStock)
+			SpriteLoadManager::LoadDeferred(queue, ship->Thumbnail());
+		for(const Outfit *outfit : outfitterStock)
+			SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
+		// Also load the thumbnails of anything in storage on this planet or from the player's fleet.
+		if(hasShipyard || hasOutfitter)
+		{
+			for(const auto &ship : player.Ships())
+			{
+				// Ships in the same system but on a different planet can still appear in the shops,
+				// so only skip over ships in a different system.
+				if(!ship || !ship->GetPlanet() || ship->GetSystem() != &system)
+					continue;
+				// Ship thumbnails are visible in both the outfitter and the shipyard, but outfit
+				// thumbnails are only visible in the outfitter.
+				SpriteLoadManager::LoadDeferred(queue, ship->Thumbnail());
+				if(hasOutfitter)
+					for(const auto &outfit : ship->Outfits())
+						SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			}
+		}
+		if(hasOutfitter)
+		{
+			for(const auto &outfit : player.Storage().Outfits())
+				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			for(const auto &outfit : player.Cargo().Outfits())
+				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			for(const auto &[outfit, count] : player.GetStock())
+				if(count > 0)
+					SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
+			for(const auto &license : player.Licenses())
+			{
+				const Outfit *outfit = GameData::Outfits().Find(license + " License");
+				if(outfit)
+					SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
+			}
+		}
+	}
 
 	// Handle missions for locations that aren't handled separately,
 	// treating them all as the landing location. This is mainly to
 	// handle the intro mission in the event the player moves away
 	// from the landing before buying a ship.
-	const Panel *activePanel = selectedPanel ? selectedPanel : this;
+	const Panel *activePanel = selectedPanel ? selectedPanel.get() : this;
 	if(activePanel != spaceport.get() && GetUI().IsTop(activePanel))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
@@ -192,13 +245,21 @@ void PlanetPanel::Draw()
 
 
 
+void PlanetPanel::UpdateTextDisplay()
+{
+	description->SetAlignment(Preferences::GetTextAlignment());
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(player.IsDead())
 		return true;
 
-	Panel *oldPanel = selectedPanel;
+	Panel *oldPanel = selectedPanel.get();
 	const Ship *flagship = player.Flagship();
 
 	UI::UISound sound = UI::UISound::NORMAL;
@@ -232,21 +293,14 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 't' && hasAccess
 			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
-	{
-		selectedPanel = trading.get();
-		GetUI().Push(trading);
-	}
+		selectedPanel = trading;
 	else if(key == 'b' && hasAccess && planet.GetPort().HasService(Port::ServicesType::Bank))
-	{
-		selectedPanel = bank.get();
-		GetUI().Push(bank);
-	}
+		selectedPanel = bank;
 	else if(key == 'p' && hasAccess && planet.HasNamedPort())
 	{
-		selectedPanel = spaceport.get();
+		selectedPanel = spaceport;
 		if(isNewPress)
 			spaceport->UpdateNews();
-		GetUI().Push(spaceport);
 	}
 	else if(key == 's' && hasAccess && hasShipyard)
 	{
@@ -266,17 +320,19 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		return true;
 	}
 	else if(key == 'h' && hasAccess && planet.GetPort().HasService(Port::ServicesType::HireCrew))
-	{
-		selectedPanel = hiring.get();
-		GetUI().Push(hiring);
-	}
+		selectedPanel = hiring;
 	else
 		return false;
 
 	// If we are here, it is because something happened to change the selected
-	// planet UI panel. So, we need to pop the old selected panel:
-	if(oldPanel)
-		GetUI().Pop(oldPanel);
+	// planet UI panel. So, we need to push the new and pop the old selected panel:
+	if(oldPanel != selectedPanel.get())
+	{
+		if(oldPanel)
+			GetUI().Pop(oldPanel);
+		if(selectedPanel)
+			GetUI().Push(selectedPanel);
+	}
 
 	UI::PlaySound(sound);
 
@@ -367,6 +423,14 @@ void PlanetPanel::TakeOffIfReady()
 				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
 			return;
 		}
+	}
+	if(player.FleetCost() > player.FleetCapacity())
+	{
+		bool shipCap = GameData::GetGamerules().GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::SHIP_CAP;
+		GetUI().Push(DialogPanel::Info("The escorts that you currently have active put you over your fleet capacity. "
+			"Park or sell your escorts to make room"s + (shipCap ? "." : ", or change your flagship to a ship with a "
+			"higher cost toward your limit, as your flagship does not count toward the fleet capacity.")));
+		return;
 	}
 
 	CheckWarningsAndTakeOff();
@@ -529,7 +593,7 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 		if(callback)
 			callback();
 		if(selectedPanel)
-			GetUI().Pop(selectedPanel);
+			GetUI().Pop(selectedPanel.get());
 		GetUI().Pop(this);
 	}
 }

@@ -60,6 +60,7 @@ class Point;
 class Politics;
 class Shader;
 class Ship;
+class ShipEvent;
 class Sprite;
 class StarField;
 class StartConditions;
@@ -91,9 +92,6 @@ public:
 	static double GetProgress();
 	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
-	// Begin loading a sprite that was previously deferred. Currently this is
-	// done with all landscapes to speed up the program's startup.
-	static void Preload(TaskQueue &queue, const Sprite *sprite);
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::filesystem::path> &Sources();
@@ -122,6 +120,8 @@ public:
 	static void ResetPersons();
 	// Mark all persons in the given list as dead.
 	static void DestroyPersons(std::vector<std::string> &names);
+	// Handle any events that may have been taken against a Person.
+	static void HandleEvent(const ShipEvent &event);
 
 	static const Set<Color> &Colors();
 	static const Set<Swizzle> &Swizzles();

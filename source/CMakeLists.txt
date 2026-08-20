@@ -41,6 +41,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Camera.h
 	CaptureOdds.cpp
 	CaptureOdds.h
+	Caret.cpp
+	Caret.h
 	CargoHold.cpp
 	CargoHold.h
 	CategoryList.cpp
@@ -101,6 +103,10 @@ target_sources(EndlessSkyLib PRIVATE
 	Distribution.h
 	Drawable.cpp
 	Drawable.h
+	Dropdown.cpp
+	Dropdown.h
+	Edit.cpp
+	Edit.h
 	Endpoint.cpp
 	Endpoint.h
 	Effect.cpp
@@ -171,6 +177,8 @@ target_sources(EndlessSkyLib PRIVATE
 	JumpType.h
 	Logger.cpp
 	Logger.h
+	LoadingCircle.cpp
+	LoadingCircle.h
 	LoadPanel.cpp
 	LoadPanel.h
 	LocationFilter.cpp
@@ -243,6 +251,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Personality.h
 	Phrase.cpp
 	Phrase.h
+	PilotProfile.cpp
+	PilotProfile.h
 	Planet.cpp
 	Planet.h
 	PlanetLabel.cpp
@@ -253,8 +263,10 @@ target_sources(EndlessSkyLib PRIVATE
 	PlayerInfo.h
 	PlayerInfoPanel.cpp
 	PlayerInfoPanel.h
-	Plugins.cpp
-	Plugins.h
+	Plugin.cpp
+	Plugin.h
+	PluginManager.cpp
+	PluginManager.h
 	Point.cpp
 	Point.h
 	Politics.cpp
@@ -287,10 +299,13 @@ target_sources(EndlessSkyLib PRIVATE
 	Sale.h
 	SavedGame.cpp
 	SavedGame.h
+	ScanType.h
 	Screen.cpp
 	Screen.h
 	ScrollBar.cpp
 	ScrollBar.h
+	ScrollArea.cpp
+	ScrollArea.h
 	ScrollVar.h
 	Set.h
 	Ship.cpp
@@ -327,6 +342,8 @@ target_sources(EndlessSkyLib PRIVATE
 	System.cpp
 	System.h
 	SystemEntry.h
+	TableArea.cpp
+	TableArea.h
 	TaskQueue.cpp
 	TaskQueue.h
 	TextArea.cpp
@@ -408,6 +425,8 @@ target_sources(EndlessSkyLib PRIVATE
 	image/MaskManager.h
 	image/Sprite.cpp
 	image/Sprite.h
+	image/SpriteLoadManager.cpp
+	image/SpriteLoadManager.h
 	image/SpriteSet.cpp
 	image/SpriteSet.h
 	shader/BatchDrawList.cpp
@@ -434,6 +453,8 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/SpriteShader.h
 	shader/StarField.cpp
 	shader/StarField.h
+	ship/ResourceLevels.cpp
+	ship/ResourceLevels.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
 	test/Test.cpp

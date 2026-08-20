@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <map>
+#include <set>
 #include <string>
 #include <variant>
 #include <vector>
@@ -45,6 +46,8 @@ public:
 
 	void Save(DataWriter &out) const;
 
+	const std::set<const Sprite *> &GetScenes() const;
+
 	// Returns height.
 	int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
 
@@ -55,4 +58,5 @@ private:
 
 private:
 	std::vector<Item> items;
+	std::set<const Sprite *> scenes;
 };
