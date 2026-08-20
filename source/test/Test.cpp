@@ -107,11 +107,11 @@ namespace {
 		const Planet *planet = ship.GetPlanet();
 		description += ", system: " + (system ? system->TrueName() : "<not set>");
 		description += ", planet: " + (planet ? planet->TrueName() : "<not set>");
-		description += ", hull: " + Format::Number(ship.Hull());
-		description += ", shields: " + Format::Number(ship.Shields());
-		description += ", energy: " + Format::Number(ship.Energy());
-		description += ", fuel: " + Format::Number(ship.Fuel());
-		description += ", heat: " + Format::Number(ship.Heat());
+		description += ", hull: " + Format::Number(ship.HullFraction());
+		description += ", shields: " + Format::Number(ship.ShieldFraction());
+		description += ", energy: " + Format::Number(ship.EnergyFraction());
+		description += ", fuel: " + Format::Number(ship.FuelFraction());
+		description += ", heat: " + Format::Number(ship.HeatFraction());
 		return description;
 	}
 }

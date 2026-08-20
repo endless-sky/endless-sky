@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Color.h"
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
 #include "RaidFleet.h"
@@ -78,6 +77,7 @@ public:
 	// Load a government's definition from a file.
 	void Load(const DataNode &node, const std::set<const System *> *visitedSystems,
 		const std::set<const Planet *> *visitedPlanets);
+	bool IsDefined() const;
 
 	// Get the display name of this government.
 	const std::string &DisplayName() const;
@@ -197,6 +197,7 @@ private:
 	unsigned id;
 	std::string trueName;
 	std::string displayName;
+	bool isDefined = false;
 	const Swizzle *swizzle = Swizzle::None();
 	ExclusiveItem<Color> color;
 

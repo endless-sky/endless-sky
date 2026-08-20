@@ -58,7 +58,7 @@ void WinWindow::UpdateTitleBarTheme(SDL_Window *window)
 		value = themePreference == Preferences::TitleBarTheme::DARK;
 
 	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
-	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
+	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT WINAPI (*)(HWND, DWORD, LPCVOID, DWORD)>(
 		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
 	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
 	FreeLibrary(dwmapi);
@@ -78,7 +78,7 @@ void WinWindow::UpdateWindowRounding(SDL_Window *window)
 	auto value = static_cast<DWM_WINDOW_CORNER_PREFERENCE>(Preferences::GetWindowRounding());
 
 	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
-	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
+	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT WINAPI (*)(HWND, DWORD, LPCVOID, DWORD)>(
 		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
 	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_WINDOW_CORNER_PREFERENCE, &value, sizeof(value));
 	FreeLibrary(dwmapi);

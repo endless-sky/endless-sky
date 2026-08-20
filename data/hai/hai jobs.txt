@@ -172,7 +172,7 @@ mission "Wealthy Hai [1]"
 		random < 55
 	to accept
 		has "outfit (installed): Luxury Accommodations"
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -200,7 +200,7 @@ mission "Wealthy Hai [2]"
 		random < 15
 	to accept
 		has "outfit (installed): Luxury Accommodations"
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1756,7 +1756,7 @@ mission "Superstitious Hai [1]"
 	to offer
 		random < 5
 	to accept
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1783,7 +1783,7 @@ mission "Superstitious Hai [2]"
 	to offer
 		random < 5
 	to accept
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1811,7 +1811,7 @@ mission "Superstitious Hai [3]"
 	to offer
 		random < 5
 	to accept
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 		not attributes "retirement"
@@ -1841,7 +1841,7 @@ mission "Superstitious Hai [4]"
 	to offer
 		random < 5
 	to accept
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1870,7 +1870,7 @@ mission "Superstitious Hai [5]"
 	to offer
 		random < 5
 	to accept
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1899,7 +1899,7 @@ mission "Superstitious Hai [6]"
 	to offer
 		random < 5
 	to accept
-		has "outfit (installed): Quantum Keystone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1927,10 +1927,7 @@ mission "Superstitious Hai [7]"
 	to offer
 		random < 5
 	to accept
-		or
-			has "outfit (installed): Quantum Keystone"
-			has "outfit (installed): Shield Beetle Pendant"
-			has "outfit (installed): Tree Skeleton Key Stone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1957,10 +1954,7 @@ mission "Superstitious Hai [8]"
 	to offer
 		random < 5
 	to accept
-		or
-			has "outfit (installed): Quantum Keystone"
-			has "outfit (installed): Shield Beetle Pendant"
-			has "outfit (installed): Tree Skeleton Key Stone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -1988,10 +1982,7 @@ mission "Superstitious Hai [9]"
 	to offer
 		random < 5
 	to accept
-		or
-			has "outfit (installed): Quantum Keystone"
-			has "outfit (installed): Shield Beetle Pendant"
-			has "outfit (installed): Tree Skeleton Key Stone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 		not attributes "retirement"
@@ -2021,10 +2012,7 @@ mission "Superstitious Hai [10]"
 	to offer
 		random < 5
 	to accept
-		or
-			has "outfit (installed): Quantum Keystone"
-			has "outfit (installed): Shield Beetle Pendant"
-			has "outfit (installed): Tree Skeleton Key Stone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -2053,10 +2041,7 @@ mission "Superstitious Hai [11]"
 	to offer
 		random < 5
 	to accept
-		or
-			has "outfit (installed): Quantum Keystone"
-			has "outfit (installed): Shield Beetle Pendant"
-			has "outfit (installed): Tree Skeleton Key Stone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination
@@ -2085,10 +2070,7 @@ mission "Superstitious Hai [12]"
 	to offer
 		random < 5
 	to accept
-		or
-			has "outfit (installed): Quantum Keystone"
-			has "outfit (installed): Shield Beetle Pendant"
-			has "outfit (installed): Tree Skeleton Key Stone"
+		has "ship attribute: quantum keystone"
 	source
 		government "Hai"
 	destination

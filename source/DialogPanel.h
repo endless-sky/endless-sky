@@ -159,6 +159,8 @@ public:
 	// Some dialogs allow fast-forward to stay active.
 	bool AllowsFastForward() const noexcept final;
 
+	virtual void UpdateTextDisplay() override;
+
 
 protected:
 	class DialogInit {
