@@ -15,8 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Projectile.h"
 
+#include "Collision.h"
+#include "CollisionType.h"
 #include "Effect.h"
+#include "Entity.h"
 #include "FighterHitHelper.h"
+#include "Minable.h"
 #include "pi.h"
 #include "Random.h"
 #include "Ship.h"
@@ -59,14 +63,18 @@ namespace {
 
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
-	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
+	weapon(weapon), lifetime(weapon->Lifetime())
 {
+	shared_ptr<Ship> targetShip = parent.GetTargetShip();
+	target = targetShip ? static_pointer_cast<Entity>(targetShip)
+		: static_pointer_cast<Entity>(parent.GetTargetAsteroid());
+
 	government = parent.GetGovernment();
 	hitsRemaining = weapon->PenetrationCount();
 
 	// If you are boarding your target, do not fire on it.
 	if(parent.IsBoarding() || parent.Commands().Has(Command::BOARD))
-		targetShip.reset();
+		target.reset();
 
 	cachedTarget = TargetPtr().get();
 	if(cachedTarget)
@@ -96,7 +104,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset),
 	parent.velocity, parent.angle + angle),
-	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
+	weapon(weapon), target(parent.target), lifetime(weapon->Lifetime())
 {
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
@@ -128,10 +136,11 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 
 
 // Ship explosion.
-Projectile::Projectile(Point position, const Weapon *weapon)
-	: weapon(weapon)
+Projectile::Projectile(const Point &position, const Angle &angle, const Weapon *weapon)
+	: weapon(weapon), isShipExplosion(true)
 {
-	this->position = std::move(position);
+	this->position = position;
+	this->angle = angle;
 }
 
 
@@ -141,9 +150,9 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 {
 	if(--lifetime <= 0)
 	{
-		if(lifetime > -1000)
+		if(death == DeathType::NATURAL || death == DeathType::ANTI_MISSILE)
 		{
-			// This projectile didn't die in a collision. Create any death effects.
+			// Create any death effects.
 			// Place effects ahead of the projectile by 1.5x velocity. 1x comes from
 			// the anticipated movement of the projectile on its frame of death, and
 			// 0.5x comes from the behavior of BatchDrawList::Add drawing the projectile sprite
@@ -152,16 +161,21 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			for(const auto &it : weapon->DieEffects())
 				for(int i = 0; i < it.second; ++i)
 					visuals.emplace_back(*it.first, effectPosition, velocity, angle);
+		}
 
-			for(const auto &it : weapon->Submunitions())
-				if(lifetime > -100 ? it.spawnOnNaturalDeath : it.spawnOnAntiMissileDeath)
-					for(size_t i = 0; i < it.count; ++i)
-					{
-						const Weapon *const subWeapon = it.weapon.get();
-						Angle inaccuracy = Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(),
-								subWeapon->InaccuracyDistribution());
-						projectiles.emplace_back(*this, it.offset, it.facing + inaccuracy, subWeapon);
-					}
+		for(const auto &it : weapon->Submunitions())
+		{
+			if(!(it.spawnOn & death))
+				continue;
+			const Weapon *const subWeapon = it.weapon.get();
+			if(!subWeapon)
+				continue;
+			for(size_t i = 0; i < it.count; ++i)
+			{
+				Angle inaccuracy = Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(),
+						subWeapon->InaccuracyDistribution());
+				projectiles.emplace_back(*this, it.offset, it.facing + inaccuracy, subWeapon);
+			}
 		}
 		MarkForRemoval();
 		return;
@@ -177,25 +191,26 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	// If the target has left the system, stop following it. Also stop if the
 	// target has been captured by a different government.
 	// Also stop targeting fighters that have become disabled after this projectile was fired.
-	const Ship *target = cachedTarget;
-	if(target)
+	const Entity *currentTarget = cachedTarget;
+	if(currentTarget)
 	{
-		target = TargetPtr().get();
-		if(!target || !target->IsTargetable() || target->GetGovernment() != targetGovernment ||
-				(!targetDisabled && !FighterHitHelper::IsValidTarget(target)))
+		currentTarget = TargetPtr().get();
+		if(!currentTarget || !currentTarget->IsTargetable() || currentTarget->GetGovernment() != targetGovernment
+			|| (currentTarget->EntityType() == Entity::Type::SHIP && !targetDisabled
+				&& !FighterHitHelper::IsValidTarget(static_cast<const Ship *>(currentTarget))))
 		{
 			BreakTarget();
-			target = nullptr;
+			currentTarget = nullptr;
 		}
 	}
 
 	double turn = weapon->Turn();
 	double accel = weapon->Acceleration();
 	bool homing = weapon->Homing();
-	if(target && homing && !Random::Int(30))
+	if(currentTarget && homing && !Random::Int(30))
 	{
-		CheckLock(*target);
-		CheckConfused(*target);
+		CheckLock(*currentTarget);
+		CheckConfused(*currentTarget);
 	}
 	if(turn)
 	{
@@ -208,17 +223,17 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			// Vector d is the direction we want to turn towards.
 			Point d;
 			bool isFacingAway = false;
-			if(target)
+			if(currentTarget)
 			{
-				d = target->Position() - position;
+				d = currentTarget->Position() - position;
 				isFacingAway = d.Dot(angle.Unit()) < 0.;
 			}
 
 			// The very dumbest of homing missiles lose their target if pointed
 			// away from it.
 			if(isFacingAway && weapon->HasBlindspot())
-				targetShip.reset();
-			else if(target && hasLock)
+				target.reset();
+			else if(currentTarget && hasLock)
 			{
 				Point unit = d.Unit();
 				double drag = weapon->Drag();
@@ -227,13 +242,13 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				// At the highest homing level, compensate for target motion.
 				if(weapon->Leading())
 				{
-					if(unit.Dot(target->Velocity()) < 0.)
+					if(unit.Dot(currentTarget->Velocity()) < 0.)
 					{
 						// If the target is moving toward this projectile, the intercept
 						// course is where the target and the projectile have the same
 						// velocity normal to the distance between them.
 						Point normal(unit.Y(), -unit.X());
-						double vN = normal.Dot(target->Velocity());
+						double vN = normal.Dot(currentTarget->Velocity());
 						double vT = sqrt(max(0., trueVelocity * trueVelocity - vN * vN));
 						d = vT * unit + vN * normal;
 					}
@@ -241,7 +256,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 					{
 						// Adjust the target's position based on where it will be when we
 						// reach it (assuming we're pointed right towards it).
-						d += stepsToReach * target->Velocity();
+						d += stepsToReach * currentTarget->Velocity();
 						stepsToReach = d.Length() / trueVelocity;
 					}
 					unit = d.Unit();
@@ -295,7 +310,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 	// If this projectile is now within its "split range," it should split into
 	// sub-munitions next turn.
-	if(target && (position - target->Position()).Length() < weapon->SplitRange())
+	if(currentTarget && (position - currentTarget->Position()).Length() < weapon->SplitRange())
 		lifetime = 0;
 
 	// A projectile will begin to fade out when the remaining lifetime is smaller
@@ -308,21 +323,24 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 // This projectile hit something. Create the explosion, if any. This also
 // marks the projectile as needing deletion if it has run out of hits.
-void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
+void Projectile::Collide(vector<Visual> &visuals, const Collision &collision)
 {
 	// Offset the placement position of effects by the projectile's velocity while
 	// also accounting for the intersection clipping. Hit effects should appear from
 	// the front of the projectile, and so are shifted forward by the full velocity
 	// of the projectile.
+	double intersection = collision.IntersectionRange();
 	Point effectPosition = position + velocity * intersection;
-	for(const auto &it : weapon->HitEffects())
-		for(int i = 0; i < it.second; ++i)
-			visuals.emplace_back(*it.first, effectPosition, velocity, angle, hitVelocity);
+	Point hitVelocity = collision.HitVelocity();
+	for(const auto &[effect, count] : weapon->HitEffects())
+		for(int i = 0; i < count; ++i)
+			visuals.emplace_back(*effect, effectPosition, velocity, angle, hitVelocity);
 	// The projectile dies if it has no hits remaining.
 	if(--hitsRemaining == 0)
 	{
 		clip = intersection;
-		lifetime = -1000;
+		lifetime = 0;
+		death = collision.GetCollisionType() == CollisionType::EXPLOSION ? DeathType::EXPLOSION : DeathType::COLLISION;
 	}
 }
 
@@ -347,7 +365,8 @@ bool Projectile::IsDead() const
 // This projectile was killed, e.g. by an anti-missile system.
 void Projectile::Kill()
 {
-	lifetime = -100;
+	lifetime = 0;
+	death = DeathType::ANTI_MISSILE;
 }
 
 
@@ -374,13 +393,13 @@ Projectile::ImpactInfo Projectile::GetInfo(double intersection) const
 {
 	// Account for the distance that this projectile traveled before intersecting
 	// with the target.
-	return ImpactInfo(*weapon, position, distanceTraveled + dV.Length() * intersection);
+	return ImpactInfo(*weapon, position + velocity * intersection, distanceTraveled + dV.Length() * intersection);
 }
 
 
 
-// Find out which ship this projectile is targeting.
-const Ship *Projectile::Target() const
+// Find out which entity this projectile is targeting.
+const Entity *Projectile::Target() const
 {
 	return cachedTarget;
 }
@@ -394,9 +413,9 @@ const Government *Projectile::TargetGovernment() const
 
 
 
-shared_ptr<Ship> Projectile::TargetPtr() const
+shared_ptr<Entity> Projectile::TargetPtr() const
 {
-	return targetShip.lock();
+	return target.lock();
 }
 
 
@@ -404,7 +423,7 @@ shared_ptr<Ship> Projectile::TargetPtr() const
 // Clear the targeting information on this projectile.
 void Projectile::BreakTarget()
 {
-	targetShip.reset();
+	target.reset();
 	cachedTarget = nullptr;
 	targetGovernment = nullptr;
 	targetDisabled = false;
@@ -416,7 +435,7 @@ void Projectile::BreakTarget()
 // and their brightness could could cause IR missiles to lose their locks more
 // often, and dense asteroid fields could do the same for radar and optically
 // guided missiles.
-void Projectile::CheckLock(const Ship &target)
+void Projectile::CheckLock(const Entity &target)
 {
 	static const double RELOCK_RATE = .3;
 	double base = hasLock ? 1. : RELOCK_RATE;
@@ -437,7 +456,7 @@ void Projectile::CheckLock(const Ship &target)
 	// Optical jamming decreases the effective size of a ship.
 	if(weapon->OpticalTracking())
 	{
-		double opticalJamming = target.IsDisabled() ? 0. : target.Attributes().Get("optical jamming");
+		double opticalJamming = target.IsDisabled() ? 0. : target.OpticalJamming();
 		if(opticalJamming)
 			opticalJamming *= RangeFraction(position.Distance(target.Position()), opticalJamming);
 		double targetMass = target.Mass() / (1. + opticalJamming);
@@ -458,7 +477,7 @@ void Projectile::CheckLock(const Ship &target)
 		double multiplier = 1.;
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
-		double lockChance = weapon->InfraredTracking() * min(1., target.Heat() * multiplier);
+		double lockChance = weapon->InfraredTracking() * min(1., target.HeatFraction() * multiplier);
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}
@@ -470,7 +489,7 @@ void Projectile::CheckLock(const Ship &target)
 	// time. Jamming of 10 will increase that to about 60%.
 	if(weapon->RadarTracking())
 	{
-		double radarJamming = target.IsDisabled() ? 0. : target.Attributes().Get("radar jamming");
+		double radarJamming = target.IsDisabled() ? 0. : target.RadarJamming();
 		if(radarJamming)
 			radarJamming *= RangeFraction(position.Distance(target.Position()), radarJamming);
 		double lockChance = weapon->RadarTracking() / (1. + radarJamming);
@@ -485,7 +504,7 @@ void Projectile::CheckLock(const Ship &target)
 // and turn in a random direction ("go haywire"). Each tracking method has
 // a different haywire condition. Weapons with multiple tracking methods
 // only go haywire if all of the tracking methods have gotten confused.
-void Projectile::CheckConfused(const Ship &target)
+void Projectile::CheckConfused(const Entity &target)
 {
 	if(hasLock)
 	{
@@ -513,14 +532,14 @@ void Projectile::CheckConfused(const Ship &target)
 	if(weapon->OpticalTracking())
 	{
 		double opticalTracking = weapon->OpticalTracking();
-		double opticalJamming = target.Attributes().Get("optical jamming");
+		double opticalJamming = target.OpticalJamming();
 		opticalConfused = ConfusedTracking(opticalTracking, opticalJamming, distance);
 	}
 
 	if(weapon->RadarTracking())
 	{
 		double radarTracking = weapon->RadarTracking();
-		double radarJamming = target.Attributes().Get("radar jamming");
+		double radarJamming = target.RadarJamming();
 		radarConfused = ConfusedTracking(radarTracking, radarJamming, distance);
 	}
 
@@ -559,5 +578,5 @@ void Projectile::SetPhases(const Ship *ship)
 
 bool Projectile::ShouldExplode() const
 {
-	return !government || (weapon->IsFused() && lifetime == 1);
+	return isShipExplosion || (weapon->IsFused() && lifetime == 1);
 }

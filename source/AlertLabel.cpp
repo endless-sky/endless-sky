@@ -41,7 +41,7 @@ AlertLabel::AlertLabel(const Point &position, const Projectile &projectile, cons
 	isTargetingFlagship = false;
 	if(flagship)
 	{
-		isTargetingFlagship = projectile.TargetPtr() == flagship;
+		isTargetingFlagship = projectile.Target() == flagship.get();
 		double maxHP = flagship->MaxHull() + flagship->MaxShields();
 		double missileDamage = projectile.GetWeapon().HullDamage() + projectile.GetWeapon().ShieldDamage();
 		isDangerous = (missileDamage / maxHP) > DANGEROUS_ABOVE;

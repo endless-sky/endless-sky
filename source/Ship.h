@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Body.h"
+#include "Entity.h"
 
 #include "Angle.h"
 #include "Armament.h"
@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <list>
 #include <map>
 #include <memory>
+#include <optional>
 #include <set>
 #include <string>
 #include <vector>
@@ -65,7 +66,7 @@ class Visual;
 // in exactly the same state. The same class is used for the player's ship as
 // for all other ships, so their capabilities are exactly the same  within the
 // limits of what the AI knows how to command them to do.
-class Ship : public Body, public std::enable_shared_from_this<Ship> {
+class Ship : public Entity, public std::enable_shared_from_this<Ship> {
 public:
 	class Bay {
 	public:
@@ -127,6 +128,11 @@ public:
 		NO_HULL,
 		NO_HEAT,
 		NO_ION,
+		NO_CORROSION,
+		NO_DISCHARGE,
+		NO_LEAK,
+		NO_BURN,
+		NO_SCRAMBLE,
 		NO_DISRUPTION,
 		NO_SLOWING,
 		CAN_FIRE
@@ -218,6 +224,10 @@ public:
 	// The player can selectively deploy their carried ships, rather than just all / none.
 	void SetDeployOrder(bool shouldDeploy = true);
 	bool HasDeployOrder() const;
+	// Deployed ships may automatically recall themselves when damaged, unless the player
+	// force deploys them.
+	void SetForceDeploy(bool forceDeploy = true);
+	bool HasForceDeploy() const;
 
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
@@ -279,10 +289,10 @@ public:
 
 	// Check the status of this ship.
 	bool IsCapturable() const;
-	bool IsTargetable() const;
+	virtual bool IsTargetable() const override;
 	bool IsOverheated() const;
 	bool IsIonized() const;
-	bool IsDisabled() const;
+	virtual bool IsDisabled() const override;
 	bool IsBoarding() const;
 	bool IsLanding() const;
 	bool IsFleeing() const;
@@ -297,6 +307,8 @@ public:
 	// Depending on its "cloaking ..." attributes the ship will be unable to shoot, will not be seen on radar...
 	double Cloaking() const;
 	bool IsCloaked() const;
+	// If this ship is capable of cloaking, make it fully cloaked.
+	void SetCloaked();
 	// The amount of cloaking this ship can do, per frame.
 	double CloakingSpeed() const;
 	// If this ship should be immune to the next damage caused.
@@ -356,31 +368,6 @@ public:
 	// Events should be removed from the given list after they are handled.
 	std::list<ShipEvent> &HandleEvents();
 
-	// Get characteristics of this ship, as a fraction between 0 and 1.
-	double Shields() const;
-	double Hull() const;
-	double Fuel() const;
-	double Energy() const;
-	// A ship's heat is generally between 0 and 1, but if it receives
-	// heat damage the value can increase above 1.
-	double Heat() const;
-	// Get the ship's "health," where <=0 is disabled and 1 means full health.
-	double Health() const;
-	// Get the hull fraction at which this ship is disabled.
-	double DisabledHull() const;
-	// Get the maximum shield and hull values of the ship, accounting for multipliers.
-	double MaxShields() const;
-	double MaxHull() const;
-	// Get the absolute shield, hull, and fuel levels of the ship.
-	double ShieldLevel() const;
-	double HullLevel() const;
-	double FuelLevel() const;
-	// Get how disrupted this ship's shields are.
-	double DisruptionLevel() const;
-	// Get the (absolute) amount of hull that needs to be damaged until the
-	// ship becomes disabled. Returns 0 if the ships hull is already below the
-	// disabled threshold.
-	double HullUntilDisabled() const;
 	// Returns the remaining damage timer, for the damage overlay.
 	int DamageOverlayTimer() const;
 	// Get this ship's jump navigation, which contains information about how
@@ -399,10 +386,8 @@ public:
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
-	// Get the heat dissipation, in heat units per heat unit per frame.
-	double HeatDissipation() const;
 	// Get the maximum heat level, in heat units (not temperature).
-	double MaximumHeat() const;
+	double MaxHeat() const override;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
 	// Calculate the drag on this ship. The drag can be no greater than the mass.
@@ -411,6 +396,8 @@ public:
 	// divided by the mass, up to a value of 1.
 	double DragForce() const;
 
+	// How much this ship counts toward the player's fleet capacity.
+	int FleetCost() const;
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
 	int RequiredCrew() const;
@@ -422,7 +409,7 @@ public:
 	bool CanBeFlagship() const;
 
 	// Get this ship's movement characteristics.
-	double Mass() const;
+	double Mass() const override;
 	double InertialMass() const;
 	double TurnRate() const;
 	double Acceleration() const;
@@ -478,12 +465,11 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
-	// Display box effects from jettisoning this much cargo.
+	// Display box effects from jettisoning cargo or installed outfits.
 	void Jettison(const std::string &commodity, int tons, bool wasAppeasing = false);
 	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false);
+	void JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing = false);
 
-	// Get the current attributes of this ship.
-	const Outfit &Attributes() const;
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
 	// Get the list of all outfits installed in this ship.
@@ -557,6 +543,10 @@ public:
 	bool Imitates(const Ship &other) const;
 
 
+protected:
+	virtual void CacheAttributes() override;
+
+
 private:
 	// Various steps of Ship::Move:
 
@@ -569,7 +559,6 @@ private:
 	// destroyed, or 0 otherwise.
 	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoGeneration();
-	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoCloakDecision();
 	// Step hyperspace enter/exit logic. Returns true if ship is hyperspacing in or out.
@@ -582,18 +571,15 @@ private:
 	void StepTargeting();
 	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
 
+	// Whether this ship requires energy for movement.
+	bool RequiresMovementEnergy() const;
 
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);
-	// Get the hull amount at which this ship is disabled.
-	double MinimumHull() const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
-	// Place a "spark" effect, like ionization or disruption.
-	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
-	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 
 	// Calculate the attraction and deterrence of this ship, for pirate raids.
 	// This is only useful for the player's ships.
@@ -603,7 +589,8 @@ private:
 	// Increment the duration a thruster direction has been held.
 	void IncrementThrusterHeld(ThrustKind kind);
 
-	// Helper function for jettisoning flotsam.
+	// Helper functions for jettisoning flotsam.
+	void JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing = false);
 	void Jettison(std::shared_ptr<Flotsam> toJettison);
 
 
@@ -632,7 +619,6 @@ private:
 	std::string givenName;
 	bool canBeCarried = false;
 
-	int forget = 0;
 	bool isInSystem = true;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
 	// continue to exist and refuel instead of being deleted.
@@ -640,8 +626,8 @@ private:
 	bool isYours = false;
 	bool isParked = false;
 	bool shouldDeploy = false;
+	bool forceDeployed = false;
 	bool isOverheated = false;
-	bool isDisabled = false;
 	bool isBoarding = false;
 	bool hasBoarded = false;
 	bool isFleeing = false;
@@ -649,7 +635,6 @@ private:
 	bool isReversing = false;
 	bool isSteering = false;
 	double steeringDirection = 0.;
-	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
 	const Swizzle *customSwizzle = nullptr;
@@ -678,7 +663,6 @@ private:
 	ShipAICache aiCache;
 
 	// Installed outfits, cargo, etc.:
-	Outfit attributes;
 	Outfit baseAttributes;
 	bool addAttributes = false;
 	const Weapon *explosionWeapon = nullptr;
@@ -696,28 +680,6 @@ private:
 	std::vector<EnginePoint> steeringEnginePoints;
 	Armament armament;
 
-	// Various energy levels:
-	double shields = 0.;
-	double hull = 0.;
-	double fuel = 0.;
-	double energy = 0.;
-	double heat = 0.;
-	// Accrued "ion damage" that will affect this ship's energy over time.
-	double ionization = 0.;
-	// Accrued "scrambling damage" that will affect this ship's weaponry over time.
-	double scrambling = 0.;
-	// Accrued "disruption damage" that will affect this ship's shield effectiveness over time.
-	double disruption = 0.;
-	// Accrued "slowing damage" that will affect this ship's movement over time.
-	double slowness = 0.;
-	// Accrued "discharge damage" that will affect this ship's shields over time.
-	double discharge = 0.;
-	// Accrued "corrosion damage" that will affect this ship's hull over time.
-	double corrosion = 0.;
-	// Accrued "leak damage" that will affect this ship's fuel over time.
-	double leakage = 0.;
-	// Accrued "burn damage" that will affect this ship's heat over time.
-	double burning = 0.;
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
@@ -730,6 +692,7 @@ private:
 	// The amount of time in frames that an engine has been on for.
 	std::array<uint8_t, 4> thrustHeldFrames = {};
 
+	std::optional<int> administrativeCost;
 	int crew = 0;
 	int pilotError = 0;
 	int pilotOkay = 0;

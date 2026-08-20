@@ -2060,7 +2060,7 @@ mission "Wealthy tourists out"
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "tourism"
@@ -2084,7 +2084,7 @@ mission "Wealthy tourist group out [0]"
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "tourism"
@@ -2108,7 +2108,7 @@ mission "Wealthy tourist group out [1]"
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "tourism"
@@ -2176,7 +2176,7 @@ mission "Wealthy tourists back"
 		attributes "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
@@ -2200,7 +2200,7 @@ mission "Wealthy tourist group back [0]"
 		attributes "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
@@ -2224,7 +2224,7 @@ mission "Wealthy tourist group back [1]"
 		attributes "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
@@ -4024,7 +4024,7 @@ mission "Bounty Hunting (Marauder X)"
 		fleet "Marauder fleet X"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 5000000
+			payment 10000000
 			fail
 
 

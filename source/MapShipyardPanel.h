@@ -38,6 +38,8 @@ public:
 
 
 protected:
+	virtual void LoadCatalogThumbnails() const override;
+
 	virtual const Sprite *SelectedSprite() const override;
 	virtual const Sprite *CompareSprite() const override;
 	virtual const Swizzle *SelectedSpriteSwizzle() const override;
@@ -59,6 +61,8 @@ private:
 
 
 private:
+	bool hasFleetCapacity;
+
 	std::vector<const Ship *> list;
 	std::map<const System *, std::map<const Ship *, int>> parkedShips;
 

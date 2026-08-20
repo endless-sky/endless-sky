@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 #include "Distribution.h"
 #include "Point.h"
+#include "Projectile.h"
 
 #include <cstddef>
 #include <cstdint>
@@ -54,8 +55,7 @@ public:
 		// The base offset from the source projectile's position, relative to its current facing.
 		Point offset;
 
-		bool spawnOnNaturalDeath = true;
-		bool spawnOnAntiMissileDeath = false;
+		int spawnOn = Projectile::DeathType::NATURAL;
 	};
 
 
@@ -210,6 +210,11 @@ public:
 	bool ConsumesHeat() const;
 	bool ConsumesEnergy() const;
 	bool ConsumesIonization() const;
+	bool ConsumesCorrosion() const;
+	bool ConsumesDischarge() const;
+	bool ConsumesBurn() const;
+	bool ConsumesLeak() const;
+	bool ConsumesScramble() const;
 	bool ConsumesDisruption() const;
 	bool ConsumesSlowing() const;
 
@@ -254,6 +259,10 @@ private:
 	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::vector<Submunition> submunitions;
+	// Whether the damage dealt by this weapon's submunitions are
+	// included in the damage of its projectiles when colliding
+	// with a target.
+	bool includeSubmunitionDamage = true;
 
 	bool isStreamed = false;
 	bool isSafe = false;
@@ -494,9 +503,14 @@ inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); r
 
 inline bool Weapon::ConsumesHull() const { return FiringHull() > 0. || RelativeFiringHull() > 0.; }
 inline bool Weapon::ConsumesFuel() const { return FiringFuel() > 0. || RelativeFiringFuel() > 0.; }
-inline bool Weapon::ConsumesHeat() const { return FiringHeat() < 0. || RelativeFiringHeat() > 0.; }
+inline bool Weapon::ConsumesHeat() const { return FiringHeat() < 0. || RelativeFiringHeat() < 0.; }
 inline bool Weapon::ConsumesEnergy() const { return FiringEnergy() > 0. || RelativeFiringEnergy() > 0.; }
 inline bool Weapon::ConsumesIonization() const { return FiringIon() < 0.; }
+inline bool Weapon::ConsumesCorrosion() const { return FiringCorrosion() < 0.; }
+inline bool Weapon::ConsumesDischarge() const { return FiringDischarge() < 0.; }
+inline bool Weapon::ConsumesBurn() const { return FiringBurn() < 0.; }
+inline bool Weapon::ConsumesLeak() const { return FiringLeak() < 0.; }
+inline bool Weapon::ConsumesScramble() const { return FiringScramble() < 0.; }
 inline bool Weapon::ConsumesDisruption() const { return FiringDisruption() < 0.; }
 inline bool Weapon::ConsumesSlowing() const { return FiringSlowing() < 0.; }
 
