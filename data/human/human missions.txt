@@ -11771,3 +11771,1135 @@ mission "A Dead Man's Path 2"
 				payment 100000
 			`	"Well, that's okay. We'll always appreciate the help you've given us in fulfilling our father's will. Oh, and here's your payment, and a little extra for putting up with us all this time," Liam says, handing you a few credit chips for <payment>. "We wish you well through the stars!" Again, the siblings both thank you profusely for the trip, and you watch them leave Prime's spaceport with excitement.`
 				decline
+
+
+
+mission "Silver Talon 1"
+	name "Bounty hunters to <planet>"
+	description "Take these <bunks> bounty hunters to <destination> in exchange for <payment>, then wait until they return to take them off-planet again."
+	clearance
+	infiltrating
+	passengers 5
+	source
+		attributes "near earth"
+	destination "Greenrock"
+	to offer
+		random < 5
+		"reputation: Pirate" < -500
+		"combat rating" >= 80
+	on offer
+		conversation
+			`Walking through the spaceport, you are flagged down by a very short woman holding the largest bazooka you've ever seen, who is sitting on a box labeled "Explosive! Corrosive! Flammable! Extremely Toxic! Handle With Car!" and wearing a pin displaying a small silver eagle talon.`
+			choice
+				`	(See what she wants.)`
+				`	(Ignore her.)`
+					decline
+			`	As you approach, she stands up, a maneuver that results in the bazooka slamming into the metal frame of the box. You wince as sparks fly from the weapon's barrel, narrowly missing one of the openings between the crates' slats. Simultaneously, the box lets loose with a long string of invectives.`
+			`	"Sorry about him," the woman says, pointing at the box. "He's just in one of his moods, that's all. Short-fused guy unless you stuff him with garlic or sit him behind the wheel, and even then he's pretty toxic. Knows his work, though."`
+			choice
+				`	"There's someone in the box?"`
+				`	"You wanted to talk to me about something?"`
+					goto job
+
+			`	"Oh, yeah, that's Klaus. Wiry fellow, just about translucent, and the best driver you've ever met. Dirtiest mouth this side of Freedom, too, but packing him in a box for a couple hours seems to help with that a little."`
+			`	While the woman is talking, Klaus extracts himself from the crate, spraying packing peanuts all over the place and sending the bazooka clattering to the ground. He glowers at the woman before trying to put the lid back on the box, failing, and ending up inside it again. The woman completely ignores him, clearing her throat and peering up at you.`
+			
+			label job
+			`	"Here's the thing, captain. I figure you're a reasonable person, know your business, all that. So I'm not going to sugar-coat. We're the Silver Talon, a group of bounty hunters headed out to the Rim right now for, uh, work. Our previous ride bailed on us, so we're stranded here at the moment. What do you say?"`
+
+			choice
+				`	"Sorry, but I don't help killers."`
+				`	"How many people would this be?"`
+					goto number
+				`	"Where exactly on the Rim are you trying to get to?"`
+					goto greenrock
+				`	"Is this 'work' of yours legal?"`
+					goto legal
+
+			label killers
+			`	"All right. See you around, then," the woman says, turning and picking up her bazooka. As you walk away, you just barely hear her mutter under her breath, "Hypocrite."`
+				decline
+			
+			label number
+			`	"Five of us, all told. Klaus you've met, Dagger and Pict are in town getting drunk, and Louis is out looking for decent motels."`
+			choice
+				`	"Where exactly on the Rim are you trying to get to?"`
+				`	"Is this 'work' of yours legal?"`
+					goto legal
+
+			label greenrock
+			`	"Well, that's the thing, isn't it? We need to get to <destination>, then we'll do our work, and then we'll need a ride out of there afterwards, which might be pretty hot. Truth is, I figured an experienced-looking captain like you with a pockmarked but well-maintained ship was just the ticket. Was I right?"`
+			choice
+				`	"I'm in! Sounds like an adventure."`
+					goto in
+				`	"What's the payment situation?"`
+					goto payment
+				`	"Is this 'work' of yours legal?"`
+			
+			label legal
+			`	The woman laughs. "Like laws apply on pirate worlds, anyways... If you're wondering, we're not going to knock off anyone civilized, no. Just another bloodsucking leech, killing off his fleet one by one in order to earn some credits, that's all. Way we figure it, it's him or us. That's the way the Republic feels, too."`
+			choice
+				`	"Okay, then, I'm in."`
+					goto in
+				`	"Sounds like a worthy cause, but how much are you going to pay me?"`
+				`	"Sorry, but I wouldn't feel right helping you kill anyone, even if they are a pirate warlord."`
+					goto killers
+			
+			label payment
+			`	"Always the businessperson, I see. Payment is <payment> credits set aside in a numbered transfer account effective immediately upon your acceptance of the job, and automatically delivered to you upon our arrival on <planet>. If our job is successful, you will receive a 15% share in the bounty, or approximately four hundred thousand credits. If the job fails, naturally you won't receive that amount but you will earn <payment> for getting us off planet as quickly as possible. Sounds good?"`
+			choice
+				`	"Sure! I'm in."`
+					goto in
+				`	"If you want me to fly you, I'm getting a 25% share in the profits."`
+				`	"Sorry, that's not enough for me to risk my life over."`
+					goto "bad payment"
+			
+			`	"Sorry, captain, but the 15% is non-negotiable, and it's as much as anyone else gets, too, after we take into account the 25% overhead for equipment, failure payments, death benefits, and so forth. You either take it or leave it."`
+			choice
+				`	"If that's the case, I guess 15% is enough."`
+					goto in
+				`	"Well, I'm leaving it."`
+			
+			label "bad payment"
+			`	"Well, that's a shame," the woman replies. "I guess I'll get back to looking around, then. Goodbye."`
+				decline
+			
+			label in
+			`	"Glad to hear it!" the woman says. "Klaus and I'll get all our gear packed away. I'm sure we can find somewhere to stash it that doesn't eat up your cargo hold. Oh, and by the way, I'm Cerridwyn Morgan."`
+			`	After about an hour, all the bounty hunters' equipment is securely stowed on board the <ship>, and all the assassins are present and accounted for. Cerridwyn introduces you to each in turn: the wiry and foul-mouthed driver Klaus, the ex-marine Dagger, the sniper Pict, and the dapper young Louis. Cerridwyn's job, it seems, is to use the bazooka she's spent the last hour lugging around, a weapon she is apparently infamous for using."`
+			`	Introductions complete, the bounty hunters all fall into their bunks in preparation for the journey to <planet>.`
+				accept
+	
+	on visit
+		dialog "You arrive on <planet>, setting down some distance from the main spaceport. Unfortunately, not all the bounty hunters are on your flagship, so you're going to have to take off again to see what's taking them so long to get here."
+
+	on complete
+		log "Minor People" "Cerridwyn Morgan" `Cerridwyn Morgan is the bazooka-toting leader of the Silver Talon, an eclectic group of bounty hunters.`
+		payment 20000
+		conversation
+			`The team of bounty hunters pass the flight to <planet> in relative silence - and with a very strong odor of garlic. As you enter the <system> system, Cerridwyn directs you to land in a secluded minor spaceport well away from the planet's major cities.`
+			`	No sooner do you put down than Dagger cranks the <ship>'s hatch open and jumps out into the warm sunlight. Klaus and Pict are close behind, followed by a pile of gear.`
+			`	Cerridwyn waits a moment longer. "As agreed, a payment of <payment> has been deposited into your account," she says. "If all goes well, we'll be back within two hours. If you don't hear back within four, get the heck out of here."`
+			choice
+				`	"Sounds good."`
+					goto good
+				`	"You don't want me to wait?"`
+			`	"No, I don't. You've done right by us, and we owe you for it. If we're not back in four hours, we're probably all be dead and there'll be a price on your head too."`
+			`	Cerridwyn exhales, a long, slow breath.`
+			label good
+			`	"Anyways, good luck, Captain <last>. Stick with your ship, make sure she's ready to lift on a moment's notice, and we'll see you in a few hours."`
+			`	With that, Cerridwyn tosses her bazooka through the hatch and jumps down beside it. Louis gives you a jaunty salute and follows more cautiously. As the landing pad cools and the bounty hunters scramble toward a dilapidated ATV, you are left to mull over Cerridwyn's foreboding words.`
+
+
+
+mission "Silver Talon 2"
+	name "Escape to <planet>"
+	description "With the bounty hunters in tow, flee to <destination> to escape a fleet of enraged and vengeful pirates."
+	landing
+	passengers 4
+	source "Greenrock"
+	destination "Dancer"
+	to offer
+		has "Silver Talon 1: done"
+
+	on offer
+		conversation
+			`Time passes slowly. At first, you settle into your chair, watching the yellow-orange sun inch across the horizon. After about half an hour of silence, you drag yourself to your feet and start sorting through the junk in the <ship>'s maintenance closet. By the end of the second hour, you are elbow deep in a dusty pile of old malfunctioning datapads, most of which you don't remember ever owning. Three hours in, the closet looks almost presentable but the Silver Talon is nowhere to be seen.`
+			`	Just as you're beginning to give up hope, you hear a large explosion in the distance. A minute later, a speck appears on the horizon, a speck which soon resolves itself into the outline of a very old truck doing far more than what the speed limit would be on any civilized planet.`
+			`	Behind the huge billowing cloud of dust raised by the truck, two hovercraft appear. A figure in the back of the truck stands and fires a very large bazooka, and the leading hovercraft vanishes in a fireball. The other swerves into a ditch.`
+			`	Soon, the ATV is back at the spaceport, roaring onto the tarmac at breakneck speeds and coming to a stop in a squeal of brakes at the end of a hundred-meter stripe of rubber. Before the truck has settled, Cerridwyn and Pict are already moving, tossing their weapons and bags over the side of the truckbed and scrambling down. Inside the truck, a sweating Klaus picks up Dagger like a sack of potatoes and hauls him out of the cab.`
+			`	Cerridwyn is the first through the hatch in your ship, preceded only by her rocket launcher. Klaus and Pict haul the wounded Dagger through with the rest of their equipment, and slam the hatch shut.`
+			`	"Okay, Captain," Cerridwyn says, "It's time to blow this popsicle stand."`
+			choice
+				`	(Lift off.)`
+					goto lift
+				`	"Yes, ma'am."`
+				`	"What about Louis?"`
+					goto louis
+				`	"Did you succeed?"`
+					goto failure
+			`	Cerridwyn nods sharply and takes her seat.`
+				goto lift
+			label louis
+			`	Cerridwyn merely shakes her head.`
+				goto lift
+			label failure
+			`	Cerridwyn laughs bitterly. "Does it look like we succeeded? We blew it, and we're going to have Sam Hill to pay if you don't get us off the ground pronto."`
+			label lift
+			`	As you shunt power to your repulsors and begin to lift, you hear the sound of gunfire outside. The remaining hovercraft, back on the dirt road, charges toward your ship. Suddenly, the old truck explodes, spraying the <ship> with flaming vegetable oil. Bullets hit the hull all around you like a murderous rainstorm.`
+			choice
+				`	(Strafe the hovercraft.)`
+					goto strafe
+					to display
+						has "armament deterrence"
+				`	(Get out of here.)`
+			`	Cranking your engines, you blast off, soon escaping the range of the small arms in the hovercraft. As your heartbeat slows, you approach the Karman line and enter space.`
+				goto escape
+			label strafe
+			`	Rather than flee, you turn your guns on the hovercraft. For a brief moment, you see the terrified face and upraised arms of a pirate, before a rain of fire sweeps the vehicle and transforms it into a lump of smoldering charcoal.`
+			`	The cockpit is silent as you turn for space, save for the hum of your ship's air conditioner.`
+			action
+				set "strafed miyano's hovercraft"
+			label escape
+			`	Suddenly, red flashing dots appear on your radar. Klaus swears loudly into your left ear as the red dots solidify and are joined by a number of smaller specks.`
+			`	"Well, shoot," Cerridwyn mutters. "We should have known that he wouldn't take kindly to us escaping. Better get out of here fast. We've got friends on <destination>, so that's probably the best target."`
+				accept
+	npc
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"coward"
+			"waiting"
+			"target"
+			confusion 5
+		ship "Bastion (Laser)" "Swift Scimitar"
+		fleet "Large Southern Pirates" 1
+		fleet "Small Southern Pirates" 2
+	npc
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"coward"
+			"waiting"
+			"target"
+			confusion 10
+		ship "Bastion (Heavy)" "Red Tide"
+		fleet "Large Southern Pirates" 1
+		fleet "Small Southern Pirates" 1
+	npc
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"coward"
+			"waiting"
+			"staying"
+			"target"
+			confusion 10
+		system "Lesath"
+		ship "Osprey (Missile)" "Lurker's Shank"
+		fleet "Small Southern Pirates" 3
+
+	on visit
+		dialog `You arrive on <planet>, but somewhere along the way you lost some of the bounty hunters. Better depart and wait for your escorts to enter the system.`
+
+	on complete
+		conversation
+			`The <ship>'s hull pockmarked with blaster scars, you land in the spaceport on <planet>. Pirates continue to flood into the system, but <planet>'s missile batteries deter them from following you into the atmosphere.`
+			`	Cerridwyn exhales slowly, and turns to you. "Thanks for your help, <first>. I wish it didn't have to end this way, but you stood by us and we'll be forever grateful."`
+			`	Abruptly, she hands you <payment>. "I'm sorry we can't pay you better. The rest is going to Louis' folks, but we owe you this much. If you hadn't gotten us out of there..."`
+			choice
+				`	"Thank you."`
+					goto thanks
+				`	"I can't take this."`
+			`	Cerridwyn becomes much firmer. "You can, and will, <first> <last>. If you hadn't flown us out of there like that - or, if you had left an hour earlier - we'd all be dead. It's the least we can do."`
+			label thanks
+			`	The payment made, Cerridwyn suddenly seems to collapse in front of your eyes. Picking up her bazooka, she slings it silently over her shoulder and wanders off aimlessly into the spaceport. Klaus and Pict follow close behind, carrying the rest of the bounty hunters' gear.`
+			`	Dagger, a crutch under his arm, stumbles after his companions but stops when he sees you watching. "Y'know, cap'n," he mutters, obviously very drunk and speaking slowly, "This ain't over. We'll see Vlad Blaire ded yet for 'is crimes. And I tell yuh, we cud shure use yur 'elp. Whaddayuh say yuh join us a'the spacepurt bahr in an hour?"`
+			`	With that, the wounded veteran turns and thumps off your ship, joining the other bounty hunters.`
+		payment 35000
+
+
+
+mission "Silver Talon 3"
+	name "Escape to <planet>"
+	description "With the bounty hunters in tow, flee to <destination> to escape a fleet of enraged and vengeful pirates."
+	passengers 4
+	blocked "You'll need four bunks free to carry the surviving members of the Silver Talon. Return here when you have the required space free."
+	source "Dancer"
+	destination "New Iceland"
+	to offer
+		has "Silver Talon 2: done"
+
+	on offer
+		conversation
+			`You arrive at the bar to find Klaus, Pict, and Dagger seated around a table. Or, in Dagger's case, passed out on the table surrounded by more bottles of cheap beer than the bar has sold to any other customer all evening.`
+			`	On the other side of the room, Cerridwyn sits alone at the bar, nursing what looks to be a glass of mineral water.`
+			choice
+				`	(Join Klaus, Pict, and Dagger.)`
+				`	(Approach Cerridwyn.)`
+					goto cerridwyn
+
+			`	Gingerly shifting a pile of beer bottles from a chair, you sit down beside Klaus. No sooner does your seat touch the seat than he lets off a string of curses at the universe, God, chance, an ancient American named Murphy, pirate warlords, the Navy, and eight or nine other nouns you don't catch in the maelstrom.`
+			choice
+				`	"Should I leave?"`
+				`	(Wait.)`
+					goto klaus
+			
+			`	"What does it matter, anyways?" He swears again.`
+			label klaus
+			`	"We thought we were heroes, you know that? Us and our big guns, off to rid the universe of criminal scum. But that's not how the world works, is it? And naturally the one who doesn't come back is the one who believed it most of all."`
+			`	Klaus stumbles to his feet and heads for the facilities, muttering deprecations against Murphy as he goes.`
+			`	As you watch him leave, Pict clears her throat from across the table. Alone among the bounty hunters, she shows no outward sign of distress, but her eyes have hardened into icy crystal.`
+			`	"We loved him, we fought for him, we failed him. Eight milliseconds in the path of a laser rifle and he was gone. Just like Point Lima, and we're left to carry on in our guilt, breaking apart ever so slowly."`
+			choice
+				`	"Point Lima?"`
+					goto pict
+				`	"You seem to be holding up well."`
+			
+			`	Pict laughs bitterly. "A veteran like you should know better than that. No one ever holds up well inside after a fight, no matter what it looks like to everyone else."`
+				goto commotion
+			
+			label pict
+			`	"Poisonwood. '85. Our platoon was supposed to deploy behind enemy lines to gether intelligence for the main assault. Only problem is they got the position of a missile battery off by seventy kilometers, and the Alphas ripped us to shreds. Fairweather, Grange, Perkins, Yanovik... the entire front half of our shuttle was gone before we could blow the plates and bail.`
+			`	"Some things never change, Captain, some things never change."`
+			choice
+				`	"Some things do change, though."`
+				`	(Stay silent.)`
+					goto commotion
+			
+			`	"Of course. Everything you do changes something. A laser on target, a bullet, a rocket, and it's their name on the cenotaph instead of yours. A word in the right place, and maybe they don't need to build that monument at all. But we snakes forget that sometimes, don't we. It's so much easier to live with ourselves if we can ignore the consequences of our actions, the children gone with the pirate ships, the troopers dead because we messed up, the enemies we never needed to kill. But we can't ignore it, can we, or else we're just like them."`
+				goto commotion
+
+			label cerridwyn
+			`	You slide onto a stool next to Cerridwyn, but it seems like she doesn't realize you're there. For a minute, you sit awkwardly beside her as she stares off into the distance at a darkness only she can see.`
+			choice
+				`	"Are you okay?"`
+				`	(Wait.)`
+					goto wait
+				`	(Order a drink.)`
+					goto drink
+			
+			`	Cerridwyn just glares at you, gets up, and leaves the bar. Looking back to the table previously occupied by the other three bounty hunters you see only Dagger, drooling and unconscious.`
+			`	You wait around a bit, but neither Klaus nor Pict returns. Eventually, you find yourself heading back to your ship.`
+				decline
+			
+			label drink
+			`	The bar is mostly empty, so it doesn't take long for your drink to be prepared. While you're sipping it, Cerridwyn finally speaks.`
+				goto speaks
+			label wait
+			`	You wait at the bar for one minute, then two, until the bartender starts giving you irritated glances. Finally, Cerridwyn speaks.`
+			label speaks
+			`	"I killed him, you know," she says, still staring off into the distance. "I was the one who signed off on the job. The one who let him come along with us. If I hadn't..."`
+			choice
+				`	"What happened to Louis isn't your fault."`
+				`	"You're sure you don't want something stronger than mineral water?"`
+					goto mineral
+				`	"So, what are you going to do about it?"`
+					goto response
+
+			`	"Of course it is. Don't you understand that? All I had to tell him was no, no we're not crazy, no we're not going to run off on a crusade against crime. That's all I had to say, and we would have still been on Silver, me and him and the bazooka. That's all I had to do, and instead I had to take his inane schemes seriously."`
+				goto commotion
+
+			label mineral
+			`	Cerridwyn glowers at you and takes a large gulp of water.`
+				goto commotion
+
+			label response
+			`	"What, are you saying I'm going to just sit here and grieve? No, one way or another I'm going to kill that bloody vampire. Him and all his bodyguards."`
+			
+
+			label commotion
+			`	Suddenly, the door to the spaceport bar slams open, and six burly thugs shove their way into the crowd, eyes flitting around like hummingbirds. One of them points in your direction, and suddenly all six have weapons drawn and the building erupts in screams.`
+			`	Before you know what's going on, all four surviving bounty hunters are standing beside you. Klaus holds a chemical-propellant pistol in shaking hands, while Pict has drawn a wicked-looking knife and a surprisingly sober Dagger wields what was until very recently a perfectly serviceable chair leg. Only Cerridwyn is unarmed, lacking her customary rocket launcher.`
+			choice
+				`	(Draw my gun.)`
+					goto firefight
+				`	(Look for a way out.)`
+			
+			`	It is not hard to find an alternate exit from the bar. The only issue is, every other patron has come to the same conclusion as you have and are now pushing their way toward a very ordinary-sized door.`
+			`	As lasers scorch the walls around you and Klaus' weapon cracks off shot after shot, your eyes settle on the kitchen door. A door which leads to a room that, according to galactic fire codes, should have another exit.`
+			`	Bellowing at the bounty hunters to follow, you duck into the kitchen, coming face-to-face with a large, open window and face-to-back with three fleeing cooks. You follow suit, leaping into an alleyway just ahead of Klaus and Dagger. Behind you, Pict hurls her knife through the door and slams it shut before dragging Cerridwyn out of the building.`
+			`	A look passes between the five of you, and you're suddenly running full speed for the <ship>. It's not until you reach orbit that your heart rate returns to normal.`
+				launch
+			
+			label firefight
+			`	Drawing your gun, you soon find that the thugs are much less impressive fighters than their bulging muscles suggest. You take three shots, and two of your assailants collapse to the floor. A round from Klaus' pistol clips the shoulder of a third, knocking him off balance as he drops his weapon.`
+			`	Suddenly, Dagger lunges forward, taking out the fourth man with a quick flurry of blows. The remaining two attackers turn tail and run off into the night.`
+			`	The five of you regroup outside the bar to the sound of distant sirens.`
+			choice
+				`	"What do we do now?"`
+					goto flee
+				`	"Who were those people?"`
+
+			`	"Vlad Blaire's employees," Pict replies cooly. "And now we've got to get out of here. The police will be here in twenty minutes or so, and I for one don't want to be caught standing beside a pile of bodies with a bloody knife."`
+				goto objections
+			
+			label flee
+			`	"We leave," Dagger slurs. "Quickly-like befuh there's muhyehm.`
+
+			label objections
+			choice
+				`	"Right, let's get out of here."`
+					goto final
+				`	"Won't it go worse for us if we try to run?"`
+			
+			`	Your response comes from Cerridwyn. "Technically, we haven't committed any crimes - all our actions were in self-defense and that counts for a lot on a frontier world like Dancer. But if we stick around, the police will want to ask questions, and we might not have a functioning ship to leave on by the time they're done, if Blaire's goons have their way. So, we run."`
+
+			label final
+			`	The five of you hurry back to the <ship>, and you go through your preflight checklist as quickly as you can. Luck is on your side, and the spaceport controller clears you for departure with no questions asked. It's not until you reach orbit that your heart rate returns to normal.`
+				launch
+
+	on enter "Rastaban"
+		conversation
+			`As soon as you're safely out of the atmosphere, Cerridwyn catches your attention.`
+			`	"Captain <last>, I'm afraid you've come too far with us to stop now. If we can make it to <destination>, we'll be able to plan a killing blow against Vlad Blaire. We've got contacts there who might be able to help, and the police there should be at least semicompetent."`
+			choice
+				`	"All right, I'll take you there."`
+					decline
+				`	"I don't see how I have any choice."`
+			
+			`	A wry smile flickers across Cerridwyn's face. "Me neither, captain. May God help us all."`
+
+	npc
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"coward"
+			"entering"
+			"target"
+			confusion 10
+		ship "Osprey" "Stiletto"
+		fleet "Small Southern Pirates" 6
+	npc
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"coward"
+			"launching"
+			"target"
+			confusion 10
+		ship "Hawk" "Charon's Watchman"
+	
+	on visit
+		dialog `You arrive on <planet>, but somewhere along the way you lost some of the bounty hunters. Better depart and wait for your escorts to enter the system.`
+
+	on complete
+		conversation
+			`As your ship settles into a berth on <planet>, the four surviving bounty hunters are hard-eyed and raring to go. Klaus checks his small pistol over and over again, and Dagger pops half a dozen painkillers into his mouth.`
+			`	You punch open the hatch, and Cerridwyn turns to face you. "Spaceport bar, half an hour. See you then."`
+
+mission "Silver Talon 4"
+	name "Kill Vlad Blaire"
+	description "Wait for Vlad Blaire's flagship, the Crimson Horde, to enter the system. Then, disable and board it to allow the surviving bounty hunters to confirm his death."
+	passengers 4
+	blocked "You'll need four bunks free to carry the surviving members of the Silver Talon. Return here when you have the required space free."
+	source "New Iceland"
+	to offer
+		has "Silver Talon 3: done"
+
+	on offer
+		conversation
+			`As you walk into the spaceport bar, you are met by a small crowd of sailors. The four bounty hunters are at the center of the group, talking in a low murmur with one of the better-off spacefarers. Upon seeing you, Pict walks over to greet you.`
+			`	"Cerridwyn's friends," she says, gesturing to the crowd. "Damn fools, if you ask me, but she's got them fired up. With any luck, some of them will even help us out."`
+			`	You watch as Cerridwyn and Klaus continue to speak to the spacers. One by one, they wander off, leaving empty glasses on the table. Finally, only three captains remain.`
+			`	"Captain <last>, I'd like you to meet captains John Smith, Norma Down, and Yven Stieber. Captains, <first> <last>."`
+
+			branch hero
+				has "main plot completed"
+
+			`	A round of handshakes ensues.`
+				goto plan
+
+			label hero
+			`	"Wow, you're really Captain <last>?" asks John. "Can I get your..." he spots Cerridwyn's disapproving frown and trails off. "Sorry, not the time."`
+
+			label plan
+			`	"Look, you all know why you're here," she continues. "There's no point making a speech, so I'll just go over the plan one more time.`
+			`	"In a few hours, we expect Blaire to enter the system. At that time, we will meet his fleet in orbit. Captains Smith, Down, and Stieber will engage the fleet and try to distract them. Don't take unnecessary risks, but don't hang back and blow hot air at them either. While you're fighting the fleet, Captain <last> will try to take down and disable Blaire's flagship. Once the ship is disabled, <last> will dock with it and we will board and dispatch Blaire. As soon as we're done, we will signal you to disengage and you can expect a nice heavy bounty payment in your bank account tomorrow morning. Understood?"`
+			`	There's a murmur of assent, and you file out of the bar, as ready as you're going to be for what comes next.`
+				accept
+	
+	npc board
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"entering"
+			"staying"
+			"target"
+			"marked"
+			confusion 5
+		ship "Leviathan" "Baron's Cave"
+		conversation
+			`The hull of the <ship> rings like a gong as you come in to dock slightly too quickly. Or perhaps not too quickly, since Cerridwyn, Pict, and Dagger are already in the airlock waiting for the doors to slide open.`
+			`	Suddenly, the airlock opens with a hiss and the three bounty hunters are off, gutting the inside of Blaire's ship. Cerridwyn fires shot after shot from her bazooka, until you can almost see straight through to the cockpit of the Crimson Horde from where you're standing.`
+			`	A couple pirates show their heads, but Klaus, who is standing guard at the door, quickly sends them ducking for cover once more with a couple shots from his pistol.`
+			`	Then, as quickly as it began, it's over. All four bounty hunters return to their seats, grim-faced but satisfied. Now, you only have to get back to <planet> in one piece.`
+				launch
+
+	npc
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"entering"
+			"coward"
+			confusion 10
+		fleet "Small Southern Pirates" 2
+
+	npc
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"entering"
+			"coward"
+			confusion 20
+		fleet "Small Southern Pirates" 2
+
+	npc
+		government "Pirate"
+		personality
+			"hunting"
+			"vindictive"
+			"opportunistic"
+			"entering"
+			"coward"
+			confusion 10
+		fleet "Large Southern Pirates"
+
+	npc
+		government "Merchant"
+		personality
+			"heroic"
+			"vindictive"
+			"frugal"
+			"launching"
+			confusion 30
+		ship "Corvette" "Steam Hammer"
+		ship "Fury" "Luck's Eyebrows"
+		ship "Sparrow" "Iceheart"
+
+	on complete
+		log "Parted ways with the Silver Talon following the death of Vlad Blaire. None of the survivors have really recovered from recent events, but some are taking it much better than others."
+		event "Pict Trigger" 1500
+		payment 445000
+		conversation
+			`Back on <planet>, the survivors of the battle gather around in the spaceport bar. Cerridwyn says some congratulations and starts handing out credit chips. You receive one for <payment>; it seems that either the bounty on Blaire's head went up since you took the job or else Cerridwyn has chosen to pay you more than your 15% cut.`
+			`	Gradually, the crowd disperses, until looking back you see only the four bounty hunters...`
+			`	Dagger, drunk out of his mind, passed out on a table.`
+			`	Klaus, hand on his pistol holster as if afraid the weapon will dissolve the moment he lets it be.`
+			`	Pict, silent and steely-eyed but hurting within.`
+			`	And Cerridwyn, proud Cerridwyn, gleaming rocket launcher at her feet and silver talon pinned to her chest, her facade of poise crumbling as you turn to leave.`
+
+event "Pict Trigger"
+
+mission "Pict's Legacy 1"
+	name "Chase Pict's Killer"
+	description "The man who killed Pict has fled Hermes and is heading to <destination>. Get Raven there no later than <date> to have a hope of catching him."
+	source "Hermes"
+	destination "Ada"
+	passengers 3
+	deadline 2
+	to offer
+		has "event: Pict Trigger"
+		has "main plot completed"
+		has "strafed miyano's hovercraft"
+	on offer
+		conversation
+			`You're sitting at the spaceport bar watching some hovercraft racing, when all of a sudden you receive a voice message.`
+			`	"Captain <last>, I can't tell you how glad I am that you're here on Hermes. I need you to meet me at 45 Impala Street, as fast as you can. Please, captain, my life depends on it."`
+			`	The voice is unfamiliar at first, but it doesn't take long to recognize: it is the voice of Pict, the enigmatic soldier who helped Cerridwyn Morgan hunt down and kill Vlad Blaire.`
+			choice
+				`	(Head to 45 Impala Street.)`
+					goto trap
+				`	(Ignore the message.)`
+
+			`	With no good reason to believe the message is genuine or urgent, you ignore it and go back to watching the race. About ten minutes pass before you hear sirens, and in only another five the news makes its way to your eyes: Compassion "Pict" Macdonald, SgtMaj, Republic Navy, found dead. Murdered, at 45 Impala Street.`
+				decline
+
+			label trap
+			`	It doesn't take long to find 45 Impala Street, certainly no longer than fifteen minutes. The building is a slab of concrete built in the timeless style: modern four decades ago, hopelessly ugly today. The door stands ajar, and you reach for your gun as you cross the threshold into the house. The lights inside are off, and it is pitch black.`
+			choice
+				`	"Is anyone home?"`
+				`	(Turn on the lights.)`
+					goto lights
+				`	(Continue with the lights off.)`
+					goto unlit
+
+			`	The only reply you receive is the distant hum of a generator, punctuated by your own heartbeat.`
+			choice
+				`	(Turn on the lights.)`
+				`	(Continue with the lights off.)`
+					goto unlit
+
+			label lights
+			`	You flick the lights on, and stare. In front of you is what was clearly once a living room, now torn to shambles. In the corner, clearly dead, is Pict's corpse, her mouth open in a snarl and no fewer than thirteen flechette holes in her chest. Overcome by shock, your hand does not move from the light switch until the police arrive three minutes later and cuff you.`
+				goto police
+
+			label unlit
+			`	Without turning the lights on, you take three steps into the house, trip, and fall. As your eyes slowly become accustomed to the dark shadows, you begin to make out shapes in the gloom. Gradually, the shapes solidify into objects: an overturned chair, an empty flechette gun, and Pict's corpse. So shocked are you that you do not hear the sirens until the lights are flicked on and the police have you under gunpoint.`
+
+			label police
+			`	All things considered, the cops are reasonable enough. You find yourself locked in a holding cell, but at least it's clean. In exchange for your pilot's license and photo ID you're given food, water, and a bucket that is empty and smells of bleach rather than human waste.`
+			`	A few hours later, you're hauled out for questioning. A burly cop reads you your rights, warns you that you have the right to legal counsel and don't have to answer the questions you're about to be asked, but that he's sure - you being an upstanding citizen and so forth - you'll answer them anyways.`
+			`	Then he clears his throat, and begins the questioning.`
+			`	"Are you Captain <first> <last>?"`
+			choice
+				`	"Yes, that's me."`
+					goto cooperative
+				`	"No, sir."`
+				`	(Keep silent.)`
+					goto silent
+
+			`	"So, in fact, the ID we took from you is falsified? Or is it stolen?"`
+			choice
+				`	"Okay, okay, I am Captain <last>."`
+					goto reluctant
+				`	"Falsified, of course. Don't you know I'm a transgalactic crime lord?"`
+					to display
+						"reputation: Pirate" > 0
+					goto scumbag
+				`	(Keep silent.)`
+
+			`	The cop gives you a pointed stare as a second officer in the corner of the room jots down something on a notepad. "Let's answer questions truthfully, <last>."`
+				goto second
+
+			label scumbag
+			`	Needless to say, admitting you're a big-time pirate in front of the fuzz doesn't go down too well. Before you know it you're in front of a lawyer, a jury, and then behind bars for the rest of your life.`
+				die
+
+			label silent
+			`	"I see you're determined to make things difficult, aren't you, <last>? Very well, then. We shall have to assume that you haven't magically changed your fingerprints, DNA, blood type, and appearance and acquired fake identification since you last got your license renewed.`
+				goto second
+			
+			label reluctant
+			`	"Learned your lesson?"`
+			`	You nod.`
+			`	"Good, I'm glad. You'd be surprised how many people try to convince us our records are wrong rather than accept that we already know who they are.`
+				goto second
+
+			label cooperative
+			`	"Good, I'm glad you're willing to cooperate. You'd be surprised how many people don't.`
+
+			label second
+			`	"Now, second question: what were you doing at 45 Impala Street?"`
+			`	Outside the interrogation room, a door slams and someone shouts something about protocols.`
+
+			choice
+				`	"I was just going for a walk."`
+					goto walk
+				`	"I got a voice message from someone I used to know. She seemed to think she was in danger."`
+					goto message
+				`	(Keep silent.)`
+			
+			`	The police officer sighs. "Look, <last>, I'm being paid to be here, and you're not. If you're innocent, it's in everyone's best interest if you speak up. And if it turns out that you were involved with what happened at 45 Impala Street, we're going to find out eventually."`
+				goto knock
+
+			label walk
+			`	"And you sure chose an interesting place to go walk, didn't you?"`
+				goto knock
+
+			label message
+			`	"Ah. And this person would be Ms. Macdonald?"`
+			`	"You mean Pict?" you reply.`
+
+			label knock
+			`	Suddenly, someone knocks loudly on the door. Your interrogator gestures to the second cop in the room, who stands up and opens it.`
+			`	On the other side of the door stands Raven from Navy Intelligence, flanked by two surly marines and trailed by a vehemently protesting police clerk.`
+			`	"Sorry to interrupt, but I'm here to take custody of Captain <last>." She grins sardonically. "Matters of national security, you understand."`
+			`	Behind her, the clerk continues complaining, but the officer in the room just waves her over to a chair and signs for the transfer. In return, Raven hands over a thin file and a couple of memory chips.`
+			`	Rather than cart you off to another prison, you soon find yourself back at the <ship>.`
+			choice
+				`	"Wait, what are we doing back here?"`
+					goto brief
+				`	"What are you doing on Hermes?"`
+			
+			`	"Well, what I was doing was supervising Pict," Raven replies. "But seeing as how she's rather dead right about now I thought I might as well manage you instead. I'll explain more later.`
+
+			label brief
+			`	"For now, all you need to know is that we know you're innocent. The police here will too, just as soon as they finish looking through the data I gave them. Pict was dead before you landed, and we have photos of her murderer. I can explain how we know later.`
+			`	"About twenty minutes ago, though, Pict's killer fled the planet with my ship in hot pursuit. Since I don't feel like commandeering a posh lawyer's Flivver, that means that you're my ride. By the powers vested in me, I'm commandeering your spacefaring vessel, the <ship>, until such time as it is no longer needed in the service of the Republic, yadda, yadda, yadda, we're leaving now. Understood?"`
+			`	You nod.`
+			`	"Good. Let's get going, then. We don't really have much time to waste if we hope to catch him."`
+				launch
+	on enter "Capella"
+		conversation
+			`You arrive in orbit just in time to watch Raven's Gunboat disappear into hyperspace. The assassin's ship is already gone, but Raven seems unfazed.`
+			`	"He can't have gotten far... with the afterburner thrust he was using there's no way he'll be able to make it any further than <system> without running out of fuel. So that means we're headed for <planet>."`
+			`	As Raven's speaking, you notice a whole flotilla of Navy ships streaking out of the atmosphere behind you.`
+
+	npc
+		government "Republic"
+		personality
+			"heroic"
+			"opportunistic"
+			"launching"
+			"staying"
+			confusion 10
+		fleet "Large Republic"
+		fleet "Small Republic" 3
+
+	on complete
+		conversation
+			`As soon as you land on <planet>, Raven's marines spring to their feet.`
+			`	"It looks like we've got him," she tells you. "We'll know for sure in half an hour, though, so meet us back in the spaceport then."`
+
+
+mission "Pict's Legacy 2"
+	name "Follow Pict's Killer"
+	description "Navy Intelligence has let Pict's killer loose in the hope he'll unwittingly lead them to Alphas. Follow him to <destination>, destroying any threats you find there before landing."
+	source "Ada"
+	destination "Sandswell"
+	passengers 3
+	deadline 3
+	blocked "You'll need three bunks if you want to continue searching for Pict's killer. Return here when you have the required space free."
+	to offer
+		has "Pict's Legacy 1: done"
+	on offer
+		conversation
+			`You find yourself back in the spaceport with Raven and the crew of her Gunboat.`
+			`	"Thanks to your help, Captain <last>, we've been able to pinpoint the killer. Better yet, we think we might be about to discover where his controllers are hiding."`
+			choice
+				`	"That's great news! Where is he?"`
+				`	"So you don't think he was acting alone?"`
+					goto alone
+			
+			`	"Right now, he should just be leaving the atmosphere in a fully-fueled Flivver."`
+			`	Raven's pilot chuckles. "Fully-bugged, too."`
+			`	"Exactly," she continues. "That Flivver is emitting more than the Gamshig Reactor. The killer might think he's getting away, but all he's going to do is lead us directly to where his bosses are hiding out."`
+			choice
+				`	"What if he realizes he's being followed and slips away?"`
+				`	"So you don't think he was acting alone?"`
+					goto alone
+			
+			`	Raven's reply is quick and confident. "He won't. Pict isn't the first person he's killed, and, while his plans are always sophisticated, his execution rarely is."`
+				goto photos
+
+			label alone
+			`	Raven smiles sadly. "That would be too easy. We can't prove anything, but we also won't need to. Every time he's killed so far, he's had help: sophisticated, foolproof plans, expensive equipment, unlimited funding. What he hasn't shown is skill."`
+
+			label photos
+			`	She passes you four small photos featuring a dark figure. In one, the man is crouched behind the support of a bridge near the mangled wreck of a ground car. In a second, he's sitting in a hospital waiting room. In the third, he's fleeing through an open window. The last picture shows him entering Pict's house at 45 Impala.`
+			`	Raven sighs. "I believe you knew some of his victims, too."`
+			`	She points to the first photo. "Klaus Nilsson: part-time bounty hunter, part-time drag racer. Died in a freak accident last year when his front tires exploded at 300 km/h. Or at least that's what the police report said, but they found it suspicious enough to flag it."`
+			`	Her finger moves to the second photo. "Daniel 'Dagger' Dresden: retired Republic Navy marine undergoing treatment for alcohol-induced hepatitis. Died of sudden multiple organ failure in hospital on Starcross fifteen minutes after the doctors decided he was stable and fit for surgery."`
+			`	Indicating the third photo, she goes on. "Hadija Jumanne: senior Republic defense staffer who organized a bounty program on pirates with suspected connections to the Alphas. Fatally shot in her hotel room on Glory last month.`
+			`	"Then, of course, there's Pict. Framing you for her murder was clever on the surface, but even the regular cops would have found enough evidence to clear you eventually. A skilled assassin would never have taken that kind of risk, even for revenge."`
+
+			choice
+				`	"Revenge? Is that why you think he went after Klaus, Dagger, and Pict?"`
+				`	"Do you think their deaths had anything to do with Vlad Blaire?"`
+					goto blaire
+				`	"What about Cerridwyn? Is she okay?"`
+					goto cerridwyn
+			
+			`	"That was certainly why he agreed to do it, yes. It seems like his father was killed a number of years ago during an aborted hit on Vlad Blaire... an attack that the three of them were involved in with you, unless I'm mistaken.`
+			`	"As for why his bosses would supply and prepare him for such killings, revenge might have played a part there as well. I say might, because no one really understands Alpha psychology."`
+				goto alphas
+			
+			label blaire
+			`	"Absolutely. We believe that these murders were intended as reprisal killings for a number of operations that have been funded by the Navy since 2985. Over the past few years, these attacks have become more and more common - shootings, poisonings, bombings, sudden disappearances, one by one our soldiers and operatives are murdered. Nine times out of ten, no one is ever brought to court. It doesn't help that so many of the victims are redlined combat veterans with criminal records, or that the Alphas have gotten so good at covering up their crimes."`
+				goto alphas
+			
+			label cerridwyn
+			`	Raven looks you in the eyes. "I suppose you haven't really kept in touch, have you? Cerridwyn Morgan admitted herself to a mental hospital shortly after the death of Vlad Blaire upon the referral of her psychiatrist, and she's been there ever since. I wouldn't call her okay, but she is still alive. The Alphas only got her soul, not her body."`
+			action
+				log "Minor People" "Cerridwyn Morgan" `Following the end of her time with Vlad Blaire, Cerridwyn admitted herself to a mental hospital where she has remained ever since.`
+			
+			label alphas
+			`	"Wait, Alphas?" you ask.`
+			`	"Yes, Alphas. We were winning the war for hundreds of years before we took the pressure off to deal with the CCOR. Now, they operate openly again, but the news agencies only notice the flashy battles and not the silent ones.`
+			`	"Alphas killed Tycjan Yanovik. Alphas killed Aaron Nguyen. Alphas killed Pict Macdonald. And, by God, the Alphas will not keep destroying us if I have any say in the matter!"`
+			`	For the first time since you met her, Raven's impassive and professional Questioner mask falls away, replaced by the wrath of a grief-hardened crusader.`
+			`	"We've been talking long enough - the Alphas' weapon is certainly out of the system by now, heading straight toward them like the idiot he is. Get your ship ready for battle, Captain <last>, because we're going to bleed those murdering scum.`
+			`	"Our sensors show that Pict's killer just entered <system> and is heading for <planet>. Our ships are ready to follow with your help, to hunt and destroy any Alphas in the system before landing and arresting the murder weapon. Feng, Isaksen, and I will join you on your ship again."`
+				accept
+
+	npc
+		government "Republic"
+		personality
+			"heroic"
+			"opportunistic"
+			"launching"
+			confusion 10
+		fleet "Large Republic"
+		fleet "Small Republic"
+
+	# These heavy reinforcements will arrive if the player can hold on for long enough.
+	npc
+		government "Republic"
+		personality
+			"heroic"
+			"opportunistic"
+			confusion 10
+		system "Wazn"
+		fleet "Large Republic" 3
+	
+	npc kill
+		government "Alpha"
+		personality
+			"heroic"
+			"staying"
+			"target"
+			"vindictive"
+		system destination
+		ship "Leviathan (Heavy)" "Doomsday"
+		ship "Firebird (Plasma)" "Red Nova"
+		ship "Firebird" "Exterminator"
+		ship "Hauler" "Powder Train"
+		dialog "With the Alphas destroyed, Raven quickly locates the signal emitted by the killer's ship and directs you to land near a large mountain on <planet>."
+	
+	on enter "Kugel"
+		dialog "Entering Kugel, you see no sign of the killer's ship. Instead, the space around <planet> is swarming with Alpha warships."
+
+
+	on visit
+		dialog "You've land on <planet>, but the Alphas are still overhead. It looks like they're going to escape!"
+	
+	on complete
+		log "Minor People" `Compassion "Pict" Macdonald` `Pict Macdonald was a former member of the Silver Talon and a Sergeant Major in the Republic Navy. She was killed by an Alpha-backed assassin in retaliation for the killing of Vlad Blaire.`
+		log "People" "Raven" `Worked with Raven in tracking down the Alphas on Sandswell; the Alphas' crimes infuriated her in a way that nothing else seems to.`
+		log "Tracked down an Alpha-backed assassin who claimed I killed his father, destroying multiple Alpha warships in the process. The killer had previously murdered most of the former members of the Silver Talon - it seems Cerridwyn Morgan is the only survivor of the group."
+		payment 145000
+		conversation
+			`Your ship settles down amidst a cloud of dust. The two marines are out of their seats immediately and racing for the door.`
+			`	"He's in the mountain," Raven says. "The map is showing some sort of underground complex."`
+			
+			choice
+				`	"Well, then, let's go get him."`
+				`	"Are you sure this is a good idea?"`
+					goto idea
+			
+			`	Raven only nods before opening the hatch. The four of you are immediately met by a blast of stinging, blinding sand. Covering your eyes and mouths, you trudge toward what seems to be the complex's entrance, the <ship> quickly obscured by the dust clouds behind you.`
+				goto continuation
+			
+			label idea
+			`	"No, but we owe it to them," Raven replies. The marines only nod before opening the hatch and leading the way out into the stinging, blinding sand. Covering your eyes and mouths, the four of you trudge toward what seems to be the complex's entrance, the <ship> quickly obscured by the dust clouds behind you.`
+
+			label continuation
+			`	As you pass into the gaping tunnel, the wind lets up. One of the marines turns on a light, revealing the remains of a hastily abandoned fortress. Crates of food and clothing lie side-by-side with boxes of ammunition and jerrycans of starship fuel, dropped by the Alphas in their rushed evacuation.`
+			`	Heading deeper, the tunnel crosses other, narrower shafts and passageways. Raven mutters something about the tracker before coming to a stop. "I don't get it, first it said he was in front of us, but now he's showing up behind us. But, how is that possible?"`
+			`	The tunnel falls silent as she fiddles with the receiver.`
+			choice
+				`	"Maybe the receiver isn't designed to work under a mountain in a sandstorm?"`
+				`	"What if he managed to sneak around us using a side passage?"`
+					goto ambush
+				
+			`	"No, it should work," Raven replies. "Oh, well, I guess it's time to try the old IT standby." With a loud click, she turns off the receiver.`
+			`	Before she can turn the receiver back on, however, there is another, very distinctive click: the click of a magnet sliding precisely two point eight centimeters through a carbon-fibre chamber before coming to rest up against a steel plate. There are not many things that cause such a click. In fact, there are only two: someone dropping a magnet through a carbon-fibre chamber from a height of two point eight centimeters, and someone releasing the safety on a Type 8 laser pistol.`
+				goto miyano
+			
+			label ambush
+			`	Raven turns toward you, frowning. "That shouldn't be possible -" she freezes.`
+			`	There is a very distinctive click: the click of a magnet sliding precisely two point eight centimeters through a carbon-fibre chamber before coming to rest up against a steel plate. There are not many things that cause such a click. In fact, there are only two: someone dropping a magnet through a carbon-fibre chamber from a height of two point eight centimeters, and someone releasing the safety on a Type 8 laser pistol.`
+
+			label miyano
+			`	"Don't move, or the captain buys it," growls a rough voice from behind you. The three Navy personnel freeze as a hand grabs you by the shoulder and spins you around to face the gun barrel and the man behind it. His face is masked by shadow and his eyes are as hard as steel, but there is something vaguely familiar about him.`
+			`	"I am Miyano Tonogi," he says, staring intensely into your face, "and my father was Miyano Hiromi, a poor hovercraft pilot. You killed my father. Prepare to die."`
+			`	As his finger moves toward the trigger, he fails to notice three more clicks caused by three more two point eight centimeter magnets. The marines' lasers catch him in the face, blinding him instantly and throwing his aim off. Rather than hitting you square between the eyes the shot grazes your shoulder before the gun clatters out of the man's fingers. Blind and dying, he weeps.`
+			`	Raven rushes up to your side. "Are you okay?"`
+			choice
+				`	"I will be."`
+				`	"It would take more than a laser to kill me."`
+					goto macho
+				`	"Physically, or mentally?"`
+					goto mental
+			
+			`	Probing your shoulder, she seems to agree with your self-diagnosis. One of the marines injects the assassin with something and he falls silent except for his ragged breaths. A minute later, those have stopped as well and Miyano Tonogi is dead.`
+				goto denouement
+
+			label macho
+			`	Raven frowns, but says nothing. Clearly, it didn't take more than a laser to kill Miyano Tonogi, as his raspy breathing shudders to a halt.`
+				goto denouement
+
+			label mental
+			`	Raven closes her eyes and says nothing. One of the marines injects the assassin with a shot of analgesic but he continues sobbing. A minute later, he suddenly stops and sits bolt upright. The marines reach for their guns but he does nothing more than look off into the distance at a spot only his blinded eyes can see.`
+			`	"Father," he cries, "Father, what have I done?"`
+			`	Slowly, Miyano Tonogi slides back down to the ground. His breathing stops, and the assassin finally dies.`
+
+			label denouement
+			`	The four of you leave the cave as in a trance. Outside, the sandstorm has abated slightly, and you can see your ship parked beside a Navy Frigate. Sailors, marines, and support staff swarm the area. A medic applies some sort of salve to your wounded shoulder and pronounces you fit to fly. A clerk presses a credit chip worth <payment> into your hands in exchange for "services rendered to the Republic." A skinny officer cadet salutes and congratulates you with a grin.`
+			`	Pict is not among them, nor is Klaus or Dagger, Colonel Nguyen or Raven's Tycjan Yanovik.`
+			`	But Miyano Tonogi and the Alphas that held his reins are dead, and you are alive. You, and the hundred million people whose only connection with the events of the last week will be an obituary entry and a classified report unsealed fifty years from now.`
+
+
+
+mission "Pict's Quest 1"
+	name "Transport investigators to Tundra"
+	description "A small party of Alphas has been reported on <destination>. Transport a Navy Intelligence unit there to help track down the Alphas."
+	source "Shiver"
+	destination "Tundra"
+	passengers 4
+	to offer
+		has "event: Pict Trigger"
+		has "main plot completed"
+		not "strafed miyano's hovercraft"
+	on offer
+		conversation
+			`Walking through the spaceport, you notice a group of four Navy personnel huddling in the cold. Hearing you, one of them suddenly raises her head and calls "Hey, <first>, is that you?"`
+			choice
+				`	(Approach the soldiers.)`
+				`	(Leave them to freeze.)`
+					goto freeze
+			
+			`	As you approach, the troops solidify from amorphous blobs of cold into a surprising set of faces. The woman who called out turns out to be Pict, one of the members of the Silver Talon who helped kill Vlad Blaire. Beside her stands Raven, the Questioner you met working for the Free Worlds. The other two soldiers introduce themselves as Sergeant Feng and Private Isaksen of the Navy Marine Corps.`
+			`	"Well, we're lucky you showed up, <first>," Pict says. "We were supposed to transfer ships here but our second transport never showed up so we've spent the last day and a half hanging around the spaceport trying to catch a ride."`
+			choice
+				`	"Where are you headed?"`
+				`	"I wish I could help, but I've got places I need to go."`
+					goto unavailable
+
+			`	It's Raven, rather than Pict, who answers. "We're looking for a ride to <destination>. I'm afraid we'll only able to pay <payment> for this leg of the journey, but it's important work: a small group of Alphas was sighted there not too long ago and we think they might have been involved in a murder case.`
+			`	"If everything goes well, we should be able to get you approved for better remuneration for later jobs."`
+
+			choice
+				`	"That sounds like a worthy cause. I'll take you there."`
+				`	"Sorry, but I can't afford to take on a job for so little."`
+					goto unavailable
+			
+			`	You lead the four soldiers over to your ship where they hop in with nothing more than the rucksacks on their backs and start preparing for the trip to <planet>.`
+				accept
+
+			label freeze
+			`	Like the cynical psychopath you are, you ignore the freezing troops and return to the nice warm comfort of your ship.`
+				decline
+
+			label unavailable
+			`	Pict frowns, and it's Raven who responds. "Understandable. At least in the military we get paid per diem instead of per barrel of shrink-wrapped mackerel we transport."`
+			`	You exchange empty pleasantries, hand them a spare reflective thermal blanket of the sort that is inexplicably equipped in vast quantities on civilian spacecraft, and head back to the <ship>.`
+				decline
+	
+	on complete
+		payment 8000
+		conversation
+			`Over the course of the trip to <planet>, Raven and Pict filled you in on the details of the mission. It appears that around a month ago a senior defense staffer named Hadija Jumanne was found dead in her hotel room during a counter-Alpha summit on Glory. Several years ago, Jumanne was responsible for organizing a program of bounties on pirate warlords with ties to the Alphas, including a bounty on the head of Vlad Blaire. Although civil authorities were unable to find a suspect, Navy Intelligence believed that a band of Alphas was behind the attack, and Raven was tasked with organizing a formal search - culminating in the sighting of the group on <planet>.`
+			`	Finally, your ship touches down in the center of one of the largest spaceport domes. Raven presses a credit chip worth <payment> into your hand and turns to leave. Suddenly, she pauses. "Say, Captain <last>, we've got a couple things to handle, but if you'd like to meet us back here in the spaceport in twenty minutes or so, we could sure use your help."`
+
+
+mission "Pict's Quest 2"
+	name "Follow Alphas to Sandswell"
+	description "Raven believes the Alphas were travelling to <destination>. Follow them there, where you will be met with Navy reinforcements."
+	source "Tundra"
+	destination "Sandswell"
+	passengers 4
+	to offer
+		has "Pict's Quest 1: done"
+	
+	on offer
+		conversation
+			`You join the four soldiers near what appears to be a conveyor belt moving into the spaceport city's "downtown" district. Getting on behind Isaksen, you soon pass through first one large glass dome, then another, before finally getting off in what appears to be a business district.`
+			`	Your unusual party attracts some notice, but not much until you end up in front of a tiny shop selling "desert survival gear" - a rather strange sort of store to find on a planet that is essentially an enormous snowball.`
+			`	Stepping into the store behind Raven, you're greeted by the proprietor, a short young man whose face is vaguely familiar but who you certainly haven't seen before.`
+			`	"Hello, there. I suppose you're here about the Alphas?"`
+			choice
+				`	"Yes."`
+				`	(Let the professionals handle it.)`
+					goto professionals
+			
+			`	The man gives you a funny look. "Sorry to ask, but are you some kind of plainclothes detective or something..."`
+			`	Raven shakes her head. "No, Captain <last> is just a friend. Now, if you don't mind, may I ask you a few questions?"`
+				goto questions
+			
+			label professionals
+			`	"Yes, that's why we're here," Raven replies. "Now, if you don't mind, may I ask you a few questions?"`
+			
+			label questions
+			`	The man accedes and the two sit down at a small table behind the counter of the shop. Raven holds his hands and launches into a quiet battery of questions about the Alphas. By the time she's done, his face is covered in sweat. Raven stands up, shaking her head, and Sergeant Feng hands him a handkerchief to clean his face.`
+			`	"Well, thank you for your help, Mr. Miyano," Raven says. "I'm sorry to have put you through all that trouble."`
+			`	"No, no trouble at all," he replies. "Glad to do my part to help, that's all." He pauses, then continues. "Say, all of what you did just now - are you a Questioner?"`
+			`	"Yes, I am," she responds.`
+			`	"So you know I was telling the truth?"`
+			`	"Yes."`
+			`	"Do you think you'll be able to catch them?"`
+			`	"Honestly, no." Raven smiles sadly. "We'll try, but they're too long gone. Without any way to track them or any other witnesses, it hardly matters."`
+			`	Pict whistles softly. "This is almost worse than that business with Vlad Blaire, isn't it, <first>?" she asks.`
+			choice
+				`	"Yeah, this is almost worse."`
+					goto father
+				`	"At least no one's been killed yet."`
+			
+			`	"Well, apart from Jumanne, you mean," Pict counters. "But you do have a point."`
+			label father
+			`	The shopkeeper suddenly interrupts. "Wait, you knew Blaire?"`
+			`	Pict eyes him quizzically. "Son, I killed Vlad Blaire. Took a gene sample, too, so I know it was him. Why?"`
+			`	Suddenly, Mr. Miyano becomes energized, almost frantic. "My father, my father worked for that bloodsucking man. He owed him money on Dune, you see, so he became one of his drivers. One of his best hovercraft drivers... Blaire always gave him the most important jobs and he trusted him because he knew that between his debt, his family, and his honor, my father would never betray him."`
+			`	Silently, tears trickle down Miyano's face. "When Blaire died, it was as if we'd been set free. My father rushed home with the news and we were off Greenrock by midnight. You - you saved my family." For a full minute, he sits in silence, crying tears of relief and joy tempered with sorrow and grief. Then, he cocks his head. "Wait a minute -" he turns to Raven "- Raven, right? Did you say there's no way of tracking the Alphas?"`
+			`	"That's right," she replies.`
+			`	"When I was young, I remember one of Blaire's men... he came to our tenement and gave all us kids a lecture about never paying for anything with a bank card; he said the government could track everywhere you went with it. Is that right?"`
+			`	"Well, not quite," Raven responds, somewhat chagrined. "If we have a bank card we can connect it to any pilot's license or other documents you have in your name. But that only works if the vendor keeps a record of the transaction."`
+			`	Mr. Miyano's eyes glow. "Then we've found them! I have a record of the card they used right here!"`
+			choice
+				`	"Wait, you sold them supplies?"`
+				`	"Sorry, does anyone else think it's weird that the Republic can just track you whenever you buy anything?"`
+					goto surveillance
+
+			`	"Why, of course!" he exclaims. "That's how I saw them."`
+			`	"May I see your records?" Raven asks.`
+
+			label surveillance
+			branch "non-fw surveillance"
+				not "event: joined the free worlds"
+			`	"Well, perhaps," Pict replies, "but it's not quite so simple. I thought a Free World bigwig like you would know about that, though, seeing as how one of the South's big objections to pilot's licenses was always the invasion of privacy."`
+			`	"I thought -" you manage to get out before Raven cuts you off.`
+				goto interrupt
+
+			label "non-fw surveillance"
+			`	"It's the Republic, what can I say." Pict replies. "Invasion of privacy? Maybe. But it's useful in times like these."`
+			`	"But -" you interject before Raven cuts you off.`
+
+			label interrupt
+			`	"Let's talk politics later." She turns to Mr. Miyano. "Can I see your records?"`
+
+			label search
+			`	He happily agrees, and it only takes a minute for Raven to get the ID behind the bank card: Joachim Grub, a 58-year-old man born on Crossroads with a pilot's license and a registered Clipper by the name of the Mary Anne. No criminal record, no property deeds, and - vitally - no birth certificate.`
+			`	"There's no way this guy exists," breathes Private Isaksen, looking over Raven's shoulder.`
+			`	Raven only grins and calls in a request to Navy Intelligence HQ for all information regarding the Mary Anne.`
+			`	Even with the hyperspace relays, it takes a good hour for Navy Intelligence to get back. In the intervening time, the five of you chat and Raven asks Mr. Miyano a few more questions without using her Questioner methodologies.`
+			`	Finally, Raven receives a response to her query in the form of several hundred pages of dense notation. Scrolling down to the bottom, she finds what she's looking for: a list of recent ports of call and system entries by the so-called Grub's ship.`
+			`	At the bottom of the list? Stopovers on Tundra and Reunion including full fuel top-ups, and fly-throughs of systems in a straight line from Cebalrai to Acamar.`
+			`	Raven smiles a shark's toothy smile. "Looks like someone screwed up royally... Someone who was on Tundra, and then flew to Acamar and vanished... Someone who bought desert survival gear on a snowball planet... Someone, in other words, who was really going to Sandswell.`
+			`	"Thank you for your help, Mr. Miyano. I do believe we've found our Alphas - either that or a tourist with especially odd taste."`
+			`	With that, the four of you return to your ship, leaving Mr. Miyano to his shopkeeping. Raven stays outside for a minute to take a call before returning to the cockpit.`
+			`	"Right, Captain <last>. We're headed to <system>. If we see signs of Alpha activity, we will go suborbital over <planet> to secure the area and wait for Navy reinforcements. Oh, and the Navy has approved a payment of <payment> for you for your troubles once we set down there."`
+				accept
+	
+	npc
+		personality
+			"waiting"
+			"staying"
+			"heroic"
+			"opportunistic"
+			confusion 10
+		system "Acamar"
+		government "Republic"
+		fleet "Large Republic" 3
+		fleet "Small Republic" 4
+	
+	on enter "Kugel"
+		conversation
+			`As you enter Kugel, Raven, Feng, and Isaksen start fiddling with what looks like a cross between a steampunk artist's chef d'oeuvre and a giant crocus. Raven barks instructions as Feng twists the knobs? flowerpetals? of the strange machine before she finally sits bolt upright.`
+			`	"We've got them. Oh, have we ever got them."`
+			`	On the side of the machine, a small screen has been filled with hundreds of red dots. Isaksen takes one look at the display and blanches. "How did we ever miss them?" they ask. No one replies.`
+			`	Finally, Raven breaks the silence. "Take us down as fast as you can, Captain <last>, and be prepared to fight. There's at least a hundred Alphas down there with some serious warships. Thankfully, they don't seem to have any planet-based defenses, but if you let those ships reach orbit they'll blast us to smithereens.`
+			choice
+				`	"I'm on it."`
+					decline
+				`	"Yeah, right. Those punks don't stand a chance against the <ship>."`
+					to display
+						"total ships" == 1
+				`	"Yeah, right. Those punks don't stand a chance against my fleet."`
+					to display
+						"total ships" > 1
+				`	"The <ship> doesn't have any weapons. How are we supposed to defend ourselves?"`
+					to display
+						not "armament deterrence"
+					goto unarmed
+			
+			`	"That's the spirit. But hurry."`
+				decline
+			
+			label unarmed
+			`	"In that case, we pray that reinforcements get here in time to save us before those Alphas get their guns online."`
+	
+	on complete
+		payment 60000
+		log "Minor People" "Pict" `A member of Navy Intelligence and a former member of the Silver Talon, Pict is heavily involved in the ongoing war against the Alphas.`
+		log "Helped Pict and Raven track down and destroy a major Alpha base on Sandswell, gaining some experience in atmospheric combat in the process."
+		conversation
+			`Shortly after you enter the atmosphere, Raven calls out. "We've got contact! Firebird, directly below. Looks like a cold start - they don't have any shields."`
+			`	Pict stands by your side, ignoring the lurches of the ship beneath you. "Ever fought in atmosphere before, <first>?"`
+			choice
+				`	"Sure, I know what I'm doing."`
+					to display
+						has "armament deterrence"
+				`	"No, do you have any tips?"`
+					to display
+						has "armament deterrence"
+					goto tips
+				`	"Sure, but usually I have weapons."`
+					to display
+						not "armament deterrence"
+					goto unarmed
+				`	"What part of 'unarmed' makes you think we're going to be doing any fighting?"`
+					to display
+						not "armament deterrence"
+					goto unarmed
+			
+			`	"In that case, I'll shut up and let you fly."`
+			`	Raven calls out something else, but you can't make it out over the roar of the wind outside. Suddenly, you see a glimpse of metal, far too close. Instinctively, you open fire, but your shots go harmlessly past the wildly jerking Firebird.`
+			`	Metal screams as you throw the <ship> into a tight bank, and Pict staggers but doesn't lose her balance. Using your instruments instead of your eyes, you track the Firebird's caret until it crosses your line of fire and let loose with everything you have. A shockwave and a red flash confirm your kill.`
+			`	Raven yells something else, but you can't hear. On your radar screen you line up on a second target, noting with dismay the sudden swarm of icons. Your finger reaches for the trigger, preparing to fire... but then Pict swats your hand away.`
+			`	"That's a friendly!" she yells in your ear. "The Navy's here, just break off and go to ground."`
+			`	In reply, you level out the <ship> and head for <planet>'s surface.`
+				goto landing
+			
+			label tips
+			`	"Of course. First tip: don't rely on your eyes. If you can see it, you're too close. Second tip: without shields, your best target is a ship's cockpit window. A single hit in this kind of atmosphere will wreck the whole cockpit of even a capital ship, let alone a Firebird. Third tip: don't be afraid to fly this thing like a fighter. It can take some rough treatment, and it's not about to pull enough Gs to make any of us black out."`
+			`	With that sage advice ringing in your ears, you dive in on the Firebird, the tortured metal of your ship screaming in agony. Through a gap in the clouds of sand and grit you catch a glimpse of metal and glass and line up your sights.`
+			`	The result is more devastating than anything you have ever seen before. Your shot catches the Firebird square in the cockpit, instantly pulverizing the reinforced, unshielded glass. The blast continues backward through the ship before the entire thing explodes in a massive gout of deuterium fire.`
+			`	Bringing the <ship> around again, you line up on another target, only for Pict to yell in your ear, "That's a Navy ship!" She pauses to assess the situation. "They've got it handled! Just disengage and go to ground!"`
+			`	Following her guidance, you level out your ship and head for <planet>'s surface.`
+				goto landing
+			
+			label unarmed
+			`	Pict chuckles. "You'll be fine. Raven had half the Navy on standby in Acamar and they'll be here any minute now. Just duck and weave and look threatening."`
+			`	Raven calls out something else, but you can't hear her over the sound of the wind outside. Suddenly, you catch a glint of magenta paint flash by in the distance. Throwing the <ship> into a spiral, you frantically dodge as the Firebird pounces on you. The ship bucks from a glancing plasma hit but holds together.`
+			`	Then, only a minute after the battle begins, it's over. The Firebird suddenly breaks off, only to disintegrate into a billowing cloud of deuterium flame. A Navy warship swoops down, and Pict guides you toward <planet>'s surface.`
+
+			label landing
+			`	Upon touchdown, you are met by a scene of organized chaos. Navy ships are landing left and right, and Raven disembarks immediately to talk to the fleet's commanding officer. Her two marines follow her out, so that only Pict is left.`
+			`	"Well," she says, turning to you, "that went a fair sight better than Poisonwood. It looks like we took out a hundred Alphas with no friendly casualties. Medals all round instead of cenotaphs, toasts instead of eulogies, but the war goes on." She sighs. "It's almost too easy."`
+			choice
+				`	"What do you mean?"`
+				`	"I hardly think that was easy."`
+					goto misunderstanding
+				`	"I know what you mean."`
+					goto understanding
+
+			`	She gestures at the Navy personnel disembarking from a nearby warship. "This, all of it. We show up, we offer no quarter, we hand out accolades, and we scrape their strongholds for secrets. They dug out a whole mountain here, you know. It must have taken them years to build this base, and it took us months to find them, but it only took Raven half a second to send the message that doomed them all. All because they're not quite human."`
+			`	She closes her eyes and takes a deep breath before opening them again. "Say, <first>, that's enough about my demons. I'm sure you have lots of questions about all this."`
+				goto questions
+
+			label misunderstanding
+			`	"No, no, that's not what I mean." She gestures at the Navy personnel disembarking from a nearby warship. "This, all of it. We show up, we offer no quarter, we hand out accolades, and we scrape their strongholds for secrets. They dug out a whole mountain here, you know. It must have taken them years to build this base, and it took us months to find them, but it only took Raven half a second to send the message that doomed them all. All because they're not quite human."`
+			`	She closes her eyes and takes a deep breath before opening them again. "It's so easy for all of them, all of them but me... sometimes I think I'm the only one who really realizes how similar we are. Enough about my burdens, though - I'm sure you have lots of questions about all this."`
+				goto questions
+			
+			label understanding
+			`	She looks at you quizzically. "Do you really? Do you see the same unquestioned evils here that I do? How easy it is for us all to show up, offer no quarter, hand out accolades, and scrape their strongholds for secrets? They dug out a whole mountain here, you know. It must have taken them years to build this base, and it took us months to find them, but it only took Raven half a second to send the message that doomed them all. All because they're not quite human."`
+			`	She closes her eyes and takes a deep breath before opening them again. "Maybe you do. And anyhow, me getting all existential on you isn't helping anyone. I'm sure you've got lots of questions about all this."`
+
+			label questions
+			choice
+				`	"How did you go from being a bounty hunter to part of Navy Intelligence?"`
+				`	"How did you meet Raven?"`
+					goto raven
+				`	"Do you know how the rest of the Silver Talon is doing?"`
+					goto talon
+				`	"How could an Alpha stronghold like this go unnoticed for so long?"`
+					goto unnoticed
+				`	"Wait, the Alphas built a fortress underneath a mountain?"`
+					goto mountain
+			
+			`	Pict laughs. "Oh, I was part of Navy Intelligence all along." She grins at the look of surprise on your face. "It was all part of Jumanne's Operation Payback. Little cells of us were sent off to aid the bounty hunters wherever possible. Dagger and I ended up getting 'recruited' by Cerridwyn, and the rest is history. But I reckon I've been part of the Navy since before you were born."`
+				goto calling
+
+			label raven
+			`	Pict smiles sadly. "Poisonwood. It all comes back to Poisonwood. We dropped together, you know. Even as young as she was, Raven was good at her job. Our squad was tasked to guard her and another Questioner - a young man named Tycjan Yanovik - while they gathered information behind enemy lines. Then, of course, they fouled up our flight plan and put us right over the Alphas' air defenses.`
+			action
+				log "Minor People" "Pict" `During the assault on Poisonwood, Pict was assigned to protect the Questioner Raven on an intelligence-gathering mission and was one of the few survivors of the operation.`
+			`	"Before we knew what was happening, half the shuttle was gone. Ten of us started out, but only six survived the drop, and only four of us made it off Poisonwood again: me, Dagger, Black Eye Brian, and Raven. None of us would have made it out alive if it weren't for Raven."`
+				goto calling
+			
+			label talon
+			`	"Well, Dagger's an easy one," Pict responds. "The poor fool gave himself alcohol-induced hepatitis and wound up first on medical leave and then stuck with an honorable discharge. I hear he's doing okay for himself, but his doctor told him that his next drink would be the death of him and he's been complaining about so-called 'medical malpractice' ever since.`
+			`	"As for Cerridwyn -" she winces. "Cerridwyn never really recovered from Louis' death. Shortly after she got home she checked into a mental hospital with major depressive disorder and has been in and out ever since. I talked to her last year and she seemed to be doing better, but I don't think she'll ever accept that what happened on Greenrock wasn't her fault.`
+			action
+				log "Minor People" "Cerridwyn Morgan" `Following the end of her time with Vlad Blaire, Cerridwyn admitted herself to a mental hospital with clinical depression. With professional help, her condition has improved, but she has remained stricken by survivor's guilt.`
+			`	"Klaus, on the other hand, I haven't heard anything about. All I know about him is that he's won a couple of drag races on a few frontier planets and no one's published an obituary yet."`
+				goto calling
+			
+			label unnoticed
+			`	Pict gazes off into the distance. "Overconfidence. Arrogance. Incompetence. Insufficient surveillance. You name it, the review board will argue it was the root cause. In reality? All of those were factors, but the biggest one was simply that no one ever suspected the Alphas would build a base here. If it wasn't for a couple of Alphas bungling their security arrangements, we might never have suspected anything at all."`
+				goto calling
+			
+			label mountain
+			`	"Well, expanded at least. Feng thinks that the tunnels were already there, and he has a background in that kind of field, so he might know. But either way, there's no denying they did some pretty heavy work. I don't know how closely you looked at that scanner display while we were in orbit, but there must be several kilometers of passages cut into that mountain." She gestures at the craggy, sandy peak nearby.`
+
+			label calling
+			`	Suddenly, Raven comes jogging back to your ship. "Pict, we need you!" Pict nods and turns to you again. "Thanks, <first>. May we meet again someday in a more peaceful time."`
+			`	Noticing you, Raven walks over and hands you a credit chip worth <payment>. "Thanks for your help, Captain <last>. We'll find our own way off-planet when we're done here; you're welcome to leave whenever you wish."`
