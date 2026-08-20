@@ -214,13 +214,13 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		{
 			for(const DataNode &grand : child)
 			{
-				const string &key = grand.Token(0);
-				bool hasValue = grand.Size() >= 2;
-				if(key == "universal" && hasValue)
+				const string &grandKey = grand.Token(0);
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "universal" && grandHasValue)
 					universalRamscoop = grand.BoolValue(1);
-				else if(key == "addend" && hasValue)
+				else if(grandKey == "addend" && grandHasValue)
 					ramscoopAddend = grand.Value(1);
-				else if(key == "multiplier" && hasValue)
+				else if(grandKey == "multiplier" && grandHasValue)
 					ramscoopMultiplier = grand.Value(1);
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
@@ -373,7 +373,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 					removedObjectPlanets.insert(removeIt->planet);
 				last = objects.erase(removeIt, last);
 
-				// Recalculate every parent index.
+				// Recalculate every index.
 				for(auto it = last; it != objects.end(); ++it)
 				{
 					if(it->index >= index)
@@ -597,10 +597,10 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 			"sprite(s) of the star(s) in this system. If the habitable range is meant to be 0, then explicitly define "
 			"it as such on the system.", Logger::Level::WARNING);
 	// If no stars were encountered, then assume that everything is orbiting around the first object in the system.
-	bool firstObjectIsStar = false;
+	bool treatNextObjectAsStar = false;
 	if(!numStars && !objects.empty())
 	{
-		firstObjectIsStar = true;
+		treatNextObjectAsStar = true;
 		const StellarObjectSpriteData &spriteData = GameData::ObjectSpriteData(objects[0].GetSprite());
 		numStars += 1;
 		starMass += spriteData.Mass();
@@ -619,6 +619,8 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 		}
 		else if(object.parent >= 0)
 		{
+			// Objects with a parent are moons whose orbital period
+			// is influenced by the mass of their parent planet.
 			const Sprite *parent = objects[object.parent].GetSprite();
 			const StellarObjectSpriteData &spriteData = GameData::ObjectSpriteData(parent);
 			double mass = spriteData.Mass();
@@ -635,9 +637,9 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 		}
 		else if(!starMass)
 			invalidStarMass = true;
-		else if(object.isStar || firstObjectIsStar)
+		else if(object.isStar || treatNextObjectAsStar)
 		{
-			firstObjectIsStar = false;
+			treatNextObjectAsStar = false;
 			// If there is only one star in the system then it should have a period of 10.
 			// Otherwise, the orbital period is determined by the influence of all stars
 			// in the system as they orbit around each other.
@@ -645,7 +647,11 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 				period = sqrt(pow(starDistance, 3.) / starMass);
 		}
 		else
+		{
+			// All remaining objects are not moons or stars, and should therefore have
+			// their orbital period set based off of the mass of every star in the system.
 			period = sqrt(pow(object.distance, 3) / starMass);
+		}
 		object.speed = 360. / period;
 	}
 	if(invalidStarMass)
@@ -845,7 +851,7 @@ double System::ExtraHyperArrivalDistance() const
 
 
 
-// Additional travel distance to target for ships entering using a jumpdrive.
+// Additional travel distance to target for ships entering using a jump drive.
 double System::ExtraJumpArrivalDistance() const
 {
 	const optional<double> arrivalGamerule = GameData::GetGamerules().SystemArrivalMin();

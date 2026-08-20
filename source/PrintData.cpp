@@ -667,7 +667,6 @@ namespace {
 		}
 	}
 
-
 	void Planets(const char *const *argv)
 	{
 		auto PrintPlanetDescriptions = []() -> void

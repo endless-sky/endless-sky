@@ -34,18 +34,19 @@ void StellarObjectSpriteData::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
-		bool hasValue = child.Size() >= 2;
-		if(key == "landing message" && hasValue)
-			landingMessage = child.Value(1);
-		else if(key == "power" && hasValue)
+		if(child.Size() < 2)
+			child.PrintTrace("Expected key to have a value:");
+		else if(key == "landing message")
+			landingMessage = child.Token(1);
+		else if(key == "power")
 			solarPower = max(0., child.Value(1));
-		else if(key == "wind" && hasValue)
+		else if(key == "wind")
 			solarWind = max(0., child.Value(1));
-		else if(key == "icon" && hasValue)
+		else if(key == "icon")
 			starIcon = SpriteSet::Get(child.Token(1));
-		else if(key == "habitable" && hasValue)
+		else if(key == "habitable")
 			habitable = child.Value(1);
-		else if(key == "mass" && hasValue)
+		else if(key == "mass")
 		{
 			mass = max(0., child.Value(1));
 			if(!mass)
@@ -58,7 +59,7 @@ void StellarObjectSpriteData::Load(const DataNode &node)
 
 
 
-void StellarObjectSpriteData::SetLandingMessage(const std::string &message)
+void StellarObjectSpriteData::SetLandingMessage(const string &message)
 {
 	landingMessage = message;
 }
@@ -72,7 +73,7 @@ void StellarObjectSpriteData::SetMass(double mass)
 
 
 
-const std::string &StellarObjectSpriteData::LandingMessage() const
+const string &StellarObjectSpriteData::LandingMessage() const
 {
 	return landingMessage;
 }
