@@ -99,7 +99,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 
 	const Interface *boarding = GameData::Interfaces().Get("boarding");
 	messageDisplay = make_shared<TextArea>();
-	messageDisplay->SetFont(FontSet::Get(14));
+	messageDisplay->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	messageDisplay->SetParagraphBreak(0);
 	messageDisplay->SetColor(*GameData::Colors().Get("bright"));
 	messageDisplay->SetAlignment(Preferences::GetTextAlignment());
