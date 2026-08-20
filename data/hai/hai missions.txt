@@ -1991,7 +1991,7 @@ mission "Pond Strider Patch for v2"
 	to offer
 		has "event: pond strider mass production"
 	on offer
-		event "pond strider mass production v2"
+		event "pond strider mass production v2" 0
 		fail
 
 
