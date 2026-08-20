@@ -265,6 +265,7 @@ mission "Visit Quarg in Gegno Space"
 
 mission "Discover Hostile Quarg"
 	invisible
+	non-blocking
 	landing
 	source "Dueyu Eitch"
 	to offer
@@ -740,8 +741,13 @@ mission "Gegno Exploration Nudge Remover"
 
 mission "Vi Augen"
 	invisible
-	landing
+	non-blocking
+	transition
+	source
+		system "Kiluit"
+	destination "Earth"
 	on offer
+		# Fail the old version of this mission from prior to v0.10.1.
 		fail "Stationed Augen"
 	npc save
 		on kill
@@ -850,6 +856,7 @@ mission "Gegno Unwelcoming"
 mission "Gegno Hunter Fleets"
 	landing
 	invisible
+	non-blocking
 	repeat
 	to offer
 		has "Gegno Genocide Defense: offered"

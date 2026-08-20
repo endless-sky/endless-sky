@@ -17,6 +17,7 @@ ship "Aaulqra"
 	plural "Aaulqran"
 	sprite "ship/aaulqra"
 	thumbnail "thumbnail/aaulqra"
+	"administrative cost" 6
 	attributes
 		licenses
 			"High Houses"
@@ -30,14 +31,16 @@ ship "Aaulqra"
 		"drag" 8.75
 		"heat dissipation" 0.49
 		"fuel capacity" 600
-		"cargo space" 15
+		"cargo space" 25
 		"outfit space" 550
 		"weapon capacity" 240
 		"engine capacity" 120
 		"multimodal armor" 1
 		"hull repair rate" 2.75
-		"hull energy" 4.0
-		"hull heat" 4.0
+		# 0.0005 * max hull
+		"hull energy" 3.025
+		# 1.1 * hull repair rate
+		"hull heat" 3.025
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -110,6 +113,7 @@ ship "Ejniisde"
 	plural "Ejniisden"
 	sprite "ship/ejniisde"
 	thumbnail "thumbnail/ejniisde"
+	"administrative cost" 3
 	attributes
 		licenses
 			"Successor"
@@ -188,6 +192,7 @@ ship "Kaskhorade"
 	plural "Kaskhoraden"
 	sprite "ship/kaskhorade"
 	thumbnail "thumbnail/kaskhorade"
+	"administrative cost" 6
 	attributes
 		licenses
 			"High Houses"
@@ -201,14 +206,14 @@ ship "Kaskhorade"
 		"drag" 13.6
 		"heat dissipation" .5
 		"fuel capacity" 600
-		"cargo space" 140
+		"cargo space" 240
 		"outfit space" 570
 		"weapon capacity" 280
 		"engine capacity" 110
 		"multimodal armor" 1
-		"hull repair rate" 2.25
-		"hull energy" 3.26
-		"hull heat" 3.26
+		"hull repair rate" 2.225
+		"hull energy" 2.4475
+		"hull heat" 2.4475
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -284,6 +289,7 @@ ship "Kvelqde"
 	plural "Kvelqden"
 	sprite "ship/kvelqde"
 	thumbnail "thumbnail/kvelqde"
+	"administrative cost" 1
 	attributes
 		licenses
 			"Successor"
@@ -365,6 +371,7 @@ ship "Kvelqde-Khora"
 	plural "Kvelqden-Khora"
 	sprite "ship/kvelqde-khora"
 	thumbnail "thumbnail/kvelqde-khora"
+	"administrative cost" 1
 	attributes
 		licenses
 			"Successor"
@@ -446,6 +453,7 @@ ship "Myaede"
 	plural "Myaeden"
 	sprite "ship/myaede"
 	thumbnail "thumbnail/myaede"
+	"administrative cost" 3
 	attributes
 		licenses
 			"Successor"
@@ -529,6 +537,7 @@ ship "Nnaatej"
 	plural "Nnaatejen"
 	sprite "ship/nnaatej"
 	thumbnail "thumbnail/nnaatej"
+	"administrative cost" 3
 	attributes
 		licenses
 			"Successor"
@@ -550,8 +559,8 @@ ship "Nnaatej"
 		"corrosion resistance" 0.6
 		"slowing resistance" 0.6
 		"hull repair rate" 0.1
-		"hull heat" 0.25
-		"hull energy" 0.2
+		"hull heat" 0.11
+		"hull energy" 0.11
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -611,6 +620,7 @@ ship "Nnesaarau"
 	plural "Nnesaaraun"
 	sprite "ship/nnesaarau"
 	thumbnail "thumbnail/nnesaarau"
+	"administrative cost" 1
 	attributes
 		licenses
 			"Successor"
@@ -683,6 +693,7 @@ ship "Ojde"
 	plural "Ojden"
 	sprite "ship/ojde"
 	thumbnail "thumbnail/ojde"
+	"administrative cost" 5
 	attributes
 		licenses
 			"Successor"
@@ -765,6 +776,7 @@ ship "Seiitej"
 	plural "Seiitejen"
 	sprite "ship/seiitej"
 	thumbnail "thumbnail/seiitej"
+	"administrative cost" 4
 	attributes
 		licenses
 			"High Houses"
@@ -783,9 +795,9 @@ ship "Seiitej"
 		"weapon capacity" 90
 		"engine capacity" 110
 		"multimodal armor" 1
-		"hull repair rate" 1.2
-		"hull energy" 1.74
-		"hull heat" 1.74
+		"hull repair rate" 0.95
+		"hull energy" 1.045
+		"hull heat" 1.045
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -850,6 +862,7 @@ ship "Stolsaqra"
 	plural "Stolsaqran"
 	sprite "ship/stolsaqra"
 	thumbnail "thumbnail/stolsaqra"
+	"administrative cost" 1
 	attributes
 		licenses
 			"Successor"
@@ -869,8 +882,8 @@ ship "Stolsaqra"
 		"engine capacity" 80
 		"multimodal armor" 1
 		"hull repair rate" 0.3
-		"hull energy" 0.4
-		"hull heat" 0.4
+		"hull energy" 0.33
+		"hull heat" 0.33
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -940,6 +953,7 @@ ship "Veusade"
 	plural "Veusaden"
 	sprite "ship/veusade"
 	thumbnail "thumbnail/veusade"
+	"administrative cost" 4
 	attributes
 		licenses
 			"High Houses"
@@ -959,8 +973,8 @@ ship "Veusade"
 		"engine capacity" 120
 		"multimodal armor" 1
 		"hull repair rate" 1.45
-		"hull energy" 2.1
-		"hull heat" 2.1
+		"hull energy" 1.595
+		"hull heat" 1.595
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -1035,6 +1049,7 @@ ship "Vujlet"
 	plural "Vujleten"
 	sprite "ship/vujlet"
 	thumbnail "thumbnail/vujlet"
+	"administrative cost" 3
 	attributes
 		licenses
 			"High Houses"
@@ -1055,8 +1070,8 @@ ship "Vujlet"
 		"exclusive: Vujlet" 1
 		"multimodal armor" 1
 		"hull repair rate" 0.875
-		"hull energy" 1.27
-		"hull heat" 1.27
+		"hull energy" 0.9625
+		"hull heat" 0.9625
 		weapon
 			"blast radius" 100
 			"shield damage" 1000

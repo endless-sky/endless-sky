@@ -65,6 +65,8 @@ public:
 	// Wrap the given text. Use Draw() to draw it.
 	void Wrap(const std::string &str);
 	void Wrap(const char *str);
+	// Rewrap the most recently given text.
+	void Rewrap();
 
 	/// Get the height of the wrapped text.
 	/// With trailingBreak, include a paragraph break after the text.
@@ -78,7 +80,6 @@ public:
 
 
 private:
-	void SetText(const char *it, size_t length);
 	void Wrap();
 	void AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd);
 	int Space(char c) const;
@@ -113,6 +114,7 @@ private:
 	Alignment alignment = Alignment::JUSTIFIED;
 	Truncate truncate = Truncate::NONE;
 
+	std::string original;
 	std::string text;
 	std::vector<Word> words;
 	int height = 0;

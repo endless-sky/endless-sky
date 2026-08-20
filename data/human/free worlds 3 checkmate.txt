@@ -366,6 +366,7 @@ mission "FWC Nuke Supply 1"
 mission "FWC Nuke Supply: Enemies"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "FWC Nuke Supply 1: done"
 	
@@ -992,6 +993,7 @@ mission "FWC Checkmate 1C"
 mission "FWC Checkmate Escorts"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "FWC Checkmate 1B: done"
 	to fail
@@ -1693,6 +1695,7 @@ mission "FWC Pug 3D"
 mission "FWC Pug 3D: Reinforcements"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "FWC Pug 3C: done"
 	to fail
