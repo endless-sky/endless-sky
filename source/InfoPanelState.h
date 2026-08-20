@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <memory>
 #include <set>
+#include <string>
 #include <vector>
 
 class PlayerInfo;
