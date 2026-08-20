@@ -81,6 +81,8 @@ target_sources(EndlessSkyLib PRIVATE
 	DataFile.h
 	DataNode.cpp
 	DataNode.h
+	DataSchema.cpp
+	DataSchema.h
 	DataWriter.cpp
 	DataWriter.h
 	Date.cpp

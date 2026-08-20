@@ -15,12 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Outfit.h"
 
-#include "audio/Audio.h"
-#include "Body.h"
 #include "DataNode.h"
-#include "Effect.h"
+#include "DataSchema.h"
 #include "GameData.h"
-#include "image/SpriteSet.h"
 #include "Weapon.h"
 
 #include <algorithm>
@@ -226,6 +223,40 @@ optional<double> Outfit::LowerLimit(const string &attribute)
 
 
 
+DataSchema Outfit::Schema()
+{
+	return {
+		// list in save file order for later schema writing
+		Field::String("display name", displayName),
+		Field::String("plural", pluralName),
+		Field::String("category", category),
+		Field::String("series", series),
+		Field::Int("index", index),
+		Field::SpriteList("flare sprite", flareSprites),
+		Field::SpriteList("reverse flare sprite", reverseFlareSprites),
+		Field::SpriteList("steering flare sprite", steeringFlareSprites),
+		Field::Sprite("flotsam sprite", flotsamSprite),
+		Field::Sprite("thumbnail", thumbnail),
+		Field::SoundCount("flare sound", flareSounds),
+		Field::SoundCount("reverse flare sound", reverseFlareSounds),
+		Field::SoundCount("steering flare sound", steeringFlareSounds),
+		Field::EffectCount("afterburner effect", afterburnerEffects),
+		Field::EffectAmount("jump effect", jumpEffects),
+		Field::SoundCount("hyperdrive sound", hyperSounds),
+		Field::SoundCount("hyperdrive in sound", hyperInSounds),
+		Field::SoundCount("hyperdrive out sound", hyperOutSounds),
+		Field::SoundCount("jump sound", jumpSounds),
+		Field::SoundCount("jump in sound", jumpInSounds),
+		Field::SoundCount("jump out sound", jumpOutSounds),
+		Field::SoundCount("cargo scan sound", cargoScanSounds),
+		Field::SoundCount("outfit scan sound", outfitScanSounds),
+		Field::Int64("cost", cost),
+		Field::Double("mass", mass),
+	};
+}
+
+
+
 void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() >= 2)
@@ -233,67 +264,17 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 	isDefined = true;
 
+	DataSchema schema = Schema();
+
 	for(const DataNode &child : node)
 	{
+		if(ApplyField(child, schema))
+			continue;
+
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
-		if(key == "display name" && hasValue)
-			displayName = child.Token(1);
-		else if(key == "category" && hasValue)
-			category = child.Token(1);
-		else if(key == "series" && hasValue)
-			series = child.Token(1);
-		else if(key == "index" && hasValue)
-			index = child.Value(1);
-		else if(key == "plural" && hasValue)
-			pluralName = child.Token(1);
-		else if(key == "flare sprite" && hasValue)
-		{
-			flareSprites.emplace_back(Body(), 1);
-			flareSprites.back().first.LoadSprite(child);
-		}
-		else if(key == "reverse flare sprite" && hasValue)
-		{
-			reverseFlareSprites.emplace_back(Body(), 1);
-			reverseFlareSprites.back().first.LoadSprite(child);
-		}
-		else if(key == "steering flare sprite" && hasValue)
-		{
-			steeringFlareSprites.emplace_back(Body(), 1);
-			steeringFlareSprites.back().first.LoadSprite(child);
-		}
-		else if(key == "flare sound" && hasValue)
-			++flareSounds[Audio::Get(child.Token(1))];
-		else if(key == "reverse flare sound" && hasValue)
-			++reverseFlareSounds[Audio::Get(child.Token(1))];
-		else if(key == "steering flare sound" && hasValue)
-			++steeringFlareSounds[Audio::Get(child.Token(1))];
-		else if(key == "afterburner effect" && hasValue)
-			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
-		else if(key == "jump effect" && hasValue)
-			jumpEffects[GameData::Effects().Get(child.Token(1))] += child.Size() >= 3 ? child.Value(2) : 1.;
-		else if(key == "hyperdrive sound" && hasValue)
-			++hyperSounds[Audio::Get(child.Token(1))];
-		else if(key == "hyperdrive in sound" && hasValue)
-			++hyperInSounds[Audio::Get(child.Token(1))];
-		else if(key == "hyperdrive out sound" && hasValue)
-			++hyperOutSounds[Audio::Get(child.Token(1))];
-		else if(key == "jump sound" && hasValue)
-			++jumpSounds[Audio::Get(child.Token(1))];
-		else if(key == "jump in sound" && hasValue)
-			++jumpInSounds[Audio::Get(child.Token(1))];
-		else if(key == "jump out sound" && hasValue)
-			++jumpOutSounds[Audio::Get(child.Token(1))];
-		else if(key == "cargo scan sound" && hasValue)
-			++cargoScanSounds[Audio::Get(child.Token(1))];
-		else if(key == "outfit scan sound" && hasValue)
-			++outfitScanSounds[Audio::Get(child.Token(1))];
-		else if(key == "flotsam sprite" && hasValue)
-			flotsamSprite = SpriteSet::Get(child.Token(1));
-		else if(key == "thumbnail" && hasValue)
-			thumbnail = SpriteSet::Get(child.Token(1));
-		else if(key == "weapon")
+		if(key == "weapon")
 		{
 			if(!weapon)
 				weapon = make_shared<Weapon>();
@@ -313,10 +294,6 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			linkedOutfits.insert(GameData::Outfits().Get(child.Token(1)));
 		else if(key == "description" && hasValue)
 			description.Load(child, playerConditions);
-		else if(key == "cost" && hasValue)
-			cost = child.Value(1);
-		else if(key == "mass" && hasValue)
-			mass = child.Value(1);
 		else if(key == "licenses" && (child.HasChildren() || hasValue))
 		{
 			// Add any new licenses that were specified "inline".
