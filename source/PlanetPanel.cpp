@@ -456,17 +456,17 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	const int commoditiesToSell = cargo.CommoditiesSize();
 	int outfitsToSell = 0;
 	map<const Outfit *, int> uniquesToSell;
-	for(auto &it : cargo.Outfits())
+	for(const auto &[outfit, count] : cargo.Outfits())
 	{
-		outfitsToSell += it.second;
-		if(it.first->Attributes().Get("unique"))
-			uniquesToSell[it.first] = it.second;
+		outfitsToSell += count;
+		if(outfit->GetPrecise("unique"))
+			uniquesToSell[outfit] = count;
 	}
 	// Have you left any unique items at the outfitter?
 	map<const Outfit *, int> leftUniques;
-	for(const auto &it : player.GetStock())
-		if(it.second > 0 && it.first->Attributes().Get("unique"))
-			leftUniques[it.first] = it.second;
+	for(const auto &[outfit, count] : player.GetStock())
+		if(count > 0 && outfit->GetPrecise("unique"))
+			leftUniques[outfit] = count;
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
 	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
 	size_t nonJumpCount = 0;

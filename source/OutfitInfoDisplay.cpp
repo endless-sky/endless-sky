@@ -379,9 +379,9 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 10;
 	}
 
-	for(const pair<const char *, double> &it : outfit.Attributes())
-		if(!count(BEFORE.begin(), BEFORE.end(), it.first))
-			AddRequirementAttribute(it.first, it.second);
+	for(const auto &[name, value] : outfit)
+		if(!count(BEFORE.begin(), BEFORE.end(), name))
+			AddRequirementAttribute(name, value);
 }
 
 
@@ -447,26 +447,26 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		hasNormalAttributes = true;
 	}
 
-	for(const pair<const char *, double> &it : outfit.Attributes())
+	for(const auto &[name, value] : outfit)
 	{
-		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), it.first))
+		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), name))
 			continue;
 
 		// Only show positive values here, with some exceptions.
 		// Negative values are usually handled as a "requirement"
-		if(static_cast<string>(it.first) == "required crew")
+		if(name == "required crew")
 		{
 			// 'required crew' is inverted - positive values are requirements.
-			if(it.second > 0)
+			if(value > 0)
 				continue;
 
 			// A negative 'required crew' would be a benefit, so it is listed here.
 		}
 		// If this attribute is not a requirement, it is always listed here, though it may be negative.
-		else if(it.second < 0 && !IsNotRequirement(it.first))
+		else if(value < 0 && !IsNotRequirement(name))
 			continue;
 
-		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
+		auto bit = BOOLEAN_ATTRIBUTES.find(name);
 		if(bit != BOOLEAN_ATTRIBUTES.end())
 		{
 			attributeLabels.emplace_back(bit->second);
@@ -475,8 +475,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 		else
 		{
-			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
-			attributeValues.emplace_back(FormatAttribute(it.first, it.second));
+			attributeLabels.emplace_back(name + ":");
+			attributeValues.emplace_back(FormatAttribute(name, value));
 			attributesHeight += 20;
 		}
 		hasNormalAttributes = true;
