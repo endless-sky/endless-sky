@@ -276,10 +276,10 @@ namespace {
 				cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << ',';
 				cout << 60. * energyConsumed << ',';
 				cout << attributes.Get("energy capacity") << ',';
-				cout << ship.IdleHeat() / max(1., ship.MaximumHeat()) << ',';
+				cout << ship.IdleHeat() / max(1., ship.MaxHeat()) << ',';
 				cout << 60. * heatProduced << ',';
 				// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000 per 60th of a second, so:
-				cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << ',';
+				cout << 60. * ship.HeatDissipation() * ship.MaxHeat() << ',';
 
 				int numTurrets = 0;
 				int numGuns = 0;
@@ -518,8 +518,8 @@ namespace {
 			for(auto &it : GameData::Outfits())
 			{
 				const Outfit &outfit = it.second;
-				for(const auto &attribute : outfit.Attributes())
-					attributes.insert(attribute.first);
+				for(const auto &[name, value] : outfit)
+					attributes.insert(name);
 			}
 
 			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";
@@ -535,7 +535,7 @@ namespace {
 				cout << outfit.Cost() << ',';
 				cout << outfit.Mass();
 				for(const auto &attribute : attributes)
-					cout << ',' << outfit.Attributes().Get(attribute);
+					cout << ',' << outfit.Get(attribute);
 				cout << '\n';
 			}
 		};

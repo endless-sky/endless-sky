@@ -25871,9 +25871,9 @@ system Patir
 	object "Builder Settlement"
 		sprite "planet/asteroid base"
 		distance 1496.85
-	object
+	object "Pacili"
 		sprite planet/gas2-b
-		distance 2866.29
+		distance 5566.29
 		object
 			sprite planet/rock17-b
 			distance 203

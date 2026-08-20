@@ -121,21 +121,30 @@ void WrappedText::SetParagraphBreak(int height)
 
 
 
-// Get the word positions when wrapping the given text. The coordinates
-// always begin at (0, 0).
 void WrappedText::Wrap(const string &str)
 {
-	SetText(str.data(), str.length());
-
-	Wrap();
+	original = str;
+	Rewrap();
 }
 
 
 
 void WrappedText::Wrap(const char *str)
 {
-	SetText(str, strlen(str));
+	original.assign(str, strlen(str));
+	Rewrap();
+}
 
+
+
+void WrappedText::Rewrap()
+{
+	// Copy the original text into a string that will be worked on to determine
+	// the spacing for the chosen text alignment.
+	text = original;
+	// Clear any previous word-wrapping data. It becomes invalid as soon as the
+	// underlying text buffer changes.
+	words.clear();
 	Wrap();
 }
 
@@ -197,18 +206,6 @@ size_t WrappedText::Word::Index() const
 Point WrappedText::Word::Pos() const
 {
 	return Point(x, y);
-}
-
-
-
-void WrappedText::SetText(const char *it, size_t length)
-{
-	// Clear any previous word-wrapping data. It becomes invalid as soon as the
-	// underlying text buffer changes.
-	words.clear();
-
-	// Reallocate that buffer.
-	text.assign(it, length);
 }
 
 

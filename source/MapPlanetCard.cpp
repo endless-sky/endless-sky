@@ -189,7 +189,7 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 			SpriteShader::Add(spriteItem);
 			SpriteShader::Unbind();
 		}
-		else
+		else if(sprite->HasDimensions())
 			loadingCircle.Draw(iconPos);
 
 		// Check if drawing a category would not go out of the panel.

@@ -49,6 +49,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <array>
 #include <iterator>
+#include <ranges>
 
 using namespace std;
 
@@ -154,7 +155,7 @@ void ConversationPanel::Draw()
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + boxWidth);
 
 	// Get the font and colors we'll need for drawing everything.
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	const Color &selectionColor = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &gray = *GameData::Colors().Get("medium");
@@ -258,6 +259,16 @@ void ConversationPanel::Draw()
 
 	// Reset the hover flag. If the mouse is still moving than the flag will be set in the next frame.
 	isHovering = false;
+}
+
+
+
+void ConversationPanel::UpdateTextDisplay()
+{
+	for(auto &paragraph : text)
+		paragraph.UpdateTextDisplay();
+	for(auto &paragraph : choices | views::keys)
+		paragraph.UpdateTextDisplay();
 }
 
 
@@ -559,9 +570,9 @@ int ConversationPanel::MapChoice(int n) const
 ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene, bool isFirst)
 	: scene(scene), isFirst(isFirst)
 {
-	wrap.SetAlignment(Alignment::JUSTIFIED);
+	wrap.SetAlignment(Preferences::GetTextAlignment());
 	wrap.SetWrapWidth(WIDTH);
-	wrap.SetFont(FontSet::Get(14));
+	wrap.SetFont(FontSet::Get(Preferences::GetFontSize()));
 
 	wrap.Wrap(text);
 }
@@ -600,4 +611,13 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 	wrap.Draw(point, color);
 	point.Y() += wrap.Height();
 	return point;
+}
+
+
+
+void ConversationPanel::Paragraph::UpdateTextDisplay()
+{
+	wrap.SetAlignment(Preferences::GetTextAlignment());
+	wrap.SetFont(FontSet::Get(Preferences::GetFontSize()));
+	wrap.Rewrap();
 }

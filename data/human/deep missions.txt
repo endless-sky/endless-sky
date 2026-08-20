@@ -671,7 +671,7 @@ event "assisted the deep"
 mission "Deep: TMBR 0"
 	minor
 	name `Find "There Might Be Riots"`
-	description `Find and convince "There Might Be Riots" to throw a concert on <destination>.`
+	description `Find "There Might Be Riots" by <date> and convince them to throw a concert on <destination>.`
 	source
 		not system "Aludra"
 		attributes "deep"
