@@ -2871,18 +2871,18 @@ bool Ship::NeedsEnergy() const
 	// of generating its own energy.
 	// Just check standard energy generation first for simplicity. If gaining any energy at all from
 	// energy generation, the ship doesn't need energy.
-	double generation = attributes.Get("energy generation") - attributes.Get("energy consumption");
+	double generation = cache.energyGeneration - cache.energyConsumption;
 	if(generation > 0.)
 		return false;
 
 	// A ship may be gaining energy from other sources.
-	double solarCollection = attributes.Get("solar collection");
-	double fuelEnergy = attributes.Get("fuel energy");
+	double solarCollection = cache.solarCollection;
+	double fuelEnergy = cache.fuelEnergy;
 	if(!solarCollection && !fuelEnergy)
 		return true;
 	// If other energy sources are available, check how much energy the ship is getting from them.
 	System::SolarGeneration solar = currentSystem->GetSolarGeneration(position,
-		attributes.Get("ramscoop"), solarCollection, attributes.Get("solar heat"));
+		cache.ramscoop, solarCollection, cache.solarHeat);
 	generation += solar.energy;
 	// "fuel energy" only provides energy if there is fuel present to burn.
 	// Due to fuel consumption not being fractional, a ship could theoretically have high fuel energy
@@ -2891,7 +2891,7 @@ bool Ship::NeedsEnergy() const
 	// will eventually get it at some later frame, but this is also such an absurd scenario that
 	// it's not worth checking for, and would be better addressed by making fuel consumption
 	// fractional.
-	if(fuelEnergy && attributes.Get("fuel consumption") <= levels.fuel + solar.fuel + attributes.Get("fuel generation"))
+	if(fuelEnergy && cache.fuelConsumption <= levels.fuel + solar.fuel + cache.fuelGeneration)
 		generation += fuelEnergy;
 	// Consider a ship disabled if it is gaining less than 1 energy per second.
 	// This accounts for ships that may be relying upon solar panels for energy, but are so far
@@ -2952,16 +2952,8 @@ bool Ship::IsCloaked() const
 
 void Ship::SetCloaked()
 {
-	const double cloakingSpeed = CloakingSpeed();
-	const double cloakingFuel = attributes.Get("cloaking fuel");
-	const double cloakingEnergy = attributes.Get("cloaking energy");
-	const double cloakingHull = attributes.Get("cloaking hull");
-	const double cloakingShield = attributes.Get("cloaking shields");
-	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
-		&& levels.fuel >= cloakingFuel && levels.energy >= cloakingEnergy
-		&& MinHull() < levels.hull - cloakingHull && levels.shields >= cloakingShield);
-
-	if(canCloak)
+	if(!isDisabled && CloakingSpeed() > 0. && !cloakDisruption
+			&& AvailableResources().CanExpend(cache.cloakCost))
 		cloak = 1.;
 }
 
@@ -3035,13 +3027,13 @@ int Ship::FleetCost() const
 	{
 		if(canBeCarried)
 			return 0;
-		int crewEquivalent = attributes.Get("crew equivalent");
-		if(attributes.Get("use crew equivalent as crew"))
-			return crewEquivalent;
 		// Only the base crew counts toward the fleet capacity, as otherwise installing turrets
 		// could cause a ship to go over the fleet capacity.
+		int crewEquivalent = baseAttributes.Get("crew equivalent");
+		if(cache.onlyUseCrewEquiv)
+			return crewEquivalent;
 		int mandatory = baseAttributes.Get("mandatory crew");
-		int required = attributes.Get("automaton") ? 0 : baseAttributes.Get("required crew");
+		int required = cache.automaton ? 0 : baseAttributes.Get("required crew");
 		return required + mandatory + crewEquivalent;
 	}
 	return administrativeCost.value_or(!canBeCarried);
@@ -3093,7 +3085,7 @@ void Ship::AddCrew(int count)
 // Check if this is a ship that can be used as a flagship.
 bool Ship::CanBeFlagship() const
 {
-	return !attributes.Get("automaton") && Crew() && !IsDisabled();
+	return !cache.automaton && Crew() && !IsDisabled();
 }
 
 
@@ -3250,7 +3242,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(!wasDisabled && isDisabled)
 	{
 		type |= ShipEvent::DISABLE;
-		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("disabled repair delay")));
+		hullDelay = max(hullDelay, cache.disabledRepairDelay);
 	}
 	if(!wasDestroyed && IsDestroyed())
 	{
@@ -3598,7 +3590,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 
 		if(outfit->Get("cargo space"))
 		{
-			cargo.SetSize(attributes.Get("cargo space"));
+			cargo.SetSize(cache.cargoSpace);
 			// Only the player's ships make use of attraction and deterrence.
 			if(isYours)
 				attraction = CalculateAttraction();
@@ -5077,11 +5069,11 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner) con
 
 bool Ship::RequiresMovementEnergy() const
 {
-	bool hasForwardThrust = attributes.Get("thrust");
-	return attributes.Get("thrusting energy") > 0.
-		|| (!hasForwardThrust && attributes.Get("reverse thrusting energy") > 0.)
-		|| attributes.Get("turning energy") > 0.
-		|| (!hasForwardThrust && !attributes.Get("reverse thrust") && attributes.Get("afterburner energy") > 0.);
+	bool hasForwardThrust = cache.thrust;
+	return cache.thrustCost.energy > 0.
+		|| (!hasForwardThrust && cache.reverseThrustCost.energy > 0.)
+		|| cache.turnCost.energy > 0.
+		|| (!hasForwardThrust && !cache.reverseThrust && cache.afterburnerThrustCost.energy > 0.);
 }
 
 

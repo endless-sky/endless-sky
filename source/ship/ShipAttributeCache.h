@@ -83,13 +83,14 @@ private:
 	double coolingInefficiency = 1.;
 
 	int repairDelay = 0;
+	int disabledRepairDelay = 0;
 	double hullRepairRate = 0.;
 	ResourceLevels hullRepairCost;
 	double hullRepairRateWithDelay = 0.;
 	ResourceLevels hullRepairWithDelayCost;
 
-	int depletedShieldDelay = 0;
 	int shieldDelay = 0;
+	int depletedShieldDelay = 0;
 	double shieldRegenRate = 0.;
 	ResourceLevels shieldRegenCost;
 	double shieldRegenRateWithDelay = 0.;

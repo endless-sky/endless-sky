@@ -104,6 +104,7 @@ void ShipAttributeCache::HeatAndCooling(const Outfit &attributes)
 void ShipAttributeCache::HullRepair(const Outfit &attributes)
 {
 	repairDelay = attributes.Get("repair delay");
+	disabledRepairDelay = attributes.Get("disabled repair delay");
 
 	hullRepairRate = (attributes.Get("hull repair rate") + attributes.Get("delayed hull repair rate"))
 		* (1. + attributes.Get("hull repair multiplier"));
@@ -124,8 +125,8 @@ void ShipAttributeCache::HullRepair(const Outfit &attributes)
 
 void ShipAttributeCache::ShieldRegen(const Outfit &attributes)
 {
-	depletedShieldDelay = attributes.Get("depleted shield delay");
 	shieldDelay = attributes.Get("shield delay");
+	depletedShieldDelay = attributes.Get("depleted shield delay");
 
 	shieldRegenRate = (attributes.Get("shield generation") + attributes.Get("delayed shield generation"))
 		* (1. + attributes.Get("shield generation multiplier"));
