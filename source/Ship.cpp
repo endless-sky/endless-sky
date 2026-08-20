@@ -2961,7 +2961,9 @@ void Ship::SetCloaked()
 
 double Ship::CloakingSpeed() const
 {
-	return cache.cloak + cache.cloakByMass * 1000. / Mass();
+	if(cache.cloakByMass)
+		return cache.cloak + cache.cloakByMass * 1000. / Mass();
+	return cache.cloak;
 }
 
 
@@ -3220,8 +3222,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(damage.Levels().shields && !isDisabled)
 	{
 		int disabledDelay = cache.depletedShieldDelay;
-		shieldDelay = max<int>(shieldDelay, (levels.shields <= 0. && disabledDelay)
-			? disabledDelay : cache.shieldDelay);
+		shieldDelay = max(shieldDelay, (levels.shields <= 0. && disabledDelay) ? disabledDelay : cache.shieldDelay);
 	}
 	if(damage.Levels().hull && !isDisabled)
 		hullDelay = max(hullDelay, cache.repairDelay);
@@ -3913,8 +3914,6 @@ bool Ship::Imitates(const Ship &other) const
 
 
 
-
-
 double Ship::CargoScanPower() const
 {
 	return cache.cargoScanPower;
@@ -4427,8 +4426,8 @@ void Ship::DoGeneration()
 	// maximum capacity for the rest of the turn, but must be clamped to the
 	// maximum here before they gain more. This is so that, for example, a ship
 	// with no batteries but a good generator can still move.
-	levels.energy = min(levels.energy, capacities.energy);
-	levels.fuel = min(levels.fuel, capacities.fuel);
+	levels.energy = min(levels.energy, MaxEnergy());
+	levels.fuel = min(levels.fuel, MaxFuel());
 
 	levels.heat -= levels.heat * HeatDissipation();
 	if(levels.heat > MaxHeat())
@@ -4877,7 +4876,12 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		{
 			// Check if we are able to turn.
 			const ResourceLevels &turnCost = cache.turnCost;
-			commands.SetTurn(commands.Turn() * AvailableResources().FractionalUsage(turnCost));
+			// This is the maximum amount of throttle that can be sent to the turn
+			// given the cost of turning and the available resources.
+			double maxTurnThrottle = AvailableResources().FractionalUsage(turnCost);
+			// The actual amount of throttle applied is whichever is lower between
+			// the max available and the command being received.
+			commands.SetTurn(copysign(min(fabs(commands.Turn()), maxTurnThrottle), commands.Turn()));
 			if(commands.Turn())
 			{
 				isSteering = true;
@@ -4895,8 +4899,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
-			const ResourceLevels &thrustCost = (thrustCommand > 0.) ? cache.thrustCost
-				: cache.reverseThrustCost;
+			const ResourceLevels &thrustCost = (thrustCommand > 0.) ? cache.thrustCost : cache.reverseThrustCost;
 			thrustCommand *= AvailableResources().FractionalUsage(thrustCost);
 			if(thrustCommand)
 			{

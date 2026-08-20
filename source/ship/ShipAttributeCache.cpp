@@ -48,6 +48,8 @@ void ShipAttributeCache::Calibrate(const Ship &ship)
 	Misc(attributes);
 }
 
+
+
 void ShipAttributeCache::Capacity(const Outfit &attributes, const Outfit &baseAttributes)
 {
 	outfitCapacity = baseAttributes.Get("outfit space");

@@ -21,6 +21,7 @@ class Outfit;
 class Ship;
 
 
+
 // A class for caching various commonly accessed attributes in Ship.
 class ShipAttributeCache {
 public:
@@ -76,6 +77,8 @@ private:
 
 	double heatGeneration = 0.;
 	double heatCapacity = 0.;
+	double overheatDamageThreshold = 1.;
+	double overheatDamageRate = 0.;
 
 	double cooling = 0.;
 	double activeCooling = 0.;
@@ -137,8 +140,15 @@ private:
 	bool silentScans = false;
 	bool inscrutable = false;
 
-	double overheatDamageThreshold = 1.;
-	double overheatDamageRate = 0.;
+	ResourceLevels damageProtection;
+	double piercingProtection = 1.;
+	double piercingResistance = 0.;
+	double highShieldPermeability = 0.;
+	double lowShieldPermeability = 0.;
+	double cloakedShieldPermeability = 0.;
+	double cloakedHullProtection = 0.;
+	double cloakedShieldProtection = 0.;
+	double forceProtection = 1.;
 
 	double drag = 1.;
 	double dragReduction = 1.;
@@ -151,13 +161,4 @@ private:
 	double selfDestruct = 0.;
 
 	double turretTurnMult = 1.;
-	ResourceLevels damageProtection;
-	double piercingProtection = 1.;
-	double piercingResistance = 0.;
-	double highShieldPermeability = 0.;
-	double lowShieldPermeability = 0.;
-	double cloakedShieldPermeability = 0.;
-	double cloakedHullProtection = 0.;
-	double cloakedShieldProtection = 0.;
-	double forceProtection = 1.;
 };
