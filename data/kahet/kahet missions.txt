@@ -2727,7 +2727,6 @@ event "ssil vida changes"
 		attributes "ember waste"
 		arrival 500
 		belt 2000
-		habitable 135
 		haze _menu/haze-red
 		link Diespiter
 		link Prosa

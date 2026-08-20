@@ -345,7 +345,6 @@ event "remnant: ssil vida activation"
 		government Uninhabited
 		attributes "ember waste"
 		arrival 625
-		habitable 320
 		belt 1797
 		haze _menu/haze-red
 		link Stercutus
@@ -555,7 +554,6 @@ event "remnant: ssil vida activation"
 		attributes "ember waste"
 		arrival 500
 		belt 2000
-		habitable 135
 		haze _menu/haze-red
 		"jump range" 50
 		link Diespiter
@@ -647,7 +645,6 @@ event "remnant: ssil vida activation"
 		attributes "ember waste" "wormhole"
 		arrival 500
 		belt 2000
-		habitable 135
 		haze _menu/haze-red
 		"jump range" 50
 		link Diespiter
@@ -697,7 +694,6 @@ event "remnant: ssil vida activation"
 		attributes "ember waste"
 		arrival 500
 		belt 2000
-		habitable 320
 		haze _menu/haze-red
 		"jump range" 50
 		link Egeria
@@ -853,7 +849,6 @@ event "remnant: ssil vida deactivation"
 		attributes "ember waste"
 		arrival 500
 		belt 2000
-		habitable 135
 		haze _menu/haze-red
 		link Diespiter
 		link Prosa
@@ -937,7 +932,6 @@ event "remnant: ssil vida deactivation"
 		attributes "ember waste" "wormhole"
 		arrival 500
 		belt 2000
-		habitable 135
 		haze _menu/haze-red
 		link Diespiter
 		link Egeria
@@ -981,7 +975,6 @@ event "remnant: ssil vida deactivation"
 		attributes "ember waste"
 		arrival 500
 		belt 2000
-		habitable 320
 		haze _menu/haze-red
 		link Egeria
 		link Prosa
@@ -1039,7 +1032,6 @@ event "remnant: ssil vida activation patir 3"
 		government Uninhabited
 		attributes "ember waste"
 		arrival 625
-		habitable 320
 		belt 1797
 		haze _menu/haze-red
 		link Stercutus
@@ -1249,7 +1241,6 @@ event "remnant: ssil vida activation patir 3"
 		attributes "ember waste"
 		arrival 500
 		belt 2000
-		habitable 135
 		haze _menu/haze-red
 		"jump range" 50
 		link Diespiter
@@ -1341,7 +1332,6 @@ event "remnant: ssil vida activation patir 3"
 		attributes "ember waste" "wormhole"
 		arrival 500
 		belt 2000
-		habitable 135
 		haze _menu/haze-red
 		"jump range" 50
 		link Diespiter
@@ -1391,7 +1381,6 @@ event "remnant: ssil vida activation patir 3"
 		attributes "ember waste"
 		arrival 500
 		belt 2000
-		habitable 320
 		haze _menu/haze-red
 		"jump range" 50
 		link Egeria
@@ -1547,7 +1536,6 @@ event "remnant: ssil vida deactivation patir 3"
 		attributes "ember waste"
 		arrival 500
 		belt 2000
-		habitable 135
 		haze _menu/haze-red
 		link Diespiter
 		link Prosa
@@ -1631,7 +1619,6 @@ event "remnant: ssil vida deactivation patir 3"
 		attributes "ember waste" "wormhole"
 		arrival 500
 		belt 2000
-		habitable 135
 		haze _menu/haze-red
 		link Diespiter
 		link Egeria
@@ -1675,7 +1662,6 @@ event "remnant: ssil vida deactivation patir 3"
 		attributes "ember waste"
 		arrival 500
 		belt 2000
-		habitable 320
 		haze _menu/haze-red
 		link Egeria
 		link Prosa

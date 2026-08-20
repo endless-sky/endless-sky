@@ -20,7 +20,6 @@ system Athiri
 	government Uninhabited
 	attributes "beyond patir"
 	haze _menu/haze-chanai
-	habitable 1400
 	belt 1074
 	fleet "Magic Asteroid" 900
 	hazard "Beyond Patir Shield Eraser" 1
@@ -45,7 +44,6 @@ system Balnii
 	attributes "beyond patir"
 	haze _menu/haze-sarifa
 	arrival 1100
-	habitable 360
 	belt 1497
 	fleet "Magic Asteroid" 900
 	hazard "Beyond Patir Shield Eraser" 1
@@ -63,7 +61,6 @@ system Chanai
 	government Uninhabited
 	attributes "beyond patir"
 	haze _menu/haze-chanai
-	habitable 1250
 	belt 1887
 	fleet "Magic Asteroid" 900
 	hazard "Beyond Patir Shield Eraser" 1
@@ -86,7 +83,6 @@ system Ghila
 	government Uninhabited
 	attributes "beyond patir"
 	haze _menu/haze-ghila
-	habitable 1715
 	belt 1165
 	fleet "Magic Asteroid" 900
 	hazard "Beyond Patir Shield Eraser" 1
@@ -114,7 +110,6 @@ system Lathia
 	government Uninhabited
 	attributes "beyond patir"
 	haze _menu/haze-lathia
-	habitable 1715
 	belt 1815
 	fleet "Magic Asteroid" 250
 	hazard "Beyond Patir Shield Eraser" 1
@@ -155,7 +150,6 @@ system Mitera
 	government Uninhabited
 	attributes "beyond patir"
 	haze _menu/haze-mitera
-	habitable 3645
 	belt 1464
 	fleet "Magic Asteroid" 900
 	hazard "Beyond Patir Shield Eraser" 1
@@ -199,7 +193,6 @@ system Thepa
 	government Uninhabited
 	attributes "beyond patir"
 	haze _menu/haze-maithi
-	habitable 320
 	belt 1793
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
