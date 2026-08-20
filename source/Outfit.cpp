@@ -31,7 +31,10 @@ using namespace std;
 
 namespace {
 	// Attributes are stored as integers but used as doubles. This is the factor by which to convert
-	// attribute values from doubles to integers and back.
+	// attribute values from doubles to integers and back. Using a base 10 scaling factor instead of
+	// a base 2 scaling factor so that values provided in game data text files match the values that
+	// get used as closely as possible. Commonly used attribute values get cached anyway, so we care
+	// more about accuracy to what the content creator provided than speed of converting values.
 	constexpr int ATTRIBUTE_PRECISION = 10000;
 
 	// A mapping of attribute names to specifically-allowed minimum values. Based on the
