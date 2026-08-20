@@ -21999,6 +21999,10 @@ system Kasii-Cavaasa
 	haze _menu/haze-tear
 	object
 		sprite star/b-supergiant
+	object "Exotic Metal Garden"
+		sprite planet/exotic-metal-garden
+		distance 80
+		period 10
 	object
 		sprite planet/lava0
 		distance 2250
