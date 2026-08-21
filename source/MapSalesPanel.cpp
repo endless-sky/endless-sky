@@ -19,9 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CategoryList.h"
 #include "CategoryType.h"
 #include "Command.h"
-#include "Drawable.h"
 #include "DialogPanel.h"
 #include "text/DisplayText.h"
+#include "Drawable.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -367,7 +367,8 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 
 
 
-void MapSalesPanel::DrawSprite(const Point &corner, const Drawable &drawable, bool animate, const Swizzle *swizzle) const
+void MapSalesPanel::DrawSprite(const Point &corner, const Drawable &drawable, bool animate,
+	const Swizzle *swizzle) const
 {
 	const Sprite *sprite = drawable.GetSprite();
 	if(!sprite)
