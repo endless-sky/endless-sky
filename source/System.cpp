@@ -193,6 +193,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 				inaccessible = false;
 			else if(key == "no raids")
 				noRaids = false;
+			else if(key == "arrival")
+			{
+				extraHyperArrivalDistance.reset();
+				extraJumpArrivalDistance.reset();
+			}
 
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -843,10 +848,19 @@ System::SolarGeneration System::GetSolarGeneration(const Point &shipPosition,
 // Additional travel distance to target for ships entering through hyperspace.
 double System::ExtraHyperArrivalDistance() const
 {
-	const optional<double> arrivalGamerule = GameData::GetGamerules().SystemArrivalMin();
+	const Gamerules &gamerules = GameData::GetGamerules();
+
+	double distance = 0.;
+	if(extraHyperArrivalDistance.has_value())
+		distance = *extraHyperArrivalDistance;
+	else if(gamerules.HabitableBasedArrivalDistance())
+		distance = clamp(habitable, gamerules.HabitableArrivalMin().value_or(0),
+			gamerules.HabitableArrivalMax().value_or(numeric_limits<double>::infinity()));
+
+	const optional<double> arrivalGamerule = gamerules.SystemArrivalMin();
 	if(arrivalGamerule.has_value())
-		return max(extraHyperArrivalDistance, *arrivalGamerule);
-	return extraHyperArrivalDistance;
+		return max(distance, *arrivalGamerule);
+	return distance;
 }
 
 
@@ -854,10 +868,19 @@ double System::ExtraHyperArrivalDistance() const
 // Additional travel distance to target for ships entering using a jump drive.
 double System::ExtraJumpArrivalDistance() const
 {
-	const optional<double> arrivalGamerule = GameData::GetGamerules().SystemArrivalMin();
+	const Gamerules &gamerules = GameData::GetGamerules();
+
+	double distance = 0.;
+	if(extraJumpArrivalDistance.has_value())
+		distance = *extraJumpArrivalDistance;
+	else if(gamerules.HabitableBasedArrivalDistance())
+		distance = clamp(habitable, gamerules.HabitableArrivalMin().value_or(0),
+			gamerules.HabitableArrivalMax().value_or(numeric_limits<double>::infinity()));
+
+	const optional<double> arrivalGamerule = gamerules.SystemArrivalMin();
 	if(arrivalGamerule.has_value())
-		return max(extraJumpArrivalDistance, *arrivalGamerule);
-	return extraJumpArrivalDistance;
+		return max(distance, *arrivalGamerule);
+	return distance;
 }
 
 
