@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "Color.h"
+#include "Gamerules.h"
 #include "Information.h"
 #include "Point.h"
 #include "Rectangle.h"
@@ -29,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class PlayerInfo;
 class StartConditions;
+class TextArea;
 class UI;
 
 
@@ -65,12 +67,14 @@ private:
 	StartConditionsList scenarios;
 	// The currently selected starting scenario.
 	StartConditionsList::iterator startIt;
+	// The currently selected gamerules.
+	Gamerules gamerules;
 	// Colors with which to draw text.
 	const Color &bright;
 	const Color &medium;
 	const Color &selectedBackground;
 	// The selected scenario's description.
-	WrappedText description;
+	std::shared_ptr<TextArea> description;
 	// Displayed information for the selected scenario.
 	Information info;
 
@@ -78,7 +82,6 @@ private:
 	Point hoverPoint;
 
 	double entriesScroll = 0.;
-	double descriptionScroll = 0.;
 
 	// This is a map that will let us figure out which start conditions item the user clicked on.
 	std::vector<ClickZone<StartConditionsList::iterator>> startConditionsClickZones;
