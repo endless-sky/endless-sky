@@ -899,28 +899,31 @@ tip "  + outfits:"
 
 # Ship heat and energy summary fields:
 tip "idle:"
-	`Energy and heat generated when this ship is idle, i.e. not firing weapons, turning, or thrusting.`
+	`Energy and heat generated per second when this ship is idle, i.e. not firing weapons, turning, or thrusting.`
 
 tip "moving:"
-	`Energy consumed and heat generated when this ship is turning and thrusting. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is turning and thrusting. This is in addition to the "idle" amount.`
 
 tip "firing:"
-	`Energy consumed and heat generated when this ship is firing all its weapons. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is firing all its weapons. This is in addition to the "idle" amount. Note that weapons may consume or generate more energy or heat than this at the moment they fire, and this is the average value over time.`
 
 tip "shields / hull:"
-	`Energy consumed and heat generated when this ship is recharging shields and repairing its hull at the same time. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is recharging shields and repairing its hull at the same time. This is in addition to the "idle" amount.`
 
 tip "repairing hull:"
-	`Energy consumed and heat generated when this ship is repairing its hull. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is repairing its hull. This is in addition to the "idle" amount.`
 
 tip "charging shields:"
-	`Energy consumed and heat generated when this ship is recharging its shields. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is recharging its shields. This is in addition to the "idle" amount.`
 
 tip "net change:"
-	`The sum of the energy consumed and heat generated from the above energy and heat values. Represents the worst case scenario when all systems are active at once.`
+	`The sum of the energy consumed and heat generated per second from the above energy and heat values. Represents the worst case scenario when all systems are active at once.`
 
 tip "capacity:"
 	`Energy storage capacity and heat capacity. Energy capacity allows a ship to temporarily draw more energy than it produces, and can be increased by installing batteries. The heat capacity is the highest your heat generation can be without eventually causing your ship to overheat, and is influenced by the mass of the ship.`
+
+tip "surge:"
+	`This ship lacks energy storage. Therefore, this is the greatest amount of energy that can be drawn by any of this ship's systems in a single instant, such as the energy required for a single shot of a weapon. Systems that require more than this amount of energy to activate will be unusable.`
 
 
 

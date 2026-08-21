@@ -423,6 +423,14 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	tableLabels.push_back("capacity:");
 	energyTable.push_back(Format::Number(maxEnergy));
 	heatTable.push_back(Format::Number(maxHeat));
+
+	if(scrollingPanel && !maxEnergy)
+	{
+		attributesHeight += 20;
+		tableLabels.push_back("surge:");
+		energyTable.push_back(Format::Number(idleEnergyPerFrame));
+		heatTable.push_back("N/A");
+	}
 	// Pad by 10 pixels on the top and bottom.
 	attributesHeight += 30;
 }
