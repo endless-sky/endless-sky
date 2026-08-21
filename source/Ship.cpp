@@ -1323,6 +1323,8 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("limited thrust?");
 		if(energy < turnEnergy)
 			checks.emplace_back("limited turn?");
+		if(energy < thrustEnergy + turnEnergy)
+			checks.emplace_back("limited movement?");
 		if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
 			checks.emplace_back("solar power?");
 		if(fuel < 0.)
