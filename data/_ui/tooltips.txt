@@ -1294,6 +1294,9 @@ tip "limited thrust?"
 tip "limited turn?"
 	`This ship's energy supply is not sufficient to run the steering at full power. Its turn rate will be diminished.`
 
+tip "limited movement?"
+	`This ship's energy supply is not sufficient to run both thrusters and steering at the same time. Its movement will be diminished.`
+
 tip "solar power?"
 	`This ship is powered entirely by solar energy. It could be difficult to maneuver if you fly too far from the center of a star system, because your engines will only have a fraction of the power they require.`
 
