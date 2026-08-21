@@ -1763,9 +1763,10 @@ tip "Minimum departure distance"
 
 tip "Habitable arrival distance"
 	`If true, then systems that do not define an arrival distance will generate one that is equal to the habitable distance of the system.`
+	`Note that the vanilla game does not define any arrival distances. A system without a defined arrival distance causes ships to appear near an inhabited planet, or near the system center if there is no inhabited planet.`
 
 tip "   Minimum distance"
-	`If the "Habitable arrival distance" gamerule is true, systems with a habitable distance lower than this value will use this value as their arrival distance instead.`
+	`If the "Habitable arrival distance" gamerule is true, systems with a habitable distance lower than this value will use this value as their arrival distance instead. If the "Minimum arrival distance" gamerule is set and is higher than this, then that will be used instead.`
 
 tip "   Maximum distance"
 	`If the "Habitable arrival distance" gamerule is true, systems with a habitable distance higher than this value will use this value as their arrival distance instead.`
