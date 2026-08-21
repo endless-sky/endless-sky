@@ -4204,6 +4204,7 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 {
 	if(!IsDestroyed())
 		return 0;
+	PauseAnimation();
 
 	// Make sure the shields are zero, as well as the hull.
 	levels.shields = 0.;
