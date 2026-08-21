@@ -370,13 +370,26 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	// Add energy and heat while moving to the table.
 	attributesHeight += 20;
-	const double movingEnergyPerFrame =
-		max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
-		+ attributes.Get("turning energy")
-		+ attributes.Get("afterburner energy");
-	const double movingHeatPerFrame = max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
-		+ attributes.Get("turning heat")
-		+ attributes.Get("afterburner heat");
+	double reverseThrust = attributes.Get("reverse thrust");
+	double movingEnergyPerFrame = attributes.Get("turning energy");
+	double movingHeatPerFrame = attributes.Get("turning heat");
+	if(mainThrust && reverseThrust)
+	{
+		movingEnergyPerFrame += max(attributes.Get("thrusting energy") + attributes.Get("afterburner energy"),
+			attributes.Get("reverse thrusting energy"));
+		movingHeatPerFrame += max(attributes.Get("thrusting heat") + attributes.Get("afterburner heat"),
+			attributes.Get("reverse thrusting heat"));
+	}
+	else if(mainThrust)
+	{
+		movingEnergyPerFrame += attributes.Get("thrusting energy") + attributes.Get("afterburner energy");
+		movingHeatPerFrame += attributes.Get("thrusting heat") + attributes.Get("afterburner heat");
+	}
+	else if(reverseThrust)
+	{
+		movingEnergyPerFrame += attributes.Get("reverse thrusting energy");
+		movingHeatPerFrame += attributes.Get("reverse thrusting heat");
+	}
 	tableLabels.push_back("moving:");
 	energyTable.push_back(Format::Number(-60. * movingEnergyPerFrame));
 	heatTable.push_back(Format::Number(60. * movingHeatPerFrame));
