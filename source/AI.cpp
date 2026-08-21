@@ -3872,7 +3872,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 			// to aim at it and for a projectile to hit it.
 			double bestScore = numeric_limits<double>::infinity();
 			double bestAngle = 0.;
-			for(auto &[p, v] : targets)
+			for(auto [p, v] : targets)
 			{
 				p -= start;
 
