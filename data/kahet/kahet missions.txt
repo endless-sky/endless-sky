@@ -2725,7 +2725,6 @@ event "ssil vida changes"
 		pos 297 269
 		government Remnant
 		attributes "ember waste"
-		arrival 500
 		belt 2000
 		haze _menu/haze-red
 		link Diespiter
