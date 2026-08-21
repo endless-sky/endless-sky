@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Gamerules.h"
 #include "Government.h"
@@ -125,6 +124,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 
 void ShopPanel::Step()
 {
+	++step;
 	loadingCircle.Step();
 	if(!checkedHelp && GetUI().IsTop(this) && player.Ships().size() > 1)
 	{
@@ -208,13 +208,13 @@ void ShopPanel::Draw()
 		{
 			static const Color selected(.8f, 1.f);
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
-			OutlineShader::Draw(sprite, dragPoint, size, selected);
+			DrawOutline(*dragShip, dragPoint, size, selected);
 		}
 		else
 		{
 			const Swizzle *swizzle = dragShip->CustomSwizzle()
 				? dragShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-			SpriteShader::Draw(sprite, dragPoint, scale, swizzle);
+			DrawThumbnail(*dragShip, dragPoint, scale, swizzle);
 		}
 	}
 
@@ -239,28 +239,33 @@ void ShopPanel::UpdateTooltipActivation()
 
 
 
-void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
+void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected) const
 {
-	const Sprite *back = SpriteSet::Get(
-		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
+	const Sprite *back = SpriteSet::Get(isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
 	SpriteShader::Draw(back, center);
 
-	const Sprite *thumbnail = ship.Thumbnail();
-	const Sprite *sprite = ship.GetSprite();
+	const Drawable &thumbnail = ship.Thumbnail();
+	const Sprite *sprite = thumbnail.GetSprite();
 	const Swizzle *swizzle = ship.CustomSwizzle() ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-	if(thumbnail)
+	if(sprite)
 	{
-		if(thumbnail->IsLoaded())
-			SpriteShader::Draw(thumbnail, center + Point(0., 10.), 1., swizzle);
-		else if(thumbnail->HasDimensions())
-			loadingCircle.Draw(center);
-	}
-	else if(sprite)
-	{
-		// Make sure the ship sprite leaves 10 pixels padding all around.
-		const float zoomSize = SHIP_SIZE - 60.f;
-		float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
-		SpriteShader::Draw(sprite, center, zoom, swizzle);
+		float zoom = 1.f;
+		Point nudge;
+		// If the thumbnail sprite matches the main sprite of the ship, then we need to make sure
+		// that the thumbnail doesn't overflow the area it's being drawn within.
+		if(sprite == ship.GetSprite())
+		{
+			// Make sure the ship sprite leaves 10 pixels padding all around.
+			float zoomSize = SHIP_SIZE - 60.f;
+			zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
+		}
+		else
+		{
+			// Dedicated thumbnails are expected to be sized to the shop UI.
+			// We just nudge them up slightly.
+			nudge += Point(0., 10.);
+		}
+		DrawThumbnail(thumbnail, center + nudge, zoom, swizzle);
 	}
 
 	// Draw the ship name.
@@ -269,6 +274,32 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	Point offset(-SIDEBAR_CONTENT / 2, -.5f * SHIP_SIZE + 10.f);
 	font.Draw({name, {SIDEBAR_CONTENT, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, *GameData::Colors().Get("bright"));
+}
+
+
+
+void ShopPanel::DrawOutline(const Drawable &thumbnail, const Point &center, const Point &size, const Color &color) const
+{
+	const Sprite *sprite = thumbnail.GetSprite();
+	if(!sprite)
+		return;
+	if(sprite->IsLoaded())
+		OutlineShader::Draw(sprite, center, size, color, Point(0., -1.), thumbnail.GetFrame(step));
+	else if(sprite->HasDimensions())
+		loadingCircle.Draw(center);
+}
+
+
+
+void ShopPanel::DrawThumbnail(const Drawable &thumbnail, const Point &center, float zoom, const Swizzle *swizzle) const
+{
+	const Sprite *sprite = thumbnail.GetSprite();
+	if(!sprite)
+		return;
+	if(sprite->IsLoaded())
+		SpriteShader::Draw(sprite, center, zoom, swizzle, thumbnail.GetFrame(step));
+	else if(sprite->HasDimensions())
+		loadingCircle.Draw(center);
 }
 
 
@@ -824,12 +855,12 @@ void ShopPanel::DrawShipsSidebar()
 			if(Preferences::Has(SHIP_OUTLINES))
 			{
 				Point size(sprite->Width() * scale, sprite->Height() * scale);
-				OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+				DrawOutline(*ship, point, size, isSelected ? selected : unselected);
 			}
 			else
 			{
 				const Swizzle *swizzle = ship->CustomSwizzle() ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-				SpriteShader::Draw(sprite, point, scale, swizzle);
+				DrawThumbnail(*ship, point, scale, swizzle);
 			}
 		}
 

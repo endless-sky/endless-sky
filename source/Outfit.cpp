@@ -354,7 +354,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "flotsam sprite" && hasValue)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(key == "thumbnail" && hasValue)
-			thumbnail = SpriteSet::Get(child.Token(1));
+			thumbnail.LoadSprite(child);
 		else if(key == "weapon")
 		{
 			if(!weapon)
@@ -576,7 +576,7 @@ const vector<string> &Outfit::Licenses() const
 
 
 // Get the image to display in the outfitter when buying this item.
-const Sprite *Outfit::Thumbnail() const
+const Drawable &Outfit::Thumbnail() const
 {
 	return thumbnail;
 }
