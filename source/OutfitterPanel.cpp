@@ -312,7 +312,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 
 		const Sprite *background = SpriteSet::Get("ui/outfitter unselected");
 		SpriteShader::Draw(background, thumbnailCenter);
-		DrawThumbnail(thumbnail, thumbnailCenter);
+		DrawThumbnail(thumbnail, true, thumbnailCenter);
 
 		const bool hasDescription = outfitInfo.DescriptionHeight();
 
@@ -1108,7 +1108,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 {
 	const Sprite *back = SpriteSet::Get(isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
 	SpriteShader::Draw(back, center);
-	DrawThumbnail(outfit.Thumbnail(), center);
+	DrawThumbnail(outfit.Thumbnail(), isSelected, center);
 
 	// Draw the outfit name.
 	const string &name = outfit.DisplayName();

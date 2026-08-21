@@ -214,7 +214,7 @@ void ShopPanel::Draw()
 		{
 			const Swizzle *swizzle = dragShip->CustomSwizzle()
 				? dragShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-			DrawThumbnail(*dragShip, dragPoint, scale, swizzle);
+			DrawThumbnail(*dragShip, false, dragPoint, scale, swizzle);
 		}
 	}
 
@@ -265,7 +265,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 			// We just nudge them up slightly.
 			nudge += Point(0., 10.);
 		}
-		DrawThumbnail(thumbnail, center + nudge, zoom, swizzle);
+		DrawThumbnail(thumbnail, isSelected, center + nudge, zoom, swizzle);
 	}
 
 	// Draw the ship name.
@@ -284,20 +284,27 @@ void ShopPanel::DrawOutline(const Drawable &thumbnail, const Point &center, cons
 	if(!sprite)
 		return;
 	if(sprite->IsLoaded())
-		OutlineShader::Draw(sprite, center, size, color, Point(0., -1.), thumbnail.GetFrame(step));
+		OutlineShader::Draw(sprite, center, size, color, Point(0., -1.));
 	else if(sprite->HasDimensions())
 		loadingCircle.Draw(center);
 }
 
 
 
-void ShopPanel::DrawThumbnail(const Drawable &thumbnail, const Point &center, float zoom, const Swizzle *swizzle) const
+void ShopPanel::DrawThumbnail(const Drawable &thumbnail, bool animate, const Point &center, float zoom,
+	const Swizzle *swizzle) const
 {
 	const Sprite *sprite = thumbnail.GetSprite();
 	if(!sprite)
 		return;
 	if(sprite->IsLoaded())
+	{
+		if(animate)
+			thumbnail.UnpauseAnimation();
+		else
+			thumbnail.PauseAnimation();
 		SpriteShader::Draw(sprite, center, zoom, swizzle, thumbnail.GetFrame(step));
+	}
 	else if(sprite->HasDimensions())
 		loadingCircle.Draw(center);
 }
@@ -860,7 +867,7 @@ void ShopPanel::DrawShipsSidebar()
 			else
 			{
 				const Swizzle *swizzle = ship->CustomSwizzle() ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-				DrawThumbnail(*ship, point, scale, swizzle);
+				DrawThumbnail(*ship, false, point, scale, swizzle);
 			}
 		}
 

@@ -332,13 +332,13 @@ void MapSalesPanel::DrawInfo() const
 			topLeft.X() += compareInfo.PanelWidth() + box->Width();
 
 			SpriteShader::Draw(box, topLeft + Point(-50., 100.));
-			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), SelectedSpriteSwizzle());
-			DrawSprite(topLeft + Point(-95., 105.), CompareSprite(), CompareSpriteSwizzle());
+			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), true, SelectedSpriteSwizzle());
+			DrawSprite(topLeft + Point(-95., 105.), CompareSprite(), true, CompareSpriteSwizzle());
 		}
 		else
 		{
 			SpriteShader::Draw(box, topLeft + Point(-60., 50.));
-			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), SelectedSpriteSwizzle());
+			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), true, SelectedSpriteSwizzle());
 		}
 		selectedInfo.DrawAttributes(topLeft);
 	}
@@ -367,7 +367,7 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 
 
 
-void MapSalesPanel::DrawSprite(const Point &corner, const Drawable &drawable, const Swizzle *swizzle) const
+void MapSalesPanel::DrawSprite(const Point &corner, const Drawable &drawable, bool animate, const Swizzle *swizzle) const
 {
 	const Sprite *sprite = drawable.GetSprite();
 	if(!sprite)
@@ -380,6 +380,10 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Drawable &drawable, co
 		// No swizzle was specified, so default to the player swizzle.
 		if(!swizzle)
 			swizzle = GameData::PlayerGovernment()->GetSwizzle();
+		if(animate)
+			drawable.UnpauseAnimation();
+		else
+			drawable.PauseAnimation();
 		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle, drawable.GetFrame(step));
 	}
 	else if(sprite->HasDimensions())
@@ -416,7 +420,7 @@ void MapSalesPanel::Draw(Point &corner, const Drawable &drawable, const Swizzle 
 		if(isSelected)
 			FillShader::Fill(Rectangle::FromCorner(corner, blockSize), selectionColor);
 
-		DrawSprite(corner, drawable, swizzle);
+		DrawSprite(corner, drawable, isSelected, swizzle);
 
 		const Color &mediumColor = *GameData::Colors().Get("medium");
 		const Color &dimColor = *GameData::Colors().Get("dim");
