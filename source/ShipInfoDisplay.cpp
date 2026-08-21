@@ -252,7 +252,10 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	double fullMass = emptyMass + attributes.Get("cargo space");
 	isGeneric &= (fullMass != emptyMass);
-	double forwardThrust = attributes.Get("thrust") ? attributes.Get("thrust") : attributes.Get("afterburner thrust");
+	double thrust = attributes.Get("thrust");
+	double afterburnerThrust = attributes.Get("afterburner thrust");
+	double mainThrust = thrust ? thrust : afterburnerThrust;
+	double allThrust = thrust + afterburnerThrust;
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
@@ -260,8 +263,14 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributeValues.push_back(string());
 	attributesHeight += 20;
 	attributeLabels.push_back("max speed:");
-	attributeValues.push_back(Format::Number(60. * forwardThrust / ship.Drag()));
+	attributeValues.push_back(Format::Number(60. * mainThrust / ship.Drag()));
 	attributesHeight += 20;
+	if(scrollingPanel && thrust && afterburnerThrust)
+	{
+		attributeLabels.push_back("   w/ afterburner:");
+		attributeValues.push_back(Format::Number(60. * allThrust / ship.Drag()));
+		attributesHeight += 20;
+	}
 
 	// Movement stats are influenced by inertia reduction.
 	double reduction = 1. + attributes.Get("inertia reduction");
@@ -269,13 +278,24 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	currentMass /= reduction;
 	fullMass /= reduction;
 	attributeLabels.push_back("acceleration:");
-	double baseAccel = 3600. * forwardThrust * (1. + attributes.Get("acceleration multiplier"));
+	double baseAccel = 3600. * mainThrust * (1. + attributes.Get("acceleration multiplier"));
 	if(!isGeneric)
 		attributeValues.push_back(Format::Number(baseAccel / currentMass));
 	else
 		attributeValues.push_back(Format::Number(baseAccel / fullMass)
 			+ " - " + Format::Number(baseAccel / emptyMass));
 	attributesHeight += 20;
+	if(scrollingPanel && thrust && afterburnerThrust)
+	{
+		double maxAccel = 3600. * allThrust * (1. + attributes.Get("acceleration multiplier"));
+		attributeLabels.push_back("    w/ afterburner:");
+		if(!isGeneric)
+			attributeValues.push_back(Format::Number(maxAccel / currentMass));
+		else
+			attributeValues.push_back(Format::Number(maxAccel / fullMass)
+				+ " - " + Format::Number(maxAccel / emptyMass));
+		attributesHeight += 20;
+	}
 
 	attributeLabels.push_back("turning:");
 	double baseTurn = 60. * attributes.Get("turn") * (1. + attributes.Get("turn multiplier"));

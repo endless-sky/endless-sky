@@ -495,6 +495,9 @@ tip "mass:"
 tip "max speed:"
 	`The maximum speed of this ship when using thrusters. Excludes the effect of afterburners, unless there are no normal thrusters installed.`
 
+tip "    w/ afterburner:"
+	`Movement while both your primary thrusters and afterburners are active.`
+
 tip "movement:"
 	`How quickly this ship can accelerate and turn.`
 
