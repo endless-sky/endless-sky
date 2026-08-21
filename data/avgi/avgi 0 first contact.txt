@@ -368,10 +368,23 @@ mission "Avgi: Humans From the Deep"
 			`	"Or, you may find yourself trapped here, just as they are. In any case, we will of course make you as comfortable as we can, as an honored guest, and treat you as we would any foreign dignitary."`
 			choice
 				`	"I have a jump drive that lets me travel beyond the hyperlanes, but it won't let me jump back to human space."`
+					to display
+						not "avgi: discovered magnetar"
 				`	"I have a device that lets me go where I please, but it isn't working at the moment."`
+					to display
+						not "avgi: discovered magnetar"
+				`	"I have a jump drive that lets me travel beyond the hyperlanes, and I have found a pathway back to human space."`
+					goto hopeful
+					to display
+						has "avgi: discovered magnetar"
 
 			`	"Regret. Then the situation is most unfortunate," she says. "Commitment. We will offer you what help we can, but I did not wish to lie to you about their predicament, or provide you with false hope."`
 			`	"Reservation. Perhaps Captain <last> will be able to find a solution." says Galano. "I would not dismiss the possibility too quickly."`
+				goto interim
+			label hopeful
+			`	"Optimism. Then the situation is hopeful," she says. "We will offer you what help we can during your visit to us. Perhaps it will be the first of many."`
+
+			label interim
 			choice
 				`	"While I'm here, can I buy your technology?"`
 					goto "buy stuff"
@@ -458,11 +471,29 @@ mission "Avgi: Defend Ensemble 1"
 			`	"...What? You're kidding, right? How the hell did you defeat a Quarg ship?" He looks worried for a second, taking a step back. "Do I even want to be seen associating with you?" He laughs nervously.`
 
 			label next
-			`	Darius shakes his head for a moment, then looks back at you. "Well, since you're still here, I'm assuming your jump drive couldn't get you out of here?" You tell him about how you were unable to jump back to human space, and he nods along.`
-			`	"There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes." He sounds frustrated.`
+			`	Darius shakes his head for a moment, then looks back at you. "Well, since you're still here, I'm assuming your jump drive couldn't get you out of here?"`
+			choice
+				`	"Unfortunately not."`
+					to display
+						not "avgi: discovered magnetar"
+				`	"For some reason, the drive doesn't work at full power in this region of space, so it doesn't have enough range to get out."`
+					to display
+						not "avgi: discovered magnetar"
+				`	"Actually, it can. I'm just passing through."`
+					goto "can leave"
+					to display
+						has "avgi: discovered magnetar"
+			`	He nods at your explanation. "There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes." He sounds frustrated.`
+			goto plight
+
+			label "can leave"
+			`	Darius stares at you. "It can? You... you have a way out? Just like that?" You explain the strange phenomenon that expanded your jump drive's range, and he grabs you by the arms. "Please, you have to let me come with you! There's no other ships that can do it. The Avgi don't even like us trying to map out the place." Once you pry his hands off, you assure him that you have a spare bunk, and he looks to be on the verge of tears, profusely thanking you.`
+			label plight
 			choice
 				`	"Don't worry, I'm sure we'll find a way back home."`
 					goto reassuring
+					to display
+						not "avgi: discovered magnetar"
 				`	"The Avgi are trying to keep you here? That's worrying."`
 				`	"How'd you end up in Avgi space without a jump drive?"`
 					goto story
@@ -470,7 +501,7 @@ mission "Avgi: Defend Ensemble 1"
 			`	"I'm probably just paranoid. After all, they're really enthusiastic about trying for an alliance with humanity to help them against these Aberrant, no matter how many times I explain humans aren't really all that technologically advanced. But they think if I can find a way home, we might be able to find a way to open up a connection between human space and Avgi space, especially given the way we got here. Not that I'd want to do that, with the chance of the Aberrant overrunning human space."`
 
 			label reassuring
-			`	"Sometimes I find it hard to believe that we'll ever make it home, but it helps to tell myself there's hope," he says.`
+			`	"Sometimes it's been hard to believe that we'll ever make it home, but it helps to tell myself there's hope," he says.`
 			choice
 				`	"How'd you end up in Avgi space without a jump drive?"`
 
@@ -486,11 +517,19 @@ mission "Avgi: Defend Ensemble 1"
 				`	"That seems unfair. There's no way you could have known what would happen."`
 					goto blame
 				`	"Is there a chance of reconciling with them?"`
+			branch rescue
+				has "avgi: discovered magnetar"
 			`	"I've made... a lot of mistakes. Ones with a price paid in lives. But," he looks down, "...maybe. They don't hate me or anything like that, we just... keep our distance. Sora's off doing who knows what with the Twilight Guard on Weledos, and Leon is on and off with those mining guilds to the East. There are a few others left too, but like I said. A price paid in lives."`
+				goto end
+			label rescue
+			`	"I don't know about rebuilding friendships. I've made... a lot of mistakes. Ones with a price paid in lives. But if I tell them we can offer them a way home, then sure, they'd be willing to hear me out. They don't hate me or anything like that, we just... keep our distance. Sora's off doing who knows what with the Twilight Guard on Weledos, and Leon is on and off with those mining guilds to the East. There are a few others left too, but like I said. A price paid in lives."`
 				goto end
 
 			label blame
 			`	"I wish it was that simple. I made more mistakes after that, ones with a price measured in lives. Eleven dead after our ship was disabled, all because I ordered us to get too close to the scary-looking alien ships in the hope we could communicate with them. Sure, you could say I couldn't have known the Aberrant would try to kill us, but I ignored the advice of my crew, just because I was desperate to get home. Sora, Leon, they both told me we should run, but I didn't listen to them."`
+			branch end
+				not "avgi: discovered magnetar"
+			`	He sighs. "Finding the way home doesn't make up for it. But it's still worth offering it to them."`
 
 			label end
 			`	You sit together in silence for a few more minutes, when Darius seems to receive a message on his communicator. "I get patched in to the emergency alert system," he explains as he reads it. Suddenly, he pales. "A scout is reporting a massive invasion headed towards the Ensemble system. Dozens of Aberrations, flying straight through the Shroud." He looks up at you. "They don't normally try to go too deep in the Shroud. Something about it spooks them, I think, but Ensemble is shallow enough that they've attacked it before. Nothing of this scale though, and... damn, Sora's on Weledos, the moon in the Ensemble system."`
@@ -642,13 +681,22 @@ mission "Avgi: Defend Ensemble 2"
 			`	"Now, I'm very interested in how exactly you managed to find your way here. Care to explain?" she asks.`
 			`	You fill Sora in on how your travels brought you here, and how you were able to acquire a jump drive. Darius says nothing throughout, standing by silently.`
 			`	"Amazing. So, your jump drive can get us out of here then?"`
+			branch "can leave"
+				has "avgi: discovered magnetar"
 			choice
 				`	"I'm afraid not. It can't return to human space for some reason."`
 				`	"No, but I'm not giving up on finding a different way out."`
 				`	"Nope!"`
 			`	"Damn. That would be too easy, I guess. But it's been too long since I've seen a fresh human face. I've been working for the Twilight Guard here for months, trying to build up a second line of defenses in case that station in Arche falls. At least today's battle shows those defenses, together with a supporting fleet, can hold. You mind if I tag along with you, in case you do manage to find a way out?"`
+			goto recruit
+			label "can leave"
 			choice
-				`	"Of course."`
+				`	"Sure can!"`
+				`	"Something in this region of space interferes with it, but I've found a system where it has enough range to make the crossing."`
+			`	"That's fantastic! You mind if I tag along with you? I've been working for the Twilight Guard here for months, trying to build up a second line of defenses in case that station in Arche falls, but today's battle shows that those defenses, together with a supporting fleet, can hold. They'll be just fine without me. I want to see home again."`
+			label recruit
+			choice
+				`	"Happy to have you."`
 					goto yes
 				`	"Sure, as long as Darius doesn't mind."`
 			`	You look over at Darius, who responds after a few seconds of silence. "Of course you can come along, Sora."`
@@ -683,13 +731,22 @@ mission "Avgi: Defend Ensemble 2"
 			choice
 				`	"It sounds like they'd like my help with something."`
 				`	"I'm going to help them with the war effort."`
+			branch magnetar
+				has "avgi: discovered magnetar"
 			`	He frowns. "I see. When do you think we'll be able to head up north to look for a way out?"`
 			choice
 				`	"We'll do it soon, I promise."`
 				`	"I'm not sure."`
 			`	He looks a little disappointed, then collects himself. "Well, I suppose there's no real urgency to it. Though, I've been thinking. If your jump drive wasn't able to let you escape from the north, there might not be a point in looking in that direction."`
+				goto friend
+			label magnetar
+			`	He frowns. "I see. When do you think we'll be able to head for the way out?"`
+			choice
+				`	"We'll do it soon, I promise."`
+			`	He looks a little disappointed, then collects himself. "Well, after six years, I suppose I can't complain about a few more days. Actually, if you're in no hurry..."`
+			label friend
 			`	"What do you suggest?" you ask.`
-			`	"I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's a number of hideaways and side branches in the Tangled Shroud, with outposts mostly ran by miners and small-time shipbuilders. Just the kind of people who talk a lot among themselves about rumors and tall tales. The official story of the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I think we should pay my friend a visit after you wrap up this next mission."`
+			`	"I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's a number of hideaways and side branches in the Tangled Shroud, with outposts mostly run by miners and small-time shipbuilders. Just the kind of people who talk a lot among themselves about rumors and tall tales. The official story of the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I think we should pay my friend a visit after you wrap up this next mission."`
 
 
 mission "Avgi: Scout Rescue"
@@ -936,6 +993,12 @@ mission "Avgi: Twilight Escape 1"
 			`	"And who's this?" Leon says, looking at you. "How'd you end up here, of all places?"`
 			choice
 				`	"Captain <last>. I was stranded here, just like you."`
+					to display
+						not "avgi: discovered magnetar"
+				`	"Captain <last>. I've agreed to take Darius and Sora back to human space."`
+					goto "can leave"
+					to display
+						has "avgi: discovered magnetar"
 				`	"<first>. Pleased to meet you."`
 
 			`	You quickly explain how you found yourself in Avgi space, and Leon nods. "That explains the questions the good Captain was asking," he says, nodding at Darius. "I've spent years collecting this information, from hearing the official narrative to dredging the corners of Avgi space for rumors."`
@@ -956,6 +1019,8 @@ mission "Avgi: Twilight Escape 1"
 			`	"I don't know where it leads, but it'll be somewhere other than Avgi space. Maybe somewhere your jump drive can work, which would let us eventually make our way back to human space. But it's better than sitting here and twiddling our thumbs for another six years."`
 			`	"Where is this gateway?" Darius asks.`
 			`	"The Aberrant came from the East, beyond the furthest reaches of the Twilight. A place the Avgi always had trouble exploring, due to strange energy storms periodically ionizing entire systems. But it's apparently recognizable by the red nebula suffusing it, just as the Twilight is surrounded by a cluster of blue nebulae."`
+			branch magnetar
+				has "avgi: discovered magnetar"
 			branch "unknown ember waste"
 				not "event: ember waste label"
 			choice
@@ -963,10 +1028,14 @@ mission "Avgi: Twilight Escape 1"
 			`	"Can it take us back to human space?" asks Leon, to which you nod.`
 
 			label "unknown ember waste"
-			`	"There's no point in waiting, then. If there's a chance, even a small one, it's worth checking on," says Darius, looking hopeful for the first time since you've met him.`
-			branch accept
-				has "avgi: discovered magnetar"
-			`	You just hope his hope isn't a false one, for both of your sakes.`
+			`	"There's no point in waiting, then. If there's a chance, even a small one, it's worth checking on," says Darius, looking hopeful for the first time since you've met him. You just hope his hope isn't a false one, for both of your sakes.`
+				accept
+			label magnetar
+			choice
+				`	"The far east? That sounds like the exit that I already found."`
+			label "can leave"
+			`	Leon looks shocked. "You... you what?! You already have a way out?" You explain how a mysterious device expanded your jump drive's range enough to get back to human space, and he wastes no time in asking which bunk is his.`
+			`	Darius turns to you, looking hopeful. "If you're ready, then, please take us home."`
 				accept
 	on enter
 		system
@@ -1096,16 +1165,17 @@ mission "Avgi: Twilight Escape 3"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Darius hasn't entered the system yet. Better depart and wait for it to arrive.`
 
+event "avgi: discovered magnetar"
 
-mission "Discovery of Decet Magnetar"
+mission "Avgi: Discovery of Decet Magnetar"
 	invisible
 	entering
 	source
 		system "Decet"
 	destination "Earth"
 	on offer
+		event "avgi: discovered magnetar" 0
 		log `Discovered a magnetar in the Decet system that can boost the range of my jump drive in an apparent inversion of the mysterious effect that trapped me here.`
-		set "avgi: discovered magnetar"
 		conversation
 			`Just as your jump drive reacted strangely when you first entered Avgi space, it does so again, but this time the effect is inverted. The plasma from your jump lingers unnaturally, as though energized by something outside. Your instrumentation tells you your jump drive is much warmer than it should be just after a jump, almost hot enough to be dangerous. Perhaps your jump drive's range has changed as well?`
 				decline
