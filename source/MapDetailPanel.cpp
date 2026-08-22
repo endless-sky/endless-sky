@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"
@@ -708,7 +709,33 @@ void MapDetailPanel::DrawKey()
 	}
 	else if(commodity == SHOW_STARS)
 	{
-		// The starry map mode leave the legend panel blank.
+		if(player.CanView(*selectedSystem))
+		{
+			Information info;
+			double power = 0., wind = 0.;
+			for(const auto &stellar : selectedSystem->Objects())
+			{
+				power += GameData::SolarPower(stellar.GetSprite());
+				wind += GameData::SolarWind(stellar.GetSprite());
+			}
+			info.SetString("flux", GameData::Rating("stellar flux", max<int64_t>(0, power)));
+			info.SetString("wind", GameData::Rating("stellar wind", max<int64_t>(0, wind)));
+
+			Point position = {0, 0};
+			const Outfit &attributes = player.Flagship()->Attributes();
+			System::SolarGeneration generation = selectedSystem->GetSolarGeneration(position,
+				attributes.Get("ramscoop"), attributes.Get("solar collection"), attributes.Get("solar heat"));
+			info.SetString("energy", Format::Number(generation.energy * 60.) + "/s");
+			info.SetString("fuel", Format::Number(generation.fuel * 60.) + "/s");
+
+			// more ideas for stuff we could include:
+			// info.SetString("star count", "2");
+			// info.SetString("star types", "F-type main sequence, neutron star");
+			// info.SetString("planet count", "5");
+			// info.SetString("planet types", "Gas giant, rocky planet, ice moon, inhabited asteroid, space station");
+
+			GameData::Interfaces().Get("map: stars view: key")->Draw(info, this);
+		}
 	}
 	if(commodity != SHOW_DANGER && commodity != SHOW_STARS)
 	{
