@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
+#include "Drawable.h"
 #include "EsUuid.h"
 #include "FireCommand.h"
 #include "Outfit.h"
@@ -184,7 +185,7 @@ public:
 	// Get this ship's description.
 	std::string Description() const;
 	// Get the shipyard thumbnail for this ship.
-	const Sprite *Thumbnail() const;
+	const Drawable &Thumbnail() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
@@ -629,7 +630,7 @@ private:
 	std::string variantMapShopName;
 	std::string noun;
 	Paragraphs description;
-	const Sprite *thumbnail = nullptr;
+	Drawable thumbnail;
 	// Characteristics of this particular ship:
 	EsUuid uuid;
 	std::string givenName;
