@@ -17,8 +17,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 uniform vec2 scale;
 // The (x, y) coordinates of the top left corner of the glyph.
 uniform vec2 position;
-// The glyph to draw. (ASCII value - 32).
+// The glyph cell to draw from the font atlas.
 uniform int glyph;
+// Number of glyph cells in the font atlas.
+uniform float glyphCount;
 // Aspect ratio of rendered glyph (unity by default).
 uniform float aspect;
 // Glyph size (in pixels).
@@ -33,7 +35,7 @@ out vec2 texCoord;
 
 // Pick the proper glyph out of the texture.
 void main() {
-	texCoord = vec2((float(glyph) + corner.x) / 98.f, corner.y);
+	texCoord = vec2((float(glyph) + corner.x) / glyphCount, corner.y);
 	vec2 pos = vert * glyphSize;
 	gl_Position = vec4((aspect * pos.x + position.x) * scale.x, (pos.y + position.y) * scale.y, 0.f, 1.f);
 }

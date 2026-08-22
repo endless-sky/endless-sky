@@ -30,7 +30,8 @@ Static interface text opts in with an `@` prefix, for example:
 button q @ui.main.quit
 ```
 
-This first foundation migrates representative main-menu labels and includes a
-Korean catalog smoke test. The existing bitmap font is still ASCII-only; a
-Unicode font and shaping/line-breaking follow-up is required before Korean
-text can be rendered correctly in-game.
+The renderer keeps the existing bitmap font for ASCII text and loads
+`images/font/NotoSansKR-VF.ttf` as a Unicode glyph fallback. Korean catalog
+entries can therefore be rendered in-game. The fallback currently provides
+glyph lookup and basic metrics; language-specific shaping remains a separate
+follow-up for scripts that require it.

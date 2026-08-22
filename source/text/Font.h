@@ -19,9 +19,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../opengl.h"
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 #include <filesystem>
 #include <functional>
+#include <unordered_map>
 #include <string>
+#include <vector>
 
 class Color;
 class DisplayText;
@@ -30,16 +35,18 @@ class Point;
 
 
 
-// Class for drawing text in OpenGL. Each font is based on a single image with
-// glyphs for each character in ASCII order (not counting control characters).
-// The kerning between characters is automatically adjusted to look good. At the
-// moment only plain ASCII characters are supported, not Unicode.
+// Class for drawing text in OpenGL. The standard bitmap font provides the
+// original ASCII glyphs, while a TrueType fallback is used for Unicode text.
 class Font {
 public:
 	Font() noexcept = default;
+	~Font();
+	Font(const Font &) = delete;
+	Font &operator=(const Font &) = delete;
 	explicit Font(const std::filesystem::path &imagePath);
 
-	void Load(const std::filesystem::path &imagePath);
+	void Load(const std::filesystem::path &imagePath,
+		const std::filesystem::path &unicodePath = {});
 
 	// Draw a text string, subject to the given layout and truncation strategy.
 	void Draw(const DisplayText &text, const Point &point, const Color &color) const;
@@ -61,8 +68,13 @@ public:
 
 
 private:
-	static int Glyph(char c, bool isAfterSpace) noexcept;
+	static int Glyph(char32_t c, bool isAfterSpace) noexcept;
+	int UnicodeGlyph(char32_t c) const;
+	void EnsureUnicodeGlyphs(const std::string &str) const;
+	void AddUnicodeGlyph(char32_t c) const;
+	int AdvanceFor(int previous, int glyph) const noexcept;
 	void LoadTexture(ImageBuffer &image);
+	void UploadTexture() const;
 	void CalculateAdvances(ImageBuffer &image);
 	void SetUpShader(float glyphW, float glyphH);
 
@@ -91,4 +103,12 @@ private:
 	static const int GLYPHS = 98;
 	int advance[GLYPHS * GLYPHS] = {};
 	int widthEllipses = 0;
+	int cellWidth = 0;
+	int textureHeight = 0;
+	mutable int atlasColumns = GLYPHS;
+	mutable std::vector<uint32_t> atlasPixels;
+	mutable std::unordered_map<char32_t, int> unicodeGlyphs;
+	mutable std::unordered_map<int, int> unicodeAdvances;
+	int asciiAdvances[GLYPHS] = {};
+	FT_Face unicodeFace = nullptr;
 };
