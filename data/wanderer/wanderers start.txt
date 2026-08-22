@@ -79,6 +79,7 @@ mission "First Contact: Wanderer"
 mission "Discovered Wanderer Space"
 	landing
 	invisible
+	non-blocking
 	source
 		government "Wanderer"
 	on offer
@@ -386,6 +387,7 @@ event "wanderer technology available" # Name unchanged for compatibility
 mission "Hai Language Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Visit Wanderers Again: offered"
 		not "language: Hai"
@@ -399,6 +401,7 @@ mission "Hai Language Patch"
 mission "Wanderer Hail Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: wanderer technology available"
 	on offer
@@ -478,6 +481,7 @@ event "wanderers: vara k'chrai facilities"
 mission "Wanderers: Vara K'Chrai Facilities Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Wanderers Conversation: offered"
 	on offer
@@ -490,6 +494,7 @@ mission "Wanderers: Vara K'Chrai Facilities Patch"
 mission "Wanderers: Outfit License Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Wanderers Conversation: offered"
 		not "license: Wanderer Outfits"
@@ -856,6 +861,7 @@ mission "Wanderers: Unfettered Diplomacy 1C"
 mission "Wanderers: Truce Timer"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Wanderers: Unfettered Diplomacy 1C: done"
 	on offer
@@ -1649,6 +1655,7 @@ mission "Wanderers: Alpha Surveillance J"
 mission "Wanderers: Unfettered Invasion Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: wanderers: unfettered invasion"
 	on offer
@@ -1659,6 +1666,7 @@ mission "Wanderers: Unfettered Invasion Patch"
 mission "Wanderers: Heavy Gust Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: wanderers: unfettered invasion starts"
 		not "event: wanderers: heavy gust mass production"
@@ -2097,6 +2105,7 @@ mission "Wanderers Hai Assistance 2"
 mission "Wanderers Hai Assistance Fleet"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Wanderers Hai Assistance 1: done"
 	on offer
@@ -2122,6 +2131,7 @@ event "hai blockade"
 mission "Wanderers Hai Assistance Fleet patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Wanderers Hai Assistance Fleet: offered"
 		not "event: hai blockade"
@@ -2337,6 +2347,7 @@ event "eastern evacuation"
 mission "eastern evacuation"
 	landing
 	invisible
+	non-blocking
 	to offer
 		or
 			has "Wanderers Solifuge Recon 2: done"
@@ -2381,6 +2392,7 @@ mission "Wanderers Evacuation 1"
 # The Riptide was added after these missions, so it is triggered separately for backward compatibility.
 mission "Wanderers Riptide Patch"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Wanderers Evacuation 1: offered"
@@ -2538,6 +2550,7 @@ mission "Wanderers Defend Sich'ka'ara"
 mission "Solifuge Shipyards Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: battle for sich'ka'ara ends"
 		not "event: solifuge deployment"
@@ -2569,6 +2582,7 @@ event "battle for sich'ka'ara ends"
 mission "Wanderers: Kort Vek'kri Tribute Patch"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: battle for sich'ka'ara ends"
 	on offer
@@ -2871,6 +2885,7 @@ event "battle for ap'arak ends"
 
 mission "pug defend wanderers"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Wanderers Ap'arak 2: done"
@@ -2983,6 +2998,7 @@ mission "Wanderers Ap'arak 2"
 mission "Wanderers Ap'arak 3: Pug 1"
 	landing
 	invisible
+	non-blocking
 	source "Varu Tev'kei"
 	to offer
 		has "Wanderers Ap'arak 2: done"
@@ -2997,6 +3013,7 @@ mission "Wanderers Ap'arak 3: Pug 1"
 mission "Wanderers Ap'arak 3: Pug 2"
 	landing
 	invisible
+	non-blocking
 	source "Varu Tev'kei"
 	to offer
 		has "Wanderers Ap'arak 2: done"

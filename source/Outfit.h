@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <map>
 #include <memory>
+#include <optional>
 #include <string>
 #include <utility>
 #include <vector>
@@ -51,6 +52,39 @@ public:
 
 
 public:
+	// Get the limit to how low an attribute is allowed to go on a ship when installing outfits.
+	// An empty optional means that there is no lower limit.
+	static std::optional<double> LowerLimit(const std::string &attribute);
+	static std::optional<int64_t> LowerLimitPrecise(const std::string &attribute);
+
+
+public:
+	class AttributeIterator {
+	public:
+		explicit AttributeIterator(const Outfit &outfit, Dictionary<int64_t>::const_iterator start);
+		AttributeIterator() = delete;
+
+		// Iterator traits
+		using iterator_category = std::input_iterator_tag;
+		using value_type = std::pair<std::string, double>;
+		using difference_type = void;
+		using pointer = const std::pair<std::string, double> *;
+		using reference = std::pair<std::string, double> &;
+
+		std::pair<std::string, double> operator*() const;
+		AttributeIterator &operator++();
+		bool operator==(const AttributeIterator &) const;
+		bool operator!=(const AttributeIterator &) const;
+		bool operator<(const AttributeIterator &) const;
+		bool operator>(const AttributeIterator &) const;
+
+	private:
+		const Outfit &outfit;
+		Dictionary<int64_t>::const_iterator it;
+	};
+
+
+public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
 	void Load(const DataNode &node, const ConditionsStore *playerConditions);
@@ -62,7 +96,7 @@ public:
 	const std::string &PluralName() const;
 	const std::string &Category() const;
 	const std::string &Series() const;
-	const int Index() const;
+	int Index() const;
 	std::string Description() const;
 	int64_t Cost() const;
 	double Mass() const;
@@ -71,9 +105,19 @@ public:
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
 
+	// Return true if this Outfit's attributes Dictionary is empty. Does not determine
+	// whether this Outfit contains any sprites, effects, sounds, or a weapon.
+	bool Empty() const;
+	// Access to the attribute values.
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
-	const Dictionary &Attributes() const;
+	int64_t GetPrecise(const char *attribute) const;
+	int64_t GetPrecise(const std::string &attribute) const;
+	// Get an iterator over this Outfit's attribute names and values as doubles.
+	AttributeIterator begin() const;
+	AttributeIterator end() const;
+	// Get the underlying precise values dictionary.
+	const Dictionary<int64_t> &Precise() const;
 
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
@@ -83,16 +127,19 @@ public:
 	// instances of the given outfit to this outfit.
 	void Add(const Outfit &other, int count = 1);
 	// Add the licenses required by the given outfit to this outfit.
-	void AddLicenses(const Outfit &outfit);
+	void AddLicenses(const Outfit &other);
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
+	void Set(const std::string &attribute, double value);
 
 	const std::shared_ptr<const Weapon> &GetWeapon() const;
 	// Get the ammo if this is an ammo storage outfit.
-	const Outfit *AmmoStored() const;
+	const std::set<const Outfit *> &AmmoStored() const;
 	// Get the ammo used if this is a weapon, or stored ammo if this is a storage.
-	const Outfit *AmmoStoredOrUsed() const;
+	const std::set<const Outfit *> &AmmoStoredOrUsed() const;
+	// Outfits that should be sold when this outfit is sold.
+	const std::set<const Outfit *> &LinkedOutfits() const;
 
 	// Get this outfit's engine flare sprites, if any.
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;
@@ -140,13 +187,16 @@ private:
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 
-	Dictionary attributes;
+	Dictionary<int64_t> attributes;
 
 	std::shared_ptr<const Weapon> weapon;
 	// Non-weapon outfits can have ammo so that storage outfits
 	// properly remove excess ammo when the storage is sold, instead
 	// of blocking the sale of the outfit until the ammo is sold first.
-	const Outfit *ammoStored = nullptr;
+	std::set<const Outfit *> ammoStored;
+	// Linked outfits are also sold when this outfit is sold, but you
+	// won't be prompted to fill up on "ammo" when entering the outfitter.
+	std::set<const Outfit *> linkedOutfits;
 
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.

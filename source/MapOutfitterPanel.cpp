@@ -20,12 +20,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Information.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -57,6 +59,15 @@ MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere)
 
 
 
+void MapOutfitterPanel::LoadCatalogThumbnails() const
+{
+	for(const auto &category : catalog)
+		for(const string &entry : category.second)
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), GameData::Outfits().Get(entry)->Thumbnail());
+}
+
+
+
 const Sprite *MapOutfitterPanel::SelectedSprite() const
 {
 	return selected ? selected->Thumbnail() : nullptr;
@@ -81,23 +92,6 @@ const ItemInfoDisplay &MapOutfitterPanel::SelectedInfo() const
 const ItemInfoDisplay &MapOutfitterPanel::CompareInfo() const
 {
 	return compareInfo;
-}
-
-
-
-const string &MapOutfitterPanel::KeyLabel(int index) const
-{
-	static const string MINE = "Mine this here";
-	if(index == 2 && selected && selected->Get("minable") > 0.)
-		return MINE;
-
-	static const string LABEL[4] = {
-		"Has no outfitter",
-		"Has outfitter",
-		"Sells this outfit",
-		"Outfit in storage"
-	};
-	return LABEL[index];
 }
 
 
@@ -178,6 +172,18 @@ int MapOutfitterPanel::FindItem(const string &text) const
 		}
 	}
 	return bestItem;
+}
+
+
+
+void MapOutfitterPanel::DrawKey(Information &info) const
+{
+	const string condition = (selected && selected->Get("minable") > 0.)
+		? "is outfitters w/ minerals" : "is outfitters";
+
+	info.SetCondition(condition);
+
+	MapSalesPanel::DrawKey(info);
 }
 
 

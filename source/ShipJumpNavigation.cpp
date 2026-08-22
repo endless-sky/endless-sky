@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipJumpNavigation.h"
 
+#include "Hasher.h"
 #include "Outfit.h"
 #include "Ship.h"
 #include "System.h"
@@ -33,8 +34,11 @@ void ShipJumpNavigation::Calibrate(const Ship &ship)
 	mass = ship.Mass();
 
 	const Outfit &attributes = ship.Attributes();
+	jumpSpeed = attributes.Get("jump speed");
+	scramThreshold = attributes.Get("scram drive");
+
 	hasHyperdrive = attributes.Get("hyperdrive");
-	hasScramDrive = attributes.Get("scram drive");
+	hasScramDrive = scramThreshold;
 	hasJumpDrive = attributes.Get("jump drive");
 	hasJumpMassCost = attributes.Get("jump mass cost");
 
@@ -58,6 +62,16 @@ void ShipJumpNavigation::Recalibrate(const Ship &ship)
 	// that would be affected by that change.
 	if(hasJumpMassCost && mass != ship.Mass())
 		Calibrate(ship);
+}
+
+
+
+void ShipJumpNavigation::RecalibrateJumpSpeed(const Ship &ship)
+{
+	const Outfit &attributes = ship.Attributes();
+	jumpSpeed = attributes.Get("jump speed");
+	scramThreshold = attributes.Get("scram drive");
+	hasScramDrive = scramThreshold;
 }
 
 
@@ -194,6 +208,53 @@ bool ShipJumpNavigation::HasScramDrive() const
 bool ShipJumpNavigation::HasJumpDrive() const
 {
 	return hasJumpDrive;
+}
+
+
+
+bool ShipJumpNavigation::HasJumpMassCost() const
+{
+	return hasJumpMassCost;
+}
+
+
+
+double ShipJumpNavigation::JumpSpeed() const
+{
+	return jumpSpeed;
+}
+
+
+
+double ShipJumpNavigation::ScramThreshold() const
+{
+	return scramThreshold;
+}
+
+
+
+size_t ShipJumpNavigation::Hash() const
+{
+	// Include in the hash only that information that can influence pathfinding.
+	size_t hash = 0;
+
+	Hasher::Hash(hash, currentSystem);
+
+	// Whether the hyperdrive is a scram drive doesn't change pathfinding.
+	Hasher::Hash(hash, hasHyperdrive);
+	Hasher::Hash(hash, hasJumpDrive);
+
+	// Max jump range information is contained within the jump drive costs.
+	// The jump cost also contains information about the mass of the ship,
+	// if its mass influences its jump cost.
+	Hasher::Hash(hash, hyperdriveCost);
+	for(const auto &[range, cost] : jumpDriveCosts)
+	{
+		Hasher::Hash(hash, range);
+		Hasher::Hash(hash, cost);
+	}
+
+	return hash;
 }
 
 

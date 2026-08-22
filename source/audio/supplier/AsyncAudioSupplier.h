@@ -37,6 +37,7 @@ public:
 
 
 protected:
+	void StartAudioThread();
 	/// This is the entry point for the decoding thread.
 	virtual void Decode() = 0;
 

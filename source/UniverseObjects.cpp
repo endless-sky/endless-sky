@@ -87,7 +87,8 @@ double UniverseObjects::GetProgress() const
 void UniverseObjects::FinishLoading()
 {
 	for(auto &&it : planets)
-		it.second.FinishLoading(wormholes);
+		if(it.second.IsValid())
+			it.second.FinishLoading(wormholes);
 
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
@@ -97,9 +98,11 @@ void UniverseObjects::FinishLoading()
 
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &&it : ships)
-		it.second.FinishLoading(true);
+		if(it.second.IsValid())
+			it.second.FinishLoading(true);
 	for(auto &&it : persons)
-		it.second.FinishLoading();
+		if(it.second.IsValid())
+			it.second.FinishLoading();
 
 	// Calculate minable values.
 	for(auto &&it : minables)
@@ -341,9 +344,9 @@ void UniverseObjects::CheckReferences()
 	for(auto &it : messages)
 		if(!it.second.IsLoaded())
 			NameAndWarn("message", it);
-	// Persons can be referred to when marking them as destroyed.
+	// Persons can be referred to when marking them as destroyed, or contain invalid ships.
 	for(const auto &it : persons)
-		if(!it.second.IsLoaded())
+		if(!it.second.IsValid())
 			Warn("person", it.first);
 }
 
@@ -478,7 +481,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			Minable *minable = minables.Get(node.Token(1));
 			if(overwrite)
 				*minable = Minable();
-			minable->Load(node);
+			minable->Load(node, playerConditions);
 		}
 		else if(key == "mission" && hasValue)
 		{
@@ -588,31 +591,25 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		}
 		else if(key == "landing message" && hasValue)
 		{
+			const string &value = node.Token(1);
 			for(const DataNode &child : node)
-				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+				objectSpriteData[SpriteSet::Get(child.Token(0))].SetLandingMessage(value);
+		}
+		else if(key == "planet mass" && hasValue)
+		{
+			double value = max(0., node.Value(1));
+			if(!value)
+				node.PrintTrace("A star or stellar object's mass must be greater than 0.");
+			else
+				for(const DataNode &child : node)
+					objectSpriteData[SpriteSet::Get(child.Token(0))].SetMass(value);
 		}
 		else if(key == "star" && hasValue)
 		{
 			const Sprite *sprite = SpriteSet::Get(node.Token(1));
 			if(overwrite)
-			{
-				solarPower.erase(sprite);
-				solarWind.erase(sprite);
-				starIcons.erase(sprite);
-			}
-			for(const DataNode &child : node)
-			{
-				const string &childKey = child.Token(0);
-				bool childHasValue = child.Size() >= 2;
-				if(childKey == "power" && childHasValue)
-					solarPower[sprite] = child.Value(1);
-				else if(childKey == "wind" && childHasValue)
-					solarWind[sprite] = child.Value(1);
-				else if(childKey == "icon" && childHasValue)
-					starIcons[sprite] = SpriteSet::Get(child.Token(1));
-				else
-					child.PrintTrace("Skipping unrecognized attribute:");
-			}
+				objectSpriteData.erase(sprite);
+			objectSpriteData[sprite].Load(node);
 		}
 		else if(key == "news" && hasValue)
 		{
@@ -677,11 +674,21 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 				*wormhole = Wormhole();
 			wormhole->Load(node);
 		}
+		else if(key == "gamerules preset" && hasValue && node.HasChildren())
+		{
+			Gamerules *gamerules = gamerulesPresets.Get(node.Token(1));
+			if(overwrite)
+				*gamerules = Gamerules();
+			gamerules->Load(node);
+		}
 		else if(key == "gamerules" && node.HasChildren())
 		{
+			node.PrintTrace("\"gamerules\" root node is deprecated. "
+				"Use `\"gamerules preset\" \"Default\"` instead.");
+			Gamerules *gamerules = gamerulesPresets.Get("Default");
 			if(overwrite)
-				gamerules = Gamerules();
-			gamerules.Load(node);
+				*gamerules = Gamerules();
+			gamerules->Load(node);
 		}
 		else if(key == "message category")
 		{
