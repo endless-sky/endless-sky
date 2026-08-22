@@ -1,0 +1,957 @@
+# Copyright (c) 2024 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Unfettered: Challengers Arrive"
+	landing
+	invisible
+	source "Darkcloak"
+	to offer
+		has "unfettered: duel ready"
+	on offer
+		conversation
+			branch fixing
+				not "Unfettered: Challengers Arrive: deferred"
+			`Do you want to go see the captain in the spaceport now? He may have more to tell you about the duels.`
+			choice
+				`	(Yes.)`
+					goto explain
+				`	(Maybe another time.)`
+					defer
+			label fixing
+			`The captain meets you in the spaceport now that his crew is done patching up his ship. "She be spaceworthy again, alright. I got lots to explain to you, if ye're ready to listen, mate!"`
+			choice
+				`	"Go ahead."`
+				`	"Maybe another time."`
+					defer
+			label explain
+			`	"Now that ye savvy how a duel rolls, many Unfettered will want to challenge ye, interested in the exotic tactics and weaponry ye may bring - they may even buy some of it if they be liking what they see! If ye agree, they won't think twice about engaging you once ye get too close and will be marked on yer map, because they be wanting ta make sure ye see them! But best be careful not to run around with too big an armada while taking challenges, or yer hearties may wind up feeding the fishes for carrying yer flag. We wouldn't want that now, would we?`
+			`	"If ye still be too much a scallywag to face the challenge now, ye can always mark yerself ready for action from the job board later, but only in port here on Darkcloak. The opposite holds true too: if ye lose the stomach for fighting a while, ye can mark yerself as not ready for such challenge. If ye say yes, challengers will come for you in space, whether ye want it or not, until ye go to the job board here on Darkcloak to stop it! Ye can always bribe them, naturally.`
+			`	"Finally, and this part is very important, ye need ta board the ships in order to claim yer booty. In these improvised duels ye be expected to choose between plundering those you defeat or claiming a bounty for their loss.`
+			`	"So, what say ye? Be ye ready for action? Be ye ready for the challenge?"`
+			choice
+				`	"I was born ready."`
+					goto ok
+				`	"Maybe later, from the job board."`
+			`	"Scared to jump in the water, are ya? Whenever ye reckon ye can swim, go do that. Ye can even mark yerself ready for a bigger and bigger challenge at any time, or stop it all in the Darkcloak job board."`
+				decline
+			label ok
+			`	"And may ye die ready as well," he responds in the blink of an eye.`
+			action
+				"unfettered: challengers" ++
+	on defer
+		set "Unfettered: Challengers Arrive: deferred"
+
+
+mission "Unfettered: Trigger The Challengers"
+	job
+	repeat
+	name "More Spontaneous Challengers"
+	description "Mark yourself as ready for more spontaneous challengers to come in all Unfettered systems, up to three of them at once."
+	source "Darkcloak"
+	to offer
+		has "unfettered: duel ready"
+		"unfettered: challengers" < 3
+	to fail
+		has "Unfettered: Trigger The Challengers: active"
+	on accept
+		"unfettered: challengers" ++
+		dialog "Even more spontaneous challengers will come, hopefully you are ready for them! Do remember you need to board them to claim your reward, and in no circumstances are you allowed to destroy or capture their ships."
+
+
+mission "Unfettered: Remove The Challengers"
+	job
+	repeat
+	name "No more spontaneous challengers"
+	description "Mark yourself as no longer wanting to do spontaneous challenges in any Unfettered systems."
+	source "Darkcloak"
+	to offer
+		has "unfettered: duel ready"
+		has "unfettered: challengers"
+	to fail
+		has "Unfettered: Remove The Challengers: active"
+	on accept
+		fail "Unfettered Spontaneous Challenge"
+		clear "unfettered: challengers"
+		dialog "No more spontaneous challengers will come by themselves in space, no matter how many there were. You can still change your mind by accepting the other job, or any specific duelling job."
+
+
+
+phrase "beaten in duel"
+	word
+		`The duellist seems `
+	word
+		`very excited`
+		`all too happy`
+		`a bit disappointed`
+	word
+		` as they hail you, now that you are disabled, "`
+	word
+		`Ha!`
+		`Haha!`
+		`Well...`
+		`It is over.`
+	word
+		` `
+	word
+		`It seems that you are not invincible after all`
+		`I have beaten you`
+		`You have been bested`
+		`You have found your match`
+		`That was a close one`
+		`You almost got me there`
+		`Finally beaten`
+		`Tales will be told of this fight`
+		`You have fought well`
+		`Can't you do better than that?`
+	word
+		`! `
+	word
+		`You owe me `
+		`I deserve `
+		`You should give me `
+	word
+		`a small compensation`
+		`what is rightfully mine`
+		`what is owed`
+		`what you owe me`
+		`my reward`
+		`my prize`
+	word
+		` in the form of a symbolic bribe. I expect it the next time you hail me, and I will repair your ship."`
+
+phrase "unfettered challenger defeated"
+	word
+		`You receive a message from the disabled challenger ship`
+		`The captain of the ship you just disabled hails you`
+		`Now that they are disabled, the challenging ship sends you a hail`
+	word
+		`: ${unfettered challenger defeat message}`
+
+phrase "unfettered challenger defeat message"
+	word
+		`"`
+	word
+		`Did you cheat? If I learn you cheated, I will be the end of you, little monkey!`
+		`Raaaah... Well, you have beaten me fairly, so I'll pay up...`
+		`Nicely done! You seem to learn from our encounters well... But next time will be different, I assure you.`
+		`The fight is over! Stop shooting me or you'll blow holes into my ship!`
+		`I surrender. You have indeed lived up to your reputation, I did not stand a chance in this battle. Still, a challenge is a challenge.`
+		`Stop shooting me, you monkey, before my ship breaks apart!`
+		`You seem to learn from our encounters well... next time it will be different.`
+		`Urgent message: we surrender. It is not our way to fight until death, because then there is nothing to be learned through it.`
+		`Is your fleet not too big for this battle? Or do you use superior weaponry?`
+		`Well done, I guess it is only fair that you be allowed to plunder a few of my outfits...`
+	word
+		` `
+	word
+		`For now, here are the agreed <payment>. Hopefully it will allow you to improve your flagship before our next battle..`
+		`I am in no rush to provide you the <payment>, but honor forces me to give it to you either way`
+		`Here are your well deserved <payment>, captain. Next time I will not underestimate you`
+		`You must have had an edge! I'm in no condition to argue about giving you your payment of <payment>, however don't expect to see us again anytime soon`
+		`Here is your <payment>, captain, well earned`
+		`Whatever the case, you have earned my weapon, and my respect, captain. I have transferred <payment> for you`
+		`We will analyze the fight to make sure you have not cheated. If that is the case, you will receive the <payment> shortly. If this was a fair fight, you may have gained my respect`
+	word
+		`."`
+	word
+		"	(Winning the duel has slightly increased your reputation with the Unfettered. You are in no way allowed to do any more than plundering the ship.)"
+
+phrase "unfettered challenger captured"
+	word
+		`As soon as you captured the enemy challenger, you are hailed by the local Unfettered authorities with a purple code priority transmission: "Never do that again. This is your first and final warning."`
+
+
+
+mission "Duel Rewards"
+	landing
+	source
+		attributes "unfettered"
+	to offer
+		has "unfettered challenger defeated"
+	on offer
+		conversation
+			`You open the hatch of your ship, only to discover a Hai standing right in front of you, pointing pistols you have never seen before! This must be the captain you have just defeated.`
+			choice
+				`	(Wait for them to reveal their intentions.)`
+					goto explain
+				`	(Draw my weapon.)`
+			`	As you start to reach for your weapon the Unfettered gets closer to you, moving fast to put one of their pistols on your neck. "I like you," she says. "Ready to face danger, welcoming death! A shame you probably will not live that long with this attitude," she says before moving back slightly.`
+			label explain
+			`	She salutes you, pistol still in her hand, before presenting both weapons to you, as if making an offering. Seeing your apparent surprise, she starts speaking about the pistols, "Fascinating design, is it not? They come from the time of the Korath raids. Even then, some of us decided it was better to take the initiative and attack them before they can attack us! They developed this much more mobile version of the pulse rifle, and made it more deadly.`
+			`	"You earned the right to have mine by defeating me in a duel. Of course we won't bother you every time you win one, but you'll be getting the pistols all the same, in sets of 3 per day at most." She almost forcibly puts the pistols in your hand, and goes back to her ship, probably to supervise the repairs.`
+			action
+				outfit "Dual Pulse Pistols"
+
+mission "Duel Weapons"
+	landing
+	invisible
+	repeat
+	minor
+	source
+		attributes "unfettered"
+	to offer
+		has "Duel Rewards: offered"
+		"unfettered challenger defeated" >= ( "unfettered: pistols received" + 3 )
+	on offer
+		outfit "Dual Pulse Pistols" 3
+		"unfettered: pistols received" += 3
+
+
+
+mission "Unfettered Challenge [0]"
+	job
+	repeat
+	name `Defeat a young Unfettered captain`
+	"apparent payment" 200000
+	description `A young Unfettered captain wants to challenge you into a small duel. Disable his ship for <payment>.`
+	source
+		attributes "unfettered"
+	to offer
+		has "unfettered: duel ready"
+		random < 40
+	to accept
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 9 + "unfettered: total challengers"
+	on accept
+		"unfettered: total challengers" += 9
+	on disabled
+		dialog phrase "beaten in duel"
+		fail
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables plunders staying heroic target
+		fleet "Sea Scorpion Challenger"
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 200000
+			"unfettered challenger defeated" ++
+			fail
+		on capture
+			dialog phrase "unfettered challenger captured"
+			"unfettered revenge fleet" ++
+	on fail
+		"unfettered: total challengers" -= 9
+
+mission "Unfettered Challenge [1A]"
+	job
+	repeat
+	name `Defeat an escorted Unfettered captain`
+	"apparent payment" 500000
+	description `An Unfettered captain wants to challenge you in a fair duel with his escort. Disable his ships for <payment>.`
+	source
+		attributes "unfettered"
+	to offer
+		has "unfettered: duel ready"
+		random < 20
+	to accept
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 15 + "unfettered: total challengers"
+	on accept
+		"unfettered: total challengers" += 15
+	on disabled
+		dialog phrase "beaten in duel"
+		fail
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables plunders staying heroic target
+		fleet "Sea Scorpion Challenger" 2
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 500000
+			"unfettered challenger defeated" += 2
+			fail
+		on capture
+			dialog phrase "unfettered challenger captured"
+			"unfettered revenge fleet" ++
+	on fail
+		"unfettered: total challengers" -= 15
+
+mission "Unfettered Challenge [1B]"
+	job
+	repeat
+	name `Defeat an Unfettered captain`
+	"apparent payment" 500000
+	description `An Unfettered captain wants to challenge you in a fair duel. Disable his ship for <payment>.`
+	source
+		attributes "unfettered"
+	to offer
+		has "unfettered: duel ready"
+		random < 20
+	to accept
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 15 + "unfettered: total challengers"
+	on accept
+		"unfettered: total challengers" += 15
+	on disabled
+		dialog phrase "beaten in duel"
+		fail
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables plunders staying heroic target
+		fleet "Shield Beetle Challenger"
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 600000
+			"unfettered challenger defeated" += 2
+			fail
+		on capture
+			dialog phrase "unfettered challenger captured"
+			"unfettered revenge fleet" ++
+	on fail
+		"unfettered: total challengers" -= 15
+
+mission "Unfettered Challenge [2]"
+	job
+	repeat
+	name `Defeat an old Unfettered captain`
+	"apparent payment" 1000000
+	description `An experienced Unfettered captain wants to challenge you into a duel with his escort, provided you are not overwhelmingly strong. Disable his ships for <payment>.`
+	source
+		attributes "unfettered"
+	to offer
+		has "unfettered: duel ready"
+		random < 20
+	to accept
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 21 + "unfettered: total challengers"
+	on accept
+		"unfettered: total challengers" += 21
+	on disabled
+		dialog phrase "beaten in duel"
+		fail
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables plunders staying heroic target
+		fleet "Shield Beetle Challenger"
+		fleet "Sea Scorpion Challenger"
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 1000000
+			"unfettered challenger defeated" += 3
+			fail
+		on capture
+			dialog phrase "unfettered challenger captured"
+			"unfettered revenge fleet" ++
+	on fail
+		"unfettered: total challengers" -= 21
+
+
+
+# random challengers that move around
+mission "Unfettered Spontaneous Challenge"
+	minor
+	repeat
+	landing
+	invisible
+	source
+		attributes "unfettered"
+	deadline 1
+	to offer
+		has "unfettered: duel ready"
+		not "Unfettered Spontaneous Challenge: active"
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 15
+	to fail
+		# make sure these dont interfere with other duels
+		or
+			has "Unfettered Challenge [0]: active"
+			has "Unfettered Challenge [1A]: active"
+			has "Unfettered Challenge [1B]: active"
+			has "Unfettered Challenge [2]: active"
+			has "<uhai> 2: Prove Your Strength: active"
+			has "<uhai> 15: Modified Beetle: active"
+			has "<uhai> 16: Strength Of A Leader: Si-Ra: active"
+			has "<uhai> 16: Strength Of A Leader: He-Yi: active"
+	on disabled
+		dialog phrase "beaten in duel"
+		fail
+	# TODO: add lightning bugs
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables plunders entering target timid restricted opportunistic merciful uninterested daring lingering
+		to spawn
+			random < "unfettered: challengers" * 20
+		system
+			government "Hai (Unfettered)"
+		fleet "Sea Scorpion Challenger"
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 200000
+			fail
+		on capture
+			dialog phrase "unfettered challenger captured"
+			"unfettered revenge fleet" ++
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables plunders entering target timid restricted opportunistic merciful uninterested daring lingering
+		to spawn
+			random < "unfettered: challengers" * 10
+		system "Hi Yahr"
+		fleet "Sea Scorpion Challenger" 2
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 500000
+			fail
+		on capture
+			dialog phrase "unfettered challenger captured"
+			"unfettered revenge fleet" ++
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables plunders entering target timid restricted opportunistic merciful uninterested daring lingering
+		to spawn
+			random < "unfettered: challengers" * 10
+		system "Ehma Ti"
+		fleet "Shield Beetle Challenger"
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 600000
+			fail
+		on capture
+			dialog phrase "unfettered challenger captured"
+			"unfettered revenge fleet" ++
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables plunders entering target timid restricted opportunistic merciful uninterested daring lingering
+		to spawn
+			random < "unfettered: challengers" * 5
+		system "Wah Yoot"
+		fleet "Sea Scorpion Challenger"
+		fleet "Shield Beetle Challenger"
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 1000000
+			fail
+		on capture
+			dialog phrase "unfettered challenger captured"
+			"unfettered revenge fleet" ++
+
+
+
+conversation "interrupted duel"
+	action
+		"unfettered revenge fleet" ++
+	branch toomuch
+		has "unfettered revenge fleet" > 2
+	action
+		"reputation: Hai (Unfettered)" -= 50
+	`The Unfettered authorities of the nearby planet hail you, "Whatever you had in mind you better stop right there if you have hope of maintaining good relations with us. Duels may not be interrupted, under any circumstances. I suggest you leave at once, and we may forgive you for this transgression."`
+		decline
+	label toomuch
+	action
+		"reputation: Hai (Unfettered)" <?= -1
+	`The Unfettered authorities of the nearby planet hail you, "You have been warned. We have been patient enough with you, monkey! Now you shall pay."`
+	# one can just sell them a JD to get forgiven.
+
+
+# Kavakai = one with no honor
+mission "Death To The Kavakai"
+	invisible
+	repeat
+	deadline 30
+	source
+		attributes "unfettered"
+	to offer
+		"unfettered revenge fleet" > 1
+	on offer
+		"unfettered revenge fleet" --
+	on enter
+		"reputation: Hai (Unfettered)" <?= -1000
+		dialog `An Unfettered fleet launches with you, and you are hailed by one of the ships. "You dare land on one of our worlds after disrespecting the rules of the duel? We shall teach you respect, Kavakai!"`
+	npc kill
+		government "Hai (Unfettered)"
+		personality staying heroic nemesis unconstrained vindictive marked
+		fleet "Sea Scorpion Challenger"
+		fleet "Shield Beetle Challenger"
+		fleet "Large Unfettered" 2
+		fleet "Small Unfettered" 2
+	npc kill
+		government "Hai (Unfettered)"
+		personality staying heroic nemesis unconstrained vindictive marked
+		to spawn
+			"unfettered revenge fleet" > 3
+		fleet "Large Unfettered" 4
+		on kill
+			set "unfettered: too tough"
+	to fail
+		has "unfettered: too tough"
+	on complete
+		"unfettered revenge fleet" += 2
+
+mission "Unfettered Red Blue Sea Scorpion Duel"
+	minor
+	landing
+	invisible
+	repeat
+	deadline 1
+	source
+		attributes "unfettered"
+	to offer
+		random < 18
+	npc provoke
+		government "Hai (Unfettered Blue Challenger)"
+		personality disables merciful plunders staying heroic uninterested
+		fleet "Sea Scorpion Challenger"
+		conversation "interrupted duel"
+	npc provoke
+		government "Hai (Unfettered Red Challenger)"
+		personality disables merciful plunders staying heroic uninterested
+		fleet "Sea Scorpion Challenger"
+		conversation "interrupted duel"
+
+mission "Unfettered Red Blue Shield Beetle Duel"
+	minor
+	landing
+	invisible
+	repeat
+	deadline 1
+	source
+		attributes "unfettered"
+	to offer
+		random < 12
+	npc provoke
+		government "Hai (Unfettered Blue Challenger)"
+		personality disables merciful plunders staying heroic uninterested
+		fleet "Shield Beetle Challenger"
+		conversation "interrupted duel"
+	npc provoke
+		government "Hai (Unfettered Red Challenger)"
+		personality disables merciful plunders staying heroic uninterested
+		fleet "Shield Beetle Challenger"
+		conversation "interrupted duel"
+
+
+
+# idea: add spaceport news with challengers talking about interesting new weapons
+phrase "unfettered weapon delivery"
+	word
+		`The Unfettered captain is delighted that you were able to give him <weapons>`
+		"You can see an evil grin draw on the face of the Unfettered captain as they see the <weapons>"
+		"You bring <weapons> to the captain, and they seem really happy"
+		"It does not take long to find the captain, they quickly greet you and check you have <weapons> as planned,"
+		"You quickly find the captain impatiently waiting for <weapons>"
+		"The Unfettered captain greets you with a big smile on their face as you present <weapons> to them,"
+	word
+		" "
+	word
+		"and they give you <payment>."
+		"and they happily give you <payment>."
+		`"You well deserve this <payment>," they say,`
+		`"Here are your <payment>," they say,`
+	word
+		" "
+	word
+		`"With these weapons and my ship's speed, nobody will be able to beat me!"`
+		`"I love exotic weapons! Please bring me more if you can, I would reward it highly." They say, before heading hastily to their ship, probably eager to test these weapons.`
+		`"Now this is a proper weapon! It will be useful against the Wanderers. Our legends speak of this weapon, I shall see if they are as useful as some say."`
+		`"I shall put them to good use! These seem like they would pair perfectly with our ion weapons." He says, with a grin on his face.`
+		`"Now this will simply be perfect for my next raiding!"`
+		`"I truly hope that with this there will be less unfortunate casualties in my next raiding."`
+		
+
+
+mission "Unfettered: Bring Legendary Combo"
+	minor
+	landing
+	invisible
+	source "Darkcloak"
+	deadline 60
+	substitutions
+		<weapons> "the Shield Disruptor and Husk-Slice Turrets"
+	to offer
+		has "outfit (flagship installed): Shield Disruptor Turret"
+		has "outfit (flagship installed): Husk-Slice Turret"
+		has "unfettered challenger defeated"
+	on offer
+		clear "unfettered challenger defeated"
+		conversation
+			`As you land, a captain you defeated recently comes to find you close to your ship, and quietly speaks, pointing at your weapons. "How did you acquire these? We heard rumors of it, but were not sure what to believe. It seems that the stories are true, then; there are indeed weapons capable of disrupting any shields... And what a brilliant idea to combine those with weapons capable of quickly cutting through hull."`
+			`	He looks around, probably making sure there are no competitors that could hear this. "I want them. Name your price, whatever it may be, and I shall meet it! Such a weapon combination would do wonders in the raids, and would allow me to not hurt my brethren. Truly, this is for a good cause!"`
+			choice
+				`	"I want a Lightning Bug in exchange."`
+				`	"3 million credits should do."`
+					goto money
+				`	"I want you to escort me in your Sea Scorpion, for 2 months."`
+					goto escort
+				`	"I'd like to exchange them for 2 ionic turrets.`
+					to display
+						"unfettered: prototypes exchanged" < 3
+					goto turrets
+				`	"I'd take nothing less than 4 tripulse shredders.`
+					goto shredders
+				`	"You better prepare 8 ionic blasters!"`
+					to display
+						"unfettered: prototypes exchanged" < 3
+					goto blasters
+				`	"My weapons are not for sale."`
+					goto nodeal
+			action
+				give ship "Lightning Bug (Pulse)"
+			`	"And you shall have it!"`
+				goto deal
+			label money
+			action
+				payment 3000000
+			`	"If that is what it takes, I shall pay those gladly."`
+				goto deal
+			label escort
+			action
+				set "unfettered: escort for disruptor"
+			`	"In that case I shall do my best to protect you in times of need."`
+				goto deal
+			label turrets
+			action
+				"unfettered: prototypes exchanged" += 2
+				outfit "Ionic Turret Prototype" 2
+			`	"You strike a hard bargain but I shall make the necessary arrangements."`
+				goto deal
+			label shredders
+			action
+				outfit "Tripulse Shredder" 4
+			`	"That only seems fair, I shall arrange it."`
+				goto deal
+			label blasters
+			action
+				"unfettered: prototypes exchanged" += 2
+				outfit "Ionic Blaster Prototype" 8
+			`	"It is agreed, then."`
+			label deal
+			action
+				outfit "Shield Disruptor Turret" -1
+				outfit "Husk-Slice Turret" -1
+			`	The captain swiftly arranges for his team to take <weapons> and install them on his ship, a happy smile on his face.`
+				accept
+			label nodeal
+			`	"I understand. Do know, however, that exotic weapons such as this one are likely to get you some attention, and you will often be able to find a buyer in the job board, for a good price."`
+				decline
+	npc save
+		government "Hai (Friendly Unfettered)"
+		personality escort timid coward frugal
+		ship "Sea Scorpion (Disruptor Slicer)"
+		to spawn
+			has "unfettered: escort for disruptor"
+
+
+# They ask you to sell the weapons you used to defeat them, the chance increases the more duels you win.
+# currently: flamethrower, inferno, ravager, repeaters, particle cannons
+# add more for: syscores, kahet nuke, asteroid afterburner, detainer, mandible cannon, coalition stuff
+# + remnant reactors, inhibitors and consequences for selling them if ur being watched
+mission "Unfettered: Bring Fire"
+	job
+	repeat
+	name "Sell <weapons>"
+	description "The captain you just duelled has seen what fire can do, and they want to learn the secrets behind it. Bring <weapons> to them for <payment>."
+	substitutions
+		<weapons> "two Flamethrowers"
+	source
+		attributes "unfettered"
+	to offer
+		random < "unfettered challenger defeated" * 15
+	on accept
+		clear "unfettered challenger defeated"
+		outfit "Flamethrower" -2
+		payment 500000
+		dialog phrase "unfettered weapon delivery"
+
+
+mission "Unfettered: Bring Hell"
+	job
+	repeat
+	name "Sell <weapons>"
+	description "The captain you just duelled was shocked by the sheer heating power of <weapons>. Bring one to them for <payment>."
+	substitutions
+		<weapons> "a Korath Inferno"
+	source
+		attributes "unfettered"
+	to offer
+		random < "unfettered challenger defeated" * 30
+	on accept
+		clear "unfettered challenger defeated"
+		outfit "Korath Inferno" -1
+		payment 2500000
+		dialog phrase "unfettered weapon delivery"
+
+
+mission "Unfettered: Bring Carnage"
+	job
+	repeat
+	name "Sell <weapons>"
+	description "The captain you just duelled has seen what <weapons> can do to hull, and they want to learn the secrets behind it. Bring two to them for <payment>."
+	substitutions
+		<weapons> "two Ka'Het Ravager Beams"
+	source
+		attributes "unfettered"
+	to offer
+		random < "unfettered challenger defeated" * 10
+	on accept
+		clear "unfettered challenger defeated"
+		outfit "Ka'het Ravager Beam" -2
+		payment 2000000
+		dialog phrase "unfettered weapon delivery"
+
+
+mission "Unfettered: Bring Repeater"
+	job
+	repeat
+	name "Sell <weapons>"
+	description "The captain you just duelled is impressed by the raw amount of heat brought by your weapons. Bring <weapons> to them for <payment>."
+	substitutions
+		<weapons> "two Plasma Repeaters"
+	source
+		attributes "unfettered"
+	to offer
+		has "outfit (installed): Plasma Repeater"
+		random < "unfettered challenger defeated" * 20
+	on accept
+		clear "unfettered challenger defeated"
+		outfit "Plasma Repeater" -2
+		payment 1250000
+		dialog phrase "unfettered weapon delivery"
+
+
+mission "Unfettered: Bring Particles"
+	job
+	repeat
+	name "Sell <weapons>"
+	description "The captain you just duelled has taken interest in the range and damage of the Particle Cannon. Bring two to them for <payment>."
+	substitutions
+		<weapons> "two Particle Cannons"
+	source
+		attributes "unfettered"
+	to offer
+		has "outfit (installed): Particle Cannon"
+		random < "unfettered challenger defeated" * 5
+	on offer
+		clear "unfettered challenger defeated"
+	on complete
+		outfit "Particle Cannon" -2
+		payment 1000000
+		dialog phrase "unfettered weapon delivery"
+
+
+
+phrase "unfettered challenger"
+	word
+		"The rules of the duel are clear: do not"
+		"Do not"
+		"Do not"
+		"You have asked for a time out, now do not"
+	word
+		" "
+		" attempt to "
+		" try to "
+		" presume to "
+		" think you can "
+	word
+		"attack me"
+		"shoot me"
+	word
+		" "
+	word
+		"until a day has passed"
+		"until you have changed system or landed"
+		"until the time out is considered over"
+	word
+		", "
+	word
+		"or"
+		"else"
+		"if you do"
+	word
+		" "
+	word
+		"my brethren"
+		"fellow Unfettered"
+		"all true Hai"
+	word
+		" "
+	word
+		"will"
+		"shall be forced to"
+		"will not hesitate to"
+	word
+		"take action"
+		"shoot"
+		"defend me"
+		"do what it takes to maintain order"
+	word
+		"!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Stop "
+		"Quit "
+	word
+		"shaming yourself"
+		"running away"
+		"overthinking"
+		"recharging your shields"
+		"hiding in fear"
+	word
+		" and come "
+		" and come try and "
+	word
+		"defeat "
+		"fight "
+	word
+		"me."
+	word
+		" Now is the time to reveal ourselves in the glory of battle"
+		" Show me what you got"
+		" That's more like it"
+		" Time for a fair fight"
+	word
+		"!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Now is not the time for talk"
+		"Yes! Fight me"
+		"Our battle will be sang in legends for years to come"
+		"Do not try to distract me with hails"
+		"Do you want to surrender already? Ha"
+	word
+		"!"
+
+phrase "hostile unfettered challenger"
+	word
+		"Do you wish to end the fight?"
+		"I can see you are having difficulties. Feel free to call this off for another time..."
+		"Remember, you only need to give me a symbolic bribe for this to stop."
+		"This is not a duel to the death, or else only one of us would be able learn."
+		"Do you wish to surrender?"
+		"I am reasonable. If you wish to surrender, we can come to terms."
+		"You are lucky that I have to accept any ceasefire if you ask... you would do well not to attempt anything."
+
+phrase "hostile unfettered challenger"
+	word
+		"Here's a "
+	word
+		"free"
+		"useful"
+		"common"
+	word
+		" tip: "
+		" hint: "
+	word
+		"when feeling overwhelmed in duels you can always ${overwhelmed in duel}! Try it next time."
+		"the challengers have common weaknesses, and you should try to get an edge by ${advantage in duel}."
+		
+
+phrase "overwhelmed in duel"
+	word
+		"tactically retreat to the edge of the system"
+		"bribe the challengers"
+		"try to split the enemies apart"
+		"go to another system"
+		"upgrade your ship design"
+		"scan the enemy to find out their vulnerabilities"
+
+phrase "advantage in duel"
+	word
+		"figuring out if their engines are weak"
+		"trying to slide away whilst shooting them back"
+		"using your range advantage, be it in missiles, ion cannons or else"
+		"try to get your hands on powerful prototypes"
+		"go and acquire alien technology, even human ones have their uses"
+		"overheat their ship"
+		"shoot them down with missiles if they lack sufficient jammers and anti-missiles"
+		"try to get at their batteries with ion weapons"
+
+phrase "hostile unfettered challenger"
+	word
+		"If you happen to know of "
+		"If you heard of "
+		"When you come to know about "
+		"Next time you get your hands on "
+		"If you 'find' "
+	word
+		"a strong"
+		"an interesting"
+		"a 'good'"
+		"an exotic"
+		"a respectable"
+		"a powerful"
+		"an overpowered"
+	word
+		" weapon combo"
+		" alien weapon"
+		" human junk-weapon"
+	word
+		", you should come and "
+	word
+		"demonstrate it to us in action"
+		"fight me with it"
+		"sell it to us, after a proper demonstration"
+		"you might find some of us willing to buy it, for the proper price"
+	word
+		"!"
+
+phrase "defeated unfettered challenger"
+	word
+		"You have "
+		"You succeeded in "
+		"You managed to have "
+		"Somehow, you have "
+		"I must admit you have "
+	word
+		"beaten "
+		"defeated "
+		"ashamed "
+		"disabled "
+		"revealed my weakness% "
+	word
+		"me in a% "
+	word
+		"glorious "
+		"pathetic "
+		"exceptional "
+		"grandiose "
+		"fast-paced "
+		"strategic "
+	word
+		"battle"
+		"combat"
+		"duel"
+		"fight"
+		"challenge"
+	word
+		"."
+		"!"
+	word
+		" What more do you want from me?" 3
+		" Do not presume you may board me." 3
+		" Do not even think about capturing my ship." 3
+		" Now it is over, time to lay down your weapons." 3
+		" I accept my fate, take what is rightfully yours." 3
+		" Great stories will be told!" 3
+		" You have the right to plunder." 3
+		" It would seem you are as strong as some pretended, perhaps even more." 3
+		" Finish me! I would rather die than have to live with this insult."
+	replace
+		"% me" ""
+		"a% e" "an e"
+		"a%" "a"
+
+phrase "unfettered dueling"
+	word
+		"Do not presume to interrupt us"
+		"This is an official challenge, do not intervene"
+		"Under no circumstances are you to interrupt us, or you will suffer the wrath of the Unfettered"
+		"Make sure you aren't distracting me"
+		"If you try anything, the whole fleet will be on you"
+		"Careful, you do not want to know what happens to Kavakais"
+	word
+		"! "
+	word
+		"Go away now, I need to focus"
+		"Leave"
+		"Let me focus"
+		"Do not disturb me further"
+	word
+		"!"
+		"."

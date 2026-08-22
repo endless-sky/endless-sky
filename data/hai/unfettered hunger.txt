@@ -1,0 +1,416 @@
+# Copyright (c) 2024 by Hurleveur
+# Copyright (c) 2023 by williaji for hunger stories
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Unfettered: Hunger!"
+	landing
+	invisible
+	repeat
+	to offer
+		not "event: wanderers: unfettered invasion starts"
+		# to not make it restart if it's already going and is triggered by the Hai Escort mission and only make it last longer
+		not "event: unfettered: need for food"
+		or
+			has "unfettered: hunger"
+			and
+				has "Unfettered: Jump Drive 2: offered"
+				# 1 chance in 500
+				random < 1
+				random < 20
+	on offer
+		event "unfettered: need for food"
+	on enter
+		system
+			government "Hai"
+		dialog `The local Hai authorities hail you. "Captain, we need your help! Our brethren up north are starving! The situation is even more dire than usual, and requires your immediate assistance. You will of course be well rewarded, as usual. We added a new job to respond to this crisis."`
+	on enter
+		system
+			attributes "unfettered"
+		conversation
+			branch "not first time"
+				"Unfettered: Hunger!: offered" > 1
+			`Surprisingly, the local Unfettered authorities hail you. In fact, they seem to be relaying a message to all ships in range, both in human and Hai... their situation must be desperate.`
+				goto message
+			label "not first time"
+			`The local Unfettered authorities hail you. In fact, they are hailing all ships, in both human and Hai languages. This is not the first time they have done this, and it probably means that, like last time, another famine is happening. If that were to be the case, they most likely did not manage their food issue in a permanent manner.`
+			label message
+			`	"Attention, to all that are sympathetic to our cause, or simply want to help a people survive. We are in great need of food. As such, we have negotiated an increase of tributes from the Hai, and they have offered some food supplies, as well as specialists to help us stabilize our food production. That is what we need all of you for, captains, because over all our worlds parents are starving due to giving what little they have to their children, to their future.`
+			`	You can almost feel them laying low their pride to say the next part, "We are not used to nor comfortable with begging, but please, help us! Spread the word, bring food, and we will reward you more handsomely than ever! Do it for the money if you must, or do it because you care."`
+	on daily
+		"unfettered: hunger stops" += random
+	to fail
+		or
+			# lasts approximately 60 days if the player does nothing
+			"unfettered: hunger stops" > 3000
+			has "event: wanderers: unfettered invasion starts"
+	on fail
+		event "unfettered: need for food stops"
+		dialog "You receive a message notifying you that with the extra food brought, the famine amongst the Unfettered has recessed, hopefully permanently."
+	to complete
+		never
+
+event "unfettered: need for food"
+	clear "unfettered: hunger stops"
+	clear "event: unfettered: need for food stops"
+	set "unfettered: hunger"
+	system "Wah Oh"
+		add fleet "Emergency Sympathizer Food" 4000
+	system "Io Mann"
+		add fleet "Emergency Sympathizer Food" 4000
+	system "Due Yoot"
+		add fleet "Emergency Sympathizer Food" 2000
+	system "Rati Cal"
+		add fleet "Emergency Sympathizer Food" 4000
+	system "Lom Tahr"
+		add fleet "Emergency Sympathizer Food" 3000
+	system "Heia Due"
+		add fleet "Emergency Sympathizer Food" 3000
+	system "Io Lowe"
+		add fleet "Emergency Sympathizer Food" 2000
+	system "Ya Hai"
+		add fleet "Emergency Sympathizer Food" 2000
+	system "Bote Asu"
+		add fleet "Emergency Sympathizer Food" 1000
+	system "Bore Fah"
+		add fleet "Emergency Sympathizer Food" 4000
+	system "Ula Mon"
+		add fleet "Emergency Sympathizer Food" 4000
+	system "Mei Yohn"
+		add fleet "Emergency Sympathizer Food" 2000
+	system "Zuba Zub"
+		add fleet "Emergency Sympathizer Food" 1500
+	system "Wah Ki"
+		add fleet "Emergency Sympathizer Food" 800
+	
+	# increase the price of food by 100
+	system "Wah Yoot"
+		add fleet "Emergency Sympathizer Food" 1200
+		trade Food 698
+	system "Ehma Ti"
+		add fleet "Emergency Sympathizer Food" 2500
+		trade Food 670
+	system "Hi Yahr"
+		add fleet "Emergency Sympathizer Food" 2500
+		trade Food 640
+
+	system "Chy'chra"
+		add fleet "Unfettered Raid" 5000
+	system "Prakacha'a"
+		add fleet "Unfettered Raid" 5000
+	system "Ehma Ti"
+		add fleet "Unfettered Raid" 2500
+	system "Wah Ki"
+		add fleet "Large Unfettered" 1200
+
+
+event "unfettered: need for food stops"
+	clear "unfettered: hunger stops"
+	clear "event: unfettered: need for food"
+	clear "unfettered: hunger"
+	system "Wah Ki"
+		remove fleet "Emergency Sympathizer Food"
+	system "Bore Fah"
+		remove fleet "Emergency Sympathizer Food"
+	system "Bote Asu"
+		remove fleet "Emergency Sympathizer Food"
+	system "Ula Mon"
+		remove fleet "Emergency Sympathizer Food"
+	system "Ya Hai"
+		remove fleet "Emergency Sympathizer Food"
+	system "Io Lowe"
+		remove fleet "Emergency Sympathizer Food"
+	system "Zuba Zub"
+		remove fleet "Emergency Sympathizer Food"
+	system "Wah Oh"
+		remove fleet "Emergency Sympathizer Food"
+	system "Due Yoot"
+		remove fleet "Emergency Sympathizer Food"
+	system "Io Mann"
+		remove fleet "Emergency Sympathizer Food"
+	system "Rati Cal"
+		remove fleet "Emergency Sympathizer Food"
+	
+	system "Wah Yoot"
+		remove fleet "Emergency Sympathizer Food"
+		trade Food 598
+	system "Ehma Ti"
+		remove fleet "Emergency Sympathizer Food"
+		trade Food 570
+	system "Hi Yahr"
+		remove fleet "Emergency Sympathizer Food"
+		trade Food 540
+
+	system "Chy'chra"
+		remove fleet "Unfettered Raid"
+	system "Prakacha'a"
+		remove fleet "Unfettered Raid"
+	system "Ehma Ti"
+		remove fleet "Unfettered Raid"
+	system "Wah Ki"
+		remove fleet "Large Unfettered"
+		remove fleet "Large Unfettered"
+		add fleet "Large Unfettered" 550
+
+
+fleet "Emergency Sympathizer Food"
+	government "Hai Merchant (Sympathizers)"
+	names "hai"
+	commodities "food"
+	personality
+		confusion 25
+		timid frugal appeasing
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Water Bug" 3
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Centipede" 3
+	variant 2
+		"Water Bug" 3
+		"Centipede" 2
+	variant 1
+		"Centipede" 3
+		"Centipede (Pulse)" 2
+	variant 3
+		"Centipede" 2
+		"Lightning Bug" 3
+		"Water Bug"
+	variant 2
+		"Aphid (Armed)" 2
+		"Lightning Bug"
+		"Centipede"
+	variant 1
+		"Geocoris (Tracker)"
+		"Shield Beetle"
+		"Aphid" 2
+		"Aphid (Armed)"
+	variant 1
+		"Centipede"
+		"Geocoris (Tracker)"
+		"Lightning Bug"
+		"Water Bug"
+		"Grasshopper (Tracker)"
+
+
+
+mission "Unfettered: Hunger Stories 1"
+	minor
+	name `Family of <passengers> to <destination>`
+	description `Transport a bereaved Unfettered family to <destination>.`
+	source "Firelode"
+	destination "Hai-home"
+	passengers 2
+	clearance `You contact the authorities and they say they will have a team waiting when you land.`
+	to offer
+		has "unfettered: hunger"
+		random < 40
+	on offer
+		conversation
+			`You are walking past one of the Unfettered government offices in the spaceport when a woman walks out, clearly distraught. Her clothes hang loose on her small frame. An infant clings tightly to her fur and a small boy walks behind her with a somber expression. A collection of silver oak leaves is pinned to his jacket.`
+			choice
+				`	(Approach her.)`
+				`	(Get on with my business.)`
+					goto business
+
+			branch translator
+				has "language: Hai"
+
+			`	Your approach startles her out of her distraction and she pulls the boy close. When you speak to her it's clear she doesn't understand you. You look around for an Unfettered who could translate, but she grabs your sleeve and shakes her head. Eventually one Hai who understands your language as well as hers comes to help and translate for you.`
+				goto message
+			label translator
+			`	Your approach startles her out of her distraction and she pulls the boy close. She is shaking her head to say she doesn't understand when your translator begins to relay your words. She relaxes somewhat, but still holds the boy's paw tightly.`
+			label message
+			`	"They have told me my husband is dead. The thieving vultures killed him. And now the boy has a medal but no father. They gave me his death money but there is no food and I don't know what we will do."`
+			`	You know that the Hai send food aid to the Unfettered and you have yet to see anyone obviously hungry in Hai space. The Normal Hai would probably take this family in.`
+			choice
+				`	(Offer to take them to <destination>.)`
+				`	(Offer your condolences and move on.)`
+					goto condolences
+			`	While it's awkward to wait for the translation, it gives you time to choose your words. "Your brothers and sisters in the south have food and shelter for your family. I can take you there if you want."`
+			`	She hesitates but then the baby starts to cry. She looks at you with tears in her eyes and nods. You send some crew with her to help her pack her things and bring them to the ship.`
+				accept
+			label business
+			`	The Unfettered mother never notices you as you pass by. You see the family later in a long queue for food rations.`
+				decline
+			label condolences
+			`	You tell her you are sorry for her loss. You see anger flare across her features as you turn to leave and if she wasn't holding an infant she might well have attacked you. "What good are your words, monkey?" she shouts. "Will they feed my children? Did you come all this way to make fun of us? We have to choose between dying for a new world, or starving on this one. Go back through the wormhole and give your words to your own kind!"`
+			`	A group of Unfettered roughly screen you off from the distraught mother and tells you to leave. She continues screaming at you and crying as you walk away.`
+				decline
+	on complete
+		payment 300000
+		conversation
+			`You are surprised to see a military honor guard in addition to what you assume are social services. They greet the family with a keening trill in what must be a sound of mourning. The Hai move in close and surround the group in what seems to be a group hug and then they move together into the spaceport. One of the Hai soldiers approaches you and says, "Thank you for bringing our family back together," as they hand you a payment of <payment>.`
+
+
+
+mission "Unfettered: Hunger Stories 2"
+	minor
+	name `Transport a Hai warrior to <destination>`
+	description `Transport an Unfettered warrior to <destination>.`
+	source "Darkcloak"
+	destination "Makerplace"
+	passengers 1
+	to offer
+		has "unfettered: hunger"
+		random < 40
+	on offer
+		conversation
+			`"Human!" The cry catches your attention not only because of the volume of the shout, but primarily because it's the most respectful term anyone has used for you in Unfettered space. You turn and see a young Hai warrior striding toward you. At least you think he's young. He's certainly thinner than most of the Hai you see south of Wah-Ki. You notice that his boots seems to be made more of mending tape than actual fabric. He's not wearing the ornately decorated knives that many of the True Hai carry, but he does have sheaths for them. Instead, he carries a long staff that looks to be made of one of the light but rigid Hai alloys. You can see that scars from many fights disturb the pattern of his fur.`
+			`	"Human," he says again when he reaches you, "you should not promenade yourself in our star market without worthy guidance. This warrior can tell you what trader tongues are saying because I know your backward speech. Fast fingers not grab human things while I watch," he adds, emphasizing the point by banging the staff on the floor and making it ring. You notice the flow of traffic begins to part around you as other traders and travelers give him room.`
+			`	It takes you a moment to parse what he is saying as his accent is difficult to understand. You would guess he learned your language in class but has never spoken with humans. You think he is offering to be your translator and bodyguard.`
+			choice
+				`(Hire him.)`
+					goto hire
+				`(Politely decline.)`
+					goto polite
+				`(Laugh at him and walk away.)`
+					goto laugh
+			label hire
+			`	The young Unfettered proves diligent in his work. He steers you away from some vendors and towards others where the prices and quality are at least competitive. Several times his staff has flashed out and blocked people who might have bumped into you. While some of the vendors you traded with were amused by his translations, most worked through him rather than speaking to you directly. He even kept watch while you were eating, though he did seem to be distracted by the food.`
+			`	At the end of the day, he follows you to the <ship> and you pay him his fee. He surprises you though, by following you on board. "I will watch over you until you make it back to the Fettered worlds. You should be safe enough on <destination>." From the prices you saw in the restaurants and shops, the amount you paid would feed him for a few days at most.`
+			choice
+				`	(Give him transport.)`
+					goto transport
+				`	(Escort him off the ship.)`
+					goto escort
+			label polite
+			`	You tell him that you can take care of yourself. He nods to acknowledge your decision but maintains eye contact. He then turns and walks away.`
+			`	You see him around the spaceport a few times: once working as a porter, another time loading cargo. Both seem like odd jobs for someone with his apparent skills and neither will pay very well. As you are heading back to your ship you see him at one of the small food stalls that sells really cheap noodle cups and you wonder if that's the only time he's eaten today.`
+				decline
+			label laugh
+			`	You find yourself flat on your back looking up at the young Unfettered. He's holding your sidearm and is pointing it at you with the safety off. You later decide that he must have swept your legs with the staff and grabbed your weapon, but it happened so swiftly you never saw it.`
+			`	"I was wrong," he says as he secures your weapon inside his jacket. "I mistook you for a warrior. You do not know the meaning of respect. You are but a monkey after all."`
+			`	He walks off causally, never bothering to turn around.`
+				decline
+			label escort
+			`	His eyes narrow when you tell him to leave. "Mistake to refuse generosity of True Hai," he says. You get the distinct impression that he'd take it further if he wasn't on your ship. As it is, he leaves peacefully and you close the hatch.`
+				decline
+
+			label transport
+			`	You drop the Hai off at the galley and tell him to eat as much as he wants while you prepare the ship for launch. When you return after reaching orbit, his belly is noticeably distended. He seems more relaxed than he did at the spaceport, but that could just be the on-coming food coma. You take him to the uniform locker and find him some boots and a jumpsuit, though you have to make some quick alterations with your knife to accommodate his tail. He asks for a sewing kit and says that he can finish the job.`
+				accept
+
+	on complete
+		payment 500
+		conversation
+			`When you arrive at <destination>, the young Hai guides you around the spaceport as you take care of your business. You don't see his staff; so either it's too provocative to carry in Hai space or it's collapsible and he has it somewhere on his person. He offers you comments on the Hai conversations going on around you when they are either about you or your business. While he is still stays close to you, he seems to naturally relax into the flow of Hai culture.`
+			`	You lose track of him somewhere near the end of the day and he doesn't show back up at the ship. When you check his bunk, you find the <payment> you paid him on <origin> with a crudely lettered note that says, "FOR TRANSPORT."`
+
+
+
+mission "Unfettered: Hunger Stories 3"
+	minor
+	source "Warfeed"
+	to offer
+		has "unfettered: hunger"
+		random < 40
+	on offer
+		conversation
+			`You take some time to explore outside the secure facilities at the spaceport. You can see long lines of people waiting for the food rations that seem to be the main cargo delivered here.`
+			`	On your way back to your ship, a gang of Unfettered children block your path and move to encircle you. One of the older girls steps forward and in halting human says, "Trespassing. 500 credits. Then go." You can see half a dozen of them and all of them are half your size.`
+			choice
+				`	(Pay them.)`
+					goto bribe
+				`	(Grab my weapon.)`
+					goto fight
+
+			label bribe
+			action
+				payment -500
+			`	You see movement in your peripheral vision just as you feel the credits pulled from your hand. One of the children off to your side darted forward before you could react and is now handing your credits to the leader. She checks the amount and then gives you a satisfied smile. At her nod, the group vanishes into the life of the street.`
+			`	You make your way quickly back to the spaceport, certain that the kids are shadowing you. It's with some relief that you make it through the security checkpoint.`
+				decline
+			
+			label fight
+			action
+				payment -5000
+			`	You reach for your sidearm only to find that it isn't there. It seems like a dozen pairs of paws are on you, some tearing at your clothes and some climbing on you. You spin around to try and shake them off. You end up rolling on the ground and then, as suddenly as it began, everything stops and you are alone in the street. You check yourself quickly and you seem to be uninjured. Your clothes are in tatters, though, and your sidearm, communicator, and bag are nowhere to be seen.`
+			`	You make your way back to the spaceport. For once, it's useful to be the alien. The guards are easily able to quickly clear you even without documentation. You hear them laughing as you head for the safety of your ship. You have no doubt that the story of the monkey robbed by children is already making the rounds.`
+			`	As you are walking, you wonder if you should report the gang to the authorities and perhaps save some other merchants or travellers from being mugged.`
+			choice
+				`	(Report them.)`
+					goto report
+				`	(Don't bother. The Unfettered won't care.)`
+					decline
+			
+			label report
+			action
+				payment 5000
+			`	The Unfettered authorities surprise you by not only listening to your story, but pulling up surveillance video of your encounter with the gang. After consulting among themselves, they thank you for bringing this to their attention and give you <payment>.`
+			`	You ask if this is compensation for your stolen property and they laugh. "No, monkey. We don't reward the weak and foolish," they answer. "This is a finder's fee. Those children show much promise. We will get them in training immediately."`
+			`	You take the credits and return to your ship.`
+				decline
+
+
+
+mission "Unfettered Hunger Aid"
+	name "Emergency aid shipment to Unfettered"
+	job
+	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the cargo."
+	description "Deliver <tons> of food to the Unfettered on <destination>. You will be paid <payment>."
+	cargo "food (aid)" 55 2 .05
+	to offer
+		has "unfettered: hunger"
+		random < 25
+		"cargo space" > 85
+		has "Ask the Hai about the Unfettered: offered"
+	source
+		government "Hai"
+	destination
+		distance 5 6
+		attributes "unfettered"
+	on accept
+		dialog phrase "unfettered aid pickup dialog"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 10000 2800
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
+		"unfettered: hunger stops" += 100
+		dialog phrase "unfettered aid payment dialog"
+
+
+mission "Unfettered Hunger Tribute"
+	job
+	repeat
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the tribute from the other Hai."
+	name "Important Hai Tribute to <planet>"
+	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
+	cargo "food (tribute)" 55 2 .05
+	source
+		attributes "unfettered"
+	stopover
+		distance 5 6
+		attributes "hai"
+		attributes "spaceport"
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		has "unfettered: hunger"
+		random < 40
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on stopover
+		dialog phrase "unfettered tribute pickup dialog"
+	on complete
+		payment 11000 2800
+		dialog phrase "unfettered tribute payment dialog"
+		"unfettered: hunger stops" += 100
+
+
+
+# idea: add a mission where part of the tribute is redirected to another warlord or to Hai space
