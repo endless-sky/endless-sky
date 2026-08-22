@@ -108,19 +108,25 @@ void ShipAttributeCache::HullRepair(const Outfit &attributes)
 	repairDelay = attributes.Get("repair delay");
 	disabledRepairDelay = attributes.Get("disabled repair delay");
 
-	hullRepairRate = (attributes.Get("hull repair rate") + attributes.Get("delayed hull repair rate"))
-		* (1. + attributes.Get("hull repair multiplier"));
-	hullRepairCost.energy = (attributes.Get("hull energy") + attributes.Get("delayed hull energy"))
-		* (1. + attributes.Get("hull energy multiplier"));
-	hullRepairCost.heat = (attributes.Get("hull heat") + attributes.Get("delayed hull heat"))
-		* (1. + attributes.Get("hull heat multiplier"));
-	hullRepairCost.fuel = (attributes.Get("hull fuel") + attributes.Get("delayed hull fuel"))
-		* (1. + attributes.Get("hull fuel multiplier"));
+	double repairMult = 1. + attributes.Get("hull repair multiplier");
+	double energyMult = 1. + attributes.Get("hull energy multiplier");
+	double heatMult = 1. + attributes.Get("hull heat multiplier");
+	double fuelMult = 1. + attributes.Get("hull fuel multiplier");
 
-	hullRepairRateWithDelay = attributes.Get("hull repair rate") * (1. + attributes.Get("hull repair multiplier"));
-	hullRepairWithDelayCost.energy = attributes.Get("hull energy") * (1. + attributes.Get("hull energy multiplier"));
-	hullRepairWithDelayCost.heat = attributes.Get("hull heat") * (1. + attributes.Get("hull heat multiplier"));
-	hullRepairWithDelayCost.fuel = attributes.Get("hull fuel") * (1. + attributes.Get("hull fuel multiplier"));
+	hullRepairRate = (attributes.Get("hull repair rate") + attributes.Get("delayed hull repair rate")) * repairMult;
+	hullRepairCost.energy = (attributes.Get("hull energy") + attributes.Get("delayed hull energy")) * energyMult;
+	hullRepairCost.heat = (attributes.Get("hull heat") + attributes.Get("delayed hull heat")) * heatMult;
+	hullRepairCost.fuel = (attributes.Get("hull fuel") + attributes.Get("delayed hull fuel")) * fuelMult;
+
+	hullRepairRateWithDelay = attributes.Get("hull repair rate") * repairMult;
+	hullRepairWithDelayCost.energy = attributes.Get("hull energy") * energyMult;
+	hullRepairWithDelayCost.heat = attributes.Get("hull heat") * heatMult;
+	hullRepairWithDelayCost.fuel = attributes.Get("hull fuel") * fuelMult;
+
+	dockedHullRepairRate = attributes.Get("docked hull repair rate") * repairMult;
+	dockedHullRepairCost.energy = attributes.Get("docked hull energy") * energyMult;
+	dockedHullRepairCost.heat = attributes.Get("docked hull heat") * heatMult;
+	dockedHullRepairCost.fuel = attributes.Get("docked hull fuel") * fuelMult;
 }
 
 
@@ -130,21 +136,25 @@ void ShipAttributeCache::ShieldRegen(const Outfit &attributes)
 	shieldDelay = attributes.Get("shield delay");
 	depletedShieldDelay = attributes.Get("depleted shield delay");
 
-	shieldRegenRate = (attributes.Get("shield generation") + attributes.Get("delayed shield generation"))
-		* (1. + attributes.Get("shield generation multiplier"));
-	shieldRegenCost.energy = (attributes.Get("shield energy") + attributes.Get("delayed shield energy"))
-		* (1. + attributes.Get("shield energy multiplier"));
-	shieldRegenCost.heat = (attributes.Get("shield heat") + attributes.Get("delayed shield heat"))
-		* (1. + attributes.Get("shield heat multiplier"));
-	shieldRegenCost.fuel = (attributes.Get("shield fuel") + attributes.Get("delayed shield fuel"))
-		* (1. + attributes.Get("shield fuel multiplier"));
+	double regenMult = 1. + attributes.Get("shield generation multiplier");
+	double energyMult = 1. + attributes.Get("shield energy multiplier");
+	double heatMult = 1. + attributes.Get("shield heat multiplier");
+	double fuelMult = 1. + attributes.Get("shield fuel multiplier");
 
-	shieldRegenRateWithDelay = attributes.Get("shield generation")
-		* (1. + attributes.Get("shield generation multiplier"));
-	shieldRegenWithDelayCost.energy = attributes.Get("shield energy")
-		* (1. + attributes.Get("shield energy multiplier"));
-	shieldRegenWithDelayCost.heat = attributes.Get("shield heat") * (1. + attributes.Get("shield heat multiplier"));
-	shieldRegenWithDelayCost.fuel = attributes.Get("shield fuel") * (1. + attributes.Get("shield fuel multiplier"));
+	shieldRegenRate = (attributes.Get("shield generation") + attributes.Get("delayed shield generation")) * regenMult;
+	shieldRegenCost.energy = (attributes.Get("shield energy") + attributes.Get("delayed shield energy")) * energyMult;
+	shieldRegenCost.heat = (attributes.Get("shield heat") + attributes.Get("delayed shield heat")) * heatMult;
+	shieldRegenCost.fuel = (attributes.Get("shield fuel") + attributes.Get("delayed shield fuel")) * fuelMult;
+
+	shieldRegenRateWithDelay = attributes.Get("shield generation") * regenMult;
+	shieldRegenWithDelayCost.energy = attributes.Get("shield energy") * energyMult;
+	shieldRegenWithDelayCost.heat = attributes.Get("shield heat") * heatMult;
+	shieldRegenWithDelayCost.fuel = attributes.Get("shield fuel") * fuelMult;
+
+	dockedShieldRegenRate = attributes.Get("docked shield generation") * regenMult;
+	dockedShieldRegenCost.energy = attributes.Get("docked shield energy") * energyMult;
+	dockedShieldRegenCost.heat = attributes.Get("docked shield heat") * heatMult;
+	dockedShieldRegenCost.fuel = attributes.Get("docked shield fuel") * fuelMult;
 }
 
 

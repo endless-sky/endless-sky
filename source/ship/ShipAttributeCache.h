@@ -91,6 +91,8 @@ private:
 	ResourceLevels hullRepairCost;
 	double hullRepairRateWithDelay = 0.;
 	ResourceLevels hullRepairWithDelayCost;
+	double dockedHullRepairRate = 0.;
+	ResourceLevels dockedHullRepairCost;
 
 	int shieldDelay = 0;
 	int depletedShieldDelay = 0;
@@ -98,6 +100,8 @@ private:
 	ResourceLevels shieldRegenCost;
 	double shieldRegenRateWithDelay = 0.;
 	ResourceLevels shieldRegenWithDelayCost;
+	double dockedShieldRegenRate = 0.;
+	ResourceLevels dockedShieldRegenCost;
 
 	int recoveryTime = 0;
 	ResourceLevels recoveryCost;
