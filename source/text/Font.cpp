@@ -47,6 +47,7 @@ namespace {
 	GLint glyphSizeI = 0;
 	GLint glyphI = 0;
 	GLint glyphCountI = 0;
+	GLint cellWidthI = 0;
 	GLint aspectI = 0;
 	GLint positionI = 0;
 
@@ -106,7 +107,7 @@ void Font::Load(const filesystem::path &imagePath, const filesystem::path &unico
 
 	if(!unicodePath.empty() && InitializeUnicodeLibrary()
 		&& FT_New_Face(unicodeLibrary, unicodePath.string().c_str(), 0, &unicodeFace) == 0)
-		FT_Set_Pixel_Sizes(unicodeFace, 0, image.Height());
+		FT_Set_Pixel_Sizes(unicodeFace, cellWidth, cellWidth);
 }
 
 
@@ -169,6 +170,7 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	glUniform2fv(scaleI, 1, scale);
 	glUniform2f(glyphSizeI, glyphWidth, glyphHeight);
 	glUniform1f(glyphCountI, static_cast<float>(atlasColumns));
+	glUniform1f(cellWidthI, static_cast<float>(cellWidth));
 
 	GLfloat textPos[2] = {
 		static_cast<float>(x - 1.),
@@ -506,6 +508,7 @@ void Font::SetUpShader(float glyphW, float glyphH)
 		glyphSizeI = shader->Uniform("glyphSize");
 		glyphI = shader->Uniform("glyph");
 		glyphCountI = shader->Uniform("glyphCount");
+		cellWidthI = shader->Uniform("cellWidth");
 		aspectI = shader->Uniform("aspect");
 		positionI = shader->Uniform("position");
 	}
