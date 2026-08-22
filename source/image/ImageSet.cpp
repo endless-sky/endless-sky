@@ -182,7 +182,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 		// Masks should only have 1 frame or the same number of frames as the 1x resolution.
 		// If there are fewer frames of swizzle mask than base image, only use the
 		// first swizzle mask frame.
-		else if(!is2x && size != 1)
+		else if(!is2x && size != 1 && size != normalFrames)
 		{
 			Logger::Log("Discarding " + to_string(size - 1) + " frames of swizzle mask because there"
 				" are more frames of animation. Only the first swizzle mask frame will be used.", Logger::Level::WARNING);
