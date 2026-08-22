@@ -143,6 +143,7 @@ def print_config_help():
 		["", "", "", "trailingEmptyLine", "Whether to have a trailing empty line at the end of every file. Value should be \"never\", \"always\" or \"either\"."],
 		["", "", "", "checkCopyright", "Whether to verify the copyright header of each file."],
 		["", "", "", "copyrightBlacklist", "An array of files that are excluded from the copyright check."],
+		["", "", "", "regexExcludedFiles", "An array of files that are excluded from all regex checks."],
 		["", "", "", "copyrightFormats", "An array of supported copyright formats. Each format is a JSON object with the following entries:"],
 		["", "", "", "", "", "holder", "A regex matching the entire 'copyright holder' line. This is repeatedly matched to the beginning of the file."],
 		["", "", "", "", "", "notice", "An array of regexes matching each subsequent line of the copyright notice."],
@@ -497,7 +498,10 @@ def check_content_style(file, auto_correct, config):
 			do_reload()
 			continue
 
+		skip_regex_checks = any(re.fullmatch(pattern, file) for pattern in config.get("regexExcludedFiles", []))
 		for check_group in config["regexChecks"]:
+			if skip_regex_checks:
+				continue
 			excluded_nodes = [] if "excludedNodes" not in check_group else check_group["excludedNodes"]
 			exclude_comments = True if "excludeComments" not in check_group else check_group["excludeComments"]
 			exclude_keywords = True if "excludeKeywords" not in check_group else check_group["excludeKeywords"]

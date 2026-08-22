@@ -8,6 +8,7 @@
 		"trailingEmptyLine": "always",
 		"checkCopyright": true,
 		"copyrightBlacklist": ["tests/integration/config/plugins/integration-tests/data/disabling troublesome missions.txt"],
+		"regexExcludedFiles": ["(?:.*[\\\\/])?_ui[\\\\/]localization\\.txt$"],
 		"copyrightFormats": [
 			{
 				"holder": "^# (Based on earlier text copyright|Copyright) \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? (by )?.+$",

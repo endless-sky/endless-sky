@@ -176,6 +176,7 @@ private:
 		int fontSize = 14;
 		char buttonKey = '\0';
 		bool isDynamic = false;
+		bool isLocalized = false;
 		Truncate truncate = Truncate::NONE;
 	};
 

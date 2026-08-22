@@ -39,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/ImageSet.h"
 #include "Interface.h"
 #include "shader/LineShader.h"
+#include "Localization.h"
 #include "image/MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
@@ -53,6 +54,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PluginManager.h"
 #include "shader/PointerShader.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "RenderBuffer.h"
 #include "shader/RingShader.h"
 #include "Ship.h"
@@ -160,6 +162,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources(queue);
+	Localization::LoadSources(sources, Preferences::Language());
 
 	if(!onlyLoadData)
 	{

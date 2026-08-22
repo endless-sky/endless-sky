@@ -181,6 +181,11 @@ public:
 	static void Load();
 	static void Save();
 
+	// Language tag used when loading the localization catalog. Changing this
+	// value takes effect the next time game data is loaded.
+	static const std::string &Language();
+	static void SetLanguage(const std::string &language);
+
 	static bool Has(const std::string &name);
 	static void Set(const std::string &name, bool on = true);
 

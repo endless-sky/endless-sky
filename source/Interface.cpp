@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "text/Layout.h"
 #include "shader/LineShader.h"
+#include "Localization.h"
 #include "shader/OutlineShader.h"
 #include "Panel.h"
 #include "shader/PointerShader.h"
@@ -539,6 +540,10 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	}
 	else
 		str = node.Token(1);
+
+	isLocalized = !isDynamic && !str.empty() && str.front() == '@';
+	if(isLocalized)
+		str.erase(0, 1);
 }
 
 
@@ -620,7 +625,9 @@ void Interface::TextElement::FinishLoadingColors()
 // Get text contents of this element.
 string Interface::TextElement::GetString(const Information &info) const
 {
-	return isDynamic ? info.GetString(str) : str;
+	if(isDynamic)
+		return info.GetString(str);
+	return isLocalized ? Localization::Translate(str) : str;
 }
 
 
