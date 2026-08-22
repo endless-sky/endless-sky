@@ -184,7 +184,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 		// first swizzle mask frame.
 		else if(!is2x && size != 1 && size != normalFrames)
 		{
-			Logger::Log("Discarding " + to_string(size - 1) + " frames of swizzle mask because there"
+			Logger::Log(prefix + "Discarding " + to_string(size - 1) + " frames of swizzle mask because there"
 				" are more frames of animation. Only the first swizzle mask frame will be used.", Logger::Level::WARNING);
 			toResize.resize(1);
 		}
