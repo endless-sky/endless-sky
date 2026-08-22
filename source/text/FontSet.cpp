@@ -27,10 +27,10 @@ namespace {
 
 
 
-void FontSet::Add(const filesystem::path &path, int size)
+void FontSet::Add(const filesystem::path &path, int size, const filesystem::path &unicodePath)
 {
 	if(!fonts.contains(size))
-		fonts[size].Load(path);
+		fonts[size].Load(path, unicodePath);
 }
 
 

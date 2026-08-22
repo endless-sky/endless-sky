@@ -1,0 +1,50 @@
+# Copyright (c) 2026 by Endless Sky contributors
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# The leading underscore marks the shortcut character in an interface label.
+language "en"
+	translation "ui.main.enter_ship" "_Enter Ship"
+	translation "ui.main.gamerules" "_Gamerules"
+	translation "ui.main.new_pilot" "_New Pilot"
+	translation "ui.main.reload_pilot" "_Reload Pilot"
+	translation "ui.main.manage_pilots" "_Manage Pilots..."
+	translation "ui.main.quit" "_Quit"
+	translation "ui.main.preferences" "_Preferences..."
+	translation "ui.main.back_to_menu" "_Back to Menu"
+	translation "ui.main.start_game" "_Start Game"
+	translation "ui.main.pilot" "pilot:"
+	translation "ui.main.ship" "ship:"
+	translation "ui.main.planet" "planet:"
+	translation "ui.main.system" "system:"
+	translation "ui.main.credits" "credits:"
+	translation "ui.main.date" "date:"
+	translation "ui.main.playtime" "playtime:"
+
+# Korean uses the Unicode fallback font loaded by the renderer.
+language "ko"
+	translation "ui.main.enter_ship" "_함선 탑승"
+	translation "ui.main.gamerules" "_게임 규칙"
+	translation "ui.main.new_pilot" "_새 조종사"
+	translation "ui.main.reload_pilot" "_조종사 다시 불러오기"
+	translation "ui.main.manage_pilots" "_조종사 관리..."
+	translation "ui.main.quit" "_종료"
+	translation "ui.main.preferences" "_환경설정..."
+	translation "ui.main.back_to_menu" "_메뉴로 돌아가기"
+	translation "ui.main.start_game" "_게임 시작"
+	translation "ui.main.pilot" "조종사:"
+	translation "ui.main.ship" "함선:"
+	translation "ui.main.planet" "행성:"
+	translation "ui.main.system" "성계:"
+	translation "ui.main.credits" "크레딧:"
+	translation "ui.main.date" "날짜:"
+	translation "ui.main.playtime" "플레이 시간:"

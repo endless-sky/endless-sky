@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Preferences.h"
 #include "../Screen.h"
 #include "Truncate.h"
+#include "Utf8.h"
 
 #include <algorithm>
 #include <cmath>
@@ -45,11 +46,22 @@ namespace {
 	GLint scaleI = 0;
 	GLint glyphSizeI = 0;
 	GLint glyphI = 0;
+	GLint glyphCountI = 0;
+	GLint cellWidthI = 0;
 	GLint aspectI = 0;
 	GLint positionI = 0;
 
 	GLint vertI;
 	GLint cornerI;
+
+	FT_Library unicodeLibrary = nullptr;
+
+
+
+	bool InitializeUnicodeLibrary()
+	{
+		return unicodeLibrary || FT_Init_FreeType(&unicodeLibrary) == 0;
+	}
 
 	void EnableAttribArrays()
 	{
@@ -73,7 +85,15 @@ Font::Font(const filesystem::path &imagePath)
 
 
 
-void Font::Load(const filesystem::path &imagePath)
+Font::~Font()
+{
+	if(unicodeFace)
+		FT_Done_Face(unicodeFace);
+}
+
+
+
+void Font::Load(const filesystem::path &imagePath, const filesystem::path &unicodePath)
 {
 	// Load the texture.
 	ImageBuffer image;
@@ -84,6 +104,10 @@ void Font::Load(const filesystem::path &imagePath)
 	CalculateAdvances(image);
 	SetUpShader(image.Width() / GLYPHS, image.Height());
 	widthEllipses = WidthRawString("...");
+
+	if(!unicodePath.empty() && InitializeUnicodeLibrary()
+		&& FT_New_Face(unicodeLibrary, unicodePath.string().c_str(), 0, &unicodeFace) == 0)
+		FT_Set_Pixel_Sizes(unicodeFace, cellWidth, cellWidth);
 }
 
 
@@ -121,6 +145,8 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 
 void Font::DrawAliased(const string &str, double x, double y, const Color &color) const
 {
+	EnsureUnicodeGlyphs(str);
+
 	glUseProgram(shader->Object());
 	glBindTexture(GL_TEXTURE_2D, texture);
 	if(OpenGL::HasVaoSupport())
@@ -143,6 +169,8 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	}
 	glUniform2fv(scaleI, 1, scale);
 	glUniform2f(glyphSizeI, glyphWidth, glyphHeight);
+	glUniform1f(glyphCountI, static_cast<float>(atlasColumns));
+	glUniform1f(cellWidthI, static_cast<float>(cellWidth));
 
 	GLfloat textPos[2] = {
 		static_cast<float>(x - 1.),
@@ -152,15 +180,17 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	bool underlineChar = false;
 	const int underscoreGlyph = max(0, min(GLYPHS - 1, '_' - 32));
 
-	for(char c : str)
+	size_t pos = 0;
+	while(pos != string::npos)
 	{
+		const char32_t c = Utf8::DecodeCodePoint(str, pos);
 		if(c == '_')
 		{
 			underlineChar = showUnderlines;
 			continue;
 		}
 
-		int glyph = Glyph(c, isAfterSpace);
+		const int glyph = c < 0x80 ? Glyph(c, isAfterSpace) : UnicodeGlyph(c);
 		if(c != '"' && c != '\'')
 			isAfterSpace = !glyph;
 		if(!glyph)
@@ -172,7 +202,7 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 		glUniform1i(glyphI, glyph);
 		glUniform1f(aspectI, 1.f);
 
-		textPos[0] += advance[previous * GLYPHS + glyph] + KERN;
+		textPos[0] += AdvanceFor(previous, glyph);
 		glUniform2fv(positionI, 1, textPos);
 
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -180,7 +210,9 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 		if(underlineChar)
 		{
 			glUniform1i(glyphI, underscoreGlyph);
-			glUniform1f(aspectI, static_cast<float>(advance[glyph * GLYPHS] + KERN)
+			const int glyphAdvance = glyph >= GLYPHS ? unicodeAdvances.at(glyph)
+				: advance[glyph * GLYPHS];
+			glUniform1f(aspectI, static_cast<float>(glyphAdvance + KERN)
 				/ (advance[underscoreGlyph * GLYPHS] + KERN));
 
 			glUniform2fv(positionI, 1, textPos);
@@ -242,7 +274,7 @@ void Font::ShowUnderlines(bool show) noexcept
 
 
 
-int Font::Glyph(char c, bool isAfterSpace) noexcept
+int Font::Glyph(char32_t c, bool isAfterSpace) noexcept
 {
 	// Curly quotes.
 	if(c == '\'' && isAfterSpace)
@@ -250,13 +282,98 @@ int Font::Glyph(char c, bool isAfterSpace) noexcept
 	if(c == '"' && isAfterSpace)
 		return 97;
 
-	return max(0, min(GLYPHS - 3, c - 32));
+	return max(0, min(GLYPHS - 3, static_cast<int>(c) - 32));
+}
+
+
+
+int Font::UnicodeGlyph(char32_t c) const
+{
+	if(!unicodeFace)
+		return 0;
+	if(!unicodeGlyphs.contains(c))
+		AddUnicodeGlyph(c);
+	return unicodeGlyphs.at(c);
+}
+
+
+
+void Font::EnsureUnicodeGlyphs(const string &str) const
+{
+	if(!unicodeFace)
+		return;
+
+	size_t pos = 0;
+	while(pos != string::npos)
+	{
+		const char32_t c = Utf8::DecodeCodePoint(str, pos);
+		if(c >= 0x80)
+			UnicodeGlyph(c);
+	}
+}
+
+
+
+void Font::AddUnicodeGlyph(char32_t c) const
+{
+	if(!unicodeFace || unicodeGlyphs.contains(c))
+		return;
+
+	const FT_UInt index = FT_Get_Char_Index(unicodeFace, c);
+	if(!index || FT_Load_Glyph(unicodeFace, index, FT_LOAD_RENDER) != 0)
+	{
+		unicodeGlyphs[c] = 0;
+		return;
+	}
+
+	const FT_GlyphSlot glyph = unicodeFace->glyph;
+	const int oldWidth = atlasColumns * cellWidth;
+	const int newGlyph = atlasColumns++;
+	const int newWidth = atlasColumns * cellWidth;
+	vector<uint32_t> pixels(newWidth * textureHeight);
+	for(int y = 0; y < textureHeight; ++y)
+		copy_n(atlasPixels.begin() + y * oldWidth, oldWidth, pixels.begin() + y * newWidth);
+
+	const int left = max(0, (cellWidth - static_cast<int>(glyph->bitmap.width)) / 2);
+	const int top = max(0, (textureHeight - static_cast<int>(glyph->bitmap.rows)) / 2);
+	for(unsigned int y = 0; y < glyph->bitmap.rows && top + static_cast<int>(y) < textureHeight; ++y)
+		for(unsigned int x = 0; x < glyph->bitmap.width && left + static_cast<int>(x) < cellWidth; ++x)
+		{
+			const int pixelX = newGlyph * cellWidth + left + x;
+			const int pixelY = top + y;
+			const unsigned char alpha = glyph->bitmap.buffer[y * glyph->bitmap.pitch + x];
+			pixels[pixelY * newWidth + pixelX] = 0x00FFFFFFu | (static_cast<uint32_t>(alpha) << 24);
+		}
+
+	atlasPixels.swap(pixels);
+	unicodeGlyphs[c] = newGlyph;
+	unicodeAdvances[newGlyph] = max(1, static_cast<int>((glyph->advance.x + 64) / 128));
+	UploadTexture();
+}
+
+
+
+int Font::AdvanceFor(int previous, int glyph) const noexcept
+{
+	if(glyph >= GLYPHS)
+	{
+		auto it = unicodeAdvances.find(glyph);
+		return it == unicodeAdvances.end() ? space : (previous ? it->second + KERN : KERN);
+	}
+	if(previous >= GLYPHS)
+		return asciiAdvances[glyph] + KERN;
+	return advance[previous * GLYPHS + glyph] + KERN;
 }
 
 
 
 void Font::LoadTexture(ImageBuffer &image)
 {
+	cellWidth = image.Width() / GLYPHS;
+	textureHeight = image.Height();
+	atlasColumns = GLYPHS;
+	atlasPixels.assign(image.Pixels(), image.Pixels() + image.Width() * image.Height());
+
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -265,8 +382,16 @@ void Font::LoadTexture(ImageBuffer &image)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image.Width(), image.Height(), 0,
-		GL_RGBA, GL_UNSIGNED_BYTE, image.Pixels());
+	UploadTexture();
+}
+
+
+
+void Font::UploadTexture() const
+{
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, atlasColumns * cellWidth, textureHeight, 0,
+		GL_RGBA, GL_UNSIGNED_BYTE, atlasPixels.data());
 }
 
 
@@ -283,8 +408,10 @@ void Font::CalculateAdvances(ImageBuffer &image)
 	// advance[previous * GLYPHS + next] is the x advance for each glyph pair.
 	// There is no advance if the previous value is 0, i.e. we are at the very
 	// start of a string.
-	memset(advance, 0, GLYPHS * sizeof(advance[0]));
+	memset(advance, 0, sizeof(advance));
+	memset(asciiAdvances, 0, sizeof(asciiAdvances));
 	for(int previous = 1; previous < GLYPHS; ++previous)
+	{
 		for(int next = 0; next < GLYPHS; ++next)
 		{
 			int maxD = 0;
@@ -324,6 +451,8 @@ void Font::CalculateAdvances(ImageBuffer &image)
 			// underscore and for glyph combinations like AV.
 			advance[previous * GLYPHS + next] = max(maxD, glyphWidth - 4) / 2;
 		}
+		asciiAdvances[previous] = advance[previous * GLYPHS];
+	}
 
 	// Set the space size based on the character width.
 	width /= 2;
@@ -378,6 +507,8 @@ void Font::SetUpShader(float glyphW, float glyphH)
 		scaleI = shader->Uniform("scale");
 		glyphSizeI = shader->Uniform("glyphSize");
 		glyphI = shader->Uniform("glyph");
+		glyphCountI = shader->Uniform("glyphCount");
+		cellWidthI = shader->Uniform("cellWidth");
 		aspectI = shader->Uniform("aspect");
 		positionI = shader->Uniform("position");
 	}
@@ -391,27 +522,42 @@ void Font::SetUpShader(float glyphW, float glyphH)
 
 int Font::WidthRawString(const char *str, char after) const noexcept
 {
+	if(!str)
+		return 0;
+	EnsureUnicodeGlyphs(str);
+
 	int width = 0;
 	int previous = 0;
 	bool isAfterSpace = true;
 
-	for( ; *str; ++str)
+	size_t pos = 0;
+	const string text(str);
+	while(pos != string::npos)
 	{
-		if(*str == '_')
+		const char32_t c = Utf8::DecodeCodePoint(text, pos);
+		if(c == '_')
 			continue;
 
-		int glyph = Glyph(*str, isAfterSpace);
-		if(*str != '"' && *str != '\'')
+		const int glyph = c < 0x80 ? Glyph(c, isAfterSpace) : UnicodeGlyph(c);
+		if(c != '"' && c != '\'')
 			isAfterSpace = !glyph;
 		if(!glyph)
 			width += space;
 		else
 		{
-			width += advance[previous * GLYPHS + glyph] + KERN;
+			width += AdvanceFor(previous, glyph);
 			previous = glyph;
 		}
 	}
-	width += advance[previous * GLYPHS + max(0, min(GLYPHS - 1, after - 32))];
+
+	if(previous >= GLYPHS)
+		width += unicodeAdvances.contains(previous) ? unicodeAdvances.at(previous) : 0;
+	else
+	{
+		const int afterGlyph = Glyph(static_cast<char32_t>(after), false);
+		if(previous)
+			width += advance[previous * GLYPHS + afterGlyph];
+	}
 
 	return width;
 }

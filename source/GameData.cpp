@@ -39,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/ImageSet.h"
 #include "Interface.h"
 #include "shader/LineShader.h"
+#include "Localization.h"
 #include "image/MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
@@ -53,6 +54,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PluginManager.h"
 #include "shader/PointerShader.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "RenderBuffer.h"
 #include "shader/RingShader.h"
 #include "Ship.h"
@@ -147,6 +149,7 @@ namespace {
 
 	const char *const FONT_14_NAME = "font/ubuntu14r.png";
 	const char *const FONT_18_NAME = "font/ubuntu18r.png";
+	const char *const UNICODE_FONT_NAME = "font/NotoSansKR-VF.ttf";
 }
 
 
@@ -160,6 +163,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources(queue);
+	Localization::LoadSources(sources, Preferences::Language());
 
 	if(!onlyLoadData)
 	{
@@ -222,6 +226,7 @@ void GameData::LoadShaders()
 	// The paths to standard fonts, possibly overridden by plugins.
 	filesystem::path font14Path = Files::Images() / FONT_14_NAME;
 	filesystem::path font18Path = Files::Images() / FONT_18_NAME;
+	filesystem::path unicodeFontPath = Files::Images() / UNICODE_FONT_NAME;
 	for(const filesystem::path &source : sources)
 	{
 		filesystem::path base = source / "shaders";
@@ -250,6 +255,9 @@ void GameData::LoadShaders()
 		fontCandidate = source / "images" / FONT_18_NAME;
 		if(Files::Exists(fontCandidate))
 			font18Path = fontCandidate;
+		fontCandidate = source / "images" / UNICODE_FONT_NAME;
+		if(Files::Exists(fontCandidate))
+			unicodeFontPath = fontCandidate;
 	}
 
 	// If there is both a fragment and a vertex shader available,
@@ -268,8 +276,8 @@ void GameData::LoadShaders()
 	BatchShader::Init();
 	RenderBuffer::Init();
 
-	FontSet::Add(font14Path, 14);
-	FontSet::Add(font18Path, 18);
+	FontSet::Add(font14Path, 14, unicodeFontPath);
+	FontSet::Add(font18Path, 18, unicodeFontPath);
 
 	background.Init(16384, 4096);
 }

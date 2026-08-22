@@ -41,6 +41,7 @@ namespace {
 	map<string, bool> settings;
 	int scrollSpeed = 60;
 	int tooltipActivation = 60;
+	string language = "en";
 
 	// Strings for ammo expenditure:
 	const string EXPEND_AMMO = "Escorts expend ammo";
@@ -215,6 +216,8 @@ namespace {
 
 void Preferences::Load()
 {
+	language = "en";
+
 	// These settings should be on by default. There is no need to specify
 	// values for settings that are off by default.
 	settings["Render motion blur"] = true;
@@ -245,7 +248,9 @@ void Preferences::Load()
 	{
 		const string &key = node.Token(0);
 		bool hasValue = node.Size() >= 2;
-		if(key == "window size" && node.Size() >= 3)
+		if(key == "language" && hasValue)
+			language = node.Token(1);
+		else if(key == "window size" && node.Size() >= 3)
 			Screen::SetRaw(node.Value(1), node.Value(2), true);
 		else if(key == "zoom" && hasValue)
 			Screen::SetZoom(node.Value(1), true);
@@ -391,6 +396,7 @@ void Preferences::Save()
 {
 	DataWriter out(Files::Config() / "preferences.txt");
 
+	out.Write("language", language);
 	for(const auto &[name, category] : VOLUME_SETTINGS)
 		out.Write(name, Audio::Volume(category) / VOLUME_SCALE);
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
@@ -434,6 +440,20 @@ void Preferences::Save()
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
+}
+
+
+
+const string &Preferences::Language()
+{
+	return language;
+}
+
+
+
+void Preferences::SetLanguage(const string &set)
+{
+	language = set.empty() ? "en" : set;
 }
 
 

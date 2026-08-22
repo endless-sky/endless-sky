@@ -177,6 +177,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Logger.h
 	LoadingCircle.cpp
 	LoadingCircle.h
+	Localization.cpp
+	Localization.h
 	LoadPanel.cpp
 	LoadPanel.h
 	LocationFilter.cpp

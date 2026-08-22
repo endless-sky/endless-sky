@@ -323,34 +323,34 @@ interface "main menu"
 		center 360 0
 	
 	visible if "pilot loaded"
-	button e "_Enter Ship"
+	button e @ui.main.enter_ship
 		center 435 155
 		dimensions 90 30
 	visible if "gamerules unlocked"
 	sprite "ui/wide button"
 		center 435 195
-	button g "_Gamerules"
+	button g @ui.main.gamerules
 		center 435 195
 		dimensions 90 30
 	visible if "no pilot loaded"
-	button n "_New Pilot"
+	button n @ui.main.new_pilot
 		center 435 155
 		dimensions 90 30
 	visible if "pilot dead"
-	button r "_Reload Pilot"
+	button r @ui.main.reload_pilot
 		center 435 155
 		dimensions 90 30
 	
 	visible
-	button m "_Manage Pilots..."
+	button m @ui.main.manage_pilots
 		center 300 155
 		dimensions 120 30
 	
 	# Left panel (credits):
-	button q "_Quit"
+	button q @ui.main.quit
 		center -285 155
 		dimensions 90 30
-	button p "_Preferences..."
+	button p @ui.main.preferences
 		center -420 155
 		dimensions 120 30
 
@@ -360,7 +360,7 @@ interface "menu player info"
 	outline "ship sprite"
 		center 360 -105
 		dimensions 100 100
-	label "pilot:"
+	label @ui.main.pilot
 		from 250 -35
 		align left
 	string "pilot"
@@ -368,7 +368,7 @@ interface "menu player info"
 		align left
 		width 165
 		truncate middle
-	label "ship:"
+	label @ui.main.ship
 		from 250 -15
 		align left
 	string "ship"
@@ -376,7 +376,7 @@ interface "menu player info"
 		align left
 		width 165
 		truncate back
-	label "planet:"
+	label @ui.main.planet
 		from 250 15
 		align left
 	string "planet"
@@ -384,7 +384,7 @@ interface "menu player info"
 		align left
 		width 165
 		truncate back
-	label "system:"
+	label @ui.main.system
 		from 250 35
 		align left
 	string "system"
@@ -392,19 +392,19 @@ interface "menu player info"
 		align left
 		width 165
 		truncate back
-	label "credits:"
+	label @ui.main.credits
 		from 250 65
 		align left
 	string "credits"
 		from 315 65
 		align left
-	label "date:"
+	label @ui.main.date
 		from 250 85
 		align left
 	string "date"
 		from 315 85
 		align left
-	label "playtime:"
+	label @ui.main.playtime
 		from 250 105
 		align left
 	string "playtime"
@@ -465,17 +465,17 @@ interface "start conditions menu"
 	sprite "_menu/buttonless side panel"
 		center 360 0
 	
-	button b "_Back to Menu"
+	button b @ui.main.back_to_menu
 		center -420 155
 		dimensions 120 30
 	active if "unlocked start"
-	button s "_Start Game"
+	button s @ui.main.start_game
 		center -285 155
 		dimensions 90 30
 	sprite "ui/wide button"
 		center -435 195
 	active
-	button g "_Gamerules"
+	button g @ui.main.gamerules
 		center -435 195
 		dimensions 90 30
 	
