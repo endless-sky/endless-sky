@@ -129,7 +129,7 @@ message "basics 2"
 	text `For the main menu, press <Show main menu>. The control key bindings can be viewed and changed in the preferences.`
 
 message "basics 3"
-	text `To see a help message again, press <Show help>. To see all help messages again, go to the main menu, select Preferences, then go to Settings. Navigate to page two, then select "Reactivate first-time help."`
+	text `To see a help message again, press <Show help>. To see all help messages again, go to the main menu, select Preferences, go to Settings, then locate and select "Reactivate first-time help."`
 
 message "map received"
 	text "You received a map of nearby systems."

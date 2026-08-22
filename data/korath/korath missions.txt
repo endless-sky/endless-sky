@@ -54,6 +54,7 @@ mission "First Contact: Setar Fort"
 mission "Discovered Korath Space"
 	landing
 	invisible
+	non-blocking
 	source
 		attributes "efret"
 	on offer
@@ -484,6 +485,7 @@ mission "Efreti: Distress Call 6"
 mission "Efreti: Distress Call 6 Ships"
 	landing
 	invisible
+	non-blocking
 	source "Greenwater"
 	to offer
 		has "Efreti: Distress Call 5: done"

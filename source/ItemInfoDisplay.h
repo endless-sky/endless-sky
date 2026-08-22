@@ -74,4 +74,5 @@ protected:
 	mutable std::string hover;
 	mutable Tooltip tooltip;
 	bool hasHover = false;
+	mutable bool hoveringTooltip = false;
 };
