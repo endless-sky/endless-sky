@@ -88,7 +88,8 @@ protected:
 
 protected:
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected) const;
-	void DrawOutline(const Drawable &thumbnail, const Point &center, const Point &size, const Color &color) const;
+	void DrawShipIcon(const Drawable &thumbnail, const Point &center, const Color &color,
+		const Swizzle *swizzle) const;
 	void DrawThumbnail(const Drawable &thumbnail, bool animate, const Point &center, float zoom = 1.f,
 		const Swizzle *swizzle = Swizzle::None()) const;
 
