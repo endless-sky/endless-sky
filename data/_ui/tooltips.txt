@@ -246,6 +246,9 @@ tip "energy consumption:"
 tip "energy generation:"
 	`Energy generated per second. If your ship has weapons other than beam weapons, you will probably also need batteries to store energy in.`
 
+tip "docked shield generation:"
+	`Energy generated per second for charging the batteries of docked fighters.`
+
 tip "engine capacity needed:"
 	`Tons of engine space this outfit takes up.`
 
@@ -278,7 +281,10 @@ tip "fuel energy:"
 	
 tip "fuel generation:"
 	`Fuel generated per second.`
-	
+
+tip "docked fuel generation:"
+	`Fuel generated per second for refueling docked fighters.`
+
 tip "fuel heat:"
 	`Heat produced per second when consuming fuel.`
 
@@ -296,6 +302,9 @@ tip "heat dissipation:"
 
 tip "heat generation:"
 	`Heat generated per second. Heat generation can be offset by "cooling" outfits. If your ship exceeds its maximum heat, it must temporarily shut down to cool itself off.`
+
+tip "docked heat generation:"
+	`Heat generated per second while charging the batteries of docked fighters.`
 
 tip "heat protection:"
 	`Protection provided against heat damage. Increases by the given factor how much heat damage a ship can withstand before its heat rises as much as an unprotected ship.`

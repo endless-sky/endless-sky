@@ -4402,13 +4402,19 @@ void Ship::DoGeneration()
 			// Now that there is no more need to use energy for hull and shield
 			// repair, if there is still excess energy, transfer it.
 			double energyRemaining = levels.energy - MaxEnergy();
-			double fuelRemaining = levels.fuel - MaxFuel();
+			double fuelRemaining = levels.fuel - MaxFuel() + cache.dockedFuelGeneration;
+			double dockedEnergyRemaining = cache.dockedEnergyGeneration;
+			ResourceLevels dockedEnergyCost;
+			if(dockedEnergyRemaining)
+				dockedEnergyCost.heat = cache.dockedHeatGeneration / dockedEnergyRemaining;
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				if(energyRemaining > 0.)
+				if(energyRemaining)
 					Transfer(ship.levels.energy, energyRemaining, ship.MaxEnergy());
-				if(fuelRemaining > 0.)
+				if(dockedEnergyRemaining)
+					levels.DoRepair(ship.levels.energy, dockedEnergyRemaining, ship.MaxEnergy(), dockedEnergyCost);
+				if(fuelRemaining)
 					Transfer(ship.levels.fuel, fuelRemaining, ship.MaxFuel());
 			}
 

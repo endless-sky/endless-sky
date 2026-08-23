@@ -65,8 +65,10 @@ private:
 
 	double energyGeneration = 0.;
 	double energyConsumption = 0.;
+	double dockedEnergyGeneration = 0.;
 
 	double fuelGeneration = 0.;
+	double dockedFuelGeneration = 0.;
 	double fuelConsumption = 0.;
 	double fuelEnergy = 0.;
 	double fuelHeat = 0.;
@@ -76,6 +78,7 @@ private:
 	double solarHeat = 0.;
 
 	double heatGeneration = 0.;
+	double dockedHeatGeneration = 0.;
 	double heatCapacity = 0.;
 	double overheatDamageThreshold = 1.;
 	double overheatDamageRate = 0.;
