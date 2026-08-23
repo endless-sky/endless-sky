@@ -20,7 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <vector>
 
+class Angle;
 class Body;
+class Drawable;
 class Sprite;
 
 
@@ -35,6 +37,7 @@ public:
 
 	// Add an unswizzled object based on the Body class.
 	bool Add(const Body &body, float clip = 1.f);
+	bool Add(const Drawable &drawable, const Point &position, const Angle &facing, float clip = 1.f);
 	bool AddVisual(const Body &visual);
 
 	// Draw all the items in this list.
@@ -43,10 +46,10 @@ public:
 
 private:
 	// Determine if the given body should be drawn at all.
-	bool Cull(const Body &body, const Point &position) const;
+	bool Cull(const Drawable &drawable, const Point &position, const Point &unit) const;
 
 	// Add the given body at the given position.
-	bool Add(const Body &body, Point position, float clip);
+	bool Add(const Drawable &drawable, Point position, Point unit, double alpha, float clip);
 
 
 private:

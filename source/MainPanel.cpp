@@ -317,48 +317,51 @@ bool MainPanel::Scroll(double dx, double dy)
 
 void MainPanel::ShowScanDialog(const ShipEvent &event)
 {
-	shared_ptr<Ship> target = event.Target();
+	const shared_ptr<Ship> &target = event.Target();
+	string name = target->DisplayModelName();
+	if(!target->GivenName().empty())
+		name += " \"" + target->GivenName() + "\"";
 
 	ostringstream out;
 	if(event.Type() & ShipEvent::SCAN_CARGO)
 	{
 		bool first = true;
-		for(const auto &it : target->Cargo().Commodities())
-			if(it.second)
+		for(const auto &[commodity, count] : target->Cargo().Commodities())
+			if(count)
 			{
 				if(first)
-					out << "This " + target->Noun() + " is carrying:\n";
+					out << "This " + name + " is carrying:\n";
 				first = false;
 
-				out << "\t" << Format::CargoString(it.second, it.first) << "\n";
+				out << "\t" << Format::CargoString(count, commodity) << "\n";
 			}
-		for(const auto &it : target->Cargo().Outfits())
-			if(it.second)
+		for(const auto &[outfit, count] : target->Cargo().Outfits())
+			if(count)
 			{
 				if(first)
-					out << "This " + target->Noun() + " is carrying:\n";
+					out << "This " + name + " is carrying:\n";
 				first = false;
 
 				out << "\t";
-				if(it.first->Get("installable") < 0.)
+				if(outfit->Get("installable") < 0.)
 				{
-					int tons = ceil(it.second * it.first->Mass());
-					out << Format::CargoString(tons, Format::LowerCase(it.first->PluralName())) << "\n";
+					int tons = ceil(count * outfit->Mass());
+					out << Format::CargoString(tons, Format::LowerCase(outfit->PluralName())) << "\n";
 				}
 				else
-					out << it.second << " " << (it.second == 1 ? it.first->DisplayName() : it.first->PluralName()) << "\n";
+					out << count << " " << (count == 1 ? outfit->DisplayName() : outfit->PluralName()) << "\n";
 			}
 		if(first)
-			out << "This " + target->Noun() + " is not carrying any cargo.\n";
+			out << "This " + name + " is not carrying any cargo.\n";
 	}
-	if((event.Type() & ShipEvent::SCAN_OUTFITS) && target->Attributes().Get("inscrutable"))
-		out << "Your scanners cannot make any sense of this " + target->Noun() + "'s interior.";
+	if((event.Type() & ShipEvent::SCAN_OUTFITS) && target->Inscrutable())
+		out << "Your scanners cannot make any sense of the interior of the " + name + ".";
 	else if(event.Type() & ShipEvent::SCAN_OUTFITS)
 	{
 		if(!target->Outfits().empty())
-			out << "This " + target->Noun() + " is equipped with:\n";
+			out << "This " + name + " is equipped with:\n";
 		else
-			out << "This " + target->Noun() + " is not equipped with any outfits.\n";
+			out << "This " + name + " is not equipped with any outfits.\n";
 
 		// Split target->Outfits() into categories, then iterate over them in order.
 		vector<string> categories;
@@ -366,22 +369,22 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 			categories.push_back(category.Name());
 		auto comparator = ByGivenOrder<string>(categories);
 		map<string, map<const string, int>, ByGivenOrder<string>> outfitsByCategory(comparator);
-		for(const auto &it : target->Outfits())
+		for(const auto &[outfit, count] : target->Outfits())
 		{
-			string outfitNameForDisplay = (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
-			if(it.first->IsDefined() && !it.first->Category().empty() && !outfitNameForDisplay.empty())
-				outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
+			string outfitNameForDisplay = (count == 1 ? outfit->DisplayName() : outfit->PluralName());
+			if(outfit->IsDefined() && !outfit->Category().empty() && !outfitNameForDisplay.empty())
+				outfitsByCategory[outfit->Category()].emplace(std::move(outfitNameForDisplay), count);
 		}
-		for(const auto &it : outfitsByCategory)
+		for(const auto &[category, outfits] : outfitsByCategory)
 		{
-			if(it.second.empty())
+			if(outfits.empty())
 				continue;
 
 			// Print the category's name and outfits in it.
-			out << "\t" << (it.first.empty() ? "Unknown" : it.first) << "\n";
-			for(const auto &it2 : it.second)
-				if(!it2.first.empty() && it2.second > 0)
-					out << "\t\t" << it2.second << " " << it2.first << "\n";
+			out << "\t" << (category.empty() ? "Unknown" : category) << "\n";
+			for(const auto &[outfit, count] : outfits)
+				if(!outfit.empty() && count > 0)
+					out << "\t\t" << count << " " << outfit << "\n";
 		}
 
 		map<string, int> count;
@@ -407,13 +410,13 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 			}
 		if(!count.empty())
 		{
-			out << "This " + target->Noun() + " is carrying:\n";
-			for(const auto &it : count)
-				if(it.second > 0)
-					out << "\t" << it.second << " " << it.first << "\n";
+			out << "This " + name + " is carrying:\n";
+			for(const auto &[shipName, count] : count)
+				if(count > 0)
+					out << "\t" << count << " " << shipName << "\n";
 		}
 	}
-	GetUI().Push(new DialogPanel(out.str()));
+	GetUI().Push(DialogPanel::Info(out.str()));
 }
 
 
@@ -435,7 +438,7 @@ bool MainPanel::ShowHailPanel()
 
 	if(flagship->IsEnteringHyperspace())
 		Messages::Add(*GameData::Messages().Get("cannot hail while jumping"));
-	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
+	else if(flagship->IsCloaked() && !flagship->CanCommunicateWhileCloaked())
 		Messages::Add(*GameData::Messages().Get("cannot hail while cloaked"));
 	else if(target)
 	{
@@ -545,9 +548,7 @@ bool MainPanel::ShowHelp(bool force)
 		else if(DoHelp("fleet harvest tutorial"))
 			return true;
 	}
-	if(flagship->IsTargetable() &&
-			flagship->Attributes().Get("asteroid scan power") &&
-			player.Ships().size() > 1)
+	if(flagship->IsTargetable() && flagship->AsteroidScanPower() && player.Ships().size() > 1)
 	{
 		// Different order of these messages is intentional,
 		// because we're displaying the forced messages in reverse order.
@@ -681,7 +682,7 @@ void MainPanel::StepEvents(bool &isActive)
 				string message = actor->Fine(player, event.Type(), &*event.Target()).second;
 				if(!message.empty())
 				{
-					GetUI().Push(new DialogPanel(message));
+					GetUI().Push(DialogPanel::Info(message));
 					isActive = false;
 				}
 			}

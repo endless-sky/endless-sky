@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MissionAction.h"
 
 #include "CargoHold.h"
+#include "Conversation.h"
 #include "ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -25,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "GameEvent.h"
 #include "Outfit.h"
+#include "Phrase.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "TextReplacements.h"
@@ -164,7 +166,7 @@ void MissionAction::SaveBody(DataWriter &out) const
 		out.Write("can trigger after failure");
 	if(!dialog.IsEmpty())
 		dialog.Save(out);
-	if(!conversation->IsEmpty())
+	if(conversation && !conversation->IsEmpty())
 		conversation->Save(out);
 	for(const auto &it : requiredOutfits)
 		out.Write("require", it.first->TrueName(), it.second);
@@ -187,14 +189,17 @@ string MissionAction::Validate() const
 	// Dialogs must contain valid phrases.
 	if(!dialog.Validate())
 		return "stock phrase in dialog";
-	// Stock conversations must be defined.
-	if(conversation.IsStock() && conversation->IsEmpty())
-		return "stock conversation";
+	if(conversation)
+	{
+		// Stock conversations must be defined.
+		if(conversation.IsStock() && conversation->IsEmpty())
+			return "stock conversation";
 
-	// Conversations must have valid actions.
-	string reason = conversation->Validate();
-	if(!reason.empty())
-		return reason;
+		// Conversations must have valid actions.
+		string reason = conversation->Validate();
+		if(!reason.empty())
+			return reason;
+	}
 
 	// Required content must be defined & valid.
 	for(auto &&outfit : requiredOutfits)
@@ -206,7 +211,7 @@ string MissionAction::Validate() const
 
 
 
-const string &MissionAction::DialogText() const
+string MissionAction::DialogText() const
 {
 	return dialog.Text();
 }
@@ -312,7 +317,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 	if(ui)
 	{
 		bool isOffer = (trigger == "offer");
-		if(!conversation->IsEmpty())
+		if(conversation && !conversation->IsEmpty())
 		{
 			// Conversations offered while boarding or assisting reference a ship,
 			// which may be destroyed depending on the player's choices.
@@ -338,9 +343,9 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 			// missions active with the same destination (e.g. in the case of
 			// stacking bounty jobs).
 			if(isOffer)
-				ui->Push(new DialogPanel(text, player, destination));
+				ui->Push(DialogPanel::MissionOfferDialog(text, player, destination));
 			else if(isUnique || trigger != "visit")
-				ui->Push(new DialogPanel(text));
+				ui->Push(DialogPanel::Info(text));
 		}
 		else if(isOffer)
 			player.MissionCallback(Endpoint::ACCEPT);
@@ -371,7 +376,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// Create any associated dialog text from phrases, or use the directly specified text.
 	result.dialog = dialog.Instantiate(subs);
 
-	if(!conversation->IsEmpty())
+	if(conversation && !conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));
 
 	// Restore the "<payment>" and "<fine>" values from the "on complete" condition, for

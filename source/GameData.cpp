@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameEvent.h"
 #include "Government.h"
 #include "Hazard.h"
+#include "image/ImageFileData.h"
 #include "image/ImageSet.h"
 #include "Interface.h"
 #include "shader/LineShader.h"
@@ -48,17 +49,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
-#include "Plugins.h"
+#include "Plugin.h"
+#include "PluginManager.h"
 #include "shader/PointerShader.h"
 #include "Politics.h"
 #include "RenderBuffer.h"
 #include "shader/RingShader.h"
 #include "Ship.h"
 #include "image/Sprite.h"
-#include "image/SpriteSet.h"
+#include "image/SpriteLoadManager.h"
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
 #include "StartConditions.h"
+#include "StellarObjectSpriteData.h"
 #include "System.h"
 #include "TaskQueue.h"
 #include "test/Test.h"
@@ -66,10 +69,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UniverseObjects.h"
 
 #include <algorithm>
-#include <atomic>
+#include <cassert>
 #include <filesystem>
-#include <iostream>
 #include <queue>
+#include <ranges>
 #include <utility>
 #include <vector>
 
@@ -88,13 +91,13 @@ namespace {
 	Set<Person> defaultPersons;
 	TextReplacements defaultSubstitutions;
 
+	const Gamerules *activeGamerules = nullptr;
+
 	Politics politics;
 
 	StarField background;
 
 	vector<filesystem::path> sources;
-	map<const Sprite *, shared_ptr<ImageSet>> deferred;
-	map<const Sprite *, int> preloaded;
 
 	MaskManager maskManager;
 
@@ -103,56 +106,9 @@ namespace {
 
 	ConditionsStore globalConditions;
 
-	bool preventSpriteUpload = false;
-
-	// Tracks the progress of loading the sprites when the game starts.
-	std::atomic<bool> queuedAllImages = false;
-	std::atomic<int> spritesLoaded = 0;
-	std::atomic<int> totalSprites = 0;
-
-	// List of image sets that are waiting to be uploaded to the GPU.
-	mutex imageQueueMutex;
-	queue<shared_ptr<ImageSet>> imageQueue;
-
-	// Loads a sprite and queues it for upload to the GPU.
-	void LoadSprite(TaskQueue &queue, const shared_ptr<ImageSet> &image)
-	{
-		queue.Run([image] { image->Load(); },
-			[image] { image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload); });
-	}
-
-	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image);
-	// Loads a sprite from the image queue, recursively.
-	void LoadSpriteQueued(TaskQueue &queue)
-	{
-		if(imageQueue.empty())
-			return;
-
-		// Start loading the next image in the list.
-		// This is done to save memory on startup.
-		LoadSpriteQueued(queue, imageQueue.front());
-		imageQueue.pop();
-	}
-
-	// Loads a sprite from the given image, with progress tracking.
-	// Recursively loads the next image in the queue, if any.
-	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image)
-	{
-		queue.Run([image] { image->Load(); },
-			[image, &queue]
-			{
-				image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
-				++spritesLoaded;
-
-				// Start loading the next image in the queue, if any.
-				lock_guard lock(imageQueueMutex);
-				LoadSpriteQueued(queue);
-			});
-	}
-
 	void LoadPlugin(TaskQueue &queue, const filesystem::path &path)
 	{
-		const auto *plugin = Plugins::Load(path);
+		const auto *plugin = PluginManager::Load(path);
 		if(!plugin)
 			return;
 
@@ -185,9 +141,12 @@ namespace {
 		if(!icon->IsEmpty())
 		{
 			icon->ValidateFrames();
-			LoadSprite(queue, icon);
+			SpriteLoadManager::LoadSprite(queue, icon);
 		}
 	}
+
+	const char *const FONT_14_NAME = "font/ubuntu14r.png";
+	const char *const FONT_18_NAME = "font/ubuntu18r.png";
 }
 
 
@@ -195,7 +154,9 @@ namespace {
 shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &player,
 		bool onlyLoadData, bool debugMode, bool preventUpload)
 {
-	preventSpriteUpload = preventUpload;
+	if(preventUpload)
+		SpriteLoadManager::PreventSpriteUpload();
+	SpriteLoadManager::FindDeferredFolders();
 
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources(queue);
@@ -203,40 +164,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 	if(!onlyLoadData)
 	{
 		queue.Run([&queue] {
-			// Now, read all the images in all the path directories. For each unique
-			// name, only remember one instance, letting things on the higher priority
-			// paths override the default images.
-			map<string, shared_ptr<ImageSet>> images = FindImages();
-
-			// From the name, strip out any frame number, plus the extension.
-			for(auto &it : images)
-			{
-				// This should never happen, but just in case:
-				if(!it.second)
-					continue;
-
-				// Reduce the set of images to those that are valid.
-				it.second->ValidateFrames();
-				// For landscapes, remember all the source files but don't load them yet.
-				if(ImageSet::IsDeferred(it.first))
-					deferred[SpriteSet::Get(it.first)] = std::move(it.second);
-				else
-				{
-					lock_guard lock(imageQueueMutex);
-					imageQueue.push(std::move(std::move(it.second)));
-					++totalSprites;
-				}
-			}
-			queuedAllImages = true;
-
-			// Launch the tasks to actually load the images, making sure not to exceed the amount
-			// of tasks the main thread can handle in a single frame to limit peak memory usage.
-			{
-				lock_guard lock(imageQueueMutex);
-				for(int i = 0; i < TaskQueue::MAX_SYNC_TASKS; ++i)
-					LoadSpriteQueued(queue);
-			}
-
+			SpriteLoadManager::Init(queue, FindImages());
 			// Generate a catalog of music files.
 			Music::Init(sources);
 		});
@@ -257,9 +185,11 @@ void GameData::FinishLoading()
 	defaultGalaxies = objects.galaxies;
 	defaultShipSales = objects.shipSales;
 	defaultOutfitSales = objects.outfitSales;
-	defaultSubstitutions = objects.substitutions;
 	defaultWormholes = objects.wormholes;
 	defaultPersons = objects.persons;
+	defaultSubstitutions = objects.substitutions;
+
+	activeGamerules = objects.gamerulesPresets.Get("Default");
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -289,6 +219,9 @@ void GameData::LoadShaders()
 	// The found shader files. The first element is the vertex shader,
 	// the second is the fragment shader.
 	map<string, pair<string, string>> loaded;
+	// The paths to standard fonts, possibly overridden by plugins.
+	filesystem::path font14Path = Files::Images() / FONT_14_NAME;
+	filesystem::path font18Path = Files::Images() / FONT_18_NAME;
 	for(const filesystem::path &source : sources)
 	{
 		filesystem::path base = source / "shaders";
@@ -311,6 +244,12 @@ void GameData::LoadShaders()
 				else if(shader.extension() == ".frag")
 					loaded[name].second = shaderFile.string();
 			}
+		filesystem::path fontCandidate = source / "images" / FONT_14_NAME;
+		if(Files::Exists(fontCandidate))
+			font14Path = fontCandidate;
+		fontCandidate = source / "images" / FONT_18_NAME;
+		if(Files::Exists(fontCandidate))
+			font18Path = fontCandidate;
 	}
 
 	// If there is both a fragment and a vertex shader available,
@@ -329,8 +268,8 @@ void GameData::LoadShaders()
 	BatchShader::Init();
 	RenderBuffer::Init();
 
-	FontSet::Add(Files::Images() / "font/ubuntu14r.png", 14);
-	FontSet::Add(Files::Images() / "font/ubuntu18r.png", 18);
+	FontSet::Add(font14Path, 14);
+	FontSet::Add(font18Path, 18);
 
 	background.Init(16384, 4096);
 }
@@ -339,15 +278,7 @@ void GameData::LoadShaders()
 
 double GameData::GetProgress()
 {
-	double spriteProgress = 0.;
-	if(queuedAllImages)
-	{
-		if(!totalSprites)
-			spriteProgress = 1.;
-		else
-			spriteProgress = static_cast<double>(spritesLoaded) / totalSprites;
-	}
-	return min({spriteProgress, Audio::GetProgress(), objects.GetProgress()});
+	return min({SpriteLoadManager::Progress(), Audio::GetProgress(), objects.GetProgress()});
 }
 
 
@@ -355,53 +286,6 @@ double GameData::GetProgress()
 bool GameData::IsLoaded()
 {
 	return GetProgress() == 1.;
-}
-
-
-
-// Begin loading a sprite that was previously deferred. Currently this is
-// done with all landscapes to speed up the program's startup.
-void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
-{
-	// Make sure this sprite actually is one that uses deferred loading.
-	auto dit = deferred.find(sprite);
-	if(!sprite || dit == deferred.end())
-		return;
-
-	// If this sprite is one of the currently loaded ones, there is no need to
-	// load it again. But, make note of the fact that it is the most recently
-	// asked-for sprite.
-	map<const Sprite *, int>::iterator pit = preloaded.find(sprite);
-	if(pit != preloaded.end())
-	{
-		for(pair<const Sprite * const, int> &it : preloaded)
-			if(it.second < pit->second)
-				++it.second;
-
-		pit->second = 0;
-		return;
-	}
-
-	// This sprite is not currently preloaded. Check to see whether we already
-	// have the maximum number of sprites loaded, in which case the oldest one
-	// must be unloaded to make room for this one.
-	pit = preloaded.begin();
-	while(pit != preloaded.end())
-	{
-		++pit->second;
-		if(pit->second >= 20)
-		{
-			// Unloading needs to be queued on the main thread.
-			queue.Run({}, [name = pit->first->Name()] { SpriteSet::Modify(name)->Unload(); });
-			pit = preloaded.erase(pit);
-		}
-		else
-			++pit;
-	}
-
-	// Now, load all the files for this sprite.
-	preloaded[sprite] = 0;
-	LoadSprite(queue, dit->second);
 }
 
 
@@ -432,9 +316,12 @@ void GameData::Revert()
 	objects.galaxies.Revert(defaultGalaxies);
 	objects.shipSales.Revert(defaultShipSales);
 	objects.outfitSales.Revert(defaultOutfitSales);
-	objects.substitutions.Revert(defaultSubstitutions);
 	objects.wormholes.Revert(defaultWormholes);
 	objects.persons.Revert(defaultPersons);
+	objects.substitutions.Revert(defaultSubstitutions);
+
+	activeGamerules = objects.gamerulesPresets.Get("Default");
+
 	for(auto &it : objects.persons)
 		it.second.Restore();
 
@@ -625,6 +512,15 @@ void GameData::DestroyPersons(vector<string> &names)
 {
 	for(const string &name : names)
 		objects.persons.Get(name)->Destroy();
+}
+
+
+
+void GameData::HandleEvent(const ShipEvent &event)
+{
+	for(Person &person : objects.persons | views::values)
+		if(person.Do(event))
+			break;
 }
 
 
@@ -832,6 +728,13 @@ const Set<Wormhole> &GameData::Wormholes()
 
 
 
+const Set<Gamerules> &GameData::GamerulesPresets()
+{
+	return objects.gamerulesPresets;
+}
+
+
+
 const std::set<std::string> &GameData::UniverseWormholeRequirements()
 {
 	return objects.universeWormholeRequirements;
@@ -874,45 +777,11 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 
 
 
-// Custom messages to be shown when trying to land on certain stellar objects.
-bool GameData::HasLandingMessage(const Sprite *sprite)
+const StellarObjectSpriteData &GameData::ObjectSpriteData(const Sprite *sprite)
 {
-	return objects.landingMessages.contains(sprite);
-}
-
-
-
-const string &GameData::LandingMessage(const Sprite *sprite)
-{
-	static const string EMPTY;
-	auto it = objects.landingMessages.find(sprite);
-	return (it == objects.landingMessages.end() ? EMPTY : it->second);
-}
-
-
-
-// Get the solar power and wind output of the given stellar object sprite.
-double GameData::SolarPower(const Sprite *sprite)
-{
-	auto it = objects.solarPower.find(sprite);
-	return (it == objects.solarPower.end() ? 0. : it->second);
-}
-
-
-
-double GameData::SolarWind(const Sprite *sprite)
-{
-	auto it = objects.solarWind.find(sprite);
-	return (it == objects.solarWind.end() ? 0. : it->second);
-}
-
-
-
-// Get the map icon of the given stellar object sprite.
-const Sprite *GameData::StarIcon(const Sprite *sprite)
-{
-	const auto it = objects.starIcons.find(sprite);
-	return (it == objects.starIcons.end() ? nullptr : it->second);
+	static const StellarObjectSpriteData EMPTY;
+	auto it = objects.objectSpriteData.find(sprite);
+	return (it == objects.objectSpriteData.end() ? EMPTY : it->second);
 }
 
 
@@ -1021,7 +890,24 @@ const TextReplacements &GameData::GetTextReplacements()
 
 const Gamerules &GameData::GetGamerules()
 {
-	return objects.gamerules;
+	if(!activeGamerules)
+		activeGamerules = objects.gamerulesPresets.Get("Default");
+
+	return *activeGamerules;
+}
+
+
+
+void GameData::SetGamerules(const Gamerules *gamerules)
+{
+	activeGamerules = gamerules;
+}
+
+
+
+const Gamerules &GameData::DefaultGamerules()
+{
+	return *(objects.gamerulesPresets.Get("Default"));
 }
 
 
@@ -1033,21 +919,21 @@ void GameData::LoadSources(TaskQueue &queue)
 
 	vector<filesystem::path> globalPlugins = Files::ListDirectories(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
-		if(Plugins::IsPlugin(path))
+		if(PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 	// Load unzipped plugins first to give them precedence, then load the zipped plugins.
 	globalPlugins = Files::List(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
-		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+		if(path.extension() == ".zip" && PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 
 	vector<filesystem::path> localPlugins = Files::ListDirectories(Files::UserPlugins());
 	for(const auto &path : localPlugins)
-		if(Plugins::IsPlugin(path))
+		if(PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 	localPlugins = Files::List(Files::UserPlugins());
 	for(const auto &path : localPlugins)
-		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+		if(path.extension() == ".zip" && PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 }
 
