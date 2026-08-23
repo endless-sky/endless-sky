@@ -1876,8 +1876,8 @@ mission "Strider: Remnant 3"
 		conversation
 			`At the designated coordinates, there is a small encampment set up that looks vaguely reminiscent of a desert trader outpost. Aside from a few camels tied near a water trough, the place looks abandoned. When you touch down next to it, the delegation steps out cautiously. "Is this the right place?" one of the Hai asks somewhat worriedly.`
 			`	Before you can answer, a number of Remnant emerge from the tents, and you notice that Rayn is among them. "Welcome to our encampment, representatives," Rayn chants. "Captain <first> brought us your missive, and we asked them to bring you here. Would you care to come inside?" They gesture toward the largest of the tents. While obviously surprised, Ambassador Yashili acquiesces, and the Hai step inside. Rayn gestures for you to follow. The remaining Remnant begin patrolling around the camp.`
-			`	Rayn offers food and water to the Hai and then takes a seat on a cushion on the ground. The Hai politely refuse the food before joining Rayn on the cushions. Ambassador Yashili begins. "We come representing the Hai people, who live far from here. Some of our brothers and sisters have turned violent toward us, and have recently created a new ship that may cause us trouble. We have created a ship of our own in retaliation, but we are still in need of technology capable of repairing the hull of a ship while in flight so that we may have an advantage. Captain <last> has told us that you have such technology, with ship hulls that repair themselves."`
-			`	"It is true that our ships self repair," Rayn responds. "But this is not technology that we are able to share. The property is intrinsic to the metals that we build our ships with - metals which are in low supply." Yashili looks concerned with this development; perhaps this journey was a worthless one.`
+			`	Rayn offers food and water to the Hai and then takes a seat on a cushion on the ground. The Hai politely refuse the food before joining Rayn on the cushions. Ambassador Yashili begins. "We come representing the Hai people, who live far from here. Some of our brothers and sisters have turned violent toward us, and have recently created a new ship that may cause us much trouble. We have created a ship of our own in retaliation, but we are still in need of technology capable of repairing the hull of a ship while in flight so that we may have an advantage. Captain <last> has told us that you have such technology, with ship hulls that repair themselves."`
+			`	"It is true that our ships self-repair," Rayn responds. "But this is not technology that we are able to share. The property is intrinsic to the metals that we build our ships with - metals which are in low supply." Yashili looks concerned with this development; perhaps this journey was a worthless one.`
 			choice
 				`	"So is there no way that you can help them?"`
 				`	"There must be something we could do."`
@@ -1959,12 +1959,12 @@ mission "Strider: Coalition 2"
 			
 			label business
 			`	The Heliarchs once again warn the Hai to be careful with the Quarg before finally letting the Hai explain the reason for their trip here.`
-			`	The delegation still looks a bit overwhelmed, as if still processing all the history the Heliarch just told them, but Yashili has kept her composure and begins speaking. "We come representing the Hai people, who live far from here. Some of our brothers and sisters have turned violent toward us, and have recently created a new ship that may cause us trouble. We have created a ship of our own in retaliation, but we are still in need of technology capable of repairing the hull of a ship while in flight so that we may have an advantage. Captain <last> has told us that you possess such technology."`
+			`	The delegation still looks a bit overwhelmed, as if still processing all the history the Heliarch just told them, but Yashili has kept her composure and begins speaking. "We come representing the Hai people, who live far from here. Some of our brothers and sisters have turned violent toward us, and have recently created a new ship that may cause us much trouble. We have created a ship of our own in retaliation, but we are still in need of technology capable of repairing the hull of a ship while in flight so that we may have an advantage. Captain <last> has told us that you possess such technology."`
 			`	"Developed such technology, indeed we have," an Arach agent responds. "Composed of several dozens of small repair bots, and their center of command, such outfits are."`
 			choice
-				`	"So are you willing to give or sell one of those outfits to the Hai?"`
-				`	"Would you share the way of mass-producing those outfits with the Hai?"`
-			`	"Much involved in producing our repair modules, House Chamgar is," the same Arach says. "Contact their representatives in this ring, we will."`
+				`	"Would you be willing to give or sell one of those outfits to the Hai?"`
+				`	"Would you be willing to share how those outfits are mass-produced with the Hai?"`
+			`	"Much involved in the production of our repair modules, House Chamgar is," the same Arach says. "Contact their representatives in this ring, we will."`
 			`	"Do you desire anything in return?" Yashili asks the agent.`
 			`	"In return, we ask nothing. Helping you extend beyond the limits placed upon you by the Quarg, enough of a reward is," the Arach responds. Yashili looks somewhat puzzled, but does not press the issue any further.`
 			`	A short time later, a group of Arachi representing House Chamgar arrive. They have the Hai describe their ships, using this information to optimize the repair module for Hai ships. They then prepare a copy of the blueprints, handing a data chip containing the schematics for the hull repair modules and their hull-walking robots to the Hai. Some workers then load a crate with two small modules onto your ship for the Hai to use as examples. Yashili thanks the Coalition for their generosity and boards your ship, ready to return to <destination>.`
@@ -2070,8 +2070,8 @@ mission "Strider 3"
 			`	"It's hard not to have fun when you love doing your job."`
 			
 			label end
-			`	Osen is about to run off, but one of the elders stops him. "Can you give us any estimate on how long it will take to make use of this information?"`
-			`	"Oh, yes," Osen says. "It may take us a few months to get everything working. A single month at the least if we are lucky."`
+			`	Osen is about to run off, but one of the elders stops him. "Can you give us an estimate on how long it will take to make use of this information?"`
+			`	"Oh, yes," Osen says. "It may take us a few months to get everything working. At least a single month, if we are lucky."`
 			`	"This is good to know. The sooner we have these ships functional, the better."`
 			`	Osen once again gets ready to run off, but this time stops himself and turns to you. "Thank you Captain. Without this information, it could have taken me years to finish this project." You nod in response, and Osen finally runs off to his shipyard.`
 			`	"I would like to thank you as well," Yashili says. "It has been some time since I have had the chance to leave our space. It is always exciting to go to new places and meet new people." Yashili bows to you, and you return a bow of your own.`
@@ -2090,7 +2090,7 @@ mission "Strider notification"
 	on offer
 		conversation
 			scene `thumbnail/hai pond strider`
-			`Upon landing on <planet>, you receive a message from Osen. "Hello Captain <last>! I hope this message finds you well. I would like to once again thank you for your help on the Pond Strider, and would like to inform you that we have finished integrating the hull repair technology that you have provided us into the Pond Strider. We have now placed the ship into mass production. You may also be interested to learn that we have developed new weaponry for the Pond Strider's drone, the Flea. I won't spoil the surprise for you, though. Check out the shipyard on Hai-home the next time you stop by to take a look at it."`
+			`Upon landing on <planet>, you receive a message from Osen. "Hello Captain <last>! I hope this message finds you well. I would like to thank you once again for your help on the Pond Strider, and would like to inform you that we have finished integrating the hull repair technology that you have provided us into the Pond Strider. We have now put the ship into mass production. You may also be interested to learn that we have developed new weaponry for the Pond Strider's drone, the Flea. I won't spoil the surprise for you, though. Check out the shipyard on Hai-home the next time you stop by and take a look at the Flea yourself."`
 				decline
 
 
