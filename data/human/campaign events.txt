@@ -238,7 +238,8 @@ mission "event: war begins"
 				flee
 			
 			label help
-			`	"Yes. You can take off like I asked you to." The officer pauses. "Sorry, Captain, I'm sure you have the best of intentions, but that's the truth. The Navy has personnel trained for responding to nuclear disasters, and all you'd be doing here is taking up extra space." The officer turns around, interrupted by the shrieks of a panicked Paradisian. You re-enter the <ship>, and prepare to take off.`
+			`	"Yes. You can take off like I asked you to." The officer pauses. "Sorry, Captain, but that's the truth. The Navy has personnel trained for responding to nuclear disasters, and all you'd be doing here right now is taking up space. If you really want to help, you're better off waiting a day for us to properly coordinate a disaster response plan with the neighboring planets and their job boards."`
+			`	The officer turns around, interrupted by the shrieks of a panicked Paradisian. You re-enter the <ship>, and prepare to take off.`
 				flee
 
 event "initial deployment 1"
@@ -535,6 +536,7 @@ event "remove pirates from Ildaria"
 
 mission "Ildaria Pirates Compatibility"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "event: initial deployment 2"
@@ -631,6 +633,7 @@ event "initial deployment 3"
 mission "Central Outfitters Expansion Trigger"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: initial deployment 2"
 	on offer
@@ -691,6 +694,7 @@ mission "Central Outfitters Expansion"
 mission "Southern Carriers Trigger"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: initial deployment 3"
 	on offer
@@ -1339,6 +1343,24 @@ event "memorial on Deep"
 event "flamethrower available"
 	outfitter "Kraz Advanced"
 		"Flamethrower"
+	fleet "Small Free Worlds"
+		variant 3
+			"Fury (Laser)"
+			"Fury (Flamethrower)"
+		variant 2
+			"Hawk"
+			"Fury (Flamethrower)"
+		variant 1
+			"Fury (Flamethrower)"
+			"Sparrow" 2
+	fleet "Large Free Worlds"
+		variant 2
+			"Osprey (Laser)"
+			"Fury (Flamethrower)"
+		variant 1
+			"Falcon (Heavy)"
+			"Fury (Flamethrower)" 2
+			"Sparrow" 4
 
 
 
@@ -1465,6 +1487,80 @@ event "catalytic ramscoop available"
 event "fw gets catalytic ramscoop"
 	outfitter "Delta V Advanced"
 		"Catalytic Ramscoop"
+	# The Free Worlds start to use flamethrowers in a significant extent
+	# only after the catalytic ramscoop makes it a reasonable choice.
+	fleet "Small Free Worlds"
+		add variant 3
+			"Fury (Flamethrower Blaster)"
+			"Fury (Missile)"
+		add variant 2
+			"Hawk"
+			"Fury (Flamethrower Blaster)"
+		add variant 1
+			"Osprey (Flamethrower)"
+	fleet "Large Free Worlds"
+		add variant 4
+			"Osprey (Flamethrower)"
+			"Fury (Flamethrower Blaster)"
+		add variant 3
+			"Bastion (Heavy)"
+			"Osprey (Flamethrower)"
+		add variant 1
+			"Falcon (Flamethrower)"
+		add variant 1
+			"Falcon (Flamethrower)"
+			"Hawk"
+			"Hawk (Plasma)"
+			"Sparrow" 3
+		add variant 2
+			"Falcon (Flamethrower)"
+			"Bastion (Heavy)"
+			"Hawk (Rocket)"
+		add variant 2
+			"Bastion (Heavy)"
+			"Fury (Flamethrower Blaster)" 2
+			"Sparrow" 2
+		add variant 2
+			"Falcon (Flamethrower)"
+			"Fury (Flamethrower Blaster)" 2
+			"Sparrow" 4
+	# Pirates don't use Catalytic Ramscoops, but we simulate that they adopted the flamethrower
+	# in relevant extent only after it became more popular and could e.g. be looted more often.
+	fleet "Small Southern Pirates"
+		add variant 1
+			"Fury (Flamethrower Pirate)"
+		add variant 1
+			"Hawk (Rocket)"
+			"Fury (Flamethrower Pirate)"
+			"Sparrow"
+		add variant 1
+			"Clipper (Flamethrower)"
+		add variant 1
+			"Fury (Flamethrower Pirate)" 3
+		add variant 1
+			"Fury (Flamethrower Pirate)"
+			"Sparrow"
+	fleet "Large Southern Pirates"
+		add variant 1
+			"Osprey (Flamethrower Pirate)"
+		add variant 2
+			"Fury (Flamethrower Pirate)"
+			"Sparrow" 3
+		add variant 2
+			"Clipper (Flamethrower)"
+			"Hawk (Bomber)"
+		add variant 1
+			"Clipper (Flamethrower)"
+			"Clipper (Heavy)"
+			"Clipper (Speedy)"
+		add variant 1
+			"Fury (Bomber)"
+			"Fury (Flamethrower Pirate)" 2
+		add variant 1
+			"Falcon (Flamethrower Pirate)"
+			"Sparrow" 3
+		add variant 1
+			"Falcon (Flamethrower Pirate)"
 
 
 
@@ -1767,6 +1863,7 @@ event "fw prison on Clink closes"
 mission "FW Clink Prison Closes"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "event: fw prison on Clink"
 		or
@@ -2094,6 +2191,7 @@ event "navy expand typhoon sales"
 
 mission "Navy expands typhoon sales"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "event: deep sky tech available"
@@ -2538,7 +2636,6 @@ event "pug flee"
 		add object "Pug Wormhole"
 			sprite planet/wormhole
 			distance 2320.29
-			period 1788.27
 	planet "Pugglemug"
 		attributes uninhabited
 	planet "Pugglequat"
@@ -3314,6 +3411,7 @@ event "Deep memorial completed"
 mission "Deep Memorial Finished"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "main plot completed"
 	on offer
@@ -3341,6 +3439,7 @@ event "geminus rebuilt"
 mission "Geminus Rebuilt"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "main plot completed"
 	on offer
@@ -3357,6 +3456,7 @@ event "martini recovers"
 mission "Martini Recovers"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "main plot completed"
 	on offer

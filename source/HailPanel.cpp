@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "HailPanel.h"
 
-#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "DialogPanel.h"
 #include "shader/DrawList.h"
@@ -30,13 +29,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "Ship.h"
 #include "image/Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "TextArea.h"
 #include "UI.h"
 #include "Weapon.h"
-#include "text/WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -84,7 +84,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	else if(ship->IsDisabled())
 	{
 		const Ship *flagship = player.Flagship();
-		if(flagship->NeedsFuel(false) || flagship->IsDisabled())
+		if(flagship->NeedsFuel(false) || flagship->IsDisabled() || flagship->NeedsEnergy())
 			SetMessage("Sorry, we can't help you, because our ship is disabled.");
 	}
 	else
@@ -117,7 +117,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 
 		if(ship->GetShipToAssist() == player.FlagshipPtr())
 			SetMessage("Hang on, we'll be there in a minute.");
-		else if(canGiveFuel || canRepair)
+		else if(canGiveFuel || canGiveEnergy || canRepair)
 		{
 			string helpOffer = "Looks like you've gotten yourself into a bit of trouble. "
 				"Would you like us to ";
@@ -135,7 +135,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 			SetMessage("Sorry, my ship is too small to have the right equipment to assist you.");
 	}
 
-	if(message.empty())
+	if(!message)
 		SetMessage(ship->GetHail(player.GetSubstitutions()));
 }
 
@@ -302,14 +302,6 @@ void HailPanel::Draw()
 
 	draw.Draw();
 
-	// Draw the current message.
-	WrappedText wrap;
-	wrap.SetAlignment(Alignment::JUSTIFIED);
-	wrap.SetWrapWidth(330);
-	wrap.SetFont(FontSet::Get(14));
-	wrap.Wrap(message);
-	wrap.Draw(Point(-50., -50.), *GameData::Colors().Get("medium"));
-
 	++step;
 }
 
@@ -330,6 +322,10 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 't' && hasLanguage && planet)
 	{
+		bool isFriendly = gov && !gov->IsEnemy();
+		Preferences::TributeConfirmation confirmation = Preferences::GetTributeConfirmation();
+		bool displayConfirmation = (confirmation == Preferences::TributeConfirmation::ALWAYS
+			|| (isFriendly && confirmation == Preferences::TributeConfirmation::FRIENDLY_ONLY));
 		if(GameData::GetPolitics().HasDominated(planet))
 		{
 			GameData::GetPolitics().DominatePlanet(planet, false);
@@ -337,12 +333,16 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			player.SetTribute(planet, 0);
 			SetMessage("Thank you for granting us our freedom!");
 		}
-		else if(!planet->IsDefending())
-			GetUI().Push(new DialogPanel([this]() { SetMessage(planet->DemandTribute(player)); },
-				"Demanding tribute may cause this planet to launch defense fleets to fight you. "
-				"After battling the fleets, you can demand tribute again for the planet to relent.\n"
-				"This act may hurt your reputation severely. Do you want to proceed?",
-				Truncate::NONE, true, false));
+		else if(!planet->IsDefending() && displayConfirmation && gov)
+		{
+			string message = "Demanding tribute may cause this planet to launch defense fleets to fight you. "
+				"After battling the fleets, you can demand tribute again for the planet to relent.\n";
+			if(isFriendly)
+				message += "This act may hurt your reputation severely with the " + gov->DisplayName() + " government. ";
+			message += "Do you want to proceed?";
+			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SetMessage(planet->DemandTribute(player)); },
+				message, false));
+		}
 		else
 			SetMessage(planet->DemandTribute(player));
 		UI::PlaySound(UI::UISound::NORMAL);
@@ -363,14 +363,14 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			}
 			else if(player.Flagship()->NeedsFuel(false))
 			{
-				if(ship->Fuel())
+				if(ship->FuelFraction())
 					SetMessage("Sorry, but if we give you fuel we won't have enough to make it to the next system.");
 				else
 					SetMessage("Sorry, we don't have any fuel.");
 			}
 			else if(player.Flagship()->NeedsEnergy())
 			{
-				if(ship->Energy())
+				if(ship->EnergyFraction())
 					SetMessage("Sorry, but if we give you energy we won't have enough for our ship.");
 				else
 					SetMessage("Sorry, we don't have any energy.");
@@ -463,8 +463,17 @@ void HailPanel::SetBribe(double scale)
 
 void HailPanel::SetMessage(const string &text)
 {
-	message = text;
-	if(!message.empty())
-		Messages::Add({"(Response to your hail) " + header + " " + message,
+	if(!message)
+	{
+		message = make_shared<TextArea>();
+		message->SetAlignment(Preferences::GetTextAlignment());
+		message->SetFont(FontSet::Get(Preferences::GetFontSize()));
+		message->SetColor(*GameData::Colors().Get("medium"));
+		message->SetRect(GameData::Interfaces().Get("hail panel")->GetBox("message"));
+		AddChild(message);
+	}
+	message->SetText(text);
+	if(!text.empty())
+		Messages::Add({"(Response to your hail) " + header + " " + text,
 			GameData::MessageCategories().Get("log only")});
 }

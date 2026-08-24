@@ -13,17 +13,17 @@
 
 
 mission "Avgi: Lost in Twilight"
-	landing
 	invisible
-	to complete
-		never
-	on enter
-		system
-			attributes "twilight"
+	entering
+	source
+		attributes "twilight"
+	destination "Earth"
+	on offer
 		log "Became trapped in a strange region after entering a system my jump drive could not return from."
-		fail
 		set "avgi: lost in twilight"
-		dialog phrase "lost in twilight"
+		conversation
+			`As soon as you jump into the system, you notice something is wrong. The characteristic plasma of your jump drive fades unnaturally quickly, and as you check your ship's systems, you notice its temperature is somehow much lower than normal. Your computer indicates that the system you came from is out of range, and that you cannot jump back to it. It appears you are stuck in this region for now. If you didn't bring a ramscoop, you may wish to reload a previous save and install one before returning.`
+				decline
 
 phrase "lost in twilight"
 	word
@@ -242,7 +242,7 @@ mission "Avgi: Humans From the Deep"
 	to offer
 		has "Avgi: First Contact: done"
 	on offer
-		log `Met an alien species calling themselves the Avgi. Their home cluster appears infested with hostile ships from some unknown advanced civilization. Made contact with a scout ship and followed it back through a region south of Avgi space called the Tangled Shroud. Met with members of the Avgi government and made an agreement to let you purchase civilian technology.`
+		log `Met an alien species calling themselves the Avgi. Their home cluster appears infested with hostile ships from some unknown advanced civilization. Made contact with a scout ship and followed it back through a region south of Avgi space called the Tangled Shroud. Met with members of the Avgi government and made an agreement to let me purchase civilian technology.`
 		log "Factions" "Avgi" `The Avgi are a young race of aliens resembling large, colorful dragonflies, which inhabit the Twilight Nebula in this part of the galaxy. After an overwhelming invasion by ships they call the Aberrant, most of their surviving spacecraft fled south through a maze-like region called the Tangled Shroud.`
 		log "Factions" "Avgi Consonance" `The exiled Avgi seem to be led by a central government called the Consonance, but there are many who do not recognize this government.`
 		log "People" "Asime" `Asime is one of the three First Speakers of the Consonance Assembly. While reserved, Asime appears to be defensive about the decisions made by the Consonance in response to the Aberrant incursion.`
@@ -518,7 +518,7 @@ mission "Avgi: Defend Ensemble 2"
 		conversation
 			`Navigeo is buzzing with activity as you pull into one of the few open berths available. Avgi ships of all sizes, painted in the deep blue of the Twilight Guard, launch every few minutes, replaced moments later by battle-scarred warships that slip into dry dock for repair.`
 			`	Parked a few kilometers from the station, a fleetgroup is assembling in a wide formation. You see a handful of cruiser-sized ships, along with a dozen smaller ships congregated around them. You hail them, asking to join the formation, and a surprised Avgi admiral directs you to fly towards the Ensemble system.`
-			`	"Warning. Atomics will be used in the upcoming battle, so stay your distance from our warheads," she says. "It would be appreciated if you flew ahead of our fleet and cleared out any straggler Aberrant in the way, so that we can save as many atomics for the battle in Ensemble."`
+			`	"Warning. Atomics will be used in the upcoming battle, so keep your distance from our warheads," she says. "It would be appreciated if you flew ahead of our fleet and cleared out any straggler Aberrant in the way, so that we can save as many atomics as possible for the battle in Ensemble."`
 			choice
 				`	"Acknowledged."`
 					goto end
@@ -712,7 +712,7 @@ mission "Avgi: Scout Rescue"
 				`	"Yes, I've found that exploration is often dangerous."`
 					goto exploration
 				`	"Sounds like you should build stronger scout ships."`
-			`	"Agreement. The Polari are a fine line of vessels, but not one made for the environment of war. We have experimented with using the Prismaios as an intelligence platform in more contested environments, but it lacks the versatility and drone bays that has made the Polari so venerable in the first place."`
+			`	"Agreement. The Polari are a fine line of vessels, but not one made for the environment of war. We have experimented with using the Prismaios as an intelligence platform in more contested environments, but it lacks the versatility and drone bays that have made the Polari so venerable in the first place."`
 				goto point
 			label exploration
 			`	He flicks his wings. "Regret. It is a sad truth, but those on the forefront of expanding our knowledge are often those who face the most danger from the unknown."`
@@ -892,7 +892,7 @@ mission "Avgi: Dissonance Outreach"
 				accept
 
 	on accept
-		log `Agreed to transport Hriso to a Dissonance mining station in the Tangled Shroud, while Darius and Sora investigate a lead that could potentially help you escape the Twilight.`
+		log `Agreed to transport Hriso to a Dissonance mining station in the Tangled Shroud, while Darius and Sora investigate a lead that could potentially help me escape the Twilight.`
 
 
 mission "Avgi: Twilight Escape 1"
@@ -963,12 +963,11 @@ mission "Avgi: Twilight Escape 1"
 			`	"Can it take us back to human space?" asks Leon, to which you nod.`
 
 			label "unknown ember waste"
-			`	"There's no point in waiting, then. If there's a chance, even a small one, it's worth checking on," says Darius, looking hopeful for the first time since you've met him. You just hope his hope isn't a false one, for both of your sakes.`
+			`	"There's no point in waiting, then. If there's a chance, even a small one, it's worth checking on," says Darius, looking hopeful for the first time since you've met him.`
+			branch accept
+				has "avgi: discovered magnetar"
+			`	You just hope his hope isn't a false one, for both of your sakes.`
 				accept
-	on enter "Decet"
-		log `Discovered a magnetar in the Decet system that can boost the range of my jump drive in an apparent inversion of the mysterious effect that trapped me here.`
-		conversation
-			`Just as your jump drive reacted strangely when you first entered Avgi space, it does so again, but this time the effect is inverted. The plasma from your jump lingers unnaturally, as though energized by something outside. Your instrumentation tell you your jump drive is much warmer than it should be just after a jump, almost hot enough to be dangerous. Perhaps your jump drive's range has changed as well?`
 	on enter
 		system
 			attributes "core" "deep" "dirt belt" "near earth" "rim" "south"
@@ -984,7 +983,7 @@ mission "Avgi: Twilight Escape 1"
 			`	"Drop me off on Vinci first," interjects Leon. "I need to get my life in order again, and there's someone there I need to talk to about all this. It's on the way to the Deep, anyway."`
 	on complete
 		log `Successfully escaped the Twilight together with the humans stranded there.`
-		log "People" "Leon Shez" `Leon is extremely grateful to you for helping him return to Avgi space. He wants to tell a contact on Vinci about the Avgi, and asks you to stay in touch.`
+		log "People" "Leon Shez" `Leon is extremely grateful for helping him return to human space. He wants to tell a contact on Vinci about the Avgi, and asks to stay in touch.`
 		clear "avgi: lost in twilight"
 		"reputation: Avgi (Dissonance Angry)" <?= -10
 		conversation
@@ -1096,3 +1095,17 @@ mission "Avgi: Twilight Escape 3"
 			`	As the pair move to the door, you say your goodbyes, and Darius promises he will keep in touch with you about the Avgi. Neither of you have forgotten the aliens fighting to survive at the edge of the galaxy, and now that you know of a safe way in and out of their space, you can go back without fear of becoming trapped.`
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Darius hasn't entered the system yet. Better depart and wait for it to arrive.`
+
+
+mission "Discovery of Decet Magnetar"
+	invisible
+	entering
+	source
+		system "Decet"
+	destination "Earth"
+	on offer
+		log `Discovered a magnetar in the Decet system that can boost the range of my jump drive in an apparent inversion of the mysterious effect that trapped me here.`
+		set "avgi: discovered magnetar"
+		conversation
+			`Just as your jump drive reacted strangely when you first entered Avgi space, it does so again, but this time the effect is inverted. The plasma from your jump lingers unnaturally, as though energized by something outside. Your instrumentation tells you your jump drive is much warmer than it should be just after a jump, almost hot enough to be dangerous. Perhaps your jump drive's range has changed as well?`
+				decline

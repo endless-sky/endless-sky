@@ -45,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "StellarObject.h"
@@ -146,8 +147,8 @@ void MapDetailPanel::Draw()
 
 	clickZones.clear();
 
-	DrawInfo();
 	DrawOrbits();
+	DrawInfo();
 	DrawKey();
 	FinishDrawing(isStars ? "is stars" : "is ports");
 }
@@ -371,6 +372,8 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 			}
 		}
 	}
+	else if(key == 'c')
+		player.SetEscortDestination();
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
 
@@ -386,8 +389,6 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 
 	if(button == MouseButton::RIGHT)
 	{
-		if(!Preferences::Has("System map sends move orders"))
-			return true;
 		if(commodity == SHOW_STARS && !player.CanView(*selectedSystem))
 			return true;
 
@@ -404,9 +405,9 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 
 			// Only issue movement orders if the player is in-flight.
 			if(player.GetPlanet())
-				GetUI().Push(new DialogPanel("You cannot issue fleet movement orders while docked."));
+				GetUI().Push(DialogPanel::Info("You cannot issue fleet movement orders while docked."));
 			else if(!player.CanView(*selectedSystem))
-				GetUI().Push(new DialogPanel("You must visit this system before you can send your fleet there."));
+				GetUI().Push(DialogPanel::Info("You must visit this system before you can send your fleet there."));
 			else
 				player.SetEscortDestination(selectedSystem, uiClick / scale);
 		}
@@ -513,9 +514,9 @@ void MapDetailPanel::Resize()
 void MapDetailPanel::InitTextArea()
 {
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetColor(*GameData::Colors().Get("medium"));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetAlignment(Preferences::GetTextAlignment());
 	ResizeTextArea();
 }
 
@@ -527,7 +528,7 @@ void MapDetailPanel::ResizeTextArea()
 	descriptionXOffset = mapInterface->GetValue("description x offset");
 	int descriptionWidth = mapInterface->GetValue("description width");
 	description->SetRect(Rectangle::FromCorner(
-		Point(Screen::Right() - descriptionXOffset - descriptionWidth, Screen::Top() + 20),
+		Point(Screen::Right() - descriptionXOffset - descriptionWidth, Screen::Top() + 50.),
 		Point(descriptionWidth - 20, mapInterface->GetValue("description height"))
 	));
 }
@@ -551,6 +552,8 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 			if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.contains(planet))
 				continue;
 
+			// Make sure that the sprite for this planet is loaded.
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), object.GetSprite());
 			planetCards.emplace_back(object, number, player.HasVisited(*planet), this);
 			shown.insert(planet);
 			++number;
@@ -826,7 +829,8 @@ void MapDetailPanel::DrawInfo()
 	// Draw the information for the government of this system at the top of the trade sprite.
 	SpriteShader::Draw(systemSprite, uiPoint + Point(systemSprite->Width() / 2. - textMargin, 0.));
 
-	const Font &font = FontSet::Get(14);
+	// TODO: This one might need split.
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	const Sprite *alertSprite = SpriteSet::Get(commodity == SHOW_DANGER ? "ui/red alert" : "ui/red alert grayed");
 	const float alertScale = min<float>(1.f, min<double>(textMargin,
 		font.Height()) / max(alertSprite->Width(), alertSprite->Height()));
@@ -921,12 +925,12 @@ void MapDetailPanel::DrawInfo()
 			else
 			{
 				value -= localValue;
-				if(Preferences::Has("Show parenthesis"))
+				if(Preferences::Has("Parenthesize trade profits"))
 					price += "(";
 				if(value > 0)
 					price += '+';
 				price += to_string(value);
-				if(Preferences::Has("Show parenthesis"))
+				if(Preferences::Has("Parenthesize trade profits"))
 					price += ")";
 			}
 
@@ -974,7 +978,7 @@ void MapDetailPanel::DrawInfo()
 	{
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
 		Point pos(Screen::Right() - descriptionXOffset - .5f * panelSprite->Width(),
-			Screen::Top() + .5f * panelSprite->Height());
+			Screen::Top() + 30. + .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 
 		description->SetText(selectedPlanet->Description().ToString());
@@ -983,14 +987,17 @@ void MapDetailPanel::DrawInfo()
 			AddChild(description);
 			descriptionVisible = true;
 		}
-
-		selectedSystemOffset = -150;
 	}
 	else
 	{
 		RemoveChild(description.get());
 		descriptionVisible = false;
 	}
+
+	Information mapInterfaceInfo;
+	if(player.HasEscortDestination())
+		mapInterfaceInfo.SetCondition("has escort destination");
+	mapInterface->Draw(mapInterfaceInfo, this);
 }
 
 

@@ -74,6 +74,7 @@ void ShipAICache::Calibrate(const Ship &ship)
 		// The artillery AI should be applied at 1000 pixels range, or 500 if the weapon is homing.
 		double range = weapon->Range();
 		shortestRange = min(range, shortestRange);
+		longestRange = max(range, longestRange);
 		if(range >= 1000. || (weapon->Homing() && range >= 500.))
 		{
 			shortestArtillery = min(range, shortestArtillery);
