@@ -88,6 +88,9 @@ public:
 	void SetFighterDodgePolicy(FighterDodgePolicy value);
 	void SetSystemDepartureMin(double value);
 	void SetSystemArrivalMin(std::optional<double> value);
+	void SetHabitableBasedArrivalDistance(bool value);
+	void SetHabitableArrivalMin(std::optional<double> value);
+	void SetHabitableArrivalMax(std::optional<double> value);
 	void SetFleetMultiplier(double value);
 	void SetSpawnRaidFleets(bool value);
 	void SetFleetSizeLimitation(FleetSizeLimitation value);
@@ -111,6 +114,9 @@ public:
 	FighterDodgePolicy FightersHitWhenDisabled() const;
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
+	bool HabitableBasedArrivalDistance() const;
+	std::optional<double> HabitableArrivalMin() const;
+	std::optional<double> HabitableArrivalMax() const;
 	double FleetMultiplier() const;
 	bool SpawnRaidFleets() const;
 	FleetSizeLimitation GetFleetSizeLimitation() const;
@@ -142,6 +148,9 @@ private:
 		FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
 		double systemDepartureMin = 0.;
 		std::optional<double> systemArrivalMin;
+		bool habitableBasedArrivalDistance = true;
+		std::optional<double> habitableArrivalMin = 500.;
+		std::optional<double> habitableArrivalMax = 5000.;
 		double fleetMultiplier = 1.;
 		bool spawnRaidFleets = true;
 		FleetSizeLimitation fleetSizeLimitation = FleetSizeLimitation::NONE;

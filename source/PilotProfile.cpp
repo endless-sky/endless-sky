@@ -147,20 +147,14 @@ shared_ptr<PilotProfile> &PilotProfile::NewProfile()
 std::string PilotProfile::GetIdentifier(const std::string &pilotName)
 {
 	string name = pilotName;
-	string basePath = (Files::Pilots() / name).string();
+	map<string, shared_ptr<PilotProfile>> existingProfiles = GetProfileMap();
 	int index = 0;
 	while(true)
 	{
-		string path = basePath;
 		if(index++)
-		{
-			string suffix = " " + to_string(index);
-			path += suffix;
-			name = pilotName + suffix;
-		}
-		path += ".txt";
+			name = pilotName + " " + to_string(index);
 
-		if(!Files::Exists(path))
+		if(!existingProfiles.contains(name))
 			break;
 	}
 

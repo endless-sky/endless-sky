@@ -456,7 +456,7 @@ outfit "Tractor Beam"
 		"hardpoint offset" 4.
 		sound "tractor beam"
 		"hit effect" "tractor beam"
-		"tractor beam" 7
+		"tractor beam" 1.4
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1

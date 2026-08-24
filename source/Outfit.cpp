@@ -30,152 +30,157 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const double EPS = 0.0000000001;
+	// Attributes are stored as integers but used as doubles. This is the factor by which to convert
+	// attribute values from doubles to integers and back. Using a base 10 scaling factor instead of
+	// a base 2 scaling factor so that values provided in game data text files match the values that
+	// get used as closely as possible. Commonly used attribute values get cached anyway, so we care
+	// more about accuracy to what the content creator provided than speed of converting values.
+	constexpr int ATTRIBUTE_PRECISION = 10000;
 
 	// A mapping of attribute names to specifically-allowed minimum values. Based on the
 	// specific usage of the attribute, the allowed minimum value is chosen to avoid
 	// disallowed or undesirable behaviors (such as dividing by zero).
-	const auto MINIMUM_OVERRIDES = map<string, double>{
-		// Attributes which are present and map to zero may have any value.
-		{"shield energy", 0.},
-		{"shield fuel", 0.},
-		{"shield heat", 0.},
-		{"hull energy", 0.},
-		{"hull fuel", 0.},
-		{"hull heat", 0.},
-		{"hull threshold", 0.},
-		{"energy generation", 0.},
-		{"energy consumption", 0.},
-		{"fuel generation", 0.},
-		{"fuel consumption", 0.},
-		{"fuel energy", 0.},
-		{"fuel heat", 0.},
-		{"heat generation", 0.},
-		{"flotsam chance", 0.},
+	const auto MINIMUM_OVERRIDES = map<string, optional<int64_t>>{
+		// Attributes which are present and map to nullopt may have any value.
+		{"shield energy", std::nullopt},
+		{"shield fuel", std::nullopt},
+		{"shield heat", std::nullopt},
+		{"hull energy", std::nullopt},
+		{"hull fuel", std::nullopt},
+		{"hull heat", std::nullopt},
+		{"hull threshold", std::nullopt},
+		{"energy generation", std::nullopt},
+		{"energy consumption", std::nullopt},
+		{"fuel generation", std::nullopt},
+		{"fuel consumption", std::nullopt},
+		{"fuel energy", std::nullopt},
+		{"fuel heat", std::nullopt},
+		{"heat generation", std::nullopt},
+		{"flotsam chance", std::nullopt},
 
-		{"thrusting shields", 0.},
-		{"thrusting hull", 0.},
-		{"thrusting energy", 0.},
-		{"thrusting fuel", 0.},
-		{"thrusting heat", 0.},
-		{"thrusting discharge", 0.},
-		{"thrusting corrosion", 0.},
-		{"thrusting ion", 0.},
-		{"thrusting leakage", 0.},
-		{"thrusting burn", 0.},
-		{"thrusting disruption", 0.},
-		{"thrusting slowing", 0.},
+		{"thrusting shields", std::nullopt},
+		{"thrusting hull", std::nullopt},
+		{"thrusting energy", std::nullopt},
+		{"thrusting fuel", std::nullopt},
+		{"thrusting heat", std::nullopt},
+		{"thrusting discharge", std::nullopt},
+		{"thrusting corrosion", std::nullopt},
+		{"thrusting ion", std::nullopt},
+		{"thrusting leakage", std::nullopt},
+		{"thrusting burn", std::nullopt},
+		{"thrusting disruption", std::nullopt},
+		{"thrusting slowing", std::nullopt},
 
-		{"turning shields", 0.},
-		{"turning hull", 0.},
-		{"turning energy", 0.},
-		{"turning fuel", 0.},
-		{"turning heat", 0.},
-		{"turning discharge", 0.},
-		{"turning corrosion", 0.},
-		{"turning ion", 0.},
-		{"turning leakage", 0.},
-		{"turning burn", 0.},
-		{"turning disruption", 0.},
-		{"turning slowing", 0.},
+		{"turning shields", std::nullopt},
+		{"turning hull", std::nullopt},
+		{"turning energy", std::nullopt},
+		{"turning fuel", std::nullopt},
+		{"turning heat", std::nullopt},
+		{"turning discharge", std::nullopt},
+		{"turning corrosion", std::nullopt},
+		{"turning ion", std::nullopt},
+		{"turning leakage", std::nullopt},
+		{"turning burn", std::nullopt},
+		{"turning disruption", std::nullopt},
+		{"turning slowing", std::nullopt},
 
-		{"reverse thrusting shields", 0.},
-		{"reverse thrusting hull", 0.},
-		{"reverse thrusting energy", 0.},
-		{"reverse thrusting fuel", 0.},
-		{"reverse thrusting heat", 0.},
-		{"reverse thrusting discharge", 0.},
-		{"reverse thrusting corrosion", 0.},
-		{"reverse thrusting ion", 0.},
-		{"reverse thrusting leakage", 0.},
-		{"reverse thrusting burn", 0.},
-		{"reverse thrusting disruption", 0.},
-		{"reverse thrusting slowing", 0.},
+		{"reverse thrusting shields", std::nullopt},
+		{"reverse thrusting hull", std::nullopt},
+		{"reverse thrusting energy", std::nullopt},
+		{"reverse thrusting fuel", std::nullopt},
+		{"reverse thrusting heat", std::nullopt},
+		{"reverse thrusting discharge", std::nullopt},
+		{"reverse thrusting corrosion", std::nullopt},
+		{"reverse thrusting ion", std::nullopt},
+		{"reverse thrusting leakage", std::nullopt},
+		{"reverse thrusting burn", std::nullopt},
+		{"reverse thrusting disruption", std::nullopt},
+		{"reverse thrusting slowing", std::nullopt},
 
-		{"afterburner shields", 0.},
-		{"afterburner hull", 0.},
-		{"afterburner energy", 0.},
-		{"afterburner fuel", 0.},
-		{"afterburner heat", 0.},
-		{"afterburner discharge", 0.},
-		{"afterburner corrosion", 0.},
-		{"afterburner ion", 0.},
-		{"afterburner leakage", 0.},
-		{"afterburner burn", 0.},
-		{"afterburner disruption", 0.},
-		{"afterburner slowing", 0.},
+		{"afterburner shields", std::nullopt},
+		{"afterburner hull", std::nullopt},
+		{"afterburner energy", std::nullopt},
+		{"afterburner fuel", std::nullopt},
+		{"afterburner heat", std::nullopt},
+		{"afterburner discharge", std::nullopt},
+		{"afterburner corrosion", std::nullopt},
+		{"afterburner ion", std::nullopt},
+		{"afterburner leakage", std::nullopt},
+		{"afterburner burn", std::nullopt},
+		{"afterburner disruption", std::nullopt},
+		{"afterburner slowing", std::nullopt},
 
-		{"cooling energy", 0.},
-		{"discharge resistance energy", 0.},
-		{"discharge resistance fuel", 0.},
-		{"discharge resistance heat", 0.},
-		{"corrosion resistance energy", 0.},
-		{"corrosion resistance fuel", 0.},
-		{"corrosion resistance heat", 0.},
-		{"ion resistance energy", 0.},
-		{"ion resistance fuel", 0.},
-		{"ion resistance heat", 0.},
-		{"scramble resistance energy", 0.},
-		{"scramble resistance fuel", 0.},
-		{"scramble resistance heat", 0.},
-		{"leak resistance energy", 0.},
-		{"leak resistance fuel", 0.},
-		{"leak resistance heat", 0.},
-		{"burn resistance energy", 0.},
-		{"burn resistance fuel", 0.},
-		{"burn resistance heat", 0.},
-		{"disruption resistance energy", 0.},
-		{"disruption resistance fuel", 0.},
-		{"disruption resistance heat", 0.},
-		{"slowing resistance energy", 0.},
-		{"slowing resistance fuel", 0.},
-		{"slowing resistance heat", 0.},
-		{"crew equivalent", 0.},
+		{"cooling energy", std::nullopt},
+		{"discharge resistance energy", std::nullopt},
+		{"discharge resistance fuel", std::nullopt},
+		{"discharge resistance heat", std::nullopt},
+		{"corrosion resistance energy", std::nullopt},
+		{"corrosion resistance fuel", std::nullopt},
+		{"corrosion resistance heat", std::nullopt},
+		{"ion resistance energy", std::nullopt},
+		{"ion resistance fuel", std::nullopt},
+		{"ion resistance heat", std::nullopt},
+		{"scramble resistance energy", std::nullopt},
+		{"scramble resistance fuel", std::nullopt},
+		{"scramble resistance heat", std::nullopt},
+		{"leak resistance energy", std::nullopt},
+		{"leak resistance fuel", std::nullopt},
+		{"leak resistance heat", std::nullopt},
+		{"burn resistance energy", std::nullopt},
+		{"burn resistance fuel", std::nullopt},
+		{"burn resistance heat", std::nullopt},
+		{"disruption resistance energy", std::nullopt},
+		{"disruption resistance fuel", std::nullopt},
+		{"disruption resistance heat", std::nullopt},
+		{"slowing resistance energy", std::nullopt},
+		{"slowing resistance fuel", std::nullopt},
+		{"slowing resistance heat", std::nullopt},
+		{"crew equivalent", std::nullopt},
 
-		{"cloaking energy", 0.},
-		{"cloaking fuel", 0.},
-		{"cloaking heat", 0.},
-		{"cloaking hull", 0.},
-		{"cloaking repair delay", 0.},
-		{"cloaking shields", 0.},
-		{"cloaking shield delay", 0.},
-		{"cloaked firing", 0.},
+		{"cloaking energy", std::nullopt},
+		{"cloaking fuel", std::nullopt},
+		{"cloaking heat", std::nullopt},
+		{"cloaking hull", std::nullopt},
+		{"cloaking repair delay", std::nullopt},
+		{"cloaking shields", std::nullopt},
+		{"cloaking shield delay", std::nullopt},
+		{"cloaked firing", std::nullopt},
 
 		// "Protection" attributes appear in denominators and are incremented by 1.
-		{"shield protection", -0.99},
-		{"hull protection", -0.99},
-		{"energy protection", -0.99},
-		{"fuel protection", -0.99},
-		{"heat protection", -0.99},
-		{"piercing protection", -0.99},
-		{"force protection", -0.99},
-		{"discharge protection", -0.99},
-		{"drag reduction", -0.99},
-		{"corrosion protection", -0.99},
-		{"inertia reduction", -0.99},
-		{"ion protection", -0.99},
-		{"scramble protection", -0.99},
-		{"leak protection", -0.99},
-		{"burn protection", -0.99},
-		{"disruption protection", -0.99},
-		{"slowing protection", -0.99},
+		{"shield protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"hull protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"energy protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"fuel protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"heat protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"piercing protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"force protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"discharge protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"drag reduction", -0.99 * ATTRIBUTE_PRECISION},
+		{"corrosion protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"inertia reduction", -0.99 * ATTRIBUTE_PRECISION},
+		{"ion protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"scramble protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"leak protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"burn protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"disruption protection", -0.99 * ATTRIBUTE_PRECISION},
+		{"slowing protection", -0.99 * ATTRIBUTE_PRECISION},
 
 		// "Multiplier" attributes appear in numerators and are incremented by 1.
-		{"hull multiplier", -1. },
-		{"hull repair multiplier", -1.},
-		{"hull energy multiplier", -1.},
-		{"hull fuel multiplier", -1.},
-		{"hull heat multiplier", -1.},
-		{"cloaked repair multiplier", -1.},
-		{"shield multiplier", -1. },
-		{"shield generation multiplier", -1.},
-		{"shield energy multiplier", -1.},
-		{"shield fuel multiplier", -1.},
-		{"shield heat multiplier", -1.},
-		{"cloaked regen multiplier", -1.},
-		{"acceleration multiplier", -1.},
-		{"turn multiplier", -1.},
-		{"turret turn multiplier", -1.}
+		{"hull multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"hull repair multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"hull energy multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"hull fuel multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"hull heat multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"cloaked repair multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"shield multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"shield generation multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"shield energy multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"shield fuel multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"shield heat multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"cloaked regen multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"acceleration multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"turn multiplier", -1. * ATTRIBUTE_PRECISION},
+		{"turret turn multiplier", -1. * ATTRIBUTE_PRECISION},
 	};
 
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
@@ -212,16 +217,73 @@ namespace {
 
 optional<double> Outfit::LowerLimit(const string &attribute)
 {
-	auto it = MINIMUM_OVERRIDES.find(attribute);
-	if(it != MINIMUM_OVERRIDES.end())
-	{
-		// An override of exactly 0 means the attribute may have any value.
-		if(!it->second)
-			return nullopt;
-		return it->second;
-	}
+	optional<int64_t> precise = LowerLimitPrecise(attribute);
+	if(precise.has_value())
+		return precise.value() / ATTRIBUTE_PRECISION;
 	// No minimum override means a minimum of 0.
 	return 0.;
+}
+
+
+
+optional<int64_t> Outfit::LowerLimitPrecise(const string &attribute)
+{
+	auto it = MINIMUM_OVERRIDES.find(attribute);
+	if(it != MINIMUM_OVERRIDES.end())
+		return it->second;
+	// No minimum override means a minimum of 0.
+	return 0;
+}
+
+
+
+Outfit::AttributeIterator::AttributeIterator(const Outfit &outfit, Dictionary<int64_t>::const_iterator start)
+	: outfit(outfit), it(start)
+{
+}
+
+
+
+pair<string, double> Outfit::AttributeIterator::operator*() const
+{
+	return make_pair(it->first, outfit.Get(it->first));
+}
+
+
+
+Outfit::AttributeIterator &Outfit::AttributeIterator::operator++()
+{
+	if(it != outfit.attributes.end())
+		it = next(it);
+	return *this;
+}
+
+
+
+bool Outfit::AttributeIterator::operator==(const AttributeIterator &other) const
+{
+	return this->it == other.it;
+}
+
+
+
+bool Outfit::AttributeIterator::operator!=(const AttributeIterator &other) const
+{
+	return !(*this == other);
+}
+
+
+
+bool Outfit::AttributeIterator::operator<(const AttributeIterator &other) const
+{
+	return this->it < other.it;
+}
+
+
+
+bool Outfit::AttributeIterator::operator>(const AttributeIterator &other) const
+{
+	return this->it > other.it;
 }
 
 
@@ -322,7 +384,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			// Add any new licenses that were specified "inline".
 			if(hasValue)
 			{
-				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
+				for(auto it = ++std::begin(child.Tokens()); it != std::end(child.Tokens()); ++it)
 					AddLicense(*it);
 			}
 			// Add any new licenses that were specified as an indented list.
@@ -332,10 +394,10 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "jump range" && hasValue)
 		{
 			// Jump range must be positive.
-			attributes[key] = max(0., child.Value(1));
+			Set(key, max(0., child.Value(1)));
 		}
 		else if(hasValue)
-			attributes[key] = child.Value(1);
+			Set(key, child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -363,25 +425,29 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	bool isHyperdrive = attributes.Get("hyperdrive");
 	bool isScramDrive = attributes.Get("scram drive");
 	bool isJumpDrive = attributes.Get("jump drive");
-	if((isHyperdrive || isScramDrive) && attributes.Get("hyperdrive fuel") <= 0.)
+	int64_t jumpFuel = attributes.Get("jump fuel");
+	if((isHyperdrive || isScramDrive) && attributes.Get("hyperdrive fuel") <= 0)
 	{
-		double jumpFuel = attributes.Get("jump fuel");
-		attributes["hyperdrive fuel"] = (jumpFuel > 0. ? jumpFuel
-			: isScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST);
+		if(jumpFuel > 0)
+			attributes["hyperdrive fuel"] = jumpFuel;
+		else
+			Set("hyperdrive fuel", isScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST);
 	}
-	if(isJumpDrive && attributes.Get("jump drive fuel") <= 0.)
+	if(isJumpDrive && attributes.Get("jump drive fuel") <= 0)
 	{
-		double jumpFuel = attributes.Get("jump fuel");
-		attributes["jump drive fuel"] = (jumpFuel > 0. ? jumpFuel : DEFAULT_JUMP_DRIVE_COST);
+		if(jumpFuel > 0)
+			attributes["jump drive fuel"] = jumpFuel;
+		else
+			Set("jump drive fuel", DEFAULT_JUMP_DRIVE_COST);
 	}
-	if(attributes.Get("jump fuel"))
+	if(jumpFuel)
 		attributes.Erase("jump fuel");
 
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on
 	// viable outfits.
 	if(isJumpDrive && attributes.Get("jump range"))
-		GameData::AddJumpRange(attributes.Get("jump range"));
+		GameData::AddJumpRange(Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
 	if(weapon && attributes.Get("turret mounts") && !weapon->TurretTurn()
@@ -398,19 +464,21 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	auto convertScan = [&](string &&kind) -> void
 	{
 		string label = kind + " scan";
-		double initial = attributes.Get(label);
+		int64_t initial = attributes.Get(label);
 		if(initial)
 		{
-			attributes[label] = 0.;
+			attributes.Erase(label.c_str());
 			node.PrintTrace("Deprecated use of \"" + label + "\" instead of \""
 					+ label + " power\" and \"" + label + " speed\":");
 
-			// A scan value of 300 is equivalent to a scan power of 9.
-			attributes[label + " power"] += initial * initial * .0001;
+			// Example: A scan value of 300 is equivalent to a scan power of 9.
+			// 300 * 300 / 10000 = 9. (This 10000 is the scaling factor from the old attribute
+			// to the new one and is not the same constant as ATTRIBUTE_PRECISION.)
+			attributes[label + " power"] += initial * initial / 10000;
 			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
 			// It may have been already specified, and if so, should not be increased.
 			if(!attributes.Get(label + " efficiency"))
-				attributes[label + " efficiency"] = 15.;
+				Set(label + " efficiency", 15.);
 		}
 
 		// Similar check for scan speed which is replaced with scan efficiency.
@@ -418,13 +486,13 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		initial = attributes.Get(label);
 		if(initial)
 		{
-			attributes[label] = 0.;
+			attributes.Erase(label.c_str());
 			node.PrintTrace("Deprecated use of \"" + label + "\" instead of \""
 					+ kind + " scan efficiency\":");
 			// A reasonable update is 15x the previous value, as the base scan time
 			// is 10x what it was before scan efficiency was introduced, along with
 			// ships which are larger or further away also increasing the scan time.
-			attributes[kind + " scan efficiency"] += initial * 15.;
+			attributes[kind + " scan efficiency"] += initial * 15;
 		}
 	};
 	convertScan("outfit");
@@ -485,7 +553,7 @@ const string &Outfit::Series() const
 
 
 
-const int Outfit::Index() const
+int Outfit::Index() const
 {
 	return index;
 }
@@ -515,9 +583,19 @@ const Sprite *Outfit::Thumbnail() const
 
 
 
+bool Outfit::Empty() const
+{
+	return attributes.empty();
+}
+
+
+
 double Outfit::Get(const char *attribute) const
 {
-	return attributes.Get(attribute);
+	int64_t value = attributes.Get(attribute);
+	if(!value)
+		return 0.;
+	return static_cast<double>(value) / ATTRIBUTE_PRECISION;
 }
 
 
@@ -529,7 +607,35 @@ double Outfit::Get(const string &attribute) const
 
 
 
-const Dictionary &Outfit::Attributes() const
+int64_t Outfit::GetPrecise(const char *attribute) const
+{
+	return attributes.Get(attribute);
+}
+
+
+
+int64_t Outfit::GetPrecise(const string &attribute) const
+{
+	return GetPrecise(attribute.c_str());
+}
+
+
+
+Outfit::AttributeIterator Outfit::begin() const
+{
+	return AttributeIterator(*this, attributes.begin());
+}
+
+
+
+Outfit::AttributeIterator Outfit::end() const
+{
+	return AttributeIterator(*this, attributes.end());
+}
+
+
+
+const Dictionary<int64_t> &Outfit::Precise() const
 {
 	return attributes;
 }
@@ -541,23 +647,23 @@ const Dictionary &Outfit::Attributes() const
 // not, return the maximum number that can be added.
 int Outfit::CanAdd(const Outfit &other, int count) const
 {
-	for(const auto &at : other.attributes)
+	for(const auto &[name, otherValue] : other.Precise())
 	{
 		// The minimum allowed value of most attributes is 0. Some attributes
 		// have special functionality when negative, though, and are therefore
 		// allowed to have values less than 0.
-		optional<double> minimum = LowerLimit(at.first);
-		if(!minimum.has_value())
+		optional<int64_t> minOpt = LowerLimitPrecise(name);
+		if(!minOpt.has_value())
 			continue;
+		int64_t minimum = minOpt.value();
 
 		// Only automatons may have a "required crew" of 0.
-		if(!strcmp(at.first, "required crew"))
-			minimum = !(attributes.Get("automaton") || other.attributes.Get("automaton"));
+		if(!strcmp(name, "required crew"))
+			minimum = !(GetPrecise("automaton") || other.GetPrecise("automaton"));
 
-		double value = Get(at.first);
-		// Allow for rounding errors:
-		if(value + at.second * count < *minimum - EPS)
-			count = (value - *minimum) / -at.second + EPS;
+		int64_t value = GetPrecise(name);
+		if(value + otherValue * count < minimum)
+			count = (value - minimum) / -otherValue;
 	}
 
 	return count;
@@ -571,12 +677,8 @@ void Outfit::Add(const Outfit &other, int count)
 {
 	cost += other.cost * count;
 	mass += other.mass * count;
-	for(const auto &at : other.attributes)
-	{
-		attributes[at.first] += at.second * count;
-		if(fabs(attributes[at.first]) < EPS)
-			attributes[at.first] = 0.;
-	}
+	for(const auto &[name, otherValue] : other.attributes)
+		attributes[name] += otherValue * count;
 
 	for(const auto &it : other.flareSprites)
 		AddFlareSprites(flareSprites, it, count);
@@ -612,7 +714,14 @@ void Outfit::AddLicenses(const Outfit &other)
 // Modify this outfit's attributes.
 void Outfit::Set(const char *attribute, double value)
 {
-	attributes[attribute] = value;
+	attributes[attribute] = value * ATTRIBUTE_PRECISION;
+}
+
+
+
+void Outfit::Set(const string &attribute, double value)
+{
+	Set(attribute.c_str(), value);
 }
 
 
