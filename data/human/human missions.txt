@@ -5585,7 +5585,6 @@ mission "Riley"
 			`	By the time you arrive back at the spaceport, your bank account notifies you that <payment> have been added to your account.`
 				decline
 			label psy
-<<<<<<< HEAD
 			action
 				payment 35000
 			`	You let Riley one moment alone with her 'father', and tell the nurse, who was was waiting just outside, that Riley's mourning process will have complications and she certainly need help with that matter.`
