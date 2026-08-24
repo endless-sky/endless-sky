@@ -882,7 +882,7 @@ ship "Pond Strider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Pond Strider is a drone carrier augmented with hull repair technology acquired through alien diplomacy. Its deployment, together with the Flea drone, has greatly reduced Hai casualties in their conflict with the Unfettered. The built-in hull repair technology serves both the Pond Strider and any carried drones, allowing them to be repaired in space when damaged. The Hai have also cleverly codesigned the Skipper Railgun with the Pond Strider and Flea as a means of very efficient fleet combat support."
+	description "The Pond Strider is a drone carrier augmented with hull repair technology acquired through alien diplomacy. Its deployment, together with the Flea drone, has greatly reduced Hai casualties in their conflict with the Unfettered. The Hai have also cleverly codesigned the Skipper Railgun with the Pond Strider and Flea as a means of very efficient fleet combat support."
 
 ship "Pond Strider" "Pond Strider (Tracker)"
 	outfits
