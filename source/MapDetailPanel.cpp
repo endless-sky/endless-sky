@@ -49,6 +49,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "StellarObject.h"
+#include "StellarObjectSpriteData.h"
 #include "System.h"
 #include "TextArea.h"
 #include "Trade.h"
@@ -715,8 +716,9 @@ void MapDetailPanel::DrawKey()
 			double power = 0., wind = 0.;
 			for(const auto &stellar : selectedSystem->Objects())
 			{
-				power += GameData::SolarPower(stellar.GetSprite());
-				wind += GameData::SolarWind(stellar.GetSprite());
+				const StellarObjectSpriteData &spriteData = GameData::ObjectSpriteData(stellar.GetSprite());
+				power += spriteData.SolarPower();
+				wind += spriteData.SolarWind();
 			}
 			info.SetString("flux", GameData::Rating("stellar flux", max<int64_t>(0, power)));
 			info.SetString("wind", GameData::Rating("stellar wind", max<int64_t>(0, wind)));
