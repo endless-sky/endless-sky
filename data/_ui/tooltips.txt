@@ -1804,3 +1804,6 @@ tip "Default max escort crew"
 
 tip `Default admin cap`
 	`If the fleet size limitation is "admin cap," then this is the default maximum administrative capacity. Ships will have individual administrative costs that count toward your capacity. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
+
+tip "Use physical units"
+	`Use physical units instead of unitless for metrics; wherever applicable.`

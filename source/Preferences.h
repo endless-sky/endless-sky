@@ -205,6 +205,8 @@ public:
 	static int TooltipActivation();
 	static void SetTooltipActivation(int steps);
 
+	static bool UsePhysicalUnits();
+
 	static double ViewZoom();
 	static bool ZoomViewIn();
 	static bool ZoomViewOut();
@@ -316,6 +318,7 @@ public:
 	static int GetFontSize();
 
 	static void ToggleBlockScreenSaver();
+	static void ToggleUsePhysicalUnits();
 
 	static int GetPreviousSaveCount();
 

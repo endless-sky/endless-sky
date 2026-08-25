@@ -46,6 +46,8 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
+    const string PHYSICAL_UNITS = "Use physical units";
+
 	const vector<string> DATEFMT_OPTIONS = {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"};
 	int dateFormatIndex = 0;
 
@@ -543,6 +545,13 @@ int Preferences::TooltipActivation()
 void Preferences::SetTooltipActivation(int steps)
 {
 	tooltipActivation = steps;
+}
+
+
+
+bool Preferences::UsePhysicalUnits()
+{
+	return Preferences::Has(PHYSICAL_UNITS);
 }
 
 
@@ -1133,6 +1142,13 @@ void Preferences::ToggleBlockScreenSaver()
 {
 	GameWindow::ToggleBlockScreenSaver();
 	Set(BLOCK_SCREEN_SAVER, !Has(BLOCK_SCREEN_SAVER));
+}
+
+
+
+void Preferences::ToggleUsePhysicalUnits()
+{
+	Set(PHYSICAL_UNITS, !Has(PHYSICAL_UNITS));
 }
 
 

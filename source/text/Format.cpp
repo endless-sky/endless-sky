@@ -582,6 +582,108 @@ string Format::AmmoCount(int64_t value)
 
 
 
+string Format::WattagePerSec(double value, optional<int> decimalPlaces, bool trimTrailingZeros)
+{
+	string suf = "W-s";
+	if(abs(value) >= 1000)
+	{
+		value /= 1000;
+		suf = "kW-s";
+	}
+	if(abs(value) >= 1000)
+	{
+		value /= 1000;
+		suf = "MW-s";
+	}
+	if(abs(value) >= 1000)
+	{
+		value /= 1000;
+		suf = "GW-s";
+	}
+	return Format::Number(value, decimalPlaces, trimTrailingZeros) + " " + suf;
+}
+
+
+
+string Format::Wattage(double value, optional<int> decimalPlaces, bool trimTrailingZeros)
+{
+	string suf = "W";
+	if(abs(value) >= 1000)
+	{
+		value /= 1000;
+		suf = "kW";
+	}
+	if(abs(value) >= 1000)
+	{
+		value /= 1000;
+		suf = "MW";
+	}
+	if(abs(value) >= 1000)
+	{
+		value /= 1000;
+		suf = "GW";
+	}
+	return Format::Number(value, decimalPlaces, trimTrailingZeros) + " " + suf;
+}
+
+
+
+string Format::KiloNewtons(double value, optional<int> decimalPlaces, bool trimTrailingZeros)
+{
+	string suf = "kN";
+	if(abs(value) >= 1000)
+	{
+		value /= 1000;
+		suf = "MN";
+	}
+	if(abs(value) >= 1000)
+	{
+		value /= 1000;
+		suf = "GN";
+	}
+	if(abs(value) >= 1000)
+	{
+		value /= 1000;
+		suf = "TN";
+	}
+	return Format::Number(value, decimalPlaces, trimTrailingZeros) + " " + suf;
+}
+
+
+
+string Format::EnergyAmount(double value, std::optional<int> decimalPlaces, bool trimTrailingZeros)
+{
+	if(Preferences::UsePhysicalUnits())
+	{
+		return WattagePerSec(value, decimalPlaces, trimTrailingZeros);
+	}
+	return Number(value, decimalPlaces, trimTrailingZeros);
+}
+
+
+
+string Format::EnergyRate(double value, std::optional<int> decimalPlaces, bool trimTrailingZeros)
+{
+	if(Preferences::UsePhysicalUnits())
+	{
+		return Wattage(value, decimalPlaces, trimTrailingZeros);
+	}
+	return Number(value, decimalPlaces, trimTrailingZeros);
+}
+
+
+
+string Format::Thrust(double value, std::optional<int> decimalPlaces, bool trimTrailingZeros)
+{
+	if(Preferences::UsePhysicalUnits())
+	{
+		return KiloNewtons(value, decimalPlaces, trimTrailingZeros);
+	}
+	return Number(value, decimalPlaces, trimTrailingZeros);
+}
+
+
+
 string Format::Number(double value, optional<int> decimalPlaces, bool trimTrailingZeros)
 {
 	if(!value)

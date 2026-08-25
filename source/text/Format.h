@@ -36,6 +36,29 @@ public:
 
 
 public:
+
+  // Automatically switch between unitless and physical units for energy amount related quantities.
+  // Uses wattage-second scale
+	static std::string EnergyAmount(double value, std::optional<int> decimalPlaces = std::nullopt,
+									  bool trimTrailingZeros = true);
+  // Automatically switch between unitless and physical units for energy related quantities.
+  // Uses wattage scale
+	static std::string EnergyRate(double value, std::optional<int> decimalPlaces = std::nullopt,
+								  bool trimTrailingZeros = true);
+  // Automatically switch between unitless and physical units for thrust related quantities.
+  // Uses kilo newtons scale
+	static std::string Thrust(double value, std::optional<int> decimalPlaces = std::nullopt,
+							   bool trimTrailingZeros = true);
+  // Wattage scale for energy rate related quantities
+	static std::string Wattage(double value, std::optional<int> decimalPlaces = std::nullopt,
+							   bool trimTrailingZeros = true);
+  // Wattage scale for energy amount related quantities
+	static std::string WattagePerSec(double value, std::optional<int> decimalPlaces = std::nullopt,
+									 bool trimTrailingZeros = true);
+  // Kilo Newton scale for thrust related quantities
+	static std::string KiloNewtons(double value, std::optional<int> decimalPlaces = std::nullopt,
+							   bool trimTrailingZeros = true);
+
 	// Convert the given number into abbreviated format with a suffix like
 	// "M" for million, "B" for billion, or "T" for trillion. Any number
 	// above 1 quadrillion is instead shown in scientific notation.

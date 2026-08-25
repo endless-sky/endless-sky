@@ -20,9 +20,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Weapon.h"
 
 #include <algorithm>
+#include <array>
 #include <cmath>
 #include <map>
 #include <set>
@@ -250,6 +252,34 @@ namespace {
 			SCALE.find(label) != SCALE.end() ||
 			BOOLEAN_ATTRIBUTES.find(label) != BOOLEAN_ATTRIBUTES.end();
 	}
+
+	const static std::array<std::string, 5> energyAttributesWeapon = {
+		"energy damage",
+		"firing heat",
+		"firing energy",
+		"heat damage",
+		"ion damage"
+	};
+
+	const static std::array<std::string, 2> energyAmountAttributes = {"firing discharge", "discharge damage"};
+	const static std::array<std::string, 2> fuelAmountAttributes = {"firing fuel", "fuel damage"};
+
+	const static std::array<std::string, 14> energyAttributes = {
+		"hull energy",
+		"shield energy",
+		"energy generation",
+		"hull heat",
+		"shield heat",
+		"heat generation",
+		"energy consumption",
+		"cooling energy",
+		"cooling",
+		"active cooling",
+		"thrusting heat",
+		"thrusting energy",
+		"afterburner heat",
+		"afterburner energy"
+	};
 }
 
 
@@ -260,6 +290,28 @@ std::string OutfitInfoDisplay::FormatAttribute(const std::string &attribute, dou
 	double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
 	string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
 
+	if(Preferences::UsePhysicalUnits())
+	{
+		if(std::find(energyAttributes.begin(), energyAttributes.end(), attribute) != energyAttributes.end())
+		{
+			return Format::EnergyRate(value * scale) + units;
+		}
+		else if(attribute == "thrust" || attribute == "afterburner thrust")
+		{
+			return Format::Thrust(value * scale) + units;
+		}
+		else if(attribute == "energy capacity" || attribute == "heat capacity")
+		{
+			return Format::EnergyAmount(value * scale) + units;
+		}
+		else if(attribute == "fuel consumption" || attribute == "fuel generation" || attribute == "fuel capacity" ||
+				 attribute == "hyperdrive fuel" || attribute == "jump drive fuel" || attribute == "afterburner fuel" ||
+				 attribute == "thrusting fuel")
+		{
+			return Format::Number(value * scale) + " tons " + units;
+		}
+		return Format::Number(value * scale) + units;
+	}
 	return Format::Number(value * scale) + units;
 }
 
@@ -509,7 +561,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 
 	double range = weapon->Range();
 	attributeLabels.emplace_back("range:");
-	attributeValues.emplace_back(Format::Number(range));
+	attributeValues.emplace_back(Format::Number(range) + (Preferences::UsePhysicalUnits() ? " km" : ""));
 	attributesHeight += 20;
 
 	attributeLabels.emplace_back("velocity:");
@@ -517,7 +569,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(velocity == range)
 		attributeValues.emplace_back("instantaneous");
 	else
-		attributeValues.emplace_back(Format::Number(velocity * 60.));
+		attributeValues.emplace_back(Format::Number(velocity * 60.) + (Preferences::UsePhysicalUnits() ? " km/s" : ""));
 	attributesHeight += 20;
 
 	// Identify the dropoff at range and inform the player.
@@ -626,7 +678,28 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			if(values[i])
 			{
 				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SECOND);
-				attributeValues.emplace_back(Format::Number(60. * values[i] / reload) + VALUE_NAMES[i].second);
+				if(std::find(energyAttributesWeapon.begin(), energyAttributes.end(), VALUE_NAMES[i].first) !=
+					energyAttributes.end())
+				{
+					attributeValues.emplace_back(Format::EnergyRate(60. * values[i] / reload) + VALUE_NAMES[i].second);
+				}
+				else if(std::find(energyAmountAttributes.begin(), energyAmountAttributes.end(), VALUE_NAMES[i].first) !=
+						 energyAmountAttributes.end())
+				{
+					attributeValues.emplace_back(Format::EnergyAmount(60. * values[i] / reload) +
+												 VALUE_NAMES[i].second);
+				}
+				else if(Preferences::UsePhysicalUnits() &&
+						 (std::find(fuelAmountAttributes.begin(), fuelAmountAttributes.end(), VALUE_NAMES[i].first) !=
+						  fuelAmountAttributes.end()))
+				{
+					attributeValues.emplace_back(Format::Number(60. * values[i] / reload) + VALUE_NAMES[i].second +
+												 " tons");
+				}
+				else
+				{
+					attributeValues.emplace_back(Format::Number(60. * values[i] / reload) + VALUE_NAMES[i].second);
+				}
 				attributesHeight += 20;
 			}
 	}
@@ -650,7 +723,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(turretTurn)
 	{
 		attributeLabels.emplace_back("turret turn rate:");
-		attributeValues.emplace_back(Format::Number(turretTurn));
+		attributeValues.emplace_back(Format::Number(turretTurn) + (Preferences::UsePhysicalUnits() ? " deg/s" : ""));
 		attributesHeight += 20;
 	}
 	double arc = weapon->Arc();
@@ -714,7 +787,26 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			if(values[i])
 			{
 				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SHOT);
-				attributeValues.emplace_back(Format::Number(values[i]) + VALUE_NAMES[i].second);
+				if(std::find(energyAttributesWeapon.begin(), energyAttributes.end(), VALUE_NAMES[i].first) !=
+					energyAttributes.end())
+				{
+					attributeValues.emplace_back(Format::EnergyRate(values[i]) + VALUE_NAMES[i].second);
+				}
+				else if(std::find(energyAmountAttributes.begin(), energyAmountAttributes.end(), VALUE_NAMES[i].first) !=
+						 energyAmountAttributes.end())
+				{
+					attributeValues.emplace_back(Format::EnergyAmount(values[i]) + VALUE_NAMES[i].second);
+				}
+				else if(Preferences::UsePhysicalUnits() &&
+						 (std::find(fuelAmountAttributes.begin(), fuelAmountAttributes.end(), VALUE_NAMES[i].first) !=
+						  fuelAmountAttributes.end()))
+				{
+					attributeValues.emplace_back(Format::Number(values[i]) + VALUE_NAMES[i].second + " tons");
+				}
+				else
+				{
+					attributeValues.emplace_back(Format::Number(values[i]) + VALUE_NAMES[i].second);
+				}
 				attributesHeight += 20;
 			}
 	}

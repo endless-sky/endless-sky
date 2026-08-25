@@ -95,6 +95,7 @@ namespace {
 	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
+	const string PHYSICAL_UNITS = "Use physical units";
 	const string TRIBUTE_CONFIRMATION = "Tribute confirmation";
 	const string AMMO_REFILL = "Auto refill ammo";
 	const string TEXT_ALIGNMENT = "Text alignment";
@@ -792,9 +793,7 @@ void PreferencesPanel::DrawSettings()
 		"Sell outfits without outfitter",
 		"Confirm selling outfits",
 		"Confirm selling minables",
-		"",
-		"Gameplay",
-		TRIBUTE_CONFIRMATION,
+		PHYSICAL_UNITS,
 		"\n",
 		"Flagship Behavior",
 		"Control ship with mouse",
@@ -832,6 +831,9 @@ void PreferencesPanel::DrawSettings()
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
+		"",
+		"Gameplay",
+		TRIBUTE_CONFIRMATION,
 		"\n",
 		"Other",
 		"Always underline shortcuts",
@@ -1485,6 +1487,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleMinimapDisplay();
 	else if(str == BLOCK_SCREEN_SAVER)
 		Preferences::ToggleBlockScreenSaver();
+	else if(str == PHYSICAL_UNITS)
+		Preferences::ToggleUsePhysicalUnits();
 	else if(str == TRIBUTE_CONFIRMATION)
 		Preferences::ToggleTributeConfirmation();
 	else if(str == AMMO_REFILL)
