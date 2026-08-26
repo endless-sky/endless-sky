@@ -4410,11 +4410,11 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				if(energyRemaining)
+				if(energyRemaining > 0.)
 					Transfer(ship.levels.energy, energyRemaining, ship.MaxEnergy());
 				if(dockedEnergyRemaining)
 					levels.DoRepair(ship.levels.energy, dockedEnergyRemaining, ship.MaxEnergy(), dockedEnergyCost);
-				if(fuelRemaining)
+				if(fuelRemaining > 0.)
 					Transfer(ship.levels.fuel, fuelRemaining, ship.MaxFuel());
 			}
 
