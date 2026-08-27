@@ -71,8 +71,10 @@ void ShipAttributeCache::EnergyAndFuelGeneration(const Outfit &attributes)
 {
 	energyGeneration = attributes.Get("energy generation");
 	energyConsumption = attributes.Get("energy consumption");
+	dockedEnergyGeneration = attributes.Get("docked energy generation");
 
 	fuelGeneration = attributes.Get("fuel generation");
+	dockedFuelGeneration = attributes.Get("docked fuel generation");
 	fuelConsumption = attributes.Get("fuel consumption");
 	fuelEnergy = attributes.Get("fuel energy");
 	fuelHeat = attributes.Get("fuel heat");
@@ -87,6 +89,7 @@ void ShipAttributeCache::EnergyAndFuelGeneration(const Outfit &attributes)
 void ShipAttributeCache::HeatAndCooling(const Outfit &attributes)
 {
 	heatGeneration = attributes.Get("heat generation");
+	dockedHeatGeneration = attributes.Get("docked heat generation");
 	heatCapacity = attributes.Get("heat capacity");
 	overheatDamageThreshold = 1. + attributes.Get("overheat damage threshold");
 	overheatDamageRate = attributes.Get("overheat damage rate");
