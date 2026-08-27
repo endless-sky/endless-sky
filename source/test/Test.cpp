@@ -26,8 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TestContext.h"
 #include "TestData.h"
 
-#include <SDL2/SDL.h>
-
 #include <algorithm>
 #include <iostream>
 #include <map>
@@ -84,12 +82,21 @@ namespace {
 		// Construct the event to send (from keyboard code and modifiers)
 		SDL_Event event;
 		event.type = SDL_KEYDOWN;
+#ifdef ES_USE_SDL3
+		event.key.down = true;
+		event.key.repeat = false;
+		event.key.key = SDL_GetKeyFromName(keyName);
+		if(event.key.key == SDLK_UNKNOWN)
+			return false;
+		event.key.mod = modKeys;
+#else
 		event.key.state = SDL_PRESSED;
 		event.key.repeat = 0;
 		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
 		if(event.key.keysym.sym == SDLK_UNKNOWN)
 			return false;
 		event.key.keysym.mod = modKeys;
+#endif
 		return SDL_PushEvent(&event);
 	}
 

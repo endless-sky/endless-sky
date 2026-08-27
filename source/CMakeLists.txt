@@ -305,6 +305,7 @@ target_sources(EndlessSkyLib PRIVATE
 	ScrollArea.cpp
 	ScrollArea.h
 	ScrollVar.h
+	SDL.h
 	Set.h
 	Ship.cpp
 	Ship.h

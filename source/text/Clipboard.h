@@ -15,7 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#ifdef ES_USE_SDL3
+#include <SDL3/SDL_keycode.h>
+#else
 #include <SDL2/SDL_keycode.h>
+#endif
 #include <string>
 
 
