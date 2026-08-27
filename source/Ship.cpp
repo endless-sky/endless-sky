@@ -4357,13 +4357,13 @@ void Ship::DoGeneration()
 			levels.DoRepair(levels.shields, shieldsRemaining, MaxShields(), regenCost);
 		}
 
-		if(!bays.empty())
+		// If this ship is carrying fighters, determine their repair priority.
+		vector<pair<double, Ship *>> carried;
+		for(const Bay &bay : bays)
+			if(bay.ship)
+				carried.emplace_back(1. - bay.ship->HealthFraction(), bay.ship.get());
+		if(!carried.empty())
 		{
-			// If this ship is carrying fighters, determine their repair priority.
-			vector<pair<double, Ship *>> carried;
-			for(const Bay &bay : bays)
-				if(bay.ship)
-					carried.emplace_back(1. - bay.ship->HealthFraction(), bay.ship.get());
 			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
 				// Players may use a parallel strategy, to launch fighters in waves.
 				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
@@ -4410,6 +4410,8 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
+				// Use excess energy before generating more from docked energy generation, since
+				// the excess energy is guaranteed to be free.
 				if(energyRemaining > 0.)
 					Transfer(ship.levels.energy, energyRemaining, ship.MaxEnergy());
 				if(dockedEnergyRemaining)
