@@ -30,7 +30,6 @@ class Information;
 class ItemInfoDisplay;
 class PlayerInfo;
 class Point;
-class Sprite;
 class Swizzle;
 
 
