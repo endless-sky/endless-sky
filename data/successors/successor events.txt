@@ -153,7 +153,6 @@ event "successors: ghosts ijra-ea decloak"
 		add object "Ijra-Ea, Shimmering Veil"
 			sprite "planet/station predecessor 1"
 			distance 2000
-			period 5000
 
 event "successors: ghosts abandoned kaatrij"
 
