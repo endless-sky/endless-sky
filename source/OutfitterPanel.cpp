@@ -302,22 +302,17 @@ double OutfitterPanel::DrawDetails(const Point &center)
 			collapsed.contains(DESCRIPTION));
 		selectedItem = selectedOutfit->DisplayName();
 
-		const Sprite *thumbnail = selectedOutfit->Thumbnail();
-		const float tileSize = thumbnail
-			? max(thumbnail->Height(), static_cast<float>(TileSize()))
+		const Drawable &thumbnail = selectedOutfit->Thumbnail();
+		const Sprite *thumbnailSprite = thumbnail.GetSprite();
+		const float tileSize = thumbnailSprite
+			? max(thumbnailSprite->Height(), static_cast<float>(TileSize()))
 			: static_cast<float>(TileSize());
 		const Point thumbnailCenter(center.X(), center.Y() + 20 + static_cast<int>(tileSize / 2));
 		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
 		const Sprite *background = SpriteSet::Get("ui/outfitter unselected");
 		SpriteShader::Draw(background, thumbnailCenter);
-		if(thumbnail)
-		{
-			if(thumbnail->IsLoaded())
-				SpriteShader::Draw(thumbnail, thumbnailCenter);
-			else if(thumbnail->HasDimensions())
-				loadingCircle.Draw(thumbnailCenter);
-		}
+		DrawThumbnail(thumbnail, true, thumbnailCenter);
 
 		const bool hasDescription = outfitInfo.DescriptionHeight();
 
@@ -1111,17 +1106,9 @@ bool OutfitterPanel::ShipCanRemove(const Ship *ship, const Outfit *outfit)
 
 void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned) const
 {
-	const Sprite *thumbnail = outfit.Thumbnail();
-	const Sprite *back = SpriteSet::Get(
-		isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
+	const Sprite *back = SpriteSet::Get(isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
 	SpriteShader::Draw(back, center);
-	if(thumbnail)
-	{
-		if(thumbnail->IsLoaded())
-			SpriteShader::Draw(thumbnail, center);
-		else if(thumbnail->HasDimensions())
-			loadingCircle.Draw(center);
-	}
+	DrawThumbnail(outfit.Thumbnail(), isSelected, center);
 
 	// Draw the outfit name.
 	const string &name = outfit.DisplayName();

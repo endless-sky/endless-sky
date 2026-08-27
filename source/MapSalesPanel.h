@@ -25,11 +25,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class CategoryList;
+class Drawable;
 class Information;
 class ItemInfoDisplay;
 class PlayerInfo;
 class Point;
-class Sprite;
 class Swizzle;
 
 
@@ -53,8 +53,8 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
-	virtual const Sprite *SelectedSprite() const = 0;
-	virtual const Sprite *CompareSprite() const = 0;
+	virtual const Drawable &SelectedSprite() const = 0;
+	virtual const Drawable &CompareSprite() const = 0;
 	virtual const Swizzle *SelectedSpriteSwizzle() const;
 	virtual const Swizzle *CompareSpriteSwizzle() const;
 	virtual const ItemInfoDisplay &SelectedInfo() const = 0;
@@ -72,8 +72,8 @@ protected:
 	void DrawInfo() const;
 
 	bool DrawHeader(Point &corner, const std::string &category);
-	void DrawSprite(const Point &corner, const Sprite *sprite, const Swizzle * swizzle) const;
-	void Draw(Point &corner, const Sprite *sprite, const Swizzle *swizzle, bool isForSale, bool isSelected,
+	void DrawSprite(const Point &corner, const Drawable &drawable, bool animate, const Swizzle *swizzle) const;
+	void Draw(Point &corner, const Drawable &drawable, const Swizzle *swizzle, bool isForSale, bool isSelected,
 		const std::string &name, const std::string &variantName, const std::string &price,
 		const std::string &info, const std::string &storage);
 
@@ -89,6 +89,8 @@ protected:
 
 
 protected:
+	// Step count for animations.
+	int step = 0;
 	double scroll = 0.;
 	double maxScroll = 0.;
 
