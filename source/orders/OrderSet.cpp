@@ -157,8 +157,8 @@ void OrderSet::Validate(const Ship *ship, const PlayerInfo &player)
 		// this ship doesn't have scanners or the target is done being scanned.
 		if(!targetShipInvalid && Has(Types::SCAN))
 		{
-			bool cargo = ship->Attributes().Get("cargo scan power");
-			bool outfit = ship->Attributes().Get("outfit scan power");
+			bool cargo = ship->CargoScanPower();
+			bool outfit = ship->OutfitScanPower();
 			targetShipInvalid |= (!cargo || player.CargoScanFraction(tShip) >= 1.)
 				&& (!outfit || player.OutfitScanFraction(tShip) >= 1.);
 		}

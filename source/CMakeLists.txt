@@ -333,6 +333,8 @@ target_sources(EndlessSkyLib PRIVATE
 	StartConditionsPanel.h
 	StellarObject.cpp
 	StellarObject.h
+	StellarObjectSpriteData.cpp
+	StellarObjectSpriteData.h
 	StringInterner.cpp
 	StringInterner.h
 	Swizzle.cpp
@@ -451,8 +453,12 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/SpriteShader.h
 	shader/StarField.cpp
 	shader/StarField.h
+	ship/ResourceLevels.cpp
+	ship/ResourceLevels.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
+	ship/ShipAttributeCache.cpp
+	ship/ShipAttributeCache.h
 	test/Test.cpp
 	test/Test.h
 	test/TestContext.cpp

@@ -1144,39 +1144,30 @@ event "scar's hideout"
 	system "Danoa"
 		object
 			sprite star/m3
-			period 10
 		object
 			sprite planet/desert7-b
 			distance 168.64
-			period 75.3935
 		object
 			sprite planet/fog0-b
 			distance 693.93
-			period 629.313
 			object
 				sprite planet/mercury
 				distance 174
-				period 15.1961
 		object
 			sprite planet/gas6
 			distance 2069.42
-			period 3240.9
 			object
 				sprite planet/lava1-b
 				distance 293
-				period 11.3672
 			object
 				sprite planet/rock0-b
 				distance 440
-				period 20.9186
 			object
 				sprite planet/lava2-b
 				distance 607
-				period 33.895
 			object "Scar's Hideout"
 				sprite "planet/asteroid base"
 				distance 809
-				period 52.153
 
 planet "Scar's Hideout"
 	attributes uninhabited

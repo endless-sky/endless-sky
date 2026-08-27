@@ -194,9 +194,9 @@ mission "Hai Legacy 1"
 			action
 				give ship "Anomalocaris (Venerable)" "Good Omen"
 					id "hai legacy"
-				fine 10000000
-			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go through standard means for this sale. We will instead present it as a fine. You'll be charged for carrying technology you had no idea was forbidden, as these Korath weapons are suspicious indeed. However, it will not go on your permanent record."`
-			`	You quickly realize that they are not asking you for your opinion at all. In fact, you receive notice of the fine before they have even finished speaking. "We will need to make some modifications to the ship before you can use it.`
+				debt 10000000
+			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go through standard means for this sale. We will instead present it as a loan."`
+			`	You quickly realize that they are not asking you for your opinion at all. In fact, you receive notice of the debt before they have even finished speaking. "We will need to make some modifications to the ship before you can use it.`
 			choice
 				`	(Go back to the shipyard.)`
 					goto leave
@@ -226,7 +226,7 @@ mission "Hai Legacy 1"
 	on accept
 		clear "unfettered: ocean dialog"
 		clear "unfettered: pilot dialog"
-		log "Accepted a somewhat shady deal for an old Hai ship called an Anomalocaris. It seems to still be in a good enough state to fly."
+		log "Accepted a somewhat shady deal for an old Hai ship called an Anomalocaris; the transaction could not be conducted through normal channels, so a loan was issued in lieu of a conventional purchase. It seems to still be in a good enough state to fly."
 		fail
 
 

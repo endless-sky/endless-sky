@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/MaskManager.h"
 #include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
+#include "PilotProfile.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "image/SpriteSet.h"
@@ -57,6 +58,7 @@ void GameLoadingPanel::Step()
 		// Set the game's initial internal state.
 		GameData::FinishLoading();
 
+		PilotProfile::LoadProfiles();
 		player.LoadRecent();
 
 		// All sprites with collision masks should also have their 1x scaled versions, so create

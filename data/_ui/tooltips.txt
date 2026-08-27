@@ -1241,7 +1241,7 @@ tip "anti-missile:"
 	`The power of the anti-missile shots. Higher values make it easier to destroy stronger projectiles.`
 
 tip "tractor beam:"
-	`The base velocity that this weapon pulls flotsam toward itself. Heavier flotsam is more difficult to pull.`
+	`The velocity that this weapon pulls flotsam toward itself.`
 
 tip "mining precision:"
 	`A measure of how well this weapon prevents damage to valuable materials while mining. Weapons with a positive precision result in higher yields, while a negative precision results in lower yields. Some minable objects are tougher than others, and are therefore less susceptible to having their yields altered.`
@@ -1446,6 +1446,16 @@ tip "Main zoom factor"
 
 tip "View zoom factor"
 	`Increase the zoom factor of the gameplay view when in flight. Can also be changed by the + and - keys and the scroll wheel.`
+
+tip "Text alignment"
+	`Sets the horizontal text alignment of paragraphs across the UI.`
+	`- "left": align to the left.`
+	`- "right": align to the right.`
+	`- "center": center the text.`
+	`- "justified": add extra space between words to align with both margins.`
+
+tip "UI font size"
+	`Sets the font size to be used by text in various parts of the UI. Note that this only impacts text that is displayed in areas that can expand or scroll to fit a larger font size. If you want to increase the size of all text, you should increase the main zoom factor.`
 
 tip "Screen mode"
 	`Toggle whether the game is in windowed or fullscreen mode. Can also be toggled by the "Toggle fullscreen" control.`
@@ -1693,13 +1703,6 @@ tip "Notify on destination"
 tip "Save message log"
 	`Include message logs in pilot files so they are not lost when closing the game or reloading the save file. This will increase save file sizes and may increase load times. The stored log history can be cleared from the message log panel.`
 
-tip "Text alignment"
-	`Sets the horizontal text alignment of paragraphs across the UI.`
-	`- "left": align to the left.`
-	`- "right": align to the right.`
-	`- "center": center the text.`
-	`- "justified": add extra space between words to align with both margins.`
-
 tip "Block screen saver"
 	`Whether your monitor should be able to dim and turn off or change to the screen saver while the game is open.`
 
@@ -1757,6 +1760,16 @@ tip "Minimum arrival distance"
 
 tip "Minimum departure distance"
 	`The minimum departure distance for all systems. A ship can only jump out of a system if it is farther from the system center than the departure distance. If a system has a defined departure distance greater than this value, then it will be used instead.`
+
+tip "Habitable arrival distance"
+	`If true, then systems that do not define an arrival distance will generate one that is equal to the habitable distance of the system.`
+	`Note that the vanilla game does not define any arrival distances. A system without a defined arrival distance causes ships to appear near an inhabited planet, or near the system center if there is no inhabited planet.`
+
+tip "   Minimum distance"
+	`If the "Habitable arrival distance" gamerule is true, systems with a habitable distance lower than this value will use this value as their arrival distance instead. If the "Minimum arrival distance" gamerule is set and is higher than this, then that will be used instead.`
+
+tip "   Maximum distance"
+	`If the "Habitable arrival distance" gamerule is true, systems with a habitable distance higher than this value will use this value as their arrival distance instead.`
 
 tip "Fleet multiplier"
 	`A global fleet spawn rate multiplier for random fleet spawns within systems.`

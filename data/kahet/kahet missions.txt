@@ -2725,9 +2725,7 @@ event "ssil vida changes"
 		pos 297 269
 		government Remnant
 		attributes "ember waste"
-		arrival 500
 		belt 2000
-		habitable 135
 		haze _menu/haze-red
 		link Diespiter
 		link Prosa
@@ -2741,28 +2739,22 @@ event "ssil vida changes"
 		hazard "Ember Waste Base Storm" 15000
 		object
 			sprite star/m8
-			period 10
 		object
 			sprite planet/desert7
 			distance 439
-			period 316.657
 		object Fertriery
 			sprite planet/fog0
 			distance 814
-			period 799.520
 			object
 				sprite planet/dust4
 				distance 202
-				period 21
 		object
 			sprite planet/rock10
 			distance 1208
-			period 654
 		object "Ssil Vida"
 			sprite planet/sheragi_postverta_2
 				scale 0.5
 			distance 1408
-			period 1818.85
 
 
 mission "Ka'het: Patir Mystery 15"
@@ -3610,11 +3602,9 @@ event "Patir Lathia landable"
 		remove object
 			sprite "planet/asteroid magic"
 			distance 2723.62
-			period 1372.93
 		add object "Magic Asteroid Planet"
 			sprite "planet/asteroid magic"
 			distance 2723.62
-			period 1372.93
 
 
 mission "Ka'het: Patir Mystery 27"
@@ -3758,7 +3748,7 @@ mission "Ka'het: Patir Mystery 29"
 		event "remnant: ssil vida activation patir 3" 0
 		conversation
 			`Taely comes looking for you shortly after the Swans have docked with Ssil Vida, with a fast step and crystal in her hand. "Captain, another task for you has just come up. I have been informed that the Korath we met on the way here have been raiding the system for a few days - in fact, since just before Ssil Vida activated. During the trouble of moving between the two realities, it appears that a ship in the attacking fleet was able to jump beyond Ssil Vida's range, and has remained inside that universe since. It is not acceptable to leave it there any longer."`
-			`	A quiver down your spine suggests to you that Ssil Vida has activated again, filling Postverta with beings of all kinds. She hands you the crystal, small and sharp. "On this is the information we have on the ship, as well as a program to record what you sees during your search. Given the location, we want to understand as much as we can about any damage they might have caused." She stops, as if preparing to leave; however, she changes her mind.`
+			`	A quiver down your spine suggests to you that Ssil Vida has activated again, filling Postverta with beings of all kinds. She hands you the crystal, small and sharp. "On this is the information we have on the ship, as well as a program to record what you see during your search. Given the location, we want to understand as much as we can about any damage they might have caused." She stops, as if preparing to leave; however, she changes her mind.`
 			`	"Our Swans have not been designed for front line combat, but rather to fill a support role. Staying in Ssil Vida, however, will eventually subject them to direct attacks - be it from Korath, or perhaps worse. I would like to let one get some combat experience, if you can."`
 			choice
 				`	"I would be happy to."`

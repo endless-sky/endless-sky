@@ -2648,30 +2648,24 @@ event "bombed zenith"
 		remove object "Zenith"
 			sprite planet/ocean7
 			distance 1776.59
-			period 723.283
 		add object "Zenith"
 			sprite "planet/zenith hot"
 			distance 1776.59
-			period 723.283
 			object
 				sprite planet/ice8
 				distance 136
-				period 16.5247
 
 event "zenith cooling"
 	system "Alnilam"
 		remove object "Zenith"
 			sprite "planet/zenith hot"
 			distance 1776.59
-			period 723.283
 		add object "Zenith"
 			sprite "planet/zenith cold"
 			distance 1776.59
-			period 723.283
 			object
 				sprite planet/ice8
 				distance 136
-				period 16.5247
 
 mission "Wanderers: Sestor: Bomb Zenith 2"
 	landing
