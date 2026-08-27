@@ -91,6 +91,7 @@ private:
 	// same quantity of the selected outfit.
 	const std::vector<Ship *> GetShipsToOutfit(bool isInstall = false) const;
 
+
 private:
 	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;

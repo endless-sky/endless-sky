@@ -57,10 +57,18 @@ namespace {
 	const string UNIVERSAL_RAMSCOOP = "Universal ramscoop";
 	const string SYSTEM_DEPARTURE_MIN = "Minimum departure distance";
 	const string SYSTEM_ARRIVAL_MIN = "Minimum arrival distance";
+	const string HABITABLE_BASED_ARRIVAL_DISTANCE = "Habitable arrival distance";
+	const string HABITABLE_ARRIVAL_MIN = "   Minimum distance";
+	const string HABITABLE_ARRIVAL_MAX = "   Maximum distance";
 	const string FLEET_MULTIPLIER = "Fleet multiplier";
 	const string LOCK_GAMERULES = "Lock gamerules";
-	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
+	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighter crossfire immunity";
 	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
+	const string SPAWN_RAID_FLEETS = "Spawn raid fleets";
+	const string FLEET_SIZE_LIMITATION = "Fleet size limitation";
+	const string MAX_ESCORT_COUNT = "Default max escort count";
+	const string MAX_ESCORT_CREW = "Default max escort crew";
+	const string ADMIN_CAP = "Default admin cap";
 	const string DELETE_SAVES_ON_DEATH = "Delete saves on death";
 	const string SINGLE_SAVE_FILE = "Single save file";
 	const string RESTRICTED_SAVE_LOADING = "Restricted save loading";
@@ -80,10 +88,18 @@ namespace {
 		{UNIVERSAL_RAMSCOOP, "universal ramscoop"},
 		{SYSTEM_DEPARTURE_MIN, "system departure min"},
 		{SYSTEM_ARRIVAL_MIN, "system arrival min"},
+		{HABITABLE_BASED_ARRIVAL_DISTANCE, "habitable based arrival distance"},
+		{HABITABLE_ARRIVAL_MIN, "habitable arrival min"},
+		{HABITABLE_ARRIVAL_MAX, "habitable arrival max"},
 		{FLEET_MULTIPLIER, "fleet multiplier"},
 		{LOCK_GAMERULES, "lock gamerules"},
 		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
 		{UNIVERSAL_AMMO_STOCKING, AMMO_RESTOCKING_NAME},
+		{SPAWN_RAID_FLEETS, "spawn raid fleets"},
+		{FLEET_SIZE_LIMITATION, "fleet size limitation"},
+		{MAX_ESCORT_COUNT, "default max escort count"},
+		{MAX_ESCORT_CREW, "default max escort crew"},
+		{ADMIN_CAP, "default admin cap"},
 		{DELETE_SAVES_ON_DEATH, "delete saves on death"},
 		{SINGLE_SAVE_FILE, "single save file"},
 		{RESTRICTED_SAVE_LOADING, "restricted save loading"},
@@ -114,6 +130,8 @@ GamerulesPanel::GamerulesPanel(Gamerules &gamerules, bool existingPilot)
 
 GamerulesPanel::~GamerulesPanel()
 {
+	if(callback)
+		callback();
 }
 
 
@@ -390,11 +408,20 @@ void GamerulesPanel::DrawGamerules()
 		"NPC Behavior",
 		NPC_MAX_MINING_TIME,
 		UNIVERSAL_FRUGAL_THRESHOLD,
+		"",
+		"Player Fleet Size Limit",
+		FLEET_SIZE_LIMITATION,
+		MAX_ESCORT_COUNT,
+		MAX_ESCORT_CREW,
+		ADMIN_CAP,
 		"\t",
 		"System Behavior",
 		UNIVERSAL_RAMSCOOP,
 		SYSTEM_ARRIVAL_MIN,
 		SYSTEM_DEPARTURE_MIN,
+		HABITABLE_BASED_ARRIVAL_DISTANCE,
+		HABITABLE_ARRIVAL_MIN,
+		HABITABLE_ARRIVAL_MAX,
 		FLEET_MULTIPLIER,
 		"",
 		"Hardcore Settings",
@@ -406,6 +433,8 @@ void GamerulesPanel::DrawGamerules()
 		"Miscellaneous",
 		LOCK_GAMERULES,
 		FIGHTERS_HIT_WHEN_DISABLED,
+		UNIVERSAL_AMMO_STOCKING,
+		SPAWN_RAID_FLEETS,
 		UNIVERSAL_AMMO_STOCKING,
 	};
 
@@ -483,6 +512,24 @@ void GamerulesPanel::DrawGamerules()
 		}
 		else if(gamerule == SYSTEM_DEPARTURE_MIN)
 			text = Format::AbbreviatedNumber(gamerules.SystemDepartureMin(), std::nullopt);
+		else if(gamerule == HABITABLE_BASED_ARRIVAL_DISTANCE)
+			text = gamerules.HabitableBasedArrivalDistance() ? "true" : "false";
+		else if(gamerule == HABITABLE_ARRIVAL_MIN)
+		{
+			if(gamerules.HabitableArrivalMin().has_value())
+				text = Format::AbbreviatedNumber(*gamerules.HabitableArrivalMin(), std::nullopt);
+			else
+				text = "(unset)";
+			isOn = gamerules.HabitableBasedArrivalDistance();
+		}
+		else if(gamerule == HABITABLE_ARRIVAL_MAX)
+		{
+			if(gamerules.HabitableArrivalMax().has_value())
+				text = Format::AbbreviatedNumber(*gamerules.HabitableArrivalMax(), std::nullopt);
+			else
+				text = "(unset)";
+			isOn = gamerules.HabitableBasedArrivalDistance();
+		}
 		else if(gamerule == FLEET_MULTIPLIER)
 			text = Format::Percentage(gamerules.FleetMultiplier(), 2);
 		else if(gamerule == LOCK_GAMERULES)
@@ -504,6 +551,41 @@ void GamerulesPanel::DrawGamerules()
 		}
 		else if(gamerule == UNIVERSAL_AMMO_STOCKING)
 			text = gamerules.GetValue(AMMO_RESTOCKING_NAME) ? "true" : "false";
+		else if(gamerule == SPAWN_RAID_FLEETS)
+			text = gamerules.SpawnRaidFleets() ? "true" : "false";
+		else if(gamerule == FLEET_SIZE_LIMITATION)
+		{
+			switch(gamerules.GetFleetSizeLimitation())
+			{
+				case Gamerules::FleetSizeLimitation::NONE:
+					text = "none";
+					break;
+				case Gamerules::FleetSizeLimitation::SHIP_CAP:
+					text = "ship cap";
+					break;
+				case Gamerules::FleetSizeLimitation::CREW_CAP:
+					text = "crew cap";
+					break;
+				case Gamerules::FleetSizeLimitation::ADMIN_CAP:
+					text = "admin cap";
+					break;
+			}
+		}
+		else if(gamerule == MAX_ESCORT_COUNT)
+		{
+			text = Format::AbbreviatedNumber(gamerules.GetDefaultMaxEscortCount());
+			isOn = gamerules.GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::SHIP_CAP;
+		}
+		else if(gamerule == MAX_ESCORT_CREW)
+		{
+			text = Format::AbbreviatedNumber(gamerules.GetDefaultMaxEscortCrew());
+			isOn = gamerules.GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::CREW_CAP;
+		}
+		else if(gamerule == ADMIN_CAP)
+		{
+			text = Format::AbbreviatedNumber(gamerules.GetDefaultAdminCap());
+			isOn = gamerules.GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::ADMIN_CAP;
+		}
 		else if(gamerule == DELETE_SAVES_ON_DEATH)
 			text = gamerules.DeleteSavesOnDeath() ? "true" : "false";
 		else if(gamerule == SINGLE_SAVE_FILE)
@@ -676,7 +758,7 @@ void GamerulesPanel::RenderPresetDescription(const string &name)
 void GamerulesPanel::RenderPresetDescription(const Gamerules &preset)
 {
 	const Color &medium = *GameData::Colors().Get("medium");
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	Rectangle box = presetUi->GetBox("preset description");
 
 	// We are resizing and redrawing the description buffer. Reset the scroll
@@ -817,6 +899,24 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		GetUI().Push(OptionalInputDialogPanel::RequestDouble(&gamerules, &Gamerules::SetSystemArrivalMin, message,
 			gamerules.SystemArrivalMin()));
 	}
+	else if(str == HABITABLE_BASED_ARRIVAL_DISTANCE)
+		gamerules.SetHabitableBasedArrivalDistance(!gamerules.HabitableBasedArrivalDistance());
+	else if(str == HABITABLE_ARRIVAL_MIN)
+	{
+		string message = "Set the minimum system arrival distance when the arrival distance is based on the "
+			"habitable distance of the system. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.0; };
+		GetUI().Push(OptionalInputDialogPanel::RequestDoubleWithValidation(&gamerules,
+			&Gamerules::SetHabitableArrivalMin, validate, message, gamerules.HabitableArrivalMin()));
+	}
+	else if(str == HABITABLE_ARRIVAL_MAX)
+	{
+		string message = "Set the maximum system arrival distance when the arrival distance is based on the "
+			"habitable distance of the system. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.0; };
+		GetUI().Push(OptionalInputDialogPanel::RequestDoubleWithValidation(&gamerules,
+			&Gamerules::SetHabitableArrivalMax, validate, message, gamerules.HabitableArrivalMax()));
+	}
 	else if(str == FLEET_MULTIPLIER)
 	{
 		string message = "Set the fleet spawn multiplier. (Decimal value greater than or equal to 0.)";
@@ -839,6 +939,42 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 	}
 	else if(str == UNIVERSAL_AMMO_STOCKING)
 		gamerules.SetMiscValue(AMMO_RESTOCKING_NAME, !gamerules.GetValue(AMMO_RESTOCKING_NAME));
+	else if(str == SPAWN_RAID_FLEETS)
+		gamerules.SetSpawnRaidFleets(!gamerules.SpawnRaidFleets());
+	else if(str == FLEET_SIZE_LIMITATION)
+	{
+		Gamerules::FleetSizeLimitation value = gamerules.GetFleetSizeLimitation();
+		if(value == Gamerules::FleetSizeLimitation::NONE)
+			value = Gamerules::FleetSizeLimitation::SHIP_CAP;
+		else if(value == Gamerules::FleetSizeLimitation::SHIP_CAP)
+			value = Gamerules::FleetSizeLimitation::CREW_CAP;
+		else if(value == Gamerules::FleetSizeLimitation::CREW_CAP)
+			value = Gamerules::FleetSizeLimitation::ADMIN_CAP;
+		else if(value == Gamerules::FleetSizeLimitation::ADMIN_CAP)
+			value = Gamerules::FleetSizeLimitation::NONE;
+		gamerules.SetFleetSizeLimitation(value);
+	}
+	else if(str == MAX_ESCORT_COUNT)
+	{
+		string message = "Set the default max escort count. (Integer value greater than or equal to 0.)";
+		auto validate = [](int value) -> bool { return value >= 0; };
+		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDefaultMaxEscortCount, validate,
+			message, gamerules.GetDefaultMaxEscortCount()));
+	}
+	else if(str == MAX_ESCORT_CREW)
+	{
+		string message = "Set the default max escort crew. (Integer value greater than or equal to 0.)";
+		auto validate = [](int value) -> bool { return value >= 0; };
+		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDefaultMaxEscortCrew, validate,
+			message, gamerules.GetDefaultMaxEscortCrew()));
+	}
+	else if(str == ADMIN_CAP)
+	{
+		string message = "Set the default administrative capacity. (Integer value greater than or equal to 0.)";
+		auto validate = [](int value) -> bool { return value >= 0; };
+		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDefaultAdminCap, validate,
+			message, gamerules.GetDefaultAdminCap()));
+	}
 	else if(str == DELETE_SAVES_ON_DEATH)
 		gamerules.SetDeleteSavesOnDeath(!gamerules.DeleteSavesOnDeath());
 	else if(str == SINGLE_SAVE_FILE)
