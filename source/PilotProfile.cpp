@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PilotProfile.h"
 
-#include "Account.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -23,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "GameData.h"
 #include "PlayerInfo.h"
-#include "System.h"
 #include "UI.h"
 
 #include <cassert>

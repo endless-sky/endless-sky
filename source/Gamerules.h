@@ -138,7 +138,6 @@ public:
 	int GetDefaultMaxEscortCount() const;
 	int GetDefaultMaxEscortCrew() const;
 	int GetDefaultAdminCap() const;
-
 	PermadeathMode GetPermadeathMode() const;
 	bool SingleSaveFile() const;
 	bool RestrictedSaveLoading() const;

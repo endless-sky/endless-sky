@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Information.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -269,4 +270,23 @@ const Sprite *SavedGame::ShipSprite() const
 const string &SavedGame::ShipName() const
 {
 	return shipName;
+}
+
+
+
+void SavedGame::PopulateInfo(Information &info) const
+{
+	info.SetString("pilot", name);
+	if(shipSprite)
+	{
+		info.SetSprite("ship sprite", shipSprite);
+		info.SetString("ship", shipName);
+	}
+	if(!system.empty())
+		info.SetString("system", system);
+	if(!planet.empty())
+		info.SetString("planet", planet);
+	info.SetString("credits", credits);
+	info.SetString("date", date);
+	info.SetString("playtime", playTime);
 }

@@ -30,12 +30,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MainPanel.h"
 #include "pi.h"
 #include "PilotProfile.h"
-#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PreferencesPanel.h"
+#include "SavedGame.h"
 #include "Ship.h"
-#include "image/Sprite.h"
 #include "shader/StarField.h"
 #include "StartConditionsPanel.h"
 #include "System.h"
@@ -46,7 +45,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <cmath>
-#include <stdexcept>
 
 using namespace std;
 
@@ -147,20 +145,7 @@ void MenuPanel::Draw()
 	{
 		if(!player.Pilot()->IsLocked())
 			info.SetCondition("can load");
-		info.SetString("pilot", player.FirstName() + " " + player.LastName());
-		if(player.Flagship())
-		{
-			const Ship &flagship = *player.Flagship();
-			info.SetSprite("ship sprite", flagship.GetSprite());
-			info.SetString("ship", flagship.GivenName());
-		}
-		if(player.GetSystem())
-			info.SetString("system", player.GetSystem()->DisplayName());
-		if(player.GetPlanet())
-			info.SetString("planet", player.GetPlanet()->DisplayName());
-		info.SetString("credits", Format::AbbreviatedNumber(player.Accounts().Credits()));
-		info.SetString("date", player.GetDate().ToString());
-		info.SetString("playtime", Format::PlayTime(player.GetPlayTime()));
+		SavedGame(player).PopulateInfo(info);
 	}
 	else if(player.IsLoaded())
 	{

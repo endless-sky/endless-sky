@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class DataWriter;
+class Information;
 class PlayerInfo;
 class Sprite;
 
@@ -55,6 +56,8 @@ public:
 
 	const Sprite *ShipSprite() const;
 	const std::string &ShipName() const;
+
+	void PopulateInfo(Information &info) const;
 
 
 private:

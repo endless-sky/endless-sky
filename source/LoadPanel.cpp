@@ -105,28 +105,12 @@ void LoadPanel::Draw()
 	const Font &font = FontSet::Get(14);
 
 	Information info;
-	auto SetInfo = [&](const SavedGame &save) -> void {
-		info.SetString("pilot", save.Name());
-		if(save.ShipSprite())
-		{
-			info.SetSprite("ship sprite", save.ShipSprite());
-			info.SetString("ship", save.ShipName());
-		}
-		if(!save.GetSystem().empty())
-			info.SetString("system", save.GetSystem());
-		if(!save.GetPlanet().empty())
-			info.SetString("planet", save.GetPlanet());
-		info.SetString("credits", save.Credits());
-		info.SetString("date", save.GetDate());
-		info.SetString("playtime", save.GetPlayTime());
-	};
-
 	if(!loadedInfo.IsEmpty())
-		SetInfo(loadedInfo);
+		loadedInfo.PopulateInfo(info);
 	// The selected pilot can have no files if it's permadeathed,
 	// but it will still have info about the player before they died.
 	else if(selectedPilot && selectedPilot->Files().empty())
-		SetInfo(selectedPilot->MomentOfDeath());
+		selectedPilot->MomentOfDeath().PopulateInfo(info);
 	else
 		info.SetString("pilot", "No Pilot Loaded");
 
@@ -311,19 +295,14 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if((key == 'l' || key == 'e') && selectedPilot && !selectedPilot->IsLocked())
 	{
-		// Is the selected file a snapshot or the pilot's main file?
-		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
-		// Determine if the player is capable of loading another save file or should be warned for doing so
-		// if the currently loaded pilot is playing with hardcore settings.
-		bool isActive = !player.IsDead() && player.IsLoaded() && !player.GetPlanet();
-
-		if(isActive && GameData::GetGamerules().RestrictedSaveLoading())
+		if(!player.IsDead() && player.IsLoaded() && !player.GetPlanet()
+			&& GameData::GetGamerules().RestrictedSaveLoading())
 		{
 			sound = UI::UISound::NONE;
 			GetUI().Push(DialogPanel::Info("The pilot you currently have loaded is playing with restricted save "
 				"loading. You cannot load another save unless you are landed."));
 		}
-		else if(fileName == selectedPilot->Identifier() + ".txt")
+		else if(selectedFile.substr(selectedFile.rfind('/') + 1) == selectedPilot->Identifier() + ".txt")
 			LoadCallback();
 		else
 		{
@@ -545,8 +524,12 @@ void LoadPanel::UpdateLists()
 			selectedFile = selectedPilot->Files().front().first;
 			loadedInfo.Load(Files::Saves() / selectedFile);
 		}
-		else
-			loadedInfo.Clear();
+	}
+	else
+	{
+		selectedPilot.reset();
+		selectedFile = "";
+		loadedInfo.Clear();
 	}
 }
 
@@ -641,20 +624,6 @@ void LoadPanel::DeleteSave()
 	if(Files::Exists(path))
 		GetUI().Push(DialogPanel::Info("Deleting snapshot file failed."));
 
-	sideHasFocus = true;
 	UpdateLists();
-
-	auto it = ranges::find(pilots, selectedPilot);
-	if(it != pilots.end() && !(*it)->Files().empty())
-	{
-		selectedPilot = *it;
-		selectedFile = selectedPilot->Files().front().first;
-		loadedInfo.Load(Files::Saves() / selectedFile);
-		sideHasFocus = false;
-	}
-	else
-	{
-		selectedPilot.reset();
-		loadedInfo.Clear();
-	}
+	sideHasFocus = !selectedPilot;
 }

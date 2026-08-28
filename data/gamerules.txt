@@ -43,7 +43,6 @@
 	"default max escort crew" 1000
 	"default admin cap" 25
 	
-	"delete saves on death" false
+	"permadeath mode" off
 	"single save file" false
 	"restricted save loading" false
-	"delete save on takeoff" false
