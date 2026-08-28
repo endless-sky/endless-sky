@@ -949,7 +949,7 @@ outfit "Meteor Missile Pod"
 	"outfit space" -3
 	"weapon capacity" -3
 	"gun ports" -1
-	"meteor capacity" 7
+	"meteor capacity" 10
 	weapon
 		sprite "projectile/meteor"
 			"no repeat"
@@ -1080,7 +1080,7 @@ outfit "Sidewinder Missile Pod"
 	"outfit space" -4
 	"weapon capacity" -4
 	"gun ports" -1
-	"sidewinder capacity" 6
+	"sidewinder capacity" 10
 	weapon
 		sprite "projectile/sidewinder"
 			"no repeat"
@@ -1203,7 +1203,7 @@ outfit "Javelin Mini Pod"
 	"outfit space" -3
 	"weapon capacity" -3
 	"gun ports" -1
-	"javelin capacity" 30
+	"javelin capacity" 50
 	weapon
 		sprite "projectile/javelin"
 		sound "javelin"
@@ -1286,7 +1286,7 @@ outfit "Torpedo"
 	category "Ammunition"
 	cost 1400
 	thumbnail "outfit/torpedo"
-	"mass" .4
+	"mass" .5
 	"torpedo capacity" -1
 	description "Torpedoes are ammunition for the Torpedo Launcher. Each Torpedo Launcher can hold 30 of them. You cannot install torpedoes unless you have also installed a launcher to fire them from."
 
@@ -1355,7 +1355,7 @@ outfit "Torpedo Pod"
 	"outfit space" -8
 	"weapon capacity" -8
 	"gun ports" -1
-	"torpedo capacity" 3
+	"torpedo capacity" 6
 	weapon
 		sprite "projectile/torpedo"
 			"frame rate" 2
@@ -1482,11 +1482,11 @@ outfit "Typhoon Pod"
 	index 01120
 	cost 100000
 	thumbnail "outfit/typhoonpod"
-	"mass" 6
+	"mass" 9
 	"outfit space" -12
 	"weapon capacity" -12
 	"gun ports" -1
-	"typhoon capacity" 3
+	"typhoon capacity" 6
 	weapon
 		sprite "projectile/typhoon"
 			"frame rate" 4
@@ -1608,11 +1608,11 @@ outfit "Heavy Rocket Pod"
 	index 01080
 	cost 15000
 	thumbnail "outfit/rocket pod"
-	"mass" 3
+	"mass" 4
 	"outfit space" -6
 	"weapon capacity" -6
 	"gun ports" -1
-	"rocket capacity" 2
+	"rocket capacity" 4
 	weapon
 		sprite "projectile/rocket"
 			"frame rate" 4
