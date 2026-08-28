@@ -706,8 +706,7 @@ shared_ptr<PilotProfile> &PlayerInfo::Pilot()
 
 void PlayerInfo::DeleteAllSaves() const
 {
-	for(const string &file : LoadPanel::GetPlayerSaves(Identifier()))
-		Files::Delete(Files::Saves() / file);
+	PilotProfile::DeleteProfile(pilot, nullptr);
 }
 
 

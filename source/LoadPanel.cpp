@@ -74,62 +74,6 @@ namespace {
 			}
 		return date;
 	}
-
-	void GetSaveFiles(map<string, vector<pair<string, filesystem::file_time_type>>> &files)
-	{
-		vector<filesystem::path> fileList = Files::List(Files::Saves());
-		for(const auto &path : fileList)
-		{
-			// Skip any files that aren't text files.
-			if(path.extension() != ".txt")
-				continue;
-
-			string fileName = Files::Name(path);
-			// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
-			size_t pos = fileName.find('~');
-			const bool isSnapshot = (pos != string::npos);
-			if(!isSnapshot)
-				pos = fileName.size() - 4;
-
-			string pilotName = fileName.substr(0, pos);
-			auto &savesList = files[pilotName];
-			savesList.emplace_back(fileName, Files::Timestamp(path));
-			// Ensure that the main save for this pilot, not a snapshot, is first in the list.
-			if(!isSnapshot)
-				swap(savesList.front(), savesList.back());
-		}
-
-		for(auto &it : files)
-		{
-			// Don't include the first item in the sort if this pilot has a non-snapshot save.
-			auto start = it.second.begin();
-			if(start->first.find('~') == string::npos)
-				++start;
-			sort(start, it.second.end(),
-				[](const pair<string, filesystem::file_time_type> &a, const pair<string, filesystem::file_time_type> &b) -> bool
-				{
-					return a.second > b.second || (a.second == b.second && a.first < b.first);
-				}
-			);
-		}
-	}
-}
-
-
-
-std::vector<std::string> LoadPanel::GetPlayerSaves(const std::string &playerName)
-{
-	vector<string> saveFiles;
-	std::map<std::string, std::vector<std::pair<std::string, std::filesystem::file_time_type>>> files;
-	GetSaveFiles(files);
-
-	auto it = files.find(playerName);
-	if(it == files.end())
-		return saveFiles;
-
-	for(const auto &fit : it->second)
-		saveFiles.push_back(fit.first);
-	return saveFiles;
 }
 
 

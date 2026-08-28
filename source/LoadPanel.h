@@ -38,10 +38,6 @@ class UI;
 // to a previous game state they must save a "snapshot" of that state.
 class LoadPanel : public Panel {
 public:
-	static std::vector<std::string> GetPlayerSaves(const std::string &playerName);
-
-
-public:
 	LoadPanel(PlayerInfo &player, UI &gamePanels);
 
 	virtual void Draw() override;

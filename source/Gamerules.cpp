@@ -127,7 +127,6 @@ void Gamerules::Load(const DataNode &node)
 			storage.defaultMaxEscortCrew = max<int>(0, child.Value(1));
 		else if(key == "default admin cap")
 			storage.defaultAdminCap = max<int>(0, child.Value(1));
-			storage.fleetMultiplier = max<double>(0., child.Value(1));
 		else if(key == "delete saves on death")
 			storage.deleteSavesOnDeath = child.BoolValue(1);
 		else if(key == "single save file")
