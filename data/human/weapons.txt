@@ -1308,7 +1308,7 @@ outfit "Torpedo Launcher"
 	index 01110
 	cost 80000
 	thumbnail "outfit/torpedo launcher"
-	"mass" 18
+	"mass" 15
 	"outfit space" -30
 	"weapon capacity" -30
 	"gun ports" -1
