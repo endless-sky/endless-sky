@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionsStore.h"
 #include "Gamerules.h"
+#include "SavedGame.h"
 
 #include <filesystem>
 #include <memory>
@@ -86,6 +87,9 @@ public:
 	// can't be loaded into or modified.
 	void Lock(bool lock = true);
 	bool IsLocked() const;
+	// Minimal info about the latest loaded save file from this pilot.
+	void SetInfo(const PlayerInfo &player);
+	const SavedGame &GetInfo() const;
 	// The conditions shared across all save files for this pilot.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
@@ -105,6 +109,9 @@ private:
 
 	// Locked pilots can't have their save files loaded or modified from within the game.
 	bool isLocked = false;
+	// Minimal info about the last used save file from this pilot.
+	// Displayed if a pilot's save files have been deleted due to permadeath.
+	SavedGame info;
 	// The conditions shared across all save files for this pilot.
 	ConditionsStore conditions;
 	// The gamerules that all save files for this pilot use.

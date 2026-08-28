@@ -705,7 +705,10 @@ shared_ptr<PilotProfile> &PlayerInfo::Pilot()
 
 void PlayerInfo::DeleteAllSaves() const
 {
+	// Save info about the point of death.
+	pilot->SetInfo(*this);
 	pilot->Lock();
+	pilot->Save();
 	PilotProfile::DeleteProfile(pilot, nullptr, true);
 }
 
@@ -813,6 +816,8 @@ void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 	Gamerules::PermadeathMode permadeath = pilot->GetGamerules().GetPermadeathMode();
 	if(permadeath == Gamerules::PermadeathMode::LOCK_ON_DEATH)
 	{
+		// Save info about the point of death.
+		pilot->SetInfo(*this);
 		pilot->Lock();
 		pilot->Save();
 	}

@@ -105,22 +105,28 @@ void LoadPanel::Draw()
 	const Font &font = FontSet::Get(14);
 
 	Information info;
-	if(loadedInfo.IsLoaded())
-	{
-		info.SetString("pilot", loadedInfo.Name());
-		if(loadedInfo.ShipSprite())
+	auto SetInfo = [&](const SavedGame &save) -> void {
+		info.SetString("pilot", save.Name());
+		if(save.ShipSprite())
 		{
-			info.SetSprite("ship sprite", loadedInfo.ShipSprite());
-			info.SetString("ship", loadedInfo.ShipName());
+			info.SetSprite("ship sprite", save.ShipSprite());
+			info.SetString("ship", save.ShipName());
 		}
-		if(!loadedInfo.GetSystem().empty())
-			info.SetString("system", loadedInfo.GetSystem());
-		if(!loadedInfo.GetPlanet().empty())
-			info.SetString("planet", loadedInfo.GetPlanet());
-		info.SetString("credits", loadedInfo.Credits());
-		info.SetString("date", loadedInfo.GetDate());
-		info.SetString("playtime", loadedInfo.GetPlayTime());
-	}
+		if(!save.GetSystem().empty())
+			info.SetString("system", save.GetSystem());
+		if(!save.GetPlanet().empty())
+			info.SetString("planet", save.GetPlanet());
+		info.SetString("credits", save.Credits());
+		info.SetString("date", save.GetDate());
+		info.SetString("playtime", save.GetPlayTime());
+	};
+
+	if(!loadedInfo.IsEmpty())
+		SetInfo(loadedInfo);
+	// The selected pilot can have no files if it's permadeathed,
+	// but it will still have info about the player before they died.
+	else if(selectedPilot && selectedPilot->Files().empty())
+		SetInfo(selectedPilot->GetInfo());
 	else
 		info.SetString("pilot", "No Pilot Loaded");
 
@@ -135,7 +141,7 @@ void LoadPanel::Draw()
 				info.SetCondition("can add snapshot");
 			if(selectedFile.find('~') != string::npos)
 				info.SetCondition("can remove snapshot");
-			if(loadedInfo.IsLoaded())
+			if(!loadedInfo.IsEmpty())
 				info.SetCondition("can load");
 		}
 	}
@@ -156,8 +162,9 @@ void LoadPanel::Draw()
 		const double bottom = top + pilotBox.Height();
 		const double hTextPad = loadPanel->GetValue("pilot horizontal text pad");
 		const double fadeOut = loadPanel->GetValue("pilot fade out");
-		for(const auto &[identifier, pilot] : pilots)
+		for(const shared_ptr<PilotProfile> &pilot : pilots)
 		{
+			const string &identifier = pilot->Identifier();
 			const Point drawPoint = currentTopLeft;
 			currentTopLeft += Point(0., 20.);
 
@@ -179,7 +186,8 @@ void LoadPanel::Draw()
 			if(pilot == selectedPilot)
 				FillShader::Fill(zone, Color(.1 * alpha, 0.));
 			const int textWidth = pilotBox.Width() - 2. * hTextPad;
-			font.Draw({identifier, {textWidth, Truncate::BACK}}, textPoint, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+			double textColor = .2 + .3 * !pilot->IsLocked() + .2 * isHighlighted;
+			font.Draw({identifier, {textWidth, Truncate::BACK}}, textPoint, Color(textColor * alpha, 0.));
 		}
 	}
 
@@ -281,7 +289,8 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'a' && !player.IsDead() && player.IsLoaded() && !GameData::GetGamerules().SingleSaveFile())
 	{
-		if(!selectedPilot || selectedPilot->Files().empty() || selectedPilot->Files().front().first.size() < 4)
+		if(!selectedPilot || selectedPilot->IsLocked() || selectedPilot->Files().empty()
+				|| selectedPilot->Files().front().first.size() < 4)
 			return false;
 
 		sound = UI::UISound::NONE;
@@ -291,7 +300,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			"Enter a name for this snapshot, or use the most recent save's date:",
 			FileDate(lastSave)));
 	}
-	else if(key == 'R' && !selectedFile.empty())
+	else if(key == 'R' && !selectedFile.empty() && !selectedPilot->IsLocked())
 	{
 		sound = UI::UISound::NONE;
 		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
@@ -300,7 +309,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				"Are you sure you want to delete the selected saved game file, \""
 					+ selectedFile + "\"?"));
 	}
-	else if((key == 'l' || key == 'e') && selectedPilot)
+	else if((key == 'l' || key == 'e') && selectedPilot && !selectedPilot->IsLocked())
 	{
 		// Is the selected file a snapshot or the pilot's main file?
 		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
@@ -346,13 +355,13 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI().Pop(this);
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !pilots.empty())
 	{
-		auto pit = pilots.find(selectedPilot->Identifier());
+		auto pit = ranges::find(pilots, selectedPilot);
 		if(sideHasFocus)
 		{
 			auto it = pilots.begin();
 			int index = 0;
 			for( ; it != pilots.end(); ++it, ++index)
-				if(it->second == selectedPilot)
+				if(*it == selectedPilot)
 					break;
 
 			if(key == SDLK_DOWN)
@@ -379,13 +388,13 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				}
 				--it;
 			}
-			selectedPilot = it->second;
-			selectedFile = it->second->Files().front().first;
+			selectedPilot = *it;
+			selectedFile = !selectedPilot->Files().empty() ? selectedPilot->Files().front().first : "";
 			centerScroll = 0.;
 		}
 		else if(pit != pilots.end())
 		{
-			auto &saveFiles = pit->second->Files();
+			auto &saveFiles = (*pit)->Files();
 			auto it = saveFiles.begin();
 			int index = 0;
 			for( ; it != saveFiles.end(); ++it, ++index)
@@ -416,9 +425,12 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				}
 				--it;
 			}
-			selectedFile = it->first;
+			selectedFile = it != saveFiles.end() ? it->first : "";
 		}
-		loadedInfo.Load(Files::Saves() / selectedFile);
+		if(selectedFile.empty())
+			loadedInfo.Clear();
+		else
+			loadedInfo.Load(Files::Saves() / selectedFile);
 	}
 	else if(key == SDLK_LEFT)
 		sideHasFocus = true;
@@ -446,11 +458,11 @@ bool LoadPanel::Click(int x, int y, MouseButton button, int clicks)
 	{
 		int selected = (y + sideScroll - pilotBox.Top()) / 20;
 		int i = 0;
-		for(const auto &pilot : pilots | views::values)
+		for(const shared_ptr<PilotProfile> &pilot : pilots)
 			if(i++ == selected && selectedPilot != pilot)
 			{
 				selectedPilot = pilot;
-				selectedFile = pilot->Files().front().first;
+				selectedFile = !pilot->Files().empty() ? pilot->Files().front().first : "";
 				centerScroll = 0;
 				UI::PlaySound(UI::UISound::NORMAL);
 			}
@@ -523,15 +535,21 @@ bool LoadPanel::Scroll(double dx, double dy)
 void LoadPanel::UpdateLists()
 {
 	PilotProfile::LoadProfiles();
-	pilots = PilotProfile::GetProfileMap();
+	pilots = PilotProfile::GetProfiles();
+	// Sort the pilots so that locked pilots go below unlocked ones, then sort alphabetically.
+	ranges::stable_sort(pilots, [](const shared_ptr<PilotProfile> &a, const shared_ptr<PilotProfile> &b) -> bool {
+		if(a->IsLocked() == b->IsLocked())
+			return Format::LowerCase(a->Identifier()) < Format::LowerCase(b->Identifier());
+		return b->IsLocked();
+	});
 
 	if(!pilots.empty())
 	{
 		if(!selectedPilot)
-			selectedPilot = pilots.begin()->second;
+			selectedPilot = *pilots.begin();
 		if(selectedFile.empty())
 		{
-			if(selectedPilot)
+			if(selectedPilot && !selectedPilot->Files().empty())
 			{
 				selectedFile = selectedPilot->Files().front().first;
 				loadedInfo.Load(Files::Saves() / selectedFile);
@@ -591,7 +609,7 @@ void LoadPanel::LoadCallback()
 	gamePanels.Reset();
 	gamePanels.CanSave(true);
 
-	player.Load(loadedInfo.Path(), pilots[loadedInfo.Identifier()]);
+	player.Load(loadedInfo.Path(), selectedPilot);
 
 	// Scale any new masks that might have been added by the newly loaded save file.
 	GameData::GetMaskManager().ScaleMasks();
@@ -626,22 +644,22 @@ void LoadPanel::DeletePilot(const string &)
 void LoadPanel::DeleteSave()
 {
 	loadedInfo.Clear();
-	string pilot = selectedPilot->Identifier();
 	filesystem::path path = Files::Saves() / selectedFile;
 	Files::Delete(path);
 	if(Files::Exists(path))
 		GetUI().Push(DialogPanel::Info("Deleting snapshot file failed."));
 
 	sideHasFocus = true;
-	selectedPilot.reset();
 	UpdateLists();
 
-	auto it = pilots.find(pilot);
-	if(it != pilots.end() && !it->second->Files().empty())
+	auto it = ranges::find(pilots, selectedPilot);
+	if(it != pilots.end() && !(*it)->Files().empty())
 	{
-		selectedPilot = it->second;
+		selectedPilot = *it;
 		selectedFile = selectedPilot->Files().front().first;
 		loadedInfo.Load(Files::Saves() / selectedFile);
 		sideHasFocus = false;
 	}
+	else
+		selectedPilot.reset();
 }

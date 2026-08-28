@@ -15,13 +15,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PilotProfile.h"
 
+#include "Account.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "DialogPanel.h"
 #include "Files.h"
 #include "GameData.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
+#include "Ship.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "System.h"
 #include "UI.h"
 
 #include <cassert>
@@ -212,6 +218,8 @@ void PilotProfile::Load()
 
 		if(key == "locked")
 			isLocked = true;
+		else if(key == "info")
+			info.Load(child);
 		else if(key == "conditions")
 			conditions.Load(child);
 		else if(key == "gamerules" && hasValue)
@@ -254,6 +262,8 @@ void PilotProfile::Save()
 	if(isLocked)
 		out.Write("locked");
 
+	if(!info.IsEmpty())
+		info.Save(out);
 	conditions.Save(out);
 
 	// Only save gamerules that were customized to be different from the defaults of the chosen preset.
@@ -312,6 +322,20 @@ void PilotProfile::Lock(bool lock)
 bool PilotProfile::IsLocked() const
 {
 	return isLocked;
+}
+
+
+
+void PilotProfile::SetInfo(const PlayerInfo &player)
+{
+	info = SavedGame(player);
+}
+
+
+
+const SavedGame &PilotProfile::GetInfo() const
+{
+	return info;
 }
 
 

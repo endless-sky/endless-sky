@@ -18,6 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <filesystem>
 #include <string>
 
+class DataNode;
+class DataWriter;
+class PlayerInfo;
 class Sprite;
 
 
@@ -31,11 +34,15 @@ class SavedGame {
 public:
 	SavedGame() = default;
 	explicit SavedGame(const std::filesystem::path &path);
+	explicit SavedGame(const PlayerInfo &player);
 
 	void Load(const std::filesystem::path &path);
+	void Load(const DataNode &node);
+	void Save(DataWriter &out) const;
+
 	const std::filesystem::path &Path() const;
 	std::string Identifier() const;
-	bool IsLoaded() const;
+	bool IsEmpty() const;
 	void Clear();
 
 	const std::string &Name() const;

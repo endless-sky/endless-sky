@@ -17,11 +17,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataFile.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "Date.h"
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
+#include "Ship.h"
+#include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "System.h"
 
@@ -32,6 +36,26 @@ using namespace std;
 SavedGame::SavedGame(const filesystem::path &path)
 {
 	Load(path);
+}
+
+
+
+SavedGame::SavedGame(const PlayerInfo &player)
+{
+	name = player.FirstName() + " " + player.LastName();
+	date = player.GetDate().ToString();
+	if(player.GetSystem())
+		system = player.GetSystem()->DisplayName();
+	if(player.GetPlanet())
+		planet = player.GetPlanet()->DisplayName();
+	playTime = Format::PlayTime(player.GetPlayTime());
+	const Ship *flagship = player.Flagship();
+	if(flagship)
+	{
+		shipSprite = flagship->GetSprite();
+		shipName = flagship->GivenName();
+	}
+	credits = Format::AbbreviatedNumber(player.Accounts().Credits());
 }
 
 
@@ -98,6 +122,63 @@ void SavedGame::Load(const filesystem::path &path)
 
 
 
+void SavedGame::Load(const DataNode &node)
+{
+	for(const DataNode &child : node)
+	{
+		if(child.Size() < 2)
+		{
+			child.PrintTrace("Expected key to have a value:");
+			continue;
+		}
+		const string &key = child.Token(0);
+		if(key == "name")
+			name = child.Token(1);
+		else if(key == "date")
+			date = child.Token(1);
+		else if(key == "system")
+			system = child.Token(1);
+		else if(key == "planet")
+			planet = child.Token(1);
+		else if(key == "playtime")
+			playTime = child.Token(1);
+		else if(key == "flagship sprite")
+			shipSprite = SpriteSet::Get(child.Token(1));
+		else if(key == "flagship name")
+			shipName = child.Token(1);
+		else if(key == "credits")
+			credits = child.Token(1);
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+}
+
+
+
+void SavedGame::Save(DataWriter &out) const
+{
+	out.Write("info");
+	out.BeginChild();
+	{
+		out.Write("name", name);
+		out.Write("date", date);
+		if(!system.empty())
+			out.Write("system", system);
+		if(!planet.empty())
+			out.Write("planet", planet);
+		out.Write("playtime", playTime);
+		if(shipSprite)
+		{
+			out.Write("flagship sprite", shipSprite->Name());
+			out.Write("flagship name", shipName);
+		}
+		out.Write("credits", credits);
+	}
+	out.EndChild();
+}
+
+
+
 const filesystem::path &SavedGame::Path() const
 {
 	return path;
@@ -116,9 +197,9 @@ string SavedGame::Identifier() const
 
 
 
-bool SavedGame::IsLoaded() const
+bool SavedGame::IsEmpty() const
 {
-	return !path.empty();
+	return name.empty();
 }
 
 
