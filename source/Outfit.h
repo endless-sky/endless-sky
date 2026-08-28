@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Dictionary.h"
+#include "Drawable.h"
 #include "Paragraphs.h"
 
 #include <map>
@@ -55,6 +56,33 @@ public:
 	// Get the limit to how low an attribute is allowed to go on a ship when installing outfits.
 	// An empty optional means that there is no lower limit.
 	static std::optional<double> LowerLimit(const std::string &attribute);
+	static std::optional<int64_t> LowerLimitPrecise(const std::string &attribute);
+
+
+public:
+	class AttributeIterator {
+	public:
+		explicit AttributeIterator(const Outfit &outfit, Dictionary<int64_t>::const_iterator start);
+		AttributeIterator() = delete;
+
+		// Iterator traits
+		using iterator_category = std::input_iterator_tag;
+		using value_type = std::pair<std::string, double>;
+		using difference_type = void;
+		using pointer = const std::pair<std::string, double> *;
+		using reference = std::pair<std::string, double> &;
+
+		std::pair<std::string, double> operator*() const;
+		AttributeIterator &operator++();
+		bool operator==(const AttributeIterator &) const;
+		bool operator!=(const AttributeIterator &) const;
+		bool operator<(const AttributeIterator &) const;
+		bool operator>(const AttributeIterator &) const;
+
+	private:
+		const Outfit &outfit;
+		Dictionary<int64_t>::const_iterator it;
+	};
 
 
 public:
@@ -69,18 +97,28 @@ public:
 	const std::string &PluralName() const;
 	const std::string &Category() const;
 	const std::string &Series() const;
-	const int Index() const;
+	int Index() const;
 	std::string Description() const;
 	int64_t Cost() const;
 	double Mass() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
-	const Sprite *Thumbnail() const;
+	const Drawable &Thumbnail() const;
 
+	// Return true if this Outfit's attributes Dictionary is empty. Does not determine
+	// whether this Outfit contains any sprites, effects, sounds, or a weapon.
+	bool Empty() const;
+	// Access to the attribute values.
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
-	const Dictionary &Attributes() const;
+	int64_t GetPrecise(const char *attribute) const;
+	int64_t GetPrecise(const std::string &attribute) const;
+	// Get an iterator over this Outfit's attribute names and values as doubles.
+	AttributeIterator begin() const;
+	AttributeIterator end() const;
+	// Get the underlying precise values dictionary.
+	const Dictionary<int64_t> &Precise() const;
 
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
@@ -90,10 +128,11 @@ public:
 	// instances of the given outfit to this outfit.
 	void Add(const Outfit &other, int count = 1);
 	// Add the licenses required by the given outfit to this outfit.
-	void AddLicenses(const Outfit &outfit);
+	void AddLicenses(const Outfit &other);
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
+	void Set(const std::string &attribute, double value);
 
 	const std::shared_ptr<const Weapon> &GetWeapon() const;
 	// Get the ammo if this is an ammo storage outfit.
@@ -143,13 +182,13 @@ private:
 	std::string series;
 	int index = 0;
 	Paragraphs description;
-	const Sprite *thumbnail = nullptr;
+	Drawable thumbnail;
 	int64_t cost = 0;
 	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 
-	Dictionary attributes;
+	Dictionary<int64_t> attributes;
 
 	std::shared_ptr<const Weapon> weapon;
 	// Non-weapon outfits can have ammo so that storage outfits

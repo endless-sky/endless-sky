@@ -15,11 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Conversation.h"
 #include "DialogSettings.h"
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
-#include "Fleet.h"
 #include "FleetCargo.h"
 #include "LocationFilter.h"
 #include "NPCAction.h"
@@ -33,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ConditionsStore;
 class DataNode;
 class DataWriter;
+class Fleet;
 class Government;
 class Mission;
 class Planet;
@@ -98,7 +97,7 @@ public:
 	// Get the personality that dictates the behavior of the ships associated with this set of NPCs.
 	const Personality &GetPersonality() const;
 	// Get the ships associated with this set of NPCs.
-	const std::list<std::shared_ptr<Ship>> Ships() const;
+	const std::list<std::shared_ptr<Ship>> &Ships() const;
 
 	// Handle the given ShipEvent. Return true if the event target is within this NPC.
 	bool Do(const ShipEvent &event, PlayerInfo &player, UI &ui,

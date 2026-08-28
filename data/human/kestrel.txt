@@ -284,6 +284,7 @@ event "kestrel available: more bays"
 ship "Unknown Ship Type"
 	sprite "ship/kestrel"
 	thumbnail "thumbnail/kestrel"
+	"administrative cost" 7
 	attributes
 		category "Heavy Warship"
 		"cost" 14700000
@@ -341,6 +342,7 @@ ship "Unknown Ship Type"
 ship "Kestrel"
 	sprite "ship/kestrel"
 	thumbnail "thumbnail/kestrel"
+	"administrative cost" 7
 	attributes
 		category "Heavy Warship"
 		"cost" 14700000

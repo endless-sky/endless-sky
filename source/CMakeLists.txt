@@ -261,8 +261,10 @@ target_sources(EndlessSkyLib PRIVATE
 	PlayerInfo.h
 	PlayerInfoPanel.cpp
 	PlayerInfoPanel.h
-	Plugins.cpp
-	Plugins.h
+	Plugin.cpp
+	Plugin.h
+	PluginManager.cpp
+	PluginManager.h
 	Point.cpp
 	Point.h
 	Politics.cpp
@@ -300,6 +302,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Screen.h
 	ScrollBar.cpp
 	ScrollBar.h
+	ScrollArea.cpp
+	ScrollArea.h
 	ScrollVar.h
 	Set.h
 	Ship.cpp
@@ -329,6 +333,8 @@ target_sources(EndlessSkyLib PRIVATE
 	StartConditionsPanel.h
 	StellarObject.cpp
 	StellarObject.h
+	StellarObjectSpriteData.cpp
+	StellarObjectSpriteData.h
 	StringInterner.cpp
 	StringInterner.h
 	Swizzle.cpp
@@ -336,6 +342,8 @@ target_sources(EndlessSkyLib PRIVATE
 	System.cpp
 	System.h
 	SystemEntry.h
+	TableArea.cpp
+	TableArea.h
 	TaskQueue.cpp
 	TaskQueue.h
 	TextArea.cpp
@@ -445,8 +453,12 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/SpriteShader.h
 	shader/StarField.cpp
 	shader/StarField.h
+	ship/ResourceLevels.cpp
+	ship/ResourceLevels.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
+	ship/ShipAttributeCache.cpp
+	ship/ShipAttributeCache.h
 	test/Test.cpp
 	test/Test.h
 	test/TestContext.cpp

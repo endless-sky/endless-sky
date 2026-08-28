@@ -86,22 +86,12 @@ public:
 	const std::vector<Payload> &GetPayload() const;
 
 	// Get the expected value of the flotsams this minable will create when destroyed.
-	const int64_t &GetValue() const;
-
-	// Get hull remaining of this asteroid, as a fraction between 0 and 1.
-	double Hull() const;
-	// Get the maximum hull value of this asteroid.
-	double MaxHull() const;
+	int64_t GetExpectedValue() const;
+	// Get the value of the highest quality item that could drop from this minable when destroyed.
+	int64_t GetHighestQualityValue() const;
 
 	double Mass() const override;
-	double MaximumHeat() const override;
-
-	// Apply corrosion damage ticks and decrement corrosion.
-	void DoCorrosionDamage(std::vector<Visual> &visuals);
-
-	// Add Spark Visual Effects for Corrosion Damage.
-	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
-	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+	double MaxHeat() const override;
 
 
 private:
@@ -142,23 +132,19 @@ private:
 	// parameters above, but this avoids having to calculate every radius twice.
 	double radius;
 
-	// Remaining "hull" strength of the object, before it is destroyed.
-	double hull = 1000.;
-	// The hull value that this object starts at.
-	double maxHull = 1000.;
 	// A random amount of hull that gets added to the object.
 	double randomHull = 0.;
 	// How much prospecting has been done on this object. Used to increase the
 	// payload drop rate.
 	double prospecting = 0.;
-	// Accrued "corrosion damage" that will affect this asteroid's hull over time.
-	double corrosion = 0.;
 	// Material released when this object is destroyed.
 	std::vector<Payload> payload;
 	std::vector<LiveEffect> liveEffects;
 	// Explosion effects created when this object is destroyed.
 	std::map<const Effect *, int> explosions;
 	// The expected value of the payload of this minable.
-	int64_t value = 0.;
+	int64_t expectedValue = 0.;
+	// The value of the highest quality drop from this minable.
+	int64_t highestQuality = 0.;
 	bool useRandomFrameRate = true;
 };

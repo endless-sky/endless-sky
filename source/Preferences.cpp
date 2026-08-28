@@ -193,7 +193,14 @@ namespace {
 
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 
+	const vector<string> TARGET_ASTEROID_SETTINGS = {"proximity", "expected value", "quality"};
+	int targetAsteroidIndex = 0;
+
 	int previousSaveCount = 3;
+
+	// The font size to be used for various UI panels that can support displaying larger text than the default.
+	const vector<int> FONT_SIZES = {14, 18};
+	int fontSizeIndex = 0;
 
 #ifdef _WIN32
 	const vector<string> TITLE_BAR_THEME_SETTINGS = {"system default", "light", "dark"};
@@ -228,7 +235,6 @@ void Preferences::Load()
 	settings["Ship outlines in shops"] = true;
 	settings["Ship outlines in HUD"] = true;
 	settings["Extra fleet status messages"] = true;
-	settings["Target asteroid based on"] = true;
 	settings["Deadline blink by distance"] = true;
 	settings["Confirm selling outfits"] = true;
 	settings["Confirm selling minables"] = true;
@@ -305,6 +311,10 @@ void Preferences::Load()
 			ammoRefillIndex = clamp<int>(node.Value(1), 0, AMMO_REFILL_SETTINGS.size() - 1);
 		else if(key == "Text alignment")
 			textAlignmentIndex = clamp<int>(node.Value(1), 0, TEXT_ALIGNMENT_SETTINGS.size() - 1);
+		else if(key == "Target asteroid based on")
+			targetAsteroidIndex = clamp<int>(node.Value(1), 0, TARGET_ASTEROID_SETTINGS.size() - 1);
+		else if(key == "font size")
+			fontSizeIndex = max<int>(0, node.Value(1));
 #ifdef _WIN32
 		else if(key == "Title bar theme")
 			titleBarThemeIndex = clamp<int>(node.Value(1), 0, TITLE_BAR_THEME_SETTINGS.size() - 1);
@@ -412,7 +422,9 @@ void Preferences::Save()
 	out.Write("Tribute confirmation", tributeConfirmationIndex);
 	out.Write("Ammo refill", ammoRefillIndex);
 	out.Write("Text alignment", textAlignmentIndex);
+	out.Write("Target asteroid based on", targetAsteroidIndex);
 	out.Write("previous saves", previousSaveCount);
+	out.Write("font size", fontSizeIndex);
 #ifdef _WIN32
 	if(WinVersion::SupportsDarkTheme())
 		out.Write("Title bar theme", titleBarThemeIndex);
@@ -1076,6 +1088,43 @@ Alignment Preferences::GetTextAlignment()
 const string &Preferences::TextAlignmentSetting()
 {
 	return TEXT_ALIGNMENT_SETTINGS[textAlignmentIndex];
+}
+
+
+
+void Preferences::ToggleTargetAsteroidStrategy()
+{
+	if(++targetAsteroidIndex >= static_cast<int>(TARGET_ASTEROID_SETTINGS.size()))
+		targetAsteroidIndex = 0;
+}
+
+
+
+Preferences::TargetAsteroidStrategy Preferences::GetTargetAsteroidStrategy()
+{
+	return static_cast<TargetAsteroidStrategy>(targetAsteroidIndex);
+}
+
+
+
+const string &Preferences::TargetAsteroidStrategySetting()
+{
+	return TARGET_ASTEROID_SETTINGS[targetAsteroidIndex];
+}
+
+
+
+void Preferences::ToggleFontSize()
+{
+	if(++fontSizeIndex >= static_cast<int>(FONT_SIZES.size()))
+		fontSizeIndex = 0;
+}
+
+
+
+int Preferences::GetFontSize()
+{
+	return FONT_SIZES[fontSizeIndex];
 }
 
 

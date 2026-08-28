@@ -210,6 +210,12 @@ mission "War Reactions: Syndicate Orphan"
 					goto young
 				`	"I'm in a hurry. You're on your own."`
 					decline
+					to display
+						not "WR: Orphan: attacking"
+				`	"That's rough, buddy, but I'm in a hurry. You're on your own."`
+					decline
+					to display
+						has "WR: Orphan: attacking"
 			label attacking
 			action
 				set "WR: Orphan: attacking"
