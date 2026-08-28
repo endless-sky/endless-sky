@@ -515,22 +515,31 @@ void LoadPanel::UpdateLists()
 		return b->IsLocked();
 	});
 
-	if(!pilots.empty())
-	{
-		if(!selectedPilot)
-			selectedPilot = *pilots.begin();
-		if(selectedFile.empty() && selectedPilot && !selectedPilot->Files().empty())
-		{
-			selectedFile = selectedPilot->Files().front().first;
-			loadedInfo.Load(Files::Saves() / selectedFile);
-		}
-	}
-	else
+	if(pilots.empty())
 	{
 		selectedPilot.reset();
-		selectedFile = "";
+		selectedFile.clear();
 		loadedInfo.Clear();
+		return;
 	}
+
+	if(selectedPilot && ranges::find(pilots, selectedPilot) == pilots.end())
+		selectedPilot.reset();
+	if(!selectedPilot)
+		selectedPilot = *pilots.begin();
+	auto FindFile = [&](const pair<string, filesystem::file_time_type> &file) -> bool {
+		return file.first == selectedFile;
+	};
+	const auto &files = selectedPilot->Files();
+	if(!selectedFile.empty() && ranges::find_if(files, FindFile) == files.end())
+		selectedFile.clear();
+	if(selectedFile.empty() && !files.empty())
+	{
+		selectedFile = files.front().first;
+		loadedInfo.Load(Files::Saves() / selectedFile);
+	}
+	else
+		loadedInfo.Clear();
 }
 
 
@@ -624,6 +633,7 @@ void LoadPanel::DeleteSave()
 	if(Files::Exists(path))
 		GetUI().Push(DialogPanel::Info("Deleting snapshot file failed."));
 
+	selectedFile.clear();
 	UpdateLists();
 	sideHasFocus = !selectedPilot;
 }
