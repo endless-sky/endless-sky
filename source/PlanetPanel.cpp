@@ -587,7 +587,7 @@ void PlanetPanel::WarningsDialogCallback(const bool isOk)
 void PlanetPanel::TakeOff(const bool distributeCargo)
 {
 	flightChecks.clear();
-	if(GameData::GetGamerules().DeleteSaveOnTakeoff())
+	if(GameData::GetGamerules().GetPermadeathMode() == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
 		player.DeleteAllSaves();
 	else
 		player.Save();

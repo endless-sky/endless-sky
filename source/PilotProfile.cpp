@@ -163,7 +163,7 @@ std::string PilotProfile::GetIdentifier(const std::string &pilotName)
 
 
 
-void PilotProfile::DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI *ui)
+void PilotProfile::DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI *ui, bool onlySaves)
 {
 	bool failed = false;
 	for(const std::string &file : pilot->Files() | views::keys)
@@ -172,15 +172,18 @@ void PilotProfile::DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI 
 		Files::Delete(path);
 		failed |= Files::Exists(path);
 	}
-	Files::Delete(pilot->Path());
-	failed |= Files::Exists(pilot->Path());
-	if(!failed)
+	if(!onlySaves)
+	{
+		Files::Delete(pilot->Path());
+		failed |= Files::Exists(pilot->Path());
+	}
+	if(!failed && !onlySaves)
 	{
 		auto it = ranges::find(pilots, pilot);
 		if(it != pilots.end())
 			pilots.erase(it);
 	}
-	else if(ui)
+	else if(failed && ui)
 		ui->Push(DialogPanel::Info("Deleting pilot files failed."));
 }
 
@@ -207,7 +210,9 @@ void PilotProfile::Load()
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
-		if(key == "conditions")
+		if(key == "locked")
+			isLocked = true;
+		else if(key == "conditions")
 			conditions.Load(child);
 		else if(key == "gamerules" && hasValue)
 		{
@@ -245,6 +250,9 @@ void PilotProfile::Save()
 	if(filePath.empty())
 		return;
 	DataWriter out(filePath);
+
+	if(isLocked)
+		out.Write("locked");
 
 	conditions.Save(out);
 
@@ -290,6 +298,20 @@ vector<pair<string, filesystem::file_time_type>> &PilotProfile::Files()
 const vector<pair<string, filesystem::file_time_type>> &PilotProfile::Files() const
 {
 	return files;
+}
+
+
+
+void PilotProfile::Lock(bool lock)
+{
+	isLocked = lock;
+}
+
+
+
+bool PilotProfile::IsLocked() const
+{
+	return isLocked;
 }
 
 

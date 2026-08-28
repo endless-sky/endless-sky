@@ -129,17 +129,16 @@ void LoadPanel::Draw()
 		info.SetCondition("pilot selected");
 		if(!selectedPilot->GetGamerules().LockGamerules())
 			info.SetCondition("gamerules unlocked");
+		if(!selectedPilot->IsLocked())
+		{
+			if(!player.IsDead() && player.IsLoaded() && !GameData::GetGamerules().SingleSaveFile())
+				info.SetCondition("can add snapshot");
+			if(selectedFile.find('~') != string::npos)
+				info.SetCondition("can remove snapshot");
+			if(loadedInfo.IsLoaded())
+				info.SetCondition("can load");
+		}
 	}
-	if(!player.IsDead() && player.IsLoaded() && selectedPilot)
-	{
-		info.SetCondition("pilot alive");
-		if(!GameData::GetGamerules().SingleSaveFile())
-			info.SetCondition("can add snapshot");
-	}
-	if(selectedFile.find('~') != string::npos)
-		info.SetCondition("snapshot selected");
-	if(loadedInfo.IsLoaded())
-		info.SetCondition("pilot loaded");
 
 	const Interface *loadPanel = GameData::Interfaces().Get("load menu");
 
@@ -309,18 +308,19 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// if the currently loaded pilot is playing with hardcore settings.
 		bool isActive = !player.IsDead() && player.IsLoaded() && !player.GetPlanet();
 
-		if(isActive && GameData::GetGamerules().RestrictedSaveLoading())
+		const Gamerules &rules = GameData::GetGamerules();
+		if(isActive && rules.RestrictedSaveLoading())
 		{
 			sound = UI::UISound::NONE;
 			GetUI().Push(DialogPanel::Info("The pilot you currently have loaded is playing with restricted save "
 				"loading. You cannot load another save unless you are landed."));
 		}
-		else if(isActive && GameData::GetGamerules().DeleteSaveOnTakeoff())
+		else if(isActive && rules.GetPermadeathMode() == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
 		{
 			sound = UI::UISound::NONE;
 			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &LoadPanel::LoadCallback,
-				"The pilot you currently have loaded is playing with the \"delete save on takeoff\" gamerule. "
-				"If you load this save file while the current pilot is not landed, you will not be"
+				"The pilot you currently have loaded is playing with the permadeath mode set to \"delete on takeoff\". "
+				"If you load this save file while the current pilot is not landed, you will not be "
 				"able to return to it. Are you sure you want to do that?"));
 		}
 		else if(fileName == selectedPilot->Identifier() + ".txt")

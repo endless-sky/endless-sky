@@ -54,7 +54,7 @@ public:
 	static std::string GetIdentifier(const std::string &pilotName);
 	// Delete the given pilot profile, deleting all its associated files and removing it from the
 	// list of known profiles. If the UI is provided, inform the player if save file deletion failed.
-	static void DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI *ui);
+	static void DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI *ui, bool onlySaves = false);
 
 
 public:
@@ -82,6 +82,10 @@ public:
 	std::vector<std::pair<std::string, std::filesystem::file_time_type>> &Files();
 	const std::vector<std::pair<std::string, std::filesystem::file_time_type>> &Files() const;
 
+	// A pilot can be locked if the permadeath gamerule is active. Locked pilots
+	// can't be loaded into or modified.
+	void Lock(bool lock = true);
+	bool IsLocked() const;
 	// The conditions shared across all save files for this pilot.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
@@ -99,6 +103,8 @@ private:
 	// The individual save files that make up this pilot.
 	std::vector<std::pair<std::string, std::filesystem::file_time_type>> files;
 
+	// Locked pilots can't have their save files loaded or modified from within the game.
+	bool isLocked = false;
 	// The conditions shared across all save files for this pilot.
 	ConditionsStore conditions;
 	// The gamerules that all save files for this pilot use.

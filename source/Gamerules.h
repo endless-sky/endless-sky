@@ -30,8 +30,7 @@ class Sprite;
 class Gamerules {
 public:
 	// Defines which disabled fighters can dodge stray projectiles.
-	enum class FighterDodgePolicy
-	{
+	enum class FighterDodgePolicy {
 		NONE = 0,
 		ONLY_PLAYER = 1,
 		ALL = 2,
@@ -39,8 +38,7 @@ public:
 
 	// Defines how big the player's active fleet can get.
 	// If the player's fleet size is limited, the flagship does not count toward the limit.
-	enum class FleetSizeLimitation
-	{
+	enum class FleetSizeLimitation {
 		// No limit on how many ships the player can own.
 		NONE = 0,
 		// The player can only have a set number of ships active at once.
@@ -53,6 +51,18 @@ public:
 		// The player has an "administration capacity" that limits how many ships
 		// they can have active, with bigger ships having a higher administrative cost.
 		ADMIN_CAP = 3,
+	};
+
+	// Whether permadeath is active and how it should behave.
+	enum class PermadeathMode {
+		// Permadeath is off.
+		OFF = 0,
+		// Your pilot gets locked when you die. Locked pilots can't have their save files loaded.
+		LOCK_ON_DEATH = 1,
+		// Your pilot gets completely deleted when you die.
+		DELETE_ON_DEATH = 2,
+		// Your pilot gets completely deleted the moment you take off from a planet.
+		DELETE_ON_TAKEOFF = 3,
 	};
 
 
@@ -97,10 +107,9 @@ public:
 	void SetDefaultMaxEscortCount(int value);
 	void SetDefaultMaxEscortCrew(int value);
 	void SetDefaultAdminCap(int value);
-	void SetDeleteSavesOnDeath(bool value);
+	void SetPermadeathMode(PermadeathMode permadeathMode);
 	void SetSingleSaveFile(bool value);
 	void SetRestrictedSaveLoading(bool value);
-	void SetDeleteSaveOnTakeoff(bool value);
 	void SetMiscValue(const std::string &rule, int value);
 
 	int GetValue(const std::string &rule) const;
@@ -127,10 +136,10 @@ public:
 	int GetDefaultMaxEscortCount() const;
 	int GetDefaultMaxEscortCrew() const;
 	int GetDefaultAdminCap() const;
-	bool DeleteSavesOnDeath() const;
+
+	PermadeathMode GetPermadeathMode() const;
 	bool SingleSaveFile() const;
 	bool RestrictedSaveLoading() const;
-	bool DeleteSaveOnTakeoff() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -171,10 +180,9 @@ private:
 		// The administrative capacity of the player's fleet. Different ships will have different admin costs.
 		// This value can be increased for a pilot through gameplay.
 		int defaultAdminCap = 25;
-		bool deleteSavesOnDeath = false;
+		PermadeathMode permadeathMode = PermadeathMode::OFF;
 		bool singleSaveFile = false;
 		bool restrictedSaveLoading = false;
-		bool deleteSaveOnTakeoff = false;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;

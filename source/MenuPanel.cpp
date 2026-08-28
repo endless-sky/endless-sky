@@ -145,7 +145,8 @@ void MenuPanel::Draw()
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
 	{
-		info.SetCondition("pilot loaded");
+		if(!player.Pilot()->IsLocked())
+			info.SetCondition("can load");
 		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		if(player.Flagship())
 		{
@@ -190,7 +191,7 @@ void MenuPanel::Draw()
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
+	if(player.IsLoaded() && !player.Pilot()->IsLocked() && (key == 'e' || command.Has(Command::MENU)))
 	{
 		gamePanels.CanSave(true);
 		GetUI().PopThrough(this);

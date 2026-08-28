@@ -628,8 +628,7 @@ void PlayerInfo::Reload()
 
 bool PlayerInfo::CanReload() const
 {
-	const Gamerules &rules = pilot->GetGamerules();
-	return isDead && (!rules.DeleteSavesOnDeath() || !rules.DeleteSaveOnTakeoff() || planet);
+	return isDead && !pilot->IsLocked();
 }
 
 
@@ -706,7 +705,8 @@ shared_ptr<PilotProfile> &PlayerInfo::Pilot()
 
 void PlayerInfo::DeleteAllSaves() const
 {
-	PilotProfile::DeleteProfile(pilot, nullptr);
+	pilot->Lock();
+	PilotProfile::DeleteProfile(pilot, nullptr, true);
 }
 
 
@@ -810,7 +810,13 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 {
 	isDead = true;
-	if(pilot->GetGamerules().DeleteSavesOnDeath())
+	Gamerules::PermadeathMode permadeath = pilot->GetGamerules().GetPermadeathMode();
+	if(permadeath == Gamerules::PermadeathMode::LOCK_ON_DEATH)
+	{
+		pilot->Lock();
+		pilot->Save();
+	}
+	else if(permadeath == Gamerules::PermadeathMode::DELETE_ON_DEATH)
 		DeleteAllSaves();
 	// The player loses access to all their ships if they die on a planet.
 	if(GetPlanet() || !flagship)
@@ -1705,6 +1711,9 @@ void PlayerInfo::Land(UI &ui)
 	// This can only be done while landed.
 	if(!system || !planet)
 		return;
+
+	// Unlock the pilot if it was locked via permadeath mode being active.
+	pilot->Lock(false);
 
 	if(!freshlyLoaded)
 		Audio::Play(Audio::Get("landing"), SoundCategory::ENGINE);

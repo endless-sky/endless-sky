@@ -100,7 +100,7 @@ public:
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
-	// When in ironman mode, all save files are deleted upon takeoff or death.
+	// Delete all save files for this player, but retain the pilot file. For use when permadeath mode is active.
 	void DeleteAllSaves() const;
 
 	// Get the pilot profile that this player is from.
