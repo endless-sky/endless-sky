@@ -995,6 +995,8 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		else if(value == Gamerules::PermadeathMode::LOCK_ON_DEATH)
 			value = Gamerules::PermadeathMode::DELETE_ON_DEATH;
 		else if(value == Gamerules::PermadeathMode::DELETE_ON_DEATH)
+			value = Gamerules::PermadeathMode::LOCK_ON_TAKEOFF;
+		else if(value == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF)
 			value = Gamerules::PermadeathMode::DELETE_ON_TAKEOFF;
 		else if(value == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
 			value = Gamerules::PermadeathMode::OFF;
@@ -1009,7 +1011,15 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 			gamerules.SetSingleSaveFile(!gamerules.SingleSaveFile());
 	}
 	else if(str == RESTRICTED_SAVE_LOADING)
-		gamerules.SetRestrictedSaveLoading(!gamerules.RestrictedSaveLoading());
+	{
+		Gamerules::PermadeathMode mode = gamerules.GetPermadeathMode();
+		if(mode == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF || mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
+			GetUI().Push(DialogPanel::Info("This gamerule is locked to true because \"Permadeath\" is set "
+				"to \"lock on takeoff\" or \"delete on takeoff\". Change the permadeath rule to a different "
+				"value to toggle this rule."));
+		else
+			gamerules.SetRestrictedSaveLoading(!gamerules.RestrictedSaveLoading());
+	}
 }
 
 

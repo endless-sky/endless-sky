@@ -1807,9 +1807,10 @@ tip `Default admin cap`
 
 tip "Permadeath"
 	`Whether permadeath mode is active, and how it should behave.`
-	`- "lock on death": When you die, this pilot and all of its save files will be locked. You will be unable to load any of its saves after it enters this state, but you'll still have the save files to share and for keeping memories.`
-	`- "delete on death": When you die, all of this pilot's save files will be deleted. The pilot file tracking details across all saves will be retained as a memory of this pilot's adventures, but it will lack any saves for you to enter.`
-	`- "delete on takeoff": The most hardcore possible option. Your save files will be deleted the moment you depart from a planet. You will only be able to exit the game and keep this pilot's progress while at the safety of a planet. Forces the "Single save file" gamerule to be on.`
+	`- "lock on death": When you die, this pilot will be locked. You will be unable to load any of its saves after it enters this state, but you'll still have the save files to share and for keeping memories.`
+	`- "delete on death": When you die, this pilot's save files will be deleted.`
+	`- "lock on takeoff": When you depart from a planet, this pilot will be locked. It will be unlocked again upon landing on a planet. Forces the "Restricted save loading" gamerule to be on.`
+	`- "delete on takeoff": When you depart from a planet, this pilot's save file will be deleted and will only be recreated when you land. Forces the "Single save file" and "Restricted save loading" gamerules to be on.`
 
 tip "Single save file"
 	`If true, this pilot will only be able to have a single save file at a time. You will be unable to create snapshots and the game will not create autosaves for previous days. Only your most recent landing point will be saved.`

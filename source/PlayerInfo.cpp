@@ -30,7 +30,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Gamerules.h"
 #include "Government.h"
-#include "LoadPanel.h"
 #include "Logger.h"
 #include "Messages.h"
 #include "Outfit.h"
@@ -701,11 +700,18 @@ void PlayerInfo::ApplyPermadeath() const
 	Gamerules::PermadeathMode mode = pilot->GetGamerules().GetPermadeathMode();
 	if(mode == Gamerules::PermadeathMode::OFF)
 		return;
-	// Save info about the moment of death.
+
+	bool onTakeoff = mode == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF
+		|| mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF;
+	if(!isDead && !onTakeoff)
+		return;
+
+	// Save info about the moment of death/takeoff.
 	pilot->SetMomentOfDeath(*this);
 	pilot->Lock();
 	pilot->Save();
-	if(mode == Gamerules::PermadeathMode::DELETE_ON_DEATH || mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
+	if((mode == Gamerules::PermadeathMode::DELETE_ON_DEATH && isDead)
+			|| mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
 		PilotProfile::DeleteProfile(pilot, nullptr, true);
 }
 

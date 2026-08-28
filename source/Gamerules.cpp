@@ -136,6 +136,8 @@ void Gamerules::Load(const DataNode &node)
 				storage.permadeathMode = PermadeathMode::LOCK_ON_DEATH;
 			else if(value == "delete on death")
 				storage.permadeathMode = PermadeathMode::DELETE_ON_DEATH;
+			else if(value == "lock on takeoff")
+				storage.permadeathMode = PermadeathMode::LOCK_ON_TAKEOFF;
 			else if(value == "delete on takeoff")
 				storage.permadeathMode = PermadeathMode::DELETE_ON_TAKEOFF;
 			else
@@ -233,6 +235,8 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 				out.Write("permadeath mode", "lock on death");
 			else if(storage.permadeathMode == PermadeathMode::DELETE_ON_DEATH)
 				out.Write("permadeath mode", "delete on death");
+			else if(storage.permadeathMode == PermadeathMode::LOCK_ON_TAKEOFF)
+				out.Write("permadeath mode", "lock on takeoff");
 			else
 				out.Write("permadeath mode", "delete on takeoff");
 		}
@@ -752,7 +756,8 @@ bool Gamerules::SingleSaveFile() const
 
 bool Gamerules::RestrictedSaveLoading() const
 {
-	return storage.restrictedSaveLoading;
+	return storage.restrictedSaveLoading || storage.permadeathMode == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF
+		|| storage.permadeathMode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF;
 }
 
 

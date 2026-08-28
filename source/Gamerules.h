@@ -61,8 +61,10 @@ public:
 		LOCK_ON_DEATH = 1,
 		// Your pilot gets completely deleted when you die.
 		DELETE_ON_DEATH = 2,
+		// Your pilot gets locked the moment you take off from a planet.
+		LOCK_ON_TAKEOFF = 3,
 		// Your pilot gets completely deleted the moment you take off from a planet.
-		DELETE_ON_TAKEOFF = 3,
+		DELETE_ON_TAKEOFF = 4,
 	};
 
 
