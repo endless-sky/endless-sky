@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class PlayerInfo;
 class StartConditions;
+class TextArea;
 class UI;
 
 
@@ -73,7 +74,7 @@ private:
 	const Color &medium;
 	const Color &selectedBackground;
 	// The selected scenario's description.
-	WrappedText description;
+	std::shared_ptr<TextArea> description;
 	// Displayed information for the selected scenario.
 	Information info;
 
@@ -81,7 +82,6 @@ private:
 	Point hoverPoint;
 
 	double entriesScroll = 0.;
-	double descriptionScroll = 0.;
 
 	// This is a map that will let us figure out which start conditions item the user clicked on.
 	std::vector<ClickZone<StartConditionsList::iterator>> startConditionsClickZones;

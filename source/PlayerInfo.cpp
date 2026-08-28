@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AI.h"
 #include "audio/Audio.h"
+#include "Conversation.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataWriter.h"
@@ -24,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DistanceMap.h"
 #include "Endpoint.h"
 #include "Files.h"
+#include "Fleet.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Gamerules.h"
@@ -1794,15 +1796,8 @@ void PlayerInfo::Land(UI &ui)
 		{
 			string message = "These active missions or jobs were deactivated due to a missing definition"
 				" - perhaps you recently removed a plugin?\n";
-			auto mit = inactiveMissions.rbegin();
-			int named = 0;
-			while(mit != inactiveMissions.rend() && (++named < 10))
-			{
-				message += "\t\"" + mit->DisplayName() + "\"\n";
-				++mit;
-			}
-			if(mit != inactiveMissions.rend())
-				message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
+			message += Format::IndentedList(inactiveMissions,
+				[](const Mission &mission) -> string { return '"' + mission.DisplayName() + '"'; }, 10) + "\n";
 			message += "They will be reactivated when the necessary plugin is reinstalled.";
 			ui.Push(DialogPanel::Info(message));
 		}
@@ -1810,15 +1805,8 @@ void PlayerInfo::Land(UI &ui)
 		{
 			string message = "These scheduled or past events are undefined or contain undefined data"
 				" - perhaps you recently removed a plugin?\n";
-			auto eit = invalidEvents.rbegin();
-			int named = 0;
-			while(eit != invalidEvents.rend() && (++named < 10))
-			{
-				message += "\t\"" + *eit + "\"\n";
-				++eit;
-			}
-			if(eit != invalidEvents.rend())
-				message += " and " + to_string(distance(eit, invalidEvents.rend())) + " more.\n";
+			message += Format::IndentedList(invalidEvents,
+				[](const string &name) -> string { return '"' + name + '"'; }, 10) + "\n";
 			message += "The universe may not be in the proper state until the necessary plugin is reinstalled.";
 			ui.Push(DialogPanel::Info(message));
 		}
@@ -2872,6 +2860,11 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI &ui)
 	// If the player's flagship was destroyed, the player is dead.
 	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target().get() == Flagship())
 		Die();
+
+	// Handle actions taken against person ships.
+	// Currently, only capture events can have any effect on person ships.
+	if(event.Type() & ShipEvent::CAPTURE)
+		GameData::HandleEvent(event);
 }
 
 
@@ -4509,6 +4502,20 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
+	// This condition checks locations that a GameAction can take outfits from.
+	// That is, outfits installed on the flagship, and in player cargo (when landed) or flagship cargo (when not).
+	conditions["outfit (removable): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		if(!flagship)
+			return 0;
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
+		if(!outfit)
+			return 0;
+		int64_t retVal = 0;
+		retVal += flagship->OutfitCount(outfit);
+		retVal += (planet ? cargo : flagship->Cargo()).Get(outfit);
+		return retVal;
+	});
+
 	// This condition corresponds to the method by which the flagship entered the current system.
 	conditions["entered system by: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		return !ce.NameWithoutPrefix().compare(EntryToString(entry)); });
@@ -4859,7 +4866,7 @@ void PlayerInfo::StepMissions(UI &ui)
 			// from the same destination.
 			if(visitText.empty())
 			{
-				const auto &text = mission.GetAction(Mission::VISIT).DialogText();
+				string text = mission.GetAction(Mission::VISIT).DialogText();
 				if(!text.empty())
 					visitText = Format::Replace(text, substitutions);
 			}

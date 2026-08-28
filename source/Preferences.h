@@ -312,7 +312,7 @@ public:
 	static FastForwardCapsLockSync GetFastForwardCapsLockSync();
 	static const std::string &FastForwardCapsLockSyncSetting();
 
-	/// Text alignment override setting.
+	/// Text alignment setting.
 	static void ToggleTextAlignment();
 	static Alignment GetTextAlignment();
 	static const std::string &TextAlignmentSetting();
@@ -321,6 +321,10 @@ public:
 	static void ToggleTargetAsteroidStrategy();
 	static TargetAsteroidStrategy GetTargetAsteroidStrategy();
 	static const std::string &TargetAsteroidStrategySetting();
+
+	/// Font size setting.
+	static void ToggleFontSize();
+	static int GetFontSize();
 
 	static void ToggleBlockScreenSaver();
 

@@ -59,6 +59,7 @@ namespace {
 	const int ZOOM_FACTOR_MIN = 100;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string FONT_SIZE = "UI font size";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
@@ -231,6 +232,13 @@ void PreferencesPanel::Draw()
 void PreferencesPanel::UpdateTooltipActivation()
 {
 	tooltip.UpdateActivationCount();
+}
+
+
+
+void PreferencesPanel::UpdateTextDisplay()
+{
+	tooltip.UpdateFontSize();
 }
 
 
@@ -753,6 +761,8 @@ void PreferencesPanel::DrawSettings()
 		"Display",
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
+		FONT_SIZE,
+		TEXT_ALIGNMENT,
 		SCREEN_MODE_SETTING,
 		BLOCK_SCREEN_SAVER,
 		VSYNC_SETTING,
@@ -808,6 +818,7 @@ void PreferencesPanel::DrawSettings()
 		EXPEND_AMMO,
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
+		"Damaged fighters retreat",
 		"Fighters transfer cargo",
 		AMMO_REFILL,
 		"\t",
@@ -839,7 +850,6 @@ void PreferencesPanel::DrawSettings()
 		DATE_FORMAT,
 		NOTIFY_ON_DEST,
 		"Save message log",
-		TEXT_ALIGNMENT,
 #ifdef _WIN32
 		"\t",
 		"Windows Options",
@@ -905,6 +915,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
+		}
+		else if(setting == FONT_SIZE)
+		{
+			isOn = true;
+			text = to_string(Preferences::GetFontSize());
 		}
 		else if(setting == SCREEN_MODE_SETTING)
 		{
@@ -1295,7 +1310,7 @@ void PreferencesPanel::RenderPluginDescription(const string &pluginName)
 void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 {
 	const Color &medium = *GameData::Colors().Get("medium");
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	Rectangle box = GameData::Interfaces().Get("plugins")->GetBox("plugin description");
 
 	// We are resizing and redrawing the description buffer. Reset the scroll
@@ -1410,6 +1425,11 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		// case, cycle around to the lowest zoom factor.
 		if(!Preferences::ZoomViewIn())
 			while(Preferences::ZoomViewOut()) {}
+	}
+	else if(str == FONT_SIZE)
+	{
+		Preferences::ToggleFontSize();
+		CustomEvents::SendAdjustText();
 	}
 	else if(str == SCREEN_MODE_SETTING)
 		Preferences::ToggleScreenMode();

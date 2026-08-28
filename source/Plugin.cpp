@@ -24,7 +24,7 @@ using namespace std;
 // Checks if there are any dependencies of any kind.
 bool Plugin::PluginDependencies::IsEmpty() const
 {
-	return required.empty() && optional.empty() && conflicted.empty();
+	return gameVersion.empty() && required.empty() && optional.empty() && conflicted.empty();
 }
 
 

@@ -117,6 +117,7 @@ mission "Remnant: Expanded Horizons Astral job"
 	source
 		government "Remnant"
 	waypoint
+		not distance 0
 		not attributes "pleiades"
 		not attributes "tangled shroud"
 		not attributes "twilight"
@@ -146,6 +147,7 @@ mission "Remnant: Expanded Horizons Astral job late"
 	source
 		government "Remnant"
 	waypoint
+		not distance 0
 		not attributes "pleiades"
 		not attributes "inaccessible"
 		not attributes "tangled shroud"
