@@ -668,10 +668,18 @@ void PlayerInfo::Save() const
 			{
 				const string toMove = rootPrevious + to_string(i) + ".txt";
 				if(Files::Exists(toMove))
-					Files::Move(toMove, rootPrevious + to_string(i + 1) + ".txt");
+				{
+					string file = rootPrevious + to_string(i + 1) + ".txt";
+					Files::Move(toMove, file);
+					pilot->AddSave(file);
+				}
 			}
 			if(Files::Exists(filePath))
-				Files::Move(filePath, rootPrevious + "1.txt");
+			{
+				string file = rootPrevious + "1.txt";
+				Files::Move(filePath, file);
+				pilot->AddSave(file);
+			}
 			if(planet->HasServices())
 				Save(rootPrevious + "spaceport.txt");
 		}
@@ -1711,11 +1719,12 @@ void PlayerInfo::Land(UI &ui)
 	if(!system || !planet)
 		return;
 
-	// Unlock the pilot if it was locked via permadeath mode being active.
-	pilot->Lock(false);
-
 	if(!freshlyLoaded)
+	{
+		// Unlock the pilot if it was locked via permadeath mode being active.
+		pilot->Lock(false);
 		Audio::Play(Audio::Get("landing"), SoundCategory::ENGINE);
+	}
 	Audio::PlayMusic(planet->MusicName());
 
 	// Mark this planet as visited.
@@ -4976,6 +4985,7 @@ void PlayerInfo::Save(const string &filePath) const
 	{
 		DataWriter out(filePath);
 		Save(out);
+		pilot->AddSave(filePath);
 	}
 }
 

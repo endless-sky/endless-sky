@@ -117,10 +117,10 @@ void LoadPanel::Draw()
 	if(selectedPilot)
 	{
 		info.SetCondition("pilot selected");
-		if(!selectedPilot->GetGamerules().LockGamerules())
-			info.SetCondition("gamerules unlocked");
 		if(!selectedPilot->IsLocked())
 		{
+			if(!selectedPilot->GetGamerules().LockGamerules())
+				info.SetCondition("gamerules unlocked");
 			if(!player.IsDead() && player.IsLoaded() && !selectedPilot->GetGamerules().SingleSaveFile())
 				info.SetCondition("can add snapshot");
 			if(selectedFile.find('~') != string::npos)
@@ -325,7 +325,6 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI().Pop(this);
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !pilots.empty())
 	{
-		auto pit = ranges::find(pilots, selectedPilot);
 		if(sideHasFocus)
 		{
 			auto it = pilots.begin();
@@ -362,9 +361,9 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			selectedFile = !selectedPilot->Files().empty() ? selectedPilot->Files().front().first : "";
 			centerScroll = 0.;
 		}
-		else if(pit != pilots.end())
+		else if(selectedPilot && !selectedPilot->Files().empty())
 		{
-			auto &saveFiles = (*pit)->Files();
+			auto &saveFiles = selectedPilot->Files();
 			auto it = saveFiles.begin();
 			int index = 0;
 			for( ; it != saveFiles.end(); ++it, ++index)
@@ -398,7 +397,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			selectedFile = it != saveFiles.end() ? it->first : "";
 		}
 		if(selectedFile.empty())
+		{
+			sound = UI::UISound::NONE;
 			loadedInfo.Clear();
+		}
 		else
 			loadedInfo.Load(Files::Saves() / selectedFile);
 	}
@@ -527,11 +529,8 @@ void LoadPanel::UpdateLists()
 		selectedPilot.reset();
 	if(!selectedPilot)
 		selectedPilot = *pilots.begin();
-	auto FindFile = [&](const pair<string, filesystem::file_time_type> &file) -> bool {
-		return file.first == selectedFile;
-	};
 	const auto &files = selectedPilot->Files();
-	if(!selectedFile.empty() && ranges::find_if(files, FindFile) == files.end())
+	if(!selectedFile.empty() && !selectedPilot->HasFile(selectedFile))
 		selectedFile.clear();
 	if(selectedFile.empty() && !files.empty())
 	{

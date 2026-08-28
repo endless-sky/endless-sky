@@ -143,8 +143,10 @@ void MenuPanel::Draw()
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
 	{
-		if(!player.Pilot()->IsLocked())
+		if(!player.Pilot()->IsLocked() || !player.GetPlanet())
 			info.SetCondition("can load");
+		else
+			info.SetCondition("no pilot loaded");
 		SavedGame(player).PopulateInfo(info);
 	}
 	else if(player.IsLoaded())
@@ -161,7 +163,7 @@ void MenuPanel::Draw()
 		info.SetCondition("no pilot loaded");
 		info.SetString("pilot", "No Pilot Loaded");
 	}
-	if(player.Pilot() && !player.Pilot()->GetGamerules().LockGamerules())
+	if(!player.Pilot()->IsLocked() && !player.Pilot()->GetGamerules().LockGamerules())
 		info.SetCondition("gamerules unlocked");
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
@@ -176,7 +178,8 @@ void MenuPanel::Draw()
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(player.IsLoaded() && !player.Pilot()->IsLocked() && (key == 'e' || command.Has(Command::MENU)))
+	bool playerIsEditable = !player.Pilot()->IsLocked() || (!player.IsDead() && !player.GetPlanet());
+	if((key == 'e' || command.Has(Command::MENU)) && player.IsLoaded() && playerIsEditable)
 	{
 		gamePanels.CanSave(true);
 		GetUI().PopThrough(this);
@@ -201,14 +204,14 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI().Push(new PreferencesPanel(player));
 	else if(key == 'l' || key == 'm')
 		GetUI().Push(new LoadPanel(player, gamePanels));
-	else if(key == 'n' && !player.IsLoaded())
+	else if(key == 'n' && (!player.IsLoaded() || (player.Pilot()->IsLocked() && player.IsDead())))
 	{
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		// Request that the player chooses a start scenario.
 		// StartConditionsPanel also handles the case where there's no scenarios.
 		GetUI().Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
 	}
-	else if(key == 'g' && player.Pilot() && !player.Pilot()->GetGamerules().LockGamerules())
+	else if(key == 'g' && !player.Pilot()->GetGamerules().LockGamerules() && playerIsEditable)
 	{
 		GamerulesPanel *panel = new GamerulesPanel(player.Pilot()->GetGamerules(), true);
 		panel->SetCallback(player.Pilot().get(), &PilotProfile::Save);

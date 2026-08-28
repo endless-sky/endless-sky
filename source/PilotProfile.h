@@ -82,6 +82,10 @@ public:
 	// Get the individual save files of this pilot.
 	std::vector<std::pair<std::string, std::filesystem::file_time_type>> &Files();
 	const std::vector<std::pair<std::string, std::filesystem::file_time_type>> &Files() const;
+	bool HasFile(const std::string &fileName) const;
+
+	// The player created a new save file, so it should be registered to this pilot.
+	void AddSave(const std::string &fileName);
 
 	// A pilot can be locked if the permadeath gamerule is active. Locked pilots
 	// can't be loaded into or modified.
