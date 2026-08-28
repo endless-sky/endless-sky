@@ -157,24 +157,19 @@ void SavedGame::Load(const DataNode &node)
 
 void SavedGame::Save(DataWriter &out) const
 {
-	out.Write("info");
-	out.BeginChild();
+	out.Write("name", name);
+	out.Write("date", date);
+	if(!system.empty())
+		out.Write("system", system);
+	if(!planet.empty())
+		out.Write("planet", planet);
+	out.Write("playtime", playTime);
+	if(shipSprite)
 	{
-		out.Write("name", name);
-		out.Write("date", date);
-		if(!system.empty())
-			out.Write("system", system);
-		if(!planet.empty())
-			out.Write("planet", planet);
-		out.Write("playtime", playTime);
-		if(shipSprite)
-		{
-			out.Write("flagship sprite", shipSprite->Name());
-			out.Write("flagship name", shipName);
-		}
-		out.Write("credits", credits);
+		out.Write("flagship sprite", shipSprite->Name());
+		out.Write("flagship name", shipName);
 	}
-	out.EndChild();
+	out.Write("credits", credits);
 }
 
 

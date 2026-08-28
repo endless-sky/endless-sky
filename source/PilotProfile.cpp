@@ -22,11 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DialogPanel.h"
 #include "Files.h"
 #include "GameData.h"
-#include "Planet.h"
 #include "PlayerInfo.h"
-#include "Ship.h"
-#include "image/Sprite.h"
-#include "image/SpriteSet.h"
 #include "System.h"
 #include "UI.h"
 
@@ -218,8 +214,8 @@ void PilotProfile::Load()
 
 		if(key == "locked")
 			isLocked = true;
-		else if(key == "info")
-			info.Load(child);
+		else if(key == "moment of death")
+			momentOfDeath.Load(child);
 		else if(key == "conditions")
 			conditions.Load(child);
 		else if(key == "gamerules" && hasValue)
@@ -262,8 +258,15 @@ void PilotProfile::Save()
 	if(isLocked)
 		out.Write("locked");
 
-	if(!info.IsEmpty())
-		info.Save(out);
+	if(!momentOfDeath.IsEmpty())
+	{
+		out.Write("moment of death");
+		out.BeginChild();
+		{
+			momentOfDeath.Save(out);
+		}
+		out.EndChild();
+	}
 	conditions.Save(out);
 
 	// Only save gamerules that were customized to be different from the defaults of the chosen preset.
@@ -326,16 +329,16 @@ bool PilotProfile::IsLocked() const
 
 
 
-void PilotProfile::SetInfo(const PlayerInfo &player)
+void PilotProfile::SetMomentOfDeath(const PlayerInfo &player)
 {
-	info = SavedGame(player);
+	momentOfDeath = SavedGame(player);
 }
 
 
 
-const SavedGame &PilotProfile::GetInfo() const
+const SavedGame &PilotProfile::MomentOfDeath() const
 {
-	return info;
+	return momentOfDeath;
 }
 
 

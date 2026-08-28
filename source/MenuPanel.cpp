@@ -164,7 +164,7 @@ void MenuPanel::Draw()
 	}
 	else if(player.IsLoaded())
 	{
-		if(!player.CanReload())
+		if(player.Pilot()->IsLocked())
 			info.SetCondition("no pilot loaded");
 		else
 			info.SetCondition("pilot dead");
@@ -197,7 +197,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI().PopThrough(this);
 		return true;
 	}
-	else if(key == 'r' && player.IsLoaded() && player.CanReload())
+	else if(key == 'r' && player.IsLoaded() && player.IsDead() && !player.Pilot()->IsLocked())
 	{
 		// First, make sure the previous MainPanel has been deleted.
 		gamePanels.Reset();

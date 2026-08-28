@@ -626,13 +626,6 @@ void PlayerInfo::Reload()
 
 
 
-bool PlayerInfo::CanReload() const
-{
-	return isDead && !pilot->IsLocked();
-}
-
-
-
 // Load the most recently saved player (if any). Returns false when no save was loaded.
 bool PlayerInfo::LoadRecent()
 {
@@ -663,7 +656,7 @@ void PlayerInfo::Save() const
 	// Remember that this was the most recently saved player.
 	Files::Write(Files::Config() / "recent.txt", filePath + '\n');
 
-	if(pilot->GetGamerules().SingleSaveFile() && filePath.ends_with(".txt"))
+	if(!pilot->GetGamerules().SingleSaveFile() && filePath.ends_with(".txt"))
 	{
 		// Only update the backups if this save will have a newer date.
 		SavedGame saved(filePath);
@@ -703,13 +696,17 @@ shared_ptr<PilotProfile> &PlayerInfo::Pilot()
 
 
 
-void PlayerInfo::DeleteAllSaves() const
+void PlayerInfo::ApplyPermadeath() const
 {
-	// Save info about the point of death.
-	pilot->SetInfo(*this);
+	Gamerules::PermadeathMode mode = pilot->GetGamerules().GetPermadeathMode();
+	if(mode == Gamerules::PermadeathMode::OFF)
+		return;
+	// Save info about the moment of death.
+	pilot->SetMomentOfDeath(*this);
 	pilot->Lock();
 	pilot->Save();
-	PilotProfile::DeleteProfile(pilot, nullptr, true);
+	if(mode == Gamerules::PermadeathMode::DELETE_ON_DEATH || mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
+		PilotProfile::DeleteProfile(pilot, nullptr, true);
 }
 
 
@@ -813,16 +810,7 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 {
 	isDead = true;
-	Gamerules::PermadeathMode permadeath = pilot->GetGamerules().GetPermadeathMode();
-	if(permadeath == Gamerules::PermadeathMode::LOCK_ON_DEATH)
-	{
-		// Save info about the point of death.
-		pilot->SetInfo(*this);
-		pilot->Lock();
-		pilot->Save();
-	}
-	else if(permadeath == Gamerules::PermadeathMode::DELETE_ON_DEATH)
-		DeleteAllSaves();
+	ApplyPermadeath();
 	// The player loses access to all their ships if they die on a planet.
 	if(GetPlanet() || !flagship)
 	{
@@ -5578,7 +5566,7 @@ void PlayerInfo::CalculateScanners(const shared_ptr<Ship> &ship)
 // Check that this player's current state can be saved.
 bool PlayerInfo::CanBeSaved() const
 {
-	return (!isDead && planet && system && !filePath.empty());
+	return (!isDead && planet && system && !filePath.empty() && !pilot->IsLocked());
 }
 
 

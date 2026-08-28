@@ -95,13 +95,12 @@ public:
 	void Load(const std::filesystem::path &path, const std::shared_ptr<PilotProfile> &pilot);
 	// Reload from the same file from which the current pilot was loaded.
 	void Reload();
-	bool CanReload() const;
 	// Load the most recently saved player. If no save could be loaded, returns false.
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
-	// Delete all save files for this player, but retain the pilot file. For use when permadeath mode is active.
-	void DeleteAllSaves() const;
+	// Apply the effects of permadeath, if this player has permadeath applied.
+	void ApplyPermadeath() const;
 
 	// Get the pilot profile that this player is from.
 	std::shared_ptr<PilotProfile> &Pilot();

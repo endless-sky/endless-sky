@@ -88,8 +88,8 @@ public:
 	void Lock(bool lock = true);
 	bool IsLocked() const;
 	// Minimal info about the latest loaded save file from this pilot.
-	void SetInfo(const PlayerInfo &player);
-	const SavedGame &GetInfo() const;
+	void SetMomentOfDeath(const PlayerInfo &player);
+	const SavedGame &MomentOfDeath() const;
 	// The conditions shared across all save files for this pilot.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
@@ -111,7 +111,7 @@ private:
 	bool isLocked = false;
 	// Minimal info about the last used save file from this pilot.
 	// Displayed if a pilot's save files have been deleted due to permadeath.
-	SavedGame info;
+	SavedGame momentOfDeath;
 	// The conditions shared across all save files for this pilot.
 	ConditionsStore conditions;
 	// The gamerules that all save files for this pilot use.

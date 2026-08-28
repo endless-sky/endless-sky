@@ -126,7 +126,7 @@ void LoadPanel::Draw()
 	// The selected pilot can have no files if it's permadeathed,
 	// but it will still have info about the player before they died.
 	else if(selectedPilot && selectedPilot->Files().empty())
-		SetInfo(selectedPilot->GetInfo());
+		SetInfo(selectedPilot->MomentOfDeath());
 	else
 		info.SetString("pilot", "No Pilot Loaded");
 
@@ -137,7 +137,7 @@ void LoadPanel::Draw()
 			info.SetCondition("gamerules unlocked");
 		if(!selectedPilot->IsLocked())
 		{
-			if(!player.IsDead() && player.IsLoaded() && !GameData::GetGamerules().SingleSaveFile())
+			if(!player.IsDead() && player.IsLoaded() && !selectedPilot->GetGamerules().SingleSaveFile())
 				info.SetCondition("can add snapshot");
 			if(selectedFile.find('~') != string::npos)
 				info.SetCondition("can remove snapshot");
@@ -287,10 +287,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
 				+ "Confirm the name of the pilot you want to delete."));
 	}
-	else if(key == 'a' && !player.IsDead() && player.IsLoaded() && !GameData::GetGamerules().SingleSaveFile())
+	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{
-		if(!selectedPilot || selectedPilot->IsLocked() || selectedPilot->Files().empty()
-				|| selectedPilot->Files().front().first.size() < 4)
+		if(!selectedPilot || selectedPilot->IsLocked() || selectedPilot->GetGamerules().SingleSaveFile()
+				|| selectedPilot->Files().empty() || selectedPilot->Files().front().first.size() < 4)
 			return false;
 
 		sound = UI::UISound::NONE;
@@ -317,7 +317,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// if the currently loaded pilot is playing with hardcore settings.
 		bool isActive = !player.IsDead() && player.IsLoaded() && !player.GetPlanet();
 
-		const Gamerules &rules = GameData::GetGamerules();
+		const Gamerules &rules = selectedPilot->GetGamerules();
 		if(isActive && rules.RestrictedSaveLoading())
 		{
 			sound = UI::UISound::NONE;
@@ -486,7 +486,9 @@ bool LoadPanel::Click(int x, int y, MouseButton button, int clicks)
 	else
 		return false;
 
-	if(!selectedFile.empty())
+	if(selectedFile.empty())
+		loadedInfo.Clear();
+	else
 		loadedInfo.Load(Files::Saves() / selectedFile);
 
 	return true;
@@ -547,14 +549,13 @@ void LoadPanel::UpdateLists()
 	{
 		if(!selectedPilot)
 			selectedPilot = *pilots.begin();
-		if(selectedFile.empty())
+		if(selectedFile.empty() && selectedPilot && !selectedPilot->Files().empty())
 		{
-			if(selectedPilot && !selectedPilot->Files().empty())
-			{
-				selectedFile = selectedPilot->Files().front().first;
-				loadedInfo.Load(Files::Saves() / selectedFile);
-			}
+			selectedFile = selectedPilot->Files().front().first;
+			loadedInfo.Load(Files::Saves() / selectedFile);
 		}
+		else
+			loadedInfo.Clear();
 	}
 }
 
@@ -661,5 +662,8 @@ void LoadPanel::DeleteSave()
 		sideHasFocus = false;
 	}
 	else
+	{
 		selectedPilot.reset();
+		loadedInfo.Clear();
+	}
 }
