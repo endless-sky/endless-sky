@@ -597,6 +597,9 @@ void GamerulesPanel::DrawGamerules()
 				case Gamerules::PermadeathMode::DELETE_ON_DEATH:
 					text = "delete on death";
 					break;
+				case Gamerules::PermadeathMode::LOCK_ON_TAKEOFF:
+					text = "lock on takeoff";
+					break;
 				case Gamerules::PermadeathMode::DELETE_ON_TAKEOFF:
 					text = "delete on takeoff";
 					break;
