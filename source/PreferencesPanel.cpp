@@ -721,7 +721,6 @@ void PreferencesPanel::DrawControls()
 
 			const Color &keyColor = isFastForwardSyncToCapsLock ? dim : medium;
 			const Color &descColor = isFastForwardSyncToCapsLock ? dim : medium;
-
 			table.Draw(command.Description(), descColor);
 			table.Draw(command.KeyName(), isEditing ? bright : keyColor);
 		}
