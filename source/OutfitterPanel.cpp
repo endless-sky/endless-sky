@@ -623,9 +623,11 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				if(selectedOutfit->Get("installable") < 0.)
 					errors.emplace_back("This item is not an outfit that can be installed in a ship.");
 
-				// If the outfit category is ammo and the problem wasn't one of the above attributes,
-				// assume that the issue is a lack of ammo storage.
-				if(errors.empty() && selectedOutfit->Category() == "Ammunition")
+				// If the outfit category is ammo, the problem wasn't one of the above attributes, and this outfit
+				// could never have its installation limited by usual means, then assume that the issue is a lack
+				// of ammo storage.
+				if(errors.empty() && selectedOutfit->Category() == "Ammunition" && !outfitNeeded && !weaponNeeded
+						&& !engineNeeded && !cargoNeeded && !mountsNeeded && !gunsNeeded)
 					errors.emplace_back(!playerShip->OutfitCount(selectedOutfit) ?
 						"This outfit is ammunition for a weapon. "
 						"You cannot install it without first installing the appropriate weapon."
