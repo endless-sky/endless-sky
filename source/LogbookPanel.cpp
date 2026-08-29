@@ -17,22 +17,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "Color.h"
+#include "Date.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "text/Layout.h"
-#include "PlayerInfo.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
+#include "shader/RingShader.h"
 #include "Screen.h"
 #include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
+#include "System.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
-#include <set>
+#include <ranges>
 
 using namespace std;
 
@@ -55,21 +58,20 @@ namespace {
 
 
 LogbookPanel::LogbookPanel(PlayerInfo &player)
-	: player(player)
+	: MapPanel(player, SHOW_GOVERNMENT)
 {
+	isSimplified = true;
 	SetInterruptible(false);
-	if(!player.Logbook().empty())
-	{
-		selectedDate = (--player.Logbook().end())->first;
-		selectedName = MONTH[selectedDate.Month() - 1];
-	}
-	Update();
+	CreateSections();
+	if(!sections.empty())
+		selection = AvailableSelections(false).back();
 }
 
 
 
 void LogbookPanel::Step()
 {
+	MapPanel::Step();
 	// Load any and deferred scenes that appear in the logbook.
 	// This is done here instead of in the constructor because the constructor
 	// does not have access to the UI stack.
@@ -84,11 +86,281 @@ void LogbookPanel::Step()
 
 
 
-// Draw this panel.
 void LogbookPanel::Draw()
 {
-	// Dim out everything outside this panel.
-	DrawBackdrop();
+	MapPanel::Draw();
+	DrawOrbits();
+	DrawKey();
+	DrawSelectedEntry();
+	DrawLogbook();
+	FinishDrawing("is ports");
+}
+
+
+
+bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+{
+	UI::UISound sound = UI::UISound::NORMAL;
+
+	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+		GetUI().Pop(this);
+	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+	{
+		double direction = (key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN);
+		Drag(0., (Screen::Height() - 100.) * direction);
+		sound = UI::UISound::NONE;
+	}
+	else if(key == SDLK_HOME || key == SDLK_END)
+	{
+		double direction = (key == SDLK_HOME) - (key == SDLK_END);
+		Drag(0., maxScroll * direction);
+		sound = UI::UISound::NONE;
+	}
+	else if(key == SDLK_UP || key == SDLK_DOWN)
+	{
+		// Find the index of the currently selected line.
+		vector<Selection> selections = AvailableSelections(false);
+		size_t i = 0;
+		for( ; i < selections.size(); ++i)
+			if(selections[i] == selection)
+				break;
+		if(i == selections.size())
+			return true;
+
+		if(key == SDLK_DOWN)
+		{
+			++i;
+			// Skip expanded entries.
+			if(selections[i].first.empty())
+				++i;
+			if(i >= selections.size())
+				i = 0;
+		}
+		else if(i)
+		{
+			--i;
+			// Skip expanded entries.
+			if(selections[i].first.empty())
+			{
+				// If this is the very top of the list, don't move the selection
+				// up. (That is, you can't select the year heading line.)
+				if(i)
+					--i;
+				else
+					++i;
+			}
+		}
+		else
+			i = selections.size() - 1;
+		if(selections[i] != selection)
+		{
+			selection = selections[i];
+			scroll = 0.;
+			selectedEntry = nullptr;
+
+			selections = AvailableSelections();
+			// Find our currently selected item again
+			for(i = 0 ; i < selections.size(); ++i)
+				if(selections[i] == selection)
+					break;
+
+			if(i == selections.size())
+				return true;
+
+			// Check if it's too far down or up
+			int position = i * LINE_HEIGHT - categoryScroll;
+
+			// If it's out of bounds, recenter it
+			if(position < MINIMUM_SELECTION_DISTANCE || position > (Screen::Height() - MINIMUM_SELECTION_DISTANCE))
+				categoryScroll = position - (Screen::Height() / 2);
+
+			categoryScroll = max(categoryScroll, 0.);
+		}
+	}
+	else
+		return MapPanel::KeyDown(key, mod, command, isNewPress);
+
+	UI::PlaySound(sound);
+	return true;
+}
+
+
+
+bool LogbookPanel::Click(int x, int y, MouseButton button, int clicks)
+{
+	if(button != MouseButton::LEFT)
+		return false;
+
+	if(x - Screen::Left() > WIDTH)
+		return MapPanel::Click(x, y, button, clicks);
+
+	Point clickPoint(x, y);
+	for(const ClickZone<Selection> &zone : selectionZones)
+		if(zone.Contains(clickPoint))
+		{
+			selection = zone.Value();
+			scroll = 0.;
+			selectedEntry = nullptr;
+			UI::PlaySound(UI::UISound::NORMAL);
+			return true;
+		}
+	for(const ClickZone<const BookEntry *> &zone : logZones)
+		if(zone.Contains(clickPoint))
+		{
+			SelectEntry(*zone.Value());
+			UI::PlaySound(UI::UISound::NORMAL);
+			return true;
+		}
+
+	return true;
+}
+
+
+
+bool LogbookPanel::Drag(double dx, double dy)
+{
+	double sx = hoverPoint.X() - Screen::Left();
+	if(sx > WIDTH)
+		return MapPanel::Drag(dx, dy);
+	if(sx > SIDEBAR_WIDTH)
+		scroll = max(0., min(maxScroll, scroll - dy));
+	else
+		categoryScroll = max(0., min(maxCategoryScroll, categoryScroll - dy));
+
+	return true;
+}
+
+
+
+bool LogbookPanel::Scroll(double dx, double dy)
+{
+	if(hoverPoint.X() - Screen::Left() > WIDTH)
+		return MapPanel::Scroll(dx, dy);
+	return Drag(0., dy * Preferences::ScrollSpeed());
+}
+
+
+
+bool LogbookPanel::Hover(int x, int y)
+{
+	hoverPoint = Point(x, y);
+	return MapPanel::Hover(x, y);
+}
+
+
+
+LogbookPanel::Entry::Entry(const string &heading, const BookEntry &body)
+	: heading(heading), body(body)
+{
+}
+
+
+
+void LogbookPanel::CreateSections()
+{
+	sections.clear();
+	// Special logs aren't expandable, and so they have the same category and subcategory name.
+	for(const auto &[category, entries] : player.SpecialLogs())
+	{
+		Section &section = sections[category];
+		Page &page = section.insert({category, Page(PageType::SPECIAL)}).first->second;
+		for(const auto &[heading, body] : entries)
+			page.entries.emplace_back(heading, body);
+	}
+	// For the rest of the logbook, the category is the year, the subcategory is the month.
+	for(const auto &[date, entry] : player.Logbook())
+	{
+		Section &section = sections[to_string(date.Year())];
+		Page &page = section.insert({MONTH[date.Month() - 1], Page(PageType::DATE)}).first->second;
+		page.entries.emplace_back(date.ToString(), entry);
+	}
+}
+
+
+
+void LogbookPanel::SelectEntry(const BookEntry &entry)
+{
+	vector<const System *> options;
+	set<const System *> uniqueOptions;
+
+	auto AddOption = [&](const System *system) -> void {
+		if(!uniqueOptions.contains(system) && system->IsValid() && player.CanView(*system))
+		{
+			options.push_back(system);
+			uniqueOptions.insert(system);
+		}
+	};
+
+	if(entry.SourceSystem())
+		AddOption(entry.SourceSystem());
+	for(const System *system : entry.MarkSystems())
+		AddOption(system);
+	for(const System *system : entry.CircleSystems())
+		AddOption(system);
+
+	if(options.empty())
+		centeredSystem = nullptr;
+	else if(selectedEntry != &entry)
+		centeredSystem = options.front();
+	else if(options.size() > 1)
+	{
+		auto it = std::next(ranges::find(options, centeredSystem));
+		centeredSystem = it == options.end() ? options.front() : *it;
+	}
+	if(centeredSystem)
+		CenterOnSystem(centeredSystem);
+	selectedEntry = &entry;
+}
+
+
+
+void LogbookPanel::DrawSelectedEntry() const
+{
+	if(!selectedEntry)
+		return;
+
+	const Set<Color> &colors = GameData::Colors();
+	const Color &sourceColor = *colors.Get("active mission");
+	const Color &markColor = *colors.Get("waypoint");
+
+	double zoom = Zoom();
+	const Color black(0.f, 1.f);
+	Point angle = Angle(30.).Unit();
+
+	auto DrawPointer = [&](const System *system, const Color &color) -> void {
+		Point position = zoom * (system->Position() + center);
+		PointerShader::Add(position, angle, 14.f, 19.f, -4.f, black);
+		PointerShader::Add(position, angle, 8.f, 15.f, -6.f, color);
+	};
+	auto DrawRing = [&](const System *system, const Color &color) -> void {
+		RingShader::Add(zoom * (system->Position() + center), 22.f, 20.5f, color);
+	};
+
+	PointerShader::Bind();
+	{
+		const System *source = selectedEntry->SourceSystem();
+		if(source && source->IsValid() && player.CanView(*source))
+			DrawPointer(source, sourceColor);
+		for(const System *system : selectedEntry->MarkSystems())
+			if(system->IsValid() && player.CanView(*system))
+				DrawPointer(system, markColor);
+	}
+	PointerShader::Unbind();
+	RingShader::Bind();
+	{
+		for(const System *system : selectedEntry->CircleSystems())
+			if(system->IsValid() && player.CanView(*system))
+				DrawRing(system, markColor);
+	}
+	RingShader::Unbind();
+}
+
+
+
+void LogbookPanel::DrawLogbook()
+{
+	selectionZones.clear();
+	logZones.clear();
 
 	// Draw the panel. The sidebar should be slightly darker than the rest.
 	const Color &sideColor = *GameData::Colors().Get("logbook sidebar");
@@ -115,6 +387,8 @@ void LogbookPanel::Draw()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	Color entryHover = bright.Transparent(.125);
+	Color entrySelected = medium.Transparent(.125);
 
 	// Draw the sidebar.
 	// The currently selected sidebar item should be highlighted. This is how
@@ -124,18 +398,47 @@ void LogbookPanel::Draw()
 	Point textOffset(0., .5 * (LINE_HEIGHT - font.Height()));
 	// Start at this point on the screen:
 	Point pos = Screen::TopLeft() + Point(PAD, PAD - categoryScroll);
-	for(size_t i = 0; i < contents.size(); ++i)
+	Point zoneStart;
+	Point zoneSize = Point(SIDEBAR_WIDTH, LINE_HEIGHT);
+	for(const auto &[name, section] : sections)
 	{
-		if(selectedDate ? dates[i].Month() == selectedDate.Month() : selectedName == contents[i])
+		zoneStart = pos;
+		bool isExpandable = section.size() != 1 || name != section.front().first;
+		if(selection.first == name && !isExpandable)
 		{
 			FillShader::Fill(pos + highlightOffset - Point(1., 0.), highlightSize + Point(0., 2.), lineColor);
 			FillShader::Fill(pos + highlightOffset, highlightSize, backColor);
 		}
-		font.Draw(contents[i], pos + textOffset, dates[i].Month() ? medium : bright);
+		font.Draw(name, pos + textOffset, bright);
 		pos.Y() += LINE_HEIGHT;
+		selectionZones.emplace_back(Rectangle::FromCorner(zoneStart, zoneSize), make_pair(name, section.back().first));
+		if(selection.first != name || !isExpandable)
+			continue;
+
+		for(const auto &pageName : section | views::keys)
+		{
+			zoneStart = pos;
+			if(selection.second == pageName)
+			{
+				FillShader::Fill(pos + highlightOffset - Point(1., 0.), highlightSize + Point(0., 2.), lineColor);
+				FillShader::Fill(pos + highlightOffset, highlightSize, backColor);
+			}
+			font.Draw(pageName, pos + textOffset, medium);
+			pos.Y() += LINE_HEIGHT;
+			selectionZones.emplace_back(Rectangle::FromCorner(zoneStart, zoneSize), make_pair(name, pageName));
+		}
 	}
 
 	maxCategoryScroll = max(0., maxCategoryScroll + pos.Y() - Screen::Bottom());
+
+	auto it = sections.find(selection.first);
+	if(it == sections.end())
+		return;
+	const Section &section = it->second;
+	auto sit = section.find(selection.second);
+	if(sit == section.end())
+		return;
+	const Page &page = sit->second;
 
 	// Parameters for drawing the main text:
 	WrappedText wrap(mainFont);
@@ -145,31 +448,32 @@ void LogbookPanel::Draw()
 	// Draw the main text.
 	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - mainFont.Height()) - scroll);
 
-	// Branch based on whether this is an ordinary log month or a special page.
-	auto pit = player.SpecialLogs().find(selectedName);
-	if(selectedDate && begin != end)
+	const auto layout = Layout(static_cast<int>(TEXT_WIDTH - 2. * PAD), Alignment::RIGHT);
+	for(const Entry &entry : page.entries)
 	{
-		const auto layout = Layout(static_cast<int>(TEXT_WIDTH - 2. * PAD), Alignment::RIGHT);
-		for(auto datedEntry = begin; datedEntry != end; ++datedEntry)
-		{
-			string date = datedEntry->first.ToString();
-			mainFont.Draw({date, layout}, pos + Point(0., textOffset.Y()), dim);
-			pos.Y() += LINE_HEIGHT;
+		zoneStart = pos - Point(.5 * PAD, 0);
 
-			pos.Y() += datedEntry->second.Draw(pos, wrap, medium);
-			pos.Y() += GAP;
-		}
-	}
-	else if(!selectedDate && pit != player.SpecialLogs().end())
-	{
-		for(const auto &[heading, entry] : pit->second)
-		{
-			mainFont.Draw(heading, pos + textOffset, bright);
-			pos.Y() += LINE_HEIGHT;
+		// Dates and special pages only have a heading.
+		// The date page headings are shifted to the right and dimmed.
+		if(page.type == PageType::DATE)
+			mainFont.Draw({entry.heading, layout}, pos + Point(0., textOffset.Y()), dim);
+		else
+			mainFont.Draw(entry.heading, pos + textOffset, bright);
+		pos.Y() += LINE_HEIGHT;
+		pos.Y() += entry.body.Draw(pos, wrap, medium);
 
-			pos.Y() += entry.Draw(pos, wrap, medium);
-			pos.Y() += GAP;
+		zoneSize = Point(TEXT_WIDTH, pos.Y() - zoneStart.Y());
+		if(entry.body.HasSystems())
+		{
+			logZones.emplace_back(Rectangle::FromCorner(zoneStart, zoneSize), &entry.body);
+			ClickZone<const BookEntry *> zone = logZones.back();
+			if(zone.Contains(hoverPoint))
+				FillShader::Fill(zone, entryHover);
+			else if(selectedEntry == &entry.body)
+				FillShader::Fill(zone, entrySelected);
 		}
+
+		pos.Y() += GAP;
 	}
 
 	maxScroll = max(0., scroll + pos.Y() - Screen::Bottom());
@@ -177,198 +481,21 @@ void LogbookPanel::Draw()
 
 
 
-bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+vector<pair<string, string>> LogbookPanel::AvailableSelections(bool visibleOnly) const
 {
-	UI::UISound sound = UI::UISound::NORMAL;
-
-	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI().Pop(this);
-	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+	vector<Selection> selections;
+	for(const auto &[name, section] : sections)
 	{
-		double direction = (key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN);
-		Drag(0., (Screen::Height() - 100.) * direction);
-		sound = UI::UISound::NONE;
-	}
-	else if(key == SDLK_HOME || key == SDLK_END)
-	{
-		double direction = (key == SDLK_HOME) - (key == SDLK_END);
-		Drag(0., maxScroll * direction);
-		sound = UI::UISound::NONE;
-	}
-	else if(key == SDLK_UP || key == SDLK_DOWN)
-	{
-		// Find the index of the currently selected line.
-		size_t i = 0;
-		for( ; i < contents.size(); ++i)
-			if(contents[i] == selectedName)
-				break;
-		if(i == contents.size())
-			return true;
-
-		if(key == SDLK_DOWN)
+		if(section.size() == 1 && section.front().first == name)
+			selections.emplace_back(name, name);
+		else if(!visibleOnly || selection.first == name)
 		{
-			++i;
-			if(i >= contents.size())
-				i = 0;
-		}
-		else if(i)
-		{
-			--i;
-			// Skip the entry that is just the currently selected year.
-			if(dates[i] && !dates[i].Month())
-			{
-				// If this is the very top of the list, don't move the selection
-				// up. (That is, you can't select the year heading line.)
-				if(i)
-					--i;
-				else
-					++i;
-			}
+			selections.emplace_back(make_pair("", ""));
+			for(const auto &pageName : section | views::keys)
+				selections.emplace_back(name, pageName);
 		}
 		else
-			i = contents.size() - 1;
-		if(contents[i] != selectedName)
-		{
-			selectedDate = dates[i];
-			selectedName = contents[i];
-			scroll = 0.;
-			Update(key == SDLK_UP);
-
-			// Find our currently selected item again
-			for(i = 0 ; i < contents.size(); ++i)
-				if(contents[i] == selectedName)
-					break;
-
-			if(i == contents.size())
-				return true;
-
-			// Check if it's too far down or up
-			int position = i * LINE_HEIGHT - categoryScroll;
-
-			// If it's out of bounds, recenter it
-			if(position < MINIMUM_SELECTION_DISTANCE || position > (Screen::Height() - MINIMUM_SELECTION_DISTANCE))
-				categoryScroll = position - (Screen::Height() / 2);
-
-			categoryScroll = max(categoryScroll, 0.);
-		}
+			selections.emplace_back(name, section.back().first);
 	}
-	else
-		sound = UI::UISound::NONE;
-
-	UI::PlaySound(sound);
-	return true;
-}
-
-
-
-bool LogbookPanel::Click(int x, int y, MouseButton button, int clicks)
-{
-	if(button != MouseButton::LEFT)
-		return false;
-
-	x -= Screen::Left();
-	y -= Screen::Top();
-	if(x < SIDEBAR_WIDTH)
-	{
-		size_t index = (y - PAD + categoryScroll) / LINE_HEIGHT;
-		if(index < contents.size())
-		{
-			selectedDate = dates[index];
-			selectedName = contents[index];
-			scroll = 0.;
-			// If selecting a different year, select the first month in that
-			// year.
-			Update(false);
-			UI::PlaySound(UI::UISound::NORMAL);
-		}
-	}
-	else if(x > WIDTH)
-		GetUI().Pop(this);
-
-	return true;
-}
-
-
-
-bool LogbookPanel::Drag(double dx, double dy)
-{
-	if((hoverPoint.X() - Screen::Left()) > SIDEBAR_WIDTH)
-		scroll = max(0., min(maxScroll, scroll - dy));
-	else
-		categoryScroll = max(0., min(maxCategoryScroll, categoryScroll - dy));
-
-	return true;
-}
-
-
-
-bool LogbookPanel::Scroll(double dx, double dy)
-{
-	return Drag(0., dy * Preferences::ScrollSpeed());
-}
-
-
-
-bool LogbookPanel::Hover(int x, int y)
-{
-	hoverPoint = Point(x, y);
-	return true;
-}
-
-
-
-void LogbookPanel::Update(bool selectLast)
-{
-	contents.clear();
-	dates.clear();
-	for(const auto &it : player.SpecialLogs())
-	{
-		contents.emplace_back(it.first);
-		dates.emplace_back();
-	}
-	// The logbook should never be opened if it has no entries, but just in case:
-	if(player.Logbook().empty())
-	{
-		begin = end = player.Logbook().end();
-		return;
-	}
-
-	// Check what years and months have entries for them.
-	set<int> years;
-	set<int> months;
-	for(const auto &it : player.Logbook())
-	{
-		years.insert(it.first.Year());
-		if(it.first.Year() == selectedDate.Year() && it.first.Month() >= 1 && it.first.Month() <= 12)
-			months.insert(it.first.Month());
-	}
-
-	// Generate the table of contents.
-	for(int year : years)
-	{
-		contents.emplace_back(to_string(year));
-		dates.emplace_back(0, 0, year);
-		if(selectedDate && year == selectedDate.Year())
-			for(int month : months)
-			{
-				contents.emplace_back(MONTH[month - 1]);
-				dates.emplace_back(0, month, year);
-			}
-	}
-	// If a special category is selected, bail out here.
-	if(!selectedDate)
-	{
-		begin = end = player.Logbook().end();
-		return;
-	}
-
-	// Make sure a month is selected, within the current year.
-	if(!selectedDate.Month())
-	{
-		selectedDate = Date(0, selectLast ? *--months.end() : *months.begin(), selectedDate.Year());
-		selectedName = MONTH[selectedDate.Month() - 1];
-	}
-	// Get the range of entries that include the selected month.
-	begin = player.Logbook().lower_bound(Date(0, selectedDate.Month(), selectedDate.Year()));
-	end = player.Logbook().lower_bound(Date(32, selectedDate.Month(), selectedDate.Year()));
+	return selections;
 }

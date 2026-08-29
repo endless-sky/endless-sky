@@ -18,9 +18,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "text/Format.h"
+#include "GameData.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
+#include "System.h"
 #include "text/WrappedText.h"
 
 using namespace std;
@@ -35,13 +37,32 @@ bool BookEntry::IsEmpty() const
 
 
 
-void BookEntry::Load(const DataNode &node, int startAt)
+void BookEntry::Load(const DataNode &node, optional<int> startAt)
 {
-	if(startAt < node.Size())
-		LoadSingle(node, startAt);
-
+	if(startAt.has_value() && startAt < node.Size())
+		LoadSingle(node, *startAt);
 	for(const DataNode &child : node)
-		LoadSingle(child);
+	{
+		const string &key = child.Token(0);
+		if(key == "source" && child.Size() >= 2)
+			source = GameData::Systems().Get(child.Token(1));
+		else if(key == "mark")
+		{
+			for(int i = 1; i < child.Size(); ++i)
+				markSystems.insert(GameData::Systems().Get(child.Token(i)));
+			for(const DataNode &grand : child)
+				markSystems.insert(GameData::Systems().Get(grand.Token(0)));
+		}
+		else if(key == "circle")
+		{
+			for(int i = 1; i < child.Size(); ++i)
+				circleSystems.insert(GameData::Systems().Get(child.Token(i)));
+			for(const DataNode &grand : child)
+				circleSystems.insert(GameData::Systems().Get(grand.Token(0)));
+		}
+		else
+			LoadSingle(child);
+	}
 }
 
 
@@ -52,6 +73,9 @@ void BookEntry::Add(const BookEntry &other)
 	for(const Item &item : other.items)
 		if(holds_alternative<const Sprite *>(item))
 			scenes.insert(std::get<const Sprite *>(item));
+
+	markSystems.insert(other.markSystems.begin(), other.markSystems.end());
+	circleSystems.insert(other.circleSystems.begin(), other.circleSystems.end());
 }
 
 
@@ -68,6 +92,8 @@ BookEntry BookEntry::Instantiate(const map<string, string> &subs) const
 			newEntry.items.emplace_back(item);
 	}
 	newEntry.scenes = scenes;
+	newEntry.markSystems = markSystems;
+	newEntry.circleSystems = circleSystems;
 	return newEntry;
 }
 
@@ -85,6 +111,28 @@ void BookEntry::Save(DataWriter &out) const
 					out.Write(line);
 			else
 				out.Write("scene", std::get<const Sprite *>(item)->Name());
+		}
+		if(source)
+			out.Write("source", source->TrueName());
+		if(!markSystems.empty())
+		{
+			out.Write("mark");
+			out.BeginChild();
+			{
+				for(const System *system : markSystems)
+					out.Write(system->TrueName());
+			}
+			out.EndChild();
+		}
+		if(!circleSystems.empty())
+		{
+			out.Write("circle");
+			out.BeginChild();
+			{
+				for(const System *system : circleSystems)
+					out.Write(system->TrueName());
+			}
+			out.EndChild();
 		}
 	}
 	out.EndChild();
@@ -119,6 +167,41 @@ int BookEntry::Draw(const Point &topLeft, WrappedText &wrap, const Color &color)
 		}
 	}
 	return drawPoint.Y() - topLeft.Y();
+}
+
+
+
+const System *BookEntry::SourceSystem() const
+{
+	return source;
+}
+
+
+
+void BookEntry::SetSourceSystem(const System *system)
+{
+	source = system;
+}
+
+
+
+const set<const System *> &BookEntry::MarkSystems() const
+{
+	return markSystems;
+}
+
+
+
+const set<const System *> &BookEntry::CircleSystems() const
+{
+	return circleSystems;
+}
+
+
+
+bool BookEntry::HasSystems() const
+{
+	return source || !markSystems.empty() || !circleSystems.empty();
 }
 
 
