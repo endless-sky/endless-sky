@@ -579,36 +579,34 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 			if(!canPlace)
 			{
+				auto TonsFree = [](double needed, double space, const string &name) -> string {
+					return "You cannot install this outfit, because it takes up "
+						+ Format::CargoString(needed, name) + ", and this ship has "
+						+ Format::MassString(space) + " free.";
+				};
+
 				// If no selected ship can install the outfit, report error based on playerShip.
 				double outfitNeeded = -selectedOutfit->Get("outfit space");
 				double outfitSpace = playerShip->Attributes().Get("outfit space");
 				if(outfitNeeded > outfitSpace)
-					errors.push_back("You cannot install this outfit, because it takes up "
-						+ Format::CargoString(outfitNeeded, "outfit space") + ", and this ship has "
-						+ Format::MassString(outfitSpace) + " free.");
+					errors.push_back(TonsFree(outfitNeeded, outfitSpace, "outfit space"));
 
 				double weaponNeeded = -selectedOutfit->Get("weapon capacity");
 				double weaponSpace = playerShip->Attributes().Get("weapon capacity");
 				if(weaponNeeded > weaponSpace)
 					errors.push_back("Only part of your ship's outfit capacity is usable for weapons. "
-						"You cannot install this outfit, because it takes up "
-						+ Format::CargoString(weaponNeeded, "weapon space") + ", and this ship has "
-						+ Format::MassString(weaponSpace) + " free.");
+						+ TonsFree(weaponNeeded, weaponSpace, "weapon space"));
 
 				double engineNeeded = -selectedOutfit->Get("engine capacity");
 				double engineSpace = playerShip->Attributes().Get("engine capacity");
 				if(engineNeeded > engineSpace)
 					errors.push_back("Only part of your ship's outfit capacity is usable for engines. "
-						"You cannot install this outfit, because it takes up "
-						+ Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
-						+ Format::MassString(engineSpace) + " free.");
+						+ TonsFree(engineNeeded, engineSpace, "engine space"));
 
-				if(selectedOutfit->Category() == "Ammunition")
-					errors.emplace_back(!playerShip->OutfitCount(selectedOutfit) ?
-						"This outfit is ammunition for a weapon. "
-						"You cannot install it without first installing the appropriate weapon."
-						: "You already have the maximum amount of ammunition for this weapon. "
-						"If you want to install more ammunition, you must first install another of these weapons.");
+				double cargoNeeded = -selectedOutfit->Get("cargo space");
+				double cargoSpace = playerShip->Attributes().Get("cargo space");
+				if(cargoNeeded > cargoSpace)
+					errors.push_back(TonsFree(cargoNeeded, cargoSpace, "cargo space"));
 
 				int mountsNeeded = -selectedOutfit->Get("turret mounts");
 				int mountsFree = playerShip->Attributes().Get("turret mounts");
@@ -624,6 +622,16 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 				if(selectedOutfit->Get("installable") < 0.)
 					errors.emplace_back("This item is not an outfit that can be installed in a ship.");
+
+				// If the outfit category is ammo and the problem wasn't one of the above attributes,
+				// assume that the issue is a lack of ammo storage.
+				if(errors.empty() && selectedOutfit->Category() == "Ammunition")
+					errors.emplace_back(!playerShip->OutfitCount(selectedOutfit) ?
+						"This outfit is ammunition for a weapon. "
+						"You cannot install it without first installing the appropriate weapon."
+						: "You already have the maximum amount of ammunition for this weapon. "
+						"If you want to install more ammunition, you must first install more ammunition storage "
+						"or another of these weapons.");
 
 				// Handle other attributes more generically, if none of the above are the problem.
 				if(errors.empty())
