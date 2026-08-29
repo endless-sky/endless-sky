@@ -5733,7 +5733,6 @@ planet Stormhold
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
-	outfitter "Pirate Advanced"
 	bribe 0.03
 	security 0
 	tribute 500
