@@ -163,7 +163,7 @@ void MenuPanel::Draw()
 		info.SetCondition("no pilot loaded");
 		info.SetString("pilot", "No Pilot Loaded");
 	}
-	if(!player.Pilot()->IsLocked() && !player.Pilot()->GetGamerules().LockGamerules())
+	if(player.IsLoaded() && !player.Pilot()->IsLocked() && !player.Pilot()->GetGamerules().LockGamerules())
 		info.SetCondition("gamerules unlocked");
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
@@ -178,8 +178,9 @@ void MenuPanel::Draw()
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	bool playerIsEditable = !player.Pilot()->IsLocked() || (!player.IsDead() && !player.GetPlanet());
-	if((key == 'e' || command.Has(Command::MENU)) && player.IsLoaded() && playerIsEditable)
+	bool canEnterPlayer = player.IsLoaded() && (!player.Pilot()->IsLocked()
+		|| (!player.IsDead() && !player.GetPlanet()));
+	if((key == 'e' || command.Has(Command::MENU)) && canEnterPlayer)
 	{
 		gamePanels.CanSave(true);
 		GetUI().PopThrough(this);
@@ -211,7 +212,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// StartConditionsPanel also handles the case where there's no scenarios.
 		GetUI().Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
 	}
-	else if(key == 'g' && !player.Pilot()->GetGamerules().LockGamerules() && playerIsEditable)
+	else if(key == 'g' && canEnterPlayer && !player.Pilot()->GetGamerules().LockGamerules())
 	{
 		GamerulesPanel *panel = new GamerulesPanel(player.Pilot()->GetGamerules(), true);
 		panel->SetCallback(player.Pilot().get(), &PilotProfile::Save);
