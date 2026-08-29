@@ -148,7 +148,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 			const float spriteScale = min(1.f, (INFOBAR_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()));
 			const Swizzle *swizzle = selectedShip->CustomSwizzle()
 				? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
+			DrawThumbnail(*selectedShip, true, spriteCenter, spriteScale, swizzle);
 		}
 
 		const bool hasDescription = shipInfo.DescriptionHeight();

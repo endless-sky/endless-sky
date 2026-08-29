@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "CaptureOdds.h"
+#include "LoadingCircle.h"
 #include "ScrollBar.h"
 
 #include <list>
@@ -146,7 +147,10 @@ private:
 	int selected = 0;
 	ScrollVar<double> scroll;
 	ScrollBar scrollBar;
+	LoadingCircle loadingCircle;
 
+	// Whether or not the ship can be captured.
+	bool canCapture = false;
 	bool playerDied = false;
 	bool isCapturing = false;
 	bool isFirstCaptureAction = true;
@@ -158,6 +162,5 @@ private:
 	std::string messages;
 	std::shared_ptr<TextArea> messageDisplay;
 
-	// Whether or not the ship can be captured.
-	bool canCapture = false;
+	float step = 0.f;
 };

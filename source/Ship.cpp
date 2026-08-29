@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
@@ -205,7 +206,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		if(key == "sprite")
 			LoadSprite(child);
 		else if(key == "thumbnail" && hasValue)
-			thumbnail = SpriteSet::Get(child.Token(1));
+			thumbnail.LoadSprite(child);
 		else if(key == "name" && hasValue)
 			givenName = child.Token(1);
 		else if(key == "display name" && hasValue)
@@ -573,7 +574,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			pluralModelName = model->pluralModelName;
 		if(noun.empty())
 			noun = model->noun;
-		if(!thumbnail)
+		if(!thumbnail.GetSprite())
 			thumbnail = model->thumbnail;
 	}
 
@@ -655,6 +656,12 @@ void Ship::FinishLoading(bool isNewInstance)
 	}
 	else if(removeBays)
 		bays.clear();
+
+	// If this ship wasn't given a thumbnail, fall back onto copying the
+	// in-flight sprite and animations.
+	if(!thumbnail.GetSprite())
+		thumbnail = Drawable(*this);
+
 	// Check that all the "equipped" weapons actually match what your ship
 	// has, and that they are truly weapons. Remove any excess weapons and
 	// warn if any non-weapon outfits are "installed" in a hardpoint.
@@ -908,8 +915,7 @@ void Ship::Save(DataWriter &out) const
 		if(!noun.empty())
 			out.Write("noun", noun);
 		SaveSprite(out);
-		if(thumbnail)
-			out.Write("thumbnail", thumbnail->Name());
+		thumbnail.SaveSprite(out, "thumbnail");
 
 		if(neverDisabled)
 			out.Write("never disabled");
@@ -1222,7 +1228,7 @@ string Ship::Description() const
 
 
 // Get the shipyard thumbnail for this ship.
-const Sprite *Ship::Thumbnail() const
+const Drawable &Ship::Thumbnail() const
 {
 	return thumbnail;
 }
@@ -4672,7 +4678,16 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 
 		if(isUsingJumpDrive)
 		{
-			position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
+			Angle arrivalAngle;
+			if(parent && parent->GetSystem() == GetSystem())
+			{
+				Point parentPosition = parent->position - target;
+				double maxAngleOffset = HYPER_D / parentPosition.Length() * TO_DEG;
+				arrivalAngle = Angle(parentPosition) + Angle::Random(maxAngleOffset) - maxAngleOffset / 2;
+			}
+			else
+				arrivalAngle = Angle::Random();
+			position = target + arrivalAngle.Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
 			return true;
 		}
 
