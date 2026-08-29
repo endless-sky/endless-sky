@@ -157,8 +157,8 @@ public:
 
 	enum class FastForwardCapsLockSync : int_fast8_t {
 		DEFAULT = 0,
-		NEVER = 1,
-		ALWAYS = 2
+		NEVER,
+		ALWAYS
 	};
 
 	enum class TargetAsteroidStrategy : int_fast8_t {
