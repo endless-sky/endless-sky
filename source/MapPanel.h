@@ -179,10 +179,6 @@ protected:
 	const System *hoverSystem = nullptr;
 	Tooltip tooltip;
 
-	// An X offset in pixels to be applied to the selected system UI if something
-	// else gets in the way of its default position.
-	int selectedSystemOffset = 0;
-
 	bool fromMission = false;
 	// A simplified map panel shows less buttons and has less features.
 	// Used for panels where the map is a backdrop rather than being the main focus.

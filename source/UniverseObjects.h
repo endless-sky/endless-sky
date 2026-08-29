@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/Shader.h"
 #include "Ship.h"
 #include "StartConditions.h"
+#include "StellarObjectSpriteData.h"
 #include "StorylineEntry.h"
 #include "Swizzle.h"
 #include "System.h"
@@ -149,10 +150,7 @@ private:
 	Trade trade;
 	std::vector<StartConditions> startConditions;
 	std::map<std::string, std::vector<std::string>> ratings;
-	std::map<const Sprite *, std::string> landingMessages;
-	std::map<const Sprite *, double> solarPower;
-	std::map<const Sprite *, double> solarWind;
-	std::map<const Sprite *, const Sprite *> starIcons;
+	std::map<const Sprite *, StellarObjectSpriteData> objectSpriteData;
 	std::map<CategoryType, CategoryList> categories;
 
 	std::map<std::string, std::string> tooltips;

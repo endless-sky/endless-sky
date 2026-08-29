@@ -435,6 +435,7 @@ void LogbookPanel::DrawLogbook()
 
 	// Colors to be used for drawing the log.
 	const Font &font = FontSet::Get(14);
+	const Font &mainFont = FontSet::Get(Preferences::GetFontSize());
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
@@ -492,12 +493,12 @@ void LogbookPanel::DrawLogbook()
 	const Page &page = sit->second;
 
 	// Parameters for drawing the main text:
-	WrappedText wrap(font);
-	wrap.SetAlignment(Alignment::JUSTIFIED);
+	WrappedText wrap(mainFont);
+	wrap.SetAlignment(Preferences::GetTextAlignment());
 	wrap.SetWrapWidth(TEXT_WIDTH - 2. * PAD);
 
 	// Draw the main text.
-	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
+	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - mainFont.Height()) - scroll);
 
 	const auto layout = Layout(static_cast<int>(TEXT_WIDTH - 2. * PAD), Alignment::RIGHT);
 	for(const Entry &entry : page.entries)
@@ -515,17 +516,17 @@ void LogbookPanel::DrawLogbook()
 		// The date page headings are shifted to the right and dimmed.
 		if(page.type == PageType::STORYLINE)
 		{
-			font.Draw(entry.heading, pos + textOffset, bright);
+			mainFont.Draw(entry.heading, pos + textOffset, bright);
 			pos.Y() += LINE_HEIGHT;
 			if(entry.type == EntryType::CHAPTER)
-				font.Draw({entry.subheading, layout}, pos + Point(-2 * PAD, textOffset.Y()), dim);
+				mainFont.Draw({entry.subheading, layout}, pos + Point(-2 * PAD, textOffset.Y()), dim);
 			else
-				font.Draw({entry.subheading, layout}, pos + Point(0., textOffset.Y()), dim);
+				mainFont.Draw({entry.subheading, layout}, pos + Point(0., textOffset.Y()), dim);
 		}
 		else if(page.type == PageType::DATE)
-			font.Draw({entry.heading, layout}, pos + Point(0., textOffset.Y()), dim);
+			mainFont.Draw({entry.heading, layout}, pos + Point(0., textOffset.Y()), dim);
 		else
-			font.Draw(entry.heading, pos + textOffset, bright);
+			mainFont.Draw(entry.heading, pos + textOffset, bright);
 		pos.Y() += LINE_HEIGHT;
 		pos.Y() += entry.body.Draw(pos, wrap, medium);
 

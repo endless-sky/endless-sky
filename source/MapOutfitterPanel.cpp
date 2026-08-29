@@ -68,16 +68,16 @@ void MapOutfitterPanel::LoadCatalogThumbnails() const
 
 
 
-const Sprite *MapOutfitterPanel::SelectedSprite() const
+const Drawable &MapOutfitterPanel::SelectedSprite() const
 {
-	return selected ? selected->Thumbnail() : nullptr;
+	return selected->Thumbnail();
 }
 
 
 
-const Sprite *MapOutfitterPanel::CompareSprite() const
+const Drawable &MapOutfitterPanel::CompareSprite() const
 {
-	return compare ? compare->Thumbnail() : nullptr;
+	return compare->Thumbnail();
 }
 
 

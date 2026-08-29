@@ -49,7 +49,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
-#include "Plugins.h"
+#include "Plugin.h"
+#include "PluginManager.h"
 #include "shader/PointerShader.h"
 #include "Politics.h"
 #include "RenderBuffer.h"
@@ -60,6 +61,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
 #include "StartConditions.h"
+#include "StellarObjectSpriteData.h"
 #include "StorylineEntry.h"
 #include "System.h"
 #include "TaskQueue.h"
@@ -70,8 +72,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <filesystem>
-#include <iostream>
 #include <queue>
+#include <ranges>
 #include <utility>
 #include <vector>
 
@@ -107,7 +109,7 @@ namespace {
 
 	void LoadPlugin(TaskQueue &queue, const filesystem::path &path)
 	{
-		const auto *plugin = Plugins::Load(path);
+		const auto *plugin = PluginManager::Load(path);
 		if(!plugin)
 			return;
 
@@ -143,6 +145,9 @@ namespace {
 			SpriteLoadManager::LoadSprite(queue, icon);
 		}
 	}
+
+	const char *const FONT_14_NAME = "font/ubuntu14r.png";
+	const char *const FONT_18_NAME = "font/ubuntu18r.png";
 }
 
 
@@ -215,6 +220,9 @@ void GameData::LoadShaders()
 	// The found shader files. The first element is the vertex shader,
 	// the second is the fragment shader.
 	map<string, pair<string, string>> loaded;
+	// The paths to standard fonts, possibly overridden by plugins.
+	filesystem::path font14Path = Files::Images() / FONT_14_NAME;
+	filesystem::path font18Path = Files::Images() / FONT_18_NAME;
 	for(const filesystem::path &source : sources)
 	{
 		filesystem::path base = source / "shaders";
@@ -237,6 +245,12 @@ void GameData::LoadShaders()
 				else if(shader.extension() == ".frag")
 					loaded[name].second = shaderFile.string();
 			}
+		filesystem::path fontCandidate = source / "images" / FONT_14_NAME;
+		if(Files::Exists(fontCandidate))
+			font14Path = fontCandidate;
+		fontCandidate = source / "images" / FONT_18_NAME;
+		if(Files::Exists(fontCandidate))
+			font18Path = fontCandidate;
 	}
 
 	// If there is both a fragment and a vertex shader available,
@@ -255,8 +269,8 @@ void GameData::LoadShaders()
 	BatchShader::Init();
 	RenderBuffer::Init();
 
-	FontSet::Add(Files::Images() / "font/ubuntu14r.png", 14);
-	FontSet::Add(Files::Images() / "font/ubuntu18r.png", 18);
+	FontSet::Add(font14Path, 14);
+	FontSet::Add(font18Path, 18);
 
 	background.Init(16384, 4096);
 }
@@ -499,6 +513,15 @@ void GameData::DestroyPersons(vector<string> &names)
 {
 	for(const string &name : names)
 		objects.persons.Get(name)->Destroy();
+}
+
+
+
+void GameData::HandleEvent(const ShipEvent &event)
+{
+	for(Person &person : objects.persons | views::values)
+		if(person.Do(event))
+			break;
 }
 
 
@@ -762,45 +785,11 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 
 
 
-// Custom messages to be shown when trying to land on certain stellar objects.
-bool GameData::HasLandingMessage(const Sprite *sprite)
+const StellarObjectSpriteData &GameData::ObjectSpriteData(const Sprite *sprite)
 {
-	return objects.landingMessages.contains(sprite);
-}
-
-
-
-const string &GameData::LandingMessage(const Sprite *sprite)
-{
-	static const string EMPTY;
-	auto it = objects.landingMessages.find(sprite);
-	return (it == objects.landingMessages.end() ? EMPTY : it->second);
-}
-
-
-
-// Get the solar power and wind output of the given stellar object sprite.
-double GameData::SolarPower(const Sprite *sprite)
-{
-	auto it = objects.solarPower.find(sprite);
-	return (it == objects.solarPower.end() ? 0. : it->second);
-}
-
-
-
-double GameData::SolarWind(const Sprite *sprite)
-{
-	auto it = objects.solarWind.find(sprite);
-	return (it == objects.solarWind.end() ? 0. : it->second);
-}
-
-
-
-// Get the map icon of the given stellar object sprite.
-const Sprite *GameData::StarIcon(const Sprite *sprite)
-{
-	const auto it = objects.starIcons.find(sprite);
-	return (it == objects.starIcons.end() ? nullptr : it->second);
+	static const StellarObjectSpriteData EMPTY;
+	auto it = objects.objectSpriteData.find(sprite);
+	return (it == objects.objectSpriteData.end() ? EMPTY : it->second);
 }
 
 
@@ -938,21 +927,21 @@ void GameData::LoadSources(TaskQueue &queue)
 
 	vector<filesystem::path> globalPlugins = Files::ListDirectories(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
-		if(Plugins::IsPlugin(path))
+		if(PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 	// Load unzipped plugins first to give them precedence, then load the zipped plugins.
 	globalPlugins = Files::List(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
-		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+		if(path.extension() == ".zip" && PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 
 	vector<filesystem::path> localPlugins = Files::ListDirectories(Files::UserPlugins());
 	for(const auto &path : localPlugins)
-		if(Plugins::IsPlugin(path))
+		if(PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 	localPlugins = Files::List(Files::UserPlugins());
 	for(const auto &path : localPlugins)
-		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+		if(path.extension() == ".zip" && PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 }
 

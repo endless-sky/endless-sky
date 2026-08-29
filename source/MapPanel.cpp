@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CargoHold.h"
 #include "DialogPanel.h"
 #include "text/DisplayText.h"
+#include "Fleet.h"
 #include "shader/FogShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -189,7 +190,6 @@ namespace {
 					raidFleet.GetFleet()->Strength();
 		return danger;
 	}
-
 }
 
 const unsigned MapPanel::MAX_MISSION_POINTERS_DRAWN = 12;
@@ -1395,7 +1395,7 @@ void MapPanel::DrawTravelPlan()
 				continue;
 			}
 
-			fuel[it.get()] = it->Fuel() * it->Attributes().Get("fuel capacity");
+			fuel[it.get()] = it->FuelLevel();
 			hasEscort |= (it.get() != flagship);
 		}
 	stranded |= !hasEscort;
@@ -1460,7 +1460,7 @@ void MapPanel::DrawTravelPlan()
 void MapPanel::DrawSelectedSystem()
 {
 	const Sprite *sprite = SpriteSet::Get("ui/selected system");
-	SpriteShader::Draw(sprite, Point(0. + selectedSystemOffset, Screen::Top() + .5f * sprite->Height()));
+	SpriteShader::Draw(sprite, Point(0., Screen::Top() + .5f * sprite->Height()));
 
 	string text;
 	if(!player.KnowsName(*selectedSystem, isSimplified))
@@ -1482,13 +1482,9 @@ void MapPanel::DrawSelectedSystem()
 		text += " (" + to_string(jumps) + " jumps away)";
 
 	const Font &font = FontSet::Get(14);
-	Point pos(-175. + selectedSystemOffset, Screen::Top() + .5 * (30. - font.Height()));
+	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
 	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
 		pos, *GameData::Colors().Get("bright"));
-
-	// Reset the position of this UI element. If something is in the way, it will be
-	// moved back before it's drawn the next frame.
-	selectedSystemOffset = 0;
 }
 
 

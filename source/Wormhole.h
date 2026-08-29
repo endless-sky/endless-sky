@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Color.h"
 #include "ExclusiveItem.h"
 
 #include <string>
 #include <unordered_map>
 
+class Color;
 class DataNode;
 class Planet;
 class System;
@@ -30,8 +30,6 @@ class System;
 // Class representing a wormhole in a planet.
 class Wormhole {
 public:
-	// Define the constructor to set "linkColor" to the desired default color.
-	Wormhole();
 	// Load a wormhole's description from a file.
 	void Load(const DataNode &node);
 	// Load a wormhole from a given planet.
