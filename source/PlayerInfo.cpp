@@ -2140,7 +2140,7 @@ void PlayerInfo::AddLogEntry(const BookEntry &logbookEntry)
 {
 	BookEntry &dateEntry = logbook[date];
 	dateEntry.Add(logbookEntry);
-	// If this entry hasn't already marked a system, mark it with the system it was written in.
+	// If this entry doesn't already have a source system, give it one.
 	if(!dateEntry.SourceSystem())
 		dateEntry.SetSourceSystem(system);
 }

@@ -264,8 +264,8 @@ void LogbookPanel::CreateSections()
 	{
 		Section &section = sections[category];
 		Page &page = section.insert({category, Page(PageType::SPECIAL)}).first->second;
-		for(const auto &[heading, body] : entries)
-			page.entries.emplace_back(heading, body);
+		for(const auto &[heading, entry] : entries)
+			page.entries.emplace_back(heading, entry);
 	}
 	// For the rest of the logbook, the category is the year, the subcategory is the month.
 	for(const auto &[date, entry] : player.Logbook())
@@ -490,6 +490,11 @@ vector<pair<string, string>> LogbookPanel::AvailableSelections(bool visibleOnly)
 			selections.emplace_back(name, name);
 		else if(!visibleOnly || selection.first == name)
 		{
+			// Add a dummy selection to denote the start of a new section.
+			// When using arrow keys to navigate pages, this signifies that
+			// the selection should jump to the first page in an expandable
+			// section, instead of falling on the section header, which
+			// has no contents.
 			selections.emplace_back(make_pair("", ""));
 			for(const auto &pageName : section | views::keys)
 				selections.emplace_back(name, pageName);

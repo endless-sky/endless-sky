@@ -52,10 +52,10 @@ SCENARIO( "Creating an OrderedMap" , "[OrderedMap][Creation]" ) {
 			}
 		}
 
-		WHEN( "an object is added" ) {
-			const auto beforeSize = map.size();
+		WHEN( "an object is added with operator[]" ) {
+			auto beforeSize = map.size();
 
-			const auto obj = Object(1);
+			auto obj = Object(1);
 			map["first"] = obj;
 
 			THEN( "the map size increases by 1" ) {
@@ -68,9 +68,48 @@ SCENARIO( "Creating an OrderedMap" , "[OrderedMap][Creation]" ) {
 			THEN( "the map does not contain a different key" ) {
 				CHECK_FALSE( map.contains("second") );
 			}
+			THEN( "using operator[] on the same key overwrites the previous value" )
+				auto size = map.size();
+				auto replaceObj = Object(2);
+				map["first"] = replaceObj;
+				CHECK( size == map.size() );
 
-			AND_WHEN( "a second object is added" ) {
-				map.emplace_back("second", 2);
+				auto it = map.find("first");
+				CHECK( it != map.end() );
+				CHECK( it->first == "first" );
+				CHECK( it->second == replaceObj );
+			}
+			THEN( "using emplace_back on the same key does not overwrite the previous value" ) {
+				auto size = map.size();
+				auto emplaceResult = map.emplace_back("first", 2);
+				CHECK( size == map.size() );
+
+				auto it = map.find("first");
+				CHECK( it != map.end() );
+				CHECK( it->first == "first" );
+				CHECK_FALSE( it->second == Object(2) );
+				CHECK( it->second == obj );
+				CHECK( it->second == emplaceResult );
+			}
+			THEN( "using insert on the same key does not overwrite the previous value" ) {
+				auto size = map.size();
+				auto insertResult = map.insert(std::make_pair("first", Object(2)));
+				auto it = map.find("first");
+				CHECK( size == map.size() );
+
+				CHECK( it != map.end() );
+				CHECK( it->first == "first" );
+				CHECK_FALSE( it->second == Object(2) );
+				CHECK( it->second == obj );
+				CHECK( insertResult.first == it );
+				CHECK( insertResult.second == false );
+			}
+
+			AND_WHEN( "a second object is added with emplace_back" ) {
+				auto emplaceResult = map.emplace_back("second", 2);
+				THEN( "emplace returns the constructed object" ) {
+					CHECK( emplaceResult == Object(2) );
+				}
 				THEN( "the map increases in size" ) {
 					CHECK_FALSE( map.empty() );
 					CHECK( map.size() == 2 + beforeSize );
@@ -108,8 +147,12 @@ SCENARIO( "Creating an OrderedMap" , "[OrderedMap][Creation]" ) {
 					CHECK( it->second.GetValue() == 2 );
 				}
 
-				AND_WHEN( "a third object is added" ) {
-					map.insert(std::make_pair("third", Object(3)));
+				AND_WHEN( "a third object is added with insert" ) {
+					auto insertResult = map.insert(std::make_pair("third", Object(3)));
+					THEN( "insert returns a pair of iterator and boolean reporting the insert results" ) {
+						CHECK( insertResult.first == map.find("third") );
+						CHECK( insertResult.second == true );
+					}
 					THEN( "the map is in insertion order" ) {
 						std::vector<std::pair<std::string, Object>> comparisonVector = {
 							{"first", Object(1)},
@@ -142,11 +185,12 @@ SCENARIO( "Creating an OrderedMap" , "[OrderedMap][Creation]" ) {
 					}
 				}
 
+				auto beforeErase = map.size();
 				AND_WHEN( "an element is erased from the map by iterator" ) {
 					auto it = map.find("second");
 					it = map.erase(it);
 					THEN( "the map size is updated and an iterator is returned to the next object" ) {
-						CHECK( map.size() == 1 + beforeSize );
+						CHECK( map.size() == beforeErase - 1);
 						CHECK( it == map.end() );
 					}
 				}
@@ -165,13 +209,13 @@ SCENARIO( "Creating an OrderedMap" , "[OrderedMap][Creation]" ) {
 					std::size_t val = map.erase("first");
 					THEN( "the map size is updated when removing a value that is in the map" ) {
 						CHECK( val == 1 );
-						CHECK( map.size() == 1 + beforeSize );
+						CHECK( map.size() == beforeErase - 1 );
 					}
 
 					val = map.erase("fourth");
 					THEN( "the map size is not updated when removing a value that isn't in the map" ) {
 						CHECK( val == 0 );
-						CHECK( map.size() == 1 + beforeSize );
+						CHECK( map.size() == beforeErase - 1 );
 					}
 				}
 			}

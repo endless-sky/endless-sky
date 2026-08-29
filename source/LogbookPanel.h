@@ -28,6 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // A user interface panel that displays the entries in the player's logbook.
+// Entries can be associated with systems, so the right side of the panel
+// is a map with limited functionality.
 class LogbookPanel : public MapPanel {
 public:
 	explicit LogbookPanel(PlayerInfo &player);

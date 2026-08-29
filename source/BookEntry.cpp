@@ -40,7 +40,7 @@ bool BookEntry::IsEmpty() const
 void BookEntry::Load(const DataNode &node, optional<int> startAt)
 {
 	if(startAt.has_value() && startAt < node.Size())
-		LoadSingle(node, *startAt);
+		LoadContents(node, *startAt);
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -61,7 +61,7 @@ void BookEntry::Load(const DataNode &node, optional<int> startAt)
 				circleSystems.insert(GameData::Systems().Get(grand.Token(0)));
 		}
 		else
-			LoadSingle(child);
+			LoadContents(child);
 	}
 }
 
@@ -206,7 +206,7 @@ bool BookEntry::HasSystems() const
 
 
 
-void BookEntry::LoadSingle(const DataNode &node, int startAt)
+void BookEntry::LoadContents(const DataNode &node, int startAt)
 {
 	if(node.Size() - startAt == 2 && node.Token(startAt) == "scene")
 	{
