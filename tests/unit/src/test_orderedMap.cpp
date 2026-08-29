@@ -68,7 +68,7 @@ SCENARIO( "Creating an OrderedMap" , "[OrderedMap][Creation]" ) {
 			THEN( "the map does not contain a different key" ) {
 				CHECK_FALSE( map.contains("second") );
 			}
-			THEN( "using operator[] on the same key overwrites the previous value" )
+			THEN( "using operator[] on the same key overwrites the previous value" ) {
 				auto size = map.size();
 				auto replaceObj = Object(2);
 				map["first"] = replaceObj;
