@@ -608,13 +608,6 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 						+ Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
 						+ Format::MassString(engineSpace) + " free.");
 
-				if(selectedOutfit->Category() == "Ammunition")
-					errors.emplace_back(!playerShip->OutfitCount(selectedOutfit) ?
-						"This outfit is ammunition for a weapon. "
-						"You cannot install it without first installing the appropriate weapon."
-						: "You already have the maximum amount of ammunition for this weapon. "
-						"If you want to install more ammunition, you must first install another of these weapons.");
-
 				int mountsNeeded = -selectedOutfit->Get("turret mounts");
 				int mountsFree = playerShip->Attributes().Get("turret mounts");
 				if(mountsNeeded > mountsFree)
@@ -629,6 +622,24 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 				if(selectedOutfit->Get("installable") < 0.)
 					errors.emplace_back("This item is not an outfit that can be installed in a ship.");
+
+				// Ammo capacities are ad-hoc attributes (e.g. "sidewinder capacity"), so
+				// they can't be checked generically below. Only show the "no weapon to feed
+				// this ammunition" message when the outfit doesn't have any other known
+				// negative attribute that would explain why it can't be installed.
+				if(errors.empty()
+					&& selectedOutfit->Category() == "Ammunition"
+					&& selectedOutfit->Get("outfit space") >= 0.
+					&& selectedOutfit->Get("weapon capacity") >= 0.
+					&& selectedOutfit->Get("engine capacity") >= 0.
+					&& selectedOutfit->Get("cargo space") >= 0.
+					&& selectedOutfit->Get("gun ports") >= 0.
+					&& selectedOutfit->Get("turret mounts") >= 0.)
+					errors.emplace_back(!playerShip->OutfitCount(selectedOutfit) ?
+						"This outfit is ammunition for a weapon. "
+						"You cannot install it without first installing the appropriate weapon."
+						: "You already have the maximum amount of ammunition for this weapon. "
+						"If you want to install more ammunition, you must first install another of these weapons.");
 
 				// Handle other attributes more generically, if none of the above are the problem.
 				if(errors.empty())
