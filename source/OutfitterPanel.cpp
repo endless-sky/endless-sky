@@ -1029,6 +1029,15 @@ void OutfitterPanel::DrawKey()
 
 
 
+optional<Rectangle> OutfitterPanel::KeySize() const
+{
+	const Sprite *back = SpriteSet::Get("ui/outfitter key");
+	return Rectangle::FromCorner(Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()),
+		Point(back->Width(), back->Height()));
+}
+
+
+
 void OutfitterPanel::ToggleForSale()
 {
 	showForSale = !showForSale;

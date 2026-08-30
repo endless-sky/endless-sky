@@ -1253,14 +1253,19 @@ void ShopPanel::SideSelect(Ship *ship, int clicks)
 // If selected item is offscreen, scroll just enough to put it on.
 void ShopPanel::MainAutoScroll(const vector<Zone>::const_iterator &selected)
 {
-	const int TILE_SIZE = TileSize();
-	const int topY = selected->Center().Y() - TILE_SIZE / 2;
-	const int offTop = topY + Screen::Bottom();
+	int TILE_SIZE = TileSize();
+	int topY = selected->Center().Y() - TILE_SIZE / 2;
+	int offTop = topY + Screen::Bottom();
 	if(offTop < 0)
 		mainScroll += offTop;
 	else
 	{
-		const int offBottom = topY + TILE_SIZE - Screen::Bottom();
+		int offBottom = topY + TILE_SIZE - Screen::Bottom();
+		// If the selected item is far enough to the left to overlap with the key,
+		// scroll it an extra tile upward.
+		optional<Rectangle> key = KeySize();
+		if(key.has_value() && selected->Left() < key->Right())
+			offBottom += TILE_SIZE;
 		if(offBottom > 0)
 			mainScroll += offBottom;
 	}
