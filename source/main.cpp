@@ -36,10 +36,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MainPanel.h"
 #include "MenuPanel.h"
 #include "Panel.h"
+#include "PilotProfile.h"
 #include "PlayerInfo.h"
-#include "Plugins.h"
+#include "PluginManager.h"
 #include "Preferences.h"
 #include "PrintData.h"
+#include "Random.h"
 #include "Screen.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
@@ -108,6 +110,7 @@ int main(int argc, char *argv[])
 	bool printTests = false;
 	bool printData = false;
 	bool noTestMute = false;
+	uint64_t nWorkerThreads = 0;
 	string testToRunName;
 
 	// Whether the game has encountered errors while loading.
@@ -146,7 +149,14 @@ int main(int argc, char *argv[])
 			printTests = true;
 		else if(arg == "--nomute")
 			noTestMute = true;
+		else if(arg == "--rngseed" && *++it)
+			Random::SetFixedSeed(std::stoull(*it));
+		else if(arg == "--tq-threads" && *++it)
+			nWorkerThreads = std::stoull(*it);
 	}
+
+	if(nWorkerThreads)
+		TaskQueue::SetWorkerThreadCount(nWorkerThreads);
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
@@ -157,9 +167,9 @@ int main(int argc, char *argv[])
 	Logger::Session logSession{isConsoleOnly || isTesting};
 
 	try {
-
-		// Load plugin preferences before game data if any.
-		Plugins::LoadSettings();
+		// Load plugin settings and preferences before game data.
+		Preferences::Load();
+		PluginManager::LoadSettings();
 
 		TaskQueue queue;
 
@@ -213,6 +223,7 @@ int main(int argc, char *argv[])
 
 			// Reference check the universe, as known to the player. If no player found,
 			// then check the default state of the universe.
+			PilotProfile::LoadProfiles();
 			if(!player.LoadRecent())
 				GameData::CheckReferences();
 			cout << "Parse completed with " << (hasErrors ? "at least one" : "no") << " error(s)." << endl;
@@ -221,8 +232,6 @@ int main(int argc, char *argv[])
 			return hasErrors;
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
-
-		Preferences::Load();
 
 		// Load global conditions:
 		DataFile globalConditions(Files::Config() / "global conditions.txt");
@@ -272,7 +281,7 @@ int main(int argc, char *argv[])
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height(), true);
 	Preferences::Save();
-	Plugins::Save();
+	PluginManager::Save();
 
 	Audio::Quit();
 	GameWindow::Quit();
@@ -356,6 +365,11 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			{
 				menuPanels.AdjustViewport();
 				gamePanels.AdjustViewport();
+			}
+			else if(event.type == CustomEvents::GetAdjustText())
+			{
+				menuPanels.AdjustTextDisplay();
+				gamePanels.AdjustTextDisplay();
 			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
@@ -622,6 +636,10 @@ void PrintHelp()
 	cerr << "    --tests: print table of available tests, then exit." << endl;
 	cerr << "    --test <name>: run given test from resources directory." << endl;
 	cerr << "    --nomute: don't mute the game while running tests." << endl;
+	cerr << "    --rng-seed <seed>: every time the pseudo-random number generator is seeded,"
+		" it will be given this value." << endl;
+	cerr << "    --tq-threads <number>: sets the number of threads used for the internal queue of tasks."
+		" Not specifying this will use a default depending on your system. Has to be at least 1." << endl;
 	PrintData::Help();
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
@@ -667,6 +685,8 @@ Conversation LoadConversation(const PlayerInfo &player)
 		{"<fare>", "[N passengers]"},
 		{"<first>", "[First]"},
 		{"<last>", "[Last]"},
+		{"<original first>", "[Original First]"},
+		{"<original last>", "[Original Last]"},
 		{"<origin>", "[Origin Planet]"},
 		{"<passengers>", "[your passengers]"},
 		{"<planet>", "[Planet]"},

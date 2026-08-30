@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -58,16 +59,25 @@ MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere)
 
 
 
-const Sprite *MapOutfitterPanel::SelectedSprite() const
+void MapOutfitterPanel::LoadCatalogThumbnails() const
 {
-	return selected ? selected->Thumbnail() : nullptr;
+	for(const auto &category : catalog)
+		for(const string &entry : category.second)
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), GameData::Outfits().Get(entry)->Thumbnail());
 }
 
 
 
-const Sprite *MapOutfitterPanel::CompareSprite() const
+const Drawable &MapOutfitterPanel::SelectedSprite() const
 {
-	return compare ? compare->Thumbnail() : nullptr;
+	return selected->Thumbnail();
+}
+
+
+
+const Drawable &MapOutfitterPanel::CompareSprite() const
+{
+	return compare->Thumbnail();
 }
 
 

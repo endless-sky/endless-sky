@@ -28,4 +28,9 @@ public:
 	static Uint32 GetResize();
 	// Send the custom resize event.
 	static void SendResize();
+
+	// Get the registered ID of the custom adjust text event.
+	static Uint32 GetAdjustText();
+	// Send the custom adjust text event.
+	static void SendAdjustText();
 };
