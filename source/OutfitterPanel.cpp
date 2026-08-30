@@ -369,8 +369,6 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 	// Prevent coding up bad combinations.
 	if(fromLocation == toLocation)
 		throw runtime_error("unreachable; to and from are the same");
-	if(fromLocation == OutfitLocation::Shop && toLocation == OutfitLocation::Storage)
-		throw runtime_error("unreachable; unsupported to/from combination");
 
 	// Handle special cases such as maps and licenses.
 	int mapSize = selectedOutfit->Get("map");
@@ -780,14 +778,19 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 				}
 			}
 		}
-		else if(toLocation == OutfitLocation::Cargo)
+		else if(toLocation == OutfitLocation::Cargo || toLocation == OutfitLocation::Storage)
 		{
+			bool toCargo = toLocation == OutfitLocation::Cargo;
+			CargoHold &storeIn = toCargo ? player.Cargo() : player.Storage();
 			if(!outfitter.Has(selectedOutfit))
 				howManyPer = min(howManyPer, player.Stock(selectedOutfit));
-			// Buy up to <modifier> of the selected outfit and place them in fleet cargo.
-			double mass = selectedOutfit->Mass();
-			if(mass)
-				howManyPer = min(howManyPer, static_cast<int>(player.Cargo().FreePrecise() / mass));
+			if(toCargo)
+			{
+				// Buy up to <modifier> of the selected outfit and place them in fleet cargo.
+				double mass = selectedOutfit->Mass();
+				if(mass)
+					howManyPer = min(howManyPer, static_cast<int>(storeIn.FreePrecise() / mass));
+			}
 
 			// How much will it cost to buy all that we can fit?
 			int64_t price = player.StockDepreciation().Value(selectedOutfit, day, howManyPer);
@@ -808,11 +811,10 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 				player.Accounts().AddCredits(-price);
 				player.AddStock(selectedOutfit, -howManyPer);
 
-				// Put them into fleet cargo.
-				player.Cargo().Add(selectedOutfit, howManyPer);
+				// Put them into fleet cargo or planetary storage.
+				storeIn.Add(selectedOutfit, howManyPer);
 			}
 		}
-		// Note: Buying into storage not implemented. Why waste your money?
 	}
 	else if(fromLocation == OutfitLocation::Ship)
 	{
@@ -961,9 +963,13 @@ bool OutfitterPanel::ButtonActive(char key, bool shipRelatedOnly)
 		return (!shipRelatedOnly && (CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Shop) ||
 			CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Shop))) ||
 			CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Shop);
-	if(key == 'u' || key == 'r')
+	if(key == 'u')
 		return CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage) ||
 			(!shipRelatedOnly && CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage));
+	if(key == 'r')
+		return CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage) ||
+			(!shipRelatedOnly && (CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage)
+			|| CanMoveOutfit(OutfitLocation::Shop, OutfitLocation::Storage)));
 	return false;
 }
 
@@ -1401,9 +1407,10 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 	}
 	else if(key == 'r')
 	{
-		// Move <modifier> of the selected outfit to storage from either cargo or else each of the selected ships.
-		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))
-			result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage, "store");
+		// Move <modifier> of the selected outfit to storage from either cargo, the selected ships, or from the shop.
+		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage)
+				&& !MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage))
+			result = MoveOutfit(OutfitLocation::Shop, OutfitLocation::Storage, "store");
 	}
 	else if(key == 'c')
 	{
