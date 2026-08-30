@@ -358,6 +358,8 @@ void Ship::LiveEffect::Save(DataWriter &out) const
 
 Ship::Decor::Decor(const DataNode &node)
 {
+	if(node.Size() >= 3)
+		position = Point(node.Value(1), node.Value(2));
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -413,13 +415,11 @@ Ship::Decor::Decor(const DataNode &node)
 
 void Ship::Decor::Save(DataWriter &out) const
 {
-	out.Write("decor");
+	out.Write("static decor", position.X(), position.Y());
 	out.BeginChild();
 	{
 		if(sprite.HasSprite())
 			sprite.SaveSprite(out);
-		if(position)
-			out.Write("position", position.X(), position.Y());
 		if(side == PlacementSide::OVER)
 			out.Write("over");
 		else if(side == PlacementSide::UNDER)
@@ -775,7 +775,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			}
 			liveEffects.emplace_back(child);
 		}
-		else if(key == "decor" && child.HasChildren())
+		else if(key == "static decor" && child.HasChildren())
 		{
 			if(!hasDecor)
 			{
