@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DamageDealt.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "shader/DrawList.h"
 #include "Effect.h"
 #include "Flotsam.h"
 #include "text/Format.h"
@@ -155,6 +156,57 @@ namespace {
 	double CalculateJamChance(double scrambling)
 	{
 		return scrambling > .1 ? 1. - pow(2., -1. * (scrambling / 70.)) : 0.;
+	}
+
+	Point FlareCurve(double x)
+	{
+		double x2 = x * x;
+		double x3 = x2 * x;
+		return Point(x2, x3);
+	}
+
+	Point ScaledFlareCurve(const Ship &ship, Ship::ThrustKind kind)
+	{
+		// When a ship lands, its thrusters should scale with it.
+		return FlareCurve(ship.ThrustHeldFraction(kind)) * ship.Zoom();
+	}
+
+	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
+		const vector<pair<Body, int>> &flareSprites, uint8_t side, bool reverse)
+	{
+		Point thrustScale = ScaledFlareCurve(ship, reverse ? Ship::ThrustKind::REVERSE : Ship::ThrustKind::FORWARD);
+		Point leftTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::LEFT);
+		Point rightTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::RIGHT);
+
+		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
+			* -ship.Commands().Turn();
+
+		for(const Ship::EnginePoint &point : enginePoints)
+		{
+			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
+			Angle flareAngle = ship.Facing() + point.facing + gimbal;
+			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
+			auto DrawFlares = [&draw, &pos, &ship, &flareAngle, &point](const pair<Body, int> &it, const Point &scale)
+			{
+				// If multiple engines with the same flare are installed, draw up to
+				// three copies of the flare sprite.
+				for(int i = 0; i < it.second && i < 3; ++i)
+				{
+					Body sprite(it.first, pos, ship.Velocity(), flareAngle, point.zoom, scale);
+					draw.Add(sprite, ship.Cloaking());
+				}
+			};
+			for(const auto &it : flareSprites)
+				if(point.side == side)
+				{
+					if(point.steering == Ship::EnginePoint::NONE)
+						DrawFlares(it, thrustScale);
+					else if(point.steering == Ship::EnginePoint::LEFT && leftTurnScale)
+						DrawFlares(it, leftTurnScale);
+					else if(point.steering == Ship::EnginePoint::RIGHT && rightTurnScale)
+						DrawFlares(it, rightTurnScale);
+				}
+		}
 	}
 }
 
@@ -2043,6 +2095,182 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// Start fading the damage overlay.
 	if(damageOverlayTimer)
 		--damageOverlayTimer;
+}
+
+
+
+void Ship::Draw(DrawList &draw, vector<Visual> &visuals) const
+{
+	Draw(draw, visuals, Position(), Facing(), Zoom());
+}
+
+
+
+void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visuals, const Point &pos,
+	const Angle &facing, float zoom) const
+{
+	// An empty visuals optional means this is being called from a UI panel and not Engine.
+	bool isUi = !visuals.has_value();
+
+	Ship::PlacementActivity state = Ship::PlacementActivity::WHEN_ACTIVE;
+	if(IsDestroyed())
+		state = Ship::PlacementActivity::WHEN_EXPLODING;
+	else if(IsDisabled())
+		state = Ship::PlacementActivity::WHEN_DISABLED;
+
+	bool hasFighters = PositionFighters();
+	double cloak = Cloaking();
+	bool drawCloaked = !isUi && cloak && IsYours();
+	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
+	const Swizzle *cloakSwizzle = GameData::Swizzles().Get(fancyCloak ? "cloak fancy base" : "cloak fast");
+
+	auto drawFighter = [&](const Ship::Bay &bay) -> void
+	{
+		if(bay.ship)
+			bay.ship->Draw(draw, visuals, pos + zoom * facing.Rotate(bay.point), facing + bay.facing, zoom);
+	};
+	auto drawObject = [&draw, cloak, drawCloaked, fancyCloak, cloakSwizzle](const Body &body) -> void
+	{
+		// Draw cloaked/cloaking sprites swizzled red or transparent (depending on whether we are using fancy
+		// cloaking effects), and overlay this solid sprite with an increasingly transparent "regular" sprite.
+		if(drawCloaked)
+			draw.AddSwizzled(body, cloakSwizzle, fancyCloak ? 0.5 : 0.25);
+		draw.Add(body, cloak);
+	};
+	auto drawEffects = [&, this](Ship::PlacementSide side) -> void
+	{
+		if(isUi)
+			return;
+		for(const Ship::LiveEffect &effect : LiveEffects())
+		{
+			if(effect.side != side || !(effect.activity & state) || effect.tick)
+				continue;
+
+			for(int i = 0; i < effect.amount; ++i)
+				visuals->get().emplace_back(*effect.effect,
+					pos + zoom * facing.Rotate(effect.position),
+					isUi ? Point(0., 0.) : Velocity(),
+					facing + effect.angle,
+					Point(),
+					1.,
+					zoom);
+		}
+	};
+	auto drawSparks = [&, this](Ship::PlacementSide side) -> void
+	{
+		if(isUi)
+			return;
+		for(const Ship::LiveSpark &spark : LiveSparks())
+		{
+			if(spark.side != side || !(spark.activity & state) || spark.tick)
+				continue;
+			CreateSparks(*visuals, spark.effect, spark.amount);
+		}
+	};
+	auto drawEngineFlares = [&, this](uint8_t where)
+	{
+		if(isUi)
+			return;
+		if(ThrustHeldFrames(Ship::ThrustKind::FORWARD) && !EnginePoints().empty())
+			DrawFlareSprites(*this, draw, EnginePoints(),
+				Attributes().FlareSprites(), where, false);
+		else if(ThrustHeldFrames(Ship::ThrustKind::REVERSE) && !ReverseEnginePoints().empty())
+			DrawFlareSprites(*this, draw, ReverseEnginePoints(),
+				Attributes().ReverseFlareSprites(), where, true);
+		if((ThrustHeldFrames(Ship::ThrustKind::LEFT) || ThrustHeldFrames(Ship::ThrustKind::RIGHT))
+			&& !SteeringEnginePoints().empty())
+			DrawFlareSprites(*this, draw, SteeringEnginePoints(),
+				Attributes().SteeringFlareSprites(), where, false);
+	};
+	auto drawHardpoint = [&, this](const Hardpoint &hardpoint) -> void
+	{
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(!weapon)
+			return;
+		const Body &sprite = weapon->HardpointSprite();
+		if(!sprite.HasSprite())
+			return;
+
+		Body body(
+			sprite,
+			pos + zoom * facing.Rotate(hardpoint.GetPoint()),
+			isUi ? Point(0., 0.) : Velocity(),
+			facing + hardpoint.GetAngle(),
+			zoom);
+		if(body.InheritsParentSwizzle())
+			body.SetSwizzle(GetSwizzle());
+		drawObject(body);
+	};
+	auto drawDecor = [&, this](const Ship::Decor &decor) -> void
+	{
+		const Body &sprite = decor.sprite;
+		if(!sprite.HasSprite())
+			return;
+
+		Body body(
+			sprite,
+			pos + zoom * facing.Rotate(decor.position),
+			isUi ? Point(0., 0.) : Velocity(),
+			facing + decor.angle,
+			zoom);
+		if(body.InheritsParentSwizzle())
+			body.SetSwizzle(GetSwizzle());
+		drawObject(body);
+	};
+	auto drawLeaks = [&, this]() -> void
+	{
+		if(isUi)
+			return;
+		for(const Ship::Leak &leak : ActiveLeaks())
+		{
+			// Leaks always "flicker" every other frame.
+			if(!Random::Int(2))
+				return;
+			visuals->get().emplace_back(*leak.effect,
+				pos + zoom * facing.Rotate(leak.location),
+				isUi ? Point(0., 0.) : Velocity(),
+				facing + leak.angle,
+				Point(),
+				1.,
+				zoom);
+		}
+	};
+
+	if(hasFighters)
+		for(const Ship::Bay &bay : Bays())
+			if(bay.side == Ship::Bay::UNDER)
+				drawFighter(bay);
+
+	drawEngineFlares(Ship::EnginePoint::UNDER);
+	drawSparks(Ship::PlacementSide::UNDER);
+	drawEffects(Ship::PlacementSide::UNDER);
+
+	for(const Hardpoint &hardpoint : Weapons())
+		if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
+			drawHardpoint(hardpoint);
+	for(const Ship::Decor &decor : Decorations())
+		if(decor.side == Ship::PlacementSide::UNDER)
+			drawDecor(decor);
+	if(isUi)
+		drawObject(Body(*this, pos, Point(), facing, zoom));
+	else
+		drawObject(*this);
+	drawLeaks();
+	for(const Ship::Decor &decor : Decorations())
+		if(decor.side == Ship::PlacementSide::OVER)
+			drawDecor(decor);
+	for(const Hardpoint &hardpoint : Weapons())
+		if(hardpoint.GetSide() == Hardpoint::Side::OVER)
+			drawHardpoint(hardpoint);
+
+	drawEffects(Ship::PlacementSide::OVER);
+	drawSparks(Ship::PlacementSide::OVER);
+	drawEngineFlares(Ship::EnginePoint::OVER);
+
+	if(hasFighters)
+		for(const Ship::Bay &bay : Bays())
+			if(bay.side == Ship::Bay::OVER && bay.ship)
+				drawFighter(bay);
 }
 
 

@@ -47,6 +47,7 @@ class ConditionsStore;
 class DamageDealt;
 class DataNode;
 class DataWriter;
+class DrawList;
 class Effect;
 class Flotsam;
 class FormationPattern;
@@ -334,6 +335,14 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	// Each ship is drawn as an entire stack of sprites, including hardpoint sprites,
+	// engine flares, and any fighters it is carrying externally.
+	// This first function uses the ship's position in space. The second uses the given positioning.
+	// Provide a nullopt visuals optional to the second function for drawing a ship in the UI.
+	void Draw(DrawList &draw, std::vector<Visual> &visuals) const;
+	// TODO: std::reference_wrapper<T> can be replaced with T& in C++26.
+	void Draw(DrawList &draw, std::optional<std::reference_wrapper<std::vector<Visual>>> visuals, const Point &pos,
+		const Angle &facing, float zoom) const;
 
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);

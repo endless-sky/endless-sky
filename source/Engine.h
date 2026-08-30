@@ -204,8 +204,6 @@ private:
 
 	void FillRadar();
 
-	void DrawShipSprites(const Ship &ship);
-
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
 	void CreateStatusOverlays();
