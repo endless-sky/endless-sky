@@ -140,10 +140,10 @@ public:
 
 	enum PlacementActivity {
 		// The NONE value should be replaced with a default value if it wasn't replaced during loading.
-		NONE = 0,
-		WHEN_ACTIVE = (1 << 0),
-		WHEN_DISABLED = (1 << 1),
-		WHEN_EXPLODING = (1 << 2),
+		NONE = 0u,
+		WHEN_ACTIVE = (1u << 0u),
+		WHEN_DISABLED = (1u << 1u),
+		WHEN_EXPLODING = (1u << 2u),
 		ALWAYS_ON = WHEN_ACTIVE | WHEN_DISABLED | WHEN_EXPLODING,
 	};
 
@@ -161,12 +161,12 @@ public:
 		explicit Decor(const DataNode &node);
 		void Save(DataWriter &out) const;
 
-		Body sprite;
+		Drawable sprite;
 		Point position;
 		Angle angle;
 		DecorBehavior behavior = DecorBehavior::STATIC;
 		PlacementSide side = PlacementSide::OVER;
-		int activity = PlacementActivity::NONE;
+		unsigned activity = PlacementActivity::NONE;
 		double rotationSpeed = 0.;
 		bool synced = false;
 	};

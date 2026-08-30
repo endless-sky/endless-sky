@@ -2187,7 +2187,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 		const Weapon *weapon = hardpoint.GetWeapon();
 		if(!weapon)
 			return;
-		const Body &sprite = weapon->HardpointSprite();
+		const Drawable &sprite = weapon->HardpointSprite();
 		if(!sprite.HasSprite())
 			return;
 
@@ -2203,7 +2203,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	};
 	auto drawDecor = [&, this](const Ship::Decor &decor) -> void
 	{
-		const Body &sprite = decor.sprite;
+		const Drawable &sprite = decor.sprite;
 		if(!sprite.HasSprite())
 			return;
 
