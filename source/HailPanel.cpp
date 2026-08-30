@@ -247,56 +247,7 @@ void HailPanel::Draw()
 	// If this is a ship, copy its swizzle, animation settings, etc.
 	// Also draw its fighters and weapon hardpoints.
 	if(ship)
-	{
-		bool hasFighters = ship->PositionFighters();
-		auto addHardpoint = [this, &draw, &center, zoom](const Hardpoint &hardpoint) -> void
-		{
-			const Weapon *weapon = hardpoint.GetWeapon();
-			if(!weapon)
-				return;
-			const Body &sprite = weapon->HardpointSprite();
-			if(!sprite.HasSprite())
-				return;
-			Body body(
-				sprite,
-				center + zoom * facing.Rotate(hardpoint.GetPoint()),
-				Point(),
-				facing + hardpoint.GetAngle(),
-				zoom);
-			if(body.InheritsParentSwizzle())
-				body.SetSwizzle(ship->GetSwizzle());
-			draw.Add(body);
-		};
-		auto addFighter = [this, &draw, &center, zoom](const Ship::Bay &bay) -> void
-		{
-			if(bay.ship)
-			{
-				Body body(
-					*bay.ship,
-					center + zoom * facing.Rotate(bay.point),
-					Point(),
-					facing + bay.facing,
-					zoom);
-				draw.Add(body);
-			}
-		};
-
-		if(hasFighters)
-			for(const Ship::Bay &bay : ship->Bays())
-				if(bay.side == Ship::Bay::UNDER)
-					addFighter(bay);
-		for(const Hardpoint &hardpoint : ship->Weapons())
-			if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
-				addHardpoint(hardpoint);
-		draw.Add(Body(*ship, center, Point(), facing, zoom));
-		for(const Hardpoint &hardpoint : ship->Weapons())
-			if(hardpoint.GetSide() == Hardpoint::Side::OVER)
-				addHardpoint(hardpoint);
-		if(hasFighters)
-			for(const Ship::Bay &bay : ship->Bays())
-				if(bay.side == Ship::Bay::OVER)
-					addFighter(bay);
-	}
+		ship->Draw(draw, std::nullopt, center, facing, zoom);
 	else
 		draw.Add(Body(*object, center, Point(), facing, zoom));
 

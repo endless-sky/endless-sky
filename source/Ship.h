@@ -47,6 +47,7 @@ class ConditionsStore;
 class DamageDealt;
 class DataNode;
 class DataWriter;
+class DrawList;
 class Effect;
 class Flotsam;
 class FormationPattern;
@@ -130,6 +131,44 @@ public:
 		// Any other missing resource has no special effect.
 		NO_RESOURCES,
 		CAN_FIRE,
+	};
+
+	enum class PlacementSide {
+		OVER = 0,
+		UNDER
+	};
+
+	enum PlacementActivity {
+		// The NONE value should be replaced with a default value if it wasn't replaced during loading.
+		NONE = 0u,
+		WHEN_ACTIVE = (1u << 0u),
+		WHEN_DISABLED = (1u << 1u),
+		WHEN_EXPLODING = (1u << 2u),
+		ALWAYS_ON = WHEN_ACTIVE | WHEN_DISABLED | WHEN_EXPLODING,
+	};
+
+	enum class DecorBehavior {
+		STATIC = 0,
+		ROTATING,
+		MOVING,
+		TARGETING
+	};
+
+	// Decor is a sprite that appears somewhere on a ship, similar to a weapon hardpoint,
+	// but without any functionality aside from aesthetics.
+	class Decor {
+	public:
+		explicit Decor(const DataNode &node);
+		void Save(DataWriter &out) const;
+
+		Drawable sprite;
+		Point position;
+		Angle angle;
+		DecorBehavior behavior = DecorBehavior::STATIC;
+		PlacementSide side = PlacementSide::OVER;
+		unsigned activity = PlacementActivity::NONE;
+		double rotationSpeed = 0.;
+		bool synced = false;
 	};
 
 
@@ -247,6 +286,14 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	// Each ship is drawn as an entire stack of sprites, including hardpoint sprites,
+	// engine flares, and any fighters it is carrying externally.
+	// This first function uses the ship's position in space. The second uses the given positioning.
+	// Provide a nullopt visuals optional to the second function for drawing a ship in the UI.
+	void Draw(DrawList &draw, std::vector<Visual> &visuals) const;
+	// TODO: std::reference_wrapper<T> can be replaced with T& in C++26.
+	void Draw(DrawList &draw, std::optional<std::reference_wrapper<std::vector<Visual>>> visuals, const Point &pos,
+		const Angle &facing, float zoom) const;
 
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
@@ -335,6 +382,9 @@ public:
 	const std::vector<EnginePoint> &EnginePoints() const;
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
 	const std::vector<EnginePoint> &SteeringEnginePoints() const;
+
+	std::vector<Decor> &Decorations();
+	const std::vector<Decor> &Decorations() const;
 
 	// Make a ship disabled or destroyed, or bring back a destroyed ship.
 	void Disable();
@@ -573,6 +623,57 @@ protected:
 
 
 private:
+	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
+	// when the ship is dying. Some leaks may also be for aesthetic purposes
+	// while flying.
+	class Leak {
+	public:
+		explicit Leak(const Effect *effect = nullptr) : effect(effect) {}
+
+		const Effect *effect = nullptr;
+		Point location;
+		Angle angle;
+		int openPeriod = 60;
+		int closePeriod = 60;
+		unsigned activity = PlacementActivity::NONE;
+	};
+
+	// A live spark is an effect which periodically appears over the surface of a ship.
+	class LiveSpark {
+	public:
+		explicit LiveSpark(const DataNode &node);
+		void Save(DataWriter &out) const;
+
+		const Effect *effect = nullptr;
+		int period = 1;
+		int random = 0;
+		double amount = 1;
+		PlacementSide side = PlacementSide::OVER;
+		unsigned activity = PlacementActivity::NONE;
+
+		int tick = 0;
+	};
+
+	// A live effect is an effect which periodically appears at a specific point on a ship.
+	class LiveEffect {
+	public:
+		explicit LiveEffect(const DataNode &node);
+		void Save(DataWriter &out) const;
+
+		const Effect *effect = nullptr;
+		Point position;
+		Angle angle;
+		int period = 1;
+		int random = 0;
+		int amount = 1;
+		PlacementSide side = PlacementSide::OVER;
+		unsigned activity = PlacementActivity::NONE;
+
+		int tick = 0;
+	};
+
+
+private:
 	// Various steps of Ship::Move:
 
 	// Check if this ship has been in a different system from the player for so
@@ -583,6 +684,9 @@ private:
 	// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
 	// destroyed, or 0 otherwise.
 	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void StepLeaks(std::vector<Visual> &visuals, PlacementActivity state);
+	void StepLiveEffects();
+	void StepDecorations(PlacementActivity state);
 	void DoGeneration();
 	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoCloakDecision();
@@ -729,20 +833,13 @@ private:
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
 
-	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
-	// when the ship is dying.
-	class Leak {
-	public:
-		Leak(const Effect *effect = nullptr) : effect(effect) {}
-
-		const Effect *effect = nullptr;
-		Point location;
-		Angle angle;
-		int openPeriod = 60;
-		int closePeriod = 60;
-	};
 	std::vector<Leak> leaks;
 	std::vector<Leak> activeLeaks;
+
+	bool syncedEffects = false;
+	std::vector<LiveSpark> liveSparks;
+	std::vector<LiveEffect> liveEffects;
+	std::vector<Decor> decorations;
 
 	// Explosions that happen when the ship is dying:
 	std::map<const Effect *, int> explosionEffects;
@@ -767,7 +864,7 @@ private:
 
 	// List of enemy ships targeting this one.
 	std::vector<std::weak_ptr<Ship>> targetingList;
-	double targeterStrength;
+	double targeterStrength = 0.;
 
 	bool removeBays = false;
 

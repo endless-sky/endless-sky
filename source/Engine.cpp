@@ -133,57 +133,6 @@ namespace {
 		Messages::Add({tag + message, GameData::MessageCategories().Get("normal")});
 	}
 
-	Point FlareCurve(double x)
-	{
-		double x2 = x * x;
-		double x3 = x2 * x;
-		return Point(x2, x3);
-	}
-
-	Point ScaledFlareCurve(const Ship &ship, Ship::ThrustKind kind)
-	{
-		// When a ship lands, its thrusters should scale with it.
-		return FlareCurve(ship.ThrustHeldFraction(kind)) * ship.Zoom();
-	}
-
-	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
-		const vector<pair<Body, int>> &flareSprites, uint8_t side, bool reverse)
-	{
-		Point thrustScale = ScaledFlareCurve(ship, reverse ? Ship::ThrustKind::REVERSE : Ship::ThrustKind::FORWARD);
-		Point leftTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::LEFT);
-		Point rightTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::RIGHT);
-
-		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
-			* -ship.Commands().Turn();
-
-		for(const Ship::EnginePoint &point : enginePoints)
-		{
-			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
-			Angle flareAngle = ship.Facing() + point.facing + gimbal;
-			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
-			auto DrawFlares = [&draw, &pos, &ship, &flareAngle, &point](const pair<Body, int> &it, const Point &scale)
-			{
-				// If multiple engines with the same flare are installed, draw up to
-				// three copies of the flare sprite.
-				for(int i = 0; i < it.second && i < 3; ++i)
-				{
-					Body sprite(it.first, pos, ship.Velocity(), flareAngle, point.zoom, scale);
-					draw.Add(sprite, ship.Cloaking());
-				}
-			};
-			for(const auto &it : flareSprites)
-				if(point.side == side)
-				{
-					if(point.steering == Ship::EnginePoint::NONE)
-						DrawFlares(it, thrustScale);
-					else if(point.steering == Ship::EnginePoint::LEFT && leftTurnScale)
-						DrawFlares(it, leftTurnScale);
-					else if(point.steering == Ship::EnginePoint::RIGHT && rightTurnScale)
-						DrawFlares(it, rightTurnScale);
-				}
-		}
-	}
-
 	const Color &GetTargetOutlineColor(int type)
 	{
 		if(type == Radar::PLAYER)
@@ -1725,7 +1674,7 @@ void Engine::CalculateStep()
 		{
 			if(ship.get() != flagship)
 			{
-				DrawShipSprites(*ship);
+				ship->Draw(draw[currentCalcBuffer], visuals);
 				if(timePaused)
 					continue;
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
@@ -1749,7 +1698,7 @@ void Engine::CalculateStep()
 		}
 
 	if(flagship && showFlagship)
-		DrawShipSprites(*flagship);
+		flagship->Draw(draw[currentCalcBuffer], visuals);
 	if(!timePaused && flagship && showFlagship)
 	{
 		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
@@ -2875,83 +2824,6 @@ void Engine::FillRadar()
 		radar[currentCalcBuffer].Add(isEnemy || (isBlast && !isSafe) ? Radar::SPECIAL : Radar::INACTIVE,
 			projectile.Position(), isBlast ? 1.8 : 1.);
 	}
-}
-
-
-
-// Each ship is drawn as an entire stack of sprites, including hardpoint sprites
-// and engine flares and any fighters it is carrying externally.
-void Engine::DrawShipSprites(const Ship &ship)
-{
-	bool hasFighters = ship.PositionFighters();
-	double cloak = ship.Cloaking();
-	bool drawCloaked = (cloak && ship.IsYours());
-	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
-	const Swizzle *cloakSwizzle = GameData::Swizzles().Get(fancyCloak ? "cloak fancy base" : "cloak fast");
-	auto &itemsToDraw = draw[currentCalcBuffer];
-	auto drawObject = [&itemsToDraw, cloak, drawCloaked, fancyCloak, cloakSwizzle](const Body &body) -> void
-	{
-		// Draw cloaked/cloaking sprites swizzled red or transparent (depending on whether we are using fancy
-		// cloaking effects), and overlay this solid sprite with an increasingly transparent "regular" sprite.
-		if(drawCloaked)
-			itemsToDraw.AddSwizzled(body, cloakSwizzle, fancyCloak ? 0.5 : 0.25);
-		itemsToDraw.Add(body, cloak);
-	};
-
-	if(hasFighters)
-		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.side == Ship::Bay::UNDER && bay.ship)
-				drawObject(*bay.ship);
-
-	auto DrawEngineFlares = [&](uint8_t where)
-	{
-		if(ship.ThrustHeldFrames(Ship::ThrustKind::FORWARD) && !ship.EnginePoints().empty())
-			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.EnginePoints(),
-				ship.Attributes().FlareSprites(), where, false);
-		else if(ship.ThrustHeldFrames(Ship::ThrustKind::REVERSE) && !ship.ReverseEnginePoints().empty())
-			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.ReverseEnginePoints(),
-				ship.Attributes().ReverseFlareSprites(), where, true);
-		if((ship.ThrustHeldFrames(Ship::ThrustKind::LEFT) || ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT))
-			&& !ship.SteeringEnginePoints().empty())
-			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
-				ship.Attributes().SteeringFlareSprites(), where, false);
-	};
-	DrawEngineFlares(Ship::EnginePoint::UNDER);
-
-	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
-	{
-		const Weapon *weapon = hardpoint.GetWeapon();
-		if(!weapon)
-			return;
-		const Body &sprite = weapon->HardpointSprite();
-		if(!sprite.HasSprite())
-			return;
-
-		Body body(
-			sprite,
-			ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
-			ship.Velocity(),
-			ship.Facing() + hardpoint.GetAngle(),
-			ship.Zoom());
-		if(body.InheritsParentSwizzle())
-			body.SetSwizzle(ship.GetSwizzle());
-		drawObject(body);
-	};
-
-	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
-			drawHardpoint(hardpoint);
-	drawObject(ship);
-	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.GetSide() == Hardpoint::Side::OVER)
-			drawHardpoint(hardpoint);
-
-	DrawEngineFlares(Ship::EnginePoint::OVER);
-
-	if(hasFighters)
-		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.side == Ship::Bay::OVER && bay.ship)
-				drawObject(*bay.ship);
 }
 
 

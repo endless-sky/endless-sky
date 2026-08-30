@@ -68,8 +68,8 @@ public:
 	bool IsLoaded() const;
 
 	// Get assets used by this weapon.
-	const Body &WeaponSprite() const;
-	const Body &HardpointSprite() const;
+	const Drawable &ProjectileSprite() const;
+	const Drawable &HardpointSprite() const;
 	const Sound *WeaponSound() const;
 	const Sound *EmptySound() const;
 	const Sprite *Icon() const;
@@ -233,8 +233,8 @@ private:
 	bool isLoaded = false;
 
 	// Sprites and sounds.
-	Body sprite;
-	Body hardpointSprite;
+	Drawable projectileSprite;
+	Drawable hardpointSprite;
 	const Sound *sound = nullptr;
 	const Sound *emptySound = nullptr;
 	const Sprite *icon = nullptr;
