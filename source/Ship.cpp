@@ -2141,7 +2141,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	{
 		if(isUi)
 			return;
-		for(const Ship::LiveEffect &effect : LiveEffects())
+		for(const Ship::LiveEffect &effect : liveEffects)
 		{
 			if(effect.side != side || !(effect.activity & state) || effect.tick)
 				continue;
@@ -2160,7 +2160,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	{
 		if(isUi)
 			return;
-		for(const Ship::LiveSpark &spark : LiveSparks())
+		for(const Ship::LiveSpark &spark : liveSparks)
 		{
 			if(spark.side != side || !(spark.activity & state) || spark.tick)
 				continue;
@@ -2221,7 +2221,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	{
 		if(isUi)
 			return;
-		for(const Ship::Leak &leak : ActiveLeaks())
+		for(const Ship::Leak &leak : activeLeaks)
 		{
 			// Leaks always "flicker" every other frame.
 			if(!Random::Int(2))
@@ -3147,27 +3147,6 @@ const vector<Ship::EnginePoint> &Ship::ReverseEnginePoints() const
 const vector<Ship::EnginePoint> &Ship::SteeringEnginePoints() const
 {
 	return steeringEnginePoints;
-}
-
-
-
-const vector<Ship::Leak> &Ship::ActiveLeaks() const
-{
-	return activeLeaks;
-}
-
-
-
-const vector<Ship::LiveEffect> &Ship::LiveEffects() const
-{
-	return liveEffects;
-}
-
-
-
-const vector<Ship::LiveSpark> &Ship::LiveSparks() const
-{
-	return liveSparks;
 }
 
 

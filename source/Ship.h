@@ -147,55 +147,6 @@ public:
 		ALWAYS_ON = WHEN_ACTIVE | WHEN_DISABLED | WHEN_EXPLODING,
 	};
 
-	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
-	// when the ship is dying. Some leaks may also be for aesthetic purposes
-	// while flying.
-	class Leak {
-	public:
-		explicit Leak(const Effect *effect = nullptr) : effect(effect) {}
-
-		const Effect *effect = nullptr;
-		Point location;
-		Angle angle;
-		int openPeriod = 60;
-		int closePeriod = 60;
-		int activity = PlacementActivity::NONE;
-	};
-
-	// A live spark is an effect which periodically appears over the surface of a ship.
-	class LiveSpark {
-	public:
-		explicit LiveSpark(const DataNode &node);
-		void Save(DataWriter &out) const;
-
-		const Effect *effect = nullptr;
-		int period = 1;
-		int random = 0;
-		double amount = 1;
-		PlacementSide side = PlacementSide::OVER;
-		int activity = PlacementActivity::NONE;
-
-		int tick = 0;
-	};
-
-	// A live effect is an effect which periodically appears at a specific point on a ship.
-	class LiveEffect {
-	public:
-		explicit LiveEffect(const DataNode &node);
-		void Save(DataWriter &out) const;
-
-		const Effect *effect = nullptr;
-		Point position;
-		Angle angle;
-		int period = 1;
-		int random = 0;
-		int amount = 1;
-		PlacementSide side = PlacementSide::OVER;
-		int activity = PlacementActivity::NONE;
-
-		int tick = 0;
-	};
-
 	enum class DecorBehavior {
 		STATIC = 0,
 		ROTATING,
@@ -432,9 +383,6 @@ public:
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
 	const std::vector<EnginePoint> &SteeringEnginePoints() const;
 
-	const std::vector<Leak> &ActiveLeaks() const;
-	const std::vector<LiveEffect> &LiveEffects() const;
-	const std::vector<LiveSpark> &LiveSparks() const;
 	std::vector<Decor> &Decorations();
 	const std::vector<Decor> &Decorations() const;
 
@@ -672,6 +620,57 @@ public:
 
 protected:
 	virtual void CacheAttributes() override;
+
+
+private:
+	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
+	// when the ship is dying. Some leaks may also be for aesthetic purposes
+	// while flying.
+	class Leak {
+	public:
+		explicit Leak(const Effect *effect = nullptr) : effect(effect) {}
+
+		const Effect *effect = nullptr;
+		Point location;
+		Angle angle;
+		int openPeriod = 60;
+		int closePeriod = 60;
+		unsigned activity = PlacementActivity::NONE;
+	};
+
+	// A live spark is an effect which periodically appears over the surface of a ship.
+	class LiveSpark {
+	public:
+		explicit LiveSpark(const DataNode &node);
+		void Save(DataWriter &out) const;
+
+		const Effect *effect = nullptr;
+		int period = 1;
+		int random = 0;
+		double amount = 1;
+		PlacementSide side = PlacementSide::OVER;
+		unsigned activity = PlacementActivity::NONE;
+
+		int tick = 0;
+	};
+
+	// A live effect is an effect which periodically appears at a specific point on a ship.
+	class LiveEffect {
+	public:
+		explicit LiveEffect(const DataNode &node);
+		void Save(DataWriter &out) const;
+
+		const Effect *effect = nullptr;
+		Point position;
+		Angle angle;
+		int period = 1;
+		int random = 0;
+		int amount = 1;
+		PlacementSide side = PlacementSide::OVER;
+		unsigned activity = PlacementActivity::NONE;
+
+		int tick = 0;
+	};
 
 
 private:
