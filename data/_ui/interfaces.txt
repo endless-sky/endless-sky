@@ -2217,7 +2217,7 @@ interface "trade"
 	active if "can sell minables"
 	sprite "ui/wide button"
 		center -90 355
-	button m "Sell _Minables"
+	button m "Sell Mi_nables"
 		center -90 355
 		dimensions 90 30
 
@@ -2255,7 +2255,7 @@ interface "trade (small screen)"
 	active if "can sell minables"
 	sprite "ui/wide button"
 		center -150 355
-	button m "Sell _Minables"
+	button m "Sell Mi_nables"
 		center -150 355
 		dimensions 90 30
 
