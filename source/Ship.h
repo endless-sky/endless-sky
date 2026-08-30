@@ -864,7 +864,7 @@ private:
 
 	// List of enemy ships targeting this one.
 	std::vector<std::weak_ptr<Ship>> targetingList;
-	double targeterStrength;
+	double targeterStrength = 0.;
 
 	bool removeBays = false;
 

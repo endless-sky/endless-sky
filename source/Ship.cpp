@@ -44,7 +44,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "audio/Sound.h"
 #include "image/Sprite.h"
-#include "image/SpriteSet.h"
 #include "StellarObject.h"
 #include "Swizzle.h"
 #include "System.h"
