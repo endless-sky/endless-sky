@@ -1263,7 +1263,7 @@ void ShopPanel::MainAutoScroll(const vector<Zone>::const_iterator &selected)
 		int offBottom = topY + TILE_SIZE - Screen::Bottom();
 		// If the selected item is far enough to the left to overlap with the key,
 		// scroll it an extra tile upward.
-		optional<Rectangle> key = KeySize();
+		optional<Rectangle> key = KeyArea();
 		if(key.has_value() && selected->Left() < key->Right())
 			offBottom += TILE_SIZE;
 		if(offBottom > 0)

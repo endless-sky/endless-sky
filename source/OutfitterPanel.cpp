@@ -1029,10 +1029,10 @@ void OutfitterPanel::DrawKey()
 
 
 
-optional<Rectangle> OutfitterPanel::KeySize() const
+optional<Rectangle> OutfitterPanel::KeyArea() const
 {
 	const Sprite *back = SpriteSet::Get("ui/outfitter key");
-	return Rectangle::FromCorner(Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()),
+	return Rectangle::FromCorner(Screen::BottomLeft() + Point(0., -back->Height()),
 		Point(back->Width(), back->Height()));
 }
 

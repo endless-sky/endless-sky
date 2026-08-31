@@ -108,7 +108,7 @@ protected:
 
 	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey() {};
-	virtual std::optional<Rectangle> KeySize() const { return std::nullopt; };
+	virtual std::optional<Rectangle> KeyArea() const { return std::nullopt; };
 
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
