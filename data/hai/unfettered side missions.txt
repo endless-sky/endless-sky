@@ -369,7 +369,7 @@ mission "Hai Legacy 3"
 			`As you arrive with your fleet in this system, you receive a hail from the Unfettered. "If you can't even count how many ships you have, you're not worthy of our time, monkey! Dishonor will get you nowhere with us True Hai! Leave."`
 				goto failed
 			label anomaly
-			`You are hailed by the Unfettered as you enter the system. "Monkey! Why do you refuse to use the relic? Only by winning with the relic can you prove yourself worthy of it. Leave - we will not waste anymore of our time with the likes of you."`
+			`You are hailed by the Unfettered as you enter the system. "Monkey! Why do you refuse to use the relic? Only by winning with the relic can you prove yourself worthy of it. Leave - we will not waste any more of our time with the likes of you."`
 			label failed
 			action
 				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
