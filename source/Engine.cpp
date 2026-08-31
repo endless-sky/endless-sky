@@ -147,7 +147,7 @@ namespace {
 	}
 
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
-		const vector<pair<Body, int>> &flareSprites, uint8_t side, bool reverse)
+		const vector<pair<Drawable, int>> &flareSprites, uint8_t side, bool reverse)
 	{
 		Point thrustScale = ScaledFlareCurve(ship, reverse ? Ship::ThrustKind::REVERSE : Ship::ThrustKind::FORWARD);
 		Point leftTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::LEFT);
@@ -161,7 +161,7 @@ namespace {
 			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
 			Angle flareAngle = ship.Facing() + point.facing + gimbal;
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
-			auto DrawFlares = [&draw, &pos, &ship, &flareAngle, &point](const pair<Body, int> &it, const Point &scale)
+			auto DrawFlares = [&draw, &pos, &ship, &flareAngle, &point](const pair<Drawable, int> &it, const Point &scale)
 			{
 				// If multiple engines with the same flare are installed, draw up to
 				// three copies of the flare sprite.
@@ -2923,7 +2923,7 @@ void Engine::DrawShipSprites(const Ship &ship)
 		const Weapon *weapon = hardpoint.GetWeapon();
 		if(!weapon)
 			return;
-		const Body &sprite = weapon->HardpointSprite();
+		const Drawable &sprite = weapon->HardpointSprite();
 		if(!sprite.HasSprite())
 			return;
 

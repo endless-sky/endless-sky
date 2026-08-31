@@ -183,10 +183,10 @@ namespace {
 		{"turret turn multiplier", -1. * ATTRIBUTE_PRECISION},
 	};
 
-	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
+	void AddFlareSprites(vector<pair<Drawable, int>> &thisFlares, const pair<Drawable, int> &it, int count)
 	{
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
-			[&it](const pair<Body, int> &flare)
+			[&it](const pair<Drawable, int> &flare)
 			{
 				return (it.first.GetSprite() == flare.first.GetSprite()
 					&& it.first.Scale() == flare.first.Scale());
@@ -751,21 +751,21 @@ const set<const Outfit *> &Outfit::LinkedOutfits() const
 
 
 // Get this outfit's engine flare sprite, if any.
-const vector<pair<Body, int>> &Outfit::FlareSprites() const
+const vector<pair<Drawable, int>> &Outfit::FlareSprites() const
 {
 	return flareSprites;
 }
 
 
 
-const vector<pair<Body, int>> &Outfit::ReverseFlareSprites() const
+const vector<pair<Drawable, int>> &Outfit::ReverseFlareSprites() const
 {
 	return reverseFlareSprites;
 }
 
 
 
-const vector<pair<Body, int>> &Outfit::SteeringFlareSprites() const
+const vector<pair<Drawable, int>> &Outfit::SteeringFlareSprites() const
 {
 	return steeringFlareSprites;
 }

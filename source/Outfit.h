@@ -26,9 +26,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
-class Body;
 class ConditionsStore;
 class DataNode;
+class Drawable;
 class Effect;
 class Sound;
 class Sprite;
@@ -143,9 +143,9 @@ public:
 	const std::set<const Outfit *> &LinkedOutfits() const;
 
 	// Get this outfit's engine flare sprites, if any.
-	const std::vector<std::pair<Body, int>> &FlareSprites() const;
-	const std::vector<std::pair<Body, int>> &ReverseFlareSprites() const;
-	const std::vector<std::pair<Body, int>> &SteeringFlareSprites() const;
+	const std::vector<std::pair<Drawable, int>> &FlareSprites() const;
+	const std::vector<std::pair<Drawable, int>> &ReverseFlareSprites() const;
+	const std::vector<std::pair<Drawable, int>> &SteeringFlareSprites() const;
 	const std::map<const Sound *, int> &FlareSounds() const;
 	const std::map<const Sound *, int> &ReverseFlareSounds() const;
 	const std::map<const Sound *, int> &SteeringFlareSounds() const;
@@ -201,9 +201,9 @@ private:
 
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.
-	std::vector<std::pair<Body, int>> flareSprites;
-	std::vector<std::pair<Body, int>> reverseFlareSprites;
-	std::vector<std::pair<Body, int>> steeringFlareSprites;
+	std::vector<std::pair<Drawable, int>> flareSprites;
+	std::vector<std::pair<Drawable, int>> reverseFlareSprites;
+	std::vector<std::pair<Drawable, int>> steeringFlareSprites;
 	std::map<const Sound *, int> flareSounds;
 	std::map<const Sound *, int> reverseFlareSounds;
 	std::map<const Sound *, int> steeringFlareSounds;
