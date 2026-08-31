@@ -48,7 +48,7 @@ public:
 
 
 public:
-	explicit OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock);
+	OutfitterPanel(PlayerInfo &player, const Sale<Outfit> &stock);
 
 	virtual void Step() override;
 

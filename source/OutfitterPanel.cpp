@@ -114,7 +114,7 @@ namespace {
 
 
 
-OutfitterPanel::OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock)
+OutfitterPanel::OutfitterPanel(PlayerInfo &player, const Sale<Outfit> &stock)
 	: ShopPanel(player, true), outfitter(stock)
 {
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
