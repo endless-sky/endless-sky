@@ -843,11 +843,21 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 					player.Accounts().AddCredits(price);
 					player.AddStock(selectedOutfit, 1);
 				}
-				// If the context is uninstalling, move the outfit into Storage.
+				// If the context is uninstalling, move the outfit into Cargo or Storage.
+				else if(toLocation == OutfitLocation::Cargo)
+				{
+					if(player.Cargo().FreePrecise() > selectedOutfit->Mass())
+						player.Cargo().Add(selectedOutfit, 1);
+					else
+					{
+						// If the player's cargo has run out of room, start moving
+						// outfits into storage.
+						toLocation = OutfitLocation::Storage;
+						player.Storage().Add(selectedOutfit, 1);
+					}
+				}
 				else if(toLocation == OutfitLocation::Storage)
 					player.Storage().Add(selectedOutfit, 1);
-				// Note: It would be easy to add conditional statements above to also support uninstall into cargo,
-				// this is not supported in the outfitter at this time.
 
 				// Move linked outfits to storage.
 				// Since some outfits have linked outfits, remove any that must also be moved as there
@@ -892,16 +902,29 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 							player.Accounts().AddCredits(price);
 							player.AddStock(linked, mustUninstall);
 						}
-						// If the context is uninstalling, move the outfit's linked outfit into Storage.
+						// If the context is uninstalling, move the outfit's linked outfit into Cargo or Storage.
+						else if(toLocation == OutfitLocation::Cargo)
+						{
+							int movable = mustUninstall;
+							while(player.Cargo().FreePrecise() < linked->Mass() * movable)
+								--movable;
+							if(movable)
+								player.Cargo().Add(linked, movable);
+							int remaining = mustUninstall - movable;
+							if(remaining)
+							{
+								// If the player's cargo has run out of room, start moving
+								// outfits into storage.
+								toLocation = OutfitLocation::Storage;
+								player.Storage().Add(linked, remaining);
+							}
+						}
 						else if(toLocation == OutfitLocation::Storage)
 							player.Storage().Add(linked, mustUninstall);
-						// Note: It would be easy to add conditional statements above to also support uninstall into
-						// cargo, this is not supported in the outfitter at this time.
 					}
 				}
 			}
 		}
-		// Note: Uninstalling into cargo could be implemented below, but not supported in current outfitter logic.
 	}
 	else if(fromLocation == OutfitLocation::Storage || fromLocation == OutfitLocation::Cargo)
 	{
@@ -954,8 +977,8 @@ bool OutfitterPanel::ButtonActive(char key, bool shipRelatedOnly)
 	if(key == 'b')
 		return static_cast<bool>(CanMoveOutfit(OutfitLocation::Shop, OutfitLocation::Ship));
 	if(key == 'i')
-		return CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship) ||
-			CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Ship);
+		return CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Ship)
+			|| CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship);
 	if(key == 'c')
 		return !shipRelatedOnly && (CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Cargo) ||
 			CanMoveOutfit(OutfitLocation::Shop, OutfitLocation::Cargo));
@@ -964,8 +987,8 @@ bool OutfitterPanel::ButtonActive(char key, bool shipRelatedOnly)
 			CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Shop))) ||
 			CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Shop);
 	if(key == 'u')
-		return CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage) ||
-			(!shipRelatedOnly && CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage));
+		return CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Cargo)
+			|| CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage);
 	if(key == 'r')
 		return CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage) ||
 			(!shipRelatedOnly && (CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage)
@@ -1414,7 +1437,7 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 	}
 	else if(key == 'c')
 	{
-		// Either move up to <multiple> outfits into cargo from storage if any are in storage, or else buy up to
+		// Either move up to <modifier> outfits into cargo from storage if any are in storage, or else buy up to
 		// <modifier> outfits into cargo.
 		// Note: If the outfit cannot be moved from storage or bought into cargo, give an error based on the buy
 		// condition.
@@ -1430,13 +1453,11 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 	}
 	else if(key == 'u')
 	{
-		// Uninstall up to <multiple> outfits from each of the selected ships if any are available to uninstall, or
-		// else unload up to <multiple> outfits from cargo and place them storage.
-		// Note: If the outfit cannot be uninstalled or unloaded, give an error based on the inability to uninstall the
-		// outfit from any ship.
-		result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage, "uninstall");
-		if(!result && MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))
-			result = true;
+		// Uninstall up to <modifier> outfits from each of the selected ships if any are available to uninstall,
+		// moving the outfits into cargo if there is space, or to storage if there isn't.
+		result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Cargo, "uninstall");
+		if(!result && !result.canPlace)
+			result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage, "uninstall");
 	}
 
 	return result;
