@@ -154,7 +154,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 			else if(key == "asteroids" || key == "minables")
 				asteroids.clear();
 			else if(key == "haze")
-				haze = nullptr;
+				haze = Drawable();
 			else if(key == "starfield density")
 				starfieldDensity = 1.;
 			else if(key == "ramscoop")
@@ -415,7 +415,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		else if(key == "jump range")
 			jumpRange = max(0., child.Value(valueIndex));
 		else if(key == "haze")
-			haze = SpriteSet::Get(value);
+			haze.LoadSprite(child);
 		else if(key == "starfield density")
 			starfieldDensity = child.Value(valueIndex);
 		else if(key == "trade" && child.Size() >= 3)
@@ -1074,7 +1074,7 @@ const set<const Outfit *> &System::Payloads() const
 
 
 // Get the background haze sprite for this system.
-const Sprite *System::Haze() const
+const Drawable &System::Haze() const
 {
 	return haze;
 }
