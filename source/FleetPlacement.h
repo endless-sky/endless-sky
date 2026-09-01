@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class Date;
 class Ship;
+class System;
 
 
 
@@ -36,7 +37,8 @@ public:
 	FleetPlacement() = default;
 	void Load(const DataNode &node);
 
-	void Place(const std::list<std::shared_ptr<Ship>> &ships, const Date &date, bool isEntering) const;
+	void Place(const std::list<std::shared_ptr<Ship>> &ships, const System &system, const Date &date,
+		bool isEntering) const;
 
 
 private:
@@ -45,7 +47,7 @@ private:
 	std::optional<double> distance;
 	std::optional<Angle> angle;
 	// The orbit to place the NPCs on. The position in the orbit will match the position
-	// of a SetllarObject with the same orbit.
+	// of a StellarObject with the same orbit.
 	std::optional<Orbit> orbit;
 	// The exact position to place the NPCs.
 	std::optional<Point> position;

@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Date.h"
 #include "Random.h"
 #include "Ship.h"
+#include "System.h"
 
 #include <algorithm>
 
@@ -45,23 +46,22 @@ void FleetPlacement::Load(const DataNode &node)
 			{
 				position.reset();
 				orbit.reset();
-				child.PrintTrace("distance, orbit, and position nodes are mutually exclusive. Using the distance.");
+				child.PrintTrace("distance, orbit, and position nodes are mutually exclusive. Using distance.");
 			}
 			distance = max(0., child.Value(1));
 			if(child.Size() >= 3)
 				angle = Angle(child.Value(2));
 		}
-		else if(key == "orbit" && child.Size() >= 3)
+		else if(key == "orbit" && child.HasChildren())
 		{
 			if(position.has_value() || distance.has_value())
 			{
 				position.reset();
 				distance.reset();
 				angle.reset();
-				child.PrintTrace("distance, orbit, and position nodes are mutually exclusive. Using the orbit.");
+				child.PrintTrace("distance, orbit, and position nodes are mutually exclusive. Using orbit.");
 			}
-			orbit = Orbit(max(0., child.Value(1)), max(0., child.Value(2)),
-				child.Size() >= 4 ? child.Value(3) : 0.);
+			orbit = Orbit(child);
 		}
 		else if(key == "position" && child.Size() >= 3)
 		{
@@ -70,7 +70,7 @@ void FleetPlacement::Load(const DataNode &node)
 				distance.reset();
 				angle.reset();
 				orbit.reset();
-				child.PrintTrace("distance, orbit, and position nodes are mutually exclusive. Using the position.");
+				child.PrintTrace("distance, orbit, and position nodes are mutually exclusive. Using position.");
 			}
 			position = Point(child.Value(1), child.Value(2));
 		}
@@ -85,17 +85,25 @@ void FleetPlacement::Load(const DataNode &node)
 
 
 
-void FleetPlacement::Place(const std::list<std::shared_ptr<Ship>> &ships, const Date &date, bool isEntering) const
+void FleetPlacement::Place(const std::list<std::shared_ptr<Ship>> &ships, const System &system, const Date &date,
+	bool isEntering) const
 {
 	if(!loaded)
 		return;
 	optional<Point> center;
-	if(position.has_value())
-		center = *position;
-	else if(distance.has_value())
-		center = *distance * angle.value_or(Angle::Random()).Unit();
-	else if(orbit.has_value())
-		center = orbit->Position(date.DaysSinceEpoch()).first;
+	if(!isEntering)
+	{
+		if(position.has_value())
+			center = *position;
+		else if(distance.has_value())
+			center = *distance * angle.value_or(Angle::Random()).Unit();
+		else if(orbit.has_value())
+		{
+			Orbit useOrbit = *orbit;
+			useOrbit.CalculatePeriod(system.StarMass());
+			center = useOrbit.Position(date.DaysSinceEpoch()).first;
+		}
+	}
 
 	bool first = true;
 	// DamageProfile damage = DamageProfile(weapon);

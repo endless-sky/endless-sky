@@ -121,13 +121,17 @@ public:
 		double shipRamscoop, double shipCollection, double shipCollectionHeat) const;
 	// Additional travel distance to target for ships entering through hyperspace.
 	double ExtraHyperArrivalDistance() const;
-	// Additional travel distance to target for ships entering using a jumpdrive.
+	// Additional travel distance to target for ships entering using a jump drive.
 	double ExtraJumpArrivalDistance() const;
 
 	// The minimum distances from the system center to jump out of the system.
 	// Separated by jump drives and hyperdrives.
 	double JumpDepartureDistance() const;
 	double HyperDepartureDistance() const;
+
+	// The mass of the stars in this system. For use in calculating orbital periods
+	// of orbits defined outside of the System class.
+	double StarMass() const;
 
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them.
@@ -257,6 +261,7 @@ private:
 	std::vector<RandomEvent<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 0.;
+	double starMass = 0.;
 	bool explicitHabitableDistanceSet = false;
 	WeightedList<double> belts;
 	double invisibleFenceRadius = 10000.;

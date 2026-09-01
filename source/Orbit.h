@@ -15,9 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "DataNode.h"
+
+#include <optional>
 #include <utility>
 
 class Angle;
+class DataNode;
 class Point;
 
 
@@ -25,7 +29,18 @@ class Point;
 class Orbit {
 public:
 	explicit Orbit(double distance = 0., double period = 0., double offset = 0.);
+	explicit Orbit(const DataNode &node);
 
+	void Load(const DataNode &node);
+
+	double Distance() const;
+	double Period() const;
+	bool HasExplicitPeriod() const;
+	double Offset() const;
+
+	// Calculate the speed of this orbit given the mass of the object it is orbiting around.
+	// If a distance is not given, uses the distance of this orbit.
+	void CalculatePeriod(double mass, std::optional<double> dist = std::nullopt);
 	// Given the current date as a number of days since the epoch,
 	// calculate where an object with this orbit should be positioned.
 	std::pair<Point, Angle> Position(double now) const;
@@ -40,10 +55,13 @@ private:
 	friend class StellarObject;
 
 	// The distance from the system center.
-	double distance;
-	// The orbital speed of the object. Divide by 360 to get the number of days it takes to orbit the center.
-	double speed;
+	double distance = 0.;
+	// The orbital speed of the object, in degrees per day.
+	double speed = 36.;
+	// Whether an orbital period was explicitly set in game data. If false, this
+	// orbit should calculate its period based off of the star(s) in the system.
+	bool explicitPeriodSet = false;
 	// A number of degrees to offset the object by. This allows multiple objects to
 	// share the same orbital distance while being at different locations.
-	double offset;
+	double offset = 0.;
 };
