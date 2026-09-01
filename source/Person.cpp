@@ -72,14 +72,11 @@ bool Person::IsValid() const
 // Finish loading all the ships in this person specification.
 void Person::FinishLoading()
 {
-	shipFactory.Instantiate(ships);
+	auto nameFunc = [this](const shared_ptr<Ship> &) -> string { return name; };
+	shipFactory.Instantiate(ships, nameFunc);
 	for(const shared_ptr<Ship> &ship : ships)
-	{
-		if(ship->GivenName().empty())
-			ship->SetGivenName(name);
 		if(formationPattern)
 			ship->SetFormationPattern(formationPattern);
-	}
 }
 
 

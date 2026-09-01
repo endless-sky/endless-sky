@@ -670,13 +670,8 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	map<string, string> playerSubs;
 	player.AddPlayerSubstitutions(playerSubs);
 	playerSubs.insert(subs.begin(), subs.end());
-	for(const shared_ptr<Ship> &ship : factory.Instantiate(&subs))
-	{
-		// Ships without a given name just copy their model name.
-		if(ship->GivenName().empty())
-			ship->SetGivenName(ship->DisplayModelName());
-		result.ships.push_back(ship);
-	}
+	auto nameFunc = [](const shared_ptr<Ship> &ship) -> string { return ship->DisplayModelName(); };
+	factory.Instantiate(result.ships, nameFunc, &subs);
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
 		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);
 	// Ships should either "enter" the system or start out there.

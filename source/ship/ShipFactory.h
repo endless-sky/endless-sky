@@ -46,19 +46,21 @@ public:
 
 	std::vector<const Ship *> GetShips() const;
 
-	// Instantiate this factory's ships into the provided vector.
+	// Instantiate this factory's ships into the provided container.
+	// Ships without a name use the given name function to generate one.
 	// Makes text substitutions in the names of any ships if a substitution map is provided.
 	void Instantiate(std::list<std::shared_ptr<Ship>> &container,
+		const std::function<std::string(const std::shared_ptr<Ship> &)> &nameFunc = nullptr,
 		const std::map<std::string, std::string> *subs = nullptr) const;
 	void Instantiate(std::vector<std::shared_ptr<Ship>> &container,
+		const std::function<std::string(const std::shared_ptr<Ship> &)> &nameFunc = nullptr,
 		const std::map<std::string, std::string> *subs = nullptr) const;
-	// Instantiate and return a vector instead of populating a given one.
-	std::vector<std::shared_ptr<Ship>> Instantiate(const std::map<std::string, std::string> *subs = nullptr) const;
 
 
 private:
 	template<class T>
-	void InstantiateContainer(T &container, const std::map<std::string, std::string> *subs = nullptr) const;
+	void InstantiateContainer(T &container, const std::function<std::string(const std::shared_ptr<Ship> &)> &nameFunc,
+		const std::map<std::string, std::string> *subs = nullptr) const;
 
 
 private:
@@ -70,19 +72,24 @@ private:
 
 
 template<class T>
-void ShipFactory::InstantiateContainer(T &container, const std::map<std::string, std::string> *subs) const
+void ShipFactory::InstantiateContainer(T &container, const std::function<std::string(const std::shared_ptr<Ship> &)> &nameFunc,
+	const std::map<std::string, std::string> *subs) const
 {
 	for(const auto &[shipDef, name] : ships)
 	{
 		// Instantiation of a container involves copying the contents of this factory into new
 		// shared pointers. This factory remains unchanged after instantiation of its ships.
 		const std::shared_ptr<Ship> &ship = container.emplace_back(std::make_shared<Ship>(*shipDef));
-		if(!name.empty())
+		std::string giveName;
+		if(name.empty())
 		{
-			std::string giveName = Phrase::ExpandPhrases(name);
-			if(subs)
-				giveName = Format::Replace(giveName, *subs);
-			ship->SetGivenName(giveName);
+			if(!nameFunc)
+				continue;
+			giveName = nameFunc(ship);
 		}
+		giveName = Phrase::ExpandPhrases(name);
+		if(subs)
+			giveName = Format::Replace(giveName, *subs);
+		ship->SetGivenName(giveName);
 	}
 }

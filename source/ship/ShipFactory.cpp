@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <ranges>
+#include <utility>
 
 using namespace std;
 
@@ -34,9 +35,8 @@ void ShipFactory::Load(const DataNode &node, const ConditionsStore *playerCondit
 	if(node.HasChildren())
 	{
 		shared_ptr<Ship> ship = make_shared<Ship>(node, playerConditions);
-		// If this is a full ship definition, it should already have a given name instead
-		// of the name being provided as a third token. Save the given name alongside
-		// the definition so that we don't potentially replace it later.
+		// If this is a full ship definition, it could already have a given name instead
+		// of the name being provided as a third token.
 		ships.emplace_back(ship, !ship->GivenName().empty() ? ship->GivenName() : name);
 	}
 	else
@@ -89,23 +89,18 @@ vector<const Ship *> ShipFactory::GetShips() const
 
 
 
-void ShipFactory::Instantiate(list<shared_ptr<Ship>> &container, const map<string, string> *subs) const
+void ShipFactory::Instantiate(list<shared_ptr<Ship>> &container,
+	const function<string(const shared_ptr<Ship> &)> &nameFunc,
+	const map<string, string> *subs) const
 {
-	InstantiateContainer(container, subs);
+	InstantiateContainer(container, nameFunc, subs);
 }
 
 
 
-void ShipFactory::Instantiate(vector<shared_ptr<Ship>> &container, const map<string, string> *subs) const
+void ShipFactory::Instantiate(vector<shared_ptr<Ship>> &container,
+	const function<string(const shared_ptr<Ship> &)> &nameFunc,
+	const map<string, string> *subs) const
 {
-	InstantiateContainer(container, subs);
-}
-
-
-
-vector<shared_ptr<Ship>> ShipFactory::Instantiate(const map<string, string> *subs) const
-{
-	vector<shared_ptr<Ship>> ships;
-	InstantiateContainer(ships, subs);
-	return ships;
+	InstantiateContainer(container, nameFunc, subs);
 }
