@@ -27,91 +27,57 @@ using namespace std;
 
 void ShipFactory::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	bool add = node.Token(0) == "add";
+	// A third token may be present to represent the given name of this ship.
+	// Ships without a name given here will be given one later.
+	const string &name = (node.Size() >= 3) ? node.Token(2) : "";
 	if(node.HasChildren())
 	{
-		// Loading a full ship definition.
-		ships[shipOrder] = make_shared<Ship>(node, playerConditions);
-		if(node.Size() >= 3 + add)
-			ships[shipOrder]->SetGivenName(node.Token(2 + add));
+		shared_ptr<Ship> ship = make_shared<Ship>(node, playerConditions);
+		// If this is a full ship definition, it should already have a given name instead
+		// of the name being provided as a third token. Save the given name alongside
+		// the definition so that we don't potentially replace it later.
+		ships.emplace_back(ship, !ship->GivenName().empty() ? ship->GivenName() : name);
 	}
 	else
-	{
-		// Loading a ship managed by GameData, i.e. "base models" and variants.
-		stockShips[shipOrder] = GameData::Ships().Get(node.Token(1));
-		shipNames.push_back(node.Token(1 + (node.Size() > 2)));
-	}
-	++shipOrder;
+		ships.emplace_back(GameData::Ships().Get(node.Token(1)), name);
 }
 
 
 
 void ShipFactory::FinishLoading()
 {
-	for(const auto &ship : ships | views::values)
-		ship->FinishLoading(true);
+	for(const auto &ship : ships | views::keys)
+		if(!ship.IsStock())
+			ship.Mutable()->FinishLoading(true);
 }
 
 
 
 bool ShipFactory::IsValid() const
 {
-	if(ranges::any_of(ships, [](const pair<int, shared_ptr<Ship>> &it) noexcept -> bool {
-		return !it.second->IsValid();
-	}))
-		return false;
-	if(ranges::any_of(stockShips, [](const pair<int, const Ship *> &it) noexcept -> bool {
-		return !it.second->IsValid();
-	}))
-		return false;
-	return true;
+	return ranges::all_of(ships, [](const pair<ExclusiveItem<Ship>, string> &it) noexcept -> bool {
+		return it.first->IsValid();
+	});
 }
 
 
 
 void ShipFactory::RemoveModel(const string &shipModel)
 {
-	map<int, shared_ptr<Ship>> newShips;
-	map<int, const Ship *> newStockShips;
-	list<string> newShipNames;
-
-	int newOrder = 0;
-	auto shipIt = ships.begin();
-	auto stockIt = stockShips.begin();
-	auto nameIt = shipNames.begin();
-	for(int i = 0; i < shipOrder; ++i)
+	for(auto it = ships.begin(); it != ships.end(); )
 	{
-		if(shipIt != ships.end() && shipIt->first == i)
-		{
-			if(shipIt->second->TrueModelName() != shipModel)
-				newShips[newOrder++] = shipIt->second;
-			++shipIt;
-		}
+		if(it->first->TrueModelName() == shipModel)
+			it = ships.erase(it);
 		else
-		{
-			if(stockIt->second->TrueModelName() != shipModel)
-			{
-				newStockShips[newOrder++] = stockIt->second;
-				newShipNames.push_back(*nameIt);
-			}
-			++stockIt;
-			++nameIt;
-		}
+			++it;
 	}
-	shipOrder = newOrder;
-	ships = newShips;
-	stockShips = newStockShips;
-	shipNames = newShipNames;
 }
 
 
 
 void ShipFactory::Clear()
 {
-	shipOrder = 0;
 	ships.clear();
-	stockShips.clear();
-	shipNames.clear();
 }
 
 

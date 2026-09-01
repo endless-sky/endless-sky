@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "../ExclusiveItem.h"
 #include "../text/Format.h"
 #include "../Phrase.h"
 #include "../Ship.h"
 
 #include <list>
-#include <map>
 #include <memory>
 #include <vector>
 
@@ -58,14 +58,9 @@ private:
 
 
 private:
-	// A count of the total number of ships in this factory.
-	// Used for maintaining the load order for the instantiation order.
-	int shipOrder = 0;
-	// Ships provided as full definitions.
-	std::map<int, std::shared_ptr<Ship>> ships;
-	// Ships provided from stock definitions, alongside the names to give them.
-	std::map<int, const Ship *> stockShips;
-	std::list<std::string> shipNames;
+	// A pairing of the stored ship definition and the name of the ship.
+	// The name may be blank if no name was given alongside the definition.
+	std::vector<std::pair<ExclusiveItem<Ship>, std::string>> ships;
 };
 
 
@@ -73,25 +68,17 @@ private:
 template<class T>
 void ShipFactory::InstantiateContainer(T &container, const std::map<std::string, std::string> *subs) const
 {
-	auto shipIt = ships.begin();
-	auto stockIt = stockShips.begin();
-	auto nameIt = shipNames.begin();
-	for(int i = 0; i < shipOrder; ++i)
+	for(const auto &[shipDef, name] : ships)
 	{
-		if(shipIt != ships.end() && shipIt->first == i)
+		// Instantiation of a container involves copying the contents of this factory into new
+		// shared pointers. This factory remains unchanged after instantiation of its ships.
+		const std::shared_ptr<Ship> &ship = container.emplace_back(std::make_shared<Ship>(*shipDef));
+		if(!name.empty())
 		{
-			container.emplace_back(std::make_shared<Ship>(*shipIt->second));
-			++shipIt;
-		}
-		else
-		{
-			std::shared_ptr<Ship> &ship = container.emplace_back(std::make_shared<Ship>(*stockIt->second));
-			std::string name = Phrase::ExpandPhrases(*nameIt);
+			std::string giveName = Phrase::ExpandPhrases(name);
 			if(subs)
-				name = Format::Replace(name, *subs);
-			ship->SetGivenName(name);
-			++stockIt;
-			++nameIt;
+				giveName = Format::Replace(giveName, *subs);
+			ship->SetGivenName(giveName);
 		}
 	}
 }
