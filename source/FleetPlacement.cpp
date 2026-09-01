@@ -37,7 +37,10 @@ void FleetPlacement::Load(const DataNode &node)
 	{
 		const string &key = child.Token(0);
 		if(key == "weapon" && child.HasChildren())
+		{
+			randomScaling = child.Size() >= 2 ? max(0., child.Value(1)) : 0.;
 			weapon.Load(child);
+		}
 		else if(child.Size() < 2)
 			child.PrintTrace("Expected key to have a value:");
 		else if(key == "distance")
@@ -106,13 +109,15 @@ void FleetPlacement::Place(const std::list<std::shared_ptr<Ship>> &ships, const 
 	}
 
 	bool first = true;
-	// DamageProfile damage = DamageProfile(weapon);
+	DamageProfile damage = DamageProfile(weapon);
 	for(auto &ship : ships)
 	{
 		// Deal damage to these ships if a weapon was loaded.
 		if(weapon.IsLoaded())
 		{
-			// ship->TakeDamage(damage.CalculateDamage(*ship), nullptr);
+			double scale = 1. + (randomScaling ? Random::Real() * randomScaling : 0.);
+			DamageDealt damageDealt = damage.CalculateDamage(*ship, false, scale);
+			ship->TakeDamage(damageDealt, nullptr);
 			ship->SetSkipRecharging();
 		}
 		// Skip over ships that are landed or that don't have a system.

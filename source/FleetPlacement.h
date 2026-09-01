@@ -59,4 +59,7 @@ private:
 	double spread = 500.;
 	// A weapon whose damage is applied to ships when placed.
 	Weapon weapon;
+	// A random scaling applied to damage dealt by the above weapon.
+	// The scale used is 100% to 100% + randomScaling.
+	double randomScaling = 0.;
 };

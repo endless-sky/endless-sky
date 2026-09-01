@@ -3256,6 +3256,17 @@ double Ship::CurrentSpeed() const
 // Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
+	// Create target effect visuals, if there are any.
+	for(const auto &effect : damage.GetWeapon().TargetEffects())
+		CreateSparks(visuals, effect.first, effect.second * damage.Scaling());
+
+	return TakeDamage(damage, sourceGovernment);
+}
+
+
+
+int Ship::TakeDamage(const DamageDealt &damage, const Government *sourceGovernment)
+{
 	// If the damage source government deals a DoT effect to this ship that
 	// disables or kills it outside of this function call, that event should
 	// still be attributed to this government.
@@ -3327,10 +3338,6 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				|| (damage.Levels().slowness && levels.slowness > 10.)
 				|| (damage.Levels().disruption && levels.disruption > 100.)))
 		type |= ShipEvent::PROVOKE;
-
-	// Create target effect visuals, if there are any.
-	for(const auto &[effect, count] : damage.GetWeapon().TargetEffects())
-		CreateSparks(visuals, effect, count * damage.Scaling());
 
 	return type;
 }
