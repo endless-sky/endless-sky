@@ -63,7 +63,7 @@ public:
 	Weapon() = default;
 	// Construct and load at the same time.
 	explicit Weapon(const DataNode &node);
-	// Load from a "weapon" node, either in an outfit, a ship (explosion), a hazard, or some other source.
+	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
 	void Load(const DataNode &node);
 	bool IsLoaded() const;
 

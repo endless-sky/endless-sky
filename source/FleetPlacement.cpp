@@ -98,13 +98,13 @@ void FleetPlacement::Place(const std::list<std::shared_ptr<Ship>> &ships, const 
 		center = orbit->Position(date.DaysSinceEpoch()).first;
 
 	bool first = true;
-	DamageProfile damage = DamageProfile(weapon);
+	// DamageProfile damage = DamageProfile(weapon);
 	for(auto &ship : ships)
 	{
 		// Deal damage to these ships if a weapon was loaded.
 		if(weapon.IsLoaded())
 		{
-			ship->TakeDamage(damage.CalculateDamage(*ship), nullptr);
+			// ship->TakeDamage(damage.CalculateDamage(*ship), nullptr);
 			ship->SetSkipRecharging();
 		}
 		// Skip over ships that are landed or that don't have a system.
