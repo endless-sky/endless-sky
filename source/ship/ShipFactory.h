@@ -72,7 +72,8 @@ private:
 
 
 template<class T>
-void ShipFactory::InstantiateContainer(T &container, const std::function<std::string(const std::shared_ptr<Ship> &)> &nameFunc,
+void ShipFactory::InstantiateContainer(T &container,
+	const std::function<std::string(const std::shared_ptr<Ship> &)> &nameFunc,
 	const std::map<std::string, std::string> *subs) const
 {
 	for(const auto &[shipDef, name] : ships)
