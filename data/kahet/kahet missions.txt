@@ -1908,6 +1908,7 @@ mission "Ka'het: Patir Mystery 10"
 
 ship "Remnant Satellite"
 	sprite "ship/remnant satellite"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		hull 130
@@ -2724,9 +2725,7 @@ event "ssil vida changes"
 		pos 297 269
 		government Remnant
 		attributes "ember waste"
-		arrival 500
 		belt 2000
-		habitable 135
 		haze _menu/haze-red
 		link Diespiter
 		link Prosa
@@ -2740,28 +2739,22 @@ event "ssil vida changes"
 		hazard "Ember Waste Base Storm" 15000
 		object
 			sprite star/m8
-			period 10
 		object
 			sprite planet/desert7
 			distance 439
-			period 316.657
 		object Fertriery
 			sprite planet/fog0
 			distance 814
-			period 799.520
 			object
 				sprite planet/dust4
 				distance 202
-				period 21
 		object
 			sprite planet/rock10
 			distance 1208
-			period 654
 		object "Ssil Vida"
 			sprite planet/sheragi_postverta_2
 				scale 0.5
 			distance 1408
-			period 1818.85
 
 
 mission "Ka'het: Patir Mystery 15"
@@ -3609,11 +3602,9 @@ event "Patir Lathia landable"
 		remove object
 			sprite "planet/asteroid magic"
 			distance 2723.62
-			period 1372.93
 		add object "Magic Asteroid Planet"
 			sprite "planet/asteroid magic"
 			distance 2723.62
-			period 1372.93
 
 
 mission "Ka'het: Patir Mystery 27"
@@ -3757,7 +3748,7 @@ mission "Ka'het: Patir Mystery 29"
 		event "remnant: ssil vida activation patir 3" 0
 		conversation
 			`Taely comes looking for you shortly after the Swans have docked with Ssil Vida, with a fast step and crystal in her hand. "Captain, another task for you has just come up. I have been informed that the Korath we met on the way here have been raiding the system for a few days - in fact, since just before Ssil Vida activated. During the trouble of moving between the two realities, it appears that a ship in the attacking fleet was able to jump beyond Ssil Vida's range, and has remained inside that universe since. It is not acceptable to leave it there any longer."`
-			`	A quiver down your spine suggests to you that Ssil Vida has activated again, filling Postverta with beings of all kinds. She hands you the crystal, small and sharp. "On this is the information we have on the ship, as well as a program to record what you sees during your search. Given the location, we want to understand as much as we can about any damage they might have caused." She stops, as if preparing to leave; however, she changes her mind.`
+			`	A quiver down your spine suggests to you that Ssil Vida has activated again, filling Postverta with beings of all kinds. She hands you the crystal, small and sharp. "On this is the information we have on the ship, as well as a program to record what you see during your search. Given the location, we want to understand as much as we can about any damage they might have caused." She stops, as if preparing to leave; however, she changes her mind.`
 			`	"Our Swans have not been designed for front line combat, but rather to fill a support role. Staying in Ssil Vida, however, will eventually subject them to direct attacks - be it from Korath, or perhaps worse. I would like to let one get some combat experience, if you can."`
 			choice
 				`	"I would be happy to."`
@@ -3982,7 +3973,7 @@ ship "Swan" "Swan (Jump)"
 		"Teciimach Bay"
 		"Inhibitor Turret" 3
 		"Point Defense Turret" 2
-		"Teciimach Canister" 9
+		"EMP Torpedo" 20
 
 		"Aeon Cell"
 		"Epoch Cell"
@@ -4297,7 +4288,7 @@ mission "Ka'het: Patir Mystery 35"
 	on offer
 		conversation
 			`The pilgrimage of the Remnant and their payloads toward your ship takes the better part of an hour, again helped by the Tern flock. "We are a fair bit lighter than we thought we would be, given that we have next to no sample from the planetoid." Dusk has taken seat in the cockpit, watching out of the window as the last few payloads climb atop the ramp. In the horizon, the sea of iridium shines at just the right angle to hit your eyes.`
-			`	"One of those creatures was in Patir again when it moved. Again it turned motionless, and it was orbiting over us when a Ka'sei located right next to it blew it up. It is a great shame that we could not get to it in time: the next time you Patir returns, whenever that may be, we need to be prepared better to board it and plunder its content."`
+			`	"One of those creatures was in Patir again when it moved. Again it turned motionless, and it was orbiting over us when a Ka'sei located right next to it blew it up. It is a great shame that we could not get to it in time: the next time Patir returns, whenever that may be, we need to be prepared better to board it and plunder its content."`
 			choice
 				`	"Is it not a sapient being?"`
 				`	"I do not think I want to harvest the organs of a living creature, if that is what they are."`
@@ -4336,7 +4327,7 @@ mission "Ka'het: Patir Mystery 35"
 		log `It is not clear what the creatures in that space are, what their purpose is, or how intelligent they are.`
 		conversation
 			`You don't have time to say goodbye to the crew before a couple Remnant take you into another part of the starport, barely a meter below the ground. You spend the next hours recounting to your best abilities everything you have seen, pausing only for a few bathroom breaks and a quick meal. As time goes on, you notice they seem displeased with the lack of details you are able to give; when they eventually let you out, you can't help but feel they are not satisfied by your testimony.`
-			`	By the time you return the team, has disappeared again, only Dusk having stayed. "I just wanted to say goodbye, <first>. Despite the hiccups along the way - and, in a way, thanks to them - we have now a safe outpost to house our crews, as well as our own instruments. Soon, all kinds of people are going to want to use it for their purposes, and they deserve to do so; from here on, my own research is going to compete with them all for time in the laboratory."`
+			`	By the time you return, the team has disappeared again, only Dusk having stayed. "I just wanted to say goodbye, <first>. Despite the hiccups along the way - and, in a way, thanks to them - we now have a safe outpost to house our crews, as well as our own instruments. Soon, all kinds of people are going to want to use it for their purposes, and they deserve to do so; from here on, my own research is going to compete with them all for time in the laboratory."`
 			`	He taps on one of your ship's screens that displays the nearby job board. "When you are here on <planet>, you will be able to connect directly with Ssil Vida to control Patir's state. As usual, the timing is going to be predefined, and if you miss your return window they will do their best to send it back as soon as possible. After our last trip, I suggest you to keep your cloak active at all times, especially if you have to pass through Lathia."`
 			choice
 				`	"Thank you."`
@@ -4504,6 +4495,7 @@ mission "Ka'het: Patir Mystery Crew job"
 
 ship "Builder Satellite"
 	sprite "ship/builder satellite"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		"hull" 1500

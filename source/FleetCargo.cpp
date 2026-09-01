@@ -76,10 +76,9 @@ namespace {
 						// Also avoid outfits that add space (such as Outfits / Cargo Expansions)
 						// or modify bunks.
 						// TODO: Specify rejection criteria in datafiles as ConditionSets or similar.
-						const auto &attributes = outfit->Attributes();
-						if(attributes.Get("outfit space") > 0.
-								|| attributes.Get("cargo space") > 0.
-								|| attributes.Get("bunks"))
+						if(outfit->GetPrecise("outfit space") > 0
+								|| outfit->GetPrecise("cargo space") > 0
+								|| outfit->GetPrecise("bunks"))
 							continue;
 
 						outfits.push_back(outfit);

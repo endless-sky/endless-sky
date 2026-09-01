@@ -28,6 +28,7 @@ class DataNode;
 class FormationPattern;
 class Government;
 class Ship;
+class ShipEvent;
 class System;
 
 
@@ -63,6 +64,11 @@ public:
 	bool IsPlaced() const;
 	// Mark this person as being no longer "placed" somewhere.
 	void ClearPlacement();
+
+	// Determine if this event is targeting a ship in this Person
+	// and handle the outcome of the event. Returns false if
+	// the event doesn't target this person.
+	bool Do(const ShipEvent &event);
 
 
 private:

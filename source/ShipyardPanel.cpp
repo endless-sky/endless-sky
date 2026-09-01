@@ -148,7 +148,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 			const float spriteScale = min(1.f, (INFOBAR_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()));
 			const Swizzle *swizzle = selectedShip->CustomSwizzle()
 				? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
+			DrawThumbnail(*selectedShip, true, spriteCenter, spriteScale, swizzle);
 		}
 
 		const bool hasDescription = shipInfo.DescriptionHeight();
@@ -272,7 +272,7 @@ void ShipyardPanel::DrawButtons()
 		if(buttonsTooltip.ShouldDraw())
 		{
 			buttonsTooltip.SetZone(buttonsFooter);
-			buttonsTooltip.SetText(tooltip, true);
+			buttonsTooltip.SetText(tooltip);
 			buttonsTooltip.Draw();
 		}
 	}
@@ -292,7 +292,7 @@ void ShipyardPanel::DrawButtons()
 			if(hasFleetCapacity)
 				tooltipText += '\n' + Format::Number(player.FleetCost()) + " out of "
 					+ Format::Number(player.FleetCapacity()) + " fleet capacity utilized";
-			creditsTooltip.SetText(tooltipText, true);
+			creditsTooltip.SetText(tooltipText);
 			creditsTooltip.Draw();
 		}
 	}

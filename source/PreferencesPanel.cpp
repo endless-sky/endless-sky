@@ -28,7 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
-#include "Plugins.h"
+#include "Plugin.h"
+#include "PluginManager.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
@@ -58,6 +59,7 @@ namespace {
 	const int ZOOM_FACTOR_MIN = 100;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string FONT_SIZE = "UI font size";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
@@ -65,6 +67,7 @@ namespace {
 	const string CAMERA_ACCELERATION = "Camera acceleration";
 	const string LARGE_GRAPHICS_REDUCTION = "Reduce large graphics";
 	const string CLOAK_OUTLINE = "Cloaked ship outlines";
+	const string TEXTURE_FILTERING = "Texture filtering";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
 	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
 	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
@@ -85,7 +88,7 @@ namespace {
 	const string DATE_FORMAT = "Date format";
 	const string NOTIFY_ON_DEST = "Notify on destination";
 	const string BOARDING_PRIORITY = "Boarding target priority";
-	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
+	const string ASTEROID_TARGETING = "Asteroid targeting";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
@@ -94,6 +97,7 @@ namespace {
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 	const string TRIBUTE_CONFIRMATION = "Tribute confirmation";
 	const string AMMO_REFILL = "Auto refill ammo";
+	const string FASTFORWARD_CAPSLOCK_SYNC = "Sync FF to CapsLock";
 	const string TEXT_ALIGNMENT = "Text alignment";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
@@ -128,7 +132,7 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	// Select the first valid plugin.
-	for(const auto &plugin : Plugins::Get())
+	for(const auto &plugin : PluginManager::Get())
 		if(plugin.second.IsValid())
 		{
 			selectedPlugin = plugin.first;
@@ -142,7 +146,7 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 
 	int pluginListHeight = 0;
-	for(const auto &plugin : Plugins::Get())
+	for(const auto &plugin : PluginManager::Get())
 		if(plugin.second.IsValid())
 			pluginListHeight += 20;
 
@@ -183,7 +187,7 @@ void PreferencesPanel::Draw()
 			info.SetCondition(bar + " none");
 	}
 
-	if(Plugins::HasChanged())
+	if(PluginManager::HasChanged())
 		info.SetCondition("show plugins changed");
 	if(CONTROLS_PAGE_COUNT > 1)
 		info.SetCondition("multiple controls pages");
@@ -228,6 +232,13 @@ void PreferencesPanel::Draw()
 void PreferencesPanel::UpdateTooltipActivation()
 {
 	tooltip.UpdateActivationCount();
+}
+
+
+
+void PreferencesPanel::UpdateTextDisplay()
+{
+	tooltip.UpdateFontSize();
 }
 
 
@@ -678,8 +689,10 @@ void PreferencesPanel::DrawControls()
 		{
 			int index = zones.size();
 			// Mark conflicts.
-			bool isConflicted = command.HasConflict();
-			bool isEmpty = !command.HasBinding();
+			bool isFastForwardSyncToCapsLock = command.Has(Command::FASTFORWARD)
+				&& Preferences::GetFastForwardCapsLockSync() == Preferences::FastForwardCapsLockSync::ALWAYS;
+			bool isConflicted = command.HasConflict() && !isFastForwardSyncToCapsLock;
+			bool isEmpty = !command.HasBinding() && !isFastForwardSyncToCapsLock;
 			bool isEditing = (index == editing);
 			if(isConflicted || isEditing || isEmpty)
 			{
@@ -706,8 +719,10 @@ void PreferencesPanel::DrawControls()
 
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
-			table.Draw(command.Description(), medium);
-			table.Draw(command.KeyName(), isEditing ? bright : medium);
+			const Color &keyColor = isFastForwardSyncToCapsLock ? dim : medium;
+			const Color &descColor = isFastForwardSyncToCapsLock ? dim : medium;
+			table.Draw(command.Description(), descColor);
+			table.Draw(command.KeyName(), isEditing ? bright : keyColor);
 		}
 	}
 }
@@ -745,6 +760,8 @@ void PreferencesPanel::DrawSettings()
 		"Display",
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
+		FONT_SIZE,
+		TEXT_ALIGNMENT,
 		SCREEN_MODE_SETTING,
 		BLOCK_SCREEN_SAVER,
 		VSYNC_SETTING,
@@ -760,7 +777,7 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		CLOAK_OUTLINE,
-		"Linear filter",
+		TEXTURE_FILTERING,
 		"\t",
 		"Performance",
 		"Show CPU / GPU load",
@@ -789,7 +806,7 @@ void PreferencesPanel::DrawSettings()
 		"Aim turrets with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
-		TARGET_ASTEROIDS_BASED_ON,
+		ASTEROID_TARGETING,
 		BOARDING_PRIORITY,
 		"Rehire extra crew when lost",
 		"Automatically unpark flagship",
@@ -800,6 +817,7 @@ void PreferencesPanel::DrawSettings()
 		EXPEND_AMMO,
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
+		"Damaged fighters retreat",
 		"Fighters transfer cargo",
 		AMMO_REFILL,
 		"\t",
@@ -824,13 +842,13 @@ void PreferencesPanel::DrawSettings()
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
+		FASTFORWARD_CAPSLOCK_SYNC,
 		"Landing zoom",
 		SCROLL_SPEED,
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
 		NOTIFY_ON_DEST,
 		"Save message log",
-		TEXT_ALIGNMENT,
 #ifdef _WIN32
 		"\t",
 		"Windows Options",
@@ -897,6 +915,11 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
 		}
+		else if(setting == FONT_SIZE)
+		{
+			isOn = true;
+			text = to_string(Preferences::GetFontSize());
+		}
 		else if(setting == SCREEN_MODE_SETTING)
 		{
 			isOn = true;
@@ -957,6 +980,11 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::Has(CLOAK_OUTLINE) ? "fancy" : "fast";
 			isOn = true;
 		}
+		else if(setting == TEXTURE_FILTERING)
+		{
+			text = Preferences::Has("Texture filtering") ? "linear" : "nearest";
+			isOn = true;
+		}
 		else if(setting == AUTO_AIM_SETTING)
 		{
 			text = Preferences::AutoAimSetting();
@@ -1014,10 +1042,10 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = Preferences::BoardingSetting();
 		}
-		else if(setting == TARGET_ASTEROIDS_BASED_ON)
+		else if(setting == ASTEROID_TARGETING)
 		{
 			isOn = true;
-			text = Preferences::Has(TARGET_ASTEROIDS_BASED_ON) ? "proximity" : "value";
+			text = Preferences::TargetAsteroidStrategySetting();
 		}
 		else if(setting == BACKGROUND_PARALLAX)
 		{
@@ -1090,6 +1118,15 @@ void PreferencesPanel::DrawSettings()
 			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::NEVER;
 			text = Preferences::AmmoRefillSetting();
 		}
+		else if(setting == FASTFORWARD_CAPSLOCK_SYNC)
+		{
+			const Preferences::FastForwardCapsLockSync fastForwardCapsLockSync
+				= Preferences::GetFastForwardCapsLockSync();
+			isOn = fastForwardCapsLockSync == Preferences::FastForwardCapsLockSync::ALWAYS
+				|| (fastForwardCapsLockSync == Preferences::FastForwardCapsLockSync::DEFAULT
+					&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
+			text = Preferences::FastForwardCapsLockSyncSetting();
+		}
 		else if(setting == TEXT_ALIGNMENT)
 		{
 			isOn = true;
@@ -1161,7 +1198,7 @@ void PreferencesPanel::DrawPlugins()
 	int firstY = pluginListClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(pluginListScroll.AnimatedValue())));
 
-	for(const auto &it : Plugins::Get())
+	for(const auto &it : PluginManager::Get())
 	{
 		const auto &plugin = it.second;
 		if(!plugin.IsValid())
@@ -1184,7 +1221,7 @@ void PreferencesPanel::DrawPlugins()
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
 			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
 		if(displayed)
-			AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
+			AddZone(zoneBounds, [&]() { PluginManager::TogglePlugin(plugin.name); });
 		if(isSelected)
 			table.Draw(plugin.name, bright);
 		else
@@ -1259,7 +1296,7 @@ void PreferencesPanel::DrawPlugins()
 // Render the named plugin description into the pluginDescriptionBuffer.
 void PreferencesPanel::RenderPluginDescription(const string &pluginName)
 {
-	const Plugin *plugin = Plugins::Get().Find(pluginName);
+	const Plugin *plugin = PluginManager::Get().Find(pluginName);
 	if(plugin)
 		RenderPluginDescription(*plugin);
 	else
@@ -1272,7 +1309,7 @@ void PreferencesPanel::RenderPluginDescription(const string &pluginName)
 void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 {
 	const Color &medium = *GameData::Colors().Get("medium");
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	Rectangle box = GameData::Interfaces().Get("plugins")->GetBox("plugin description");
 
 	// We are resizing and redrawing the description buffer. Reset the scroll
@@ -1388,6 +1425,11 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		if(!Preferences::ZoomViewIn())
 			while(Preferences::ZoomViewOut()) {}
 	}
+	else if(str == FONT_SIZE)
+	{
+		Preferences::ToggleFontSize();
+		CustomEvents::SendAdjustText();
+	}
 	else if(str == SCREEN_MODE_SETTING)
 		Preferences::ToggleScreenMode();
 	else if(str == VSYNC_SETTING)
@@ -1462,11 +1504,15 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleTributeConfirmation();
 	else if(str == AMMO_REFILL)
 		Preferences::ToggleAmmoRefill();
+	else if(str == FASTFORWARD_CAPSLOCK_SYNC)
+		Preferences::ToggleFastForwardCapsLockSync();
 	else if(str == TEXT_ALIGNMENT)
 	{
 		Preferences::ToggleTextAlignment();
 		CustomEvents::SendAdjustText();
 	}
+	else if(str == ASTEROID_TARGETING)
+		Preferences::ToggleTargetAsteroidStrategy();
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
 		Preferences::ToggleTitleBarTheme();
@@ -1543,7 +1589,7 @@ void PreferencesPanel::HandleConfirm()
 		HandleSettingsString(selectedItem, Screen::Dimensions() / 2.);
 		break;
 	case 'p':
-		Plugins::TogglePlugin(selectedPlugin);
+		PluginManager::TogglePlugin(selectedPlugin);
 		break;
 	default:
 		break;

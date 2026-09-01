@@ -46,6 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <limits>
 #include <memory>
+#include <ranges>
 
 using namespace std;
 
@@ -301,22 +302,17 @@ double OutfitterPanel::DrawDetails(const Point &center)
 			collapsed.contains(DESCRIPTION));
 		selectedItem = selectedOutfit->DisplayName();
 
-		const Sprite *thumbnail = selectedOutfit->Thumbnail();
-		const float tileSize = thumbnail
-			? max(thumbnail->Height(), static_cast<float>(TileSize()))
+		const Drawable &thumbnail = selectedOutfit->Thumbnail();
+		const Sprite *thumbnailSprite = thumbnail.GetSprite();
+		const float tileSize = thumbnailSprite
+			? max(thumbnailSprite->Height(), static_cast<float>(TileSize()))
 			: static_cast<float>(TileSize());
 		const Point thumbnailCenter(center.X(), center.Y() + 20 + static_cast<int>(tileSize / 2));
 		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
 		const Sprite *background = SpriteSet::Get("ui/outfitter unselected");
 		SpriteShader::Draw(background, thumbnailCenter);
-		if(thumbnail)
-		{
-			if(thumbnail->IsLoaded())
-				SpriteShader::Draw(thumbnail, thumbnailCenter);
-			else if(thumbnail->HasDimensions())
-				loadingCircle.Draw(thumbnailCenter);
-		}
+		DrawThumbnail(thumbnail, true, thumbnailCenter);
 
 		const bool hasDescription = outfitInfo.DescriptionHeight();
 
@@ -400,6 +396,10 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				return "You cannot place licenses into " + LocationName(toLocation) + ".";
 			return "You already have one of these licenses, so there is no reason to buy another.";
 		}
+		if(fromLocation != OutfitLocation::Shop)
+			return "You cannot " + actionName + " licenses.";
+		if(toLocation != OutfitLocation::Ship)
+			return "You cannot place licenses into " + LocationName(toLocation) + ".";
 		return true;
 	}
 
@@ -440,16 +440,16 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 					// Looping over each ship which has the selected outfit, identify the reasons why it cannot be
 					// <verb>'d. Make a list of ship to errors to assemble into a string afterward.
 					// TODO: when there are multiples of the same better verbiage could be used rather than restating.
-					for(const pair<const char *, double> &it : selectedOutfit->Attributes())
-						if(attributes.Get(it.first) < it.second)
+					for(const auto &[name, value] : selectedOutfit->Precise())
+						if(attributes.GetPrecise(name) < value)
 						{
-							for(const auto &sit : ship->Outfits())
-								if(sit.first->Get(it.first) < 0.)
-									errorDetails.emplace_back(string("the \"") + sit.first->DisplayName() + "\" "
+							for(const auto &outfit : ship->Outfits() | views::keys)
+								if(outfit->GetPrecise(name) < 0)
+									errorDetails.emplace_back(string("the \"") + outfit->DisplayName() + "\" "
 										"depends on this outfit and must be uninstalled first");
 							if(errorDetails.empty())
 								errorDetails.emplace_back(
-									string("\"") + it.first + "\" value would be reduced to less than zero");
+									string("\"") + name + "\" value would be reduced to less than zero");
 						}
 
 					if(!errorDetails.empty())
@@ -628,10 +628,10 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				// Handle other attributes more generically, if none of the above are the problem.
 				if(errors.empty())
 				{
-					for(const auto &[name, value] : selectedOutfit->Attributes())
+					for(const auto &[name, value] : *selectedOutfit)
 					{
 						// Positive attributes can't be the cause of attribute errors.
-						if(value >= 0)
+						if(value >= 0.)
 							continue;
 						optional<double> minimum = Outfit::LowerLimit(name);
 						// Nor can attributes with no lower limit.
@@ -855,14 +855,33 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 					if(!ship->OutfitCount(linked))
 						continue;
 					// Determine how many of this outfit we must uninstall to also uninstall the primary outfit.
+					// Use the precise attribute values as to avoid float precision errors resulting in an
+					// incorrect number of outfits being uninstalled.
 					int mustUninstall = 0;
-					for(const pair<const char *, double> &it : ship->Attributes().Attributes())
-						if(it.second < 0.)
-							mustUninstall = max<int>(mustUninstall, ceil(it.second / linked->Get(it.first)));
+					const Outfit &attributes = ship->Attributes();
+					// Iterate over the attributes of the linked outfit instead of the attributes of the ship,
+					// since an outfit can never impact attributes it doesn't have.
+					for(const auto &[name, linkedValue] : linked->Precise())
+					{
+						int64_t value = attributes.GetPrecise(name);
+						// Only values on the ship that are below their allowed minimum need rectified.
+						// Only attributes on this linked outfit that are negative can bring the attribute
+						// above the minimum when removed.
+						optional<int64_t> limit = Outfit::LowerLimitPrecise(name);
+						if(!limit.has_value() || value >= limit.value() || linkedValue >= 0)
+							continue;
+
+						// Determine how many of this outfit must be uninstalled to get back above the lower limit.
+						// Using integer division, so we need to check the remainder to determine if we should
+						// round up.
+						auto [quotient, remainder] = std::div(value - limit.value(), linkedValue);
+						mustUninstall = max<int>(mustUninstall, quotient + (remainder ? 1 : 0));
+					}
 
 					if(mustUninstall)
 					{
-						ship->AddOutfit(linked, -mustUninstall);
+						// AddOutfit ensures that we don't uninstall more than is actually installed.
+						mustUninstall = -ship->AddOutfit(linked, -mustUninstall);
 
 						if(toLocation == OutfitLocation::Shop)
 						{
@@ -1087,17 +1106,9 @@ bool OutfitterPanel::ShipCanRemove(const Ship *ship, const Outfit *outfit)
 
 void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned) const
 {
-	const Sprite *thumbnail = outfit.Thumbnail();
-	const Sprite *back = SpriteSet::Get(
-		isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
+	const Sprite *back = SpriteSet::Get(isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
 	SpriteShader::Draw(back, center);
-	if(thumbnail)
-	{
-		if(thumbnail->IsLoaded())
-			SpriteShader::Draw(thumbnail, center);
-		else if(thumbnail->HasDimensions())
-			loadingCircle.Draw(center);
-	}
+	DrawThumbnail(outfit.Thumbnail(), isSelected, center);
 
 	// Draw the outfit name.
 	const string &name = outfit.DisplayName();
@@ -1345,7 +1356,7 @@ void OutfitterPanel::DrawButtons()
 		if(buttonsTooltip.ShouldDraw())
 		{
 			buttonsTooltip.SetZone(buttonsFooter);
-			buttonsTooltip.SetText(tooltip, true);
+			buttonsTooltip.SetText(tooltip);
 			buttonsTooltip.Draw();
 		}
 	}
@@ -1362,7 +1373,7 @@ void OutfitterPanel::DrawButtons()
 			creditsTooltip.SetZone(creditsBox);
 			creditsTooltip.SetText(Format::CreditString(player.Accounts().Credits(), false) + '\n' +
 				Format::MassString(player.Cargo().Free()) + " free out of " +
-				Format::MassString(player.Cargo().Size()) + " total capacity", true);
+				Format::MassString(player.Cargo().Size()) + " total capacity");
 			creditsTooltip.Draw();
 		}
 	}

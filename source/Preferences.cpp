@@ -81,6 +81,12 @@ namespace {
 		{"alert volume", SoundCategory::ALERT}
 	};
 
+	const vector<string> FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS = {
+		"default", "never", "always"
+	};
+	int fastForwardCapsLockSyncIndex = 0;
+
+
 	class OverlaySetting {
 	public:
 		OverlaySetting() = default;
@@ -193,7 +199,14 @@ namespace {
 
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 
+	const vector<string> TARGET_ASTEROID_SETTINGS = {"proximity", "expected value", "quality"};
+	int targetAsteroidIndex = 0;
+
 	int previousSaveCount = 3;
+
+	// The font size to be used for various UI panels that can support displaying larger text than the default.
+	const vector<int> FONT_SIZES = {14, 18};
+	int fontSizeIndex = 0;
 
 #ifdef _WIN32
 	const vector<string> TITLE_BAR_THEME_SETTINGS = {"system default", "light", "dark"};
@@ -222,13 +235,12 @@ void Preferences::Load()
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
 	settings["Animate main menu background"] = true;
-	settings["Linear filter"] = true;
+	settings["Texture filtering"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
 	settings["Ship outlines in HUD"] = true;
 	settings["Extra fleet status messages"] = true;
-	settings["Target asteroid based on"] = true;
 	settings["Deadline blink by distance"] = true;
 	settings["Confirm selling outfits"] = true;
 	settings["Confirm selling minables"] = true;
@@ -303,8 +315,14 @@ void Preferences::Load()
 			tributeConfirmationIndex = max<int>(0, min<int>(node.Value(1), TRIBUTE_CONFIRMATION_SETTINGS.size() - 1));
 		else if(key == "Ammo refill")
 			ammoRefillIndex = clamp<int>(node.Value(1), 0, AMMO_REFILL_SETTINGS.size() - 1);
+		else if(key == "Sync FF to CapsLock")
+			fastForwardCapsLockSyncIndex = max<int>(0, min<int>(node.Value(1), FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS.size() - 1));
 		else if(key == "Text alignment")
 			textAlignmentIndex = clamp<int>(node.Value(1), 0, TEXT_ALIGNMENT_SETTINGS.size() - 1);
+		else if(key == "Target asteroid based on")
+			targetAsteroidIndex = clamp<int>(node.Value(1), 0, TARGET_ASTEROID_SETTINGS.size() - 1);
+		else if(key == "font size")
+			fontSizeIndex = max<int>(0, node.Value(1));
 #ifdef _WIN32
 		else if(key == "Title bar theme")
 			titleBarThemeIndex = clamp<int>(node.Value(1), 0, TITLE_BAR_THEME_SETTINGS.size() - 1);
@@ -391,6 +409,7 @@ void Preferences::Save()
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("Sync FF to CapsLock", fastForwardCapsLockSyncIndex);
 	out.Write("camera acceleration", cameraAccelerationIndex);
 	out.Write("date format", dateFormatIndex);
 	out.Write("notification settings", notifOptionsIndex);
@@ -412,7 +431,9 @@ void Preferences::Save()
 	out.Write("Tribute confirmation", tributeConfirmationIndex);
 	out.Write("Ammo refill", ammoRefillIndex);
 	out.Write("Text alignment", textAlignmentIndex);
+	out.Write("Target asteroid based on", targetAsteroidIndex);
 	out.Write("previous saves", previousSaveCount);
+	out.Write("font size", fontSizeIndex);
 #ifdef _WIN32
 	if(WinVersion::SupportsDarkTheme())
 		out.Write("Title bar theme", titleBarThemeIndex);
@@ -702,6 +723,19 @@ const string &Preferences::VSyncSetting()
 	return VSYNC_SETTINGS[vsyncIndex];
 }
 
+
+
+Preferences::FastForwardCapsLockSync Preferences::GetFastForwardCapsLockSync()
+{
+	return static_cast<FastForwardCapsLockSync>(fastForwardCapsLockSyncIndex);
+}
+
+
+
+const string &Preferences::FastForwardCapsLockSyncSetting()
+{
+	return FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS[fastForwardCapsLockSyncIndex];
+}
 
 
 void Preferences::ToggleCameraAcceleration()
@@ -1058,6 +1092,13 @@ const std::string &Preferences::AmmoRefillSetting()
 
 
 
+void Preferences::ToggleFastForwardCapsLockSync()
+{
+	fastForwardCapsLockSyncIndex = (fastForwardCapsLockSyncIndex + 1) % FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS.size();
+}
+
+
+
 void Preferences::ToggleTextAlignment()
 {
 	if(++textAlignmentIndex >= static_cast<int>(TEXT_ALIGNMENT_SETTINGS.size()))
@@ -1076,6 +1117,43 @@ Alignment Preferences::GetTextAlignment()
 const string &Preferences::TextAlignmentSetting()
 {
 	return TEXT_ALIGNMENT_SETTINGS[textAlignmentIndex];
+}
+
+
+
+void Preferences::ToggleTargetAsteroidStrategy()
+{
+	if(++targetAsteroidIndex >= static_cast<int>(TARGET_ASTEROID_SETTINGS.size()))
+		targetAsteroidIndex = 0;
+}
+
+
+
+Preferences::TargetAsteroidStrategy Preferences::GetTargetAsteroidStrategy()
+{
+	return static_cast<TargetAsteroidStrategy>(targetAsteroidIndex);
+}
+
+
+
+const string &Preferences::TargetAsteroidStrategySetting()
+{
+	return TARGET_ASTEROID_SETTINGS[targetAsteroidIndex];
+}
+
+
+
+void Preferences::ToggleFontSize()
+{
+	if(++fontSizeIndex >= static_cast<int>(FONT_SIZES.size()))
+		fontSizeIndex = 0;
+}
+
+
+
+int Preferences::GetFontSize()
+{
+	return FONT_SIZES[fontSizeIndex];
 }
 
 

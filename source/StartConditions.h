@@ -17,8 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CoreStartData.h"
 
+#include "ConditionAssignments.h"
 #include "ConditionSet.h"
-#include "Conversation.h"
 #include "Date.h"
 #include "ExclusiveItem.h"
 #include "ship/ShipFactory.h"
@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class ConditionsStore;
+class Conversation;
 class DataNode;
 class Ship;
 class Sprite;
@@ -83,7 +84,7 @@ public:
 	void InstantiateShips(const PlayerInfo &player, std::vector<std::shared_ptr<Ship>> &playerShips) const noexcept;
 
 	// Get this start's intro conversation.
-	const Conversation &GetConversation() const;
+	const Conversation *GetConversation() const;
 
 	// Information needed for the scenario picker.
 	const Sprite *GetThumbnail() const noexcept;

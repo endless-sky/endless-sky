@@ -14,6 +14,7 @@
 ship "Emerald Sword"
 	sprite ship/emeraldsword
 	thumbnail "thumbnail/emeraldsword"
+	"administrative cost" 10
 	swizzle 3
 	attributes
 		category "Superheavy"
@@ -167,6 +168,7 @@ ship "Emerald Sword" "Emerald Sword (Fixed)"
 ship "Black Diamond"
 	sprite "ship/blackdiamond"
 	thumbnail "thumbnail/blackdiamond"
+	"administrative cost" 0
 	swizzle 9
 	attributes
 		category "Fighter"

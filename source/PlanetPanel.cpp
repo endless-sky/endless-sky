@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "BankPanel.h"
 #include "Command.h"
+#include "Conversation.h"
 #include "ConversationPanel.h"
 #include "DialogPanel.h"
 #include "text/FontSet.h"
@@ -68,7 +69,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	hiring = make_shared<HiringPanel>(player);
 
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
@@ -101,7 +102,7 @@ void PlanetPanel::Step()
 		if(callback)
 			callback();
 		if(selectedPanel)
-			GetUI().Pop(selectedPanel);
+			GetUI().Pop(selectedPanel.get());
 		GetUI().Pop(this);
 		return;
 	}
@@ -170,6 +171,9 @@ void PlanetPanel::Step()
 				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
 			for(const auto &outfit : player.Cargo().Outfits())
 				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			for(const auto &[outfit, count] : player.GetStock())
+				if(count > 0)
+					SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
 			for(const auto &license : player.Licenses())
 			{
 				const Outfit *outfit = GameData::Outfits().Find(license + " License");
@@ -183,7 +187,7 @@ void PlanetPanel::Step()
 	// treating them all as the landing location. This is mainly to
 	// handle the intro mission in the event the player moves away
 	// from the landing before buying a ship.
-	const Panel *activePanel = selectedPanel ? selectedPanel : this;
+	const Panel *activePanel = selectedPanel ? selectedPanel.get() : this;
 	if(activePanel != spaceport.get() && GetUI().IsTop(activePanel))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
@@ -244,6 +248,7 @@ void PlanetPanel::Draw()
 void PlanetPanel::UpdateTextDisplay()
 {
 	description->SetAlignment(Preferences::GetTextAlignment());
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 }
 
 
@@ -254,7 +259,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	if(player.IsDead())
 		return true;
 
-	Panel *oldPanel = selectedPanel;
+	Panel *oldPanel = selectedPanel.get();
 	const Ship *flagship = player.Flagship();
 
 	UI::UISound sound = UI::UISound::NORMAL;
@@ -288,21 +293,14 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 't' && hasAccess
 			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
-	{
-		selectedPanel = trading.get();
-		GetUI().Push(trading);
-	}
+		selectedPanel = trading;
 	else if(key == 'b' && hasAccess && planet.GetPort().HasService(Port::ServicesType::Bank))
-	{
-		selectedPanel = bank.get();
-		GetUI().Push(bank);
-	}
+		selectedPanel = bank;
 	else if(key == 'p' && hasAccess && planet.HasNamedPort())
 	{
-		selectedPanel = spaceport.get();
+		selectedPanel = spaceport;
 		if(isNewPress)
 			spaceport->UpdateNews();
-		GetUI().Push(spaceport);
 	}
 	else if(key == 's' && hasAccess && hasShipyard)
 	{
@@ -322,17 +320,19 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		return true;
 	}
 	else if(key == 'h' && hasAccess && planet.GetPort().HasService(Port::ServicesType::HireCrew))
-	{
-		selectedPanel = hiring.get();
-		GetUI().Push(hiring);
-	}
+		selectedPanel = hiring;
 	else
 		return false;
 
 	// If we are here, it is because something happened to change the selected
-	// planet UI panel. So, we need to pop the old selected panel:
-	if(oldPanel)
-		GetUI().Pop(oldPanel);
+	// planet UI panel. So, we need to push the new and pop the old selected panel:
+	if(oldPanel != selectedPanel.get())
+	{
+		if(oldPanel)
+			GetUI().Pop(oldPanel);
+		if(selectedPanel)
+			GetUI().Push(selectedPanel);
+	}
 
 	UI::PlaySound(sound);
 
@@ -456,17 +456,17 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	const int commoditiesToSell = cargo.CommoditiesSize();
 	int outfitsToSell = 0;
 	map<const Outfit *, int> uniquesToSell;
-	for(auto &it : cargo.Outfits())
+	for(const auto &[outfit, count] : cargo.Outfits())
 	{
-		outfitsToSell += it.second;
-		if(it.first->Attributes().Get("unique"))
-			uniquesToSell[it.first] = it.second;
+		outfitsToSell += count;
+		if(outfit->GetPrecise("unique"))
+			uniquesToSell[outfit] = count;
 	}
 	// Have you left any unique items at the outfitter?
 	map<const Outfit *, int> leftUniques;
-	for(const auto &it : player.GetStock())
-		if(it.second > 0 && it.first->Attributes().Get("unique"))
-			leftUniques[it.first] = it.second;
+	for(const auto &[outfit, count] : player.GetStock())
+		if(count > 0 && outfit->GetPrecise("unique"))
+			leftUniques[outfit] = count;
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
 	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
 	size_t nonJumpCount = 0;
@@ -593,7 +593,7 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 		if(callback)
 			callback();
 		if(selectedPanel)
-			GetUI().Pop(selectedPanel);
+			GetUI().Pop(selectedPanel.get());
 		GetUI().Pop(this);
 	}
 }
