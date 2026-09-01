@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <optional>
 
-
 class DataNode;
 class Date;
 class Ship;

@@ -613,6 +613,8 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	{
 		if(object.orbit.explicitPeriodSet)
 			continue;
+		// Set this object back to the default orbit speed.
+		object.orbit.speed = 36.;
 		if(!object.orbit.distance)
 		{
 			// Do nothing if the object is in the exact center of the system.

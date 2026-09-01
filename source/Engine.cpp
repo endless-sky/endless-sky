@@ -399,17 +399,7 @@ void Engine::Place()
 		if(!pos)
 		{
 			ship->SetPlanet(nullptr);
-			// If a ship is disabled, then it was already placed previously and shouldn't have moved.
-			if(ship->IsDisabled())
-			{
-				// If the ship got kicked far away from the system center while disabled, then pull it closer to the
-				// center. This is an anti-frustration measure for finding small fighters that often get kicked away
-				// from the center of the system by explosion.
-				if(ship->Position().LengthSquared() > 5000. * 5000.)
-					ship->Place(ship->Position().Unit() * (4000. + Random::Real() * 1000.), Point(), ship->Facing());
-			}
-			else
-				Fleet::Place(*ship->GetSystem(), *ship);
+			Fleet::Place(*ship->GetSystem(), *ship);
 		}
 		// This ship is taking off from a planet.
 		else

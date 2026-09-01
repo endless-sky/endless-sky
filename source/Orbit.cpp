@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Orbit.h"
 
 #include "Angle.h"
+#include "DataNode.h"
 #include "Point.h"
 
 #include <cmath>
@@ -52,8 +53,14 @@ void Orbit::Load(const DataNode &node)
 			distance = child.Value(1);
 		else if(key == "period")
 		{
-			speed = 360. / child.Value(1);
+			double period = child.Value(1);
+			if(!period)
+			{
+				node.PrintTrace("An orbit's period may not be equal to zero.");
+				return;
+			}
 			explicitPeriodSet = true;
+			speed = 360. / period;
 		}
 		else if(key == "offset")
 			offset = child.Value(1);

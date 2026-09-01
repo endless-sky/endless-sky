@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 
-
 using namespace std;
 
 
@@ -38,7 +37,8 @@ void FleetPlacement::Load(const DataNode &node)
 		const string &key = child.Token(0);
 		if(key == "weapon" && child.HasChildren())
 		{
-			randomScaling = child.Size() >= 2 ? max(0., child.Value(1)) : 0.;
+			if(child.Size() >= 2)
+				randomScaling = max(0., child.Value(1));
 			weapon.Load(child);
 		}
 		else if(child.Size() < 2)
@@ -88,7 +88,7 @@ void FleetPlacement::Load(const DataNode &node)
 
 
 
-void FleetPlacement::Place(const std::list<std::shared_ptr<Ship>> &ships, const System &system, const Date &date,
+void FleetPlacement::Place(const list<shared_ptr<Ship>> &ships, const System &system, const Date &date,
 	bool isEntering) const
 {
 	if(!loaded)
