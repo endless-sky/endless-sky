@@ -27,7 +27,7 @@ using namespace std;
 
 void ShipFactory::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	int startIndex = node.Token(0) == "add"  ? 1 : 0;
+	int startIndex = node.Token(0) == "add" ? 1 : 0;
 	// A third token may be present to represent the given name of this ship.
 	// Ships without a name given here will be given one later.
 	const string &name = (node.Size() >= startIndex + 3) ? node.Token(startIndex + 2) : "";
