@@ -390,9 +390,38 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		movingEnergyPerFrame += attributes.Get("reverse thrusting energy");
 		movingHeatPerFrame += attributes.Get("reverse thrusting heat");
 	}
-	tableLabels.push_back("moving:");
-	energyTable.push_back(Format::Number(-60. * movingEnergyPerFrame));
-	heatTable.push_back(Format::Number(60. * movingHeatPerFrame));
+	// If this is a scrolling panel, break up movement into each individual movement capability.
+	if(scrollingPanel)
+	{
+		tableLabels.push_back("thrusting:");
+		energyTable.push_back(Format::Number(-60. * attributes.Get("thrusting energy")));
+		heatTable.push_back(Format::Number(60. * attributes.Get("thrusting heat")));
+		if(reverseThrust)
+		{
+			attributesHeight += 20;
+			tableLabels.push_back("reversing:");
+			energyTable.push_back(Format::Number(-60. * attributes.Get("reverse thrusting energy")));
+			heatTable.push_back(Format::Number(60. * attributes.Get("reverse thrusting heat")));
+		}
+		if(afterburnerThrust)
+		{
+			attributesHeight += 20;
+			tableLabels.push_back("afterburner:");
+			energyTable.push_back(Format::Number(-60. * attributes.Get("afterburner energy")));
+			heatTable.push_back(Format::Number(60. * attributes.Get("afterburner heat")));
+		}
+		attributesHeight += 20;
+		tableLabels.push_back("turning:");
+		energyTable.push_back(Format::Number(-60. * attributes.Get("turning energy")));
+		heatTable.push_back(Format::Number(60. * attributes.Get("turning heat")));
+	}
+	else
+	{
+		// Otherwise, just display a singular worst-case value.
+		tableLabels.push_back("moving:");
+		energyTable.push_back(Format::Number(-60. * movingEnergyPerFrame));
+		heatTable.push_back(Format::Number(60. * movingHeatPerFrame));
+	}
 
 	// Add energy and heat while firing to the table.
 	attributesHeight += 20;

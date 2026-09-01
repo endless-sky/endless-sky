@@ -905,7 +905,19 @@ tip "idle:"
 	`Energy and heat generated per second when this ship is idle, i.e. not firing weapons, turning, or thrusting.`
 
 tip "moving:"
-	`Energy consumed and heat generated per second when this ship is turning and thrusting. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is turning and thrusting. Includes the cost of using an afterburner if one is installed, or uses the cost of using reverse thrust if that is greater than the cost of forward thrust. This is in addition to the "idle" amount.`
+
+tip "thrusting:"
+	`Energy consumed and heat generated per second when this ship is thrusting. This is in addition to the "idle" amount.`
+
+tip "reversing:"
+	`Energy consumed and heat generated per second when this ship is using reverse thrusters. This is in addition to the "idle" amount.`
+
+tip "afterburner:"
+	`Energy consumed and heat generated per second when this ship is using its afterburner. This is in addition to the "idle" amount.`
+
+tip "turning:"
+	`Energy consumed and heat generated per second when this ship is turning. This is in addition to the "idle" amount.`
 
 tip "firing:"
 	`Energy consumed and heat generated per second when this ship is firing all its weapons. This is in addition to the "idle" amount. Note that weapons may consume or generate more energy or heat than this at the moment they fire, and this is the average value over time.`
