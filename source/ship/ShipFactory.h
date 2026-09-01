@@ -44,12 +44,16 @@ public:
 	void RemoveModel(const std::string &shipModel);
 	void Clear();
 
+	std::vector<const Ship *> GetShips() const;
+
 	// Instantiate this factory's ships into the provided vector.
 	// Makes text substitutions in the names of any ships if a substitution map is provided.
 	void Instantiate(std::list<std::shared_ptr<Ship>> &container,
 		const std::map<std::string, std::string> *subs = nullptr) const;
 	void Instantiate(std::vector<std::shared_ptr<Ship>> &container,
 		const std::map<std::string, std::string> *subs = nullptr) const;
+	// Instantiate and return a vector instead of populating a given one.
+	std::vector<std::shared_ptr<Ship>> Instantiate(const std::map<std::string, std::string> *subs = nullptr) const;
 
 
 private:

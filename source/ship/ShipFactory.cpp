@@ -79,6 +79,16 @@ void ShipFactory::Clear()
 
 
 
+vector<const Ship *> ShipFactory::GetShips() const
+{
+	vector<const Ship *> shipPtrs;
+	for(const auto &ship : ships | views::keys)
+		shipPtrs.push_back(ship.Ptr());
+	return shipPtrs;
+}
+
+
+
 void ShipFactory::Instantiate(list<shared_ptr<Ship>> &container, const map<string, string> *subs) const
 {
 	InstantiateContainer(container, subs);
@@ -89,4 +99,13 @@ void ShipFactory::Instantiate(list<shared_ptr<Ship>> &container, const map<strin
 void ShipFactory::Instantiate(vector<shared_ptr<Ship>> &container, const map<string, string> *subs) const
 {
 	InstantiateContainer(container, subs);
+}
+
+
+
+vector<shared_ptr<Ship>> ShipFactory::Instantiate(const map<string, string> *subs) const
+{
+	vector<shared_ptr<Ship>> ships;
+	InstantiateContainer(ships, subs);
+	return ships;
 }
