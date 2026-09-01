@@ -60,7 +60,7 @@ public:
 private:
 	template<class T>
 	void InstantiateContainer(T &container, const std::function<std::string(const std::shared_ptr<Ship> &)> &nameFunc,
-		const std::map<std::string, std::string> *subs = nullptr) const;
+		const std::map<std::string, std::string> *subs) const;
 
 
 private:
