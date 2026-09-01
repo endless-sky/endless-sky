@@ -353,6 +353,13 @@ void Engine::Place()
 	// (While carried by a parent, ships will not be present in `Engine::ships`.)
 	for(const shared_ptr<Ship> &ship : ships)
 	{
+		// Skip over ships that have already been placed by NPC or Fleet.
+		if(ship->IsPlaced())
+		{
+			// Unmark this ship as placed, as subsequent placements should still be randomized.
+			ship->SetIsPlaced(false);
+			continue;
+		}
 		Point pos;
 		Angle angle = Angle::Random();
 		// Any ships in the same system as the player should be either
@@ -455,8 +462,11 @@ void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 			// Avoid the exploit where the player can wear down an NPC's
 			// crew by attrition over the course of many days.
 			ship->AddCrew(max(0, ship->RequiredCrew() - ship->Crew()));
-			if(!ship->IsDisabled())
+			if(!ship->IsDisabled() && !ship->IsSkipRecharging())
 				ship->Recharge();
+			// Ships that skipped recharging due to being placed that way
+			// can still recharge on subsequent placements.
+			ship->SetSkipRecharging(false);
 
 			if(ship->CanBeCarried())
 			{
