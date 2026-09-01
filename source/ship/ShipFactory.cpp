@@ -27,9 +27,10 @@ using namespace std;
 
 void ShipFactory::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
+	int startIndex = node.Token(0) == "add"  ? 1 : 0;
 	// A third token may be present to represent the given name of this ship.
 	// Ships without a name given here will be given one later.
-	const string &name = (node.Size() >= 3) ? node.Token(2) : "";
+	const string &name = (node.Size() >= startIndex + 3) ? node.Token(startIndex + 2) : "";
 	if(node.HasChildren())
 	{
 		shared_ptr<Ship> ship = make_shared<Ship>(node, playerConditions);
@@ -39,7 +40,7 @@ void ShipFactory::Load(const DataNode &node, const ConditionsStore *playerCondit
 		ships.emplace_back(ship, !ship->GivenName().empty() ? ship->GivenName() : name);
 	}
 	else
-		ships.emplace_back(GameData::Ships().Get(node.Token(1)), name);
+		ships.emplace_back(GameData::Ships().Get(node.Token(startIndex + 1)), name);
 }
 
 
@@ -64,13 +65,9 @@ bool ShipFactory::IsValid() const
 
 void ShipFactory::RemoveModel(const string &shipModel)
 {
-	for(auto it = ships.begin(); it != ships.end(); )
-	{
-		if(it->first->TrueModelName() == shipModel)
-			it = ships.erase(it);
-		else
-			++it;
-	}
+	erase_if(ships, [&](const pair<ExclusiveItem<Ship>, string> &it) noexcept -> bool {
+		return it.first->TrueModelName() == shipModel;
+	});
 }
 
 
