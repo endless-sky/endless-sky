@@ -473,21 +473,20 @@ mission "Avgi: Defend Ensemble 1"
 			label next
 			`	Darius shakes his head for a moment, then looks back at you. "Well, since you're still here, I'm assuming your jump drive couldn't get you out of here?"`
 			choice
-				`	"Unfortunately not."`
-					to display
-						not "avgi: discovered magnetar"
-				`	"For some reason, the drive doesn't work at full power in this region of space, so it doesn't have enough range to get out."`
-					to display
-						not "avgi: discovered magnetar"
 				`	"Actually, it can. I'm just passing through."`
 					goto "can leave"
 					to display
 						has "avgi: discovered magnetar"
-			`	He nods at your explanation. "There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like, say, desperately trying to find a way back to our homes." He sounds frustrated.`
+				`	"Yes, that's the long and short of it."`
+					to display
+						not "avgi: discovered magnetar"
+			`	You tell him about how you were unable to jump back to human space, and he nods along.`
+			`	"There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like, say, desperately trying to find a way back to our homes." He sounds frustrated.`
 			goto plight
 
 			label "can leave"
-			`	Darius stares at you. "It can? You... you have a way out? Just like that?" You explain the strange phenomenon that expanded your jump drive's range, and he grabs you by the arms. "Please, you have to let me come with you! There's no other ships that can do it. The Avgi don't even like us trying to map out the place." Once you pry his hands off, you assure him that you have a spare bunk. He looks to be on the verge of tears, profusely thanking you.`
+			`	Darius stares at you. "It can? You... you have a way out? Just like that?" You explain the strange phenomenon that expanded your jump drive's range, and he grabs you by the arms. "Please, you have to let me come with you! There's no other ships that can do it." Once you pry his hands off, you assure him that you have a spare bunk. He looks to be on the verge of tears, profusely thanking you.`
+			`	"In six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes. But that's over now!"`
 			label plight
 			choice
 				`	"Don't worry, I'm sure we'll find a way back home."`
@@ -1176,6 +1175,7 @@ mission "Avgi: Discovery of Decet Magnetar"
 	on offer
 		event "avgi: discovered magnetar" 0
 		log `Discovered a magnetar in the Decet system that can boost the range of my jump drive in an apparent inversion of the mysterious effect that trapped me here.`
+		set "avgi: discovered magnetar"
 		conversation
 			`Just as your jump drive reacted strangely when you first entered Avgi space, it does so again, but this time the effect is inverted. The plasma from your jump lingers unnaturally, as though energized by something outside. Your instrumentation tells you your jump drive is much warmer than it should be just after a jump, almost hot enough to be dangerous. Perhaps your jump drive's range has changed as well?`
 				decline
