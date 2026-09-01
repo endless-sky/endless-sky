@@ -483,11 +483,11 @@ mission "Avgi: Defend Ensemble 1"
 					goto "can leave"
 					to display
 						has "avgi: discovered magnetar"
-			`	He nods at your explanation. "There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes." He sounds frustrated.`
+			`	He nods at your explanation. "There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like, say, desperately trying to find a way back to our homes." He sounds frustrated.`
 			goto plight
 
 			label "can leave"
-			`	Darius stares at you. "It can? You... you have a way out? Just like that?" You explain the strange phenomenon that expanded your jump drive's range, and he grabs you by the arms. "Please, you have to let me come with you! There's no other ships that can do it. The Avgi don't even like us trying to map out the place." Once you pry his hands off, you assure him that you have a spare bunk, and he looks to be on the verge of tears, profusely thanking you.`
+			`	Darius stares at you. "It can? You... you have a way out? Just like that?" You explain the strange phenomenon that expanded your jump drive's range, and he grabs you by the arms. "Please, you have to let me come with you! There's no other ships that can do it. The Avgi don't even like us trying to map out the place." Once you pry his hands off, you assure him that you have a spare bunk. He looks to be on the verge of tears, profusely thanking you.`
 			label plight
 			choice
 				`	"Don't worry, I'm sure we'll find a way back home."`
@@ -688,7 +688,7 @@ mission "Avgi: Defend Ensemble 2"
 				`	"No, but I'm not giving up on finding a different way out."`
 				`	"Nope!"`
 			`	"Damn. That would be too easy, I guess. But it's been too long since I've seen a fresh human face. I've been working for the Twilight Guard here for months, trying to build up a second line of defenses in case that station in Arche falls. At least today's battle shows those defenses, together with a supporting fleet, can hold. You mind if I tag along with you, in case you do manage to find a way out?"`
-			goto recruit
+				goto recruit
 			label "can leave"
 			choice
 				`	"Sure can!"`
