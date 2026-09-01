@@ -49,10 +49,11 @@ Drawable::Drawable(const Drawable &other, double zoom, Point scale, double alpha
 
 
 
-// Check that this Drawable has a sprite and that the sprite has at least one frame.
+// Check that this Drawable has a sprite and that the sprite has dimensions to it.
+// The sprite may be unloaded, though.
 bool Drawable::HasSprite() const
 {
-	return (sprite && sprite->Frames());
+	return (sprite && sprite->HasDimensions());
 }
 
 
@@ -112,6 +113,20 @@ float Drawable::GetFrame(int step) const
 		SetStep(step);
 
 	return frame;
+}
+
+
+
+void Drawable::PauseAnimation() const
+{
+	++pause;
+}
+
+
+
+void Drawable::UnpauseAnimation() const
+{
+	pause = 0;
 }
 
 
@@ -256,13 +271,6 @@ void Drawable::AddFrameRate(float framesPerSecond)
 
 
 
-void Drawable::PauseAnimation()
-{
-	++pause;
-}
-
-
-
 // Set the current time step.
 void Drawable::SetStep(int step) const
 {
@@ -273,7 +281,7 @@ void Drawable::SetStep(int step) const
 	// If the step is negative or there is no sprite, do nothing. This updates
 	// and caches the mask and the frame so that if further queries are made at
 	// this same time step, we don't need to redo the calculations.
-	if(step == currentStep || step < 0 || !sprite || !sprite->Frames())
+	if(step == currentStep || step < 0 || !sprite || !sprite->IsLoaded())
 		return;
 	currentStep = step;
 

@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "Ship.h"
+#include "ShipEvent.h"
 #include "System.h"
 
 using namespace std;
@@ -63,6 +64,18 @@ void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 
 
 
+bool Person::IsValid() const
+{
+	if(!isLoaded || !government || !government->IsDefined())
+		return false;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsValid())
+			return false;
+	return true;
+}
+
+
+
 // Finish loading all the ships in this person specification.
 void Person::FinishLoading()
 {
@@ -72,13 +85,6 @@ void Person::FinishLoading()
 		if(formationPattern)
 			ship->SetFormationPattern(formationPattern);
 	}
-}
-
-
-
-bool Person::IsLoaded() const
-{
-	return isLoaded;
 }
 
 
@@ -97,7 +103,7 @@ int Person::Frequency(const System *system) const
 {
 	// Because persons always enter a system via one of the regular hyperspace
 	// links, don't create them in systems with no links.
-	if(!system || IsDestroyed() || IsPlaced() || system->Links().empty())
+	if(!system || !frequency || system->Links().empty() || !IsValid() || IsDestroyed() || IsPlaced())
 		return 0;
 
 	return (location.IsEmpty() || location.Matches(system)) ? frequency : 0;
@@ -185,4 +191,30 @@ void Person::ClearPlacement()
 {
 	if(!IsDestroyed())
 		Restore();
+}
+
+
+
+bool Person::Do(const ShipEvent &event)
+{
+	// First, check if this ship is part of this Person. If not, do nothing. If it
+	// is part of this Person and it just got captured, replace it with a copy of
+	// itself so that when this Person is respawned, it doesn't steal the ship away
+	// from the capturer.
+	const shared_ptr<Ship> &target = event.Target();
+	int type = event.Type();
+	for(shared_ptr<Ship> &ptr : ships)
+		if(ptr == target)
+		{
+			if(type & ShipEvent::CAPTURE)
+			{
+				shared_ptr<Ship> copy = make_shared<Ship>(*ptr);
+				// Unlike NPC, we don't copy the UUID here, since the next time
+				// this ship is spawned, it'll be a different instance.
+				copy->Destroy();
+				ptr.swap(copy);
+			}
+			return true;
+		}
+	return false;
 }

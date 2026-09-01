@@ -26,7 +26,7 @@ mission "Paradise Job: Care Package"
 	destination
 		distance 2 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "paradise" "research" "rich"
+		attributes "paradise" "research" "wealthy"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -49,7 +49,7 @@ mission "Paradise Job: Birthday Supplies"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "paradise" "rich" "core" "near earth"
+		attributes "paradise" "wealthy" "core" "near earth"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -69,7 +69,7 @@ mission "Paradise Job: Art Delivery"
 		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "rich"
+		attributes "wealthy"
 	destination
 		distance 2 5
 		attributes "paradise"
@@ -98,7 +98,7 @@ mission "Paradise Job: Newlyweds"
 	destination
 		distance 2 15
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Quarg"
-		attributes "paradise" "rich" "core" "near earth"
+		attributes "paradise" "wealthy" "core" "near earth"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -117,7 +117,7 @@ mission "Paradise Job: Theater Props"
 		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "rich" "urban"
+		attributes "wealthy" "urban"
 	destination
 		distance 2 8
 		attributes "paradise"
@@ -295,7 +295,7 @@ mission "Paradise Job: Party Goods"
 	stopover
 		distance 5 9
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
-		attributes "paradise" "rich"
+		attributes "paradise" "wealthy"
 		attributes "spaceport"
 	on stopover
 		dialog "You oversee the loading as dockworkers carry box after box of <commodity> onto your ship. Must be some party."
@@ -319,7 +319,7 @@ mission "Paradise Job: Estate Assets"
 		attributes "paradise"
 	destination
 		distance 3 12
-		attributes "rich"
+		attributes "wealthy"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -424,7 +424,7 @@ mission "Pleasure cruise security"
 		random < 10
 		"combat rating" > 10
 	source
-		attributes "paradise" "rich"
+		attributes "paradise" "wealthy"
 	stopover
 		attributes "tourism" "religious" "quarg" "pirate" "volcanic" "frontier" "moon" "fishing"
 		attributes "spaceport"
@@ -706,7 +706,7 @@ mission "Martini Evacuation (Resident Family)"
 	source Martini
 	destination
 		distance 2 5
-		attributes "paradise" "rich" "urban"
+		attributes "paradise" "wealthy" "urban"
 		not attributes "station"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -735,7 +735,7 @@ mission "Martini Evacuation (Resident Group)"
 	source Martini
 	destination
 		distance 2 5
-		attributes "paradise" "rich" "urban"
+		attributes "paradise" "wealthy" "urban"
 		not attributes "station"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -764,7 +764,7 @@ mission "Martini Evacuation (Resident)"
 	source Martini
 	destination
 		distance 2 5
-		attributes "paradise" "rich" "urban"
+		attributes "paradise" "wealthy" "urban"
 		not attributes "station"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -795,7 +795,7 @@ mission "Martini Evacuation (Family, Luxury)"
 	source Martini
 	destination
 		distance 2 5
-		attributes "paradise" "rich" "urban"
+		attributes "paradise" "wealthy" "urban"
 		not attributes "station"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -826,7 +826,7 @@ mission "Martini Evacuation (Singular, Luxury)"
 	source Martini
 	destination
 		distance 2 5
-		attributes "paradise" "rich" "urban"
+		attributes "paradise" "wealthy" "urban"
 		not attributes "station"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -931,7 +931,7 @@ mission "Martini Evacuation (Businessman Group)"
 	source Martini
 	destination
 		distance 2 8
-		attributes "paradise" "rich"
+		attributes "paradise" "wealthy"
 		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
