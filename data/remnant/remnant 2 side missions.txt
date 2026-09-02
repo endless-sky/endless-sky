@@ -880,7 +880,7 @@ mission "Remnant: A Sprite In The Hand 2"
 				not "event: remnant: Nenia fleet arrived"
 			branch lazybum
 				has "Remnant: A Sprite In The Hand 1C-1: offered"
-			`	You begin to show him what you have gathered, and he nods in acknowledgement. "One of our fleets has discovered the same a few days ago. From what we can tell, they seems to be in every way comparable to the Postverta Sprites." He takes off the upper half of his protection suit, then equips a multi-faced visor over his eyes. "What we have yet to figure out is how long have they been there, and how."`
+			`	You begin to show him what you have gathered, and he nods in acknowledgment. "One of our fleets has discovered the same a few days ago. From what we can tell, they seems to be in every way comparable to the Postverta Sprites." He takes off the upper half of his protection suit, then equips a multi-faced visor over his eyes. "What we have yet to figure out is how long have they been there, and how."`
 			choice
 				`	"I would add 'why' to the list as well."`
 					goto continue
@@ -1059,10 +1059,10 @@ mission "Remnant: A Sprite In The Hand 3C"
 		conversation
 			`Plume's technicians set up an improvised interrogation aboard your ship as soon as you arrive on the station. As you recount the encounter, their questions take a strange focus on the object that hit - so much, in fact, that the rest of the interview feels done more out of duty. Another pair of Remnant, joining the examination in the middle of it, make a drawing of the mass following the details you give.`
 			`	Once the interview ends, and the Remnant group, leaves your crew quarters, Plume makes his entrance. "I implore you not act like this again, <first>. Certainly not without contacting us before doing it. Do not make the mistake of thinking that because an idea worked, it was a good one in first place." You try to reply, but he stops you. "Just nod, so that we can move on from this part."`
-				choice
-					`	(Nod.)`
-					`	"I mean, it worked."`
-						die
+			choice
+				`	(Nod.)`
+				`	"I mean, it worked."`
+					die
 			`	"Very well!" He breathes a sigh of relief, and instantly regains some of his usual character. "It is much more important to discuss what the Ember Node chose to show you. I am very nearly certain that I recognize the material you have described."`
 			`	"Ssil Vida and the surrounding cluster are home to a number of lifeforms, as you have seen. The vast majority are asteroid-based organisms, growing and generating energy in a matter roughly comparable with vegetation. The term Void Orchids is, of course, a misnomer - none of the many lifeforms grouped under this banner are a true plant, and even then, they share very few similarities with Tracheophyta!"`
 			`	He stops before he digresses further. "I have studied some of these organisms myself, and I am certain that at least one of them was composed of this very material. We will gather some further data to make sure of it shortly, but I remember it very clearly."`
@@ -1074,7 +1074,8 @@ mission "Remnant: A Sprite In The Hand 3C"
 				`	"What is a Tracheophyta?"`
 			`	"Plants composed of vascular tissue. As you might expect, liquid flow is vastly more complex in a void." he replies, miming a series of bursts with his hands. "Most space-based organisms we have seen have found ways to work around it, usually avoiding it wherever possible. All of the vegetation from Postverta we have been able to study is built around conserving enough heat to avoid the dreaded freezing point."`
 				goto scan
-			`	"It is unclear. We have not seen vegetation of this kind outside of that cluster, but we cannot pretend to have discovered everything hidden in the Ember Wastes. Either way, the Void Sprites were able to find in Nenia everything they needed to thrive for millennia, at the very least."
+			label node
+			`	"It is unclear. We have not seen vegetation of this kind outside of that cluster, but we cannot pretend to have discovered everything hidden in the Ember Wastes. Either way, the Void Sprites were able to find in Nenia everything they needed to thrive for millennia, at the very least."`
 			label scan
 			`	He hurriedly scrolls through a handheld until he finds what he is looking for. "I had asked Aventine to begin stashing Ssil Vida's creatures just a few months ago. I bet they can move here a couple examples of the one I had in mind before the day is out." He gestures toward the starport, giving you rather vague directions to reach the bay the supplies should arrive from.`
 				accept
@@ -1088,6 +1089,7 @@ mission "Remnant: A Sprite In The Hand 3D"
 	destination "Esquiline"
 	to offer
 		has "Remnant: A Sprite In The Hand 2: declined"
+		not "event: remnant: nenia void sprites colorful"
 		random < 20
 	on offer
 		conversation
@@ -1100,9 +1102,9 @@ mission "Remnant: A Sprite In The Hand 3D"
 					goto eggs
 				`	(Gather more data from a distance.)`
 					goto eggs
-			`	At first, the Node appears to give no response to your communication attempt. Moving through the frequencies appears to have an effect: it begins to move left and right in a rhythmic dance. Before you have time to investigate, however, the dance stops, and the thermal profile begins to descend further into the atmosphere. Afraid that it might move beyond your tracking abilities, you cease all signals altogether.`
+			`	At first, the Node appears to give no response to your communication attempt. Moving through the frequencies appears to have an effect: it begins to move left and right in a rhythmic dance. Before you have time to investigate, however, the dance stops, and the thermal profile begins to descend further into the atmosphere. Afraid that it might move beyond your tracking, you cease all signals altogether.`
 			label eggs
-			`	A few minutes pass before the the Ember Node's dot stops moving through the screen. Though the creature remains invisible to your radar scanner, it discovers a number of floating objects in its vicinity, significantly smaller than any Void Sprite. As time goes by, you record the Node's signature reaching each of them, stopping briefly, and finally departing toward the next. At last, the Node moves into a calmer part of the gas giant, generating too little heat for detection.`
+			`	A few minutes pass before the Ember Node's dot stops moving through the screen. Though the creature remains invisible to your radar scanner, it discovers a number of floating objects in its vicinity, significantly smaller than any Void Sprite. As time goes by, you record the Node's signature reaching each of them, stopping briefly, and finally departing toward the next. At last, the Node moves into a calmer part of the gas giant, generating too little heat for detection.`
 			choice
 				`	(Approach the objects and gather samples.)`
 				`	(Scan the objects as best as you can.)`
@@ -1110,7 +1112,7 @@ mission "Remnant: A Sprite In The Hand 3D"
 			`	A closer look reveals the familiar silhouette of the Void Sprite eggs you have carried here in the past, floating in the dim fog. You notice that a strange, brightly colored material covers most of its surface. It has a foam-like texture, different in composition from the rest of the object. Suspecting that it has been added by the Node, you take as many samples as you can and set sights for <planet>.`
 				accept
 			label scan
-			`	The data detected soon reveals the familiar readings of the the Void Sprite eggs you have carried here in the past, though with slight differences. The scanners find a strange, foam-like material spread over its surface, different in composition from the rest of the object. Suspecting that it has been added by the Node, you gather as much info as you can and set sights for <planet>.`
+			`	The data detected soon reveals the familiar readings of the Void Sprite eggs you have carried here in the past, though with slight differences. The scanners find a strange, foam-like material spread over its surface, different in composition from the rest of the object. Suspecting that it has been added by the Node, you gather as much info as you can and set sights for <planet>.`
 				accept
 	on complete
 		conversation
@@ -1126,7 +1128,8 @@ mission "Remnant: A Sprite In The Hand 3D"
 				`	"What is a Tracheophyta?"`
 			`	"Plants composed of vascular tissue. As you might expect, liquid flow is vastly more complex in a void." he replies, miming a series of bursts with his hands. "Most space-based organisms we have seen have found ways to work around it, usually avoiding it wherever possible. All of the vegetation from Postverta we have been able to study is built around conserving enough heat to avoid the dreaded freezing point."`
 				goto scan
-			`	"It is unclear. We have not seen vegetation of this kind outside of that cluster, but we cannot pretend to have discovered everything hidden in the Ember Wastes. Either way, the Void Sprites were able to find in Nenia everything they needed to thrive for millennia, at the very least."
+			label node
+			`	"It is unclear. We have not seen vegetation of this kind outside of that cluster, but we cannot pretend to have discovered everything hidden in the Ember Wastes. Either way, the Void Sprites were able to find in Nenia everything they needed to thrive for millennia, at the very least."`
 			label scan
 			`	He hurriedly scrolls through a handheld until he finds what he is looking for. "I had asked Aventine to begin stashing Ssil Vida's creatures just a few months ago. I bet they can move here a couple examples of the one I had in mind before the day is out." He gestures toward the starport, giving you rather vague directions to reach the bay the supplies should arrive from.`
 				accept
@@ -1158,7 +1161,7 @@ mission "Remnant: A Sprite In The Hand 4"
 			`	The radio chatter sounds confusing at first, but the response seems to be affirmative. It appears that the other eggs they have found have similar oddities - differences explained from the move to a new environment, and perhaps from having been laid only a few weeks ago. At last, they give you the go ahead.`
 			label placement
 			`	As you wait for the airlock's pressure to match the exterior, you realize that the box containing the plants is not air tight. You soon find that the vegetable inside has been crushed beyond recognition. The Remnant in your ear don't appear too worried, however: it would have happened either way, sooner or later. You drop the case's content over the egg, careful not to step too much over the ship's border.`
-			`	After being nearly blinded by the floodlights on the way back, you can take off your suit and prepare for the ascent. The radio has begun to discuss about timelines. "-and given the precedents, any major change should happen within a year or so," comes a voice you don't recognize, followed shortly by Plume's disagreement.
+			`	After being nearly blinded by the floodlights on the way back, you can take off your suit and prepare for the ascent. The radio has begun to discuss about timelines. "-and given the precedents, any major change should happen within a year or so," comes a voice you don't recognize, followed shortly by Plume's disagreement.`
 			`	"No, I would expect it to happen decidedly more quickly."`
 			`	As if could hear the conversation, the "egg" decides to confirm Plume's words: a triangle-shaped beak snaps forward from the top of the creature, crushing the remains of the plants into a fine liquid that deposits all over its surface. The spectacle is over in a couple seconds. At last, the mouth begins to retract back into the "eggshell" ever so slowly.`
 			choice
@@ -1172,7 +1175,7 @@ mission "Remnant: A Sprite In The Hand 4"
 				`	"What do you want me to do?"`
 					goto what
 			`	"Perhaps it was an involuntary mechanism," he signs, clearly distracted by a nearby terminal. "Or perhaps not. We will have to search more in order to find certain answers."`
-				`	"Can I help in some way?" you ask.`
+			`	"Can I help in some way?" you ask.`
 			label what
 			`	He looks around, anxious to return to his work. "Oh, by this point the ball is in my court," he signs hastily, glancing toward a group of researchers gathering around a monitor. At last, he bids you farewell and starts to walk away. "I will contact you as soon as our research reaches a result!"`
 			`	Evidently, the payment will have to wait until then.`
