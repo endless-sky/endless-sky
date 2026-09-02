@@ -115,6 +115,12 @@ effect "void sprite adult death"
 	"lifetime" 16
 	"velocity scale" .01
 
+ship "Void Sprite" "Void Sprite (Colorful)"
+	sprite "ship/void sprite colorful/void sprite adult"
+		"frame rate" 3.2
+		rewind
+	"never disabled"
+
 
 
 ship "Void Sprite" "Void Sprite (Infant)"
@@ -160,6 +166,41 @@ effect "void sprite infant death"
 		"frame rate" 15
 	"lifetime" 21
 	"velocity scale" .01
+
+ship "Void Sprite" "Void Sprite (Infant Colorful)"
+	sprite "ship/void sprite colorful/void sprite infant"
+		"frame rate" 7.4
+		rewind
+	"never disabled"
+	attributes
+		category "Unclassified"
+		"hull" 2800
+		"required crew" 2
+		"bunks" 2
+		"mass" 290
+		"drag" 7.7
+		"heat dissipation" .6
+		"cargo space" 20
+		"outfit space" 10
+		"thrust" 27
+		"turn" 675
+		"hull repair rate" 1
+		"ion protection" 3
+		"scramble protection" 3
+		"ion resistance" 1
+		"scramble resistance" 1
+		"energy capacity" 1
+		"fuel capacity" 1
+		"inscrutable" 1
+		"gaslining" 1
+	outfits
+		Mouthparts?
+		"Void Sprite Parts" 10
+	gun 4 -41
+	leak "blood" 60 50
+	explode "blood" 25
+	"final explode" "void sprite infant death"
+	description "This is the immature form of the void sprite. While they typically rely on their tendrils and natural buoyancy to fly within atmospheres, they have demonstrated the unusual ability to manipulate gravitational fields to propel themselves off-world."
 
 
 
@@ -419,6 +460,28 @@ fleet "Void Sprites (Ember Waste)"
 	variant
 		"Void Sprite" 2
 		"Void Sprite (Infant)" 4
+
+
+
+fleet "Void Sprites (Colorful)"
+	government "Ember Waste"
+	cargo 0
+	personality
+		timid mining harvests mute
+	variant
+		"Void Sprite (Colorful)"
+	variant
+		"Void Sprite (Colorful)"
+		"Void Sprite (Infant Colorful)"
+	variant
+		"Void Sprite (Colorful)"
+		"Void Sprite (Infant Colorful)" 2
+	variant
+		"Void Sprite (Colorful)"
+		"Void Sprite (Infant Colorful)" 3
+	variant
+		"Void Sprite (Colorful)" 2
+		"Void Sprite (Infant Colorful)" 4
 
 
 
