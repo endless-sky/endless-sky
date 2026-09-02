@@ -2059,3 +2059,11 @@ event "remnant: inhibitor turret available"
 		add "Inhibitor Turret"
 	outfitter "Remnant Core"
 		add "Inhibitor Turret"
+
+event "remnant: nenia void sprites colorful"
+	system "Nenia"
+		add fleet "Void Sprites (Colorful)" 1500
+
+event "remnant: esquiline void sprites colorful"
+	system "Pantica"
+		add fleet "Void Sprites (Colorful)" 1800
