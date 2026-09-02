@@ -226,11 +226,19 @@ mission "FW Southern Recon 1B"
 				`	"I already plundered one of these new guns previously. I can give it to you now."`
 					goto gun
 					to display
-						has "outfit: Electron Beam"
+						has "outfit (removable): Electron Beam"
 				`	"I already plundered one of these new turrets previously. I can give it to you now."`
 					goto turret
 					to display
-						has "outfit: Electron Turret"
+						has "outfit (removable): Electron Turret"
+				`	"I already plundered one. I can give it to you now."`
+					goto cargo
+					to display
+						not "outfit (removable): Electron Beam"
+						not "outfit (removable): Electron Turret"
+						or
+							has "outfit: Electron Bearm"
+							has "outfit: Electron Turret"
 			
 			`	She thinks about that for a moment, then says, "The Navy has shifted most of their capital ships to the defecting systems in the south. That means that some of the systems up north will have lighter defenses. You might try Wei or Alnasl. Good luck, Captain."`
 				accept
@@ -250,8 +258,15 @@ mission "FW Southern Recon 1B"
 			`	"Oh! That's great to hear. I'll get my team to take it off your hands right away."`
 			`	You hand off the weapon to Freya's science team once they arrive. Freya tells you that she'll be waiting for you in a cafe in the spaceport after she's had a chance to look at it more closely.`
 				decline
+			label cargo
+			action
+				set "FW Southern Recon: Alt Needed"
+				fail "FW Southern Recon 1B (Turret)"
+			`	"Oh! That's great to hear. Visit the outfitter here and make sure it's in your cargo, then I'll have my team pick it up. Make sure it's not in your local outfit storage, we won't be able to take it from there."`
 	on accept
 		event "gunboats in Alnasl"
+		fail "FW Southern Recon 1B Alt"
+		fail "FW Southern Recon 1B Alt Turret"
 	npc
 		government "Republic"
 		system "Alnasl"
@@ -295,6 +310,45 @@ mission "FW Southern Recon 1B (Turret)"
 		outfit "Electron Turret" -1
 		event "normal in Alnasl"
 		dialog `You hand off the Electron Turret to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
+
+
+
+mission "FW Souther Recon 1B (Alt)"
+	landing
+	invisible
+	non-blocking
+	source "Trinket"
+	to offer
+		has "FW Southern Recon 1: done"
+		not "FW Southern Recon 1B: done"
+		not "FW Southern Recon 1B (Turret): done"
+	to accept
+		has "FW Southern Recon 1B Alt Needed"
+	on offer
+		set "FW Southern Recon 1B: done"
+		fail "FW Southern Recon 1B (Alt Turret)"
+		outfit "Electron Beam" -1
+		dialog `You hand off the Electron Beam to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
+		fail
+
+
+
+mission "FW Southern Recon 1B (Alt Turret)"
+	landing
+	invisible
+	non-blocking
+	to offer
+		has "FW Southern Recon 1: done"
+		not "FW Southern Recon 1B: done"
+		not "FW Southern Recon 1B (Turret): done"
+	to accept
+		has "FW Southern Recon 1B Alt Needed"
+	on offer
+		set "FW Southern Recon 1B (Turret): done"
+		fail "FW Southern Recon 1B (Alt)"
+		outfit "Electron Turret" -1
+		dialog `You hand off the Electron Turret to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
+		fail
 
 
 
