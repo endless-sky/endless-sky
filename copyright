@@ -1582,6 +1582,7 @@ Files:
  images/ship/builder?satellite*
  images/ship/ember?waste?node/*
  images/ship/void?sprite/*
+ images/ship/void?sprite?colorful/*
  images/ship/ararebo*
  images/ship/chigiriki*
  images/ship/kaiken*
