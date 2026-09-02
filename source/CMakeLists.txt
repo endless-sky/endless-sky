@@ -459,6 +459,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ship/ShipAICache.h
 	ship/ShipAttributeCache.cpp
 	ship/ShipAttributeCache.h
+	ship/ShipFactory.cpp
+	ship/ShipFactory.h
 	test/Test.cpp
 	test/Test.h
 	test/TestContext.cpp

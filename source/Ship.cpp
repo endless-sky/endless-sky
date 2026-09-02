@@ -170,12 +170,13 @@ Ship::Ship(const DataNode &node, const ConditionsStore *playerConditions)
 
 void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	if(node.Size() >= 2)
-		trueModelName = node.Token(1);
-	if(node.Size() >= 3)
+	bool add = node.Token(0) == "add";
+	if(node.Size() >= 2 + add)
+		trueModelName = node.Token(1 + add);
+	if(node.Size() >= 3 + add)
 	{
 		base = GameData::Ships().Get(trueModelName);
-		variantName = node.Token(2);
+		variantName = node.Token(2 + add);
 	}
 	isDefined = true;
 	entityType = Entity::Type::SHIP;
