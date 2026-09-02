@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionsStore.h"
 #include "Gamerules.h"
+#include "SavedGame.h"
 
 #include <filesystem>
 #include <memory>
@@ -54,7 +55,7 @@ public:
 	static std::string GetIdentifier(const std::string &pilotName);
 	// Delete the given pilot profile, deleting all its associated files and removing it from the
 	// list of known profiles. If the UI is provided, inform the player if save file deletion failed.
-	static void DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI *ui);
+	static void DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI *ui, bool onlySaves = false);
 
 
 public:
@@ -81,7 +82,18 @@ public:
 	// Get the individual save files of this pilot.
 	std::vector<std::pair<std::string, std::filesystem::file_time_type>> &Files();
 	const std::vector<std::pair<std::string, std::filesystem::file_time_type>> &Files() const;
+	bool HasFile(const std::string &fileName) const;
 
+	// The player created a new save file, so it should be registered to this pilot.
+	void AddSave(const std::string &fileName);
+
+	// A pilot can be locked if the permadeath gamerule is active. Locked pilots
+	// can't be loaded into or modified.
+	void Lock(bool lock = true);
+	bool IsLocked() const;
+	// Minimal info about the latest loaded save file from this pilot.
+	void SetMomentOfDeath(const PlayerInfo &player);
+	const SavedGame &MomentOfDeath() const;
 	// The conditions shared across all save files for this pilot.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
@@ -99,6 +111,11 @@ private:
 	// The individual save files that make up this pilot.
 	std::vector<std::pair<std::string, std::filesystem::file_time_type>> files;
 
+	// Locked pilots can't have their save files loaded or modified from within the game.
+	bool isLocked = false;
+	// Minimal info about the last used save file from this pilot.
+	// Displayed if a pilot's save files have been deleted due to permadeath.
+	SavedGame momentOfDeath;
 	// The conditions shared across all save files for this pilot.
 	ConditionsStore conditions;
 	// The gamerules that all save files for this pilot use.

@@ -73,7 +73,7 @@ private:
 	SavedGame loadedInfo;
 	UI &gamePanels;
 
-	std::map<std::string, std::shared_ptr<PilotProfile>> pilots;
+	std::vector<std::shared_ptr<PilotProfile>> pilots;
 	std::shared_ptr<PilotProfile> selectedPilot;
 	std::string selectedFile;
 	// If the player enters a filename that exists, prompt before overwriting it.

@@ -588,6 +588,7 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 {
 	flightChecks.clear();
 	player.Save();
+	player.ApplyPermadeath();
 	if(player.TakeOff(GetUI(), distributeCargo))
 	{
 		if(callback)

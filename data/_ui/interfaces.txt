@@ -322,7 +322,7 @@ interface "main menu"
 	sprite "_menu/side panel"
 		center 360 0
 	
-	visible if "pilot loaded"
+	visible if "can load"
 	button e "_Enter Ship"
 		center 435 155
 		dimensions 90 30
@@ -532,11 +532,11 @@ interface "load menu"
 		center -435 195
 		dimensions 90 30
 	
-	active if "pilot alive"
+	active if "can add snapshot"
 	button a "_Add Snapshot"
 		center -60 155
 		dimensions 120 30
-	active if "snapshot selected"
+	active if "can remove snapshot"
 	button R "Remove"
 		center 75 155
 		dimensions 90 30
@@ -545,7 +545,7 @@ interface "load menu"
 	button b "_Back to Menu"
 		center 300 155
 		dimensions 120 30
-	active if "pilot loaded"
+	active if "can load"
 	button l "_Load Game"
 		center 435 155
 		dimensions 90 30
