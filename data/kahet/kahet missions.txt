@@ -4882,3 +4882,433 @@ event "ka'het: quarantine site"
 event "ka'het: alix discoveries"
 	planet Alix
 		add description `	Long before becoming an automated mining outpost, this moon was designated as a Builder quarantine site.`
+
+
+
+mission "Ka'het: A Sprite In The Hand 1A"
+	invisible
+	source
+		government "Remnant"
+		attributes "remnant primary"
+	to offer
+		has "event: patir mystery 2 timer"
+		has "event: ka'het: alix discoveries"
+		not "Ka'het: A Sprite In The Hand 1B: offered"
+		random < 60
+	on offer
+		event "remnant: Nenia fleet arrived" 18
+		conversation
+			`As the sun sets in the horizon, the <planet>'s main starport feels significantly emptier than usual. You see no clouds in the sky, and a gentle breeze is blowing in the air. You reason that today might some kind of unknown Remnant holiday, and most could be at home to celebrate. It would not be difficult to believe: you are unfamiliar both with their festivities and their houses.`
+			`	You walk by the side of a short landing strip, covered with a thin layer of sand. A nearby fleet soon begins to climb in the air, blowing dust everywhere and forcing you to protect your eyes. You recognize the noise as that of an unusually high number of Pelicans, slow enough that it takes half a minute for the sand to die down.`
+			`	A lone Pelican has been left on the ground, its crew running left and right (and up and down) trying to solve some kind of technical issue with the payload bay. Once you catch a glimpse of the insides, you notice that it has been outfitted with the same crown-like emitters used to capture the Void Sprites.`
+			`	You join the group in the attempt to manually push the cargo door shut. At last, it succeeds. The crew rushes back inside for the much awaited liftoff, and you step away to avoid another sandblast. Based on your tracking screen, it seems that the Pelicans are leaving the Remnant systems - most likely, toward Nenia.`
+				decline
+
+event "remnant: Nenia fleet arrived"
+
+mission "Ka'het: A Sprite In The Hand 1B"
+	entering
+	name "Colorful Void Sprites"
+	description "Report to Plume in <destination> the change in some of the Nenia Void Sprites."
+	source
+		system "Nenia"
+	destination "Esquiline"
+	to offer
+		has "event: patir mystery 2 timer"
+		not "Ka'het: A Sprite In The Hand 1C: offered"
+	on offer
+		conversation
+			branch "not done 1A"
+				not "Ka'het: A Sprite In The Hand 1A: offered"
+			`There is no trace of the Remnant fleet. Perhaps you have arrived too late, or perhaps they had a different destination in mind. In fact, the entire system appears unusually calm: you detect a handful Void Sprites roaming in the upper atmosphere of both gas giants, but the vast majority of the specimen must have chosen to spend the day in the depths of their homes.`
+				goto colorful
+			label "not done 1A"
+			`Nenia's asteroid belts appear quite calm, for once. Korath, Archons or Ember Nodes are nowhere to be found, and even the typical inhabitants of the system are few and far between. You detect a handful Void Sprites roaming in the upper atmosphere of both gas giants, but the vast majority of the specimen must have chosen to spend the day in the depths of their homes.`
+			label colorful
+			`	A strange reading comes from two of them, however. Though they are clearly some kind of Sprite, their tendrils are longer and their surface more colorful than what you have seen here previously. Going through your ship's older logs, you notice that it seems much more similar, if anything, to those that inhabit Postverta.`
+			`	If this is a new development, it would be best to inform the Esquiline crew as soon as possible.`
+				accept
+		# npc void sprites colorful
+
+mission "Ka'het: A Sprite In The Hand 1C-1"
+	invisible
+	source
+		government "Remnant"
+		attributes "remnant primary"
+		not planet "Esquiline"
+	to offer
+		has "event: remnant: Nenia fleet arrived"
+		not "Ka'het: A Sprite In The Hand 1B: offered"
+	on offer
+		conversation
+			`Another day passes, mostly spent in the vicinity of a shipyard bench. By this point, the alien architecture of the local outfitter has become exceedingly familiar; in comparison, the continuous flow of newly-built starships around the shipyard provides at least some entertainment.`
+			`	It is difficult enough to move around <planet>'s surface during the night: it doesn't have any moon large enough for significant moonshine, and the Remnant seem to prefer keeping as little illumination as possible. Perhaps it is a product of their more paranoid tendencies, or perhaps simply an energy conservation measure.`
+			`	You reach the <ship> almost an hour after sunset. After checking that the message board is empty, you move onto preparing your bunk for the night. It will soon be another day of waiting for a new mission: perhaps it might be worth to start a book during the dead times.`
+				decline
+
+mission "Ka'het: A Sprite In The Hand 1C-2"
+	entering
+	name "Colorful Void Sprites"
+	description "Ask Plume in <destination> about the change in some of the Nenia Void Sprites."
+	destination "Esquiline"
+	to offer
+		has "Ka'het: A Sprite In The Hand 1C-1: offered"
+	on offer
+		conversation
+			`At last, a message from Plume reaches you, showing a pair of Void Sprites flying above what appears to be Slylandro. The notes on them are interesting, however. Their tendrils are longer and their surface more colorful than usual - if anything, they seem more similar to the Postverta specimen. Below, a comment by Plume simply reads "Out of place!"`
+			`	It might be worth to pay another visit to Esquiline.`
+				accept
+
+mission "Ka'het: A Sprite In The Hand 2"
+	landing
+	invisible
+	source "Esquiline"
+	to offer
+		or
+			has "Ka'het: A Sprite In The Hand 1B: done"
+			has "Ka'het: A Sprite In The Hand 1C: done"
+	on offer
+		# event Nenia void sprites colorful in 40 days (deadline)
+		conversation
+			`Other than a Puffin nearly hitting you, too focused on chasing a nearby Void Sprite, the descent proves quite uneventful. The local winds have pushed Esquiline well into the other hemisphere of the gas giant; if it weren't for the beacon's signal, it would have taken weeks to find it. You pass next to a couple dozens parked Puffins before you finally encounter a free docking bay.`
+			`	The station has been expanded with a new, roughly cylindrical section attached on its bottom. Unlike the rest of Esquiline, it doesn't appear any attempt was made to cloak it. You ask for Plume at what you assume to be an information desk. The directions given point you toward the top of the new expansion.`
+			`	A set of open hatches separate the old station and the additional section, with a stairway starting just below them. As you pass through, you stop to read the sizeable explosive warning signs all around the zone: it appears that the expansion is meant to be evacuated and dropped into the depth of the gas giant if an unspecified emergency were to verify. The stairs lead you into a large open area containing a strange, sizeable organic mass placed right in the middle. A chemical suit-wearing Plume is standing right next to it, speaking with two Remnant in scientific attire.`
+			choice
+				`	(Interrupt him to talk about the Nenia Void Sprite.)`
+					goto interrupt
+				`	(Wait for him to notice you.)`
+			`	Upon closer inspection, you discover that a large opening has been carved into the biological matter. You watch Plume disappear inside of the unknown mass, and a few minutes pass before he returns and the two of you can speak. His suit has become mostly covered in a dark, slimy material, and he begins by signing you to stand back a few meters. The three scientists make a gesture you don't recognize, seemingly directed toward the organism, before parting ways.`
+				goto branches
+			label interrupt
+			`	Upon closer inspection, you discover that a large opening has been carved into the biological matter. You try to speak with Plume, but he signs you to wait. He disappears inside of the unknown mass, and a few minutes pass before he returns with his suit mostly covered in a dark, slimy material. The three scientists make a gesture you don't recognize, seemingly directed toward the organism, before parting ways.`
+			label branches
+			branch earlybird
+				not "event: remnant: Nenia fleet arrived"
+			branch lazybum
+				has "Ka'het: A Sprite In The Hand 1C-1: offered"
+			`	You begin to show him what you have gathered, and he nods in acknowledgement. "One of our fleets has discovered the same a few days ago. From what we can tell, they seems to be in every way comparable to the Postverta Sprites." He takes off the upper half of his protection suit, then equips a multi-faced visor over his eyes. "What we have yet to figure out is how long have they been there, and how."`
+			choice
+				`	"I would add 'why' to the list as well."`
+					goto continue
+				`	"I was hoping you would be able to tell me more."`
+					goto continue
+
+			label earlybird
+			`	You can see Plume's eyes widen even through the heavy helmet as you show him what you have gathered. "How strange! They seems to be in every way comparable to the Postverta Sprites, based on this data." He takes off the upper half of his protection suit, then equips a multi-faced visor over his eyes before returning to your data. "How long have they been there? And, how?"`
+			choice
+				`	"I would add 'why?' to the list as well."`
+					goto continue
+				`	"At least a couple weeks, as far as I know."`
+					goto continue
+				`	"I was hoping you would be able to tell me more."`
+					goto continue
+
+			label lazybum
+			`	"Well, what takes you here?" he asks, seemingly clueless. You remind him of the message he sent you. "Oh. Sorry, I should have specified better. That was only meant as an informational message." He takes off the upper half of his protection suit, then equips a multi-faced visor over his eyes. "From what we can tell, they seems to be in every way comparable to the Postverta Sprites. Until we figure out how long have they been there, and how, I fear there is little you can do to help."`
+			choice
+				`	"I would add 'why' to the list as well."`
+					goto continue
+				`	"I was hoping you would be able to tell me more."`
+					goto continue
+
+			label continue
+			`	Freed from the headgear, he dries the sweat from his forehead. "After all this time, we still know so little on the Void Sprites! As we have not seen this phenomena previously, I might as well assume this is related to Postverta's influence in some way. These Sprites are clearly quite young, but who knows how long they spent unnoticed inside the atmosphere."`
+			`	"You do not know at what age they learn to fly?" you ask.`
+			`	"They can probably float since birth, given that, by definition, gas giants have no surface. But observing them in their environment is far more difficult than it is in space. They are very perceptive of our presence, and the atmosphere itself is as close as one gets to a natural cloak. Other than a couple exceptions, our specimen records begin and end in the void of space.`
+			`	"Our team was lucky to receive a surge of support when the Korath first attacked them, but it has been long enough since we saw a raid in Nenia." He gestures toward the amorphous mass that takes up most of the room. "In the meantime, the casualties of the transfer have risen to a potentially worrying level. And when I say 'potentially,' what I mean is that we actually had very little info on their lifespan until now."`
+			choice
+				`	"Casualties?"`
+					goto sprite
+				`	"These studies must be easier now that they are here in Esquiline."`
+				`	"What is that thing?"`
+					goto sprite
+			`	"We have watched the Void Sprites more in these past months than ever in our history," he replies. "We are learning much, including things we should have known before the transfer. I trust you would not be shocked if I were to call the decision to transfer them 'rushed.'"`
+			label sprite
+			`	He glances up, toward the side of the organic matter. A handful of black outgrowths are visible near the top. "After holding the pressure for their entire life, the decompression after death really makes it hard to recognize them. This is the corpse of an adult Void Sprite, recovered a few days ago in the depths of Esquiline."`
+			`	As he concludes, he repeats the gesture you have seen earlier toward what is left of the creature. "If I could talk with an Ember Node, the first thing I would ask is whether the Sprites are actually settling down well after the transfer."`
+			choice
+				`	"Did you have any other contact with it?"`
+					goto node
+				`	"It is normal for a few specimen not to survive."`
+				`	"I will try to find a way to reach the Ember Node."`
+					goto node
+				`	"This transfer should have been better prepared."`
+					goto critique
+			`	"Right now, we have little idea on what to quantify as 'normal'. Surveys of this sort require a far more expansive effort than we could put together - so little time has passed since we began studying the Void Sprites again! The scientific process will take us there, eventually. I bet that an Ember Node would know more, though.`
+				goto node
+			label critique
+			`	"We did not know how things would have progressed from there! We had to decide quickly, even if it was too early to attempt something this grand. We are filling our gaps over time, and the scientific process will take us there, eventually. I bet that an Ember Node would know more, though.`
+			label node
+			`	"We have sensed its presence a few times since our first encounter, always in Nenia or Postverta, but they were nothing more than a sighting from afar. Perhaps it was always the same specimen, or perhaps there are many different Ember Nodes roaming through those systems. The only way to track something with a cloak if it wants to be tracked."`
+			`	He turns around and gestures toward a small group of approaching Remnant scientists. "I have to return to my work now, <first>, but keep me informed on anything you might gather. If you come up with something to search for the Ember Node, do not be afraid to give it a try!"`
+				decline
+
+mission "Ka'het: A Sprite In The Hand 3A"
+	landing
+	invisible
+	source "Fertriery"
+	to offer
+		has "Ka'het: A Sprite In The Hand 2: declined"
+		not "Ka'het: A Sprite In The Hand 3C: done"
+		not "Ka'het: A Sprite In The Hand 3D: done"
+		not "remnant: ssil vida active"
+	on offer
+		conversation
+			`Do you want to search for the Ember Node on <planet>, with Ssil Vida inactive, and attempt communicating?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					defer
+			`	If your ship's trackers are correct, there does not appear to be anything inside of <planet>'s hazy atmosphere. You detect occasional, somewhat rarefied air patches in the upper layers, but nothing out of the ordinary for a gas giant of this size. You try to descend below the cloud layer but, other than the general darkness, the scene does not seem to change.`
+			label choices
+			choice
+				`	(Use your ship's communication array to transmit in all frequencies.)`
+				`	(Try to fly in a path that resembles the star sign once done by the Ember Node.)`
+					goto fly
+				`	(Give up and leave.)`
+					decline
+			`	You choose one of the standard messages out of those loaded in the system, and the antennae all around your ship start blasting in unison. A few minutes pass before the reachable frequencies are exhausted, with no response. You try with different info packets over and over, but no one appears to be listening.`
+				goto choices
+			label fly
+			`	It takes some searching through your records before you find a picture of the Ember Node during the previous encounter. You place some markers in your navigator, roughly equivalent to the first star map. The power of your gravitational repulsors helps you fly a mostly straight line between each of them; the whole thing must look quite silly to someone on the outside.`
+			`	By the time you start going through the second star map, the feeling of putting on a show for no one is undeniable. You go through the final trajectory at last, still with no response. Best to let the repulsors rest and cool down for a bit.`
+				goto choices
+
+mission "Ka'het: A Sprite In The Hand 3B"
+	landing
+	invisible
+	source "Fertriery"
+	to offer
+		has "Ka'het: A Sprite In The Hand 2: declined"
+		not "Ka'het: A Sprite In The Hand 3C: done"
+		not "Ka'het: A Sprite In The Hand 3D: done"
+		has "remnant: ssil vida active"
+	on offer
+		conversation
+			`Do you want to search for the Ember Node on <planet>, with Ssil Vida active, and attempt communicating?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					defer
+			`	Sparse Void Sprites are making their way through the oddity that is <planet>. Its erratic atmosphere makes it difficult to follow a target for long, frequently ending up in patches too irregular for the scanner to work through. It would not be difficult for something to hide in here, and in almost an hour of flying nothing of interest comes up.`
+			choice
+				`	(Try to follow one of the Void Sprites.)`
+					goto sprite
+				`	(Use your ship's communication array to transmit in all frequencies.)`
+				`	(Try to fly in a path that resembles the star sign once done by the Ember Node.)`
+					goto fly
+			`	You choose one of the standard messages out of those loaded in the system, and the antennae all around your ship start blasting in unison. A few minutes pass before the reachable frequencies are exhausted, with no response. You retry with different types of messages over and over, but no one appears to be listening.`
+				goto remnant
+			label sprite
+			`	The nearest Sprite looks fairly young, its aft tendrils still too short to move independently. At the current depth, the creature has shrunk less to less than half its original size. You watch as it calmly floats through the wind, imperceptibly baking left and right over time. You abandon the chase after noticing that it is flying in a large circle, over and over.`
+			`	Further attempts with other Void Sprites end with similar results, except for the last one. Once approached, an elder Sprite seems to show an interest in your ship: the two of you stand head-on for a few seconds, the creature slowly doing a roll to scan its surrounding. Just as it begins to leave, you notice that the position of its tendrils resemble some of the star maps showed by the Ember Node. Based on your logs, it is most similar to the one that meant 'Nenia.'`
+				decline
+			label fly
+			`	It takes some searching through your records before you find a picture of the Ember Node during the previous encounter. You place some markers in your navigator, roughly equivalent to the first star map. The power of your gravitational repulsors helps you fly a mostly straight line between each of them; the whole thing must look quite silly to someone on the outside.`
+			label remnant
+			`	For just a second, the unexpected buzz of your radio gives you some hope. Once you open the commlink, however, you discover it is coming from a nearby Gull, worried about your well-being after watching such a strange scene. You hurriedly prepare to leave after a slightly embarrassing conversation with the Remnant captain.`
+				decline
+
+mission "Ka'het: A Sprite In The Hand 3C"
+	landing
+	invisible
+	source "Esquiline"
+	to offer
+		or
+			has "Ka'het: A Sprite In The Hand 1B: done"
+			has "Ka'het: A Sprite In The Hand 1C: done"
+	# to fail: event: Nenia void sprites colorful
+	# NPC of the colorful Void Sprites in Nenia, with an "on provoke". When it activates, you feel a sudden mental pressure: the Ember Node has reached you. Brief, confusing conversation that ends with it telling you to take the Ssil Vida asteroid plants to the Void Sprites in Esquiline, ignoring your questions.
+	
+	NPC
+		on provoke
+			conversation
+				`Right as the Void Sprites show the first signs of damage, a sudden pressure surrounds your head. In an instant, the entire scene stops; you try to turn around, but discover that all your muscles have fallen to the same fate. As far as you can tell time has frozen everywhere in the system; everywhere, except for this single conversation.`
+				`	The mental pressure begins to pulsate, enough to hurt, but only slightly. Though the Ember Waste Node does not seem to be speaking, it is certainly listening.`
+				choice
+					`	"I can explain."`
+						goto explain
+					`	"Uh, can you hear me?"`
+						goto hear
+					`	"I'm sorry for the attack, but we had to find a way to communicate."`
+				`	Your own words return to you in a perpetual echo. Instead of attenuating, however, some words seem to become stronger with each repetition; at last, the only word that continues to replay in your mind is "communicate."`
+				`	Undecided, you try to describe in your own words the events that led you to this point - Plume's intentions, the Esquiline project, and the more recent, bleaker developments of the Void Sprite transfer. The feeling of speaking only with yourself never leaves you, except for the rhythmic, ever-tiring pulsations penetrating well into your brain.`
+				`	All of this lasts right until something hits you in the stomach. The pain almost distracts you from the strangeness of the object: a bright, mushy, foam-like shape, vaguely similar to a plant. Just as you try to wonder why it has hit you, the word "communicate" echoes one last time in your head.`
+					goto choice
+
+				label explain
+				`	Your own words return to you in a perpetual echo. Instead of attenuating, however, some words seem to become stronger with each repetition; at last, the only word that continues to replay in your mind is "explain."`
+				`	Undecided, you try to describe in your own words the events that led you to this point - Plume's intentions, the Esquiline project, and the more recent, bleaker developments of the Void Sprite transfer. The feeling of speaking only with yourself never leaves you, except for the rhythmic, ever-tiring pulsations penetrating well into your brain.`
+				`	All of this lasts right until something hits you in the stomach. The pain almost distracts you from the strangeness of the object: a bright, mushy, foam-like shape, vaguely similar to a plant. Just as you try to wonder why it has hit you, the word "explain" echoes one last time in your head.`
+					goto choice
+
+				label hear
+				`	Your own words return to you in a perpetual echo. Instead of attenuating, however, some words seem to become stronger with each repetition; at last, the only word that continues to replay in your mind is "hear."`
+				`	Undecided, you try to describe in your own words the events that led you to this point - Plume's intentions, the Esquiline project, and the more recent, bleaker developments of the Void Sprite transfer. The feeling of speaking only with yourself never leaves you, except for the rhythmic, ever-tiring pulsations penetrating well into your brain.`
+				`	All of this lasts right until something hits you in the stomach. The pain almost distracts you from the strangeness of the object: a bright, mushy, foam-like shape, vaguely similar to a plant. Just as you try to wonder why it has hit you, the word "hear" echoes one last time in your head.`
+				label choice
+				choice
+					`	"What is this?"`
+						goto plant
+					`	"Why did you do that?"`
+					`	"Let me go."`
+				`	At last, you hear the Ember Waste Node speak. "Your language of choice returned. Demeanor returns it anew." A vision appears in front of you: yourself, hit by the strange mass over and over, always in the stomach.`
+				label plant
+				`	The object in front of you disappears, but the pain doesn't. A voice comes in as a feeble whisper, as if it were sharing a secret. "The skill-flower is needful. The origin is known, but - Distance - Time - Energy - Age. Give them, so they may rise." The image of the plant-like mass appears again in your mind. The view turns into an adult Void Sprite, then into a youthful specimen, and finally into a tiny, defenseless egg.`
+				`	You feel the pulsations weakening, and the scene stops. Your body returns to the Captain's chair, sitting in the very position as when this all began. And finally, time starts moving once again.`
+					accept
+
+	on complete
+		conversation
+			`Plume's technicians set up an improvised interrogation aboard your ship as soon as you arrive on the station. As you recount the encounter, their questions take a strange focus on the object that hit - so much, in fact, that the rest of the interview feels done more out of duty. Another pair of Remnant, joining the examination in the middle of it, make a drawing of the mass following the details you give.`
+			`	Once the interview ends, and the Remnant group, leaves your crew quarters, Plume makes his entrance. "I implore you not act like this again, <first>. Certainly not without contacting us before doing it. Do not make the mistake of thinking that because an idea worked, it was a good one in first place." You try to reply, but he stops you. "Just nod, so that we can move on from this part."`
+				choice
+					`	(Nod.)`
+					`	"I mean, it worked."`
+						die
+			`	"Very well!" He breathes a sigh of relief, and instantly regains some of his usual character. "It is much more important to discuss what the Ember Node chose to show you. I am very nearly certain that I recognize the material you have described."`
+			`	"Ssil Vida and the surrounding cluster are home to a number of lifeforms, as you have seen. The vast majority are asteroid-based organisms, growing and generating energy in a matter roughly comparable with vegetation. The term Void Orchids is, of course, a misnomer - none of the many lifeforms grouped under this banner are a true plant, and even then, they share very few similarities with Tracheophyta!"`
+			`	He stops before he digresses further. "I have studied some of these organisms myself, and I am certain that at least one of them was composed of this very material. We will gather some further data to make sure of it shortly, but I remember it very clearly."`
+			choice
+				`	"What does Postverta have to do with the biology of Void Sprites?"`
+					goto node
+				`	"I could go harvest some."`
+					goto scan
+				`	"What is a Tracheophyta?"`
+			`	"Plants composed of vascular tissue. As you might expect, liquid flow is vastly more complex in a void." he replies, miming a series of bursts with his hands. "Most space-based organisms we have seen have found ways to work around it, usually avoiding it wherever possible. All of the vegetation from Postverta we have been able to study is built around conserving enough heat to avoid the dreaded freezing point."`
+				goto scan
+			`	"It is unclear. We have not seen vegetation of this kind outside of that cluster, but we cannot pretend to have discovered everything hidden in the Ember Wastes. Either way, the Void Sprites were able to find in Nenia everything they needed to thrive for millennia, at the very least."
+			label scan
+			`	He hurriedly scrolls through a handheld until he finds what he is looking for. "I had asked Aventine to begin stashing Ssil Vida's creatures just a few months ago. I bet they can move here a couple examples of the one I had in mind before the day is out." He gestures toward the starport, giving you rather vague directions to reach the bay the supplies should arrive from.`
+				accept
+
+mission "Ka'het: A Sprite In The Hand 3D"
+	landing
+	name "Ember Node activity"
+	description "Return to <destination> to announce your discoveries."
+	source
+		system "Nenia"
+	destination "Esquiline"
+	to offer
+		has "Ka'het: A Sprite In The Hand 2: declined"
+		random < 20
+	on offer
+		conversation
+			`Nenia's gas giants have evoked a variety of emotions in the past, both through their swirling atmospheres and their inhabitants. There is a single, isolate feeling that its explorers have hardly felt, until now: ennui. After too many hours spent staring at your cockpit's screens, even the swirling dances of the upper clouds in the distance appear little more than dull and repetitive.`
+			`	Once a ping alerts you of the arrival of the periodic data update, it takes all the willpower you have left to start cycling again through the sensors. You scroll through endless graphs with some care, then more and more rapidly as the self-control begins to leave you. It is only due to a stroke of luck that the page blocks exactly on a view of the new thermal profiles gathered: at last, your eyes finally fall on the peculiar pattern they show.`
+			`	The pictures depict a teardrop-shaped patch of slightly hotter air in the lower atmosphere. It moves erratically, sometimes staying still, and other times going against the wind. After comparing it with older scans, you come at a simple conclusion: something cloaked is moving inside the gas giant, whose winds are more than fast enough to noticeably heat up against its surface. After a few more measurements, you discover that its size is a perfect match for that of the Ember Node!`
+			choice
+				`	(Attempt to hail it.)`
+				`	(Try to follow it.)`
+					goto eggs
+				`	(Gather more data from a distance.)`
+					goto eggs
+			`	At first, the Node appears to give no response to your communication attempt. Moving through the frequencies appears to have an effect: it begins to move left and right in a rhythmic dance. Before you have time to investigate, however, the dance stops, and the thermal profile begins to descend further into the atmosphere. Afraid that it might move beyond your tracking abilities, you cease all signals altogether.`
+			label eggs
+			`	A few minutes pass before the the Ember Node's dot stops moving through the screen. Though the creature remains invisible to your radar scanner, it discovers a number of floating objects in its vicinity, significantly smaller than any Void Sprite. As time goes by, you record the Node's signature reaching each of them, stopping briefly, and finally departing toward the next. At last, the Node moves into a calmer part of the gas giant, generating too little heat for detection.`
+			choice
+				`	(Approach the objects and gather samples.)`
+				`	(Scan the objects as best as you can.)`
+					goto scan
+			`	A closer look reveals the familiar silhouette of the Void Sprite eggs you have carried here in the past, floating in the dim fog. You notice that a strange, brightly colored material covers most of its surface. It has a foam-like texture, different in composition from the rest of the object. Suspecting that it has been added by the Node, you take as many samples as you can and set sights for <planet>.`
+				accept
+			label scan
+			`	The data detected soon reveals the familiar readings of the the Void Sprite eggs you have carried here in the past, though with slight differences. The scanners find a strange, foam-like material spread over its surface, different in composition from the rest of the object. Suspecting that it has been added by the Node, you gather as much info as you can and set sights for <planet>.`
+				accept
+	on complete
+		conversation
+			`Plume's technicians remove your ship's payload quickly, intent on moving it into the depths of the station with a small, precarious-looking cart. You follow them through a series of increasingly cramped corridors up and down the structure, finally reaching a section of the attached laboratory. One of the Remnant hands you a rope-tied belt: it appears that the final portion of the trip requires you to descend vertically down the structure.`
+			`	It only takes a short time after your awkward entrance for Plume to approach you. His hands are carrying a number of handwritten papers, and you notice that his walk is clearly jubilant. "There is no need to analyze this to know what it is made of, <first>. I recognize it.`
+			`	"Ssil Vida and the surrounding cluster are home to a number of lifeforms, as you have seen. The vast majority are asteroid-based organisms, growing and generating energy in a matter roughly comparable with vegetation. The term Void Orchids is, of course, a misnomer - none of the many lifeforms grouped under this banner are a true plant, and even then, they share very few similarities with Tracheophyta!"`
+			`	He stops before he digresses further. "I have studied some of these organisms myself, and I am certain that at least one of them was composed of this very material. We will gather some further data to make sure of it shortly, but I remember it very clearly."`
+			choice
+				`	"What does Postverta have to do with the biology of Void Sprites?"`
+					goto node
+				`	"I could go harvest some."`
+					goto scan
+				`	"What is a Tracheophyta?"`
+			`	"Plants composed of vascular tissue. As you might expect, liquid flow is vastly more complex in a void." he replies, miming a series of bursts with his hands. "Most space-based organisms we have seen have found ways to work around it, usually avoiding it wherever possible. All of the vegetation from Postverta we have been able to study is built around conserving enough heat to avoid the dreaded freezing point."`
+				goto scan
+			`	"It is unclear. We have not seen vegetation of this kind outside of that cluster, but we cannot pretend to have discovered everything hidden in the Ember Wastes. Either way, the Void Sprites were able to find in Nenia everything they needed to thrive for millennia, at the very least."
+			label scan
+			`	He hurriedly scrolls through a handheld until he finds what he is looking for. "I had asked Aventine to begin stashing Ssil Vida's creatures just a few months ago. I bet they can move here a couple examples of the one I had in mind before the day is out." He gestures toward the starport, giving you rather vague directions to reach the bay the supplies should arrive from.`
+				accept
+
+
+conversation "plant from Postverta"
+	`Plume's technicians remove your ship's payload quickly, intent on moving it into the depths of the station with a small, precarious-looking cart. You follow them through a series of increasingly cramped corridors up and down the structure, finally reaching a section of the attached laboratory. One of the Remnant hands you a rope-tied belt: it appears that the final portion of the trip requires you to descend vertically down the structure.`
+	`	It only takes a short time after your awkward entrance for Plume to approach you. His hands are carrying a number of handwritten papers, and you notice that his walk is clearly jubilant. "There is no need to analyze this to know what it is made of, <first>. I recognize it.`
+	`	"Ssil Vida and the surrounding cluster are home to a number of lifeforms, as you have seen. The vast majority are asteroid-based organisms, growing and generating energy in a matter roughly comparable with vegetation. The term Void Orchids is, of course, a misnomer - none of the many lifeforms grouped under this banner are a true plant, and even then, they share very few similarities with Tracheophyta!"`
+	`	He stops before he digresses further. "I have studied some of these organisms myself, and I am certain that at least one of them was composed of this very material. We will gather some further data to make sure of it shortly, but I remember it very clearly."`
+	choice
+		`	"What does Postverta have to do with the biology of Void Sprites?"`
+			goto node
+		`	"I could go harvest some."`
+			goto scan
+		`	"What is a Tracheophyta?"`
+	`	"Plants composed of vascular tissue. As you might expect, liquid flow is vastly more complex in a void." he replies, miming a series of bursts with his hands. "Most space-based organisms we have seen have found ways to work around it, usually avoiding it wherever possible. All of the vegetation from Postverta we have been able to study is built around conserving enough heat to avoid the dreaded freezing point."`
+		goto scan
+	`	"It is unclear. We have not seen vegetation of this kind outside of that cluster, but we cannot pretend to have discovered everything hidden in the Ember Wastes. Either way, the Void Sprites were able to find in Nenia everything they needed to thrive for millennia, at the very least."
+	label scan
+	`	He hurriedly scrolls through a handheld until he finds what he is looking for. "I had asked Aventine to begin stashing Ssil Vida's creatures just a few months ago. I bet they can move here a couple examples of the one I had in mind before the day is out." He gestures toward the starport, giving you rather vague directions to reach the bay the supplies should arrive from.`
+		accept
+
+mission "Ka'het: A Sprite In The Hand 4"
+	invisible
+	source "Esquiline"
+	to offer
+		or
+			has "Ka'het: A Sprite In The Hand 3C: done"
+			has "Ka'het: A Sprite In The Hand 3D: done"
+	on offer
+		# event Nenia void sprites colorful
+		# event Esquiline void sprites colorful in 30 days
+		conversation
+			`It takes you some effort to find the docking bay: it is easy to get lost in the nearly identical prefabricated sections that compose much of the station's expansion. By the time you arrive, the local workers have already finished unloading Aventine's cargo. You catch a glimpse out of the windows an automated Tern hastily making its way back out of the atmosphere.`
+			`	Plume looks pleased. "<first>, the samples match! Did you get your ship ready for a flight?"`
+			choice
+				`	"Where do you want to go?"`
+				`	"We can depart whenever you need."`
+			`	He gestures to follow the cargo dollies. "The destination is a hundred kilometers or so below our station, where the Void Sprites nest. We have begun to find their eggs here recently, and right after we have set up a number of observation stations. You should take one of Ssil Vida's plants, descend to their level and try to drop it atop one of them. Gently, please."`
+			`	Loading the plants onto your ship takes only a couple minutes - the boxes are small enough to fit inside your crew quarters easily. Alongside those, however, the Remnant stop to add a set of aggressive-looking floodlights around the airlock hatch. Next to no sunlight will reach your ship at the depths involved, and evidently, the Remnant want to avoid relying entirely on instrument flying for the task.`
+			`	Far from the quiet gas giants you have become accustomed to, most of your descent through Esquiline is accompanied from an incessant blabber over the radio. What begins as Plume trying to explain bits of Void Sprite biology becomes a disagreement with another technician over the assumptions made. Once the radio turns silent, you wager that they have turned to discussing it in sign language.`
+			`	At last, a small dot appears on your screen. Very small, in fact: once your ship gets closer, you can see through the window that the egg is less than a meter tall.`
+			choice
+				`	(Ask them if the target is acceptable.)`
+				`	(Place Ssil Vida's vegetation over the egg.)`
+					goto placement
+			`	The radio chatter sounds confusing at first, but the response seems to be affirmative. It appears that the other eggs they have found have similar oddities - differences explained from the move to a new environment, and perhaps from having been laid only a few weeks ago. At last, they give you the go ahead.`
+			label placement
+			`	As you wait for the airlock's pressure to match the exterior, you realize that the box containing the plants is not air tight. You soon find that the vegetable inside has been crushed beyond recognition. The Remnant in your ear don't appear too worried, however: it would have happened either way, sooner or later. You drop the case's content over the egg, careful not to step too much over the ship's border.`
+			`	After being nearly blinded by the floodlights on the way back, you can take off your suit and prepare for the ascent. The radio has begun to discuss about timelines. "-and given the precedents, any major change should happen within a year or so," comes a voice you don't recognize, followed shortly by Plume's disagreement.
+			`	"No, I would expect it to happen decidedly more quickly."`
+			`	As if listening to the conversation, the "egg" instantly confirms Plume's words: a triangle-shaped beak snaps forward out of the top of the creature, crushing the remains of the plants into a fine liquid that deposits all over its surface. At last, the mouth begins to retract back into the "shell" ever so slowly.`
+			choice
+				`	"Did you see that?"`
+				`	"Uh, Plume, you were right."`
+			`	"Copy," replies a hesitant voice. No other response comes through for a few minutes, during which the "egg" remains as still as it has ever been. When the voice returns, the tone seems definitely more confident. "You can ascend now, Captain. We will continue the observation sessions through the instruments surrounding the site."`
+			`	A single Void Sprites flies through the clouds nearby during the return trip. You infer from its size that it is adult, though not a particularly old one. You don't need to look at the scanners to evince the direction they are traveling: down, toward the egg.`
+			`	Plume awaits you at the entrance of the laboratory. An enthusiastic chaos has developed in the background; you get the appearance that Plume is the only person standing still in the entire section. "Now begins a period of study of the specimen, and of how it develops. I am stopping only for a brief farewell, <first>."`
+			choice
+				`	"Why did it do that?"`
+				`	"What do you want me to do?"`
+					goto what
+			`	"Perhaps it was an involuntary mechanism," he signs, clearly distracted by a nearby terminal. "Or perhaps not. We will have to search more in order to find certain answers."`
+				`	"Can I help in some way?" you ask.`
+			label what
+			`	He looks around, anxious to return to his work. "Oh, by this point the ball is in my court," he signs hastily, glancing toward a group of researchers gathering around a monitor. At last, he bids you farewell and starts to walk away. "I will contact you as soon as our research reaches a result!"`
+			`	Evidently, the payment will have to wait until then.`
+				decline
+
+mission "Ka'het: A Sprite In The Hand Epilogue"
+	invisible
+	source
+		government "Remnant"
+	to offer
+		# has "event: Esquiline void sprites colorful in 30 days"
+		has "Ka'het: A Sprite In The Hand 4: offered"
+	on enter
+		payment 800000
+		dialog
+			`A communication from Plume appears on your screen. It is composed of a <payment> chip and a picture depicting a single, youthful, colorful Void Sprite in the foreground, and the Esquiline station in the background. With it comes a short message: "Note: average Void Sprite death rate unchanged."`
+		fail
