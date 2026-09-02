@@ -18634,6 +18634,9 @@ system Kasii-Cavaasa
 	hazard "Predecessors Base Spatial Decay" 400
 	object
 		sprite star/b-supergiant
+	object "Exotic Metal Garden"
+		sprite planet/exotic-metal-garden
+		distance 80
 	object
 		sprite planet/lava0
 		distance 2250
