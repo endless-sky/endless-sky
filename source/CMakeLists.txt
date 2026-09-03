@@ -233,6 +233,7 @@ target_sources(EndlessSkyLib PRIVATE
 	News.h
 	OptionalInputDialogPanel.cpp
 	OptionalInputDialogPanel.h
+	OrderedMap.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp
