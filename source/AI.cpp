@@ -3722,22 +3722,22 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 // maximum damaged to a target at the given position with its non-turret,
 // non-homing weapons. If the ship has no non-homing weapons, this just
 // returns the direction to the target.
-Point AI::TargetAim(const Ship &ship)
+Point AI::TargetAim(const Ship &ship, const set<const Outfit *> *includeSecondaries)
 {
 	shared_ptr<const Ship> target = ship.GetTargetShip();
 	if(target)
-		return TargetAim(ship, *target);
+		return TargetAim(ship, *target, includeSecondaries);
 
 	shared_ptr<const Minable> targetAsteroid = ship.GetTargetAsteroid();
 	if(targetAsteroid)
-		return TargetAim(ship, *targetAsteroid);
+		return TargetAim(ship, *targetAsteroid, includeSecondaries);
 
 	return Point();
 }
 
 
 
-Point AI::TargetAim(const Ship &ship, const Body &target)
+Point AI::TargetAim(const Ship &ship, const Body &target, const set<const Outfit *> *includeSecondaries)
 {
 	Point result;
 	for(const Hardpoint &hardpoint : ship.Weapons())
@@ -3747,6 +3747,8 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 			continue;
 		const Outfit *ammo = weapon->Ammo();
 		if(ammo && ship.OutfitCount(ammo) < weapon->AmmoUsage())
+			continue;
+		if(includeSecondaries && !includeSecondaries->contains(hardpoint.GetOutfit()))
 			continue;
 
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
@@ -3960,14 +3962,16 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 
 
 // Fire whichever of the given ship's weapons can hit a hostile target.
-void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool isFlagship) const
+void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool isFlagship,
+	const set<const Outfit *> *includeSecondaries) const
 {
 	const Personality &person = ship.GetPersonality();
 	if(person.IsPacifist() || ship.CannotAct(Ship::ActionType::FIRE))
 		return;
 
-	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
-	if(person.IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
+	bool isPlayerEscort = ship.IsYours() && !isFlagship;
+	bool beFrugal = (isPlayerEscort && !escortsUseAmmo);
+	if(person.IsFrugal() || (isPlayerEscort && escortsAreFrugal && escortsUseAmmo))
 	{
 		// The frugal personality is only active when ships have more than a certain fraction of their total health,
 		// and are not outgunned. The default threshold is 75%.
@@ -3988,7 +3992,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	const Government *gov = ship.GetGovernment();
 	bool friendlyOverride = false;
 	bool disabledOverride = false;
-	if(ship.IsYours())
+	if(isPlayerEscort)
 	{
 		auto it = orders.find(&ship);
 		if(it != orders.end())
@@ -4015,26 +4019,39 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	// Don't use weapons with firing force if you are preparing to jump.
 	bool isWaitingToJump = ship.Commands().Has(Command::JUMP | Command::WAIT);
 
+	auto CanUse = [&](const Hardpoint &hardpoint) -> bool {
+		// Skip weapons that are not ready to fire.
+		if(!hardpoint.IsReady())
+			return false;
+		const Weapon *weapon = hardpoint.GetWeapon();
+		const Outfit *ammo = weapon->Ammo();
+		// Don't expend ammo for homing weapons that have no target selected.
+		if(!currentTarget && weapon->Homing() && ammo)
+			return false;
+		// Don't fire secondary weapons if told not to.
+		if(!secondary && weapon->Icon())
+			return false;
+		// If this is for the player, only consider weapons the player has currently selected.
+		if(includeSecondaries && !includeSecondaries->contains(hardpoint.GetOutfit()))
+			return false;
+		// Don't expend ammo if trying to be frugal.
+		if(beFrugal && weapon->Ammo())
+			return false;
+		// No point in sending a firing command to weapons without ammo.
+		if(ammo && ship.OutfitCount(ammo) < weapon->AmmoUsage())
+			return false;
+		// Don't use weapons with firing force if you are preparing to jump.
+		if(isWaitingToJump && weapon->FiringForce())
+			return false;
+		return true;
+	};
+
 	// Find the longest range of any of your non-homing weapons. Homing weapons
 	// that don't consume ammo may also fire in non-homing mode.
 	double maxRange = 0.;
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.IsReady())
-		{
-			const Weapon *weapon = hardpoint.GetWeapon();
-			const Outfit *ammo = weapon->Ammo();
-			if(!currentTarget && hardpoint.IsHoming() && ammo)
-				continue;
-			if(!secondary && weapon->Icon())
-				continue;
-			if(beFrugal && ammo)
-				continue;
-			if(ammo && ship.OutfitCount(ammo) < weapon->AmmoUsage())
-				continue;
-			if(isWaitingToJump && weapon->FiringForce())
-				continue;
-			maxRange = max(maxRange, weapon->Range());
-		}
+		if(CanUse(hardpoint))
+			maxRange = max(maxRange, hardpoint.GetWeapon()->Range());
 	// Extend the weapon range slightly to account for velocity differences.
 	maxRange *= 1.5;
 
@@ -4050,9 +4067,9 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		++index;
-		// Skip weapons that are not ready to fire.
-		if(!hardpoint.IsReady())
+		if(!CanUse(hardpoint))
 			continue;
+		const Weapon *weapon = hardpoint.GetWeapon();
 
 		// Skip weapons omitted by the "Automatic firing" preference.
 		if(isFlagship)
@@ -4063,20 +4080,6 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			if(autoFireMode == Preferences::AutoFire::TURRETS_ONLY && !hardpoint.IsTurret())
 				continue;
 		}
-
-		const Weapon *weapon = hardpoint.GetWeapon();
-		// Don't expend ammo for homing weapons that have no target selected.
-		if(!currentTarget && weapon->Homing() && weapon->Ammo())
-			continue;
-		// Don't fire secondary weapons if told not to.
-		if(!secondary && weapon->Icon())
-			continue;
-		// Don't expend ammo if trying to be frugal.
-		if(beFrugal && weapon->Ammo())
-			continue;
-		// Don't use weapons with firing force if you are preparing to jump.
-		if(isWaitingToJump && weapon->FiringForce())
-			continue;
 
 		// Special case: if the weapon uses fuel, be careful not to spend so much
 		// fuel that you cannot leave the system if necessary.
@@ -4127,10 +4130,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			// Calculate how long it will take the projectile to reach its target.
 			double steps = RendezvousTime(p, v, vp);
 			if(!std::isnan(steps) && steps <= lifetime)
-			{
 				command.SetFire(index);
-				continue;
-			}
 			continue;
 		}
 		// For non-homing weapons:
@@ -4804,7 +4804,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 	if(Preferences::GetAutoFire() != Preferences::AutoFire::OFF && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
-		AutoFire(ship, firingCommands, false, true);
+		AutoFire(ship, firingCommands, false, true, &player.SelectedSecondaryWeapons());
 
 	const bool mouseTurning = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(mouseTurning && !ship.IsBoarding() && (!ship.IsReversing() || ship.ReverseThrust()))
@@ -4857,9 +4857,10 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))
 	{
 		if(target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
-			command.SetTurn(TurnToward(ship, TargetAim(ship)));
+			command.SetTurn(TurnToward(ship, TargetAim(ship, &player.SelectedSecondaryWeapons())));
 		else if(ship.GetTargetAsteroid())
-			command.SetTurn(TurnToward(ship, TargetAim(ship, *ship.GetTargetAsteroid())));
+			command.SetTurn(TurnToward(ship, TargetAim(ship, *ship.GetTargetAsteroid(),
+				&player.SelectedSecondaryWeapons())));
 		else if(ship.GetTargetStellar())
 			command.SetTurn(TurnToward(ship, ship.GetTargetStellar()->Position() - ship.Position()));
 	}
@@ -4881,7 +4882,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 	{
 		Point pos = (target ? target->Position() : ship.GetTargetAsteroid()->Position());
 		if((pos - ship.Position()).Unit().Dot(ship.Facing().Unit()) >= .8)
-			command.SetTurn(TurnToward(ship, TargetAim(ship)));
+			command.SetTurn(TurnToward(ship, TargetAim(ship, &player.SelectedSecondaryWeapons())));
 	}
 
 	if(autoPilot.Has(Command::JUMP | Command::FLEET_JUMP) && !(player.HasTravelPlan() || ship.GetTargetSystem()))

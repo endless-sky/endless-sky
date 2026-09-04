@@ -38,6 +38,7 @@ class ConditionsStore;
 class Flotsam;
 class Government;
 class Minable;
+class Outfit;
 class PlayerInfo;
 class Ship;
 class ShipEvent;
@@ -188,14 +189,18 @@ private:
 	// maximum damage to a target at the given position with its non-turret,
 	// non-homing weapons. If the ship has no non-homing weapons, this just
 	// returns the direction to the target.
-	static Point TargetAim(const Ship &ship);
-	static Point TargetAim(const Ship &ship, const Body &target);
+	// For only the player's flagship, which secondary weapons are currently selected should be provided
+	// so that the flagship doesn't try to aim with weapons that the player isn't even using.
+	static Point TargetAim(const Ship &ship, const std::set<const Outfit *> *includeSecondaries = nullptr);
+	static Point TargetAim(const Ship &ship, const Body &target,
+		const std::set<const Outfit *> *includeSecondaries = nullptr);
 	// Aim the given ship's turrets.
 	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false,
 			const std::optional<Point> &targetOverride = std::nullopt) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true, bool isFlagship = false) const;
+	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true, bool isFlagship = false,
+		const std::set<const Outfit *> *includeSecondaries = nullptr) const;
 	void AutoFire(const Ship &ship, FireCommand &command, const Body &target) const;
 
 	// Calculate how long it will take a projectile to reach a target given the
