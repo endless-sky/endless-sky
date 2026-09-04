@@ -419,6 +419,13 @@ namespace {
 	// another in case they become too close.
 	constexpr double SCATTER_TOO_CLOSE = 20. * 20.;
 	constexpr double SCATTER_TRACK = 100. * 100.;
+
+	// When determining auto aiming, this represents the total DPS and average aim point of
+	// a set of hardpoints with the same weapon velocity.
+	struct AimCandidate {
+		double dps = 0.;
+		Point aim;
+	};
 }
 
 
@@ -3739,7 +3746,9 @@ Point AI::TargetAim(const Ship &ship, const set<const Outfit *> *includeSecondar
 
 Point AI::TargetAim(const Ship &ship, const Body &target, const set<const Outfit *> *includeSecondaries)
 {
-	Point result;
+	// Determine which hardpoints can hit the target.
+	// Construct a map of weapon velocity to the candidate aim points.
+	map<double, AimCandidate> candidates;
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		const Weapon *weapon = hardpoint.GetWeapon();
@@ -3754,18 +3763,23 @@ Point AI::TargetAim(const Ship &ship, const Body &target, const set<const Outfit
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 		Point p = target.Position() - start + ship.GetPersonality().Confusion();
 		Point v = target.Velocity() - ship.Velocity();
-		double steps = RendezvousTime(p, v, weapon->WeightedVelocity() + .5 * weapon->RandomVelocity());
+		double velocity = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
+		double steps = RendezvousTime(p, v, velocity);
 		if(std::isnan(steps))
 			continue;
+		p += min(steps, weapon->TotalLifetime()) * v;
 
-		steps = min(steps, weapon->TotalLifetime());
-		p += steps * v;
-
-		double damage = weapon->ShieldDamage() + weapon->HullDamage();
-		result += p.Unit() * abs(damage);
+		auto &[dps, aim] = candidates[velocity];
+		dps += (weapon->ShieldDamage() + weapon->HullDamage()) / weapon->Reload();
+		aim += p.Unit();
 	}
 
-	return result ? result : target.Position() - ship.Position();
+	// Determine which aim point yields the highest expected DPS on target.
+	auto bestIt = candidates.end();
+	for(auto it = candidates.begin(); it != candidates.end(); ++it)
+		if(bestIt == candidates.end() || it->second.dps > bestIt->second.dps)
+			bestIt = it;
+	return bestIt != candidates.end() ? bestIt->second.aim : target.Position() - ship.Position();
 }
 
 
