@@ -203,8 +203,12 @@ private:
 	// projectile. If it cannot hit the target, this returns NaN.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
 
-	// True if found asteroid.
-	bool TargetMinable(Ship &ship) const;
+	// Only used by the player. Searches every asteroid within the player's
+	// asteroid scanning capabilities and sets the flagship's target to either the
+	// asteroid closest to the ship or the asteroid of highest value in range, depending
+	// on the player's preferences. Returns true of an asteroid was found.
+	bool PlayerTargetMinable(Ship &flagship) const;
+
 	// True if the ship performed the indicated event to the other ship.
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
 	// True if the government performed the indicated event to the other ship.
