@@ -3745,6 +3745,9 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 		const Weapon *weapon = hardpoint.GetWeapon();
 		if(!weapon || hardpoint.IsHoming() || hardpoint.IsTurret())
 			continue;
+		const Outfit *ammo = weapon->Ammo();
+		if(ammo && ship.OutfitCount(ammo) < weapon->AmmoUsage())
+			continue;
 
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 		Point p = target.Position() - start + ship.GetPersonality().Confusion();
@@ -4019,11 +4022,18 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		if(hardpoint.IsReady())
 		{
 			const Weapon *weapon = hardpoint.GetWeapon();
-			if(!(!currentTarget && hardpoint.IsHoming() && weapon->Ammo())
-					&& !(!secondary && weapon->Icon())
-					&& !(beFrugal && weapon->Ammo())
-					&& !(isWaitingToJump && weapon->FiringForce()))
-				maxRange = max(maxRange, weapon->Range());
+			const Outfit *ammo = weapon->Ammo();
+			if(!currentTarget && hardpoint.IsHoming() && ammo)
+				continue;
+			if(!secondary && weapon->Icon())
+				continue;
+			if(beFrugal && ammo)
+				continue;
+			if(ammo && ship.OutfitCount(ammo) < weapon->AmmoUsage())
+				continue;
+			if(isWaitingToJump && weapon->FiringForce())
+				continue;
+			maxRange = max(maxRange, weapon->Range());
 		}
 	// Extend the weapon range slightly to account for velocity differences.
 	maxRange *= 1.5;
