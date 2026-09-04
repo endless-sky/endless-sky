@@ -5546,7 +5546,7 @@ mission "Riley"
 			action
 				set "Shot Core"
 			`	You push Riley aside and start firing at the Core. Church's voice becomes a stream of static until it shuts off completely. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned.`
-			`	Once you are finished, you make your way out of the hospital as quickly as possible, hoping you did not attract any unwanted attention.`
+			`	Once you are finished, you make your way out of the place as calmly as possible, hoping you did not attract any unwanted attention.`
 			`	You board your ship, leaving behind a father survived by his daughter; no more and no less than nature intended.`
 				decline
 			label away
@@ -5570,6 +5570,10 @@ mission "Riley"
 					goto bounty
 				`	(Draw my gun and destroy the Core.)`
 					goto destroy
+				`	(Warn the nurse to offer Riley some psychological help.)`
+					goto psy
+				`	(Try to prove your point discussing with the AI.)`
+					goto chat
 			`	Respecting Riley's request to stay with her father, you make your farewells and head for the door.`
 			`	Despite her previous happiness, you notice that her disposition has become more muted after what you said. You wonder if she has begun to doubt whether her attachment to the AI is healthy.`
 				decline
@@ -5580,6 +5584,31 @@ mission "Riley"
 			`	"Ah. Mr. Church has been on our watchlist for some time. This is not exactly surprising. However, we've been unable to get decisive proof on any illegal activity. This information, assuming it is correct, will be a great boon to us. Thank you for the tip."`
 			`	By the time you arrive back at the spaceport, your bank account notifies you that <payment> have been added to your account.`
 				decline
+			label psy
+			action
+				payment 35000
+			`	You let Riley one moment alone with her "father," and tell the nurse, who was was waiting just outside, that Riley's mourning process will have complications and she certainly need help with that matter.`
+			`	"Well," she replies, "We can't force her, but I can talk to her. What exactly makes you think she needs help?"`
+			`	You explain the whole situation. The nurse appears shocked.`
+			`	"Good thing he is already dead. I might have strangled him if I knew sooner." She regains composure. "Mr Church is not as nice as he appears to be. He is actually quite possessive. Luckily, I know what string to pull to both stop that psychological horror and get Riley the help she needs. Follow me inside."`
+			`	The nurse knoks on the door and enters.`
+			`	"The nurse is here," says Church's voice, perfectly audible and toneless.
+			`	"I must hide, I'm illegal." The light on the core suddenly go out`
+			`	Riley looks confused; the nurse reassures her. "Legality isn't a real issue. I'm here to take care of people's health. Miss Church, may I talk with you in private?"`
+			`	"Don't take too long. I want you with me," says Church, with some blinking lights, before "hiding" again.`
+			`	You say your goodbyes, trusting the nurse with the situation, and return to your ship. Later, your bank account notifies you of a payment of <payment>, with a message from the nurse.`
+			`	"I reported the situation to the local Deep Security office, and got a bounty of 100000 credits. Since I have no use for all that, I took what I needed and shared the rest between you and Riley. Farewell, Captain!"`
+				decline
+			label chat
+			action
+				set "Shot Core"
+			`	You ask the AI, "Mr Church, can you describe precisely your feelings toward your daughter?"`
+			`	"Well, I love her, but I do not approve of her... barbaric music thing. I want her near me all the time, alive, dying, or even being dead. I wish I could have experimented more around AI and brain uploading with her. Maybe we could have fused both of our souls into a computer; who knows?"`
+			`	There is a shocked silence. None of you expected this answer. After a while, Riley says in a falsely calm tone "Shoot it down."`
+			`	"I have no shutdown procedure," says the AI. "I think I can't even sleep."`
+			`	"SHUT UP!" Riley grabs your sidearm and shoots at the core. Church's voice becomes a stream of static until it shuts off compltly. Lights on the Core turn from white to red, then fade.`
+			`	"Sorry for that." Says Riley, giving back your sidearm with disgust and care for safety. "Thanks for everything. I think I will need some help to deal with all that, but I will be fine. Thanks again."`
+				goto end
 			label end
 			`	You say your goodbyes, leaving to your ship and returning to the stars.`
 				decline
