@@ -4143,7 +4143,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			// Merciful ships let fleeing ships go.
 			if(target->IsFleeing() && person.IsMerciful())
 				continue;
-			// Don't hit ships that cannot be hit without targeting
+			// Don't fire at ships that cannot be hit without targeting.
 			if(target != currentTarget.get() && !FighterHitHelper::IsValidTarget(target))
 				continue;
 
