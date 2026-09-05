@@ -157,6 +157,11 @@ private:
 	// Whether we have actually checked spawning conditions yet. (This
 	// will generally be true, except when reloading a save.)
 	bool checkedSpawnConditions = false;
+	// If true, an NPC whose spawn conditions are met when they are checked
+	// mid-flight can instantly spawn. If false, this NPC's ships can only
+	// be spawned when the player departs from a planet, or upon immediately
+	// accepting an in-flight mission.
+	bool instantSpawning = false;
 
 	// The ships may be listed individually or referred to as a fleet, and may
 	// be customized or just refer to stock objects:
