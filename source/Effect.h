@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "audio/SoundCategory.h"
+#include "Body.h"
 
 #include "Angle.h"
-#include "Body.h"
+#include "audio/SoundCategory.h"
 
 #include <string>
 

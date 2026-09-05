@@ -15,8 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Point.h"
 #include "Rectangle.h"
+
+#include "Point.h"
 
 #include <utility>
 
