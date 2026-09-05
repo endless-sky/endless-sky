@@ -4251,21 +4251,17 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 
 
 
-// Searches every asteroid within the ship scan limit and returns either the
-// asteroid closest to the ship or the asteroid of highest value in range, depending
-// on the player's preferences.
-bool AI::TargetMinable(Ship &ship) const
+bool AI::PlayerTargetMinable(Ship &flagship) const
 {
-	double scanRangeMetric = 10000. * ship.AsteroidScanPower();
-	if(!scanRangeMetric)
+	if(!player.HasScanner(ScanType::ASTEROID))
 		return false;
 	Preferences::TargetAsteroidStrategy strategy = Preferences::GetTargetAsteroidStrategy();
 	const bool findClosest = strategy == Preferences::TargetAsteroidStrategy::PROXIMITY;
 	const bool highestQuality = strategy == Preferences::TargetAsteroidStrategy::QUALITY;
-	auto bestMinable = ship.GetTargetAsteroid();
+	auto bestMinable = flagship.GetTargetAsteroid();
 	double bestScore = findClosest ? numeric_limits<double>::max() : 0.;
-	auto GetDistanceMetric = [&ship](const Minable &minable) -> double {
-		return ship.Position().DistanceSquared(minable.Position());
+	auto GetDistanceMetric = [&flagship](const Minable &minable) -> double {
+		return flagship.Position().DistanceSquared(minable.Position());
 	};
 	if(bestMinable)
 	{
@@ -4304,7 +4300,7 @@ bool AI::TargetMinable(Ship &ship) const
 	auto UpdateBestMinable = MinableStrategy();
 	for(auto &&minable : minables)
 	{
-		if(GetDistanceMetric(*minable) > scanRangeMetric)
+		if(!(player.CanScan(minable) & ScanType::ASTEROID))
 			continue;
 		if(bestMinable)
 			UpdateBestMinable(minable);
@@ -4312,8 +4308,8 @@ bool AI::TargetMinable(Ship &ship) const
 			bestMinable = minable;
 	}
 	if(bestMinable)
-		ship.SetTargetAsteroid(bestMinable);
-	return static_cast<bool>(ship.GetTargetAsteroid());
+		flagship.SetTargetAsteroid(bestMinable);
+	return static_cast<bool>(flagship.GetTargetAsteroid());
 }
 
 
@@ -4445,7 +4441,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			}
 		// If no ship was found, look for nearby asteroids.
 		if(!found)
-			TargetMinable(ship);
+			PlayerTargetMinable(ship);
 		else
 			UI::PlaySound(UI::UISound::TARGET);
 	}
@@ -4783,9 +4779,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		IssueOrder(newOrder, "preparing to harvest.");
 	}
 	else if(activeCommands.Has(Command::NEAREST_ASTEROID))
-	{
-		TargetMinable(ship);
-	}
+		PlayerTargetMinable(ship);
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
 	auto targetOverride = Preferences::Has("Aim turrets with mouse") ^ activeCommands.Has(Command::AIM_TURRET_HOLD)
