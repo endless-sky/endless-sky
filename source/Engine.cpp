@@ -498,6 +498,16 @@ void Engine::Place(const NPC &npc, const shared_ptr<Ship> &flagship)
 
 
 
+void Engine::CheckNpcSpawns()
+{
+	player.UpdateMissionNPCs();
+	const shared_ptr<Ship> &flagshipPtr = player.FlagshipPtr();
+	for(const NPC *npc : player.UpdateMissionNPCs())
+		Place(*npc, flagshipPtr);
+}
+
+
+
 // Wait for the previous calculations (if any) to be done.
 void Engine::Wait()
 {
@@ -1870,12 +1880,6 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
 		EnterSystem();
-
-		// Now that all updates have been made to the player that could alter condition
-		// reads, check if any missions can spawn NPCs right now.
-		const shared_ptr<Ship> &flagshipPtr = player.FlagshipPtr();
-		for(const NPC *npc : player.UpdateMissionNPCs())
-			Place(*npc, flagshipPtr);
 	}
 	PrunePointers(ships);
 

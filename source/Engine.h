@@ -74,6 +74,9 @@ public:
 	// Place NPCs spawned by a mission that offers when the player is not landed.
 	void Place(const std::list<NPC> &npcs, const std::shared_ptr<Ship> &flagship = nullptr);
 	void Place(const NPC &npc, const std::shared_ptr<Ship> &flagship = nullptr);
+	// Check the player's active missions to determine if any NPCs should be spawned
+	// right now.
+	void CheckNpcSpawns();
 
 	// Wait for the previous calculations (if any) to be done.
 	void Wait();

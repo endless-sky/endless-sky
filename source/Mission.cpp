@@ -1453,10 +1453,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI &ui)
 			Do(WAYPOINT, player, &ui);
 		}
 
-		// Perform an "on enter" action for this system, if possible, and if
-		// any was performed, update this mission's NPC spawn states.
-		if(Enter(system, player, ui))
-			UpdateNPCs();
+		// Perform an "on enter" action for this system, if possible.
+		Enter(system, player, ui);
 	}
 
 	for(NPC &npc : npcs)
