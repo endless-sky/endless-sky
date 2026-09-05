@@ -91,7 +91,8 @@ public:
 	const EsUuid &UUID() const noexcept;
 
 	// Update or check spawning and despawning for this NPC.
-	void UpdateSpawning(const PlayerInfo &player);
+	// Return true if this NPC should be spawned right now.
+	bool UpdateSpawning();
 	bool ShouldSpawn() const;
 
 	// Get the personality that dictates the behavior of the ships associated with this set of NPCs.

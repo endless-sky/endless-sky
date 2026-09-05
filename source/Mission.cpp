@@ -1301,7 +1301,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		++player.Conditions()[trueName + ": active"];
 		// Any potential on offer conversation has been finished, so update
 		// the active NPCs for the first time and cache any necessary information.
-		UpdateNPCs(player);
+		UpdateNPCs();
 		DistanceMap here(player);
 		player.CacheMissionInformation(*this, here);
 	}
@@ -1370,11 +1370,13 @@ const list<NPC> &Mission::NPCs() const
 
 
 
-// Update which NPCs are active based on their spawn and despawn conditions.
-void Mission::UpdateNPCs(const PlayerInfo &player)
+vector<const NPC *> Mission::UpdateNPCs()
 {
+	vector<const NPC *> spawn;
 	for(auto &npc : npcs)
-		npc.UpdateSpawning(player);
+		if(npc.UpdateSpawning())
+			spawn.emplace_back(&npc);
+	return spawn;
 }
 
 
@@ -1454,7 +1456,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI &ui)
 		// Perform an "on enter" action for this system, if possible, and if
 		// any was performed, update this mission's NPC spawn states.
 		if(Enter(system, player, ui))
-			UpdateNPCs(player);
+			UpdateNPCs();
 	}
 
 	for(NPC &npc : npcs)
