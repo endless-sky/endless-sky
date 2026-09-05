@@ -3757,7 +3757,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target, const set<const Outfit
 		const Outfit *ammo = weapon->Ammo();
 		if(ammo && ship.OutfitCount(ammo) < weapon->AmmoUsage())
 			continue;
-		if(includeSecondaries && !includeSecondaries->contains(hardpoint.GetOutfit()))
+		if(includeSecondaries && weapon->Icon() && !includeSecondaries->contains(hardpoint.GetOutfit()))
 			continue;
 
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
@@ -3775,9 +3775,9 @@ Point AI::TargetAim(const Ship &ship, const Body &target, const set<const Outfit
 	}
 
 	// Determine which aim point yields the highest expected DPS on target.
-	auto bestIt = candidates.end();
+	auto bestIt = candidates.begin();
 	for(auto it = candidates.begin(); it != candidates.end(); ++it)
-		if(bestIt == candidates.end() || it->second.dps > bestIt->second.dps)
+		if(it->second.dps > bestIt->second.dps)
 			bestIt = it;
 	return bestIt != candidates.end() ? bestIt->second.aim : target.Position() - ship.Position();
 }
@@ -4046,7 +4046,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		if(!secondary && weapon->Icon())
 			return false;
 		// If this is for the player, only consider weapons the player has currently selected.
-		if(includeSecondaries && !includeSecondaries->contains(hardpoint.GetOutfit()))
+		if(includeSecondaries && weapon->Icon() && !includeSecondaries->contains(hardpoint.GetOutfit()))
 			return false;
 		// Don't expend ammo if trying to be frugal.
 		if(beFrugal && ammo)
