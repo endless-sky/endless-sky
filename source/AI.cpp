@@ -4043,10 +4043,9 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		if(!currentTarget && weapon->Homing() && ammo)
 			return false;
 		// Don't fire secondary weapons if told not to.
-		if(!secondary && weapon->Icon())
-			return false;
 		// If this is for the player, only consider weapons the player has currently selected.
-		if(includeSecondaries && weapon->Icon() && !includeSecondaries->contains(hardpoint.GetOutfit()))
+		if(weapon->Icon() && (!secondary || (includeSecondaries
+				&& !includeSecondaries->contains(hardpoint.GetOutfit()))))
 			return false;
 		// Don't expend ammo if trying to be frugal.
 		if(beFrugal && ammo)
