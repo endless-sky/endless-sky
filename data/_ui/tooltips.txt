@@ -246,6 +246,9 @@ tip "energy consumption:"
 tip "energy generation:"
 	`Energy generated per second. If your ship has weapons other than beam weapons, you will probably also need batteries to store energy in.`
 
+tip "docked shield generation:"
+	`Energy generated per second for charging the batteries of docked fighters.`
+
 tip "engine capacity needed:"
 	`Tons of engine space this outfit takes up.`
 
@@ -278,7 +281,10 @@ tip "fuel energy:"
 	
 tip "fuel generation:"
 	`Fuel generated per second.`
-	
+
+tip "docked fuel generation:"
+	`Fuel generated per second for refueling docked fighters.`
+
 tip "fuel heat:"
 	`Heat produced per second when consuming fuel.`
 
@@ -297,6 +303,9 @@ tip "heat dissipation:"
 tip "heat generation:"
 	`Heat generated per second. Heat generation can be offset by "cooling" outfits. If your ship exceeds its maximum heat, it must temporarily shut down to cool itself off.`
 
+tip "docked heat generation:"
+	`Heat generated per second while charging the batteries of docked fighters.`
+
 tip "heat protection:"
 	`Protection provided against heat damage. Increases by the given factor how much heat damage a ship can withstand before its heat rises as much as an unprotected ship.`
 
@@ -312,6 +321,9 @@ tip "hull:"
 tip "hull energy:"
 	`Energy consumed per second when repairing the hull.`
 
+tip "docked hull energy:"
+	`Energy consumed per second when repairing the hull of docked fighters.`
+
 tip "delayed hull energy:"
 	`Additional energy consumed per second when repairing the hull after the repair delay period.`
 
@@ -321,6 +333,9 @@ tip "hull energy multiplier:"
 tip "hull fuel:"
 	`Fuel consumed per second when repairing the hull.`
 
+tip "docked hull fuel:"
+	`Fuel consumed per second when repairing the hull of docked fighters.`
+
 tip "delayed hull fuel:"
 	`Additional fuel consumed per second when repairing the hull after the repair delay period.`
 
@@ -329,6 +344,9 @@ tip "hull fuel multiplier:"
 
 tip "hull heat:"
 	`Heat produced per second when repairing the hull.`
+
+tip "docked hull heat:"
+	`Heat produced per second when repairing the hull of docked fighters.`
 
 tip "delayed hull heat:"
 	`Additional heat produced per second when repairing the hull after the repair delay period.`
@@ -341,6 +359,9 @@ tip "hull multiplier:"
 
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
+
+tip "docked hull repair rate:"
+	`Amount of hull strength that can be repaired per second, applied only to docked fighters. Repairs usually consume energy and may generate heat as well.`
 
 tip "delayed hull repair rate:"
 	`Additional hull strength that can be repaired per second after the repair delay period.`
@@ -621,6 +642,9 @@ tip "sells for:"
 tip "shield energy:"
 	`Energy consumed per second when recharging shields.`
 
+tip "docked shield energy:"
+	`Energy consumed per second when recharging shields of docked fighters.`
+
 tip "delayed shield energy:"
 	`Additional energy consumed per second when recharging shields after the shield delay period.`
 
@@ -629,6 +653,9 @@ tip "shield energy multiplier:"
 
 tip "shield fuel:"
 	`Fuel consumed per second when recharging shields.`
+
+tip "docked shield fuel:"
+	`Fuel consumed per second when recharging shields of docked fighters.`
 
 tip "delayed shield fuel:"
 	`Additional fuel consumed per second when recharging shields after the shield delay period.`
@@ -639,6 +666,9 @@ tip "shield fuel multiplier:"
 tip "shield heat:"
 	`Heat produced per second when recharging shields.`
 
+tip "docked shield heat:"
+	`Heat produced per second when recharging shields of docked fighters.`
+
 tip "delayed shield heat:"
 	`Additional heat produced per second when recharging shields after the shield delay period.`
 
@@ -647,6 +677,9 @@ tip "shield heat multiplier:"
 
 tip "shield generation:"
 	`Shield points recharged per second. Recharging shields usually consumes energy, and may also produce heat.`
+
+tip "docked shield generation:"
+	`Shield points recharged per second, applied only to docked fighters. Recharging shields usually consumes energy, and may also produce heat.`
 
 tip "delayed shield generation:"
 	`Additional shield points recharged per second after the shield delay period.`

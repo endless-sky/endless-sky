@@ -4338,37 +4338,39 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
-		ResourceLevels repairLevels = hullDelay ? cache.hullRepairWithDelayCost : cache.hullRepairCost;
+		// Convert a repair/regen cost into resource per unit of repair
+		// for simpler repair math.
+		auto CostPerRepairUnit = [](ResourceLevels &cost, double repair) -> void {
+			cost.energy /= repair;
+			cost.fuel /= repair;
+			cost.hull /= repair;
+		};
+
+		ResourceLevels repairCost = hullDelay ? cache.hullRepairWithDelayCost : cache.hullRepairCost;
 		double hullRemaining = (hullDelay ? cache.hullRepairRateWithDelay : cache.hullRepairRate)
 			* (1. + cache.cloakedRepairMult * Cloaking());
 		if(hullRemaining)
 		{
-			// Save hull repair costs as per unit of hull repaired.
-			repairLevels.energy /= hullRemaining;
-			repairLevels.fuel /= hullRemaining;
-			repairLevels.hull /= hullRemaining;
-			levels.DoRepair(levels.hull, hullRemaining, MaxHull(), repairLevels);
+			CostPerRepairUnit(repairCost, hullRemaining);
+			levels.DoRepair(levels.hull, hullRemaining, MaxHull(), repairCost);
 		}
 
-		ResourceLevels regenLevels = shieldDelay ? cache.shieldRegenWithDelayCost : cache.shieldRegenCost;
+		ResourceLevels regenCost = shieldDelay ? cache.shieldRegenWithDelayCost : cache.shieldRegenCost;
 		double shieldsRemaining = (shieldDelay ? cache.shieldRegenRateWithDelay : cache.shieldRegenRate)
 			* (1. + cache.cloakedRegenMult * Cloaking());
 		if(shieldsRemaining)
 		{
-			// Save shield regen costs as per unit of shield regenerated.
-			regenLevels.energy /= shieldsRemaining;
-			regenLevels.fuel /= shieldsRemaining;
-			regenLevels.hull /= shieldsRemaining;
-			levels.DoRepair(levels.shields, shieldsRemaining, MaxShields(), regenLevels);
+			CostPerRepairUnit(regenCost, shieldsRemaining);
+			levels.DoRepair(levels.shields, shieldsRemaining, MaxShields(), regenCost);
 		}
 
-		if(!bays.empty())
+		// If this ship is carrying fighters, determine their repair priority.
+		vector<pair<double, Ship *>> carried;
+		for(const Bay &bay : bays)
+			if(bay.ship)
+				carried.emplace_back(1. - bay.ship->HealthFraction(), bay.ship.get());
+		if(!carried.empty())
 		{
-			// If this ship is carrying fighters, determine their repair priority.
-			vector<pair<double, Ship *>> carried;
-			for(const Bay &bay : bays)
-				if(bay.ship)
-					carried.emplace_back(1. - bay.ship->HealthFraction(), bay.ship.get());
 			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
 				// Players may use a parallel strategy, to launch fighters in waves.
 				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
@@ -4380,24 +4382,47 @@ void Ship::DoGeneration()
 			);
 
 			// Apply shield and hull repair to carried fighters.
+			ResourceLevels dockedRepairCost = cache.dockedHullRepairCost;
+			double dockedHullRemaining = cache.dockedHullRepairRate;
+			if(dockedHullRemaining)
+				CostPerRepairUnit(dockedRepairCost, dockedHullRemaining);
+			ResourceLevels dockedRegenCost = cache.dockedShieldRegenCost;
+			double dockedShieldsRemaining = cache.dockedShieldRegenRate;
+			if(dockedShieldsRemaining)
+				CostPerRepairUnit(dockedRegenCost, dockedShieldsRemaining);
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
+				// Use docked repair attributes before using the overflow of the
+				// main repair attributes, as docked repair is expected to be
+				// more resource efficient.
+				if(dockedHullRemaining)
+					levels.DoRepair(ship.levels.hull, dockedHullRemaining, ship.MaxHull(), dockedRepairCost);
+				if(dockedShieldsRemaining)
+					levels.DoRepair(ship.levels.shields, dockedShieldsRemaining, ship.MaxShields(), dockedRegenCost);
 				if(!hullDelay && hullRemaining)
-					levels.DoRepair(ship.levels.hull, hullRemaining, ship.MaxHull(), repairLevels);
+					levels.DoRepair(ship.levels.hull, hullRemaining, ship.MaxHull(), repairCost);
 				if(!shieldDelay && shieldsRemaining)
-					levels.DoRepair(ship.levels.shields, shieldsRemaining, ship.MaxShields(), regenLevels);
+					levels.DoRepair(ship.levels.shields, shieldsRemaining, ship.MaxShields(), regenCost);
 			}
 
 			// Now that there is no more need to use energy for hull and shield
 			// repair, if there is still excess energy, transfer it.
 			double energyRemaining = levels.energy - MaxEnergy();
-			double fuelRemaining = levels.fuel - MaxFuel();
+			double fuelRemaining = levels.fuel - MaxFuel() + cache.dockedFuelGeneration;
+			double dockedEnergyRemaining = cache.dockedEnergyGeneration;
+			ResourceLevels dockedEnergyCost;
+			if(dockedEnergyRemaining)
+				dockedEnergyCost.heat = cache.dockedHeatGeneration / dockedEnergyRemaining;
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
+				// Use excess energy before generating more from docked energy generation, since
+				// the excess energy is guaranteed to be free.
 				if(energyRemaining > 0.)
 					Transfer(ship.levels.energy, energyRemaining, ship.MaxEnergy());
+				if(dockedEnergyRemaining)
+					levels.DoRepair(ship.levels.energy, dockedEnergyRemaining, ship.MaxEnergy(), dockedEnergyCost);
 				if(fuelRemaining > 0.)
 					Transfer(ship.levels.fuel, fuelRemaining, ship.MaxFuel());
 			}
