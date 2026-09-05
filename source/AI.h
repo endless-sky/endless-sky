@@ -206,7 +206,7 @@ private:
 	// Only used by the player. Searches every asteroid within the player's
 	// asteroid scanning capabilities and sets the flagship's target to whichever
 	// asteroid is the best based on the player's preferences.
-	// Returns true of an asteroid was found.
+	// Returns true if an asteroid was found.
 	bool PlayerTargetMinable(Ship &flagship) const;
 
 	// True if the ship performed the indicated event to the other ship.
