@@ -500,7 +500,6 @@ void Engine::Place(const NPC &npc, const shared_ptr<Ship> &flagship)
 
 void Engine::CheckNpcSpawns()
 {
-	player.UpdateMissionNPCs();
 	const shared_ptr<Ship> &flagshipPtr = player.FlagshipPtr();
 	for(const NPC *npc : player.UpdateMissionNPCs())
 		Place(*npc, flagshipPtr);
