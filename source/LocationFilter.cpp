@@ -35,6 +35,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// placeholder to match source government
+	static const Government sourceGovernment;
+
 	bool SetsIntersect(const set<string> &a, const set<string> &b)
 	{
 		// Quickest way to find out if two sets contain common elements: iterate
@@ -194,6 +197,7 @@ void LocationFilter::Load(const DataNode &node, const set<const System *> *visit
 	}
 
 	isEmpty = planets.empty() && attributes.empty() && systems.empty() && governments.empty()
+		&& allyGovernments.empty() && hostileGovernments.empty()
 		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
 		&& outfits.empty() && shipCategory.empty() && !systemIsVisited && !planetIsVisited;
 }
@@ -240,7 +244,36 @@ void LocationFilter::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				for(const Government *government : governments)
-					out.Write(government->TrueName());
+					if(government == &sourceGovernment)
+						out.Write("source");
+					else
+						out.Write(government->TrueName());
+			}
+			out.EndChild();
+		}
+		if(!allyGovernments.empty())
+		{
+			out.Write("ally");
+			out.BeginChild();
+			{
+				for(const Government *government : allyGovernments)
+					if(government == &sourceGovernment)
+						out.Write("source");
+					else
+						out.Write(government->TrueName());
+			}
+			out.EndChild();
+		}
+		if(!hostileGovernments.empty())
+		{
+			out.Write("hostile");
+			out.BeginChild();
+			{
+				for(const Government *government : hostileGovernments)
+					if(government == &sourceGovernment)
+						out.Write("source");
+					else
+						out.Write(government->TrueName());
 			}
 			out.EndChild();
 		}
@@ -358,7 +391,52 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 		return false;
 
 	if(!governments.empty() && !governments.contains(planet->GetGovernment()))
-		return false;
+		if(!origin || !governments.contains(&sourceGovernment) || planet->GetGovernment() == origin->GetGovernment())
+			return false;
+
+	if(!allyGovernments.empty() || !hostileGovernments.empty())
+	{
+		// Populate the set of ally and hostile governments.
+		set<const Government *> allies;
+		set<const Government *> enemies;
+		for(const auto &it : GameData::Governments())
+		{
+			for(const Government *allyof : allyGovernments)
+			{
+				if(allyof == &sourceGovernment)
+				{
+					if(origin && origin->GetGovernment()->AttitudeToward(&it.second) > 0.)
+						allies.insert(allies.end(), &it.second);
+				}
+				else
+				{
+					if(allyof->AttitudeToward(&it.second) > 0.)
+						allies.insert(allies.end(), &it.second);
+				}
+			}
+
+			for(const Government *enmyof : hostileGovernments)
+			{
+				if(enmyof == &sourceGovernment)
+				{
+					if(origin && origin->GetGovernment()->AttitudeToward(&it.second) < 0.)
+						enemies.insert(enemies.end(), &it.second);
+				}
+				else
+				{
+					if(enmyof->AttitudeToward(&it.second) < 0.)
+						enemies.insert(enemies.end(), &it.second);
+				}
+
+			}
+		}
+
+		if(!allyGovernments.empty() && !allies.contains(planet->GetGovernment()))
+			return false;
+
+		if(!hostileGovernments.empty() && !enemies.contains(planet->GetGovernment()))
+			return false;
+	}
 
 	if(!planets.empty() && !planets.contains(planet))
 		return false;
@@ -399,7 +477,52 @@ bool LocationFilter::Matches(const Ship &ship) const
 	if(!systems.empty() && !systems.contains(origin))
 		return false;
 	if(!governments.empty() && !governments.contains(ship.GetGovernment()))
-		return false;
+		if(!origin || !governments.contains(&sourceGovernment) || ship.GetGovernment() == origin->GetGovernment())
+			return false;
+
+	if(!allyGovernments.empty() || !hostileGovernments.empty())
+	{
+		// Populate the set of ally and hostile governments.
+		set<const Government *> allies;
+		set<const Government *> enemies;
+		for(const auto &it : GameData::Governments())
+		{
+			for(const Government *allyof : allyGovernments)
+			{
+				if(allyof == &sourceGovernment)
+				{
+					if(origin && origin->GetGovernment()->AttitudeToward(&it.second) > 0.)
+						allies.insert(allies.end(), &it.second);
+				}
+				else
+				{
+					if(allyof->AttitudeToward(&it.second) > 0.)
+						allies.insert(allies.end(), &it.second);
+				}
+			}
+
+			for(const Government *enmyof : hostileGovernments)
+			{
+				if(enmyof == &sourceGovernment)
+				{
+					if(origin && origin->GetGovernment()->AttitudeToward(&it.second) < 0.)
+						enemies.insert(enemies.end(), &it.second);
+				}
+				else
+				{
+					if(enmyof->AttitudeToward(&it.second) < 0.)
+						enemies.insert(enemies.end(), &it.second);
+				}
+
+			}
+		}
+
+		if(!allyGovernments.empty() && !allies.contains(ship.GetGovernment()))
+			return false;
+
+		if(!hostileGovernments.empty() && !enemies.contains(ship.GetGovernment()))
+			return false;
+	}
 
 	if(!shipCategory.empty() && !shipCategory.contains(ship.Attributes().Category()))
 		return false;
@@ -555,10 +678,44 @@ void LocationFilter::LoadChild(const DataNode &child, const set<const System *> 
 	else if(key == "government")
 	{
 		for(int i = valueIndex; i < child.Size(); ++i)
-			governments.insert(GameData::Governments().Get(child.Token(i)));
+			if(child.Token(i) == "source")
+				governments.insert(&sourceGovernment);
+			else
+				governments.insert(GameData::Governments().Get(child.Token(i)));
 		for(const DataNode &grand : child)
 			for(int i = 0; i < grand.Size(); ++i)
-				governments.insert(GameData::Governments().Get(grand.Token(i)));
+				if(grand.Token(i) == "source")
+					governments.insert(&sourceGovernment);
+				else
+					governments.insert(GameData::Governments().Get(grand.Token(i)));
+	}
+	else if(key == "ally")
+	{
+		for(int i = valueIndex; i < child.Size(); ++i)
+			if(child.Token(i) == "source")
+				allyGovernments.insert(&sourceGovernment);
+			else
+				allyGovernments.insert(GameData::Governments().Get(child.Token(i)));
+		for(const DataNode &grand : child)
+			for(int i = 0; i < grand.Size(); ++i)
+				if(grand.Token(i) == "source")
+					allyGovernments.insert(&sourceGovernment);
+				else
+					allyGovernments.insert(GameData::Governments().Get(grand.Token(i)));
+	}
+	else if(key == "hostile")
+	{
+		for(int i = valueIndex; i < child.Size(); ++i)
+			if(child.Token(i) == "source")
+				hostileGovernments.insert(&sourceGovernment);
+			else
+				hostileGovernments.insert(GameData::Governments().Get(child.Token(i)));
+		for(const DataNode &grand : child)
+			for(int i = 0; i < grand.Size(); ++i)
+				if(grand.Token(i) == "source")
+					hostileGovernments.insert(&sourceGovernment);
+				else
+					hostileGovernments.insert(GameData::Governments().Get(grand.Token(i)));
 	}
 	else if(key == "attributes")
 	{
@@ -650,7 +807,52 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 	if(!didPlanet)
 	{
 		if(!governments.empty() && !governments.contains(system->GetGovernment()))
-			return false;
+			if(!origin || !governments.contains(&sourceGovernment) || system->GetGovernment() == origin->GetGovernment())
+				return false;
+
+		if(!allyGovernments.empty() || !hostileGovernments.empty())
+		{
+			// Populate the set of ally and hostile governments.
+			set<const Government *> allies;
+			set<const Government *> enemies;
+			for(const auto &it : GameData::Governments())
+			{
+				for(const Government *allyof : allyGovernments)
+				{
+					if(allyof == &sourceGovernment)
+					{
+						if(origin && origin->GetGovernment()->AttitudeToward(&it.second) > 0.)
+							allies.insert(allies.end(), &it.second);
+					}
+					else
+					{
+						if(allyof->AttitudeToward(&it.second) > 0.)
+							allies.insert(allies.end(), &it.second);
+					}
+				}
+
+				for(const Government *enmyof : hostileGovernments)
+				{
+					if(enmyof == &sourceGovernment)
+					{
+						if(origin && origin->GetGovernment()->AttitudeToward(&it.second) < 0.)
+							enemies.insert(enemies.end(), &it.second);
+					}
+					else
+					{
+						if(enmyof->AttitudeToward(&it.second) < 0.)
+							enemies.insert(enemies.end(), &it.second);
+					}
+
+				}
+			}
+
+			if(!allyGovernments.empty() && !allies.contains(system->GetGovernment()))
+				return false;
+
+			if(!hostileGovernments.empty() && !enemies.contains(system->GetGovernment()))
+				return false;
+		}
 
 		// This filter is being applied to a system, not a planet.
 		// Check whether the system, or any planet within it, has one of the
