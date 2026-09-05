@@ -233,6 +233,7 @@ target_sources(EndlessSkyLib PRIVATE
 	News.h
 	OptionalInputDialogPanel.cpp
 	OptionalInputDialogPanel.h
+	OrderedMap.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp
@@ -335,6 +336,8 @@ target_sources(EndlessSkyLib PRIVATE
 	StellarObject.h
 	StellarObjectSpriteData.cpp
 	StellarObjectSpriteData.h
+	StorylineEntry.cpp
+	StorylineEntry.h
 	StringInterner.cpp
 	StringInterner.h
 	Swizzle.cpp

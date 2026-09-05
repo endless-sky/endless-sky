@@ -15,28 +15,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Panel.h"
+#include "MapPanel.h"
 
 #include "BookEntry.h"
-#include "Date.h"
+#include "ClickZone.h"
+#include "OrderedMap.h"
+#include "PlayerInfo.h"
 
-#include <map>
 #include <string>
 #include <vector>
 
-class PlayerInfo;
 
 
-
-// User interface panel that displays a conversation, allowing you to make
-// choices. If a callback function is given, that function will be called when
-// the panel closes, to report the outcome of the conversation.
-class LogbookPanel : public Panel {
+// A user interface panel that displays the entries in the player's logbook.
+class LogbookPanel : public MapPanel {
 public:
 	explicit LogbookPanel(PlayerInfo &player);
 
 	virtual void Step() override;
-	// Draw this panel.
 	virtual void Draw() override;
 
 
@@ -50,24 +46,73 @@ protected:
 
 
 private:
-	void Update(bool selectLast = true);
+	enum class EntryType {
+		NORMAL = 0,
+		STORYLINE,
+		BOOK,
+		ARC,
+		CHAPTER
+	};
+
+	class Entry {
+	public:
+		Entry(EntryType type, const std::string &heading, const BookEntry &body);
+		Entry(EntryType type, const PlayerInfo::StorylineProgress &progress);
+
+		EntryType type;
+		std::string heading;
+		std::string subheading;
+		const BookEntry &body;
+	};
+
+	enum class PageType {
+		DATE = 0,
+		SPECIAL,
+		STORYLINE,
+	};
+
+	class Page {
+	public:
+		explicit Page(PageType type) : type(type) {}
+
+		PageType type;
+		std::vector<Entry> entries;
+	};
+
+	// A section is a mapping of subcategory to page.
+	// Subcategories are the expanded selection of entries under a category.
+	using Section = OrderedMap<std::string, Page>;
+	// A selection is a category and subcategory to display the book entries of.
+	using Selection = std::pair<std::string, std::string>;
 
 
 private:
-	// Reference to the player, to apply any changes to them.
-	PlayerInfo &player;
+	void CreateSections();
+	void SelectEntry(const BookEntry &entry);
 
+	void DrawSelectedEntry() const;
+	void DrawLogbook();
+
+	std::vector<Selection> AvailableSelections(bool visibleOnly = true) const;
+
+
+private:
 	// Whether the scenes shown by logbook entries have been preloaded yet.
 	bool hasLoadedScenes = false;
 
-	// Current month being displayed:
-	Date selectedDate;
-	std::string selectedName;
-	std::map<Date, BookEntry>::const_iterator begin;
-	std::map<Date, BookEntry>::const_iterator end;
-	// Other months available for display:
-	std::vector<std::string> contents;
-	std::vector<Date> dates;
+	// A mapping of category to section. These are what are selectable on the left-most side of the panel.
+	// If a section has no subcategories to expand, then the section should only have one subcategory with
+	// the same name as the section.
+	OrderedMap<std::string, Section> sections;
+	// The current page selection.
+	Selection selection;
+	// The currently selected book entry to display the related systems of.
+	const BookEntry *selectedEntry = nullptr;
+	// The system from the selected entry that is currently being centered on.
+	const System *centeredSystem = nullptr;
+
+	std::vector<ClickZone<Selection>> selectionZones;
+	std::vector<ClickZone<const BookEntry *>> logZones;
 
 	Point hoverPoint;
 
