@@ -105,6 +105,7 @@ outfitter "Successor High Tech"
 	`OC-"Mavra" Betavoltaic Cell`
 	`"Tuur" Scanning Suite`
 	`"Niis" Inductive Engines`
+	"Scram Drive"
 
 outfitter "High Houses Light"
 	"Auxiliary Power Reserve"

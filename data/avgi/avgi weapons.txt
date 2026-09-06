@@ -168,6 +168,8 @@ outfit "Optical Lasing Generator"
 	"mass" 30
 	"outfit space" -30
 	"lasing power" 3
+	linked "Green Optical Laser"
+	linked "Blue Optical Laser"
 	description "A monolithic slab of semiconductor diode is used to efficiently pump a spool of doped optical fiber. Hundreds of kilometers long, the coiled fibers serve as a lasing medium with the power needed to produce an intense beam of light, and can be gain-switched to pulse at a variety of frequencies. The produced laser light, which can be converted to a number of wavelengths, can be easily tapped and routed via optical fibers or mirrors to a number of turrets on a ship, eliminating the need for the heavy lasing generator to be anywhere near the turret itself."
 	description "	The wavelength of light produced in the coil can altered by swapping the diodes and fiber dopants, allowing the Optical Lasing Generator to support up to three Green Optical Lasers or a single Blue Optical Laser."
 

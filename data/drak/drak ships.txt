@@ -17,6 +17,7 @@ ship "Archon"
 		"frame rate" 0.87
 	thumbnail "thumbnail/archon"
 	"never disabled"
+	"administrative cost" 38
 	attributes
 		category "Unclassified"
 		"cost" 1000000000

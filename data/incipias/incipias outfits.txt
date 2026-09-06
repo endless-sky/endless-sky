@@ -216,7 +216,7 @@ outfit "Horizon Grappler"
 		"hardpoint offset" 0.
 		sound "tractor beam"
 		"hit effect" "horizon grappler"
-		"tractor beam" 9
+		"tractor beam" 1.8
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1

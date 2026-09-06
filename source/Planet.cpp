@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 
 #include "DataNode.h"
+#include "Fleet.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
@@ -194,6 +195,38 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				}
 			}
 		}
+		else if(key == "tribute hails" && child.HasChildren())
+		{
+			if(remove)
+			{
+				child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
+				continue;
+			}
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() != 2)
+				{
+					grand.PrintTrace("Skipping unrecognized attribute:");
+					continue;
+				}
+				bool removeTributePhrase = grand.Token(0) == "remove";
+				const string &grandKey = grand.Token(remove);
+				if(grandKey == "already paying")
+					tributeAlreadyPaying = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "undefined")
+					tributeUndefined = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "unworthy")
+					tributeUnworthy = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet launching")
+					tributeFleetLaunching = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet undefeated")
+					tributeFleetUndefeated = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "surrendered")
+					tributeSurrendered = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
@@ -285,33 +318,6 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 					dailyTributePenalty = grand.Value(1);
 				else
 					grand.PrintTrace("Skipping unrecognized tribute attribute:");
-			}
-		}
-		else if(key == "tribute hails" && child.HasChildren())
-		{
-			for(const DataNode &grand : child)
-			{
-				if(grand.Size() != 2)
-				{
-					grand.PrintTrace("Skipping unrecognized attribute:");
-					continue;
-				}
-				bool removeTributePhrase = grand.Token(0) == "remove";
-				const string &grandKey = grand.Token(remove);
-				if(grandKey == "already paying")
-					tributeAlreadyPaying = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "undefined")
-					tributeUndefined = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "unworthy")
-					tributeUnworthy = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "fleet launching")
-					tributeFleetLaunching = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "fleet undefeated")
-					tributeFleetUndefeated = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else if(grandKey == "surrendered")
-					tributeSurrendered = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
-				else
-					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(key == "wormhole")

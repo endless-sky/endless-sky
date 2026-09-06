@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "Dropdown.h"
 #include "LoadingCircle.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
@@ -26,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
+#include "Swizzle.h"
 #include "Tooltip.h"
 
 #include <map>
@@ -34,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class CategoryList;
+class Drawable;
 class Outfit;
 class Planet;
 class PlayerInfo;
@@ -61,6 +64,7 @@ protected:
 	class TransactionResult {
 	public:
 		TransactionResult(std::string error) : success(false), message(std::move(error)) {}
+		TransactionResult(const char *error) : success(false), message(error) {}
 		TransactionResult(bool canSource, bool canPlace, std::string error)
 			: canSource(canSource), canPlace(canPlace), success(false), message(std::move(error)) {}
 		TransactionResult(bool result) : success(result), message() {}
@@ -83,7 +87,11 @@ protected:
 
 
 protected:
-	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
+	void DrawShip(const Ship &ship, const Point &center, bool isSelected) const;
+	void DrawShipIcon(const Drawable &thumbnail, const Point &center, const Color &color,
+		const Swizzle *swizzle) const;
+	void DrawThumbnail(const Drawable &thumbnail, bool animate, const Point &center, float zoom = 1.f,
+		const Swizzle *swizzle = Swizzle::None()) const;
 
 	void CheckForMissions(Mission::Location location) const;
 	void ValidateSelectedShips();
@@ -100,6 +108,7 @@ protected:
 
 	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey() {};
+	virtual std::optional<Rectangle> KeyArea() const { return std::nullopt; };
 
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
@@ -153,12 +162,15 @@ protected:
 	static constexpr double BUTTON_HEIGHT = 30.;
 	static constexpr double BUTTON_WIDTH = 73.;
 
+
 protected:
 	PlayerInfo &player;
 	// Remember the current day, for calculating depreciation.
 	int day;
 	const Planet *planet = nullptr;
 	const bool isOutfitter;
+	// Step counter for thumbnail animations.
+	int step = 0;
 
 	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
 	Ship *playerShip = nullptr;
@@ -195,6 +207,7 @@ protected:
 	std::map<std::string, std::vector<std::string>> catalog;
 	const CategoryList &categories;
 	std::set<std::string> &collapsed;
+	bool hasFleetCapacity;
 
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
@@ -206,6 +219,9 @@ protected:
 	Tooltip creditsTooltip;
 	Tooltip buttonsTooltip;
 	LoadingCircle loadingCircle;
+
+	std::shared_ptr<Dropdown> selectedQuantity;
+	bool quantityIsModifier = false;
 
 
 private:

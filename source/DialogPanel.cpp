@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "shift.h"
 #include "image/Sprite.h"
@@ -201,7 +202,7 @@ void DialogPanel::Draw()
 	}
 
 	// Draw the bottom section.
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	pos.Y() += bottom->Height() * .5;
 	SpriteShader::Draw(bottom, pos);
 	pos.Y() += (bottom->Height() - cancel->Height()) * .5;
@@ -264,6 +265,14 @@ bool DialogPanel::AllowsFastForward() const noexcept
 
 
 
+void DialogPanel::UpdateTextDisplay()
+{
+	text->SetAlignment(Preferences::GetTextAlignment());
+	text->SetFont(FontSet::Get(Preferences::GetFontSize()));
+}
+
+
+
 DialogPanel::DialogPanel(DialogInit &init)
 	: voidFun(std::move(init.voidFun)),
 	boolFun(std::move(init.boolFun)),
@@ -299,8 +308,8 @@ DialogPanel::DialogPanel(DialogInit &init)
 	cancelText = isMission ? "Decline" : "Cancel";
 
 	text = make_shared<TextArea>();
-	text->SetAlignment(Alignment::JUSTIFIED);
-	text->SetFont(FontSet::Get(14));
+	text->SetAlignment(Preferences::GetTextAlignment());
+	text->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	text->SetTruncate(init.truncate);
 	text->SetText(init.message);
 	extensionCount = 0;

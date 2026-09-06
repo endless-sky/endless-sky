@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <string>
 
+class Drawable;
 class ImageSet;
 class PlayerInfo;
 class Sprite;
@@ -42,6 +43,7 @@ public:
 	static bool IsDeferred(const Sprite *sprite);
 	// Begin loading a sprite that was previously deferred. This is done for various images to speed up
 	// the program's startup and reduce VRAM usage.
+	static void LoadDeferred(TaskQueue &queue, const Drawable &drawable);
 	static void LoadDeferred(TaskQueue &queue, const Sprite *sprite);
 	// Cull old stellar objects and thumbnails that haven't been seen in a while.
 	static void CullOldImages(TaskQueue &queue);
