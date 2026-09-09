@@ -18,14 +18,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "CaptureOdds.h"
+#include "LoadingCircle.h"
 #include "ScrollBar.h"
 
+#include <list>
 #include <memory>
+#include <set>
 #include <string>
 #include <vector>
 
 class Outfit;
 class PlayerInfo;
+class RenderBuffer;
 class Ship;
 class TextArea;
 
@@ -52,6 +56,8 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+protected:
+	static constexpr int OUTFIT_SIZE = 183;
 
 private:
 	enum class CanTakeResult {
@@ -122,6 +128,8 @@ private:
 	// Handle the keyboard scrolling and selection in the panel list.
 	void DoKeyboardNavigation(const SDL_Keycode key);
 
+	void DrawOutfitInfo();
+
 	void AddMessage(const std::string &message);
 
 
@@ -129,13 +137,20 @@ private:
 	PlayerInfo &player;
 	std::shared_ptr<Ship> you;
 	std::shared_ptr<Ship> victim;
+	std::shared_ptr<RenderBuffer> outfitInfoBuffer;
+	double outfitScrollOffset = 0.;
+	std::list<Zone> zones;
+	std::set<std::string> &collapsed;
 
 	// List of items you can plunder.
 	std::vector<Plunder> plunder;
 	int selected = 0;
 	ScrollVar<double> scroll;
 	ScrollBar scrollBar;
+	LoadingCircle loadingCircle;
 
+	// Whether or not the ship can be captured.
+	bool canCapture = false;
 	bool playerDied = false;
 	bool isCapturing = false;
 	bool isFirstCaptureAction = true;
@@ -147,6 +162,5 @@ private:
 	std::string messages;
 	std::shared_ptr<TextArea> messageDisplay;
 
-	// Whether or not the ship can be captured.
-	bool canCapture = false;
+	float step = 0.f;
 };
