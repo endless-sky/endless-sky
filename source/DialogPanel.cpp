@@ -404,7 +404,6 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
 			c += 'A' - 'a';
 
-
 		if(stringFun)
 		{
 			if(!filterCharFun || filterCharFun(input, c))
@@ -415,8 +414,7 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		else if(intFun || doubleFun)
 		{
 			// Numbers can start with a minus sign as their first character.
-			if((input.empty() && c == '-')
-					|| (c >= '0' && c <= '9'))
+			if((input.empty() && c == '-') || (c >= '0' && c <= '9'))
 				input += c;
 			// Doubles can contain a single decimal point.
 			else if(doubleFun && c == '.' && !std::count(input.begin(), input.end(), '.'))

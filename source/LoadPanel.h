@@ -59,7 +59,7 @@ protected:
 private:
 	void UpdateLists();
 
-	std::optional<std::filesystem::path> SnapshotPathBase();
+	std::optional<std::filesystem::path> SnapshotPathBase() const;
 	// Snapshot name callbacks.
 	bool SnapshotNameFilter(const std::string &name, char ch);
 	void SnapshotCallback(const std::string &name);

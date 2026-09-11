@@ -31,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GamerulesPanel.h"
 #include "Information.h"
 #include "Interface.h"
-#include "Logger.h"
 #include "MainPanel.h"
 #include "image/MaskManager.h"
 #include "PilotProfile.h"
@@ -522,7 +521,7 @@ void LoadPanel::UpdateLists()
 
 
 
-optional<filesystem::path> LoadPanel::SnapshotPathBase()
+optional<filesystem::path> LoadPanel::SnapshotPathBase() const
 {
 	if(!selectedPilot || selectedPilot->Files().empty() || selectedPilot->Files().front().first.size() < 4)
 		return nullopt;
@@ -534,13 +533,11 @@ optional<filesystem::path> LoadPanel::SnapshotPathBase()
 
 bool LoadPanel::SnapshotNameFilter(const string &input, char ch)
 {
-	filesystem::path base;
-	if(auto baseOpt = SnapshotPathBase())
-		base = *baseOpt;
-	else
+	optional<filesystem::path> base = SnapshotPathBase();
+	if(!base.has_value())
 		return false;
 
-	return Files::IsValidCharacter(ch) && Files::MaxFilenameLength(base) > input.size() + 6;
+	return Files::IsValidCharacter(ch) && Files::MaxFilenameLength(*base) > input.size() + 6;
 }
 
 
@@ -548,11 +545,10 @@ bool LoadPanel::SnapshotNameFilter(const string &input, char ch)
 // Snapshot name callback.
 void LoadPanel::SnapshotCallback(const string &name)
 {
-	filesystem::path from;
-	if(auto base = SnapshotPathBase())
-		from = *base;
-	else
+	optional<filesystem::path> fromOpt = SnapshotPathBase();
+	if(!fromOpt.has_value())
 		return;
+	filesystem::path from = *fromOpt;
 
 	string suffix = name.empty() ? FileDate(from) : name;
 	string extension = "~" + suffix + ".txt";

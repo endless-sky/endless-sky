@@ -293,10 +293,11 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		string &otherName = (choice ? firstName : lastName);
 		// Allow editing the text. The tab key toggles to the other entry field,
 		// as does the return key if the other field is still empty.
-		if(Clipboard::KeyDown(name, key, mod, Files::MaxFilenameLength(Files::Saves()), [](char32_t ch)
-		{
-			return Files::IsValidCharacter(ch) && ch != '~';
-		}))
+		// Names must contain characters valid for use in file names. They also can't include '~', as that is
+		// reserved by the game for differentiating between main saves and snapshot saves.
+		size_t maxSaveLength = Files::MaxFilenameLength(Files::Saves());
+		auto NameCharFilter = [](char32_t ch) -> bool { return Files::IsValidCharacter(ch) && ch != '~'; };
+		if(Clipboard::KeyDown(name, key, mod, maxSaveLength, NameCharFilter))
 		{
 			// Input handled by Clipboard.
 		}
@@ -307,10 +308,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 			// Caps lock should shift letters, but not any other keys.
 			if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
 				c += 'A' - 'a';
-			// '~' is a valid filepath character, but we don't want it in player names because it is
-			// used as a separator in save file names.
-			if(Files::IsValidCharacter(c) && c != '~'
-					&& (name.size() + otherName.size()) < Files::MaxFilenameLength(Files::Saves()))
+			if(NameCharFilter(c) && (name.size() + otherName.size()) < maxSaveLength)
 				name += c;
 			else
 				flickerTime = 18;

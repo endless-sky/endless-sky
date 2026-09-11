@@ -423,7 +423,7 @@ bool Files::IsValidCharacter(char32_t ch)
 // Check if a filename is valid.
 bool Files::IsValid(const string &filename)
 {
-	return !filename.empty() && all_of(filename.begin(), filename.end(), [](char ch) { return IsValidCharacter(ch); });
+	return !filename.empty() && all_of(filename.begin(), filename.end(), IsValidCharacter);
 }
 
 
