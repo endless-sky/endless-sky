@@ -1807,3 +1807,16 @@ tip "Default max escort crew"
 
 tip `Default admin cap`
 	`If the fleet size limitation is "admin cap," then this is the default maximum administrative capacity. Ships will have individual administrative costs that count toward your capacity. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
+
+tip "Permadeath"
+	`Whether permadeath mode is active, and how it should behave.`
+	`- "lock on death": When you die, this pilot will be locked. You will be unable to load any of its saves after it enters this state, but you'll still have the save files to share and for keeping memories.`
+	`- "delete on death": When you die, this pilot's save files will be deleted.`
+	`- "lock on takeoff": When you depart from a planet, this pilot will be locked. It will be unlocked again upon landing on a planet. Forces the "Restricted save loading" gamerule to be on.`
+	`- "delete on takeoff": When you depart from a planet, this pilot's save file will be deleted and will only be recreated when you land. Forces the "Single save file" and "Restricted save loading" gamerules to be on.`
+
+tip "Single save file"
+	`If true, this pilot will only be able to have a single save file at a time. You will be unable to create snapshots and the game will not create autosaves for previous days. Only your most recent landing point will be saved.`
+
+tip "Restricted save loading"
+	`If true, this pilot will be unable to reload save files while not on the safety of a planet.`

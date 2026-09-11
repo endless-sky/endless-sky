@@ -655,7 +655,7 @@ void PlayerInfo::Save() const
 	// Remember that this was the most recently saved player.
 	Files::Write(Files::Config() / "recent.txt", filePath + '\n');
 
-	if(filePath.ends_with(".txt"))
+	if(!pilot->GetGamerules().SingleSaveFile() && filePath.ends_with(".txt"))
 	{
 		// Only update the backups if this save will have a newer date.
 		SavedGame saved(filePath);
@@ -668,10 +668,18 @@ void PlayerInfo::Save() const
 			{
 				const string toMove = rootPrevious + to_string(i) + ".txt";
 				if(Files::Exists(toMove))
-					Files::Move(toMove, rootPrevious + to_string(i + 1) + ".txt");
+				{
+					string file = rootPrevious + to_string(i + 1) + ".txt";
+					Files::Move(toMove, file);
+					pilot->AddSave(file);
+				}
 			}
 			if(Files::Exists(filePath))
-				Files::Move(filePath, rootPrevious + "1.txt");
+			{
+				string file = rootPrevious + "1.txt";
+				Files::Move(filePath, file);
+				pilot->AddSave(file);
+			}
 			if(planet->HasServices())
 				Save(rootPrevious + "spaceport.txt");
 		}
@@ -691,6 +699,28 @@ void PlayerInfo::Save() const
 shared_ptr<PilotProfile> &PlayerInfo::Pilot()
 {
 	return pilot;
+}
+
+
+
+void PlayerInfo::ApplyPermadeath() const
+{
+	Gamerules::PermadeathMode mode = pilot->GetGamerules().GetPermadeathMode();
+	if(mode == Gamerules::PermadeathMode::OFF)
+		return;
+
+	bool onTakeoff = mode == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF
+		|| mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF;
+	if(!isDead && !onTakeoff)
+		return;
+
+	// Save info about the moment of death/takeoff.
+	pilot->SetMomentOfDeath(*this);
+	pilot->Lock();
+	pilot->Save();
+	if((mode == Gamerules::PermadeathMode::DELETE_ON_DEATH && isDead)
+			|| mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
+		PilotProfile::DeleteProfile(pilot, nullptr, true);
 }
 
 
@@ -794,6 +824,7 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 {
 	isDead = true;
+	ApplyPermadeath();
 	// The player loses access to all their ships if they die on a planet.
 	if(GetPlanet() || !flagship)
 	{
@@ -1689,7 +1720,11 @@ void PlayerInfo::Land(UI &ui)
 		return;
 
 	if(!freshlyLoaded)
+	{
+		// Unlock the pilot if it was locked via permadeath mode being active.
+		pilot->Lock(false);
 		Audio::Play(Audio::Get("landing"), SoundCategory::ENGINE);
+	}
 	Audio::PlayMusic(planet->MusicName());
 
 	// Mark this planet as visited.
@@ -4933,7 +4968,7 @@ bool PlayerInfo::RecacheJumpRoutes()
 
 void PlayerInfo::Autosave() const
 {
-	if(!CanBeSaved() || filePath.length() < 4)
+	if(!CanBeSaved() || filePath.length() < 4 || pilot->GetGamerules().SingleSaveFile())
 		return;
 
 	string path = filePath.substr(0, filePath.length() - 4) + "~autosave.txt";
@@ -4950,6 +4985,7 @@ void PlayerInfo::Save(const string &filePath) const
 	{
 		DataWriter out(filePath);
 		Save(out);
+		pilot->AddSave(filePath);
 	}
 }
 
@@ -5546,7 +5582,7 @@ void PlayerInfo::CalculateScanners(const shared_ptr<Ship> &ship)
 // Check that this player's current state can be saved.
 bool PlayerInfo::CanBeSaved() const
 {
-	return (!isDead && planet && system && !filePath.empty());
+	return (!isDead && planet && system && !filePath.empty() && !pilot->IsLocked());
 }
 
 
