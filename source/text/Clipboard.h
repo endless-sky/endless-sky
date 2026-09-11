@@ -31,7 +31,6 @@ public:
 		const std::function<bool(char32_t)> &forbidden = nullptr);
 
 
-
 private:
 	// Replace the current contents with the provided string.
 	static void Set(const std::string &inputBuffer);
