@@ -101,9 +101,12 @@ public:
 
 	// Check if the player's conditions satisfy this set of expressions.
 	bool Test() const;
+	bool TestNoRNG() const;
 
 	// Evaluate this expression into a numerical value. (The value can also be used as boolean.)
 	int64_t Evaluate() const;
+	int64_t EvaluateNoRNG() const;
+	bool isRNG() const;
 
 	/// Parse the remainder of a node into this ConditionSet.
 	bool ParseNode(const DataNode &node, int &tokenNr);
