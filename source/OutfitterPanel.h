@@ -66,6 +66,7 @@ protected:
 	bool ButtonActive(char key, bool shipRelatedOnly = false);
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
+	virtual std::optional<Rectangle> KeyArea() const override;
 
 	// Toggles for the display filters.
 	void ToggleForSale();
@@ -83,13 +84,14 @@ protected:
 private:
 	static bool ShipCanAdd(const Ship *ship, const Outfit *outfit);
 	static bool ShipCanRemove(const Ship *ship, const Outfit *outfit);
-	static void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned);
+	void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned) const;
 	bool HasLicense(const std::string &name) const;
 	void CheckRefill();
 	void Refill();
 	// Shared code for reducing the selected ships to those that have the
 	// same quantity of the selected outfit.
 	const std::vector<Ship *> GetShipsToOutfit(bool isInstall = false) const;
+
 
 private:
 	// Record whether we've checked if the player needs ammo refilled.

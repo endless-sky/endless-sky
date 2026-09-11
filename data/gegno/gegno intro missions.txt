@@ -242,6 +242,7 @@ mission "Visit Quarg in Gegno Space"
 				"Gneiss" 2
 	npc
 		government "Gegno Scin (Neutral)"
+			confusion "militia"
 		personality entering staying
 		system "Heutesl"
 		fleet
@@ -258,6 +259,7 @@ mission "Visit Quarg in Gegno Space"
 		fleet "Vi Warfleet"
 	npc
 		government "Gegno Scin (Neutral)"
+			confusion "militia"
 		personality staying
 		system "Heutesl"
 		fleet "Scin Warfleet"
@@ -265,6 +267,7 @@ mission "Visit Quarg in Gegno Space"
 
 mission "Discover Hostile Quarg"
 	invisible
+	non-blocking
 	landing
 	source "Dueyu Eitch"
 	to offer
@@ -679,6 +682,7 @@ mission "First Contact: Gegno Scin"
 			not "scin: provocative"
 		government "Gegno Scin"
 		personality launching uninterested
+			confusion "militia"
 		system "Ilirco"
 		fleet
 			names "gegno scin"
@@ -740,6 +744,7 @@ mission "Gegno Exploration Nudge Remover"
 
 mission "Vi Augen"
 	invisible
+	non-blocking
 	transition
 	source
 		system "Kiluit"
@@ -854,6 +859,7 @@ mission "Gegno Unwelcoming"
 mission "Gegno Hunter Fleets"
 	landing
 	invisible
+	non-blocking
 	repeat
 	to offer
 		has "Gegno Genocide Defense: offered"

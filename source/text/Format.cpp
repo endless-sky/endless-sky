@@ -400,6 +400,15 @@ string Format::AbbreviatedNumber(int64_t value)
 
 
 
+string Format::AbbreviatedNumber(double value, optional<int> decimalPlaces, bool trimTrailingZeros)
+{
+	if(value >= 10000)
+		return AbbreviatedNumber(value);
+	return Number(value, decimalPlaces, trimTrailingZeros);
+}
+
+
+
 // Convert the given number into abbreviated format as described in Format::AbbreviatedNumber,
 // then attach the ' credit' or ' credits' suffix to it.
 string Format::CreditString(int64_t value, bool abbreviated)
@@ -653,6 +662,17 @@ string Format::Number(int64_t value)
 string Format::Percentage(double value, optional<int> decimalPlaces, bool trimTrailingZeros)
 {
 	return Number(100. * value, decimalPlaces, trimTrailingZeros) + "%";
+}
+
+
+
+string Format::StripCommas(const string &text)
+{
+	string result;
+	for(char c : text)
+		if(c != ',')
+			result += c;
+	return result;
 }
 
 

@@ -141,7 +141,7 @@ double Hardpoint::TurnRate(const Ship &ship) const
 	if(!outfit)
 		return 0.;
 	return outfit->GetWeapon()->TurretTurn()
-		* (1. + ship.Attributes().Get("turret turn multiplier") + baseAttributes.turnMultiplier);
+		* (ship.TurretTurnMultiplier() + baseAttributes.turnMultiplier);
 }
 
 

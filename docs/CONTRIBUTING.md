@@ -41,9 +41,9 @@ Common artwork licenses that are allowed include:
 
 Common artwork licenses that are disallowed include:
 * Creative Commons licenses older than version 3.0. (e.g. CC-BY-2.0)
-* Any non-commerical (NC) or no derivative works (ND) creative commons licenses. (e.g. CC-BY-NC-3.0)
+* Any non-commercial (NC) or no derivative works (ND) creative commons licenses. (e.g. CC-BY-NC-3.0)
 * Most proprietary licenses, including licenses used by many image hosting websites such as Pexels, Pixabay, and Unsplash.
-	* Note that many image hosting websites used to license images under the CC0 Public Domain license, but have since moved to using non-free proprietary licenses which limit derivative and/or commerical uses. For such websites, using older images may be acceptable. Confirm that the page that you sourced the image from clearly lists the license that the image was published under.
+	* Note that many image hosting websites used to license images under the CC0 Public Domain license, but have since moved to using non-free proprietary licenses which limit derivative and/or commercial uses. For such websites, using older images may be acceptable. Confirm that the page that you sourced the image from clearly lists the license that the image was published under.
 
 For more reading on free licenses, see the following pages:
 * [The DFSG and Software Licenses](https://wiki.debian.org/DFSGLicenses)

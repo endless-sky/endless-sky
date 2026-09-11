@@ -652,6 +652,7 @@ event "fw escorts abandon timer"
 mission "FW Escort: Escorts"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "FW Escort 0: done"
 	to fail
@@ -2504,6 +2505,7 @@ mission "Defend Sabik"
 
 mission "FW License Fix"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "license: Militia Carrier"

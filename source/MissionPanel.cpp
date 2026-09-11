@@ -340,7 +340,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
 	{
 		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
-			GetUI().Push(new DialogPanel(this, &MissionPanel::AbortMission,
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &MissionPanel::AbortMission,
 				"Abort mission \"" + acceptedIt->DisplayName() + "\"?"));
 		return true;
 	}
@@ -673,8 +673,8 @@ void MissionPanel::Resize()
 void MissionPanel::InitTextArea()
 {
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
+	description->SetAlignment(Preferences::GetTextAlignment());
 	description->SetColor(*GameData::Colors().Get("bright"));
 	ResizeTextArea();
 }
@@ -890,22 +890,25 @@ Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const 
 		bool canAccept = (&missionList == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		if(!canAccept)
 		{
-			if(it->Unavailable().IsLoaded())
-				color = &it->Unavailable();
+			const Color *customUnavailable = it->Unavailable();
+			if(customUnavailable && customUnavailable->IsLoaded())
+				color = customUnavailable;
 			else
 				color = &dim;
 		}
 		else if(isSelected)
 		{
-			if(it->Selected().IsLoaded())
-				color = &it->Selected();
+			const Color *customSelected = it->Selected();
+			if(customSelected && customSelected->IsLoaded())
+				color = customSelected;
 			else
 				color = &selected;
 		}
 		else
 		{
-			if(it->Unselected().IsLoaded())
-				color = &it->Unselected();
+			const Color *customUnselected = it->Unselected();
+			if(customUnselected && customUnselected->IsLoaded())
+				color = customUnselected;
 			else
 				color = &unselected;
 		}
@@ -1045,7 +1048,7 @@ void MissionPanel::Accept(bool force)
 		else
 			out << "You must sell " << Format::CargoString(cargoToSell, "ordinary commodities")
 				<< " to make room for this mission. Continue?";
-		GetUI().Push(new DialogPanel(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
+		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
 		return;
 	}
 

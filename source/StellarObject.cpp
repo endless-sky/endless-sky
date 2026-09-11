@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Politics.h"
 #include "Radar.h"
+#include "StellarObjectSpriteData.h"
 
 #include <algorithm>
 
@@ -41,7 +42,7 @@ void StellarObject::UsingMatchesCommand()
 // Object default constructor.
 StellarObject::StellarObject()
 	: planet(nullptr),
-	distance(0.), speed(0.), offset(0.), parent(-1),
+	distance(0.), speed(0.), offset(0.), index(-1), parent(-1),
 	message(nullptr), isStar(false), isStation(false), isMoon(false)
 {
 	// Unlike ships and projectiles, stellar objects are not drawn shrunk to half size,
@@ -103,8 +104,9 @@ const string &StellarObject::DisplayName() const
 const string &StellarObject::LandingMessage() const
 {
 	// Check if there's a custom message for this sprite type.
-	if(GameData::HasLandingMessage(GetSprite()))
-		return GameData::LandingMessage(GetSprite());
+	const StellarObjectSpriteData &spriteData = GameData::ObjectSpriteData(GetSprite());
+	if(!spriteData.LandingMessage().empty())
+		return spriteData.LandingMessage();
 
 	static const string EMPTY;
 	return (message ? *message : EMPTY);
@@ -157,7 +159,13 @@ bool StellarObject::IsMoon() const
 
 
 
-// Get this object's parent index (in the System's vector of objects).
+int StellarObject::Index() const
+{
+	return index;
+}
+
+
+
 int StellarObject::Parent() const
 {
 	return parent;
@@ -169,6 +177,20 @@ int StellarObject::Parent() const
 double StellarObject::Distance() const
 {
 	return distance;
+}
+
+
+
+double StellarObject::Period() const
+{
+	return 360. / speed;
+}
+
+
+
+double StellarObject::Offset() const
+{
+	return offset;
 }
 
 

@@ -27,7 +27,7 @@ mission "Transport executive to <planet>"
 	destination
 		distance 3 15
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
-		attributes "paradise" "rich" "core" "near earth"
+		attributes "paradise" "wealthy" "core" "near earth"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -216,7 +216,6 @@ mission "Syndicate target practice [0]"
 	npc save disable "scan cargo"
 		government "Test Dummy"
 		personality disables staying heroic target
-			confusion 120
 		system destination
 		ship "Berserker Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
@@ -252,7 +251,6 @@ mission "Syndicate target practice [1]"
 	npc save disable "scan cargo"
 		government "Test Dummy"
 		personality disables staying heroic target
-			confusion 120
 		system destination
 		ship "Quicksilver Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
@@ -288,7 +286,6 @@ mission "Syndicate target practice [2]"
 	npc save disable "scan cargo"
 		government "Test Dummy"
 		personality disables staying heroic target
-			confusion 120
 		system destination
 		ship "Splinter Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
@@ -323,7 +320,6 @@ mission "Syndicate target practice [3]"
 	npc save disable "scan cargo"
 		government "Test Dummy"
 		personality disables staying heroic target
-			confusion 120
 		system destination
 		ship "Vanguard Test Dummy" "Syndicate Test Vessel"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
@@ -374,7 +370,7 @@ mission "Syndicate Prisoner Transport [0]"
 	destination
 		distance 2 10
 		government "Syndicate"
-		attributes "rich"
+		attributes "wealthy"
 		attributes "frontier"
 	to offer
 		random < 5
@@ -494,7 +490,7 @@ mission "Return Syndicate Prisoners [0]"
 	passengers 3 10 .56
 	source
 		government "Syndicate"
-		attributes "rich"
+		attributes "wealthy"
 		attributes "frontier"
 	destination
 		distance 2 10
