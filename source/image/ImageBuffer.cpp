@@ -156,8 +156,11 @@ uint32_t *ImageBuffer::Begin(int y, int frame)
 
 
 
-void ImageBuffer::ShrinkToHalfSize()
+bool ImageBuffer::ShrinkToHalfSize()
 {
+	if(width < 2 || height < 2)
+		return false;
+
 	ImageBuffer result(frames);
 	result.Allocate(width / 2, height / 2);
 
@@ -179,6 +182,7 @@ void ImageBuffer::ShrinkToHalfSize()
 	swap(width, result.width);
 	swap(height, result.height);
 	swap(pixels, result.pixels);
+	return true;
 }
 
 

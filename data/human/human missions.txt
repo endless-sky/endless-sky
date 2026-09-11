@@ -17,6 +17,7 @@ mission "Raid Warning"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		"pirate attraction" >= 5
+		has "gamerule: spawn raid fleets"
 	on offer
 		conversation
 			`When you enter the <origin> spaceport, you're almost immediately stopped by a grizzled old man. "You some kinda rookie, or you asking for a death wish?" he asks.`
@@ -1231,7 +1232,7 @@ mission "Drug Running 2"
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
-		attributes "rich"
+		attributes "wealthy"
 		distance 1 100
 	cargo "illegal drugs" 5 2 .1
 	illegal 50000 `In addition to the fine, the illegal drugs are confiscated from your cargo hold.`
@@ -1319,6 +1320,7 @@ ship "Hallucination"
 		"frame rate" 1
 		"random start frame"
 	"never disabled"
+	"administrative cost" 1
 	attributes
 		category "Unclassified"
 		"hull" 1000
@@ -1818,7 +1820,7 @@ mission "Courier 4"
 	destination
 		distance 7 14
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
-		attributes "rich"
+		attributes "wealthy"
 	on offer
 		conversation
 			`A man wearing a very complicated hat waves to you from the other side of a landing pad. "Yoo-hoo, Captain!" he says. "I have a courier mission for you if you're interested."`
@@ -2031,6 +2033,7 @@ ship "Asteroid"
 	noun "asteroid"
 	sprite "asteroid/medium rock/spin"
 		"frame rate" 10
+	"administrative cost" 2
 	attributes
 		category "Unclassified"
 		"fuel capacity" 1
@@ -2619,6 +2622,7 @@ mission "Terminus exploration"
 
 ship "Science Drone"
 	sprite "ship/science drone"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		hull 200
@@ -3619,7 +3623,6 @@ mission "Antibiotics To South"
 	npc
 		government "Bounty Hunter"
 		personality nemesis heroic disables harvests plunders
-			confusion 20
 		system
 			distance 2 3
 		ship "Marauder Manta (Engines)" "Australis"
@@ -3729,7 +3732,12 @@ mission "Pirate Duel"
 	npc kill
 		government "Independent (Killable)"
 		personality heroic vindictive unconstrained launching
-			confusion 20
+			confusion
+				"max confusion" 15.
+				period 180.
+				"focus multiplier" .6
+				"gain focus time" 600
+				"lose focus time" 30
 		ship "Vanguard (Plasma Slow)" "Anglerfish"
 		on provoke
 			unmark "Umbral"
@@ -6089,7 +6097,12 @@ mission "Argosy Hijacking"
 	
 	npc disable save
 		personality launching daring uninterested target
-			confusion 80
+			confusion
+				"max confusion" 20.
+				period 180.
+				"focus multiplier" .6
+				"gain focus time" 600
+				"lose focus time" 30
 		government "Bounty (Disguised)"
 		ship "Argosy (Blaster)" "Moonshake Express"
 		dialog `The <npc> has been disabled. Syndicated Security will now deal with the hijackers, but you should go back and report to the captain of the ship.`
@@ -6897,6 +6910,7 @@ mission "Lost Racer Epilogue"
 ship "Racing Flivver"
 	sprite "ship/racing flivver"
 	thumbnail "thumbnail/racing flivver"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		# This Flivver has a high cost so that you can sell it for roughly the same amount as a normal Flivver would cost.
@@ -8076,7 +8090,6 @@ mission "Syndicate Business 1"
 	npc
 		government "Independent (Killable)"
 		personality heroic staying vindictive
-			confusion 20
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
 		on kill
@@ -8153,6 +8166,7 @@ event "end of independent violence"
 # Feel free to change this escape shuttle to a different ship once escape pod mechanics are implemented.
 ship "Emergency Shuttle"
 	sprite "ship/escape shuttle"
+	"administrative cost" 1
 	attributes
 		category "Utility"
 		"cost" 45000
@@ -8431,7 +8445,6 @@ mission "Syndicate Business 4"
 	npc
 		government "Pirate"
 		personality harvests nemesis plunders staying
-			confusion 40
 		system destination
 		fleet
 			names "pirate"
@@ -8443,7 +8456,6 @@ mission "Syndicate Business 4"
 	npc
 		government "Pirate"
 		personality harvests nemesis plunders
-			confusion 40
 		system destination
 		fleet
 			names "pirate"
@@ -8547,7 +8559,6 @@ mission "Syndicate Business 5"
 	npc
 		government "Independent (Killable)"
 		personality heroic staying vindictive
-			confusion 20
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
 		to despawn
@@ -8575,7 +8586,6 @@ mission "Syndicate Business 5"
 	npc disable save
 		government "Independent (Killable)"
 		personality heroic marked staying vindictive
-			confusion 20
 		system "Oblate"
 		ship "Marauder Quicksilver (Engines) (Safe)" "Pilgrim Shadow"
 		on disable
@@ -10290,6 +10300,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 
 
 mission "Timothy Radrickson 5e: Back to Oblivion"
+	landing
 	source Oblivion
 	to offer
 		has "Timothy Radrickson 5a: Timshank Redemption: done"
@@ -10675,7 +10686,7 @@ mission "Timothy Radrickson: Log Fix 6"
 	invisible
 	non-blocking
 	to offer
-		has "Timothy Radrickson 5a: Timshank Redemption: offered"
+		has "Timothy Radrickson 6: News of Death: offered"
 		not "timothy radrickson 6 log entry correct"
 		not "Timothy Radrickson: Log Fix 4: offered"
 	on offer

@@ -27,6 +27,8 @@ public:
 	// Seed the generator (e.g. to make it produce exactly the same random
 	// numbers it produced previously).
 	static void Seed(uint64_t seed);
+	// After this method runs, Seed will discard its argument and reseed the prng with the value given here.
+	static void SetFixedSeed(uint64_t seed);
 
 	static uint32_t Int();
 	static uint32_t Int(uint32_t modulus);

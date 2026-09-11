@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "Ship.h"
+#include "ShipEvent.h"
 #include "System.h"
 
 using namespace std;
@@ -190,4 +191,30 @@ void Person::ClearPlacement()
 {
 	if(!IsDestroyed())
 		Restore();
+}
+
+
+
+bool Person::Do(const ShipEvent &event)
+{
+	// First, check if this ship is part of this Person. If not, do nothing. If it
+	// is part of this Person and it just got captured, replace it with a copy of
+	// itself so that when this Person is respawned, it doesn't steal the ship away
+	// from the capturer.
+	const shared_ptr<Ship> &target = event.Target();
+	int type = event.Type();
+	for(shared_ptr<Ship> &ptr : ships)
+		if(ptr == target)
+		{
+			if(type & ShipEvent::CAPTURE)
+			{
+				shared_ptr<Ship> copy = make_shared<Ship>(*ptr);
+				// Unlike NPC, we don't copy the UUID here, since the next time
+				// this ship is spawned, it'll be a different instance.
+				copy->Destroy();
+				ptr.swap(copy);
+			}
+			return true;
+		}
+	return false;
 }

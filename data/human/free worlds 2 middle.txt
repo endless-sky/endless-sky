@@ -1136,6 +1136,7 @@ mission "FW Northern 4.1A"
 	npc save
 		government "Navy (Oathkeeper)"
 		personality heroic staying uninterested
+			confusion "elite"
 		system Alioth
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 
@@ -1228,6 +1229,7 @@ mission "FW Alphas 1.1"
 	npc accompany save
 		government "Navy (Oathkeeper)"
 		personality escort heroic
+			confusion "elite"
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	npc
 		government "Free Worlds"
@@ -1237,6 +1239,7 @@ mission "FW Alphas 1.1"
 	npc kill
 		government "Alpha"
 		personality heroic staying target
+			confusion "pirate"
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
 		ship "Leviathan" "Dominator"
@@ -1328,6 +1331,7 @@ mission "FW Alphas 1.2"
 	npc kill
 		government "Alpha"
 		personality heroic staying target
+			confusion "pirate"
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
 		ship "Leviathan" "Dominator"
@@ -1354,6 +1358,7 @@ mission "FW Alphas 1.1A"
 	npc accompany save
 		government "Navy (Oathkeeper)"
 		personality escort heroic
+			confusion "elite"
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	
 	on visit

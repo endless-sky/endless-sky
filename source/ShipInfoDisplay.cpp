@@ -37,19 +37,13 @@ using namespace std;
 
 
 
-ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed)
-{
-	Update(ship, player, descriptionCollapsed);
-}
-
-
-
 // Call this every time the ship changes.
 // Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
-void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool scrollingPanel)
+void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,
+	bool descriptionCollapsed, bool scrollingPanel)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
-	UpdateAttributes(ship, player, descriptionCollapsed, scrollingPanel);
+	UpdateAttributes(ship, player, hasFleetCapacity, descriptionCollapsed, scrollingPanel);
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	UpdateOutfits(ship, player, depreciation);
 
@@ -133,8 +127,8 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed,
-		bool scrollingPanel)
+void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,
+	bool descriptionCollapsed, bool scrollingPanel)
 {
 	bool isGeneric = ship.GivenName().empty() || ship.GetPlanet();
 
@@ -190,6 +184,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributeValues.push_back(Format::AbbreviatedNumber(depreciated));
 	attributesHeight += 20;
 
+	if(hasFleetCapacity)
+	{
+		attributeLabels.push_back("fleet cost:");
+		attributeValues.push_back(Format::Number(ship.FleetCost()));
+		attributesHeight += 20;
+	}
+
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
@@ -242,12 +243,11 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		+ " / " + Format::Number(attributes.Get("bunks")));
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
-	double fuelCapacity = attributes.Get("fuel capacity");
+	double fuelCapacity = ship.MaxFuel();
 	if(isGeneric)
 		attributeValues.push_back(Format::Number(fuelCapacity));
 	else
-		attributeValues.push_back(Format::Number(ship.Fuel() * fuelCapacity)
-			+ " / " + Format::Number(fuelCapacity));
+		attributeValues.push_back(Format::Number(ship.FuelLevel()) + " / " + Format::Number(fuelCapacity));
 	attributesHeight += 20;
 
 	double fullMass = emptyMass + attributes.Get("cargo space");
@@ -419,8 +419,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	// Add maximum values of energy and heat to the table.
 	attributesHeight += 20;
 	const double maxEnergy = attributes.Get("energy capacity");
-	const double maxHeat = 60. * ship.HeatDissipation() * ship.MaximumHeat();
-	tableLabels.push_back("max:");
+	const double maxHeat = 60. * ship.HeatDissipation() * ship.MaxHeat();
+	tableLabels.push_back("capacity:");
 	energyTable.push_back(Format::Number(maxEnergy));
 	heatTable.push_back(Format::Number(maxHeat));
 	// Pad by 10 pixels on the top and bottom.

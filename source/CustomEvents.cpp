@@ -19,13 +19,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 namespace {
 	Uint32 resize = -1;
+	Uint32 adjustText = -1;
 }
 
 
 
 void CustomEvents::Init()
 {
-	resize = SDL_RegisterEvents(1);
+	resize = SDL_RegisterEvents(2);
+	adjustText = resize + 1;
 }
 
 
@@ -42,5 +44,22 @@ void CustomEvents::SendResize()
 {
 	SDL_Event event;
 	event.type = GetResize();
+	SDL_PushEvent(&event);
+}
+
+
+
+Uint32 CustomEvents::GetAdjustText()
+{
+	assert(adjustText != static_cast<Uint32>(-1) && "Custom events must be registered");
+	return adjustText;
+}
+
+
+
+void CustomEvents::SendAdjustText()
+{
+	SDL_Event event;
+	event.type = GetAdjustText();
 	SDL_PushEvent(&event);
 }

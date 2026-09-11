@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Government.h"
 
+#include "Confusion.h"
 #include "Conversation.h"
 #include "DataNode.h"
 #include "Fleet.h"
@@ -267,6 +268,13 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		// Handle the attributes which cannot have a value removed.
 		else if(remove)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
+		else if(key == "confusion")
+		{
+			if(child.HasChildren() || (child.Size() >= 1 + valueIndex && child.IsNumber(valueIndex)))
+				confusion = ExclusiveItem<Confusion>(Confusion(child));
+			else if(child.Size() >= 1 + valueIndex)
+				confusion = ExclusiveItem<Confusion>(GameData::Confusions().Get(child.Token(valueIndex)));
+		}
 		else if(key == "attitude toward")
 		{
 			for(const DataNode &grand : child)
@@ -349,13 +357,12 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			}
 			for(const DataNode &grand : child)
 			{
-				if(grand.Size() < 2)
-				{
-					grand.PrintTrace("Skipping unrecognized attribute:");
-					continue;
-				}
 				const string &grandKey = grand.Token(0);
-				if(grandKey == "remove")
+				if(grandKey == "ignore universal")
+					ignoreUniversalIllegals = true;
+				else if(grand.Size() < 2)
+					grand.PrintTrace("Skipping unrecognized attribute:");
+				else if(grandKey == "remove")
 				{
 					if(grand.Token(1) == "ignore universal")
 						ignoreUniversalIllegals = false;
@@ -367,8 +374,6 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 					else if(!illegalOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
 						grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
 				}
-				else if(grandKey == "ignore universal")
-					ignoreUniversalIllegals = true;
 				else if(grandKey == "ignore")
 				{
 					if(grand.Token(1) == "ship" && grand.Size() >= 3)
@@ -395,8 +400,8 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
-				if(grand.Size() == 1)
-					atrocityOutfits[GameData::Outfits().Get(grandKey)] = {true, deathSentenceForBlock};
+				if(grandKey == "ignore universal")
+					ignoreUniversalAtrocities = true;
 				else if(grandKey == "remove")
 				{
 					if(grand.Token(1) == "ignore universal")
@@ -409,8 +414,6 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 					else if(!atrocityOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
 						grand.PrintTrace("Invalid remove, outfit not found in existing atrocities:");
 				}
-				else if(grandKey == "ignore universal")
-						ignoreUniversalAtrocities = true;
 				else if(grandKey == "ignore")
 				{
 					if(grand.Token(1) == "ship" && grand.Size() >= 3)
@@ -420,6 +423,8 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				}
 				else if(grandKey == "ship")
 					atrocityShips[grand.Token(1)] = {true, deathSentenceForBlock};
+				else
+					atrocityOutfits[GameData::Outfits().Get(grandKey)] = {true, deathSentenceForBlock};
 			}
 		}
 		else if(key == "enforces" && child.HasChildren())
@@ -529,6 +534,9 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 	if(reputationMin > reputationMax)
 		reputationMin = reputationMax;
 	SetReputation(Reputation());
+
+	if(!color)
+		color = ExclusiveItem<Color>(Color{});
 }
 
 
@@ -792,6 +800,13 @@ const string &Government::Language() const
 bool Government::SendUntranslatedHails() const
 {
 	return sendUntranslatedHails;
+}
+
+
+
+const Confusion *Government::GetConfusion() const
+{
+	return confusion.Ptr();
 }
 
 
