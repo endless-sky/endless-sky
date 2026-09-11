@@ -368,6 +368,66 @@ effect "pug huge explosion"
 	"random velocity" 1
 	"velocity scale" .4
 
+effect "quarg tiny explosion"
+	sprite "effect/explosion/quarg/tiny"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion tiny"
+	"lifetime" 18
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 0
+	"random velocity" .2
+	"velocity scale" .4
+
+effect "quarg small explosion"
+	sprite "effect/explosion/quarg/small"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion small"
+	"lifetime" 18
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 0
+	"random velocity" .4
+	"velocity scale" .4
+
+effect "quarg medium explosion"
+	sprite "effect/explosion/quarg/medium"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion medium"
+	"lifetime" 18
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 0
+	"random velocity" .6
+	"velocity scale" .4
+
+effect "quarg large explosion"
+	sprite "effect/explosion/quarg/large"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion large"
+	"lifetime" 18
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 0
+	"random velocity" .8
+	"velocity scale" .4
+
+effect "quarg huge explosion"
+	sprite "effect/explosion/quarg/huge"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion huge"
+	"lifetime" 18
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 0
+	"random velocity" 1
+	"velocity scale" .4
+
 # Fighter launch effects/sounds.
 
 effect "basic launch"

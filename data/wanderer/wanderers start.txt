@@ -1342,6 +1342,7 @@ mission "Wanderers: Alpha Surveillance D"
 		government "Alpha"
 		system "Host"
 		personality heroic nemesis staying vindictive
+			confusion "kor sestor"
 		ship "Far Osk 27" "Dasher"
 		ship "Far Osk 27" "Dancer"
 		ship "Far Osk 27" "Prancer"
@@ -1441,6 +1442,7 @@ mission "Wanderers: Alpha Surveillance F"
 	npc accompany save
 		government "Navy (Oathkeeper)"
 		personality escort timid
+			confusion "elite"
 		ship "Cruiser (Jump)" "N.S. Peacemaker"
 
 
@@ -1470,10 +1472,12 @@ mission "Wanderers: Alpha Surveillance G"
 	npc accompany save
 		government "Navy (Oathkeeper)"
 		personality escort timid
+			confusion "elite"
 		ship "Cruiser (Jump)" "N.S. Peacemaker"
 	npc
 		government "Alpha"
 		personality heroic staying vindictive
+			confusion "kor sestor"
 		fleet
 			names "kor sestor"
 			variant

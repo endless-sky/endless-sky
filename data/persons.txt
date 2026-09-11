@@ -132,6 +132,7 @@ person "Cap'n Pester"
 ship "Wardragon"
 	sprite "ship/wardragon"
 	thumbnail "thumbnail/wardragon"
+	"administrative cost" 11
 	attributes
 		category "Heavy Warship"
 		"cost" 5900000
@@ -273,6 +274,7 @@ phrase "MMK subphrase 2"
 ship "Marauder Fury"
 	plural "Marauder Furies"
 	sprite "ship/mfury"
+	"administrative cost" 1
 	thumbnail "thumbnail/mfury"
 	attributes
 		category "Interceptor"
@@ -504,6 +506,7 @@ person "Tranquility"
 ship "Lampyrid-Class Transport"
 	sprite "ship/lampyrid"
 	thumbnail "thumbnail/lampyrid"
+	"administrative cost" 2
 	attributes
 		category "Heavy Freighter"
 		cost 2760000
@@ -650,6 +653,7 @@ person "Power of the People"
 ship "Modified Osprey"
 	sprite "ship/mosprey"
 	"never disabled"
+	"administrative cost" 8
 	swizzle 3
 	attributes
 		category "Heavy Warship"
@@ -825,6 +829,7 @@ person "Local God"
 ship "Ursa Polaris"
 	plural "Ursa Polaris"
 	sprite "ship/localworldship"
+	"administrative cost" 10
 	attributes
 		category "Unclassified"
 		cost 142857
@@ -1024,6 +1029,7 @@ person "Prototype B3-CC4"
 	ship "Shooting Star" "Prototype B3-CC4"
 
 ship "Shooting Star"
+	"administrative cost" 4
 	swizzle 0
 	noun "genocidal maniac"
 	sprite "ship/shooting star/shooting star"
@@ -1256,6 +1262,7 @@ person "Rais Iris XVIII"
 ship "Marauder Bactrian"
 	sprite ship/mbactriane
 	thumbnail thumbnail/bactrian
+	"administrative cost" 7
 	attributes
 		licenses
 			City-Ship
@@ -1460,6 +1467,7 @@ person "Brick"
 ship "Modified Boxwing"
 	sprite "ship/modified boxwing"
 	thumbnail "thumbnail/modified boxwing"
+	"administrative cost" 2
 	attributes
 		category "Interceptor"
 		cost 3690000
@@ -1566,6 +1574,7 @@ person "Gefullte Taubenbrust"
 ship "Modified Battleship"
 	sprite "ship/battleship"
 	thumbnail "thumbnail/battleship"
+	"administrative cost" 8
 	attributes
 		category "Heavy Warship"
 		"cost" 35000000
@@ -1804,6 +1813,7 @@ person "MasterOfGrey"
 ship "Modified Ladybug"
 	sprite "ship/modified ladybug"
 	thumbnail "ship/modified ladybug"
+	"administrative cost" 6
 	attributes
 		category "Medium Warship"
 		"cost" 8950000
@@ -2022,6 +2032,7 @@ person "Patrol Team"
 
 ship "Waverider"
 	sprite "ship/waverider"
+	"administrative cost" 2
 	attributes
 		category "Light Warship"
 		"cost" 3000000
@@ -2194,6 +2205,7 @@ person "Danau"
 ship "Modified Hauler VI"
 	sprite "ship/hauler vi"
 	thumbnail "thumbnail/hauler vi"
+	"administrative cost" 5
 	attributes
 		category "Heavy Freighter"
 		"shields" 13200

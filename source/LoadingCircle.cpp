@@ -37,14 +37,14 @@ void LoadingCircle::Step()
 
 
 
-void LoadingCircle::Draw(const Point &position, double progress) const
+void LoadingCircle::Draw(const Point &position, double progress, double zoom) const
 {
 	// Draw the loading circle.
 	Angle a(rotation);
 	PointerShader::Bind();
 	for(int i = 0; i < static_cast<int>(progress * ticks); ++i)
 	{
-		PointerShader::Add(position, a.Unit(), 8.f, 20.f, size, Color(.5f, 0.f));
+		PointerShader::Add(position, a.Unit(), 8.f, 20.f, size * zoom, Color(.5f, 0.f));
 		a += angleOffset;
 	}
 	PointerShader::Unbind();

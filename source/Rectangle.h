@@ -45,6 +45,10 @@ public:
 	Rectangle operator-(const Point &offset) const;
 	Rectangle &operator-=(const Point &offset);
 
+	// Comparison operator.
+	bool operator==(const Rectangle &other) const = default;
+	bool operator!=(const Rectangle &other) const = default;
+
 	// Query the attributes of the rectangle.
 	Point Center() const;
 	Point Dimensions() const;
