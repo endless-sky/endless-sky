@@ -414,7 +414,7 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		}
 		else if(intFun || doubleFun)
 		{
-			// Numebrs can start with a minus sign as their first character.
+			// Numbers can start with a minus sign as their first character.
 			if((input.empty() && c == '-')
 					|| (c >= '0' && c <= '9'))
 				input += c;
