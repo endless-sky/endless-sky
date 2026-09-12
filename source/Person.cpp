@@ -30,6 +30,7 @@ using namespace std;
 void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
+	name = node.Token(1);
 	isLoaded = true;
 	for(const DataNode &child : node)
 	{
@@ -43,14 +44,7 @@ void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		else if(key == "formation" && hasValue)
 			formationPattern = GameData::Formations().Get(child.Token(1));
 		else if(key == "ship" && hasValue)
-		{
-			// Name ships that are not the flagship with the name provided, if any.
-			// The flagship, and any unnamed fleet members, will be given the name of the Person.
-			bool setName = !ships.empty() && child.Size() >= 3;
-			ships.emplace_back(make_shared<Ship>(child, playerConditions));
-			if(setName)
-				ships.back()->SetGivenName(child.Token(2));
-		}
+			shipFactory.Load(child, playerConditions);
 		else if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(key == "personality")
@@ -68,9 +62,8 @@ bool Person::IsValid() const
 {
 	if(!isLoaded || !government || !government->IsDefined())
 		return false;
-	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsValid())
-			return false;
+	if(!shipFactory.IsValid())
+		return false;
 	return true;
 }
 
@@ -79,12 +72,11 @@ bool Person::IsValid() const
 // Finish loading all the ships in this person specification.
 void Person::FinishLoading()
 {
+	auto nameFunc = [this](const shared_ptr<Ship> &) -> string { return name; };
+	shipFactory.Instantiate(ships, nameFunc);
 	for(const shared_ptr<Ship> &ship : ships)
-	{
-		ship->FinishLoading(true);
 		if(formationPattern)
 			ship->SetFormationPattern(formationPattern);
-	}
 }
 
 
