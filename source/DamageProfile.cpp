@@ -27,8 +27,8 @@ using namespace std;
 
 
 
-DamageProfile::DamageProfile(Projectile::ImpactInfo info)
-	: weapon(info.weapon), position(std::move(info.position)), isBlast(weapon.BlastRadius() > 0.)
+DamageProfile::DamageProfile(const Projectile::ImpactInfo &info)
+	: weapon(info.weapon), position(info.position), isBlast(weapon.BlastRadius() > 0.)
 {
 	CalculateBlast();
 	// For weapon projectiles, the distance traveled for the projectile
@@ -40,8 +40,8 @@ DamageProfile::DamageProfile(Projectile::ImpactInfo info)
 
 
 
-DamageProfile::DamageProfile(Weather::ImpactInfo info)
-	: weapon(info.weapon), position(std::move(info.position)), isBlast(weapon.BlastRadius() > 0.), inputScaling(info.scale)
+DamageProfile::DamageProfile(const Weather::ImpactInfo &info)
+	: weapon(info.weapon), position(info.position), isBlast(weapon.BlastRadius() > 0.), inputScaling(info.scale)
 {
 	CalculateBlast();
 	isHazard = true;
@@ -49,11 +49,18 @@ DamageProfile::DamageProfile(Weather::ImpactInfo info)
 
 
 
+DamageProfile::DamageProfile(const Weapon &weapon)
+	: weapon(weapon), position(Point()), isBlast(false)
+{
+}
+
+
+
 // Calculate the damage dealt to the given ship.
-DamageDealt DamageProfile::CalculateDamage(const Ship &ship, bool ignoreBlast) const
+DamageDealt DamageProfile::CalculateDamage(const Ship &ship, bool ignoreBlast, double scale) const
 {
 	bool blast = (isBlast && !ignoreBlast);
-	DamageDealt damage(weapon, Scale(inputScaling, ship, blast));
+	DamageDealt damage(weapon, Scale(inputScaling * scale, ship, blast));
 	PopulateDamage(damage, ship);
 
 	return damage;

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Body.h"
+#include "Orbit.h"
 #include "RandomEvent.h"
 
 class Hazard;
@@ -77,6 +78,7 @@ public:
 	// This object's system hazards.
 	const std::vector<RandomEvent<Hazard>> &Hazards() const;
 	// Find out how far this object is from its parent.
+	const Orbit &GetOrbit() const;
 	double Distance() const;
 	double Period() const;
 	double Offset() const;
@@ -85,10 +87,7 @@ public:
 private:
 	const Planet *planet;
 
-	double distance;
-	double speed;
-	bool explicitPeriodSet = false;
-	double offset;
+	Orbit orbit;
 	std::vector<RandomEvent<Hazard>> hazards;
 	int index;
 	int parent;

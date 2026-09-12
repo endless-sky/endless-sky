@@ -351,11 +351,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 					{
 						if(toRemoveTemplate.GetSprite() != object.GetSprite())
 							return false;
-						if(toRemoveTemplate.distance != object.distance)
-							return false;
-						if(toRemoveTemplate.speed != object.speed)
-							return false;
-						if(toRemoveTemplate.offset != object.offset)
+						if(toRemoveTemplate.orbit != object.orbit)
 							return false;
 						return true;
 					}
@@ -490,7 +486,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		static const string UNINHABITEDMOON = "This moon doesn't have anywhere you can land.";
 		static const string STATION = "This station cannot be docked with.";
 
-		double fraction = root->distance / habitable;
+		double fraction = root->orbit.distance / habitable;
 		if(object.IsStar())
 			object.message = &STAR;
 		else if(object.IsStation())
@@ -579,7 +575,7 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	if(!explicitHabitableDistanceSet)
 		habitable = 0.;
 	int numStars = 0;
-	double starMass = 0.;
+	starMass = 0.;
 	double starDistance = 0.;
 	for(const StellarObject &object : objects)
 	{
@@ -593,7 +589,7 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 		{
 			numStars += 1;
 			starMass += spriteData.Mass();
-			starDistance += object.distance;
+			starDistance += object.orbit.distance;
 		}
 	}
 	if(!explicitHabitableDistanceSet && !habitable)
@@ -615,10 +611,11 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	set<int> warnedIndex;
 	for(StellarObject &object : objects)
 	{
-		if(object.explicitPeriodSet)
+		if(object.orbit.explicitPeriodSet)
 			continue;
-		double period = 10.;
-		if(!object.distance)
+		// Set this object back to the default orbit speed.
+		object.orbit.speed = 36.;
+		if(!object.orbit.distance)
 		{
 			// Do nothing if the object is in the exact center of the system.
 		}
@@ -638,26 +635,25 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 						Logger::Level::WARNING);
 			}
 			else
-				period = sqrt(pow(object.distance, 3) / mass);
+				object.orbit.CalculatePeriod(mass);
 		}
 		else if(!starMass)
 			invalidStarMass = true;
 		else if(object.isStar || treatNextObjectAsStar)
 		{
 			treatNextObjectAsStar = false;
-			// If there is only one star in the system then it should have a period of 10.
+			// If there is only one star in the system then it should use the default period.
 			// Otherwise, the orbital period is determined by the influence of all stars
 			// in the system as they orbit around each other.
 			if(numStars > 1)
-				period = sqrt(pow(starDistance, 3.) / starMass);
+				object.orbit.CalculatePeriod(starMass, starDistance);
 		}
 		else
 		{
 			// All remaining objects are not moons or stars, and should therefore have
 			// their orbital period set based off of the mass of every star in the system.
-			period = sqrt(pow(object.distance, 3) / starMass);
+			object.orbit.CalculatePeriod(starMass);
 		}
-		object.speed = 360. / period;
 	}
 	if(invalidStarMass)
 		Logger::Log("System \"" + trueName + "\" contains objects without an explicitly defined orbital period, "
@@ -899,6 +895,13 @@ double System::HyperDepartureDistance() const
 
 
 
+double System::StarMass() const
+{
+	return starMass;
+}
+
+
+
 // Get a list of systems you can "see" from here, whether or not there is a
 // direct hyperspace link to them.
 const set<const System *> &System::VisibleNeighbors() const
@@ -919,14 +922,17 @@ void System::SetDate(const Date &date)
 	{
 		// "offset" is used to allow binary orbits; the second object is offset
 		// by 180 degrees.
-		object.angle = Angle(now * object.speed + object.offset);
-		object.position = object.angle.Unit() * object.distance;
+		auto [position, angle] = object.orbit.Position(now);
+		object.angle = angle;
+		object.position = position;
 
 		// Because of the order of the vector, the parent's position has always
 		// been updated before this loop reaches any of its children, so:
 		if(object.parent >= 0)
 			object.position += objects[object.parent].position;
 
+		// If the object has a position other than (0, 0), re-angle it to face
+		// the system center.
 		if(object.position)
 			object.angle = Angle(object.position);
 
@@ -1236,7 +1242,7 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 		}
 	}
 	else if(key == "distance" && hasValue)
-		object.distance = node.Value(1);
+		object.orbit.distance = node.Value(1);
 	else if(key == "period" && hasValue)
 	{
 		double period = node.Value(1);
@@ -1245,11 +1251,11 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 			node.PrintTrace("An object's period may not be equal to zero.");
 			return;
 		}
-		object.explicitPeriodSet = true;
-		object.speed = 360. / period;
+		object.orbit.explicitPeriodSet = true;
+		object.orbit.speed = 360. / period;
 	}
 	else if(key == "offset" && hasValue)
-		object.offset = node.Value(1);
+		object.orbit.offset = node.Value(1);
 	else if(key == "swizzle" && hasValue)
 		object.SetSwizzle(GameData::Swizzles().Get(node.Token(1)));
 	else if(key == "visibility" && hasValue)
