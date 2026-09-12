@@ -269,7 +269,7 @@ void ImageSet::LoadDimensions(Sprite *sprite) noexcept(false)
 	// Read only the first frame of the 1x resolution image in order to determine the dimensions of the sprite.
 	// (All frames are expected to have the same dimensions.)
 	size_t frames = paths[0].size();
-	// An ImageSet might exist for a sprite that only had 2x images defined, in which case it will have no frames
+	// An ImageSet might exist for a sprite that only had 2x images defined, in which case it will have no frames.
 	if(!frames)
 		return;
 	buffer[0].Clear(frames);
