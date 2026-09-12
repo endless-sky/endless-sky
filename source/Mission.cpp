@@ -115,11 +115,19 @@ namespace {
 
 	bool LocationInFlight(Mission::Location location)
 	{
-		return location & (
-			Mission::Location::ASSISTING |
-			Mission::Location::BOARDING |
-			Mission::Location::ENTERING |
-			Mission::Location::TRANSITION);
+		switch(location)
+		{
+			case Mission::Location::ASSISTING:
+				return true;
+			case Mission::Location::BOARDING:
+				return true;
+			case Mission::Location::ENTERING:
+				return true;
+			case Mission::Location::TRANSITION:
+				return true;
+			default:
+				return false;
+		}
 	}
 }
 
