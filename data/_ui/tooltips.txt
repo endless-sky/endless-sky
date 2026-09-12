@@ -541,7 +541,7 @@ tip "optical jamming:"
 	`Reduces the ability of optical-guided missiles to track your ship, which is mostly useful for larger ships. The more optical jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
 
 tip "optical size:"
-	`The size of this ship. Influences the targeting strength of optical-guided missiles targeting this ship.`
+	`Influences the tracking strength of optical-guided missiles targeting this ship. A larger value means the ship is easier to track.`
 
 tip "piercing:"
 	`Percentage of this weapon's damage that leaks through to the hull while the target's shields are still active.`
@@ -1810,3 +1810,10 @@ tip "Default max escort crew"
 
 tip `Default admin cap`
 	`If the fleet size limitation is "admin cap," then this is the default maximum administrative capacity. Ships will have individual administrative costs that count toward your capacity. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
+
+# Boarding panel
+tip `boarding: in cargo`
+	`This item is in the ship's cargo hold.`
+
+tip `boarding: installed`
+	`This item is installed on the ship. Removal may leave the ship inoperable.`

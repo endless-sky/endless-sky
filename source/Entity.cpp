@@ -248,7 +248,9 @@ double Entity::OpticalSize() const
 	double area = sprite->Area();
 	if(scale != Point(1., 1.))
 		area *= scale.X() * scale.Y();
-	return area;
+	// 16 was determined to be a good scaling factor from the
+	// old method of optical tracking being based off of mass.
+	return area / 16.;
 }
 
 

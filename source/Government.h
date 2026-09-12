@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
+class Confusion;
 class Conversation;
 class DataNode;
 class Fleet;
@@ -137,6 +138,9 @@ public:
 	const std::string &Language() const;
 	// Find out if this government should send custom hails even if the player does not know its language.
 	bool SendUntranslatedHails() const;
+
+	// Get the default confusion of ships belonging to this government.
+	const Confusion *GetConfusion() const;
 	// Pirate raids in this government's systems use these fleet definitions. If
 	// it is empty, there are no pirate raids.
 	// The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
@@ -241,6 +245,7 @@ private:
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
+	ExclusiveItem<Confusion> confusion;
 	// If a government appears in this set, and the reputation with this government is affected by actions,
 	// and events performed against that government, use the penalties that government applies for the
 	// action instead of this government's own penalties.

@@ -284,7 +284,8 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		sound = UI::UISound::NONE;
 		nameToConfirm.clear();
 		filesystem::path lastSave = Files::Saves() / selectedPilot->Files().front().first;
-		GetUI().Push(DialogPanel::RequestString(this, &LoadPanel::SnapshotCallback,
+		GetUI().Push(DialogPanel::RequestStringWithCharFilter(this, &LoadPanel::SnapshotCallback,
+			[this](const string &input, char ch) { return LoadPanel::SnapshotNameFilter(input, ch); },
 			"Enter a name for this snapshot, or use the most recent save's date:",
 			FileDate(lastSave)));
 	}
@@ -520,13 +521,35 @@ void LoadPanel::UpdateLists()
 
 
 
+optional<filesystem::path> LoadPanel::SnapshotPathBase() const
+{
+	if(!selectedPilot || selectedPilot->Files().empty() || selectedPilot->Files().front().first.size() < 4)
+		return nullopt;
+
+	return Files::Saves() / selectedPilot->Files().front().first;
+}
+
+
+
+bool LoadPanel::SnapshotNameFilter(const string &input, char ch)
+{
+	optional<filesystem::path> base = SnapshotPathBase();
+	if(!base.has_value())
+		return false;
+
+	return Files::IsValidCharacter(ch) && Files::MaxFilenameLength(*base) > input.size() + 6;
+}
+
+
+
 // Snapshot name callback.
 void LoadPanel::SnapshotCallback(const string &name)
 {
-	if(!selectedPilot || selectedPilot->Files().empty() || selectedPilot->Files().front().first.size() < 4)
+	optional<filesystem::path> fromOpt = SnapshotPathBase();
+	if(!fromOpt.has_value())
 		return;
+	filesystem::path from = *fromOpt;
 
-	filesystem::path from = Files::Saves() / selectedPilot->Files().front().first;
 	string suffix = name.empty() ? FileDate(from) : name;
 	string extension = "~" + suffix + ".txt";
 
