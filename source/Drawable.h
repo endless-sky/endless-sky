@@ -51,6 +51,8 @@ public:
 	bool InheritsParentSwizzle() const;
 	// Get the sprite frame for the given time step.
 	float GetFrame(int step = -1) const;
+	void PauseAnimation() const;
+	void UnpauseAnimation() const;
 
 	// Positional attributes.
 	double Zoom() const;
@@ -71,7 +73,6 @@ protected:
 	// Adjust the frame rate.
 	void SetFrameRate(float framesPerSecond);
 	void AddFrameRate(float framesPerSecond);
-	void PauseAnimation();
 	// Set what animation step we're on. This affects future calls to Body::GetMask()
 	// and Drawable::GetFrame().
 	void SetStep(int step) const;
@@ -105,7 +106,7 @@ private:
 	mutable bool randomize = false;
 	bool repeat = true;
 	bool rewind = false;
-	int pause = 0;
+	mutable int pause = 0;
 
 	// Cache the frame calculation so it doesn't have to be repeated if given
 	// the same step over and over again.

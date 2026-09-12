@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CargoHold.h"
 #include "DialogPanel.h"
 #include "text/DisplayText.h"
+#include "Fleet.h"
 #include "shader/FogShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -1095,7 +1096,7 @@ void MapPanel::DrawTravelPlan()
 				continue;
 			}
 
-			fuel[it.get()] = it->Fuel() * it->Attributes().Get("fuel capacity");
+			fuel[it.get()] = it->FuelLevel();
 			hasEscort |= (it.get() != flagship);
 		}
 	stranded |= !hasEscort;

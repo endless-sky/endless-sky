@@ -114,7 +114,7 @@ Version 0.11.1:
       * Reduced all sources of optical jamming by 90%. (@Anarchist2)
       * Various changes around the Heavy Rocket. (@Anarchist2)
         * The Heavy Rocket Launcher now fires as a stream, instead of clustered.
-        * Increased missile strangth for both Launcher and Pod: 16 -> 24.
+        * Increased missile strength for both Launcher and Pod: 16 -> 24.
         * Changes to Clipper (Heavy) armament:
           * Replaced Heavy Rocket Pods with Heavy Rocket Launchers.
           * Replaced Meteor Missile Launchers with Meteor Missile Pods.

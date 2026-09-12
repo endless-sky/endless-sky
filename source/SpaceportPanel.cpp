@@ -39,7 +39,7 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	SetTrapAllEvents(false);
 
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
@@ -120,8 +120,12 @@ void SpaceportPanel::Draw()
 void SpaceportPanel::UpdateTextDisplay()
 {
 	description->SetAlignment(Preferences::GetTextAlignment());
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	if(newsMessage)
+	{
 		newsMessage->SetAlignment(Preferences::GetTextAlignment());
+		newsMessage->SetFont(FontSet::Get(Preferences::GetFontSize()));
+	}
 }
 
 
@@ -140,7 +144,7 @@ void SpaceportPanel::Resize()
 void SpaceportPanel::InitNewsTextArea()
 {
 	newsMessage = make_shared<TextArea>();
-	newsMessage->SetFont(FontSet::Get(14));
+	newsMessage->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	newsMessage->SetColor(*GameData::Colors().Get("bright"));
 	newsMessage->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(newsMessage);

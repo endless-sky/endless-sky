@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Angle.h"
-#include "Body.h"
 #include "Distribution.h"
+#include "Drawable.h"
 #include "Point.h"
 #include "Projectile.h"
 
@@ -68,8 +68,8 @@ public:
 	bool IsLoaded() const;
 
 	// Get assets used by this weapon.
-	const Body &WeaponSprite() const;
-	const Body &HardpointSprite() const;
+	const Drawable &ProjectileSprite() const;
+	const Drawable &HardpointSprite() const;
 	const Sound *WeaponSound() const;
 	const Sound *EmptySound() const;
 	const Sprite *Icon() const;
@@ -205,14 +205,6 @@ public:
 	// weapon is not a provocation (even if you push or pull it).
 	bool DoesDamage() const;
 
-	bool ConsumesHull() const;
-	bool ConsumesFuel() const;
-	bool ConsumesHeat() const;
-	bool ConsumesEnergy() const;
-	bool ConsumesIonization() const;
-	bool ConsumesDisruption() const;
-	bool ConsumesSlowing() const;
-
 	double Piercing() const;
 
 	double Prospecting() const;
@@ -241,8 +233,8 @@ private:
 	bool isLoaded = false;
 
 	// Sprites and sounds.
-	Body sprite;
-	Body hardpointSprite;
+	Drawable projectileSprite;
+	Drawable hardpointSprite;
 	const Sound *sound = nullptr;
 	const Sound *emptySound = nullptr;
 	const Sprite *icon = nullptr;
@@ -495,14 +487,6 @@ inline double Weapon::RelativeHeatDamage() const { return TotalDamage(RELATIVE_H
 inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(RELATIVE_ENERGY_DAMAGE); }
 
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
-
-inline bool Weapon::ConsumesHull() const { return FiringHull() > 0. || RelativeFiringHull() > 0.; }
-inline bool Weapon::ConsumesFuel() const { return FiringFuel() > 0. || RelativeFiringFuel() > 0.; }
-inline bool Weapon::ConsumesHeat() const { return FiringHeat() < 0. || RelativeFiringHeat() > 0.; }
-inline bool Weapon::ConsumesEnergy() const { return FiringEnergy() > 0. || RelativeFiringEnergy() > 0.; }
-inline bool Weapon::ConsumesIonization() const { return FiringIon() < 0.; }
-inline bool Weapon::ConsumesDisruption() const { return FiringDisruption() < 0.; }
-inline bool Weapon::ConsumesSlowing() const { return FiringSlowing() < 0.; }
 
 inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
 

@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class CategoryList;
 class Color;
 class ConditionsStore;
+class Confusion;
 class Conversation;
 class DataNode;
 class DataWriter;
@@ -60,9 +61,11 @@ class Point;
 class Politics;
 class Shader;
 class Ship;
+class ShipEvent;
 class Sprite;
 class StarField;
 class StartConditions;
+class StellarObjectSpriteData;
 class System;
 class TaskQueue;
 class Test;
@@ -119,9 +122,12 @@ public:
 	static void ResetPersons();
 	// Mark all persons in the given list as dead.
 	static void DestroyPersons(std::vector<std::string> &names);
+	// Handle any events that may have been taken against a Person.
+	static void HandleEvent(const ShipEvent &event);
 
 	static const Set<Color> &Colors();
 	static const Set<Swizzle> &Swizzles();
+	static const Set<Confusion> &Confusions();
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
 	static const Set<GameEvent> &Events();
@@ -161,13 +167,7 @@ public:
 	static const std::vector<Trade::Commodity> &Commodities();
 	static const std::vector<Trade::Commodity> &SpecialCommodities();
 
-	// Custom messages to be shown when trying to land on certain stellar objects.
-	static bool HasLandingMessage(const Sprite *sprite);
-	static const std::string &LandingMessage(const Sprite *sprite);
-	// Get the solar power and wind output of the given stellar object sprite.
-	static double SolarPower(const Sprite *sprite);
-	static double SolarWind(const Sprite *sprite);
-	static const Sprite *StarIcon(const Sprite *sprite);
+	static const StellarObjectSpriteData &ObjectSpriteData(const Sprite *sprite);
 
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);

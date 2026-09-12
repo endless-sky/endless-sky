@@ -118,6 +118,13 @@ public:
 	template<template<class...> class C, class... T>
 	static std::string List(const C<T...> &elements,
 		std::function<std::string(typename C<T...>::const_reference)> toString);
+
+	// Return a string containing the elements separated by new lines, with each line being indented,
+	// up to a maximum number of lines. Overflow elements will be summarized with "and X more."
+	template<template<class...> class C, class... T>
+	static std::string IndentedList(const C<T...> &elements,
+		std::function<std::string(typename C<T...>::const_reference)> toString,
+		std::optional<int> maxLines = std::nullopt);
 };
 
 
@@ -139,4 +146,40 @@ std::string Format::List(const C<T...> &elements,
 	for( ; it != std::prev(elements.end()); std::advance(it, 1))
 		result += ", " + toString(*it);
 	return result + ", and " + toString(*it);
+}
+
+
+
+template<template<class...> class C, class... T>
+std::string Format::IndentedList(const C<T...> &elements,
+	std::function<std::string(typename C<T...>::const_reference)> toString,
+	std::optional<int> maxLines)
+{
+	std::string result;
+	if(elements.empty())
+		return result;
+	auto it = elements.begin();
+	int lines = 0;
+	while(it != elements.end() && (!maxLines.has_value() || ++lines < maxLines.value()))
+	{
+		result += "\t" + toString(*it) + "\n";
+		std::advance(it, 1);
+	}
+	if(it != elements.end())
+	{
+		// If there is only one element remaining, list it like the rest,
+		// as "and 1 more" takes up the same space as just listing the final element.
+		// Otherwise, collapse the remaining values into a summary line.
+		int remaining = std::distance(it, elements.end());
+		if(remaining == 1)
+			result += "\t" + toString(*it);
+		else
+			result += " and " + std::to_string(remaining) + " more.";
+	}
+	else
+	{
+		// Pop the final newline.
+		result.pop_back();
+	}
+	return result;
 }

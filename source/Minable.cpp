@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "pi.h"
 #include "Projectile.h"
 #include "Random.h"
-#include "image/SpriteSet.h"
 #include "Visual.h"
 
 #include <algorithm>
@@ -69,6 +68,9 @@ void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions
 	if(node.Size() >= 2)
 		name = node.Token(1);
 
+	entityType = Entity::Type::MINABLE;
+	neverDisabled = true;
+
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -90,7 +92,7 @@ void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions
 					useRandomFrameRate = false;
 		}
 		else if(key == "hull")
-			hull = child.Value(1);
+			levels.hull = child.Value(1);
 		else if(key == "random hull")
 			randomHull = max(0., child.Value(1));
 		else if(key == "payload")
@@ -110,6 +112,9 @@ void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions
 		displayName = Format::Capitalize(name);
 	if(noun.empty())
 		noun = "Asteroid";
+	// A minable's attributes can't be changed outside of what is loaded in,
+	// so we can cache certain attribute values and calculations now.
+	CacheAttributes();
 }
 
 
@@ -208,8 +213,11 @@ void Minable::Place(double energy, double beltRadius)
 	position = radius * Point(cos(theta + rotation), sin(theta + rotation));
 
 	// Add a random amount of hull value to the object.
-	hull += Random::Real() * randomHull;
-	maxHull = hull;
+	if(!levels.hull)
+		levels.hull = 1000;
+	if(randomHull)
+		levels.hull += Random::Real() * randomHull;
+	capacities.hull = levels.hull;
 }
 
 
@@ -219,8 +227,19 @@ void Minable::Place(double energy, double beltRadius)
 // In that case it will return false, meaning it should be deleted.
 bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
-	DoCorrosionDamage(visuals);
-	if(hull < 0)
+	DoStatusEffects();
+	DoStatusSparks(visuals);
+
+	levels.heat -= levels.heat * HeatDissipation();
+	if(levels.heat > MaxHeat())
+	{
+		double heatRatio = HeatFraction() / (1. + attributes.Get("overheat damage threshold"));
+		if(heatRatio > 1.)
+			levels.hull -= attributes.Get("overheat damage rate") * heatRatio;
+	}
+	levels.heat = max(0., levels.heat);
+
+	if(levels.hull < 0)
 	{
 		// This object has been destroyed. Create explosions and flotsam.
 		double scale = .1 * Radius();
@@ -280,23 +299,13 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 // Damage this object (because a projectile collided with it).
 void Minable::TakeDamage(const MinableDamageDealt &damage)
 {
-	hull -= damage.hullDamage;
+	levels.hull -= damage.hullDamage;
 	prospecting += damage.prospecting;
-	corrosion += damage.corrosion;
-}
+	levels.heat += damage.heat;
+	levels.corrosion += damage.corrosion;
+	levels.burning += damage.burn;
 
-
-
-double Minable::Hull() const
-{
-	return min(1., hull / maxHull);
-}
-
-
-
-double Minable::MaxHull() const
-{
-	return maxHull;
+	levels.heat = max(0., levels.heat);
 }
 
 
@@ -308,52 +317,9 @@ double Minable::Mass() const
 
 
 
-double Minable::MaximumHeat() const
+double Minable::MaxHeat() const
 {
 	return MAXIMUM_TEMPERATURE * (attributes.Mass() + attributes.Get("heat capacity"));
-}
-
-
-
-// Apply corrosion damage ticks and decrement corrosion.
-void Minable::DoCorrosionDamage(vector<Visual> &visuals)
-{
-	if(!corrosion)
-		return;
-	hull -= corrosion;
-	corrosion = max(0., .99 * corrosion);
-	CreateSparks(visuals, "corrosion spark", corrosion * .1);
-}
-
-
-
-// Place a "spark" effect, like ionization or disruption.
-void Minable::CreateSparks(vector<Visual> &visuals, const string &name, double amount)
-{
-	CreateSparks(visuals, GameData::Effects().Get(name), amount);
-}
-
-
-
-void Minable::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount)
-{
-	if(amount <= 0.)
-		return;
-
-	// Limit the number of sparks, depending on the size of the sprite.
-	// The limit needs to be the first argument in case amount is NaN.
-	amount = min(Width() * Height() * .0006, amount);
-	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
-	visuals.reserve(visuals.size() + static_cast<size_t>(amount));
-
-	while(true)
-	{
-		amount -= Random::Real();
-		if(amount <= 0.)
-			break;
-		Point point((Random::Real() - .5) * Width(), (Random::Real() - .5) * Height());
-		visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
-	}
 }
 
 
