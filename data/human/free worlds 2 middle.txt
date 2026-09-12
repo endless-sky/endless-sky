@@ -327,8 +327,9 @@ mission "FW Southern Recon 1B (Alt)"
 	on offer
 		set "FW Southern Recon 1B: done"
 		fail "FW Southern Recon 1B (Alt Turret)"
-		outfit "Electron Beam" -1
 		conversation
+			action
+				outfit "Electron Beam" -1
 			`You hand off the Electron Beam to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
 				decline
 
@@ -347,8 +348,9 @@ mission "FW Southern Recon 1B (Alt Turret)"
 	on offer
 		set "FW Southern Recon 1B (Turret): done"
 		fail "FW Southern Recon 1B (Alt)"
-		outfit "Electron Turret" -1
 		conversation
+			action
+				outfit "Electron Turret" -1
 			`You hand off the Electron Turret to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
 				decline
 
