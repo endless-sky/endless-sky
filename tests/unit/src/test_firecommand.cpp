@@ -89,8 +89,8 @@ SCENARIO( "A FireCommand instance is being copied", "[firecommand]" ) {
 				CHECK( copy.HasFire(4) );
 
 				copy.SetOnTarget(2);
-				CHECK_FALSE( command.HasFire(2) );
-				CHECK( copy.HasFire(2) );
+				CHECK_FALSE( command.HasTarget(2) );
+				CHECK( copy.HasTarget(2) );
 			}
 		}
 	}
