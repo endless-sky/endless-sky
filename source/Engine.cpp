@@ -420,75 +420,89 @@ void Engine::Place()
 void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 {
 	for(const NPC &npc : npcs)
+		Place(npc, flagship);
+}
+
+
+
+void Engine::Place(const NPC &npc, const shared_ptr<Ship> &flagship)
+{
+	if(!npc.ShouldSpawn())
+		return;
+
+	map<string, map<Ship *, int>> carriers;
+	for(const shared_ptr<Ship> &ship : npc.Ships())
 	{
-		if(!npc.ShouldSpawn())
+		// Skip ships that have been destroyed.
+		if(ship->IsDestroyed() || ship->IsDisabled())
 			continue;
 
-		map<string, map<Ship *, int>> carriers;
-		for(const shared_ptr<Ship> &ship : npc.Ships())
+		// Redo the loading up of fighters.
+		if(ship->HasBays())
 		{
-			// Skip ships that have been destroyed.
-			if(ship->IsDestroyed() || ship->IsDisabled())
-				continue;
-
-			// Redo the loading up of fighters.
-			if(ship->HasBays())
+			ship->UnloadBays();
+			for(const auto &cat : GameData::GetCategory(CategoryType::BAY))
 			{
-				ship->UnloadBays();
-				for(const auto &cat : GameData::GetCategory(CategoryType::BAY))
-				{
-					const string &bayType = cat.Name();
-					int baysTotal = ship->BaysTotal(bayType);
-					if(baysTotal)
-						carriers[bayType][&*ship] = baysTotal;
-				}
+				const string &bayType = cat.Name();
+				int baysTotal = ship->BaysTotal(bayType);
+				if(baysTotal)
+					carriers[bayType][&*ship] = baysTotal;
 			}
-		}
-
-		shared_ptr<Ship> npcFlagship;
-		for(const shared_ptr<Ship> &ship : npc.Ships())
-		{
-			// Skip ships that have been destroyed.
-			if(ship->IsDestroyed())
-				continue;
-
-			// Avoid the exploit where the player can wear down an NPC's
-			// crew by attrition over the course of many days.
-			ship->AddCrew(max(0, ship->RequiredCrew() - ship->Crew()));
-			if(!ship->IsDisabled())
-				ship->Recharge();
-
-			if(ship->CanBeCarried())
-			{
-				bool docked = false;
-				const string &bayType = ship->Attributes().Category();
-				for(auto &it : carriers[bayType])
-					if(it.second && it.first->Carry(ship))
-					{
-						--it.second;
-						docked = true;
-						break;
-					}
-				if(docked)
-					continue;
-			}
-
-			ships.push_back(ship);
-			// The first (alive) ship in an NPC block
-			// serves as the flagship of the group.
-			if(!npcFlagship)
-				npcFlagship = ship;
-
-			// Only the flagship of an NPC considers the
-			// player: the rest of the NPC track it.
-			if(npcFlagship && ship != npcFlagship)
-				ship->SetParent(npcFlagship);
-			else if(!ship->GetPersonality().IsUninterested())
-				ship->SetParent(flagship);
-			else
-				ship->SetParent(nullptr);
 		}
 	}
+
+	shared_ptr<Ship> npcFlagship;
+	for(const shared_ptr<Ship> &ship : npc.Ships())
+	{
+		// Skip ships that have been destroyed.
+		if(ship->IsDestroyed())
+			continue;
+
+		// Avoid the exploit where the player can wear down an NPC's
+		// crew by attrition over the course of many days.
+		ship->AddCrew(max(0, ship->RequiredCrew() - ship->Crew()));
+		if(!ship->IsDisabled())
+			ship->Recharge();
+
+		if(ship->CanBeCarried())
+		{
+			bool docked = false;
+			const string &bayType = ship->Attributes().Category();
+			for(auto &it : carriers[bayType])
+				if(it.second && it.first->Carry(ship))
+				{
+					--it.second;
+					docked = true;
+					break;
+				}
+			if(docked)
+				continue;
+		}
+
+		ships.push_back(ship);
+		// The first (alive) ship in an NPC block
+		// serves as the flagship of the group.
+		if(!npcFlagship)
+			npcFlagship = ship;
+
+		// Only the flagship of an NPC considers the
+		// player: the rest of the NPC track it.
+		if(npcFlagship && ship != npcFlagship)
+			ship->SetParent(npcFlagship);
+		else if(!ship->GetPersonality().IsUninterested())
+			ship->SetParent(flagship);
+		else
+			ship->SetParent(nullptr);
+	}
+}
+
+
+
+void Engine::CheckNpcSpawns()
+{
+	const shared_ptr<Ship> &flagshipPtr = player.FlagshipPtr();
+	for(const NPC *npc : player.UpdateMissionNPCs())
+		Place(*npc, flagshipPtr);
 }
 
 

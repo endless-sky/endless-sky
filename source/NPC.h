@@ -91,7 +91,8 @@ public:
 	const EsUuid &UUID() const noexcept;
 
 	// Update or check spawning and despawning for this NPC.
-	void UpdateSpawning(const PlayerInfo &player);
+	// Return true if this NPC should be spawned right now.
+	bool UpdateSpawning();
 	bool ShouldSpawn() const;
 
 	// Get the personality that dictates the behavior of the ships associated with this set of NPCs.
@@ -156,6 +157,11 @@ private:
 	// Whether we have actually checked spawning conditions yet. (This
 	// will generally be true, except when reloading a save.)
 	bool checkedSpawnConditions = false;
+	// If true, an NPC whose spawn conditions are met when they are checked
+	// mid-flight can instantly spawn. If false, this NPC's ships can only
+	// be spawned when the player departs from a planet, or upon immediately
+	// accepting an in-flight mission.
+	bool instantSpawning = false;
 
 	// The ships may be listed individually or referred to as a fleet, and may
 	// be customized or just refer to stock objects:

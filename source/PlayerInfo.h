@@ -269,7 +269,9 @@ public:
 	void SortAvailable();
 
 	const Mission *ActiveInFlightMission() const;
-	void UpdateMissionNPCs();
+	// Update mission NPCs with the player's current conditions.
+	// Return the NPCs that should be spawned right now.
+	std::vector<const NPC *> UpdateMissionNPCs();
 	void AcceptJob(const Mission &mission, UI &ui);
 	// Check to see if there is any mission to offer right now.
 	Mission *MissionToOffer(Mission::Location location);

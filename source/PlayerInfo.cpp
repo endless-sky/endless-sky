@@ -2472,11 +2472,15 @@ const Mission *PlayerInfo::ActiveInFlightMission() const
 
 
 
-// Update mission NPCs with the player's current conditions.
-void PlayerInfo::UpdateMissionNPCs()
+vector<const NPC *> PlayerInfo::UpdateMissionNPCs()
 {
+	vector<const NPC *> spawn;
 	for(Mission &mission : missions)
-		mission.UpdateNPCs(*this);
+	{
+		vector<const NPC *> npcs = mission.UpdateNPCs();
+		spawn.insert(spawn.end(), npcs.begin(), npcs.end());
+	}
+	return spawn;
 }
 
 
