@@ -462,29 +462,25 @@ mission "Ask Quarg About Coalition Late"
 				clear "ask quarg coalition late: aid"
 			`	You get up and are just about to leave when it says, "<first> <last>." The Quarg's gaze pierces you, its eye on the same level as your own. "Where is your home?"`
 			choice
-				`	"I come from <home planet>, in the Dirt Belt."`
+				`	"I come from New Boston, in the Dirt Belt."`
 					to display
 						has "start: default"
-				`	"I come from <home planet>, in the Deep."`
+				`	"I come from Midgard, in the Deep."`
 					to display
 						has "start: deep"
-				`	"I come from <home planet> of the Paradise Worlds."`
+				`	"I come from Mainsail of the Paradise Worlds."`
 					to display
 						has "start: paradise"
-				`	"I come from <home planet>, in Hai space."`
+				`	"I come from Greenwater, in Hai space."`
 					to display
 						has "start: hai"
-				`	"I was born on <home planet>."`
+				`	"I was born on Earth."`
+					goto homeworld
 					to display
 						has "start: syndicate"
 				`	"I come from <start planet>, in the <start system> system."`
 					to display
-						not "start: default"
-						not "start: deep"
-						not "start: paradise"
-						not "start: hai"
-						not "start: syndicate"
-					goto homeworld
+						not "start: vanilla"
 				`	"My ship is my home."`
 					goto ship
 				`	"I don't really have a home."`
