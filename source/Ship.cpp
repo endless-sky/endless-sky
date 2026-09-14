@@ -4002,6 +4002,15 @@ double Ship::ReverseThrust() const
 
 
 
+bool Ship::CanUseAfterburner() const
+{
+	if(!cache.afterburnerThrust)
+		return false;
+	return !CannotAct(ActionType::AFTERBURNER);
+}
+
+
+
 bool Ship::ShouldUseAfterburner() const
 {
 	if(!cache.afterburnerThrust)
