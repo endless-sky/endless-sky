@@ -3348,6 +3348,16 @@ bool PlayerInfo::SelectEscorts(const Rectangle &box, bool hasShift)
 			matched = true;
 			SelectEscort(ship, &first);
 		}
+	// If there had been a match, the flagship would have been updated to
+	// select the first matching escort. Since there is no match, if the
+	// currently targeted ship is an escort, clear the target in order to
+	// prevent your target from desyncing with your escort selection.
+	// (The UI for having an escort targeted by your flagship and having it
+	// selected for issuing orders is currently the same, so the selection
+	// and target being desynced can easily cause confusion when issuing orders.)
+	Ship *flagship = Flagship();
+	if(!matched && !hasShift && flagship && flagship->GetTargetShip() && flagship->GetTargetShip()->IsYours())
+		flagship->SetTargetShip(nullptr);
 	return matched;
 }
 
@@ -3429,6 +3439,13 @@ void PlayerInfo::DeselectEscort(const Ship *ship)
 			selectedEscorts.erase(it);
 			return;
 		}
+}
+
+
+
+void PlayerInfo::ClearSelectedEscorts()
+{
+	selectedEscorts.clear();
 }
 
 
