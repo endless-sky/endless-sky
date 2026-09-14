@@ -3356,7 +3356,7 @@ bool PlayerInfo::SelectEscorts(const Rectangle &box, bool hasShift)
 	// selected for issuing orders is currently the same, so the selection
 	// and target being desynced can easily cause confusion when issuing orders.)
 	Ship *flagship = Flagship();
-	if(!matched && flagship && flagship->GetTargetShip() && flagship->GetTargetShip()->IsYours())
+	if(!matched && !hasShift && flagship && flagship->GetTargetShip() && flagship->GetTargetShip()->IsYours())
 		flagship->SetTargetShip(nullptr);
 	return matched;
 }
