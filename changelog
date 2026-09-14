@@ -1,3 +1,125 @@
+Version 0.11.3:
+  * Breaking change:
+    * All plugins with tractor beam outfits should divide their "tractor beam" attribute by 5 in order to have the same pull strength as before this update.
+  * Big changes:
+    * Added a new mission chain for the Successors. (@Daeridanii1)
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@a4358, @flyingspacesquirrel, @nickshanks, @Someone-named-sky, @Wedge009, @zaveshaa)
+      * Updated "Hai Legacy 2" to have the same offer conditions as "Hai Legacy 1", as the two mission are intended to offer alongside one another. (@apttie)
+      * Include the deadline date in the description of "Deep: TMBR 0". (@ThrawnCA)
+      * "Timothy Radrickson 5e" now offers on landing, as suggested by the on offer conversation. (@nickshanks)
+      * Fixed a start-based text substitution in "Remnant: Deep Surveillance". (@warp-core)
+      * Prevent the "Remnant Expanded Horizons Astral job" from choosing the current system as the waypoint. (@warp-core)
+      * Fixed "FW Southern Recon 1B" from allowing the player to say that they can give an electron beam that isn't in a location that the mission can actually take from. (@warp-core)
+    * Engine bugs:
+      * Fixed the spaceport panel appearing on top of conversations and dialogs it created. (@warp-core)
+      * A plugin that only lists a game version as a dependency will now list that version in the UI, instead of only listing dependencies if a dependency on another plugin is provided. (@TomGoodIdea)
+      * Prevent the save file timestamp tooltip from fluctuating on some platforms. (@apttie)
+      * Prevent ships from over-transferring energy/fuel when assisting a ship. (@apttie)
+      * Administrative costs set on ships are now properly stored in the save file and passed down to variants of that ship. (@Amazinite)
+      * Prevent person ships from mind controlling your escorts. (@Amazinite)
+      * Fixed a potential crash and unintended save file deletion caused by creating a new pilot with the same name as an old pilot if the old pilot was from before 0.11.1 and hadn't been played in a newer version of the game. (@Amazinite)
+      * Outfit attributes are now stored as integers, avoiding various odd behaviors caused by floating point precision errors that could be encountered when selling outfits. (@Amazinite)
+      * Ships that are in the process of exploding no longer un-pause their animations. (@Amazinite)
+      * The "Select nearest asteroid" command is now able to utilize the scanners on your escorts. (@Amazinite)
+      * Updated how missions check whether an outfit is removable to account for which outfits should be available for removal given the current location. (@warp-core)
+      * Correct the error message in the outfitter when you're unable to install ammo storage. Previously it would always assume that you couldn't install an outfit in the ammo category because you didn't have ammo space. (@Amazinite)
+      * Don't try removing an outfit from your flagship if it doesn't have one in GameAction. (@Amazinite)
+      * Fixed various cases where your selected escorts for issuing orders could become desynced from the ship you are currently targeting. (@Amazinite)
+  * Game content:
+    * New content:
+      * Rewrote and reintroduced the Delvan Shipworm missions. (@LazerLit)
+    * Mission changes:
+      * Replaced various outfit checks with attribute checks in mission offer conditions. This allows certain plugin outfits to trigger vanilla missions that were previously looking for vanilla outfits. (@apttie)
+      * Removed the immediate launch from the on offer conversation in "Remnant Keystone 6". (@ThrawnCA)
+      * Tweak the wording of a choice in "War Reactions: Syndicate Orphan" depending on the previous choices made in the conversation. (@ciridae1)
+      * Replaced the "fine" action with a a "debt" action in "Hai Legacy 1" and updated the dialog to reflect this. (@Wedge009)
+      * Updated the conversation in the Anomalocaris mission to clarify the requirements that the player must meet to continue the story. (@Hurleveur)
+      * Edited the wording in the conversations of the Pond Strider missions for clarity and flow. (@flyingspacesquirrel)
+      * "Ask Quarg About Coalition Late" now has a choice that accounts for the player having a non-vanilla starting location. (@nickshanks)
+    * Artwork:
+    * Balance:
+      * Doubled the Pond Strider's fuel capacity from 300 to 600. (@flyingspacesquirrel)
+      * Buffed the flamethrower. (@LixiChronikouOriou)
+        * Firing fuel: .4 -> .15
+        * Heat damage: 125 -> 160
+        * Damage at max range: 50% -> 70%
+    * Other:
+      * The flamethrower can now appear equipped on randomly spawned NPCs after it becomes available in the main campaign. (@LixiChronikouOriou)
+      * Added administration costs to all ships. This cost is only used if using the fleet size limit gamerule that limits your fleet size based off of the administration costs of your ships. (@mOctave)
+      * The Author government is no longer capable of fining the player. (@Amazinite)
+      * Removed the "Pirate Advanced" outfitter from Stormhold. (@LixiChronikouOriou)
+      * Updated the description of the Carrier to de-emphasize its ability to take part in head-to-haed combat. (@flyingspacesquirrel)
+      * All vanilla starting scenarios now have a "start: vanilla" condition set.
+  * Game mechanics:
+    * New mechanics:
+      * Added a condition for determining if an event is scheduled. (@Amazinite)
+      * Minable asteroids can now be damaged by corrosion. (@apttie)
+      * Added a condition for checking how many of a given outfit could be taken from the player by a mission. (@warp-core)
+      * Outfits can now be given a "can jettison" attribute that allows them to be jettisoned in flight from the ship info panel while being installed. (@Amazinite)
+      * Minable asteroids can now have all damage-over-time visual effects applied to them. (@Amazinite)
+      * Minable asteroids now utilize heat mechanics, meaning that they can have their heat increased by heat damage weapons, which can influence the tracking of infrared missiles and cause the asteroid to "overheat" and take overheat damage if the asteroid is defined to do so. (@TomGoodIdea)
+      * The habitable distance of systems and the orbital periods of objects within the system can now be automatically calculated by the game if they are not defined in the system definition. (@Amazinite)
+      * Targeting confusion characteristics can now be defined as root node objects and assigned to governments and fleets. (@Anarchist2)
+      * Added an "optical size" attribute that gets used in place of mass when a ship is being targeted by an optical-guided projectile. (@Amazinite)
+    * Gamerules:
+      * Added gamerules for tying the arrival distance of a system to its habitable distance. (@Amazinite)
+    * Mechanics changes:
+      * Ships that are entirely out of energy and do not have the means of generating their own energy are now considered disabled, causing them to drag to a stop instead of drifting off into deep space. (@apttie)
+      * Improved tractor beam and flotsam behavior for heavy outfits. (@Amazinite)
+        * Flotsam mass no longer influences the tractor beam's pull velocity.
+        * Flotsam captured within a tractor beam cannot decay.
+        * All flotsam has the same lifetime range (a random value between 60 and 180 seconds), instead of the range changing based on the contents of the flotsam.
+      * When using a fleet equipped with jump drives, your escorts will now appear in the destination system close to your flagship, instead of scattering around the system in a ring. (@apttie)
+      * Changed confusion to now be angle-based instead of position-based. (@Anarchist2)
+      * Allow NPCs to have outfits like bunks and expansions in their cargo again. (@Amazinite)
+  * Graphics:
+  * Performance:
+    * Ships now cache commonly used attributes and calculations. This should result in a noticeably improvement when there are lots of ships spawned in. (@Amazinite)
+  * User interface:
+    * Preferences and controls:
+      * Added an option to target asteroids based on the individual value of its drops instead of the sum value of all drops. (@Amazinite)
+      * Added a "Damaged fighters retreat" preference that controls whether your fighters and drones should retreat to their carrier when damaged. (@Amazinite)
+      * Damaged fighters can now be forced to deployed by holding Shift+Deploy. The message that appears when deploying fighters will inform you if some fighters did not deploy or were forced to deploy due to being too damaged. (@Amazinite)
+      * Added a preference for controlling the font size of font displayed within scrollable or expandable areas of the UI. (@Amazinite)
+      * Added a setting for locking fast-foward to the CapsLock state. (@ThrosturX)
+      * Hitting the afterburner command while you don't have an afterburner installed or usable no longer cancels autopilot. (@Amazinite)
+      * Sending the back/reverse command after sending a stop command no longer cancels the stop command, as the stop command keybind is shift+back. (@Amazinite)
+    * Interface definitions:
+      * Moved parts of the BoardingPanel and TradingPanel to be defined in the interface game data file. (@nickshanks)
+    * Other:
+      * Text in spaceport news, start scenario descriptions, boarding panel capture messages, the hail panel, and the lists of salaries, trubite, and licenses in the player info panel are now all capable of scrolling if the amount of text to display would overflow the UI. (@Amazinite)
+      * If you capture a ship that has illegal outfits, you will now be warned of their presence in the boarding panel. (@ThrawnCA)
+      * Renamed "max" to "capacity" in the ship info energy/heat table visible in the shops and ship info panel. (@Amazinite)
+      * When scanned and fined by an NPC, the message that you were fined will now name the ship that was scanned and list the illegal outfits that you were fined for. (@Amazinite)
+      * The outfitter, shipyard, and their respective map panels now support animated thumbnails for items in the shop. (@Amazinite)
+      * When using the find functionality in the outfitter, scroll extra for outfits that are hidden under the key in the bottom left corner of the screen. (@Amazinite)
+      * Tweaked the wording of the "unplunderable" attribute text in the outfitter to clarify that the outfit is only unplunderable if it is installed. (@ThrawnCA)
+      * Added a highlight when hovering over outfits in the ship info panel to show that they can be selected for use with the dump cargo/jettison button. (@Amazinite)
+      * Added a highlight when hovering of the name of your ship in the ship info panel to show that clicking on it allows you to rename the ship. (@Amazinite)
+      * You are now prevented from naming a snapshot with characters that aren't allowed in a file name, instead of throwing an error after the file fails to be created. (@Koranir)
+      * The boarding panel now has icons next to the plunderable outfits to designate whether they are in the ship's cargo hold or installed on the ship. (@Amazinite)
+      * Changed the hotkey for the Sell Minables button in the trading panel from 'm' to 'n' or 'shift+m' as to not overlap with the common map keybind. (@Amazinite)
+      * Clicking on empty space now clears your currently selected planet, in addition to previously clearing your currently selected ships or asteroid. (@Amazinite)
+      * You can now buy outfits from the outfitter directly into storage using the "Store" button. (@Amazinite)
+      * The "Uninstall" button in the outfitter now moves outfits from your ship into your cargo hold first. If your cargo hold is full, it moves outfits into storage instead. (@Amazinite)
+  * Under the hood:
+    * Log a warning that plugin about.txt is deprecated for plugins that still use the old metadata format. (@TomGoodIdea)
+    * Split the "Plugins" source file into "Plugin" and "PluginManager". (@TomGoodIdea)
+    * The game now shrinks textures that are too large to upload to the GPU until they are accepted. (@TomGoodIdea)
+    * Support devices with the EXT version of framebuffer objects. (@TomGoodIdea)
+    * Replace some old require nodes with outfit condition checks. (@apttie)
+    * Fix IntelliSense "missing OpenGL header" in VSCode on Mac OS. (@nickshanks)
+    * Rewrote the ExclusiveItem class to use std::variant. (@TomGoodIdea)
+    * Moved various functionality from Ship to Entity. (@Amazinite)
+    * Updated DrawList and BatchDrawList to utilize Drawables. (@Amazinite)
+    * Replaced Body with Drawable in a few locations. (@Amazinite)
+  * CI/CD and development environment:
+    * Update MacOS runners to macos-15. (@TomGoodIdea)
+  * Documentation:
+    * Improve the description of --tq-threads launch argument. (@TomGoodIdea)
+
 Version 0.11.2:
   * Bug fixes:
     * Content bugs:
