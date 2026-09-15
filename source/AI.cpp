@@ -425,6 +425,7 @@ namespace {
 	struct AimCandidate {
 		double dps = 0.;
 		Point aim;
+		bool usesAmmo = false;
 	};
 }
 
@@ -3776,16 +3777,32 @@ Point AI::TargetAim(const Ship &ship, const Body &target, FireCommand &targeting
 		targeting.SetFire(index);
 		p += min(steps, weapon->TotalLifetime()) * v;
 
-		auto &[dps, aim] = candidates[velocity];
+		auto &[dps, aim, usesAmmo] = candidates[velocity];
 		dps += (weapon->ShieldDamage() + weapon->HullDamage()) / weapon->Reload();
 		aim += p.Unit();
+		usesAmmo |= ammo != nullptr;
 	}
 
 	// Determine which aim point yields the highest expected DPS on target.
 	auto bestIt = candidates.begin();
+	bool bestUsesAmmo = bestIt != candidates.end() ? bestIt->second.usesAmmo : false;
 	for(auto it = candidates.begin(); it != candidates.end(); ++it)
-		if(it->second.dps > bestIt->second.dps)
+	{
+		// Prefer candidates that use ammo over those that don't, even if
+		// the DPS is lower, as we want to make each ammo count.
+		bool usesAmmo = it->second.usesAmmo;
+		if(!bestUsesAmmo && usesAmmo)
+		{
 			bestIt = it;
+			bestUsesAmmo = true;
+		}
+		else if(bestUsesAmmo && !usesAmmo)
+		{
+			// If the best so far uses ammo, only consider other candidates that use ammo.
+		}
+		else if(it->second.dps > bestIt->second.dps)
+			bestIt = it;
+	}
 	return bestIt != candidates.end() ? bestIt->second.aim : target.Position() - ship.Position();
 }
 
