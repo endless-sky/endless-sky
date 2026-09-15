@@ -38,16 +38,10 @@ Weapon::Weapon(const DataNode &node)
 // Load from a "weapon" node, either in an outfit or in a ship (explosion).
 void Weapon::Load(const DataNode &node)
 {
+	bool isClustered = isLoaded ? !isStreamed : false;
 	isLoaded = true;
-
-	bool isClustered = false;
 	calculatedDamage = false;
 	doesDamage = false;
-	bool safeRangeOverriden = false;
-	bool disabledDamageSet = false;
-	bool minableDamageSet = false;
-	bool relativeDisabledDamageSet = false;
-	bool relativeMinableDamageSet = false;
 
 	for(const DataNode &child : node)
 	{
