@@ -527,14 +527,10 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 				if(grand.Size() >= 3)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
-					for(const DataNode &great : grand)
-						logbook[date].Load(great);
+					logbook[date].Load(grand);
 				}
 				else if(grand.Size() >= 2)
-				{
-					for(const DataNode &great : grand)
-						specialLogs[grand.Token(0)][grand.Token(1)].Load(great);
-				}
+					specialLogs[grand.Token(0)][grand.Token(1)].Load(grand);
 			}
 		}
 		else if(key == "start")
@@ -2142,7 +2138,11 @@ const map<Date, BookEntry> &PlayerInfo::Logbook() const
 
 void PlayerInfo::AddLogEntry(const BookEntry &logbookEntry)
 {
-	logbook[date].Add(logbookEntry);
+	BookEntry &dateEntry = logbook[date];
+	dateEntry.Add(logbookEntry);
+	// If this entry doesn't already have a source system, give it one.
+	if(!dateEntry.SourceSystem())
+		dateEntry.SetSourceSystem(system);
 }
 
 
@@ -3002,7 +3002,7 @@ int64_t PlayerInfo::GetTributeTotal() const
 
 // Check if the player knows the location of the given system (whether or not
 // they have actually visited it).
-bool PlayerInfo::HasSeen(const System &system) const
+bool PlayerInfo::HasSeen(const System &system, bool excludeMissions) const
 {
 	if(&system == this->system)
 		return true;
@@ -3012,23 +3012,26 @@ bool PlayerInfo::HasSeen(const System &system) const
 	if(!shrouded && seen.contains(&system))
 		return true;
 
-	auto usesSystem = [&system](const Mission &m) noexcept -> bool
+	if(!excludeMissions)
 	{
-		if(!m.IsVisible())
-			return false;
-		if(m.Waypoints().contains(&system))
-			return true;
-		if(m.MarkedSystems().contains(&system))
-			return true;
-		for(auto &&p : m.Stopovers())
-			if(p->IsInSystem(&system))
+		auto usesSystem = [&system](const Mission &m) noexcept -> bool
+		{
+			if(!m.IsVisible())
+				return false;
+			if(m.Waypoints().contains(&system))
 				return true;
-		return m.Destination()->IsInSystem(&system);
-	};
-	if(any_of(availableJobs.begin(), availableJobs.end(), usesSystem))
-		return true;
-	if(any_of(missions.begin(), missions.end(), usesSystem))
-		return true;
+			if(m.MarkedSystems().contains(&system))
+				return true;
+			for(auto &&p : m.Stopovers())
+				if(p->IsInSystem(&system))
+					return true;
+			return m.Destination()->IsInSystem(&system);
+		};
+		if(any_of(availableJobs.begin(), availableJobs.end(), usesSystem))
+			return true;
+		if(any_of(missions.begin(), missions.end(), usesSystem))
+			return true;
+	}
 
 	if(shrouded)
 	{
@@ -3076,18 +3079,21 @@ bool PlayerInfo::HasVisited(const Planet &planet) const
 
 // Check if the player knows the name of a system, either from visiting there or
 // because a job or active mission includes the name of that system.
-bool PlayerInfo::KnowsName(const System &system) const
+bool PlayerInfo::KnowsName(const System &system, bool excludeMissions) const
 {
 	if(CanView(system))
 		return true;
 
-	for(const Mission &mission : availableJobs)
-		if(mission.Destination()->IsInSystem(&system))
-			return true;
+	if(!excludeMissions)
+	{
+		for(const Mission &mission : availableJobs)
+			if(mission.Destination()->IsInSystem(&system))
+				return true;
 
-	for(const Mission &mission : missions)
-		if(mission.IsVisible() && mission.Destination()->IsInSystem(&system))
-			return true;
+		for(const Mission &mission : missions)
+			if(mission.IsVisible() && mission.Destination()->IsInSystem(&system))
+				return true;
+	}
 
 	return false;
 }
