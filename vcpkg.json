@@ -45,10 +45,7 @@
 					"platform": "linux"
 				},
 				"sdl2",
-				{
-					"name": "sdl3",
-					"platform": "!osx"
-				},
+				"sdl3",
 				"pkgconf"
 			]
 		},
