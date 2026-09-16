@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Minable.h"
 
+#include "DamageDealt.h"
 #include "DataNode.h"
 #include "Effect.h"
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "MinableDamageDealt.h"
 #include "Outfit.h"
 #include "pi.h"
 #include "Projectile.h"
@@ -296,20 +296,6 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 
 
-// Damage this object (because a projectile collided with it).
-void Minable::TakeDamage(const MinableDamageDealt &damage)
-{
-	levels.hull -= damage.hullDamage;
-	prospecting += damage.prospecting;
-	levels.heat += damage.heat;
-	levels.corrosion += damage.corrosion;
-	levels.burning += damage.burn;
-
-	levels.heat = max(0., levels.heat);
-}
-
-
-
 double Minable::Mass() const
 {
 	return attributes.Mass();
@@ -320,6 +306,14 @@ double Minable::Mass() const
 double Minable::MaxHeat() const
 {
 	return MAXIMUM_TEMPERATURE * (attributes.Mass() + attributes.Get("heat capacity"));
+}
+
+
+
+int Minable::DoTakeDamage(const DamageDealt &damage, const Government *hitBy)
+{
+	prospecting += damage.Prospecting();
+	return 0;
 }
 
 

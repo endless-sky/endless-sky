@@ -20,14 +20,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weather.h"
 
 class DamageDealt;
-class Minable;
-class MinableDamageDealt;
-class Ship;
+class Entity;
 class Weapon;
 
 
 
-// A class that calculates how much damage a ship should take given the ship's
+// A class that calculates how much damage an entity should take given the entity's
 // attributes and the weapon it was hit by for each damage type. Bundles the
 // results of these calculations into a DamageDealt object.
 class DamageProfile {
@@ -37,19 +35,18 @@ public:
 	// Constructor for damage taken from a hazard.
 	explicit DamageProfile(Weather::ImpactInfo info);
 
-	// Calculate the damage dealt to the given ship.
-	DamageDealt CalculateDamage(const Ship &ship, bool ignoreBlast = false) const;
-	MinableDamageDealt CalculateDamage(const Minable &minable) const;
+	// Calculate the damage dealt to the given entity.
+	DamageDealt CalculateDamage(const Entity &entity, bool ignoreBlast = false) const;
 
 
 private:
 	// Calculate the shared k and rSquared variables for
-	// any ship hit by a blast.
+	// any entity hit by a blast.
 	void CalculateBlast();
-	// Determine the damage scale for the given body.
-	double Scale(double scale, const Body &body, bool blast) const;
+	// Determine the damage scale for the given entity.
+	double Scale(double scale, const Entity &entity, bool blast) const;
 	// Populate the given DamageDealt object with values.
-	void PopulateDamage(DamageDealt &damage, const Ship &ship) const;
+	void PopulateDamage(DamageDealt &damage, const Entity &entity) const;
 
 
 private:
@@ -65,7 +62,7 @@ private:
 	bool isHazard = false;
 
 	// Fields for caching blast radius calculation values
-	// that are shared by all ships that this profile could
+	// that are shared by all entities that this profile could
 	// impact.
 	double k = 0.;
 	double rSquared = 0.;

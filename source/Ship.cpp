@@ -3230,93 +3230,6 @@ double Ship::CurrentSpeed() const
 
 
 
-// This ship just got hit by a weapon. Take damage according to the
-// DamageDealt from that weapon. The return value is a ShipEvent type,
-// which may be a combination of PROVOKED, DISABLED, and DESTROYED.
-// Create any target effects as sparks.
-int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
-{
-	// If the damage source government deals a DoT effect to this ship that
-	// disables or kills it outside of this function call, that event should
-	// still be attributed to this government.
-	// Don't record hazards as having dealt the last hit (which have a nullptr
-	// source government).
-	if(sourceGovernment)
-		lastHitBy = sourceGovernment;
-	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
-
-	bool wasDisabled = IsDisabled();
-	bool wasDestroyed = IsDestroyed();
-
-	levels.Damage(damage.Levels());
-	if(damage.Levels().shields && !isDisabled)
-	{
-		int disabledDelay = cache.depletedShieldDelay;
-		shieldDelay = max(shieldDelay, (levels.shields <= 0. && disabledDelay) ? disabledDelay : cache.shieldDelay);
-	}
-	if(damage.Levels().hull && !isDisabled)
-		hullDelay = max(hullDelay, cache.repairDelay);
-
-	if(damage.HitForce())
-		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
-
-	// Prevent various stats from reaching unallowable values.
-	levels.hull = min(levels.hull, MaxHull());
-	levels.shields = min(levels.shields, MaxShields());
-
-	// Recalculate the disabled ship check.
-	isDisabled = true;
-	isDisabled = IsDisabled();
-
-	// Report what happened to this ship from this weapon.
-	int type = 0;
-	if(!wasDisabled && isDisabled)
-	{
-		type |= ShipEvent::DISABLE;
-		hullDelay = max(hullDelay, cache.disabledRepairDelay);
-	}
-	if(!wasDestroyed && IsDestroyed())
-	{
-		type |= ShipEvent::DESTROY;
-
-		if(IsYours())
-			Messages::Add({"Your " + DisplayModelName()
-				+ " \"" + GivenName() + "\" has been destroyed.",
-				GameData::MessageCategories().Get("high duplicating")});
-	}
-
-	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event by itself.
-	if(levels.heat > MaxHeat())
-	{
-		isOverheated = true;
-		isDisabled = true;
-	}
-	else if(levels.heat < .9 * MaxHeat())
-		isOverheated = false;
-
-	// If this ship did not consider itself an enemy of the ship that hit it,
-	// it is now "provoked" against that government.
-	if(sourceGovernment && !sourceGovernment->IsEnemy(government)
-			&& !personality.IsPacifist() && (!personality.IsForbearing()
-				|| ((damage.Levels().shields || damage.Levels().discharge) && ShieldFraction() < .9)
-				|| ((damage.Levels().hull || damage.Levels().corrosion) && HullFraction() < .9)
-				|| ((damage.Levels().heat || damage.Levels().burning) && isOverheated)
-				|| ((damage.Levels().energy || damage.Levels().ionization) && EnergyFraction() < 0.5)
-				|| ((damage.Levels().fuel || damage.Levels().leakage) && levels.fuel < navigation.JumpFuel() * 2.)
-				|| (damage.Levels().scrambling && CalculateJamChance(levels.scrambling) > 0.1)
-				|| (damage.Levels().slowness && levels.slowness > 10.)
-				|| (damage.Levels().disruption && levels.disruption > 100.)))
-		type |= ShipEvent::PROVOKE;
-
-	// Create target effect visuals, if there are any.
-	for(const auto &[effect, count] : damage.GetWeapon().TargetEffects())
-		CreateSparks(visuals, effect, count * damage.Scaling());
-
-	return type;
-}
-
-
-
 // Apply a force to this ship, accelerating it. This might be from a weapon
 // impact, or from firing a weapon, for example.
 void Ship::ApplyForce(const Point &force, bool gravitational)
@@ -4115,69 +4028,6 @@ double Ship::TurretTurnMultiplier() const
 
 
 
-const ResourceLevels &Ship::DamageProtection() const
-{
-	return cache.damageProtection;
-}
-
-
-
-double Ship::PiercingProtection() const
-{
-	return cache.piercingProtection;
-}
-
-
-
-double Ship::PiercingResistance() const
-{
-	return cache.piercingResistance;
-}
-
-
-
-double Ship::HighShieldPermeability() const
-{
-	return cache.highShieldPermeability;
-}
-
-
-
-double Ship::LowShieldPermeability() const
-{
-	return cache.lowShieldPermeability;
-}
-
-
-
-double Ship::CloakedShieldPermeability() const
-{
-	return cache.cloakedShieldPermeability;
-}
-
-
-
-double Ship::CloakedHullProtection() const
-{
-	return cache.cloakedHullProtection;
-}
-
-
-
-double Ship::CloakedShieldProtection() const
-{
-	return cache.cloakedShieldProtection;
-}
-
-
-
-double Ship::ForceProtection() const
-{
-	return cache.forceProtection;
-}
-
-
-
 void Ship::CacheAttributes()
 {
 	// Capacity related attributes:
@@ -4209,6 +4059,80 @@ void Ship::CacheAttributes()
 
 	cache.Calibrate(*this);
 	Entity::CacheAttributes();
+}
+
+
+
+int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy)
+{
+	// If the damage source government deals a DoT effect to this ship that
+	// disables or kills it outside of this function call, that event should
+	// still be attributed to this government.
+	// Don't record hazards as having dealt the last hit (which have a nullptr
+	// source government).
+	if(hitBy)
+		lastHitBy = hitBy;
+	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
+
+	bool wasDisabled = IsDisabled();
+	bool wasDestroyed = IsDestroyed();
+
+	if(damage.Levels().shields && !isDisabled)
+	{
+		int disabledDelay = cache.depletedShieldDelay;
+		shieldDelay = max(shieldDelay, (levels.shields <= 0. && disabledDelay) ? disabledDelay : cache.shieldDelay);
+	}
+	if(damage.Levels().hull && !isDisabled)
+		hullDelay = max(hullDelay, cache.repairDelay);
+
+	if(damage.HitForce())
+		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
+
+	// Recalculate the disabled ship check.
+	isDisabled = true;
+	isDisabled = IsDisabled();
+
+	// Report what happened to this ship from this weapon.
+	int type = 0;
+	if(!wasDisabled && isDisabled)
+	{
+		type |= ShipEvent::DISABLE;
+		hullDelay = max(hullDelay, cache.disabledRepairDelay);
+	}
+	if(!wasDestroyed && IsDestroyed())
+	{
+		type |= ShipEvent::DESTROY;
+
+		if(IsYours())
+			Messages::Add({"Your " + DisplayModelName()
+				+ " \"" + GivenName() + "\" has been destroyed.",
+				GameData::MessageCategories().Get("high duplicating")});
+	}
+
+	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event by itself.
+	if(levels.heat > MaxHeat())
+	{
+		isOverheated = true;
+		isDisabled = true;
+	}
+	else if(levels.heat < .9 * MaxHeat())
+		isOverheated = false;
+
+	// If this ship did not consider itself an enemy of the ship that hit it,
+	// it is now "provoked" against that government.
+	if(hitBy && !hitBy->IsEnemy(government)
+			&& !personality.IsPacifist() && (!personality.IsForbearing()
+				|| ((damage.Levels().shields || damage.Levels().discharge) && ShieldFraction() < .9)
+				|| ((damage.Levels().hull || damage.Levels().corrosion) && HullFraction() < .9)
+				|| ((damage.Levels().heat || damage.Levels().burning) && isOverheated)
+				|| ((damage.Levels().energy || damage.Levels().ionization) && EnergyFraction() < 0.5)
+				|| ((damage.Levels().fuel || damage.Levels().leakage) && levels.fuel < navigation.JumpFuel() * 2.)
+				|| (damage.Levels().scrambling && CalculateJamChance(levels.scrambling) > 0.1)
+				|| (damage.Levels().slowness && levels.slowness > 10.)
+				|| (damage.Levels().disruption && levels.disruption > 100.)))
+		type |= ShipEvent::PROVOKE;
+
+	return type;
 }
 
 

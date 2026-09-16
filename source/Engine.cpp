@@ -42,7 +42,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Mask.h"
 #include "Messages.h"
 #include "Minable.h"
-#include "MinableDamageDealt.h"
 #include "Mission.h"
 #include "NPC.h"
 #include "shader/OutlineShader.h"
@@ -2582,7 +2581,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			for(Body *body : blastCollisions)
 			{
 				auto minable = static_cast<Minable *>(body);
-				minable->TakeDamage(damage.CalculateDamage(*minable));
+				minable->TakeDamage(visuals, damage.CalculateDamage(*minable), nullptr);
 			}
 		}
 		else if(hit)
@@ -2596,7 +2595,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			else if(collisionType == CollisionType::MINABLE)
 			{
 				auto minable = static_cast<Minable *>(hit);
-				minable->TakeDamage(damage.CalculateDamage(*minable));
+				minable->TakeDamage(visuals, damage.CalculateDamage(*minable), nullptr);
 			}
 		}
 

@@ -15,11 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Entity.h"
 
+#include "DamageDealt.h"
 #include "Effect.h"
 #include "GameData.h"
 #include "image/Mask.h"
 #include "Random.h"
 #include "Visual.h"
+#include "Weapon.h"
 
 #include <algorithm>
 
@@ -238,6 +240,20 @@ bool Entity::IsTargetable() const
 
 
 
+double Entity::Cloaking() const
+{
+	return 0.;
+}
+
+
+
+bool Entity::IsCloaked() const
+{
+	return false;
+}
+
+
+
 double Entity::OpticalSize() const
 {
 	return opticalSize ? opticalSize : Mass();
@@ -255,6 +271,69 @@ double Entity::OpticalJamming() const
 double Entity::RadarJamming() const
 {
 	return radarJamming;
+}
+
+
+
+const ResourceLevels &Entity::DamageProtection() const
+{
+	return damageProtection;
+}
+
+
+
+double Entity::PiercingProtection() const
+{
+	return piercingProtection;
+}
+
+
+
+double Entity::PiercingResistance() const
+{
+	return piercingResistance;
+}
+
+
+
+double Entity::HighShieldPermeability() const
+{
+	return highShieldPermeability;
+}
+
+
+
+double Entity::LowShieldPermeability() const
+{
+	return lowShieldPermeability;
+}
+
+
+
+double Entity::CloakedShieldPermeability() const
+{
+	return cloakedShieldPermeability;
+}
+
+
+
+double Entity::CloakedHullProtection() const
+{
+	return cloakedHullProtection;
+}
+
+
+
+double Entity::CloakedShieldProtection() const
+{
+	return cloakedShieldProtection;
+}
+
+
+
+double Entity::ForceProtection() const
+{
+	return forceProtection;
 }
 
 
@@ -394,6 +473,25 @@ void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double 
 
 
 
+int Entity::TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *hitBy)
+{
+	levels.Damage(damage.Levels());
+
+	// Prevent various stats from reaching unallowable values.
+	// ResourceLevels::Damage already ensures that stats aside from hull don't become negative,
+	// so the only remaining unallowable values are overhealing hull or shields.
+	levels.hull = min(levels.hull, MaxHull());
+	levels.shields = min(levels.shields, MaxShields());
+
+	// Create target effect visuals, if there are any.
+	for(const auto &[effect, count] : damage.GetWeapon().TargetEffects())
+		CreateSparks(visuals, effect, count * damage.Scaling());
+
+	return DoTakeDamage(damage, hitBy);
+}
+
+
+
 void Entity::CacheAttributes()
 {
 	heatDissipation = attributes.Get("heat dissipation");
@@ -401,6 +499,28 @@ void Entity::CacheAttributes()
 	opticalSize = attributes.Get("optical size");
 	opticalJamming = attributes.Get("optical jamming");
 	radarJamming = attributes.Get("radar jamming");
+
+	piercingProtection = 1. + attributes.Get("piercing protection");
+	piercingResistance = attributes.Get("piercing resistance");
+	highShieldPermeability = attributes.Get("high shield permeability");
+	lowShieldPermeability = attributes.Get("low shield permeability");
+	cloakedShieldPermeability = attributes.Get("cloaked shield permeability");
+	cloakedHullProtection = attributes.Get("cloak hull protection");
+	cloakedShieldProtection = attributes.Get("cloak shield protection");
+	damageProtection.shields = 1. + attributes.Get("shield protection");
+	damageProtection.hull = 1. + attributes.Get("hull protection");
+	damageProtection.energy = 1. + attributes.Get("energy protection");
+	damageProtection.fuel = 1. + attributes.Get("fuel protection");
+	damageProtection.heat = 1. + attributes.Get("heat protection");
+	damageProtection.discharge = 1. + attributes.Get("discharge protection");
+	damageProtection.corrosion = 1. + attributes.Get("corrosion protection");
+	damageProtection.ionization = 1. + attributes.Get("ion protection");
+	damageProtection.burning = 1. + attributes.Get("burn protection");
+	damageProtection.leakage = 1. + attributes.Get("leak protection");
+	damageProtection.slowness = 1. + attributes.Get("slowing protection");
+	damageProtection.scrambling = 1. + attributes.Get("scramble protection");
+	damageProtection.disruption = 1. + attributes.Get("disruption protection");
+	forceProtection = 1. + attributes.Get("force protection");
 
 	auto CalibrateResistance = [this](const string &name, double &stat, ResourceLevels &cost) -> void {
 		stat = attributes.Get(name + " resistance");
