@@ -425,7 +425,7 @@ namespace {
 	struct AimCandidate {
 		double dps = 0.;
 		Point aim;
-		bool usesAmmo = false;
+		bool prioritize = false;
 	};
 }
 
@@ -3763,6 +3763,8 @@ Point AI::TargetAim(const Ship &ship, const Body &target, FireCommand &targeting
 		const Outfit *ammo = weapon->Ammo();
 		if(ammo && ship.OutfitCount(ammo) < weapon->AmmoUsage())
 			continue;
+		if(weapon->FiringFuel() && ship.FuelLevel() < weapon->FiringFuel())
+			continue;
 		if(includeSecondaries && weapon->Icon() && !includeSecondaries->contains(hardpoint.GetOutfit()))
 			continue;
 
@@ -3777,28 +3779,31 @@ Point AI::TargetAim(const Ship &ship, const Body &target, FireCommand &targeting
 		targeting.SetFire(index);
 		p += min(steps, weapon->TotalLifetime()) * v;
 
-		auto &[dps, aim, usesAmmo] = candidates[velocity];
+		auto &[dps, aim, prioritize] = candidates[velocity];
 		dps += (weapon->ShieldDamage() + weapon->HullDamage()) / weapon->Reload();
 		aim += p.Unit();
-		usesAmmo |= ammo != nullptr;
+		// Prioritize aiming with anything that uses ammo or fuel. If a weapon is a secondary
+		// that doesn't use ammo or fuel, still prioritize aiming with it if it's ready to fire,
+		// anticipating that non-ammo secondary weapons have long reloads and powerful projectiles.
+		prioritize |= ammo || weapon->FiringFuel() || (weapon->Icon() && hardpoint.IsReady());
 	}
 
 	// Determine which aim point yields the highest expected DPS on target.
 	auto bestIt = candidates.begin();
-	bool bestUsesAmmo = bestIt != candidates.end() ? bestIt->second.usesAmmo : false;
+	bool bestHasPriority = bestIt != candidates.end() ? bestIt->second.prioritize : false;
 	for(auto it = candidates.begin(); it != candidates.end(); ++it)
 	{
 		// Prefer candidates that use ammo over those that don't, even if
 		// the DPS is lower, as we want to make each ammo count.
-		bool usesAmmo = it->second.usesAmmo;
-		if(!bestUsesAmmo && usesAmmo)
+		bool hasPriority = it->second.prioritize;
+		if(!bestHasPriority && hasPriority)
 		{
 			bestIt = it;
-			bestUsesAmmo = true;
+			bestHasPriority = true;
 		}
-		else if(bestUsesAmmo && !usesAmmo)
+		else if(bestHasPriority && !hasPriority)
 		{
-			// If the best so far uses ammo, only consider other candidates that use ammo.
+			// If the best so far has priority, only consider other candidates that have priority.
 		}
 		else if(it->second.dps > bestIt->second.dps)
 			bestIt = it;
