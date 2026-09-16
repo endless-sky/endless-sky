@@ -91,7 +91,8 @@ public:
 	// Whether this entity can be targeted by ships and projectiles.
 	virtual bool IsTargetable() const;
 
-	// Jamming attributes that influence projectiles tracking this entity.
+	// Attributes that influence projectiles tracking this entity.
+	double OpticalSize() const;
 	double OpticalJamming() const;
 	double RadarJamming() const;
 
@@ -143,7 +144,8 @@ protected:
 
 	double heatDissipation = 0.;
 
-	// Jamming attributes that influence projectiles tracking this entity.
+	// Attributes that influence projectiles tracking this entity.
+	double opticalSize = 0.;
 	double opticalJamming = 0.;
 	double radarJamming = 0.;
 

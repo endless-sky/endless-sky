@@ -61,14 +61,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// If the player issues any of those commands, then any autopilot actions for the player get cancelled.
-	const Command &AutopilotCancelCommands()
+	bool ShouldCancelAutopilot(const Ship &flagship, const Command &activeCommands)
 	{
+		// If the player issues any of those commands, then any autopilot actions for the player get cancelled.
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD
-			| Command::AFTERBURNER | Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT
+			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT
 			| Command::AUTOSTEER | Command::STOP);
-
-		return cancelers;
+		if(activeCommands.Has(cancelers))
+			return true;
+		// The afterburner command should only cancel the autopilot
+		// if the player actually has an afterburner installed.
+		if(activeCommands.Has(Command::AFTERBURNER) && flagship.CanUseAfterburner())
+			return true;
+		return false;
 	}
 
 	bool NeedsFuel(const Ship &ship)
@@ -552,7 +557,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 		Messages::Add(*GameData::Messages().Get("coming to a stop"));
 
 	autoPilot |= activeCommands;
-	if(activeCommands.Has(AutopilotCancelCommands()))
+	if(ShouldCancelAutopilot(*flagship, activeCommands))
 	{
 		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP | Command::FLEET_JUMP));
 		canceled |= (autoPilot.Has(Command::STOP) && !activeCommands.Has(Command::STOP));
@@ -4863,7 +4868,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		if(activeCommands.Has(Command::AFTERBURNER))
 			command |= Command::AFTERBURNER;
 
-		if(activeCommands.Has(AutopilotCancelCommands()))
+		if(ShouldCancelAutopilot(ship, activeCommands))
 			autoPilot = activeCommands;
 	}
 	bool shouldAutoAim = false;

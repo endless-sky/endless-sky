@@ -552,6 +552,9 @@ public:
 	bool CanCommunicateWhileCloaked() const;
 
 	double ReverseThrust() const;
+	// Whether this ship has an afterburner installed and it can be used. Does not consider
+	// the resource cost of using the afterburner.
+	bool CanUseAfterburner() const;
 	bool ShouldUseAfterburner() const;
 
 	bool SilentJumps() const;

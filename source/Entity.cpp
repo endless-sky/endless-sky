@@ -238,6 +238,13 @@ bool Entity::IsTargetable() const
 
 
 
+double Entity::OpticalSize() const
+{
+	return opticalSize ? opticalSize : Mass();
+}
+
+
+
 double Entity::OpticalJamming() const
 {
 	return opticalJamming;
@@ -390,6 +397,8 @@ void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double 
 void Entity::CacheAttributes()
 {
 	heatDissipation = attributes.Get("heat dissipation");
+
+	opticalSize = attributes.Get("optical size");
 	opticalJamming = attributes.Get("optical jamming");
 	radarJamming = attributes.Get("radar jamming");
 
