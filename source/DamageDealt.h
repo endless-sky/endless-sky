@@ -29,7 +29,7 @@ class Weapon;
 class DamageDealt {
 public:
 	DamageDealt(const Weapon &weapon, double scaling)
-		: weapon(weapon), scaling(scaling) {}
+		: weapon(&weapon), scaling(scaling) {}
 
 	// The weapon that dealt damage.
 	const Weapon &GetWeapon() const noexcept;
@@ -47,14 +47,14 @@ private:
 	// values.
 	friend class DamageProfile;
 
-	const Weapon &weapon;
+	const Weapon *weapon;
 	double scaling;
 
 	ResourceLevels levels;
 	Point forcePoint;
 };
 
-inline const Weapon &DamageDealt::GetWeapon() const noexcept { return weapon; }
+inline const Weapon &DamageDealt::GetWeapon() const noexcept { return *weapon; }
 inline double DamageDealt::Scaling() const noexcept { return scaling; }
 
 inline const ResourceLevels &DamageDealt::Levels() const noexcept { return levels; }

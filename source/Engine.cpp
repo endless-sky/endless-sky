@@ -1918,9 +1918,14 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 	// Populate the collision detection lookup sets.
 	FillCollisionSets();
 
-	// Perform collision detection.
+	// Perform collision detection. Minable collisions apply their damage immediately.
+	// Ship collisions that happen for a single ship on the same frame are pooled together
+	// and sorted from highest to lowest shield damage, as the order that multiple collisions
+	// happen can influence the total damage dealt this frame.
+	map<Ship *, vector<ShipCollision>> shipCollisions;
 	for(Projectile &projectile : projectiles)
-		DoCollisions(projectile);
+		FindCollisions(projectile, shipCollisions);
+	DoShipCollisions(shipCollisions);
 	// Now that collision detection is done, clear the cache of ships with anti-
 	// missile systems ready to fire.
 	hasAntiMissile.clear();
@@ -2462,7 +2467,7 @@ void Engine::HandleMouseInput(Command &activeCommands)
 // Perform collision detection. Note that unlike the preceding functions, this
 // one adds any visuals that are created directly to the main visuals list. If
 // this is multi-threaded in the future, that will need to change.
-void Engine::DoCollisions(Projectile &projectile)
+void Engine::FindCollisions(Projectile &projectile, map<Ship *, vector<ShipCollision>> &collisionDamage)
 {
 	// The asteroids can collide with projectiles, the same as any other
 	// object. If the asteroid turns out to be closer than the ship, it
@@ -2572,10 +2577,7 @@ void Engine::DoCollisions(Projectile &projectile)
 					continue;
 
 				// Only directly targeted ships get provoked by blast weapons.
-				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit),
-					targeted ? gov : nullptr);
-				if(eventType)
-					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
+				collisionDamage[ship].emplace_back(damage.CalculateDamage(*ship, ship == hit), gov, targeted);
 			}
 			blastCollisions.clear();
 			asteroids.MinablesCollisionsCircle(hitPos, blastRadius, blastCollisions);
@@ -2588,11 +2590,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		else if(hit)
 		{
 			if(collisionType == CollisionType::SHIP)
-			{
-				int eventType = shipHit->TakeDamage(visuals, damage.CalculateDamage(*shipHit), gov);
-				if(eventType)
-					eventQueue.emplace_back(gov, shipHit, eventType);
-			}
+				collisionDamage[shipHit.get()].emplace_back(damage.CalculateDamage(*shipHit), gov);
 			else if(collisionType == CollisionType::MINABLE)
 			{
 				auto minable = static_cast<Minable *>(hit);
@@ -2616,6 +2614,24 @@ void Engine::DoCollisions(Projectile &projectile)
 					projectile.Kill();
 					break;
 				}
+	}
+}
+
+
+
+void Engine::DoShipCollisions(map<Ship *, vector<ShipCollision>> &collisionDamage)
+{
+	for(auto &[ship, collisions] : collisionDamage)
+	{
+		ranges::sort(collisions, std::greater<>());
+
+		shared_ptr<Ship> shipPtr = ship->shared_from_this();
+		for(const auto &[damage, gov, provokable] : collisions)
+		{
+			int eventType = ship->TakeDamage(visuals, damage, provokable ? gov : nullptr);
+			if(eventType)
+				eventQueue.emplace_back(gov, shipPtr, eventType);
+		}
 	}
 }
 
