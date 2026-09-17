@@ -364,6 +364,7 @@ public:
 	// Select one of the ships that the player owns.
 	void SelectEscort(const Ship *ship, bool hasShift);
 	void DeselectEscort(const Ship *ship);
+	void ClearSelectedEscorts();
 	void SelectEscortGroup(int group, bool hasShift);
 	void SetEscortGroup(int group, const std::set<Ship *> *newShips = nullptr);
 	std::set<Ship *> GetEscortGroup(int group);

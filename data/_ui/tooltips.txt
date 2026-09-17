@@ -540,6 +540,9 @@ tip "overheat damage threshold:"
 tip "optical jamming:"
 	`Reduces the ability of optical-guided missiles to track your ship, which is mostly useful for larger ships. The more optical jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
 
+tip "optical size:"
+	`Influences the tracking strength of optical-guided missiles targeting this ship. A larger value means the ship is easier to track.`
+
 tip "piercing:"
 	`Percentage of this weapon's damage that leaks through to the hull while the target's shields are still active.`
 
@@ -860,25 +863,32 @@ tip "scan concealment:"
 
 # Shop Tips:
 tip "outfitter: b"
-	`Buy from the outfitter and install onto the currently selected ship(s). Hold Shift, Control, or Alt to buy 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+	`Buy from the outfitter and install onto the currently selected ship(s).`
+	`Hold Shift, Control, or Alt to buy 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
 
 tip "outfitter: s"
-	`Sell from cargo, storage, or the currently selected ship(s), in that order. Hold Shift, Control, or Alt to sell 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+	`Sell from cargo, storage, or the currently selected ship(s), in that order.`
+	`Hold Shift, Control, or Alt to sell 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
 
 tip "outfitter: i"
-	`Install on the currently selected ship(s) from cargo or storage, in that order. Hold Shift, Control, or Alt to install 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+	`Install on the currently selected ship(s) from cargo or storage, in that order.`
+	`Hold Shift, Control, or Alt to install 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
 
 tip "outfitter: u"
-	`Uninstall or move outfits from the currently selected ship(s) or cargo to storage, in that order. Hold Shift, Control, or Alt to uninstall 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+	`Uninstall from the currently selected ship(s) to cargo if there is space or to storage if there isn't.`
+	`Hold Shift, Control, or Alt to uninstall 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
 
 tip "outfitter: c"
-	`Transfer the outfit from planetary storage to cargo if possible. Otherwise, buy it from the outfitter. Hold Shift, Control, or Alt to buy or move 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+	`Transfer the outfit from planetary storage to cargo if possible. Otherwise, buy it from the outfitter.`
+	`Hold Shift, Control, or Alt to move 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
 
 tip "outfitter: r"
-	`Move the outfit from cargo or the currently selected ship(s) into planetary storage, in that order. Hold Shift, Control, or Alt to store 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+	`Move the outfit from cargo, the currently selected ship(s), or the outfitter into planetary storage, in that order.`
+	`Hold Shift, Control, or Alt to store 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
 
 tip "shipyard: b"
-	`Buy this ship. Hold Shift, Control, or Alt to buy 5, 20, or 500 ships at once. Hold a combination of these keys for larger amounts.`
+	`Buy this ship.`
+	`Hold Shift, Control, or Alt to buy 5, 20, or 500 ships at once. Hold a combination of these keys for larger amounts.`
 
 tip "shipyard: s"
 	`Sell the selected ships and their outfits.`
@@ -1679,6 +1689,9 @@ tip "Confirm selling outfits"
 tip "Confirm selling minables"
 	`In the Trading panel, controls whether or not to confirm sales of minables, specials and other flotsam that may have been picked up.`
 
+tip "Sync FF to CapsLock"
+	`Whether fast-forward should be in sync with the state of CapsLock on the system. The default setting keeps them in sync if the fast-forward key is CapsLock.`
+
 tip "Landing zoom"
 	`Apply a cinematic zoom in and out when you are landing and taking off.`
 
@@ -1817,3 +1830,12 @@ tip "Single save file"
 
 tip "Restricted save loading"
 	`If true, this pilot will be unable to reload save files while not on the safety of a planet.`
+
+
+
+# Boarding panel
+tip `boarding: in cargo`
+	`This item is in the ship's cargo hold.`
+
+tip `boarding: installed`
+	`This item is installed on the ship. Removal may leave the ship inoperable.`

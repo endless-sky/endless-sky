@@ -114,7 +114,7 @@ namespace {
 
 
 
-OutfitterPanel::OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock)
+OutfitterPanel::OutfitterPanel(PlayerInfo &player, const Sale<Outfit> &stock)
 	: ShopPanel(player, true), outfitter(stock)
 {
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
@@ -369,8 +369,6 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 	// Prevent coding up bad combinations.
 	if(fromLocation == toLocation)
 		throw runtime_error("unreachable; to and from are the same");
-	if(fromLocation == OutfitLocation::Shop && toLocation == OutfitLocation::Storage)
-		throw runtime_error("unreachable; unsupported to/from combination");
 
 	// Handle special cases such as maps and licenses.
 	int mapSize = selectedOutfit->Get("map");
@@ -579,36 +577,34 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 			if(!canPlace)
 			{
+				auto TonsFree = [](double needed, double space, const string &name) -> string {
+					return "You cannot install this outfit, because it takes up "
+						+ Format::CargoString(needed, name) + ", and this ship has "
+						+ Format::MassString(space) + " free.";
+				};
+
 				// If no selected ship can install the outfit, report error based on playerShip.
 				double outfitNeeded = -selectedOutfit->Get("outfit space");
 				double outfitSpace = playerShip->Attributes().Get("outfit space");
 				if(outfitNeeded > outfitSpace)
-					errors.push_back("You cannot install this outfit, because it takes up "
-						+ Format::CargoString(outfitNeeded, "outfit space") + ", and this ship has "
-						+ Format::MassString(outfitSpace) + " free.");
+					errors.push_back(TonsFree(outfitNeeded, outfitSpace, "outfit space"));
 
 				double weaponNeeded = -selectedOutfit->Get("weapon capacity");
 				double weaponSpace = playerShip->Attributes().Get("weapon capacity");
 				if(weaponNeeded > weaponSpace)
 					errors.push_back("Only part of your ship's outfit capacity is usable for weapons. "
-						"You cannot install this outfit, because it takes up "
-						+ Format::CargoString(weaponNeeded, "weapon space") + ", and this ship has "
-						+ Format::MassString(weaponSpace) + " free.");
+						+ TonsFree(weaponNeeded, weaponSpace, "weapon space"));
 
 				double engineNeeded = -selectedOutfit->Get("engine capacity");
 				double engineSpace = playerShip->Attributes().Get("engine capacity");
 				if(engineNeeded > engineSpace)
 					errors.push_back("Only part of your ship's outfit capacity is usable for engines. "
-						"You cannot install this outfit, because it takes up "
-						+ Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
-						+ Format::MassString(engineSpace) + " free.");
+						+ TonsFree(engineNeeded, engineSpace, "engine space"));
 
-				if(selectedOutfit->Category() == "Ammunition")
-					errors.emplace_back(!playerShip->OutfitCount(selectedOutfit) ?
-						"This outfit is ammunition for a weapon. "
-						"You cannot install it without first installing the appropriate weapon."
-						: "You already have the maximum amount of ammunition for this weapon. "
-						"If you want to install more ammunition, you must first install another of these weapons.");
+				double cargoNeeded = -selectedOutfit->Get("cargo space");
+				double cargoSpace = playerShip->Attributes().Get("cargo space");
+				if(cargoNeeded > cargoSpace)
+					errors.push_back(TonsFree(cargoNeeded, cargoSpace, "cargo space"));
 
 				int mountsNeeded = -selectedOutfit->Get("turret mounts");
 				int mountsFree = playerShip->Attributes().Get("turret mounts");
@@ -624,6 +620,18 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 				if(selectedOutfit->Get("installable") < 0.)
 					errors.emplace_back("This item is not an outfit that can be installed in a ship.");
+
+				// If the outfit category is ammo, the problem wasn't one of the above attributes, and this outfit
+				// could never have its installation limited by usual means, then assume that the issue is a lack
+				// of ammo storage.
+				if(errors.empty() && selectedOutfit->Category() == "Ammunition" && !outfitNeeded && !weaponNeeded
+						&& !engineNeeded && !cargoNeeded && !mountsNeeded && !gunsNeeded)
+					errors.emplace_back(!playerShip->OutfitCount(selectedOutfit) ?
+						"This outfit is ammunition for a weapon. "
+						"You cannot install it without first installing the appropriate weapon."
+						: "You already have the maximum amount of ammunition for this weapon. "
+						"If you want to install more ammunition, you must first install more ammunition storage "
+						"or another of these weapons.");
 
 				// Handle other attributes more generically, if none of the above are the problem.
 				if(errors.empty())
@@ -780,14 +788,19 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 				}
 			}
 		}
-		else if(toLocation == OutfitLocation::Cargo)
+		else if(toLocation == OutfitLocation::Cargo || toLocation == OutfitLocation::Storage)
 		{
+			bool toCargo = toLocation == OutfitLocation::Cargo;
+			CargoHold &storeIn = toCargo ? player.Cargo() : player.Storage();
 			if(!outfitter.Has(selectedOutfit))
 				howManyPer = min(howManyPer, player.Stock(selectedOutfit));
-			// Buy up to <modifier> of the selected outfit and place them in fleet cargo.
-			double mass = selectedOutfit->Mass();
-			if(mass)
-				howManyPer = min(howManyPer, static_cast<int>(player.Cargo().FreePrecise() / mass));
+			if(toCargo)
+			{
+				// Buy up to <modifier> of the selected outfit and place them in fleet cargo.
+				double mass = selectedOutfit->Mass();
+				if(mass)
+					howManyPer = min(howManyPer, static_cast<int>(storeIn.FreePrecise() / mass));
+			}
 
 			// How much will it cost to buy all that we can fit?
 			int64_t price = player.StockDepreciation().Value(selectedOutfit, day, howManyPer);
@@ -808,11 +821,10 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 				player.Accounts().AddCredits(-price);
 				player.AddStock(selectedOutfit, -howManyPer);
 
-				// Put them into fleet cargo.
-				player.Cargo().Add(selectedOutfit, howManyPer);
+				// Put them into fleet cargo or planetary storage.
+				storeIn.Add(selectedOutfit, howManyPer);
 			}
 		}
-		// Note: Buying into storage not implemented. Why waste your money?
 	}
 	else if(fromLocation == OutfitLocation::Ship)
 	{
@@ -841,11 +853,21 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 					player.Accounts().AddCredits(price);
 					player.AddStock(selectedOutfit, 1);
 				}
-				// If the context is uninstalling, move the outfit into Storage.
+				// If the context is uninstalling, move the outfit into Cargo or Storage.
+				else if(toLocation == OutfitLocation::Cargo)
+				{
+					if(player.Cargo().FreePrecise() > selectedOutfit->Mass())
+						player.Cargo().Add(selectedOutfit, 1);
+					else
+					{
+						// If the player's cargo has run out of room, start moving
+						// outfits into storage.
+						toLocation = OutfitLocation::Storage;
+						player.Storage().Add(selectedOutfit, 1);
+					}
+				}
 				else if(toLocation == OutfitLocation::Storage)
 					player.Storage().Add(selectedOutfit, 1);
-				// Note: It would be easy to add conditional statements above to also support uninstall into cargo,
-				// this is not supported in the outfitter at this time.
 
 				// Move linked outfits to storage.
 				// Since some outfits have linked outfits, remove any that must also be moved as there
@@ -890,16 +912,29 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 							player.Accounts().AddCredits(price);
 							player.AddStock(linked, mustUninstall);
 						}
-						// If the context is uninstalling, move the outfit's linked outfit into Storage.
+						// If the context is uninstalling, move the outfit's linked outfit into Cargo or Storage.
+						else if(toLocation == OutfitLocation::Cargo)
+						{
+							int movable = mustUninstall;
+							while(player.Cargo().FreePrecise() < linked->Mass() * movable)
+								--movable;
+							if(movable)
+								player.Cargo().Add(linked, movable);
+							int remaining = mustUninstall - movable;
+							if(remaining)
+							{
+								// If the player's cargo has run out of room, start moving
+								// outfits into storage.
+								toLocation = OutfitLocation::Storage;
+								player.Storage().Add(linked, remaining);
+							}
+						}
 						else if(toLocation == OutfitLocation::Storage)
 							player.Storage().Add(linked, mustUninstall);
-						// Note: It would be easy to add conditional statements above to also support uninstall into
-						// cargo, this is not supported in the outfitter at this time.
 					}
 				}
 			}
 		}
-		// Note: Uninstalling into cargo could be implemented below, but not supported in current outfitter logic.
 	}
 	else if(fromLocation == OutfitLocation::Storage || fromLocation == OutfitLocation::Cargo)
 	{
@@ -952,8 +987,8 @@ bool OutfitterPanel::ButtonActive(char key, bool shipRelatedOnly)
 	if(key == 'b')
 		return static_cast<bool>(CanMoveOutfit(OutfitLocation::Shop, OutfitLocation::Ship));
 	if(key == 'i')
-		return CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship) ||
-			CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Ship);
+		return CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Ship)
+			|| CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship);
 	if(key == 'c')
 		return !shipRelatedOnly && (CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Cargo) ||
 			CanMoveOutfit(OutfitLocation::Shop, OutfitLocation::Cargo));
@@ -961,9 +996,13 @@ bool OutfitterPanel::ButtonActive(char key, bool shipRelatedOnly)
 		return (!shipRelatedOnly && (CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Shop) ||
 			CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Shop))) ||
 			CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Shop);
-	if(key == 'u' || key == 'r')
+	if(key == 'u')
+		return CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Cargo)
+			|| CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage);
+	if(key == 'r')
 		return CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage) ||
-			(!shipRelatedOnly && CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage));
+			(!shipRelatedOnly && (CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage)
+			|| CanMoveOutfit(OutfitLocation::Shop, OutfitLocation::Storage)));
 	return false;
 }
 
@@ -1025,6 +1064,15 @@ void OutfitterPanel::DrawKey()
 	SpriteShader::Draw(box[showStorage], pos);
 	font.Draw("Show outfits in storage", pos + labelOffset, color[showStorage]);
 	AddZone(Rectangle(pos + checkboxOffset, activeAreaSize), [this](){ ToggleStorage(); });
+}
+
+
+
+optional<Rectangle> OutfitterPanel::KeyArea() const
+{
+	const Sprite *back = SpriteSet::Get("ui/outfitter key");
+	return Rectangle::FromCorner(Screen::BottomLeft() + Point(0., -back->Height()),
+		Point(back->Width(), back->Height()));
 }
 
 
@@ -1401,13 +1449,14 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 	}
 	else if(key == 'r')
 	{
-		// Move <modifier> of the selected outfit to storage from either cargo or else each of the selected ships.
-		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))
-			result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage, "store");
+		// Move <modifier> of the selected outfit to storage from either cargo, the selected ships, or from the shop.
+		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage)
+				&& !MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage))
+			result = MoveOutfit(OutfitLocation::Shop, OutfitLocation::Storage, "store");
 	}
 	else if(key == 'c')
 	{
-		// Either move up to <multiple> outfits into cargo from storage if any are in storage, or else buy up to
+		// Either move up to <modifier> outfits into cargo from storage if any are in storage, or else buy up to
 		// <modifier> outfits into cargo.
 		// Note: If the outfit cannot be moved from storage or bought into cargo, give an error based on the buy
 		// condition.
@@ -1423,13 +1472,11 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 	}
 	else if(key == 'u')
 	{
-		// Uninstall up to <multiple> outfits from each of the selected ships if any are available to uninstall, or
-		// else unload up to <multiple> outfits from cargo and place them storage.
-		// Note: If the outfit cannot be uninstalled or unloaded, give an error based on the inability to uninstall the
-		// outfit from any ship.
-		result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage, "uninstall");
-		if(!result && MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))
-			result = true;
+		// Uninstall up to <modifier> outfits from each of the selected ships if any are available to uninstall,
+		// moving the outfits into cargo if there is space, or to storage if there isn't.
+		result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Cargo, "uninstall");
+		if(!result && !result.canPlace)
+			result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage, "uninstall");
 	}
 
 	return result;

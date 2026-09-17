@@ -147,7 +147,7 @@ namespace {
 	}
 
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
-		const vector<pair<Body, int>> &flareSprites, uint8_t side, bool reverse)
+		const vector<pair<Drawable, int>> &flareSprites, uint8_t side, bool reverse)
 	{
 		Point thrustScale = ScaledFlareCurve(ship, reverse ? Ship::ThrustKind::REVERSE : Ship::ThrustKind::FORWARD);
 		Point leftTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::LEFT);
@@ -161,7 +161,7 @@ namespace {
 			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
 			Angle flareAngle = ship.Facing() + point.facing + gimbal;
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
-			auto DrawFlares = [&draw, &pos, &ship, &flareAngle, &point](const pair<Body, int> &it, const Point &scale)
+			auto DrawFlares = [&draw, &pos, &ship, &flareAngle, &point](const pair<Drawable, int> &it, const Point &scale)
 			{
 				// If multiple engines with the same flare are installed, draw up to
 				// three copies of the flare sprite.
@@ -1084,7 +1084,8 @@ void Engine::Step(bool isActive)
 			doClick = !ammoDisplay.Click(uiClickBox);
 		else
 			doClick = !ammoDisplay.Click(clickPoint, hasControl);
-		doClick = doClick && !player.SelectEscorts(clickBox, hasShift);
+		if(doClick && clickBox.Dimensions())
+			doClick = !player.SelectEscorts(clickBox, hasShift);
 		if(doClick)
 		{
 			const vector<weak_ptr<Ship>> &stack = escorts.Click(clickPoint);
@@ -2259,6 +2260,15 @@ void Engine::HandleKeyboardInputs()
 		else if(keyHeld.Has(Command::JUMP))
 			activeCommands |= Command::FLEET_JUMP;
 	}
+	else if(keyHeld.Has(Command::BACK) && flagship->Commands().Has(Command::STOP))
+	{
+		// If the player previously sent a STOP command and hits the BACK key,
+		// maintain the STOP command. Since STOP is shift+BACK, releasing the shift
+		// key before releasing the BACK key after having sent a STOP command can
+		// cancel it, which likely isn't what the player wants.
+		activeCommands |= Command::STOP;
+		activeCommands.Clear(Command::BACK);
+	}
 
 	if(keyHeld.Has(Command::AUTOSTEER) && !activeCommands.Turn()
 			&& !activeCommands.Has(Command::LAND | Command::JUMP | Command::BOARD | Command::STOP))
@@ -2408,9 +2418,14 @@ void Engine::HandleMouseClicks()
 		ai.IssueMoveTarget(clickPoint + camera.Center(), playerSystem);
 	}
 
-	// Treat an "empty" click as a request to clear targets.
+	// Treat an "empty" click as a request to clear targets and selections.
 	if(!clickTarget && mouseButton == MouseButton::LEFT && !clickedAsteroid && !clickedPlanet)
+	{
+		// Setting the target ship also resets the target asteroid.
 		flagship->SetTargetShip(nullptr);
+		flagship->SetTargetStellar(nullptr);
+		player.ClearSelectedEscorts();
+	}
 }
 
 
@@ -2923,7 +2938,7 @@ void Engine::DrawShipSprites(const Ship &ship)
 		const Weapon *weapon = hardpoint.GetWeapon();
 		if(!weapon)
 			return;
-		const Body &sprite = weapon->HardpointSprite();
+		const Drawable &sprite = weapon->HardpointSprite();
 		if(!sprite.HasSprite())
 			return;
 

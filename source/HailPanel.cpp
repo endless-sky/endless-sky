@@ -254,7 +254,7 @@ void HailPanel::Draw()
 			const Weapon *weapon = hardpoint.GetWeapon();
 			if(!weapon)
 				return;
-			const Body &sprite = weapon->HardpointSprite();
+			const Drawable &sprite = weapon->HardpointSprite();
 			if(!sprite.HasSprite())
 				return;
 			Body body(

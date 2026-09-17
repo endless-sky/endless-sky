@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Government.h"
 
+#include "Confusion.h"
 #include "Conversation.h"
 #include "DataNode.h"
 #include "Fleet.h"
@@ -267,6 +268,13 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		// Handle the attributes which cannot have a value removed.
 		else if(remove)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
+		else if(key == "confusion")
+		{
+			if(child.HasChildren() || (child.Size() >= 1 + valueIndex && child.IsNumber(valueIndex)))
+				confusion = ExclusiveItem<Confusion>(Confusion(child));
+			else if(child.Size() >= 1 + valueIndex)
+				confusion = ExclusiveItem<Confusion>(GameData::Confusions().Get(child.Token(valueIndex)));
+		}
 		else if(key == "attitude toward")
 		{
 			for(const DataNode &grand : child)
@@ -792,6 +800,13 @@ const string &Government::Language() const
 bool Government::SendUntranslatedHails() const
 {
 	return sendUntranslatedHails;
+}
+
+
+
+const Confusion *Government::GetConfusion() const
+{
+	return confusion.Ptr();
 }
 
 
