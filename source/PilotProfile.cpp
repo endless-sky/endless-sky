@@ -313,7 +313,7 @@ const vector<pair<string, filesystem::file_time_type>> &PilotProfile::Files() co
 
 
 
-bool PilotProfile::HasFile(const std::string &fileName) const
+bool PilotProfile::HasFile(const string &fileName) const
 {
 	if(fileName.empty())
 		return false;
@@ -321,12 +321,12 @@ bool PilotProfile::HasFile(const std::string &fileName) const
 	auto FindFile = [&](const pair<string, filesystem::file_time_type> &file) -> bool {
 		return file.first == fileName;
 	};
-	return ranges::find_if(files, FindFile) != files.end();
+	return ranges::any_of(files, FindFile);
 }
 
 
 
-void PilotProfile::AddSave(const std::string &fileName)
+void PilotProfile::AddSave(const string &fileName)
 {
 	filesystem::path filePath = Files::Saves() / fileName;
 	if(!HasFile(fileName) && Files::Exists(filePath))
