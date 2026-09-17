@@ -421,22 +421,27 @@ void Entity::DoStatusEffects(bool disabled)
 
 void Entity::DoStatusSparks(std::vector<Visual> &visuals) const
 {
-	if(levels.ionization)
-		CreateSparks(visuals, "ion spark", levels.ionization * .05);
-	if(levels.scrambling)
-		CreateSparks(visuals, "scramble spark", levels.scrambling * .05);
-	if(levels.disruption)
-		CreateSparks(visuals, "disruption spark", levels.disruption * .1);
-	if(levels.slowness)
-		CreateSparks(visuals, "slowing spark", levels.slowness * .1);
-	if(levels.discharge)
+	// Sparks are only created for entities where the spark has an actual effect.
+	// All entities have hull and heat, so corrosion and burning can always apply.
+	// Discharge and disruption, as well as leakage only apply to entities with shields and fuel respectively.
+	// The remaining status effects can only apply to ships.
+	if(levels.discharge && MaxShields())
 		CreateSparks(visuals, "discharge spark", levels.discharge * .1);
 	if(levels.corrosion)
 		CreateSparks(visuals, "corrosion spark", levels.corrosion * .1);
-	if(levels.leakage)
-		CreateSparks(visuals, "leakage spark", levels.leakage * .1);
+	if(levels.ionization && entityType == Type::SHIP)
+		CreateSparks(visuals, "ion spark", levels.ionization * .05);
 	if(levels.burning)
 		CreateSparks(visuals, "burning spark", levels.burning * .1);
+	if(levels.leakage && MaxFuel())
+		CreateSparks(visuals, "leakage spark", levels.leakage * .1);
+
+	if(levels.disruption && MaxShields())
+		CreateSparks(visuals, "disruption spark", levels.disruption * .1);
+	if(levels.slowness && entityType == Type::SHIP)
+		CreateSparks(visuals, "slowing spark", levels.slowness * .1);
+	if(levels.scrambling && entityType == Type::SHIP)
+		CreateSparks(visuals, "scramble spark", levels.scrambling * .05);
 }
 
 
