@@ -753,6 +753,7 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 1505.92
 		haze _menu/haze-red
+		remove "jump range"
 		link Statina
 		link Vaticanus
 		asteroids "small rock" 1 8
@@ -794,6 +795,7 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 534.375
 		haze _menu/haze-red
+		remove "jump range"
 		link Statina
 		link Postverta
 		asteroids "small rock" 65 3
@@ -839,6 +841,7 @@ event "remnant: ssil vida deactivation"
 		attributes "ember waste"
 		belt 2000
 		haze _menu/haze-red
+		remove "jump range"
 		link Diespiter
 		link Prosa
 		link Statina
@@ -877,6 +880,7 @@ event "remnant: ssil vida deactivation"
 		habitable 2372.76
 		belt 2000
 		haze _menu/haze-red
+		remove "jump range"
 		link Vaticanus
 		link Postverta
 		asteroids "medium metal" 11 2
@@ -920,6 +924,7 @@ event "remnant: ssil vida deactivation"
 		attributes "ember waste" "wormhole"
 		belt 2000
 		haze _menu/haze-red
+		remove "jump range"
 		link Diespiter
 		link Egeria
 		link Postverta
@@ -962,6 +967,7 @@ event "remnant: ssil vida deactivation"
 		attributes "ember waste"
 		belt 2000
 		haze _menu/haze-red
+		remove "jump range"
 		link Egeria
 		link Prosa
 		asteroids "small rock" 3 6
@@ -1426,6 +1432,7 @@ event "remnant: ssil vida deactivation patir 3"
 		belt 2000
 		habitable 1505.92
 		haze _menu/haze-red
+		remove "jump range"
 		link Statina
 		link Vaticanus
 		asteroids "small rock" 1 8
@@ -1467,6 +1474,7 @@ event "remnant: ssil vida deactivation patir 3"
 		belt 2000
 		habitable 534.375
 		haze _menu/haze-red
+		remove "jump range"
 		link Statina
 		link Postverta
 		asteroids "small rock" 65 3
@@ -1512,6 +1520,7 @@ event "remnant: ssil vida deactivation patir 3"
 		attributes "ember waste"
 		belt 2000
 		haze _menu/haze-red
+		remove "jump range"
 		link Diespiter
 		link Prosa
 		link Statina
@@ -1550,6 +1559,7 @@ event "remnant: ssil vida deactivation patir 3"
 		habitable 2372.76
 		belt 2000
 		haze _menu/haze-red
+		remove "jump range"
 		link Vaticanus
 		link Postverta
 		asteroids "medium metal" 11 2
@@ -1593,6 +1603,7 @@ event "remnant: ssil vida deactivation patir 3"
 		attributes "ember waste" "wormhole"
 		belt 2000
 		haze _menu/haze-red
+		remove "jump range"
 		link Diespiter
 		link Egeria
 		link Postverta
@@ -1635,6 +1646,7 @@ event "remnant: ssil vida deactivation patir 3"
 		attributes "ember waste"
 		belt 2000
 		haze _menu/haze-red
+		remove "jump range"
 		link Egeria
 		link Prosa
 		asteroids "small rock" 3 6

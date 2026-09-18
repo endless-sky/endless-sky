@@ -155,6 +155,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 				asteroids.clear();
 			else if(key == "haze")
 				haze = nullptr;
+			else if(key == "jump range")
+				jumpRange = 0.;
 			else if(key == "starfield density")
 				starfieldDensity = 1.;
 			else if(key == "ramscoop")
