@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Preferences.h"
 
-#include "Command.h"
-#include "CustomEvents.h"
 #include "text/Alignment.h"
 #include "audio/Audio.h"
+#include "Command.h"
+#include "CustomEvents.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
