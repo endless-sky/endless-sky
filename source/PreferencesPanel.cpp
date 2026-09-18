@@ -57,7 +57,6 @@ namespace {
 	// Settings that require special handling.
 	const int ZOOM_FACTOR_MIN = 100;
 	const int ZOOM_FACTOR_INCREMENT = 10;
-	const string REACTIVATE_HELP = "Reactivate first-time help";
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -795,7 +794,7 @@ void PreferencesPanel::DrawSettings()
 		"\n",
 		"Other",
 		Preferences::UNDERLINE_SHORTCUTS,
-		REACTIVATE_HELP,
+		Preferences::REACTIVATE_HELP,
 		Preferences::INTERRUPT_FAST_FORWARD,
 		Preferences::FF_CAPSLOCK_SYNC,
 		Preferences::LANDING_ZOOM,
@@ -895,7 +894,7 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
 			isOn = text != "off" && text != "--";
 		}
-		else if(setting == REACTIVATE_HELP)
+		else if(setting == Preferences::REACTIVATE_HELP)
 		{
 			// Check how many help messages have been displayed.
 			const map<string, string> &help = GameData::HelpTemplates();
@@ -949,12 +948,12 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::DisplayValue(setting);
 		}
 #ifdef _WIN32
-		else if(setting == TITLE_BAR_THEME)
+		else if(setting == Preferences::TITLE_BAR_THEME)
 		{
 			isOn = WinVersion::SupportsDarkTheme();
 			text = isOn ? Preferences::TitleBarThemeSetting() : "N/A";
 		}
-		else if(setting == WINDOW_ROUNDING)
+		else if(setting == Preferences::WINDOW_ROUNDING)
 		{
 			isOn = WinVersion::SupportsWindowRounding();
 			text = isOn ? Preferences::WindowRoundingSetting() : "N/A";
@@ -1261,7 +1260,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
 	else if(str == Preferences::STATUS_OVERLAYS_NEUTRAL)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
-	else if(str == REACTIVATE_HELP)
+	else if(str == Preferences::REACTIVATE_HELP)
 	{
 		for(const auto &it : GameData::HelpTemplates())
 			Preferences::SetHelp("help: " + it.first, false);

@@ -228,12 +228,14 @@ void Preferences::Init()
 	settings[ALERT_INDICATOR] = Setting::List("Alert indicator", 3, {"off", "audio", "visual", "both"});
 	settings[AMMO_REFILL] = Setting::List("Auto refill ammo", 1, {"never", "ask", "when free", "always"});
 	settings[ANIMATE_MENU_BACKGROUND] = Setting::Boolean("Animate main menu background", true);
-	settings[ASTEROID_TARGETING] = Setting::List("Asteroid targeting", 0, {"proximity", "expected value", "quality"}, true);
+	settings[ASTEROID_TARGETING] = Setting::List("Asteroid targeting", 0,
+		{"proximity", "expected value", "quality"}, true);
 	settings[AUTO_AIM] = Setting::List("Automatic aiming", 2, {"off", "always on", "when firing"});
 	settings[AUTO_FIRE] = Setting::List("Automatic firing", 0, {"off", "on", "guns only", "turrets only"});
 	settings[AUTO_UNPARK_FLAGSHIP] = Setting::Boolean("Automatically unpark flagship", false);
 	settings[BLOCK_SCREEN_SAVER] = Setting::Boolean("Block screen saver", false);
-	settings[BOARDING_TARGET_PRIORITY] = Setting::List("Boarding target priority", 0, {"proximity", "value", "mixed"}, true);
+	settings[BOARDING_TARGET_PRIORITY] = Setting::List("Boarding target priority", 0,
+		{"proximity", "value", "mixed"}, true);
 	settings[CAMERA_ACCELERATION] = Setting::List("Camera acceleration", 0, {"off", "on", "reversed"});
 	settings[DAMAGED_FIGHTERS_RETREAT] = Setting::Boolean("Damaged fighters retreat", true);
 	settings[DATE_FORMAT] = Setting::List("Date format", 0, {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"}, true);
@@ -247,8 +249,10 @@ void Preferences::Init()
 	settings[FIGHTERS_REPAIR_IN] = Setting::List("Repair fighters in", 1, {"series", "parallel"}, true);
 	settings[FIGHTERS_TRANSFER_CARGO] = Setting::Boolean("Fighters transfer cargo", false);
 	settings[FIXED_STARFIELD_ZOOM] = Setting::Boolean("Fixed starfield zoom", false);
-	settings[FLAGSHIP_SPACE_PRIORITY] = Setting::List("Prioritize flagship use", 1, {"none", "passengers", "cargo", "both"});
-	settings[FLOTSAM_COLLECTION] = Setting::List("Flotsam collection", 1, {"off", "on", "flagship only", "escorts only"});
+	settings[FLAGSHIP_SPACE_PRIORITY] = Setting::List("Prioritize flagship use", 1,
+		{"none", "passengers", "cargo", "both"});
+	settings[FLOTSAM_COLLECTION] = Setting::List("Flotsam collection", 1,
+		{"off", "on", "flagship only", "escorts only"});
 	settings[FONT_SIZE] = Setting::List("UI font size", 0, {"14", "18"}, true);
 	settings[HUD_ASTEROID_OVERLAY] = Setting::Boolean("Show asteroid scanner overlay", true);
 	settings[HUD_CLICKABLE_RADAR] = Setting::Boolean("Clickable radar display", false);
