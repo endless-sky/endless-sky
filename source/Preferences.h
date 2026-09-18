@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 enum class Alignment;
+class UI;
 
 
 
@@ -196,11 +197,11 @@ public:
 
 	static bool Has(const std::string &name);
 	static void Set(const std::string &name, bool on = true);
-	static int Toggle(const std::string &name);
+	static int Toggle(const std::string &name, UI *ui = nullptr);
+	static void Scroll(const std::string &name, double dy);
 
 	static const std::string &DisplayName(const std::string &name);
-	static std::string DisplayValue(const std::string &name);
-	static bool IsOn(const std::string &name);
+	static std::pair<std::string, bool> DisplayValue(const std::string &name);
 
 	static bool HelpShown(const std::string &name);
 	static void SetHelp(const std::string &name, bool shown = true);
@@ -226,8 +227,6 @@ public:
 	static double MinViewZoom();
 	static double MaxViewZoom();
 	static const std::vector<double> &Zooms();
-
-	static void ToggleScreenMode();
 
 	/// VSync setting, either "on", "off", or "adaptive".
 	static bool ToggleVSync();
@@ -296,15 +295,11 @@ public:
 	/// Font size setting.
 	static int GetFontSize();
 
-	static void ToggleBlockScreenSaver();
-
 	static int GetPreviousSaveCount();
 
 #ifdef _WIN32
-	static void ToggleTitleBarTheme();
 	static TitleBarTheme GetTitleBarTheme();
 
-	static void ToggleWindowRounding();
 	static WindowRounding GetWindowRounding();
 #endif
 

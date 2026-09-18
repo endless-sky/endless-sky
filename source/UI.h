@@ -94,6 +94,7 @@ public:
 
 	void AdjustViewport() const;
 	void AdjustTextDisplay() const;
+	void TooltipUpdate() const;
 
 	// Get the current mouse position.
 	static Point GetMouse();

@@ -18,12 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
-#include "CustomEvents.h"
 #include "DialogPanel.h"
 #include "Files.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -43,10 +41,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 #include "text/WrappedText.h"
 
-#ifdef _WIN32
-#include "windows/WinVersion.h"
-#endif
-
 #include "opengl.h"
 
 #include <algorithm>
@@ -54,10 +48,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Settings that require special handling.
-	const int ZOOM_FACTOR_MIN = 100;
-	const int ZOOM_FACTOR_INCREMENT = 10;
-
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
 	const int SETTINGS_PAGE_COUNT = 3;
@@ -390,50 +380,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 
 	if(page == 's' && !hoverItem.empty())
 	{
-		if(hoverItem == Preferences::ZOOM_FACTOR_MAIN)
-		{
-			int zoom = Screen::UserZoom();
-			if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
-				zoom -= ZOOM_FACTOR_INCREMENT;
-			if(dy > 0.)
-				zoom += ZOOM_FACTOR_INCREMENT;
-
-			Screen::SetZoom(zoom);
-			if(Screen::Zoom() != zoom)
-				Screen::SetZoom(Screen::Zoom());
-
-			// Convert to raw window coordinates, at the new zoom level.
-			Point point = hoverPoint * (Screen::Zoom() / 100.);
-			point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
-			SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
-		}
-		else if(hoverItem == Preferences::ZOOM_FACTOR_VIEW)
-		{
-			if(dy < 0.)
-				Preferences::ZoomViewOut();
-			else
-				Preferences::ZoomViewIn();
-		}
-		else if(hoverItem == Preferences::SCROLL_SPEED)
-		{
-			int speed = Preferences::ScrollSpeed();
-			if(dy < 0.)
-				speed = max(10, speed - 10);
-			else
-				speed = min(60, speed + 10);
-			Preferences::SetScrollSpeed(speed);
-		}
-		else if(hoverItem == Preferences::TOOLTIP_ACTIVATION_TIME)
-		{
-			int steps = Preferences::TooltipActivation();
-			if(dy < 0.)
-				steps = max(0, steps - 20);
-			else
-				steps = min(120, steps + 20);
-			Preferences::SetTooltipActivation(steps);
-			for(auto &panel : GetUI().Stack())
-				panel->UpdateTooltipActivation();
-		}
+		Preferences::Scroll(hoverItem, dy);
 		return true;
 	}
 	else if(page == 'p')
@@ -855,116 +802,6 @@ void PreferencesPanel::DrawSettings()
 		table.SetHighlight(-120, 120);
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 
-		// Get the "on / off" text for this setting. Setting "isOn"
-		// draws the setting "bright" (i.e. the setting is active).
-		bool isOn;
-		string text;
-		if(setting == Preferences::ZOOM_FACTOR_MAIN)
-		{
-			isOn = Screen::UserZoom() == Screen::Zoom();
-			text = to_string(Screen::UserZoom());
-		}
-		else if(setting == Preferences::ZOOM_FACTOR_VIEW)
-		{
-			isOn = true;
-			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
-		}
-		else if(setting == Preferences::STATUS_OVERLAYS_ALL)
-		{
-			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ALL);
-			isOn = text != "off";
-		}
-		else if(setting == Preferences::STATUS_OVERLAYS_FLAGSHIP)
-		{
-			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::FLAGSHIP);
-			isOn = text != "off" && text != "--";
-		}
-		else if(setting == Preferences::STATUS_OVERLAYS_ESCORT)
-		{
-			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ESCORT);
-			isOn = text != "off" && text != "--";
-		}
-		else if(setting == Preferences::STATUS_OVERLAYS_ENEMY)
-		{
-			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ENEMY);
-			isOn = text != "off" && text != "--";
-		}
-		else if(setting == Preferences::STATUS_OVERLAYS_NEUTRAL)
-		{
-			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
-			isOn = text != "off" && text != "--";
-		}
-		else if(setting == Preferences::REACTIVATE_HELP)
-		{
-			// Check how many help messages have been displayed.
-			const map<string, string> &help = GameData::HelpTemplates();
-			int shown = 0;
-			int total = 0;
-			for(const auto &it : help)
-			{
-				// Don't count certain special help messages that are always
-				// active for new players.
-				bool special = false;
-				const string SPECIAL_HELP[] = {"basics", "lost"};
-				for(const string &str : SPECIAL_HELP)
-					if(it.first.find(str) == 0)
-						special = true;
-
-				if(!special)
-				{
-					++total;
-					shown += Preferences::HelpShown("help: " + it.first);
-				}
-			}
-
-			if(shown)
-			{
-				isOn = false;
-				text = to_string(shown) + " / " + to_string(total);
-			}
-			else
-			{
-				isOn = true;
-				text = "done";
-			}
-		}
-		else if(setting == Preferences::SCROLL_SPEED)
-		{
-			isOn = true;
-			text = to_string(Preferences::ScrollSpeed());
-		}
-		else if(setting == Preferences::TOOLTIP_ACTIVATION_TIME)
-		{
-			isOn = true;
-			text = Format::StepsToSeconds(Preferences::TooltipActivation());
-		}
-		else if(setting == Preferences::FF_CAPSLOCK_SYNC)
-		{
-			const Preferences::FastForwardCapsLockSync fastForwardCapsLockSync
-				= Preferences::GetFastForwardCapsLockSync();
-			isOn = fastForwardCapsLockSync == Preferences::FastForwardCapsLockSync::ALWAYS
-				|| (fastForwardCapsLockSync == Preferences::FastForwardCapsLockSync::DEFAULT
-					&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
-			text = Preferences::DisplayValue(setting);
-		}
-#ifdef _WIN32
-		else if(setting == Preferences::TITLE_BAR_THEME)
-		{
-			isOn = WinVersion::SupportsDarkTheme();
-			text = isOn ? Preferences::DisplayValue(setting) : "N/A";
-		}
-		else if(setting == Preferences::WINDOW_ROUNDING)
-		{
-			isOn = WinVersion::SupportsWindowRounding();
-			text = isOn ? Preferences::DisplayValue(setting) : "N/A";
-		}
-#endif
-		else
-		{
-			isOn = Preferences::IsOn(setting);
-			text = Preferences::DisplayValue(setting);
-		}
-
 		if(setting == hoverItem)
 		{
 			table.SetHighlight(-120, 120);
@@ -977,6 +814,9 @@ void PreferencesPanel::DrawSettings()
 			table.DrawHighlight(back);
 		}
 
+		// Get the text for this setting. Setting "isOn"
+		// draws the setting "bright" (i.e. the setting is active).
+		auto [text, isOn] = Preferences::DisplayValue(setting);
 		table.Draw(Preferences::DisplayName(setting), isOn ? medium : dim);
 		table.Draw(text, isOn ? bright : medium);
 	}
@@ -1209,94 +1049,7 @@ void PreferencesPanel::Exit()
 
 void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosition)
 {
-	// For some settings, clicking the option does more than just toggle a
-	// boolean state keyed by the option's name.
-	if(str == Preferences::ZOOM_FACTOR_MAIN)
-	{
-		int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
-		Screen::SetZoom(newZoom);
-		if(Screen::Zoom() != newZoom)
-		{
-			// Notify the user why setting the zoom any higher isn't permitted.
-			// Only show this if it's not possible to zoom the view at all, as
-			// otherwise the dialog will show every time, which is annoying.
-			if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
-				GetUI().Push(DialogPanel::Info(
-					"Your screen resolution is too low to support a zoom level above 100%."));
-			Screen::SetZoom(ZOOM_FACTOR_MIN);
-		}
-		// Convert to raw window coordinates, at the new zoom level.
-		cursorPosition *= Screen::Zoom() / 100.;
-		cursorPosition += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
-		SDL_WarpMouseInWindow(nullptr, cursorPosition.X(), cursorPosition.Y());
-	}
-	else if(str == Preferences::ZOOM_FACTOR_VIEW)
-	{
-		// Increase the zoom factor unless it is at the maximum. In that
-		// case, cycle around to the lowest zoom factor.
-		if(!Preferences::ZoomViewIn())
-			while(Preferences::ZoomViewOut()) {}
-	}
-	else if(str == Preferences::FONT_SIZE)
-	{
-		Preferences::Toggle(str);
-		CustomEvents::SendAdjustText();
-	}
-	else if(str == Preferences::SCREEN_MODE)
-		Preferences::ToggleScreenMode();
-	else if(str == Preferences::VSYNC)
-	{
-		if(!Preferences::ToggleVSync())
-			GetUI().Push(DialogPanel::Info(
-				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
-	}
-	else if(str == Preferences::STATUS_OVERLAYS_ALL)
-		Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
-	else if(str == Preferences::STATUS_OVERLAYS_FLAGSHIP)
-		Preferences::CycleStatusOverlays(Preferences::OverlayType::FLAGSHIP);
-	else if(str == Preferences::STATUS_OVERLAYS_ESCORT)
-		Preferences::CycleStatusOverlays(Preferences::OverlayType::ESCORT);
-	else if(str == Preferences::STATUS_OVERLAYS_ENEMY)
-		Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
-	else if(str == Preferences::STATUS_OVERLAYS_NEUTRAL)
-		Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
-	else if(str == Preferences::REACTIVATE_HELP)
-	{
-		for(const auto &it : GameData::HelpTemplates())
-			Preferences::SetHelp("help: " + it.first, false);
-	}
-	else if(str == Preferences::SCROLL_SPEED)
-	{
-		// Toggle between six different speeds.
-		int speed = Preferences::ScrollSpeed() + 10;
-		if(speed > 60)
-			speed = 10;
-		Preferences::SetScrollSpeed(speed);
-	}
-	else if(str == Preferences::TOOLTIP_ACTIVATION_TIME)
-	{
-		int steps = Preferences::TooltipActivation() + 20;
-		if(steps > 120)
-			steps = 0;
-		Preferences::SetTooltipActivation(steps);
-		for(auto &panel : GetUI().Stack())
-			panel->UpdateTooltipActivation();
-	}
-	else if(str == Preferences::BLOCK_SCREEN_SAVER)
-		Preferences::ToggleBlockScreenSaver();
-	else if(str == Preferences::TEXT_ALIGNMENT)
-	{
-		Preferences::Toggle(str);
-		CustomEvents::SendAdjustText();
-	}
-#ifdef _WIN32
-	else if(str == Preferences::TITLE_BAR_THEME)
-		Preferences::ToggleTitleBarTheme();
-	else if(str == Preferences::WINDOW_ROUNDING)
-		Preferences::ToggleWindowRounding();
-#endif
-	else
-		Preferences::Toggle(str);
+	Preferences::Toggle(str, &GetUI());
 
 	// If the deadline blink preference was toggled and the player is in flight,
 	// then we need to recache the remaining mission deadlines. This doesn't need

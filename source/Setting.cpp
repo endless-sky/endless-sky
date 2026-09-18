@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Setting.h"
 
 #include "DataNode.h"
+#include "UI.h"
 
 #include <algorithm>
 #include <utility>
@@ -26,45 +27,36 @@ using namespace std;
 
 Setting Setting::Boolean(const string &name, bool defaultValue)
 {
-	return Setting(name, {"off", "on"}, defaultValue, true);
+	return Setting(name, {"off", "on"}, defaultValue, true, false);
 }
 
 
 
 Setting Setting::List(const string &name, int defaultValue, const vector<string> &options, bool alwaysOn)
 {
-	Setting setting = Setting(name, options, defaultValue, true);
-	if(alwaysOn)
-		setting.SetIsOnFunc([](int index) -> bool { return true; });
-	return setting;
+	return Setting(name, options, defaultValue, true, alwaysOn);
 }
 
 
 
 Setting Setting::Unique(const string &name)
 {
-	return Setting(name, {}, 0, false);
+	return Setting(name, {}, 0, false, true);
 }
 
 
 
-Setting::Setting(const string &displayName, const vector<string> &options, int defaultIndex, bool save)
-	: displayName(displayName), options(options), index(defaultIndex), save(save)
+Setting::Setting(const string &displayName, const vector<string> &options, int defaultIndex, bool save,
+		bool alwaysOn)
+	: displayName(displayName), options(options), index(defaultIndex), alwaysOn(alwaysOn), save(save)
 {
 }
 
 
 
-void Setting::SetDisplayFunc(std::function<std::string(int)> displayFunc)
+void Setting::SetDisplayFunc(std::function<pair<string, bool>(int)> displayFunc)
 {
 	this->displayFunc = std::move(displayFunc);
-}
-
-
-
-void Setting::SetIsOnFunc(function<bool(int)> isOnFunc)
-{
-	this->isOnFunc = std::move(isOnFunc);
 }
 
 
@@ -76,9 +68,16 @@ void Setting::SetToggleFunc(function<int(int)> toggleFunc)
 
 
 
-void Setting::SetOnToggleFunc(function<void(int)> onToggleFunc)
+void Setting::SetOnToggleFunc(function<void(UI *)> onToggleFunc)
 {
 	this->onToggleFunc = std::move(onToggleFunc);
+}
+
+
+
+void Setting::SetScrollFunc(std::function<void(double)> scrollFunc)
+{
+	this->scrollFunc = std::move(scrollFunc);
 }
 
 
@@ -90,11 +89,11 @@ const string &Setting::DisplayName() const
 
 
 
-string Setting::DisplayValue() const
+pair<string, bool> Setting::DisplayValue() const
 {
 	if(displayFunc)
 		return displayFunc(index);
-	return options.empty() ? "" : options[index];
+	return {options.empty() ? "" : options[index], alwaysOn ? true : index};
 }
 
 
@@ -113,22 +112,23 @@ int Setting::Index() const
 
 
 
-bool Setting::IsOn() const
-{
-	return isOnFunc ? isOnFunc(index) : index;
-}
-
-
-
-int Setting::Toggle()
+int Setting::Toggle(UI *ui)
 {
 	if(toggleFunc)
 		index = toggleFunc(index);
 	else if(!options.empty())
 		index = (index + 1) % options.size();
 	if(onToggleFunc)
-		onToggleFunc(index);
+		onToggleFunc(ui);
 	return index;
+}
+
+
+
+void Setting::Scroll(double dy)
+{
+	if(scrollFunc)
+		scrollFunc(dy);
 }
 
 

@@ -376,12 +376,17 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				menuPanels.AdjustTextDisplay();
 				gamePanels.AdjustTextDisplay();
 			}
+			else if(event.type == CustomEvents::GetTooltipUpdate())
+			{
+				menuPanels.TooltipUpdate();
+				gamePanels.TooltipUpdate();
+			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 			{
 				toggleTimeout = 30;
-				Preferences::ToggleScreenMode();
+				Preferences::Toggle(Preferences::SCREEN_MODE);
 			}
 			else if(event.type == SDL_KEYDOWN && Command(event.key.keysym.sym).Has(Command::PERFORMANCE_DISPLAY))
 				Preferences::Toggle(Preferences::SHOW_PERFORMANCE_METRICS);

@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 class DataNode;
+class UI;
 
 
 
@@ -37,20 +38,22 @@ public:
 
 public:
 	Setting() = default;
-	Setting(const std::string &displayName, const std::vector<std::string> &options, int defaultIndex, bool save);
+	Setting(const std::string &displayName, const std::vector<std::string> &options, int defaultIndex, bool save,
+		bool alwaysOn);
 
-	void SetDisplayFunc(std::function<std::string(int)> displayFunc);
-	void SetIsOnFunc(std::function<bool(int)> isOnFunc);
+	void SetDisplayFunc(std::function<std::pair<std::string, bool>(int)> displayFunc);
 	void SetToggleFunc(std::function<int(int)> toggleFunc);
-	void SetOnToggleFunc(std::function<void(int)> onToggleFunc);
+	void SetOnToggleFunc(std::function<void(UI *)> onToggleFunc);
+	void SetScrollFunc(std::function<void(double)> scrollFunc);
 
 	const std::string &DisplayName() const;
-	std::string DisplayValue() const;
+	// The value to display for this setting, and whether it is "on"/"off" (i.e. should be drawn bright/dim).
+	std::pair<std::string, bool> DisplayValue() const;
 
 	void SetIndex(int index);
 	int Index() const;
-	bool IsOn() const;
-	int Toggle();
+	int Toggle(UI *ui);
+	void Scroll(double dy);
 
 	bool Save() const;
 
@@ -59,18 +62,19 @@ private:
 	std::string displayName;
 	// Some settings have a list of options that they can cycle through.
 	std::vector<std::string> options;
-	int index = 0;
+	int index;
+	// Whether this setting should always display as on regardless of the index/value.
+	bool alwaysOn;
 	// Whether this setting's index should be directly saved to the preferences file.
 	// If false, Preferences handles saving the value.
 	bool save;
 
 	// Controls how the value is displayed.
-	std::function<std::string(int)> displayFunc;
-	// How to determine whether the setting displays as on or off.
-	// Influences the font brightness. Takes in the current value.
-	std::function<bool(int)> isOnFunc;
+	std::function<std::pair<std::string, bool>(int)> displayFunc;
 	// Controls the toggling of this setting. Takes in the current value and returns the new value.
 	std::function<int(int)> toggleFunc;
 	// An additional call that occurs after toggling. Takes in the current value.
-	std::function<void(int)> onToggleFunc;
+	std::function<void(UI *)> onToggleFunc;
+	// Controls updating of the setting when scrolling.
+	std::function<void(double)> scrollFunc;
 };

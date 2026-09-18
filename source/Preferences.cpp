@@ -15,18 +15,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Preferences.h"
 
+#include "Command.h"
+#include "CustomEvents.h"
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "DialogPanel.h"
 #include "Files.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "GameWindow.h"
 #include "Interface.h"
 #include "Logger.h"
 #include "Screen.h"
 #include "Setting.h"
+#include "UI.h"
 
 #ifdef _WIN32
 #include "windows/WinVersion.h"
@@ -45,6 +50,9 @@ namespace {
 
 	int scrollSpeed = 60;
 	int tooltipActivation = 60;
+
+	const int ZOOM_FACTOR_MIN = 100;
+	const int ZOOM_FACTOR_INCREMENT = 10;
 
 	size_t zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
@@ -233,7 +241,10 @@ void Preferences::Init()
 	settings[AUTO_AIM] = Setting::List("Automatic aiming", 2, {"off", "always on", "when firing"});
 	settings[AUTO_FIRE] = Setting::List("Automatic firing", 0, {"off", "on", "guns only", "turrets only"});
 	settings[AUTO_UNPARK_FLAGSHIP] = Setting::Boolean("Automatically unpark flagship", false);
+
 	settings[BLOCK_SCREEN_SAVER] = Setting::Boolean("Block screen saver", false);
+	settings[BLOCK_SCREEN_SAVER].SetOnToggleFunc([](UI *ui) -> void { GameWindow::ToggleBlockScreenSaver(); });
+
 	settings[BOARDING_TARGET_PRIORITY] = Setting::List("Boarding target priority", 0,
 		{"proximity", "value", "mixed"}, true);
 	settings[CAMERA_ACCELERATION] = Setting::List("Camera acceleration", 0, {"off", "on", "reversed"});
@@ -244,8 +255,16 @@ void Preferences::Init()
 	settings[DRAW_BACKGROUND_HAZE] = Setting::Boolean("Draw background haze", true);
 	settings[DRAW_STARFIELD] = Setting::Boolean("Draw starfield", true);
 	settings[ESCORT_AMMO_USAGE] = Setting::List("Escorts expend ammo", 1, {"never", "frugally", "always"});
+
 	settings[EXTENDED_JUMP_EFFECTS] = Setting::List("Extended jump effects", 0, {"off", "medium", "heavy"});
 	settings[FF_CAPSLOCK_SYNC] = Setting::List("Sync FF to CapsLock", 0, {"default", "never", "always"}, true);
+	settings[FF_CAPSLOCK_SYNC].SetDisplayFunc([](int index) -> pair<string, bool> {
+		const FastForwardCapsLockSync sync = GetFastForwardCapsLockSync();
+		bool isOn = sync == FastForwardCapsLockSync::ALWAYS
+			|| (sync == FastForwardCapsLockSync::DEFAULT && Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
+		return make_pair("TODO", isOn);
+	});
+
 	settings[FIGHTERS_REPAIR_IN] = Setting::List("Repair fighters in", 1, {"series", "parallel"}, true);
 	settings[FIGHTERS_TRANSFER_CARGO] = Setting::Boolean("Fighters transfer cargo", false);
 	settings[FIXED_STARFIELD_ZOOM] = Setting::Boolean("Fixed starfield zoom", false);
@@ -253,7 +272,10 @@ void Preferences::Init()
 		{"none", "passengers", "cargo", "both"});
 	settings[FLOTSAM_COLLECTION] = Setting::List("Flotsam collection", 1,
 		{"off", "on", "flagship only", "escorts only"});
+
 	settings[FONT_SIZE] = Setting::List("UI font size", 0, {"14", "18"}, true);
+	settings[FONT_SIZE].SetOnToggleFunc([](UI *ui) -> void { CustomEvents::SendAdjustText(); });
+
 	settings[HUD_ASTEROID_OVERLAY] = Setting::Boolean("Show asteroid scanner overlay", true);
 	settings[HUD_CLICKABLE_RADAR] = Setting::Boolean("Clickable radar display", false);
 	// TODO: This has been a preferences since 2018, but it isn't in PreferencesPanel.
@@ -276,12 +298,69 @@ void Preferences::Init()
 	settings[MOUSE_CONTROL_TURRETS] = Setting::Boolean("Aim turrets with mouse", false);
 	settings[PARALLAX] = Setting::List("Parallax background", 2, {"off", "fancy", "fast"});
 	// "Previous saves" is unique and not rendered in PreferencesPanel, and so it doesn't need a Setting.
+
 	settings[REACTIVATE_HELP] = Setting::Unique("Reactivate first-time help");
+	settings[REACTIVATE_HELP].SetDisplayFunc([](int index) -> pair<string, bool> {
+		// Check how many help messages have been displayed.
+		const map<string, string> &help = GameData::HelpTemplates();
+		int shown = 0;
+		int total = 0;
+		for(const auto &it : help)
+		{
+			// Don't count certain special help messages that are always
+			// active for new players.
+			bool special = false;
+			const string SPECIAL_HELP[] = {"basics", "lost"};
+			for(const string &str : SPECIAL_HELP)
+				if(it.first.find(str) == 0)
+					special = true;
+
+			if(!special)
+			{
+				++total;
+				shown += Preferences::HelpShown("help: " + it.first);
+			}
+		}
+
+		if(shown)
+			return make_pair(to_string(shown) + " / " + to_string(total), false);
+		return make_pair("done", true);
+	});
+	settings[REACTIVATE_HELP].SetOnToggleFunc([](UI *ui) -> void {
+		for(const auto &it : GameData::HelpTemplates())
+			SetHelp("help: " + it.first, false);
+	});
+
 	settings[REDUCE_LARGE_GRAPHICS] = Setting::List("Reduce large graphics", 0, {"off", "largest only", "all"});
 	settings[REHIRE_LOST_CREW] = Setting::Boolean("Rehire extra crew when lost", false);
 	settings[SAVE_MSG_LOGS] = Setting::Boolean("Save message log", false);
+
 	settings[SCREEN_MODE] = Setting::List("Screen mode", 1, {"windowed", "fullscreen"}, true);
+	settings[SCREEN_MODE].SetToggleFunc([](int index) -> int {
+		GameWindow::ToggleFullscreen();
+		return GameWindow::IsFullscreen();
+	});
+
 	settings[SCROLL_SPEED] = Setting::Unique("Scroll speed");
+	settings[SCROLL_SPEED].SetDisplayFunc([](int index) -> pair<string, bool> {
+		return make_pair(to_string(ScrollSpeed()), true);
+	});
+	settings[SCROLL_SPEED].SetOnToggleFunc([](UI *ui) -> void {
+		// Toggle between six different speeds.
+		int speed = ScrollSpeed() + 10;
+		if(speed > 60)
+			speed = 10;
+		SetScrollSpeed(speed);
+	});
+	settings[SCROLL_SPEED].SetScrollFunc([](double dy) -> void {
+		int speed = ScrollSpeed();
+		if(dy < 0.)
+			speed = max(10, speed - 10);
+		else
+			speed = min(60, speed + 10);
+		SetScrollSpeed(speed);
+	});
+
 	settings[SCREEN_MAXIMIZED] = Setting::Boolean("Screen maximized", false);
 	settings[SHIP_HIGHLIGHTS] = Setting::List("Highlight ships", 0, {"off", "flagship", "owned ships", "all"});
 	settings[SHIP_OUTLINES_CLOAKED] = Setting::List("Cloaked ship outlines", 1, {"fast", "fancy"}, true);
@@ -289,31 +368,180 @@ void Preferences::Init()
 	settings[SHIP_OUTLINES_SHOP] = Setting::List("Ship outlines in shops", 1, {"fast", "fancy"}, true);
 	settings[SHOW_HYPERSPACE_FLASH] = Setting::Boolean("Show hyperspace flash", false);
 	settings[SHOW_PERFORMANCE_METRICS] = Setting::Boolean("Show CPU / GPU load", false);
+
 	settings[STATUS_OVERLAYS_ALL] = Setting::Unique("Show status overlays");
+	settings[STATUS_OVERLAYS_ALL].SetDisplayFunc([](int index) -> pair<string, bool> {
+		string text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ALL);
+		bool isOn = text != "off";
+		return make_pair(text, isOn);
+	});
+	settings[STATUS_OVERLAYS_ALL].SetOnToggleFunc([](UI *ui) -> void {
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
+	});
+
 	settings[STATUS_OVERLAYS_FLAGSHIP] = Setting::Unique("   Show flagship overlay");
+	settings[STATUS_OVERLAYS_FLAGSHIP].SetDisplayFunc([](int index) -> pair<string, bool> {
+		string text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::FLAGSHIP);
+		bool isOn = text != "off" && text != "--";
+		return make_pair(text, isOn);
+	});
+	settings[STATUS_OVERLAYS_FLAGSHIP].SetOnToggleFunc([](UI *ui) -> void {
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::FLAGSHIP);
+	});
+
 	settings[STATUS_OVERLAYS_ESCORT] = Setting::Unique("   Show escort overlays");
+	settings[STATUS_OVERLAYS_ESCORT].SetDisplayFunc([](int index) -> pair<string, bool> {
+		string text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ESCORT);
+		bool isOn = text != "off" && text != "--";
+		return make_pair(text, isOn);
+	});
+	settings[STATUS_OVERLAYS_ESCORT].SetOnToggleFunc([](UI *ui) -> void {
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::ESCORT);
+	});
+
 	settings[STATUS_OVERLAYS_ENEMY] = Setting::Unique("   Show enemy overlays");
+	settings[STATUS_OVERLAYS_ENEMY].SetDisplayFunc([](int index) -> pair<string, bool> {
+		string text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ENEMY);
+		bool isOn = text != "off" && text != "--";
+		return make_pair(text, isOn);
+	});
+	settings[STATUS_OVERLAYS_ENEMY].SetOnToggleFunc([](UI *ui) -> void {
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
+	});
+
 	settings[STATUS_OVERLAYS_NEUTRAL] = Setting::Unique("   Show neutral overlays");
+	settings[STATUS_OVERLAYS_NEUTRAL].SetDisplayFunc([](int index) -> pair<string, bool> {
+		string text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
+		bool isOn = text != "off" && text != "--";
+		return make_pair(text, isOn);
+	});
+	settings[STATUS_OVERLAYS_NEUTRAL].SetOnToggleFunc([](UI *ui) -> void {
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
+	});
+
 	settings[TEXT_ALIGNMENT] = Setting::List("Text alignment", 3, {"left", "center", "right", "justified"}, true);
+	settings[TEXT_ALIGNMENT].SetOnToggleFunc([](UI *ui) -> void { CustomEvents::SendAdjustText(); });
+
 	settings[TEXTURE_FILTERING] = Setting::List("Texture filtering", 1, {"nearest", "linear"}, true);
+
 	settings[TOOLTIP_ACTIVATION_TIME] = Setting::Unique("Tooltip activation time");
+	settings[TOOLTIP_ACTIVATION_TIME].SetDisplayFunc([](int index) -> pair<string, bool> {
+		return make_pair(Format::StepsToSeconds(TooltipActivation()), true);
+	});
+	settings[TOOLTIP_ACTIVATION_TIME].SetOnToggleFunc([](UI *ui) -> void {
+		int steps = TooltipActivation() + 20;
+		if(steps > 120)
+			steps = 0;
+		SetTooltipActivation(steps);
+		CustomEvents::SendTooltipUpdate();
+	});
+	settings[TOOLTIP_ACTIVATION_TIME].SetScrollFunc([](double dy) -> void {
+		int steps = TooltipActivation();
+		if(dy < 0.)
+			steps = max(0, steps - 20);
+		else
+			steps = min(120, steps + 20);
+		SetTooltipActivation(steps);
+		CustomEvents::SendTooltipUpdate();
+	});
+
 	settings[TRIBUTE_CONFIRMATION] = Setting::List("Tribute confirmation", 1, {"off", "friendly only", "always"});
 	settings[TRADE_SELL_OUTFITS_WITHOUT_SHOP] = Setting::Boolean("Sell outfits without outfitter", true);
 	settings[TRADE_CONFIRM_MINABLES] = Setting::Boolean("Confirm selling minables", true);
 	settings[TRADE_CONFIRM_OUTFITS] = Setting::Boolean("Confirm selling outfits", true);
 	settings[TURRETS_FOCUS_FIRE] = Setting::List("Turret tracking", 1, {"opportunistic", "focused"}, true);
 	settings[UNDERLINE_SHORTCUTS] = Setting::Boolean("Always underline shortcuts", false);
+
 	settings[VSYNC] = Setting::List("VSync", 1, {"off", "on", "adaptive"});
+	settings[VSYNC].SetOnToggleFunc([](UI *ui) -> void {
+		if(!Preferences::ToggleVSync() && ui)
+			ui->Push(DialogPanel::Info("Unable to change VSync state. (Your system's graphics settings may "
+				"be controlling it instead.)"));
+	});
+
 	// "Window size" is unique and not rendered in PreferencesPanel, and so it doesn't need a Setting.
+
 	settings[ZOOM_FACTOR_MAIN] = Setting::Unique("Main zoom factor");
+	settings[ZOOM_FACTOR_MAIN].SetDisplayFunc([](int index) -> pair<string, bool> {
+		return make_pair(to_string(Screen::UserZoom()), Screen::UserZoom() == Screen::Zoom());
+	});
+	settings[ZOOM_FACTOR_MAIN].SetOnToggleFunc([](UI *ui) -> void {
+		int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
+		Screen::SetZoom(newZoom);
+		if(Screen::Zoom() != newZoom)
+		{
+			// Notify the user why setting the zoom any higher isn't permitted.
+			// Only show this if it's not possible to zoom the view at all, as
+			// otherwise the dialog will show every time, which is annoying.
+			if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT && ui)
+				ui->Push(DialogPanel::Info("Your screen resolution is too low to support a zoom level above 100%."));
+			Screen::SetZoom(ZOOM_FACTOR_MIN);
+		}
+
+		int x = 0;
+		int y = 0;
+		SDL_GetMouseState(&x, &y);
+		Point hoverPoint = Point(x, y);
+		// Convert to raw window coordinates, at the new zoom level.
+		hoverPoint *= Screen::Zoom() / 100.;
+		hoverPoint += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+		SDL_WarpMouseInWindow(nullptr, hoverPoint.X(), hoverPoint.Y());
+	});
+	settings[ZOOM_FACTOR_MAIN].SetScrollFunc([](double dy) -> void {
+		int zoom = Screen::UserZoom();
+		if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
+			zoom -= ZOOM_FACTOR_INCREMENT;
+		if(dy > 0.)
+			zoom += ZOOM_FACTOR_INCREMENT;
+
+		Screen::SetZoom(zoom);
+		if(Screen::Zoom() != zoom)
+			Screen::SetZoom(Screen::Zoom());
+
+		int x = 0;
+		int y = 0;
+		SDL_GetMouseState(&x, &y);
+		Point hoverPoint = Point(x, y);
+		// Convert to raw window coordinates, at the new zoom level.
+		hoverPoint *= (Screen::Zoom() / 100.);
+		hoverPoint += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+		SDL_WarpMouseInWindow(nullptr, hoverPoint.X(), hoverPoint.Y());
+	});
+
 	settings[ZOOM_FACTOR_VIEW] = Setting::Unique("View zoom factor");
+	settings[ZOOM_FACTOR_VIEW].SetDisplayFunc([](int index) -> pair<string, bool> {
+		return make_pair(to_string(static_cast<int>(100. * ViewZoom())), true);
+	});
+	settings[ZOOM_FACTOR_VIEW].SetOnToggleFunc([](UI *ui) -> void {
+		// Increase the zoom factor unless it is at the maximum. In that
+		// case, cycle around to the lowest zoom factor.
+		if(!ZoomViewIn())
+			while(ZoomViewOut()) {}
+	});
+	settings[ZOOM_FACTOR_VIEW].SetScrollFunc([](double dy) -> void {
+		if(dy < 0.)
+			ZoomViewOut();
+		else
+			ZoomViewIn();
+	});
+
 #ifdef _WIN32
 	settings[TITLE_BAR_THEME] = Setting::List("Title bar theme", 0, {"system default", "light", "dark"});
-	settings[WINDOW_ROUNDING] = Setting::List("Window rounding", 0, {"system default", "off", "large", "small"});
-#endif
+	settings[TITLE_BAR_THEME].SetDisplayFunc([](int index) -> pair<string, bool> {
+		bool isOn = WinVersion::SupportsDarkTheme();
+		string text = isOn ? Preferences::DisplayValue(TITLE_BAR_THEME) : "N/A";
+		return make_pair(text, isOn);
+	});
+	settings[TITLE_BAR_THEME].SetOnToggleFunc([](UI *ui) -> void { GameWindow::UpdateTitleBarTheme(); });
 
-	// TODO: Populate on toggle and display functions so that
-	//  PreferencesPanel doesn't need special handling for any preferences.
+	settings[WINDOW_ROUNDING] = Setting::List("Window rounding", 0, {"system default", "off", "large", "small"});
+	settings[WINDOW_ROUNDING].SetDisplayFunc([](int index) -> pair<string, bool> {
+		bool isOn = WinVersion::SupportsWindowRounding();
+		string text = isOn ? Preferences::DisplayValue(WINDOW_ROUNDING) : "N/A";
+		return make_pair(text, isOn);
+	});
+	settings[WINDOW_ROUNDING].SetOnToggleFunc([](UI *ui) -> void { GameWindow::UpdateWindowRounding(); });
+#endif
 }
 
 
@@ -489,12 +717,21 @@ void Preferences::Set(const string &name, bool on)
 
 
 
-int Preferences::Toggle(const string &name)
+int Preferences::Toggle(const string &name, UI *ui)
 {
 	auto it = settings.find(name);
 	if(it != settings.end())
-		return it->second.Toggle();
+		return it->second.Toggle(ui);
 	return 0;
+}
+
+
+
+void Preferences::Scroll(const string &name, double dy)
+{
+	auto it = settings.find(name);
+	if(it != settings.end())
+		it->second.Scroll(dy);
 }
 
 
@@ -508,19 +745,11 @@ const string &Preferences::DisplayName(const string &name)
 
 
 
-string Preferences::DisplayValue(const string &name)
+pair<string, bool> Preferences::DisplayValue(const string &name)
 {
 	static const string UNKNOWN = "UNKNOWN SETTING";
 	auto it = settings.find(name);
-	return it != settings.end() ? it->second.DisplayValue() : UNKNOWN;
-}
-
-
-
-bool Preferences::IsOn(const string &name)
-{
-	auto it = settings.find(name);
-	return it != settings.end() ? it->second.IsOn() : false;
+	return it != settings.end() ? it->second.DisplayValue() : make_pair(UNKNOWN, false);
 }
 
 
@@ -667,22 +896,14 @@ Preferences::ExtendedJumpEffects Preferences::GetExtendedJumpEffects()
 
 
 
-void Preferences::ToggleScreenMode()
-{
-	GameWindow::ToggleFullscreen();
-	settings[SCREEN_MODE].SetIndex(GameWindow::IsFullscreen());
-}
-
-
-
 bool Preferences::ToggleVSync()
 {
 	int original = settings[VSYNC].Index();
-	int targetIndex = settings[VSYNC].Toggle();
+	int targetIndex = settings[VSYNC].Toggle(nullptr);
 	if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
 	{
 		// Not all drivers support adaptive VSync. Increment desired VSync again.
-		targetIndex = settings[VSYNC].Toggle();
+		targetIndex = settings[VSYNC].Toggle(nullptr);
 		if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
 		{
 			// Restore original saved setting.
@@ -891,34 +1112,10 @@ int Preferences::GetFontSize()
 
 
 
-void Preferences::ToggleBlockScreenSaver()
-{
-	GameWindow::ToggleBlockScreenSaver();
-	settings[BLOCK_SCREEN_SAVER].Toggle();
-}
-
-
-
 #ifdef _WIN32
-void Preferences::ToggleTitleBarTheme()
-{
-	settings[WINDOW_ROUNDING].Toggle();
-	GameWindow::UpdateTitleBarTheme();
-}
-
-
-
 Preferences::TitleBarTheme Preferences::GetTitleBarTheme()
 {
 	return static_cast<TitleBarTheme>(settings[TITLE_BAR_THEME].Index());
-}
-
-
-
-void Preferences::ToggleWindowRounding()
-{
-	settings[WINDOW_ROUNDING].Toggle();
-	GameWindow::UpdateWindowRounding();
 }
 
 
