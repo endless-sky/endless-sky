@@ -951,12 +951,12 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == Preferences::TITLE_BAR_THEME)
 		{
 			isOn = WinVersion::SupportsDarkTheme();
-			text = isOn ? Preferences::TitleBarThemeSetting() : "N/A";
+			text = isOn ? Preferences::DisplayValue(setting) : "N/A";
 		}
 		else if(setting == Preferences::WINDOW_ROUNDING)
 		{
 			isOn = WinVersion::SupportsWindowRounding();
-			text = isOn ? Preferences::WindowRoundingSetting() : "N/A";
+			text = isOn ? Preferences::DisplayValue(setting) : "N/A";
 		}
 #endif
 		else
@@ -1290,9 +1290,9 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		CustomEvents::SendAdjustText();
 	}
 #ifdef _WIN32
-	else if(str == TITLE_BAR_THEME)
+	else if(str == Preferences::TITLE_BAR_THEME)
 		Preferences::ToggleTitleBarTheme();
-	else if(str == WINDOW_ROUNDING)
+	else if(str == Preferences::WINDOW_ROUNDING)
 		Preferences::ToggleWindowRounding();
 #endif
 	else
