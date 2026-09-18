@@ -1077,6 +1077,7 @@ void MapPanel::DrawTravelPlan()
 	const Color &defaultColor = *colors.Get("map travel ok flagship");
 	const Color &outOfFlagshipFuelRangeColor = *colors.Get("map travel ok none");
 	const Color &withinFleetFuelRangeColor = *colors.Get("map travel ok fleet");
+	const Color &jumpInProgressColor = *colors.Get("map travel jumping flagship");
 
 	// At each point in the path, keep track of how many ships in the
 	// fleet are able to make it this far.
@@ -1108,6 +1109,11 @@ void MapPanel::DrawTravelPlan()
 	{
 		next = player.TravelPlan()[i];
 
+		if(flagship->IsEnteringHyperspace() && (i == player.TravelPlan().size() - 1))
+			for(auto &it : fuel)
+				if(it.first->IsEnteringHyperspace())
+					it.second += it.first->JumpNavigation().GetCheapestJumpType(previous, next).second;
+
 		bool isJump, isWormhole, isMappable;
 		Color wormholeColor;
 		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, &wormholeColor))
@@ -1132,10 +1138,13 @@ void MapPanel::DrawTravelPlan()
 				}
 
 		// Color the path green if all ships can make it. Color it yellow if
-		// the flagship can make it, and red if the flagship cannot.
+		// the flagship can make it, red if the flagship cannot, and blue if
+		// it is currently being jumped along.
 		Color drawColor = outOfFlagshipFuelRangeColor;
 		if(isWormhole)
 			drawColor = wormholeColor;
+		else if (i == (player.TravelPlan().size() - 1) && flagship->IsEnteringHyperspace())
+			drawColor = jumpInProgressColor;
 		else if(!stranded)
 			drawColor = withinFleetFuelRangeColor;
 		else if(fuel[flagship] >= 0.)
