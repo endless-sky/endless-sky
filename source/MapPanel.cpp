@@ -68,8 +68,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const string SHOW_ESCORT_SYSTEMS = "Show escort systems on map";
-	const string SHOW_STORED_OUTFITS = "Show stored outfits on map";
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
 	const int MAX_STARS = 5;
 
@@ -250,12 +248,14 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	// Recalculate escort positions every time the map is opened, as they may
 	// be changing systems even if the player does not.
 	// The player cannot toggle any preferences without closing the map panel.
-	if(Preferences::Has(SHOW_ESCORT_SYSTEMS) || Preferences::Has(SHOW_STORED_OUTFITS))
+	bool showEscorts = Preferences::Has(Preferences::MAP_SHOW_ESCORTS);
+	bool showOutfits = Preferences::Has(Preferences::MAP_SHOW_OUTFITS);
+	if(showEscorts || showOutfits)
 	{
 		escortSystems.clear();
-		if(Preferences::Has(SHOW_ESCORT_SYSTEMS))
+		if(showEscorts)
 			TallyEscorts(player.Ships(), escortSystems);
-		if(Preferences::Has(SHOW_STORED_OUTFITS))
+		if(showOutfits)
 			TallyOutfits(player.PlanetaryStorage(), escortSystems);
 	}
 
@@ -322,7 +322,7 @@ void MapPanel::Draw()
 	for(const auto &it : GameData::Galaxies())
 		SpriteShader::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom());
 
-	if(Preferences::Has("Hide unexplored map regions"))
+	if(Preferences::Has(Preferences::MAP_HIDE_UNEXPLORED))
 		FogShader::Draw(center, Zoom(), player);
 
 	// Draw the "visible range" circle around your current location.

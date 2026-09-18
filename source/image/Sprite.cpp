@@ -42,7 +42,7 @@ namespace {
 		glBindTexture(type, *target);
 
 		// Use linear interpolation (if not disabled in preferences) and no wrapping.
-		int filter = Preferences::Has("Texture filtering") ? GL_LINEAR : GL_NEAREST;
+		int filter = Preferences::Has(Preferences::TEXTURE_FILTERING) ? GL_LINEAR : GL_NEAREST;
 		glTexParameteri(type, GL_TEXTURE_MIN_FILTER, filter);
 		glTexParameteri(type, GL_TEXTURE_MAG_FILTER, filter);
 		glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);

@@ -532,15 +532,15 @@ int Panel::Modifier()
 // (or if force is set to true). Return true if the message was displayed.
 bool Panel::DoHelp(const string &name, bool force) const
 {
-	string preference = "help: " + name;
-	if(!force && Preferences::Has(preference))
+	string help = "help: " + name;
+	if(!force && Preferences::HelpShown(help))
 		return false;
 
 	const string &message = GameData::HelpMessage(name);
 	if(message.empty())
 		return false;
 
-	Preferences::Set(preference);
+	Preferences::SetHelp(help);
 	ui->Push(DialogPanel::Info(Format::Capitalize(name) + ":\n\n" + message));
 
 	return true;

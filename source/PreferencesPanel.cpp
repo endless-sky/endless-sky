@@ -55,54 +55,9 @@ using namespace std;
 
 namespace {
 	// Settings that require special handling.
-	const string ZOOM_FACTOR = "Main zoom factor";
 	const int ZOOM_FACTOR_MIN = 100;
 	const int ZOOM_FACTOR_INCREMENT = 10;
-	const string VIEW_ZOOM_FACTOR = "View zoom factor";
-	const string FONT_SIZE = "UI font size";
-	const string AUTO_AIM_SETTING = "Automatic aiming";
-	const string AUTO_FIRE_SETTING = "Automatic firing";
-	const string SCREEN_MODE_SETTING = "Screen mode";
-	const string VSYNC_SETTING = "VSync";
-	const string CAMERA_ACCELERATION = "Camera acceleration";
-	const string LARGE_GRAPHICS_REDUCTION = "Reduce large graphics";
-	const string CLOAK_OUTLINE = "Cloaked ship outlines";
-	const string TEXTURE_FILTERING = "Texture filtering";
-	const string STATUS_OVERLAYS_ALL = "Show status overlays";
-	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
-	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
-	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
-	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
-	const string TURRET_OVERLAYS = "Turret overlays";
-	const string HIGHLIGHT_SHIPS = "Highlight ships";
-	const string EXPEND_AMMO = "Escorts expend ammo";
-	const string FLOTSAM_SETTING = "Flotsam collection";
-	const string TURRET_TRACKING = "Turret tracking";
-	const string FOCUS_PREFERENCE = "Turrets focus fire";
 	const string REACTIVATE_HELP = "Reactivate first-time help";
-	const string SCROLL_SPEED = "Scroll speed";
-	const string TOOLTIP_ACTIVATION = "Tooltip activation time";
-	const string FIGHTER_REPAIR = "Repair fighters in";
-	const string FLAGSHIP_SPACE_PRIORITY = "Prioritize flagship use";
-	const string SHIP_OUTLINES = "Ship outlines in shops";
-	const string DATE_FORMAT = "Date format";
-	const string NOTIFY_ON_DEST = "Notify on destination";
-	const string BOARDING_PRIORITY = "Boarding target priority";
-	const string ASTEROID_TARGETING = "Asteroid targeting";
-	const string BACKGROUND_PARALLAX = "Parallax background";
-	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
-	const string ALERT_INDICATOR = "Alert indicator";
-	const string MINIMAP_DISPLAY = "Show mini-map";
-	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
-	const string BLOCK_SCREEN_SAVER = "Block screen saver";
-	const string TRIBUTE_CONFIRMATION = "Tribute confirmation";
-	const string AMMO_REFILL = "Auto refill ammo";
-	const string FASTFORWARD_CAPSLOCK_SYNC = "Sync FF to CapsLock";
-	const string TEXT_ALIGNMENT = "Text alignment";
-#ifdef _WIN32
-	const string TITLE_BAR_THEME = "Title bar theme";
-	const string WINDOW_ROUNDING = "Window rounding";
-#endif
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -436,7 +391,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 
 	if(page == 's' && !hoverItem.empty())
 	{
-		if(hoverItem == ZOOM_FACTOR)
+		if(hoverItem == Preferences::ZOOM_FACTOR_MAIN)
 		{
 			int zoom = Screen::UserZoom();
 			if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
@@ -453,14 +408,14 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 			SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 		}
-		else if(hoverItem == VIEW_ZOOM_FACTOR)
+		else if(hoverItem == Preferences::ZOOM_FACTOR_VIEW)
 		{
 			if(dy < 0.)
 				Preferences::ZoomViewOut();
 			else
 				Preferences::ZoomViewIn();
 		}
-		else if(hoverItem == SCROLL_SPEED)
+		else if(hoverItem == Preferences::SCROLL_SPEED)
 		{
 			int speed = Preferences::ScrollSpeed();
 			if(dy < 0.)
@@ -469,7 +424,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 				speed = min(60, speed + 10);
 			Preferences::SetScrollSpeed(speed);
 		}
-		else if(hoverItem == TOOLTIP_ACTIVATION)
+		else if(hoverItem == Preferences::TOOLTIP_ACTIVATION_TIME)
 		{
 			int steps = Preferences::TooltipActivation();
 			if(dy < 0.)
@@ -758,102 +713,102 @@ void PreferencesPanel::DrawSettings()
 	//   page count (count of '\n' characters plus one).
 	static const string SETTINGS[] = {
 		"Display",
-		ZOOM_FACTOR,
-		VIEW_ZOOM_FACTOR,
-		FONT_SIZE,
-		TEXT_ALIGNMENT,
-		SCREEN_MODE_SETTING,
-		BLOCK_SCREEN_SAVER,
-		VSYNC_SETTING,
+		Preferences::ZOOM_FACTOR_MAIN,
+		Preferences::ZOOM_FACTOR_VIEW,
+		Preferences::FONT_SIZE,
+		Preferences::TEXT_ALIGNMENT,
+		Preferences::SCREEN_MODE,
+		Preferences::BLOCK_SCREEN_SAVER,
+		Preferences::VSYNC,
 		"",
 		"Graphics",
-		CAMERA_ACCELERATION,
-		"Render motion blur",
-		"Draw background haze",
-		"Draw starfield",
-		"Fixed starfield zoom",
-		BACKGROUND_PARALLAX,
-		"Animate main menu background",
-		"Show hyperspace flash",
-		EXTENDED_JUMP_EFFECTS,
-		CLOAK_OUTLINE,
-		TEXTURE_FILTERING,
+		Preferences::CAMERA_ACCELERATION,
+		Preferences::MOTION_BLUR,
+		Preferences::DRAW_BACKGROUND_HAZE,
+		Preferences::DRAW_STARFIELD,
+		Preferences::FIXED_STARFIELD_ZOOM,
+		Preferences::PARALLAX,
+		Preferences::ANIMATE_MENU_BACKGROUND,
+		Preferences::SHOW_HYPERSPACE_FLASH,
+		Preferences::EXTENDED_JUMP_EFFECTS,
+		Preferences::SHIP_OUTLINES_CLOAKED,
+		Preferences::TEXTURE_FILTERING,
 		"\t",
 		"Performance",
-		"Show CPU / GPU load",
-		LARGE_GRAPHICS_REDUCTION,
-		"Defer loading images",
-		SHIP_OUTLINES,
-		HUD_SHIP_OUTLINES,
+		Preferences::SHOW_PERFORMANCE_METRICS,
+		Preferences::REDUCE_LARGE_GRAPHICS,
+		Preferences::DEFER_LOADING_IMAGES,
+		Preferences::SHIP_OUTLINES_SHOP,
+		Preferences::SHIP_OUTLINES_HUD,
 		"",
 		"Map",
-		"Deadline blink by distance",
-		"Hide unexplored map regions",
-		"Show escort systems on map",
-		"Show stored outfits on map",
-		"Parenthesize trade profits",
+		Preferences::MAP_DEADLINE_BLINK_BY_DISTANCE,
+		Preferences::MAP_HIDE_UNEXPLORED,
+		Preferences::MAP_SHOW_ESCORTS,
+		Preferences::MAP_SHOW_OUTFITS,
+		Preferences::MAP_PARENTHESIZE_PROFIT,
 		"",
 		"Trading",
-		"Sell outfits without outfitter",
-		"Confirm selling outfits",
-		"Confirm selling minables",
+		Preferences::TRADE_SELL_OUTFITS_WITHOUT_SHOP,
+		Preferences::TRADE_CONFIRM_OUTFITS,
+		Preferences::TRADE_CONFIRM_MINABLES,
 		"",
 		"Gameplay",
-		TRIBUTE_CONFIRMATION,
+		Preferences::TRIBUTE_CONFIRMATION,
 		"\n",
 		"Flagship Behavior",
-		"Control ship with mouse",
-		"Aim turrets with mouse",
-		AUTO_AIM_SETTING,
-		AUTO_FIRE_SETTING,
-		ASTEROID_TARGETING,
-		BOARDING_PRIORITY,
-		"Rehire extra crew when lost",
-		"Automatically unpark flagship",
-		FLAGSHIP_SPACE_PRIORITY,
+		Preferences::MOUSE_CONTROL_FLAGSHIP,
+		Preferences::MOUSE_CONTROL_TURRETS,
+		Preferences::AUTO_AIM,
+		Preferences::AUTO_FIRE,
+		Preferences::ASTEROID_TARGETING,
+		Preferences::BOARDING_TARGET_PRIORITY,
+		Preferences::REHIRE_LOST_CREW,
+		Preferences::AUTO_UNPARK_FLAGSHIP,
+		Preferences::FLAGSHIP_SPACE_PRIORITY,
 		"",
 		"Fleet Behavior",
-		TURRET_TRACKING,
-		EXPEND_AMMO,
-		FLOTSAM_SETTING,
-		FIGHTER_REPAIR,
-		"Damaged fighters retreat",
-		"Fighters transfer cargo",
-		AMMO_REFILL,
+		Preferences::TURRETS_FOCUS_FIRE,
+		Preferences::ESCORT_AMMO_USAGE,
+		Preferences::FLOTSAM_COLLECTION,
+		Preferences::FIGHTERS_REPAIR_IN,
+		Preferences::DAMAGED_FIGHTERS_RETREAT,
+		Preferences::FIGHTERS_TRANSFER_CARGO,
+		Preferences::AMMO_REFILL,
 		"\t",
 		"HUD",
-		STATUS_OVERLAYS_ALL,
-		STATUS_OVERLAYS_FLAGSHIP,
-		STATUS_OVERLAYS_ESCORT,
-		STATUS_OVERLAYS_ENEMY,
-		STATUS_OVERLAYS_NEUTRAL,
-		"Show missile overlays",
-		TURRET_OVERLAYS,
-		"Show asteroid scanner overlay",
-		HIGHLIGHT_SHIPS,
-		"Rotate flagship in HUD",
-		"Show planet labels",
-		MINIMAP_DISPLAY,
-		"Clickable radar display",
-		ALERT_INDICATOR,
-		"Extra fleet status messages",
+		Preferences::STATUS_OVERLAYS_ALL,
+		Preferences::STATUS_OVERLAYS_FLAGSHIP,
+		Preferences::STATUS_OVERLAYS_ESCORT,
+		Preferences::STATUS_OVERLAYS_ENEMY,
+		Preferences::STATUS_OVERLAYS_NEUTRAL,
+		Preferences::HUD_MISSILE_OVERLAY,
+		Preferences::HUD_TURRET_OVERLAY,
+		Preferences::HUD_ASTEROID_OVERLAY,
+		Preferences::SHIP_HIGHLIGHTS,
+		Preferences::HUD_ROTATE_FLAGSHIP,
+		Preferences::HUD_PLANET_LABELS,
+		Preferences::MINIMAP_DISPLAY,
+		Preferences::HUD_CLICKABLE_RADAR,
+		Preferences::ALERT_INDICATOR,
+		Preferences::HUD_EXTRA_STATUS_MSGS,
 		"\n",
 		"Other",
-		"Always underline shortcuts",
+		Preferences::UNDERLINE_SHORTCUTS,
 		REACTIVATE_HELP,
-		"Interrupt fast-forward",
-		FASTFORWARD_CAPSLOCK_SYNC,
-		"Landing zoom",
-		SCROLL_SPEED,
-		TOOLTIP_ACTIVATION,
-		DATE_FORMAT,
-		NOTIFY_ON_DEST,
-		"Save message log",
+		Preferences::INTERRUPT_FAST_FORWARD,
+		Preferences::FF_CAPSLOCK_SYNC,
+		Preferences::LANDING_ZOOM,
+		Preferences::SCROLL_SPEED,
+		Preferences::TOOLTIP_ACTIVATION_TIME,
+		Preferences::DATE_FORMAT,
+		Preferences::DESTINATION_NOTIFICATION,
+		Preferences::SAVE_MSG_LOGS,
 #ifdef _WIN32
 		"\t",
 		"Windows Options",
-		TITLE_BAR_THEME,
-		WINDOW_ROUNDING
+		Preferences::TITLE_BAR_THEME,
+		Preferences::WINDOW_ROUNDING
 #endif
 	};
 
@@ -874,7 +829,7 @@ void PreferencesPanel::DrawSettings()
 		// do not continue as no further settings are to be displayed.
 		if(page < currentSettingsPage)
 			continue;
-		else if(page > currentSettingsPage)
+		if(page > currentSettingsPage)
 			break;
 		// Check if this is a category break or column break.
 		if(setting.empty() || setting == "\t")
@@ -903,159 +858,42 @@ void PreferencesPanel::DrawSettings()
 
 		// Get the "on / off" text for this setting. Setting "isOn"
 		// draws the setting "bright" (i.e. the setting is active).
-		bool isOn = Preferences::Has(setting);
+		bool isOn;
 		string text;
-		if(setting == ZOOM_FACTOR)
+		if(setting == Preferences::ZOOM_FACTOR_MAIN)
 		{
 			isOn = Screen::UserZoom() == Screen::Zoom();
 			text = to_string(Screen::UserZoom());
 		}
-		else if(setting == VIEW_ZOOM_FACTOR)
+		else if(setting == Preferences::ZOOM_FACTOR_VIEW)
 		{
 			isOn = true;
 			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
 		}
-		else if(setting == FONT_SIZE)
-		{
-			isOn = true;
-			text = to_string(Preferences::GetFontSize());
-		}
-		else if(setting == SCREEN_MODE_SETTING)
-		{
-			isOn = true;
-			text = Preferences::ScreenModeSetting();
-		}
-		else if(setting == VSYNC_SETTING)
-		{
-			text = Preferences::VSyncSetting();
-			isOn = text != "off";
-		}
-		else if(setting == STATUS_OVERLAYS_ALL)
+		else if(setting == Preferences::STATUS_OVERLAYS_ALL)
 		{
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ALL);
 			isOn = text != "off";
 		}
-		else if(setting == CAMERA_ACCELERATION)
-		{
-			text = Preferences::CameraAccelerationSetting();
-			isOn = text != "off";
-		}
-		else if(setting == LARGE_GRAPHICS_REDUCTION)
-		{
-			text = Preferences::LargeGraphicsReductionSetting();
-			isOn = text != "off";
-		}
-		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
+		else if(setting == Preferences::STATUS_OVERLAYS_FLAGSHIP)
 		{
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::FLAGSHIP);
 			isOn = text != "off" && text != "--";
 		}
-		else if(setting == STATUS_OVERLAYS_ESCORT)
+		else if(setting == Preferences::STATUS_OVERLAYS_ESCORT)
 		{
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ESCORT);
 			isOn = text != "off" && text != "--";
 		}
-		else if(setting == STATUS_OVERLAYS_ENEMY)
+		else if(setting == Preferences::STATUS_OVERLAYS_ENEMY)
 		{
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ENEMY);
 			isOn = text != "off" && text != "--";
 		}
-		else if(setting == STATUS_OVERLAYS_NEUTRAL)
+		else if(setting == Preferences::STATUS_OVERLAYS_NEUTRAL)
 		{
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
 			isOn = text != "off" && text != "--";
-		}
-		else if(setting == TURRET_OVERLAYS)
-		{
-			text = Preferences::TurretOverlaysSetting();
-			isOn = text != "off";
-		}
-		else if(setting == HIGHLIGHT_SHIPS)
-		{
-			text = Preferences::HighlightShipsSetting();
-			isOn = text != "off";
-		}
-		else if(setting == CLOAK_OUTLINE)
-		{
-			text = Preferences::Has(CLOAK_OUTLINE) ? "fancy" : "fast";
-			isOn = true;
-		}
-		else if(setting == TEXTURE_FILTERING)
-		{
-			text = Preferences::Has("Texture filtering") ? "linear" : "nearest";
-			isOn = true;
-		}
-		else if(setting == AUTO_AIM_SETTING)
-		{
-			text = Preferences::AutoAimSetting();
-			isOn = text != "off";
-		}
-		else if(setting == AUTO_FIRE_SETTING)
-		{
-			text = Preferences::AutoFireSetting();
-			isOn = text != "off";
-		}
-		else if(setting == EXPEND_AMMO)
-			text = Preferences::AmmoUsage();
-		else if(setting == DATE_FORMAT)
-		{
-			text = Preferences::DateFormatSetting();
-			isOn = true;
-		}
-		else if(setting == NOTIFY_ON_DEST)
-		{
-			text = Preferences::NotificationSettingString();
-			isOn = text != "off";
-		}
-		else if(setting == FLOTSAM_SETTING)
-		{
-			text = Preferences::FlotsamSetting();
-			isOn = text != "off";
-		}
-		else if(setting == TURRET_TRACKING)
-		{
-			isOn = true;
-			text = Preferences::Has(FOCUS_PREFERENCE) ? "focused" : "opportunistic";
-		}
-		else if(setting == FIGHTER_REPAIR)
-		{
-			isOn = true;
-			text = Preferences::Has(FIGHTER_REPAIR) ? "parallel" : "series";
-		}
-		else if(setting == FLAGSHIP_SPACE_PRIORITY)
-		{
-			isOn = Preferences::GetFlagshipSpacePriority() != Preferences::FlagshipSpacePriority::NONE;
-			text = Preferences::FlagshipSpacePrioritySetting();
-		}
-		else if(setting == SHIP_OUTLINES)
-		{
-			isOn = true;
-			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
-		}
-		else if(setting == HUD_SHIP_OUTLINES)
-		{
-			isOn = true;
-			text = Preferences::Has(HUD_SHIP_OUTLINES) ? "fancy" : "fast";
-		}
-		else if(setting == BOARDING_PRIORITY)
-		{
-			isOn = true;
-			text = Preferences::BoardingSetting();
-		}
-		else if(setting == ASTEROID_TARGETING)
-		{
-			isOn = true;
-			text = Preferences::TargetAsteroidStrategySetting();
-		}
-		else if(setting == BACKGROUND_PARALLAX)
-		{
-			text = Preferences::ParallaxSetting();
-			isOn = text != "off";
-		}
-		else if(setting == EXTENDED_JUMP_EFFECTS)
-		{
-			text = Preferences::ExtendedJumpEffectsSetting();
-			isOn = text != "off";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{
@@ -1076,61 +914,39 @@ void PreferencesPanel::DrawSettings()
 				if(!special)
 				{
 					++total;
-					shown += Preferences::Has("help: " + it.first);
+					shown += Preferences::HelpShown("help: " + it.first);
 				}
 			}
 
 			if(shown)
+			{
+				isOn = false;
 				text = to_string(shown) + " / " + to_string(total);
+			}
 			else
 			{
 				isOn = true;
 				text = "done";
 			}
 		}
-		else if(setting == SCROLL_SPEED)
+		else if(setting == Preferences::SCROLL_SPEED)
 		{
 			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
 		}
-		else if(setting == TOOLTIP_ACTIVATION)
+		else if(setting == Preferences::TOOLTIP_ACTIVATION_TIME)
 		{
 			isOn = true;
 			text = Format::StepsToSeconds(Preferences::TooltipActivation());
 		}
-		else if(setting == ALERT_INDICATOR)
-		{
-			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
-			text = Preferences::AlertSetting();
-		}
-		else if(setting == MINIMAP_DISPLAY)
-		{
-			isOn = Preferences::GetMinimapDisplay() != Preferences::MinimapDisplay::OFF;
-			text = Preferences::MinimapSetting();
-		}
-		else if(setting == TRIBUTE_CONFIRMATION)
-		{
-			isOn = Preferences::GetTributeConfirmation() != Preferences::TributeConfirmation::OFF;
-			text = Preferences::TributeConfirmationSetting();
-		}
-		else if(setting == AMMO_REFILL)
-		{
-			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::NEVER;
-			text = Preferences::AmmoRefillSetting();
-		}
-		else if(setting == FASTFORWARD_CAPSLOCK_SYNC)
+		else if(setting == Preferences::FF_CAPSLOCK_SYNC)
 		{
 			const Preferences::FastForwardCapsLockSync fastForwardCapsLockSync
 				= Preferences::GetFastForwardCapsLockSync();
 			isOn = fastForwardCapsLockSync == Preferences::FastForwardCapsLockSync::ALWAYS
 				|| (fastForwardCapsLockSync == Preferences::FastForwardCapsLockSync::DEFAULT
 					&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
-			text = Preferences::FastForwardCapsLockSyncSetting();
-		}
-		else if(setting == TEXT_ALIGNMENT)
-		{
-			isOn = true;
-			text = Preferences::TextAlignmentSetting();
+			text = Preferences::DisplayValue(setting);
 		}
 #ifdef _WIN32
 		else if(setting == TITLE_BAR_THEME)
@@ -1145,7 +961,10 @@ void PreferencesPanel::DrawSettings()
 		}
 #endif
 		else
-			text = isOn ? "on" : "off";
+		{
+			isOn = Preferences::IsOn(setting);
+			text = Preferences::DisplayValue(setting);
+		}
 
 		if(setting == hoverItem)
 		{
@@ -1159,7 +978,7 @@ void PreferencesPanel::DrawSettings()
 			table.DrawHighlight(back);
 		}
 
-		table.Draw(setting, isOn ? medium : dim);
+		table.Draw(Preferences::DisplayName(setting), isOn ? medium : dim);
 		table.Draw(text, isOn ? bright : medium);
 	}
 
@@ -1364,7 +1183,7 @@ void PreferencesPanel::DrawTooltips()
 		return;
 
 	if(!tooltip.HasText())
-		tooltip.SetText(GameData::Tooltip(hoverItem));
+		tooltip.SetText(GameData::Tooltip(page == 'p' ? Preferences::DisplayName(hoverItem) : hoverItem));
 
 	tooltip.Draw();
 }
@@ -1393,7 +1212,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 {
 	// For some settings, clicking the option does more than just toggle a
 	// boolean state keyed by the option's name.
-	if(str == ZOOM_FACTOR)
+	if(str == Preferences::ZOOM_FACTOR_MAIN)
 	{
 		int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
 		Screen::SetZoom(newZoom);
@@ -1412,66 +1231,42 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		cursorPosition += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 		SDL_WarpMouseInWindow(nullptr, cursorPosition.X(), cursorPosition.Y());
 	}
-	else if(str == BOARDING_PRIORITY)
-		Preferences::ToggleBoarding();
-	else if(str == BACKGROUND_PARALLAX)
-		Preferences::ToggleParallax();
-	else if(str == EXTENDED_JUMP_EFFECTS)
-		Preferences::ToggleExtendedJumpEffects();
-	else if(str == VIEW_ZOOM_FACTOR)
+	else if(str == Preferences::ZOOM_FACTOR_VIEW)
 	{
 		// Increase the zoom factor unless it is at the maximum. In that
 		// case, cycle around to the lowest zoom factor.
 		if(!Preferences::ZoomViewIn())
 			while(Preferences::ZoomViewOut()) {}
 	}
-	else if(str == FONT_SIZE)
+	else if(str == Preferences::FONT_SIZE)
 	{
-		Preferences::ToggleFontSize();
+		Preferences::Toggle(str);
 		CustomEvents::SendAdjustText();
 	}
-	else if(str == SCREEN_MODE_SETTING)
+	else if(str == Preferences::SCREEN_MODE)
 		Preferences::ToggleScreenMode();
-	else if(str == VSYNC_SETTING)
+	else if(str == Preferences::VSYNC)
 	{
 		if(!Preferences::ToggleVSync())
 			GetUI().Push(DialogPanel::Info(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
-	else if(str == CAMERA_ACCELERATION)
-		Preferences::ToggleCameraAcceleration();
-	else if(str == LARGE_GRAPHICS_REDUCTION)
-		Preferences::ToggleLargeGraphicsReduction();
-	else if(str == STATUS_OVERLAYS_ALL)
+	else if(str == Preferences::STATUS_OVERLAYS_ALL)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
-	else if(str == STATUS_OVERLAYS_FLAGSHIP)
+	else if(str == Preferences::STATUS_OVERLAYS_FLAGSHIP)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::FLAGSHIP);
-	else if(str == STATUS_OVERLAYS_ESCORT)
+	else if(str == Preferences::STATUS_OVERLAYS_ESCORT)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ESCORT);
-	else if(str == STATUS_OVERLAYS_ENEMY)
+	else if(str == Preferences::STATUS_OVERLAYS_ENEMY)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
-	else if(str == STATUS_OVERLAYS_NEUTRAL)
+	else if(str == Preferences::STATUS_OVERLAYS_NEUTRAL)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
-	else if(str == TURRET_OVERLAYS)
-		Preferences::ToggleTurretOverlays();
-	else if(str == HIGHLIGHT_SHIPS)
-		Preferences::ToggleHighlightShips();
-	else if(str == AUTO_AIM_SETTING)
-		Preferences::ToggleAutoAim();
-	else if(str == AUTO_FIRE_SETTING)
-		Preferences::ToggleAutoFire();
-	else if(str == EXPEND_AMMO)
-		Preferences::ToggleAmmoUsage();
-	else if(str == FLOTSAM_SETTING)
-		Preferences::ToggleFlotsam();
-	else if(str == TURRET_TRACKING)
-		Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
 	else if(str == REACTIVATE_HELP)
 	{
 		for(const auto &it : GameData::HelpTemplates())
-			Preferences::Set("help: " + it.first, false);
+			Preferences::SetHelp("help: " + it.first, false);
 	}
-	else if(str == SCROLL_SPEED)
+	else if(str == Preferences::SCROLL_SPEED)
 	{
 		// Toggle between six different speeds.
 		int speed = Preferences::ScrollSpeed() + 10;
@@ -1479,7 +1274,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			speed = 10;
 		Preferences::SetScrollSpeed(speed);
 	}
-	else if(str == TOOLTIP_ACTIVATION)
+	else if(str == Preferences::TOOLTIP_ACTIVATION_TIME)
 	{
 		int steps = Preferences::TooltipActivation() + 20;
 		if(steps > 120)
@@ -1488,46 +1283,27 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		for(auto &panel : GetUI().Stack())
 			panel->UpdateTooltipActivation();
 	}
-	else if(str == FLAGSHIP_SPACE_PRIORITY)
-		Preferences::ToggleFlagshipSpacePriority();
-	else if(str == DATE_FORMAT)
-		Preferences::ToggleDateFormat();
-	else if(str == NOTIFY_ON_DEST)
-		Preferences::ToggleNotificationSetting();
-	else if(str == ALERT_INDICATOR)
-		Preferences::ToggleAlert();
-	else if(str == MINIMAP_DISPLAY)
-		Preferences::ToggleMinimapDisplay();
-	else if(str == BLOCK_SCREEN_SAVER)
+	else if(str == Preferences::BLOCK_SCREEN_SAVER)
 		Preferences::ToggleBlockScreenSaver();
-	else if(str == TRIBUTE_CONFIRMATION)
-		Preferences::ToggleTributeConfirmation();
-	else if(str == AMMO_REFILL)
-		Preferences::ToggleAmmoRefill();
-	else if(str == FASTFORWARD_CAPSLOCK_SYNC)
-		Preferences::ToggleFastForwardCapsLockSync();
-	else if(str == TEXT_ALIGNMENT)
+	else if(str == Preferences::TEXT_ALIGNMENT)
 	{
-		Preferences::ToggleTextAlignment();
+		Preferences::Toggle(str);
 		CustomEvents::SendAdjustText();
 	}
-	else if(str == ASTEROID_TARGETING)
-		Preferences::ToggleTargetAsteroidStrategy();
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
 		Preferences::ToggleTitleBarTheme();
 	else if(str == WINDOW_ROUNDING)
 		Preferences::ToggleWindowRounding();
 #endif
-	// All other options are handled by just toggling the boolean state.
 	else
-		Preferences::Set(str, !Preferences::Has(str));
+		Preferences::Toggle(str);
 
 	// If the deadline blink preference was toggled and the player is in flight,
 	// then we need to recache the remaining mission deadlines. This doesn't need
 	// to be done when the player is landed since the MapPanel already recalculates
 	// the remaining deadlines when it is opened in that case.
-	if(str == "Deadline blink by distance" && !player.GetPlanet())
+	if(str == Preferences::MAP_DEADLINE_BLINK_BY_DISTANCE && !player.GetPlanet())
 		recacheDeadlines = !recacheDeadlines;
 }
 

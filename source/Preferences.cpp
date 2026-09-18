@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "Logger.h"
 #include "Screen.h"
+#include "Setting.h"
 
 #ifdef _WIN32
 #include "windows/WinVersion.h"
@@ -38,33 +39,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	map<string, bool> settings;
+	map<string, Setting> settings;
+	map<string, bool> help;
+	map<string, int> unrecognized;
+
 	int scrollSpeed = 60;
 	int tooltipActivation = 60;
 
-	// Strings for ammo expenditure:
-	const string EXPEND_AMMO = "Escorts expend ammo";
-	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
-
-	const vector<string> DATEFMT_OPTIONS = {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"};
-	int dateFormatIndex = 0;
-
-	const vector<string> NOTIF_OPTIONS = {"off", "message", "both"};
-	int notifOptionsIndex = 1;
-
 	size_t zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
-
-	// Default to fullscreen.
-	int screenModeIndex = 1;
-	const vector<string> SCREEN_MODE_SETTINGS = {"windowed", "fullscreen"};
-
-	// Enable standard VSync by default.
-	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
-	int vsyncIndex = 1;
-
-	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
-	int cameraAccelerationIndex = 0;
 
 	const map<string, SoundCategory> VOLUME_SETTINGS = {
 		{"volume", SoundCategory::MASTER},
@@ -81,12 +64,6 @@ namespace {
 		{"alert volume", SoundCategory::ALERT}
 	};
 
-	const vector<string> FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS = {
-		"default", "never", "always"
-	};
-	int fastForwardCapsLockSyncIndex = 0;
-
-
 	class OverlaySetting {
 	public:
 		OverlaySetting() = default;
@@ -94,14 +71,14 @@ namespace {
 
 		operator Preferences::OverlayState() const { return state; }
 
-		const bool IsActive() const { return state != Preferences::OverlayState::DISABLED; }
+		bool IsActive() const { return state != Preferences::OverlayState::DISABLED; }
 
 		const string &ToString() const
 		{
 			return OVERLAY_SETTINGS[max<int>(0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
 		}
 
-		const int ToInt() const { return static_cast<int>(state); }
+		int ToInt() const { return static_cast<int>(state); }
 
 		void SetState(int value)
 		{
@@ -132,10 +109,8 @@ namespace {
 			}
 		}
 
-
 	private:
 		static const vector<string> OVERLAY_SETTINGS;
-
 
 	private:
 		Preferences::OverlayState state = Preferences::OverlayState::OFF;
@@ -151,245 +126,313 @@ namespace {
 		{Preferences::OverlayType::NEUTRAL, Preferences::OverlayState::OFF},
 	};
 
-	const vector<string> TURRET_OVERLAYS_SETTINGS = {"off", "always on", "blindspots only"};
-	int turretOverlaysIndex = 2;
-
-	const vector<string> HIGHLIGHT_SHIPS_SETTINGS = {"off", "flagship", "owned ships", "all"};
-	int highlightShipsIndex = 0;
-
-	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
-	int autoAimIndex = 2;
-
-	const vector<string> AUTO_FIRE_SETTINGS = {"off", "on", "guns only", "turrets only"};
-	int autoFireIndex = 0;
-
-	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
-	int boardingIndex = 0;
-
-	const vector<string> FLOTSAM_SETTINGS = {"off", "on", "flagship only", "escorts only"};
-	int flotsamIndex = 1;
-
-	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
-	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
-	int parallaxIndex = 2;
-
-	const vector<string> EXTENDED_JUMP_EFFECT_SETTINGS = {"off", "medium", "heavy"};
-	int extendedJumpEffectIndex = 0;
-
-	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
-	int alertIndicatorIndex = 3;
-
-	const vector<string> MINIMAP_DISPLAY_SETTING = {"off", "when jumping", "always on"};
-	int minimapDisplayIndex = 1;
-
-	const vector<string> FLAGSHIP_SPACE_PRIORITY_SETTINGS = {"none", "passengers", "cargo", "both"};
-	int flagshipSpacePriorityIndex = 1;
-
-	const vector<string> LARGE_GRAPHICS_REDUCTION_SETTINGS = {"off", "largest only", "all"};
-	int largeGraphicsReductionIndex = 0;
-
-	const vector<string> TRIBUTE_CONFIRMATION_SETTINGS = {"off", "friendly only", "always"};
-	int tributeConfirmationIndex = 1;
-
-	const vector<string> AMMO_REFILL_SETTINGS = {"never", "ask", "when free", "always"};
-	int ammoRefillIndex = 1;
-
-	const vector<string> TEXT_ALIGNMENT_SETTINGS = {"left", "center", "right", "justified"};
-	int textAlignmentIndex = 3;
-
-	const string BLOCK_SCREEN_SAVER = "Block screen saver";
-
-	const vector<string> TARGET_ASTEROID_SETTINGS = {"proximity", "expected value", "quality"};
-	int targetAsteroidIndex = 0;
-
 	int previousSaveCount = 3;
 
 	// The font size to be used for various UI panels that can support displaying larger text than the default.
 	const vector<int> FONT_SIZES = {14, 18};
-	int fontSizeIndex = 0;
+}
 
+
+
+const string Preferences::ALERT_INDICATOR = "alert indicator";
+const string Preferences::AMMO_REFILL = "Ammo refill";
+const string Preferences::ANIMATE_MENU_BACKGROUND = "Animate main menu background";
+const string Preferences::ASTEROID_TARGETING = "Target asteroid based on";
+const string Preferences::AUTO_AIM = "Automatic aiming";
+const string Preferences::AUTO_FIRE = "Automatic firing";
+const string Preferences::AUTO_UNPARK_FLAGSHIP = "Automatically unpark flagship";
+const string Preferences::BLOCK_SCREEN_SAVER = "Block screen saver";
+const string Preferences::BOARDING_TARGET_PRIORITY = "boarding target";
+const string Preferences::CAMERA_ACCELERATION = "camera acceleration";
+const string Preferences::DAMAGED_FIGHTERS_RETREAT = "Damaged fighters retreat";
+const string Preferences::DATE_FORMAT = "date format";
+const string Preferences::DEFER_LOADING_IMAGES = "Defer loading images";
+const string Preferences::DESTINATION_NOTIFICATION = "notification settings";
+const string Preferences::DRAW_BACKGROUND_HAZE = "Draw background haze";
+const string Preferences::DRAW_STARFIELD = "Draw starfield";
+const string Preferences::ESCORT_AMMO_USAGE = "Escort ammo usage";
+const string Preferences::EXTENDED_JUMP_EFFECTS = "Extended jump effects";
+const string Preferences::FF_CAPSLOCK_SYNC = "Sync FF to CapsLock";
+const string Preferences::FIGHTERS_REPAIR_IN = "Repair fighters in";
+const string Preferences::FIGHTERS_TRANSFER_CARGO = "Fighters transfer cargo";
+const string Preferences::FIXED_STARFIELD_ZOOM = "Fixed starfield zoom";
+const string Preferences::FLAGSHIP_SPACE_PRIORITY = "Prioritize flagship use";
+const string Preferences::FLOTSAM_COLLECTION = "Flotsam collection";
+const string Preferences::FONT_SIZE = "font size";
+const string Preferences::HUD_ASTEROID_OVERLAY = "Show asteroid scanner overlay";
+const string Preferences::HUD_CLICKABLE_RADAR = "Clickable radar display";
+const string Preferences::HUD_DISABLE_RADAR_VIEWPORT = "Disable viewport on radar";
+const string Preferences::HUD_EXTRA_STATUS_MSGS = "Extra fleet status messages";
+const string Preferences::HUD_MISSILE_OVERLAY = "Show missile overlays";
+const string Preferences::HUD_ROTATE_FLAGSHIP = "Rotate flagship in HUD";
+const string Preferences::HUD_TURRET_OVERLAY = "Turret overlays";
+const string Preferences::HUD_PLANET_LABELS = "Show planet labels";
+const string Preferences::INTERRUPT_FAST_FORWARD = "Interrupt fast-forward";
+const string Preferences::LANDING_ZOOM = "Landing zoom";
+const string Preferences::MAP_DEADLINE_BLINK_BY_DISTANCE = "Deadline blink by distance";
+const string Preferences::MAP_HIDE_UNEXPLORED = "Hide unexplored map regions";
+const string Preferences::MAP_SHOW_ESCORTS = "Show escort systems on map";
+const string Preferences::MAP_SHOW_OUTFITS = "Show stored outfits on map";
+const string Preferences::MAP_PARENTHESIZE_PROFIT = "Parenthesize trade profits";
+const string Preferences::MINIMAP_DISPLAY = "Show mini-map";
+const string Preferences::MOTION_BLUR = "Render motion blur";
+const string Preferences::MOUSE_CONTROL_FLAGSHIP = "Control ship with mouse";
+const string Preferences::MOUSE_CONTROL_TURRETS = "Aim turrets with mouse";
+const string Preferences::PARALLAX = "Parallax background";
+const string Preferences::PREVIOUS_SAVES = "previous saves";
+const string Preferences::REACTIVATE_HELP = "reactivate help";
+const string Preferences::REDUCE_LARGE_GRAPHICS = "Reduce large graphics";
+const string Preferences::REHIRE_LOST_CREW = "Rehire extra crew when lost";
+const string Preferences::SAVE_MSG_LOGS = "Save message log";
+const string Preferences::SCREEN_MODE = "fullscreen";
+const string Preferences::SCREEN_MAXIMIZED = "maximized";
+const string Preferences::SCROLL_SPEED = "scroll speed";
+const string Preferences::SHIP_HIGHLIGHTS = "Highlight ships";
+const string Preferences::SHIP_OUTLINES_CLOAKED = "Cloaked ship outlines";
+const string Preferences::SHIP_OUTLINES_HUD = "Ship outlines in HUD";
+const string Preferences::SHIP_OUTLINES_SHOP = "Ship outlines in shops";
+const string Preferences::SHOW_HYPERSPACE_FLASH = "Show hyperspace flash";
+const string Preferences::SHOW_PERFORMANCE_METRICS = "Show CPU / GPU load";
+const string Preferences::STATUS_OVERLAYS_ALL = "Show all status overlays";
+const string Preferences::STATUS_OVERLAYS_FLAGSHIP = "Show flagship overlay";
+const string Preferences::STATUS_OVERLAYS_ESCORT = "Show escort overlays";
+const string Preferences::STATUS_OVERLAYS_ENEMY = "Show enemy overlays";
+const string Preferences::STATUS_OVERLAYS_NEUTRAL = "Show neutral overlays";
+const string Preferences::TEXT_ALIGNMENT = "Text alignment";
+const string Preferences::TEXTURE_FILTERING = "Texture filtering";
+const string Preferences::TOOLTIP_ACTIVATION_TIME = "Tooltip activation time";
+const string Preferences::TRIBUTE_CONFIRMATION = "Tribute confirmation";
+const string Preferences::TRADE_SELL_OUTFITS_WITHOUT_SHOP = "Sell outfits without outfitter";
+const string Preferences::TRADE_CONFIRM_MINABLES = "Confirm selling minables";
+const string Preferences::TRADE_CONFIRM_OUTFITS = "Confirm selling outfits";
+const string Preferences::TURRETS_FOCUS_FIRE = "Turrets focus fire";
+const string Preferences::UNDERLINE_SHORTCUTS = "Always underline shortcuts";
+const string Preferences::VSYNC = "vsync";
+const string Preferences::WINDOW_SIZE = "window size";
+const string Preferences::ZOOM_FACTOR_MAIN = "zoom";
+const string Preferences::ZOOM_FACTOR_VIEW = "view zoom";
 #ifdef _WIN32
-	const vector<string> TITLE_BAR_THEME_SETTINGS = {"system default", "light", "dark"};
-	int titleBarThemeIndex = 0;
-
-	const vector<string> WINDOW_ROUNDING_SETTINGS = {"system default", "off", "large", "small"};
-	int windowRoundingIndex = 0;
+const string Preferences::TITLE_BAR_THEME = "Title bar theme";
+const string Preferences::WINDOW_ROUNDING = "Window rounding";
 #endif
+
+
+
+void Preferences::Init()
+{
+	settings.clear();
+	help.clear();
+	unrecognized.clear();
+
+	// Define allowable and default values for all settings.
+	settings[ALERT_INDICATOR] = Setting::List("Alert indicator", 3, {"off", "audio", "visual", "both"});
+	settings[AMMO_REFILL] = Setting::List("Auto refill ammo", 1, {"never", "ask", "when free", "always"});
+	settings[ANIMATE_MENU_BACKGROUND] = Setting::Boolean("Animate main menu background", true);
+	settings[ASTEROID_TARGETING] = Setting::List("Asteroid targeting", 0, {"proximity", "expected value", "quality"}, true);
+	settings[AUTO_AIM] = Setting::List("Automatic aiming", 2, {"off", "always on", "when firing"});
+	settings[AUTO_FIRE] = Setting::List("Automatic firing", 0, {"off", "on", "guns only", "turrets only"});
+	settings[AUTO_UNPARK_FLAGSHIP] = Setting::Boolean("Automatically unpark flagship", false);
+	settings[BLOCK_SCREEN_SAVER] = Setting::Boolean("Block screen saver", false);
+	settings[BOARDING_TARGET_PRIORITY] = Setting::List("Boarding target priority", 0, {"proximity", "value", "mixed"}, true);
+	settings[CAMERA_ACCELERATION] = Setting::List("Camera acceleration", 0, {"off", "on", "reversed"});
+	settings[DAMAGED_FIGHTERS_RETREAT] = Setting::Boolean("Damaged fighters retreat", true);
+	settings[DATE_FORMAT] = Setting::List("Date format", 0, {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"}, true);
+	settings[DEFER_LOADING_IMAGES] = Setting::Boolean("Defer loading images", false);
+	settings[DESTINATION_NOTIFICATION] = Setting::List("Notify on destination", 1, {"off", "message", "both"});
+	settings[DRAW_BACKGROUND_HAZE] = Setting::Boolean("Draw background haze", true);
+	settings[DRAW_STARFIELD] = Setting::Boolean("Draw starfield", true);
+	settings[ESCORT_AMMO_USAGE] = Setting::List("Escorts expend ammo", 1, {"never", "frugally", "always"});
+	settings[EXTENDED_JUMP_EFFECTS] = Setting::List("Extended jump effects", 0, {"off", "medium", "heavy"});
+	settings[FF_CAPSLOCK_SYNC] = Setting::List("Sync FF to CapsLock", 0, {"default", "never", "always"}, true);
+	settings[FIGHTERS_REPAIR_IN] = Setting::List("Repair fighters in", 1, {"series", "parallel"}, true);
+	settings[FIGHTERS_TRANSFER_CARGO] = Setting::Boolean("Fighters transfer cargo", false);
+	settings[FIXED_STARFIELD_ZOOM] = Setting::Boolean("Fixed starfield zoom", false);
+	settings[FLAGSHIP_SPACE_PRIORITY] = Setting::List("Prioritize flagship use", 1, {"none", "passengers", "cargo", "both"});
+	settings[FLOTSAM_COLLECTION] = Setting::List("Flotsam collection", 1, {"off", "on", "flagship only", "escorts only"});
+	settings[FONT_SIZE] = Setting::List("UI font size", 0, {"14", "18"}, true);
+	settings[HUD_ASTEROID_OVERLAY] = Setting::Boolean("Show asteroid scanner overlay", true);
+	settings[HUD_CLICKABLE_RADAR] = Setting::Boolean("Clickable radar display", false);
+	// TODO: This has been a preferences since 2018, but it isn't in PreferencesPanel.
+	settings[HUD_DISABLE_RADAR_VIEWPORT] = Setting::Boolean("Disable viewport on radar", false);
+	settings[HUD_EXTRA_STATUS_MSGS] = Setting::Boolean("Extra fleet status messages", true);
+	settings[HUD_MISSILE_OVERLAY] = Setting::Boolean("Show missile overlays", false);
+	settings[HUD_ROTATE_FLAGSHIP] = Setting::Boolean("Rotate flagship in HUD", false);
+	settings[HUD_TURRET_OVERLAY] = Setting::List("Turret overlays", 2, {"off", "always on", "blindspots only"});
+	settings[HUD_PLANET_LABELS] = Setting::Boolean("Show planet labels", true);
+	settings[INTERRUPT_FAST_FORWARD] = Setting::Boolean("Interrupt fast-forward", false);
+	settings[LANDING_ZOOM] = Setting::Boolean("Landing zoom", false);
+	settings[MAP_DEADLINE_BLINK_BY_DISTANCE] = Setting::Boolean("Deadline blink by distance", true);
+	settings[MAP_HIDE_UNEXPLORED] = Setting::Boolean("Hide unexplored map regions", true);
+	settings[MAP_SHOW_ESCORTS] = Setting::Boolean("Show escort systems on map", true);
+	settings[MAP_SHOW_OUTFITS] = Setting::Boolean("Show stored outfits on map", true);
+	settings[MAP_PARENTHESIZE_PROFIT] = Setting::Boolean("Parenthesize trade profits", false);
+	settings[MINIMAP_DISPLAY] = Setting::List("Show mini-map", 1, {"off", "when jumping", "always on"});
+	settings[MOTION_BLUR] = Setting::Boolean("Render motion blur", true);
+	settings[MOUSE_CONTROL_FLAGSHIP] = Setting::Boolean("Control ship with mouse", false);
+	settings[MOUSE_CONTROL_TURRETS] = Setting::Boolean("Aim turrets with mouse", false);
+	settings[PARALLAX] = Setting::List("Parallax background", 2, {"off", "fancy", "fast"});
+	// "Previous saves" is unique and not rendered in PreferencesPanel, and so it doesn't need a Setting.
+	settings[REACTIVATE_HELP] = Setting::Unique("Reactivate first-time help");
+	settings[REDUCE_LARGE_GRAPHICS] = Setting::List("Reduce large graphics", 0, {"off", "largest only", "all"});
+	settings[REHIRE_LOST_CREW] = Setting::Boolean("Rehire extra crew when lost", false);
+	settings[SAVE_MSG_LOGS] = Setting::Boolean("Save message log", false);
+	settings[SCREEN_MODE] = Setting::List("Screen mode", 1, {"windowed", "fullscreen"}, true);
+	settings[SCROLL_SPEED] = Setting::Unique("Scroll speed");
+	settings[SCREEN_MAXIMIZED] = Setting::Boolean("Screen maximized", false);
+	settings[SHIP_HIGHLIGHTS] = Setting::List("Highlight ships", 0, {"off", "flagship", "owned ships", "all"});
+	settings[SHIP_OUTLINES_CLOAKED] = Setting::List("Cloaked ship outlines", 1, {"fast", "fancy"}, true);
+	settings[SHIP_OUTLINES_HUD] = Setting::List("Ship outlines in HUD", 1, {"fast", "fancy"}, true);
+	settings[SHIP_OUTLINES_SHOP] = Setting::List("Ship outlines in shops", 1, {"fast", "fancy"}, true);
+	settings[SHOW_HYPERSPACE_FLASH] = Setting::Boolean("Show hyperspace flash", false);
+	settings[SHOW_PERFORMANCE_METRICS] = Setting::Boolean("Show CPU / GPU load", false);
+	settings[STATUS_OVERLAYS_ALL] = Setting::Unique("Show status overlays");
+	settings[STATUS_OVERLAYS_FLAGSHIP] = Setting::Unique("   Show flagship overlay");
+	settings[STATUS_OVERLAYS_ESCORT] = Setting::Unique("   Show escort overlays");
+	settings[STATUS_OVERLAYS_ENEMY] = Setting::Unique("   Show enemy overlays");
+	settings[STATUS_OVERLAYS_NEUTRAL] = Setting::Unique("   Show neutral overlays");
+	settings[TEXT_ALIGNMENT] = Setting::List("Text alignment", 3, {"left", "center", "right", "justified"}, true);
+	settings[TEXTURE_FILTERING] = Setting::List("Texture filtering", 1, {"nearest", "linear"}, true);
+	settings[TOOLTIP_ACTIVATION_TIME] = Setting::Unique("Tooltip activation time");
+	settings[TRIBUTE_CONFIRMATION] = Setting::List("Tribute confirmation", 1, {"off", "friendly only", "always"});
+	settings[TRADE_SELL_OUTFITS_WITHOUT_SHOP] = Setting::Boolean("Sell outfits without outfitter", true);
+	settings[TRADE_CONFIRM_MINABLES] = Setting::Boolean("Confirm selling minables", true);
+	settings[TRADE_CONFIRM_OUTFITS] = Setting::Boolean("Confirm selling outfits", true);
+	settings[TURRETS_FOCUS_FIRE] = Setting::List("Turret tracking", 1, {"opportunistic", "focused"}, true);
+	settings[UNDERLINE_SHORTCUTS] = Setting::Boolean("Always underline shortcuts", false);
+	settings[VSYNC] = Setting::List("VSync", 1, {"off", "on", "adaptive"});
+	// "Window size" is unique and not rendered in PreferencesPanel, and so it doesn't need a Setting.
+	settings[ZOOM_FACTOR_MAIN] = Setting::Unique("Main zoom factor");
+	settings[ZOOM_FACTOR_VIEW] = Setting::Unique("View zoom factor");
+#ifdef _WIN32
+	settings[TITLE_BAR_THEME] = Setting::List("Title bar theme", 0, {"system default", "light", "dark"});
+	settings[WINDOW_ROUNDING] = Setting::List("Window rounding", 0, {"system default", "off", "large", "small"});
+#endif
+
+	// TODO: Populate on toggle and display functions so that
+	//  PreferencesPanel doesn't need special handling for any preferences.
 }
 
 
 
 void Preferences::Load()
 {
-	// These settings should be on by default. There is no need to specify
-	// values for settings that are off by default.
-	settings["Render motion blur"] = true;
-	settings["Cloaked ship outlines"] = true;
-	settings[FRUGAL_ESCORTS] = true;
-	settings[EXPEND_AMMO] = true;
-	settings["Damaged fighters retreat"] = true;
-	settings["Show escort systems on map"] = true;
-	settings["Show stored outfits on map"] = true;
-	settings["Show planet labels"] = true;
-	settings["Show asteroid scanner overlay"] = true;
-	settings["Draw background haze"] = true;
-	settings["Draw starfield"] = true;
-	settings["Animate main menu background"] = true;
-	settings["Texture filtering"] = true;
-	settings["Hide unexplored map regions"] = true;
-	settings["Turrets focus fire"] = true;
-	settings["Ship outlines in shops"] = true;
-	settings["Ship outlines in HUD"] = true;
-	settings["Extra fleet status messages"] = true;
-	settings["Deadline blink by distance"] = true;
-	settings["Confirm selling outfits"] = true;
-	settings["Confirm selling minables"] = true;
-	settings["Sell outfits without outfitter"] = true;
-
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
 	{
 		const string &key = node.Token(0);
 		bool hasValue = node.Size() >= 2;
-		if(key == "window size" && node.Size() >= 3)
+		if(key == WINDOW_SIZE && node.Size() >= 3)
 			Screen::SetRaw(node.Value(1), node.Value(2), true);
-		else if(key == "zoom" && hasValue)
+		else if(key == ZOOM_FACTOR_MAIN && hasValue)
 			Screen::SetZoom(node.Value(1), true);
 		else if(VOLUME_SETTINGS.contains(key) && hasValue)
 			Audio::SetVolume(node.Value(1) * VOLUME_SCALE, VOLUME_SETTINGS.at(key));
-		else if(key == "scroll speed" && hasValue)
+		else if(key == SCROLL_SPEED && hasValue)
 			scrollSpeed = node.Value(1);
-		else if(key == "Tooltip activation time" && hasValue)
+		else if(key == TOOLTIP_ACTIVATION_TIME && hasValue)
 			tooltipActivation = node.Value(1);
-		else if(key == "boarding target")
-			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
-		else if(key == "Flotsam collection")
-			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
-		else if(key == "view zoom")
+		else if(key == ZOOM_FACTOR_VIEW)
 			zoomIndex = max(0., node.Value(1));
-		else if(key == "vsync")
-			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
-		else if(key == "camera acceleration")
-			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
-		else if(key == "Show all status overlays")
+		else if(key == STATUS_OVERLAYS_ALL)
 			statusOverlaySettings[OverlayType::ALL].SetState(node.Value(1));
-		else if(key == "Show flagship overlay")
+		else if(key == STATUS_OVERLAYS_FLAGSHIP)
 			statusOverlaySettings[OverlayType::FLAGSHIP].SetState(node.Value(1));
-		else if(key == "Show escort overlays")
+		else if(key == STATUS_OVERLAYS_ESCORT)
 			statusOverlaySettings[OverlayType::ESCORT].SetState(node.Value(1));
-		else if(key == "Show enemy overlays")
+		else if(key == STATUS_OVERLAYS_ENEMY)
 			statusOverlaySettings[OverlayType::ENEMY].SetState(node.Value(1));
-		else if(key == "Show neutral overlays")
+		else if(key == STATUS_OVERLAYS_NEUTRAL)
 			statusOverlaySettings[OverlayType::NEUTRAL].SetState(node.Value(1));
-		else if(key == "Turret overlays")
-			turretOverlaysIndex = clamp<int>(node.Value(1), 0, TURRET_OVERLAYS_SETTINGS.size() - 1);
-		else if(key == "Highlight ships")
-			highlightShipsIndex = clamp<int>(node.Value(1), 0, HIGHLIGHT_SHIPS_SETTINGS.size() - 1);
-		else if(key == "Automatic aiming")
-			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
-		else if(key == "Automatic firing")
-			autoFireIndex = max<int>(0, min<int>(node.Value(1), AUTO_FIRE_SETTINGS.size() - 1));
-		else if(key == "Parallax background")
-			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
-		else if(key == "Extended jump effects")
-			extendedJumpEffectIndex = max<int>(0, min<int>(node.Value(1), EXTENDED_JUMP_EFFECT_SETTINGS.size() - 1));
-		else if(key == "fullscreen")
-			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
-		else if(key == "date format")
-			dateFormatIndex = max<int>(0, min<int>(node.Value(1), DATEFMT_OPTIONS.size() - 1));
-		else if(key == "alert indicator")
-			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
-		else if(key == "Show mini-map")
-			minimapDisplayIndex = max<int>(0, min<int>(node.Value(1), MINIMAP_DISPLAY_SETTING.size() - 1));
-		else if(key == "Prioritize flagship use")
-			flagshipSpacePriorityIndex = clamp<int>(node.Value(1), 0, FLAGSHIP_SPACE_PRIORITY_SETTINGS.size() - 1);
-		else if(key == "Reduce large graphics")
-			largeGraphicsReductionIndex = clamp<int>(node.Value(1), 0, LARGE_GRAPHICS_REDUCTION_SETTINGS.size() - 1);
-		else if(key == "previous saves" && hasValue)
+		else if(key == PREVIOUS_SAVES && hasValue)
 			previousSaveCount = max<int>(3, node.Value(1));
-		else if(key == "alt-mouse turning")
-			settings["Control ship with mouse"] = (!hasValue || node.Value(1));
-		else if(key == "notification settings")
-			notifOptionsIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
-		else if(key == "Tribute confirmation")
-			tributeConfirmationIndex = max<int>(0, min<int>(node.Value(1), TRIBUTE_CONFIRMATION_SETTINGS.size() - 1));
-		else if(key == "Ammo refill")
-			ammoRefillIndex = clamp<int>(node.Value(1), 0, AMMO_REFILL_SETTINGS.size() - 1);
-		else if(key == "Sync FF to CapsLock")
-			fastForwardCapsLockSyncIndex = max<int>(0, min<int>(node.Value(1), FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS.size() - 1));
-		else if(key == "Text alignment")
-			textAlignmentIndex = clamp<int>(node.Value(1), 0, TEXT_ALIGNMENT_SETTINGS.size() - 1);
-		else if(key == "Target asteroid based on")
-			targetAsteroidIndex = clamp<int>(node.Value(1), 0, TARGET_ASTEROID_SETTINGS.size() - 1);
-		else if(key == "font size")
-			fontSizeIndex = max<int>(0, node.Value(1));
-#ifdef _WIN32
-		else if(key == "Title bar theme")
-			titleBarThemeIndex = clamp<int>(node.Value(1), 0, TITLE_BAR_THEME_SETTINGS.size() - 1);
-		else if(key == "Window rounding")
-			windowRoundingIndex = clamp<int>(node.Value(1), 0, WINDOW_ROUNDING_SETTINGS.size() - 1);
-#endif
+		else if(settings.contains(key))
+			settings[key].SetIndex(!hasValue || node.Value(1));
+		else if(key.starts_with("help: "))
+			help[key] = (!hasValue || node.Value(1));
 		else
-			settings[key] = (node.Size() == 1 || node.Value(1));
+			unrecognized[key] = (!hasValue || node.Value(1));
 	}
 
 	// For people updating from a version before the visual red alert indicator,
 	// if they have already disabled the warning siren, don't turn the audible alert back on.
-	auto it = settings.find("Warning siren");
-	if(it != settings.end())
+	auto it = unrecognized.find("Warning siren");
+	if(it != unrecognized.end())
 	{
 		if(!it->second)
-			alertIndicatorIndex = 2;
-		settings.erase(it);
+			settings[ALERT_INDICATOR].SetIndex(2);
+		unrecognized.erase(it);
+	}
+
+	it = unrecognized.find("alt-mouse turning");
+	if(it != unrecognized.end())
+	{
+		if(it->second)
+			settings[MOUSE_CONTROL_FLAGSHIP].SetIndex(1);
+		unrecognized.erase(it);
 	}
 
 	// For people updating from a version before the status overlay customization
 	// changes, don't turn all the overlays on if they were off before.
-	it = settings.find("Show status overlays");
-	if(it != settings.end())
+	it = unrecognized.find("Show status overlays");
+	if(it != unrecognized.end())
 	{
 		if(it->second)
 			statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
-		settings.erase(it);
+		unrecognized.erase(it);
 	}
 
 	// For people updating from a version after 0.10.1 (where "Flagship flotsam collection" was added),
 	// but before 0.10.3 (when it was replaced with "Flotsam Collection").
-	it = settings.find("Flagship flotsam collection");
-	if(it != settings.end())
+	it = unrecognized.find("Flagship flotsam collection");
+	if(it != unrecognized.end())
 	{
 		if(!it->second)
-			flotsamIndex = static_cast<int>(FlotsamCollection::ESCORT);
-		settings.erase(it);
+			settings[FLOTSAM_COLLECTION].SetIndex(static_cast<int>(FlotsamCollection::ESCORT));
+		unrecognized.erase(it);
 	}
 
 	// For people updating from a version before 0.11.1,
 	// where "Highlight player's ship" was replaced with "Highlight ships".
-	it = settings.find("Highlight player's flagship");
-	if(it != settings.end())
+	it = unrecognized.find("Highlight player's flagship");
+	if(it != unrecognized.end())
 	{
 		if(it->second)
-			highlightShipsIndex = static_cast<int>(HighlightShips::FLAGSHIP);
-		settings.erase(it);
+			settings[SHIP_HIGHLIGHTS].SetIndex(static_cast<int>(HighlightShips::FLAGSHIP));
+		unrecognized.erase(it);
 	}
-
 
 	// Some settings have been renamed. If the preferences file contains the old names,
 	// load the state from them, then erase them so only the new names are written back when saving settings.
 	const array<pair<string, string>, 4> RENAMED_BOOLEAN_SETTINGS = {{
-		{"'Sell Outfits' without outfitter", "Sell outfits without outfitter"},
-		{"Confirm 'Sell Outfits' button", "Confirm selling outfits"},
-		{"Confirm 'Sell Minables' button", "Confirm selling minables"},
-		{"Show parenthesis", "Parenthesize trade profits"}
+		{"'Sell Outfits' without outfitter", TRADE_SELL_OUTFITS_WITHOUT_SHOP},
+		{"Confirm 'Sell Outfits' button", TRADE_CONFIRM_OUTFITS},
+		{"Confirm 'Sell Minables' button", TRADE_CONFIRM_MINABLES},
+		{"Show parenthesis", MAP_PARENTHESIZE_PROFIT}
 	}};
 	for(auto const &[oldName, newName] : RENAMED_BOOLEAN_SETTINGS)
 	{
-		it = settings.find(oldName);
-		if(it != settings.end())
+		it = unrecognized.find(oldName);
+		if(it != unrecognized.end())
 		{
-			settings[newName] = it->second;
-			settings.erase(it);
+			unrecognized[newName] = it->second;
+			unrecognized.erase(it);
 		}
+	}
+
+	// For people updating from a version before 0.11.3,
+	// where "Escorts expend ammo" and "Escorts use ammo frugally" were replaced with "Escort ammo usage".
+	it = unrecognized.find("Escorts expend ammo");
+	if(it != unrecognized.end())
+	{
+		auto sit = unrecognized.find("Escorts use ammo frugally");
+		if(sit != unrecognized.end() && sit->second)
+		{
+			settings[ESCORT_AMMO_USAGE].SetIndex(static_cast<int>(EscortAmmoUsage::FRUGALLY));
+			unrecognized.erase(sit);
+		}
+		else if(it->second)
+			settings[ESCORT_AMMO_USAGE].SetIndex(static_cast<int>(EscortAmmoUsage::ALWAYS));
+		unrecognized.erase(it);
 	}
 }
 
@@ -401,48 +444,26 @@ void Preferences::Save()
 
 	for(const auto &[name, category] : VOLUME_SETTINGS)
 		out.Write(name, Audio::Volume(category) / VOLUME_SCALE);
-	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
-	out.Write("zoom", Screen::UserZoom());
-	out.Write("scroll speed", scrollSpeed);
-	out.Write("Tooltip activation time", tooltipActivation);
-	out.Write("boarding target", boardingIndex);
-	out.Write("Flotsam collection", flotsamIndex);
-	out.Write("view zoom", zoomIndex);
-	out.Write("vsync", vsyncIndex);
-	out.Write("Sync FF to CapsLock", fastForwardCapsLockSyncIndex);
-	out.Write("camera acceleration", cameraAccelerationIndex);
-	out.Write("date format", dateFormatIndex);
-	out.Write("notification settings", notifOptionsIndex);
-	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
-	out.Write("Show flagship overlay", statusOverlaySettings[OverlayType::FLAGSHIP].ToInt());
-	out.Write("Show escort overlays", statusOverlaySettings[OverlayType::ESCORT].ToInt());
-	out.Write("Show enemy overlays", statusOverlaySettings[OverlayType::ENEMY].ToInt());
-	out.Write("Show neutral overlays", statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
-	out.Write("Turret overlays", turretOverlaysIndex);
-	out.Write("Highlight ships", highlightShipsIndex);
-	out.Write("Automatic aiming", autoAimIndex);
-	out.Write("Automatic firing", autoFireIndex);
-	out.Write("Parallax background", parallaxIndex);
-	out.Write("Extended jump effects", extendedJumpEffectIndex);
-	out.Write("alert indicator", alertIndicatorIndex);
-	out.Write("Show mini-map", minimapDisplayIndex);
-	out.Write("Prioritize flagship use", flagshipSpacePriorityIndex);
-	out.Write("Reduce large graphics", largeGraphicsReductionIndex);
-	out.Write("Tribute confirmation", tributeConfirmationIndex);
-	out.Write("Ammo refill", ammoRefillIndex);
-	out.Write("Text alignment", textAlignmentIndex);
-	out.Write("Target asteroid based on", targetAsteroidIndex);
-	out.Write("previous saves", previousSaveCount);
-	out.Write("font size", fontSizeIndex);
-#ifdef _WIN32
-	if(WinVersion::SupportsDarkTheme())
-		out.Write("Title bar theme", titleBarThemeIndex);
-	if(WinVersion::SupportsWindowRounding())
-		out.Write("Window rounding", windowRoundingIndex);
-#endif
+	out.Write(WINDOW_SIZE, Screen::RawWidth(), Screen::RawHeight());
+	out.Write(ZOOM_FACTOR_MAIN, Screen::UserZoom());
+	out.Write(SCROLL_SPEED, scrollSpeed);
+	out.Write(TOOLTIP_ACTIVATION_TIME, tooltipActivation);
+	out.Write(ZOOM_FACTOR_VIEW, zoomIndex);
+	out.Write(STATUS_OVERLAYS_ALL, statusOverlaySettings[OverlayType::ALL].ToInt());
+	out.Write(STATUS_OVERLAYS_FLAGSHIP, statusOverlaySettings[OverlayType::FLAGSHIP].ToInt());
+	out.Write(STATUS_OVERLAYS_ESCORT, statusOverlaySettings[OverlayType::ESCORT].ToInt());
+	out.Write(STATUS_OVERLAYS_ENEMY, statusOverlaySettings[OverlayType::ENEMY].ToInt());
+	out.Write(STATUS_OVERLAYS_NEUTRAL, statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
+	out.Write(PREVIOUS_SAVES, previousSaveCount);
 
-	for(const auto &it : settings)
-		out.Write(it.first, it.second);
+	for(const auto &[identifier, setting] : settings)
+		if(setting.Save())
+			out.Write(identifier, setting.Index());
+	for(const auto &[identifier, value] : help)
+		out.Write(identifier, value);
+	// Retain unrecognized settings in case they're here because the player jumped between versions.
+	for(const auto &[identifier, value] : unrecognized)
+		out.Write(identifier, value);
 }
 
 
@@ -450,84 +471,92 @@ void Preferences::Save()
 bool Preferences::Has(const string &name)
 {
 	auto it = settings.find(name);
-	return (it != settings.end() && it->second);
+	return it != settings.end() ? it->second.Index() : false;
 }
 
 
 
 void Preferences::Set(const string &name, bool on)
 {
-	settings[name] = on;
+	auto it = settings.find(name);
+	if(it != settings.end())
+		it->second.SetIndex(on);
 }
 
 
 
-void Preferences::ToggleAmmoUsage()
+int Preferences::Toggle(const string &name)
 {
-	bool expend = Has(EXPEND_AMMO);
-	bool frugal = Has(FRUGAL_ESCORTS);
-	Preferences::Set(EXPEND_AMMO, !(expend && !frugal));
-	Preferences::Set(FRUGAL_ESCORTS, !expend);
+	auto it = settings.find(name);
+	if(it != settings.end())
+		return it->second.Toggle();
+	return 0;
 }
 
 
 
-string Preferences::AmmoUsage()
+const string &Preferences::DisplayName(const string &name)
 {
-	return Has(EXPEND_AMMO) ? Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
+	static const string UNKNOWN = "UNKNOWN SETTING";
+	auto it = settings.find(name);
+	return it != settings.end() ? it->second.DisplayName() : UNKNOWN;
 }
 
 
 
-void Preferences::ToggleDateFormat()
+string Preferences::DisplayValue(const string &name)
 {
-	if(dateFormatIndex == static_cast<int>(DATEFMT_OPTIONS.size() - 1))
-		dateFormatIndex = 0;
-	else
-		++dateFormatIndex;
+	static const string UNKNOWN = "UNKNOWN SETTING";
+	auto it = settings.find(name);
+	return it != settings.end() ? it->second.DisplayValue() : UNKNOWN;
+}
+
+
+
+bool Preferences::IsOn(const string &name)
+{
+	auto it = settings.find(name);
+	return it != settings.end() ? it->second.IsOn() : false;
+}
+
+
+
+bool Preferences::HelpShown(const string &name)
+{
+	auto it = help.find(name);
+	return it != help.end() ? it->second : false;
+}
+
+
+
+void Preferences::SetHelp(const string &name, bool shown)
+{
+	help[name] = shown;
+}
+
+
+
+Preferences::EscortAmmoUsage Preferences::AmmoUsage()
+{
+	return static_cast<EscortAmmoUsage>(settings[ESCORT_AMMO_USAGE].Index());
 }
 
 
 
 Preferences::DateFormat Preferences::GetDateFormat()
 {
-	return static_cast<DateFormat>(dateFormatIndex);
-}
-
-
-
-const string &Preferences::DateFormatSetting()
-{
-	return DATEFMT_OPTIONS[dateFormatIndex];
-}
-
-
-
-void Preferences::ToggleNotificationSetting()
-{
-	if(notifOptionsIndex == static_cast<int>(NOTIF_OPTIONS.size() - 1))
-		notifOptionsIndex = 0;
-	else
-		++notifOptionsIndex;
+	return static_cast<DateFormat>(settings[DATE_FORMAT].Index());
 }
 
 
 
 Preferences::NotificationSetting Preferences::GetNotificationSetting()
 {
-	return static_cast<NotificationSetting>(notifOptionsIndex);
+	return static_cast<NotificationSetting>(settings[DESTINATION_NOTIFICATION].Index());
 }
 
 
 
-const string &Preferences::NotificationSettingString()
-{
-	return NOTIF_OPTIONS[notifOptionsIndex];
-}
-
-
-
-// Scroll speed preference.
 int Preferences::ScrollSpeed()
 {
 	return scrollSpeed;
@@ -556,7 +585,6 @@ void Preferences::SetTooltipActivation(int steps)
 
 
 
-// View zoom.
 double Preferences::ViewZoom()
 {
 	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
@@ -621,51 +649,16 @@ const vector<double> &Preferences::Zooms()
 
 
 
-// Starfield parallax.
-void Preferences::ToggleParallax()
-{
-	int targetIndex = parallaxIndex + 1;
-	if(targetIndex == static_cast<int>(PARALLAX_SETTINGS.size()))
-		targetIndex = 0;
-	parallaxIndex = targetIndex;
-}
-
-
-
 Preferences::BackgroundParallax Preferences::GetBackgroundParallax()
 {
-	return static_cast<BackgroundParallax>(parallaxIndex);
-}
-
-
-
-const string &Preferences::ParallaxSetting()
-{
-	return PARALLAX_SETTINGS[parallaxIndex];
-}
-
-
-
-void Preferences::ToggleExtendedJumpEffects()
-{
-	int targetIndex = extendedJumpEffectIndex + 1;
-	if(targetIndex == static_cast<int>(EXTENDED_JUMP_EFFECT_SETTINGS.size()))
-		targetIndex = 0;
-	extendedJumpEffectIndex = targetIndex;
+	return static_cast<BackgroundParallax>(settings[PARALLAX].Index());
 }
 
 
 
 Preferences::ExtendedJumpEffects Preferences::GetExtendedJumpEffects()
 {
-	return static_cast<ExtendedJumpEffects>(extendedJumpEffectIndex);
-}
-
-
-
-const string &Preferences::ExtendedJumpEffectsSetting()
-{
-	return EXTENDED_JUMP_EFFECT_SETTINGS[extendedJumpEffectIndex];
+	return static_cast<ExtendedJumpEffects>(settings[EXTENDED_JUMP_EFFECTS].Index());
 }
 
 
@@ -673,88 +666,50 @@ const string &Preferences::ExtendedJumpEffectsSetting()
 void Preferences::ToggleScreenMode()
 {
 	GameWindow::ToggleFullscreen();
-	screenModeIndex = GameWindow::IsFullscreen();
-}
-
-
-
-const string &Preferences::ScreenModeSetting()
-{
-	return SCREEN_MODE_SETTINGS[screenModeIndex];
+	settings[SCREEN_MODE].SetIndex(GameWindow::IsFullscreen());
 }
 
 
 
 bool Preferences::ToggleVSync()
 {
-	int targetIndex = vsyncIndex + 1;
-	if(targetIndex == static_cast<int>(VSYNC_SETTINGS.size()))
-		targetIndex = 0;
+	int original = settings[VSYNC].Index();
+	int targetIndex = settings[VSYNC].Toggle();
 	if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
 	{
 		// Not all drivers support adaptive VSync. Increment desired VSync again.
-		++targetIndex;
-		if(targetIndex == static_cast<int>(VSYNC_SETTINGS.size()))
-			targetIndex = 0;
+		targetIndex = settings[VSYNC].Toggle();
 		if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
 		{
 			// Restore original saved setting.
 			Logger::Log("Unable to change VSync state.", Logger::Level::WARNING);
-			GameWindow::SetVSync(static_cast<VSync>(vsyncIndex));
+			GameWindow::SetVSync(static_cast<VSync>(original));
+			settings[VSYNC].SetIndex(original);
 			return false;
 		}
 	}
-	vsyncIndex = targetIndex;
 	return true;
 }
 
 
 
-// Return the current VSync setting
 Preferences::VSync Preferences::VSyncState()
 {
-	return static_cast<VSync>(vsyncIndex);
-}
-
-
-
-const string &Preferences::VSyncSetting()
-{
-	return VSYNC_SETTINGS[vsyncIndex];
+	return static_cast<VSync>(settings[VSYNC].Index());
 }
 
 
 
 Preferences::FastForwardCapsLockSync Preferences::GetFastForwardCapsLockSync()
 {
-	return static_cast<FastForwardCapsLockSync>(fastForwardCapsLockSyncIndex);
-}
-
-
-
-const string &Preferences::FastForwardCapsLockSyncSetting()
-{
-	return FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS[fastForwardCapsLockSyncIndex];
-}
-
-
-void Preferences::ToggleCameraAcceleration()
-{
-	cameraAccelerationIndex = (cameraAccelerationIndex + 1) % CAMERA_ACCELERATION_SETTINGS.size();
+	return static_cast<FastForwardCapsLockSync>(settings[FF_CAPSLOCK_SYNC].Index());
 }
 
 
 
 Preferences::CameraAccel Preferences::CameraAcceleration()
 {
-	return static_cast<CameraAccel>(cameraAccelerationIndex);
-}
-
-
-
-const string &Preferences::CameraAccelerationSetting()
-{
-	return CAMERA_ACCELERATION_SETTINGS[cameraAccelerationIndex];
+	return static_cast<CameraAccel>(settings[CAMERA_ACCELERATION].Index());
 }
 
 
@@ -798,153 +753,51 @@ const string &Preferences::StatusOverlaysSetting(Preferences::OverlayType type)
 
 
 
-void Preferences::ToggleTurretOverlays()
-{
-	turretOverlaysIndex = (turretOverlaysIndex + 1) % TURRET_OVERLAYS_SETTINGS.size();
-}
-
-
-
 Preferences::TurretOverlays Preferences::GetTurretOverlays()
 {
-	return static_cast<TurretOverlays>(turretOverlaysIndex);
-}
-
-
-
-const string &Preferences::TurretOverlaysSetting()
-{
-	return TURRET_OVERLAYS_SETTINGS[turretOverlaysIndex];
-}
-
-
-
-void Preferences::ToggleHighlightShips()
-{
-	highlightShipsIndex = (highlightShipsIndex + 1) % HIGHLIGHT_SHIPS_SETTINGS.size();
+	return static_cast<TurretOverlays>(settings[HUD_TURRET_OVERLAY].Index());
 }
 
 
 
 Preferences::HighlightShips Preferences::GetHighlightShips()
 {
-	return static_cast<HighlightShips>(highlightShipsIndex);
-}
-
-
-
-const string &Preferences::HighlightShipsSetting()
-{
-	return HIGHLIGHT_SHIPS_SETTINGS[highlightShipsIndex];
-}
-
-
-
-void Preferences::ToggleAutoAim()
-{
-	autoAimIndex = (autoAimIndex + 1) % AUTO_AIM_SETTINGS.size();
+	return static_cast<HighlightShips>(settings[SHIP_HIGHLIGHTS].Index());
 }
 
 
 
 Preferences::AutoAim Preferences::GetAutoAim()
 {
-	return static_cast<AutoAim>(autoAimIndex);
-}
-
-
-
-const string &Preferences::AutoAimSetting()
-{
-	return AUTO_AIM_SETTINGS[autoAimIndex];
-}
-
-
-
-void Preferences::ToggleAutoFire()
-{
-	autoFireIndex = (autoFireIndex + 1) % AUTO_FIRE_SETTINGS.size();
+	return static_cast<AutoAim>(settings[AUTO_AIM].Index());
 }
 
 
 
 Preferences::AutoFire Preferences::GetAutoFire()
 {
-	return static_cast<AutoFire>(autoFireIndex);
-}
-
-
-
-const string &Preferences::AutoFireSetting()
-{
-	return AUTO_FIRE_SETTINGS[autoFireIndex];
-}
-
-
-
-void Preferences::ToggleBoarding()
-{
-	int targetIndex = boardingIndex + 1;
-	if(targetIndex == static_cast<int>(BOARDING_SETTINGS.size()))
-		targetIndex = 0;
-	boardingIndex = targetIndex;
+	return static_cast<AutoFire>(settings[AUTO_FIRE].Index());
 }
 
 
 
 Preferences::BoardingPriority Preferences::GetBoardingPriority()
 {
-	return static_cast<BoardingPriority>(boardingIndex);
-}
-
-
-
-const string &Preferences::BoardingSetting()
-{
-	return BOARDING_SETTINGS[boardingIndex];
-}
-
-
-
-void Preferences::ToggleFlotsam()
-{
-	flotsamIndex = (flotsamIndex + 1) % FLOTSAM_SETTINGS.size();
+	return static_cast<BoardingPriority>(settings[BOARDING_TARGET_PRIORITY].Index());
 }
 
 
 
 Preferences::FlotsamCollection Preferences::GetFlotsamCollection()
 {
-	return static_cast<FlotsamCollection>(flotsamIndex);
-}
-
-
-
-const string &Preferences::FlotsamSetting()
-{
-	return FLOTSAM_SETTINGS[flotsamIndex];
-}
-
-
-
-void Preferences::ToggleAlert()
-{
-	if(++alertIndicatorIndex >= static_cast<int>(ALERT_INDICATOR_SETTING.size()))
-		alertIndicatorIndex = 0;
+	return static_cast<FlotsamCollection>(settings[FLOTSAM_COLLECTION].Index());
 }
 
 
 
 Preferences::AlertIndicator Preferences::GetAlertIndicator()
 {
-	return static_cast<AlertIndicator>(alertIndicatorIndex);
-}
-
-
-
-const string &Preferences::AlertSetting()
-{
-	return ALERT_INDICATOR_SETTING[alertIndicatorIndex];
+	return static_cast<AlertIndicator>(settings[ALERT_INDICATOR].Index());
 }
 
 
@@ -966,11 +819,7 @@ bool Preferences::DisplayVisualAlert()
 bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 {
 	auto value = GetAlertIndicator();
-	if(value == AlertIndicator::BOTH)
-		return true;
-	else if(value == toDo)
-		return true;
-	return false;
+	return value == AlertIndicator::BOTH || value == toDo;
 }
 
 
@@ -982,178 +831,58 @@ int Preferences::GetPreviousSaveCount()
 
 
 
-void Preferences::ToggleMinimapDisplay()
-{
-	if(++minimapDisplayIndex >= static_cast<int>(MINIMAP_DISPLAY_SETTING.size()))
-		minimapDisplayIndex = 0;
-}
-
-
-
 Preferences::MinimapDisplay Preferences::GetMinimapDisplay()
 {
-	return static_cast<MinimapDisplay>(minimapDisplayIndex);
-}
-
-
-
-const string &Preferences::MinimapSetting()
-{
-	return MINIMAP_DISPLAY_SETTING[minimapDisplayIndex];
-}
-
-
-
-void Preferences::ToggleFlagshipSpacePriority()
-{
-	if(++flagshipSpacePriorityIndex >= static_cast<int>(FLAGSHIP_SPACE_PRIORITY_SETTINGS.size()))
-		flagshipSpacePriorityIndex = 0;
+	return static_cast<MinimapDisplay>(settings[MINIMAP_DISPLAY].Index());
 }
 
 
 
 Preferences::FlagshipSpacePriority Preferences::GetFlagshipSpacePriority()
 {
-	return static_cast<FlagshipSpacePriority>(flagshipSpacePriorityIndex);
-}
-
-
-
-const string &Preferences::FlagshipSpacePrioritySetting()
-{
-	return FLAGSHIP_SPACE_PRIORITY_SETTINGS[flagshipSpacePriorityIndex];
-}
-
-
-
-void Preferences::ToggleLargeGraphicsReduction()
-{
-	if(++largeGraphicsReductionIndex >= static_cast<int>(LARGE_GRAPHICS_REDUCTION_SETTINGS.size()))
-		largeGraphicsReductionIndex = 0;
+	return static_cast<FlagshipSpacePriority>(settings[FLAGSHIP_SPACE_PRIORITY].Index());
 }
 
 
 
 Preferences::LargeGraphicsReduction Preferences::GetLargeGraphicsReduction()
 {
-	return static_cast<LargeGraphicsReduction>(largeGraphicsReductionIndex);
-}
-
-
-
-const string &Preferences::LargeGraphicsReductionSetting()
-{
-	return LARGE_GRAPHICS_REDUCTION_SETTINGS[largeGraphicsReductionIndex];
-}
-
-
-
-void Preferences::ToggleTributeConfirmation()
-{
-	if(++tributeConfirmationIndex >= static_cast<int>(TRIBUTE_CONFIRMATION_SETTINGS.size()))
-		tributeConfirmationIndex = 0;
+	return static_cast<LargeGraphicsReduction>(settings[REDUCE_LARGE_GRAPHICS].Index());
 }
 
 
 
 Preferences::TributeConfirmation Preferences::GetTributeConfirmation()
 {
-	return static_cast<TributeConfirmation>(tributeConfirmationIndex);
-}
-
-
-
-const string &Preferences::TributeConfirmationSetting()
-{
-	return TRIBUTE_CONFIRMATION_SETTINGS[tributeConfirmationIndex];
-}
-
-
-
-void Preferences::ToggleAmmoRefill()
-{
-	if(++ammoRefillIndex >= static_cast<int>(AMMO_REFILL_SETTINGS.size()))
-		ammoRefillIndex = 0;
+	return static_cast<TributeConfirmation>(settings[TRIBUTE_CONFIRMATION].Index());
 }
 
 
 
 Preferences::AmmoRefill Preferences::GetAmmoRefill()
 {
-	return static_cast<AmmoRefill>(ammoRefillIndex);
-}
-
-
-
-const std::string &Preferences::AmmoRefillSetting()
-{
-	return AMMO_REFILL_SETTINGS[ammoRefillIndex];
-}
-
-
-
-void Preferences::ToggleFastForwardCapsLockSync()
-{
-	fastForwardCapsLockSyncIndex = (fastForwardCapsLockSyncIndex + 1) % FAST_FORWARD_CAPSLOCK_SYNC_SETTINGS.size();
-}
-
-
-
-void Preferences::ToggleTextAlignment()
-{
-	if(++textAlignmentIndex >= static_cast<int>(TEXT_ALIGNMENT_SETTINGS.size()))
-		textAlignmentIndex = 0;
+	return static_cast<AmmoRefill>(settings[AMMO_REFILL].Index());
 }
 
 
 
 Alignment Preferences::GetTextAlignment()
 {
-	return static_cast<Alignment>(textAlignmentIndex);
-}
-
-
-
-const string &Preferences::TextAlignmentSetting()
-{
-	return TEXT_ALIGNMENT_SETTINGS[textAlignmentIndex];
-}
-
-
-
-void Preferences::ToggleTargetAsteroidStrategy()
-{
-	if(++targetAsteroidIndex >= static_cast<int>(TARGET_ASTEROID_SETTINGS.size()))
-		targetAsteroidIndex = 0;
+	return static_cast<Alignment>(settings[TEXT_ALIGNMENT].Index());
 }
 
 
 
 Preferences::TargetAsteroidStrategy Preferences::GetTargetAsteroidStrategy()
 {
-	return static_cast<TargetAsteroidStrategy>(targetAsteroidIndex);
-}
-
-
-
-const string &Preferences::TargetAsteroidStrategySetting()
-{
-	return TARGET_ASTEROID_SETTINGS[targetAsteroidIndex];
-}
-
-
-
-void Preferences::ToggleFontSize()
-{
-	if(++fontSizeIndex >= static_cast<int>(FONT_SIZES.size()))
-		fontSizeIndex = 0;
+	return static_cast<TargetAsteroidStrategy>(settings[ASTEROID_TARGETING].Index());
 }
 
 
 
 int Preferences::GetFontSize()
 {
-	return FONT_SIZES[fontSizeIndex];
+	return FONT_SIZES[settings[FONT_SIZE].Index()];
 }
 
 
@@ -1161,7 +890,7 @@ int Preferences::GetFontSize()
 void Preferences::ToggleBlockScreenSaver()
 {
 	GameWindow::ToggleBlockScreenSaver();
-	Set(BLOCK_SCREEN_SAVER, !Has(BLOCK_SCREEN_SAVER));
+	settings[BLOCK_SCREEN_SAVER].Toggle();
 }
 
 
@@ -1169,8 +898,7 @@ void Preferences::ToggleBlockScreenSaver()
 #ifdef _WIN32
 void Preferences::ToggleTitleBarTheme()
 {
-	if(++titleBarThemeIndex >= static_cast<int>(TITLE_BAR_THEME_SETTINGS.size()))
-		titleBarThemeIndex = 0;
+	settings[WINDOW_ROUNDING].Toggle();
 	GameWindow::UpdateTitleBarTheme();
 }
 
@@ -1178,22 +906,14 @@ void Preferences::ToggleTitleBarTheme()
 
 Preferences::TitleBarTheme Preferences::GetTitleBarTheme()
 {
-	return static_cast<TitleBarTheme>(titleBarThemeIndex);
-}
-
-
-
-const string &Preferences::TitleBarThemeSetting()
-{
-	return TITLE_BAR_THEME_SETTINGS[titleBarThemeIndex];
+	return static_cast<TitleBarTheme>(settings[TITLE_BAR_THEME].Index());
 }
 
 
 
 void Preferences::ToggleWindowRounding()
 {
-	if(++windowRoundingIndex >= static_cast<int>(WINDOW_ROUNDING_SETTINGS.size()))
-		windowRoundingIndex = 0;
+	settings[WINDOW_ROUNDING].Toggle();
 	GameWindow::UpdateWindowRounding();
 }
 
@@ -1201,13 +921,6 @@ void Preferences::ToggleWindowRounding()
 
 Preferences::WindowRounding Preferences::GetWindowRounding()
 {
-	return static_cast<WindowRounding>(windowRoundingIndex);
-}
-
-
-
-const string &Preferences::WindowRoundingSetting()
-{
-	return WINDOW_ROUNDING_SETTINGS[windowRoundingIndex];
+	return static_cast<WindowRounding>(settings[WINDOW_ROUNDING].Index());
 }
 #endif

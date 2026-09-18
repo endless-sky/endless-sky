@@ -1814,7 +1814,7 @@ void PlayerInfo::Land(UI &ui)
 
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
 	// some bunks were freed up upon landing (i.e. completed missions).
-	if(Preferences::Has("Rehire extra crew when lost")
+	if(Preferences::Has(Preferences::REHIRE_LOST_CREW)
 			&& (planet->GetPort().HasService(Port::ServicesType::HireCrew) && canUseServices) && flagship)
 	{
 		int added = desiredCrew - flagship->Crew();
@@ -2234,7 +2234,7 @@ void PlayerInfo::CacheMissionInformation(Mission &mission, const DistanceMap &he
 	int daysLeft = mission.Deadline() - GetDate() + 1;
 	// If at any point a location can't be reached, it is ignored instead of treating
 	// it as if it has an infinite distance.
-	if(daysLeft > 0 && Preferences::Has("Deadline blink by distance")
+	if(daysLeft > 0 && Preferences::Has(Preferences::MAP_DEADLINE_BLINK_BY_DISTANCE)
 		&& here.HasRoute(*mission.Destination()->GetSystem()))
 	{
 		set<const System *> toVisit;
@@ -5329,7 +5329,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	}
 	out.EndChild();
 
-	if(Preferences::Has("Save message log"))
+	if(Preferences::Has(Preferences::SAVE_MSG_LOGS))
 	{
 		out.Write();
 		Messages::SaveLog(out);
@@ -5423,7 +5423,7 @@ void PlayerInfo::SetFlagship(Ship &other)
 
 void PlayerInfo::HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip)
 {
-	if(Preferences::Has("Automatically unpark flagship") && newFirstShip != oldFirstShip
+	if(Preferences::Has(Preferences::AUTO_UNPARK_FLAGSHIP) && newFirstShip != oldFirstShip
 		&& newFirstShip->CanBeFlagship() && newFirstShip->GetSystem() == system && newFirstShip->IsParked())
 	{
 		newFirstShip->SetIsParked(false);
