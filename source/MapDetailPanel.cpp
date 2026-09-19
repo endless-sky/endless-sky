@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "StellarObject.h"
@@ -512,9 +513,9 @@ void MapDetailPanel::Resize()
 void MapDetailPanel::InitTextArea()
 {
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetColor(*GameData::Colors().Get("medium"));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetAlignment(Preferences::GetTextAlignment());
 	ResizeTextArea();
 }
 
@@ -526,7 +527,7 @@ void MapDetailPanel::ResizeTextArea()
 	descriptionXOffset = mapInterface->GetValue("description x offset");
 	int descriptionWidth = mapInterface->GetValue("description width");
 	description->SetRect(Rectangle::FromCorner(
-		Point(Screen::Right() - descriptionXOffset - descriptionWidth, Screen::Top() + 20),
+		Point(Screen::Right() - descriptionXOffset - descriptionWidth, Screen::Top() + 50.),
 		Point(descriptionWidth - 20, mapInterface->GetValue("description height"))
 	));
 }
@@ -550,6 +551,8 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 			if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.contains(planet))
 				continue;
 
+			// Make sure that the sprite for this planet is loaded.
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), object.GetSprite());
 			planetCards.emplace_back(object, number, player.HasVisited(*planet), this);
 			shown.insert(planet);
 			++number;
@@ -799,7 +802,8 @@ void MapDetailPanel::DrawInfo()
 	// Draw the information for the government of this system at the top of the trade sprite.
 	SpriteShader::Draw(systemSprite, uiPoint + Point(systemSprite->Width() / 2. - textMargin, 0.));
 
-	const Font &font = FontSet::Get(14);
+	// TODO: This one might need split.
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	const Sprite *alertSprite = SpriteSet::Get(commodity == SHOW_DANGER ? "ui/red alert" : "ui/red alert grayed");
 	const float alertScale = min<float>(1.f, min<double>(textMargin,
 		font.Height()) / max(alertSprite->Width(), alertSprite->Height()));
@@ -894,12 +898,12 @@ void MapDetailPanel::DrawInfo()
 			else
 			{
 				value -= localValue;
-				if(Preferences::Has("Show parenthesis"))
+				if(Preferences::Has("Parenthesize trade profits"))
 					price += "(";
 				if(value > 0)
 					price += '+';
 				price += to_string(value);
-				if(Preferences::Has("Show parenthesis"))
+				if(Preferences::Has("Parenthesize trade profits"))
 					price += ")";
 			}
 
@@ -947,7 +951,7 @@ void MapDetailPanel::DrawInfo()
 	{
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
 		Point pos(Screen::Right() - descriptionXOffset - .5f * panelSprite->Width(),
-			Screen::Top() + .5f * panelSprite->Height());
+			Screen::Top() + 30. + .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 
 		description->SetText(selectedPlanet->Description().ToString());
@@ -956,8 +960,6 @@ void MapDetailPanel::DrawInfo()
 			AddChild(description);
 			descriptionVisible = true;
 		}
-
-		selectedSystemOffset = -150;
 	}
 	else
 	{

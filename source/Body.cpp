@@ -28,7 +28,6 @@ using namespace std;
 
 
 
-// Constructor, based on a Sprite.
 Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom, Point scale, double alpha)
 	: Drawable(sprite, zoom, scale, alpha), position(position), velocity(velocity), angle(facing)
 {
@@ -36,8 +35,7 @@ Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, d
 
 
 
-// Constructor, based on the animation from another Body object.
-Body::Body(const Body &other, Point position, Point velocity, Angle facing, double zoom, Point scale, double alpha)
+Body::Body(const Drawable &other, Point position, Point velocity, Angle facing, double zoom, Point scale, double alpha)
 	: Drawable(other, zoom, scale, alpha)
 {
 	this->position = position;

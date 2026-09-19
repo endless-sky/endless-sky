@@ -153,6 +153,7 @@ ship "Windjammer"
 	sprite "ship/windjammer"
 	thumbnail "ship/windjammer"
 	"uncapturable"
+	"administrative cost" 1
 	attributes
 		category "Unclassified"
 		"cost" 1111000
@@ -309,6 +310,7 @@ ship "Bluejacket"
 	sprite "ship/bluejacket"
 	thumbnail "ship/bluejacket"
 	"uncapturable"
+	"administrative cost" 1
 	attributes
 		category "Unclassified"
 		"cost" 1212100
@@ -429,6 +431,7 @@ ship "Pollen"
 	swizzle 0
 	sprite "ship/pollen"
 	thumbnail "ship/pollen"
+	"administrative cost" 0
 	attributes
 		category "Unclassified Minor"
 		"cost" 126000
@@ -462,6 +465,7 @@ ship "Sprout"
 	sprite "ship/pollen"
 	thumbnail "ship/pollen"
 	"uncapturable"
+	"administrative cost" 0
 	attributes
 		category "Unclassified Minor"
 		"cost" 126000

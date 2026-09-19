@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CaptureOdds.h"
 #include "ScrollBar.h"
+#include "Tooltip.h"
 
 #include <memory>
 #include <string>
@@ -27,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Outfit;
 class PlayerInfo;
 class Ship;
+class TextArea;
 
 
 
@@ -66,7 +68,7 @@ private:
 	public:
 		// Plunder can be either outfits or commodities.
 		Plunder(const std::string &commodity, int count, int unitValue);
-		Plunder(const Outfit *outfit, int count);
+		Plunder(const Outfit *outfit, int count, bool inCargo);
 
 		// Sort by value per ton of mass.
 		bool operator<(const Plunder &other) const;
@@ -77,6 +79,8 @@ private:
 		// Get the value of each unit of this plunder item.
 		int64_t UnitValue() const;
 
+		// Whether this item is in the ship's cargo hold.
+		bool InCargo() const;
 		// Get the name of this item. If it is a commodity, this is its name.
 		const std::string &Name() const;
 		// Get the mass, in the format "<count> x <unit mass>". If this is a
@@ -99,6 +103,7 @@ private:
 		double UnitMass() const;
 
 	private:
+		bool inCargo = false;
 		std::string name;
 		const Outfit *outfit;
 		int count;
@@ -121,6 +126,8 @@ private:
 	// Handle the keyboard scrolling and selection in the panel list.
 	void DoKeyboardNavigation(const SDL_Keycode key);
 
+	void AddMessage(const std::string &message);
+
 
 private:
 	PlayerInfo &player;
@@ -132,6 +139,10 @@ private:
 	int selected = 0;
 	ScrollVar<double> scroll;
 	ScrollBar scrollBar;
+	// Initialize mouse point to something off-screen to not
+	// make the game think the player is hovering on something.
+	Point hoverPoint = Point(-10000., -10000.);
+	Tooltip tooltip;
 
 	bool playerDied = false;
 	bool isCapturing = false;
@@ -141,7 +152,8 @@ private:
 	CaptureOdds attackOdds;
 	CaptureOdds defenseOdds;
 	// These messages are shown to report the results of hand to hand combat.
-	std::vector<std::string> messages;
+	std::string messages;
+	std::shared_ptr<TextArea> messageDisplay;
 
 	// Whether or not the ship can be captured.
 	bool canCapture = false;

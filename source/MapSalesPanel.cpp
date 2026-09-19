@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "DialogPanel.h"
 #include "text/DisplayText.h"
+#include "Drawable.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -32,9 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Layout.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "shader/PointerShader.h"
 #include "Preferences.h"
-#include "shader/RingShader.h"
 #include "Screen.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
@@ -58,7 +57,8 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	: MapPanel(player, SHOW_SPECIAL),
 	categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
-	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
+	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map")),
+	loadingCircle(30.f, 10, 2.)
 {
 }
 
@@ -68,11 +68,30 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	: MapPanel(panel),
 	categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
-	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
+	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map")),
+	loadingCircle(30.f, 10, 2.)
 {
 	Audio::Pause();
 
 	commodity = SHOW_SPECIAL;
+}
+
+
+
+void MapSalesPanel::Step()
+{
+	MapPanel::Step();
+
+	++step;
+	loadingCircle.Step();
+	// Load any and deferred thumbnails that appear in the sales.
+	// This is done here instead of in the constructor because the constructor
+	// does not have access to the UI stack.
+	if(!hasLoadedThumbnails)
+	{
+		hasLoadedThumbnails = true;
+		LoadCatalogThumbnails();
+	}
 }
 
 
@@ -313,13 +332,13 @@ void MapSalesPanel::DrawInfo() const
 			topLeft.X() += compareInfo.PanelWidth() + box->Width();
 
 			SpriteShader::Draw(box, topLeft + Point(-50., 100.));
-			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), SelectedSpriteSwizzle());
-			DrawSprite(topLeft + Point(-95., 105.), CompareSprite(), CompareSpriteSwizzle());
+			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), true, SelectedSpriteSwizzle());
+			DrawSprite(topLeft + Point(-95., 105.), CompareSprite(), true, CompareSpriteSwizzle());
 		}
 		else
 		{
 			SpriteShader::Draw(box, topLeft + Point(-60., 50.));
-			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), SelectedSpriteSwizzle());
+			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), true, SelectedSpriteSwizzle());
 		}
 		selectedInfo.DrawAttributes(topLeft);
 	}
@@ -348,23 +367,33 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 
 
 
-void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, const Swizzle *swizzle) const
+void MapSalesPanel::DrawSprite(const Point &corner, const Drawable &drawable, bool animate,
+	const Swizzle *swizzle) const
 {
-	if(sprite)
+	const Sprite *sprite = drawable.GetSprite();
+	if(!sprite)
+		return;
+	Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
+	if(sprite->IsLoaded())
 	{
-		Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
 		double scale = min(.5, min((ICON_HEIGHT - 2.) / sprite->Height(), (ICON_HEIGHT - 2.) / sprite->Width()));
 
 		// No swizzle was specified, so default to the player swizzle.
 		if(!swizzle)
 			swizzle = GameData::PlayerGovernment()->GetSwizzle();
-		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
+		if(animate)
+			drawable.UnpauseAnimation();
+		else
+			drawable.PauseAnimation();
+		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle, drawable.GetFrame(step));
 	}
+	else if(sprite->HasDimensions())
+		loadingCircle.Draw(corner + iconOffset);
 }
 
 
 
-void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, const Swizzle *swizzle, bool isForSale,
+void MapSalesPanel::Draw(Point &corner, const Drawable &drawable, const Swizzle *swizzle, bool isForSale,
 		bool isSelected, const string &name, const string &variantName,
 		const string &price, const string &info, const string &storage)
 {
@@ -392,7 +421,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, const Swizzle *swi
 		if(isSelected)
 			FillShader::Fill(Rectangle::FromCorner(corner, blockSize), selectionColor);
 
-		DrawSprite(corner, sprite, swizzle);
+		DrawSprite(corner, drawable, isSelected, swizzle);
 
 		const Color &mediumColor = *GameData::Colors().Get("medium");
 		const Color &dimColor = *GameData::Colors().Get("dim");

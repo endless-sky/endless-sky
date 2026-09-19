@@ -36,7 +36,8 @@ public:
 	explicit Drawable(const Sprite *sprite, double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
 	Drawable(const Drawable &other, double zoom, Point scale, double alpha);
 
-	// Check that this Drawable has a sprite and that the sprite has at least one frame.
+	// Check that this Drawable has a sprite and that the sprite has dimensions to it.
+	// The sprite may be unloaded, though.
 	bool HasSprite() const;
 	// Access the underlying Sprite object.
 	const Sprite *GetSprite() const;
@@ -50,6 +51,8 @@ public:
 	bool InheritsParentSwizzle() const;
 	// Get the sprite frame for the given time step.
 	float GetFrame(int step = -1) const;
+	void PauseAnimation() const;
+	void UnpauseAnimation() const;
 
 	// Positional attributes.
 	double Zoom() const;
@@ -70,7 +73,6 @@ protected:
 	// Adjust the frame rate.
 	void SetFrameRate(float framesPerSecond);
 	void AddFrameRate(float framesPerSecond);
-	void PauseAnimation();
 	// Set what animation step we're on. This affects future calls to Body::GetMask()
 	// and Drawable::GetFrame().
 	void SetStep(int step) const;
@@ -104,7 +106,7 @@ private:
 	mutable bool randomize = false;
 	bool repeat = true;
 	bool rewind = false;
-	int pause = 0;
+	mutable int pause = 0;
 
 	// Cache the frame calculation so it doesn't have to be repeated if given
 	// the same step over and over again.

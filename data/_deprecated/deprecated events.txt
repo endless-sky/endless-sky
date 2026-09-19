@@ -41,3 +41,7 @@ event "hr: friend arrives"
 event "hr: friend settled in"
 event "hr: join later"
 event "hr: exploration period"
+
+event "syndicate business Howard schmoozing"
+event "syndicate business 100m investment done"
+event "syndicate business vip eligible"
