@@ -1109,7 +1109,7 @@ void MapPanel::DrawTravelPlan()
 	{
 		next = player.TravelPlan()[i];
 
-		if(flagship->IsEnteringHyperspace() && (static_cast<int>(i == player.TravelPlan().size()) - 1))
+		if(flagship->IsEnteringHyperspace() && (i == static_cast<int>(player.TravelPlan().size()) - 1))
 			for(auto &it : fuel)
 				if(it.first->IsEnteringHyperspace())
 					it.second += it.first->JumpNavigation().GetCheapestJumpType(previous, next).second;
