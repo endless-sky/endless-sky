@@ -1143,7 +1143,7 @@ void MapPanel::DrawTravelPlan()
 		Color drawColor = outOfFlagshipFuelRangeColor;
 		if(isWormhole)
 			drawColor = wormholeColor;
-		else if (i == (player.TravelPlan().size() - 1) && flagship->IsEnteringHyperspace())
+		else if(i == (player.TravelPlan().size() - 1) && flagship->IsEnteringHyperspace())
 			drawColor = jumpInProgressColor;
 		else if(!stranded)
 			drawColor = withinFleetFuelRangeColor;
