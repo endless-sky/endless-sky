@@ -169,7 +169,6 @@ const string Preferences::FLOTSAM_COLLECTION = "Flotsam collection";
 const string Preferences::FONT_SIZE = "font size";
 const string Preferences::HUD_ASTEROID_OVERLAY = "Show asteroid scanner overlay";
 const string Preferences::HUD_CLICKABLE_RADAR = "Clickable radar display";
-const string Preferences::HUD_DISABLE_RADAR_VIEWPORT = "Disable viewport on radar";
 const string Preferences::HUD_EXTRA_STATUS_MSGS = "Extra fleet status messages";
 const string Preferences::HUD_MISSILE_OVERLAY = "Show missile overlays";
 const string Preferences::HUD_ROTATE_FLAGSHIP = "Rotate flagship in HUD";
@@ -243,7 +242,7 @@ void Preferences::Init()
 	settings[AUTO_UNPARK_FLAGSHIP] = Setting::Boolean("Automatically unpark flagship", false);
 
 	settings[BLOCK_SCREEN_SAVER] = Setting::Boolean("Block screen saver", false);
-	settings[BLOCK_SCREEN_SAVER].SetOnToggleFunc([](UI *ui) -> void { GameWindow::ToggleBlockScreenSaver(); });
+	settings[BLOCK_SCREEN_SAVER].SetOnToggleFunc([](UI *) -> void { GameWindow::ToggleBlockScreenSaver(); });
 
 	settings[BOARDING_TARGET_PRIORITY] = Setting::List("Boarding target priority", 0,
 		{"proximity", "value", "mixed"}, true);
@@ -258,11 +257,11 @@ void Preferences::Init()
 
 	settings[EXTENDED_JUMP_EFFECTS] = Setting::List("Extended jump effects", 0, {"off", "medium", "heavy"});
 	settings[FF_CAPSLOCK_SYNC] = Setting::List("Sync FF to CapsLock", 0, {"default", "never", "always"}, true);
-	settings[FF_CAPSLOCK_SYNC].SetDisplayFunc([](int index) -> pair<string, bool> {
+	settings[FF_CAPSLOCK_SYNC].SetDisplayFunc([]() -> pair<string, bool> {
 		const FastForwardCapsLockSync sync = GetFastForwardCapsLockSync();
 		bool isOn = sync == FastForwardCapsLockSync::ALWAYS
 			|| (sync == FastForwardCapsLockSync::DEFAULT && Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
-		return make_pair("TODO", isOn);
+		return make_pair(settings[FF_CAPSLOCK_SYNC].Option(), isOn);
 	});
 
 	settings[FIGHTERS_REPAIR_IN] = Setting::List("Repair fighters in", 1, {"series", "parallel"}, true);
@@ -274,12 +273,10 @@ void Preferences::Init()
 		{"off", "on", "flagship only", "escorts only"});
 
 	settings[FONT_SIZE] = Setting::List("UI font size", 0, {"14", "18"}, true);
-	settings[FONT_SIZE].SetOnToggleFunc([](UI *ui) -> void { CustomEvents::SendAdjustText(); });
+	settings[FONT_SIZE].SetOnToggleFunc([](UI *) -> void { CustomEvents::SendAdjustText(); });
 
 	settings[HUD_ASTEROID_OVERLAY] = Setting::Boolean("Show asteroid scanner overlay", true);
 	settings[HUD_CLICKABLE_RADAR] = Setting::Boolean("Clickable radar display", false);
-	// TODO: This has been a preferences since 2018, but it isn't in PreferencesPanel.
-	settings[HUD_DISABLE_RADAR_VIEWPORT] = Setting::Boolean("Disable viewport on radar", false);
 	settings[HUD_EXTRA_STATUS_MSGS] = Setting::Boolean("Extra fleet status messages", true);
 	settings[HUD_MISSILE_OVERLAY] = Setting::Boolean("Show missile overlays", false);
 	settings[HUD_ROTATE_FLAGSHIP] = Setting::Boolean("Rotate flagship in HUD", false);
@@ -300,7 +297,7 @@ void Preferences::Init()
 	// "Previous saves" is unique and not rendered in PreferencesPanel, and so it doesn't need a Setting.
 
 	settings[REACTIVATE_HELP] = Setting::Unique("Reactivate first-time help");
-	settings[REACTIVATE_HELP].SetDisplayFunc([](int index) -> pair<string, bool> {
+	settings[REACTIVATE_HELP].SetDisplayFunc([]() -> pair<string, bool> {
 		// Check how many help messages have been displayed.
 		const map<string, string> &help = GameData::HelpTemplates();
 		int shown = 0;
@@ -326,7 +323,7 @@ void Preferences::Init()
 			return make_pair(to_string(shown) + " / " + to_string(total), false);
 		return make_pair("done", true);
 	});
-	settings[REACTIVATE_HELP].SetOnToggleFunc([](UI *ui) -> void {
+	settings[REACTIVATE_HELP].SetOnToggleFunc([](UI *) -> void {
 		for(const auto &it : GameData::HelpTemplates())
 			SetHelp("help: " + it.first, false);
 	});
@@ -336,16 +333,16 @@ void Preferences::Init()
 	settings[SAVE_MSG_LOGS] = Setting::Boolean("Save message log", false);
 
 	settings[SCREEN_MODE] = Setting::List("Screen mode", 1, {"windowed", "fullscreen"}, true);
-	settings[SCREEN_MODE].SetToggleFunc([](int index) -> int {
+	settings[SCREEN_MODE].SetToggleFunc([](int, UI *) -> int {
 		GameWindow::ToggleFullscreen();
 		return GameWindow::IsFullscreen();
 	});
 
 	settings[SCROLL_SPEED] = Setting::Unique("Scroll speed");
-	settings[SCROLL_SPEED].SetDisplayFunc([](int index) -> pair<string, bool> {
+	settings[SCROLL_SPEED].SetDisplayFunc([]() -> pair<string, bool> {
 		return make_pair(to_string(ScrollSpeed()), true);
 	});
-	settings[SCROLL_SPEED].SetOnToggleFunc([](UI *ui) -> void {
+	settings[SCROLL_SPEED].SetOnToggleFunc([](UI *) -> void {
 		// Toggle between six different speeds.
 		int speed = ScrollSpeed() + 10;
 		if(speed > 60)
@@ -370,17 +367,17 @@ void Preferences::Init()
 	settings[SHOW_PERFORMANCE_METRICS] = Setting::Boolean("Show CPU / GPU load", false);
 
 	settings[STATUS_OVERLAYS_ALL] = Setting::Unique("Show status overlays");
-	settings[STATUS_OVERLAYS_ALL].SetDisplayFunc([](int index) -> pair<string, bool> {
+	settings[STATUS_OVERLAYS_ALL].SetDisplayFunc([]() -> pair<string, bool> {
 		string text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ALL);
 		bool isOn = text != "off";
 		return make_pair(text, isOn);
 	});
-	settings[STATUS_OVERLAYS_ALL].SetOnToggleFunc([](UI *ui) -> void {
+	settings[STATUS_OVERLAYS_ALL].SetOnToggleFunc([](UI *) -> void {
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
 	});
 
 	settings[STATUS_OVERLAYS_FLAGSHIP] = Setting::Unique("   Show flagship overlay");
-	settings[STATUS_OVERLAYS_FLAGSHIP].SetDisplayFunc([](int index) -> pair<string, bool> {
+	settings[STATUS_OVERLAYS_FLAGSHIP].SetDisplayFunc([]() -> pair<string, bool> {
 		string text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::FLAGSHIP);
 		bool isOn = text != "off" && text != "--";
 		return make_pair(text, isOn);
@@ -390,45 +387,45 @@ void Preferences::Init()
 	});
 
 	settings[STATUS_OVERLAYS_ESCORT] = Setting::Unique("   Show escort overlays");
-	settings[STATUS_OVERLAYS_ESCORT].SetDisplayFunc([](int index) -> pair<string, bool> {
+	settings[STATUS_OVERLAYS_ESCORT].SetDisplayFunc([]() -> pair<string, bool> {
 		string text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ESCORT);
 		bool isOn = text != "off" && text != "--";
 		return make_pair(text, isOn);
 	});
-	settings[STATUS_OVERLAYS_ESCORT].SetOnToggleFunc([](UI *ui) -> void {
+	settings[STATUS_OVERLAYS_ESCORT].SetOnToggleFunc([](UI *) -> void {
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ESCORT);
 	});
 
 	settings[STATUS_OVERLAYS_ENEMY] = Setting::Unique("   Show enemy overlays");
-	settings[STATUS_OVERLAYS_ENEMY].SetDisplayFunc([](int index) -> pair<string, bool> {
+	settings[STATUS_OVERLAYS_ENEMY].SetDisplayFunc([]() -> pair<string, bool> {
 		string text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ENEMY);
 		bool isOn = text != "off" && text != "--";
 		return make_pair(text, isOn);
 	});
-	settings[STATUS_OVERLAYS_ENEMY].SetOnToggleFunc([](UI *ui) -> void {
+	settings[STATUS_OVERLAYS_ENEMY].SetOnToggleFunc([](UI *) -> void {
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
 	});
 
 	settings[STATUS_OVERLAYS_NEUTRAL] = Setting::Unique("   Show neutral overlays");
-	settings[STATUS_OVERLAYS_NEUTRAL].SetDisplayFunc([](int index) -> pair<string, bool> {
+	settings[STATUS_OVERLAYS_NEUTRAL].SetDisplayFunc([]() -> pair<string, bool> {
 		string text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
 		bool isOn = text != "off" && text != "--";
 		return make_pair(text, isOn);
 	});
-	settings[STATUS_OVERLAYS_NEUTRAL].SetOnToggleFunc([](UI *ui) -> void {
+	settings[STATUS_OVERLAYS_NEUTRAL].SetOnToggleFunc([](UI *) -> void {
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 	});
 
 	settings[TEXT_ALIGNMENT] = Setting::List("Text alignment", 3, {"left", "center", "right", "justified"}, true);
-	settings[TEXT_ALIGNMENT].SetOnToggleFunc([](UI *ui) -> void { CustomEvents::SendAdjustText(); });
+	settings[TEXT_ALIGNMENT].SetOnToggleFunc([](UI *) -> void { CustomEvents::SendAdjustText(); });
 
 	settings[TEXTURE_FILTERING] = Setting::List("Texture filtering", 1, {"nearest", "linear"}, true);
 
 	settings[TOOLTIP_ACTIVATION_TIME] = Setting::Unique("Tooltip activation time");
-	settings[TOOLTIP_ACTIVATION_TIME].SetDisplayFunc([](int index) -> pair<string, bool> {
+	settings[TOOLTIP_ACTIVATION_TIME].SetDisplayFunc([]() -> pair<string, bool> {
 		return make_pair(Format::StepsToSeconds(TooltipActivation()), true);
 	});
-	settings[TOOLTIP_ACTIVATION_TIME].SetOnToggleFunc([](UI *ui) -> void {
+	settings[TOOLTIP_ACTIVATION_TIME].SetOnToggleFunc([](UI *) -> void {
 		int steps = TooltipActivation() + 20;
 		if(steps > 120)
 			steps = 0;
@@ -453,19 +450,37 @@ void Preferences::Init()
 	settings[UNDERLINE_SHORTCUTS] = Setting::Boolean("Always underline shortcuts", false);
 
 	settings[VSYNC] = Setting::List("VSync", 1, {"off", "on", "adaptive"});
-	settings[VSYNC].SetOnToggleFunc([](UI *ui) -> void {
-		if(!Preferences::ToggleVSync() && ui)
-			ui->Push(DialogPanel::Info("Unable to change VSync state. (Your system's graphics settings may "
-				"be controlling it instead.)"));
+	settings[VSYNC].SetToggleFunc([](int originalIndex, UI *ui) -> int {
+		int targetIndex = settings[VSYNC].CycleIndex();
+		if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
+		{
+			// Not all drivers support adaptive VSync. Increment desired VSync again.
+			targetIndex = settings[VSYNC].CycleIndex();
+			if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
+			{
+				// Restore original saved setting.
+				Logger::Log("Unable to change VSync state.", Logger::Level::WARNING);
+				GameWindow::SetVSync(static_cast<VSync>(originalIndex));
+				settings[VSYNC].SetIndex(originalIndex);
+				if(ui)
+					ui->Push(DialogPanel::Info("Unable to change VSync state. (Your system's graphics settings may "
+						"be controlling it instead.)"));
+				return originalIndex;
+			}
+		}
+		return targetIndex;
 	});
 
 	// "Window size" is unique and not rendered in PreferencesPanel, and so it doesn't need a Setting.
 
 	settings[ZOOM_FACTOR_MAIN] = Setting::Unique("Main zoom factor");
-	settings[ZOOM_FACTOR_MAIN].SetDisplayFunc([](int index) -> pair<string, bool> {
+	settings[ZOOM_FACTOR_MAIN].SetDisplayFunc([]() -> pair<string, bool> {
 		return make_pair(to_string(Screen::UserZoom()), Screen::UserZoom() == Screen::Zoom());
 	});
 	settings[ZOOM_FACTOR_MAIN].SetOnToggleFunc([](UI *ui) -> void {
+		// Get the mouse location prior to updating the zoom.
+		Point mouse = UI::GetMouse();
+
 		int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
 		Screen::SetZoom(newZoom);
 		if(Screen::Zoom() != newZoom)
@@ -478,16 +493,15 @@ void Preferences::Init()
 			Screen::SetZoom(ZOOM_FACTOR_MIN);
 		}
 
-		int x = 0;
-		int y = 0;
-		SDL_GetMouseState(&x, &y);
-		Point hoverPoint = Point(x, y);
-		// Convert to raw window coordinates, at the new zoom level.
-		hoverPoint *= Screen::Zoom() / 100.;
-		hoverPoint += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
-		SDL_WarpMouseInWindow(nullptr, hoverPoint.X(), hoverPoint.Y());
+		// Convert the old UI mouse coordinates to raw window coordinates at the new zoom level.
+		Point point = mouse * Screen::Zoom() / 100.;
+		point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+		SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 	});
 	settings[ZOOM_FACTOR_MAIN].SetScrollFunc([](double dy) -> void {
+		// Get the mouse location prior to updating the zoom.
+		Point mouse = UI::GetMouse();
+
 		int zoom = Screen::UserZoom();
 		if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
 			zoom -= ZOOM_FACTOR_INCREMENT;
@@ -498,21 +512,17 @@ void Preferences::Init()
 		if(Screen::Zoom() != zoom)
 			Screen::SetZoom(Screen::Zoom());
 
-		int x = 0;
-		int y = 0;
-		SDL_GetMouseState(&x, &y);
-		Point hoverPoint = Point(x, y);
-		// Convert to raw window coordinates, at the new zoom level.
-		hoverPoint *= (Screen::Zoom() / 100.);
-		hoverPoint += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
-		SDL_WarpMouseInWindow(nullptr, hoverPoint.X(), hoverPoint.Y());
+		// Convert the UI mouse coordinates to raw window coordinates at the new zoom level.
+		Point point = mouse * Screen::Zoom() / 100.;
+		point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+		SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 	});
 
 	settings[ZOOM_FACTOR_VIEW] = Setting::Unique("View zoom factor");
-	settings[ZOOM_FACTOR_VIEW].SetDisplayFunc([](int index) -> pair<string, bool> {
+	settings[ZOOM_FACTOR_VIEW].SetDisplayFunc([]() -> pair<string, bool> {
 		return make_pair(to_string(static_cast<int>(100. * ViewZoom())), true);
 	});
-	settings[ZOOM_FACTOR_VIEW].SetOnToggleFunc([](UI *ui) -> void {
+	settings[ZOOM_FACTOR_VIEW].SetOnToggleFunc([](UI *) -> void {
 		// Increase the zoom factor unless it is at the maximum. In that
 		// case, cycle around to the lowest zoom factor.
 		if(!ZoomViewIn())
@@ -527,20 +537,18 @@ void Preferences::Init()
 
 #ifdef _WIN32
 	settings[TITLE_BAR_THEME] = Setting::List("Title bar theme", 0, {"system default", "light", "dark"});
-	settings[TITLE_BAR_THEME].SetDisplayFunc([](int index) -> pair<string, bool> {
+	settings[TITLE_BAR_THEME].SetDisplayFunc([]() -> pair<string, bool> {
 		bool isOn = WinVersion::SupportsDarkTheme();
-		string text = isOn ? Preferences::DisplayValue(TITLE_BAR_THEME) : "N/A";
-		return make_pair(text, isOn);
+		return make_pair(isOn ? settings[TITLE_BAR_THEME].Option() : "N/A", isOn);
 	});
-	settings[TITLE_BAR_THEME].SetOnToggleFunc([](UI *ui) -> void { GameWindow::UpdateTitleBarTheme(); });
+	settings[TITLE_BAR_THEME].SetOnToggleFunc([](UI *) -> void { GameWindow::UpdateTitleBarTheme(); });
 
 	settings[WINDOW_ROUNDING] = Setting::List("Window rounding", 0, {"system default", "off", "large", "small"});
-	settings[WINDOW_ROUNDING].SetDisplayFunc([](int index) -> pair<string, bool> {
+	settings[WINDOW_ROUNDING].SetDisplayFunc([]() -> pair<string, bool> {
 		bool isOn = WinVersion::SupportsWindowRounding();
-		string text = isOn ? Preferences::DisplayValue(WINDOW_ROUNDING) : "N/A";
-		return make_pair(text, isOn);
+		return make_pair(isOn ? settings[TITLE_BAR_THEME].Option() : "N/A", isOn);
 	});
-	settings[WINDOW_ROUNDING].SetOnToggleFunc([](UI *ui) -> void { GameWindow::UpdateWindowRounding(); });
+	settings[WINDOW_ROUNDING].SetOnToggleFunc([](UI *) -> void { GameWindow::UpdateWindowRounding(); });
 #endif
 }
 
@@ -896,24 +904,9 @@ Preferences::ExtendedJumpEffects Preferences::GetExtendedJumpEffects()
 
 
 
-bool Preferences::ToggleVSync()
+void Preferences::ToggleVSync()
 {
-	int original = settings[VSYNC].Index();
-	int targetIndex = settings[VSYNC].Toggle(nullptr);
-	if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
-	{
-		// Not all drivers support adaptive VSync. Increment desired VSync again.
-		targetIndex = settings[VSYNC].Toggle(nullptr);
-		if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
-		{
-			// Restore original saved setting.
-			Logger::Log("Unable to change VSync state.", Logger::Level::WARNING);
-			GameWindow::SetVSync(static_cast<VSync>(original));
-			settings[VSYNC].SetIndex(original);
-			return false;
-		}
-	}
-	return true;
+	settings[VSYNC].Toggle(nullptr);
 }
 
 
@@ -1041,10 +1034,10 @@ bool Preferences::DisplayVisualAlert()
 
 
 
-bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
+bool Preferences::DoAlertHelper(Preferences::AlertIndicator alert)
 {
 	auto value = GetAlertIndicator();
-	return value == AlertIndicator::BOTH || value == toDo;
+	return value == AlertIndicator::BOTH || value == alert;
 }
 
 

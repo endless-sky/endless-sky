@@ -229,7 +229,7 @@ public:
 	static const std::vector<double> &Zooms();
 
 	/// VSync setting, either "on", "off", or "adaptive".
-	static bool ToggleVSync();
+	static void ToggleVSync();
 	static VSync VSyncState();
 
 	static CameraAccel CameraAcceleration();
@@ -266,7 +266,7 @@ public:
 	static AlertIndicator GetAlertIndicator();
 	static bool PlayAudioAlert();
 	static bool DisplayVisualAlert();
-	static bool DoAlertHelper(AlertIndicator toDo);
+	static bool DoAlertHelper(AlertIndicator alert);
 
 	/// Minimap display settings.
 	static MinimapDisplay GetMinimapDisplay();
@@ -333,7 +333,6 @@ public:
 	static const std::string FONT_SIZE;
 	static const std::string HUD_ASTEROID_OVERLAY;
 	static const std::string HUD_CLICKABLE_RADAR;
-	static const std::string HUD_DISABLE_RADAR_VIEWPORT;
 	static const std::string HUD_EXTRA_STATUS_MSGS;
 	static const std::string HUD_MISSILE_OVERLAY;
 	static const std::string HUD_ROTATE_FLAGSHIP;

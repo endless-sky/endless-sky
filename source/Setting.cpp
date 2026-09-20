@@ -54,14 +54,14 @@ Setting::Setting(const string &displayName, const vector<string> &options, int d
 
 
 
-void Setting::SetDisplayFunc(std::function<pair<string, bool>(int)> displayFunc)
+void Setting::SetDisplayFunc(std::function<pair<string, bool>()> displayFunc)
 {
 	this->displayFunc = std::move(displayFunc);
 }
 
 
 
-void Setting::SetToggleFunc(function<int(int)> toggleFunc)
+void Setting::SetToggleFunc(function<int(int, UI *)> toggleFunc)
 {
 	this->toggleFunc = std::move(toggleFunc);
 }
@@ -92,8 +92,8 @@ const string &Setting::DisplayName() const
 pair<string, bool> Setting::DisplayValue() const
 {
 	if(displayFunc)
-		return displayFunc(index);
-	return {options.empty() ? "" : options[index], alwaysOn ? true : index};
+		return displayFunc();
+	return make_pair(Option(), alwaysOn ? true : index);
 }
 
 
@@ -115,9 +115,9 @@ int Setting::Index() const
 int Setting::Toggle(UI *ui)
 {
 	if(toggleFunc)
-		index = toggleFunc(index);
+		index = toggleFunc(index, ui);
 	else if(!options.empty())
-		index = (index + 1) % options.size();
+		CycleIndex();
 	if(onToggleFunc)
 		onToggleFunc(ui);
 	return index;
@@ -129,6 +129,22 @@ void Setting::Scroll(double dy)
 {
 	if(scrollFunc)
 		scrollFunc(dy);
+}
+
+
+
+int Setting::CycleIndex()
+{
+	index = (index + 1) % options.size();
+	return index;
+}
+
+
+
+const string &Setting::Option() const
+{
+	static const string EMPTY;
+	return !options.empty() ? options[index] : EMPTY;
 }
 
 

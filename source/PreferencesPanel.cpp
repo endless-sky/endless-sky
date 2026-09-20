@@ -285,7 +285,7 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
 		{
-			HandleSettingsString(zone.Value(), point);
+			HandleSettingsString(zone.Value());
 			break;
 		}
 
@@ -802,6 +802,7 @@ void PreferencesPanel::DrawSettings()
 		table.SetHighlight(-120, 120);
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 
+		const string &displayName = Preferences::DisplayName(setting);
 		if(setting == hoverItem)
 		{
 			table.SetHighlight(-120, 120);
@@ -809,7 +810,7 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == selectedItem)
 		{
-			auto width = FontSet::Get(14).Width(setting);
+			auto width = FontSet::Get(14).Width(displayName);
 			table.SetHighlight(-120, width - 110);
 			table.DrawHighlight(back);
 		}
@@ -817,7 +818,7 @@ void PreferencesPanel::DrawSettings()
 		// Get the text for this setting. Setting "isOn"
 		// draws the setting "bright" (i.e. the setting is active).
 		auto [text, isOn] = Preferences::DisplayValue(setting);
-		table.Draw(Preferences::DisplayName(setting), isOn ? medium : dim);
+		table.Draw(displayName, isOn ? medium : dim);
 		table.Draw(text, isOn ? bright : medium);
 	}
 
@@ -1022,7 +1023,7 @@ void PreferencesPanel::DrawTooltips()
 		return;
 
 	if(!tooltip.HasText())
-		tooltip.SetText(GameData::Tooltip(page == 'p' ? Preferences::DisplayName(hoverItem) : hoverItem));
+		tooltip.SetText(GameData::Tooltip(page == 's' ? Preferences::DisplayName(hoverItem) : hoverItem));
 
 	tooltip.Draw();
 }
@@ -1047,7 +1048,7 @@ void PreferencesPanel::Exit()
 
 
 
-void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosition)
+void PreferencesPanel::HandleSettingsString(const string &str)
 {
 	Preferences::Toggle(str, &GetUI());
 
@@ -1114,7 +1115,7 @@ void PreferencesPanel::HandleConfirm()
 		editing = selected;
 		break;
 	case 's':
-		HandleSettingsString(selectedItem, Screen::Dimensions() / 2.);
+		HandleSettingsString(selectedItem);
 		break;
 	case 'p':
 		PluginManager::TogglePlugin(selectedPlugin);

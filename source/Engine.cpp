@@ -2832,13 +2832,10 @@ void Engine::FillRadar()
 	}
 
 	// Add viewport brackets.
-	if(!Preferences::Has(Preferences::HUD_DISABLE_RADAR_VIEWPORT))
-	{
-		radar[currentCalcBuffer].AddViewportBoundary(Screen::TopLeft() / zoom);
-		radar[currentCalcBuffer].AddViewportBoundary(Screen::TopRight() / zoom);
-		radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomLeft() / zoom);
-		radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomRight() / zoom);
-	}
+	radar[currentCalcBuffer].AddViewportBoundary(Screen::TopLeft() / zoom);
+	radar[currentCalcBuffer].AddViewportBoundary(Screen::TopRight() / zoom);
+	radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomLeft() / zoom);
+	radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomRight() / zoom);
 
 	// Add ships. Also check if hostile ships have newly appeared.
 	bool hasHostiles = false;
