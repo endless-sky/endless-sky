@@ -1088,9 +1088,6 @@ void MapPanel::DrawTravelPlan()
 	const Color &withinFleetFuelRangeColor = *colors.Get("map travel ok fleet");
 	const Color &jumpInProgressColor = *colors.Get("map travel jumping flagship");
 
-	const System *previous = &playerSystem;
-	const System *next = player.TravelPlan().back();
-
 	bool stranded = false;
 	bool hasEscort = false;
 	map<const Ship *, double> fuel;
@@ -1105,13 +1102,12 @@ void MapPanel::DrawTravelPlan()
 
 			fuel[it.get()] = it->FuelLevel();
 			hasEscort |= (it.get() != flagship);
-
-			if(flagship->IsEnteringHyperspace() && it->IsEnteringHyperspace())
-				fuel[it.get()] += it->JumpNavigation().GetCheapestJumpType(previous, next).second;
 		}
 	stranded |= !hasEscort;
 
 	const double jumpRange = flagship->JumpNavigation().JumpRange();
+	const System *previous = &playerSystem;
+	const System *next = player.TravelPlan().back();
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i, previous = next)
 	{
 		next = player.TravelPlan()[i];
