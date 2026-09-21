@@ -1096,7 +1096,10 @@ void MapPanel::DrawTravelPlan()
 				continue;
 			}
 
-			fuel[it.get()] = it->FuelLevel();
+			// If a ship is currently in the process of jumping, account for the
+			// fuel spent on the current jump so that the map can accurately draw
+			// which links a ship has the fuel to jump across.
+			fuel[it.get()] = it->FuelLevel() + it->FuelUsedForHyperspacing();
 			hasEscort |= (it.get() != flagship);
 		}
 	stranded |= !hasEscort;
