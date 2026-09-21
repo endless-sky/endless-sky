@@ -2257,6 +2257,20 @@ event "stack core for sale"
 		outfitter "Stack Core"
 	planet "Wayfarer"
 		outfitter "Stack Core"
+	fleet "Large Free Worlds"
+		government "Free Worlds"
+		names "free worlds capital"
+		cargo 1
+		personality
+			heroic
+		add variant 4
+			"Dreadnought (Stack Core)"
+		add variant 2
+			"Dreadnought (Stack Core)"
+			"Falcon (Heavy)"
+		add variant 2
+			"Dreadnought (Stack Core)"
+			"Falcon (Laser)"
 
 
 
