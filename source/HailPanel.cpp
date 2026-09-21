@@ -244,7 +244,7 @@ void HailPanel::Draw()
 	// Draw the sprite, rotated, scaled, and swizzled as necessary.
 	// The Height and Width functions on Drawable are for world-coordinates.
 	// Multiply by 2 to account for the half-scaling of objects drawn in the world.
-	float zoom = min(2.f, 400.f / max<float>(width * 2., height * 2.));
+	float zoom = min(2.f, 400.f / max(width * 2.f, height * 2.f));
 	Point center(-170., -10.);
 
 	DrawList draw;
