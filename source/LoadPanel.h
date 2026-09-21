@@ -22,13 +22,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 #include "Tooltip.h"
 
-#include <ctime>
 #include <filesystem>
 #include <map>
+#include <memory>
+#include <optional>
 #include <string>
-#include <utility>
-#include <vector>
 
+class PilotProfile;
 class PlayerInfo;
 class UI;
 
@@ -44,6 +44,7 @@ public:
 	virtual void Draw() override;
 
 	virtual void UpdateTooltipActivation() override;
+	virtual void UpdateTextDisplay() override;
 
 
 protected:
@@ -58,7 +59,9 @@ protected:
 private:
 	void UpdateLists();
 
-	// Snapshot name callback.
+	std::optional<std::filesystem::path> SnapshotPathBase() const;
+	// Snapshot name callbacks.
+	bool SnapshotNameFilter(const std::string &name, char ch);
 	void SnapshotCallback(const std::string &name);
 	void WriteSnapshot(const std::filesystem::path &sourceFile, const std::filesystem::path &snapshotName);
 	// Load snapshot callback.
@@ -73,8 +76,8 @@ private:
 	SavedGame loadedInfo;
 	UI &gamePanels;
 
-	std::map<std::string, std::vector<std::pair<std::string, std::filesystem::file_time_type>>> files;
-	std::string selectedPilot;
+	std::map<std::string, std::shared_ptr<PilotProfile>> pilots;
+	std::shared_ptr<PilotProfile> selectedPilot;
 	std::string selectedFile;
 	// If the player enters a filename that exists, prompt before overwriting it.
 	std::string nameToConfirm;
@@ -88,4 +91,7 @@ private:
 	bool sideHasFocus = false;
 	double sideScroll = 0;
 	double centerScroll = 0;
+
+	std::string hoverFile;
+	std::string hoverFileTimestamp;
 };

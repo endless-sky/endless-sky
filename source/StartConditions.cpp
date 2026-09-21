@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "StartConditions.h"
 
+#include "Conversation.h"
 #include "DataNode.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -193,11 +194,17 @@ void StartConditions::FinishLoading()
 	unlocked.planet = GetPlanet().DisplayName();
 	unlocked.system = GetSystem().DisplayName();
 	unlocked.date = GetDate();
-	unlocked.credits = Format::Credits(GetAccounts().Credits());
-	unlocked.debt = Format::Credits(GetAccounts().TotalDebt());
+	unlocked.credits = Format::AbbreviatedNumber(GetAccounts().Credits());
+	unlocked.debt = Format::AbbreviatedNumber(GetAccounts().TotalDebt());
 
-	string reason = GetConversation().Validate();
-	if(!GetConversation().IsValidIntro() || !reason.empty())
+	if(!conversation)
+	{
+		Logger::Log("The start scenario \"" + Identifier() + "\" (named \""
+			+ unlocked.displayName + "\") does not have a starting conversation.", Logger::Level::WARNING);
+		return;
+	}
+	string reason = conversation->Validate();
+	if(!conversation->IsValidIntro() || !reason.empty())
 		Logger::Log("The start scenario \"" + Identifier() + "\" (named \""
 			+ unlocked.displayName + "\") has an invalid starting conversation."
 			+ (reason.empty() ? "" : "\n\t" + std::move(reason)), Logger::Level::WARNING);
@@ -216,7 +223,7 @@ bool StartConditions::IsValid() const
 		return false;
 
 	// A start must reference a valid "intro" conversation, either stock or custom.
-	if(!GetConversation().IsValidIntro() || !GetConversation().Validate().empty())
+	if(!conversation || !conversation->IsValidIntro() || !conversation->Validate().empty())
 		return false;
 
 	// All ship models must be valid.
@@ -242,9 +249,9 @@ const vector<Ship> &StartConditions::Ships() const noexcept
 
 
 
-const Conversation &StartConditions::GetConversation() const
+const Conversation *StartConditions::GetConversation() const
 {
-	return *conversation;
+	return conversation.Ptr();
 }
 
 
@@ -395,12 +402,12 @@ bool StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, boo
 	// Format credits and debt where applicable.
 	else if(key == "credits" && hasValue)
 		if(child.IsNumber(value))
-			info.credits = Format::Credits(child.Value(value));
+			info.credits = Format::AbbreviatedNumber(child.Value(value));
 		else
 			info.credits = value;
 	else if(key == "debt" && hasValue)
 		if(child.IsNumber(value))
-			info.debt = Format::Credits(child.Value(value));
+			info.debt = Format::AbbreviatedNumber(child.Value(value));
 		else
 			info.debt = value;
 	else

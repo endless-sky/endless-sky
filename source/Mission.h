@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Color.h"
 #include "ConditionSet.h"
 #include "Date.h"
 #include "DistanceCalculationSettings.h"
@@ -33,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 
+class Color;
 class ConditionsStore;
 class DataNode;
 class DataWriter;
@@ -86,9 +86,9 @@ public:
 	bool IsVisible() const;
 	// The colors that should be used to display the mission name if it is shown
 	// in your mission list.
-	const Color &Unavailable() const;
-	const Color &Unselected() const;
-	const Color &Selected() const;
+	const Color *Unavailable() const;
+	const Color *Unselected() const;
+	const Color *Selected() const;
 	// Check if this mission should be quarantined due to requiring currently-
 	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
 	bool IsValid() const;
@@ -105,7 +105,7 @@ public:
 	int OfferPrecedence() const;
 
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD, ENTERING};
+	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD, ENTERING, TRANSITION};
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.
@@ -213,6 +213,7 @@ public:
 
 private:
 	bool Enter(const System *system, PlayerInfo &player, UI &ui);
+	bool Land(const Planet *planet, PlayerInfo &player, UI &ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);
@@ -307,10 +308,14 @@ private:
 
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;
-	// "on enter" actions may name a specific system, or rely on matching a
-	// LocationFilter in order to designate the matched system.
+	// "on enter" and "on land" actions may name a specific system or planet,
+	// or rely on matching a LocationFilter in order to designate the matched
+	// system or planet.
 	std::map<const System *, MissionAction> onEnter;
 	std::list<MissionAction> genericOnEnter;
-	// Track which `on enter` MissionActions have triggered.
+	std::map<const Planet *, MissionAction> onLand;
+	std::list<MissionAction> genericOnLand;
+	// Track which `on enter` and `on land` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
+	std::set<const MissionAction *> didLand;
 };

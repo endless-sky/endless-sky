@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Point.h"
+#include "TaskQueue.h"
 
 #include <memory>
 #include <vector>
@@ -53,6 +54,9 @@ public:
 	// Draw all the panels.
 	void DrawAll();
 
+	TaskQueue &SyncQueue();
+	TaskQueue &AsyncQueue();
+
 	// Get the current panel stack.
 	const std::vector<std::shared_ptr<Panel>> &Stack() const;
 
@@ -89,6 +93,7 @@ public:
 	bool IsEmpty() const;
 
 	void AdjustViewport() const;
+	void AdjustTextDisplay() const;
 
 	// Get the current mouse position.
 	static Point GetMouse();
@@ -110,4 +115,10 @@ private:
 	std::vector<std::shared_ptr<Panel>> stack;
 	std::vector<std::shared_ptr<Panel>> toPush;
 	std::vector<const Panel *> toPop;
+
+	// Shared task queues that all panels can use.
+	// The sync queue will wait at the end of the step for all
+	// tasks to be completed, while the async queue does not.
+	TaskQueue syncQueue;
+	TaskQueue asyncQueue;
 };

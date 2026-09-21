@@ -226,11 +226,17 @@ mission "FW Southern Recon 1B"
 				`	"I already plundered one of these new guns previously. I can give it to you now."`
 					goto gun
 					to display
-						has "outfit: Electron Beam"
+						has "outfit (removable): Electron Beam"
 				`	"I already plundered one of these new turrets previously. I can give it to you now."`
 					goto turret
 					to display
-						has "outfit: Electron Turret"
+						has "outfit (removable): Electron Turret"
+				`	"I know how to get one. I'll get you a spare."`
+					to display
+						or
+							has "outfit (all): Electron Beam"
+							has "outfit (all): Electron Turret"
+					accept
 			
 			`	She thinks about that for a moment, then says, "The Navy has shifted most of their capital ships to the defecting systems in the south. That means that some of the systems up north will have lighter defenses. You might try Wei or Alnasl. Good luck, Captain."`
 				accept
@@ -281,6 +287,7 @@ mission "FW Southern Recon 1B"
 mission "FW Southern Recon 1B (Turret)"
 	landing
 	invisible
+	non-blocking
 	source Trinket
 	destination Trinket
 	to offer
@@ -1135,6 +1142,7 @@ mission "FW Northern 4.1A"
 	npc save
 		government "Navy (Oathkeeper)"
 		personality heroic staying uninterested
+			confusion "elite"
 		system Alioth
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 
@@ -1227,6 +1235,7 @@ mission "FW Alphas 1.1"
 	npc accompany save
 		government "Navy (Oathkeeper)"
 		personality escort heroic
+			confusion "elite"
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	npc
 		government "Free Worlds"
@@ -1236,6 +1245,7 @@ mission "FW Alphas 1.1"
 	npc kill
 		government "Alpha"
 		personality heroic staying target
+			confusion "pirate"
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
 		ship "Leviathan" "Dominator"
@@ -1327,6 +1337,7 @@ mission "FW Alphas 1.2"
 	npc kill
 		government "Alpha"
 		personality heroic staying target
+			confusion "pirate"
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
 		ship "Leviathan" "Dominator"
@@ -1353,6 +1364,7 @@ mission "FW Alphas 1.1A"
 	npc accompany save
 		government "Navy (Oathkeeper)"
 		personality escort heroic
+			confusion "elite"
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	
 	on visit
@@ -1698,6 +1710,7 @@ mission "FW Bloodsea 1.2A"
 mission "Pirates Use Cutthroats"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "fw bloodsea done"
 	on offer
@@ -2289,16 +2302,12 @@ mission "FW Liberate Delta Sagittarii"
 	to offer
 		has "FW Rand 1B: done"
 		not "FW Defend New Tibet: done"
+	to accept
+		has "fw did not rescue defector"
 	
 	on offer
 		event "fwc southern battle"
 		conversation
-			branch surrender
-				has "fw did not rescue defector"
-			`A few of the Free Worlds crew members are still milling around the spaceport in confusion. You help to gather them together and explain that you are headed out on a very important mission to New Tibet.`
-				decline
-			
-			label surrender
 			`When you and Freya enter the spaceport bar, JJ is talking with someone on his communicator. "The code word is 'havoc,'" he says. "Yes, I'm certain. It's the only option we have left. Good luck."`
 			`	"What was that about?" asks Freya.`
 			`	JJ says, "I was calling in some reinforcements," he says. "A group of ex-militia folks and bounty hunters who want to further the cause of the Free Worlds, but want to do it freelance instead of taking orders from us or the Senate. They call themselves the 'Wolf Pack.' Have you heard of them?"`

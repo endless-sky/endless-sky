@@ -340,7 +340,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
 	{
 		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
-			GetUI().Push(new DialogPanel(this, &MissionPanel::AbortMission,
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &MissionPanel::AbortMission,
 				"Abort mission \"" + acceptedIt->DisplayName() + "\"?"));
 		return true;
 	}
@@ -673,8 +673,8 @@ void MissionPanel::Resize()
 void MissionPanel::InitTextArea()
 {
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
+	description->SetAlignment(Preferences::GetTextAlignment());
 	description->SetColor(*GameData::Colors().Get("bright"));
 	ResizeTextArea();
 }
@@ -714,33 +714,12 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 
 void MissionPanel::DrawKey() const
 {
-	const Sprite *back = SpriteSet::Get("ui/mission key");
-	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
-
-	const Font &font = FontSet::Get(14);
-	Point angle = Point(1., 1.).Unit();
-
-	const int ROWS = 5;
-	Point pos(Screen::Left() + 10., Screen::Bottom() - ROWS * 20. + 5.);
-	Point pointerOff(5., 5.);
-	Point textOff(8., -.5 * font.Height());
-
-	const Set<Color> &colors = GameData::Colors();
-	const Color &bright = *colors.Get("bright");
-	const Color &dim = *colors.Get("dim");
-	const Color COLOR[ROWS] = {
-		*colors.Get("available job"),
-		*colors.Get("unavailable job"),
-		*colors.Get("active mission"),
-		*colors.Get("blocked mission"),
-		*colors.Get("waypoint")
-	};
-	static const string LABEL[ROWS] = {
-		"Available job; can accept",
-		"Too little space to accept",
-		"Active job; go here to complete",
-		"Has unfinished requirements",
-		"System of importance"
+	static const string CONDITIONS[] = {
+		"available",
+		"unavailable",
+		"active",
+		"blocked",
+		"waypoint"
 	};
 	int selected = -1;
 	if(availableIt != available.end())
@@ -748,12 +727,10 @@ void MissionPanel::DrawKey() const
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
 		selected = 2 + !IsSatisfied(*acceptedIt);
 
-	for(int i = 0; i < ROWS; ++i)
-	{
-		PointerShader::Draw(pos + pointerOff, angle, 10.f, 18.f, 0.f, COLOR[i]);
-		font.Draw(LABEL[i], pos + textOff, i == selected ? bright : dim);
-		pos.Y() += 20.;
-	}
+	Information info;
+	if(selected >= 0)
+		info.SetCondition(CONDITIONS[selected]);
+	GameData::Interfaces().Get("map: mission view: key")->Draw(info);
 }
 
 
@@ -913,22 +890,25 @@ Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const 
 		bool canAccept = (&missionList == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		if(!canAccept)
 		{
-			if(it->Unavailable().IsLoaded())
-				color = &it->Unavailable();
+			const Color *customUnavailable = it->Unavailable();
+			if(customUnavailable && customUnavailable->IsLoaded())
+				color = customUnavailable;
 			else
 				color = &dim;
 		}
 		else if(isSelected)
 		{
-			if(it->Selected().IsLoaded())
-				color = &it->Selected();
+			const Color *customSelected = it->Selected();
+			if(customSelected && customSelected->IsLoaded())
+				color = customSelected;
 			else
 				color = &selected;
 		}
 		else
 		{
-			if(it->Unselected().IsLoaded())
-				color = &it->Unselected();
+			const Color *customUnselected = it->Unselected();
+			if(customUnselected && customUnselected->IsLoaded())
+				color = customUnselected;
 			else
 				color = &unselected;
 		}
@@ -1068,7 +1048,7 @@ void MissionPanel::Accept(bool force)
 		else
 			out << "You must sell " << Format::CargoString(cargoToSell, "ordinary commodities")
 				<< " to make room for this mission. Continue?";
-		GetUI().Push(new DialogPanel(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
+		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
 		return;
 	}
 

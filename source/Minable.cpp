@@ -25,11 +25,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "pi.h"
 #include "Projectile.h"
 #include "Random.h"
-#include "image/SpriteSet.h"
 #include "Visual.h"
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
+#include <vector>
 
 using namespace std;
 
@@ -61,18 +62,23 @@ Minable::Payload::Payload(const DataNode &node)
 
 
 // Load a definition of a minable object.
-void Minable::Load(const DataNode &node)
+void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	// Set the name of this minable, so we know it has been loaded.
 	if(node.Size() >= 2)
 		name = node.Token(1);
+
+	entityType = Entity::Type::MINABLE;
+	neverDisabled = true;
 
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
-		if(!hasValue)
+		if(key == "attributes")
+			attributes.Load(child, playerConditions);
+		else if(!hasValue)
 			child.PrintTrace("Expected key to have a value:");
 		else if(key == "display name")
 			displayName = child.Token(1);
@@ -86,7 +92,7 @@ void Minable::Load(const DataNode &node)
 					useRandomFrameRate = false;
 		}
 		else if(key == "hull")
-			hull = child.Value(1);
+			levels.hull = child.Value(1);
 		else if(key == "random hull")
 			randomHull = max(0., child.Value(1));
 		else if(key == "payload")
@@ -106,6 +112,9 @@ void Minable::Load(const DataNode &node)
 		displayName = Format::Capitalize(name);
 	if(noun.empty())
 		noun = "Asteroid";
+	// A minable's attributes can't be changed outside of what is loaded in,
+	// so we can cache certain attribute values and calculations now.
+	CacheAttributes();
 }
 
 
@@ -113,8 +122,16 @@ void Minable::Load(const DataNode &node)
 // Calculate the expected payload value of this Minable after all outfits have been fully loaded.
 void Minable::FinishLoading()
 {
-	for(const auto &it : payload)
-		value += it.outfit->Cost() * it.maxDrops * it.dropRate;
+	for(const Payload &it : payload)
+	{
+		if(!it.maxDrops)
+			continue;
+		if(it.outfit->Mass())
+			highestQuality = max<int64_t>(highestQuality, it.outfit->Cost() / it.outfit->Mass());
+		else
+			highestQuality = numeric_limits<int64_t>::max();
+		expectedValue += it.outfit->Cost() * it.maxDrops * it.dropRate;
+	}
 }
 
 
@@ -196,8 +213,11 @@ void Minable::Place(double energy, double beltRadius)
 	position = radius * Point(cos(theta + rotation), sin(theta + rotation));
 
 	// Add a random amount of hull value to the object.
-	hull += Random::Real() * randomHull;
-	maxHull = hull;
+	if(!levels.hull)
+		levels.hull = 1000;
+	if(randomHull)
+		levels.hull += Random::Real() * randomHull;
+	capacities.hull = levels.hull;
 }
 
 
@@ -207,7 +227,19 @@ void Minable::Place(double energy, double beltRadius)
 // In that case it will return false, meaning it should be deleted.
 bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
-	if(hull < 0)
+	DoStatusEffects();
+	DoStatusSparks(visuals);
+
+	levels.heat -= levels.heat * HeatDissipation();
+	if(levels.heat > MaxHeat())
+	{
+		double heatRatio = HeatFraction() / (1. + attributes.Get("overheat damage threshold"));
+		if(heatRatio > 1.)
+			levels.hull -= attributes.Get("overheat damage rate") * heatRatio;
+	}
+	levels.heat = max(0., levels.heat);
+
+	if(levels.hull < 0)
 	{
 		// This object has been destroyed. Create explosions and flotsam.
 		double scale = .1 * Radius();
@@ -267,22 +299,27 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 // Damage this object (because a projectile collided with it).
 void Minable::TakeDamage(const MinableDamageDealt &damage)
 {
-	hull -= damage.hullDamage;
+	levels.hull -= damage.hullDamage;
 	prospecting += damage.prospecting;
+	levels.heat += damage.heat;
+	levels.corrosion += damage.corrosion;
+	levels.burning += damage.burn;
+
+	levels.heat = max(0., levels.heat);
 }
 
 
 
-double Minable::Hull() const
+double Minable::Mass() const
 {
-	return min(1., hull / maxHull);
+	return attributes.Mass();
 }
 
 
 
-double Minable::MaxHull() const
+double Minable::MaxHeat() const
 {
-	return maxHull;
+	return MAXIMUM_TEMPERATURE * (attributes.Mass() + attributes.Get("heat capacity"));
 }
 
 
@@ -296,9 +333,16 @@ const vector<Minable::Payload> &Minable::GetPayload() const
 
 
 // Get the expected value of the flotsams this minable will create when destroyed.
-const int64_t &Minable::GetValue() const
+int64_t Minable::GetExpectedValue() const
 {
-	return value;
+	return expectedValue;
+}
+
+
+
+int64_t Minable::GetHighestQualityValue() const
+{
+	return highestQuality;
 }
 
 
