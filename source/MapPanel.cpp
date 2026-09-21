@@ -1073,17 +1073,20 @@ void MapPanel::UpdateCache()
 
 void MapPanel::DrawTravelPlan()
 {
-	const Set<Color> &colors = GameData::Colors();
-	const Color &defaultColor = *colors.Get("map travel ok flagship");
-	const Color &outOfFlagshipFuelRangeColor = *colors.Get("map travel ok none");
-	const Color &withinFleetFuelRangeColor = *colors.Get("map travel ok fleet");
-	const Color &jumpInProgressColor = *colors.Get("map travel jumping flagship");
-
 	// At each point in the path, keep track of how many ships in the
 	// fleet are able to make it this far.
 	const Ship *flagship = player.Flagship();
 	if(!flagship)
 		return;
+
+	if(player.TravelPlan().empty())
+		return;
+
+	const Set<Color> &colors = GameData::Colors();
+	const Color &defaultColor = *colors.Get("map travel ok flagship");
+	const Color &outOfFlagshipFuelRangeColor = *colors.Get("map travel ok none");
+	const Color &withinFleetFuelRangeColor = *colors.Get("map travel ok fleet");
+	const Color &jumpInProgressColor = *colors.Get("map travel jumping flagship");
 
 	const System *previous = &playerSystem;
 	const System *next = player.TravelPlan().back();
