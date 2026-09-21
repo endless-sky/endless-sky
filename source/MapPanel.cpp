@@ -1085,6 +1085,10 @@ void MapPanel::DrawTravelPlan()
 	if(!flagship)
 		return;
 
+	const double jumpRange = flagship->JumpNavigation().JumpRange();
+	const System *previous = &playerSystem;
+	const System *next = player.TravelPlan()[player.TravelPlan().size() - 1];
+
 	bool stranded = false;
 	bool hasEscort = false;
 	map<const Ship *, double> fuel;
@@ -1099,20 +1103,15 @@ void MapPanel::DrawTravelPlan()
 
 			fuel[it.get()] = it->FuelLevel();
 			hasEscort |= (it.get() != flagship);
+
+			if(flagship->IsEnteringHyperspace() && it->IsEnteringHyperspace())
+				fuel[it.get()] += it->JumpNavigation().GetCheapestJumpType(previous, next).second;
 		}
 	stranded |= !hasEscort;
 
-	const double jumpRange = flagship->JumpNavigation().JumpRange();
-	const System *previous = &playerSystem;
-	const System *next = nullptr;
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i, previous = next)
 	{
 		next = player.TravelPlan()[i];
-
-		if(flagship->IsEnteringHyperspace() && (i == static_cast<int>(player.TravelPlan().size()) - 1))
-			for(auto &it : fuel)
-				if(it.first->IsEnteringHyperspace())
-					it.second += it.first->JumpNavigation().GetCheapestJumpType(previous, next).second;
 
 		bool isJump, isWormhole, isMappable;
 		Color wormholeColor;
