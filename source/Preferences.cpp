@@ -40,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cstddef>
 #include <map>
+#include <ranges>
 
 using namespace std;
 
@@ -451,17 +452,18 @@ void Preferences::Init()
 
 	settings[VSYNC] = Setting::List("VSync", 1, {"off", "on", "adaptive"});
 	settings[VSYNC].SetToggleFunc([](int originalIndex, UI *ui) -> int {
-		int targetIndex = settings[VSYNC].CycleIndex();
+		Setting &vsyncSetting = settings[VSYNC];
+		int targetIndex = vsyncSetting.CycleIndex();
 		if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
 		{
 			// Not all drivers support adaptive VSync. Increment desired VSync again.
-			targetIndex = settings[VSYNC].CycleIndex();
+			targetIndex = vsyncSetting.CycleIndex();
 			if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
 			{
 				// Restore original saved setting.
 				Logger::Log("Unable to change VSync state.", Logger::Level::WARNING);
 				GameWindow::SetVSync(static_cast<VSync>(originalIndex));
-				settings[VSYNC].SetIndex(originalIndex);
+				vsyncSetting.SetIndex(originalIndex);
 				if(ui)
 					ui->Push(DialogPanel::Info("Unable to change VSync state. (Your system's graphics settings may "
 						"be controlling it instead.)"));
@@ -603,14 +605,6 @@ void Preferences::Load()
 		unrecognized.erase(it);
 	}
 
-	it = unrecognized.find("alt-mouse turning");
-	if(it != unrecognized.end())
-	{
-		if(it->second)
-			settings[MOUSE_CONTROL_FLAGSHIP].SetIndex(1);
-		unrecognized.erase(it);
-	}
-
 	// For people updating from a version before the status overlay customization
 	// changes, don't turn all the overlays on if they were off before.
 	it = unrecognized.find("Show status overlays");
@@ -618,6 +612,16 @@ void Preferences::Load()
 	{
 		if(it->second)
 			statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
+		unrecognized.erase(it);
+	}
+
+	// For people updating from a version before 0.10.1, when the mouse control toggle
+	// key command was replaced by a preference visible to the PreferencesPanel.
+	it = unrecognized.find("alt-mouse turning");
+	if(it != unrecognized.end())
+	{
+		if(it->second)
+			settings[MOUSE_CONTROL_FLAGSHIP].SetIndex(1);
 		unrecognized.erase(it);
 	}
 
@@ -674,6 +678,9 @@ void Preferences::Load()
 			settings[ESCORT_AMMO_USAGE].SetIndex(static_cast<int>(EscortAmmoUsage::ALWAYS));
 		unrecognized.erase(it);
 	}
+
+	for(const auto &key : unrecognized | views::keys)
+		Logger::Log("Unrecognized preference: " + key, Logger::Level::WARNING);
 }
 
 
