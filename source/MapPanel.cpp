@@ -1107,7 +1107,7 @@ void MapPanel::DrawTravelPlan()
 
 	const double jumpRange = flagship->JumpNavigation().JumpRange();
 	const System *previous = &playerSystem;
-	const System *next = player.TravelPlan().back();
+	const System *next = nullptr;
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i, previous = next)
 	{
 		next = player.TravelPlan()[i];
