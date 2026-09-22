@@ -1073,8 +1073,6 @@ void MapPanel::UpdateCache()
 
 void MapPanel::DrawTravelPlan()
 {
-	// At each point in the path, keep track of how many ships in the
-	// fleet are able to make it this far.
 	const Ship *flagship = player.Flagship();
 	if(!flagship)
 		return;
@@ -1105,6 +1103,8 @@ void MapPanel::DrawTravelPlan()
 		}
 	stranded |= !hasEscort;
 
+	// At each point in the path, check if any ships in the
+	// fleet are unable to make it this far.
 	const double jumpRange = flagship->JumpNavigation().JumpRange();
 	const System *previous = &playerSystem;
 	const System *next = nullptr;
