@@ -1603,6 +1603,8 @@ tip "Aim turrets with mouse"
 
 tip "Automatic aiming"
 	`Automatically turn your ship towards your target to aim fixed weapons.`
+	`If you have multiple fixed weapons with differing projectile velocities, aiming will be done using the weapons with the highest damage per second.`
+	`If you have any active and loaded non-homing weapons that use ammo, they will be used for aiming in order to make your limited ammunition count, even if your primary weapons have a higher damage per second.`
 
 tip "Automatic firing"
 	`Automatically fire your primary weapons if your enemy is within the weapon's range.`
