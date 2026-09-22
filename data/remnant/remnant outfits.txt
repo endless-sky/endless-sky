@@ -918,6 +918,7 @@ outfit "Tuning Rifle"
 	"capture attack" 1.2
 	"capture defense" 1.8
 	"unplunderable" 1
+	"can jettison" 1
 	description "The Tuning Rifle uses sound waves to destabilize the weaker internal tissue of many races and liquefies them."
 
 
