@@ -248,25 +248,31 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		}
 		else if(plunderAmount == 1)
 		{
-			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump,
-				"Are you sure you want to jettison a " + selectedPlunder->DisplayName() + "?"));
+			string msg =  "Are you sure you want to jettison a " + selectedPlunder->DisplayName() + "?";
+			if(selectedPlunder->GetPrecise("unique"))
+				msg += " This outfit is unique and you may not be able to regain it after jettisoning it.";
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump, msg));
 		}
 		else if(plunderAmount > 1)
 		{
-			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpPlunder,
-				"How many " + selectedPlunder->PluralName() + " do you want to jettison?",
-				plunderAmount));
+			string msg = "How many " + selectedPlunder->PluralName() + " do you want to jettison?";
+			if(selectedPlunder->GetPrecise("unique"))
+				msg += " This outfit is unique and you may not be able to regain it after jettisoning it.";
+			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpPlunder, msg, plunderAmount));
 		}
 		else if(outfitAmount == 1)
 		{
-			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump,
-				"Are you sure you want to jettison a " + selectedOutfit->DisplayName() + "?"));
+			string msg = "Are you sure you want to jettison a " + selectedOutfit->DisplayName() + "?";
+			if(selectedOutfit->GetPrecise("unique"))
+				msg += " This outfit is unique and you may not be able to regain it after jettisoning it.";
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump, msg));
 		}
 		else if(outfitAmount > 1)
 		{
-			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpInstalled,
-				"How many " + selectedOutfit->PluralName() + " do you want to jettison?",
-				plunderAmount));
+			string msg = "How many " + selectedOutfit->PluralName() + " do you want to jettison?";
+			if(selectedOutfit->GetPrecise("unique"))
+				msg += " This outfit is unique and you may not be able to regain it after jettisoning it.";
+			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpInstalled, msg, plunderAmount));
 		}
 		else if(commodities)
 		{
