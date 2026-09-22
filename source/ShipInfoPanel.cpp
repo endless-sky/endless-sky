@@ -397,6 +397,7 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	// Colors to draw with.
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &backColor = *GameData::Colors().Get("faint");
 	const Ship &ship = **shipIt;
 
 	// Two columns of opposite alignment are used to simulate a single visual column.
@@ -406,6 +407,8 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	table.SetUnderline(0, COLUMN_WIDTH);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 
+	if(table.GetRowBounds().Contains(hoverPoint))
+		table.DrawHighlight(backColor);
 	table.DrawTruncatedPair("ship:", dim, ship.GivenName(), bright, Truncate::MIDDLE, true);
 
 	info.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));

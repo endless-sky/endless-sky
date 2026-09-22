@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
+#include "Confusion.h"
 #include "Drawable.h"
 #include "EsUuid.h"
 #include "FireCommand.h"
@@ -226,6 +227,11 @@ public:
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);
+	// Access the ship's confusion.
+	const Confusion &GetConfusion() const;
+	// If this ship changes governments, its confusion also needs to be updated.
+	// Confusion from personality takes precedence over confusion from government.
+	void ResetConfusion();
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
 	const Phrase *GetHailPhrase() const;
@@ -241,7 +247,7 @@ public:
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
-	void SetCommands(const FireCommand &firingCommand);
+	void SetCommands(const FireCommand &firingCommand, const FireCommand &targeting);
 	const Command &Commands() const;
 	const FireCommand &FiringCommands() const noexcept;
 	// Move this ship. A ship may create effects as it moves, in particular if
@@ -314,6 +320,8 @@ public:
 	int GetHyperspacePercentage() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
+	// Fuel already used for ongoing hyperspace movement.
+	double FuelUsedForHyperspacing() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool IsReadyToJump(bool waitingIsReady = false) const;
 	// Check if this ship is allowed to land on this planet, accounting for its personality.
@@ -546,6 +554,9 @@ public:
 	bool CanCommunicateWhileCloaked() const;
 
 	double ReverseThrust() const;
+	// Whether this ship has an afterburner installed and it can be used. Does not consider
+	// the resource cost of using the afterburner.
+	bool CanUseAfterburner() const;
 	bool ShouldUseAfterburner() const;
 
 	bool SilentJumps() const;
@@ -674,8 +685,10 @@ private:
 
 	Command commands;
 	FireCommand firingCommands;
+	FireCommand onTarget;
 
 	Personality personality;
+	Confusion confusion;
 	const Phrase *hail = nullptr;
 
 	ShipAICache aiCache;

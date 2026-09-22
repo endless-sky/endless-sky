@@ -788,6 +788,7 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Allocate enough firing bits for this ship.
 	firingCommands.SetHardpoints(armament.Get().size());
+	onTarget.SetHardpoints(armament.Get().size());
 
 	// Ensure that all defined bays are of a valid category. Remove and warn about any
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
@@ -1402,6 +1403,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
+	ResetConfusion();
 	if(isDeparting)
 		lingerSteps = 0;
 
@@ -1533,6 +1535,25 @@ void Ship::SetPersonality(const Personality &other)
 
 
 
+const Confusion &Ship::GetConfusion() const
+{
+	return confusion;
+}
+
+
+
+void Ship::ResetConfusion()
+{
+	if(personality.GetConfusion())
+		confusion = *personality.GetConfusion();
+	else if(government && government->GetConfusion())
+		confusion = *government->GetConfusion();
+
+	confusion.RandomizePeriod();
+}
+
+
+
 const Phrase *Ship::GetHailPhrase() const
 {
 	return hail;
@@ -1619,9 +1640,10 @@ void Ship::SetCommands(const Command &command)
 
 
 
-void Ship::SetCommands(const FireCommand &firingCommand)
+void Ship::SetCommands(const FireCommand &firingCommand, const FireCommand &targeting)
 {
 	firingCommands.UpdateWith(firingCommand);
+	onTarget.UpdateWith(targeting);
 }
 
 
@@ -1661,7 +1683,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		DoGeneration();
 
 	// Adjust the error in the pilot's targeting.
-	personality.UpdateConfusion(firingCommands.IsFiring());
+	confusion.UpdateConfusion(onTarget.IsFiring());
+
 	DoStatusSparks(visuals);
 	DoJettison(flotsam);
 	DoCloakDecision();
@@ -2431,6 +2454,15 @@ bool Ship::IsUsingJumpDrive() const
 
 
 
+double Ship::FuelUsedForHyperspacing() const
+{
+	if(!IsEnteringHyperspace())
+		return 0.;
+	return hyperspaceFuelCost * hyperspaceCount / 100.;
+}
+
+
+
 // Check if this ship is allowed to land on this planet, accounting for its personality.
 bool Ship::IsRestrictedFrom(const Planet &planet) const
 {
@@ -2732,6 +2764,7 @@ int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 
 	// Set the new government.
 	government = capturer->GetGovernment();
+	ResetConfusion();
 
 	// Transfer some crew over. Only transfer the bare minimum unless even that
 	// is not possible, in which case, share evenly.
@@ -3975,6 +4008,15 @@ bool Ship::CanCommunicateWhileCloaked() const
 double Ship::ReverseThrust() const
 {
 	return cache.reverseThrust;
+}
+
+
+
+bool Ship::CanUseAfterburner() const
+{
+	if(!cache.afterburnerThrust)
+		return false;
+	return !CannotAct(ActionType::AFTERBURNER);
 }
 
 

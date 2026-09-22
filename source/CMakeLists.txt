@@ -66,6 +66,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ConditionSet.h
 	ConditionsStore.cpp
 	ConditionsStore.h
+	Confusion.cpp
+	Confusion.h
 	Conversation.cpp
 	Conversation.h
 	ConversationPanel.cpp
@@ -305,6 +307,7 @@ target_sources(EndlessSkyLib PRIVATE
 	ScrollArea.cpp
 	ScrollArea.h
 	ScrollVar.h
+	SDL.h
 	Set.h
 	Ship.cpp
 	Ship.h
