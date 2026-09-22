@@ -1797,7 +1797,7 @@ person "MasterOfGrey"
 			"There are no bugs in my code, only Xapleaux precursors."
 			"If I were green I would photosynthesize."
 			`"Trust the process" isn't a joke for no reason.`
-			"Have you reviewed... wait, what happened to Hai Reveal?"
+			"Have you reviewed Hai Reveal yet?"
 			"I gotta go get ready for work. Play nice and don't @ me."
 			"I don't even like yellow."
 			"I really enjoy the backstory for the Marauders."
