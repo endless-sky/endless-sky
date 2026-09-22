@@ -2453,6 +2453,15 @@ bool Ship::IsUsingJumpDrive() const
 
 
 
+double Ship::FuelUsedForHyperspacing() const
+{
+	if(!IsEnteringHyperspace())
+		return 0.;
+	return hyperspaceFuelCost * hyperspaceCount / 100.;
+}
+
+
+
 // Check if this ship is allowed to land on this planet, accounting for its personality.
 bool Ship::IsRestrictedFrom(const Planet &planet) const
 {

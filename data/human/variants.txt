@@ -1302,26 +1302,24 @@ ship "Dreadnought" "Dreadnought (Jump)"
 	turret "Plasma Turret"
 
 
-# This variant uses outfits acquired in the post-war condition that were surplus or black market for diversity *after* the main campaign.
-ship "Dreadnought" "Dreadnought (Plasma Blaster Anti-Missile)"
+ship "Dreadnought" "Dreadnought (Stack Core)"
 	outfits
-		"Heavy Anti-Missile Turret" 3
-		"Armageddon Core"
-		"S-970 Regenerator"
-		"Liquid Helium Cooler" 2
-		Hyperdrive
-		"Volcano Afterburner"
-		Supercapacitor
-		"Outfits Expansion" 2
-		"Plasma Cannon" 4
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Breeder Reactor"
-		"Quad Blaster Turret" 2
-		"Laser Rifle" 25
-		"Water Coolant System"
-		"S-270 Regenerator" 2
-		"LP144a Battery Pack"
+		"Torpedo Launcher" 4
+		Torpedo 120
+		"Plasma Turret" 3
+		"Heavy Anti-Missile Turret" 2
+
+		"Stack Core"
+		Supercapacitor 2
+		"D67-TM Shield Generator"
+		"Small Radar Jammer"
+		"Liquid Helium Cooler"
+		"Tactical Scanner"
+		"Laser Rifle" 115
+
+		"Orca Plasma Thruster"
+		"Orca Plasma Steering"
+		"Hyperdrive"
 
 
 
