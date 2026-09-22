@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Clipboard.h"
 
-#include <SDL2/SDL_clipboard.h>
+#include "../SDL.h"
 
 using namespace std;
 
