@@ -248,7 +248,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		}
 		else if(plunderAmount == 1)
 		{
-			string msg =  "Are you sure you want to jettison a " + selectedPlunder->DisplayName() + "?";
+			string msg = "Are you sure you want to jettison a " + selectedPlunder->DisplayName() + "?";
 			if(selectedPlunder->GetPrecise("unique"))
 				msg += " This outfit is unique and you may not be able to regain it after jettisoning it.";
 			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump, msg));
