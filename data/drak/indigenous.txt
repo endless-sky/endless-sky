@@ -12,6 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Subsidurial"
+	"display name" "Subsidereal"
 	noun "creature"
 	sprite "ship/subsidurial"
 	thumbnail "thumbnail/subsidurial"
