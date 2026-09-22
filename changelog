@@ -5,8 +5,8 @@ Version 0.11.3:
     * Added a new mission chain for the Successors. (@Daeridanii1)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@a4358, @flyingspacesquirrel, @nickshanks, @Someone-named-sky, @Wedge009, @zaveshaa)
-      * Updated "Hai Legacy 2" to have the same offer conditions as "Hai Legacy 1", as the two mission are intended to offer alongside one another. (@apttie)
+      * Typo fixes. (@a4358, @flyingspacesquirrel, @mOctave, @nickshanks, @Someone-named-sky, @Wedge009, @zaveshaa, @ziproot)
+      * Updated "Hai Legacy 2" to have the same offer conditions as "Hai Legacy 1", as the two missions are intended to offer alongside one another. (@apttie)
       * Include the deadline date in the description of "Deep: TMBR 0". (@ThrawnCA)
       * "Timothy Radrickson 5e" now offers on landing, as suggested by the on offer conversation. (@nickshanks)
       * Fixed a start-based text substitution in "Remnant: Deep Surveillance". (@warp-core)
@@ -27,6 +27,9 @@ Version 0.11.3:
       * Correct the error message in the outfitter when you're unable to install ammo storage. Previously it would always assume that you couldn't install an outfit in the ammo category because you didn't have ammo space. (@Amazinite)
       * Don't try removing an outfit from your flagship if it doesn't have one in GameAction. (@Amazinite)
       * Fixed various cases where your selected escorts for issuing orders could become desynced from the ship you are currently targeting. (@Amazinite)
+      * Ships and planets with scaled sprites will now display at the proper size in the hail panel. (@Amazinite)
+      * The travel plan on the map will now accurately report whether you have fuel for a jump when in the middle of a jump. (@knarrff)
+      * Fixed an issue where a second definition of a weapon could silently overwrite certain weapon data. (@Amazinite)
   * Game content:
     * New content:
       * Rewrote and reintroduced the Delvan Shipworm missions. (@LazerLit)
@@ -34,7 +37,7 @@ Version 0.11.3:
       * Replaced various outfit checks with attribute checks in mission offer conditions. This allows certain plugin outfits to trigger vanilla missions that were previously looking for vanilla outfits. (@apttie)
       * Removed the immediate launch from the on offer conversation in "Remnant Keystone 6". (@ThrawnCA)
       * Tweak the wording of a choice in "War Reactions: Syndicate Orphan" depending on the previous choices made in the conversation. (@ciridae1)
-      * Replaced the "fine" action with a a "debt" action in "Hai Legacy 1" and updated the dialog to reflect this. (@Wedge009)
+      * Replaced the "fine" action with a "debt" action in "Hai Legacy 1" and updated the dialog to reflect this. (@Wedge009)
       * Updated the conversation in the Anomalocaris mission to clarify the requirements that the player must meet to continue the story. (@Hurleveur)
       * Edited the wording in the conversations of the Pond Strider missions for clarity and flow. (@flyingspacesquirrel)
       * "Ask Quarg About Coalition Late" now has a choice that accounts for the player having a non-vanilla starting location. (@nickshanks)
@@ -46,11 +49,11 @@ Version 0.11.3:
         * Heat damage: 125 -> 160
         * Damage at max range: 50% -> 70%
     * Other:
-      * The flamethrower can now appear equipped on randomly spawned NPCs after it becomes available in the main campaign. (@LixiChronikouOriou)
+      * The flamethrower and stack core can now appear equipped on randomly spawned NPCs after they each become available in the main campaign. (@LixiChronikouOriou)
       * Added administration costs to all ships. This cost is only used if using the fleet size limit gamerule that limits your fleet size based off of the administration costs of your ships. (@mOctave)
       * The Author government is no longer capable of fining the player. (@Amazinite)
       * Removed the "Pirate Advanced" outfitter from Stormhold. (@LixiChronikouOriou)
-      * Updated the description of the Carrier to de-emphasize its ability to take part in head-to-haed combat. (@flyingspacesquirrel)
+      * Updated the description of the Carrier to de-emphasize its ability to take part in head-to-head combat. (@flyingspacesquirrel)
       * All vanilla starting scenarios now have a "start: vanilla" condition set.
   * Game mechanics:
     * New mechanics:
@@ -73,7 +76,10 @@ Version 0.11.3:
         * All flotsam has the same lifetime range (a random value between 60 and 180 seconds), instead of the range changing based on the contents of the flotsam.
       * When using a fleet equipped with jump drives, your escorts will now appear in the destination system close to your flagship, instead of scattering around the system in a ring. (@apttie)
       * Changed confusion to now be angle-based instead of position-based. (@Anarchist2)
-      * Allow NPCs to have outfits like bunks and expansions in their cargo again. (@Amazinite)
+      * Allow NPCs to randomly spawn with outfits like bunks and expansions in their cargo again. (@Amazinite)
+      * Auto-aim is now much more intelligent when using multiple different fixed guns with differing velocities. (@Amazinite)
+        * Non-homing secondary weapons will only be used for aiming when you have the secondary weapon armed and loaded.
+        * Aiming will be done with the group of weapons that yield the highest shield and hull damage per second, instead of finding an average point where all weapons should be aiming, which could often result in no weapons being able to hit the target when using weapons with vastly different velocities, like a laser and a blaster.
   * Graphics:
   * Performance:
     * Ships now cache commonly used attributes and calculations. This should result in a noticeably improvement when there are lots of ships spawned in. (@Amazinite)
@@ -89,7 +95,7 @@ Version 0.11.3:
     * Interface definitions:
       * Moved parts of the BoardingPanel and TradingPanel to be defined in the interface game data file. (@nickshanks)
     * Other:
-      * Text in spaceport news, start scenario descriptions, boarding panel capture messages, the hail panel, and the lists of salaries, trubite, and licenses in the player info panel are now all capable of scrolling if the amount of text to display would overflow the UI. (@Amazinite)
+      * Text in spaceport news, start scenario descriptions, boarding panel capture messages, the hail panel, and the lists of salaries, tribute, and licenses in the player info panel are now all capable of scrolling if the amount of text to display would overflow the UI. (@Amazinite)
       * If you capture a ship that has illegal outfits, you will now be warned of their presence in the boarding panel. (@ThrawnCA)
       * Renamed "max" to "capacity" in the ship info energy/heat table visible in the shops and ship info panel. (@Amazinite)
       * When scanned and fined by an NPC, the message that you were fined will now name the ship that was scanned and list the illegal outfits that you were fined for. (@Amazinite)
@@ -97,13 +103,15 @@ Version 0.11.3:
       * When using the find functionality in the outfitter, scroll extra for outfits that are hidden under the key in the bottom left corner of the screen. (@Amazinite)
       * Tweaked the wording of the "unplunderable" attribute text in the outfitter to clarify that the outfit is only unplunderable if it is installed. (@ThrawnCA)
       * Added a highlight when hovering over outfits in the ship info panel to show that they can be selected for use with the dump cargo/jettison button. (@Amazinite)
-      * Added a highlight when hovering of the name of your ship in the ship info panel to show that clicking on it allows you to rename the ship. (@Amazinite)
+      * Added a highlight when hovering over the name of your ship in the ship info panel to show that clicking on it allows you to rename the ship. (@Amazinite)
       * You are now prevented from naming a snapshot with characters that aren't allowed in a file name, instead of throwing an error after the file fails to be created. (@Koranir)
       * The boarding panel now has icons next to the plunderable outfits to designate whether they are in the ship's cargo hold or installed on the ship. (@Amazinite)
       * Changed the hotkey for the Sell Minables button in the trading panel from 'm' to 'n' or 'shift+m' as to not overlap with the common map keybind. (@Amazinite)
       * Clicking on empty space now clears your currently selected planet, in addition to previously clearing your currently selected ships or asteroid. (@Amazinite)
       * You can now buy outfits from the outfitter directly into storage using the "Store" button. (@Amazinite)
       * The "Uninstall" button in the outfitter now moves outfits from your ship into your cargo hold first. If your cargo hold is full, it moves outfits into storage instead. (@Amazinite)
+      * If you are in the middle of a jump, the link between your current system and the destination system will now be drawn in blue on the map. (@TheGiraffe3)
+      * There is now a command line argument for printing the state of objects in a system, including any object orbital periods and the habitable distance as calculated by the game if the system definition did not calculate it. (@Amazinite)
   * Under the hood:
     * Log a warning that plugin about.txt is deprecated for plugins that still use the old metadata format. (@TomGoodIdea)
     * Split the "Plugins" source file into "Plugin" and "PluginManager". (@TomGoodIdea)
@@ -115,8 +123,10 @@ Version 0.11.3:
     * Moved various functionality from Ship to Entity. (@Amazinite)
     * Updated DrawList and BatchDrawList to utilize Drawables. (@Amazinite)
     * Replaced Body with Drawable in a few locations. (@Amazinite)
+    * Removed an unused ship variant. (@LixiChronikouOriou)
   * CI/CD and development environment:
     * Update MacOS runners to macos-15. (@TomGoodIdea)
+    * Added SDL3 support. (@tibetiroka)
   * Documentation:
     * Improve the description of --tq-threads launch argument. (@TomGoodIdea)
 
