@@ -1073,11 +1073,11 @@ void MapPanel::UpdateCache()
 
 void MapPanel::DrawTravelPlan()
 {
-	const Ship *flagship = player.Flagship();
-	if(!flagship)
+	if(player.TravelPlan().empty())
 		return;
 
-	if(player.TravelPlan().empty())
+	const Ship *flagship = player.Flagship();
+	if(!flagship)
 		return;
 
 	const Set<Color> &colors = GameData::Colors();
