@@ -74,8 +74,8 @@ void Person::FinishLoading()
 {
 	auto nameFunc = [this](const shared_ptr<Ship> &) -> string { return name; };
 	shipFactory.Instantiate(ships, nameFunc);
-	for(const shared_ptr<Ship> &ship : ships)
-		if(formationPattern)
+	if(formationPattern)
+		for(const shared_ptr<Ship> &ship : ships)
 			ship->SetFormationPattern(formationPattern);
 }
 

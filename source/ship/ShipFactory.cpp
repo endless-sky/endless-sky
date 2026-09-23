@@ -66,7 +66,7 @@ bool ShipFactory::IsValid() const
 void ShipFactory::RemoveModel(const string &shipModel)
 {
 	erase_if(ships, [&](const pair<ExclusiveItem<Ship>, string> &it) noexcept -> bool {
-		return it.first->TrueModelName() == shipModel;
+		return it.first->VariantName() == shipModel;
 	});
 }
 
