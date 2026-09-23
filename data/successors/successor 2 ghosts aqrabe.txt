@@ -91,8 +91,9 @@ mission "Successors: Ghosts Aqrabe Remnant"
 	source "Kasii-Cavasaa-Oa"
 	mark "Pantica"
 	to fail
-		has "Successors: Ghosts Aqrabe Hai: done"
-		has "Successors: Ghosts Aqrabe 1: declined"
+		or
+			has "Successors: Ghosts Aqrabe Hai: done"
+			has "Successors: Ghosts Aqrabe 1: declined"
 	to offer
 		has "Successors: Ghosts 4: offered"
 		has "license: Remnant"
@@ -108,8 +109,9 @@ mission "Successors: Ghosts Aqrabe Hai"
 	source "Kasii-Cavasaa-Oa"
 	mark "Ya Hai"
 	to fail
-		has "Successors: Ghosts Aqrabe Remnant: done"
-		has "Successors: Ghosts Aqrabe 1: declined"
+		or
+			has "Successors: Ghosts Aqrabe Remnant: done"
+			has "Successors: Ghosts Aqrabe 1: declined"
 	to offer
 		has "Successors: Ghosts 4: offered"
 		has "First Contact: Hai: offered"
@@ -442,6 +444,7 @@ mission "Successors: Ghosts Aqrabe 7"
 
 	on complete
 		outfit "Radiant Shield Shunt" -1
+		outfit "Multimodal Armor: Keystone" -1
 		event "successors: ghosts keystones finished" 50
 		payment 400000
 		"successors: ghosts houses dealt with" ++

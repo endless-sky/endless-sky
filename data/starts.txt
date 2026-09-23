@@ -34,6 +34,7 @@ start "default"
 	set "species: human"
 	set "human space start"
 	set "start: default"
+	set "start: vanilla"
 
 
 # Patch for if the player started a game before 0.10.17
@@ -48,6 +49,23 @@ mission "Start: Default Patch"
 		set "species: human"
 		set "human space start"
 		set "start: default"
+		fail
+
+# Patch for if the player started a game before 0.11.3
+mission "Start: Vanilla Patch"
+	invisible
+	landing
+	non-blocking
+	to offer
+		not "start: vanilla"
+		or
+			has "start: default"
+			has "start: deep"
+			has "start: paradise"
+			has "start: syndicate"
+			has "start: hai"
+	on offer
+		set "start: vanilla"
 		fail
 
 
@@ -91,6 +109,7 @@ start "deep"
 	set "species: human"
 	set "human space start"
 	set "start: deep"
+	set "start: vanilla"
 
 conversation "deep intro"
 	action
@@ -128,6 +147,7 @@ start "paradise"
 	set "species: human"
 	set "human space start"
 	set "start: paradise"
+	set "start: vanilla"
 
 conversation "paradise intro"
 	action
@@ -168,6 +188,7 @@ start "syndicate"
 	set "species: human"
 	set "human space start"
 	set "start: syndicate"
+	set "start: vanilla"
 
 conversation "syndicate intro"
 	action
@@ -226,6 +247,7 @@ start "hai space"
 	set "species: human"
 	set "hai space start"
 	set "start: hai"
+	set "start: vanilla"
 	# need to set it here to not have it trigger alongside the invisible mission
 	set "First Contact: Hai: offered"
 	set "First Contact: Hai: declined"

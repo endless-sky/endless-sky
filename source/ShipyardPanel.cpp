@@ -55,8 +55,8 @@ namespace {
 
 
 
-ShipyardPanel::ShipyardPanel(PlayerInfo &player, Sale<Ship> stock)
-	: ShopPanel(player, false), modifier(0), shipyard(std::move(stock)), initialFleetUsage(player.FleetCost())
+ShipyardPanel::ShipyardPanel(PlayerInfo &player, const Sale<Ship> &stock)
+	: ShopPanel(player, false), modifier(0), shipyard(stock), initialFleetUsage(player.FleetCost())
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].push_back(it.first);

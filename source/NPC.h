@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 #include "NPCAction.h"
 #include "Personality.h"
+#include "ship/ShipFactory.h"
 
 #include <list>
 #include <map>
@@ -157,12 +158,11 @@ private:
 	// will generally be true, except when reloading a save.)
 	bool checkedSpawnConditions = false;
 
-	// The ships may be listed individually or referred to as a fleet, and may
-	// be customized or just refer to stock objects:
-	std::list<std::shared_ptr<Ship>> ships;
-	std::list<const Ship *> stockShips;
-	std::list<std::string> shipNames;
+	// The ship and fleet definition that make up this NPC.
+	ShipFactory factory;
 	std::list<ExclusiveItem<Fleet>> fleets;
+	// The actual instantiated ships.
+	std::list<std::shared_ptr<Ship>> ships;
 
 	// This must be done to each ship in this set to complete the mission:
 	int succeedIf = 0;

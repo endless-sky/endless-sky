@@ -236,10 +236,15 @@ void HailPanel::Draw()
 	const Interface *hailUi = GameData::Interfaces().Get("hail panel");
 	hailUi->Draw(info, this);
 
-	const Sprite *sprite = ship ? ship->GetSprite() : object->GetSprite();
+	// Get the height and width of the Drawable instead of the underlying Sprite
+	// so that scaling is accounted for.
+	float height = ship ? ship->Height() : object->Height();
+	float width = ship ? ship->Width() : object->Width();
 
 	// Draw the sprite, rotated, scaled, and swizzled as necessary.
-	float zoom = min(2.f, 400.f / max(sprite->Width(), sprite->Height()));
+	// The Height and Width functions on Drawable are for world-coordinates.
+	// Multiply by 2 to account for the half-scaling of objects drawn in the world.
+	float zoom = min(2.f, 400.f / max(width * 2.f, height * 2.f));
 	Point center(-170., -10.);
 
 	DrawList draw;

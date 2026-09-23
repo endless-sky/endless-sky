@@ -1033,7 +1033,8 @@ void Engine::Step(bool isActive)
 			doClick = !ammoDisplay.Click(uiClickBox);
 		else
 			doClick = !ammoDisplay.Click(clickPoint, hasControl);
-		doClick = doClick && !player.SelectEscorts(clickBox, hasShift);
+		if(doClick && clickBox.Dimensions())
+			doClick = !player.SelectEscorts(clickBox, hasShift);
 		if(doClick)
 		{
 			const vector<weak_ptr<Ship>> &stack = escorts.Click(clickPoint);
@@ -2208,6 +2209,15 @@ void Engine::HandleKeyboardInputs()
 		else if(keyHeld.Has(Command::JUMP))
 			activeCommands |= Command::FLEET_JUMP;
 	}
+	else if(keyHeld.Has(Command::BACK) && flagship->Commands().Has(Command::STOP))
+	{
+		// If the player previously sent a STOP command and hits the BACK key,
+		// maintain the STOP command. Since STOP is shift+BACK, releasing the shift
+		// key before releasing the BACK key after having sent a STOP command can
+		// cancel it, which likely isn't what the player wants.
+		activeCommands |= Command::STOP;
+		activeCommands.Clear(Command::BACK);
+	}
 
 	if(keyHeld.Has(Command::AUTOSTEER) && !activeCommands.Turn()
 			&& !activeCommands.Has(Command::LAND | Command::JUMP | Command::BOARD | Command::STOP))
@@ -2357,9 +2367,14 @@ void Engine::HandleMouseClicks()
 		ai.IssueMoveTarget(clickPoint + camera.Center(), playerSystem);
 	}
 
-	// Treat an "empty" click as a request to clear targets.
+	// Treat an "empty" click as a request to clear targets and selections.
 	if(!clickTarget && mouseButton == MouseButton::LEFT && !clickedAsteroid && !clickedPlanet)
+	{
+		// Setting the target ship also resets the target asteroid.
 		flagship->SetTargetShip(nullptr);
+		flagship->SetTargetStellar(nullptr);
+		player.ClearSelectedEscorts();
+	}
 }
 
 
@@ -2368,7 +2383,7 @@ void Engine::HandleMouseClicks()
 void Engine::HandleMouseInput(Command &activeCommands)
 {
 	bool rightMouseButtonHeld = false;
-	int mousePosX, mousePosY;
+	mouse_pos_t mousePosX, mousePosY;
 	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
 		rightMouseButtonHeld = true;
 

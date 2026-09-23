@@ -266,16 +266,6 @@ void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile
 
 	// Copy the core information from the full starting scenario.
 	startData = start;
-	// Copy any ships in the start conditions.
-	for(const Ship &ship : start.Ships())
-	{
-		ships.emplace_back(new Ship(ship));
-		ships.back()->SetSystem(&start.GetSystem());
-		ships.back()->SetPlanet(&start.GetPlanet());
-		ships.back()->SetIsSpecial();
-		ships.back()->SetIsYours();
-		ships.back()->SetGovernment(GameData::PlayerGovernment());
-	}
 	// Load starting conditions from a "start" item in the data files. If no
 	// such item exists, StartConditions defines default values.
 	date = start.GetDate();
@@ -300,6 +290,11 @@ void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile
 	for(const auto &it : GameData::Events())
 		if(it.second.GetDate())
 			AddEvent(it.second, it.second.GetDate());
+
+	// Copy any ships in the start conditions. This is done last, since
+	// ship naming can use text substitutions that rely on the above setup
+	// being done first.
+	start.InstantiateShips(*this, ships);
 }
 
 
@@ -3348,6 +3343,16 @@ bool PlayerInfo::SelectEscorts(const Rectangle &box, bool hasShift)
 			matched = true;
 			SelectEscort(ship, &first);
 		}
+	// If there had been a match, the flagship would have been updated to
+	// select the first matching escort. Since there is no match, if the
+	// currently targeted ship is an escort, clear the target in order to
+	// prevent your target from desyncing with your escort selection.
+	// (The UI for having an escort targeted by your flagship and having it
+	// selected for issuing orders is currently the same, so the selection
+	// and target being desynced can easily cause confusion when issuing orders.)
+	Ship *flagship = Flagship();
+	if(!matched && !hasShift && flagship && flagship->GetTargetShip() && flagship->GetTargetShip()->IsYours())
+		flagship->SetTargetShip(nullptr);
 	return matched;
 }
 
@@ -3429,6 +3434,13 @@ void PlayerInfo::DeselectEscort(const Ship *ship)
 			selectedEscorts.erase(it);
 			return;
 		}
+}
+
+
+
+void PlayerInfo::ClearSelectedEscorts()
+{
+	selectedEscorts.clear();
 }
 
 

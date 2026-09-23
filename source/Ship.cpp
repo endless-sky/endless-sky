@@ -465,12 +465,13 @@ Ship::Ship(const DataNode &node, const ConditionsStore *playerConditions)
 
 void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	if(node.Size() >= 2)
-		trueModelName = node.Token(1);
-	if(node.Size() >= 3)
+	bool add = node.Token(0) == "add";
+	if(node.Size() >= 2 + add)
+		trueModelName = node.Token(1 + add);
+	if(node.Size() >= 3 + add)
 	{
 		base = GameData::Ships().Get(trueModelName);
-		variantName = node.Token(2);
+		variantName = node.Token(2 + add);
 	}
 	isDefined = true;
 	entityType = Entity::Type::SHIP;
@@ -3017,6 +3018,15 @@ bool Ship::IsUsingJumpDrive() const
 
 
 
+double Ship::FuelUsedForHyperspacing() const
+{
+	if(!IsEnteringHyperspace())
+		return 0.;
+	return hyperspaceFuelCost * hyperspaceCount / 100.;
+}
+
+
+
 // Check if this ship is allowed to land on this planet, accounting for its personality.
 bool Ship::IsRestrictedFrom(const Planet &planet) const
 {
@@ -4576,6 +4586,15 @@ bool Ship::CanCommunicateWhileCloaked() const
 double Ship::ReverseThrust() const
 {
 	return cache.reverseThrust;
+}
+
+
+
+bool Ship::CanUseAfterburner() const
+{
+	if(!cache.afterburnerThrust)
+		return false;
+	return !CannotAct(ActionType::AFTERBURNER);
 }
 
 

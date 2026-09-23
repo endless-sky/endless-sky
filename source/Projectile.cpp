@@ -459,8 +459,8 @@ void Projectile::CheckLock(const Entity &target)
 		double opticalJamming = target.IsDisabled() ? 0. : target.OpticalJamming();
 		if(opticalJamming)
 			opticalJamming *= RangeFraction(position.Distance(target.Position()), opticalJamming);
-		double targetMass = target.Mass() / (1. + opticalJamming);
-		double weight = targetMass * targetMass * targetMass / 1e9;
+		double opticalSize = target.OpticalSize() / (1. + opticalJamming);
+		double weight = opticalSize * opticalSize * opticalSize / 1e9;
 		double lockChance = weapon->OpticalTracking() * weight / (1. + weight);
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
