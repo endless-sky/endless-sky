@@ -21,12 +21,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "DialogPanel.h"
 #include "Fleet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
-#include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -209,8 +207,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			else if(hasValue)
 			{
 				// Loading a ship managed by GameData, i.e. "base models" and variants.
-				stockShips.push_back(GameData::Ships().Get(child.Token(1)));
-				shipNames.push_back(child.Token(1 + (child.Size() > 2)));
+				factory.Load(child, playerConditions);
 			}
 			else
 			{
@@ -385,7 +382,7 @@ string NPC::Validate(bool asTemplate) const
 	for(auto &&ship : ships)
 		if(!ship->IsValid())
 			return "ship \"" + ship->GivenName() + "\"";
-	for(auto &&ship : stockShips)
+	for(auto &&ship : factory.GetShips())
 		if(!ship->IsValid())
 			return "stock model \"" + ship->VariantName() + "\"";
 
@@ -670,16 +667,11 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		result.ships.push_back(make_shared<Ship>(*ship));
 		ship->FinishLoading(true);
 	}
-	auto shipIt = stockShips.begin();
-	auto nameIt = shipNames.begin();
 	map<string, string> playerSubs;
 	player.AddPlayerSubstitutions(playerSubs);
-	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
-	{
-		result.ships.push_back(make_shared<Ship>(**shipIt));
-		result.ships.back()->SetGivenName(Format::Replace(Format::Replace(
-			Phrase::ExpandPhrases(*nameIt), subs), playerSubs));
-	}
+	playerSubs.insert(subs.begin(), subs.end());
+	auto nameFunc = [](const shared_ptr<Ship> &ship) -> string { return ship->DisplayModelName(); };
+	factory.Instantiate(result.ships, nameFunc, &subs);
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
 		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);
 	// Ships should either "enter" the system or start out there.

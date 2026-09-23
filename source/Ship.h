@@ -305,8 +305,8 @@ public:
 	bool CannotAct(ActionType actionType) const;
 	// Get the degree to which this ship is cloaked. 1 means fully cloaked; 0 means fully visible.
 	// Depending on its "cloaking ..." attributes the ship will be unable to shoot, will not be seen on radar...
-	double Cloaking() const;
-	bool IsCloaked() const;
+	double Cloaking() const override;
+	bool IsCloaked() const override;
 	// If this ship is capable of cloaking, make it fully cloaked.
 	void SetCloaked();
 	// The amount of cloaking this ship can do, per frame.
@@ -431,11 +431,6 @@ public:
 	double ThrustHeldFraction(ThrustKind kind) const;
 	uint8_t ThrustHeldFrames(ThrustKind kind) const;
 
-	// This ship just got hit by a weapon. Take damage according to the
-	// DamageDealt from that weapon. The return value is a ShipEvent type,
-	// which may be a combination of PROVOKED, DISABLED, and DESTROYED.
-	// Create any target effects as sparks.
-	int TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force, bool gravitational = false);
@@ -568,19 +563,10 @@ public:
 
 	double TurretTurnMultiplier() const;
 
-	const ResourceLevels &DamageProtection() const;
-	double PiercingProtection() const;
-	double PiercingResistance() const;
-	double HighShieldPermeability() const;
-	double LowShieldPermeability() const;
-	double CloakedShieldPermeability() const;
-	double CloakedHullProtection() const;
-	double CloakedShieldProtection() const;
-	double ForceProtection() const;
-
 
 protected:
 	virtual void CacheAttributes() override;
+	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy) override;
 
 
 private:

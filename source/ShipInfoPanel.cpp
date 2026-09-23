@@ -234,6 +234,13 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		int amount = (*shipIt)->Cargo().Get(selectedCommodity);
 		int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
 		int outfitAmount = (*shipIt)->OutfitCount(selectedOutfit);
+
+		auto AddUniqueMessage = [](const string &initial, const Outfit *outfit) -> string {
+			if(outfit->GetPrecise("unique"))
+				return initial + " This outfit is unique and you may not be able to regain it after jettisoning it.";
+			return initial;
+		};
+
 		if(amount)
 		{
 			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpCommodities,
@@ -249,24 +256,26 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		else if(plunderAmount == 1)
 		{
 			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump,
-				"Are you sure you want to jettison a " + selectedPlunder->DisplayName() + "?"));
+				AddUniqueMessage("Are you sure you want to jettison a " + selectedPlunder->DisplayName() + "?",
+				selectedPlunder)));
 		}
 		else if(plunderAmount > 1)
 		{
 			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpPlunder,
-				"How many " + selectedPlunder->PluralName() + " do you want to jettison?",
-				plunderAmount));
+				AddUniqueMessage("How many " + selectedPlunder->PluralName() + " do you want to jettison?",
+				selectedPlunder), plunderAmount));
 		}
 		else if(outfitAmount == 1)
 		{
 			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump,
-				"Are you sure you want to jettison a " + selectedOutfit->DisplayName() + "?"));
+				AddUniqueMessage("Are you sure you want to jettison a " + selectedOutfit->DisplayName() + "?",
+				selectedOutfit)));
 		}
 		else if(outfitAmount > 1)
 		{
 			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpInstalled,
-				"How many " + selectedOutfit->PluralName() + " do you want to jettison?",
-				plunderAmount));
+				AddUniqueMessage("How many " + selectedOutfit->PluralName() + " do you want to jettison?",
+				selectedOutfit), plunderAmount));
 		}
 		else if(commodities)
 		{

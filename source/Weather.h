@@ -31,8 +31,8 @@ class Weather {
 public:
 	class ImpactInfo {
 	public:
-		ImpactInfo(const Weapon &weapon, Point position, double scale)
-			: weapon(weapon), position(std::move(position)), scale(scale) {}
+		ImpactInfo(const Weapon &weapon, const Point &position, double scale)
+			: weapon(weapon), position(position), scale(scale) {}
 
 		const Weapon &weapon;
 		Point position;
