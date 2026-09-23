@@ -235,7 +235,8 @@ void StartConditions::InstantiateShips(const PlayerInfo &player, vector<shared_p
 {
 	map<string, string> subs;
 	player.AddPlayerSubstitutions(subs);
-	auto nameFunc = [](const shared_ptr<Ship> &) -> string { return GameData::Phrases().Get("civilian")->Get(); };
+	const Phrase *phrase = GameData::Phrases().Get("civilian");
+	auto nameFunc = [phrase](const shared_ptr<Ship> &) -> string { return phrase->Get(); };
 	ships.Instantiate(playerShips, nameFunc, &subs);
 	for(const shared_ptr<Ship> &ship : playerShips)
 	{
