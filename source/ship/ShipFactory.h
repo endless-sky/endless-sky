@@ -81,14 +81,10 @@ void ShipFactory::InstantiateContainer(T &container,
 		// Instantiation of a container involves copying the contents of this factory into new
 		// shared pointers. This factory remains unchanged after instantiation of its ships.
 		const std::shared_ptr<Ship> &ship = container.emplace_back(std::make_shared<Ship>(*shipDef));
-		std::string giveName;
-		if(name.empty())
-		{
-			if(!nameFunc)
-				continue;
-			giveName = nameFunc(ship);
-		}
-		giveName = Phrase::ExpandPhrases(name);
+		std::string giveName = (name.empty() && nameFunc) ? nameFunc(ship) : name;
+		if(giveName.empty())
+			continue;
+		giveName = Phrase::ExpandPhrases(giveName);
 		if(subs)
 			giveName = Format::Replace(giveName, *subs);
 		ship->SetGivenName(giveName);

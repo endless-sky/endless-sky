@@ -266,8 +266,6 @@ void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile
 
 	// Copy the core information from the full starting scenario.
 	startData = start;
-	// Copy any ships in the start conditions.
-	start.InstantiateShips(*this, ships);
 	// Load starting conditions from a "start" item in the data files. If no
 	// such item exists, StartConditions defines default values.
 	date = start.GetDate();
@@ -292,6 +290,11 @@ void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile
 	for(const auto &it : GameData::Events())
 		if(it.second.GetDate())
 			AddEvent(it.second, it.second.GetDate());
+
+	// Copy any ships in the start conditions. This is done last, since
+	// ship naming can use text substitutions that rely on the above setup
+	// being done first.
+	start.InstantiateShips(*this, ships);
 }
 
 
