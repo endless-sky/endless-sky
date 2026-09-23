@@ -627,6 +627,7 @@ outfit "Trefoil Board"
 	"capture defense" 0.9
 	"unique" 1
 	"unplunderable" 1
+	"can jettison" 1
 	description "A fine board for the Avgi game of Trefoil, handcrafted from rare Integral Wood and gifted to you by Speaker Wisteria. The wood is engraved and inlaid with bands of silver, while the three sets of stones are made from polished lapis, jade, and garnet, well-worn from countless games."
 	description "	You suppose the dense wood would make an adequate blunt weapon in a pinch, though it would be a shame to damage such a fine piece in something so crass as melee combat."
 
@@ -636,6 +637,7 @@ outfit "Damselflyman"
 	"capture attack" 30
 	"capture defense" 60
 	"unplunderable" 1
+	"can jettison" 1
 	description "This mysterious radioactive tumor, while benign, has grown unnaturally in the center of your chest, creating a glowing dragonfly-shaped patch in the middle of your sternum. Enemies panic and flee at the sight of it, but only when possession of a disabled starship is contested. Also, you really shouldn't be able to see this 'outfit.'"
 
 
@@ -648,6 +650,7 @@ outfit "Lancet Adamant"
 	"capture attack" 3
 	"capture defense" 6
 	"unplunderable" 1
+	"can jettison" 1
 	description "A purely ceremonial weapon, this sleek shortspear is made from a continuous piece of adamantine, or nanodiamond. While not particularly useful in the realities of modern ranged combat, it certainly looks impressive."
 
 
