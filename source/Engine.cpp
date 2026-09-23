@@ -1921,10 +1921,10 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 	// Ship collisions that happen for a single ship on the same frame are pooled together
 	// and sorted from highest to lowest shield damage, as the order that multiple collisions
 	// happen can influence the total damage dealt this frame.
-	map<Ship *, vector<ShipCollision>> shipCollisions;
+	map<Entity *, vector<EntityCollision>> entityCollisions;
 	for(Projectile &projectile : projectiles)
-		FindCollisions(projectile, shipCollisions);
-	DoShipCollisions(shipCollisions);
+		FindCollisions(projectile, entityCollisions);
+	DoCollisions(entityCollisions);
 	// Now that collision detection is done, clear the cache of ships with anti-
 	// missile systems ready to fire.
 	hasAntiMissile.clear();
@@ -2466,7 +2466,7 @@ void Engine::HandleMouseInput(Command &activeCommands)
 // Perform collision detection. Note that unlike the preceding functions, this
 // one adds any visuals that are created directly to the main visuals list. If
 // this is multi-threaded in the future, that will need to change.
-void Engine::FindCollisions(Projectile &projectile, map<Ship *, vector<ShipCollision>> &collisionDamage)
+void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityCollision>> &entityCollisions)
 {
 	// The asteroids can collide with projectiles, the same as any other
 	// object. If the asteroid turns out to be closer than the ship, it
@@ -2553,7 +2553,7 @@ void Engine::FindCollisions(Projectile &projectile, map<Ship *, vector<ShipColli
 		// that it hit something.
 		projectile.Collide(visuals, collision);
 
-		const DamageProfile damage(projectile.GetInfo(range));
+		Projectile::ImpactInfo impact = projectile.GetInfo(range);
 
 		// If this projectile has a blast radius, find all ships and minables within its
 		// radius. Otherwise, only one is damaged.
@@ -2576,24 +2576,27 @@ void Engine::FindCollisions(Projectile &projectile, map<Ship *, vector<ShipColli
 					continue;
 
 				// Only directly targeted ships get provoked by blast weapons.
-				collisionDamage[ship].emplace_back(damage.CalculateDamage(*ship, ship == hit), gov, targeted);
+				entityCollisions[ship].emplace_back(DamageProfile(*ship, impact, ship == hit), gov, targeted);
 			}
 			blastCollisions.clear();
 			asteroids.MinablesCollisionsCircle(hitPos, blastRadius, blastCollisions);
 			for(Body *body : blastCollisions)
 			{
 				auto minable = static_cast<Minable *>(body);
-				minable->TakeDamage(visuals, damage.CalculateDamage(*minable), nullptr);
+				entityCollisions[minable].emplace_back(DamageProfile(*minable, impact), gov);
 			}
 		}
 		else if(hit)
 		{
 			if(collisionType == CollisionType::SHIP)
-				collisionDamage[shipHit.get()].emplace_back(damage.CalculateDamage(*shipHit), gov);
+			{
+				auto ship = shipHit.get();
+				entityCollisions[ship].emplace_back(DamageProfile(*ship, impact), gov);
+			}
 			else if(collisionType == CollisionType::MINABLE)
 			{
 				auto minable = static_cast<Minable *>(hit);
-				minable->TakeDamage(visuals, damage.CalculateDamage(*minable), nullptr);
+				entityCollisions[minable].emplace_back(DamageProfile(*minable, impact), gov);
 			}
 		}
 
@@ -2618,18 +2621,47 @@ void Engine::FindCollisions(Projectile &projectile, map<Ship *, vector<ShipColli
 
 
 
-void Engine::DoShipCollisions(map<Ship *, vector<ShipCollision>> &collisionDamage)
+void Engine::DoCollisions(map<Entity *, vector<EntityCollision>> &entityCollisions)
 {
-	for(auto &[ship, collisions] : collisionDamage)
-	{
-		ranges::sort(collisions, std::greater<>());
+	// In order to maximize the damage dealt in a single frame, collisions
+	// should apply their damage from highest to lowest shield damage.
+	// For two collisions with the same shield damage, we want to apply
+	// from lowest to highest hull damage. This gives the best chance
+	// for high shield damage projectiles to strip the target's shields
+	// so that high hull damage projectiles can impact the hull.
+	auto SortShipCollisions = [](const EntityCollision &a, const EntityCollision &b) -> bool {
+		double aScale = a.damage.Scaling();
+		double bScale = b.damage.Scaling();
+		double aShield = a.damage.GetWeapon().ShieldDamage() * aScale;
+		double bShield = b.damage.GetWeapon().ShieldDamage() * bScale;
+		if(aShield == bShield)
+			return a.damage.GetWeapon().HullDamage() * aScale < b.damage.GetWeapon().HullDamage() * bScale;
+		return aShield > bShield;
+	};
 
-		shared_ptr<Ship> shipPtr = ship->shared_from_this();
+	for(auto &[entity, collisions] : entityCollisions)
+	{
+		shared_ptr<Ship> shipHit;
+		switch(entity->EntityType())
+		{
+			case Entity::Type::SHIP:
+				ranges::sort(collisions, SortShipCollisions);
+				shipHit = static_cast<Ship *>(entity)->shared_from_this();
+				break;
+			case Entity::Type::MINABLE:
+				// Collision order doesn't matter for minables, as they only have a single health pool.
+				// Even if one collision deals enough damage to destroy a minable, other collisions that
+				// happened this frame will still apply their damage and potentially add prospecting to it.
+				// The actual destruction of the minable doesn't happen until the next frame.
+				break;
+		}
+
 		for(const auto &[damage, gov, provokable] : collisions)
 		{
-			int eventType = ship->TakeDamage(visuals, damage, provokable ? gov : nullptr);
-			if(eventType)
-				eventQueue.emplace_back(gov, shipPtr, eventType);
+			DamageDealt damageDealt = damage.CalculateDamage();
+			int eventType = entity->TakeDamage(visuals, damageDealt, provokable ? gov : nullptr);
+			if(eventType && shipHit)
+				eventQueue.emplace_back(gov, shipHit, eventType);
 		}
 	}
 }
@@ -2645,7 +2677,7 @@ void Engine::DoWeather(Weather &weather)
 	if(weather.HasWeapon() && !Random::Int(weather.Period()))
 	{
 		const Hazard *hazard = weather.GetHazard();
-		const DamageProfile damage(weather.GetInfo());
+		Weather::ImpactInfo impact = weather.GetInfo();
 
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
@@ -2661,7 +2693,7 @@ void Engine::DoWeather(Weather &weather)
 		for(Body *body : affectedShips)
 		{
 			Ship *hit = static_cast<Ship *>(body);
-			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
+			int eventType = hit->TakeDamage(visuals, DamageProfile(*hit, impact).CalculateDamage(), nullptr);
 			if(eventType)
 				eventQueue.emplace_back(nullptr, hit->shared_from_this(), eventType);
 		}

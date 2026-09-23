@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CollisionSet.h"
 #include "Color.h"
 #include "Command.h"
-#include "DamageDealt.h"
+#include "DamageProfile.h"
 #include "shader/DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
@@ -178,27 +178,12 @@ private:
 		double modifier = 1.;
 	};
 
-	class ShipCollision {
+	class EntityCollision {
 	public:
-		ShipCollision(const DamageDealt &damage, const Government *gov, bool provokable = true)
+		explicit EntityCollision(const DamageProfile &damage, const Government *gov = nullptr, bool provokable = true)
 			: damage(damage), gov(gov), provokable(provokable) {}
 
-		// In order to maximize the damage dealt in a single frame, collisions
-		// should apply their damage from highest to lowest shield damage.
-		// For two weapons with the same shield damage, we want to apply
-		// from lowest to highest hull damage. This gives the best chance
-		// for high shield damage projectiles to strip the target's shields
-		// so that high hull damage projectiles can impact the hull.
-		bool operator>(const ShipCollision &other) const
-		{
-			double thisShield = damage.Levels().shields;
-			double otherShield = other.damage.Levels().shields;
-			if(thisShield == otherShield)
-				return damage.Levels().hull < other.damage.Levels().hull;
-			return thisShield > otherShield;
-		}
-
-		DamageDealt damage;
+		DamageProfile damage;
 		const Government *gov;
 		bool provokable;
 	};
@@ -223,8 +208,8 @@ private:
 
 	void FillCollisionSets();
 
-	void FindCollisions(Projectile &projectile, std::map<Ship *, std::vector<ShipCollision>> &collisionDamage);
-	void DoShipCollisions(std::map<Ship *, std::vector<ShipCollision>> &collisionDamage);
+	void FindCollisions(Projectile &projectile, std::map<Entity *, std::vector<EntityCollision>> &entityCollisions);
+	void DoCollisions(std::map<Entity *, std::vector<EntityCollision>> &entityCollisions);
 	void DoWeather(Weather &weather);
 	void DoCollection(Flotsam &flotsam);
 	void DoScanning(const std::shared_ptr<Ship> &ship);
