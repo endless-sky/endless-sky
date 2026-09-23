@@ -12,6 +12,7 @@ Version 0.11.3:
       * Fixed a start-based text substitution in "Remnant: Deep Surveillance". (@warp-core)
       * Prevent the "Remnant Expanded Horizons Astral job" from choosing the current system as the waypoint. (@warp-core)
       * Fixed "FW Southern Recon 1B" from allowing the player to say that they can give an electron beam that isn't in a location that the mission can actually take from. (@warp-core)
+      * Fixed an outdated description of the weaponry on the Anomalocaris in the Hai Legacy missions. (@Hurleveur)
     * Engine bugs:
       * Fixed the spaceport panel appearing on top of conversations and dialogs it created. (@warp-core)
       * A plugin that only lists a game version as a dependency will now list that version in the UI, instead of only listing dependencies if a dependency on another plugin is provided. (@TomGoodIdea)
@@ -54,20 +55,23 @@ Version 0.11.3:
       * The Author government is no longer capable of fining the player. (@Amazinite)
       * Removed the "Pirate Advanced" outfitter from Stormhold. (@LixiChronikouOriou)
       * Updated the description of the Carrier to de-emphasize its ability to take part in head-to-head combat. (@flyingspacesquirrel)
-      * All vanilla starting scenarios now have a "start: vanilla" condition set.
+      * All vanilla starting scenarios now have a "start: vanilla" condition set. (@Amazinite)
+      * Hand to hand weapons and other outfits that don't require outfit space can now be jettisoned while in flight using the ship info panel. This includes nerve gas. (@Amazinite)
+      * The Subsidurial person ship can now respawn after dying, and the Brick and Patrol Team person ships must have their entire fleet destroyed at once in order to die. (@Amazinite)
   * Game mechanics:
     * New mechanics:
       * Added a condition for determining if an event is scheduled. (@Amazinite)
       * Minable asteroids can now be damaged by corrosion. (@apttie)
       * Added a condition for checking how many of a given outfit could be taken from the player by a mission. (@warp-core)
       * Outfits can now be given a "can jettison" attribute that allows them to be jettisoned in flight from the ship info panel while being installed. (@Amazinite)
-      * Minable asteroids can now have all damage-over-time visual effects applied to them. (@Amazinite)
-      * Minable asteroids now utilize heat mechanics, meaning that they can have their heat increased by heat damage weapons, which can influence the tracking of infrared missiles and cause the asteroid to "overheat" and take overheat damage if the asteroid is defined to do so. (@TomGoodIdea)
+      * Minable asteroids now utilize heat mechanics, meaning that they can have their heat increased by heat and burn damage weapons, which can influence the tracking of infrared missiles and cause the asteroid to "overheat" and take overheat damage if the asteroid is defined to do so. (@TomGoodIdea)
       * The habitable distance of systems and the orbital periods of objects within the system can now be automatically calculated by the game if they are not defined in the system definition. (@Amazinite)
       * Targeting confusion characteristics can now be defined as root node objects and assigned to governments and fleets. (@Anarchist2)
       * Added an "optical size" attribute that gets used in place of mass when a ship is being targeted by an optical-guided projectile. (@Amazinite)
+      * Persons can now be given flags that allow them to respawn after being killed, or require that every ship in the person's fleet be destroyed in order for the person to be killed. (@Amazinite)
     * Gamerules:
       * Added gamerules for tying the arrival distance of a system to its habitable distance. (@Amazinite)
+      * Added a series of hardcore setting gamerules, including the addition of a permadeath mode. (@Amazinite)
     * Mechanics changes:
       * Ships that are entirely out of energy and do not have the means of generating their own energy are now considered disabled, causing them to drag to a stop instead of drifting off into deep space. (@apttie)
       * Improved tractor beam and flotsam behavior for heavy outfits. (@Amazinite)
@@ -80,6 +84,10 @@ Version 0.11.3:
       * Auto-aim is now much more intelligent when using multiple different fixed guns with differing velocities. (@Amazinite)
         * Non-homing secondary weapons will only be used for aiming when you have the secondary weapon armed and loaded.
         * Aiming will be done with the group of weapons that yield the highest shield and hull damage per second, instead of finding an average point where all weapons should be aiming, which could often result in no weapons being able to hit the target when using weapons with vastly different velocities, like a laser and a blaster.
+      * Person and start scenario nodes can now load ships by just their model name, matching the behavior of adding ships to NPCs in missions. (@Amazinite)
+      * The damage over time status sparks will no longer appear on ships that aren't affected by them. For example, ships that lack shields won't have disruption or discharge sparks, and ships that lack fuel capacity won't have leak sparks, even if the ship has accrued disruption/discharge/leak damage. (@Amazinite)
+      * Multiple projectile collisions that occur in the same frame will now deal damage in a predictable order that maximizes shield and hull damage. (@Amazinite)
+        * Previously, the total damage dealt to a ship could be influenced by the order the projectiles were created. This meant that you could deal significantly more or less damage against a target based on the order of your weapons in the hardpoints of your ships, or the order of your escorts in the player info panel if you had mixed weapon types, such as one laser that deals high shield damage and another that deals high hull damage.
   * Graphics:
   * Performance:
     * Ships now cache commonly used attributes and calculations. This should result in a noticeably improvement when there are lots of ships spawned in. (@Amazinite)
@@ -111,7 +119,7 @@ Version 0.11.3:
       * You can now buy outfits from the outfitter directly into storage using the "Store" button. (@Amazinite)
       * The "Uninstall" button in the outfitter now moves outfits from your ship into your cargo hold first. If your cargo hold is full, it moves outfits into storage instead. (@Amazinite)
       * If you are in the middle of a jump, the link between your current system and the destination system will now be drawn in blue on the map. (@TheGiraffe3)
-      * There is now a command line argument for printing the state of objects in a system, including any object orbital periods and the habitable distance as calculated by the game if the system definition did not calculate it. (@Amazinite)
+      * When jettisoning an outfit, you are now warned if the outfit is marked as unique and is unlikely to be able to be regained once lost. (@Amazinite)
   * Under the hood:
     * Log a warning that plugin about.txt is deprecated for plugins that still use the old metadata format. (@TomGoodIdea)
     * Split the "Plugins" source file into "Plugin" and "PluginManager". (@TomGoodIdea)
@@ -124,9 +132,11 @@ Version 0.11.3:
     * Updated DrawList and BatchDrawList to utilize Drawables. (@Amazinite)
     * Replaced Body with Drawable in a few locations. (@Amazinite)
     * Removed an unused ship variant. (@LixiChronikouOriou)
+    * There is now a command line argument for printing the state of objects in a system, including any object orbital periods and the habitable distance as calculated by the game if the system definition did not calculate it. (@Amazinite)
+    * Added SDL3 support. (@tibetiroka)
+    * Moved basic damage calculations from Ship and Minable to the base Entity class. (@Amazinite)
   * CI/CD and development environment:
     * Update MacOS runners to macos-15. (@TomGoodIdea)
-    * Added SDL3 support. (@tibetiroka)
   * Documentation:
     * Improve the description of --tq-threads launch argument. (@TomGoodIdea)
 
