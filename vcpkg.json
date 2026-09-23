@@ -45,6 +45,7 @@
 					"platform": "linux"
 				},
 				"sdl2",
+				"sdl3",
 				"pkgconf"
 			]
 		},

@@ -41,6 +41,9 @@ public:
 	// Hit force applied as a point vector.
 	const Point &HitForce() const noexcept;
 
+	// The amount of prospecting to be applied.
+	double Prospecting() const noexcept;
+
 
 private:
 	// Friend of DamageProfile so that it can easily set all the damage
@@ -52,6 +55,7 @@ private:
 
 	ResourceLevels levels;
 	Point forcePoint;
+	double prospecting = 0.;
 };
 
 inline const Weapon &DamageDealt::GetWeapon() const noexcept { return *weapon; }
@@ -59,3 +63,5 @@ inline double DamageDealt::Scaling() const noexcept { return scaling; }
 
 inline const ResourceLevels &DamageDealt::Levels() const noexcept { return levels; }
 inline const Point &DamageDealt::HitForce() const noexcept { return forcePoint; }
+
+inline double DamageDealt::Prospecting() const noexcept { return prospecting; }

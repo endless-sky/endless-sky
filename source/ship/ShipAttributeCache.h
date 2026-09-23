@@ -44,7 +44,6 @@ private:
 
 	void Cloaking(const Outfit &attributes);
 	void Scanning(const Outfit &attributes);
-	void Damage(const Outfit &attributes);
 	void Misc(const Outfit &attributes);
 
 
@@ -139,16 +138,6 @@ private:
 	double atmosphereScan = 0.;
 	bool silentScans = false;
 	bool inscrutable = false;
-
-	ResourceLevels damageProtection;
-	double piercingProtection = 1.;
-	double piercingResistance = 0.;
-	double highShieldPermeability = 0.;
-	double lowShieldPermeability = 0.;
-	double cloakedShieldPermeability = 0.;
-	double cloakedHullProtection = 0.;
-	double cloakedShieldProtection = 0.;
-	double forceProtection = 1.;
 
 	double drag = 1.;
 	double dragReduction = 1.;

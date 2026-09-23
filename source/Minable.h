@@ -25,10 +25,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class DamageDealt;
 class DataNode;
 class Effect;
 class Flotsam;
-class MinableDamageDealt;
+class Government;
 class Outfit;
 class Projectile;
 class Visual;
@@ -79,9 +80,6 @@ public:
 	// In that case it will return false, meaning it should be deleted.
 	bool Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 
-	// Damage this object (because a projectile collided with it).
-	void TakeDamage(const MinableDamageDealt &damage);
-
 	// Determine what flotsam this asteroid will create.
 	const std::vector<Payload> &GetPayload() const;
 
@@ -92,6 +90,10 @@ public:
 
 	double Mass() const override;
 	double MaxHeat() const override;
+
+
+protected:
+	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy) override;
 
 
 private:

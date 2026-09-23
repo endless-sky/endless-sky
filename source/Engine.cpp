@@ -42,7 +42,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Mask.h"
 #include "Messages.h"
 #include "Minable.h"
-#include "MinableDamageDealt.h"
 #include "Mission.h"
 #include "NPC.h"
 #include "shader/OutlineShader.h"
@@ -2439,7 +2438,7 @@ void Engine::HandleMouseClicks()
 void Engine::HandleMouseInput(Command &activeCommands)
 {
 	bool rightMouseButtonHeld = false;
-	int mousePosX, mousePosY;
+	mouse_pos_t mousePosX, mousePosY;
 	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
 		rightMouseButtonHeld = true;
 
@@ -2584,7 +2583,7 @@ void Engine::FindCollisions(Projectile &projectile, map<Ship *, vector<ShipColli
 			for(Body *body : blastCollisions)
 			{
 				auto minable = static_cast<Minable *>(body);
-				minable->TakeDamage(damage.CalculateDamage(*minable));
+				minable->TakeDamage(visuals, damage.CalculateDamage(*minable), nullptr);
 			}
 		}
 		else if(hit)
@@ -2594,7 +2593,7 @@ void Engine::FindCollisions(Projectile &projectile, map<Ship *, vector<ShipColli
 			else if(collisionType == CollisionType::MINABLE)
 			{
 				auto minable = static_cast<Minable *>(hit);
-				minable->TakeDamage(damage.CalculateDamage(*minable));
+				minable->TakeDamage(visuals, damage.CalculateDamage(*minable), nullptr);
 			}
 		}
 

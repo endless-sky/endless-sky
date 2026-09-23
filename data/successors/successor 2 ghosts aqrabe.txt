@@ -444,6 +444,7 @@ mission "Successors: Ghosts Aqrabe 7"
 
 	on complete
 		outfit "Radiant Shield Shunt" -1
+		outfit "Multimodal Armor: Keystone" -1
 		event "successors: ghosts keystones finished" 50
 		payment 400000
 		"successors: ghosts houses dealt with" ++
