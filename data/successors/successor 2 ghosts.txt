@@ -1381,7 +1381,7 @@ mission "Successors: Ghosts 13"
 
 mission "Successors: Ghosts 14"
 	name "Destroy sensor probes"
-	description "House Kaatrij is concerned that the sensor probes in Predecessor space are being used against them, and have asked you to destroy them in <waypoints>."
+	description "House Kaatrij is concerned that the sensor probes in Predecessor space are being used against them, and have asked you to destroy them in Avasaa-Novaa, Eta Carinae, Khasola-Ryuit, and Kasii-Sola."
 	passengers 1
 	source "Qasa-Sija-Iri"
 	waypoint "Khasola-Ryuit"
@@ -1441,6 +1441,7 @@ mission "Successors: Ghosts 14"
 
 	on waypoint
 		dialog `With this system cleared, you've destroyed all the sensor probes except the one in Kasii-Sola.`
+		mark "Kasii-Sola"
 		event "successors: ghosts ijra-ea decloak"
 		clear "Successors: you"
 		clear "Successors: uncannier"
@@ -1451,10 +1452,8 @@ mission "Successors: Ghosts 14"
 
 
 mission "Successors: Ghosts 15"
-	passengers 1
 	transition
-	name "Destroy final sensor probe"
-	description "Having destroyed the other sensor probes, go to <waypoints> to destroy the fourth and final one before returning to <destination>."
+	invisible
 	waypoint "Kasii-Sola"
 	destination "Qasa-Sija-Iri"
 	to offer
@@ -1472,9 +1471,6 @@ mission "Successors: Ghosts 15"
 	on complete
 		conversation
 			`While you are presenting your landing authorization, Saajret calls for several members of Kaatrij to meet you in the docking bay; by the time you land, they are there waiting, slithering over to speak to Saajret almost immediately. The leader of this group dismisses you and Saajret, with an apologetic bow, asks you to meet them at the <planet> spaceport in an hour.`
-
-	on fail
-		dialog phrase "successor ghosts story failed"
 
 
 
