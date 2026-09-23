@@ -213,7 +213,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Messages.h
 	Minable.cpp
 	Minable.h
-	MinableDamageDealt.h
 	MiniMap.cpp
 	MiniMap.h
 	Mission.cpp
