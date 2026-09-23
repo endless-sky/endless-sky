@@ -1917,10 +1917,12 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 	// Populate the collision detection lookup sets.
 	FillCollisionSets();
 
-	// Perform collision detection. Minable collisions apply their damage immediately.
-	// Ship collisions that happen for a single ship on the same frame are pooled together
-	// and sorted from highest to lowest shield damage, as the order that multiple collisions
-	// happen can influence the total damage dealt this frame.
+	// Perform collision detection.
+	// Collisions that happen for a single entity on the same frame are pooled together.
+	// Ship collisions are sorted from highest to lowest shield damage before being applied
+	// to the ship instead of dealing damage in the order the collisions were found,
+	// as the order of collisions can influence the total damage dealt this frame
+	// as a result of shields tanking damage that could have otherwise gone to the hull.
 	map<Entity *, vector<EntityCollision>> entityCollisions;
 	for(Projectile &projectile : projectiles)
 		FindCollisions(projectile, entityCollisions);
