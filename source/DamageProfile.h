@@ -31,39 +31,35 @@ class Weapon;
 class DamageProfile {
 public:
 	// Constructor for damage taken from a weapon projectile.
-	explicit DamageProfile(Projectile::ImpactInfo info);
+	explicit DamageProfile(const Entity &entity, const Projectile::ImpactInfo &info, bool ignoreBlast = false);
 	// Constructor for damage taken from a hazard.
-	explicit DamageProfile(Weather::ImpactInfo info);
+	explicit DamageProfile(const Entity &entity, const Weather::ImpactInfo &info, bool ignoreBlast = false);
 
-	// Calculate the damage dealt to the given entity.
-	DamageDealt CalculateDamage(const Entity &entity, bool ignoreBlast = false) const;
+	const Weapon &GetWeapon() const;
+	const Entity &GetEntity() const;
+	double Scaling() const;
 
-
-private:
-	// Calculate the shared k and rSquared variables for
-	// any entity hit by a blast.
-	void CalculateBlast();
-	// Determine the damage scale for the given entity.
-	double Scale(double scale, const Entity &entity, bool blast) const;
-	// Populate the given DamageDealt object with values.
-	void PopulateDamage(DamageDealt &damage, const Entity &entity) const;
+	// Calculate the damage dealt to the entity at this exact moment.
+	DamageDealt CalculateDamage() const;
 
 
 private:
-	// The weapon that the dealt damage.
-	const Weapon &weapon;
+	// Determine the damage scale against the tracked entity.
+	void CalculateScaling();
+
+
+private:
+	// The entity that this profile is tracking damage against.
+	const Entity *entity;
+	// The weapon that dealt the damage.
+	const Weapon *weapon;
 	// The position of the projectile or hazard.
 	Point position;
 	// Whether damage is applied as a blast.
 	bool isBlast;
-	// The scaling as received before calculating damage.
-	double inputScaling = 1.;
+	// The base scaling to apply against the weapon damage
+	// before the entity's attributes are considered.
+	double scaling = 1.;
 	// Whether damage is applied from a hazard.
 	bool isHazard = false;
-
-	// Fields for caching blast radius calculation values
-	// that are shared by all entities that this profile could
-	// impact.
-	double k = 0.;
-	double rSquared = 0.;
 };

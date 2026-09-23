@@ -24,89 +24,55 @@ using namespace std;
 
 
 
-DamageProfile::DamageProfile(Projectile::ImpactInfo info)
-	: weapon(info.weapon), position(std::move(info.position)), isBlast(weapon.BlastRadius() > 0.)
+DamageProfile::DamageProfile(const Entity &entity, const Projectile::ImpactInfo &info, bool ignoreBlast)
+	: entity(&entity), weapon(&info.weapon), position(info.position),
+	isBlast(!ignoreBlast && weapon->BlastRadius() > 0.)
 {
-	CalculateBlast();
-	// For weapon projectiles, the distance traveled for the projectile
-	// is the same regardless of the entity being impacted, so calculate
-	// its effect on the damage scale here.
-	if(weapon.HasDamageDropoff())
-		inputScaling *= weapon.DamageDropoff(info.distanceTraveled);
+	// The damage dropoff of projectiles is influenced by the distance it traveled.
+	if(weapon->HasDamageDropoff())
+		scaling *= weapon->DamageDropoff(info.distanceTraveled);
+	CalculateScaling();
 }
 
 
 
-DamageProfile::DamageProfile(Weather::ImpactInfo info)
-	: weapon(info.weapon), position(std::move(info.position)), isBlast(weapon.BlastRadius() > 0.), inputScaling(info.scale)
+DamageProfile::DamageProfile(const Entity &entity, const Weather::ImpactInfo &info, bool ignoreBlast)
+	: entity(&entity), weapon(&info.weapon), position(info.position),
+	isBlast(!ignoreBlast && weapon->BlastRadius() > 0.), scaling(info.scale), isHazard(true)
 {
-	CalculateBlast();
-	isHazard = true;
+	CalculateScaling();
 }
 
 
 
-// Calculate the damage dealt to the given entity.
-DamageDealt DamageProfile::CalculateDamage(const Entity &entity, bool ignoreBlast) const
+const Weapon &DamageProfile::GetWeapon() const
 {
-	bool blast = (isBlast && !ignoreBlast);
-	DamageDealt damage(weapon, Scale(inputScaling, entity, blast));
-	PopulateDamage(damage, entity);
-
-	return damage;
+	return *weapon;
 }
 
 
 
-// Calculate the value of certain variables necessary for determining
-// the impact of an explosion that are shared across all entities that
-// this hazard could impact.
-void DamageProfile::CalculateBlast()
+const Entity &DamageProfile::GetEntity() const
 {
-	if(isBlast && weapon.IsDamageScaled())
-	{
-		// Scale blast damage based on the distance from the blast
-		// origin and if the projectile uses a trigger radius. The
-		// point of contact must be measured on the sprite outline.
-		// scale = (1 + (tr / (2 * br))^2) / (1 + r^4)^2
-		double blastRadius = max(1., weapon.BlastRadius());
-		double radiusRatio = weapon.TriggerRadius() / blastRadius;
-		k = !radiusRatio ? 1. : (1. + .25 * radiusRatio * radiusRatio);
-		rSquared = 1. / (blastRadius * blastRadius);
-	}
+	return *entity;
 }
 
 
 
-double DamageProfile::Scale(double scale, const Entity &entity, bool blast) const
+double DamageProfile::Scaling() const
 {
-	// Now that we have a specific entity, we can finish the blast damage
-	// calculations.
-	if(blast && weapon.IsDamageScaled())
-	{
-		// Rather than exactly compute the distance between the explosion and
-		// the closest point on the entity, estimate it using the mask's Radius.
-		double distance = max(0., position.Distance(entity.Position()) - entity.GetMask().Radius());
-		double finalR = distance * distance * rSquared;
-		scale *= k / ((1. + finalR * finalR) * (1. + finalR * finalR));
-	}
-	// Hazards must wait to evaluate any damage dropoff until now as the entity
-	// position for each entity influences the distance used for the damage dropoff.
-	if(isHazard && weapon.HasDamageDropoff())
-	{
-		double distance = max(0., position.Distance(entity.Position()) - entity.GetMask().Radius());
-		scale *= weapon.DamageDropoff(distance);
-	}
-
-	return scale;
+	return scaling;
 }
 
 
 
-// Populate the given DamageDealt object with values.
-void DamageProfile::PopulateDamage(DamageDealt &damage, const Entity &entity) const
+DamageDealt DamageProfile::CalculateDamage() const
 {
+	const Weapon &weapon = GetWeapon();
+	const Entity &entity = GetEntity();
+
 	double shieldFraction = 0.;
+	DamageDealt damage(weapon, scaling);
 
 	// Lambda for returning the damage scale that a damage type should
 	// use given the default percentage that is blocked by shields and hull,
@@ -114,7 +80,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Entity &entity) co
 	auto ScaleType = [&](double shieldBlocked, double hullBlocked, double protection)
 	{
 		double blocked = (1. - shieldBlocked) * (shieldFraction) + (1. - hullBlocked) * (1. - shieldFraction);
-		return damage.scaling * blocked / protection;
+		return scaling * blocked / protection;
 	};
 
 	// Determine the shieldFraction, which dictates how much damage
@@ -194,5 +160,37 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Entity &entity) co
 	}
 
 	// Prospecting is unaffected by anything aside from the base damage scaling right now.
-	damage.prospecting = weapon.Prospecting() * damage.scaling;
+	damage.prospecting = weapon.Prospecting() * scaling;
+
+	return damage;
+}
+
+
+
+void DamageProfile::CalculateScaling()
+{
+	// Always use the closest possible point between the impact position and the entity
+	// by using the radius of the mask, as opposed to considering how the entity was
+	// rotated relative to the impact position.
+	double distance = max(0., position.Distance(entity->Position()) - entity->GetMask().Radius());
+
+	if(isBlast && weapon->IsDamageScaled())
+	{
+		// Scale blast damage based on the distance from the blast
+		// origin and if the projectile uses a trigger radius. The
+		// point of contact must be measured on the sprite outline.
+		// scale = (1 + (tr / (2 * br))^2) / (1 + r^4)^2
+		double blastRadius = max(1., weapon->BlastRadius());
+		double radiusRatio = weapon->TriggerRadius() / blastRadius;
+		double k = !radiusRatio ? 1. : (1. + .25 * radiusRatio * radiusRatio);
+		double rSquared = 1. / (blastRadius * blastRadius);
+
+		// Rather than exactly compute the distance between the explosion and
+		// the closest point on the entity, estimate it using the mask's Radius.
+		double finalR = distance * distance * rSquared;
+		scaling *= k / ((1. + finalR * finalR) * (1. + finalR * finalR));
+	}
+	// The damage dropoff of hazards is influenced by the distance to the target.
+	if(isHazard && weapon->HasDamageDropoff())
+		scaling *= weapon->DamageDropoff(distance);
 }
