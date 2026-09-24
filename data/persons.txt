@@ -923,6 +923,7 @@ outfit "LG Gridfire Turret"
 
 
 person "Subsidurial"
+	"never dies"
 	government "Indigenous Lifeform (Subsidurial)"
 	frequency 1000
 	personality
@@ -1445,6 +1446,7 @@ person "Zitchas"
 
 
 person "Brick"
+	"must destroy all"
 	government "Author"
 	frequency 300
 	personality
@@ -1901,6 +1903,7 @@ ship "Modified Ladybug"
 
 
 person "Patrol Team"
+	"must destroy all"
 	government "Author"
 	frequency 300
 	personality
