@@ -1446,6 +1446,9 @@ mission "Successors: Ghosts 14"
 		clear "Successors: you"
 		clear "Successors: uncannier"
 
+	to complete
+		has "successors: ghosts entered kasii-sola"
+
 	on fail
 		dialog phrase "successor ghosts story failed"
 
@@ -1459,6 +1462,8 @@ mission "Successors: Ghosts 15"
 	to offer
 		has "event: successors: ghosts ijra-ea decloak"
 	on enter "Kasii-Sola"
+		unmark "Kasii-Sola" "Successors: Ghosts 14"
+		set "successors: ghosts entered kasii-sola"
 		conversation
 			`As you enter the system, your ship's sensors remark on an object that wasn't here the last time: a space station has appeared in close solar orbit. Every few seconds your lock on the station breaks before it is quickly reacquired.`
 			`	Saajret's look at examining the station is one of despair. "Wretches!" they say. "We shall need to address this upon returning. Our time is running short, Captain. Let us destroy the fourth probe with haste."`
@@ -1469,6 +1474,7 @@ mission "Successors: Ghosts 15"
 				accept
 
 	on complete
+		clear "successors: ghosts entered kasii-sola"
 		conversation
 			`While you are presenting your landing authorization, Saajret calls for several members of Kaatrij to meet you in the docking bay; by the time you land, they are there waiting, slithering over to speak to Saajret almost immediately. The leader of this group dismisses you and Saajret, with an apologetic bow, asks you to meet them at the <planet> spaceport in an hour.`
 
