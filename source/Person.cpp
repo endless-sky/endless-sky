@@ -79,6 +79,7 @@ bool Person::IsValid() const
 void Person::FinishLoading()
 {
 	auto nameFunc = [this](const shared_ptr<Ship> &) -> string { return name; };
+	shipFactory.FinishLoading();
 	shipFactory.Instantiate(ships, nameFunc);
 	if(formationPattern)
 		for(const shared_ptr<Ship> &ship : ships)
