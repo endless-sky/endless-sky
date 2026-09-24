@@ -243,6 +243,20 @@ int Sprite::SwizzleMaskFrames() const
 
 
 
+void Sprite::SetArea(double area)
+{
+	this->area = area;
+}
+
+
+
+double Sprite::Area() const
+{
+	return area;
+}
+
+
+
 // Get the offset of the center from the top left corner; this is for easy
 // shifting of corner to center coordinates.
 Point Sprite::Center() const
