@@ -716,7 +716,7 @@ void PlayerInfo::ApplyPermadeath() const
 
 	// Save info about the moment of death/takeoff.
 	pilot->SetMomentOfDeath(*this);
-	pilot->Lock();
+	pilot->SetLock();
 	pilot->Save();
 	if((mode == Gamerules::PermadeathMode::DELETE_ON_DEATH && isDead)
 			|| mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
@@ -1722,7 +1722,7 @@ void PlayerInfo::Land(UI &ui)
 	if(!freshlyLoaded)
 	{
 		// Unlock the pilot if it was locked via permadeath mode being active.
-		pilot->Lock(false);
+		pilot->SetLock(false);
 		Audio::Play(Audio::Get("landing"), SoundCategory::ENGINE);
 	}
 	Audio::PlayMusic(planet->MusicName());

@@ -55,6 +55,7 @@ public:
 	static std::string GetIdentifier(const std::string &pilotName);
 	// Delete the given pilot profile, deleting all its associated files and removing it from the
 	// list of known profiles. If the UI is provided, inform the player if save file deletion failed.
+	// If onlySaves is true, the pilot file is retained but the individual save files are deleted.
 	static void DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI *ui, bool onlySaves = false);
 
 
@@ -89,7 +90,7 @@ public:
 
 	// A pilot can be locked if the permadeath gamerule is active. Locked pilots
 	// can't be loaded into or modified.
-	void Lock(bool lock = true);
+	void SetLock(bool lock = true);
 	bool IsLocked() const;
 	// Minimal info about the latest loaded save file from this pilot.
 	void SetMomentOfDeath(const PlayerInfo &player);

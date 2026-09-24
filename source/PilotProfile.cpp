@@ -335,7 +335,7 @@ void PilotProfile::AddSave(const string &fileName)
 
 
 
-void PilotProfile::Lock(bool lock)
+void PilotProfile::SetLock(bool lock)
 {
 	isLocked = lock;
 }
