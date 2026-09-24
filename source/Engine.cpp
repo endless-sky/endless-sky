@@ -252,7 +252,7 @@ Engine::Engine(PlayerInfo &player)
 	ammoDisplay(player), minimap(player), shipCollisions(256u, 32u, CollisionType::SHIP)
 {
 	zoom.base = Preferences::ViewZoom();
-	zoom.modifier = Preferences::Has("Landing zoom") ? 2. : 1.;
+	zoom.modifier = Preferences::Has(Preferences::LANDING_ZOOM) ? 2. : 1.;
 
 	if(!player.IsLoaded() || !player.GetSystem())
 		return;
@@ -591,7 +591,7 @@ void Engine::Step(bool isActive)
 			if(!nextZoom.base)
 				nextZoom.base = zoom.base;
 			// Update the current zoom modifier if the flagship is landing or taking off.
-			nextZoom.modifier = Preferences::Has("Landing zoom") ? 1. + pow(1. - flagship->Zoom(), 2) : 1.;
+			nextZoom.modifier = Preferences::Has(Preferences::LANDING_ZOOM) ? 1. + pow(1. - flagship->Zoom(), 2) : 1.;
 		}
 
 		// Step the background to account for the current velocity and zoom.
@@ -616,7 +616,7 @@ void Engine::Step(bool isActive)
 	};
 
 	const Color &cloakColor = *GameData::Colors().Get("cloak highlight");
-	if(Preferences::Has("Cloaked ship outlines"))
+	if(Preferences::Has(Preferences::SHIP_OUTLINES_CLOAKED))
 		for(const auto &ship : player.Ships())
 		{
 			if(ship->IsParked() || ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 0.)
@@ -724,7 +724,7 @@ void Engine::Step(bool isActive)
 		// Create the status overlays.
 		CreateStatusOverlays();
 		// Create missile overlays.
-		if(Preferences::Has("Show missile overlays"))
+		if(Preferences::Has(Preferences::HUD_MISSILE_OVERLAY))
 			for(const Projectile &projectile : projectiles)
 			{
 				Point pos = projectile.Position() - camera.Center();
@@ -771,7 +771,7 @@ void Engine::Step(bool isActive)
 	if(flagship && flagship->HullFraction())
 	{
 		Point shipFacingUnit(0., -1.);
-		if(Preferences::Has("Rotate flagship in HUD"))
+		if(Preferences::Has(Preferences::HUD_ROTATE_FLAGSHIP))
 			shipFacingUnit = flagship->Facing().Unit();
 
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step),
@@ -1038,7 +1038,7 @@ void Engine::Step(bool isActive)
 			}
 		}
 	}
-	if(!Preferences::Has("Ship outlines in HUD"))
+	if(!Preferences::Has(Preferences::SHIP_OUTLINES_HUD))
 		info.SetCondition("fast hud sprites");
 	if(target && target->IsTargetable() && target->GetSystem() == currentSystem)
 	{
@@ -1119,7 +1119,7 @@ void Engine::Step(bool isActive)
 	}
 
 	// Draw crosshairs on any minables in range of the flagship's scanners.
-	bool shouldShowAsteroidOverlay = Preferences::Has("Show asteroid scanner overlay");
+	bool shouldShowAsteroidOverlay = Preferences::Has(Preferences::HUD_ASTEROID_OVERLAY);
 	// Decide before looping whether or not to catalog asteroids. This
 	// results in cataloging in-range asteroids roughly 3 times a second.
 	bool shouldCatalogAsteroids = (!isAsteroidCatalogComplete && !Random::Int(20));
@@ -1214,7 +1214,7 @@ void Engine::Draw() const
 	++uiStep;
 
 	Point motionBlur = camera.Velocity();
-	double baseBlur = Preferences::Has("Render motion blur") ? 1. : 0.;
+	double baseBlur = Preferences::Has(Preferences::MOTION_BLUR) ? 1. : 0.;
 
 	Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
 	if(jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
@@ -1230,7 +1230,7 @@ void Engine::Draw() const
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
 	// Draw any active planet labels.
-	if(Preferences::Has("Show planet labels"))
+	if(Preferences::Has(Preferences::HUD_PLANET_LABELS))
 		for(const PlanetLabel &label : labels)
 			label.Draw();
 
@@ -1423,7 +1423,7 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 	const Interface *hud = GameData::Interfaces().Get("hud");
 	Point radarCenter = hud->GetPoint("radar");
 	double radarRadius = hud->GetValue("radar radius");
-	if(Preferences::Has("Clickable radar display") && (from - radarCenter).Length() <= radarRadius)
+	if(Preferences::Has(Preferences::HUD_CLICKABLE_RADAR) && (from - radarCenter).Length() <= radarRadius)
 		isRadarClick = true;
 	else
 		isRadarClick = false;
@@ -1453,7 +1453,7 @@ void Engine::RightOrMiddleClick(const Point &point, MouseButton button)
 	const Interface *hud = GameData::Interfaces().Get("hud");
 	Point radarCenter = hud->GetPoint("radar");
 	double radarRadius = hud->GetValue("radar radius");
-	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= radarRadius)
+	if(Preferences::Has(Preferences::HUD_CLICKABLE_RADAR) && (point - radarCenter).Length() <= radarRadius)
 	{
 		double radarScale = hud->GetValue("radar scale");
 		clickPoint = (point - radarCenter) / radarScale;
@@ -1861,7 +1861,7 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 		player.SetSystemEntry(wormholeEntry ? SystemEntry::WORMHOLE :
 			flagship->IsUsingJumpDrive() ? SystemEntry::JUMP :
 			SystemEntry::HYPERDRIVE);
-		doFlash = Preferences::Has("Show hyperspace flash");
+		doFlash = Preferences::Has(Preferences::SHOW_HYPERSPACE_FLASH);
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
 		EnterSystem();
@@ -2453,7 +2453,7 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
 	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
 	// hold will temporarily turn OFF mouse control.
-	isMouseTurningEnabled = isMouseHoldEnabled ^ Preferences::Has("Control ship with mouse");
+	isMouseTurningEnabled = isMouseHoldEnabled ^ Preferences::Has(Preferences::MOUSE_CONTROL_FLAGSHIP);
 	if(!isMouseTurningEnabled)
 		return;
 	activeCommands.Set(Command::MOUSE_TURNING_HOLD);
@@ -2786,7 +2786,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	if(!collector->IsYours())
 		return;
 
-	if(!collectorIsFlagship && !Preferences::Has("Extra fleet status messages"))
+	if(!collectorIsFlagship && !Preferences::Has(Preferences::HUD_EXTRA_STATUS_MSGS))
 		return;
 
 	// One of your ships picked up this flotsam. Describe who it was.
@@ -2881,13 +2881,10 @@ void Engine::FillRadar()
 	}
 
 	// Add viewport brackets.
-	if(!Preferences::Has("Disable viewport on radar"))
-	{
-		radar[currentCalcBuffer].AddViewportBoundary(Screen::TopLeft() / zoom);
-		radar[currentCalcBuffer].AddViewportBoundary(Screen::TopRight() / zoom);
-		radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomLeft() / zoom);
-		radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomRight() / zoom);
-	}
+	radar[currentCalcBuffer].AddViewportBoundary(Screen::TopLeft() / zoom);
+	radar[currentCalcBuffer].AddViewportBoundary(Screen::TopRight() / zoom);
+	radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomLeft() / zoom);
+	radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomRight() / zoom);
 
 	// Add ships. Also check if hostile ships have newly appeared.
 	bool hasHostiles = false;
@@ -2950,7 +2947,7 @@ void Engine::DrawShipSprites(const Ship &ship)
 	bool hasFighters = ship.PositionFighters();
 	double cloak = ship.Cloaking();
 	bool drawCloaked = (cloak && ship.IsYours());
-	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
+	bool fancyCloak = Preferences::Has(Preferences::SHIP_OUTLINES_CLOAKED);
 	const Swizzle *cloakSwizzle = GameData::Swizzles().Get(fancyCloak ? "cloak fancy base" : "cloak fast");
 	auto &itemsToDraw = draw[currentCalcBuffer];
 	auto drawObject = [&itemsToDraw, cloak, drawCloaked, fancyCloak, cloakSwizzle](const Body &body) -> void

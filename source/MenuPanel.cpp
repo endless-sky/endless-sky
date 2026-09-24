@@ -118,7 +118,7 @@ MenuPanel::~MenuPanel()
 
 void MenuPanel::Step()
 {
-	if(Preferences::Has("Animate main menu background"))
+	if(Preferences::Has(Preferences::ANIMATE_MENU_BACKGROUND))
 	{
 		GameData::StepBackground(Point(xSpeed, yAmplitude * sin(animation * TO_RAD)));
 		animation += ySpeed;

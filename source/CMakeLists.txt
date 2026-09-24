@@ -308,6 +308,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ScrollVar.h
 	SDL.h
 	Set.h
+	Setting.cpp
+	Setting.h
 	Ship.cpp
 	Ship.h
 	Shop.h

@@ -237,7 +237,7 @@ int Font::Space() const noexcept
 
 void Font::ShowUnderlines(bool show) noexcept
 {
-	showUnderlines = show || Preferences::Has("Always underline shortcuts");
+	showUnderlines = show || Preferences::Has(Preferences::UNDERLINE_SHORTCUTS);
 }
 
 
