@@ -280,7 +280,7 @@ void ImageSet::LoadDimensions(Sprite *sprite) noexcept(false)
 		return;
 	}
 	// Only masked sprites need to know their area.
-	if(IsMasked(name))
+	if(IsMasked(name) && !sprite->Area())
 		sprite->SetArea(buffer[0].CalculateArea());
 	sprite->LoadDimensions(buffer[0]);
 	// Clear the buffer since no image data was actually uploaded.
@@ -300,7 +300,7 @@ void ImageSet::Upload(Sprite *sprite, bool enableUpload)
 			it.Clear();
 
 	// Only masked sprites need to know their area.
-	if(IsMasked(name))
+	if(IsMasked(name) && !sprite->Area())
 		sprite->SetArea(buffer[0].CalculateArea());
 	// Load the frames (this will clear the buffers).
 	sprite->AddFrames(buffer[0], buffer[1], noReduction);
