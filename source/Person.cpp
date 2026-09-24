@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "System.h"
 
+#include <algorithm>
+
 using namespace std;
 
 
@@ -51,6 +53,10 @@ void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			personality.Load(child);
 		else if(key == "phrase")
 			hail.Load(child);
+		else if(key == "never dies")
+			neverDies = true;
+		else if(key == "must destroy all")
+			mustDestroyAll = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -73,6 +79,7 @@ bool Person::IsValid() const
 void Person::FinishLoading()
 {
 	auto nameFunc = [this](const shared_ptr<Ship> &) -> string { return name; };
+	shipFactory.FinishLoading();
 	shipFactory.Instantiate(ships, nameFunc);
 	if(formationPattern)
 		for(const shared_ptr<Ship> &ship : ships)
@@ -137,9 +144,11 @@ bool Person::IsDestroyed() const
 {
 	if(ships.empty() || !ships.front())
 		return true;
-
-	const Ship &flagship = *ships.front();
-	return (flagship.IsDestroyed() || (flagship.GetSystem() && flagship.GetGovernment() != government));
+	if(neverDies)
+		return false;
+	if(mustDestroyAll)
+		return ranges::all_of(ships, [](const shared_ptr<Ship> &ship) -> bool { return ship->IsDestroyed(); } );
+	return ships.front()->IsDestroyed();
 }
 
 
