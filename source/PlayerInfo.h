@@ -99,6 +99,8 @@ public:
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
+	// Apply the effects of permadeath, if this player has permadeath mode enabled.
+	void ApplyPermadeath() const;
 
 	// Get the pilot profile that this player is from.
 	std::shared_ptr<PilotProfile> &Pilot();
