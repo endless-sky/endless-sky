@@ -109,14 +109,13 @@ void FleetPlacement::Place(const list<shared_ptr<Ship>> &ships, const System &sy
 	}
 
 	bool first = true;
-	DamageProfile damage = DamageProfile(weapon);
 	for(auto &ship : ships)
 	{
 		// Deal damage to these ships if a weapon was loaded.
 		if(weapon.IsLoaded())
 		{
 			double scale = 1. + (randomScaling ? Random::Real() * randomScaling : 0.);
-			DamageDealt damageDealt = damage.CalculateDamage(*ship, false, scale);
+			DamageDealt damageDealt = DamageProfile(ship, weapon, scale).CalculateDamage();
 			ship->TakeDamage(damageDealt, nullptr);
 			ship->SetSkipRecharging();
 		}

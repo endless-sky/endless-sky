@@ -36,7 +36,7 @@ public:
 	explicit DamageProfile(const Entity &entity, const Weather::ImpactInfo &info, bool ignoreBlast = false);
 	// Constructor for damage taken from a weapon with no physical source, such as from
 	// an NPC's placement criteria.
-	explicit DamageProfile(const Entity &entity, const Weapon &weapon);
+	explicit DamageProfile(const Entity &entity, const Weapon &weapon, double scaling);
 
 	const Weapon &GetWeapon() const;
 	const Entity &GetEntity() const;

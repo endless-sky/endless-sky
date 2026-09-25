@@ -490,6 +490,17 @@ void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double 
 
 int Entity::TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *hitBy)
 {
+	// Create target effect visuals, if there are any.
+	for(const auto &[effect, count] : damage.GetWeapon().TargetEffects())
+		CreateSparks(visuals, effect, count * damage.Scaling());
+
+	return TakeDamage(damage, hitBy);
+}
+
+
+
+int Entity::TakeDamage(const DamageDealt &damage, const Government *hitBy)
+{
 	levels.Damage(damage.Levels());
 
 	// Prevent various stats from reaching unallowable values.
@@ -497,10 +508,6 @@ int Entity::TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, 
 	// so the only remaining unallowable values are overhealing hull or shields.
 	levels.hull = min(levels.hull, MaxHull());
 	levels.shields = min(levels.shields, MaxShields());
-
-	// Create target effect visuals, if there are any.
-	for(const auto &[effect, count] : damage.GetWeapon().TargetEffects())
-		CreateSparks(visuals, effect, count * damage.Scaling());
 
 	return DoTakeDamage(damage, hitBy);
 }

@@ -45,7 +45,7 @@ public:
 	// calculate where an object with this orbit should be positioned.
 	std::pair<Point, Angle> Position(double now) const;
 
-	bool operator==(const Orbit &) const = default;
+	bool operator==(const Orbit &other) const;
 
 
 private:

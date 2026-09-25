@@ -118,3 +118,16 @@ pair<Point, Angle> Orbit::Position(double now) const
 	Point position = angle.Unit() * distance;
 	return make_pair(position, angle);
 }
+
+
+
+bool Orbit::operator==(const Orbit &other) const
+{
+	if(distance != other.distance)
+		return false;
+	if(explicitPeriodSet && speed != other.speed)
+		return false;
+	if(offset != other.offset)
+		return false;
+	return true;
+}
