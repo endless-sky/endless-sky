@@ -99,6 +99,8 @@ public:
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
+	// Apply the effects of permadeath, if this player has permadeath mode enabled.
+	void ApplyPermadeath() const;
 
 	// Get the pilot profile that this player is from.
 	std::shared_ptr<PilotProfile> &Pilot();
@@ -362,6 +364,7 @@ public:
 	// Select one of the ships that the player owns.
 	void SelectEscort(const Ship *ship, bool hasShift);
 	void DeselectEscort(const Ship *ship);
+	void ClearSelectedEscorts();
 	void SelectEscortGroup(int group, bool hasShift);
 	void SetEscortGroup(int group, const std::set<Ship *> *newShips = nullptr);
 	std::set<Ship *> GetEscortGroup(int group);

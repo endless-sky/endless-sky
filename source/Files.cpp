@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "ZipFile.h"
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 
 #include <algorithm>
 #include <fstream>
@@ -113,11 +113,18 @@ void Files::Init(const char *const *argv)
 	{
 		// Find the path to the resource directory. This will depend on the
 		// operating system, and can be overridden by a command line argument.
+#ifdef ES_USE_SDL3
+		// This path is cached in SDL3, but not in SDL2.
+		const char *basePath = SDL_GetBasePath();
+#else
 		char *basePath = SDL_GetBasePath();
+#endif
 		if(!basePath)
 			throw runtime_error("Unable to get path to resource directory!");
 		resources = basePath;
+#ifndef ES_USE_SDL3
 		SDL_free(basePath);
+#endif
 
 		if(Exists(resources))
 			resources = filesystem::canonical(resources);
@@ -405,6 +412,39 @@ std::string Files::NameNoExtension(const std::filesystem::path &path)
 {
 	string name = path.filename().string();
 	return name.substr(0, name.length() - path.extension().string().length());
+}
+
+
+
+// Validate that a filename doesn't contain any illegal characters.
+bool Files::IsValidCharacter(char32_t ch)
+{
+	// Don't allow characters that can't be used in a file name.
+	static const string FORBIDDEN = "/\\?*:|\"<>";
+
+	return FORBIDDEN.find(ch) == FORBIDDEN.npos;
+}
+
+
+
+// Check if a filename is valid.
+bool Files::IsValid(const string &filename)
+{
+	return !filename.empty() && all_of(filename.begin(), filename.end(), IsValidCharacter);
+}
+
+
+
+size_t Files::MaxFilenameLength(const filesystem::path &base)
+{
+#if defined(_WIN32)
+	if(base.string().size() >= 250)
+		return 0;
+	else
+		return 250 - base.string().size();
+#else
+	return 250;
+#endif
 }
 
 

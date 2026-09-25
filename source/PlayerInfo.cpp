@@ -266,16 +266,6 @@ void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile
 
 	// Copy the core information from the full starting scenario.
 	startData = start;
-	// Copy any ships in the start conditions.
-	for(const Ship &ship : start.Ships())
-	{
-		ships.emplace_back(new Ship(ship));
-		ships.back()->SetSystem(&start.GetSystem());
-		ships.back()->SetPlanet(&start.GetPlanet());
-		ships.back()->SetIsSpecial();
-		ships.back()->SetIsYours();
-		ships.back()->SetGovernment(GameData::PlayerGovernment());
-	}
 	// Load starting conditions from a "start" item in the data files. If no
 	// such item exists, StartConditions defines default values.
 	date = start.GetDate();
@@ -300,6 +290,11 @@ void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile
 	for(const auto &it : GameData::Events())
 		if(it.second.GetDate())
 			AddEvent(it.second, it.second.GetDate());
+
+	// Copy any ships in the start conditions. This is done last, since
+	// ship naming can use text substitutions that rely on the above setup
+	// being done first.
+	start.InstantiateShips(*this, ships);
 }
 
 
@@ -651,7 +646,7 @@ void PlayerInfo::Save() const
 	// Remember that this was the most recently saved player.
 	Files::Write(Files::Config() / "recent.txt", filePath + '\n');
 
-	if(filePath.ends_with(".txt"))
+	if(!pilot->GetGamerules().SingleSaveFile() && filePath.ends_with(".txt"))
 	{
 		// Only update the backups if this save will have a newer date.
 		SavedGame saved(filePath);
@@ -664,10 +659,18 @@ void PlayerInfo::Save() const
 			{
 				const string toMove = rootPrevious + to_string(i) + ".txt";
 				if(Files::Exists(toMove))
-					Files::Move(toMove, rootPrevious + to_string(i + 1) + ".txt");
+				{
+					string file = rootPrevious + to_string(i + 1) + ".txt";
+					Files::Move(toMove, file);
+					pilot->AddSave(file);
+				}
 			}
 			if(Files::Exists(filePath))
-				Files::Move(filePath, rootPrevious + "1.txt");
+			{
+				string file = rootPrevious + "1.txt";
+				Files::Move(filePath, file);
+				pilot->AddSave(file);
+			}
 			if(planet->HasServices())
 				Save(rootPrevious + "spaceport.txt");
 		}
@@ -687,6 +690,28 @@ void PlayerInfo::Save() const
 shared_ptr<PilotProfile> &PlayerInfo::Pilot()
 {
 	return pilot;
+}
+
+
+
+void PlayerInfo::ApplyPermadeath() const
+{
+	Gamerules::PermadeathMode mode = pilot->GetGamerules().GetPermadeathMode();
+	if(mode == Gamerules::PermadeathMode::OFF)
+		return;
+
+	bool onTakeoff = mode == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF
+		|| mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF;
+	if(!isDead && !onTakeoff)
+		return;
+
+	// Save info about the moment of death/takeoff.
+	pilot->SetMomentOfDeath(*this);
+	pilot->SetLock();
+	pilot->Save();
+	if((mode == Gamerules::PermadeathMode::DELETE_ON_DEATH && isDead)
+			|| mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
+		PilotProfile::DeleteProfile(pilot, nullptr, true);
 }
 
 
@@ -790,6 +815,7 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 {
 	isDead = true;
+	ApplyPermadeath();
 	// The player loses access to all their ships if they die on a planet.
 	if(GetPlanet() || !flagship)
 	{
@@ -1685,7 +1711,11 @@ void PlayerInfo::Land(UI &ui)
 		return;
 
 	if(!freshlyLoaded)
+	{
+		// Unlock the pilot if it was locked via permadeath mode being active.
+		pilot->SetLock(false);
 		Audio::Play(Audio::Get("landing"), SoundCategory::ENGINE);
+	}
 	Audio::PlayMusic(planet->MusicName());
 
 	// Mark this planet as visited.
@@ -3354,6 +3384,16 @@ bool PlayerInfo::SelectEscorts(const Rectangle &box, bool hasShift)
 			matched = true;
 			SelectEscort(ship, &first);
 		}
+	// If there had been a match, the flagship would have been updated to
+	// select the first matching escort. Since there is no match, if the
+	// currently targeted ship is an escort, clear the target in order to
+	// prevent your target from desyncing with your escort selection.
+	// (The UI for having an escort targeted by your flagship and having it
+	// selected for issuing orders is currently the same, so the selection
+	// and target being desynced can easily cause confusion when issuing orders.)
+	Ship *flagship = Flagship();
+	if(!matched && !hasShift && flagship && flagship->GetTargetShip() && flagship->GetTargetShip()->IsYours())
+		flagship->SetTargetShip(nullptr);
 	return matched;
 }
 
@@ -3435,6 +3475,13 @@ void PlayerInfo::DeselectEscort(const Ship *ship)
 			selectedEscorts.erase(it);
 			return;
 		}
+}
+
+
+
+void PlayerInfo::ClearSelectedEscorts()
+{
+	selectedEscorts.clear();
 }
 
 
@@ -4939,7 +4986,7 @@ bool PlayerInfo::RecacheJumpRoutes()
 
 void PlayerInfo::Autosave() const
 {
-	if(!CanBeSaved() || filePath.length() < 4)
+	if(!CanBeSaved() || filePath.length() < 4 || pilot->GetGamerules().SingleSaveFile())
 		return;
 
 	string path = filePath.substr(0, filePath.length() - 4) + "~autosave.txt";
@@ -4956,6 +5003,7 @@ void PlayerInfo::Save(const string &filePath) const
 	{
 		DataWriter out(filePath);
 		Save(out);
+		pilot->AddSave(filePath);
 	}
 }
 
@@ -5552,7 +5600,7 @@ void PlayerInfo::CalculateScanners(const shared_ptr<Ship> &ship)
 // Check that this player's current state can be saved.
 bool PlayerInfo::CanBeSaved() const
 {
-	return (!isDead && planet && system && !filePath.empty());
+	return (!isDead && planet && system && !filePath.empty() && !pilot->IsLocked());
 }
 
 

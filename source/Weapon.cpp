@@ -38,16 +38,10 @@ Weapon::Weapon(const DataNode &node)
 // Load from a "weapon" node, either in an outfit or in a ship (explosion).
 void Weapon::Load(const DataNode &node)
 {
+	bool isClustered = isLoaded ? !isStreamed : false;
 	isLoaded = true;
-
-	bool isClustered = false;
 	calculatedDamage = false;
 	doesDamage = false;
-	bool safeRangeOverriden = false;
-	bool disabledDamageSet = false;
-	bool minableDamageSet = false;
-	bool relativeDisabledDamageSet = false;
-	bool relativeMinableDamageSet = false;
 
 	for(const DataNode &child : node)
 	{
@@ -122,7 +116,7 @@ void Weapon::Load(const DataNode &node)
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
-			sprite.LoadSprite(child);
+			projectileSprite.LoadSprite(child);
 		else if(key == "hardpoint sprite")
 			hardpointSprite.LoadSprite(child);
 		else if(key == "sound")
@@ -466,14 +460,14 @@ bool Weapon::IsLoaded() const
 
 
 // Get assets used by this weapon.
-const Body &Weapon::WeaponSprite() const
+const Drawable &Weapon::ProjectileSprite() const
 {
-	return sprite;
+	return projectileSprite;
 }
 
 
 
-const Body &Weapon::HardpointSprite() const
+const Drawable &Weapon::HardpointSprite() const
 {
 	return hardpointSprite;
 }

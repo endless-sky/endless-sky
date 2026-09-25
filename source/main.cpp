@@ -330,6 +330,10 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isDebugPaused,
 			&isFastForward]
 	{
+		const Preferences::FastForwardCapsLockSync fastforwardCapsLockSync = Preferences::GetFastForwardCapsLockSync();
+		const bool fastForwardSyncToCapsLock = fastforwardCapsLockSync == Preferences::FastForwardCapsLockSync::ALWAYS
+			|| (fastforwardCapsLockSync == Preferences::FastForwardCapsLockSync::DEFAULT
+				&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
 		{
@@ -339,7 +343,14 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			if(event.type == SDL_MOUSEMOTION)
 				cursorTime = 0;
 
-			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
+#ifdef ES_USE_SDL3
+			SDL_Keycode eventKeyCode = event.key.key;
+			SDL_Keymod eventKeyMod = event.key.mod;
+#else
+			SDL_Keycode eventKeyCode = event.key.keysym.sym;
+			Uint16 eventKeyMod = event.key.keysym.mod;
+#endif
+			if(debugMode && event.type == SDL_KEYDOWN && eventKeyCode == SDLK_BACKQUOTE)
 			{
 				isDebugPaused = !isDebugPaused;
 				if(isDebugPaused)
@@ -348,7 +359,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 					Audio::Resume();
 			}
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-					&& Command(event.key.keysym.sym).Has(Command::MENU)
+					&& Command(eventKeyCode).Has(Command::MENU)
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
 			{
 				// User pressed the Menu key.
@@ -358,7 +369,11 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			}
 			else if(event.type == SDL_QUIT)
 				menuPanels.Quit();
+#ifdef ES_USE_SDL3
+			else if(event.type == SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED)
+#else
 			else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+#endif
 				// The window has been resized. Adjust the raw screen size and the OpenGL viewport to match.
 				GameWindow::AdjustViewport();
 			else if(event.type == CustomEvents::GetResize())
@@ -372,21 +387,21 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				gamePanels.AdjustTextDisplay();
 			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
-					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
-					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
+					&& (Command(eventKeyCode).Has(Command::FULLSCREEN)
+					|| (eventKeyCode == SDLK_RETURN && (eventKeyMod & KMOD_ALT))))
 			{
 				toggleTimeout = 30;
 				Preferences::ToggleScreenMode();
 			}
-			else if(event.type == SDL_KEYDOWN && Command(event.key.keysym.sym).Has(Command::PERFORMANCE_DISPLAY))
+			else if(event.type == SDL_KEYDOWN && Command(eventKeyCode).Has(Command::PERFORMANCE_DISPLAY))
 				Preferences::Set("Show CPU / GPU load", !Preferences::Has("Show CPU / GPU load"));
 			else if(activeUI.Handle(event))
 			{
 				// The UI handled the event.
 			}
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
-					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD))
-					&& !Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
+					&& (Command(eventKeyCode).Has(Command::FASTFORWARD))
+					&& !fastForwardSyncToCapsLock)
 			{
 				isFastForward = !isFastForward;
 			}
@@ -394,7 +409,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 		// Special case: If fastforward is on capslock, update on mod state and not
 		// on keypress.
-		if(Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
+		if(fastForwardSyncToCapsLock)
 			isFastForward = SDL_GetModState() & KMOD_CAPS;
 	};
 
@@ -433,7 +448,14 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			if(shouldShowCursor != showCursor)
 			{
 				showCursor = shouldShowCursor;
+#ifdef ES_USE_SDL3
+				if(shouldShowCursor)
+					SDL_ShowCursor();
+				else
+					SDL_HideCursor();
+#else
 				SDL_ShowCursor(showCursor);
+#endif
 			}
 
 			// Switch off fast-forward if the player is not in flight or flight-related screen

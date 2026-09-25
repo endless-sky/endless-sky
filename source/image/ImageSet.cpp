@@ -279,6 +279,9 @@ void ImageSet::LoadDimensions(Sprite *sprite) noexcept(false)
 		Logger::Log("Failed to read image data for \"" + name + "\" frame #0.", Logger::Level::WARNING);
 		return;
 	}
+	// Only masked sprites need to know their area.
+	if(IsMasked(name) && !sprite->Area())
+		sprite->SetArea(buffer[0].CalculateArea());
 	sprite->LoadDimensions(buffer[0]);
 	// Clear the buffer since no image data was actually uploaded.
 	buffer[0].Clear();
@@ -296,6 +299,9 @@ void ImageSet::Upload(Sprite *sprite, bool enableUpload)
 		for(ImageBuffer &it : buffer)
 			it.Clear();
 
+	// Only masked sprites need to know their area.
+	if(IsMasked(name) && !sprite->Area())
+		sprite->SetArea(buffer[0].CalculateArea());
 	// Load the frames (this will clear the buffers).
 	sprite->AddFrames(buffer[0], buffer[1], noReduction);
 	sprite->AddSwizzleMaskFrames(buffer[2], buffer[3], noReduction);

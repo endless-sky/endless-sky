@@ -17,11 +17,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Body.h"
 
+#include "DamageDealt.h"
 #include "Outfit.h"
 #include "ship/ResourceLevels.h"
 
 #include <vector>
 
+class Government;
 class Visual;
 
 
@@ -90,10 +92,25 @@ public:
 
 	// Whether this entity can be targeted by ships and projectiles.
 	virtual bool IsTargetable() const;
+	// The cloaking progress of this entity, and whether it is fully cloaked.
+	virtual double Cloaking() const;
+	virtual bool IsCloaked() const;
 
-	// Jamming attributes that influence projectiles tracking this entity.
+	// Attributes that influence projectiles tracking this entity.
+	double OpticalSize() const;
 	double OpticalJamming() const;
 	double RadarJamming() const;
+
+	// Attributes that influence how this entity takes damage.
+	const ResourceLevels &DamageProtection() const;
+	double PiercingProtection() const;
+	double PiercingResistance() const;
+	double HighShieldPermeability() const;
+	double LowShieldPermeability() const;
+	double CloakedShieldPermeability() const;
+	double CloakedHullProtection() const;
+	double CloakedShieldProtection() const;
+	double ForceProtection() const;
 
 	// Kill this entity. Set all of its resource levels to 0 and its hull to -1.
 	void Kill();
@@ -108,10 +125,18 @@ public:
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount) const;
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount) const;
 
+	// Damage this entity, creating any damage visuals in the process.
+	// For ship entities, the return value is a ShipEvent type, which may be a combination of PROVOKED, DISABLED,
+	// and DESTROYED.
+	// For minable entities, always returns 0, as minables don't have damage events.
+	int TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *hitBy);
+
 
 protected:
 	// Cache commonly requested attributes into fields on the Entity-level.
 	virtual void CacheAttributes();
+	// TakeDamage logic that is specific to the Entity type.
+	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy) = 0;
 
 
 protected:
@@ -143,9 +168,21 @@ protected:
 
 	double heatDissipation = 0.;
 
-	// Jamming attributes that influence projectiles tracking this entity.
+	// Attributes that influence projectiles tracking this entity.
+	double opticalSize = 0.;
 	double opticalJamming = 0.;
 	double radarJamming = 0.;
+
+	// Cached damage-related attributes.
+	ResourceLevels damageProtection;
+	double piercingProtection = 1.;
+	double piercingResistance = 0.;
+	double highShieldPermeability = 0.;
+	double lowShieldPermeability = 0.;
+	double cloakedShieldPermeability = 0.;
+	double cloakedHullProtection = 0.;
+	double cloakedShieldProtection = 0.;
+	double forceProtection = 1.;
 
 	// Cached status effect resistance and cost values.
 	double corrosionResistance = 0.;

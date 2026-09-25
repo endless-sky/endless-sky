@@ -141,7 +141,6 @@ fleet "Small Hai Merchant"
 	names "hai"
 	cargo 3
 	personality
-		confusion 25
 		timid frugal appeasing
 	variant 3
 		"Water Bug"
@@ -224,7 +223,6 @@ fleet "Large Hai Merchant"
 	names "hai"
 	cargo 4
 	personality
-		confusion 25
 		timid frugal appeasing
 	variant 3
 		"Shield Beetle (Tracker)"
@@ -284,7 +282,6 @@ fleet "Small Hai Merchant (Sympathizers)"
 	names "hai"
 	cargo 3
 	personality
-		confusion 25
 		timid frugal appeasing
 	variant 3
 		"Water Bug (Phantom Pallet)"
@@ -349,7 +346,6 @@ fleet "Large Hai Merchant (Sympathizers)"
 	names "hai"
 	cargo 4
 	personality
-		confusion 25
 		timid frugal appeasing
 	variant 3
 		"Shield Beetle (Tracker)"
@@ -409,7 +405,6 @@ fleet "Small Hai Merchant (Human)"
 	names "hai"
 	cargo 3
 	personality
-		confusion 25
 		timid frugal appeasing
 	variant 10
 		"Freighter (Hai)"
@@ -462,7 +457,6 @@ fleet "Large Hai Merchant (Human)"
 	names "hai"
 	cargo 4
 	personality
-		confusion 25
 		timid frugal appeasing
 	variant 20
 		"Water Bug" 2
@@ -582,7 +576,7 @@ fleet "Hai Miners"
 	names "hai"
 	cargo 0
 	personality
-		confusion 25
+		confusion "miner"
 		timid frugal appeasing mining harvests
 	variant 3
 		"Aphid (Armed)" 2
@@ -598,7 +592,6 @@ fleet "Unfettered Logistics"
 	cargo 3
 	commodities "Food" "Heavy Metals" "Medical"
 	personality
-		confusion 25
 		timid frugal appeasing
 	variant 3
 		"Aphid (Unfettered)" 2

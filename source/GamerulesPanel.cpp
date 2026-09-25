@@ -69,6 +69,9 @@ namespace {
 	const string MAX_ESCORT_COUNT = "Default max escort count";
 	const string MAX_ESCORT_CREW = "Default max escort crew";
 	const string ADMIN_CAP = "Default admin cap";
+	const string PERMADEATH_MODE = "Permadeath";
+	const string SINGLE_SAVE_FILE = "Single save file";
+	const string RESTRICTED_SAVE_LOADING = "Restricted save loading";
 
 	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
 
@@ -96,6 +99,9 @@ namespace {
 		{MAX_ESCORT_COUNT, "default max escort count"},
 		{MAX_ESCORT_CREW, "default max escort crew"},
 		{ADMIN_CAP, "default admin cap"},
+		{PERMADEATH_MODE, "permadeath mode"},
+		{SINGLE_SAVE_FILE, "single save file"},
+		{RESTRICTED_SAVE_LOADING, "restricted save loading"},
 	};
 
 	const int GAMERULES_PAGE_COUNT = 1;
@@ -416,6 +422,11 @@ void GamerulesPanel::DrawGamerules()
 		HABITABLE_ARRIVAL_MAX,
 		FLEET_MULTIPLIER,
 		"",
+		"Hardcore Settings",
+		PERMADEATH_MODE,
+		SINGLE_SAVE_FILE,
+		RESTRICTED_SAVE_LOADING,
+		"",
 		"Miscellaneous",
 		LOCK_GAMERULES,
 		FIGHTERS_HIT_WHEN_DISABLED,
@@ -571,6 +582,33 @@ void GamerulesPanel::DrawGamerules()
 			text = Format::AbbreviatedNumber(gamerules.GetDefaultAdminCap());
 			isOn = gamerules.GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::ADMIN_CAP;
 		}
+		else if(gamerule == PERMADEATH_MODE)
+		{
+			isOn = true;
+			switch(gamerules.GetPermadeathMode())
+			{
+				case Gamerules::PermadeathMode::OFF:
+					text = "off";
+					isOn = false;
+					break;
+				case Gamerules::PermadeathMode::LOCK_ON_DEATH:
+					text = "lock on death";
+					break;
+				case Gamerules::PermadeathMode::DELETE_ON_DEATH:
+					text = "delete on death";
+					break;
+				case Gamerules::PermadeathMode::LOCK_ON_TAKEOFF:
+					text = "lock on takeoff";
+					break;
+				case Gamerules::PermadeathMode::DELETE_ON_TAKEOFF:
+					text = "delete on takeoff";
+					break;
+			}
+		}
+		else if(gamerule == SINGLE_SAVE_FILE)
+			text = gamerules.SingleSaveFile() ? "true" : "false";
+		else if(gamerule == RESTRICTED_SAVE_LOADING)
+			text = gamerules.RestrictedSaveLoading() ? "true" : "false";
 
 		if(gamerule == hoverItem)
 		{
@@ -951,6 +989,39 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		auto validate = [](int value) -> bool { return value >= 0; };
 		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDefaultAdminCap, validate,
 			message, gamerules.GetDefaultAdminCap()));
+	}
+	else if(str == PERMADEATH_MODE)
+	{
+		Gamerules::PermadeathMode value = gamerules.GetPermadeathMode();
+		if(value == Gamerules::PermadeathMode::OFF)
+			value = Gamerules::PermadeathMode::LOCK_ON_DEATH;
+		else if(value == Gamerules::PermadeathMode::LOCK_ON_DEATH)
+			value = Gamerules::PermadeathMode::DELETE_ON_DEATH;
+		else if(value == Gamerules::PermadeathMode::DELETE_ON_DEATH)
+			value = Gamerules::PermadeathMode::LOCK_ON_TAKEOFF;
+		else if(value == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF)
+			value = Gamerules::PermadeathMode::DELETE_ON_TAKEOFF;
+		else if(value == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
+			value = Gamerules::PermadeathMode::OFF;
+		gamerules.SetPermadeathMode(value);
+	}
+	else if(str == SINGLE_SAVE_FILE)
+	{
+		if(gamerules.GetPermadeathMode() == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
+			GetUI().Push(DialogPanel::Info("This gamerule is locked to true because \"Permadeath\" is set "
+				"to \"delete on takeoff\". Change the permadeath rule to a different value to toggle this rule."));
+		else
+			gamerules.SetSingleSaveFile(!gamerules.SingleSaveFile());
+	}
+	else if(str == RESTRICTED_SAVE_LOADING)
+	{
+		Gamerules::PermadeathMode mode = gamerules.GetPermadeathMode();
+		if(mode == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF || mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
+			GetUI().Push(DialogPanel::Info("This gamerule is locked to true because \"Permadeath\" is set "
+				"to \"lock on takeoff\" or \"delete on takeoff\". Change the permadeath rule to a different "
+				"value to toggle this rule."));
+		else
+			gamerules.SetRestrictedSaveLoading(!gamerules.RestrictedSaveLoading());
 	}
 }
 

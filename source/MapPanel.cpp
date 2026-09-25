@@ -1383,16 +1383,18 @@ void MapPanel::UpdateCache()
 
 void MapPanel::DrawTravelPlan()
 {
+	if(player.TravelPlan().empty())
+		return;
+
+	const Ship *flagship = player.Flagship();
+	if(!flagship)
+		return;
+
 	const Set<Color> &colors = GameData::Colors();
 	const Color &defaultColor = *colors.Get("map travel ok flagship");
 	const Color &outOfFlagshipFuelRangeColor = *colors.Get("map travel ok none");
 	const Color &withinFleetFuelRangeColor = *colors.Get("map travel ok fleet");
-
-	// At each point in the path, keep track of how many ships in the
-	// fleet are able to make it this far.
-	const Ship *flagship = player.Flagship();
-	if(!flagship)
-		return;
+	const Color &jumpInProgressColor = *colors.Get("map travel jumping flagship");
 
 	bool stranded = false;
 	bool hasEscort = false;
@@ -1406,11 +1408,16 @@ void MapPanel::DrawTravelPlan()
 				continue;
 			}
 
-			fuel[it.get()] = it->FuelLevel();
+			// If a ship is currently in the process of jumping, account for the
+			// fuel spent on the current jump so that the map can accurately draw
+			// which links a ship has the fuel to jump across.
+			fuel[it.get()] = it->FuelLevel() + it->FuelUsedForHyperspacing();
 			hasEscort |= (it.get() != flagship);
 		}
 	stranded |= !hasEscort;
 
+	// At each point in the path, check if any ships in the
+	// fleet are unable to make it this far.
 	const double jumpRange = flagship->JumpNavigation().JumpRange();
 	const System *previous = &playerSystem;
 	const System *next = nullptr;
@@ -1442,10 +1449,13 @@ void MapPanel::DrawTravelPlan()
 				}
 
 		// Color the path green if all ships can make it. Color it yellow if
-		// the flagship can make it, and red if the flagship cannot.
+		// the flagship can make it, red if the flagship cannot, and blue if
+		// it is currently being jumped along.
 		Color drawColor = outOfFlagshipFuelRangeColor;
 		if(isWormhole)
 			drawColor = wormholeColor;
+		else if(i == (static_cast<int>(player.TravelPlan().size()) - 1) && flagship->IsEnteringHyperspace())
+			drawColor = jumpInProgressColor;
 		else if(!stranded)
 			drawColor = withinFleetFuelRangeColor;
 		else if(fuel[flagship] >= 0.)

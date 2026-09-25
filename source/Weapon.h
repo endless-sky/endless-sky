@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Angle.h"
-#include "Body.h"
 #include "Distribution.h"
+#include "Drawable.h"
 #include "Point.h"
 #include "Projectile.h"
 
@@ -68,8 +68,8 @@ public:
 	bool IsLoaded() const;
 
 	// Get assets used by this weapon.
-	const Body &WeaponSprite() const;
-	const Body &HardpointSprite() const;
+	const Drawable &ProjectileSprite() const;
+	const Drawable &HardpointSprite() const;
 	const Sound *WeaponSound() const;
 	const Sound *EmptySound() const;
 	const Sprite *Icon() const;
@@ -231,10 +231,15 @@ private:
 
 private:
 	bool isLoaded = false;
+	bool safeRangeOverriden = false;
+	bool disabledDamageSet = false;
+	bool minableDamageSet = false;
+	bool relativeDisabledDamageSet = false;
+	bool relativeMinableDamageSet = false;
 
 	// Sprites and sounds.
-	Body sprite;
-	Body hardpointSprite;
+	Drawable projectileSprite;
+	Drawable hardpointSprite;
 	const Sound *sound = nullptr;
 	const Sound *emptySound = nullptr;
 	const Sprite *icon = nullptr;

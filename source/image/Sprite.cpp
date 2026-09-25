@@ -20,9 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Logger.h"
 #include "../Preferences.h"
 
-#include "../opengl.h"
+#include "../SDL.h"
 
-#include <SDL2/SDL.h>
+#include "../opengl.h"
 
 using namespace std;
 
@@ -239,6 +239,20 @@ int Sprite::Frames() const
 int Sprite::SwizzleMaskFrames() const
 {
 	return swizzleMaskFrames;
+}
+
+
+
+void Sprite::SetArea(double area)
+{
+	this->area = area;
+}
+
+
+
+double Sprite::Area() const
+{
+	return area;
 }
 
 

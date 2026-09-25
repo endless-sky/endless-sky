@@ -495,6 +495,9 @@ tip "mass:"
 tip "max speed:"
 	`The maximum speed of this ship when using thrusters. Excludes the effect of afterburners, unless there are no normal thrusters installed.`
 
+tip "    w/ afterburner:"
+	`Movement while both your primary thrusters and afterburners are active.`
+
 tip "movement:"
 	`How quickly this ship can accelerate and turn.`
 
@@ -539,6 +542,9 @@ tip "overheat damage threshold:"
 
 tip "optical jamming:"
 	`Reduces the ability of optical-guided missiles to track your ship, which is mostly useful for larger ships. The more optical jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
+
+tip "optical size:"
+	`Influences the tracking strength of optical-guided missiles targeting this ship. A larger value means the ship is easier to track.`
 
 tip "piercing:"
 	`Percentage of this weapon's damage that leaks through to the hull while the target's shields are still active.`
@@ -860,25 +866,32 @@ tip "scan concealment:"
 
 # Shop Tips:
 tip "outfitter: b"
-	`Buy from the outfitter and install onto the currently selected ship(s). Hold Shift, Control, or Alt to buy 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+	`Buy from the outfitter and install onto the currently selected ship(s).`
+	`Hold Shift, Control, or Alt to buy 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
 
 tip "outfitter: s"
-	`Sell from cargo, storage, or the currently selected ship(s), in that order. Hold Shift, Control, or Alt to sell 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+	`Sell from cargo, storage, or the currently selected ship(s), in that order.`
+	`Hold Shift, Control, or Alt to sell 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
 
 tip "outfitter: i"
-	`Install on the currently selected ship(s) from cargo or storage, in that order. Hold Shift, Control, or Alt to install 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+	`Install on the currently selected ship(s) from cargo or storage, in that order.`
+	`Hold Shift, Control, or Alt to install 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
 
 tip "outfitter: u"
-	`Uninstall or move outfits from the currently selected ship(s) or cargo to storage, in that order. Hold Shift, Control, or Alt to uninstall 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+	`Uninstall from the currently selected ship(s) to cargo if there is space or to storage if there isn't.`
+	`Hold Shift, Control, or Alt to uninstall 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
 
 tip "outfitter: c"
-	`Transfer the outfit from planetary storage to cargo if possible. Otherwise, buy it from the outfitter. Hold Shift, Control, or Alt to buy or move 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+	`Transfer the outfit from planetary storage to cargo if possible. Otherwise, buy it from the outfitter.`
+	`Hold Shift, Control, or Alt to move 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
 
 tip "outfitter: r"
-	`Move the outfit from cargo or the currently selected ship(s) into planetary storage, in that order. Hold Shift, Control, or Alt to store 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+	`Move the outfit from cargo, the currently selected ship(s), or the outfitter into planetary storage, in that order.`
+	`Hold Shift, Control, or Alt to store 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
 
 tip "shipyard: b"
-	`Buy this ship. Hold Shift, Control, or Alt to buy 5, 20, or 500 ships at once. Hold a combination of these keys for larger amounts.`
+	`Buy this ship.`
+	`Hold Shift, Control, or Alt to buy 5, 20, or 500 ships at once. Hold a combination of these keys for larger amounts.`
 
 tip "shipyard: s"
 	`Sell the selected ships and their outfits.`
@@ -899,28 +912,44 @@ tip "  + outfits:"
 
 # Ship heat and energy summary fields:
 tip "idle:"
-	`Energy and heat generated when this ship is idle, i.e. not firing weapons, turning, or thrusting.`
+	`Energy and heat generated per second when this ship is idle, i.e. not firing weapons, moving, or using any other systems.`
 
 tip "moving:"
-	`Energy consumed and heat generated when this ship is turning and thrusting. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is turning and thrusting. Includes the cost of using an afterburner if one is installed, or uses the cost of using reverse thrust if that is greater than the cost of forward thrust. This is in addition to the "idle" amount.`
+
+tip "thrusting:"
+	`Energy consumed and heat generated per second when this ship is thrusting. This is in addition to the "idle" amount.`
+
+tip "reversing:"
+	`Energy consumed and heat generated per second when this ship is using reverse thrusters. This is in addition to the "idle" amount.`
+
+tip "afterburner:"
+	`Energy consumed and heat generated per second when this ship is using its afterburner. This is in addition to the "idle" amount.`
+
+tip "turning:"
+	`Energy consumed and heat generated per second when this ship is turning. This is in addition to the "idle" amount.`
 
 tip "firing:"
-	`Energy consumed and heat generated when this ship is firing all its weapons. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is firing all its weapons. This is in addition to the "idle" amount. Note that weapons may consume or generate more energy or heat than this at the moment they fire, and this is the average value over time.`
 
 tip "shields / hull:"
-	`Energy consumed and heat generated when this ship is recharging shields and repairing its hull at the same time. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is recharging shields and repairing its hull at the same time. This is in addition to the "idle" amount.`
 
 tip "repairing hull:"
-	`Energy consumed and heat generated when this ship is repairing its hull. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is repairing its hull. This is in addition to the "idle" amount.`
 
 tip "charging shields:"
-	`Energy consumed and heat generated when this ship is recharging its shields. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is recharging its shields. This is in addition to the "idle" amount.`
 
 tip "net change:"
-	`The sum of the energy consumed and heat generated from the above energy and heat values. Represents the worst case scenario when all systems are active at once.`
+	`The sum of the energy consumed and heat generated per second from the above energy and heat values. Represents the worst case scenario when all possible systems are active at once.`
 
 tip "capacity:"
-	`Energy storage capacity and heat capacity. Energy capacity allows a ship to temporarily draw more energy than it produces, and can be increased by installing batteries. The heat capacity is the highest your heat generation can be without eventually causing your ship to overheat, and is influenced by the mass of the ship.`
+	`Energy capacity allows a ship to temporarily draw more energy than it produces, and can be increased by installing batteries.`
+	`Heat capacity is the highest your heat generation can be without eventually causing your ship to overheat, and is influenced by the mass of the ship. If the "net change" value for heat is greater than this value, then the ship can overheat itself. Weapons with high firing heat per shot can cause you to become overheated even if "net change" is below heat capacity.`
+
+tip "surge:"
+	`This ship lacks energy storage. Therefore, this is the greatest amount of energy that can be drawn by any of this ship's systems in a single instant, such as the energy required for a single shot of a weapon. Systems that require more than this amount of energy to activate will be unusable.`
 
 
 
@@ -1288,6 +1317,9 @@ tip "limited thrust?"
 tip "limited turn?"
 	`This ship's energy supply is not sufficient to run the steering at full power. Its turn rate will be diminished.`
 
+tip "limited movement?"
+	`This ship's energy supply is not sufficient to run both thrusters and steering at the same time. Its movement will be diminished.`
+
 tip "solar power?"
 	`This ship is powered entirely by solar energy. It could be difficult to maneuver if you fly too far from the center of a star system, because your engines will only have a fraction of the power they require.`
 
@@ -1304,7 +1336,7 @@ tip "no bays?"
 	`There are insufficient bays available to carry this ship. If it took off, it would be unable to leave this star system.`
 
 tip "insufficient energy to fire?"
-	`This ship has insufficient energy storage to fire an installed weapon.`
+	`This ship has insufficient energy storage to fire an installed weapon. Install outfits that increase your energy storage, or if you have no energy storage, ensure that your "surge" energy is greater than the firing energy per shot of your weapons.`
 
 
 
@@ -1593,6 +1625,8 @@ tip "Aim turrets with mouse"
 
 tip "Automatic aiming"
 	`Automatically turn your ship towards your target to aim fixed weapons.`
+	`If you have multiple fixed weapons with differing projectile velocities, aiming will be done using the weapons with the highest damage per second.`
+	`If you have any active and loaded non-homing weapons that use ammo, they will be used for aiming in order to make your limited ammunition count, even if your primary weapons have a higher damage per second.`
 
 tip "Automatic firing"
 	`Automatically fire your primary weapons if your enemy is within the weapon's range.`
@@ -1678,6 +1712,9 @@ tip "Confirm selling outfits"
 
 tip "Confirm selling minables"
 	`In the Trading panel, controls whether or not to confirm sales of minables, specials and other flotsam that may have been picked up.`
+
+tip "Sync FF to CapsLock"
+	`Whether fast-forward should be in sync with the state of CapsLock on the system. The default setting keeps them in sync if the fast-forward key is CapsLock.`
 
 tip "Landing zoom"
 	`Apply a cinematic zoom in and out when you are landing and taking off.`
@@ -1804,3 +1841,25 @@ tip "Default max escort crew"
 
 tip `Default admin cap`
 	`If the fleet size limitation is "admin cap," then this is the default maximum administrative capacity. Ships will have individual administrative costs that count toward your capacity. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
+
+tip "Permadeath"
+	`Whether permadeath mode is active, and how it should behave.`
+	`- "lock on death": When you die, this pilot will be locked. You will be unable to load any of its saves after it enters this state, but you'll still have the save files to share and for keeping memories.`
+	`- "delete on death": When you die, this pilot's save files will be deleted.`
+	`- "lock on takeoff": When you depart from a planet, this pilot will be locked. It will be unlocked again upon landing on a planet. Forces the "Restricted save loading" gamerule to be on.`
+	`- "delete on takeoff": When you depart from a planet, this pilot's save file will be deleted and will only be recreated when you land. Forces the "Single save file" and "Restricted save loading" gamerules to be on.`
+
+tip "Single save file"
+	`If true, this pilot will only be able to have a single save file at a time. You will be unable to create snapshots and the game will not create autosaves for previous days. Only your most recent landing point will be saved.`
+
+tip "Restricted save loading"
+	`If true, this pilot will be unable to reload save files while not on the safety of a planet.`
+
+
+
+# Boarding panel
+tip `boarding: in cargo`
+	`This item is in the ship's cargo hold.`
+
+tip `boarding: installed`
+	`This item is installed on the ship. Removal may leave the ship inoperable.`
