@@ -278,7 +278,7 @@ fleet "Arach Miners"
 	names "arach"
 	cargo 0
 	personality
-		confusion 20
+		confusion "miner"
 		pacifist timid mining harvests
 	variant 5
 		"Arach Courier (Miner)"
@@ -300,7 +300,7 @@ fleet "Kimek Miners"
 	names "kimek"
 	cargo 0
 	personality
-		confusion 20
+		confusion "miner"
 		pacifist timid mining harvests
 	variant 5
 		"Kimek Thorn (Miner)"
@@ -320,7 +320,7 @@ fleet "Saryd Miners"
 	names "saryd"
 	cargo 0
 	personality
-		confusion 20
+		confusion "miner"
 		pacifist timid mining harvests
 	variant 4
 		"Saryd Runabout (Miner)"

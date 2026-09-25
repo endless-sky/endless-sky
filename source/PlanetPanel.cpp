@@ -465,10 +465,10 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	// Have you left any unique items at the outfitter?
 	map<const Outfit *, int> leftUniques;
 	for(const auto &[outfit, count] : player.GetStock())
-		if(count > 0 && outfit->GetPrecise("unique"))
+		if(count > 0 && outfit->GetPrecise("unique") && !outfitterStock.contains(outfit))
 			leftUniques[outfit] = count;
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
-	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
+	// drive, or carrier). All such ships will have been logged in the player's flight check.
 	size_t nonJumpCount = 0;
 	if(!flightChecks.empty())
 	{
@@ -588,6 +588,7 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 {
 	flightChecks.clear();
 	player.Save();
+	player.ApplyPermadeath();
 	if(player.TakeOff(GetUI(), distributeCargo))
 	{
 		if(callback)

@@ -20,9 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Logger.h"
 #include "../Preferences.h"
 
-#include "../opengl.h"
+#include "../SDL.h"
 
-#include <SDL2/SDL.h>
+#include "../opengl.h"
 
 using namespace std;
 
@@ -139,7 +139,10 @@ bool Sprite::HasDimensions() const
 void Sprite::AddFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noReduction)
 {
 	isLoaded = true;
-	// The 1x image determines the dimensions of the sprite's size.
+	// The 1x image determines the dimensions of the sprite's size
+	// and its number of frames. ImageSet should ensure that either 1x
+	// and 2x buffers contain the same number of frames, or the 2x buffer
+	// is empty.
 	width = buffer1x.Width();
 	height = buffer1x.Height();
 	frames = buffer1x.Frames();
@@ -148,7 +151,7 @@ void Sprite::AddFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noRedu
 	if(!buffer1x.Pixels())
 		return;
 
-	// Only use the 2x resolution image if it is provided.
+	// Use only the 2x resolution image if it is provided.
 	if(buffer2x.Pixels())
 	{
 		AddBuffer(name, buffer2x, &texture, noReduction);
@@ -174,7 +177,7 @@ void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, 
 	if(!buffer1x.Pixels())
 		return;
 
-	// Only use the 2x resolution image if it is provided.
+	// Use only the 2x resolution image if it is provided.
 	if(buffer2x.Pixels())
 	{
 		AddBuffer(name, buffer2x, &swizzleMask, noReduction);
@@ -239,6 +242,20 @@ int Sprite::Frames() const
 int Sprite::SwizzleMaskFrames() const
 {
 	return swizzleMaskFrames;
+}
+
+
+
+void Sprite::SetArea(double area)
+{
+	this->area = area;
+}
+
+
+
+double Sprite::Area() const
+{
+	return area;
 }
 
 

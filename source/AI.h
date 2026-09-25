@@ -38,6 +38,7 @@ class ConditionsStore;
 class Flotsam;
 class Government;
 class Minable;
+class Outfit;
 class PlayerInfo;
 class Ship;
 class ShipEvent;
@@ -167,9 +168,9 @@ private:
 	static void CircleAround(const Ship &ship, Command &command, const Body &target);
 	static void Swarm(const Ship &ship, Command &command, const Body &target);
 	static void KeepStation(const Ship &ship, Command &command, const Body &target);
-	static void Attack(const Ship &ship, Command &command, const Ship &target);
-	static void AimToAttack(const Ship &ship, Command &command, const Body &target);
-	static void MoveToAttack(const Ship &ship, Command &command, const Body &target);
+	static void Attack(const Ship &ship, Command &command, const Ship &target, FireCommand &targeting);
+	static void AimToAttack(const Ship &ship, Command &command, const Body &target, FireCommand &targeting);
+	static void MoveToAttack(const Ship &ship, Command &command, const Body &target, FireCommand &targeting);
 	static void PickUp(const Ship &ship, Command &command, const Body &target);
 	// Special personality behaviors.
 	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
@@ -188,14 +189,19 @@ private:
 	// maximum damage to a target at the given position with its non-turret,
 	// non-homing weapons. If the ship has no non-homing weapons, this just
 	// returns the direction to the target.
-	static Point TargetAim(const Ship &ship);
-	static Point TargetAim(const Ship &ship, const Body &target);
+	// For only the player's flagship, which secondary weapons are currently selected should be provided
+	// so that the flagship doesn't try to aim with weapons that the player isn't even using.
+	static Point TargetAim(const Ship &ship, FireCommand &targeting,
+		const std::set<const Outfit *> *includeSecondaries = nullptr);
+	static Point TargetAim(const Ship &ship, const Body &target, FireCommand &targeting,
+		const std::set<const Outfit *> *includeSecondaries = nullptr);
 	// Aim the given ship's turrets.
 	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false,
 			const std::optional<Point> &targetOverride = std::nullopt) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true, bool isFlagship = false) const;
+	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true,
+		bool isFlagship = false, const std::set<const Outfit *> *includeSecondaries = nullptr) const;
 	void AutoFire(const Ship &ship, FireCommand &command, const Body &target) const;
 
 	// Calculate how long it will take a projectile to reach a target given the
@@ -203,8 +209,12 @@ private:
 	// projectile. If it cannot hit the target, this returns NaN.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
 
-	// True if found asteroid.
-	bool TargetMinable(Ship &ship) const;
+	// Only used by the player. Searches every asteroid within the player's
+	// asteroid scanning capabilities and sets the flagship's target to whichever
+	// asteroid is the best based on the player's preferences.
+	// Returns true if an asteroid was found.
+	bool PlayerTargetMinable(Ship &flagship) const;
+
 	// True if the ship performed the indicated event to the other ship.
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
 	// True if the government performed the indicated event to the other ship.

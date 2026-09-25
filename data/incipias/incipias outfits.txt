@@ -377,6 +377,7 @@ outfit "Cloud Piercer"
 	"capture attack" .55
 	"capture defense" 1.5
 	"unplunderable" 1
+	"can jettison" 1
 	description "When it comes to close combat, the Incipias are formidable opponents. This brutal weapon may not be the best to invade another ship with, but when it comes to defending, it quite literally shreds enemies."
 
 # Special

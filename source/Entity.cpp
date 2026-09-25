@@ -15,11 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Entity.h"
 
+#include "DamageDealt.h"
 #include "Effect.h"
 #include "GameData.h"
 #include "image/Mask.h"
 #include "Random.h"
+#include "image/Sprite.h"
 #include "Visual.h"
+#include "Weapon.h"
 
 #include <algorithm>
 
@@ -238,6 +241,36 @@ bool Entity::IsTargetable() const
 
 
 
+double Entity::Cloaking() const
+{
+	return 0.;
+}
+
+
+
+bool Entity::IsCloaked() const
+{
+	return false;
+}
+
+
+
+double Entity::OpticalSize() const
+{
+	if(opticalSize)
+		return opticalSize;
+	if(!sprite)
+		return 0.;
+	double area = sprite->Area();
+	if(scale != Point(1., 1.))
+		area *= scale.X() * scale.Y();
+	// 16 was determined to be a good scaling factor from the
+	// old method of optical tracking being based off of mass.
+	return area / 16.;
+}
+
+
+
 double Entity::OpticalJamming() const
 {
 	return opticalJamming;
@@ -248,6 +281,69 @@ double Entity::OpticalJamming() const
 double Entity::RadarJamming() const
 {
 	return radarJamming;
+}
+
+
+
+const ResourceLevels &Entity::DamageProtection() const
+{
+	return damageProtection;
+}
+
+
+
+double Entity::PiercingProtection() const
+{
+	return piercingProtection;
+}
+
+
+
+double Entity::PiercingResistance() const
+{
+	return piercingResistance;
+}
+
+
+
+double Entity::HighShieldPermeability() const
+{
+	return highShieldPermeability;
+}
+
+
+
+double Entity::LowShieldPermeability() const
+{
+	return lowShieldPermeability;
+}
+
+
+
+double Entity::CloakedShieldPermeability() const
+{
+	return cloakedShieldPermeability;
+}
+
+
+
+double Entity::CloakedHullProtection() const
+{
+	return cloakedHullProtection;
+}
+
+
+
+double Entity::CloakedShieldProtection() const
+{
+	return cloakedShieldProtection;
+}
+
+
+
+double Entity::ForceProtection() const
+{
+	return forceProtection;
 }
 
 
@@ -335,22 +431,27 @@ void Entity::DoStatusEffects(bool disabled)
 
 void Entity::DoStatusSparks(std::vector<Visual> &visuals) const
 {
-	if(levels.ionization)
-		CreateSparks(visuals, "ion spark", levels.ionization * .05);
-	if(levels.scrambling)
-		CreateSparks(visuals, "scramble spark", levels.scrambling * .05);
-	if(levels.disruption)
-		CreateSparks(visuals, "disruption spark", levels.disruption * .1);
-	if(levels.slowness)
-		CreateSparks(visuals, "slowing spark", levels.slowness * .1);
-	if(levels.discharge)
+	// Sparks are only created for entities where the spark has an actual effect.
+	// All entities have hull and heat, so corrosion and burning can always apply.
+	// Discharge and disruption, as well as leakage only apply to entities with shields and fuel respectively.
+	// The remaining status effects can only apply to ships.
+	if(levels.discharge && MaxShields())
 		CreateSparks(visuals, "discharge spark", levels.discharge * .1);
 	if(levels.corrosion)
 		CreateSparks(visuals, "corrosion spark", levels.corrosion * .1);
-	if(levels.leakage)
-		CreateSparks(visuals, "leakage spark", levels.leakage * .1);
+	if(levels.ionization && entityType == Type::SHIP)
+		CreateSparks(visuals, "ion spark", levels.ionization * .05);
 	if(levels.burning)
 		CreateSparks(visuals, "burning spark", levels.burning * .1);
+	if(levels.leakage && MaxFuel())
+		CreateSparks(visuals, "leakage spark", levels.leakage * .1);
+
+	if(levels.disruption && MaxShields())
+		CreateSparks(visuals, "disruption spark", levels.disruption * .1);
+	if(levels.slowness && entityType == Type::SHIP)
+		CreateSparks(visuals, "slowing spark", levels.slowness * .1);
+	if(levels.scrambling && entityType == Type::SHIP)
+		CreateSparks(visuals, "scramble spark", levels.scrambling * .05);
 }
 
 
@@ -387,11 +488,54 @@ void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double 
 
 
 
+int Entity::TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *hitBy)
+{
+	levels.Damage(damage.Levels());
+
+	// Prevent various stats from reaching unallowable values.
+	// ResourceLevels::Damage already ensures that stats aside from hull don't become negative,
+	// so the only remaining unallowable values are overhealing hull or shields.
+	levels.hull = min(levels.hull, MaxHull());
+	levels.shields = min(levels.shields, MaxShields());
+
+	// Create target effect visuals, if there are any.
+	for(const auto &[effect, count] : damage.GetWeapon().TargetEffects())
+		CreateSparks(visuals, effect, count * damage.Scaling());
+
+	return DoTakeDamage(damage, hitBy);
+}
+
+
+
 void Entity::CacheAttributes()
 {
 	heatDissipation = attributes.Get("heat dissipation");
+
+	opticalSize = attributes.Get("optical size");
 	opticalJamming = attributes.Get("optical jamming");
 	radarJamming = attributes.Get("radar jamming");
+
+	piercingProtection = 1. + attributes.Get("piercing protection");
+	piercingResistance = attributes.Get("piercing resistance");
+	highShieldPermeability = attributes.Get("high shield permeability");
+	lowShieldPermeability = attributes.Get("low shield permeability");
+	cloakedShieldPermeability = attributes.Get("cloaked shield permeability");
+	cloakedHullProtection = attributes.Get("cloak hull protection");
+	cloakedShieldProtection = attributes.Get("cloak shield protection");
+	damageProtection.shields = 1. + attributes.Get("shield protection");
+	damageProtection.hull = 1. + attributes.Get("hull protection");
+	damageProtection.energy = 1. + attributes.Get("energy protection");
+	damageProtection.fuel = 1. + attributes.Get("fuel protection");
+	damageProtection.heat = 1. + attributes.Get("heat protection");
+	damageProtection.discharge = 1. + attributes.Get("discharge protection");
+	damageProtection.corrosion = 1. + attributes.Get("corrosion protection");
+	damageProtection.ionization = 1. + attributes.Get("ion protection");
+	damageProtection.burning = 1. + attributes.Get("burn protection");
+	damageProtection.leakage = 1. + attributes.Get("leak protection");
+	damageProtection.slowness = 1. + attributes.Get("slowing protection");
+	damageProtection.scrambling = 1. + attributes.Get("scramble protection");
+	damageProtection.disruption = 1. + attributes.Get("disruption protection");
+	forceProtection = 1. + attributes.Get("force protection");
 
 	auto CalibrateResistance = [this](const string &name, double &stat, ResourceLevels &cost) -> void {
 		stat = attributes.Get(name + " resistance");

@@ -575,4 +575,5 @@ outfit "Phalanx System"
 	thumbnail "outfit/quarg countermeasures"
 	"capture defense" 36
 	"unplunderable" 1
+	"can jettison" 1
 	description "With an abundance of caution regarding the potential theft and misuse of their technology, Quarg ships are outfitted with special systems for repelling boarders in a manner that could be considered overkill. Because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."

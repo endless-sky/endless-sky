@@ -44,7 +44,6 @@ void ShipAttributeCache::Calibrate(const Ship &ship)
 	// Miscellaneous actions and attributes:
 	Cloaking(attributes);
 	Scanning(attributes);
-	Damage(attributes);
 	Misc(attributes);
 }
 
@@ -300,33 +299,6 @@ void ShipAttributeCache::Scanning(const Outfit &attributes)
 	atmosphereScan = attributes.Get("atmosphere scan");
 	silentScans = attributes.Get("silent scans");
 	inscrutable = attributes.Get("inscrutable");
-}
-
-
-
-void ShipAttributeCache::Damage(const Outfit &attributes)
-{
-	piercingProtection = 1. + attributes.Get("piercing protection");
-	piercingResistance = attributes.Get("piercing resistance");
-	highShieldPermeability = attributes.Get("high shield permeability");
-	lowShieldPermeability = attributes.Get("low shield permeability");
-	cloakedShieldPermeability = attributes.Get("cloaked shield permeability");
-	cloakedHullProtection = attributes.Get("cloak hull protection");
-	cloakedShieldProtection = attributes.Get("cloak shield protection");
-	damageProtection.shields = 1. + attributes.Get("shield protection");
-	damageProtection.hull = 1. + attributes.Get("hull protection");
-	damageProtection.energy = 1. + attributes.Get("energy protection");
-	damageProtection.fuel = 1. + attributes.Get("fuel protection");
-	damageProtection.heat = 1. + attributes.Get("heat protection");
-	damageProtection.discharge = 1. + attributes.Get("discharge protection");
-	damageProtection.corrosion = 1. + attributes.Get("corrosion protection");
-	damageProtection.ionization = 1. + attributes.Get("ion protection");
-	damageProtection.burning = 1. + attributes.Get("burn protection");
-	damageProtection.leakage = 1. + attributes.Get("leak protection");
-	damageProtection.slowness = 1. + attributes.Get("slowing protection");
-	damageProtection.scrambling = 1. + attributes.Get("scramble protection");
-	damageProtection.disruption = 1. + attributes.Get("disruption protection");
-	forceProtection = 1. + attributes.Get("force protection");
 }
 
 
