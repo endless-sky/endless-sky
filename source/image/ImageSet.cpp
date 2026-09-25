@@ -153,7 +153,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 		}
 
 	int normalFrames = paths[0].size();
-	auto DropPaths = [&](vector<filesystem::path> &toResize, const string &specifier, bool is2x)
+	auto DropPaths = [&](vector<filesystem::path> &toResize, const string &specifier, bool isMask)
 	{
 		int size = toResize.size();
 		if(!size)
@@ -172,7 +172,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 		}
 		// The number of 2x frames can't be less than the number of 1x frames.
 		// Discard all 2x frames if there aren't enough to cover each 1x frame.
-		else if(is2x && size < normalFrames)
+		else if(!isMask && size < normalFrames)
 		{
 			Logger::Log(prefix + "sprite has " + to_string(normalFrames - size) + " more normal resolution "
 				"frame(s) than " + specifier + " frames. All " + specifier + " frames will be dropped to prevent "
@@ -182,7 +182,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 		// Masks should only have 1 frame or the same number of frames as the 1x resolution.
 		// If there are fewer frames of swizzle mask than base image, only use the
 		// first swizzle mask frame.
-		else if(!is2x && size != 1 && size != normalFrames)
+		else if(isMask && size != 1 && size != normalFrames)
 		{
 			Logger::Log(prefix + "Discarding " + to_string(size - 1) + " frames of swizzle mask because there"
 				" are more frames of animation. Only the first swizzle mask frame will be used.", Logger::Level::WARNING);
@@ -191,9 +191,9 @@ void ImageSet::ValidateFrames() noexcept(false)
 	};
 
 	// Drop any @2x and mask paths that will not be used.
-	DropPaths(paths[1], "@2x", true);
-	DropPaths(paths[2], "mask", false);
-	DropPaths(paths[3], "@2x mask", false);
+	DropPaths(paths[1], "@2x", false);
+	DropPaths(paths[2], "mask", true);
+	DropPaths(paths[3], "@2x mask", true);
 }
 
 
