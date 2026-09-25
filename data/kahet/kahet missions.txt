@@ -5068,7 +5068,7 @@ mission "Ka'het: Lightning in a Bottle 2"
 		has "Ka'het: Lightning in a Bottle 1: done"
 	on complete
 		conversation
-			`Sitting atop the cloud layer, it takes you a dozen attempts before your signal finally reaches the Tern through the chaotic atmosphere. Far above, the violet swirl of the wormhole peeks just above the horizon. You wait for the probe to rise through the darkness, wondering how the Remnant can talk with it from so far away.`
+			`Sitting atop the cloud layer, it takes you a dozen attempts before your signal finally reaches the Tern through the chaotic atmosphere. Far above, the violet swirl of the wormhole peeks just above the horizon. You wait for the probe to rise through the darkness.`
 			`	The vehicle appears upside down, its barrels independently pointing somewhere in the sky. Just as you try an approach, an impressive gust nearly smashes you against the Tern. At the last second its systems take over, swooshing it away from the impact trajectory. Eventually, you can start going through the tasks Taely gave you.`
 			choice
 				`	(Use the opportunity to take a closer look at its sensor array.)`
