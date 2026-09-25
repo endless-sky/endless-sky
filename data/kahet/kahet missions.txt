@@ -4879,7 +4879,7 @@ event "ka'het: alix discoveries"
 
 mission "Ka'het: Cloud Probe 1"
 	name "In the deep"
-	description "Escort a Swan with four modified Terns from <destination> through a number of gas giants."
+	description "Escort a Swan with four modified Terns through a number of gas giants, starting with <destination>."
 	source
 		government "Remnant"
 		attributes "remnant primary"
@@ -4891,7 +4891,7 @@ mission "Ka'het: Cloud Probe 1"
 		conversation
 			`Glancing around the landing zone, you spot two Remnant walking at a fast pace toward your ship; eventually, you recognize them as Taely, still wearing her flight helmet, and Torza. "We have been looking for you, Captain," he begins. He gestures toward the ship they arrived from: a Swan, carrying four Terns below its massive wings. "Have you been in the Graveyard recently?"`
 			`	The three of you take a seat on a starport bench. Torza seems to be concerned about the amount of data that they possess on the inhabitants in the Graveyard. "Our current surveillance methods are limited," he continues, "especially around the Ka'het. One must stay cloaked at all times in order to survive." Taely intervenes with some technical details - of the compromises between ramscoop requirements and designing for optimal cloaking, and how running them continuously will inevitably clog them over time. While you do not recognize every sign she makes, the exploding motion she makes with her hands makes the consequences clear.`
-			`	"But if we cannot make them undetectable, perhaps we can make them unreachable. We have recently learned how to replicate extremely precise trackers," she states, "enough to record orbital vehicles from deep inside an atmosphere. The idea was raised to take a Tern, mount these optics inside of it, and leave it permanently inside a Graveyard gas giant." He indicates again, one by one, the four drones clamped beneath the Swan.`
+			`	"But if we cannot make them undetectable, perhaps we can make them unreachable. We have recently learned how to replicate extremely precise trackers," she states, "enough to record orbital vehicles from deep inside an atmosphere. The idea was raised to take a Tern, mount these optics inside of it, and leave it permanently inside a Graveyard gas giant." Torza indicates again, one by one, the four drones clamped beneath the Swan.`
 			choice
 				`	"Will that hide them from the Ka'het?"`
 				`	"Why was that not a concern previously?"`
@@ -4911,16 +4911,16 @@ mission "Ka'het: Cloud Probe 1"
 			`	"Make sure to use a gaslined ship," she reminds you. "Your first target will be in <system>, on the opposite edge of the Ember Waste. The Graveyard is host to gas giants strangely different from the ones here; only <planet> is similar enough for us to trial it before entering the battlefield."`
 			`	"Be careful with our Swan," adds Torza. "It is meant to support a fleet in combat, not win a one-on-one fight. If you encounter trouble, better use some of its fuel reserves to jump somewhere else."`
 				accept
-	on complete
-		dialog "Once the Swan reaches the outskirts of the atmosphere, a Tern drops from its wing and plunges into the depth of the gas giant. The captain of the Swan shares updates through the radio, and once it reaches an equilibrium, your map updates with your next stop. It is time to enter the Graveyard: the destination is Antamesa in the Polerius system."
 	npc accompany save
 		government "Remnant"
+		personality escort unconstrained launching pacifist
 		ship "Swan" "Serene Pillar Lost"
 		ship "Tern" "Sunlit Song Remade"
 		ship "Tern" "Sharp Sky Restored"
 		ship "Tern" "Starlit Spire Renewed"
 		ship "Tern" "Shadow Storm Reborn"
-		personality escort unconstrained launching pacifist
+	on complete
+		dialog "Once the Swan reaches the outskirts of the atmosphere, a Tern drops from its wing and plunges into the depth of the gas giant. The captain of the Swan shares updates through the radio, and once it reaches an equilibrium, your map updates with your next stop. It is time to enter the Graveyard: the destination is Antamesa in the Polerius system."
 
 mission "Ka'het: Cloud Probe 2"
 	landing
@@ -4974,7 +4974,7 @@ mission "Ka'het: Cloud Probe 4"
 	to offer
 		has "Ka'het: Cloud Probe 3: done"
 	on complete
-		dialog "While the final Tern disappears beyond your sight, you receive a message from the Swan captain. With this task complete, they ask you to escort them to Seraglio - a small planet of the Arculus system - before you part ways. When you inquire further, she simply states that they have been assigned there next."
+		dialog "While the final Tern disappears beyond your sight, you receive a message from the Swan captain. With this task complete, she asks you to escort them to Seraglio - a small planet of the Arculus system - before you part ways. When you inquire further, she simply states that they have been assigned there next."
 	npc accompany save
 		government "Remnant"
 		ship "Swan" "Serene Pillar Lost"
@@ -5020,7 +5020,7 @@ event "ka'het: gaslining probe storm"
 mission "Ka'het: Lightning in a Bottle 1"
 	landing
 	name "Hear from Taely on <planet>"
-	description "Meet up with Taely on <destination> as her message requested. There appears to be some trouble with their gaslining probes."
+	description "Taely has asked you to meet with her on <destination>. There appears to be some trouble with their gaslining probes."
 	deadline
 	deadline 2
 	source
@@ -5044,8 +5044,8 @@ mission "Ka'het: Lightning in a Bottle 1"
 			label okay
 			`	"Ah, fairly well," she replies with a hint of perplexity. "Given the issues with the mission, we are all making best use of our flexible hours. More than usual, I admit, but it is a necessity right now."`
 			`	"What do you mean by flexible hours?" you ask.`
-			`	"Sleeping hours." She puts her hand on the back of her head, almost instinctively, before explaining. "One of the more common benefits of our symbionts is the capacity to control better our sleep cycle. Once one stays awake for longer than expected by the Circadian rhythm, their body starts having an excess of a number of chemicals, and a deficit of others. Our symbionts are capable of storing the former and administering the latter, at least for a time; then, at the right moment, the process is reversed and we go through the entire sleep we had put off for the previous days.`
-			`	"This has multiple uses. As in this case, we can stay awake for as long as it takes for an emergency to get under control without excess fatigue. Alternatively, we can use it to adapt to different planets, where the length of the day-night is sometimes wildly different. I recall from your records that there are medicines used for similar purpose, but we prefer this approach. Though," she smiles, "I have been told that it can give a tendency to digress."`
+			`	"Sleeping hours." She puts her hand on the back of her head, almost instinctively, before explaining. "One of the more common benefits of our symbionts is the capacity to control better our sleep cycle. Once one stays awake for longer than expected by the circadian rhythm, their body starts having an excess of a number of chemicals, and a deficit of others. Our symbionts are capable of storing the former and administering the latter, at least for a time; then, at the right moment, the process is reversed and we go through the entire sleep we had put off for the previous days.`
+			`	"This has multiple uses. As in this case, we can stay awake for as long as it takes for an emergency to get under control without excess fatigue. Alternatively, we can use it to adapt to different planets, where the length of the day-night cycle is sometimes wildly different. I recall from your records that there are medicines used for similar purpose, but we prefer this approach. Though," she smiles, "I have been told that it can give a tendency to digress."`
 			label meaning
 			`	Taely walks toward one of your screens, eventually making it show the data of one of the Terns you recently deployed. "Ever since the first ion storm, the probe stationed in Meligara has become useless. Every tracker returns vast amounts of noise, so much that it is impossible to distinguish a Ka'het in that mess. If, as we suspect, there is a gap in its ion shielding, it is only a matter of time until we lose it. Today marks the fifth day we have spent trying to identify the issue."`
 			`	She starts tracing lines by hand around a few sections of the Tern. "Each of these areas could be the cause of the problem. If you dissect these parts with your equipment, we should, at least, prevent the other probes from falling to the same issue."`
@@ -5120,7 +5120,6 @@ mission "Ka'het: Lightning in a Bottle 2"
 					decline
 				`	"What about your own probes?"`
 			`	"Well," she replies with some trepidation, "they seem to be fine, after all. If nothing new comes up, we can just leave them be on their own mission."`
-				decline
 
 mission "Ka'het: Lightning in a Bottle 3A"
 	name "Builder balloon"
@@ -5142,10 +5141,10 @@ mission "Ka'het: Lightning in a Bottle 3A"
 				accept
 	npc accompany save
 		government "Remnant"
+		personality escort unconstrained launching
 		ship "Swan" "Serene Pillar Lost"
 		ship "Peregrine" "Dark Anchor"
 		ship "Peregrine" "Black Song"
-		personality escort unconstrained launching
 
 event "Ka'het don't spawn in Ritilas"
 	system Ritilas
@@ -5240,7 +5239,7 @@ mission "Ka'het: Lightning in a Bottle 4"
 				`	"Depends on what you can get out of this, I guess."`
 					goto probe
 				`	"What is going to happen with the program?"`
-			`	"Evidently, our original premise - that the Ka'het would not be able to reach a gaslining probe - was flawed from the start. If there is one field where the Ka'het show a modicum of inventiveness, it is direct combat. Arming one of these vehicles with a Point Defense system would have limited benefits, especially compared to starting over with a new idea."`
+			`	"Evidently, our original premise - that the Ka'het would not be able to reach a gaslining probe - was flawed from the start. If there is one field where the Ka'het show a modicum of inventiveness, it is direct combat. Arming one of these vehicles with a point defense system would have limited benefits, especially compared to starting over with a new idea."`
 			`	"What kind of idea?" you ask.`
 			`	She stops for a bit, then shakes her head. "We will inform you when we get a good one.`
 			label probe
