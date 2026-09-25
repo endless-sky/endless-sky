@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <filesystem>
 #include <map>
 #include <memory>
+#include <optional>
 #include <string>
 
 class PilotProfile;
@@ -58,7 +59,9 @@ protected:
 private:
 	void UpdateLists();
 
-	// Snapshot name callback.
+	std::optional<std::filesystem::path> SnapshotPathBase() const;
+	// Snapshot name callbacks.
+	bool SnapshotNameFilter(const std::string &name, char ch);
 	void SnapshotCallback(const std::string &name);
 	void WriteSnapshot(const std::filesystem::path &sourceFile, const std::filesystem::path &snapshotName);
 	// Load snapshot callback.
@@ -73,7 +76,7 @@ private:
 	SavedGame loadedInfo;
 	UI &gamePanels;
 
-	std::map<std::string, std::shared_ptr<PilotProfile>> pilots;
+	std::vector<std::shared_ptr<PilotProfile>> pilots;
 	std::shared_ptr<PilotProfile> selectedPilot;
 	std::string selectedFile;
 	// If the player enters a filename that exists, prompt before overwriting it.
