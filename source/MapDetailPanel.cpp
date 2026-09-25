@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 
 #include "text/Alignment.h"
-#include "Angle.h"
 #include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
@@ -37,7 +36,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
-#include "Radar.h"
 #include "Rectangle.h"
 #include "shader/RingShader.h"
 #include "Screen.h"
@@ -53,7 +51,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Trade.h"
 #include "text/Truncate.h"
 #include "UI.h"
-#include "Wormhole.h"
 
 #include <algorithm>
 #include <cmath>
