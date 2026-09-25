@@ -4878,7 +4878,8 @@ event "ka'het: alix discoveries"
 
 
 mission "Ka'het: Cloud Probe 1"
-	name "In the deep"
+	minor
+	name "In the Depths"
 	description "Escort a Swan with four modified Terns through a number of gas giants, starting with <destination>."
 	source
 		government "Remnant"
@@ -5060,12 +5061,12 @@ mission "Ka'het: Lightning in a Bottle 1"
 mission "Ka'het: Lightning in a Bottle 2"
 	landing
 	name "Check out the probe in <system>"
-	description "Return to <stopover> to take samples from the Tern stationed there."
+	description "Return to <destination> to take samples from the Tern stationed there."
 	source "Aventine"
-	stopover "Meligara"
+	destination "Meligara"
 	to offer
 		has "Ka'het: Lightning in a Bottle 1: done"
-	on stopover
+	on complete
 		conversation
 			`Sitting atop the cloud layer, it takes you a dozen attempts before your signal finally reaches the Tern through the chaotic atmosphere. Far above, the violet swirl of the wormhole peeks just above the horizon. You wait for the probe to rise through the darkness, wondering how the Remnant can talk with it from so far away.`
 			`	The vehicle appears upside down, its barrels independently pointing somewhere in the sky. Just as you try an approach, an impressive gust nearly smashes you against the Tern. At the last second its systems take over, swooshing it away from the impact trajectory. Eventually, you can start going through the tasks Taely gave you.`
@@ -5100,6 +5101,15 @@ mission "Ka'het: Lightning in a Bottle 2"
 			names "ka'het"
 			variant
 				"Telis'het (Guns, Disable-able)"
+
+mission "Ka'het: Lightning in a Bottle 3"
+	landing
+	name "Return to <planet>"
+	description "Bring your discoveries back to the Remnant on <destination>."
+	source "Meligara"
+	destination "Aventine"
+	to offer
+		has "Ka'het: Lightning in a Bottle 2: done"
 	on complete
 		conversation
 			`Just as you begin to go through the post-landing checks, a light on the console informs you that Taely has already climbed into the cargo bay. Another light soon indicates that she has opened the mission storage; she seems to have finished going through what you have gathered by the time you reach her.`
@@ -5121,13 +5131,13 @@ mission "Ka'het: Lightning in a Bottle 2"
 				`	"What about your own probes?"`
 			`	"Well," she replies with some trepidation, "they seem to be fine, after all. If nothing new comes up, we can just leave them be on their own mission."`
 
-mission "Ka'het: Lightning in a Bottle 3A"
+mission "Ka'het: Lightning in a Bottle 4A"
 	name "Builder balloon"
 	description "Escort the Remnant to <destination> to try to capture at least one of the Builder probes deep inside the gas giant."
 	source "Aventine"
 	destination "Meligara"
 	to offer
-		has "Ka'het: Lightning in a Bottle 2: done"
+		has "Ka'het: Lightning in a Bottle 3: done"
 	on offer
 		event "Ka'het don't spawn in Ritilas"
 		conversation
@@ -5156,7 +5166,7 @@ event "Ka'het spawn in Ritilas"
 		add fleet Ka'het 2700
 		add fleet "Ka'het Aggressive" 9600
 
-mission "Ka'het: Lightning in a Bottle 3B"
+mission "Ka'het: Lightning in a Bottle 4B"
 	invisible
 	source "Aventine"
 	destination "Meligara"
@@ -5172,25 +5182,23 @@ mission "Ka'het: Lightning in a Bottle 3B"
 				"Telis'het (Guns)"
 				"Maeri'het (EMP)"
 
-mission "Ka'het: Lightning in a Bottle 4"
+mission "Ka'het: Lightning in a Bottle 5"
 	name "Builder technology to <planet>"
 	description "Escort the Remnant ships back to <destination> with the hardware taken from the Builder gas probe."
 	source "Meligara"
 	destination "Aventine"
 	to offer
-		has "Ka'het: Lightning in a Bottle 3A: done"
+		has "Ka'het: Lightning in a Bottle 4A: done"
 		or
 			not "ka'het: fighting for the cloud probe"
-			has "Ka'het: Lightning in a Bottle 3B: done"
-	on defer
-		set "ka'het: fighting for the cloud probe"
+			has "Ka'het: Lightning in a Bottle 4B: done"
 	on offer
 		conversation
 			branch "ka'het killed for the cloud probe"
 				has "ka'het: fighting for the cloud probe"
-				has "Ka'het: Lightning in a Bottle 3B: done"
+				has "Ka'het: Lightning in a Bottle 4B: done"
 			branch "ka'het killed early"
-				has "Ka'het: Lightning in a Bottle 3B: done"
+				has "Ka'het: Lightning in a Bottle 4B: done"
 			`The fleet's descent into the upper atmosphere of Meligara is accompanied at a short distance by a raging Ka'het. The pressure eventually forces it to abandon the pursuit, as expected, and the Swan follows suit shortly after.`
 			`	Gusts only somewhat less violent than the ones you encountered previously surround the Builder vehicle. You notice that the chosen probe is still in the same area as the Tern, though higher in the atmosphere.`
 			scene "scene/builder cloud probe"
@@ -5209,7 +5217,7 @@ mission "Ka'het: Lightning in a Bottle 4"
 				set "ka'het: cloud probe electronics burnt"
 			`	The Peregrine pitches up to reveal two enormous claws mounted beneath its body. It closes the distance with the target bit by bit, then makes a swift movement to catch its prey before the wind changes. It succeeds, despite the continuous lightning that now surrounds you.`
 			`	Once the second Peregrine repeats the movement, a group of Remnant in extravehicular suits come out of their payload bays. Half of them work on securing the lower section of the craft, most of which is now a bright yellow hue; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash. The balloon soars upward while its payload remains in the clamps of the Peregrine.`
-			`	"Are you there, <first>?" The radio is working again: you realize the rain of EMPs has ceased. You reply affirmatively. "We have what we needed. The Ka'het seems to have succeeded in bringing our Tern down, but we can worry about that from a safer place."`
+			`	"Are you there, <first>?" The radio is working again: you realize the rain of EMPs has ceased. You reply affirmatively to Taely's call. "We have what we needed. The Ka'het seems to have succeeded in bringing our Tern down, but we can worry about that from a safer place."`
 			`	While you prepare to leave, you give a final look to the tracking screen. At the top, the Ka'het is about to go out of your instruments' range. At the bottom, two sets of debris are falling through the atmosphere: one from the burst balloon, and the other from the Tern.`
 				accept
 
@@ -5226,9 +5234,11 @@ mission "Ka'het: Lightning in a Bottle 4"
 			`	You receive the communications of a group of Remnant in the middle of an extravehicular activity. Half of them work on securing the lower section of the craft, it seemingly having cooled down; at the same time, you see the other few distribute along the balloon's various tethers. You see a flash: the balloon flies away free, while the payload stays in the clamps of the Peregrines.`
 			`	"We have what we needed, <first>," Taely states through the ship's radio. "Oddly enough, we have just recorded the Builder balloon imploding, rather than bursting, once it was free. We were able to catch a few fragments for later study before it fell too deeply into the atmosphere." Soon, the Peregrines signal that they are ready to leave for <planet>.`
 				accept
+	on defer
+		set "ka'het: fighting for the cloud probe"
 	on complete
 		event "Ka'het spawn in Ritilas"
-		fail "Ka'het: Lightning in a Bottle 3B"
+		fail "Ka'het: Lightning in a Bottle 4B"
 		payment 600000
 		conversation
 			`Two pairs of camels come out of the Peregrine's payload bay, pulling well-wrapped sections of the Builder craft. Taely and her team follow ceremoniously, staying at the sides of the convoy for the duration of the walk. For its part, the Swan has already taken flight for a new destination.`
@@ -5253,6 +5263,8 @@ mission "Ka'het: Lightning in a Bottle 4"
 			`	"For now, I can tell you that our hopes for this Builder vehicle look promising. Though most of its avionics show extensive damage, it was not caused by discharge: rather, the electronics appear to have been overcharged in the recent past."`
 			label bye
 			`	Soon enough, the transport stops and Taely's personnel begin unwrapping the cargo. "If you find yourself in the southern Graveyard," she says, taking a few steps toward the rest of the team, "I suggest that you keep your eyes open for anything of interest. Our short-lived project could only afford to reach the northern half, after all!" After a farewell, a promise to keep you updated, and the handover of a credit chip, she returns to her own work once again.`
+	on fail
+		event "Ka'het spawn in Ritilas"
 	npc accompany save
 		government "Remnant"
 		ship "Swan" "Serene Pillar Lost"
@@ -5263,7 +5275,7 @@ mission "Ka'het: Lightning in a Bottle 4"
 mission "Ka'het: Lightning in a Bottle Epilogue 1"
 	invisible
 	to offer
-		has "Ka'het: Lightning in a Bottle 4: done"
+		has "Ka'het: Lightning in a Bottle 5: done"
 		has "Ka'het: Voice From The Past 4: done"
 	on offer
 		event "Lightning in a Bottle epilogue" 30
@@ -5277,7 +5289,7 @@ mission "Ka'het: Lightning in a Bottle Epilogue 2"
 		government "Remnant"
 	to offer
 		has "event: Lightning in a Bottle epilogue"
-	on offer
+	on accept
 		outfit "Ka'het Ion Trap" 1
 		dialog `A message from Taely appears on your commlink. "Captain," it begins, "we have successfully identified the mechanisms capable of generating energy from ion storms in both the cloud probe and the Builder satellite you helped recover, and we have since recovered more examples of this technology. In order to thank you for your efforts, we want to gift you the outfit that was once used by the Fereti warning satellite." A few minutes later, a hurried Tern unloads a compact, spiky-looking device and bolts away.`
 		fail
