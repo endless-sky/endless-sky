@@ -3181,13 +3181,6 @@ const vector<Ship::EnginePoint> &Ship::SteeringEnginePoints() const
 
 
 
-vector<Ship::Decor> &Ship::Decorations()
-{
-	return decorations;
-}
-
-
-
 const vector<Ship::Decor> &Ship::Decorations() const
 {
 	return decorations;

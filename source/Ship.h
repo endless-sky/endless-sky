@@ -391,7 +391,6 @@ public:
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
 	const std::vector<EnginePoint> &SteeringEnginePoints() const;
 
-	std::vector<Decor> &Decorations();
 	const std::vector<Decor> &Decorations() const;
 
 	// Make a ship disabled or destroyed, or bring back a destroyed ship.

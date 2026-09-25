@@ -69,11 +69,11 @@ SCENARIO( "A FireCommand instance is being copied", "[firecommand]" ) {
 				CHECK_THAT( copy.Aim(2), Catch::Matchers::WithinAbs(command.Aim(2), 0.0001) );
 				CHECK_THAT( copy.Aim(3), Catch::Matchers::WithinAbs(command.Aim(3), 0.0001) );
 				CHECK_THAT( copy.Aim(4), Catch::Matchers::WithinAbs(command.Aim(4), 0.0001) );
-				CHECK_THAT( copy.AimDecor(0), Catch::Matchers::WithinAbs(command.Aim(0), 0.0001) );
-				CHECK_THAT( copy.AimDecor(1), Catch::Matchers::WithinAbs(command.Aim(1), 0.0001) );
-				CHECK_THAT( copy.AimDecor(2), Catch::Matchers::WithinAbs(command.Aim(2), 0.0001) );
-				CHECK_THAT( copy.AimDecor(3), Catch::Matchers::WithinAbs(command.Aim(3), 0.0001) );
-				CHECK_THAT( copy.AimDecor(4), Catch::Matchers::WithinAbs(command.Aim(4), 0.0001) );
+				CHECK_THAT( copy.AimDecor(0), Catch::Matchers::WithinAbs(command.AimDecor(0), 0.0001) );
+				CHECK_THAT( copy.AimDecor(1), Catch::Matchers::WithinAbs(command.AimDecor(1), 0.0001) );
+				CHECK_THAT( copy.AimDecor(2), Catch::Matchers::WithinAbs(command.AimDecor(2), 0.0001) );
+				CHECK_THAT( copy.AimDecor(3), Catch::Matchers::WithinAbs(command.AimDecor(3), 0.0001) );
+				CHECK_THAT( copy.AimDecor(4), Catch::Matchers::WithinAbs(command.AimDecor(4), 0.0001) );
 			}
 			THEN( "the two bitsets are independent" ) {
 				command.SetAim(1, -1.);
