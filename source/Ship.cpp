@@ -435,7 +435,7 @@ void Ship::Decor::Save(DataWriter &out) const
 				out.Write("exploding");
 		}
 		if(synced)
-			out.Write(synced);
+			out.Write("synced");
 		if(behavior == DecorBehavior::STATIC)
 		{
 			if(angle.Degrees())
