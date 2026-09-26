@@ -112,7 +112,7 @@ float Drawable::GetFrame(int step) const
 	if(step >= 0)
 		SetStep(step);
 
-	return frame;
+	return noFrameBlending ? floor(frame) : frame;
 }
 
 
@@ -190,6 +190,8 @@ void Drawable::LoadSprite(const DataNode &node)
 			center = Point(child.Value(1), child.Value(2));
 		else if(key == "inherits parent swizzle")
 			inheritsParentSwizzle = true;
+		else if(key == "no frame blending")
+			noFrameBlending = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -224,6 +226,8 @@ void Drawable::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("center", center.X(), center.Y());
 		if(inheritsParentSwizzle)
 			out.Write("inherits parent swizzle");
+		if(noFrameBlending)
+			out.Write("no frame blending");
 	}
 	out.EndChild();
 }

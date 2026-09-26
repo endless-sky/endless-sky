@@ -106,6 +106,7 @@ private:
 	mutable bool randomize = false;
 	bool repeat = true;
 	bool rewind = false;
+	bool noFrameBlending = false;
 	mutable int pause = 0;
 
 	// Cache the frame calculation so it doesn't have to be repeated if given
