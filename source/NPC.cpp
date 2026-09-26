@@ -286,6 +286,8 @@ void NPC::Save(DataWriter &out) const
 		if(mustAccompany)
 			out.Write("accompany");
 
+		if(inFlightSpawning)
+			out.Write("in flight spawning");
 		// Only save out spawn conditions if they have yet to be met.
 		// This is so that if a player quits the game and returns, NPCs that
 		// were spawned do not then become despawned because they no longer
@@ -308,8 +310,6 @@ void NPC::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-		if(inFlightSpawning)
-			out.Write("in flight spawning");
 
 		for(auto &it : npcActions)
 			it.second.Save(out);
@@ -642,6 +642,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	result.mustEvade = mustEvade;
 	result.mustAccompany = mustAccompany;
 
+	result.inFlightSpawning = inFlightSpawning;
 	result.passedSpawnConditions = passedSpawnConditions;
 	result.toSpawn = toSpawn;
 	result.toDespawn = toDespawn;
