@@ -170,6 +170,8 @@ public:
 		unsigned activity = PlacementActivity::NONE;
 		double rotationSpeed = 0.;
 		bool synced = false;
+		int tick = 0;
+		int delay = 0;
 	};
 
 
@@ -648,6 +650,7 @@ private:
 		unsigned activity = PlacementActivity::NONE;
 
 		int tick = 0;
+		int delay = 0;
 	};
 
 	// A live effect is an effect which periodically appears at a specific point on a ship.
@@ -666,6 +669,7 @@ private:
 		unsigned activity = PlacementActivity::NONE;
 
 		int tick = 0;
+		int delay = 0;
 	};
 
 

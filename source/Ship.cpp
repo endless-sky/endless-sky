@@ -228,6 +228,8 @@ Ship::LiveSpark::LiveSpark(const DataNode &node)
 			if(child.Size() >= 3)
 				random = max(0., child.Value(2));
 		}
+		else if(key == "start delay" && hasValue)
+			delay = max<int>(0, child.Value(1));
 		else if(key == "over")
 			side = PlacementSide::OVER;
 		else if(key == "under")
@@ -258,6 +260,8 @@ void Ship::LiveSpark::Save(DataWriter &out) const
 			out.Write("period", period, random);
 		else
 			out.Write("period", period);
+		if(delay)
+			out.Write("start delay", delay);
 		if(side == PlacementSide::OVER)
 			out.Write("over");
 		else if(side == PlacementSide::UNDER)
@@ -296,6 +300,8 @@ Ship::LiveEffect::LiveEffect(const DataNode &node)
 			if(child.Size() >= 3)
 				random = max(0., child.Value(2));
 		}
+		else if(key == "start delay" && hasValue)
+			delay = max<int>(0, child.Value(1));
 		else if(key == "position" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
 		else if(key == "angle" && hasValue)
@@ -330,6 +336,8 @@ void Ship::LiveEffect::Save(DataWriter &out) const
 			out.Write("period", period, random);
 		else
 			out.Write("period", period);
+		if(delay)
+			out.Write("start delay", delay);
 		if(angle.Degrees())
 			out.Write("angle", angle.Degrees());
 		if(position)
@@ -403,6 +411,8 @@ Ship::Decor::Decor(const DataNode &node)
 			behavior = DecorBehavior::TARGETING;
 			rotationSpeed = max(0., child.Value(1));
 		}
+		else if(key == "start delay" && hasValue)
+			delay = max<int>(0, child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -449,6 +459,8 @@ void Ship::Decor::Save(DataWriter &out) const
 			out.Write("moving", rotationSpeed);
 		else if(behavior == DecorBehavior::TARGETING)
 			out.Write("targeting", rotationSpeed);
+		if(delay)
+			out.Write("start delay", delay);
 	}
 	out.EndChild();
 }
@@ -1792,17 +1804,25 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	}
 
 	// Randomize the timing and angle of live sparks, effects, and non-static, non-synced decorations.
-	if(!syncedEffects)
+	for(LiveSpark &spark : liveSparks)
 	{
-		for(LiveSpark &spark : liveSparks)
-			spark.tick = Random::Int(spark.period + spark.random);
-		for(LiveEffect &effect : liveEffects)
-			effect.tick = Random::Int(effect.period + effect.random);
+		spark.tick = spark.delay;
+		if(!syncedEffects)
+			spark.tick += Random::Int(spark.period + spark.random);
+	}
+	for(LiveEffect &effect : liveEffects)
+	{
+		effect.tick = effect.delay;
+		if(!syncedEffects)
+			effect.tick += Random::Int(effect.period + effect.random);
 	}
 	Angle syncedAngle = syncedEffects ? Angle(0.) : Angle::Random();
 	for(Decor decor : decorations)
+	{
+		decor.tick = decor.delay;
 		if(decor.behavior != DecorBehavior::STATIC)
 			decor.angle = decor.synced || syncedEffects ? syncedAngle : Angle::Random();
+	}
 }
 
 
@@ -4900,7 +4920,9 @@ void Ship::StepDecorations(PlacementActivity state)
 		Decor &decor = decorations[i];
 		if(!decor.sprite.HasSprite() || decor.behavior == DecorBehavior::STATIC)
 			continue;
-		if(!(decor.activity & state))
+		if(decor.tick)
+			--decor.tick;
+		if(!(decor.activity & state) || decor.tick)
 		{
 			decor.sprite.PauseAnimation();
 			continue;
