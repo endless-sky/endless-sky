@@ -541,7 +541,7 @@ mission "Ildaria Pirates Compatibility"
 	to offer
 		has "event: initial deployment 2"
 	on offer
-		event "remove pirates from Ildaria"
+		event "remove pirates from Ildaria" 0
 		fail
 
 event "initial deployment 3"
