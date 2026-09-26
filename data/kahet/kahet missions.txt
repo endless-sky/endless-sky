@@ -4931,15 +4931,15 @@ mission "Ka'het: Cloud Probe 2"
 	destination "Antamesa"
 	to offer
 		has "Ka'het: Cloud Probe 1: done"
-	on complete
-		dialog "The second Tern detaches from the Swan. You follow it as it falls: slowly, you see it turn upside down as a number of barrel-shaped instruments emerge from its belly. Once a set of what you presume to be antennae pop out of its aft, the map places the next target on Baliesa in the Gerenus system."
 	npc accompany save
 		government "Remnant"
+		personality escort unconstrained launching pacifist
 		ship "Swan" "Serene Pillar Lost"
 		ship "Tern" "Sunlit Song Remade"
 		ship "Tern" "Sharp Sky Restored"
 		ship "Tern" "Starlit Spire Renewed"
-		personality escort unconstrained launching pacifist
+	on complete
+		dialog "The second Tern detaches from the Swan. You follow it as it falls: slowly, you see it turn upside down as a number of barrel-shaped instruments emerge from its belly. Once a set of what you presume to be antennae pop out of its aft, the map places the next target on Baliesa in the Gerenus system."
 
 mission "Ka'het: Cloud Probe 3"
 	landing
@@ -4949,22 +4949,22 @@ mission "Ka'het: Cloud Probe 3"
 	destination "Baliesa"
 	to offer
 		has "Ka'het: Cloud Probe 2: done"
-	on complete
-		dialog "Another Tern drops from its mothership, falling through the bright clouds. Some of the orbiting debris enters the atmosphere around the same time, leaving streaks of plasma around the trail of the Tern. While you gaze at the spectacle, the map signals you the next stop - Meligara, part of the Ritilas system."
 	npc accompany save
 		government "Remnant"
+		personality escort unconstrained launching pacifist
 		ship "Swan" "Serene Pillar Lost"
 		ship "Tern" "Sunlit Song Remade"
 		ship "Tern" "Sharp Sky Restored"
-		personality escort unconstrained launching pacifist
 	npc
 		government "Ka'het"
-		system "Gerenus"
 		personality staying disables plunders
+		system "Gerenus"
 		fleet
 			names "ka'het"
 			variant
 				"Maeri'het (Disable-able)"
+	on complete
+		dialog "Another Tern drops from its mothership, falling through the bright clouds. Some of the orbiting debris enters the atmosphere around the same time, leaving streaks of plasma around the trail of the Tern. While you gaze at the spectacle, the map signals you the next stop - Meligara, part of the Ritilas system."
 
 mission "Ka'het: Cloud Probe 4"
 	landing
@@ -4974,13 +4974,13 @@ mission "Ka'het: Cloud Probe 4"
 	destination "Meligara"
 	to offer
 		has "Ka'het: Cloud Probe 3: done"
-	on complete
-		dialog "While the final Tern disappears beyond your sight, you receive a message from the Swan captain. With this task complete, she asks you to escort them to Seraglio - a small planet of the Arculus system - before you part ways. When you inquire further, she simply states that they have been assigned there next."
 	npc accompany save
 		government "Remnant"
+		personality escort unconstrained launching pacifist
 		ship "Swan" "Serene Pillar Lost"
 		ship "Tern" "Sunlit Song Remade"
-		personality escort unconstrained launching pacifist
+	on complete
+		dialog "While the final Tern disappears beyond your sight, you receive a message from the Swan captain. With this task complete, she asks you to escort them to Seraglio - a small planet of the Arculus system - before you part ways. When you inquire further, she simply states that they have been assigned there next."
 
 mission "Ka'het: Cloud Probe 5"
 	landing
@@ -4990,6 +4990,10 @@ mission "Ka'het: Cloud Probe 5"
 	destination "Seraglio"
 	to offer
 		has "Ka'het: Cloud Probe 4: done"
+	npc accompany save
+		government "Remnant"
+		personality escort unconstrained launching
+		ship "Swan" "Serene Pillar Lost"
 	on complete
 		payment 350000
 		event "ka'het: gaslining probe storm" 3
@@ -5009,17 +5013,12 @@ mission "Ka'het: Cloud Probe 5"
 			label mission
 			`	You are surprised to hear a loud, triumphant chant come out of your radio. It describes the bliss of finding life in unexpected places, beyond what one would consider possible. While the chorus has a very pleasing rhythm, you are oblivious to most of the events described in the song, excluding the discovery of past life in the Sol system.`
 			`	By the time the song comes to an end, the Swan has completed the landing, and a flexible, puffy-looking tube is injecting a colorless liquid into its wings. You bid the crew farewell and go your own way. Soon enough, the screen in front of you informs you of the transfer of <payment> from Remnant Logistics, coupled with a short message of appreciation.`
-	npc accompany save
-		government "Remnant"
-		ship "Swan" "Serene Pillar Lost"
-		personality escort unconstrained launching
 
 
 event "ka'het: gaslining probe storm"
 
-
 mission "Ka'het: Lightning in a Bottle 1"
-	landing
+	transition
 	name "Hear from Taely on <planet>"
 	description "Taely has asked you to meet with her on <destination>. There appears to be some trouble with their gaslining probes."
 	deadline
@@ -5066,6 +5065,14 @@ mission "Ka'het: Lightning in a Bottle 2"
 	destination "Meligara"
 	to offer
 		has "Ka'het: Lightning in a Bottle 1: done"
+	npc
+		government "Ka'het"
+		personality staying disables plunders
+		system "Ritilas"
+		fleet
+			names "ka'het"
+			variant
+				"Telis'het (Guns, Disable-able)"
 	on complete
 		conversation
 			`Sitting atop the cloud layer, it takes you a dozen attempts before your signal finally reaches the Tern through the chaotic atmosphere. Far above, the violet swirl of the wormhole peeks just above the horizon. You wait for the probe to rise through the darkness.`
@@ -5093,14 +5100,6 @@ mission "Ka'het: Lightning in a Bottle 2"
 			`	Tremendous gusts move you and your target in every direction, more than once almost sending you into a spin. The first time you get close to it, another current arrives to split you apart. The same happens a second, and a third time. At last, on the fourth attempted approach, the air throws the vessel right into the nose of your ship, crashing before you get the chance to react. Instantly, the balloon pops, and what is left of the machine plunges into the depths of the gas giant.`
 			label end
 			`	While your ship climbs back toward orbit, you detect a Ka'het attempting to make some runs into the high atmosphere of the gas giant. Though it never descends below the upper layers, it seems to be trying to find a way to reach the Tern.`
-	npc
-		government "Ka'het"
-		system "Ritilas"
-		personality staying disables plunders
-		fleet
-			names "ka'het"
-			variant
-				"Telis'het (Guns, Disable-able)"
 
 mission "Ka'het: Lightning in a Bottle 3"
 	landing
@@ -5236,6 +5235,14 @@ mission "Ka'het: Lightning in a Bottle 5"
 				accept
 	on defer
 		set "ka'het: fighting for the cloud probe"
+	npc accompany save
+		government "Remnant"
+		personality escort unconstrained launching
+		ship "Swan" "Serene Pillar Lost"
+		ship "Peregrine" "Dark Anchor"
+		ship "Peregrine" "Black Song"
+	on fail
+		event "Ka'het spawn in Ritilas"
 	on complete
 		event "Ka'het spawn in Ritilas"
 		fail "Ka'het: Lightning in a Bottle 4B"
@@ -5263,14 +5270,6 @@ mission "Ka'het: Lightning in a Bottle 5"
 			`	"For now, I can tell you that our hopes for this Builder vehicle look promising. Though most of its avionics show extensive damage, it was not caused by discharge: rather, the electronics appear to have been overcharged in the recent past."`
 			label bye
 			`	Soon enough, the transport stops and Taely's personnel begin unwrapping the cargo. "If you find yourself in the southern Graveyard," she says, taking a few steps toward the rest of the team, "I suggest that you keep your eyes open for anything of interest. Our short-lived project could only afford to reach the northern half, after all!" After a farewell, a promise to keep you updated, and the handover of a credit chip, she returns to her own work once again.`
-	on fail
-		event "Ka'het spawn in Ritilas"
-	npc accompany save
-		government "Remnant"
-		ship "Swan" "Serene Pillar Lost"
-		ship "Peregrine" "Dark Anchor"
-		ship "Peregrine" "Black Song"
-		personality escort unconstrained launching
 
 mission "Ka'het: Lightning in a Bottle Epilogue 1"
 	invisible
@@ -5284,12 +5283,15 @@ mission "Ka'het: Lightning in a Bottle Epilogue 1"
 event "Lightning in a Bottle epilogue"
 
 mission "Ka'het: Lightning in a Bottle Epilogue 2"
+	landing
 	invisible
 	source
 		government "Remnant"
+		attributes "outfitter"
 	to offer
 		has "event: Lightning in a Bottle epilogue"
-	on accept
+	on offer
 		outfit "Ka'het Ion Trap" 1
-		dialog `A message from Taely appears on your commlink. "Captain," it begins, "we have successfully identified the mechanisms capable of generating energy from ion storms in both the cloud probe and the Builder satellite you helped recover, and we have since recovered more examples of this technology. In order to thank you for your efforts, we want to gift you the outfit that was once used by the Fereti warning satellite." A few minutes later, a hurried Tern unloads a compact, spiky-looking device and bolts away.`
-		fail
+		conversation
+			`A message from Taely appears on your commlink. "Captain," it begins, "we have successfully identified the mechanisms capable of generating energy from ion storms in both the cloud probe and the Builder satellite you helped recover, and we have since recovered more examples of this technology. In order to thank you for your efforts, we want to gift you the outfit that was once used by the Fereti warning satellite." A few minutes later, a hurried Tern unloads a compact, spiky-looking device and bolts away.`
+				decline
