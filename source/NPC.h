@@ -162,7 +162,7 @@ private:
 	// mid-flight can instantly spawn. If false, this NPC's ships can only
 	// be spawned when the player departs from a planet, or upon immediately
 	// accepting an in-flight mission.
-	bool instantSpawning = false;
+	bool inFlightSpawning = false;
 
 	// The ship and fleet definition that make up this NPC.
 	ShipFactory factory;

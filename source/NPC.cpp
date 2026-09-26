@@ -173,8 +173,8 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
-		else if(key == "instant spawning")
-			instantSpawning = true;
+		else if(key == "in flight spawning")
+			inFlightSpawning = true;
 		else if(key == "on" && hasValue)
 		{
 			static const map<string, Trigger> trigger = {
@@ -308,8 +308,8 @@ void NPC::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-		if(instantSpawning)
-			out.Write("instant spawning");
+		if(inFlightSpawning)
+			out.Write("in flight spawning");
 
 		for(auto &it : npcActions)
 			it.second.Save(out);
@@ -421,7 +421,7 @@ bool NPC::UpdateSpawning()
 	// conditions. (Any such NPC will never be spawned in-game.)
 	if(passedSpawnConditions && !toDespawn.IsEmpty() && !passedDespawnConditions)
 		passedDespawnConditions = toDespawn.Test();
-	return spawnNow && !passedDespawnConditions && instantSpawning;
+	return spawnNow && !passedDespawnConditions && inFlightSpawning;
 }
 
 
