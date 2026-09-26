@@ -4469,7 +4469,7 @@ mission "Ka'het: Patir Mystery Crew job"
 	job
 	repeat
 	name "New Expedition to <waypoints>"
-	description "Travel to <waypoints> with a crew of <passengers> and <tons> tons of instruments to collect data, then return to <destination>."
+	description "Travel to <waypoints> with a crew of <bunks> and <tons> of instruments to collect data, then return to <destination>."
 	source
 		government "Remnant"
 	waypoint
