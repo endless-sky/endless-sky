@@ -93,7 +93,8 @@ public:
 
 
 protected:
-	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy) override;
+	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool wasDisabled,
+		bool wasDestroyed) override;
 
 
 private:

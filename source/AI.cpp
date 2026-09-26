@@ -3779,7 +3779,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target, FireCommand &targeting
 		double steps = RendezvousTime(p, v, velocity);
 		if(std::isnan(steps))
 			continue;
-		targeting.SetFire(index);
+		targeting.SetOnTarget(index);
 		p += min(steps, weapon->TotalLifetime()) * v;
 
 		auto &[dps, aim, prioritize] = candidates[velocity];

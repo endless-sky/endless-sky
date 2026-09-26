@@ -399,8 +399,6 @@ public:
 	void SelfDestruct();
 	void Restore();
 	bool IsDamaged() const;
-	// Check if this ship has been destroyed.
-	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
@@ -615,7 +613,8 @@ public:
 
 protected:
 	virtual void CacheAttributes() override;
-	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy) override;
+	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool wasDisabled,
+		bool wasDestroyed) override;
 
 
 private:
@@ -680,7 +679,7 @@ private:
 	// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
 	// destroyed, or 0 otherwise.
 	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
-	void StepLeaks(std::vector<Visual> &visuals, PlacementActivity state);
+	void StepLeaks(PlacementActivity state);
 	void StepLiveEffects();
 	void StepDecorations(PlacementActivity state);
 	void DoGeneration();
