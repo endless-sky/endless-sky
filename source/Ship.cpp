@@ -3238,14 +3238,6 @@ bool Ship::IsDamaged() const
 
 
 
-// Check if this ship has been destroyed.
-bool Ship::IsDestroyed() const
-{
-	return (levels.hull < 0.);
-}
-
-
-
 // Recharge and repair this ship (e.g. because it has landed).
 void Ship::Recharge(int rechargeType, bool hireCrew)
 {
@@ -4646,7 +4638,8 @@ void Ship::CacheAttributes()
 
 
 
-int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy)
+int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool wasDisabled,
+	bool wasDestroyed)
 {
 	// If the damage source government deals a DoT effect to this ship that
 	// disables or kills it outside of this function call, that event should
@@ -4656,9 +4649,6 @@ int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy)
 	if(hitBy)
 		lastHitBy = hitBy;
 	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
-
-	bool wasDisabled = IsDisabled();
-	bool wasDestroyed = IsDestroyed();
 
 	if(damage.Levels().shields && !isDisabled)
 	{

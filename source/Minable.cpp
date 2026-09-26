@@ -310,7 +310,8 @@ double Minable::MaxHeat() const
 
 
 
-int Minable::DoTakeDamage(const DamageDealt &damage, const Government *hitBy)
+int Minable::DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool wasDisabled,
+	bool wasDestroyed)
 {
 	prospecting += damage.Prospecting();
 	return 0;
