@@ -63,11 +63,27 @@
     <release version="0.11.3" date="2026-9-26">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
-        <p>Some of the new features and changes to game mechanics:</p>
+        <p>Breaking changes:</p>
         <ul>
+          <li>All plugins with tractor beam outfits should divide their "tractor beam" attribute by 5 in order to have the same pull strength as before this update.</li>
+        </ul>
+        <p>Content and features:</p>
+        <ul>
+          <li>Added a new chapter of the Successors campaign, including the introduction of six new ships, a new outfit, and 57 new missions.</li>
+          <li>Added two new short mission chains to Remnant space around investigating the Ka'het, including the introduction of a new outfit to obtain.</li>
+          <li>Various improvements to the experience of having illegal outfits, including informing you if a ship you just captured has illegal outfits on board, naming the ship and the illegal outfits that resulted in a fine in the dialog that appears when you get scanned, and allowing you to jettison hand-to-hand weapons mid-flight, which includes nerve gas.</li>
+          <li>The logbook now displays the galaxy map on the ride side of the UI, and newly acquired dated log entries will record the system you were in on that date that the log entry was written.</li>
+          <li>Added a series of hardcore setting gamerules, including the addition of a permadeath mode with varying levels of severity for when and how permadeath is applied.</li>
+        </ul>
+        <p>Bug fixes:</p>
+        <ul>
+          <li>Fixed rapidly hitting the spaceport key immediately after landing causing panels to draw out of the intended order.</li>
+          <li>Person ships can no longer mind control your escorts that you captured from their fleet.</li>
+          <li>Fixed a potential crash and unintended save file deletion caused by creating a new pilot with the same name as an old pilot if the old pilot was from before 0.11.1 and hadn't been played in a newer version of the game.</li>
+          <li>Fixed various cases where your selected escorts for issuing orders could become desynced from the ship you are currently targeting.</li>
         </ul>
         <p>You can find out more in the changelog.</p>
-        <p>Special thanks to the X people who contributed to this release!</p>
+        <p>Special thanks to the 23 people who contributed to this release!</p>
       </description>
       <url>https://github.com/endless-sky/endless-sky/blob/v0.11.3/changelog</url>
     </release>
