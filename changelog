@@ -31,6 +31,7 @@ Version 0.11.3:
       * Ships and planets with scaled sprites will now display at the proper size in the hail panel. (@Amazinite)
       * The travel plan on the map will now accurately report whether you have fuel for a jump when in the middle of a jump. (@knarrff)
       * Fixed an issue where a second definition of a weapon could silently overwrite certain weapon data. (@Amazinite)
+      * If a sprite has more 1x frames than 2x frames, the 2x frames will not be dropped instead of reading junk data into the image buffers for the missing frames. A warning will be added to the errors.txt file if this occurs. (@Amazinite)
   * Game content:
     * New content:
       * Rewrote and reintroduced the Delvan Shipworm missions, which were previously removed for containing LLM generated content. (@LazerLit)
