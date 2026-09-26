@@ -60,7 +60,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.11.3" date="2026-9-26">
+    <release version="0.11.3" date="2026-9-26" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
         <p>Breaking changes:</p>
