@@ -173,6 +173,8 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
+		else if(key == "in flight spawning")
+			inFlightSpawning = true;
 		else if(key == "on" && hasValue)
 		{
 			static const map<string, Trigger> trigger = {
@@ -284,6 +286,8 @@ void NPC::Save(DataWriter &out) const
 		if(mustAccompany)
 			out.Write("accompany");
 
+		if(inFlightSpawning)
+			out.Write("in flight spawning");
 		// Only save out spawn conditions if they have yet to be met.
 		// This is so that if a player quits the game and returns, NPCs that
 		// were spawned do not then become despawned because they no longer
@@ -398,8 +402,7 @@ const EsUuid &NPC::UUID() const noexcept
 
 
 
-// Update spawning and despawning for this NPC.
-void NPC::UpdateSpawning(const PlayerInfo &player)
+bool NPC::UpdateSpawning()
 {
 	checkedSpawnConditions = true;
 	// The conditions are tested every time this function is called until
@@ -407,13 +410,18 @@ void NPC::UpdateSpawning(const PlayerInfo &player)
 	// cause an NPC to "un-spawn" or "un-despawn." Despawn conditions are
 	// only checked after the spawn conditions have passed so that an NPC
 	// doesn't "despawn" before spawning in the first place.
+	bool spawnNow = false;
 	if(!passedSpawnConditions)
+	{
 		passedSpawnConditions = toSpawn.Test();
+		spawnNow = passedSpawnConditions;
+	}
 
 	// It is allowable for an NPC to pass its spawning conditions and then immediately pass its despawning
 	// conditions. (Any such NPC will never be spawned in-game.)
 	if(passedSpawnConditions && !toDespawn.IsEmpty() && !passedDespawnConditions)
 		passedDespawnConditions = toDespawn.Test();
+	return spawnNow && !passedDespawnConditions && inFlightSpawning;
 }
 
 
@@ -634,6 +642,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	result.mustEvade = mustEvade;
 	result.mustAccompany = mustAccompany;
 
+	result.inFlightSpawning = inFlightSpawning;
 	result.passedSpawnConditions = passedSpawnConditions;
 	result.toSpawn = toSpawn;
 	result.toDespawn = toDespawn;
