@@ -234,6 +234,13 @@ bool Entity::IsDisabled() const
 
 
 
+bool Entity::IsDestroyed() const
+{
+	return levels.hull < 0;
+}
+
+
+
 bool Entity::IsTargetable() const
 {
 	return true;
@@ -490,6 +497,9 @@ void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double 
 
 int Entity::TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *hitBy)
 {
+	bool wasDisabled = IsDisabled();
+	bool wasDestroyed = IsDestroyed();
+
 	levels.Damage(damage.Levels());
 
 	// Prevent various stats from reaching unallowable values.
@@ -502,7 +512,7 @@ int Entity::TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, 
 	for(const auto &[effect, count] : damage.GetWeapon().TargetEffects())
 		CreateSparks(visuals, effect, count * damage.Scaling());
 
-	return DoTakeDamage(damage, hitBy);
+	return DoTakeDamage(damage, hitBy, wasDisabled, wasDestroyed);
 }
 
 
