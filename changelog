@@ -44,7 +44,6 @@ Version 0.11.3:
       * Updated the conversation in the Anomalocaris mission to clarify the requirements that the player must meet to continue the story. (@Hurleveur)
       * Edited the wording in the conversations of the Pond Strider missions for clarity and flow. (@flyingspacesquirrel)
       * "Ask Quarg About Coalition Late" now has a choice that accounts for the player having a non-vanilla starting location. (@nickshanks)
-    * Artwork:
     * Balance:
       * Doubled the Pond Strider's fuel capacity from 300 to 600. (@flyingspacesquirrel)
       * Buffed the flamethrower. (@LixiChronikouOriou)
@@ -93,7 +92,6 @@ Version 0.11.3:
       * Multiple projectile collisions that occur in the same frame will now deal damage in a predictable order that maximizes shield and hull damage. (@Amazinite)
         * Previously, the total damage dealt to a ship could be influenced by the order the projectiles were created. This meant that you could deal significantly more or less damage against a target based on the order of your weapons in the hardpoints of your ships, or the order of your escorts in the player info panel if you had mixed weapon types, such as one laser that deals high shield damage and another that deals high hull damage.
       * Optical tracking is now based off of the size of the sprite (looking at the number of populated pixels in the sprite) instead of the mass of the ship. (@Amazinite)
-  * Graphics:
   * Performance:
     * Ships now cache commonly used attributes and calculations. This should result in a noticeably improvement when there are lots of ships spawned in. (@Amazinite)
   * User interface:
