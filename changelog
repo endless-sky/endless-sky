@@ -2,7 +2,7 @@ Version 0.11.3:
   * Breaking change:
     * All plugins with tractor beam outfits should divide their "tractor beam" attribute by 5 in order to have the same pull strength as before this update.
   * Big changes:
-    * Added a new mission chain for the Successors. (@Daeridanii1)
+    * Added a new chapter of the Successors campaign, including the introduction of six new ships, a new outfit, and 57 new missions. (@Daeridanii1)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@a4358, @flyingspacesquirrel, @mOctave, @nickshanks, @Someone-named-sky, @Wedge009, @zaveshaa, @ziproot)
@@ -93,7 +93,7 @@ Version 0.11.3:
         * Previously, the total damage dealt to a ship could be influenced by the order the projectiles were created. This meant that you could deal significantly more or less damage against a target based on the order of your weapons in the hardpoints of your ships, or the order of your escorts in the player info panel if you had mixed weapon types, such as one laser that deals high shield damage and another that deals high hull damage.
       * Optical tracking is now based off of the size of the sprite (looking at the number of populated pixels in the sprite) instead of the mass of the ship. (@Amazinite)
   * Performance:
-    * Ships now cache commonly used attributes and calculations. This should result in a noticeably improvement when there are lots of ships spawned in. (@Amazinite)
+    * Ships now cache commonly used attributes and calculations. This should result in a noticeable improvement when there are lots of ships in the system. (@Amazinite)
   * User interface:
     * Preferences and controls:
       * Added an option to target asteroids based on the individual value of its drops instead of the sum value of all drops. (@Amazinite)
@@ -134,7 +134,7 @@ Version 0.11.3:
     * The game now shrinks textures that are too large to upload to the GPU until they are accepted. (@TomGoodIdea)
     * Support devices with the EXT version of framebuffer objects. (@TomGoodIdea)
     * Replace some old require nodes with outfit condition checks. (@apttie)
-    * Fix IntelliSense "missing OpenGL header" in VSCode on Mac OS. (@nickshanks)
+    * Fix IntelliSense "missing OpenGL header" in VSCode on MacOS. (@nickshanks)
     * Rewrote the ExclusiveItem class to use std::variant. (@TomGoodIdea)
     * Moved various functionality from Ship to Entity. (@Amazinite)
     * Updated DrawList and BatchDrawList to utilize Drawables. (@Amazinite)
