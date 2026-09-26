@@ -33,7 +33,8 @@ Version 0.11.3:
       * Fixed an issue where a second definition of a weapon could silently overwrite certain weapon data. (@Amazinite)
   * Game content:
     * New content:
-      * Rewrote and reintroduced the Delvan Shipworm missions. (@LazerLit)
+      * Rewrote and reintroduced the Delvan Shipworm missions, which were previously removed for containing LLM generated content. (@LazerLit)
+      * Added two new short mission chains to Remnant space around investigating the Ka'het, including the introduction of a new outfit to obtain. (@beccabunny)
     * Mission changes:
       * Replaced various outfit checks with attribute checks in mission offer conditions. This allows certain plugin outfits to trigger vanilla missions that were previously looking for vanilla outfits. (@apttie)
       * Removed the immediate launch from the on offer conversation in "Remnant Keystone 6". (@ThrawnCA)
@@ -69,6 +70,8 @@ Version 0.11.3:
       * Targeting confusion characteristics can now be defined as root node objects and assigned to governments and fleets. (@Anarchist2)
       * Added an "optical size" attribute that gets used in place of mass when a ship is being targeted by an optical-guided projectile. (@Amazinite)
       * Persons can now be given flags that allow them to respawn after being killed, or require that every ship in the person's fleet be destroyed in order for the person to be killed. (@Amazinite)
+      * Dated logbook entries now record the system you were in when the entry was recorded in addition to the date. Logs can now mark systems related to the entry, and these systems will then be highlighted when clicking on the log entry in the logbook. (@Amazinite)
+      * Ships can now be defined to constantly generate effects, sparks, and leaks under various conditions like being active, disabled, or while exploding, as well as have animated hardpoint-like sprites for added aesthetics to ships. (@Amazinite)
     * Gamerules:
       * Added gamerules for tying the arrival distance of a system to its habitable distance. (@Amazinite)
       * Added a series of hardcore setting gamerules, including the addition of a permadeath mode. (@Amazinite)
@@ -125,6 +128,7 @@ Version 0.11.3:
         * Speed and acceleration when using an afterburner if one is installed are listed under the normal movement stats.
         * The energy/heat table has been broken into more rows, giving you the usage cost of each movement type instead of summarizing it into a single row. Additionally, when you have no energy capacity, a new "surge" row appears to inform you how much energy usage can be used instantaneous; this is important information for selecting weapons with a no battery build.
         * Various tooltips have been improved.
+      * The logbook now includes the galaxy map on the right side of the panel instead of just darkening the background. (@Amazinite)
   * Under the hood:
     * Log a warning that plugin about.txt is deprecated for plugins that still use the old metadata format. (@TomGoodIdea)
     * Split the "Plugins" source file into "Plugin" and "PluginManager". (@TomGoodIdea)
@@ -140,6 +144,7 @@ Version 0.11.3:
     * There is now a command line argument for printing the state of objects in a system, including any object orbital periods and the habitable distance as calculated by the game if the system definition did not calculate it. (@Amazinite)
     * Added SDL3 support. (@tibetiroka)
     * Moved basic damage calculations from Ship and Minable to the base Entity class. (@Amazinite)
+    * Added an include for <thread> in TaskQueue to allow the game to build on certain versions of clang. (@Amazinite)
   * CI/CD and development environment:
     * Update MacOS runners to macos-15. (@TomGoodIdea)
   * Documentation:
