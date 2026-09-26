@@ -15,11 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "CategoryType.h"
-#include "Set.h"
-#include "Shop.h"
-
 #include "CategoryList.h"
+#include "CategoryType.h"
 #include "Color.h"
 #include "Confusion.h"
 #include "Conversation.h"
@@ -40,8 +37,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "Set.h"
 #include "shader/Shader.h"
 #include "Ship.h"
+#include "Shop.h"
 #include "StartConditions.h"
 #include "StellarObjectSpriteData.h"
 #include "Swizzle.h"
