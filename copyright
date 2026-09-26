@@ -2043,6 +2043,18 @@ Files:
  images/effect/uv?excimer?laser?glare*
  images/effect/flotsam?integral?wood*
  images/effect/flotsam?voidfish*
+ images/effect/running?lights/light_amber*
+ images/effect/running?lights/light_blue*
+ images/effect/running?lights/light_cyan*
+ images/effect/running?lights/light_green*
+ images/effect/running?lights/light_indigo*
+ images/effect/running?lights/light_magenta*
+ images/effect/running?lights/light_orange*
+ images/effect/running?lights/light_pink*
+ images/effect/running?lights/light_purple*
+ images/effect/running?lights/light_red*
+ images/effect/running?lights/light_white*
+ images/effect/running?lights/light_yellow*
  images/hardpoint/ureb?turret*
  images/icon/nettle*
  images/icon/orchid*
@@ -2213,6 +2225,8 @@ Comment: Derived from works by NASA and Michael Zahniser.
 
 Files:
  images/star/smoke?ring*
+ images/map/small-neutron-star*
+ images/map/magnetar-star*
 Copyright: Azure
 License: CC-BY-SA-4.0
 Comment: Derived from works by RisingLeaf.
@@ -2230,13 +2244,6 @@ Files:
 Copyright: Azure
 License: CC-BY-SA-4.0
 Comment: Derived from works by the National Nuclear Security Administration.
-
-Files:
- images/map/small-neutron-star*
- images/map/magnetar-star*
-Copyright: Azure
-License: CC-BY-SA-4.0
-Comment: Derived from works by RisingLeaf.
 
 Files:
  images/map/coal-black-hole-star*

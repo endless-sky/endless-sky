@@ -545,6 +545,79 @@ effect "avgi internal"
 	"sound category" "engine"
 
 
+effect "amber running light"
+	sprite "effect/lights/light_amber"
+		"frame rate" 1
+		"scale" 2
+	"lifetime" 1
+
+effect "blue running light"
+	sprite "effect/lights/light_blue"
+		"frame rate" 1
+		"scale" 2
+	"lifetime" 1
+
+effect "cyan running light"
+	sprite "effect/lights/light_cyan"
+		"frame rate" 1
+		"scale" 2
+	"lifetime" 1
+	
+effect "green running light"
+	sprite "effect/lights/light_green"
+		"frame rate" 1
+		"scale" 2
+	"lifetime" 1
+	
+effect "indigo running light"
+	sprite "effect/lights/light_indigo"
+		"frame rate" 1
+		"scale" 2
+	"lifetime" 1
+	
+effect "magenta running light"
+	sprite "effect/lights/light_magenta"
+		"frame rate" 1
+		"scale" 2
+	"lifetime" 1
+	
+effect "orange running light"
+	sprite "effect/lights/light_orange"
+		"frame rate" 1
+		"scale" 2
+	"lifetime" 1
+	
+effect "pink running light"
+	sprite "effect/lights/light_pink"
+		"frame rate" 1
+		"scale" 2
+	"lifetime" 1
+	
+effect "purple running light"
+	sprite "effect/lights/light_purple"
+		"frame rate" 1
+		"scale" 2
+	"lifetime" 1
+	
+effect "red running light"
+	sprite "effect/lights/light_red"
+		"frame rate" 1
+		"scale" 2
+	"lifetime" 1
+	
+effect "white running light"
+	sprite "effect/lights/light_white"
+		"frame rate" 1
+		"scale" 2
+	"lifetime" 1
+
+effect "yellow running light"
+	sprite "effect/lights/light_yellow"
+		"frame rate" 1
+		"scale" 2
+	"lifetime" 1
+
+
 effect "spatial hazard"
 	sprite "effect/jump drive"
 		"no repeat"
