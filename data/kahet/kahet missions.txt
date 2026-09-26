@@ -4886,7 +4886,7 @@ mission "Ka'het: Cloud Probe 1"
 		attributes "remnant primary"
 	destination "Crataegusa"
 	to offer
-		has "Ka'het: Patir Mystery 36: done"
+		has "Ka'het: Patir Mystery 35: done"
 		random < 30
 	on offer
 		conversation
