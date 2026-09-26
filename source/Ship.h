@@ -679,7 +679,7 @@ private:
 	// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
 	// destroyed, or 0 otherwise.
 	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
-	void StepLeaks(std::vector<Visual> &visuals, PlacementActivity state);
+	void StepLeaks(PlacementActivity state);
 	void StepLiveEffects();
 	void StepDecorations(PlacementActivity state);
 	void DoGeneration();

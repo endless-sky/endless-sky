@@ -2068,7 +2068,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		currentState = PlacementActivity::WHEN_EXPLODING;
 	else if(IsDisabled())
 		currentState = PlacementActivity::WHEN_DISABLED;
-	StepLeaks(visuals, currentState);
+	StepLeaks(currentState);
 	StepLiveEffects();
 	StepDecorations(currentState);
 
@@ -4824,7 +4824,7 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 
 
 
-void Ship::StepLeaks(std::vector<Visual> &visuals, PlacementActivity state)
+void Ship::StepLeaks(PlacementActivity state)
 {
 	if(!GetMask().IsLoaded())
 		return;
