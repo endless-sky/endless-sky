@@ -5182,6 +5182,7 @@ mission "Ka'het: Lightning in a Bottle 4B"
 				"Maeri'het (EMP)"
 
 mission "Ka'het: Lightning in a Bottle 5"
+	landing
 	name "Builder technology to <planet>"
 	description "Escort the Remnant ships back to <destination> with the hardware taken from the Builder gas probe."
 	source "Meligara"
