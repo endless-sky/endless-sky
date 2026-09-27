@@ -22,9 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "windows/WinWindow.h"
 #endif
 
-#include "SDL.h"
-
 #include "opengl.h"
+#include "SDL.h"
 
 #include <cstring>
 #include <sstream>
