@@ -498,6 +498,9 @@ tip "max speed:"
 tip "    w/ afterburner:"
 	`Movement while both your primary thrusters and afterburners are active.`
 
+tip "    reversed:"
+	`Movement while using reverse thrusters.`
+
 tip "movement:"
 	`How quickly this ship can accelerate and turn.`
 
