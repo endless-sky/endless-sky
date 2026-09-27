@@ -22,11 +22,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Rectangle.h"
 #include "Screen.h"
+#include "SDL.h"
 #include "UI.h"
 
 #include <cassert>
-
-#include <SDL2/SDL.h>
 
 using namespace std;
 
