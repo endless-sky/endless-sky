@@ -3481,6 +3481,14 @@ bool Ship::NeedsEnergy() const
 	if(!RequiresMovementEnergy())
 		return false;
 
+	// If movement itself produces energy, the ship doesn't need energy.
+	ResourceLevels available = AvailableResources();
+	if((cache.thrustCost.energy < 0. && available.FractionalUsage(cache.thrustCost))
+			|| (cache.reverseThrustCost.energy < 0. && available.FractionalUsage(cache.reverseThrustCost))
+			|| (cache.turnCost.energy < 0. && available.FractionalUsage(cache.turnCost))
+			|| (cache.afterburnerThrustCost.energy < 0. && available.CanExpend(cache.afterburnerThrustCost)))
+		return false;
+
 	// If a ship has no energy capacity or no room for more energy, it does not need energy.
 	double capacity = MaxEnergy();
 	if(!capacity || levels.energy >= capacity)
