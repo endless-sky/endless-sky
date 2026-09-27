@@ -81,6 +81,7 @@ mission "Successors: Ghosts QSI 1"
 	source "Qasa-Sija-Iri"
 	repeat
 	to offer
+		has "Successors: Ghosts Prelude Incident: offered"
 		not "Successors: Ghosts 7a: done"
 		not "Successors: Ghosts 7b: done"
 	on offer
