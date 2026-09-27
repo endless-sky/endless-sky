@@ -989,7 +989,7 @@ mission "Successors: Ghosts 10"
 		has "successors: ghosts dealt with aqrabe"
 	on offer
 		conversation
-			`As disembark from your ship, you notice a group of Successor soldiers emerging from another craft in the spaceport, a Seiitej bearing House Kaatrij's colors. They meet you outside your own vessel, their weapons held at attention.`
+			`As you disembark from your ship, you notice a group of Successor soldiers emerging from another craft in the spaceport, a Seiitej bearing House Kaatrij's colors. They meet you outside your own vessel, their weapons held at attention.`
 			`	"Captain <first> <last>," their leader says, "We've been instructed to take thee with us."`
 			choice
 				`	"For what purpose exactly?"`
