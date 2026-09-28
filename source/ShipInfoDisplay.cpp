@@ -34,21 +34,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-namespace {
-	const vector<string> COMMON_CATEGORIES = {
-		"Guns",
-		"Turrets",
-		"Secondary Weapons",
-		"Ammunition",
-		"Systems",
-		"Power",
-		"Engines",
-		"Hand to Hand",
-		"Special",
-		"Unique",
-	};
-}
-
 
 
 ShipInfoDisplay::ShipInfoDisplay()
@@ -553,20 +538,20 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 		}
 	};
 
-	// Render outfits from default, common categories in a set order.
+	// Display outfit categories in the same order that they're listed in the outfitter.
 	bool isFirst = true;
-	for(const string &category : COMMON_CATEGORIES)
+	for(const auto &category : GameData::GetCategory(CategoryType::OUTFIT))
 	{
-		auto it = listing.find(category);
+		const string &name = category.Name();
+		auto it = listing.find(name);
 		if(it == listing.end())
 			continue;
-		DrawListing(category, it->second, isFirst);
+		DrawListing(name, it->second, isFirst);
 		listing.erase(it);
 	}
-	// Non-default or non-common categories are rendered after default
-	// common categories in map key order (alphabetical order).
-	for(const auto &cit : listing)
-		DrawListing(cit.first, cit.second, isFirst);
+	// Display unrecognized categories.
+	for(const auto &[category, outfits] : listing)
+		DrawListing(category, outfits, isFirst);
 
 	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
 	int64_t chassisCost = depreciation.Value(
