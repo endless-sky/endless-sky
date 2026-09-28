@@ -277,7 +277,7 @@ interface "map detail panel"
 	visible if "has escort destination"
 	sprite "ui/wide button"
 		center -256 56
-	button c "Cancel order"
+	button c "_Cancel order"
 		center -256 56
 		dimensions 90 30
 
@@ -538,7 +538,7 @@ interface "load menu"
 		center -60 155
 		dimensions 120 30
 	active if "can remove snapshot"
-	button R "Remove"
+	button R "__Remove"
 		center 75 155
 		dimensions 90 30
 	
@@ -1990,7 +1990,7 @@ interface "boarding"
 		dimensions 70 30
 	
 	active if "can exit"
-	button x "_Done"
+	button d "_Done"
 		center -155 115
 		dimensions 70 30
 	
@@ -2005,7 +2005,7 @@ interface "boarding"
 		dimensions 80 30
 	
 	active if "can defend"
-	button D "_Defend"
+	button D "__Defend"
 		center 210 185
 		dimensions 80 30
 
@@ -2262,21 +2262,21 @@ interface "trade"
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 120 355
-	button u "B_uy All"
+	button u "__B_uy All"
 		center 120 355
 		dimensions 70 30
 
 	active if "can sell"
 	sprite "ui/dialog cancel"
 		center 200 355
-	button e "S_ell All"
+	button e "__S_ell All"
 		center 200 355
 		dimensions 70 30
 
 	active if "can sell minables"
 	sprite "ui/wide button"
 		center -90 355
-	button n "Sell Mi_nables"
+	button n "Sell __Mi_nables"
 		center -90 355
 		dimensions 90 30
 
@@ -2347,21 +2347,21 @@ interface "trade (small screen)"
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 60 355
-	button u "B_uy All"
+	button u "__B_uy All"
 		center 60 355
 		dimensions 70 30
 
 	active if "can sell"
 	sprite "ui/dialog cancel"
 		center 140 355
-	button e "S_ell All"
+	button e "__S_ell All"
 		center 140 355
 		dimensions 70 30
 
 	active if "can sell minables"
 	sprite "ui/wide button"
 		center -150 355
-	button n "Sell Mi_nables"
+	button n "Sell __Mi_nables"
 		center -150 355
 		dimensions 90 30
 
@@ -2440,7 +2440,7 @@ interface "mission" bottom
 		dimensions 130 30
 	
 	active if "can abort"
-	button A "Abort"
+	button A "__Abort"
 		center 70 -25
 		dimensions 80 30
 
@@ -2779,7 +2779,7 @@ interface "info panel"
 	visible if "show disown"
 	sprite "ui/dialog cancel"
 		center -150 305
-	button D "Disown"
+	button D "__Disown"
 		center -150 305
 		dimensions 70 30
 	
@@ -2860,7 +2860,7 @@ interface "message log"
 	sprite "ui/dialog cancel"
 		center 654 -80 bottom left
 	active if "!empty"
-	button c "Clear"
+	button c "_Clear"
 		center 654 -80 bottom left
 		dimensions 70 30
 
