@@ -304,10 +304,14 @@ tip "heat capacity:"
 	`Increases the maximum heat this ship is able to withstand before becoming overheated. A value of one has the same influence on a ship's maximum heat as one ton of mass, without the effects that mass has on movement.`
 
 tip "hull (repair):"
-	`Total hull strength and repair rate per second. The smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
+	`Total hull strength and repair rate per second.`
 
 tip "hull:"
-	`Total hull strength. Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
+	`Total hull strength.`
+
+tip "disabled at:"
+	`If this ship's hull integrity drops to this level, it will become disabled. Disabled ships lose all functionality and are able to be assisted by other ships to repair them, or boarded to plunder from or capture them.`
+	`Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
 
 tip "hull energy:"
 	`Energy consumed per second when repairing the hull.`

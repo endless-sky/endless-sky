@@ -226,6 +226,12 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributeValues.push_back(Format::Number(ship.MaxHull()));
 	}
 	attributesHeight += 20;
+	if(scrollingPanel)
+	{
+		attributeLabels.push_back("disabled at:");
+		attributeValues.push_back(Format::Number(ship.MinHull()));
+		attributesHeight += 20;
+	}
 	double emptyMass = attributes.Mass();
 	double currentMass = ship.Mass();
 	attributeLabels.push_back(isGeneric ? "mass with no cargo:" : "mass:");
