@@ -1462,6 +1462,7 @@ mission "Successors: Ghosts 14 to 15 Patch"
 	non-blocking
 	to offer
 		has "Successors: Ghosts 15: done"
+		not "successors: ghosts entered kasii-sola"
 	on offer
 		set "successors: ghosts entered kasii-sola"
 		fail
