@@ -37,6 +37,13 @@ using namespace std;
 
 
 
+ShipInfoDisplay::ShipInfoDisplay()
+{
+	isShip = true;
+}
+
+
+
 // Call this every time the ship changes.
 // Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,

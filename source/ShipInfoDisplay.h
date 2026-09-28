@@ -33,7 +33,7 @@ class Ship;
 // showing changes to your ship as you add upgrades, for scanning other ships, etc.
 class ShipInfoDisplay : public ItemInfoDisplay {
 public:
-	ShipInfoDisplay() = default;
+	ShipInfoDisplay();
 
 	// Call this every time the ship changes.
 	void Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity = false,

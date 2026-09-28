@@ -202,7 +202,7 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 	if(tooltip.ShouldDraw())
 	{
 		tooltip.SetZone(zone);
-		tooltip.SetText(GameData::Tooltip(hover));
+		tooltip.SetText(GameData::Tooltip(isShip ? "ship: " + hover : hover));
 	}
 
 	hoveringTooltip |= true;

@@ -265,14 +265,6 @@ std::string OutfitInfoDisplay::FormatAttribute(const std::string &attribute, dou
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
-		bool canSell, bool descriptionCollapsed)
-{
-	Update(outfit, player, canSell, descriptionCollapsed);
-}
-
-
-
 // Call this every time the ship changes.
 void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed)
 {
