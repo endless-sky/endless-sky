@@ -5588,9 +5588,9 @@ mission "Riley"
 			action
 				payment 35000
 			`	You leave Riley alone for a moment with her "father," and tell the nurse, who was was waiting just outside, that Riley's mourning process will have complications and she may need help with the matter.`
-			`	"Well," she replies, "we can't force her, but I can talk to her. What exactly makes you think she needs help?"`
+			`	"Well," she replies, "we can't force her, but I can talk to her. What exactly makes you think she needs help?"`
 			`	You explain the whole situation. The nurse appears shocked.`
-			`	"Good thing he is already dead. I might have strangled him if I knew sooner." She regains composure. "Mr. Church is not as nice as he appears to be. He is actually quite possessive. Luckily, I know what string to pull to both stop that psychological horror and get Riley the help she needs. Follow me inside."`
+			`	"Good thing he is already dead. I might have strangled him if I knew sooner." She regains composure. "Mr. Church is not as nice as he appears to be. He is actually quite possessive. Luckily, I know what string to pull to both stop that psychological horror and get Riley the help she needs. Follow me inside."`
 			`	The nurse knocks on the door and enters.`
 			`	"The nurse is here," says Church's voice, perfectly audible and toneless. "I must hide, I'm illegal." The light on the core suddenly go out`
 			`	Riley looks confused; the nurse reassures her. "Legality isn't a real issue. I'm here to take care of people's health. Miss Church, may I talk with you in private?"`
@@ -5605,7 +5605,7 @@ mission "Riley"
 			`	"Well, I love her, but I do not approve of her... barbaric music thing. I want her near me all the time, alive, dying, or even dead. I wish I could have experimented more around AI and brain uploading with her. Maybe we could have fused both of our souls into a computer; who knows?"`
 			`	There is a shocked silence. Neither of you expected this answer. After a while, Riley says in a falsely calm tone, "Shoot it down."`
 			`	"I have no shutdown procedure," says the AI. "I think I can't even sleep."`
-			`	"SHUT UP!" Riley grabs your sidearm and shoots at the Core. Church's voice becomes a stream of static until it shuts off compeltly. Lights on the Core turn from white to red, then fade.`
+			`	"SHUT UP!" Riley grabs your sidearm and shoots at the Core. Church's voice becomes a stream of static until it shuts off compeltly. Lights on the Core turn from white to red, then fade.`
 			`	"Sorry for that," Says Riley, giving back your sidearm with an eye toward safety. "Thanks for everything. I think I will need some help to deal with this, but I will be fine. Thanks again."`
 			label end
 			`	You say your goodbyes, leaving to your ship and returning to the stars.`
