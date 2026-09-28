@@ -172,7 +172,10 @@ tip "ship: Hand to Hand:"
 	`Weapons that your crew uses when trying to capture a ship.`
 
 tip "ship: Special:"
-	`Items you can purchase or sell but that are not outfits that can be installed in a ship.`
+	`Outfits that don't fit into any other category.`
+
+tip "ship: Unique:"
+	`Outfits of incredible rarity. Once lost, they cannot be reobtained.`
 
 
 

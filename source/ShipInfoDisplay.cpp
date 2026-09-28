@@ -45,6 +45,7 @@ namespace {
 		"Engines",
 		"Hand to Hand",
 		"Special",
+		"Unique",
 	};
 }
 
