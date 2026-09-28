@@ -632,7 +632,8 @@ tip "map:"
 	`The number of star systems included in this map.`
 
 tip "mass:"
-	`Mass, in tons. A ship's mass determines how fast it turns and accelerates and its maximum heat before overheating.`
+	`Mass, in tons.`
+	`The higher a ship's mass, the slower it turns and accelerates given the same engines, and the higher its maximum heat before overheating.`
 
 tip "operating costs:"
 	`Credits spent per day to maintain this outfit when it is in active use.`
