@@ -24,9 +24,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "UI.h"
 
-#include <cassert>
+#include "SDL.h"
 
-#include <SDL2/SDL.h>
+#include <cassert>
 
 using namespace std;
 
