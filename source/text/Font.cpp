@@ -192,7 +192,7 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 
 			if(doubleUnderlineChar)
 			{
-				float underlinePos[2] = {textPos[0], textPos[1] + UNDERLINE_OFFSET};
+				GLfloat underlinePos[2] = {textPos[0], textPos[1] + UNDERLINE_OFFSET};
 				glUniform2fv(positionI, 1, underlinePos);
 				glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 			}
