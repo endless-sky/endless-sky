@@ -524,7 +524,7 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 		auto it = listing.find(name);
 		if(it == listing.end())
 			continue;
-		
+
 		// Pad by 10 pixels before each category.
 		if(!isFirst)
 		{
