@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "CategoryList.h"
 #include "CategoryType.h"
-#include "Color.h"
 #include "Depreciation.h"
 #include "shader/FillShader.h"
 #include "text/Format.h"
@@ -34,6 +33,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <sstream>
 
 using namespace std;
+
+namespace {
+	const vector<string> COMMON_CATEGORIES = {
+		"Guns",
+		"Turrets",
+		"Secondary Weapons",
+		"Ammunition",
+		"Systems",
+		"Power",
+		"Engines",
+		"Hand to Hand",
+		"Special",
+	};
+}
 
 
 
@@ -513,32 +526,46 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	outfitsHeight = 20;
 
 	map<string, map<string, int>> listing;
-	for(const auto &it : ship.Outfits())
-		if(it.first->IsDefined() && !it.first->Category().empty() && !it.first->DisplayName().empty())
-			listing[it.first->Category()][it.first->DisplayName()] += it.second;
+	for(const auto &[outfit, count] : ship.Outfits())
+		if(outfit->IsDefined() && !outfit->Category().empty() && !outfit->DisplayName().empty())
+			listing[outfit->Category()][outfit->DisplayName()] += count;
 
-	for(const auto &cit : listing)
-	{
+	auto DrawListing = [&](const string &category, const map<string, int> &outfits, bool &isFirst) -> void {
 		// Pad by 10 pixels before each category.
-		if(&cit != &*listing.begin())
+		if(!isFirst)
 		{
 			outfitLabels.push_back(string());
 			outfitValues.push_back(string());
 			outfitsHeight += 10;
 		}
+		isFirst = false;
 
-		outfitLabels.push_back(cit.first + ':');
+		outfitLabels.push_back(category + ':');
 		outfitValues.push_back(string());
 		outfitsHeight += 20;
 
-		for(const auto &it : cit.second)
+		for(const auto &[outfit, count] : outfits)
 		{
-			outfitLabels.push_back(it.first);
-			outfitValues.push_back(to_string(it.second));
+			outfitLabels.push_back(outfit);
+			outfitValues.push_back(to_string(count));
 			outfitsHeight += 20;
 		}
-	}
+	};
 
+	// Render outfits from default, common categories in a set order.
+	bool isFirst = true;
+	for(const string &category : COMMON_CATEGORIES)
+	{
+		auto it = listing.find(category);
+		if(it == listing.end())
+			continue;
+		DrawListing(category, it->second, isFirst);
+		listing.erase(it);
+	}
+	// Non-default or non-common categories are rendered after default
+	// common categories in map key order (alphabetical order).
+	for(const auto &cit : listing)
+		DrawListing(cit.first, cit.second, isFirst);
 
 	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
 	int64_t chassisCost = depreciation.Value(
