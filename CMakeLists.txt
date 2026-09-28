@@ -45,7 +45,15 @@ endif()
 
 if(NOT ES_USE_SYSTEM_LIBRARIES)
 	# Tell vcpkg to use the required system libraries.
-	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs" "test-libs")
+	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
+	if(ES_USE_SDL3)
+		list(APPEND VCPKG_MANIFEST_FEATURES "sdl3")
+	else()
+		list(APPEND VCPKG_MANIFEST_FEATURES "sdl2")
+	endif()
+	if(BUILD_TESTING)
+		list(APPEND VCPKG_MANIFEST_FEATURES "test-libs")
+	endif()
 endif()
 
 # Tell vcpkg to use system libraries that are missing in the Steam runtime.
