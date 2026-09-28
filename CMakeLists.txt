@@ -27,6 +27,8 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
 # On Linux use relative RPATH.
 set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 
+include(CTest)
+
 # Setup vcpkg.
 if(ES_USE_VCPKG)
 	set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
@@ -242,7 +244,6 @@ else()
 endif()
 
 # Setup for the testing frameworks.
-include(CTest)
 if(BUILD_TESTING)
 	add_subdirectory(tests)
 endif()
