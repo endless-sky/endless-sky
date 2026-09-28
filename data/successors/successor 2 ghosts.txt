@@ -1454,6 +1454,20 @@ mission "Successors: Ghosts 14"
 
 
 
+# A patch for players who played Ghosts 14 and 15 during v0.11.3
+# and can't complete Ghosts 14.
+mission "Successors: Ghosts 14 to 15 Patch"
+	landing
+	invisible
+	non-blocking
+	to offer
+		has "Successors: Ghosts 15: done"
+	on offer
+		set "successors: ghosts entered kasii-sola"
+		fail
+
+
+
 mission "Successors: Ghosts 15"
 	transition
 	invisible
