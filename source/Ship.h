@@ -301,7 +301,7 @@ public:
 	void Draw(DrawList &draw, std::vector<Visual> &visuals) const;
 	// TODO: std::reference_wrapper<T> can be replaced with T& in C++26.
 	void Draw(DrawList &draw, std::optional<std::reference_wrapper<std::vector<Visual>>> visuals, const Point &pos,
-		const Angle &facing, float zoom) const;
+		const Angle &facing, float zoom, std::optional<double> parentCloakState = std::nullopt) const;
 
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
