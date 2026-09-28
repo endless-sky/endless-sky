@@ -516,7 +516,15 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 		if(outfit->IsDefined() && !outfit->Category().empty() && !outfit->DisplayName().empty())
 			listing[outfit->Category()][outfit->DisplayName()] += count;
 
-	auto DrawListing = [&](const string &category, const map<string, int> &outfits, bool &isFirst) -> void {
+	// Display outfit categories in the same order that they're listed in the outfitter.
+	bool isFirst = true;
+	for(const auto &category : GameData::GetCategory(CategoryType::OUTFIT))
+	{
+		const string &name = category.Name();
+		auto it = listing.find(name);
+		if(it == listing.end())
+			continue;
+		
 		// Pad by 10 pixels before each category.
 		if(!isFirst)
 		{
@@ -526,32 +534,17 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 		}
 		isFirst = false;
 
-		outfitLabels.push_back(category + ':');
+		outfitLabels.push_back(name + ':');
 		outfitValues.push_back(string());
 		outfitsHeight += 20;
 
-		for(const auto &[outfit, count] : outfits)
+		for(const auto &[outfit, count] : it->second)
 		{
 			outfitLabels.push_back(outfit);
 			outfitValues.push_back(to_string(count));
 			outfitsHeight += 20;
 		}
-	};
-
-	// Display outfit categories in the same order that they're listed in the outfitter.
-	bool isFirst = true;
-	for(const auto &category : GameData::GetCategory(CategoryType::OUTFIT))
-	{
-		const string &name = category.Name();
-		auto it = listing.find(name);
-		if(it == listing.end())
-			continue;
-		DrawListing(name, it->second, isFirst);
-		listing.erase(it);
 	}
-	// Display unrecognized categories.
-	for(const auto &[category, outfits] : listing)
-		DrawListing(category, outfits, isFirst);
 
 	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
 	int64_t chassisCost = depreciation.Value(
