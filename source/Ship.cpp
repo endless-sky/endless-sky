@@ -2183,7 +2183,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	};
 	auto drawEffects = [&, this](Ship::PlacementSide side) -> void
 	{
-		if(isUi)
+		if(isUi || isDocked)
 			return;
 		for(const Ship::LiveEffect &effect : liveEffects)
 		{
@@ -2202,7 +2202,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	};
 	auto drawSparks = [&, this](Ship::PlacementSide side) -> void
 	{
-		if(isUi)
+		if(isUi || isDocked)
 			return;
 		for(const Ship::LiveSpark &spark : liveSparks)
 		{
@@ -2263,7 +2263,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	};
 	auto drawLeaks = [&, this]() -> void
 	{
-		if(isUi)
+		if(isUi || isDocked)
 			return;
 		for(const Ship::Leak &leak : activeLeaks)
 		{
