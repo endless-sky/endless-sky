@@ -2150,7 +2150,7 @@ void Ship::Draw(DrawList &draw, vector<Visual> &visuals) const
 
 
 void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visuals, const Point &pos,
-	const Angle &facing, float zoom) const
+	const Angle &facing, float zoom, optional<double> parentCloakState) const
 {
 	// An empty visuals optional means this is being called from a UI panel and not Engine.
 	bool isUi = !visuals.has_value();
@@ -2162,15 +2162,16 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 		state = Ship::PlacementActivity::WHEN_DISABLED;
 
 	bool hasFighters = PositionFighters();
-	double cloak = Cloaking();
-	bool drawCloaked = !isUi && cloak && IsYours();
+	bool isDocked = parentCloakState.has_value();
+	double cloak = isDocked ? *parentCloakState : Cloaking();
+	bool drawCloaked = !isUi && IsYours() && cloak;
 	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
 	const Swizzle *cloakSwizzle = GameData::Swizzles().Get(fancyCloak ? "cloak fancy base" : "cloak fast");
 
 	auto drawFighter = [&](const Ship::Bay &bay) -> void
 	{
 		if(bay.ship)
-			bay.ship->Draw(draw, visuals, pos + zoom * facing.Rotate(bay.point), facing + bay.facing, zoom);
+			bay.ship->Draw(draw, visuals, pos + zoom * facing.Rotate(bay.point), facing + bay.facing, zoom, cloak);
 	};
 	auto drawObject = [&draw, cloak, drawCloaked, fancyCloak, cloakSwizzle](const Body &body) -> void
 	{
@@ -2182,7 +2183,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	};
 	auto drawEffects = [&, this](Ship::PlacementSide side) -> void
 	{
-		if(isUi)
+		if(isUi || isDocked)
 			return;
 		for(const Ship::LiveEffect &effect : liveEffects)
 		{
@@ -2201,7 +2202,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	};
 	auto drawSparks = [&, this](Ship::PlacementSide side) -> void
 	{
-		if(isUi)
+		if(isUi || isDocked)
 			return;
 		for(const Ship::LiveSpark &spark : liveSparks)
 		{
@@ -2212,7 +2213,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	};
 	auto drawEngineFlares = [&, this](uint8_t where)
 	{
-		if(isUi)
+		if(isUi || isDocked)
 			return;
 		if(ThrustHeldFrames(Ship::ThrustKind::FORWARD) && !EnginePoints().empty())
 			DrawFlareSprites(*this, draw, EnginePoints(),
@@ -2262,7 +2263,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	};
 	auto drawLeaks = [&, this]() -> void
 	{
-		if(isUi)
+		if(isUi || isDocked)
 			return;
 		for(const Ship::Leak &leak : activeLeaks)
 		{
