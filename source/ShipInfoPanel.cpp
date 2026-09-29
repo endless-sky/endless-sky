@@ -178,7 +178,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI().Pop(this);
 		GetUI().Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
-	else if(key == 'R' || (key == 'r' && shift))
+	else if(key == 'r')
 		GetUI().Push(ShipNameDialogPanel::Create(
 			DialogPanel::FunctionButton(this, "Rename", 'r', &ShipInfoPanel::Rename),
 			"Change this ship's name?", (*shipIt)->GivenName()));

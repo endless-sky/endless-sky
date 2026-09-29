@@ -2713,7 +2713,7 @@ interface "info panel"
 		from 250 -290 to 500 280
 	
 	visible if "ship tab"
-	button R
+	button r
 		center -375 -270
 		dimensions 250 30
 	sprite "ui/ship tab"
@@ -2781,6 +2781,13 @@ interface "info panel"
 		center -150 305
 	button D "Disown"
 		center -150 305
+		dimensions 70 30
+	
+	visible if "ship tab"
+	sprite "ui/dialog cancel"
+		center -245 305
+	button r "_Rename"
+		center -245 305
 		dimensions 70 30
 	
 	visible if "show dump/jettison button"
