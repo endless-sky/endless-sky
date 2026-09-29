@@ -43,10 +43,19 @@
 						"pipewire"
 					],
 					"platform": "linux"
-				},
-				"sdl2",
-				"sdl3",
-				"pkgconf"
+				}
+			]
+		},
+		"sdl2": {
+			"description": "Libraries needed when using sdl2.",
+			"dependencies": [
+				"sdl2"
+			]
+		},
+		"sdl3": {
+			"description": "Libraries needed when using sdl3.",
+			"dependencies": [
+				"sdl3"
 			]
 		},
 		"steam-libs": {

@@ -11,6 +11,8 @@ option(ES_USE_SDL3 "Use the newer SDL3 libraries instead of SDL2" OFF)
 cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON "APPLE OR ES_STEAM" OFF)
 cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executable. Not suitable for development purposes." OFF APPLE OFF)
+# This is normally set by CTest, but we predefine it here so that it's recognized during vcpkg configuration.
+option(BUILD_TESTING "" ON)
 
 # Support Debug and Release configurations.
 set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
@@ -45,7 +47,15 @@ endif()
 
 if(NOT ES_USE_SYSTEM_LIBRARIES)
 	# Tell vcpkg to use the required system libraries.
-	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs" "test-libs")
+	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
+	if(ES_USE_SDL3)
+		list(APPEND VCPKG_MANIFEST_FEATURES "sdl3")
+	else()
+		list(APPEND VCPKG_MANIFEST_FEATURES "sdl2")
+	endif()
+	if(BUILD_TESTING)
+		list(APPEND VCPKG_MANIFEST_FEATURES "test-libs")
+	endif()
 endif()
 
 # Tell vcpkg to use system libraries that are missing in the Steam runtime.
