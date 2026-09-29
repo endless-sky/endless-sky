@@ -3495,7 +3495,7 @@ mission "Ka'het: Patir Mystery 26B"
 				`	"Alone? What should I do if I have an issue?"`
 					goto alone
 				`	"What if you have an emergency and need to leave quickly?"`
-			`	He smiles. "I appreciate your concerns, <first>. You could wait until we have entered the station before going on with your work; I can assure you that after that, it will take longer for us to return here than it will for you. Well," he corrects himself, "I realize that does not sound very reassuring, but it was more to say that it matters little where your ship stays while are deep inside the station."`
+			`	He smiles. "I appreciate your concerns, <first>. You could wait until we have entered the station before going on with your work; I can assure you that after that, it will take longer for us to return here than it will for you. Well," he corrects himself, "I realize that does not sound very reassuring, but it was more to say that it matters little where your ship stays while we are deep inside the station."`
 				goto enter
 			label alone
 			`	He smiles. "We will remain in radio contact for the entire time, if we can. Plus, we have seen first hand the experience you have gained lately. It would be foolish of us not to make use of your expertise when we can."`
