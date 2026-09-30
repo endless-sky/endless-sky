@@ -119,11 +119,11 @@ DamageDealt DamageProfile::CalculateDamage() const
 	double hullDamage = isMinable ? weapon.MinableDamage() : weapon.HullDamage();
 	double relativeHullDamage = isMinable ? weapon.RelativeMinableDamage() : weapon.RelativeHullDamage();
 	damage.levels.hull = (hullDamage + relativeHullDamage * entity.MaxHull()) * totalHullProtection;
-	double hullUntilDisabled = entity.HullLevelUntilDisabled();
-	if(entity.MinHull() && damage.levels.hull > hullUntilDisabled)
+	double hull = entity.HullLevelUntilDisabled();
+	if(damage.levels.hull > hull)
 	{
-		double hullFraction = hullUntilDisabled / damage.levels.hull;
-		damage.levels.hull = hullUntilDisabled;
+		double hullFraction = hull / damage.levels.hull;
+		damage.levels.hull *= hullFraction;
 		damage.levels.hull += (weapon.DisabledDamage() + weapon.RelativeDisabledDamage() * entity.MaxHull())
 			* totalHullProtection * (1. - hullFraction);
 	}
