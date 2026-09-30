@@ -1696,7 +1696,7 @@ tip "Show stored outfits on map"
 	`If you have outfits stored on a planet, marks systems with stored outfits on the star map.`
 
 tip "Always underline shortcuts"
-	`Always underline the shortcut key for any buttons. Holding the alt key in any panel will also underline the button shortcut keys if this setting is off.`
+	`Always underline the shortcut key for any buttons. Holding the alt key in any panel will also underline the button shortcut keys if this setting is off. For buttons that contain a character that is underlined twice, the hotkey is shift plus the double underlined character.`
 
 tip "Reactivate first-time help"
 	`Reactivate the first-time help dialogs.`

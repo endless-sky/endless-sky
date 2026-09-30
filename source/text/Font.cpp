@@ -36,6 +36,7 @@ using namespace std;
 namespace {
 	bool showUnderlines = false;
 	const int KERN = 2;
+	const float UNDERLINE_OFFSET = 2.f;
 
 	/// Shared VAO and VBO quad (0,0) -> (1,1)
 	GLuint vao = 0;
@@ -150,12 +151,15 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	int previous = 0;
 	bool isAfterSpace = true;
 	bool underlineChar = false;
+	bool doubleUnderlineChar = false;
 	const int underscoreGlyph = max(0, min(GLYPHS - 1, '_' - 32));
 
 	for(char c : str)
 	{
 		if(c == '_')
 		{
+			if(underlineChar)
+				doubleUnderlineChar = true;
 			underlineChar = showUnderlines;
 			continue;
 		}
@@ -184,8 +188,16 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 				/ (advance[underscoreGlyph * GLYPHS] + KERN));
 
 			glUniform2fv(positionI, 1, textPos);
-
 			glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+			if(doubleUnderlineChar)
+			{
+				GLfloat underlinePos[2] = {textPos[0], textPos[1] + UNDERLINE_OFFSET};
+				glUniform2fv(positionI, 1, underlinePos);
+				glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+				doubleUnderlineChar = false;
+			}
+
 			underlineChar = false;
 		}
 
