@@ -113,17 +113,28 @@ DamageDealt DamageProfile::CalculateDamage() const
 	// Hull damage is blocked 100%.
 	// Shield damage is blocked 0%.
 	damage.levels.shields *= shieldFraction;
+
 	double totalHullProtection = (ScaleType(1., 0., entity.DamageProtection().hull +
 		(entity.IsCloaked() ? entity.CloakedHullProtection() : 0.)));
-	damage.levels.hull = (weapon.HullDamage() + weapon.RelativeHullDamage() * entity.MaxHull())
-		* totalHullProtection;
-	double hull = entity.HullLevelUntilDisabled();
-	if(damage.levels.hull > hull)
+	bool minimumHull = entity.MinHull();
+	bool isDisabled = minimumHull && entity.HullLevel() < minimumHull;
+	if(!isDisabled)
+		damage.levels.hull = (weapon.HullDamage() + weapon.RelativeHullDamage() * entity.MaxHull())
+			* totalHullProtection;
+
+	double hullUntilDisabled = entity.HullLevelUntilDisabled();
+	if(minimumHull && (isDisabled || damage.levels.hull > hullUntilDisabled))
 	{
-		double hullFraction = hull / damage.levels.hull;
-		damage.levels.hull *= hullFraction;
-		damage.levels.hull += (weapon.DisabledDamage() + weapon.RelativeDisabledDamage() * entity.MaxHull())
-			* totalHullProtection * (1. - hullFraction);
+		double disabledHullDamage = (weapon.DisabledDamage() + weapon.RelativeDisabledDamage() * entity.MaxHull())
+			* totalHullProtection;
+		if(isDisabled)
+			damage.levels.hull = disabledHullDamage;
+		else
+		{
+			double hullFraction = hullUntilDisabled / damage.levels.hull;
+			damage.levels.hull = hullUntilDisabled;
+			damage.levels.hull += disabledHullDamage * (1. - hullFraction);
+		}
 	}
 	damage.levels.energy = (weapon.EnergyDamage() + weapon.RelativeEnergyDamage() * entity.MaxEnergy())
 		* ScaleType(.5, 0., entity.DamageProtection().energy);
