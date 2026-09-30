@@ -95,6 +95,7 @@ public:
 	void SetTrueName(const std::string &name);
 	const std::string &DisplayName() const;
 	const std::string &PluralName() const;
+	void SetIgnorePlural(bool ignorePlural);
 	const std::string &Category() const;
 	const std::string &Series() const;
 	int Index() const;
@@ -176,6 +177,7 @@ private:
 	std::string trueName;
 	std::string displayName;
 	std::string pluralName;
+	bool ignorePlural = false;
 	std::string category;
 	// The series that this outfit is a part of and its index within that series.
 	// Used for sorting within shops.

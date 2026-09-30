@@ -485,6 +485,11 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		base = GameData::Ships().Get(trueModelName);
 		variantName = node.Token(2 + add);
 	}
+	// Copy the variant name down to the attributes so that it can include
+	// the name when reporting errors with this ship
+	baseAttributes.SetTrueName(VariantName());
+	baseAttributes.SetIgnorePlural(true);
+
 	isDefined = true;
 	entityType = Entity::Type::SHIP;
 
@@ -945,7 +950,10 @@ void Ship::FinishLoading(bool isNewInstance)
 		if(!administrativeCost.has_value())
 			administrativeCost = base->administrativeCost;
 		if(baseAttributes.Empty())
+		{
 			baseAttributes = base->baseAttributes;
+			baseAttributes.SetTrueName(VariantName());
+		}
 		if(bays.empty() && !base->bays.empty() && !removeBays)
 			bays = base->bays;
 		if(enginePoints.empty())

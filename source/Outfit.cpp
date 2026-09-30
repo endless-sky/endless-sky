@@ -415,7 +415,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	// Unless this outfit definition isn't declared with a category,
 	// because then this is probably being done in `add attributes` on a ship,
 	// or it's a pseudo-outfit like submunitions, so the name doesn't matter.
-	if(!displayName.empty() && pluralName.empty())
+	if(!displayName.empty() && pluralName.empty() && !ignorePlural)
 	{
 		pluralName = displayName + 's';
 		const char &last = displayName.back();
@@ -539,6 +539,13 @@ const string &Outfit::DisplayName() const
 const string &Outfit::PluralName() const
 {
 	return pluralName;
+}
+
+
+
+void Outfit::SetIgnorePlural(bool ignorePlural)
+{
+	this->ignorePlural = ignorePlural;
 }
 
 
@@ -720,9 +727,9 @@ void Outfit::Set(const char *attribute, double value)
 {
 	if(value >= ATTRIBUTE_LIMIT || value <= -ATTRIBUTE_LIMIT)
 	{
-		string location = trueName.empty() ? "a ship" : "outfit " + trueName;
-		Logger::Log("Attribute " + string(attribute) + " on " + location + " with value " + Format::Number(value) +
-			" exceeds the attribute limit of +/-" + Format::Number(ATTRIBUTE_LIMIT, 3), Logger::Level::WARNING);
+		Logger::Log("Ignoring attribute " + string(attribute) + " on " + trueName + " with value "
+			+ Format::Number(value) + " that exceeds the attribute limit of +/-" + Format::Number(ATTRIBUTE_LIMIT, 3),
+			Logger::Level::WARNING);
 		return;
 	}
 	attributes[attribute] = value * ATTRIBUTE_PRECISION;
