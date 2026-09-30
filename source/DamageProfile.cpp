@@ -123,7 +123,7 @@ DamageDealt DamageProfile::CalculateDamage() const
 	if(entity.MinHull() && damage.levels.hull > hullUntilDisabled)
 	{
 		double hullFraction = hullUntilDisabled / damage.levels.hull;
-		damage.levels.hull *= hullFraction;
+		damage.levels.hull = hullUntilDisabled;
 		damage.levels.hull += (weapon.DisabledDamage() + weapon.RelativeDisabledDamage() * entity.MaxHull())
 			* totalHullProtection * (1. - hullFraction);
 	}
