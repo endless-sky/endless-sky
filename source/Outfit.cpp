@@ -19,7 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 #include "DataNode.h"
 #include "Effect.h"
+#include "text/Format.h"
 #include "GameData.h"
+#include "Logger.h"
 #include "image/SpriteSet.h"
 #include "Weapon.h"
 
@@ -36,6 +38,8 @@ namespace {
 	// get used as closely as possible. Commonly used attribute values get cached anyway, so we care
 	// more about accuracy to what the content creator provided than speed of converting values.
 	constexpr int ATTRIBUTE_PRECISION = 10000;
+	// Attributes with a value greater than this magnitude will convert to an integer that will under/overflow.
+	constexpr double ATTRIBUTE_LIMIT = static_cast<double>(numeric_limits<int64_t>::max()) / ATTRIBUTE_PRECISION;
 
 	// A mapping of attribute names to specifically-allowed minimum values. Based on the
 	// specific usage of the attribute, the allowed minimum value is chosen to avoid
@@ -714,6 +718,13 @@ void Outfit::AddLicenses(const Outfit &other)
 // Modify this outfit's attributes.
 void Outfit::Set(const char *attribute, double value)
 {
+	if(value >= ATTRIBUTE_LIMIT || value <= -ATTRIBUTE_LIMIT)
+	{
+		string location = trueName.empty() ? "a ship" : "outfit " + trueName;
+		Logger::Log("Attribute " + string(attribute) + " on " + location + " with value " + Format::Number(value) +
+			" exceeds the attribute limit of +/-" + Format::Number(ATTRIBUTE_LIMIT, 3), Logger::Level::WARNING);
+		return;
+	}
 	attributes[attribute] = value * ATTRIBUTE_PRECISION;
 }
 
