@@ -490,7 +490,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	{
 		attributesHeight += 20;
 		tableLabels.push_back("surge:");
-		energyTable.push_back(Format::Number(idleEnergyPerFrame));
+		energyTable.push_back(Format::Number(max(0., idleEnergyPerFrame)));
 		heatTable.push_back("N/A");
 	}
 	// Pad by 10 pixels on the top and bottom.
