@@ -19,7 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 #include "DataNode.h"
 #include "Effect.h"
+#include "text/Format.h"
 #include "GameData.h"
+#include "Logger.h"
 #include "image/SpriteSet.h"
 #include "Weapon.h"
 
@@ -36,6 +38,8 @@ namespace {
 	// get used as closely as possible. Commonly used attribute values get cached anyway, so we care
 	// more about accuracy to what the content creator provided than speed of converting values.
 	constexpr int ATTRIBUTE_PRECISION = 10000;
+	// Attributes with a value greater than this magnitude will convert to an integer that will under/overflow.
+	constexpr double ATTRIBUTE_LIMIT = static_cast<double>(numeric_limits<int64_t>::max()) / ATTRIBUTE_PRECISION;
 
 	// A mapping of attribute names to specifically-allowed minimum values. Based on the
 	// specific usage of the attribute, the allowed minimum value is chosen to avoid
@@ -391,13 +395,17 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			for(const DataNode &grand : child)
 				AddLicense(grand.Token(0));
 		}
-		else if(key == "jump range" && hasValue)
-		{
-			// Jump range must be positive.
-			Set(key, max(0., child.Value(1)));
-		}
 		else if(hasValue)
+		{
+			double value = child.Value(1);
+			if(value >= ATTRIBUTE_LIMIT || value <= -ATTRIBUTE_LIMIT)
+			{
+				child.PrintTrace("Ignoring attribute with value that exceeds the attribute limit of +/-"
+					+ Format::Number(ATTRIBUTE_LIMIT, 3));
+				continue;
+			}
 			Set(key, child.Value(1));
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -443,10 +451,14 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	if(jumpFuel)
 		attributes.Erase("jump fuel");
 
+	// Jump range must be positive.
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on
 	// viable outfits.
-	if(isJumpDrive && attributes.Get("jump range"))
+	int64_t jumpRange = attributes.Get("jump range");
+	if(jumpRange < 0)
+		attributes.Erase("jump range");
+	else if(isJumpDrive && jumpRange)
 		GameData::AddJumpRange(Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
