@@ -395,13 +395,17 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			for(const DataNode &grand : child)
 				AddLicense(grand.Token(0));
 		}
-		else if(key == "jump range" && hasValue)
-		{
-			// Jump range must be positive.
-			Set(key, max(0., child.Value(1)));
-		}
 		else if(hasValue)
+		{
+			double value = child.Value(1);
+			if(value >= ATTRIBUTE_LIMIT || value <= -ATTRIBUTE_LIMIT)
+			{
+				child.PrintTrace("Ignoring attribute " + string(key) + " with value " + Format::Number(value)
+					+ " that exceeds the attribute limit of +/-" + Format::Number(ATTRIBUTE_LIMIT, 3));
+				continue;
+			}
 			Set(key, child.Value(1));
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -415,7 +419,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	// Unless this outfit definition isn't declared with a category,
 	// because then this is probably being done in `add attributes` on a ship,
 	// or it's a pseudo-outfit like submunitions, so the name doesn't matter.
-	if(!displayName.empty() && pluralName.empty() && !ignorePlural)
+	if(!displayName.empty() && pluralName.empty())
 	{
 		pluralName = displayName + 's';
 		const char &last = displayName.back();
@@ -447,10 +451,14 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	if(jumpFuel)
 		attributes.Erase("jump fuel");
 
+	// Jump range must be positive.
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on
 	// viable outfits.
-	if(isJumpDrive && attributes.Get("jump range"))
+	int64_t jumpRange = attributes.Get("jump range");
+	if(jumpRange < 0)
+		attributes.Erase("jump range");
+	else if(isJumpDrive && jumpRange)
 		GameData::AddJumpRange(Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
@@ -539,13 +547,6 @@ const string &Outfit::DisplayName() const
 const string &Outfit::PluralName() const
 {
 	return pluralName;
-}
-
-
-
-void Outfit::SetIgnorePlural(bool ignorePlural)
-{
-	this->ignorePlural = ignorePlural;
 }
 
 
@@ -725,13 +726,6 @@ void Outfit::AddLicenses(const Outfit &other)
 // Modify this outfit's attributes.
 void Outfit::Set(const char *attribute, double value)
 {
-	if(value >= ATTRIBUTE_LIMIT || value <= -ATTRIBUTE_LIMIT)
-	{
-		Logger::Log("Ignoring attribute " + string(attribute) + " on " + trueName + " with value "
-			+ Format::Number(value) + " that exceeds the attribute limit of +/-" + Format::Number(ATTRIBUTE_LIMIT, 3),
-			Logger::Level::WARNING);
-		return;
-	}
 	attributes[attribute] = value * ATTRIBUTE_PRECISION;
 }
 
