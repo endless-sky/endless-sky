@@ -739,7 +739,7 @@ outfit "Shield Disruptor Turret"
 		"firing heat" 2.7
 		"shield damage" 3.8
 		"hull damage" .5
-		"disruption damage" .24
+		"disruption damage" .12
 	description "Shield Disruptor Turrets interfere with a ship's shields, allowing a ship's hull to be damaged even when shields are up. However, they do very little hull damage by themselves."
 
 effect "disruptor impact"
