@@ -2283,7 +2283,7 @@ interface "trade"
 	active if "can sell outfits"
 	sprite "ui/wide button"
 		center -190 355
-	button f "Sell Out_fits"
+	button f "Sell __Out_fits"
 		center -190 355
 		dimensions 90 30
 
@@ -2368,7 +2368,7 @@ interface "trade (small screen)"
 	active if "can sell outfits"
 	sprite "ui/wide button"
 		center -250 355
-	button f "Sell Out_fits"
+	button f "Sell __Out_fits"
 		center -250 355
 		dimensions 90 30
 
