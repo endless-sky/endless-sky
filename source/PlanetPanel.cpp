@@ -446,6 +446,10 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	absentCannotFly.clear();
 
 	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
+	// Before distributing cargo to the player's fleet, determine if their pooled cargo hold is overflowing.
+	// If it isn't and later on we can't fit certain cargo, that's because the player has an item that's
+	// bigger than any one ship can store in their free space.
+	bool hasCargoOverflow = player.Cargo().FreePrecise() < 0.;
 	const Ship *flagship = player.Flagship();
 	const CargoHold &cargo = player.DistributeCargo();
 	// Are you overbooked? Don't count fireable flagship crew.
@@ -509,6 +513,16 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			else
 				out << ".";
 		};
+		if(missionCargoToSell > 0 || outfitsToSell > 0 || commoditiesToSell > 0)
+		{
+			if(hasCargoOverflow)
+				out << "Your fleet's cargo is overbooked.\n";
+			else
+			{
+				out << "Some cargo could not be distributed to your escorts due to their individual cargo hold sizes. ";
+				out << "(For example, two ships with 20 ton cargo holds can't carry a single 40 ton outfit.)\n";
+			}
+		}
 		out << "If you take off now, you will:";
 
 		// Warn about missions that will fail on takeoff.
