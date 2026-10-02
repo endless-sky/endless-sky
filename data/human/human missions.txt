@@ -6628,7 +6628,6 @@ mission "Lost Racer 2 - Continued"
 	mark "Acamar"
 	destination "Sandswell"
 	passengers 1
-	deadline
 	to offer
 		has "Lost Racer 1: done"
 		not "abandoned lost racer"
@@ -6697,6 +6696,8 @@ mission "Lost Racer 2 - Continued"
 			label acamar
 			`	"Thank you, Captain. We need to get moving immediately."`
 				launch
+	on accept
+		event "lost racer deadline" 12
 	on enter Acamar
 		unmark Acamar
 		conversation
@@ -6724,8 +6725,6 @@ mission "Lost Racer 2 - Continued"
 				`	"Perhaps that would be best."`
 					goto abandon
 				`	(Suggest a different system.)`
-			action
-				set "rescue artemis renard"
 			`	"What about there," you say, pointing to the neighboring system. "Kugel. It's off the circuit, so no one will have searched there, but if her hyperdrive malfunctioned or was sabotaged, she might have ended up there. It's only a single jump away."`
 			`	"Okay," he says, wiping his eyes with the corners of his sleeves. "Kugel it is, Captain."`
 				accept
@@ -6738,11 +6737,36 @@ mission "Lost Racer 2 - Continued"
 				fail
 	on enter Kugel
 		unmark Acamar
+		set "lost racer found artemis"
 		dialog
 			"As soon as you enter the Kugel system, your sensors begin to pick up a weak radio signal coming from the second planet, this time matching exactly the frequency of Artemis Renard's transponder. It seems you have arrived in the correct system."
 	on visit
 		dialog
 			"You have reached <planet>, but August Renard is not in the system! Better depart and wait for your escorts to arrive in this star system."
+
+event "lost racer deadline"
+
+mission "Lost Racer 2 - Deadline"
+	entering
+	name "Take August to <planet>"
+	description "After your aborted search for Artemis Renard, take her father, August, back to <destination>."
+	destination "Glory"
+	passengers 1
+	to offer
+		has "event: lost racer deadline"
+		not "lost racer found artemis"
+	on offer
+		fail "Lost Racer 2 - Continued"
+		set "lost racer august to glory"
+		set "lost racer august aborted"
+		conversation
+			`As you enter the system, August enters the bridge. "Captain, we're too late. Artemis is dead. I just know it."`
+			choice
+				`	"No need to panic."`
+				`	(Say nothing.)`
+			`	"If she wasn't attacked by competition, she still can't have survived this long. You've failed." He looks ready to break down.`
+			`	"Take me back to Glory. There's no hope."`
+				accept
 
 mission "Lost Racer 2 - Failed"
 	entering
@@ -6753,12 +6777,18 @@ mission "Lost Racer 2 - Failed"
 	destination "Glory"
 	passengers 1
 	to offer
-		has "Lost Racer 2 - Continued: failed"
+		not "lost racer august aborted"
 		has "lost racer august to glory"
-	on complete
+
+mission "Lost Racer 2 - August Reached Glory"
+	invisible
+	landing
+	to offer
+		has "lost racer august to glory"
+	on offer
 		clear "lost racer august to glory"
 		conversation
-			`As the advanced medical facilities of <planet> rise up to greet the <ship>, August comes to meet you on the bridge. "Captain, I would like to thank you for attempting to find my daughter, even though the attempt ended poorly. Thank you for that, at least." He then prepares to exit the ship, outside of which a veritable army of attendants are waiting.`
+			`As the advanced medical facilities of <planet> rise up to greet the <ship>, August comes to meet you on the bridge. "Captain, I would like to thank you for attempting to find my daughter, even though we failed. Thank you for that, at least." He then prepares to exit the ship, outside of which a veritable army of attendants are waiting.`
 			choice
 				`	"Weren't you going to pay me?"`
 					goto greedy
@@ -6780,6 +6810,7 @@ mission "Lost Racer 3"
 	passengers 2
 	to offer
 		has "Lost Racer 2 - Continued: done"
+		not "event: lost racer deadline"
 	on offer
 		conversation
 			`Upon reaching the planet, you pinpoint the radio signal to a valley in the southern hemisphere. You descend through a raging sandstorm; you have to rely entirely on instruments as the view from the <ship>'s bridge is almost entirely obscured. Soon, your scanners report that the source of the signal is less than a kilometer out, and after a few moments more, you begin to discern the vague shape of a crashed Flivver through the haze of dust. You land the <ship> next to the wreck, and both you and Mr. Renard go to exit the ship.`
