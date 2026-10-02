@@ -16,11 +16,203 @@ tip "parked"
 	`(parked)`
 
 
+# Ship tooltips:
 
-# Outfit and ship attributes:
-tip "acceleration:"
+## Ship info:
+tip "ship: model:"
+	`The model of this ship.`
+
+tip "ship: category:"
+	`The category that this ship's model is within.`
+
+tip "ship: license:"
+	`A license required to purchase this ship.`
+	`Licenses may be able to be purchased separately, or can be earned by completing certain tasks.`
+
+tip "ship: This ship will sell for:"
+	`A breakdown of the value of this ship.`
+
+tip "ship: empty hull:"
+	`The price this ship itself would sell for without any outfits installed.`
+
+tip "ship:   + outfits:"
+	`The price that all this ship's outfits would sell for.`
+
+tip "ship: cost:"
+	`The total credit value of this ship.`
+	`Items depreciate in value with time. If you have sold any used items today, you can buy them back for the same price you sold them for.`
+
+tip "ship: fleet cost:"
+	`How much this ship costs toward your fleet capacity. Your flagship and parked escorts do not count toward the capacity. You may exceed your capacity while landed, but will not be able to depart if you go over your capacity.`
+
+tip "ship: shields:"
+	`Total shield strength.`
+	`Most weapons cannot damage your hull until your shields are depleted. Some weapon effects, such as heat damage, become more severe once shields are down.`
+
+tip "ship: shields (charge):"
+	`Total shield strength and regeneration rate per second.`
+	`Most weapons cannot damage your hull until your shields are depleted. Some weapon effects, such as heat damage, become more severe once shields are down.`
+
+tip "ship: hull:"
+	`Total hull strength.`
+	`Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
+
+tip "ship: hull (repair):"
+	`Total hull strength and repair rate per second.`
+	`Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
+
+tip "ship: mass:"
+	`Mass, in tons.`
+	`The higher a ship's mass, the slower it turns and accelerates given the same engines, and the higher its maximum heat before overheating.`
+
+tip "ship: mass with no cargo:"
+	`Mass of this ship when not carrying any cargo or fighters.`
+	`The higher a ship's mass, the slower it turns and accelerates given the same engines, and the higher its maximum heat before overheating.`
+
+tip "ship: cargo space:"
+	`Tons of cargo (commodities, mission cargo, and plundered outfits) this ship can carry.`
+
+tip "ship: required crew / bunks:"
+	`Crew members required to operate this ship, and the total number bunks available. Extra bunks can be used for passengers or extra crew.`
+
+tip "ship: fuel:"
+	`This ship's current fuel amount. An ordinary hyperdrive jump consumes 100 fuel.`
+
+tip "ship: fuel capacity:"
+	`The amount of fuel this ship can hold. An ordinary hyperdrive jump consumes 100 fuel. Fuel is replenished for free when you land on an inhabited planet.`
+
+tip "ship: movement:"
+	`How quickly this ship can accelerate and turn.`
+
+tip "ship: movement (full - no cargo):"
+	`How quickly this ship can accelerate and turn when its cargo hold is full versus when it is empty.`
+
+tip "ship: max speed:"
+	`The maximum speed of this ship when using thrusters. Excludes the effect of afterburners, unless there are no normal thrusters installed.`
+
+tip "ship: acceleration:"
 	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
 
+tip "ship:     w/ afterburner:"
+	`Movement while both your primary thrusters and afterburners are active.`
+
+tip "ship: turning:"
+	`Turn rate, in degrees per second. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it turns.`
+
+tip "ship: outfit space free:"
+	`Tons of space this ship has for outfits (including weapons and engines).`
+
+tip "ship:     weapon capacity:"
+	`Tons of weapons this ship can hold. (To install a weapon, you must also have enough total outfit space available.)`
+
+tip "ship:     engine capacity:"
+	`Tons of engines this ship can hold. (To install an engine, you must also have enough total outfit space available.)`
+
+tip "ship: gun ports free:"
+	`How many guns this ship can hold. This includes most missiles and secondary weapons that fire straight forward.`
+
+tip "ship: turret mounts free:"
+	`How many turrets can be mounted on this ship. Turrets fire in the direction of the currently selected target, instead of firing straight forward like guns.`
+
+tip "ship: fighter bays:"
+	`The number of ships from the "Fighter" category that this ship can carry.`
+
+tip "ship: drone bays:"
+	`The number of ships from the "Drone" category that this ship can carry.`
+
+
+## Ship heat and energy summary fields:
+tip "ship: idle:"
+	`Energy and heat generated per second when this ship is idle, i.e. not firing weapons, moving, or using any other systems.`
+
+tip "ship: moving:"
+	`Energy consumed and heat generated per second when this ship is turning and thrusting. Includes the cost of using an afterburner if one is installed, or uses the cost of using reverse thrust if that is greater than the cost of forward thrust. This is in addition to the "idle" amount.`
+
+tip "ship: thrusting:"
+	`Energy consumed and heat generated per second when this ship is thrusting. This is in addition to the "idle" amount.`
+
+tip "ship: reversing:"
+	`Energy consumed and heat generated per second when this ship is using reverse thrusters. This is in addition to the "idle" amount.`
+
+tip "ship: afterburner:"
+	`Energy consumed and heat generated per second when this ship is using its afterburner. This is in addition to the "idle" amount.`
+
+tip "ship: turning:"
+	`Energy consumed and heat generated per second when this ship is turning. This is in addition to the "idle" amount.`
+
+tip "ship: firing:"
+	`Energy consumed and heat generated per second when this ship is firing all its weapons. This is in addition to the "idle" amount. Note that weapons may consume or generate more energy or heat than this at the moment they fire, and this is the average value over time.`
+
+tip "ship: shields / hull:"
+	`Energy consumed and heat generated per second when this ship is recharging shields and repairing its hull at the same time. This is in addition to the "idle" amount.`
+
+tip "ship: repairing hull:"
+	`Energy consumed and heat generated per second when this ship is repairing its hull. This is in addition to the "idle" amount.`
+
+tip "ship: charging shields:"
+	`Energy consumed and heat generated per second when this ship is recharging its shields. This is in addition to the "idle" amount.`
+
+tip "ship: net change:"
+	`The sum of the energy consumed and heat generated per second from the above energy and heat values. Represents the worst case scenario when all possible systems are active at once.`
+
+tip "ship: capacity:"
+	`Energy capacity allows a ship to temporarily draw more energy than it produces, and can be increased by installing batteries.`
+	`Heat capacity is the highest your heat generation can be without eventually causing your ship to overheat, and is influenced by the mass of the ship. If the "net change" value for heat is greater than this value, then the ship can overheat itself. Weapons with high firing heat per shot can cause you to become overheated even if "net change" is below heat capacity.`
+
+tip "ship: surge:"
+	`This ship lacks energy storage. Therefore, this is the greatest amount of energy that can be drawn by any of this ship's systems in a single instant, such as the energy required for a single shot of a weapon. Systems that require more than this amount of energy to activate will be unusable.`
+
+
+## Outfit categories:
+tip "ship: Guns:"
+	`Weapons that are fixed in place (firing in the direction your ship is pointed) and that require no ammunition.`
+
+tip "ship: Turrets:"
+	`Weapons that can fire in any direction and will track your currently selected target.`
+
+tip "ship: Secondary Weapons:"
+	`Weapons that require ammunition (which must be purchased separately).`
+
+tip "ship: Ammunition:"
+	`Outfits that serve as ammunition for other weapons. To fire this ammunition, you need a launcher of the appropriate type.`
+
+tip "ship: Systems:"
+	`Outfits that occupy general space, not the space set aside for engines or weapons.`
+
+tip "ship: Power:"
+	`Outfits that either supply energy, or store the energy that is generated.`
+
+tip "ship: Engines:"
+	`Thrusters and steering systems, which affect how quickly your ship moves.`
+
+tip "ship: Hand to Hand:"
+	`Weapons that your crew uses when trying to capture a ship.`
+
+tip "ship: Special:"
+	`Outfits that don't fit into any other category.`
+
+tip "ship: Unique:"
+	`Outfits of incredible rarity. Once lost, they cannot be reobtained.`
+
+
+
+# Outfit tooltips:
+
+## Outfitter labels:
+tip "license:"
+	`A license required to purchase this outfit.`
+	`Licenses may be able to be purchased separately, or can be earned by completing certain tasks.`
+
+tip "sells for:"
+	`What this outfit will sell for, in credits. Outfits and ships will depreciate (lose resale value) over time, and plunder always starts out fully depreciated.`
+
+
+## Boolean attributes:
+tip "This outfit is considered an atrocity."
+	`Governments that scan for illegal goods will attack you upon discovering this item in your possession in space, or arrest you if found when landed.`
+
+
+## Normal attributes:
 tip "acceleration multiplier:"
 	`Modifies the ship's acceleration by the given factor.`
 
@@ -121,7 +313,7 @@ tip "cargo scan opacity:"
 	`Increases the time required for other ships to perform a cargo scan of this ship. A value of one has the same influence on the time taken as adding one more ton of cargo space to scan.`
 
 tip "cargo space:"
-	`Tons of cargo (commodities, mission cargo, and plundered outfits) this ship can carry.`
+	`Tons of cargo space for commodities, mission cargo, and plundered outfits that this outfit adds.`
 
 tip "cargo space needed:"
 	`Tons of cargo space this outfit uses up.`
@@ -193,10 +385,8 @@ tip "corrosion resistance heat:"
 	`Heat generated per second when resisting corrosion damage.`
 
 tip "cost:"
-	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
-
-tip "fleet cost:"
-	`How much this ship costs toward your fleet capacity. Your flagship and parked escorts do not count toward the capacity. You may exceed your capacity while landed, but will not be able to depart if you go over your capacity.`
+	`The cost of this outfit, in credits.`
+	`Items depreciate in value with time. If you have sold any used items today, you can buy them back for the same price you sold them for.`
 
 tip "discharge protection:"
 	`Protection provided against shield discharge damage. Increases by the given factor how much discharge damage a ship can withstand before it loses as much shielding as an unprotected ship.`
@@ -234,9 +424,6 @@ tip "drag:"
 tip "drag reduction:"
 	`Reduces drag. Increases the top speed of a ship by the given factor.`
 
-tip "drone bays:"
-	`The number of ships from the "Drone" category that this ship can carry.`
-
 tip "energy capacity:"
 	`The amount of energy this outfit adds to your ship's energy capacity. This allows you to temporarily use more power than your generators produce.`
 
@@ -249,14 +436,8 @@ tip "energy generation:"
 tip "engine capacity needed:"
 	`Tons of engine space this outfit takes up.`
 
-tip "    engine capacity:"
-	`Tons of engines this ship can hold. (To install an engine, you must also have enough total outfit space available.)`
-
 tip "energy protection:"
 	`Protection provided against energy damage. Increases by the given factor how much energy damage a ship can withstand before it loses as much energy as an unprotected ship.`
-
-tip "fighter bays:"
-	`The number of ships from the "Fighter" category that this ship can carry.`
 
 tip "flotsam chance:"
 	`The chance that this outfit will drop as flotsam when the ship it is installed on is destroyed.`
@@ -264,11 +445,8 @@ tip "flotsam chance:"
 tip "force protection:"
 	`Protection provided against hit force from weapons. Increases by the given factor how much external force a ship can withstand before it is moved as much as an unprotected ship.`
 
-tip "fuel:"
-	`This ship's current fuel amount. An ordinary hyperdrive jump consumes 100 fuel.`
-
 tip "fuel capacity:"
-	`The amount of fuel this ship can hold. An ordinary hyperdrive jump consumes 100 fuel. Fuel is replenished for free when you land on an inhabited planet.`
+	`The amount this outfit adds to a ship's fuel capacity. An ordinary hyperdrive jump consumes 100 fuel. Fuel is replenished for free when you land on an inhabited planet.`
 
 tip "fuel consumption:"
 	`Fuel consumed per second when in flight.`
@@ -288,9 +466,6 @@ tip "fuel protection:"
 tip "gun ports needed:"
 	`This weapon uses up a gun port. Guns always fire straight forward; turrets fire in the direction of your currently selected target.`
 
-tip "gun ports free:"
-	`How many guns this ship can hold. This includes most missiles and secondary weapons that fire straight forward.`
-
 tip "heat dissipation:"
 	`How effectively this ship radiates excess heat.`
 
@@ -303,11 +478,8 @@ tip "heat protection:"
 tip "heat capacity:"
 	`Increases the maximum heat this ship is able to withstand before becoming overheated. A value of one has the same influence on a ship's maximum heat as one ton of mass, without the effects that mass has on movement.`
 
-tip "hull (repair):"
-	`Total hull strength and repair rate per second. The smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
-
 tip "hull:"
-	`Total hull strength. Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
+	`Adds to the total hull strength of the ship.`
 
 tip "hull energy:"
 	`Energy consumed per second when repairing the hull.`
@@ -486,23 +658,9 @@ tip "maintenance costs:"
 tip "map:"
 	`The number of star systems included in this map.`
 
-tip "mass with no cargo:"
-	`Mass of this ship when not carrying any cargo or fighters. Cargo increases mass, which reduces acceleration and turn rate and increases maximum heat before overheating.`
-
 tip "mass:"
-	`Mass, in tons. A ship's mass determines how fast it turns and accelerates and its maximum heat before overheating.`
-
-tip "max speed:"
-	`The maximum speed of this ship when using thrusters. Excludes the effect of afterburners, unless there are no normal thrusters installed.`
-
-tip "    w/ afterburner:"
-	`Movement while both your primary thrusters and afterburners are active.`
-
-tip "movement:"
-	`How quickly this ship can accelerate and turn.`
-
-tip "movement (full - no cargo):"
-	`How quickly this ship can accelerate and turn when its cargo hold is full versus when it is empty.`
+	`Mass, in tons.`
+	`The higher a ship's mass, the slower it turns and accelerates given the same engines, and the higher its maximum heat before overheating.`
 
 tip "operating costs:"
 	`Credits spent per day to maintain this outfit when it is in active use.`
@@ -531,9 +689,6 @@ tip "outfit space added:"
 tip "outfit space needed:"
 	`Tons of general-purpose space this outfit uses up. Some outfits also use up weapon space or engine space.`
 
-tip "outfit space free:"
-	`Tons of space this ship has for outfits (including weapons and engines).`
-
 tip "overheat damage rate:"
 	`Hull damage taken per second when overheated. Overheat damage scales with how far past the overheat threshold the ship is.`
 
@@ -560,9 +715,6 @@ tip "radar jamming:"
 
 tip "ramscoop:"
 	`Replenishes fuel by harvesting the stellar wind. Ramscoops are more effective when closer to a star. If you add more than one ramscoop, each additional one is less effective: you need four ramscoops to achieve double the recharge rate that one ramscoop provides.`
-
-tip "required crew / bunks:"
-	`Crew members required to operate this ship, and the total number bunks available. Extra bunks can be used for passengers or extra crew.`
 
 tip "required crew:"
 	`Changes the number of crew members this ship requires by this amount.`
@@ -621,9 +773,6 @@ tip "scram drive:"
 tip "self destruct:"
 	`The chance of this ship self-destructing when you try to board or capture it.`
 
-tip "sells for:"
-	`What this outfit will sell for, in credits. Outfits and ships will depreciate (lose resale value) over time, and plunder always starts out fully depreciated.`
-
 tip "shield energy:"
 	`Energy consumed per second when recharging shields.`
 
@@ -672,11 +821,8 @@ tip "low shield permeability:"
 tip "cloaked shield permeability:"
 	`This percentage of all incoming damage will bypass shields and apply directly to the hull while you are cloaked.`
 
-tip "shields (charge):"
-	`Total shield strength and regeneration rate per second.`
-
 tip "shields:"
-	`Total shield strength. Most weapons cannot damage your hull until your shields are depleted. Some weapon effects, such as heat damage, become more severe once shields are down.`
+	`Adds to the total shield strength of the ship.`
 
 tip "shield multiplier:"
 	`Modifies the ship's total shield strength by the given factor.`
@@ -753,7 +899,6 @@ tip "velocity scan power:"
 tip "weapon scan power:"
 	`Weapon scanners allow you to view your current target's weapons' maximum range when it is within scanner range. Specifically, it shows the longest range of all weapons in a gun hardpoint; and the longest range of all weapons in a turret hardpoint. These ranges include the weapon offset and thus show the maximum range from the center of the ship its shots can reach. The scanner range is proportional to the square root of this value.`
 
-
 tip "thrust:"
 	`Thrust produced by engines. Higher thrust increases a ship's acceleration and top speed. The more mass a ship has, the more thrust is needed to achieve the same acceleration.`
 
@@ -798,9 +943,6 @@ tip "thrusting disruption:"
 
 tip "turn:"
 	`Turning force produced by engines. The more mass a ship has, the more turning force is needed to achieve the same turn rate.`
-
-tip "turning:"
-	`Turn rate, in degrees per second. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it turns.`
 
 tip "turn multiplier:"
 	`Modifies the ship's rate of turn by the given factor.`
@@ -847,14 +989,8 @@ tip "turning disruption:"
 tip "turret mounts needed:"
 	`This weapon can fire in any direction, tracking your currently selected target. It uses up one of your ship's turret mounts.`
 
-tip "turret mounts free:"
-	`How many turrets can be mounted on this ship. Turrets fire in the direction of the currently selected target, instead of firing straight forward like guns.`
-
 tip "weapon capacity needed:"
 	`Tons of weapon space this outfit takes up.`
-
-tip "    weapon capacity:"
-	`Tons of weapons this ship can hold. (To install a weapon, you must also have enough total outfit space available.)`
 
 tip "scan brightness:"
 	`Modifies the likelihood of this illegal outfit appearing on a cargo scan. The higher the brightness, the more likely a scan will pick it up. A scan brightness of 5 has as much a chance of being scanned as an outfit that is 5 tons.`
@@ -863,127 +999,7 @@ tip "scan concealment:"
 	`Hides an equivalent mass of illegal cargo from cargo scans, preventing you from being fined for having it. A scan concealment of 10 would make up to 10 tons of illegal cargo not appear on cargo scans.`
 
 
-
-# Shop Tips:
-tip "outfitter: b"
-	`Buy from the outfitter and install onto the currently selected ship(s).`
-	`Hold Shift, Control, or Alt to buy 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
-
-tip "outfitter: s"
-	`Sell from cargo, storage, or the currently selected ship(s), in that order.`
-	`Hold Shift, Control, or Alt to sell 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
-
-tip "outfitter: i"
-	`Install on the currently selected ship(s) from cargo or storage, in that order.`
-	`Hold Shift, Control, or Alt to install 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
-
-tip "outfitter: u"
-	`Uninstall from the currently selected ship(s) to cargo if there is space or to storage if there isn't.`
-	`Hold Shift, Control, or Alt to uninstall 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
-
-tip "outfitter: c"
-	`Transfer the outfit from planetary storage to cargo if possible. Otherwise, buy it from the outfitter.`
-	`Hold Shift, Control, or Alt to move 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
-
-tip "outfitter: r"
-	`Move the outfit from cargo, the currently selected ship(s), or the outfitter into planetary storage, in that order.`
-	`Hold Shift, Control, or Alt to store 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
-
-tip "shipyard: b"
-	`Buy this ship.`
-	`Hold Shift, Control, or Alt to buy 5, 20, or 500 ships at once. Hold a combination of these keys for larger amounts.`
-
-tip "shipyard: s"
-	`Sell the selected ships and their outfits.`
-
-tip "shipyard: r"
-	`Sell the hulls of the selected ships, but retain the outfits in storage.`
-
-
-
-# Sale labels:
-tip "empty hull:"
-	`Price the ship itself would sell for without any outfits installed.`
-
-tip "  + outfits:"
-	`Price that all this ship's outfits would sell for.`
-
-
-
-# Ship heat and energy summary fields:
-tip "idle:"
-	`Energy and heat generated per second when this ship is idle, i.e. not firing weapons, moving, or using any other systems.`
-
-tip "moving:"
-	`Energy consumed and heat generated per second when this ship is turning and thrusting. Includes the cost of using an afterburner if one is installed, or uses the cost of using reverse thrust if that is greater than the cost of forward thrust. This is in addition to the "idle" amount.`
-
-tip "thrusting:"
-	`Energy consumed and heat generated per second when this ship is thrusting. This is in addition to the "idle" amount.`
-
-tip "reversing:"
-	`Energy consumed and heat generated per second when this ship is using reverse thrusters. This is in addition to the "idle" amount.`
-
-tip "afterburner:"
-	`Energy consumed and heat generated per second when this ship is using its afterburner. This is in addition to the "idle" amount.`
-
-tip "turning:"
-	`Energy consumed and heat generated per second when this ship is turning. This is in addition to the "idle" amount.`
-
-tip "firing:"
-	`Energy consumed and heat generated per second when this ship is firing all its weapons. This is in addition to the "idle" amount. Note that weapons may consume or generate more energy or heat than this at the moment they fire, and this is the average value over time.`
-
-tip "shields / hull:"
-	`Energy consumed and heat generated per second when this ship is recharging shields and repairing its hull at the same time. This is in addition to the "idle" amount.`
-
-tip "repairing hull:"
-	`Energy consumed and heat generated per second when this ship is repairing its hull. This is in addition to the "idle" amount.`
-
-tip "charging shields:"
-	`Energy consumed and heat generated per second when this ship is recharging its shields. This is in addition to the "idle" amount.`
-
-tip "net change:"
-	`The sum of the energy consumed and heat generated per second from the above energy and heat values. Represents the worst case scenario when all possible systems are active at once.`
-
-tip "capacity:"
-	`Energy capacity allows a ship to temporarily draw more energy than it produces, and can be increased by installing batteries.`
-	`Heat capacity is the highest your heat generation can be without eventually causing your ship to overheat, and is influenced by the mass of the ship. If the "net change" value for heat is greater than this value, then the ship can overheat itself. Weapons with high firing heat per shot can cause you to become overheated even if "net change" is below heat capacity.`
-
-tip "surge:"
-	`This ship lacks energy storage. Therefore, this is the greatest amount of energy that can be drawn by any of this ship's systems in a single instant, such as the energy required for a single shot of a weapon. Systems that require more than this amount of energy to activate will be unusable.`
-
-
-
-# Outfit categories:
-tip "Guns:"
-	`Weapons that are fixed in place (firing in the direction your ship is pointed) and that require no ammunition.`
-
-tip "Turrets:"
-	`Weapons that can fire in any direction and will track your currently selected target.`
-
-tip "Secondary Weapons:"
-	`Weapons that require ammunition (which must be purchased separately).`
-
-tip "Ammunition:"
-	`Outfits that serve as ammunition for other weapons. To fire this ammunition, you need a launcher of the appropriate type.`
-
-tip "Systems:"
-	`Outfits that occupy general space, not the space set aside for engines or weapons.`
-
-tip "Power:"
-	`Outfits that either supply energy, or store the energy that is generated.`
-
-tip "Engines:"
-	`Thrusters and steering systems, which affect how quickly your ship moves.`
-
-tip "Hand to Hand:"
-	`Weapons that your crew uses when trying to capture a ship.`
-
-tip "Special:"
-	`Items you can purchase or sell but that are not outfits that can be installed in a ship.`
-
-
-
-# Weapon attributes:
+## Weapon attributes:
 tip "ammo:"
 	`The type of outfits this weapon consumes when fired.`
 
@@ -1277,6 +1293,43 @@ tip "mining precision:"
 
 
 
+# Shop Tips:
+tip "outfitter: b"
+	`Buy from the outfitter and install onto the currently selected ship(s).`
+	`Hold Shift, Control, or Alt to buy 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: s"
+	`Sell from cargo, storage, or the currently selected ship(s), in that order.`
+	`Hold Shift, Control, or Alt to sell 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: i"
+	`Install on the currently selected ship(s) from cargo or storage, in that order.`
+	`Hold Shift, Control, or Alt to install 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: u"
+	`Uninstall from the currently selected ship(s) to cargo if there is space or to storage if there isn't.`
+	`Hold Shift, Control, or Alt to uninstall 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: c"
+	`Transfer the outfit from planetary storage to cargo if possible. Otherwise, buy it from the outfitter.`
+	`Hold Shift, Control, or Alt to move 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: r"
+	`Move the outfit from cargo, the currently selected ship(s), or the outfitter into planetary storage, in that order.`
+	`Hold Shift, Control, or Alt to store 5, 20, or 500 outfits at once. Hold a combination of these keys for larger amounts.`
+
+tip "shipyard: b"
+	`Buy this ship.`
+	`Hold Shift, Control, or Alt to buy 5, 20, or 500 ships at once. Hold a combination of these keys for larger amounts.`
+
+tip "shipyard: s"
+	`Sell the selected ships and their outfits.`
+
+tip "shipyard: r"
+	`Sell the hulls of the selected ships, but retain the outfits in storage.`
+
+
+
 # Flight checks:
 tip "no bunks!"
 	`This ship needs crew to operate, but has no bunks.`
@@ -1337,12 +1390,6 @@ tip "no bays?"
 
 tip "insufficient energy to fire?"
 	`This ship has insufficient energy storage to fire an installed weapon. Install outfits that increase your energy storage, or if you have no energy storage, ensure that your "surge" energy is greater than the firing energy per shot of your weapons.`
-
-
-
-# Boolean attributes:
-tip "This outfit is considered an atrocity."
-	`Governments that scan for illegal goods will attack you upon discovering this item in your possession in space, or arrest you if found when landed.`
 
 
 
