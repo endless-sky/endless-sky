@@ -192,6 +192,7 @@ ship "Ejniisde-Khora"
 	plural "Ejniisden-Khora"
 	sprite "ship/ejniisde-khora"
 	thumbnail "thumbnail/ejniisde-khora"
+	"administrative cost" 5
 	attributes
 		licenses
 			"Successor"
@@ -1244,6 +1245,7 @@ ship "Vujlet-Usaqri"
 	plural "Vujleten-Usaqri"
 	sprite "ship/vujlet modified"
 	thumbnail "thumbnail/vujlet modified"
+	"administrative cost" 3
 	attributes
 		licenses
 			"High Houses"
