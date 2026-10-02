@@ -34,8 +34,8 @@ outfit "Pug Zapper"
 		"reload" 1
 		"firing energy" 2.7
 		"firing heat" 1.4
-		"shield damage" 3.7
-		"hull damage" 2.9
+		"shield damage" 2.9
+		"hull damage" 2.3
 	description "This is a formidable beam weapon, more damaging than even the most advanced energy beams that humanity has developed. Pug ships have integrated power plants that produce the considerable amount of energy that is needed to drive weapons like this one."
 
 outfit "Pug Zapper Turret"
@@ -64,8 +64,8 @@ outfit "Pug Zapper Turret"
 		"reload" 1
 		"firing energy" 5.4
 		"firing heat" 2.8
-		"shield damage" 7.4
-		"hull damage" 5.8
+		"shield damage" 5.8
+		"hull damage" 4.6
 	description "Mounted on a turret, this Pug weapon becomes even more devastatingly powerful. However, its energy requirements are higher than most human ships can support."
 
 effect "zapper impact"
@@ -107,8 +107,8 @@ outfit "Pug Seeker"
 			"leading"
 			"throttle control"
 		"tracking" .5
-		"shield damage" 24
-		"hull damage" 13
+		"shield damage" 19.2
+		"hull damage" 10.4
 		"hit force" 3
 		"missile strength" 10
 	description "You have no idea how this weapon works. It requires no ammunition, but its energy-based projectiles have the ability to home in on a target ship."

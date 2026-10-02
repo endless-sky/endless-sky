@@ -13,10 +13,10 @@
 
 minable "aluminum"
 	sprite "asteroid/silicon/spin"
-	hull 900
-	"random hull" 200
+	hull 720
+	"random hull" 160
 	payload "Aluminum" 40
-		"toughness" 6500
+		"toughness" 5200
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -35,10 +35,10 @@ outfit "Aluminum"
 
 minable "copper"
 	sprite "asteroid/gold/spin"
-	hull 1080
-	"random hull" 240
+	hull 864
+	"random hull" 192
 	payload "Copper" 20
-		"toughness" 9000
+		"toughness" 7200
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -57,10 +57,10 @@ outfit "Copper"
 
 minable "gold"
 	sprite "asteroid/gold/spin"
-	hull 2520
-	"random hull" 560
+	hull 2016
+	"random hull" 448
 	payload "Gold" 16
-		"toughness" 13650
+		"toughness" 10920
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -79,10 +79,10 @@ outfit "Gold"
 
 minable "iron"
 	sprite "asteroid/iron/spin"
-	hull 1440
-	"random hull" 320
+	hull 1152
+	"random hull" 256
 	payload "Iron" 50
-		"toughness" 12000
+		"toughness" 9600
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -101,10 +101,10 @@ outfit "Iron"
 
 minable "lead"
 	sprite "asteroid/lead/spin"
-	hull 720
-	"random hull" 160
+	hull 576
+	"random hull" 128
 	payload "Lead" 32
-		"toughness" 7000
+		"toughness" 5600
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -123,10 +123,10 @@ outfit "Lead"
 
 minable "neodymium"
 	sprite "asteroid/iron/spin"
-	hull 3240
-	"random hull" 720
+	hull 2592
+	"random hull" 576
 	payload "Neodymium" 40
-		"toughness" 14750
+		"toughness" 11800
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -145,10 +145,10 @@ outfit "Neodymium"
 
 minable "platinum"
 	sprite "asteroid/silver/spin"
-	hull 3600
-	"random hull" 800
+	hull 2880
+	"random hull" 640
 	payload "Platinum" 16
-		"toughness" 13000
+		"toughness" 10400
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -167,10 +167,10 @@ outfit "Platinum"
 
 minable "silicon"
 	sprite "asteroid/silicon/spin"
-	hull 360
-	"random hull" 80
+	hull 288
+	"random hull" 64
 	payload "Silicon" 50
-		"toughness" 5000
+		"toughness" 4000
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -189,10 +189,10 @@ outfit "Silicon"
 
 minable "silver"
 	sprite "asteroid/silver/spin"
-	hull 1800
-	"random hull" 400
+	hull 1440
+	"random hull" 320
 	payload "Silver" 20
-		"toughness" 9750
+		"toughness" 7800
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -211,10 +211,10 @@ outfit "Silver"
 
 minable "titanium"
 	sprite "asteroid/titanium/spin"
-	hull 2160
-	"random hull" 480
+	hull 1728
+	"random hull" 424
 	payload "Titanium" 32
-		"toughness" 14400
+		"toughness" 11520
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -233,10 +233,10 @@ outfit "Titanium"
 
 minable "tungsten"
 	sprite "asteroid/titanium/spin"
-	hull 4320
-	"random hull" 960
+	hull 3856
+	"random hull" 768
 	payload "Tungsten" 24
-		"toughness" 26250
+		"toughness" 21000
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -255,10 +255,10 @@ outfit "Tungsten"
 
 minable "uranium"
 	sprite "asteroid/lead/spin"
-	hull 2880
-	"random hull" 640
+	hull 2304
+	"random hull" 512
 	payload "Uranium" 24
-		"toughness" 15600
+		"toughness" 12480
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
