@@ -212,6 +212,7 @@ void TradingPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	bool shift = mod & KMOD_SHIFT;
 	if(command.Has(Command::HELP))
 		DoHelp("trading", true);
 	else if(key == SDLK_UP)
@@ -222,9 +223,9 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(1);
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
-	else if(key == 'u' || (key == 'b' && (mod & KMOD_SHIFT)))
+	else if(key == 'u' || (key == 'b' && shift))
 		Buy(1000000000);
-	else if(key == 'e' || (key == 's' && (mod & KMOD_SHIFT)))
+	else if(key == 'e' || (key == 's' && shift))
 	{
 		for(const auto &it : player.Cargo().Commodities())
 		{
@@ -244,7 +245,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			player.Cargo().Remove(commodity, amount);
 		}
 	}
-	else if((key == 'n' || (key == 'm' && (mod & KMOD_SHIFT))) && player.Cargo().MinablesSizePrecise())
+	else if((key == 'n' || (key == 'm' && shift)) && player.Cargo().MinablesSizePrecise())
 	{
 		if(Preferences::Has("Confirm selling minables"))
 			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SellOutfitsOrMinables(true); },
@@ -252,7 +253,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		else
 			SellOutfitsOrMinables(true);
 	}
-	else if(key == 'f' && canSellOutfits)
+	else if((key == 'f' || (key == 'o' && shift)) && canSellOutfits)
 	{
 		if(Preferences::Has("Confirm selling outfits"))
 			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SellOutfitsOrMinables(false); },
