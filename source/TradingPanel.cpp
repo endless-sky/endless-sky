@@ -193,10 +193,13 @@ void TradingPanel::Draw()
 		}
 	}
 
-	canSellOutfits = outfitCargo &&
-		(player.GetPlanet()->HasOutfitter() || Preferences::Has("Sell outfits without outfitter"));
+	bool hasOutfitter = player.GetPlanet() && player.GetPlanet()->HasOutfitter();
+	canSellOutfits = outfitCargo && (hasOutfitter || Preferences::Has("Sell outfits without outfitter"));
+	canStoreOutfits = outfitCargo && hasOutfitter;
 	if(canSellOutfits)
 		info.SetCondition("can sell outfits");
+	if(canStoreOutfits)
+		info.SetCondition("can store outfits");
 	if(minableCargo)
 		info.SetCondition("can sell minables");
 	if(canSell)
@@ -260,6 +263,8 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		else
 			SellOutfitsOrMinables(false);
 	}
+	else if(key == 'r' && canStoreOutfits)
+		StoreOutfitsInCargo();
 	else if(command.Has(Command::MAP))
 		GetUI().Push(new MapDetailPanel(player));
 	else
@@ -337,19 +342,17 @@ void TradingPanel::Buy(int64_t amount)
 void TradingPanel::SellOutfitsOrMinables(bool sellMinables)
 {
 	int day = player.GetDate().DaysSinceEpoch();
-	for(const auto &it : player.Cargo().Outfits())
+	for(const auto &[outfit, count] : player.Cargo().Outfits())
 	{
-		if(sellMinables != static_cast<bool>(it.first->Get("minable")))
+		if(!count || sellMinables != static_cast<bool>(outfit->GetPrecise("minable")))
 			continue;
-		if(!it.second)
-			continue;
-		int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
+		int64_t value = player.FleetDepreciation().Value(outfit, day, count);
 		profit += value;
-		tonsSold += static_cast<int>(it.second * it.first->Mass());
+		tonsSold += static_cast<int>(count * outfit->Mass());
 
-		player.AddStock(it.first, it.second);
+		player.AddStock(outfit, count);
 		player.Accounts().AddCredits(value);
-		player.Cargo().Remove(it.first, it.second);
+		player.Cargo().Remove(outfit, count);
 	}
 }
 
@@ -409,4 +412,19 @@ string TradingPanel::OutfitSalesMessage(bool sellMinables) const
 			out << "and " << Format::Number(count) << " more.";
 	}
 	return out.str();
+}
+
+
+
+void TradingPanel::StoreOutfitsInCargo() const
+{
+	CargoHold &cargo = player.Cargo();
+	CargoHold &storage = player.Storage();
+	for(const auto &[outfit, count] : cargo.Outfits())
+	{
+		if(!count || outfit->GetPrecise("minable"))
+			continue;
+		storage.Add(outfit, count);
+		cargo.Remove(outfit, count);
+	}
 }
