@@ -691,7 +691,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				string message;
 				if(!couldFit)
 					message = "You cannot load this outfit into cargo, because it takes up "
-						+ Format::CargoString(mass, "mass") + " and your fleet's largest single cargo hold only has "
+						+ Format::CargoString(mass, "mass") + " and your fleet's largest cargo hold only has "
 						+ Format::CargoString(largestCargoHold, "cargo space") + ".";
 				else
 					message = "You cannot load this outfit into cargo, because it takes up "
