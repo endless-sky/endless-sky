@@ -209,6 +209,7 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
+	int LargestCargoHold() const;
 	// Get items stored on the player's current planet.
 	CargoHold &Storage();
 	// Get items stored on all planets (for map display).
@@ -510,6 +511,7 @@ private:
 	// and its scan range squared (for quicker comparisons).
 	std::map<int, std::map<std::weak_ptr<Ship>, double, std::owner_less<std::weak_ptr<const Ship>>>> scanners;
 	CargoHold cargo;
+	int largestCargoHold = 0;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
 	std::optional<int> maxEscortCount;
