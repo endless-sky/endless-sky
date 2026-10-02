@@ -889,7 +889,6 @@ mission "Successors: Ghosts Cloak Prompt"
 
 mission "Successors: Ghosts 8"
 	landing
-	minor
 	source "Qasa-Sija-Iri"
 	to offer
 		or
