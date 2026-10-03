@@ -17,12 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../../../source/Minable.h"
 
-#include "../../../source/DataFile.h"
+#include "datanode-factory.h"
 #include "../../../source/Flotsam.h"
 #include "../../../source/Random.h"
 #include "../../../source/Visual.h"
 
-#include <filesystem>
 #include <list>
 #include <memory>
 #include <vector>
@@ -33,27 +32,15 @@ namespace
 	// #region unit tests
 	SCENARIO( "Destroying yottrite asteroids", "[minable][yottrite]" )
 	{
+		// Testing the addition of minimum payload drop, 
+		// and that a minable with a minimum of 1 would not yield 0 drops.
 		GIVEN( "the yottrite payload" )
 		{
-			const auto path = std::filesystem::path(__FILE__).parent_path().parent_path().parent_path().parent_path()
-				/ "data" / "harvesting.txt";
-			const DataFile harvesting(path);
-			const DataNode *yottrite = nullptr;
-			for(const DataNode &node : harvesting)
-				if(node.Token(0) == "minable" && node.Token(1) == "yottrite")
-				{
-					yottrite = &node;
-					break;
-				}
-			REQUIRE( yottrite );
-
-			// Include only the payload, no sprite or explosion effects.
-			DataNode definition;
-			definition.AddToken("minable");
-			definition.AddToken("yottrite");
-			for(const DataNode &child : *yottrite)
-				if(child.Token(0) == "payload")
-					definition.AddChild(child);
+			// Dummy data based on the yottrite payload in harvesting.txt.
+			const DataNode definition = AsDataNode(R"(minable "yottrite"
+	payload "Yottrite" 1 5
+		"toughness" 50000
+)");
 
 			Minable sample;
 			sample.Load(definition, nullptr);
