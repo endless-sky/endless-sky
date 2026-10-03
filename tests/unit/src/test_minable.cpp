@@ -32,7 +32,7 @@ namespace
 	// #region unit tests
 	SCENARIO( "Destroying yottrite asteroids", "[minable][yottrite]" )
 	{
-		// Testing the addition of minimum payload drop, 
+		// Testing the addition of minimum payload drop,
 		// and that a minable with a minimum of 1 would not yield 0 drops.
 		GIVEN( "the yottrite payload" )
 		{
