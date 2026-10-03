@@ -682,21 +682,18 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			// Check fleet cargo space vs outfit mass.
 			double mass = selectedOutfit->Mass();
 			double freeCargo = player.Cargo().FreePrecise();
-			int largestCargoHold = player.LargestCargoHold();
-			bool couldFit = (mass <= largestCargoHold);
+			int largestHold = player.LargestCargoHold();
+			bool couldFit = (mass <= largestHold);
 			if(!mass || (couldFit && freeCargo >= mass))
 				canPlace = true;
 			else
 			{
-				string message;
-				if(!couldFit)
-					message = "You cannot load this outfit into cargo, because it takes up "
-						+ Format::CargoString(mass, "mass") + " and your fleet's largest cargo hold only has "
-						+ Format::CargoString(largestCargoHold, "cargo space") + ".";
+				string message = "You cannot load this outfit into cargo, because it takes up "
+					+ Format::CargoString(mass, "mass") + " and your fleet";
+				if(couldFit)
+					message += " only has " + Format::CargoString(freeCargo, "cargo space") + " free.";
 				else
-					message = "You cannot load this outfit into cargo, because it takes up "
-						+ Format::CargoString(mass, "mass") + " and your fleet has "
-						+ Format::CargoString(freeCargo, "cargo space") + " free.";
+					message += "s largest cargo hold only has " + Format::CargoString(largestHold, "cargo space") + ".";
 				return {canSource, canPlace, message};
 			}
 			break;
