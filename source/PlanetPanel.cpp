@@ -520,7 +520,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			else
 			{
 				out << "Some cargo could not be distributed to your escorts due to their individual cargo hold sizes. ";
-				out << "(For example, two ships with 20 ton cargo holds can't carry three 12 ton outfit.)\n";
+				out << "(For example, two ships with 20 ton cargo holds can't carry three 12 ton outfits.)\n";
 			}
 		}
 		out << "If you take off now, you will:";
