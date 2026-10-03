@@ -1638,6 +1638,13 @@ const CargoHold &PlayerInfo::Cargo() const
 
 
 
+int PlayerInfo::LargestCargoHold() const
+{
+	return largestCargoHold;
+}
+
+
+
 // Get items stored on the player's current planet.
 CargoHold &PlayerInfo::Storage()
 {
@@ -1688,11 +1695,15 @@ void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
 	int bunks = 0;
+	largestCargoHold = 0;
 	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetPlanet() == planet && !ship->IsParked())
 		{
-			size += ship->Attributes().Get("cargo space");
+			int space = ship->Attributes().Get("cargo space");
+			size += space;
+			if(space > largestCargoHold)
+				largestCargoHold = space;
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
 			bunks += ship->Attributes().Get("bunks") - crew;
 		}
