@@ -116,7 +116,7 @@ DamageDealt DamageProfile::CalculateDamage() const
 
 	double totalHullProtection = (ScaleType(1., 0., entity.DamageProtection().hull +
 		(entity.IsCloaked() ? entity.CloakedHullProtection() : 0.)));
-	bool minimumHull = entity.MinHull();
+	double minimumHull = entity.MinHull();
 	bool isDisabled = minimumHull && entity.HullLevel() < minimumHull;
 	if(!isDisabled)
 	{
