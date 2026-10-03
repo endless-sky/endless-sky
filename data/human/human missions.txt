@@ -6764,7 +6764,7 @@ mission "Lost Racer 2 - Deadline"
 			choice
 				`	"No need to panic."`
 				`	(Say nothing.)`
-			`	"If she wasn't attacked by competition, she still can't have survived this long. You've failed." He looks ready to break down.`
+			`	"Even if she wasn't attacked by competition, she still can't have survived this long. You've failed." He looks ready to break down.`
 			`	"Take me back to Glory. There's no hope."`
 				accept
 
