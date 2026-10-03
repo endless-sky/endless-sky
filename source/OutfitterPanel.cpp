@@ -693,7 +693,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				if(couldFit)
 					message += " only has " + Format::CargoString(freeCargo, "cargo space") + " free.";
 				else
-					message += "s largest cargo hold only has " + Format::CargoString(largestHold, "cargo space") + ".";
+					message += "'s largest cargo hold only has " + Format::CargoString(largestHold, "cargo space") + ".";
 				return {canSource, canPlace, message};
 			}
 			break;
