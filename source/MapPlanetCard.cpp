@@ -321,7 +321,7 @@ void MapPlanetCard::Highlight(double availableSpace) const
 
 	const Color &selected = *GameData::Colors().Get("item selected");
 	const Color &highlight = *GameData::Colors().Get("faint");
-	
+
 	Rectangle highlightRegion = Rectangle::FromCorner(Point(Screen::Left(), yCoordinate), Point(width, availableSpace));
 	FillShader::Fill(highlightRegion, isSelected ? selected : highlight);
 }
