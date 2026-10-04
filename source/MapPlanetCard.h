@@ -19,8 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapPanel.h"
 
 #include <optional>
-#include <utility>
 #include <string>
+#include <utility>
 
 class MapDetailPanel;
 class Point;
