@@ -104,13 +104,17 @@ void TradingPanel::Draw()
 	int holdX = tradeUi->GetValue("column: in cargo hold");
 
 	const Color &back = *GameData::Colors().Get("faint");
-	int selectedRow = player.MapColoring();
-	if(selectedRow >= 0 && selectedRow < COMMODITY_COUNT)
-	{
-		const Point center(box.Center().X(), firstY + 20 * selectedRow + 33);
+	auto Highlight = [&](int row) -> void {
+		const Point center(box.Center().X(), firstY + 20 * row + 33);
 		const Point dimensions(box.Width() - 20., 20.);
 		FillShader::Fill(center, dimensions, back);
-	}
+	};
+
+	int selectedRow = player.MapColoring();
+	if(selectedRow >= 0 && selectedRow < COMMODITY_COUNT)
+		Highlight(selectedRow);
+	if(hoverRow != -1 && hoverRow != selectedRow)
+		Highlight(hoverRow);
 
 	const Font &font = FontSet::Get(14);
 	const Color &unselected = *GameData::Colors().Get("medium");
@@ -296,6 +300,26 @@ bool TradingPanel::Click(int x, int y, MouseButton button, int clicks)
 		return false;
 
 	return true;
+}
+
+
+
+bool TradingPanel::Hover(int x, int y)
+{
+	const Interface *tradeUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "trade (small screen)" : "trade");
+	Rectangle box = tradeUi->GetBox("content");
+	int minX = box.Left();
+	int firstY = box.Top();
+	int maxX = box.Right();
+	int maxY = firstY + 25 + 20 * COMMODITY_COUNT;
+
+	hoverRow = -1;
+	if(x >= minX && x <= maxX && y >= firstY + 25 && y < maxY)
+	{
+		hoverRow = (y - firstY - 25) / 20;
+		return true;
+	}
+	return false;
 }
 
 
