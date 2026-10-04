@@ -60,6 +60,7 @@ protected:
 	virtual const ItemInfoDisplay &SelectedInfo() const = 0;
 	virtual const ItemInfoDisplay &CompareInfo() const = 0;
 
+	virtual void Hovering(int index) = 0;
 	virtual void Select(int index) = 0;
 	virtual void Compare(int index) = 0;
 	virtual double SystemValue(const System *system) const override = 0;
@@ -74,7 +75,7 @@ protected:
 	bool DrawHeader(Point &corner, const std::string &category);
 	void DrawSprite(const Point &corner, const Drawable &drawable, bool animate, const Swizzle *swizzle) const;
 	void Draw(Point &corner, const Drawable &drawable, const Swizzle *swizzle, bool isForSale, bool isSelected,
-		const std::string &name, const std::string &variantName, const std::string &price,
+		bool isHovering, const std::string &name, const std::string &variantName, const std::string &price,
 		const std::string &info, const std::string &storage);
 
 	void DoFind(const std::string &text);
@@ -98,6 +99,7 @@ protected:
 	const CategoryList &categories;
 	bool onlyShowSoldHere = false;
 	bool onlyShowStorageHere = false;
+	int hoverKey = -1;
 	// Whether this panel has preloaded the thumbnails from the catalog yet.
 	bool hasLoadedThumbnails = false;
 
