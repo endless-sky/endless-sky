@@ -174,6 +174,8 @@ namespace {
 		{"leak resistance", 2},
 		{"burn resistance", 2},
 
+		{"flotsam chance", 3},
+
 		{"cloak by mass", 3},
 		{"shield multiplier", 3},
 		{"hull multiplier", 3},
