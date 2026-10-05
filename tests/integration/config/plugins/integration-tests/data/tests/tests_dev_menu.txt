@@ -39,3 +39,24 @@ test "Dev Menu - Credits And Days"
 			key "escape"
 		assert
 			"flagship landed" > 0
+
+
+test "Dev Menu - In Flight"
+	status active
+	description "Tests that the developer menu can also be opened in flight."
+	sequence
+		inject "Three Earthly Barges Save"
+		call "Load First Savegame"
+		call "Depart"
+		apply
+			"test: credits before" = "credits"
+		input
+			key "F12"
+		input
+			key 4
+		input
+			key "escape"
+		assert
+			and
+				"flagship landed" == 0
+				"credits" == "test: credits before" + 100000

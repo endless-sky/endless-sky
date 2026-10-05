@@ -28,16 +28,9 @@ test "Industry - Found A Station"
 			key 5
 		input
 			key "escape"
-		# The list is alphabetical: Hydroponics Farm, Machine Works, Mining Outpost,
-		# Orbital Station, Textile Mill. Found the station, keeping the suggested name.
+		# Stations are listed first. Found one, keeping the suggested name.
 		input
 			key n
-		input
-			key down
-		input
-			key down
-		input
-			key down
 		input
 			key e
 		input

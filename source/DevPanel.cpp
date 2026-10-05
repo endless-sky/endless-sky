@@ -112,8 +112,12 @@ void DevPanel::Draw()
 
 bool DevPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == SDLK_ESCAPE || key == '`' || key == SDLK_F12 || command.Has(Command::MENU))
+	// Holding down the key that opened this menu sends repeated presses, which
+	// should not close it again.
+	if(key == SDLK_ESCAPE || ((key == '`' || key == SDLK_F12) && isNewPress) || command.Has(Command::MENU))
 		GetUI().Pop(this);
+	else if(key == '`' || key == SDLK_F12)
+		return true;
 	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + entries.size()))
 		Run(key - '1');
 	else

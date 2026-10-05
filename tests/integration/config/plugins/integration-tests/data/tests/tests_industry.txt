@@ -167,10 +167,13 @@ test "Industry - Build And Collect"
 				"flagship planet: New Greenland" > 0
 				"credits" == 131000
 				"facilities owned" == 0
-		# The list is alphabetical: Hydroponics Farm, Machine Works, Mining Outpost, Textile Mill.
+		# The list has stations first, then the rest alphabetically: Orbital Station,
+		# Hydroponics Farm, Machine Works, Mining Outpost, Textile Mill.
 		# Select the Mining Outpost. There are not enough credits yet, so building does nothing.
 		input
 			key n
+		input
+			key down
 		input
 			key down
 		input

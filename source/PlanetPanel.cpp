@@ -288,7 +288,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		GetUI().Push(new MessageLogPanel());
 		return true;
 	}
-	else if(key == '`' || key == SDLK_F12)
+	else if((key == '`' || key == SDLK_F12) && isNewPress)
 	{
 		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI().Push(new DevPanel(player));

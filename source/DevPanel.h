@@ -25,7 +25,7 @@ class PlayerInfo;
 
 
 
-// Playtesting cheat menu, opened from the planet screen with ` or F12.
+// Playtesting cheat menu, opened with ` or F12 on the planet screen or in flight.
 // Lets the tester skip days or add credits without playing for them.
 class DevPanel : public Panel {
 public:

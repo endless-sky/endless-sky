@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "comparators/ByGivenOrder.h"
 #include "CategoryList.h"
 #include "CoreStartData.h"
+#include "DevPanel.h"
 #include "DialogPanel.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -228,6 +229,9 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		Preferences::ZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
+	// The playtesting developer menu is available in flight as well as on planets.
+	else if((key == '`' || key == SDLK_F12) && !command && isNewPress)
+		GetUI().Push(new DevPanel(player));
 	else
 		return false;
 

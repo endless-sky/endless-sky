@@ -28,7 +28,8 @@ updated at the end of every piece.
 - Main menu credits start with "Welcome to Endless Sky: Expanded!" so testers can tell
   the build apart; CI appends the commit hash and build time below the version line.
 - Developer menu: `source/DevPanel.{h,cpp}`, opened with `` ` `` or F12 on the planet
-  screen (`PlanetPanel::KeyDown`). Advance 1/7/30 days, add credits.
+  screen (`PlanetPanel::KeyDown`) or in flight (`MainPanel::KeyDown`); key repeats are ignored
+  so holding the key does not open and close it. Advance 1/7/30 days, add credits.
   Always enabled for now; gate it (e.g. behind `-d` or a preference) before any public release.
 - Integration test: `tests/integration/config/plugins/integration-tests/data/tests/tests_dev_menu.txt`.
 

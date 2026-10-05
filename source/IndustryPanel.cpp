@@ -285,6 +285,8 @@ vector<const Facility *> IndustryPanel::Facilities(const PlayerInfo &player, con
 				: facility.CanBuildOn(planet.TrueName(), planet.Attributes(), planet.IsInhabited()))
 			result.push_back(&facility);
 	}
+	// Stations go first, so they are easy to find.
+	stable_partition(result.begin(), result.end(), [](const Facility *facility) { return facility->IsStation(); });
 	return result;
 }
 
