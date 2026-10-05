@@ -58,6 +58,10 @@ void Facility::Load(const DataNode &node)
 		else if(key == "attributes" && hasValue)
 			for(int i = 1; i < child.Size(); ++i)
 				attributes.insert(child.Token(i));
+		else if(key == "warehouse" && hasValue)
+			warehouse = max(0, static_cast<int>(child.Value(1)));
+		else if(key == "station")
+			isStation = true;
 		else if(key == "uninhabited")
 			anyUninhabited = true;
 		else if(key == "requires" && hasValue)
@@ -95,6 +99,20 @@ const string &Facility::Description() const
 int64_t Facility::Cost() const
 {
 	return cost;
+}
+
+
+
+int Facility::Warehouse() const
+{
+	return warehouse;
+}
+
+
+
+bool Facility::IsStation() const
+{
+	return isStation;
 }
 
 

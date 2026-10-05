@@ -23,6 +23,9 @@
 # 	planet "<planet>" ["<planet>" ...]                     (buildable on these planets)
 # 	attributes <attribute> [<attribute> ...]               (or on planets with any of these)
 # 	uninhabited                                            (or on any uninhabited planet)
+# 	warehouse <tons>                                       (warehouse space it adds to its planet, per unit)
+# 	station                                                (founds a new station in the system instead;
+#                                                          its modules use: attributes "player station")
 # 	requires "<condition>"                                 (only once the player has this condition)
 # 	flavor `<status report; <planet> becomes the planet name>`  (any number)
 #
@@ -241,3 +244,65 @@ facility "Varga Deep Bore"
 	flavor `The deep bore on <planet> uses a drill design six centuries old. It has not broken down once, which the maintenance software finds suspicious.`
 	flavor `The deep bore on <planet> cut through an old Varga shaft and kept going. Someone had scratched a name into the casing: L. Halloran, 3 shifts left.`
 	flavor `The deep bore on <planet> reports nothing unusual. Nothing unusual has been reported for thirty days in a row.`
+
+
+# Storage and logistics.
+
+facility "Storage Depot"
+	description `Pressurized cargo sheds and a loading crane. Goods stored here can be picked up by your freight routes, or by you.`
+	cost 60000
+	upkeep 50
+	warehouse 300
+	uninhabited
+	flavor `A cargo shed at the depot on <planet> sprang a leak. The air inside is now the same as the air outside, which is to say, none.`
+	flavor `The loading crane on <planet> has been repainted. Nobody asked for this.`
+
+
+# Space stations. Founding a station creates a new place to land in the system,
+# which can host the modules below.
+
+facility "Orbital Station"
+	description `A modular station hull with docking berths, a cargo office and a warehouse, assembled in orbit by contractors who will not tell you how they get it there.`
+	cost 2500000
+	upkeep 1000
+	warehouse 1000
+	station
+	flavor `The docking ring at <planet> handled forty ships this week. One of them was lost and wanted directions.`
+	flavor `Someone at <planet> has started a garden in an empty cargo container. The air recyclers are very pleased.`
+	flavor `The station crew at <planet> held a vote to name the main corridor. The winning entry was "the main corridor."`
+	flavor `A micrometeoroid punched a hole the size of a pinhead in a storage module at <planet>. The patch is the size of a dinner plate.`
+	flavor `The cargo office at <planet> reports that the vending machine has eaten its hundredth coin.`
+
+facility "Warehouse Module"
+	description `A pressurized storage module bolted to the station spine. Cheap, roomy, and nearly impossible to heat.`
+	cost 250000
+	upkeep 100
+	warehouse 2000
+	attributes "player station"
+	flavor `The warehouse module at <planet> is so cold that the crew keeps their lunches in it.`
+
+facility "Zero-G Foundry"
+	description `Without gravity, molten metal does not settle or sag. The foundry makes circuit substrates that are almost impossible to make on a planet.`
+	cost 700000
+	upkeep 600
+	input "Heavy Metals" 2
+	input "Plastic" 1
+	output "Electronics" 4
+	storage 80
+	attributes "player station"
+	flavor `The foundry at <planet> produced a batch of perfect spheres by accident. The engineers have kept one for the break room.`
+	flavor `A technician at the foundry on <planet> sneezed in zero gravity. It took her ten minutes to stop spinning.`
+
+facility "Crystal Refinery"
+	description `Varga Deepworks meant to process pressure crystals in orbit, above the claims where they were mined. Their charter describes a refinery that splits the crystals and isotopes into precision electronics and luxury fittings, and you have the charter.`
+	cost 1200000
+	upkeep 800
+	input "Pressure Crystals" 1
+	input "Refined Isotopes" 1
+	output "Electronics" 6
+	output "Luxury Goods" 2
+	storage 40
+	attributes "player station"
+	requires "expanded: varga charter"
+	flavor `The crystal refinery at <planet> runs so quietly that the crew checks on it twice a shift to make sure it is still on.`
+	flavor `A cut crystal from the refinery at <planet> has been mounted over the door of the cargo office. Edda Lund sent a note saying it was "a bit much."`

@@ -1,0 +1,65 @@
+# Copyright (c) 2026 by Endless Sky Expanded contributors
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test "Industry - Found A Station"
+	status active
+	description "Tests founding a space station from New Greenland, then landing on it and building on it."
+	sequence
+		inject "New Greenland Industry Save"
+		call "Load First Savegame"
+		# Get enough credits for a station.
+		input
+			key "F12"
+		input
+			key 5
+		input
+			key 5
+		input
+			key 5
+		input
+			key "escape"
+		# The list is alphabetical: Hydroponics Farm, Machine Works, Mining Outpost,
+		# Orbital Station, Textile Mill. Found the station, keeping the suggested name.
+		input
+			key n
+		input
+			key down
+		input
+			key down
+		input
+			key down
+		input
+			key e
+		input
+			key "Return"
+		assert
+			and
+				"facility: Orbital Station" == 1
+				"credits" == 631000
+		# Fly to the new station and land on it.
+		call "Depart"
+		navigate
+			"travel destination" "Arcturus Station"
+		call "Land"
+		assert
+			"flagship planet: Arcturus Station" > 0
+		# Store the fleet's cargo in the station's warehouse. The warehouse is the
+		# first row of the list.
+		input
+			key n
+		input
+			key u
+		assert
+			and
+				"commodity: Plastic" == 0
+				"facilities owned" == 1

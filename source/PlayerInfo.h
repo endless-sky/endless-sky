@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class DistanceMap;
+class Facility;
 class Outfit;
 class PilotProfile;
 class Planet;
@@ -213,6 +214,11 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
+	// Found a new space station of the given type, with the given name, in the
+	// player's current system. The station becomes a real planet, recorded in
+	// the saved game's changes. Returns false if the name cannot be used.
+	bool FoundStation(const Facility &type, const std::string &name);
+	static bool IsValidStationName(const std::string &name);
 	// Count or remove tons of a commodity in the pooled cargo and the cargo
 	// holds of the ships in the player's system.
 	int CommodityCount(const std::string &commodity) const;

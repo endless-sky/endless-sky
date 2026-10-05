@@ -1,0 +1,22 @@
+# Copyright (c) 2026 by Endless Sky Expanded contributors
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# The government of the space stations the player founds. It is always on good
+# terms with the player, so they can always land and use the services.
+government "Expanded Holdings"
+	"display name" "Private Station"
+	swizzle 0
+	color .45 .75 .45
+	"player reputation" 1000
+	"bribe" 0
+	"fine" 0

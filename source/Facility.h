@@ -51,6 +51,11 @@ public:
 	const Amounts &Outputs() const;
 	// The most tons of each commodity that can sit in this facility's stock.
 	int Storage() const;
+	// Tons of warehouse space this facility adds to its planet, for any commodity.
+	int Warehouse() const;
+	// Whether building this facility founds a new space station in the system,
+	// instead of building on the planet the player is on.
+	bool IsStation() const;
 
 	// Check whether this facility can be built on a planet, given its true name,
 	// attributes, and whether it is inhabited: either the planet is listed by name,
@@ -72,6 +77,8 @@ private:
 	Amounts inputs;
 	Amounts outputs;
 	int storage = 0;
+	int warehouse = 0;
+	bool isStation = false;
 	std::set<std::string> planets;
 	std::set<std::string> attributes;
 	bool anyUninhabited = false;

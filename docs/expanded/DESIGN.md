@@ -16,7 +16,8 @@ updated at the end of every piece.
 | 1. Industry MVP | Done, confirmed working on Windows |
 | 2. Chains, upkeep, expansion, outposts, auto-sell, overview | Done, confirmed working on Windows |
 | 2b. Outpost story (Varga Deepworks), produced-only goods and quests | Done, waiting for playtest |
-| 3. Space stations | Next (scope to be agreed; ties into "expanded: varga charter") |
+| 3. Space stations, warehouses and freight routes | Done, waiting for playtest |
+| 4. Next | To be agreed |
 
 ## Piece 0 - Pipeline + dev menu (done)
 
@@ -124,8 +125,45 @@ Combined roadmap items 2-4 (and part of 6).
 - Tests: unit tests for the new facility options and reports; integration test
   `tests_varga.txt` (deliver core samples, check the samples are taken and the rewards given).
 
+## Piece 3 - Space stations, warehouses and freight routes (done)
+
+- Stations: a facility with `station` (data: "Orbital Station", 2.5M, 1,000/day upkeep,
+  1,000 t warehouse) is offered on any planet with Industry access in a system without a
+  player station. Building it asks for a name (default "<system> Station", validated by
+  `PlayerInfo::IsValidStationName`: unused planet/system name, no quotes) and calls
+  `PlayerInfo::FoundStation`, which generates event-style changes (a `planet` with attributes
+  `station` and `"player station"`, government "Expanded Holdings", default spaceport with all
+  services, landscape land/station1; and `system ... add object` with sprite
+  planet/station-depot-a0, orbit 400 beyond the outermost object), appends them to `dataChanges`
+  (saved under "changes" and re-applied on load) and applies them with `AddChanges`. The station
+  facility itself becomes a holding on the new planet (upkeep, warehouse, flavor; Expand adds
+  warehouse space). If the player has "expanded: varga charter", the station description
+  mentions it. Verified: station survives save and reload and can be landed on.
+- Station modules (`attributes "player station"`): Warehouse Module, Zero-G Foundry
+  (Heavy Metals + Plastic -> Electronics), Crystal Refinery (requires the Varga charter;
+  Pressure Crystals + Refined Isotopes -> Electronics + Luxury Goods).
+- Warehouses: any facility can add `warehouse <tons>` to its planet; shared storage for any
+  commodity (`Industry::Store/Retrieve/WarehouseCapacity`), saved per planet. Storage Depot
+  (uninhabited, 300 t) puts warehouses at outposts. The Industry panel shows a Warehouse row
+  first when a planet has one: Store (all cargo commodities) / Load (all, up to free space).
+- Freight routes (`Industry::Route`): commodity, from, to, tons a day, buy, sell. Run daily
+  after production and before auto-sell. Source order: facility outputs, warehouse, market (if
+  buy). Destination order: facilities that use it, warehouse, market (if sell). Moves
+  min(tons, room, available), limited by credits. Freight = tons x (5 + 10 x jumps), jumps by
+  breadth-first search over hyperspace links (`IndustryWorld` in PlayerInfo.cpp, which also
+  provides market prices and records trades with `GameData::AddPurchase`).
+- `Industry::World` replaces the old auto-sell lambda (markets + jumps), so the daily logic
+  stays testable with a mock. The daily message lists upkeep, freight, purchases and sales.
+- Industry panel has three views on Tab: this planet, freight routes (list plus an editor with
+  arrow buttons for commodity/from/to/tons and Buy/Sell toggles; R new, X delete, -/+ tons),
+  and all holdings. Route endpoints: planets with the player's facilities, plus the current one.
+- Tests: unit tests for warehouses, routes (delivery, unreachable, buy and sell, room limits,
+  affordability) and saving routes/warehouses; integration test `tests_stations.txt` (found a
+  station, land on it, store cargo in its warehouse).
+
 ## Roadmap (revise as we learn)
 
-3. Player-built space stations (new landable stellar objects) - biggest engine job.
-4. Economic impact beyond auto-sell: NPC haulers move goods; facilities affect planet supply.
-5. Quality of life: rename holdings, remote status in Player Info, balance pass on prices.
+- Economic impact beyond auto-sell: visible NPC haulers for freight routes; facilities affect
+  planet supply.
+- Station visuals and growth: sprite changes as a station gains modules; defense.
+- Quality of life: rename holdings, industry tab in Player Info, balance pass on prices.

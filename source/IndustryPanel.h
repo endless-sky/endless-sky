@@ -17,18 +17,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+#include <functional>
 #include <string>
 #include <vector>
 
 class Facility;
 class Planet;
 class PlayerInfo;
+class Point;
 
 
 
-// Planet screen panel for building industrial facilities, supplying them with
-// inputs and collecting what they produce. Drawn in the planet description
-// area, like the bank. Tab switches to an overview of all the player's holdings.
+// Planet screen panel for the player's industry, drawn in the planet
+// description area like the bank. It has three views, switched with Tab:
+// this planet (build, supply and collect from facilities, use the warehouse,
+// found a station), freight routes, and an overview of all holdings.
 class IndustryPanel : public Panel {
 public:
 	IndustryPanel(PlayerInfo &player, const Planet &planet);
@@ -47,26 +50,61 @@ protected:
 
 
 private:
+	enum class View {
+		PLANET,
+		ROUTES,
+		OVERVIEW
+	};
+
+
+private:
 	// The facility types that can be built or are owned on this planet.
 	static std::vector<const Facility *> Facilities(const PlayerInfo &player, const Planet &planet);
+	// Whether the player already has a station in the given planet's system.
+	static bool HasStationInSystem(const PlayerInfo &player, const Planet &planet);
+	// The rows of the planet view: the warehouse (as nullptr) if there is one,
+	// then the facilities.
+	std::vector<const Facility *> Rows() const;
+	bool HasWarehouse() const;
 	const Facility *Selected() const;
+	bool IsWarehouseSelected() const;
 
 	void DrawPlanetView();
+	void DrawWarehouse(double left, double top);
+	void DrawRoutes();
 	void DrawOverview();
+	// Draw a button and make it clickable. Moves the corner to the right.
+	void DrawButton(Point &corner, const std::string &label, bool enabled, std::function<void()> action);
 
 	// Actions on the selected facility.
 	void Build();
+	void FoundStation(const std::string &name);
 	void Supply();
 	void Collect();
 	void ToggleAutoSell();
 	bool CanAutoSell() const;
+	// Warehouse actions.
+	void StoreCargo();
+	void LoadWarehouse();
+	// Freight route actions.
+	void NewRoute();
+	void DeleteRoute();
+	void ChangeRoute(int field, int step);
+	// Planets that freight routes can use: wherever the player has facilities, and here.
+	std::vector<std::string> Locations() const;
+	// Commodities that freight routes can carry.
+	static std::vector<std::string> Commodities();
+	std::string DefaultStationName() const;
 
 
 private:
 	PlayerInfo &player;
 	const Planet &planet;
-	bool showOverview = false;
+	View view = View::PLANET;
 	int selectedRow = 0;
+	int selectedRoute = 0;
 	int scroll = 0;
 	std::string status;
+	// The station type waiting for the player to choose a name.
+	const Facility *pendingStation = nullptr;
 };

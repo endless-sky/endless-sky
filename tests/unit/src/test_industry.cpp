@@ -26,7 +26,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../source/Facility.h"
 #include "../../../source/Set.h"
 
+#include <map>
 #include <string>
+#include <utility>
 
 
 
@@ -52,13 +54,45 @@ const std::string WORKS = R"(facility "Machine Works"
 	storage 10
 )";
 
+const std::string DEPOT = R"(facility "Depot"
+	warehouse 50
+	uninhabited
+)";
+
 Set<Facility> MakeFacilities()
 {
 	Set<Facility> facilities;
 	facilities.Get("Mining Outpost")->Load(AsDataNode(OUTPOST));
 	facilities.Get("Machine Works")->Load(AsDataNode(WORKS));
+	facilities.Get("Depot")->Load(AsDataNode(DEPOT));
 	return facilities;
 }
+
+// Markets and distances for testing. Planets are one jump apart unless set
+// otherwise, and have no market unless given a price.
+class MockWorld : public Industry::World {
+public:
+	virtual int Price(const std::string &planet, const std::string &commodity) const override
+	{
+		auto it = prices.find({planet, commodity});
+		return it == prices.end() ? 0 : it->second;
+	}
+	virtual void Trade(const std::string &planet, const std::string &commodity, int tons) override
+	{
+		traded[{planet, commodity}] += tons;
+	}
+	virtual int Jumps(const std::string &from, const std::string &to) const override
+	{
+		if(from == to)
+			return 0;
+		auto it = jumps.find({from, to});
+		return it == jumps.end() ? 1 : it->second;
+	}
+
+	std::map<std::pair<std::string, std::string>, int> prices;
+	std::map<std::pair<std::string, std::string>, int> traded;
+	std::map<std::pair<std::string, std::string>, int> jumps;
+};
 // #endregion mock data
 
 
@@ -187,22 +221,19 @@ SCENARIO( "Running a facility", "[Industry]" ) {
 		}
 		WHEN( "auto-sell is on and the output can be sold" ) {
 			holding.autoSell = true;
-			int soldTons = 0;
-			const Industry::DayReport report = industry.AdvanceDay(1000,
-				[&soldTons](const Industry::Holding &, const std::string &commodity, int tons) -> int64_t {
-					soldTons += tons;
-					return commodity == "Metal" ? tons * 300 : 0;
-				});
-			THEN( "the day's output is sold" ) {
-				CHECK( soldTons == 2 );
+			MockWorld world;
+			world.prices[{"New Greenland", "Metal"}] = 300;
+			const Industry::DayReport report = industry.AdvanceDay(1000, &world);
+			THEN( "the day's output is sold, and the market is told" ) {
 				CHECK( report.sales == 600 );
 				CHECK( holding.Stock("Metal") == 0 );
+				CHECK( world.traded[{"New Greenland", "Metal"}] == -2 );
 			}
 		}
 		WHEN( "auto-sell is on but there is no market" ) {
 			holding.autoSell = true;
-			const Industry::DayReport report = industry.AdvanceDay(1000,
-				[](const Industry::Holding &, const std::string &, int) -> int64_t { return 0; });
+			MockWorld world;
+			const Industry::DayReport report = industry.AdvanceDay(1000, &world);
 			THEN( "the output is kept" ) {
 				CHECK( report.sales == 0 );
 				CHECK( holding.Stock("Metal") == 2 );
@@ -246,6 +277,114 @@ SCENARIO( "Running a production chain", "[Industry]" ) {
 	}
 }
 
+SCENARIO( "Using a warehouse", "[Industry]" ) {
+	const Set<Facility> facilities = MakeFacilities();
+	const Facility &depot = *facilities.Find("Depot");
+	GIVEN( "a planet with no warehouse" ) {
+		Industry industry;
+		THEN( "nothing can be stored there" ) {
+			CHECK( industry.WarehouseCapacity("Rock") == 0 );
+			CHECK( industry.Store("Rock", "Metal", 10) == 0 );
+		}
+	}
+	GIVEN( "two depots on a planet" ) {
+		Industry industry;
+		industry.Build(depot, "Rock");
+		industry.Build(depot, "Rock");
+		THEN( "the warehouse holds any mix of goods up to its capacity" ) {
+			CHECK( industry.WarehouseCapacity("Rock") == 100 );
+			CHECK( industry.Store("Rock", "Metal", 70) == 70 );
+			CHECK( industry.Store("Rock", "Food", 70) == 30 );
+			CHECK( industry.WarehouseUsed("Rock") == 100 );
+			CHECK( industry.Retrieve("Rock", "Metal", 100) == 70 );
+			CHECK( industry.WarehouseUsed("Rock") == 30 );
+		}
+	}
+}
+
+SCENARIO( "Running freight routes", "[Industry]" ) {
+	const Set<Facility> facilities = MakeFacilities();
+	const Facility &outpost = *facilities.Find("Mining Outpost");
+	const Facility &works = *facilities.Find("Machine Works");
+	const Facility &depot = *facilities.Find("Depot");
+	MockWorld world;
+	Industry industry;
+	industry.Build(outpost, "Rock");
+	industry.Build(works, "Earth");
+	Industry::Route route;
+	route.commodity = "Metal";
+	route.from = "Rock";
+	route.to = "Earth";
+	route.tons = 10;
+
+	GIVEN( "a route from a mine to a factory one jump away" ) {
+		industry.AddRoute(route);
+		const Industry::DayReport report = industry.AdvanceDay(10000, &world);
+		THEN( "the day's output is delivered, and freight is paid per ton and jump" ) {
+			CHECK( industry.Find(outpost, "Rock")->Stock("Metal") == 0 );
+			CHECK( industry.Find(works, "Earth")->Stock("Metal") == 2 );
+			CHECK( report.freight == 2 * (Industry::FREIGHT_BASE + Industry::FREIGHT_PER_JUMP) );
+			CHECK( industry.Routes()[0].lastMoved == 2 );
+		}
+	}
+	GIVEN( "a route to a place that is out of reach" ) {
+		world.jumps[{"Rock", "Earth"}] = -1;
+		industry.AddRoute(route);
+		const Industry::DayReport report = industry.AdvanceDay(10000, &world);
+		THEN( "nothing moves" ) {
+			CHECK( industry.Find(outpost, "Rock")->Stock("Metal") == 2 );
+			CHECK( report.freight == 0 );
+			CHECK( industry.Routes()[0].lastMoved == 0 );
+		}
+	}
+	GIVEN( "a route that buys on the source market and sells at the destination" ) {
+		world.prices[{"Market", "Food"}] = 100;
+		world.prices[{"Earth", "Food"}] = 300;
+		route.commodity = "Food";
+		route.from = "Market";
+		route.buy = true;
+		route.sell = true;
+		industry.AddRoute(route);
+		const Industry::DayReport report = industry.AdvanceDay(100000, &world);
+		THEN( "the full amount is bought, shipped and sold, and both markets are told" ) {
+			CHECK( report.purchases == 1000 );
+			CHECK( report.sales == 3000 );
+			CHECK( world.traded[{"Market", "Food"}] == 10 );
+			CHECK( world.traded[{"Earth", "Food"}] == -10 );
+		}
+	}
+	GIVEN( "a route to a warehouse with little room left" ) {
+		industry.Build(depot, "Depot Rock");
+		industry.Store("Depot Rock", "Food", 49);
+		route.to = "Depot Rock";
+		industry.AddRoute(route);
+		industry.AdvanceDay(10000, &world);
+		THEN( "only what fits is moved" ) {
+			CHECK( industry.Warehouse("Depot Rock").at("Metal") == 1 );
+			CHECK( industry.Find(outpost, "Rock")->Stock("Metal") == 1 );
+		}
+	}
+	GIVEN( "a route the player cannot afford" ) {
+		world.prices[{"Market", "Food"}] = 100;
+		route.commodity = "Food";
+		route.from = "Market";
+		route.to = "Earth";
+		route.buy = true;
+		route.sell = false;
+		industry.Build(depot, "Earth");
+		industry.AddRoute(route);
+		// After upkeep (100 for the mine, 50 for the factory), 350 credits are left:
+		// enough for 3 tons at 100 to buy plus 15 for freight.
+		const Industry::DayReport report = industry.AdvanceDay(500, &world);
+		THEN( "only what can be paid for is moved" ) {
+			CHECK( report.upkeep == 150 );
+			CHECK( industry.Routes()[0].lastMoved == 3 );
+			CHECK( report.purchases == 300 );
+			CHECK( report.freight == 45 );
+		}
+	}
+}
+
 SCENARIO( "Saving and loading facilities", "[Industry]" ) {
 	const Set<Facility> facilities = MakeFacilities();
 	const Facility &outpost = *facilities.Find("Mining Outpost");
@@ -259,13 +398,22 @@ SCENARIO( "Saving and loading facilities", "[Industry]" ) {
 		Industry::Supply(*industry.Find(works, "Earth"), "Plastic", 3);
 		industry.Find(outpost, "New Greenland")->autoSell = true;
 		industry.Find(outpost, "New Greenland")->AddReport("1 Jan 3014", "Quiet day.");
+		industry.Build(*facilities.Find("Depot"), "Rock");
+		industry.Store("Rock", "Food", 12);
+		Industry::Route route;
+		route.commodity = "Metal";
+		route.from = "New Greenland";
+		route.to = "Earth";
+		route.tons = 25;
+		route.sell = true;
+		industry.AddRoute(route);
 		DataWriter writer;
 		industry.Save(writer);
 		WHEN( "it is saved and loaded again" ) {
 			Industry loaded;
 			loaded.Load(AsDataNode(writer.SaveToString()), facilities);
 			THEN( "everything is restored" ) {
-				REQUIRE( loaded.Holdings().size() == 2 );
+				REQUIRE( loaded.Holdings().size() == 3 );
 				const Industry::Holding *mine = loaded.Find(outpost, "New Greenland");
 				REQUIRE( mine );
 				CHECK( mine->Stock("Metal") == 2 );
@@ -279,6 +427,14 @@ SCENARIO( "Saving and loading facilities", "[Industry]" ) {
 				CHECK( factory->count == 2 );
 				CHECK( factory->Stock("Plastic") == 3 );
 				CHECK_FALSE( factory->autoSell );
+				CHECK( loaded.Warehouse("Rock").at("Food") == 12 );
+				REQUIRE( loaded.Routes().size() == 1 );
+				CHECK( loaded.Routes()[0].commodity == "Metal" );
+				CHECK( loaded.Routes()[0].from == "New Greenland" );
+				CHECK( loaded.Routes()[0].to == "Earth" );
+				CHECK( loaded.Routes()[0].tons == 25 );
+				CHECK_FALSE( loaded.Routes()[0].buy );
+				CHECK( loaded.Routes()[0].sell );
 			}
 		}
 	}

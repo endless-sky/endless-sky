@@ -70,6 +70,62 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Connects the player's industry to the markets and the hyperspace map.
+	class IndustryWorld : public Industry::World {
+	public:
+		virtual int Price(const string &planetName, const string &commodity) const override
+		{
+			const System *system = MarketSystem(planetName);
+			return system ? max(0, system->Trade(commodity)) : 0;
+		}
+
+		virtual void Trade(const string &planetName, const string &commodity, int tons) override
+		{
+			// Buying and selling move the local price, just like trading by hand.
+			const System *system = MarketSystem(planetName);
+			if(system)
+				GameData::AddPurchase(*system, commodity, tons);
+		}
+
+		virtual int Jumps(const string &from, const string &to) const override
+		{
+			const Planet *fromPlanet = GameData::Planets().Find(from);
+			const Planet *toPlanet = GameData::Planets().Find(to);
+			const System *start = fromPlanet ? fromPlanet->GetSystem() : nullptr;
+			const System *goal = toPlanet ? toPlanet->GetSystem() : nullptr;
+			if(!start || !goal)
+				return -1;
+			// Breadth-first search along hyperspace links.
+			map<const System *, int> distance = {{start, 0}};
+			list<const System *> queue = {start};
+			while(!queue.empty())
+			{
+				const System *system = queue.front();
+				queue.pop_front();
+				if(system == goal)
+					return distance[system];
+				for(const System *link : system->Links())
+					if(distance.emplace(link, distance[system] + 1).second)
+						queue.push_back(link);
+			}
+			return -1;
+		}
+
+
+	private:
+		// The system whose market serves the given planet, if it has one.
+		static const System *MarketSystem(const string &planetName)
+		{
+			const Planet *planet = GameData::Planets().Find(planetName);
+			if(!planet || !planet->IsInhabited() || !planet->GetPort().HasService(Port::ServicesType::Trading))
+				return nullptr;
+			const System *system = planet->GetSystem();
+			return (system && system->HasTrade()) ? system : nullptr;
+		}
+	};
+}
+
+namespace {
 	// Move the flagship to the start of your list of ships. It does not make sense
 	// that the flagship would change if you are reunited with a different ship that
 	// was higher up the list.
@@ -971,29 +1027,28 @@ void PlayerInfo::AdvanceIndustry()
 	if(industry.Holdings().empty())
 		return;
 
-	auto sell = [](const Industry::Holding &holding, const string &commodity, int tons) -> int64_t
-	{
-		const Planet *planet = GameData::Planets().Find(holding.planet);
-		if(!planet || !planet->IsInhabited() || !planet->GetPort().HasService(Port::ServicesType::Trading))
-			return 0;
-		const System *system = planet->GetSystem();
-		if(!system || !system->HasTrade())
-			return 0;
-		const int price = system->Trade(commodity);
-		if(price <= 0)
-			return 0;
-		// Selling lowers the local price, just like selling by hand.
-		GameData::AddPurchase(*system, commodity, -tons);
-		return static_cast<int64_t>(price) * tons;
-	};
-	const Industry::DayReport report = industry.AdvanceDay(accounts.Credits(), sell);
-	accounts.AddCredits(report.sales - report.upkeep);
+	IndustryWorld world;
+	const Industry::DayReport report = industry.AdvanceDay(accounts.Credits(), &world);
+	accounts.AddCredits(report.sales - report.upkeep - report.purchases - report.freight);
 
-	if(report.upkeep || report.sales)
+	if(report.upkeep || report.sales || report.purchases || report.freight)
 	{
-		string message = "Industry: paid " + Format::CreditString(report.upkeep) + " in upkeep";
+		vector<string> parts;
+		if(report.upkeep)
+			parts.push_back(Format::CreditString(report.upkeep) + " in upkeep");
+		if(report.freight)
+			parts.push_back(Format::CreditString(report.freight) + " for freight");
+		if(report.purchases)
+			parts.push_back(Format::CreditString(report.purchases) + " for goods");
+		string message = "Industry:";
+		if(!parts.empty())
+		{
+			message += " paid ";
+			for(size_t i = 0; i < parts.size(); ++i)
+				message += (i ? (i + 1 == parts.size() ? " and " : ", ") : "") + parts[i];
+		}
 		if(report.sales)
-			message += " and earned " + Format::CreditString(report.sales) + " from auto-sales";
+			message += string(parts.empty() ? "" : ";") + " earned " + Format::CreditString(report.sales) + " from sales";
 		Messages::Add({message + ".", GameData::MessageCategories().Get("daily")});
 	}
 
@@ -1011,6 +1066,67 @@ void PlayerInfo::AdvanceIndustry()
 		Messages::Add({holding.type->TrueName() + " on " + planetName + ": " + text,
 			GameData::MessageCategories().Get("low")});
 	}
+}
+
+
+
+bool PlayerInfo::FoundStation(const Facility &type, const string &name)
+{
+	if(!system || !IsValidStationName(name))
+		return false;
+
+	// Put the station in its own orbit, outside everything else in the system.
+	double distance = 0.;
+	for(const StellarObject &object : system->Objects())
+		if(object.Parent() < 0)
+			distance = max(distance, object.Distance());
+	distance += 400.;
+
+	string description = name + " is a station you founded in the " + system->DisplayName()
+		+ " system. It is small, cold, and smells of fresh sealant, and there is room for a great deal more.";
+	if(conditions.Get("expanded: varga charter") > 0)
+		description += " Its founding papers were filed under an orbital charter drawn up six hundred years ago"
+			" by Varga Deepworks, which caused the registry clerk on duty a great deal of confusion.";
+	const string spaceport = "The docking ring has six berths, a cargo office, and a vending machine that only"
+		" takes coins nobody has minted in a century. Your crew has already started calling the corridor"
+		" outside the cargo office \"the high street.\"";
+
+	ostringstream text;
+	text << "planet " << DataWriter::Quote(name) << '\n'
+		<< "\tattributes station \"player station\"\n"
+		<< "\tlandscape land/station1\n"
+		<< "\tgovernment \"Expanded Holdings\"\n"
+		<< "\tdescription `" << description << "`\n"
+		<< "\tspaceport `" << spaceport << "`\n"
+		<< "\tsecurity 0\n"
+		<< "system " << DataWriter::Quote(system->TrueName()) << '\n'
+		<< "\tadd object " << DataWriter::Quote(name) << '\n'
+		<< "\t\tsprite planet/station-depot-a0\n"
+		<< "\t\tdistance " << distance << '\n'
+		<< "\t\tperiod " << distance * .8 << '\n';
+	istringstream in(text.str());
+	DataFile file(in);
+	list<DataNode> changes(file.begin(), file.end());
+	dataChanges.insert(dataChanges.end(), changes.begin(), changes.end());
+	AddChanges(changes);
+
+	industry.Build(type, name);
+	return true;
+}
+
+
+
+bool PlayerInfo::IsValidStationName(const string &name)
+{
+	if(name.empty() || name.size() > 32 || name.front() == ' ' || name.back() == ' ')
+		return false;
+	for(char c : name)
+		if(c == '"' || c == '`' || c == '\\' || static_cast<unsigned char>(c) < ' ')
+			return false;
+	// The name must not already belong to a planet or a system.
+	const Planet *planet = GameData::Planets().Find(name);
+	const System *namedSystem = GameData::Systems().Find(name);
+	return !(planet && planet->IsValid()) && !(namedSystem && namedSystem->IsValid());
 }
 
 

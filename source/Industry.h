@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <cstdint>
-#include <functional>
 #include <map>
 #include <string>
 #include <utility>
@@ -31,7 +30,8 @@ class Set;
 
 
 // All of the industrial facilities the player owns, the goods stocked in each
-// one, and the daily production that turns inputs into outputs.
+// one and in their warehouses, the freight routes that move goods between
+// them, and the daily production that turns inputs into outputs.
 class Industry {
 public:
 	// What a facility did on the most recent day.
@@ -65,19 +65,57 @@ public:
 		int Stock(const std::string &commodity) const;
 		// Total tons of outputs waiting to be collected.
 		int OutputStock() const;
+		bool Uses(const std::string &commodity) const;
+		bool Makes(const std::string &commodity) const;
 		// Add a status report, forgetting the oldest one if there are too many.
 		void AddReport(const std::string &date, const std::string &text);
 	};
 
-	// The result of a day of production, in credits.
+	// A standing order to move a commodity from one planet to another every day.
+	// Goods are taken from the outputs of the player's facilities at the source,
+	// then from the warehouse there, then (if allowed) bought on the market.
+	// They are delivered to facilities at the destination that use them, then
+	// to the warehouse there, then (if allowed) sold on the market.
+	struct Route {
+		std::string commodity;
+		std::string from;
+		std::string to;
+		int tons = 10;
+		bool buy = false;
+		bool sell = false;
+		// What happened on the most recent day.
+		int lastMoved = 0;
+		int64_t lastCost = 0;
+		std::string lastNote = "Waiting for the first day.";
+	};
+
+	// The result of a day, in credits.
 	struct DayReport {
 		int64_t upkeep = 0;
 		int64_t sales = 0;
+		int64_t purchases = 0;
+		int64_t freight = 0;
 	};
 
-	// Sell the given tons of a holding's output on the local market, returning
-	// the credits earned, or 0 if it cannot be sold there.
-	using Seller = std::function<int64_t(const Holding &holding, const std::string &commodity, int tons)>;
+	// Access to the rest of the universe: markets and travel distances.
+	class World {
+	public:
+		virtual ~World() = default;
+		// The price of a commodity on the given planet's market, or 0 if it
+		// cannot be bought or sold there.
+		virtual int Price(const std::string &planet, const std::string &commodity) const = 0;
+		// Record that tons were bought (positive) or sold (negative) on the
+		// given planet's market, so that its prices can react.
+		virtual void Trade(const std::string &planet, const std::string &commodity, int tons) = 0;
+		// The number of hyperspace jumps between two planets, or -1 if one
+		// cannot be reached from the other.
+		virtual int Jumps(const std::string &from, const std::string &to) const = 0;
+	};
+
+	// Freight costs per ton moved: a flat fee, plus a fee for every jump.
+	static constexpr int64_t FREIGHT_BASE = 5;
+	static constexpr int64_t FREIGHT_PER_JUMP = 10;
+	static constexpr int MAX_ROUTE_TONS = 500;
 
 
 public:
@@ -94,10 +132,26 @@ public:
 	// Add a new facility, or one more of it if the player already owns this type
 	// of facility on this planet. Paying for it is up to the caller.
 	void Build(const Facility &type, const std::string &planet);
-	// Run one day of production for every facility. Upkeep is only paid (and
-	// the facility only runs) while the credits on hand cover it. The caller
-	// must apply the returned report to the player's account.
-	DayReport AdvanceDay(int64_t credits, const Seller &sell = nullptr);
+	// Run one day: pay upkeep, produce, move freight, and auto-sell. Upkeep,
+	// purchases and freight are only paid (and things only happen) while the
+	// credits on hand cover them. The caller must apply the returned report
+	// to the player's account. Without a world, there are no markets or routes.
+	DayReport AdvanceDay(int64_t credits, World *world = nullptr);
+
+	// Warehouses: shared storage for any commodity, provided by facilities.
+	int WarehouseCapacity(const std::string &planet) const;
+	int WarehouseUsed(const std::string &planet) const;
+	const std::map<std::string, int> &Warehouse(const std::string &planet) const;
+	// Add up to the given tons to a planet's warehouse; returns the tons added.
+	int Store(const std::string &planet, const std::string &commodity, int tons);
+	// Take up to the given tons out of a planet's warehouse; returns the tons taken.
+	int Retrieve(const std::string &planet, const std::string &commodity, int tons);
+
+	// Freight routes.
+	const std::vector<Route> &Routes() const;
+	std::vector<Route> &Routes();
+	void AddRoute(const Route &route);
+	void RemoveRoute(size_t index);
 
 	// Take up to the given number of tons of a commodity out of a holding's stock.
 	// Returns how many tons were actually taken.
@@ -108,5 +162,12 @@ public:
 
 
 private:
+	void Produce(Holding &holding, int64_t &credits, DayReport &report);
+	void RunRoute(Route &route, int64_t &credits, DayReport &report, World &world);
+
+
+private:
 	std::vector<Holding> holdings;
+	std::map<std::string, std::map<std::string, int>> warehouses;
+	std::vector<Route> routes;
 };
