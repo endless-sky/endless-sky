@@ -17,6 +17,7 @@ updated at the end of every piece.
 | 2. Chains, upkeep, expansion, outposts, auto-sell, overview | Done, confirmed working on Windows |
 | 2b. Outpost story (Varga Deepworks), produced-only goods and quests | Done, waiting for playtest |
 | 3. Space stations, warehouses and freight routes | Done, waiting for playtest |
+| 3b. Industry tax and market saturation | Done, waiting for playtest |
 | 4. Next | To be agreed |
 
 ## Piece 0 - Pipeline + dev menu (done)
@@ -161,6 +162,26 @@ Combined roadmap items 2-4 (and part of 6).
 - Tests: unit tests for warehouses, routes (delivery, unreachable, buy and sell, room limits,
   affordability) and saving routes/warehouses; integration test `tests_stations.txt` (found a
   station, land on it, store cargo in its warehouse).
+
+## Piece 3b - Industry tax and market saturation (done)
+
+Goal: stop passive industry income from growing without limit, and show players the math.
+
+- Industry tax (`Industry::Tax`, `TaxBrackets`): progressive tax on each day's industry profit
+  (sales - upkeep - freight - purchases): 0% up to 5,000, 10% to 25,000, 25% to 100,000,
+  40% above. Paid from the day's result (`DayReport::Net`).
+- Market saturation: automated sales (auto-sell and freight routes; not selling by hand in the
+  Trading panel) add their tons to a per planet and commodity saturation, which halves every day
+  (`SATURATION_DECAY`). Each ton pays price / (1 + saturation / 100) (`MARKET_DEPTH`), integrated
+  over the tons sold (`SaleValue`). Saturation is saved in the industry block. ES's own
+  `GameData::AddPurchase` price effect still applies on top.
+- Transparency: Industry panel **Finances** view (Tab after freight routes): yesterday's sales,
+  upkeep, freight, purchases, profit, tax, net, money lost to saturation; the tax brackets and
+  payout formula in words; the three most saturated markets with their current payout percentage.
+  The route editor shows what selling the route's tons at the destination pays now ("about N per
+  ton (R% of price)"), and auto-selling facilities show the same for a day's output.
+- Tests: unit tests for the brackets, the taxed day report, saturation build-up, overnight decay
+  and saving.
 
 ## Roadmap (revise as we learn)
 

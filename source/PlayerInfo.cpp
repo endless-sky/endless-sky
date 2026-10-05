@@ -1029,7 +1029,7 @@ void PlayerInfo::AdvanceIndustry()
 
 	IndustryWorld world;
 	const Industry::DayReport report = industry.AdvanceDay(accounts.Credits(), &world);
-	accounts.AddCredits(report.sales - report.upkeep - report.purchases - report.freight);
+	accounts.AddCredits(report.Net());
 
 	if(report.upkeep || report.sales || report.purchases || report.freight)
 	{
@@ -1040,6 +1040,8 @@ void PlayerInfo::AdvanceIndustry()
 			parts.push_back(Format::CreditString(report.freight) + " for freight");
 		if(report.purchases)
 			parts.push_back(Format::CreditString(report.purchases) + " for goods");
+		if(report.tax)
+			parts.push_back(Format::CreditString(report.tax) + " in tax");
 		string message = "Industry:";
 		if(!parts.empty())
 		{

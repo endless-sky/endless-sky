@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../source/Facility.h"
 #include "../../../source/Set.h"
 
+#include <cmath>
 #include <map>
 #include <string>
 #include <utility>
@@ -66,6 +67,13 @@ Set<Facility> MakeFacilities()
 	facilities.Get("Machine Works")->Load(AsDataNode(WORKS));
 	facilities.Get("Depot")->Load(AsDataNode(DEPOT));
 	return facilities;
+}
+
+// What selling tons on a fresh market pays, with saturation applied.
+int64_t FreshSale(int price, int tons)
+{
+	return std::llround(price * Industry::MARKET_DEPTH
+		* std::log((Industry::MARKET_DEPTH + tons) / Industry::MARKET_DEPTH));
 }
 
 // Markets and distances for testing. Planets are one jump apart unless set
@@ -225,7 +233,8 @@ SCENARIO( "Running a facility", "[Industry]" ) {
 			world.prices[{"New Greenland", "Metal"}] = 300;
 			const Industry::DayReport report = industry.AdvanceDay(1000, &world);
 			THEN( "the day's output is sold, and the market is told" ) {
-				CHECK( report.sales == 600 );
+				CHECK( report.sales == FreshSale(300, 2) );
+				CHECK( report.saturationLoss == 600 - FreshSale(300, 2) );
 				CHECK( holding.Stock("Metal") == 0 );
 				CHECK( world.traded[{"New Greenland", "Metal"}] == -2 );
 			}
@@ -348,7 +357,7 @@ SCENARIO( "Running freight routes", "[Industry]" ) {
 		const Industry::DayReport report = industry.AdvanceDay(100000, &world);
 		THEN( "the full amount is bought, shipped and sold, and both markets are told" ) {
 			CHECK( report.purchases == 1000 );
-			CHECK( report.sales == 3000 );
+			CHECK( report.sales == FreshSale(300, 10) );
 			CHECK( world.traded[{"Market", "Food"}] == 10 );
 			CHECK( world.traded[{"Earth", "Food"}] == -10 );
 		}
@@ -381,6 +390,94 @@ SCENARIO( "Running freight routes", "[Industry]" ) {
 			CHECK( industry.Routes()[0].lastMoved == 3 );
 			CHECK( report.purchases == 300 );
 			CHECK( report.freight == 45 );
+		}
+	}
+}
+
+SCENARIO( "Paying industry tax", "[Industry]" ) {
+	GIVEN( "the tax brackets" ) {
+		THEN( "losses and small profits are not taxed" ) {
+			CHECK( Industry::Tax(-1000) == 0 );
+			CHECK( Industry::Tax(0) == 0 );
+			CHECK( Industry::Tax(5000) == 0 );
+		}
+		THEN( "each part of the profit is taxed at its bracket's rate" ) {
+			CHECK( Industry::Tax(10000) == 500 );
+			CHECK( Industry::Tax(25000) == 2000 );
+			CHECK( Industry::Tax(50000) == 2000 + 6250 );
+			CHECK( Industry::Tax(200000) == 2000 + 18750 + 40000 );
+		}
+	}
+	GIVEN( "a day with a large profit" ) {
+		const Set<Facility> facilities = MakeFacilities();
+		Industry industry;
+		industry.Build(*facilities.Find("Depot"), "Rock");
+		industry.Store("Rock", "Luxury Goods", 500);
+		MockWorld world;
+		world.prices[{"Earth", "Luxury Goods"}] = 1000;
+		Industry::Route route;
+		route.commodity = "Luxury Goods";
+		route.from = "Rock";
+		route.to = "Earth";
+		route.tons = 100;
+		route.sell = true;
+		industry.AddRoute(route);
+		const Industry::DayReport report = industry.AdvanceDay(1000000, &world);
+		THEN( "the profit is taxed, and the net result includes the tax" ) {
+			CHECK( report.profit == report.sales - report.freight );
+			CHECK( report.tax == Industry::Tax(report.profit) );
+			CHECK( report.tax > 0 );
+			CHECK( report.Net() == report.profit - report.tax );
+			CHECK( industry.LastReport().tax == report.tax );
+		}
+	}
+}
+
+SCENARIO( "Saturating a market", "[Industry]" ) {
+	const Set<Facility> facilities = MakeFacilities();
+	Industry industry;
+	industry.Build(*facilities.Find("Depot"), "Rock");
+	industry.Store("Rock", "Food", 50);
+	MockWorld world;
+	world.prices[{"Earth", "Food"}] = 100;
+	Industry::Route route;
+	route.commodity = "Food";
+	route.from = "Rock";
+	route.to = "Earth";
+	route.tons = 100;
+	route.sell = true;
+	industry.AddRoute(route);
+	GIVEN( "a fresh market" ) {
+		THEN( "the first tons sell for nearly full price, and more tons pay less each" ) {
+			CHECK( industry.SaleValue("Earth", "Food", 1, 100) == 100 );
+			CHECK( industry.SaleValue("Earth", "Food", 100, 100) == FreshSale(100, 100) );
+			CHECK( FreshSale(100, 100) < 100 * 100 );
+			CHECK( industry.SaleValue("Rock", "Food", 10, 0) == 0 );
+		}
+	}
+	GIVEN( "a day of selling 50 tons" ) {
+		const Industry::DayReport first = industry.AdvanceDay(100000, &world);
+		THEN( "the market is saturated by the tons sold" ) {
+			CHECK( first.sales == FreshSale(100, 50) );
+			CHECK( industry.Saturation("Earth", "Food") == 50. );
+		}
+		AND_WHEN( "another day passes" ) {
+			industry.Store("Rock", "Food", 50);
+			const Industry::DayReport second = industry.AdvanceDay(100000, &world);
+			THEN( "saturation halved overnight, so the same sale pays less than the first" ) {
+				CHECK( second.sales < first.sales );
+				CHECK( second.sales == std::llround(100 * Industry::MARKET_DEPTH * std::log(175. / 125.)) );
+				CHECK( industry.Saturation("Earth", "Food") == 75. );
+			}
+		}
+		AND_WHEN( "the industry is saved and loaded" ) {
+			DataWriter writer;
+			industry.Save(writer);
+			Industry loaded;
+			loaded.Load(AsDataNode(writer.SaveToString()), facilities);
+			THEN( "the saturation is remembered" ) {
+				CHECK( loaded.Saturation("Earth", "Food") == 50. );
+			}
 		}
 	}
 }

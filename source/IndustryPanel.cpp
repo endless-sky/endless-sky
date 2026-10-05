@@ -53,7 +53,7 @@ namespace {
 	const Point BUTTON_SIZE(68., 22.);
 	const Point ARROW_SIZE(18., 16.);
 	const double BUTTON_GAP = 6.;
-	const int ROUTE_ROWS = 3;
+	const int ROUTE_ROWS = 2;
 
 	enum RouteField {
 		COMMODITY,
@@ -104,6 +104,29 @@ namespace {
 	{
 		const Planet *planet = GameData::Planets().Find(trueName);
 		return (planet && planet->IsValid()) ? planet->DisplayName() : trueName;
+	}
+
+	// The market price of a commodity on a planet, or 0 if it has no market.
+	int MarketPrice(const string &planetName, const string &commodity)
+	{
+		const Planet *planet = GameData::Planets().Find(planetName);
+		if(!planet || !planet->IsValid() || !planet->IsInhabited()
+				|| !planet->GetPort().HasService(Port::ServicesType::Trading))
+			return 0;
+		const System *system = planet->GetSystem();
+		return (system && system->HasTrade()) ? max(0, system->Trade(commodity)) : 0;
+	}
+
+	// For example, "about 412 per ton (83% of 497)".
+	string PayoutString(const Industry &industry, const string &planet, const string &commodity, int tons)
+	{
+		const int price = MarketPrice(planet, commodity);
+		if(price <= 0 || tons <= 0)
+			return "";
+		const int64_t value = industry.SaleValue(planet, commodity, tons, price);
+		const int64_t perTon = value / tons;
+		return "about " + Format::CreditString(perTon, false) + " per ton ("
+			+ to_string(static_cast<int>(100 * perTon / price)) + "% of " + Format::CreditString(price, false) + ")";
 	}
 
 	const Rectangle ContentBox()
@@ -163,6 +186,8 @@ void IndustryPanel::Draw()
 		DrawPlanetView();
 	else if(view == View::ROUTES)
 		DrawRoutes();
+	else if(view == View::FINANCES)
+		DrawFinances();
 	else
 		DrawOverview();
 
@@ -174,7 +199,9 @@ void IndustryPanel::Draw()
 	if(view == View::PLANET)
 		hint = "E: build    U: supply    C: collect    A: auto-sell    Tab: freight";
 	else if(view == View::ROUTES)
-		hint = "R: new route    X: delete    -/+: tons    Tab: all holdings";
+		hint = "R: new route    X: delete    -/+: tons    Tab: finances";
+	else if(view == View::FINANCES)
+		hint = "Tab: all holdings";
 	else
 		hint = "Up/Down: scroll    Tab: this planet";
 	if(!status.empty())
@@ -192,6 +219,8 @@ bool IndustryPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		if(view == View::PLANET)
 			view = View::ROUTES;
 		else if(view == View::ROUTES)
+			view = View::FINANCES;
+		else if(view == View::FINANCES)
 			view = View::OVERVIEW;
 		else
 			view = Rows().empty() ? View::ROUTES : View::PLANET;
@@ -201,6 +230,8 @@ bool IndustryPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	}
 
 	const int step = (key == SDLK_UP ? -1 : key == SDLK_DOWN ? 1 : 0);
+	if(view == View::FINANCES)
+		return false;
 	if(view == View::OVERVIEW)
 	{
 		if(!step)
@@ -416,7 +447,14 @@ void IndustryPanel::DrawPlanetView()
 			for(const auto &[commodity, amount] : *amounts)
 				parts.push_back(commodity + " " + to_string(holding->Stock(commodity))
 					+ "/" + to_string(holding->Capacity()));
-		text.Wrap("Stock: " + Join(parts) + (holding->autoSell ? ". Output is auto-sold." : "."));
+		string stock = "Stock: " + Join(parts) + ".";
+		if(holding->autoSell && !facility.Outputs().empty())
+		{
+			const auto &[commodity, amount] = facility.Outputs().front();
+			const string payout = PayoutString(industry, planet.TrueName(), commodity, amount * count);
+			stock += payout.empty() ? " Output is auto-sold." : " Auto-selling " + commodity + " pays " + payout + ".";
+		}
+		text.Wrap(stock);
 	}
 	else if(!holding)
 		text.Wrap(facility.IsStation() ? facility.Description()
@@ -588,9 +626,103 @@ void IndustryPanel::DrawRoutes()
 	if(route.lastCost)
 		last += " Freight: " + Format::CreditString(route.lastCost, false) + ".";
 	font.Draw(last, Point(box.Left() + PAD, y), medium);
+	y += LINE;
+	const Industry &industry = player.GetIndustry();
+	string market;
+	if(route.sell)
+	{
+		const string payout = PayoutString(industry, route.to, route.commodity, route.tons);
+		market = payout.empty() ? "There is no market for " + route.commodity + " at the destination."
+			: "Selling " + to_string(route.tons) + " tons there pays " + payout + ".";
+	}
+	else if(route.buy)
+	{
+		const int price = MarketPrice(route.from, route.commodity);
+		market = price ? "Buying costs " + Format::CreditString(price, false) + " per ton at the source."
+			: "There is no market for " + route.commodity + " at the source.";
+	}
+	if(!market.empty())
+		font.Draw(market, Point(box.Left() + PAD, y), dim);
 
 	DrawButton(buttons, "New", true, [this]() { NewRoute(); });
 	DrawButton(buttons, "Delete", true, [this]() { DeleteRoute(); });
+}
+
+
+
+void IndustryPanel::DrawFinances()
+{
+	const Rectangle box = ContentBox();
+	const Font &font = FontSet::Get(14);
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Industry &industry = player.GetIndustry();
+	const Industry::DayReport &report = industry.LastReport();
+
+	font.Draw("Finances", box.TopLeft() + Point(PAD, 0.), bright);
+	const string yesterday = "Your industry yesterday";
+	font.Draw(yesterday, Point(box.Right() - PAD - font.Width(yesterday), box.Top()), medium);
+
+	// Two columns of figures from the most recent day.
+	const double top = box.Top() + LINE + 6.;
+	const double middle = box.Left() + .5 * box.Width();
+	auto entry = [&](int column, int row, const string &label, int64_t value, bool isCost)
+	{
+		const double left = column ? middle + PAD : box.Left() + PAD;
+		const double right = column ? box.Right() - PAD : middle - PAD;
+		const double y = top + row * LINE;
+		font.Draw(label, Point(left, y), medium);
+		const string amount = (isCost && value ? "-" : "") + Format::CreditString(value, false);
+		font.Draw(amount, Point(right - font.Width(amount), y), bright);
+	};
+	entry(0, 0, "Sales", report.sales, false);
+	entry(0, 1, "Upkeep", report.upkeep, true);
+	entry(0, 2, "Freight", report.freight, true);
+	entry(0, 3, "Goods bought", report.purchases, true);
+	entry(1, 0, "Profit", report.profit, false);
+	entry(1, 1, "Industry tax", report.tax, true);
+	entry(1, 2, "Net result", report.Net(), false);
+	entry(1, 3, "Lost to saturation", report.saturationLoss, false);
+
+	// How taxes and saturation are calculated.
+	vector<string> brackets;
+	const vector<Industry::TaxBracket> &taxes = Industry::TaxBrackets();
+	for(size_t i = 0; i < taxes.size(); ++i)
+	{
+		const string rate = to_string(static_cast<int>(taxes[i].rate * 100. + .5)) + "%";
+		if(i + 1 < taxes.size())
+			brackets.push_back(rate + " up to " + Format::CreditString(taxes[i + 1].from, false));
+		else
+			brackets.push_back(rate + " above that");
+	}
+	WrappedText text(font);
+	text.SetWrapWidth(box.Width() - 2. * PAD);
+	Point pos(box.Left() + PAD, top + 4 * LINE + 6.);
+	const double bottom = box.Bottom() - LINE;
+	auto paragraph = [&](const string &str, const Color &color)
+	{
+		text.Wrap(str);
+		if(pos.Y() + text.Height() > bottom)
+			return;
+		text.Draw(pos, color);
+		pos.Y() += text.Height();
+	};
+	paragraph("Each day's profit is taxed: " + Join(brackets) + ".", medium);
+	paragraph("Each ton your industry sells on a market pays price / (1 + saturation / "
+		+ to_string(static_cast<int>(Industry::MARKET_DEPTH)) + "), and adds a ton of saturation."
+		" Saturation halves every day.", medium);
+
+	// The most saturated markets.
+	vector<pair<double, string>> markets;
+	for(const auto &[market, value] : industry.Saturations())
+		markets.emplace_back(value, market.second + " at " + PlanetName(market.first) + ": "
+			+ to_string(static_cast<int>(100. / (1. + value / Industry::MARKET_DEPTH))) + "%");
+	sort(markets.rbegin(), markets.rend());
+	vector<string> worst;
+	for(size_t i = 0; i < markets.size() && i < 3; ++i)
+		worst.push_back(markets[i].second);
+	paragraph(worst.empty() ? "None of your markets are saturated." : "Current payout: " + Join(worst) + ".", dim);
 }
 
 

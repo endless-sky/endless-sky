@@ -29,9 +29,10 @@ class Point;
 
 
 // Planet screen panel for the player's industry, drawn in the planet
-// description area like the bank. It has three views, switched with Tab:
+// description area like the bank. It has four views, switched with Tab:
 // this planet (build, supply and collect from facilities, use the warehouse,
-// found a station), freight routes, and an overview of all holdings.
+// found a station), freight routes, finances (taxes and market saturation),
+// and an overview of all holdings.
 class IndustryPanel : public Panel {
 public:
 	IndustryPanel(PlayerInfo &player, const Planet &planet);
@@ -53,6 +54,7 @@ private:
 	enum class View {
 		PLANET,
 		ROUTES,
+		FINANCES,
 		OVERVIEW
 	};
 
@@ -72,6 +74,7 @@ private:
 	void DrawPlanetView();
 	void DrawWarehouse(double left, double top);
 	void DrawRoutes();
+	void DrawFinances();
 	void DrawOverview();
 	// Draw a button and make it clickable. Moves the corner to the right.
 	void DrawButton(Point &corner, const std::string &label, bool enabled, std::function<void()> action);

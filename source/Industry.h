@@ -95,6 +95,21 @@ public:
 		int64_t sales = 0;
 		int64_t purchases = 0;
 		int64_t freight = 0;
+		// What the sales would have paid if no market had been saturated.
+		int64_t saturationLoss = 0;
+		// Sales minus upkeep, freight and purchases, and the tax on it.
+		int64_t profit = 0;
+		int64_t tax = 0;
+
+		// The total change to the player's credits.
+		int64_t Net() const;
+	};
+
+	// One bracket of the daily industry tax: the rate applies to the part of
+	// the day's profit above the given amount (up to the next bracket).
+	struct TaxBracket {
+		int64_t from;
+		double rate;
 	};
 
 	// Access to the rest of the universe: markets and travel distances.
@@ -116,6 +131,11 @@ public:
 	static constexpr int64_t FREIGHT_BASE = 5;
 	static constexpr int64_t FREIGHT_PER_JUMP = 10;
 	static constexpr int MAX_ROUTE_TONS = 500;
+	// Market saturation: every ton of a commodity that the player's industry
+	// sells on a planet adds a ton of saturation there, and saturation halves
+	// every day. Each ton pays price / (1 + saturation / MARKET_DEPTH).
+	static constexpr double MARKET_DEPTH = 100.;
+	static constexpr double SATURATION_DECAY = .5;
 
 
 public:
@@ -147,6 +167,17 @@ public:
 	// Take up to the given tons out of a planet's warehouse; returns the tons taken.
 	int Retrieve(const std::string &planet, const std::string &commodity, int tons);
 
+	// Taxes and market saturation.
+	static const std::vector<TaxBracket> &TaxBrackets();
+	static int64_t Tax(int64_t profit);
+	double Saturation(const std::string &planet, const std::string &commodity) const;
+	// The saturation of every market the player's industry has sold to recently.
+	const std::map<std::pair<std::string, std::string>, double> &Saturations() const;
+	// What selling the given tons on a planet would pay right now, at the given full price.
+	int64_t SaleValue(const std::string &planet, const std::string &commodity, int tons, int price) const;
+	// What happened on the most recent day.
+	const DayReport &LastReport() const;
+
 	// Freight routes.
 	const std::vector<Route> &Routes() const;
 	std::vector<Route> &Routes();
@@ -164,10 +195,16 @@ public:
 private:
 	void Produce(Holding &holding, int64_t &credits, DayReport &report);
 	void RunRoute(Route &route, int64_t &credits, DayReport &report, World &world);
+	// Sell goods on a market, applying and adding to its saturation. Returns the income.
+	int64_t Sell(const std::string &planet, const std::string &commodity, int tons, int price,
+		DayReport &report, World &world);
 
 
 private:
 	std::vector<Holding> holdings;
 	std::map<std::string, std::map<std::string, int>> warehouses;
 	std::vector<Route> routes;
+	// Saturation by planet and commodity.
+	std::map<std::pair<std::string, std::string>, double> saturation;
+	DayReport lastReport;
 };

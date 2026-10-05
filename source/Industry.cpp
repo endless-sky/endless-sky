@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Set.h"
 
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -29,6 +30,16 @@ namespace {
 	const size_t MAX_REPORTS = 5;
 
 	const map<string, int> EMPTY;
+
+	// Saturation below this is forgotten.
+	const double MIN_SATURATION = .5;
+}
+
+
+
+int64_t Industry::DayReport::Net() const
+{
+	return sales - upkeep - purchases - freight - tax;
 }
 
 
@@ -98,6 +109,13 @@ void Industry::Load(const DataNode &node, const Set<Facility> &facilities)
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 					warehouse[grand.Token(0)] = max(0, static_cast<int>(grand.Value(1)));
+			continue;
+		}
+		if(key == "saturation" && child.Size() >= 4)
+		{
+			const double value = child.Value(3);
+			if(value >= MIN_SATURATION)
+				saturation[{child.Token(1), child.Token(2)}] = value;
 			continue;
 		}
 		if(key == "route" && child.Size() >= 2)
@@ -173,7 +191,7 @@ void Industry::Save(DataWriter &out) const
 	for(const auto &[planet, warehouse] : warehouses)
 		for(const auto &[commodity, tons] : warehouse)
 			hasWarehouseStock |= (tons > 0);
-	if(holdings.empty() && routes.empty() && !hasWarehouseStock)
+	if(holdings.empty() && routes.empty() && !hasWarehouseStock && saturation.empty())
 		return;
 
 	out.Write("industry");
@@ -213,6 +231,8 @@ void Industry::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
+		for(const auto &[market, value] : saturation)
+			out.Write("saturation", market.first, market.second, round(value * 10.) / 10.);
 		for(const Route &route : routes)
 		{
 			out.Write("route", route.commodity);
@@ -283,34 +303,107 @@ void Industry::Build(const Facility &type, const string &planet)
 
 Industry::DayReport Industry::AdvanceDay(int64_t credits, World *world)
 {
+	// Markets recover from yesterday's sales.
+	for(auto it = saturation.begin(); it != saturation.end(); )
+	{
+		it->second *= SATURATION_DECAY;
+		if(it->second < MIN_SATURATION)
+			it = saturation.erase(it);
+		else
+			++it;
+	}
+
 	DayReport report;
 	for(Holding &holding : holdings)
 		Produce(holding, credits, report);
 
-	if(!world)
-		return report;
-
-	for(Route &route : routes)
-		RunRoute(route, credits, report, *world);
-
-	for(Holding &holding : holdings)
+	if(world)
 	{
-		if(!holding.autoSell)
-			continue;
-		for(const auto &[commodity, amount] : holding.type->Outputs())
+		for(Route &route : routes)
+			RunRoute(route, credits, report, *world);
+
+		for(Holding &holding : holdings)
 		{
-			int &stored = holding.stock[commodity];
-			const int price = world->Price(holding.planet, commodity);
-			if(stored <= 0 || price <= 0)
+			if(!holding.autoSell)
 				continue;
-			world->Trade(holding.planet, commodity, -stored);
-			const int64_t income = static_cast<int64_t>(price) * stored;
-			credits += income;
-			report.sales += income;
-			stored = 0;
+			for(const auto &[commodity, amount] : holding.type->Outputs())
+			{
+				int &stored = holding.stock[commodity];
+				const int price = world->Price(holding.planet, commodity);
+				if(stored <= 0 || price <= 0)
+					continue;
+				credits += Sell(holding.planet, commodity, stored, price, report, *world);
+				stored = 0;
+			}
 		}
 	}
+
+	// The day's profit is taxed.
+	report.profit = report.sales - report.upkeep - report.freight - report.purchases;
+	report.tax = Tax(report.profit);
+	lastReport = report;
 	return report;
+}
+
+
+
+const vector<Industry::TaxBracket> &Industry::TaxBrackets()
+{
+	static const vector<TaxBracket> BRACKETS = {
+		{0, 0.},
+		{5000, .1},
+		{25000, .25},
+		{100000, .4}
+	};
+	return BRACKETS;
+}
+
+
+
+int64_t Industry::Tax(int64_t profit)
+{
+	const vector<TaxBracket> &brackets = TaxBrackets();
+	double tax = 0.;
+	for(size_t i = 0; i < brackets.size(); ++i)
+	{
+		const int64_t top = (i + 1 < brackets.size()) ? brackets[i + 1].from : profit;
+		if(profit > brackets[i].from)
+			tax += (min(profit, top) - brackets[i].from) * brackets[i].rate;
+	}
+	return llround(tax);
+}
+
+
+
+double Industry::Saturation(const string &planet, const string &commodity) const
+{
+	auto it = saturation.find({planet, commodity});
+	return it == saturation.end() ? 0. : it->second;
+}
+
+
+
+const map<pair<string, string>, double> &Industry::Saturations() const
+{
+	return saturation;
+}
+
+
+
+int64_t Industry::SaleValue(const string &planet, const string &commodity, int tons, int price) const
+{
+	if(tons <= 0 || price <= 0)
+		return 0;
+	// Integrate price / (1 + s / depth) over the tons sold, as each one adds to the saturation.
+	const double current = MARKET_DEPTH + Saturation(planet, commodity);
+	return llround(price * MARKET_DEPTH * log((current + tons) / current));
+}
+
+
+
+const Industry::DayReport &Industry::LastReport() const
+{
+	return lastReport;
 }
 
 
@@ -550,12 +643,7 @@ void Industry::RunRoute(Route &route, int64_t &credits, DayReport &report, World
 		remaining -= Store(route.to, commodity, remaining);
 	const int sold = remaining;
 	if(sold > 0)
-	{
-		world.Trade(route.to, commodity, -sold);
-		const int64_t income = static_cast<int64_t>(sold) * sellPrice;
-		credits += income;
-		report.sales += income;
-	}
+		credits += Sell(route.to, commodity, sold, sellPrice, report, world);
 
 	const int64_t freight = tons * perTon;
 	credits -= freight;
@@ -568,4 +656,17 @@ void Industry::RunRoute(Route &route, int64_t &credits, DayReport &report, World
 	if(sold > 0)
 		route.lastNote += ", " + to_string(sold) + " of them sold";
 	route.lastNote += ".";
+}
+
+
+
+int64_t Industry::Sell(const string &planet, const string &commodity, int tons, int price,
+	DayReport &report, World &world)
+{
+	const int64_t income = SaleValue(planet, commodity, tons, price);
+	saturation[{planet, commodity}] += tons;
+	world.Trade(planet, commodity, -tons);
+	report.sales += income;
+	report.saturationLoss += static_cast<int64_t>(price) * tons - income;
+	return income;
 }
