@@ -38,6 +38,7 @@ class DataNode;
 class DataWriter;
 class Date;
 class Effect;
+class Facility;
 class Fleet;
 class FormationPattern;
 class Galaxy;
@@ -142,6 +143,7 @@ public:
 	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
 	static const Set<News> &SpaceportNews();
+	static const Set<Facility> &Facilities();
 	static const Set<Outfit> &Outfits();
 	static const Set<Shop<Outfit>> &Outfitters();
 	static const Set<Person> &Persons();

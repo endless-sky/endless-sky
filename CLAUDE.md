@@ -18,7 +18,11 @@ xvfb-run -a ./build/linux/Release/endless-sky --parse-assets -c /tmp/escfg   # d
 python3 utils/check_code_style.py && python3 utils/check_copyright.py && bash utils/check_cmake.sh
 ```
 
-Run one integration test (copy the config so the repo stays clean):
+Unit tests: `cmake --build --preset linux-release` then `./build/linux/tests/Release/endless-sky-tests`.
+Integration tests: `ctest --preset linux-integration -R "<regex>"` (re-run `cmake --preset linux`
+after adding a test file). Do not use `-j`: parallel runs fail spuriously in this container.
+
+Run one integration test directly (copy the config so the repo stays clean):
 
 ```bash
 cp -r tests/integration/config /tmp/itest

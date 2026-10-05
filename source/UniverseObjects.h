@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Confusion.h"
 #include "Conversation.h"
 #include "Effect.h"
+#include "Facility.h"
 #include "Fleet.h"
 #include "FormationPattern.h"
 #include "Galaxy.h"
@@ -117,6 +118,7 @@ private:
 	Set<Conversation> conversations;
 	Set<Effect> effects;
 	Set<GameEvent> events;
+	Set<Facility> facilities;
 	Set<Fleet> fleets;
 	Set<FormationPattern> formations;
 	Set<Galaxy> galaxies;

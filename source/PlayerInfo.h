@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
 #include "GameEvent.h"
+#include "Industry.h"
 #include "Minable.h"
 #include "Mission.h"
 #include "SystemEntry.h"
@@ -161,6 +162,9 @@ public:
 	// Access the player's accounting information.
 	const Account &Accounts() const;
 	Account &Accounts();
+	// Access the industrial facilities the player owns.
+	const Industry &GetIndustry() const;
+	Industry &GetIndustry();
 	// Calculate the daily salaries for crew, not counting crew on "parked" ships.
 	int64_t Salaries() const;
 	// Calculate the daily maintenance cost and generated income for all ships and in cargo outfits.
@@ -499,6 +503,7 @@ private:
 	double playTime = 0.;
 
 	Account accounts;
+	Industry industry;
 	// The licenses that the player owns.
 	std::set<std::string> licenses;
 

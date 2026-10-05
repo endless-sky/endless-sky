@@ -11,8 +11,9 @@ Windows playtest build. Keep this file updated at the end of every piece.
 
 | Piece | Status |
 | --- | --- |
-| 0. Pipeline + dev menu | Done, waiting for playtest confirmation |
-| 1. Industry MVP | Next |
+| 0. Pipeline + dev menu | Done, confirmed working on Windows |
+| 1. Industry MVP | Done, waiting for playtest confirmation |
+| 2. Production chains and upkeep | Next (scope to be agreed) |
 
 ## Piece 0 - Pipeline + dev menu (done)
 
@@ -27,30 +28,32 @@ Windows playtest build. Keep this file updated at the end of every piece.
   Always enabled for now; gate it (e.g. behind `-d` or a preference) before any public release.
 - Integration test: `tests/integration/config/plugins/integration-tests/data/tests/tests_dev_menu.txt`.
 
-## Piece 1 - Industry MVP (agreed scope)
+## Piece 1 - Industry MVP (done)
 
 One facility type the player can build and own, proving data, UI, save game and daily tick.
 
-- New data type `facility` (defined in `data/expanded/`), loaded via `GameData` like outfits.
-  First and only facility: **Mining Outpost** - 150,000 credits, 2 tons Metal/day,
-  50 ton storage.
-- Buildable **only on New Greenland** for the MVP (planet in `data/map planets.txt`).
-  Make the allowed planets part of the facility's data definition so this is easy to widen.
-- Planet screen: **Industry** button in the empty right column slot (center 340 255 in
-  `interface "planet"` and the small screen variant in `data/_ui/interfaces.txt`), key `n`,
-  shown with a new `"has industry"` condition set in `PlanetPanel`.
-- Industry sub-panel (modelled on `BankPanel`): list buildable/owned facilities and
-  stockpiles, Build (spend credits), Collect (move stockpile into fleet cargo, limited
-  by free space).
-- Daily production hooked into `PlayerInfo::AdvanceDate`.
-- Saved in a new `industry` block in the save file (`PlayerInfo::Load`/`Save`);
-  saves without it load as "no facilities".
-- Landing message when a facility here has goods ready.
-- Tests: unit test for production/stockpile math; integration test that builds,
-  advances days via the dev menu, collects.
-
-Not in the MVP: inputs/production chains, upkeep, stations in space, price effects,
-NPC haulers, remote management, custom art.
+- `source/Facility.{h,cpp}`: facility *type*, loaded from `facility "<name>"` nodes
+  (registered in `UniverseObjects`, exposed as `GameData::Facilities()`). Fields:
+  `description`, `cost`, `output "<commodity>" <tons/day>`, `storage`, `planet "<name>"...`.
+  Planets are stored by true name so the class has no GameData dependency (unit testable).
+- `data/expanded/facilities.txt`: the **Mining Outpost** - 150,000 credits, 2 tons Metal/day,
+  50 ton storage, buildable only on **New Greenland**.
+- `source/Industry.{h,cpp}`: what the player owns (`PlayerInfo::GetIndustry()`), a list of
+  holdings (type, planet true name, stockpile). At most one of each type per planet.
+  Saved as an `industry` block in the save file; unknown facility types are dropped
+  with a warning on load. `AdvanceDay()` is called from `PlayerInfo::AdvanceDate`.
+- `source/IndustryPanel.{h,cpp}`: planet sub-panel drawn in the planet "content" box like
+  the bank (`SetTrapAllEvents(false)` so the planet buttons keep working). Rows per facility,
+  Build / Collect button, Up/Down + Enter, description of the selected facility, status line.
+  Collect moves goods into the pooled fleet cargo (`player.Cargo()`), limited by free space;
+  collected goods have no cost basis.
+- Planet screen: **Industry** button (key `n`) in the right column, shown when the
+  `"has industry"` condition is set (a facility can be built here or is owned here).
+  Landing message when a facility here has goods waiting.
+- New condition `"facilities owned"` (number of holdings), usable by missions.
+- Tests: `tests/unit/src/test_industry.cpp` (load, production cap, collect, save/load) and
+  integration test `tests_industry.txt` (build with dev-menu credits, wait a week, collect,
+  take off, check cargo).
 
 ## Roadmap (each is one or more pieces; revise as we learn)
 

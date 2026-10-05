@@ -435,6 +435,8 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 			accounts.Load(child, true);
 		else if(key == "cargo")
 			cargo.Load(child);
+		else if(key == "industry")
+			industry.Load(child, GameData::Facilities());
 		else if(key == "basis")
 		{
 			for(const DataNode &grand : child)
@@ -945,6 +947,7 @@ void PlayerInfo::AdvanceDate(int amount)
 			if(!mission.IsFailed())
 				mission.Do(Mission::DAILY, *this);
 		}
+		industry.AdvanceDay();
 		DoAccounting();
 	}
 	// Reset the reload counters for all your ships.
@@ -1090,6 +1093,20 @@ const Account &PlayerInfo::Accounts() const
 Account &PlayerInfo::Accounts()
 {
 	return accounts;
+}
+
+
+
+const Industry &PlayerInfo::GetIndustry() const
+{
+	return industry;
+}
+
+
+
+Industry &PlayerInfo::GetIndustry()
+{
+	return industry;
 }
 
 
@@ -4008,6 +4025,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		return min(limit, max(-limit, accounts.NetWorth())); });
 	conditions["credits"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, accounts.Credits()); });
+	conditions["facilities owned"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return industry.Holdings().size(); });
 	conditions["unpaid mortgages"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, accounts.TotalDebt("Mortgage")); });
 	conditions["unpaid fines"].ProvideNamed([this](const ConditionEntry &ce) {
@@ -5144,6 +5163,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	// Save accounting information, cargo, and cargo cost bases.
 	accounts.Save(out);
 	cargo.Save(out);
+	industry.Save(out);
 	if(!costBasis.empty())
 	{
 		out.Write("basis");

@@ -644,6 +644,13 @@ const Set<News> &GameData::SpaceportNews()
 
 
 
+const Set<Facility> &GameData::Facilities()
+{
+	return objects.facilities;
+}
+
+
+
 const Set<Outfit> &GameData::Outfits()
 {
 	return objects.outfits;

@@ -122,6 +122,8 @@ target_sources(EndlessSkyLib PRIVATE
 	EscortDisplay.cpp
 	EscortDisplay.h
 	ExclusiveItem.h
+	Facility.cpp
+	Facility.h
 	FighterHitHelper.h
 	Files.cpp
 	Files.h
@@ -168,6 +170,10 @@ target_sources(EndlessSkyLib PRIVATE
 	Hazard.h
 	HiringPanel.cpp
 	HiringPanel.h
+	Industry.cpp
+	Industry.h
+	IndustryPanel.cpp
+	IndustryPanel.h
 	InfoPanelState.cpp
 	InfoPanelState.h
 	Information.cpp

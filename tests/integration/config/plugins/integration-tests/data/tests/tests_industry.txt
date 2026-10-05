@@ -1,0 +1,211 @@
+# Copyright (c) 2026 by Endless Sky Expanded contributors
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test-data "New Greenland Industry Save"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system Arcturus
+		planet "New Greenland"
+		clearance
+		# Set some reputations to positive to avoid combat
+		"reputation with"
+			Bounty 1
+			"Bounty Hunter" 1
+			Pirate 1
+		# What you own:
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 400
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 1300
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 200
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"Anti-Missile Turret"
+				"D14-RN Shield Generator"
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8 "Anti-Missile Turret"
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system Arcturus
+			planet "New Greenland"
+		ship "Star Barge"
+			name "Critical Container"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 400
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 1300
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 200
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"Anti-Missile Turret"
+				"D14-RN Shield Generator"
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8 "Anti-Missile Turret"
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system Arcturus
+			planet "New Greenland"
+		ship "Star Barge"
+			name "Errorous Enclosement"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 400
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 1300
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 200
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"Anti-Missile Turret"
+				"D14-RN Shield Generator"
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8 "Anti-Missile Turret"
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system Arcturus
+			planet "New Greenland"
+		account
+			credits 131000
+			score 400
+			history
+		visited Arcturus
+		"visited planet" "New Greenland"
+		visited "Alpha Centauri"
+		visited "Vega"
+		visited "Menkent"
+
+
+test "Industry - Build And Collect"
+	status active
+	description "Tests building a Mining Outpost on New Greenland, letting it produce for a week, and collecting the goods."
+	sequence
+		inject "New Greenland Industry Save"
+		call "Load First Savegame"
+		assert
+			and
+				"flagship planet: New Greenland" > 0
+				"credits" == 131000
+				"facilities owned" == 0
+		# Not enough credits yet: building does nothing.
+		input
+			key n
+		input
+			key return
+		assert
+			and
+				"credits" == 131000
+				"facilities owned" == 0
+		# Add 100,000 credits with the developer menu, then build.
+		input
+			key "F12"
+		input
+			key 4
+		input
+			key "escape"
+		input
+			key n
+		input
+			key return
+		assert
+			and
+				"credits" == 81000
+				"facilities owned" == 1
+		# Let a week pass (2 tons a day), then collect the 14 tons of Metal.
+		input
+			key "F12"
+		input
+			key 2
+		input
+			key "escape"
+		input
+			key n
+		input
+			key return
+		# Remember how much cargo space the fleet has, then take off and
+		# check that the Metal was loaded into the ships.
+		apply
+			"test: cargo space before" = "cargo space free"
+		call "Depart"
+		assert
+			and
+				"flagship landed" == 0
+				"cargo space free" == "test: cargo space before" - 14
+				"facilities owned" == 1

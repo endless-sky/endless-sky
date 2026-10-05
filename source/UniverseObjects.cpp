@@ -435,6 +435,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 				*event = GameEvent();
 			event->Load(node, playerConditions);
 		}
+		else if(key == "facility" && hasValue)
+		{
+			Facility *facility = facilities.Get(node.Token(1));
+			if(overwrite)
+				*facility = Facility();
+			facility->Load(node);
+		}
 		else if(key == "fleet" && hasValue)
 		{
 			Fleet *fleet = fleets.Get(node.Token(1));

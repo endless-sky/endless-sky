@@ -1,0 +1,28 @@
+# Copyright (c) 2026 by Endless Sky Expanded contributors
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Player-buildable industrial facilities.
+#
+# facility "<name>"
+# 	description `<text shown in the Industry panel>`
+# 	cost <credits to build>
+# 	output "<trade commodity>" <tons per day>
+# 	storage <maximum tons in the stockpile>
+# 	planet "<planet>" ["<planet>" ...]
+
+facility "Mining Outpost"
+	description `A small automated mine dug into the frozen bedrock, with a landing pad and a storage shed. It extracts a steady trickle of metal ore that waits in the shed until you come to collect it.`
+	cost 150000
+	output "Metal" 2
+	storage 50
+	planet "New Greenland"

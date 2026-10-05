@@ -37,6 +37,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_exclusiveItem.cpp
 	unit/src/test_firecommand.cpp
 	unit/src/test_formationPattern.cpp
+	unit/src/test_industry.cpp
 	unit/src/test_main.cpp
 	unit/src/test_orderedMap.cpp
 	unit/src/test_point.cpp
@@ -67,6 +68,7 @@ list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_framework.txt
 	integration/config/plugins/integration-tests/data/tests/tests_hyperjumps_to_autocondition.txt
 	integration/config/plugins/integration-tests/data/tests/tests_illegal_atrocity.txt
+	integration/config/plugins/integration-tests/data/tests/tests_industry.txt
 	integration/config/plugins/integration-tests/data/tests/tests_job_board_missions.txt
 	integration/config/plugins/integration-tests/data/tests/tests_landing.txt
 	integration/config/plugins/integration-tests/data/tests/tests_take_ships.txt

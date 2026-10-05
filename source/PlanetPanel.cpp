@@ -25,14 +25,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DevPanel.h"
 #include "DialogPanel.h"
+#include "Facility.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Gamerules.h"
 #include "HiringPanel.h"
+#include "Industry.h"
+#include "IndustryPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
 #include "MessageLogPanel.h"
+#include "Messages.h"
 #include "MissionPanel.h"
 #include "OutfitterPanel.h"
 #include "Planet.h"
@@ -68,6 +72,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	bank = make_shared<BankPanel>(player);
 	spaceport = make_shared<SpaceportPanel>(player);
 	hiring = make_shared<HiringPanel>(player);
+	industry = make_shared<IndustryPanel>(player, planet);
 
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
@@ -125,6 +130,11 @@ void PlanetPanel::Step()
 	if(!initializedShops)
 	{
 		initializedShops = true;
+		for(const Industry::Holding &holding : player.GetIndustry().Holdings())
+			if(holding.planet == planet.TrueName() && holding.stockpile > 0)
+				Messages::Add({"Your " + holding.type->TrueName() + " has "
+					+ Format::CargoString(holding.stockpile, holding.type->Output()) + " ready to collect.",
+					GameData::MessageCategories().Get("normal")});
 		for(const Shop<Ship> *shop : planet.Shipyards())
 		{
 			hasShipyard = true;
@@ -233,6 +243,9 @@ void PlanetPanel::Draw()
 
 		if(hasOutfitter)
 			info.SetCondition("has outfitter");
+
+		if(IndustryPanel::HasIndustry(player, planet))
+			info.SetCondition("has industry");
 	}
 
 	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ? "planet (small screen)" : "planet");
@@ -326,6 +339,8 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		GetUI().Push(new MissionPanel(player));
 		return true;
 	}
+	else if(key == 'n' && hasAccess && IndustryPanel::HasIndustry(player, planet))
+		selectedPanel = industry;
 	else if(key == 'h' && hasAccess && planet.GetPort().HasService(Port::ServicesType::HireCrew))
 		selectedPanel = hiring;
 	else
@@ -366,7 +381,7 @@ void PlanetPanel::TakeOffIfReady()
 {
 	// If we're currently showing a conversation or dialog, wait for it to close.
 	if(!GetUI().IsTop(this) && !GetUI().IsTop(trading.get()) && !GetUI().IsTop(bank.get())
-			&& !GetUI().IsTop(spaceport.get()) && !GetUI().IsTop(hiring.get()))
+			&& !GetUI().IsTop(spaceport.get()) && !GetUI().IsTop(hiring.get()) && !GetUI().IsTop(industry.get()))
 		return;
 
 	// If something happens here that cancels the order to take off, don't try

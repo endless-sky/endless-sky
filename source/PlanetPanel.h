@@ -88,6 +88,7 @@ private:
 	std::shared_ptr<Panel> bank;
 	std::shared_ptr<SpaceportPanel> spaceport;
 	std::shared_ptr<Panel> hiring;
+	std::shared_ptr<Panel> industry;
 	std::shared_ptr<Panel> selectedPanel;
 
 	std::shared_ptr<TextArea> description;
