@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+class Planet;
 class PlayerInfo;
 class System;
 
@@ -50,6 +51,7 @@ private:
 
 private:
 	PlayerInfo &player;
+	const Planet &planet;
 	const System &system;
 	const int COMMODITY_COUNT;
 	// There are multiple requirements to selling or storing outfits. This caches the calculation in Step().

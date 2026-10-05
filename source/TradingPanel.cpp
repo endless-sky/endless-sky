@@ -57,7 +57,8 @@ namespace {
 
 
 TradingPanel::TradingPanel(PlayerInfo &player)
-	: player(player), system(*player.GetSystem()), COMMODITY_COUNT(GameData::Commodities().size())
+	: player(player), planet(*player.GetPlanet()), system(*player.GetSystem()),
+	COMMODITY_COUNT(GameData::Commodities().size())
 {
 	SetTrapAllEvents(false);
 }
@@ -193,7 +194,7 @@ void TradingPanel::Draw()
 		}
 	}
 
-	bool hasOutfitter = player.GetPlanet() && player.GetPlanet()->HasOutfitter();
+	bool hasOutfitter = planet.HasOutfitter();
 	canSellOutfits = outfitCargo && (hasOutfitter || Preferences::Has("Sell outfits without outfitter"));
 	canStoreOutfits = outfitCargo && hasOutfitter;
 	if(canSellOutfits)
