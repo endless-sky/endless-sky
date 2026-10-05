@@ -398,7 +398,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(hasValue)
 		{
 			double value = child.Value(1);
-			if(value >= ATTRIBUTE_LIMIT || value <= -ATTRIBUTE_LIMIT)
+			if(value > ATTRIBUTE_LIMIT || value < -ATTRIBUTE_LIMIT)
 			{
 				child.PrintTrace("Ignoring attribute with value that exceeds the attribute limit of +/-"
 					+ Format::Number(ATTRIBUTE_LIMIT, 3));
