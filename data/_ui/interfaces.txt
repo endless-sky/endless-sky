@@ -2273,6 +2273,13 @@ interface "trade"
 		center 200 355
 		dimensions 70 30
 
+	active if "can store outfits"
+	sprite "ui/wide button"
+		center 10 355
+	button r "Sto_re Outfits"
+		center 10 355
+		dimensions 90 30
+
 	active if "can sell minables"
 	sprite "ui/wide button"
 		center -90 355
@@ -2357,6 +2364,13 @@ interface "trade (small screen)"
 	button e "__S_ell All"
 		center 140 355
 		dimensions 70 30
+
+	active if "can store outfits"
+	sprite "ui/wide button"
+		center -50 355
+	button r "Sto_re Outfits"
+		center -50 355
+		dimensions 90 30
 
 	active if "can sell minables"
 	sprite "ui/wide button"
