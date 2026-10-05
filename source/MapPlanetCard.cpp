@@ -114,6 +114,10 @@ pair<MapPlanetCard::ClickAction, optional<unsigned>> MapPlanetCard::Hover(const 
 		return make_pair(hoverAction, hoverCategory);
 
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	const double planetCardWidth = planetCardInterface->GetValue("width");
+	if(hoverPoint.X() > Screen::Left() + planetCardWidth)
+		return make_pair(hoverAction, hoverCategory);
+
 	// Point at which the text starts (after the top margin), at first there is the planet's name,
 	// and then it is divided into clickable categories of the same size.
 	const double textStart = planetCardInterface->GetValue("text start");

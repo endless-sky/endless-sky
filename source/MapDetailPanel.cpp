@@ -426,9 +426,7 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 	// Check the planet cards.
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double planetCardWidth = planetCardInterface->GetValue("width");
-	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	const double arrowOffset = mapInterface->GetValue("arrow x offset");
-	if(y <= Screen::Top() + planetPanelHeight + 30 && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
+	if(y <= Screen::Top() + planetPanelHeight + 30 && x <= Screen::Left() + planetCardWidth)
 	{
 		for(auto &card : planetCards)
 		{
