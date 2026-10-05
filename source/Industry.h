@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 #include <map>
 #include <string>
+#include <utility>
 #include <vector>
 
 class DataNode;
@@ -55,12 +56,17 @@ public:
 		// Whether outputs are sold to the local market every day.
 		bool autoSell = false;
 		Status status = Status::STARTING;
+		// The most recent status reports from this facility, oldest first, as
+		// pairs of date and text.
+		std::vector<std::pair<std::string, std::string>> reports;
 
 		// The most tons of any one commodity this holding can store.
 		int Capacity() const;
 		int Stock(const std::string &commodity) const;
 		// Total tons of outputs waiting to be collected.
 		int OutputStock() const;
+		// Add a status report, forgetting the oldest one if there are too many.
+		void AddReport(const std::string &date, const std::string &text);
 	};
 
 	// The result of a day of production, in credits.
@@ -80,6 +86,7 @@ public:
 	void Save(DataWriter &out) const;
 
 	const std::vector<Holding> &Holdings() const;
+	std::vector<Holding> &Holdings();
 	// Find the given type of facility on the given planet, if the player owns one.
 	Holding *Find(const Facility &type, const std::string &planet);
 	const Holding *Find(const Facility &type, const std::string &planet) const;

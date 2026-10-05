@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DialogPanel.h"
 #include "DistanceMap.h"
 #include "Endpoint.h"
+#include "Facility.h"
 #include "Files.h"
 #include "Fleet.h"
 #include "text/Format.h"
@@ -995,6 +996,52 @@ void PlayerInfo::AdvanceIndustry()
 			message += " and earned " + Format::CreditString(report.sales) + " from auto-sales";
 		Messages::Add({message + ".", GameData::MessageCategories().Get("daily")});
 	}
+
+	// Now and then, a facility sends home a short report about life on its planet.
+	static const uint32_t REPORT_ODDS = 20;
+	for(Industry::Holding &holding : industry.Holdings())
+	{
+		const vector<string> &flavor = holding.type->Flavor();
+		if(flavor.empty() || Random::Int(REPORT_ODDS))
+			continue;
+		const Planet *planet = GameData::Planets().Find(holding.planet);
+		const string planetName = planet ? planet->DisplayName() : holding.planet;
+		const string text = Format::Replace(flavor[Random::Int(flavor.size())], {{"<planet>", planetName}});
+		holding.AddReport(date.ToString(), text);
+		Messages::Add({holding.type->TrueName() + " on " + planetName + ": " + text,
+			GameData::MessageCategories().Get("low")});
+	}
+}
+
+
+
+// Count the tons of a commodity in the player's cargo: the pooled cargo if
+// landed, plus the cargo holds of the ships in the player's system.
+int PlayerInfo::CommodityCount(const string &commodity) const
+{
+	int count = cargo.Get(commodity);
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
+			count += ship->Cargo().Get(commodity);
+	return count;
+}
+
+
+
+// Remove up to the given tons of a commodity from the player's cargo, along
+// with its cost basis. Returns the number of tons removed.
+int PlayerInfo::RemoveCommodity(const string &commodity, int tons)
+{
+	tons = min(tons, CommodityCount(commodity));
+	if(tons <= 0)
+		return 0;
+	AdjustBasis(commodity, -GetBasis(commodity, tons));
+
+	int remaining = tons - cargo.Remove(commodity, tons);
+	for(const shared_ptr<Ship> &ship : ships)
+		if(remaining > 0 && !ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
+			remaining -= ship->Cargo().Remove(commodity, remaining);
+	return tons - remaining;
 }
 
 
@@ -4063,6 +4110,27 @@ void PlayerInfo::RegisterDerivedConditions()
 		return min(limit, accounts.Credits()); });
 	conditions["facilities owned"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		return industry.Holdings().size(); });
+	// The number of facilities the player owns on uninhabited worlds.
+	conditions["outposts owned"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		int64_t retVal = 0;
+		for(const Industry::Holding &holding : industry.Holdings())
+		{
+			const Planet *planet = GameData::Planets().Find(holding.planet);
+			if(planet && !planet->IsInhabited())
+				++retVal;
+		}
+		return retVal; });
+	// The number of units of the given facility type the player owns, on all planets.
+	conditions["facility: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		int64_t retVal = 0;
+		const string name = ce.NameWithoutPrefix();
+		for(const Industry::Holding &holding : industry.Holdings())
+			if(holding.type->TrueName() == name)
+				retVal += holding.count;
+		return retVal; });
+	// Tons of the given commodity in the player's cargo (see CommodityCount).
+	conditions["commodity: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		return CommodityCount(ce.NameWithoutPrefix()); });
 	conditions["unpaid mortgages"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, accounts.TotalDebt("Mortgage")); });
 	conditions["unpaid fines"].ProvideNamed([this](const ConditionEntry &ce) {

@@ -352,9 +352,12 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : persons)
 		if(!it.second.IsValid())
 			Warn("person", it.first);
-	// Facilities can only produce and use commodities that can be traded.
+	// Facilities can only produce and use commodities that are defined, either
+	// as normal trade goods or as special commodities (which cannot be bought).
 	set<string> commodityNames;
 	for(const Trade::Commodity &commodity : trade.Commodities())
+		commodityNames.insert(commodity.name);
+	for(const Trade::Commodity &commodity : trade.SpecialCommodities())
 		commodityNames.insert(commodity.name);
 	for(const auto &it : facilities)
 	{

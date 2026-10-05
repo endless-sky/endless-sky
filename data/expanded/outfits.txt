@@ -1,0 +1,51 @@
+# Copyright (c) 2026 by Endless Sky Expanded contributors
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Rewards from the Varga Deepworks story ("varga claims.txt"). None of these
+# are sold in any outfitter.
+
+outfit "Varga Ore Hopper"
+	category "Systems"
+	series "Expansions"
+	index 15
+	cost 60000
+	thumbnail "outfit/cargo expansion"
+	"mass" 6
+	"cargo space" 25
+	"outfit space" -20
+	"unplunderable" 1
+	description "A bulk cargo liner built to the plans of Varga Deepworks' old ore haulers. It is pressed from a single sheet of alloy to a standard no modern shipyard bothers with, which is a pity, because it holds a good deal more than the modern ones."
+
+outfit "Varga Isotope Cell"
+	category "Power"
+	series "Generators"
+	index 01065
+	cost 350000
+	thumbnail "outfit/small radiothermal"
+	"mass" 22
+	"outfit space" -22
+	"energy generation" 3.6
+	"heat generation" 7
+	description "A sealed power cell built around a pressure crystal and a charge of refined isotopes. Varga Deepworks designed it six centuries ago and never put it into production. The engineers on Hermes who finally built one keep asking for it back."
+
+outfit "Varga Survey Array"
+	category "Systems"
+	series "Scanners"
+	index 01015
+	cost 200000
+	thumbnail "outfit/multispectral scanner"
+	"mass" 8
+	"outfit space" -8
+	"asteroid scan power" 60
+	"cargo scan power" 15
+	description "A survey array pieced together from Jonas Lund's sketches and a Hermes laboratory's spare parts. It was meant to find crystal seams kilometers underground. In space, with nothing in the way, it is very good at telling you what an asteroid is made of, and somewhat good at telling you what another ship is carrying."

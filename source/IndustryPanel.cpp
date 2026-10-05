@@ -203,8 +203,13 @@ vector<const Facility *> IndustryPanel::Facilities(const PlayerInfo &player, con
 	for(const auto &it : GameData::Facilities())
 	{
 		const Facility &facility = it.second;
-		if(facility.IsDefined() && (facility.CanBuildOn(planet.TrueName(), planet.Attributes())
-				|| player.GetIndustry().Find(facility, planet.TrueName())))
+		if(!facility.IsDefined())
+			continue;
+		// Some facilities have to be unlocked before they can be built.
+		const string &requirement = facility.Requirement();
+		const bool isUnlocked = requirement.empty() || player.Conditions().Get(requirement) > 0;
+		if((isUnlocked && facility.CanBuildOn(planet.TrueName(), planet.Attributes(), planet.IsInhabited()))
+				|| player.GetIndustry().Find(facility, planet.TrueName()))
 			result.push_back(&facility);
 	}
 	return result;
@@ -293,7 +298,19 @@ void IndustryPanel::DrawPlanetView()
 	}
 	else
 		text.Wrap(facility.Description());
-	text.Draw(pos + Point(0., 4.), medium);
+	pos.Y() += 4.;
+	text.Draw(pos, medium);
+	pos.Y() += text.Height();
+
+	// The latest report from this facility, if there is room for it above the buttons.
+	if(holding && !holding->reports.empty())
+	{
+		const auto &[date, report] = holding->reports.back();
+		text.Wrap(date + ": " + report);
+		const double buttonsTop = box.Bottom() - LINE - BUTTON_SIZE.Y() - 8.;
+		if(pos.Y() + text.Height() <= buttonsTop)
+			text.Draw(pos, medium);
+	}
 
 	// Action buttons along the bottom of the details.
 	Point buttonCorner(left, box.Bottom() - LINE - BUTTON_SIZE.Y() - 8.);

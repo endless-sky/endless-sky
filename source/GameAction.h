@@ -67,6 +67,7 @@ public:
 	int64_t Payment() const noexcept;
 	int64_t Fine() const noexcept;
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
+	const std::map<std::string, int> &Commodities() const noexcept;
 	const std::vector<ShipManager> &Ships() const noexcept;
 
 	// Perform this action.
@@ -96,6 +97,8 @@ private:
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::vector<ShipManager> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
+	// Tons of commodities to give (positive) or take (negative).
+	std::map<std::string, int> giftCommodities;
 
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;

@@ -24,6 +24,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	// How many status reports each facility remembers.
+	const size_t MAX_REPORTS = 5;
+}
+
 
 
 int Industry::Holding::Capacity() const
@@ -47,6 +52,15 @@ int Industry::Holding::OutputStock() const
 	for(const auto &[commodity, amount] : type->Outputs())
 		total += Stock(commodity);
 	return total;
+}
+
+
+
+void Industry::Holding::AddReport(const string &date, const string &text)
+{
+	reports.emplace_back(date, text);
+	if(reports.size() > MAX_REPORTS)
+		reports.erase(reports.begin(), reports.end() - MAX_REPORTS);
 }
 
 
@@ -84,6 +98,8 @@ void Industry::Load(const DataNode &node, const Set<Facility> &facilities)
 				holding.stock[type->Outputs().front().first] = max(0, static_cast<int>(grand.Value(1)));
 			else if(key == "auto sell")
 				holding.autoSell = true;
+			else if(key == "report" && grand.Size() >= 3)
+				holding.AddReport(grand.Token(1), grand.Token(2));
 			else
 				grand.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -117,6 +133,8 @@ void Industry::Save(DataWriter &out) const
 						out.Write("stock", commodity, amount);
 				if(holding.autoSell)
 					out.Write("auto sell");
+				for(const auto &[date, text] : holding.reports)
+					out.Write("report", date, text);
 			}
 			out.EndChild();
 		}
@@ -127,6 +145,13 @@ void Industry::Save(DataWriter &out) const
 
 
 const vector<Industry::Holding> &Industry::Holdings() const
+{
+	return holdings;
+}
+
+
+
+vector<Industry::Holding> &Industry::Holdings()
 {
 	return holdings;
 }

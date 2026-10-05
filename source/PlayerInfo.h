@@ -213,6 +213,10 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
+	// Count or remove tons of a commodity in the pooled cargo and the cargo
+	// holds of the ships in the player's system.
+	int CommodityCount(const std::string &commodity) const;
+	int RemoveCommodity(const std::string &commodity, int tons);
 	// Get items stored on the player's current planet.
 	CargoHold &Storage();
 	// Get items stored on all planets (for map display).

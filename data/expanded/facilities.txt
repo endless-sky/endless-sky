@@ -22,6 +22,9 @@
 # 	storage <maximum tons of each commodity, per unit>
 # 	planet "<planet>" ["<planet>" ...]                     (buildable on these planets)
 # 	attributes <attribute> [<attribute> ...]               (or on planets with any of these)
+# 	uninhabited                                            (or on any uninhabited planet)
+# 	requires "<condition>"                                 (only once the player has this condition)
+# 	flavor `<status report; <planet> becomes the planet name>`  (any number)
 #
 # Production chains:
 # 	Mining Outpost, Ore Extractor -> Metal
@@ -34,6 +37,12 @@
 # 	Electronics Foundry: Heavy Metals + Plastic -> Electronics
 # 	Industrial Fabricator: Metal + Electronics -> Industrial
 # 	Luxury Workshop: Electronics + Clothing -> Luxury Goods
+#
+# Produced only, never sold (unlocked by the story in "varga claims.txt"):
+# 	Survey Drill -> Core Samples
+# 	Crystal Bore -> Pressure Crystals
+# 	Isotope Separator: Heavy Metals -> Refined Isotopes
+# 	Varga Deep Bore -> Heavy Metals + Pressure Crystals
 
 
 # Raw materials.
@@ -46,6 +55,11 @@ facility "Mining Outpost"
 	storage 100
 	planet "New Greenland"
 	attributes mining
+	flavor `The foreman at your mine on <planet> asks whether there is a company policy on pets. Someone has been feeding a lizard in the storage shed.`
+	flavor `Your mine on <planet> passed its safety inspection. The inspector stayed for lunch.`
+	flavor `Local children on <planet> have started a betting pool on which ore cart breaks down next.`
+	flavor `The mine on <planet> lost half a shift to a power cut. The crew spent it playing cards in the dark, which they say is harder than it sounds.`
+	flavor `A drill operator on <planet> found a fossil in the ore. It is now on the foreman's desk, holding down paperwork.`
 
 facility "Ore Extractor"
 	description `A self-sufficient robotic extractor for worlds with nobody around to complain about the noise. There is no market on an uninhabited world, so you will have to haul the metal away yourself.`
@@ -53,7 +67,15 @@ facility "Ore Extractor"
 	upkeep 100
 	output "Metal" 5
 	storage 150
-	attributes uninhabited
+	uninhabited
+	flavor `The extractor on <planet> lost a drill bit in an old, unmapped borehole. A replacement is on order.`
+	flavor `Maintenance drones on <planet> found a corroded steel spike driven into the bedrock. The plate on it reads VARGA DEEPWORKS CLAIM 4471.`
+	flavor `A dust storm passed over <planet>. Output was unaffected, but the camera feed is mostly brown.`
+	flavor `The extractor on <planet> logged a small quake. The remote operator on duty wrote "not my fault" in the incident report.`
+	flavor `A survey drone on <planet> photographed a row of prefabricated huts, half buried in dust. Nobody has lived in them for a very long time.`
+	flavor `The extractor on <planet> hit a seam of unusually pure ore. The assay report uses three exclamation marks, which is two more than the template allows.`
+	flavor `The beacon on <planet> picked up a second, much fainter beacon on an old frequency. It repeats a claim number and nothing else.`
+	flavor `Thermal cycling on <planet> cracked a coolant line. The repair drone fixed it, then fixed it again.`
 
 facility "Deep Core Mine"
 	description `A drilling rig that bores kilometers into an uninhabited world to reach dense, valuable ores. Expensive to run, but heavy metals fetch a good price anywhere.`
@@ -61,7 +83,12 @@ facility "Deep Core Mine"
 	upkeep 500
 	output "Heavy Metals" 2
 	storage 60
-	attributes uninhabited
+	uninhabited
+	flavor `The rig on <planet> passed four kilometers today. The temperature at the bit is now uncomfortable for everyone, including the bit.`
+	flavor `The rig on <planet> broke into an old shaft at 2,900 meters. The walls are lined with cracked ceramic casing stamped with a V.`
+	flavor `Pressure in the main bore on <planet> spiked overnight. The rig shut itself down, waited an hour, and started again as if nothing had happened.`
+	flavor `The rig on <planet> brought up a core with a thin band of glittering crystal in it. The assay system flagged it as "unknown, probably valuable."`
+	flavor `A seismic survey on <planet> shows a grid of old boreholes under the plain, evenly spaced and running for kilometers.`
 
 facility "Hydroponics Farm"
 	description `Rows of greenhouses under artificial light, growing crops regardless of the weather outside.`
@@ -71,6 +98,9 @@ facility "Hydroponics Farm"
 	storage 150
 	planet "New Greenland"
 	attributes farming
+	flavor `A greenhouse on <planet> has been growing tomatoes the size of a fist. The workers have asked to keep a crate.`
+	flavor `A power fluctuation on <planet> cost the farm a day of grow lights. The lettuce does not seem to have noticed.`
+	flavor `The farm on <planet> traced a blight in row nine to a single contaminated seed tray. Row nine has been renamed "row eight and a half" for luck.`
 
 facility "Petrochemical Plant"
 	description `A refinery that turns local oil and gas deposits into raw plastics for the factories of human space.`
@@ -79,6 +109,8 @@ facility "Petrochemical Plant"
 	output "Plastic" 4
 	storage 100
 	attributes oil
+	flavor `The plant on <planet> logged a minor leak. It smelled terrible and was fixed within the hour.`
+	flavor `Neighbors of the plant on <planet> have complained about the flare stack again. The plant manager sent them a fruit basket.`
 
 
 # Processing.
@@ -92,6 +124,9 @@ facility "Textile Mill"
 	storage 90
 	planet "New Greenland"
 	attributes textiles
+	flavor `Workers at the mill on <planet> have been weaving a banner for the spring festival out of offcuts. It is very long.`
+	flavor `A loom on <planet> jammed and produced three meters of something that might be a scarf.`
+	flavor `The mill on <planet> filled an order for ten thousand gray uniforms. Nobody would say who they were for.`
 
 facility "Machine Works"
 	description `A machine shop that turns metal stock and plastic parts into tools, pumps, generators and other equipment.`
@@ -103,6 +138,9 @@ facility "Machine Works"
 	storage 100
 	planet "New Greenland"
 	attributes factory
+	flavor `The machine works on <planet> finished a batch of water pumps. One came back because it was louder than the others, and nobody could find out why.`
+	flavor `An apprentice at the machine works on <planet> machined her first part to tolerance. The shop bought cake.`
+	flavor `The machine works on <planet> is out of the good grease again. Production continues, with complaints.`
 
 facility "Pharmaceutical Lab"
 	description `A sterile laboratory that synthesizes medicines from agricultural feedstock and plastic packaging.`
@@ -113,6 +151,8 @@ facility "Pharmaceutical Lab"
 	output "Medical" 3
 	storage 75
 	attributes medical
+	flavor `A technician at the lab on <planet> was reprimanded for labeling the coffee machine as a controlled substance.`
+	flavor `The lab on <planet> passed its quarterly audit. The auditor took the stairs on the way out, which the staff are choosing to read as a good sign.`
 
 facility "Electronics Foundry"
 	description `A clean room fabrication line that turns heavy metals and plastics into circuit boards and processors.`
@@ -123,6 +163,8 @@ facility "Electronics Foundry"
 	output "Electronics" 3
 	storage 75
 	attributes research
+	flavor `The clean room on <planet> was shut down for an afternoon after someone sneezed. The incident report is four pages long.`
+	flavor `The foundry on <planet> produced a batch of processors that all run slightly fast. Quality control is still deciding whether that is a problem.`
 
 facility "Industrial Fabricator"
 	description `Heavy presses and assembly robots that build industrial machinery out of metal and electronics.`
@@ -133,6 +175,8 @@ facility "Industrial Fabricator"
 	output "Industrial" 4
 	storage 100
 	attributes factory
+	flavor `The presses on <planet> run so loud that the workers have developed their own sign language. Some of it is rude.`
+	flavor `The fabricator on <planet> delivered a reactor housing two days early. The customer asked if it was a mistake.`
 
 facility "Luxury Workshop"
 	description `Skilled artisans and designers who turn fine fabrics and electronics into luxury goods for the wealthy.`
@@ -143,3 +187,57 @@ facility "Luxury Workshop"
 	output "Luxury Goods" 2
 	storage 50
 	attributes wealthy tourism
+	flavor `A customer on <planet> returned a handbag because it was too nice to use. The workshop gave her a slightly worse one.`
+	flavor `The workshop on <planet> has a waiting list for its winter coats. Two of the people on it are the same person under different names.`
+
+# Unlocked by the Varga Deepworks story ("varga claims.txt").
+
+facility "Survey Drill"
+	description `A light drilling rig built from the plans in Jonas Lund's notebook. It takes core samples from deep under an uninhabited world and labels each one by depth and position.`
+	cost 80000
+	upkeep 150
+	output "Core Samples" 1
+	storage 30
+	uninhabited
+	requires "expanded: survey drill"
+	flavor `The survey drill on <planet> labeled its fortieth core sample. The label printer is running low on ink.`
+	flavor `The survey drill on <planet> found an old Varga claim spike within twenty meters of where Jonas Lund's notebook said it would be.`
+	flavor `Core samples from <planet> show a band of ash from an eruption that happened long before anyone came here to look.`
+	flavor `The survey drill on <planet> struck groundwater at 600 meters. It was cold, very old, and slightly radioactive.`
+
+facility "Crystal Bore"
+	description `A heavy rig that follows the crystal seams Varga Deepworks found and never had the chance to mine. Slow, expensive, and the only way to get pressure crystals out of the ground intact.`
+	cost 450000
+	upkeep 600
+	output "Pressure Crystals" 1
+	storage 20
+	uninhabited
+	requires "expanded: crystal bore"
+	flavor `The crystal bore on <planet> recovered a crystal shaped almost exactly like a coffee cup. It was logged and crated like the rest.`
+	flavor `Vibration in the crystal bore on <planet> has been traced to a single loose bolt. It took the drones nine days to find it.`
+	flavor `The crystal bore on <planet> reached a seam that runs east, just as the notebook said it would.`
+
+facility "Isotope Separator"
+	description `A centrifuge cascade designed on Hermes for sorting the useful isotopes out of heavy metal ore. The result is too specialized for any market to want, and too useful for some people to do without.`
+	cost 350000
+	upkeep 400
+	input "Heavy Metals" 2
+	output "Refined Isotopes" 1
+	storage 40
+	attributes research
+	requires "expanded: isotope separator"
+	flavor `The separator on <planet> sorted another batch. A radiation badge in the break room ticked up, then back down.`
+	flavor `The separator cascade on <planet> has developed a hum in the key of F. The engineers have started tuning the other machines to match.`
+
+facility "Varga Deep Bore"
+	description `Varga Deepworks' last design, rebuilt from Jonas Lund's sketches and Hermes engineering. It drills deeper than anything on the market and brings up heavy ore and pressure crystals together.`
+	cost 900000
+	upkeep 700
+	output "Heavy Metals" 4
+	output "Pressure Crystals" 1
+	storage 60
+	uninhabited
+	requires "expanded: varga deep bore"
+	flavor `The deep bore on <planet> uses a drill design six centuries old. It has not broken down once, which the maintenance software finds suspicious.`
+	flavor `The deep bore on <planet> cut through an old Varga shaft and kept going. Someone had scratched a name into the casing: L. Halloran, 3 shifts left.`
+	flavor `The deep bore on <planet> reports nothing unusual. Nothing unusual has been reported for thirty days in a row.`

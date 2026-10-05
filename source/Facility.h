@@ -52,10 +52,16 @@ public:
 	// The most tons of each commodity that can sit in this facility's stock.
 	int Storage() const;
 
-	// Check whether this facility can be built on a planet, given its true name
-	// and attributes: either the planet is listed by name, or it has one of the
-	// listed attributes.
-	bool CanBuildOn(const std::string &planet, const std::set<std::string> &attributes) const;
+	// Check whether this facility can be built on a planet, given its true name,
+	// attributes, and whether it is inhabited: either the planet is listed by name,
+	// it has one of the listed attributes, or it is uninhabited and the facility
+	// may be built on any uninhabited world.
+	bool CanBuildOn(const std::string &planet, const std::set<std::string> &attributes, bool inhabited = true) const;
+	// The condition the player must have before this facility can be built, if any.
+	const std::string &Requirement() const;
+	// Short status reports this facility occasionally sends. "<planet>" is
+	// replaced with the name of the planet the facility is on.
+	const std::vector<std::string> &Flavor() const;
 
 
 private:
@@ -68,4 +74,7 @@ private:
 	int storage = 0;
 	std::set<std::string> planets;
 	std::set<std::string> attributes;
+	bool anyUninhabited = false;
+	std::string requirement;
+	std::vector<std::string> flavor;
 };

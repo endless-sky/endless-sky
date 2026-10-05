@@ -1,0 +1,226 @@
+# Copyright (c) 2026 by Endless Sky Expanded contributors
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# The Varga Deepworks story. Building an outpost on an uninhabited world puts
+# the player in touch with Edda Lund, whose ancestor drilled for Varga Deepworks
+# during the Turf Wars. Each step needs goods that can only be produced, never
+# bought, and ends with a reward that cannot be bought either.
+#
+# Conditions set here:
+# 	"expanded: survey drill"       unlocks the Survey Drill (Core Samples)
+# 	"expanded: crystal bore"       unlocks the Crystal Bore (Pressure Crystals)
+# 	"expanded: isotope separator"  unlocks the Isotope Separator (Refined Isotopes)
+# 	"expanded: varga deep bore"    unlocks the Varga Deep Bore
+# 	"expanded: varga charter"      Varga's unfiled station charter, for a later story
+
+
+
+mission "Varga Claims 1"
+	name "Old Claims"
+	description "Travel to <destination> and meet Edda Lund of the New Greenland Historical Society, who wants to talk about the old claim under your outpost."
+	landing
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not planet "New Greenland"
+	destination "New Greenland"
+	to offer
+		"outposts owned" > 0
+	on offer
+		conversation
+			`Waiting in your inbox when you land is a message from someone named Edda Lund. It is long, carefully punctuated, and opens with an apology for being long.`
+			`	"Captain <last>, I volunteer with the New Greenland Historical Society. Part of the job is keeping an eye on the old claims registry, which almost nobody reads, because almost nothing happens in it. Last month something did. You built an outpost on an uninhabited world, and the registry flagged it as sitting on a claim that lapsed six hundred years ago. The old claim belonged to a company called Varga Deepworks.`
+			`	"That name will mean nothing to you. It means a great deal to me, and to a number of families here. If you are ever near New Greenland, I would be grateful for an hour of your time. I will buy the coffee. I am told ours is terrible, but it is hot."`
+			choice
+				`	(Plan to visit New Greenland.)`
+					accept
+				`	(Not right now.)`
+					defer
+	on complete
+		set "expanded: survey drill"
+		log "People" "Edda Lund" `A retired schoolteacher on New Greenland who volunteers with the local historical society. Her family came to New Greenland with the first settlers, some of whom had worked for a mining company called Varga Deepworks.`
+		log `Met Edda Lund on New Greenland. Her ancestor, Jonas Lund, drilled for Varga Deepworks during the Turf Wars and left a notebook full of claims and drill plans. She gave me the plans for his survey drill.`
+		conversation
+			`Edda Lund turns out to be a small woman in her seventies wearing a coat that could survive a blizzard, which on New Greenland is not a figure of speech. She has claimed a corner table in the spaceport cafe and covered it with paper: printouts, a map of human space bristling with pins, and a notebook with a cracked leather cover that looks older than the building.`
+			`	"Captain <last>. Sit, please. The coffee is coming." She pushes a printout across the table. It is a scan of a claim registration in a typeface nobody has used for centuries. "Varga Deepworks. During the Turf Wars they were one of the big extraction companies. They staked claims on hundreds of uninhabited worlds, mostly rocks nobody else wanted, and they drove a steel spike into the bedrock of every one to mark it."`
+			choice
+				`	"What happened to them?"`
+				`	"Why does it matter to you?"`
+					goto family
+			`	"What happened to a lot of companies in the Turf Wars. They picked a fight with someone who had more warships than they did. Within a year their fleet was gone, their stations were scrap, and their creditors were arguing over the office furniture." She taps the notebook. "Their workers were left out on the claims, waiting for ships that were never going to come."`
+			label family
+			`	"Some of those workers ended up here," she says. "New Greenland was where you went when you wanted nobody to come looking. My family is descended from one of them, a driller named Jonas Lund."`
+			`	She opens the notebook with great care. The pages are filled with small, tidy handwriting, columns of figures, and sketches of machinery, with the occasional ring left by a coffee cup. "This was his. Claim numbers, depths, assay results. And this," she turns to a detailed drawing of a drilling rig, "is the survey drill Varga used to take core samples before they committed to a mine."`
+			`	"Jonas wrote that the company was looking for something particular on these worlds, very deep down, and that on a few of them they found it. He never says what it was. The next page has been torn out." She closes the notebook. "I have spent thirty years trying to work out what they were after, and I have never had any way to look. Now you have an outpost sitting on one of his claims."`
+			choice
+				`	"You want me to drill for core samples."`
+				`	"What's in it for me?"`
+					goto pay
+			`	"I do," she says, as if it had been your idea.`
+				goto plans
+			label pay
+			`	"Honestly? Probably very little, unless Jonas was right about something. But I can give you something nobody else has." She slides a folded sheet across the table: a careful modern copy of the drill drawing, with the measurements converted to units a machine shop would recognize.`
+			label plans
+			`	"The drill will work on any uninhabited world," she says. "Build one, let it run, and bring me twenty tons of core samples. Nobody sells them, so do not bother looking. When you have them, you will find me here." She looks around the cafe. "I am usually here."`
+
+
+
+mission "Varga Claims 2"
+	name "Core Samples for Edda"
+	description "Build a Survey Drill on an uninhabited world and bring 20 tons of core samples to Edda Lund on <destination>."
+	landing
+	source "New Greenland"
+	destination "New Greenland"
+	to offer
+		has "Varga Claims 1: done"
+	to complete
+		"commodity: Core Samples" >= 20
+	on offer
+		conversation
+			`As you get up to leave, Edda writes something on the back of a napkin and hands it to you. It says "20 tons. Core samples. Edda." and then, in smaller letters, "The coffee is better at the bakery on Sixth Street."`
+				accept
+	on visit
+		dialog `Edda waves at you from her corner table, then raises her eyebrows at the empty space behind you. You have not brought enough core samples yet. She wants twenty tons, and the Survey Drill is the only way to get them.`
+	on complete
+		commodity "Core Samples" -20
+		outfit "Varga Ore Hopper"
+		payment 50000
+		set "expanded: crystal bore"
+		log `Brought Edda Lund twenty tons of core samples from a Varga claim. Some of them contain pressure crystals, the thing Varga Deepworks was really looking for. She gave me the plans for a crystal bore, and an ore hopper built to Varga's old standard.`
+		conversation
+			`Edda insists on watching the core samples come off your ship. She walks along the crates, reading the labels, and stops at one that is marked with a depth of a little over three kilometers. "This one," she says. "Open this one."`
+			`	The core inside is mostly gray rock, but near the bottom there is a band of something that catches the light: a seam of small, clear crystals, packed so tightly they look like glass. Edda looks at it for a long time without saying anything.`
+			`	"Pressure crystals," she says at last. "He drew them in the margin, you know. Little hexagons. I always thought they were doodles." She lets the lid fall closed. "Varga must have known these were down there. On most worlds the seams are too deep, or too thin, or too broken up to be worth anything. On a few, apparently not."`
+			`	She produces another folded sheet from somewhere inside her enormous coat. "This is from the back of the notebook. A bore for following the seams without crushing what is in them. It is slow and it will cost you a fortune to run, and I have no idea what anyone would do with the crystals once they have them. But it seems a shame to leave them down there after six hundred years."`
+			`	Before you leave, a man from the historical society brings over a cargo liner on a hand truck. "Found it in the basement," Edda says. "One of Varga's. The hinges needed oil. Nobody has made them to this pattern in centuries, but it should fit most ships, and it carries more than the modern kind." She pays you for the samples, too, though she counts out the credits as if they were coming out of her own pocket, which they probably are.`
+
+
+
+mission "Varga Claims 3"
+	name "Isotopes for Hermes"
+	description "Build an Isotope Separator on a research world and bring 15 tons of refined isotopes to Dr. Arsen Petrosyan on <destination>."
+	landing
+	source "New Greenland"
+	destination "Hermes"
+	to offer
+		has "Varga Claims 2: done"
+	to complete
+		"commodity: Refined Isotopes" >= 15
+	on offer
+		set "expanded: isotope separator"
+		conversation
+			`Edda catches up with you on your way back to the ship. She is slightly out of breath and holding a tablet. "I sent pictures of the crystals to an old student of mine, Arsen Petrosyan. He teaches physics on Hermes now, which I take some credit for. He wants to date them, to find out when and how they formed, and to do that he needs refined isotopes for his instruments. A lot of them."`
+			`	She turns the tablet so you can see it. On the screen is the design for an isotope separator, annotated in a different, much messier hand. "He says you cannot buy refined isotopes of the kind he needs. Nobody makes them, because nobody but him wants them. But any research world will let you build one of these."`
+			choice
+				`	"I'll see what I can do."`
+					accept
+				`	"Not right now."`
+					defer
+	on visit
+		dialog `Dr. Petrosyan's lab is easy to find: it is the one with the door propped open and the smell of burnt coffee. You have not brought enough refined isotopes yet. He needs fifteen tons, which only an Isotope Separator on a research world can produce.`
+	on complete
+		commodity "Refined Isotopes" -15
+		outfit "Varga Isotope Cell"
+		payment 150000
+		log "People" "Arsen Petrosyan" `A physicist on Hermes and a former student of Edda Lund. He used refined isotopes to date the pressure crystals from Varga Deepworks' old claims.`
+		log `Brought refined isotopes to Dr. Arsen Petrosyan on Hermes. The pressure crystals can store an enormous amount of energy. Varga Deepworks designed a power cell around them and never got to build it. Petrosyan built two, and gave me one.`
+		conversation
+			`Dr. Arsen Petrosyan is a tall man with ink on his fingers and a lab that looks like it was assembled from three other labs. He shakes your hand, then shakes it again when he sees the isotope canisters coming off your ship.`
+			`	"Do you know what you've been digging up?" he asks, and does not wait for an answer. "Those crystals formed under pressures you only find deep in the crust of a fairly specific kind of world, and they formed slowly. Millions of years. The lattice is so regular that you can pack energy into it and it just stays there. No leakage worth measuring."`
+			`	He pulls up a schematic on the nearest screen. It is old, scanned from paper, and covered in the same tidy handwriting as Jonas Lund's notebook. "Edda sent me this page. It's a power cell. A crystal core, a few kilos of isotopes to prime it, and the most conservative shielding I have ever seen. Varga designed it and never built it. I think it's what they were mining for, and I think it's what got them into a war with someone who didn't want competition."`
+			`	"So I built two." He grins. "One for the lab, and one for you. You brought the isotopes, it seemed only fair. It runs cool and it doesn't weigh much. Try not to open it."`
+			`	As you leave, he calls after you. "Tell Edda I'll have the dating results soon. And that I still have her red pen."`
+
+
+
+mission "Varga Claims 4"
+	name "The Last Survey"
+	description "Bring 10 tons of pressure crystals, 10 tons of refined isotopes and 10 tons of core samples to Edda Lund on <destination>, so she and Dr. Petrosyan can rebuild Varga Deepworks' survey array."
+	landing
+	source "Hermes"
+	destination "New Greenland"
+	to offer
+		has "Varga Claims 3: done"
+	to complete
+		"commodity: Pressure Crystals" >= 10
+		"commodity: Refined Isotopes" >= 10
+		"commodity: Core Samples" >= 10
+	on offer
+		conversation
+			`Before you have finished your preflight checks, a message arrives from Dr. Petrosyan. "The dating results are in. The crystals are old, which we knew, but the seams aren't random. They follow old faults, and if you know where a few of them are, you can predict the rest. Varga knew that. There's a sketch in Edda's notebook of a survey array for finding seams from orbit. With enough crystals and isotopes, we think we can build it."`
+			`	"Edda wants to do it on New Greenland," the message continues. "I'm coming out to help. Bring ten tons each of crystals, isotopes and core samples, the cores so we can calibrate it. I know that's a lot to ask. Edda says to tell you that she knows it too, and that she is asking anyway."`
+			choice
+				`	(Agree to bring the materials.)`
+					accept
+				`	(Not right now.)`
+					defer
+	on visit
+		dialog `Edda and Dr. Petrosyan have taken over a back room of the historical society and filled it with half-built equipment. You have not brought everything they need yet: ten tons each of pressure crystals, refined isotopes, and core samples.`
+	on complete
+		commodity "Pressure Crystals" -10
+		commodity "Refined Isotopes" -10
+		commodity "Core Samples" -10
+		outfit "Varga Survey Array"
+		payment 250000
+		set "expanded: varga deep bore"
+		set "expanded: varga charter"
+		log `Helped Edda Lund and Arsen Petrosyan rebuild Varga Deepworks' survey array on New Greenland. Edda found the torn-out page from Jonas Lund's notebook in the cover lining. Varga's last plan was a chain of orbital stations to process crystals above their richest claims. The charter was drawn up but never filed.`
+		conversation
+			`The back room of the historical society smells of solder and wet wool. Edda and Dr. Petrosyan have been arguing about the survey array for three days, and they are still arguing when your cargo arrives, though the argument now seems to be about whose turn it is to make tea.`
+			`	It takes them most of a week to finish. The array is not much to look at: a shallow dish, a crystal the size of a fist at its focus, and a tangle of cables that Petrosyan refers to as "load-bearing." When they switch it on and point it at a map of a Varga claim, a pattern of lines appears on the screen, running east, exactly where the notebook said the seams would be.`
+			`	Edda sits down rather suddenly. "Thirty years," she says, to nobody in particular.`
+			`	The next morning she is waiting for you in the cafe with the notebook open in front of her. The back cover has been carefully slit along one edge. "I was cleaning it," she says. "The lining was loose. He had folded the page up and tucked it in there."`
+			`	The missing page is a drawing of a space station, a long spindle with docking arms, sketched above the curve of a planet. Underneath is a list of claim numbers and a heading in Jonas Lund's handwriting: Orbital Processing Charter, Draft. Below that, in a hurried scrawl, is his last entry.`
+			`	"Ship not coming. Taking the family south, to the cold place nobody wants. If anyone finds this, the seams on 2291 run east."`
+			`	Edda closes the notebook. "Varga meant to build stations above their best claims and process the crystals in orbit. The war ended them before they ever filed the charter. The claims lapsed six hundred years ago," she says, "but as far as I can tell, the charter never did, because nobody ever submitted it." She slides a copy across the table to you. "I think Jonas would rather it went to someone who drills."`
+			`	Petrosyan has left you the survey array, wrapped in a moving blanket, and the plans for a deep bore built to Varga's last design. There is a note taped to the blanket: "Try not to open this either."`
+
+
+
+news "new greenland historical society"
+	location
+		planet "New Greenland"
+	to show
+		has "Varga Claims 1: done"
+	name
+		word
+			"Historical Society Volunteer"
+	message
+		word
+			`"`
+		word
+			"Edda has been in a good mood all week. The last time that happened, someone had found a Varga payroll slip inside a wall."
+			"We are always looking for volunteers. Mostly it is filing. Sometimes it is filing in a cold basement."
+			"Half the families on this planet have a Varga story. The other half are lying about not having one."
+			"Somebody keeps leaving pastries from the bakery on Sixth Street on Edda's table. She says she has no idea who it is."
+		word
+			`"`
+
+
+
+news "hermes physics department"
+	location
+		planet "Hermes"
+	to show
+		has "Varga Claims 3: done"
+	name
+		word
+			"Graduate Student"
+	message
+		word
+			`"`
+		word
+			"Dr. Petrosyan has been sleeping in the lab again. He says he is keeping an eye on the crystals. The crystals are fine."
+			"We built a power cell from a six hundred year old drawing and it worked on the first try. Nobody in the department is taking it well."
+			"If you see Dr. Petrosyan, do not ask him about isotopes unless you have an hour to spare."
+		word
+			`"`

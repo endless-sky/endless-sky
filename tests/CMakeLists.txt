@@ -78,6 +78,7 @@ list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_shipyard_outfitter_missions.txt
 	integration/config/plugins/integration-tests/data/tests/tests_store_outfits_on_take_off.txt
 	integration/config/plugins/integration-tests/data/tests/tests_to_accept.txt
+	integration/config/plugins/integration-tests/data/tests/tests_varga.txt
 	integration/config/plugins/integration-tests/data/tests/tests_wormhole_navigation.txt
 	integration/config/plugins/integration-tests/data/tests/tests_installed_plugin.txt
 )

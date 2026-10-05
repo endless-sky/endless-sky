@@ -1,0 +1,192 @@
+# Copyright (c) 2026 by Endless Sky Expanded contributors
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test-data "Varga Claims Save"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system Arcturus
+		planet "New Greenland"
+		clearance
+		# Set some reputations to positive to avoid combat
+		"reputation with"
+			Bounty 1
+			"Bounty Hunter" 1
+			Pirate 1
+		# What you own:
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 400
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 1300
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 200
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"Anti-Missile Turret"
+				"D14-RN Shield Generator"
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8 "Anti-Missile Turret"
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system Arcturus
+			planet "New Greenland"
+		ship "Star Barge"
+			name "Critical Container"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 400
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 1300
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 200
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"Anti-Missile Turret"
+				"D14-RN Shield Generator"
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8 "Anti-Missile Turret"
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system Arcturus
+			planet "New Greenland"
+		ship "Star Barge"
+			name "Errorous Enclosement"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 400
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 1300
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 200
+			outfits
+				"X1700 Ion Thruster"
+				"X1200 Ion Steering"
+				Hyperdrive
+				"Anti-Missile Turret"
+				"D14-RN Shield Generator"
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8 "Anti-Missile Turret"
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system Arcturus
+			planet "New Greenland"
+		account
+			credits 131000
+			score 400
+			history
+		cargo
+			commodities
+				"Core Samples" 25
+		conditions
+			"Varga Claims 1: done"
+			"expanded: survey drill"
+		visited Arcturus
+		"visited planet" "New Greenland"
+		visited "Alpha Centauri"
+		visited "Vega"
+		visited "Menkent"
+
+
+test "Varga Claims - Core Samples Delivery"
+	status active
+	description "Tests that the core samples quest takes the produced goods and gives its exclusive rewards."
+	sequence
+		inject "Varga Claims Save"
+		call "Load First Savegame"
+		assert
+			and
+				"commodity: Core Samples" == 25
+				"outfit: Varga Ore Hopper" == 0
+		# Landing missions are created when landing, so take off and land again.
+		# Edda offers the quest; accept it.
+		call "Depart"
+		navigate
+			"travel destination" "New Greenland"
+		call "Land"
+		input
+			key "Return"
+		assert
+			"Varga Claims 2: offered" > 0
+		# Land again with the samples to complete the quest.
+		call "Depart"
+		navigate
+			"travel destination" "New Greenland"
+		call "Land"
+		assert
+			and
+				"Varga Claims 2: done" > 0
+				"commodity: Core Samples" == 5
+				"outfit: Varga Ore Hopper" == 1
+				"expanded: crystal bore" > 0

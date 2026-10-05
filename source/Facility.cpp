@@ -30,6 +30,7 @@ void Facility::Load(const DataNode &node)
 	trueName = node.Token(1);
 	inputs.clear();
 	outputs.clear();
+	flavor.clear();
 
 	for(const DataNode &child : node)
 	{
@@ -57,6 +58,12 @@ void Facility::Load(const DataNode &node)
 		else if(key == "attributes" && hasValue)
 			for(int i = 1; i < child.Size(); ++i)
 				attributes.insert(child.Token(i));
+		else if(key == "uninhabited")
+			anyUninhabited = true;
+		else if(key == "requires" && hasValue)
+			requirement = child.Token(1);
+		else if(key == "flavor" && hasValue)
+			flavor.push_back(child.Token(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -120,12 +127,26 @@ int Facility::Storage() const
 
 
 
-bool Facility::CanBuildOn(const string &planet, const set<string> &planetAttributes) const
+bool Facility::CanBuildOn(const string &planet, const set<string> &planetAttributes, bool inhabited) const
 {
-	if(planets.contains(planet))
+	if(planets.contains(planet) || (anyUninhabited && !inhabited))
 		return true;
 	for(const string &attribute : attributes)
 		if(planetAttributes.contains(attribute))
 			return true;
 	return false;
+}
+
+
+
+const string &Facility::Requirement() const
+{
+	return requirement;
+}
+
+
+
+const vector<string> &Facility::Flavor() const
+{
+	return flavor;
 }

@@ -252,6 +252,11 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed,
 		if(!it.CanBeDone(player))
 			return false;
 
+	// Commodities that are taken must be in the player's cargo.
+	for(const auto &[commodity, tons] : action.Commodities())
+		if(tons < 0 && player.CommodityCount(commodity) < -tons)
+			return false;
+
 	for(auto &&it : requiredOutfits)
 	{
 		// Maps are not normal outfits; they represent the player's spatial awareness.

@@ -14,8 +14,9 @@ updated at the end of every piece.
 | --- | --- |
 | 0. Pipeline + dev menu | Done, confirmed working on Windows |
 | 1. Industry MVP | Done, confirmed working on Windows |
-| 2. Chains, upkeep, expansion, outposts, auto-sell, overview | Done, waiting for playtest |
-| 3. Space stations | Next (scope to be agreed) |
+| 2. Chains, upkeep, expansion, outposts, auto-sell, overview | Done, confirmed working on Windows |
+| 2b. Outpost story (Varga Deepworks), produced-only goods and quests | Done, waiting for playtest |
+| 3. Space stations | Next (scope to be agreed; ties into "expanded: varga charter") |
 
 ## Piece 0 - Pipeline + dev menu (done)
 
@@ -90,6 +91,38 @@ Combined roadmap items 2-4 (and part of 6).
   it and checks the Equipment produced.
 - Not verified visually in the container (screen capture of the GL window does not work under
   Xvfb here); layout needs a playtest check, especially in the small-screen layout.
+
+## Piece 2b - Outpost story and produced-only quests (done)
+
+- Writing style: match Endless Sky (dry, specific, understated humor; second person,
+  present tense in conversations; ASCII only, no em dashes). Avoid AI-isms.
+- `Facility`: `uninhabited` (buildable on any uninhabited planet, replacing the
+  `attributes uninhabited` match, which missed most uninhabited worlds), `requires "<condition>"`
+  (hidden until the player has the condition), `flavor` lines.
+- Flavor: each facility with flavor has a 1 in 20 chance per day to send a status report
+  (`<planet>` replaced). Reports go to the message log ("low") and to the holding's last five
+  `reports` (saved), and the latest one shows in the Industry panel if there is room.
+- Produced-only goods (`data/expanded/commodities.txt`, special commodities, never sold):
+  Core Samples (Survey Drill), Pressure Crystals (Crystal Bore, Varga Deep Bore),
+  Refined Isotopes (Isotope Separator: Heavy Metals -> Refined Isotopes, research worlds).
+- Engine support for quests: mission action `commodity "<name>" <tons>` (negative takes it from
+  pooled cargo / ships in the system, with cost basis; checked in `MissionAction::CanBeDone`),
+  conditions `"commodity: <name>"`, `"facility: <name>"` (units owned) and `"outposts owned"`.
+- Story (`data/expanded/varga claims.txt`): Edda Lund (New Greenland Historical Society),
+  descendant of Varga Deepworks driller Jonas Lund; Dr. Arsen Petrosyan (physicist, Hermes).
+  1. Old Claims: offered on landing (human space, not New Greenland) once an outpost exists;
+     meet Edda; unlocks the Survey Drill.
+  2. Core Samples for Edda: 20 Core Samples -> Varga Ore Hopper (25 cargo for 20 space),
+     50,000 credits, unlocks the Crystal Bore.
+  3. Isotopes for Hermes: unlocks the Isotope Separator on offer; 15 Refined Isotopes ->
+     Varga Isotope Cell (3.6 energy, 7 heat, 22 mass), 150,000 credits.
+  4. The Last Survey: 10 each of Pressure Crystals, Refined Isotopes, Core Samples ->
+     Varga Survey Array (asteroid scan 60, cargo scan 15), 250,000 credits, unlocks the
+     Varga Deep Bore, sets "expanded: varga charter" (Varga's unfiled orbital station charter,
+     the hook for space stations).
+  News on New Greenland and Hermes after the relevant steps.
+- Tests: unit tests for the new facility options and reports; integration test
+  `tests_varga.txt` (deliver core samples, check the samples are taken and the rewards given).
 
 ## Roadmap (revise as we learn)
 

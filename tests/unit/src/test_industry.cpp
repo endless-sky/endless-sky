@@ -100,6 +100,28 @@ SCENARIO( "Loading a facility type", "[Facility]" ) {
 	}
 }
 
+SCENARIO( "Loading a story facility", "[Facility]" ) {
+	GIVEN( "a facility for uninhabited worlds that must be unlocked" ) {
+		Facility facility;
+		facility.Load(AsDataNode(R"(facility "Survey Drill"
+	output "Core Samples" 1
+	uninhabited
+	requires "expanded: survey drill"
+	flavor "The drill on <planet> is fine."
+	flavor `It found a "spike".`
+)"));
+		THEN( "it can be built on any uninhabited world, and nowhere else" ) {
+			CHECK( facility.CanBuildOn("Rock", {}, false) );
+			CHECK_FALSE( facility.CanBuildOn("Earth", {}, true) );
+		}
+		THEN( "its requirement and flavor are read" ) {
+			CHECK( facility.Requirement() == "expanded: survey drill" );
+			REQUIRE( facility.Flavor().size() == 2 );
+			CHECK( facility.Flavor()[1] == "It found a \"spike\"." );
+		}
+	}
+}
+
 SCENARIO( "Running a facility", "[Industry]" ) {
 	const Set<Facility> facilities = MakeFacilities();
 	const Facility &outpost = *facilities.Find("Mining Outpost");
@@ -236,6 +258,7 @@ SCENARIO( "Saving and loading facilities", "[Industry]" ) {
 		industry.AdvanceDay(1000);
 		Industry::Supply(*industry.Find(works, "Earth"), "Plastic", 3);
 		industry.Find(outpost, "New Greenland")->autoSell = true;
+		industry.Find(outpost, "New Greenland")->AddReport("1 Jan 3014", "Quiet day.");
 		DataWriter writer;
 		industry.Save(writer);
 		WHEN( "it is saved and loaded again" ) {
@@ -248,12 +271,27 @@ SCENARIO( "Saving and loading facilities", "[Industry]" ) {
 				CHECK( mine->Stock("Metal") == 2 );
 				CHECK( mine->autoSell );
 				CHECK( mine->count == 1 );
+				REQUIRE( mine->reports.size() == 1 );
+				CHECK( mine->reports[0].first == "1 Jan 3014" );
+				CHECK( mine->reports[0].second == "Quiet day." );
 				const Industry::Holding *factory = loaded.Find(works, "Earth");
 				REQUIRE( factory );
 				CHECK( factory->count == 2 );
 				CHECK( factory->Stock("Plastic") == 3 );
 				CHECK_FALSE( factory->autoSell );
 			}
+		}
+	}
+	GIVEN( "a facility with many reports" ) {
+		Industry industry;
+		industry.Build(outpost, "Earth");
+		Industry::Holding &holding = *industry.Find(outpost, "Earth");
+		for(int i = 0; i < 8; ++i)
+			holding.AddReport(std::to_string(i), "report");
+		THEN( "only the five most recent are kept" ) {
+			REQUIRE( holding.reports.size() == 5 );
+			CHECK( holding.reports.front().first == "3" );
+			CHECK( holding.reports.back().first == "7" );
 		}
 	}
 	GIVEN( "an empty industry" ) {

@@ -179,6 +179,14 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		else
 			child.PrintTrace("Skipping invalid outfit quantity:");
 	}
+	else if(key == "commodity" && child.Size() >= 3)
+	{
+		int tons = static_cast<int>(child.Value(2));
+		if(tons)
+			giftCommodities[child.Token(1)] += tons;
+		else
+			child.PrintTrace("Skipping invalid commodity quantity:");
+	}
 	else if(key == "payment")
 	{
 		if(child.Size() == 1)
@@ -278,6 +286,8 @@ void GameAction::Save(DataWriter &out) const
 		it.Save(out);
 	for(auto &&it : giftOutfits)
 		out.Write("outfit", it.first->TrueName(), it.second);
+	for(const auto &[commodity, tons] : giftCommodities)
+		out.Write("commodity", commodity, tons);
 	if(payment)
 		out.Write("payment", payment);
 	if(fine)
@@ -400,6 +410,13 @@ const map<const Outfit *, int> &GameAction::Outfits() const noexcept
 
 
 
+const map<string, int> &GameAction::Commodities() const noexcept
+{
+	return giftCommodities;
+}
+
+
+
 const vector<ShipManager> &GameAction::Ships() const noexcept
 {
 	return giftShips;
@@ -447,6 +464,16 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 		}
 	if(giftedItem && player.GetPlanet())
 		SpriteLoadManager::SetRecheckThumbnails();
+
+	for(const auto &[commodity, tons] : giftCommodities)
+	{
+		if(tons < 0)
+			player.RemoveCommodity(commodity, -tons);
+		else if(player.GetPlanet())
+			player.Cargo().Add(commodity, tons);
+		else if(player.Flagship())
+			player.Flagship()->Cargo().Add(commodity, tons);
+	}
 
 	if(payment)
 	{
@@ -541,6 +568,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	for(auto &&it : giftShips)
 		result.giftShips.push_back(it.Instantiate(subs));
 	result.giftOutfits = giftOutfits;
+	result.giftCommodities = giftCommodities;
 
 	result.music = music;
 
