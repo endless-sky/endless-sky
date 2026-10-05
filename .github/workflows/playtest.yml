@@ -1,0 +1,107 @@
+name: Playtest Build
+
+# Builds a Windows package of the mod on every push to a development branch,
+# and publishes it to the "playtest" pre-release so the download link never changes:
+# https://github.com/<owner>/<repo>/releases/tag/playtest
+
+on:
+  push:
+    branches:
+      - 'claude/**'
+      - 'playtest/**'
+  workflow_dispatch:
+
+concurrency:
+  group: playtest
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  windows:
+    name: Windows
+    runs-on: windows-2025
+    env:
+      OUTPUT: EndlessSky-Expanded-win64-playtest.zip
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          show-progress: false
+          fetch-depth: '10'
+      - name: Find cache keys
+        run: |
+          echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+          git log --pretty=format:'${{ runner.os }}-playtest-%H' -n 10 | tail -n+2 >> restore_keys.txt
+          echo -e '\nEOF' >> restore_keys.txt
+          cat restore_keys.txt >> "$GITHUB_ENV"
+          echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+        shell: bash
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          key: ${{ runner.os }}-playtest-${{ env.CACHE_HASH }}
+          restore-keys: ${{ env.RESTORE_KEYS }}
+          evict-old-files: '2d'
+          append-timestamp: 'false'
+      - name: Adjust version strings
+        run: ./utils/cd_update_versions.sh
+        shell: bash
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: lukka/get-cmake@v4.2.3
+      - uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+      - name: Run CMake
+        run: |
+          cmake --preset mingw-release
+          cmake --build build --preset mingw-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
+      - name: Package Application
+        run: |
+          cmake --install build/release
+          7z a ${{ env.OUTPUT }} "./install/release/*"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+
+  publish:
+    name: Publish
+    needs: windows
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+      OUTPUT: EndlessSky-Expanded-win64-playtest.zip
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.OUTPUT }}
+      - name: Replace the playtest release
+        run: |
+          NOTES="Windows playtest build of Endless Sky: Expanded.
+
+          Branch: ${{ github.ref_name }}
+          Commit: ${{ github.sha }}
+          Built: $(date -u '+%Y-%m-%d %H:%M') UTC
+
+          Download the zip, extract it, and run 'Endless Sky.exe'.
+          Press \` or F12 on the planet screen to open the developer menu.
+
+          https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          gh release delete playtest --yes --cleanup-tag || true
+          gh release create playtest "$OUTPUT" \
+            --target "${{ github.sha }}" \
+            --title "Playtest Build" \
+            --notes "$NOTES" \
+            --prerelease

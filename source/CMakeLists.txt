@@ -89,6 +89,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Date.h
 	Depreciation.cpp
 	Depreciation.h
+	DevPanel.cpp
+	DevPanel.h
 	DialogPanel.cpp
 	DialogPanel.h
 	DialogSettings.cpp

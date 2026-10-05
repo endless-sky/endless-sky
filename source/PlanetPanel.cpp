@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
+#include "DevPanel.h"
 #include "DialogPanel.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -273,6 +274,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	{
 		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI().Push(new MessageLogPanel());
+		return true;
+	}
+	else if(key == '`' || key == SDLK_F12)
+	{
+		UI::PlaySound(UI::UISound::NORMAL);
+		GetUI().Push(new DevPanel(player));
 		return true;
 	}
 	else if(command.Has(Command::INFO) || key == 'i')
