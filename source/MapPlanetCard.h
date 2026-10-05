@@ -46,6 +46,12 @@ public:
 
 
 public:
+	static double Height();
+	static void ResetSize();
+	static std::optional<unsigned> MapModeToCategory(int mode);
+
+
+public:
 	// For the orbit selection to work properly this has to be a planet.
 	explicit MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited, const MapDetailPanel *parent);
 	// Return if this one was clicked, whether or not we did something about it.
@@ -64,10 +70,7 @@ public:
 	const Planet *GetPlanet() const;
 
 	void Select(bool select = true);
-
-	static double Height();
-
-	static void ResetSize();
+	void SelectCategory(std::optional<unsigned> category);
 
 
 protected:

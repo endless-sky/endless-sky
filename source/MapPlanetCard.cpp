@@ -41,6 +41,38 @@ namespace {
 
 
 
+double MapPlanetCard::Height()
+{
+	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	return planetCardInterface->GetValue("height padding") +
+		(planetCardInterface->GetValue("categories") + hasGovernments) *
+		planetCardInterface->GetValue("category size");
+}
+
+
+
+void MapPlanetCard::ResetSize()
+{
+	hasGovernments = false;
+}
+
+
+
+std::optional<unsigned> MapPlanetCard::MapModeToCategory(int mode)
+{
+	map<int, optional<unsigned>> conversion;
+	if(hasGovernments)
+		conversion[MapPanel::SHOW_GOVERNMENT] = 0;
+	conversion[MapPanel::SHOW_REPUTATION] = 0 + hasGovernments;
+	conversion[MapPanel::SHOW_SHIPYARD] = 1 + hasGovernments;
+	conversion[MapPanel::SHOW_OUTFITTER] = 2 + hasGovernments;
+	conversion[MapPanel::SHOW_VISITED] = 3 + hasGovernments;
+	auto it = conversion.find(mode);
+	return it == conversion.end() ? std::nullopt : it->second;
+}
+
+
+
 MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited,
 		const MapDetailPanel *parent)
 	: parent(parent), number(number), hasVisited(hasVisited), loadingCircle(30.f, 10, 2.),
@@ -93,7 +125,7 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(const Point &clickPoint, int cli
 	{
 		auto [hoverAction, hoverCategory] = Hover(clickPoint);
 		clickAction = hoverAction;
-		selectedCategory = hoverCategory;
+		// The selected category will my set by MapDetailPanel calling MapPlanetCard::SelectCategory.
 		// Double clicking results in going to the shipyard/outfitter.
 		if(clickAction == ClickAction::SHOW_SHIPYARD && clicks > 1)
 			clickAction = ClickAction::GOTO_SHIPYARD;
@@ -295,25 +327,13 @@ const Planet *MapPlanetCard::GetPlanet() const
 void MapPlanetCard::Select(bool select)
 {
 	isSelected = select;
-	if(!isSelected)
-		selectedCategory.reset();
 }
 
 
 
-double MapPlanetCard::Height()
+void MapPlanetCard::SelectCategory(std::optional<unsigned> category)
 {
-	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	return planetCardInterface->GetValue("height padding") +
-		(planetCardInterface->GetValue("categories") + hasGovernments) *
-		planetCardInterface->GetValue("category size");
-}
-
-
-
-void MapPlanetCard::ResetSize()
-{
-	hasGovernments = false;
+	selectedCategory = category;
 }
 
 

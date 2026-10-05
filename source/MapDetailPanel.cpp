@@ -553,6 +553,10 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 			shown.insert(planet);
 			++number;
 		}
+	// This must be done after all planet cards are generated
+	// so that we know whether the government category is displaying.
+	for(MapPlanetCard &card : planetCards)
+		card.SelectCategory(MapPlanetCard::MapModeToCategory(commodity));
 	shownSystem = &system;
 }
 
@@ -826,4 +830,6 @@ void MapDetailPanel::SetCommodity(int index)
 		isStars = false;
 
 	player.SetMapColoring(commodity);
+	for(MapPlanetCard &card : planetCards)
+		card.SelectCategory(MapPlanetCard::MapModeToCategory(index));
 }
