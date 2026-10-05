@@ -45,7 +45,7 @@ private:
 	void Buy(int64_t amount);
 	void SellOutfitsOrMinables(bool sellMinables);
 	std::string OutfitSalesMessage(bool sellMinables) const;
-	void StoreOutfitsInCargo() const;
+	void StoreOutfitsFromCargo() const;
 
 
 private:

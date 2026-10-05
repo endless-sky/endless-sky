@@ -264,7 +264,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			SellOutfitsOrMinables(false);
 	}
 	else if(key == 'r' && canStoreOutfits)
-		StoreOutfitsInCargo();
+		StoreOutfitsFromCargo();
 	else if(command.Has(Command::MAP))
 		GetUI().Push(new MapDetailPanel(player));
 	else
@@ -416,7 +416,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinables) const
 
 
 
-void TradingPanel::StoreOutfitsInCargo() const
+void TradingPanel::StoreOutfitsFromCargo() const
 {
 	CargoHold &cargo = player.Cargo();
 	CargoHold &storage = player.Storage();
