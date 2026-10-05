@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Effect.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "Logger.h"
 #include "image/SpriteSet.h"
 #include "Weapon.h"
 
@@ -404,7 +403,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 					+ Format::Number(ATTRIBUTE_LIMIT, 3));
 				continue;
 			}
-			Set(key, child.Value(1));
+			Set(key, value);
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
