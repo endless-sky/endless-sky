@@ -1,0 +1,41 @@
+# Copyright (c) 2026 by Endless Sky Expanded contributors
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test "Dev Menu - Credits And Days"
+	status active
+	description "Tests that the developer menu on the planet screen adds credits and advances the date."
+	sequence
+		inject "Three Earthly Barges Save"
+		call "Load First Savegame"
+		assert
+			and
+				"flagship landed" > 0
+				"credits" == 131000
+				"day" == 16
+		# Open the developer menu and add 100,000 credits.
+		input
+			key "F12"
+		input
+			key 4
+		assert
+			"credits" == 231000
+		# Advance one day. (Salaries are paid, so only check the date.)
+		input
+			key 1
+		assert
+			"day" == 17
+		# Close the menu again; the player should still be on the planet.
+		input
+			key "escape"
+		assert
+			"flagship landed" > 0

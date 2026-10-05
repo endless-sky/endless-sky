@@ -1,4 +1,5 @@
-Welcome to Endless Sky!
+Welcome to Endless Sky: Expanded!
+Playtest build - industry mod
 version 0.11.4-alpha
 
 The player's manual and other
