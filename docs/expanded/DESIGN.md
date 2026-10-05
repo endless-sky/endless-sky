@@ -4,16 +4,18 @@ Goal: player-driven heavy industry in the vein of X4: Foundations / EVE Online, 
 smaller scale. Players build and own facilities (planetside districts, outposts,
 eventually space stations) that produce goods over time.
 
-Work is delivered in small pieces, each one session sized, each ending with a
-Windows playtest build. Keep this file updated at the end of every piece.
+Work is delivered in pieces, each ending with a Windows playtest build. The user asked
+for larger pieces (several roadmap items at once) to save round trips. Keep this file
+updated at the end of every piece.
 
 ## Status
 
 | Piece | Status |
 | --- | --- |
 | 0. Pipeline + dev menu | Done, confirmed working on Windows |
-| 1. Industry MVP | Done, waiting for playtest confirmation |
-| 2. Production chains and upkeep | Next (scope to be agreed) |
+| 1. Industry MVP | Done, confirmed working on Windows |
+| 2. Chains, upkeep, expansion, outposts, auto-sell, overview | Done, waiting for playtest |
+| 3. Space stations | Next (scope to be agreed) |
 
 ## Piece 0 - Pipeline + dev menu (done)
 
@@ -55,10 +57,42 @@ One facility type the player can build and own, proving data, UI, save game and 
   integration test `tests_industry.txt` (build with dev-menu credits, wait a week, collect,
   take off, check cargo).
 
-## Roadmap (each is one or more pieces; revise as we learn)
+## Piece 2 - Production chains and holdings management (done)
 
-2. Production chains (inputs -> outputs), daily upkeep, several facility types.
-3. Industry overview from anywhere; rename facilities; auto-sell to local market.
-4. Outposts on uninhabited planets and moons.
-5. Player-built space stations (new landable stellar objects) - biggest engine job.
-6. Economic impact: output moves local prices; NPC haulers move goods.
+Combined roadmap items 2-4 (and part of 6).
+
+- `Facility` now has `upkeep`, any number of `input`/`output` lines, and `attributes`
+  (buildable on planets with any listed attribute, in addition to `planet` names).
+  `UniverseObjects::CheckReferences` warns about facilities using unknown commodities.
+- `Industry::Holding` has `count` (Expand = build again; production, upkeep and per-commodity
+  storage all scale with it), a `stock` map for inputs and outputs, `autoSell`, and a `status`
+  (not saved: Starting up / Running / needs inputs / storage full / can't pay upkeep).
+  Old saves' `stockpile` loads as stock of the first output.
+- Daily production (`Industry::AdvanceDay`, called from `PlayerInfo::AdvanceIndustry`):
+  upkeep is paid only if the credits on hand cover it (otherwise the facility idles);
+  each unit runs once if every input is available and no output is full; auto-sell sells
+  all output stock at the planet's system price and calls `GameData::AddPurchase`, so
+  sales lower local prices. A "daily" message summarizes upkeep and sales.
+- Uninhabited worlds: the Industry button is available when the planet is uninhabited or
+  its services are usable. Outposts there cannot auto-sell (no market).
+- Industry panel: facility list (left), details (right: status, cost, upkeep, uses, makes,
+  stock or description), buttons Build/Expand (E), Supply (U, moves inputs from cargo and
+  removes their cost basis), Collect (C), Sell on/off (A); Enter = collect if owned else build.
+  Tab toggles the **All holdings** overview (planet, facility xN, status, goods; total upkeep),
+  available on any planet once the player owns something.
+- Content (`data/expanded/facilities.txt`): 11 facilities. Raw: Mining Outpost (Metal),
+  Ore Extractor and Deep Core Mine (uninhabited; Metal, Heavy Metals), Hydroponics Farm (Food),
+  Petrochemical Plant (Plastic). Processing: Textile Mill, Machine Works, Pharmaceutical Lab,
+  Electronics Foundry, Industrial Fabricator, Luxury Workshop. New Greenland can build
+  Mining Outpost, Hydroponics Farm, Textile Mill and Machine Works.
+- Tests: unit tests for chains, upkeep shortfall, expansion, auto-sell, supply caps, save/load
+  and legacy saves; the integration test now builds an outpost and a Machine Works, supplies
+  it and checks the Equipment produced.
+- Not verified visually in the container (screen capture of the GL window does not work under
+  Xvfb here); layout needs a playtest check, especially in the small-screen layout.
+
+## Roadmap (revise as we learn)
+
+3. Player-built space stations (new landable stellar objects) - biggest engine job.
+4. Economic impact beyond auto-sell: NPC haulers move goods; facilities affect planet supply.
+5. Quality of life: rename holdings, remote status in Player Info, balance pass on prices.

@@ -14,15 +14,132 @@
 # Player-buildable industrial facilities.
 #
 # facility "<name>"
-# 	description `<text shown in the Industry panel>`
-# 	cost <credits to build>
-# 	output "<trade commodity>" <tons per day>
-# 	storage <maximum tons in the stockpile>
-# 	planet "<planet>" ["<planet>" ...]
+# 	description `<text shown in the Industry panel; keep it to about 40 words>`
+# 	cost <credits to build, and to build each extra unit>
+# 	upkeep <credits per day, per unit>
+# 	input "<trade commodity>" <tons per day, per unit>     (any number, optional)
+# 	output "<trade commodity>" <tons per day, per unit>    (any number)
+# 	storage <maximum tons of each commodity, per unit>
+# 	planet "<planet>" ["<planet>" ...]                     (buildable on these planets)
+# 	attributes <attribute> [<attribute> ...]               (or on planets with any of these)
+#
+# Production chains:
+# 	Mining Outpost, Ore Extractor -> Metal
+# 	Deep Core Mine -> Heavy Metals
+# 	Hydroponics Farm -> Food
+# 	Petrochemical Plant -> Plastic
+# 	Textile Mill: Plastic -> Clothing
+# 	Machine Works: Metal + Plastic -> Equipment
+# 	Pharmaceutical Lab: Food + Plastic -> Medical
+# 	Electronics Foundry: Heavy Metals + Plastic -> Electronics
+# 	Industrial Fabricator: Metal + Electronics -> Industrial
+# 	Luxury Workshop: Electronics + Clothing -> Luxury Goods
+
+
+# Raw materials.
 
 facility "Mining Outpost"
-	description `A small automated mine dug into the frozen bedrock, with a landing pad and a storage shed. It extracts a steady trickle of metal ore that waits in the shed until you come to collect it.`
+	description `A small automated mine dug into the bedrock, with a landing pad and a storage shed. It extracts a steady trickle of metal ore.`
 	cost 150000
-	output "Metal" 2
-	storage 50
+	upkeep 200
+	output "Metal" 4
+	storage 100
 	planet "New Greenland"
+	attributes mining
+
+facility "Ore Extractor"
+	description `A self-sufficient robotic extractor for worlds with nobody around to complain about the noise. There is no market on an uninhabited world, so you will have to haul the metal away yourself.`
+	cost 120000
+	upkeep 100
+	output "Metal" 5
+	storage 150
+	attributes uninhabited
+
+facility "Deep Core Mine"
+	description `A drilling rig that bores kilometers into an uninhabited world to reach dense, valuable ores. Expensive to run, but heavy metals fetch a good price anywhere.`
+	cost 400000
+	upkeep 500
+	output "Heavy Metals" 2
+	storage 60
+	attributes uninhabited
+
+facility "Hydroponics Farm"
+	description `Rows of greenhouses under artificial light, growing crops regardless of the weather outside.`
+	cost 100000
+	upkeep 150
+	output "Food" 6
+	storage 150
+	planet "New Greenland"
+	attributes farming
+
+facility "Petrochemical Plant"
+	description `A refinery that turns local oil and gas deposits into raw plastics for the factories of human space.`
+	cost 200000
+	upkeep 300
+	output "Plastic" 4
+	storage 100
+	attributes oil
+
+
+# Processing.
+
+facility "Textile Mill"
+	description `Spinning machines and looms that turn plastic fibers into durable fabrics and finished clothing.`
+	cost 150000
+	upkeep 100
+	input "Plastic" 1
+	output "Clothing" 3
+	storage 90
+	planet "New Greenland"
+	attributes textiles
+
+facility "Machine Works"
+	description `A machine shop that turns metal stock and plastic parts into tools, pumps, generators and other equipment.`
+	cost 300000
+	upkeep 300
+	input "Metal" 2
+	input "Plastic" 1
+	output "Equipment" 4
+	storage 100
+	planet "New Greenland"
+	attributes factory
+
+facility "Pharmaceutical Lab"
+	description `A sterile laboratory that synthesizes medicines from agricultural feedstock and plastic packaging.`
+	cost 450000
+	upkeep 400
+	input "Food" 2
+	input "Plastic" 1
+	output "Medical" 3
+	storage 75
+	attributes medical
+
+facility "Electronics Foundry"
+	description `A clean room fabrication line that turns heavy metals and plastics into circuit boards and processors.`
+	cost 500000
+	upkeep 400
+	input "Heavy Metals" 1
+	input "Plastic" 1
+	output "Electronics" 3
+	storage 75
+	attributes research
+
+facility "Industrial Fabricator"
+	description `Heavy presses and assembly robots that build industrial machinery out of metal and electronics.`
+	cost 600000
+	upkeep 500
+	input "Metal" 2
+	input "Electronics" 1
+	output "Industrial" 4
+	storage 100
+	attributes factory
+
+facility "Luxury Workshop"
+	description `Skilled artisans and designers who turn fine fabrics and electronics into luxury goods for the wealthy.`
+	cost 500000
+	upkeep 300
+	input "Electronics" 1
+	input "Clothing" 2
+	output "Luxury Goods" 2
+	storage 50
+	attributes wealthy tourism

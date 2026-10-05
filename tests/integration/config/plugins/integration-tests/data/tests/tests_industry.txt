@@ -146,6 +146,9 @@ test-data "New Greenland Industry Save"
 			credits 131000
 			score 400
 			history
+		cargo
+			commodities
+				Plastic 10
 		visited Arcturus
 		"visited planet" "New Greenland"
 		visited "Alpha Centauri"
@@ -164,11 +167,16 @@ test "Industry - Build And Collect"
 				"flagship planet: New Greenland" > 0
 				"credits" == 131000
 				"facilities owned" == 0
-		# Not enough credits yet: building does nothing.
+		# The list is alphabetical: Hydroponics Farm, Machine Works, Mining Outpost, Textile Mill.
+		# Select the Mining Outpost. There are not enough credits yet, so building does nothing.
 		input
 			key n
 		input
-			key return
+			key down
+		input
+			key down
+		input
+			key e
 		assert
 			and
 				"credits" == 131000
@@ -181,14 +189,12 @@ test "Industry - Build And Collect"
 		input
 			key "escape"
 		input
-			key n
-		input
-			key return
+			key e
 		assert
 			and
 				"credits" == 81000
 				"facilities owned" == 1
-		# Let a week pass (2 tons a day), then collect the 14 tons of Metal.
+		# Let a week pass (4 tons a day), then collect the 28 tons of Metal.
 		input
 			key "F12"
 		input
@@ -196,16 +202,39 @@ test "Industry - Build And Collect"
 		input
 			key "escape"
 		input
-			key n
+			key c
+		# Build a Machine Works and supply it with the Metal and the 10 tons of
+		# Plastic the fleet started with.
 		input
-			key return
-		# Remember how much cargo space the fleet has, then take off and
-		# check that the Metal was loaded into the ships.
+			key "F12"
+		input
+			key 5
+		input
+			key "escape"
+		input
+			key up
+		input
+			key e
+		input
+			key u
+		assert
+			"facilities owned" == 2
+		# After one day the Machine Works has turned 2 Metal and 1 Plastic into 4 Equipment.
+		input
+			key "F12"
+		input
+			key 1
+		input
+			key "escape"
+		input
+			key c
+		# Take off and check that only the 4 tons of Equipment are aboard: the
+		# Metal and Plastic went into the Machine Works.
 		apply
 			"test: cargo space before" = "cargo space free"
 		call "Depart"
 		assert
 			and
 				"flagship landed" == 0
-				"cargo space free" == "test: cargo space before" - 14
-				"facilities owned" == 1
+				"cargo space free" == "test: cargo space before" - 4
+				"facilities owned" == 2

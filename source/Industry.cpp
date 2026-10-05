@@ -26,6 +26,31 @@ using namespace std;
 
 
 
+int Industry::Holding::Capacity() const
+{
+	return type->Storage() * count;
+}
+
+
+
+int Industry::Holding::Stock(const string &commodity) const
+{
+	auto it = stock.find(commodity);
+	return it == stock.end() ? 0 : it->second;
+}
+
+
+
+int Industry::Holding::OutputStock() const
+{
+	int total = 0;
+	for(const auto &[commodity, amount] : type->Outputs())
+		total += Stock(commodity);
+	return total;
+}
+
+
+
 void Industry::Load(const DataNode &node, const Set<Facility> &facilities)
 {
 	for(const DataNode &child : node)
@@ -47,10 +72,18 @@ void Industry::Load(const DataNode &node, const Set<Facility> &facilities)
 		for(const DataNode &grand : child)
 		{
 			const string &key = grand.Token(0);
-			if(key == "planet" && grand.Size() >= 2)
+			bool hasValue = grand.Size() >= 2;
+			if(key == "planet" && hasValue)
 				holding.planet = grand.Token(1);
-			else if(key == "stockpile" && grand.Size() >= 2)
-				holding.stockpile = max(0, static_cast<int>(grand.Value(1)));
+			else if(key == "count" && hasValue)
+				holding.count = max(1, static_cast<int>(grand.Value(1)));
+			else if(key == "stock" && grand.Size() >= 3)
+				holding.stock[grand.Token(1)] = max(0, static_cast<int>(grand.Value(2)));
+			// Saves from before production chains had a single output stockpile.
+			else if(key == "stockpile" && hasValue && !type->Outputs().empty())
+				holding.stock[type->Outputs().front().first] = max(0, static_cast<int>(grand.Value(1)));
+			else if(key == "auto sell")
+				holding.autoSell = true;
 			else
 				grand.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -77,8 +110,13 @@ void Industry::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				out.Write("planet", holding.planet);
-				if(holding.stockpile)
-					out.Write("stockpile", holding.stockpile);
+				if(holding.count > 1)
+					out.Write("count", holding.count);
+				for(const auto &[commodity, amount] : holding.stock)
+					if(amount)
+						out.Write("stock", commodity, amount);
+				if(holding.autoSell)
+					out.Write("auto sell");
 			}
 			out.EndChild();
 		}
@@ -114,24 +152,97 @@ const Industry::Holding *Industry::Find(const Facility &type, const string &plan
 
 void Industry::Build(const Facility &type, const string &planet)
 {
-	if(!Find(type, planet))
-		holdings.push_back({&type, planet, 0});
+	Holding *existing = Find(type, planet);
+	if(existing)
+		++existing->count;
+	else
+	{
+		Holding holding;
+		holding.type = &type;
+		holding.planet = planet;
+		holdings.push_back(std::move(holding));
+	}
 }
 
 
 
-void Industry::AdvanceDay()
+Industry::DayReport Industry::AdvanceDay(int64_t credits, const Seller &sell)
 {
+	DayReport report;
 	for(Holding &holding : holdings)
-		holding.stockpile = max(holding.stockpile,
-			min(holding.stockpile + holding.type->OutputPerDay(), holding.type->Storage()));
+	{
+		const Facility &type = *holding.type;
+		const int64_t upkeep = type.Upkeep() * holding.count;
+		if(upkeep > credits)
+		{
+			holding.status = Status::NO_CREDITS;
+			continue;
+		}
+		credits -= upkeep;
+		report.upkeep += upkeep;
+
+		// Each built copy of the facility runs once a day, as long as there are
+		// enough inputs for it and none of the outputs is already full.
+		const int capacity = holding.Capacity();
+		int runs = holding.count;
+		for(const auto &[commodity, amount] : type.Inputs())
+			runs = min(runs, holding.Stock(commodity) / amount);
+		bool isFull = false;
+		for(const auto &[commodity, amount] : type.Outputs())
+			isFull |= (holding.Stock(commodity) >= capacity);
+
+		if(isFull)
+			holding.status = Status::STORAGE_FULL;
+		else if(runs <= 0)
+			holding.status = Status::NO_INPUTS;
+		else
+		{
+			holding.status = Status::RUNNING;
+			for(const auto &[commodity, amount] : type.Inputs())
+				holding.stock[commodity] -= amount * runs;
+			for(const auto &[commodity, amount] : type.Outputs())
+			{
+				int &stored = holding.stock[commodity];
+				stored = min(capacity, stored + amount * runs);
+			}
+		}
+
+		if(holding.autoSell && sell)
+			for(const auto &[commodity, amount] : type.Outputs())
+			{
+				int &stored = holding.stock[commodity];
+				if(stored <= 0)
+					continue;
+				const int64_t income = sell(holding, commodity, stored);
+				if(income > 0)
+				{
+					stored = 0;
+					credits += income;
+					report.sales += income;
+				}
+			}
+	}
+	return report;
 }
 
 
 
-int Industry::Collect(Holding &holding, int space)
+int Industry::Collect(Holding &holding, const string &commodity, int space)
 {
-	int amount = max(0, min(holding.stockpile, space));
-	holding.stockpile -= amount;
+	auto it = holding.stock.find(commodity);
+	if(it == holding.stock.end())
+		return 0;
+	int amount = max(0, min(it->second, space));
+	it->second -= amount;
+	return amount;
+}
+
+
+
+int Industry::Supply(Holding &holding, const string &commodity, int available)
+{
+	int &stored = holding.stock[commodity];
+	int amount = max(0, min(available, holding.Capacity() - stored));
+	stored += amount;
 	return amount;
 }

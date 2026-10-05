@@ -947,7 +947,7 @@ void PlayerInfo::AdvanceDate(int amount)
 			if(!mission.IsFailed())
 				mission.Do(Mission::DAILY, *this);
 		}
-		industry.AdvanceDay();
+		AdvanceIndustry();
 		DoAccounting();
 	}
 	// Reset the reload counters for all your ships.
@@ -959,6 +959,42 @@ void PlayerInfo::AdvanceDate(int amount)
 	// just reducing the cached values by 1 because the player may have
 	// explored new systems that change the DistanceMap calculations.
 	CacheMissionInformation(true);
+}
+
+
+
+// Run a day of production for the player's facilities, paying their upkeep
+// and selling the output of any set to auto-sell on their local markets.
+void PlayerInfo::AdvanceIndustry()
+{
+	if(industry.Holdings().empty())
+		return;
+
+	auto sell = [](const Industry::Holding &holding, const string &commodity, int tons) -> int64_t
+	{
+		const Planet *planet = GameData::Planets().Find(holding.planet);
+		if(!planet || !planet->IsInhabited() || !planet->GetPort().HasService(Port::ServicesType::Trading))
+			return 0;
+		const System *system = planet->GetSystem();
+		if(!system || !system->HasTrade())
+			return 0;
+		const int price = system->Trade(commodity);
+		if(price <= 0)
+			return 0;
+		// Selling lowers the local price, just like selling by hand.
+		GameData::AddPurchase(*system, commodity, -tons);
+		return static_cast<int64_t>(price) * tons;
+	};
+	const Industry::DayReport report = industry.AdvanceDay(accounts.Credits(), sell);
+	accounts.AddCredits(report.sales - report.upkeep);
+
+	if(report.upkeep || report.sales)
+	{
+		string message = "Industry: paid " + Format::CreditString(report.upkeep) + " in upkeep";
+		if(report.sales)
+			message += " and earned " + Format::CreditString(report.sales) + " from auto-sales";
+		Messages::Add({message + ".", GameData::MessageCategories().Get("daily")});
+	}
 }
 
 

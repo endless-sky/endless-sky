@@ -131,9 +131,9 @@ void PlanetPanel::Step()
 	{
 		initializedShops = true;
 		for(const Industry::Holding &holding : player.GetIndustry().Holdings())
-			if(holding.planet == planet.TrueName() && holding.stockpile > 0)
+			if(holding.planet == planet.TrueName() && holding.OutputStock() > 0)
 				Messages::Add({"Your " + holding.type->TrueName() + " has "
-					+ Format::CargoString(holding.stockpile, holding.type->Output()) + " ready to collect.",
+					+ Format::MassString(holding.OutputStock()) + " of goods ready to collect.",
 					GameData::MessageCategories().Get("normal")});
 		for(const Shop<Ship> *shop : planet.Shipyards())
 		{
@@ -243,10 +243,9 @@ void PlanetPanel::Draw()
 
 		if(hasOutfitter)
 			info.SetCondition("has outfitter");
-
-		if(IndustryPanel::HasIndustry(player, planet))
-			info.SetCondition("has industry");
 	}
+	if(IndustryPanel::IsAvailable(player, planet))
+		info.SetCondition("has industry");
 
 	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ? "planet (small screen)" : "planet");
 	ui->Draw(info, this);
@@ -339,7 +338,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		GetUI().Push(new MissionPanel(player));
 		return true;
 	}
-	else if(key == 'n' && hasAccess && IndustryPanel::HasIndustry(player, planet))
+	else if(key == 'n' && IndustryPanel::IsAvailable(player, planet))
 		selectedPanel = industry;
 	else if(key == 'h' && hasAccess && planet.GetPort().HasService(Port::ServicesType::HireCrew))
 		selectedPanel = hiring;

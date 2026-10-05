@@ -18,15 +18,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <set>
 #include <string>
+#include <utility>
+#include <vector>
 
 class DataNode;
 
 
 
 // A type of industrial facility that the player can build, such as a mining
-// outpost. Each facility produces a fixed amount of one commodity per day into
-// a local stockpile, up to its storage capacity.
+// outpost or a factory. Each day, a facility uses up its inputs (if any) from its
+// local stock and adds its outputs, up to its storage capacity per commodity.
 class Facility {
+public:
+	// A commodity and an amount in tons per day.
+	using Amounts = std::vector<std::pair<std::string, int>>;
+
+
 public:
 	Facility() = default;
 
@@ -37,22 +44,28 @@ public:
 	const std::string &TrueName() const;
 	const std::string &Description() const;
 	int64_t Cost() const;
-	// The commodity this facility produces, and how many tons per day.
-	const std::string &Output() const;
-	int OutputPerDay() const;
-	// The most tons that can sit in this facility's stockpile.
+	// Credits per day to keep the facility running.
+	int64_t Upkeep() const;
+	// Commodities used up and produced each day.
+	const Amounts &Inputs() const;
+	const Amounts &Outputs() const;
+	// The most tons of each commodity that can sit in this facility's stock.
 	int Storage() const;
 
-	// Check whether this facility can be built on the planet with the given true name.
-	bool CanBuildOn(const std::string &planet) const;
+	// Check whether this facility can be built on a planet, given its true name
+	// and attributes: either the planet is listed by name, or it has one of the
+	// listed attributes.
+	bool CanBuildOn(const std::string &planet, const std::set<std::string> &attributes) const;
 
 
 private:
 	std::string trueName;
 	std::string description;
 	int64_t cost = 0;
-	std::string output;
-	int outputPerDay = 0;
+	int64_t upkeep = 0;
+	Amounts inputs;
+	Amounts outputs;
 	int storage = 0;
 	std::set<std::string> planets;
+	std::set<std::string> attributes;
 };

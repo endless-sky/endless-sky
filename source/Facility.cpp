@@ -28,6 +28,8 @@ void Facility::Load(const DataNode &node)
 	if(node.Size() < 2)
 		return;
 	trueName = node.Token(1);
+	inputs.clear();
+	outputs.clear();
 
 	for(const DataNode &child : node)
 	{
@@ -37,16 +39,24 @@ void Facility::Load(const DataNode &node)
 			description = child.Token(1);
 		else if(key == "cost" && hasValue)
 			cost = max<int64_t>(0, child.Value(1));
-		else if(key == "output" && child.Size() >= 3)
+		else if(key == "upkeep" && hasValue)
+			upkeep = max<int64_t>(0, child.Value(1));
+		else if((key == "input" || key == "output") && child.Size() >= 3)
 		{
-			output = child.Token(1);
-			outputPerDay = max(0, static_cast<int>(child.Value(2)));
+			int amount = static_cast<int>(child.Value(2));
+			if(amount > 0)
+				(key == "input" ? inputs : outputs).emplace_back(child.Token(1), amount);
+			else
+				child.PrintTrace("Skipping non-positive amount:");
 		}
 		else if(key == "storage" && hasValue)
 			storage = max(0, static_cast<int>(child.Value(1)));
 		else if(key == "planet" && hasValue)
 			for(int i = 1; i < child.Size(); ++i)
 				planets.insert(child.Token(i));
+		else if(key == "attributes" && hasValue)
+			for(int i = 1; i < child.Size(); ++i)
+				attributes.insert(child.Token(i));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -82,16 +92,23 @@ int64_t Facility::Cost() const
 
 
 
-const string &Facility::Output() const
+int64_t Facility::Upkeep() const
 {
-	return output;
+	return upkeep;
 }
 
 
 
-int Facility::OutputPerDay() const
+const Facility::Amounts &Facility::Inputs() const
 {
-	return outputPerDay;
+	return inputs;
+}
+
+
+
+const Facility::Amounts &Facility::Outputs() const
+{
+	return outputs;
 }
 
 
@@ -103,7 +120,12 @@ int Facility::Storage() const
 
 
 
-bool Facility::CanBuildOn(const string &planet) const
+bool Facility::CanBuildOn(const string &planet, const set<string> &planetAttributes) const
 {
-	return planets.contains(planet);
+	if(planets.contains(planet))
+		return true;
+	for(const string &attribute : attributes)
+		if(planetAttributes.contains(attribute))
+			return true;
+	return false;
 }

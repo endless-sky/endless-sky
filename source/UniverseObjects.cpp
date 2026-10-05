@@ -352,6 +352,20 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : persons)
 		if(!it.second.IsValid())
 			Warn("person", it.first);
+	// Facilities can only produce and use commodities that can be traded.
+	set<string> commodityNames;
+	for(const Trade::Commodity &commodity : trade.Commodities())
+		commodityNames.insert(commodity.name);
+	for(const auto &it : facilities)
+	{
+		if(!it.second.IsDefined())
+			continue;
+		for(const Facility::Amounts *amounts : {&it.second.Inputs(), &it.second.Outputs()})
+			for(const auto &amount : *amounts)
+				if(!commodityNames.contains(amount.first))
+					Logger::Log("Facility \"" + it.first + "\" uses unknown commodity \"" + amount.first + "\".",
+						Logger::Level::WARNING);
+	}
 }
 
 

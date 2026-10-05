@@ -15,6 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <cstdint>
+#include <functional>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -26,18 +29,49 @@ class Set;
 
 
 
-// All of the industrial facilities the player owns, and the goods that each
-// one has produced but the player has not collected yet.
+// All of the industrial facilities the player owns, the goods stocked in each
+// one, and the daily production that turns inputs into outputs.
 class Industry {
 public:
-	// One facility the player has built on a particular planet.
+	// What a facility did on the most recent day.
+	enum class Status {
+		STARTING,
+		RUNNING,
+		NO_INPUTS,
+		STORAGE_FULL,
+		NO_CREDITS
+	};
+
+	// One type of facility the player has built on a particular planet.
 	struct Holding {
 		const Facility *type = nullptr;
 		// The true name of the planet the facility is on.
 		std::string planet;
-		// Tons of the facility's output waiting to be collected.
-		int stockpile = 0;
+		// How many of this facility have been built here. Production, upkeep
+		// and storage all scale with this.
+		int count = 1;
+		// Tons of each commodity (inputs and outputs) stored here.
+		std::map<std::string, int> stock;
+		// Whether outputs are sold to the local market every day.
+		bool autoSell = false;
+		Status status = Status::STARTING;
+
+		// The most tons of any one commodity this holding can store.
+		int Capacity() const;
+		int Stock(const std::string &commodity) const;
+		// Total tons of outputs waiting to be collected.
+		int OutputStock() const;
 	};
+
+	// The result of a day of production, in credits.
+	struct DayReport {
+		int64_t upkeep = 0;
+		int64_t sales = 0;
+	};
+
+	// Sell the given tons of a holding's output on the local market, returning
+	// the credits earned, or 0 if it cannot be sold there.
+	using Seller = std::function<int64_t(const Holding &holding, const std::string &commodity, int tons)>;
 
 
 public:
@@ -50,14 +84,20 @@ public:
 	Holding *Find(const Facility &type, const std::string &planet);
 	const Holding *Find(const Facility &type, const std::string &planet) const;
 
-	// Add a new, empty facility. Does nothing if the player already owns this
-	// type of facility on this planet. Paying for it is up to the caller.
+	// Add a new facility, or one more of it if the player already owns this type
+	// of facility on this planet. Paying for it is up to the caller.
 	void Build(const Facility &type, const std::string &planet);
-	// Run one day of production for every facility.
-	void AdvanceDay();
-	// Take up to the given number of tons out of a holding's stockpile.
+	// Run one day of production for every facility. Upkeep is only paid (and
+	// the facility only runs) while the credits on hand cover it. The caller
+	// must apply the returned report to the player's account.
+	DayReport AdvanceDay(int64_t credits, const Seller &sell = nullptr);
+
+	// Take up to the given number of tons of a commodity out of a holding's stock.
 	// Returns how many tons were actually taken.
-	static int Collect(Holding &holding, int space);
+	static int Collect(Holding &holding, const std::string &commodity, int space);
+	// Add up to the given number of tons of a commodity to a holding's stock,
+	// limited by its capacity. Returns how many tons were actually added.
+	static int Supply(Holding &holding, const std::string &commodity, int available);
 
 
 private:

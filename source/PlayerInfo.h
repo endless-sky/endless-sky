@@ -476,6 +476,8 @@ private:
 	bool CanBeSaved() const;
 	// Handle the daily salaries and payments.
 	void DoAccounting();
+	// Run a day of production for the player's facilities.
+	void AdvanceIndustry();
 
 	bool HasClearance() const;
 

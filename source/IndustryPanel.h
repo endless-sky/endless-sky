@@ -26,33 +26,47 @@ class PlayerInfo;
 
 
 
-// Planet screen panel for building industrial facilities and collecting the
-// goods they have produced. Drawn in the planet description area, like the bank.
+// Planet screen panel for building industrial facilities, supplying them with
+// inputs and collecting what they produce. Drawn in the planet description
+// area, like the bank. Tab switches to an overview of all the player's holdings.
 class IndustryPanel : public Panel {
 public:
 	IndustryPanel(PlayerInfo &player, const Planet &planet);
 
-	// Check whether there is anything to show on this planet: either a facility
-	// that can be built here, or one that the player already owns here.
-	static bool HasIndustry(const PlayerInfo &player, const Planet &planet);
+	// Check whether the Industry button should be shown on this planet: there is
+	// a facility that can be built or is owned here, or the player owns
+	// facilities elsewhere that they may want to review.
+	static bool IsAvailable(const PlayerInfo &player, const Planet &planet);
 
 	virtual void Draw() override;
 
 
 protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+	virtual bool Scroll(double dx, double dy) override;
 
 
 private:
-	// The facility types shown on this planet, in display order.
+	// The facility types that can be built or are owned on this planet.
 	static std::vector<const Facility *> Facilities(const PlayerInfo &player, const Planet &planet);
-	// Build the facility if it isn't owned yet, otherwise collect its stockpile.
-	void DoAction(const Facility &facility);
+	const Facility *Selected() const;
+
+	void DrawPlanetView();
+	void DrawOverview();
+
+	// Actions on the selected facility.
+	void Build();
+	void Supply();
+	void Collect();
+	void ToggleAutoSell();
+	bool CanAutoSell() const;
 
 
 private:
 	PlayerInfo &player;
 	const Planet &planet;
+	bool showOverview = false;
 	int selectedRow = 0;
+	int scroll = 0;
 	std::string status;
 };
