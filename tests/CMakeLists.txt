@@ -59,6 +59,7 @@ list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_capture_override.txt
 	integration/config/plugins/integration-tests/data/tests/tests_common.txt
 	integration/config/plugins/integration-tests/data/tests/tests_conditional_choice.txt
+	integration/config/plugins/integration-tests/data/tests/tests_dev_menu.txt
 	integration/config/plugins/integration-tests/data/tests/tests_disown.txt
 	integration/config/plugins/integration-tests/data/tests/tests_flagship_attribute_autoconditions.txt
 	integration/config/plugins/integration-tests/data/tests/tests_flagship_model_condition.txt

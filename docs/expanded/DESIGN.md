@@ -1,4 +1,4 @@
-# Endless Sky: Expanded — Player Industry Mod
+# Endless Sky: Expanded - Player Industry Mod
 
 Goal: player-driven heavy industry in the vein of X4: Foundations / EVE Online, at a
 smaller scale. Players build and own facilities (planetside districts, outposts,
@@ -14,7 +14,7 @@ Windows playtest build. Keep this file updated at the end of every piece.
 | 0. Pipeline + dev menu | Done, waiting for playtest confirmation |
 | 1. Industry MVP | Next |
 
-## Piece 0 — Pipeline + dev menu (done)
+## Piece 0 - Pipeline + dev menu (done)
 
 - `.github/workflows/playtest.yml`: every push to `claude/**` or `playtest/**` builds
   Windows only and replaces the `playtest` pre-release
@@ -27,12 +27,12 @@ Windows playtest build. Keep this file updated at the end of every piece.
   Always enabled for now; gate it (e.g. behind `-d` or a preference) before any public release.
 - Integration test: `tests/integration/config/plugins/integration-tests/data/tests/tests_dev_menu.txt`.
 
-## Piece 1 — Industry MVP (agreed scope)
+## Piece 1 - Industry MVP (agreed scope)
 
 One facility type the player can build and own, proving data, UI, save game and daily tick.
 
 - New data type `facility` (defined in `data/expanded/`), loaded via `GameData` like outfits.
-  First and only facility: **Mining Outpost** — 150,000 credits, 2 tons Metal/day,
+  First and only facility: **Mining Outpost** - 150,000 credits, 2 tons Metal/day,
   50 ton storage.
 - Buildable **only on New Greenland** for the MVP (planet in `data/map planets.txt`).
   Make the allowed planets part of the facility's data definition so this is easy to widen.
@@ -54,8 +54,8 @@ NPC haulers, remote management, custom art.
 
 ## Roadmap (each is one or more pieces; revise as we learn)
 
-2. Production chains (inputs → outputs), daily upkeep, several facility types.
+2. Production chains (inputs -> outputs), daily upkeep, several facility types.
 3. Industry overview from anywhere; rename facilities; auto-sell to local market.
 4. Outposts on uninhabited planets and moons.
-5. Player-built space stations (new landable stellar objects) — biggest engine job.
+5. Player-built space stations (new landable stellar objects) - biggest engine job.
 6. Economic impact: output moves local prices; NPC haulers move goods.
