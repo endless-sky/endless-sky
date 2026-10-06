@@ -9271,6 +9271,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 mission "Timothy Radrickson 3d: Return to Rand"
 	landing
 	name "Return to Rand"
+	description "Now that you've finished escorting the Hroar's Haulers Convoy, visit <destination> for your reward."
 	source "Wayfarer"
 	destination "Rand"
 	to offer
