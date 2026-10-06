@@ -47,6 +47,7 @@ protected:
 	virtual const ItemInfoDisplay &SelectedInfo() const override;
 	virtual const ItemInfoDisplay &CompareInfo() const override;
 
+	virtual void Hovering(int index) override;
 	virtual void Select(int index) override;
 	virtual void Compare(int index) override;
 	virtual double SystemValue(const System *system) const override;
@@ -67,6 +68,7 @@ private:
 	std::map<const System *, std::map<const Ship *, int>> parkedShips;
 
 	const Ship *selected = nullptr;
+	const Ship *hovering = nullptr;
 	const Ship *compare = nullptr;
 
 	ShipInfoDisplay selectedInfo;

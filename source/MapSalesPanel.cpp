@@ -221,9 +221,28 @@ bool MapSalesPanel::Click(int x, int y, MouseButton button, int clicks)
 // Check to see if the mouse is over the scrolling pane.
 bool MapSalesPanel::Hover(int x, int y)
 {
+	Point hoverPoint(x, y);
+	hoverKey = -1;
+	Hovering(-1);
 	isDragging = (x < Screen::Left() + WIDTH);
+	const Rectangle keyContentBox = GameData::Interfaces().Get("map: sales key")->GetBox("content");
+	bool hoveringKey = keyContentBox.Contains(hoverPoint);
+	if(!isDragging && !hoveringKey)
+		return MapPanel::Hover(x, y);
 
-	return isDragging || MapPanel::Hover(x, y);
+	if(hoveringKey)
+	{
+		hoverKey = (y - keyContentBox.Top()) / 20;
+		// Keys 0 and 1 do the same thing when clicked.
+		if(hoverKey == 1)
+			hoverKey = 0;
+	}
+	else
+	{
+		auto zoneIt = ranges::find_if(zones, [&](const ClickZone<int> &zone){ return zone.Contains(hoverPoint); });
+		Hovering(zoneIt == zones.end() ? -1 : zoneIt->Value());
+	}
+	return true;
 }
 
 
@@ -274,7 +293,20 @@ void MapSalesPanel::DrawSalesKey(Information &info) const
 	else if(onlyShowStorageHere)
 		info.SetCondition("only stored here");
 
-	GameData::Interfaces().Get("map: sales key")->Draw(info);
+	const Interface *keyInterface = GameData::Interfaces().Get("map: sales key");
+	keyInterface->Draw(info);
+	if(hoverKey != -1)
+	{
+		int height = 20;
+		// Keys 0 and 1 both do the same thing when clicked,
+		// so give them a shared highlight.
+		if(hoverKey == 0)
+			height = 40;
+		const Rectangle keyContentBox = keyInterface->GetBox("content");
+		FillShader::Fill(Rectangle::FromCorner(
+			Point(keyContentBox.Left(), keyContentBox.Top() + hoverKey * 20.),
+			Point(keyContentBox.Width() - 7., height)), *GameData::Colors().Get("faint"));
+	}
 }
 
 
@@ -394,11 +426,12 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Drawable &drawable, bo
 
 
 void MapSalesPanel::Draw(Point &corner, const Drawable &drawable, const Swizzle *swizzle, bool isForSale,
-		bool isSelected, const string &name, const string &variantName,
+		bool isSelected, bool isHovering, const string &name, const string &variantName,
 		const string &price, const string &info, const string &storage)
 {
 	const Font &font = FontSet::Get(14);
 	const Color &selectionColor = *GameData::Colors().Get("item selected");
+	const Color &highlightColor = *GameData::Colors().Get("faint");
 
 	// Set the padding so the text takes the same height overall,
 	// regardless of whether it's three lines of text or four.
@@ -418,8 +451,8 @@ void MapSalesPanel::Draw(Point &corner, const Drawable &drawable, const Swizzle 
 
 	if(corner.Y() < Screen::Bottom() && corner.Y() + ICON_HEIGHT >= Screen::Top())
 	{
-		if(isSelected)
-			FillShader::Fill(Rectangle::FromCorner(corner, blockSize), selectionColor);
+		if(isSelected || isHovering)
+			FillShader::Fill(Rectangle::FromCorner(corner, blockSize), isSelected ? selectionColor : highlightColor);
 
 		DrawSprite(corner, drawable, isSelected, swizzle);
 

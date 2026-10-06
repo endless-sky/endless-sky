@@ -38,6 +38,7 @@ protected:
 	// Overrides from Panel.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
+	virtual bool Hover(int x, int y) override;
 
 
 private:
@@ -52,6 +53,7 @@ private:
 	// Loan amount you're prequalified for.
 	int64_t qualify;
 	int selectedRow = 0;
+	int hoverRow = -1;
 
 	bool mergedMortgages = false;
 	int mortgageRows = 0;
