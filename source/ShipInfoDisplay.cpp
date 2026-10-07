@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "CategoryList.h"
 #include "CategoryType.h"
-#include "Color.h"
 #include "Depreciation.h"
 #include "shader/FillShader.h"
 #include "text/Format.h"
@@ -34,6 +33,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <sstream>
 
 using namespace std;
+
+
+
+ShipInfoDisplay::ShipInfoDisplay()
+{
+	isShip = true;
+}
 
 
 
@@ -506,32 +512,39 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	outfitsHeight = 20;
 
 	map<string, map<string, int>> listing;
-	for(const auto &it : ship.Outfits())
-		if(it.first->IsDefined() && !it.first->Category().empty() && !it.first->DisplayName().empty())
-			listing[it.first->Category()][it.first->DisplayName()] += it.second;
+	for(const auto &[outfit, count] : ship.Outfits())
+		if(outfit->IsDefined() && !outfit->Category().empty() && !outfit->DisplayName().empty())
+			listing[outfit->Category()][outfit->DisplayName()] += count;
 
-	for(const auto &cit : listing)
+	// Display outfit categories in the same order that they're listed in the outfitter.
+	bool isFirst = true;
+	for(const auto &category : GameData::GetCategory(CategoryType::OUTFIT))
 	{
+		const string &name = category.Name();
+		auto it = listing.find(name);
+		if(it == listing.end())
+			continue;
+
 		// Pad by 10 pixels before each category.
-		if(&cit != &*listing.begin())
+		if(!isFirst)
 		{
 			outfitLabels.push_back(string());
 			outfitValues.push_back(string());
 			outfitsHeight += 10;
 		}
+		isFirst = false;
 
-		outfitLabels.push_back(cit.first + ':');
+		outfitLabels.push_back(name + ':');
 		outfitValues.push_back(string());
 		outfitsHeight += 20;
 
-		for(const auto &it : cit.second)
+		for(const auto &[outfit, count] : it->second)
 		{
-			outfitLabels.push_back(it.first);
-			outfitValues.push_back(to_string(it.second));
+			outfitLabels.push_back(outfit);
+			outfitValues.push_back(to_string(count));
 			outfitsHeight += 20;
 		}
 	}
-
 
 	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
 	int64_t chassisCost = depreciation.Value(
