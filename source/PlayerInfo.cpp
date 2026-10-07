@@ -142,19 +142,17 @@ namespace {
 			// Minor missions only get offered if no other missions (including other
 			// minor missions) are competing with them, except for "non-blocking" missions.
 			// This is to avoid having two or three missions pop up as soon as you enter the spaceport.
-			// Note that the manner in which excess minor missions are discarded means that the
-			// minor mission with the lowest precedence is the one that will be offered.
-			auto it = missions.begin();
-			while(it != missions.end())
+			// Remove minor missions in reverse order so that the mission with the highest precedence
+			// is the one that remains.
+			for(auto it = missions.end(); it != missions.begin(); )
 			{
+				--it;
 				if(it->IsMinor())
 				{
 					it = missions.erase(it);
 					if(missions.size() <= 1 + nonBlockingMissions)
 						break;
 				}
-				else
-					++it;
 			}
 		}
 	}
