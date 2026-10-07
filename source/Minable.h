@@ -44,6 +44,10 @@ public:
 	public:
 		Payload(const DataNode &node);
 
+		static constexpr int MAX_DROPS_LOWER_BOUND = 1;
+		static constexpr int MIN_DROPS_LOWER_BOUND = 0;
+
+		// The outfit type that this payload will drop.
 		const Outfit *outfit;
 		// The maximum number of outfits that this payload can drop.
 		int maxDrops = 1;
