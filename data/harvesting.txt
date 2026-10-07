@@ -279,7 +279,7 @@ minable "yottrite"
 	sprite "asteroid/yottrite/spin"
 	hull 18000
 	"random hull" 4000
-	payload "Yottrite" 1 5
+	payload "Yottrite" 1 7
 		"toughness" 50000
 	explode "smoke" 30
 	explode "bolide" 30
