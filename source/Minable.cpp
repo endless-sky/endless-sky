@@ -275,8 +275,8 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				dropRate += (1. - dropRate) / (1. + it.toughness / prospecting);
 			if(dropRate <= 0.)
 				continue;
-			int dropAmount = it.minDrops + Random::Binomial(it.maxDrops - it.minDrops, dropRate);
-			for(int amount = dropAmount; amount > 0; amount -= Flotsam::TONS_PER_BOX)
+			int amount = it.minDrops + Random::Binomial(it.maxDrops - it.minDrops, dropRate);
+			for( ; amount > 0; amount -= Flotsam::TONS_PER_BOX)
 			{
 				flotsam.emplace_back(new Flotsam(it.outfit, min(amount, Flotsam::TONS_PER_BOX)));
 				flotsam.back()->Place(*this);
