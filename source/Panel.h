@@ -104,6 +104,12 @@ public:
 
 
 protected:
+	// A lot of different UI elements allow a modifier to change the number of
+	// something you are buying, so the shared function is defined here:
+	static int Modifier();
+
+
+protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress);
 	virtual bool Click(int x, int y, MouseButton button, int clicks);
@@ -137,9 +143,6 @@ protected:
 	// user-defined command key will override it.
 	bool DoKey(SDL_Keycode key, Uint16 mod = 0);
 
-	// A lot of different UI elements allow a modifier to change the number of
-	// something you are buying, so the shared function is defined here:
-	static int Modifier();
 	// Display the given help message if it has not yet been shown
 	// (or if force is set to true). Return true if the message was displayed.
 	bool DoHelp(const std::string &name, bool force = false) const;
@@ -156,27 +159,18 @@ protected:
 private:
 	class Zone : public Rectangle {
 	public:
-		Zone(const Rectangle &rect, const std::function<void()> &fun) : Rectangle(rect), fun(fun) {}
-		Zone(const Rectangle &rect, const std::function<void(const Event &)> &fun)
-			: Rectangle(rect), funDownEvent(fun)
-		{}
+		Zone(const Rectangle &rect, const std::function<void()> &fun);
+		Zone(const Rectangle &rect, const std::function<void(const Event &)> &fun);
 
-		void Click() const
-		{
-			if(funDownEvent)
-			{
-				Event e{{}, 0, Event::MOUSE};
-				funDownEvent(e);
-			}
-			else
-				fun();
-		}
+		void Click() const;
 
 	private:
 		std::function<void()> fun;
 		std::function<void(const Event &)> funDownEvent;
 	};
 
+
+private:
 	// The UI class will not directly call the virtual methods, but will call
 	// these instead. These methods will recursively allow child panels to
 	// handle the event first, before calling the virtual method for the derived
