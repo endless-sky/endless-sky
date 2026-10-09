@@ -46,9 +46,7 @@ Minable::Payload::Payload(const DataNode &node)
 		maxDrops = max<int>(MAX_DROPS_LOWER_BOUND, node.Value(3));
 	}
 	else if(node.Size() == 3)
-	{
 		maxDrops = max<int>(MAX_DROPS_LOWER_BOUND, node.Value(2));
-	}
 
 	for(const DataNode &child : node)
 	{
