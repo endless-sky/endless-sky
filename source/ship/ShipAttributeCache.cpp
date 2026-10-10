@@ -261,7 +261,7 @@ void ShipAttributeCache::Cloaking(const Outfit &attributes)
 	cloakCost.hull = attributes.Get("cloaking hull");
 	cloakCost.energy = attributes.Get("cloaking energy");
 	cloakCost.fuel = attributes.Get("cloaking fuel");
-	cloakCost.heat += attributes.Get("cloaking heat");
+	cloakCost.heat = attributes.Get("cloaking heat");
 
 	cloak = attributes.Get("cloak");
 	cloakByMass = attributes.Get("cloak by mass");

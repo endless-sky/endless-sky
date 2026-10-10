@@ -4579,10 +4579,9 @@ double Ship::CloakFuelCost() const
 
 bool Ship::HasFuelForCloak() const
 {
-	double fuelCost = CloakFuelCost();
 	// Don't cloak if it would result in you becoming stranded.
 	// If the ship has a ramscoop, assume that it won't be stranded due to cloak usage.
-	if(fuelCost && !cache.ramscoop)
+	if(cache.cloakCost.fuel && !cache.ramscoop)
 	{
 		double fuel = levels.fuel;
 		int steps = ceil((1. - Cloaking()) / CloakingSpeed());
