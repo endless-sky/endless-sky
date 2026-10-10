@@ -142,8 +142,12 @@ PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
 {
 }
 
+
+
 PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState)
-	: player(player), panelState(panelState)
+	: player(player), panelState(std::move(panelState)),
+	tooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"), true)
 {
 	Audio::Pause();
 	SetInterruptible(false);
@@ -246,8 +250,13 @@ void PlayerInfoPanel::Draw()
 	// Draw the player and fleet info sections.
 	menuZones.clear();
 
+	tooltip.Clear();
 	DrawPlayer(infoPanelUi->GetBox("player"));
 	DrawFleet(infoPanelUi->GetBox("fleet"));
+	if(tooltip.HasText())
+		tooltip.Draw();
+	else
+		tooltip.DecrementCount();
 }
 
 
@@ -600,10 +609,13 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	table.SetUnderline(0, columnWidth);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 
+	CheckHover(table.GetRowBounds(), "player:");
 	table.DrawTruncatedPair("player:", dim, player.FirstName() + " " + player.LastName(),
 		bright, Truncate::MIDDLE, true);
+	CheckHover(table.GetRowBounds(), "net worth:");
 	table.DrawTruncatedPair("net worth:", dim, Format::CreditString(player.Accounts().NetWorth()),
 		bright, Truncate::MIDDLE, true);
+	CheckHover(table.GetRowBounds(), "time played:");
 	table.DrawTruncatedPair("time played:", dim, Format::PlayTime(player.GetPlayTime()),
 		bright, Truncate::MIDDLE, true);
 
@@ -615,15 +627,19 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	{
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
+		CheckHover(table.GetRowBounds(), "combat rating:");
 		table.Draw("combat rating:", bright);
 		table.Advance();
 		table.DrawGap(5);
 
+		CheckHover(table.GetRowBounds(), "rank:");
 		table.DrawTruncatedPair("rank:", dim,
 			to_string(combatLevel) + " - " + combatRating,
 			dim, Truncate::MIDDLE, false);
+		CheckHover(table.GetRowBounds(), "experience:");
 		table.DrawTruncatedPair("experience:", dim,
 			Format::Number(combatExperience), dim, Truncate::MIDDLE, false);
+		CheckHover(table.GetRowBounds(), "for next rank:");
 		bool maxRank = (combatRating == GameData::Rating("combat", combatLevel + 1));
 		table.DrawTruncatedPair("    for next rank:", dim,
 				maxRank ? "MAX" : Format::Number(ceil(exp(combatLevel + 1))),
@@ -645,14 +661,17 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 
 			table.DrawGap(10);
 			table.DrawUnderline(dim);
+			CheckHover(table.GetRowBounds(), "piracy threat:");
 			table.Draw("piracy threat:", bright);
 			table.Draw(Format::Percentage(prob, 0), dim);
 			table.DrawGap(5);
 
 			// Format the attraction and deterrence levels with tens places, so it
 			// is clear which is higher even if they round to the same level.
+			CheckHover(table.GetRowBounds(), "cargo:");
 			table.DrawTruncatedPair("cargo: " + attractionRating, dim,
 				"(+" + Format::Number(attractionLevel, 1, false) + ")", dim, Truncate::MIDDLE, false);
+			CheckHover(table.GetRowBounds(), "fleet:");
 			table.DrawTruncatedPair("fleet: " + deterrenceRating, dim,
 				"(-" + Format::Number(deterrenceLevel, 1, false) + ")", dim, Truncate::MIDDLE, false);
 		}
@@ -823,6 +842,7 @@ void PlayerInfoPanel::DrawList(const vector<pair<string, int64_t>> &list, shared
 	font.Draw({title, {width, Alignment::LEFT}}, topLeft, bright);
 	font.Draw({Format::Number(titleValue), {width, Alignment::RIGHT}}, topLeft, dim);
 	FillShader::Fill(Rectangle::FromCorner(topLeft + Point(0., font.Height() - 2.), Point(width, 1.)), dim);
+	CheckHover(Rectangle::FromCorner(topLeft, Point(width, 20)), title);
 	topLeft.Y() += 25.;
 
 	if(!area)
@@ -918,6 +938,18 @@ bool PlayerInfoPanel::Hover(const Point &point)
 	hoverIndex = -1;
 
 	return true;
+}
+
+
+
+void PlayerInfoPanel::CheckHover(const Rectangle &zone, const string &label)
+{
+	if(!zone.Contains(hoverPoint))
+		return;
+
+	tooltip.IncrementCount();
+	tooltip.SetZone(zone);
+	tooltip.SetText(GameData::Tooltip("player info: " + label));
 }
 
 
