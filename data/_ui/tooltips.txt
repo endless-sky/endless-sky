@@ -1823,8 +1823,18 @@ tip "Fighter crossfire immunity"
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
 
-tip "Spawn raid fleets"
-	`Controls whether raid fleets are able to spawn. Raid fleets are hostile fleets that can spawn in some systems if your fleet's cargo attractiveness is much higher than its deterrence. (That is, if you have a lot of cargo space and not a lot of firepower to defend it.) If this rule is active, your fleet's raid fleet spawn chance can be viewed from the player info panel.`
+tip "Raid fleet roll chance"
+	`Controls the chance of a raid fleet spawn attempt occurring each time you jump into a system.`
+	`Raid fleets are hostile fleets that can spawn in some systems if your fleet's cargo attractiveness is much higher than its deterrence. (That is, if you have a lot of cargo space and not a lot of firepower to defend it.) If this rule isn't 0%, your fleet's raid fleet spawn chance can be viewed from the player info panel.`
+
+tip "Raid attraction multiplier"
+	`Multiplies the raid fleet attraction value of all the ships in your fleet. 200% means that you would need half as much cargo space to have the same chance to spawn raid fleets, while 50% means you need twice as much.`
+
+tip "Raid deterrence multiplier"
+	`Multiplies the raid fleet deterrence value of all the ships in your fleet. 200% means that you would need half as much firepower to have the same chance to spawn raid fleets, while 50% means you need twice as much.`
+
+tip "Raid fleet spawn attempts"
+	`Each time you jump into a system when your fleet is attractive to raid fleets and the raid fleet roll chance was successful, this is the maximum number of fleets that could possibly spawn`
 
 tip "Fleet size limitation"
 	`Determines whether the player can only have a limited number of escorts active at once. If active, your flagship, parked ships, and carried ships (fighters and drones) are excluded from your fleet capacity, and you will not be able to capture ships that would put you over your capacity or take off from a planet if your capacity has been reached.`

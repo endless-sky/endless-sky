@@ -64,7 +64,10 @@ namespace {
 	const string LOCK_GAMERULES = "Lock gamerules";
 	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighter crossfire immunity";
 	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
-	const string SPAWN_RAID_FLEETS = "Spawn raid fleets";
+	const string RAID_FLEET_ROLL_CHANCE = "Raid fleet roll chance";
+	const string RAID_ATTRACTION_MULTIPLIER = "Raid attraction multiplier";
+	const string RAID_DETERRENCE_MULTIPLIER = "Raid deterrence multiplier";
+	const string RAID_FLEET_SPAWN_ATTEMPTS = "Raid fleet spawn attempts";
 	const string FLEET_SIZE_LIMITATION = "Fleet size limitation";
 	const string MAX_ESCORT_COUNT = "Default max escort count";
 	const string MAX_ESCORT_CREW = "Default max escort crew";
@@ -94,7 +97,10 @@ namespace {
 		{LOCK_GAMERULES, "lock gamerules"},
 		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
 		{UNIVERSAL_AMMO_STOCKING, AMMO_RESTOCKING_NAME},
-		{SPAWN_RAID_FLEETS, "spawn raid fleets"},
+		{RAID_FLEET_ROLL_CHANCE, "raid fleet roll chance"},
+		{RAID_ATTRACTION_MULTIPLIER, "raid attraction multiplier"},
+		{RAID_DETERRENCE_MULTIPLIER, "raid deterrence multiplier"},
+		{RAID_FLEET_SPAWN_ATTEMPTS, "raid fleet spawn attempts"},
 		{FLEET_SIZE_LIMITATION, "fleet size limitation"},
 		{MAX_ESCORT_COUNT, "default max escort count"},
 		{MAX_ESCORT_CREW, "default max escort crew"},
@@ -104,7 +110,7 @@ namespace {
 		{RESTRICTED_SAVE_LOADING, "restricted save loading"},
 	};
 
-	const int GAMERULES_PAGE_COUNT = 1;
+	const int GAMERULES_PAGE_COUNT = 2;
 }
 
 
@@ -422,16 +428,21 @@ void GamerulesPanel::DrawGamerules()
 		HABITABLE_ARRIVAL_MAX,
 		FLEET_MULTIPLIER,
 		"",
+		"Raid Fleet Behavior",
+		RAID_FLEET_ROLL_CHANCE,
+		RAID_ATTRACTION_MULTIPLIER,
+		RAID_DETERRENCE_MULTIPLIER,
+		RAID_FLEET_SPAWN_ATTEMPTS,
+		"",
 		"Hardcore Settings",
 		PERMADEATH_MODE,
 		SINGLE_SAVE_FILE,
 		RESTRICTED_SAVE_LOADING,
-		"",
+		"\n",
 		"Miscellaneous",
 		LOCK_GAMERULES,
 		FIGHTERS_HIT_WHEN_DISABLED,
 		UNIVERSAL_AMMO_STOCKING,
-		SPAWN_RAID_FLEETS,
 	};
 
 	bool isCategory = true;
@@ -547,8 +558,26 @@ void GamerulesPanel::DrawGamerules()
 		}
 		else if(gamerule == UNIVERSAL_AMMO_STOCKING)
 			text = gamerules.GetValue(AMMO_RESTOCKING_NAME) ? "true" : "false";
-		else if(gamerule == SPAWN_RAID_FLEETS)
-			text = gamerules.SpawnRaidFleets() ? "true" : "false";
+		else if(gamerule == RAID_FLEET_ROLL_CHANCE)
+		{
+			text = Format::Percentage(gamerules.RaidFleetRollChance(), 2);
+			isOn = gamerules.RaidFleetRollChance();
+		}
+		else if(gamerule == RAID_ATTRACTION_MULTIPLIER)
+		{
+			text = Format::Percentage(gamerules.RaidAttractionMultiplier(), 2);
+			isOn = gamerules.RaidFleetRollChance();
+		}
+		else if(gamerule == RAID_DETERRENCE_MULTIPLIER)
+		{
+			text = Format::Percentage(gamerules.RaidDeterrenceMultiplier(), 2);
+			isOn = gamerules.RaidFleetRollChance();
+		}
+		else if(gamerule == RAID_FLEET_SPAWN_ATTEMPTS)
+		{
+			text = Format::AbbreviatedNumber(gamerules.RaidFleetSpawnAttempts());
+			isOn = gamerules.RaidFleetRollChance();
+		}
 		else if(gamerule == FLEET_SIZE_LIMITATION)
 		{
 			switch(gamerules.GetFleetSizeLimitation())
@@ -954,8 +983,34 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 	}
 	else if(str == UNIVERSAL_AMMO_STOCKING)
 		gamerules.SetMiscValue(AMMO_RESTOCKING_NAME, !gamerules.GetValue(AMMO_RESTOCKING_NAME));
-	else if(str == SPAWN_RAID_FLEETS)
-		gamerules.SetSpawnRaidFleets(!gamerules.SpawnRaidFleets());
+	else if(str == RAID_FLEET_ROLL_CHANCE)
+	{
+		string message = "Set the raid fleet roll chance. (Decimal value between 0 and 1.)";
+		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
+		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetRaidFleetRollChance,
+			validate, message, gamerules.RaidFleetRollChance()));
+	}
+	else if(str == RAID_ATTRACTION_MULTIPLIER)
+	{
+		string message = "Set the raid fleet attraction multiplier. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.0; };
+		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetRaidAttractionMultiplier,
+			validate, message, gamerules.RaidAttractionMultiplier()));
+	}
+	else if(str == RAID_DETERRENCE_MULTIPLIER)
+	{
+		string message = "Set the raid fleet deterrence multiplier. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.0; };
+		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetRaidDeterrenceMultiplier,
+			validate, message, gamerules.RaidDeterrenceMultiplier()));
+	}
+	else if(str == RAID_FLEET_SPAWN_ATTEMPTS)
+	{
+		string message = "Set the number of raid fleet spawn attempts. (Integer value greater than or equal to 1.)";
+		auto validate = [](int value) -> bool { return value >= 1; };
+		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetRaidFleetSpawnAttempts,
+			validate, message, gamerules.RaidFleetSpawnAttempts()));
+	}
 	else if(str == FLEET_SIZE_LIMITATION)
 	{
 		Gamerules::FleetSizeLimitation value = gamerules.GetFleetSizeLimitation();
