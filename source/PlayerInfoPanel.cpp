@@ -842,7 +842,7 @@ void PlayerInfoPanel::DrawList(const vector<pair<string, int64_t>> &list, shared
 	font.Draw({title, {width, Alignment::LEFT}}, topLeft, bright);
 	font.Draw({Format::Number(titleValue), {width, Alignment::RIGHT}}, topLeft, dim);
 	FillShader::Fill(Rectangle::FromCorner(topLeft + Point(0., font.Height() - 2.), Point(width, 1.)), dim);
-	CheckHover(Rectangle::FromCorner(topLeft, Point(width, 25)), title);
+	CheckHover(Rectangle::FromCorner(topLeft, Point(width, 20)), title);
 	topLeft.Y() += 25.;
 
 	if(!area)
