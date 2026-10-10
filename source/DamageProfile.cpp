@@ -137,8 +137,8 @@ DamageDealt DamageProfile::CalculateDamage() const
 	// DoT damage types with an instantaneous analog.
 	// Ion and burn damage are blocked 50% by shields.
 	// Corrosion and leak damage are blocked 100%.
-	// Discharge damage is blocked 50% by the absence of shields.
-	damage.levels.discharge = weapon.DischargeDamage() * ScaleType(0., .5, entity.DamageProtection().discharge);
+	// Discharge damage is blocked 100% by the absence of shields.
+	damage.levels.discharge = weapon.DischargeDamage() * ScaleType(0., 1., entity.DamageProtection().discharge);
 	damage.levels.corrosion = weapon.CorrosionDamage() * ScaleType(1., 0., entity.DamageProtection().corrosion);
 	damage.levels.ionization = weapon.IonDamage() * ScaleType(.5, 0., entity.DamageProtection().ionization);
 	damage.levels.burning = weapon.BurnDamage() * ScaleType(.5, 0., entity.DamageProtection().burning);
@@ -146,10 +146,10 @@ DamageDealt DamageProfile::CalculateDamage() const
 
 	// Unique special damage types.
 	// Slowing and scrambling are blocked 50% by shields.
-	// Disruption is blocked 50% by the absence of shields.
+	// Disruption is blocked 100% by the absence of shields.
 	damage.levels.slowness = weapon.SlowingDamage() * ScaleType(.5, 0., entity.DamageProtection().slowness);
 	damage.levels.scrambling = weapon.ScramblingDamage() * ScaleType(.5, 0., entity.DamageProtection().scrambling);
-	damage.levels.disruption = weapon.DisruptionDamage() * ScaleType(0., .5, entity.DamageProtection().disruption);
+	damage.levels.disruption = weapon.DisruptionDamage() * ScaleType(0., 1., entity.DamageProtection().disruption);
 
 	// Hit force is unaffected by shields.
 	double hitForce = weapon.HitForce() * ScaleType(0., 0., entity.ForceProtection());
