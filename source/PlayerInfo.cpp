@@ -1548,6 +1548,9 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 		deterrence += ship->Deterrence();
 	}
 
+	const Gamerules &rules = GameData::GetGamerules();
+	attraction *= rules.RaidAttractionMultiplier();
+	deterrence *= rules.RaidDeterrenceMultiplier();
 	return make_pair(attraction, deterrence);
 }
 
@@ -1562,12 +1565,12 @@ double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *syst
 	{
 		// The player's base attraction to a fleet is determined by their fleet attraction minus
 		// their fleet deterrence, minus whatever the minimum attraction of this raid fleet is.
-		pair<double, double> factors = RaidFleetFactors();
+		auto [fleetAttraction, fleetDeterrence] = RaidFleetFactors();
 		// If there is a maximum attraction for this fleet, and we are above it, it will not spawn.
-		if(raid.MaxAttraction() > 0 && factors.first > raid.MaxAttraction())
+		if(raid.MaxAttraction() > 0 && fleetAttraction > raid.MaxAttraction())
 			return 0;
 
-		attraction = .005 * (factors.first - factors.second - raid.MinAttraction());
+		attraction = .005 * (fleetAttraction - fleetDeterrence - raid.MinAttraction());
 		// Then we consider the strength of other fleets in the system.
 		int64_t raidStrength = raidFleet->Strength();
 		if(system && raidStrength)
@@ -1582,12 +1585,12 @@ double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *syst
 					// the raid attraction will decrease. The amount of increase or decrease is determined
 					// by the strength of the fleet relative to the raid fleet. System fleets which are
 					// stronger have a larger impact.
-					double strength = fleet.Get()->Strength() / fleet.Period();
+					double strength = static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
 					attraction -= (gov->IsEnemy(raidGov) - gov->IsEnemy()) * (strength / raidStrength);
 				}
 			}
 	}
-	return max(0., min(1., attraction));
+	return clamp(attraction, 0., 1.);
 }
 
 
@@ -4254,8 +4257,10 @@ void PlayerInfo::RegisterDerivedConditions()
 		return rff.first - rff.second; });
 	conditions["raid chance in system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> double {
 		const System *system = GameData::Systems().Find(ce.NameWithoutPrefix());
-		if(!system || !GameData::GetGamerules().SpawnRaidFleets())
+		double rollChance = GameData::GetGamerules().RaidFleetRollChance();
+		if(!system || !rollChance)
 			return 0.;
+		int spawnAttempts = GameData::GetGamerules().RaidFleetSpawnAttempts();
 
 		// This variable represents the probability of no raid fleets spawning.
 		double safeChance = 1.;
@@ -4263,14 +4268,14 @@ void PlayerInfo::RegisterDerivedConditions()
 		{
 			// The attraction is the % chance for a single instance of this fleet to appear.
 			double attraction = RaidFleetAttraction(raidFleet, system);
-			// Calculate the % chance for no instances to appear from 10 rolls.
-			double noFleetProb = pow(1. - attraction, 10.);
+			// Calculate the % chance for no instances to appear from N rolls.
+			double noFleetProb = pow(1. - attraction, spawnAttempts);
 			// The chance of neither of two fleets appearing is the chance of the first not appearing
 			// times the chance of the second not appearing.
 			safeChance *= noFleetProb;
 		}
 		// The probability of any single fleet appearing is 1 - chance.
-		return round((1. - safeChance) * 1000.); });
+		return round((1. - safeChance) * rollChance * 1000.); });
 
 	// Special conditions about combat power.
 	conditions["flagship strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {

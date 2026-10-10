@@ -1554,12 +1554,16 @@ void Engine::EnterSystem()
 				CreateWeather(hazard, stellar.Position());
 	}
 
-	if(GameData::GetGamerules().SpawnRaidFleets())
+	const Gamerules &rules = GameData::GetGamerules();
+	double rollChance = rules.RaidFleetRollChance();
+	if(rollChance && Random::Real() < rollChance)
+	{
+		int spawnAttempts = rules.RaidFleetSpawnAttempts();
 		for(const auto &raidFleet : system->RaidFleets())
 		{
 			double attraction = player.RaidFleetAttraction(raidFleet, system);
 			if(attraction > 0.)
-				for(int i = 0; i < 10; ++i)
+				for(int i = 0; i < spawnAttempts; ++i)
 					if(Random::Real() < attraction)
 					{
 						raidFleet.GetFleet()->Place(*system, newShips);
@@ -1568,6 +1572,7 @@ void Engine::EnterSystem()
 							GameData::MessageCategories().Get("high")});
 					}
 		}
+	}
 
 	grudge.clear();
 

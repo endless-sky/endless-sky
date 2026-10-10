@@ -631,17 +631,20 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	}
 
 	// Display the factors affecting piracy targeting the player.
-	if(GameData::GetGamerules().SpawnRaidFleets())
+	const Gamerules &rules = GameData::GetGamerules();
+	double rollChance = rules.RaidFleetRollChance();
+	if(rollChance)
 	{
-		auto factors = player.RaidFleetFactors();
-		double attractionLevel = max(0., log2(max(factors.first, 0.)));
-		double deterrenceLevel = max(0., log2(max(factors.second, 0.)));
+		auto [fleetAttraction, fleetDeterrence] = player.RaidFleetFactors();
+		double attractionLevel = max(0., log2(max(fleetAttraction, 0.)));
+		double deterrenceLevel = max(0., log2(max(fleetDeterrence, 0.)));
 		string attractionRating = GameData::Rating("cargo attractiveness", attractionLevel);
 		string deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
 		if(!attractionRating.empty() && !deterrenceRating.empty())
 		{
-			double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
-			double prob = 1. - pow(1. - attraction, 10.);
+			int spawnAttempts = rules.RaidFleetSpawnAttempts();
+			double attraction = max(0., min(1., .005 * (fleetAttraction - fleetDeterrence - 2.)));
+			double prob = (1. - pow(1. - attraction, spawnAttempts)) * rollChance;
 
 			table.DrawGap(10);
 			table.DrawUnderline(dim);

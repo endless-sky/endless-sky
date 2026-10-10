@@ -1134,16 +1134,16 @@ interface "gamerules"
 		alignment right
 		color medium
 	
-	visible if "multiple settings pages"
+	visible if "multiple gamerules pages"
 	sprite "ui/dialog cancel"
 		center -115 210
-	active if "show next settings"
+	active if "show next gamerules"
 	button n "_Next"
 		center -115 210
 		dimensions 70 30
 	sprite "ui/wide button"
 		center -210 210
-	active if "show previous settings"
+	active if "show previous gamerules"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
