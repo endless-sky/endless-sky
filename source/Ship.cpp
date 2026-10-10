@@ -4568,11 +4568,14 @@ bool Ship::SilentJumps() const
 
 double Ship::CloakFuelCost() const
 {
-	// The fuel cost of cloaking is not only the cost of the cloak itself,
-	// but also the natural fuel gain or lost due to fuel consumption and generation.
+	double fuelCost = cache.cloakCost.fuel;
+	if(fuelCost <= 0.)
+		return 0.;
+	// If cloaking requires fuel, then the fuel cost of cloaking is not only the cost of the cloak itself,
+	// but also the natural fuel gained or lost due to fuel consumption and generation.
 	// If fuel generation outpaces fuel lost due to cloaking or fuel consumption, then consider
 	// the fuel cost to be 0.
-	return min(0., cache.cloakCost.fuel + cache.fuelConsumption - cache.fuelGeneration);
+	return min(0., fuelCost + cache.fuelConsumption - cache.fuelGeneration);
 }
 
 
@@ -4581,13 +4584,14 @@ bool Ship::HasFuelForCloak() const
 {
 	// Don't cloak if it would result in you becoming stranded.
 	// If the ship has a ramscoop, assume that it won't be stranded due to cloak usage.
-	if(cache.cloakCost.fuel > 0. && !cache.ramscoop)
+	double fuelCost = CloakFuelCost();
+	if(fuelCost && !cache.ramscoop)
 	{
 		double fuel = levels.fuel;
 		int steps = ceil((1. - Cloaking()) / CloakingSpeed());
 		// Only cloak if you will be able to fully cloak and also maintain it
 		// for as long as it will take you to reach full cloak.
-		fuel -= CloakFuelCost() * (1 + 2 * steps);
+		fuel -= fuelCost * (1 + 2 * steps);
 		if(fuel < JumpNavigation().JumpFuel())
 			return false;
 	}
