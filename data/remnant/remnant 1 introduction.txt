@@ -248,6 +248,7 @@ mission "Remnant: Lost in Ember Waste"
 
 
 mission "Remnant: Defense 1"
+	minor
 	name "Defend <planet>"
 	description "Assist in defending <planet> from a Korath raid, then return to the planet."
 	source "Caelian"
@@ -547,6 +548,7 @@ mission "Remnant: Key Stones"
 
 
 mission "Remnant: Void Sprites 1"
+	minor
 	name "Space creatures"
 	description "A man on the Remnant homeworld of <planet> asked you to collect data on some strange space creatures in the <waypoints> system, in another part of the Ember Waste."
 	source "Aventine"
@@ -1654,6 +1656,7 @@ mission "Remnant: Deep Surveillance"
 
 
 mission "Remnant: Tech Retrieval"
+	minor
 	name "Remnant Human Tech Retrieval"
 	description "The Remnant are interested in learning what advances humanity has made over the past centuries. Bring them samples of advanced technology, such as newly developed ramscoops, weapons, or shields."
 	source "Viminal"
@@ -2068,6 +2071,7 @@ mission "Remnant: Chilia Intro Log 3"
 
 
 mission "Remnant: Return the Samples"
+	minor
 	name "Return the Samples"
 	description "A researcher on <planet> has asked you to return void sprite eggs to Nasqueron that the Remnant stole many years ago."
 	source "Aventine"
@@ -3753,6 +3757,7 @@ ship "_Ion Timer Ship"
 
 
 mission "Remnant: Expanded Horizons Storms 1"
+	minor
 	name "Ember Waste Storm Scanning"
 	description "Dawn has asked that you scan one of the Ember Waste's storms at <waypoints> and return with the data to <planet>."
 	passengers 1
@@ -3864,6 +3869,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 
 
 mission "Remnant: Logistics 1"
+	minor
 	name "Rush delivery to <planet>"
 	description `Deliver <cargo> to <destination> by <date>.`
 	source "Caelian"
