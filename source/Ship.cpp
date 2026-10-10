@@ -4575,7 +4575,7 @@ double Ship::CloakFuelCost() const
 	// but also the natural fuel gained or lost due to fuel consumption and generation.
 	// If fuel generation outpaces fuel lost due to cloaking or fuel consumption, then consider
 	// the fuel cost to be 0.
-	return min(0., fuelCost + cache.fuelConsumption - cache.fuelGeneration);
+	return max(0., fuelCost + cache.fuelConsumption - cache.fuelGeneration);
 }
 
 
