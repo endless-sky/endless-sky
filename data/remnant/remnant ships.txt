@@ -381,7 +381,6 @@ ship "Modified Dromedary" "Modified Dromedary Ghost"
 	outfits
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
 		"NDR-114 Android" 100
@@ -421,7 +420,6 @@ ship "Modified Dromedary" "Modified Dromedary Specter"
 	outfits
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
 		"NDR-114 Android" 100
@@ -451,13 +449,11 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 		"scramble protection" 1
 		"slowing protection" 1
 	outfits
-		"Laser Turret" 2
-		"Quad Blaster Turret"
+		"Quad Blaster Turret" 3
 		"Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
 		"NDR-114 Android" 100
