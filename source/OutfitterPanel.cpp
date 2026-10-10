@@ -439,7 +439,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 					// <verb>'d. Make a list of ship to errors to assemble into a string afterward.
 					// TODO: when there are multiples of the same better verbiage could be used rather than restating.
 					for(const auto &[name, value] : selectedOutfit->Precise())
-						if(attributes.GetPrecise(name) < value)
+						if(attributes.GetPrecise(name) <= value)
 						{
 							for(const auto &outfit : ship->Outfits() | views::keys)
 								if(outfit->GetPrecise(name) < 0)
