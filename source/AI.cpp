@@ -4486,10 +4486,12 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			ship.SetTargetSystem(system);
 	}
 
-	if(ship.IsEnteringHyperspace() && !ship.IsHyperspacing())
+	// On the frame the player starts jumping or on the frame they take off from a planet.
+	if((ship.IsEnteringHyperspace() && !ship.IsHyperspacing()) || (ship.Zoom() == 0. && !ship.IsLanding()))
 	{
 		// Check if there's a particular planet there we want to visit.
-		const System *system = ship.GetTargetSystem();
+		bool isJumping = ship.IsEnteringHyperspace();
+		const System *system = isJumping ? ship.GetTargetSystem() : ship.GetSystem();
 		set<const Planet *> destinations;
 		Date deadline;
 		const Planet *bestDestination = nullptr;
@@ -4538,7 +4540,10 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				{
 					return planet->DisplayName();
 				});
-			message += " in the system you are jumping to.";
+			if(isJumping)
+				message += " in the system you are jumping to.";
+			else
+				message += " in this system.";
 			Messages::Add({message, GameData::MessageCategories().Get("info")});
 
 			if(Preferences::GetNotificationSetting() == Preferences::NotificationSetting::BOTH)
