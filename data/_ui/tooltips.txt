@@ -1857,9 +1857,51 @@ tip "Restricted save loading"
 
 
 
-# Boarding panel
+# Boarding panel:
 tip `boarding: in cargo`
 	`This item is in the ship's cargo hold.`
 
 tip `boarding: installed`
 	`This item is installed on the ship. Removal may leave the ship inoperable.`
+
+
+
+# Player info panel:
+tip `player info: player:`
+	`Your name. Also known as what other people call you.`
+
+tip `player info: net worth:`
+	`The total credit worth of the credits available in your account and the value of all your assets, minus any outstanding debts.`
+
+tip `player info: time played:`
+	`The total amount of time you have played on this save file. Reloading a prior save file loses any recorded time played after that checkpoint.`
+
+tip `player info: combat rating:`
+	`Your combat experience stats. Being highly adept at combat can unlock certain doors in the galaxy, or draw unwanted attention...`
+
+tip `player info: rank:`
+	`Your current combat rank and title. There are 22 total ranks, and each rank is increasingly more difficult to reach than the last.`
+
+tip `player info: experience:`
+	`The total amount of combat experience that you have accrued. Combat experience is gained by disabling ships. The more valuable a ship, the more experience you gain for disabling it. Ships can be disabled either directly by you, or by one of your escorts.`
+
+tip `player info: for next rank:`
+	`The amount of combat experience required to reach the next rank.`
+
+tip `player info: piracy threat:`
+	`The chance upon entering each system that a piracy raid fleet will be present. Raid fleets appear when your fleet has a high volume of cargo space without a sufficient amount of firepower to defend it. The higher your "cargo" rating is than your "fleet" rating, the higher your chances of encountering a raid fleet.`
+
+tip `player info: cargo:`
+	`A measure of your entire fleet's cargo space, as it applies to your piracy threat.`
+
+tip `player info: fleet:`
+	`A measure of your entire fleet's firepower, as it applies to your piracy threat.`
+
+tip `player info: salary:`
+	`Daily income from salaries that have been granted to you.`
+
+tip `player info: tribute:`
+	`Daily income from planets that you have conquered.`
+
+tip `player info: licenses:`
+	`The licenses that you own. Licenses grant access to purchasing certain outfits and ships.`
