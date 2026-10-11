@@ -39,7 +39,14 @@ using namespace std;
 Minable::Payload::Payload(const DataNode &node)
 {
 	outfit = GameData::Outfits().Get(node.Token(1));
-	maxDrops = (node.Size() == 2 ? 1 : max<int>(1, node.Value(2)));
+
+	if(node.Size() == 4)
+	{
+		minDrops = max<int>(MIN_DROPS_LOWER_BOUND, node.Value(2));
+		maxDrops = max<int>(MAX_DROPS_LOWER_BOUND, node.Value(3));
+	}
+	else if(node.Size() == 3)
+		maxDrops = max<int>(MAX_DROPS_LOWER_BOUND, node.Value(2));
 
 	for(const DataNode &child : node)
 	{
@@ -48,8 +55,10 @@ Minable::Payload::Payload(const DataNode &node)
 
 		if(!hasValue)
 			child.PrintTrace("Expected key to have a value:");
+		else if(key == "min drops")
+			minDrops = max<int>(MIN_DROPS_LOWER_BOUND, child.Value(1));
 		else if(key == "max drops")
-			maxDrops = max<int>(1, child.Value(1));
+			maxDrops = max<int>(MAX_DROPS_LOWER_BOUND, child.Value(1));
 		else if(key == "drop rate")
 			dropRate = max(0., min(child.Value(1), 1.));
 		else if(key == "toughness")
@@ -130,7 +139,7 @@ void Minable::FinishLoading()
 			highestQuality = max<int64_t>(highestQuality, it.outfit->Cost() / it.outfit->Mass());
 		else
 			highestQuality = numeric_limits<int64_t>::max();
-		expectedValue += it.outfit->Cost() * it.maxDrops * it.dropRate;
+		expectedValue += it.outfit->Cost() * (it.minDrops + (it.maxDrops - it.minDrops) * it.dropRate);
 	}
 }
 
@@ -264,7 +273,8 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				dropRate += (1. - dropRate) / (1. + it.toughness / prospecting);
 			if(dropRate <= 0.)
 				continue;
-			for(int amount = Random::Binomial(it.maxDrops, dropRate); amount > 0; amount -= Flotsam::TONS_PER_BOX)
+			int amount = it.minDrops + Random::Binomial(it.maxDrops - it.minDrops, dropRate);
+			for( ; amount > 0; amount -= Flotsam::TONS_PER_BOX)
 			{
 				flotsam.emplace_back(new Flotsam(it.outfit, min(amount, Flotsam::TONS_PER_BOX)));
 				flotsam.back()->Place(*this);
