@@ -622,9 +622,8 @@ void LoadPanel::LoadCallback()
 
 	GetUI().PopThrough(GetUI().Root().get());
 	gamePanels.Push(new MainPanel(player));
-	// It takes one step to figure out the planet panel should be created, and
-	// another step to actually place it. So, take two steps to avoid a flicker.
-	gamePanels.StepAll();
+	// It takes one step to figure out the planet panel should be created,
+	// to avoid a flicker.
 	gamePanels.StepAll();
 }
 
