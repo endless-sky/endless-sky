@@ -168,94 +168,6 @@ void Panel::UpdateTextDisplay()
 
 
 
-void Panel::AddOrRemove()
-{
-	for(auto &panel : childrenToAdd)
-	{
-		if(panel)
-		{
-			panel->parent = this;
-			children.emplace_back(std::move(panel));
-		}
-	}
-	childrenToAdd.clear();
-
-	for(auto *panel : childrenToRemove)
-	{
-		for(auto it = children.begin(); it != children.end(); ++it)
-		{
-			if(it->get() == panel)
-			{
-				(*it)->parent = nullptr;
-				children.erase(it);
-				break;
-			}
-		}
-	}
-	childrenToRemove.clear();
-
-	for(auto &child : children)
-		child->AddOrRemove();
-}
-
-
-
-// Only override the ones you need; the default action is to return false.
-bool Panel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
-{
-	return false;
-}
-
-
-
-bool Panel::Click(int x, int y, MouseButton button, int clicks)
-{
-	return false;
-}
-
-
-
-bool Panel::Hover(int x, int y)
-{
-	return false;
-}
-
-
-
-bool Panel::Drag(double dx, double dy)
-{
-	return false;
-}
-
-
-
-bool Panel::Scroll(double dx, double dy)
-{
-	return false;
-}
-
-
-
-bool Panel::Release(int x, int y, MouseButton button)
-{
-	return false;
-}
-
-
-
-bool Panel::TextInput(const string &text)
-{
-	return false;
-}
-
-
-
-void Panel::Resize()
-{
-}
-
-
-
 bool Panel::SetFocus(bool newFocus)
 {
 	if(newFocus)
@@ -367,6 +279,231 @@ bool Panel::FocusPrev()
 
 
 
+int Panel::Modifier()
+{
+	SDL_Keymod mod = SDL_GetModState();
+
+	int modifier = 1;
+	if(mod & KMOD_ALT)
+		modifier *= 500;
+	if(mod & (KMOD_CTRL | KMOD_GUI))
+		modifier *= 20;
+	if(mod & KMOD_SHIFT)
+		modifier *= 5;
+
+	return modifier;
+}
+
+
+
+bool Panel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+{
+	return false;
+}
+
+
+
+bool Panel::Click(int x, int y, MouseButton button, int clicks)
+{
+	return false;
+}
+
+
+
+bool Panel::Hover(int x, int y)
+{
+	return false;
+}
+
+
+
+bool Panel::Drag(double dx, double dy)
+{
+	return false;
+}
+
+
+
+bool Panel::Release(int x, int y, MouseButton button)
+{
+	return false;
+}
+
+
+
+bool Panel::Scroll(double dx, double dy)
+{
+	return false;
+}
+
+
+
+bool Panel::TextInput(const string &text)
+{
+	return false;
+}
+
+
+
+void Panel::Resize()
+{
+}
+
+
+
+void Panel::SetIsFullScreen(bool set)
+{
+	isFullScreen = set;
+}
+
+
+
+void Panel::SetTrapAllEvents(bool set)
+{
+	trapAllEvents = set;
+}
+
+
+
+void Panel::SetInterruptible(bool set)
+{
+	isInterruptible = set;
+}
+
+
+
+void Panel::DrawBackdrop() const
+{
+	if(!GetUI().IsTop(this))
+		return;
+
+	// Darken everything but the dialog.
+	const Color &back = *GameData::Colors().Get("dialog backdrop");
+	FillShader::Fill(Point(), Screen::Dimensions(), back);
+}
+
+
+
+UI &Panel::GetUI() const noexcept
+{
+	assert((parent || ui) && "Panel::GetUI cannot be called until after the Panel has been pushed onto the UI stack.");
+	return parent ? parent->GetUI() : *ui;
+}
+
+
+
+void Panel::SetUI(UI *ui)
+{
+	this->ui = ui;
+}
+
+
+
+bool Panel::DoKey(SDL_Keycode key, Uint16 mod)
+{
+	return KeyDown(key, mod, Command(), true);
+}
+
+
+
+bool Panel::DoHelp(const string &name, bool force) const
+{
+	string preference = "help: " + name;
+	if(!force && Preferences::Has(preference))
+		return false;
+
+	const string &message = GameData::HelpMessage(name);
+	if(message.empty())
+		return false;
+
+	Preferences::Set(preference);
+	ui->Push(DialogPanel::Info(Format::Capitalize(name) + ":\n\n" + message));
+
+	return true;
+}
+
+
+
+const vector<shared_ptr<Panel>> &Panel::GetChildren()
+{
+	return children;
+}
+
+
+
+void Panel::AddChild(const shared_ptr<Panel> &panel)
+{
+	childrenToAdd.push_back(panel);
+}
+
+
+
+void Panel::RemoveChild(const Panel *panel)
+{
+	childrenToRemove.push_back(panel);
+}
+
+
+
+void Panel::AddOrRemove()
+{
+	for(auto &panel : childrenToAdd)
+	{
+		if(panel)
+		{
+			panel->parent = this;
+			children.emplace_back(std::move(panel));
+		}
+	}
+	childrenToAdd.clear();
+
+	for(auto *panel : childrenToRemove)
+	{
+		for(auto it = children.begin(); it != children.end(); ++it)
+		{
+			if(it->get() == panel)
+			{
+				(*it)->parent = nullptr;
+				children.erase(it);
+				break;
+			}
+		}
+	}
+	childrenToRemove.clear();
+
+	for(auto &child : children)
+		child->AddOrRemove();
+}
+
+
+
+Panel::Zone::Zone(const Rectangle &rect, const function<void()> &fun)
+	: Rectangle(rect), fun(fun)
+{
+}
+
+
+
+Panel::Zone::Zone(const Rectangle &rect, const function<void(const Event &)> &fun)
+	: Rectangle(rect), funDownEvent(fun)
+{
+}
+
+
+
+void Panel::Zone::Click() const
+{
+	if(funDownEvent)
+	{
+		Event e{{}, 0, Event::MOUSE};
+		funDownEvent(e);
+	}
+	else
+		fun();
+}
+
+
+
 bool Panel::DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	// If a child has focus, don't let anybody else see the keystroke.
@@ -452,126 +589,6 @@ void Panel::DoUpdateTextDisplay()
 	UpdateTextDisplay();
 	for(auto &child : children)
 		child->DoUpdateTextDisplay();
-}
-
-
-
-void Panel::SetIsFullScreen(bool set)
-{
-	isFullScreen = set;
-}
-
-
-
-void Panel::SetTrapAllEvents(bool set)
-{
-	trapAllEvents = set;
-}
-
-
-
-void Panel::SetInterruptible(bool set)
-{
-	isInterruptible = set;
-}
-
-
-
-// Dim the background of this panel.
-void Panel::DrawBackdrop() const
-{
-	if(!GetUI().IsTop(this))
-		return;
-
-	// Darken everything but the dialog.
-	const Color &back = *GameData::Colors().Get("dialog backdrop");
-	FillShader::Fill(Point(), Screen::Dimensions(), back);
-}
-
-
-
-UI &Panel::GetUI() const noexcept
-{
-	assert((parent || ui) && "Panel::GetUI cannot be called until after the Panel has been pushed onto the UI stack.");
-	return parent ? parent->GetUI() : *ui;
-}
-
-
-
-// This is not for overriding, but for calling KeyDown with only one or two
-// arguments. In this form, the command is never set, so you can call this
-// with a key representing a known keyboard shortcut without worrying that a
-// user-defined command key will override it.
-bool Panel::DoKey(SDL_Keycode key, Uint16 mod)
-{
-	return KeyDown(key, mod, Command(), true);
-}
-
-
-
-// A lot of different UI elements allow a modifier to change the number of
-// something you are buying, so the shared function is defined here:
-int Panel::Modifier()
-{
-	SDL_Keymod mod = SDL_GetModState();
-
-	int modifier = 1;
-	if(mod & KMOD_ALT)
-		modifier *= 500;
-	if(mod & (KMOD_CTRL | KMOD_GUI))
-		modifier *= 20;
-	if(mod & KMOD_SHIFT)
-		modifier *= 5;
-
-	return modifier;
-}
-
-
-
-// Display the given help message if it has not yet been shown
-// (or if force is set to true). Return true if the message was displayed.
-bool Panel::DoHelp(const string &name, bool force) const
-{
-	string preference = "help: " + name;
-	if(!force && Preferences::Has(preference))
-		return false;
-
-	const string &message = GameData::HelpMessage(name);
-	if(message.empty())
-		return false;
-
-	Preferences::Set(preference);
-	ui->Push(DialogPanel::Info(Format::Capitalize(name) + ":\n\n" + message));
-
-	return true;
-}
-
-
-
-void Panel::SetUI(UI *ui)
-{
-	this->ui = ui;
-}
-
-
-
-const vector<shared_ptr<Panel>> &Panel::GetChildren()
-{
-	return children;
-}
-
-
-
-void Panel::AddChild(const shared_ptr<Panel> &panel)
-{
-	childrenToAdd.push_back(panel);
-}
-
-
-
-void Panel::RemoveChild(const Panel *panel)
-{
-	childrenToRemove.push_back(panel);
 }
 
 
