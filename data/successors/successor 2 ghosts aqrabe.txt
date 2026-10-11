@@ -159,7 +159,7 @@ mission "Successors: Ghosts Aqrabe 2"
 
 mission "Successors: Ghosts Aqrabe 3"
 	name "Visit stellar garden"
-	description "Attempt to land on the star of the <system> system."
+	description "Attempt to land on the stellar metal garden orbiting the Kasii-Cavaasa star."
 	source "Kasii-Cavasaa-Oa"
 	stopover "Exotic Metal Garden"
 	destination "Kasii-Cavasaa-Oa"
