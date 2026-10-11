@@ -7,23 +7,25 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CLICK_ZONE_H_
-#define CLICK_ZONE_H_
+#pragma once
 
 #include "Point.h"
 #include "Rectangle.h"
 
-#include <cmath>
+#include <utility>
 
 
 
 // This is a simple template class defining a rectangular region in the UI that
 // may take action if it is clicked on. The region stores a single data object
 // that identifies it or identifies the action to take.
-template <class Type>
+template<class Type>
 class ClickZone : public Rectangle {
 public:
 	// Constructor. The "dimensions" are the full width and height of the zone.
@@ -40,28 +42,24 @@ private:
 
 
 
-template <class Type>
+template<class Type>
 ClickZone<Type>::ClickZone(Point center, Point dimensions, Type value)
-	: Rectangle(center, dimensions), value(value)
+	: Rectangle(center, dimensions), value(std::move(value))
 {
 }
 
 
 
-template <class Type>
+template<class Type>
 ClickZone<Type>::ClickZone(const Rectangle &rect, Type value)
-	: Rectangle(rect), value(value)
+	: Rectangle(rect), value(std::move(value))
 {
 }
 
 
 
-template <class Type>
+template<class Type>
 Type ClickZone<Type>::Value() const noexcept
 {
 	return value;
 }
-
-
-
-#endif

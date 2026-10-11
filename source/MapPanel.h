@@ -7,18 +7,21 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_PANEL_H_
-#define MAP_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
+#include "Animate.h"
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
-#include "text/WrappedText.h"
+#include "Tooltip.h"
 
 #include <map>
 #include <string>
@@ -41,13 +44,16 @@ class System;
 class MapPanel : public Panel {
 public:
 	// Enumeration for how the systems should be colored:
-	static const int SHOW_SHIPYARD = -1;
-	static const int SHOW_OUTFITTER = -2;
-	static const int SHOW_VISITED = -3;
-	static const int SHOW_SPECIAL = -4;
-	static const int SHOW_GOVERNMENT = -5;
-	static const int SHOW_REPUTATION = -6;
+	static constexpr int SHOW_SHIPYARD = -1;
+	static constexpr int SHOW_OUTFITTER = -2;
+	static constexpr int SHOW_VISITED = -3;
+	static constexpr int SHOW_SPECIAL = -4;
+	static constexpr int SHOW_GOVERNMENT = -5;
+	static constexpr int SHOW_REPUTATION = -6;
+	static constexpr int SHOW_DANGER = -7;
+	static constexpr int SHOW_STARS = -8;
 
+	static const unsigned MAX_MISSION_POINTERS_DRAWN;
 	static const float OUTER;
 	static const float INNER;
 	static const float LINK_WIDTH;
@@ -64,24 +70,40 @@ public:
 	};
 
 
+public:
+	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
+		bool drawBack = true, bool bigger = false);
+	static std::pair<bool, bool> BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, int step);
+
 
 public:
-	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
+	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION,
+		const System *special = nullptr, bool fromMission = false);
+	virtual ~MapPanel() override;
 
 	virtual void Step() override;
 	virtual void Draw() override;
 
-	void DrawButtons(const std::string &condition);
-	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
+	// Draw the planet orbits in the currently selected system, on the current day.
+	void DrawOrbits();
+	// Draw the legend, correlating between a system's color and the value of the
+	// selected "commodity," which may be reputation level, outfitter size, etc.
+	virtual void DrawKey() const;
+	// Draw elements common for all map panels that need to be placed
+	// on top of everything else. This includes distance info, map mode buttons,
+	// escort/storage tooltips, and the non-routable system warning.
+	void FinishDrawing(const std::string &buttonCondition);
 
 	// Map panels allow fast-forward to stay active.
 	bool AllowsFastForward() const noexcept final;
+
+	virtual void UpdateTooltipActivation() override;
 
 
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
@@ -90,11 +112,13 @@ protected:
 	static Color MapColor(double value);
 	static Color ReputationColor(double reputation, bool canLand, bool hasDominated);
 	static Color GovernmentColor(const Government *government);
+	static Color DangerColor(double danger);
 	static Color UninhabitedColor();
 	static Color UnexploredColor();
 
 	virtual double SystemValue(const System *system) const;
 
+	const System *ClickedSystem(int x, int y) const;
 	void Select(const System *system);
 	void Find(const std::string &name);
 
@@ -105,8 +129,9 @@ protected:
 	bool IsSatisfied(const Mission &mission) const;
 	static bool IsSatisfied(const PlayerInfo &player, const Mission &mission);
 
-	// Function for the "find" dialogs:
-	static int Search(const std::string &str, const std::string &sub);
+	// Returns if previous->next can be done with a known travel type.
+	bool GetTravelInfo(const System *previous, const System *next, double jumpRange, bool &isJump,
+		bool &isWormhole, bool &isMappable, Color *wormholeColor) const;
 
 
 protected:
@@ -128,9 +153,15 @@ protected:
 	Point center;
 	Point recenterVector;
 	int recentering = 0;
+	Animate<double> zoom;
 	int commodity;
 	int step = 0;
 	std::string buttonCondition;
+
+	// Default display scaling for orbits within the currently displayed system.
+	double scale = .03;
+	// Vector offsets from the center of the "orbits" UI.
+	std::map<const Planet *, Point> planets;
 
 	// Distance from the screen center to the nearest owned system,
 	// for use in determining which governments are in the legend.
@@ -146,43 +177,30 @@ protected:
 	void UpdateCache();
 
 	// For tooltips:
-	int hoverCount = 0;
 	const System *hoverSystem = nullptr;
-	std::string tooltip;
-	WrappedText hoverText;
+	Tooltip tooltip;
+
+	bool fromMission = false;
+	// A simplified map panel shows less buttons and has less features.
+	// Used for panels where the map is a backdrop rather than being the main focus.
+	bool isSimplified = false;
 
 
 private:
-	void DrawTravelPlan();
-	// Indicate which other systems have player escorts.
-	void DrawEscorts();
-	void DrawWormholes();
-	void DrawLinks();
-	// Draw systems in accordance to the set commodity color scheme.
-	void DrawSystems();
-	void DrawNames();
-	void DrawMissions();
-	void DrawTooltips();
-	void DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger = false);
-	static void DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack = true, bool bigger = false);
-
-
-private:
-	// This is the coloring mode currently used in the cache.
-	int cachedCommodity = -10;
-
 	class Node {
 	public:
-		Node(const Point &position, const Color &color, const std::string &name, const Color &nameColor, const Government *government)
-			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
+		Node(const Point &position, const Color &color, const std::string &name,
+			const Color &nameColor, const Government *government, const std::vector<const Sprite *> &mapIcons)
+			: position(position), color(color), name(name), nameColor(nameColor),
+			government(government), mapIcons(mapIcons) {}
 
 		Point position;
 		Color color;
 		std::string name;
 		Color nameColor;
 		const Government *government;
+		std::vector<const Sprite *> mapIcons;
 	};
-	std::vector<Node> nodes;
 
 	class Link {
 	public:
@@ -193,9 +211,30 @@ private:
 		Point end;
 		Color color;
 	};
+
+
+private:
+	void DrawTravelPlan();
+	// Display the name of and distance to the selected system.
+	void DrawSelectedSystem();
+	// Indicate which other systems have player escorts.
+	void DrawEscorts();
+	void DrawWormholes();
+	void DrawLinks();
+	// Draw systems in accordance to the set commodity color scheme.
+	void DrawSystems();
+	void DrawNames();
+	void DrawMissions();
+	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false);
+
+	void IncrementZoom();
+	void DecrementZoom();
+
+
+private:
+	// This is the coloring mode currently used in the cache.
+	int cachedCommodity = -10;
+
+	std::vector<Node> nodes;
 	std::vector<Link> links;
 };
-
-
-
-#endif

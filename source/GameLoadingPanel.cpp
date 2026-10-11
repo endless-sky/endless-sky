@@ -7,36 +7,37 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "GameLoadingPanel.h"
 
-#include "Angle.h"
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
 #include "GameData.h"
-#include "Information.h"
-#include "Interface.h"
-#include "MaskManager.h"
+#include "image/MaskManager.h"
 #include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
+#include "PilotProfile.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
-#include "Ship.h"
-#include "SpriteSet.h"
-#include "StarField.h"
-#include "System.h"
+#include "image/SpriteSet.h"
+#include "shader/StarField.h"
+#include "TaskQueue.h"
 #include "UI.h"
 
 #include "opengl.h"
 
 
 
-GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conversation, UI &gamePanels, bool &finishedLoading)
-	: player(player), conversation(conversation), gamePanels(gamePanels), finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
+GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
+	UI &gamePanels, bool &finishedLoading)
+	: player(player), queue(queue), conversation(conversation), gamePanels(gamePanels),
+		finishedLoading(finishedLoading), loadingCircle(140.f, 60)
 {
 	SetIsFullScreen(true);
 }
@@ -45,39 +46,40 @@ GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conve
 
 void GameLoadingPanel::Step()
 {
-	progress = static_cast<int>(GameData::GetProgress() * MAX_TICKS);
+	progress = GameData::GetProgress();
 
-	// While the game is loading, upload sprites to the GPU.
-	GameData::ProcessSprites();
+	queue.ProcessSyncTasks();
 	if(GameData::IsLoaded())
 	{
 		// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
 		// e.g. due to capitalization errors or other typos.
 		SpriteSet::CheckReferences();
 		Audio::CheckReferences();
-		// All sprites with collision masks should also have their 1x scaled versions, so create
-		// any additional scaled masks from the default one.
-		GameData::GetMaskManager().ScaleMasks();
 		// Set the game's initial internal state.
 		GameData::FinishLoading();
 
+		PilotProfile::LoadProfiles();
 		player.LoadRecent();
 
-		GetUI()->Pop(this);
+		// All sprites with collision masks should also have their 1x scaled versions, so create
+		// any additional scaled masks from the default one.
+		GameData::GetMaskManager().ScaleMasks();
+
+		GetUI().Pop(this);
 		if(conversation.IsEmpty())
 		{
-			GetUI()->Push(new MenuPanel(player, gamePanels));
-			GetUI()->Push(new MenuAnimationPanel());
+			GetUI().Push(new MenuPanel(player, gamePanels));
+			GetUI().Push(new MenuAnimationPanel());
 		}
 		else
 		{
-			GetUI()->Push(new MenuAnimationPanel());
+			GetUI().Push(new MenuAnimationPanel());
 
 			auto *talk = new ConversationPanel(player, conversation);
 
-			UI *ui = GetUI();
-			talk->SetCallback([ui](int response) { ui->Quit(); });
-			GetUI()->Push(talk);
+			UI &ui = GetUI();
+			talk->SetCallback([&ui](int response) { ui.Quit(); });
+			GetUI().Push(talk);
 		}
 
 		finishedLoading = true;
@@ -89,18 +91,10 @@ void GameLoadingPanel::Step()
 void GameLoadingPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	GameData::DrawMenuBackground(this);
 
 	// Draw the loading circle.
-	Angle da(ANGLE_OFFSET);
-	Angle a(0.);
-	PointerShader::Bind();
-	for(int i = 0; i < progress; ++i)
-	{
-		PointerShader::Add(Point(), a.Unit(), 8.f, 20.f, 140.f, Color(.5f, 0.f));
-		a += da;
-	}
-	PointerShader::Unbind();
+	loadingCircle.Draw(Point(), progress);
 }

@@ -7,22 +7,28 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PERSON_H_
-#define PERSON_H_
+#pragma once
 
 #include "LocationFilter.h"
 #include "Personality.h"
 #include "Phrase.h"
+#include "ship/ShipFactory.h"
 
 #include <list>
 #include <memory>
 
+class ConditionsStore;
 class DataNode;
+class FormationPattern;
 class Government;
 class Ship;
+class ShipEvent;
 class System;
 
 
@@ -30,7 +36,9 @@ class System;
 // A unique individual who may appear at random times in the game.
 class Person {
 public:
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
+	bool IsValid() const;
 	// Finish loading all the ships in this person specification.
 	void FinishLoading();
 	// Prevent this person from being spawned in any system.
@@ -57,17 +65,28 @@ public:
 	// Mark this person as being no longer "placed" somewhere.
 	void ClearPlacement();
 
+	// Determine if this event is targeting a ship in this Person
+	// and handle the outcome of the event. Returns false if
+	// the event doesn't target this person.
+	bool Do(const ShipEvent &event);
+
 
 private:
+	bool isLoaded = false;
+	std::string name;
 	LocationFilter location;
 	int frequency = 100;
 
+	// Whether this fleet can respawn even if the flagship is killed.
+	bool neverDies = false;
+	// If true, every ship in the fleet must be destroyed at once for
+	// the person to die.
+	bool mustDestroyAll = false;
+
+	ShipFactory shipFactory;
 	std::list<std::shared_ptr<Ship>> ships;
+	const FormationPattern *formationPattern = nullptr;
 	const Government *government = nullptr;
 	Personality personality;
 	Phrase hail;
 };
-
-
-
-#endif

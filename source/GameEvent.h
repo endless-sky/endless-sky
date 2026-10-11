@@ -7,13 +7,15 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_EVENT_H_
-#define GAME_EVENT_H_
+#pragma once
 
-#include "ConditionSet.h"
+#include "ConditionAssignments.h"
 #include "DataNode.h"
 #include "Date.h"
 
@@ -23,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataWriter;
 class Planet;
 class PlayerInfo;
@@ -46,42 +49,50 @@ public:
 public:
 	GameEvent() = default;
 	// Construct and Load() at the same time.
-	GameEvent(const DataNode &node);
+	explicit GameEvent(const DataNode &node, const ConditionsStore *playerConditions);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
+	// Save a scheduled version of this event. This will only be called if the event is unnamed and has a scheduled
+	// date. Otherwise, PlayerInfo saves the event's name and scheduled date instead of saving the full list of
+	// data changes.
 	void Save(DataWriter &out) const;
 	// If disabled, an event will not Apply() or Save().
 	void Disable();
 
-	const std::string &Name() const;
-	void SetName(const std::string &name);
+	const std::string &TrueName() const;
+	void SetTrueName(const std::string &name);
 
 	// Check if this GameEvent has been loaded (vs. simply referred to) and
 	// if it references any items that have not been defined.
-	bool IsValid() const;
+	// Returns an empty string if it is valid. If not, a reason will be given in the string.
+	std::string IsValid() const;
 
 	const Date &GetDate() const;
 	void SetDate(const Date &date);
 
-	void Apply(PlayerInfo &player);
+	// Apply this event's changes to the player. Returns a list of data changes that need to
+	// be applied in a batch with other events that are applied at the same time.
+	std::list<DataNode> Apply(PlayerInfo &player, bool onlyDataChanges = false);
 
+	const ConditionAssignments &Conditions() const;
 	const std::list<DataNode> &Changes() const;
 
+	bool SaveRawChanges() const;
+
+	// Comparison operator, based on the date of the event.
+	bool operator<(const GameEvent &other) const;
 
 private:
 	Date date;
-	std::string name;
+	std::string trueName;
 	bool isDisabled = false;
 	bool isDefined = false;
+	bool saveRawChanges = false;
 
-	ConditionSet conditionsToApply;
+	ConditionAssignments conditionsToApply;
 	std::list<DataNode> changes;
 	std::vector<const System *> systemsToVisit;
 	std::vector<const Planet *> planetsToVisit;
 	std::vector<const System *> systemsToUnvisit;
 	std::vector<const Planet *> planetsToUnvisit;
 };
-
-
-
-#endif

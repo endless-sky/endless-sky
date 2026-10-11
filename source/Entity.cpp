@@ -1,0 +1,569 @@
+/* Entity.cpp
+Copyright (c) 2025 by TomGoodIdea
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+#include "Entity.h"
+
+#include "DamageDealt.h"
+#include "Effect.h"
+#include "GameData.h"
+#include "image/Mask.h"
+#include "Random.h"
+#include "image/Sprite.h"
+#include "Visual.h"
+#include "Weapon.h"
+
+#include <algorithm>
+
+using namespace std;
+
+
+
+Entity::Type Entity::EntityType() const
+{
+	return entityType;
+}
+
+
+
+const Outfit &Entity::Attributes() const
+{
+	return attributes;
+}
+
+
+
+double Entity::ShieldFraction() const
+{
+	double maximum = MaxShields();
+	return maximum ? min(1., levels.shields / maximum) : 0.;
+}
+
+
+
+double Entity::HullFraction() const
+{
+	double maximum = MaxHull();
+	return maximum ? min(1., levels.hull / maximum) : 1.;
+}
+
+
+
+double Entity::FuelFraction() const
+{
+	double maximum = capacities.fuel;
+	return maximum ? min(1., levels.fuel / maximum) : 0.;
+}
+
+
+
+double Entity::EnergyFraction() const
+{
+	double maximum = capacities.energy;
+	return maximum ? min(1., levels.energy / maximum) : (levels.hull > 0.) ? 1. : 0.;
+}
+
+
+
+double Entity::HeatFraction() const
+{
+	double maximum = this->MaxHeat();
+	return maximum ? levels.heat / maximum : 1.;
+}
+
+
+
+double Entity::ShieldLevel() const
+{
+	return levels.shields;
+}
+
+
+
+double Entity::HullLevel() const
+{
+	return levels.hull;
+}
+
+
+
+double Entity::FuelLevel() const
+{
+	return levels.fuel;
+}
+
+
+
+double Entity::EnergyLevel() const
+{
+	return levels.energy;
+}
+
+
+
+double Entity::HeatLevel() const
+{
+	return levels.heat;
+}
+
+
+
+double Entity::DisruptionLevel() const
+{
+	return levels.disruption;
+}
+
+
+
+ResourceLevels Entity::AvailableResources() const
+{
+	ResourceLevels available;
+	// An entity should not be able to disable itself through use of an outfit, so
+	// the available hull excludes the hull necessary to remain enabled.
+	available.hull = levels.hull - minimumHull;
+	// The availability of all other resources is just how much this entity currently has.
+	available.shields = levels.shields;
+	available.energy = levels.energy;
+	available.heat = levels.heat;
+	available.fuel = levels.fuel;
+	available.ionization = levels.ionization;
+	available.scrambling = levels.scrambling;
+	available.disruption = levels.disruption;
+	available.slowness = levels.slowness;
+	available.discharge = levels.discharge;
+	available.corrosion = levels.corrosion;
+	available.leakage = levels.leakage;
+	available.burning = levels.burning;
+	return available;
+}
+
+
+
+double Entity::MaxShields() const
+{
+	return capacities.shields;
+}
+
+
+
+double Entity::MaxHull() const
+{
+	return capacities.hull;
+}
+
+
+
+double Entity::MaxEnergy() const
+{
+	return capacities.energy;
+}
+
+
+
+double Entity::MaxFuel() const
+{
+	return capacities.fuel;
+}
+
+
+
+double Entity::HeatDissipation() const
+{
+	return .001 * heatDissipation;
+}
+
+
+
+double Entity::MinHull() const
+{
+	return minimumHull;
+}
+
+
+
+double Entity::HealthFraction() const
+{
+	double hullDivisor = MaxHull() - minimumHull;
+	double divisor = MaxShields() + hullDivisor;
+	// This should not happen, but just in case.
+	if(divisor <= 0. || hullDivisor <= 0.)
+		return 0.;
+
+	double spareHull = levels.hull - minimumHull;
+	// Consider hull-only and pooled health, compensating for any reductions by disruption damage.
+	return min(spareHull / hullDivisor, (spareHull + levels.shields / (1. + levels.disruption * .01)) / divisor);
+}
+
+
+
+double Entity::DisabledHullFraction() const
+{
+	return (capacities.hull > 0. ? minimumHull / capacities.hull : 0.);
+}
+
+
+
+double Entity::HullLevelUntilDisabled() const
+{
+	// Ships become disabled when they surpass their minimum hull threshold,
+	// not when they are directly on it, so account for this by adding a small amount
+	// of hull above the current hull level.
+	return max(0., levels.hull + 0.25 - minimumHull);
+}
+
+
+
+bool Entity::IsDisabled() const
+{
+	if(!isDisabled || neverDisabled)
+		return false;
+
+	return levels.hull < minimumHull;
+}
+
+
+
+bool Entity::IsDestroyed() const
+{
+	return levels.hull < 0;
+}
+
+
+
+bool Entity::IsTargetable() const
+{
+	return true;
+}
+
+
+
+double Entity::Cloaking() const
+{
+	return 0.;
+}
+
+
+
+bool Entity::IsCloaked() const
+{
+	return false;
+}
+
+
+
+double Entity::OpticalSize() const
+{
+	if(opticalSize)
+		return opticalSize;
+	if(!sprite)
+		return 0.;
+	double area = sprite->Area();
+	if(scale != Point(1., 1.))
+		area *= scale.X() * scale.Y();
+	// 16 was determined to be a good scaling factor from the
+	// old method of optical tracking being based off of mass.
+	return area / 16.;
+}
+
+
+
+double Entity::OpticalJamming() const
+{
+	return opticalJamming;
+}
+
+
+
+double Entity::RadarJamming() const
+{
+	return radarJamming;
+}
+
+
+
+const ResourceLevels &Entity::DamageProtection() const
+{
+	return damageProtection;
+}
+
+
+
+double Entity::PiercingProtection() const
+{
+	return piercingProtection;
+}
+
+
+
+double Entity::PiercingResistance() const
+{
+	return piercingResistance;
+}
+
+
+
+double Entity::HighShieldPermeability() const
+{
+	return highShieldPermeability;
+}
+
+
+
+double Entity::LowShieldPermeability() const
+{
+	return lowShieldPermeability;
+}
+
+
+
+double Entity::CloakedShieldPermeability() const
+{
+	return cloakedShieldPermeability;
+}
+
+
+
+double Entity::CloakedHullProtection() const
+{
+	return cloakedHullProtection;
+}
+
+
+
+double Entity::CloakedShieldProtection() const
+{
+	return cloakedShieldProtection;
+}
+
+
+
+double Entity::ForceProtection() const
+{
+	return forceProtection;
+}
+
+
+
+void Entity::Kill()
+{
+	levels.hull = -1;
+	levels.shields = 0;
+	levels.energy = 0.;
+	levels.heat = 0.;
+	levels.fuel = 0.;
+	ClearStatusEffects();
+}
+
+
+
+void Entity::ClearStatusEffects()
+{
+	levels.discharge = 0.;
+	levels.corrosion = 0.;
+	levels.scrambling = 0.;
+	levels.ionization = 0.;
+	levels.leakage = 0.;
+	levels.burning = 0.;
+	levels.disruption = 0.;
+	levels.slowness = 0.;
+}
+
+
+
+void Entity::DoStatusEffects(bool disabled)
+{
+	levels.hull -= levels.corrosion;
+	levels.shields -= levels.discharge;
+	levels.energy -= levels.ionization;
+	levels.heat += levels.burning;
+	levels.fuel -= levels.leakage;
+
+	// TODO: Mothership gives status resistance to carried ships?
+	auto DoResistance = [this, &disabled](double &status, double resistance, const ResourceLevels &cost)
+	{
+		if(!status)
+			return;
+
+		if(disabled || resistance <= 0.)
+		{
+			status = max(0., .99 * status);
+			return;
+		}
+
+		// Calculate how much resistance can be used assuming no
+		// resource cost.
+		resistance = .99 * status - max(0., .99 * status - resistance);
+
+		// Limit the resistance by the available resources.
+		if(cost.energy > 0.)
+			resistance = min(resistance, levels.energy / cost.energy);
+		if(cost.heat < 0.)
+			resistance = min(resistance, levels.heat / -cost.heat);
+		if(cost.fuel > 0.)
+			resistance = min(resistance, levels.fuel / cost.fuel);
+
+		if(resistance > 0.)
+		{
+			status = max(0., .99 * status - resistance);
+			levels.energy -= resistance * cost.energy;
+			levels.heat += resistance * cost.heat;
+			levels.fuel -= resistance * cost.fuel;
+		}
+		else
+			status = max(0., .99 * status);
+	};
+
+	DoResistance(levels.corrosion, corrosionResistance, corrosionResistCost);
+	DoResistance(levels.discharge, dischargeResistance, dischargeResistCost);
+	DoResistance(levels.ionization, ionizationResistance, ionizationResistCost);
+	DoResistance(levels.scrambling, scramblingResistance, scramblingResistCost);
+	DoResistance(levels.burning, burnResistance, burnResistCost);
+	DoResistance(levels.leakage, leakResistance, leakageResistCost);
+	DoResistance(levels.disruption, disruptionResistance, disruptionResistCost);
+	DoResistance(levels.slowness, slowingResistance, slownessResistCost);
+}
+
+
+
+void Entity::DoStatusSparks(std::vector<Visual> &visuals) const
+{
+	// Sparks are only created for entities where the spark has an actual effect.
+	// All entities have hull and heat, so corrosion and burning can always apply.
+	// Discharge and disruption, as well as leakage only apply to entities with shields and fuel respectively.
+	// The remaining status effects can only apply to ships.
+	if(levels.discharge && MaxShields())
+		CreateSparks(visuals, "discharge spark", levels.discharge * .1);
+	if(levels.corrosion)
+		CreateSparks(visuals, "corrosion spark", levels.corrosion * .1);
+	if(levels.ionization && entityType == Type::SHIP)
+		CreateSparks(visuals, "ion spark", levels.ionization * .05);
+	if(levels.burning)
+		CreateSparks(visuals, "burning spark", levels.burning * .1);
+	if(levels.leakage && MaxFuel())
+		CreateSparks(visuals, "leakage spark", levels.leakage * .1);
+
+	if(levels.disruption && MaxShields())
+		CreateSparks(visuals, "disruption spark", levels.disruption * .1);
+	if(levels.slowness && entityType == Type::SHIP)
+		CreateSparks(visuals, "slowing spark", levels.slowness * .1);
+	if(levels.scrambling && entityType == Type::SHIP)
+		CreateSparks(visuals, "scramble spark", levels.scrambling * .05);
+}
+
+
+
+void Entity::CreateSparks(vector<Visual> &visuals, const string &name, double amount) const
+{
+	CreateSparks(visuals, GameData::Effects().Get(name), amount);
+}
+
+
+
+void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount) const
+{
+	if(forget || amount <= 0.)
+		return;
+
+	// Limit the number of sparks, depending on the size of the sprite.
+	// The limit needs to be the first argument in case amount is NaN.
+	amount = min(Width() * Height() * .0006, amount);
+	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
+	visuals.reserve(visuals.size() + static_cast<size_t>(amount));
+
+	while(true)
+	{
+		amount -= Random::Real();
+		if(amount <= 0.)
+			break;
+
+		Point point((Random::Real() - .5) * Width(), (Random::Real() - .5) * Height());
+		if(GetMask().Contains(point, Angle()))
+			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
+	}
+}
+
+
+
+int Entity::TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *hitBy)
+{
+	bool wasDisabled = IsDisabled();
+	bool wasDestroyed = IsDestroyed();
+
+	levels.Damage(damage.Levels());
+
+	// Prevent various stats from reaching unallowable values.
+	// ResourceLevels::Damage already ensures that stats aside from hull don't become negative,
+	// so the only remaining unallowable values are overhealing hull or shields.
+	levels.hull = min(levels.hull, MaxHull());
+	levels.shields = min(levels.shields, MaxShields());
+
+	// Create target effect visuals, if there are any.
+	for(const auto &[effect, count] : damage.GetWeapon().TargetEffects())
+		CreateSparks(visuals, effect, count * damage.Scaling());
+
+	return DoTakeDamage(damage, hitBy, wasDisabled, wasDestroyed);
+}
+
+
+
+void Entity::CacheAttributes()
+{
+	heatDissipation = attributes.Get("heat dissipation");
+
+	opticalSize = attributes.Get("optical size");
+	opticalJamming = attributes.Get("optical jamming");
+	radarJamming = attributes.Get("radar jamming");
+
+	piercingProtection = 1. + attributes.Get("piercing protection");
+	piercingResistance = attributes.Get("piercing resistance");
+	highShieldPermeability = attributes.Get("high shield permeability");
+	lowShieldPermeability = attributes.Get("low shield permeability");
+	cloakedShieldPermeability = attributes.Get("cloaked shield permeability");
+	cloakedHullProtection = attributes.Get("cloak hull protection");
+	cloakedShieldProtection = attributes.Get("cloak shield protection");
+	damageProtection.shields = 1. + attributes.Get("shield protection");
+	damageProtection.hull = 1. + attributes.Get("hull protection");
+	damageProtection.energy = 1. + attributes.Get("energy protection");
+	damageProtection.fuel = 1. + attributes.Get("fuel protection");
+	damageProtection.heat = 1. + attributes.Get("heat protection");
+	damageProtection.discharge = 1. + attributes.Get("discharge protection");
+	damageProtection.corrosion = 1. + attributes.Get("corrosion protection");
+	damageProtection.ionization = 1. + attributes.Get("ion protection");
+	damageProtection.burning = 1. + attributes.Get("burn protection");
+	damageProtection.leakage = 1. + attributes.Get("leak protection");
+	damageProtection.slowness = 1. + attributes.Get("slowing protection");
+	damageProtection.scrambling = 1. + attributes.Get("scramble protection");
+	damageProtection.disruption = 1. + attributes.Get("disruption protection");
+	forceProtection = 1. + attributes.Get("force protection");
+
+	auto CalibrateResistance = [this](const string &name, double &stat, ResourceLevels &cost) -> void {
+		stat = attributes.Get(name + " resistance");
+		// Save resistance costs as per unit of resistance.
+		if(stat)
+		{
+			cost.energy = attributes.Get(name + " resistance energy") / stat;
+			cost.heat = attributes.Get(name + " resistance heat") / stat;
+			cost.fuel = attributes.Get(name + " resistance fuel") / stat;
+		}
+	};
+
+	CalibrateResistance("corrosion", corrosionResistance, corrosionResistCost);
+	CalibrateResistance("discharge", dischargeResistance, dischargeResistCost);
+	CalibrateResistance("ion", ionizationResistance, ionizationResistCost);
+	CalibrateResistance("scramble", scramblingResistance, scramblingResistCost);
+	CalibrateResistance("burn", burnResistance, burnResistCost);
+	CalibrateResistance("leak", leakResistance, leakageResistCost);
+	CalibrateResistance("disruption", disruptionResistance, disruptionResistCost);
+	CalibrateResistance("slowing", slowingResistance, slownessResistCost);
+}

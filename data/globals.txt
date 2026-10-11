@@ -1,0 +1,38 @@
+# Copyright (c) 2022 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Ask the Hai about the Unfettered: global"
+	landing
+	invisible
+	to offer
+		has "Ask the Hai about the Unfettered: offered"
+	on offer
+		set "global: Ask the Hai about the Unfettered"
+		fail
+
+mission "Hai Start Unlocked"
+	landing
+	substitutions
+		<campaign> "Free Worlds"
+			has "free worlds plot completed"
+	to offer
+		has "Ask the Hai about the Unfettered: offered"
+		has "main plot completed"
+		not "global: Hai Start Unlocked"
+	on offer
+		set "global: Hai Start Unlocked"
+		conversation
+			scene "scene/hai start"
+			`By completing the <campaign> campaign and discovering the conflict between the Hai and Unfettered Hai, you have unlocked the "Hai Origins" start for future playthroughs.`
+			`	(To begin a new game with this start, open the "Manage Pilots" panel on the main menu and select "New Pilot.")`
+				decline

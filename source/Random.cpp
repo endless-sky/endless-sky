@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Random.h"
@@ -27,11 +30,16 @@ namespace {
 	mt19937_64 gen;
 	uniform_int_distribution<uint32_t> uniform;
 	uniform_real_distribution<double> real;
+	normal_distribution<double> normal;
 #else
 	thread_local mt19937_64 gen;
 	thread_local uniform_int_distribution<uint32_t> uniform;
 	thread_local uniform_real_distribution<double> real;
+	thread_local normal_distribution<double> normal;
 #endif
+
+	bool useFixedSeed = false;
+	uint64_t fixedSeed = 0;
 }
 
 
@@ -43,7 +51,15 @@ void Random::Seed(uint64_t seed)
 #ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
-	gen.seed(seed);
+	gen.seed(useFixedSeed ? fixedSeed : seed);
+}
+
+
+
+void Random::SetFixedSeed(uint64_t seed)
+{
+	useFixedSeed = true;
+	fixedSeed = seed;
 }
 
 
@@ -104,12 +120,11 @@ uint32_t Random::Binomial(uint32_t t, double p)
 
 
 
-// Get a normally distributed number (mean = 0, sigma= 1).
-double Random::Normal()
+// Get a normally distributed number with standard or specified mean and stddev.
+double Random::Normal(double mean, double sigma)
 {
-	normal_distribution<double> normal;
 #ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
-	return normal(gen);
+	return sigma * normal(gen) + mean;
 }

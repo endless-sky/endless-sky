@@ -1,0 +1,271 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+mission "Avgi Culture: Verticality"
+	minor
+	invisible
+	source Peripheria
+	to offer
+		not "avgi: lost in twilight"
+		random < 15
+	on offer
+		conversation
+			`While looking for a place to grab a snack, you discover most of the restaurants are on the terrace rings above your level of the spaceport. After some asking around, you come to the realization that Avgi structures simply weren't designed with flightless humans in mind, and you're forced to ask a very confused worker to use the spaceport's freight elevator to go up a single level.`
+				decline
+
+
+mission "Avgi Culture: Free Fuel"
+	minor
+	landing
+	invisible
+	source
+		government "Avgi (Consonance)"
+	to offer
+		not "avgi: lost in twilight"
+		random < 15
+	on offer
+		conversation
+			`As a dockyard worker helps you top off the <ship>'s fuel, you hear her mutter. "Incredulation. We're directed to give the alien free fuel while the rest of us are bleeding out of the eyes for every drop of dee."`
+				decline
+
+
+mission "Avgi Culture: Playfight"
+	minor
+	invisible
+	source "Peripheria"
+	to offer
+		not "avgi: lost in twilight"
+		random < 12
+	on offer
+		conversation
+			`As you walk through the spaceport, a pair of small Avgi flit above your head - children, perhaps - waving sticks at each other as part of some kind of game. One of them manages to knock the other's stick out of their hands, who then executes some sort of dizzying barrel roll before the two fly on out of sight.`
+				decline
+
+
+mission "Avgi Culture: Cocoon"
+	minor
+	invisible
+	source
+		government "Avgi (Consonance)"
+	to offer
+		not "avgi: lost in twilight"
+		random < 12
+	on offer
+		conversation
+			`An Avgi flies by, a pair of Avgi children sitting on her back. Nestled between them is some kind of cocoon, spun from silk that winds its way into a rope wrapped carefully around the mother's body.`
+				decline
+
+
+mission "Avgi Culture: Zapchannel Ad"
+	minor
+	invisible
+	source
+		government "Avgi (Consonance)"
+	to offer
+		not "avgi: lost in twilight"
+		random < 3
+	on offer
+		conversation
+			branch language
+				has "language: Avgi (Written)"
+			`A cheap electronic sign, haphazardly stuck to a wall, flashes a series of colorful symbols, sharp and angular. You aren't able to understand it, but guess it's probably an advertisement or notice of some kind.`
+				decline
+
+			label language
+			`A cheap electronic sign, haphazardly stuck to a wall, flashes a message in the colorful written language of the Avgi. "Zapchannel Ray Energy! With over three quadrillion gamma decays per serving, one dose provides enough energy for life! Buy today!"`
+				decline
+
+
+mission "Avgi Culture: Dissonance Protest 1"
+	minor
+	invisible
+	source
+		government "Avgi (Consonance)"
+	to offer
+		not "avgi: lost in twilight"
+		random < 3
+	on offer
+		conversation
+			branch language
+				has "language: Avgi (Written)"
+			`A line of angry-looking Avgi march in a wide circle around the spaceport, while others dart overhead in a similar pattern. Most of them seem to be waving colorful flags, while a few of the Avgi in the air are trailing banners with large, angular letters in bright colors written on them. All of the Avgi, which seem to be participating in some kind of protest, are wearing bright magenta ribbons around their arms, a color that seems to be likewise prominent on their flags and banners.`
+				decline
+
+			label language
+			`A line of angry-looking Avgi march in a wide circle around the spaceport, while others dart overhead in a similar pattern. Most of them seem to be waving colorful flags, while a few of the Avgi in the air are trailing banners with colorful slogans on them. "STOP CONSONANCE TAXES," "ABOLISH MINERAL FEUDALISM," and "STOP SENDING US TO DIE" are just a few of the messages you can make out, all in the angular Avgi script. All of the Avgi are wearing bright magenta ribbons around their arms, a color that seems to be likewise prominent on their flags and banners.`
+				decline
+
+
+mission "Avgi Culture: Dissonance Graffiti 1"
+	minor
+	invisible
+	source
+		government "Avgi (Consonance)"
+	to offer
+		not "avgi: lost in twilight"
+		random < 3
+	on offer
+		conversation
+			branch language
+				has "language: Avgi (Written)"
+			`You find colorful, curvy symbols scrawled all across the walls, floor, and ceiling of <planet>'s spaceport terminal, and you can see a handful of Avgi with brushes and mops attempting to remove them. You aren't sure what they say, but other Avgi seems to be laughing and pointing as they stroll by. The workers scrubbing the graffiti away seem to be less than amused, however.`
+				decline
+
+			label language
+			`Colorful, curvy symbols are scrawled all across the walls, floor, and ceiling of <planet>'s spaceport terminal, and you can see a handful of Avgi with brushes and mops attempting to remove them. Much of the paint has run down the walls or overlaps with other symbols, and what you can see is sloppy, but you can make out words like 'taxes' and 'defenestrate' and the phrase 'Twilight Guard? More like Twilight Gourd.'`
+				decline
+
+
+mission "Avgi Culture: We Live In A Society"
+	minor
+	invisible
+	source
+		government "Avgi (Consonance)"
+	to offer
+		not "avgi: lost in twilight"
+		random < 3
+	on offer
+		conversation
+			`An Avgi passes you, head buried in something that looks remarkably like a newspaper. You hear him mutter as he strolls by, "Unbelievable. We truly live in a society, consideration."`
+				decline
+
+
+mission "Avgi Culture: Realism"
+	minor
+	invisible
+	source
+		government "Avgi (Consonance)"
+	to offer
+		not "avgi: lost in twilight"
+		random < 3
+	on offer
+		conversation
+			`An pair of Avgi walk by you, deep in conversation. "Appreciation. I'm just glad we're being realistic here," says one. The other doesn't respond, but you sense a feeling of great despair.`
+				decline
+
+
+mission "Avgi Culture: Doomed Korath"
+	minor
+	invisible
+	source
+		attributes "aberrant siege"
+	to offer
+		not "avgi: lost in twilight"
+		random < 3
+	on offer
+		conversation
+			`An Avgi stands by a doorway, speaking into a megaphone. "Proclamation. Take warning, denizens! Without proper balance in your life, you'll be doomed! Doomed, I say! Just like those Korath I've heard about. The end times are near!"`
+				decline
+
+
+mission "Avgi Culture: General Ripper"
+	minor
+	invisible
+	source
+		attributes "aberrant siege"
+	to offer
+		not "avgi: lost in twilight"
+		random < 3
+	on offer
+		conversation
+			`An Avgi stands at a crossroads, waving a sign and a laser rifle. "Declaration. The Aberrant are polluting our precious bodily fluids, citizens! Take action now! We must not allow a fluid gap!"`
+			`	Security personnel soon arrive and begin trying to talk the Avgi down, eyeing the laser rifle nervously.`
+				decline
+
+
+mission "Avgi Culture: Criminal Mischief"
+	minor
+	invisible
+	source
+		government "Avgi (Consonance)"
+	to offer
+		not "avgi: lost in twilight"
+		random < 3
+	on offer
+		conversation
+			`A bright green Avgi wearing a black scarf darts above you towards one of the spaceport terminal gates, a comically oversized burlap sack dangling behind her. A trio of Avgi dressed in bright yellow force their way through a confused crowd in mid-air, waving batons. "Attention! Stop, thief!"`
+			`	"Taunt! You'll never catch me alive!" the thief shouts, before promptly running into a wall. You shake your head as she's led away in restraints.`
+				decline
+
+
+mission "Avgi Culture: False Alarm"
+	minor
+	invisible
+	source
+		government "Avgi (Twilight Guard)"
+	to offer
+		not "avgi: lost in twilight"
+		random < 3
+	on offer
+		conversation
+			`The spaceport is lit up by flashing yellow lights as a robotic voice proclaims its message. "Command. Radiation danger, seek prompt shelter. Command. Radiation danger, seek prompt shelter."`
+			`	The crowd has only barely had time to panic before the voice is cut off with a squeal of static. "Abashment. Apologies, false alert. Mindaro dropped his drink on the console, there is no radiation danger."`
+				decline
+
+
+mission "Avgi Culture: Fencing"
+	minor
+	invisible
+	source
+		government "Avgi (Dissonance)"
+	to offer
+		not "avgi: lost in twilight"
+		random < 15
+	on offer
+		conversation
+			`While walking through the spaceport on <planet>, you spot a pair of Avgi moving toward a large building. They are holding what look like long, thin rapiers.`
+			choice
+				`	(Approach them.)`
+				`	(Ignore them.)`
+					goto ignore
+			`	As you walk over to the two vibrantly colored Avgi, they glance in your direction. One of them, colored a muted teal, speaks up. "Invitation. Human, are you perhaps interested in witnessing the ancient Avgi sport of fencing, question?"`
+			choice
+				`	"Fencing? Like the human sport?"`
+				`	"Sure, I'm willing to watch."`
+					goto accept
+				`	"I'm good, thanks."`
+					goto ignore
+			`	The other, colored a bright blue and purple sheen, chimes in. "Assurance. While we as a species are unlikely to have preceded you in a sport such as this, I still implore you to attend."`
+			`	The first Avgi continues, "Addendum. Considering our... differences in agility, this will surely be a spectacle to you. Compared to the human sport, that is."`
+			choice
+				`	"Sure, sounds like fun!"`
+				`	"I'll pass, thanks."`
+					goto ignore
+			label accept
+			branch language
+				has "language: Avgi (Written)"
+			`	A short walk later, you find yourself in a large open-air room, similar to a gymnasium but much taller. Rows of rails that look like they came from a skate park make up bleachers the whole way around the cylindrical area, packed to the brim with perched Avgi. Many are holding up signs with colorful lettering that appear to be in favor of one participant or the other.`
+				goto start
+			label language
+			`	A short walk later, you find yourself in a large open-air room, similar to a gymnasium but much taller. Rows of rails that look like they came from a skate park make up bleachers the whole way around the cylindrical area, packed to the brim with perched Avgi. Many are holding up signs with colorful lettering that appear to be in favor of one participant or the other. One sign in particular states "ZOMP TO STOMP THEM LIKE THE ASSEMBLY!"`
+			label start
+			action
+				set "avgi: watched zomp win at fencing"
+				log "Minor People" "Zomp" `Zomp is a muted teal Avgi who defeated the reigning champion Razmatazz in a fencing match.`
+				log `Watched a fencing match between two Avgi onboard a Dissonance station with an extremely rowdy and excitable crowd. Witnessed an upset as an Avgi named Zomp defeated the reigning champion.`
+			`	Soon after, the familiar muted teal and glistening purple Avgi walk out of a small door on the bottom level. The spectators in the arena erupt with a flurry of wing flapping in what seems to be a loud cheer; your translator picks up "Excitement" and "Anticipation", among other moods, dozens of times. The fencers' wings appear to be kitted out with thin copper wires, and they're carrying the same rapiers you saw them with before. They hop up onto small pedestals located on each edge of the arena.`
+			`	A voice booms over the many speakers present in the room. "Proclamation. Here we have our reigning champion, Razmatazz, and the upstart challenger Zomp! Are you ready to witness this enthralling battle between these two paragons of the blade, question?"`
+			`	The arena once more hums to life with the flutter of wings. "Anticipation. Then let the duel... begin."`
+			`	At the announcer's word, the duelists leap into the air with incredible speed, circling around each other and clashing blades. The two spiral upwards into the far upper areas of the arena, and quickly drop back down, darting in and out of each others' reach multiple times per second. Less than a minute later, you hear a loud ding, and one of the duelists falls to the floor with their wing collapsed. The crowd, who hadn't stopped buzzing the entire duel, erupts with even louder wing fluttering.`
+			`	"Astonishment. Zomp wins round one," the announcer states. "Repose. Shall we begin round two?"`
+			`	Once more the contestants line up and spring into the air in a duel of eye-watering speed and agility. And once more, Zomp wins to the thunderous applause of the crowd.`
+			`	"Bewilderment. It seems as though Zomp has defeated our reigning champion!" the announcer proclaims.`
+			`	"Hysteria. I knew he would win! I'm up 10 to 1 on this bet!" a nearby Avgi says with exuberance as they buzz around you wildly, holding various pink papers in their many arms.`
+			`	Across the arena you hear a shout from a pink Avgi, "Adoration! I love you, Zomp!"`
+			`	The entire arena appears to be in a chaos of cheers, boos and rumbling wing flapping for minutes after the match has ended. You can't remember a single instance of fencing back in human space having this much passion and energy within the crowd.`
+			`	After the hubbub and celebration die down, you find no issue leaving the crowded arena - most Avgi simply fly over your head.`
+				decline
+			label ignore
+			`	You let the two fly away, continuing on your own business.`
+				decline

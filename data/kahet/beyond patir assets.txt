@@ -1,0 +1,2610 @@
+# Copyright (c) 2024 by Tommaso Becca
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+phrase "magic asteroid"
+	word
+		"???"
+
+fleet "Magic Asteroid"
+	government "Magic Asteroid"
+	names "magic asteroid"
+	cargo 1
+	personality
+		plunders harvests surveillance mute
+	variant 11
+		"Asteroid Large 1"
+	variant 11
+		"Asteroid Large 2"
+	variant 11
+		"Asteroid Large 3"
+	variant 11
+		"Asteroid Large 4"
+	variant 11
+		"Asteroid Large 5"
+	variant 12
+		"Asteroid Medium"
+	variant 13
+		"Asteroid Young 1"
+	variant 13
+		"Asteroid Young 2"
+	variant 13
+		"Asteroid Young 3"
+	variant 13
+		"Asteroid Young 4"
+
+# Ships
+
+ship "Asteroid Large 1"
+	"display name" "???"
+	"noun" "asteroid"
+	sprite "ship/asteroid adult"
+	"uncapturable"
+	attributes
+		category "Transport"
+		"inscrutable" 1
+		"cost" 29000000
+		"hull" 36561
+		"required crew" 1
+		"bunks" 1
+		"mass" 11740
+		"drag" 704
+		"heat dissipation" 10
+		"fuel capacity" 1000
+		"energy capacity" 1
+		"fuel generation" 0.3
+		"cargo space" 40
+		"outfit space" 390
+		"weapon capacity" 150
+		"engine capacity" 95
+		"hull repair rate" 47
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
+		"thrust" 3402
+		"flare sprite" "effect/asteroid adult flare"
+			"frame rate" 1
+		"turn" 59314
+		"asteroid mount jd" 1
+		"asteroid mount am" 1
+		"asteroid mount" 1
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Asteroid Anti-Missile"
+		"Asteroid Weapon Large" 2
+		"Asteroid Jump Drive"
+		
+	engine 0 0
+		over
+	gun 0 0 "Asteroid Weapon Large"
+	gun 0 0 "Asteroid Weapon Large"
+	turret 0 0 "Asteroid Anti-Missile"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+
+ship "Asteroid Large 2"
+	"display name" "???"
+	"noun" "asteroid"
+	sprite "ship/asteroid adult 2"
+	"uncapturable"
+	attributes
+		category "Transport"
+		"inscrutable" 1
+		"cost" 23000000
+		"hull" 37151
+		"required crew" 1
+		"bunks" 1
+		"mass" 11980
+		"drag" 704
+		"heat dissipation" 10
+		"fuel capacity" 1000
+		"energy capacity" 1
+		"fuel generation" 0.3
+		"cargo space" 40
+		"outfit space" 390
+		"weapon capacity" 150
+		"engine capacity" 95
+		"hull repair rate" 47
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
+		"thrust" 3402
+		"flare sprite" "effect/asteroid adult 2 flare"
+			"frame rate" 1
+		"turn" 59314
+		"asteroid mount jd" 1
+		"asteroid mount am" 1
+		"asteroid mount" 1
+		"asteroid mount 4" 1
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Asteroid Anti-Missile"
+		"Asteroid Weapon Large"
+		"Asteroid Weapon Large 4"
+		"Asteroid Jump Drive"
+		
+	engine 0 0
+		over
+	gun 0 0 "Asteroid Weapon Large"
+	gun 0 0 "Asteroid Weapon Large 4"
+	turret 0 0 "Asteroid Anti-Missile"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+
+ship "Asteroid Large 3"
+	"display name" "???"
+	"noun" "asteroid"
+	sprite "ship/asteroid adult 3"
+	"uncapturable"
+	attributes
+		category "Transport"
+		"inscrutable" 1
+		"cost" 19000000
+		"hull" 35172
+		"required crew" 1
+		"bunks" 1
+		"mass" 11310
+		"drag" 704
+		"heat dissipation" 10
+		"fuel capacity" 1000
+		"energy capacity" 1
+		"fuel generation" 0.3
+		"cargo space" 40
+		"outfit space" 390
+		"weapon capacity" 150
+		"engine capacity" 95
+		"hull repair rate" 47
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
+		"thrust" 3402
+		"flare sprite" "effect/asteroid adult 3 flare"
+			"frame rate" 1
+		"turn" 59314
+		"asteroid mount jd" 1
+		"asteroid mount am" 1
+		"asteroid mount 4" 2
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Asteroid Anti-Missile"
+		"Asteroid Weapon Large 4" 2
+		"Asteroid Jump Drive"
+		
+	engine 0 0
+		over
+	gun 0 0 "Asteroid Weapon Large 4"
+	gun 0 0 "Asteroid Weapon Large 4"
+	turret 0 0 "Asteroid Anti-Missile"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+
+ship "Asteroid Large 4"
+	"display name" "???"
+	"noun" "asteroid"
+	sprite "ship/asteroid adult 4"
+	"uncapturable"
+	attributes
+		category "Transport"
+		"inscrutable" 1
+		"cost" 17000000
+		"hull" 35172
+		"required crew" 1
+		"bunks" 1
+		"mass" 12510
+		"drag" 704
+		"heat dissipation" 10
+		"fuel capacity" 1000
+		"energy capacity" 1
+		"fuel generation" 0.3
+		"cargo space" 40
+		"outfit space" 390
+		"weapon capacity" 150
+		"engine capacity" 95
+		"hull repair rate" 47
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
+		"thrust" 3402
+		"flare sprite" "effect/asteroid adult 4 flare"
+			"frame rate" 1
+		"turn" 59314
+		"asteroid mount jd" 1
+		"asteroid mount am" 1
+		"asteroid mount 3" 2
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Asteroid Anti-Missile"
+		"Asteroid Weapon Large 3" 2
+		"Asteroid Jump Drive"
+		
+	engine 0 0
+		over
+	gun 0 0 "Asteroid Weapon Large 3"
+	gun 0 0 "Asteroid Weapon Large 3"
+	turret 0 0 "Asteroid Anti-Missile"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+
+ship "Asteroid Large 5"
+	"display name" "???"
+	"noun" "asteroid"
+	sprite "ship/asteroid adult 5"
+	"uncapturable"
+	attributes
+		category "Transport"
+		"inscrutable" 1
+		"cost" 31000000
+		"hull" 36716
+		"required crew" 1
+		"bunks" 1
+		"mass" 12150
+		"drag" 704
+		"heat dissipation" 10
+		"fuel capacity" 1000
+		"energy capacity" 1
+		"fuel generation" 0.3
+		"cargo space" 40
+		"outfit space" 390
+		"weapon capacity" 150
+		"engine capacity" 95
+		"hull repair rate" 47
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
+		"thrust" 3402
+		"flare sprite" "effect/asteroid adult 5 flare"
+			"frame rate" 1
+		"turn" 59314
+		"asteroid mount jd" 1
+		"asteroid mount am" 1
+		"asteroid mount 2" 2
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Asteroid Anti-Missile"
+		"Asteroid Weapon Large 2" 2
+		"Asteroid Jump Drive"
+		
+	engine 0 0
+		over
+	gun 0 0 "Asteroid Weapon Large 2"
+	gun 0 0 "Asteroid Weapon Large 2"
+	turret 0 0 "Asteroid Anti-Missile"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+
+ship "Asteroid Medium"
+	"display name" "???"
+	"noun" "asteroid"
+	sprite "ship/asteroid medium"
+	"uncapturable"
+	attributes
+		category "Transport"
+		"inscrutable" 1
+		"cost" 13000000
+		"hull" 21248
+		"required crew" 1
+		"bunks" 1
+		"mass" 7620
+		"drag" 551
+		"heat dissipation" 10
+		"fuel capacity" 1000
+		"energy capacity" 1
+		"fuel generation" 0.3
+		"cargo space" 40
+		"outfit space" 390
+		"weapon capacity" 150
+		"engine capacity" 95
+		"hull repair rate" 47
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
+		"thrust" 3272
+		"flare sprite" "effect/asteroid medium flare"
+			"frame rate" 1
+		"turn" 48163
+		"asteroid mount jd" 1
+		"asteroid mount small" 1
+		"asteroid mount 2" 1
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Asteroid Anti-Missile 2"
+		"Asteroid Weapon Large 2"
+		"Asteroid Jump Drive"
+		
+	engine 0 0
+		over
+	gun 0 0 "Asteroid Weapon Large 2"
+	turret 0 0 "Asteroid Anti-Missile 2"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+
+ship "Asteroid Young 1"
+	"display name" "???"
+	"noun" "asteroid"
+	sprite "ship/asteroid young"
+	"uncapturable"
+	attributes
+		category "Transport"
+		"inscrutable" 1
+		"cost" 11000000
+		"hull" 16459
+		"required crew" 1
+		"bunks" 1
+		"mass" 5810
+		"drag" 397
+		"heat dissipation" 10
+		"fuel capacity" 1000
+		"energy capacity" 1
+		"fuel generation" 0.3
+		"cargo space" 40
+		"outfit space" 390
+		"weapon capacity" 150
+		"engine capacity" 95
+		"hull repair rate" 47
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
+		"thrust" 2039
+		"flare sprite" "effect/asteroid young flare"
+			"frame rate" 1
+		"turn" 40191
+		"asteroid mount jd" 1
+		"asteroid mount small" 2
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Asteroid Anti-Missile 2"
+		"Asteroid Weapon Small"
+		"Asteroid Jump Drive"
+		
+	engine 0 0
+		over
+	gun 0 0 "Asteroid Weapon Small"
+	turret 0 0 "Asteroid Anti-Missile 2"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+
+ship "Asteroid Young 2"
+	"display name" "???"
+	"noun" "asteroid"
+	sprite "ship/asteroid young 2"
+	"uncapturable"
+	attributes
+		category "Transport"
+		"inscrutable" 1
+		"cost" 7000000
+		"hull" 15984
+		"required crew" 1
+		"bunks" 1
+		"mass" 5780
+		"drag" 397
+		"heat dissipation" 10
+		"fuel capacity" 1000
+		"energy capacity" 1
+		"fuel generation" 0.3
+		"cargo space" 40
+		"outfit space" 390
+		"weapon capacity" 150
+		"engine capacity" 95
+		"hull repair rate" 47
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
+		"thrust" 2039
+		"flare sprite" "effect/asteroid young 2 flare"
+			"frame rate" 1
+		"turn" 40191
+		"asteroid mount jd" 1
+		"asteroid mount small" 2
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Asteroid Anti-Missile 2"
+		"Asteroid Weapon Small"
+		"Asteroid Jump Drive"
+		
+	engine 0 0
+		over
+	gun 0 0 "Asteroid Weapon Small"
+	turret 0 0 "Asteroid Anti-Missile 2"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+
+ship "Asteroid Young 3"
+	"display name" "???"
+	"noun" "asteroid"
+	sprite "ship/asteroid young 3"
+	"uncapturable"
+	attributes
+		category "Transport"
+		"inscrutable" 1
+		"cost" 5000000
+		"hull" 17021
+		"required crew" 1
+		"bunks" 1
+		"mass" 5850
+		"drag" 397
+		"heat dissipation" 10
+		"fuel capacity" 1000
+		"energy capacity" 1
+		"fuel generation" 0.3
+		"cargo space" 40
+		"outfit space" 390
+		"weapon capacity" 150
+		"engine capacity" 95
+		"hull repair rate" 47
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
+		"thrust" 2039
+		"flare sprite" "effect/asteroid young 3 flare"
+			"frame rate" 1
+		"turn" 40191
+		"asteroid mount jd" 1
+		"asteroid mount small" 2
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Asteroid Anti-Missile 2"
+		"Asteroid Weapon Small"
+		"Asteroid Jump Drive"
+		
+	engine 0 0
+		over
+	gun 0 0 "Asteroid Weapon Small"
+	turret 0 0 "Asteroid Anti-Missile 2"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+
+ship "Asteroid Young 4"
+	"display name" "???"
+	"noun" "asteroid"
+	sprite "ship/asteroid young 4"
+	"uncapturable"
+	attributes
+		category "Transport"
+		"inscrutable" 1
+		"cost" 3000000
+		"hull" 16462
+		"required crew" 1
+		"bunks" 1
+		"mass" 5910
+		"drag" 397
+		"heat dissipation" 10
+		"fuel capacity" 1000
+		"energy capacity" 1
+		"fuel generation" 0.3
+		"cargo space" 40
+		"outfit space" 390
+		"weapon capacity" 150
+		"engine capacity" 95
+		"hull repair rate" 47
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
+		"thrust" 2039
+		"flare sprite" "effect/asteroid young 4 flare"
+			"frame rate" 1
+		"turn" 40191
+		"asteroid mount jd" 1
+		"asteroid mount small" 2
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Asteroid Anti-Missile 2"
+		"Asteroid Weapon Small"
+		"Asteroid Jump Drive"
+		
+	engine 0 0
+		over
+	gun 0 0 "Asteroid Weapon Small"
+	turret 0 0 "Asteroid Anti-Missile 2"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+
+# Weapons
+
+outfit "Asteroid Anti-Missile"
+	"display name" "???"
+	category "Turrets"
+	cost 18630000
+	thumbnail "outfit/asteroid weapon 2"
+	"mass" 41
+	"outfit space" -41
+	"weapon capacity" -41
+	"turret mounts" -1
+	"asteroid mount am" -1
+	weapon
+		sound "magic am"
+		"fire effect" "asteroid am fire"
+		"anti-missile" 420
+		"velocity" 100
+		"lifetime" 1
+		"reload" 1
+		"firing heat" 18
+	description "Though its specifics are essentially the same as its smaller variant, its bubble shield is far bigger and just as indestructible. It has clearly become more unstable in the process, but this does not seem to have affected its capabilities."
+
+effect "asteroid am fire"
+	sprite "effect/asteroid am fire"
+		"frame time" 60
+		"random start frame"
+	lifetime 2
+
+outfit "Asteroid Anti-Missile 2"
+	"display name" "???"
+	category "Turrets"
+	cost 12128000
+	thumbnail "outfit/asteroid weapon 8"
+	"mass" 29
+	"outfit space" -29
+	"weapon capacity" -29
+	"turret mounts" -1
+	"asteroid mount small" -1
+	weapon
+		"hardpoint sprite" "hardpoint/asteroid am circle"
+			"frame time" 30
+		sound "magic am"
+		"fire effect" "asteroid am circle defense"
+		"anti-missile" 420
+		"velocity" 50
+		"lifetime" 1
+		"reload" 1
+		"firing heat" 18
+	description "A nearly impenetrable anti-missile field, instantly eliminating even the strongest missile that tries to pass through. However, the size of this protective bubble greatly limits its capabilities."
+
+effect "asteroid am circle defense"
+	sprite "effect/asteroid am circle defense"
+		"frame time" 60
+		"random start frame"
+	lifetime 2
+
+outfit "Asteroid Weapon Small"
+	"display name" "???"
+	category "Guns"
+	cost 12346000
+	thumbnail "outfit/asteroid weapon 3"
+	"mass" 31
+	"outfit space" -31
+	"weapon capacity" -31
+	"gun ports" -1
+	"asteroid mount small" -1
+	weapon
+		sprite "projectile/asteroid weapon circle"
+			"frame time" 20
+			"start frame" 0
+			"no repeat"
+		sound "magic am"
+		"hit effect" "large explosion"
+		"inaccuracy" .5
+		"submunition" "Asteroid Circle Submunition" 7
+		"velocity" 4
+		"lifetime" 100
+		"reload" 60
+		"firing force" 40
+		"firing heat" 400
+		"hit force" 3900
+		"hull damage" 600
+		"slowing damage" -28
+		"blast radius" 20
+	description "Similar in appearance to the anti-missile used by some of these ships, this weapon was created with two functions in mind: slowing down an opponent until it gets close enough, and then eliminating it with heavy, direct damage to the hull."
+
+outfit "Asteroid Circle Submunition"
+	weapon
+		sprite "projectile/asteroid weapon live"
+		"inaccuracy" 360
+		"hit effect" "detainer impact" 3
+		"hit effect" "detainer smoke" 5
+		"die effect" "tiny explosion"
+		"turn" 6
+		"homing"
+			"throttle control"
+		"tracking" 1
+		"acceleration" 1.5
+		"drag" 0.2
+		"lifetime" 390
+		"hull damage" 50
+		"slowing damage" 4
+		"hit force" -300
+		"missile strength" 22
+
+outfit "Asteroid Weapon Large"
+	"display name" "???"
+	category "Guns"
+	cost 18970000
+	thumbnail "outfit/asteroid weapon 6"
+	"mass" 43
+	"outfit space" -43
+	"weapon capacity" -43
+	"gun ports" -1
+	"asteroid mount" -1
+	weapon
+		sprite "effect/asteroid projectile print"
+			"frame rate" 21
+		"velocity" 10
+		sound "magic weapon"
+		"drag" .1
+		"turn" 16
+		"hit effect" "seeker impact"
+		"lifetime" 20
+		"submunition" "creeper1 print"
+		"reload" 100
+	description "By creating a circle of energy-based mines and then converting them into missiles at the same time, this weapon is capable of breaking through anti-missile defenses better than most."
+	
+outfit "creeper1 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 2
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper1 static"
+		"submunition" "creeper2 print"
+		
+outfit "creeper1 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 75
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		
+outfit "creeper2 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper2 static"
+		"submunition" "creeper3 print"
+		
+outfit "creeper2 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 70
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "creeper3 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper3 static"
+		"submunition" "creeper4 print"
+		
+outfit "creeper3 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 65
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "creeper4 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper4 static"
+		"submunition" "creeper5 print"
+		
+outfit "creeper4 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 60
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "creeper5 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper5 static"
+		"submunition" "creeper6 print"
+		
+outfit "creeper5 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 55
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "creeper6 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper6 static"
+		"submunition" "creeper7 print"
+		
+outfit "creeper6 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 50
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "creeper7 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper7 static"
+		"submunition" "creeper8 print"
+		
+outfit "creeper7 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 45
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "creeper8 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper8 static"
+		"submunition" "creeper9 print"
+		
+outfit "creeper8 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 40
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "creeper9 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper9 static"
+		"submunition" "creeper10 print"
+		
+outfit "creeper9 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 35
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "creeper10 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper10 static"
+		"submunition" "creeper11 print"
+		
+outfit "creeper10 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 30
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "creeper11 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper11 static"
+		"submunition" "creeper12 print"
+		
+outfit "creeper11 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 25
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "creeper12 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper12 static"
+		"submunition" "creeper13 print"
+		
+outfit "creeper12 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 20
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "creeper13 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper13 static"
+		"submunition" "creeper14 print"
+		
+outfit "creeper13 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 15
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "creeper14 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper14 static"
+		"submunition" "creeper15 print"
+		
+outfit "creeper14 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 10
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "creeper15 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -8
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "creeper15 static"
+		
+outfit "creeper15 static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"hit effect" "seeker impact"
+		"lifetime" 5
+		"submunition" "asteroid launch"
+		"hull damage" 60
+
+outfit "asteroid launch"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" 2
+		"drag" .1
+		"turn" 6
+		"homing"
+			"throttle control"
+		"hit effect" "seeker impact"
+		"die effect" "seeker impact"
+		"tracking" 1
+		"lifetime" 120
+		"hull damage" 45
+		"missile strength" 90
+
+outfit "Asteroid Weapon Large 2"
+	"display name" "???"
+	category "Guns"
+	cost 171670000
+	thumbnail "outfit/asteroid weapon 1"
+	"mass" 39
+	"outfit space" -39
+	"weapon capacity" -39
+	"gun ports" -1
+	"asteroid mount 2" -1
+	weapon
+		sound "magic weapon"
+		"velocity" 10
+		"drag" .1
+		"acceleration" 1
+		"lifetime" 2000
+		"submunition" "asteroid laser 1"
+			"offset" 0 10
+		"submunition" "spin1 print right"
+		"submunition" "spin1 print left"
+		"fire effect" "asteroid glow"
+		"split range" 400
+		"reload" 150
+		"firing heat" 5
+	description "This very peculiar weapon overwhelms its target by creating an array of short-living, laser-armed entities. However, the precision it requires, as well as its low raw damage output, limits its potential."
+	
+effect "asteroid glow"
+	sprite "effect/asteroid glow"
+		"frame time" 2
+		"no repeat"
+	lifetime 10
+
+outfit "spin1 print right"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"velocity" -25
+		"random velocity" 20
+		"inaccuracy" 5
+		"acceleration" -1
+		"live effect" "asteroid circle trail" 5
+		"drag" .1
+		"turn" -5
+		"lifetime" 40
+		"submunition" "track1 print right"
+		"submunition" "spin2 print left"
+
+outfit "spin1 print left"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"velocity" -25
+		"random velocity" 20
+		"inaccuracy" 5
+		"acceleration" -1
+		"live effect" "asteroid circle trail" 5
+		"drag" .1
+		"turn" 5
+		"lifetime" 40
+		"submunition" "track1 print left"
+		"submunition" "spin2 print right"
+
+outfit "track1 print right"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"acceleration" 1
+		"drag" .1
+		"turn" 20
+		"live effect" "asteroid circle trail" 5
+		"homing"
+			"throttle control"
+		"tracking" 1
+		"lifetime" 550
+		"inaccuracy" 5
+		"split range" 180
+		"submunition" "asteroid laser 1"
+			"offset" 0 10
+		"submunition" "spin2 print right"
+		"submunition" "spin2 print left"
+
+outfit "track1 print left"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"acceleration" 1
+		"drag" .1
+		"turn" 20
+		"live effect" "asteroid circle trail" 5
+		"homing"
+			"throttle control"
+		"tracking" 1
+		"lifetime" 550
+		"inaccuracy" 5
+		"split range" 180
+		"submunition" "asteroid laser 1"
+			"offset" 0 10
+		"submunition" "spin2 print right"
+		"submunition" "spin2 print left"
+
+outfit "spin2 print right"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"velocity" -25
+		"random velocity" 20
+		"inaccuracy" 5
+		"acceleration" -1
+		"live effect" "asteroid circle trail" 5
+		"drag" .1
+		"turn" -5
+		"lifetime" 40
+		"submunition" "track2 print right"
+		"submunition" "spin3 print left"
+
+outfit "spin2 print left"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"velocity" -25
+		"random velocity" 20
+		"inaccuracy" 5
+		"acceleration" -1
+		"live effect" "asteroid circle trail" 5
+		"drag" .1
+		"turn" 5
+		"lifetime" 40
+		"submunition" "track2 print left"
+		"submunition" "spin3 print right"
+
+outfit "track2 print right"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"acceleration" 1
+		"drag" .1
+		"turn" 20
+		"live effect" "asteroid circle trail" 5
+		"homing"
+			"throttle control"
+		"tracking" 1
+		"lifetime" 550
+		"inaccuracy" 5
+		"split range" 180
+		"submunition" "asteroid laser 1"
+			"offset" 0 10
+		"submunition" "spin3 print right"
+		"submunition" "spin3 print left"
+
+outfit "track2 print left"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"acceleration" 1
+		"drag" .1
+		"turn" 20
+		"live effect" "asteroid circle trail" 5
+		"homing"
+			"throttle control"
+		"tracking" 1
+		"lifetime" 550
+		"inaccuracy" 5
+		"split range" 180
+		"submunition" "asteroid laser 1"
+			"offset" 0 10
+		"submunition" "spin3 print right"
+		"submunition" "spin3 print left"
+
+outfit "spin3 print right"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"velocity" -25
+		"random velocity" 20
+		"inaccuracy" 5
+		"acceleration" -1
+		"live effect" "asteroid circle trail" 5
+		"drag" .1
+		"turn" -5
+		"lifetime" 40
+		"submunition" "track3 print right"
+		"submunition" "spin4 print left"
+
+outfit "spin3 print left"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"velocity" -25
+		"random velocity" 20
+		"inaccuracy" 5
+		"acceleration" -1
+		"live effect" "asteroid circle trail" 5
+		"drag" .1
+		"turn" 5
+		"lifetime" 40
+		"submunition" "track3 print left"
+		"submunition" "spin4 print right"
+
+outfit "track3 print right"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"acceleration" 1
+		"drag" .1
+		"turn" 20
+		"live effect" "asteroid circle trail" 5
+		"homing"
+			"throttle control"
+		"tracking" 1
+		"lifetime" 550
+		"inaccuracy" 5
+		"split range" 180
+		"submunition" "asteroid laser 1"
+			"offset" 0 10
+		"submunition" "spin4 print right"
+		"submunition" "spin4 print left"
+
+outfit "track3 print left"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"acceleration" 1
+		"drag" .1
+		"turn" 20
+		"live effect" "asteroid circle trail" 5
+		"homing"
+			"throttle control"
+		"tracking" 1
+		"lifetime" 550
+		"inaccuracy" 5
+		"split range" 180
+		"submunition" "asteroid laser 1"
+			"offset" 0 10
+		"submunition" "spin4 print right"
+		"submunition" "spin4 print left"
+
+outfit "spin4 print right"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"velocity" -25
+		"random velocity" 20
+		"inaccuracy" 5
+		"acceleration" -1
+		"live effect" "asteroid circle trail" 5
+		"drag" .1
+		"turn" -5
+		"lifetime" 40
+		"submunition" "track4 print right"
+
+outfit "spin4 print left"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"velocity" -25
+		"random velocity" 20
+		"inaccuracy" 5
+		"acceleration" -1
+		"live effect" "asteroid circle trail" 5
+		"drag" .1
+		"turn" 5
+		"lifetime" 40
+		"submunition" "track4 print left"
+
+outfit "track4 print right"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"acceleration" 1
+		"drag" .1
+		"turn" 20
+		"live effect" "asteroid circle trail" 5
+		"homing"
+			"throttle control"
+		"tracking" 1
+		"lifetime" 550
+		"inaccuracy" 5
+		"split range" 180
+		"submunition" "asteroid laser 1"
+			"offset" 0 10
+
+outfit "track4 print left"
+	weapon
+		sprite "projectile/asteroid weapon swarm"
+			"frame rate" 5
+			"random start frame"
+		"acceleration" 1
+		"drag" .1
+		"turn" 20
+		"live effect" "asteroid circle trail" 5
+		"homing"
+			"throttle control"
+		"tracking" 1
+		"lifetime" 550
+		"inaccuracy" 5
+		"split range" 180
+		"submunition" "asteroid laser 1"
+			"offset" 0 10
+
+outfit "asteroid laser 1"
+	weapon
+		sprite "projectile/asteroid laser"
+			"frame rate" 60
+			"random start frame"
+		sound "zapper"
+		"hit effect" "skylance impact"
+		"target effect" "asteroid target"
+		"inaccuracy" .3
+		"velocity" 200
+		"lifetime" 1
+		"reload" 1
+		"corrosion damage" 0.7
+		"hull damage" 18.9
+
+effect "asteroid hit"
+	sprite "effect/point defense hit"
+		"frame rate" 13
+		"no repeat"
+	lifetime 1
+	"velocity scale" 0
+
+effect "asteroid target"
+	sprite "effect/finisher sparks"
+		"random start frame"
+		"frame rate" 20
+	"lifetime" 15
+	"random angle" 180
+
+effect "asteroid circle trail"
+	sprite "effect/asteroid circle trail"
+		"no repeat"
+		"frame time" 4
+	"lifetime" 20
+	"random velocity" 5
+	"random spin" 10
+	"velocity scale" 0.3
+
+outfit "Asteroid Weapon Large 3"
+	"display name" "???"
+	category "Guns"
+	cost 19870000
+	thumbnail "outfit/asteroid weapon 5"
+	"mass" 52
+	"outfit space" -52
+	"weapon capacity" -52
+	"gun ports" -1
+	"asteroid mount 3" -1
+	weapon
+		sprite "projectile/asteroid twin projectile"
+			"frame rate" 10
+			"random start frame"
+		sound "magic weapon"
+		"velocity" 20
+		"drag" .1
+		"acceleration" 1
+		"lifetime" 30
+		"submunition" "asteroid missile"
+			"facing" 30
+		"submunition" "asteroid missile"
+			"facing" -30
+		"submunition" "magic deployer1"
+		"homing"
+			"blindspot"
+		"optical tracking" 1
+		"turn" 0
+		"split range" 180
+		"reload" 100
+		"firing heat" 5
+	description "While it may be technically described as a missile, its specifics differ from the average rocket launcher. The heap of energy created by this weapon's fire continuously releases projectiles which home in onto enemies, until finally exploding and breaking up into an enormous barrage of similar projectiles. These attributes make it very good at overwhelming anti-missiles enough to render them useless, then impacting a fair share of damage while they are down."
+
+outfit "asteroid missile"
+	weapon
+		sprite "projectile/asteroid missile"
+			"frame rate" 5
+			"random start frame"
+		"velocity" 30
+		"acceleration" 1
+		"drag" .03
+		"turn" 60
+		"hit effect" "seeker impact"
+		"die effect" "seeker impact"
+		"homing"
+			"leading"
+			"throttle control"
+		"tracking" 0.95
+		"lifetime" 155
+		"hit force" 120
+		"hull damage" 25
+		"inaccuracy" 10
+		"missile strength" 90
+
+outfit "magic deployer1"
+	weapon
+		sprite "projectile/asteroid twin projectile"
+			"frame rate" 10
+			"random start frame"
+		"drag" .1
+		"acceleration" 1
+		"hit effect" "seeker impact"
+		"lifetime" 30
+		"submunition" "asteroid missile"
+			"facing" 30
+		"submunition" "asteroid missile"
+			"facing" -30
+		"submunition" "magic deployer2"
+
+outfit "magic deployer2"
+	weapon
+		sprite "projectile/asteroid twin projectile"
+			"frame rate" 10
+			"random start frame"
+		"drag" .1
+		"acceleration" 1
+		"hit effect" "seeker impact"
+		"lifetime" 30
+		"submunition" "asteroid missile"
+			"facing" 30
+		"submunition" "asteroid missile"
+			"facing" -30
+		"submunition" "magic deployer3"
+
+outfit "magic deployer3"
+	weapon
+		sprite "projectile/asteroid twin projectile"
+			"frame rate" 10
+			"random start frame"
+		"drag" .1
+		"acceleration" 1
+		"hit effect" "seeker impact"
+		"lifetime" 30
+		"submunition" "asteroid missile"
+			"facing" 30
+		"submunition" "asteroid missile"
+			"facing" -30
+		"submunition" "magic deployer4"
+
+outfit "magic deployer4"
+	weapon
+		sprite "projectile/asteroid twin projectile"
+			"frame rate" 10
+			"random start frame"
+		"drag" .1
+		"acceleration" 1
+		"hit effect" "seeker impact"
+		"lifetime" 30
+		"submunition" "asteroid missile"
+			"facing" 30
+		"submunition" "asteroid missile"
+			"facing" -30
+		"submunition" "magic deployer5"
+
+outfit "magic deployer5"
+	weapon
+		sprite "projectile/asteroid twin projectile"
+			"frame rate" 10
+			"random start frame"
+		"drag" .1
+		"acceleration" 1
+		"hit effect" "seeker impact"
+		"lifetime" 30
+		"submunition" "asteroid missile"
+			"facing" 30
+		"submunition" "asteroid missile"
+			"facing" -30
+		"submunition" "magic deployer6"
+
+outfit "magic deployer6"
+	weapon
+		sprite "projectile/asteroid twin projectile"
+			"frame rate" 10
+			"random start frame"
+		"drag" .1
+		"acceleration" 1
+		"hit effect" "seeker impact"
+		"lifetime" 30
+		"submunition" "asteroid missile" 15
+			"facing" 30
+		"submunition" "asteroid missile" 15
+			"facing" -30
+
+outfit "Asteroid Weapon Large 4"
+	"display name" "???"
+	category "Guns"
+	cost 15716000
+	thumbnail "outfit/asteroid weapon 4"
+	"mass" 44
+	"outfit space" -44
+	"weapon capacity" -44
+	"gun ports" -1
+	"asteroid mount 4" -1
+	weapon
+		sprite "effect/asteroid projectile print"
+			"frame rate" 21
+		sound "magic weapon"
+		"velocity" 100
+		"drag" .1
+		"acceleration" 1
+		"lifetime" 20
+		"turn" -6
+		"submunition" "wep1 print" 2
+			"facing" 15
+		"reload" 130
+		"burst count" 7
+		"burst reload" 1
+		"firing heat" 5
+	description "An impressive defensive weapon, fending off even the mightiest attackers by projecting enormous bubble-shaped minefields all around itself. Though not a rapid-fire weapon by any means, it is able to maintain one of those fields continuously without issue."
+	
+outfit "wep1 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep2 print"
+	
+outfit "wep2 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep3 print"
+	
+outfit "wep3 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep4 print"
+	
+outfit "wep4 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep5 print"
+	
+outfit "wep5 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep6 print"
+	
+outfit "wep6 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep7 print"
+	
+outfit "wep7 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep8 print"
+	
+outfit "wep8 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep9 print"
+	
+outfit "wep9 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep10 print"
+	
+outfit "wep10 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep11 print"
+	
+outfit "wep11 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep12 print"
+	
+outfit "wep12 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep13 print"
+	
+outfit "wep13 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep14 print"
+	
+outfit "wep14 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep15 print"
+	
+outfit "wep15 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep16 print"
+	
+outfit "wep16 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep17 print"
+	
+outfit "wep17 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep18 print"
+	
+outfit "wep18 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep19 print"
+	
+outfit "wep19 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep20 print"
+	
+outfit "wep20 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep21 print"
+	
+outfit "wep21 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep22 print"
+	
+outfit "wep22 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep23 print"
+	
+outfit "wep23 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep24 print"
+	
+outfit "wep24 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep25 print"
+	
+outfit "wep25 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep26 print"
+	
+outfit "wep26 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep27 print"
+	
+outfit "wep27 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep28 print"
+	
+outfit "wep28 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep29 print"
+	
+outfit "wep29 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep30 print"
+	
+outfit "wep30 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep31 print"
+	
+outfit "wep31 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep32 print"
+	
+outfit "wep32 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep33 print"
+	
+outfit "wep33 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep34 print"
+	
+outfit "wep34 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep35 print"
+	
+outfit "wep35 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep36 print"
+	
+outfit "wep36 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep37 print"
+	
+outfit "wep37 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep38 print"
+	
+outfit "wep38 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep39 print"
+	
+outfit "wep39 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep40 print"
+	
+outfit "wep40 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep41 print"
+	
+outfit "wep41 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+		"submunition" "wep42 print"
+	
+outfit "wep42 print"
+	weapon
+		sprite "effect/asteroid projectile print"
+			"start frame" 1
+			"frame rate" 9
+		"velocity" 2
+		"acceleration" 3
+		"drag" .1
+		"turn" -2
+		"hit effect" "circle defense"
+		"lifetime" 15
+		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
+		"submunition" "wep static"
+
+outfit "wep static"
+	weapon
+		sprite "effect/asteroid projectile static"
+			"start frame" 1
+			"frame rate" 9
+		"acceleration" .0000001
+		"drag" 1
+		"lifetime" 575
+		"turn" 360
+		"homing"
+		"tracking" 1
+		"trigger radius" 240
+		"blast radius" 400
+		"corrosion damage" 1.4
+		"hull damage" 72.9
+		"slowing damage" 10
+		"hit force" 150
+		"hit effect" "circle defense"
+
+
+effect "circle defense"
+	sprite "effect/jd detainer"
+		"frame time" 60
+		"random start frame"
+	lifetime 2
+
+# Outfits
+
+outfit "Asteroid Jump Drive"
+	"display name" "???"
+	category "Systems"
+	cost 9963000
+	thumbnail "outfit/asteroid weapon 7"
+	"mass" 20
+	"outfit space" -20
+	"jump speed" 0.2
+	"jump fuel" 200
+	"jump drive" 1
+	"asteroid mount jd" -1
+	"jump effect" "jump drive circle"
+	"jump effect" "jump drive spark 1"
+	"jump effect" "jump drive spark 2"
+	"jump effect" "jump drive spark 3"
+	"jump effect" "jump drive spark 4"
+	"jump effect" "jump drive spark 5"
+	"jump effect" "jump drive spark 6"
+	"jump effect" "jump drive spark 7"
+	"jump effect" "jump drive spark 8"
+	"jump effect" "jump drive spark 9"
+	"jump effect" "jump drive 1"
+	"jump effect" "jump drive 2"
+	"jump effect" "jump drive 3"
+	"jump effect" "jump drive 4"
+	"jump effect" "jump drive 5"
+	"jump effect" "jump drive 6"
+	"jump effect" "jump drive 7"
+	"jump effect" "jump drive 8"
+	"jump effect" "jump drive 9"
+	"jump effect" "jump drive 10"
+	"jump effect" "jump drive 11"
+	"jump effect" "jump drive 12"
+	"jump effect" "jump drive 13"
+	"jump effect" "jump drive 14"
+	"jump effect" "jump drive 15"
+	description "Whatever the mechanism that hides beneath the translucent orb may be, it functions similarly to a jump drive, bridging different parts of the universe together for the cost of merely 200 units of fuel."
+
+# The "ajump drive" effect doesn't exist, but serve to reduce the number of effects spawned: as it always shows the same overall number, by showing empty ones it effectively reduces the visual bloat during the jump
+
+effect "jump drive 1"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 2"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 3"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 4"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 5"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 6"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 7"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 8"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 9"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 10"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 11"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 12"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 13"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 14"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive 15"
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+effect "jump drive red"
+	sprite "effect/jump drive red"
+		"no repeat"
+		"frame rate" 8
+		"rewind"
+	"lifetime" 8
+	"velocity scale" 3
+
+effect "jump drive circle"
+	sprite "effect/jd detainer"
+		"no repeat"
+		"frame time" 1.5
+	"lifetime" 50
+	"random spin" 3
+	"random angle" 180
+
+effect "jump drive spark 1"
+	sprite "effect/repulsor impact"
+		"frame time" 6
+		"random start frame"
+	"lifetime" 15
+	"random spin" 3
+	"random angle" 180
+
+effect "jump drive spark 2"
+	sprite "effect/repulsor impact"
+		"frame time" 6
+		"random start frame"
+	"lifetime" 15
+	"random spin" 3
+	"random angle" 180
+
+effect "jump drive spark 3"
+	sprite "effect/repulsor impact"
+		"frame time" 6
+		"random start frame"
+	"lifetime" 15
+	"random spin" 3
+	"random angle" 180
+
+effect "jump drive spark 4"
+	sprite "effect/repulsor impact"
+		"frame time" 6
+		"random start frame"
+	"lifetime" 15
+	"random spin" 3
+	"random angle" 180
+
+effect "jump drive spark 5"
+	sprite "effect/repulsor impact"
+		"frame time" 6
+		"random start frame"
+	"lifetime" 15
+	"random spin" 3
+	"random angle" 180
+
+effect "jump drive spark 6"
+	sprite "effect/repulsor impact"
+		"frame time" 6
+		"random start frame"
+	"lifetime" 15
+	"random spin" 3
+	"random angle" 180
+
+effect "jump drive spark 7"
+	sprite "effect/repulsor impact"
+		"frame time" 6
+		"random start frame"
+	"lifetime" 15
+	"random spin" 3
+	"random angle" 180
+
+effect "jump drive spark 8"
+	sprite "effect/repulsor impact"
+		"frame time" 6
+		"random start frame"
+	"lifetime" 15
+	"random spin" 3
+	"random angle" 180
+
+effect "jump drive spark 9"
+	sprite "effect/repulsor impact"
+		"frame time" 6
+		"random start frame"
+	"lifetime" 15
+	"random spin" 3
+	"random angle" 180

@@ -7,21 +7,26 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "SpaceportPanel.h"
 
-#include "text/alignment.hpp"
-#include "Color.h"
+#include "text/Alignment.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "News.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "Point.h"
+#include "Preferences.h"
 #include "Random.h"
+#include "Screen.h"
+#include "TextArea.h"
 #include "UI.h"
 
 using namespace std;
@@ -29,21 +34,15 @@ using namespace std;
 
 
 SpaceportPanel::SpaceportPanel(PlayerInfo &player)
-	: player(player)
+	: player(player), port(player.GetPlanet()->GetPort())
 {
 	SetTrapAllEvents(false);
 
-	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(Alignment::JUSTIFIED);
-	text.SetWrapWidth(480);
-	text.Wrap(player.GetPlanet()->SpaceportDescription());
-
-	// Query the news interface to find out the wrap width.
-	// TODO: Allow Interface to handle wrapped text directly.
-	const Interface *newsUi = GameData::Interfaces().Get("news");
-	portraitWidth = newsUi->GetBox("message portrait").Width();
-	normalWidth = newsUi->GetBox("message").Width();
-	newsMessage.SetFont(FontSet::Get(14));
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
+	description->SetColor(*GameData::Colors().Get("bright"));
+	description->SetAlignment(Preferences::GetTextAlignment());
+	AddChild(description);
 }
 
 
@@ -54,6 +53,8 @@ void SpaceportPanel::UpdateNews()
 	if(!news)
 		return;
 	hasNews = true;
+	if(!newsMessage)
+		InitNewsTextArea();
 
 	// Randomly pick which portrait, if any, is to be shown. Depending on if
 	// this news has a portrait, different interface information gets filled in.
@@ -61,16 +62,18 @@ void SpaceportPanel::UpdateNews()
 	// Cache the randomly picked results until the next update is requested.
 	hasPortrait = portrait;
 	newsInfo.SetSprite("portrait", portrait);
-	newsInfo.SetString("name", news->Name() + ':');
-	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
-	newsMessage.Wrap(news->Message());
+	newsInfo.SetString("name", news->SpeakerName() + ':');
+	map<string, string> subs;
+	GameData::GetTextReplacements().Substitutions(subs);
+	player.AddPlayerSubstitutions(subs);
+	newsMessage->SetText(Format::Replace(news->Message(), subs));
 }
 
 
 
 void SpaceportPanel::Step()
 {
-	if(GetUI()->IsTop(this))
+	if(GetUI().IsTop(this) && port.HasService(Port::ServicesType::OffersMissions))
 	{
 		Mission *mission = player.MissionToOffer(Mission::SPACEPORT);
 		// Special case: if the player somehow got to the spaceport before all
@@ -78,7 +81,7 @@ void SpaceportPanel::Step()
 		if(!mission)
 			mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
+			mission->Do(Mission::OFFER, player, &GetUI());
 		else
 			player.HandleBlockedMissions(Mission::SPACEPORT, GetUI());
 	}
@@ -91,17 +94,75 @@ void SpaceportPanel::Draw()
 	if(player.IsDead())
 		return;
 
-	text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
+	// The description text needs to be updated, because player conditions can be changed
+	// in the meantime, for example if the player accepts a mission on the Job Board.
+	description->SetText(port.Description().ToString());
+
+	if(port.Landscape())
+	{
+		Information info;
+		info.SetSprite("port", port.Landscape());
+		const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ?
+			"spaceport (small screen)" : "spaceport");
+		ui->Draw(info);
+	}
 
 	if(hasNews)
 	{
-		const Interface *newsUi = GameData::Interfaces().Get("news");
+		const Interface *newsUi = GameData::Interfaces().Get(Screen::Width() < 1280 ?
+			"news (small screen)" : "news");
 		newsUi->Draw(newsInfo);
-		// Depending on if the news has a portrait, the interface box that
-		// gets filled in changes.
-		newsMessage.Draw(newsUi->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
-			*GameData::Colors().Get("medium"));
 	}
+}
+
+
+
+void SpaceportPanel::UpdateTextDisplay()
+{
+	description->SetAlignment(Preferences::GetTextAlignment());
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
+	if(newsMessage)
+	{
+		newsMessage->SetAlignment(Preferences::GetTextAlignment());
+		newsMessage->SetFont(FontSet::Get(Preferences::GetFontSize()));
+	}
+}
+
+
+
+void SpaceportPanel::Resize()
+{
+	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ?
+		"spaceport (small screen)" : "spaceport");
+	description->SetRect(ui->GetBox("content"));
+
+	ResizeNewsTextArea();
+}
+
+
+
+void SpaceportPanel::InitNewsTextArea()
+{
+	newsMessage = make_shared<TextArea>();
+	newsMessage->SetFont(FontSet::Get(Preferences::GetFontSize()));
+	newsMessage->SetColor(*GameData::Colors().Get("bright"));
+	newsMessage->SetAlignment(Preferences::GetTextAlignment());
+	AddChild(newsMessage);
+
+	ResizeNewsTextArea();
+}
+
+
+
+void SpaceportPanel::ResizeNewsTextArea() const
+{
+	if(!newsMessage)
+		return;
+	// TODO: Allow Interface to handle wrapped text directly.
+	const Interface *newsUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "news (small screen)" : "news");
+	Rectangle portraitWidth = newsUi->GetBox("message portrait");
+	Rectangle normalWidth = newsUi->GetBox("message");
+	newsMessage->SetRect(hasPortrait ? portraitWidth : normalWidth);
 }
 
 
@@ -110,11 +171,13 @@ void SpaceportPanel::Draw()
 // If there is no applicable news, this returns null.
 const News *SpaceportPanel::PickNews() const
 {
+	if(!port.HasNews())
+		return nullptr;
+
 	vector<const News *> matches;
 	const Planet *planet = player.GetPlanet();
-	const auto &conditions = player.Conditions();
 	for(const auto &it : GameData::SpaceportNews())
-		if(!it.second.IsEmpty() && it.second.Matches(planet, conditions))
+		if(!it.second.IsEmpty() && it.second.Matches(planet))
 			matches.push_back(&it.second);
 
 	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];

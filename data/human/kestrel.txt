@@ -6,15 +6,25 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Kestrel Testing"
 	name "Warship Testing"
 	description "Travel to the <waypoints> system to fight and disable a prototype warship that Tarazed Corporation is testing. Do not destroy the ship, or you will lose your payment and your opportunity to buy one."
 	source "Wayfarer"
 	waypoint "Umbral"
+	# The Kestrel is a secret that can only be unlocked after completing the rest of the game. Combat rating is used to track gameplay progression.
+	# After finding the Kestrel once, the threshold is lowered so players can use the ship during the human campaign on a later playthrough.
+	# Any requests to reduce the requirements will be rejected.
 	to offer
-		"combat rating" > 8000
+		or
+			"combat rating" > 6000
+			and
+				"combat rating" > 2000
+				has "global: unlocked kestrel"
 	
 	on offer
 		conversation
@@ -23,7 +33,7 @@ mission "Kestrel Testing"
 				`	"Tell me more."`
 				`	"Sorry, I don't have time right now."`
 					defer
-			`	"Well," he says, "here's the story. Seven years ago, in a time of deep personal crisis, I left my job at Tarazed to wander the galaxy with nothing in my backpack but a change of clothes, a canteen of water, and a few boxes of emergency rations. An anarchist commune on one of the fringe worlds took me in. After I had been there for a month, the village elder, sensing my inner turmoil, invited me to a vision quest in their sweat lodge. I fell into a trance and my consciousness journeyed through many universes, where I saw strange things. I saw a sword made of light. I saw a blue sun. I saw..." He pauses for a moment. "...a Welsh Corgi hacking into a computer? Some of it was hard to understand."`
+			`	"Well," he says, "here's the story. Seven years ago, in a time of deep personal crisis, I left my job at Tarazed to wander the galaxy with nothing in my backpack but a change of clothes, a canteen of water, and a few boxes of emergency rations. An anarchist commune on one of the fringe worlds took me in. After I had been there for a month, the village elder, sensing my inner turmoil, invited me to a vision quest in their sweat lodge. I fell into a trance and my consciousness journeyed through many universes, where I saw strange things. I saw a sword made of light. I saw a blue sun. I saw..." He pauses for a moment. "... a Welsh Corgi hacking into a computer? Some of it was hard to understand."`
 			choice
 				`	"Fascinating."`
 					goto continue
@@ -57,6 +67,7 @@ mission "Kestrel Testing"
 	
 	on complete
 		payment 2000000
+		"global: unlocked kestrel" ++
 		conversation
 			`Atinoda meets up with you soon after you land. "I see that you survived," he says. "Was it a difficult fight?"`
 			choice
@@ -66,11 +77,11 @@ mission "Kestrel Testing"
 					goto no
 			
 			label yes
-			`	"Glad to hear it," he says. "Now, we have the opportunity to make a few tweaks before we start mass producing this ship. What changes would you recommend?"`
+			`	"Glad to hear it," he says. "Now, we have the opportunity to make a few tweaks before we start mass-producing this ship. What changes would you recommend?"`
 				goto changes
 			
 			label no
-			`	"Oh well," he says, "you are the infamous <first> <last>, after all, so I suppose any single warship will be little threat to you. Now, we have the opportunity to make a few tweaks before we start mass producing this ship. What changes would you recommend?"`
+			`	"Oh well," he says, "you are the infamous <first> <last>, after all, so I suppose any single warship will be little threat to you. Now, we have the opportunity to make a few tweaks before we start mass-producing this ship. What changes would you recommend?"`
 				goto changes
 			
 			label changes
@@ -81,23 +92,31 @@ mission "Kestrel Testing"
 					goto engines
 				`	"Maybe you should work on improving the shields and hull."`
 					goto shields
+				`	"I feel like such a large ship should have more bays for fighters."`
+					goto bays
 			
 			label weapons
-			apply
+			action
 				set "kestrel: more weapons"
 			`	"Very well," he says, "we'll see if we can expand the weapon capacity so that even the biggest weapons will fit."`
 				goto name
 			
 			label engines
-			apply
+			action
 				set "kestrel: more engines"
 			`	"Very well," he says, "we'll see if we can expand the engine capacity enough that even the biggest engines will fit."`
 				goto name
 			
 			label shields
-			apply
+			action
 				set "kestrel: more shields"
 			`	"Okay," he says, "we'll focus on strengthening the hull and the shield matrix."`
+				goto name
+			
+			label bays
+			action
+				set "kestrel: more bays"
+			`	"Very well," he says, "we'll see if we can incorporate more fighter bays into the hull."`
 				goto name
 			
 			label name
@@ -149,36 +168,48 @@ mission "Kestrel Testing"
 mission "Kestrel: More Weapons"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "kestrel: more weapons"
 	on offer
 		event "kestrel available: more weapons" 50
-	to complete
-		has "kestrel available"
+		fail
 
 
 
 mission "Kestrel: More Engines"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "kestrel: more engines"
 	on offer
 		event "kestrel available: more engines" 50
-	to complete
-		has "kestrel available"
+		fail
 
 
 
 mission "Kestrel: More Shields"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "kestrel: more shields"
 	on offer
 		event "kestrel available: more shields" 50
-	to complete
-		has "kestrel available"
+		fail
+
+
+
+mission "Kestrel: More Bays"
+	landing
+	invisible
+	non-blocking
+	to offer
+		has "kestrel: more bays"
+	on offer
+		event "kestrel available: more bays" 50
+		fail
 
 
 
@@ -197,6 +228,9 @@ mission "Kestrel Available"
 			branch shields
 				has "kestrel: more shields"
 			
+			branch bays
+				has "kestrel: more bays"
+			
 			scene "thumbnail/kestrelw"
 			``
 				goto message
@@ -209,29 +243,48 @@ mission "Kestrel Available"
 			label shields
 			scene "thumbnail/kestrels"
 			``
+				goto message
+				
+			label bays
+			scene "thumbnail/kestrelc"
+			``
 			label message
 			`You receive a message from Charles Atinoda, the ship designer at Tarazed Corporation: "Captain <last>, we are pleased to inform you that our latest warship is now available for sale here on Wayfarer. We've taken all your feedback into account in the final design. Thank you again!"`
 				decline
 
 
+shipyard "Kestrel"
 
 event "kestrel available: more weapons"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Weapons)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 event "kestrel available: more engines"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Engines)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 event "kestrel available: more shields"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Shields)"
+	planet Wayfarer
+		add shipyard "Kestrel"
+event "kestrel available: more bays"
+	set "kestrel available"
+	shipyard "Kestrel"
+		"Kestrel (More Bays)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 
 
 ship "Unknown Ship Type"
 	sprite "ship/kestrel"
 	thumbnail "thumbnail/kestrel"
+	"administrative cost" 7
 	attributes
 		category "Heavy Warship"
 		"cost" 14700000
@@ -239,9 +292,9 @@ ship "Unknown Ship Type"
 		"hull" 7200
 		"required crew" 64
 		"bunks" 128
-		"mass" 740
-		"drag" 11
-		"heat dissipation" .6
+		"mass" 2135
+		"drag" 20.9
+		"heat dissipation" .32
 		"fuel capacity" 500
 		"cargo space" 120
 		"outfit space" 810
@@ -289,6 +342,7 @@ ship "Unknown Ship Type"
 ship "Kestrel"
 	sprite "ship/kestrel"
 	thumbnail "thumbnail/kestrel"
+	"administrative cost" 7
 	attributes
 		category "Heavy Warship"
 		"cost" 14700000
@@ -296,9 +350,9 @@ ship "Kestrel"
 		"hull" 7200
 		"required crew" 64
 		"bunks" 128
-		"mass" 740
-		"drag" 11
-		"heat dissipation" .6
+		"mass" 2135
+		"drag" 20.9
+		"heat dissipation" .32
 		"fuel capacity" 500
 		"cargo space" 120
 		"outfit space" 810
@@ -337,7 +391,9 @@ ship "Kestrel"
 	turret -20.5 9 "Heavy Laser Turret"
 	turret 20.5 9 "Heavy Laser Turret"
 	bay "Fighter" -46 106 under
+		"launch effect" "human internal"
 	bay "Fighter" 46 106 under
+		"launch effect" "human internal"
 	explode "small explosion" 25
 	explode "medium explosion" 35
 	explode "large explosion" 45
@@ -350,7 +406,7 @@ ship "Kestrel" "Kestrel (More Engines)"
 	sprite "ship/kestrele"
 	thumbnail "thumbnail/kestrele"
 	add attributes
-		"drag" -1.0
+		"drag" -1.9
 		"fuel capacity" 100
 		"engine capacity" 30
 	engine 13 170
@@ -364,26 +420,68 @@ ship "Kestrel" "Kestrel (More Shields)"
 	add attributes
 		"shields" 3000
 		"hull" 1500
-		"heat dissipation" .06
+		"heat dissipation" .032
 
 ship "Kestrel" "Kestrel (More Weapons)"
 	sprite "ship/kestrelw"
 	thumbnail "thumbnail/kestrelw"
 	add attributes
 		"weapon capacity" 40
-	gun -73.5 46 "Torpedo Launcher"
 	gun -76.5 49
-	gun 73.5 46 "Torpedo Launcher"
 	gun 76.5 49
-	gun -51 49.5 "Particle Cannon"
+	gun -73.5 46 "Torpedo Launcher"
+	gun 73.5 46 "Torpedo Launcher"
 	gun -55.5 52.5
-	gun 51 49.5 "Particle Cannon"
 	gun 55.5 52.5
-	gun -29.5 52 "Particle Cannon"
+	gun -51 49.5 "Particle Cannon"
+	gun 51 49.5 "Particle Cannon"
 	gun -33 55
-	gun 29.5 52 "Particle Cannon"
 	gun 33 55
-	turret -7 -4 "Heavy Laser Turret"
-	turret 7 -4 "Heavy Laser Turret"
-	turret -23 14 "Heavy Laser Turret"
-	turret 23 14 "Heavy Laser Turret"
+	gun -29.5 52 "Particle Cannon"
+	gun 29.5 52 "Particle Cannon"
+	turret -8 -10.5 "Heavy Laser Turret"
+	turret 8 -10.5 "Heavy Laser Turret"
+	turret -20.5 9 "Heavy Laser Turret"
+	turret 20.5 9 "Heavy Laser Turret"
+
+ship "Kestrel" "Kestrel (More Bays)"
+	sprite "ship/kestrelc"
+	thumbnail "thumbnail/kestrelc"
+	add attributes
+		"mass" 60
+		"weapon capacity" -20
+	outfits
+		"Particle Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret" 4
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Tactical Scanner" 2
+		
+		"Orca Plasma Thruster"
+		"Orca Plasma Steering"
+		"Hyperdrive"
+	gun -73.5 46 "Torpedo Launcher"
+	gun 73.5 46 "Torpedo Launcher"
+	gun -29.5 52 "Particle Cannon"
+	gun 29.5 52 "Particle Cannon"
+	turret -8 -10.5 "Heavy Laser Turret"
+	turret 8 -10.5 "Heavy Laser Turret"
+	turret -20.5 9 "Heavy Laser Turret"
+	turret 20.5 9 "Heavy Laser Turret"
+	bay "Fighter" -46 106
+		"launch effect" "human internal"
+	bay "Fighter" 46 106
+		"launch effect" "human internal"
+	bay "Fighter" -62 78
+		"launch effect" "human internal"
+	bay "Fighter" 62 78
+		"launch effect" "human internal"
+	bay "Fighter" -56 70
+		"launch effect" "human internal"
+	bay "Fighter" 56 70
+		"launch effect" "human internal"

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "StellarObject.h"
@@ -17,22 +20,41 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "Politics.h"
 #include "Radar.h"
+#include "StellarObjectSpriteData.h"
 
 #include <algorithm>
 
 using namespace std;
+
+namespace {
+	bool usingMatches = false;
+}
+
+
+
+void StellarObject::UsingMatchesCommand()
+{
+	usingMatches = true;
+}
 
 
 
 // Object default constructor.
 StellarObject::StellarObject()
 	: planet(nullptr),
-	distance(0.), speed(0.), offset(0.), parent(-1),
+	distance(0.), speed(0.), offset(0.), index(-1), parent(-1),
 	message(nullptr), isStar(false), isStation(false), isMoon(false)
 {
 	// Unlike ships and projectiles, stellar objects are not drawn shrunk to half size,
 	// because they do not need to be so sharp.
 	zoom = 2.;
+}
+
+
+
+bool StellarObject::HasSprite() const
+{
+	return Body::HasSprite() || usingMatches;
 }
 
 
@@ -69,10 +91,10 @@ const Planet *StellarObject::GetPlanet() const
 
 
 // Only planets that you can land on have names.
-const string &StellarObject::Name() const
+const string &StellarObject::DisplayName() const
 {
 	static const string UNKNOWN = "???";
-	return (planet && !planet->Name().empty()) ? planet->Name() : UNKNOWN;
+	return (planet && !planet->DisplayName().empty()) ? planet->DisplayName() : UNKNOWN;
 }
 
 
@@ -82,8 +104,9 @@ const string &StellarObject::Name() const
 const string &StellarObject::LandingMessage() const
 {
 	// Check if there's a custom message for this sprite type.
-	if(GameData::HasLandingMessage(GetSprite()))
-		return GameData::LandingMessage(GetSprite());
+	const StellarObjectSpriteData &spriteData = GameData::ObjectSpriteData(GetSprite());
+	if(!spriteData.LandingMessage().empty())
+		return spriteData.LandingMessage();
 
 	static const string EMPTY;
 	return (message ? *message : EMPTY);
@@ -95,7 +118,7 @@ const string &StellarObject::LandingMessage() const
 int StellarObject::RadarType(const Ship *ship) const
 {
 	if(IsStar())
-		return Radar::SPECIAL;
+		return Radar::STAR;
 	else if(!planet || !planet->IsAccessible(ship))
 		return Radar::INACTIVE;
 	else if(planet->IsWormhole())
@@ -136,7 +159,13 @@ bool StellarObject::IsMoon() const
 
 
 
-// Get this object's parent index (in the System's vector of objects).
+int StellarObject::Index() const
+{
+	return index;
+}
+
+
+
 int StellarObject::Parent() const
 {
 	return parent;
@@ -148,6 +177,20 @@ int StellarObject::Parent() const
 double StellarObject::Distance() const
 {
 	return distance;
+}
+
+
+
+double StellarObject::Period() const
+{
+	return 360. / speed;
+}
+
+
+
+double StellarObject::Offset() const
+{
+	return offset;
 }
 
 

@@ -7,32 +7,42 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_DATA_H_
-#define GAME_DATA_H_
+#pragma once
 
-#include "CategoryTypes.h"
-#include "Sale.h"
+#include "CategoryType.h"
+#include "Message.h"
 #include "Set.h"
+#include "Shop.h"
+#include "Swizzle.h"
 #include "Trade.h"
 
+#include <filesystem>
 #include <future>
 #include <map>
 #include <memory>
 #include <string>
 #include <vector>
 
+class CategoryList;
 class Color;
+class ConditionsStore;
+class Confusion;
 class Conversation;
 class DataNode;
 class DataWriter;
 class Date;
 class Effect;
 class Fleet;
+class FormationPattern;
 class Galaxy;
 class GameEvent;
+class Gamerules;
 class Government;
 class Hazard;
 class ImageSet;
@@ -46,15 +56,23 @@ class Panel;
 class Person;
 class Phrase;
 class Planet;
+class PlayerInfo;
+class Point;
 class Politics;
+class Shader;
 class Ship;
+class ShipEvent;
 class Sprite;
 class StarField;
 class StartConditions;
+class StellarObjectSpriteData;
 class System;
+class TaskQueue;
 class Test;
 class TestData;
 class TextReplacements;
+class UniverseObjects;
+class Wormhole;
 
 
 
@@ -66,23 +84,22 @@ class TextReplacements;
 // universe.
 class GameData {
 public:
-	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode);
+	static std::shared_future<void> BeginLoad(TaskQueue &queue, const PlayerInfo &player,
+		bool onlyLoadData, bool debugMode, bool preventUpload);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
-	static void LoadShaders(bool useShaderSwizzle);
+	static void LoadSettings();
+	static void LoadShaders();
 	static double GetProgress();
 	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
-	// Begin loading a sprite that was previously deferred. Currently this is
-	// done with all landscapes to speed up the program's startup.
-	static void Preload(const Sprite *sprite);
-	static void ProcessSprites();
-	// Wait until all pending sprite uploads are completed.
-	static void FinishLoadingSprites();
 
 	// Get the list of resource sources (i.e. plugin folders).
-	static const std::vector<std::string> &Sources();
+	static const std::vector<std::filesystem::path> &Sources();
+
+	// Get a reference to the UniverseObjects object.
+	static UniverseObjects &Objects();
 
 	// Revert any changes that have been made to the universe.
 	static void Revert();
@@ -93,10 +110,11 @@ public:
 	static void StepEconomy();
 	static void AddPurchase(const System &system, const std::string &commodity, int tons);
 	// Apply the given change to the universe.
-	static void Change(const DataNode &node);
+	static void Change(const DataNode &node, PlayerInfo &player);
 	// Update the neighbor lists and other information for all the systems.
 	// This must be done any time that a change creates or moves a system.
 	static void UpdateSystems();
+	static void RecomputeWormholeRequirements();
 	static void AddJumpRange(double neighborDistance);
 
 	// Re-activate any special persons that were created previously but that are
@@ -104,29 +122,43 @@ public:
 	static void ResetPersons();
 	// Mark all persons in the given list as dead.
 	static void DestroyPersons(std::vector<std::string> &names);
+	// Handle any events that may have been taken against a Person.
+	static void HandleEvent(const ShipEvent &event);
 
 	static const Set<Color> &Colors();
+	static const Set<Swizzle> &Swizzles();
+	static const Set<Confusion> &Confusions();
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
 	static const Set<GameEvent> &Events();
 	static const Set<Fleet> &Fleets();
+	static const Set<FormationPattern> &Formations();
 	static const Set<Galaxy> &Galaxies();
 	static const Set<Government> &Governments();
 	static const Set<Hazard> &Hazards();
 	static const Set<Interface> &Interfaces();
+	static const Set<Message::Category> &MessageCategories();
+	static const Set<Message> &Messages();
 	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
 	static const Set<News> &SpaceportNews();
 	static const Set<Outfit> &Outfits();
-	static const Set<Sale<Outfit>> &Outfitters();
+	static const Set<Shop<Outfit>> &Outfitters();
 	static const Set<Person> &Persons();
 	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();
+	static const Set<Shader> &Shaders();
 	static const Set<Ship> &Ships();
-	static const Set<Sale<Ship>> &Shipyards();
+	static const Set<Shop<Ship>> &Shipyards();
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
+	static const Set<Wormhole> &Wormholes();
+	static const Set<Gamerules> &GamerulesPresets();
+
+	static const std::set<std::string> &UniverseWormholeRequirements();
+
+	static ConditionsStore &GlobalConditions();
 
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();
@@ -135,40 +167,36 @@ public:
 	static const std::vector<Trade::Commodity> &Commodities();
 	static const std::vector<Trade::Commodity> &SpecialCommodities();
 
-	// Custom messages to be shown when trying to land on certain stellar objects.
-	static bool HasLandingMessage(const Sprite *sprite);
-	static const std::string &LandingMessage(const Sprite *sprite);
-	// Get the solar power and wind output of the given stellar object sprite.
-	static double SolarPower(const Sprite *sprite);
-	static double SolarWind(const Sprite *sprite);
+	static const StellarObjectSpriteData &ObjectSpriteData(const Sprite *sprite);
 
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
-	// Strings for ship, bay type, and outfit categories.
-	static const std::vector<std::string> &Category(const CategoryType type);
+	// Collections for ship, bay type, outfit, and other categories.
+	static const CategoryList &GetCategory(const CategoryType type);
 
 	static const StarField &Background();
+	static void StepBackground(const Point &vel, double zoom = 1.);
+	static const Point &GetBackgroundPosition();
+	static void SetBackgroundPosition(const Point &position);
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);
 
 	static const std::string &Tooltip(const std::string &label);
 	static std::string HelpMessage(const std::string &name);
 	static const std::map<std::string, std::string> &HelpTemplates();
 
-	static const std::map<std::string, std::string> &PluginAboutText();
-
 	static MaskManager &GetMaskManager();
 
 	static const TextReplacements &GetTextReplacements();
+
+	static const Gamerules &GetGamerules();
+	static void SetGamerules(const Gamerules *gamerules);
+	static const Gamerules &DefaultGamerules();
 
 	// Thread-safe way to draw the menu background.
 	static void DrawMenuBackground(Panel *panel);
 
 
 private:
-	static void LoadSources();
+	static void LoadSources(TaskQueue &queue);
 	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();
 };
-
-
-
-#endif

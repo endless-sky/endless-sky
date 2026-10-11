@@ -7,12 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "DataNode.h"
 
-#include "Files.h"
+#include "DataWriter.h"
+#include "Logger.h"
 
 #include <algorithm>
 #include <cctype>
@@ -36,7 +40,7 @@ DataNode::DataNode(const DataNode *parent) noexcept(false)
 
 // Copy constructor.
 DataNode::DataNode(const DataNode &other)
-	: children(other.children), tokens(other.tokens), lineNumber(other.lineNumber)
+	: children(other.children), tokens(other.tokens), lineNumber(std::move(other.lineNumber))
 {
 	Reparent();
 }
@@ -48,7 +52,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 {
 	children = other.children;
 	tokens = other.tokens;
-	lineNumber = other.lineNumber;
+	lineNumber = std::move(other.lineNumber);
 	Reparent();
 	return *this;
 }
@@ -56,7 +60,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 
 
 DataNode::DataNode(DataNode &&other) noexcept
-	: children(std::move(other.children)), tokens(std::move(other.tokens)), lineNumber(std::move(other.lineNumber))
+	: children(std::move(other.children)), tokens(std::move(other.tokens)), lineNumber(other.lineNumber)
 {
 	Reparent();
 }
@@ -67,7 +71,7 @@ DataNode &DataNode::operator=(DataNode &&other) noexcept
 {
 	children.swap(other.children);
 	tokens.swap(other.tokens);
-	lineNumber = std::move(other.lineNumber);
+	lineNumber = other.lineNumber;
 	Reparent();
 	return *this;
 }
@@ -90,10 +94,24 @@ const vector<string> &DataNode::Tokens() const noexcept
 
 
 
-// Get the token with the given index. No bounds checking is done.
-// DataFile loading guarantees index 0 always exists.
+// Add tokens to the node.
+void DataNode::AddToken(const string &token)
+{
+	tokens.emplace_back(token);
+}
+
+
+
+// Get the token at the given index. DataFile loading guarantees index 0 always exists.
+// If the index is out of range, then this returns an empty string and prints an error.
 const string &DataNode::Token(int index) const
 {
+	static const string ERROR = "";
+	if(static_cast<size_t>(index) >= tokens.size())
+	{
+		PrintTrace("Requested token index (" + to_string(index) + ") is out of bounds:");
+		return ERROR;
+	}
 	return tokens[index];
 }
 
@@ -104,9 +122,9 @@ double DataNode::Value(int index) const
 {
 	// Check for empty strings and out-of-bounds indices.
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
-		PrintTrace("Error: Requested token index (" + to_string(index) + ") is out of bounds:");
+		PrintTrace("Requested token index (" + to_string(index) + ") is out of bounds:");
 	else if(!IsNumber(tokens[index]))
-		PrintTrace("Error: Cannot convert value \"" + tokens[index] + "\" to a number:");
+		PrintTrace("Cannot convert value \"" + tokens[index] + "\" to a number:");
 	else
 		return Value(tokens[index]);
 
@@ -121,7 +139,7 @@ double DataNode::Value(const string &token)
 	// Allowed format: "[+-]?[0-9]*[.]?[0-9]*([eE][+-]?[0-9]*)?".
 	if(!IsNumber(token))
 	{
-		Files::LogError("Cannot convert value \"" + token + "\" to a number.");
+		Logger::Log("Cannot convert value \"" + token + "\" to a number.", Logger::Level::WARNING);
 		return 0.;
 	}
 	const char *it = token.c_str();
@@ -218,6 +236,72 @@ bool DataNode::IsNumber(const string &token)
 
 
 
+// Convert the token at the given index to a boolean. This returns false
+// and prints an error if the index is out of range or the token cannot
+// be interpreted as a number.
+bool DataNode::BoolValue(int index) const
+{
+	// Check for empty strings and out-of-bounds indices.
+	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
+		PrintTrace("Requested token index (" + to_string(index) + ") is out of bounds:");
+	else if(!IsBool(tokens[index]))
+		PrintTrace("Cannot convert value \"" + tokens[index] + "\" to a boolean:");
+	else
+	{
+		const string &token = tokens[index];
+		return token == "true" || token == "1";
+	}
+
+	return false;
+}
+
+
+
+// Check if the token at the given index is a boolean, i.e. "true"/"1" or "false"/"0"
+// as a string.
+bool DataNode::IsBool(int index) const
+{
+	// Make sure this token exists and is not empty.
+	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
+		return false;
+
+	return IsBool(tokens[index]);
+}
+
+
+
+bool DataNode::IsBool(const string &token)
+{
+	return token == "true" || token == "1" || token == "false" || token == "0";
+}
+
+
+
+bool DataNode::IsConditionName(const string &token)
+{
+	// For now check if condition names start with an alphabetic character, and that is all we check for now.
+	// Token "'" is required for backwards compatibility (used for illegal tokens).
+	// Boolean keywords are not valid conditionNames, so we also check for that.
+	return
+		!token.empty() &&
+		!IsBool(token) &&
+		(
+			(token == "'") ||
+			(token[0] >= 'a' && token[0] <= 'z') ||
+			(token[0] >= 'A' && token[0] <= 'Z')
+		);
+}
+
+
+
+// Add a new child. The child's parent must be this node.
+void DataNode::AddChild(const DataNode &child)
+{
+	children.emplace_back(child);
+}
+
+
+
 // Check if this node has any children.
 bool DataNode::HasChildren() const noexcept
 {
@@ -246,7 +330,7 @@ list<DataNode>::const_iterator DataNode::end() const noexcept
 int DataNode::PrintTrace(const string &message) const
 {
 	if(!message.empty())
-		Files::LogError(message);
+		Logger::Log(message, Logger::Level::WARNING);
 
 	// Recursively print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
@@ -263,19 +347,9 @@ int DataNode::PrintTrace(const string &message) const
 	{
 		if(&token != &tokens.front())
 			line += ' ';
-		bool hasSpace = any_of(token.begin(), token.end(), [](char c) { return isspace(c); });
-		bool hasQuote = any_of(token.begin(), token.end(), [](char c) { return (c == '"'); });
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
-		line += token;
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
+		line += DataWriter::Quote(token);
 	}
-	Files::LogError(line);
-
-	// Put an empty line in the log between each error message.
-	if(!message.empty())
-		Files::LogError("");
+	Logger::Log(line + (message.empty() ? string{} : "\n"), Logger::Level::WARNING);
 
 	// Tell the caller what indentation level we're at now.
 	return indent;

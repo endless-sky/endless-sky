@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_SHIPYARD_PANEL_H_
-#define MAP_SHIPYARD_PANEL_H_
+#pragma once
 
 #include "MapSalesPanel.h"
 
@@ -22,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class PlayerInfo;
 class Ship;
 class Sprite;
+class Swizzle;
 
 
 
@@ -35,19 +38,21 @@ public:
 
 
 protected:
-	virtual const Sprite *SelectedSprite() const override;
-	virtual const Sprite *CompareSprite() const override;
-	virtual int SelectedSpriteSwizzle() const override;
-	virtual int CompareSpriteSwizzle() const override;
+	virtual void LoadCatalogThumbnails() const override;
+
+	virtual const Drawable &SelectedSprite() const override;
+	virtual const Drawable &CompareSprite() const override;
+	virtual const Swizzle *SelectedSpriteSwizzle() const override;
+	virtual const Swizzle *CompareSpriteSwizzle() const override;
 	virtual const ItemInfoDisplay &SelectedInfo() const override;
 	virtual const ItemInfoDisplay &CompareInfo() const override;
-	virtual const std::string &KeyLabel(int index) const override;
 
 	virtual void Select(int index) override;
 	virtual void Compare(int index) override;
 	virtual double SystemValue(const System *system) const override;
 	virtual int FindItem(const std::string &text) const override;
 
+	virtual void DrawSalesKey(Information &info) const override;
 	virtual void DrawItems() override;
 
 
@@ -56,8 +61,10 @@ private:
 
 
 private:
-	std::map<std::string, std::vector<const Ship *>> catalog;
+	bool hasFleetCapacity;
+
 	std::vector<const Ship *> list;
+	std::map<const System *, std::map<const Ship *, int>> parkedShips;
 
 	const Ship *selected = nullptr;
 	const Ship *compare = nullptr;
@@ -65,7 +72,3 @@ private:
 	ShipInfoDisplay selectedInfo;
 	ShipInfoDisplay compareInfo;
 };
-
-
-
-#endif

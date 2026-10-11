@@ -7,14 +7,21 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SAVED_GAME_H_
-#define SAVED_GAME_H_
+#pragma once
 
+#include <filesystem>
 #include <string>
 
+class DataNode;
+class DataWriter;
+class Information;
+class PlayerInfo;
 class Sprite;
 
 
@@ -27,11 +34,16 @@ class Sprite;
 class SavedGame {
 public:
 	SavedGame() = default;
-	explicit SavedGame(const std::string &path);
+	explicit SavedGame(const std::filesystem::path &path);
+	explicit SavedGame(const PlayerInfo &player);
 
-	void Load(const std::string &path);
-	const std::string &Path() const;
-	bool IsLoaded() const;
+	void Load(const std::filesystem::path &path);
+	void Load(const DataNode &node);
+	void Save(DataWriter &out) const;
+
+	const std::filesystem::path &Path() const;
+	std::string Identifier() const;
+	bool IsEmpty() const;
 	void Clear();
 
 	const std::string &Name() const;
@@ -45,9 +57,11 @@ public:
 	const Sprite *ShipSprite() const;
 	const std::string &ShipName() const;
 
+	void PopulateInfo(Information &info) const;
+
 
 private:
-	std::string path;
+	std::filesystem::path path;
 
 	std::string name;
 	std::string credits;
@@ -60,7 +74,3 @@ private:
 	const Sprite *shipSprite = nullptr;
 	std::string shipName;
 };
-
-
-
-#endif

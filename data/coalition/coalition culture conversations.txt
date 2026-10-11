@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Coalition Folklore: Saryd"
 	minor
@@ -100,7 +103,7 @@ mission "Coalition Folklore: Arach"
 				`	(Leave.)`
 					goto leave
 			`	Once everyone is seated, the same Arach from before goes to the stage again. "A surprise for you, tonight we have. A brand new play, an anonymous group of patrons commissioned. As a critique of one of the issues that persist in our society, described it is. For our second play: Babbling Bebliss."`
-			`	As he leaves, the curtains open to a set of an Arach street, where a child is purchasing some form of candy. From behind a building in the set, an Arach wearing tall, blue and white "socks" emerges as trumpets and tubas start playing an obnoxious track. He runs for the child and knocks the candy to the ground as he makes some gargling sound. Matlub sighs, saying, "Gibberish, it is. Nonsense, and words best left untranslated." The Arach actor goes on to cling to the walls of the building and grab things from inside the candy shop, throwing them wildly. By now, many well dressed patrons, most likely members of House Bebliss, are getting up and leaving the theater. Meanwhile, a group of Arachi on one of the balconies doesn't even try to muffle their laughter.`
+			`	As he leaves, the curtains open to a set of an Arach street, where a child is purchasing some form of candy. From behind a building in the set, an Arach wearing tall, blue and white "socks" emerges as trumpets and tubas start playing an obnoxious track. He runs for the child and knocks the candy to the ground as he makes some gargling sound. Matlub sighs, saying, "Gibberish, it is. Nonsense, and words best left untranslated." The Arach actor goes on to cling to the walls of the building and grab things from inside the candy shop, throwing them wildly. By now, many well-dressed patrons, most likely members of House Bebliss, are getting up and leaving the theater. Meanwhile, a group of Arachi on one of the balconies doesn't even try to muffle their laughter.`
 			`	The scene continues as a couple comes to the set, walking down the street. As they're about to lean in for what looks like a kiss, the Arach leaps from the building, landing on the bachelor with a thud. He steals the kiss, as the tubas and trumpets blast as loudly as they can. After a while, the authorities show up, only for the Arach to make a run for it down the street. The orchestra plays a tune that is as uncoordinated as his movements, and the curtains close. Not many in the audience manifest themselves, most sighing or getting ready to leave, save for the group that was laughing earlier who are now very vocal in announcing their appreciation for the play. "Know of subtlety, House Chamgar does not," Matlub says. "A shame it is, that tainted the soiree with this rivalry, they have."`
 			`	The doors open once again as new patrons cycle in to watch the third play.`
 			choice
@@ -119,6 +122,8 @@ mission "Coalition Folklore: Arach"
 			`	You thank Matlub for inviting you here, and while she doesn't seem to pay you much mind, you can feel the gazes of other Arach patrons on you, whispering among themselves as you leave.`
 				decline
 			label end
+			action
+				set "drak revelations: arachi"
 			`	The theater workers leave one after the other, leaving you and the other guests with an empty stage. After a while, the lights are turned off. A couple minutes later, however, you hear the curtains open, as some violins start to play in unison. Their music doesn't come from where the orchestra was seated, but as if they were all over the theater, behind you and even up on the balconies. A strong light comes from the stage, most of it blocked by a tall, dark figure. It isn't an actor, however, instead seeming to be made out of wooden parts kept up by thin wires you can barely spot when looking at the top of the stage. The violins' song is disrupted by dull, successive drum hits, at which point the figure moves, with its "arms" opening to the sides; it becomes even taller as it stands up. It is a humanoid creature, and it begins to slowly move around the stage, as if dancing in a pendulum. Cellos join in with the violin screams, and are followed by a choir, though you cannot understand their words. You do recognize, however, that it isn't being sung in any language of the Coalition.`
 			`	The creature appears to get closer to the audience, growing in size, and as the choir and instruments become more intense, it swings one of its arms upward and removes the wires. Despite this, it stays upright and continues to move. It brings both arms close and strikes its own head to form two small holes which the background light shines through. Then, it falls to its knees, with one arm reaching for the audience, as the light behind it turns off and the choir and music subside.`
 			`	The lights turn back on, revealing curtains still open, but nothing on the stage. A few workers come in to tidy up the place, and the remaining guests now get up to leave. "Enjoyed the soiree, have you, Captain?" Matlub asks, as she herself gets up to leave. "Come now, actually over, the show now is."`
@@ -149,76 +154,76 @@ mission "Coalition Folklore: Kimek"
 			`	You follow the Kimek for a while longer until he finds you a pairing of camp and fort that have a vacant spot in either side. "Well Captain, choose a side to play as, you must. The hang of it, you will get, once started, the event has, but as a quick summary, take the 'crops' inside the fort before time runs out, the attacking team must. Prevent them from doing that, the defenders must. At the end, rewarded, the victors are."`
 			choice
 				`	"I'll join the attackers."`
-					goto att
+					goto attack
 				`	"I'll join the defenders."`
-					goto def
+					goto defend
 				`	"Hang on, if this is a folk tale, how come you're reenacting it as if any side could win?"`
 			`	He chitters, as if expecting the question. "Witnessed by a minstrel, the battle was. Traveling on fields like these, he was, before the fort and the raider camp, he spotted in the distance. Hid himself in foliage close to the scene, he had, and writing and painting it as it happened, he was. When reached its climax, the battle had, swept up by the wind, many flowers were, and block his vision they did. Once settled down the wind had, over, the battle was. Spring it was, so 'Spring Siege' became the story's title."`
 			`	Seeing you have more questions now, he continues. "Silly and nonsensical at times, the story is. Know that, we do, and that simply looking to entertain a crowd, the minstrel was, but with all forms of classic tales, is that not the case?" He chitters some more, and looks at the group up on the hill and the other in the camp, before continuing. "Foreign as it might seem, participate in it, will you not? Perhaps like it, you might."`
 			choice
 				`	"Alright, I'll join the attackers."`
-					goto att
+					goto attack
 				`	"Alright, I'll join the defenders."`
-			label def
+			label defend
 			`	He brings you to the small fort up the hill. Its gates open as those inside (mostly Kimek as expected, but also a couple Arachi and a lone Saryd) are still getting ready. A small "farm" sits in the middle, with plastic replicas serving as the crops. The walls of the fort are made of various tall logs, densely covered by tufts of vicious, reddish thorns nearly as long as your arm. Inside, you can see that a higher level with battlements is accessible via staircases on either side of the courtyard; you also notice that the defenders are all wearing a green strip of cloth over their clothing. Another Kimek organizer, wearing a rugged leather vest that you assume is the Kimek equivalent of medieval armor, comes to meet you both at the gate. He greets his colleague, who introduces you and says that you have chosen to join the defenders, before heading back down the hill.`
 			`	"Glad to have you as part of the garrison, our fort is," the armored Kimek begins. "Told about the enemy's objective, I assume you have been. Protect our farm, we must, so allow the produce to be stolen, we cannot." He tells you to follow him to the "keep," a shack too small for any non-Kimek, and gives you a long piece of green cloth. He then informs you that it is meant to be worn, so that others can tell what team you are on. As you wrap it around you like a scarf, you notice that, behind the shack, there is a smaller gate that grants entry to the fort. Once you're done, he gives you a brief tour of the rest of the fort, taking you up the battlements and above the main gate, where you see buckets of what at first appears to be water. Your guide informs you that the liquid inside is actually quite slick, and during the re-enactment, it is poured downhill to slow the attackers.`
 			`	Once he's done, he tells you to wait in the courtyard, as the "battle" will begin soon. A few minutes pass before a loud whistle blows, and the Kimek in charge of the fort tells everyone that the other side has begun their attack. The front gate is closed, and some of the defenders begin placing heavy objects behind to barricade it; others are already up by the battlements, waiting for the right time to use the buckets of slippery liquid.`
 			choice
 				`	(Help reinforce the main gate.)`
-					goto defr
+					goto "defend r"
 				`	(Go help slow down the attackers.)`
-					goto defw
-			label defr
+					goto "defend w"
+			label "defend r"
 			`	You join the others in gathering and moving heavy objects, and quickly find some crates behind the small shack, which a couple of Arachi help bring to the gate. Some Kimek take logs they find stashed under a staircase and bring them as well, burying one end in the ground with the other end against the door. The liquid poured on the attackers does slow them down for some minutes, but once you're done, they're already banging at the gate. Most of those inside the fort, particularly the Saryd that has joined in, head to the main gate to try and keep it closed, but a few Kimek head around the back to check on the smaller gate.`
 			choice
 				`	(Help keep the main gate closed.)`
-					goto defrw
+					goto "defend rw"
 				`	(Go with the others and check the back gate.)`
 			`	Once you get to the back gate, you and the Kimek there stay quiet and try to listen for anyone approaching this side of the fort. Sure enough, you hear scuttling Kimek legs swishing through the grass as the attackers come circling around. Fortunately, not many came to this gate, so, with your help, your Kimek teammates don't have much trouble keeping the gate closed. Thanks to the main gate having been reinforced, the group there holds well enough that some more come to the back to help, and after some minutes of struggling with the attackers on the gate, another whistle is sounded. It marks that time has run out and that the defenders have won.`
 				goto won
-			label defrw
+			label "defend rw"
 			`	With the fortifications from earlier helping keep it shut, holding the main gate proves easy enough. After a few minutes pass, however, you hear a commotion from behind the shack. As you and others go there to check, you arrive to see the small gate open, the attackers, wearing blue sashes in place of your team's green, having already made their way inside. The whistle sounds again, marking the end of the battle and the victory of the attackers.`
 				goto lost
-			label defw
+			label "defend w"
 			`	You go up the stairs and are given one of the buckets with the slippery substance. You notice that the others up here are all Kimek and Arachi, however, and they are only pouring the liquid down directly in front of the gate. When you see some of the blue sash wearing attackers advancing from the sides, where the liquid hasn't been poured, you chuck a bucket their way. This leaves a line of the liquid on that side, and those attacking from there lose their footing, tripping and falling again and again. Once your teammates realize what you've done, they begin to egg you on, encouraging you to throw more buckets to cover the sides while they continue to drench the middle. Despite your efforts, however, the attackers do eventually make it up the hill and start banging at the gate. Most of those inside the fort, including the Saryd, head to the main gate to try and keep it closed, but some Kimek instead head around the back to check on the smaller gate.`
 			choice
 				`	(Help keep the main gate closed.)`
-					goto defww
+					goto "defend ww"
 				`	(Go with the others and check the back gate.)`
 			`	Once you get to the back gate, you and the Kimek there stay quiet and try to listen for anyone approaching this side of the fort. Sure enough, you hear scuttling Kimek legs swishing through the grass as the attackers come circling around. Fortunately, not many came to this gate, so, with your help, your Kimek teammates don't have much trouble keeping the gate closed. The group at the front gate isn't so lucky, however, and after a brief minute, the whistle sounds again. Your group comes back to the courtyard to find that the gate has been busted open and that the attackers with their blue sashes have won.`
 				goto lost
-			label defww
+			label "defend ww"
 			`	At first, holding the gate isn't too troublesome, but after a few minutes pass, it starts being pounded by some form of battering ram, and before long the group there can't hold it closed. At the same time, you hear a commotion from behind the shack, and as you and others go there to check, you arrive to see the small gate open. The attackers having made their way inside via both gates, the whistle sounds again, marking the end of the battle and the victory of the other side.`
 				goto lost
-			label att
+			label attack
 			`	He brings you to the nearby camp, where many Kimek, Arachi, and even a few Saryds are gathered for the event. Most of them are waiting in anticipation inside one of the tents, or looking up at the fort; all of them have long, blue strips of cloth over their own clothing. Once she notices you two, another Kimek organizer, donning what looks like a thin gambeson, comes to say hello. She greets her colleague, who then introduces you and tells her you have chosen to join the attackers, before leaving the camp to welcome a family who has come to watch the event.`
 			`	"Honored to have you fight alongside us, our company is," the armored Kimek begins. "Told about our objective, I assume you have been. Break into the fort, we must, before up the time is. Ten minutes, we have, once started, the battle has." She tells you to follow her to the "war tent," one that's slightly larger than the others around it. There she gives you a long piece of blue cloth and informs you that it is meant to be worn so that others can tell what team you are on. Wrapping it around your neck like a scarf while you look around the main tent, you see that there is a stumpy log reinforced with metal bits stored here, which the Kimek tells you will be used as a battering ram to force open the gates. She then has you follow her to the edge of the camp to show you the limits of this "set," which is marked by patches of vegetation meant to indicate the boundaries of the game. "Also, discourage anyone from trying it, the thorns should, but against the rules, it is, to crawl up the walls of the fort, so-" She pauses, looking at you as if just realizing that such a thing is impossible for you. "Sorry, out of habit, I said it. Participate in this event, not many groundlocked people do; few Saryds here I've met. Even fewer humans, as imagine, you can."`
 			`	Once she's done, she says you're free to roam the camp as you wait for the "battle" to begin. A few minutes pass before a loud whistle blows, and the Kimek in charge of the camp tells everyone that the time has come. She leads the charge up the hill, with most of those from the camp following her. Others split into smaller groups and instead move up along the trees that separate the sets, trying to approach the fort from the sides.`
 			choice
 				`	(Charge with the main group.)`
-					goto attw
+					goto "attack w"
 				`	(Take the longer side route.)`
-					goto attr
-			label attw
+					goto "attack r"
+			label "attack w"
 			`	You follow the lead of the Kimek and start to run straight up the hill, directly at the fort. Once you get closer, however, you see the defenders, garbed in strips of green cloth as opposed to your blue, pouring out buckets of what looks like water. As it flows down the hill to meet your steps, though, you immediately lose your balance and your feet slip out from under you, and you slide a short distance back down the hill. You get up, but, try it as you may, you cannot find stable footing in the wet grass, instead having to step on the few tufts that have grown too high for the liquid to cover them. Even with all their legs, the Kimek and Saryds fare no better, and find themselves in similar trouble, losing their balance again and again. Only the Arachi can press onward, digging down into the dirt beneath the grass with half their legs at each step. They slowly but surely help you and the others move up, and eventually you reach the gate, only to find that the groups that came from the sides are already working on busting it open. You can also see what the Kimek meant when she spoke of "thorns;" tufts of vicious, reddish barbs nearly as long as your arm cover the logs that make up the walls.`
 			choice
 				`	(Try and find another way in.)`
-					goto attwr
+					goto "attack wr"
 				`	(Help the others bust the gate open.)`
 			`	You start pushing along with the others, the Saryds joining you from below, and the Kimek and Arachi crawling up to push at the top of the gate. They take turns with each others when one gets tired so that someone is always pushing, even though their attempts aren't the most effective. After a while, you hear a cracking noise, and the gate finally begins budging slightly, as if something barricading it had broken off. As the latecomers of the main force come up, bringing with them the battering ram, everyone makes way for them to begin hammering it against the gate. The gate shudders with each hit and gradually begins to give even more, but even the battering ram team cannot break through fast enough as the whistle from the start of the event sounds again. Evidently this means that time has run out, and the defenders have won.`
 				goto lost
-			label attwr
+			label "attack wr"
 			`	You and a part of the group stick close to the walls and follow along them to the other side, careful not to scratch yourself on the thorns along the fort. You soon find another, smaller gate, and begin pushing. Unlike what you can see of the efforts you left at the main gate, you can feel this one budging immediately, and there is no slick ground to worry about. Once they realize the vulnerability of this gate, the Saryds in the group ask others to move out of the way. You are a bit startled as they suddenly charge it in unison, almost forcing it open with a single concerted effort. More defenders come to hold it, though, and the gate becomes increasingly difficult to move any further. One Arach heads back to the main group to call for more help, but when they arrive, so do more defenders. The struggle continues for many minutes, with the attackers alongside you unable to make a final breakthrough. The whistle sounds again, marking the end of the battle, announcing that the defenders have won.`
 				goto lost
-			label attr
+			label "attack r"
 			`	You follow a group to the edges of this set, losing some time before beginning your run up the hill. Once you finally start making your way up, you turn to see the main group repeatedly tripping and falling back. It seems the defenders, who are wearing green identifiers instead of blue, are pouring some slippery liquid down from the battlements above the gate, slowing those that are coming along a direct path. You reach the top while the main force still struggles, and your group makes its way to the gate. On your way, you see what the Kimek meant when she spoke of "thorns," with closely-spaced tufts of vicious, reddish barbs nearly as long as your arm covering the logs that make up the walls. You reach the gate, but as you push and push, it refuses to budge even the slightest bit, clearly having been barricaded from the inside. The main group eventually catches up to you, but even with many more people pushing now, the gate still holds firm and unmoving.`
 			choice
 				`	(Try and find another way in.)`
-					goto attrr
+					goto "attack rr"
 				`	(Continue trying to bust the gate open.)`
 			`	You start pushing along with the others, the Saryds joining you from below, and the Kimek and Arachi crawling up to push at the top of the gate. They take turns with each others when one gets tired so that someone is always pushing, even though their attempts aren't the most effective. After a while, you hear a cracking noise, and the gate finally begins budging slightly, as if something barricading it had broken off. As the latecomers of the main force come up, bringing with them the battering ram, everyone makes way for them to begin hammering it against the gate. The gate shudders with each hit and gradually begins to give even more, but even the battering ram team cannot break through fast enough as the whistle from the start of the event sounds again. Evidently this means that time has run out, and the defenders have won.`
 				goto lost
-			label attrr
+			label "attack rr"
 			`	You and a part of the group stick close to the walls and follow along them to the other side, careful not to scratch yourself on the thorns along the fort. You soon find another, smaller gate, and begin pushing. Unlike what you can see of the efforts you left at the main gate, you can feel this one budging immediately, and there is no slick ground to worry about. Once they realize the vulnerability of this gate, the Saryds in the group ask others to move out of the way. You are a bit startled as they suddenly charge it in unison, almost forcing it open with a single concerted effort. More defenders come to hold it, though, and the gate becomes increasingly difficult to move any further. One Arach heads back to the main group to call for more help, but when they arrive, so do more defenders. The struggle continues for a while, before you hear loud bangs from the other side of the fort. The Kimek organizer comes around the back to tell everyone to return to the main entrance. As you come to the main gate, you see the battering ram has forced the main gate open, something that must've been made easier with so many leaving it unguarded to instead defend the back gate. With that, the whistle sounds again, marking the end of the battle, announcing that the attackers have won.`
 			label won
 			`	The Kimek organizer in charge of your side starts a cheer, which quickly spreads to the others. After the leaders of both teams meet to greet each other, everyone is asked to return the colored cloth they were given and make their way down the hill. Your group is pointed to a nearby building to wash off any dirt, if needed. Once you're all cleaned up, you head back to the camp, where the Kimek who brought you here is waiting to guide your group to many short tables with plates on them; apparently, the reward for winning is a feast. As most of those who participate are Kimek, almost all of the food comes the way they prefer it: a soupy, half-digested mess. Thankfully there are a few meals prepared the way the other species like them, meaning you can pick one prepared for Saryds; their meals are the closest you can get to human cuisine here.`
@@ -230,3 +235,229 @@ mission "Coalition Folklore: Kimek"
 				decline
 
 
+
+mission "Coalition Departing Trouble - A"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		random < 2
+	source
+		government "Coalition"
+		not attributes "coalition station"
+	on enter
+		fail
+		conversation
+			`Your ship narrowly avoids a few small Coalition vessels as you exit <origin>'s atmosphere. Not a second later, while you're still stunned by the near-crash, once again the <ship> is almost hit by incoming ships, this time Heliarch warships, in what looks like an intense chase after the ships from before.`
+			`	After they've all passed, you check your comms and radar, finding some other civilian ships nearby that seem to have experienced a similar shock of their own. Some of the ships linger over <origin> for a while, as if unsure of what to do. Others bolt away with engines at full power, leaving the system in a blink, and some eventually decide to land again, either too curious about the situation, or perhaps wanting to avoid any trouble.`
+			branch heliarch
+				has "joined the heliarchs"
+			branch lunarium
+				has "joined the lunarium"
+			`	Some more minutes later, you see a select few of the Heliarch ships that passed close to you departing the planet. They pay you no mind, and much to your relief steer a safe distance from your ship this time.`
+				decline
+			label heliarch
+			`	Some more minutes later, you see a select few of the Heliarch ships that passed close to you departing the planet, steering a safe distance from your ship this time. The captain of one of the ships, a Heliarch Interdictor, hails you, apologizing for the earlier distress, briefly mentioning they've gotten the situation back under control. They wish you a good day, and prepare to leave the system.`
+				decline
+			label lunarium
+			`	Some more minutes later, you see a select few of the Heliarch ships that passed close to you departing the planet. They pay you no mind, and much to your relief steer a safe distance away from your ship this time. You cannot help but wonder whether the ships they were chasing held any Lunarium members, or if they were simply more unfortunate civilians.`
+	npc
+		personality launching fleeing uninterested
+		government "Heliarch"
+		fleet
+			names "heliarch"
+			variant
+				"Heliarch Hunter"
+				"Heliarch Interdictor"
+				"Heliarch Breacher"
+
+
+
+mission "Coalition Departing Trouble - B"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		random < 2
+	source
+		government "Coalition"
+	on enter
+		fail
+		conversation
+			`Once you're a good distance from <origin>, your sensors alert you to danger in the system: several explosions and a torrent of projectiles are flying nearby. You swiftly ready yourself and prepare for the threat, only to find Coalition civilian ships blowing up near the middle of the system. Some Heliarch warships are in their midst, moving from one to the other, unbothered by the ship debris as vessels explode around them.`
+			branch heliarch
+				has "joined the heliarchs"
+			branch lunarium
+				has "joined the lunarium"
+			branch neither
+				not "joined the heliarchs"
+				not "joined the lunarium"
+			label heliarch
+			`	They appear to be boarding the few ships that weren't damaged enough to have their hulls ruptured. After a few short minutes, they seem to have seized control of the vessels, and are having them follow the warships out of the system.`
+			`	One of the ships hails you briefly, apparently in a cheery mood as they celebrate having captured the criminals. They wish you a good day and good luck on your duties, and cut the comms as they prepare to leave.`
+				decline
+			label lunarium
+			`	They appear to be boarding the few ships that weren't damaged enough to have their hulls ruptured. After a few short minutes, they seem to have seized control of the vessels, and are having them follow the warships out of the system.`
+			`	As you glance at the wreckage of the civilian ships, you feel uneasy. Worse still is the thought that hits you soon after, of whether any of the Lunarium leaders you met were aboard any of the ships.`
+				decline
+			label neither
+			`	They appear to be boarding the few ships that weren't damaged enough to have their hulls ruptured. After a few short minutes, they seem to have seized control of the vessels, and are having them follow the warships out of the system.`
+				decline
+	npc
+		personality waiting fleeing uninterested
+		government "Heliarch"
+		fleet
+			names "heliarch"
+			variant
+				"Heliarch Punisher"
+				"Heliarch Interdictor"
+				"Heliarch Hunter"
+				"Heliarch Neutralizer"
+		fleet
+			names "saryd"
+			variant
+				"Saryd Visitor"
+				"Saryd Runabout"
+		fleet
+			names "kimek"
+			variant
+				"Kimek Spire"
+				"Kimek Thistle"
+		fleet
+			names "arach"
+			variant
+				"Arach Spindle"
+				"Arach Transport"
+
+
+
+mission "Coalition Departing Trouble - C"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		not "assisting lunarium"
+		not "joined the heliarchs"
+		random < 2
+	source
+		government "Coalition"
+	on enter
+		fail
+		conversation
+			`You depart to find something like a screen of Heliarch warships around <origin>, circling it and approaching all departing civilian ships. It's no different with your <ship>, and soon enough you're hailed by a Heliarch Punisher approaching your position.`
+			`	"Salutations, Captain <last>. Performing a routine inspection, we are. Board you momentarily we shall, to verify the safety of your vessel, then leave you to your business we shall."`
+			branch lunarium
+				has "joined the lunarium"
+			`	They sign off before you can respond, and the Punisher readies to board the <ship>, as more warships gather around the scene. Dozens of armed Heliarch agents march into your ship silently, diligently going about checking the bunks, cockpit, engine room...`
+			`	Within a few minutes, they appear satisfied with turning your ship upside down, and all march back to the Punisher. They thank you for "cooperating," and the ships clear the way for you to move out.`
+				decline
+			label lunarium
+			`	They sign off before you can respond, and the Punisher readies to board the <ship> as more warships gather around the scene. Although you're not currently performing any tasks for the Lunarium, you still grow increasingly worried as the Punisher approaches and connects to your ship. You do your best to keep a calm profile as dozens of armed Heliarch agents march into your ship silently, diligently going about checking the bunks, cockpit, engine room...`
+			`	Within a few minutes, they appear satisfied with turning your ship upside down, and all march back to the Punisher. They thank you for "cooperating", and the ships clear the way for you to move out. Once they're well enough away from the <ship>, you take to scouring it for anything they might've left behind to keep tabs within your ship. Much later on in the day, after you've confirmed to have found nothing of the sort, you breathe a sigh of relief.`
+	npc
+		personality waiting staying uninterested surveillance
+		government "Heliarch"
+		fleet
+			names "heliarch"
+			fighters
+				names "heliarch fighter"
+			variant
+				"Heliarch Punisher"
+				"Heliarch Punisher"
+				"Heliarch Interdictor"
+				"Heliarch Interdictor"
+				"Heliarch Hunter"
+				"Heliarch Hunter"
+				"Heliarch Judicator"
+				"Heliarch Judicator"
+				"Heliarch Pursuer" 4
+				"Heliarch Rover" 4
+				"Heliarch Stalker" 4
+				"Heliarch Neutralizer"
+				"Heliarch Neutralizer"
+				"Heliarch Neutralizer"
+				"Heliarch Breacher"
+				"Heliarch Breacher"
+				"Heliarch Breacher"
+
+
+
+mission "Coalition Incident: Secret Sky"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		random < 3
+	source "Secret Sky"
+	on offer
+		conversation
+			`You see an Arach captain hurrying around the spaceport, speaking with anyone who will listen. He converses with each one briefly, showing something in a small monitor, and then moving on to the next shortly after. After a while, he gets to you.`
+			`	"Captain? A moment if free you are?" He asks, scrambling his legs to light up the monitor. It displays a picture of a young Kimek. "A passenger of mine. Stopped by here to drop a few Saryd pilgrims, we had, but after seen them off I had, find this Kimek back in my ship, I couldn't!" He exclaims, pointing to an Arach Transport parked just before the edge of where <origin>'s dense fog cuts off your view. "Seen him anywhere, have you?"`
+			choice
+				`	"Sorry, I haven't. Did you try getting in touch with the local Heliarchs?"`
+				`	"Sorry, but I haven't seen him either."`
+					goto end
+			`	He nods. "Contacted them a few hours ago, I had. Look for my passenger in the restricted sections, I wished to, but allowed there I am not, so figured that ask them for aid, I could." He sighs. "Filed a report and sent a few agents off to look for him, they did, but so far received any word from them, I have not."`
+			label end
+			`	He thanks you all the same for listening to him, and moves on to the next person in the spaceport to inquire about the missing Kimek.`
+				decline
+
+
+
+mission "Coalition Incident: Hunger Tower"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		random < 1
+	source
+		government "Coalition"
+		attributes "kimek"
+		not attributes "coalition station"
+		not attributes "farming"
+	on offer
+		conversation
+			`The spaceport here on <origin> is in something of an uproar. Thousands of Kimek are seemingly organized in what, strangely enough for a world in the Coalition, resembles a protest. Some carry devices repeatedly displaying a message in the Kimek language. Others hold signs depicting the usual Kimek diet, with their many crops sharing space with a few fish. Strangest of all, however, is how the local Heliarchs are handling the situation: they appear almost hesitant, defensively speaking to the civilians in attempts to calm them down, sometimes apologizing or simply being forced to listen to the complaints as several Kimek pile up around them.`
+			`	When you finally manage to find a Heliarch who isn't occupied trying to keep the area in order, a Saryd, he explains the situation. "Missed its delivery, a food convoy has. Still investigating the issue, we are; know only that, somehow, gone missing, the entire fleet has..." He sighs, shaking his head. "Keep the locals calm we must." He goes on to help the other Heliarchs, without another word.`
+			`	Within a few minutes that must've felt like hours for the stationed Heliarch agents, battalions of drones start making their way from the tallest building in the city - the hunger tower. Ferrying around several meals each, with impressive precision, the drones fly throughout the civilian mass, distributing the meals. Hundreds of larger ones head to the residential areas of the city, presumably to provide the necessary supplies for the citizens until the next food convoy arrives. Seemingly satisfied, for the moment at least, the Kimek gradually dissipate out of the spaceport and back to their homes, leaving the spaceport to the now exhausted Heliarch agents.`
+				decline
+
+
+
+mission "Coalition Incident: Arach Store"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		random < 2
+	source
+		government "Coalition"
+		attributes "arach"
+		not attributes "coalition station"
+		not planet "Ahr"
+	on offer
+		conversation
+			`A Heliarch patrol seems to be discussing with an Arach shop worker in front of a large, prestigious looking Arach clothing store in the spaceport. Other agents prevent you and other bystanders from approaching the scene, but you can still make out some context from their gesturing. It seems the Heliarchs are there to confiscate some pieces from the shop that you guess don't abide by their laws, while the shop worker keeps worryingly attempting to answer what questions they pose him.`
+			`	Eventually, the shop owner arrives. Judging by her fine clothes, and from the reactions of the local Arachi, you figure she must either be really famous here on <origin>, or possibly belong to one of the Arach Houses, though nothing on her attire seems to indicate any specific house. She helps the worker calm down, and then she engages in conversation with the Heliarch agents as he heads back inside.`
+			`	She tries to diffuse the situation, speaking calmly and attempting to take the items back into the shop, but the Heliarch agents do not budge. Running out of patience, the Heliarch in charge of the patrol cuts the Arach lady off as she's speaking, forcibly taking all the items in question, and having the agents rip apart what you guess must've been the offending parts of the cloth pieces. Stunned, the Arach simply watches as they render most of the items into unusable rags, keeping the bits they hacked away, and handing her back the other tattered remains. Without another word, they leave the scene. The Arach heads inside, and you can hear the door slam from where you're standing.`
+				decline
+
+
+
+mission "Coalition Incident: Ring of Wisdom"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		random < 3
+	source "Ring of Wisdom"
+	on offer
+		conversation
+			`A few minutes into your walk around the spaceport of the <origin>, the lighting suddenly shifts from the usual, comfortable tones to a cacophony of flashing warnings. Diagnostic warning messages display on all sorts of screens, and siren blasts are interrupted only by alarm messages in all three Coalition languages on repeat. You notice that not only are the civilians in the ring as alarmed as you, but every Heliarch agent you can see begins moving in a hurried, albeit organized pace, towards restricted sections, Heliarch-only rooms and warehouses.`
+			`	It doesn't take long before hundreds of other Heliarchs come pouring in from other sections of the ring. When the stream finally stops, you see them take control of the machinery near the edge of the ring section, activating a huge retractable barrier that seals this section off from the rest of the ring. Ship traffic is also cut off entirely, with Heliarch squadrons keeping any ship from departing, and warships visibly walling off the hangar entrances. The Heliarchs organize the civilians swiftly, moving them away from an area where most of the agents are gathering.`
+			`	As you too are herded away by the agents, you manage to get some context out of one of them - a Heliarch team that was exploring one of the ring's unknown sections had some sort of accident, and one of the members is expected to return at the area where most of the agents are gathering. The Heliarchs stand armed and ready, pointing their weapons toward a door leading to the restricted sections, and as if rendered mute by anticipation, all in the quarantined ring section appear to hold their breath, waiting.`
+			`	Sure enough, the many minutes of silence are disrupted by echoing, increasingly louder screaming - one scream, incessant, coming from the shut passageway watched over by the sights of what must be a hundred Heliarch guns. A thud at the shut door briefly peaks out amidst the continuous shout. It opens to a lone, frantic Saryd, with a deeply perturbed look in his eyes. He doesn't stop at the sight of the several gun barrels pointed at him, instead drawing his own weapon, only to point it back to where he came from, firing wildly at the dark passage.`
+			`	Then it stops. The screaming, and the gunshots, both stop abruptly, and the Saryd drops the gun, then collapses to the ground. He lays there, unresponsive, catatonic, as the Heliarch agents head closer to inspect him, eventually blocking him out entirely from view. A few seconds later, some of the Heliarchs back up, then bolt to a restricted room. Others stand firmly on guard, with their guns pointed either at the Saryd, or at the passageway from which he came.`
+			`	Eventually, a team comes with what vaguely resembles a very large gurney, and some sort of large sack. The Heliarch agents surrounding the Saryd shuffle out of the way for those carrying the equipment to pass, and within a few minutes they're taking the Saryd away, encased in the sack as if in a body bag, carried on the gurney. Halfway to the shut down section doors, they stop as the Saryd moves erratically inside the sack, kicking and flailing wildly. It stops within a few seconds, and they resume their way out of the quarantined ring portion.`
+			`	Several minutes pass before the Heliarch agents deem the passageway from where the Saryd ran from to be secure, sending some squads inside while others move to resume the ring section to normal. Once the quarantine is lifted, nearly all civilians rush to their ships, departing immediately.`
+				decline

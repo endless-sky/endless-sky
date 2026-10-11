@@ -7,35 +7,47 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "PreferencesPanel.h"
 
-#include "text/alignment.hpp"
-#include "Audio.h"
+#include "text/Alignment.h"
+#include "audio/Audio.h"
 #include "Color.h"
-#include "Dialog.h"
+#include "CustomEvents.h"
+#include "DialogPanel.h"
 #include "Files.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
+#include "PlayerInfo.h"
+#include "Plugin.h"
+#include "PluginManager.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
+#include "RenderBuffer.h"
 #include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
-#include "StarField.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
+#include "shader/StarField.h"
 #include "text/Table.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
+#ifdef _WIN32
+#include "windows/WinVersion.h"
+#endif
+
 #include "opengl.h"
-#include <SDL2/SDL.h>
 
 #include <algorithm>
 
@@ -45,29 +57,110 @@ namespace {
 	// Settings that require special handling.
 	const string ZOOM_FACTOR = "Main zoom factor";
 	const int ZOOM_FACTOR_MIN = 100;
-	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string FONT_SIZE = "UI font size";
+	const string AUTO_AIM_SETTING = "Automatic aiming";
+	const string AUTO_FIRE_SETTING = "Automatic firing";
+	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
+	const string CAMERA_ACCELERATION = "Camera acceleration";
+	const string LARGE_GRAPHICS_REDUCTION = "Reduce large graphics";
+	const string CLOAK_OUTLINE = "Cloaked ship outlines";
+	const string TEXTURE_FILTERING = "Texture filtering";
+	const string STATUS_OVERLAYS_ALL = "Show status overlays";
+	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
+	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
+	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
+	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
+	const string TURRET_OVERLAYS = "Turret overlays";
+	const string HIGHLIGHT_SHIPS = "Highlight ships";
 	const string EXPEND_AMMO = "Escorts expend ammo";
+	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
-	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
+	const string TOOLTIP_ACTIVATION = "Tooltip activation time";
 	const string FIGHTER_REPAIR = "Repair fighters in";
+	const string FLAGSHIP_SPACE_PRIORITY = "Prioritize flagship use";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const string DATE_FORMAT = "Date format";
+	const string NOTIFY_ON_DEST = "Notify on destination";
+	const string BOARDING_PRIORITY = "Boarding target priority";
+	const string ASTEROID_TARGETING = "Asteroid targeting";
+	const string BACKGROUND_PARALLAX = "Parallax background";
+	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
+	const string ALERT_INDICATOR = "Alert indicator";
+	const string MINIMAP_DISPLAY = "Show mini-map";
+	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
+	const string BLOCK_SCREEN_SAVER = "Block screen saver";
+	const string TRIBUTE_CONFIRMATION = "Tribute confirmation";
+	const string AMMO_REFILL = "Auto refill ammo";
+	const string FASTFORWARD_CAPSLOCK_SYNC = "Sync FF to CapsLock";
+	const string TEXT_ALIGNMENT = "Text alignment";
+#ifdef _WIN32
+	const string TITLE_BAR_THEME = "Title bar theme";
+	const string WINDOW_ROUNDING = "Window rounding";
+#endif
+
+	// How many pages of controls and settings there are.
+	const int CONTROLS_PAGE_COUNT = 2;
+	const int SETTINGS_PAGE_COUNT = 3;
+
+	const map<string, SoundCategory> volumeBars = {
+		{"volume", SoundCategory::MASTER},
+		{"music volume", SoundCategory::MUSIC},
+		{"ui volume", SoundCategory::UI},
+		{"anti-missile volume", SoundCategory::ANTI_MISSILE},
+		{"weapon volume", SoundCategory::WEAPON},
+		{"engine volume", SoundCategory::ENGINE},
+		{"afterburner volume", SoundCategory::AFTERBURNER},
+		{"jump volume", SoundCategory::JUMP},
+		{"explosion volume", SoundCategory::EXPLOSION},
+		{"scan volume", SoundCategory::SCAN},
+		{"environment volume", SoundCategory::ENVIRONMENT},
+		{"alert volume", SoundCategory::ALERT}
+	};
 }
 
 
 
-PreferencesPanel::PreferencesPanel()
-	: editing(-1), selected(0), hover(-1)
+PreferencesPanel::PreferencesPanel(PlayerInfo &player)
+	: player(player),
+	tooltip(270, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
-	if(!GameData::PluginAboutText().empty())
-		selectedPlugin = GameData::PluginAboutText().begin()->first;
+	// Select the first valid plugin.
+	for(const auto &plugin : PluginManager::Get())
+		if(plugin.second.IsValid())
+		{
+			selectedPlugin = plugin.first;
+			break;
+		}
 
 	SetIsFullScreen(true);
+
+	// Set the initial plugin list and description scroll ranges.
+	const Interface *pluginUi = GameData::Interfaces().Get("plugins");
+	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
+
+	int pluginListHeight = 0;
+	for(const auto &plugin : PluginManager::Get())
+		if(plugin.second.IsValid())
+			pluginListHeight += 20;
+
+	pluginListScroll.SetDisplaySize(pluginListBox.Height());
+	pluginListScroll.SetMaxValue(pluginListHeight);
+	Rectangle pluginDescriptionBox = pluginUi->GetBox("plugin description");
+	pluginDescriptionScroll.SetDisplaySize(pluginDescriptionBox.Height());
+}
+
+
+
+// Stub, for unique_ptr destruction to be defined in the right compilation unit.
+PreferencesPanel::~PreferencesPanel()
+{
 }
 
 
@@ -76,12 +169,40 @@ PreferencesPanel::PreferencesPanel()
 void PreferencesPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	Information info;
-	info.SetBar("volume", Audio::Volume());
+
+	for(const auto &[bar, category] : volumeBars)
+	{
+		double volume = Audio::Volume(category);
+		info.SetBar(bar, volume);
+		if(volume > .75)
+			info.SetCondition(bar + " max");
+		else if(volume > .5)
+			info.SetCondition(bar + " medium");
+		else if(volume > .25)
+			info.SetCondition(bar + " low");
+		else
+			info.SetCondition(bar + " none");
+	}
+
+	if(PluginManager::HasChanged())
+		info.SetCondition("show plugins changed");
+	if(CONTROLS_PAGE_COUNT > 1)
+		info.SetCondition("multiple controls pages");
+	if(currentControlsPage > 0)
+		info.SetCondition("show previous controls");
+	if(currentControlsPage + 1 < CONTROLS_PAGE_COUNT)
+		info.SetCondition("show next controls");
+	if(SETTINGS_PAGE_COUNT > 1)
+		info.SetCondition("multiple settings pages");
+	if(currentSettingsPage > 0)
+		info.SetCondition("show previous settings");
+	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
+		info.SetCondition("show next settings");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
+	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : page == 'p' ? "plugins" : "audio");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 
@@ -89,11 +210,35 @@ void PreferencesPanel::Draw()
 	prefZones.clear();
 	pluginZones.clear();
 	if(page == 'c')
+	{
 		DrawControls();
+		DrawTooltips();
+	}
 	else if(page == 's')
+	{
 		DrawSettings();
+		DrawTooltips();
+	}
 	else if(page == 'p')
 		DrawPlugins();
+	else if(page == 'a')
+	{
+		// The entire audio panel is defined in interfaces, so this is a dummy.
+	}
+}
+
+
+
+void PreferencesPanel::UpdateTooltipActivation()
+{
+	tooltip.UpdateActivationCount();
+}
+
+
+
+void PreferencesPanel::UpdateTextDisplay()
+{
+	tooltip.UpdateFontSize();
 }
 
 
@@ -107,16 +252,51 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		return true;
 	}
 
-	if(key == SDLK_DOWN && static_cast<unsigned>(selected + 1) < zones.size())
-		++selected;
-	else if(key == SDLK_UP && selected > 0)
-		--selected;
+	if(key == SDLK_DOWN)
+		HandleDown();
+	else if(key == SDLK_UP)
+		HandleUp();
 	else if(key == SDLK_RETURN)
-		editing = selected;
+		HandleConfirm();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		Exit();
-	else if(key == 'c' || key == 's' || key == 'p')
+	else if(key == 'c' || key == 's' || key == 'p' || key == 'a')
+	{
 		page = key;
+		hoverItem.clear();
+		selected = 0;
+
+		// Make sure the render buffers are initialized and are aware of the current UI scale.
+		Resize();
+	}
+	else if(key == 'o' && page == 'p')
+		Files::OpenUserPluginFolder();
+	else if((key == 'n' || key == SDLK_PAGEUP)
+		&& ((page == 'c' && currentControlsPage < CONTROLS_PAGE_COUNT - 1)
+		|| (page == 's' && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)))
+	{
+		if(page == 'c')
+			++currentControlsPage;
+		else
+			++currentSettingsPage;
+		selected = 0;
+		selectedItem.clear();
+	}
+	else if((key == 'r' || key == SDLK_PAGEDOWN)
+		&& ((page == 'c' && currentControlsPage > 0) || (page == 's' && currentSettingsPage > 0)))
+	{
+		if(page == 'c')
+			--currentControlsPage;
+		else
+			--currentSettingsPage;
+		selected = 0;
+		selectedItem.clear();
+	}
+	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
+	{
+		if(!zones[latest].Value().Has(Command::MENU))
+			Command::SetKey(zones[latest].Value(), 0);
+	}
 	else
 		return false;
 
@@ -125,88 +305,86 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 
 
-bool PreferencesPanel::Click(int x, int y, int clicks)
+bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
 	EndEditing();
 
-	if(x >= 265 && x < 295 && y >= -220 && y < 70)
+	Point point(x, y);
+	const Interface *preferencesUI = GameData::Interfaces().Get("preferences");
+	Rectangle volumeBox = preferencesUI->GetBox("volume box");
+	if(volumeBox.Contains(point))
 	{
-		Audio::SetVolume((20 - y) / 200.);
-		Audio::Play(Audio::Get("warder"));
+		double barSize = preferencesUI->GetValue("master volume bar size");
+		double volume = (volumeBox.Center().Y() - point.Y()) / barSize + .5;
+
+		Audio::SetVolume(volume, SoundCategory::MASTER);
+		Audio::Play(Audio::Get("warder"), SoundCategory::MASTER);
 		return true;
 	}
 
-	Point point(x, y);
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(point))
-			editing = selected = index;
+		{
+			if(zones[index].Value().Has(Command::MENU))
+				GetUI().Push(DialogPanel::CallFunctionIfOk([this, index]()
+					{
+						this->editing = this->selected = index;
+					},
+					"Rebinding this key will change the keypress you need to access this menu. "
+					"You really shouldn't rebind this unless needed.", true));
+			else
+				editing = selected = index;
+		}
 
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
 		{
-			// For some settings, clicking the option does more than just toggle a
-			// boolean state keyed by the option's name.
-			if(zone.Value() == ZOOM_FACTOR)
-			{
-				int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
-				Screen::SetZoom(newZoom);
-				if(newZoom > ZOOM_FACTOR_MAX || Screen::Zoom() != newZoom)
-				{
-					// Notify the user why setting the zoom any higher isn't permitted.
-					// Only show this if it's not possible to zoom the view at all, as
-					// otherwise the dialog will show every time, which is annoying.
-					if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
-						GetUI()->Push(new Dialog(
-							"Your screen resolution is too low to support a zoom level above 100%."));
-					Screen::SetZoom(ZOOM_FACTOR_MIN);
-				}
-				// Convert to raw window coordinates, at the new zoom level.
-				point *= Screen::Zoom() / 100.;
-				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
-				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
-			}
-			else if(zone.Value() == VIEW_ZOOM_FACTOR)
-			{
-				// Increase the zoom factor unless it is at the maximum. In that
-				// case, cycle around to the lowest zoom factor.
-				if(!Preferences::ZoomViewIn())
-					while(Preferences::ZoomViewOut()) {}
-			}
-			else if(zone.Value() == VSYNC_SETTING)
-			{
-				if(!Preferences::ToggleVSync())
-					GetUI()->Push(new Dialog(
-						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
-			}
-			else if(zone.Value() == EXPEND_AMMO)
-				Preferences::ToggleAmmoUsage();
-			else if(zone.Value() == TURRET_TRACKING)
-				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
-			else if(zone.Value() == REACTIVATE_HELP)
-			{
-				for(const auto &it : GameData::HelpTemplates())
-					Preferences::Set("help: " + it.first, false);
-			}
-			else if(zone.Value() == SCROLL_SPEED)
-			{
-				// Toggle between three different speeds.
-				int speed = Preferences::ScrollSpeed() + 20;
-				if(speed > 60)
-					speed = 20;
-				Preferences::SetScrollSpeed(speed);
-			}
-			// All other options are handled by just toggling the boolean state.
-			else
-				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
+			HandleSettingsString(zone.Value(), point);
 			break;
 		}
 
-	for(const auto &zone : pluginZones)
-		if(zone.Contains(point))
+	if(page == 'p')
+	{
+		// Don't handle clicks outside of the clipped area.
+		const Interface *pluginUi = GameData::Interfaces().Get("plugins");
+		Rectangle pluginListBox = pluginUi->GetBox("plugin list");
+		if(pluginListBox.Contains(point))
 		{
-			selectedPlugin = zone.Value();
-			break;
+			int index = 0;
+			for(const auto &zone : pluginZones)
+			{
+				if(zone.Contains(point) && selectedPlugin != zone.Value())
+				{
+					selectedPlugin = zone.Value();
+					selected = index;
+					RenderPluginDescription(selectedPlugin);
+					break;
+				}
+				index++;
+			}
 		}
+	}
+	else if(page == 'a')
+	{
+		const Interface *audioUI = GameData::Interfaces().Get("audio");
+		double barSize = audioUI->GetValue("volume bar size");
+		for(const auto &[name, category] : volumeBars)
+		{
+			if(category != SoundCategory::MASTER)
+			{
+				Rectangle barZone = audioUI->GetBox(name + " box");
+				if(barZone.Contains(point))
+				{
+					double volume = (point.X() - barZone.Center().X()) / barSize + .5;
+					Audio::SetVolume(volume, category);
+					Audio::Play(Audio::Get("warder"), category);
+					return true;
+				}
+			}
+		}
+	}
 
 	return true;
 }
@@ -217,20 +395,33 @@ bool PreferencesPanel::Hover(int x, int y)
 {
 	hoverPoint = Point(x, y);
 
+	hoverItem.clear();
+	tooltip.Clear();
+
 	hover = -1;
 	for(unsigned index = 0; index < zones.size(); ++index)
-		if(zones[index].Contains(hoverPoint))
+	{
+		const auto &zone = zones[index];
+		if(zone.Contains(hoverPoint))
+		{
 			hover = index;
+			tooltip.SetZone(zone);
+		}
+	}
 
-	hoverPreference.clear();
 	for(const auto &zone : prefZones)
 		if(zone.Contains(hoverPoint))
-			hoverPreference = zone.Value();
+		{
+			hoverItem = zone.Value();
+			tooltip.SetZone(zone);
+		}
 
-	hoverPlugin.clear();
 	for(const auto &zone : pluginZones)
 		if(zone.Contains(hoverPoint))
-			hoverPlugin = zone.Value();
+		{
+			hoverItem = zone.Value();
+			tooltip.SetZone(zone);
+		}
 
 	return true;
 }
@@ -240,43 +431,114 @@ bool PreferencesPanel::Hover(int x, int y)
 // Change the value being hovered over in the direction of the scroll.
 bool PreferencesPanel::Scroll(double dx, double dy)
 {
-	if(!dy || hoverPreference.empty())
+	if(!dy)
 		return false;
 
-	if(hoverPreference == ZOOM_FACTOR)
+	if(page == 's' && !hoverItem.empty())
 	{
-		int zoom = Screen::UserZoom();
-		if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
-			zoom -= ZOOM_FACTOR_INCREMENT;
-		if(dy > 0. && zoom < ZOOM_FACTOR_MAX)
-			zoom += ZOOM_FACTOR_INCREMENT;
+		if(hoverItem == ZOOM_FACTOR)
+		{
+			int zoom = Screen::UserZoom();
+			if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
+				zoom -= ZOOM_FACTOR_INCREMENT;
+			if(dy > 0.)
+				zoom += ZOOM_FACTOR_INCREMENT;
 
-		Screen::SetZoom(zoom);
-		if(Screen::Zoom() != zoom)
-			Screen::SetZoom(Screen::Zoom());
+			Screen::SetZoom(zoom);
+			if(Screen::Zoom() != zoom)
+				Screen::SetZoom(Screen::Zoom());
 
-		// Convert to raw window coordinates, at the new zoom level.
-		Point point = hoverPoint * (Screen::Zoom() / 100.);
-		point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
-		SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
+			// Convert to raw window coordinates, at the new zoom level.
+			Point point = hoverPoint * (Screen::Zoom() / 100.);
+			point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+			SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
+		}
+		else if(hoverItem == VIEW_ZOOM_FACTOR)
+		{
+			if(dy < 0.)
+				Preferences::ZoomViewOut();
+			else
+				Preferences::ZoomViewIn();
+		}
+		else if(hoverItem == SCROLL_SPEED)
+		{
+			int speed = Preferences::ScrollSpeed();
+			if(dy < 0.)
+				speed = max(10, speed - 10);
+			else
+				speed = min(60, speed + 10);
+			Preferences::SetScrollSpeed(speed);
+		}
+		else if(hoverItem == TOOLTIP_ACTIVATION)
+		{
+			int steps = Preferences::TooltipActivation();
+			if(dy < 0.)
+				steps = max(0, steps - 20);
+			else
+				steps = min(120, steps + 20);
+			Preferences::SetTooltipActivation(steps);
+			for(auto &panel : GetUI().Stack())
+				panel->UpdateTooltipActivation();
+		}
+		return true;
 	}
-	else if(hoverPreference == VIEW_ZOOM_FACTOR)
+	else if(page == 'p')
 	{
-		if(dy < 0.)
-			Preferences::ZoomViewOut();
-		else
-			Preferences::ZoomViewIn();
+		auto ui = GameData::Interfaces().Get("plugins");
+		const Rectangle &pluginBox = ui->GetBox("plugin list");
+		const Rectangle &descriptionBox = ui->GetBox("plugin description");
+
+		if(pluginBox.Contains(hoverPoint))
+		{
+			pluginListScroll.Scroll(-dy * Preferences::ScrollSpeed());
+			return true;
+		}
+		else if(descriptionBox.Contains(hoverPoint) && pluginDescriptionBuffer)
+		{
+			pluginDescriptionScroll.Scroll(-dy * Preferences::ScrollSpeed());
+			return true;
+		}
 	}
-	else if(hoverPreference == SCROLL_SPEED)
+	return false;
+}
+
+
+
+bool PreferencesPanel::Drag(double dx, double dy)
+{
+	if(page == 'p')
 	{
-		int speed = Preferences::ScrollSpeed();
-		if(dy < 0.)
-			speed = max(20, speed - 20);
-		else
-			speed = min(60, speed + 20);
-		Preferences::SetScrollSpeed(speed);
+		auto ui = GameData::Interfaces().Get("plugins");
+		const Rectangle &pluginBox = ui->GetBox("plugin list");
+		const Rectangle &descriptionBox = ui->GetBox("plugin description");
+
+		if(pluginBox.Contains(hoverPoint))
+		{
+			// Steps is zero so that we don't animate mouse drags.
+			pluginListScroll.Scroll(-dy, 0);
+			return true;
+		}
+		else if(descriptionBox.Contains(hoverPoint))
+		{
+			// Steps is zero so that we don't animate mouse drags.
+			pluginDescriptionScroll.Scroll(-dy, 0);
+			return true;
+		}
 	}
-	return true;
+	return false;
+}
+
+
+
+void PreferencesPanel::Resize()
+{
+	if(page == 'p')
+	{
+		const Interface *pluginUi = GameData::Interfaces().Get("plugins");
+		Rectangle pluginListBox = pluginUi->GetBox("plugin list");
+		pluginListClip = make_unique<RenderBuffer>(pluginListBox.Dimensions());
+		RenderPluginDescription(selectedPlugin);
+	}
 }
 
 
@@ -295,8 +557,17 @@ void PreferencesPanel::DrawControls()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
-	// Check for conflicts.
+	// Colors for highlighting.
 	const Color &warning = *GameData::Colors().Get("warning conflict");
+	const Color &noCommand = *GameData::Colors().Get("warning no command");
+
+	if(selected != oldSelected)
+		latest = selected;
+	if(hover != oldHover)
+		latest = hover;
+
+	oldSelected = selected;
+	oldHover = hover;
 
 	Table table;
 	table.AddColumn(-115, {230, Alignment::LEFT});
@@ -306,12 +577,24 @@ void PreferencesPanel::DrawControls()
 	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
 
+	// About CONTROLS pagination
+	// * A NONE command means that a string from CATEGORIES should be drawn
+	//   instead of a command.
+	// * A '\t' category string indicates that the first column on this page has
+	//   ended, and the next line should be drawn at the start of the next
+	//   column.
+	// * A '\n' category string indicates that this page is complete, no further
+	//   lines should be drawn on this page.
+	// * The namespace variable CONTROLS_PAGE_COUNT should be updated to the max
+	//   page count (count of '\n' characters plus one).
 	static const string CATEGORIES[] = {
-		"Navigation",
-		"Weapons",
+		"Keyboard Navigation",
+		"Fleet",
+		"\t",
 		"Targeting",
-		"Interface",
-		"Fleet"
+		"Weapons",
+		"\n",
+		"Interface"
 	};
 	const string *category = CATEGORIES;
 	static const Command COMMANDS[] = {
@@ -321,47 +604,84 @@ void PreferencesPanel::DrawControls()
 		Command::RIGHT,
 		Command::BACK,
 		Command::AFTERBURNER,
+		Command::AUTOSTEER,
 		Command::LAND,
 		Command::JUMP,
 		Command::NONE,
-		Command::PRIMARY,
-		Command::SELECT,
-		Command::SECONDARY,
-		Command::CLOAK,
+		Command::DEPLOY,
+		Command::FIGHT,
+		Command::HOLD_FIRE,
+		Command::GATHER,
+		Command::HOLD_POSITION,
+		Command::AMMO,
+		Command::HARVEST,
+		Command::SCAN_ORDER,
+		Command::NONE,
 		Command::NONE,
 		Command::NEAREST,
 		Command::TARGET,
 		Command::HAIL,
 		Command::BOARD,
+		Command::NEAREST_ASTEROID,
 		Command::SCAN,
+		Command::NONE,
+		Command::PRIMARY,
+		Command::TURRET_TRACKING,
+		Command::SELECT,
+		Command::SECONDARY,
+		Command::CLOAK,
+		Command::MOUSE_TURNING_HOLD,
+		Command::AIM_TURRET_HOLD,
+		Command::NONE,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
 		Command::INFO,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
-		Command::NONE,
-		Command::DEPLOY,
-		Command::FIGHT,
-		Command::GATHER,
-		Command::HOLD,
-		Command::AMMO
+		Command::PAUSE,
+		Command::HELP,
+		Command::MESSAGE_LOG,
+		Command::PERFORMANCE_DISPLAY
 	};
-	static const Command *BREAK = &COMMANDS[19];
+
+	int page = 0;
 	for(const Command &command : COMMANDS)
 	{
-		// The "BREAK" line is where to go to the next column.
-		if(&command == BREAK)
-			table.DrawAt(Point(130, firstY));
-
+		string categoryString;
 		if(!command)
 		{
-			table.DrawGap(10);
-			table.DrawUnderline(medium);
 			if(category != end(CATEGORIES))
-				table.Draw(*category++, bright);
+				categoryString = *category++;
 			else
 				table.Advance();
+			// Check if this is a page break.
+			if(categoryString == "\n")
+			{
+				++page;
+				continue;
+			}
+		}
+		// Check if this command is on the page being displayed.
+		// If this command isn't on the page being displayed, check if it is on an earlier page.
+		// If it is, continue to the next command.
+		// Otherwise, this command is on a later page,
+		// do not continue as no further commands are to be displayed.
+		if(page < currentControlsPage)
+			continue;
+		else if(page > currentControlsPage)
+			break;
+		if(!command)
+		{
+			// Check if this is a column break.
+			if(categoryString == "\t")
+			{
+				table.DrawAt(Point(130, firstY));
+				continue;
+			}
+			table.DrawGap(10);
+			table.DrawUnderline(medium);
+			table.Draw(categoryString, bright);
 			table.Draw("Key", bright);
 			table.DrawGap(5);
 		}
@@ -369,46 +689,42 @@ void PreferencesPanel::DrawControls()
 		{
 			int index = zones.size();
 			// Mark conflicts.
-			bool isConflicted = command.HasConflict();
+			bool isFastForwardSyncToCapsLock = command.Has(Command::FASTFORWARD)
+				&& Preferences::GetFastForwardCapsLockSync() == Preferences::FastForwardCapsLockSync::ALWAYS;
+			bool isConflicted = command.HasConflict() && !isFastForwardSyncToCapsLock;
+			bool isEmpty = !command.HasBinding() && !isFastForwardSyncToCapsLock;
 			bool isEditing = (index == editing);
-			if(isConflicted || isEditing)
+			if(isConflicted || isEditing || isEmpty)
 			{
 				table.SetHighlight(56, 120);
-				table.DrawHighlight(isEditing ? dim: warning);
+				table.DrawHighlight(isEditing ? dim : isEmpty ? noCommand : warning);
 			}
 
 			// Mark the selected row.
 			bool isHovering = (index == hover && !isEditing);
 			if(!isHovering && index == selected)
 			{
-				table.SetHighlight(-120, 54);
+				auto textWidth = FontSet::Get(14).Width(command.Description());
+				table.SetHighlight(-120, textWidth - 110);
 				table.DrawHighlight(back);
 			}
 
 			// Highlight whichever row the mouse hovers over.
 			table.SetHighlight(-120, 120);
 			if(isHovering)
+			{
 				table.DrawHighlight(back);
+				hoverItem = command.Description();
+			}
 
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
-			table.Draw(command.Description(), medium);
-			table.Draw(command.KeyName(), isEditing ? bright : medium);
+			const Color &keyColor = isFastForwardSyncToCapsLock ? dim : medium;
+			const Color &descColor = isFastForwardSyncToCapsLock ? dim : medium;
+			table.Draw(command.Description(), descColor);
+			table.Draw(command.KeyName(), isEditing ? bright : keyColor);
 		}
 	}
-
-	Table shiftTable;
-	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
-	shiftTable.SetUnderline(0, 130);
-	shiftTable.DrawAt(Point(-400, 52));
-
-	shiftTable.DrawUnderline(medium);
-	shiftTable.Draw("With <shift> key", bright);
-	shiftTable.DrawGap(5);
-	shiftTable.Draw("Select nearest ship", medium);
-	shiftTable.Draw("Select next escort", medium);
-	shiftTable.Draw("Talk to planet", medium);
-	shiftTable.Draw("Board disabled escort", medium);
 }
 
 
@@ -428,51 +744,140 @@ void PreferencesPanel::DrawSettings()
 	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
 
+	// About SETTINGS pagination
+	// * An empty string indicates that a category has ended.
+	// * A '\t' character indicates that the first column on this page has
+	//   ended, and the next line should be drawn at the start of the next
+	//   column.
+	// * A '\n' character indicates that this page is complete, no further lines
+	//   should be drawn on this page.
+	// * In all three cases, the first non-special string will be considered the
+	//   category heading and will be drawn differently to normal setting
+	//   entries.
+	// * The namespace variable SETTINGS_PAGE_COUNT should be updated to the max
+	//   page count (count of '\n' characters plus one).
 	static const string SETTINGS[] = {
 		"Display",
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
+		FONT_SIZE,
+		TEXT_ALIGNMENT,
+		SCREEN_MODE_SETTING,
+		BLOCK_SCREEN_SAVER,
 		VSYNC_SETTING,
-		"Show status overlays",
-		"Highlight player's flagship",
-		"Rotate flagship in HUD",
-		"Show planet labels",
-		"Show mini-map",
 		"",
-		"AI",
-		"Automatic aiming",
-		"Automatic firing",
-		EXPEND_AMMO,
-		FIGHTER_REPAIR,
-		TURRET_TRACKING,
-		"\n",
-		"Performance",
-		"Show CPU / GPU load",
+		"Graphics",
+		CAMERA_ACCELERATION,
 		"Render motion blur",
-		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
-		"Parallax background",
+		"Fixed starfield zoom",
+		BACKGROUND_PARALLAX,
+		"Animate main menu background",
 		"Show hyperspace flash",
+		EXTENDED_JUMP_EFFECTS,
+		CLOAK_OUTLINE,
+		TEXTURE_FILTERING,
+		"\t",
+		"Performance",
+		"Show CPU / GPU load",
+		LARGE_GRAPHICS_REDUCTION,
+		"Defer loading images",
 		SHIP_OUTLINES,
+		HUD_SHIP_OUTLINES,
 		"",
-		"Other",
-		"Clickable radar display",
+		"Map",
+		"Deadline blink by distance",
 		"Hide unexplored map regions",
-		REACTIVATE_HELP,
-		"Interrupt fast-forward",
-		"Rehire extra crew when lost",
-		SCROLL_SPEED,
 		"Show escort systems on map",
 		"Show stored outfits on map",
-		"System map sends move orders",
-		"Warning siren"
+		"Parenthesize trade profits",
+		"",
+		"Trading",
+		"Sell outfits without outfitter",
+		"Confirm selling outfits",
+		"Confirm selling minables",
+		"",
+		"Gameplay",
+		TRIBUTE_CONFIRMATION,
+		"\n",
+		"Flagship Behavior",
+		"Control ship with mouse",
+		"Aim turrets with mouse",
+		AUTO_AIM_SETTING,
+		AUTO_FIRE_SETTING,
+		ASTEROID_TARGETING,
+		BOARDING_PRIORITY,
+		"Rehire extra crew when lost",
+		"Automatically unpark flagship",
+		FLAGSHIP_SPACE_PRIORITY,
+		"",
+		"Fleet Behavior",
+		TURRET_TRACKING,
+		EXPEND_AMMO,
+		FLOTSAM_SETTING,
+		FIGHTER_REPAIR,
+		"Damaged fighters retreat",
+		"Fighters transfer cargo",
+		AMMO_REFILL,
+		"\t",
+		"HUD",
+		STATUS_OVERLAYS_ALL,
+		STATUS_OVERLAYS_FLAGSHIP,
+		STATUS_OVERLAYS_ESCORT,
+		STATUS_OVERLAYS_ENEMY,
+		STATUS_OVERLAYS_NEUTRAL,
+		"Show missile overlays",
+		TURRET_OVERLAYS,
+		"Show asteroid scanner overlay",
+		HIGHLIGHT_SHIPS,
+		"Rotate flagship in HUD",
+		"Show planet labels",
+		MINIMAP_DISPLAY,
+		"Clickable radar display",
+		ALERT_INDICATOR,
+		"Extra fleet status messages",
+		"\n",
+		"Other",
+		"Always underline shortcuts",
+		REACTIVATE_HELP,
+		"Interrupt fast-forward",
+		FASTFORWARD_CAPSLOCK_SYNC,
+		"Landing zoom",
+		SCROLL_SPEED,
+		TOOLTIP_ACTIVATION,
+		DATE_FORMAT,
+		NOTIFY_ON_DEST,
+		"Save message log",
+#ifdef _WIN32
+		"\t",
+		"Windows Options",
+		TITLE_BAR_THEME,
+		WINDOW_ROUNDING
+#endif
 	};
+
 	bool isCategory = true;
+	int page = 0;
 	for(const string &setting : SETTINGS)
 	{
+		// Check if this is a page break.
+		if(setting == "\n")
+		{
+			++page;
+			continue;
+		}
+		// Check if this setting is on the page being displayed.
+		// If this setting isn't on the page being displayed, check if it is on an earlier page.
+		// If it is, continue to the next setting.
+		// Otherwise, this setting is on a later page,
+		// do not continue as no further settings are to be displayed.
+		if(page < currentSettingsPage)
+			continue;
+		else if(page > currentSettingsPage)
+			break;
 		// Check if this is a category break or column break.
-		if(setting.empty() || setting == "\n")
+		if(setting.empty() || setting == "\t")
 		{
 			isCategory = true;
 			if(!setting.empty())
@@ -492,6 +897,8 @@ void PreferencesPanel::DrawSettings()
 		}
 
 		// Record where this setting is displayed, so the user can click on it.
+		// Temporarily reset the row's size so the clickzone can cover the entire preference.
+		table.SetHighlight(-120, 120);
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 
 		// Get the "on / off" text for this setting. Setting "isOn"
@@ -508,13 +915,103 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
 		}
+		else if(setting == FONT_SIZE)
+		{
+			isOn = true;
+			text = to_string(Preferences::GetFontSize());
+		}
+		else if(setting == SCREEN_MODE_SETTING)
+		{
+			isOn = true;
+			text = Preferences::ScreenModeSetting();
+		}
 		else if(setting == VSYNC_SETTING)
 		{
 			text = Preferences::VSyncSetting();
 			isOn = text != "off";
 		}
+		else if(setting == STATUS_OVERLAYS_ALL)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ALL);
+			isOn = text != "off";
+		}
+		else if(setting == CAMERA_ACCELERATION)
+		{
+			text = Preferences::CameraAccelerationSetting();
+			isOn = text != "off";
+		}
+		else if(setting == LARGE_GRAPHICS_REDUCTION)
+		{
+			text = Preferences::LargeGraphicsReductionSetting();
+			isOn = text != "off";
+		}
+		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::FLAGSHIP);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == STATUS_OVERLAYS_ESCORT)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ESCORT);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == STATUS_OVERLAYS_ENEMY)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ENEMY);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == STATUS_OVERLAYS_NEUTRAL)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == TURRET_OVERLAYS)
+		{
+			text = Preferences::TurretOverlaysSetting();
+			isOn = text != "off";
+		}
+		else if(setting == HIGHLIGHT_SHIPS)
+		{
+			text = Preferences::HighlightShipsSetting();
+			isOn = text != "off";
+		}
+		else if(setting == CLOAK_OUTLINE)
+		{
+			text = Preferences::Has(CLOAK_OUTLINE) ? "fancy" : "fast";
+			isOn = true;
+		}
+		else if(setting == TEXTURE_FILTERING)
+		{
+			text = Preferences::Has("Texture filtering") ? "linear" : "nearest";
+			isOn = true;
+		}
+		else if(setting == AUTO_AIM_SETTING)
+		{
+			text = Preferences::AutoAimSetting();
+			isOn = text != "off";
+		}
+		else if(setting == AUTO_FIRE_SETTING)
+		{
+			text = Preferences::AutoFireSetting();
+			isOn = text != "off";
+		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
+		else if(setting == DATE_FORMAT)
+		{
+			text = Preferences::DateFormatSetting();
+			isOn = true;
+		}
+		else if(setting == NOTIFY_ON_DEST)
+		{
+			text = Preferences::NotificationSettingString();
+			isOn = text != "off";
+		}
+		else if(setting == FLOTSAM_SETTING)
+		{
+			text = Preferences::FlotsamSetting();
+			isOn = text != "off";
+		}
 		else if(setting == TURRET_TRACKING)
 		{
 			isOn = true;
@@ -525,10 +1022,40 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = Preferences::Has(FIGHTER_REPAIR) ? "parallel" : "series";
 		}
+		else if(setting == FLAGSHIP_SPACE_PRIORITY)
+		{
+			isOn = Preferences::GetFlagshipSpacePriority() != Preferences::FlagshipSpacePriority::NONE;
+			text = Preferences::FlagshipSpacePrioritySetting();
+		}
 		else if(setting == SHIP_OUTLINES)
 		{
 			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
+		}
+		else if(setting == HUD_SHIP_OUTLINES)
+		{
+			isOn = true;
+			text = Preferences::Has(HUD_SHIP_OUTLINES) ? "fancy" : "fast";
+		}
+		else if(setting == BOARDING_PRIORITY)
+		{
+			isOn = true;
+			text = Preferences::BoardingSetting();
+		}
+		else if(setting == ASTEROID_TARGETING)
+		{
+			isOn = true;
+			text = Preferences::TargetAsteroidStrategySetting();
+		}
+		else if(setting == BACKGROUND_PARALLAX)
+		{
+			text = Preferences::ParallaxSetting();
+			isOn = text != "off";
+		}
+		else if(setting == EXTENDED_JUMP_EFFECTS)
+		{
+			text = Preferences::ExtendedJumpEffectsSetting();
+			isOn = text != "off";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{
@@ -566,14 +1093,79 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
 		}
+		else if(setting == TOOLTIP_ACTIVATION)
+		{
+			isOn = true;
+			text = Format::StepsToSeconds(Preferences::TooltipActivation());
+		}
+		else if(setting == ALERT_INDICATOR)
+		{
+			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
+			text = Preferences::AlertSetting();
+		}
+		else if(setting == MINIMAP_DISPLAY)
+		{
+			isOn = Preferences::GetMinimapDisplay() != Preferences::MinimapDisplay::OFF;
+			text = Preferences::MinimapSetting();
+		}
+		else if(setting == TRIBUTE_CONFIRMATION)
+		{
+			isOn = Preferences::GetTributeConfirmation() != Preferences::TributeConfirmation::OFF;
+			text = Preferences::TributeConfirmationSetting();
+		}
+		else if(setting == AMMO_REFILL)
+		{
+			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::NEVER;
+			text = Preferences::AmmoRefillSetting();
+		}
+		else if(setting == FASTFORWARD_CAPSLOCK_SYNC)
+		{
+			const Preferences::FastForwardCapsLockSync fastForwardCapsLockSync
+				= Preferences::GetFastForwardCapsLockSync();
+			isOn = fastForwardCapsLockSync == Preferences::FastForwardCapsLockSync::ALWAYS
+				|| (fastForwardCapsLockSync == Preferences::FastForwardCapsLockSync::DEFAULT
+					&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
+			text = Preferences::FastForwardCapsLockSyncSetting();
+		}
+		else if(setting == TEXT_ALIGNMENT)
+		{
+			isOn = true;
+			text = Preferences::TextAlignmentSetting();
+		}
+#ifdef _WIN32
+		else if(setting == TITLE_BAR_THEME)
+		{
+			isOn = WinVersion::SupportsDarkTheme();
+			text = isOn ? Preferences::TitleBarThemeSetting() : "N/A";
+		}
+		else if(setting == WINDOW_ROUNDING)
+		{
+			isOn = WinVersion::SupportsWindowRounding();
+			text = isOn ? Preferences::WindowRoundingSetting() : "N/A";
+		}
+#endif
 		else
 			text = isOn ? "on" : "off";
 
-		if(setting == hoverPreference)
+		if(setting == hoverItem)
+		{
+			table.SetHighlight(-120, 120);
 			table.DrawHighlight(back);
+		}
+		else if(setting == selectedItem)
+		{
+			auto width = FontSet::Get(14).Width(setting);
+			table.SetHighlight(-120, width - 110);
+			table.DrawHighlight(back);
+		}
+
 		table.Draw(setting, isOn ? medium : dim);
 		table.Draw(text, isOn ? bright : medium);
 	}
+
+	// Sync the currently selected item after the preferences map has been populated.
+	if(selectedItem.empty())
+		selectedItem = prefZones.at(selected).Value();
 }
 
 
@@ -581,55 +1173,435 @@ void PreferencesPanel::DrawSettings()
 void PreferencesPanel::DrawPlugins()
 {
 	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Interface *pluginUI = GameData::Interfaces().Get("plugins");
 
-	const int MAX_TEXT_WIDTH = 230;
+	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
+
+	// Animate scrolling.
+	pluginListScroll.Step();
+
+	// Switch render target to pluginListClip. Until target is destroyed or
+	// deactivated, all opengl commands will be drawn there instead.
+	auto target = pluginListClip->SetTarget();
+	Rectangle pluginListBox = pluginUI->GetBox("plugin list");
+
 	Table table;
-	table.AddColumn(-115, {MAX_TEXT_WIDTH, Truncate::MIDDLE});
-	table.SetUnderline(-120, 120);
+	table.AddColumn(
+		pluginListClip->Left() + box[0]->Width(),
+		Layout(pluginListBox.Width() - box[0]->Width(), Truncate::MIDDLE)
+	);
+	table.SetUnderline(pluginListClip->Left() + box[0]->Width(), pluginListClip->Right());
 
-	int firstY = -238;
-	table.DrawAt(Point(-130, firstY));
-	table.DrawUnderline(medium);
-	table.Draw("Installed plugins:", bright);
-	table.DrawGap(5);
+	int firstY = pluginListClip->Top();
+	table.DrawAt(Point(0, firstY - static_cast<int>(pluginListScroll.AnimatedValue())));
 
-	const Font &font = FontSet::Get(14);
-	for(const auto &plugin : GameData::PluginAboutText())
+	for(const auto &it : PluginManager::Get())
 	{
-		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.first);
+		const auto &plugin = it.second;
+		if(!plugin.IsValid())
+			continue;
 
-		bool isSelected = (plugin.first == selectedPlugin);
-		if(isSelected || plugin.first == hoverPlugin)
+		pluginZones.emplace_back(pluginListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), plugin.name);
+
+		bool isSelected = (plugin.name == selectedPlugin);
+		if(isSelected || plugin.name == hoverItem)
 			table.DrawHighlight(back);
-		table.Draw(plugin.first, isSelected ? bright : medium);
 
+		const Sprite *sprite = box[plugin.currentState];
+		const Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
+		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
+		SpriteShader::Draw(sprite, spriteBounds.Center());
+
+		Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
+
+		// Only include the zone as clickable if it's within the drawing area.
+		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
+			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
+		if(displayed)
+			AddZone(zoneBounds, [&]() { PluginManager::TogglePlugin(plugin.name); });
 		if(isSelected)
-		{
-			const Sprite *sprite = SpriteSet::Get(plugin.first);
-			Point top(15., firstY);
-			if(sprite)
-			{
-				Point center(130., top.Y() + .5 * sprite->Height());
-				SpriteShader::Draw(sprite, center);
-				top.Y() += sprite->Height() + 10.;
-			}
+			table.Draw(plugin.name, bright);
+		else
+			table.Draw(plugin.name, plugin.enabled ? medium : dim);
+	}
 
-			WrappedText wrap(font);
-			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
-			static const string EMPTY = "(No description given.)";
-			wrap.Wrap(plugin.second.empty() ? EMPTY : plugin.second);
-			wrap.Draw(top, medium);
+	// Switch back to normal opengl operations.
+	target.Deactivate();
+
+	pluginListClip->SetFadePadding(
+		pluginListScroll.IsScrollAtMin() ? 0 : 20,
+		pluginListScroll.IsScrollAtMax() ? 0 : 20
+	);
+
+	// Draw the scrolled and clipped plugin list to the screen.
+	pluginListClip->Draw(pluginListBox.Center());
+	const Point UP{0, -1};
+	const Point DOWN{0, 1};
+	const Point POINTER_OFFSET{0, 5};
+	if(pluginListScroll.Scrollable())
+	{
+		// Draw up and down pointers, mostly to indicate when scrolling
+		// is possible, but might as well make them clickable too.
+		Rectangle topRight({pluginListBox.Right(), pluginListBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
+		PointerShader::Draw(topRight.Center(), UP,
+			10.f, 10.f, 5.f, Color(pluginListScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
+		AddZone(topRight, [&]() { pluginListScroll.Scroll(-Preferences::ScrollSpeed()); });
+
+		Rectangle bottomRight(pluginListBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
+		PointerShader::Draw(bottomRight.Center(), DOWN,
+			10.f, 10.f, 5.f, Color(pluginListScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
+		AddZone(bottomRight, [&]() { pluginListScroll.Scroll(Preferences::ScrollSpeed()); });
+	}
+
+	// Draw the pre-rendered plugin description, if applicable.
+	if(pluginDescriptionBuffer)
+	{
+		pluginDescriptionScroll.Step();
+
+		pluginDescriptionBuffer->SetFadePadding(
+			pluginDescriptionScroll.IsScrollAtMin() ? 0 : 20,
+			pluginDescriptionScroll.IsScrollAtMax() ? 0 : 20
+		);
+
+		Rectangle descriptionBox = pluginUI->GetBox("plugin description");
+		pluginDescriptionBuffer->Draw(
+			descriptionBox.Center(),
+			descriptionBox.Dimensions(),
+			Point(0, static_cast<int>(pluginDescriptionScroll.AnimatedValue()))
+		);
+
+		if(pluginDescriptionScroll.Scrollable())
+		{
+			// Draw up and down pointers, mostly to indicate when
+			// scrolling is possible, but might as well make them
+			// clickable too.
+			Rectangle topRight({descriptionBox.Right(), descriptionBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
+			PointerShader::Draw(topRight.Center(), UP,
+				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
+			AddZone(topRight, [&]() { pluginDescriptionScroll.Scroll(-Preferences::ScrollSpeed()); });
+
+			Rectangle bottomRight(descriptionBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
+			PointerShader::Draw(bottomRight.Center(), DOWN,
+				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
+			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
 		}
 	}
 }
 
 
 
+// Render the named plugin description into the pluginDescriptionBuffer.
+void PreferencesPanel::RenderPluginDescription(const string &pluginName)
+{
+	const Plugin *plugin = PluginManager::Get().Find(pluginName);
+	if(plugin)
+		RenderPluginDescription(*plugin);
+	else
+		pluginDescriptionBuffer.reset();
+}
+
+
+
+// Render the plugin description into the pluginDescriptionBuffer.
+void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
+{
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
+	Rectangle box = GameData::Interfaces().Get("plugins")->GetBox("plugin description");
+
+	// We are resizing and redrawing the description buffer. Reset the scroll
+	// back to zero.
+	pluginDescriptionScroll.Set(0, 0);
+
+	// Compute the height before drawing, so that we know the scroll bounds.
+	const Sprite *sprite = SpriteSet::Get(plugin.name);
+	int descriptionHeight = 0;
+	if(sprite)
+		descriptionHeight += sprite->Height() + 10;
+
+	WrappedText wrap(font);
+	wrap.SetWrapWidth(box.Width());
+	static const string EMPTY = "(No description given.)";
+	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.CreateDescription());
+
+	descriptionHeight += wrap.Height();
+
+	// Now that we know the size of the rendered description, resize the buffer
+	// to fit, and activate it as a render target.
+	if(descriptionHeight < box.Height())
+		descriptionHeight = box.Height();
+	pluginDescriptionScroll.SetMaxValue(descriptionHeight);
+	pluginDescriptionBuffer = make_unique<RenderBuffer>(Point(box.Width(), descriptionHeight));
+	// Redirect all drawing commands into the offscreen buffer.
+	auto target = pluginDescriptionBuffer->SetTarget();
+
+	Point top(pluginDescriptionBuffer->Left(), pluginDescriptionBuffer->Top());
+	if(sprite)
+	{
+		Point center(0., top.Y() + .5 * sprite->Height());
+		SpriteShader::Draw(sprite, center);
+		top.Y() += sprite->Height() + 10.;
+	}
+
+	wrap.Draw(top, medium);
+	target.Deactivate();
+}
+
+
+
+void PreferencesPanel::DrawTooltips()
+{
+	if(hoverItem.empty())
+	{
+		tooltip.DecrementCount();
+		return;
+	}
+	tooltip.IncrementCount();
+	if(!tooltip.ShouldDraw())
+		return;
+
+	if(!tooltip.HasText())
+		tooltip.SetText(GameData::Tooltip(hoverItem));
+
+	tooltip.Draw();
+}
+
+
+
 void PreferencesPanel::Exit()
 {
-	Command::SaveSettings(Files::Config() + "keys.txt");
+	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
+	{
+		GetUI().Push(DialogPanel::Info("Menu keybind is not bound or has conflicts."));
+		return;
+	}
 
-	GetUI()->Pop(this);
+	Command::SaveSettings(Files::Config() / "keys.txt");
+
+	if(recacheDeadlines)
+		player.CacheMissionInformation(true);
+
+	GetUI().Pop(this);
+}
+
+
+
+void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosition)
+{
+	// For some settings, clicking the option does more than just toggle a
+	// boolean state keyed by the option's name.
+	if(str == ZOOM_FACTOR)
+	{
+		int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
+		Screen::SetZoom(newZoom);
+		if(Screen::Zoom() != newZoom)
+		{
+			// Notify the user why setting the zoom any higher isn't permitted.
+			// Only show this if it's not possible to zoom the view at all, as
+			// otherwise the dialog will show every time, which is annoying.
+			if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
+				GetUI().Push(DialogPanel::Info(
+					"Your screen resolution is too low to support a zoom level above 100%."));
+			Screen::SetZoom(ZOOM_FACTOR_MIN);
+		}
+		// Convert to raw window coordinates, at the new zoom level.
+		cursorPosition *= Screen::Zoom() / 100.;
+		cursorPosition += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+		SDL_WarpMouseInWindow(nullptr, cursorPosition.X(), cursorPosition.Y());
+	}
+	else if(str == BOARDING_PRIORITY)
+		Preferences::ToggleBoarding();
+	else if(str == BACKGROUND_PARALLAX)
+		Preferences::ToggleParallax();
+	else if(str == EXTENDED_JUMP_EFFECTS)
+		Preferences::ToggleExtendedJumpEffects();
+	else if(str == VIEW_ZOOM_FACTOR)
+	{
+		// Increase the zoom factor unless it is at the maximum. In that
+		// case, cycle around to the lowest zoom factor.
+		if(!Preferences::ZoomViewIn())
+			while(Preferences::ZoomViewOut()) {}
+	}
+	else if(str == FONT_SIZE)
+	{
+		Preferences::ToggleFontSize();
+		CustomEvents::SendAdjustText();
+	}
+	else if(str == SCREEN_MODE_SETTING)
+		Preferences::ToggleScreenMode();
+	else if(str == VSYNC_SETTING)
+	{
+		if(!Preferences::ToggleVSync())
+			GetUI().Push(DialogPanel::Info(
+				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
+	}
+	else if(str == CAMERA_ACCELERATION)
+		Preferences::ToggleCameraAcceleration();
+	else if(str == LARGE_GRAPHICS_REDUCTION)
+		Preferences::ToggleLargeGraphicsReduction();
+	else if(str == STATUS_OVERLAYS_ALL)
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
+	else if(str == STATUS_OVERLAYS_FLAGSHIP)
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::FLAGSHIP);
+	else if(str == STATUS_OVERLAYS_ESCORT)
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::ESCORT);
+	else if(str == STATUS_OVERLAYS_ENEMY)
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
+	else if(str == STATUS_OVERLAYS_NEUTRAL)
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
+	else if(str == TURRET_OVERLAYS)
+		Preferences::ToggleTurretOverlays();
+	else if(str == HIGHLIGHT_SHIPS)
+		Preferences::ToggleHighlightShips();
+	else if(str == AUTO_AIM_SETTING)
+		Preferences::ToggleAutoAim();
+	else if(str == AUTO_FIRE_SETTING)
+		Preferences::ToggleAutoFire();
+	else if(str == EXPEND_AMMO)
+		Preferences::ToggleAmmoUsage();
+	else if(str == FLOTSAM_SETTING)
+		Preferences::ToggleFlotsam();
+	else if(str == TURRET_TRACKING)
+		Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
+	else if(str == REACTIVATE_HELP)
+	{
+		for(const auto &it : GameData::HelpTemplates())
+			Preferences::Set("help: " + it.first, false);
+	}
+	else if(str == SCROLL_SPEED)
+	{
+		// Toggle between six different speeds.
+		int speed = Preferences::ScrollSpeed() + 10;
+		if(speed > 60)
+			speed = 10;
+		Preferences::SetScrollSpeed(speed);
+	}
+	else if(str == TOOLTIP_ACTIVATION)
+	{
+		int steps = Preferences::TooltipActivation() + 20;
+		if(steps > 120)
+			steps = 0;
+		Preferences::SetTooltipActivation(steps);
+		for(auto &panel : GetUI().Stack())
+			panel->UpdateTooltipActivation();
+	}
+	else if(str == FLAGSHIP_SPACE_PRIORITY)
+		Preferences::ToggleFlagshipSpacePriority();
+	else if(str == DATE_FORMAT)
+		Preferences::ToggleDateFormat();
+	else if(str == NOTIFY_ON_DEST)
+		Preferences::ToggleNotificationSetting();
+	else if(str == ALERT_INDICATOR)
+		Preferences::ToggleAlert();
+	else if(str == MINIMAP_DISPLAY)
+		Preferences::ToggleMinimapDisplay();
+	else if(str == BLOCK_SCREEN_SAVER)
+		Preferences::ToggleBlockScreenSaver();
+	else if(str == TRIBUTE_CONFIRMATION)
+		Preferences::ToggleTributeConfirmation();
+	else if(str == AMMO_REFILL)
+		Preferences::ToggleAmmoRefill();
+	else if(str == FASTFORWARD_CAPSLOCK_SYNC)
+		Preferences::ToggleFastForwardCapsLockSync();
+	else if(str == TEXT_ALIGNMENT)
+	{
+		Preferences::ToggleTextAlignment();
+		CustomEvents::SendAdjustText();
+	}
+	else if(str == ASTEROID_TARGETING)
+		Preferences::ToggleTargetAsteroidStrategy();
+#ifdef _WIN32
+	else if(str == TITLE_BAR_THEME)
+		Preferences::ToggleTitleBarTheme();
+	else if(str == WINDOW_ROUNDING)
+		Preferences::ToggleWindowRounding();
+#endif
+	// All other options are handled by just toggling the boolean state.
+	else
+		Preferences::Set(str, !Preferences::Has(str));
+
+	// If the deadline blink preference was toggled and the player is in flight,
+	// then we need to recache the remaining mission deadlines. This doesn't need
+	// to be done when the player is landed since the MapPanel already recalculates
+	// the remaining deadlines when it is opened in that case.
+	if(str == "Deadline blink by distance" && !player.GetPlanet())
+		recacheDeadlines = !recacheDeadlines;
+}
+
+
+
+void PreferencesPanel::HandleUp()
+{
+	selected = max(0, selected - 1);
+	switch(page)
+	{
+	case 's':
+		selectedItem = prefZones.at(selected).Value();
+		break;
+	case 'p':
+		selectedPlugin = pluginZones.at(selected).Value();
+		RenderPluginDescription(selectedPlugin);
+		ScrollSelectedPlugin();
+		break;
+	default:
+		break;
+	}
+}
+
+
+
+void PreferencesPanel::HandleDown()
+{
+	switch(page)
+	{
+	case 'c':
+		if(selected + 1 < static_cast<int>(zones.size()))
+			selected++;
+		break;
+	case 's':
+		selected = min(selected + 1, static_cast<int>(prefZones.size() - 1));
+		selectedItem = prefZones.at(selected).Value();
+		break;
+	case 'p':
+		selected = min(selected + 1, static_cast<int>(pluginZones.size() - 1));
+		selectedPlugin = pluginZones.at(selected).Value();
+		RenderPluginDescription(selectedPlugin);
+		ScrollSelectedPlugin();
+		break;
+	default:
+		break;
+	}
+}
+
+
+
+void PreferencesPanel::HandleConfirm()
+{
+	switch(page)
+	{
+	case 'c':
+		editing = selected;
+		break;
+	case 's':
+		HandleSettingsString(selectedItem, Screen::Dimensions() / 2.);
+		break;
+	case 'p':
+		PluginManager::TogglePlugin(selectedPlugin);
+		break;
+	default:
+		break;
+	}
+}
+
+
+
+void PreferencesPanel::ScrollSelectedPlugin()
+{
+	while(selected * 20 - pluginListScroll < 0)
+		pluginListScroll.Scroll(-Preferences::ScrollSpeed());
+	while(selected * 20 - pluginListScroll > pluginListClip->Height())
+		pluginListScroll.Scroll(Preferences::ScrollSpeed());
 }

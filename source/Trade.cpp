@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Trade.h"
@@ -24,7 +27,8 @@ void Trade::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "commodity" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		if(key == "commodity" && child.Size() >= 2)
 		{
 			bool isSpecial = (child.Size() < 4);
 			vector<Commodity> &list = (isSpecial ? specialCommodities : commodities);
@@ -44,7 +48,7 @@ void Trade::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				it->items.push_back(grand.Token(0));
 		}
-		else if(child.Token(0) == "clear")
+		else if(key == "clear")
 			commodities.clear();
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");

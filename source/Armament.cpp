@@ -7,15 +7,19 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Armament.h"
 
-#include "Files.h"
 #include "FireCommand.h"
+#include "Logger.h"
 #include "Outfit.h"
 #include "Ship.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -26,17 +30,17 @@ using namespace std;
 
 
 // Add a gun hardpoint (fixed-direction weapon).
-void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit)
+void Armament::AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes, const Outfit *outfit)
 {
-	hardpoints.emplace_back(point, angle, false, isParallel, isUnder, outfit);
+	hardpoints.emplace_back(point, attributes, false, outfit);
 }
 
 
 
-// Add a turret hardpoint (omnidirectional weapon).
-void Armament::AddTurret(const Point &point, bool isUnder, const Outfit *outfit)
+// Add a turret hardpoint.
+void Armament::AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes, const Outfit *outfit)
 {
-	hardpoints.emplace_back(point, Angle(0.), true, false, isUnder, outfit);
+	hardpoints.emplace_back(point, attributes, true, outfit);
 }
 
 
@@ -47,7 +51,10 @@ void Armament::AddTurret(const Point &point, bool isUnder, const Outfit *outfit)
 int Armament::Add(const Outfit *outfit, int count)
 {
 	// Make sure this really is a weapon.
-	if(!count || !outfit || !outfit->IsWeapon())
+	if(!count || !outfit)
+		return 0;
+	const Weapon *weapon = outfit->GetWeapon().get();
+	if(!weapon)
 		return 0;
 
 	int existing = 0;
@@ -56,7 +63,9 @@ int Armament::Add(const Outfit *outfit, int count)
 	// Do not equip weapons that do not define how they are mounted.
 	if(!isTurret && !outfit->Get("gun ports"))
 	{
-		Files::LogError("Error: Skipping unmountable outfit \"" + outfit->Name() + "\". Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
+		Logger::Log("Skipping unmountable outfit \"" + outfit->TrueName() + "\"."
+			" Weapon outfits must specify either \"gun ports\" or \"turret mounts\".",
+			Logger::Level::ERROR);
 		return 0;
 	}
 
@@ -100,7 +109,7 @@ int Armament::Add(const Outfit *outfit, int count)
 		// If this weapon is streamed, create a stream counter. If it is not
 		// streamed, or if the last of this weapon has been uninstalled, erase the
 		// stream counter (if there is one).
-		if(added > 0 && outfit->IsStreamed())
+		if(added > 0 && weapon->IsStreamed())
 			streamReload[outfit] = 0;
 		else
 			streamReload.erase(outfit);
@@ -134,7 +143,7 @@ void Armament::ReloadAll()
 
 			// If this weapon is streamed, create a stream counter.
 			const Outfit *outfit = hardpoint.GetOutfit();
-			if(outfit->IsStreamed())
+			if(outfit->GetWeapon()->IsStreamed())
 				streamReload[outfit] = 0;
 		}
 }
@@ -144,20 +153,20 @@ void Armament::ReloadAll()
 // Uninstall all weapons (because the weapon outfits have potentially changed).
 void Armament::UninstallAll()
 {
-	for(auto &hardpoint : hardpoints)
+	for(Hardpoint &hardpoint : hardpoints)
 		hardpoint.Uninstall();
 }
 
 
 
 // Swap the weapons in the given two hardpoints.
-void Armament::Swap(int first, int second)
+void Armament::Swap(unsigned first, unsigned second)
 {
 	// Make sure both of the given indices are in range, and that both slots are
 	// the same type (gun vs. turret).
-	if(static_cast<unsigned>(first) >= hardpoints.size())
+	if(first >= hardpoints.size())
 		return;
-	if(static_cast<unsigned>(second) >= hardpoints.size())
+	if(second >= hardpoints.size())
 		return;
 	if(hardpoints[first].IsTurret() != hardpoints[second].IsTurret())
 		return;
@@ -197,20 +206,41 @@ int Armament::TurretCount() const
 
 
 
-// Adjust the aim of the turrets.
-void Armament::Aim(const FireCommand &command)
+// Determine the installed weaponry's reusable ammunition. That is, all ammo outfits that are not also
+// weapons (as then they would be installed on hardpoints, like the "Nuclear Missile" and other one-shots).
+set<const Outfit *> Armament::RestockableAmmo() const
 {
-	for(unsigned i = 0; i < hardpoints.size(); ++i)
-		hardpoints[i].Aim(command.Aim(i));
+	auto restockable = set<const Outfit *>{};
+	for(const Hardpoint &hardpoint : hardpoints)
+	{
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(weapon)
+		{
+			const Outfit *ammo = weapon->Ammo();
+			if(ammo && !ammo->GetWeapon())
+				restockable.emplace(ammo);
+		}
+	}
+	return restockable;
 }
 
 
 
-// Fire the given weapon, if it is ready. If it did not fire because it is
-// not ready, return false.
-void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals)
+// Adjust the aim of the turrets.
+void Armament::Aim(const Ship &ship, const FireCommand &command)
 {
-	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
+	for(unsigned i = 0; i < hardpoints.size(); ++i)
+		hardpoints[i].Aim(ship, command.Aim(i));
+}
+
+
+
+// Fire the given weapon, if it is ready.
+void Armament::Fire(unsigned index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
+{
+	// Don't check if the hardpoint jammed here, as the weapon may not even
+	// attempt to fire due to stream reloading.
+	if(!CheckHardpoint(index))
 		return;
 
 	// A weapon that has already started a burst ignores stream timing.
@@ -221,20 +251,35 @@ void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vect
 		{
 			if(it->second > 0)
 				return;
-			it->second += it->first->Reload() * hardpoints[index].BurstRemaining();
+			it->second += it->first->GetWeapon()->Reload() * hardpoints[index].BurstRemaining();
 		}
 	}
-	hardpoints[index].Fire(ship, projectiles, visuals);
+	if(jammed)
+		hardpoints[index].Jam();
+	else
+		hardpoints[index].Fire(ship, projectiles, visuals);
 }
 
 
 
-bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile, vector<Visual> &visuals)
+bool Armament::FireAntiMissile(unsigned index, Ship &ship, const Projectile &projectile,
+	vector<Visual> &visuals, bool jammed)
 {
-	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
+	if(!CheckHardpoint(index, jammed))
 		return false;
 
 	return hardpoints[index].FireAntiMissile(ship, projectile, visuals);
+}
+
+
+
+bool Armament::FireTractorBeam(unsigned index, Ship &ship, const Flotsam &flotsam,
+	vector<Visual> &visuals, bool jammed)
+{
+	if(!CheckHardpoint(index, jammed))
+		return false;
+
+	return hardpoints[index].FireTractorBeam(ship, flotsam, visuals);
 }
 
 
@@ -252,4 +297,20 @@ void Armament::Step(const Ship &ship)
 		// Always reload to the quickest firing interval.
 		it.second = max(it.second, 1 - count);
 	}
+}
+
+
+
+bool Armament::CheckHardpoint(unsigned index, bool jammed)
+{
+	if(index >= hardpoints.size() || !hardpoints[index].IsReady())
+		return false;
+
+	if(jammed)
+	{
+		hardpoints[index].Jam();
+		return false;
+	}
+
+	return true;
 }

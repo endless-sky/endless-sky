@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAIN_PANEL_H_
-#define MAIN_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -41,26 +43,26 @@ public:
 	// The hail panel calls this when it closes.
 	void OnBribeCallback(const Government *bribed);
 
-	// Forward the given TestContext to the Engine under MainPanel.
-	virtual void SetTestContext(TestContext &testContext) override;
-
 	// The main panel allows fast-forward.
 	bool AllowsFastForward() const noexcept final;
+
+	// Get the underlying game engine used by the game.
+	Engine &GetEngine();
 
 
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
-	virtual bool RClick(int x, int y) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
-	virtual bool Release(int x, int y) override;
+	virtual bool Release(int x, int y, MouseButton button) override;
 	virtual bool Scroll(double dx, double dy) override;
 
 
 private:
 	void ShowScanDialog(const ShipEvent &event);
 	bool ShowHailPanel();
+	bool ShowHelp(bool force);
 	void StepEvents(bool &isActive);
 
 
@@ -75,11 +77,6 @@ private:
 
 	Command show;
 
-	// For displaying the GPU load.
-	double load = 0.;
-	double loadSum = 0.;
-	int loadCount = 0;
-
 	// Keep track of how long a starting player has spent drifting in deep space.
 	int lostness = 0;
 	int lostCount = 0;
@@ -88,10 +85,7 @@ private:
 	Point dragPoint;
 	bool isDragging = false;
 	bool hasShift = false;
+	bool hasControl = false;
 	bool canClick = false;
 	bool canDrag = false;
 };
-
-
-
-#endif

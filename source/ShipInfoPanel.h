@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_INFO_PANEL_H_
-#define SHIP_INFO_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -40,6 +42,7 @@ class ShipInfoPanel : public Panel {
 public:
 	explicit ShipInfoPanel(PlayerInfo &player);
 	explicit ShipInfoPanel(PlayerInfo &player, InfoPanelState state);
+	virtual ~ShipInfoPanel() override;
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -48,10 +51,10 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
-	virtual bool Release(int x, int y) override;
+	virtual bool Release(int x, int y, MouseButton button) override;
 
 
 private:
@@ -68,11 +71,12 @@ private:
 	// Helper functions.
 	void DrawLine(const Point &from, const Point &to, const Color &color) const;
 	bool Hover(const Point &point);
-	void Rename(const std::string &name);
+	bool Rename(const std::string &name);
 	bool CanDump() const;
 	void Dump();
 	void DumpPlunder(int count);
 	void DumpCommodities(int count);
+	void DumpInstalled(int count);
 	void Disown();
 
 
@@ -89,20 +93,21 @@ private:
 	std::vector<ClickZone<int>> zones;
 	std::vector<ClickZone<std::string>> commodityZones;
 	std::vector<ClickZone<const Outfit *>> plunderZones;
+	std::vector<ClickZone<const Outfit *>> outfitZones;
 	// Keep track of which item the mouse is hovering over and which item is
 	// currently being dragged.
 	int hoverIndex = -1;
 	int draggingIndex = -1;
-	
+	std::string hoverCommodity;
+	const Outfit *hoverPlunder = nullptr;
+	const Outfit *hoverOutfit = nullptr;
+
 	InfoPanelState panelState;
-	
+
 	// Track the current mouse location.
 	Point hoverPoint;
-	// Track whether a commodity or plundered outfit is selected to jettison.
+	// Track whether a commodity, plundered outfit, or installed outfit is selected to jettison.
 	std::string selectedCommodity;
 	const Outfit *selectedPlunder = nullptr;
+	const Outfit *selectedOutfit = nullptr;
 };
-
-
-
-#endif

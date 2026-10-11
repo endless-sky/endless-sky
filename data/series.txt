@@ -1,0 +1,69 @@
+# Copyright (c) 2023 warp-core
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# 01xxx : Human
+# 02xxx : Hai
+# 03xxx : Remnant
+# 04xxx : Korath
+# 05xxx : Ka'het
+# 06xxx : Gegno
+# 07xxx : Avgi
+# 08xxx : Coalition
+# 09xxx : Wanderers
+# 10xxx : Bunrodea
+# 11xxx : Successors
+# 12xxx : Incipias
+# 13xxx : Sheragi
+# 90xxx : Pug
+# 91xxx : Quarg
+# 92xxx : Spaceborne life
+# 99xxx : Other
+
+category "series"
+	# Guns
+	"Guns" 100
+	# Turrets
+	"Turrets" 100
+	"Anti-Missile" 200
+	"Tractor Beams" 300
+	# Secondary Weapons
+	"Secondary Weapons" 100
+	# Ammunition
+	"Ammunition" 100
+	# Systems
+	"Drives" 100
+	"Shields" 200
+	"Repair" 300
+	"Cooling" 400
+	"Scanners" 500
+	"Jammers" 600
+	"Special Systems" 700
+	"Ramscoops" 800
+	"Fuel" 900
+	"Passenger" 1000
+	"Expansions" 9999
+	# Power
+	"Generators" 100
+	"Batteries" 200
+	"Solar" 300
+	# Engines
+	"Engines" 100
+	"Afterburners" 200
+	# Hand to Hand
+	"H2H" 100
+	"Fortifications" 200
+	# Unique
+	"Functional Unique" 100
+	"Non-Functional Unique" 200
+	# Licenses
+	"Licenses" 100

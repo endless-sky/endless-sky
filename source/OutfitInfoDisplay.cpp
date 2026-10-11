@@ -7,15 +7,20 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "OutfitInfoDisplay.h"
 
 #include "Depreciation.h"
 #include "text/Format.h"
+#include "GameData.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -32,7 +37,7 @@ namespace {
 		make_pair(60. * 100., ""),
 		make_pair(100., "%"),
 		make_pair(100., ""),
-		make_pair(1. / 60., "")
+		make_pair(1. / 60., "s")
 	};
 
 	const map<string, int> SCALE = {
@@ -49,6 +54,8 @@ namespace {
 		{"cloaking energy", 0},
 		{"cloaking fuel", 0},
 		{"cloaking heat", 0},
+		{"cloaking shields", 0},
+		{"cloaked firing", 0},
 		{"cooling", 0},
 		{"cooling energy", 0},
 		{"corrosion resistance energy", 0},
@@ -72,9 +79,16 @@ namespace {
 		{"hull energy", 0},
 		{"hull fuel", 0},
 		{"hull heat", 0},
+		{"delayed hull repair rate", 0},
+		{"delayed hull energy", 0},
+		{"delayed hull fuel", 0},
+		{"delayed hull heat", 0},
 		{"ion resistance energy", 0},
 		{"ion resistance fuel", 0},
 		{"ion resistance heat", 0},
+		{"scramble resistance energy", 0},
+		{"scramble resistance fuel", 0},
+		{"scramble resistance heat", 0},
 		{"jump speed", 0},
 		{"leak resistance energy", 0},
 		{"leak resistance fuel", 0},
@@ -90,6 +104,10 @@ namespace {
 		{"shield energy", 0},
 		{"shield fuel", 0},
 		{"shield heat", 0},
+		{"delayed shield generation", 0},
+		{"delayed shield energy", 0},
+		{"delayed shield fuel", 0},
+		{"delayed shield heat", 0},
 		{"slowing resistance energy", 0},
 		{"slowing resistance fuel", 0},
 		{"slowing resistance heat", 0},
@@ -114,6 +132,7 @@ namespace {
 		{"afterburner discharge", 2},
 		{"afterburner corrosion", 2},
 		{"afterburner ion", 2},
+		{"afterburner scramble", 2},
 		{"afterburner leakage", 2},
 		{"afterburner burn", 2},
 		{"afterburner slowing", 2},
@@ -122,6 +141,7 @@ namespace {
 		{"reverse thrusting discharge", 2},
 		{"reverse thrusting corrosion", 2},
 		{"reverse thrusting ion", 2},
+		{"reverse thrusting scramble", 2},
 		{"reverse thrusting leakage", 2},
 		{"reverse thrusting burn", 2},
 		{"reverse thrusting slowing", 2},
@@ -130,6 +150,7 @@ namespace {
 		{"thrusting discharge", 2},
 		{"thrusting corrosion", 2},
 		{"thrusting ion", 2},
+		{"thrusting scramble", 2},
 		{"thrusting leakage", 2},
 		{"thrusting burn", 2},
 		{"thrusting slowing", 2},
@@ -138,12 +159,14 @@ namespace {
 		{"turning discharge", 2},
 		{"turning corrosion", 2},
 		{"turning ion", 2},
+		{"turning scramble", 2},
 		{"turning leakage", 2},
 		{"turning burn", 2},
 		{"turning slowing", 2},
 		{"turning disruption", 2},
 
 		{"ion resistance", 2},
+		{"scramble resistance", 2},
 		{"disruption resistance", 2},
 		{"slowing resistance", 2},
 		{"discharge resistance", 2},
@@ -151,6 +174,11 @@ namespace {
 		{"leak resistance", 2},
 		{"burn resistance", 2},
 
+		{"flotsam chance", 3},
+
+		{"cloak by mass", 3},
+		{"shield multiplier", 3},
+		{"hull multiplier", 3},
 		{"hull repair multiplier", 3},
 		{"hull energy multiplier", 3},
 		{"hull fuel multiplier", 3},
@@ -162,52 +190,96 @@ namespace {
 		{"shield heat multiplier", 3},
 		{"threshold percentage", 3},
 		{"overheat damage threshold", 3},
+		{"high shield permeability", 3},
+		{"low shield permeability", 3},
+		{"cloaked shield permeability", 3},
+		{"cloaked regen multiplier", 3},
+		{"cloaked repair multiplier", 3},
+		{"acceleration multiplier", 3},
+		{"turn multiplier", 3},
+		{"turret turn multiplier", 3},
 
-		{"burn protection", 4},
-		{"corrosion protection", 4},
-		{"discharge protection", 4},
-		{"disruption protection", 4},
-		{"energy protection", 4},
-		{"force protection", 4},
-		{"fuel protection", 4},
-		{"heat protection", 4},
-		{"hull protection", 4},
-		{"ion protection", 4},
-		{"leak protection", 4},
-		{"piercing protection", 4},
-		{"shield protection", 4},
-		{"slowing protection", 4},
+		{"burn protection", 3},
+		{"corrosion protection", 3},
+		{"discharge protection", 3},
+		{"disruption protection", 3},
+		{"drag reduction", 3},
+		{"energy protection", 3},
+		{"force protection", 3},
+		{"fuel protection", 3},
+		{"heat protection", 3},
+		{"hull protection", 3},
+		{"inertia reduction", 3},
+		{"ion protection", 3},
+		{"scramble protection", 3},
+		{"leak protection", 3},
+		{"piercing protection", 3},
+		{"shield protection", 3},
+		{"slowing protection", 3},
+		{"cloak hull protection", 3},
+		{"cloak shield protection", 3},
 
 		{"repair delay", 5},
+		{"cloaking repair delay", 5},
 		{"disabled repair delay", 5},
 		{"shield delay", 5},
-		{"depleted shield delay", 5}
+		{"cloaking shield delay", 5},
+		{"depleted shield delay", 5},
+		{"disabled recovery time", 5}
 	};
 
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
-		{"unplunderable", "This outfit cannot be plundered."},
+		{"unplunderable", "Cannot be plundered while installed."},
 		{"installable", "This is not an installable item."},
 		{"hyperdrive", "Allows you to make hyperjumps."},
 		{"jump drive", "Lets you jump to any nearby system."},
 		{"minable", "This item is mined from asteroids."},
-		{"atrocity", "This outfit is considered an atrocity."}
+		{"map minables", "This map reveals minables."},
+		{"atrocity", "This outfit is considered an atrocity."},
+		{"unique", "This item is unique."},
+		{"cloaked afterburner", "You may use afterburners while cloaked."},
+		{"cloaked boarding", "You may board while cloaked."},
+		{"cloaked communication", "You may make hails while cloaked."},
+		{"cloaked deployment", "You may deploy from bays while cloaked."},
+		{"cloaked pickup", "You may pick up flotsam while cloaked."},
+		{"cloaked scanning", "You may scan other ships while cloaked."},
+		{"can jettison", "Can be jettisoned while installed."},
 	};
+
+	bool IsNotRequirement(const string &label)
+	{
+		return label == "automaton" ||
+			SCALE.find(label) != SCALE.end() ||
+			BOOLEAN_ATTRIBUTES.find(label) != BOOLEAN_ATTRIBUTES.end();
+	}
 }
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+std::string OutfitInfoDisplay::FormatAttribute(const std::string &attribute, double value)
 {
-	Update(outfit, player, canSell);
+	auto sit = SCALE.find(attribute);
+	double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
+	string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
+
+	return Format::Number(value * scale) + units;
+}
+
+
+
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
+		bool canSell, bool descriptionCollapsed)
+{
+	Update(outfit, player, canSell, descriptionCollapsed);
 }
 
 
 
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed)
 {
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
-	UpdateRequirements(outfit, player, canSell);
+	UpdateRequirements(outfit, player, canSell, descriptionCollapsed);
 	UpdateAttributes(outfit);
 
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -229,7 +301,8 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player,
+		bool canSell, bool descriptionCollapsed)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
@@ -240,6 +313,20 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
 
+	for(const string &license : outfit.Licenses())
+	{
+		if(player.HasLicense(license))
+			continue;
+
+		const auto &licenseOutfit = GameData::Outfits().Find(license + " License");
+		if(descriptionCollapsed || (licenseOutfit && licenseOutfit->Cost()))
+		{
+			requirementLabels.push_back("license:");
+			requirementValues.push_back(license);
+			requirementsHeight += 20;
+		}
+	}
+
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");
 	else
@@ -248,7 +335,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		out << "cost (" << (100 * buyValue) / cost << "%):";
 		requirementLabels.push_back(out.str());
 	}
-	requirementValues.push_back(Format::Credits(buyValue));
+	requirementValues.push_back(buyValue ? Format::AbbreviatedNumber(buyValue) : "free");
 	requirementsHeight += 20;
 
 	if(canSell && sellValue != buyValue)
@@ -261,7 +348,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 			out << "sells for (" << (100 * sellValue) / cost << "%):";
 			requirementLabels.push_back(out.str());
 		}
-		requirementValues.push_back(Format::Credits(sellValue));
+		requirementValues.push_back(Format::AbbreviatedNumber(sellValue));
 		requirementsHeight += 20;
 	}
 
@@ -272,33 +359,65 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 20;
 	}
 
-	bool hasContent = true;
-	static const vector<string> NAMES = {
-		"", "",
-		"outfit space needed:", "outfit space",
-		"weapon capacity needed:", "weapon capacity",
-		"engine capacity needed:", "engine capacity",
-		"", "",
-		"gun ports needed:", "gun ports",
-		"turret mounts needed:", "turret mounts"
-	};
-	for(unsigned i = 0; i + 1 < NAMES.size(); i += 2)
+	requirementLabels.emplace_back();
+	requirementValues.emplace_back();
+	requirementsHeight += 10;
+
+	bool hasContent = false;
+	static const vector<string> BEFORE = {"outfit space", "weapon capacity", "engine capacity"};
+	for(const auto &attr : BEFORE)
 	{
-		if(NAMES[i].empty() && hasContent)
+		if(outfit.Get(attr) < 0)
 		{
-			requirementLabels.emplace_back();
-			requirementValues.emplace_back();
-			requirementsHeight += 10;
-			hasContent = false;
-		}
-		else if(outfit.Get(NAMES[i + 1]))
-		{
-			requirementLabels.push_back(NAMES[i]);
-			requirementValues.push_back(Format::Number(-outfit.Get(NAMES[i + 1])));
-			requirementsHeight += 20;
+			AddRequirementAttribute(attr, outfit.Get(attr));
 			hasContent = true;
 		}
 	}
+
+	if(hasContent)
+	{
+		requirementLabels.emplace_back();
+		requirementValues.emplace_back();
+		requirementsHeight += 10;
+	}
+
+	for(const auto &[name, value] : outfit)
+		if(!count(BEFORE.begin(), BEFORE.end(), name))
+			AddRequirementAttribute(name, value);
+}
+
+
+
+// Any attribute with a negative value is considered a requirement.
+// Any exceptions to that rule would require in-game code to handle
+// their unique properties, so when code is added to handle a new
+// attribute, this code also should also be updated.
+void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
+{
+	// These attributes have negative values but are not requirements
+	if(IsNotRequirement(label))
+		return;
+
+	// Special case for 'required crew' - use positive values as a requirement.
+	if(label == "required crew")
+	{
+		if(value > 0)
+		{
+			requirementLabels.push_back(label + ":");
+			requirementValues.push_back(Format::Number(value));
+			requirementsHeight += 20;
+			return;
+		}
+		else
+			value *= -1;
+	}
+
+	if(value >= 0)
+		return;
+
+	requirementLabels.push_back(label + " needed:");
+	requirementValues.push_back(Format::Number(-value));
+	requirementsHeight += 20;
 }
 
 
@@ -310,19 +429,46 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributesHeight = 20;
 
 	bool hasNormalAttributes = false;
-	for(const pair<const char *, double> &it : outfit.Attributes())
+
+	// These attributes are regularly negative on outfits, so when positive,
+	// tag them with "added" and show them first. They conveniently
+	// don't use SCALE or BOOLEAN_ATTRIBUTES.
+	static const vector<string> EXPECTED_NEGATIVE = {
+		"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
+	};
+
+	for(const string &attr : EXPECTED_NEGATIVE)
 	{
-		static const set<string> SKIP = {
-			"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
-		};
-		if(SKIP.count(it.first))
+		double value = outfit.Get(attr);
+		if(value <= 0)
 			continue;
 
-		auto sit = SCALE.find(it.first);
-		double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
-		string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
+		attributeLabels.emplace_back(attr + " added:");
+		attributeValues.emplace_back(Format::Number(value));
+		attributesHeight += 20;
+		hasNormalAttributes = true;
+	}
 
-		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
+	for(const auto &[name, value] : outfit)
+	{
+		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), name))
+			continue;
+
+		// Only show positive values here, with some exceptions.
+		// Negative values are usually handled as a "requirement"
+		if(name == "required crew")
+		{
+			// 'required crew' is inverted - positive values are requirements.
+			if(value > 0)
+				continue;
+
+			// A negative 'required crew' would be a benefit, so it is listed here.
+		}
+		// If this attribute is not a requirement, it is always listed here, though it may be negative.
+		else if(value < 0 && !IsNotRequirement(name))
+			continue;
+
+		auto bit = BOOLEAN_ATTRIBUTES.find(name);
 		if(bit != BOOLEAN_ATTRIBUTES.end())
 		{
 			attributeLabels.emplace_back(bit->second);
@@ -331,14 +477,15 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 		else
 		{
-			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
-			attributeValues.emplace_back(Format::Number(it.second * scale) + units);
+			attributeLabels.emplace_back(name + ":");
+			attributeValues.emplace_back(FormatAttribute(name, value));
 			attributesHeight += 20;
 		}
 		hasNormalAttributes = true;
 	}
 
-	if(!outfit.IsWeapon())
+	const Weapon *weapon = outfit.GetWeapon().get();
+	if(!weapon)
 		return;
 
 	// Insert padding if any normal attributes were listed above.
@@ -349,30 +496,56 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributesHeight += 10;
 	}
 
-	if(outfit.Ammo())
+	if(weapon->Ammo())
 	{
 		attributeLabels.emplace_back("ammo:");
-		attributeValues.emplace_back(outfit.Ammo()->Name());
+		attributeValues.emplace_back(weapon->Ammo()->DisplayName());
 		attributesHeight += 20;
-		if(outfit.AmmoUsage() != 1)
+		if(weapon->AmmoUsage() != 1)
 		{
 			attributeLabels.emplace_back("ammo usage:");
-			attributeValues.emplace_back(Format::Number(outfit.AmmoUsage()));
+			attributeValues.emplace_back(Format::Number(weapon->AmmoUsage()));
 			attributesHeight += 20;
 		}
 	}
 
+	double range = weapon->Range();
 	attributeLabels.emplace_back("range:");
-	attributeValues.emplace_back(Format::Number(outfit.Range()));
+	attributeValues.emplace_back(Format::Number(range));
 	attributesHeight += 20;
+
+	attributeLabels.emplace_back("velocity:");
+	double velocity = weapon->WeightedVelocity();
+	if(velocity == range)
+		attributeValues.emplace_back("instantaneous");
+	else
+		attributeValues.emplace_back(Format::Number(velocity * 60.));
+	attributesHeight += 20;
+
+	// Identify the dropoff at range and inform the player.
+	double fullDropoff = weapon->MaxDropoff();
+	if(fullDropoff != 1.)
+	{
+		attributeLabels.emplace_back("dropoff modifier:");
+		attributeValues.emplace_back(Format::Percentage(fullDropoff));
+		attributesHeight += 20;
+		// Identify the ranges between which the dropoff takes place.
+		attributeLabels.emplace_back("dropoff range:");
+		const pair<double, double> &ranges = weapon->DropoffRanges();
+		attributeValues.emplace_back(Format::Number(ranges.first)
+			+ " - " + Format::Number(ranges.second));
+		attributesHeight += 20;
+	}
 
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},
 		{"hull damage", ""},
+		{"minable damage", ""},
 		{"fuel damage", ""},
 		{"heat damage", ""},
 		{"energy damage", ""},
 		{"ion damage", ""},
+		{"scrambling damage", ""},
 		{"slowing damage", ""},
 		{"disruption damage", ""},
 		{"discharge damage", ""},
@@ -381,6 +554,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{"burn damage", ""},
 		{"% shield damage", "%"},
 		{"% hull damage", "%"},
+		{"% minable damage", "%"},
 		{"% fuel damage", "%"},
 		{"% heat damage", "%"},
 		{"% energy damage", "%"},
@@ -390,6 +564,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{"firing hull", ""},
 		{"firing shields", ""},
 		{"firing ion", ""},
+		{"firing scramble", ""},
 		{"firing slowing", ""},
 		{"firing disruption", ""},
 		{"firing discharge", ""},
@@ -404,44 +579,48 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	};
 
 	vector<double> values = {
-		outfit.ShieldDamage(),
-		outfit.HullDamage(),
-		outfit.FuelDamage(),
-		outfit.HeatDamage(),
-		outfit.EnergyDamage(),
-		outfit.IonDamage() * 100.,
-		outfit.SlowingDamage() * 100.,
-		outfit.DisruptionDamage() * 100.,
-		outfit.DischargeDamage() * 100.,
-		outfit.CorrosionDamage() * 100.,
-		outfit.LeakDamage() * 100.,
-		outfit.BurnDamage() * 100.,
-		outfit.RelativeShieldDamage() * 100.,
-		outfit.RelativeHullDamage() * 100.,
-		outfit.RelativeFuelDamage() * 100.,
-		outfit.RelativeHeatDamage() * 100.,
-		outfit.RelativeEnergyDamage() * 100.,
-		outfit.FiringEnergy(),
-		outfit.FiringHeat(),
-		outfit.FiringFuel(),
-		outfit.FiringHull(),
-		outfit.FiringShields(),
-		outfit.FiringIon() * 100.,
-		outfit.FiringSlowing() * 100.,
-		outfit.FiringDisruption() * 100.,
-		outfit.FiringDischarge() * 100.,
-		outfit.FiringCorrosion() * 100.,
-		outfit.FiringLeak() * 100.,
-		outfit.FiringBurn() * 100.,
-		outfit.RelativeFiringEnergy() * 100.,
-		outfit.RelativeFiringHeat() * 100.,
-		outfit.RelativeFiringFuel() * 100.,
-		outfit.RelativeFiringHull() * 100.,
-		outfit.RelativeFiringShields() * 100.
+		weapon->ShieldDamage(),
+		weapon->HullDamage(),
+		weapon->MinableDamage() != weapon->HullDamage() ? weapon->MinableDamage() : 0.,
+		weapon->FuelDamage(),
+		weapon->HeatDamage(),
+		weapon->EnergyDamage(),
+		weapon->IonDamage() * 100.,
+		weapon->ScramblingDamage() * 100.,
+		weapon->SlowingDamage() * 100.,
+		weapon->DisruptionDamage() * 100.,
+		weapon->DischargeDamage() * 100.,
+		weapon->CorrosionDamage() * 100.,
+		weapon->LeakDamage() * 100.,
+		weapon->BurnDamage() * 100.,
+		weapon->RelativeShieldDamage() * 100.,
+		weapon->RelativeHullDamage() * 100.,
+		weapon->RelativeMinableDamage() != weapon->RelativeHullDamage() ? weapon->RelativeMinableDamage() * 100. : 0.,
+		weapon->RelativeFuelDamage() * 100.,
+		weapon->RelativeHeatDamage() * 100.,
+		weapon->RelativeEnergyDamage() * 100.,
+		weapon->FiringEnergy(),
+		weapon->FiringHeat(),
+		weapon->FiringFuel(),
+		weapon->FiringHull(),
+		weapon->FiringShields(),
+		weapon->FiringIon() * 100.,
+		weapon->FiringScramble() * 100.,
+		weapon->FiringSlowing() * 100.,
+		weapon->FiringDisruption() * 100.,
+		weapon->FiringDischarge() * 100.,
+		weapon->FiringCorrosion() * 100.,
+		weapon->FiringLeak() * 100.,
+		weapon->FiringBurn() * 100.,
+		weapon->RelativeFiringEnergy() * 100.,
+		weapon->RelativeFiringHeat() * 100.,
+		weapon->RelativeFiringFuel() * 100.,
+		weapon->RelativeFiringHull() * 100.,
+		weapon->RelativeFiringShields() * 100.
 	};
 
 	// Add any per-second values to the table.
-	double reload = outfit.Reload();
+	double reload = weapon->Reload();
 	if(reload)
 	{
 		static const string PER_SECOND = " / second:";
@@ -454,33 +633,39 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			}
 	}
 
-	bool isContinuous = (reload <= 1);
+	bool oneFrame = (weapon->TotalLifetime() == 1.);
+	bool isContinuous = (reload <= 1. && oneFrame);
+	bool isContinuousBurst = (weapon->BurstCount() > 1 && weapon->BurstReload() <= 1. && oneFrame);
 	attributeLabels.emplace_back("shots / second:");
 	if(isContinuous)
 		attributeValues.emplace_back("continuous");
+	else if(isContinuousBurst)
+	{
+		int value = static_cast<int>(lround(weapon->BurstReload() * 100. / reload));
+		attributeValues.emplace_back("continuous (" + Format::Number(value) + "%)");
+	}
 	else
 		attributeValues.emplace_back(Format::Number(60. / reload));
 	attributesHeight += 20;
 
-	double turretTurn = outfit.TurretTurn() * 60.;
+	double turretTurn = weapon->TurretTurn() * 60.;
 	if(turretTurn)
 	{
 		attributeLabels.emplace_back("turret turn rate:");
 		attributeValues.emplace_back(Format::Number(turretTurn));
 		attributesHeight += 20;
 	}
-	int homing = outfit.Homing();
-	if(homing)
+	double arc = weapon->Arc();
+	if(arc < 360.)
 	{
-		static const string skill[] = {
-			"none",
-			"poor",
-			"fair",
-			"good",
-			"excellent"
-		};
-		attributeLabels.emplace_back("homing:");
-		attributeValues.push_back(skill[max(0, min(4, homing))]);
+		attributeLabels.emplace_back("arc:");
+		attributeValues.emplace_back(Format::Number(arc));
+		attributesHeight += 20;
+	}
+	if(weapon->Homing())
+	{
+		attributeLabels.emplace_back("homing type:");
+		attributeValues.emplace_back(weapon->Leading() ? "leading" : "direct");
 		attributesHeight += 20;
 	}
 	static const vector<string> PERCENT_NAMES = {
@@ -491,20 +676,31 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"piercing:"
 	};
 	vector<double> percentValues = {
-		outfit.Tracking(),
-		outfit.OpticalTracking(),
-		outfit.InfraredTracking(),
-		outfit.RadarTracking(),
-		outfit.Piercing()
+		weapon->Tracking(),
+		weapon->OpticalTracking(),
+		weapon->InfraredTracking(),
+		weapon->RadarTracking(),
+		weapon->Piercing()
 	};
 	for(unsigned i = 0; i < PERCENT_NAMES.size(); ++i)
 		if(percentValues[i])
 		{
-			int percent = lround(100. * percentValues[i]);
 			attributeLabels.push_back(PERCENT_NAMES[i]);
-			attributeValues.push_back(Format::Number(percent) + "%");
+			attributeValues.push_back(Format::Percentage(percentValues[i]));
 			attributesHeight += 20;
 		}
+	if(weapon->ThrottleControl())
+	{
+		attributeLabels.emplace_back("Projectiles can control thrust.");
+		attributeValues.emplace_back(" ");
+		attributesHeight += 20;
+	}
+	if(weapon->HasBlindspot())
+	{
+		attributeLabels.emplace_back("Cannot track targets behind it.");
+		attributeValues.emplace_back(" ");
+		attributesHeight += 20;
+	}
 
 	// Pad the table.
 	attributeLabels.emplace_back();
@@ -513,7 +709,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 
 	// Add per-shot values to the table. If the weapon fires continuously,
 	// the values have already been added.
-	if(!isContinuous)
+	if(!isContinuous && !isContinuousBurst)
 	{
 		static const string PER_SHOT = " / shot:";
 		for(unsigned i = 0; i < VALUE_NAMES.size(); ++i)
@@ -529,13 +725,17 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"inaccuracy:",
 		"blast radius:",
 		"missile strength:",
-		"anti-missile:"
+		"anti-missile:",
+		"tractor beam:",
+		"mining precision:",
 	};
 	vector<double> otherValues = {
-		outfit.Inaccuracy(),
-		outfit.BlastRadius(),
-		static_cast<double>(outfit.MissileStrength()),
-		static_cast<double>(outfit.AntiMissile())
+		weapon->Inaccuracy(),
+		weapon->BlastRadius(),
+		static_cast<double>(weapon->MissileStrength()),
+		static_cast<double>(weapon->AntiMissile()),
+		weapon->TractorBeam() * 60.,
+		weapon->Prospecting() && weapon->MinableDamage() ? weapon->Prospecting() / weapon->MinableDamage() : 0.,
 	};
 
 	for(unsigned i = 0; i < OTHER_NAMES.size(); ++i)

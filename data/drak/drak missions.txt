@@ -6,22 +6,34 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Drak guarding Korath space"
 	invisible
-	landing
-	npc kill
+	non-blocking
+	transition
+	repeat
+	source
+		system "Fasitopfar" "Kasikfar" "Peresedersi"
+	destination "Earth"
+	to offer
+		not "Drak guarding Korath space: active"
+	to complete
+		never
+	npc save
 		government Drak
 		personality heroic vindictive staying frugal forbearing
 		system Fasitopfar
 		ship "Archon" "Kasiliri's Folly"
-	npc kill
+	npc save
 		government Drak
 		personality heroic vindictive staying frugal forbearing
 		system Kasikfar
 		ship "Archon B" "Sword of Eden"
-	npc kill
+	npc save
 		government Drak
 		personality heroic vindictive staying frugal forbearing
 		system Peresedersi
@@ -29,13 +41,29 @@ mission "Drak guarding Korath space"
 
 mission "Drak guarding Sayaiban"
 	invisible
-	landing
-	npc kill
+	non-blocking
+	transition
+	repeat
+	source
+		system "Sayaiban"
+	destination "Earth"
+	to offer
+		not "Drak guarding Sayaiban: active"
+	to complete
+		never
+	npc save
 		government Drak
 		personality heroic vindictive staying frugal forbearing
 		system Sayaiban
 		ship "Archon" "Watchful Gravetender"
-	on enter Sayaiban
+	
+mission "Conversation on Sayaiban"
+	invisible
+	entering
+	source
+		system "Sayaiban"
+	destination "Earth"
+	on offer
 		log "Factions" "Archons" `Archons consider it to be their job to enforce peace and to prevent extinction. If they are unable to prevent a species from driving itself extinct, they will still try to preserve some of what that species created as a memorial to them.`
 			`They are capable of communicating telepathically.`
 		conversation
@@ -81,9 +109,47 @@ mission "Drak guarding Sayaiban"
 
 mission "Drak guarding Void Sprites"
 	invisible
-	landing
-	npc kill
+	non-blocking
+	entering
+	repeat
+	source
+		system "Nenia"
+	destination "Earth"
+	to offer
+		not "Drak guarding Void Sprites: active"
+	to complete
+		never
+	npc save
 		government Drak
 		personality heroic vindictive staying frugal
 		system Nenia
 		ship "Archon (Cloaked)" "Sleeping Dragon"
+
+mission "Drak guarding Incipias space"
+	invisible
+	non-blocking
+	transition
+	repeat
+	source
+		near "Il'le" 10
+	destination "Earth"
+	to offer
+		not "Drak guarding Incipias space: active"
+	to complete
+		never
+	npc save
+		government "Drak (Incipias)"
+		personality forbearing frugal heroic vindictive
+		system "Il'le"
+		ship "Archon (Hyperdrive Cloaked)" "Guardian of Spring"
+
+# Mission for those who had a savefile prior to 0.9.15 with the old Archon missions
+mission "Archon Personality Compatibility Patch"
+	invisible
+	non-blocking
+	landing
+	on offer
+		fail "Drak guarding Korath space"
+		fail "Drak guarding Sayaiban"
+		fail "Drak guarding Void Sprites"
+		fail

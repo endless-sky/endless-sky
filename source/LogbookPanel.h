@@ -7,60 +7,102 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef LOGBOOK_PANEL_H_
-#define LOGBOOK_PANEL_H_
+#pragma once
 
-#include "Panel.h"
+#include "MapPanel.h"
 
-#include "Date.h"
+#include "BookEntry.h"
+#include "ClickZone.h"
+#include "OrderedMap.h"
+#include "PlayerInfo.h"
 
-#include <map>
 #include <string>
 #include <vector>
 
-class PlayerInfo;
 
 
-
-// User interface panel that displays a conversation, allowing you to make
-// choices. If a callback function is given, that function will be called when
-// the panel closes, to report the outcome of the conversation.
-class LogbookPanel : public Panel {
+// A user interface panel that displays the entries in the player's logbook.
+// Entries can be associated with systems, so the right side of the panel
+// is a map with limited functionality.
+class LogbookPanel : public MapPanel {
 public:
-	LogbookPanel(PlayerInfo &player);
+	explicit LogbookPanel(PlayerInfo &player);
 
-	// Draw this panel.
+	virtual void Step() override;
 	virtual void Draw() override;
 
 
 protected:
 	// Event handlers.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
 
 
 private:
-	void Update(bool selectLast = true);
+	class Entry {
+	public:
+		Entry(const std::string &heading, const BookEntry &body);
+
+		std::string heading;
+		const BookEntry &body;
+	};
+
+	enum class PageType {
+		DATE = 0,
+		SPECIAL,
+	};
+
+	class Page {
+	public:
+		explicit Page(PageType type) : type(type) {}
+
+		PageType type;
+		std::vector<Entry> entries;
+	};
+
+	// A section is a mapping of subcategory to page.
+	// Subcategories are the expanded selection of entries under a category.
+	using Section = OrderedMap<std::string, Page>;
+	// A selection is a category and subcategory to display the book entries of.
+	using Selection = std::pair<std::string, std::string>;
 
 
 private:
-	// Reference to the player, to apply any changes to them.
-	PlayerInfo &player;
+	void CreateSections();
+	void SelectEntry(const BookEntry &entry);
 
-	// Current month being displayed:
-	Date selectedDate;
-	std::string selectedName;
-	std::multimap<Date, std::string>::const_iterator begin;
-	std::multimap<Date, std::string>::const_iterator end;
-	// Other months available for display:
-	std::vector<std::string> contents;
-	std::vector<Date> dates;
+	void DrawSelectedEntry() const;
+	void DrawLogbook();
+
+	std::vector<Selection> AvailableSelections(bool visibleOnly = true) const;
+
+
+private:
+	// Whether the scenes shown by logbook entries have been preloaded yet.
+	bool hasLoadedScenes = false;
+
+	// A mapping of category to section. These are what are selectable on the left-most side of the panel.
+	// If a section has no subcategories to expand, then the section should only have one subcategory with
+	// the same name as the section.
+	OrderedMap<std::string, Section> sections;
+	// The current page selection.
+	Selection selection;
+	// The currently selected book entry to display the related systems of.
+	const BookEntry *selectedEntry = nullptr;
+	// The system from the selected entry that is currently being centered on.
+	const System *centeredSystem = nullptr;
+
+	std::vector<ClickZone<Selection>> selectionZones;
+	std::vector<ClickZone<const BookEntry *>> logZones;
 
 	Point hoverPoint;
 
@@ -70,7 +112,3 @@ private:
 	mutable double maxCategoryScroll = 0.;
 	mutable double maxScroll = 0.;
 };
-
-
-
-#endif

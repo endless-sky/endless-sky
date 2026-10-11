@@ -7,13 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DAMAGE_DEALT_H_
-#define DAMAGE_DEALT_H_
+#pragma once
 
 #include "Point.h"
+#include "ship/ResourceLevels.h"
 
 class Weapon;
 
@@ -26,33 +29,20 @@ class Weapon;
 class DamageDealt {
 public:
 	DamageDealt(const Weapon &weapon, double scaling)
-		: weapon(weapon), scaling(scaling) {}
+		: weapon(&weapon), scaling(scaling) {}
 
 	// The weapon that dealt damage.
-	const Weapon &GetWeapon() const;
+	const Weapon &GetWeapon() const noexcept;
 	// The damage scaling that was used for this damage.
-	double Scaling() const;
+	double Scaling() const noexcept;
 
-	// Instantaneous damage types.
-	double Shield() const noexcept;
-	double Hull() const noexcept;
-	double Energy() const noexcept;
-	double Heat() const noexcept;
-	double Fuel() const noexcept;
-
-	// DoT damage types with an instantaneous analog.
-	double Discharge() const noexcept;
-	double Corrosion() const noexcept;
-	double Ion() const noexcept;
-	double Burn() const noexcept;
-	double Leak() const noexcept;
-
-	// Unique special damage types.
-	double Disruption() const noexcept;
-	double Slowing() const noexcept;
-
+	// The damage dealt to resource levels.
+	const ResourceLevels &Levels() const noexcept;
 	// Hit force applied as a point vector.
 	const Point &HitForce() const noexcept;
+
+	// The amount of prospecting to be applied.
+	double Prospecting() const noexcept;
 
 
 private:
@@ -60,45 +50,18 @@ private:
 	// values.
 	friend class DamageProfile;
 
-	const Weapon &weapon;
+	const Weapon *weapon;
 	double scaling;
 
-	double hullDamage = 0.;
-	double shieldDamage = 0.;
-	double energyDamage = 0.;
-	double heatDamage = 0.;
-	double fuelDamage = 0.;
-
-	double corrosionDamage = 0.;
-	double dischargeDamage = 0.;
-	double ionDamage = 0.;
-	double burnDamage = 0.;
-	double leakDamage = 0.;
-
-	double disruptionDamage = 0.;
-	double slowingDamage = 0.;
-
+	ResourceLevels levels;
 	Point forcePoint;
+	double prospecting = 0.;
 };
 
-inline const Weapon &DamageDealt::GetWeapon() const { return weapon; }
-inline double DamageDealt::Scaling() const { return scaling; }
+inline const Weapon &DamageDealt::GetWeapon() const noexcept { return *weapon; }
+inline double DamageDealt::Scaling() const noexcept { return scaling; }
 
-inline double DamageDealt::Shield() const noexcept { return shieldDamage; }
-inline double DamageDealt::Hull() const noexcept { return hullDamage; }
-inline double DamageDealt::Energy() const noexcept { return energyDamage; }
-inline double DamageDealt::Heat() const noexcept { return heatDamage; }
-inline double DamageDealt::Fuel() const noexcept { return fuelDamage; }
-
-inline double DamageDealt::Discharge() const noexcept { return dischargeDamage; }
-inline double DamageDealt::Corrosion() const noexcept { return corrosionDamage; }
-inline double DamageDealt::Ion() const noexcept { return ionDamage; }
-inline double DamageDealt::Burn() const noexcept { return burnDamage; }
-inline double DamageDealt::Leak() const noexcept { return leakDamage; }
-
-inline double DamageDealt::Disruption() const noexcept { return disruptionDamage; }
-inline double DamageDealt::Slowing() const noexcept { return slowingDamage; }
-
+inline const ResourceLevels &DamageDealt::Levels() const noexcept { return levels; }
 inline const Point &DamageDealt::HitForce() const noexcept { return forcePoint; }
 
-#endif
+inline double DamageDealt::Prospecting() const noexcept { return prospecting; }

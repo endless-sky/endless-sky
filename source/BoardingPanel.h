@@ -7,15 +7,19 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BOARDING_PANEL_H_
-#define BOARDING_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
 #include "CaptureOdds.h"
+#include "ScrollBar.h"
+#include "Tooltip.h"
 
 #include <memory>
 #include <string>
@@ -24,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Outfit;
 class PlayerInfo;
 class Ship;
+class TextArea;
 
 
 
@@ -34,36 +39,36 @@ class Ship;
 class BoardingPanel : public Panel {
 public:
 	BoardingPanel(PlayerInfo &player, const std::shared_ptr<Ship> &victim);
+	virtual ~BoardingPanel() override;
 
+	virtual void Step() override;
 	virtual void Draw() override;
 
 
 protected:
 	// Overrides from Panel.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
+	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
 
 private:
-	// You can't exit this dialog if you are in the middle of combat.
-	bool CanExit() const;
-	// Check if you can take the outfit at the given position in the list.
-	bool CanTake() const;
-	// Check if you can initiate hand to hand combat.
-	bool CanCapture() const;
-	// Check if you are in the midst of hand to hand combat.
-	bool CanAttack() const;
+	enum class CanTakeResult {
+		OTHER,
+		TARGET_YOURS,
+		NO_SELECTION,
+		NO_CARGO_SPACE,
+		CAN_TAKE
+	};
 
-
-private:
 	// This class represents one item in the list of outfits you can plunder.
 	class Plunder {
 	public:
 		// Plunder can be either outfits or commodities.
 		Plunder(const std::string &commodity, int count, int unitValue);
-		Plunder(const Outfit *outfit, int count);
+		Plunder(const Outfit *outfit, int count, bool inCargo);
 
 		// Sort by value per ton of mass.
 		bool operator<(const Plunder &other) const;
@@ -74,6 +79,8 @@ private:
 		// Get the value of each unit of this plunder item.
 		int64_t UnitValue() const;
 
+		// Whether this item is in the ship's cargo hold.
+		bool InCargo() const;
 		// Get the name of this item. If it is a commodity, this is its name.
 		const std::string &Name() const;
 		// Get the mass, in the format "<count> x <unit mass>". If this is a
@@ -96,6 +103,7 @@ private:
 		double UnitMass() const;
 
 	private:
+		bool inCargo = false;
 		std::string name;
 		const Outfit *outfit;
 		int count;
@@ -103,6 +111,23 @@ private:
 		std::string size;
 		std::string value;
 	};
+
+
+private:
+	// You can't exit this dialog if you are in the middle of combat.
+	bool CanExit() const;
+	// Check if you can take the outfit at the given position in the list.
+	CanTakeResult CanTake() const;
+	// Check if you can initiate hand to hand combat.
+	bool CanCapture() const;
+	// Check if you are in the midst of hand to hand combat.
+	bool CanAttack() const;
+
+	// Handle the keyboard scrolling and selection in the panel list.
+	void DoKeyboardNavigation(const SDL_Keycode key);
+
+	void AddMessage(const std::string &message);
+
 
 private:
 	PlayerInfo &player;
@@ -112,7 +137,12 @@ private:
 	// List of items you can plunder.
 	std::vector<Plunder> plunder;
 	int selected = 0;
-	double scroll = 0.;
+	ScrollVar<double> scroll;
+	ScrollBar scrollBar;
+	// Initialize mouse point to something off-screen to not
+	// make the game think the player is hovering on something.
+	Point hoverPoint = Point(-10000., -10000.);
+	Tooltip tooltip;
 
 	bool playerDied = false;
 	bool isCapturing = false;
@@ -122,9 +152,9 @@ private:
 	CaptureOdds attackOdds;
 	CaptureOdds defenseOdds;
 	// These messages are shown to report the results of hand to hand combat.
-	std::vector<std::string> messages;
+	std::string messages;
+	std::shared_ptr<TextArea> messageDisplay;
+
+	// Whether or not the ship can be captured.
+	bool canCapture = false;
 };
-
-
-
-#endif

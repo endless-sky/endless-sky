@@ -7,26 +7,32 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTFIT_H_
-#define OUTFIT_H_
-
-#include "Weapon.h"
+#pragma once
 
 #include "Dictionary.h"
+#include "Drawable.h"
+#include "Paragraphs.h"
 
 #include <map>
+#include <memory>
+#include <optional>
 #include <string>
 #include <utility>
 #include <vector>
 
-class Body;
+class ConditionsStore;
 class DataNode;
+class Drawable;
 class Effect;
 class Sound;
 class Sprite;
+class Weapon;
 
 
 
@@ -36,32 +42,83 @@ class Sprite;
 // set of attributes unique to them, and outfits can also specify additional
 // information like the sprite to use in the outfitter panel for selling them,
 // or the sprite or sound to be used for an engine flare.
-class Outfit : public Weapon {
+class Outfit {
 public:
 	// These are all the possible category strings for outfits.
 	static const std::vector<std::string> CATEGORIES;
 
+	static constexpr double DEFAULT_HYPERDRIVE_COST = 100.;
+	static constexpr double DEFAULT_SCRAM_DRIVE_COST = 150.;
+	static constexpr double DEFAULT_JUMP_DRIVE_COST = 200.;
+
+
+public:
+	// Get the limit to how low an attribute is allowed to go on a ship when installing outfits.
+	// An empty optional means that there is no lower limit.
+	static std::optional<double> LowerLimit(const std::string &attribute);
+	static std::optional<int64_t> LowerLimitPrecise(const std::string &attribute);
+
+
+public:
+	class AttributeIterator {
+	public:
+		explicit AttributeIterator(const Outfit &outfit, Dictionary<int64_t>::const_iterator start);
+		AttributeIterator() = delete;
+
+		// Iterator traits
+		using iterator_category = std::input_iterator_tag;
+		using value_type = std::pair<std::string, double>;
+		using difference_type = void;
+		using pointer = const std::pair<std::string, double> *;
+		using reference = std::pair<std::string, double> &;
+
+		std::pair<std::string, double> operator*() const;
+		AttributeIterator &operator++();
+		bool operator==(const AttributeIterator &) const;
+		bool operator!=(const AttributeIterator &) const;
+		bool operator<(const AttributeIterator &) const;
+		bool operator>(const AttributeIterator &) const;
+
+	private:
+		const Outfit &outfit;
+		Dictionary<int64_t>::const_iterator it;
+	};
+
+
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	bool IsDefined() const;
 
-	const std::string &Name() const;
-	void SetName(const std::string &name);
+	const std::string &TrueName() const;
+	void SetTrueName(const std::string &name);
+	const std::string &DisplayName() const;
 	const std::string &PluralName() const;
 	const std::string &Category() const;
-	const std::string &Description() const;
+	const std::string &Series() const;
+	int Index() const;
+	std::string Description() const;
 	int64_t Cost() const;
 	double Mass() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
-	const Sprite *Thumbnail() const;
+	const Drawable &Thumbnail() const;
 
+	// Return true if this Outfit's attributes Dictionary is empty. Does not determine
+	// whether this Outfit contains any sprites, effects, sounds, or a weapon.
+	bool Empty() const;
+	// Access to the attribute values.
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
-	const Dictionary &Attributes() const;
+	int64_t GetPrecise(const char *attribute) const;
+	int64_t GetPrecise(const std::string &attribute) const;
+	// Get an iterator over this Outfit's attribute names and values as doubles.
+	AttributeIterator begin() const;
+	AttributeIterator end() const;
+	// Get the underlying precise values dictionary.
+	const Dictionary<int64_t> &Precise() const;
 
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
@@ -70,61 +127,96 @@ public:
 	// For tracking a combination of outfits in a ship: add the given number of
 	// instances of the given outfit to this outfit.
 	void Add(const Outfit &other, int count = 1);
+	// Add the licenses required by the given outfit to this outfit.
+	void AddLicenses(const Outfit &other);
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
+	void Set(const std::string &attribute, double value);
+
+	const std::shared_ptr<const Weapon> &GetWeapon() const;
+	// Get the ammo if this is an ammo storage outfit.
+	const std::set<const Outfit *> &AmmoStored() const;
+	// Get the ammo used if this is a weapon, or stored ammo if this is a storage.
+	const std::set<const Outfit *> &AmmoStoredOrUsed() const;
+	// Outfits that should be sold when this outfit is sold.
+	const std::set<const Outfit *> &LinkedOutfits() const;
 
 	// Get this outfit's engine flare sprites, if any.
-	const std::vector<std::pair<Body, int>> &FlareSprites() const;
-	const std::vector<std::pair<Body, int>> &ReverseFlareSprites() const;
-	const std::vector<std::pair<Body, int>> &SteeringFlareSprites() const;
+	const std::vector<std::pair<Drawable, int>> &FlareSprites() const;
+	const std::vector<std::pair<Drawable, int>> &ReverseFlareSprites() const;
+	const std::vector<std::pair<Drawable, int>> &SteeringFlareSprites() const;
 	const std::map<const Sound *, int> &FlareSounds() const;
 	const std::map<const Sound *, int> &ReverseFlareSounds() const;
 	const std::map<const Sound *, int> &SteeringFlareSounds() const;
 	// Get the afterburner effect, if any.
 	const std::map<const Effect *, int> &AfterburnerEffects() const;
 	// Get this outfit's jump effects and sounds, if any.
-	const std::map<const Effect *, int> &JumpEffects() const;
+	const std::map<const Effect *, double> &JumpEffects() const;
 	const std::map<const Sound *, int> &HyperSounds() const;
 	const std::map<const Sound *, int> &HyperInSounds() const;
 	const std::map<const Sound *, int> &HyperOutSounds() const;
 	const std::map<const Sound *, int> &JumpSounds() const;
 	const std::map<const Sound *, int> &JumpInSounds() const;
 	const std::map<const Sound *, int> &JumpOutSounds() const;
+	// Get this outfit's scan sounds, if any.
+	const std::map<const Sound *, int> &CargoScanSounds() const;
+	const std::map<const Sound *, int> &OutfitScanSounds() const;
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
 
 
 private:
+	// Add the license with the given name to the licenses required by this outfit, if it is not already present.
+	void AddLicense(const std::string &name);
+
+
+private:
 	bool isDefined = false;
-	std::string name;
+	std::string trueName;
+	std::string displayName;
 	std::string pluralName;
 	std::string category;
-	std::string description;
-	const Sprite *thumbnail = nullptr;
+	// The series that this outfit is a part of and its index within that series.
+	// Used for sorting within shops.
+	std::string series;
+	int index = 0;
+	Paragraphs description;
+	Drawable thumbnail;
 	int64_t cost = 0;
 	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 
-	Dictionary attributes;
+	Dictionary<int64_t> attributes;
+
+	std::shared_ptr<const Weapon> weapon;
+	// Non-weapon outfits can have ammo so that storage outfits
+	// properly remove excess ammo when the storage is sold, instead
+	// of blocking the sale of the outfit until the ammo is sold first.
+	std::set<const Outfit *> ammoStored;
+	// Linked outfits are also sold when this outfit is sold, but you
+	// won't be prompted to fill up on "ammo" when entering the outfitter.
+	std::set<const Outfit *> linkedOutfits;
 
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.
-	std::vector<std::pair<Body, int>> flareSprites;
-	std::vector<std::pair<Body, int>> reverseFlareSprites;
-	std::vector<std::pair<Body, int>> steeringFlareSprites;
+	std::vector<std::pair<Drawable, int>> flareSprites;
+	std::vector<std::pair<Drawable, int>> reverseFlareSprites;
+	std::vector<std::pair<Drawable, int>> steeringFlareSprites;
 	std::map<const Sound *, int> flareSounds;
 	std::map<const Sound *, int> reverseFlareSounds;
 	std::map<const Sound *, int> steeringFlareSounds;
 	std::map<const Effect *, int> afterburnerEffects;
-	std::map<const Effect *, int> jumpEffects;
+	std::map<const Effect *, double> jumpEffects;
 	std::map<const Sound *, int> hyperSounds;
 	std::map<const Sound *, int> hyperInSounds;
 	std::map<const Sound *, int> hyperOutSounds;
 	std::map<const Sound *, int> jumpSounds;
 	std::map<const Sound *, int> jumpInSounds;
 	std::map<const Sound *, int> jumpOutSounds;
+	std::map<const Sound *, int> cargoScanSounds;
+	std::map<const Sound *, int> outfitScanSounds;
 	const Sprite *flotsamSprite = nullptr;
 };
 
@@ -133,7 +225,4 @@ private:
 // These get called a lot, so inline them for speed.
 inline int64_t Outfit::Cost() const { return cost; }
 inline double Outfit::Mass() const { return mass; }
-
-
-
-#endif
+inline const std::shared_ptr<const Weapon> &Outfit::GetWeapon() const { return weapon; }

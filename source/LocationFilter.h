@@ -7,11 +7,15 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef LOCATION_FILTER_H_
-#define LOCATION_FILTER_H_
+#pragma once
+
+#include "DistanceCalculationSettings.h"
 
 #include <list>
 #include <set>
@@ -35,10 +39,12 @@ class LocationFilter {
 public:
 	LocationFilter() noexcept = default;
 	// Construct and Load() at the same time.
-	LocationFilter(const DataNode &node);
+	explicit LocationFilter(const DataNode &node, const std::set<const System *> *visitedSystems,
+		const std::set<const Planet *> *visitedPlanets);
 
 	// Examine all the children of the given node and load any that are filters.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const std::set<const System *> *visitedSystems,
+		const std::set<const Planet *> *visitedPlanets);
 	// This only saves the children. Save the root node separately. It does
 	// handle indenting, however.
 	void Save(DataWriter &out) const;
@@ -65,7 +71,8 @@ public:
 
 private:
 	// Load one particular line of conditions.
-	void LoadChild(const DataNode &child);
+	void LoadChild(const DataNode &child, const std::set<const System *> *visitedSystems,
+		const std::set<const Planet *> *visitedPlanets);
 	// Check if the filter matches the given system. If it did not, return true
 	// only if the filter wasn't looking for planet characteristics or if the
 	// didPlanet argument is set (meaning we already checked those).
@@ -73,6 +80,16 @@ private:
 
 
 private:
+	bool isEmpty = true;
+
+	// Pointers to the PlayerInfo's visited systems and planets.
+	const std::set<const System *> *visitedSystems = nullptr;
+	const std::set<const Planet *> *visitedPlanets = nullptr;
+
+	// The player must have visited the system or planet.
+	bool systemIsVisited = false;
+	bool planetIsVisited = false;
+
 	// The planet must satisfy these conditions:
 	std::set<const Planet *> planets;
 	// It must have at least one attribute from each set in this list:
@@ -85,9 +102,11 @@ private:
 	const System *center = nullptr;
 	int centerMinDistance = 0;
 	int centerMaxDistance = 1;
+	DistanceCalculationSettings centerDistanceOptions;
 	// Distance limits used in a "distance" filter.
 	int originMinDistance = 0;
 	int originMaxDistance = -1;
+	DistanceCalculationSettings originDistanceOptions;
 
 	// At least one of the outfits from each set must be available
 	// (to purchase or plunder):
@@ -100,7 +119,3 @@ private:
 	// These filters store all the things the planet or system must border.
 	std::list<LocationFilter> neighborFilters;
 };
-
-
-
-#endif

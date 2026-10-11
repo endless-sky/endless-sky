@@ -7,14 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "TextReplacements.h"
 
 #include "ConditionSet.h"
 #include "DataNode.h"
-#include "PlayerInfo.h"
 
 #include <set>
 
@@ -23,12 +25,20 @@ using namespace std;
 
 
 // Load a substitutions node.
-void TextReplacements::Load(const DataNode &node)
+void TextReplacements::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	// Check for reserved keys. Only some hardcoded replacement keys are
 	// reserved, as these ones are done on the fly after all other replacements
 	// have been done.
-	const set<string> reserved = {"<first>", "<last>", "<ship>"};
+	const set<string> reserved = {
+		"<first>", "<last>", "<original first>", "<original last>",
+		"<ship>", "<model>",
+		"<flagship>", "<flagship model>",
+		"<previous system>", "<previous planet>", "<current system>", "<current planet>",
+		"<start planet>", "<start system>",
+		"<start date>", "<start long date>",
+		"<start credits>", "<start credit score>", "<start debt>",
+	};
 
 	for(const DataNode &child : node)
 	{
@@ -41,26 +51,28 @@ void TextReplacements::Load(const DataNode &node)
 		string key = child.Token(0);
 		if(key.empty())
 		{
-			child.PrintTrace("Error: Cannot replace the empty string:");
+			child.PrintTrace("Cannot replace the empty string:");
 			continue;
 		}
 		if(key.front() != '<')
 		{
 			key = "<" + key;
-			child.PrintTrace("Warning: text replacements must be prefixed by \"<\":");
+			child.PrintTrace("Text replacements must be prefixed by \"<\":");
 		}
 		if(key.back() != '>')
 		{
 			key += ">";
-			child.PrintTrace("Warning: text replacements must be suffixed by \">\":");
+			child.PrintTrace("Text replacements must be suffixed by \">\":");
 		}
-		if(reserved.count(key))
+		if(reserved.contains(key))
 		{
 			child.PrintTrace("Skipping reserved substitution key:");
 			continue;
 		}
 
-		ConditionSet toSubstitute(child);
+		ConditionSet toSubstitute;
+		if(child.HasChildren())
+			toSubstitute.Load(child, playerConditions);
 		substitutions.emplace_back(key, make_pair(std::move(toSubstitute), child.Token(1)));
 	}
 }
@@ -76,17 +88,17 @@ void TextReplacements::Revert(TextReplacements &other)
 
 
 
-// Add new text replacements to the given map after evaltuating all possible replacements.
+// Add new text replacements to the given map after evaluating all possible replacements.
 // This text replacement will overwrite the value of any existing keys in the given map
 // if the map and this TextReplacements share a key.
-void TextReplacements::Substitutions(map<string, string> &subs, const map<string, int64_t> &conditions) const
+void TextReplacements::Substitutions(map<string, string> &subs) const
 {
 	for(const auto &sub : substitutions)
 	{
 		const string &key = sub.first;
 		const ConditionSet &toSub = sub.second.first;
 		const string &replacement = sub.second.second;
-		if(toSub.Test(conditions))
+		if(toSub.Test())
 			subs[key] = replacement;
 	}
 }

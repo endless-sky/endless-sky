@@ -6,10 +6,15 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Sunbeam"
 	category "Guns"
+	series "Guns"
+	index 09020
 	licenses
 		"Wanderer Outfits"
 	cost 1390000
@@ -19,9 +24,8 @@ outfit "Sunbeam"
 	"weapon capacity" -34
 	"gun ports" -1
 	weapon
-		sprite "projectile/sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+		sprite "projectile/sunbeam/sunbeam"
+			"frame rate" 30
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
@@ -47,6 +51,8 @@ effect "sunbeam impact"
 
 outfit "Sunbeam Turret"
 	category "Turrets"
+	series "Turrets"
+	index 09020
 	licenses
 		"Wanderer Outfits"
 	cost 1970000
@@ -57,15 +63,14 @@ outfit "Sunbeam Turret"
 	"turret mounts" -1
 	"required crew" 1
 	weapon
-		sprite "projectile/sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+		sprite "projectile/sunbeam/sunbeam"
+			"frame rate" 30
 		"hardpoint sprite" "hardpoint/sunbeam turret"
-		"hardpoint offset" 12.
+		"hardpoint offset" -2.0 12.0
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
-		"turret turn" 1.3
+		"turret turn" 1.8
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
@@ -78,6 +83,8 @@ outfit "Sunbeam Turret"
 
 outfit "Dual Sunbeam Turret"
 	category "Turrets"
+	series "Turrets"
+	index 09030
 	licenses
 		"Wanderer Outfits"
 	cost 3720000
@@ -88,15 +95,14 @@ outfit "Dual Sunbeam Turret"
 	"turret mounts" -1
 	"required crew" 2
 	weapon
-		sprite "projectile/2x sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+		sprite "projectile/sunbeam/2x sunbeam"
+			"frame rate" 30
 		"hardpoint sprite" "hardpoint/dual sunbeam turret"
 		"hardpoint offset" 12.
 		sound "sunbeam"
-		"hit effect" "sunbeam impact"
+		"hit effect" "sunbeam impact" 2
 		"inaccuracy" .2
-		"turret turn" 1.0
+		"turret turn" 1
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
@@ -109,6 +115,8 @@ outfit "Dual Sunbeam Turret"
 
 outfit "Moonbeam"
 	category "Guns"
+	series "Guns"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 760000
@@ -120,7 +128,7 @@ outfit "Moonbeam"
 	weapon
 		sprite "projectile/moonbeam"
 			"random start frame"
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
@@ -153,6 +161,8 @@ effect "moonbeam impact"
 
 outfit "Moonbeam Turret"
 	category "Turrets"
+	series "Turrets"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 1730000
@@ -167,11 +177,11 @@ outfit "Moonbeam Turret"
 			"random start frame"
 		"hardpoint sprite" "hardpoint/moonbeam turret"
 		"hardpoint offset" 9.
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
-		"turret turn" 3.6
+		"turret turn" 2.2
 		"velocity" 490
 		"lifetime" 1
 		# A full cycle is 36 frames. Beam is active 83% of the time.
@@ -186,6 +196,8 @@ outfit "Moonbeam Turret"
 
 outfit "Wanderer Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 850000
@@ -211,20 +223,23 @@ effect "wanderer anti-missile"
 		"no repeat"
 		"frame rate" 6
 	sound "heavy anti-missile"
+	"sound category" "anti-missile"
 	"lifetime" 31
 	"velocity scale" 1
 
 outfit "Thunderhead Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 450000
 	thumbnail "outfit/thunderhead launcher"
-	"mass" 14
+	"mass" 11
 	"outfit space" -26
 	"weapon capacity" -26
 	"gun ports" -1
-	"thunderhead capacity" 40
+	"thunderhead capacity" 56
 	weapon
 		sprite "projectile/thunderhead"
 			"no repeat"
@@ -246,17 +261,24 @@ outfit "Thunderhead Launcher"
 		"acceleration" 1.1
 		"drag" .1
 		"turn" 2
-		"homing" 4
-		"infrared tracking" .9
-		"radar tracking" .6
+		"homing"
+			"leading"
+			"throttle control"
+		"infrared tracking" 1.
+		"radar tracking" .3
 		"missile strength" 12
-	description "A prime example of Wanderer ingenuity, Thunderhead missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
+	description "A prime example of Wanderer ingenuity, Thunderhead Missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
+	series "Ammunition"
+	index 09010
 	cost 1800
 	thumbnail "outfit/thunderhead"
-	mass .3
+	mass .27
 	"thunderhead capacity" -1
 	description "Thunderhead cluster munitions are long-range Wanderer missiles that split into five fast and agile submunitions when they are close to their target. Each launcher can hold up to 40 of these."
 
@@ -273,54 +295,75 @@ outfit "Thunderhead"
 		"acceleration" 1.4
 		"drag" .1
 		"turn" 3
-		"homing" 4
-		"optical tracking" .9
-		"radar tracking" .6
+		"homing"
+			"leading"
+			"throttle control"
+		"infrared tracking" 1.
+		"radar tracking" .3
 		"shield damage" 110
 		"hull damage" 80
-		"hit force" 150
+		"hit force" 225
 		"missile strength" 3
 
 outfit "Thunderhead Storage Array"
 	category "Ammunition"
+	series "Ammunition"
+	index 09011
 	licenses
 		"Wanderer Outfits"
 	cost 36000
 	thumbnail "outfit/thunderhead storage"
-	"mass" 2
+	"mass" .4
 	"outfit space" -8
-	"thunderhead capacity" 20
+	"thunderhead capacity" 28
 	ammo "Thunderhead Missile"
 	description "The Thunderhead Storage Array is used to store extra ammunition for Thunderhead Launchers."
 
+outfitter "Thunderhead Missile Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		or
+			has "outfit: Thunderhead Launcher"
+			has "outfit: Thunderhead Storage Array"
+	location
+		attributes "outfitter"
+	stock
+		"Thunderhead Missile"
+
 outfit "Small Biochemical Cell"
 	category "Power"
+	series "Generators"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 230000
 	thumbnail "outfit/small biochemical"
 	"mass" 17
 	"outfit space" -17
-	"energy generation" 1.6
-	"heat generation" 1.4
-	"energy capacity" 300
+	"energy generation" 1.28
+	"heat generation" 1.12
+	"energy capacity" 7500
 	description "This tiny generator draws energy from the metabolic byproducts of a collection of microorganisms that have been engineered by the Wanderers specifically for this purpose."
 
 outfit "Large Biochemical Cell"
 	category "Power"
+	series "Generators"
+	index 09020
 	licenses
 		"Wanderer Outfits"
 	cost 940000
 	thumbnail "outfit/large biochemical"
 	"mass" 63
 	"outfit space" -63
-	"energy generation" 6.2
-	"heat generation" 4.9
-	"energy capacity" 700
+	"energy generation" 4.96
+	"heat generation" 3.92
+	"energy capacity" 30000
 	description "The Wanderers are masters of unusual and efficient technology. This bioreactor is fueled by a culture of microorganisms that produce a small electric charge."
 
 outfit "Red Sun Reactor"
 	category "Power"
+	series "Generators"
+	index 09030
 	licenses
 		"Wanderer Outfits"
 	cost 3800000
@@ -334,6 +377,8 @@ outfit "Red Sun Reactor"
 
 outfit "Yellow Sun Reactor"
 	category "Power"
+	series "Generators"
+	index 09040
 	licenses
 		"Wanderer Outfits"
 	cost 7500000
@@ -347,6 +392,8 @@ outfit "Yellow Sun Reactor"
 
 outfit "White Sun Reactor"
 	category "Power"
+	series "Generators"
+	index 09050
 	licenses
 		"Wanderer Outfits"
 	cost 13900000
@@ -360,6 +407,8 @@ outfit "White Sun Reactor"
 
 outfit "Blue Sun Reactor"
 	category "Power"
+	series "Generators"
+	index 09060
 	licenses
 		"Wanderer Outfits"
 	cost 21500000
@@ -374,6 +423,8 @@ outfit "Blue Sun Reactor"
 
 outfit "Bright Cloud Shielding"
 	category "Systems"
+	series "Shields"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 220000
@@ -386,6 +437,8 @@ outfit "Bright Cloud Shielding"
 
 outfit "Dark Storm Shielding"
 	category "Systems"
+	series "Shields"
+	index 09020
 	licenses
 		"Wanderer Outfits"
 	cost 800000
@@ -398,6 +451,8 @@ outfit "Dark Storm Shielding"
 
 outfit "Wanderer Ramscoop"
 	category "Systems"
+	series "Ramscoops"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 460000
@@ -410,6 +465,8 @@ outfit "Wanderer Ramscoop"
 
 outfit "Wanderer Heat Sink"
 	category "Systems"
+	series "Cooling"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 94000
@@ -422,6 +479,8 @@ outfit "Wanderer Heat Sink"
 
 outfit "Type 1 Radiant Thruster"
 	category "Engines"
+	series "Engines"
+	index 09011
 	licenses
 		"Wanderer Outfits"
 	"cost" 135000
@@ -429,17 +488,19 @@ outfit "Type 1 Radiant Thruster"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"thrust" 6.9
+	"thrust" 13.2
 	"thrusting energy" 0.55
 	"thrusting heat" 0.85
 	"cooling" 1.5
-	"flare sprite" "effect/plasma flare/tiny"
+	"flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 12
 	"flare sound" "plasma tiny"
 	description "This is the tiniest Wanderer engine. Like all their engines, it works in part by radiating excess heat, and as a result it doubles as a cooler for your ship."
 
 outfit "Type 2 Radiant Thruster"
 	category "Engines"
+	series "Engines"
+	index 09021
 	licenses
 		"Wanderer Outfits"
 	"cost" 390000
@@ -447,17 +508,19 @@ outfit "Type 2 Radiant Thruster"
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
-	"thrust" 18.5
+	"thrust" 31.95
 	"thrusting energy" 1.3
 	"thrusting heat" 2.4
 	"cooling" 3.6
-	"flare sprite" "effect/plasma flare/small"
+	"flare sprite" "effect/wanderer flare/small"
 		"frame rate" 14
 	"flare sound" "plasma small"
 	description "Wanderer engines work by transferring excess heat from the ship into the exhaust plasma. When not providing thrust, the engines still serve as a cooling system."
 
 outfit "Type 3 Radiant Thruster"
 	category "Engines"
+	series "Engines"
+	index 09031
 	licenses
 		"Wanderer Outfits"
 	"cost" 750000
@@ -465,17 +528,19 @@ outfit "Type 3 Radiant Thruster"
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
-	"thrust" 33.1
+	"thrust" 52.92
 	"thrusting energy" 2.2
 	"thrusting heat" 4.3
 	"cooling" 6.5
-	"flare sprite" "effect/plasma flare/medium"
+	"flare sprite" "effect/wanderer flare/medium"
 		"frame rate" 16
 	"flare sound" "plasma medium"
 	description "Most engines this size generate a considerable amount of heat, but the Wanderers have developed a way of using the engine itself to vent extra heat from a ship, generating extra propulsive force in the process."
 
 outfit "Type 4 Radiant Thruster"
 	category "Engines"
+	series "Engines"
+	index 09041
 	licenses
 		"Wanderer Outfits"
 	"cost" 1370000
@@ -483,17 +548,19 @@ outfit "Type 4 Radiant Thruster"
 	"mass" 65
 	"outfit space" -65
 	"engine capacity" -65
-	"thrust" 58
+	"thrust" 87
 	"thrusting energy" 3.7
 	"thrusting heat" 7.6
 	"cooling" 11.7
-	"flare sprite" "effect/plasma flare/large"
+	"flare sprite" "effect/wanderer flare/large"
 		"frame rate" 18
 	"flare sound" "plasma large"
 	description "This is the largest engine that the Wanderers have developed. Its incredibly efficient design allows it to cool your ship even while it is firing."
 
 outfit "Type 1 Radiant Steering"
 	category "Engines"
+	series "Engines"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	"cost" 115000
@@ -501,17 +568,19 @@ outfit "Type 1 Radiant Steering"
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
-	"turn" 181
+	"turn" 271.5
 	"turning energy" .3
 	"turning heat" 0.6
 	"cooling" 1.0
-	"steering flare sprite" "effect/plasma flare/tiny"
+	"steering flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 12
 	"steering flare sound" "plasma tiny"
 	description "This tiny steering system is used by the Wanderers to power their unpiloted mining and surveying drones."
 
 outfit "Type 2 Radiant Steering"
 	category "Engines"
+	series "Engines"
+	index 09020
 	licenses
 		"Wanderer Outfits"
 	"cost" 325000
@@ -519,17 +588,19 @@ outfit "Type 2 Radiant Steering"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 476
+	"turn" 714
 	"turning energy" .7
 	"turning heat" 1.5
 	"cooling" 2.1
-	"steering flare sprite" "effect/plasma flare/small"
+	"steering flare sprite" "effect/wanderer flare/small"
 		"frame rate" 14
 	"steering flare sound" "plasma small"
 	description "This small Wanderer steering system vents excess heat from your ship even when it is not in use, allowing it to double as a cooling system."
 
 outfit "Type 3 Radiant Steering"
 	category "Engines"
+	series "Engines"
+	index 09030
 	licenses
 		"Wanderer Outfits"
 	"cost" 590000
@@ -537,17 +608,19 @@ outfit "Type 3 Radiant Steering"
 	"mass" 30
 	"outfit space" -30
 	"engine capacity" -30
-	"turn" 825
+	"turn" 1237.5
 	"turning energy" 1.2
 	"turning heat" 2.6
 	"cooling" 3.9
-	"steering flare sprite" "effect/plasma flare/medium"
+	"steering flare sprite" "effect/wanderer flare/medium"
 		"frame rate" 16
 	"steering flare sound" "plasma medium"
 	description "This steering system is used by the Wanderers in their mid-sized ships. In addition to turning your ship, it is able to vent a considerable amount of heat."
 
 outfit "Type 4 Radiant Steering"
 	category "Engines"
+	series "Engines"
+	index 09040
 	licenses
 		"Wanderer Outfits"
 	"cost" 1100000
@@ -555,26 +628,32 @@ outfit "Type 4 Radiant Steering"
 	"mass" 47
 	"outfit space" -47
 	"engine capacity" -47
-	"turn" 1466
+	"turn" 2199
 	"turning energy" 2.0
 	"turning heat" 4.5
 	"cooling" 6.7
-	"steering flare sprite" "effect/plasma flare/large"
+	"steering flare sprite" "effect/wanderer flare/large"
 		"frame rate" 18
 	"steering flare sound" "plasma large"
 	description "This is the largest steering system that the Wanderers sell."
 
 outfit "Wanderer Outfits License"
-	category "Special"
+	category "Licenses"
+	series "Licenses"
+	index 09010
 	thumbnail "outfit/wanderer outfits license"
-	description "Spoke with a Wanderer ambassador named Iktat Rek using the translation device and received permission to purchase some of their technology, but not their ships."
+	description "This oddly shaped dish holds a collection of perfectly preserved seeds of one Sentinel Skirtgrass, a sensitive yet robust species the Wanderers use during their initial terraforming efforts to gauge how well a world is responding to their methods. Each seed carries a built-in generational limit, ensuring the grass disappears after a few lifecycles so that it doesn't compete with native flora. These seeds symbolize the beginning of both terraforming and goodwill, granting their owner the right to acquire Wanderer outfits."
 
 outfit "Wanderer License"
-	category "Special"
+	category "Licenses"
+	series "Licenses"
+	index 09020
 	thumbnail "outfit/wanderer license"
-	description "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
+	description "Intact within an amber shell, this leafy branch of the Noble Watchwood - rumored to come from the Wanderers' original home planet - symbolizes their pride and joy, the total revitalization of a planet. While unmatched in size and formidable to behold, the tree is quite fragile to even the slightest alterations in climate, so the growth of one such specimen to maturity is seen as a sign of a healed ecosystem. As a symbol of peace akin to Earth's olive branch, it grants its bearer the right to purchase non-military Wanderer ships."
 
 outfit "Wanderer Military License"
-	category "Special"
+	category "Licenses"
+	series "Licenses"
+	index 09030
 	thumbnail "outfit/wanderer military license"
-	description "Received permission to purchase warships from the Wanderers, including a new one called the Tempest."
+	description "The history of the Wanderers is not without hardship and failure. Immortalized in a bronze mold, this withered branch recalls the time the Wanderers could not save a world, for skilled as they may be, they cannot stop destruction when it is actively sought after by others mightier than them. The fall of the Noble Watchwood, their cherished emblem, now stands as a solemn vow: when peace fails, they too must prepare to fight. To stand and fight with the Wanderers, this license grants access to their greatest warships."

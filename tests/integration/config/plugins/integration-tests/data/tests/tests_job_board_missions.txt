@@ -1,0 +1,198 @@
+# Copyright (c) 2024 by Anarchist2
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test-data "Job Board Mission Save"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 10
+				bunks 3
+				"cargo space" 50
+				drag 1
+				"engine capacity" 400
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 1300
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 200
+				"thrust" 50
+				"turn" 1000
+			outfits
+				Hyperdrive
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 100000000
+			score 400
+			history
+		visited "Terra Incognita"
+		"visited planet" Ruin
+		changes
+			planet Ruin
+				port
+					services "job board"
+
+
+
+test-data "Job Board Mission"
+	category mission
+	contents
+		mission "TEST: JOB BOARD MISSION"
+			"job board"
+			source "Ruin"
+			to offer
+				has "TEST: JOB BOARD MISSION OFFER"
+			on offer
+				conversation
+					`This is a job board mission.`
+						decline
+			on decline
+				set "succeed test"
+
+
+
+test "Trigger Job Board Mission From Planet"
+	status partial
+	description "Launch, land, and go to the job board to trigger any potential missions in the job board."
+	sequence
+		call "Depart"
+		navigate
+			"travel destination" Ruin
+		call "Land"
+		input
+			key j
+
+
+test "Trigger Job Board Mission From Map"
+	status partial
+	description "Launch, land, open up the map and go to the mission panel to trigger any potential missions in the job board."
+	sequence
+		call "Depart"
+		navigate
+			"travel destination" Ruin
+		call "Land"
+		input
+			key m
+		input
+			key i
+
+
+test "Go To Mission Panel"
+	status partial
+	description "Open up the map mid-conversation and go to the mission panel, then close it."
+	sequence
+		input
+			key m
+		input
+			key i
+		input
+			key d
+
+
+test "Exit Map"
+	status partial
+	description "Leave the map screen."
+	sequence
+		input
+			key d
+
+
+test "Test Job Board Mission"
+	status partial
+	description "Set a few conditions so they are displayed on errors, clarifying things up."
+	sequence
+		apply
+			# Test accepted. If not there it wasn't offered.
+			"test: succeed test" = "succeed test"
+			# if we launched
+			"test: flagship landed" = "flagship landed"
+
+
+test "Job Board Mission From Planet Test"
+	status active
+	description "Test if a job board mission can offer by entering the mission panel from a planet."
+	sequence
+		inject "Job Board Mission"
+		inject "Job Board Mission Save"
+		call "Load First Savegame"
+		apply
+			"TEST: JOB BOARD MISSION OFFER" = 1
+		call "Trigger Job Board Mission From Planet"
+		call "Skip Mission"
+		call "Depart"
+		call "Test Job Board Mission"
+		assert
+			"succeed test" == 1
+
+
+test "Job Board Mission From Map Test"
+	status active
+	description "Test if a job board mission can offer by entering the mission panel from the map."
+	sequence
+		inject "Job Board Mission"
+		inject "Job Board Mission Save"
+		call "Load First Savegame"
+		apply
+			"TEST: JOB BOARD MISSION OFFER" = 1
+		call "Trigger Job Board Mission From Map"
+		call "Skip Mission"
+		call "Exit Map"
+		call "Depart"
+		call "Test Job Board Mission"
+		assert
+			"succeed test" == 1
+
+
+test "Job Board During Mission Test"
+	status active
+	description "Test if the map and mission panel can be accessed mid-conversation without triggering a second mission."
+	sequence
+		inject "Job Board Mission"
+		inject "Job Board Mission Save"
+		call "Load First Savegame"
+		apply
+			"TEST: JOB BOARD MISSION OFFER" = 1
+		call "Trigger Job Board Mission From Planet"
+		call "Go To Mission Panel"
+		call "Skip Mission"
+		call "Exit Map"
+		call "Depart"
+		call "Test Job Board Mission"
+		assert
+			"succeed test" == 1

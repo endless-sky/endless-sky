@@ -7,9 +7,38 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 news "wanderer civilians, no dialog 1"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
+	name
+		word
+			"Individual"
+	message
+		word
+			"Outside the spaceport, you see someone performing maintenance on some sort of irrigation system. Once they get it working, it begins to water a field of plants."
+			"A dockworker unloads complex scientific equipment from a ship. More surprising, however, is the fact that they unload several bags of fertilizer from it as well."
+
+news "wanderer civilians no dialog 2"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
+	name
+		word
+			"Group"
+	message
+		word
+			"A crowd has formed around an object. Upon closer inspection, it appears to be some sort of technological device."
+			"On a booth near the spaceport, a group is playing on objects that look vaguely like wooden flutes. Their music is quiet and lacks a discernible melody."
+
+news "wanderer civilians, no dialog 1, post language"
+	to show
+		has "language: Wanderer"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
@@ -19,10 +48,10 @@ news "wanderer civilians, no dialog 1"
 	message
 		word
 			"Many buildings near the spaceport have plants growing on their roofs. An indignant squawk draws your attention to a Wanderer as they rapidly flap away from an automated watering system dousing them where they stood."
-			"Outside the spaceport, you see a Wanderer performing maintenance on some sort of irrigation system. Once they get it working, it begins to water a field of plants."
-			"A Wanderer dockworker unloads complex scientific equipment from a ship. More surprising, however, is the fact that they unload several bags of fertilizer from it as well."
 
-news "wanderer civilian's no dialog 2"
+news "wanderer civilians no dialog 2, post language"
+	to show
+		has "language: Wanderer"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
@@ -32,10 +61,8 @@ news "wanderer civilian's no dialog 2"
 	message
 		word
 			"While walking through the spaceport, you see several Wanderers flying through the air, about to land. They do not notice you, and you duck to avoid them."
-			"A crowd of Wanderers has formed around an object. Upon closer inspection, it appears to be some sort of technological device."
 			"As you walk by a group of Wanderers, they begin to coo and chitter at you. Evidently they have not seen something like you before."
 			"A group of Wanderer children appear to be playing a game similar to hopscotch, but instead of hopping they fly to their spots."
-			"On a booth near the spaceport, a group of Wanderers are playing on objects that look vaguely like wooden flutes. Their music is quiet and lacks a discernible melody."
 			"Two Wanderers are at a table. They appear to be playing some sort of board game using shell pieces."
 			"A crowd of Wanderer children follow an adult through the spaceport. The adult talks to them as they follow, as the children take notes."
 
@@ -63,7 +90,7 @@ news "Wanderers and Aliens"
 			"I have heard that Hai and human space are [linked, joined] with a wormhole. Could it have been made by [our caretakers, those that open the Eye]?"
 			"The Unfettered Hai enter Wanderer [space, territory] using jump drives. Where did they get such [devices, technology]?"
 			"Our species has [met, made contact] with many aliens before, but never so many at once."
-			"Exploration is important for a society. If we did not move and discover new planets, we would have [stagnated, shrivelled] long ago."
+			"Exploration is important for a society. If we did not move and discover new planets, we would have [stagnated, shriveled] long ago."
 			"I can [sympathize with, understand] the Hai. They have been [stuck, stagnant] in their own space for too long. It is only [right, natural] that they should want to [migrate to, leave for] new lands."
 		word
 			`"`
@@ -275,10 +302,10 @@ news "Wanderers and the Eye"
 
 news "Wanderers and Korath"
 	to show
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 	location
-			government "Wanderer"
-			not attributes "evacuation"
+		government "Wanderer"
+		not attributes "evacuation"
 	name
 		word
 			"Wanderer merchant captain"
@@ -291,7 +318,7 @@ news "Wanderers and Korath"
 		word
 			"The Korath have [enormous, gigantic] ships that many of them live on their whole lives. I cannot [imagine, fathom] doing the same."
 			"Have you [seen, viewed] a Korath up close? They only have feathers on their neck. How [strange, odd]."
-			"The engines the Korath use have no regard for [effciency, subtlety]. But I must admit, they are much more powerful than ours."
+			"The engines the Korath use have no regard for [efficiency, subtlety]. But I must admit, they are much more powerful than ours."
 			"The Korath cannot pay [well, adequately] for their transport jobs, but they insist on paying [despite it, nonetheless]."
 			"I am trying to [learn, understand] more words of the Korath language. It is a difficult [task, undertaking], but it is important to learn the language of those who we are [undertaking, rescuing]."
 			"Have you been on a Korath [world, planet]? It is a [sobering, depressing] reminder of the importance of our [task, work]."
@@ -301,10 +328,10 @@ news "Wanderers and Korath"
 
 news "Wanderer Linguistics"
 	to show
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 	location
-			government "Wanderer"
-			not attributes "evacuation"
+		government "Wanderer"
+		not attributes "evacuation"
 	name
 		word
 			"Wanderer linguist"

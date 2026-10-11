@@ -1,0 +1,194 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+shipyard "Avgi Solar Light"
+	"Koryfi"
+	"Avlaki"
+
+shipyard "Avgi Solar Heavy"
+	"Melodikos"
+	"Harmonikos"
+	"Entasi"
+
+shipyard "Avgi Utility Ultralight"
+	"Akoustiki"
+	"Sonikis"
+
+shipyard "Avgi Utility Light"
+	"Entasi"
+	"Frequentia"
+
+shipyard "Avgi Utility Heavy"
+	"Undsyni"
+
+shipyard "Avgi Militia"
+	"Tremoros"
+	"Phononos"
+	"Interferos"
+
+shipyard "Avgi Research"
+	"Polari"
+	"Optikon"
+
+shipyard "Twilight Guard Ultralight"
+	"Tremoros"
+	"Photikon"
+	"Optikon"
+	"Undulon"
+	"Vibratia"
+
+shipyard "Twilight Guard Light"
+	"Tremoros"
+	"Prismaios"
+	"Interferos"
+	"Photikon"
+	"Undulon"
+	"Vibratia"
+
+shipyard "Twilight Guard Heavy"
+	"Interferos"
+	"Prismaios"
+	"Diaspersi"
+	"Refraktos"
+	"Difraktos"
+	"Atenuatia"
+
+
+
+outfitter "Avgi General"
+	"Ultracapacitor Cell"
+	"Concentrating Solar Cell"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Cargo Expansion"
+	"Outfits Expansion"
+
+outfitter "Avgi Specialized"
+	"Speck Round"
+	`"Nettle" KKV`
+	"Ultracapacitor Cell"
+	"Concentrating Solar Cell"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Luxury Accommodations"
+	"Brig"
+	"Hyperdrive"
+	"Cryogenic Deuterium Tank"
+	"Heatsink Partition"
+	"Multispectral Scanner"
+	"Cargo Expansion"
+	"Outfits Expansion"
+	"Magnetoplasma Drive"
+
+outfitter "Avgi Engineering"
+	"Concentrating Solar Cell"
+	"Concentrating Solar Array"
+	"Cryogenic Deuterium Tank"
+	"Deuterium Slush Tank"
+	"Remass Injector"
+
+outfitter "Avgi Nanomaterials"
+	"Ultracapacitor Cell"
+	"Ultracapacitor Bank"
+	"Heatsink Partition"
+	"Concealment Lamina"
+	"Radiative Lamina"
+
+outfitter "Avgi Electronics"
+	"Blue Optical Laser"
+	"Green Optical Laser"
+	"Optical Lasing Generator"
+	"Multispectral Scanner"
+	"Spectrometer Array"
+	"Photoelectric Lamina"
+	"Magnetoplasma Drive"
+
+outfitter "Avgi Superconductors"
+	"Hyperdrive"
+	"Lantern Fission Core"
+	"Magnetic Scoop"
+	"Plasmadyne Scoop"
+	"Diffuse Deflector"
+	"Inductive Extractor"
+
+outfitter "Avgi Propulsion"
+	"Magnetoplasma Drive"
+	"Vapor Nuclear Rocket"
+	`Z-333 "Spark" Fusion Torch`
+	"R-180 RCS Thrusters"
+	"R-360 RCS Thrusters"
+	"Inductive Extractor"
+	"Remass Injector"
+
+outfitter "Avgi Torches"
+	`Z-333 "Spark" Fusion Torch`
+	`Z-666 "Zap" Fusion Torch`
+	"R-360 RCS Thrusters"
+	"R-720 RCS Thrusters"
+	"Inductive Extractor"
+	"Remass Injector"
+
+outfitter "Avgi Militia Surplus"
+	"Speckle Coilgun"
+	"Speckle Turret"
+	"Speck Round"
+	"Speck Magazine"
+	"Tiny VLS"
+	"Small VLS"
+	`"Nettle" KKV`
+	"Optical Lasing Generator"
+	"Green Optical Laser"
+	"Blue Optical Laser"
+
+outfitter "Avgi Twilight Guard"
+	"External Launch Tube"
+	"External Launch Rail"
+	"Speckle Coilgun"
+	"Speckle Turret"
+	"Speck Round"
+	"Speck Magazine"
+	"Tiny VLS"
+	"Small VLS"
+	"Medium VLS"
+	`"Nettle" KKV`
+	"Optical Lasing Generator"
+	"Green Optical Laser"
+	"Blue Optical Laser"
+	"Diffuse Deflector"
+	"Specular Deflector"
+
+outfitter "Avgi Atomics"
+	`"Ophrys" Nuclear Torpedo`
+	"Ophrys Stockpile"
+	`"Orchid" Nuclear Missile`
+
+outfitter "Avgi Dissonance Smuggling"
+	"Speckle Coilgun"
+	"Speckle Turret"
+	"Speck Round"
+	"Tiny VLS"
+	"Small VLS"
+	"Medium VLS"
+	`"Nettle" KKV`
+	"Optical Lasing Generator"
+	"Green Optical Laser"
+	"Blue Optical Laser"
+	"Ultracapacitor Bank"
+	"Heatsink Partition"
+	"Concealment Lamina"
+	"Diffuse Deflector"
+	`Z-333 "Spark" Fusion Torch`
+	`Z-666 "Zap" Fusion Torch`
+	"Inductive Extractor"
+	"Remass Injector"

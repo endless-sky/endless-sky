@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WEATHER_H_
-#define WEATHER_H_
+#pragma once
 
 #include "Point.h"
 
@@ -29,8 +31,8 @@ class Weather {
 public:
 	class ImpactInfo {
 	public:
-		ImpactInfo(const Weapon &weapon, Point position, double scale)
-			: weapon(weapon), position(std::move(position)), scale(scale) {}
+		ImpactInfo(const Weapon &weapon, const Point &position, double scale)
+			: weapon(weapon), position(position), scale(scale) {}
 
 		const Weapon &weapon;
 		Point position;
@@ -50,7 +52,7 @@ public:
 	// The origin of the hazard.
 	const Point &Origin() const;
 	// Create any environmental effects and decrease the lifetime of this weather.
-	void Step(std::vector<Visual> &newVisuals);
+	void Step(std::vector<Visual> &newVisuals, const Point &center);
 	// Calculate this weather's strength for the current frame, to be used to find
 	// out what the current period and damage multipliers are.
 	void CalculateStrength();
@@ -83,5 +85,3 @@ private:
 	// Record when this object is marked for removal from the game.
 	bool shouldBeRemoved = false;
 };
-
-#endif

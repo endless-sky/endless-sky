@@ -7,14 +7,17 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TRADING_PANEL_H_
-#define TRADING_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
+class Planet;
 class PlayerInfo;
 class System;
 
@@ -36,27 +39,26 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 
 
 private:
 	void Buy(int64_t amount);
+	void SellOutfitsOrMinables(bool sellMinables);
+	std::string OutfitSalesMessage(bool sellMinables) const;
+	void StoreOutfitsFromCargo() const;
 
 
 private:
 	PlayerInfo &player;
+	const Planet &planet;
 	const System &system;
 	const int COMMODITY_COUNT;
-
-	// Remember whether the "sell all" button will sell all outfits, or sell
-	// everything except outfits.
-	bool sellOutfits = false;
+	// There are multiple requirements to selling or storing outfits. This caches the calculation in Step().
+	bool canSellOutfits = false;
+	bool canStoreOutfits = false;
 
 	// Keep track of how much we sold and how much profit was made.
 	int tonsSold = 0;
 	int64_t profit = 0;
 };
-
-
-
-#endif

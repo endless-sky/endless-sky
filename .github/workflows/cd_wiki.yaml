@@ -1,0 +1,55 @@
+name: Wiki CD
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: 'wiki-cd'
+
+jobs:
+
+  cd_wiki:
+    name: Wiki deployment
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'endless-sky/endless-sky' && github.ref == 'refs/heads/master' }}
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout endless-sky-wiki repository
+        run: |
+          git clone "https://github.com/endless-sky/endless-sky-wiki.git"
+      - name: Checkout wiki
+        run: git clone "https://github.com/${{ github.repository }}.wiki.git"
+      - name: Synchronize files
+        run: rsync --delete -rvh -e .git endless-sky-wiki/wiki/* endless-sky.wiki/
+      - name: Check for changes
+        id: check-diff
+        run: |
+          cd endless-sky.wiki
+          git add .
+          if [[ $(git diff --cached --raw) ]]; then
+            echo "changes=yes" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Get latest commit hash
+        if: ${{ steps.check-diff.outputs.changes == 'yes' }}
+        id: latest-commit
+        run: |
+          cd endless-sky-wiki
+          echo "hash=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Commit changes
+        if: ${{ steps.check-diff.outputs.changes == 'yes' }}
+        run: |
+          cd endless-sky.wiki
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+          git commit -m "Synchronize with endless-sky-wiki" -m "Latest commit: endless-sky/endless-sky-wiki@${{ steps.latest-commit.outputs.hash }}" -m "Triggered by ${{ github.actor }}"
+      - name: Push changes
+        if: ${{ steps.check-diff.outputs.changes == 'yes' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd endless-sky.wiki
+          git remote set-url origin "https://github-actions:${{ env.GH_TOKEN }}@github.com/${{ github.repository }}.wiki.git"
+          git push origin

@@ -7,86 +7,84 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ShipyardPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
+#include "comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
-#include "Color.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
+#include "Mission.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
-#include "text/truncate.hpp"
+#include "ShipNameDialogPanel.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
+#include "text/Truncate.h"
 #include "UI.h"
+
+#include <algorithm>
+#include <utility>
 
 class System;
 
 using namespace std;
 
 namespace {
-	// The name entry dialog should include a "Random" button to choose a random
-	// name using the civilian ship name generator.
-	class NameDialog : public Dialog {
-	public:
-		NameDialog(ShipyardPanel *panel, void (ShipyardPanel::*fun)(const string &), const string &message)
-			: Dialog(panel, fun, message) {}
-
-		virtual void Draw() override
-		{
-			Dialog::Draw();
-
-			randomPos = cancelPos - Point(80., 0.);
-			SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
-
-			const Font &font = FontSet::Get(14);
-			static const string label = "Random";
-			Point labelPos = randomPos - .5 * Point(font.Width(label), font.Height());
-			font.Draw(label, labelPos, *GameData::Colors().Get("medium"));
-		}
-
-	protected:
-		virtual bool Click(int x, int y, int clicks) override
-		{
-			Point off = Point(x, y) - randomPos;
-			if(fabs(off.X()) < 40. && fabs(off.Y()) < 20.)
-			{
-				input = GameData::Phrases().Get("civilian")->Get();
-				return true;
-			}
-			return Dialog::Click(x, y, clicks);
-		}
-
-	private:
-		Point randomPos;
-	};
+	// Label for the description field of the detail pane.
+	const string DESCRIPTION = "description";
 }
 
 
 
-ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, false), modifier(0)
+ShipyardPanel::ShipyardPanel(PlayerInfo &player, const Sale<Ship> &stock)
+	: ShopPanel(player, false), modifier(0), shipyard(stock), initialFleetUsage(player.FleetCost())
 {
 	for(const auto &it : GameData::Ships())
-		catalog[it.second.Attributes().Category()].insert(it.first);
+		catalog[it.second.Attributes().Category()].push_back(it.first);
 
-	if(player.GetPlanet())
-		shipyard = player.GetPlanet()->Shipyard();
+	for(pair<const string, vector<string>> &it : catalog)
+		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Ship>());
+}
+
+
+
+void ShipyardPanel::Step()
+{
+	ShopPanel::Step();
+	ShopPanel::CheckForMissions(Mission::SHIPYARD);
+	ShopPanel::ValidateSelectedShips();
+	if(!GetUI().IsTop(this) || DoHelp("shipyard") || hasDoneFleetCapacityWarning)
+		return;
+
+	int capacity = player.FleetCapacity();
+	if(initialFleetUsage <= capacity && player.FleetCost() > capacity)
+	{
+		hasDoneFleetCapacityWarning = true;
+		bool shipCap = GameData::GetGamerules().GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::SHIP_CAP;
+		GetUI().Push(DialogPanel::Info("The escorts that you currently have active put you over your fleet capacity. "
+			"You will not be able to depart from this planet unless you park or sell your escorts to make room"s +
+			(shipCap ? "." : ", or change your flagship to a ship with a higher cost toward your limit, as "
+			"your flagship does not count toward the fleet capacity.")));
+	}
 }
 
 
@@ -94,16 +92,6 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 int ShipyardPanel::TileSize() const
 {
 	return SHIP_SIZE;
-}
-
-
-
-int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
-{
-	shipInfo.Update(*playerShip, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
-	shipInfo.DrawAttributes(point, true);
-
-	return shipInfo.GetAttributesHeight(true);
 }
 
 
@@ -116,10 +104,10 @@ bool ShipyardPanel::HasItem(const string &name) const
 
 
 
-void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY)
+void ShipyardPanel::DrawItem(const string &name, const Point &point)
 {
 	const Ship *ship = GameData::Ships().Get(name);
-	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship, scrollY);
+	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship);
 	if(point.Y() + SHIP_SIZE / 2 < Screen::Top() || point.Y() - SHIP_SIZE / 2 > Screen::Bottom())
 		return;
 
@@ -128,93 +116,80 @@ void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY
 
 
 
-int ShipyardPanel::DividerOffset() const
+double ShipyardPanel::ButtonPanelHeight() const
 {
-	return 121;
+	// The 50 = (3 x 10 (pad) + 20 x 1 (text)) for the credit information line.
+	// Add 20 to make room for the fleet capacity line if that gamerule is active.
+	return 50 + BUTTON_HEIGHT * 2 + BUTTON_ROW_PAD * 1 + 20 * hasFleetCapacity;
 }
 
 
 
-int ShipyardPanel::DetailWidth() const
-{
-	return 3 * shipInfo.PanelWidth();
-}
-
-
-
-int ShipyardPanel::DrawDetails(const Point &center)
+double ShipyardPanel::DrawDetails(const Point &center)
 {
 	string selectedItem = "No Ship Selected";
 	const Font &font = FontSet::Get(14);
-	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &dim = *GameData::Colors().Get("medium");
-	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 
-	int heightOffset = 20;
+	double heightOffset = 20.;
 
 	if(selectedShip)
 	{
-		shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
-		selectedItem = selectedShip->ModelName();
+		shipInfo.Update(*selectedShip, player, hasFleetCapacity, collapsed.contains(DESCRIPTION), true);
+		selectedItem = selectedShip->DisplayModelName();
 
+		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
+		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
-		const Sprite *shipSprite = selectedShip->GetSprite();
-		float spriteScale = shipSprite
-			? min(1.f, (INFOBAR_WIDTH  - 20.f) / max(shipSprite->Width(), shipSprite->Height()))
-			: 1.f;
-
-		int swizzle = selectedShip->CustomSwizzle() >= 0 ? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-
-		Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
-		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
-
-		double descriptionOffset = 35.;
-		Point descCenter(Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2, startPoint.Y() + 20.);
-
-		// Maintenance note: This can be replaced with collapsed.contains() in C++20
-		if(!collapsed.count("description"))
-		{
-			descriptionOffset = shipInfo.DescriptionHeight();
-			shipInfo.DrawDescription(startPoint);
-		}
-		else
-		{
-			std::string label = "description";
-			font.Draw(label, startPoint + Point(35., 12.), dim);
-			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
-		}
-
-		// Calculate the new ClickZone for the description.
-		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
-		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter, descDimensions, std::string("description"));
-
-		// Find the old zone, and replace it with the new zone.
-		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
-		{
-			if(it->Value() == "description")
-			{
-				categoryZones.erase(it);
-				break;
-			}
-		}
-		categoryZones.emplace_back(collapseDescription);
-
-		Point attrPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
-		Point outfPoint(startPoint.X(), attrPoint.Y() + shipInfo.AttributesHeight());
-
 		SpriteShader::Draw(background, spriteCenter);
+
+		const Sprite *shipSprite = selectedShip->GetSprite();
 		if(shipSprite)
-			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
+		{
+			const float spriteScale = min(1.f, (INFOBAR_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()));
+			const Swizzle *swizzle = selectedShip->CustomSwizzle()
+				? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+			DrawThumbnail(*selectedShip, true, spriteCenter, spriteScale, swizzle);
+		}
 
-		shipInfo.DrawAttributes(attrPoint);
-		shipInfo.DrawOutfits(outfPoint);
+		const bool hasDescription = shipInfo.DescriptionHeight();
 
-		heightOffset = outfPoint.Y() + shipInfo.OutfitsHeight();
+		double descriptionOffset = hasDescription ? 40. : 0.;
+
+		if(hasDescription)
+		{
+			if(!collapsed.contains(DESCRIPTION))
+			{
+				descriptionOffset = shipInfo.DescriptionHeight();
+				shipInfo.DrawDescription(startPoint);
+			}
+			else
+			{
+				const Color &dim = *GameData::Colors().Get("medium");
+				font.Draw(DESCRIPTION, startPoint + Point(35., 12.), dim);
+				const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+				SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
+			}
+
+			// Calculate the ClickZone for the description and add it.
+			const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
+			const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
+			const ClickZone<string> collapseDescription = ClickZone<string>(
+				descriptionCenter, descriptionDimensions, DESCRIPTION);
+			categoryZones.emplace_back(collapseDescription);
+		}
+
+		const Point attributesPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
+		const Point outfitsPoint(startPoint.X(), attributesPoint.Y() + shipInfo.AttributesHeight());
+		shipInfo.DrawAttributes(attributesPoint);
+		shipInfo.DrawOutfits(outfitsPoint);
+
+		heightOffset = outfitsPoint.Y() + shipInfo.OutfitsHeight();
 	}
 
-	// Draw this string representing the selected ship (if any), centered in the details side panel
-	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
-	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
+	// Draw this string representing the selected ship (if any), centered in the details side panel.
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
+	font.Draw({selectedItem, {INFOBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 
 	return heightOffset;
@@ -222,7 +197,140 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 
 
-bool ShipyardPanel::CanBuy(bool checkAlreadyOwned) const
+void ShipyardPanel::DrawButtons()
+{
+	// There will be two rows of buttons:
+	//  [    Buy    ] [    Sell    ] [ Sell Hull ]
+	//    Quantity [Dropdown]        [   Leave   ]
+	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
+	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
+	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2 - 1.;
+	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
+
+	// Draw the button panel (shop side panel footer).
+	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
+	const Rectangle buttonsFooter(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize);
+	FillShader::Fill(buttonsFooter, *GameData::Colors().Get("shop side panel background"));
+	FillShader::Fill(
+		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
+		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
+
+	// Set up font size and colors for the credits.
+	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+
+	// Draw the row for credits display.
+	const Point creditsPoint(
+		Screen::Right() - SIDEBAR_WIDTH + 10,
+		Screen::Bottom() - ButtonPanelHeight() + 10);
+	font.Draw("You have:", creditsPoint, dim);
+	const string credits = Format::CreditString(player.Accounts().Credits());
+	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
+
+	// Draw the row for your fleet capacity.
+	if(hasFleetCapacity)
+	{
+		const Point fleetCapPoint(
+			Screen::Right() - SIDEBAR_WIDTH + 10,
+			Screen::Bottom() - ButtonPanelHeight() + 30);
+		font.Draw("Fleet Capacity:", fleetCapPoint, dim);
+		string limit = Format::AbbreviatedNumber(player.FleetCost()) + " / "
+			+ Format::AbbreviatedNumber(player.FleetCapacity());
+		font.Draw({limit, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, fleetCapPoint, bright);
+	}
+
+	// Clear the buttonZones, they will be populated again as buttons are drawn.
+	buttonZones.clear();
+
+	// Row 1
+	DrawButton("_Buy",
+		Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0), buttonSize),
+		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b', 'b');
+	DrawButton("_Sell",
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), buttonSize),
+		static_cast<bool>(playerShips.size()), hoverButton == 's', 's');
+	DrawButton("Sell H_ull",
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), buttonSize),
+		static_cast<bool>(playerShips.size()), hoverButton == 'r', 'r');
+	// Row 2
+	DrawButton("_Leave",
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
+		true, hoverButton == 'l', 'l');
+
+	font.Draw("Quantity:", Screen::BottomRight() - Point(SIDEBAR_WIDTH - 10, 33), dim);
+
+	const Point sqCenter = Screen::BottomRight() - Point(135, 25);
+	selectedQuantity->SetPosition(Rectangle(sqCenter, {86, 20}));
+
+	// Draw tooltips for the button being hovered over:
+	string tooltip = GameData::Tooltip(string("shipyard: ") + hoverButton);
+	if(!tooltip.empty())
+	{
+		buttonsTooltip.IncrementCount();
+		if(buttonsTooltip.ShouldDraw())
+		{
+			buttonsTooltip.SetZone(buttonsFooter);
+			buttonsTooltip.SetText(tooltip);
+			buttonsTooltip.Draw();
+		}
+	}
+	else
+		buttonsTooltip.DecrementCount();
+
+	// Draw the tooltip for your full number of credits.
+	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint,
+		Point(SIDEBAR_WIDTH - 20, 15 + 20 * hasFleetCapacity));
+	if(creditsBox.Contains(hoverPoint))
+	{
+		creditsTooltip.IncrementCount();
+		if(creditsTooltip.ShouldDraw())
+		{
+			creditsTooltip.SetZone(creditsBox);
+			string tooltipText = Format::CreditString(player.Accounts().Credits(), false);
+			if(hasFleetCapacity)
+				tooltipText += '\n' + Format::Number(player.FleetCost()) + " out of "
+					+ Format::Number(player.FleetCapacity()) + " fleet capacity utilized";
+			creditsTooltip.SetText(tooltipText);
+			creditsTooltip.Draw();
+		}
+	}
+	else
+		creditsTooltip.DecrementCount();
+}
+
+
+
+ShopPanel::TransactionResult ShipyardPanel::HandleShortcuts(SDL_Keycode key)
+{
+	TransactionResult result = false;
+	if(key == 'b')
+	{
+		// Buy up to <modifier> ships.
+		result = CanDoBuyButton();
+		if(result)
+			DoBuyButton();
+	}
+	else if(key == 's')
+	{
+		// Sell selected ships and outfits.
+		if(playerShip)
+			Sell(false);
+	}
+	else if(key == 'r' || key == 'u')
+	{
+		// Sell selected ships and move outfits to Storage.
+		if(playerShip)
+			Sell(true);
+	}
+
+	return result;
+}
+
+
+
+ShopPanel::TransactionResult ShipyardPanel::CanDoBuyButton() const
 {
 	if(!selectedShip)
 		return false;
@@ -232,95 +340,96 @@ bool ShipyardPanel::CanBuy(bool checkAlreadyOwned) const
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
-		return false;
-	cost += licenseCost;
+		return "Buying this ship requires a special license. "
+			"You will probably need to complete some sort of mission to get one.";
 
-	return (player.Accounts().Credits() >= cost);
+	// Check if the player can't pay.
+	cost += licenseCost;
+	if(player.Accounts().Credits() < cost)
+	{
+		// Check if ships could be sold to pay for the new ship.
+		for(const auto &it : player.Ships())
+			cost -= player.FleetDepreciation().Value(*it, day);
+
+		if(player.Accounts().Credits() >= cost)
+		{
+			string ship = (player.Ships().size() == 1) ? "your current ship" : "some of your ships";
+			return "You do not have enough credits to buy this ship. "
+				"If you want to buy it, you must sell " + ship + " first.";
+		}
+
+		// Check if the license cost is the tipping point.
+		if(player.Accounts().Credits() >= cost - licenseCost)
+			return "You do not have enough credits to buy this ship, "
+				"because it will cost you an extra " + Format::AbbreviatedNumber(licenseCost) +
+				" credits to buy the necessary licenses. "
+				"Consider checking if the bank will offer you a loan.";
+
+		return "You do not have enough credits to buy this ship. "
+				"Consider checking if the bank will offer you a loan.";
+	}
+	return true;
 }
 
 
 
-void ShipyardPanel::Buy(bool alreadyOwned)
+void ShipyardPanel::DoBuyButton()
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
 		return;
 
-	modifier = Modifier();
+	const string &quantity = selectedQuantity->Text();
+	modifier = quantity.empty() ? 1 : stoi(quantity);
 	string message;
 	if(licenseCost)
-		message = "Note: you will need to pay " + Format::Credits(licenseCost)
-			+ " credits for the licenses required to operate this ship, in addition to its cost."
+		message = "Note: you will need to pay " + Format::CreditString(licenseCost)
+			+ " for the licenses required to operate this ship, in addition to its cost."
 			" If that is okay with you, go ahead and enter a name for your brand new ";
 	else
 		message = "Enter a name for your brand new ";
 
 	if(modifier == 1)
-		message += selectedShip->ModelName() + "! (Or leave it blank to use a randomly chosen name.)";
+		message += selectedShip->DisplayModelName() + "! (Or leave it blank to use a randomly chosen name.)";
 	else
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
-	GetUI()->Push(new NameDialog(this, &ShipyardPanel::BuyShip, message));
+	GetUI().Push(ShipNameDialogPanel::Create(
+			DialogPanel::FunctionButton(this, "Buy", 'b', &ShipyardPanel::BuyShip),
+			message));
 }
 
 
 
-void ShipyardPanel::FailBuy() const
-{
-	if(!selectedShip)
-		return;
-
-	int64_t cost = player.StockDepreciation().Value(*selectedShip, day);
-
-	// Check that the player has any necessary licenses.
-	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
-	if(licenseCost < 0)
-	{
-		GetUI()->Push(new Dialog("Buying this ship requires a special license. "
-			"You will probably need to complete some sort of mission to get one."));
-		return;
-	}
-
-	cost += licenseCost;
-	if(player.Accounts().Credits() < cost)
-	{
-		for(const auto &it : player.Ships())
-			cost -= player.FleetDepreciation().Value(*it, day);
-		if(player.Accounts().Credits() < cost)
-			GetUI()->Push(new Dialog("You do not have enough credits to buy this ship. "
-				"Consider checking if the bank will offer you a loan."));
-		else
-		{
-			string ship = (player.Ships().size() == 1) ? "your current ship" : "one of your ships";
-			GetUI()->Push(new Dialog("You do not have enough credits to buy this ship. "
-				"If you want to buy it, you must sell " + ship + " first."));
-		}
-		return;
-	}
-}
-
-
-
-bool ShipyardPanel::CanSell(bool toStorage) const
-{
-	return playerShip;
-}
-
-
-
-void ShipyardPanel::Sell(bool toStorage)
+void ShipyardPanel::Sell(bool storeOutfits)
 {
 	static const int MAX_LIST = 20;
 
 	int count = playerShips.size();
 	int initialCount = count;
-	string message = "Sell the ";
+	string message;
+
+	if(storeOutfits && !planet->HasOutfitter())
+	{
+		message = "WARNING: This planet has no Outfitter. "
+			"There is no way to retain the outfits in storage.\n";
+		storeOutfits = false;
+	}
+	// Never allow keeping outfits where they cannot be retrieved.
+	// TODO: Consider how to keep outfits in Cargo in the future.
+
+	if(!storeOutfits)
+		message += "Sell the ";
+	else if(count == 1)
+		message = "Sell the hull of the ";
+	else
+		message = "Sell the hulls of the ";
 	if(count == 1)
-		message += playerShip->Name();
+		message += playerShip->GivenName();
 	else if(count <= MAX_LIST)
 	{
 		auto it = playerShips.begin();
-		message += (*it++)->Name();
+		message += (*it++)->GivenName();
 		--count;
 
 		if(count == 1)
@@ -328,17 +437,17 @@ void ShipyardPanel::Sell(bool toStorage)
 		else
 		{
 			while(count-- > 1)
-				message += ",\n" + (*it++)->Name();
+				message += ",\n" + (*it++)->GivenName();
 			message += ",\nand ";
 		}
-		message += (*it)->Name();
+		message += (*it)->GivenName();
 	}
 	else
 	{
 		auto it = playerShips.begin();
-		message += (*it++)->Name() + ",\n";
+		message += (*it++)->GivenName() + ",\n";
 		for(int i = 1; i < MAX_LIST - 1; ++i)
-			message += (*it++)->Name() + ",\n";
+			message += (*it++)->GivenName() + ",\n";
 
 		message += "and " + to_string(count - (MAX_LIST - 1)) + " other ships";
 	}
@@ -347,30 +456,30 @@ void ShipyardPanel::Sell(bool toStorage)
 	vector<shared_ptr<Ship>> toSell;
 	for(const auto &it : playerShips)
 		toSell.push_back(it->shared_from_this());
-	int64_t total = player.FleetDepreciation().Value(toSell, day);
+	int64_t total = player.FleetDepreciation().Value(toSell, day, storeOutfits);
 
-	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Credits(total) + " credits?";
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, Truncate::MIDDLE));
+	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
+
+	if(storeOutfits)
+	{
+		message += " Any outfits will be placed in storage.";
+		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
+	}
+	else
+		GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
 }
 
 
 
-bool ShipyardPanel::CanSellMultiple() const
-{
-	return false;
-}
-
-
-
-void ShipyardPanel::BuyShip(const string &name)
+bool ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedShip->Attributes().Licenses())
-			if(player.GetCondition("license: " + licenseName) <= 0)
-				player.Conditions()["license: " + licenseName] = true;
+			if(!player.HasLicense(licenseName))
+				player.AddLicense(licenseName);
 	}
 
 	for(int i = 1; i <= modifier; ++i)
@@ -383,20 +492,39 @@ void ShipyardPanel::BuyShip(const string &name)
 		else if(modifier > 1)
 			shipName += " " + to_string(i);
 
-		player.BuyShip(selectedShip, shipName);
+		if(!player.BuyShip(selectedShip, shipName))
+			break;
 	}
 
 	playerShip = &*player.Ships().back();
 	playerShips.clear();
 	playerShips.insert(playerShip);
+	CheckSelection();
+
+	// Close the dialog.
+	return true;
 }
 
 
 
-void ShipyardPanel::SellShip()
+void ShipyardPanel::SellShipAndOutfits()
+{
+	SellShip(false);
+}
+
+
+
+void ShipyardPanel::SellShipChassis()
+{
+	SellShip(true);
+}
+
+
+
+void ShipyardPanel::SellShip(bool storeOutfits)
 {
 	for(Ship *ship : playerShips)
-		player.SellShip(ship);
+		player.SellShip(ship, storeOutfits);
 	playerShips.clear();
 	playerShip = nullptr;
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -407,5 +535,26 @@ void ShipyardPanel::SellShip()
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
-	player.UpdateCargoCapacities();
+}
+
+
+
+int ShipyardPanel::FindItem(const string &text) const
+{
+	int bestIndex = 9999;
+	int bestItem = -1;
+	auto it = zones.begin();
+	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
+	{
+		const Ship *ship = it->GetShip();
+		int index = Format::Search(ship->DisplayModelName(), text);
+		if(index >= 0 && index < bestIndex)
+		{
+			bestIndex = index;
+			bestItem = i;
+			if(!index)
+				return i;
+		}
+	}
+	return bestItem;
 }

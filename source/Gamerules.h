@@ -1,0 +1,198 @@
+/* Gamerules.h
+Copyright (c) 2022 by Amazinite
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+#pragma once
+
+#include <map>
+#include <optional>
+#include <string>
+
+class DataNode;
+class DataWriter;
+class Sprite;
+
+
+
+// Gamerules contains a list of constants and booleans that define game behavior,
+// for example, the spawnrate of person ships or whether universal ramscoops are active.
+class Gamerules {
+public:
+	// Defines which disabled fighters can dodge stray projectiles.
+	enum class FighterDodgePolicy {
+		NONE = 0,
+		ONLY_PLAYER = 1,
+		ALL = 2,
+	};
+
+	// Defines how big the player's active fleet can get.
+	// If the player's fleet size is limited, the flagship does not count toward the limit.
+	enum class FleetSizeLimitation {
+		// No limit on how many ships the player can own.
+		NONE = 0,
+		// The player can only have a set number of ships active at once.
+		// Carried ships do not contribute to this limit.
+		SHIP_CAP = 1,
+		// The player can only command up to this many crew at once.
+		// Only the base required crew of ships is taken into account.
+		// Crew equivalent is used where present, such as on automata.
+		CREW_CAP = 2,
+		// The player has an "administration capacity" that limits how many ships
+		// they can have active, with bigger ships having a higher administrative cost.
+		ADMIN_CAP = 3,
+	};
+
+	// Whether permadeath is active and how it should behave.
+	enum class PermadeathMode {
+		// Permadeath is off.
+		OFF = 0,
+		// Your pilot gets locked when you die. Locked pilots can't have their save files loaded.
+		LOCK_ON_DEATH = 1,
+		// Your pilot gets completely deleted when you die.
+		DELETE_ON_DEATH = 2,
+		// Your pilot gets locked the moment you take off from a planet.
+		LOCK_ON_TAKEOFF = 3,
+		// Your pilot gets completely deleted the moment you take off from a planet.
+		DELETE_ON_TAKEOFF = 4,
+	};
+
+
+public:
+	Gamerules() = default;
+
+	// Load a gamerules node.
+	void Load(const DataNode &node);
+	// Save these gamerules by saving the name and any individual values that differ from the original preset.
+	// By saving only the difference, newly added gamerules or modified default gamerules will be applied to
+	// existing save files, but any customizations that a player made to their gamerules will remain.
+	void Save(DataWriter &out, const Gamerules &preset) const;
+
+	// Replace the name and all the rule values with those of the given gamerules.
+	void Replace(const Gamerules &rules);
+	// Reset a particular value to the value used by the preset.
+	void Reset(const std::string &rule, const Gamerules &preset);
+
+	const std::string &Name() const;
+	const std::string &Description() const;
+	const Sprite *Thumbnail() const;
+
+	void SetLockGamerules(bool value);
+	void SetUniversalRamscoopActive(bool value);
+	void SetPersonSpawnPeriod(int value);
+	void SetNoPersonSpawnWeight(int value);
+	void SetNPCMaxMiningTime(int value);
+	void SetUniversalFrugalThreshold(double value);
+	void SetDepreciationMin(double value);
+	void SetDepreciationDaily(double value);
+	void SetDepreciationGracePeriod(int value);
+	void SetDepreciationMaxAge(int value);
+	void SetFighterDodgePolicy(FighterDodgePolicy value);
+	void SetSystemDepartureMin(double value);
+	void SetSystemArrivalMin(std::optional<double> value);
+	void SetHabitableBasedArrivalDistance(bool value);
+	void SetHabitableArrivalMin(std::optional<double> value);
+	void SetHabitableArrivalMax(std::optional<double> value);
+	void SetFleetMultiplier(double value);
+	void SetSpawnRaidFleets(bool value);
+	void SetFleetSizeLimitation(FleetSizeLimitation value);
+	void SetDefaultMaxEscortCount(int value);
+	void SetDefaultMaxEscortCrew(int value);
+	void SetDefaultAdminCap(int value);
+	void SetPermadeathMode(PermadeathMode permadeathMode);
+	void SetSingleSaveFile(bool value);
+	void SetRestrictedSaveLoading(bool value);
+	void SetMiscValue(const std::string &rule, int value);
+
+	int GetValue(const std::string &rule) const;
+
+	bool LockGamerules() const;
+	bool UniversalRamscoopActive() const;
+	int PersonSpawnPeriod() const;
+	int NoPersonSpawnWeight() const;
+	int NPCMaxMiningTime() const;
+	double UniversalFrugalThreshold() const;
+	double DepreciationMin() const;
+	double DepreciationDaily() const;
+	int DepreciationGracePeriod() const;
+	int DepreciationMaxAge() const;
+	FighterDodgePolicy FightersHitWhenDisabled() const;
+	double SystemDepartureMin() const;
+	std::optional<double> SystemArrivalMin() const;
+	bool HabitableBasedArrivalDistance() const;
+	std::optional<double> HabitableArrivalMin() const;
+	std::optional<double> HabitableArrivalMax() const;
+	double FleetMultiplier() const;
+	bool SpawnRaidFleets() const;
+	FleetSizeLimitation GetFleetSizeLimitation() const;
+	int GetDefaultMaxEscortCount() const;
+	int GetDefaultMaxEscortCrew() const;
+	int GetDefaultAdminCap() const;
+	PermadeathMode GetPermadeathMode() const;
+	bool SingleSaveFile() const;
+	bool RestrictedSaveLoading() const;
+
+	bool operator==(const Gamerules &other) const;
+
+
+private:
+	// Rule values are stored in this Storage class for easy replacement
+	// and comparison via the default equality operator.
+	class Storage {
+	public:
+		bool operator==(const Storage &other) const = default;
+
+	public:
+		bool lockGamerules = true;
+		bool universalRamscoop = true;
+		int personSpawnPeriod = 36000;
+		int noPersonSpawnWeight = 1000;
+		int npcMaxMiningTime = 3600;
+		double universalFrugalThreshold = .75;
+		double depreciationMin = .25;
+		double depreciationDaily = .997;
+		int depreciationGracePeriod = 7;
+		int depreciationMaxAge = 1000;
+		FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
+		double systemDepartureMin = 0.;
+		std::optional<double> systemArrivalMin;
+		bool habitableBasedArrivalDistance = true;
+		std::optional<double> habitableArrivalMin = 500.;
+		std::optional<double> habitableArrivalMax = 5000.;
+		double fleetMultiplier = 1.;
+		bool spawnRaidFleets = true;
+		FleetSizeLimitation fleetSizeLimitation = FleetSizeLimitation::NONE;
+		// The player can only have up to this many escorts active at once. Carried ships are excluded.
+		// This value can be increased for a pilot through gameplay.
+		int defaultMaxEscortCount = 6;
+		// The player can only have escorts whose total base required crew (+ crew equivalent) is less than this value.
+		// This value can be increased for a pilot through gameplay.
+		int defaultMaxEscortCrew = 1000;
+		// The administrative capacity of the player's fleet. Different ships will have different admin costs.
+		// This value can be increased for a pilot through gameplay.
+		int defaultAdminCap = 25;
+		PermadeathMode permadeathMode = PermadeathMode::OFF;
+		bool singleSaveFile = false;
+		bool restrictedSaveLoading = false;
+
+		// Miscellaneous rules that are only used by the game data and not by the engine.
+		std::map<std::string, int> miscRules;
+	};
+
+
+private:
+	std::string name;
+	std::string description;
+	const Sprite *thumbnail = nullptr;
+	Storage storage;
+};

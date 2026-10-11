@@ -8,7 +8,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "StartConditionsPanel.h"
@@ -16,24 +19,29 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
+#include "GamerulesPanel.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
 #include "MainPanel.h"
-#include "PlayerInfo.h"
+#include "PilotProfile.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
+#include "Ship.h"
 #include "ShipyardPanel.h"
-#include "StarField.h"
+#include "Shop.h"
+#include "image/SpriteLoadManager.h"
+#include "shader/StarField.h"
 #include "StartConditions.h"
 #include "System.h"
-#include "text/truncate.hpp"
+#include "TaskQueue.h"
+#include "TextArea.h"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -42,12 +50,22 @@ using namespace std;
 
 
 
-StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const StartConditionsList &scenarios, const Panel *parent)
-	: player(player), gamePanels(gamePanels), parent(parent), scenarios(scenarios), startIt(scenarios.begin()),
+StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
+	const StartConditionsList &allScenarios, const Panel *parent)
+	: player(player), gamePanels(gamePanels), parent(parent), gamerules(GameData::DefaultGamerules()),
 	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
-	selectedBackground(*GameData::Colors().Get("faint")),
-	description(FontSet::Get(14))
+	selectedBackground(*GameData::Colors().Get("faint"))
 {
+	// Extract from all start scenarios those that are visible to the player.
+	for(const auto &scenario : allScenarios)
+		if(scenario.Visible())
+		{
+			scenarios.emplace_back(scenario);
+			scenarios.back().SetState();
+		}
+
+	startIt = scenarios.begin();
+
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
 	if(startConditionsMenu)
 	{
@@ -67,9 +85,22 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, c
 	for(size_t i = 0; i < startCount; ++i)
 		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), scenarios.begin() + i);
 
-	description.SetWrapWidth(descriptionBox.Width());
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
+	description->SetColor(*GameData::Colors().Get("medium"));
+	description->SetAlignment(Preferences::GetTextAlignment());
+	description->SetRect(descriptionBox);
+	description->SetScrollbarOffset(10);
+	description->SetPointerOffset(10);
+	AddChild(description);
 
 	Select(startIt);
+
+	TaskQueue queue;
+	for(const StartConditions &scenario : scenarios)
+		SpriteLoadManager::LoadDeferred(queue, scenario.GetThumbnail());
+	queue.Wait();
+	queue.ProcessSyncTasks();
 }
 
 
@@ -77,7 +108,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, c
 void StartConditionsPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	GameData::Interfaces().Get("start conditions menu")->Draw(info, this);
@@ -106,14 +137,11 @@ void StartConditionsPanel::Draw()
 
 		bool isHighlighted = it == startIt || (hasHover && zone.Contains(hoverPoint));
 		if(it == startIt)
-			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground.Additive(opacity));
+			FillShader::Fill(zone, selectedBackground.Additive(opacity));
 
 		const auto name = DisplayText(it->GetDisplayName(), Truncate::BACK);
 		font.Draw(name, pos + entryTextPadding, (isHighlighted ? bright : medium).Transparent(opacity));
 	}
-
-	// TODO: Prevent lengthy descriptions from overflowing.
-	description.Draw(descriptionBox.TopLeft(), bright);
 }
 
 
@@ -121,7 +149,9 @@ void StartConditionsPanel::Draw()
 bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
 {
 	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
+	else if(key == 'g')
+		GetUI().Push(new GamerulesPanel(gamerules, false));
 	else if(!scenarios.empty() && (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
 	{
 		// Move up / down an entry, or a page. If at the bottom / top, wrap around.
@@ -144,27 +174,34 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 
 		Select(startIt);
 	}
-	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN))
+	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN)
+		&& info.HasCondition("unlocked start"))
 	{
-		player.New(*startIt);
+		shared_ptr<PilotProfile> pilot = PilotProfile::NewProfile();
+		pilot->New(gamerules);
+		player.New(*startIt, pilot);
 
-		ConversationPanel *panel = new ConversationPanel(
-			player, startIt->GetConversation());
-		GetUI()->Push(panel);
+		ConversationPanel *panel = new ConversationPanel(player, *startIt->GetConversation());
+		GetUI().Push(panel);
 		panel->SetCallback(this, &StartConditionsPanel::OnConversationEnd);
+		return true;
 	}
 	else
 		return false;
 
+	UI::PlaySound(UI::UISound::NORMAL);
 	return true;
 }
 
 
 
-bool StartConditionsPanel::Click(int x, int y, int /* clicks */)
+bool StartConditionsPanel::Click(int x, int y, MouseButton button, int /* clicks */)
 {
 	// When the user clicks, clear the hovered state.
 	hasHover = false;
+
+	if(button != MouseButton::LEFT)
+		return false;
 
 	// Only clicks within the list of scenarios should have an effect.
 	if(!entriesContainer.Contains(Point(x, y)))
@@ -175,6 +212,7 @@ bool StartConditionsPanel::Click(int x, int y, int /* clicks */)
 		{
 			if(startIt != it.Value())
 				Select(it.Value());
+			UI::PlaySound(UI::UISound::NORMAL);
 			return true;
 		}
 
@@ -198,12 +236,6 @@ bool StartConditionsPanel::Drag(double /* dx */, double dy)
 	{
 		entriesScroll = max(0., min(entriesScroll - dy,
 			scenarios.size() * entryBox.Height() - entriesContainer.Height()));
-	}
-	else if(descriptionBox.Contains(hoverPoint))
-	{
-		descriptionScroll = 0.;
-		// TODO: When #4123 gets merged, re-add scrolling support to the description.
-		// Right now it's pointless because it would make the text overflow.
 	}
 	else
 		return false;
@@ -231,14 +263,17 @@ void StartConditionsPanel::OnConversationEnd(int)
 	// If the starting conditions don't specify any ships, let the player buy one.
 	if(player.Ships().empty())
 	{
-		gamePanels.Push(new ShipyardPanel(player));
+		Sale<Ship> shipyardStock;
+		for(const Shop<Ship> *shop : player.GetPlanet()->Shipyards())
+			shipyardStock.Add(shop->Stock());
+		gamePanels.Push(new ShipyardPanel(player, shipyardStock));
 		gamePanels.StepAll();
 	}
 	if(parent)
-		GetUI()->Pop(parent);
+		GetUI().Pop(parent);
 
-	GetUI()->Pop(GetUI()->Root().get());
-	GetUI()->Pop(this);
+	GetUI().Pop(GetUI().Root().get());
+	GetUI().Pop(this);
 }
 
 
@@ -278,34 +313,37 @@ void StartConditionsPanel::ScrollToSelected()
 
 
 // Update the UI to reflect the given starting scenario.
-void StartConditionsPanel::Select(StartConditionsList::const_iterator it)
+void StartConditionsPanel::Select(StartConditionsList::iterator it)
 {
+	// Clear the displayed information.
+	info = Information();
+
 	startIt = it;
 	if(startIt == scenarios.end())
 	{
 		// The only time we should be here is if there are no scenarios at all.
-		// Just in case that's not true, clear out the displayed information.
-		info = Information();
-		description.Wrap("No valid starting scenarios were defined!\n\n"
+		description->SetText("No valid starting scenarios were defined!\n\n"
 			"Make sure you installed Endless Sky (and any plugins) properly.");
 		return;
 	}
 
+
 	// Update the information summary.
 	info.SetCondition("chosen start");
+	if(startIt->IsUnlocked())
+		info.SetCondition("unlocked start");
 	if(startIt->GetThumbnail())
 		info.SetSprite("thumbnail", startIt->GetThumbnail());
 	info.SetString("name", startIt->GetDisplayName());
 	info.SetString("description", startIt->GetDescription());
-	info.SetString("planet", startIt->GetPlanet().Name());
-	info.SetString("system", startIt->GetSystem().Name());
-	info.SetString("date", startIt->GetDate().ToString());
-	info.SetString("credits", Format::Credits(startIt->GetAccounts().Credits()));
-	info.SetString("debt", Format::Credits(startIt->GetAccounts().TotalDebt()));
+	info.SetString("planet", startIt->GetPlanetName());
+	info.SetString("system", startIt->GetSystemName());
+	info.SetString("date", startIt->GetDateString());
+	info.SetString("credits", startIt->GetCredits());
+	info.SetString("debt", startIt->GetDebt());
 
 	// Update the displayed description text.
-	descriptionScroll = 0;
-	description.Wrap(startIt->GetDescription());
+	description->SetText(startIt->GetDescription());
 
 	// Scroll the selected scenario into view.
 	ScrollToSelected();
