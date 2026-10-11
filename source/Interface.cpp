@@ -71,12 +71,6 @@ void Interface::Load(const DataNode &node)
 	// Skip unnamed interfaces.
 	if(node.Size() < 2)
 		return;
-	// Re-loading an interface always clears the previous interface, rather than
-	// appending new elements to the end of it.
-	elements.clear();
-	points.clear();
-	values.clear();
-	lists.clear();
 
 	// First, figure out the anchor point of this interface.
 	Point anchor = ParseAlignment(node, 2);
