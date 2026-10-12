@@ -157,7 +157,9 @@ protected:
 
 
 protected:
-	Point hoverPoint;
+	// Initialize mouse point to something off-screen to not
+	// make the game think the player is hovering on something.
+	Point hoverPoint = Point(-10000., -10000.);
 
 
 private:
