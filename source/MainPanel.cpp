@@ -263,7 +263,7 @@ bool MainPanel::Click(int x, int y, MouseButton button, int clicks)
 	hasShift = (mod & KMOD_SHIFT);
 	hasControl = (mod & KMOD_CTRL);
 
-	engine.Click(dragSource, dragSource, hasShift, hasControl);
+	engine.Click(dragSource, dragSource, hasShift, hasControl, clicks);
 
 	return true;
 }

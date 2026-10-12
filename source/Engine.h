@@ -96,7 +96,8 @@ public:
 	void Draw() const;
 
 	// Select the object the player clicked on.
-	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl);
+	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl,
+		std::optional<int> clicks = std::nullopt);
 	void RightOrMiddleClick(const Point &point, MouseButton button);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 
@@ -325,6 +326,7 @@ private:
 	bool hasShift = false;
 	bool hasControl = false;
 	MouseButton mouseButton = MouseButton::NONE;
+	int numClicks = 0;
 	bool isRadarClick = false;
 	Point clickPoint;
 	Rectangle uiClickBox;

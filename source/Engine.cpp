@@ -1360,13 +1360,15 @@ void Engine::Draw() const
 
 
 // Select the object the player clicked on.
-void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasControl)
+void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasControl, optional<int> clicks)
 {
 	// First, see if this is a click on an escort icon.
 	doClickNextStep = true;
 	this->hasShift = hasShift;
 	this->hasControl = hasControl;
 	mouseButton = MouseButton::LEFT;
+	if(clicks.has_value())
+		numClicks = *clicks;
 
 	// Determine if the left-click was within the radar display.
 	const Interface *hud = GameData::Interfaces().Get("hud");
@@ -2378,7 +2380,8 @@ void Engine::HandleMouseClicks()
 	{
 		// Setting the target ship also resets the target asteroid.
 		flagship->SetTargetShip(nullptr);
-		flagship->SetTargetStellar(nullptr);
+		if(numClicks > 1)
+			flagship->SetTargetStellar(nullptr);
 		player.ClearSelectedEscorts();
 	}
 }
