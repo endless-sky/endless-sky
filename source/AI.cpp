@@ -4151,8 +4151,8 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		if(weapon->Icon() && (!secondary || (includeSecondaries
 				&& !includeSecondaries->contains(hardpoint.GetOutfit()))))
 			return false;
-		// Don't expend ammo if trying to be frugal.
-		if(beFrugal && ammo)
+		// Don't expend ammo or fuel if trying to be frugal.
+		if(beFrugal && (ammo || weapon->FiringFuel() > 0.))
 			return false;
 		// No point in sending a firing command to weapons without ammo.
 		if(ammo && ship.OutfitCount(ammo) < weapon->AmmoUsage())
