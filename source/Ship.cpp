@@ -2190,14 +2190,18 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 			if(effect.side != side || !(effect.activity & state) || effect.tick)
 				continue;
 
+			vector<Visual> &visualsRef = visuals->get();
 			for(int i = 0; i < effect.amount; ++i)
-				visuals->get().emplace_back(*effect.effect,
+			{
+				visualsRef.emplace_back(*effect.effect,
 					pos + zoom * facing.Rotate(effect.position),
 					isUi ? Point(0., 0.) : Velocity(),
 					facing + effect.angle,
 					Point(),
 					1.,
 					zoom);
+				visualsRef.back().AddFrameOffset(effect.delay);
+			}
 		}
 	};
 	auto drawSparks = [&, this](Ship::PlacementSide side) -> void
@@ -2208,7 +2212,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 		{
 			if(spark.side != side || !(spark.activity & state) || spark.tick)
 				continue;
-			CreateSparks(*visuals, spark.effect, spark.amount);
+			CreateSparks(*visuals, spark.effect, spark.amount, spark.delay);
 		}
 	};
 	auto drawEngineFlares = [&, this](uint8_t where)
@@ -2257,6 +2261,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 			isUi ? Point(0., 0.) : Velocity(),
 			facing + decor.angle,
 			zoom);
+		body.AddFrameOffset(decor.delay);
 		if(body.InheritsParentSwizzle())
 			body.SetSwizzle(GetSwizzle());
 		drawObject(body);
@@ -2265,12 +2270,13 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	{
 		if(isUi || isDocked)
 			return;
+		vector<Visual> &visualsRef = visuals->get();
 		for(const Ship::Leak &leak : activeLeaks)
 		{
 			// Leaks always "flicker" every other frame.
 			if(!Random::Int(2))
 				return;
-			visuals->get().emplace_back(*leak.effect,
+			visualsRef.emplace_back(*leak.effect,
 				pos + zoom * facing.Rotate(leak.location),
 				isUi ? Point(0., 0.) : Velocity(),
 				facing + leak.angle,
