@@ -4105,7 +4105,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		}
 	}
 	// Frugal NPCs that lack any weapons that can be fired while frugal should ignore their frugal behavior.
-	if(beFrugal && !isPlayerEscort)
+	if(beFrugal && !ship.IsYours())
 	{
 		bool hasUsableWeapon = false;
 		for(const Hardpoint &hardpoint : ship.Weapons())
