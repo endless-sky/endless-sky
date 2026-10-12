@@ -4103,6 +4103,22 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 				beFrugal = false;
 		}
 	}
+	// Frugal NPCs that lack any weapons that can be fired while frugal should ignore their frugal behavior.
+	if(beFrugal && !isPlayerEscort)
+	{
+		bool hasUsableWeapon = false;
+		for(const Hardpoint &hardpoint : ship.Weapons())
+		{
+			const Weapon *weapon = hardpoint.GetWeapon();
+			if(weapon && !hardpoint.IsSpecial() && !weapon->Ammo() && weapon->FiringFuel() <= 0.)
+			{
+				hasUsableWeapon = true;
+				break;
+			}
+		}
+		if(!hasUsableWeapon)
+			beFrugal = false;
+	}
 
 	// Special case: your target is not your enemy. Do not fire, because you do
 	// not want to risk damaging that target. Ships will target friendly ships
@@ -4140,7 +4156,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 
 	auto CanUse = [&](const Hardpoint &hardpoint) -> bool {
 		const Weapon *weapon = hardpoint.GetWeapon();
-		if(!weapon)
+		if(!weapon || hardpoint.IsSpecial())
 			return false;
 		const Outfit *ammo = weapon->Ammo();
 		// Don't expend ammo for homing weapons that have no target selected.
