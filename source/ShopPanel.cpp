@@ -638,8 +638,8 @@ bool ShopPanel::Hover(int x, int y)
 	}
 	else
 	{
-		shipInfo.Hover(hoverPoint);
-		outfitInfo.Hover(hoverPoint);
+		shipInfo.Hover();
+		outfitInfo.Hover();
 	}
 
 	activePane = ShopPane::Main;

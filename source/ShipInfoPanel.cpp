@@ -334,7 +334,7 @@ bool ShipInfoPanel::Click(int x, int y, MouseButton button, int /* clicks */)
 
 bool ShipInfoPanel::Hover(int x, int y)
 {
-	info.Hover(hoverPoint);
+	info.Hover();
 	return Hover();
 }
 
