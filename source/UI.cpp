@@ -28,6 +28,15 @@ using namespace std;
 
 
 
+void UI::SetHoverPoint()
+{
+	Point hoverPoint = GetMouse();
+	for(shared_ptr<Panel> &panel : stack)
+		panel->SetHoverPoint(hoverPoint);
+}
+
+
+
 // Handle an event. The event is handed to each panel on the stack until one
 // of them handles it. If none do, this returns false.
 bool UI::Handle(const SDL_Event &event)

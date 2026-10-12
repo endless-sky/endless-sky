@@ -629,7 +629,6 @@ bool ShopPanel::Hover(int x, int y)
 	infobarScrollbar.Hover(x, y);
 	sidebarScrollbar.Hover(x, y);
 
-	hoverPoint = Point(x, y);
 	// Check that the point is not in the button area.
 	hoverButton = CheckButton(x, y);
 	if(hoverButton)
@@ -828,7 +827,6 @@ void ShopPanel::DrawShipsSidebar()
 
 	// Check whether flight check tooltips should be shown.
 	const auto flightChecks = player.FlightCheck();
-	Point mouse = UI::GetMouse();
 	warningType.clear();
 	shipName.clear();
 	shipZones.clear();
@@ -861,7 +859,7 @@ void ShopPanel::DrawShipsSidebar()
 
 		shipZones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 
-		if(mouse.Y() < Screen::Bottom() - ButtonPanelHeight() && shipZones.back().Contains(mouse))
+		if(hoverPoint.Y() < Screen::Bottom() - ButtonPanelHeight() && shipZones.back().Contains(hoverPoint))
 		{
 			shipName = ship->GivenName() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
 			shipsTooltip.SetZone(shipZones.back());
@@ -873,7 +871,7 @@ void ShopPanel::DrawShipsSidebar()
 			const string &check = (*checkIt).second.front();
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
-			if(shipZones.back().Contains(mouse))
+			if(shipZones.back().Contains(hoverPoint))
 				warningType = check;
 		}
 

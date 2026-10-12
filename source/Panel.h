@@ -156,6 +156,10 @@ protected:
 	void AddOrRemove();
 
 
+protected:
+	Point hoverPoint;
+
+
 private:
 	class Zone : public Rectangle {
 	public:
@@ -187,6 +191,8 @@ private:
 
 	void DoResize();
 	void DoUpdateTextDisplay();
+
+	void SetHoverPoint(const Point &hoverPoint);
 
 	// Call a method on all the children in reverse order, and then on this
 	// object. Recursion stops as soon as any child returns true.
