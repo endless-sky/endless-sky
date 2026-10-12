@@ -4090,6 +4090,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 
 	bool isPlayerEscort = ship.IsYours() && !isFlagship;
 	bool beFrugal = (isPlayerEscort && !escortsUseAmmo);
+	bool hasFuelGeneration = ship.HasFuelGeneration();
 	if(person.IsFrugal() || (isPlayerEscort && escortsAreFrugal && escortsUseAmmo))
 	{
 		// The frugal personality is only active when ships have more than a certain fraction of their total health,
@@ -4110,7 +4111,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		for(const Hardpoint &hardpoint : ship.Weapons())
 		{
 			const Weapon *weapon = hardpoint.GetWeapon();
-			if(weapon && !hardpoint.IsSpecial() && !weapon->Ammo() && weapon->FiringFuel() <= 0.)
+			if(weapon && !hardpoint.IsSpecial() && !weapon->Ammo() && (weapon->FiringFuel() <= 0. || hasFuelGeneration))
 			{
 				hasUsableWeapon = true;
 				break;
@@ -4168,7 +4169,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 				&& !includeSecondaries->contains(hardpoint.GetOutfit()))))
 			return false;
 		// Don't expend ammo or fuel if trying to be frugal.
-		if(beFrugal && (ammo || weapon->FiringFuel() > 0.))
+		if(beFrugal && (ammo || (weapon->FiringFuel() > 0. && !hasFuelGeneration)))
 			return false;
 		// No point in sending a firing command to weapons without ammo.
 		if(ammo && ship.OutfitCount(ammo) < weapon->AmmoUsage())
