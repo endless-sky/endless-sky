@@ -46,7 +46,7 @@ public:
 	virtual void DrawAttributes(const Point &topLeft) const;
 	void DrawTooltips() const;
 
-	// Update the location where the mouse is hovering.
+	// Set or clear whether this item is being hovered over.
 	void Hover();
 	void ClearHover();
 

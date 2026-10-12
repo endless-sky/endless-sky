@@ -78,7 +78,7 @@ int ItemInfoDisplay::AttributesHeight() const
 void ItemInfoDisplay::DrawDescription(const Point &topLeft) const
 {
 	Rectangle hoverTarget = Rectangle::FromCorner(topLeft, Point(PanelWidth(), DescriptionHeight()));
-	Color color = *GameData::Colors().Get(hoverTarget.Contains(UI::GetMouse()) ? "bright" : "medium");
+	Color color = *GameData::Colors().Get(hasHover && hoverTarget.Contains(UI::GetMouse()) ? "bright" : "medium");
 	description.Draw(topLeft + Point(10., 12.), color);
 }
 
@@ -101,7 +101,6 @@ void ItemInfoDisplay::DrawTooltips() const
 
 
 
-// Update the location where the mouse is hovering.
 void ItemInfoDisplay::Hover()
 {
 	hasHover = true;
