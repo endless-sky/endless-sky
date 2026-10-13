@@ -231,7 +231,7 @@ optional<double> Outfit::LowerLimit(const string &attribute, bool isAutomaton)
 
 optional<int64_t> Outfit::LowerLimitPrecise(const string &attribute, bool isAutomaton)
 {
-	// Only automatons may have a "required crew" of 0.
+	// Only automatons may have a "required crew" of 0. Otherwise, its limit is 1.
 	if(attribute == "required crew")
 		return isAutomaton ? 0 : ATTRIBUTE_PRECISION;
 	auto it = MINIMUM_OVERRIDES.find(attribute);
