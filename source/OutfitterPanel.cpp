@@ -427,7 +427,8 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 						if(ship->OutfitCount(linked))
 							attributes.Add(*linked, -ship->OutfitCount(linked));
 					// Linked outfits are not a factor (now), check whether this ship can uninstall this outfit.
-					canSource = attributes.CanAdd(*selectedOutfit, -1);
+					auto [canAdd, failureReasons] = attributes.CanAddWithReasons(*selectedOutfit, -1);
+					canSource = canAdd;
 
 					// If we have an outfit that can be sourced, break out, otherwise return an appropriate error.
 					if(canSource)
@@ -437,21 +438,40 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 					// Create a complete summary of reasons why none of this outfit were able to be <verb>'d:
 					// Looping over each ship which has the selected outfit, identify the reasons why it cannot be
 					// <verb>'d. Make a list of ship to errors to assemble into a string afterward.
-					// TODO: when there are multiples of the same better verbiage could be used rather than restating.
-					for(const auto &[name, value] : selectedOutfit->Precise())
-						if(attributes.GetPrecise(name) <= value)
-						{
-							for(const auto &outfit : ship->Outfits() | views::keys)
-								if(outfit->GetPrecise(name) < 0)
-									errorDetails.emplace_back(string("the \"") + outfit->DisplayName() + "\" "
-										"depends on this outfit and must be uninstalled first");
-							if(errorDetails.empty())
-								errorDetails.emplace_back(
-									string("\"") + name + "\" value would be reduced to less than zero");
-						}
+					vector<string> offendingOutfits;
+					for(const auto &outfit : ship->Outfits() | views::keys)
+						for(const string &reason : failureReasons)
+							if(outfit->GetPrecise(reason) < 0)
+							{
+								offendingOutfits.push_back('"' + outfit->DisplayName() + '"');
+								break;
+							}
+					if(offendingOutfits.size() == 1)
+					{
+						errorDetails.emplace_back("the " + offendingOutfits.back() + " depends on this outfit and "
+							"must be uninstalled first");
+					}
+					else if(offendingOutfits.size() > 1)
+					{
+						errorDetails.emplace_back(Format::List(offendingOutfits) + " depend on this outfit and at "
+							"least one of them must be uninstalled first");
+					}
+					// If there is no offending outfit, then the attribute is directly on the ship.
+					else if(failureReasons.size() == 1)
+					{
+						errorDetails.emplace_back("the value of \"" + failureReasons.back() + "\" would "
+							"be reduced to less than its minimum allowed amount");
+					}
+					else
+					{
+						auto ListFunc = [](const string &reason) -> string {
+							return '"' + reason + "'";
+						};
+						errorDetails.emplace_back("the values of " + Format::List(failureReasons, ListFunc)
+							+ " would be reduced to less than its minimum allowed amount");
+					}
 
-					if(!errorDetails.empty())
-						dependentOutfitErrors.emplace_back(ship->GivenName(), std::move(errorDetails));
+					dependentOutfitErrors.emplace_back(ship->GivenName(), std::move(errorDetails));
 				}
 			}
 
@@ -636,25 +656,22 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				// Handle other attributes more generically, if none of the above are the problem.
 				if(errors.empty())
 				{
-					for(const auto &[name, value] : *selectedOutfit)
+					vector<string> reasons = playerShip->Attributes().CanAddWithReasons(*selectedOutfit, 1).second;
+					bool isAutomaton = playerShip->Attributes().GetPrecise("automaton")
+						|| selectedOutfit->GetPrecise("automaton");
+					string error = "You cannot install this outfit, because it requires:\n";
+					for(const string &reason : reasons)
 					{
-						// Positive attributes can't be the cause of attribute errors.
-						if(value >= 0.)
-							continue;
-						optional<double> minimum = Outfit::LowerLimit(name);
-						// Nor can attributes with no lower limit.
-						if(!minimum.has_value())
-							continue;
-						// If playerShip has fewer of this attribute available than required by the selectedOutfit, add
-						// this attribute to the list of deficiencies.
-						double shipAvailable = playerShip->Attributes().Get(name) - minimum.value();
-						double outfitRequires = -value;
-						if(shipAvailable < outfitRequires)
-							errors.push_back("You cannot install this outfit, because it requires "
-								+ OutfitInfoDisplay::FormatAttribute(name, outfitRequires) + " \"" + name + '"'
-								+ " and this ship has " + OutfitInfoDisplay::FormatAttribute(name, shipAvailable)
-								+ " free.");
+						// This attribute will have a lower limit, as otherwise it couldn't have been the reason
+						// the outfit couldn't be installed.
+						optional<double> minimum = Outfit::LowerLimit(reason, isAutomaton);
+						double shipAvailable = playerShip->Attributes().Get(reason) - minimum.value();
+						double outfitRequires = -selectedOutfit->Get(reason);
+						error += "\t- " + OutfitInfoDisplay::FormatAttribute(reason, outfitRequires) + " \"" + reason
+							+ "\" and this ship only has " + OutfitInfoDisplay::FormatAttribute(reason, shipAvailable)
+							+ " free";
 					}
+					errors.push_back(error);
 				}
 
 				// For unhandled outfit requirements, show a catch-all error message.
@@ -890,13 +907,15 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 					const Outfit &attributes = ship->Attributes();
 					// Iterate over the attributes of the linked outfit instead of the attributes of the ship,
 					// since an outfit can never impact attributes it doesn't have.
+					bool isAutomaton = ship->Attributes().GetPrecise("automaton")
+						|| linked->GetPrecise("automaton");
 					for(const auto &[name, linkedValue] : linked->Precise())
 					{
 						int64_t value = attributes.GetPrecise(name);
 						// Only values on the ship that are below their allowed minimum need rectified.
 						// Only attributes on this linked outfit that are negative can bring the attribute
 						// above the minimum when removed.
-						optional<int64_t> limit = Outfit::LowerLimitPrecise(name);
+						optional<int64_t> limit = Outfit::LowerLimitPrecise(name, isAutomaton);
 						if(!limit.has_value() || value >= limit.value() || linkedValue >= 0)
 							continue;
 

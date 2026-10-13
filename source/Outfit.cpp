@@ -218,9 +218,9 @@ namespace {
 
 
 
-optional<double> Outfit::LowerLimit(const string &attribute)
+optional<double> Outfit::LowerLimit(const string &attribute, bool isAutomaton)
 {
-	optional<int64_t> precise = LowerLimitPrecise(attribute);
+	optional<int64_t> precise = LowerLimitPrecise(attribute, isAutomaton);
 	if(precise.has_value())
 		return precise.value() / ATTRIBUTE_PRECISION;
 	// No minimum override means a minimum of 0.
@@ -229,8 +229,11 @@ optional<double> Outfit::LowerLimit(const string &attribute)
 
 
 
-optional<int64_t> Outfit::LowerLimitPrecise(const string &attribute)
+optional<int64_t> Outfit::LowerLimitPrecise(const string &attribute, bool isAutomaton)
 {
+	// Only automatons may have a "required crew" of 0.
+	if(attribute == "required crew")
+		return isAutomaton ? 0 : ATTRIBUTE_PRECISION;
 	auto it = MINIMUM_OVERRIDES.find(attribute);
 	if(it != MINIMUM_OVERRIDES.end())
 		return it->second;
@@ -658,26 +661,40 @@ const Dictionary<int64_t> &Outfit::Precise() const
 // not, return the maximum number that can be added.
 int Outfit::CanAdd(const Outfit &other, int count) const
 {
+	return CanAddWithReasons(other, count).first;
+}
+
+
+
+pair<int, vector<string>> Outfit::CanAddWithReasons(const Outfit &other, int count) const
+{
+	bool isAdding = count > 0;
+	vector<string> reasons;
 	for(const auto &[name, otherValue] : other.Precise())
 	{
 		// The minimum allowed value of most attributes is 0. Some attributes
 		// have special functionality when negative, though, and are therefore
 		// allowed to have values less than 0.
-		optional<int64_t> minOpt = LowerLimitPrecise(name);
+		optional<int64_t> minOpt = LowerLimitPrecise(name, GetPrecise("automaton") || other.GetPrecise("automaton"));
 		if(!minOpt.has_value())
 			continue;
 		int64_t minimum = minOpt.value();
 
-		// Only automatons may have a "required crew" of 0.
-		if(!strcmp(name, "required crew"))
-			minimum = !(GetPrecise("automaton") || other.GetPrecise("automaton"));
-
 		int64_t value = GetPrecise(name);
-		if(value + otherValue * count < minimum)
-			count = (value - minimum) / -otherValue;
+		if(count)
+		{
+			if(value + otherValue * count < minimum)
+				count = (value - minimum) / -otherValue;
+			if(!count)
+				reasons.push_back(name);
+		}
+		// Even if we know that this outfit can't be added/removed, we still check each
+		// attribute to determine if multiple attributes could be the reason why that is.
+		else if(value + otherValue * (isAdding ? 1 : -1) < minimum)
+			reasons.push_back(name);
 	}
 
-	return count;
+	return make_pair(count, reasons);
 }
 
 
