@@ -191,6 +191,10 @@ private:
 
 
 private:
+	// Determine if the click was within the radar display,
+	// if the clickable radar preference is active.
+	void LocateClick(const Point &point);
+
 	void EnterSystem();
 
 	void CalculateStep();
