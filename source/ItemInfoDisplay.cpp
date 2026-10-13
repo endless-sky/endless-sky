@@ -39,7 +39,7 @@ ItemInfoDisplay::ItemInfoDisplay()
 {
 	description.SetAlignment(Preferences::GetTextAlignment());
 	description.SetWrapWidth(WIDTH - 20);
-	description.SetFont(FontSet::Get(14));
+	description.SetFont(FontSet::Get(Preferences::GetFontSize()));
 }
 
 

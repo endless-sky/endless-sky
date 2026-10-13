@@ -32,16 +32,8 @@ class Sound;
 // game. Because this class is more heavyweight than it needs to be, actual
 // visual effects when they are placed use the Visual class, based on the
 // template provided by an Effect.
-class Effect : public Body {
+class Effect : public Drawable {
 public:
-	// Functions provided by the Body base class:
-	// Frame GetFrame(int step = -1) const;
-	// const Point &Position() const;
-	// const Point &Velocity() const;
-	// const Angle &Facing() const;
-	// Point Unit() const;
-	// double Zoom() const;
-
 	const std::string &TrueName() const;
 	void SetTrueName(const std::string &name);
 

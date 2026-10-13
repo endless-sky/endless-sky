@@ -812,10 +812,6 @@ mission "Successors: Kaatrij First Contact 1"
 					to display
 						not "Successors: kijran"
 					goto kijran
-				`	"Can you tell me more about yourself?"`
-					to display
-						has "language: Successor"
-						not "Successors: kijran"
 			label kijran
 			action
 				set "Successors: kijran"

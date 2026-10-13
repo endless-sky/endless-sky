@@ -155,6 +155,18 @@ public:
 		ALWAYS
 	};
 
+	enum class FastForwardCapsLockSync : int_fast8_t {
+		DEFAULT = 0,
+		NEVER,
+		ALWAYS
+	};
+
+	enum class TargetAsteroidStrategy : int_fast8_t {
+		PROXIMITY = 0,
+		EXPECTED_VALUE,
+		QUALITY
+	};
+
 #ifdef _WIN32
 	enum class TitleBarTheme : int_fast8_t {
 		DEFAULT,
@@ -295,10 +307,24 @@ public:
 	static AmmoRefill GetAmmoRefill();
 	static const std::string &AmmoRefillSetting();
 
-	/// Text alignment override setting.
+	/// Fast-forward CapsLock sync setting
+	static void ToggleFastForwardCapsLockSync();
+	static FastForwardCapsLockSync GetFastForwardCapsLockSync();
+	static const std::string &FastForwardCapsLockSyncSetting();
+
+	/// Text alignment setting.
 	static void ToggleTextAlignment();
 	static Alignment GetTextAlignment();
 	static const std::string &TextAlignmentSetting();
+
+	/// Target asteroid strategy setting.
+	static void ToggleTargetAsteroidStrategy();
+	static TargetAsteroidStrategy GetTargetAsteroidStrategy();
+	static const std::string &TargetAsteroidStrategySetting();
+
+	/// Font size setting.
+	static void ToggleFontSize();
+	static int GetFontSize();
 
 	static void ToggleBlockScreenSaver();
 

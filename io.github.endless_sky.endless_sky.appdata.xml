@@ -60,6 +60,55 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.11.3" date="2026-9-26" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>Breaking changes:</p>
+        <ul>
+          <li>All plugins with tractor beam outfits should divide their "tractor beam" attribute by 5 in order to have the same pull strength as before this update.</li>
+        </ul>
+        <p>Content and features:</p>
+        <ul>
+          <li>Added a new chapter of the Successors campaign, including the introduction of six new ships, a new outfit, and 57 new missions.</li>
+          <li>Added two new short mission chains to Remnant space around investigating the Ka'het, including the introduction of a new outfit to obtain.</li>
+          <li>Various improvements to the experience of having illegal outfits, including informing you if a ship you just captured has illegal outfits on board, naming the ship and the illegal outfits that resulted in a fine in the dialog that appears when you get scanned, and allowing you to jettison hand-to-hand weapons mid-flight, which includes nerve gas.</li>
+          <li>The logbook now displays the galaxy map on the ride side of the UI, and newly acquired dated log entries will record the system you were in on that date that the log entry was written.</li>
+          <li>Added a series of hardcore setting gamerules, including the addition of a permadeath mode with varying levels of severity for when and how permadeath is applied.</li>
+        </ul>
+        <p>Bug fixes:</p>
+        <ul>
+          <li>Fixed rapidly hitting the spaceport key immediately after landing causing panels to draw out of the intended order.</li>
+          <li>Person ships can no longer mind control your escorts that you captured from their fleet.</li>
+          <li>Fixed a potential crash and unintended save file deletion caused by creating a new pilot with the same name as an old pilot if the old pilot was from before 0.11.1 and hadn't been played in a newer version of the game.</li>
+          <li>Fixed various cases where your selected escorts for issuing orders could become desynced from the ship you are currently targeting.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 23 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.11.3/changelog</url>
+    </release>
+    <release version="0.11.2" date="2026-6-27">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <p>Some of the notable changes are:</p>
+        <ul>
+          <li>Pacifist worlds in human space that do not offer tribute now have their own set of responses when it is demanded, as opposed to responding as if your combat rating is not high enough yet.</li>
+          <li>The player's cloak state will now persist in the save file. This means that if you land while cloaked, close, and reopen the game, you will still be cloaked when taking off, which was already the behavior if you landed while cloaked and then departed without having closed the game.</li>
+          <li>The shop UI now has a dropdown for selecting the number of items to buy, sell, or move.</li>
+          <li>Added a setting for globally modifying text alignment in paragraphs.</li>
+        </ul>
+        <p>And some of the bugs fixed are:</p>
+        <ul>
+          <li>Using the "Reload" button in the main menu after dying no longer crashes.</li>
+          <li>The Successor wormhole can now be used when hostile to the Successors.</li>
+          <li>Various fixes and improvements to mouse controls when the "Control ship with mouse" preference is on.</li>
+          <li>Moved the planet description in the map panel down a little so it no longer overlaps with the system name when the game window is small.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 13 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.11.2/changelog</url>
+    </release>
     <release version="0.11.1" date="2026-4-25" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>

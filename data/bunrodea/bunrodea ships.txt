@@ -14,6 +14,7 @@
 ship "Kaiken"
 	sprite "ship/kaiken"
 	thumbnail "thumbnail/kaiken"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		"cost" 1199000
@@ -60,6 +61,7 @@ ship "Kaiken"
 ship "Sasumata"
 	sprite "ship/sasumata"
 	thumbnail "thumbnail/sasumata"
+	"administrative cost" 4
 	attributes
 		category "Transport"
 		"cost" 12650000
@@ -128,6 +130,7 @@ ship "Sasumata"
 ship "Tanto"
 	sprite "ship/tanto"
 	thumbnail "thumbnail/tanto"
+	"administrative cost" 3
 	attributes
 		category "Light Freighter"
 		"cost" 5995000
@@ -181,6 +184,7 @@ ship "Tanto"
 ship "Ararebo"
 	sprite "ship/ararebo"
 	thumbnail "thumbnail/ararebo"
+	"administrative cost" 6
 	attributes
 		category "Utility"
 		"cost" 17565000
@@ -249,6 +253,7 @@ ship "Ararebo"
 ship "Tekkan"
 	sprite "ship/tekkan"
 	thumbnail "thumbnail/tekkan"
+	"administrative cost" 4
 	attributes
 		category "Light Warship"
 		"cost" 10119000
@@ -306,6 +311,7 @@ ship "Tekkan"
 ship "Kunai"
 	sprite "ship/kunai"
 	thumbnail "thumbnail/kunai"
+	"administrative cost" 4
 	attributes
 		category "Light Warship"
 		"cost" 12444000
@@ -365,6 +371,7 @@ ship "Kunai"
 ship "Kama"
 	sprite "ship/kama"
 	thumbnail "thumbnail/kama"
+	"administrative cost" 7
 	attributes
 		category "Medium Warship"
 		"cost" 20580000
@@ -433,6 +440,7 @@ ship "Kama"
 ship "Chigiriki"
 	sprite "ship/chigiriki"
 	thumbnail "thumbnail/chigiriki"
+	"administrative cost" 8
 	attributes
 		category "Heavy Warship"
 		"cost" 30876000

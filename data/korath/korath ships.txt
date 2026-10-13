@@ -16,6 +16,7 @@
 ship "Rano'erek"
 	sprite "ship/dredger"
 	thumbnail "thumbnail/dredger"
+	"administrative cost" 9
 	attributes
 		category "Utility"
 		"cost" 29370000
@@ -98,6 +99,7 @@ ship "Rano'erek"
 ship "Palavret"
 	sprite "ship/raider"
 	thumbnail "thumbnail/raider"
+	"administrative cost" 7
 	attributes
 		category "Utility"
 		"cost" 16570000
@@ -172,6 +174,7 @@ ship "Palavret"
 ship "Tubfalet"
 	sprite "ship/tubfalet"
 	thumbnail "thumbnail/tubfalet"
+	"administrative cost" 8
 	attributes
 		category "Utility"
 		"cost" 22895000
@@ -286,6 +289,7 @@ ship "Tubfalet"
 ship "'nra'ret"
 	sprite "ship/-nra-ret"
 	thumbnail "thumbnail/-nra-ret"
+	"administrative cost" 8
 	attributes
 		category "Heavy Warship"
 		"cost" 24760000
@@ -360,6 +364,7 @@ ship "'olofez"
 	plural "'olofezes"
 	sprite "ship/chaser"
 	thumbnail "thumbnail/chaser"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		"cost" 671000
@@ -399,6 +404,7 @@ ship "'olofez"
 ship "Kas'ik Tek 7"
 	sprite "ship/kas-ik tek 7"
 	thumbnail "thumbnail/kas-ik tek 7"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		"cost" 210000
@@ -440,6 +446,7 @@ ship "Kas'ik Tek 7"
 ship "Rai'alorej"
 	sprite "ship/rai-alorej"
 	thumbnail "thumbnail/rai-alorej"
+	"administrative cost" 11
 	attributes
 		category "Utility"
 		cost 31970000
@@ -521,6 +528,7 @@ ship "Rai'alorej"
 ship "Ikatila'ej"
 	sprite "ship/ikatila-ej"
 	thumbnail "thumbnail/ikatila-ej"
+	"administrative cost" 24
 	attributes
 		category "Superheavy"
 		"cost" 109375000
@@ -598,6 +606,7 @@ ship "Lor'kas Ik 577"
 	"display name" "Karek A'awoj"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"
+	"administrative cost" 11
 	attributes
 		category "Heavy Freighter"
 		cost 29650000
@@ -674,6 +683,7 @@ ship "Ra'gru Ik 618"
 	"display name" "Sapira A'awoj"
 	sprite "ship/world-ship b"
 	thumbnail "thumbnail/world-ship b"
+	"administrative cost" 13
 	attributes
 		category "Heavy Warship"
 		cost 49640000
@@ -759,6 +769,7 @@ ship "Kas'lor Ik 582"
 	"display name" "Dathnak A'awoj"
 	sprite "ship/world-ship c"
 	thumbnail "thumbnail/world-ship c"
+	"administrative cost" 12
 	attributes
 		category "Heavy Freighter"
 		cost 28190000
@@ -832,6 +843,7 @@ ship "Lor'nag Ik 590"
 	"display name" "Spera A'awoj"
 	sprite "ship/world-ship d"
 	thumbnail "thumbnail/world-ship d"
+	"administrative cost" 12
 	attributes
 		category "Space Liner"
 		cost 33640000
@@ -908,6 +920,7 @@ ship "Ra'at Ik 621"
 	"display name" "Ikfar A'awoj"
 	sprite "ship/world-ship e"
 	thumbnail "thumbnail/world-ship e"
+	"administrative cost" 12
 	attributes
 		category "Heavy Warship"
 		cost 43590000
@@ -995,6 +1008,7 @@ ship "Ra'at Ik 621"
 ship "Kasichara A'awoj"
 	sprite "ship/world-ship f"
 	thumbnail "thumbnail/world-ship f"
+	"administrative cost" 13
 	attributes
 		category "Space Liner"
 		cost 42290000
@@ -1063,6 +1077,7 @@ ship "Kasichara A'awoj"
 ship "Korsmanath A'awoj"
 	sprite "ship/korsmanath a-awoj"
 	thumbnail "thumbnail/korsmanath a-awoj"
+	"administrative cost" 50
 	"uncapturable"
 	attributes
 		category "Superheavy"
@@ -1300,6 +1315,7 @@ ship "Korsmanath A'awoj"
 ship "Echo-Galleon"
 	sprite "ship/echo-galleon"
 	thumbnail "thumbnail/echo-galleon"
+	"administrative cost" 10
 	attributes
 		category "Utility"
 		cost 27690000
@@ -1362,6 +1378,7 @@ ship "Echo-Galleon"
 ship "Arch-Carrack"
 	sprite "ship/arch-carrack"
 	thumbnail "thumbnail/arch-carrack"
+	"administrative cost" 7
 	attributes
 		category "Heavy Freighter"
 		"cost" 15815000
@@ -1425,6 +1442,7 @@ ship "Arch-Carrack"
 ship "Charm-Shallop"
 	sprite "ship/charm-shallop"
 	thumbnail "thumbnail/charm-shallop"
+	"administrative cost" 6
 	attributes
 		category "Utility"
 		"cost" 14070000
@@ -1484,6 +1502,7 @@ ship "Charm-Shallop"
 ship "Kar Ik Vot 349"
 	sprite "ship/kar ik vot 349"
 	thumbnail "thumbnail/kar ik vot 349"
+	"administrative cost" 10
 	attributes
 		category "Heavy Warship"
 		"cost" 41280000
@@ -1551,6 +1570,7 @@ ship "Kar Ik Vot 349"
 ship "Tek Far 71 - Lek"
 	sprite "ship/tek far 71 lek"
 	thumbnail "thumbnail/tek far 71 lek"
+	"administrative cost" 5
 	attributes
 		category "Medium Warship"
 		"cost" 22870000
@@ -1631,6 +1651,7 @@ ship "Tek Far 71 - Lek"
 ship "Tek Far 78 - Osk"
 	sprite "ship/tek far 78 osk"
 	thumbnail "thumbnail/tek far 78 osk"
+	"administrative cost" 6
 	attributes
 		category "Medium Warship"
 		"cost" 25630000
@@ -1711,6 +1732,7 @@ ship "Tek Far 78 - Osk"
 ship "Tek Far 109"
 	sprite "ship/tek far 109"
 	thumbnail "thumbnail/tek far 109"
+	"administrative cost" 4
 	attributes
 		category "Medium Warship"
 		"cost" 18290000
@@ -1799,6 +1821,7 @@ ship "Tek Far 109"
 ship "Met Par Tek 53"
 	sprite "ship/met par tek 53"
 	thumbnail "thumbnail/met par tek 53"
+	"administrative cost" 4
 	attributes
 		category "Light Warship"
 		"cost" 14480000
@@ -1858,6 +1881,7 @@ ship "Met Par Tek 53"
 ship "Far Lek 14"
 	sprite "ship/far lek 14"
 	thumbnail "thumbnail/far lek 14"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		"cost" 573000
@@ -1898,6 +1922,7 @@ ship "Far Lek 14"
 ship "Far Osk 27"
 	sprite "ship/far osk 27"
 	thumbnail "thumbnail/far osk 27"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		"cost" 761000
@@ -1940,6 +1965,7 @@ ship "Far Osk 27"
 ship "Model 8"
 	sprite "ship/model 8"
 	thumbnail "thumbnail/model 8"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		"cost" 3725000
@@ -1987,6 +2013,7 @@ ship "Model 8"
 ship "Model 16"
 	sprite "ship/model 16"
 	thumbnail "thumbnail/model 16"
+	"administrative cost" 3
 	attributes
 		category "Light Warship"
 		"cost" 8449000
@@ -2041,6 +2068,7 @@ ship "Model 16"
 ship "Model 32"
 	sprite "ship/model 32"
 	thumbnail "thumbnail/model 32"
+	"administrative cost" 4
 	attributes
 		category "Light Warship"
 		"cost" 12765000
@@ -2096,6 +2124,7 @@ ship "Model 32"
 ship "Model 64"
 	sprite "ship/model 64"
 	thumbnail "thumbnail/model 64"
+	"administrative cost" 5
 	attributes
 		category "Medium Warship"
 		"cost" 19552000
@@ -2153,6 +2182,7 @@ ship "Model 64"
 ship "Model 128"
 	sprite "ship/model 128"
 	thumbnail "thumbnail/model 128"
+	"administrative cost" 6
 	attributes
 		category "Medium Warship"
 		"cost" 24073000
@@ -2211,6 +2241,7 @@ ship "Model 128"
 ship "Model 256"
 	sprite "ship/model 256"
 	thumbnail "thumbnail/model 256"
+	"administrative cost" 8
 	attributes
 		category "Heavy Warship"
 		"cost" 34920000
@@ -2271,6 +2302,7 @@ ship "Model 256"
 ship "Model 512"
 	sprite "ship/model 512"
 	thumbnail "thumbnail/model 512"
+	"administrative cost" 9
 	attributes
 		category "Heavy Warship"
 		"cost" 40375000
