@@ -96,9 +96,9 @@ public:
 	void Draw() const;
 
 	// Select the object the player clicked on.
-	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl,
-		std::optional<int> clicks = std::nullopt);
-	void RightOrMiddleClick(const Point &point, MouseButton button);
+	void LeftClick(const Point &point, bool hasShift, bool hasControl, int clicks);
+	void ReleaseDrag(const Point &from, const Point &to);
+	void RightOrMiddleClick(const Point &point, MouseButton button, int clicks);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 
 	// Break targeting on all projectiles between the player and the given

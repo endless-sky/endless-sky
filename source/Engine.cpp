@@ -1360,29 +1360,41 @@ void Engine::Draw() const
 
 
 // Select the object the player clicked on.
-void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasControl, optional<int> clicks)
+void Engine::LeftClick(const Point &point, bool hasShift, bool hasControl, int clicks)
 {
-	// First, see if this is a click on an escort icon.
 	doClickNextStep = true;
 	this->hasShift = hasShift;
 	this->hasControl = hasControl;
 	mouseButton = MouseButton::LEFT;
-	if(clicks.has_value())
-		numClicks = *clicks;
+	numClicks = clicks;
 
 	// Determine if the left-click was within the radar display.
 	const Interface *hud = GameData::Interfaces().Get("hud");
 	Point radarCenter = hud->GetPoint("radar");
 	double radarRadius = hud->GetValue("radar radius");
-	if(Preferences::Has("Clickable radar display") && (from - radarCenter).Length() <= radarRadius)
+	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= radarRadius)
 		isRadarClick = true;
 	else
 		isRadarClick = false;
 
-	clickPoint = isRadarClick ? from - radarCenter : from;
+	clickPoint = isRadarClick ? point - radarCenter : point;
+	uiClickBox = Rectangle();
+	clickBox = Rectangle();
+}
+
+
+
+void Engine::ReleaseDrag(const Point &from, const Point &to)
+{
+	doClickNextStep = true;
+	// Dragging can only occur with left mouse button, in which case Engine::LeftClick
+	// must have been called before this to set the other click details.
+
 	uiClickBox = Rectangle::WithCorners(from, to);
 	if(isRadarClick)
 	{
+		const Interface *hud = GameData::Interfaces().Get("hud");
+		Point radarCenter = hud->GetPoint("radar");
 		double radarScale = hud->GetValue("radar scale");
 		clickBox = Rectangle::WithCorners(
 			(from - radarCenter) / radarScale + camera.Center(),
@@ -1394,11 +1406,13 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 
 
 
-void Engine::RightOrMiddleClick(const Point &point, MouseButton button)
+void Engine::RightOrMiddleClick(const Point &point, MouseButton button, int clicks)
 {
 	doClickNextStep = true;
 	hasShift = false;
+	hasControl = false;
 	mouseButton = button;
+	numClicks = clicks;
 
 	// Determine if the right/middle-click was within the radar display, and if so, rescale.
 	const Interface *hud = GameData::Interfaces().Get("hud");
@@ -1411,6 +1425,9 @@ void Engine::RightOrMiddleClick(const Point &point, MouseButton button)
 	}
 	else
 		clickPoint = point / zoom;
+
+	uiClickBox = Rectangle();
+	clickBox = Rectangle();
 }
 
 
