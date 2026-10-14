@@ -74,6 +74,9 @@ private:
 	// These are the pending ShipEvents that have yet to be processed.
 	std::list<ShipEvent> eventQueue;
 	bool handledFront = false;
+	// If a ShipEvent::JUMP was sent by the player's flagship,
+	// check if new mission NPCs should spawn.
+	bool checkSpawns = false;
 
 	Command show;
 
