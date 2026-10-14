@@ -3611,7 +3611,7 @@ mission "Bounty Hunting (Solo Marauder I)"
 		system
 			distance 2 3
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder I"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
@@ -3642,6 +3642,7 @@ mission "Bounty Hunting (Solo Marauder II)"
 		system
 			distance 2 3
 			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder II"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
@@ -3668,6 +3669,7 @@ mission "Bounty Hunting (Solo Marauder III)"
 		system
 			distance 2 4
 			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder III"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
@@ -3694,6 +3696,7 @@ mission "Bounty Hunting (Solo Marauder IV)"
 		system
 			distance 3 4
 			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder IV"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
@@ -3725,6 +3728,7 @@ mission "Bounty Hunting (Marauder I)"
 		system
 			distance 3 4
 			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet I"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3756,7 +3760,7 @@ mission "Bounty Hunting (Marauder II)"
 		system
 			distance 3 4
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet II"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3786,7 +3790,7 @@ mission "Bounty Hunting (Marauder III)"
 		system
 			distance 3 4
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet III"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3816,7 +3820,7 @@ mission "Bounty Hunting (Marauder IV)"
 		system
 			distance 3 5
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet IV"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3846,7 +3850,7 @@ mission "Bounty Hunting (Marauder V)"
 		system
 			distance 3 5
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet V"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3877,7 +3881,7 @@ mission "Bounty Hunting (Marauder VI)"
 		system
 			distance 3 5
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet VI"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3903,7 +3907,7 @@ mission "Bounty Hunting (Marauder VII)"
 		system
 			distance 4 5
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet VII"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3929,7 +3933,7 @@ mission "Bounty Hunting (Marauder VIII)"
 		system
 			distance 4 5
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet VIII"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3955,7 +3959,7 @@ mission "Bounty Hunting (Marauder IX)"
 		system
 			distance 4 5
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet IX"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3979,7 +3983,7 @@ mission "Bounty Hunting (Marauder X)"
 		system
 			distance 7 9
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazad" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet X"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
