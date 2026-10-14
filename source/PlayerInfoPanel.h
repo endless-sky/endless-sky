@@ -66,7 +66,7 @@ private:
 		Point &topLeft, int width, const std::string &title, int64_t titleValue, int height, bool drawValues = true);
 
 	// Handle mouse hover (also including hover during drag actions):
-	bool Hover(const Point &point);
+	bool Hover();
 	// Adjust the scroll by the given amount. Return true if it changed.
 	bool Scroll(int distance);
 	// Try to scroll to the given position. Return true if position changed.
@@ -98,10 +98,6 @@ private:
 
 	// Keep track of which ship the mouse is hovering over.
 	int hoverIndex = -1;
-
-	// Initialize mouse point to something off-screen to not
-	// make the game think the player is hovering on something.
-	Point hoverPoint = Point(-10000, -10000);
 
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;

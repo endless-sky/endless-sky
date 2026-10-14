@@ -477,7 +477,6 @@ bool LoadPanel::Hover(int x, int y)
 		sideHasFocus = false;
 
 	hasHover = true;
-	hoverPoint = Point(x, y);
 	// Tooltips should not pop up unless the mouse stays in one place for the
 	// full hover time. Otherwise, every time the user scrubs the mouse over the
 	// list, tooltips will appear after one second.

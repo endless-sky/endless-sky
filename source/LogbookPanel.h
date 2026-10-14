@@ -104,8 +104,6 @@ private:
 	std::vector<ClickZone<Selection>> selectionZones;
 	std::vector<ClickZone<const BookEntry *>> logZones;
 
-	Point hoverPoint;
-
 	// Current scroll:
 	double categoryScroll = 0.;
 	double scroll = 0.;

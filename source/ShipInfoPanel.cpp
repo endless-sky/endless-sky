@@ -334,16 +334,15 @@ bool ShipInfoPanel::Click(int x, int y, MouseButton button, int /* clicks */)
 
 bool ShipInfoPanel::Hover(int x, int y)
 {
-	Point point(x, y);
-	info.Hover(point);
-	return Hover(point);
+	info.Hover();
+	return Hover();
 }
 
 
 
 bool ShipInfoPanel::Drag(double dx, double dy)
 {
-	return Hover(hoverPoint + Point(dx, dy));
+	return Hover();
 }
 
 
@@ -747,12 +746,10 @@ void ShipInfoPanel::DrawLine(const Point &from, const Point &to, const Color &co
 
 
 
-bool ShipInfoPanel::Hover(const Point &point)
+bool ShipInfoPanel::Hover()
 {
 	if(shipIt == panelState.Ships().end())
 		return true;
-
-	hoverPoint = point;
 
 	hoverIndex = -1;
 	hoverCommodity = "";
