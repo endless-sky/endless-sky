@@ -42,11 +42,11 @@ Minable::Payload::Payload(const DataNode &node)
 
 	if(node.Size() >= 4)
 	{
-		minDrops = max<int>(MIN_DROPS_LOWER_BOUND, node.Value(2));
-		maxDrops = max<int>(MAX_DROPS_LOWER_BOUND, node.Value(3));
+		minDrops = max<int>(0, node.Value(2));
+		maxDrops = max<int>(1, node.Value(3));
 	}
 	else if(node.Size() == 3)
-		maxDrops = max<int>(MAX_DROPS_LOWER_BOUND, node.Value(2));
+		maxDrops = max<int>(1, node.Value(2));
 
 	for(const DataNode &child : node)
 	{
@@ -56,9 +56,9 @@ Minable::Payload::Payload(const DataNode &node)
 		if(!hasValue)
 			child.PrintTrace("Expected key to have a value:");
 		else if(key == "min drops")
-			minDrops = max<int>(MIN_DROPS_LOWER_BOUND, child.Value(1));
+			minDrops = max<int>(0, child.Value(1));
 		else if(key == "max drops")
-			maxDrops = max<int>(MAX_DROPS_LOWER_BOUND, child.Value(1));
+			maxDrops = max<int>(1, child.Value(1));
 		else if(key == "drop rate")
 			dropRate = max(0., min(child.Value(1), 1.));
 		else if(key == "toughness")
