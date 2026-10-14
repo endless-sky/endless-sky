@@ -67,7 +67,7 @@ private:
 	Point DrawPanel(Point pos, const std::string &label, int entries, bool sorter = false) const;
 	// Draw the display names of the given missions, using the reference point.
 	Point DrawList(const std::list<Mission> &missionList, Point pos, const std::list<Mission>::const_iterator &selectIt,
-		bool separateDeadlineOrPossible = false) const;
+		const std::list<Mission>::const_iterator &hoverIt, bool separateDeadlineOrPossible = false) const;
 	void DrawMissionInfo();
 	void DrawTooltips();
 
@@ -95,7 +95,9 @@ private:
 	const std::list<Mission> &accepted;
 	int cycleInvolvedIndex = 0;
 	std::list<Mission>::const_iterator availableIt;
+	std::list<Mission>::const_iterator hoverAvailableIt;
 	std::list<Mission>::const_iterator acceptedIt;
+	std::list<Mission>::const_iterator hoverAcceptedIt;
 	double availableScroll = 0.;
 	double acceptedScroll = 0.;
 
