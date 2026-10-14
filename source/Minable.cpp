@@ -40,7 +40,7 @@ Minable::Payload::Payload(const DataNode &node)
 {
 	outfit = GameData::Outfits().Get(node.Token(1));
 
-	if(node.Size() == 4)
+	if(node.Size() >= 4)
 	{
 		minDrops = max<int>(MIN_DROPS_LOWER_BOUND, node.Value(2));
 		maxDrops = max<int>(MAX_DROPS_LOWER_BOUND, node.Value(3));
