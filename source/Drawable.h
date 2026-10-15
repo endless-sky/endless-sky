@@ -106,6 +106,7 @@ private:
 	mutable bool randomize = false;
 	bool repeat = true;
 	bool rewind = false;
+	bool reverse = false;
 	bool noFrameTweening = false;
 	mutable int pause = 0;
 
