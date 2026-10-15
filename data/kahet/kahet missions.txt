@@ -5275,6 +5275,7 @@ mission "Ka'het: Lightning in a Bottle 5"
 mission "Ka'het: Lightning in a Bottle Epilogue 1"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Ka'het: Lightning in a Bottle 5: done"
 		has "Ka'het: Voice From The Past 4: done"
