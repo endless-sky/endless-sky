@@ -936,7 +936,7 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// If this ship has a base class, copy any attributes not defined here.
 	// Exception: uncapturable and "never disabled" flags don't carry over.
-	if(base && base != this)
+	if(base && base != this && isNewInstance)
 	{
 		if(!GetSprite())
 			static_cast<Body &>(*this) = *base;
@@ -1260,7 +1260,10 @@ bool Ship::IsValid() const
 // Save a full description of this ship, as currently configured.
 void Ship::Save(DataWriter &out) const
 {
-	out.Write("ship", trueModelName);
+	if(variantName.empty())
+		out.Write("ship", trueModelName);
+	else
+		out.Write("ship", trueModelName, variantName);
 	out.BeginChild();
 	{
 		out.Write("name", givenName);
