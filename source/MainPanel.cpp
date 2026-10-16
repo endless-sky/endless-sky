@@ -222,6 +222,13 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			Preferences::Has("Escorts expend ammo") ? (Preferences::Has("Escorts use ammo frugally") ?
 			"expend ammo frugally" : "expend ammo always") : "expend ammo never"));
 	}
+	else if(command.Has(Command::GUNSIGHT))
+	{
+		bool newValue = !Preferences::Has("Show gunsights");
+		Preferences::Set("Show gunsights", newValue);
+		Messages::Add(*GameData::Messages().Get(newValue ?
+			"Gunsights shown" : "Gunsights hidden"));
+	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
 	else if((key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS) && !command)

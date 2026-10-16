@@ -188,6 +188,15 @@ private:
 		bool provokable;
 	};
 
+	class Gunsight {
+	public:
+		Angle angle;
+		Point start;
+		double range;
+		double spread;
+		const Color &color;
+	};
+
 
 private:
 	void EnterSystem();
@@ -280,6 +289,7 @@ private:
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
+	std::vector<Gunsight> gunsights;
 	std::vector<TurretOverlay> turretOverlays;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	// Flagship's hyperspace percentage converted to a [0, 1] double.
