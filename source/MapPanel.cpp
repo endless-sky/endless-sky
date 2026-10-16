@@ -1438,7 +1438,7 @@ void MapPanel::DrawTravelPlan()
 			for(auto &it : fuel)
 				if(it.second >= 0.)
 				{
-					double cost = it.first->JumpNavigation().GetCheapestJumpType(previous, next).second;
+					double cost = it.first->JumpNavigation().GetCheapestJump(previous, next).fuelCost;
 					if(!cost || cost > it.second)
 					{
 						it.second = -1.;
