@@ -2261,12 +2261,12 @@ mission "Ka'het: Patir Mystery 12.2B"
 			`The giant creature floats a few meters away from your cockpit, silent and motionless, but you know that inside the shell, the slug remains alive and well, ready to kill. Compared to some of the Ka'het back in the Graveyard, this is one of the Builders' smaller creations, but its size is still impressive for what is, in essence, a single organism.`
 			`	Before setting the <flagship> to automatic station-keeping, you move your ship so that the main hatch is as close as possible to the Fetri'sei. The Remnant are already in the airlock donning their extravehicular suits, and you join them shortly after.`
 			`	"When we are inside, there is a high probability we will not be able to communicate," advises Dusk. "Normally, the walls of the armored shell are too thick and dense for our signals to pass through, and the spaces we need to navigate prevent us from using a physical tether. This does not mean we will be unprotected, however. May I see your sidearm?"`
-			`	You draw your weapon out of the holster and hand it to him. After a quick examination, he nods and gives it back before continuing. "Once inside, one of our first operations will be connecting to the downlink of the Fetri's telemetry: it is not protected, in our experience, and it is easy to access. From there, we will be able to monitor the vessel's shields.`
-			`	"Many things could go wrong during this mission: the unknown creature could leave the system early, or maybe we could inadvertently awaken the Ka'sei with our actions. If you notice anything out of the ordinary, no matter how minor, take out this gun, point at an empty spot on the shell, and shoot. Our terminals will let us know even the smallest variation in its shield integrity, and we will run back to safety as soon as this happens."`
+			`	You draw your weapon out of the holster and hand it to him. After a quick examination, he nods and gives it back before continuing. "Once inside, one of our first operations will be connecting to the downlink of the Fetri's telemetry: it is not protected, in our experience, and it is easy to access. From there, we will be able to monitor the vessel's systems.`
+			`	"Many things could go wrong during this mission: the unknown creature could leave the system early, or maybe we could inadvertently awaken the Ka'sei with our actions. If you notice anything out of the ordinary, no matter how minor, take out this gun, point at an empty spot on the shell, and shoot. Our terminals will let us know even the smallest variation in its system metrics, and we will run back to safety as soon as this happens."`
 			choice
 				`	"Will this not anger the Ka'sei?"`
 					goto anger
-				`	"What if you cannot access the shield levels?"`
+				`	"What if you cannot access the vessel's systems?"`
 			`	"Then we will abandon the mission. Without that safety net, it would be too dangerous to continue. However, since they were both created by the Builders, it should be similar enough to the Ka'het design language.`
 				goto move
 
@@ -2305,7 +2305,7 @@ mission "Ka'het: Patir Mystery 12.2B"
 				goto return
 
 			label shoot
-			`	You press the trigger once more, and the projectile again dissolves in the shield protecting the back of the Fetri'sei. For a few seconds still nothing seems to happen, but then, slowly, white noise starts coming from the communicator. Watching the spacecraft, you finally see the Remnant leaping out of the hatch, carrying a dozen faintly glowing cylindrical tubes under their arms.`
+			`	You pull the trigger once more, and the projectile again impacts the back of the Fetri'sei. For a few seconds still nothing seems to happen, but then, slowly, white noise starts coming from the communicator. Watching the spacecraft, you finally see the Remnant leaping out of the hatch, carrying a dozen faintly glowing cylindrical tubes under their arms.`
 				goto continue
 			label wait
 			`	The wait is excruciating, but after a few seconds, you start hearing white noise coming from your headphones. Right as you start recognizing some words, one of the Remnant leaps out of the hatch, followed closely by the other four. Under their arms, you can distinguish a dozen cylindrical tubes, a faint glow surrounding them.`
