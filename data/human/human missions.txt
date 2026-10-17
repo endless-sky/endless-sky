@@ -6783,6 +6783,7 @@ mission "Lost Racer 2 - Failed"
 mission "Lost Racer 2 - August Reached Glory"
 	invisible
 	landing
+	source "Glory"
 	to offer
 		has "lost racer august to glory"
 	on offer
