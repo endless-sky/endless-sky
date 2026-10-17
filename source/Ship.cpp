@@ -4632,6 +4632,20 @@ double Ship::TurretTurnMultiplier() const
 
 
 
+bool Ship::HasFuelGeneration() const
+{
+	double fuelGen = cache.fuelGeneration;
+	if(currentSystem)
+	{
+		System::SolarGeneration generation = currentSystem->GetSolarGeneration(position,
+			cache.ramscoop, cache.solarCollection, cache.solarHeat);
+		fuelGen += generation.fuel;
+	}
+	return fuelGen > 0.;
+}
+
+
+
 void Ship::CacheAttributes()
 {
 	// Capacity related attributes:
