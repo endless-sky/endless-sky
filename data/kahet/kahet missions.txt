@@ -47,7 +47,7 @@ mission "Disabled Ka'het"
 			`	You have no troubles docking with its "exoskeleton," trying to decide what to do next. While the Ka'het is too different from a normal ship for you to command it, it's safe to say that you can now loot its outfits.`
 
 conversation "ka'het: remnant"
-	`Do you want to ask the Remnant about the section of space south of the Ember Wastes, the Graveyard, and its inhabitants?`
+	`Do you want to ask the Remnant about the section of space south of the Ember Waste, the Graveyard, and its inhabitants?`
 	choice
 		`	(Yes.)`
 		`	(Not now.)`
@@ -103,14 +103,14 @@ mission "First Contact: Ka'het: Remnant 1B"
 		has "remnant met taely"
 	on offer
 		conversation
-			`Do you want to ask Taely about the section of space south of the Ember Wastes, the Graveyard, and its inhabitants?`
+			`Do you want to ask Taely about the section of space south of the Ember Waste, the Graveyard, and its inhabitants?`
 			choice
 				`	(Yes.)`
 				`	(Not now.)`
 					defer
 			`	You find Taely inside one of the outer hangars of the shipyard, apparently teaching a small group of people how to make basic repairs on an Albatross. You sit on a bench waiting for her to finish her lesson, after which she walks over to you. "Hello, <first>!" she says. "Is there something I can help you with?"`
 			`	"I'm here because I need to ask you a few questions," you reply.`
-			`	As she sits near you, you start explaining to her the area you reached, including the weird alien ships that attacked you with weapons similar to the ones the Remnant possess, although this doesn't seem to be news for her. "We know of the existence of the Ka'het, the aliens you encountered, since we first reached the Ember Wastes. We found many of their shells within our planets, crashed there thousands, perhaps even tens of thousands of years before our arrival, but some of their outfits survived long enough for us to reverse engineer these advanced technologies."`
+			`	As she sits near you, you start explaining to her the area you reached, including the weird alien ships that attacked you with weapons similar to the ones the Remnant possess, although this doesn't seem to be news for her. "We know of the existence of the Ka'het, the aliens you encountered, since we first reached the Ember Waste. We found many of their shells within our planets, crashed there thousands, perhaps even tens of thousands of years before our arrival, but some of their outfits survived long enough for us to reverse engineer these advanced technologies."`
 			`	"Then," she continues, "a few hundred years ago, a scout fleet arrived in a system where some Ka'het were still alive. They attacked our fleet instantly with EMP Torpedoes that quickly disabled two Starlings. The Starlings couldn't recover quickly enough to survive, and the only remaining ship could do nothing but flee as soon as possible."`
 			choice
 				`	"Which technology did you recover from the crashed Ka'het?"`
@@ -314,7 +314,7 @@ mission "Ka'het: Death in the Graveyard 1"
 		has "event: remnant: lab availability"
 	on offer
 		conversation
-			`After setting course toward the surface, you feel comfortable enough to leave the control panel and let the autopilot do the job. It's a calm, cloudless night on this part of <planet>; a rare sight in the Graveyard, and indeed in most of the Ember Wastes. With all but the essential lights turned off, you catch the opportunity to relax for a few minutes on your chair, watching the evolving landscape below and the night sky above.`
+			`After setting course toward the surface, you feel comfortable enough to leave the control panel and let the autopilot do the job. It's a calm, cloudless night on this part of <planet>; a rare sight in the Graveyard, and indeed in most of the Ember Waste. With all but the essential lights turned off, you catch the opportunity to relax for a few minutes on your chair, watching the evolving landscape below and the night sky above.`
 			`	Your ship's proximity alert breaks the silence, then falls quiet before you reach the control panel. A quick glance out the window confirms you're still fairly high up, and the ship's radar reveals nothing of interest - at least not currently. You press a couple of buttons to check what your ship recorded, and see what looks like a large mass flicker for a few seconds a hundred meters away from your ship during the alarm.`
 			choice
 				`	(Continue the descent.)`
@@ -1826,7 +1826,7 @@ mission "Ka'het: Patir Mystery 9"
 			label what
 			`	"I wish I knew. And the worst may have yet to come," Dusk replies. "Something is not right with the sky."`
 			label constellation
-			`	He points at the projector. "Do you see those two triangular formations near the top of the star map? That is something we called the Ember Prism - a constellation of six stars of similar magnitude, located far from the Wastes and close to each other. While it is not visible from Earth, it should be recognizable from almost every system here, including Patir, but no longer. And that is not all. None of the constellations in this star map can be found anywhere in the sky." He stops for a second, giving a worried look to the rest of the team. "We are no longer in the Ember Wastes."`
+			`	He points at the projector. "Do you see those two triangular formations near the top of the star map? That is something we called the Ember Prism - a constellation of six stars of similar magnitude, located far from the Wastes and close to each other. While it is not visible from Earth, it should be recognizable from almost every system here, including Patir, but no longer. And that is not all. None of the constellations in this star map can be found anywhere in the sky." He stops for a second, giving a worried look to the rest of the team. "We are no longer in the Ember Waste."`
 			choice
 				`	"How is that possible?"`
 				`	"Where are we then?"`
@@ -3097,7 +3097,7 @@ mission "Ka'het: Patir Mystery 20"
 			label risk
 			`	He seems dubious. "Answering this question is... more complicated than it looks. We are not certain of how the Ka'het gained keystones the first time, nor how many of them were able to do so. We know that it is a possibility, that the Ka'het as a whole are likely stronger than our fleets, and that no Ka'het has moved past the Graveyard since the Exodus. The truth, <first>, is that risk posturing is a very complex subject; for that matter, the same can be said with our mission.`
 			label danger
-			`	He thoughtfully passes his hand over the hull of Calm Sea Afire. "Only time will tell, but I stand by the decisions we have made. A standard Smew is simple to repair and to keep in storage, but not too useful outside of the Ember Wastes. A large, jump-capable starship is complicated to keep in flight-status for months at a time, not to mention the maintenance needs of a cloaking system. And worse of all, it might not even be of much use if Patir was not in the Milky Way when the emergency happens!"`
+			`	He thoughtfully passes his hand over the hull of Calm Sea Afire. "Only time will tell, but I stand by the decisions we have made. A standard Smew is simple to repair and to keep in storage, but not too useful outside of the Ember Waste. A large, jump-capable starship is complicated to keep in flight-status for months at a time, not to mention the maintenance needs of a cloaking system. And worse of all, it might not even be of much use if Patir was not in the Milky Way when the emergency happens!"`
 			label skip
 			`	The buzz of Dusk's commlink draws his attention. He smiles, and his tone changes almost instantly. "Ssil Vida is ready to cut the signal. Once they do so, it will take six days for this to reach Patir; at that point, it will instantly disappear, possibly to move into the same cluster we visited the last time. You, I, and four of our researchers must be there when this happens." He rights up and clears his throat. "Captain," he sings, "shall I give the order?"`
 			choice
@@ -3244,7 +3244,7 @@ mission "Ka'het: Patir Mystery 22"
 			`	The Petrel leaves your wing and falls like a stone through the cloud layer. Irregular updates from the crew reassure you that their test is continuing, and that their ship is holding up well. You follow their trip on your radar screen until they move beyond the range of your instruments.`
 			`	The stars above you are barely visible through the atmosphere of <origin>, which at first seems normal. It is not until they begin flickering more that you realize Patir is in the process of moving again! There is no way that the Remnant can see it from deep below, and those who remained at the Builder settlement are probably too busy with their experiments to notice it. Chances are that, this time, you are the only person who can stop and take a look at the spectacle. You recline your seat to watch through your cockpit the faint dance above the planet, for once all by yourself.`
 			`	The sequence you have now seen twice repeats in reverse: the number of stars now grows continuously, spinning or moving erratically left and right. In the last few seconds, most condense into a mass of light that shrinks until it appears as simply another star. Still, you can confidently say that you can see far more stars around you than before Patir started moving.`
-			`	Soon enough, the fruitful return of their lifeboat puts an end to your thoughts. Now that you are back in the Milky Way, it's time to pack things up in the Remnant laboratory and make the trip back to the Ember Wastes.`
+			`	Soon enough, the fruitful return of their lifeboat puts an end to your thoughts. Now that you are back in the Milky Way, it's time to pack things up in the Remnant laboratory and make the trip back to the Ember Waste.`
 				accept
 	npc save
 		government "Remnant"
@@ -4652,7 +4652,7 @@ mission "Ka'het: Voice From The Past 2"
 				`	"Not much. Can you summarize it?"`
 				`	"Enough."`
 					goto waaaah
-			`	"After the loss of a number of vehicles to what we now know to be the Ka'het, our ancestors developed and adopted new standards to reduce the risk of such expeditions into the depth of the Ember Wastes. Cloaks were to be kept active at all times while inside the Graveyard, limiting the range of our archeological missions to the ever-increasing capacity of our fuel tanks.`
+			`	"After the loss of a number of vehicles to what we now know to be the Ka'het, our ancestors developed and adopted new standards to reduce the risk of such expeditions into the depth of the Ember Waste. Cloaks were to be kept active at all times while inside the Graveyard, limiting the range of our archeological missions to the ever-increasing capacity of our fuel tanks.`
 			`	"Despite limiting most expeditions to the northern systems, these guidelines still led to the golden age of Builder archeology, giving us incredible insights into the history of this region and its inhabitants. The culmination of this effort was the partial translation of their written language, as well as the decoding of some of their programming. The problem, however, is that this did not extend to their spoken language.`
 				goto continue
 			label waaaah

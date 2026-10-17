@@ -226,6 +226,12 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributeValues.push_back(Format::Number(ship.MaxHull()));
 	}
 	attributesHeight += 20;
+	if(scrollingPanel)
+	{
+		attributeLabels.push_back("disabled at:");
+		attributeValues.push_back(Format::Number(ship.MinHull()));
+		attributesHeight += 20;
+	}
 	double emptyMass = attributes.Mass();
 	double currentMass = ship.Mass();
 	attributeLabels.push_back(isGeneric ? "mass with no cargo:" : "mass:");
@@ -256,6 +262,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double afterburnerThrust = attributes.Get("afterburner thrust");
 	double mainThrust = thrust ? thrust : afterburnerThrust;
 	double allThrust = thrust + afterburnerThrust;
+	double reverseThrust = attributes.Get("reverse thrust");
+	double drag = ship.Drag();
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
@@ -263,13 +271,22 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributeValues.push_back(string());
 	attributesHeight += 20;
 	attributeLabels.push_back("max speed:");
-	attributeValues.push_back(Format::Number(60. * mainThrust / ship.Drag()));
+	attributeValues.push_back(Format::Number(60. * mainThrust / drag));
 	attributesHeight += 20;
-	if(scrollingPanel && thrust && afterburnerThrust)
+	if(scrollingPanel)
 	{
-		attributeLabels.push_back("   w/ afterburner:");
-		attributeValues.push_back(Format::Number(60. * allThrust / ship.Drag()));
-		attributesHeight += 20;
+		if(thrust && afterburnerThrust)
+		{
+			attributeLabels.push_back("    w/ afterburner:");
+			attributeValues.push_back(Format::Number(60. * allThrust / drag));
+			attributesHeight += 20;
+		}
+		if(reverseThrust)
+		{
+			attributeLabels.push_back("    reversed:");
+			attributeValues.push_back(Format::Number(60. * reverseThrust / drag));
+			attributesHeight += 20;
+		}
 	}
 
 	// Movement stats are influenced by inertia reduction.
@@ -277,34 +294,38 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	emptyMass /= reduction;
 	currentMass /= reduction;
 	fullMass /= reduction;
-	attributeLabels.push_back("acceleration:");
-	double baseAccel = 3600. * mainThrust * (1. + attributes.Get("acceleration multiplier"));
-	if(!isGeneric)
-		attributeValues.push_back(Format::Number(baseAccel / currentMass));
-	else
-		attributeValues.push_back(Format::Number(baseAccel / fullMass)
-			+ " - " + Format::Number(baseAccel / emptyMass));
-	attributesHeight += 20;
-	if(scrollingPanel && thrust && afterburnerThrust)
-	{
-		double maxAccel = 3600. * allThrust * (1. + attributes.Get("acceleration multiplier"));
-		attributeLabels.push_back("    w/ afterburner:");
+	double accelMult = 1. + attributes.Get("acceleration multiplier");
+
+	auto MassInfluencedMovementDisplay = [&](double value) -> void {
 		if(!isGeneric)
-			attributeValues.push_back(Format::Number(maxAccel / currentMass));
+			attributeValues.push_back(Format::Number(value / currentMass));
 		else
-			attributeValues.push_back(Format::Number(maxAccel / fullMass)
-				+ " - " + Format::Number(maxAccel / emptyMass));
+			attributeValues.push_back(Format::Number(value / fullMass) + " - " + Format::Number(value / emptyMass));
 		attributesHeight += 20;
+	};
+	auto AccelerationDisplay = [&](double thrustUsed) -> void {
+		MassInfluencedMovementDisplay(3600. * thrustUsed * accelMult);
+	};
+
+	attributeLabels.push_back("acceleration:");
+	AccelerationDisplay(mainThrust);
+	if(scrollingPanel)
+	{
+		if(thrust && afterburnerThrust)
+		{
+			attributeLabels.push_back("    w/ afterburner:");
+			AccelerationDisplay(allThrust);
+		}
+		if(reverseThrust)
+		{
+			attributeLabels.push_back("    reversed:");
+			AccelerationDisplay(reverseThrust);
+		}
 	}
 
 	attributeLabels.push_back("turning:");
 	double baseTurn = 60. * attributes.Get("turn") * (1. + attributes.Get("turn multiplier"));
-	if(!isGeneric)
-		attributeValues.push_back(Format::Number(baseTurn / currentMass));
-	else
-		attributeValues.push_back(Format::Number(baseTurn / fullMass)
-			+ " - " + Format::Number(baseTurn / emptyMass));
-	attributesHeight += 20;
+	MassInfluencedMovementDisplay(baseTurn);
 
 	// Find out how much outfit, engine, and weapon space the chassis has.
 	map<string, double> chassis;
@@ -370,7 +391,6 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	// Add energy and heat while moving to the table.
 	attributesHeight += 20;
-	double reverseThrust = attributes.Get("reverse thrust");
 	double movingEnergyPerFrame = attributes.Get("turning energy");
 	double movingHeatPerFrame = attributes.Get("turning heat");
 	if(mainThrust && reverseThrust)
