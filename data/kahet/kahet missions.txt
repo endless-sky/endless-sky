@@ -5211,7 +5211,7 @@ mission "Ka'het: Lightning in a Bottle 5"
 			`	You try to contact the Remnant, but the arrival of another EMP prevents you from doing so. For their part, one of the Peregrines has taken the initiative to approach the alien spacecraft.`
 			choice
 				`	(Return to orbit to fight the Ka'het.)`
-					flee
+					depart
 				`	(Keep trying to speak with the Remnant.)`
 			action
 				set "ka'het: cloud probe electronics burnt"
@@ -5273,7 +5273,9 @@ mission "Ka'het: Lightning in a Bottle 5"
 			`	Soon enough, the transport stops and Taely's personnel begin unwrapping the cargo. "If you find yourself in the southern Graveyard," she says, taking a few steps toward the rest of the team, "I suggest that you keep your eyes open for anything of interest. Our short-lived project could only afford to reach the northern half, after all!" After a farewell, a promise to keep you updated, and the handover of a credit chip, she returns to her own work once again.`
 
 mission "Ka'het: Lightning in a Bottle Epilogue 1"
+	landing
 	invisible
+	non-blocking
 	to offer
 		has "Ka'het: Lightning in a Bottle 5: done"
 		has "Ka'het: Voice From The Past 4: done"
