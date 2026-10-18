@@ -1322,6 +1322,7 @@ void PlayerInfo::CaptureShip(const shared_ptr<Ship> &ship)
 	ship->SetIsYours();
 	if(ship->HasBays())
 		displayCarrierHelp = true;
+	depreciation.Plunder(*ship, date.DaysSinceEpoch());
 	CalculateScanners(ship);
 }
 

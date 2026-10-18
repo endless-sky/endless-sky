@@ -51,14 +51,17 @@ namespace {
 
 	// Names for the two kinds of depreciation records.
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
+
+	// The date used for recording plundered items when the value of plundered
+	// items is below the minimum value of fully depreciated items.
+	const int PLUNDERED = -1;
 }
 
 
 
-// What fraction of its cost a fully depreciated item has left:
-double Depreciation::Full()
+double Depreciation::Plundered()
 {
-	return Min();
+	return GameData::GetGamerules().DepreciationPlundered();
 }
 
 
@@ -110,9 +113,9 @@ void Depreciation::Save(DataWriter &out, int day) const
 					// stock are fully depreciated. If it's the player's stock,
 					// anything not recorded is considered fully depreciated, so
 					// there is no reason to save records for those items.
-					for(const auto &it : sit.second)
-						if(isStock || (it.second && it.first > day - MaxAge()))
-							out.Write(it.first, it.second);
+					for(const auto &[recordDay, count] : sit.second)
+						if(isStock || (count && (recordDay == PLUNDERED || recordDay > day - MaxAge())))
+							out.Write(recordDay, count);
 				}
 				out.EndChild();
 			});
@@ -125,9 +128,9 @@ void Depreciation::Save(DataWriter &out, int day) const
 				out.Write("outfit", oit.first->TrueName());
 				out.BeginChild();
 				{
-					for(const auto &it : oit.second)
-						if(isStock || (it.second && it.first > day - MaxAge()))
-							out.Write(it.first, it.second);
+					for(const auto &[recordDay, count] : oit.second)
+						if(isStock || (count && (recordDay == PLUNDERED || recordDay > day - MaxAge())))
+							out.Write(recordDay, count);
 				}
 				out.EndChild();
 			});
@@ -156,8 +159,8 @@ void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day)
 		const Ship *base = GameData::Ships().Get(ship->TrueModelName());
 		++ships[base][day];
 
-		for(const auto &it : ship->Outfits())
-			outfits[it.first][day] += it.second;
+		for(const auto &[outfit, count] : ship->Outfits())
+			outfits[outfit][day] += count;
 	}
 }
 
@@ -168,9 +171,9 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source, bool cha
 {
 	// First, add records for all outfits the ship is carrying.
 	if(!chassisOnly)
-		for(const auto &it : ship.Outfits())
-			for(int i = 0; i < it.second; ++i)
-				Buy(it.first, day, source);
+		for(const auto &[outfit, count] : ship.Outfits())
+			for(int i = 0; i < count; ++i)
+				Buy(outfit, day, source);
 
 	// Then, check the base day for the ship chassis itself.
 	const Ship *base = GameData::Ships().Get(ship.TrueModelName());
@@ -228,6 +231,27 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 
 
 
+void Depreciation::Plunder(const Ship &ship, int day)
+{
+	// If the value of plundered goods is lower than the minimum, then record
+	// this item with a special PLUNDERED date. Items with this date return the
+	// plundered value instead of the minimum value. Otherwise, allow the plundered
+	// items to depreciate toward the minimum.
+	int useDay = Plundered() < Min() ? PLUNDERED : day;
+
+	for(const auto &[outfit, count] : ship.Outfits())
+	{
+		if(outfit->Get("installable") < 0.)
+			continue;
+		outfits[outfit][useDay] += count;
+	}
+
+	const Ship *base = GameData::Ships().Get(ship.TrueModelName());
+	++ships[base][useDay];
+}
+
+
+
 // Get the value of an entire fleet.
 int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool chassisOnly) const
 {
@@ -240,15 +264,15 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool
 		++shipCount[base];
 
 		if(!chassisOnly)
-			for(const auto &it : ship->Outfits())
-				outfitCount[it.first] += it.second;
+			for(const auto &[outfit, count] : ship->Outfits())
+				outfitCount[outfit] += count;
 	}
 
 	int64_t value = 0;
-	for(const auto &it : shipCount)
-		value += Value(it.first, day, it.second);
-	for(const auto &it : outfitCount)
-		value += Value(it.first, day, it.second);
+	for(const auto &[ship, count] : shipCount)
+		value += Value(ship, day, count);
+	for(const auto &[outfit, count] : outfitCount)
+		value += Value(outfit, day, count);
 	return value;
 }
 
@@ -258,8 +282,8 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool
 int64_t Depreciation::Value(const Ship &ship, int day) const
 {
 	int64_t value = Value(&ship, day);
-	for(const auto &it : ship.Outfits())
-		value += Value(it.first, day, it.second);
+	for(const auto &[outfit, count] : ship.Outfits())
+		value += Value(outfit, day, count);
 	return value;
 }
 
@@ -334,7 +358,10 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 		// however many items from this bin we can use.
 		int used = min(it->second, count);
 		count -= used;
-		sum += used * Depreciate(day - it->first);
+		if(it->first == PLUNDERED)
+			sum += used * Plundered();
+		else
+			sum += used * Depreciate(day - it->first);
 		// Bail out if we've counted enough items.
 		if(!count)
 			break;
@@ -359,7 +386,6 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 
 
 
-// Calculate the value fraction for an item of the given age.
 double Depreciation::Depreciate(int age) const
 {
 	if(age <= GracePeriod())

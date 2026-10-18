@@ -15,6 +15,7 @@
 	description "The default set of gamerules around which the game is developed."
 	
 	"depreciation min" 0.25
+	"depreciation plundered" 0.25
 	"depreciation grace period" 7
 	"depreciation max age" 1000
 	"depreciation daily" 0.997

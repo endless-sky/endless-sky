@@ -47,6 +47,7 @@ using namespace std;
 namespace {
 	// Gamerule display names.
 	const string DEPRECIATION_MIN = "Minimum value";
+	const string DEPRECIATION_PLUNDERED = "Plundered value";
 	const string DEPRECIATION_GRACE_PERIOD = "Grace period";
 	const string DEPRECIATION_MAX_AGE = "Maximum age";
 	const string DEPRECIATION_DAILY = "Daily depreciation";
@@ -77,6 +78,7 @@ namespace {
 
 	const auto DISPLAY_NAME_TO_RULE_NAME = map<string, string>{
 		{DEPRECIATION_MIN, "depreciation min"},
+		{DEPRECIATION_PLUNDERED, "depreciation plundered"},
 		{DEPRECIATION_GRACE_PERIOD, "depreciation grace period"},
 		{DEPRECIATION_MAX_AGE, "depreciation max age"},
 		{DEPRECIATION_DAILY, "depreciation daily"},
@@ -395,6 +397,7 @@ void GamerulesPanel::DrawGamerules()
 	static const string GAMERULES[] = {
 		"Depreciation",
 		DEPRECIATION_MIN,
+		DEPRECIATION_PLUNDERED,
 		DEPRECIATION_GRACE_PERIOD,
 		DEPRECIATION_MAX_AGE,
 		DEPRECIATION_DAILY,
@@ -483,6 +486,8 @@ void GamerulesPanel::DrawGamerules()
 		string text;
 		if(gamerule == DEPRECIATION_MIN)
 			text = Format::Percentage(gamerules.DepreciationMin(), 2);
+		else if(gamerule == DEPRECIATION_PLUNDERED)
+			text = Format::Percentage(gamerules.DepreciationPlundered(), 2);
 		else if(gamerule == DEPRECIATION_GRACE_PERIOD)
 			text = Format::AbbreviatedNumber(gamerules.DepreciationGracePeriod());
 		else if(gamerule == DEPRECIATION_MAX_AGE)
@@ -849,6 +854,13 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
 		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetDepreciationMin, validate,
 			message, gamerules.DepreciationMin()));
+	}
+	else if(str == DEPRECIATION_PLUNDERED)
+	{
+		string message = "Set the plundered deprecation value. (Decimal value between 0 and 1.)";
+		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
+		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetDepreciationPlundered,
+			validate, message, gamerules.DepreciationPlundered()));
 	}
 	else if(str == DEPRECIATION_GRACE_PERIOD)
 	{

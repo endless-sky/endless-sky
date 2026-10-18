@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <map>
 #include <memory>
-#include <string>
 #include <vector>
 
 class DataNode;
@@ -29,12 +28,12 @@ class Ship;
 
 
 // Class for tracking depreciation records, by storing the day on which a given
-// outfit or ship was purchased. Any ship or outfit for which no record exists,
-// for example because it is plunder, counts as full depreciated.
+// outfit or ship was purchased. Any ship or outfit for which no record exists
+// counts as full depreciated.
 class Depreciation {
 public:
-	// What fraction of its cost a fully depreciated item has left:
-	static double Full();
+	// The remaining value for plundered items.
+	static double Plundered();
 
 
 public:
@@ -51,6 +50,8 @@ public:
 	void Buy(const Ship &ship, int day, Depreciation *source = nullptr, bool chassisOnly = false);
 	// Add a single outfit to the depreciation record.
 	void Buy(const Outfit *outfit, int day, Depreciation *source = nullptr);
+	// Add a plundered ship, and all its outfits, to the depreciation record.
+	void Plunder(const Ship &ship, int day);
 
 	// Get the value of an entire fleet.
 	int64_t Value(const std::vector<std::shared_ptr<Ship>> &fleet, int day, bool chassisOnly = false) const;
@@ -66,8 +67,9 @@ private:
 	// "Sell" an item, removing it from the given record and returning the base
 	// day for its depreciation.
 	int Sell(std::map<int, int> &record) const;
-	// Calculate depreciation:
+	// Calculate depreciation for some number of items.
 	double Depreciate(const std::map<int, int> &record, int day, int count = 1) const;
+	// Calculate the value fraction for an item of the given age.
 	double Depreciate(int age) const;
 	// Depreciation of an item for which no record exists. If buying, items
 	// default to no depreciation. When selling, they default to full.
@@ -83,6 +85,10 @@ private:
 	// Check if any data has been loaded.
 	bool isLoaded = false;
 
+	// The depreciation records of ships and outfits. Each record map uses the
+	// day as the key and the number of ships or outfits obtained on that day
+	// as the value. If an item isn't in the record, it uses the default deprecation.
+	// If an item's age is -1, that is equivalent to having been plundered.
 	std::map<const Ship *, std::map<int, int>> ships;
 	std::map<const Outfit *, std::map<int, int>> outfits;
 };

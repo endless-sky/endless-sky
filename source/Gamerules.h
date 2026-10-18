@@ -94,6 +94,7 @@ public:
 	void SetNPCMaxMiningTime(int value);
 	void SetUniversalFrugalThreshold(double value);
 	void SetDepreciationMin(double value);
+	void SetDepreciationPlundered(double value);
 	void SetDepreciationDaily(double value);
 	void SetDepreciationGracePeriod(int value);
 	void SetDepreciationMaxAge(int value);
@@ -123,6 +124,7 @@ public:
 	int NPCMaxMiningTime() const;
 	double UniversalFrugalThreshold() const;
 	double DepreciationMin() const;
+	double DepreciationPlundered() const;
 	double DepreciationDaily() const;
 	int DepreciationGracePeriod() const;
 	int DepreciationMaxAge() const;
@@ -160,6 +162,7 @@ private:
 		int npcMaxMiningTime = 3600;
 		double universalFrugalThreshold = .75;
 		double depreciationMin = .25;
+		double depreciationPlundered = .25;
 		double depreciationDaily = .997;
 		int depreciationGracePeriod = 7;
 		int depreciationMaxAge = 1000;

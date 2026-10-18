@@ -60,6 +60,8 @@ void Gamerules::Load(const DataNode &node)
 			storage.universalFrugalThreshold = min(1., max(0., child.Value(1)));
 		else if(key == "depreciation min")
 			storage.depreciationMin = min(1., max(0., child.Value(1)));
+		else if(key == "depreciation plundered")
+			storage.depreciationPlundered = min(1., max(0., child.Value(1)));
 		else if(key == "depreciation daily")
 			storage.depreciationDaily = min(1., max(0., child.Value(1)));
 		else if(key == "depreciation grace period")
@@ -173,6 +175,8 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write("universal frugal threshold", storage.universalFrugalThreshold);
 		if(storage.depreciationMin != preset.storage.depreciationMin)
 			out.Write("depreciation min", storage.depreciationMin);
+		if(storage.depreciationPlundered != preset.storage.depreciationPlundered)
+			out.Write("depreciation plundered", storage.depreciationPlundered);
 		if(storage.depreciationDaily != preset.storage.depreciationDaily)
 			out.Write("depreciation daily", storage.depreciationDaily);
 		if(storage.depreciationGracePeriod != preset.storage.depreciationGracePeriod)
@@ -282,6 +286,8 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.universalFrugalThreshold = preset.storage.universalFrugalThreshold;
 	else if(rule == "depreciation min")
 		storage.depreciationMin = preset.storage.depreciationMin;
+	else if(rule == "depreciation plundered")
+		storage.depreciationPlundered = preset.storage.depreciationPlundered;
 	else if(rule == "depreciation daily")
 		storage.depreciationDaily = preset.storage.depreciationDaily;
 	else if(rule == "depreciation grace period")
@@ -394,6 +400,13 @@ void Gamerules::SetUniversalFrugalThreshold(double value)
 void Gamerules::SetDepreciationMin(double value)
 {
 	storage.depreciationMin = clamp(value, 0., 1.);
+}
+
+
+
+void Gamerules::SetDepreciationPlundered(double value)
+{
+	storage.depreciationPlundered = clamp(value, 0., 1.);
 }
 
 
@@ -547,6 +560,8 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.universalFrugalThreshold * 1000;
 	if(rule == "depreciation min")
 		return storage.depreciationMin * 1000;
+	if(rule == "depreciation plundered")
+		return storage.depreciationPlundered * 1000;
 	if(rule == "depreciation daily")
 		return storage.depreciationDaily * 1000;
 	if(rule == "depreciation grace period")
@@ -631,6 +646,13 @@ double Gamerules::UniversalFrugalThreshold() const
 double Gamerules::DepreciationMin() const
 {
 	return storage.depreciationMin;
+}
+
+
+
+double Gamerules::DepreciationPlundered() const
+{
+	return storage.depreciationPlundered;
 }
 
 
