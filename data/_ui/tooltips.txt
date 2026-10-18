@@ -1862,7 +1862,14 @@ tip "Single save file"
 tip "Restricted save loading"
 	`If true, this pilot will be unable to reload save files while not on the safety of a planet.`
 
+tip "Death benefits"
+	`If true, death benefits must be paid to the families of crew members who died in the process of capturing a ship. Death benefits must be paid upon successfully capturing a ship, at which point the benefits scale with the worth of the ship that was captured. A minimum payment per casualty may also be applied regardless of a successful capture.`
 
+tip "Captain shares"
+	`If death benefits are active and you successfully capture a ship, this is the number of shares that you as the captain receive of the value of the captured ship. The families of all dead crew members each receive one share.`
+
+tip "Minimum per casualty"
+	`If death benefits are active and you lose crew during a boarding action, this is the minimum number of credits that must be paid to the families of the crew members who died. This amount must be paid even if you didn't successfully capture a ship.`
 
 # Boarding panel
 tip `boarding: in cargo`

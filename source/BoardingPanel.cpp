@@ -26,9 +26,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
+#include "Messages.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Random.h"
@@ -270,9 +272,30 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 {
 	if((key == 'd' || key == 'x' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && CanExit())
 	{
+		const Gamerules &rules = GameData::GetGamerules();
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)
 			player.Die();
+		// Handle any death benefits that are owed.
+		else if(rules.DeathBenefits() && casualties)
+		{
+			// If your crew suffered any casualties, you need to pay
+			// death benefits to their bereaved families.
+			int64_t deathBenefits = casualties * rules.DeathBenefitMinPerCasualty();
+			// If capture of the ship was successful, then death benefits may be paid
+			// based off of the value of the ship. You as the captain are able to have
+			// more shares than your crew members, who each only get one.
+			if(successfulCapture)
+			{
+				int shares = casualties + rules.DeathBenefitCaptainShares();
+				deathBenefits = max<int64_t>(deathBenefits,
+					(victim->Cost() * casualties * Depreciation::Full()) / shares);
+			}
+			Messages::Add({"You must pay " + Format::Number(deathBenefits) + " credits in death benefits for the "
+				+ ((casualties > 1) ? "families of your dead crew members." : "family of your dead crew member."),
+				GameData::MessageCategories().Get("normal")});
+			player.Accounts().AddDeathBenefits(deathBenefits);
+		}
 		GetUI().Pop(this);
 	}
 	else if(playerDied)
@@ -465,6 +488,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			else if(enemyCasualties)
 				message += "They lose " + to_string(enemyCasualties) + " crew.";
 			AddMessage(message);
+			casualties += yourCasualties;
 
 			// Check if either ship has been captured.
 			if(!you->Crew())
@@ -476,6 +500,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			}
 			else if(!victim->Crew())
 			{
+				successfulCapture = true;
 				AddMessage("You have succeeded in capturing this ship.");
 				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->CrewValue());
 				int crewTransferred = victim->WasCaptured(you);

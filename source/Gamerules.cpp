@@ -147,6 +147,12 @@ void Gamerules::Load(const DataNode &node)
 			storage.singleSaveFile = child.BoolValue(1);
 		else if(key == "restricted save loading")
 			storage.restrictedSaveLoading = child.BoolValue(1);
+		else if(key == "death benefits")
+			storage.deathBenefits = child.BoolValue(1);
+		else if(key == "death benefit captain shares")
+			storage.deathBenefitCaptainShares = max<int>(1, child.Value(1));
+		else if(key == "death benefit min per casualty")
+			storage.deathBenefitMinPerCasualty = max<int64_t>(0, child.Value(1));
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
@@ -244,6 +250,12 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write("single save file", storage.singleSaveFile ? 1 : 0);
 		if(storage.restrictedSaveLoading != preset.storage.restrictedSaveLoading)
 			out.Write("restricted save loading", storage.restrictedSaveLoading ? 1 : 0);
+		if(storage.deathBenefits != preset.storage.deathBenefits)
+			out.Write("death benefits", storage.deathBenefits ? 1 : 0);
+		if(storage.deathBenefitCaptainShares != preset.storage.deathBenefitCaptainShares)
+			out.Write("death benefit captain shares", storage.deathBenefitCaptainShares);
+		if(storage.deathBenefitMinPerCasualty != preset.storage.deathBenefitMinPerCasualty)
+			out.Write("death benefit min per casualty", storage.deathBenefitMinPerCasualty);
 
 		const map<string, int> &otherMiscRules = preset.storage.miscRules;
 		for(const auto &[rule, value] : storage.miscRules)
@@ -318,6 +330,12 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.singleSaveFile = preset.storage.singleSaveFile;
 	else if(rule == "restricted save loading")
 		storage.restrictedSaveLoading = preset.storage.restrictedSaveLoading;
+	else if(rule == "death benefits")
+		storage.deathBenefits = preset.storage.deathBenefits;
+	else if(rule == "death benefit captain shares")
+		storage.deathBenefitCaptainShares = preset.storage.deathBenefitCaptainShares;
+	else if(rule == "death benefit min per casualty")
+		storage.deathBenefitMinPerCasualty = preset.storage.deathBenefitMinPerCasualty;
 	else
 	{
 		auto it = preset.storage.miscRules.find(rule);
@@ -524,6 +542,27 @@ void Gamerules::SetRestrictedSaveLoading(bool value)
 
 
 
+void Gamerules::SetDeathBenefits(bool value)
+{
+	storage.deathBenefits = value;
+}
+
+
+
+void Gamerules::SetDeathBenefitCaptainShares(int value)
+{
+	storage.deathBenefitCaptainShares = max(1, value);
+}
+
+
+
+void Gamerules::SetDeathBenefitMinPerCasualty(int value)
+{
+	storage.deathBenefitMinPerCasualty = max<int>(0, value);
+}
+
+
+
 void Gamerules::SetMiscValue(const string &rule, int value)
 {
 	storage.miscRules[rule] = value;
@@ -577,6 +616,12 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.singleSaveFile;
 	if(rule == "restricted save loading")
 		return storage.restrictedSaveLoading;
+	if(rule == "death benefits")
+		return storage.deathBenefits;
+	if(rule == "death benefit captain shares")
+		return storage.deathBenefitCaptainShares;
+	if(rule == "death benefit min per casualty")
+		return storage.deathBenefitMinPerCasualty;
 
 	auto it = storage.miscRules.find(rule);
 	if(it == storage.miscRules.end())
@@ -758,6 +803,27 @@ bool Gamerules::RestrictedSaveLoading() const
 {
 	return storage.restrictedSaveLoading || storage.permadeathMode == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF
 		|| storage.permadeathMode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF;
+}
+
+
+
+bool Gamerules::DeathBenefits() const
+{
+	return storage.deathBenefits;
+}
+
+
+
+int Gamerules::DeathBenefitCaptainShares() const
+{
+	return storage.deathBenefitCaptainShares;
+}
+
+
+
+int Gamerules::DeathBenefitMinPerCasualty() const
+{
+	return storage.deathBenefitMinPerCasualty;
 }
 
 

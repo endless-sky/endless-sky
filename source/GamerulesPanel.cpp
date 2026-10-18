@@ -72,6 +72,9 @@ namespace {
 	const string PERMADEATH_MODE = "Permadeath";
 	const string SINGLE_SAVE_FILE = "Single save file";
 	const string RESTRICTED_SAVE_LOADING = "Restricted save loading";
+	const string DEATH_BENEFITS = "Death benefits";
+	const string DEATH_BENEFIT_CAPTAIN_SHARES = "Captain shares";
+	const string DEATH_BENEFIT_MIN_PER_CASUALTY = "Minimum per casualty";
 
 	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
 
@@ -102,9 +105,12 @@ namespace {
 		{PERMADEATH_MODE, "permadeath mode"},
 		{SINGLE_SAVE_FILE, "single save file"},
 		{RESTRICTED_SAVE_LOADING, "restricted save loading"},
+		{DEATH_BENEFITS, "death benefits"},
+		{DEATH_BENEFIT_CAPTAIN_SHARES, "death benefit captain shares"},
+		{DEATH_BENEFIT_MIN_PER_CASUALTY, "death benefit min per casualty"},
 	};
 
-	const int GAMERULES_PAGE_COUNT = 1;
+	const int GAMERULES_PAGE_COUNT = 2;
 }
 
 
@@ -427,6 +433,11 @@ void GamerulesPanel::DrawGamerules()
 		SINGLE_SAVE_FILE,
 		RESTRICTED_SAVE_LOADING,
 		"",
+		"Capture Settings",
+		DEATH_BENEFITS,
+		DEATH_BENEFIT_CAPTAIN_SHARES,
+		DEATH_BENEFIT_MIN_PER_CASUALTY,
+		"\n",
 		"Miscellaneous",
 		LOCK_GAMERULES,
 		FIGHTERS_HIT_WHEN_DISABLED,
@@ -609,6 +620,18 @@ void GamerulesPanel::DrawGamerules()
 			text = gamerules.SingleSaveFile() ? "true" : "false";
 		else if(gamerule == RESTRICTED_SAVE_LOADING)
 			text = gamerules.RestrictedSaveLoading() ? "true" : "false";
+		else if(gamerule == DEATH_BENEFITS)
+			text = gamerules.DeathBenefits() ? "true" : "false";
+		else if(gamerule == DEATH_BENEFIT_CAPTAIN_SHARES)
+		{
+			text = Format::AbbreviatedNumber(gamerules.DeathBenefitCaptainShares());
+			isOn = gamerules.DeathBenefits();
+		}
+		else if(gamerule == DEATH_BENEFIT_MIN_PER_CASUALTY)
+		{
+			text = Format::AbbreviatedNumber(gamerules.DeathBenefitMinPerCasualty());
+			isOn = gamerules.DeathBenefits();
+		}
 
 		if(gamerule == hoverItem)
 		{
@@ -1022,6 +1045,24 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 				"value to toggle this rule."));
 		else
 			gamerules.SetRestrictedSaveLoading(!gamerules.RestrictedSaveLoading());
+	}
+	else if(str == DEATH_BENEFITS)
+		gamerules.SetDeathBenefits(!gamerules.DeathBenefits());
+	else if(str == DEATH_BENEFIT_CAPTAIN_SHARES)
+	{
+		string message = "Set the number of shares the captain gets when capturing a ship. "
+			"(Integer value greater than or equal to 1.)";
+		auto validate = [](int value) -> bool { return value >= 1; };
+		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDeathBenefitCaptainShares,
+			validate, message, gamerules.DeathBenefitCaptainShares()));
+	}
+	else if(str == DEATH_BENEFIT_MIN_PER_CASUALTY)
+	{
+		string message = "Set the minimum death benefit payment per casualty when capturing a ship. "
+			"(Integer value greater than or equal to 0.)";
+		auto validate = [](int value) -> bool { return value >= 0; };
+		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDeathBenefitMinPerCasualty,
+			validate, message, gamerules.DeathBenefitMinPerCasualty()));
 	}
 }
 

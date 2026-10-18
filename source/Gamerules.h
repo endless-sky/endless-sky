@@ -113,6 +113,9 @@ public:
 	void SetSingleSaveFile(bool value);
 	void SetRestrictedSaveLoading(bool value);
 	void SetMiscValue(const std::string &rule, int value);
+	void SetDeathBenefits(bool value);
+	void SetDeathBenefitCaptainShares(int value);
+	void SetDeathBenefitMinPerCasualty(int value);
 
 	int GetValue(const std::string &rule) const;
 
@@ -141,6 +144,9 @@ public:
 	PermadeathMode GetPermadeathMode() const;
 	bool SingleSaveFile() const;
 	bool RestrictedSaveLoading() const;
+	bool DeathBenefits() const;
+	int DeathBenefitCaptainShares() const;
+	int DeathBenefitMinPerCasualty() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -184,6 +190,9 @@ private:
 		PermadeathMode permadeathMode = PermadeathMode::OFF;
 		bool singleSaveFile = false;
 		bool restrictedSaveLoading = false;
+		bool deathBenefits = false;
+		int deathBenefitCaptainShares = 2;
+		int deathBenefitMinPerCasualty = 100000;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;
