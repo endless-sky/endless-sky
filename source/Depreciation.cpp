@@ -55,6 +55,9 @@ namespace {
 	// The date used for recording plundered items when the value of plundered
 	// items is below the minimum value of fully depreciated items.
 	const int PLUNDERED = -1;
+
+	// Cache the age on which an item would have the given value.
+	map<double, int> depreciationToAge;
 }
 
 
@@ -240,28 +243,35 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 
 void Depreciation::Plunder(const Ship &ship, int day)
 {
-	for(const auto &[outfit, count] : ship.Outfits())
-		for(int i = 0; i < count; ++i)
-			Plunder(outfit, day);
-
+	assert(!isStock && "Ships cannot be plundered into a stock depreciation record.");
 	// If the value of plundered goods is lower than the minimum, then record
 	// this item with a special PLUNDERED date. Items with this date return the
 	// plundered value instead of the minimum value. Otherwise, allow the plundered
-	// items to depreciate toward the minimum.
-	int useDay = Plundered() < Min() ? PLUNDERED : day;
+	// items to depreciate toward the minimum, starting at whatever date would give it
+	// the plundered value.
+	day = Plundered() < Min() ? PLUNDERED : day - DepreciationToAge(Plundered());
+
+	for(const auto &[outfit, count] : ship.Outfits())
+	{
+		if(outfit->Get("installable") < 0.)
+			continue;
+		outfits[outfit][day] += count;
+	}
+
 	const Ship *base = GameData::Ships().Get(ship.TrueModelName());
-	++ships[base][useDay];
+	++ships[base][day];
 }
 
 
 
-void Depreciation::Plunder(const Outfit *outfit, int day)
+void Depreciation::Plunder(const Outfit *outfit, int day, int count)
 {
+	assert(!isStock && "Outfits cannot be plundered into a stock depreciation record.");
 	if(outfit->Get("installable") < 0.)
 		return;
 
-	int useDay = Plundered() < Min() ? PLUNDERED : day;
-	++outfits[outfit][useDay];
+	day = Plundered() < Min() ? PLUNDERED : day - DepreciationToAge(Plundered());
+	outfits[outfit][day] += count;
 }
 
 
@@ -412,6 +422,42 @@ double Depreciation::Depreciate(int age) const
 	double daily = pow(Daily(), effectiveAge);
 	double linear = static_cast<double>(MaxAge() - effectiveAge) / MaxAge();
 	return Min() + (1. - Min()) * daily * linear;
+}
+
+
+
+int Depreciation::DepreciationToAge(double value) const
+{
+	auto it = depreciationToAge.find(value);
+	if(it != depreciationToAge.end())
+		return it->second;
+
+	int age = 0;
+	if(value < Min())
+		age = MaxAge();
+	else if(value < 1.)
+	{
+		// A mathematical inverse of the Depreciate function (`min + (1 - min) * daily^(x) * (max - x) / max`)
+		// requires use of the Lambert W function. Wolfram Alpha says that the inverse is
+		// `x = (W(-(max * daily^(-max) * min * log(daily)) / (min - 1)) + max * log(daily)) / log(daily)` where W
+		// is the aforementioned function and x is the age of the item.
+		// This function isn't available in the standard library, nor is it a simple function to implement,
+		// so just do a binary search against the Depreciate function until finding the age that comes closest
+		// to the desired value, then cache that for later use.
+		int low = 0;
+		int high = MaxAge();
+		while(low != high)
+		{
+			age = (high + low) / 2;
+			if(Depreciate(age) < value)
+				high = age;
+			else
+				low = age + 1;
+		}
+	}
+
+	depreciationToAge[value] = age;
+	return age;
 }
 
 

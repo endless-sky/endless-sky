@@ -55,7 +55,7 @@ public:
 	// Add a plundered ship, and all its outfits, to the depreciation record.
 	void Plunder(const Ship &ship, int day);
 	// Add a plundered outfit to the depreciation record.
-	void Plunder(const Outfit *outfit, int day);
+	void Plunder(const Outfit *outfit, int day, int count);
 
 	// Get the value of an entire fleet.
 	int64_t Value(const std::vector<std::shared_ptr<Ship>> &fleet, int day, bool chassisOnly = false) const;
@@ -75,6 +75,8 @@ private:
 	double Depreciate(const std::map<int, int> &record, int day, int count = 1) const;
 	// Calculate the value fraction for an item of the given age.
 	double Depreciate(int age) const;
+	// Calculate the age on which an item would have the given value.
+	int DepreciationToAge(double value) const;
 	// Depreciation of an item for which no record exists. If buying, items
 	// default to no depreciation. When selling, they default to full.
 	double DefaultDepreciation() const;
