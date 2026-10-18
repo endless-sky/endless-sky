@@ -428,32 +428,31 @@ double Depreciation::Depreciate(int age) const
 
 int Depreciation::DepreciationToAge(double value) const
 {
+	if(value <= Min())
+		return MaxAge();
+	if(value >= 1.)
+		return 0;
 	auto it = depreciationToAge.find(value);
 	if(it != depreciationToAge.end())
 		return it->second;
 
+	// A mathematical inverse of the Depreciate function (`min + (1 - min) * daily^(x) * (max - x) / max`)
+	// requires use of the Lambert W function. Wolfram Alpha says that the inverse is
+	// `x = (W(-(max * daily^(-max) * min * log(daily)) / (min - 1)) + max * log(daily)) / log(daily)` where W
+	// is the aforementioned function and x is the age of the item.
+	// This function isn't available in the standard library, nor is it a simple function to implement,
+	// so just do a binary search against the Depreciate function until finding the age that comes closest
+	// to the desired value, then cache that for later use.
 	int age = 0;
-	if(value < Min())
-		age = MaxAge();
-	else if(value < 1.)
+	int low = 0;
+	int high = MaxAge();
+	while(low != high)
 	{
-		// A mathematical inverse of the Depreciate function (`min + (1 - min) * daily^(x) * (max - x) / max`)
-		// requires use of the Lambert W function. Wolfram Alpha says that the inverse is
-		// `x = (W(-(max * daily^(-max) * min * log(daily)) / (min - 1)) + max * log(daily)) / log(daily)` where W
-		// is the aforementioned function and x is the age of the item.
-		// This function isn't available in the standard library, nor is it a simple function to implement,
-		// so just do a binary search against the Depreciate function until finding the age that comes closest
-		// to the desired value, then cache that for later use.
-		int low = 0;
-		int high = MaxAge();
-		while(low != high)
-		{
-			age = (high + low) / 2;
-			if(Depreciate(age) < value)
-				high = age;
-			else
-				low = age + 1;
-		}
+		age = (high + low) / 2;
+		if(Depreciate(age) < value)
+			high = age;
+		else
+			low = age + 1;
 	}
 
 	depreciationToAge[value] = age;
