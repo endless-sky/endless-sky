@@ -57,7 +57,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	: player(player), you(player.FlagshipPtr()), victim(victim),
 	tooltip(300, Alignment::LEFT, Tooltip::Direction::DOWN_RIGHT, Tooltip::Corner::BOTTOM_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"), true),
-	attackOdds(*you, *victim), defenseOdds(*victim, *you)
+	attackOdds(*you, *victim), defenseOdds(*victim, *you), pastCasualties(player.GetBoardingCasualties(victim))
 {
 	Audio::Pause();
 	// The escape key should close this panel rather than bringing up the main menu.
@@ -273,6 +273,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	if((key == 'd' || key == 'x' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && CanExit())
 	{
 		const Gamerules &rules = GameData::GetGamerules();
+		int casualties = player.GetBoardingCasualties(victim);
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)
 			player.Die();
@@ -281,15 +282,23 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		{
 			// If your crew suffered any casualties, you need to pay
 			// death benefits to their bereaved families.
-			int64_t deathBenefits = casualties * rules.DeathBenefitMinPerCasualty();
+			int64_t pastDeathBenefits = pastCasualties * rules.DeathBenefitCaptainShares();
+			int64_t totalDeathBenefits = casualties * rules.DeathBenefitMinPerCasualty();
+			int64_t deathBenefits = totalDeathBenefits - pastDeathBenefits;
 			// If capture of the ship was successful, then death benefits may be paid
 			// based off of the value of the ship. You as the captain are able to have
 			// more shares than your crew members, who each only get one.
 			if(successfulCapture)
 			{
 				int shares = casualties + rules.DeathBenefitCaptainShares();
-				deathBenefits = max<int64_t>(deathBenefits,
-					(victim->Cost() * casualties * Depreciation::Full()) / shares);
+				int benefitsByShares = (victim->Cost() * casualties * Depreciation::Full()) / shares;
+				// Benefits only need to be paid on a per-share basis if the
+				// share size per crew is greater than the minimum per casualty.
+				if(benefitsByShares > totalDeathBenefits)
+				{
+					// Account for any payments that were scheduled during past boarding attempts.
+					deathBenefits = benefitsByShares - pastDeathBenefits;
+				}
 			}
 			if(deathBenefits)
 			{
@@ -491,7 +500,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			else if(enemyCasualties)
 				message += "They lose " + to_string(enemyCasualties) + " crew.";
 			AddMessage(message);
-			casualties += yourCasualties;
+			player.AddBoardingCasualties(victim.get(), yourCasualties);
 
 			// Check if either ship has been captured.
 			if(!you->Crew())

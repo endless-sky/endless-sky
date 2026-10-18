@@ -159,6 +159,7 @@ private:
 	// Whether or not the ship can be captured.
 	bool canCapture = false;
 
-	// If you lose crew, you may have to pay "death benefits" based off of the crew lost.
-	int casualties;
+	// If the player boarded this ship multiple times, remember how many casualties
+	// occurred on previous boardings.
+	int pastCasualties;
 };
