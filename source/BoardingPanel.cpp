@@ -291,10 +291,13 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				deathBenefits = max<int64_t>(deathBenefits,
 					(victim->Cost() * casualties * Depreciation::Full()) / shares);
 			}
-			Messages::Add({"You must pay " + Format::Number(deathBenefits) + " credits in death benefits for the "
-				+ ((casualties > 1) ? "families of your dead crew members." : "family of your dead crew member."),
-				GameData::MessageCategories().Get("normal")});
-			player.Accounts().AddDeathBenefits(deathBenefits);
+			if(deathBenefits)
+			{
+				Messages::Add({"You must pay " + Format::Number(deathBenefits) + " credits in death benefits for the "
+					   + ((casualties > 1) ? "families of your dead crew members." : "family of your dead crew member."),
+					   GameData::MessageCategories().Get("normal")});
+				player.Accounts().AddDeathBenefits(deathBenefits);
+			}
 		}
 		GetUI().Pop(this);
 	}
