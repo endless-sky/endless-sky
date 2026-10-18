@@ -274,37 +274,70 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	{
 		const Gamerules &rules = GameData::GetGamerules();
 		int casualties = player.GetBoardingCasualties(victim);
+		Gamerules::CaptureProfitSharing profitSharing = rules.GetCaptureProfitSharing();
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)
 			player.Die();
-		// Handle any death benefits that are owed.
-		else if(rules.DeathBenefits() && casualties)
+		// Handle any death benefits or crew bonuses that are owed.
+		else if(profitSharing != Gamerules::CaptureProfitSharing::OFF)
 		{
-			// If your crew suffered any casualties, you need to pay
-			// death benefits to their bereaved families.
-			int64_t pastDeathBenefits = pastCasualties * rules.DeathBenefitCaptainShares();
-			int64_t totalDeathBenefits = casualties * rules.DeathBenefitMinPerCasualty();
-			int64_t deathBenefits = totalDeathBenefits - pastDeathBenefits;
+			bool all = profitSharing == Gamerules::CaptureProfitSharing::ALL_CREW;
+			bool payCrewBonuses = profitSharing == Gamerules::CaptureProfitSharing::LIVING_CREW || all;
+			bool payDeathBenefits = profitSharing == Gamerules::CaptureProfitSharing::DEAD_CREW || all;
+			int64_t deathBenefits;
+			int64_t crewBonuses;
+			double crewShares = remainingCrew;
+			double familyShares = casualties * rules.CaptureDeadCrewShares();
+
+			// Determine the value per share of this ship.
+			double totalShares = rules.CaptureCaptainShares();
+			if(payCrewBonuses)
+				totalShares += crewShares;
+			if(payDeathBenefits)
+				totalShares += familyShares;
+			int64_t valuePerShare = victim->Cost() * Depreciation::Full() / totalShares;
+
+			// Even if boarding wasn't successful, you may need to pay a minimum amount
+			// per dead crew member.
+			int64_t minimumDeathBenefits = casualties * rules.DeathBenefitMinPerCasualty();
+			if(payDeathBenefits)
+				deathBenefits = minimumDeathBenefits;
 			// If capture of the ship was successful, then death benefits may be paid
 			// based off of the value of the ship. You as the captain are able to have
 			// more shares than your crew members, who each only get one.
 			if(successfulCapture)
 			{
-				int shares = casualties + rules.DeathBenefitCaptainShares();
-				int benefitsByShares = (victim->Cost() * casualties * Depreciation::Full()) / shares;
-				// Benefits only need to be paid on a per-share basis if the
-				// share size per crew is greater than the minimum per casualty.
-				if(benefitsByShares > totalDeathBenefits)
+				if(payCrewBonuses)
+					crewBonuses = remainingCrew * valuePerShare;
+				if(payDeathBenefits)
 				{
-					// Account for any payments that were scheduled during past boarding attempts.
-					deathBenefits = benefitsByShares - pastDeathBenefits;
+					// Benefits only need to be paid on a per-share basis if the
+					// share size per crew is greater than the minimum per casualty.
+					int64_t benefitsByShares = familyShares * valuePerShare;
+					if(benefitsByShares > minimumDeathBenefits)
+					{
+						// Account for any payments that were scheduled during past boarding attempts.
+						int64_t pastDeathBenefits = pastCasualties * rules.CaptureCaptainShares();
+						deathBenefits = benefitsByShares - pastDeathBenefits;
+					}
 				}
 			}
-			if(deathBenefits)
+			if(deathBenefits || crewBonuses)
 			{
-				Messages::Add({"You must pay " + Format::Number(deathBenefits) + " credits in death benefits for the "
-					+ ((casualties > 1) ? "families of your dead crew members." : "family of your dead crew member."),
-					GameData::MessageCategories().Get("normal")});
+				string message = "You must pay ";
+				if(deathBenefits)
+				{
+					message += Format::Number(deathBenefits) + " credits in death benefits for the "
+						+ ((casualties > 1) ? "families of your dead crew members" : "family of your dead crew member");
+					if(crewBonuses)
+						message += " and ";
+				}
+				if(crewBonuses)
+				{
+					message += Format::Number(crewBonuses) + " credits in crew bonuses for the surviving crew member"
+						+ ((remainingCrew > 1) ? "s" : "");
+				}
+				Messages::Add({"You must pay " + message + ".", GameData::MessageCategories().Get("normal")});
 				player.Accounts().AddDeathBenefits(deathBenefits);
 			}
 		}
@@ -512,6 +545,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			}
 			else if(!victim->Crew())
 			{
+				// Record how many crew, aside from the captain, are left alive after capturing this ship.
+				remainingCrew = you->Crew() - 1;
 				successfulCapture = true;
 				AddMessage("You have succeeded in capturing this ship.");
 				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->CrewValue());

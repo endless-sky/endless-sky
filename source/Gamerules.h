@@ -67,6 +67,17 @@ public:
 		DELETE_ON_TAKEOFF = 4,
 	};
 
+	// Defines how the value from a captured ship is shared with the crew.
+	enum class CaptureProfitSharing {
+		OFF = 0,
+		// Death benefits must be paid to the family of crew members who died when capturing a ship.
+		DEAD_CREW = 1,
+		// Living crew members get a share of the value of captured ships.
+		LIVING_CREW = 2,
+		// Both living crew members and the families of dead crew members get a share of captured ship value.
+		ALL_CREW = 3,
+	};
+
 
 public:
 	Gamerules() = default;
@@ -113,8 +124,9 @@ public:
 	void SetSingleSaveFile(bool value);
 	void SetRestrictedSaveLoading(bool value);
 	void SetMiscValue(const std::string &rule, int value);
-	void SetDeathBenefits(bool value);
-	void SetDeathBenefitCaptainShares(int value);
+	void SetCaptureProfitSharing(CaptureProfitSharing value);
+	void SetCaptureCaptainShares(double value);
+	void SetCaptureDeadCrewShares(double value);
 	void SetDeathBenefitMinPerCasualty(int value);
 
 	int GetValue(const std::string &rule) const;
@@ -144,8 +156,9 @@ public:
 	PermadeathMode GetPermadeathMode() const;
 	bool SingleSaveFile() const;
 	bool RestrictedSaveLoading() const;
-	bool DeathBenefits() const;
-	int DeathBenefitCaptainShares() const;
+	CaptureProfitSharing GetCaptureProfitSharing() const;
+	double CaptureCaptainShares() const;
+	double CaptureDeadCrewShares() const;
 	int DeathBenefitMinPerCasualty() const;
 
 	bool operator==(const Gamerules &other) const;
@@ -190,8 +203,9 @@ private:
 		PermadeathMode permadeathMode = PermadeathMode::OFF;
 		bool singleSaveFile = false;
 		bool restrictedSaveLoading = false;
-		bool deathBenefits = false;
-		int deathBenefitCaptainShares = 2;
+		CaptureProfitSharing captureProfitSharing = CaptureProfitSharing::OFF;
+		double captureCaptainShares = 2.;
+		double captureDeadCrewShares = 1.;
 		int deathBenefitMinPerCasualty = 100000;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.

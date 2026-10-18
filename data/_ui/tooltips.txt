@@ -1862,11 +1862,18 @@ tip "Single save file"
 tip "Restricted save loading"
 	`If true, this pilot will be unable to reload save files while not on the safety of a planet.`
 
-tip "Death benefits"
-	`If true, death benefits must be paid to the families of crew members who died in the process of capturing a ship. Death benefits must be paid upon successfully capturing a ship, at which point the benefits scale with the worth of the ship that was captured. A minimum payment per casualty may also be applied regardless of a successful capture.`
+tip "Capture profit sharing"
+	`Controls whether and how the value of captured ships is shared among the crew members of your flagship.`
+	`- "off": You keep the full value of the captured ship.`
+	`- "dead crew": Death benefits must be paid to the families of crew members who died in the process of capturing a ship. A minimum payment per casualty may also be applied regardless of a successful capture. The number of shares that dead crew members receive can be modified below.`
+	`- "living crew": Living crew members must be paid a bonus based on the value of the captured ship. Each living crew member gets one share.`
+	`- "all crew": Both dead and living crew must be paid according to the rules stated above. The number of shares that you as the captain receive can be modified below.`
 
 tip "Captain shares"
-	`If death benefits are active and you successfully capture a ship, this is the number of shares that you as the captain receive of the value of the captured ship. The families of all dead crew members each receive one share.`
+	`If capture profit sharing is active and you successfully capture a ship, this is the number of shares that you as the captain receive of the value of the captured ship.`
+
+tip "Dead crew shares"
+	`If capture profit sharing is set to "dead crew" or "all", this is the number of shares that the families of dead crew members receive of the value of the captured ship.`
 
 tip "Minimum per casualty"
 	`If death benefits are active and you lose crew during a boarding action, this is the minimum number of credits that must be paid to the families of the crew members who died. This amount must be paid even if you didn't successfully capture a ship.`

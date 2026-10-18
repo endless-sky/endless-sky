@@ -162,4 +162,5 @@ private:
 	// If the player boarded this ship multiple times, remember how many casualties
 	// occurred on previous boardings.
 	int pastCasualties;
+	int remainingCrew;
 };

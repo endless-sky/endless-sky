@@ -72,8 +72,9 @@ namespace {
 	const string PERMADEATH_MODE = "Permadeath";
 	const string SINGLE_SAVE_FILE = "Single save file";
 	const string RESTRICTED_SAVE_LOADING = "Restricted save loading";
-	const string DEATH_BENEFITS = "Death benefits";
-	const string DEATH_BENEFIT_CAPTAIN_SHARES = "Captain shares";
+	const string CAPTURE_PROFIT_SHARING = "Capture profit sharing";
+	const string CAPTURE_CAPTAIN_SHARES = "Captain shares";
+	const string CAPTURE_DEAD_CREW_SHARES = "Dead crew shares";
 	const string DEATH_BENEFIT_MIN_PER_CASUALTY = "Minimum per casualty";
 
 	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
@@ -105,8 +106,9 @@ namespace {
 		{PERMADEATH_MODE, "permadeath mode"},
 		{SINGLE_SAVE_FILE, "single save file"},
 		{RESTRICTED_SAVE_LOADING, "restricted save loading"},
-		{DEATH_BENEFITS, "death benefits"},
-		{DEATH_BENEFIT_CAPTAIN_SHARES, "death benefit captain shares"},
+		{CAPTURE_PROFIT_SHARING, "capture profit sharing"},
+		{CAPTURE_CAPTAIN_SHARES, "capture captain shares"},
+		{CAPTURE_DEAD_CREW_SHARES, "capture dead crew shares"},
 		{DEATH_BENEFIT_MIN_PER_CASUALTY, "death benefit min per casualty"},
 	};
 
@@ -434,8 +436,9 @@ void GamerulesPanel::DrawGamerules()
 		RESTRICTED_SAVE_LOADING,
 		"",
 		"Capture Settings",
-		DEATH_BENEFITS,
-		DEATH_BENEFIT_CAPTAIN_SHARES,
+		CAPTURE_PROFIT_SHARING,
+		CAPTURE_CAPTAIN_SHARES,
+		CAPTURE_DEAD_CREW_SHARES,
 		DEATH_BENEFIT_MIN_PER_CASUALTY,
 		"\n",
 		"Miscellaneous",
@@ -620,17 +623,43 @@ void GamerulesPanel::DrawGamerules()
 			text = gamerules.SingleSaveFile() ? "true" : "false";
 		else if(gamerule == RESTRICTED_SAVE_LOADING)
 			text = gamerules.RestrictedSaveLoading() ? "true" : "false";
-		else if(gamerule == DEATH_BENEFITS)
-			text = gamerules.DeathBenefits() ? "true" : "false";
-		else if(gamerule == DEATH_BENEFIT_CAPTAIN_SHARES)
+		else if(gamerule == CAPTURE_PROFIT_SHARING)
 		{
-			text = Format::AbbreviatedNumber(gamerules.DeathBenefitCaptainShares());
-			isOn = gamerules.DeathBenefits();
+			switch(gamerules.GetCaptureProfitSharing())
+			{
+				case Gamerules::CaptureProfitSharing::OFF:
+					text = "off";
+					isOn = false;
+					break;
+				case Gamerules::CaptureProfitSharing::DEAD_CREW:
+					text = "dead crew";
+					break;
+				case Gamerules::CaptureProfitSharing::LIVING_CREW:
+					text = "living crew";
+					break;
+				case Gamerules::CaptureProfitSharing::ALL_CREW:
+					text = "all crew";
+					break;
+			}
+		}
+		else if(gamerule == CAPTURE_CAPTAIN_SHARES)
+		{
+			text = Format::AbbreviatedNumber(gamerules.CaptureCaptainShares());
+			isOn = gamerules.GetCaptureProfitSharing() != Gamerules::CaptureProfitSharing::OFF;
+		}
+		else if(gamerule == CAPTURE_DEAD_CREW_SHARES)
+		{
+			text = Format::AbbreviatedNumber(gamerules.CaptureDeadCrewShares());
+			Gamerules::CaptureProfitSharing value = gamerules.GetCaptureProfitSharing();
+			isOn = value == Gamerules::CaptureProfitSharing::DEAD_CREW
+				|| value == Gamerules::CaptureProfitSharing::ALL_CREW;
 		}
 		else if(gamerule == DEATH_BENEFIT_MIN_PER_CASUALTY)
 		{
 			text = Format::AbbreviatedNumber(gamerules.DeathBenefitMinPerCasualty());
-			isOn = gamerules.DeathBenefits();
+			Gamerules::CaptureProfitSharing value = gamerules.GetCaptureProfitSharing();
+			isOn = value == Gamerules::CaptureProfitSharing::DEAD_CREW
+				|| value == Gamerules::CaptureProfitSharing::ALL_CREW;
 		}
 
 		if(gamerule == hoverItem)
@@ -1046,15 +1075,34 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		else
 			gamerules.SetRestrictedSaveLoading(!gamerules.RestrictedSaveLoading());
 	}
-	else if(str == DEATH_BENEFITS)
-		gamerules.SetDeathBenefits(!gamerules.DeathBenefits());
-	else if(str == DEATH_BENEFIT_CAPTAIN_SHARES)
+	else if(str == CAPTURE_PROFIT_SHARING)
+	{
+		Gamerules::CaptureProfitSharing value = gamerules.GetCaptureProfitSharing();
+		if(value == Gamerules::CaptureProfitSharing::OFF)
+			value = Gamerules::CaptureProfitSharing::DEAD_CREW;
+		else if(value == Gamerules::CaptureProfitSharing::DEAD_CREW)
+			value = Gamerules::CaptureProfitSharing::LIVING_CREW;
+		else if(value == Gamerules::CaptureProfitSharing::LIVING_CREW)
+			value = Gamerules::CaptureProfitSharing::ALL_CREW;
+		else if(value == Gamerules::CaptureProfitSharing::ALL_CREW)
+			value = Gamerules::CaptureProfitSharing::OFF;
+		gamerules.SetCaptureProfitSharing(value);
+	}
+	else if(str == CAPTURE_CAPTAIN_SHARES)
 	{
 		string message = "Set the number of shares the captain gets when capturing a ship. "
-			"(Integer value greater than or equal to 1.)";
+			"(Decimal value greater than or equal to 0.)";
 		auto validate = [](int value) -> bool { return value >= 1; };
-		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDeathBenefitCaptainShares,
-			validate, message, gamerules.DeathBenefitCaptainShares()));
+		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetCaptureCaptainShares,
+			validate, message, gamerules.CaptureCaptainShares()));
+	}
+	else if(str == CAPTURE_DEAD_CREW_SHARES)
+	{
+		string message = "Set the number of shares that the families of dead crew members get when capturing a ship. "
+			"(Decimal value greater than or equal to 0.)";
+		auto validate = [](int value) -> bool { return value >= 1; };
+		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetCaptureDeadCrewShares,
+			validate, message, gamerules.CaptureDeadCrewShares()));
 	}
 	else if(str == DEATH_BENEFIT_MIN_PER_CASUALTY)
 	{

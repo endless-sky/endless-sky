@@ -147,12 +147,26 @@ void Gamerules::Load(const DataNode &node)
 			storage.singleSaveFile = child.BoolValue(1);
 		else if(key == "restricted save loading")
 			storage.restrictedSaveLoading = child.BoolValue(1);
-		else if(key == "death benefits")
-			storage.deathBenefits = child.BoolValue(1);
-		else if(key == "death benefit captain shares")
-			storage.deathBenefitCaptainShares = max<int>(1, child.Value(1));
+		else if(key == "capture profit sharing")
+		{
+			const string &value = child.Token(1);
+			if(value == "off")
+				storage.captureProfitSharing = CaptureProfitSharing::OFF;
+			else if(value == "dead crew")
+				storage.captureProfitSharing = CaptureProfitSharing::DEAD_CREW;
+			else if(value == "living crew")
+				storage.captureProfitSharing = CaptureProfitSharing::LIVING_CREW;
+			else if(value == "all crew")
+				storage.captureProfitSharing = CaptureProfitSharing::ALL_CREW;
+			else
+				child.PrintTrace("Skipping unrecognized value for gamerule:");
+		}
+		else if(key == "capture captain shares")
+			storage.captureCaptainShares = max(0., child.Value(1));
+		else if(key == "capture dead crew shares")
+			storage.captureDeadCrewShares = max(0., child.Value(1));
 		else if(key == "death benefit min per casualty")
-			storage.deathBenefitMinPerCasualty = max<int64_t>(0, child.Value(1));
+			storage.deathBenefitMinPerCasualty = max<int>(0, child.Value(1));
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
@@ -250,10 +264,21 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write("single save file", storage.singleSaveFile ? 1 : 0);
 		if(storage.restrictedSaveLoading != preset.storage.restrictedSaveLoading)
 			out.Write("restricted save loading", storage.restrictedSaveLoading ? 1 : 0);
-		if(storage.deathBenefits != preset.storage.deathBenefits)
-			out.Write("death benefits", storage.deathBenefits ? 1 : 0);
-		if(storage.deathBenefitCaptainShares != preset.storage.deathBenefitCaptainShares)
-			out.Write("death benefit captain shares", storage.deathBenefitCaptainShares);
+		if(storage.captureCaptainShares != preset.storage.captureCaptainShares)
+		{
+			if(storage.captureProfitSharing == CaptureProfitSharing::OFF)
+				out.Write("capture captain shares", "off");
+			else if(storage.captureProfitSharing == CaptureProfitSharing::DEAD_CREW)
+				out.Write("capture captain shares", "dead crew");
+			else if(storage.captureProfitSharing == CaptureProfitSharing::LIVING_CREW)
+				out.Write("capture captain shares", "living crew");
+			else
+				out.Write("capture captain shares", "all crew");
+		}
+		if(storage.captureCaptainShares != preset.storage.captureCaptainShares)
+			out.Write("capture captain shares", storage.captureCaptainShares);
+		if(storage.captureDeadCrewShares != preset.storage.captureDeadCrewShares)
+			out.Write("capture dead crew shares", storage.captureDeadCrewShares);
 		if(storage.deathBenefitMinPerCasualty != preset.storage.deathBenefitMinPerCasualty)
 			out.Write("death benefit min per casualty", storage.deathBenefitMinPerCasualty);
 
@@ -330,10 +355,12 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.singleSaveFile = preset.storage.singleSaveFile;
 	else if(rule == "restricted save loading")
 		storage.restrictedSaveLoading = preset.storage.restrictedSaveLoading;
-	else if(rule == "death benefits")
-		storage.deathBenefits = preset.storage.deathBenefits;
-	else if(rule == "death benefit captain shares")
-		storage.deathBenefitCaptainShares = preset.storage.deathBenefitCaptainShares;
+	else if(rule == "capture profit sharing")
+		storage.captureProfitSharing = preset.storage.captureProfitSharing;
+	else if(rule == "capture captain shares")
+		storage.captureCaptainShares = preset.storage.captureCaptainShares;
+	else if(rule == "capture dead crew shares")
+		storage.captureDeadCrewShares = preset.storage.captureDeadCrewShares;
 	else if(rule == "death benefit min per casualty")
 		storage.deathBenefitMinPerCasualty = preset.storage.deathBenefitMinPerCasualty;
 	else
@@ -542,16 +569,23 @@ void Gamerules::SetRestrictedSaveLoading(bool value)
 
 
 
-void Gamerules::SetDeathBenefits(bool value)
+void Gamerules::SetCaptureProfitSharing(CaptureProfitSharing value)
 {
-	storage.deathBenefits = value;
+	storage.captureProfitSharing = value;
 }
 
 
 
-void Gamerules::SetDeathBenefitCaptainShares(int value)
+void Gamerules::SetCaptureCaptainShares(double value)
 {
-	storage.deathBenefitCaptainShares = max(1, value);
+	storage.captureCaptainShares = max(0., value);
+}
+
+
+
+void Gamerules::SetCaptureDeadCrewShares(double value)
+{
+	storage.captureDeadCrewShares = max(0., value);
 }
 
 
@@ -616,10 +650,12 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.singleSaveFile;
 	if(rule == "restricted save loading")
 		return storage.restrictedSaveLoading;
-	if(rule == "death benefits")
-		return storage.deathBenefits;
-	if(rule == "death benefit captain shares")
-		return storage.deathBenefitCaptainShares;
+	if(rule == "capture profit sharing")
+		return static_cast<int>(storage.captureProfitSharing);
+	if(rule == "capture captain shares")
+		return storage.captureCaptainShares;
+	if(rule == "capture dead crew shares")
+		return storage.captureDeadCrewShares;
 	if(rule == "death benefit min per casualty")
 		return storage.deathBenefitMinPerCasualty;
 
@@ -807,16 +843,23 @@ bool Gamerules::RestrictedSaveLoading() const
 
 
 
-bool Gamerules::DeathBenefits() const
+Gamerules::CaptureProfitSharing Gamerules::GetCaptureProfitSharing() const
 {
-	return storage.deathBenefits;
+	return storage.captureProfitSharing;
 }
 
 
 
-int Gamerules::DeathBenefitCaptainShares() const
+double Gamerules::CaptureCaptainShares() const
 {
-	return storage.deathBenefitCaptainShares;
+	return storage.captureCaptainShares;
+}
+
+
+
+double Gamerules::CaptureDeadCrewShares() const
+{
+	return storage.captureDeadCrewShares;
 }
 
 

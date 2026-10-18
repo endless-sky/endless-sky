@@ -25,8 +25,9 @@
 	"npc max mining time" 3600
 	"universal frugal threshold" 0.75
 	
-	"death benefits" false
-	"death benefit captain shares" 2
+	"capture profit sharing" off
+	"capture captain shares" 2
+	"capture dead crew shares" 1
 	"death benefit min per casualty" 100000
 	
 	"universal ramscoop" true
