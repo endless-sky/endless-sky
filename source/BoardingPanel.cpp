@@ -500,7 +500,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			else if(enemyCasualties)
 				message += "They lose " + to_string(enemyCasualties) + " crew.";
 			AddMessage(message);
-			player.AddBoardingCasualties(victim.get(), yourCasualties);
+			player.AddBoardingCasualties(victim, yourCasualties);
 
 			// Check if either ship has been captured.
 			if(!you->Crew())
