@@ -647,19 +647,19 @@ void GamerulesPanel::DrawGamerules()
 		}
 		else if(gamerule == CAPTURE_CAPTAIN_SHARES)
 		{
-			text = Format::AbbreviatedNumber(gamerules.CaptureCaptainShares());
+			text = Format::Number(gamerules.CaptureCaptainShares());
 			isOn = gamerules.GetCaptureProfitSharing() != Gamerules::CaptureProfitSharing::OFF;
 		}
 		else if(gamerule == CAPTURE_DEAD_CREW_SHARES)
 		{
-			text = Format::AbbreviatedNumber(gamerules.CaptureDeadCrewShares());
+			text = Format::Number(gamerules.CaptureDeadCrewShares());
 			Gamerules::CaptureProfitSharing value = gamerules.GetCaptureProfitSharing();
 			isOn = value == Gamerules::CaptureProfitSharing::DEAD_CREW
 				|| value == Gamerules::CaptureProfitSharing::ALL_CREW;
 		}
 		else if(gamerule == CAPTURE_LIVING_CREW_SHARES)
 		{
-			text = Format::AbbreviatedNumber(gamerules.CaptureLivingCrewShares());
+			text = Format::Number(gamerules.CaptureLivingCrewShares());
 			Gamerules::CaptureProfitSharing value = gamerules.GetCaptureProfitSharing();
 			isOn = value == Gamerules::CaptureProfitSharing::LIVING_CREW
 				|| value == Gamerules::CaptureProfitSharing::ALL_CREW;
