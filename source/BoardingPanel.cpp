@@ -303,8 +303,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			if(deathBenefits)
 			{
 				Messages::Add({"You must pay " + Format::Number(deathBenefits) + " credits in death benefits for the "
-					   + ((casualties > 1) ? "families of your dead crew members." : "family of your dead crew member."),
-					   GameData::MessageCategories().Get("normal")});
+					+ ((casualties > 1) ? "families of your dead crew members." : "family of your dead crew member."),
+					GameData::MessageCategories().Get("normal")});
 				player.Accounts().AddDeathBenefits(deathBenefits);
 			}
 		}
