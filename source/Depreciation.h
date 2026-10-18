@@ -54,6 +54,8 @@ public:
 	void Buy(const Outfit *outfit, int day, Depreciation *source = nullptr);
 	// Add a plundered ship, and all its outfits, to the depreciation record.
 	void Plunder(const Ship &ship, int day);
+	// Add a plundered outfit to the depreciation record.
+	void Plunder(const Outfit *outfit, int day);
 
 	// Get the value of an entire fleet.
 	int64_t Value(const std::vector<std::shared_ptr<Ship>> &fleet, int day, bool chassisOnly = false) const;

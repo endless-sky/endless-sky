@@ -240,21 +240,28 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 
 void Depreciation::Plunder(const Ship &ship, int day)
 {
+	for(const auto &[outfit, count] : ship.Outfits())
+		for(int i = 0; i < count; ++i)
+			Plunder(outfit, day);
+
 	// If the value of plundered goods is lower than the minimum, then record
 	// this item with a special PLUNDERED date. Items with this date return the
 	// plundered value instead of the minimum value. Otherwise, allow the plundered
 	// items to depreciate toward the minimum.
 	int useDay = Plundered() < Min() ? PLUNDERED : day;
-
-	for(const auto &[outfit, count] : ship.Outfits())
-	{
-		if(outfit->Get("installable") < 0.)
-			continue;
-		outfits[outfit][useDay] += count;
-	}
-
 	const Ship *base = GameData::Ships().Get(ship.TrueModelName());
 	++ships[base][useDay];
+}
+
+
+
+void Depreciation::Plunder(const Outfit *outfit, int day)
+{
+	if(outfit->Get("installable") < 0.)
+		return;
+
+	int useDay = Plundered() < Min() ? PLUNDERED : day;
+	++outfits[outfit][useDay];
 }
 
 

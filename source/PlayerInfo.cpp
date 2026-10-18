@@ -1322,8 +1322,21 @@ void PlayerInfo::CaptureShip(const shared_ptr<Ship> &ship)
 	ship->SetIsYours();
 	if(ship->HasBays())
 		displayCarrierHelp = true;
-	depreciation.Plunder(*ship, date.DaysSinceEpoch());
+	int day = date.DaysSinceEpoch();
+	depreciation.Plunder(*ship, day);
+	for(const auto &[outfit, count] : ship->Cargo().Outfits())
+		for(int i = 0; i < count; ++i)
+			depreciation.Plunder(outfit, day);
 	CalculateScanners(ship);
+}
+
+
+
+void PlayerInfo::PlunderOutfit(const Outfit *outfit, int count)
+{
+	int day = date.DaysSinceEpoch();
+	for(int i = 0; i < count; ++i)
+		depreciation.Plunder(outfit, day);
 }
 
 

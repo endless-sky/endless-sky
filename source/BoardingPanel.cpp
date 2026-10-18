@@ -323,6 +323,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				victim->Cargo().Remove(outfit, count);
 			else
 				victim->AddOutfit(outfit, -count);
+			player.PlunderOutfit(outfit, count);
 		}
 		else
 			count = victim->Cargo().Transfer(selectedPlunder.Name(), count, cargo);
