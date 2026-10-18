@@ -5680,6 +5680,9 @@ void PlayerInfo::DoAccounting()
 		for(const auto &[outfit, count] : cargo.Outfits())
 			assets += depreciation.Value(outfit, day, count);
 	}
+	for(const auto &storage : planetaryStorage | views::values)
+		for(const auto &[outfit, count] : storage.Outfits())
+			assets += depreciation.Value(outfit, day, count);
 
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
