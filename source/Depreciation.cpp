@@ -59,6 +59,13 @@ namespace {
 
 
 
+double Depreciation::Full()
+{
+	return Min();
+}
+
+
+
 double Depreciation::Plundered()
 {
 	return GameData::GetGamerules().DepreciationPlundered();

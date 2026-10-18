@@ -32,6 +32,8 @@ class Ship;
 // counts as full depreciated.
 class Depreciation {
 public:
+	// What fraction of its cost a fully depreciated item has left:
+	static double Full();
 	// The remaining value for plundered items.
 	static double Plundered();
 
