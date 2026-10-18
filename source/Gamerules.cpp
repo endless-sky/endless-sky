@@ -598,7 +598,7 @@ void Gamerules::SetCaptureDeadCrewShares(double value)
 
 void Gamerules::SetCaptureLivingCrewShares(double value)
 {
-	storage.captureLivingCrewSales = max(0., value);
+	storage.captureLivingCrewShares = max(0., value);
 }
 
 
