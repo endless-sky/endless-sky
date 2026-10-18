@@ -286,16 +286,6 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			bool payDeathBenefits = profitSharing == Gamerules::CaptureProfitSharing::DEAD_CREW || all;
 			int64_t deathBenefits;
 			int64_t crewBonuses;
-			double crewShares = remainingCrew;
-			double familyShares = casualties * rules.CaptureDeadCrewShares();
-
-			// Determine the value per share of this ship.
-			double totalShares = rules.CaptureCaptainShares();
-			if(payCrewBonuses)
-				totalShares += crewShares;
-			if(payDeathBenefits)
-				totalShares += familyShares;
-			int64_t valuePerShare = victim->Cost() * Depreciation::Full() / totalShares;
 
 			// Even if boarding wasn't successful, you may need to pay a minimum amount
 			// per dead crew member.
@@ -307,8 +297,18 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			// more shares than your crew members, who each only get one.
 			if(successfulCapture)
 			{
+				// Determine the value per share of this ship.
+				double crewShares = remainingCrew * rules.CaptureLivingCrewShares();
+				double familyShares = casualties * rules.CaptureDeadCrewShares();
+				double totalShares = rules.CaptureCaptainShares();
 				if(payCrewBonuses)
-					crewBonuses = remainingCrew * valuePerShare;
+					totalShares += crewShares;
+				if(payDeathBenefits)
+					totalShares += familyShares;
+				int64_t valuePerShare = victim->Cost() * Depreciation::Full() / totalShares;
+
+				if(payCrewBonuses)
+					crewBonuses = crewShares * valuePerShare;
 				if(payDeathBenefits)
 				{
 					// Benefits only need to be paid on a per-share basis if the
@@ -317,7 +317,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					if(benefitsByShares > minimumDeathBenefits)
 					{
 						// Account for any payments that were scheduled during past boarding attempts.
-						int64_t pastDeathBenefits = pastCasualties * rules.CaptureCaptainShares();
+						int64_t pastDeathBenefits = pastCasualties * rules.CaptureDeadCrewShares();
 						deathBenefits = benefitsByShares - pastDeathBenefits;
 					}
 				}

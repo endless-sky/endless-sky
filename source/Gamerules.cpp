@@ -165,6 +165,8 @@ void Gamerules::Load(const DataNode &node)
 			storage.captureCaptainShares = max(0., child.Value(1));
 		else if(key == "capture dead crew shares")
 			storage.captureDeadCrewShares = max(0., child.Value(1));
+		else if(key == "capture living crew shares")
+			storage.captureLivingCrewShares = max(0., child.Value(1));
 		else if(key == "death benefit min per casualty")
 			storage.deathBenefitMinPerCasualty = max<int>(0, child.Value(1));
 		else
@@ -279,6 +281,8 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write("capture captain shares", storage.captureCaptainShares);
 		if(storage.captureDeadCrewShares != preset.storage.captureDeadCrewShares)
 			out.Write("capture dead crew shares", storage.captureDeadCrewShares);
+		if(storage.captureLivingCrewShares != preset.storage.captureLivingCrewShares)
+			out.Write("capture living crew shares", storage.captureLivingCrewShares);
 		if(storage.deathBenefitMinPerCasualty != preset.storage.deathBenefitMinPerCasualty)
 			out.Write("death benefit min per casualty", storage.deathBenefitMinPerCasualty);
 
@@ -361,6 +365,8 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.captureCaptainShares = preset.storage.captureCaptainShares;
 	else if(rule == "capture dead crew shares")
 		storage.captureDeadCrewShares = preset.storage.captureDeadCrewShares;
+	else if(rule == "capture living crew shares")
+		storage.captureLivingCrewShares = preset.storage.captureLivingCrewShares;
 	else if(rule == "death benefit min per casualty")
 		storage.deathBenefitMinPerCasualty = preset.storage.deathBenefitMinPerCasualty;
 	else
@@ -590,6 +596,13 @@ void Gamerules::SetCaptureDeadCrewShares(double value)
 
 
 
+void Gamerules::SetCaptureLivingCrewShares(double value)
+{
+	storage.captureLivingCrewSales = max(0., value);
+}
+
+
+
 void Gamerules::SetDeathBenefitMinPerCasualty(int value)
 {
 	storage.deathBenefitMinPerCasualty = max<int>(0, value);
@@ -656,6 +669,8 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.captureCaptainShares;
 	if(rule == "capture dead crew shares")
 		return storage.captureDeadCrewShares;
+	if(rule == "capture living crew shares")
+		return storage.captureLivingCrewShares;
 	if(rule == "death benefit min per casualty")
 		return storage.deathBenefitMinPerCasualty;
 
@@ -860,6 +875,13 @@ double Gamerules::CaptureCaptainShares() const
 double Gamerules::CaptureDeadCrewShares() const
 {
 	return storage.captureDeadCrewShares;
+}
+
+
+
+double Gamerules::CaptureLivingCrewShares() const
+{
+	return storage.captureLivingCrewShares;
 }
 
 

@@ -75,6 +75,7 @@ namespace {
 	const string CAPTURE_PROFIT_SHARING = "Capture profit sharing";
 	const string CAPTURE_CAPTAIN_SHARES = "Captain shares";
 	const string CAPTURE_DEAD_CREW_SHARES = "Dead crew shares";
+	const string CAPTURE_LIVING_CREW_SHARES = "Living crew shares";
 	const string DEATH_BENEFIT_MIN_PER_CASUALTY = "Minimum per casualty";
 
 	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
@@ -109,6 +110,7 @@ namespace {
 		{CAPTURE_PROFIT_SHARING, "capture profit sharing"},
 		{CAPTURE_CAPTAIN_SHARES, "capture captain shares"},
 		{CAPTURE_DEAD_CREW_SHARES, "capture dead crew shares"},
+		{CAPTURE_LIVING_CREW_SHARES, "capture living crew shares"},
 		{DEATH_BENEFIT_MIN_PER_CASUALTY, "death benefit min per casualty"},
 	};
 
@@ -439,6 +441,7 @@ void GamerulesPanel::DrawGamerules()
 		CAPTURE_PROFIT_SHARING,
 		CAPTURE_CAPTAIN_SHARES,
 		CAPTURE_DEAD_CREW_SHARES,
+		CAPTURE_LIVING_CREW_SHARES,
 		DEATH_BENEFIT_MIN_PER_CASUALTY,
 		"\n",
 		"Miscellaneous",
@@ -652,6 +655,13 @@ void GamerulesPanel::DrawGamerules()
 			text = Format::AbbreviatedNumber(gamerules.CaptureDeadCrewShares());
 			Gamerules::CaptureProfitSharing value = gamerules.GetCaptureProfitSharing();
 			isOn = value == Gamerules::CaptureProfitSharing::DEAD_CREW
+				|| value == Gamerules::CaptureProfitSharing::ALL_CREW;
+		}
+		else if(gamerule == CAPTURE_LIVING_CREW_SHARES)
+		{
+			text = Format::AbbreviatedNumber(gamerules.CaptureLivingCrewShares());
+			Gamerules::CaptureProfitSharing value = gamerules.GetCaptureProfitSharing();
+			isOn = value == Gamerules::CaptureProfitSharing::LIVING_CREW
 				|| value == Gamerules::CaptureProfitSharing::ALL_CREW;
 		}
 		else if(gamerule == DEATH_BENEFIT_MIN_PER_CASUALTY)
@@ -1103,6 +1113,14 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		auto validate = [](int value) -> bool { return value >= 1; };
 		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetCaptureDeadCrewShares,
 			validate, message, gamerules.CaptureDeadCrewShares()));
+	}
+	else if(str == CAPTURE_LIVING_CREW_SHARES)
+	{
+		string message = "Set the number of shares that surviving crew members get when capturing a ship. "
+			"(Decimal value greater than or equal to 0.)";
+		auto validate = [](int value) -> bool { return value >= 1; };
+		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetCaptureLivingCrewShares,
+			validate, message, gamerules.CaptureLivingCrewShares()));
 	}
 	else if(str == DEATH_BENEFIT_MIN_PER_CASUALTY)
 	{
