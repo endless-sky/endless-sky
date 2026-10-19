@@ -284,14 +284,18 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			bool all = profitSharing == Gamerules::CaptureProfitSharing::ALL_CREW;
 			bool payCrewBonuses = profitSharing == Gamerules::CaptureProfitSharing::LIVING_CREW || all;
 			bool payDeathBenefits = profitSharing == Gamerules::CaptureProfitSharing::DEAD_CREW || all;
-			int64_t deathBenefits;
-			int64_t crewBonuses;
+			int minimumDeathBenefit = rules.DeathBenefitMinPerCasualty();
+
+			int64_t deathBenefits = 0;
+			int64_t crewBonuses = 0;
 
 			// Even if boarding wasn't successful, you may need to pay a minimum amount
 			// per dead crew member.
-			int64_t minimumDeathBenefits = casualties * rules.DeathBenefitMinPerCasualty();
-			if(payDeathBenefits)
-				deathBenefits = minimumDeathBenefits;
+			if(payDeathBenefits && minimumDeathBenefit)
+			{
+				// Account for any payments that were scheduled during past boarding attempts.
+				deathBenefits = (casualties - pastCasualties) * minimumDeathBenefit;
+			}
 			// If capture of the ship was successful, then death benefits may be paid
 			// based off of the value of the ship. You as the captain are able to have
 			// more shares than your crew members, who each only get one.
@@ -314,11 +318,10 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					// Benefits only need to be paid on a per-share basis if the
 					// share size per crew is greater than the minimum per casualty.
 					int64_t benefitsByShares = familyShares * valuePerShare;
-					if(benefitsByShares > minimumDeathBenefits)
+					if(benefitsByShares > casualties * minimumDeathBenefit)
 					{
 						// Account for any payments that were scheduled during past boarding attempts.
-						int64_t pastDeathBenefits = pastCasualties * rules.CaptureDeadCrewShares();
-						deathBenefits = benefitsByShares - pastDeathBenefits;
+						deathBenefits = benefitsByShares - pastCasualties * minimumDeathBenefit;
 					}
 				}
 			}
@@ -337,7 +340,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					message += Format::Number(crewBonuses) + " credits in crew bonuses for the surviving crew member"
 						+ ((remainingCrew > 1) ? "s" : "");
 				}
-				Messages::Add({"You must pay " + message + ".", GameData::MessageCategories().Get("normal")});
+				Messages::Add({message + ".", GameData::MessageCategories().Get("normal")});
 				if(deathBenefits)
 					player.Accounts().AddDeathBenefits(deathBenefits);
 				if(crewBonuses)
