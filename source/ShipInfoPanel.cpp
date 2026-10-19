@@ -862,7 +862,7 @@ void ShipInfoPanel::Dump()
 	selectedPlunder = nullptr;
 	selectedOutfit = nullptr;
 
-	info.Update(**shipIt, player);
+	UpdateInfo();
 	if(loss)
 		Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
 			GameData::MessageCategories().Get("normal")});
@@ -878,7 +878,7 @@ void ShipInfoPanel::DumpPlunder(int count)
 	{
 		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
-		info.Update(**shipIt, player);
+		UpdateInfo();
 
 		if(loss)
 			Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
@@ -898,7 +898,7 @@ void ShipInfoPanel::DumpCommodities(int count)
 		loss += basis;
 		player.AdjustBasis(selectedCommodity, -basis);
 		(*shipIt)->Jettison(selectedCommodity, count);
-		info.Update(**shipIt, player);
+		UpdateInfo();
 
 		if(loss)
 			Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
@@ -914,7 +914,7 @@ void ShipInfoPanel::DumpInstalled(int count)
 	if(count > 0)
 	{
 		(*shipIt)->JettisonInstalled(selectedOutfit, count);
-		info.Update(**shipIt, player);
+		UpdateInfo();
 
 		Messages::Add({"You jettisoned " + to_string(count) + " "
 				+ (count == 1 ? selectedOutfit->DisplayName() : selectedOutfit->PluralName()),
