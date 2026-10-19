@@ -14,11 +14,14 @@
 "gamerules preset" "Default"
 	description "The default set of gamerules around which the game is developed."
 	
+	"depreciation aging active" true
 	"depreciation min" 0.25
 	"depreciation plundered" 0.25
+	"depreciation captured" 0.25
 	"depreciation grace period" 7
 	"depreciation max age" 1000
 	"depreciation daily" 0.997
+	"depreciation cargo is plunder" false
 	
 	"person spawn period" 72000
 	"no person spawn weight" 1000

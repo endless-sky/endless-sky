@@ -833,6 +833,7 @@ void ShipInfoPanel::Dump()
 	else if(outfitAmount > 0)
 	{
 		(*shipIt)->JettisonInstalled(selectedOutfit, outfitAmount);
+		player.JettisonOutfit(selectedOutfit, outfitAmount);
 		Messages::Add({"You jettisoned " + to_string(outfitAmount) + " "
 				+ (outfitAmount == 1 ? selectedOutfit->DisplayName() : selectedOutfit->PluralName()),
 			GameData::MessageCategories().Get("normal")});

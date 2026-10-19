@@ -52,12 +52,20 @@ namespace {
 	// Names for the two kinds of depreciation records.
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 
-	// The date used for recording plundered items when the value of plundered
+	// Special "dates" used for recording plundered or captured items when the value of such
 	// items is below the minimum value of fully depreciated items.
-	const int PLUNDERED = -1;
+	const int CAPTURED = -1;
+	const int PLUNDERED = -2;
 
 	// Cache the age on which an item would have the given value.
 	map<double, int> depreciationToAge;
+}
+
+
+
+bool Depreciation::AgingActive()
+{
+	return GameData::GetGamerules().DepreciationAgingActive();
 }
 
 
@@ -72,6 +80,20 @@ double Depreciation::Full()
 double Depreciation::Plundered()
 {
 	return GameData::GetGamerules().DepreciationPlundered();
+}
+
+
+
+double Depreciation::Captured()
+{
+	return GameData::GetGamerules().DepreciationCaptured();
+}
+
+
+
+void Depreciation::InvalidateCache()
+{
+	depreciationToAge.clear();
 }
 
 
@@ -124,7 +146,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 					// anything not recorded is considered fully depreciated, so
 					// there is no reason to save records for those items.
 					for(const auto &[recordDay, count] : sit.second)
-						if(isStock || (count && (recordDay == PLUNDERED || recordDay > day - MaxAge())))
+						if(isStock || (count && (recordDay < 0 || recordDay > day - MaxAge())))
 							out.Write(recordDay, count);
 				}
 				out.EndChild();
@@ -139,7 +161,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 				out.BeginChild();
 				{
 					for(const auto &[recordDay, count] : oit.second)
-						if(isStock || (count && (recordDay == PLUNDERED || recordDay > day - MaxAge())))
+						if(isStock || (count && (recordDay < 0 || recordDay > day - MaxAge())))
 							out.Write(recordDay, count);
 				}
 				out.EndChild();
@@ -193,7 +215,7 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source, bool cha
 		auto it = source->ships.find(base);
 		if(it != source->ships.end() && !it->second.empty())
 		{
-			day = source->Sell(it->second);
+			day = source->Sell(it->second, day);
 			if(it->second.empty())
 				source->ships.erase(it);
 		}
@@ -223,7 +245,7 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 		auto it = source->outfits.find(outfit);
 		if(it != source->outfits.end() && !it->second.empty())
 		{
-			day = source->Sell(it->second);
+			day = source->Sell(it->second, day);
 			if(it->second.empty())
 				source->outfits.erase(it);
 		}
@@ -241,15 +263,15 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 
 
 
-void Depreciation::Plunder(const Ship &ship, int day)
+void Depreciation::Capture(const Ship &ship, int day)
 {
-	assert(!isStock && "Ships cannot be plundered into a stock depreciation record.");
-	// If the value of plundered goods is lower than the minimum, then record
-	// this item with a special PLUNDERED date. Items with this date return the
-	// plundered value instead of the minimum value. Otherwise, allow the plundered
+	assert(!isStock && "Ships cannot be captured into a stock depreciation record.");
+	// If the value of captured goods is lower than the minimum, then record
+	// this item with a special CAPTURED date. Items with this date return the
+	// captured value instead of the minimum value. Otherwise, allow the
 	// items to depreciate toward the minimum, starting at whatever date would give it
-	// the plundered value.
-	day = Plundered() < Min() ? PLUNDERED : day - DepreciationToAge(Plundered());
+	// the captured value.
+	day = (!AgingActive() || Captured() < Min()) ? CAPTURED : day - DepreciationToAge(Captured());
 
 	for(const auto &[outfit, count] : ship.Outfits())
 	{
@@ -270,7 +292,7 @@ void Depreciation::Plunder(const Outfit *outfit, int day, int count)
 	if(outfit->Get("installable") < 0.)
 		return;
 
-	day = Plundered() < Min() ? PLUNDERED : day - DepreciationToAge(Plundered());
+	day = (!AgingActive() || Plundered() < Min()) ? PLUNDERED : day - DepreciationToAge(Plundered());
 	outfits[outfit][day] += count;
 }
 
@@ -347,17 +369,23 @@ int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 
 // "Sell" an item, removing it from the given record and returning the base
 // day for its depreciation.
-int Depreciation::Sell(map<int, int> &record) const
+int Depreciation::Sell(map<int, int> &record, int day) const
 {
-	// If we're a planet, we start by selling the oldest, cheapest thing.
-	auto it = (isStock ? record.begin() : --record.end());
-	int day = it->first;
+	auto bestIt = ranges::max_element(record, [&](const pair<int, int> &a, const pair<int, int> &b) {
+		double aValue = Depreciate(a.first, day);
+		double bValue = Depreciate(b.first, day);
+		// If "selling" from the stock, we want to grab the lowest value item.
+		// If selling from the player's fleet, we grab the highest value item.
+		return isStock ? aValue > bValue : aValue < bValue;
+	});
+
+	day = bestIt->first;
 
 	// Remove one record from the source. If necessary, delete this
 	// record line or the entire record for this outfit.
-	--it->second;
-	if(!it->second)
-		record.erase(it);
+	--bestIt->second;
+	if(!bestIt->second)
+		record.erase(bestIt);
 
 	return day;
 }
@@ -370,9 +398,15 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 	if(record.empty())
 		return count * DefaultDepreciation();
 
+	// Map the date information to the depreciated value of the records so that
+	// we can iterate over the records in value order.
+	map<double, int> values;
+	for(const auto &[date, recordCount] : record)
+		values[Depreciate(date, day)] += recordCount;
+
 	// Depending on whether this is a planet's stock or a player's fleet, we
-	// should either start with the oldest item, or the newest.
-	map<int, int>::const_iterator it = (isStock ? record.begin() : --record.end());
+	// should either start with the lowest value item, or the highest.
+	map<double, int>::const_iterator it = (isStock ? values.begin() : --values.end());
 
 	double sum = 0.;
 	while(true)
@@ -382,10 +416,7 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 		// however many items from this bin we can use.
 		int used = min(it->second, count);
 		count -= used;
-		if(it->first == PLUNDERED)
-			sum += used * Plundered();
-		else
-			sum += used * Depreciate(day - it->first);
+		sum += used * it->first;
 		// Bail out if we've counted enough items.
 		if(!count)
 			break;
@@ -394,12 +425,12 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 		if(isStock)
 		{
 			++it;
-			if(it == record.end())
+			if(it == values.end())
 				break;
 		}
 		else
 		{
-			if(it == record.begin())
+			if(it == values.begin())
 				break;
 			--it;
 		}
@@ -410,9 +441,21 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 
 
 
+double Depreciation::Depreciate(int date, int day) const
+{
+
+	if(date == PLUNDERED)
+		return Plundered();
+	if(date == CAPTURED)
+		return Captured();
+	return Depreciate(day - date);
+}
+
+
+
 double Depreciation::Depreciate(int age) const
 {
-	if(age <= GracePeriod())
+	if(!AgingActive() || age <= GracePeriod())
 		return 1.;
 
 	if(age >= MaxAge())
@@ -436,10 +479,10 @@ int Depreciation::DepreciationToAge(double value) const
 	if(it != depreciationToAge.end())
 		return it->second;
 
-	// A mathematical inverse of the Depreciate function (`min + (1 - min) * daily^(x) * (max - x) / max`)
+	// A mathematical inverse of the Depreciate function (`y = min + (1 - min) * daily^(x) * (max - x) / max`)
 	// requires use of the Lambert W function. Wolfram Alpha says that the inverse is
-	// `x = (W(-(max * daily^(-max) * min * log(daily)) / (min - 1)) + max * log(daily)) / log(daily)` where W
-	// is the aforementioned function and x is the age of the item.
+	// `x = (W(-(max * d^(-max) * (min - y) * log(daily)) / (min - 1)) + max * log(daily)) / log(daily)` where W
+	// is the aforementioned function, y is the depreciation value, and x is the age of the item.
 	// This function isn't available in the standard library, nor is it a simple function to implement,
 	// so just do a binary search against the Depreciate function until finding the age that comes closest
 	// to the desired value, then cache that for later use.

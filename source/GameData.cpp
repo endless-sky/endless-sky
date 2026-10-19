@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Conversation.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Depreciation.h"
 #include "Effect.h"
 #include "Files.h"
 #include "shader/FillShader.h"
@@ -908,6 +909,9 @@ const Gamerules &GameData::GetGamerules()
 void GameData::SetGamerules(const Gamerules *gamerules)
 {
 	activeGamerules = gamerules;
+	// This pilot may have different depreciation gamerules than whatever was loaded before,
+	// so clear the cache to allow calculations with these gamerules to be accurate.
+	Depreciation::InvalidateCache();
 }
 
 

@@ -18,8 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Effect.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Outfit.h"
 #include "Random.h"
+#include "PlayerInfo.h"
 #include "Ship.h"
 #include "image/SpriteSet.h"
 #include "Visual.h"
@@ -193,7 +195,7 @@ double Flotsam::Mass() const
 
 // Transfer contents to the collector ship. The flotsam velocity is
 // stabilized in proportion to the amount being transferred.
-int Flotsam::TransferTo(Ship *collector)
+int Flotsam::TransferTo(Ship *collector, PlayerInfo &player)
 {
 	int amount = outfit ?
 		collector->Cargo().Add(outfit, count) :
@@ -207,6 +209,11 @@ int Flotsam::TransferTo(Ship *collector)
 	// If this flotsam is now empty, remove it.
 	if(count <= 0)
 		MarkForRemoval();
+
+	// If the collector is the player's then we may need to keep
+	// a depreciation record of this outfit.
+	if(outfit && collector->IsYours() && GameData::GetGamerules().DepreciationCargoIsPlunder())
+		player.PlunderOutfit(outfit, amount);
 
 	return amount;
 }

@@ -32,10 +32,15 @@ class Ship;
 // counts as full depreciated.
 class Depreciation {
 public:
+	// Whether depreciative aging is active.
+	static bool AgingActive();
 	// What fraction of its cost a fully depreciated item has left:
 	static double Full();
-	// The remaining value for plundered items.
+	// The remaining value for plundered or captured items.
 	static double Plundered();
+	static double Captured();
+	// The cache is invalid if certain depreciation gamerules are changed.
+	static void InvalidateCache();
 
 
 public:
@@ -52,9 +57,9 @@ public:
 	void Buy(const Ship &ship, int day, Depreciation *source = nullptr, bool chassisOnly = false);
 	// Add a single outfit to the depreciation record.
 	void Buy(const Outfit *outfit, int day, Depreciation *source = nullptr);
-	// Add a plundered ship, and all its outfits, to the depreciation record.
-	void Plunder(const Ship &ship, int day);
-	// Add a plundered outfit to the depreciation record.
+	// Add a captured ship, and all its outfits, to the depreciation record.
+	void Capture(const Ship &ship, int day);
+	// Add a plundered or captured outfit to the depreciation record.
 	void Plunder(const Outfit *outfit, int day, int count);
 
 	// Get the value of an entire fleet.
@@ -70,9 +75,11 @@ public:
 private:
 	// "Sell" an item, removing it from the given record and returning the base
 	// day for its depreciation.
-	int Sell(std::map<int, int> &record) const;
+	int Sell(std::map<int, int> &record, int day) const;
 	// Calculate depreciation for some number of items.
 	double Depreciate(const std::map<int, int> &record, int day, int count = 1) const;
+	// Calculate the value fraction for an item given the item's recorded date and the current day.
+	double Depreciate(int date, int day) const;
 	// Calculate the value fraction for an item of the given age.
 	double Depreciate(int age) const;
 	// Calculate the age on which an item would have the given value.

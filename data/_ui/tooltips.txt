@@ -1772,12 +1772,24 @@ tip "Tribute confirmation"
 
 
 # Gamerules
+tip "Depreciative aging"
+	`Controls whether age-based depreciation is active. Even if depreciative aging is disabled, captured and plundered goods can still be given separate depreciation values.`
+
 tip "Minimum value"
 	`The lowest value that an outfit or ship can depreciate to relative to its full price. All purchased items start at 100% value and then depreciate toward this value according to the other depreciation gamerules.`
 
+tip "Captured value"
+	`The value that captured outfits and ships will have. An outfit is considered captured if it is installed on a ship that is captured. Outfits taken from the ship before it is captured are instead considered plundered if they were installed.`
+	`If this value is above the "Minimum value", then captured outfits will continue to depreciate toward the minimum value. This value is allowed to be below the minimum value, in which case the items will be locked to that value.`
+	`Note that modifying this value in an existing save file can have odd consequences to the value of previously captured items.`
+
 tip "Plundered value"
-	`The value that plundered or captured outfits or ships will have. If this value is above the "Minimum value", then plundered items will continue to depreciate toward the minimum value. This value is allowed to be below the minimum value, in which case the items will be locked to that value.`
-	`Note that if this value is changed in an existing save to above "Minimum value", plundered goods will be stuck at the plundered value instead of restarting depreciation.`
+	`The value that plundered outfits will have. An outfit is considered plundered if it is installed on a ship and removed from that ship during a boarding action. Outfits taken from a ship's cargo hold are not considered plundered.`
+	`If this value is above the "Minimum value", then plundered outfits will continue to depreciate toward the minimum value. This value is allowed to be below the minimum value, in which case the outfits will be locked to that value.`
+	`Note that modifying this value in an existing save file can have odd consequences to the value of previously captured items.`
+
+tip "Cargo is plunder"
+	`If true, outfits taken from a ship's cargo hold use "Plundered value" instead of "Minimum value".`
 
 tip "Grace period"
 	`The number of days that must pass before a newly purchased outfit or ship will begin to depreciate. This allows you to have a short amount of time to test out an item and then sell it back at full value if you decide that you do not like it.`

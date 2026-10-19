@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Effect;
 class Government;
 class Outfit;
+class PlayerInfo;
 class Point;
 class Ship;
 class Visual;
@@ -79,7 +80,7 @@ public:
 
 	// Transfer contents to the collector ship. The flotsam velocity is
 	// stabilized in proportion to the amount being transferred.
-	int TransferTo(Ship *collector);
+	int TransferTo(Ship *collector, PlayerInfo &player);
 
 
 public:
