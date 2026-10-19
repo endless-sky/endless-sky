@@ -266,16 +266,16 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write("single save file", storage.singleSaveFile ? 1 : 0);
 		if(storage.restrictedSaveLoading != preset.storage.restrictedSaveLoading)
 			out.Write("restricted save loading", storage.restrictedSaveLoading ? 1 : 0);
-		if(storage.captureCaptainShares != preset.storage.captureCaptainShares)
+		if(storage.captureProfitSharing != preset.storage.captureProfitSharing)
 		{
 			if(storage.captureProfitSharing == CaptureProfitSharing::OFF)
-				out.Write("capture captain shares", "off");
+				out.Write("capture profit sharing", "off");
 			else if(storage.captureProfitSharing == CaptureProfitSharing::DEAD_CREW)
-				out.Write("capture captain shares", "dead crew");
+				out.Write("capture profit sharing", "dead crew");
 			else if(storage.captureProfitSharing == CaptureProfitSharing::LIVING_CREW)
-				out.Write("capture captain shares", "living crew");
+				out.Write("capture profit sharing", "living crew");
 			else
-				out.Write("capture captain shares", "all crew");
+				out.Write("capture profit sharing", "all crew");
 		}
 		if(storage.captureCaptainShares != preset.storage.captureCaptainShares)
 			out.Write("capture captain shares", storage.captureCaptainShares);
