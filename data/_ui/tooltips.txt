@@ -1873,10 +1873,10 @@ tip "Captain shares"
 	`If capture profit sharing is active and you successfully capture a ship, this is the number of shares in the value of the captured ship that you as the captain receive.`
 
 tip "Dead crew shares"
-	`If capture profit sharing is set to "dead crew" or "all", this is the number of shares in the value of the captured ship that each family of the dead crew members receives.`
+	`If capture profit sharing is set to "dead crew" or "all crew", this is the number of shares in the value of the captured ship that each family of the dead crew members receives.`
 
 tip "Living crew shares"
-	`If capture profit sharing is set to "living crew" or "all", this is the number of shares in the value of the captured ship that each living crew member receives.`
+	`If capture profit sharing is set to "living crew" or "all crew", this is the number of shares in the value of the captured ship that each living crew member receives.`
 
 tip "Minimum per casualty"
 	`If death benefits are active and you lose crew during a boarding action, this is the minimum number of credits that must be paid to the families of the crew members who died. This amount must be paid even if you didn't successfully capture a ship.`
