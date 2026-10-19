@@ -4679,12 +4679,12 @@ int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool 
 		lastHitBy = hitBy;
 	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
 
-	if(damage.Levels().shields && !isDisabled)
+	if(damage.Levels().shields > 0. && !isDisabled)
 	{
 		int disabledDelay = cache.depletedShieldDelay;
 		shieldDelay = max(shieldDelay, (levels.shields <= 0. && disabledDelay) ? disabledDelay : cache.shieldDelay);
 	}
-	if(damage.Levels().hull && !isDisabled)
+	if(damage.Levels().hull > 0. && !isDisabled)
 		hullDelay = max(hullDelay, cache.repairDelay);
 
 	if(damage.HitForce())
@@ -4722,17 +4722,38 @@ int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool 
 
 	// If this ship did not consider itself an enemy of the ship that hit it,
 	// it is now "provoked" against that government.
-	if(hitBy && !hitBy->IsEnemy(government)
-			&& !personality.IsPacifist() && (!personality.IsForbearing()
-				|| ((damage.Levels().shields || damage.Levels().discharge) && ShieldFraction() < .9)
-				|| ((damage.Levels().hull || damage.Levels().corrosion) && HullFraction() < .9)
-				|| ((damage.Levels().heat || damage.Levels().burning) && isOverheated)
-				|| ((damage.Levels().energy || damage.Levels().ionization) && EnergyFraction() < 0.5)
-				|| ((damage.Levels().fuel || damage.Levels().leakage) && levels.fuel < navigation.JumpFuel() * 2.)
-				|| (damage.Levels().scrambling && CalculateJamChance(levels.scrambling) > 0.1)
-				|| (damage.Levels().slowness && levels.slowness > 10.)
-				|| (damage.Levels().disruption && levels.disruption > 100.)))
-		type |= ShipEvent::PROVOKE;
+	if(hitBy && !hitBy->IsEnemy(government) && !personality.IsPacifist())
+	{
+		// Allow weapons that heal a target to not provoke them.
+		const ResourceLevels &levels = damage.Levels();
+		bool shieldDamage = levels.shields > 0. || levels.discharge > 0.;
+		bool hullDamage = levels.hull > 0. || levels.corrosion > 0.;
+		bool energyDamage = levels.energy > 0. || levels.ionization > 0.;
+		bool heatDamage = levels.heat > 0. || levels.burning > 0.;
+		bool fuelDamage = levels.fuel > 0. || levels.leakage > 0.;
+		bool scramblingDamage = levels.scrambling > 0.;
+		bool slowingDamage = levels.slowness > 0.;
+		bool disruptionDamage = levels.disruption > 0.;
+		// Forbearing ships need to exceed certain thresholds before they consider
+		// an attack to be provoking.
+		if(personality.IsForbearing() && ((shieldDamage && ShieldFraction() < .9)
+			|| (hullDamage && HullFraction() < .9)
+			|| (heatDamage && isOverheated)
+			|| (energyDamage && EnergyFraction() < 0.5)
+			|| (fuelDamage && levels.fuel < navigation.JumpFuel() * 2.)
+			|| (scramblingDamage && CalculateJamChance(levels.scrambling) > 0.1)
+			|| (slowingDamage && levels.slowness > 10.)
+			|| (disruptionDamage && levels.disruption > 100.)))
+		{
+			type |= ShipEvent::PROVOKE;
+		}
+		// All other ships are provoked by any positive amount of damage.
+		else if(shieldDamage || hullDamage || energyDamage || heatDamage || fuelDamage || scramblingDamage
+			|| slowingDamage || disruptionDamage)
+		{
+			type |= ShipEvent::PROVOKE;
+		}
+	}
 
 	return type;
 }
