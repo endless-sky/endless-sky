@@ -198,6 +198,13 @@ void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day)
 
 
 
+void Depreciation::SetIsStock(bool isStock)
+{
+	this->isStock = isStock;
+}
+
+
+
 // Add a ship, and all its outfits, to the depreciation record.
 void Depreciation::Buy(const Ship &ship, int day, Depreciation *source, bool chassisOnly)
 {

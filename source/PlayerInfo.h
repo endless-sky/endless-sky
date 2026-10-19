@@ -380,6 +380,7 @@ public:
 	int Stock(const Outfit *outfit) const;
 	void AddStock(const Outfit *outfit, int count);
 	// Get depreciation information.
+	Depreciation &FleetDepreciation();
 	const Depreciation &FleetDepreciation() const;
 	const Depreciation &StockDepreciation() const;
 

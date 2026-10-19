@@ -3655,7 +3655,13 @@ void PlayerInfo::AddStock(const Outfit *outfit, int count)
 
 
 
-// Get depreciation information.
+Depreciation &PlayerInfo::FleetDepreciation()
+{
+	return depreciation;
+}
+
+
+
 const Depreciation &PlayerInfo::FleetDepreciation() const
 {
 	return depreciation;

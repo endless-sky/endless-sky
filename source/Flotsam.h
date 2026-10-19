@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 
 #include "Angle.h"
+#include "Depreciation.h"
 
 #include <string>
 #include <vector>
@@ -36,7 +37,7 @@ class Flotsam : public Body {
 public:
 	// Constructors for flotsam carrying either a commodity or an outfit.
 	Flotsam(const std::string &commodity, int count, const Government *sourceGovernment = nullptr);
-	Flotsam(const Outfit *outfit, int count, const Government *sourceGovernment = nullptr);
+	Flotsam(const Outfit *outfit, int count, const Government *sourceGovernment = nullptr, PlayerInfo *player = nullptr);
 
 	// Functions provided by the Body base class:
 	// Frame GetFrame(int step = -1) const;
@@ -96,6 +97,8 @@ private:
 	const Ship *source = nullptr;
 	std::string commodity;
 	const Outfit *outfit = nullptr;
+	// The depreciation record of the stored outfit.
+	Depreciation depreciation;
 	int count = 0;
 	const Government *sourceGovernment = nullptr;
 };
