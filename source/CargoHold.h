@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Conversation;
 class DataNode;
 class DataWriter;
-class Depreciation;
 class Government;
 class Mission;
 class Outfit;
