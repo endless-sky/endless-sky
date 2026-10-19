@@ -274,6 +274,8 @@ void PilotProfile::Save()
 	if(!preset)
 		preset = &GameData::DefaultGamerules();
 	gamerules.Save(out, *preset);
+
+	out.Write("playtime", playTime);
 }
 
 
@@ -394,4 +396,11 @@ const Gamerules &PilotProfile::GetGamerules() const
 void PilotProfile::ApplyGamerules() const
 {
 	GameData::SetGamerules(&gamerules);
+}
+
+
+
+void PilotProfile::AddPlayTime(std::chrono::nanoseconds timeVal)
+{
+	playTime += timeVal.count() * .000000001;
 }
