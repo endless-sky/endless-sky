@@ -338,7 +338,10 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 						+ ((remainingCrew > 1) ? "s" : "");
 				}
 				Messages::Add({"You must pay " + message + ".", GameData::MessageCategories().Get("normal")});
-				player.Accounts().AddDeathBenefits(deathBenefits);
+				if(deathBenefits)
+					player.Accounts().AddDeathBenefits(deathBenefits);
+				if(crewBonuses)
+					player.Accounts().AddCrewBonus(crewBonuses);
 			}
 		}
 		GetUI().Pop(this);
