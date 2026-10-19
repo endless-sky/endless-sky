@@ -28,7 +28,8 @@
 	"capture profit sharing" off
 	"capture captain shares" 2
 	"capture dead crew shares" 1
-	"death benefit min per casualty" 100000
+	"capture minimum death benefit" 100000
+	"capture value basis" unset
 	
 	"universal ramscoop" true
 	"system arrival min" unset

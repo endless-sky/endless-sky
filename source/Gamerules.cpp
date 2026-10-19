@@ -167,8 +167,15 @@ void Gamerules::Load(const DataNode &node)
 			storage.captureDeadCrewShares = max(0., child.Value(1));
 		else if(key == "capture living crew shares")
 			storage.captureLivingCrewShares = max(0., child.Value(1));
-		else if(key == "death benefit min per casualty")
-			storage.deathBenefitMinPerCasualty = max<int>(0, child.Value(1));
+		else if(key == "capture minimum death benefit")
+			storage.captureMinimumDeathBenefit = max<int>(0, child.Value(1));
+		else if(key == "capture value basis")
+		{
+			if(child.Token(1) == "unset")
+				storage.captureValueBasis.reset();
+			else
+				storage.captureValueBasis = max(0., child.Value(1));
+		}
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
@@ -283,8 +290,15 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write("capture dead crew shares", storage.captureDeadCrewShares);
 		if(storage.captureLivingCrewShares != preset.storage.captureLivingCrewShares)
 			out.Write("capture living crew shares", storage.captureLivingCrewShares);
-		if(storage.deathBenefitMinPerCasualty != preset.storage.deathBenefitMinPerCasualty)
-			out.Write("death benefit min per casualty", storage.deathBenefitMinPerCasualty);
+		if(storage.captureMinimumDeathBenefit != preset.storage.captureMinimumDeathBenefit)
+			out.Write("capture minimum death benefit", storage.captureMinimumDeathBenefit);
+		if(storage.captureValueBasis != preset.storage.captureValueBasis)
+		{
+			if(storage.captureValueBasis.has_value())
+				out.Write("capture value basis", *storage.captureValueBasis);
+			else
+				out.Write("capture value basis", "unset");
+		}
 
 		const map<string, int> &otherMiscRules = preset.storage.miscRules;
 		for(const auto &[rule, value] : storage.miscRules)
@@ -367,8 +381,10 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.captureDeadCrewShares = preset.storage.captureDeadCrewShares;
 	else if(rule == "capture living crew shares")
 		storage.captureLivingCrewShares = preset.storage.captureLivingCrewShares;
-	else if(rule == "death benefit min per casualty")
-		storage.deathBenefitMinPerCasualty = preset.storage.deathBenefitMinPerCasualty;
+	else if(rule == "capture minimum death benefit")
+		storage.captureMinimumDeathBenefit = preset.storage.captureMinimumDeathBenefit;
+	else if(rule == "capture value basis")
+		storage.captureValueBasis = preset.storage.captureValueBasis;
 	else
 	{
 		auto it = preset.storage.miscRules.find(rule);
@@ -603,9 +619,16 @@ void Gamerules::SetCaptureLivingCrewShares(double value)
 
 
 
-void Gamerules::SetDeathBenefitMinPerCasualty(int value)
+void Gamerules::SetCaptureMinimumDeathBenefit(int value)
 {
-	storage.deathBenefitMinPerCasualty = max<int>(0, value);
+	storage.captureMinimumDeathBenefit = max<int>(0, value);
+}
+
+
+
+void Gamerules::SetCaptureValueBasis(std::optional<double> value)
+{
+	storage.captureValueBasis = value;
 }
 
 
@@ -666,13 +689,15 @@ int Gamerules::GetValue(const string &rule) const
 	if(rule == "capture profit sharing")
 		return static_cast<int>(storage.captureProfitSharing);
 	if(rule == "capture captain shares")
-		return storage.captureCaptainShares;
+		return storage.captureCaptainShares * 1000;
 	if(rule == "capture dead crew shares")
-		return storage.captureDeadCrewShares;
+		return storage.captureDeadCrewShares * 1000;
 	if(rule == "capture living crew shares")
-		return storage.captureLivingCrewShares;
-	if(rule == "death benefit min per casualty")
-		return storage.deathBenefitMinPerCasualty;
+		return storage.captureLivingCrewShares * 1000;
+	if(rule == "capture minimum death benefit")
+		return storage.captureMinimumDeathBenefit;
+	if(rule == "capture value basis")
+		return storage.captureValueBasis.value_or(0.) * 1000;
 
 	auto it = storage.miscRules.find(rule);
 	if(it == storage.miscRules.end())
@@ -886,9 +911,16 @@ double Gamerules::CaptureLivingCrewShares() const
 
 
 
-int Gamerules::DeathBenefitMinPerCasualty() const
+int Gamerules::CaptureMinimumDeathBenefit() const
 {
-	return storage.deathBenefitMinPerCasualty;
+	return storage.captureMinimumDeathBenefit;
+}
+
+
+
+std::optional<double> Gamerules::CaptureValueBasis() const
+{
+	return storage.captureValueBasis;
 }
 
 

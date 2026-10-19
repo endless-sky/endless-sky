@@ -284,7 +284,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			bool all = profitSharing == Gamerules::CaptureProfitSharing::ALL_CREW;
 			bool payCrewBonuses = profitSharing == Gamerules::CaptureProfitSharing::LIVING_CREW || all;
 			bool payDeathBenefits = profitSharing == Gamerules::CaptureProfitSharing::DEAD_CREW || all;
-			int minimumDeathBenefit = rules.DeathBenefitMinPerCasualty();
+			int minimumDeathBenefit = rules.CaptureMinimumDeathBenefit();
 
 			int64_t deathBenefits = 0;
 			int64_t crewBonuses = 0;
@@ -309,7 +309,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					totalShares += crewShares;
 				if(payDeathBenefits)
 					totalShares += familyShares;
-				int64_t valuePerShare = victim->Cost() * Depreciation::Full() / totalShares;
+				double valueFraction = rules.CaptureValueBasis().value_or(Depreciation::Full());
+				int64_t valuePerShare = victim->Cost() * valueFraction / totalShares;
 
 				if(payCrewBonuses)
 					crewBonuses = crewShares * valuePerShare;

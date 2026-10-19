@@ -128,7 +128,8 @@ public:
 	void SetCaptureCaptainShares(double value);
 	void SetCaptureDeadCrewShares(double value);
 	void SetCaptureLivingCrewShares(double value);
-	void SetDeathBenefitMinPerCasualty(int value);
+	void SetCaptureMinimumDeathBenefit(int value);
+	void SetCaptureValueBasis(std::optional<double> value);
 
 	int GetValue(const std::string &rule) const;
 
@@ -161,7 +162,8 @@ public:
 	double CaptureCaptainShares() const;
 	double CaptureDeadCrewShares() const;
 	double CaptureLivingCrewShares() const;
-	int DeathBenefitMinPerCasualty() const;
+	int CaptureMinimumDeathBenefit() const;
+	std::optional<double> CaptureValueBasis() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -209,7 +211,8 @@ private:
 		double captureCaptainShares = 2.;
 		double captureDeadCrewShares = 1.;
 		double captureLivingCrewShares = 1.;
-		int deathBenefitMinPerCasualty = 100000;
+		int captureMinimumDeathBenefit = 100000;
+		std::optional<double> captureValueBasis;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;

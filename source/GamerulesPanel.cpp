@@ -76,7 +76,8 @@ namespace {
 	const string CAPTURE_CAPTAIN_SHARES = "Captain shares";
 	const string CAPTURE_DEAD_CREW_SHARES = "Dead crew shares";
 	const string CAPTURE_LIVING_CREW_SHARES = "Living crew shares";
-	const string DEATH_BENEFIT_MIN_PER_CASUALTY = "Minimum per casualty";
+	const string CAPTURE_MIN_DEATH_BENEFIT = "Minimum per casualty";
+	const string CAPTURE_VALUE_BASIS = "Capture value basis";
 
 	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
 
@@ -111,7 +112,8 @@ namespace {
 		{CAPTURE_CAPTAIN_SHARES, "capture captain shares"},
 		{CAPTURE_DEAD_CREW_SHARES, "capture dead crew shares"},
 		{CAPTURE_LIVING_CREW_SHARES, "capture living crew shares"},
-		{DEATH_BENEFIT_MIN_PER_CASUALTY, "death benefit min per casualty"},
+		{CAPTURE_MIN_DEATH_BENEFIT, "capture minimum death benefit"},
+		{CAPTURE_VALUE_BASIS, "capture value basis"},
 	};
 
 	const int GAMERULES_PAGE_COUNT = 2;
@@ -442,7 +444,8 @@ void GamerulesPanel::DrawGamerules()
 		CAPTURE_CAPTAIN_SHARES,
 		CAPTURE_DEAD_CREW_SHARES,
 		CAPTURE_LIVING_CREW_SHARES,
-		DEATH_BENEFIT_MIN_PER_CASUALTY,
+		CAPTURE_MIN_DEATH_BENEFIT,
+		CAPTURE_VALUE_BASIS,
 		"\n",
 		"Miscellaneous",
 		LOCK_GAMERULES,
@@ -664,12 +667,20 @@ void GamerulesPanel::DrawGamerules()
 			isOn = value == Gamerules::CaptureProfitSharing::LIVING_CREW
 				|| value == Gamerules::CaptureProfitSharing::ALL_CREW;
 		}
-		else if(gamerule == DEATH_BENEFIT_MIN_PER_CASUALTY)
+		else if(gamerule == CAPTURE_MIN_DEATH_BENEFIT)
 		{
-			text = Format::AbbreviatedNumber(gamerules.DeathBenefitMinPerCasualty());
+			text = Format::AbbreviatedNumber(gamerules.CaptureMinimumDeathBenefit());
 			Gamerules::CaptureProfitSharing value = gamerules.GetCaptureProfitSharing();
 			isOn = value == Gamerules::CaptureProfitSharing::DEAD_CREW
 				|| value == Gamerules::CaptureProfitSharing::ALL_CREW;
+		}
+		else if(gamerule == CAPTURE_VALUE_BASIS)
+		{
+			if(gamerules.CaptureValueBasis().has_value())
+				text = Format::Number(*gamerules.CaptureValueBasis());
+			else
+				text = "(unset)";
+			isOn = gamerules.GetCaptureProfitSharing() != Gamerules::CaptureProfitSharing::OFF;
 		}
 
 		if(gamerule == hoverItem)
@@ -1122,13 +1133,22 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetCaptureLivingCrewShares,
 			validate, message, gamerules.CaptureLivingCrewShares()));
 	}
-	else if(str == DEATH_BENEFIT_MIN_PER_CASUALTY)
+	else if(str == CAPTURE_MIN_DEATH_BENEFIT)
 	{
 		string message = "Set the minimum death benefit payment per casualty when capturing a ship. "
 			"(Integer value greater than or equal to 0.)";
 		auto validate = [](int value) -> bool { return value >= 0; };
-		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDeathBenefitMinPerCasualty,
-			validate, message, gamerules.DeathBenefitMinPerCasualty()));
+		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetCaptureMinimumDeathBenefit,
+			validate, message, gamerules.CaptureMinimumDeathBenefit()));
+	}
+	else if(str == CAPTURE_VALUE_BASIS)
+	{
+		string message = "Set the percentage of the full value of a captured ship that is used to determine "
+			"share sizes. Leave unset to use the same percentage that captured ships start at due to depreciation. "
+			"(Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.; };
+		GetUI().Push(OptionalInputDialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetCaptureValueBasis,
+			validate, message, gamerules.CaptureValueBasis()));
 	}
 }
 

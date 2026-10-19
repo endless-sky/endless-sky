@@ -1881,6 +1881,9 @@ tip "Living crew shares"
 tip "Minimum per casualty"
 	`If death benefits are active and you lose crew during a boarding action, this is the minimum number of credits that must be paid to the families of the crew members who died. This amount must be paid even if you didn't successfully capture a ship.`
 
+tip "Capture value basis"
+	`Controls what percentage of the value of a captured ship is used to determine the size of a share. If unset, then a ship is valued at its sale price as it is captured.`
+
 # Boarding panel
 tip `boarding: in cargo`
 	`This item is in the ship's cargo hold.`
