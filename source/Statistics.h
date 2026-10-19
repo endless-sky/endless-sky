@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <chrono>
 #include <filesystem>
 
-class PlayerInfo;
 class PilotProfile;
+class PlayerInfo;
 
 
 
@@ -35,7 +35,7 @@ public:
 	void Load();
 	void Save() const;
 
-	void AddPlayTime(std::chrono::nanoseconds timeVal);
+	void AddPlayTime(std::chrono::nanoseconds timeVal, bool updatePlayer);
 
 
 private:

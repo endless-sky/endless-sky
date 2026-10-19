@@ -67,10 +67,13 @@ void Statistics::Save() const
 
 
 
-void Statistics::AddPlayTime(std::chrono::nanoseconds timeVal)
+void Statistics::AddPlayTime(std::chrono::nanoseconds timeVal, bool updatePlayer)
 {
-	player.AddPlayTime(timeVal);
-	if(player.Pilot())
-		player.Pilot()->AddPlayTime(timeVal);
 	playTime += timeVal.count() * .000000001;
+	if(updatePlayer)
+	{
+		player.AddPlayTime(timeVal);
+		if(player.Pilot())
+			player.Pilot()->AddPlayTime(timeVal);
+	}
 }
