@@ -1866,7 +1866,7 @@ tip "Capture profit sharing"
 	`Controls whether and how the value of captured ships is shared among the crew members of your flagship.`
 	`- "off": You keep the full value of the captured ship.`
 	`- "dead crew": Death benefits must be paid to the families of crew members who died in the process of capturing a ship. A minimum payment per casualty may also be applied regardless of a successful capture.`
-	`- "living crew": Living crew members must be paid a bonus based on the value of the captured ship. Each living crew member gets one share.`
+	`- "living crew": Living crew members must be paid a bonus based on the value of the captured ship.`
 	`- "all crew": Both dead and living crew must be paid according to the rules stated above.`
 
 tip "Captain shares"
