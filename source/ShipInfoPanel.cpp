@@ -799,7 +799,7 @@ bool ShipInfoPanel::Rename(const string &name)
 
 bool ShipInfoPanel::CanDump() const
 {
-	if(panelState.CanEdit() || shipIt == panelState.Ships().end())
+	if(panelState.CanEdit() || shipIt == panelState.Ships().end() || shipIt->get()->IsDestroyed())
 		return false;
 
 	CargoHold &cargo = (*shipIt)->Cargo();
