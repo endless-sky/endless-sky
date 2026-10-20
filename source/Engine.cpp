@@ -1034,6 +1034,11 @@ void Engine::Step(bool isActive)
 			doClick = !ammoDisplay.Click(clickPoint, hasControl);
 		if(doClick && clickBox.Dimensions())
 			doClick = !player.SelectEscorts(clickBox, hasShift);
+		// If the click box has dimensions, then the click being handled now was the result of
+		// a mouse release after a drag selection was made. If the drag selection didn't handle
+		// anything, don't try to process the release as a normal left click.
+		if(uiClickBox.Dimensions())
+			doClick = false;
 		if(doClick)
 		{
 			const vector<weak_ptr<Ship>> &stack = escorts.Click(clickPoint);
