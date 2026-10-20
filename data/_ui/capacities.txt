@@ -1,0 +1,36 @@
+# Copyright (c) 2026 by Amazinite
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+"display capacities"
+	required "outfit space free:" "outfit space"
+	required "    weapon capacity:" "weapon capacity"
+	required "    engine capacity:" "engine capacity"
+	required "gun ports free:" "gun ports"
+	# A rare gun port type found on some massive ships:
+	optional "spinal mounts free:" "spinal mount"
+	required "turret mounts free:" "turret mounts"
+	
+	# Avgi capacities:
+	optional "anchor points free:" "anchor point"
+	optional "lasing power free:" "lasing power"
+	optional "magnetic nozzles free:" "magnetic nozzle"
+	
+	# Bunrodea capacities:
+	optional "reactor upgrades free:" "reactor upgrades"
+	optional "relay upgrades free:" "relay upgrades"
+	optional "nanite upgrades free:" "nanite upgrades"
+	optional "solar cells free:" "solar cell"
+	
+	# Successor capacities:
+	optional "multimodal armor free" "multimodal armor"
+	optional "shield connections free" "shield connection point"
