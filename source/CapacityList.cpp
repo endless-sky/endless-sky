@@ -54,7 +54,7 @@ void CapacityList::Load(const DataNode &node)
 			currentPrecedence = child.Value(3);
 		Capacity cap(display == "required", child.Token(1), child.Token(2), currentPrecedence++);
 
-		// If a given capacity attribute already exists, its precedence will be updated.
+		// If a given capacity attribute already exists, its details will be updated.
 		auto it = ranges::find_if(list, [&cap](const Capacity &c) noexcept -> bool {
 			return cap.backingAttribute == c.backingAttribute;
 		});
