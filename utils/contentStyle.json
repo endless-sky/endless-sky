@@ -30,7 +30,7 @@
 		"regexChecks": [
 			{
 				"excludedNodes": [
-					"^display capacities$"
+					"^\"display capacities\"$"
 				],
 				"checks": [
 					{
@@ -147,7 +147,7 @@
 					"^word$",
 					"^replace$",
 					"^substitutions$",
-					"^display capacities$"
+					"^\"display capacities\"$"
 				],
 				"checks": [
 					{
