@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 
 #include <algorithm>
-#include <cctype>
 #include <cmath>
 
 using namespace std;
@@ -40,7 +39,7 @@ DataNode::DataNode(const DataNode *parent) noexcept(false)
 
 // Copy constructor.
 DataNode::DataNode(const DataNode &other)
-	: children(other.children), tokens(other.tokens), lineNumber(std::move(other.lineNumber))
+	: children(other.children), tokens(other.tokens), lineNumber(other.lineNumber)
 {
 	Reparent();
 }
@@ -50,9 +49,11 @@ DataNode::DataNode(const DataNode &other)
 // Copy assignment operator.
 DataNode &DataNode::operator=(const DataNode &other)
 {
+	if(this == &other)
+		return *this;
 	children = other.children;
 	tokens = other.tokens;
-	lineNumber = std::move(other.lineNumber);
+	lineNumber = other.lineNumber;
 	Reparent();
 	return *this;
 }
@@ -106,7 +107,7 @@ void DataNode::AddToken(const string &token)
 // If the index is out of range, then this returns an empty string and prints an error.
 const string &DataNode::Token(int index) const
 {
-	static const string ERROR = "";
+	static constexpr string ERROR;
 	if(static_cast<size_t>(index) >= tokens.size())
 	{
 		PrintTrace("Requested token index (" + to_string(index) + ") is out of bounds:");
@@ -169,14 +170,14 @@ double DataNode::Value(const string &token)
 	if(*it == 'e' || *it == 'E')
 	{
 		++it;
-		int64_t sign = (*it == '-') ? -1 : 1;
+		int64_t eSign = (*it == '-') ? -1 : 1;
 		it += (*it == '-' || *it == '+');
 
 		int64_t exponent = 0;
 		while(*it >= '0' && *it <= '9')
 			exponent = (exponent * 10) + (*it++ - '0');
 
-		power += sign * exponent;
+		power += eSign * exponent;
 	}
 
 	// Compose the return value.

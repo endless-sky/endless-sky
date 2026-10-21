@@ -7,11 +7,11 @@
 #  easier to read.
 # -*-default-arguments: Animate::Set has a default value in one of its parameters. Clang-tidy says that default values
 #  in virtual functions are prohibited, but it clearly works given all the calls to Animate::Set without a second
-#  parameter.
-# -*-flp30-c: AsteroidField::Asteroid::Draw has a loop that uses doubles
-# -*-use-override: Many of our panels provide both virtual and override keywords to their functions. While technically
-#  redundant, it's not hurting anything to keep.
-# -*-pass-by-value: We normally pass strings by const ref. Clang-tidy is saying that most of them can be replaced with
+#  parameter, plus the fact that the game fails to compile it the default parameter is removed.
+# -*-flp30-c: AsteroidField::Asteroid::Draw has a loop that uses doubles.
+# -*-use-override: Many of our panels provide both virtual and override keywords to their functions. While the virtual
+#  keyword is technically redundant in this case, it's not hurting anything to keep.
+# -*-pass-by-value: We normally pass strings by const ref. Clang-tidy is saying that many of them can be replaced with
 #  passing by value and using std::move. It doesn't make much difference either way.
 Checks: '-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof,-*-default-arguments,-*-flp30-c,-*-use-override,-*-pass-by-value'
 

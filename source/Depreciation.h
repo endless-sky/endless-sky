@@ -15,10 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <cstdint>
 #include <map>
 #include <memory>
-#include <string>
 #include <vector>
 
 class DataNode;

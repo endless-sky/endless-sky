@@ -56,9 +56,9 @@ DataWriter::~DataWriter()
 
 
 // Save the contents to a file.
-void DataWriter::SaveToPath(const filesystem::path &filepath)
+void DataWriter::SaveToPath(const filesystem::path &path) const
 {
-	Files::Write(filepath, out.str());
+	Files::Write(path, out.str());
 }
 
 
@@ -151,9 +151,9 @@ void DataWriter::WriteToken(const string &a)
 string DataWriter::Quote(const string &a)
 {
 	// Figure out what kind of quotation marks need to be used for this string.
-	bool hasSpace = any_of(a.begin(), a.end(), [](unsigned char c) { return isspace(c); });
-	bool hasQuote = any_of(a.begin(), a.end(), [](char c) { return (c == '"'); });
-	bool hasBacktick = any_of(a.begin(), a.end(), [](char c) { return (c == '`'); });
+	bool hasSpace = ranges::any_of(a, [](unsigned char c) { return isspace(c); });
+	bool hasQuote = ranges::any_of(a, [](char c) { return (c == '"'); });
+	bool hasBacktick = ranges::any_of(a, [](char c) { return (c == '`'); });
 	// If the token is an empty string, it needs to be wrapped in quotes as if it had a space.
 	hasSpace |= a.empty();
 

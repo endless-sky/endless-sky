@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <queue>
 #include <set>
-#include <utility>
 #include <vector>
 
 class PlayerInfo;

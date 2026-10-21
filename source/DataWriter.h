@@ -46,7 +46,7 @@ public:
 	~DataWriter();
 
 	// Save the contents to a file.
-	void SaveToPath(const std::filesystem::path &path);
+	void SaveToPath(const std::filesystem::path &path) const;
 	// Get the contents as a string.
 	std::string SaveToString() const;
 
