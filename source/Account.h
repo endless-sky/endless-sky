@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Mortgage.h"
 
-#include <cstdint>
 #include <map>
 #include <optional>
 #include <string>
