@@ -67,7 +67,7 @@ public:
 	const Color &BgColor() const { return bgColor; }
 
 	typedef std::function<bool(std::string &)> ChangedCallback;
-	void SetCallback(ChangedCallback cb) { changedCallback = cb; }
+	void SetCallback(const ChangedCallback &cb) { changedCallback = cb; }
 
 
 protected:
@@ -90,7 +90,7 @@ protected:
 
 	// Given an offset into the string, return the position where caret or
 	// highlight would go.
-	Point AlignedOffset(size_t offset);
+	Point AlignedOffset(size_t offset) const;
 	void UpdateHighlightRect(size_t o1, size_t o2);
 
 	void ComputeTextBounds();

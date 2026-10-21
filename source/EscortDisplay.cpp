@@ -164,7 +164,7 @@ const vector<weak_ptr<Ship>> &EscortDisplay::Click(const Point &point) const
 		if(zones[i].Contains(point))
 			return stacks[i];
 
-	static const vector<weak_ptr<Ship>> EMPTY;
+	static constexpr vector<weak_ptr<Ship>> EMPTY;
 	return EMPTY;
 }
 
