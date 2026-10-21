@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "Color.h"
-#include "shader/FillShader.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -26,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "text/Table.h"
 
-#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -123,7 +121,7 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 		description.Wrap(text);
 	else
 	{
-		static const string NOUN[2] = {"outfit", "ship"};
+		static constexpr string NOUN[2] = {"outfit", "ship"};
 		string fullText = text + "\tTo purchase this " + NOUN[isShip] + " you must have ";
 		fullText += Format::List<vector, string>(licenses,
 			[](const string &name)

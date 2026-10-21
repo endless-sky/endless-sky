@@ -213,8 +213,8 @@ bool Hardpoint::IsReady() const
 // Check if this weapon can't fire because of its blindspots.
 bool Hardpoint::IsBlind() const
 {
-	return any_of(baseAttributes.blindspots.begin(), baseAttributes.blindspots.end(),
-		[this](pair<Angle, Angle> blindspot)
+	return ranges::any_of(baseAttributes.blindspots,
+		[this](const pair<Angle, Angle> &blindspot)
 		{
 			return angle.IsInRange(blindspot.first + baseAngle, blindspot.second + baseAngle);
 		});
