@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Depreciation.h"
 #include "image/SpriteSet.h"
 
 #include <algorithm>
@@ -57,15 +58,23 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "npc max mining time")
 			storage.npcMaxMiningTime = max<int>(0, child.Value(1));
 		else if(key == "universal frugal threshold")
-			storage.universalFrugalThreshold = min(1., max(0., child.Value(1)));
+			storage.universalFrugalThreshold = clamp(child.Value(1), 0., 1.);
+		else if(key == "depreciation aging active")
+			storage.depreciationAgingActive = child.BoolValue(1);
 		else if(key == "depreciation min")
-			storage.depreciationMin = min(1., max(0., child.Value(1)));
+			storage.depreciationMin = clamp(child.Value(1), 0., 1.);
+		else if(key == "depreciation plundered")
+			storage.depreciationPlundered = clamp(child.Value(1), 0., 1.);
+		else if(key == "depreciation captured")
+			storage.depreciationCaptured = clamp(child.Value(1), 0., 1.);
 		else if(key == "depreciation daily")
-			storage.depreciationDaily = min(1., max(0., child.Value(1)));
+			storage.depreciationDaily = clamp(child.Value(1), 0., 1.);
 		else if(key == "depreciation grace period")
 			storage.depreciationGracePeriod = max<int>(0, child.Value(1));
 		else if(key == "depreciation max age")
 			storage.depreciationMaxAge = max<int>(0, child.Value(1));
+		else if(key == "depreciation cargo is plunder")
+			storage.depreciationCargoIsPlunder = child.BoolValue(1);
 		else if(key == "disabled fighters avoid projectiles")
 		{
 			const string &value = child.Token(1);
@@ -171,14 +180,22 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write("npc max mining time", storage.npcMaxMiningTime);
 		if(storage.universalFrugalThreshold != preset.storage.universalFrugalThreshold)
 			out.Write("universal frugal threshold", storage.universalFrugalThreshold);
+		if(storage.depreciationAgingActive != preset.storage.depreciationAgingActive)
+			out.Write("depreciation aging active", storage.depreciationAgingActive);
 		if(storage.depreciationMin != preset.storage.depreciationMin)
 			out.Write("depreciation min", storage.depreciationMin);
+		if(storage.depreciationPlundered != preset.storage.depreciationPlundered)
+			out.Write("depreciation plundered", storage.depreciationPlundered);
+		if(storage.depreciationCaptured != preset.storage.depreciationCaptured)
+			out.Write("depreciation captured", storage.depreciationCaptured);
 		if(storage.depreciationDaily != preset.storage.depreciationDaily)
 			out.Write("depreciation daily", storage.depreciationDaily);
 		if(storage.depreciationGracePeriod != preset.storage.depreciationGracePeriod)
 			out.Write("depreciation grace period", storage.depreciationGracePeriod);
 		if(storage.depreciationMaxAge != preset.storage.depreciationMaxAge)
 			out.Write("depreciation max age", storage.depreciationMaxAge);
+		if(storage.depreciationCargoIsPlunder != preset.storage.depreciationCargoIsPlunder)
+			out.Write("depreciation cargo is plunder", storage.depreciationCargoIsPlunder ? 1 : 0);
 		if(storage.fighterHitPolicy != preset.storage.fighterHitPolicy)
 		{
 			if(storage.fighterHitPolicy == FighterDodgePolicy::ALL)
@@ -280,14 +297,22 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.npcMaxMiningTime = preset.storage.npcMaxMiningTime;
 	else if(rule == "universal frugal threshold")
 		storage.universalFrugalThreshold = preset.storage.universalFrugalThreshold;
+	else if(rule == "depreciation aging active")
+		storage.depreciationAgingActive = preset.storage.depreciationAgingActive;
 	else if(rule == "depreciation min")
 		storage.depreciationMin = preset.storage.depreciationMin;
+	else if(rule == "depreciation plundered")
+		storage.depreciationPlundered = preset.storage.depreciationPlundered;
+	else if(rule == "depreciation captured")
+		storage.depreciationCaptured = preset.storage.depreciationCaptured;
 	else if(rule == "depreciation daily")
 		storage.depreciationDaily = preset.storage.depreciationDaily;
 	else if(rule == "depreciation grace period")
 		storage.depreciationGracePeriod = preset.storage.depreciationGracePeriod;
 	else if(rule == "depreciation max age")
 		storage.depreciationMaxAge = preset.storage.depreciationMaxAge;
+	else if(rule == "depreciation cargo is plunder")
+		storage.depreciationCargoIsPlunder = preset.storage.depreciationCargoIsPlunder;
 	else if(rule == "disabled fighters avoid projectiles")
 		storage.fighterHitPolicy = preset.storage.fighterHitPolicy;
 	else if(rule == "system departure min")
@@ -391,9 +416,31 @@ void Gamerules::SetUniversalFrugalThreshold(double value)
 
 
 
+void Gamerules::SetDepreciationAgingActive(bool value)
+{
+	storage.depreciationAgingActive = value;
+}
+
+
+
 void Gamerules::SetDepreciationMin(double value)
 {
 	storage.depreciationMin = clamp(value, 0., 1.);
+	Depreciation::InvalidateCache();
+}
+
+
+
+void Gamerules::SetDepreciationPlundered(double value)
+{
+	storage.depreciationPlundered = clamp(value, 0., 1.);
+}
+
+
+
+void Gamerules::SetDepreciationCaptured(double value)
+{
+	storage.depreciationCaptured = clamp(value, 0., 1.);
 }
 
 
@@ -401,6 +448,7 @@ void Gamerules::SetDepreciationMin(double value)
 void Gamerules::SetDepreciationDaily(double value)
 {
 	storage.depreciationDaily = clamp(value, 0., 1.);
+	Depreciation::InvalidateCache();
 }
 
 
@@ -408,6 +456,7 @@ void Gamerules::SetDepreciationDaily(double value)
 void Gamerules::SetDepreciationGracePeriod(int value)
 {
 	storage.depreciationGracePeriod = max(0, value);
+	Depreciation::InvalidateCache();
 }
 
 
@@ -415,6 +464,14 @@ void Gamerules::SetDepreciationGracePeriod(int value)
 void Gamerules::SetDepreciationMaxAge(int value)
 {
 	storage.depreciationMaxAge = max(0, value);
+	Depreciation::InvalidateCache();
+}
+
+
+
+void Gamerules::SetDepreciationCargoIsPlunder(bool value)
+{
+	storage.depreciationCargoIsPlunder = value;
 }
 
 
@@ -545,8 +602,14 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.npcMaxMiningTime;
 	if(rule == "universal frugal threshold")
 		return storage.universalFrugalThreshold * 1000;
+	if(rule == "depreciation aging active")
+		return storage.depreciationAgingActive;
 	if(rule == "depreciation min")
 		return storage.depreciationMin * 1000;
+	if(rule == "depreciation plundered")
+		return storage.depreciationPlundered * 1000;
+	if(rule == "depreciation captured")
+		return storage.depreciationCaptured * 1000;
 	if(rule == "depreciation daily")
 		return storage.depreciationDaily * 1000;
 	if(rule == "depreciation grace period")
@@ -628,9 +691,30 @@ double Gamerules::UniversalFrugalThreshold() const
 
 
 
+bool Gamerules::DepreciationAgingActive() const
+{
+	return storage.depreciationAgingActive;
+}
+
+
+
 double Gamerules::DepreciationMin() const
 {
 	return storage.depreciationMin;
+}
+
+
+
+double Gamerules::DepreciationPlundered() const
+{
+	return storage.depreciationPlundered;
+}
+
+
+
+double Gamerules::DepreciationCaptured() const
+{
+	return storage.depreciationCaptured;
 }
 
 
@@ -652,6 +736,13 @@ int Gamerules::DepreciationGracePeriod() const
 int Gamerules::DepreciationMaxAge() const
 {
 	return storage.depreciationMaxAge;
+}
+
+
+
+bool Gamerules::DepreciationCargoIsPlunder() const
+{
+	return storage.depreciationCargoIsPlunder;
 }
 
 

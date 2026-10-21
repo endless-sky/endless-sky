@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Effect.h"
 #include "GameData.h"
 #include "Outfit.h"
+#include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
 #include "image/SpriteSet.h"
@@ -42,9 +43,28 @@ Flotsam::Flotsam(const string &commodity, int count, const Government *sourceGov
 
 
 
-Flotsam::Flotsam(const Outfit *outfit, int count, const Government *sourceGovernment)
+Flotsam::Flotsam(const Outfit *outfit, int count, const Government *sourceGovernment, PlayerInfo *player)
 	: lifetime(Random::Int(3600) + 7200), outfit(outfit), count(count), sourceGovernment(sourceGovernment)
 {
+	depreciation.SetIsStock(false);
+	// This flotsam was created by the player, so get an exact record of this outfit's value from them.
+	// This is so that if another one of the player's ships picks this flotsam up, the value of the
+	// outfit doesn't change.
+	if(player)
+	{
+		int day = player->GetDate().DaysSinceEpoch();
+		Depreciation *source = &player->FleetDepreciation();
+		for(int i = 0; i < count; ++i)
+			depreciation.Buy(outfit, day, source);
+	}
+	// Since NPCs don't keep track of depreciation, the player could technically jettison an outfit,
+	// have it be picked up by an NPC, then board that NPC to take the outfit back and change the outfit's
+	// value. Outfits with a flotsam chance or in cargo dropped by your ships when they are destroyed
+	// will also lose their depreciation record. This will also only increase the value of an outfit if the
+	// outfit was plundered or captured, and the value of plundered or captured outfits is less than the
+	// minimum of an aged outfit.
+	// If someone is actually jumping through that many hoops to cheese out a few credits, then
+	// they can have their reward.
 }
 
 
@@ -193,7 +213,7 @@ double Flotsam::Mass() const
 
 // Transfer contents to the collector ship. The flotsam velocity is
 // stabilized in proportion to the amount being transferred.
-int Flotsam::TransferTo(Ship *collector)
+int Flotsam::TransferTo(Ship *collector, PlayerInfo &player)
 {
 	int amount = outfit ?
 		collector->Cargo().Add(outfit, count) :
@@ -207,6 +227,16 @@ int Flotsam::TransferTo(Ship *collector)
 	// If this flotsam is now empty, remove it.
 	if(count <= 0)
 		MarkForRemoval();
+
+	// If the collector is the player's, then pass the deprecation record
+	// of this outfit to the player.
+	if(outfit && collector->IsYours())
+	{
+		int day = player.GetDate().DaysSinceEpoch();
+		Depreciation &playerDepreciation = player.FleetDepreciation();
+		for(int i = 0; i < amount; ++i)
+			playerDepreciation.Buy(outfit, day, &depreciation);
+	}
 
 	return amount;
 }

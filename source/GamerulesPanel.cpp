@@ -46,10 +46,14 @@ using namespace std;
 
 namespace {
 	// Gamerule display names.
+	const string DEPRECIATIVE_AGING = "Depreciative aging";
 	const string DEPRECIATION_MIN = "Minimum value";
+	const string DEPRECIATION_PLUNDERED = "Plundered value";
+	const string DEPRECIATION_CAPTURED = "Captured value";
 	const string DEPRECIATION_GRACE_PERIOD = "Grace period";
 	const string DEPRECIATION_MAX_AGE = "Maximum age";
 	const string DEPRECIATION_DAILY = "Daily depreciation";
+	const string DEPRECIATION_CARGO_IS_PLUNDER = "Cargo is plunder";
 	const string PERSON_SPAWN_PERIOD = "Spawn attempt period";
 	const string NO_PERSON_SPAWN_WEIGHT = "No spawn weight";
 	const string NPC_MAX_MINING_TIME = "NPC max mining time";
@@ -76,10 +80,14 @@ namespace {
 	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
 
 	const auto DISPLAY_NAME_TO_RULE_NAME = map<string, string>{
+		{DEPRECIATIVE_AGING, "depreciation aging active"},
 		{DEPRECIATION_MIN, "depreciation min"},
+		{DEPRECIATION_PLUNDERED, "depreciation plundered"},
+		{DEPRECIATION_CAPTURED, "depreciation captured"},
 		{DEPRECIATION_GRACE_PERIOD, "depreciation grace period"},
 		{DEPRECIATION_MAX_AGE, "depreciation max age"},
 		{DEPRECIATION_DAILY, "depreciation daily"},
+		{DEPRECIATION_CARGO_IS_PLUNDER, "depreciation cargo is plunder"},
 		{PERSON_SPAWN_PERIOD, "person spawn period"},
 		{NO_PERSON_SPAWN_WEIGHT, "no person spawn weight"},
 		{NPC_MAX_MINING_TIME, "npc max mining time"},
@@ -104,7 +112,7 @@ namespace {
 		{RESTRICTED_SAVE_LOADING, "restricted save loading"},
 	};
 
-	const int GAMERULES_PAGE_COUNT = 1;
+	const int GAMERULES_PAGE_COUNT = 2;
 }
 
 
@@ -394,7 +402,11 @@ void GamerulesPanel::DrawGamerules()
 	//   page count (count of '\n' characters plus one).
 	static const string GAMERULES[] = {
 		"Depreciation",
+		DEPRECIATIVE_AGING,
 		DEPRECIATION_MIN,
+		DEPRECIATION_CAPTURED,
+		DEPRECIATION_PLUNDERED,
+		DEPRECIATION_CARGO_IS_PLUNDER,
 		DEPRECIATION_GRACE_PERIOD,
 		DEPRECIATION_MAX_AGE,
 		DEPRECIATION_DAILY,
@@ -402,10 +414,6 @@ void GamerulesPanel::DrawGamerules()
 		"Person Ships",
 		PERSON_SPAWN_PERIOD,
 		NO_PERSON_SPAWN_WEIGHT,
-		"",
-		"NPC Behavior",
-		NPC_MAX_MINING_TIME,
-		UNIVERSAL_FRUGAL_THRESHOLD,
 		"",
 		"Player Fleet Size Limit",
 		FLEET_SIZE_LIMITATION,
@@ -427,6 +435,10 @@ void GamerulesPanel::DrawGamerules()
 		SINGLE_SAVE_FILE,
 		RESTRICTED_SAVE_LOADING,
 		"",
+		"NPC Behavior",
+		NPC_MAX_MINING_TIME,
+		UNIVERSAL_FRUGAL_THRESHOLD,
+		"\n",
 		"Miscellaneous",
 		LOCK_GAMERULES,
 		FIGHTERS_HIT_WHEN_DISABLED,
@@ -481,14 +493,34 @@ void GamerulesPanel::DrawGamerules()
 		// Setting "isOn" draws the gamerule "bright" (i.e. the gamerule is active).
 		bool isOn = true;
 		string text;
-		if(gamerule == DEPRECIATION_MIN)
+		if(gamerule == DEPRECIATIVE_AGING)
+			text = gamerules.DepreciationAgingActive() ? "true" : "false";
+		else if(gamerule == DEPRECIATION_MIN)
+		{
 			text = Format::Percentage(gamerules.DepreciationMin(), 2);
+			isOn = gamerules.DepreciationAgingActive();
+		}
+		else if(gamerule == DEPRECIATION_PLUNDERED)
+			text = Format::Percentage(gamerules.DepreciationPlundered(), 2);
+		else if(gamerule == DEPRECIATION_CAPTURED)
+			text = Format::Percentage(gamerules.DepreciationCaptured(), 2);
 		else if(gamerule == DEPRECIATION_GRACE_PERIOD)
+		{
 			text = Format::AbbreviatedNumber(gamerules.DepreciationGracePeriod());
+			isOn = gamerules.DepreciationAgingActive();
+		}
 		else if(gamerule == DEPRECIATION_MAX_AGE)
+		{
 			text = Format::AbbreviatedNumber(gamerules.DepreciationMaxAge());
+			isOn = gamerules.DepreciationAgingActive();
+		}
 		else if(gamerule == DEPRECIATION_DAILY)
+		{
 			text = Format::Percentage(gamerules.DepreciationDaily(), 2);
+			isOn = gamerules.DepreciationAgingActive();
+		}
+		else if(gamerule == DEPRECIATION_CARGO_IS_PLUNDER)
+			text = gamerules.DepreciationCargoIsPlunder() ? "true" : "false";
 		else if(gamerule == PERSON_SPAWN_PERIOD)
 			text = Format::AbbreviatedNumber(gamerules.PersonSpawnPeriod());
 		else if(gamerule == NO_PERSON_SPAWN_WEIGHT)
@@ -843,12 +875,28 @@ void GamerulesPanel::DrawTooltips()
 
 void GamerulesPanel::HandleGamerulesString(const string &str)
 {
-	if(str == DEPRECIATION_MIN)
+	if(str == DEPRECIATIVE_AGING)
+		gamerules.SetDepreciationAgingActive(!gamerules.DepreciationAgingActive());
+	else if(str == DEPRECIATION_MIN)
 	{
 		string message = "Set the minimum deprecation value. (Decimal value between 0 and 1.)";
 		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
 		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetDepreciationMin, validate,
 			message, gamerules.DepreciationMin()));
+	}
+	else if(str == DEPRECIATION_PLUNDERED)
+	{
+		string message = "Set the plundered deprecation value. (Decimal value between 0 and 1.)";
+		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
+		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetDepreciationPlundered,
+			validate, message, gamerules.DepreciationPlundered()));
+	}
+	else if(str == DEPRECIATION_CAPTURED)
+	{
+		string message = "Set the captured deprecation value. (Decimal value between 0 and 1.)";
+		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
+		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetDepreciationCaptured,
+			validate, message, gamerules.DepreciationCaptured()));
 	}
 	else if(str == DEPRECIATION_GRACE_PERIOD)
 	{
@@ -871,6 +919,8 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetDepreciationDaily, validate,
 			message, gamerules.DepreciationDaily()));
 	}
+	else if(str == DEPRECIATIVE_AGING)
+		gamerules.SetDepreciationCargoIsPlunder(!gamerules.DepreciationCargoIsPlunder());
 	else if(str == PERSON_SPAWN_PERIOD)
 	{
 		string message = "Set the person ship spawn attempt period. (Integer value greater than or equal to 1.)";

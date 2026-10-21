@@ -2729,7 +2729,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 
 	// Transfer cargo from the flotsam to the collector ship.
-	int amount = flotsam.TransferTo(collector);
+	int amount = flotsam.TransferTo(collector, player);
 
 	// If the collector is not one of the player's ships, we can bail out now.
 	if(!collector->IsYours())

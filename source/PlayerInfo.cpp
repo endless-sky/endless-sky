@@ -1322,7 +1322,30 @@ void PlayerInfo::CaptureShip(const shared_ptr<Ship> &ship)
 	ship->SetIsYours();
 	if(ship->HasBays())
 		displayCarrierHelp = true;
+	int day = date.DaysSinceEpoch();
+	depreciation.Capture(*ship, day);
+	if(GameData::GetGamerules().DepreciationCargoIsPlunder())
+		for(const auto &[outfit, count] : ship->Cargo().Outfits())
+			depreciation.Plunder(outfit, day, count);
 	CalculateScanners(ship);
+}
+
+
+
+void PlayerInfo::PlunderOutfit(const Outfit *outfit, int count)
+{
+	int day = date.DaysSinceEpoch();
+	depreciation.Plunder(outfit, day, count);
+}
+
+
+
+void PlayerInfo::JettisonOutfit(const Outfit *outfit, int count)
+{
+	int day = date.DaysSinceEpoch();
+	Depreciation throwAway;
+	for(int i = 0; i < count; ++i)
+		throwAway.Buy(outfit, day, &depreciation);
 }
 
 
@@ -3632,7 +3655,13 @@ void PlayerInfo::AddStock(const Outfit *outfit, int count)
 
 
 
-// Get depreciation information.
+Depreciation &PlayerInfo::FleetDepreciation()
+{
+	return depreciation;
+}
+
+
+
 const Depreciation &PlayerInfo::FleetDepreciation() const
 {
 	return depreciation;

@@ -4048,6 +4048,9 @@ void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 	// jettisoning cargo would increase the ship's temperature.
 	levels.heat -= tons * MAXIMUM_TEMPERATURE * HeatFraction();
 
+	// If this outfit was jettisoned for the sake of appeasing an aggressor, don't
+	// allow other ships of the same government to pick it up so that it can succeed
+	// in distracting the aggressor.
 	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 
 	for( ; tons > 0; tons -= Flotsam::TONS_PER_BOX)
@@ -4057,7 +4060,7 @@ void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 
 
 
-void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
+void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing, PlayerInfo *player)
 {
 	if(count < 0)
 		return;
@@ -4070,18 +4073,18 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 	if(isYours)
 		navigation.Recalibrate(*this);
 
-	JettisonOutfit(outfit, count, wasAppeasing);
+	JettisonOutfit(outfit, count, wasAppeasing, player);
 }
 
 
 
-void Ship::JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing)
+void Ship::JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing, PlayerInfo *player)
 {
 	if(count < 0 || !outfit->Get("can jettison"))
 		return;
 
 	AddOutfit(outfit, -count);
-	JettisonOutfit(outfit, count, wasAppeasing);
+	JettisonOutfit(outfit, count, wasAppeasing, player);
 }
 
 
@@ -5852,28 +5855,30 @@ void Ship::IncrementThrusterHeld(Ship::ThrustKind kind)
 
 
 
-void Ship::JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing)
+void Ship::JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing, PlayerInfo *player)
 {
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
 	double mass = outfit->Mass();
 	levels.heat -= count * mass * MAXIMUM_TEMPERATURE * HeatFraction();
 
+	// If this outfit was jettisoned for the sake of appeasing an aggressor, don't
+	// allow other ships of the same government to pick it up so that it can succeed
+	// in distracting the aggressor.
 	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 
 	const int perBox = (mass <= 0.) ? count : (mass > Flotsam::TONS_PER_BOX)
 		? 1 : static_cast<int>(Flotsam::TONS_PER_BOX / mass);
 	while(count > 0)
 	{
-		Jettison(make_shared<Flotsam>(outfit, (perBox < count)
-			? perBox : count, notForGov));
+		Jettison(make_shared<Flotsam>(outfit, (perBox < count) ? perBox : count, notForGov, player));
 		count -= perBox;
 	}
 }
 
 
 
-void Ship::Jettison(shared_ptr<Flotsam> toJettison)
+void Ship::Jettison(const shared_ptr<Flotsam> &toJettison)
 {
 	if(currentSystem)
 	{

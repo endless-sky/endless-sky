@@ -184,6 +184,10 @@ public:
 	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> FlightCheck() const;
 	// Add a captured ship to your fleet.
 	void CaptureShip(const std::shared_ptr<Ship> &ship);
+	// Add a plundered outfit to the depreciation record.
+	void PlunderOutfit(const Outfit *outfit, int count);
+	// An outfit was just jettisoned. Remove it from the depreciation record.
+	void JettisonOutfit(const Outfit *outfit, int count);
 	// Buy, receive or sell a ship.
 	// In the case of buying, return whether the ship could be purchased.
 	// In the case of a gift, return a pointer to the newly instantiated ship.
@@ -376,6 +380,7 @@ public:
 	int Stock(const Outfit *outfit) const;
 	void AddStock(const Outfit *outfit, int count);
 	// Get depreciation information.
+	Depreciation &FleetDepreciation();
 	const Depreciation &FleetDepreciation() const;
 	const Depreciation &StockDepreciation() const;
 

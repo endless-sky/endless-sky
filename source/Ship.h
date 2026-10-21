@@ -513,8 +513,8 @@ public:
 	const CargoHold &Cargo() const;
 	// Display box effects from jettisoning cargo or installed outfits.
 	void Jettison(const std::string &commodity, int tons, bool wasAppeasing = false);
-	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false);
-	void JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing = false);
+	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false, PlayerInfo *player = nullptr);
+	void JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing = false, PlayerInfo *player = nullptr);
 
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
@@ -718,8 +718,8 @@ private:
 	void IncrementThrusterHeld(ThrustKind kind);
 
 	// Helper functions for jettisoning flotsam.
-	void JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing = false);
-	void Jettison(std::shared_ptr<Flotsam> toJettison);
+	void JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing = false, PlayerInfo *player = nullptr);
+	void Jettison(const std::shared_ptr<Flotsam> &toJettison);
 
 
 private:

@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <map>
 #include <memory>
-#include <string>
 #include <vector>
 
 class DataNode;
@@ -29,12 +28,19 @@ class Ship;
 
 
 // Class for tracking depreciation records, by storing the day on which a given
-// outfit or ship was purchased. Any ship or outfit for which no record exists,
-// for example because it is plunder, counts as full depreciated.
+// outfit or ship was purchased. Any ship or outfit for which no record exists
+// counts as full depreciated.
 class Depreciation {
 public:
+	// Whether depreciative aging is active.
+	static bool AgingActive();
 	// What fraction of its cost a fully depreciated item has left:
 	static double Full();
+	// The remaining value for plundered or captured items.
+	static double Plundered();
+	static double Captured();
+	// The cache is invalid if certain depreciation gamerules are changed.
+	static void InvalidateCache();
 
 
 public:
@@ -46,11 +52,16 @@ public:
 	bool IsLoaded() const;
 	// If no records have been loaded, initialize with an entire fleet.
 	void Init(const std::vector<std::shared_ptr<Ship>> &fleet, int day);
+	void SetIsStock(bool isStock);
 
 	// Add a ship, and all its outfits, to the depreciation record.
 	void Buy(const Ship &ship, int day, Depreciation *source = nullptr, bool chassisOnly = false);
 	// Add a single outfit to the depreciation record.
 	void Buy(const Outfit *outfit, int day, Depreciation *source = nullptr);
+	// Add a captured ship, and all its outfits, to the depreciation record.
+	void Capture(const Ship &ship, int day);
+	// Add a plundered or captured outfit to the depreciation record.
+	void Plunder(const Outfit *outfit, int day, int count);
 
 	// Get the value of an entire fleet.
 	int64_t Value(const std::vector<std::shared_ptr<Ship>> &fleet, int day, bool chassisOnly = false) const;
@@ -65,10 +76,15 @@ public:
 private:
 	// "Sell" an item, removing it from the given record and returning the base
 	// day for its depreciation.
-	int Sell(std::map<int, int> &record) const;
-	// Calculate depreciation:
+	int Sell(std::map<int, int> &record, int day) const;
+	// Calculate depreciation for some number of items.
 	double Depreciate(const std::map<int, int> &record, int day, int count = 1) const;
+	// Calculate the value fraction for an item given the item's recorded date and the current day.
+	double Depreciate(int date, int day) const;
+	// Calculate the value fraction for an item of the given age.
 	double Depreciate(int age) const;
+	// Calculate the age on which an item would have the given value.
+	int DepreciationToAge(double value) const;
 	// Depreciation of an item for which no record exists. If buying, items
 	// default to no depreciation. When selling, they default to full.
 	double DefaultDepreciation() const;
@@ -83,6 +99,10 @@ private:
 	// Check if any data has been loaded.
 	bool isLoaded = false;
 
+	// The depreciation records of ships and outfits. Each record map uses the
+	// day as the key and the number of ships or outfits obtained on that day
+	// as the value. If an item isn't in the record, it uses the default deprecation.
+	// If an item's age is -1, that is equivalent to having been plundered.
 	std::map<const Ship *, std::map<int, int>> ships;
 	std::map<const Outfit *, std::map<int, int>> outfits;
 };
