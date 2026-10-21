@@ -115,14 +115,14 @@ void FormationPositioner::CalculatePositions()
 		bool removeShip = !ship || !IsActiveInFormation(ship.get());
 
 		// Lookup the ship in the positions map.
-		auto itCoor = shipPositions.end();
+		auto itCoord = shipPositions.end();
 		if(ship)
-			itCoor = shipPositions.find(ship.get());
+			itCoord = shipPositions.find(ship.get());
 
 		// If the ship is not in the overall table or if it was not
 		// active since the last iteration, then we also remove it.
-		removeShip |= itCoor == shipPositions.end() ||
-				itCoor->second.second != tickTock;
+		removeShip |= itCoord == shipPositions.end() ||
+				itCoord->second.second != tickTock;
 
 		// Perform removes if we need to.
 		if(removeShip)
@@ -130,13 +130,13 @@ void FormationPositioner::CalculatePositions()
 			// Remove the ship from the ring.
 			Remove(shipIndex);
 			// And remove the ship from the shipsPositions map.
-			if(itCoor != shipPositions.end())
-				shipPositions.erase(itCoor);
+			if(itCoord != shipPositions.end())
+				shipPositions.erase(itCoord);
 		}
 		else
 		{
 			// Calculate the new coordinate for the current ship.
-			Point &shipRelPos = itCoor->second.first;
+			Point &shipRelPos = itCoord->second.first;
 			shipRelPos = *itPos;
 			if(flippedY)
 				shipRelPos.Set(-shipRelPos.X(), shipRelPos.Y());
@@ -229,7 +229,7 @@ bool FormationPositioner::IsActiveInFormation(const Ship *ship) const
 	// TODO: add check for isAssisting.
 	// TODO: check if we can move many checks to Ship and get an ship->IsStationKeeping() instead.
 
-	// A ship active in the formation should follow the current formationleader
+	// A ship active in the formation should follow the current formation leader
 	// either through targetShip (for gather/keep-station commands) or through
 	// the child/parent relationship.
 	auto targetShip = ship->GetTargetShip();

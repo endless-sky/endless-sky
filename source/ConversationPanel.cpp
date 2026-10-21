@@ -292,7 +292,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		// Names must contain characters valid for use in file names. They also can't include '~', as that is
 		// reserved by the game for differentiating between main saves and snapshot saves.
 		size_t maxSaveLength = Files::MaxFilenameLength(Files::Saves());
-		auto NameCharFilter = [](char32_t ch) -> bool { return Files::IsValidCharacter(ch) && ch != '~'; };
+		auto NameCharFilter = [](char ch) -> bool { return Files::IsValidCharacter(ch) && ch != '~'; };
 		if(Clipboard::KeyDown(name, key, mod, maxSaveLength, NameCharFilter))
 		{
 			// Input handled by Clipboard.

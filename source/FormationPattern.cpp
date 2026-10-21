@@ -208,7 +208,7 @@ void FormationPattern::Load(const DataNode &node)
 				else if(grandKey == "angle" && grandHasValue && line.isArc)
 					line.angle = grand.Value(1);
 				else if(grandKey == "positions" && grandHasValue)
-					line.positions = static_cast<int>(grand.Value(1) + 0.5);
+					line.positions = grand.Value(1);
 				else if(grandKey == "skip")
 				{
 					for(int i = 1; i < grand.Size(); ++i)
@@ -237,7 +237,7 @@ void FormationPattern::Load(const DataNode &node)
 						else if(greatKey == "angle" && greatHasValue && line.isArc)
 							repeat.repeatAngle = great.Value(1);
 						else if(greatKey == "positions" && greatHasValue)
-							repeat.repeatPositions = static_cast<int>(great.Value(1) + 0.5);
+							repeat.repeatPositions = great.Value(1);
 						else
 							great.PrintTrace("Skipping unrecognized attribute:");
 					}
