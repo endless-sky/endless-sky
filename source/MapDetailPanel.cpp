@@ -63,8 +63,8 @@ using namespace std;
 
 namespace {
 	// Commodity comparison arrow min/max sizes
-	const double MIN_ARROW = 4;
-	const double MAX_ARROW = 14;
+	constexpr double MIN_ARROW = 4;
+	constexpr double MAX_ARROW = 14;
 
 	// Convert the angle between two vectors into a sortable angle, i.e. an angle
 	// plus a length that is used as a tie-breaker.
@@ -621,12 +621,12 @@ void MapDetailPanel::DrawInfo()
 			const double arrowOffsetX = mapInterface->GetValue("arrow x offset");
 			const double arrowOffsetY = mapInterface->GetValue("arrow y offset");
 
-			Point top(Screen::Left() + planetWidth + arrowOffsetX,
+			Point topScroll(Screen::Left() + planetWidth + arrowOffsetX,
 				Screen::Top() + arrowOffsetY);
-			Point bottom(Screen::Left() + planetWidth + arrowOffsetX,
+			Point bottomScroll(Screen::Left() + planetWidth + arrowOffsetX,
 				Screen::Top() - arrowOffsetY + planetPanelHeight);
 
-			scrollbar.SyncDraw(scroll, top, bottom);
+			scrollbar.SyncDraw(scroll, topScroll, bottomScroll);
 		}
 	}
 
@@ -733,12 +733,12 @@ void MapDetailPanel::DrawInfo()
 			{
 				value -= localValue;
 				if(Preferences::Has("Parenthesize trade profits"))
-					price += "(";
+					price += '(';
 				if(value > 0)
 					price += '+';
 				price += to_string(value);
 				if(Preferences::Has("Parenthesize trade profits"))
-					price += ")";
+					price += ')';
 			}
 
 			// Draw colored icons when values are displayed.

@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 #include "Files.h"
 #include "text/Font.h"
-#include "text/FontSet.h"
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
@@ -63,6 +62,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cassert>
 #include <future>
 #include <exception>
+#include <ranges>
 #include <string>
 
 #ifdef _WIN32
@@ -363,8 +363,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
 			{
 				// User pressed the Menu key.
-				menuPanels.Push(shared_ptr<Panel>(
-					new MenuPanel(player, gamePanels)));
+				menuPanels.Push(make_shared<MenuPanel>(player, gamePanels));
 				UI::PlaySound(UI::UISound::NORMAL);
 			}
 			else if(event.type == SDL_QUIT)
@@ -728,9 +727,9 @@ Conversation LoadConversation(const PlayerInfo &player)
 // (active/missing feature/known failure)..
 void PrintTestsTable()
 {
-	for(auto &it : GameData::Tests())
-		if(it.second.GetStatus() != Test::Status::PARTIAL
-				&& it.second.GetStatus() != Test::Status::BROKEN)
-			cout << it.second.Name() << '\n';
+	for(const auto &test : GameData::Tests() | views::values)
+		if(test.GetStatus() != Test::Status::PARTIAL
+				&& test.GetStatus() != Test::Status::BROKEN)
+			cout << test.Name() << '\n';
 	cout.flush();
 }

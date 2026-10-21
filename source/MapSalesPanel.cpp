@@ -165,8 +165,7 @@ bool MapSalesPanel::Click(int x, int y, MouseButton button, int clicks)
 	if(x < Screen::Left() + WIDTH)
 	{
 		const Point point(x, y);
-		const auto zone = find_if(zones.begin(), zones.end(),
-			[&](const ClickZone<int> zone){ return zone.Contains(point); });
+		const auto zone = ranges::find_if(zones, [&](const ClickZone<int> &z){ return z.Contains(point); });
 
 		if(zone == zones.end())
 		{
@@ -303,11 +302,11 @@ void MapSalesPanel::DrawInfo() const
 		const ItemInfoDisplay &selectedInfo = SelectedInfo();
 		const ItemInfoDisplay &compareInfo = CompareInfo();
 		int height = max<int>(selectedInfo.AttributesHeight(), box->Height());
-		int width = selectedInfo.PanelWidth();
+		int width = ItemInfoDisplay::PanelWidth();
 		if(compare >= 0)
 		{
 			height = max(height, compareInfo.AttributesHeight());
-			width += box->Width() + compareInfo.PanelWidth();
+			width += box->Width() + ItemInfoDisplay::PanelWidth();
 		}
 
 		const Color &back = *GameData::Colors().Get("map side panel background");
@@ -329,7 +328,7 @@ void MapSalesPanel::DrawInfo() const
 		if(compare >= 0)
 		{
 			compareInfo.DrawAttributes(topLeft);
-			topLeft.X() += compareInfo.PanelWidth() + box->Width();
+			topLeft.X() += ItemInfoDisplay::PanelWidth() + box->Width();
 
 			SpriteShader::Draw(box, topLeft + Point(-50., 100.));
 			DrawSprite(topLeft + Point(-95., 5.), SelectedSprite(), true, SelectedSpriteSwizzle());

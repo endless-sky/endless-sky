@@ -34,7 +34,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "shader/RingShader.h"
 #include "Screen.h"
@@ -49,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <ranges>
 #include <sstream>
 
 using namespace std;
@@ -91,20 +91,20 @@ namespace {
 	{
 		// We don't need to scroll at all if the selection must be within the viewport. The current
 		// scroll could be non-zero if missions were added/aborted, so return the delta that will reset it.
-		const auto maxViewable = MaxDisplayedMissions(checkVisibility);
-		const auto missionCount = missionList.size();
+		int maxViewable = MaxDisplayedMissions(checkVisibility);
+		int missionCount = missionList.size();
 		if(missionCount < maxViewable)
-			sideScroll = 0;
+			sideScroll = 0.;
 		else
 		{
-			const auto countBefore = static_cast<size_t>(checkVisibility
+			const int countBefore = static_cast<size_t>(checkVisibility
 					? count_if(missionList.begin(), it, [](const Mission &m) { return m.IsVisible(); })
 					: distance(missionList.begin(), it));
 
-			const auto maximumScroll = (missionCount - maxViewable) * 20.;
-			const auto pageScroll = maxViewable * 20.;
-			const auto desiredScroll = countBefore * 20.;
-			const auto bottomOfPage = sideScroll + pageScroll;
+			double maximumScroll = (missionCount - maxViewable) * 20.;
+			double pageScroll = maxViewable * 20.;
+			double desiredScroll = countBefore * 20.;
+			double bottomOfPage = sideScroll + pageScroll;
 			if(desiredScroll < sideScroll)
 			{
 				// Scroll upwards.
@@ -145,8 +145,8 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	if(!FindMissionForSystem(selectedSystem) && player.HasTravelPlan())
 	{
 		const auto &tp = player.TravelPlan();
-		for(auto it = tp.crbegin(); it != tp.crend(); ++it)
-			if(FindMissionForSystem(*it))
+		for(auto it : std::views::reverse(tp))
+			if(FindMissionForSystem(it))
 				break;
 	}
 
@@ -187,8 +187,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 		&& player.HasTravelPlan())
 	{
 		const auto &tp = player.TravelPlan();
-		for(auto it = tp.crbegin(); it != tp.crend(); ++it)
-			if(FindMissionForSystem(*it))
+		for(auto it : std::views::reverse(tp))
+			if(FindMissionForSystem(it))
 				break;
 	}
 
@@ -254,10 +254,8 @@ void MissionPanel::Draw()
 	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
 	const System *previous = player.GetSystem();
 	const vector<const System *> plan = distance.Plan(*selectedSystem);
-	for(auto it = plan.rbegin(); it != plan.rend(); ++it)
+	for(auto next : std::views::reverse(plan))
 	{
-		const System *next = *it;
-
 		bool isJump, isWormhole, isMappable;
 		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, nullptr))
 			break;
@@ -306,7 +304,7 @@ void MissionPanel::Draw()
 	DrawList(accepted, pos, acceptedIt);
 
 	// Now that the mission lists and map elements are drawn, draw the top-most UI elements.
-	DrawKey();
+	DrawMissionKey();
 	DrawMissionInfo();
 	DrawTooltips();
 	FinishDrawing("is missions");
@@ -518,7 +516,7 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 		if((availableIt != available.end() && !Involves(*availableIt, system)) ||
 			(acceptedIt != accepted.end() && !Involves(*acceptedIt, system)))
 		{
-			auto firstExistingIt = find_if(available.begin(), available.end(),
+			auto firstExistingIt = ranges::find_if(available,
 				[&system](const Mission &m) { return Involves(m, system); });
 
 			if(firstExistingIt != available.end())
@@ -528,7 +526,7 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 			}
 			else
 			{
-				firstExistingIt = find_if(accepted.begin(), accepted.end(),
+				firstExistingIt = ranges::find_if(accepted,
 					[&system](const Mission &m) { return m.IsVisible() && Involves(m, system); });
 
 				if(firstExistingIt != accepted.end())
@@ -704,9 +702,9 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 
 
 
-void MissionPanel::DrawKey() const
+void MissionPanel::DrawMissionKey() const
 {
-	static const string CONDITIONS[] = {
+	static constexpr string CONDITIONS[] = {
 		"available",
 		"unavailable",
 		"active",
@@ -962,7 +960,7 @@ void MissionPanel::DrawMissionInfo()
 
 
 
-void MissionPanel::DrawTooltips()
+void MissionPanel::DrawTooltips() const
 {
 	if(hoverSort < 0 || !tooltip.ShouldDraw())
 		return;

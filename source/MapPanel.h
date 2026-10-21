@@ -214,18 +214,18 @@ private:
 
 
 private:
-	void DrawTravelPlan();
+	void DrawTravelPlan() const;
 	// Display the name of and distance to the selected system.
-	void DrawSelectedSystem();
+	void DrawSelectedSystem() const;
 	// Indicate which other systems have player escorts.
-	void DrawEscorts();
-	void DrawWormholes();
-	void DrawLinks();
+	void DrawEscorts() const;
+	void DrawWormholes() const;
+	void DrawLinks() const;
 	// Draw systems in accordance to the set commodity color scheme.
 	void DrawSystems();
-	void DrawNames();
-	void DrawMissions();
-	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false);
+	void DrawNames() const;
+	void DrawMissions() const;
+	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false) const;
 
 	void IncrementZoom();
 	void DecrementZoom();

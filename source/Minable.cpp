@@ -337,7 +337,7 @@ const vector<Minable::Payload> &Minable::GetPayload() const
 
 
 
-// Get the expected value of the flotsams this minable will create when destroyed.
+// Get the expected value of the flotsam this minable will create when destroyed.
 int64_t Minable::GetExpectedValue() const
 {
 	return expectedValue;

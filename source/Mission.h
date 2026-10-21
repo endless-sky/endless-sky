@@ -130,7 +130,7 @@ public:
 	int64_t DisplayedPayment() const;
 	// The mission should take this many jumps.
 	// Only matters to available jobs (not saved to file)
-	const int ExpectedJumps() const;
+	int ExpectedJumps() const;
 	int CalculateJumps(const System *const sourceSystem);
 	// The mission must be completed by this deadline (if there is a deadline).
 	const Date &Deadline() const;

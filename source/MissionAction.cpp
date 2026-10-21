@@ -26,11 +26,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "GameEvent.h"
 #include "Outfit.h"
-#include "Phrase.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "TextReplacements.h"
 #include "UI.h"
+
+#include <ranges>
 
 using namespace std;
 
@@ -106,7 +107,7 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 	// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 	else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 	{
-		child.PrintTrace("Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
+		child.PrintTrace(R"(Deprecated use of "outfit" with count of 0. Use "require <outfit>" instead:)");
 		requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
 	}
 	else if(key == "system")
@@ -202,9 +203,9 @@ string MissionAction::Validate() const
 	}
 
 	// Required content must be defined & valid.
-	for(auto &&outfit : requiredOutfits)
-		if(!outfit.first->IsDefined())
-			return "required outfit \"" + outfit.first->TrueName() + "\"";
+	for(const Outfit *outfit : requiredOutfits | views::keys)
+		if(!outfit->IsDefined())
+			return "required outfit \"" + outfit->TrueName() + "\"";
 
 	return action.Validate();
 }
@@ -314,7 +315,7 @@ bool MissionAction::RequiresGiftedShip(const string &shipId) const
 
 
 void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
-	const shared_ptr<Ship> &ship, const bool isUnique) const
+	const shared_ptr<Ship> &ship, bool isUnique) const
 {
 	if(ui)
 	{

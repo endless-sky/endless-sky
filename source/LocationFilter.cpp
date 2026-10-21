@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <mutex>
+#include <ranges>
 
 using namespace std;
 
@@ -139,7 +140,7 @@ namespace {
 	}
 	bool CheckValidity(const list<LocationFilter> &l)
 	{
-		return l.empty() || any_of(l.begin(), l.end(),
+		return l.empty() || ranges::any_of(l,
 			[](const LocationFilter &f) noexcept -> bool
 			{
 				return f.IsValid();
@@ -482,9 +483,8 @@ const System *LocationFilter::PickSystem(const System *origin) const
 {
 	// Find a planet that satisfies the filter.
 	vector<const System *> options;
-	for(const auto &it : GameData::Systems())
+	for(const auto &system : GameData::Systems() | views::values)
 	{
-		const System &system = it.second;
 		// Skip systems with incomplete data or that are inaccessible.
 		if(!system.IsValid() || system.Inaccessible())
 			continue;
@@ -501,9 +501,8 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 {
 	// Find a planet that satisfies the filter.
 	vector<const Planet *> options;
-	for(const auto &it : GameData::Planets())
+	for(const auto &planet : GameData::Planets() | views::values)
 	{
-		const Planet &planet = it.second;
 		// Skip planets with incomplete data or which are from inaccessible systems.
 		if(!planet.IsValid() || (planet.GetSystem() && planet.GetSystem()->Inaccessible()))
 			continue;
@@ -562,7 +561,7 @@ void LocationFilter::LoadChild(const DataNode &child, const set<const System *> 
 	}
 	else if(key == "attributes")
 	{
-		attributes.push_back(set<string>());
+		attributes.emplace_back();
 		for(int i = valueIndex; i < child.Size(); ++i)
 			attributes.back().insert(child.Token(i));
 		for(const DataNode &grand : child)
@@ -609,7 +608,7 @@ void LocationFilter::LoadChild(const DataNode &child, const set<const System *> 
 	}
 	else if(key == "outfits" && child.Size() >= 2 + isNot)
 	{
-		outfits.push_back(set<const Outfit *>());
+		outfits.emplace_back();
 		for(int i = 1 + isNot; i < child.Size(); ++i)
 			outfits.back().insert(GameData::Outfits().Get(child.Token(i)));
 		for(const DataNode &grand : child)
