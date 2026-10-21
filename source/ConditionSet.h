@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <cstdint>
-#include <map>
 #include <set>
 #include <string>
 #include <vector>
@@ -66,7 +64,7 @@ public:
 	ConditionSet() = default;
 	ConditionSet(const ConditionSet &) = default;
 
-	ConditionSet &operator=(const ConditionSet &&other) noexcept;
+	ConditionSet &operator=(ConditionSet &&other) noexcept;
 	ConditionSet &operator=(const ConditionSet &other);
 
 	// Construct an empty set with a pointer to a ConditionsStore.
@@ -126,26 +124,27 @@ private:
 	/// Parse a minimal complete expression from the tokens into the (empty) expression.
 	///
 	/// @param node The node to report parse-errors on, if any occur.
-	/// @param lineTokens Tokens to use (and pop from) for parsing.
+	/// @param tokenNr Tokens to use (and pop from) for parsing.
 	bool ParseMini(const DataNode &node, int &tokenNr);
 
 	/// Parse as many tokens as possible.
 	///
 	/// @param node The node to report parse-errors on, if any occur.
-	/// @param lineTokens Tokens to use (and pop from) for parsing.
+	/// @param tokenNr Tokens to use (and pop from) for parsing.
 	bool ParseGreedy(const DataNode &node, int &tokenNr);
 
 	/// Parse a function (after a max or min keyword).
 	///
 	/// @param node The node to report parse-errors on, if any occur.
-	/// @param lineTokens Tokens to use (and pop from) for parsing.
+	/// @param tokenNr Tokens to use (and pop from) for parsing.
 	bool ParseFunctionBody(const DataNode &node, int &tokenNr);
 
 	/// Helper function to parse an infix operator and the subexpression after it.
 	/// Should be called on ConditionSets that already have at least 1 sub-expression in them.
 	///
 	/// @param node The node to report parse-errors on, if any occur.
-	/// @param lineTokens Tokens to use (and pop from) for parsing.
+	/// @param tokenNr Tokens to use (and pop from) for parsing.
+	/// @param parentPrecedence
 	bool ParseFromInfix(const DataNode &node, int &tokenNr, int parentPrecedence);
 
 	/// Push sub-expressions and the operator from the current expression one level down into a new single

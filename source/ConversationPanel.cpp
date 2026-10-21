@@ -15,11 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConversationPanel.h"
 
-#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "BoardingPanel.h"
 #include "text/Clipboard.h"
-#include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "text/DisplayText.h"
@@ -52,9 +50,9 @@ using namespace std;
 
 namespace {
 	// Width of the conversation text.
-	const int WIDTH = 540;
+	constexpr int WIDTH = 540;
 	// Margin on either side of the text.
-	const int MARGIN = 20;
+	constexpr int MARGIN = 20;
 }
 
 
@@ -165,7 +163,7 @@ void ConversationPanel::Draw()
 	if(node < 0)
 	{
 		// The conversation has already ended. Draw a "done" button.
-		static const string done = "[done]";
+		static constexpr string done = "[done]";
 		int width = font.Width(done);
 		int height = font.Height();
 		Point off(Screen::Left() + MARGIN + WIDTH - width, point.Y());
@@ -208,7 +206,7 @@ void ConversationPanel::Draw()
 		font.Draw({lastName, layout}, point + Point(350, 0), choice ? bright : gray);
 
 		// Draw the OK button, and remember its location.
-		static const string ok = "[ok]";
+		static constexpr string ok = "[ok]";
 		int width = font.Width(ok);
 		int height = font.Height();
 		Point off(Screen::Left() + MARGIN + WIDTH - width, point.Y());
@@ -221,11 +219,9 @@ void ConversationPanel::Draw()
 	{
 		string label = "0:";
 		int index = 0;
-		for(const auto &it : choices)
+		for(const auto &paragraph : choices | views::keys)
 		{
 			++label[0];
-
-			const auto &paragraph = it.first;
 
 			Point center = point + paragraph.Center();
 			Point size(WIDTH, paragraph.Height());
@@ -322,8 +318,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && !firstName.empty() && !lastName.empty())
 		{
 			// Display the name the player entered.
-			string name = "\t\tName: " + firstName + " " + lastName + ".\n";
-			text.emplace_back(name);
+			text.emplace_back("\t\tName: " + firstName + " " + lastName + ".\n");
 
 			player.SetName(firstName, lastName);
 			subs["<first>"] = player.FirstName();
@@ -488,7 +483,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 
 
 // Exit this panel and do whatever needs to happen next.
-void ConversationPanel::Exit()
+void ConversationPanel::Exit() const
 {
 	// Finish the PlayerInfo transaction so any changes get saved again.
 	if(useTransactions)
@@ -530,10 +525,10 @@ void ConversationPanel::ClickName(int side)
 
 
 // The player just clicked on a conversation choice.
-void ConversationPanel::ClickChoice(int index)
+void ConversationPanel::ClickChoice(int choice)
 {
-	if(conversation.ChoiceIsActive(node, MapChoice(index)))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(index)), index);
+	if(conversation.ChoiceIsActive(node, MapChoice(choice)))
+		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
 	else
 		UI::PlaySound(UI::UISound::FAILURE);
 }

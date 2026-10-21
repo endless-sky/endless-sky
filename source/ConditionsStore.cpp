@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionEntry.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Logger.h"
 
+#include <ranges>
 #include <utility>
 
 using namespace std;
@@ -135,15 +135,14 @@ ConditionEntry &ConditionsStore::operator[](const string &name)
 		return it->second;
 
 	// Check for a prefix provider.
-	ConditionEntry *ceprov = GetEntry(name);
+	ConditionEntry *ceProv = GetEntry(name);
 
 	// Create the entry (name is used as key, and as ConditionEntry constructor argument.
-	auto emp = storage.emplace(make_pair(name, name));
-	it = emp.first;
+	it = storage.emplace(name, name).first;
 
 	// If a relevant prefix provider is found, then provision this entry with the provider.
-	if(ceprov != nullptr)
-		it->second.providingEntry = ceprov;
+	if(ceProv != nullptr)
+		it->second.providingEntry = ceProv;
 
 	// Return the entry created.
 	return it->second;
@@ -154,10 +153,10 @@ ConditionEntry &ConditionsStore::operator[](const string &name)
 int64_t ConditionsStore::PrimariesSize() const
 {
 	int64_t result = 0;
-	for(const auto &it : storage)
+	for(const auto &entry : storage | views::values)
 	{
 		// We only count primary conditions; conditions that don't have a provider.
-		if(it.second.providingEntry || it.second.getFunction)
+		if(entry.providingEntry || entry.getFunction)
 			continue;
 		++result;
 	}

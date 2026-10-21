@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <ranges>
 #include <vector>
 
 using namespace std;
@@ -35,10 +36,10 @@ namespace {
 	vector<const Outfit *> OrderOutfitsBySize(const map<const Outfit *, int> &outfits)
 	{
 		vector<const Outfit *> sortedOutfits;
-		for(const auto &it : outfits)
-			sortedOutfits.emplace_back(it.first);
+		for(const auto &outfit : outfits | views::keys)
+			sortedOutfits.emplace_back(outfit);
 
-		sort(sortedOutfits.begin(), sortedOutfits.end(),
+		ranges::sort(sortedOutfits,
 			[](const Outfit *lhs, const Outfit *rhs)
 			{
 				return lhs->Mass() > rhs->Mass();
@@ -206,8 +207,8 @@ double CargoHold::UsedPrecise() const
 int CargoHold::CommoditiesSize() const
 {
 	int size = 0;
-	for(const auto &it : commodities)
-		size += it.second;
+	for(const auto &count : commodities | views::values)
+		size += count;
 	return size;
 }
 
@@ -255,8 +256,8 @@ bool CargoHold::HasOutfits() const
 {
 	// The code for adding and removing outfits does not clear the entry in the
 	// map if its value becomes zero, so we need to check all the entries:
-	for(const auto &it : outfits)
-		if(it.second)
+	for(const auto &count : outfits | views::values)
+		if(count)
 			return true;
 
 	return false;
@@ -268,8 +269,8 @@ bool CargoHold::HasOutfits() const
 int CargoHold::MissionCargoSize() const
 {
 	int size = 0;
-	for(const auto &it : missionCargo)
-		size += it.second;
+	for(const auto &count : missionCargo | views::values)
+		size += count;
 	return size;
 }
 
@@ -313,10 +314,10 @@ int CargoHold::BunksFree() const
 // Check how many bunks are occupied by passengers.
 int CargoHold::Passengers() const
 {
-	int count = 0;
-	for(const auto &it : passengers)
-		count += it.second;
-	return count;
+	int total = 0;
+	for(const auto &count : passengers | views::values)
+		total += count;
+	return total;
 }
 
 
@@ -628,12 +629,12 @@ pair<int, const Conversation *> CargoHold::IllegalCargoFine(const Government *go
 	// Fines for illegal mission cargo and passengers are added together to
 	// avoid the player being able to stack multiple illegal jobs at once
 	// and avoid the bulk of the penalties when fined.
-	for(const auto &it : missionCargo)
+	for(const auto &mission : missionCargo | views::keys)
 	{
-		int fine = it.first->Fine();
+		int fine = mission->Fine();
 		if(fine < 0)
 			return {-1 * !government->IgnoresUniversalAtrocities(), nullptr};
-		if(!it.first->IsFailed() && !government->IgnoresUniversalIllegals())
+		if(!mission->IsFailed() && !government->IgnoresUniversalIllegals())
 			totalFine += fine;
 	}
 
@@ -645,12 +646,12 @@ pair<int, const Conversation *> CargoHold::IllegalCargoFine(const Government *go
 int CargoHold::IllegalPassengersFine(const Government *government) const
 {
 	int totalFine = 0;
-	for(const auto &it : passengers)
+	for(const auto &mission : passengers | views::keys)
 	{
-		int fine = it.first->Fine();
+		int fine = mission->Fine();
 		if(fine < 0)
 			return -1 * !government->IgnoresUniversalAtrocities();
-		if(!it.first->IsFailed() && !government->IgnoresUniversalIllegals())
+		if(!mission->IsFailed() && !government->IgnoresUniversalIllegals())
 			totalFine += fine;
 	}
 

@@ -39,7 +39,7 @@ namespace {
 	// to display a warning to the player.
 	map<int, int> keycodeCount;
 	// Need a uint64_t 1 to generate Commands.
-	const uint64_t ONE = 1;
+	constexpr uint64_t ONE = 1;
 }
 
 
@@ -135,7 +135,7 @@ void Command::ReadKeyboard()
 	for(const auto &it : keycodeForCommand)
 #ifdef ES_USE_SDL3
 		// Use no modifiers for the scancode.
-		if(keyDown[SDL_GetScancodeFromKey(it.second, 0)])
+		if(keyDown[SDL_GetScancodeFromKey(it.second, nullptr)])
 #else
 		if(keyDown[SDL_GetScancodeFromKey(it.second)])
 #endif
@@ -223,7 +223,7 @@ void Command::SetKey(Command command, int keycode)
 // than one command, an empty string is returned.
 const string &Command::Description() const
 {
-	static const string empty;
+	static constexpr string empty;
 	auto it = description.find(*this);
 	return (it == description.end() ? empty : it->second);
 }
@@ -234,7 +234,7 @@ const string &Command::Description() const
 // a combination of more than one command, an empty string is returned.
 const string &Command::KeyName() const
 {
-	static const string empty = "(none)";
+	static constexpr string empty = "(none)";
 	auto it = keyName.find(*this);
 
 	return (!HasBinding() ? empty : it->second);

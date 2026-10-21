@@ -11,7 +11,9 @@
 # -*-flp30-c: AsteroidField::Asteroid::Draw has a loop that uses doubles
 # -*-use-override: Many of our panels provide both virtual and override keywords to their functions. While technically
 #  redundant, it's not hurting anything to keep.
-Checks: '-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof,-*-default-arguments,-*-flp30-c,-*-use-override'
+# -*-pass-by-value: We normally pass strings by const ref. Clang-tidy is saying that most of them can be replaced with
+#  passing by value and using std::move. It doesn't make much difference either way.
+Checks: '-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof,-*-default-arguments,-*-flp30-c,-*-use-override,-*-pass-by-value'
 
 CheckOptions:
   # We commonly make use of narrowing conversions in the codebase.

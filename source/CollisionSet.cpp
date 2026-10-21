@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cstdlib>
 #include <numeric>
-#include <set>
 #include <string>
 
 using namespace std;
@@ -273,7 +272,7 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 		if(gx == endGX && gy == endGY)
 			break;
 		// If not, move to the next one. Check whether rx / mx < ry / my.
-		const int64_t diff = rx * my - ry * mx;
+		const uint64_t diff = rx * my - ry * mx;
 		if(!diff)
 		{
 			// The line is exactly intersecting a corner.

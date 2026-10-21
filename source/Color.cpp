@@ -129,7 +129,7 @@ Color Color::Additive(float alpha) const
 
 
 
-Color Color::Combine(float a1, Color c1, float a2, Color c2)
+Color Color::Combine(float a1, const Color &c1, float a2, const Color &c2)
 {
 	return Color(
 			a1 * c1.color[0] + a2 * c2.color[0],
