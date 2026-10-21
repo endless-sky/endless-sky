@@ -5,7 +5,11 @@
 #  are the same. Such duplicate bodies are typically simple anyway, such as a single function call.
 # -*-use-anyofallof: While some for loops could technically be replaced with any_of or all_of, for loops are often
 #  easier to read.
-Checks: '-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof'
+# -*-default-arguments: Animate::Set has a default value in one of its parameters. Clang-tidy says that default values
+#  in virtual functions are prohibited, but it clearly works given all the calls to Animate::Set without a second
+#  parameter.
+# -*-flp30-c: AsteroidField::Asteroid::Draw has a loop that uses doubles
+Checks: '-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof,-*-default-arguments,-*-flp30-c'
 
 CheckOptions:
   # We commonly make use of narrowing conversions in the codebase.

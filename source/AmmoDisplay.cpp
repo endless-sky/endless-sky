@@ -57,7 +57,7 @@ void AmmoDisplay::Update(const Ship &flagship)
 		if(!outfit)
 			continue;
 		const Weapon *secWeapon = outfit->GetWeapon().get();
-		if(!secWeapon->Icon() || ammo.find(outfit) != ammo.end())
+		if(!secWeapon->Icon() || ammo.contains(outfit))
 			continue;
 
 		double ammoCount = -1.;
@@ -104,7 +104,7 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 			break;
 
 		const auto &playerSelectedWeapons = player.SelectedSecondaryWeapons();
-		bool isSelected = (playerSelectedWeapons.find(it.first) != playerSelectedWeapons.end());
+		bool isSelected = (playerSelectedWeapons.contains(it.first));
 
 		SpriteShader::Draw(it.first->GetWeapon()->Icon(), pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
@@ -125,7 +125,7 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 
 
 
-bool AmmoDisplay::Click(const Point &clickPoint, bool control)
+bool AmmoDisplay::Click(const Point &clickPoint, bool control) const
 {
 	for(const auto &it : ammoIconZones)
 		if(it.Contains(clickPoint))
@@ -140,7 +140,7 @@ bool AmmoDisplay::Click(const Point &clickPoint, bool control)
 
 
 
-bool AmmoDisplay::Click(const Rectangle &clickBox)
+bool AmmoDisplay::Click(const Rectangle &clickBox) const
 {
 	bool reselected = false;
 	for(const auto &it : ammoIconZones)
