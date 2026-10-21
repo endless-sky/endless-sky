@@ -1,0 +1,13 @@
+# -*-use-nodiscard: We don't make use of nodiscard.
+# -*-return-braced-init-list,-*-use-auto: We prefer to be explicit with the types being handled.
+# -*-branch-clone: We have a few large if/else trees with complex if expressions. Keeping expressions separated from
+#  one another is often cleaner to read than shoving everything into a single if statement just because the outcomes
+#  are the same. Such duplicate bodies are typically simple anyway, such as a single function call.
+# -*-use-anyofallof: While some for loops could technically be replaced with any_of or all_of, for loops are often
+#  easier to read.
+Checks: '-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof'
+
+CheckOptions:
+  # We commonly make use of narrowing conversions in the codebase.
+  - key: cppcoreguidelines-narrowing-conversions.IgnoreConversionFromTypes
+    value: 'rep;SDL_Keycode;long;double;int;unsigned int;size_t;size_type;int64_t;uint32_t'
