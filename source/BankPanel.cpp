@@ -37,13 +37,13 @@ using namespace std;
 
 namespace {
 	// Column headings.
-	const string HEADING[6] = {"Type", "Principal", "Interest", "Term", "Payment", ""};
+	constexpr string HEADING[6] = {"Type", "Principal", "Interest", "Term", "Payment", ""};
 	// X coordinates of the columns of the table.
 	const int COLUMN[5] = {20, 130, 210, 280, 330};
-	const int EXTRA_X = 410;
+	constexpr int EXTRA_X = 410;
 
-	// Maximum number of rows of mortages, etc. to draw.
-	const int MAX_ROWS = 8;
+	// Maximum number of rows of mortgages, etc. to draw.
+	constexpr int MAX_ROWS = 8;
 }
 
 
@@ -147,7 +147,7 @@ void BankPanel::Draw()
 			table.Draw("Other");
 			table.Draw(Format::AbbreviatedNumber(otherPrincipal));
 			// Skip the interest and term, because this entry represents the
-			// combination of several different mortages.
+			// combination of several different mortgages.
 			table.Advance(2);
 			table.Draw(Format::AbbreviatedNumber(otherPayment));
 		}
@@ -358,7 +358,7 @@ void BankPanel::PayExtra(const string &str)
 {
 	int64_t amount = static_cast<int64_t>(Format::Parse(str));
 	// Check if the selected row is the "Other" row, which is only the case if
-	// you have more mortages than can be displayed.
+	// you have more mortgages than can be displayed.
 	const vector<Mortgage> &mortgages = player.Accounts().Mortgages();
 	bool isOther = (selectedRow == mortgageRows - 1 && mergedMortgages);
 

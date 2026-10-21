@@ -9,9 +9,11 @@
 #  in virtual functions are prohibited, but it clearly works given all the calls to Animate::Set without a second
 #  parameter.
 # -*-flp30-c: AsteroidField::Asteroid::Draw has a loop that uses doubles
-Checks: '-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof,-*-default-arguments,-*-flp30-c'
+# -*-use-override: Many of our panels provide both virtual and override keywords to their functions. While technically
+#  redundant, it's not hurting anything to keep.
+Checks: '-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof,-*-default-arguments,-*-flp30-c,-*-use-override'
 
 CheckOptions:
   # We commonly make use of narrowing conversions in the codebase.
   - key: cppcoreguidelines-narrowing-conversions.IgnoreConversionFromTypes
-    value: 'rep;SDL_Keycode;long;double;int;unsigned int;size_t;size_type;int64_t;uint32_t'
+    value: 'rep;SDL_Keycode;long;double;int;unsigned int;size_t;size_type;int64_t;uint32_t;float'

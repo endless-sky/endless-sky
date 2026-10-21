@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <ranges>
 #include <utility>
 
 using namespace std;
@@ -308,8 +309,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			int available = count;
 			// Keep track of how many you actually took.
 			count = 0;
-			for(const auto &it : you->Outfits())
-				if(it.first != outfit && it.first->AmmoStoredOrUsed().contains(outfit))
+			for(const auto &other : you->Outfits() | views::keys)
+				if(other != outfit && other->AmmoStoredOrUsed().contains(outfit))
 				{
 					// Figure out how many of these outfits you can install.
 					count = you->Attributes().CanAdd(*outfit, available);
@@ -687,8 +688,8 @@ bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
 	// Otherwise, check if it is ammo for any of your weapons. If so, check if
 	// you can install it as an outfit.
 	if(outfit)
-		for(const auto &it : ship.Outfits())
-			if(it.first != outfit && it.first->AmmoStoredOrUsed().contains(outfit) && ship.Attributes().CanAdd(*outfit))
+		for(const auto &other : ship.Outfits() | views::keys)
+			if(other != outfit && other->AmmoStoredOrUsed().contains(outfit) && ship.Attributes().CanAdd(*outfit))
 				return true;
 
 	return false;
