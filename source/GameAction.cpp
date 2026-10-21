@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <cstdlib>
+#include <ranges>
 
 using namespace std;
 
@@ -240,9 +241,9 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	else if(key == "message")
 	{
 		if(hasValue)
-			messages.push_back(ExclusiveItem<Message>{GameData::Messages().Get(child.Token(1))});
+			messages.emplace_back(GameData::Messages().Get(child.Token(1)));
 		else
-			messages.push_back(ExclusiveItem<Message>{Message{child}});
+			messages.emplace_back(Message{child});
 	}
 	else
 		conditions.Add(child, playerConditions);
@@ -329,33 +330,33 @@ void GameAction::Save(DataWriter &out) const
 string GameAction::Validate() const
 {
 	// Events which get activated by this action must be valid.
-	for(auto &&event : events)
+	for(const auto &event : events | views::keys)
 	{
-		string reason = event.first->IsValid();
+		string reason = event->IsValid();
 		if(!reason.empty())
-			return "event \"" + event.first->TrueName() + "\" - Reason: " + reason;
+			return "event \"" + event->TrueName() + "\" - Reason: " + reason;
 	}
 
 	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)
 		if(!it.ShipModel()->IsValid())
 			return "gift ship model \"" + it.ShipModel()->VariantName() + "\"";
-	for(auto &&outfit : giftOutfits)
-		if(!outfit.first->IsDefined())
-			return "gift outfit \"" + outfit.first->TrueName() + "\"";
+	for(const auto &outfit : giftOutfits | views::keys)
+		if(!outfit->IsDefined())
+			return "gift outfit \"" + outfit->TrueName() + "\"";
 
 	// Marked and unmarked system must be valid.
 	for(auto &&system : mark)
 		if(!system->IsValid())
 			return "system \"" + system->TrueName() + "\"";
-	for(const auto &[mission, marks] : markOther)
+	for(const auto &marks : markOther | views::values)
 		for(const System *system : marks)
 			if(!system->IsValid())
 				return "system \"" + system->TrueName() + "\"";
 	for(auto &&system : unmark)
 		if(!system->IsValid())
 			return "system \"" + system->TrueName() + "\"";
-	for(const auto &[mission, unmarks] : unmarkOther)
+	for(const auto &unmarks : unmarkOther | views::values)
 		for(const System *system : unmarks)
 			if(!system->IsValid())
 				return "system \"" + system->TrueName() + "\"";

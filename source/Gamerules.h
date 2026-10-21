@@ -26,7 +26,7 @@ class Sprite;
 
 
 // Gamerules contains a list of constants and booleans that define game behavior,
-// for example, the spawnrate of person ships or whether universal ramscoops are active.
+// for example, the spawn rate of person ships or whether universal ramscoops are active.
 class Gamerules {
 public:
 	// Defines which disabled fighters can dodge stray projectiles.

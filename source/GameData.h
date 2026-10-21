@@ -121,7 +121,7 @@ public:
 	// still alive.
 	static void ResetPersons();
 	// Mark all persons in the given list as dead.
-	static void DestroyPersons(std::vector<std::string> &names);
+	static void DestroyPersons(const std::vector<std::string> &names);
 	// Handle any events that may have been taken against a Person.
 	static void HandleEvent(const ShipEvent &event);
 

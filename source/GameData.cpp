@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "shader/BatchShader.h"
-#include "CategoryList.h"
 #include "Color.h"
 #include "Command.h"
 #include "ConditionsStore.h"
@@ -56,7 +55,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RenderBuffer.h"
 #include "shader/RingShader.h"
 #include "Ship.h"
-#include "image/Sprite.h"
 #include "image/SpriteLoadManager.h"
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
@@ -71,6 +69,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <filesystem>
+#include <memory>
 #include <queue>
 #include <ranges>
 #include <utility>
@@ -226,7 +225,7 @@ void GameData::LoadShaders()
 	{
 		filesystem::path base = source / "shaders";
 		if(Files::Exists(base))
-			for(filesystem::path shaderFile : Files::RecursiveList(base))
+			for(const filesystem::path &shaderFile : Files::RecursiveList(base))
 			{
 				filesystem::path shader = shaderFile;
 #ifdef ES_GLES
@@ -322,8 +321,8 @@ void GameData::Revert()
 
 	activeGamerules = objects.gamerulesPresets.Get("Default");
 
-	for(auto &it : objects.persons)
-		it.second.Restore();
+	for(auto &person : objects.persons | views::values)
+		person.Restore();
 
 	politics.Reset();
 	purchases.clear();
@@ -333,8 +332,8 @@ void GameData::Revert()
 
 void GameData::SetDate(const Date &date)
 {
-	for(auto &it : objects.systems)
-		it.second.SetDate(date);
+	for(auto &system : objects.systems | views::values)
+		system.SetDate(date);
 	politics.ResetDaily();
 }
 
@@ -403,14 +402,14 @@ void GameData::WriteEconomy(DataWriter &out)
 		out.Write();
 
 		// Write the per-system data for all systems that are either known-valid, or non-empty.
-		for(const auto &sit : GameData::Systems())
+		for(const auto &system : GameData::Systems() | views::values)
 		{
-			if(!sit.second.IsValid() && !sit.second.HasTrade())
+			if(!system.IsValid() && !system.HasTrade())
 				continue;
 
-			out.WriteToken(sit.second.TrueName());
+			out.WriteToken(system.TrueName());
 			for(const auto &cit : GameData::Commodities())
-				out.WriteToken(static_cast<int>(sit.second.Supply(cit.name)));
+				out.WriteToken(static_cast<int>(system.Supply(cit.name)));
 			out.Write();
 		}
 	}
@@ -432,15 +431,14 @@ void GameData::StepEconomy()
 	purchases.clear();
 
 	// Then, have each system generate new goods for local use and trade.
-	for(auto &it : objects.systems)
-		it.second.StepEconomy();
+	for(auto &system : objects.systems | views::values)
+		system.StepEconomy();
 
 	// Finally, send out the trade goods. This has to be done in a separate step
 	// because otherwise whichever systems trade last would already have gotten
 	// supplied by the other systems.
-	for(auto &it : objects.systems)
+	for(auto &system : objects.systems | views::values)
 	{
-		System &system = it.second;
 		if(!system.Links().empty())
 			for(const Trade::Commodity &commodity : Commodities())
 			{
@@ -501,14 +499,14 @@ void GameData::AddJumpRange(double neighborDistance)
 // still alive.
 void GameData::ResetPersons()
 {
-	for(auto &it : objects.persons)
-		it.second.ClearPlacement();
+	for(auto &person : objects.persons | views::values)
+		person.ClearPlacement();
 }
 
 
 
 // Mark all persons in the given list as dead.
-void GameData::DestroyPersons(vector<string> &names)
+void GameData::DestroyPersons(const vector<string> &names)
 {
 	for(const string &name : names)
 		objects.persons.Get(name)->Destroy();
@@ -796,7 +794,7 @@ const StellarObjectSpriteData &GameData::ObjectSpriteData(const Sprite *sprite)
 // Strings for combat rating levels, etc.
 const string &GameData::Rating(const string &type, int level)
 {
-	static const string EMPTY;
+	static constexpr string EMPTY;
 	auto it = objects.ratings.find(type);
 	if(it == objects.ratings.end() || it->second.empty())
 		return EMPTY;
@@ -852,7 +850,7 @@ void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 const string &GameData::Tooltip(const string &label)
 {
-	static const string EMPTY;
+	static constexpr string EMPTY;
 	auto it = objects.tooltips.find(label);
 	// Special case: the "cost" and "sells for" labels include the percentage of
 	// the full price, so they will not match exactly.
@@ -867,7 +865,7 @@ const string &GameData::Tooltip(const string &label)
 
 string GameData::HelpMessage(const string &name)
 {
-	static const string EMPTY;
+	static constexpr string EMPTY;
 	auto it = objects.helpMessages.find(name);
 	return Command::ReplaceNamesWithKeys(it == objects.helpMessages.end() ? EMPTY : it->second);
 }
@@ -963,7 +961,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 
 				shared_ptr<ImageSet> &imageSet = images[data.name];
 				if(!imageSet)
-					imageSet.reset(new ImageSet(data.name));
+					imageSet = make_shared<ImageSet>(data.name);
 				imageSet->Add(std::move(data));
 			}
 	}
