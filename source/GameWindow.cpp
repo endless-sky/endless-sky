@@ -283,19 +283,18 @@ bool GameWindow::Init(bool headless)
 	}
 
 	const char *glslVersion = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
-	if(!glslVersion || !*glslVersion)
+	bool hasGlslVersion = glslVersion && *glslVersion;
+	bool meetsOpenGlRequirement = *glVersion >= '2';
+	if(!meetsOpenGlRequirement || !hasGlslVersion)
 	{
 		ostringstream out;
-		out << "Unable to query the GLSL version. OpenGL version is " << glVersion << ".";
-		ExitWithError(out.str());
-		return false;
-	}
-
-	if(*glVersion < '2')
-	{
-		ostringstream out;
-		out << "Endless Sky requires OpenGL version 2.0 or higher, and 3.0 is recommended." << endl;
-		out << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
+		if(!hasGlslVersion)
+			out << "Unable to query the GLSL version.";
+		if(!meetsOpenGlRequirement)
+			out << "Endless Sky requires OpenGL version 2.0 or higher, and 3.0 is recommended." << endl;
+		out << "Your OpenGL version is " << glVersion << "." << endl;
+		if(hasGlslVersion)
+			out << "Your GLSL version is " << glslVersion << "." << endl;
 		out << "Please update your graphics drivers.";
 		ExitWithError(out.str());
 		return false;
