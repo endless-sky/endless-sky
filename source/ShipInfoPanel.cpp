@@ -476,10 +476,6 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 		table.Advance();
 		for(const Outfit *outfit : validOutfits)
 		{
-			int count = ship.OutfitCount(outfit);
-			if(!count)
-				continue;
-
 			// Check if we've gone below the bottom of the bounds.
 			if(table.GetRowBounds().Bottom() > bounds.Bottom())
 			{
@@ -496,7 +492,8 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 				table.DrawHighlight(backColor);
 
 			// Draw the outfit name and count.
-			table.DrawTruncatedPair(outfit->DisplayName(), dim, to_string(count), bright, Truncate::BACK, false);
+			table.DrawTruncatedPair(outfit->DisplayName(), dim,
+				to_string(ship.OutfitCount(outfit)), bright, Truncate::BACK, false);
 		}
 		// Add an extra gap in between categories.
 		table.DrawGap(10.);
