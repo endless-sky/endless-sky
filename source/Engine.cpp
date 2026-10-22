@@ -411,10 +411,10 @@ void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 			{
 				bool docked = false;
 				const string &bayType = ship->Attributes().Category();
-				for(auto &it : carriers[bayType])
-					if(it.second && it.first->Carry(ship))
+				for(auto &[carrier, count] : carriers[bayType])
+					if(count && carrier->Carry(ship))
 					{
-						--it.second;
+						--count;
 						docked = true;
 						break;
 					}
@@ -699,9 +699,9 @@ void Engine::Step(bool isActive)
 #endif
 						(flagship->Position() - camera.Center()
 							+ flagship->Zoom() * flagship->Facing().Rotate(hardpoint.GetPoint()))
-							* static_cast<double>(zoom),
+							* zoom,
 						(flagship->Facing() + hardpoint.GetAngle()).Unit(),
-						flagship->Zoom() * static_cast<double>(zoom),
+						flagship->Zoom() * zoom,
 						isBlind
 #ifdef __APPLE__
 					}
@@ -792,12 +792,12 @@ void Engine::Step(bool isActive)
 		const string &name = object->DisplayName();
 		info.SetString("destination", name);
 
-		targets.push_back({
+		targets.emplace_back(
 			object->Position() - camera.Center(),
 			object->Facing(),
 			object->Radius(),
 			GetPlanetTargetPointerColor(*object->GetPlanet()),
-			5});
+			5);
 	}
 	else if(flagship && flagship->GetTargetSystem())
 	{
@@ -885,12 +885,12 @@ void Engine::Step(bool isActive)
 			// The target area will be a square, with sides proportional to the average
 			// of the width and the height of the sprite.
 			double size = (target->Width() + target->Height()) * .35;
-			targets.push_back({
+			targets.emplace_back(
 				target->Position() - camera.Center(),
 				Angle(45.) + target->Facing(),
 				size,
 				GetShipTargetPointerColor(targetType),
-				4});
+				4);
 
 			targetVector = target->Position() - camera.Center();
 
@@ -1097,13 +1097,13 @@ void Engine::Step(bool isActive)
 				if(!shouldShowAsteroidOverlay || !inRange || flagship->GetTargetAsteroid() == minable)
 					continue;
 
-				targets.push_back({
+				targets.emplace_back(
 					minable->Position() - camera.Center(),
 					minable->Facing(),
 					.8 * minable->Radius(),
 					GetMinablePointerColor(false),
 					3
-				});
+				);
 			}
 			if(shouldCatalogAsteroids && scanComplete)
 				isAsteroidCatalogComplete = true;
@@ -1111,13 +1111,13 @@ void Engine::Step(bool isActive)
 	}
 	const auto targetAsteroidPtr = flagship ? flagship->GetTargetAsteroid() : nullptr;
 	if(targetAsteroidPtr && !flagship->IsHyperspacing())
-		targets.push_back({
+		targets.emplace_back(
 			targetAsteroidPtr->Position() - camera.Center(),
 			targetAsteroidPtr->Facing(),
 			.8 * targetAsteroidPtr->Radius(),
 			GetMinablePointerColor(true),
 			3
-		});
+		);
 }
 
 
@@ -2068,9 +2068,8 @@ void Engine::SpawnPersons()
 	// Although an attempt to spawn a person is specified by a gamerule,
 	// that attempt can still fail due to an added weight for no person to spawn.
 	sum = Random::Int(sum + GameData::GetGamerules().NoPersonSpawnWeight());
-	for(const auto &it : GameData::Persons())
+	for(const auto &[name, person] : GameData::Persons())
 	{
-		const Person &person = it.second;
 		sum -= person.Frequency(player.GetSystem());
 		if(sum < 0)
 		{
@@ -2080,7 +2079,7 @@ void Engine::SpawnPersons()
 			{
 				ship->Recharge();
 				if(ship->GivenName().empty())
-					ship->SetGivenName(it.first);
+					ship->SetGivenName(name);
 				ship->SetGovernment(person.GetGovernment());
 				ship->SetPersonality(person.GetPersonality());
 				ship->SetHailPhrase(person.GetHail());
@@ -3025,23 +3024,23 @@ void Engine::CreateStatusOverlays()
 
 
 
-void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::OverlayState overlaySetting,
+void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting,
 	Status::Type type, double cloak)
 {
 	if(overlaySetting == Preferences::OverlayState::OFF)
 		return;
 
-	if(overlaySetting == Preferences::OverlayState::DAMAGED && !it->IsDamaged())
+	if(overlaySetting == Preferences::OverlayState::DAMAGED && !ship->IsDamaged())
 		return;
 
-	double width = min(it->Width(), it->Height());
+	double width = min(ship->Width(), ship->Height());
 	float alpha = 1.f;
 	if(overlaySetting == Preferences::OverlayState::ON_HIT)
 	{
 		// The number of frames left where we start fading the overlay.
 		static constexpr int FADE_STEPS = 10;
 
-		const int t = it->DamageOverlayTimer();
+		const int t = ship->DamageOverlayTimer();
 		if(t >= FADE_STEPS)
 			alpha = 1.f;
 		else if(t > 0)
@@ -3050,9 +3049,9 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 			alpha = 0.f;
 	}
 
-	if(it->IsYours())
+	if(ship->IsYours())
 		cloak *= 0.6;
 
-	statuses.emplace_back(it->Position() - camera.Center(), it->ShieldFraction(), it->HullFraction(),
-		min(it->HullFraction(), it->DisabledHullFraction()), max(20., width * .5), type, alpha * (1. - cloak));
+	statuses.emplace_back(ship->Position() - camera.Center(), ship->ShieldFraction(), ship->HullFraction(),
+		min(ship->HullFraction(), ship->DisabledHullFraction()), max(20., width * .5), type, alpha * (1. - cloak));
 }

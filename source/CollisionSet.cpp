@@ -151,7 +151,7 @@ void CollisionSet::Line(const Projectile &projectile, vector<Collision> &result)
 
 // Get all possible collisions along a line. Collisions are not necessarily sorted by
 // distance.
-void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &lineResult,
+void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &result,
 		const Government *pGov, const Body *target) const
 {
 	const int x = from.X();
@@ -191,7 +191,7 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 			const double range = mask.Collide(offset, to - from, it->body->Facing());
 
 			if(range < 1.)
-				lineResult.emplace_back(it->body, collisionType, range);
+				result.emplace_back(it->body, collisionType, range);
 		}
 
 		return;
@@ -209,7 +209,7 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 		}
 		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
 
-		Line(from, newEnd, lineResult, pGov, target);
+		Line(from, newEnd, result, pGov, target);
 		return;
 	}
 
@@ -265,7 +265,7 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 			const double range = mask.Collide(offset, to - from, it->body->Facing());
 
 			if(range < 1.)
-				lineResult.emplace_back(it->body, collisionType, range);
+				result.emplace_back(it->body, collisionType, range);
 		}
 
 		// Check if we've reached the final grid cell.
@@ -318,7 +318,7 @@ void CollisionSet::Circle(const Point &center, double radius, vector<Body *> &re
 
 // Get all objects touching a ring with a given inner and outer range
 // centered at the given point.
-void CollisionSet::Ring(const Point &center, double inner, double outer, vector<Body *> &circleResult) const
+void CollisionSet::Ring(const Point &center, double inner, double outer, vector<Body *> &result) const
 {
 	// Calculate the range of (x, y) grid coordinates this ring covers.
 	const int minX = static_cast<int>(center.X() - outer) >> SHIFT;
@@ -355,7 +355,7 @@ void CollisionSet::Ring(const Point &center, double inner, double outer, vector<
 				const double length = offset.Length();
 				if((length <= outer && length >= inner)
 					|| mask.WithinRing(offset, it->body->Facing(), inner, outer))
-					circleResult.push_back(it->body);
+					result.push_back(it->body);
 			}
 		}
 	}

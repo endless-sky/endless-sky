@@ -101,8 +101,8 @@ const Command Command::SHIFT(ONE << 41, "");
 string Command::ReplaceNamesWithKeys(const string &text)
 {
 	map<string, string> subs;
-	for(const auto &it : description)
-		subs['<' + it.second + '>'] = '"' + keyName[it.first] + '"';
+	for(const auto &[command, name] : description)
+		subs['<' + name + '>'] = '"' + keyName[command] + '"';
 
 	return Format::Replace(text, subs);
 }
@@ -132,14 +132,14 @@ void Command::ReadKeyboard()
 	// Each command can only have one keycode, but misconfigured settings can
 	// temporarily cause one keycode to be used for two commands. Also, more
 	// than one key can be held down at once.
-	for(const auto &it : keycodeForCommand)
+	for(const auto &[command, keyCode] : keycodeForCommand)
 #ifdef ES_USE_SDL3
 		// Use no modifiers for the scancode.
-		if(keyDown[SDL_GetScancodeFromKey(it.second, nullptr)])
+		if(keyDown[SDL_GetScancodeFromKey(keyCode, nullptr)])
 #else
 		if(keyDown[SDL_GetScancodeFromKey(it.second)])
 #endif
-			*this |= it.first;
+			*this |= command;
 
 	// Check whether the `Shift` modifier key was pressed for this step.
 	if(SDL_GetModState() & KMOD_SHIFT)
@@ -155,8 +155,8 @@ void Command::LoadSettings(const filesystem::path &path)
 
 	// Create a map of command names to Command objects in the enumeration above.
 	map<string, Command> commands;
-	for(const auto &it : description)
-		commands[it.second] = it.first;
+	for(const auto &[command, name] : description)
+		commands[name] = command;
 
 	// Each command can only have one keycode, one keycode can be assigned
 	// to multiple commands.
@@ -175,10 +175,10 @@ void Command::LoadSettings(const filesystem::path &path)
 	// Regenerate the lookup tables.
 	commandForKeycode.clear();
 	keycodeCount.clear();
-	for(const auto &it : keycodeForCommand)
+	for(const auto &[command, keyCode] : keycodeForCommand)
 	{
-		commandForKeycode[it.second] = it.first;
-		++keycodeCount[it.second];
+		commandForKeycode[keyCode] = command;
+		++keycodeCount[keyCode];
 	}
 }
 
@@ -189,11 +189,11 @@ void Command::SaveSettings(const filesystem::path &path)
 {
 	DataWriter out(path);
 
-	for(const auto &it : keycodeForCommand)
+	for(const auto &[command, keyCode] : keycodeForCommand)
 	{
-		auto dit = description.find(it.first);
+		auto dit = description.find(command);
 		if(dit != description.end())
-			out.Write(dit->second, it.second);
+			out.Write(dit->second, keyCode);
 	}
 }
 
@@ -210,10 +210,10 @@ void Command::SetKey(Command command, int keycode)
 	commandForKeycode.clear();
 	keycodeCount.clear();
 
-	for(const auto &it : keycodeForCommand)
+	for(const auto &[command, keyCode] : keycodeForCommand)
 	{
-		commandForKeycode[it.second] = it.first;
-		++keycodeCount[it.second];
+		commandForKeycode[keyCode] = command;
+		++keycodeCount[keyCode];
 	}
 }
 

@@ -38,7 +38,7 @@ public:
 
 private:
 	// Replace the current contents with the provided string.
-	static void Set(const std::string &inputBuffer);
+	static void Set(const std::string &text);
 	// Get the current clipboard contents, excluding characters we don't want.
 	static std::string Get(size_t maxSize, const std::function<bool(char)> &forbidden);
 };

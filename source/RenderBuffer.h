@@ -47,7 +47,7 @@ public:
 
 public:
 	// Create a texture of the given size that can be used as a render target.
-	RenderBuffer(const Point &dimensions);
+	explicit RenderBuffer(const Point &dimensions);
 	virtual ~RenderBuffer();
 
 	// Initialize the shaders used internally.
@@ -70,7 +70,7 @@ public:
 	double Height() const;
 	double Width() const;
 
-	void SetFadePadding(float top, float bottom, float right = 0, float left = 0);
+	void SetFadePadding(float top, float bottom, float left = 0, float right = 0);
 
 
 protected:

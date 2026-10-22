@@ -659,17 +659,17 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	}
 	if(cargo.CommoditiesSize() && hasSpace)
 	{
-		for(const auto &it : cargo.Commodities())
+		for(const auto &[commodity, count] : cargo.Commodities())
 		{
-			if(!it.second)
+			if(!count)
 				continue;
 
-			commodityZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), it.first);
-			if(it.first == selectedCommodity || it.first == hoverCommodity)
+			commodityZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), commodity);
+			if(commodity == selectedCommodity || commodity == hoverCommodity)
 				table.DrawHighlight(backColor);
 
-			table.Draw(it.first, dim);
-			table.Draw(to_string(it.second), bright);
+			table.Draw(commodity, dim);
+			table.Draw(to_string(count), bright);
 
 			// Truncate the list if there is not enough space.
 			if(table.GetRowBounds().Bottom() >= endY)
@@ -682,23 +682,23 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	}
 	if(cargo.HasOutfits() && hasSpace)
 	{
-		for(const auto &it : cargo.Outfits())
+		for(const auto &[outfit, count] : cargo.Outfits())
 		{
-			if(!it.second)
+			if(!count)
 				continue;
 
-			plunderZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), it.first);
-			if(it.first == selectedPlunder || it.first == hoverPlunder)
+			plunderZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), outfit);
+			if(outfit == selectedPlunder || outfit == hoverPlunder)
 				table.DrawHighlight(backColor);
 
 			// For outfits, show how many of them you have and their total mass.
-			bool isSingular = (it.second == 1 || it.first->Get("installable") < 0.);
-			string name = (isSingular ? it.first->DisplayName() : it.first->PluralName());
+			bool isSingular = (count == 1 || outfit->Get("installable") < 0.);
+			string name = (isSingular ? outfit->DisplayName() : outfit->PluralName());
 			if(!isSingular)
-				name += " (" + to_string(it.second) + "x)";
+				name += " (" + to_string(count) + "x)";
 			table.Draw(name, dim);
 
-			double mass = it.first->Mass() * it.second;
+			double mass = outfit->Mass() * count;
 			table.Draw(Format::Number(mass), bright);
 
 			// Truncate the list if there is not enough space.
@@ -712,11 +712,11 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	}
 	if(cargo.HasMissionCargo() && hasSpace)
 	{
-		for(const auto &it : cargo.MissionCargo())
+		for(const auto &[mission, count] : cargo.MissionCargo())
 		{
 			// Capitalize the name of the cargo.
-			table.Draw(Format::Capitalize(it.first->Cargo()), dim);
-			table.Draw(to_string(it.second), bright);
+			table.Draw(Format::Capitalize(mission->Cargo()), dim);
+			table.Draw(to_string(count), bright);
 
 			// Truncate the list if there is not enough space.
 			if(table.GetRowBounds().Bottom() >= endY)
@@ -839,20 +839,20 @@ void ShipInfoPanel::Dump()
 	}
 	else if(commodities)
 	{
-		for(const auto &it : cargo.Commodities())
+		for(const auto &[commodity, count] : cargo.Commodities())
 		{
-			int64_t basis = player.GetBasis(it.first, it.second);
+			int64_t basis = player.GetBasis(commodity, count);
 			loss += basis;
-			player.AdjustBasis(it.first, -basis);
-			(*shipIt)->Jettison(it.first, it.second);
+			player.AdjustBasis(commodity, -basis);
+			(*shipIt)->Jettison(commodity, count);
 		}
 	}
 	else
 	{
-		for(const auto &it : cargo.Outfits())
+		for(const auto &[outfit, count] : cargo.Outfits())
 		{
-			loss += it.first->Cost() * max(0, it.second);
-			(*shipIt)->Jettison(it.first, it.second);
+			loss += outfit->Cost() * max(0, count);
+			(*shipIt)->Jettison(outfit, count);
 		}
 	}
 	selectedCommodity.clear();

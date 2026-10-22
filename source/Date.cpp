@@ -63,7 +63,7 @@ const string &Date::ToString() const
 		int month = Month();
 		int year = Year();
 
-		static const string MONTH[] = {
+		static constexpr string MONTH[] = {
 				"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
 		const string &monthStr = MONTH[month - 1];
@@ -101,7 +101,7 @@ string Date::LongString() const
 		dayString += "rd";
 
 	// Write out the month name instead of abbreviating it.
-	static const string MONTH[] = {
+	static constexpr string MONTH[] = {
 		"January",
 		"February",
 		"March",
@@ -362,6 +362,6 @@ int Date::WeekdayNumberOffset() const
 
 const string &Date::Weekday() const
 {
-	static const string DAY[] = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
+	static constexpr string DAY[] = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
 	return DAY[WeekdayNumberOffset()];
 }

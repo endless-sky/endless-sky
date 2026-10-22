@@ -40,7 +40,7 @@ bool UI::Handle(const SDL_Event &event)
 	{
 		--it;
 		// Panels that are about to be popped cannot handle any other events.
-		if(count(toPop.begin(), toPop.end(), it->get()))
+		if(ranges::count(toPop, it->get()))
 			continue;
 
 		if(event.type == SDL_MOUSEMOTION)

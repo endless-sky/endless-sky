@@ -124,7 +124,7 @@ private:
 	bool CanAttack() const;
 
 	// Handle the keyboard scrolling and selection in the panel list.
-	void DoKeyboardNavigation(const SDL_Keycode key);
+	void DoKeyboardNavigation(SDL_Keycode key);
 
 	void AddMessage(const std::string &message);
 

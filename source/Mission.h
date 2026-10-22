@@ -120,7 +120,7 @@ public:
 	const std::set<const System *> &TrackedSystems() const;
 	void RecalculateTrackedSystems();
 	void Mark(const std::set<const System *> &systems) const;
-	void Unmark(const std::set<const System *> &system) const;
+	void Unmark(const std::set<const System *> &systems) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int Fine() const;
@@ -131,7 +131,7 @@ public:
 	// The mission should take this many jumps.
 	// Only matters to available jobs (not saved to file)
 	int ExpectedJumps() const;
-	int CalculateJumps(const System *const sourceSystem);
+	int CalculateJumps(const System *sourceSystem);
 	// The mission must be completed by this deadline (if there is a deadline).
 	const Date &Deadline() const;
 	// If this mission's deadline was before the given date and it has not been

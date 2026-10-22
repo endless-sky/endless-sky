@@ -31,7 +31,7 @@ public:
 	static void SetFixedSeed(uint64_t seed);
 
 	static uint32_t Int();
-	static uint32_t Int(uint32_t modulus);
+	static uint32_t Int(uint32_t upper_bound);
 
 	static double Real();
 

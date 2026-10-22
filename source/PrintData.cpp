@@ -157,14 +157,13 @@ namespace {
 				<< DataWriter::Quote("gun mounts") << ',' << DataWriter::Quote("turret mounts") << ','
 				<< DataWriter::Quote("fighter bays") << ',' << DataWriter::Quote("drone bays") << '\n';
 
-			for(auto &it : GameData::Ships())
+			for(const auto &[name, ship] : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships.
-				if(it.second.TrueModelName() != it.first)
+				if(ship.TrueModelName() != name)
 					continue;
 
-				const Ship &ship = it.second;
-				cout << DataWriter::Quote(it.first) << ',';
+				cout << DataWriter::Quote(name) << ',';
 
 				const Outfit &attributes = ship.BaseAttributes();
 				cout << DataWriter::Quote(attributes.Category()) << ',';
@@ -215,14 +214,13 @@ namespace {
 				<< DataWriter::Quote("gun mounts") << ',' << DataWriter::Quote("turret mounts") << ','
 				<< DataWriter::Quote("fighter bays") << ',' << DataWriter::Quote("drone bays") << ',' << "deterrence" << '\n';
 
-			for(auto &it : GameData::Ships())
+			for(const auto &[name, ship] : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships, unless specified otherwise.
-				if(it.second.TrueModelName() != it.first && !variants)
+				if(ship.TrueModelName() != name && !variants)
 					continue;
 
-				const Ship &ship = it.second;
-				cout << DataWriter::Quote(it.first) << ',';
+				cout << DataWriter::Quote(name) << ',';
 
 				const Outfit &attributes = ship.Attributes();
 				cout << DataWriter::Quote(attributes.Category()) << ',';
@@ -264,14 +262,14 @@ namespace {
 					+ attributes.Get("solar heat")
 					+ attributes.Get("cloaking heat");
 
-				for(const auto &oit : ship.Outfits())
+				for(const auto &[outfit, count] : ship.Outfits())
 				{
-					const Weapon *weapon = oit.first->GetWeapon().get();
+					const Weapon *weapon = outfit->GetWeapon().get();
 					if(weapon && weapon->Reload())
 					{
 						double reload = weapon->Reload();
-						energyConsumed += oit.second * weapon->FiringEnergy() / reload;
-						heatProduced += oit.second * weapon->FiringHeat() / reload;
+						energyConsumed += count * weapon->FiringEnergy() / reload;
+						heatProduced += count * weapon->FiringHeat() / reload;
 					}
 				}
 				cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << ',';
@@ -317,13 +315,13 @@ namespace {
 
 		auto PrintShipList = [](bool variants) -> void
 		{
-			for(auto &it : GameData::Ships())
+			for(const auto &[name, ship] : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships, unless specified otherwise.
-				if(it.second.TrueModelName() != it.first && !variants)
+				if(ship.TrueModelName() != name && !variants)
 					continue;
 
-				cout << DataWriter::Quote(it.first) << "\n";
+				cout << DataWriter::Quote(name) << "\n";
 			}
 		};
 
@@ -370,15 +368,14 @@ namespace {
 				<< DataWriter::Quote("leak dmg/s") << ',' << "push/s" << ',' << ',' << "strength" << ','
 				<< "deterrence" << '\n';
 
-			for(auto &it : GameData::Outfits())
+			for(const auto &[name, outfit] : GameData::Outfits())
 			{
 				// Skip non-weapons and submunitions.
-				const Outfit &outfit = it.second;
 				const Weapon *weapon = outfit.GetWeapon().get();
 				if(!weapon || outfit.Category().empty())
 					continue;
 
-				cout << DataWriter::Quote(it.first)<< ',';
+				cout << DataWriter::Quote(name)<< ',';
 				cout << DataWriter::Quote(outfit.Category()) << ',';
 				cout << outfit.Cost() << ',';
 				cout << -outfit.Get("weapon capacity") << ',';
@@ -458,14 +455,13 @@ namespace {
 				<< DataWriter::Quote("afterburner thrust/s") << ',' << DataWriter::Quote("afterburner energy/s") << ','
 				<< DataWriter::Quote("afterburner heat/s") << ',' << DataWriter::Quote("afterburner fuel/s") << '\n';
 
-			for(auto &it : GameData::Outfits())
+			for(const auto &[name, outfit] : GameData::Outfits())
 			{
 				// Skip non-engines.
-				if(it.second.Category() != "Engines")
+				if(outfit.Category() != "Engines")
 					continue;
 
-				const Outfit &outfit = it.second;
-				cout << DataWriter::Quote(it.first) << ',';
+				cout << DataWriter::Quote(name) << ',';
 				cout << outfit.Cost() << ',';
 				cout << outfit.Mass() << ',';
 				cout << outfit.Get("outfit space") << ',';
@@ -494,14 +490,13 @@ namespace {
 				<< DataWriter::Quote("energy generation") << ',' << DataWriter::Quote("heat generation") << ','
 				<< DataWriter::Quote("energy capacity") << '\n';
 
-			for(auto &it : GameData::Outfits())
+			for(const auto &[name, outfit] : GameData::Outfits())
 			{
 				// Skip non-power.
-				if(it.second.Category() != "Power")
+				if(outfit.Category() != "Power")
 					continue;
 
-				const Outfit &outfit = it.second;
-				cout << DataWriter::Quote(it.first) << ',';
+				cout << DataWriter::Quote(name) << ',';
 				cout << outfit.Cost() << ',';
 				cout << outfit.Mass() << ',';
 				cout << outfit.Get("outfit space") << ',';
@@ -753,13 +748,13 @@ namespace {
 		}
 
 		cout << "Systems matching provided location filter:\n";
-		for(const auto &it : GameData::Systems())
-			if(filter.Matches(&it.second))
-				cout << it.first << '\n';
+		for(const auto &[name, system] : GameData::Systems())
+			if(filter.Matches(&system))
+				cout << name << '\n';
 		cout << "Planets matching provided location filter:\n";
-		for(const auto &it : GameData::Planets())
-			if(filter.Matches(&it.second))
-				cout << it.first << '\n';
+		for(const auto &[name, planet] : GameData::Planets())
+			if(filter.Matches(&planet))
+				cout << name << '\n';
 	}
 
 

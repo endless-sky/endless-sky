@@ -388,25 +388,25 @@ void PlanetPanel::TakeOffIfReady()
 	flightChecks = player.FlightCheck();
 	if(!flightChecks.empty())
 	{
-		for(const auto &result : flightChecks)
+		for(const auto &[ship, checks] : flightChecks)
 		{
 			// If there is a flight check error, it will be the first (and only) entry.
-			auto &check = result.second.front();
+			auto &check = checks.front();
 			if(check.back() == '!')
 			{
 				// If the ship with a flight check error is in another system, then the only thing the player
 				// can do is park it. But if the ship is with the player, then they may be able to make changes
 				// to rectify the error. As such, provide a conversation for any single present ship, but
 				// record and report all absent ships later.
-				if(result.first->GetSystem() != &system)
+				if(ship->GetSystem() != &system)
 				{
-					out << result.first->GivenName() << ", ";
-					absentCannotFly.push_back(result.first);
+					out << ship->GivenName() << ", ";
+					absentCannotFly.push_back(ship);
 				}
 				else
 				{
 					GetUI().Push(new ConversationPanel(player,
-						*GameData::Conversations().Get("flight check: " + check), nullptr, nullptr, result.first));
+						*GameData::Conversations().Get("flight check: " + check), nullptr, nullptr, ship));
 					return;
 				}
 			}

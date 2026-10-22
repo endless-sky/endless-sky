@@ -76,13 +76,13 @@ void AmmoDisplay::Update(const Ship &flagship)
 
 
 
-void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
+void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDimensions) const
 {
 	const Font &font = FontSet::Get(14);
 	ammoIconZones.clear();
 
-	const double &ammoIconWidth = iconDim.X();
-	const double &ammoIconHeight = iconDim.Y();
+	const double &ammoIconWidth = iconDimensions.X();
+	const double &ammoIconHeight = iconDimensions.Y();
 	// Pad the ammo list by the same amount on all four sides.
 	double ammoPad = .5 * (ammoBox.Width() - ammoIconWidth);
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
@@ -97,27 +97,27 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 	auto textOff = Point(5. + ammoIconWidth - .5 * ammoIconHeight, .5 * (ammoIconHeight - font.Height()));
 	auto iconOff = Point(.5 * ammoIconHeight, .5 * ammoIconHeight);
 	const double iconCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
-	for(const auto &it : ammo)
+	for(const auto &[outfit, count] : ammo)
 	{
 		pos.Y() -= ammoIconHeight;
 		if(pos.Y() < ammoBox.Top() + ammoPad)
 			break;
 
 		const auto &playerSelectedWeapons = player.SelectedSecondaryWeapons();
-		bool isSelected = (playerSelectedWeapons.contains(it.first));
+		bool isSelected = (playerSelectedWeapons.contains(outfit));
 
-		SpriteShader::Draw(it.first->GetWeapon()->Icon(), pos + iconOff);
+		SpriteShader::Draw(outfit->GetWeapon()->Icon(), pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
 
 		auto iconCenter = Point(iconCenterX, pos.Y() + ammoIconHeight / 2.);
-		ammoIconZones.emplace_back(iconCenter, iconDim, it.first);
+		ammoIconZones.emplace_back(iconCenter, iconDimensions, outfit);
 
 		// Some secondary weapons may not have limited ammo. In that case, just
 		// show the icon without a number.
-		if(it.second < 0)
+		if(count < 0)
 			continue;
 
-		string amount = Format::AmmoCount(it.second);
+		string amount = Format::AmmoCount(count);
 		Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
 	}

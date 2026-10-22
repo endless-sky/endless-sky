@@ -87,7 +87,7 @@ using namespace std;
 void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
-	const string &testToRun, bool debugMode);
+	const string &testToRunName, bool debugMode);
 Conversation LoadConversation(const PlayerInfo &player);
 void PrintTestsTable();
 

@@ -446,13 +446,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributesHeight += 20;
 	double firingEnergy = 0.;
 	double firingHeat = 0.;
-	for(const auto &it : ship.Outfits())
+	for(const auto &[outfit, count] : ship.Outfits())
 	{
-		const Weapon *weapon = it.first->GetWeapon().get();
+		const Weapon *weapon = outfit->GetWeapon().get();
 		if(weapon && weapon->Reload())
 		{
-			firingEnergy += it.second * weapon->FiringEnergy() / weapon->Reload();
-			firingHeat += it.second * weapon->FiringHeat() / weapon->Reload();
+			firingEnergy += count * weapon->FiringEnergy() / weapon->Reload();
+			firingHeat += count * weapon->FiringHeat() / weapon->Reload();
 		}
 	}
 	tableLabels.emplace_back("firing:");
@@ -525,9 +525,9 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	outfitsHeight = 20;
 
 	map<string, map<string, int>> listing;
-	for(const auto &it : ship.Outfits())
-		if(it.first->IsDefined() && !it.first->Category().empty() && !it.first->DisplayName().empty())
-			listing[it.first->Category()][it.first->DisplayName()] += it.second;
+	for(const auto &[outfit, count] : ship.Outfits())
+		if(outfit->IsDefined() && !outfit->Category().empty() && !outfit->DisplayName().empty())
+			listing[outfit->Category()][outfit->DisplayName()] += count;
 
 	for(const auto &cit : listing)
 	{
@@ -543,10 +543,10 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 		outfitValues.emplace_back();
 		outfitsHeight += 20;
 
-		for(const auto &it : cit.second)
+		for(const auto &[name, count] : cit.second)
 		{
-			outfitLabels.emplace_back(it.first);
-			outfitValues.emplace_back(to_string(it.second));
+			outfitLabels.emplace_back(name);
+			outfitValues.emplace_back(to_string(count));
 			outfitsHeight += 20;
 		}
 	}

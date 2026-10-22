@@ -37,8 +37,8 @@ ConditionsStore::ConditionsStore(const DataNode &node)
 // Constructor where a number of initial manually-set values are set.
 ConditionsStore::ConditionsStore(initializer_list<pair<string, int64_t>> initialConditions)
 {
-	for(const auto &it : initialConditions)
-		Set(it.first, it.second);
+	for(const auto &[name, value] : initialConditions)
+		Set(name, value);
 }
 
 
@@ -46,8 +46,8 @@ ConditionsStore::ConditionsStore(initializer_list<pair<string, int64_t>> initial
 // Constructor where a number of initial manually-set values are set.
 ConditionsStore::ConditionsStore(const map<string, int64_t> &initialConditions)
 {
-	for(const auto &it : initialConditions)
-		Set(it.first, it.second);
+	for(const auto &[name, value] : initialConditions)
+		Set(name, value);
 }
 
 
@@ -69,19 +69,19 @@ void ConditionsStore::Save(DataWriter &out) const
 {
 	out.Write("conditions");
 	out.BeginChild();
-	for(const auto &it : storage)
+	for(const auto &[name, entry] : storage)
 	{
 		// We don't need to save derived conditions that have a provider.
-		if(it.second.getFunction || it.second.providingEntry)
+		if(entry.getFunction || entry.providingEntry)
 			continue;
 		// If the condition's value is 0, don't write it at all.
-		if(!it.second.value)
+		if(!entry.value)
 			continue;
 		// If the condition's value is 1, don't bother writing the 1.
-		if(it.second.value == 1)
-			out.Write(it.first);
+		if(entry.value == 1)
+			out.Write(name);
 		else
-			out.Write(it.first, it.second.value);
+			out.Write(name, entry.value);
 	}
 	out.EndChild();
 }

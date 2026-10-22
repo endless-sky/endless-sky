@@ -838,10 +838,10 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			// Verify we have at least as many installed outfits as were identified as "equipped."
 			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
 			if(!hasArmament)
-				for(const auto &pair : GetEquipped(Weapons()))
+				for(const auto &[outfit, count] : GetEquipped(Weapons()))
 				{
-					auto it = outfits.find(pair.first);
-					if(it == outfits.end() || it->second < pair.second)
+					auto it = outfits.find(outfit);
+					if(it == outfits.end() || it->second < count)
 					{
 						armament.UninstallAll();
 						break;
@@ -1187,8 +1187,8 @@ void Ship::FinishLoading(bool isNewInstance)
 		string message = (!givenName.empty() ? "Ship \"" + givenName + "\" " : "") + "(" + VariantName() + "):\n";
 		ostringstream outfitNames;
 		outfitNames << "has outfits:\n";
-		for(const auto &it : outfits)
-			outfitNames << '\t' << it.second << " " + it.first->TrueName() << endl;
+		for(const auto &[outfit, count] : outfits)
+			outfitNames << '\t' << count << " " + outfit->TrueName() << endl;
 		Logger::Log(message + warning + outfitNames.str(), Logger::Level::WARNING);
 	}
 
@@ -2353,8 +2353,8 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 				if(tookAmmo)
 				{
 					// Update the carried mass cache.
-					for(auto &&item : takenAmmo)
-						carriedMass += item.first->Mass() * item.second;
+					for(auto &[outfit, count] : takenAmmo)
+						carriedMass += outfit->Mass() * count;
 				}
 
 				// This ship will refuel naturally based on the carrier's fuel
@@ -4385,9 +4385,9 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 
 
 
-void Ship::SetFormationPattern(const FormationPattern *formationToSet)
+void Ship::SetFormationPattern(const FormationPattern *formation)
 {
-	formationPattern = formationToSet;
+	formationPattern = formation;
 }
 
 

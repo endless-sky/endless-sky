@@ -41,7 +41,7 @@ namespace {
 
 	// Given the probability of losing a lock in five tries, check randomly
 	// whether it should be lost on this try.
-	inline bool Check(double probability, double base)
+	bool Check(double probability, double base)
 	{
 		return (Random::Real() < base * probability);
 	}
@@ -158,9 +158,9 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			// 0.5x comes from the behavior of BatchDrawList::Add drawing the projectile sprite
 			// half way between its current position and its next position.
 			Point effectPosition = position + 1.5 * velocity;
-			for(const auto &it : weapon->DieEffects())
-				for(int i = 0; i < it.second; ++i)
-					visuals.emplace_back(*it.first, effectPosition, velocity, angle);
+			for(const auto &[effect, count] : weapon->DieEffects())
+				for(int i = 0; i < count; ++i)
+					visuals.emplace_back(*effect, effectPosition, velocity, angle);
 		}
 
 		for(const auto &it : weapon->Submunitions())
@@ -184,9 +184,9 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	// adding any offset from the projectile's velocity, effects will appear to spawn
 	// from behind the projectile, as by the time the effect is visible, the projectile
 	// will have moved one frame forward from this position.
-	for(const auto &it : weapon->LiveEffects())
-		if(!Random::Int(it.second))
-			visuals.emplace_back(*it.first, position, velocity, angle);
+	for(const auto &[effect, period] : weapon->LiveEffects())
+		if(!Random::Int(period))
+			visuals.emplace_back(*effect, position, velocity, angle);
 
 	// If the target has left the system, stop following it. Also stop if the
 	// target has been captured by a different government.

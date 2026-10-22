@@ -66,12 +66,12 @@ namespace {
 		Wrapped remaining { num };
 
 		if(remaining.value >= 1000)
-			for(auto &nameValue : WORD_NUMBERS)
-				if(remaining.value >= nameValue.second)
+			for(const auto &[name, value] : WORD_NUMBERS)
+				if(remaining.value >= value)
 				{
-					Wrapped above { remaining.value / nameValue.second };
-					remaining.value %= nameValue.second;
-					o << above << nameValue.first;
+					Wrapped above { remaining.value / value };
+					remaining.value %= value;
+					o << above << name;
 					if(!remaining.value)
 						return o;
 					o << ' ';
@@ -111,7 +111,7 @@ namespace {
 			if(below)
 				continue;
 			constexpr size_t BUFLEN = 100;
-			char buf[BUFLEN] = { 0 };
+			char buf[BUFLEN] = {};
 			snprintf(buf, BUFLEN, "%s%.3f %s",
 				negative ? "negative " : "", above / 1000.0, WORD_NUMBERS[magnitude].first);
 			buf[BUFLEN - 1] = '\0';

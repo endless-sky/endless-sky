@@ -148,19 +148,19 @@ void DataWriter::WriteToken(const string &a)
 
 
 
-string DataWriter::Quote(const string &a)
+string DataWriter::Quote(const string &text)
 {
 	// Figure out what kind of quotation marks need to be used for this string.
-	bool hasSpace = ranges::any_of(a, [](unsigned char c) { return isspace(c); });
-	bool hasQuote = ranges::any_of(a, [](char c) { return (c == '"'); });
-	bool hasBacktick = ranges::any_of(a, [](char c) { return (c == '`'); });
+	bool hasSpace = ranges::any_of(text, [](unsigned char c) { return isspace(c); });
+	bool hasQuote = ranges::any_of(text, [](char c) { return (c == '"'); });
+	bool hasBacktick = ranges::any_of(text, [](char c) { return (c == '`'); });
 	// If the token is an empty string, it needs to be wrapped in quotes as if it had a space.
-	hasSpace |= a.empty();
+	hasSpace |= text.empty();
 
 	if(hasQuote)
-		return '`' + a + '`';
+		return '`' + text + '`';
 	else if(hasSpace || hasBacktick)
-		return '"' + a + '"';
+		return '"' + text + '"';
 	else
-		return a;
+		return text;
 }

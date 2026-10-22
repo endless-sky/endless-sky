@@ -458,9 +458,9 @@ string Font::TruncateText(const DisplayText &text, int &width) const
 string Font::TruncateBack(const string &str, int &width) const
 {
 	return TruncateEndsOrMiddle(str, width,
-		[](const string &str, int charCount)
+		[](const string &s, int charCount)
 		{
-			return str.substr(0, charCount) + "...";
+			return s.substr(0, charCount) + "...";
 		});
 }
 
@@ -469,9 +469,9 @@ string Font::TruncateBack(const string &str, int &width) const
 string Font::TruncateFront(const string &str, int &width) const
 {
 	return TruncateEndsOrMiddle(str, width,
-		[](const string &str, int charCount)
+		[](const string &s, int charCount)
 		{
-			return "..." + str.substr(str.size() - charCount);
+			return "..." + s.substr(s.size() - charCount);
 		});
 }
 
@@ -480,9 +480,9 @@ string Font::TruncateFront(const string &str, int &width) const
 string Font::TruncateMiddle(const string &str, int &width) const
 {
 	return TruncateEndsOrMiddle(str, width,
-		[](const string &str, int charCount)
+		[](const string &s, int charCount)
 		{
-			return str.substr(0, (charCount + 1) / 2) + "..." + str.substr(str.size() - charCount / 2);
+			return s.substr(0, (charCount + 1) / 2) + "..." + s.substr(s.size() - charCount / 2);
 		});
 }
 

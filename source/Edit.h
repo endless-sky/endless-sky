@@ -37,7 +37,7 @@ public:
 
 	void SetFontSize(int f);
 	int FontSize() const { return fontSize; }
-	void SetPosition(const Rectangle &position);
+	void SetPosition(const Rectangle &p);
 	const Rectangle &Position() const { return position; }
 	virtual void SetEnabled(bool e) { isEditable = e; }
 	virtual bool Enabled() const { return isEditable; }

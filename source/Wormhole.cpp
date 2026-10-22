@@ -144,8 +144,8 @@ bool Wormhole::IsValid() const
 	if(!planet || !planet->IsValid())
 		return false;
 
-	for(auto &&pair : links)
-		if(!pair.first->IsValid() || !pair.second->IsValid())
+	for(const auto &[from, to] : links)
+		if(!from->IsValid() || !to->IsValid())
 			return false;
 
 	return true;

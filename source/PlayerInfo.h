@@ -201,7 +201,7 @@ public:
 	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
-	double RaidFleetAttraction(const RaidFleet &raidFleet, const System *system) const;
+	double RaidFleetAttraction(const RaidFleet &raid, const System *system) const;
 	// Get the player's fleet capacity and the current cost of their fleet.
 	int FleetCapacity() const;
 	int FleetCost() const;
@@ -321,11 +321,11 @@ public:
 	int64_t GetTributeTotal() const;
 
 	// Check what the player knows about the given system or planet.
-	bool HasSeen(const System &system, bool excludeMission = false) const;
+	bool HasSeen(const System &system, bool excludeMissions = false) const;
 	bool CanView(const System &system) const;
 	bool HasVisited(const System &system) const;
 	bool HasVisited(const Planet &planet) const;
-	bool KnowsName(const System &system, bool excludeMission = false) const;
+	bool KnowsName(const System &system, bool excludeMissions = false) const;
 	// Marking a system as visited also "sees" its neighbors.
 	void Visit(const System &system);
 	void Visit(const Planet &planet);
@@ -448,7 +448,7 @@ private:
 	void CreateMissions();
 	void StepMissions(UI &ui);
 	void Autosave() const;
-	void Save(const std::string &path) const;
+	void Save(const std::string &filePath) const;
 	void Save(DataWriter &out) const;
 
 	// Check for and apply any punitive actions from planetary security.

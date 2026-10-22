@@ -93,11 +93,10 @@ void TextReplacements::Revert(TextReplacements &other)
 // if the map and this TextReplacements share a key.
 void TextReplacements::Substitutions(map<string, string> &subs) const
 {
-	for(const auto &sub : substitutions)
+	for(const auto &[key, conditionPair] : substitutions)
 	{
-		const string &key = sub.first;
-		const ConditionSet &toSub = sub.second.first;
-		const string &replacement = sub.second.second;
+		const ConditionSet &toSub = conditionPair.first;
+		const string &replacement = conditionPair.second;
 		if(toSub.Test())
 			subs[key] = replacement;
 	}

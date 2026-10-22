@@ -180,9 +180,9 @@ void Audio::CheckReferences(bool parseOnly)
 		return;
 	}
 
-	for(auto &&it : sounds)
-		if(it.second.Name().empty())
-			Logger::Log("Sound \"" + it.first + "\" is referred to, but does not exist.", Logger::Level::WARNING);
+	for(auto &[name, sound] : sounds)
+		if(sound.Name().empty())
+			Logger::Log("Sound \"" + name + "\" is referred to, but does not exist.", Logger::Level::WARNING);
 }
 
 
@@ -241,8 +241,8 @@ void Audio::Update(const Point &listenerPosition)
 
 	listener = listenerPosition;
 
-	for(const auto &it : deferred)
-		soundQueue[it.first].Add(it.second);
+	for(const auto &[sound, entry] : deferred)
+		soundQueue[sound].Add(entry);
 	deferred.clear();
 }
 

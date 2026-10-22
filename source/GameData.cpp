@@ -390,8 +390,8 @@ void GameData::WriteEconomy(DataWriter &out)
 				[&out](const Purchase &pit)
 				{
 					// Write purchases for all systems, even ones from removed plugins.
-					for(const auto &cit : pit.second)
-						out.Write(pit.first->TrueName(), cit.first, cit.second);
+					for(const auto &[commodity, count] : pit.second)
+						out.Write(pit.first->TrueName(), commodity, count);
 				});
 			out.EndChild();
 		}
@@ -422,11 +422,11 @@ void GameData::StepEconomy()
 {
 	// First, apply any purchases the player made. These are deferred until now
 	// so that prices will not change as you are buying or selling goods.
-	for(const auto &pit : purchases)
+	for(const auto &[s, purchaseData] : purchases)
 	{
-		System &system = const_cast<System &>(*pit.first);
-		for(const auto &cit : pit.second)
-			system.SetSupply(cit.first, system.Supply(cit.first) - cit.second);
+		System &system = const_cast<System &>(*s);
+		for(const auto &[commodity, count] : purchaseData)
+			system.SetSupply(commodity, system.Supply(commodity) - count);
 	}
 	purchases.clear();
 
@@ -806,7 +806,7 @@ const string &GameData::Rating(const string &type, int level)
 
 
 // Collections for ship, bay type, outfit, and other categories.
-const CategoryList &GameData::GetCategory(const CategoryType type)
+const CategoryList &GameData::GetCategory(CategoryType type)
 {
 	return objects.categories[type];
 }

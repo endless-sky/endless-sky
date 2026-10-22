@@ -1101,17 +1101,17 @@ void MissionPanel::MakeSpaceAndAccept()
 	if(crewToFire > 0)
 		player.Flagship()->AddCrew(-crewToFire);
 
-	for(const auto &it : player.Cargo().Commodities())
+	for(const auto &[commodity, count] : player.Cargo().Commodities())
 	{
 		if(cargoToSell <= 0)
 			break;
 
-		int toSell = min(cargoToSell, it.second);
-		int64_t price = player.GetSystem()->Trade(it.first);
+		int toSell = min(cargoToSell, count);
+		int64_t price = player.GetSystem()->Trade(commodity);
 
-		int64_t basis = player.GetBasis(it.first, toSell);
-		player.AdjustBasis(it.first, -basis);
-		player.Cargo().Remove(it.first, toSell);
+		int64_t basis = player.GetBasis(commodity, toSell);
+		player.AdjustBasis(commodity, -basis);
+		player.Cargo().Remove(commodity, toSell);
 		player.Accounts().AddCredits(toSell * price);
 		cargoToSell -= toSell;
 	}

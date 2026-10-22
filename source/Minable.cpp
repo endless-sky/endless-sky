@@ -252,14 +252,14 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	{
 		// This object has been destroyed. Create explosions and flotsam.
 		double scale = .1 * Radius();
-		for(const auto &it : explosions)
+		for(const auto &[effect, count] : explosions)
 		{
-			for(int i = 0; i < it.second; ++i)
+			for(int i = 0; i < count; ++i)
 			{
 				// Add a random velocity.
 				Point dp = (Random::Real() * scale) * Angle::Random().Unit();
 
-				visuals.emplace_back(*it.first, position + 2. * dp, velocity + dp, angle);
+				visuals.emplace_back(*effect, position + 2. * dp, velocity + dp, angle);
 			}
 		}
 		for(const Payload &it : payload)

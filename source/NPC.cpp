@@ -713,8 +713,8 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));
 
 	// Instantiate the actions.
-	for(const auto &it : npcActions)
-		result.npcActions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
+	for(const auto &[trigger, action] : npcActions)
+		result.npcActions[trigger] = action.Instantiate(subs, origin, jumps, payload);
 
 	return result;
 }
@@ -747,9 +747,9 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 
 	// Get the actions for the Triggers that could potentially run.
 	set<Trigger> triggers;
-	for(const auto &it : eventTriggers)
-		if(type & it.first)
-			triggers.insert(it.second.begin(), it.second.end());
+	for(const auto &[eventType, triggerActions] : eventTriggers)
+		if(type & eventType)
+			triggers.insert(triggerActions.begin(), triggerActions.end());
 
 	for(Trigger trigger : triggers)
 	{

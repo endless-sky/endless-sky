@@ -421,12 +421,12 @@ bool LocationFilter::Matches(const Ship &ship) const
 	{
 		// Create a set from all installed and carried outfits.
 		set<const Outfit *> shipOutfits;
-		for(const auto &oit : ship.Outfits())
-			if(oit.second > 0)
-				shipOutfits.insert(shipOutfits.end(), oit.first);
-		for(const auto &cit : ship.Cargo().Outfits())
-			if(cit.second > 0)
-				shipOutfits.insert(cit.first);
+		for(const auto &[outfit, count] : ship.Outfits())
+			if(count > 0)
+				shipOutfits.insert(shipOutfits.end(), outfit);
+		for(const auto &[outfit, count] : ship.Cargo().Outfits())
+			if(count > 0)
+				shipOutfits.insert(outfit);
 		for(const auto &outfitSet : outfits)
 			if(!SetsIntersect(outfitSet, shipOutfits))
 				return false;

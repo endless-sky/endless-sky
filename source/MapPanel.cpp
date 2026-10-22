@@ -144,16 +144,15 @@ namespace {
 	void TallyOutfits(const map<const Planet *, CargoHold> &outfits,
 		map<const System *, MapPanel::SystemTooltipData> &locations)
 	{
-		for(const auto &hold : outfits)
+		for(const auto &[planet, storage] : outfits)
 		{
 			// Get the system in which the planet storage is located.
-			const Planet *planet = hold.first;
 			const System *system = planet->GetSystem();
 			// Skip outfits stored on planets without a system or an outfitter.
 			if(!system || !planet->HasOutfitter())
 				continue;
 
-			for(const auto &count : hold.second.Outfits() | views::values)
+			for(const auto &count : storage.Outfits() | views::values)
 				// Only count a system if it actually stores outfits.
 				if(count)
 					locations[system].outfits[planet] += count;
@@ -573,11 +572,11 @@ void MapPanel::DrawKey() const
 		// Each system is colored by the government of the system. Only the
 		// four largest visible governments are labeled in the legend.
 		vector<pair<double, const Government *>> distances;
-		for(const auto &it : closeGovernments)
+		for(const auto &[government, distance] : closeGovernments)
 		{
-			if(!it.first)
+			if(!government)
 				continue;
-			distances.emplace_back(it.second, it.first);
+			distances.emplace_back(distance, government);
 		}
 		ranges::sort(distances);
 		int drawn = 0;
@@ -1073,12 +1072,10 @@ void MapPanel::Select(const System *system)
 void MapPanel::Find(const string &name)
 {
 	int bestIndex = 9999;
-	for(const auto &it : GameData::Systems())
-	{
-		const System &system = it.second;
+	for(const auto &[name, system] : GameData::Systems())
 		if(system.IsValid() && !system.Inaccessible() && player.CanView(system))
 		{
-			int index = Format::Search(it.first, name);
+			int index = Format::Search(name, name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
@@ -1092,13 +1089,10 @@ void MapPanel::Find(const string &name)
 				}
 			}
 		}
-	}
-	for(const auto &it : GameData::Planets())
-	{
-		const Planet &planet = it.second;
+	for(const auto &[name, planet] : GameData::Planets())
 		if(planet.IsValid() && player.CanView(*planet.GetSystem()))
 		{
-			int index = Format::Search(it.first, name);
+			int index = Format::Search(name, name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
@@ -1112,7 +1106,6 @@ void MapPanel::Find(const string &name)
 				}
 			}
 		}
-	}
 }
 
 
@@ -1430,17 +1423,17 @@ void MapPanel::DrawTravelPlan() const
 		// Wormholes cost nothing to go through. If this is not a wormhole,
 		// check how much fuel every ship will expend to go through it.
 		if(!isWormhole)
-			for(auto &it : fuel)
-				if(it.second >= 0.)
+			for(auto &[ship, fuel] : fuel)
+				if(fuel >= 0.)
 				{
-					double cost = it.first->JumpNavigation().GetCheapestJumpType(previous, next).second;
-					if(!cost || cost > it.second)
+					double cost = ship->JumpNavigation().GetCheapestJumpType(previous, next).second;
+					if(!cost || cost > fuel)
 					{
-						it.second = -1.;
+						fuel = -1.;
 						stranded = true;
 					}
 					else
-						it.second -= cost;
+						fuel -= cost;
 				}
 
 		// Color the path green if all ships can make it. Color it yellow if
@@ -1516,16 +1509,16 @@ void MapPanel::DrawEscorts() const
 	const Color &active = *GameData::Colors().Get("map link");
 	const Color &parked = *GameData::Colors().Get("dim");
 	double zoom = Zoom();
-	for(const auto &squad : escortSystems)
-		if(player.HasSeen(*squad.first, isSimplified) || squad.first == specialSystem)
+	for(const auto &[system, tooltipData] : escortSystems)
+		if(player.HasSeen(*system, isSimplified) || system == specialSystem)
 		{
-			Point pos = zoom * (squad.first->Position() + center);
+			Point pos = zoom * (system->Position() + center);
 
 			// Active and parked ships are drawn/indicated by a ring in the center.
-			if(squad.second.activeShips || squad.second.parkedShips)
-				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.activeShips ? active : parked);
+			if(tooltipData.activeShips || tooltipData.parkedShips)
+				RingShader::Draw(pos, INNER - 1.f, 0.f, tooltipData.activeShips ? active : parked);
 
-			if(!squad.second.outfits.empty())
+			if(!tooltipData.outfits.empty())
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
 				for(int i = 0; i < 8; ++i)
 				{
@@ -1773,10 +1766,8 @@ void MapPanel::DrawMissions() const
 			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
 	}
 	// Draw the available and unavailable jobs.
-	for(auto &&it : missionCount)
+	for(auto &[system, counters] : missionCount)
 	{
-		const auto &system = it.first;
-		auto &&counters = it.second;
 		for(unsigned i = 0; i < counters.available; ++i)
 			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, availableColor);
 		for(unsigned i = 0; i < counters.unavailable; ++i)

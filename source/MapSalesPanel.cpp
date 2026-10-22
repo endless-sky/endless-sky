@@ -468,7 +468,7 @@ void MapSalesPanel::ScrollTo(int index)
 
 
 
-void MapSalesPanel::ClickCategory(const string &name)
+void MapSalesPanel::ClickCategory(const string &name) const
 {
 	bool isHidden = collapsed.contains(name);
 	if(SDL_GetModState() & KMOD_SHIFT)

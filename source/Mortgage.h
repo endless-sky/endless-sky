@@ -44,7 +44,7 @@ public:
 	// be within the range [0, 1).
 	Mortgage(std::string type, int64_t principal, double interest, int term = 365);
 	// Construct and Load() at the same time.
-	Mortgage(const DataNode &node);
+	explicit Mortgage(const DataNode &node);
 
 	// Load or save mortgage data.
 	void Load(const DataNode &node);

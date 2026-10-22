@@ -51,7 +51,7 @@ public:
 
 	void Load(const DataNode &node, const ConditionsStore *playerConditions,
 		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
-	void LoadSingle(const DataNode &node, const ConditionsStore *playerConditions,
+	void LoadSingle(const DataNode &child, const ConditionsStore *playerConditions,
 		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.

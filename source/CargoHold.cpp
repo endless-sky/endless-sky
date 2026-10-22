@@ -100,8 +100,8 @@ void CargoHold::Load(const DataNode &node)
 void CargoHold::Save(DataWriter &out) const
 {
 	bool first = true;
-	for(const auto &it : commodities)
-		if(it.second)
+	for(const auto &[commodity, count] : commodities)
+		if(count)
 		{
 			// Only write a "cargo" block if it is not going to be empty.
 			if(first)
@@ -113,7 +113,7 @@ void CargoHold::Save(DataWriter &out) const
 			}
 			first = false;
 
-			out.Write(it.first, it.second);
+			out.Write(commodity, count);
 		}
 	// We only need to EndChild() if at least one line was written above.
 	if(!first)
@@ -121,8 +121,8 @@ void CargoHold::Save(DataWriter &out) const
 
 	// Save all outfits, even ones which have only been referred to.
 	bool firstOutfit = true;
-	for(const auto &it : outfits)
-		if(it.second)
+	for(const auto &[outfit, count] : outfits)
+		if(count)
 		{
 			// It is possible this cargo hold contained no commodities, meaning
 			// we must print the opening tag now.
@@ -141,7 +141,7 @@ void CargoHold::Save(DataWriter &out) const
 			}
 			firstOutfit = false;
 
-			out.Write(it.first->TrueName(), it.second);
+			out.Write(outfit->TrueName(), count);
 		}
 	// Back out any indentation blocks that are set, depending on what sorts of
 	// cargo were written to the file.
@@ -225,8 +225,8 @@ int CargoHold::OutfitsSize() const
 double CargoHold::OutfitsSizePrecise() const
 {
 	double size = 0.;
-	for(const auto &it : outfits)
-		size += it.second * it.first->Mass();
+	for(const auto &[outfit, count] : outfits)
+		size += count * outfit->Mass();
 	return size;
 }
 
@@ -242,9 +242,9 @@ int CargoHold::MinablesSize() const
 double CargoHold::MinablesSizePrecise() const
 {
 	double size = 0.;
-	for(const auto &it : outfits)
-		if(it.first->Get("minable"))
-			size += it.second * it.first->Mass();
+	for(const auto &[outfit, count] : outfits)
+		if(outfit->Get("minable"))
+			size += count * outfit->Mass();
 	return size;
 }
 
@@ -482,8 +482,8 @@ int CargoHold::TransferPassengers(const Mission *mission, int amount, CargoHold 
 void CargoHold::TransferAll(CargoHold &to, bool transferPassengers)
 {
 	if(transferPassengers)
-		for(const auto &it : passengers)
-			TransferPassengers(it.first, it.second, to);
+		for(const auto &[mission, count] : passengers)
+			TransferPassengers(mission, count, to);
 	// Handle zero-size mission cargo correctly. For mission cargo, having an
 	// entry in the map, but with a size of zero, is different than not having
 	// an entry at all.
@@ -499,8 +499,8 @@ void CargoHold::TransferAll(CargoHold &to, bool transferPassengers)
 	const vector<const Outfit *> outfitOrder = OrderOutfitsBySize(outfits);
 	for(const auto &outfit : outfitOrder)
 		Transfer(outfit, outfits[outfit], to);
-	for(const auto &it : commodities)
-		Transfer(it.first, it.second, to);
+	for(const auto &[commodity, count] : commodities)
+		Transfer(commodity, count, to);
 }
 
 
@@ -589,12 +589,12 @@ void CargoHold::RemoveMissionCargo(const Mission *mission)
 int64_t CargoHold::Value(const System *system) const
 {
 	int64_t value = 0;
-	for(const auto &it : commodities)
-		value += static_cast<int64_t>(system->Trade(it.first)) * it.second;
+	for(const auto &[commodity, count] : commodities)
+		value += static_cast<int64_t>(system->Trade(commodity)) * count;
 	// For outfits, assume they're fully depreciated, since that will always be
 	// the case unless the player bought into cargo for some reason.
-	for(const auto &it : outfits)
-		value += it.first->Cost() * it.second * Depreciation::Full();
+	for(const auto &[outfit, count] : outfits)
+		value += outfit->Cost() * count * Depreciation::Full();
 	return value;
 }
 
@@ -609,18 +609,18 @@ pair<int, const Conversation *> CargoHold::IllegalCargoFine(const Government *go
 	int totalFine = 0;
 	// Carrying an illegal outfit is only half as bad as having it equipped.
 	// Only the worst illegal outfit is fined.
-	for(const auto &it : outfits)
+	for(const auto &[outfit, count] : outfits)
 	{
 		// The code for adding and removing outfits does not clear the entry in the
 		// map if its value becomes zero, so we need to check if the outfit is
 		// actually inside the cargo hold.
-		if(!it.second)
+		if(!count)
 			continue;
 
-		Government::Atrocity atrocity = government->Condemns(it.first);
+		Government::Atrocity atrocity = government->Condemns(outfit);
 		if(atrocity.isAtrocity)
 			return {-1, atrocity.customDeathSentence};
-		int fine = government->Fines(it.first);
+		int fine = government->Fines(outfit);
 		if(fine < 0)
 			return {fine, nullptr};
 		totalFine = max(totalFine, fine / 2);
@@ -663,17 +663,17 @@ int CargoHold::IllegalPassengersFine(const Government *government) const
 // Returns the amount tons of illegal cargo.
 int CargoHold::IllegalCargoAmount() const
 {
-	int count = 0;
+	int total = 0;
 
 	// Find any illegal outfits inside the cargo hold.
-	for(const auto &it : outfits)
-		if(it.first->Get("illegal") || it.first->Get("atrocity") > 0.)
-			count += it.second * max(0., it.first->Mass() + it.first->Get("scan brightness"));
+	for(const auto &[outfit, count] : outfits)
+		if(outfit->Get("illegal") || outfit->Get("atrocity") > 0.)
+			total += count * max(0., outfit->Mass() + outfit->Get("scan brightness"));
 
 	// Find any illegal mission cargo.
-	for(const auto &it : missionCargo)
-		if(it.first->Fine())
-			count += it.second;
+	for(const auto &[mission, count] : missionCargo)
+		if(mission->Fine())
+			total += count;
 
-	return count;
+	return total;
 }

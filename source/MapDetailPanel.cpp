@@ -467,13 +467,13 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 		selectedPlanet = nullptr;
 		const double planetCardHeight = MapPlanetCard::Height();
 		double distance = numeric_limits<double>::infinity();
-		for(const auto &it : planets)
+		for(const auto &[planet, position] : planets)
 		{
-			double d = click.Distance(it.second);
+			double d = click.Distance(position);
 			if(d < distance)
 			{
 				distance = d;
-				selectedPlanet = it.first;
+				selectedPlanet = planet;
 				int place = 0;
 				for(auto &planetCard : planetCards)
 				{

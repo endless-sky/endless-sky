@@ -1227,8 +1227,8 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		out << "no additional space";
 	subs["<capacity>"] = out.str();
 
-	for(const auto &keyValue : subs)
-		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second);
+	for(const auto &[from, to] : subs)
+		subs[from] = Phrase::ExpandPhrases(to);
 	Format::Expand(subs);
 
 	string message = Format::Replace(blocked, subs);
@@ -1372,8 +1372,8 @@ bool Mission::RequiresGiftedShip(const string &shipId) const
 		if(!waypoints.empty())
 			requiredActions.insert(Trigger::WAYPOINT);
 	}
-	for(const auto &it : actions)
-		if(requiredActions.contains(it.first) && it.second.RequiresGiftedShip(shipId))
+	for(const auto &[trigger, action] : actions)
+		if(requiredActions.contains(trigger) && action.RequiresGiftedShip(shipId))
 			return true;
 
 	return false;
@@ -1691,8 +1691,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		subs["<marks>"] = Format::List<set, const System *>(result.markedSystems, getDisplayName);
 
 	// Done making subs, so expand the phrases and recursively substitute.
-	for(const auto &keyValue : subs)
-		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second);
+	for(const auto &[from, to] : subs)
+		subs[from] = Phrase::ExpandPhrases(to);
 	Format::Expand(subs);
 
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.

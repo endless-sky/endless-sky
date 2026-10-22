@@ -532,8 +532,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		// Identify the ranges between which the dropoff takes place.
 		attributeLabels.emplace_back("dropoff range:");
 		const pair<double, double> &ranges = weapon->DropoffRanges();
-		attributeValues.emplace_back(Format::Number(ranges.first)
-			+ " - " + Format::Number(ranges.second));
+		attributeValues.emplace_back(Format::Number(ranges.first) + " - " + Format::Number(ranges.second));
 		attributesHeight += 20;
 	}
 

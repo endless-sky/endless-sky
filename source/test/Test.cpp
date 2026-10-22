@@ -495,7 +495,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					if(nullptr == calledTest)
 						Fail(context, player, "Calling non-existing test \"" + stepToRun.nameOrLabel + "\"");
 					// Put the called test on the stack and start it from 0.
-					context.callstack.push_back({calledTest, 0});
+					context.callstack.emplace_back(calledTest, 0);
 					// Break the loop to switch to the test just pushed.
 				}
 				continueGameLoop = true;

@@ -172,7 +172,7 @@ public:
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
 	// Collections for ship, bay type, outfit, and other categories.
-	static const CategoryList &GetCategory(const CategoryType type);
+	static const CategoryList &GetCategory(CategoryType type);
 
 	static const StarField &Background();
 	static void StepBackground(const Point &vel, double zoom = 1.);

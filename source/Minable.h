@@ -42,7 +42,7 @@ class Minable : public Entity {
 public:
 	class Payload {
 	public:
-		Payload(const DataNode &node);
+		explicit Payload(const DataNode &node);
 
 		// The outfit type that this payload will drop.
 		const Outfit *outfit;
@@ -103,7 +103,7 @@ protected:
 private:
 	class LiveEffect {
 	public:
-		LiveEffect(const DataNode &node);
+		explicit LiveEffect(const DataNode &node);
 
 		const Effect *effect;
 		// Average interval between instances of the effect, in frames.

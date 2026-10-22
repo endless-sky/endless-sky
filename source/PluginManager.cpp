@@ -172,9 +172,9 @@ void PluginManager::Save()
 	out.Write("state");
 	out.BeginChild();
 	{
-		for(const auto &it : plugins)
-			if(it.second.IsValid())
-				out.Write(it.first, it.second.currentState);
+		for(const auto &[name, plugin] : plugins)
+			if(plugin.IsValid())
+				out.Write(name, plugin.currentState);
 	}
 	out.EndChild();
 }

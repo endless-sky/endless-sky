@@ -412,7 +412,6 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				return "No ship selected.";
 
 			vector<pair<string, vector<string>>> dependentOutfitErrors;
-			vector<string> errorDetails;
 			bool foundOutfit = false;
 			for(const Ship *ship : playerShips)
 			{
@@ -437,6 +436,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 					// Looping over each ship which has the selected outfit, identify the reasons why it cannot be
 					// <verb>'d. Make a list of ship to errors to assemble into a string afterward.
 					// TODO: when there are multiples of the same better verbiage could be used rather than restating.
+					vector<string> errorDetails;
 					for(const auto &[name, value] : selectedOutfit->Precise())
 						if(attributes.GetPrecise(name) < value)
 						{
@@ -1214,13 +1214,13 @@ void OutfitterPanel::CheckRefill()
 	}
 
 	int64_t cost = 0;
-	for(auto &it : needed)
+	for(auto &[outfit, count] : needed)
 	{
 		// Don't count cost of anything installed from cargo or storage.
-		it.second = max(0, it.second - player.Cargo().Get(it.first) - player.Storage().Get(it.first));
-		if(!outfitter.Has(it.first))
-			it.second = min(it.second, max(0, player.Stock(it.first)));
-		cost += player.StockDepreciation().Value(it.first, day, it.second);
+		count = max(0, count - player.Cargo().Get(outfit) - player.Storage().Get(outfit));
+		if(!outfitter.Has(outfit))
+			count = min(count, max(0, player.Stock(outfit)));
+		cost += player.StockDepreciation().Value(outfit, day, count);
 	}
 	if(!needed.empty() && cost < player.Accounts().Credits())
 	{

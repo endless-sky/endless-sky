@@ -48,7 +48,7 @@ class Fleet {
 public:
 	Fleet() = default;
 	// Construct and Load() at the same time.
-	Fleet(const DataNode &node);
+	explicit Fleet(const DataNode &node);
 
 	void Load(const DataNode &node);
 

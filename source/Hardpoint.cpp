@@ -35,11 +35,12 @@ using namespace std;
 
 namespace {
 	// Create all the effects in the given list, at the given location, velocity, and angle.
-	void CreateEffects(const map<const Effect *, int> &m, Point pos, Point vel, Angle angle, vector<Visual> &visuals)
+	void CreateEffects(const map<const Effect *, int> &effects, Point pos, Point vel, Angle angle,
+		vector<Visual> &visuals)
 	{
-		for(const auto &it : m)
-			for(int i = 0; i < it.second; ++i)
-				visuals.emplace_back(*it.first, pos, vel, angle);
+		for(const auto &[effect, count] : effects)
+			for(int i = 0; i < count; ++i)
+				visuals.emplace_back(*effect, pos, vel, angle);
 	}
 }
 

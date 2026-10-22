@@ -1964,12 +1964,10 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	auto &patterns = formations[formationLead];
 
 	// Find the existing FormationPositioner for the pattern, or add one if none exists yet.
-	auto insert = patterns.emplace(piecewise_construct,
-		forward_as_tuple(pattern),
-		forward_as_tuple(formationLead, pattern));
-
 	// Set an iterator to point to the just found or emplaced value.
-	auto it = insert.first;
+	auto it = patterns.emplace(piecewise_construct,
+		forward_as_tuple(pattern),
+		forward_as_tuple(formationLead, pattern)).first;
 
 	// Aggressively try to match the position and velocity for the formation position.
 	const double POSITION_DEADBAND = ship.Radius() * 1.25;
@@ -3097,11 +3095,11 @@ void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
 		return;
 
 	int toDump = 11 + (1. - health) * .5 * ship->Cargo().Size();
-	for(auto &&commodity : ship->Cargo().Commodities())
-		if(commodity.second && toDump > 0)
+	for(const auto &[commodity, count] : ship->Cargo().Commodities())
+		if(count && toDump > 0)
 		{
-			int dumped = min(commodity.second, toDump);
-			ship->Jettison(commodity.first, dumped, true);
+			int dumped = min(count, toDump);
+			ship->Jettison(commodity, dumped, true);
 			toDump -= dumped;
 		}
 
@@ -5213,12 +5211,12 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 			continue;
 
 		int64_t &myStrength = shipStrength[it.get()];
-		for(const auto &allies : governmentRosters)
+		for(const auto &[allyGov, allyShips] : governmentRosters)
 		{
 			// If this is not an allied government, its ships will not assist this ship when attacked.
-			if(allies.first->AttitudeToward(gov) <= 0.)
+			if(allyGov->AttitudeToward(gov) <= 0.)
 				continue;
-			for(const auto &ally : allies.second)
+			for(const auto &ally : allyShips)
 				if(!ally->IsDisabled() && ally->Position().Distance(it->Position()) < 2000.)
 					myStrength += ally->Strength();
 		}
@@ -5238,11 +5236,11 @@ void AI::CacheShipLists()
 		allyLists.at(gov).reserve(ships.size());
 		enemyLists.emplace(gov, vector<Ship *>());
 		enemyLists.at(gov).reserve(ships.size());
-		for(const auto &oit : governmentRosters)
+		for(const auto &[other, ships] : governmentRosters)
 		{
-			auto &list = gov->IsEnemy(oit.first)
+			auto &list = gov->IsEnemy(other)
 					? enemyLists[gov] : allyLists[gov];
-			list.insert(list.end(), oit.second.begin(), oit.second.end());
+			list.insert(list.end(), ships.begin(), ships.end());
 		}
 	}
 }

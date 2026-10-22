@@ -534,9 +534,9 @@ bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 {
 	auto ScrollbarClick = [x, y, button, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
 	{
-		return ScrollbarMaybeUpdate([x, y, button, clicks](ScrollBar &scrollbar)
+		return ScrollbarMaybeUpdate([x, y, button, clicks](ScrollBar &bar)
 			{
-				return scrollbar.Click(x, y, button, clicks);
+				return bar.Click(x, y, button, clicks);
 			}, scrollbar, scroll, true);
 	};
 	if(ScrollbarClick(mainScrollbar, mainScroll)
@@ -681,9 +681,9 @@ bool ShopPanel::Drag(double dx, double dy)
 	{
 		auto scrollbarInterceptSpec = [dx, dy](ScrollBar &scrollbar, ScrollVar<double> &scroll) {
 			scrollbar.SyncFrom(scroll, scrollbar.from, scrollbar.to, false);
-			return ScrollbarMaybeUpdate([dx, dy](ScrollBar &scrollbar)
+			return ScrollbarMaybeUpdate([dx, dy](ScrollBar &bar)
 				{
-					return scrollbar.Drag(dx, dy);
+					return bar.Drag(dx, dy);
 				}, scrollbar, scroll, false);
 		};
 		if(!scrollbarInterceptSpec(mainScrollbar, mainScroll)
@@ -878,7 +878,7 @@ void ShopPanel::DrawShipsSidebar()
 		}
 
 		if(isSelected && playerShips.size() > 1 && ship->OutfitCount(selectedOutfit))
-			PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
+			PointerShader::Draw(Point(point.X() - ICON_TILE / 3, point.Y()),
 				Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
 
 		if(ship->IsParked())
