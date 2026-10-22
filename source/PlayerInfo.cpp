@@ -5675,7 +5675,7 @@ void PlayerInfo::DoAccounting()
 	map<const Outfit *, int> outfitCount;
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		const Ship *base = GameData::Ships().Get(ship->TrueModelName());
+		const Ship *base = GameData::Ships().Get(ship->VariantName());
 		++shipCount[base];
 		for(const auto &[outfit, count] : ship->Outfits())
 			outfitCount[outfit] += count;
