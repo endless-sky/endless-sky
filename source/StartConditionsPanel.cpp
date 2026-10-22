@@ -224,7 +224,6 @@ bool StartConditionsPanel::Click(int x, int y, MouseButton button, int /* clicks
 bool StartConditionsPanel::Hover(int x, int y)
 {
 	hasHover = true;
-	hoverPoint = Point(x, y);
 	return true;
 }
 

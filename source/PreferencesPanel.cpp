@@ -393,8 +393,6 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 
 bool PreferencesPanel::Hover(int x, int y)
 {
-	hoverPoint = Point(x, y);
-
 	hoverItem.clear();
 	tooltip.Clear();
 

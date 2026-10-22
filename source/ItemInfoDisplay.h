@@ -46,8 +46,8 @@ public:
 	virtual void DrawAttributes(const Point &topLeft) const;
 	void DrawTooltips() const;
 
-	// Update the location where the mouse is hovering.
-	void Hover(const Point &point);
+	// Set or clear whether this item is being hovered over.
+	void Hover();
 	void ClearHover();
 
 
@@ -70,7 +70,6 @@ protected:
 	int maximumHeight = 0;
 
 	// For tooltips:
-	Point hoverPoint;
 	mutable std::string hover;
 	mutable Tooltip tooltip;
 	bool hasHover = false;
