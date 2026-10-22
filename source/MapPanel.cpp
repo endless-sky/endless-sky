@@ -1488,7 +1488,7 @@ void MapPanel::DrawSelectedSystem() const
 	const vector<const System *> &plan = player.TravelPlan();
 	auto it = ranges::find(plan, selectedSystem);
 	if(it != plan.end())
-		jumps = static_cast<int>(std::distance(plan.end(), it));
+		jumps = static_cast<int>(plan.end() - it);
 	else if(distance.HasRoute(*selectedSystem))
 		jumps = distance.Days(*selectedSystem);
 

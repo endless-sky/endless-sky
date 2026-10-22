@@ -3869,21 +3869,20 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 
 		// Decorations with the MOVING behavior always aim randomly without a target.
 		// Decorations with the TARGETING behavior only do this if there is no target.
-		int decorIndex = -1;
 		for(const Ship::Decor &decor : ship.Decorations())
 		{
-			++decorIndex;
 			if(decor.behavior == Ship::DecorBehavior::MOVING
 				|| (decor.behavior == Ship::DecorBehavior::TARGETING && targetBodies.empty()))
 			{
-				double previous = ship.FiringCommands().AimDecor(decorIndex);
+				int index = static_cast<int>(&decor - &ship.Decorations().front());
+				double previous = ship.FiringCommands().AimDecor(index);
 				if(!previous && Random::Int(60))
 					continue;
 
 				Angle centerAngle = Angle(decor.position);
 				double bias = (centerAngle - decor.angle).Degrees() / 180.;
 				double acceleration = Random::Real() - Random::Real() + bias;
-				command.SetAimDecor(decorIndex, previous + .1 * acceleration);
+				command.SetAimDecor(index, previous + .1 * acceleration);
 			}
 		}
 		// If there are no targets to aim at, opportunistic turrets should sweep
@@ -3891,29 +3890,26 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 		// angle. Focused turrets should just point forward.
 		if(targetBodies.empty() && !opportunistic)
 		{
-			int hardpointIndex = -1;
 			for(const Hardpoint &hardpoint : ship.Weapons())
-			{
-				++hardpointIndex;
 				if(hardpoint.CanAim(ship))
 				{
+					// Get the index of this weapon.
+					int index = static_cast<int>(&hardpoint - &ship.Weapons().front());
 					double offset = (hardpoint.GetIdleAngle() - hardpoint.GetAngle()).Degrees();
-					command.SetAim(hardpointIndex, offset / hardpoint.TurnRate(ship));
+					command.SetAim(index, offset / hardpoint.TurnRate(ship));
 				}
-			}
 			return;
 		}
 		if(targetBodies.empty())
 		{
-			int hardpointIndex = -1;
 			for(const Hardpoint &hardpoint : ship.Weapons())
-			{
-				++hardpointIndex;
 				if(hardpoint.CanAim(ship))
 				{
+					// Get the index of this weapon.
+					int index = static_cast<int>(&hardpoint - &ship.Weapons().front());
 					// First, check if this turret is currently in motion. If not,
 					// it only has a small chance of beginning to move.
-					double previous = ship.FiringCommands().Aim(hardpointIndex);
+					double previous = ship.FiringCommands().Aim(index);
 					if(!previous && Random::Int(60))
 						continue;
 
@@ -3924,9 +3920,8 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 					const double arcMiddleDegrees = (minArc.AbsDegrees() + maxArc.AbsDegrees()) / 2.;
 					double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / min(arcMiddleDegrees, 180.);
 					double acceleration = Random::Real() - Random::Real() + bias;
-					command.SetAim(hardpointIndex, previous + .1 * acceleration);
+					command.SetAim(index, previous + .1 * acceleration);
 				}
-			}
 			return;
 		}
 
@@ -3937,10 +3932,8 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 	else
 		targets.emplace_back(*targetOverride + ship.Position(), ship.Velocity());
 	// Each hardpoint should aim at the target that it is "closest" to hitting.
-	int index = -1;
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		++index;
 		if(!hardpoint.CanAim(ship))
 			continue;
 		// This is where this projectile fires from.
@@ -4037,6 +4030,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 		}
 		if(!bestAngle)
 			continue;
+		int index = static_cast<int>(&hardpoint - &ship.Weapons().front());
 		command.SetAim(index, bestAngle / hardpoint.TurnRate(ship));
 		// If the target is within range and close to the current point of aim,
 		// build targeting focus.
@@ -4044,10 +4038,8 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 			command.SetOnTarget(index);
 	}
 	// Decoration with the TARGETING behavior simply aims at the closest target in view.
-	int decorIndex = -1;
 	for(const Ship::Decor &decor : ship.Decorations())
 	{
-		++decorIndex;
 		if(decor.behavior != Ship::DecorBehavior::TARGETING)
 			continue;
 		Point start = ship.Position() + ship.Facing().Rotate(decor.position);
@@ -4076,7 +4068,10 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 			}
 		}
 		if(bestAngle)
-			command.SetAimDecor(decorIndex, bestAngle / decor.rotationSpeed);
+		{
+			int index = static_cast<int>(&decor - &ship.Decorations().front());
+			command.SetAimDecor(index, bestAngle / decor.rotationSpeed);
+		}
 	}
 }
 

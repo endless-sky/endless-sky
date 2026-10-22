@@ -382,7 +382,7 @@ void ShipInfoPanel::UpdateInfo()
 	for(const auto &outfit : ship.Outfits() | views::keys)
 		outfits[outfit->Category()].push_back(outfit);
 
-	panelState.SelectOnly(static_cast<int>(std::distance(shipIt, panelState.Ships().cbegin())));
+	panelState.SelectOnly(static_cast<int>(shipIt - panelState.Ships().begin()));
 }
 
 
