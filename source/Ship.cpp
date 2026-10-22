@@ -1167,12 +1167,13 @@ void Ship::FinishLoading(bool isNewInstance)
 	canBeCarried = bayCategories.Contains(attributes.Category());
 
 	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
-	// or has negative outfit, cargo, weapon, or engine capacity.
-	for(const CapacityList::Capacity &capacity : GameData::GetCapacities())
+	// or has any attribute outside of its allowed limit.
+	for(const auto &[name, value] : attributes)
 	{
-		double val = attributes.Get(capacity.Attribute());
-		if(val < 0)
-			warning += capacity.Attribute() + ": " + Format::Number(val) + "\n";
+		optional<double> limit = Outfit::LowerLimit(name);
+		if(limit.has_value() && value < limit.has_value())
+			warning += string(name) + ": " + Format::Number(value) + " below allowed limit "
+				+ Format::Number(*limit) + "\n";
 	}
 	if(attributes.Get("drag") <= 0.)
 	{
