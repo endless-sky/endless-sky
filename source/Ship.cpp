@@ -1171,7 +1171,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	for(const auto &[name, value] : attributes)
 	{
 		optional<double> limit = Outfit::LowerLimit(name);
-		if(limit.has_value() && value < *limit)
+		if(limit.has_value() && value < limit.has_value())
 			warning += string(name) + ": " + Format::Number(value) + " below allowed limit "
 				+ Format::Number(*limit) + "\n";
 	}
