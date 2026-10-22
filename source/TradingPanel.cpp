@@ -43,7 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	constexpr string TRADE_LEVEL[] = {
+	const string TRADE_LEVEL[] = {
 		"(very low)",
 		"(low)",
 		"(medium)",

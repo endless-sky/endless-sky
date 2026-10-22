@@ -107,7 +107,7 @@ void DataNode::AddToken(const string &token)
 // If the index is out of range, then this returns an empty string and prints an error.
 const string &DataNode::Token(int index) const
 {
-	static constexpr string ERROR;
+	static const string ERROR;
 	if(static_cast<size_t>(index) >= tokens.size())
 	{
 		PrintTrace("Requested token index (" + to_string(index) + ") is out of bounds:");

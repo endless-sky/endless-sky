@@ -794,7 +794,7 @@ const StellarObjectSpriteData &GameData::ObjectSpriteData(const Sprite *sprite)
 // Strings for combat rating levels, etc.
 const string &GameData::Rating(const string &type, int level)
 {
-	static constexpr string EMPTY;
+	static const string EMPTY;
 	auto it = objects.ratings.find(type);
 	if(it == objects.ratings.end() || it->second.empty())
 		return EMPTY;
@@ -850,7 +850,7 @@ void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 const string &GameData::Tooltip(const string &label)
 {
-	static constexpr string EMPTY;
+	static const string EMPTY;
 	auto it = objects.tooltips.find(label);
 	// Special case: the "cost" and "sells for" labels include the percentage of
 	// the full price, so they will not match exactly.
@@ -865,7 +865,7 @@ const string &GameData::Tooltip(const string &label)
 
 string GameData::HelpMessage(const string &name)
 {
-	static constexpr string EMPTY;
+	static const string EMPTY;
 	auto it = objects.helpMessages.find(name);
 	return Command::ReplaceNamesWithKeys(it == objects.helpMessages.end() ? EMPTY : it->second);
 }

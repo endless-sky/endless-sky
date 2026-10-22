@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	constexpr string DEFAULT_WORMHOLE_COLOR = "map wormhole";
+	const string DEFAULT_WORMHOLE_COLOR = "map wormhole";
 }
 
 

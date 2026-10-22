@@ -184,7 +184,7 @@ void ShopPanel::Draw()
 	const Sprite *findIcon = SpriteSet::Get(hoverButton == 'f' ? "ui/find selected" : "ui/find unselected");
 	SpriteShader::Draw(findIcon, findCenter);
 	buttonZones.emplace_back(Rectangle(findCenter, {findIcon->Width(), findIcon->Height()}), 'f');
-	static constexpr string FIND = "_Find";
+	static const string FIND = "_Find";
 
 	shipInfo.DrawTooltips();
 	outfitInfo.DrawTooltips();
@@ -810,7 +810,7 @@ void ShopPanel::DrawShipsSidebar()
 		*GameData::Colors().Get("shop side panel background"));
 
 	// Draw this string, centered in the side panel:
-	static constexpr string YOURS = "Your Ships:";
+	static const string YOURS = "Your Ships:";
 	Point yoursPoint(Screen::Right() - SIDEBAR_WIDTH, Screen::Top() + 10 - sidebarScroll.AnimatedValue());
 	font.Draw({YOURS, {SIDEBAR_WIDTH, Alignment::CENTER}}, yoursPoint, bright);
 

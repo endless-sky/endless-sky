@@ -704,7 +704,7 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 
 void MissionPanel::DrawMissionKey() const
 {
-	static constexpr string CONDITIONS[] = {
+	static const string CONDITIONS[] = {
 		"available",
 		"unavailable",
 		"active",

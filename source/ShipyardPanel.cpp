@@ -50,7 +50,7 @@ using namespace std;
 
 namespace {
 	// Label for the description field of the detail pane.
-	constexpr string DESCRIPTION = "description";
+	const string DESCRIPTION = "description";
 }
 
 

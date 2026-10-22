@@ -121,7 +121,7 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 		description.Wrap(text);
 	else
 	{
-		static constexpr string NOUN[2] = {"outfit", "ship"};
+		static const string NOUN[2] = {"outfit", "ship"};
 		string fullText = text + "\tTo purchase this " + NOUN[isShip] + " you must have ";
 		fullText += Format::List<vector, string>(licenses,
 			[](const string &name)

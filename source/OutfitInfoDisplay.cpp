@@ -622,7 +622,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	double reload = weapon->Reload();
 	if(reload)
 	{
-		static constexpr string PER_SECOND = " / second:";
+		static const string PER_SECOND = " / second:";
 		for(unsigned i = 0; i < values.size(); ++i)
 			if(values[i])
 			{
@@ -710,7 +710,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	// the values have already been added.
 	if(!isContinuous && !isContinuousBurst)
 	{
-		static constexpr string PER_SHOT = " / shot:";
+		static const string PER_SHOT = " / shot:";
 		for(unsigned i = 0; i < VALUE_NAMES.size(); ++i)
 			if(values[i])
 			{

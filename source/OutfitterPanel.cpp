@@ -52,8 +52,8 @@ using namespace std;
 
 namespace {
 	// Label for the description field of the detail pane.
-	constexpr string DESCRIPTION = "description";
-	constexpr string LICENSE = " License";
+	const string DESCRIPTION = "description";
+	const string LICENSE = " License";
 
 	// Numeric parameters for the visibility checkboxes. Note the checkboxes already have some padding of their own.
 	const Point checkboxSize{20, 20};

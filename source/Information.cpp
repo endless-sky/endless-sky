@@ -99,7 +99,7 @@ void Information::SetString(const string &name, const string &value)
 
 const string &Information::GetString(const string &name) const
 {
-	static constexpr string EMPTY;
+	static const string EMPTY;
 
 	auto it = strings.find(name);
 	return (it == strings.end()) ? EMPTY : it->second;

@@ -50,7 +50,7 @@ namespace {
 	constexpr double MINIMUM_SELECTION_DISTANCE = LINE_HEIGHT * 3;
 
 	constexpr double GAP = 30.;
-	constexpr string MONTH[] = {
+	const string MONTH[] = {
 		"  January", "  February", "  March", "  April", "  May", "  June",
 		"  July", "  August", "  September", "  October", "  November", "  December"};
 }

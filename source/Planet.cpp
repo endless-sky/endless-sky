@@ -36,15 +36,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	constexpr string WORMHOLE = "wormhole";
-	constexpr string PLANET = "planet";
+	const string WORMHOLE = "wormhole";
+	const string PLANET = "planet";
 
 	// Planet attributes in the form "requires: <attribute>" restrict the ability of ships to land
 	// unless the ship has all required attributes.
 	void SetRequiredAttributes(const set<string> &attributes, set<string> &required)
 	{
-		static constexpr string PREFIX = "requires: ";
-		static constexpr string PREFIX_END = "requires:!";
+		static const string PREFIX = "requires: ";
+		static const string PREFIX_END = "requires:!";
 		required.clear();
 		for_each(attributes.lower_bound(PREFIX), attributes.lower_bound(PREFIX_END), [&](const string &attribute)
 		{

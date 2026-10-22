@@ -272,7 +272,7 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &r
 		if(gx == endGX && gy == endGY)
 			break;
 		// If not, move to the next one. Check whether rx / mx < ry / my.
-		const uint64_t diff = rx * my - ry * mx;
+		const int64_t diff = rx * my - ry * mx;
 		if(!diff)
 		{
 			// The line is exactly intersecting a corner.

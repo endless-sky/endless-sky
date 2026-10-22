@@ -541,7 +541,7 @@ void MapPanel::DrawKey() const
 	else if(commodity >= SHOW_OUTFITTER)
 	{
 		// Each system is colored by the number of outfits for sale.
-		static constexpr string LABEL[2][4] = {
+		static const string LABEL[2][4] = {
 			{"10+", "5", "1", "None"},
 			{"60+", "30", "1", "None"}};
 		static constexpr double VALUE[4] = {1., .5, 0., -1.};
@@ -555,7 +555,7 @@ void MapPanel::DrawKey() const
 	}
 	else if(commodity == SHOW_VISITED)
 	{
-		static constexpr string LABEL[3] = {
+		static const string LABEL[3] = {
 			"All planets",
 			"Some",
 			"None"
@@ -629,11 +629,11 @@ void MapPanel::DrawKey() const
 		pos.Y() += 20.;
 		// Each system is colored in accordance with its danger to the player,
 		// including threats from any "raid fleet" presence.
-		static constexpr string labels[4] = {"Minimal", "Low", "Moderate", "High"};
+		static const string LABELS[4] = {"Minimal", "Low", "Moderate", "High"};
 		for(int i = 0; i < 4; ++i)
 		{
 			RingShader::Draw(pos, OUTER, INNER, DangerColor(i / 3.));
-			font.Draw(labels[i], pos + textOff, dim);
+			font.Draw(LABELS[i], pos + textOff, dim);
 			pos.Y() += 20.;
 		}
 	}

@@ -1595,7 +1595,7 @@ const string &Ship::VariantMapShopName() const
 // Get the generic noun (e.g. "ship") to be used when describing this ship.
 const string &Ship::Noun() const
 {
-	static constexpr string SHIP = "ship";
+	static const string SHIP = "ship";
 	return noun.empty() ? SHIP : noun;
 }
 

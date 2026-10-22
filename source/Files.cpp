@@ -420,7 +420,7 @@ std::string Files::NameNoExtension(const std::filesystem::path &path)
 bool Files::IsValidCharacter(char ch)
 {
 	// Don't allow characters that can't be used in a file name.
-	static constexpr string FORBIDDEN = "/\\?*:|\"<>";
+	static const string FORBIDDEN = "/\\?*:|\"<>";
 
 	return FORBIDDEN.find(ch) == string::npos;
 }

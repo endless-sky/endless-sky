@@ -163,7 +163,7 @@ void ConversationPanel::Draw()
 	if(node < 0)
 	{
 		// The conversation has already ended. Draw a "done" button.
-		static constexpr string done = "[done]";
+		static const string done = "[done]";
 		int width = font.Width(done);
 		int height = font.Height();
 		Point off(Screen::Left() + MARGIN + WIDTH - width, point.Y());
@@ -206,7 +206,7 @@ void ConversationPanel::Draw()
 		font.Draw({lastName, layout}, point + Point(350, 0), choice ? bright : gray);
 
 		// Draw the OK button, and remember its location.
-		static constexpr string ok = "[ok]";
+		static const string ok = "[ok]";
 		int width = font.Width(ok);
 		int height = font.Height();
 		Point off(Screen::Left() + MARGIN + WIDTH - width, point.Y());
