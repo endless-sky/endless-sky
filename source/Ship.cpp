@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 
 #include "audio/Audio.h"
+#include "CapacityList.h"
 #include "CategoryList.h"
 #include "CategoryType.h"
 #include "DamageDealt.h"
@@ -1167,11 +1168,11 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
 	// or has negative outfit, cargo, weapon, or engine capacity.
-	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
+	for(const CapacityList::Capacity &capacity : GameData::GetCapacities())
 	{
-		double val = attributes.Get(attr);
+		double val = attributes.Get(capacity.Attribute());
 		if(val < 0)
-			warning += attr + ": " + Format::Number(val) + "\n";
+			warning += capacity.Attribute() + ": " + Format::Number(val) + "\n";
 	}
 	if(attributes.Get("drag") <= 0.)
 	{
