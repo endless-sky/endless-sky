@@ -530,7 +530,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "noun" && hasValue)
 			noun = child.Token(1);
 		else if(key == "swizzle" && hasValue)
-			customSwizzleName = child.Token(1);
+			customSwizzle = GameData::Swizzles().Get(child.Token(1));
 		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "administrative cost" && hasValue)
@@ -941,8 +941,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		if(!GetSprite())
 			static_cast<Body &>(*this) = static_cast<Body>(*base);
-		if(customSwizzleName.empty())
-			customSwizzleName = base->CustomSwizzleName();
+		if(!customSwizzle)
+			customSwizzle = base->CustomSwizzle();
 		if(!administrativeCost.has_value())
 			administrativeCost = base->administrativeCost;
 		if(baseAttributes.Empty())
@@ -1234,14 +1234,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			targetSystem = nullptr;
 		}
 	}
-
-	if(!customSwizzleName.empty())
-	{
-		customSwizzle = GameData::Swizzles().Get(customSwizzleName);
-		if(!customSwizzle->IsLoaded())
-			Logger::Log("Ship \"" + GivenName() + "\" refers to nonexistent swizzle \"" + customSwizzleName + "\".",
-				Logger::Level::WARNING);
-	}
 }
 
 
@@ -1278,8 +1270,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("never disabled");
 		if(!isCapturable)
 			out.Write("uncapturable");
-		if(customSwizzle && customSwizzle->IsLoaded())
-			out.Write("swizzle", customSwizzle->Name());
+		if(customSwizzle)
+			out.Write("swizzle", customSwizzle->TrueName());
 		if(administrativeCost.has_value())
 			out.Write("administrative cost", administrativeCost.value());
 
@@ -3147,13 +3139,6 @@ const Swizzle *Ship::CustomSwizzle() const
 
 
 
-const string &Ship::CustomSwizzleName() const
-{
-	return customSwizzleName;
-}
-
-
-
 // Check if the ship is thrusting. If so, the engine sound should be played.
 bool Ship::IsThrusting() const
 {
@@ -4569,27 +4554,30 @@ bool Ship::SilentJumps() const
 
 double Ship::CloakFuelCost() const
 {
-	// The fuel cost of cloaking is not only the cost of the cloak itself,
-	// but also the natural fuel gain or lost due to fuel consumption and generation.
+	double fuelCost = cache.cloakCost.fuel;
+	if(fuelCost <= 0.)
+		return 0.;
+	// If cloaking requires fuel, then the fuel cost of cloaking is not only the cost of the cloak itself,
+	// but also the natural fuel gained or lost due to fuel consumption and generation.
 	// If fuel generation outpaces fuel lost due to cloaking or fuel consumption, then consider
 	// the fuel cost to be 0.
-	return min(0., cache.cloakCost.fuel + cache.fuelConsumption - cache.fuelGeneration);
+	return max(0., fuelCost + cache.fuelConsumption - cache.fuelGeneration);
 }
 
 
 
 bool Ship::HasFuelForCloak() const
 {
-	double fuelCost = CloakFuelCost();
 	// Don't cloak if it would result in you becoming stranded.
 	// If the ship has a ramscoop, assume that it won't be stranded due to cloak usage.
+	double fuelCost = CloakFuelCost();
 	if(fuelCost && !cache.ramscoop)
 	{
 		double fuel = levels.fuel;
 		int steps = ceil((1. - Cloaking()) / CloakingSpeed());
 		// Only cloak if you will be able to fully cloak and also maintain it
 		// for as long as it will take you to reach full cloak.
-		fuel -= CloakFuelCost() * (1 + 2 * steps);
+		fuel -= fuelCost * (1 + 2 * steps);
 		if(fuel < JumpNavigation().JumpFuel())
 			return false;
 	}
@@ -5421,6 +5409,7 @@ bool Ship::DoLandingLogic()
 			SetTargetAsteroid(nullptr);
 			SetTargetFlotsam(nullptr);
 			SetTargetShip(nullptr);
+			SetTargetStellar(nullptr);
 
 			zoom = 0.f;
 		}
@@ -5431,7 +5420,6 @@ bool Ship::DoLandingLogic()
 			|| !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel, isYours))
 	{
 		zoom = min(1.f, zoom + landingSpeed);
-		SetTargetStellar(nullptr);
 		landingPlanet = nullptr;
 	}
 	else
