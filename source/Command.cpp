@@ -137,7 +137,7 @@ void Command::ReadKeyboard()
 		// Use no modifiers for the scancode.
 		if(keyDown[SDL_GetScancodeFromKey(keyCode, nullptr)])
 #else
-		if(keyDown[SDL_GetScancodeFromKey(it.second)])
+		if(keyDown[SDL_GetScancodeFromKey(keyCode)])
 #endif
 			*this |= command;
 
