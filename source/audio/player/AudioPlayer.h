@@ -62,7 +62,7 @@ public:
 	void Stop(bool stop = true);
 
 	/// The supplier of the player. Never null.
-	AudioSupplier *Supplier();
+	AudioSupplier *Supplier() const;
 
 
 protected:

@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <chrono>
-#include <cstdint>
 #include <filesystem>
 #include <functional>
 #include <map>
@@ -65,7 +64,7 @@ public:
 	static std::string AmmoCount(int64_t value);
 	// Convert the given number to a string with thousands separators.
 	// If the number of decimal places is not specified, then the number of places
-	// will adpat to the size of the number. Magnitudes >10k will not display any
+	// will adapt to the size of the number. Magnitudes >10k will not display any
 	// decimals, magnitudes between 10k and 1k will show one decimal place, and
 	// magnitudes less than 1k will show two decimal places.
 	// Otherwise, the exact given number of decimal places will be used.

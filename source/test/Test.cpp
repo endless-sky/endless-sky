@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <iostream>
 #include <map>
 #include <numeric>
+#include <ranges>
 #include <set>
 #include <stdexcept>
 
@@ -212,7 +213,7 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 	for(const DataNode &child : node)
 	{
 		const string &typeName = child.Token(0);
-		auto it = find_if(STEPTYPE_TO_TEXT.begin(), STEPTYPE_TO_TEXT.end(),
+		auto it = ranges::find_if(STEPTYPE_TO_TEXT,
 			[&typeName](const pair<TestStep::Type, const string> &e) {
 				return e.second == typeName;
 			});
@@ -285,7 +286,7 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 				else
 				{
 					step.nameOrLabel = child.Token(1);
-					if(jumpTable.find(step.nameOrLabel) != jumpTable.end())
+					if(jumpTable.contains(step.nameOrLabel))
 					{
 						child.PrintTrace("Duplicate label");
 						status = Status::BROKEN;
@@ -321,13 +322,13 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 	// Check if all jump-labels are present after loading the sequence.
 	for(const TestStep &step : steps)
 	{
-		if(!step.jumpOnTrueTarget.empty() && jumpTable.find(step.jumpOnTrueTarget) == jumpTable.end())
+		if(!step.jumpOnTrueTarget.empty() && !jumpTable.contains(step.jumpOnTrueTarget))
 		{
 			node.PrintTrace("Missing label " + step.jumpOnTrueTarget);
 			status = Status::BROKEN;
 			return;
 		}
-		if(!step.jumpOnFalseTarget.empty() && jumpTable.find(step.jumpOnFalseTarget) == jumpTable.end())
+		if(!step.jumpOnFalseTarget.empty() && !jumpTable.contains(step.jumpOnFalseTarget))
 		{
 			node.PrintTrace("Missing label " + step.jumpOnFalseTarget);
 			status = Status::BROKEN;
@@ -368,7 +369,7 @@ void Test::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		if(key == "status" && child.Size() >= 2)
 		{
 			const string &statusText = child.Token(1);
-			auto it = find_if(STATUS_TO_TEXT.begin(), STATUS_TO_TEXT.end(),
+			auto it = ranges::find_if(STATUS_TO_TEXT,
 				[&statusText](const pair<Status, const string> &e) {
 					return e.second == statusText;
 				});
@@ -600,7 +601,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	string message = "Test failed";
 	if(!testFailReason.empty())
 		message += ": " + testFailReason;
-	message += "\n";
+	message += '\n';
 
 	Logger::Log(message, Logger::Level::ERROR);
 
@@ -609,12 +610,12 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	if(context.callstack.empty())
 		stackMessage += "  No callstack info at moment of failure.";
 
-	for(auto i = context.callstack.rbegin(); i != context.callstack.rend(); ++i)
+	for(auto [test, step] : std::views::reverse(context.callstack))
 	{
-		stackMessage += "- \"" + i->test->Name() + "\", step: " + to_string(1 + i->step);
-		if(i->step < i->test->steps.size())
-			stackMessage += " (" + STEPTYPE_TO_TEXT.at(((i->test->steps)[i->step]).stepType) + ")";
-		stackMessage += "\n";
+		stackMessage += "- \"" + test->Name() + "\", step: " + to_string(1 + step);
+		if(step < test->steps.size())
+			stackMessage += " (" + STEPTYPE_TO_TEXT.at(((test->steps)[step]).stepType) + ")";
+		stackMessage += '\n';
 	}
 	Logger::Log(stackMessage, Logger::Level::ERROR);
 

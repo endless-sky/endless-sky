@@ -19,14 +19,14 @@ using namespace std;
 
 
 
-void Orders::SetTargetShip(shared_ptr<Ship> ship)
+void Orders::SetTargetShip(const shared_ptr<Ship> &ship)
 {
 	targetShip = ship;
 }
 
 
 
-void Orders::SetTargetAsteroid(shared_ptr<Minable> asteroid)
+void Orders::SetTargetAsteroid(const shared_ptr<Minable> &asteroid)
 {
 	targetAsteroid = asteroid;
 }

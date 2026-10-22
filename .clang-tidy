@@ -1,3 +1,7 @@
+# Removing clang-tidy inspections that are enabled by default in CLion's global settings.
+# -*-narrowing-conversions: We commonly make use of narrowing conversions in the codebase.
+# -*-integer-division: Our UI code intentionally uses integer division when passing integers into the Point class for
+#  screen pixel measurements, even though Point stores floats.
 # -*-use-nodiscard: We don't make use of nodiscard.
 # -*-return-braced-init-list,-*-use-auto: We prefer to be explicit with the types being handled.
 # -*-branch-clone: We have a few large if/else trees with complex if expressions. Keeping expressions separated from
@@ -14,9 +18,4 @@
 # -*-pass-by-value: We normally pass strings by const ref. Clang-tidy is saying that many of them can be replaced with
 #  passing by value and using std::move. It doesn't make much difference either way.
 # -*-slicing: Casting a variable to a superclass shouldn't be flagged as an issue. We're doing so intentionally.
-Checks: '-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof,-*-default-arguments,-*-flp30-c,-*-use-override,-*-pass-by-value,-*-slicing'
-
-CheckOptions:
-  # We commonly make use of narrowing conversions in the codebase.
-  - key: cppcoreguidelines-narrowing-conversions.IgnoreConversionFromTypes
-    value: 'rep;SDL_Keycode;double;float;long;int;unsigned int;size_t;size_type;int64_t;uint32_t;value_type'
+Checks: '-*-narrowing-conversions,-*-integer-division,-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof,-*-default-arguments,-*-flp30-c,-*-use-override,-*-pass-by-value,-*-slicing'

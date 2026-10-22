@@ -32,7 +32,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <memory>
 #include <mutex>
-#include <stdexcept>
 #include <thread>
 #include <vector>
 
@@ -52,7 +51,7 @@ namespace {
 		SoundCategory category = SoundCategory::MASTER;
 	};
 
-	void Move(const AudioPlayer &player, QueueEntry entry)
+	void Move(const AudioPlayer &player, const QueueEntry &entry)
 	{
 		Point angle = entry.sum / entry.weight;
 		// The source should be along the vector (angle.X(), angle.Y(), -1).
@@ -296,7 +295,7 @@ void Audio::PlayMusic(const string &name)
 	{
 		Fade *fade = new Fade();
 		fade->AddSource(Music::CreateSupplier(name, true));
-		musicPlayer = shared_ptr<AudioPlayer>(new MusicPlayer(unique_ptr<AudioSupplier>{fade}));
+		musicPlayer = make_shared<MusicPlayer>(unique_ptr<AudioSupplier>{fade});
 		musicPlayer->Init();
 		musicPlayer->SetVolume(Volume(SoundCategory::MUSIC));
 		musicPlayer->Play();
