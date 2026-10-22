@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipJumpNavigation.h"
 
 #include <array>
+#include <cstdint>
 #include <list>
 #include <map>
 #include <memory>

@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "NPC.h"
 #include "TextReplacements.h"
 
+#include <cstdint>
 #include <list>
 #include <map>
 #include <memory>

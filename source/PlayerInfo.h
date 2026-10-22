@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SystemEntry.h"
 
 #include <chrono>
+#include <cstdint>
 #include <filesystem>
 #include <list>
 #include <map>

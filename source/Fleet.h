@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Variant.h"
 #include "WeightedList.h"
 
+#include <cstdint>
 #include <list>
 #include <memory>
 #include <string>

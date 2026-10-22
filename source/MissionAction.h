@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameAction.h"
 #include "LocationFilter.h"
 
+#include <cstdint>
 #include <map>
 #include <string>
 

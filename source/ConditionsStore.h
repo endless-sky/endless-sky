@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionEntry.h"
 
+#include <cstdint>
 #include <initializer_list>
 #include <map>
 

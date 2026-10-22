@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "text/Table.h"
 
+#include <cstdint>
 #include <vector>
 
 class Point;

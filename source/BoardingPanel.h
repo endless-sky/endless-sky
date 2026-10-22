@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollBar.h"
 #include "Tooltip.h"
 
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>

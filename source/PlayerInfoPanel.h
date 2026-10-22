@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Layout.h"
 #include "Point.h"
 
-#include <set>
+#include <cstdint>
 #include <vector>
 
 class PlayerInfo;
