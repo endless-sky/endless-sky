@@ -302,7 +302,7 @@ bool GameWindow::Init(bool headless)
 	}
 
 #ifndef ES_GLES
-	else if(*glVersion == '2')
+	if(*glVersion == '2')
 	{
 		OpenGL::DisableOpenGL3();
 		Logger::Log("Experimental OpenGL 2 support has been enabled.", Logger::Level::INFO);
