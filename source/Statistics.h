@@ -35,7 +35,7 @@ public:
 	void Load();
 	void Save() const;
 
-	void AddPlayTime(std::chrono::nanoseconds timeVal, bool updatePlayer);
+	void AddPlayTime(std::chrono::nanoseconds timeVal, bool updatePlayer, bool isIdle);
 
 
 private:
@@ -43,4 +43,5 @@ private:
 
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.;
+	double idleTime = 0.;
 };

@@ -367,6 +367,8 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 			isCloaking = true;
 		else if(key == "playtime" && hasValue)
 			playTime = child.Value(1);
+		else if(key == "idle time" && hasValue)
+			idleTime = child.Value(1);
 		else if(key == "travel" && hasValue)
 			travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
 		else if(key == "travel destination" && hasValue)
@@ -2162,9 +2164,12 @@ double PlayerInfo::GetPlayTime() const noexcept
 
 
 
-void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
+void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal, bool isIdle)
 {
-	playTime += timeVal.count() * .000000001;
+	if(isIdle)
+		idleTime += timeVal.count() * .000000001;
+	else
+		playTime += timeVal.count() * .000000001;
 }
 
 
@@ -5045,6 +5050,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
 	out.Write("playtime", playTime);
+	out.Write("idle time", idleTime);
 	// This flag is set if the player must leave the planet immediately upon
 	// entering their ship (i.e. because a mission forced them to take off).
 	if(shouldLaunch)

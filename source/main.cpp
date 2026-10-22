@@ -577,7 +577,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			timer.Wait();
 
 			// If the player ended this frame in-game, count the elapsed time as played time.
-			stats.AddPlayTime(chrono::steady_clock::now() - start, menuPanels.IsEmpty());
+			// If the game window isn't in focus, track this as idle time.
+			stats.AddPlayTime(chrono::steady_clock::now() - start, menuPanels.IsEmpty(), !GameWindow::IsInFocus());
 		}
 	}
 	// Game loop when running the game as part of an integration test.

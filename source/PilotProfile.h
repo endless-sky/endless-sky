@@ -104,7 +104,7 @@ public:
 	// Update GameData to use the gamerules from this pilot.
 	void ApplyGamerules() const;
 
-	void AddPlayTime(std::chrono::nanoseconds timeVal);
+	void AddPlayTime(std::chrono::nanoseconds timeVal, bool isIdle);
 
 
 private:
@@ -126,4 +126,5 @@ private:
 
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.;
+	double idleTime = 0.;
 };

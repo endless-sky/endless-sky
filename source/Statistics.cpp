@@ -52,6 +52,8 @@ void Statistics::Load()
 			child.PrintTrace("Expected key to have a value:");
 		else if(key == "playtime")
 			playTime = child.Value(1);
+		else if(key == "idle time")
+			idleTime = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -63,17 +65,21 @@ void Statistics::Save() const
 {
 	DataWriter out(FilePath());
 	out.Write("playtime", playTime);
+	out.Write("idle time", idleTime);
 }
 
 
 
-void Statistics::AddPlayTime(std::chrono::nanoseconds timeVal, bool updatePlayer)
+void Statistics::AddPlayTime(std::chrono::nanoseconds timeVal, bool updatePlayer, bool isIdle)
 {
-	playTime += timeVal.count() * .000000001;
+	if(isIdle)
+		idleTime += timeVal.count() * .000000001;
+	else
+		playTime += timeVal.count() * .000000001;
 	if(updatePlayer)
 	{
-		player.AddPlayTime(timeVal);
+		player.AddPlayTime(timeVal, isIdle);
 		if(player.Pilot())
-			player.Pilot()->AddPlayTime(timeVal);
+			player.Pilot()->AddPlayTime(timeVal, isIdle);
 	}
 }

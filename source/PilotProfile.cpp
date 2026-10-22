@@ -232,6 +232,10 @@ void PilotProfile::Load()
 			if(child.HasChildren())
 				gamerules.Load(child);
 		}
+		else if(key == "playtime" && hasValue)
+			playTime = child.Value(1);
+		else if(key == "idle time" && hasValue)
+			idleTime = child.Value(1);
 	}
 
 	// If the pilot's gamerules were never loaded, then this is an
@@ -276,6 +280,7 @@ void PilotProfile::Save()
 	gamerules.Save(out, *preset);
 
 	out.Write("playtime", playTime);
+	out.Write("idle time", idleTime);
 }
 
 
@@ -400,7 +405,10 @@ void PilotProfile::ApplyGamerules() const
 
 
 
-void PilotProfile::AddPlayTime(std::chrono::nanoseconds timeVal)
+void PilotProfile::AddPlayTime(std::chrono::nanoseconds timeVal, bool isIdle)
 {
-	playTime += timeVal.count() * .000000001;
+	if(isIdle)
+		idleTime += timeVal.count() * .000000001;
+	else
+		playTime += timeVal.count() * .000000001;
 }

@@ -480,6 +480,13 @@ int GameWindow::DrawHeight()
 
 
 
+bool GameWindow::IsInFocus()
+{
+	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_INPUT_FOCUS);
+}
+
+
+
 bool GameWindow::IsMaximized()
 {
 	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_MAXIMIZED);
