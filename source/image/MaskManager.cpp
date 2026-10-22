@@ -92,7 +92,7 @@ void MaskManager::ScaleMasks()
 // sprite has no masks, an empty mask is returned.
 const vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, Point scale) const
 {
-	static constexpr vector<Mask> EMPTY;
+	static const vector<Mask> EMPTY;
 	const auto scalesIt = spriteMasks.find(sprite);
 	if(scalesIt == spriteMasks.end())
 	{
