@@ -56,8 +56,8 @@ using namespace std;
 namespace {
 	// Settings that require special handling.
 	const string ZOOM_FACTOR = "Main zoom factor";
-	const int ZOOM_FACTOR_MIN = 100;
-	const int ZOOM_FACTOR_INCREMENT = 10;
+	constexpr int ZOOM_FACTOR_MIN = 100;
+	constexpr int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	const string FONT_SIZE = "UI font size";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
@@ -105,8 +105,8 @@ namespace {
 #endif
 
 	// How many pages of controls and settings there are.
-	const int CONTROLS_PAGE_COUNT = 2;
-	const int SETTINGS_PAGE_COUNT = 3;
+	constexpr int CONTROLS_PAGE_COUNT = 2;
+	constexpr int SETTINGS_PAGE_COUNT = 3;
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -132,10 +132,10 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	// Select the first valid plugin.
-	for(const auto &plugin : PluginManager::Get())
-		if(plugin.second.IsValid())
+	for(const auto &[name, plugin] : PluginManager::Get())
+		if(plugin.IsValid())
 		{
-			selectedPlugin = plugin.first;
+			selectedPlugin = name;
 			break;
 		}
 
@@ -146,21 +146,14 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 
 	int pluginListHeight = 0;
-	for(const auto &plugin : PluginManager::Get())
-		if(plugin.second.IsValid())
+	for(const auto &plugin : PluginManager::Get() | views::values)
+		if(plugin.IsValid())
 			pluginListHeight += 20;
 
 	pluginListScroll.SetDisplaySize(pluginListBox.Height());
 	pluginListScroll.SetMaxValue(pluginListHeight);
 	Rectangle pluginDescriptionBox = pluginUi->GetBox("plugin description");
 	pluginDescriptionScroll.SetDisplaySize(pluginDescriptionBox.Height());
-}
-
-
-
-// Stub, for unique_ptr destruction to be defined in the right compilation unit.
-PreferencesPanel::~PreferencesPanel()
-{
 }
 
 
@@ -897,7 +890,7 @@ void PreferencesPanel::DrawSettings()
 		}
 
 		// Record where this setting is displayed, so the user can click on it.
-		// Temporarily reset the row's size so the clickzone can cover the entire preference.
+		// Temporarily reset the row's size so the click zone can cover the entire preference.
 		table.SetHighlight(-120, 120);
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 
@@ -1063,20 +1056,20 @@ void PreferencesPanel::DrawSettings()
 			const map<string, string> &help = GameData::HelpTemplates();
 			int shown = 0;
 			int total = 0;
-			for(const auto &it : help)
+			for(const auto &name : help | views::keys)
 			{
 				// Don't count certain special help messages that are always
 				// active for new players.
 				bool special = false;
 				const string SPECIAL_HELP[] = {"basics", "lost"};
 				for(const string &str : SPECIAL_HELP)
-					if(it.first.find(str) == 0)
+					if(name.find(str) == 0)
 						special = true;
 
 				if(!special)
 				{
 					++total;
-					shown += Preferences::Has("help: " + it.first);
+					shown += Preferences::Has("help: " + name);
 				}
 			}
 
@@ -1198,9 +1191,8 @@ void PreferencesPanel::DrawPlugins()
 	int firstY = pluginListClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(pluginListScroll.AnimatedValue())));
 
-	for(const auto &it : PluginManager::Get())
+	for(const auto &plugin : PluginManager::Get() | views::values)
 	{
-		const auto &plugin = it.second;
 		if(!plugin.IsValid())
 			continue;
 
@@ -1371,7 +1363,7 @@ void PreferencesPanel::DrawTooltips()
 
 
 
-void PreferencesPanel::Exit()
+void PreferencesPanel::Exit() const
 {
 	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
 	{
@@ -1468,8 +1460,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
 	else if(str == REACTIVATE_HELP)
 	{
-		for(const auto &it : GameData::HelpTemplates())
-			Preferences::Set("help: " + it.first, false);
+		for(const auto &name : GameData::HelpTemplates() | views::keys)
+			Preferences::Set("help: " + name, false);
 	}
 	else if(str == SCROLL_SPEED)
 	{

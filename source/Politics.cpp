@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <ranges>
 
 using namespace std;
 
@@ -63,13 +64,13 @@ void Politics::Reset()
 	dominatedPlanets.clear();
 	ResetDaily();
 
-	for(const auto &it : GameData::Governments())
-		reputationWith[&it.second] = it.second.InitialPlayerReputation();
-
-	// Disable fines for today (because the game was just loaded, so any fines
-	// were already checked for when you first landed).
-	for(const auto &it : GameData::Governments())
-		fined.insert(&it.second);
+	for(const auto &gov : GameData::Governments() | views::values)
+	{
+		reputationWith[&gov] = gov.InitialPlayerReputation();
+		// Disable fines for today (because the game was just loaded, so any fines
+		// were already checked for when you first landed).
+		fined.insert(&gov);
+	}
 }
 
 
@@ -116,9 +117,9 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 	if(gov->IsPlayer())
 		return;
 
-	for(const auto &it : GameData::Governments())
+	for(const auto &g : GameData::Governments() | views::values)
 	{
-		const Government *other = &it.second;
+		const Government *other = &g;
 		double weight = other->AttitudeToward(gov);
 		Government::PenaltyEffect penalty = other->PenaltyFor(eventType, gov);
 

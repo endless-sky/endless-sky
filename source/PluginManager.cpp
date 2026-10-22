@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PluginManager.h"
 
+#include <ranges>
+
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -194,8 +196,8 @@ bool PluginManager::IsPlugin(const filesystem::path &path)
 // launched via user preferences.
 bool PluginManager::HasChanged()
 {
-	for(const auto &it : plugins)
-		if(it.second.enabled != it.second.currentState)
+	for(const auto &plugin : plugins | views::values)
+		if(plugin.enabled != plugin.currentState)
 			return true;
 	return false;
 }

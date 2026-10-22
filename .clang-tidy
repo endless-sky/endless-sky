@@ -13,9 +13,10 @@
 #  keyword is technically redundant in this case, it's not hurting anything to keep.
 # -*-pass-by-value: We normally pass strings by const ref. Clang-tidy is saying that many of them can be replaced with
 #  passing by value and using std::move. It doesn't make much difference either way.
-Checks: '-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof,-*-default-arguments,-*-flp30-c,-*-use-override,-*-pass-by-value'
+# -*-slicing: Casting a variable to a superclass shouldn't be flagged as an issue. We're doing so intentionally.
+Checks: '-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof,-*-default-arguments,-*-flp30-c,-*-use-override,-*-pass-by-value,-*-slicing'
 
 CheckOptions:
   # We commonly make use of narrowing conversions in the codebase.
   - key: cppcoreguidelines-narrowing-conversions.IgnoreConversionFromTypes
-    value: 'rep;SDL_Keycode;long;double;int;unsigned int;size_t;size_type;int64_t;uint32_t;float'
+    value: 'rep;SDL_Keycode;double;float;long;int;unsigned int;size_t;size_type;int64_t;uint32_t;value_type'

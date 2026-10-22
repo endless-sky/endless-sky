@@ -116,7 +116,7 @@ public:
 	void FinishTransaction();
 
 	// Apply the given changes and store them in the player's saved game file.
-	void AddChanges(std::list<DataNode> &changes, bool instantChanges = false);
+	void AddChanges(const std::list<DataNode> &changes, bool instantChanges = false);
 	// Add an event that will happen at the given date.
 	void AddEvent(GameEvent event, const Date &date);
 
@@ -195,7 +195,7 @@ public:
 	void TakeShip(const Ship *shipToTake, const Ship *model = nullptr, bool takeOutfits = false);
 	std::vector<std::shared_ptr<Ship>>::iterator DisownShip(const Ship *selected);
 	void ParkShip(const Ship *selected, bool isParked);
-	void RenameShip(const Ship *selected, const std::string &name);
+	void RenameShip(const Ship *selected, const std::string &name) const;
 	// Change the order of the given ship in the list.
 	void ReorderShip(int fromIndex, int toIndex);
 	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
@@ -261,13 +261,16 @@ public:
 	// will elapse. Returns 0 if the give mission doesn't have a deadline.
 	int RemainingDeadline(const Mission &mission) const;
 
-	const SortType GetAvailableSortType() const;
+	SortType GetAvailableSortType() const;
 	void NextAvailableSortType();
-	const bool ShouldSortAscending() const;
+
+	bool ShouldSortAscending() const;
 	void ToggleSortAscending();
-	const bool ShouldSortSeparateDeadline() const;
+
+	bool ShouldSortSeparateDeadline() const;
 	void ToggleSortSeparateDeadline();
-	const bool ShouldSortSeparatePossible() const;
+
+	bool ShouldSortSeparatePossible() const;
 	void ToggleSortSeparatePossible();
 	void SortAvailable();
 
@@ -559,7 +562,7 @@ private:
 	std::map<const Mission *, int> remainingDeadlines;
 	// How to sort availableJobs
 	bool availableSortAsc = true;
-	SortType availableSortType;
+	SortType availableSortType = ABC;
 	bool sortSeparateDeadline = false;
 	bool sortSeparatePossible = false;
 

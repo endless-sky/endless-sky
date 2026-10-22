@@ -31,19 +31,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Wormhole.h"
 
 #include <algorithm>
+#include <ranges>
 
 using namespace std;
 
 namespace {
-	const string WORMHOLE = "wormhole";
-	const string PLANET = "planet";
+	constexpr string WORMHOLE = "wormhole";
+	constexpr string PLANET = "planet";
 
 	// Planet attributes in the form "requires: <attribute>" restrict the ability of ships to land
 	// unless the ship has all required attributes.
 	void SetRequiredAttributes(const set<string> &attributes, set<string> &required)
 	{
-		static const string PREFIX = "requires: ";
-		static const string PREFIX_END = "requires:!";
+		static constexpr string PREFIX = "requires: ";
+		static constexpr string PREFIX_END = "requires:!";
 		required.clear();
 		for_each(attributes.lower_bound(PREFIX), attributes.lower_bound(PREFIX_END), [&](const string &attribute)
 		{
@@ -180,7 +181,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			if(remove)
 			{
 				if(child.HasChildren())
-					child.PrintTrace("\"remove\" cannot be used with child nodes of \"landscape\":");
+					child.PrintTrace(R"("remove" cannot be used with child nodes of "landscape":)");
 				for(int i = valueIndex; i < child.Size(); ++i)
 					erase_if(landscapes, [&](const auto &choice) { return choice == SpriteSet::Get(child.Token(i)); });
 			}
@@ -440,7 +441,7 @@ void Planet::FinishLoading(Set<Wormhole> &wormholes)
 // at least one system, and all systems that claim it must themselves be valid.
 bool Planet::IsValid() const
 {
-	return isDefined && !systems.empty() && all_of(systems.begin(), systems.end(),
+	return isDefined && !systems.empty() && ranges::all_of(systems,
 		[](const System *s) noexcept -> bool { return s->IsValid(); });
 }
 
@@ -587,9 +588,9 @@ const Sale<Ship> &Planet::ShipyardStock() const
 set<const Shop<Ship> *> Planet::Shipyards() const
 {
 	set<const Shop<Ship> *> shops = shipSales;
-	for(const auto &shop : GameData::Shipyards())
-		if(shop.second.CanStock(this))
-			shops.insert(&shop.second);
+	for(const auto &shop : GameData::Shipyards() | views::values)
+		if(shop.CanStock(this))
+			shops.insert(&shop);
 	return shops;
 }
 
@@ -615,14 +616,14 @@ const Sale<Outfit> &Planet::OutfitterStock() const
 
 
 
-// Get the list of outitters available on this planet.
+// Get the list of outfitters available on this planet.
 // This will include conditionally available shops.
 set<const Shop<Outfit> *> Planet::Outfitters() const
 {
 	set<const Shop<Outfit> *> shops = outfitSales;
-	for(const auto &shop : GameData::Outfitters())
-		if(shop.second.CanStock(this))
-			shops.insert(&shop.second);
+	for(const auto &shop : GameData::Outfitters() | views::values)
+		if(shop.CanStock(this))
+			shops.insert(&shop);
 	return shops;
 }
 
@@ -680,14 +681,14 @@ const System *Planet::GetSystem() const
 // in more than one system.
 bool Planet::IsInSystem(const System *system) const
 {
-	return (find(systems.begin(), systems.end(), system) != systems.end());
+	return ranges::find(systems, system) != systems.end();
 }
 
 
 
 void Planet::SetSystem(const System *system)
 {
-	if(find(systems.begin(), systems.end(), system) == systems.end())
+	if(ranges::find(systems, system) == systems.end())
 		systems.push_back(system);
 }
 
@@ -697,7 +698,7 @@ void Planet::SetSystem(const System *system)
 // must be done when game events rearrange the planets in a system.
 void Planet::RemoveSystem(const System *system)
 {
-	auto it = find(systems.begin(), systems.end(), system);
+	auto it = ranges::find(systems, system);
 	if(it != systems.end())
 		systems.erase(it);
 }
@@ -744,7 +745,7 @@ bool Planet::IsAccessible(const Ship *ship) const
 		return false;
 
 	const auto &shipAttributes = ship->Attributes();
-	return all_of(requiredAttributes.cbegin(), requiredAttributes.cend(),
+	return ranges::all_of(requiredAttributes,
 			[&](const string &attr) -> bool { return shipAttributes.Get(attr); });
 }
 
@@ -835,11 +836,11 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	if(!government)
 		return "Somehow, this planet does not have a government.";
 	const auto &playerTribute = player.GetTribute();
-	if(playerTribute.find(this) != playerTribute.end())
+	if(playerTribute.contains(this))
 	{
 		if(tributeAlreadyPaying)
 			return tributeAlreadyPaying->Get();
-		else if(government->TributeAlreadyPaying())
+		if(government->TributeAlreadyPaying())
 			return government->TributeAlreadyPaying()->Get();
 		return "We are already paying you as much as we can afford.";
 	}
@@ -932,11 +933,11 @@ void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
 	Personality fighterPersonality = Personality::DefenderFighter();
 	for(auto it = defenders.begin(); it != end; ++it)
 	{
-		(**it).SetPersonality(defenderPersonality);
-		if((**it).HasBays())
-			for(auto bay = (**it).Bays().begin(); bay != (**it).Bays().end(); ++bay)
-				if(bay->ship)
-					bay->ship->SetPersonality(fighterPersonality);
+		(*it)->SetPersonality(defenderPersonality);
+		if((*it)->HasBays())
+			for(const auto &bay : (*it)->Bays())
+				if(bay.ship)
+					bay.ship->SetPersonality(fighterPersonality);
 	}
 
 	++defenseDeployed;

@@ -34,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <iostream>
 #include <map>
+#include <ranges>
 #include <set>
 
 using namespace std;
@@ -433,8 +434,8 @@ namespace {
 				cout << fuelDmg << ',';
 				double leakDmg = weapon->LeakDamage() * 100. * fireRate;
 				cout << leakDmg << ',';
-				double hitforce = weapon->HitForce() * fireRate;
-				cout << hitforce << ',';
+				double hitForce = weapon->HitForce() * fireRate;
+				cout << hitForce << ',';
 
 				double strength = weapon->MissileStrength() + weapon->AntiMissile();
 				cout << strength << ',';
@@ -515,21 +516,17 @@ namespace {
 		auto PrintOutfitsAllStats = []() -> void
 		{
 			set<string> attributes;
-			for(auto &it : GameData::Outfits())
-			{
-				const Outfit &outfit = it.second;
+			for(const auto &outfit : GameData::Outfits() | views::values)
 				for(const auto &[name, value] : outfit)
 					attributes.insert(name);
-			}
 
 			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";
 			for(const auto &attribute : attributes)
 				cout << ',' << DataWriter::Quote(attribute);
 			cout << '\n';
 
-			for(auto &it : GameData::Outfits())
+			for(const auto &outfit : GameData::Outfits() | views::values)
 			{
-				const Outfit &outfit = it.second;
 				cout << DataWriter::Quote(outfit.TrueName()) << ',';
 				cout << DataWriter::Quote(outfit.Category()) << ',';
 				cout << outfit.Cost() << ',';
@@ -624,12 +621,12 @@ namespace {
 				string indent = "\t";
 				indentation[object.Index()] = object.Parent() >= 0 ? indentation[object.Parent()] + 1 : 0;
 				for(int i = 0; i < indentation[object.Index()] ; ++i)
-					indent += "\t";
+					indent += '\t';
 				if(object.GetPlanet())
 					cout << indent << "object " << DataWriter::Quote(object.GetPlanet()->TrueName()) << "\n";
 				else
 					cout << indent << "object\n";
-				indent += "\t";
+				indent += '\t';
 				if(object.HasSprite())
 					cout << indent << "sprite " << DataWriter::Quote(object.GetSprite()->Name()) << "\n";
 				cout << indent << "distance " << object.Distance() << "\n";
@@ -645,8 +642,8 @@ namespace {
 			string name = *it;
 			if(name == "-a" || name == "--all")
 			{
-				for(const auto &system : GameData::Systems())
-					PrintOrbits(system.second);
+				for(const auto &system : GameData::Systems() | views::values)
+					PrintOrbits(system);
 				break;
 			}
 			if(name == "-s" || name == "--systems")
@@ -672,15 +669,14 @@ namespace {
 		auto PrintPlanetDescriptions = []() -> void
 		{
 			cout << "planet::description::spaceport\n";
-			for(auto &it : GameData::Planets())
+			for(const auto &[name, planet] : GameData::Planets())
 			{
-				cout << it.first << "::";
-				const Planet &planet = it.second;
-				for(auto &whenText : planet.Description())
-					cout << whenText.second;
+				cout << name << "::";
+				for(const auto &whenText : planet.Description() | views::values)
+					cout << whenText;
 				cout << "::";
-				for(auto &whenText : planet.GetPort().Description())
-					cout << whenText.second;
+				for(const auto &whenText : planet.GetPort().Description() | views::values)
+					cout << whenText;
 				cout << "\n";
 			}
 		};

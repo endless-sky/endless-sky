@@ -20,19 +20,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "PlayerInfo.h"
-#include "Politics.h"
-#include "Random.h"
 #include "Ship.h"
-#include "ShipEvent.h"
 #include "image/SpriteSet.h"
-#include "System.h"
-
-#include <algorithm>
 
 using namespace std;
 
 namespace {
-	const string SPACEPORT = "Space_port";
+	constexpr string SPACEPORT = "Space_port";
 }
 
 

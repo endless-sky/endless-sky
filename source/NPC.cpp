@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <ranges>
 #include <vector>
 
 using namespace std;
@@ -215,7 +216,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 				if(child.Size() >= 3)
 					message += "to both name and customize a ship, create a variant and then reference it here.";
 				else
-					message += "the \'ship\' token must be followed by the name of a ship, e.g. ship \"Bulk Freighter\"";
+					message += R"(the "ship" token must be followed by the name of a ship, e.g. ship "Bulk Freighter")";
 				child.PrintTrace(message);
 			}
 		}
@@ -223,7 +224,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		{
 			if(child.HasChildren())
 			{
-				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child)));
+				fleets.emplace_back(Fleet(child));
 				if(hasValue)
 				{
 					// Copy the custom fleet in lieu of reparsing the same DataNode.
@@ -307,8 +308,8 @@ void NPC::Save(DataWriter &out) const
 			out.EndChild();
 		}
 
-		for(auto &it : npcActions)
-			it.second.Save(out);
+		for(const auto &action : npcActions | views::values)
+			action.Save(out);
 
 		if(government)
 			out.Write("government", government->TrueName());
@@ -603,14 +604,14 @@ bool NPC::HasFailed() const
 	if(!passedSpawnConditions || passedDespawnConditions)
 		return false;
 
-	for(const auto &it : shipEvents)
+	for(const auto &event : shipEvents | views::values)
 	{
-		if(it.second & failIf)
+		if(event & failIf)
 			return true;
 
 		// If we still need to perform an action on this NPC, then that ship
 		// being destroyed should cause the mission to fail.
-		if((~it.second & succeedIf) && (it.second & ShipEvent::DESTROY))
+		if((~event & succeedIf) && (event & ShipEvent::DESTROY))
 			return true;
 	}
 
@@ -783,7 +784,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		// The PROVOKE and ENCOUNTER Triggers only requires a single ship to receive the
 		// event in order to run. All other Triggers require that all ships
 		// be affected.
-		if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
+		if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE || ranges::all_of(ships,
 				[&](const shared_ptr<Ship> &ship) -> bool
 				{
 					auto sit = shipEvents.find(ship.get());

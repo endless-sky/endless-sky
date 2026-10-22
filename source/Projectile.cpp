@@ -437,7 +437,7 @@ void Projectile::BreakTarget()
 // guided missiles.
 void Projectile::CheckLock(const Entity &target)
 {
-	static const double RELOCK_RATE = .3;
+	static constexpr double RELOCK_RATE = .3;
 	double base = hasLock ? 1. : RELOCK_RATE;
 	hasLock = false;
 

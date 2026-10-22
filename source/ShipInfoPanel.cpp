@@ -136,7 +136,7 @@ void ShipInfoPanel::Draw()
 	infoPanelUi->Draw(interfaceInfo, this);
 
 	// Draw all the different information sections.
-	ClearZones();
+	ClearInfoZones();
 	if(shipIt == panelState.Ships().end())
 		return;
 	Rectangle cargoBounds = infoPanelUi->GetBox("cargo");
@@ -366,7 +366,7 @@ void ShipInfoPanel::UpdateInfo()
 {
 	draggingIndex = -1;
 	hoverIndex = -1;
-	ClearZones();
+	ClearInfoZones();
 	if(shipIt == panelState.Ships().end())
 		return;
 
@@ -387,7 +387,7 @@ void ShipInfoPanel::UpdateInfo()
 
 
 
-void ShipInfoPanel::ClearZones()
+void ShipInfoPanel::ClearInfoZones()
 {
 	zones.clear();
 	commodityZones.clear();

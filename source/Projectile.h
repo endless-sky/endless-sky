@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <memory>
-#include <set>
 #include <vector>
 
 class Collision;

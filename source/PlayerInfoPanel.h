@@ -37,7 +37,7 @@ class TableArea;
 class PlayerInfoPanel : public Panel {
 public:
 	explicit PlayerInfoPanel(PlayerInfo &player);
-	explicit PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState);
+	explicit PlayerInfoPanel(PlayerInfo &player, const InfoPanelState &panelState);
 	virtual ~PlayerInfoPanel() override;
 
 	virtual void Step() override;
@@ -76,7 +76,7 @@ private:
 
 	class SortableColumn {
 	public:
-		SortableColumn(std::string name, double offset, double endX, Layout layout, InfoPanelState::ShipComparator *shipSort);
+		SortableColumn(const std::string &name, double offset, double endX, Layout layout, InfoPanelState::ShipComparator *shipSort);
 
 		std::string name;
 		double offset = 0.;

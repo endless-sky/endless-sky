@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 #include <list>
 #include <memory>
-#include <mutex>
+#include <ranges>
 #include <string>
 #include <vector>
 
@@ -44,8 +44,8 @@ class Panel {
 public:
 	struct Event {
 		Point pos;
-		int id;
-		enum {MOUSE, TOUCH, BUTTON, AXIS} type;
+		int id = 0;
+		enum {MOUSE, TOUCH, BUTTON, AXIS} type = MOUSE;
 	};
 
 
@@ -220,8 +220,8 @@ template<typename ...FARGS, typename ...ARGS>
 bool Panel::EventVisit(bool (Panel::*f)(FARGS ...), ARGS ...args)
 {
 	// Check if a child panel will consume this event first.
-	for(auto it = children.rbegin(); it != children.rend(); ++it)
-		if((*it)->EventVisit(f, args...))
+	for(auto &it : std::views::reverse(children))
+		if(it->EventVisit(f, args...))
 			return true;
 
 	// If none of our children handled this event, then it could be for us.
