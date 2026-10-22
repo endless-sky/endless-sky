@@ -36,7 +36,7 @@ using namespace std;
 
 namespace {
 	// A default string to return if somehow the current state does not exist in the state map.
-	static const string ILLEGAL = "(ILLEGAL STATE)";
+	constexpr string ILLEGAL = "(ILLEGAL STATE)";
 }
 
 
@@ -402,13 +402,13 @@ bool StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, boo
 			info.dateString = value;
 	// Format credits and debt where applicable.
 	else if(key == "credits" && hasValue)
-		if(child.IsNumber(value))
-			info.credits = Format::AbbreviatedNumber(child.Value(value));
+		if(DataNode::IsNumber(value))
+			info.credits = Format::AbbreviatedNumber(DataNode::Value(value));
 		else
 			info.credits = value;
 	else if(key == "debt" && hasValue)
-		if(child.IsNumber(value))
-			info.debt = Format::AbbreviatedNumber(child.Value(value));
+		if(DataNode::IsNumber(value))
+			info.debt = Format::AbbreviatedNumber(DataNode::Value(value));
 		else
 			info.debt = value;
 	else

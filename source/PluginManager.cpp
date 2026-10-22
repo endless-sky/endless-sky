@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PluginManager.h"
 
-#include <ranges>
-
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -24,6 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Plugin.h"
 #include "Set.h"
+
+#include <ranges>
 
 using namespace std;
 

@@ -25,8 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Ship.h"
 
-#include <cstdlib>
-
 using namespace std;
 
 
@@ -74,7 +72,7 @@ void ShipManager::Load(const DataNode &node)
 	}
 
 	if(taking && !id.empty() && count > 1)
-		node.PrintTrace("Use of \"id\" to refer to the ship is only supported when \"count\" is equal to 1.");
+		node.PrintTrace(R"(Use of "id" to refer to the ship is only supported when "count" is equal to 1.)");
 }
 
 

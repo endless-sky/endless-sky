@@ -30,8 +30,8 @@ namespace {
 	GLint sizeI = -1;
 	GLint positionI = -1;
 	GLint scaleI = -1;
-	GLint srcpositionI = -1;
-	GLint srcscaleI = -1;
+	GLint srcPositionI = -1;
+	GLint srcScaleI = -1;
 	GLint fadeI = -1;
 
 	GLint vertI;
@@ -60,8 +60,8 @@ void RenderBuffer::Init()
 	sizeI = shader->Uniform("size");
 	positionI = shader->Uniform("position");
 	scaleI = shader->Uniform("scale");
-	srcpositionI = shader->Uniform("srcposition");
-	srcscaleI = shader->Uniform("srcscale");
+	srcPositionI = shader->Uniform("srcposition");
+	srcScaleI = shader->Uniform("srcscale");
 	fadeI = shader->Uniform("fade");
 	vertI = shader->Attrib("vert");
 
@@ -175,7 +175,7 @@ RenderBuffer::RenderBuffer(const Point &dimensions)
 
 
 
-// Destructor. Frees the texture and renderbuffers.
+// Destructor. Frees the texture and render buffers.
 RenderBuffer::~RenderBuffer()
 {
 	glDeleteTextures(1, &texid);
@@ -206,7 +206,7 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 	const Point scaledSize = size * multiplier * Screen::Zoom() / 100.0;
 	glViewport(0, 0, scaledSize.X(), scaledSize.Y());
 
-	static const float CLEAR[] = {0, 0, 0, 0};
+	static constexpr float CLEAR[] = {0, 0, 0, 0};
 	if(OpenGL::HasClearBufferSupport())
 		glClearBufferfv(GL_COLOR, 0, CLEAR);
 	else
@@ -223,7 +223,7 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 
 
 // Reset the render target and viewport to the original settings.
-void RenderBuffer::Deactivate()
+void RenderBuffer::Deactivate() const
 {
 	// Restore the old settings.
 	glViewport(lastViewport[0], lastViewport[1], lastViewport[2], lastViewport[3]);
@@ -243,7 +243,7 @@ void RenderBuffer::Draw(const Point &position)
 
 
 // Draw the contents of this buffer at the specified position.
-void RenderBuffer::Draw(const Point &position, const Point &clipsize, const Point &srcposition)
+void RenderBuffer::Draw(const Point &position, const Point &clipSize, const Point &srcPosition)
 {
 	glUseProgram(shader->Object());
 	if(OpenGL::HasVaoSupport())
@@ -256,18 +256,18 @@ void RenderBuffer::Draw(const Point &position, const Point &clipsize, const Poin
 
 	glBindTexture(GL_TEXTURE_2D, texid);
 
-	glUniform2f(sizeI, clipsize.X(), clipsize.Y());
+	glUniform2f(sizeI, clipSize.X(), clipSize.Y());
 	glUniform2f(positionI, position.X(), position.Y());
 	glUniform2f(scaleI, 2.f / Screen::Width(), -2.f / Screen::Height());
 
-	glUniform2f(srcpositionI, srcposition.X(), srcposition.Y());
-	glUniform2f(srcscaleI, 1.f / size.X(), 1.f / size.Y());
+	glUniform2f(srcPositionI, srcPosition.X(), srcPosition.Y());
+	glUniform2f(srcScaleI, 1.f / size.X(), 1.f / size.Y());
 
 	glUniform4f(fadeI,
-		fadePadding[0] / clipsize.Y(),
-		fadePadding[1] / clipsize.Y(),
-		fadePadding[2] / clipsize.X(),
-		fadePadding[3] / clipsize.X()
+		fadePadding[0] / clipSize.Y(),
+		fadePadding[1] / clipSize.Y(),
+		fadePadding[2] / clipSize.X(),
+		fadePadding[3] / clipSize.X()
 	);
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);

@@ -43,7 +43,7 @@ public:
 
 
 private:
-	explicit Swizzle(bool identity, bool loaded, bool overrideMask, std::array<float, 16> matrix);
+	explicit Swizzle(bool identity, bool loaded, bool overrideMask, const std::array<float, 16> &matrix);
 
 
 private:

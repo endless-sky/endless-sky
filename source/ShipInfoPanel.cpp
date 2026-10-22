@@ -176,7 +176,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else if(key == 'i' || command.Has(Command::INFO) || (control && key == SDLK_TAB))
 	{
 		GetUI().Pop(this);
-		GetUI().Push(new PlayerInfoPanel(player, std::move(panelState)));
+		GetUI().Push(new PlayerInfoPanel(player, panelState));
 	}
 	else if(key == 'r')
 		GetUI().Push(ShipNameDialogPanel::Create(
@@ -379,10 +379,10 @@ void ShipInfoPanel::UpdateInfo()
 	}
 
 	outfits.clear();
-	for(const auto &it : ship.Outfits())
-		outfits[it.first->Category()].push_back(it.first);
+	for(const auto &outfit : ship.Outfits() | views::keys)
+		outfits[outfit->Category()].push_back(outfit);
 
-	panelState.SelectOnly(shipIt - panelState.Ships().begin());
+	panelState.SelectOnly(static_cast<int>(std::distance(shipIt, panelState.Ships().cbegin())));
 }
 
 
@@ -397,7 +397,7 @@ void ShipInfoPanel::ClearInfoZones()
 
 
 
-void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
+void ShipInfoPanel::DrawShipStats(const Rectangle &bounds) const
 {
 	// Check that the specified area is big enough.
 	if(bounds.Width() < WIDTH)
@@ -538,9 +538,9 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	}
 	// If necessary, shrink the sprite to keep the hardpoints inside the labels.
 	// The width of this UI block will be 2 * (LABEL_WIDTH + HARDPOINT_DX).
-	static const double LABEL_WIDTH = 150.;
-	static const double LABEL_DX = 95.;
-	static const double LABEL_PAD = 5.;
+	static constexpr double LABEL_WIDTH = 150.;
+	static constexpr double LABEL_DX = 95.;
+	static constexpr double LABEL_PAD = 5.;
 	if(maxX > (LABEL_DX - LABEL_PAD))
 		scale = min(scale, (LABEL_DX - LABEL_PAD) / (2. * maxX));
 
@@ -567,7 +567,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	const double centerX = bounds.Center().X();
 	const double labelCenter[2] = {centerX - .5 * LABEL_WIDTH - LABEL_DX, centerX + LABEL_DX + .5 * LABEL_WIDTH};
 	const double fromX[2] = { centerX - LABEL_DX + LABEL_PAD, centerX + LABEL_DX - LABEL_PAD};
-	static const double LINE_HEIGHT = 20.;
+	static constexpr double LINE_HEIGHT = 20.;
 	static const double TEXT_OFF = .5 * (LINE_HEIGHT - font.Height());
 	static const Point LINE_SIZE(LABEL_WIDTH, LINE_HEIGHT);
 	Point topFrom;

@@ -33,18 +33,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <ranges>
 
 using namespace std;
 
 namespace {
 	// Dynamic economy parameters: how much of its production each system keeps
 	// and exports each day:
-	const double KEEP = .89;
-	const double EXPORT = .10;
+	constexpr double KEEP = .89;
+	constexpr double EXPORT = .10;
 	// Standard deviation of the daily production of each commodity:
-	const double VOLUME = 2000.;
+	constexpr double VOLUME = 2000.;
 	// Above this supply amount, price differences taper off:
-	const double LIMIT = 20000.;
+	constexpr double LIMIT = 20000.;
 }
 
 const double System::DEFAULT_NEIGHBOR_DISTANCE = 100.;
@@ -346,7 +347,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 				for(const DataNode &grand : child)
 					LoadObjectHelper(grand, toRemoveTemplate, true);
 
-				auto removeIt = find_if(objects.begin(), objects.end(),
+				auto removeIt = ranges::find_if(objects,
 					[&toRemoveTemplate](const StellarObject &object)
 					{
 						if(toRemoveTemplate.GetSprite() != object.GetSprite())
@@ -1100,12 +1101,12 @@ bool System::HasTrade() const
 // Update the economy.
 void System::StepEconomy()
 {
-	for(auto &it : trade)
+	for(auto &price : trade | views::values)
 	{
-		it.second.exports = EXPORT * it.second.supply;
-		it.second.supply *= KEEP;
-		it.second.supply += Random::Normal() * VOLUME;
-		it.second.Update();
+		price.exports = EXPORT * price.supply;
+		price.supply *= KEEP;
+		price.supply += Random::Normal() * VOLUME;
+		price.Update();
 	}
 }
 
@@ -1180,7 +1181,7 @@ int System::MinimumFleetPeriod() const
 
 const vector<RaidFleet> &System::RaidFleets() const
 {
-	static const vector<RaidFleet> EMPTY;
+	static constexpr vector<RaidFleet> EMPTY;
 	// If the system defines its own raid fleets then those are used in lieu of the government's fleets.
 	return noRaids ? EMPTY : ((raidFleets.empty() && government) ? government->RaidFleets() : raidFleets);
 }
@@ -1191,7 +1192,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets,
 		const ConditionsStore *playerConditions, int parent)
 {
 	int index = objects.size();
-	objects.push_back(StellarObject());
+	objects.emplace_back();
 	StellarObject &object = objects.back();
 	object.index = index;
 	object.parent = parent;
@@ -1280,9 +1281,8 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 
 	// Any other star system that is within the neighbor distance is also a
 	// neighbor.
-	for(const auto &it : systems)
+	for(const auto &other : systems | views::values)
 	{
-		const System &other = it.second;
 		// Skip systems that are invalid or inaccessible.
 		if(!other.IsValid() || other.Inaccessible())
 			continue;

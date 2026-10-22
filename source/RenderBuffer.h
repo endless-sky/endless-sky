@@ -60,7 +60,7 @@ public:
 	// Draw the contents of this buffer at the specified position.
 	void Draw(const Point &position);
 	// Draw the contents of this buffer at the specified position, clipping the contents.
-	void Draw(const Point &position, const Point &clipsize, const Point &srcposition = Point());
+	void Draw(const Point &position, const Point &clipSize, const Point &srcPosition = Point());
 
 	double Top() const;
 	double Bottom() const;
@@ -74,7 +74,7 @@ public:
 
 
 protected:
-	void Deactivate();
+	void Deactivate() const;
 
 
 private:

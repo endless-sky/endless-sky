@@ -106,7 +106,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	selectedQuantity->SetPadding(0);
 	selectedQuantity->SetOptions({"1", "10", "100", "1000"});
 	selectedQuantity->SetTypeable(true);
-	selectedQuantity->SetCallback([](string &s)
+	selectedQuantity->SetCallback([](const string &s)
 	{
 		// Restrict input to digits.
 		for(char c : s)
@@ -184,7 +184,7 @@ void ShopPanel::Draw()
 	const Sprite *findIcon = SpriteSet::Get(hoverButton == 'f' ? "ui/find selected" : "ui/find unselected");
 	SpriteShader::Draw(findIcon, findCenter);
 	buttonZones.emplace_back(Rectangle(findCenter, {findIcon->Width(), findIcon->Height()}), 'f');
-	static const string FIND = "_Find";
+	static constexpr string FIND = "_Find";
 
 	shipInfo.DrawTooltips();
 	outfitInfo.DrawTooltips();
@@ -460,7 +460,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'k' || (key == 'p' && (mod & KMOD_SHIFT)))
 	{
 		const Ship *flagship = player.Flagship();
-		bool anyEscortUnparked = any_of(playerShips.begin(), playerShips.end(),
+		bool anyEscortUnparked = ranges::any_of(playerShips,
 			[&](const Ship *ship){ return ship != flagship && !ship->IsParked() && !ship->IsDisabled(); });
 		for(const Ship *ship : playerShips)
 			if(ship != flagship)
@@ -810,7 +810,7 @@ void ShopPanel::DrawShipsSidebar()
 		*GameData::Colors().Get("shop side panel background"));
 
 	// Draw this string, centered in the side panel:
-	static const string YOURS = "Your Ships:";
+	static constexpr string YOURS = "Your Ships:";
 	Point yoursPoint(Screen::Right() - SIDEBAR_WIDTH, Screen::Top() + 10 - sidebarScroll.AnimatedValue());
 	font.Draw({YOURS, {SIDEBAR_WIDTH, Alignment::CENTER}}, yoursPoint, bright);
 
@@ -870,7 +870,7 @@ void ShopPanel::DrawShipsSidebar()
 		const auto checkIt = flightChecks.find(ship);
 		if(checkIt != flightChecks.end())
 		{
-			const string &check = (*checkIt).second.front();
+			const string &check = checkIt->second.front();
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
 			if(shipZones.back().Contains(mouse))
@@ -1122,7 +1122,7 @@ void ShopPanel::SideSelect(int count)
 	// Find the currently selected ship in the list.
 	vector<shared_ptr<Ship>>::const_iterator it = player.Ships().begin();
 	for( ; it != player.Ships().end(); ++it)
-		if((*it).get() == playerShip)
+		if(it->get() == playerShip)
 			break;
 
 	// Bail out if there are no ships to choose from.
@@ -1226,7 +1226,7 @@ void ShopPanel::SideSelect(Ship *ship, int clicks)
 				else
 					playerShips.insert(it);
 			}
-			if(unselect && find(similarShips.begin(), similarShips.end(), playerShip) != similarShips.end())
+			if(unselect && ranges::find(similarShips, playerShip) != similarShips.end())
 			{
 				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
 				CheckSelection();
@@ -1533,7 +1533,7 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 
 // Check if the given point is within the button zone, and if so return the letter of the button.
 // Returns '\0' if the click is not within the panel, and ' ' if it's within the panel but not on a button.
-char ShopPanel::CheckButton(int x, int y)
+char ShopPanel::CheckButton(int x, int y) const
 {
 	const Point clickPoint(x, y);
 

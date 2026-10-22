@@ -121,7 +121,7 @@ public:
 		double shipRamscoop, double shipCollection, double shipCollectionHeat) const;
 	// Additional travel distance to target for ships entering through hyperspace.
 	double ExtraHyperArrivalDistance() const;
-	// Additional travel distance to target for ships entering using a jumpdrive.
+	// Additional travel distance to target for ships entering using a jump drive.
 	double ExtraJumpArrivalDistance() const;
 
 	// The minimum distances from the system center to jump out of the system.
@@ -272,7 +272,7 @@ private:
 	// Negative values are allowed, causing ships to jump beyond their target.
 	std::optional<double> extraHyperArrivalDistance;
 	// The amount of additional distance that ships will arrive away from the
-	// system center when entering this system through a jumpdrive jump.
+	// system center when entering this system through a jump drive jump.
 	// Jump drives use a circle around the target for targeting, so a value below
 	// 0 doesn't have the same meaning as for hyperdrives. Negative values will
 	// be interpreted as positive values.

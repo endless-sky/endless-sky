@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <iterator>
+#include <ranges>
 
 using namespace std;
 
@@ -49,8 +50,8 @@ void ShipJumpNavigation::Calibrate(const Ship &ship)
 	// Make it possible for a hyperdrive or jump drive to be integrated into a ship.
 	ParseOutfit(ship.BaseAttributes());
 	// Check each outfit from this ship to determine if it has jump capabilities.
-	for(const auto &it : ship.Outfits())
-		ParseOutfit(*it.first);
+	for(const auto &outfit : ship.Outfits() | views::keys)
+		ParseOutfit(*outfit);
 }
 
 
