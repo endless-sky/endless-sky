@@ -705,7 +705,7 @@ private:
 
 	// Helper functions for jettisoning flotsam.
 	void JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing = false);
-	void Jettison(const std::shared_ptr<Flotsam>& toJettison);
+	void Jettison(const std::shared_ptr<Flotsam> &toJettison);
 
 
 private:

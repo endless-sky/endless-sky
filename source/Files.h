@@ -75,7 +75,7 @@ public:
 	static std::string Read(const std::filesystem::path &path);
 	static std::string Read(const std::shared_ptr<std::iostream> &file);
 	static void Write(const std::filesystem::path &path, const std::string &data);
-	static void Write(const std::shared_ptr<std::iostream>& file, const std::string &data);
+	static void Write(const std::shared_ptr<std::iostream> &file, const std::string &data);
 	static void CreateFolder(const std::filesystem::path &path);
 
 	// Open this user's plugins directory in their native file explorer.

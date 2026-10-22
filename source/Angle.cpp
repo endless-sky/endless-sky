@@ -74,7 +74,7 @@ Angle Angle::Random(const double range)
 
 
 // Construct an Angle from the given angle in degrees.
-Angle::Angle(const double degrees) noexcept
+Angle::Angle(double degrees) noexcept
 	: angle(lround(degrees * DEG_TO_STEP) & MASK)
 {
 	// Make sure lround does not overflow with the values of System::SetDate.
