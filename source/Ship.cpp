@@ -529,7 +529,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "noun" && hasValue)
 			noun = child.Token(1);
 		else if(key == "swizzle" && hasValue)
-			customSwizzleName = child.Token(1);
+			customSwizzle = GameData::Swizzles().Get(child.Token(1));
 		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "administrative cost" && hasValue)
@@ -940,8 +940,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		if(!GetSprite())
 			static_cast<Body &>(*this) = *base;
-		if(customSwizzleName.empty())
-			customSwizzleName = base->CustomSwizzleName();
+		if(!customSwizzle)
+			customSwizzle = base->CustomSwizzle();
 		if(!administrativeCost.has_value())
 			administrativeCost = base->administrativeCost;
 		if(baseAttributes.Empty())
@@ -1233,14 +1233,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			targetSystem = nullptr;
 		}
 	}
-
-	if(!customSwizzleName.empty())
-	{
-		customSwizzle = GameData::Swizzles().Get(customSwizzleName);
-		if(!customSwizzle->IsLoaded())
-			Logger::Log("Ship \"" + GivenName() + "\" refers to nonexistent swizzle \"" + customSwizzleName + "\".",
-				Logger::Level::WARNING);
-	}
 }
 
 
@@ -1277,8 +1269,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("never disabled");
 		if(!isCapturable)
 			out.Write("uncapturable");
-		if(customSwizzle && customSwizzle->IsLoaded())
-			out.Write("swizzle", customSwizzle->Name());
+		if(customSwizzle)
+			out.Write("swizzle", customSwizzle->TrueName());
 		if(administrativeCost.has_value())
 			out.Write("administrative cost", administrativeCost.value());
 
@@ -3142,13 +3134,6 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 const Swizzle *Ship::CustomSwizzle() const
 {
 	return customSwizzle;
-}
-
-
-
-const string &Ship::CustomSwizzleName() const
-{
-	return customSwizzleName;
 }
 
 
