@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionsStore.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Logger.h"
 
 #include <algorithm>
 #include <cmath>
@@ -170,7 +169,7 @@ ConditionSet::ConditionSet(int64_t newLiteral, const ConditionsStore *conditions
 
 
 
-ConditionSet &ConditionSet::operator=(const ConditionSet &&other) noexcept
+ConditionSet &ConditionSet::operator=(ConditionSet &&other) noexcept
 {
 	// Guard against self-assignment as per C++ conventions.
 	if(this == &other)
@@ -184,8 +183,8 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &&other) noexcept
 	// Then move over all content.
 	expressionOperator = other.expressionOperator;
 	literal = other.literal;
-	conditionName = std::move(other.conditionName);
-	children = std::move(other.children);
+	conditionName = other.conditionName;
+	children = other.children;
 	conditions = other.conditions;
 
 	return *this;
@@ -248,8 +247,8 @@ void ConditionSet::Save(DataWriter &out) const
 
 void ConditionSet::SaveAsTree(DataWriter &out) const
 {
-	auto it = find_if(CS_TOKEN_CONVERSION.begin(), CS_TOKEN_CONVERSION.end(),
-		[this](const std::pair<const string, pair<ConditionSet::ExpressionOp, uint64_t>> &e) {
+	auto it = ranges::find_if(CS_TOKEN_CONVERSION,
+		[this](const std::pair<const string, pair<ExpressionOp, uint64_t>> &e) {
 			return e.second.first == expressionOperator;
 		});
 
@@ -296,8 +295,8 @@ void ConditionSet::SaveInline(DataWriter &out) const
 	}
 
 	// Lookup the operator to get the operator text and parsing/writing style
-	auto it = find_if(CS_TOKEN_CONVERSION.begin(), CS_TOKEN_CONVERSION.end(),
-		[this](const std::pair<const string, pair<ConditionSet::ExpressionOp, uint64_t>> &e) {
+	auto it = ranges::find_if(CS_TOKEN_CONVERSION,
+		[this](const std::pair<const string, pair<ExpressionOp, uint64_t>> &e) {
 			return e.second.first == expressionOperator;
 		});
 	if(it == CS_TOKEN_CONVERSION.end())
@@ -361,7 +360,7 @@ bool ConditionSet::IsEmpty() const
 	// AND is the default toplevel operator for any condition, so whenever we encounter AND without any children
 	// then there was nothing under the toplevel to parse, thus the condition was empty.
 	return
-		(expressionOperator == ExpressionOp::AND && children.size() == 0) ||
+		(expressionOperator == ExpressionOp::AND && children.empty()) ||
 		(expressionOperator == ExpressionOp::INVALID);
 }
 
@@ -798,7 +797,7 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, int parent
 
 		// If the expression currently contains a terminal, then push it down.
 		// Also push down the current expression if it has a higher or equal precedence to the new operator.
-		if((children.size() == 0) || (children.size() > 1 && infixOp.first != expressionOperator &&
+		if((children.empty()) || (children.size() > 1 && infixOp.first != expressionOperator &&
 				Precedence(expressionOperator) >= Precedence(infixOp.first)))
 			if(!PushDownFull(node))
 				return FailParse();
@@ -841,7 +840,7 @@ bool ConditionSet::PushDownLast(const DataNode &node)
 		return FailParse(node, "Cannot create sub-expression from void");
 
 	// Store and remove the child that we want to push down.
-	ConditionSet ce = std::move(children.back());
+	ConditionSet ce = children.back();
 	children.pop_back();
 
 	// Create a new last child.

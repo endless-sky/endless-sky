@@ -76,7 +76,7 @@ private:
 	void HandleDown();
 	void HandleConfirm();
 
-	void SelectPreset(const std::string &name);
+	void SelectPreset(const std::string &name) const;
 
 
 private:

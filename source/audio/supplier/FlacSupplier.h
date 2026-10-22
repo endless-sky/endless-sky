@@ -29,7 +29,7 @@ public:
 	explicit FlacSupplier(std::shared_ptr<std::iostream> data, bool looping = false);
 
 
-private:
+protected:
 	/// A flac frame has been processed; forward the samples to the output buffer.
 	FLAC__StreamDecoderWriteStatus write_callback(const FLAC__Frame *frame, const FLAC__int32 *const buffer[]) override;
 	/// Metadata was read from the file.

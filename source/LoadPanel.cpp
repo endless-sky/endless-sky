@@ -45,7 +45,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 
 #include <algorithm>
-#include <cstdlib>
 #include <ranges>
 
 using namespace std;
@@ -554,13 +553,13 @@ optional<filesystem::path> LoadPanel::SnapshotPathBase() const
 
 
 
-bool LoadPanel::SnapshotNameFilter(const string &input, char ch)
+bool LoadPanel::SnapshotNameFilter(const string &name, char ch) const
 {
 	optional<filesystem::path> base = SnapshotPathBase();
 	if(!base.has_value())
 		return false;
 
-	return Files::IsValidCharacter(ch) && Files::MaxFilenameLength(*base) > input.size() + 6;
+	return Files::IsValidCharacter(ch) && Files::MaxFilenameLength(*base) > name.size() + 6;
 }
 
 
@@ -571,7 +570,7 @@ void LoadPanel::SnapshotCallback(const string &name)
 	optional<filesystem::path> fromOpt = SnapshotPathBase();
 	if(!fromOpt.has_value())
 		return;
-	filesystem::path from = *fromOpt;
+	const filesystem::path &from = *fromOpt;
 
 	string suffix = name.empty() ? FileDate(from) : name;
 	string extension = "~" + suffix + ".txt";

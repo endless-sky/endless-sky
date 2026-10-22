@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "NPC.h"
 #include "TextReplacements.h"
 
+#include <cstdint>
 #include <list>
 #include <map>
 #include <memory>
@@ -120,7 +121,7 @@ public:
 	const std::set<const System *> &TrackedSystems() const;
 	void RecalculateTrackedSystems();
 	void Mark(const std::set<const System *> &systems) const;
-	void Unmark(const std::set<const System *> &system) const;
+	void Unmark(const std::set<const System *> &systems) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int Fine() const;
@@ -130,8 +131,8 @@ public:
 	int64_t DisplayedPayment() const;
 	// The mission should take this many jumps.
 	// Only matters to available jobs (not saved to file)
-	const int ExpectedJumps() const;
-	int CalculateJumps(const System *const sourceSystem);
+	int ExpectedJumps() const;
+	int CalculateJumps(const System *sourceSystem);
 	// The mission must be completed by this deadline (if there is a deadline).
 	const Date &Deadline() const;
 	// If this mission's deadline was before the given date and it has not been

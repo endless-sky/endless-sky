@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SDL.h"
 
 #include <algorithm>
+#include <ranges>
 
 using namespace std;
 
@@ -39,7 +40,7 @@ bool UI::Handle(const SDL_Event &event)
 	{
 		--it;
 		// Panels that are about to be popped cannot handle any other events.
-		if(count(toPop.begin(), toPop.end(), it->get()))
+		if(ranges::count(toPop, it->get()))
 			continue;
 
 		if(event.type == SDL_MOUSEMOTION)
@@ -187,10 +188,10 @@ void UI::Pop(const Panel *panel)
 // Remove the given panel and every panel that is higher in the stack.
 void UI::PopThrough(const Panel *panel)
 {
-	for(auto it = stack.rbegin(); it != stack.rend(); ++it)
+	for(auto &it : std::views::reverse(stack))
 	{
-		toPop.push_back(it->get());
-		if(it->get() == panel)
+		toPop.push_back(it.get());
+		if(it.get() == panel)
 			break;
 	}
 }

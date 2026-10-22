@@ -38,7 +38,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "TaskQueue.h"
 
-#include <condition_variable>
 #include <list>
 #include <map>
 #include <memory>
@@ -126,9 +125,9 @@ private:
 	public:
 		Point center;
 		Angle angle;
-		double radius;
+		double radius = 0.;
 		const Color &color;
-		int count;
+		int count = 0;
 	};
 
 	class Status {
@@ -163,8 +162,8 @@ private:
 	public:
 		Point position;
 		Point angle;
-		double scale;
-		bool isBlind;
+		double scale = 0;
+		bool isBlind = false;
 	};
 
 	class Zoom {
@@ -201,7 +200,7 @@ private:
 	void SpawnFleets();
 	void SpawnPersons();
 	void GenerateWeather();
-	void SendHails();
+	void SendHails() const;
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
 	void HandleMouseInput(Command &activeCommands);

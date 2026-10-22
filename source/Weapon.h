@@ -342,33 +342,33 @@ private:
 	double blastRadius = 0.;
 	double safeRange = 0.;
 
-	static const int DAMAGE_TYPES = 23;
-	static const int HIT_FORCE = 0;
+	static constexpr int DAMAGE_TYPES = 23;
+	static constexpr int HIT_FORCE = 0;
 	// Normal damage types:
-	static const int SHIELD_DAMAGE = 1;
-	static const int HULL_DAMAGE = 2;
-	static const int DISABLED_DAMAGE = 3;
-	static const int MINABLE_DAMAGE = 4;
-	static const int FUEL_DAMAGE = 5;
-	static const int HEAT_DAMAGE = 6;
-	static const int ENERGY_DAMAGE = 7;
+	static constexpr int SHIELD_DAMAGE = 1;
+	static constexpr int HULL_DAMAGE = 2;
+	static constexpr int DISABLED_DAMAGE = 3;
+	static constexpr int MINABLE_DAMAGE = 4;
+	static constexpr int FUEL_DAMAGE = 5;
+	static constexpr int HEAT_DAMAGE = 6;
+	static constexpr int ENERGY_DAMAGE = 7;
 	// Status effects:
-	static const int ION_DAMAGE = 8;
-	static const int WEAPON_JAMMING_DAMAGE = 9;
-	static const int DISRUPTION_DAMAGE = 10;
-	static const int SLOWING_DAMAGE = 11;
-	static const int DISCHARGE_DAMAGE = 12;
-	static const int CORROSION_DAMAGE = 13;
-	static const int LEAK_DAMAGE = 14;
-	static const int BURN_DAMAGE = 15;
+	static constexpr int ION_DAMAGE = 8;
+	static constexpr int WEAPON_JAMMING_DAMAGE = 9;
+	static constexpr int DISRUPTION_DAMAGE = 10;
+	static constexpr int SLOWING_DAMAGE = 11;
+	static constexpr int DISCHARGE_DAMAGE = 12;
+	static constexpr int CORROSION_DAMAGE = 13;
+	static constexpr int LEAK_DAMAGE = 14;
+	static constexpr int BURN_DAMAGE = 15;
 	// Relative damage types:
-	static const int RELATIVE_SHIELD_DAMAGE = 16;
-	static const int RELATIVE_HULL_DAMAGE = 17;
-	static const int RELATIVE_DISABLED_DAMAGE = 18;
-	static const int RELATIVE_MINABLE_DAMAGE = 19;
-	static const int RELATIVE_FUEL_DAMAGE = 20;
-	static const int RELATIVE_HEAT_DAMAGE = 21;
-	static const int RELATIVE_ENERGY_DAMAGE = 22;
+	static constexpr int RELATIVE_SHIELD_DAMAGE = 16;
+	static constexpr int RELATIVE_HULL_DAMAGE = 17;
+	static constexpr int RELATIVE_DISABLED_DAMAGE = 18;
+	static constexpr int RELATIVE_MINABLE_DAMAGE = 19;
+	static constexpr int RELATIVE_FUEL_DAMAGE = 20;
+	static constexpr int RELATIVE_HEAT_DAMAGE = 21;
+	static constexpr int RELATIVE_ENERGY_DAMAGE = 22;
 	mutable double damage[DAMAGE_TYPES] = {};
 
 	double piercing = 0.;

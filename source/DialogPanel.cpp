@@ -417,7 +417,7 @@ bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 			if((input.empty() && c == '-') || (c >= '0' && c <= '9'))
 				input += c;
 			// Doubles can contain a single decimal point.
-			else if(doubleFun && c == '.' && !std::count(input.begin(), input.end(), '.'))
+			else if(doubleFun && c == '.' && !ranges::count(input, '.'))
 				input += c;
 			else
 				Invalid();

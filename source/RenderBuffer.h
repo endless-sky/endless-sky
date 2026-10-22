@@ -47,7 +47,7 @@ public:
 
 public:
 	// Create a texture of the given size that can be used as a render target.
-	RenderBuffer(const Point &dimensions);
+	explicit RenderBuffer(const Point &dimensions);
 	virtual ~RenderBuffer();
 
 	// Initialize the shaders used internally.
@@ -60,7 +60,7 @@ public:
 	// Draw the contents of this buffer at the specified position.
 	void Draw(const Point &position);
 	// Draw the contents of this buffer at the specified position, clipping the contents.
-	void Draw(const Point &position, const Point &clipsize, const Point &srcposition = Point());
+	void Draw(const Point &position, const Point &clipSize, const Point &srcPosition = Point());
 
 	double Top() const;
 	double Bottom() const;
@@ -70,11 +70,11 @@ public:
 	double Height() const;
 	double Width() const;
 
-	void SetFadePadding(float top, float bottom, float right = 0, float left = 0);
+	void SetFadePadding(float top, float bottom, float left = 0, float right = 0);
 
 
 protected:
-	void Deactivate();
+	void Deactivate() const;
 
 
 private:

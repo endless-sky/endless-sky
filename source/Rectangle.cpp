@@ -159,7 +159,7 @@ Point Rectangle::TopLeft() const
 
 
 
-// Get the top right conrer - that is, the maximum x and minimum y.
+// Get the top right corner - that is, the maximum x and minimum y.
 Point Rectangle::TopRight() const
 {
 	return center + Point(.5, -.5) * dimensions;
@@ -210,12 +210,12 @@ bool Rectangle::Overlaps(const Rectangle &other) const
 
 
 
-bool Rectangle::Overlaps(const Point &circle, const double radius) const
+bool Rectangle::Overlaps(const Point &center, double radius) const
 {
 	// Handle case where circle is entirely within rectangle.
-	if(Contains(circle))
+	if(Contains(center))
 		return true;
 
-	const Point closest = Point(max(Left(), min(Right(), circle.X())), max(Top(), min(Bottom(), circle.Y())));
-	return (circle - closest).LengthSquared() < radius * radius;
+	const Point closest = Point(max(Left(), min(Right(), center.X())), max(Top(), min(Bottom(), center.Y())));
+	return (center - closest).LengthSquared() < radius * radius;
 }

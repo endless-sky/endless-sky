@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
-#include "image/Sprite.h"
 #include "image/SpriteLoadManager.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -35,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <ranges>
 #include <set>
 
 using namespace std;
@@ -61,8 +61,8 @@ MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere)
 
 void MapOutfitterPanel::LoadCatalogThumbnails() const
 {
-	for(const auto &category : catalog)
-		for(const string &entry : category.second)
+	for(const auto &outfitNames : catalog | views::values)
+		for(const string &entry : outfitNames)
 			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), GameData::Outfits().Get(entry)->Thumbnail());
 }
 
@@ -283,9 +283,9 @@ void MapOutfitterPanel::Init()
 	set<const Outfit *> seen;
 
 	// Add all outfits sold by outfitters of planets from viewable systems.
-	for(auto &&it : GameData::Planets())
-		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
-			for(const Outfit *outfit : it.second.OutfitterStock())
+	for(const auto &planet : GameData::Planets() | views::values)
+		if(planet.IsValid() && player.CanView(*planet.GetSystem()))
+			for(const Outfit *outfit : planet.OutfitterStock())
 				if(!seen.contains(outfit))
 				{
 					catalog[outfit->Category()].push_back(outfit->TrueName());
@@ -293,24 +293,24 @@ void MapOutfitterPanel::Init()
 				}
 
 	// Add outfits in storage
-	for(const auto &it : player.PlanetaryStorage())
-		if(it.first->HasOutfitter())
-			for(const auto &oit : it.second.Outfits())
-				if(!seen.contains(oit.first))
+	for(const auto &[planet, storage] : player.PlanetaryStorage())
+		if(planet->HasOutfitter())
+			for(const auto &outfit : storage.Outfits() | views::keys)
+				if(!seen.contains(outfit))
 				{
-					catalog[oit.first->Category()].push_back(oit.first->TrueName());
-					seen.insert(oit.first);
+					catalog[outfit->Category()].push_back(outfit->TrueName());
+					seen.insert(outfit);
 				}
 
 	// Add all known minables.
-	for(const auto &it : player.Harvested())
-		if(!seen.contains(it.second))
+	for(const auto &outfit : player.Harvested() | views::values)
+		if(!seen.contains(outfit))
 		{
-			catalog[it.second->Category()].push_back(it.second->TrueName());
-			seen.insert(it.second);
+			catalog[outfit->Category()].push_back(outfit->TrueName());
+			seen.insert(outfit);
 		}
 
 	// Sort the vectors.
-	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Outfit>());
+	for(auto &outfitNames : catalog | views::values)
+		ranges::sort(outfitNames, BySeriesAndIndex<Outfit>());
 }

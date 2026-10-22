@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MaskManager.h"
 
+#include <ranges>
+
 #include "../Logger.h"
 #include "Sprite.h"
 
@@ -64,25 +66,22 @@ void MaskManager::RegisterScale(const Sprite *sprite, Point scale)
 // Create the scaled versions of all masks from the 1x versions.
 void MaskManager::ScaleMasks()
 {
-	for(auto &spriteScales : spriteMasks)
+	for(auto &scales : spriteMasks | views::values)
 	{
-		auto &scales = spriteScales.second;
 		auto baseIt = scales.find(DEFAULT);
 		if(baseIt == scales.end() || baseIt->second.empty())
 			continue;
 
 		const auto &baseMasks = baseIt->second;
-		for(auto &it : scales)
+		for(auto &[scale, masks] : scales)
 		{
-			auto &masks = it.second;
-
 			// Skip mask generation for scales that have already been generated previously.
 			if(!masks.empty())
 				continue;
 
 			masks.reserve(baseMasks.size());
 			for(auto &&mask : baseMasks)
-				masks.push_back(mask * it.first);
+				masks.push_back(mask * scale);
 		}
 	}
 }
@@ -111,13 +110,15 @@ const vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, Point scale) con
 	if(warned.insert(make_pair(sprite, true)).second)
 	{
 		string warning = "Sprite \"" + sprite->Name() + "\": collision mask not found.";
-		if(scales.empty()) warning += " (No scaled masks.)";
-		else if(maskIt != scales.end()) warning += " (No masks for scale " + PrintScale(scale) + ".)";
+		if(scales.empty())
+			warning += " (No scaled masks.)";
+		else if(maskIt != scales.end())
+			warning += " (No masks for scale " + PrintScale(scale) + ".)";
 		else
 		{
 			warning += "\n\t" + PrintScale(scale) + " not found in known scales:";
-			for(auto &&s : scales)
-				warning += "\n\t\t" + PrintScale(s.first);
+			for(const auto &knownScale : scales | views::keys)
+				warning += "\n\t\t" + PrintScale(knownScale);
 		}
 		Logger::Log(warning, Logger::Level::WARNING);
 	}

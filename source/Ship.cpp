@@ -55,6 +55,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cmath>
 #include <limits>
+#include <ranges>
 #include <sstream>
 
 using namespace std;
@@ -71,18 +72,18 @@ namespace {
 	// Scanning takes up to 10 seconds (SCAN_TIME / MIN_SCAN_STEPS)
 	// dependent on the range from the ship (among other factors).
 	// The scan speed uses a gaussian drop-off with the reported scan radius as the standard deviation.
-	const double SCAN_TIME = 600.;
+	constexpr double SCAN_TIME = 600.;
 	// Always gain at least 1 step of scan progress for every frame spent scanning while in range.
 	// This ensures every scan completes within 600 frames (10 seconds) of being in range.
-	const double MIN_SCAN_STEPS = 1.;
+	constexpr double MIN_SCAN_STEPS = 1.;
 	// Exponential dropoff of scan rate starts at scan rate of SCAN_TIME/LINEAR_RATE
 	// with an exponent of SCAN_DROPOFF_EXPONENT.
-	const double LINEAR_RATE = 5.;
-	const double SCAN_DROPOFF_EXPONENT = 5.;
+	constexpr double LINEAR_RATE = 5.;
+	constexpr double SCAN_DROPOFF_EXPONENT = 5.;
 
 	// In Ship::Scan, ships smaller than this are treated as being this size.
-	const double SCAN_MIN_CARGO_SPACE = 40.;
-	const double SCAN_MIN_OUTFIT_SPACE = 200.;
+	constexpr double SCAN_MIN_CARGO_SPACE = 40.;
+	constexpr double SCAN_MIN_OUTFIT_SPACE = 200.;
 
 	// Formula for calculating scan speed tuning factors:
 	// factor = pow(framesToFullScan / (SCAN_TIME * sqrt(scanEfficiency)), -1.5) / referenceSize
@@ -477,13 +478,13 @@ Ship::Ship(const DataNode &node, const ConditionsStore *playerConditions)
 
 void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	bool add = node.Token(0) == "add";
-	if(node.Size() >= 2 + add)
-		trueModelName = node.Token(1 + add);
-	if(node.Size() >= 3 + add)
+	bool rootAdd = node.Token(0) == "add";
+	if(node.Size() >= 2 + rootAdd)
+		trueModelName = node.Token(1 + rootAdd);
+	if(node.Size() >= 3 + rootAdd)
 	{
 		base = GameData::Ships().Get(trueModelName);
-		variantName = node.Token(2 + add);
+		variantName = node.Token(2 + rootAdd);
 	}
 	isDefined = true;
 	entityType = Entity::Type::SHIP;
@@ -647,8 +648,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 					else if(grandKey == "over")
 						attributes.side = Hardpoint::Side::OVER;
 					else
-						grand.PrintTrace("Child nodes of \"" + key
-							+ "\" tokens can only be \"angle\", \"parallel\", or \"arc\":");
+						grand.PrintTrace(R"(Child nodes of ")" + key
+							+ R"(" tokens can only be "angle", "parallel", or "arc":)");
 
 					if(needToCheckAngles && !defaultBaseAngle && !attributes.isOmnidirectional)
 					{
@@ -837,10 +838,10 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			// Verify we have at least as many installed outfits as were identified as "equipped."
 			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
 			if(!hasArmament)
-				for(const auto &pair : GetEquipped(Weapons()))
+				for(const auto &[outfit, count] : GetEquipped(Weapons()))
 				{
-					auto it = outfits.find(pair.first);
-					if(it == outfits.end() || it->second < pair.second)
+					auto it = outfits.find(outfit);
+					if(it == outfits.end() || it->second < count)
 					{
 						armament.UninstallAll();
 						break;
@@ -939,7 +940,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(base && base != this)
 	{
 		if(!GetSprite())
-			static_cast<Body &>(*this) = *base;
+			static_cast<Body &>(*this) = static_cast<Body>(*base);
 		if(!customSwizzle)
 			customSwizzle = base->CustomSwizzle();
 		if(!administrativeCost.has_value())
@@ -1186,8 +1187,8 @@ void Ship::FinishLoading(bool isNewInstance)
 		string message = (!givenName.empty() ? "Ship \"" + givenName + "\" " : "") + "(" + VariantName() + "):\n";
 		ostringstream outfitNames;
 		outfitNames << "has outfits:\n";
-		for(const auto &it : outfits)
-			outfitNames << '\t' << it.second << " " + it.first->TrueName() << endl;
+		for(const auto &[outfit, count] : outfits)
+			outfitNames << '\t' << count << " " + outfit->TrueName() << endl;
 		Logger::Log(message + warning + outfitNames.str(), Logger::Level::WARNING);
 	}
 
@@ -1240,8 +1241,8 @@ void Ship::FinishLoading(bool isNewInstance)
 // Check if this ship (model) and its outfits have been defined.
 bool Ship::IsValid() const
 {
-	for(auto &&outfit : outfits)
-		if(!outfit.first->IsDefined())
+	for(const auto &outfit : outfits | views::keys)
+		if(!outfit->IsDefined())
 			return false;
 
 	return isDefined;
@@ -1282,53 +1283,53 @@ void Ship::Save(DataWriter &out) const
 			out.Write("category", baseAttributes.Category());
 			out.Write("cost", baseAttributes.Cost());
 			out.Write("mass", baseAttributes.Mass());
-			for(const auto &it : baseAttributes.FlareSprites())
-				for(int i = 0; i < it.second; ++i)
-					it.first.SaveSprite(out, "flare sprite");
-			for(const auto &it : baseAttributes.FlareSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("flare sound", it.first->Name());
-			for(const auto &it : baseAttributes.ReverseFlareSprites())
-				for(int i = 0; i < it.second; ++i)
-					it.first.SaveSprite(out, "reverse flare sprite");
-			for(const auto &it : baseAttributes.ReverseFlareSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("reverse flare sound", it.first->Name());
-			for(const auto &it : baseAttributes.SteeringFlareSprites())
-				for(int i = 0; i < it.second; ++i)
-					it.first.SaveSprite(out, "steering flare sprite");
-			for(const auto &it : baseAttributes.SteeringFlareSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("steering flare sound", it.first->Name());
-			for(const auto &it : baseAttributes.AfterburnerEffects())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("afterburner effect", it.first->TrueName());
+			for(const auto &[sprite, count] : baseAttributes.FlareSprites())
+				for(int i = 0; i < count; ++i)
+					sprite.SaveSprite(out, "flare sprite");
+			for(const auto &[sound, count] : baseAttributes.FlareSounds())
+				for(int i = 0; i < count; ++i)
+					out.Write("flare sound", sound->Name());
+			for(const auto &[sprite, count] : baseAttributes.ReverseFlareSprites())
+				for(int i = 0; i < count; ++i)
+					sprite.SaveSprite(out, "reverse flare sprite");
+			for(const auto &[sound, count] : baseAttributes.ReverseFlareSounds())
+				for(int i = 0; i < count; ++i)
+					out.Write("reverse flare sound", sound->Name());
+			for(const auto &[sprite, count] : baseAttributes.SteeringFlareSprites())
+				for(int i = 0; i < count; ++i)
+					sprite.SaveSprite(out, "steering flare sprite");
+			for(const auto &[sound, count] : baseAttributes.SteeringFlareSounds())
+				for(int i = 0; i < count; ++i)
+					out.Write("steering flare sound", sound->Name());
+			for(const auto &[effect, count] : baseAttributes.AfterburnerEffects())
+				for(int i = 0; i < count; ++i)
+					out.Write("afterburner effect", effect->TrueName());
 			for(const auto &[effect, amount] : baseAttributes.JumpEffects())
 				out.Write("jump effect", effect->TrueName(), amount);
-			for(const auto &it : baseAttributes.JumpSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("jump sound", it.first->Name());
-			for(const auto &it : baseAttributes.JumpInSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("jump in sound", it.first->Name());
-			for(const auto &it : baseAttributes.JumpOutSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("jump out sound", it.first->Name());
-			for(const auto &it : baseAttributes.HyperSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("hyperdrive sound", it.first->Name());
-			for(const auto &it : baseAttributes.HyperInSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("hyperdrive in sound", it.first->Name());
-			for(const auto &it : baseAttributes.HyperOutSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("hyperdrive out sound", it.first->Name());
-			for(const auto &it : baseAttributes.CargoScanSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("cargo scan sound", it.first->Name());
-			for(const auto &it : baseAttributes.OutfitScanSounds())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("outfit scan sound", it.first->Name());
+			for(const auto &[sound, count] : baseAttributes.JumpSounds())
+				for(int i = 0; i < count; ++i)
+					out.Write("jump sound", sound->Name());
+			for(const auto &[sound, count] : baseAttributes.JumpInSounds())
+				for(int i = 0; i < count; ++i)
+					out.Write("jump in sound", sound->Name());
+			for(const auto &[sound, count] : baseAttributes.JumpOutSounds())
+				for(int i = 0; i < count; ++i)
+					out.Write("jump out sound", sound->Name());
+			for(const auto &[sound, count] : baseAttributes.HyperSounds())
+				for(int i = 0; i < count; ++i)
+					out.Write("hyperdrive sound", sound->Name());
+			for(const auto &[sound, count] : baseAttributes.HyperInSounds())
+				for(int i = 0; i < count; ++i)
+					out.Write("hyperdrive in sound", sound->Name());
+			for(const auto &[sound, count] : baseAttributes.HyperOutSounds())
+				for(int i = 0; i < count; ++i)
+					out.Write("hyperdrive out sound", sound->Name());
+			for(const auto &[sound, count] : baseAttributes.CargoScanSounds())
+				for(int i = 0; i < count; ++i)
+					out.Write("cargo scan sound", sound->Name());
+			for(const auto &[sound, count] : baseAttributes.OutfitScanSounds())
+				for(int i = 0; i < count; ++i)
+					out.Write("outfit scan sound", sound->Name());
 			for(const auto &[name, value] : baseAttributes)
 				if(value)
 					out.Write(name, value);
@@ -1516,7 +1517,7 @@ const EsUuid &Ship::UUID() const noexcept
 
 
 
-void Ship::SetUUID(const EsUuid &id)
+void Ship::SetUUID(const EsUuid &id) const
 {
 	uuid.Clone(id);
 }
@@ -1715,9 +1716,9 @@ vector<string> Ship::FlightCheck() const
 			if(fuelCapacity < navigation.JumpFuel())
 				checks.emplace_back("no fuel?");
 		}
-		for(const auto &it : outfits)
+		for(const auto &outfit : outfits | views::keys)
 		{
-			const Weapon *weapon = it.first->GetWeapon().get();
+			const Weapon *weapon = outfit->GetWeapon().get();
 			if(weapon && weapon->FiringEnergy() > energy)
 			{
 				checks.emplace_back("insufficient energy to fire?");
@@ -2344,8 +2345,8 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 				if(tookAmmo)
 				{
 					// Update the carried mass cache.
-					for(auto &&item : takenAmmo)
-						carriedMass += item.first->Mass() * item.second;
+					for(auto &[outfit, count] : takenAmmo)
+						carriedMass += outfit->Mass() * count;
 				}
 
 				// This ship will refuel naturally based on the carrier's fuel
@@ -2610,8 +2611,8 @@ int Ship::Scan(const PlayerInfo &player)
 		if(sounds.empty())
 			Audio::Play(Audio::Get("scan"), position, SoundCategory::SCAN);
 		else
-			for(const auto &sound : sounds)
-				Audio::Play(sound.first, position, SoundCategory::SCAN);
+			for(const auto &sound : sounds | views::keys)
+				Audio::Play(sound, position, SoundCategory::SCAN);
 	};
 	if(cache.silentScans)
 	{
@@ -2901,7 +2902,7 @@ bool Ship::IsIonized() const
 
 	// A ship can only be fully ionized if its engines or weapons require energy.
 	bool usesEnergy = RequiresMovementEnergy()
-		|| any_of(outfits.begin(), outfits.end(), [](const auto &it) -> bool {
+		|| ranges::any_of(outfits, [](const auto &it) -> bool {
 			const Weapon *weapon = it.first->GetWeapon().get();
 			return weapon && weapon->FiringEnergy() > 0.;
 		});
@@ -4369,9 +4370,9 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 
 
 
-void Ship::SetFormationPattern(const FormationPattern *formationToSet)
+void Ship::SetFormationPattern(const FormationPattern *formation)
 {
-	formationPattern = formationToSet;
+	formationPattern = formation;
 }
 
 
@@ -4787,26 +4788,26 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 
 			for(unsigned i = 0; i < explosionTotal / 2; ++i)
 				CreateExplosion(visuals, true);
-			for(const auto &it : finalExplosions)
-				visuals.emplace_back(*it.first, position, velocity, angle);
+			for(const auto &explosion : finalExplosions | views::keys)
+				visuals.emplace_back(*explosion, position, velocity, angle);
 			// For everything in this ship's cargo hold there is a 25% chance
 			// that it will survive as flotsam.
-			for(const auto &it : cargo.Commodities())
-				Jettison(it.first, Random::Binomial(it.second, .25));
-			for(const auto &it : cargo.Outfits())
-				Jettison(it.first, Random::Binomial(it.second, .25));
+			for(const auto &[commodity, count] : cargo.Commodities())
+				Jettison(commodity, Random::Binomial(count, .25));
+			for(const auto &[outfit, count] : cargo.Outfits())
+				Jettison(outfit, Random::Binomial(count, .25));
 			// Ammunition has a default 5% chance to survive as flotsam.
-			for(const auto &it : outfits)
+			for(const auto &[outfit, count] : outfits)
 			{
-				double flotsamChance = it.first->Get("flotsam chance");
+				double flotsamChance = outfit->Get("flotsam chance");
 				if(flotsamChance > 0.)
-					Jettison(it.first, Random::Binomial(it.second, flotsamChance));
+					Jettison(outfit, Random::Binomial(count, flotsamChance));
 				// 0 valued 'flotsamChance' means default, which is 5% for ammunition.
 				// At this point, negative values are the only non-zero values possible.
 				// Negative values override the default chance for ammunition
 				// so the outfit cannot be dropped as flotsam.
-				else if(it.first->Category() == "Ammunition" && !flotsamChance)
-					Jettison(it.first, Random::Binomial(it.second, .05));
+				else if(outfit->Category() == "Ammunition" && !flotsamChance)
+					Jettison(outfit, Random::Binomial(count, .05));
 			}
 			for(shared_ptr<Flotsam> &it : jettisoned)
 				it->Place(*this);
@@ -4973,7 +4974,7 @@ void Ship::DoGeneration()
 			for(const Bay &bay : bays)
 				if(bay.ship)
 					carried.emplace_back(1. - bay.ship->HealthFraction(), bay.ship.get());
-			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
+			ranges::sort(carried, (isYours && Preferences::Has(FIGHTER_REPAIR))
 				// Players may use a parallel strategy, to launch fighters in waves.
 				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
 					{ return lhs.first > rhs.first; }
@@ -4984,35 +4985,32 @@ void Ship::DoGeneration()
 			);
 
 			// Apply shield and hull repair to carried fighters.
-			for(const pair<double, Ship *> &it : carried)
+			for(const auto &ship : carried | views::values)
 			{
-				Ship &ship = *it.second;
 				if(!hullDelay && hullRemaining)
-					levels.DoRepair(ship.levels.hull, hullRemaining, ship.MaxHull(), repairLevels);
+					levels.DoRepair(ship->levels.hull, hullRemaining, ship->MaxHull(), repairLevels);
 				if(!shieldDelay && shieldsRemaining)
-					levels.DoRepair(ship.levels.shields, shieldsRemaining, ship.MaxShields(), regenLevels);
+					levels.DoRepair(ship->levels.shields, shieldsRemaining, ship->MaxShields(), regenLevels);
 			}
 
 			// Now that there is no more need to use energy for hull and shield
 			// repair, if there is still excess energy, transfer it.
 			double energyRemaining = levels.energy - MaxEnergy();
 			double fuelRemaining = levels.fuel - MaxFuel();
-			for(const pair<double, Ship *> &it : carried)
+			for(const auto &ship : carried | views::values)
 			{
-				Ship &ship = *it.second;
 				if(energyRemaining > 0.)
-					Transfer(ship.levels.energy, energyRemaining, ship.MaxEnergy());
+					Transfer(ship->levels.energy, energyRemaining, ship->MaxEnergy());
 				if(fuelRemaining > 0.)
-					Transfer(ship.levels.fuel, fuelRemaining, ship.MaxFuel());
+					Transfer(ship->levels.fuel, fuelRemaining, ship->MaxFuel());
 			}
 
 			// Carried ships can recharge energy from their parent's batteries,
 			// if they are preparing for deployment.
-			for(const pair<double, Ship *> &it : carried)
+			for(const auto &ship : carried | views::values)
 			{
-				Ship &ship = *it.second;
-				if(ship.HasDeployOrder())
-					Transfer(ship.levels.energy, levels.energy, ship.MaxEnergy());
+				if(ship->HasDeployOrder())
+					Transfer(ship->levels.energy, levels.energy, ship->MaxEnergy());
 			}
 		}
 		// Decrease the shield and hull delays by 1 now that shield generation
@@ -5209,10 +5207,10 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 	int direction = hyperspaceSystem ? 1 : -1;
 	hyperspaceCount += direction;
 	// Number of frames it takes to enter or exit hyperspace.
-	static const int HYPER_C = 100;
+	static constexpr int HYPER_C = 100;
 	// Rate the ship accelerate and slow down when exiting hyperspace.
-	static const double HYPER_A = 2.;
-	static const double HYPER_D = 1000.;
+	static constexpr double HYPER_A = 2.;
+	static constexpr double HYPER_D = 1000.;
 	if(hyperspaceSystem)
 		levels.fuel -= hyperspaceFuelCost / HYPER_C;
 
@@ -5861,7 +5859,7 @@ void Ship::JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing)
 
 
 
-void Ship::Jettison(shared_ptr<Flotsam> toJettison)
+void Ship::Jettison(const shared_ptr<Flotsam> &toJettison)
 {
 	if(currentSystem)
 	{

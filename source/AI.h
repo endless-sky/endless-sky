@@ -91,7 +91,7 @@ public:
 	int64_t EnemyStrength(const Government *government) const;
 
 	// Find nearest landing location.
-	static const StellarObject *FindLandingLocation(const Ship &ship, const bool refuel = true);
+	static const StellarObject *FindLandingLocation(const Ship &ship, bool refuel = true);
 
 
 private:
@@ -133,8 +133,8 @@ private:
 	bool CanPursue(const Ship &ship, const Ship &target) const;
 	// Disabled or stranded ships coordinate with other ships to get assistance.
 	void AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship);
-	bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel, const bool needsEnergy) const;
-	bool HasHelper(const Ship &ship, const bool needsFuel, const bool needsEnergy);
+	bool CanHelp(const Ship &ship, const Ship &helper, bool needsFuel, bool needsEnergy) const;
+	bool HasHelper(const Ship &ship, bool needsFuel, bool needsEnergy);
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
 	std::shared_ptr<Ship> FindNonHostileTarget(const Ship &ship) const;
@@ -159,7 +159,7 @@ private:
 	// Determine the value to use in Command::SetTurn() to turn the ship towards the desired facing.
 	// "precision" is an optional argument corresponding to a value of the dot product of the current and target facing
 	// vectors above which no turning should be attempting, to reduce constant, minute corrections.
-	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 0.9999);
+	static double TurnToward(const Ship &ship, const Point &vector, double precision = 0.9999);
 	static bool MoveToPlanet(const Ship &ship, Command &command, double cruiseSpeed = 0.);
 	static bool MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 		const Point &targetVelocity, double radius, double slow, double cruiseSpeed = 0.);
@@ -182,7 +182,7 @@ private:
 	void DoPatrol(Ship &ship, Command &command) const;
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(const Ship &ship, Command &command, bool recheckCloseShips);
-	bool DoSecretive(Ship &ship, Command &command) const;
+	bool DoSecretive(const Ship &ship, Command &command) const;
 
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
@@ -289,7 +289,7 @@ private:
 	std::map<const Ship *, const Ship *> boarders;
 	std::map<const Ship *, std::set<std::weak_ptr<const Ship>, std::owner_less<std::weak_ptr<const Ship>>>> closeBy;
 
-	// Records for formations flying around leadships and other objects.
+	// Records for formations flying around lead ships and other objects.
 	std::map<const Body *, std::map<const FormationPattern *, FormationPositioner>> formations;
 
 	// Records that affect the combat behavior of various governments.

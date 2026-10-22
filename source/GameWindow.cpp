@@ -503,7 +503,11 @@ void GameWindow::ToggleFullscreen()
 	// no need to adjust the viewport here.
 	if(IsFullscreen())
 	{
+#ifdef ES_USE_SDL3
+		SDL_SetWindowFullscreen(mainWindow, false);
+#else
 		SDL_SetWindowFullscreen(mainWindow, 0);
+#endif
 		SDL_SetWindowSize(mainWindow, width, height);
 	}
 	else

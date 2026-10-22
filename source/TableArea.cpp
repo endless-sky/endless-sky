@@ -40,13 +40,6 @@ TableArea::TableArea(const Rectangle &r)
 
 
 
-// Stub destructor, so that unique_ptrs are destructed in the correct scope.
-TableArea::~TableArea()
-{
-}
-
-
-
 void TableArea::AddColumn(int offset, Layout layout, const Color &color)
 {
 	table.AddColumn(offset, layout);
@@ -70,7 +63,7 @@ void TableArea::AddRow(const vector<string> &row)
 void TableArea::AddCell(const string &cell)
 {
 	while(rows.size() <= currentRowIndex)
-		rows.push_back({});
+		rows.emplace_back();
 	vector<string> &currentRow = rows[currentRowIndex];
 	currentRow.push_back(cell);
 	if(currentRow.size() == colors.size())

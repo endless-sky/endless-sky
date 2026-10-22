@@ -86,7 +86,7 @@ void HiringPanel::Draw()
 	info.SetString("fleet unused", to_string(fleetUnused));
 	info.SetString("passengers", to_string(passengers));
 
-	static const int DAILY_SALARY = 100;
+	static constexpr int DAILY_SALARY = 100;
 	int salary = DAILY_SALARY * (fleetRequired - (flagship ? 1 : 0));
 	int extraSalary = DAILY_SALARY * flagshipExtra;
 	info.SetString("salary required", to_string(salary));

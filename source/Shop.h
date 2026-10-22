@@ -35,7 +35,7 @@ class System;
 template<class Item>
 class Shop {
 public:
-	Shop();
+	Shop() = default;
 	Shop(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
 		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
@@ -59,13 +59,6 @@ private:
 	ConditionSet toSell;
 	LocationFilter location;
 };
-
-
-
-template<class Item>
-Shop<Item>::Shop()
-{
-}
 
 
 

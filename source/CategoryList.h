@@ -15,9 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <iterator>
 #include <string>
-#include <utility>
 #include <vector>
 
 class DataNode;
@@ -38,18 +36,18 @@ public:
 	public:
 		Category(const std::string &name, int precedence) : name(name), precedence(precedence) {}
 		const std::string &Name() const { return name; }
-		const bool operator<(const Category &other) const { return SortHelper(*this, other); }
-		const bool operator()(const Category &a, const Category &b) const { return SortHelper(a, b); }
+		bool operator<(const Category &other) const { return SortHelper(*this, other); }
+		bool operator()(const Category &a, const Category &b) const { return SortHelper(a, b); }
 
 	private:
-		static const bool SortHelper(const Category &a, const Category &b);
-
+		static bool SortHelper(const Category &a, const Category &b);
 
 	private:
 		friend class CategoryList;
 		std::string name;
 		int precedence = 0;
 	};
+
 
 public:
 	CategoryList() = default;
@@ -64,7 +62,7 @@ public:
 	// Determine if the CategoryList contains a Category with the given name.
 	bool Contains(const std::string &name) const;
 
-	const Category GetCategory(const std::string &name) const;
+	Category GetCategory(const std::string &name) const;
 
 	typename std::vector<Category>::iterator begin() noexcept { return list.begin(); }
 	typename std::vector<Category>::const_iterator begin() const noexcept { return list.begin(); }

@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "image/Sprite.h"
 #include "image/SpriteLoadManager.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -35,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <limits>
+#include <ranges>
 #include <set>
 
 using namespace std;
@@ -63,8 +63,8 @@ MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
 
 void MapShipyardPanel::LoadCatalogThumbnails() const
 {
-	for(const auto &category : catalog)
-		for(const string &entry : category.second)
+	for(const auto &names : catalog | views::values)
+		for(const string &entry : names)
 			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), GameData::Ships().Get(entry)->Thumbnail());
 }
 
@@ -148,9 +148,9 @@ double MapShipyardPanel::SystemValue(const System *system) const
 	// a selected parked ship, the shipyard, parked ships.
 
 	const auto &systemShips = parkedShips.find(system);
-	if(systemShips != parkedShips.end() && systemShips->second.find(selected) != systemShips->second.end())
+	if(systemShips != parkedShips.end() && systemShips->second.contains(selected))
 		return .5;
-	else if(system->IsInhabited(player.Flagship()))
+	if(system->IsInhabited(player.Flagship()))
 	{
 		// Visiting a system is sufficient to know what ports are available on its planets.
 		double value = -1.;
@@ -273,9 +273,9 @@ void MapShipyardPanel::Init()
 {
 	catalog.clear();
 	set<const Ship *> seen;
-	for(const auto &it : GameData::Planets())
-		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
-			for(const Ship *ship : it.second.ShipyardStock())
+	for(const auto &planet : GameData::Planets() | views::values)
+		if(planet.IsValid() && player.CanView(*planet.GetSystem()))
+			for(const Ship *ship : planet.ShipyardStock())
 				if(!seen.contains(ship))
 				{
 					catalog[ship->Attributes().Category()].push_back(ship->VariantName());
@@ -295,6 +295,6 @@ void MapShipyardPanel::Init()
 			}
 		}
 
-	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Ship>());
+	for(auto &names : catalog | views::values)
+		ranges::sort(names, BySeriesAndIndex<Ship>());
 }
