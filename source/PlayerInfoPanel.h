@@ -76,7 +76,8 @@ private:
 
 	class SortableColumn {
 	public:
-		SortableColumn(const std::string &name, double offset, double endX, Layout layout, InfoPanelState::ShipComparator *shipSort);
+		SortableColumn(const std::string &name, double offset, double endX, Layout layout,
+			InfoPanelState::ShipComparator *shipSort);
 
 		std::string name;
 		double offset = 0.;

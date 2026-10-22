@@ -225,7 +225,8 @@ private:
 	void DrawSystems();
 	void DrawNames() const;
 	void DrawMissions() const;
-	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false) const;
+	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color,
+		bool bigger = false) const;
 
 	void IncrementZoom();
 	void DecrementZoom();

@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // from the "civilian" phrase.
 class ShipNameDialogPanel : public DialogPanel {
 public:
-	static ShipNameDialogPanel *Create(const FunctionButton& buttonOne, std::string message,
+	static ShipNameDialogPanel *Create(const FunctionButton &buttonOne, std::string message,
 		std::string initialValue = "");
 
 
