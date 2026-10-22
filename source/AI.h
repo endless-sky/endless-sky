@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "RoutePlan.h"
 
+#include <cstdint>
 #include <list>
 #include <map>
 #include <memory>

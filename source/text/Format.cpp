@@ -560,13 +560,13 @@ string Format::AmmoCount(int64_t value)
 				case 1:
 					tail /= threshold / 100;
 					result += '.';
-					result += std::to_string('0' + tail / 10);
+					result += '0' + tail / 10;
 					result += '0' + tail % 10;
 					break;
 				case 2:
 					tail /= threshold / 10;
 					result += '.';
-					result += std::to_string('0' + tail);
+					result += '0' + tail;
 					break;
 				default:
 					break;
