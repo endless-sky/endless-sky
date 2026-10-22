@@ -289,7 +289,7 @@ bool GameWindow::Init(bool headless)
 	{
 		ostringstream out;
 		if(!hasGlslVersion)
-			out << "Unable to query the GLSL version.";
+			out << "Unable to query the GLSL version." << endl;
 		if(!meetsOpenGlRequirement)
 			out << "Endless Sky requires OpenGL version 2.0 or higher, and 3.0 is recommended." << endl;
 		out << "Your OpenGL version is " << glVersion << "." << endl;
