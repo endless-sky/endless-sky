@@ -265,7 +265,7 @@ int main(int argc, char *argv[])
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
 	}
-	catch(Test::known_failure_tag)
+	catch(const Test::known_failure_tag &)
 	{
 		// This is not an error. Simply exit successfully.
 	}
