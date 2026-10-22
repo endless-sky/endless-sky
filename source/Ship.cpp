@@ -5426,6 +5426,7 @@ bool Ship::DoLandingLogic()
 			SetTargetAsteroid(nullptr);
 			SetTargetFlotsam(nullptr);
 			SetTargetShip(nullptr);
+			SetTargetStellar(nullptr);
 
 			zoom = 0.f;
 		}
@@ -5436,7 +5437,6 @@ bool Ship::DoLandingLogic()
 			|| !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel, isYours))
 	{
 		zoom = min(1.f, zoom + landingSpeed);
-		SetTargetStellar(nullptr);
 		landingPlanet = nullptr;
 	}
 	else
