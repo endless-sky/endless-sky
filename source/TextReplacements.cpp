@@ -56,12 +56,12 @@ void TextReplacements::Load(const DataNode &node, const ConditionsStore *playerC
 		}
 		if(key.front() != '<')
 		{
-			key = "<" + key;
+			key = '<' + key;
 			child.PrintTrace("Text replacements must be prefixed by \"<\":");
 		}
 		if(key.back() != '>')
 		{
-			key += ">";
+			key += '>';
 			child.PrintTrace("Text replacements must be suffixed by \">\":");
 		}
 		if(reserved.contains(key))

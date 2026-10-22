@@ -73,7 +73,7 @@ public:
 	void ProcessSyncTasks();
 
 	// Waits for all of this queue's task to finish. Ignores any sync tasks to be processed.
-	void Wait();
+	void Wait() const;
 
 
 private:

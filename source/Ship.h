@@ -176,21 +176,6 @@ public:
 
 
 public:
-	// Functions provided by the Body base class:
-	// bool HasSprite() const;
-	// const Sprite *GetSprite() const;
-	// int Width() const;
-	// int Height() const;
-	// int GetSwizzle() const;
-	// Frame GetFrame(int step = -1) const;
-	// const Mask &GetMask(int step = -1) const;
-	// const Point &Position() const;
-	// const Point &Velocity() const;
-	// const Angle &Facing() const;
-	// Point Unit() const;
-	// double Zoom() const;
-	// const Government *GetGovernment() const;
-
 	Ship() = default;
 	// Construct and Load() at the same time.
 	Ship(const DataNode &node, const ConditionsStore *playerConditions);

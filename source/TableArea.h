@@ -33,7 +33,6 @@ class TableArea : public ScrollArea
 public:
 	TableArea();
 	explicit TableArea(const Rectangle &r);
-	virtual ~TableArea() override;
 
 	void AddColumn(int offset, Layout layout, const Color &color);
 	void AddRow(const std::vector<std::string> &row);

@@ -43,7 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const string TRADE_LEVEL[] = {
+	constexpr string TRADE_LEVEL[] = {
 		"(very low)",
 		"(low)",
 		"(medium)",
@@ -396,7 +396,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinables) const
 	out << " for " << Format::CreditString(profit) << '?' << endl;
 
 	// Sort by decreasing value.
-	sort(outfitValue.begin(), outfitValue.end(), [](const OutfitInfo &left, const OutfitInfo &right)
+	ranges::sort(outfitValue, [](const OutfitInfo &left, const OutfitInfo &right)
 	{
 		return right.value < left.value;
 	});

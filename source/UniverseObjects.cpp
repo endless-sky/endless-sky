@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Logger.h"
 #include "PlayerInfo.h"
-#include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "TaskQueue.h"
 
@@ -86,9 +85,9 @@ double UniverseObjects::GetProgress() const
 
 void UniverseObjects::FinishLoading()
 {
-	for(auto &&it : planets)
-		if(it.second.IsValid())
-			it.second.FinishLoading(wormholes);
+	for(auto &planet : planets | views::values)
+		if(planet.IsValid())
+			planet.FinishLoading(wormholes);
 
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
@@ -97,22 +96,22 @@ void UniverseObjects::FinishLoading()
 	UpdateSystems();
 
 	// And, update the ships with the outfits we've now finished loading.
-	for(auto &&it : ships)
-		if(it.second.IsValid())
-			it.second.FinishLoading(true);
-	for(auto &&it : persons)
-		if(it.second.IsValid())
-			it.second.FinishLoading();
+	for(auto &ship : ships | views::values)
+		if(ship.IsValid())
+			ship.FinishLoading(true);
+	for(auto &person : persons | views::values)
+		if(person.IsValid())
+			person.FinishLoading();
 
 	// Calculate minable values.
-	for(auto &&it : minables)
-		it.second.FinishLoading();
+	for(auto &minable : minables | views::values)
+		minable.FinishLoading();
 
 	for(auto &&it : startConditions)
 		it.FinishLoading();
 	// Remove any invalid starting conditions, so the game does not use incomplete data.
-	startConditions.erase(remove_if(startConditions.begin(), startConditions.end(),
-			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
+	startConditions.erase(ranges::remove_if(startConditions,
+		[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }).begin(),
 		startConditions.end()
 	);
 
@@ -129,12 +128,12 @@ void UniverseObjects::FinishLoading()
 			for(const string &name : category.second)
 				persons.Get(name)->NeverSpawn();
 		else
-			Logger::Log("Unhandled \"disable\" keyword of type \"" + category.first + "\".", Logger::Level::WARNING);
+			Logger::Log(R"(Unhandled "disable" keyword of type ")" + category.first + "\".", Logger::Level::WARNING);
 	}
 
 	// Sort all category lists.
-	for(auto &list : categories)
-		list.second.Sort();
+	for(auto &list : categories | views::values)
+		list.Sort();
 }
 
 
@@ -270,7 +269,7 @@ void UniverseObjects::CheckReferences()
 			Warn("conversation", it.first);
 	// The "default intro" conversation must invoke the prompt to set the player's name.
 	if(!conversations.Get("default intro")->IsValidIntro())
-		Logger::Log("The \"default intro\" conversation must contain a \"name\" node.", Logger::Level::WARNING);
+		Logger::Log(R"(The "default intro" conversation must contain a "name" node.)", Logger::Level::WARNING);
 	// Effects are serialized as a part of ships.
 	for(auto &&it : effects)
 		if(it.second.TrueName().empty())
@@ -561,7 +560,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			else
 			{
 				const string &identifier = node.Token(1);
-				auto existingStart = find_if(startConditions.begin(), startConditions.end(),
+				auto existingStart = ranges::find_if(startConditions,
 					[&identifier](const StartConditions &it) noexcept -> bool { return it.Identifier() == identifier; });
 				if(existingStart != startConditions.end())
 				{
@@ -731,7 +730,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 						disabled[category].emplace(node.Token(index));
 			}
 			else
-				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
+				node.PrintTrace(R"(Invalid use of keyword "disable" for class ")" + category + "\"");
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");

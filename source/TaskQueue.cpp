@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-
 	// The main task queue used by the worker threads.
 	queue<TaskQueue::Task> tasks;
 	mutex asyncMutex;
@@ -33,7 +32,7 @@ namespace {
 
 	// Worker threads for executing tasks.
 	struct WorkerThreads {
-		WorkerThreads(uint64_t threadCount = 0) noexcept
+		explicit WorkerThreads(uint64_t threadCount = 0) noexcept
 		{
 			if(!threadCount)
 				threadCount = max(4u, thread::hardware_concurrency());
@@ -122,7 +121,7 @@ void TaskQueue::ProcessSyncTasks()
 
 
 // Waits for all of this queue's task to finish. Ignores any sync tasks to be processed.
-void TaskQueue::Wait()
+void TaskQueue::Wait() const
 {
 	while(!IsDone())
 		this_thread::yield();
@@ -178,7 +177,7 @@ void TaskQueue::ThreadLoop() noexcept
 			// in the main thread.
 			if(task.sync)
 			{
-				unique_lock<mutex> lock(task.queue->syncMutex);
+				unique_lock<mutex> taskLock(task.queue->syncMutex);
 				task.queue->syncTasks.push(std::move(task.sync));
 			}
 
