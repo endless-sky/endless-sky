@@ -498,15 +498,7 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 	}
 
 	// Figure out if a system was clicked on.
-	Point click = Point(x, y) / Zoom() - center;
-	const System *system = nullptr;
-	for(const auto &it : GameData::Systems())
-		if(it.second.IsValid() && click.Distance(it.second.Position()) < 10.
-				&& (player.HasSeen(it.second) || &it.second == specialSystem))
-		{
-			system = &it.second;
-			break;
-		}
+	const System *system = ClickedSystem(x, y);
 	if(system)
 	{
 		Select(system);
@@ -673,7 +665,7 @@ void MissionPanel::Resize()
 void MissionPanel::InitTextArea()
 {
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetAlignment(Preferences::GetTextAlignment());
 	description->SetColor(*GameData::Colors().Get("bright"));
 	ResizeTextArea();
@@ -890,22 +882,25 @@ Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const 
 		bool canAccept = (&missionList == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		if(!canAccept)
 		{
-			if(it->Unavailable().IsLoaded())
-				color = &it->Unavailable();
+			const Color *customUnavailable = it->Unavailable();
+			if(customUnavailable && customUnavailable->IsLoaded())
+				color = customUnavailable;
 			else
 				color = &dim;
 		}
 		else if(isSelected)
 		{
-			if(it->Selected().IsLoaded())
-				color = &it->Selected();
+			const Color *customSelected = it->Selected();
+			if(customSelected && customSelected->IsLoaded())
+				color = customSelected;
 			else
 				color = &selected;
 		}
 		else
 		{
-			if(it->Unselected().IsLoaded())
-				color = &it->Unselected();
+			const Color *customUnselected = it->Unselected();
+			if(customUnselected && customUnselected->IsLoaded())
+				color = customUnselected;
 			else
 				color = &unselected;
 		}

@@ -31,7 +31,8 @@ public:
 	void Load(const DataNode &node);
 	bool IsLoaded() const;
 
-	const std::string &Name() const;
+	const std::string &TrueName() const;
+	void SetTrueName(const std::string &name);
 
 	bool IsIdentity() const;
 	bool OverrideMask() const;
@@ -54,7 +55,7 @@ private:
 		0, 0, 0, 1
 	};
 
-	std::string name;
+	std::string trueName;
 	// Special case for when a swizzle does not actually need to be calculated.
 	bool identity = true;
 	bool loaded = false;

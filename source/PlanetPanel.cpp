@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "BankPanel.h"
 #include "Command.h"
+#include "Conversation.h"
 #include "ConversationPanel.h"
 #include "DialogPanel.h"
 #include "text/FontSet.h"
@@ -68,7 +69,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	hiring = make_shared<HiringPanel>(player);
 
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Preferences::GetTextAlignment());
 	AddChild(description);
@@ -247,6 +248,7 @@ void PlanetPanel::Draw()
 void PlanetPanel::UpdateTextDisplay()
 {
 	description->SetAlignment(Preferences::GetTextAlignment());
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
 }
 
 
@@ -444,6 +446,10 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	absentCannotFly.clear();
 
 	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
+	// Before distributing cargo to the player's fleet, determine if their pooled cargo hold is overflowing.
+	// If it isn't and later on we can't fit certain cargo, that's because the player has an item that's
+	// bigger than any one ship can store in their free space.
+	bool hasCargoOverflow = player.Cargo().FreePrecise() < 0.;
 	const Ship *flagship = player.Flagship();
 	const CargoHold &cargo = player.DistributeCargo();
 	// Are you overbooked? Don't count fireable flagship crew.
@@ -454,19 +460,19 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	const int commoditiesToSell = cargo.CommoditiesSize();
 	int outfitsToSell = 0;
 	map<const Outfit *, int> uniquesToSell;
-	for(auto &it : cargo.Outfits())
+	for(const auto &[outfit, count] : cargo.Outfits())
 	{
-		outfitsToSell += it.second;
-		if(it.first->Attributes().Get("unique"))
-			uniquesToSell[it.first] = it.second;
+		outfitsToSell += count;
+		if(outfit->GetPrecise("unique"))
+			uniquesToSell[outfit] = count;
 	}
 	// Have you left any unique items at the outfitter?
 	map<const Outfit *, int> leftUniques;
-	for(const auto &it : player.GetStock())
-		if(it.second > 0 && it.first->Attributes().Get("unique"))
-			leftUniques[it.first] = it.second;
+	for(const auto &[outfit, count] : player.GetStock())
+		if(count > 0 && outfit->GetPrecise("unique") && !outfitterStock.contains(outfit))
+			leftUniques[outfit] = count;
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
-	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
+	// drive, or carrier). All such ships will have been logged in the player's flight check.
 	size_t nonJumpCount = 0;
 	if(!flightChecks.empty())
 	{
@@ -507,6 +513,16 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			else
 				out << ".";
 		};
+		if(missionCargoToSell > 0 || outfitsToSell > 0 || commoditiesToSell > 0)
+		{
+			if(hasCargoOverflow)
+				out << "Your fleet's cargo is overbooked.\n";
+			else
+			{
+				out << "Some cargo could not be distributed to your escorts due to their individual cargo hold sizes. "
+					"(For example, two ships with 20 ton cargo holds can't carry three 12 ton outfits.)\n";
+			}
+		}
 		out << "If you take off now, you will:";
 
 		// Warn about missions that will fail on takeoff.
@@ -586,6 +602,7 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 {
 	flightChecks.clear();
 	player.Save();
+	player.ApplyPermadeath();
 	if(player.TakeOff(GetUI(), distributeCargo))
 	{
 		if(callback)

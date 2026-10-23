@@ -226,6 +226,12 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributeValues.push_back(Format::Number(ship.MaxHull()));
 	}
 	attributesHeight += 20;
+	if(scrollingPanel)
+	{
+		attributeLabels.push_back("disabled at:");
+		attributeValues.push_back(Format::Number(ship.MinHull()));
+		attributesHeight += 20;
+	}
 	double emptyMass = attributes.Mass();
 	double currentMass = ship.Mass();
 	attributeLabels.push_back(isGeneric ? "mass with no cargo:" : "mass:");
@@ -243,17 +249,21 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		+ " / " + Format::Number(attributes.Get("bunks")));
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
-	double fuelCapacity = attributes.Get("fuel capacity");
+	double fuelCapacity = ship.MaxFuel();
 	if(isGeneric)
 		attributeValues.push_back(Format::Number(fuelCapacity));
 	else
-		attributeValues.push_back(Format::Number(ship.Fuel() * fuelCapacity)
-			+ " / " + Format::Number(fuelCapacity));
+		attributeValues.push_back(Format::Number(ship.FuelLevel()) + " / " + Format::Number(fuelCapacity));
 	attributesHeight += 20;
 
 	double fullMass = emptyMass + attributes.Get("cargo space");
 	isGeneric &= (fullMass != emptyMass);
-	double forwardThrust = attributes.Get("thrust") ? attributes.Get("thrust") : attributes.Get("afterburner thrust");
+	double thrust = attributes.Get("thrust");
+	double afterburnerThrust = attributes.Get("afterburner thrust");
+	double mainThrust = thrust ? thrust : afterburnerThrust;
+	double allThrust = thrust + afterburnerThrust;
+	double reverseThrust = attributes.Get("reverse thrust");
+	double drag = ship.Drag();
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
@@ -261,31 +271,61 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributeValues.push_back(string());
 	attributesHeight += 20;
 	attributeLabels.push_back("max speed:");
-	attributeValues.push_back(Format::Number(60. * forwardThrust / ship.Drag()));
+	attributeValues.push_back(Format::Number(60. * mainThrust / drag));
 	attributesHeight += 20;
+	if(scrollingPanel)
+	{
+		if(thrust && afterburnerThrust)
+		{
+			attributeLabels.push_back("    w/ afterburner:");
+			attributeValues.push_back(Format::Number(60. * allThrust / drag));
+			attributesHeight += 20;
+		}
+		if(reverseThrust)
+		{
+			attributeLabels.push_back("    reversed:");
+			attributeValues.push_back(Format::Number(60. * reverseThrust / drag));
+			attributesHeight += 20;
+		}
+	}
 
 	// Movement stats are influenced by inertia reduction.
 	double reduction = 1. + attributes.Get("inertia reduction");
 	emptyMass /= reduction;
 	currentMass /= reduction;
 	fullMass /= reduction;
+	double accelMult = 1. + attributes.Get("acceleration multiplier");
+
+	auto MassInfluencedMovementDisplay = [&](double value) -> void {
+		if(!isGeneric)
+			attributeValues.push_back(Format::Number(value / currentMass));
+		else
+			attributeValues.push_back(Format::Number(value / fullMass) + " - " + Format::Number(value / emptyMass));
+		attributesHeight += 20;
+	};
+	auto AccelerationDisplay = [&](double thrustUsed) -> void {
+		MassInfluencedMovementDisplay(3600. * thrustUsed * accelMult);
+	};
+
 	attributeLabels.push_back("acceleration:");
-	double baseAccel = 3600. * forwardThrust * (1. + attributes.Get("acceleration multiplier"));
-	if(!isGeneric)
-		attributeValues.push_back(Format::Number(baseAccel / currentMass));
-	else
-		attributeValues.push_back(Format::Number(baseAccel / fullMass)
-			+ " - " + Format::Number(baseAccel / emptyMass));
-	attributesHeight += 20;
+	AccelerationDisplay(mainThrust);
+	if(scrollingPanel)
+	{
+		if(thrust && afterburnerThrust)
+		{
+			attributeLabels.push_back("    w/ afterburner:");
+			AccelerationDisplay(allThrust);
+		}
+		if(reverseThrust)
+		{
+			attributeLabels.push_back("    reversed:");
+			AccelerationDisplay(reverseThrust);
+		}
+	}
 
 	attributeLabels.push_back("turning:");
 	double baseTurn = 60. * attributes.Get("turn") * (1. + attributes.Get("turn multiplier"));
-	if(!isGeneric)
-		attributeValues.push_back(Format::Number(baseTurn / currentMass));
-	else
-		attributeValues.push_back(Format::Number(baseTurn / fullMass)
-			+ " - " + Format::Number(baseTurn / emptyMass));
-	attributesHeight += 20;
+	MassInfluencedMovementDisplay(baseTurn);
 
 	// Find out how much outfit, engine, and weapon space the chassis has.
 	map<string, double> chassis;
@@ -351,16 +391,57 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	// Add energy and heat while moving to the table.
 	attributesHeight += 20;
-	const double movingEnergyPerFrame =
-		max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
-		+ attributes.Get("turning energy")
-		+ attributes.Get("afterburner energy");
-	const double movingHeatPerFrame = max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
-		+ attributes.Get("turning heat")
-		+ attributes.Get("afterburner heat");
-	tableLabels.push_back("moving:");
-	energyTable.push_back(Format::Number(-60. * movingEnergyPerFrame));
-	heatTable.push_back(Format::Number(60. * movingHeatPerFrame));
+	double movingEnergyPerFrame = attributes.Get("turning energy");
+	double movingHeatPerFrame = attributes.Get("turning heat");
+	if(mainThrust && reverseThrust)
+	{
+		movingEnergyPerFrame += max(attributes.Get("thrusting energy") + attributes.Get("afterburner energy"),
+			attributes.Get("reverse thrusting energy"));
+		movingHeatPerFrame += max(attributes.Get("thrusting heat") + attributes.Get("afterburner heat"),
+			attributes.Get("reverse thrusting heat"));
+	}
+	else if(mainThrust)
+	{
+		movingEnergyPerFrame += attributes.Get("thrusting energy") + attributes.Get("afterburner energy");
+		movingHeatPerFrame += attributes.Get("thrusting heat") + attributes.Get("afterburner heat");
+	}
+	else if(reverseThrust)
+	{
+		movingEnergyPerFrame += attributes.Get("reverse thrusting energy");
+		movingHeatPerFrame += attributes.Get("reverse thrusting heat");
+	}
+	// If this is a scrolling panel, break up movement into each individual movement capability.
+	if(scrollingPanel)
+	{
+		tableLabels.push_back("thrusting:");
+		energyTable.push_back(Format::Number(-60. * attributes.Get("thrusting energy")));
+		heatTable.push_back(Format::Number(60. * attributes.Get("thrusting heat")));
+		if(reverseThrust)
+		{
+			attributesHeight += 20;
+			tableLabels.push_back("reversing:");
+			energyTable.push_back(Format::Number(-60. * attributes.Get("reverse thrusting energy")));
+			heatTable.push_back(Format::Number(60. * attributes.Get("reverse thrusting heat")));
+		}
+		if(afterburnerThrust)
+		{
+			attributesHeight += 20;
+			tableLabels.push_back("afterburner:");
+			energyTable.push_back(Format::Number(-60. * attributes.Get("afterburner energy")));
+			heatTable.push_back(Format::Number(60. * attributes.Get("afterburner heat")));
+		}
+		attributesHeight += 20;
+		tableLabels.push_back("turning:");
+		energyTable.push_back(Format::Number(-60. * attributes.Get("turning energy")));
+		heatTable.push_back(Format::Number(60. * attributes.Get("turning heat")));
+	}
+	else
+	{
+		// Otherwise, just display a singular worst-case value.
+		tableLabels.push_back("moving:");
+		energyTable.push_back(Format::Number(-60. * movingEnergyPerFrame));
+		heatTable.push_back(Format::Number(60. * movingHeatPerFrame));
+	}
 
 	// Add energy and heat while firing to the table.
 	attributesHeight += 20;
@@ -420,10 +501,18 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	// Add maximum values of energy and heat to the table.
 	attributesHeight += 20;
 	const double maxEnergy = attributes.Get("energy capacity");
-	const double maxHeat = 60. * ship.HeatDissipation() * ship.MaximumHeat();
-	tableLabels.push_back("max:");
+	const double maxHeat = 60. * ship.HeatDissipation() * ship.MaxHeat();
+	tableLabels.push_back("capacity:");
 	energyTable.push_back(Format::Number(maxEnergy));
 	heatTable.push_back(Format::Number(maxHeat));
+
+	if(scrollingPanel && !maxEnergy)
+	{
+		attributesHeight += 20;
+		tableLabels.push_back("surge:");
+		energyTable.push_back(Format::Number(max(0., idleEnergyPerFrame)));
+		heatTable.push_back("N/A");
+	}
 	// Pad by 10 pixels on the top and bottom.
 	attributesHeight += 30;
 }

@@ -66,6 +66,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ConditionSet.h
 	ConditionsStore.cpp
 	ConditionsStore.h
+	Confusion.cpp
+	Confusion.h
 	Conversation.cpp
 	Conversation.h
 	ConversationPanel.cpp
@@ -211,7 +213,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Messages.h
 	Minable.cpp
 	Minable.h
-	MinableDamageDealt.h
 	MiniMap.cpp
 	MiniMap.h
 	Mission.cpp
@@ -233,6 +234,7 @@ target_sources(EndlessSkyLib PRIVATE
 	News.h
 	OptionalInputDialogPanel.cpp
 	OptionalInputDialogPanel.h
+	OrderedMap.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp
@@ -302,7 +304,10 @@ target_sources(EndlessSkyLib PRIVATE
 	Screen.h
 	ScrollBar.cpp
 	ScrollBar.h
+	ScrollArea.cpp
+	ScrollArea.h
 	ScrollVar.h
+	SDL.h
 	Set.h
 	Ship.cpp
 	Ship.h
@@ -331,6 +336,8 @@ target_sources(EndlessSkyLib PRIVATE
 	StartConditionsPanel.h
 	StellarObject.cpp
 	StellarObject.h
+	StellarObjectSpriteData.cpp
+	StellarObjectSpriteData.h
 	StringInterner.cpp
 	StringInterner.h
 	Swizzle.cpp
@@ -338,6 +345,8 @@ target_sources(EndlessSkyLib PRIVATE
 	System.cpp
 	System.h
 	SystemEntry.h
+	TableArea.cpp
+	TableArea.h
 	TaskQueue.cpp
 	TaskQueue.h
 	TextArea.cpp
@@ -447,8 +456,14 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/SpriteShader.h
 	shader/StarField.cpp
 	shader/StarField.h
+	ship/ResourceLevels.cpp
+	ship/ResourceLevels.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
+	ship/ShipAttributeCache.cpp
+	ship/ShipAttributeCache.h
+	ship/ShipFactory.cpp
+	ship/ShipFactory.h
 	test/Test.cpp
 	test/Test.h
 	test/TestContext.cpp

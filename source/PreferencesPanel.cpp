@@ -59,6 +59,7 @@ namespace {
 	const int ZOOM_FACTOR_MIN = 100;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
+	const string FONT_SIZE = "UI font size";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
@@ -96,6 +97,7 @@ namespace {
 	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 	const string TRIBUTE_CONFIRMATION = "Tribute confirmation";
 	const string AMMO_REFILL = "Auto refill ammo";
+	const string FASTFORWARD_CAPSLOCK_SYNC = "Sync FF to CapsLock";
 	const string TEXT_ALIGNMENT = "Text alignment";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
@@ -230,6 +232,13 @@ void PreferencesPanel::Draw()
 void PreferencesPanel::UpdateTooltipActivation()
 {
 	tooltip.UpdateActivationCount();
+}
+
+
+
+void PreferencesPanel::UpdateTextDisplay()
+{
+	tooltip.UpdateFontSize();
 }
 
 
@@ -680,8 +689,10 @@ void PreferencesPanel::DrawControls()
 		{
 			int index = zones.size();
 			// Mark conflicts.
-			bool isConflicted = command.HasConflict();
-			bool isEmpty = !command.HasBinding();
+			bool isFastForwardSyncToCapsLock = command.Has(Command::FASTFORWARD)
+				&& Preferences::GetFastForwardCapsLockSync() == Preferences::FastForwardCapsLockSync::ALWAYS;
+			bool isConflicted = command.HasConflict() && !isFastForwardSyncToCapsLock;
+			bool isEmpty = !command.HasBinding() && !isFastForwardSyncToCapsLock;
 			bool isEditing = (index == editing);
 			if(isConflicted || isEditing || isEmpty)
 			{
@@ -708,8 +719,10 @@ void PreferencesPanel::DrawControls()
 
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
-			table.Draw(command.Description(), medium);
-			table.Draw(command.KeyName(), isEditing ? bright : medium);
+			const Color &keyColor = isFastForwardSyncToCapsLock ? dim : medium;
+			const Color &descColor = isFastForwardSyncToCapsLock ? dim : medium;
+			table.Draw(command.Description(), descColor);
+			table.Draw(command.KeyName(), isEditing ? bright : keyColor);
 		}
 	}
 }
@@ -747,6 +760,8 @@ void PreferencesPanel::DrawSettings()
 		"Display",
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
+		FONT_SIZE,
+		TEXT_ALIGNMENT,
 		SCREEN_MODE_SETTING,
 		BLOCK_SCREEN_SAVER,
 		VSYNC_SETTING,
@@ -802,6 +817,7 @@ void PreferencesPanel::DrawSettings()
 		EXPEND_AMMO,
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
+		"Damaged fighters retreat",
 		"Fighters transfer cargo",
 		AMMO_REFILL,
 		"\t",
@@ -826,13 +842,13 @@ void PreferencesPanel::DrawSettings()
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
+		FASTFORWARD_CAPSLOCK_SYNC,
 		"Landing zoom",
 		SCROLL_SPEED,
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
 		NOTIFY_ON_DEST,
 		"Save message log",
-		TEXT_ALIGNMENT,
 #ifdef _WIN32
 		"\t",
 		"Windows Options",
@@ -898,6 +914,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
+		}
+		else if(setting == FONT_SIZE)
+		{
+			isOn = true;
+			text = to_string(Preferences::GetFontSize());
 		}
 		else if(setting == SCREEN_MODE_SETTING)
 		{
@@ -1097,6 +1118,15 @@ void PreferencesPanel::DrawSettings()
 			isOn = Preferences::GetAmmoRefill() != Preferences::AmmoRefill::NEVER;
 			text = Preferences::AmmoRefillSetting();
 		}
+		else if(setting == FASTFORWARD_CAPSLOCK_SYNC)
+		{
+			const Preferences::FastForwardCapsLockSync fastForwardCapsLockSync
+				= Preferences::GetFastForwardCapsLockSync();
+			isOn = fastForwardCapsLockSync == Preferences::FastForwardCapsLockSync::ALWAYS
+				|| (fastForwardCapsLockSync == Preferences::FastForwardCapsLockSync::DEFAULT
+					&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
+			text = Preferences::FastForwardCapsLockSyncSetting();
+		}
 		else if(setting == TEXT_ALIGNMENT)
 		{
 			isOn = true;
@@ -1279,7 +1309,7 @@ void PreferencesPanel::RenderPluginDescription(const string &pluginName)
 void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 {
 	const Color &medium = *GameData::Colors().Get("medium");
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	Rectangle box = GameData::Interfaces().Get("plugins")->GetBox("plugin description");
 
 	// We are resizing and redrawing the description buffer. Reset the scroll
@@ -1395,6 +1425,11 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		if(!Preferences::ZoomViewIn())
 			while(Preferences::ZoomViewOut()) {}
 	}
+	else if(str == FONT_SIZE)
+	{
+		Preferences::ToggleFontSize();
+		CustomEvents::SendAdjustText();
+	}
 	else if(str == SCREEN_MODE_SETTING)
 		Preferences::ToggleScreenMode();
 	else if(str == VSYNC_SETTING)
@@ -1469,6 +1504,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleTributeConfirmation();
 	else if(str == AMMO_REFILL)
 		Preferences::ToggleAmmoRefill();
+	else if(str == FASTFORWARD_CAPSLOCK_SYNC)
+		Preferences::ToggleFastForwardCapsLockSync();
 	else if(str == TEXT_ALIGNMENT)
 	{
 		Preferences::ToggleTextAlignment();

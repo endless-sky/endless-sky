@@ -1320,6 +1320,7 @@ ship "Hallucination"
 		"frame rate" 1
 		"random start frame"
 	"never disabled"
+	"administrative cost" 1
 	attributes
 		category "Unclassified"
 		"hull" 1000
@@ -2032,6 +2033,7 @@ ship "Asteroid"
 	noun "asteroid"
 	sprite "asteroid/medium rock/spin"
 		"frame rate" 10
+	"administrative cost" 2
 	attributes
 		category "Unclassified"
 		"fuel capacity" 1
@@ -2620,6 +2622,7 @@ mission "Terminus exploration"
 
 ship "Science Drone"
 	sprite "ship/science drone"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		hull 200
@@ -3620,7 +3623,6 @@ mission "Antibiotics To South"
 	npc
 		government "Bounty Hunter"
 		personality nemesis heroic disables harvests plunders
-			confusion 20
 		system
 			distance 2 3
 		ship "Marauder Manta (Engines)" "Australis"
@@ -3730,7 +3732,12 @@ mission "Pirate Duel"
 	npc kill
 		government "Independent (Killable)"
 		personality heroic vindictive unconstrained launching
-			confusion 20
+			confusion
+				"max confusion" 15.
+				period 180.
+				"focus multiplier" .6
+				"gain focus time" 600
+				"lose focus time" 30
 		ship "Vanguard (Plasma Slow)" "Anglerfish"
 		on provoke
 			unmark "Umbral"
@@ -6090,7 +6097,12 @@ mission "Argosy Hijacking"
 	
 	npc disable save
 		personality launching daring uninterested target
-			confusion 80
+			confusion
+				"max confusion" 20.
+				period 180.
+				"focus multiplier" .6
+				"gain focus time" 600
+				"lose focus time" 30
 		government "Bounty (Disguised)"
 		ship "Argosy (Blaster)" "Moonshake Express"
 		dialog `The <npc> has been disabled. Syndicated Security will now deal with the hijackers, but you should go back and report to the captain of the ship.`
@@ -6616,7 +6628,6 @@ mission "Lost Racer 2 - Continued"
 	mark "Acamar"
 	destination "Sandswell"
 	passengers 1
-	deadline
 	to offer
 		has "Lost Racer 1: done"
 		not "abandoned lost racer"
@@ -6685,6 +6696,8 @@ mission "Lost Racer 2 - Continued"
 			label acamar
 			`	"Thank you, Captain. We need to get moving immediately."`
 				launch
+	on accept
+		event "lost racer deadline" 12
 	on enter Acamar
 		unmark Acamar
 		conversation
@@ -6712,8 +6725,6 @@ mission "Lost Racer 2 - Continued"
 				`	"Perhaps that would be best."`
 					goto abandon
 				`	(Suggest a different system.)`
-			action
-				set "rescue artemis renard"
 			`	"What about there," you say, pointing to the neighboring system. "Kugel. It's off the circuit, so no one will have searched there, but if her hyperdrive malfunctioned or was sabotaged, she might have ended up there. It's only a single jump away."`
 			`	"Okay," he says, wiping his eyes with the corners of his sleeves. "Kugel it is, Captain."`
 				accept
@@ -6726,11 +6737,36 @@ mission "Lost Racer 2 - Continued"
 				fail
 	on enter Kugel
 		unmark Acamar
+		set "lost racer found artemis"
 		dialog
 			"As soon as you enter the Kugel system, your sensors begin to pick up a weak radio signal coming from the second planet, this time matching exactly the frequency of Artemis Renard's transponder. It seems you have arrived in the correct system."
 	on visit
 		dialog
 			"You have reached <planet>, but August Renard is not in the system! Better depart and wait for your escorts to arrive in this star system."
+
+event "lost racer deadline"
+
+mission "Lost Racer 2 - Deadline"
+	entering
+	name "Take August to <planet>"
+	description "After your aborted search for Artemis Renard, take her father, August, back to <destination>."
+	destination "Glory"
+	passengers 1
+	to offer
+		has "event: lost racer deadline"
+		not "lost racer found artemis"
+	on offer
+		fail "Lost Racer 2 - Continued"
+		set "lost racer august to glory"
+		set "lost racer august aborted"
+		conversation
+			`As you enter the system, August enters the bridge. "Captain, we're too late. Artemis is dead. I just know it."`
+			choice
+				`	"No need to panic."`
+				`	(Say nothing.)`
+			`	"Even if she wasn't attacked by competition, she still can't have survived this long. You've failed." He looks ready to break down.`
+			`	"Take me back to Glory. There's no hope."`
+				accept
 
 mission "Lost Racer 2 - Failed"
 	entering
@@ -6741,12 +6777,19 @@ mission "Lost Racer 2 - Failed"
 	destination "Glory"
 	passengers 1
 	to offer
-		has "Lost Racer 2 - Continued: failed"
+		not "lost racer august aborted"
 		has "lost racer august to glory"
-	on complete
+
+mission "Lost Racer 2 - August Reached Glory"
+	invisible
+	landing
+	source "Glory"
+	to offer
+		has "lost racer august to glory"
+	on offer
 		clear "lost racer august to glory"
 		conversation
-			`As the advanced medical facilities of <planet> rise up to greet the <ship>, August comes to meet you on the bridge. "Captain, I would like to thank you for attempting to find my daughter, even though the attempt ended poorly. Thank you for that, at least." He then prepares to exit the ship, outside of which a veritable army of attendants are waiting.`
+			`As the advanced medical facilities of <planet> rise up to greet the <ship>, August comes to meet you on the bridge. "Captain, I would like to thank you for attempting to find my daughter, even though we failed. Thank you for that, at least." He then prepares to exit the ship, outside of which a veritable army of attendants are waiting.`
 			choice
 				`	"Weren't you going to pay me?"`
 					goto greedy
@@ -6768,6 +6811,7 @@ mission "Lost Racer 3"
 	passengers 2
 	to offer
 		has "Lost Racer 2 - Continued: done"
+		not "event: lost racer deadline"
 	on offer
 		conversation
 			`Upon reaching the planet, you pinpoint the radio signal to a valley in the southern hemisphere. You descend through a raging sandstorm; you have to rely entirely on instruments as the view from the <ship>'s bridge is almost entirely obscured. Soon, your scanners report that the source of the signal is less than a kilometer out, and after a few moments more, you begin to discern the vague shape of a crashed Flivver through the haze of dust. You land the <ship> next to the wreck, and both you and Mr. Renard go to exit the ship.`
@@ -6898,6 +6942,7 @@ mission "Lost Racer Epilogue"
 ship "Racing Flivver"
 	sprite "ship/racing flivver"
 	thumbnail "thumbnail/racing flivver"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		# This Flivver has a high cost so that you can sell it for roughly the same amount as a normal Flivver would cost.
@@ -8077,7 +8122,6 @@ mission "Syndicate Business 1"
 	npc
 		government "Independent (Killable)"
 		personality heroic staying vindictive
-			confusion 20
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
 		on kill
@@ -8154,6 +8198,7 @@ event "end of independent violence"
 # Feel free to change this escape shuttle to a different ship once escape pod mechanics are implemented.
 ship "Emergency Shuttle"
 	sprite "ship/escape shuttle"
+	"administrative cost" 1
 	attributes
 		category "Utility"
 		"cost" 45000
@@ -8432,7 +8477,6 @@ mission "Syndicate Business 4"
 	npc
 		government "Pirate"
 		personality harvests nemesis plunders staying
-			confusion 40
 		system destination
 		fleet
 			names "pirate"
@@ -8444,7 +8488,6 @@ mission "Syndicate Business 4"
 	npc
 		government "Pirate"
 		personality harvests nemesis plunders
-			confusion 40
 		system destination
 		fleet
 			names "pirate"
@@ -8548,7 +8591,6 @@ mission "Syndicate Business 5"
 	npc
 		government "Independent (Killable)"
 		personality heroic staying vindictive
-			confusion 20
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
 		to despawn
@@ -8576,7 +8618,6 @@ mission "Syndicate Business 5"
 	npc disable save
 		government "Independent (Killable)"
 		personality heroic marked staying vindictive
-			confusion 20
 		system "Oblate"
 		ship "Marauder Quicksilver (Engines) (Safe)" "Pilgrim Shadow"
 		on disable
@@ -8956,7 +8997,6 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 	name "Rescue <origin> convoy"
 	description "<origin>'s largest ever convoy was intercepted on its way to Tarazed. Merchants report that a large pirate fleet escorting a freighter convoy went to <destination>. Governor Tim has asked you to try and save it before the pirates can plunder it completely."
 	source "Rand"
-	priority
 	destination "Greenrock"
 	deadline 7
 	clearance
@@ -9262,6 +9302,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 mission "Timothy Radrickson 3d: Return to Rand"
 	landing
 	name "Return to Rand"
+	description "Now that you've finished escorting the Hroar's Haulers Convoy, visit <destination> for your reward."
 	source "Wayfarer"
 	destination "Rand"
 	to offer
@@ -10291,6 +10332,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 
 
 mission "Timothy Radrickson 5e: Back to Oblivion"
+	landing
 	source Oblivion
 	to offer
 		has "Timothy Radrickson 5a: Timshank Redemption: done"

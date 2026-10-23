@@ -57,6 +57,9 @@ namespace {
 	const string UNIVERSAL_RAMSCOOP = "Universal ramscoop";
 	const string SYSTEM_DEPARTURE_MIN = "Minimum departure distance";
 	const string SYSTEM_ARRIVAL_MIN = "Minimum arrival distance";
+	const string HABITABLE_BASED_ARRIVAL_DISTANCE = "Habitable arrival distance";
+	const string HABITABLE_ARRIVAL_MIN = "   Minimum distance";
+	const string HABITABLE_ARRIVAL_MAX = "   Maximum distance";
 	const string FLEET_MULTIPLIER = "Fleet multiplier";
 	const string LOCK_GAMERULES = "Lock gamerules";
 	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighter crossfire immunity";
@@ -66,6 +69,9 @@ namespace {
 	const string MAX_ESCORT_COUNT = "Default max escort count";
 	const string MAX_ESCORT_CREW = "Default max escort crew";
 	const string ADMIN_CAP = "Default admin cap";
+	const string PERMADEATH_MODE = "Permadeath";
+	const string SINGLE_SAVE_FILE = "Single save file";
+	const string RESTRICTED_SAVE_LOADING = "Restricted save loading";
 
 	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
 
@@ -81,6 +87,9 @@ namespace {
 		{UNIVERSAL_RAMSCOOP, "universal ramscoop"},
 		{SYSTEM_DEPARTURE_MIN, "system departure min"},
 		{SYSTEM_ARRIVAL_MIN, "system arrival min"},
+		{HABITABLE_BASED_ARRIVAL_DISTANCE, "habitable based arrival distance"},
+		{HABITABLE_ARRIVAL_MIN, "habitable arrival min"},
+		{HABITABLE_ARRIVAL_MAX, "habitable arrival max"},
 		{FLEET_MULTIPLIER, "fleet multiplier"},
 		{LOCK_GAMERULES, "lock gamerules"},
 		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
@@ -90,6 +99,9 @@ namespace {
 		{MAX_ESCORT_COUNT, "default max escort count"},
 		{MAX_ESCORT_CREW, "default max escort crew"},
 		{ADMIN_CAP, "default admin cap"},
+		{PERMADEATH_MODE, "permadeath mode"},
+		{SINGLE_SAVE_FILE, "single save file"},
+		{RESTRICTED_SAVE_LOADING, "restricted save loading"},
 	};
 
 	const int GAMERULES_PAGE_COUNT = 1;
@@ -405,7 +417,15 @@ void GamerulesPanel::DrawGamerules()
 		UNIVERSAL_RAMSCOOP,
 		SYSTEM_ARRIVAL_MIN,
 		SYSTEM_DEPARTURE_MIN,
+		HABITABLE_BASED_ARRIVAL_DISTANCE,
+		HABITABLE_ARRIVAL_MIN,
+		HABITABLE_ARRIVAL_MAX,
 		FLEET_MULTIPLIER,
+		"",
+		"Hardcore Settings",
+		PERMADEATH_MODE,
+		SINGLE_SAVE_FILE,
+		RESTRICTED_SAVE_LOADING,
 		"",
 		"Miscellaneous",
 		LOCK_GAMERULES,
@@ -488,6 +508,24 @@ void GamerulesPanel::DrawGamerules()
 		}
 		else if(gamerule == SYSTEM_DEPARTURE_MIN)
 			text = Format::AbbreviatedNumber(gamerules.SystemDepartureMin(), std::nullopt);
+		else if(gamerule == HABITABLE_BASED_ARRIVAL_DISTANCE)
+			text = gamerules.HabitableBasedArrivalDistance() ? "true" : "false";
+		else if(gamerule == HABITABLE_ARRIVAL_MIN)
+		{
+			if(gamerules.HabitableArrivalMin().has_value())
+				text = Format::AbbreviatedNumber(*gamerules.HabitableArrivalMin(), std::nullopt);
+			else
+				text = "(unset)";
+			isOn = gamerules.HabitableBasedArrivalDistance();
+		}
+		else if(gamerule == HABITABLE_ARRIVAL_MAX)
+		{
+			if(gamerules.HabitableArrivalMax().has_value())
+				text = Format::AbbreviatedNumber(*gamerules.HabitableArrivalMax(), std::nullopt);
+			else
+				text = "(unset)";
+			isOn = gamerules.HabitableBasedArrivalDistance();
+		}
 		else if(gamerule == FLEET_MULTIPLIER)
 			text = Format::Percentage(gamerules.FleetMultiplier(), 2);
 		else if(gamerule == LOCK_GAMERULES)
@@ -544,6 +582,33 @@ void GamerulesPanel::DrawGamerules()
 			text = Format::AbbreviatedNumber(gamerules.GetDefaultAdminCap());
 			isOn = gamerules.GetFleetSizeLimitation() == Gamerules::FleetSizeLimitation::ADMIN_CAP;
 		}
+		else if(gamerule == PERMADEATH_MODE)
+		{
+			isOn = true;
+			switch(gamerules.GetPermadeathMode())
+			{
+				case Gamerules::PermadeathMode::OFF:
+					text = "off";
+					isOn = false;
+					break;
+				case Gamerules::PermadeathMode::LOCK_ON_DEATH:
+					text = "lock on death";
+					break;
+				case Gamerules::PermadeathMode::DELETE_ON_DEATH:
+					text = "delete on death";
+					break;
+				case Gamerules::PermadeathMode::LOCK_ON_TAKEOFF:
+					text = "lock on takeoff";
+					break;
+				case Gamerules::PermadeathMode::DELETE_ON_TAKEOFF:
+					text = "delete on takeoff";
+					break;
+			}
+		}
+		else if(gamerule == SINGLE_SAVE_FILE)
+			text = gamerules.SingleSaveFile() ? "true" : "false";
+		else if(gamerule == RESTRICTED_SAVE_LOADING)
+			text = gamerules.RestrictedSaveLoading() ? "true" : "false";
 
 		if(gamerule == hoverItem)
 		{
@@ -574,7 +639,7 @@ void GamerulesPanel::DrawPresets()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
-	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
+	const Sprite *box[2] = { SpriteSet::Get("ui/radial unselected"), SpriteSet::Get("ui/radial selected") };
 
 	// Animate scrolling.
 	presetListScroll.Step();
@@ -708,7 +773,7 @@ void GamerulesPanel::RenderPresetDescription(const string &name)
 void GamerulesPanel::RenderPresetDescription(const Gamerules &preset)
 {
 	const Color &medium = *GameData::Colors().Get("medium");
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	Rectangle box = presetUi->GetBox("preset description");
 
 	// We are resizing and redrawing the description buffer. Reset the scroll
@@ -849,6 +914,24 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		GetUI().Push(OptionalInputDialogPanel::RequestDouble(&gamerules, &Gamerules::SetSystemArrivalMin, message,
 			gamerules.SystemArrivalMin()));
 	}
+	else if(str == HABITABLE_BASED_ARRIVAL_DISTANCE)
+		gamerules.SetHabitableBasedArrivalDistance(!gamerules.HabitableBasedArrivalDistance());
+	else if(str == HABITABLE_ARRIVAL_MIN)
+	{
+		string message = "Set the minimum system arrival distance when the arrival distance is based on the "
+			"habitable distance of the system. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.0; };
+		GetUI().Push(OptionalInputDialogPanel::RequestDoubleWithValidation(&gamerules,
+			&Gamerules::SetHabitableArrivalMin, validate, message, gamerules.HabitableArrivalMin()));
+	}
+	else if(str == HABITABLE_ARRIVAL_MAX)
+	{
+		string message = "Set the maximum system arrival distance when the arrival distance is based on the "
+			"habitable distance of the system. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.0; };
+		GetUI().Push(OptionalInputDialogPanel::RequestDoubleWithValidation(&gamerules,
+			&Gamerules::SetHabitableArrivalMax, validate, message, gamerules.HabitableArrivalMax()));
+	}
 	else if(str == FLEET_MULTIPLIER)
 	{
 		string message = "Set the fleet spawn multiplier. (Decimal value greater than or equal to 0.)";
@@ -906,6 +989,39 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		auto validate = [](int value) -> bool { return value >= 0; };
 		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDefaultAdminCap, validate,
 			message, gamerules.GetDefaultAdminCap()));
+	}
+	else if(str == PERMADEATH_MODE)
+	{
+		Gamerules::PermadeathMode value = gamerules.GetPermadeathMode();
+		if(value == Gamerules::PermadeathMode::OFF)
+			value = Gamerules::PermadeathMode::LOCK_ON_DEATH;
+		else if(value == Gamerules::PermadeathMode::LOCK_ON_DEATH)
+			value = Gamerules::PermadeathMode::DELETE_ON_DEATH;
+		else if(value == Gamerules::PermadeathMode::DELETE_ON_DEATH)
+			value = Gamerules::PermadeathMode::LOCK_ON_TAKEOFF;
+		else if(value == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF)
+			value = Gamerules::PermadeathMode::DELETE_ON_TAKEOFF;
+		else if(value == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
+			value = Gamerules::PermadeathMode::OFF;
+		gamerules.SetPermadeathMode(value);
+	}
+	else if(str == SINGLE_SAVE_FILE)
+	{
+		if(gamerules.GetPermadeathMode() == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
+			GetUI().Push(DialogPanel::Info("This gamerule is locked to true because \"Permadeath\" is set "
+				"to \"delete on takeoff\". Change the permadeath rule to a different value to toggle this rule."));
+		else
+			gamerules.SetSingleSaveFile(!gamerules.SingleSaveFile());
+	}
+	else if(str == RESTRICTED_SAVE_LOADING)
+	{
+		Gamerules::PermadeathMode mode = gamerules.GetPermadeathMode();
+		if(mode == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF || mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
+			GetUI().Push(DialogPanel::Info("This gamerule is locked to true because \"Permadeath\" is set "
+				"to \"lock on takeoff\" or \"delete on takeoff\". Change the permadeath rule to a different "
+				"value to toggle this rule."));
+		else
+			gamerules.SetRestrictedSaveLoading(!gamerules.RestrictedSaveLoading());
 	}
 }
 

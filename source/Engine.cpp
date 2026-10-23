@@ -42,7 +42,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Mask.h"
 #include "Messages.h"
 #include "Minable.h"
-#include "MinableDamageDealt.h"
 #include "Mission.h"
 #include "NPC.h"
 #include "shader/OutlineShader.h"
@@ -92,7 +91,7 @@ namespace {
 			if(count == 0 || count == 2)
 				return Radar::BLINK;
 		}
-		if(ship.IsDisabled() || (ship.IsOverheated() && ((step / 20) % 2)))
+		if(ship.IsDisabled() || ship.NeedsEnergy() || (ship.IsOverheated() && ((step / 20) % 2)))
 			return Radar::INACTIVE;
 		if(ship.IsYours() || (ship.GetPersonality().IsEscort() && !ship.GetGovernment()->IsEnemy()))
 			return Radar::PLAYER;
@@ -131,57 +130,6 @@ namespace {
 			tag = ship->DisplayModelName() + " (" + gov + "): ";
 
 		Messages::Add({tag + message, GameData::MessageCategories().Get("normal")});
-	}
-
-	Point FlareCurve(double x)
-	{
-		double x2 = x * x;
-		double x3 = x2 * x;
-		return Point(x2, x3);
-	}
-
-	Point ScaledFlareCurve(const Ship &ship, Ship::ThrustKind kind)
-	{
-		// When a ship lands, its thrusters should scale with it.
-		return FlareCurve(ship.ThrustHeldFraction(kind)) * ship.Zoom();
-	}
-
-	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
-		const vector<pair<Body, int>> &flareSprites, uint8_t side, bool reverse)
-	{
-		Point thrustScale = ScaledFlareCurve(ship, reverse ? Ship::ThrustKind::REVERSE : Ship::ThrustKind::FORWARD);
-		Point leftTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::LEFT);
-		Point rightTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::RIGHT);
-
-		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
-			* -ship.Commands().Turn();
-
-		for(const Ship::EnginePoint &point : enginePoints)
-		{
-			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
-			Angle flareAngle = ship.Facing() + point.facing + gimbal;
-			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
-			auto DrawFlares = [&draw, &pos, &ship, &flareAngle, &point](const pair<Body, int> &it, const Point &scale)
-			{
-				// If multiple engines with the same flare are installed, draw up to
-				// three copies of the flare sprite.
-				for(int i = 0; i < it.second && i < 3; ++i)
-				{
-					Body sprite(it.first, pos, ship.Velocity(), flareAngle, point.zoom, scale);
-					draw.Add(sprite, ship.Cloaking());
-				}
-			};
-			for(const auto &it : flareSprites)
-				if(point.side == side)
-				{
-					if(point.steering == Ship::EnginePoint::NONE)
-						DrawFlares(it, thrustScale);
-					else if(point.steering == Ship::EnginePoint::LEFT && leftTurnScale)
-						DrawFlares(it, leftTurnScale);
-					else if(point.steering == Ship::EnginePoint::RIGHT && rightTurnScale)
-						DrawFlares(it, rightTurnScale);
-				}
-		}
 	}
 
 	const Color &GetTargetOutlineColor(int type)
@@ -769,7 +717,7 @@ void Engine::Step(bool isActive)
 
 	// Clear the HUD information from the previous frame.
 	info = Information();
-	if(flagship && flagship->Hull())
+	if(flagship && flagship->HullFraction())
 	{
 		Point shipFacingUnit(0., -1.);
 		if(Preferences::Has("Rotate flagship in HUD"))
@@ -805,15 +753,15 @@ void Engine::Step(bool isActive)
 			else if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
 				info.SetCondition("red alert");
 		}
-		double fuelCap = flagship->Attributes().Get("fuel capacity");
+		double fuelCap = flagship->MaxFuel();
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every 100 units of fuel.
 		if(fuelCap <= MAX_FUEL_DISPLAY)
-			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
+			info.SetBar("fuel", flagship->FuelFraction(), fuelCap * .01);
 		else
-			info.SetBar("fuel", flagship->Fuel());
-		info.SetBar("energy", flagship->Energy());
-		double heat = flagship->Heat();
+			info.SetBar("fuel", flagship->FuelFraction());
+		info.SetBar("energy", flagship->EnergyFraction());
+		double heat = flagship->HeatFraction();
 		info.SetBar("heat", min(1., heat));
 		// If heat is above 100%, draw a second overlaid bar to indicate the
 		// total heat level.
@@ -821,9 +769,9 @@ void Engine::Step(bool isActive)
 			info.SetBar("overheat", min(1., heat - 1.));
 		if(wasActive && flagship->IsOverheated() && (uiStep / 20) % 2)
 			info.SetBar("overheat blink", min(1., heat));
-		info.SetBar("shields", flagship->Shields());
-		info.SetBar("hull", flagship->Hull(), 20.);
-		info.SetBar("disabled hull", min(flagship->Hull(), flagship->DisabledHull()), 20.);
+		info.SetBar("shields", flagship->ShieldFraction());
+		info.SetBar("hull", flagship->HullFraction(), 20.);
+		info.SetBar("disabled hull", min(flagship->HullFraction(), flagship->DisabledHullFraction()), 20.);
 	}
 	info.SetString("credits",
 		Format::CreditString(player.Accounts().Credits()));
@@ -900,7 +848,7 @@ void Engine::Step(bool isActive)
 			info.SetString("target range", to_string(targetRange));
 		}
 		if(options & ScanType::TACTICAL || options & ScanType::STRATEGIC)
-			info.SetBar("target hull", targetAsteroid->Hull(), 20.);
+			info.SetBar("target hull", targetAsteroid->HullFraction(), 20.);
 	}
 	else
 	{
@@ -929,9 +877,9 @@ void Engine::Step(bool isActive)
 
 		if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
 		{
-			info.SetBar("target shields", target->Shields());
-			info.SetBar("target hull", target->Hull(), 20.);
-			info.SetBar("target disabled hull", min(target->Hull(), target->DisabledHull()), 20.);
+			info.SetBar("target shields", target->ShieldFraction());
+			info.SetBar("target hull", target->HullFraction(), 20.);
+			info.SetBar("target disabled hull", min(target->HullFraction(), target->DisabledHullFraction()), 20.);
 
 			// The target area will be a square, with sides proportional to the average
 			// of the width and the height of the sprite.
@@ -975,7 +923,7 @@ void Engine::Step(bool isActive)
 			// that is within the relevant scanner range, unless the target
 			// is player owned, in which case information is available regardless
 			// of range and scrutability.
-			bool scrutable = !target->Attributes().Get("inscrutable");
+			bool scrutable = !target->Inscrutable();
 			if(hasCrew && (scrutable || target->IsYours()))
 			{
 				info.SetString("target crew", to_string(target->Crew()));
@@ -987,19 +935,19 @@ void Engine::Step(bool isActive)
 			if(hasEnergy && (scrutable || target->IsYours()))
 			{
 				info.SetCondition("target energy display");
-				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
+				int energy = round(target->EnergyLevel());
 				info.SetString("target energy", to_string(energy));
 			}
 			if(hasFuel && (scrutable || target->IsYours()))
 			{
 				info.SetCondition("target fuel display");
-				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
+				int fuel = round(target->FuelLevel());
 				info.SetString("target fuel", to_string(fuel));
 			}
 			if(hasThermal && (scrutable || target->IsYours()))
 			{
 				info.SetCondition("target thermal display");
-				info.SetString("target heat", Format::Percentage(target->Heat(), 0));
+				info.SetString("target heat", Format::Percentage(target->HeatFraction(), 0));
 			}
 			if(hasWeapon && (scrutable || target->IsYours()))
 			{
@@ -1084,7 +1032,8 @@ void Engine::Step(bool isActive)
 			doClick = !ammoDisplay.Click(uiClickBox);
 		else
 			doClick = !ammoDisplay.Click(clickPoint, hasControl);
-		doClick = doClick && !player.SelectEscorts(clickBox, hasShift);
+		if(doClick && clickBox.Dimensions())
+			doClick = !player.SelectEscorts(clickBox, hasShift);
 		if(doClick)
 		{
 			const vector<weak_ptr<Ship>> &stack = escorts.Click(clickPoint);
@@ -1303,7 +1252,7 @@ void Engine::Draw() const
 
 	// Draw messages. Draw the most recent messages first, as some messages
 	// may be wrapped onto multiple lines.
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	Rectangle messageBox = hud->GetBox("messages");
 	bool messagesReversed = hud->GetValue("messages reversed");
 	double animationDuration = hud->GetValue("message animation duration");
@@ -1725,7 +1674,7 @@ void Engine::CalculateStep()
 		{
 			if(ship.get() != flagship)
 			{
-				DrawShipSprites(*ship);
+				ship->Draw(draw[currentCalcBuffer], visuals);
 				if(timePaused)
 					continue;
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
@@ -1749,7 +1698,7 @@ void Engine::CalculateStep()
 		}
 
 	if(flagship && showFlagship)
-		DrawShipSprites(*flagship);
+		flagship->Draw(draw[currentCalcBuffer], visuals);
 	if(!timePaused && flagship && showFlagship)
 	{
 		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
@@ -1830,7 +1779,7 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 		bool isJumping = flagship->IsUsingJumpDrive();
 		const map<const Sound *, int> &jumpSounds = isJumping
 			? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
-		if(flagship->Attributes().Get("silent jumps"))
+		if(flagship->SilentJumps())
 		{
 			// No sounds.
 		}
@@ -1918,8 +1867,15 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 	FillCollisionSets();
 
 	// Perform collision detection.
+	// Collisions that happen for a single entity on the same frame are pooled together.
+	// Ship collisions are sorted from highest to lowest shield damage before being applied
+	// to the ship instead of dealing damage in the order the collisions were found,
+	// as the order of collisions can influence the total damage dealt this frame
+	// as a result of shields tanking damage that could have otherwise gone to the hull.
+	map<Entity *, vector<EntityCollision>> entityCollisions;
 	for(Projectile &projectile : projectiles)
-		DoCollisions(projectile);
+		FindCollisions(projectile, entityCollisions);
+	DoCollisions(entityCollisions);
 	// Now that collision detection is done, clear the cache of ships with anti-
 	// missile systems ready to fire.
 	hasAntiMissile.clear();
@@ -1986,7 +1942,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump
 				? ship->Attributes().JumpOutSounds() : ship->Attributes().HyperOutSounds();
-			if(ship->Attributes().Get("silent jumps"))
+			if(ship->SilentJumps())
 			{
 				// No sounds.
 			}
@@ -2002,7 +1958,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump
 				? ship->Attributes().JumpInSounds() : ship->Attributes().HyperInSounds();
-			if(ship->Attributes().Get("silent jumps"))
+			if(ship->SilentJumps())
 			{
 				// No sounds.
 			}
@@ -2259,6 +2215,15 @@ void Engine::HandleKeyboardInputs()
 		else if(keyHeld.Has(Command::JUMP))
 			activeCommands |= Command::FLEET_JUMP;
 	}
+	else if(keyHeld.Has(Command::BACK) && flagship->Commands().Has(Command::STOP))
+	{
+		// If the player previously sent a STOP command and hits the BACK key,
+		// maintain the STOP command. Since STOP is shift+BACK, releasing the shift
+		// key before releasing the BACK key after having sent a STOP command can
+		// cancel it, which likely isn't what the player wants.
+		activeCommands |= Command::STOP;
+		activeCommands.Clear(Command::BACK);
+	}
 
 	if(keyHeld.Has(Command::AUTOSTEER) && !activeCommands.Turn()
 			&& !activeCommands.Has(Command::LAND | Command::JUMP | Command::BOARD | Command::STOP))
@@ -2408,9 +2373,14 @@ void Engine::HandleMouseClicks()
 		ai.IssueMoveTarget(clickPoint + camera.Center(), playerSystem);
 	}
 
-	// Treat an "empty" click as a request to clear targets.
+	// Treat an "empty" click as a request to clear targets and selections.
 	if(!clickTarget && mouseButton == MouseButton::LEFT && !clickedAsteroid && !clickedPlanet)
+	{
+		// Setting the target ship also resets the target asteroid.
 		flagship->SetTargetShip(nullptr);
+		flagship->SetTargetStellar(nullptr);
+		player.ClearSelectedEscorts();
+	}
 }
 
 
@@ -2419,7 +2389,7 @@ void Engine::HandleMouseClicks()
 void Engine::HandleMouseInput(Command &activeCommands)
 {
 	bool rightMouseButtonHeld = false;
-	int mousePosX, mousePosY;
+	mouse_pos_t mousePosX, mousePosY;
 	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
 		rightMouseButtonHeld = true;
 
@@ -2447,7 +2417,7 @@ void Engine::HandleMouseInput(Command &activeCommands)
 // Perform collision detection. Note that unlike the preceding functions, this
 // one adds any visuals that are created directly to the main visuals list. If
 // this is multi-threaded in the future, that will need to change.
-void Engine::DoCollisions(Projectile &projectile)
+void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityCollision>> &entityCollisions)
 {
 	// The asteroids can collide with projectiles, the same as any other
 	// object. If the asteroid turns out to be closer than the ship, it
@@ -2463,14 +2433,14 @@ void Engine::DoCollisions(Projectile &projectile)
 		// "Phasing" projectiles that have a target will never hit any other ship.
 		// They also don't care whether the weapon has "no ship collisions" on, as
 		// otherwise a phasing projectile would never hit anything.
-		shared_ptr<Body> target = projectile.TargetPtr();
+		shared_ptr<Entity> target = projectile.TargetPtr();
 		if(target)
 		{
 			Point offset = projectile.Position() - target->Position();
 			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
 			if(range < 1.)
 				collisions.emplace_back(target.get(),
-					projectile.IsTargetingShip() ? CollisionType::SHIP : CollisionType::MINABLE, range);
+					target->EntityType() == Entity::Type::SHIP ? CollisionType::SHIP : CollisionType::MINABLE, range);
 		}
 	}
 	else
@@ -2534,7 +2504,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		// that it hit something.
 		projectile.Collide(visuals, collision);
 
-		const DamageProfile damage(projectile.GetInfo(range));
+		Projectile::ImpactInfo impact = projectile.GetInfo(range);
 
 		// If this projectile has a blast radius, find all ships and minables within its
 		// radius. Otherwise, only one is damaged.
@@ -2557,31 +2527,27 @@ void Engine::DoCollisions(Projectile &projectile)
 					continue;
 
 				// Only directly targeted ships get provoked by blast weapons.
-				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit),
-					targeted ? gov : nullptr);
-				if(eventType)
-					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
+				entityCollisions[ship].emplace_back(DamageProfile(*ship, impact, ship == hit), gov, targeted);
 			}
 			blastCollisions.clear();
 			asteroids.MinablesCollisionsCircle(hitPos, blastRadius, blastCollisions);
 			for(Body *body : blastCollisions)
 			{
 				auto minable = static_cast<Minable *>(body);
-				minable->TakeDamage(damage.CalculateDamage(*minable));
+				entityCollisions[minable].emplace_back(DamageProfile(*minable, impact), gov);
 			}
 		}
 		else if(hit)
 		{
 			if(collisionType == CollisionType::SHIP)
 			{
-				int eventType = shipHit->TakeDamage(visuals, damage.CalculateDamage(*shipHit), gov);
-				if(eventType)
-					eventQueue.emplace_back(gov, shipHit, eventType);
+				auto ship = shipHit.get();
+				entityCollisions[ship].emplace_back(DamageProfile(*ship, impact), gov);
 			}
 			else if(collisionType == CollisionType::MINABLE)
 			{
 				auto minable = static_cast<Minable *>(hit);
-				minable->TakeDamage(damage.CalculateDamage(*minable));
+				entityCollisions[minable].emplace_back(DamageProfile(*minable, impact), gov);
 			}
 		}
 
@@ -2606,6 +2572,53 @@ void Engine::DoCollisions(Projectile &projectile)
 
 
 
+void Engine::DoCollisions(map<Entity *, vector<EntityCollision>> &entityCollisions)
+{
+	// In order to maximize the damage dealt in a single frame, collisions
+	// should apply their damage from highest to lowest shield damage.
+	// For two collisions with the same shield damage, we want to apply
+	// from lowest to highest hull damage. This gives the best chance
+	// for high shield damage projectiles to strip the target's shields
+	// so that high hull damage projectiles can impact the hull.
+	auto SortShipCollisions = [](const EntityCollision &a, const EntityCollision &b) -> bool {
+		double aScale = a.damage.Scaling();
+		double bScale = b.damage.Scaling();
+		double aShield = a.damage.GetWeapon().ShieldDamage() * aScale;
+		double bShield = b.damage.GetWeapon().ShieldDamage() * bScale;
+		if(aShield == bShield)
+			return a.damage.GetWeapon().HullDamage() * aScale < b.damage.GetWeapon().HullDamage() * bScale;
+		return aShield > bShield;
+	};
+
+	for(auto &[entity, collisions] : entityCollisions)
+	{
+		shared_ptr<Ship> shipHit;
+		switch(entity->EntityType())
+		{
+			case Entity::Type::SHIP:
+				ranges::sort(collisions, SortShipCollisions);
+				shipHit = static_cast<Ship *>(entity)->shared_from_this();
+				break;
+			case Entity::Type::MINABLE:
+				// Collision order doesn't matter for minables, as they only have a single health pool.
+				// Even if one collision deals enough damage to destroy a minable, other collisions that
+				// happened this frame will still apply their damage and potentially add prospecting to it.
+				// The actual destruction of the minable doesn't happen until the next frame.
+				break;
+		}
+
+		for(const auto &[damage, gov, provokable] : collisions)
+		{
+			DamageDealt damageDealt = damage.CalculateDamage();
+			int eventType = entity->TakeDamage(visuals, damageDealt, provokable ? gov : nullptr);
+			if(eventType && shipHit)
+				eventQueue.emplace_back(gov, shipHit, eventType);
+		}
+	}
+}
+
+
+
 // Determine whether any active weather events have impacted the ships within
 // the system. As with DoCollisions, this function adds visuals directly to
 // the main visuals list.
@@ -2615,7 +2628,7 @@ void Engine::DoWeather(Weather &weather)
 	if(weather.HasWeapon() && !Random::Int(weather.Period()))
 	{
 		const Hazard *hazard = weather.GetHazard();
-		const DamageProfile damage(weather.GetInfo());
+		Weather::ImpactInfo impact = weather.GetInfo();
 
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
@@ -2631,7 +2644,7 @@ void Engine::DoWeather(Weather &weather)
 		for(Body *body : affectedShips)
 		{
 			Ship *hit = static_cast<Ship *>(body);
-			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
+			int eventType = hit->TakeDamage(visuals, DamageProfile(*hit, impact).CalculateDamage(), nullptr);
 			if(eventType)
 				eventQueue.emplace_back(nullptr, hit->shared_from_this(), eventType);
 		}
@@ -2685,8 +2698,9 @@ void Engine::DoCollection(Flotsam &flotsam)
 			// When dealing with individual ships, this makes tractor beams feel more capable of
 			// dragging flotsam to the ship. Otherwise, a ship could be drifting away from a flotsam
 			// at the same speed that the tractor beam is pulling the flotsam toward the ship,
-			// which looks awkward and makes the tractor beam feel pointless; the whole point of
-			// a tractor beam should be that it collects flotsam for you.
+			// which looks awkward and makes the tractor beam feel pointless. Or, even worse, the pull
+			// force could slingshot the flotsam past your ship and make it impossible to collect.
+			// The whole point of a tractor beam should be that it collects flotsam for you.
 			// This does mean that if you fly toward a flotsam that is in your tractor beam then
 			// you'll be pushing the flotsam away from your ship, but the pull of the tractor beam
 			// will still slowly close the distance between the ship and the flotsam.
@@ -2696,6 +2710,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 			// yanking the flotsam away from the slower ship.
 			pullVector += avgShipVelocity / count;
 			flotsam.SetVelocity(pullVector);
+			flotsam.InTractorBeam();
 		}
 		return;
 	}
@@ -2877,83 +2892,6 @@ void Engine::FillRadar()
 
 
 
-// Each ship is drawn as an entire stack of sprites, including hardpoint sprites
-// and engine flares and any fighters it is carrying externally.
-void Engine::DrawShipSprites(const Ship &ship)
-{
-	bool hasFighters = ship.PositionFighters();
-	double cloak = ship.Cloaking();
-	bool drawCloaked = (cloak && ship.IsYours());
-	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
-	const Swizzle *cloakSwizzle = GameData::Swizzles().Get(fancyCloak ? "cloak fancy base" : "cloak fast");
-	auto &itemsToDraw = draw[currentCalcBuffer];
-	auto drawObject = [&itemsToDraw, cloak, drawCloaked, fancyCloak, cloakSwizzle](const Body &body) -> void
-	{
-		// Draw cloaked/cloaking sprites swizzled red or transparent (depending on whether we are using fancy
-		// cloaking effects), and overlay this solid sprite with an increasingly transparent "regular" sprite.
-		if(drawCloaked)
-			itemsToDraw.AddSwizzled(body, cloakSwizzle, fancyCloak ? 0.5 : 0.25);
-		itemsToDraw.Add(body, cloak);
-	};
-
-	if(hasFighters)
-		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.side == Ship::Bay::UNDER && bay.ship)
-				drawObject(*bay.ship);
-
-	auto DrawEngineFlares = [&](uint8_t where)
-	{
-		if(ship.ThrustHeldFrames(Ship::ThrustKind::FORWARD) && !ship.EnginePoints().empty())
-			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.EnginePoints(),
-				ship.Attributes().FlareSprites(), where, false);
-		else if(ship.ThrustHeldFrames(Ship::ThrustKind::REVERSE) && !ship.ReverseEnginePoints().empty())
-			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.ReverseEnginePoints(),
-				ship.Attributes().ReverseFlareSprites(), where, true);
-		if((ship.ThrustHeldFrames(Ship::ThrustKind::LEFT) || ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT))
-			&& !ship.SteeringEnginePoints().empty())
-			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
-				ship.Attributes().SteeringFlareSprites(), where, false);
-	};
-	DrawEngineFlares(Ship::EnginePoint::UNDER);
-
-	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
-	{
-		const Weapon *weapon = hardpoint.GetWeapon();
-		if(!weapon)
-			return;
-		const Body &sprite = weapon->HardpointSprite();
-		if(!sprite.HasSprite())
-			return;
-
-		Body body(
-			sprite,
-			ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
-			ship.Velocity(),
-			ship.Facing() + hardpoint.GetAngle(),
-			ship.Zoom());
-		if(body.InheritsParentSwizzle())
-			body.SetSwizzle(ship.GetSwizzle());
-		drawObject(body);
-	};
-
-	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
-			drawHardpoint(hardpoint);
-	drawObject(ship);
-	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.GetSide() == Hardpoint::Side::OVER)
-			drawHardpoint(hardpoint);
-
-	DrawEngineFlares(Ship::EnginePoint::OVER);
-
-	if(hasFighters)
-		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.side == Ship::Bay::OVER && bay.ship)
-				drawObject(*bay.ship);
-}
-
-
-
 // If a ship just damaged another ship, update information on who has asked the
 // player for assistance (and ask for assistance if appropriate).
 void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker)
@@ -3000,11 +2938,11 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		if(ship->GetGovernment() == attacker && ship->GetTargetShip() == target)
 		{
 			++attackerCount;
-			attackerStrength += (ship->Shields() + ship->Hull()) * ship->Strength();
+			attackerStrength += (ship->ShieldFraction() + ship->HullFraction()) * ship->Strength();
 		}
 
 	// Only ask for help if outmatched.
-	double targetStrength = (target->Shields() + target->Hull()) * target->Strength();
+	double targetStrength = (target->ShieldFraction() + target->HullFraction()) * target->Strength();
 	if(attackerStrength <= targetStrength)
 		return;
 
@@ -3114,6 +3052,6 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 	if(it->IsYours())
 		cloak *= 0.6;
 
-	statuses.emplace_back(it->Position() - camera.Center(), it->Shields(), it->Hull(),
-		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha * (1. - cloak));
+	statuses.emplace_back(it->Position() - camera.Center(), it->ShieldFraction(), it->HullFraction(),
+		min(it->HullFraction(), it->DisabledHullFraction()), max(20., width * .5), type, alpha * (1. - cloak));
 }

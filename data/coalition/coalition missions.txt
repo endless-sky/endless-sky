@@ -463,10 +463,10 @@ mission "Coalition Yottrite 7"
 					goto shipwright
 				`	"So, is my passenger crawling around somewhere? In some corner hidden in a web?"`
 				`	"A Kimek? I thought this was an Arach House."`
-			`	The butler ignores what you said and introduces you to the Kimek in question. "Marry into House Mallob at a young age, miss Pichiie did. A former student at the university here, she was."`
+			`	The butler ignores what you said and introduces you to the Kimek in question. "Marry into House Mallob at a young age, Miss Pichiie did. A former student at the university here, she was."`
 				goto end
 			label shipwright
-			`	"Correct you are, Captain," he says. "Proud to introduce you to miss Pichiie, I am. A former student at the university here, she was, before marry into House Mallob, she did."`
+			`	"Correct you are, Captain," he says. "Proud to introduce you to Miss Pichiie, I am. A former student at the university here, she was, before marry into House Mallob, she did."`
 			label end
 			`	Finally, the reason why you had to come all the way to this part of <origin> becomes clear; Pichiie mentions she would like to hear your stories about where you got the yottrite in the first place before boarding your ship to head to <planet>. You tell her all samples you've come across were found in systems where the star had gone supernova. It's a short explanation, but she appears to be satisfied, and after saying her goodbyes to other members of the House, you're both brought to your ship.`
 				accept

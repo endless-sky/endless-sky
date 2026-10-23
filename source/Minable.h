@@ -25,10 +25,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class DamageDealt;
 class DataNode;
 class Effect;
 class Flotsam;
-class MinableDamageDealt;
+class Government;
 class Outfit;
 class Projectile;
 class Visual;
@@ -43,9 +44,12 @@ public:
 	public:
 		Payload(const DataNode &node);
 
+		// The outfit type that this payload will drop.
 		const Outfit *outfit;
 		// The maximum number of outfits that this payload can drop.
 		int maxDrops = 1;
+		// The minimum number of outfits that this payload can drop.
+		int minDrops = 0;
 		// The average percentage of the maximum number that drop.
 		double dropRate = 0.25;
 		// How resistant this payload is to having its drop rate increased by prospecting.
@@ -79,9 +83,6 @@ public:
 	// In that case it will return false, meaning it should be deleted.
 	bool Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 
-	// Damage this object (because a projectile collided with it).
-	void TakeDamage(const MinableDamageDealt &damage);
-
 	// Determine what flotsam this asteroid will create.
 	const std::vector<Payload> &GetPayload() const;
 
@@ -90,20 +91,13 @@ public:
 	// Get the value of the highest quality item that could drop from this minable when destroyed.
 	int64_t GetHighestQualityValue() const;
 
-	// Get hull remaining of this asteroid, as a fraction between 0 and 1.
-	double Hull() const;
-	// Get the maximum hull value of this asteroid.
-	double MaxHull() const;
-
 	double Mass() const override;
-	double MaximumHeat() const override;
+	double MaxHeat() const override;
 
-	// Apply corrosion damage ticks and decrement corrosion.
-	void DoCorrosionDamage(std::vector<Visual> &visuals);
 
-	// Add Spark Visual Effects for Corrosion Damage.
-	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
-	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+protected:
+	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool wasDisabled,
+		bool wasDestroyed) override;
 
 
 private:
@@ -144,17 +138,11 @@ private:
 	// parameters above, but this avoids having to calculate every radius twice.
 	double radius;
 
-	// Remaining "hull" strength of the object, before it is destroyed.
-	double hull = 1000.;
-	// The hull value that this object starts at.
-	double maxHull = 1000.;
 	// A random amount of hull that gets added to the object.
 	double randomHull = 0.;
 	// How much prospecting has been done on this object. Used to increase the
 	// payload drop rate.
 	double prospecting = 0.;
-	// Accrued "corrosion damage" that will affect this asteroid's hull over time.
-	double corrosion = 0.;
 	// Material released when this object is destroyed.
 	std::vector<Payload> payload;
 	std::vector<LiveEffect> liveEffects;

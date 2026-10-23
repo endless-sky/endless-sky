@@ -99,6 +99,8 @@ public:
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
+	// Apply the effects of permadeath, if this player has permadeath mode enabled.
+	void ApplyPermadeath() const;
 
 	// Get the pilot profile that this player is from.
 	std::shared_ptr<PilotProfile> &Pilot();
@@ -207,6 +209,7 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
+	int LargestCargoHold() const;
 	// Get items stored on the player's current planet.
 	CargoHold &Storage();
 	// Get items stored on all planets (for map display).
@@ -315,11 +318,11 @@ public:
 	int64_t GetTributeTotal() const;
 
 	// Check what the player knows about the given system or planet.
-	bool HasSeen(const System &system) const;
+	bool HasSeen(const System &system, bool excludeMission = false) const;
 	bool CanView(const System &system) const;
 	bool HasVisited(const System &system) const;
 	bool HasVisited(const Planet &planet) const;
-	bool KnowsName(const System &system) const;
+	bool KnowsName(const System &system, bool excludeMission = false) const;
 	// Marking a system as visited also "sees" its neighbors.
 	void Visit(const System &system);
 	void Visit(const Planet &planet);
@@ -362,6 +365,7 @@ public:
 	// Select one of the ships that the player owns.
 	void SelectEscort(const Ship *ship, bool hasShift);
 	void DeselectEscort(const Ship *ship);
+	void ClearSelectedEscorts();
 	void SelectEscortGroup(int group, bool hasShift);
 	void SetEscortGroup(int group, const std::set<Ship *> *newShips = nullptr);
 	std::set<Ship *> GetEscortGroup(int group);
@@ -507,6 +511,7 @@ private:
 	// and its scan range squared (for quicker comparisons).
 	std::map<int, std::map<std::weak_ptr<Ship>, double, std::owner_less<std::weak_ptr<const Ship>>>> scanners;
 	CargoHold cargo;
+	int largestCargoHold = 0;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
 	std::optional<int> maxEscortCount;
