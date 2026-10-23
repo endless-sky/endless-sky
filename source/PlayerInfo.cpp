@@ -1638,6 +1638,13 @@ const CargoHold &PlayerInfo::Cargo() const
 
 
 
+int PlayerInfo::LargestCargoHold() const
+{
+	return largestCargoHold;
+}
+
+
+
 // Get items stored on the player's current planet.
 CargoHold &PlayerInfo::Storage()
 {
@@ -1688,11 +1695,15 @@ void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
 	int bunks = 0;
+	largestCargoHold = 0;
 	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetPlanet() == planet && !ship->IsParked())
 		{
-			size += ship->Attributes().Get("cargo space");
+			int space = ship->Attributes().Get("cargo space");
+			size += space;
+			if(space > largestCargoHold)
+				largestCargoHold = space;
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
 			bunks += ship->Attributes().Get("bunks") - crew;
 		}
@@ -4006,8 +4017,6 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	conditions["net worth"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, max(-limit, accounts.NetWorth())); });
-	conditions["credits"].ProvideNamed([this](const ConditionEntry &ce) {
-		return min(limit, accounts.Credits()); });
 	conditions["unpaid mortgages"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, accounts.TotalDebt("Mortgage")); });
 	conditions["unpaid fines"].ProvideNamed([this](const ConditionEntry &ce) {
@@ -4022,6 +4031,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		return accounts.CreditScore(); });
 
 	// Read/write assets and debts.
+	conditions["credits"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return min(limit, accounts.Credits());
+	}, [this](ConditionEntry &ce, int64_t value) -> void {
+		accounts.SetCredits(clamp<int64_t>(value, 0, limit));
+	});
 	conditions["salary: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		const map<string, int64_t> &si = accounts.SalariesIncome();
 		auto it = si.find(ce.NameWithoutPrefix());

@@ -61,6 +61,10 @@ tip "ship: hull (repair):"
 	`Total hull strength and repair rate per second.`
 	`Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
 
+tip "ship: disabled at:"
+	`If this ship's hull integrity drops below this level, it will become disabled. Disabled ships lose all functionality and are able to be assisted by other ships to repair them, or boarded to plunder from or capture them.`
+	`Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
+
 tip "ship: mass:"
 	`Mass, in tons.`
 	`The higher a ship's mass, the slower it turns and accelerates given the same engines, and the higher its maximum heat before overheating.`
@@ -95,6 +99,9 @@ tip "ship: acceleration:"
 
 tip "ship:     w/ afterburner:"
 	`Movement while both your primary thrusters and afterburners are active.`
+
+tip "ship:     reversed:"
+	`Movement while using reverse thrusters.`
 
 tip "ship: turning:"
 	`Turn rate, in degrees per second. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it turns.`
@@ -477,6 +484,9 @@ tip "heat protection:"
 
 tip "heat capacity:"
 	`Increases the maximum heat this ship is able to withstand before becoming overheated. A value of one has the same influence on a ship's maximum heat as one ton of mass, without the effects that mass has on movement.`
+
+tip "hull (repair):"
+	`Total hull strength and repair rate per second.`
 
 tip "hull:"
 	`Adds to the total hull strength of the ship.`
@@ -1743,7 +1753,7 @@ tip "Show stored outfits on map"
 	`If you have outfits stored on a planet, marks systems with stored outfits on the star map.`
 
 tip "Always underline shortcuts"
-	`Always underline the shortcut key for any buttons. Holding the alt key in any panel will also underline the button shortcut keys if this setting is off.`
+	`Always underline the shortcut key for any buttons. Holding the alt key in any panel will also underline the button shortcut keys if this setting is off. For buttons that contain a character that is underlined twice, the hotkey is shift plus the double underlined character.`
 
 tip "Reactivate first-time help"
 	`Reactivate the first-time help dialogs.`

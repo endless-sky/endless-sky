@@ -18,6 +18,7 @@ ship "Resja, of the Nine Eyes"
 	sprite "ship/resja of the nine eyes"
 	thumbnail "thumbnail/resja of the nine eyes"
 	"never disabled"
+	"administrative cost" 5
 	attributes
 		category "Medium Warship"
 		"cost" 55000000
@@ -123,6 +124,7 @@ ship "Hasur, Vowsworn"
 	sprite "ship/hasur vowsworn"
 	thumbnail "thumbnail/hasur vowsworn"
 	"never disabled"
+	"administrative cost" 4
 	attributes
 		category "Light Warship"
 		"cost" 55000000
@@ -219,6 +221,7 @@ ship "Queru, Luminous Gaze"
 	sprite "ship/queru luminous gaze"
 	thumbnail "thumbnail/queru luminous gaze"
 	"never disabled"
+	"administrative cost" 3
 	attributes
 		category "Light Warship"
 		"cost" 55000000
@@ -479,6 +482,7 @@ ship "Valkkyiara-Khorasaqra"
 	thumbnail "thumbnail/valkkyiara-khorasaqra"
 	"plural" "Valkkyiara-Khorasaqran"
 	"never disabled"
+	"administrative cost" 8
 	attributes
 		category "Medium Warship"
 		"cost" 400000000

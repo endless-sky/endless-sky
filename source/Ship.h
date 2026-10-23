@@ -301,7 +301,7 @@ public:
 	void Draw(DrawList &draw, std::vector<Visual> &visuals) const;
 	// TODO: std::reference_wrapper<T> can be replaced with T& in C++26.
 	void Draw(DrawList &draw, std::optional<std::reference_wrapper<std::vector<Visual>>> visuals, const Point &pos,
-		const Angle &facing, float zoom) const;
+		const Angle &facing, float zoom, std::optional<double> parentCloakState = std::nullopt) const;
 
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
@@ -379,7 +379,6 @@ public:
 	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
 	const Swizzle *CustomSwizzle() const;
-	const std::string &CustomSwizzleName() const;
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -758,7 +757,6 @@ private:
 	bool isCapturable = true;
 	bool isInvisible = false;
 	const Swizzle *customSwizzle = nullptr;
-	std::string customSwizzleName;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missiles or tractor beams are in range.

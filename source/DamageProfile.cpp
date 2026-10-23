@@ -115,8 +115,10 @@ DamageDealt DamageProfile::CalculateDamage() const
 	damage.levels.shields *= shieldFraction;
 	double totalHullProtection = (ScaleType(1., 0., entity.DamageProtection().hull +
 		(entity.IsCloaked() ? entity.CloakedHullProtection() : 0.)));
-	damage.levels.hull = (weapon.HullDamage() + weapon.RelativeHullDamage() * entity.MaxHull())
-		* totalHullProtection;
+	bool isMinable = entity.EntityType() == Entity::Type::MINABLE;
+	double hullDamage = isMinable ? weapon.MinableDamage() : weapon.HullDamage();
+	double relativeHullDamage = isMinable ? weapon.RelativeMinableDamage() : weapon.RelativeHullDamage();
+	damage.levels.hull = (hullDamage + relativeHullDamage * entity.MaxHull()) * totalHullProtection;
 	double hull = entity.HullLevelUntilDisabled();
 	if(damage.levels.hull > hull)
 	{
