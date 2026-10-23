@@ -135,7 +135,8 @@ mission "Successors: Ghosts QSI 1"
 					goto proceed
 
 mission "Successors: Ghosts QSI 2"
-	priority
+	minor
+	invisible
 	source
 		government "House Kaatrij"
 	to offer
@@ -887,7 +888,6 @@ mission "Successors: Ghosts Cloak Prompt"
 
 
 mission "Successors: Ghosts 8"
-	priority
 	landing
 	source "Qasa-Sija-Iri"
 	to offer
