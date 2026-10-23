@@ -2549,7 +2549,7 @@ int Ship::Scan(const PlayerInfo &player)
 	// If instantly scanning very small ships is desirable, this can be removed.
 	// One point of scan opacity is the equivalent of an additional ton of cargo / outfit space
 	const double cargoSize = target->cache.cargoSpace + target->cache.cargoScanOpacity;
-	const double outfitsSize = target->cache.outfitCapacity + target->cache.outfitScanOpacity;
+	const double outfitsSize = target->cache.baseOutfitCapacity + target->cache.outfitScanOpacity;
 	double cargoDepth = max(SCAN_MIN_CARGO_SPACE, cargoSize) * SCAN_CARGO_FACTOR;
 	double outfitDepth = max(SCAN_MIN_OUTFIT_SPACE, outfitsSize) * SCAN_OUTFIT_FACTOR;
 

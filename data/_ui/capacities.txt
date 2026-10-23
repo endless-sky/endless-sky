@@ -1,0 +1,66 @@
+# Copyright (c) 2026 by Amazinite
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+"display capacities"
+	attribute "outfit space"
+		display "outfit space free:"
+		required
+	attribute "weapon capacity"
+		display "    weapon capacity:"
+		required
+	attribute "engine capacity"
+		display "    engine capacity:"
+		required
+	attribute "gun ports"
+		display "gun ports free:"
+		required
+	# A rare gun port type found on some massive ships:
+	attribute "spinal mount"
+		display "spinal mounts free:"
+		optional
+	attribute "turret mounts"
+		display "turret mounts free:"
+		required
+	
+	# Avgi capacities:
+	attribute "anchor point"
+		display "anchor points free:"
+		optional
+	attribute "lasing power"
+		display "lasing power free:"
+		optional
+	attribute "magnetic nozzle"
+		display "magnetic nozzles free:"
+		optional
+	
+	# Bunrodea capacities:
+	attribute "reactor upgrades"
+		display "reactor upgrades free:"
+		optional
+	attribute "relay upgrades"
+		display "relay upgrades free:"
+		optional
+	attribute "nanite upgrades"
+		display "nanite upgrades free:"
+		optional
+	attribute "solar cell"
+		display "solar cells free:"
+		optional
+	
+	# Successor capacities:
+	attribute "multimodal armor"
+		display "multimodal armor free"
+		optional
+	attribute "shield connection point"
+		display "shield connections free"
+		optional
