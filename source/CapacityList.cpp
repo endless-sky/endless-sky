@@ -24,7 +24,70 @@ using namespace std;
 
 
 
-bool CapacityList::Capacity::SortHelper(const CapacityList::Capacity &a, const CapacityList::Capacity &b)
+CapacityList::Capacity::Capacity(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
+void CapacityList::Capacity::Load(const DataNode &node)
+{
+	backingAttribute = node.Token(1);
+
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "display" && hasValue)
+			displayName = child.Token(1);
+		else if(key == "required")
+			required = true;
+		else if(key == "optional")
+			required = false;
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+}
+
+
+
+bool CapacityList::Capacity::Required() const
+{
+	return required;
+}
+
+
+
+const std::string &CapacityList::Capacity::Name() const
+{
+	return displayName;
+}
+
+
+
+const std::string &CapacityList::Capacity::Attribute() const
+{
+	return backingAttribute;
+}
+
+
+
+bool CapacityList::Capacity::operator<(const Capacity &other) const
+{
+	return SortHelper(*this, other);
+}
+
+
+
+bool CapacityList::Capacity::operator()(const Capacity &a, const Capacity &b) const
+{
+	return SortHelper(a, b);
+}
+
+
+
+bool CapacityList::Capacity::SortHelper(const Capacity &a, const Capacity &b)
 {
 	if(a.precedence == b.precedence)
 		return a.displayName < b.displayName;
@@ -37,35 +100,35 @@ void CapacityList::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		if(child.Size() < 3)
-		{
-			child.PrintTrace("Expected capacity to have at least three tokens:");
-			continue;
-		}
-		const string &display = child.Token(0);
-		if(display != "required" && display != "optional")
+		if(child.Token(0) != "attribute")
 		{
 			child.PrintTrace("Skipping unrecognized attribute:");
 			continue;
 		}
-		// Use the given precedence. If no precedence is given, use the previous
-		// precedence + 1.
-		if(child.Size() >= 4)
-			currentPrecedence = child.Value(3);
-		Capacity cap(display == "required", child.Token(1), child.Token(2), currentPrecedence++);
+		if(child.Size() < 2)
+		{
+			child.PrintTrace("Expected key to have a value:");
+			continue;
+		}
+		const string &attribute = child.Token(1);
+		if(child.Size() >= 3)
+			currentPrecedence = child.Value(2);
 
 		// If a given capacity attribute already exists, its details will be updated.
-		auto it = ranges::find_if(list, [&cap](const Capacity &c) noexcept -> bool {
-			return cap.backingAttribute == c.backingAttribute;
+		auto it = ranges::find_if(list, [&attribute](const Capacity &c) noexcept -> bool {
+			return attribute == c.backingAttribute;
 		});
 		if(it != list.end())
 		{
-			it->required = cap.required;
-			it->displayName = cap.displayName;
-			it->precedence = cap.precedence;
+			it->Load(child);
+			// Increment the precedence for the next capacity that gets loaded.
+			it->precedence = currentPrecedence++;
 		}
 		else
-			list.push_back(cap);
+		{
+			list.emplace_back(child);
+			list.back().precedence = currentPrecedence++;
+		}
 	}
 }
 

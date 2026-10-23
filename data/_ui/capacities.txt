@@ -12,25 +12,55 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 "display capacities"
-	required "outfit space free:" "outfit space"
-	required "    weapon capacity:" "weapon capacity"
-	required "    engine capacity:" "engine capacity"
-	required "gun ports free:" "gun ports"
+	attribute "outfit space"
+		display "outfit space free:"
+		required
+	attribute "weapon capacity"
+		display "    weapon capacity:"
+		required
+	attribute "engine capacity"
+		display "    engine capacity:"
+		required
+	attribute "gun ports"
+		display "gun ports free:"
+		required
 	# A rare gun port type found on some massive ships:
-	optional "spinal mounts free:" "spinal mount"
-	required "turret mounts free:" "turret mounts"
+	attribute "spinal mount"
+		display "spinal mounts free:"
+		optional
+	attribute "turret mounts"
+		display "turret mounts free:"
+		required
 	
 	# Avgi capacities:
-	optional "anchor points free:" "anchor point"
-	optional "lasing power free:" "lasing power"
-	optional "magnetic nozzles free:" "magnetic nozzle"
+	attribute "anchor point"
+		display "anchor points free:"
+		optional
+	attribute "lasing power"
+		display "lasing power free:"
+		optional
+	attribute "magnetic nozzle"
+		display "magnetic nozzles free:"
+		optional
 	
 	# Bunrodea capacities:
-	optional "reactor upgrades free:" "reactor upgrades"
-	optional "relay upgrades free:" "relay upgrades"
-	optional "nanite upgrades free:" "nanite upgrades"
-	optional "solar cells free:" "solar cell"
+	attribute "reactor upgrades"
+		display "reactor upgrades free:"
+		optional
+	attribute "relay upgrades"
+		display "relay upgrades free:"
+		optional
+	attribute "nanite upgrades"
+		display "nanite upgrades free:"
+		optional
+	attribute "solar cell"
+		display "solar cells free:"
+		optional
 	
 	# Successor capacities:
-	optional "multimodal armor free" "multimodal armor"
-	optional "shield connections free" "shield connection point"
+	attribute "multimodal armor"
+		display "multimodal armor free"
+		optional
+	attribute "shield connection point"
+		display "shield connections free"
+		optional

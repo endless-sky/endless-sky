@@ -33,13 +33,14 @@ public:
 	// displayed in, and
 	class Capacity {
 	public:
-		Capacity(bool required, const std::string &name, const std::string &attribute, int precedence)
-			: required(required), displayName(name), backingAttribute(attribute), precedence(precedence) {}
-		bool Required() const { return required; }
-		const std::string &Name() const { return displayName; }
-		const std::string &Attribute() const { return backingAttribute; }
-		bool operator<(const Capacity &other) const { return SortHelper(*this, other); }
-		bool operator()(const Capacity &a, const Capacity &b) const { return SortHelper(a, b); }
+		explicit Capacity(const DataNode &node);
+		void Load(const DataNode &node);
+
+		bool Required() const;
+		const std::string &Name() const;
+		const std::string &Attribute() const;
+		bool operator<(const Capacity &other) const;
+		bool operator()(const Capacity &a, const Capacity &b) const;
 
 	private:
 		static bool SortHelper(const Capacity &a, const Capacity &b);
