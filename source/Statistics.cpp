@@ -28,7 +28,7 @@ using namespace std;
 
 std::filesystem::path Statistics::FilePath()
 {
-	return Files::Config() / "statistics.txt";
+	return Files::Config() / "global statistics.txt";
 }
 
 
