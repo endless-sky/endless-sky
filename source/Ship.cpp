@@ -2967,7 +2967,7 @@ bool Ship::CannotAct(ActionType actionType) const
 {
 	// Ships which are taking off, landing, entering or exiting hyperspace,
 	// or are experiencing piloting errors due to low crew can't engage in
-	// any ActionType.
+	// any action.
 	if(zoom != 1.f || hyperspaceCount || pilotError)
 		return true;
 	// Ships with crew can communicate while disabled, but other action types
@@ -2979,30 +2979,32 @@ bool Ship::CannotAct(ActionType actionType) const
 	}
 	else if(isDisabled)
 		return true;
-	bool canActCloaked = true;
+	// Fully uncloaked ships can take actions.
 	if(cloak)
-		switch(actionType)
-		{
-			case ActionType::AFTERBURNER:
-				canActCloaked = cache.canAfterburnerWhileCloaked;
-				break;
-			case ActionType::BOARD:
-				canActCloaked = cache.canBoardWhileCloaked;
-				break;
-			case ActionType::COMMUNICATION:
-				canActCloaked = cache.canCommunicateWhileCloaked;
-				break;
-			case ActionType::FIRE:
-				canActCloaked = cache.canFireWhileCloaked;
-				break;
-			case ActionType::PICKUP:
-				canActCloaked = cache.canPickupWhileCloaked;
-				break;
-			case ActionType::SCAN:
-				canActCloaked = cache.canScanWhileCloaked;
-				break;
-		}
-	return (cloak == 1. && !canActCloaked) || (cloak != 1. && cloak && !cloakDisruption && !canActCloaked);
+		return false;
+	bool canActCloaked = false;
+	switch(actionType)
+	{
+		case ActionType::AFTERBURNER:
+			canActCloaked = cache.canAfterburnerWhileCloaked;
+			break;
+		case ActionType::BOARD:
+			canActCloaked = cache.canBoardWhileCloaked;
+			break;
+		case ActionType::COMMUNICATION:
+			canActCloaked = cache.canCommunicateWhileCloaked;
+			break;
+		case ActionType::FIRE:
+			canActCloaked = cache.canFireWhileCloaked;
+			break;
+		case ActionType::PICKUP:
+			canActCloaked = cache.canPickupWhileCloaked;
+			break;
+		case ActionType::SCAN:
+			canActCloaked = cache.canScanWhileCloaked;
+			break;
+	}
+	return !canActCloaked;
 }
 
 
