@@ -5670,9 +5670,31 @@ void PlayerInfo::DoAccounting()
 
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
+	int64_t assets = 0;
+	map<const Ship *, int> shipCount;
+	map<const Outfit *, int> outfitCount;
 	for(const shared_ptr<Ship> &ship : ships)
-		assets += ship->Cargo().Value(system);
+	{
+		const Ship *base = GameData::Ships().Get(ship->VariantName());
+		++shipCount[base];
+		for(const auto &[outfit, count] : ship->Outfits())
+			outfitCount[outfit] += count;
+
+		const CargoHold &cargo = ship->Cargo();
+		for(const auto &[commodity, count] : cargo.Commodities())
+			assets += static_cast<int64_t>(system->Trade(commodity)) * count;
+		for(const auto &[outfit, count] : cargo.Outfits())
+			outfitCount[outfit] += count;
+	}
+	for(const auto &storage : planetaryStorage | views::values)
+		for(const auto &[outfit, count] : storage.Outfits())
+			outfitCount[outfit] += count;
+
+	int day = date.DaysSinceEpoch();
+	for(const auto &[ship, count] : shipCount)
+		assets += depreciation.Value(ship, day, count);
+	for(const auto &[outfit, count] : outfitCount)
+		assets += depreciation.Value(outfit, day, count);
 
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
