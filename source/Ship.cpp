@@ -2980,7 +2980,7 @@ bool Ship::CannotAct(ActionType actionType) const
 	else if(isDisabled)
 		return true;
 	// Fully uncloaked ships can take actions.
-	if(cloak)
+	if(!cloak)
 		return false;
 	bool canActCloaked = false;
 	switch(actionType)
