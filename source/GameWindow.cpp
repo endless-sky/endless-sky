@@ -282,6 +282,16 @@ bool GameWindow::Init(bool headless)
 		return false;
 	}
 
+	if(*glVersion < '2')
+	{
+		ostringstream out;
+		out << "Endless Sky requires OpenGL version 2.0 or higher, and 3.0 is recommended." << endl;
+		out << "Your OpenGL version is " << glVersion << "." << endl;
+		out << "Please update your graphics drivers.";
+		ExitWithError(out.str());
+		return false;
+	}
+
 	const char *glslVersion = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
 	if(!glslVersion || !*glslVersion)
 	{
@@ -291,17 +301,8 @@ bool GameWindow::Init(bool headless)
 		return false;
 	}
 
-	if(*glVersion < '2')
-	{
-		ostringstream out;
-		out << "Endless Sky requires OpenGL version 2.0 or higher, and 3.0 is recommended." << endl;
-		out << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
-		out << "Please update your graphics drivers.";
-		ExitWithError(out.str());
-		return false;
-	}
 #ifndef ES_GLES
-	else if(*glVersion == '2')
+	if(*glVersion == '2')
 	{
 		OpenGL::DisableOpenGL3();
 		Logger::Log("Experimental OpenGL 2 support has been enabled.", Logger::Level::INFO);
