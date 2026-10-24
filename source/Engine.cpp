@@ -1439,6 +1439,13 @@ void Engine::BreakTargeting(const Government *gov)
 
 
 
+void Engine::DisengageAutopilot()
+{
+	ai.DisengageAutopilot(false);
+}
+
+
+
 void Engine::LocateClick(const Point &point)
 {
 	isRadarClick = false;
