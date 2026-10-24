@@ -5136,9 +5136,10 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 
 
-void AI::DisengageAutopilot()
+void AI::DisengageAutopilot(bool sendMessage)
 {
-	Messages::Add(*GameData::Messages().Get("disengaging autopilot"));
+	if(sendMessage)
+		Messages::Add(*GameData::Messages().Get("disengaging autopilot"));
 	autoPilot.Clear();
 }
 
