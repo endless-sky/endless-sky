@@ -33,7 +33,6 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-			confusion 40
 		system destination
 		fleet
 			names "pirate"
@@ -48,7 +47,6 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 40
 		system destination
 		fleet
 			names "pirate"
@@ -98,7 +96,6 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 40
 		fleet
 			names "pirate"
 			variant
@@ -112,7 +109,6 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 40
 		system
 			distance 1
 		fleet
@@ -160,19 +156,16 @@ mission "Escort (Small, Northern, Dangerous Destination)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 30
 		system destination
 		fleet "Small Northern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis entering harvests plunders
-			confusion 30
 		system destination
 		fleet "Small Northern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-			confusion 30
 		system destination
 		fleet "Small Northern Pirates"
 	
@@ -208,19 +201,16 @@ mission "Escort (Small, Northern, Dangerous Origin)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 30
 		fleet "Small Northern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 30
 		system
 			distance 1
 		fleet "Small Northern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 30
 		system
 			distance 1
 		fleet "Small Northern Pirates"
@@ -257,25 +247,21 @@ mission "Escort (Medium, Northern, Dangerous Destination)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis entering harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Northern Pirates" 2
 	
@@ -311,25 +297,21 @@ mission "Escort (Medium, Northern, Dangerous Origin)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		fleet "Small Northern Pirates" 2
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		system
 			distance 1 2
 		fleet "Small Northern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
 	
@@ -559,7 +541,6 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 40
 		system destination
 		fleet
 			names "pirate"
@@ -574,7 +555,6 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-			confusion 40
 		system destination
 		fleet
 			names "pirate"
@@ -624,7 +604,6 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 40
 		system
 			distance 2 2
 		fleet
@@ -640,7 +619,6 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 40
 		fleet
 			names "pirate"
 			variant
@@ -686,19 +664,16 @@ mission "Escort (Small, Core, Dangerous Destination)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 30
 		system destination
 		fleet "Small Core Pirates"
 	npc
 		government "Pirate"
 		personality nemesis entering harvests plunders
-			confusion 30
 		system destination
 		fleet "Small Core Pirates"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-			confusion 30
 		system destination
 		fleet "Small Core Pirates"
 	
@@ -734,21 +709,18 @@ mission "Escort (Small, Core, Dangerous Origin)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 30
 		system
 			distance 1
 		fleet "Small Core Pirates"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 30
 		system
 			distance 1 2
 		fleet "Small Core Pirates"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 30
 		fleet "Small Core Pirates"
 	
 	npc accompany save
@@ -783,19 +755,16 @@ mission "Escort (Medium, Core, Dangerous Destination)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Core Pirates" 2
 	npc
 		government "Pirate"
 		personality nemesis entering harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Core Pirates"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Core Pirates" 2
 	
@@ -831,28 +800,24 @@ mission "Escort (Medium, Core, Dangerous Origin)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		system
 			distance 1
 		fleet "Small Core Pirates"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		system
 			distance 1
 		fleet "Small Core Pirates"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		system
 			distance 1 2
 		fleet "Small Core Pirates"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		fleet "Small Core Pirates" 2
 	
 	npc accompany save
@@ -1082,7 +1047,6 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 40
 		fleet
 			names "pirate"
 			variant
@@ -1096,7 +1060,6 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-			confusion 40
 		system destination
 		fleet
 			names "pirate"
@@ -1143,12 +1106,10 @@ mission "Escort (Small, Southern, Dangerous Origin or Destination)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 30
 		fleet "Small Southern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-			confusion 30
 		system destination
 		fleet "Small Southern Pirates"
 	
@@ -1184,12 +1145,10 @@ mission "Escort (Medium, Southern, Dangerous Origin or Destination)"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		fleet "Small Southern Pirates" 2
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Southern Pirates" 2
 	
@@ -3652,7 +3611,7 @@ mission "Bounty Hunting (Solo Marauder I)"
 		system
 			distance 2 3
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder I"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
@@ -3683,6 +3642,7 @@ mission "Bounty Hunting (Solo Marauder II)"
 		system
 			distance 2 3
 			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder II"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
@@ -3709,6 +3669,7 @@ mission "Bounty Hunting (Solo Marauder III)"
 		system
 			distance 2 4
 			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder III"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
@@ -3735,6 +3696,7 @@ mission "Bounty Hunting (Solo Marauder IV)"
 		system
 			distance 3 4
 			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder IV"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
@@ -3766,6 +3728,7 @@ mission "Bounty Hunting (Marauder I)"
 		system
 			distance 3 4
 			government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet I"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3797,7 +3760,7 @@ mission "Bounty Hunting (Marauder II)"
 		system
 			distance 3 4
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet II"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3827,7 +3790,7 @@ mission "Bounty Hunting (Marauder III)"
 		system
 			distance 3 4
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet III"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3857,7 +3820,7 @@ mission "Bounty Hunting (Marauder IV)"
 		system
 			distance 3 5
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet IV"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3887,7 +3850,7 @@ mission "Bounty Hunting (Marauder V)"
 		system
 			distance 3 5
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet V"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3918,7 +3881,7 @@ mission "Bounty Hunting (Marauder VI)"
 		system
 			distance 3 5
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet VI"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3944,7 +3907,7 @@ mission "Bounty Hunting (Marauder VII)"
 		system
 			distance 4 5
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet VII"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3970,7 +3933,7 @@ mission "Bounty Hunting (Marauder VIII)"
 		system
 			distance 4 5
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet VIII"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -3996,7 +3959,7 @@ mission "Bounty Hunting (Marauder IX)"
 		system
 			distance 4 5
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet IX"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
@@ -4020,7 +3983,7 @@ mission "Bounty Hunting (Marauder X)"
 		system
 			distance 7 9
 			attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-			not system "Ultima Thule"
+			not system "Ultima Thule" "Tarazed" "Enif" "Sadalmelik" "Sadalsuud"
 		fleet "Marauder fleet X"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill

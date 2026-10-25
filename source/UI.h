@@ -18,10 +18,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "TaskQueue.h"
 
+#ifdef ES_USE_SDL3
+#include <SDL3/SDL_events.h>
+#else
+#include <SDL2/SDL_events.h>
+#endif
+
 #include <memory>
 #include <vector>
-
-#include <SDL2/SDL_events.h>
 
 class Panel;
 

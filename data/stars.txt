@@ -776,6 +776,8 @@ star "star/giant"
 	planet/desert5-b
 	planet/ocean7
 	planet/ocean7-b
+	"planet/zenith hot"
+	"planet/zenith cold"
 
 "planet mass" 8576.805
 	planet/forest5

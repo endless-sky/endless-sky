@@ -260,6 +260,10 @@ void UniverseObjects::CheckReferences()
 		}
 	}
 
+	// Confusions are never serialized.
+	for(const auto &it : confusions)
+		if(it.second.Name().empty())
+			Warn("confusion", it.first);
 	// Stock conversations are never serialized.
 	for(const auto &it : conversations)
 		if(it.second.IsEmpty())
@@ -335,9 +339,9 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : colors)
 		if(!it.second.IsLoaded())
 			Warn("color", it.first);
-	for(const auto &it : swizzles)
+	for(auto &&it : swizzles)
 		if(!it.second.IsLoaded())
-			Warn("swizzle", it.first);
+			NameAndWarn("swizzle", it);
 	for(const auto &it : messageCategories)
 		if(!it.second.IsLoaded())
 			Warn("message category", it.first);
@@ -402,6 +406,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			if(overwrite)
 				*swizzle = Swizzle();
 			swizzle->Load(node);
+		}
+		else if(key == "confusion" && hasValue)
+		{
+			Confusion *confusion = confusions.Get(node.Token(1));
+			if(overwrite)
+				*confusion = Confusion();
+			confusion->Load(node);
 		}
 		else if(key == "conversation" && hasValue)
 		{

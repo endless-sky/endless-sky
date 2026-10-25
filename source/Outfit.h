@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Dictionary.h"
+#include "Drawable.h"
 #include "Paragraphs.h"
 
 #include <map>
@@ -25,9 +26,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
-class Body;
 class ConditionsStore;
 class DataNode;
+class Drawable;
 class Effect;
 class Sound;
 class Sprite;
@@ -103,7 +104,7 @@ public:
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
-	const Sprite *Thumbnail() const;
+	const Drawable &Thumbnail() const;
 
 	// Return true if this Outfit's attributes Dictionary is empty. Does not determine
 	// whether this Outfit contains any sprites, effects, sounds, or a weapon.
@@ -142,9 +143,9 @@ public:
 	const std::set<const Outfit *> &LinkedOutfits() const;
 
 	// Get this outfit's engine flare sprites, if any.
-	const std::vector<std::pair<Body, int>> &FlareSprites() const;
-	const std::vector<std::pair<Body, int>> &ReverseFlareSprites() const;
-	const std::vector<std::pair<Body, int>> &SteeringFlareSprites() const;
+	const std::vector<std::pair<Drawable, int>> &FlareSprites() const;
+	const std::vector<std::pair<Drawable, int>> &ReverseFlareSprites() const;
+	const std::vector<std::pair<Drawable, int>> &SteeringFlareSprites() const;
 	const std::map<const Sound *, int> &FlareSounds() const;
 	const std::map<const Sound *, int> &ReverseFlareSounds() const;
 	const std::map<const Sound *, int> &SteeringFlareSounds() const;
@@ -181,7 +182,7 @@ private:
 	std::string series;
 	int index = 0;
 	Paragraphs description;
-	const Sprite *thumbnail = nullptr;
+	Drawable thumbnail;
 	int64_t cost = 0;
 	double mass = 0.;
 	// Licenses needed to purchase this item.
@@ -200,9 +201,9 @@ private:
 
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.
-	std::vector<std::pair<Body, int>> flareSprites;
-	std::vector<std::pair<Body, int>> reverseFlareSprites;
-	std::vector<std::pair<Body, int>> steeringFlareSprites;
+	std::vector<std::pair<Drawable, int>> flareSprites;
+	std::vector<std::pair<Drawable, int>> reverseFlareSprites;
+	std::vector<std::pair<Drawable, int>> steeringFlareSprites;
 	std::map<const Sound *, int> flareSounds;
 	std::map<const Sound *, int> reverseFlareSounds;
 	std::map<const Sound *, int> steeringFlareSounds;

@@ -353,7 +353,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 							return false;
 						if(toRemoveTemplate.distance != object.distance)
 							return false;
-						if(toRemoveTemplate.speed != object.speed)
+						if(object.explicitPeriodSet && toRemoveTemplate.speed != object.speed)
 							return false;
 						if(toRemoveTemplate.offset != object.offset)
 							return false;

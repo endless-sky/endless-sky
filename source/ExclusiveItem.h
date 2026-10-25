@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <cassert>
 #include <memory>
 #include <variant>
 
@@ -56,12 +57,18 @@ public:
 	// for avoiding dereferencing nullptr.
 	const Type &operator*() const noexcept;
 
+	// Provide mutable access to the contained item through a shared pointer. The caller is responsible
+	// for avoiding dereferencing nullptr.
+	// This will assert a failure if the contained item is a stock item, as stock items are managed by
+	// GameData.
+	const std::shared_ptr<Type> &Mutable() const noexcept;
+
 	bool operator==(const ExclusiveItem &other) const noexcept;
 	bool operator!=(const ExclusiveItem &other) const noexcept;
 
 
 private:
-	std::variant<std::shared_ptr<const Type>, const Type *> item;
+	std::variant<std::shared_ptr<Type>, const Type *> item;
 };
 
 
@@ -76,7 +83,7 @@ inline ExclusiveItem<Type>::ExclusiveItem(const Type *item) noexcept
 
 template<class Type>
 inline ExclusiveItem<Type>::ExclusiveItem(Type &&item)
-	: item{std::shared_ptr<const Type>{new Type{item}}}
+	: item{std::shared_ptr<Type>{new Type{item}}}
 {
 }
 
@@ -126,6 +133,15 @@ template<class Type>
 inline const Type &ExclusiveItem<Type>::operator*() const noexcept
 {
 	return *Ptr();
+}
+
+
+
+template<class Type>
+inline const std::shared_ptr<Type> &ExclusiveItem<Type>::Mutable() const noexcept
+{
+	assert(!IsStock() && "ExclusiveItem::Mutable cannot grant access to a stock item.");
+	return std::get<0>(item);
 }
 
 

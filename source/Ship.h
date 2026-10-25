@@ -21,6 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
+#include "Confusion.h"
+#include "Drawable.h"
 #include "EsUuid.h"
 #include "FireCommand.h"
 #include "Outfit.h"
@@ -46,6 +48,7 @@ class ConditionsStore;
 class DamageDealt;
 class DataNode;
 class DataWriter;
+class DrawList;
 class Effect;
 class Flotsam;
 class FormationPattern;
@@ -131,6 +134,46 @@ public:
 		CAN_FIRE,
 	};
 
+	enum class PlacementSide {
+		OVER = 0,
+		UNDER
+	};
+
+	enum PlacementActivity {
+		// The NONE value should be replaced with a default value if it wasn't replaced during loading.
+		NONE = 0u,
+		WHEN_ACTIVE = (1u << 0u),
+		WHEN_DISABLED = (1u << 1u),
+		WHEN_EXPLODING = (1u << 2u),
+		ALWAYS_ON = WHEN_ACTIVE | WHEN_DISABLED | WHEN_EXPLODING,
+	};
+
+	enum class DecorBehavior {
+		STATIC = 0,
+		ROTATING,
+		MOVING,
+		TARGETING
+	};
+
+	// Decor is a sprite that appears somewhere on a ship, similar to a weapon hardpoint,
+	// but without any functionality aside from aesthetics.
+	class Decor {
+	public:
+		explicit Decor(const DataNode &node);
+		void Save(DataWriter &out) const;
+
+		Drawable sprite;
+		Point position;
+		Angle angle;
+		DecorBehavior behavior = DecorBehavior::STATIC;
+		PlacementSide side = PlacementSide::OVER;
+		unsigned activity = PlacementActivity::NONE;
+		double rotationSpeed = 0.;
+		bool synced = false;
+		int tick = 0;
+		int delay = 0;
+	};
+
 
 public:
 	// Functions provided by the Body base class:
@@ -184,7 +227,7 @@ public:
 	// Get this ship's description.
 	std::string Description() const;
 	// Get the shipyard thumbnail for this ship.
-	const Sprite *Thumbnail() const;
+	const Drawable &Thumbnail() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
@@ -225,6 +268,11 @@ public:
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);
+	// Access the ship's confusion.
+	const Confusion &GetConfusion() const;
+	// If this ship changes governments, its confusion also needs to be updated.
+	// Confusion from personality takes precedence over confusion from government.
+	void ResetConfusion();
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
 	const Phrase *GetHailPhrase() const;
@@ -246,6 +294,14 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	// Each ship is drawn as an entire stack of sprites, including hardpoint sprites,
+	// engine flares, and any fighters it is carrying externally.
+	// This first function uses the ship's position in space. The second uses the given positioning.
+	// Provide a nullopt visuals optional to the second function for drawing a ship in the UI.
+	void Draw(DrawList &draw, std::vector<Visual> &visuals) const;
+	// TODO: std::reference_wrapper<T> can be replaced with T& in C++26.
+	void Draw(DrawList &draw, std::optional<std::reference_wrapper<std::vector<Visual>>> visuals, const Point &pos,
+		const Angle &facing, float zoom, std::optional<double> parentCloakState = std::nullopt) const;
 
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
@@ -298,8 +354,8 @@ public:
 	bool CannotAct(ActionType actionType) const;
 	// Get the degree to which this ship is cloaked. 1 means fully cloaked; 0 means fully visible.
 	// Depending on its "cloaking ..." attributes the ship will be unable to shoot, will not be seen on radar...
-	double Cloaking() const;
-	bool IsCloaked() const;
+	double Cloaking() const override;
+	bool IsCloaked() const override;
 	// If this ship is capable of cloaking, make it fully cloaked.
 	void SetCloaked();
 	// The amount of cloaking this ship can do, per frame.
@@ -313,6 +369,8 @@ public:
 	int GetHyperspacePercentage() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
+	// Fuel already used for ongoing hyperspace movement.
+	double FuelUsedForHyperspacing() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool IsReadyToJump(bool waitingIsReady = false) const;
 	// Check if this ship is allowed to land on this planet, accounting for its personality.
@@ -321,7 +379,6 @@ public:
 	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
 	const Swizzle *CustomSwizzle() const;
-	const std::string &CustomSwizzleName() const;
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -335,14 +392,14 @@ public:
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
 	const std::vector<EnginePoint> &SteeringEnginePoints() const;
 
+	const std::vector<Decor> &Decorations() const;
+
 	// Make a ship disabled or destroyed, or bring back a destroyed ship.
 	void Disable();
 	void Destroy();
 	void SelfDestruct();
 	void Restore();
 	bool IsDamaged() const;
-	// Check if this ship has been destroyed.
-	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
@@ -422,11 +479,6 @@ public:
 	double ThrustHeldFraction(ThrustKind kind) const;
 	uint8_t ThrustHeldFrames(ThrustKind kind) const;
 
-	// This ship just got hit by a weapon. Take damage according to the
-	// DamageDealt from that weapon. The return value is a ShipEvent type,
-	// which may be a combination of PROVOKED, DISABLED, and DESTROYED.
-	// Create any target effects as sparks.
-	int TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force, bool gravitational = false);
@@ -545,6 +597,9 @@ public:
 	bool CanCommunicateWhileCloaked() const;
 
 	double ReverseThrust() const;
+	// Whether this ship has an afterburner installed and it can be used. Does not consider
+	// the resource cost of using the afterburner.
+	bool CanUseAfterburner() const;
 	bool ShouldUseAfterburner() const;
 
 	bool SilentJumps() const;
@@ -556,19 +611,66 @@ public:
 
 	double TurretTurnMultiplier() const;
 
-	const ResourceLevels &DamageProtection() const;
-	double PiercingProtection() const;
-	double PiercingResistance() const;
-	double HighShieldPermeability() const;
-	double LowShieldPermeability() const;
-	double CloakedShieldPermeability() const;
-	double CloakedHullProtection() const;
-	double CloakedShieldProtection() const;
-	double ForceProtection() const;
+	bool HasFuelGeneration() const;
 
 
 protected:
 	virtual void CacheAttributes() override;
+	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool wasDisabled,
+		bool wasDestroyed) override;
+
+
+private:
+	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
+	// when the ship is dying. Some leaks may also be for aesthetic purposes
+	// while flying.
+	class Leak {
+	public:
+		explicit Leak(const Effect *effect = nullptr) : effect(effect) {}
+
+		const Effect *effect = nullptr;
+		Point location;
+		Angle angle;
+		int openPeriod = 60;
+		int closePeriod = 60;
+		unsigned activity = PlacementActivity::NONE;
+	};
+
+	// A live spark is an effect which periodically appears over the surface of a ship.
+	class LiveSpark {
+	public:
+		explicit LiveSpark(const DataNode &node);
+		void Save(DataWriter &out) const;
+
+		const Effect *effect = nullptr;
+		int period = 1;
+		int random = 0;
+		double amount = 1;
+		PlacementSide side = PlacementSide::OVER;
+		unsigned activity = PlacementActivity::NONE;
+
+		int tick = 0;
+		int delay = 0;
+	};
+
+	// A live effect is an effect which periodically appears at a specific point on a ship.
+	class LiveEffect {
+	public:
+		explicit LiveEffect(const DataNode &node);
+		void Save(DataWriter &out) const;
+
+		const Effect *effect = nullptr;
+		Point position;
+		Angle angle;
+		int period = 1;
+		int random = 0;
+		int amount = 1;
+		PlacementSide side = PlacementSide::OVER;
+		unsigned activity = PlacementActivity::NONE;
+
+		int tick = 0;
+		int delay = 0;
+	};
 
 
 private:
@@ -582,6 +684,9 @@ private:
 	// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
 	// destroyed, or 0 otherwise.
 	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void StepLeaks(PlacementActivity state);
+	void StepLiveEffects();
+	void StepDecorations(PlacementActivity state);
 	void DoGeneration();
 	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoCloakDecision();
@@ -629,7 +734,7 @@ private:
 	std::string variantMapShopName;
 	std::string noun;
 	Paragraphs description;
-	const Sprite *thumbnail = nullptr;
+	Drawable thumbnail;
 	// Characteristics of this particular ship:
 	EsUuid uuid;
 	std::string givenName;
@@ -654,7 +759,6 @@ private:
 	bool isCapturable = true;
 	bool isInvisible = false;
 	const Swizzle *customSwizzle = nullptr;
-	std::string customSwizzleName;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missiles or tractor beams are in range.
@@ -675,6 +779,7 @@ private:
 	FireCommand firingCommands;
 
 	Personality personality;
+	Confusion confusion;
 	const Phrase *hail = nullptr;
 
 	ShipAICache aiCache;
@@ -728,20 +833,13 @@ private:
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
 
-	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
-	// when the ship is dying.
-	class Leak {
-	public:
-		Leak(const Effect *effect = nullptr) : effect(effect) {}
-
-		const Effect *effect = nullptr;
-		Point location;
-		Angle angle;
-		int openPeriod = 60;
-		int closePeriod = 60;
-	};
 	std::vector<Leak> leaks;
 	std::vector<Leak> activeLeaks;
+
+	bool syncedEffects = false;
+	std::vector<LiveSpark> liveSparks;
+	std::vector<LiveEffect> liveEffects;
+	std::vector<Decor> decorations;
 
 	// Explosions that happen when the ship is dying:
 	std::map<const Effect *, int> explosionEffects;
@@ -766,7 +864,7 @@ private:
 
 	// List of enemy ships targeting this one.
 	std::vector<std::weak_ptr<Ship>> targetingList;
-	double targeterStrength;
+	double targeterStrength = 0.;
 
 	bool removeBays = false;
 

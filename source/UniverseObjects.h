@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CategoryList.h"
 #include "Color.h"
+#include "Confusion.h"
 #include "Conversation.h"
 #include "Effect.h"
 #include "Fleet.h"
@@ -112,6 +113,7 @@ private:
 private:
 	Set<Color> colors;
 	Set<Swizzle> swizzles;
+	Set<Confusion> confusions;
 	Set<Conversation> conversations;
 	Set<Effect> effects;
 	Set<GameEvent> events;

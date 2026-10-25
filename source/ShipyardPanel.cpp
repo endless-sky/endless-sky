@@ -55,8 +55,8 @@ namespace {
 
 
 
-ShipyardPanel::ShipyardPanel(PlayerInfo &player, Sale<Ship> stock)
-	: ShopPanel(player, false), modifier(0), shipyard(std::move(stock)), initialFleetUsage(player.FleetCost())
+ShipyardPanel::ShipyardPanel(PlayerInfo &player, const Sale<Ship> &stock)
+	: ShopPanel(player, false), modifier(0), shipyard(stock), initialFleetUsage(player.FleetCost())
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].push_back(it.first);
@@ -148,7 +148,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 			const float spriteScale = min(1.f, (INFOBAR_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()));
 			const Swizzle *swizzle = selectedShip->CustomSwizzle()
 				? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
+			DrawThumbnail(*selectedShip, true, spriteCenter, spriteScale, swizzle);
 		}
 
 		const bool hasDescription = shipInfo.DescriptionHeight();

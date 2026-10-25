@@ -24,9 +24,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "UI.h"
 
-#include <cassert>
+#include "SDL.h"
 
-#include <SDL2/SDL.h>
+#include <cassert>
 
 using namespace std;
 
@@ -385,12 +385,20 @@ bool Edit::OnFocus(bool f)
 	{
 		if(!isEditable)
 			return false;
+#ifdef ES_USE_SDL3
+		SDL_StartTextInput(SDL_GetKeyboardFocus());
+#else
 		SDL_StartTextInput();
+#endif
 		highlightPos = INVALID_POS;
 		UpdateCaret(textHistory.back().second);
 	}
 	else
+#ifdef ES_USE_SDL3
+		SDL_StopTextInput(SDL_GetKeyboardFocus());
+#else
 		SDL_StopTextInput();
+#endif
 	return true;
 }
 

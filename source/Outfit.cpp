@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 #include "DataNode.h"
 #include "Effect.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "image/SpriteSet.h"
 #include "Weapon.h"
@@ -36,6 +37,8 @@ namespace {
 	// get used as closely as possible. Commonly used attribute values get cached anyway, so we care
 	// more about accuracy to what the content creator provided than speed of converting values.
 	constexpr int ATTRIBUTE_PRECISION = 10000;
+	// Attributes with a value greater than this magnitude will convert to an integer that will under/overflow.
+	constexpr double ATTRIBUTE_LIMIT = static_cast<double>(numeric_limits<int64_t>::max()) / ATTRIBUTE_PRECISION;
 
 	// A mapping of attribute names to specifically-allowed minimum values. Based on the
 	// specific usage of the attribute, the allowed minimum value is chosen to avoid
@@ -183,10 +186,10 @@ namespace {
 		{"turret turn multiplier", -1. * ATTRIBUTE_PRECISION},
 	};
 
-	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
+	void AddFlareSprites(vector<pair<Drawable, int>> &thisFlares, const pair<Drawable, int> &it, int count)
 	{
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
-			[&it](const pair<Body, int> &flare)
+			[&it](const pair<Drawable, int> &flare)
 			{
 				return (it.first.GetSprite() == flare.first.GetSprite()
 					&& it.first.Scale() == flare.first.Scale());
@@ -219,7 +222,7 @@ optional<double> Outfit::LowerLimit(const string &attribute)
 {
 	optional<int64_t> precise = LowerLimitPrecise(attribute);
 	if(precise.has_value())
-		return precise.value() / ATTRIBUTE_PRECISION;
+		return static_cast<double>(precise.value()) / ATTRIBUTE_PRECISION;
 	// No minimum override means a minimum of 0.
 	return 0.;
 }
@@ -354,7 +357,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "flotsam sprite" && hasValue)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(key == "thumbnail" && hasValue)
-			thumbnail = SpriteSet::Get(child.Token(1));
+			thumbnail.LoadSprite(child);
 		else if(key == "weapon")
 		{
 			if(!weapon)
@@ -391,13 +394,17 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			for(const DataNode &grand : child)
 				AddLicense(grand.Token(0));
 		}
-		else if(key == "jump range" && hasValue)
-		{
-			// Jump range must be positive.
-			Set(key, max(0., child.Value(1)));
-		}
 		else if(hasValue)
-			Set(key, child.Value(1));
+		{
+			double value = child.Value(1);
+			if(value > ATTRIBUTE_LIMIT || value < -ATTRIBUTE_LIMIT)
+			{
+				child.PrintTrace("Ignoring attribute with value that exceeds the attribute limit of +/-"
+					+ Format::Number(ATTRIBUTE_LIMIT, 3));
+				continue;
+			}
+			Set(key, value);
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -443,10 +450,14 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	if(jumpFuel)
 		attributes.Erase("jump fuel");
 
+	// Jump range must be positive.
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on
 	// viable outfits.
-	if(isJumpDrive && attributes.Get("jump range"))
+	int64_t jumpRange = attributes.Get("jump range");
+	if(jumpRange < 0)
+		attributes.Erase("jump range");
+	else if(isJumpDrive && jumpRange)
 		GameData::AddJumpRange(Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
@@ -576,7 +587,7 @@ const vector<string> &Outfit::Licenses() const
 
 
 // Get the image to display in the outfitter when buying this item.
-const Sprite *Outfit::Thumbnail() const
+const Drawable &Outfit::Thumbnail() const
 {
 	return thumbnail;
 }
@@ -751,21 +762,21 @@ const set<const Outfit *> &Outfit::LinkedOutfits() const
 
 
 // Get this outfit's engine flare sprite, if any.
-const vector<pair<Body, int>> &Outfit::FlareSprites() const
+const vector<pair<Drawable, int>> &Outfit::FlareSprites() const
 {
 	return flareSprites;
 }
 
 
 
-const vector<pair<Body, int>> &Outfit::ReverseFlareSprites() const
+const vector<pair<Drawable, int>> &Outfit::ReverseFlareSprites() const
 {
 	return reverseFlareSprites;
 }
 
 
 
-const vector<pair<Body, int>> &Outfit::SteeringFlareSprites() const
+const vector<pair<Drawable, int>> &Outfit::SteeringFlareSprites() const
 {
 	return steeringFlareSprites;
 }

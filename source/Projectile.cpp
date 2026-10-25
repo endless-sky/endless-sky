@@ -62,7 +62,7 @@ namespace {
 
 
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
-	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
+	: Body(weapon->ProjectileSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), lifetime(weapon->Lifetime())
 {
 	shared_ptr<Ship> targetShip = parent.GetTargetShip();
@@ -102,7 +102,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 
 
 Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
-	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset),
+	: Body(weapon->ProjectileSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset),
 	parent.velocity, parent.angle + angle),
 	weapon(weapon), target(parent.target), lifetime(weapon->Lifetime())
 {
@@ -459,8 +459,8 @@ void Projectile::CheckLock(const Entity &target)
 		double opticalJamming = target.IsDisabled() ? 0. : target.OpticalJamming();
 		if(opticalJamming)
 			opticalJamming *= RangeFraction(position.Distance(target.Position()), opticalJamming);
-		double targetMass = target.Mass() / (1. + opticalJamming);
-		double weight = targetMass * targetMass * targetMass / 1e9;
+		double opticalSize = target.OpticalSize() / (1. + opticalJamming);
+		double weight = opticalSize * opticalSize * opticalSize / 1e9;
 		double lockChance = weapon->OpticalTracking() * weight / (1. + weight);
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
