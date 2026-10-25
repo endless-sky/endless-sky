@@ -209,6 +209,7 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
+	int LargestCargoHold() const;
 	// Get items stored on the player's current planet.
 	CargoHold &Storage();
 	// Get items stored on all planets (for map display).
@@ -229,7 +230,7 @@ public:
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime() const noexcept;
-	void AddPlayTime(std::chrono::nanoseconds timeVal);
+	void AddPlayTime(std::chrono::nanoseconds timeVal, bool isIdle);
 
 	// Get the player's logbook.
 	const std::map<Date, BookEntry> &Logbook() const;
@@ -497,6 +498,7 @@ private:
 
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.;
+	double idleTime = 0.;
 
 	Account accounts;
 	// The licenses that the player owns.
@@ -510,6 +512,7 @@ private:
 	// and its scan range squared (for quicker comparisons).
 	std::map<int, std::map<std::weak_ptr<Ship>, double, std::owner_less<std::weak_ptr<const Ship>>>> scanners;
 	CargoHold cargo;
+	int largestCargoHold = 0;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
 	std::optional<int> maxEscortCount;

@@ -170,6 +170,8 @@ public:
 		unsigned activity = PlacementActivity::NONE;
 		double rotationSpeed = 0.;
 		bool synced = false;
+		int tick = 0;
+		int delay = 0;
 	};
 
 
@@ -304,7 +306,7 @@ public:
 	void Draw(DrawList &draw, std::vector<Visual> &visuals) const;
 	// TODO: std::reference_wrapper<T> can be replaced with T& in C++26.
 	void Draw(DrawList &draw, std::optional<std::reference_wrapper<std::vector<Visual>>> visuals, const Point &pos,
-		const Angle &facing, float zoom) const;
+		const Angle &facing, float zoom, std::optional<double> parentCloakState = std::nullopt) const;
 
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
@@ -382,7 +384,6 @@ public:
 	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
 	const Swizzle *CustomSwizzle() const;
-	const std::string &CustomSwizzleName() const;
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -404,8 +405,6 @@ public:
 	void SelfDestruct();
 	void Restore();
 	bool IsDamaged() const;
-	// Check if this ship has been destroyed.
-	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
@@ -617,10 +616,13 @@ public:
 
 	double TurretTurnMultiplier() const;
 
+	bool HasFuelGeneration() const;
+
 
 protected:
 	virtual void CacheAttributes() override;
-	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy) override;
+	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool wasDisabled,
+		bool wasDestroyed) override;
 
 
 private:
@@ -653,6 +655,7 @@ private:
 		unsigned activity = PlacementActivity::NONE;
 
 		int tick = 0;
+		int delay = 0;
 	};
 
 	// A live effect is an effect which periodically appears at a specific point on a ship.
@@ -671,6 +674,7 @@ private:
 		unsigned activity = PlacementActivity::NONE;
 
 		int tick = 0;
+		int delay = 0;
 	};
 
 
@@ -685,7 +689,7 @@ private:
 	// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
 	// destroyed, or 0 otherwise.
 	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
-	void StepLeaks(std::vector<Visual> &visuals, PlacementActivity state);
+	void StepLeaks(PlacementActivity state);
 	void StepLiveEffects();
 	void StepDecorations(PlacementActivity state);
 	void DoGeneration();
@@ -766,7 +770,6 @@ private:
 	bool isCapturable = true;
 	bool isInvisible = false;
 	const Swizzle *customSwizzle = nullptr;
-	std::string customSwizzleName;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missiles or tractor beams are in range.

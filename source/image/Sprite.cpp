@@ -20,8 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Logger.h"
 #include "../Preferences.h"
 
-#include "../SDL.h"
-
 #include "../opengl.h"
 
 using namespace std;
