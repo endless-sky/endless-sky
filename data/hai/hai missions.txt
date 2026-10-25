@@ -11,6 +11,16 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Discovery: Hai Space"
+	entering
+	invisible
+	non-blocking
+	source
+		government "Hai" "Hai (Unfettered)"
+	on offer
+		set "discovered hai space"
+		fail
+
 mission "First Contact: Hai"
 	landing
 	source
