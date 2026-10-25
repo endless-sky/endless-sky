@@ -367,6 +367,8 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 			isCloaking = true;
 		else if(key == "playtime" && hasValue)
 			playTime = child.Value(1);
+		else if(key == "idle time" && hasValue)
+			idleTime = child.Value(1);
 		else if(key == "travel" && hasValue)
 			travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
 		else if(key == "travel destination" && hasValue)
@@ -1638,6 +1640,13 @@ const CargoHold &PlayerInfo::Cargo() const
 
 
 
+int PlayerInfo::LargestCargoHold() const
+{
+	return largestCargoHold;
+}
+
+
+
 // Get items stored on the player's current planet.
 CargoHold &PlayerInfo::Storage()
 {
@@ -1688,11 +1697,15 @@ void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
 	int bunks = 0;
+	largestCargoHold = 0;
 	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetPlanet() == planet && !ship->IsParked())
 		{
-			size += ship->Attributes().Get("cargo space");
+			int space = ship->Attributes().Get("cargo space");
+			size += space;
+			if(space > largestCargoHold)
+				largestCargoHold = space;
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
 			bunks += ship->Attributes().Get("bunks") - crew;
 		}
@@ -2151,9 +2164,12 @@ double PlayerInfo::GetPlayTime() const noexcept
 
 
 
-void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
+void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal, bool isIdle)
 {
-	playTime += timeVal.count() * .000000001;
+	if(isIdle)
+		idleTime += timeVal.count() * .000000001;
+	else
+		playTime += timeVal.count() * .000000001;
 }
 
 
@@ -4006,8 +4022,6 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	conditions["net worth"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, max(-limit, accounts.NetWorth())); });
-	conditions["credits"].ProvideNamed([this](const ConditionEntry &ce) {
-		return min(limit, accounts.Credits()); });
 	conditions["unpaid mortgages"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, accounts.TotalDebt("Mortgage")); });
 	conditions["unpaid fines"].ProvideNamed([this](const ConditionEntry &ce) {
@@ -4022,6 +4036,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		return accounts.CreditScore(); });
 
 	// Read/write assets and debts.
+	conditions["credits"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return min(limit, accounts.Credits());
+	}, [this](ConditionEntry &ce, int64_t value) -> void {
+		accounts.SetCredits(clamp<int64_t>(value, 0, limit));
+	});
 	conditions["salary: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		const map<string, int64_t> &si = accounts.SalariesIncome();
 		auto it = si.find(ce.NameWithoutPrefix());
@@ -5031,6 +5050,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
 	out.Write("playtime", playTime);
+	out.Write("idle time", idleTime);
 	// This flag is set if the player must leave the planet immediately upon
 	// entering their ship (i.e. because a mission forced them to take off).
 	if(shouldLaunch)
@@ -5656,9 +5676,31 @@ void PlayerInfo::DoAccounting()
 
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
+	int64_t assets = 0;
+	map<const Ship *, int> shipCount;
+	map<const Outfit *, int> outfitCount;
 	for(const shared_ptr<Ship> &ship : ships)
-		assets += ship->Cargo().Value(system);
+	{
+		const Ship *base = GameData::Ships().Get(ship->VariantName());
+		++shipCount[base];
+		for(const auto &[outfit, count] : ship->Outfits())
+			outfitCount[outfit] += count;
+
+		const CargoHold &cargo = ship->Cargo();
+		for(const auto &[commodity, count] : cargo.Commodities())
+			assets += static_cast<int64_t>(system->Trade(commodity)) * count;
+		for(const auto &[outfit, count] : cargo.Outfits())
+			outfitCount[outfit] += count;
+	}
+	for(const auto &storage : planetaryStorage | views::values)
+		for(const auto &[outfit, count] : storage.Outfits())
+			outfitCount[outfit] += count;
+
+	int day = date.DaysSinceEpoch();
+	for(const auto &[ship, count] : shipCount)
+		assets += depreciation.Value(ship, day, count);
+	for(const auto &[outfit, count] : outfitCount)
+		assets += depreciation.Value(outfit, day, count);
 
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.

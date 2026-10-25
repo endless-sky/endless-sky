@@ -381,7 +381,6 @@ ship "Modified Dromedary" "Modified Dromedary Ghost"
 	outfits
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
 		"NDR-114 Android" 100
@@ -421,7 +420,6 @@ ship "Modified Dromedary" "Modified Dromedary Specter"
 	outfits
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
 		"NDR-114 Android" 100
@@ -451,13 +449,11 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 		"scramble protection" 1
 		"slowing protection" 1
 	outfits
-		"Laser Turret" 2
-		"Quad Blaster Turret"
+		"Quad Blaster Turret" 3
 		"Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
 		"NDR-114 Android" 100
@@ -466,10 +462,10 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 		"X4700 Ion Thruster"
 		"X5200 Ion Steering"
 		"Hyperdrive"
-	turret "Laser Turret"
+	turret "Quad Blaster Turret"
 	turret "Anti-Missile Turret"
 	turret "Quad Blaster Turret"
-	turret "Laser Turret"
+	turret "Quad Blaster Turret"
 	turret "Anti-Missile Turret"
 	description `The Tycho Crater Cooperative's Dromedary was one of the foremost colonization ships during the early era before piracy became rampant and triggered the necessity for city-ships to be more combat-oriented. These ships incorporate extensive hydroponics, large construction equipment installations, and hundreds of densely packed "dream cells" built to transport people in bulk.`
 	description "	This is a wreck. A ship that once might have held hundreds of people has no functional environmental system, the once verdant hydroponics domes are shattered, and much of the ship appears to be destroyed. Burns, strange scrapes, and twists to structural elements abound. Only a smattering of droids persistently continuing their work manage to maintain any degree of functionality."
