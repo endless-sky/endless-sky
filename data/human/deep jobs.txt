@@ -419,7 +419,7 @@ mission "Record academic conference"
 	source
 		attributes "deep"
 	destination
-		attributes "education" "research" "quarg" "rich" "paradise"
+		attributes "education" "research" "quarg" "wealthy" "paradise"
 		distance 4 10
 	cargo "recording equipment" 1
 	to offer

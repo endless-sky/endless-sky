@@ -15,11 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "NPC.h"
 
+#include "Conversation.h"
 #include "ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "DialogPanel.h"
-#include "text/Format.h"
+#include "Fleet.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
@@ -206,8 +207,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			else if(hasValue)
 			{
 				// Loading a ship managed by GameData, i.e. "base models" and variants.
-				stockShips.push_back(GameData::Ships().Get(child.Token(1)));
-				shipNames.push_back(child.Token(1 + (child.Size() > 2)));
+				factory.Load(child, playerConditions);
 			}
 			else
 			{
@@ -316,7 +316,7 @@ void NPC::Save(DataWriter &out) const
 
 		if(!dialog.IsEmpty())
 			dialog.Save(out);
-		if(!conversation->IsEmpty())
+		if(conversation && !conversation->IsEmpty())
 			conversation->Save(out);
 
 		for(const shared_ptr<Ship> &ship : ships)
@@ -341,7 +341,12 @@ void NPC::Save(DataWriter &out) const
 
 string NPC::Validate(bool asTemplate) const
 {
-	// An NPC with no government will take the player's government
+	// An NPC template with no government will take the player's government.
+	if(!asTemplate && !government)
+		return "government (missing)";
+	// If a government is provided, it must be defined.
+	if(government && !government->IsDefined())
+		return "government (undefined)";
 
 	// NPC templates have certain fields to validate that instantiated NPCs do not:
 	if(asTemplate)
@@ -377,7 +382,7 @@ string NPC::Validate(bool asTemplate) const
 	for(auto &&ship : ships)
 		if(!ship->IsValid())
 			return "ship \"" + ship->GivenName() + "\"";
-	for(auto &&ship : stockShips)
+	for(auto &&ship : factory.GetShips())
 		if(!ship->IsValid())
 			return "stock model \"" + ship->VariantName() + "\"";
 
@@ -429,7 +434,7 @@ const Personality &NPC::GetPersonality() const
 
 
 // Get the ships associated with this set of NPCs.
-const list<shared_ptr<Ship>> NPC::Ships() const
+const list<shared_ptr<Ship>> &NPC::Ships() const
 {
 	return ships;
 }
@@ -503,7 +508,7 @@ bool NPC::Do(const ShipEvent &event, PlayerInfo &player, UI &ui, const Mission *
 	{
 		// If "completing" this NPC displays a conversation, reference
 		// it, to allow the completing event's target to be destroyed.
-		if(!conversation->IsEmpty())
+		if(conversation && !conversation->IsEmpty())
 			ui.Push(new ConversationPanel(player, *conversation, caller, nullptr, ship));
 		if(!dialog.IsEmpty())
 			ui.Push(DialogPanel::Info(dialog.Text()));
@@ -662,16 +667,11 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		result.ships.push_back(make_shared<Ship>(*ship));
 		ship->FinishLoading(true);
 	}
-	auto shipIt = stockShips.begin();
-	auto nameIt = shipNames.begin();
 	map<string, string> playerSubs;
 	player.AddPlayerSubstitutions(playerSubs);
-	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
-	{
-		result.ships.push_back(make_shared<Ship>(**shipIt));
-		result.ships.back()->SetGivenName(Format::Replace(Format::Replace(
-			Phrase::ExpandPhrases(*nameIt), subs), playerSubs));
-	}
+	playerSubs.insert(subs.begin(), subs.end());
+	auto nameFunc = [](const shared_ptr<Ship> &ship) -> string { return ship->DisplayModelName(); };
+	factory.Instantiate(result.ships, nameFunc, &subs);
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
 		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);
 	// Ships should either "enter" the system or start out there.
@@ -708,7 +708,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	}
 	// Do string replacement on any dialog or conversation.
 	result.dialog = dialog.Instantiate(subs);
-	if(!conversation->IsEmpty())
+	if(conversation && !conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));
 
 	// Instantiate the actions.

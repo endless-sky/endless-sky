@@ -21,12 +21,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "InfoPanelState.h"
 #include "text/Layout.h"
 #include "Point.h"
+#include "Tooltip.h"
 
-#include <set>
 #include <vector>
 
 class PlayerInfo;
 class Rectangle;
+class TableArea;
 
 
 
@@ -60,9 +61,13 @@ private:
 	// Draw the two subsections of this panel.
 	void DrawPlayer(const Rectangle &bounds);
 	void DrawFleet(const Rectangle &bounds);
+	// Draw a list of details about the player, such as the player's licenses or salaries.
+	void DrawList(const std::vector<std::pair<std::string, int64_t>> &list, std::shared_ptr<TableArea> &area,
+		Point &topLeft, int width, const std::string &title, int64_t titleValue, int height, bool drawValues = true);
 
 	// Handle mouse hover (also including hover during drag actions):
 	bool Hover(const Point &point);
+	void CheckHover(const Rectangle &zone, const std::string &label);
 	// Adjust the scroll by the given amount. Return true if it changed.
 	bool Scroll(int distance);
 	// Try to scroll to the given position. Return true if position changed.
@@ -81,6 +86,7 @@ private:
 		InfoPanelState::ShipComparator *shipSort = nullptr;
 	};
 
+
 private:
 	PlayerInfo &player;
 
@@ -98,8 +104,14 @@ private:
 	// make the game think the player is hovering on something.
 	Point hoverPoint = Point(-10000, -10000);
 
+	Tooltip tooltip;
+
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
+
+	std::shared_ptr<TableArea> salaryArea;
+	std::shared_ptr<TableArea> tributeArea;
+	std::shared_ptr<TableArea> licenseArea;
 
 	bool checkedHelp = false;
 };

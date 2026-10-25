@@ -56,6 +56,8 @@ public:
 	int CommoditiesSize() const;
 	int OutfitsSize() const;
 	double OutfitsSizePrecise() const;
+	int MinablesSize() const;
+	double MinablesSizePrecise() const;
 	bool HasOutfits() const;
 	int MissionCargoSize() const;
 	bool HasMissionCargo() const;
@@ -102,9 +104,6 @@ public:
 	// Add or remove any cargo or passengers associated with the given mission.
 	void AddMissionCargo(const Mission *mission);
 	void RemoveMissionCargo(const Mission *mission);
-
-	// Get the total value of all this cargo, in the given system.
-	int64_t Value(const System *system) const;
 
 	// If anything you are carrying is illegal, return the maximum fine you can
 	// be charged for any illegal outfits plus the sum of the fines for all

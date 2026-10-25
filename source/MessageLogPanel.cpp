@@ -76,11 +76,11 @@ void MessageLogPanel::Draw()
 		info.SetCondition("empty");
 	else
 	{
-		const Font &font = FontSet::Get(14);
+		const Font &font = FontSet::Get(Preferences::GetFontSize());
 
 		// Parameters for drawing messages:
 		WrappedText messageLine(font);
-		messageLine.SetAlignment(Alignment::LEFT);
+		messageLine.SetAlignment(Preferences::GetTextAlignment());
 		messageLine.SetWrapWidth(width - 2. * PAD);
 
 		// Draw messages.

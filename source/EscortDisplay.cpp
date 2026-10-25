@@ -181,7 +181,8 @@ EscortDisplay::Icon::Icon(const shared_ptr<Ship> &ship, bool isHere, bool system
 	isSelected(isSelected),
 	cost(ship->Cost()),
 	system((!isHere && ship->GetSystem()) ? (systemNameKnown ? ship->GetSystem()->DisplayName() : "???") : ""),
-	low{ship->Shields(), ship->Hull(), ship->Energy(), min(ship->Heat(), 1.), ship->Fuel()},
+	low({ship->ShieldFraction(), ship->HullFraction(), ship->EnergyFraction(), min(ship->HeatFraction(), 1.),
+		ship->FuelFraction()}),
 	high(low),
 	ships(1, ship)
 {

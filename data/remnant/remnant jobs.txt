@@ -117,6 +117,7 @@ mission "Remnant: Expanded Horizons Astral job"
 	source
 		government "Remnant"
 	waypoint
+		not distance 0
 		not attributes "pleiades"
 		not attributes "tangled shroud"
 		not attributes "twilight"
@@ -125,6 +126,36 @@ mission "Remnant: Expanded Horizons Astral job"
 		visited
 	to offer
 		has "Remnant: Expanded Horizons Astral 2: done"
+		not "Ka'het: Patir Mystery 35: done"
+		random < 50
+	on offer
+		require "Research Laboratory"
+	on waypoint
+		dialog "Your scientist unpacks the laboratory and takes the requested observations. A short while later, they have the data compiled on a set of data crystals and inform you that everything is ready for departure."
+	on complete
+		payment 500000
+		"reputation: Remnant" ++
+		dialog "When you land, a researcher quickly retrieves the data crystals with the information about the surveyed system and hands you the logistics allotment of <payment>."
+
+
+
+mission "Remnant: Expanded Horizons Astral job late"
+	job
+	repeat
+	name "Research Expedition to <waypoints>"
+	description "Travel to <waypoints> with a Research Laboratory to collect data, then return to <destination>."
+	source
+		government "Remnant"
+	waypoint
+		not distance 0
+		not attributes "pleiades"
+		not attributes "inaccessible"
+		not attributes "tangled shroud"
+		not attributes "twilight"
+		not attributes "outer limits"
+	to offer
+		has "Remnant: Expanded Horizons Astral 2: done"
+		has "Ka'het: Patir Mystery 35: done"
 		random < 50
 	on offer
 		require "Research Laboratory"
@@ -205,7 +236,7 @@ mission "Remnant: Bounty 5"
 	job
 	repeat
 	name "Destroy Ground Assault Bounty"
-	description "A Korath ship is hunting for our outposts in the Ember Wastes. Track it down, eliminate it and any fighters it is carrying, and then return to <planet> to receive your payment of <payment>."
+	description "A Korath ship is hunting for our outposts in the Ember Waste. Track it down, eliminate it and any fighters it is carrying, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
 	to offer
@@ -350,7 +381,7 @@ mission "Remnant: Rescue"
 	job
 	repeat
 	name "Search and Rescue: Scout"
-	description "The <npc> has gone missing during a scouting mission in the Ember Wastes. Find them and help them return to <destination>."
+	description "The <npc> has gone missing during a scouting mission in the Ember Waste. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -419,7 +450,7 @@ mission "Remnant: Rescue 1B"
 	job
 	repeat
 	name "Search and Rescue: Scout"
-	description "The <npc> has gone missing during a scouting mission in the Ember Wastes. Find them and help them return to <destination>."
+	description "The <npc> has gone missing during a scouting mission in the Ember Waste. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -457,7 +488,7 @@ mission "Remnant: Rescue 2"
 	job
 	repeat
 	name "Search and Rescue: Retrieval"
-	description "The <npc> has gone missing during a tech retrieval mission in the Ember Wastes. Find them and help them return to <destination>."
+	description "The <npc> has gone missing during a tech retrieval mission in the Ember Waste. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -497,7 +528,7 @@ mission "Remnant: Rescue 2B"
 	job
 	repeat
 	name "Search and Rescue: Retrieval"
-	description "The <npc> has gone missing during a tech retrieval mission in the Ember Wastes. Find them and help them return to <destination>."
+	description "The <npc> has gone missing during a tech retrieval mission in the Ember Waste. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -535,7 +566,7 @@ mission "Remnant: Rescue 3"
 	job
 	repeat
 	name "Search and Rescue: Supply Ship"
-	description "The <npc> has gone missing during a supply run in the Ember Wastes. Find them and help them return to <destination>."
+	description "The <npc> has gone missing during a supply run in the Ember Waste. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer
@@ -573,7 +604,7 @@ mission "Remnant: Rescue 3B"
 	job
 	repeat
 	name "Search and Rescue: Supply Ship"
-	description "The <npc> has gone missing during a supply run in the Ember Wastes. Find them and help them return to <destination>."
+	description "The <npc> has gone missing during a supply run in the Ember Waste. Find them and help them return to <destination>."
 	source
 		government "Remnant"
 	to offer

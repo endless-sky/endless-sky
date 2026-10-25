@@ -242,11 +242,11 @@ outfit "Ka'het EMP Deployer"
 	index 05010
 	cost 715000
 	thumbnail "outfit/ka'het emp deployer"
-	"mass" 18
+	"mass" 10
 	"outfit space" -26
 	"weapon capacity" -26
 	"gun ports" -1
-	"emp torpedo capacity" 16
+	"emp torpedo capacity" 27
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
@@ -271,7 +271,7 @@ outfit "Ka'het EMP Deployer"
 		"turn" 2
 		"homing"
 			"throttle control"
-		"infrared tracking" .7
+		"infrared tracking" .2
 		"radar tracking" .8
 		"trigger radius" 50
 		"blast radius" 200
@@ -424,6 +424,20 @@ outfit "Ka'het Reserve Accumulator"
 	"energy capacity" 2400
 	description "This tiny battery was developed for use by the Ka'mar drones as an emergency energy storage, in case their generators can't quite suffice for the high power demand of most Builder systems."
 
+outfit "Ka'het Ion Trap"
+	category "Power"
+	series "Generators"
+	index 05010
+	cost 376000
+	thumbnail "outfit/ka'het ion trap"
+	"mass" 2
+	"outfit space" -3
+	"ion resistance" 0.05
+	"ion resistance energy" -3
+	"heat generation" 0.8
+	"energy capacity" 600
+	description "The unique function of this generator is that of deflecting and slowing incoming ions, creating a significant amount of energy in the process. A powerful, correctly shaped magnetic field appears to be the key, as long as a powerful enough ion storm (or an equivalent phenomenon) is nearby. The practical result is that it converts hazardous storms into useful power."
+
 # Engines:
 
 outfit "Maeri Engine Nacelles"
@@ -555,4 +569,5 @@ outfit "Ka'het Electric Stunner"
 	"capture attack" 1.3
 	"capture defense" 8.5
 	"unplunderable" 1
+	"can jettison" 1
 	description "A weapon of curious design, clearly not built with human hands in mind. Its short range makes it effective only for defending against enemy boarders, using the knowledge of your ship's architecture to your advantage."

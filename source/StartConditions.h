@@ -17,15 +17,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CoreStartData.h"
 
+#include "ConditionAssignments.h"
 #include "ConditionSet.h"
-#include "Conversation.h"
 #include "Date.h"
 #include "ExclusiveItem.h"
+#include "ship/ShipFactory.h"
 
 #include <string>
 #include <vector>
 
 class ConditionsStore;
+class Conversation;
 class DataNode;
 class Ship;
 class Sprite;
@@ -79,10 +81,10 @@ public:
 	bool IsValid() const;
 
 	const ConditionAssignments &GetConditions() const noexcept;
-	const std::vector<Ship> &Ships() const noexcept;
+	void InstantiateShips(const PlayerInfo &player, std::vector<std::shared_ptr<Ship>> &playerShips) const noexcept;
 
 	// Get this start's intro conversation.
-	const Conversation &GetConversation() const;
+	const Conversation *GetConversation() const;
 
 	// Information needed for the scenario picker.
 	const Sprite *GetThumbnail() const noexcept;
@@ -113,7 +115,7 @@ private:
 	// Conditions that will be set for any pilot that begins with this scenario.
 	ConditionAssignments conditions;
 	// Ships that a new pilot begins with (rather than being required to purchase one).
-	std::vector<Ship> ships;
+	ShipFactory ships;
 
 	// The conversation to display when a game begins with this scenario.
 	ExclusiveItem<Conversation> conversation;

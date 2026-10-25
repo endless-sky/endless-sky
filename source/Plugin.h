@@ -1,4 +1,4 @@
-/* Plugins.h
+/* Plugin.h
 Copyright (c) 2022 by Sam Gleske (samrocketman on GitHub)
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Set.h"
-
 #include <filesystem>
 #include <set>
 #include <string>
@@ -24,13 +22,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Represents information about a single plugin.
-struct Plugin {
-	struct PluginDependencies {
+class Plugin {
+public:
+	class PluginDependencies {
+	public:
 		// Checks if there are any dependencies of any kind.
 		bool IsEmpty() const;
 		// Checks if there are any duplicate dependencies. E.g. the same dependency in both required and conflicted.
 		bool IsValid() const;
 
+	public:
 		// The game version to match against.
 		std::string gameVersion;
 		// The plugins, if any, which are required by this plugin.
@@ -41,11 +42,15 @@ struct Plugin {
 		std::set<std::string> conflicted;
 	};
 
+
+public:
 	// Checks whether this plugin is valid, i.e. whether it exists.
 	bool IsValid() const;
 	// Constructs a description of the plugin from its name, tags, dependencies, etc.
 	std::string CreateDescription() const;
 
+
+public:
 	// The name that identifies this plugin.
 	std::string name;
 	// The path to the plugin's folder.
@@ -67,29 +72,4 @@ struct Plugin {
 	bool enabled = true;
 	// The current state of the plugin.
 	bool currentState = true;
-};
-
-
-
-// Tracks enabled and disabled plugins for loading plugin data or skipping it.
-// This object is updated by toggling plugins in the Preferences UI.
-class Plugins {
-public:
-	// Attempt to load a plugin at the given path.
-	static const Plugin *Load(const std::filesystem::path &path);
-
-	static void LoadSettings();
-	static void Save();
-
-	// Whether the path points to a valid plugin.
-	static bool IsPlugin(const std::filesystem::path &path);
-	// Returns true if any plugin enabled or disabled setting has changed since
-	// launched via user preferences.
-	static bool HasChanged();
-
-	// Returns the list of plugins that have been identified by the game.
-	static const Set<Plugin> &Get();
-
-	// Toggles enabling or disabling a plugin for the next game restart.
-	static void TogglePlugin(const std::string &name);
 };

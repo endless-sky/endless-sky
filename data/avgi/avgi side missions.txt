@@ -223,6 +223,7 @@ mission "Avgi Culture: Park Politics"
 
 			label abandon
 			`	"Contemplation. That view would have been anathema to us only a short few years ago, but it is one that is steadily gaining ground. With each defeat and failed expedition back to the Twilight, the calls grow to focus on preserving what we have, not reaching to reclaim the old. And many say that those on the old worlds are safe, for now, and may even be able to build a fleet to liberate themselves, if they can but reclaim their orbital shipyards and asteroid mines. If that truly is the case, they say, then we should build ourselves up as a bastion first, with the living space and abundance to support our population."`
+				goto next5
 
 			label "another way"
 			`	"Amusement. Always in search of another way, everyone is. Perhaps because the choice we are left with is so abhorrent, that seeking another way provides a means of relieving them of it. We have attempted communication with the Aberrant, to no avail, and it seems likely they are not an intelligent species to begin with. They do not appear to coordinate with each other, and examining their debris in the rare instances we have managed to destroy one reveals no crew, just a strange mixture of machine and flesh. Perhaps they are some forgotten living weapon, engineered by a race long gone, or the mere servants of some ancient race far beyond us in power, the equivalents of our mining drones and service robots."`
