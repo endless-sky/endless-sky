@@ -340,9 +340,9 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : colors)
 		if(!it.second.IsLoaded())
 			Warn("color", it.first);
-	for(const auto &it : swizzles)
+	for(auto &&it : swizzles)
 		if(!it.second.IsLoaded())
-			Warn("swizzle", it.first);
+			NameAndWarn("swizzle", it);
 	for(const auto &it : messageCategories)
 		if(!it.second.IsLoaded())
 			Warn("message category", it.first);

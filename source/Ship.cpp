@@ -529,7 +529,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "noun" && hasValue)
 			noun = child.Token(1);
 		else if(key == "swizzle" && hasValue)
-			customSwizzleName = child.Token(1);
+			customSwizzle = GameData::Swizzles().Get(child.Token(1));
 		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "administrative cost" && hasValue)
@@ -940,8 +940,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		if(!GetSprite())
 			static_cast<Body &>(*this) = *base;
-		if(customSwizzleName.empty())
-			customSwizzleName = base->CustomSwizzleName();
+		if(!customSwizzle)
+			customSwizzle = base->CustomSwizzle();
 		if(!administrativeCost.has_value())
 			administrativeCost = base->administrativeCost;
 		if(baseAttributes.Empty())
@@ -1233,14 +1233,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			targetSystem = nullptr;
 		}
 	}
-
-	if(!customSwizzleName.empty())
-	{
-		customSwizzle = GameData::Swizzles().Get(customSwizzleName);
-		if(!customSwizzle->IsLoaded())
-			Logger::Log("Ship \"" + GivenName() + "\" refers to nonexistent swizzle \"" + customSwizzleName + "\".",
-				Logger::Level::WARNING);
-	}
 }
 
 
@@ -1277,8 +1269,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("never disabled");
 		if(!isCapturable)
 			out.Write("uncapturable");
-		if(customSwizzle && customSwizzle->IsLoaded())
-			out.Write("swizzle", customSwizzle->Name());
+		if(customSwizzle)
+			out.Write("swizzle", customSwizzle->TrueName());
 		if(administrativeCost.has_value())
 			out.Write("administrative cost", administrativeCost.value());
 
@@ -3146,13 +3138,6 @@ const Swizzle *Ship::CustomSwizzle() const
 
 
 
-const string &Ship::CustomSwizzleName() const
-{
-	return customSwizzleName;
-}
-
-
-
 // Check if the ship is thrusting. If so, the engine sound should be played.
 bool Ship::IsThrusting() const
 {
@@ -4568,27 +4553,30 @@ bool Ship::SilentJumps() const
 
 double Ship::CloakFuelCost() const
 {
-	// The fuel cost of cloaking is not only the cost of the cloak itself,
-	// but also the natural fuel gain or lost due to fuel consumption and generation.
+	double fuelCost = cache.cloakCost.fuel;
+	if(fuelCost <= 0.)
+		return 0.;
+	// If cloaking requires fuel, then the fuel cost of cloaking is not only the cost of the cloak itself,
+	// but also the natural fuel gained or lost due to fuel consumption and generation.
 	// If fuel generation outpaces fuel lost due to cloaking or fuel consumption, then consider
 	// the fuel cost to be 0.
-	return min(0., cache.cloakCost.fuel + cache.fuelConsumption - cache.fuelGeneration);
+	return max(0., fuelCost + cache.fuelConsumption - cache.fuelGeneration);
 }
 
 
 
 bool Ship::HasFuelForCloak() const
 {
-	double fuelCost = CloakFuelCost();
 	// Don't cloak if it would result in you becoming stranded.
 	// If the ship has a ramscoop, assume that it won't be stranded due to cloak usage.
+	double fuelCost = CloakFuelCost();
 	if(fuelCost && !cache.ramscoop)
 	{
 		double fuel = levels.fuel;
 		int steps = ceil((1. - Cloaking()) / CloakingSpeed());
 		// Only cloak if you will be able to fully cloak and also maintain it
 		// for as long as it will take you to reach full cloak.
-		fuel -= CloakFuelCost() * (1 + 2 * steps);
+		fuel -= fuelCost * (1 + 2 * steps);
 		if(fuel < JumpNavigation().JumpFuel())
 			return false;
 	}
@@ -4628,6 +4616,20 @@ bool Ship::CanRecoverShieldsWhileCloaked() const
 double Ship::TurretTurnMultiplier() const
 {
 	return cache.turretTurnMult;
+}
+
+
+
+bool Ship::HasFuelGeneration() const
+{
+	double fuelGen = cache.fuelGeneration;
+	if(currentSystem)
+	{
+		System::SolarGeneration generation = currentSystem->GetSolarGeneration(position,
+			cache.ramscoop, cache.solarCollection, cache.solarHeat);
+		fuelGen += generation.fuel;
+	}
+	return fuelGen > 0.;
 }
 
 
@@ -4679,12 +4681,12 @@ int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool 
 		lastHitBy = hitBy;
 	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
 
-	if(damage.Levels().shields && !isDisabled)
+	if(damage.Levels().shields > 0. && !isDisabled)
 	{
 		int disabledDelay = cache.depletedShieldDelay;
 		shieldDelay = max(shieldDelay, (levels.shields <= 0. && disabledDelay) ? disabledDelay : cache.shieldDelay);
 	}
-	if(damage.Levels().hull && !isDisabled)
+	if(damage.Levels().hull > 0. && !isDisabled)
 		hullDelay = max(hullDelay, cache.repairDelay);
 
 	if(damage.HitForce())
@@ -4722,17 +4724,38 @@ int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool 
 
 	// If this ship did not consider itself an enemy of the ship that hit it,
 	// it is now "provoked" against that government.
-	if(hitBy && !hitBy->IsEnemy(government)
-			&& !personality.IsPacifist() && (!personality.IsForbearing()
-				|| ((damage.Levels().shields || damage.Levels().discharge) && ShieldFraction() < .9)
-				|| ((damage.Levels().hull || damage.Levels().corrosion) && HullFraction() < .9)
-				|| ((damage.Levels().heat || damage.Levels().burning) && isOverheated)
-				|| ((damage.Levels().energy || damage.Levels().ionization) && EnergyFraction() < 0.5)
-				|| ((damage.Levels().fuel || damage.Levels().leakage) && levels.fuel < navigation.JumpFuel() * 2.)
-				|| (damage.Levels().scrambling && CalculateJamChance(levels.scrambling) > 0.1)
-				|| (damage.Levels().slowness && levels.slowness > 10.)
-				|| (damage.Levels().disruption && levels.disruption > 100.)))
-		type |= ShipEvent::PROVOKE;
+	if(hitBy && !hitBy->IsEnemy(government) && !personality.IsPacifist())
+	{
+		// Allow weapons that heal a target to not provoke them.
+		const ResourceLevels &levels = damage.Levels();
+		bool shieldDamage = levels.shields > 0. || levels.discharge > 0.;
+		bool hullDamage = levels.hull > 0. || levels.corrosion > 0.;
+		bool energyDamage = levels.energy > 0. || levels.ionization > 0.;
+		bool heatDamage = levels.heat > 0. || levels.burning > 0.;
+		bool fuelDamage = levels.fuel > 0. || levels.leakage > 0.;
+		bool scramblingDamage = levels.scrambling > 0.;
+		bool slowingDamage = levels.slowness > 0.;
+		bool disruptionDamage = levels.disruption > 0.;
+		// Forbearing ships need to exceed certain thresholds before they consider
+		// an attack to be provoking.
+		if(personality.IsForbearing() && ((shieldDamage && ShieldFraction() < .9)
+			|| (hullDamage && HullFraction() < .9)
+			|| (heatDamage && isOverheated)
+			|| (energyDamage && EnergyFraction() < 0.5)
+			|| (fuelDamage && levels.fuel < navigation.JumpFuel() * 2.)
+			|| (scramblingDamage && CalculateJamChance(levels.scrambling) > 0.1)
+			|| (slowingDamage && levels.slowness > 10.)
+			|| (disruptionDamage && levels.disruption > 100.)))
+		{
+			type |= ShipEvent::PROVOKE;
+		}
+		// All other ships are provoked by any positive amount of damage.
+		else if(shieldDamage || hullDamage || energyDamage || heatDamage || fuelDamage || scramblingDamage
+			|| slowingDamage || disruptionDamage)
+		{
+			type |= ShipEvent::PROVOKE;
+		}
+	}
 
 	return type;
 }
@@ -5423,6 +5446,7 @@ bool Ship::DoLandingLogic()
 			SetTargetAsteroid(nullptr);
 			SetTargetFlotsam(nullptr);
 			SetTargetShip(nullptr);
+			SetTargetStellar(nullptr);
 
 			zoom = 0.f;
 		}
@@ -5433,7 +5457,6 @@ bool Ship::DoLandingLogic()
 			|| !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel, isYours))
 	{
 		zoom = min(1.f, zoom + landingSpeed);
-		SetTargetStellar(nullptr);
 		landingPlanet = nullptr;
 	}
 	else
