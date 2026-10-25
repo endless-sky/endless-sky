@@ -43,6 +43,7 @@ public:
 	static int DrawWidth();
 	static int DrawHeight();
 
+	static bool IsInFocus();
 	static bool IsMaximized();
 	static bool IsFullscreen();
 	static void ToggleFullscreen();
