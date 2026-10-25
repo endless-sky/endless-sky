@@ -106,6 +106,8 @@ public:
 	// projectiles stop targeting gov.
 	void BreakTargeting(const Government *gov);
 
+	void DisengageAutopilot();
+
 
 private:
 	class Outline {
