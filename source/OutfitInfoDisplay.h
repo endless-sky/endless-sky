@@ -37,8 +37,6 @@ public:
 
 public:
 	OutfitInfoDisplay() = default;
-	OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
-			bool canSell = false, bool descriptionCollapsed = true);
 
 	// Call this every time the ship changes.
 	void Update(const Outfit &outfit, const PlayerInfo &player, bool canSell = false, bool descriptionCollapsed = true);
