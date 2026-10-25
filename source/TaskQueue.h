@@ -49,6 +49,13 @@ public:
 	// The maximum amount of sync tasks to execute in one go.
 	static constexpr int MAX_SYNC_TASKS = 100;
 
+
+public:
+	// Set the number of worker threads for TaskQueues to run their tasks on.
+	// If not used, a default based on system resources will be chosen.
+	static void SetWorkerThreadCount(uint64_t count);
+
+
 public:
 	// Initialize the threads used to execute the tasks.
 	TaskQueue() = default;

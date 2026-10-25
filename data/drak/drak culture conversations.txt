@@ -71,7 +71,7 @@ mission "Drak Revelations: Humanity"
 	on offer
 		clear "drak revelations: humanity"
 		conversation
-			`The <ship> touches down on <origin> at nightfall, and after overseeing the refuelling procedures and finishing the ship integrity checks, you retire to your quarters for some rest.`
+			`The <ship> touches down on <origin> at nightfall, and after overseeing the refueling procedures and finishing the ship integrity checks, you retire to your quarters for some rest.`
 			`	As you doze off, a faint light taps at the borders of your vision, coiling around borders that you can't quite identify. All around you bars reach upwards and connect to support structures, like a cradle. The platform seems to slowly rotate in the darkness.`
 			`	Suddenly, a huge boulder is barreling down towards you, about to smash the cradle, when the light flashes brightly. It vanishes.`
 			`	The cradle spins again. The darkness is overwhelmed by blood-red flames that eat at the cradle's edges, but just as the wood begins to crackle and creak, the light pulses once more around your sight, and the flames themselves begin to burn away.`

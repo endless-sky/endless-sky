@@ -248,6 +248,7 @@ mission "Remnant: Lost in Ember Waste"
 
 
 mission "Remnant: Defense 1"
+	minor
 	name "Defend <planet>"
 	description "Assist in defending <planet> from a Korath raid, then return to the planet."
 	source "Caelian"
@@ -571,6 +572,7 @@ mission "Remnant: Key Stones"
 
 
 mission "Remnant: Void Sprites 1"
+	minor
 	name "Space creatures"
 	description "A man on the Remnant homeworld of <planet> asked you to collect data on some strange space creatures in the <waypoints> system, in another part of the Ember Waste."
 	source "Aventine"
@@ -987,12 +989,11 @@ mission "Remnant: Deep Surveillance"
 				not "Deep: Remnant 0: done"
 			has "Deep: Remnant Research: offered"
 	substitutions
-		"<compared>" "The complex looks pristine by <region> standards, but when compared"
 		"<compared>" "Compared"
+		"<compared>" "The complex looks pristine by <region> standards, but when compared"
 			or
-				has "start: deep"
-				has "start: paradise"
-				has "start: hai"
+				has "start: default"
+				has "start: syndicate"
 		"<region>" "Dirt Belt"
 			has "start: default"
 		"<region>" "Earth, and even Syndicate"
@@ -1679,6 +1680,7 @@ mission "Remnant: Deep Surveillance"
 
 
 mission "Remnant: Tech Retrieval"
+	minor
 	name "Remnant Human Tech Retrieval"
 	description "The Remnant are interested in learning what advances humanity has made over the past centuries. Bring them samples of advanced technology, such as newly developed ramscoops, weapons, or shields."
 	source "Viminal"
@@ -1758,11 +1760,11 @@ mission "Remnant: Heavy Laser"
 		not attributes "requires: gaslining"
 		not distance 0
 	to offer
+		has "outfit: Heavy Laser"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		require "Heavy Laser"
 		conversation
 			`You remember that Taely was interested in seeing examples of technology from human space. Would you like to show her your Heavy Laser?`
 			choice
@@ -1801,11 +1803,11 @@ mission "Remnant: Plasma Cannon"
 		not attributes "requires: gaslining"
 		not distance 0
 	to offer
+		has "outfit: Plasma Cannon"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		require "Plasma Cannon"
 		conversation
 			`You recall that Taely was interested in examining examples of technology from ancestral space. Would you like to show her the Plasma Cannons you retrieved?`
 			choice
@@ -1851,11 +1853,11 @@ mission "Remnant: Catalytic Ramscoop"
 		not attributes "requires: gaslining"
 		not distance 0
 	to offer
+		has "outfit: Catalytic Ramscoop"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		require "Catalytic Ramscoop"
 		conversation
 			`You recall that Taely was interested in seeing examples of new human technology, and the Catalytic Ramscoop definitely fits the criteria. Would you like to show her?`
 			choice
@@ -1892,11 +1894,11 @@ mission "Remnant: Electron Beam"
 		not attributes "requires: gaslining"
 		not distance 0
 	to offer
+		has "outfit: Electron Beam"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		require "Electron Beam"
 		conversation
 			`You recall that Taely was interested in seeing examples of new human technology, and the electron beam certainly fits the criteria. Would you like to show her?`
 			choice
@@ -1933,11 +1935,11 @@ mission "Remnant: D94-YV Shield Generator"
 		not attributes "requires: gaslining"
 		not distance 0
 	to offer
+		has "outfit: D94-YV Shield Generator"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		require "D94-YV Shield Generator"
 		conversation
 			`You know that Taely was interested in seeing examples of recently developed human technology, and the D94-YV Shield Generator probably fits the criteria. Would you like to show her?`
 			choice
@@ -1974,11 +1976,11 @@ mission "Remnant: S-970 Regenerator"
 		not attributes "requires: gaslining"
 		not distance 0
 	to offer
+		has "outfit: S-970 Regenerator"
 		or
 			has "Remnant: Tech Retrieval: active"
 			has "Remnant: Tech Retrieval: done"
 	on offer
-		require "S-970 Regenerator"
 		conversation
 			`You recall that Taely was interested in seeing instances of new human technology, and the S-970 Regenerator is definitely a recent development. Would you like to show her?`
 			choice
@@ -2093,6 +2095,7 @@ mission "Remnant: Chilia Intro Log 3"
 
 
 mission "Remnant: Return the Samples"
+	minor
 	name "Return the Samples"
 	description "A researcher on <planet> has asked you to return void sprite eggs to Nasqueron that the Remnant stole many years ago."
 	source "Aventine"
@@ -3416,8 +3419,8 @@ mission "Remnant: Keystone Research 6"
 	on offer
 		conversation
 			`When you and the <npc> settle back onto the landing pad, there is already a dockworker waiting with a Key Stone. Once the Starling is settled, the dockworker climbs up the outside of the ship, hooks the keystone to a lift and disconnects it from the ship. As the keystone is hauled up to the roof another lift lowers the replacement Key Stone. The dockworker quickly installs it and jumps down, landing gracefully from the several-meter drop.`
-			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgment to the dockworker. You check your cameras and see the worker nimbly step clear of the engine exhausts as the two ships head back out of the dome.`
-				launch
+			`	"Ready? Let's go!" Aeolus signs as he fires up his systems and gestures an acknowledgment to the dockworker. You check your cameras and see the worker nimbly step clear of the engine exhausts.`
+				accept
 	on visit
 		dialog `You land on <planet>, but you have not scanned the <npc> in <waypoints>. Make sure you scan the ship before returning.`
 	on complete
@@ -3674,8 +3677,8 @@ mission "Remnant: Expanded Horizons Astral 2"
 	waypoint "Sagittarius A*"
 	to offer
 		has "Remnant: Expanded Horizons Astral 1: done"
+		has "ship attribute: jump drive"
 	on offer
-		require "Jump Drive"
 		require "Research Laboratory"
 		conversation
 			`Dawn is just finishing her meal when you enter the spaceport cafeteria. She stands up as you approach and deposits the tray in a receptacle next to her table. "Well, ready to go?"`
@@ -3778,6 +3781,7 @@ ship "_Ion Timer Ship"
 
 
 mission "Remnant: Expanded Horizons Storms 1"
+	minor
 	name "Ember Waste Storm Scanning"
 	description "Dawn has asked that you scan one of the Ember Waste's storms at <waypoints> and return with the data to <planet>."
 	passengers 1
@@ -3850,7 +3854,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 					goto "temperature units"
 				`	"I think that is all the technical detail I can take."`
 					goto "storm end"
-			`	She looks mischievous. "I cannot tell you where or how we got it, but look at this." Her display shifts again with the hazes vanishing, and shows the galaxy map with one key difference. "Yes, the Ember Wastes are violet. Actually, they are off the visual spectrum into the ultraviolets, but this downshifts it so we can see it. This is what the Ember Wastes looked like a very long time ago."`
+			`	She looks mischievous. "I cannot tell you where or how we got it, but look at this." Her display shifts again with the hazes vanishing, and shows the galaxy map with one key difference. "Yes, the Ember Waste is violet. Actually, it is off the visual spectrum into the ultraviolets, but this downshifts it so we can see it. This is what the Ember Waste looked like a very long time ago."`
 			`	She takes on a serious tone. "This data suggests there is enough energy in the area to maintain the hydrogen at somewhere in excess of 61A8 degrees. It does not tell us the source of that energy, but based on patterns and some other data we have collected, the two appear to be intertwined. At the very least, the ion storms are one of the means by which energy is being transferred into the clouds." Her display vanishes, and she slings her backpack over her shoulder.`
 				goto "storm end"
 			label "numeric system"
@@ -3889,6 +3893,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 
 
 mission "Remnant: Logistics 1"
+	minor
 	name "Rush delivery to <planet>"
 	description `Deliver <cargo> to <destination> by <date>.`
 	source "Caelian"

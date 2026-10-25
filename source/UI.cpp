@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 #include "Screen.h"
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 
 #include <algorithm>
 
@@ -72,9 +72,16 @@ bool UI::Handle(const SDL_Event &event)
 			handled = (*it)->DoScroll(event.wheel.x, event.wheel.y);
 		else if(event.type == SDL_KEYDOWN)
 		{
+#ifdef ES_USE_SDL3
+			Command command(event.key.key);
+			handled = (*it)->DoKeyDown(event.key.key, event.key.mod, command, !event.key.repeat);
+#else
 			Command command(event.key.keysym.sym);
 			handled = (*it)->DoKeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
+#endif
 		}
+		else if(event.type == SDL_TEXTINPUT)
+			handled = (*it)->DoTextInput(event.text.text);
 
 		// If this panel does not want anything below it to receive events, do
 		// not let this event trickle further down the stack.
@@ -162,6 +169,7 @@ void UI::Push(const shared_ptr<Panel> &panel)
 	toPush.push_back(panel);
 	panel->SetUI(this);
 	panel->DoResize();
+	panel->DoUpdateTextDisplay();
 }
 
 
@@ -291,11 +299,19 @@ void UI::AdjustViewport() const
 
 
 
+void UI::AdjustTextDisplay() const
+{
+	for(auto &it : stack)
+		it->DoUpdateTextDisplay();
+}
+
+
+
 // Get the current mouse position.
 Point UI::GetMouse()
 {
-	int x = 0;
-	int y = 0;
+	mouse_pos_t x = 0;
+	mouse_pos_t y = 0;
 	SDL_GetMouseState(&x, &y);
 	return Screen::TopLeft() + Point(x, y) * (100. / Screen::Zoom());
 }

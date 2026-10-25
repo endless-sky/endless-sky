@@ -38,6 +38,7 @@ public:
 
 	// Get or change the player's credits.
 	int64_t Credits() const;
+	void SetCredits(int64_t value);
 	void AddCredits(int64_t value);
 	void PayExtra(int mortgage, int64_t amount);
 

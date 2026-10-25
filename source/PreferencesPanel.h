@@ -28,8 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class PlayerInfo;
+class Plugin;
 class RenderBuffer;
-struct Plugin;
 
 
 
@@ -43,6 +43,7 @@ public:
 	virtual void Draw() override;
 
 	virtual void UpdateTooltipActivation() override;
+	virtual void UpdateTextDisplay() override;
 
 
 protected:
