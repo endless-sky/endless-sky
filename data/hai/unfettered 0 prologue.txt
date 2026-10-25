@@ -517,7 +517,7 @@ mission "Unfettered Jump Drive Trading"
 			action
 				outfit "Jump Drive" -1
 				outfit "Hyperdrive" 1
-			`	The Unfettered engineer swaps your jump drive for a hyperdrive before leaving, and you return to your ship after being escorted out of the facility.``
+			`	The Unfettered engineer swaps your jump drive for a hyperdrive before leaving, and you return to your ship after being escorted out of the facility.`
 				accept
 			label spareJD
 			action
