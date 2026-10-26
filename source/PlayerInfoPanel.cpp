@@ -18,10 +18,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Command.h"
+#include "text/DisplayText.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "InfoPanelState.h"
 #include "Information.h"
 #include "Interface.h"
@@ -36,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipInfoPanel.h"
 #include "System.h"
 #include "text/Table.h"
+#include "TableArea.h"
 #include "text/Truncate.h"
 #include "UI.h"
 
@@ -48,42 +52,6 @@ using namespace std;
 namespace {
 	// Number of lines per page of the fleet listing.
 	const int LINES_PER_PAGE = 26;
-
-	// Draw a list of (string, value) pairs.
-	void DrawList(vector<pair<int64_t, string>> &list, const Table &table, const string &title,
-		int64_t titleValue, int maxCount = 0, bool drawValues = true)
-	{
-		if(list.empty())
-			return;
-
-		int otherCount = list.size() - maxCount;
-
-		if(otherCount > 0 && maxCount > 0)
-		{
-			list[maxCount - 1].second = "(" + to_string(otherCount + 1) + " others)";
-			while(otherCount--)
-			{
-				list[maxCount - 1].first += list.back().first;
-				list.pop_back();
-			}
-		}
-
-		const Color &dim = *GameData::Colors().Get("medium");
-		table.DrawGap(10);
-		table.DrawUnderline(dim);
-		table.Draw(title, *GameData::Colors().Get("bright"));
-		table.Draw(titleValue, dim);
-		table.DrawGap(5);
-
-		for(const auto &it : list)
-		{
-			table.Draw(it.second, dim);
-			if(drawValues)
-				table.Draw(it.first);
-			else
-				table.Advance();
-		}
-	}
 
 	bool CompareName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
@@ -107,18 +75,17 @@ namespace {
 
 	bool CompareShields(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		return lhs->Shields() < rhs->Shields();
+		return lhs->ShieldFraction() < rhs->ShieldFraction();
 	}
 
 	bool CompareHull(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		return lhs->Hull() < rhs->Hull();
+		return lhs->HullFraction() < rhs->HullFraction();
 	}
 
 	bool CompareFuel(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		return lhs->Attributes().Get("fuel capacity") * lhs->Fuel() <
-			rhs->Attributes().Get("fuel capacity") * rhs->Fuel();
+		return lhs->FuelLevel() < rhs->FuelLevel();
 	}
 
 	bool CompareRequiredCrew(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -175,8 +142,12 @@ PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
 {
 }
 
+
+
 PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState)
-	: player(player), panelState(panelState)
+	: player(player), panelState(std::move(panelState)),
+	tooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"), true)
 {
 	Audio::Pause();
 	SetInterruptible(false);
@@ -279,8 +250,13 @@ void PlayerInfoPanel::Draw()
 	// Draw the player and fleet info sections.
 	menuZones.clear();
 
+	tooltip.Clear();
 	DrawPlayer(infoPanelUi->GetBox("player"));
 	DrawFleet(infoPanelUi->GetBox("fleet"));
+	if(tooltip.HasText())
+		tooltip.Draw();
+	else
+		tooltip.DecrementCount();
 }
 
 
@@ -633,10 +609,13 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	table.SetUnderline(0, columnWidth);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 
+	CheckHover(table.GetRowBounds(), "player:");
 	table.DrawTruncatedPair("player:", dim, player.FirstName() + " " + player.LastName(),
 		bright, Truncate::MIDDLE, true);
+	CheckHover(table.GetRowBounds(), "net worth:");
 	table.DrawTruncatedPair("net worth:", dim, Format::CreditString(player.Accounts().NetWorth()),
 		bright, Truncate::MIDDLE, true);
+	CheckHover(table.GetRowBounds(), "time played:");
 	table.DrawTruncatedPair("time played:", dim, Format::PlayTime(player.GetPlayTime()),
 		bright, Truncate::MIDDLE, true);
 
@@ -648,15 +627,19 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	{
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
+		CheckHover(table.GetRowBounds(), "combat rating:");
 		table.Draw("combat rating:", bright);
 		table.Advance();
 		table.DrawGap(5);
 
+		CheckHover(table.GetRowBounds(), "rank:");
 		table.DrawTruncatedPair("rank:", dim,
 			to_string(combatLevel) + " - " + combatRating,
 			dim, Truncate::MIDDLE, false);
+		CheckHover(table.GetRowBounds(), "experience:");
 		table.DrawTruncatedPair("experience:", dim,
 			Format::Number(combatExperience), dim, Truncate::MIDDLE, false);
+		CheckHover(table.GetRowBounds(), "for next rank:");
 		bool maxRank = (combatRating == GameData::Rating("combat", combatLevel + 1));
 		table.DrawTruncatedPair("    for next rank:", dim,
 				maxRank ? "MAX" : Format::Number(ceil(exp(combatLevel + 1))),
@@ -664,47 +647,58 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	}
 
 	// Display the factors affecting piracy targeting the player.
-	auto factors = player.RaidFleetFactors();
-	double attractionLevel = max(0., log2(max(factors.first, 0.)));
-	double deterrenceLevel = max(0., log2(max(factors.second, 0.)));
-	string attractionRating = GameData::Rating("cargo attractiveness", attractionLevel);
-	string deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
-	if(!attractionRating.empty() && !deterrenceRating.empty())
+	if(GameData::GetGamerules().SpawnRaidFleets())
 	{
-		double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
-		double prob = 1. - pow(1. - attraction, 10.);
+		auto factors = player.RaidFleetFactors();
+		double attractionLevel = max(0., log2(max(factors.first, 0.)));
+		double deterrenceLevel = max(0., log2(max(factors.second, 0.)));
+		string attractionRating = GameData::Rating("cargo attractiveness", attractionLevel);
+		string deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
+		if(!attractionRating.empty() && !deterrenceRating.empty())
+		{
+			double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
+			double prob = 1. - pow(1. - attraction, 10.);
 
-		table.DrawGap(10);
-		table.DrawUnderline(dim);
-		table.Draw("piracy threat:", bright);
-		table.Draw(Format::Percentage(prob, 0), dim);
-		table.DrawGap(5);
+			table.DrawGap(10);
+			table.DrawUnderline(dim);
+			CheckHover(table.GetRowBounds(), "piracy threat:");
+			table.Draw("piracy threat:", bright);
+			table.Draw(Format::Percentage(prob, 0), dim);
+			table.DrawGap(5);
 
-		// Format the attraction and deterrence levels with tens places, so it
-		// is clear which is higher even if they round to the same level.
-		table.DrawTruncatedPair("cargo: " + attractionRating, dim,
-			"(+" + Format::Number(attractionLevel, 1, false) + ")", dim, Truncate::MIDDLE, false);
-		table.DrawTruncatedPair("fleet: " + deterrenceRating, dim,
-			"(-" + Format::Number(deterrenceLevel, 1, false) + ")", dim, Truncate::MIDDLE, false);
+			// Format the attraction and deterrence levels with tens places, so it
+			// is clear which is higher even if they round to the same level.
+			CheckHover(table.GetRowBounds(), "cargo:");
+			table.DrawTruncatedPair("cargo: " + attractionRating, dim,
+				"(+" + Format::Number(attractionLevel, 1, false) + ")", dim, Truncate::MIDDLE, false);
+			CheckHover(table.GetRowBounds(), "fleet:");
+			table.DrawTruncatedPair("fleet: " + deterrenceRating, dim,
+				"(-" + Format::Number(deterrenceLevel, 1, false) + ")", dim, Truncate::MIDDLE, false);
+		}
 	}
+
 	// Other special information:
-	vector<pair<int64_t, string>> salary;
-	for(const auto &it : player.Accounts().SalariesIncome())
-		salary.emplace_back(it.second, it.first);
+	Point start = table.GetRowBounds().BottomLeft();
+	start.Y() -= 10.;
+	vector<pair<string, int64_t>> salary;
+	for(const auto &[name, value] : player.Accounts().SalariesIncome())
+		salary.emplace_back(name, value);
 	sort(salary.begin(), salary.end(), std::greater<>());
-	DrawList(salary, table, "salary:", player.Accounts().SalariesIncomeTotal(), 4);
+	DrawList(salary, salaryArea, start, columnWidth, "salary:", player.Accounts().SalariesIncomeTotal(),
+		min<int>(salary.size(), 4) * 20);
 
-	vector<pair<int64_t, string>> tribute;
-	for(const auto &it : player.GetTribute())
-		tribute.emplace_back(it.second, it.first->TrueName());
+	vector<pair<string, int64_t>> tribute;
+	for(const auto &[planet, value] : player.GetTribute())
+		tribute.emplace_back(planet->TrueName(), value);
 	sort(tribute.begin(), tribute.end(), std::greater<>());
-	DrawList(tribute, table, "tribute:", player.GetTributeTotal(), 4);
+	DrawList(tribute, tributeArea, start, columnWidth, "tribute:", player.GetTributeTotal(),
+		min<int>(tribute.size(), 4) * 20);
 
-	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
-	vector<pair<int64_t, string>> licenses;
-	for(const auto &it : player.Licenses())
-		licenses.emplace_back(1, it);
-	DrawList(licenses, table, "licenses:", licenses.size(), maxRows, false);
+	vector<pair<string, int64_t>> licenses;
+	for(const string &it : player.Licenses())
+		licenses.emplace_back(it, 1);
+	DrawList(licenses, licenseArea, start, columnWidth, "licenses:", licenses.size(),
+		250. - start.Y(), false);
 }
 
 
@@ -800,12 +794,11 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		const System *system = ship.GetSystem();
 		table.Draw(system ? (player.KnowsName(*system) ? system->DisplayName() : "???") : "");
 
-		table.Draw(Format::Percentage(max(0., ship.Shields()), 0));
+		table.Draw(Format::Percentage(max(0., ship.ShieldFraction()), 0));
 
-		table.Draw(Format::Percentage(max(0., ship.Hull()), 0));
+		table.Draw(Format::Percentage(max(0., ship.HullFraction()), 0));
 
-		string fuel = to_string(static_cast<int>(
-			ship.Attributes().Get("fuel capacity") * ship.Fuel()));
+		string fuel = to_string(static_cast<int>(ship.FuelLevel()));
 		table.Draw(fuel);
 
 		// If this isn't the flagship, we'll remember how many crew it has, but
@@ -832,6 +825,45 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 			pos.Y() += 20.;
 		}
 	}
+}
+
+
+
+void PlayerInfoPanel::DrawList(const vector<pair<string, int64_t>> &list, shared_ptr<TableArea> &area, Point &topLeft,
+	int width, const string &title, int64_t titleValue, int height, bool drawValues)
+{
+	if(list.empty())
+		return;
+
+	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+
+	font.Draw({title, {width, Alignment::LEFT}}, topLeft, bright);
+	font.Draw({Format::Number(titleValue), {width, Alignment::RIGHT}}, topLeft, dim);
+	FillShader::Fill(Rectangle::FromCorner(topLeft + Point(0., font.Height() - 2.), Point(width, 1.)), dim);
+	CheckHover(Rectangle::FromCorner(topLeft, Point(width, 20)), title);
+	topLeft.Y() += 25.;
+
+	if(!area)
+	{
+		area = make_shared<TableArea>();
+		area->SetFontSize(14);
+		area->SetRect(Rectangle::FromCorner(topLeft, Point(width, height)));
+		area->AddColumn(0, {width, Alignment::LEFT}, dim);
+		area->AddColumn(width, {width, Alignment::RIGHT}, bright);
+		for(const auto &[name, value] : list)
+		{
+			area->AddCell(name);
+			if(drawValues)
+				area->AddCell(value);
+			else
+				area->NextRow();
+		}
+		AddChild(area);
+	}
+
+	topLeft.Y() += height + 5;
 }
 
 
@@ -906,6 +938,18 @@ bool PlayerInfoPanel::Hover(const Point &point)
 	hoverIndex = -1;
 
 	return true;
+}
+
+
+
+void PlayerInfoPanel::CheckHover(const Rectangle &zone, const string &label)
+{
+	if(!zone.Contains(hoverPoint))
+		return;
+
+	tooltip.IncrementCount();
+	tooltip.SetZone(zone);
+	tooltip.SetText(GameData::Tooltip("player info: " + label));
 }
 
 

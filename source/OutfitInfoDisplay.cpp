@@ -174,6 +174,8 @@ namespace {
 		{"leak resistance", 2},
 		{"burn resistance", 2},
 
+		{"flotsam chance", 3},
+
 		{"cloak by mass", 3},
 		{"shield multiplier", 3},
 		{"hull multiplier", 3},
@@ -227,7 +229,7 @@ namespace {
 	};
 
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
-		{"unplunderable", "This outfit cannot be plundered."},
+		{"unplunderable", "Cannot be plundered while installed."},
 		{"installable", "This is not an installable item."},
 		{"hyperdrive", "Allows you to make hyperjumps."},
 		{"jump drive", "Lets you jump to any nearby system."},
@@ -241,6 +243,7 @@ namespace {
 		{"cloaked deployment", "You may deploy from bays while cloaked."},
 		{"cloaked pickup", "You may pick up flotsam while cloaked."},
 		{"cloaked scanning", "You may scan other ships while cloaked."},
+		{"can jettison", "Can be jettisoned while installed."},
 		{"inertialess", "Removes inertia when flying."},
 		{"inertialess braking", "Allows you to stop instantaneously."},
 	};
@@ -251,6 +254,17 @@ namespace {
 			SCALE.find(label) != SCALE.end() ||
 			BOOLEAN_ATTRIBUTES.find(label) != BOOLEAN_ATTRIBUTES.end();
 	}
+}
+
+
+
+std::string OutfitInfoDisplay::FormatAttribute(const std::string &attribute, double value)
+{
+	auto sit = SCALE.find(attribute);
+	double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
+	string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
+
+	return Format::Number(value * scale) + units;
 }
 
 
@@ -369,9 +383,9 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 10;
 	}
 
-	for(const pair<const char *, double> &it : outfit.Attributes())
-		if(!count(BEFORE.begin(), BEFORE.end(), it.first))
-			AddRequirementAttribute(it.first, it.second);
+	for(const auto &[name, value] : outfit)
+		if(!count(BEFORE.begin(), BEFORE.end(), name))
+			AddRequirementAttribute(name, value);
 }
 
 
@@ -437,42 +451,50 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		hasNormalAttributes = true;
 	}
 
-	for(const pair<const char *, double> &it : outfit.Attributes())
+	for(const auto &[name, value] : outfit)
 	{
-		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), it.first))
+		// Attributes that are expected to be negative and boolean attributes
+		// are displayed separately.
+		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), name) || BOOLEAN_ATTRIBUTES.contains(name))
 			continue;
 
 		// Only show positive values here, with some exceptions.
 		// Negative values are usually handled as a "requirement"
-		if(static_cast<string>(it.first) == "required crew")
+		if(name == "required crew")
 		{
 			// 'required crew' is inverted - positive values are requirements.
-			if(it.second > 0)
+			if(value > 0)
 				continue;
 
 			// A negative 'required crew' would be a benefit, so it is listed here.
 		}
 		// If this attribute is not a requirement, it is always listed here, though it may be negative.
-		else if(it.second < 0 && !IsNotRequirement(it.first))
+		else if(value < 0 && !IsNotRequirement(name))
 			continue;
 
-		auto sit = SCALE.find(it.first);
-		double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
-		string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
+		attributeLabels.emplace_back(name + ":");
+		attributeValues.emplace_back(FormatAttribute(name, value));
+		attributesHeight += 20;
+		hasNormalAttributes = true;
+	}
 
-		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
-		if(bit != BOOLEAN_ATTRIBUTES.end())
+	bool firstBoolean = true;
+	for(const auto &[name, display] : BOOLEAN_ATTRIBUTES)
+	{
+		double value = outfit.GetPrecise(name);
+		if(!value)
+			continue;
+		if(firstBoolean && hasNormalAttributes)
 		{
-			attributeLabels.emplace_back(bit->second);
-			attributeValues.emplace_back(" ");
-			attributesHeight += 20;
+			attributeLabels.emplace_back();
+			attributeValues.emplace_back();
+			attributesHeight += 10;
 		}
-		else
-		{
-			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
-			attributeValues.emplace_back(Format::Number(it.second * scale) + units);
-			attributesHeight += 20;
-		}
+		firstBoolean = false;
+
+		attributeLabels.emplace_back(display);
+		attributeValues.emplace_back(" ");
+		attributesHeight += 20;
 		hasNormalAttributes = true;
 	}
 

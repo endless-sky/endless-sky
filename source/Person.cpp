@@ -20,7 +20,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "Ship.h"
+#include "ShipEvent.h"
 #include "System.h"
+
+#include <algorithm>
 
 using namespace std;
 
@@ -29,6 +32,7 @@ using namespace std;
 void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
+	name = node.Token(1);
 	isLoaded = true;
 	for(const DataNode &child : node)
 	{
@@ -42,20 +46,17 @@ void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		else if(key == "formation" && hasValue)
 			formationPattern = GameData::Formations().Get(child.Token(1));
 		else if(key == "ship" && hasValue)
-		{
-			// Name ships that are not the flagship with the name provided, if any.
-			// The flagship, and any unnamed fleet members, will be given the name of the Person.
-			bool setName = !ships.empty() && child.Size() >= 3;
-			ships.emplace_back(make_shared<Ship>(child, playerConditions));
-			if(setName)
-				ships.back()->SetGivenName(child.Token(2));
-		}
+			shipFactory.Load(child, playerConditions);
 		else if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(key == "personality")
 			personality.Load(child);
 		else if(key == "phrase")
 			hail.Load(child);
+		else if(key == "never dies")
+			neverDies = true;
+		else if(key == "must destroy all")
+			mustDestroyAll = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -63,22 +64,26 @@ void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 
 
 
-// Finish loading all the ships in this person specification.
-void Person::FinishLoading()
+bool Person::IsValid() const
 {
-	for(const shared_ptr<Ship> &ship : ships)
-	{
-		ship->FinishLoading(true);
-		if(formationPattern)
-			ship->SetFormationPattern(formationPattern);
-	}
+	if(!isLoaded || !government || !government->IsDefined())
+		return false;
+	if(!shipFactory.IsValid())
+		return false;
+	return true;
 }
 
 
 
-bool Person::IsLoaded() const
+// Finish loading all the ships in this person specification.
+void Person::FinishLoading()
 {
-	return isLoaded;
+	auto nameFunc = [this](const shared_ptr<Ship> &) -> string { return name; };
+	shipFactory.FinishLoading();
+	shipFactory.Instantiate(ships, nameFunc);
+	if(formationPattern)
+		for(const shared_ptr<Ship> &ship : ships)
+			ship->SetFormationPattern(formationPattern);
 }
 
 
@@ -97,7 +102,7 @@ int Person::Frequency(const System *system) const
 {
 	// Because persons always enter a system via one of the regular hyperspace
 	// links, don't create them in systems with no links.
-	if(!system || IsDestroyed() || IsPlaced() || system->Links().empty())
+	if(!system || !frequency || system->Links().empty() || !IsValid() || IsDestroyed() || IsPlaced())
 		return 0;
 
 	return (location.IsEmpty() || location.Matches(system)) ? frequency : 0;
@@ -139,9 +144,11 @@ bool Person::IsDestroyed() const
 {
 	if(ships.empty() || !ships.front())
 		return true;
-
-	const Ship &flagship = *ships.front();
-	return (flagship.IsDestroyed() || (flagship.GetSystem() && flagship.GetGovernment() != government));
+	if(neverDies)
+		return false;
+	if(mustDestroyAll)
+		return ranges::all_of(ships, [](const shared_ptr<Ship> &ship) -> bool { return ship->IsDestroyed(); } );
+	return ships.front()->IsDestroyed();
 }
 
 
@@ -185,4 +192,30 @@ void Person::ClearPlacement()
 {
 	if(!IsDestroyed())
 		Restore();
+}
+
+
+
+bool Person::Do(const ShipEvent &event)
+{
+	// First, check if this ship is part of this Person. If not, do nothing. If it
+	// is part of this Person and it just got captured, replace it with a copy of
+	// itself so that when this Person is respawned, it doesn't steal the ship away
+	// from the capturer.
+	const shared_ptr<Ship> &target = event.Target();
+	int type = event.Type();
+	for(shared_ptr<Ship> &ptr : ships)
+		if(ptr == target)
+		{
+			if(type & ShipEvent::CAPTURE)
+			{
+				shared_ptr<Ship> copy = make_shared<Ship>(*ptr);
+				// Unlike NPC, we don't copy the UUID here, since the next time
+				// this ship is spawned, it'll be a different instance.
+				copy->Destroy();
+				ptr.swap(copy);
+			}
+			return true;
+		}
+	return false;
 }

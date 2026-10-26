@@ -16,6 +16,7 @@
 ship "Shale"
 	sprite "ship/gegno shale"
 	thumbnail "thumbnail/gegno shale"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		licenses
@@ -54,6 +55,7 @@ ship "Shale"
 ship "Dolomite"
 	sprite "ship/gegno dolomite"
 	thumbnail "thumbnail/gegno dolomite"
+	"administrative cost" 3
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -97,6 +99,7 @@ ship "Dolomite"
 ship "Conglomerate"
 	sprite "ship/gegno conglomerate"
 	thumbnail "thumbnail/gegno conglomerate"
+	"administrative cost" 4
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -145,6 +148,7 @@ ship "Conglomerate"
 ship "Granofel"
 	sprite "ship/gegno granofel"
 	thumbnail "thumbnail/gegno granofel"
+	"administrative cost" 3
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -192,6 +196,7 @@ ship "Granofel"
 ship "Gypsum"
 	sprite "ship/gegno gypsum"
 	thumbnail "thumbnail/gegno gypsum"
+	"administrative cost" 2
 	attributes
 		category "Light Freighter"
 		licenses
@@ -241,6 +246,7 @@ ship "Gypsum"
 ship "Corundum"
 	sprite "ship/gegno corundum"
 	thumbnail "thumbnail/gegno corundum"
+	"administrative cost" 2
 	attributes
 		category "Light Freighter"
 		licenses
@@ -310,6 +316,7 @@ ship "Corundum" "Corundum (Torch)"
 ship "Protolith"
 	sprite "ship/gegno protolith"
 	thumbnail "thumbnail/gegno protolith"
+	"administrative cost" 17
 	attributes
 		category "Heavy Freighter"
 		"cost" 115700000
@@ -368,6 +375,7 @@ ship "Protolith"
 ship "Dunite"
 	sprite "ship/gegno dunite"
 	thumbnail "thumbnail/gegno dunite"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		licenses
@@ -412,6 +420,7 @@ ship "Dunite"
 ship "Augen"
 	sprite "ship/gegno augen"
 	thumbnail "thumbnail/gegno augen"
+	"administrative cost" 24
 	attributes
 		category "Superheavy"
 		licenses
@@ -547,6 +556,7 @@ ship "Augen"
 ship "Slate"
 	sprite "ship/gegno slate"
 	thumbnail "thumbnail/gegno slate"
+	"administrative cost" 1
 	attributes
 		category "Light Freighter"
 		licenses
@@ -586,6 +596,7 @@ ship "Slate"
 ship "Schist"
 	sprite "ship/gegno schist a"
 	thumbnail "thumbnail/gegno schist a"
+	"administrative cost" 4
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -666,6 +677,7 @@ ship "Schist" "Schist (Heavy Load)"
 ship "Rhyolite"
 	sprite "ship/gegno rhyolite"
 	thumbnail "thumbnail/gegno rhyolite"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		licenses
@@ -715,6 +727,7 @@ ship "Rhyolite"
 ship "Eclogite"
 	sprite "ship/gegno eclogite"
 	thumbnail "thumbnail/gegno eclogite"
+	"administrative cost" 2
 	attributes
 		category "Light Warship"
 		licenses
@@ -765,6 +778,7 @@ ship "Eclogite"
 ship "Diorite"
 	sprite "ship/gegno diorite"
 	thumbnail "thumbnail/gegno diorite"
+	"administrative cost" 2
 	attributes
 		category "Medium Warship"
 		licenses
@@ -832,6 +846,7 @@ ship "Diorite" "Diorite (Ballistic)"
 ship "Hornfel"
 	sprite "ship/gegno hornfel a"
 	thumbnail "thumbnail/gegno hornfel a"
+	"administrative cost" 5
 	attributes
 		category "Medium Warship"
 		licenses
@@ -968,6 +983,7 @@ ship "Gneiss"
 	plural "Gneiss"
 	sprite "ship/gegno gneiss"
 	thumbnail "thumbnail/gegno gneiss"
+	"administrative cost" 7
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -1048,6 +1064,7 @@ ship "Gneiss"
 ship "Granulite"
 	sprite "ship/gegno granulite"
 	thumbnail "thumbnail/gegno granulite"
+	"administrative cost" 7
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -1136,6 +1153,7 @@ ship "Granulite"
 ship "Halite"
 	sprite "ship/gegno halite"
 	thumbnail "thumbnail/gegno halite"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		licenses
@@ -1178,6 +1196,7 @@ ship "Halite"
 ship "Mica"
 	sprite "ship/gegno mica"
 	thumbnail "thumbnail/gegno mica"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		licenses
@@ -1217,6 +1236,7 @@ ship "Mica"
 ship "Coesite"
 	sprite "ship/gegno coesite"
 	thumbnail "thumbnail/gegno coesite"
+	"administrative cost" 2
 	attributes
 		category "Light Warship"
 		licenses
@@ -1270,6 +1290,7 @@ ship "Coesite"
 ship "Tridymite"
 	sprite "ship/gegno tridymite"
 	thumbnail "thumbnail/gegno tridymite"
+	"administrative cost" 2
 	attributes
 		category "Transport"
 		licenses
@@ -1323,6 +1344,7 @@ ship "Tridymite"
 ship "Felsic"
 	sprite "ship/gegno felsic"
 	thumbnail "thumbnail/gegno felsic"
+	"administrative cost" 3
 	attributes
 		category "Utility"
 		licenses
@@ -1375,6 +1397,7 @@ ship "Felsic"
 ship "Feldspar"
 	sprite "ship/gegno feldspar"
 	thumbnail "thumbnail/gegno feldspar"
+	"administrative cost" 7
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -1460,6 +1483,7 @@ ship "Feldspar"
 ship "Epidote"
 	sprite "ship/gegno epidote"
 	thumbnail "thumbnail/gegno epidote"
+	"administrative cost" 6
 	attributes
 		category "Utility"
 		licenses
@@ -1526,6 +1550,7 @@ ship "Epidote"
 ship "Kyanite"
 	sprite "ship/gegno kyanite"
 	thumbnail "thumbnail/gegno kyanite"
+	"administrative cost" 5
 	attributes
 		category "Utility"
 		"cost" 28870000

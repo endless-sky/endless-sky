@@ -231,6 +231,24 @@ double CargoHold::OutfitsSizePrecise() const
 
 
 
+int CargoHold::MinablesSize() const
+{
+	return ceil(MinablesSizePrecise());
+}
+
+
+
+double CargoHold::MinablesSizePrecise() const
+{
+	double size = 0.;
+	for(const auto &it : outfits)
+		if(it.first->Get("minable"))
+			size += it.second * it.first->Mass();
+	return size;
+}
+
+
+
 // Check if any outfits are being carried. Note that some outfits may have mass
 // zero, so this check cannot be done by calling OutfitsSize().
 bool CargoHold::HasOutfits() const
@@ -562,21 +580,6 @@ void CargoHold::RemoveMissionCargo(const Mission *mission)
 {
 	missionCargo.erase(mission);
 	passengers.erase(mission);
-}
-
-
-
-// Get the total value of all this cargo, in the given system.
-int64_t CargoHold::Value(const System *system) const
-{
-	int64_t value = 0;
-	for(const auto &it : commodities)
-		value += static_cast<int64_t>(system->Trade(it.first)) * it.second;
-	// For outfits, assume they're fully depreciated, since that will always be
-	// the case unless the player bought into cargo for some reason.
-	for(const auto &it : outfits)
-		value += it.first->Cost() * it.second * Depreciation::Full();
-	return value;
 }
 
 

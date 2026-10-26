@@ -119,7 +119,6 @@ fleet "Avgi Scouts"
 		names "avgi fighter names"
 	personality
 		surveillance timid coward merciful
-		confusion 20
 	variant 12
 		"Polari"
 		"Optikon" 2
@@ -147,7 +146,6 @@ fleet "Avgi Strike Group"
 		personality
 			hunting disables merciful
 	personality
-		confusion 10
 		heroic disables
 	variant 12
 		"Prismaios" 3
@@ -193,7 +191,6 @@ fleet "Avgi Fleetgroup"
 			hunting disables swarming
 	personality
 		heroic
-		confusion 10
 	variant 6
 		"Atenuatia"
 		"Vibratia" 18
@@ -258,7 +255,6 @@ fleet "Avgi Twilight Guard Logistics"
 		personality
 			swarming
 	personality
-		confusion 20
 		timid merciful opportunistic
 	variant 12
 		"Koryfi" 3
@@ -339,7 +335,6 @@ fleet "Small Avgi Merchants"
 		personality
 			swarming
 	personality
-		confusion 30
 		timid coward appeasing merciful opportunistic
 	variant 24
 		"Koryfi"
@@ -370,7 +365,6 @@ fleet "Large Avgi Merchants"
 		personality
 			swarming
 	personality
-		confusion 30
 		timid coward appeasing merciful opportunistic
 	variant 30
 		"Koryfi" 3
@@ -431,7 +425,7 @@ fleet "Avgi Miners"
 		personality
 			mining harvests swarming
 	personality
-		confusion 30
+		confusion "miner"
 		mining harvests timid coward appeasing disables
 	variant 18
 		"Entasi"
@@ -459,7 +453,6 @@ fleet "Small Dissonance Merchants"
 		personality
 			mining harvests swarming
 	personality
-		confusion 15
 		coward timid disables secretive opportunistic
 	variant 24
 		"Koryfi"
@@ -490,7 +483,6 @@ fleet "Large Dissonance Merchants"
 		personality
 			mining harvests swarming
 	personality
-		confusion 15
 		coward timid disables secretive opportunistic
 	variant 24
 		"Koryfi" 2
@@ -538,9 +530,10 @@ fleet "Dissonance Miners"
 	fighters
 		names "avgi fighter names"
 		personality
+			confusion "miner"
 			mining harvests
 	personality
-		confusion 20
+		confusion "miner"
 		mining harvests timid coward hunting disables plunders secretive opportunistic
 	variant 18
 		"Entasi"
@@ -568,7 +561,6 @@ fleet "Small Dissonance Pirates"
 		personality
 			daring harvests swarming
 	personality
-		confusion 15
 		coward timid disables plunders secretive
 	variant 18
 		"Tremoros" 3
@@ -590,7 +582,6 @@ fleet "Large Dissonance Pirates"
 		personality
 			daring harvests swarming
 	personality
-		confusion 15
 		coward timid disables plunders secretive
 	variant 12
 		"Tremoros" 3

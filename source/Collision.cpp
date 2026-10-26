@@ -37,6 +37,20 @@ Body *Collision::HitBody()
 
 
 
+const Body *Collision::HitBody() const
+{
+	return hit;
+}
+
+
+
+Point Collision::HitVelocity() const
+{
+	return hit ? hit->Velocity() : Point();
+}
+
+
+
 // The type of Body that was hit.
 CollisionType Collision::GetCollisionType() const
 {

@@ -30,11 +30,41 @@ class Sprite;
 class Gamerules {
 public:
 	// Defines which disabled fighters can dodge stray projectiles.
-	enum class FighterDodgePolicy
-	{
+	enum class FighterDodgePolicy {
 		NONE = 0,
 		ONLY_PLAYER = 1,
-		ALL = 2
+		ALL = 2,
+	};
+
+	// Defines how big the player's active fleet can get.
+	// If the player's fleet size is limited, the flagship does not count toward the limit.
+	enum class FleetSizeLimitation {
+		// No limit on how many ships the player can own.
+		NONE = 0,
+		// The player can only have a set number of ships active at once.
+		// Carried ships do not contribute to this limit.
+		SHIP_CAP = 1,
+		// The player can only command up to this many crew at once.
+		// Only the base required crew of ships is taken into account.
+		// Crew equivalent is used where present, such as on automata.
+		CREW_CAP = 2,
+		// The player has an "administration capacity" that limits how many ships
+		// they can have active, with bigger ships having a higher administrative cost.
+		ADMIN_CAP = 3,
+	};
+
+	// Whether permadeath is active and how it should behave.
+	enum class PermadeathMode {
+		// Permadeath is off.
+		OFF = 0,
+		// Your pilot gets locked when you die. Locked pilots can't have their save files loaded.
+		LOCK_ON_DEATH = 1,
+		// Your pilot gets completely deleted when you die.
+		DELETE_ON_DEATH = 2,
+		// Your pilot gets locked the moment you take off from a planet.
+		LOCK_ON_TAKEOFF = 3,
+		// Your pilot gets completely deleted the moment you take off from a planet.
+		DELETE_ON_TAKEOFF = 4,
 	};
 
 
@@ -70,7 +100,18 @@ public:
 	void SetFighterDodgePolicy(FighterDodgePolicy value);
 	void SetSystemDepartureMin(double value);
 	void SetSystemArrivalMin(std::optional<double> value);
+	void SetHabitableBasedArrivalDistance(bool value);
+	void SetHabitableArrivalMin(std::optional<double> value);
+	void SetHabitableArrivalMax(std::optional<double> value);
 	void SetFleetMultiplier(double value);
+	void SetSpawnRaidFleets(bool value);
+	void SetFleetSizeLimitation(FleetSizeLimitation value);
+	void SetDefaultMaxEscortCount(int value);
+	void SetDefaultMaxEscortCrew(int value);
+	void SetDefaultAdminCap(int value);
+	void SetPermadeathMode(PermadeathMode permadeathMode);
+	void SetSingleSaveFile(bool value);
+	void SetRestrictedSaveLoading(bool value);
 	void SetMiscValue(const std::string &rule, int value);
 
 	int GetValue(const std::string &rule) const;
@@ -88,7 +129,18 @@ public:
 	FighterDodgePolicy FightersHitWhenDisabled() const;
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
+	bool HabitableBasedArrivalDistance() const;
+	std::optional<double> HabitableArrivalMin() const;
+	std::optional<double> HabitableArrivalMax() const;
 	double FleetMultiplier() const;
+	bool SpawnRaidFleets() const;
+	FleetSizeLimitation GetFleetSizeLimitation() const;
+	int GetDefaultMaxEscortCount() const;
+	int GetDefaultMaxEscortCrew() const;
+	int GetDefaultAdminCap() const;
+	PermadeathMode GetPermadeathMode() const;
+	bool SingleSaveFile() const;
+	bool RestrictedSaveLoading() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -114,7 +166,24 @@ private:
 		FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
 		double systemDepartureMin = 0.;
 		std::optional<double> systemArrivalMin;
+		bool habitableBasedArrivalDistance = true;
+		std::optional<double> habitableArrivalMin = 500.;
+		std::optional<double> habitableArrivalMax = 5000.;
 		double fleetMultiplier = 1.;
+		bool spawnRaidFleets = true;
+		FleetSizeLimitation fleetSizeLimitation = FleetSizeLimitation::NONE;
+		// The player can only have up to this many escorts active at once. Carried ships are excluded.
+		// This value can be increased for a pilot through gameplay.
+		int defaultMaxEscortCount = 6;
+		// The player can only have escorts whose total base required crew (+ crew equivalent) is less than this value.
+		// This value can be increased for a pilot through gameplay.
+		int defaultMaxEscortCrew = 1000;
+		// The administrative capacity of the player's fleet. Different ships will have different admin costs.
+		// This value can be increased for a pilot through gameplay.
+		int defaultAdminCap = 25;
+		PermadeathMode permadeathMode = PermadeathMode::OFF;
+		bool singleSaveFile = false;
+		bool restrictedSaveLoading = false;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;

@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CollisionSet.h"
 #include "Color.h"
 #include "Command.h"
+#include "DamageProfile.h"
 #include "shader/DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
@@ -95,14 +96,17 @@ public:
 	void Draw() const;
 
 	// Select the object the player clicked on.
-	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl);
-	void RightOrMiddleClick(const Point &point, MouseButton button);
+	void LeftClick(const Point &point, bool hasShift, bool hasControl, int clicks);
+	void ReleaseDrag(const Point &from, const Point &to);
+	void RightOrMiddleClick(const Point &point, MouseButton button, int clicks);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 
 	// Break targeting on all projectiles between the player and the given
 	// government; gov projectiles stop targeting the player and player's
 	// projectiles stop targeting gov.
 	void BreakTargeting(const Government *gov);
+
+	void DisengageAutopilot();
 
 
 private:
@@ -177,8 +181,22 @@ private:
 		double modifier = 1.;
 	};
 
+	class EntityCollision {
+	public:
+		explicit EntityCollision(const DamageProfile &damage, const Government *gov = nullptr, bool provokable = true)
+			: damage(damage), gov(gov), provokable(provokable) {}
+
+		DamageProfile damage;
+		const Government *gov;
+		bool provokable;
+	};
+
 
 private:
+	// Determine if the click was within the radar display,
+	// if the clickable radar preference is active.
+	void LocateClick(const Point &point);
+
 	void EnterSystem();
 
 	void CalculateStep();
@@ -197,14 +215,13 @@ private:
 
 	void FillCollisionSets();
 
-	void DoCollisions(Projectile &projectile);
+	void FindCollisions(Projectile &projectile, std::map<Entity *, std::vector<EntityCollision>> &entityCollisions);
+	void DoCollisions(std::map<Entity *, std::vector<EntityCollision>> &entityCollisions);
 	void DoWeather(Weather &weather);
 	void DoCollection(Flotsam &flotsam);
 	void DoScanning(const std::shared_ptr<Ship> &ship);
 
 	void FillRadar();
-
-	void DrawShipSprites(const Ship &ship);
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
@@ -315,6 +332,7 @@ private:
 	bool hasShift = false;
 	bool hasControl = false;
 	MouseButton mouseButton = MouseButton::NONE;
+	int numClicks = 0;
 	bool isRadarClick = false;
 	Point clickPoint;
 	Rectangle uiClickBox;
