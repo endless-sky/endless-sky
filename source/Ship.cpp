@@ -4398,6 +4398,7 @@ void Ship::DoGeneration()
 				if(!shieldDelay && shieldsRemaining)
 					levels.DoRepair(ship.levels.shields, shieldsRemaining, ship.MaxShields(), regenCost);
 			}
+			levels.heat += cache.dockedHeatGeneration;
 
 			// Now that there is no more need to use energy for hull and shield
 			// repair, if there is still excess energy, transfer it.
@@ -4406,7 +4407,7 @@ void Ship::DoGeneration()
 			double dockedEnergyRemaining = cache.dockedEnergyGeneration;
 			ResourceLevels dockedEnergyCost;
 			if(dockedEnergyRemaining)
-				dockedEnergyCost.heat = cache.dockedHeatGeneration / dockedEnergyRemaining;
+				dockedEnergyCost.heat = cache.dockedEnergyHeat / dockedEnergyRemaining;
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;

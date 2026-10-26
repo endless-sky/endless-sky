@@ -66,6 +66,7 @@ private:
 	double energyGeneration = 0.;
 	double energyConsumption = 0.;
 	double dockedEnergyGeneration = 0.;
+	double dockedEnergyHeat = 0.;
 
 	double fuelGeneration = 0.;
 	double dockedFuelGeneration = 0.;

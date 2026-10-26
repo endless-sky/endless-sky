@@ -63,6 +63,7 @@ namespace {
 		{"hull threshold", std::nullopt},
 		{"energy generation", std::nullopt},
 		{"docked energy generation", std::nullopt},
+		{"docked energy heat", std::nullopt},
 		{"energy consumption", std::nullopt},
 		{"fuel generation", std::nullopt},
 		{"docked fuel generation", std::nullopt},

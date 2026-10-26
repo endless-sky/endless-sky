@@ -72,6 +72,7 @@ void ShipAttributeCache::EnergyAndFuelGeneration(const Outfit &attributes)
 	energyGeneration = attributes.Get("energy generation");
 	energyConsumption = attributes.Get("energy consumption");
 	dockedEnergyGeneration = attributes.Get("docked energy generation");
+	dockedEnergyHeat = attributes.Get("docked energy heat");
 
 	fuelGeneration = attributes.Get("fuel generation");
 	dockedFuelGeneration = attributes.Get("docked fuel generation");

@@ -70,6 +70,7 @@ namespace {
 		{"energy consumption", 0},
 		{"energy generation", 0},
 		{"docked energy generation", 0},
+		{"docked energy heat", 0},
 		{"fuel consumption", 0},
 		{"fuel energy", 0},
 		{"fuel generation", 0},
