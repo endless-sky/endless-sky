@@ -2882,7 +2882,7 @@ bool Ship::IsCapturable() const
 bool Ship::IsTargetable() const
 {
 	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && !IsCloaked()
-		&& levels.hull >= 0. && hyperspaceCount < 70);
+		&& levels.hull >= 0. && GetHyperspaceFraction() < .7);
 }
 
 
@@ -3025,14 +3025,14 @@ bool Ship::IsEnteringHyperspace() const
 
 bool Ship::IsHyperspacing() const
 {
-	return GetHyperspacePercentage() != 0;
+	return hyperspaceCount;
 }
 
 
 
-int Ship::GetHyperspacePercentage() const
+double Ship::GetHyperspaceFraction() const
 {
-	return hyperspaceCount;
+	return static_cast<double>(hyperspaceCount) / hyperspaceTravelTime;
 }
 
 
@@ -3049,7 +3049,7 @@ double Ship::FuelUsedForHyperspacing() const
 {
 	if(!IsEnteringHyperspace())
 		return 0.;
-	return hyperspaceFuelCost * hyperspaceCount / 100.;
+	return hyperspaceFuelCost * hyperspaceCount / hyperspaceTravelTime;
 }
 
 
@@ -3097,13 +3097,13 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		return false;
 
 	// Check if the target system is valid and there is enough fuel to jump.
-	pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(targetSystem);
-	double fuelCost = jumpUsed.second;
+	ShipJumpNavigation::TravelDetails jumpUsed = navigation.GetCheapestJump(targetSystem);
+	double fuelCost = jumpUsed.fuelCost;
 	if(!fuelCost || levels.fuel < fuelCost)
 		return false;
 
 	Point direction = targetSystem->Position() - currentSystem->Position();
-	bool isJump = (jumpUsed.first == JumpType::JUMP_DRIVE);
+	bool isJump = (jumpUsed.type == JumpType::JUMP_DRIVE);
 	double scramThreshold = navigation.ScramThreshold();
 
 	// If the system has a departure distance the ship is only allowed to leave the system
@@ -3123,7 +3123,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		if(deviation > scramThreshold)
 			return false;
 	}
-	else if(velocity.Length() > navigation.JumpSpeed())
+	else if(velocity.Length() > navigation.JumpSpeedThreshold())
 		return false;
 
 	if(!isJump)
@@ -5255,19 +5255,24 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 	// Enter hyperspace.
 	int direction = hyperspaceSystem ? 1 : -1;
 	hyperspaceCount += direction;
-	// Number of frames it takes to enter or exit hyperspace.
-	static const int HYPER_C = 100;
-	// Rate the ship accelerate and slow down when exiting hyperspace.
-	static const double HYPER_A = 2.;
-	static const double HYPER_D = 1000.;
+	// The rate the ship accelerates and decelerates when entering and exiting hyperspace.
+	// Scale with the travel time so that ships all have the same exit distance.
+	// Kinematics: initial_velocity * time + 1/2 * acceleration * time^2 = travel distance
+	// Initial velocity when jumping is practically zero, so just taking the second term:
+	// acceleration = 2 * travel distance / time^2
+	// The exact exit distance comes from the default travel time of 100 frames and default acceleration of 2.
+	static const double HYPER_EXIT_DISTANCE = 10000.;
+	const double HYPER_A = 2. * HYPER_EXIT_DISTANCE / (hyperspaceTravelTime * hyperspaceTravelTime);
+	// The desired stopping distance from the target point.
+	const double HYPER_D = 1000.;
 	if(hyperspaceSystem)
-		levels.fuel -= hyperspaceFuelCost / HYPER_C;
+		levels.fuel -= hyperspaceFuelCost / hyperspaceTravelTime;
 
 	// Create the particle effects for the jump drive. This may create 100
 	// or more particles per ship per turn at the peak of the jump.
 	if(isUsingJumpDrive && !forget)
 	{
-		double sparkAmount = hyperspaceCount * Width() * Height() * .000006;
+		double sparkAmount = 100. * GetHyperspaceFraction() * Width() * Height() * .000006;
 		const map<const Effect *, double> &jumpEffects = attributes.JumpEffects();
 		if(jumpEffects.empty())
 			CreateSparks(visuals, "jump drive", sparkAmount);
@@ -5280,7 +5285,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 		}
 	}
 
-	if(hyperspaceCount == HYPER_C)
+	if(hyperspaceCount == hyperspaceTravelTime)
 	{
 		// Track the movements of mission NPCs.
 		if(isSpecial && !isYours)
@@ -5344,8 +5349,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 
 		// Have all ships exit hyperspace at the same distance so that
 		// your escorts always stay with you.
-		double distance = (HYPER_C * HYPER_C) * .5 * HYPER_A + HYPER_D;
-		distance += extraArrivalDistance;
+		double distance = HYPER_EXIT_DISTANCE + HYPER_D + extraArrivalDistance;
 		position = (target - distance * angle.Unit());
 		position += hyperspaceOffset;
 		// Make sure your velocity is in exactly the direction you are
@@ -5495,9 +5499,10 @@ void Ship::DoInitializeMovement()
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		auto [jumpType, fuelCost] = navigation.GetCheapestJumpType(hyperspaceSystem);
+		auto [jumpType, fuelCost, travelTime] = navigation.GetCheapestJump(hyperspaceSystem);
 		isUsingJumpDrive = (jumpType == JumpType::JUMP_DRIVE);
 		hyperspaceFuelCost = fuelCost;
+		hyperspaceTravelTime = travelTime;
 	}
 }
 

@@ -29,6 +29,22 @@ class System;
 // jump methods, costs, and distances.
 class ShipJumpNavigation {
 public:
+	// The default number of frames it takes to jump to a system for jump outfits
+	// that don't specify a "jump time".
+	static const int DEFAULT_JUMP_FRAMES;
+
+
+public:
+	struct TravelDetails {
+		JumpType type = JumpType::NONE;
+		// The cost of making the jump.
+		double fuelCost = 0;
+		// The number of frames it takes to make the jump.
+		int travelTime = 100;
+	};
+
+
+public:
 	ShipJumpNavigation() = default;
 
 	// Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
@@ -51,9 +67,9 @@ public:
 	double JumpDriveFuel(double distance = 0.) const;
 	// Get the cheapest jump method and its cost for a jump to the destination system.
 	// If no jump method is possible, returns JumpType::None with a jump cost of 0.
-	std::pair<JumpType, double> GetCheapestJumpType(const System *destination) const;
+	TravelDetails GetCheapestJump(const System *destination) const;
 	// Get the cheapest jump method between the two given systems.
-	std::pair<JumpType, double> GetCheapestJumpType(const System *from, const System *to) const;
+	TravelDetails GetCheapestJump(const System *from, const System *to) const;
 
 	// Get if this ship can make a hyperspace or jump drive jump directly from one system to the other.
 	bool CanJump(const System *from, const System *to) const;
@@ -65,7 +81,7 @@ public:
 	bool HasJumpDrive() const;
 	bool HasJumpMassCost() const;
 
-	double JumpSpeed() const;
+	double JumpSpeedThreshold() const;
 	double ScramThreshold() const;
 
 	// Create a hash of the capabilities of this ship, for use in caching pathfinding.
@@ -78,7 +94,8 @@ private:
 	void ParseOutfit(const Outfit &outfit);
 	// Add the given distance, cost pair to the jump drive costs and update the fuel cost
 	// of each jump distance if necessary.
-	void UpdateJumpDriveCosts(double distance, double cost);
+	void UpdateJumpDriveCosts(double distance, const TravelDetails &details);
+	const TravelDetails &GetJumpDetails(double distance) const;
 
 
 private:
@@ -88,9 +105,9 @@ private:
 	const System *currentSystem = nullptr;
 
 	// Cached jump navigation information.
-	double hyperdriveCost = 0.;
-	// Map allowable jump ranges to the fuel required to jump at that range.
-	std::map<double, double> jumpDriveCosts;
+	TravelDetails hyperDriveDetails;
+	// Map allowable jump ranges to the jump details that should be used at that range.
+	std::map<double, TravelDetails> jumpDriveDetails;
 	double maxJumpRange = 0.;
 
 	// What drive types and characteristics the ship has.
@@ -100,6 +117,6 @@ private:
 	bool hasJumpMassCost = false;
 
 	// The speed that this ship can jump at.
-	double jumpSpeed = 0.;
+	double jumpSpeedThreshold = 0.;
 	double scramThreshold = 0.;
 };

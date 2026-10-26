@@ -225,7 +225,8 @@ namespace {
 		{"shield delay", 5},
 		{"cloaking shield delay", 5},
 		{"depleted shield delay", 5},
-		{"disabled recovery time", 5}
+		{"disabled recovery time", 5},
+		{"jump time", 5},
 	};
 
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
