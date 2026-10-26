@@ -34,17 +34,9 @@ void ConditionAlias::Load(const DataNode &node, const ConditionsStore *playerCon
 
 void ConditionAlias::FinishLoading()
 {
-	set<string> usesConditions = conditions.RelevantConditions();
-	for(const string &otherName : GameData::ConditionAliases() | views::keys)
-	{
-		if(usesConditions.contains(otherName))
-		{
-			Logger::Log("Condition alias \"" + name + "\" will be disabled, as it contains the alias \"" + otherName
-				+ "\". Condition aliases may not contain other condition aliases.", Logger::Level::WARNING);
-			isValid = false;
-			return;
-		}
-	}
+	set<string> visited{name};
+	if(LoopCheck(name, visited, *this))
+		isValid = false;
 }
 
 
@@ -52,4 +44,25 @@ void ConditionAlias::FinishLoading()
 bool ConditionAlias::Test() const
 {
 	return isValid ? conditions.Test() : false;
+}
+
+
+
+bool ConditionAlias::LoopCheck(const string &root, set<string> &visited, const ConditionAlias &alias)
+{
+	set<string> usesConditions = alias.conditions.RelevantConditions();
+	for(const auto &[otherName, otherAlias] : GameData::ConditionAliases())
+	{
+		if(!usesConditions.contains(otherName))
+			continue;
+		if(!visited.insert(otherName).second)
+		{
+			Logger::Log("Condition alias contains infinite loop beginning with alias \"" + root + "\".",
+				Logger::Level::WARNING);
+			return true;
+		}
+		if(LoopCheck(root, visited, otherAlias))
+			return true;
+	}
+	return false;
 }

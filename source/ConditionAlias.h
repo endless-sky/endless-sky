@@ -17,6 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 
+#include <set>
+#include <string>
+
 class ConditionsStore;
 class DataNode;
 
@@ -34,6 +37,10 @@ public:
 	void FinishLoading();
 
 	bool Test() const;
+
+
+private:
+	static bool LoopCheck(const std::string &root, std::set<std::string> &visited, const ConditionAlias &alias);
 
 
 private:
