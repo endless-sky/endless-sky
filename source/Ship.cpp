@@ -167,12 +167,22 @@ namespace {
 	Point ScaledFlareCurve(const Ship &ship, Ship::ThrustKind kind)
 	{
 		// When a ship lands, its thrusters should scale with it.
+		// If a ship is inertialess, then its forward thrusting flares scale with the fraction of its
+		// max speed that it is currently traveling at instead of how long the thrust key has been held.
+		if(kind == Ship::ThrustKind::FORWARD && ship.Attributes().Get("inertialess"))
+		{
+			double scale = min(1., ship.Velocity().Length() / ship.MaxVelocity());
+			scale = sqrt(-scale * (scale - 2));
+			return Point(scale, scale) * ship.Zoom();
+		}
 		return FlareCurve(ship.ThrustHeldFraction(kind)) * ship.Zoom();
 	}
 
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
 		const vector<pair<Drawable, int>> &flareSprites, uint8_t side, bool reverse)
 	{
+		if(enginePoints.empty())
+			return;
 		Point thrustScale = ScaledFlareCurve(ship, reverse ? Ship::ThrustKind::REVERSE : Ship::ThrustKind::FORWARD);
 		Point leftTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::LEFT);
 		Point rightTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::RIGHT);
@@ -2207,16 +2217,12 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	{
 		if(isUi || isDocked)
 			return;
-		if(ThrustHeldFrames(Ship::ThrustKind::FORWARD) && !EnginePoints().empty())
-			DrawFlareSprites(*this, draw, EnginePoints(),
-				Attributes().FlareSprites(), where, false);
-		else if(ThrustHeldFrames(Ship::ThrustKind::REVERSE) && !ReverseEnginePoints().empty())
-			DrawFlareSprites(*this, draw, ReverseEnginePoints(),
-				Attributes().ReverseFlareSprites(), where, true);
-		if((ThrustHeldFrames(Ship::ThrustKind::LEFT) || ThrustHeldFrames(Ship::ThrustKind::RIGHT))
-			&& !SteeringEnginePoints().empty())
-			DrawFlareSprites(*this, draw, SteeringEnginePoints(),
-				Attributes().SteeringFlareSprites(), where, false);
+		if(ThrustHeldFrames(Ship::ThrustKind::FORWARD) || attributes.Get("inertialess"))
+			DrawFlareSprites(*this, draw, EnginePoints(), attributes.FlareSprites(), where, false);
+		else if(ThrustHeldFrames(Ship::ThrustKind::REVERSE))
+			DrawFlareSprites(*this, draw, ReverseEnginePoints(), attributes.ReverseFlareSprites(), where, true);
+		if(ThrustHeldFrames(Ship::ThrustKind::LEFT) || ThrustHeldFrames(Ship::ThrustKind::RIGHT))
+			DrawFlareSprites(*this, draw, SteeringEnginePoints(), attributes.SteeringFlareSprites(), where, false);
 	};
 	auto drawHardpoint = [&, this](const Hardpoint &hardpoint) -> void
 	{
