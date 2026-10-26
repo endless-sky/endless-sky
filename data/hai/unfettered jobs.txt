@@ -141,7 +141,8 @@ mission "Unfettered Jump Drive 4"
 			branch spareJD
 				or
 					has "outfit (cargo): Jump Drive"
-					"outfit (flagship installed): Jump Drive" + "flagship attribute: hyperdrive" / 1000 > 1
+					"flagship attribute: jump drive" > 1000
+					has "flagship attribute: hyperdrive"
 			action
 				outfit "Jump Drive" -1
 				outfit "Hyperdrive" 1

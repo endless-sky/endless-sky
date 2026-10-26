@@ -179,13 +179,15 @@ mission "Unfettered Jump Drive 1"
 				`	"Okay, as long as you give me a hyperdrive to take its place, I'll give you my jump drive."`
 					to display
 						not "outfit (cargo): Jump Drive"
-						( "flagship attribute: hyperdrive" + "flagship attribute: jump drive" ) / 1000 == 1
+						"flagship attribute: jump drive" <= 1000
+						not "flagship attribute: hyperdrive"
 					goto end
 				`	"You can take the jump drive, but I don't need a hyperdrive in exchange."`
 					to display
 						or
 							has "outfit (cargo): Jump Drive"
-							"outfit (flagship installed): Jump Drive" + "flagship attribute: hyperdrive" / 1000 > 1
+							"flagship attribute: jump drive" > 1000
+							has "flagship attribute: hyperdrive"
 					goto spareJD
 				`	"Sorry, but if I give you this jump drive, I will lose my ability to capture more of them. Be patient, and I will bring you several of them when I am able."`
 					goto refuse
@@ -240,7 +242,8 @@ mission "Unfettered Jump Drive 2"
 			branch spareJD
 				or
 					has "outfit (cargo): Jump Drive"
-					"outfit (flagship installed): Jump Drive" + "flagship attribute: hyperdrive" / 1000 > 1
+					"flagship attribute: jump drive" > 1000
+					has "flagship attribute: hyperdrive"
 			action
 				outfit "Jump Drive" -1
 				outfit "Hyperdrive" 1
@@ -328,7 +331,8 @@ mission "Unfettered Jump Drive 3"
 			branch spareJD
 				or
 					has "outfit (cargo): Jump Drive"
-					"outfit (flagship installed): Jump Drive" + "flagship attribute: hyperdrive" / 1000 > 1
+					"flagship attribute: jump drive" > 1000
+					has "flagship attribute: hyperdrive"
 			action
 				outfit "Jump Drive" -1
 				outfit "Hyperdrive" 1
@@ -513,7 +517,8 @@ mission "Unfettered Jump Drive Trading"
 			branch spareJD
 				or
 					has "outfit (cargo): Jump Drive"
-					"outfit (flagship installed): Jump Drive" + "flagship attribute: hyperdrive" / 1000 > 1
+					"flagship attribute: jump drive" > 1000
+					has "flagship attribute: hyperdrive"
 			action
 				outfit "Jump Drive" -1
 				outfit "Hyperdrive" 1
