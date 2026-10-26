@@ -2011,7 +2011,7 @@ bool Ship::CanSendHail(const PlayerInfo &player, bool allowUntranslated) const
 		return false;
 
 	// Make sure this ship is able to send a hail.
-	if(CannotAct(Ship::ActionType::COMMUNICATION) || !Crew() || GetPersonality().IsMute() || GetPersonality().IsQuiet())
+	if(CannotAct(Ship::ActionType::COMMUNICATION) || GetPersonality().IsMute() || GetPersonality().IsQuiet())
 		return false;
 
 	// Ships that don't share a language with the player shouldn't communicate when hailed directly.
@@ -2965,34 +2965,46 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct(ActionType actionType) const
 {
-	bool cannotAct = zoom != 1.f || isDisabled || hyperspaceCount || pilotError ||
-		(actionType == ActionType::COMMUNICATION && !Crew());
-	if(cannotAct)
+	// Ships which are taking off, landing, entering or exiting hyperspace,
+	// or are experiencing piloting errors due to low crew can't engage in
+	// any action.
+	if(zoom != 1.f || hyperspaceCount || pilotError)
 		return true;
-	bool canActCloaked = true;
-	if(cloak)
-		switch(actionType)
-		{
-			case ActionType::AFTERBURNER:
-				canActCloaked = cache.canAfterburnerWhileCloaked;
-				break;
-			case ActionType::BOARD:
-				canActCloaked = cache.canBoardWhileCloaked;
-				break;
-			case ActionType::COMMUNICATION:
-				canActCloaked = cache.canCommunicateWhileCloaked;
-				break;
-			case ActionType::FIRE:
-				canActCloaked = cache.canFireWhileCloaked;
-				break;
-			case ActionType::PICKUP:
-				canActCloaked = cache.canPickupWhileCloaked;
-				break;
-			case ActionType::SCAN:
-				canActCloaked = cache.canScanWhileCloaked;
-				break;
-		}
-	return (cloak == 1. && !canActCloaked) || (cloak != 1. && cloak && !cloakDisruption && !canActCloaked);
+	// Ships with crew can communicate while disabled, but other action types
+	// aren't possible while disabled.
+	if(actionType == ActionType::COMMUNICATION)
+	{
+		if(!Crew())
+			return true;
+	}
+	else if(isDisabled)
+		return true;
+	// Fully uncloaked ships can take actions.
+	if(!cloak)
+		return false;
+	bool canActCloaked = false;
+	switch(actionType)
+	{
+		case ActionType::AFTERBURNER:
+			canActCloaked = cache.canAfterburnerWhileCloaked;
+			break;
+		case ActionType::BOARD:
+			canActCloaked = cache.canBoardWhileCloaked;
+			break;
+		case ActionType::COMMUNICATION:
+			canActCloaked = cache.canCommunicateWhileCloaked;
+			break;
+		case ActionType::FIRE:
+			canActCloaked = cache.canFireWhileCloaked;
+			break;
+		case ActionType::PICKUP:
+			canActCloaked = cache.canPickupWhileCloaked;
+			break;
+		case ActionType::SCAN:
+			canActCloaked = cache.canScanWhileCloaked;
+			break;
+	}
+	return !canActCloaked;
 }
 
 
