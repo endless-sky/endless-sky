@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionAlias;
 class CategoryList;
 class Color;
 class ConditionsStore;
@@ -155,6 +156,7 @@ public:
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
 	static const Set<Gamerules> &GamerulesPresets();
+	static const Set<ConditionAlias> &ConditionAliases();
 
 	static const std::set<std::string> &UniverseWormholeRequirements();
 

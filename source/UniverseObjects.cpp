@@ -733,6 +733,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			else
 				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
 		}
+		else if(key == "condition" && hasValue)
+		{
+			ConditionAlias *alias = conditionAliases.Get(node.Token(1));
+			if(overwrite)
+				*alias = ConditionAlias();
+			alias->Load(node, playerConditions);
+		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 		// Overwrite mode is only good for one node at a time.
